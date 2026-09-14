@@ -1,0 +1,223 @@
+=Solution=
+
+==Notation==
+
+* <math>A(w, h)</math> - number of castles with bottom block of length <math>w</math> and height exactly <math>h</math>.
+* <math>F(w, h)</math> - <math>A(w, h)</math> restricted to even total block count. This is what the problem asks for.
+* <math>T(k, L)</math> - number of towers of height at most <math>k</math> stacked above (not counting) a single block of length <math>L</math>.
+* <math>P(k, L)</math> - the signed version of <math>T</math>: sum over the same towers of <math>(-1)^{\text{blocks in tower}}</math>.
+
+Convention: the bottom row is always one block of length <math>w</math> (Rule 4). Everything else is a "tower".
+
+==The binary-string bijection==
+
+Configurations within a block of length <math>L</math> (non-overlapping, non-adjacent integer-length sub-blocks, including the empty config) biject with binary strings of length <math>L</math>: map each string to the configuration whose sub-blocks are its maximal runs of 1s.
+
+Two things follow:
+
+# The number of configurations in a length-<math>L</math> block is <math>2^L</math>.
+# If a binary string has <math>r</math> maximal runs of 1s, the corresponding configuration has <math>r</math> sub-blocks.
+
+==T(k, L) = (k+1)^L==
+
+Proof by induction on <math>k</math>.
+
+* Base: <math>T(0, L) = 1</math> (only the empty tower).
+* Step: assume <math>T(k-1, l) = k^l</math> for every <math>l</math>. A tower of height <math>\leq k</math> above a length-<math>L</math> block is a length-<math>L</math> binary string (choosing which columns have sub-blocks starting at the row directly above) plus, for each maximal run of length <math>l</math>, an independent tower of height <math>\leq k-1</math> above that sub-block.
+
+Two sibling blocks in the same row generate towers that never interact: the gap between them (guaranteed by Rule 3 one row down) propagates up automatically. The generating function factors.
+
+<math>
+T(k, L) = \sum_{b \in \{0,1\}^L} \prod_{\text{runs of length } l \text{ in } b} T(k-1, l)
+= \sum_b \prod_{\text{runs}} k^l
+= \sum_b k^{\text{ones}(b)}
+= (1 + k)^L
+</math>
+
+Corollary: the total number of castles with bottom block <math>w</math> and height <math>\leq h</math> (any parity) is <math>T(h-1, w) = h^w</math>. Verify on <math>w=4, h=2</math>: <math>2^4 = 16</math>.
+
+==The main formula==
+
+Two moves:
+
+# Height exactly <math>h</math>, not <math>\leq h</math>: subtract the shorter tower.
+
+<math>
+\#\text{castles}(w,\ h\text{ exact},\ \text{any parity}) = h^w - (h-1)^w
+</math>
+
+# Even block count: use the signed sum. Define
+
+<math>
+P(k, L) = \sum_{\text{towers of height } \leq k \text{ above } L} (-1)^{\text{blocks in tower}}
+</math>
+
+Then <math>(T + P)/2</math> counts towers with even block count and <math>(T - P)/2</math> counts odd.
+
+The bottom block contributes 1 block, so "castle has even total blocks" is the same as "tower above the bottom has odd block count". Hence:
+
+<math>
+\#\text{(bottom } w,\ \text{height } \leq h,\ \text{even total)} = \frac{T(h-1, w) - P(h-1, w)}{2} = \frac{h^w - P(h-1, w)}{2}
+</math>
+
+Subtract the height-<math>\leq(h-1)</math> version to get exact height <math>h</math>:
+
+<math>
+F(w, h) = \frac{h^w - (h-1)^w - P(h-1, w) + P(h-2, w)}{2}
+</math>
+
+The <math>F(4, 2) = 10</math> check is worked in the Verification section below, after <math>P(k, L)</math> is computed.
+
+==Recursion for P(k, L)==
+
+Same signed sum, same independence:
+
+<math>
+P(k, L) = \sum_{b \in \{0,1\}^L} (-1)^{\text{runs}(b)} \prod_{\text{runs of length } l} P(k-1, l)
+</math>
+
+Base: <math>P(0, L) = 1</math> (empty tower, 0 blocks, <math>(-1)^0 = 1</math>).
+
+Two structural claims:
+
+* For fixed <math>k</math>, <math>P(k, L)</math> satisfies a linear recurrence in <math>L</math> of order roughly <math>k</math>. Consequence: <math>P(k, L)</math> as a function of <math>L</math> is a sum of at most <math>k+1</math> exponentials, evaluable in <math>O(k^2 \log L)</math> by matrix exponentiation.
+* For fixed <math>L</math>, <math>P(k, L)</math> satisfies a linear recurrence in <math>k</math> of order at most about <math>2L</math>. Consequence: computing <math>P(k, L)</math> for large <math>k</math> is <math>O(L^2 \log k)</math> after Berlekamp-Massey finds the recurrence.
+
+Worked case, <math>k = 1</math>:
+
+A tower of height <math>\leq 1</math> above a length-<math>L</math> block picks one row, and a block in that row is a maximal run of 1s in a length-<math>L</math> binary string. So
+
+<math>
+P(1, L) = \sum_{b \in \{0,1\}^L} (-1)^{\text{runs}(b)}
+</math>
+
+Split the strings by their last bit. Let <math>a_L</math> sum <math>(-1)^{\text{runs}}</math> over length-<math>L</math> strings ending in 0, and <math>b_L</math> over those ending in 1. Appending a 0 never changes the run count; appending a 1 starts a new run exactly when the previous bit is 0. So
+
+<math>
+\begin{align}
+a_L &= a_{L-1} + b_{L-1} \\
+b_L &= -a_{L-1} + b_{L-1}
+\end{align}
+</math>
+
+with <math>a_1 = 1</math>, <math>b_1 = -1</math>. The matrix <math>\begin{pmatrix}1 & 1 \\ -1 & 1\end{pmatrix}</math> has eigenvalues <math>1 + i</math> and <math>1 - i</math>. So <math>P(1, L)</math> is a sum of terms proportional to <math>(1+i)^L</math> and <math>(1-i)^L</math>; those two are complex conjugates, so their sum is a real number.
+
+Write <math>\operatorname{Re}(z)</math> for the real part of a complex number <math>z</math>: if <math>z = a + bi</math>, then <math>\operatorname{Re}(z) = a</math>. Then
+
+<math>
+P(1, L) = \operatorname{Re}((1+i)^{L+1})
+</math>
+
+For example, <math>(1+i)^5 = -4 - 4i</math>, so <math>\operatorname{Re}((1+i)^5) = -4</math>, giving <math>P(1, 4) = -4</math>.
+
+Brute-force cross-check for <math>L = 4</math>: of the 16 length-4 strings, 6 have an even number of runs and 10 have odd, so <math>P(1, 4) = 6 - 10 = -4</math>.
+
+Small cases (also consistent):
+
+* <math>P(k, 2) = (-1)^k (k+1)</math>, satisfying <math>(\lambda+1)^2 = 0</math>.
+* <math>P(k, 3) = (-1)^k (k+1)^2</math>, satisfying <math>(\lambda+1)^3 = 0</math>.
+
+==Two ways to compute P==
+
+===The rational-function path (h ≤ 15000)===
+
+Introduce the generating function <math>F_k(x) = \sum_L P(k, L) x^L</math>. Then
+
+<math>
+F_0(x) = \frac{1}{1 - x}
+</math>
+
+(since <math>P(0, L) = 1</math>). Level-by-level update:
+
+<math>
+\begin{align}
+\mathrm{num}_k(x) &= 2 \cdot \mathrm{den}_{k-1}(x) - \mathrm{num}_{k-1}(x) \\
+\mathrm{den}_k(x) &= \mathrm{den}_{k-1}(x) \cdot (1 - 2x) + \mathrm{num}_{k-1}(x) \cdot x \\
+F_k(x) &= \frac{\mathrm{num}_k(x)}{\mathrm{den}_k(x)}
+\end{align}
+</math>
+
+After <math>k = h-1</math> levels, extract <math>[x^w] F_{h-1}(x)</math> to get <math>P(h-1, w)</math>.
+
+Two extractors, chosen by <math>w</math> vs the denominator degree <math>D</math>:
+
+* Direct power series: expand <math>c_n = \mathrm{num}_n - \sum \mathrm{den}_i \cdot c_{n-i}</math> for <math>n = 0..w</math>. Cost <math>O(w \cdot D)</math>.
+* Kitamasa: turn the recurrence into "compute <math>x^w \bmod \text{charPoly}</math>", then <math>O(D^2 \log w)</math>.
+
+Direct wins when <math>w \leq D+1</math> or <math>w \cdot \min(w, D) < 50 D^2</math>; otherwise Kitamasa. The tradeoff is the crossover point where the <math>\log w</math> saving beats the <math>D^2</math> setup cost.
+
+Regime match:
+
+* <math>F(100, 10^{12})</math>: <math>h = 10^{12}</math>, so this path is not taken (<math>h > 15000</math>).
+* <math>F(10000, 10000)</math>: <math>h = 10000 \leq 15000</math>, this path is taken; <math>D \approx 10001</math>, <math>w = 10000</math> gives the direct extractor.
+* <math>F(10^{12}, 100)</math>: <math>h = 100 \leq 15000</math>, this path is taken; <math>D \approx 101</math>, <math>w = 10^{12}</math> gives Kitamasa.
+
+===The k-direction Berlekamp-Massey path (h > 15000)===
+
+For fixed <math>w</math>, generate <math>P(0, w), P(1, w), \ldots, P(N-1, w)</math> for <math>N = 4(w+2) + 20</math> using the same inner recurrence the exact path uses, all mod <math>p</math>. Then:
+
+# Berlekamp-Massey finds the minimal linear recurrence.
+# Kitamasa jumps directly to any index <math>k</math>.
+# Both <math>P(h-2, w)</math> and <math>P(h-1, w)</math> are computed in one pass, saving a factor of 2.
+
+Regime match: <math>F(100, 10^{12})</math>: <math>w = 100</math>, so <math>N \approx 428</math>. Fast even at <math>k = 10^{12}</math>.
+
+The recurrence order is at most about <math>2w</math> empirically. Berlekamp-Massey discovers the recurrence, so no proof is required to use it, but the transfer-matrix argument justifies why one exists.
+
+===The exact path===
+
+For small <math>w, h</math>, the same recurrence runs over integers with no modular reduction. Only usable when <math>h^w</math> and <math>(h-1)^w</math> fit in a long. Handles the <math>F(4,2)</math>, <math>F(13,10)</math>, <math>F(10,13)</math> sanity checks.
+
+==Verification==
+
+<math>F(4, 2)</math>, from the main formula. <math>P(0, 4) = 1</math> (the empty tower) and <math>P(1, 4) = -4</math> (derived above), so
+
+<math>
+F(4, 2) = \frac{2^4 - 1^4 - P(1, 4) + P(0, 4)}{2} = \frac{16 - 1 - (-4) + 1}{2} = \frac{20}{2} = 10
+</math>
+
+* <math>F(13, 10) = 3,729,050,610,636</math> - exact path.
+* <math>F(10, 13) = 37,959,702,514</math> - exact path.
+* <math>F(100, 100) \bmod 10^9+7 = 841,913,936</math> - modular / rational-function path.
+* Composite target: the answer, recorded in obfuscated form at the end of the References section.
+
+Cross-check: <math>F(w,h) + F_{\text{odd}}(w,h) = h^w - (h-1)^w</math> for small <math>(w,h)</math>. Sanity-check <math>T(k,L) = (k+1)^L</math> for <math>k, L \leq 5</math> by brute force.
+
+==What was tried and did not work==
+
+* Direct enumeration of castles. Killed by <math>F(13,10) \sim 4 \times 10^{12}</math>.
+* Column-wise binary strings without the runs/independence insight. Right encoding, wrong decomposition: no way to count without independence.
+* U/R/D convex-castle enumeration. Conceptually clean, but the case analysis to enumerate variations of a convex castle never resolved into a formula.
+* L-direction transfer matrix as the primary solve. Works, but slower than the rational-function form: the matrix power costs <math>O(D^3 \log w)</math> versus <math>O(D^2 \log w)</math> for Kitamasa.
+
+==References==
+
+File: step polyominoes, motzkin numbers, and bessel functions: [[File:PolyominosMotzkinBessel.pdf]]
+
+File: a method for the enumeration of classes of column-convex polygons [[File:EnumerationColumnConvexPolynomials.pdf]]
+
+File: construction procedure for parallel polyomino transfer matrices [[File:PolyominoTransferMatrix.pdf]]
+
+Source: https://git.charlesreid1.com/cs/euler/src/branch/main/java/Problem502.java
+
+Implementation: [[Project Euler/502/Implementation Notes]]
+
+checksum NzQ5NDg1MjE3
+
+=Related=
+
+[[Polyominoes]]
+
+[[Dyck Words]]
+
+[[Lattice Paths]]
+
+[[Combinatorics]]
+
+[[Generating Functions]]
+
+=Flags=
+
+{{PE502Flag}}
+
+{{ProjectEulerFlag}}

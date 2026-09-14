@@ -3,7 +3,7 @@ title: Castle representations
 category: Concepts
 summary: Three ways to encode a castle — binary strings, integer tuples, and U/R/D step strings — and how each castle rule becomes a constraint on the encoding.
 tags: [concept, castle, representations, encoding, combinatorics]
-sources: [project-euler-502-representations, project-euler-502-castle-factoring]
+sources: [project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-solution]
 created: 2026-09-13
 updated: 2026-09-13
 ---
@@ -39,7 +39,7 @@ differences:            +2 +1 +2 −3 +1 −2 +4 −1 −4
 negative sum:          |(−3)+(−2)+(−1)+(−4)| = 10 blocks
 ```
 
-The binary encoding did not lead to the solution, but it is not incidental: it supplies the bijection proof that a length-*L* block admits 2^L sub-configurations, used on the Solution subpage (queued).[^5]
+The binary encoding did not lead to the solution, but it is not incidental: it supplies the [[binary-string-bijection](pages/binary-string-bijection.md)] — a length-*L* block admits `2^L` sub-configurations, and a string with *r* runs of 1s gives *r* sub-blocks — which is the base of the induction proving `T(k,L)=(k+1)^L`.[^5] The Solution subpage is explicit that binary strings *alone* were a dead end: "the right encoding, wrong decomposition" — there is no way to count without also having the sibling-independence insight (the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] crux).[^13]
 
 ### 2. Integer tuples
 
@@ -72,10 +72,12 @@ The castle-factoring work sketches three additional encodings, each a re-view of
 
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] — defines and works all three primary encodings on the w=8, h=5 example.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — makes the integer-tuple/column-height encoding the workhorse and sketches the three further encodings.
+- [[project-euler-502-solution](pages/project-euler-502-solution.md)] — formalizes the binary encoding as the [[binary-string-bijection](pages/binary-string-bijection.md)], and notes binary-strings-without-independence as a failed route.
 
 ## Related Concepts
 
 - [[urd-step-strings](pages/urd-step-strings.md)] — the U/R/D encoding in depth (the encoding that led to the solution).
+- [[binary-string-bijection](pages/binary-string-bijection.md)] — the binary encoding formalized as an exact bijection.
 - [[castle-polyomino](pages/castle-polyomino.md)] — the object being encoded.
 - [[castle-counting-function](pages/castle-counting-function.md)] — the count these encodings are built to enable.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)], [[castle-sign](pages/castle-sign.md)], [[castle-foata-transform](pages/castle-foata-transform.md)] — built on the column-height encoding.
@@ -94,3 +96,4 @@ The castle-factoring work sketches three additional encodings, each a re-view of
 [^10]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Excursion/gap word" L196-204 — "a run of Us or Ds is followed by a run of Rs and vice versa ... encode it as (direction_1, gap_1, direction_2, gap_2, …) ... Validity is a Motzkin-like condition ... every prefix of the signed directions has sum ≥ 0 and the total is 0."
 [^11]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Cycle-forest form" L206-210 — "Match each U with the D that closes it ... a rooted forest of blocks ... only the vertical nesting skeleton: it discards the R steps ... A bare parenthesization is a two-letter Dyck word ... and cannot record the horizontal moves; the tower needs the third letter R."
 [^12]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Signed column-difference sequence" L214-216 — "The run-length encoding of the d sequence into up-streaks, flat runs, and down-streaks is the signed form of the castle. The down-streaks are the sign-carrying atoms ... and the flat runs record the gap and sub-block widths."
+[^13]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"What was tried and did not work" L189 — "Column-wise binary strings without the runs/independence insight. Right encoding, wrong decomposition: no way to count without independence."
