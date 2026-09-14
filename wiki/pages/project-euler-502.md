@@ -36,8 +36,9 @@ The page functions as an index into a worked solution: it links seven subpages c
 - [[castle-counting-function](pages/castle-counting-function.md)] — `F(w,h)`, the number of castles; the PE 502 even-block restriction is a special case.
 
 - [[generating-functions](pages/generating-functions.md)] — the intended counting method (concept page seeded from the Problem Setup subpage; the dedicated *Generating Functions* source page is still queued).
+- [[polyominoes](pages/polyominoes.md)] — the polyomino taxonomy that places the castle as a column-convex polyomino.
 
-Related topics linked from the source but not yet ingested (to be added in later ingests): Polyominoes, Dyck Words, Lattice Paths, Combinatorics.
+Related topics linked from the source but not yet ingested (to be added in later ingests): Dyck Words, Lattice Paths, Combinatorics.
 
 ## Relation to Other Wiki Pages
 

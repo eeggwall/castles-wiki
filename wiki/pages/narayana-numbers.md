@@ -12,7 +12,7 @@ updated: 2026-09-13
 
 ## Description
 
-The **Narayana numbers** `N(n,k) = (1/n) C(n,k) C(n,k−1)` form the triangle OEIS **A001263** (`1; 1,1; 1,3,1; 1,6,6,1; 1,10,20,10,1; …`), a refinement of the Catalan numbers (`∑_k N(n,k) = C_n`). They count, among many things, Dyck paths by number of peaks. They are the classical Catalan/Narayana object the parent plan hoped the castle problem would touch.
+The **Narayana numbers** `N(n,k) = (1/n) C(n,k) C(n,k−1)` form the triangle OEIS **A001263** (`1; 1,1; 1,3,1; 1,6,6,1; 1,10,20,10,1; …`), a refinement of the [[catalan-numbers](pages/catalan-numbers.md)] (`∑_k N(n,k) = C_n`, verified). They count, among many things, Dyck paths by number of peaks. They are the classical Catalan/Narayana object the parent plan hoped the castle problem would touch.
 
 ## The castle connection lives in the tower count
 
@@ -35,6 +35,7 @@ A proposed cross-reference on A001263 itself records this: `T(w,b) = Σ_k N(w,k)
 ## Related Concepts
 
 - [[tower-heap](pages/tower-heap.md)] — the heap-of-pieces object whose block-count Narayana governs.
+- [[catalan-numbers](pages/catalan-numbers.md)] — the sequence Narayana refines (`∑_k N(n,k) = C_n`).
 - [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] — why the *convex* count is binomial, not Narayana.
 - [[generating-functions](pages/generating-functions.md)] — the tool the identity is stated in.
 

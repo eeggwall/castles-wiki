@@ -1,7 +1,7 @@
 ---
 title: Overview
 tags: [overview, synthesis]
-sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes, project-euler-502-brute-force, counting-horizontally-convex-polyominoes, column-convex-polygon-enumeration, steep-polyominoes-q-motzkin-bessel, oeis-mining-pe502, oeis-height2-hyperbolic-castles, tower-narayana-polynomial, convex-castle-binomial-identity, new-sequence-fw3]
+sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes, project-euler-502-brute-force, counting-horizontally-convex-polyominoes, column-convex-polygon-enumeration, steep-polyominoes-q-motzkin-bessel, oeis-mining-pe502, oeis-height2-hyperbolic-castles, tower-narayana-polynomial, convex-castle-binomial-identity, new-sequence-fw3, polyominoes, motzkin-numbers, q-catalan-numbers, catalan-numbers]
 updated: 2026-09-13
 ---
 
@@ -39,7 +39,9 @@ The general object of interest is the castle at **any** block count, counted by 
 - **The signed count** `P(1,L) = A146559(L+1) = Re((1+i)^{L+1})` — correcting a real/imaginary-part confusion; `P(k,·)` is a C-finite family ([[signed-tower-count](pages/signed-tower-count.md)]).
 - **New sequences** (generation candidates): `F(w,3)` and its siblings ([[new-sequence-fw3](pages/new-sequence-fw3.md)]), parity-refined area sequences, `strict_valley`, tower rows `w≥6`. Submission drafts are kept in `raw/oeis-pe502/` per the human-authorship rule ([[oeis-cross-referencing](pages/oeis-cross-referencing.md)]).
 
-**Status.** All seven PE 502 subpages are ingested, plus three reference papers and the OEIS mining workspace. Remaining queues: the hub's *related topic* pages (Polyominoes, Dyck Words, Lattice Paths, Combinatorics, Generating Functions), the OEIS submissions themselves (human action), and deeper follow-up on the threads above.
+**The Catalan / Motzkin / q-analog neighborhood.** The classical sequence pages are now ingested, placing the castle in its combinatorial neighborhood: [[polyominoes](pages/polyominoes.md)] (the taxonomy — Ferrers/staircase/bar-chart/column-convex/directed — which states outright that a castle *is* a column-convex polyomino), [[catalan-numbers](pages/catalan-numbers.md)] (refined by Narayana, q-deformed by q-Catalan; the reference point for "the castle is binomial, not Catalan"), [[motzkin-numbers](pages/motzkin-numbers.md)] (three-step lattice paths; its q-analog is the steep-Dyck-word count), and [[q-catalan-numbers](pages/q-catalan-numbers.md)] (whose Polya/Gessel family counts parallelogram polyominoes by area). Together these anchor the **q-graded castle count** ("find the q-equivalent") — tracked as the lead thread in `TODO.md`.
+
+**Status.** All seven PE 502 subpages are ingested, plus three reference papers, the OEIS mining workspace, and the classical sequence/taxonomy pages (Polyominoes, Catalan, Motzkin, q-Catalan). Open work is tracked in `TODO.md`: the remaining hub topics (Dyck Words, Lattice Paths, Combinatorics), the OEIS submissions (human action), and the research threads (q-equivalent, convex⟺valley bijection, Viennot heaps).
 
 ## Open Questions
 

@@ -1,0 +1,28 @@
+{{DISPLAYTITLE:q-Catalan Numbers}}
+
+=q-Catalan Numbers=
+
+The q-Catalan numbers are polynomial q-analogs of the ordinary [[Catalan Numbers]]: each <math>C_n(q)</math> reduces to <math>C_n</math> at q = 1. Different authors track different statistics, so there is more than one family.
+
+* Carlitz q-Catalan numbers count inversions of [[Dyck Words]] and Catalan permutations
+* q-Catalan numbers (MacMahon, Krattenthaler, Gessel) enumerate Dyck words by parameters of the down set
+* q-Catalan numbers (Polya, Gessel) count parallelogram polyominoes by area
+
+=Related=
+
+[[Dyck Words]]
+
+[[Catalan Numbers]]
+
+[[Motzkin Numbers]]
+
+[[Polyominoes]]
+
+=Flags=
+
+{{CombinatoricsFlag}}
+
+{{AOCPFlag}}
+
+[[Category:Combinatorics]]
+[[Category:Generating Functions]]

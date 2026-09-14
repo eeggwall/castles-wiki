@@ -1,0 +1,62 @@
+Consider the plane
+
+<math>
+\pi = \mathbb{Z} \times \mathbb{Z}
+</math>
+
+A cell is a unit square in <math>\pi</math>, and a polyomino is a finite connected union of cells having no cut point.
+
+A column of polyominoes is the intersection between the polyomino and an infinite vertical strip of cells.
+
+The area of a polyomino is a count of its cells.
+
+The height of a polyomino is the number of rows. The width of a polyomino is the number of columns.
+
+==Classes of Polyominoes==
+
+Classes of polyominoes include:
+* Ferrer diagrams
+* Staircase polyominoes
+* Bar chart polyominoes
+* Column-convex polyominoes
+* Directed polyominoes
+
+===Ferrers Diagrams===
+
+The polyomino is constructed by gluing successively taller columns together, only moving east and north (or, alternatively, east and south).
+
+These are defined by two non-intersecting paths having only north or east steps.
+
+The perimeter of these polyominoes are enumerated by the Catalan numbers. Their generating functions according to area, width, and height are related to q-Bessel functions and q-Catalan numbers.
+
+===Staircase Polyominoes===
+
+Staircase polyominoes begin with a height of 1 on the far left. These usually increase or decrease in height by 1 unit at a time, but that varies from author to author.
+
+===Bar Chart Polyominoes===
+
+Bar chart polyominoes consist of columns of varied height, but sharing a common baseline, glued together side by side.
+
+===Column Convex Polyominoes===
+
+A column convex polyomino is one in which all columns are connected. Drawing a series of vertical lines should result in only two points of intersection with the polyomino at any given point.
+
+===Column-convex castle polyominoes===
+
+Castle polyominoes are column-convex polyominoes built by stacking blocks under the "no overhang, no adjacent same-row blocks, even block count" rules. [[Project Euler/502]] is a worked example: it counts castle polyominoes of width w and height h, and its [[Project Euler/502/Representations]] page walks through three encodings of them.
+
+=Related=
+
+[[Dyck Words]]
+
+[[Lattice Paths]]
+
+[[Combinatorics]]
+
+=Flags=
+
+{{AOCPFlag}}
+
+{{CombinatoricsFlag}}
+
+{{PuzzleFlag}}

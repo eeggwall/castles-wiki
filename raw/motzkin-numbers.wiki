@@ -1,0 +1,46 @@
+=Motzkin Numbers=
+
+The Motzkin number <math>M_n</math> counts the ways to draw non-intersecting chords between n points on a circle, and the Motzkin paths: lattice paths from (0,0) to (n,0) using up, horizontal, and down steps that never drop below the x axis.
+
+First values:
+
+<pre>
+1, 1, 2, 4, 9, 21, 51, 127, 323, 835, ...
+</pre>
+
+Recurrence:
+
+<math>
+M_0 = 1, \qquad M_1 = 1
+</math>
+
+<math>
+M_n = M_{n-1} + \sum_{k=0}^{n-2} M_k M_{n-2-k}
+</math>
+
+Generating function:
+
+<math>
+M(x) = \dfrac{1 - x - \sqrt{1 - 2x - 3x^2}}{2x^2}
+</math>
+
+The q-analog <math>M_n(q)</math> refines the Motzkin numbers and appears in the q-grammar count of steep [[Dyck Words]].
+
+=Related=
+
+[[Dyck Words]]
+
+[[Catalan Numbers]]
+
+[[q-Catalan Numbers]]
+
+=Flags=
+
+{{CombinatoricsFlag}}
+
+{{AOCPFlag}}
+
+{{ConstantsFlag}}
+
+[[Category:Combinatorics]]
+[[Category:Generating Functions]]
