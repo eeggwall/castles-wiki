@@ -16,7 +16,7 @@ Partially-formed notions worth developing further.
 
 - **Castle sequence bank** — count F, T, P, A, F_odd, etc., and mine OEIS for connections.
 - **Recurrence discovery** — run Berlekamp–Massey on P(k,L) in both directions; test conjectured orders (~k+1 in L, ~2L in k).
-- **Closed-form hunting** — P(k,2) = (-1)^(k(k+1)) and P(k,3) = (-1)^k (k+1)^2 are known; extend the table and look for a general formula.
+- **Closed-form hunting** — P(k,2) = (-1)^k (k+1) and P(k,3) = (-1)^k (k+1)^2 are known; extend the table and look for a general formula.
 - **Mod-p observatory** — study the periodicity and automaticity of F(w,h) mod small primes, and mod 10^9+7.
 - **Generating-function gallery** — catalogue num_k / den_k for small k, denominator roots, and the resulting C-finite recurrences.
 
