@@ -33,6 +33,7 @@ This page is a stub keyed to the castle problem's use of the method; the general
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the canonical form underlying the recurrences.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the formula whose `P(k,L)` term is evaluated by these fast-recurrence methods.
 - [[castle-counting-function](pages/castle-counting-function.md)] — the large-parameter evaluations `F(10^12,100)`, `F(100,10^12)` this enables.
+- [[recurrence-discovery](pages/recurrence-discovery.md)] — running Berlekamp–Massey in both directions pins the k-direction order to exactly `2L−2` for `L ≥ 4`.
 
 ## Footnotes
 
