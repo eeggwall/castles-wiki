@@ -1,0 +1,189 @@
+Algorithms for generating all permutations and tuples
+
+=Add-One Mixed Radix Generation Agorithm=
+
+==Binary string permutations==
+
+Knuth starts simple - with binary strings.
+
+Suppose we want to generate all 2^n binary strings of length n. How can we do that?
+
+It is surprisingly easy - just start at 0, and keep adding 1 until you get to 11...11 (where there are n 1s). That's 2^n-1.
+
+==Decimal string permutations==
+
+If we have more than two objects, we can use the same approach as above. For example, suppose we have all ten decimal numbers, 0 through 9, and we want to generate all strings of length n that are permutations of these digits. There are 10^n such strings.
+
+We can start at 0 base 10, and count up to 99...99 base 10 (where we start with n 0's and keep going until we have n 9's). That's 10^n-1.
+
+==Arbitrary string permutations==
+
+Suppose we want to run through all cases in which
+
+<math>
+0 \leq a_j < m_j \qquad \mbox{for } 1 \leq j \leq n
+</math>
+
+where upper limits might be different for different components <math>(a_1, a_2, \dots, a_n)</math>
+
+This is a multiset problem, where we have the multiset <math>\{ m_1 \cdot a_1, m_2 \cdot a_2, \dots, m_n \cdot a_n \}</math>
+
+Then the task is essentially the same as repeatedly adding unity to the number <math>\left[ a_1, a_2, a_3, \dots, a_n \right]</math> in the mixed-radix number system <math>\left[ m_1, m_2, \dots, m_n \right]</math>
+
+==Algorithm M==
+
+Algorithm M = mixed radix generation algorithm
+
+Algorithm for mixed-radix generation of permutations: this algorithm is a generalization of the "sequentially add one to the given number" approach
+
+This algorithm visits all n-tuples by repeatedly adding 1 to the mixed-radix number until overflow occurs.
+
+Note that the "visit" action is where we hand things off to the consumer (whoever is asking for permutations, to do whatever they are going to do).
+
+Auxiliary variables a0 and m0 are introduced as well.
+
+<pre>
+# Initialization
+set a_j <- 0 for 0 <= j <= n
+set m_0 <- 0
+
+
+# Visit
+visit the n-tuple (a_1, ..., a_n)
+pass off control to the consumer
+
+
+# Prepare To Add One
+set j <- n
+
+
+# Carry If Necessary
+if a_j = m_j - 1, set a_j <- 0, j <- j-1
+Repeat this step
+
+
+# Increase Unless Done
+if j=0:
+	terminate
+else:
+	a_j <- a_j + 1
+	return to Visit step
+</pre>
+
+Note that if the number of slots (n) is small, we can write it out using nested for loops:
+
+<pre>
+for a_1 in range 0 to (m_1 - 1):
+	for a_2 in range 0 to (m_2 - 1):
+		for a_3 in range 0 to (m_3 - 1):
+			for a_4 in range 0 to (m_4 - 1):
+				visit the n-tuple (a_1, a_2, a_3, a_4)
+</pre>
+
+=Gray Binary Code Generation Algorithm=
+
+Gray binary code provides an alternative way to generate permutations in non-lexicographic order. In particular, it produces permutations such that each permutation changes only one bit. For example, for n=4, we have 0000, 0001, 0011, 0010, 0111, 0101, 0100, etc.
+
+These are important for converting between analog and digital.
+
+==Recurrence Relation==
+
+Let <math>\Gamma_n</math> represent a gray binary sequence of n-bit strings. Then <math>\Gamma_n</math> can be defined recursively by the rules:
+
+<math>
+\Gamma_0 = \epsilon
+</math>
+
+<math>
+\Gamma_{n+1} = 0 \Gamma_n, 1 \Gamma_n^{R}
+</math>
+
+where epsilon denotes the empty string, <math> 0 \Gamma_n</math> means the string <math>\Gamma_n</math> prefixed with 0, and <math>1 \Gamma_n^R</math> denotes teh sequence <math>\Gamma_n</math> in reverse order with 1 prefixed to the string
+
+The last string of <math>\Gamma_n</math> equals the first string of <math>\Gamma_n^R</math> so exactly one bit changes each step.
+
+==Alternative Formulation==
+
+Alternatively, we can define the sequence by giving an explicit formula to individual elements at various positions in the string.
+
+For example:
+
+<math>
+\Gamma_n = g(0), g(1), \dots, g(2^n -1)
+</math>
+
+This gives an explicit formula for individual elements g(k)
+
+Then the infinite sequence
+
+<math>
+\Gamma_{\infty} = g(0), g(1), g(2), g(3), g(4), \dots
+</math>
+
+<math>
+\Gamma_{\infty} = (0)_2, (1)_2, (11)_2, (10)_2, (110)_2,
+</math>
+
+Is a permutation of all nonnegative integers. Thus, <math>\Gamma_n</math> consists of the first 2^n elements of <math>\Gamma_{\infty}</math> converted to n-bit strings by inserting 0s at left, if necessary.
+
+==Baudot Code==
+
+Baudot is a telegraph machine that uses 5 bits to represent each letter. The baudot telegraph machine uses <math>\Gamma_5</math> gray code.
+
+==Chinese ring puzzle==
+
+Also known as tiring irons. The challenge is to remove rings from bar, but rings are interlocked in such a way that only two moves are possible:
+* Rightmost ring can be removed or replaced
+* Any other ring can be removed or replaced if the ring to its right is on the bar and all rings to the right of that one are off the bar.
+
+The state of the puzzle can be represented with binary notation, 1 means ring is on the bar and 0 means ring is off the bar
+
+==Algorithm G==
+
+Algorithm G = gray binary generation algorithm
+
+This algorithm visits all binary tuples <math>(a_{n-1}, a_{n-2}, \dots, a_1, a_0)</math>
+
+Start with <math>(0, 0, \dots, 0, 0)</math> and change one bit at a time
+
+<pre>
+# Initialize
+set a_j <- 0 for 0 <= j < n
+set a_infty <- 0
+
+
+# Visit
+visit the n-tuple (a_{n-1}, ..., a_1, a_0)
+
+
+# Change Parity
+set a_infty <- 1 - a_infty
+
+
+# Choose j
+if a_infty = 1:
+	set j <- 0
+else:
+	let j >= 1 be minimum such that a_{j-1} = 1
+	after kth time performing this step, j = rho(k)
+	(rho is the ruler function)
+
+
+# Complement Coordinate j
+if j = n:
+	terminate
+else:
+	a_j <- 1 - a_j
+	return to Visit step
+</pre>
+
+=Flags=
+
+{{AOCPFlag}}
+
+{{CombinatoricsFlag}}
+
+{{AlgorithmsFlag}}
+
+[[Category:Permutations]]
+[[Category:Combinatorics]]

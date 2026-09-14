@@ -28,6 +28,14 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
   up the explicit bijection. See `wiki/pages/castle-by-area.md`,
   `wiki/pages/convex-castle.md`.
 
+- [ ] **Knuth's generation algorithms in castle space (seminar candidate).** Translate
+  TAOCP Vol. 4 combinatorial-generation algorithms into the castle's mixed-radix `{1..h}^w`
+  space. Algorithm M (mixed-radix add-one) is already the castle brute-force; a **castle
+  Gray code** would change one column height by one per step (bounded block-count / sign
+  deltas → a loopless enumerator, incremental `P`/parity updates). The twist Knuth's generic
+  algorithms don't handle: restricting to *valid* castles (exact max height *h*, even-block
+  filter). Accessible, self-contained, good for external collaborators.
+  See `wiki/pages/aocp-generating-permutations-tuples.md`.
 - [ ] **Viennot heap theory.** The tower is a heap of pieces
   (`wiki/pages/tower-heap.md`); its block-count Narayana structure invites the
   commutation-monoid / transfer-matrix machinery. Untraced.
@@ -75,6 +83,10 @@ See `wiki/pages/oeis-cross-referencing.md`.
 - [x] **AOCP/Generating Functions** — done (`wiki/pages/aocp-generating-functions.md`).
   The Fibonacci method, linear-recurrence ⇒ rational GF, the operation algebra, and the
   negative binomial — the methodological bedrock of the castle's rational GFs.
+- [x] **AOCP/Generating Permutations and Tuples** — done
+  (`wiki/pages/aocp-generating-permutations-tuples.md`). Mixed-radix add-one (Algorithm M =
+  the castle brute-force) and reflected Gray code; seeds the "generation algorithms in
+  castle space" seminar thread above.
 - [ ] **AOCP/Binomial Coefficients**, **AOCP/Multinomial Coefficients** — the remaining
   Vol. 1 subpages referenced by AOCP/Permutations. Low priority (reference).
 - [ ] (Deferred) The general **Generating Functions** topic page (distinct from
