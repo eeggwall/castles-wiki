@@ -70,6 +70,7 @@ For small *w, h* the same recurrence runs over integers with no modular reductio
 - [[kitamasa](pages/kitamasa.md)], [[berlekamp-massey](pages/berlekamp-massey.md)] — the fast linear-recurrence tools the paths use.
 - [[castle-counting-function](pages/castle-counting-function.md)] — the target values `F(10^12,100)`, `F(10000,10000)`, `F(100,10^12)`.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the canonical form underlying the recurrences.
+- [[generating-function-gallery](pages/generating-function-gallery.md)] — the `num_k/den_k` catalogue behind the rational-function path.
 
 ## Footnotes
 

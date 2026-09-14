@@ -52,6 +52,7 @@ with values `P(1,L) = 1, 0, −2, −4, −4, 0, 8, 16, 16, 0, −32, …` from 
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — why a linear recurrence gives a rational GF, and the partial-fractions → `Re((1+i)^{L+1})` closed form (the Fibonacci method).
 - [[generating-functions-topic](pages/generating-functions-topic.md)] — the imaginary-roots worked example `1/(1+z²) → ½(iⁿ+(−i)ⁿ)`, the exact mechanism of `Re((1+i)^{L+1})`.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] — the orders `k+1` (L-direction) and `2L−2` (k-direction, L ≥ 4), verified by Berlekamp–Massey.
+- [[generating-function-gallery](pages/generating-function-gallery.md)] — the `num_k/den_k` rational GFs and their roots (the characteristic polynomials above).
 
 ## Footnotes
 
