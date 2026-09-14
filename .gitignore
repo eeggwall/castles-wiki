@@ -4,3 +4,22 @@ wiki/pages/audit-*.md
 # index.md is generated from page frontmatter by bin/generate-index.py — a runtime
 # artifact, regenerated on demand. The source of truth is each page's frontmatter.
 wiki/index.md
+
+# Binary source files (PDFs, images, etc.) are kept on local disk, not in git — they
+# bloat the repo and don't diff. Downloaded copies live in assets/ locally; the wiki
+# cites them and they can be re-fetched from their upstream source (e.g. charlesreid1.com).
+# The text wikitext in raw/ IS tracked — it is small and anchors citation line-numbers.
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.mp4
+*.mov
+*.mp3
+*.wav
