@@ -46,7 +46,7 @@ This page is the **source-level root of the castle's permutation-cycle machinery
 - [[lattice-paths](pages/lattice-paths.md)] / [[convex-castle](pages/convex-castle.md)] — the multinomial / stars-and-bars counts.
 - [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] — the Vandermonde–Chu identity used to reconcile the two counts.
 
-Linked from the source but not yet ingested: AOCP/Multinomial Coefficients.
+Related: [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] (ingested) — the multinomial coefficient this page's multiset count equals.
 
 ## Relation to Other Wiki Pages
 

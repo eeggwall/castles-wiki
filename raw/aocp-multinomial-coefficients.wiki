@@ -1,0 +1,48 @@
+=Volume 1=
+
+==Chapter 1: Basic Concepts: Multinomial Coefficients==
+
+===Definition===
+
+The multinomial coefficient generalizes the binomial coefficient (see [[AOCP/Binomial Coefficients]]): instead of choosing k of n items, it divides n items into m labeled groups.
+
+More compactly, let n denote the sum of the k_i:
+
+C(n; k_1, k_2, ..., k_m) = n! / (k_1! k_2! ... k_m!),   k_i in Z, k_i >= 0
+
+or,
+
+C(k_1 + k_2 + ... + k_m; k_1, k_2, ..., k_m) = (k_1 + ... + k_m)! / (k_1! k_2! ... k_m!)   (AOCP V1 1.2.6 eq (38)).
+
+The value C(n; k_1, ..., k_m) counts the ways to divide n items into m labeled groups of sizes k_1, ..., k_m, the same as the permutations of a multiset with those multiplicities (see [[AOCP/Multisets]]).
+
+===Generalization of the Binomial Theorem===
+
+The binomial theorem (eq (13)): (x+y)^n = sum_{0<=k<=n} C(n,k) x^k y^{n-k}.
+
+Analogous multinomial theorem (eq (39)):
+
+(x_1 + x_2 + ... + x_m)^n = sum_{k_1 + ... + k_m = n} C(n; k_1, ..., k_m) x_1^{k_1} x_2^{k_2} ... x_m^{k_m}
+
+Any multinomial coefficient can also be expressed as a product of binomial coefficients (the intermediate factorials telescope):
+
+C(k_1+...+k_m; k_1,...,k_m) = C(k_1+k_2, k_1) C(k_1+k_2+k_3, k_1+k_2) ... C(k_1+...+k_m, k_1+...+k_{m-1})
+
+(AOCP V1 1.2.6, unnumbered).
+
+=Related Pages=
+
+[[LatticePaths]]
+
+[[AOCP/Multisets]]
+
+[[AOCP/Binomial Coefficients]]
+
+=Flags=
+
+{{AOCPFlag}}
+
+[[Category:Binomial]]
+[[Category:Multinomial]]
+[[Category:Combinatorics]]
+[[Category:Permutations]]

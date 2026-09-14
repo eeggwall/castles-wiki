@@ -49,7 +49,7 @@ Several of these are not background but the *exact* identities the castle counts
 - [[generating-functions](pages/generating-functions.md)] / [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] — the negative-binomial denominators.
 - [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] — Stirling first-kind = permutations by cycle count.
 
-Linked from the source but not yet ingested: Cards, AOCP/Multinomial Coefficients.
+Related: [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] (ingested). Linked from the source but not yet ingested: Cards.
 
 ## Relation to Other Wiki Pages
 

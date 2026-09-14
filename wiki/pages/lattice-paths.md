@@ -26,7 +26,7 @@ paths(W,H) = H multichoose (W+1) = binomial(W+H, H)
 
 Worked values (verified during ingest): `binomial(4+2,2) = 15`, `binomial(8+8,8) = 12870`, and the 20×20 grid `binomial(40,20) = 137,846,528,820` (the source obscures the low digits, as it is the PE 15 answer).[^3]
 
-The page then **generalizes to higher dimensions**: a path through a `d`-dimensional lattice is a multiset permutation of a step string with `N_i` steps in each direction, counted by the multinomial `binomial(N; N_1,…,N_d) = N! / (N_1!···N_d!)` (e.g. a 3×4×5×3 4-D lattice gives `binomial(15; 3,4,5,3) = 12,612,600`), with the perfect-cube special case reducing to `(3n)!/(n!)³`.[^4]
+The page then **generalizes to higher dimensions**: a path through a `d`-dimensional lattice is a multiset permutation of a step string with `N_i` steps in each direction, counted by the multinomial `binomial(N; N_1,…,N_d) = N! / (N_1!···N_d!)` (e.g. a 3×4×5×3 4-D lattice gives `binomial(15; 3,4,5,3) = 12,612,600`), with the perfect-cube special case reducing to `(3n)!/(n!)³`.[^4] That multinomial is computed as a **telescoping product of binomials** (see [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)]): `C(15;3,4,5,3) = C(14,4)·C(10,4)·…`.
 
 ## Relevance to the castle
 
@@ -50,7 +50,7 @@ Unlike Dyck paths (which impose the never-go-negative *ballot* constraint and ar
 - [[convex-castle](pages/convex-castle.md)] / [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] — the stars-and-bars binomial count shared with lattice paths.
 - [[dyck-words](pages/dyck-words.md)] — the ballot-constrained cousin (Catalan, not binomial).
 
-Related: [[aocp-multisets](pages/aocp-multisets.md)] (ingested) — the multiset-permutation / multinomial machinery. Linked from the source but not yet ingested: Project Euler/172, AOCP/Multinomial Coefficients.
+Related (ingested): [[aocp-multisets](pages/aocp-multisets.md)] — the multiset-permutation machinery; [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] — the multinomial that counts the higher-D paths. Linked from the source but not yet ingested: Project Euler/172.
 
 ## Relation to Other Wiki Pages
 

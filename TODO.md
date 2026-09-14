@@ -93,7 +93,9 @@ See `wiki/pages/oeis-cross-referencing.md`.
 - [x] **AOCP/Multisets** — done (`wiki/pages/aocp-multisets.md`). Multinomial permutations,
   two-line arrays, Foata intercalation, and the unique cycle factorization that grounds the
   castle's permutation-cycle analogy.
-- [ ] **AOCP/Multinomial Coefficients** — the remaining Vol. 1 subpage. Low priority (reference).
+- [x] **AOCP/Multinomial Coefficients** — done (`wiki/pages/aocp-multinomial-coefficients.md`).
+  The multinomial coefficient, the multinomial theorem, and the telescoping-into-binomials
+  factorization (the higher-D lattice-path count). Completes the AOCP web the castle references.
 - [ ] (Deferred) The general **Generating Functions** topic page (distinct from
   AOCP/Generating Functions) — the concept page `wiki/pages/generating-functions.md` is
   seeded; this standalone source is still queued.

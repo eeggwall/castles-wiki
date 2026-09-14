@@ -24,7 +24,7 @@ The factorial identities are the useful part:[^3]
 - **Stirling's formula** `n! ≈ √(2πn)·(n/e)^n`, relative error ≈ `1/(12n)` (e.g. `8! = 40320 ≈ 39902`, verified).
 - **Legendre's formula** for the multiplicity of a prime *p* in `n!`: `μ = Σ_{k>0} floor(n/p^k)`, with the fast nested-floor identity `floor(n/p^{k+1}) = floor(floor(n/p^k)/p)`. Example: 3 divides `1000!` with multiplicity `333+111+37+12+4+1 = 498` (verified) — so `3^498 ‖ 1000!`.[^4]
 
-It points to the AOCP subpages for [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)], Multinomial Coefficients (not yet ingested), and [[aocp-generating-functions](pages/aocp-generating-functions.md)].
+It points to the AOCP subpages for [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)], [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)], and [[aocp-generating-functions](pages/aocp-generating-functions.md)] (all ingested).
 
 ## Relevance to the castle
 
@@ -45,7 +45,7 @@ The connection is foundational rather than deep, but real on two points:
 - [[convex-castle](pages/convex-castle.md)] / [[lattice-paths](pages/lattice-paths.md)] — the stars-and-bars insertions that mirror the permutation construction.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the verified castle factorizations Legendre's formula underlies.
 
-Linked from the source: [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] and [[aocp-generating-functions](pages/aocp-generating-functions.md)] are ingested; AOCP/Multinomial Coefficients is not yet ingested.
+Linked from the source (all ingested): [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)], [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)], and [[aocp-generating-functions](pages/aocp-generating-functions.md)].
 
 ## Relation to Other Wiki Pages
 
