@@ -87,8 +87,13 @@ See `wiki/pages/oeis-cross-referencing.md`.
   (`wiki/pages/aocp-generating-permutations-tuples.md`). Mixed-radix add-one (Algorithm M =
   the castle brute-force) and reflected Gray code; seeds the "generation algorithms in
   castle space" seminar thread above.
-- [ ] **AOCP/Binomial Coefficients**, **AOCP/Multinomial Coefficients** — the remaining
-  Vol. 1 subpages referenced by AOCP/Permutations. Low priority (reference).
+- [x] **AOCP/Binomial Coefficients** — done (`wiki/pages/aocp-binomial-coefficients.md`).
+  Vandermonde's convolution (closes the convex-castle count), hockey-stick, negate-upper-index,
+  2^n / alternating sum, Stirling numbers.
+- [x] **AOCP/Multisets** — done (`wiki/pages/aocp-multisets.md`). Multinomial permutations,
+  two-line arrays, Foata intercalation, and the unique cycle factorization that grounds the
+  castle's permutation-cycle analogy.
+- [ ] **AOCP/Multinomial Coefficients** — the remaining Vol. 1 subpage. Low priority (reference).
 - [ ] (Deferred) The general **Generating Functions** topic page (distinct from
   AOCP/Generating Functions) — the concept page `wiki/pages/generating-functions.md` is
   seeded; this standalone source is still queued.

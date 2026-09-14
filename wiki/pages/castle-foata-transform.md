@@ -43,6 +43,7 @@ Each has exactly one positive run, hence exactly one peak, and a record set of s
 - [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] — the analogy this transform instantiates.
 - [[castle-representations](pages/castle-representations.md)] — the column-height sequence the transform flattens onto.
 - [[castle-sign](pages/castle-sign.md)] — the parity used to select the valid castles in the miniature test.
+- [[aocp-multisets](pages/aocp-multisets.md)] — Foata's intercalation product and two-line-array cycle apparatus, the classical source of the Foata transform.
 
 ## Footnotes
 

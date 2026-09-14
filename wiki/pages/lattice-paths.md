@@ -50,7 +50,7 @@ Unlike Dyck paths (which impose the never-go-negative *ballot* constraint and ar
 - [[convex-castle](pages/convex-castle.md)] / [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] — the stars-and-bars binomial count shared with lattice paths.
 - [[dyck-words](pages/dyck-words.md)] — the ballot-constrained cousin (Catalan, not binomial).
 
-Linked from the source but not yet ingested: Project Euler/172, AOCP/Multisets, AOCP/Multinomial Coefficients.
+Related: [[aocp-multisets](pages/aocp-multisets.md)] (ingested) — the multiset-permutation / multinomial machinery. Linked from the source but not yet ingested: Project Euler/172, AOCP/Multinomial Coefficients.
 
 ## Relation to Other Wiki Pages
 

@@ -51,7 +51,7 @@ Inversions are the hinge between the castle's Dyck-word world and the q-analog c
 - [[aocp-permutations](pages/aocp-permutations.md)] — the permutation/factorial basics (TAOCP Vol. 1) beneath this Vol. 3 material.
 - [[generating-functions](pages/generating-functions.md)] — the method.
 
-Linked from the source but not yet ingested: AOCP/Multisets, Analytic Combinatorics, Applied Combinatorics.
+Linked from the source: [[aocp-multisets](pages/aocp-multisets.md)] is ingested; Analytic Combinatorics and Applied Combinatorics are not yet ingested.
 
 ## Relation to Other Wiki Pages
 

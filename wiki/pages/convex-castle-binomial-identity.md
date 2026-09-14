@@ -55,6 +55,7 @@ The binomial character runs through the whole object: the height-2 block distrib
 - [[convex-castle](pages/convex-castle.md)] — the object counted here.
 - [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] — where Catalan/Narayana *does* live.
 - [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] — convex castles by area (A001523).
+- [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] — Vandermonde's convolution (the identity that closes this sum) and the binomial toolkit.
 
 ## Footnotes
 

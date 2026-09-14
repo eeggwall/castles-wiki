@@ -1,0 +1,78 @@
+=Volume 3=
+
+==Chapter 5: Combinatorics==
+
+===Multiset Permutations===
+
+Multiset M = {a,a,a,b,b,c,d,d,d,d} = {3a, 2b, c, 4d}. Permutations into words "aaabbcdddd":
+if all 10 distinct there are 10! orderings, but the repeats overcount, so
+N_perm = 10! / (3! 2! 1! 4!).
+
+In general the number of permutations of a multiset is the multinomial coefficient
+C(n; n_1, n_2, ...) = n! / (n_1! n_2! ...).  See [[AOCP/Binomial Coefficients]] and [[AOCP/Multinomial Coefficients]].
+
+Knuth notes multiset permutations were known in ancient times (the Hebrew Book of Creation, ~300 AD, gives the first seven factorials); first appearance of the formula in 1150, Lilavati of Bhascara Acharya.
+
+Foata (1969) provided the "intercalation product," extending set ideas to multisets. Order the multiset's elements. Two-line notation (5.1.2 eq (4)): top line = elements of M in non-decreasing order; bottom line = the permutation.
+
+Intercalation product a (top) b (5.1.2 eq (5)): place the two two-line arrays side by side, then STABLE-sort the columns into non-decreasing order of the top line (ties keep original left-to-right order).
+
+Example: c a d a b (top) b d d a d.
+a = c a d a b: two-line  [a a b c d / c a d a b]
+b = b d d a d: two-line  [a b d d d / b d d a d]
+concatenate: [a a b c d a b d d d / c a d a b b d d a d]
+stable-sort by top -> [a a a b b c d d d d / c a b d d a b d a d]
+so c a d a b (top) b d d a d = c a b d d a b d a d.
+
+===Complicated Multiset Counting Example===
+
+String over {a,b,c} with A a's, B b's, C c's, and exactly k adjacent pairs 'ca', l pairs 'cb', m pairs 'ba' (each directed). Built as two-line arrays (5.1.2 eq (19)). Enumerate by placing a's, then b's, then c's:
+
+a's: C(A, A-k-m) * C(B, m) * C(C, k)   [places (A-k-m)+m+k = A a's]
+b's: C(C-k, l) * C(B+k, B-l)           [B+k = columns left under a and b after a's placed]
+c's: remaining C-k-l c's fill remaining columns, factor 1.
+
+Total (5.1.2 eq (20)):
+C(A, A-k-m) C(B, m) C(C, k) C(B+k, B-l) C(C-k, l)
+
+===Another Multiset Example===
+
+M = {A a, B b, C c}. N(A,B,C,m) = # permutations whose two-line rep has NO agreeing columns (no a/a, b/b, c/c) and exactly m columns of form a/b.
+Six column types remain; row/column sums plus m pin all counts:
+a/c = A-m,  c/b = B-m,  c/a = C-B+m,  b/c = C-A+m,  b/a = A+B-C-m.
+
+Product of choices within each top block (5.1.2 eq (23)):
+N(A,B,C,m) = C(A,m) C(B, C-A+m) C(C, B-m).
+
+Cycle-factorization count: with a/a,b/b,c/c removed the only prime cycles are (a b),(a c),(b c),(a b c),(a c b), and any two share a letter so the factorization is unique (eq (24)). If (a b c) occurs k times: (a b) occurs m-k, (b c) occurs C-A+m-k, (a c) occurs C-B+m-k, (a c b) occurs A+B-C-2m+k times.
+Multinomial sum over k (eq (25)):
+N = sum_k (C+m-k)! / ((m-k)!(C-A+m-k)!(C-B+m-k)! k! (A+B-C-2m+k)!).
+
+Knuth simplifies with the three-term identity (eq (27), = AOCP V1 exercise 1.2.6-31, Vandermonde-Chu type):
+sum_j C(M-R+S, j) C(N+R-S, N-j) C(R+j, M+N) = C(R,M) C(S,N)
+with M=A+B-C-m, N=C-B+m, R=B, S=C, j=C-B+m-k, recovering eq (23).
+
+===Third Example===
+
+Exercise 13 (M21), 5.1.2: number of permutations of M = {A a,...,F f} with no 'ca' and no 'db' adjacent pairs:
+sum_t C(D, A-t) C(A+B+E+F, t) C(A+B+C+E+F-t, B) C(C+D+E+F; C,D,E,F).
+By inclusion-exclusion over the two forbidden pairs, indexed by t; inner multinomial arranges the remaining c,d,e,f.
+
+=Identities used on this page=
+
+* Multinomial coefficient: C(n; n_1, n_2, ...) = n!/(n_1! n_2! ...) (5.1.2 eq (3)).
+* Three-term identity: sum_j C(M-R+S,j) C(N+R-S,N-j) C(R+j,M+N) = C(R,M) C(S,N) (V1 ex 1.2.6-31; V3 5.1.2 eq (27)).
+
+=Related=
+
+[[AOCP/Binomial Coefficients]]
+[[AOCP/Multinomial Coefficients]]
+
+=Flags=
+
+{{AOCPFlag}}
+
+[[Category:Binomial]]
+[[Category:Multinomial]]
+[[Category:Hypergeometric]]
+[[Category:Combinatorics]]

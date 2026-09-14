@@ -1,0 +1,118 @@
+=Knuth Volume 1: Fundamental Algorithms=
+
+==Chapter 1: Basic Concepts: Binomial Coefficients==
+
+===Definitions===
+
+The combinations of n objects taken k at a time are the possible choices of k different elements from a collection of n items. The number is the binomial coefficient C(n,k) = n!/(k!(n-k)!). Computing these in a table gives Pascal's Triangle.
+
+For non-integer n, define (AOCP V1 1.2.6 eq (3)):
+
+C(r,k) = r(r-1)...(r-k+1) / (k(k-1)...1) = prod_{1<=j<=k} (r+1-j)/j,  k in Z, k>=0
+C(r,k) = 0  for k < 0
+
+Identities classify as: representation by factorials, symmetry, moving in/out of brackets, addition, summation, binomial theorem, negating upper index, sums of products.
+
+===Representation by Factorials===
+
+C(n,k) = n!/(k!(n-k)!)  for integers n, k>=0. (eq (5))
+
+===Symmetry Condition===
+
+C(n,k) = C(n,n-k)  for all integers k. (eq (6))
+
+===Moving In and Out of Brackets===
+
+C(r,k) = (r/k) C(r-1,k-1),  k != 0. (eq (7))
+k C(r,k) = r C(r-1,k-1)   (all integers k)
+C(r,k) = (r/(r-k)) C(r-1,k)   for k != r.
+
+===Addition formulas===
+
+C(r,k) = C(r-1,k) + C(r-1,k-1)  for integer k (eq (9)) -- sum of the two Pascal entries above-left and above-right.
+
+===Summation formulas===
+
+Summation identity 1 (repeated addition; "hockey stick") (eq (10)):
+sum_{0<=k<=n} C(r+k,k) = C(r,0)+C(r+1,1)+...+C(r+n,n) = C(r+n+1,n),  n>=0
+
+Summation identity 2 (eq (11)):
+sum_{0<=k<=n} C(k,m) = C(0,m)+C(1,m)+...+C(n,m) = C(n+1,m+1),  integer m,n >= 0
+
+===Deriving summation identities===
+
+To compute 1^2 + 2^2 + ... + n^2, recognize k^2 = 2 C(k,2) + C(k,1), so
+sum_{0<=k<=n} k^2 = 2 C(n+1,3) + C(n+1,2) = (1/3) n (n + 1/2)(n+1).
+Any polynomial a_0 + a_1 k + ... + a_m k^m can be expressed as b_0 C(k,0) + ... + b_m C(k,m).
+
+===Binomial Theorem===
+
+(x+y)^r = sum_{0<=k<=r} C(r,k) x^k y^{r-k}  for integer r>=0 (eq (13)).
+y=1 case: sum_k C(r,k) x^k = (1+x)^r  for integer r>=0 or |x|<1.
+Newton discovered the binomial theorem in 1676; Euler attempted a proof in 1774; Gauss gave the first actual proof in 1812.
+Abel's generalization (eq (16)): (x+y)^r = sum_k C(r,k) x(x-kz)^{k-1}(y+kz)^{r-k}, integer r>=0, x != 0.
+
+===Negating Upper Index===
+
+C(-r,k) = (-1)^k C(r+k-1,k),  k in Z. (eq (17))
+Consequence: sum_{k<=n} C(r,k)(-1)^k = (-1)^n C(r-1,n)  for integer n>=0.
+Proof: sum_{k<=n} C(r,k)(-1)^k = sum_{k<=n} C(-r+k-1,k) = C(-r+n,n) = (-1)^n C(r-1,n).
+Also, for integer r: C(n,m) = (-1)^{n-m} C(-(m+1), n-m),  m,n in Z, n>=0.
+
+===Simplifying Products===
+
+C(r,m) C(m,k) = C(r,k) C(r-k,m-k),  integer m, k (eq (20)).
+
+===Sums of Products===
+
+Vandermonde's convolution (eq (21), published 1772) -- the most important, "should be memorized":
+
+sum_k C(r,k) C(s,n-k) = C(r+s,n)
+
+Interpret the RHS as choosing n people from r men and s women; each LHS term chooses k men and n-k women.
+
+Further:
+sum_k C(r,k) C(s,n+k) = C(r+s, r+n),  r,n in Z, r != 0
+sum_k C(r,k) C(s+k,n) (-1)^k = (-1)^r C(s,n-r),  n,r in Z, r>=0
+
+===Stirling Numbers===
+
+Stirling numbers convert between powers and binomial coefficients (falling factorials). First kind [n m] (permutations of n letters with m cycles), second kind {n m} (partitions of n elements into m nonempty subsets). (Exercise 64)
+
+First kind (falling factorial -> powers) (eq (40)): n! C(x,n) = x(x-1)...(x-n+1) = sum_k (-1)^{n-k} [n k] x^k
+Second kind (powers -> binomials) (eq (41)): x^n = sum_k {n k} C(x,k) k!
+Addition formulas (eq (42)): [n m] = (n-1)[n-1 m] + [n-1 m-1];  {n m} = m {n-1 m} + {n-1 m-1}, n>0.
+Inversion formulas (eq (43)): sum_k [n k]{k m}(-1)^k = (-1)^n delta_{mn};  sum_k {n k}[k m](-1)^k = (-1)^n delta_{mn}.
+
+=Example Problems=
+
+==Knuth AOCP Section 1.2.6 Problem 36==
+
+Sum of each row of Pascal's triangle: sum_k C(n,k) = 2^n.
+Alternating signs: sum_k C(n,k)(-1)^k = (1-1)^n = 0^n = 0 for n>0, 1 for n=0.
+Missing endpoints: sum_{k=1}^{n-1} C(n,k) = 2^n - 2 = 2(2^{n-1}-1).
+
+==The Zeta Family==
+
+Monogram (First Middle Last initials), no repeats, alphabetical order: choose 2 unique letters from 25 = C(25,2) = 300 = 24+23+...+1 = n(n-1)/2.
+
+==Sum of Sequence==
+
+For odd n>1, the sequence C(n,1),...,C(n,(n-1)/2) has an odd number of odd numbers.
+By symmetry, sum_{k=1}^{(n-1)/2} C(n,k) = (1/2) sum_{k=1}^{n-1} C(n,k) = (1/2)(2^n - 2) = 2^{n-1} - 1, which is odd, proving the claim.
+
+=Related=
+
+[[Cards]]
+[[AOCP/Multinomial Coefficients]]
+[[AOCP/Multisets]]
+
+=Flags=
+
+{{AOCPFlag}}
+{{AlgorithmsFlag}}
+
+[[Category:AOCP]]
+[[Category:Algorithms]]
+[[Category:Combinatorics]]
+[[Category:Binomial]]
