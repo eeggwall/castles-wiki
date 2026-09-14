@@ -14,8 +14,6 @@ updated: 2026-09-13
 **Date ingested:** 2026-09-13
 **Type:** paper (PDF, 6 pp.)
 
-> **Filename note.** The file is named `PolyominoTransferMatrix.pdf` and is cited on [[project-euler-502-solution](pages/project-euler-502-solution.md)] as "construction procedure for parallel polyomino transfer matrices." The actual PDF contents are Hickerson's horizontally-convex-polyomino paper — **not** a transfer-matrix construction. This page is named for the paper's true content; the mislabeling is recorded here so the reference resolves correctly.
-
 ## Summary
 
 A **polyomino** is a finite edge-connected union of unit squares with integer-coordinate vertices (an *n*-omino has area *n*), counted up to translation. A polyomino is **horizontally convex** (an HC-polyomino) if every horizontal line meets it in a single segment or not at all.[^1] Let `a(n)` count HC *n*-ominoes; the sequence is `1, 2, 6, 19, 61, 196, 629, 2017, 6466, 20727, 66441, 212980, …` (OEIS **A001169**).[^2]
@@ -53,7 +51,7 @@ The relevance is structural and runs along several threads this wiki is chasing:
 
 ## Relation to Other Wiki Pages
 
-Cited as a reference on [[project-euler-502-solution](pages/project-euler-502-solution.md)] (under a mislabeled title). It is a worked instance of the restricted-count-elimination method that the castle solution uses, applied to a neighboring convexity class, and an entry point into the polyomino-convexity literature.
+Cited as a reference on [[project-euler-502-solution](pages/project-euler-502-solution.md)]. It is a worked instance of the restricted-count-elimination method that the castle solution uses, applied to a neighboring convexity class, and an entry point into the polyomino-convexity literature.
 
 ## Footnotes
 

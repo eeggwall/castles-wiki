@@ -60,11 +60,11 @@ The composite target `(F(10^12,100) + F(10000,10000) + F(100,10^12)) mod (10^9+7
 
 ## References (from the source)
 
-Three papers, uploaded to charlesreid1.com and ingested here as their own source pages. Two of the three files carry titles that do not match their contents; the wiki pages are named for the actual papers (discrepancies noted on each page):[^9]
+Three papers, ingested here as their own source pages:[^9]
 
-- Source title *"step polyominoes, motzkin numbers, and bessel functions"* → actual paper: Barcucci et al., *Steep polyominoes, q-Motzkin numbers and q-Bessel functions* — [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)]
-- Source title *"a method for the enumeration of classes of column-convex polygons"* → actual paper: Bousquet-Mélou, *A method for the enumeration of various classes of column-convex polygons* — [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)]
-- Source title *"construction procedure for parallel polyomino transfer matrices"* (file `PolyominoTransferMatrix.pdf`) → actual paper: Hickerson, *Counting Horizontally Convex Polyominoes* — [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]
+- Barcucci, Del Lungo, Fédou, Pinzani, *Steep polyominoes, q-Motzkin numbers and q-Bessel functions* — [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)]
+- Bousquet-Mélou, *A method for the enumeration of various classes of column-convex polygons* — [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)]
+- Hickerson, *Counting Horizontally Convex Polyominoes* — [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]
 
 Also cited: the Java implementation and the **Implementation Notes** subpage (not yet ingested).
 

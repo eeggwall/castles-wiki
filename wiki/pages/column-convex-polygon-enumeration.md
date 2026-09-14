@@ -14,8 +14,6 @@ updated: 2026-09-13
 **Date ingested:** 2026-09-13
 **Type:** paper (PDF, 17 pp.)
 
-> **Filename note.** The uploaded file is `EnumerationColumnConvexPolynomials.pdf` ("Polynomials"); the actual paper title is "…column-convex **polygons**." Content matches the polygon paper; the filename typo is recorded here.
-
 ## Summary
 
 The paper gives a **single, systematic method** to enumerate essentially any "natural" class of **column-convex** polyominoes, tracking perimeter and area (and other parameters such as width) simultaneously.[^1] A polyomino is **column-convex** (equivalently vertically convex) when its intersection with any vertical line is a contiguous segment — every column is a single unbroken run of cells; it is **convex** when both column- and row-convex.[^2] Enumerating general polyominoes is famously open (even the growth constant `K`, `3.87 < K < 4.65`, is barely pinned down), which is why restricted convex classes are studied instead.[^3]

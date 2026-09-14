@@ -14,8 +14,6 @@ updated: 2026-09-13
 **Date ingested:** 2026-09-13
 **Type:** paper (PDF, 21 pp.)
 
-> **Filename note.** The uploaded file is `PolyominosMotzkinBessel.pdf` and the Solution page cites it as "step polyominoes, motzkin numbers, and bessel functions." The actual paper is about **steep** polyominoes and the **q-analogs** (q-Motzkin, q-Bessel). This page uses the accurate title; the "step"/"steep" and missing-"q" discrepancies are recorded here.
-
 ## Summary
 
 The paper introduces **three q-analogs of the Motzkin numbers** and gives each a combinatorial interpretation, illustrating counting and q-counting techniques.[^1] The three interpretations tie Motzkin q-numbers to *steep* polyomino families and to Dyck words:[^1]
