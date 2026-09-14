@@ -114,5 +114,6 @@ See `wiki/pages/oeis-cross-referencing.md`.
 
 - [ ] Add a short setup note / README for collaborators: MCP config paths in `.mcp.json`
   are machine-specific; the `assets/` PDFs are git-ignored and re-fetchable from
-  charlesreid1.com.
-- [ ] Consider a remote for backup/sharing (no remote configured yet).
+  charlesreid1.com; after a fresh clone re-run `git config core.hooksPath bin/hooks`.
+- [x] Remote for backup/sharing — done. `origin` → github.com/eeggwall/castles-wiki
+  (SSH); `main` tracks `origin/main`.
