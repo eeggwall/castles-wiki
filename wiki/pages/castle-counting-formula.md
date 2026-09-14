@@ -3,7 +3,7 @@ title: Castle counting formula
 category: Analyses
 summary: The closed form F(w,h) = [h^w − (h−1)^w − P(h−1,w) + P(h−2,w)]/2, from the unsigned tower count (k+1)^L and the signed count P_k; verified on all checkpoints.
 tags: [analysis, castle, generating-functions, closed-form, dyck]
-sources: [project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes]
+sources: [project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes, project-euler-502-brute-force]
 created: 2026-09-13
 updated: 2026-09-13
 ---
@@ -60,6 +60,8 @@ For fixed *k*, `P_k` is rational with denominator of degree *k*+1, so `P(k,L)` o
 
 **Why `P` is the right signed object.** `P(k,L) = ∑_{c ∈ {0,…,k}^L} (−1)^{descent(c)}` is the [[castle-sign](pages/castle-sign.md)] `s(C) = (−1)^{blocks}` summed over all towers — the castle analogue of the permutation sign homomorphism. The `(T ± P)/2` combination is the `(1 ± sgn)/2` even/odd class projector, which is exactly why it isolates the even-block castles.[^11]
 
+**A third route to `P`.** Besides the generating-function recurrence (above) and the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)], `P(k,L)` can be computed by a direct `O(k²L)` dynamic program over the last column height: carry a length-`(k+1)` state indexed by the previous column's height, and on appending a column of height `b` after `a` multiply by `(−1)^{max(0, b−a)}` (the new runs each contribute `−1`). This is the [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] `p_signed`, used as exact-integer ground truth for the formula.[^18]
+
 **Evaluating at trillion scale.** For the large-parameter cases the recurrence in *L* is run with fast linear-recurrence methods: **Kitamasa** gives `O(k² log L)` in the *L* direction, and **Berlekamp–Massey** works in the *k* direction — the route the Solution subpage uses for `F(10^12, 100)` and `F(100, 10^12)`.[^12]
 
 ## The main formula
@@ -95,6 +97,7 @@ The two integer values also have clean factorizations (confirmed by factoring du
 - [[project-euler-502-observations](pages/project-euler-502-observations.md)] — names the column independence as the crux, the `h^w−(h−1)^w` unconstrained baseline, and the verified factorizations.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] — proves `T(k,L)=(k+1)^L` by induction via the binary-string bijection, and specifies the algorithms that evaluate `P` at large parameters.
 - [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] — the `/2` as a modular inverse (assumes `p ≠ 2`) and the code that runs the recurrences.
+- [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] — the `p_signed` DP (a third route to `P`) and the direct-enumeration cross-check of the whole formula.
 
 ## Related Concepts
 
@@ -126,3 +129,4 @@ The two integer values also have clean factorizations (confirmed by factoring du
 [^15]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"The \"even number of blocks\" clause is almost the entire difficulty" L17 — "Without it, the answer is just h^w - (h-1)^w: all castles of height at most h minus those of height at most h-1."
 [^16]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"T(k, L) = (k+1)^L" L23-37 — "Proof by induction on k ... a length-L binary string ... plus, for each maximal run of length l, an independent tower of height ≤ k-1 ... T(k, L) = ∑_b ∏_{runs} T(k-1, l) = ∑_b k^{ones(b)} = (1 + k)^L. Corollary ... T(h-1, w) = h^w."
 [^17]: [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] §"Numerics" L63 — "solveMod accepts any prime p, but division by 2 assumes p ≠ 2."
+[^18]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"p_signed" L31-47 — "A new column of height b after a column of height a starts max(0, b − a) new runs, each contributing a factor of −1 ... State is a length-(k+1) vector indexed by the last column height. The transition is O(k^2), so O(k^2 L) total."; DP re-run against brute during ingest, exact."

@@ -1,7 +1,7 @@
 ---
 title: Overview
 tags: [overview, synthesis]
-sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes, counting-horizontally-convex-polyominoes, column-convex-polygon-enumeration, steep-polyominoes-q-motzkin-bessel]
+sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes, project-euler-502-brute-force, counting-horizontally-convex-polyominoes, column-convex-polygon-enumeration, steep-polyominoes-q-motzkin-bessel]
 updated: 2026-09-13
 ---
 
@@ -29,12 +29,17 @@ The general object of interest is the castle at **any** block count, counted by 
 
 **Threads into the wider literature.** Three reference papers are now ingested as entry points: [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)] (a neighboring convexity class whose count collapses to a short recurrence via restricted-shape auxiliaries), [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] (the add-a-column / Temperley method — the closest external framework to the castle's column structure, with the classical Ferrers/stack/parallelogram families), and [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] (steep Dyck words and q-Motzkin/q-Bessel generating functions — the Dyck-and-GF thread into q-analogs).
 
+**Empirical backstop and OEIS mining.** A Python reference ([[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]) confirms the whole apparatus by direct enumeration — `A = F + F_odd`, the closed form, and a third `O(k²L)` `p_signed` DP for `P` — and gives a clean column-height block-count formula `#blocks = c_1 + ∑ max(0, c_i − c_{i−1})`. It also names the wiki's most concrete research method: **OEIS mining** — sweep the brute enumerator over a `(w,h)` rectangle (even, odd, unimodal, block-count distributions) and look the sequences up in the OEIS to reveal further structure. The unimodal counts are exactly the [[convex-castle](pages/convex-castle.md)] (column-convex ∧ row-convex), the class the direct-enumeration attempt failed on — a natural first target.
+
+**Status.** All seven PE 502 subpages are now ingested. The remaining queue is the *related topic* pages the hub links: Polyominoes, Dyck Words, Lattice Paths, Combinatorics, Generating Functions.
+
 ## Open Questions
 
 - How does the count of *all* castles (`A`, both parities) relate to the even-only count `F`? The [[castle-counting-formula](pages/castle-counting-formula.md)] already exposes both halves — the unsigned `T` and the signed `P` — so this is a matter of reading off the general problem rather than an open derivation.
 - **Which castles are column-convex or horizontally convex, and do the castle recurrences relate to `A001169` or the add-a-column functional equations?** The castle is a strongly column-structured object; [[column-convex-polyomino](pages/column-convex-polyomino.md)] and [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] are the two convexity classes to map it against.
 - **Is there a q-graded (area-tracking) castle count, and does it land on q-Motzkin / q-Bessel objects** like the steep-polyomino generating functions? The castle's U/R/D grammar and the steep Dyck words share a run-constraint flavor.
 - Do the classical **stack / Ferrers / parallelogram** families correspond to castle sub-families?
+- **OEIS mining (actionable now):** run [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] over a `(w,h)` rectangle and look up the even / odd / unimodal / block-count-distribution sequences in the OEIS. The [[convex-castle](pages/convex-castle.md)] (`conv_*`) counts are the first target — a hit would connect the castle directly to a known combinatorial family.
 - *(Resolved by [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)]:* the code runs only the recurrences — no transfer matrix, no direct `T(k,L)`, no enumeration; the encodings and grammar are derivation scaffolding.*)*
 
 ## Key Entities / Concepts

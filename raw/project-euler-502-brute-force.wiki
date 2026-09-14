@@ -1,0 +1,105 @@
+=Brute Force=
+
+Source: [https://git.charlesreid1.com/cs/euler/src/branch/main/python/pe502/castle.py castle.py]
+
+A small Python module used to cross-check the Java solver on [[Project Euler/502/Implementation Notes]]. Exact integer arithmetic, no modular reduction, no BM, no Kitamasa. Fast enough for <math>w, h \leq 15</math> or so on the brute enumerator, and for the full range of the exact <math>F(w, h)</math> checks on the DP path.
+
+==What it computes==
+
+* <code>F(w, h)</code> - even-block-count castles, exact. Same formula as [[Project Euler/502/Solution]]: <math>(h^w - (h-1)^w - P(h-1, w) + P(h-2, w)) / 2</math>.
+* <code>F_odd(w, h)</code> - odd-block-count castles, exact. Complement of <code>F</code>.
+* <code>F_any(w, h)</code> - height exactly <math>h</math>, any parity: <math>h^w - (h-1)^w</math>.
+* <code>p_signed(k, L)</code> - the signed sum <math>P(k, L)</math>, computed by an <math>O(k \cdot L \cdot k)</math> DP over the last column height.
+* <code>brute(w, h)</code> - full enumeration of column-height tuples <math>c_1..c_w \in \{1..h\}^w</math> with <math>\max c = h</math>, tallied by parity of block count and by unimodality.
+* <code>block_poly(w, h)</code> - the block-count distribution over height <math>\leq h</math>, useful for staring at signed generating functions by eye.
+
+==Column-height encoding==
+
+A castle of width <math>w</math>, height <math>h</math> is a skyline: column heights <math>c_1, \ldots, c_w \in \{1, \ldots, h\}</math> with <math>\max c = h</math>. This is Rules 1, 2, 4, 5.
+
+A block is a maximal horizontal run of columns at a given level, so
+
+<math>
+\#\text{blocks} = \sum_{r=1}^{h} \#\{\text{runs of columns with } c_i \geq r\}
+= c_1 + \sum_{i=2}^{w} \max(0, c_i - c_{i-1})
+</math>
+
+Rule 3 (gap between neighbouring blocks in the same row) is automatic in the run decomposition: two runs at the same level are always separated by a strictly lower column. Rule 6 (even block count) is applied by parity at the end.
+
+==p_signed==
+
+Same signed sum as <math>P(k, L)</math> on [[Project Euler/502/Solution]], recast on the column-height side. A new column of height <math>b</math> after a column of height <math>a</math> starts <math>\max(0, b - a)</math> new runs, each contributing a factor of <math>-1</math>.
+
+<pre>
+def p_signed(k, L):
+    dp = [(-1) ** a for a in range(k + 1)]
+    for _ in range(2, L + 1):
+        ndp = [0] * (k + 1)
+        for b in range(k + 1):
+            s = 0
+            for a in range(k + 1):
+                s += dp[a] * ((-1) ** max(0, b - a))
+            ndp[b] = s
+        dp = ndp
+    return sum(dp)
+</pre>
+
+State is a length-<math>(k+1)</math> vector indexed by the last column height. The transition is <math>O(k^2)</math>, so <math>O(k^2 L)</math> total. Exact integers throughout.
+
+==brute==
+
+Iterates over <math>\{1, \ldots, h\}^w</math>, keeps tuples with <math>\max = h</math>, and tallies:
+
+* <code>even</code>, <code>odd</code> - by parity of <code>blocks_of(cols)</code>.
+* <code>conv_even</code>, <code>conv_odd</code> - the same, restricted to unimodal skylines (column-convex AND row-convex).
+* <code>dist</code> - <code>{blocks: count}</code>, the full block-count distribution.
+
+Unimodality test: walk up, then walk down; accept iff the walk covers the whole tuple.
+
+<pre>
+def is_unimodal(cols):
+    n = len(cols)
+    i = 0
+    while i + 1 < n and cols[i] <= cols[i + 1]:
+        i += 1
+    while i + 1 < n and cols[i] >= cols[i + 1]:
+        i += 1
+    return i == n - 1
+</pre>
+
+==Self-test==
+
+Running the module directly runs four checks against known values:
+
+* <math>F(4, 2) = 10</math>
+* <math>F(13, 10) = 3\,729\,050\,610\,636</math>
+* <math>F(10, 13) = 37\,959\,702\,514</math>
+* <math>F(100, 100) \bmod (10^9 + 7) = 841\,913\,936</math>
+
+Plus a brute-force cross-check for <math>w, h \leq 5</math>:
+
+* <code>brute(w, h)["even"] == F(w, h)</code>
+* <code>brute(w, h)["odd"] == F_odd(w, h)</code>
+* <code>brute(w, h)["even"] + brute(w, h)["odd"] == F_any(w, h)</code>
+
+The same four checks appear at the top of the Java <code>main</code> on [[Project Euler/502/Implementation Notes]].
+
+==Why keep a brute enumerator==
+
+Three uses:
+
+# Ground truth for the DP. Any change to <code>p_signed</code> is validated against <code>brute</code> on <math>w, h \leq 5</math> before touching the Java solver.
+# The <code>dist</code> and <code>conv_*</code> counts feed the observations on [[Project Euler/502/Observations]] and the U/R/D encoding on [[Project Euler/502/Representations]]. Unimodal castles are the ones the U/R/D convex-castle attempt tried and failed to enumerate directly (see "What was tried and did not work" on [[Project Euler/502/Solution]]).
+# OEIS mining. Running <code>brute</code> over a rectangle of <math>(w, h)</math> produces sequences (even, odd, unimodal, block-count distributions) that can be looked up in the OEIS to reveal further structure.
+
+=Related=
+
+[[Project Euler/502/Solution]]
+
+[[Project Euler/502/Implementation Notes]]
+
+=Flags=
+
+{{PE502Flag}}
+
+{{ProjectEulerFlag}}
