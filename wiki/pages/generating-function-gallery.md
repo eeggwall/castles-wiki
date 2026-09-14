@@ -54,6 +54,28 @@ for k in range(1, 9):
 
 Each `den_k` has degree `k+1` — the order of the C-finite recurrence (see [[recurrence-discovery](pages/recurrence-discovery.md)]).
 
+## A three-term recurrence
+
+The coupled `num`/`den` system collapses to a single second-order recurrence. Eliminating `num` (from `num_k = 2·den_{k−1} − num_{k−1}` and `den_k = den_{k−1}(1−2x) + x·num_{k−1}`) gives
+
+```
+den_{k+1}(x) = den_{k−1}(x) − 2x·den_k(x),
+```
+
+and, via `char_k(λ) = λ^{k+1} den_k(1/λ)`, the same recurrence in the characteristic polynomials:
+
+```
+char_{k+1}(λ) = λ²·char_{k−1}(λ) − 2·char_k(λ),
+```
+
+with `char_0 = λ−1`, `char_1 = λ²−2λ+2`. Verified against the catalogue:
+
+```python
+assert all(sp.expand(den[k+1] - (den[k-1] - 2*x*den[k])) == 0 for k in range(1, 8))
+```
+
+One recurrence generates the whole gallery with no `num` bookkeeping — the generalization the two-line system hides.
+
 ## Denominator roots (the eigenvalues)
 
 The recurrence's eigenvalues are the roots of the **characteristic polynomial** `char_k(λ) = λ^{k+1} den_k(1/λ)` (the reversed denominator). SymPy factors them:
@@ -79,6 +101,23 @@ The recurrence's eigenvalues are the roots of the **characteristic polynomial** 
 | 6 | `3.510`, `1.467 ± 2.107i`, `0.245 ± 1.490i`, `0.033 ± 1.101i` | 3.510 |
 
 `ρ_k ≤ k+1` (the unsigned count `T(k,L) = (k+1)^L` bounds the signed one), with equality never reached — the sign always suppresses the largest tower term.
+
+## Growth rate: ρ_k ~ k / log k
+
+The three-term recurrence has characteristic equation `r² + 2r − λ² = 0`, so `char_k(λ) = A(λ) r_+^k + B(λ) r_-^k` with `r_± = −1 ± √(1+λ²)`; `A, B` are fixed by `char_0, char_1` and satisfy `A ≈ λ`, `B ≈ −1/(4λ)` for large `λ`. The dominant eigenvalue `ρ_k` solves `char_k(ρ_k) = 0`; balancing the two terms as `k → ∞` (worked here for even `k`, where the dominant eigenvalue is real; the odd-`k` modulus has the same asymptotics) gives
+
+```
+((ρ−1)/(ρ+1))^k ≈ 1/(4ρ²)   ⟹   ρ ≈ k/(log ρ + log 2),
+```
+
+i.e. **`ρ_k ~ k / log k`**. The subleading correction is `~ log log k / log k`, so `ρ_k·log k / k → 1` only slowly:
+
+| k | 1 | 2 | 4 | 8 | 10 | 20 | 50 | 100 |
+|---|---|---|---|---|---|---|---|---|
+| ρ_k | 1.414 | 2.000 | 2.796 | 4.174 | 4.804 | 7.661 | 14.98 | 25.64 |
+| ρ_k·log k / k | 0 | 0.693 | 0.969 | 1.085 | 1.106 | 1.147 | 1.172 | 1.181 |
+
+(The balance equation reproduces these `ρ_k` for `k ≤ 100`.) So the signed count's growth rate is `ρ_k ~ k/log k` — a factor `~log k` below the unsigned base `k+1` — and `P(k,L) ~ (k/log k)^L` for large `L`: the sign collapses the growth base from `k+1` to `k/log k`.
 
 ## The C-finite recurrences
 
