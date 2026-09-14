@@ -66,10 +66,15 @@ See `wiki/pages/oeis-cross-referencing.md`.
   castle U/R/D grammar generalizes; steep Dyck words → Motzkin (verified).
 - [x] **Lattice Paths** — done (`wiki/pages/lattice-paths.md`). Origin of the U/R/D
   encoding; stars-and-bars `C(W+H,H)`.
+- [x] **AOCP/Combinatorics** — done (`wiki/pages/aocp-combinatorics.md`). Knuth's
+  inversions + the q-factorial generating function `∏(1−z^k)/(1−z)^n`; seeds
+  `wiki/pages/permutation-inversions.md`, a concrete foundation for the q-equivalent thread.
 - [ ] **Dyck Words/Examples** — worked enumeration examples (by hand, Python, SymPy) for
   Dyck and steep Dyck words; referenced by Castle Factoring. Newly surfaced.
 - [ ] **Dyck Words/Lisp** — Dyck words as Lisp S-expression skeletons. Newly surfaced.
-- [ ] **Combinatorics** — the umbrella topic page.
+- [ ] **AOCP/Multisets** — referenced by AOCP/Combinatorics and Lattice Paths; the
+  multiset-permutation / multichoose machinery. Newly surfaced.
+- [ ] **Combinatorics** — the general umbrella topic page (distinct from AOCP/Combinatorics).
 - [ ] (Deferred) A dedicated **Generating Functions** source page — the concept page
   (`wiki/pages/generating-functions.md`) is seeded but the standalone source is queued.
 

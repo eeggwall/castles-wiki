@@ -42,6 +42,7 @@ The analogy's source side is Knuth's **canonical cycle form** (TAOCP Vol. 1, §1
 - [[castle-sign](pages/castle-sign.md)] — the sign atom in the correspondence.
 - [[castle-foata-transform](pages/castle-foata-transform.md)] — the cycles-to-records half of the analogy.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the cycle-following loop's castle analogue.
+- [[permutation-inversions](pages/permutation-inversions.md)] — the other classical permutation statistic (inversions), whose q-factorial generating function underlies the q-analog thread.
 
 ## Footnotes
 

@@ -1,0 +1,153 @@
+=Notes=
+
+==Knuth AOCP Volume 3: Sorting and Searching: Combinatorics==
+
+===Permutations and Inversions===
+
+Knuth begins talking about sorting by talking about combinatorics and permutations of items.
+
+Start with definition of an inversion:
+
+Let <math>a_1 a_2 a_3 \dots a_n</math> be a permutation of the integers <math>{1 \dots n}</math>.
+
+If <math>i < j</math> and <math>a_i > a_j</math>, then <math>(a_i, a_j)</math> is an inversion.
+
+Inversions are out-of-sorts pairs.
+
+Cramer (1750) introduced inversions - utilized to find determinant.
+
+Can also construct an inversion table:
+
+Let <math>b_1 b_2 \dots b_n</math> denote the inversion table of <math>a_1 a_2 \dots a_n</math>. Then <math>b_j</math> is the number of elements to the left of j that are greater than j.
+
+Example of sequence and its inversion table:
+
+<pre>
+5 9 1 8 2 6 4 7 3
+2 3 6 4 0 2 2 1 0
+</pre>
+
+<math>
+0 \leq b_1 \leq n-1, 0 \leq b_2 \leq n-2, \dots, 0 \leq b_{n-1} \leq 1
+</math>
+
+Hall (1956) showed that inversion tables ''uniquely determine permutations'' - these make inversion tables alternative representations for different permutations.
+
+Transformation technique: turn counting problems into inversion table problems
+
+Now, suppose we want to count number of elements larger than their successor. (This is the number of j such that <math>b_j = n-j</math>).
+
+Note that this idea is related to nested for loops:
+
+<pre>
+for(int i = 0; i < N; i++ ) {
+    for(int j = i; j < N; j++) {
+</pre>
+
+We have <math>b_j = n - j</math>
+
+Since we know the probability that b1 equals n-1 is <math>P(b_1 = n-1) = \frac{1}{n}</math>,
+
+and independently the probability that b2 equals n-2 is <math>P(b_2 = n-2) = \frac{1}{n-1}</math>,
+
+and so on, then we can say:
+
+<math>
+\dfrac{1}{n} + \dfrac{1}{n-1} + \dots + 1 = H_{n}
+</math>
+
+These are the harmonic numbers.
+
+===Counting Inversions with Generating Functions===
+
+Now, to analyze a sorting algorithm, we are interested in how many permutations of n elements have exactly k inversions. Number of inversions is denoted I, so this number is denoted <math>I_n(k)</math>
+
+To pose this problem slightly differently: we can think of <math>I_n(k)</math> as a number that is produced by some kind of ''generating function'' into which we plug our n and our k, and out pops <math>I_n(k)</math>.
+
+In fact, we can do this by defining an infinite series polynomial whose kth coefficient is precisely <math>I_n(k)</math>.
+
+Also note that <math>I_n = \left( \binom{n}{2} - k \right) = I_n(k)</math>.
+
+We define the generating function <math>G_n(z)</math> for a sequence containing n elements as:
+
+<math>
+G_n(z) = I_n(0) + I_n(1)z + I_n(2) z^2 + \dots = \sum_{k \geq 0} I_n(k) z^k
+</math>
+
+Now, we know that when we choose a particular item b as the next element of our sequence <math>b_1 b_2 b_3 \dots b_n</math>, that choice is independent of all other b's. Another thing we can observe is, there are two possible ways (two possible cases) for a sequence with n elements and k inversions:
+* Either we take a sequence of length n-1 and k inversions, and add an item to it that does not change k;
+* Or, we take a sequence of length n and k-1 inversions, and we change an item such that we add an inversion k.
+
+From these, we can construct the recursive relationship:
+
+<math>
+I_n(k) = I_n(k-1) + I_{n-1}(k) \qquad \mbox{for } k < n
+</math>
+
+Knuth then performs some magic, which he says is "not difficult to see," stating:
+
+<math>
+G_n(z) = (1 + z + \dots + z^{n-1}) G_{n-1}(z)
+</math>
+
+and therefore he is able to simplify the generating function to:
+
+<math>
+(1+z+\dots+z^{n-1}) ( \dots )(1+z+z^2+z^3)(1+z+z^2)(1+z)(1) = \dfrac{ (1-z^n)( \dots )(1-z^2)(1-z) }{ (1-z)^n }
+</math>
+
+===Knuth Goes To Outer Space===
+
+It is at this point that Knuth launches into a few pages of extremely difficult to follow material. Individual statements are sensible and logical, but how he gets them and where he's going with all of it is completely unclear...
+
+Start by defining the generating function of n, divided by n factorial, as the generating function for the probability distribution of the number of inversions in a random permutation of n elements.
+
+<math>
+\dfrac{G_n(z)}{n!} = g_n(z)
+</math>
+
+Further, let us define the function
+
+<math>
+h_k(z) = \dfrac{(1+z+z^2+\dots+z^{k-1})}{k}
+</math>
+
+This is the generating function for the uniform distribution of a random non-negative integer that is less than k.
+
+Now, we can write g in terms of h:
+
+<math>
+g_n(z) = h_1(z) h_2(z) \dots h_n(z)
+</math>
+
+Next, Knuth uses the following property:
+
+<math>
+E(g_n) = E(h_1) + E(h_2) + \dots + E(h_n)
+</math>
+
+<math>
+Var(g_n) = Var(h_1) + Var(h_2) + \dots + Var(h_n)
+</math>
+
+(again, completely unclear where he gets this...)
+
+===Multisets===
+
+See [[AOCP/Multisets]]
+
+=Related=
+
+See also:
+* [[AOCP/Multisets]]
+* [[Analytic Combinatorics]]
+* [[Applied Combinatorics]]
+
+=Flags=
+
+{{AOCPFlag}}
+
+{{CombinatoricsFlag}}
+
+[[Category:Combinatorics]]
+[[Category:Sort]]

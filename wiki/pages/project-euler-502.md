@@ -38,7 +38,7 @@ The page functions as an index into a worked solution: it links seven subpages c
 - [[generating-functions](pages/generating-functions.md)] — the intended counting method (concept page seeded from the Problem Setup subpage; the dedicated *Generating Functions* source page is still queued).
 - [[polyominoes](pages/polyominoes.md)] — the polyomino taxonomy that places the castle as a column-convex polyomino.
 
-Related topics also ingested: [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/lattice-paths.md)]. Still not yet ingested: Combinatorics.
+Related topics also ingested: [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/lattice-paths.md)], and the Knuth combinatorics notes [[aocp-combinatorics](pages/aocp-combinatorics.md)]. Still not yet ingested: the general Combinatorics topic page.
 
 ## Relation to Other Wiki Pages
 
