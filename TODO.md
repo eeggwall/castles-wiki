@@ -112,8 +112,9 @@ See `wiki/pages/oeis-cross-referencing.md`.
 
 ## Housekeeping
 
-- [ ] Add a short setup note / README for collaborators: MCP config paths in `.mcp.json`
-  are machine-specific; the `assets/` PDFs are git-ignored and re-fetchable from
-  charlesreid1.com; after a fresh clone re-run `git config core.hooksPath bin/hooks`.
+- [x] Setup note / README for collaborators — done (`README.md`): what the wiki is, its
+  layout and conventions, and the fresh-clone setup (re-run `git config core.hooksPath
+  bin/hooks`, MCP config paths are machine-specific, `assets/` PDFs are git-ignored and
+  re-fetchable from charlesreid1.com).
 - [x] Remote for backup/sharing — done. `origin` → github.com/eeggwall/castles-wiki
   (SSH); `main` tracks `origin/main`.
