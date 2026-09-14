@@ -1,0 +1,92 @@
+=Implementation Notes=
+
+The Java source is [https://git.charlesreid1.com/cs/euler/src/branch/main/java/Problem502.java Problem502.java], about 540 lines, one class. This page maps every algorithmic branch back to [[Project Euler/502/Solution]].
+
+==File and entry point==
+
+* <code>main</code> runs four sanity checks (<math>F(4,2)</math>, <math>F(13,10)</math>, <math>F(10,13)</math>, <math>F(100,100)</math> mod), then the composite. Wall-clock deadline of 5 minutes on the composite.
+* The composite is submitted to a single-threaded <code>ExecutorService</code> so the deadline is enforced with <code>future.get(remainingNanos, ...)</code>.
+
+==Dispatch==
+
+<pre>
+mod == 0                     -> solveExact
+mod > 0, h <= 15000          -> computeViaRationalFunction
+mod > 0, h > 15000, w <= 500 -> computePviaKBoth
+mod > 0, h > 15000, w > 500  -> computePviaKBoth  (same branch)
+</pre>
+
+The two <code>else</code> bodies are identical; the code keeps them separate as a placeholder for a future third branch.
+
+==Speculative composite cache==
+
+When the first composite sub-problem (<math>F(10^{12}, 100)</math>) arrives on the calling thread, the other two are eagerly submitted to <code>ForkJoinPool.commonPool()</code>, and their <code>Future&lt;Long&gt;</code> are stored under <code>cacheKey(w, h, mod)</code>. Subsequent <code>solve</code> calls check the cache first and, on hit, remove and get the future.
+
+Why it matters: on a multi-core box the three sub-problems run in parallel; on a single core it degrades to serial with no correctness impact.
+
+<code>cacheKey = w * 2_000_000_007L + h * 1_000_003L + mod</code>. Not a serious hash; the three <code>(w, h)</code> inputs used are far apart in the key space.
+
+==Rational-function path==
+
+Three parts, matching the level-by-level update on [[Project Euler/502/Solution]]:
+
+# State: two polynomial arrays <code>num[]</code>, <code>den[]</code>, each of size <code>maxK + 3</code>. <code>den[0] = 1</code> is invariant.
+# Update loop (<code>k = 1..maxK</code>): matches the update on /Solution. <code>newDen[0] = den[0]</code> preserves the invariant. Everything mod <code>p</code>; <code>-x</code> is stored as <code>p - 1</code>.
+# Extraction: at <code>k = maxK - 1</code>, a copy is saved (or the extraction is launched in a <code>Future</code> for the expensive case where <code>w * min(w, k+1) > 10^6</code>). At <code>k = maxK</code>, <math>P(h-1, w)</math> is extracted.
+
+Extractors:
+
+* <code>extractCoeff</code> - the direct-vs-Kitamasa switch.
+* <code>extractCoeffDirect</code> - unrolled by 8 for cache locality; coefficients cast to <code>int[]</code> since <math>p < 2^{30}</math> and 8 products of <math>< p^2</math> stay under <code>Long.MAX_VALUE</code>.
+* <code>extractCoeffMatExp</code> + <code>kitamasa</code> + <code>polyMulMod</code> - standard Kitamasa on the characteristic polynomial <math>x^d - \sum \mathrm{rec}[i]\, x^{d-1-i}</math> derived from <math>-\mathrm{den}[1..D]</math>.
+
+==k-direction BM path==
+
+<code>computePviaKBoth</code>:
+
+# Generate <code>seq[0..maxN-1]</code> by running the <code>g[]</code> recurrence (same inner loop as <code>solveExact</code>, reduced mod <code>p</code>).
+# If <code>k1 = h-1 < maxN</code>, return directly from <code>seq</code>.
+# Else <code>berlekampMassey(seq, p)</code> gives <code>rec</code>, <code>order</code>.
+# <code>kitamasa(rec, order, k2, p)</code> gives <code>poly2</code> for <math>P(h-2, w)</math>.
+# <code>poly1</code> is computed as <code>poly2 * x mod charPoly</code> in-line, saving a second Kitamasa call for <math>P(h-1, w)</math>.
+# Fold with <code>seq[0..order-1]</code> to get both values.
+
+<code>berlekampMassey</code> is textbook. See the Wikipedia reference and move on.
+
+==Matrix helpers==
+
+<code>matmul</code> and <code>matpow</code> exist for <code>computePviaK</code> (the single-value variant). <code>computePviaKBoth</code> uses Kitamasa instead, so matrix exponentiation is unused on the composite path. Noted so readers don't hunt for a call site.
+
+==Numerics==
+
+* <code>modpow</code> is standard binary exponentiation, used for modular inverse and for <math>h^w \bmod p</math>.
+* <math>p = 10^9+7</math> is hardcoded via the <code>main</code> test table, not a field. <code>solveMod</code> accepts any prime <math>p</math>, but division by 2 assumes <math>p \neq 2</math>.
+
+==Regime table==
+
+{| class="wikitable"
+|-
+! Sub-problem !! h ≤ 15000? !! w ≤ 500? !! Path taken !! Extractor !! Dominant cost
+|-
+| <math>F(10^{12}, 100)</math> || yes || no || RationalFunction || Kitamasa || <math>D=101</math>, <math>O(D^2 \log w) \approx 4 \times 10^5</math>
+|-
+| <math>F(10^4, 10^4)</math> || yes || no || RationalFunction || Direct || <math>O(w \cdot D) \approx 10^8</math>
+|-
+| <math>F(100, 10^{12})</math> || no || yes || KBoth || Kitamasa || BM on ~428 terms, <math>O(w^2 \log k)</math>
+|}
+
+==What is NOT in the code==
+
+No transfer matrix built as a matrix. No <math>T(k,L)</math> computed directly. No enumeration of any binary string, integer tuple, or U/R/D word. The mathematical objects on [[Project Euler/502/Solution]] are the scaffolding used to derive the recurrences; only the recurrences appear in the code.
+
+=Related=
+
+[[Project Euler/502/Solution]]
+
+[[Generating Functions]]
+
+=Flags=
+
+{{PE502Flag}}
+
+{{ProjectEulerFlag}}

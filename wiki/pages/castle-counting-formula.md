@@ -3,7 +3,7 @@ title: Castle counting formula
 category: Analyses
 summary: The closed form F(w,h) = [h^w − (h−1)^w − P(h−1,w) + P(h−2,w)]/2, from the unsigned tower count (k+1)^L and the signed count P_k; verified on all checkpoints.
 tags: [analysis, castle, generating-functions, closed-form, dyck]
-sources: [project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-solution]
+sources: [project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes]
 created: 2026-09-13
 updated: 2026-09-13
 ---
@@ -70,6 +70,8 @@ A full castle is `U (tower) D`, so its block count is the tower's block count pl
 F(w,h) = [ h^w − (h−1)^w − P(h−1,w) + P(h−2,w) ] / 2
 ```
 
+The division by 2 is exact over the integers, but when computing modulo `p` it is a multiply by the modular inverse of 2 — so the modular evaluation assumes `p ≠ 2` (fine for `p = 10^9+7`).[^17]
+
 ## Verification
 
 The source gives Python that builds `P(k,L)` as the coefficient of `x^L` in `num_k/den_k` (via the polynomial recurrence above) and evaluates `F(w,h)`.[^9] Re-running it during ingest reproduces all three problem checkpoints exactly:
@@ -92,6 +94,7 @@ The two integer values also have clean factorizations (confirmed by factoring du
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — gives the product-form proof of `(k+1)^L`, the sign-homomorphism reading of `P`, and the Kitamasa/Berlekamp–Massey evaluation.
 - [[project-euler-502-observations](pages/project-euler-502-observations.md)] — names the column independence as the crux, the `h^w−(h−1)^w` unconstrained baseline, and the verified factorizations.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] — proves `T(k,L)=(k+1)^L` by induction via the binary-string bijection, and specifies the algorithms that evaluate `P` at large parameters.
+- [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] — the `/2` as a modular inverse (assumes `p ≠ 2`) and the code that runs the recurrences.
 
 ## Related Concepts
 
@@ -122,3 +125,4 @@ The two integer values also have clean factorizations (confirmed by factoring du
 [^14]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Useful factorizations" L25-31 — "F(13,10) = 3729050610636 = 2^2 × 3 × 1163 × 13 × 20553887" and "F(10,13) = 37959702514 = 2 × 102859 × 184523"; both re-factored during ingest and confirmed.
 [^15]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"The \"even number of blocks\" clause is almost the entire difficulty" L17 — "Without it, the answer is just h^w - (h-1)^w: all castles of height at most h minus those of height at most h-1."
 [^16]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"T(k, L) = (k+1)^L" L23-37 — "Proof by induction on k ... a length-L binary string ... plus, for each maximal run of length l, an independent tower of height ≤ k-1 ... T(k, L) = ∑_b ∏_{runs} T(k-1, l) = ∑_b k^{ones(b)} = (1 + k)^L. Corollary ... T(h-1, w) = h^w."
+[^17]: [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] §"Numerics" L63 — "solveMod accepts any prime p, but division by 2 assumes p ≠ 2."

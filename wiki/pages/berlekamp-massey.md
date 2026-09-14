@@ -3,7 +3,7 @@ title: Berlekamp–Massey
 category: Concepts
 summary: The algorithm that recovers the shortest linear recurrence generating a sequence; in PE 502 it turns an observed count sequence into the recurrence used to evaluate F at large parameters.
 tags: [concept, algorithm, linear-recurrence, berlekamp-massey, method]
-sources: [project-euler-502-observations, project-euler-502-solution]
+sources: [project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes]
 created: 2026-09-13
 updated: 2026-09-13
 ---
@@ -16,12 +16,15 @@ updated: 2026-09-13
 
 Once the recurrence is known, [[kitamasa](pages/kitamasa.md)] advances the sequence to a very large index. This is the *k*-direction path in the [[castle-count-algorithms](pages/castle-count-algorithms.md)] (used when `h > 15000`): for a fixed *w*, generate `P(0,w), …, P(N−1,w)` with `N = 4(w+2)+20` terms mod a prime, let Berlekamp–Massey find the minimal recurrence (order at most about `2w` empirically), and Kitamasa jump to index *k* — obtaining both `P(h−2,w)` and `P(h−1,w)` in one pass.[^2] For `F(100, 10^12)`, `w=100` gives `N ≈ 428`, fast even at `k = 10^12`.[^2] A notable practical point: Berlekamp–Massey *discovers* the recurrence empirically, so no proof of the recurrence is needed to use it — the transfer-matrix argument only justifies that one exists.[^3]
 
-This page is a stub keyed to the castle problem's use of the method; the general algorithm and its role in the actual solution code will be built out as those threads are traced.
+**In the code.** The `computePviaKBoth` routine realizes this path: generate `seq[0..maxN−1]` by running the signed recurrence mod `p`; if `h−1 < maxN` read the answer straight from `seq`; otherwise `berlekampMassey(seq, p)` returns `rec, order`, `kitamasa` jumps to `P(h−2,w)`, and `P(h−1,w)` is obtained in-line as `poly2 · x mod charPoly` — a single index-shift that avoids a second full Kitamasa call.[^4] (The implementation's `berlekampMassey` is a textbook version.[^4])
+
+This page is a stub keyed to the castle problem's use of the method; the general algorithm and the deeper literature connections will be built out as those threads are traced.
 
 ## Appearances in Sources
 
 - [[project-euler-502-observations](pages/project-euler-502-observations.md)] — names Berlekamp–Massey as a lesson learned: it recovers an unknown recurrence from a sequence.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] — specifies the *k*-direction path: `N = 4(w+2)+20` terms, order ~`2w`, one-pass extraction of `P(h−2,w)` and `P(h−1,w)`.
+- [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] — the `computePviaKBoth` code steps and the `poly2·x mod charPoly` one-pass shift.
 
 ## Related Concepts
 
@@ -36,3 +39,4 @@ This page is a stub keyed to the castle problem's use of the method; the general
 [^1]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Lessons learned" L38 — "Berlekamp-Massey turns 'I have a sequence, I don't know the recurrence' into a solved problem."
 [^2]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The k-direction Berlekamp-Massey path (h > 15000)" L157-163 — "generate P(0, w), P(1, w), …, P(N-1, w) for N = 4(w+2) + 20 ... Berlekamp-Massey finds the minimal linear recurrence. Kitamasa jumps directly to any index k. Both P(h-2, w) and P(h-1, w) are computed in one pass ... F(100, 10^12): w = 100, so N ≈ 428. Fast even at k = 10^12."
 [^3]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The k-direction Berlekamp-Massey path (h > 15000)" L165 — "The recurrence order is at most about 2w empirically. Berlekamp-Massey discovers the recurrence, so no proof is required to use it, but the transfer-matrix argument justifies why one exists."
+[^4]: [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] §"k-direction BM path" L45-54 — "Generate seq[0..maxN-1] ... If k1 = h-1 < maxN, return directly ... berlekampMassey(seq, p) gives rec, order. kitamasa(rec, order, k2, p) gives poly2 for P(h-2, w). poly1 is computed as poly2 * x mod charPoly in-line, saving a second Kitamasa call ... berlekampMassey is textbook."

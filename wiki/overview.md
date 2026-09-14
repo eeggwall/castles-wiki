@@ -1,7 +1,7 @@
 ---
 title: Overview
 tags: [overview, synthesis]
-sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-solution, counting-horizontally-convex-polyominoes, column-convex-polygon-enumeration, steep-polyominoes-q-motzkin-bessel]
+sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes, counting-horizontally-convex-polyominoes, column-convex-polygon-enumeration, steep-polyominoes-q-motzkin-bessel]
 updated: 2026-09-13
 ---
 
@@ -25,7 +25,7 @@ The general object of interest is the castle at **any** block count, counted by 
 
 **The crux and what the parity clause costs.** The single insight that made the problem tractable — and "took years to see" — is that sibling towers in the same row never interact; this column independence (captured on [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)], and structurally a consequence of the horizontal `R` step that separates a plain Dyck word from the Dyck *grammar*) is what yields the product form. The even-block clause is "almost the entire difficulty": without it the count collapses to the unsigned baseline `h^w − (h−1)^w`, and the entire signed apparatus (`P`, the sign, Berlekamp–Massey) exists to enforce that one parity constraint.
 
-**How the targets are actually computed.** The full solution ([[project-euler-502-solution](pages/project-euler-502-solution.md)]) proves `T(k,L)=(k+1)^L` by induction via the [[binary-string-bijection](pages/binary-string-bijection.md)] and routes each large target through the [[castle-count-algorithms](pages/castle-count-algorithms.md)]: a rational-function path (`h ≤ 15000`) with a direct or [[kitamasa](pages/kitamasa.md)] extractor, and a *k*-direction [[berlekamp-massey](pages/berlekamp-massey.md)] path (`h > 15000`). It also records what *did not* work (direct enumeration; binary strings without independence; convex-castle variation enumeration; L-direction transfer matrix as primary).
+**How the targets are actually computed.** The full solution ([[project-euler-502-solution](pages/project-euler-502-solution.md)]) proves `T(k,L)=(k+1)^L` by induction via the [[binary-string-bijection](pages/binary-string-bijection.md)] and routes each large target through the [[castle-count-algorithms](pages/castle-count-algorithms.md)]: a rational-function path (`h ≤ 15000`) with a direct or [[kitamasa](pages/kitamasa.md)] extractor, and a *k*-direction [[berlekamp-massey](pages/berlekamp-massey.md)] path (`h > 15000`). It also records what *did not* work (direct enumeration; binary strings without independence; convex-castle variation enumeration; L-direction transfer matrix as primary). The [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] ground this in `Problem502.java` and settle a standing question: the code runs **only the recurrences** — it builds no transfer matrix, computes no `T(k,L)` directly, and enumerates none of the encodings. The representations, bijection, and grammar are the *scaffolding* that derived the recurrences, not what executes.
 
 **Threads into the wider literature.** Three reference papers are now ingested as entry points: [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)] (a neighboring convexity class whose count collapses to a short recurrence via restricted-shape auxiliaries), [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] (the add-a-column / Temperley method — the closest external framework to the castle's column structure, with the classical Ferrers/stack/parallelogram families), and [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] (steep Dyck words and q-Motzkin/q-Bessel generating functions — the Dyck-and-GF thread into q-analogs).
 
@@ -35,7 +35,7 @@ The general object of interest is the castle at **any** block count, counted by 
 - **Which castles are column-convex or horizontally convex, and do the castle recurrences relate to `A001169` or the add-a-column functional equations?** The castle is a strongly column-structured object; [[column-convex-polyomino](pages/column-convex-polyomino.md)] and [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] are the two convexity classes to map it against.
 - **Is there a q-graded (area-tracking) castle count, and does it land on q-Motzkin / q-Bessel objects** like the steep-polyomino generating functions? The castle's U/R/D grammar and the steep Dyck words share a run-constraint flavor.
 - Do the classical **stack / Ferrers / parallelogram** families correspond to castle sub-families?
-- What does the *code* actually compute, versus the derivation? The solution enumerates none of the encodings directly — the Implementation Notes subpage (not yet ingested) holds that.
+- *(Resolved by [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)]:* the code runs only the recurrences — no transfer matrix, no direct `T(k,L)`, no enumeration; the encodings and grammar are derivation scaffolding.*)*
 
 ## Key Entities / Concepts
 
