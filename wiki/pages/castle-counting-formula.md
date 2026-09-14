@@ -3,7 +3,7 @@ title: Castle counting formula
 category: Analyses
 summary: The closed form F(w,h) = [h^w − (h−1)^w − P(h−1,w) + P(h−2,w)]/2, from the unsigned tower count (k+1)^L and the signed count P_k; verified on all checkpoints.
 tags: [analysis, castle, generating-functions, closed-form, dyck]
-sources: [project-euler-502-representations, project-euler-502-castle-factoring]
+sources: [project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations]
 created: 2026-09-13
 updated: 2026-09-13
 ---
@@ -28,7 +28,7 @@ where `1` is the empty tower, `x·E_k` a gap column then the rest, `(E_{k−1} �
 E_k = 1 / (1 − (k+1)x)      ⟹      T(k,L) = (k+1)^L
 ```
 
-**A simpler product-form proof.** The castle-factoring reading gives the same `(k+1)^L` without solving a generating-function recurrence: reading a tower as its column heights `c_1…c_L` (the integer-tuple [[castle-representations](pages/castle-representations.md)]), each `c_i` ranges *independently* over `{0,…,k}`, and the tower word is recovered invertibly from the heights — so `T(k,L) = (k+1)^L` is immediate as a product form.[^10]
+**A simpler product-form proof.** The castle-factoring reading gives the same `(k+1)^L` without solving a generating-function recurrence: reading a tower as its column heights `c_1…c_L` (the integer-tuple [[castle-representations](pages/castle-representations.md)]), each `c_i` ranges *independently* over `{0,…,k}`, and the tower word is recovered invertibly from the heights — so `T(k,L) = (k+1)^L` is immediate as a product form.[^10] That independence of the columns is exactly the crux the Observations subpage names — sibling towers never interact — captured structurally on [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]; it "took years to see."[^13]
 
 So the number of towers of height at most *k* above a length-*L* block is `(k+1)^L` — the same closed form used on the Solution subpage, here derived straight from the grammar.[^2]
 
@@ -82,10 +82,15 @@ F(10,13) = 37959702514
 
 matching the values on [[castle-counting-function](pages/castle-counting-function.md)].[^9]
 
+The two integer values also have clean factorizations (confirmed by factoring during ingest): `F(13,10) = 3729050610636 = 2²·3·13·1163·20553887` and `F(10,13) = 37959702514 = 2·102859·184523`.[^14]
+
+**The parity clause is the whole difficulty.** Almost all of the formula's complexity — the signed count `P` — is there to enforce the even-block rule. Drop that rule and the count collapses to the unsigned baseline `h^w − (h−1)^w` (all castles of height ≤ *h* minus those of height ≤ *h*−1), i.e. the `P` terms vanish. The even-block clause is "almost the entire difficulty."[^15]
+
 ## Appearances in Sources
 
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] — derives the unsigned count `(k+1)^L`, the signed count `P_k`, and the closed form for `F(w,h)`, with verifying Python.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — gives the product-form proof of `(k+1)^L`, the sign-homomorphism reading of `P`, and the Kitamasa/Berlekamp–Massey evaluation.
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — names the column independence as the crux, the `h^w−(h−1)^w` unconstrained baseline, and the verified factorizations.
 
 ## Related Concepts
 
@@ -110,3 +115,6 @@ matching the values on [[castle-counting-function](pages/castle-counting-functio
 [^10]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"A column-height factorization" L72-89 — "each c_i ranges independently over {0, …, k}, and the tower word is recovered by [the invertible procedure] ... T(k,L) = (k+1)^L ... each of the L columns independently chooses one of k+1 heights. This is the product-form proof."
 [^11]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Monotone streak factorization and fast algorithms" L185, §"The sign of a castle" L119-121 — "P(k,L) = ∑_{c ∈ {0,…,k}^L} (-1)^{descent(c)}" and "(T + P)/2 = even-block ... (T - P)/2 = odd-block ... exactly the (1 ± sgn)/2 trick ... the castle analogue of the sign homomorphism."
 [^12]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Monotone streak factorization and fast algorithms" L192 — "evaluated in O(k^2 log L) by Kitamasa in the L direction, or in the k direction by Berlekamp-Massey, which is how [Solution] computes F(10^12, 100) and F(100, 10^12)."
+[^13]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Sub-block independence" L5 — "Two sibling blocks in the same row generate towers that never interact ... This is the single fact that makes the problem tractable, and it took years to see."
+[^14]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Useful factorizations" L25-31 — "F(13,10) = 3729050610636 = 2^2 × 3 × 1163 × 13 × 20553887" and "F(10,13) = 37959702514 = 2 × 102859 × 184523"; both re-factored during ingest and confirmed.
+[^15]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"The \"even number of blocks\" clause is almost the entire difficulty" L17 — "Without it, the answer is just h^w - (h-1)^w: all castles of height at most h minus those of height at most h-1."

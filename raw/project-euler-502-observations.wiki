@@ -1,0 +1,44 @@
+=Observations=
+
+==Sub-block independence==
+
+Two sibling blocks in the same row generate towers that never interact (the parent-row gap is automatic). This is the single fact that makes the problem tractable, and it took years to see.
+
+==T(k, L) = (k+1)^L==
+
+The closed form for the number of towers of height at most <math>k</math> above a block of length <math>L</math>. Falls out of the binary-string bijection plus independence. The proof lives on [[Project Euler/502/Solution]].
+
+==Parity via signs==
+
+Even-block-count is enforced by <math>(A + P)/2</math>, where <math>A</math> is the unsigned total and <math>P</math> is the signed count with <math>(-1)^{\text{blocks}}</math>. A symmetry trick that recurs in many combinatorial-enumeration problems.
+
+==The "even number of blocks" clause is almost the entire difficulty==
+
+Without it, the answer is just <math>h^w - (h-1)^w</math>: all castles of height at most <math>h</math> minus those of height at most <math>h-1</math>.
+
+==Bare-minimum strings==
+
+Odd <math>h</math> needs two extra rows to make the block count even. This shows how the parity constraint bites even in the naive enumeration path. See [[Project Euler/502/Representations]].
+
+==Useful factorizations==
+
+<math>
+F(13,10) = 3729050610636 = 2^2 \times 3 \times 1163 \times 13 \times 20553887
+</math>
+
+<math>
+F(10,13) = 37959702514 = 2 \times 102859 \times 184523
+</math>
+
+==Lessons learned==
+
+* Enumerate small cases before trusting a formula.
+* When counts run past <math>10^{12}</math>, stop counting and start generating (functions).
+* The right representation collapses the problem; the wrong one hides it.
+* Berlekamp-Massey turns "I have a sequence, I don't know the recurrence" into a solved problem.
+
+=Flags=
+
+{{PE502Flag}}
+
+{{ProjectEulerFlag}}

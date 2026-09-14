@@ -34,7 +34,7 @@ The counting algorithms read as sums over these canonical forms:[^3]
   num_k = 2·den_{k−1} − num_{k−1}
   den_k = den_{k−1}(1 − 2x) + x·num_{k−1}
   ```
-  (the same recurrence on the [[castle-counting-formula](pages/castle-counting-formula.md)]), evaluated in `O(k² log L)` by **Kitamasa** in the *L* direction, or in the *k* direction by **Berlekamp–Massey**. This is how the Solution subpage computes `F(10^12, 100)` and `F(100, 10^12)` — the large-parameter evaluations the [[castle-counting-function](pages/castle-counting-function.md)] requires.[^3]
+  (the same recurrence on the [[castle-counting-formula](pages/castle-counting-formula.md)]), evaluated in `O(k² log L)` by **Kitamasa** in the *L* direction, or in the *k* direction by [[berlekamp-massey](pages/berlekamp-massey.md)]. This is how the Solution subpage computes `F(10^12, 100)` and `F(100, 10^12)` — the large-parameter evaluations the [[castle-counting-function](pages/castle-counting-function.md)] requires.[^3]
 
 The streak factorization is thus the bridge between the combinatorial reading (peaks, blocks, signs) and the fast linear-recurrence evaluation that makes the trillion-scale grid parameters computable.
 
@@ -47,6 +47,7 @@ The streak factorization is thus the bridge between the combinatorial reading (p
 - [[castle-representations](pages/castle-representations.md)] — the column-height representation this factors.
 - [[castle-sign](pages/castle-sign.md)] — the down-streaks carry the sign.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the `T` and `P` this factorization computes.
+- [[berlekamp-massey](pages/berlekamp-massey.md)] — the *k*-direction fast-recurrence method paired with Kitamasa here.
 - [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] — the `O(L)` scan as Knuth's cycle loop.
 
 ## Footnotes

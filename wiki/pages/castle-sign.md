@@ -3,7 +3,7 @@ title: Castle sign
 category: Concepts
 summary: s(C) = (−1)^blocks, the castle analogue of the permutation sign; (T±P)/2 splits towers into even/odd-block classes, making P(k,L) a sign homomorphism.
 tags: [concept, castle, sign, permutations, parity, generating-functions]
-sources: [project-euler-502-castle-factoring]
+sources: [project-euler-502-castle-factoring, project-euler-502-observations]
 created: 2026-09-13
 updated: 2026-09-13
 ---
@@ -42,9 +42,12 @@ F(w,h) = [ h^w − (h−1)^w − P(h−1,w) + P(h−2,w) ] / 2
 
 So the [[castle-counting-formula](pages/castle-counting-formula.md)] and this sign reading are two views of the same object `P`: the formula uses `(T−P)/2` for the tower's odd-block count; this page explains *why* `P` is the correct signed count — it is the sign homomorphism whose parity projector isolates the even-castle class.
 
+**A general technique, not a castle special case.** The Observations subpage frames this as "parity via signs": even-block-count `= (A + P)/2`, with `A` the unsigned total and `P` the `(−1)^{blocks}`-signed count — "a symmetry trick that recurs in many combinatorial-enumeration problems."[^5] (`A` is just this page's `T`; the `+P`/`−P` choice picks out the parity class whose count you want. On the castle, PE 502 wants *even total* castle blocks, i.e. *odd tower* blocks, which is the `(T−P)/2` tower-level term above — the same identity, applied one level down.) It is worth recognizing the trick in the abstract, because it reappears wherever a parity or sign constraint must be projected out of an otherwise-easy total.
+
 ## Appearances in Sources
 
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — defines `s(C) = (−1)^blocks`, gives the descent formula for the block count, and shows the `(T±P)/2` even/odd split.
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — frames the `(A+P)/2` parity-sign identity as a general recurring symmetry trick.
 
 ## Related Concepts
 
@@ -59,3 +62,4 @@ So the [[castle-counting-formula](pages/castle-counting-formula.md)] and this si
 [^2]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L105-113 — "blocks = ∑_{i=0}^{L} max(0, c_i - c_{i+1}), c_0 = c_{L+1} = 0 ... s(C) = (-1)^{∑_i max(0, c_i - c_{i+1})}."
 [^3]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L116-123 — "(T + P)/2 = even-block castles, (T - P)/2 = odd-block castles ... exactly the (1 ± sgn)/2 trick ... P(k,L) ... is the castle analogue of the sign homomorphism."
 [^4]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L123-127 — "'castle has even total blocks' is therefore 'tower has an odd number of blocks', which is the (T-P)/2 term in F(w,h) = (h^w - (h-1)^w - P(h-1,w) + P(h-2,w))/2."
+[^5]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Parity via signs" L13 — "Even-block-count is enforced by (A + P)/2, where A is the unsigned total and P is the signed count with (-1)^{blocks}. A symmetry trick that recurs in many combinatorial-enumeration problems."
