@@ -3,7 +3,7 @@ title: Convex castle
 category: Concepts
 summary: A castle with a unimodal (up-then-down) skyline — equivalently column-convex AND row-convex; the umbrella for castle convexity, counted by CCC = C(2H+W−3, W−1).
 tags: [concept, castle, convex, unimodal, column-convex, row-convex, combinatorics, stars-and-bars]
-sources: [project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force]
+sources: [project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-mining-pe502]
 created: 2026-09-13
 updated: 2026-09-13
 ---
@@ -41,7 +41,9 @@ CCC = C(2(H−1)+W−1, W−1) = C(2H+W−3, W−1)
 
 where `C(m,k) = m!/(k!(m−k)!)` is the binomial coefficient. For example, at *H*=4, *W*=5: `CCC = C(2·4+5−3, 5−1) = C(10, 4) = 210` convex castles.[^5]
 
-Convex castles are flagged for deeper standalone treatment in later work; this page collects the definition and the closed-form count established in the representations subpage.
+**Minimum-block characterization, and why the count is binomial.** The OEIS-mining pass sharpened this: for *any* castle `#blocks ≥ h`, with equality **iff** it is unimodal — so a convex castle has *exactly h* blocks, and convex castles are the *minimum-block* castles.[^9] The binomial (rather than Catalan) form has a clean reason — the ascending front and descending back are independent, and a generalized Vandermonde convolution closes the sum; the full derivation is [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)].[^10] Consequently the even-parity convex count is `C(2H+W−3, W−1)` when *H* is even and `0` when *H* is odd (every convex castle has *h* blocks).
+
+**By area, convex castles are A001523.** Re-indexed by total cells, a convex castle of area *n* is exactly a [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] of *n* — OEIS `A001523` ("stacks") — and the parity-refined `cev(n)+cod(n) = A001523(n)` is a new refinement (see [[castle-by-area](pages/castle-by-area.md)]).[^11] The mirror **valley** castles are equinumerous with convex ones in every (w,h) cell (same binomial, different sets) — a candidate bijection.[^11]
 
 **A thread that did not close (yet).** Enumerating *all* castles as variations on convex castles is conceptually clean, but the Solution subpage records that this route "never resolved into a formula" — the case analysis for the variations did not close, and the winning solution instead counts via the [[binary-string-bijection](pages/binary-string-bijection.md)] and independence.[^6] That the convex castles themselves count so cleanly (`C(2H+W−3, W−1)`) while their variations resist a closed form is a thread worth following into the column-convex-polygon literature (see [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)]).
 
@@ -50,12 +52,15 @@ Convex castles are flagged for deeper standalone treatment in later work; this p
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] — defines the front/middle/back structure and derives `CCC = C(2H+W−3, W−1)` by stars and bars.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] — records that convex-castle *variation* enumeration never resolved into a formula (a failed solution route).
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] — identifies the convex castle as the unimodal (column-convex ∧ row-convex) skyline and tallies `conv_even`/`conv_odd`.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — the minimum-block characterization, the binomial (Vandermonde) count, and the area↔A001523 match.
 
 ## Related Concepts
 
 - [[urd-step-strings](pages/urd-step-strings.md)] — the encoding whose taxonomy contains convex castles.
 - [[castle-polyomino](pages/castle-polyomino.md)] — the general object convex castles specialize.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the full count of all castles, of which convex castles are the backbone.
+- [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] — why `C(2H+W−3, W−1)` is binomial, not Catalan.
+- [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] — convex castles by area = A001523.
 - [[column-convex-polyomino](pages/column-convex-polyomino.md)] — the column-convexity every castle already has.
 - [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] — the row-convexity that (with column-convexity) defines the convex castle.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] — the column-convex-polygon literature this convexity connects to.
@@ -70,3 +75,6 @@ Convex castles are flagged for deeper standalone treatment in later work; this p
 [^6]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"What was tried and did not work" L190 — "U/R/D convex-castle enumeration. Conceptually clean, but the case analysis to enumerate variations of a convex castle never resolved into a formula."
 [^7]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"brute" L54, §"brute" L60-66 — "conv_even, conv_odd - the same, restricted to unimodal skylines (column-convex AND row-convex)" and the is_unimodal test (walk up, then down, accept iff the walk covers the whole tuple).
 [^8]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Why keep a brute enumerator" L92 — "Unimodal castles are the ones the U/R/D convex-castle attempt tried and failed to enumerate directly."
+[^9]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §1 L25-33 — "#blocks >= max(c) = h, with equality iff the profile is unimodal ... a convex castle of height h has exactly h blocks, and convex castles are exactly the minimum-block castles"; re-verified for w,h ≤ 5 during ingest.
+[^10]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §§2-4 L35-96 — the up/down decomposition, the generalized Vandermonde convolution giving `C(2h+w-3, w-1)`, and "The two halves are independent ... Catalan / Narayana counts arise when a non-crossing or ballot constraint couples the two halves."
+[^11]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `vein9-area.md` §"The main finding"/"Parity splits" L21-52 and `vein9b-concave.md` §"Concave counts by (w, h)" L100-118 — "conv(n) = A001523(n) ... cev(n) + cod(n) = A001523(n)" and "valley(w, h) = convex(w, h) ... same cardinality in each (w, h) cell but different sets ... a candidate bijection."

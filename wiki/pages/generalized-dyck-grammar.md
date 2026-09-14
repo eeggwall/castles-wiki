@@ -67,6 +67,7 @@ This is why the model generalizes the Dyck word to this three-letter grammar rat
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the counts read off this grammar.
 - [[generating-functions](pages/generating-functions.md)] — the tool the grammar feeds.
 - [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] — the grammar's peaks as the analogue of permutation cycles.
+- [[narayana-numbers](pages/narayana-numbers.md)] / [[tower-heap](pages/tower-heap.md)] — where the Dyck/Catalan connection becomes concrete: the tower block-count g.f. is a Narayana polynomial.
 - **Dyck Words**, **Lattice Paths** — the classical objects generalized here (not yet ingested; to be linked when added).
 
 ## Footnotes

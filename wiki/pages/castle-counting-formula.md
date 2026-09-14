@@ -55,8 +55,10 @@ den_k = den_{k−1}·(1 − 2x) + x·num_{k−1}
 
 For fixed *k*, `P_k` is rational with denominator of degree *k*+1, so `P(k,L)` obeys an order-(*k*+1) linear recurrence in *L*. Two small cases:[^6]
 
-- *k*=1: `P(1,L) = 2P(1,L−1) − 2P(1,L−2)`, closed form `P(1,L) = Re((1+i)^{L+1})`.
+- *k*=1: `P(1,L) = 2P(1,L−1) − 2P(1,L−2)`, closed form `P(1,L) = Re((1+i)^{L+1})` — the OEIS sequence `A146559(L+1)` (see [[signed-tower-count](pages/signed-tower-count.md)]).
 - *k*=2: `P(2,L) = 3P(2,L−1) − 4P(2,L−2) + 4P(2,L−3)`.
+
+The full C-finite `P(k,·)` family (order `k+1`, characteristic polynomials with constant term `(−1)^{k−1}2^k`) is catalogued on [[signed-tower-count](pages/signed-tower-count.md)].
 
 **Why `P` is the right signed object.** `P(k,L) = ∑_{c ∈ {0,…,k}^L} (−1)^{descent(c)}` is the [[castle-sign](pages/castle-sign.md)] `s(C) = (−1)^{blocks}` summed over all towers — the castle analogue of the permutation sign homomorphism. The `(T ± P)/2` combination is the `(1 ± sgn)/2` even/odd class projector, which is exactly why it isolates the even-block castles.[^11]
 
