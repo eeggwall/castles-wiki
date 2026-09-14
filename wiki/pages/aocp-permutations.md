@@ -45,7 +45,7 @@ The connection is foundational rather than deep, but real on two points:
 - [[convex-castle](pages/convex-castle.md)] / [[lattice-paths](pages/lattice-paths.md)] — the stars-and-bars insertions that mirror the permutation construction.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the verified castle factorizations Legendre's formula underlies.
 
-Linked from the source but not yet ingested: AOCP/Binomial Coefficients, AOCP/Multinomial Coefficients, AOCP/Generating Functions.
+Linked from the source: AOCP/Generating Functions is ingested ([[aocp-generating-functions](pages/aocp-generating-functions.md)]); AOCP/Binomial Coefficients and AOCP/Multinomial Coefficients are not yet ingested.
 
 ## Relation to Other Wiki Pages
 

@@ -1,0 +1,231 @@
+=Before You Begin: Reading Notes=
+
+Knuth covers generating functions early in Volume 1, but with Knuth's Art of Computer Programming books, the length has no correlation to the difficulty. Some sections are long and can be skipped entirely with no impact, others are critical to and referenced throughout the entire 3-volume series.
+
+The sections preceding Generating Functions are crucial to understanding all of the material Knuth covers, but particularly to understanding generating functions. You absolutely, positively must read the preceding sections to follow Knuth's coverage of generating functions.
+
+=Volume 1=
+
+==Chapter 1: Basic Concepts: Fibonacci Number==
+
+===Knuth's Fibonacci Example===
+
+Knuth discusses the Fibonacci numbers. Then, he says, let's construct an infinite series that's going to look like this:
+
+<math>
+G(z) = F_0 + F_1 z + F_2 z^2 + \dots = z + z^2 + 2z^3 + 3z^4 + \dots
+</math>
+
+(Note this uses the convention that F0 = 0 and F1 = 1 for the Fibonacci series, not the usual 1 and 1).
+
+As Knuth states: "We have no reason to believe a priori this series will exist, but we will be optimistic."
+
+So, we're after the generating function of the Fibonacci numbers. Multiply by z and z^2:
+
+<math>
+z G(z) = F_0 z + F_1 z^2 + F_2 z^3 + \dots
+z^2 G(z) = F_0 z^2 + F_1 z^3 + F_2 z^4 + \dots
+</math>
+
+Now combining these facts we can eliminate terms on the RHS:
+
+<math>
+(1 - z - z^2) G(z) = F_0 + (F_1 - F_0) z + (F_2 - F_1 - F_0) z^2 + \dots
+</math>
+
+This simplifies to:
+
+<math>
+(1 - z - z^2) G(z) = z, \qquad G(z) = \dfrac{z}{(1 - z - z^2)}
+</math>
+
+Now the vertical asymptotes of this rational function are at the roots of the denominator: z = phi, phi-hat, where phi-hat = 1 - phi and phi is the Golden Ratio.
+
+Expanding this function using a Taylor series expansion will yield the polynomial whose coefficients are the Fibonacci series.
+
+===Utilizing the Fibonacci Generating Function===
+
+====Partial Fraction Expansion====
+
+Knuth begins by expanding the result using partial fractions. Starting with the factorization of the bottom term:
+
+<math>
+z^2 + z - 1 = (\phi + z)( \hat{\phi} + z)
+</math>
+
+we can get to the partial fraction expansion:
+
+<math>
+G(z) = \dfrac{1}{\sqrt{5}} \left(  \dfrac{1}{1 - \phi z} - \dfrac{1}{1 - \hat{\phi} z} \right)
+</math>
+
+This tells us something about the overall sequence: if the generating function is the sum of two terms, that means the sequence is the sum of two sequences:
+
+<math>
+\dfrac{1}{1 - \phi z} = 1 + \phi z + \phi^2 z^2 + \dots
+\dfrac{1}{1 - \hat{\phi} z} = 1 + \hat{\phi} z + \hat{\phi}^2 z^2 + \dots
+</math>
+
+Note that this comes from our other identities:
+
+<math>
+\dfrac{1}{1 - z} = 1 + z + z^2 + z^3 + \dots
+\dfrac{1}{1 - az} = 1 + az + a^2 z^2 + a^3 z^3 + \dots
+</math>
+
+====Closed Form Expression for Approx Nth Fib Number====
+
+<math>
+G(z) = \dfrac{1}{\sqrt{5}} \left( ( 1 + \phi z + \phi^2 z^2 + \dots ) - ( 1 + \hat{\phi} z + \hat{\phi}^2 z^2 ) \right)
+</math>
+
+This yields:
+
+<math>
+F_n = \dfrac{1}{\sqrt{5}} \left( \phi^n - \hat{\phi}^n \right)
+</math>
+
+which, because phi-hat^n << 1, gives a very good approximation for the nth Fibonacci number:
+
+<math>
+F_n \approx \dfrac{\phi^n}{\sqrt{5}} \quad \mbox{correct to nearest integer}
+</math>
+
+==Chapter 1: Basic Concepts: Generating Functions==
+
+For an alternative approach/additional coverage of generating functions, see [[Generating Functions]].
+
+Knuth extensively details all of the operations that we can perform on these generating functions:
+* Addition of generating functions
+* Shifting generating function coefficients
+* Multiplication of generating functions
+* Change of variable in z (even or odd coefficients only)
+* Differentiation and integration
+* Known generating functions (binomial theorem, exponential series, logarithm series, misc.)
+
+===Addition===
+
+Addition of two generating functions involves adding the respective terms of their series. Can also multiply by a constant.
+
+===Shifting===
+
+To shift a_0 a_1 a_2 ... to 0 a_0 a_1 a_2, multiply by z. Generalizes: multiply by z^k to shift each coefficient k terms right.
+
+<math>
+z^n \sum_{k \geq 0} a_k z^k = \sum_{k \geq n} z^k
+</math>
+
+===Generating Functions for Linearly Recurrent Series===
+
+Given any linearly recurrent sequence, where
+
+<math>
+a_n = c_1 a_{n-1} + \dots + c_m a_{n-m}
+</math>
+
+the resulting generating function is a polynomial divided by the quantity
+
+<math>
+(1 - c_1 z - \dots - c_m z^m)
+</math>
+
+For example, the simplest sequence 1, 1, 1, ...: (1 - z) G(z) = 1, giving the important formula
+
+<math>
+\dfrac{1}{1 - z} = 1 + z + z^2 + \dots
+</math>
+
+(the Maclaurin series).
+
+===Multiplication===
+
+<math>
+G_1(z) G_2(z), \qquad s_n = \sum_{k=0}^{n} a_k b_{n-k}
+</math>
+
+(the convolution of the two coefficient sequences).
+
+===Generating Function for Sum of Terms of Sequence===
+
+Using b_i = 1 in the product, 1/(1-z) G(z) is the generating function for the sums of the original sequence:
+
+<math>
+\dfrac{1}{1 - z} G(z) = a_0 + (a_0 + a_1) z + (a_0 + a_1 + a_2) z^2 + \dots
+</math>
+
+===Recurrence Relations with Binomial Coefficients===
+
+When the recurrence involves binomial coefficients, c_n = sum_k C(n,k) a_k b_{n-k}, use the exponential generating functions for a_n/n!, b_n/n!, c_n/n!:
+
+<math>
+\left( \sum \frac{a_n}{n!} z^n \right) \left( \sum \frac{b_n}{n!} z^n \right) = \left( \sum \frac{c_n}{n!} z^n \right), \qquad c_n = \sum_k \binom{n}{k} a_k b_{n-k}
+</math>
+
+===Calculus===
+
+<math>
+G'(z) = \sum_{k \geq 0} (k+1) a_{k+1} z^k
+\int_{0}^{z} G(t) dt = \sum_{k \geq 1} \frac{1}{k} a_{k-1} z^k
+</math>
+
+Special case, 1/(1-z):
+
+<math>
+\dfrac{d}{dz} \left( \dfrac{1}{1-z} \right) = \dfrac{1}{(1-z)^2} = \sum_{k \geq 0} (k+1) z^k
+\int_{0}^{z} \dfrac{1}{1-t} dt = \ln \dfrac{1}{1-z} = \sum_{k \geq 1} \dfrac{1}{k} z^k
+</math>
+
+===Functions With Known Generating Functions===
+
+====Binomial Theorem====
+
+<math>
+(1 + z)^r = \sum_{k \geq 0} \binom{r}{k} z^k
+</math>
+
+When r is a negative integer, the special case:
+
+<math>
+\dfrac{1}{(1-z)^{n+1}} = \sum_{k \geq 0} \binom{n+k}{n} z^k
+</math>
+
+====Exponential Series====
+
+<math>
+e^z = \sum_{k \geq 0} \dfrac{1}{k!} z^k
+</math>
+
+====Logarithm Series====
+
+<math>
+\ln(1+z) = \sum_{k \geq 1} \dfrac{(-1)^{k+1}}{k} z^k, \qquad \ln \dfrac{1}{1-z} = \sum_{k \geq 1} \dfrac{1}{k} z^k
+</math>
+
+=Example Problems=
+
+==Knuth AOCP Section 1.2.9 Exercise 1==
+
+Exercise 1. What is the generating function for <2^n + 3^n> = {2, 5, 13, 35, ...}?
+
+Find the GF for 2^n and 3^n separately. For 2^n: (1 - 2z) G(z) = 1, so G_{2^n}(z) = 1/(1-2z). Similarly G_{3^n}(z) = 1/(1-3z). Adding:
+
+<math>
+G(z) = \dfrac{1}{1-2z} + \dfrac{1}{1 - 3z} = \dfrac{2-5z}{1-5z+6z^2}
+</math>
+
+A Taylor expansion of G(z) recovers 2^n + 3^n as the nth coefficient; e.g. the 500th coefficient is 2^500 + 3^500.
+
+=Related=
+
+[[Generating Functions]]
+
+* [[Analytic Combinatorics]]
+* [[Applied Combinatorics]]
+
+=Flags=
+
+{{AOCPFlag}}
+
+[[Category:Combinatorics]]
+[[Category:Generating Functions]]
+[[Category:Binomial]]

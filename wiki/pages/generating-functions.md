@@ -3,7 +3,7 @@ title: Generating functions
 category: Concepts
 summary: A multivariate polynomial whose variables are the problem's dimensions and whose coefficients are the counts — the intended tool for computing F(w,h).
 tags: [concept, generating-functions, combinatorics, method]
-sources: [project-euler-502-problem-setup, project-euler-502-representations]
+sources: [project-euler-502-problem-setup, project-euler-502-representations, aocp-generating-functions]
 created: 2026-09-13
 updated: 2026-09-13
 ---
@@ -18,18 +18,22 @@ In the context of this wiki, the generating function is the intended tool for co
 
 **The concrete instance for castles.** The representations subpage supplies the actual generating functions for the castle problem, read off the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]: an *unsigned* tower generating function `E_k(x) = 1/(1−(k+1)x)`, giving `T(k,L) = (k+1)^L`, and a *signed* generating function `P_k` (each block/`D` weighted −1) that encodes the even-block rule via a rational-function recurrence in `x`. These combine into the [[castle-counting-formula](pages/castle-counting-formula.md)] for `F(w,h)`, where `P(k,L)` is exactly "the coefficient of `x^L` in the generating function" — the "evaluate a particular term" step, realized.
 
-The charlesreid1.com wiki also has a dedicated *Generating Functions* page (not yet ingested here) that the source credits with substantial development during the problem's study; this page will be further enriched when it is ingested.
+**The method toolkit.** [[aocp-generating-functions](pages/aocp-generating-functions.md)] (Knuth TAOCP Vol. 1) supplies the general machinery: the Fibonacci method (posit the series → rational GF → partial fractions → closed form) and the key structural fact that a **linear recurrence yields a rational generating function** `poly / (1 − ∑ c_k z^k)`. That is exactly why the castle's `P_k = num_k/den_k` is rational, why partial fractions give the `Re((1+i)^{L+1})`-style closed forms, and why the negative binomial `1/(1−z)^{n+1} = ∑ C(n+k,n) z^k` shows up as the tower and any-parity counts.
+
+The charlesreid1.com wiki also has a separate general *Generating Functions* topic page (distinct from the AOCP one above, and not yet ingested here) that the problem-setup source credits with substantial development during the problem's study; this page will be further enriched when it is ingested.
 
 ## Appearances in Sources
 
 - [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] — describes the generating-function approach in the abstract and names it the intended method for the count.
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] — gives the concrete unsigned and signed generating functions for castles, derived from the Dyck grammar.
+- [[aocp-generating-functions](pages/aocp-generating-functions.md)] — Knuth's general toolkit: recurrence ⇒ rational GF, partial fractions, convolution, the negative binomial.
 
 ## Related Concepts
 
 - [[castle-counting-function](pages/castle-counting-function.md)] — the count `F(w,h)` that a generating function is meant to produce.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the closed form these generating functions yield.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the grammar the castle generating functions are read off.
+- [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the general generating-function method (Fibonacci example, linear-recurrence ⇒ rational GF).
 - [[castle-polyomino](pages/castle-polyomino.md)] — the object whose configurations are being counted.
 
 ## Footnotes

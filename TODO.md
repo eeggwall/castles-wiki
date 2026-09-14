@@ -72,17 +72,20 @@ See `wiki/pages/oeis-cross-referencing.md`.
 - [x] **AOCP/Permutations** — done (`wiki/pages/aocp-permutations.md`). TAOCP Vol. 1
   basics: n!, the insert-into-slots construction (stars-and-bars root), Stirling &
   Legendre (verified).
-- [ ] **AOCP/Binomial Coefficients**, **AOCP/Multinomial Coefficients**,
-  **AOCP/Generating Functions** — the Vol. 1 subpages referenced by AOCP/Permutations.
-  Low priority (reference); surfaced.
+- [x] **AOCP/Generating Functions** — done (`wiki/pages/aocp-generating-functions.md`).
+  The Fibonacci method, linear-recurrence ⇒ rational GF, the operation algebra, and the
+  negative binomial — the methodological bedrock of the castle's rational GFs.
+- [ ] **AOCP/Binomial Coefficients**, **AOCP/Multinomial Coefficients** — the remaining
+  Vol. 1 subpages referenced by AOCP/Permutations. Low priority (reference).
+- [ ] (Deferred) The general **Generating Functions** topic page (distinct from
+  AOCP/Generating Functions) — the concept page `wiki/pages/generating-functions.md` is
+  seeded; this standalone source is still queued.
 - [ ] **Dyck Words/Examples** — worked enumeration examples (by hand, Python, SymPy) for
   Dyck and steep Dyck words; referenced by Castle Factoring. Newly surfaced.
 - [ ] **Dyck Words/Lisp** — Dyck words as Lisp S-expression skeletons. Newly surfaced.
 - [ ] **AOCP/Multisets** — referenced by AOCP/Combinatorics and Lattice Paths; the
   multiset-permutation / multichoose machinery. Newly surfaced.
 - [ ] **Combinatorics** — the general umbrella topic page (distinct from AOCP/Combinatorics).
-- [ ] (Deferred) A dedicated **Generating Functions** source page — the concept page
-  (`wiki/pages/generating-functions.md`) is seeded but the standalone source is queued.
 
 ## Housekeeping
 
