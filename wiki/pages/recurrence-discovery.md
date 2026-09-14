@@ -116,7 +116,7 @@ For `L ≤ 3` the towers are simple enough that `P(k,L)` collapses to a closed f
 | 2 | `(−1)^k (k+1)` | 2 |
 | 3 | `(−1)^k (k+1)²` | 3 |
 
-i.e. `P(k,1) = 1, 0, 1, 0, …`, `P(k,2) = 1, −2, 3, −4, …`, `P(k,3) = 1, −4, 9, −16, …` (characteristic polynomials `1−x²`, `(1+x)²`, `(1+x)³`).
+i.e. `P(k,1) = 1, 0, 1, 0, …`, `P(k,2) = 1, −2, 3, −4, …`, `P(k,3) = 1, −4, 9, −16, …` (characteristic polynomials `1−x²`, `(1+x)²`, `(1+x)³`). The closed forms themselves — with the `P(k,2)` proof and why the pattern stops at `L = 3` — are on [[closed-form-hunting](pages/closed-form-hunting.md)].
 
 ## Appearances in Sources
 
@@ -126,6 +126,7 @@ i.e. `P(k,1) = 1, 0, 1, 0, …`, `P(k,2) = 1, −2, 3, −4, …`, `P(k,3) = 1, 
 ## Related Concepts
 
 - [[signed-tower-count](pages/signed-tower-count.md)] — `P(k,L)` as a C-finite family; the order-(k+1) characteristic polynomials.
+- [[closed-form-hunting](pages/closed-form-hunting.md)] — the closed forms of `P(k,L)` in `k` for small `L`, and where they stop.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] — the tool that recovers these recurrences.
 - [[kitamasa](pages/kitamasa.md)] — jumps to a far index once the recurrence is known.
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] — the two directions as computational paths.
