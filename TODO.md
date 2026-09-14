@@ -62,9 +62,13 @@ See `wiki/pages/oeis-cross-referencing.md`.
 
 ## Ingestion queue (wiki pages not yet ingested)
 
-- [ ] **Dyck Words** — heavily referenced (the grammar generalizes it; steep Dyck words;
-  Carlitz q-Catalan count Dyck-word inversions). High priority.
-- [ ] **Lattice Paths** — the source of the U/R/D encoding (PE 15).
+- [x] **Dyck Words** — done (`wiki/pages/dyck-words.md`). The first-return grammar the
+  castle U/R/D grammar generalizes; steep Dyck words → Motzkin (verified).
+- [x] **Lattice Paths** — done (`wiki/pages/lattice-paths.md`). Origin of the U/R/D
+  encoding; stars-and-bars `C(W+H,H)`.
+- [ ] **Dyck Words/Examples** — worked enumeration examples (by hand, Python, SymPy) for
+  Dyck and steep Dyck words; referenced by Castle Factoring. Newly surfaced.
+- [ ] **Dyck Words/Lisp** — Dyck words as Lisp S-expression skeletons. Newly surfaced.
 - [ ] **Combinatorics** — the umbrella topic page.
 - [ ] (Deferred) A dedicated **Generating Functions** source page — the concept page
   (`wiki/pages/generating-functions.md`) is seeded but the standalone source is queued.

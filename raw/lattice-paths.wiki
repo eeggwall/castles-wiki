@@ -1,0 +1,230 @@
+=Lattice Paths=
+
+Problem 15 link: https://projecteuler.net/problem=15
+
+Project Euler problem 15 gives a square lattice, 20 x 20, and asks for the number of shortest paths through the lattice. The shortest paths are illustrated for a 4x4 grid.
+
+I solved this question using Wolfram Alpha - as with many combinatorics problems, it turns out you don't need to generate all of the variations, you can write a closed-form expression for the number of combinations instead. We use the fact that any shortest path must be constrained to taking 20 down steps and 20 right steps.
+
+==Formulating the Problem==
+
+We can examine the smaller 4x4 grid to think through the problem and our representation of it. We know that the path we take has to have two down steps and two right steps. We can represent the particular path we take using a string, so the following would represent the path that travels down two squares then right two squares:
+
+<pre>
+DDRR
+</pre>
+
+Now the question of how many paths there are through the cubic lattice boils down to a question of permutations. How many ''unique'' permutations of the above string are there?
+
+==Permutations==
+
+Let's suppose we have a string consisting of unique characters:
+
+<pre>
+ABCDEFG
+</pre>
+
+Now how many permutations of this string are there? The first letter can be any of the 7 characters, so we have 7 possibilities. The second letter can be any of the remaining 6 characters, so we have 7 * 6 possibilities. And so on down the line, until we get a total number of possible permutations of the string equal to
+
+<math>
+7! = 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 5040
+</math>
+
+There are 5040 unique permutations of the string.
+
+Our situation is complicated by the fact that some of our permutations are repeated. For example, if we label the two down moves as D1 and D2, we can choose the first move as D1 and the second move as D2, or the first move as D2 and the second move as D1 - the two are equivalent. This will eliminate some of the permutations.
+
+==Multiset Approach for Two Variables==
+
+We only have two unique variables/moves, D and R. We can think of the problem of generating permutations as inserting the down moves into a sequence of right moves. We have a certain number of locations where we can insert the down moves, and down moves can be inserted in order.
+
+This is what's often called a stars-and-bars problem in combinatorics: trying to determine the number of permutations of items from multisets can be described as partitioning star characters with bar characters.
+
+For example, if we are adding 5 components to a circuit board, and they can be any one of 9 possible components, we can represent this as
+the partitioning of 5 stars among 9 bins, or 8 bars. Here are some possibilities:
+
+<pre>
+||||||||        <-- No choices made yet (9 bins, 8 partitions)
+*|*||*||*|*||   <-- Mix of different components
+||*|*||*|*||*   <-- Mix of different components
+****|||*|||||   <-- Heavy on component 1
+*|**|||**||||   <-- Two pairs
+</pre>
+
+To formulate our problem in these terms, we can think of "distributing" our down moves as we move right through the lattice. On the 20x20 grid, we are going to make 20 right moves, and we can distribute our 20 down moves at any of 21 possible locations (columns of points on the lattice).
+
+Thus, our n items, the 20 down moves, are being placed between the 20 right moves, which are the 20 bars that create 21 bins (21 locations to place the down moves).
+
+Considering the smaller 2x2 example, and replacing bars with R, we have, for a 2x2 lattice, six possibilities:
+
+<pre>
+RR    <-- No choices made yet
+**RR  <-- all on left
+*R*R  <-- distributed... etc...
+*RR*
+R**R
+R*R*
+RR**
+</pre>
+
+To enumerate the number of possibilities, we use the multichoose function, denoted "n multichoose k". This counts the number of ways
+to place n objects (D) into k bins (created by k-1 other objects, R). The multichoose function is defined as
+(see [https://en.wikipedia.org/wiki/Multiset#Counting_multisets wikipedia] for proper Latex notation - like the binomial coefficient but 2 parentheses):
+
+<math>
+n \mbox{  multichoose  } k = \binom{n+k-1}{n}
+</math>
+
+where, again, n is number of objects, being split into k partitions by k-1 other objects.
+
+Now, let's plug in the numbers for the 2 by 2 lattice. We get:
+
+<math>
+n = 2, k = 3
+</math>
+
+We are partitioning 2 down moves among 3 possible columns in the lattice. This gives:
+
+<math>
+2 \mbox{  multichoose  } 3 = \binom{2+3-1}{2} = \binom{4}{2} = 10
+</math>
+
+which is indeed the number of paths through the lattice.
+
+==Number of Paths Thru Lattices of Arbitrary Size==
+
+To generalize, on a lattice of width W and height H, we have W right moves that form W+1 partitions,
+in which we are placing H items. The number of possible paths through the lattice is therefore
+equivalent to permutations of the string:
+
+<pre>
+RRRR...(W times)...RRRDDDD...(H times)...DDDD
+</pre>
+
+Now n and k are given by:
+
+<math>
+n = H, k = W+1
+</math>
+
+so the total number of possible paths through the W x H square lattice is:
+
+<math>
+(H) \mbox{  multichoose  } (W+1) = \binom{W+1+H-1}{H} = \binom{W+H}{H}
+</math>
+
+The number of paths through a 4 x 2 lattice (identical to the number of paths
+through a 2 x 4 lattice) is:
+
+<math>
+\binom{4+2}{2} = \binom{4+2}{4} = 15
+</math>
+
+The number of paths through an 8x8 lattice is given by:
+
+<math>
+\binom{8+8}{8} = 12,870
+</math>
+
+and finally, the number of paths through a 20 x 20 lattice is given by:
+
+<math>
+\binom{20+20}{20} = 137,846,528,\mbox{XXX}
+</math>
+
+==Generalizing to 3-Dimensional and Higher-Dimensional Lattices==
+
+If we take this idea a step further and use a slightly different combinatoric formula,
+we can generalize the problem to paths through higher dimensional lattices.
+This is an approach I came up with through trial and error,
+and some experimentation with Mathematica.
+
+Suppose we have a 3D lattice, composed of 8 cubes, 2 on each side.
+Now we wish to know: how many shortest Manhattan distance paths are there
+through the lattice, from one corner to the other?
+
+This can be re-cast, as we did above, as the problem of counting
+unique permutations of a string of the form:
+
+<pre>
+UURRBB
+</pre>
+
+where U denotes an up move, R denotes a right move, and B denotes a back move.
+
+While we could use the multiset approach from above to describe this problem,
+it turns out that this approach is not powerful enough to describe the problem
+of arbitrary 3D lattices.
+
+Let's pose the problem slightly more generally: we have C bags of moves or characters,
+each of a different size. We must use each character i precisely as many times as we have
+instances in its bag C_i. How many unique permutations are there?
+
+Consider the following example string of length <math>N = 14</math>, consisting of
+<math>N_x = 4</math> UP moves,
+<math>N_y = 4</math> RIGHT moves, and
+<math>N_z = 6</math> BACK moves,
+forming a path through a 3D lattice of size <math>4 \times 4 \times 6</math>:
+
+<pre>
+UUUURRRRBBBBBB
+</pre>
+
+The number of unique permutations can be computed by breaking this into sub-problems.
+Start by asking how many permutations there are of the string:
+
+<pre>
+UUUUXXXXXXXXXX
+</pre>
+
+(Treating the Rs and Bs as identical). Then we get:
+
+<math>
+\binom{N}{N_x} = \binom{N_x + N_y + N_z}{N_x} = \binom{14}{10} = 1001
+</math>
+
+Next, we deal with the other sub-problem, the Xs, by asking how many ways
+we can permute the following string:
+
+<pre>
+RRRRBBBBBB
+</pre>
+
+which is solved via another binomial coefficient. This number of permutations is given by:
+
+<math>
+\binom{N_y + N_z}{N_y} = \binom{N_y + N_z}{N_z} = \binom{10}{4} = \binom{10}{6} = 210
+</math>
+
+Now combining these, we get the overall number of permutations:
+
+<math>
+P = \binom{14}{4} \cdot \binom{10}{4} = 210,210
+</math>
+
+==Special Case: Perfect Cube Lattice==
+
+If we have the special case of a perfect cube lattice, the formula above reduces to the nice and symmetric:
+
+<math>
+\dfrac{(3n)!}{(n!)^3}
+</math>
+
+==4 Dimensional Lattice Example==
+
+(4D lattice worked examples: two solution techniques for a 3x4x5x3 lattice, both giving
+P = 12,612,600 = binomial(15; 3,4,5,3). See the source page for the full derivation.)
+
+=Related=
+
+[[Project Euler/172]]
+
+[[AOCP/Multisets]]
+
+[[AOCP/Multinomial Coefficients]]
+
+Blog post: Shortest Lattice Paths and Multiset Permutations: https://charlesreid1.github.io/shortest-lattice-paths-and-multiset-permutations.html
+
+=Flags=
+
+{{ProjectEulerFlag}}

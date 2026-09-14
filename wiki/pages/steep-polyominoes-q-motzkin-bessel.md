@@ -43,6 +43,7 @@ This paper sits on the intersection of three of the castle's central threads —
 ## Entities & Concepts
 
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the castle's Dyck-type grammar; steep Dyck words are the closest external analogue.
+- [[dyck-words](pages/dyck-words.md)] — the steep-Dyck-word grammar and the steep-length-2n = (n−1)th Motzkin result.
 - [[generating-functions](pages/generating-functions.md)] — the object-grammar method here is its mature form.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] — where the parallelogram/staircase families are enumerated by the add-a-column method.
 

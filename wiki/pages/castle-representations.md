@@ -58,7 +58,7 @@ Integer tuples were not the path to the *first* breakthrough, but the representa
 
 ### 3. U/R/D step strings
 
-The step-based encoding writes a castle as a string of `U` (up), `R` (right), `D` (down) steps — the same device used for the **Lattice Paths** problem (not yet ingested). This is the encoding that produced the breakthroughs, and it has one especially convenient property: **each `D` completes a block**, so the even-block rule is just "an even number of Ds."[^8] Its full development — the rectangular/[[convex-castle](pages/convex-castle.md)]/variations taxonomy and the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] it leads to — is on [[urd-step-strings](pages/urd-step-strings.md)].
+The step-based encoding writes a castle as a string of `U` (up), `R` (right), `D` (down) steps — the same device used for the [[lattice-paths](pages/lattice-paths.md)] problem. This is the encoding that produced the breakthroughs, and it has one especially convenient property: **each `D` completes a block**, so the even-block rule is just "an even number of Ds."[^8] Its full development — the rectangular/[[convex-castle](pages/convex-castle.md)]/variations taxonomy and the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] it leads to — is on [[urd-step-strings](pages/urd-step-strings.md)].
 
 ## Further encodings
 

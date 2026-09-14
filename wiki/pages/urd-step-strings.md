@@ -12,7 +12,7 @@ updated: 2026-09-13
 
 ## Description
 
-A **U/R/D step string** encodes a [[castle-polyomino](pages/castle-polyomino.md)] as a walk in three step types — `U` (up one row), `R` (right one column), `D` (down one row) — tracing the castle's outline. It is the same device used to encode paths for the **Lattice Paths** problem (Project Euler 15; not yet ingested), reused here for castles.[^1] Among the three [[castle-representations](pages/castle-representations.md)], this is the one that produced the breakthroughs toward the Project Euler 502 solution.[^1]
+A **U/R/D step string** encodes a [[castle-polyomino](pages/castle-polyomino.md)] as a walk in three step types — `U` (up one row), `R` (right one column), `D` (down one row) — tracing the castle's outline. It is the same device used to encode paths for the [[lattice-paths](pages/lattice-paths.md)] problem (Project Euler 15), reused here for castles.[^1] Among the three [[castle-representations](pages/castle-representations.md)], this is the one that produced the breakthroughs toward the Project Euler 502 solution.[^1]
 
 Its defining convenience: **each `D` move completes a block**, so the even-block rule is equivalent to "the number of Ds is even."[^2]
 
@@ -43,7 +43,7 @@ This taxonomy and procedure are the enumeration reading of castles; the *countin
 - [[castle-representations](pages/castle-representations.md)] — the encoding collection this belongs to.
 - [[convex-castle](pages/convex-castle.md)] — the central class in the taxonomy.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the grammar these strings support, giving the count.
-- **Lattice Paths** — the source of the U/R/D device (not yet ingested; to be linked when added).
+- [[lattice-paths](pages/lattice-paths.md)] — the source of the U/R/D device.
 
 ## Footnotes
 

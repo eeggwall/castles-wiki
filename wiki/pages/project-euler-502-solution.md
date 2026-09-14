@@ -43,7 +43,7 @@ Operationally, the solution routes each target through one of two paths (see [[c
 - [[kitamasa](pages/kitamasa.md)], [[berlekamp-massey](pages/berlekamp-massey.md)] — the fast linear-recurrence toolkit.
 - [[castle-counting-formula](pages/castle-counting-formula.md)], [[castle-counting-function](pages/castle-counting-function.md)], [[castle-sign](pages/castle-sign.md)], [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — machinery this page proves and ratifies.
 
-Linked from the source but not yet ingested: Polyominoes, Dyck Words, Lattice Paths, Combinatorics, Generating Functions, Project Euler/502/Implementation Notes. Three reference papers are ingested separately (see [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]).
+Related topics now ingested: [[polyominoes](pages/polyominoes.md)], [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/lattice-paths.md)], [[generating-functions](pages/generating-functions.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)]. Still not yet ingested: Combinatorics. The three reference papers are ingested separately (see [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]).
 
 ## What did not work (negative results)
 

@@ -46,7 +46,7 @@ Two of the named families are exactly the OEIS-mining threads: **Ferrers/stairca
 - [[q-catalan-numbers](pages/q-catalan-numbers.md)], [[motzkin-numbers](pages/motzkin-numbers.md)] — the q-analog / Motzkin threads the Ferrers remark points to.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — the papers on these families.
 
-Linked from the source but not yet ingested: Dyck Words, Lattice Paths, Combinatorics.
+Related topics also ingested: [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/lattice-paths.md)]. Still not yet ingested: Combinatorics.
 
 ## Relation to Other Wiki Pages
 
