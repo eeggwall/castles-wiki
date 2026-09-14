@@ -1,7 +1,7 @@
 ---
 title: Overview
 tags: [overview, synthesis]
-sources: [project-euler-502]
+sources: [project-euler-502, project-euler-502-problem-setup]
 updated: 2026-09-13
 ---
 
@@ -18,9 +18,11 @@ The general object of interest is the castle at **any** block count. [[project-e
 ## Open Questions
 
 - How does the count of *all* castles (both parities) relate to the even-only count `F(w,h)` that PE 502 asks for? What is the general (parity-agnostic) counting problem, and what makes the even restriction the interesting special case?
-- What are the precise connections between castles and the related combinatorial objects the source links but this wiki has not yet ingested: polyominoes, Dyck words, lattice paths, and generating functions?
+- What is the concrete [[generating-functions](pages/generating-functions.md)] used to count castles, and how is it derived? The setup subpage names the approach but predates the solution; the actual construction belongs to the Solution subpage (not yet ingested).
+- What are the precise connections between castles and the related combinatorial objects the source links but this wiki has not yet ingested: polyominoes, Dyck words, and lattice paths?
 
 ## Key Entities / Concepts
 
 - [[castle-polyomino](pages/castle-polyomino.md)] — the central object: a valid stacked-block configuration on a grid, at any block parity.
 - [[castle-counting-function](pages/castle-counting-function.md)] — `F(w,h)`, the number of castles; PE 502's even-block count is a special case.
+- [[generating-functions](pages/generating-functions.md)] — the intended method for computing `F(w,h)`: a multivariate polynomial whose coefficients are the counts.

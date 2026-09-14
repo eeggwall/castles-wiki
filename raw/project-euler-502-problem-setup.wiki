@@ -1,0 +1,41 @@
+=Problem Setup=
+
+==Don't Count: Generate==
+
+For scale, The number of configurations for a castle with a width and height on the order of 10 - just a measely 13x10 grid - is given in the original problem as <math>F(13,10) = 3,729,050,610,636</math>. You can't ask a computer to COUNT that high, let alone store that many castles.
+
+Now, the question at hand is to enumerate castles with a height of a TRILLION - so, a single castle will take a TERABYE just to store, and will take your computer a solid hour to generate a single castle (assuming you've got enough memory, or disk space). The larger castle configuration counts are mod a billion, with a b, so they're going to be mind-bogglingly large.
+
+Instead of enumerating castles, you should count castles with a generating function. This is where a brief dip into the mathematical literature can help. It also helps to remember that when you start talking about numbers and functions that get as big as combinatorics and permutations numbers do, you really ''have'' to utilize more sophisticated mathematical tools than manual enumeration.
+
+That being said, implementing a computer program to enumerate castles manually (for small widths/heights) can help crystallize ideas on how to enumerate castles mathematically.
+
+==Generating functions==
+
+The short version of how to use generating functions is to come up with a multivariate polynomial whose variables are dimensions of the problem (width and height, or some other variables if they are more convenient) and whose coefficients are the solutions to our problem.
+This turns the problem of finding a solution for a particular problem into evaluating a particular term of the generating function (where each term is implemented using a recursive function or a similar method).
+
+See [[Generating Functions]] for more details.
+
+==Castle Rules==
+
+The rules established in Problem 502, repeated here again:
+* Rule 1 - Blocks can be placed on top of other blocks as long as nothing sticks out past the edges or hangs out over open space.
+* Rule 3 - Any two neighboring blocks on the same row have at least one unit of space between them.
+* Rule 4 - The bottom row is occupied by a block of length w.
+* Rule 5 - The maximum achieved height of the entire castle is exactly h.
+* Rule 6 - The castle is made from an even number of blocks.
+
+==Timeline==
+
+* 2017-07: first attempt, direct enumeration.
+* 2017-2025: repeated returns; polyomino literature dive (see references); generating-function study drove ~75% of the [[Generating Functions]] wiki page.
+* 2026-03: solution.
+
+See [[Project Euler/502/Representations]] and [[Project Euler/502/Solution]].
+
+=Flags=
+
+{{PE502Flag}}
+
+{{ProjectEulerFlag}}

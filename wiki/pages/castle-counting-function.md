@@ -3,7 +3,7 @@ title: Castle counting function F(w,h)
 category: Concepts
 summary: F(w,h), the number of valid castles on a w×h grid; PE 502 restricts it to even block counts and asks for a sum of three large evaluations mod 1e9+7.
 tags: [concept, castle, counting-function, project-euler]
-sources: [project-euler-502]
+sources: [project-euler-502, project-euler-502-problem-setup]
 created: 2026-09-13
 updated: 2026-09-13
 ---
@@ -38,10 +38,12 @@ The three arguments deliberately stress different regimes: a very wide/short gri
 ## Appearances in Sources
 
 - [[project-euler-502](pages/project-euler-502.md)] — introduces `F(w,h)`, gives the four checkpoint values, and states the target sum modulo 1 000 000 007.
+- [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] — invokes the scale of `F` (`F(13,10) = 3,729,050,610,636`, target height 10^12) to motivate a generating-function approach over direct enumeration.
 
 ## Related Concepts
 
 - [[castle-polyomino](pages/castle-polyomino.md)] — the object `F(w,h)` counts; PE 502's even-block count is a special case of the general (parity-agnostic) count.
+- [[generating-functions](pages/generating-functions.md)] — the intended method for computing `F(w,h)` at large parameters.
 
 ## Footnotes
 
