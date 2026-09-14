@@ -1,0 +1,417 @@
+=Representing Castles=
+
+Before we can count castles, we have to find a way to represent them, and translate the rules for castles into rules for constructing representations.
+
+There are a lot of different approaches to representing castles, but we cover a few below. The method that ended up being the most helpful was the step-based strings approach, writing castles as strings of up, down, and right steps.
+
+We cover three approaches:
+* Binary strings
+* Integer tuples
+* Step-based strings
+
+==Binary String Representation==
+
+One way to represent a castle is to use a binary string. Specifically, a column-wise representation of the castle can be written as a binary string, with each column consisting of two blocks: a block of zeros (indicating no blocks) and ones (indicating blocks). This will create a set of W blocks, each block of length H.
+
+Let's look at an example:
+
+[[Image:PE502.png|500px]]
+
+This castle can be represented as:
+
+<pre>
+11000 11100 11111 11000 11100 10000 11111 11110
+</pre>
+
+The rules for constructing castles can be translated likewise into restrictions on the binary numbers we are generating. For example, the restriction that castles of height H must have at least one column of height H is a restriction on the binary digits that there must be at least one contiguous block of H 1's.
+
+The rule that the bottom row is one continuous block, on which the rest of the castle is built, is equivalent to saying that each block begins with a 1.
+
+The rule that the number of blocks must be even requires a little more care, but we can count the number of blocks as follows:
+
+Split the entire string into blocks of size H:
+
+<pre>
+11000 11100 11111 11000 11100 10000 11111 11110
+</pre>
+
+Now, for each block, count the number of ones in that block:
+
+<pre>
+2 3 5 2 3 1 5 4
+</pre>
+
+Add a zero to the front and end:
+
+<pre>
+0 2 3 5 2 3 1 5 4 0
+</pre>
+
+Now compute the difference between each entry (entry i minus entry i-1):
+
+<pre>
++2  +1  +2  -3  +1  -2  +4  -1  -4
+</pre>
+
+If we sum all of the negative integers, we get the total number of blocks:
+
+<math>
+10 = \left| (-3)+(-2)+(-1)+(-4) \right |
+</math>
+
+==Integer Tuples==
+
+From the bit of analysis above, we might find an integer tuple representation of a castle more convenient. Specifically, we can represent a castle of known width by writing the number of up or down steps, or the height, between each rightward step.
+
+[[Image:PE502.png|500px]]
+
+This castle of width 8 can be represented with 8 integers:
+
+<pre>
+2 3 5 2 3 1 5 4
+</pre>
+
+We already saw that the number of blocks can be obtained by summing the negative numbers, and this can be used to check if the number of blocks is even. We can also easily specify that the castle should reach a height of exactly H by ensuring there is at least one integer with the value of H in the tuple, and ensure that the castle does not drop below the minimum height by ensuring all integers in the tuple are > 0.
+
+==Steps-Based Approach==
+
+The representation that led to the most breakthroughs in progressing with PE 502 was the same representation used to solve the [[Lattice Paths]] problem in [[Project Euler/15]]. In that problem, we represented a path through a lattice using a string of letters like <code>RRRDDD</code>. We can do the same thing here to represent castles.
+
+Let's start with the simplest castles: rectangular castles. These castles consist of Us, then Rs, then Ds, representing upward steps, rightward steps, and downward steps. The 4 x 8 rectangular castle would be:
+
+<pre>
+UUUURRRRRRRRDDD
+</pre>
+
+The next type of castle is what we will call a convex castle. This type of castle can be split into three portions: the front, the middle, and the back.
+
+* The front of the castle consists of interspersed U and R steps, until the castle reaches its maximum height. No D steps are present in the front part.
+* The middle of the castle consists of any R steps taken at the maximum height. There must be at least one R step in the middle.
+* The back of the castle consists of interspersed D and R steps, until the castle reaches its base. No U steps are present in the back part.
+* The convex castle must begin with a U and end with a D (as per Rule X).
+
+A few examples of convex castles:
+
+<pre>
+UURUURUURUU RRRRRRR DDRDDRDDRDD
+^           ^       ^
+front       middle  back
+
+URRRRRRUUUUURDDDDDD
+
+UURRUURRRRRRUURDRDRRDDDD
+
+UUUUUURRRRUUUUUURURRRDDDDDDRRDRRRRDRRDRRRRRRDDDD
+
+URRRRUUURRRRRUUUURUUUUUURUUURRRUUURRRRRRUUUURRRRRURRRRRUURRUURRRRRURRURRURRRRRRDDDDDRRRRRRRDDDRDRDRDRDRDRDRRRRDDDRRDDDRRRDDDDDDDDDDDRRRRRRRRD
+</pre>
+
+Finally, we can classify all remaining castles as variations on convex castles. To construct variations on castles, we look for runs of RRRs of length 3 or more. Each pair of Rs creates a slot for additional U or D moves, with long runs of Rs creating many slots and many possible castle variations.
+
+For example, suppose we had a castle that began like this:
+
+<pre>
+UUUURRRRRRUU
+</pre>
+
+This string of Rs creates places where the castle could go. Assuming the maximum height the castle can reach is 6, we can construct variations by inserting Ds and Us in-between pairs of Rs. Note that we MUST insert Ds first; if we insert Us first, we will construct a duplicate castle variation that would be covered by another convex castle. We must also insert Ds and Us in pairs, so as to keep the total height change 0. Last, we cannot insert Ds and Us next to one another. Here are a few example castle variations:
+
+<pre>
+UUUURDRURDRURRUU
+
+UUUURDDRDRUURURRUU
+
+UUUURDRUURDRRRUU
+
+UUUURDRURURDRRUU
+
+UUUURDRUURRRDRUU
+
+UUUURRDDRUUURRDRUU
+</pre>
+
+and so on...
+
+In the next section we will show how to enumerate all convex castles, and given a convex castle, how to enumerate all variations. This will allow us to count the number of castles.
+
+One last convenient property of this representation is the fact that each D move completes a new block, so checking if there are an even number of blocks is as easy as checking if the number of Ds is even.
+
+=Enumeration of Castles=
+
+Now that we have the U/R/D representation of a castle, we can enumerate castles by enumerating strings of U/R/D that satisfy the conditions of Problem 502. Particularly, the requirement that castles contain an even number of blocks.
+
+==Procedure==
+
+To assemble a castle of width W and height H, we use a three-step process:
+
+# Start with a bare minimum string of U/R/D. Explanation of a bare minimum string is given below.
+# Insert the number of remaining Rs into the castle string needed to make the castle have width W. (This is the number of CONVEX CASTLES.)
+# Insert pairs of U/D or D/U, separated by at least one R.
+
+===Step 1 Bare Minimum String===
+
+The bare minimum string consists of the minimum number of Us and Ds that the castle is required to have. For example, for castles of height 4 and width 5, the bare minimum string would be 4 Us, 4 Ds, and one R to separate them, since we know Us and Ds must be separated by at least one R:
+
+<pre>
+U U U U R D D D D
+</pre>
+
+However, the case where the height is odd requires a different bare minimum string, because the number of rows is odd, meaning the bare minimum string will not satisfy the requirement that castles must have an even number of blocks (an even number of Ds).
+
+To get around that, we insert an extra U and an extra D, and two extra Rs to separate them. For example, for castles of height 5 and width 10, the bare minimum string would be:
+
+<pre>
+U U U U U R D R U R D D D D D
+</pre>
+
+===Step 2 Enumerating Convex Castles===
+
+Starting with the bare minimum string, enumerating convex castles boils down to inserting W-1 different Rs into the bare minimum string.
+
+There are H-1 possible slots between each U character, since the castle string can't start with an R. There are another H-1 possible slots between each D character, since the castle string can't end with a D. And last, there is one slot between the string of Us and string of Ds, where there is already at least one R - more Rs can be added there as well.
+
+The problem of counting the number of ways to insert W - 1 Rs into 2(H - 1) + 1 partitions is equivalent to the "stars and bars" problem: given a number of objects (stars), how many ways can you separate them into n partitions, using n-1 bars?
+
+<pre>
+*****|||
+</pre>
+
+Now, the formula for counting the number of ways of partitioning s objects using n partitions, or n-1 bars, is
+
+<math>
+C(n - 1 + s, r)
+</math>
+
+where C is the choose function:
+
+<math>
+C(m, k) = \dfrac{m!}{k!(m-k)!}
+</math>
+
+Now, the count of convex castles (CCC) can be written as a formula:
+
+<math>
+\mbox{CCC} = C(2(H-1)+W-1, W-1) = C(2H+W-3, W-1)
+</math>
+
+For example, for castles of height 4 and width 5, we start with the bare minimum string:
+
+<pre>
+U U U U R D D D D
+</pre>
+
+Now we will insert W - 1 = 4 Rs into the castle, placing them into 2 (H - 1) + 1 = 2(3)+1 = 7 partitions (which can hold multiple Rs), for a count of convex castles of:
+
+<math>
+\mbox{CCC} = C(2H + W - 3, W-1) = C(2*4 + 5 - 3, 5-1) = C(10, 4) = 210
+</math>
+
+Meaning, on a grid of height 4 and width 5, there are 210 convex castles.
+
+=Which representation was actually used?=
+
+The winning solution does not enumerate any of these directly. The binary-string encoding is used only as the bijection proof that a length-<math>L</math> block admits <math>2^L</math> sub-configurations (see [[Project Euler/502/Solution]]). The U/R/D form is the mental model that unlocked the sub-block independence; it is not what the code manipulates. See [[Project Euler/502/Implementation Notes]] for what the code actually does.
+
+=Generalized Dyck Grammar for Castles=
+
+The U/R/D strings generalize the Dyck path, but the connection runs deeper than a shape analogy. The castle rules re-cast as a grammar over these strings, and the grammar yields the recurrence and the generating function that count castles. This is the route that replaces enumeration with a count. The plain Dyck version of the same pipeline, worked step by step, is on [[Dyck Words/Examples]].
+
+==The tower word==
+
+A castle is <code>U (tower) D</code>. The bottom block is the outer <code>U...D</code> pair, and the tower is everything stacked on top of it. Read the tower's skyline as a word over <code>{U, R, D}</code>:
+
+* <code>U</code> is up one row, vertical
+* <code>R</code> is right one column
+* <code>D</code> is down one row, vertical
+
+A tower above a length-<math>L</math> block uses exactly <math>L</math> R's, never drops below the base, and returns to it. Two facts carry the rest of the argument:
+
+* blocks in the tower = number of D's = number of U's, because each D move completes a block,
+* a valid tower word has no <code>UD</code> (that would be a zero-width block) and no <code>DU</code> (two touching blocks).
+
+No-overhang needs no separate rule. Each R is spent once, as a gap or as part of a sub-block, so a child block always sits inside its parent's span.
+
+==The grammar==
+
+Start with a small tower and read its word. Take a length-3 base block, put a width-1 sub-block in column 1 and another in column 3, and leave column 2 empty. The skyline above the base, i.e. the tower word, is
+
+<pre>
+U R D R U R D
+</pre>
+
+This <code>URDRURD</code> is not itself a castle: a castle is <code>U (tower) D</code>, and the outer <code>U...D</code> pair is the baseline block of width <math>L</math>. The full castle for this example is
+
+<pre>
+U U R D R U R D D
+</pre>
+
+that is, <code>UURDRURDD</code>, with the leading <code>U</code> and trailing <code>D</code> supplying the baseline block.
+
+The tower word has height sequence 0,1,1,0,0,1,1,0, measured from the top of the base block. Up onto the first sub-block, across it, off it; right across the gap; up, across, off the second. Two sub-blocks, one gap.
+
+The word is built the same way a Dyck word is, by splitting at the first return to the base. Scan left to right. The first step is either <code>R</code> (an empty column) or <code>U</code> (the start of a peak). A peak is <code>U V D</code>: up onto a sub-block, the tower <math>V</math> sitting on that sub-block, down off it. In <code>URDRURD</code> the first peak is <code>URD</code> (the interior <math>V</math> is just <code>R</code>, a bare width-1 sub-block), then a gap <code>R</code>, then a second peak <code>URD</code>. In <code>UURDD</code>, a width-1 sub-block carries a width-1 block on top, so the interior <math>V</math> is <code>URD</code> and the peak is <code>U</code> <code>URD</code> <code>D</code>. Like <code>URDRURD</code>, <code>UURDD</code> is a tower word; as a full castle it is <code>UUURDDD</code>, with the outer <code>U...D</code> pair again being the baseline block.
+
+The letters in the grammar:
+
+* <code>U</code> = up one row
+* <code>R</code> = right one column
+* <code>D</code> = down one row
+* <code>V</code> = a whole tower of height at most <math>k-1</math>
+* <code>empty</code> = the empty word, no steps
+
+Let <math>E_k</math> be the towers of height at most <math>k</math>. A tower is empty, or it starts with a gap, or it starts with a peak. One rule per case:
+
+<pre>
+E_k -> empty
+    | R E_k
+    | U V D ( empty | R E_k )
+</pre>
+
+Reading the three alternatives:
+
+* <code>empty</code> is the empty tower, nothing above the base.
+* <code>R E_k</code> is one empty column (one <code>R</code>), then the rest of the tower.
+* <code>U V D ( empty | R E_k )</code> is a peak: up onto a sub-block, the tower <math>V</math> above it, down off it, then stop, or a gap column and the next peak.
+
+<math>V</math> is one row lower because the sub-block itself uses one row, and <math>V</math> is nonempty. Nonempty <math>V</math> is what keeps the sub-block width positive (no <code>UD</code>). The <code>empty | R E_k</code> tail is what keeps two peaks from touching (no <code>DU</code>), the same-row gap rule.
+
+This is the Dyck first-return split <math>U\,w_1\,D\,w_2</math> with one extra letter. The only change is that <code>U</code> and <code>D</code> are vertical here, so the interior <math>V</math> is a whole tower rather than a single matched step.
+
+==Unsigned count==
+
+Let <math>x</math> mark one <code>R</code> step, so a tower of <math>L</math> columns is worth <math>x^L</math>. Write <math>E_k(x)</math> for the generating function of towers of height at most <math>k</math>. Read it off the grammar, one term per rule:
+
+<math>
+E_k = 1 + x\,E_k + (E_{k-1} - 1)(1 + x\,E_k)
+</math>
+
+* <math>1</math> is the empty tower.
+* <math>x\,E_k</math> is one gap column (one <math>x</math>), then the rest.
+* <math>E_{k-1} - 1</math> is the interior <math>V</math>. The <math>-1</math> drops the empty word, enforcing <math>V</math> nonempty.
+* <math>1 + x\,E_k</math> is what follows the peak: stop, or one gap column and the rest.
+* The <code>U</code> and <code>D</code> around the peak add no <math>x</math>, because they are vertical.
+
+Collect the <math>E_k</math> terms and solve:
+
+<math>
+E_k = \frac{E_{k-1}}{1 - x\,E_{k-1}}
+</math>
+
+The base case <math>E_0</math> is a tower of height at most 0, the empty skyline: any number of empty columns, <math>1 + x + x^2 + \cdots = 1/(1-x)</math>. Unwinding:
+
+<math>
+E_k = \frac{1}{1 - (k+1)x}
+</math>
+
+so the number of towers of height at most <math>k</math> above a length-<math>L</math> block is
+
+<math>
+T(k,L) = (k+1)^L
+</math>
+
+the closed form already on [[Project Euler/502/Solution]], now read straight off the grammar.
+
+==Signed count==
+
+The even-block rule is the hard constraint, and it enters as a sign. Weight each block, that is each D, by <math>-1</math>. The peak <code>U V D</code> adds one block on top of <math>V</math>, so it flips the sign of everything inside it. Let <math>P_k</math> be the signed tower generating function. Same grammar and same letters (<code>U</code>, <code>R</code>, <code>D</code>, <code>V</code>, <code>empty</code>) as above, with one minus sign on the peak:
+
+<pre>
+P_k -> empty
+    | R P_k
+    | - U V D ( empty | R P_k )
+</pre>
+
+Reading it off:
+
+<math>
+P_k = 1 + x\,P_k - (P_{k-1} - 1)(1 + x\,P_k)
+</math>
+
+solving to
+
+<math>
+P_k = \frac{2 - P_{k-1}}{1 - 2x + x\,P_{k-1}},\qquad P_0 = \frac{1}{1-x}
+</math>
+
+Write <math>P_k = \mathrm{num}_k / \mathrm{den}_k</math>. This is the rational-function update on the Solution page:
+
+<math>
+\mathrm{num}_k = 2\,\mathrm{den}_{k-1} - \mathrm{num}_{k-1},\qquad
+\mathrm{den}_k = \mathrm{den}_{k-1}(1-2x) + x\,\mathrm{num}_{k-1}
+</math>
+
+For fixed <math>k</math>, <math>P_k</math> is rational with denominator of degree <math>k+1</math>, so <math>P(k,L)</math> satisfies a linear recurrence in <math>L</math> of order <math>k+1</math>:
+
+* <math>k=1</math>: <math>P(1,L) = 2P(1,L-1) - 2P(1,L-2)</math>, closed form <math>P(1,L) = \mathrm{Re}((1+i)^{L+1})</math>.
+* <math>k=2</math>: <math>P(2,L) = 3P(2,L-1) - 4P(2,L-2) + 4P(2,L-3)</math>.
+
+==The main formula==
+
+The full castle is <code>U (tower) D</code>, so its block count is the tower's block count plus one for the bottom block. Even total blocks means an odd number of blocks in the tower.
+
+<math>h^w = T(h-1,w)</math> counts towers of height at most <math>h-1</math> above the bottom block, any parity. <math>P(h-1,w)</math> is the signed version, so <math>(T - P)/2</math> counts towers with an odd block count. That gives the expression
+
+<math>
+\frac{h^w - P(h-1,w)}{2}
+</math>
+
+but remember, that includes every castle of every height from 0 to h-1. So, we have to subtract the height <math>\le h-2</math> case to force height exactly <math>h</math>, which is <math>F(w,h)</math>:
+
+<math>
+F(w,h) = \left( \frac{h^w - P(h-1,w)}{2} \right) - \left( \frac{(h-1)^w - P(h-2,w)}{2} \right)
+</math>
+
+or,
+
+<math>
+F(w,h) = \frac{h^w - (h-1)^w - P(h-1,w) + P(h-2,w)}{2}
+</math>
+
+This reproduces the known good answers from the problem statement, <math>F(4,2)=10</math>, <math>F(13,10)=3729050610636</math>, and <math>F(10,13)=37959702514</math>.
+
+The whole thing in Python. <math>P(k,L)</math> is the coefficient of <math>x^L</math> in <math>\mathrm{num}_k/\mathrm{den}_k</math>, built up by the recurrence above; <math>F(w,h)</math> is the formula:
+
+<pre>
+def add(a, b):
+    n = max(len(a), len(b))
+    return [(a[i] if i < len(a) else 0) + (b[i] if i < len(b) else 0) for i in range(n)]
+
+def mul(a, b):
+    out = [0] * (len(a) + len(b) - 1)
+    for i, ai in enumerate(a):
+        for j, bj in enumerate(b):
+            out[i + j] += ai * bj
+    return out
+
+def P(k, L):
+    # Polynomials are lists of coefficients, index = degree.
+    #   num_k = 2*den_{k-1} - num_{k-1}
+    #   den_k = den_{k-1}*(1 - 2x) + x*num_{k-1}
+    num, den = [1], [1, -1]                    # num_0 = 1, den_0 = 1 - x
+    for _ in range(k):
+        num, den = add(mul(den, [2]), mul(num, [-1])), \
+                   add(mul(den, [1, -2]), [0] + num)
+    c = [0] * (L + 1)                          # den[0] is always 1, no division
+    for n in range(L + 1):
+        c[n] = (num[n] if n < len(num) else 0) - \
+               sum(den[i] * c[n - i] for i in range(1, min(n, len(den) - 1) + 1))
+    return c[L]
+
+def F(w, h):
+    return (h**w - (h - 1)**w - P(h - 1, w) + P(h - 2, w)) // 2
+
+for w, h in [(4, 2), (13, 10), (10, 13)]:
+    print(f"F({w},{h}) = {F(w, h)}")
+</pre>
+
+<pre>
+F(4,2) = 10
+F(13,10) = 3729050610636
+F(10,13) = 37959702514
+</pre>
+
+=Flags=
+
+{{PE502Flag}}
+
+{{ProjectEulerFlag}}

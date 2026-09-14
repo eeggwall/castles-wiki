@@ -3,7 +3,7 @@ title: Castle counting function F(w,h)
 category: Concepts
 summary: F(w,h), the number of valid castles on a w×h grid; PE 502 restricts it to even block counts and asks for a sum of three large evaluations mod 1e9+7.
 tags: [concept, castle, counting-function, project-euler]
-sources: [project-euler-502, project-euler-502-problem-setup]
+sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations]
 created: 2026-09-13
 updated: 2026-09-13
 ---
@@ -35,14 +35,18 @@ Note that `F(13,10) ≠ F(10,13)` — the function is **not** symmetric in *w* a
 
 The three arguments deliberately stress different regimes: a very wide/short grid, a large square grid, and a narrow/very tall grid — so a solution must handle both dimensions scaling independently and to sizes far beyond brute-force enumeration.
 
+**A closed form exists.** `F(w,h)` is not only computable but has a closed form derived from a generalized Dyck grammar: `F(w,h) = [h^w − (h−1)^w − P(h−1,w) + P(h−2,w)] / 2`, where `P` is a signed tower count encoding the even-block rule. The derivation is the [[castle-counting-formula](pages/castle-counting-formula.md)]; it reproduces all three integer checkpoints exactly (verified during ingest).
+
 ## Appearances in Sources
 
 - [[project-euler-502](pages/project-euler-502.md)] — introduces `F(w,h)`, gives the four checkpoint values, and states the target sum modulo 1 000 000 007.
 - [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] — invokes the scale of `F` (`F(13,10) = 3,729,050,610,636`, target height 10^12) to motivate a generating-function approach over direct enumeration.
+- [[project-euler-502-representations](pages/project-euler-502-representations.md)] — derives the closed form for `F(w,h)` from the generalized Dyck grammar and verifies it against the checkpoints.
 
 ## Related Concepts
 
 - [[castle-polyomino](pages/castle-polyomino.md)] — the object `F(w,h)` counts; PE 502's even-block count is a special case of the general (parity-agnostic) count.
+- [[castle-counting-formula](pages/castle-counting-formula.md)] — the closed-form derivation of `F(w,h)`.
 - [[generating-functions](pages/generating-functions.md)] — the intended method for computing `F(w,h)` at large parameters.
 
 ## Footnotes

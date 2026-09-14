@@ -3,7 +3,7 @@ title: Castle (polyomino)
 category: Concepts
 summary: A configuration of stacked integer-length unit-height blocks on a w×h grid, obeying the castle placement rules — the central object of study.
 tags: [concept, castle, polyomino, combinatorics]
-sources: [project-euler-502, project-euler-502-problem-setup]
+sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations]
 created: 2026-09-13
 updated: 2026-09-13
 ---
@@ -26,14 +26,19 @@ These five rules define the castle object **independent of how many blocks it co
 
 The name "castle polyomino" reflects the visual intuition: a valid configuration resembles the crenellated silhouette of a castle wall, and the connected cell-set it occupies relates it to the broader family of polyominoes.
 
+**Encodings.** A castle can be encoded exactly in several ways — column-wise binary strings, integer height-tuples, or U/R/D step strings — each turning the placement rules into constraints on the encoding (see [[castle-representations](pages/castle-representations.md)]). In the U/R/D reading, a castle is `U (tower) D`, every `D` step completes one block, and validity is characterized by the absence of `UD` (a zero-width block) and `DU` (two touching blocks) in the tower word.
+
 ## Appearances in Sources
 
 - [[project-euler-502](pages/project-euler-502.md)] — defines the block, the castle, and the five placement rules; adds the even-block parity restriction for the PE 502 count.
 - [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] — partially restates the rules (as Rule 1, 3, 4, 5, 6; not repeating Rule 2 is an incomplete restatement, not a change to the problem — no rule is dropped).
+- [[project-euler-502-representations](pages/project-euler-502-representations.md)] — encodes the castle and characterizes validity in the U/R/D word (each D completes a block; no UD, no DU).
 
 ## Related Concepts
 
 - [[castle-counting-function](pages/castle-counting-function.md)] — `F(w,h)`, the function counting castles; PE 502's even-block count is a special case of counting the general castle object.
+- [[castle-representations](pages/castle-representations.md)] — exact encodings of a castle (binary strings, integer tuples, U/R/D step strings).
+- [[convex-castle](pages/convex-castle.md)] — a structurally important sub-class of castle.
 - [[generating-functions](pages/generating-functions.md)] — the intended method for counting castle configurations at large parameters.
 
 ## Footnotes
