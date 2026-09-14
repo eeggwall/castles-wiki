@@ -1,0 +1,152 @@
+=Volume 1=
+
+==Chapter 1: Basic Concepts==
+
+===Permutations and Factorials===
+
+If we have n distinct objects to arrange in a row, and order of placement matters, we can arrange these things in n! different ways.
+
+For the first object, we have n choices of places to put it. For the second object, we have n-1 choices of places to put it. And so on.
+
+In general, if we have to choose k objects out of n total, and arrange them in a row, we have the number of possibilities as:
+
+<math>
+p_{n,k} = n(n-1)(\dots)(n-k+1)
+</math>
+
+The total number of permutations is
+
+<math>
+p_{n,n} = n (n-1) \dots (2)(1)
+</math>
+
+The process of constructing a permutation of n objects, given all permutations of n-1 objects, is important. If we consider the case of three objects <math>\{1, 2, 3\}</math>,
+
+Here are permutations of order 3:
+
+<math>
+(1 2 3), (1 3 2), (2 1 3), (2 3 1), (3 1 2), (3 2 1)
+</math>
+
+Now, how to get to permutations of 4 objects?
+
+'''Method 1:'''
+
+For each permutation of n-1 elements, form n additional permutations by inserting the nth element in every possible open slot
+
+Adding 4 to our set of objects and using method 1 gives:
+
+<math>
+(4 2 3 1), (2 4 3 1), (2 3 4 1), (2 3 1 4)
+</math>
+
+'''Method 2:'''
+
+For each permutation of the n-1 elements, form n new permutations by first constructing the array:
+
+<math>
+\begin{array}{ll}
+a_1 a_2 \dots a_{n-1} & \frac{1}{2} \\
+a_1 a_2 \dots a_{n-1} & \frac{3}{2} \\
+\dots & \dots \\
+a_1 a_2 \dots a_{n-1} & (n - \frac{1}{2})
+\end{array}
+</math>
+
+Aaaaaand... yeah. No idea.
+
+===Factorial Identities===
+
+Factorial definition:
+
+<math>
+n! = 1 \cdot 2 \dots n = \prod_{1 \leq k \leq n} k
+</math>
+
+<math>
+0! = 1
+</math>
+
+and with this convention,
+
+<math>
+n! = (n-1)! n
+</math>
+
+for all positive integers n.
+
+10! is a useful benchmark - it is around 3.5 million.
+
+<math>
+10! = 3,628,800
+</math>
+
+10! represents an upper ceiling on computable tasks.
+
+To tell how large a very big factorial is going to be, use Stirling's formula:
+
+<math>
+n! \approx \sqrt{2 \pi n} \left(\frac{n}{e} \right)^n
+</math>
+
+Thus, for 8! = 40320:
+
+<math>
+8! \approx 4 \sqrt{\pi} \left( \frac{8}{e} \right)^8 \approx 39902
+</math>
+
+Relative error of Stirling's formula is approximately <math>\dfrac{1}{12n}</math>
+
+To obtain the exact value of n! factored into primes, we can use some useful identities. First, the prime p is a divisor of n! with multiplicity:
+
+<math>
+\begin{align}
+\mu &= \operatorname{floor}\left(\frac{n}{p}\right) + \operatorname{floor}\left(\frac{n}{p^2}\right) + \operatorname{floor}\left(\frac{n}{p^3}\right) + \dots \\
+    &= \sum_{k>0} \operatorname{floor}\left(\frac{n}{p^k}\right)
+\end{align}
+</math>
+
+As an example, for n = 1000, p = 3,
+
+<math>
+\mu = \operatorname{floor}\left(\frac{1000}{3}\right) + \operatorname{floor}\left(\frac{1000}{9}\right) + \operatorname{floor}\left(\frac{1000}{27}\right) + \operatorname{floor}\left(\frac{1000}{81}\right) + \operatorname{floor}\left(\frac{1000}{243}\right) + \operatorname{floor}\left(\frac{1000}{729}\right)
+</math>
+
+which gives
+
+<math>
+\mu = 333 + 111 + 37 + 12 + 4 + 1 = 498
+</math>
+
+Therefore, <math>1000!</math> is divisible by <math>3^{498}</math>, but not by <math>3^{499}</math>.
+
+Furthermore, to speed up the calculation of the above, we can use the identity
+
+<math>
+\operatorname{floor}\left(\frac{n}{p^{k+1}} \right) = \operatorname{floor}\left( \frac{\operatorname{floor}\left( \frac{n}{p^k} \right)}{p} \right)
+</math>
+
+===Binomial Coefficients===
+
+See [[AOCP/Binomial Coefficients]]
+
+===Multinomial Coefficients===
+
+See [[AOCP/Multinomial Coefficients]]
+
+===Generating Functions===
+
+See [[AOCP/Generating Functions]]
+
+=Flags=
+
+{{AOCPFlag}}
+
+[[Category:Combinatorics]]
+[[Category:Permutations]]
+[[Category:Search]]
+[[Category:AOCP]]
+[[Category:CS]]
+[[Category:Algorithms]]
+[[Category:Reading]]
+[[Category:Sequences]]

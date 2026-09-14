@@ -48,6 +48,7 @@ Inversions are the hinge between the castle's Dyck-word world and the q-analog c
 - [[permutation-inversions](pages/permutation-inversions.md)] — the inversion statistic and its q-factorial generating function.
 - [[dyck-words](pages/dyck-words.md)], [[q-catalan-numbers](pages/q-catalan-numbers.md)], [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — where inversions become the q-statistic.
 - [[binary-string-bijection](pages/binary-string-bijection.md)] — the castle's own bounded-integer-tuple encoding, analogous to inversion tables.
+- [[aocp-permutations](pages/aocp-permutations.md)] — the permutation/factorial basics (TAOCP Vol. 1) beneath this Vol. 3 material.
 - [[generating-functions](pages/generating-functions.md)] — the method.
 
 Linked from the source but not yet ingested: AOCP/Multisets, Analytic Combinatorics, Applied Combinatorics.

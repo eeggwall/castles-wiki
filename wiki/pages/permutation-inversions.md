@@ -43,6 +43,7 @@ The inversion statistic is the **q-analog hinge**. The q-factorial `∏(1−z^k)
 - [[q-catalan-numbers](pages/q-catalan-numbers.md)], [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — inversions as the q-statistic.
 - [[binary-string-bijection](pages/binary-string-bijection.md)] — the castle's bounded-tuple encoding, analogous to inversion tables.
 - [[generating-functions](pages/generating-functions.md)] — the method.
+- [[aocp-permutations](pages/aocp-permutations.md)] — the permutation/factorial basics (the same permutations, built by insertion rather than encoded by inversion counts).
 
 ## Footnotes
 

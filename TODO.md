@@ -69,6 +69,12 @@ See `wiki/pages/oeis-cross-referencing.md`.
 - [x] **AOCP/Combinatorics** — done (`wiki/pages/aocp-combinatorics.md`). Knuth's
   inversions + the q-factorial generating function `∏(1−z^k)/(1−z)^n`; seeds
   `wiki/pages/permutation-inversions.md`, a concrete foundation for the q-equivalent thread.
+- [x] **AOCP/Permutations** — done (`wiki/pages/aocp-permutations.md`). TAOCP Vol. 1
+  basics: n!, the insert-into-slots construction (stars-and-bars root), Stirling &
+  Legendre (verified).
+- [ ] **AOCP/Binomial Coefficients**, **AOCP/Multinomial Coefficients**,
+  **AOCP/Generating Functions** — the Vol. 1 subpages referenced by AOCP/Permutations.
+  Low priority (reference); surfaced.
 - [ ] **Dyck Words/Examples** — worked enumeration examples (by hand, Python, SymPy) for
   Dyck and steep Dyck words; referenced by Castle Factoring. Newly surfaced.
 - [ ] **Dyck Words/Lisp** — Dyck words as Lisp S-expression skeletons. Newly surfaced.
