@@ -1,0 +1,246 @@
+=Castle Factoring and the Knuth-Castle Foata Transform=
+
+This page writes up the cycle-factorization reading of [[Project Euler/502]]. The through-line is a single analogy:
+
+: '''permutation cycles : castle peaks/excursions'''
+
+Knuth factors a permutation into disjoint cycles by repeatedly following <math>i \mapsto \sigma(i)</math> until the cycle closes. The tower grammar factors a castle skyline the same way: each <code>U V D</code> peak leaves the base, lives entirely above a sub-block, and returns to the same level, and disjoint peaks are separated by <code>R</code> gaps. This is a genuine factorization, not a metaphor: it is the Dyck first-return decomposition with one extra letter (<code>R</code>), already written up on [[Project Euler/502/Representations]].
+
+The same cycle language yields three things this page develops:
+
+* a sign for castles, the castle analogue of the permutation sign;
+* a castle Foata transform, the castle analogue of Knuth's canonical-cycle flattening;
+* a monotone streak factorization, the run-length view the fast algorithms sum over.
+
+==The central analogy==
+
+===Knuth canonical cycle form===
+
+A permutation <math>\sigma</math> of <math>\{0, \dots, n-1\}</math> is usually written in linear (one-line) form <math>p_0 p_1 \dots p_{n-1}</math> with <math>p_i = \sigma(i)</math>. Knuth's canonical cycle form (TAOCP Vol. 1, 3rd ed., Section 1.3.3; this is the form GSL uses in <code>gsl_permutation_linear_to_canonical</code>) is obtained by:
+
+# writing every singleton cycle explicitly;
+# putting the smallest element first within each cycle;
+# ordering the cycles in decreasing order of their first element.
+
+For example, the linear permutation <code>(2 4 3 0 1)</code> has cycles <code>(0 2 3)(1 4)</code>, so its canonical form is <code>(1 4)(0 2 3)</code>. Erasing the parentheses recovers a one-line permutation, <code>(1 4 0 2 3)</code>.
+
+The factorization is the loop <math>i \mapsto \sigma(i)</math>: start at an unvisited element and follow the map until it closes. The cycles are disjoint because the map is a bijection.
+
+===The tower grammar===
+
+The castle grammar on [[Project Euler/502/Representations]] factors a tower over <code>{U,R,D}</code>. A tower is:
+
+: empty, or <code>R</code> (a gap column) followed by a tower, or <code>U V D</code> (a peak) followed by stop or a gap.
+
+In production form,
+
+<pre>
+E_k -> empty
+    | R E_k
+    | U V D ( empty | R E_k )
+</pre>
+
+Here <code>U</code> is up one row, <code>R</code> is right one column, <code>D</code> is down one row, and <code>V</code> is a whole tower one row lower. Each <code>U V D</code> peak is a cycle-like atom: it starts at the base, lives entirely above one sub-block, and returns to the base. Disjoint peaks are separated by <code>R</code> gaps, exactly as disjoint cycles are separated by parentheses.
+
+The correspondence:
+
+{| class="wikitable"
+|-
+! Permutation
+! Castle tower
+|-
+| element <math>i</math>, map <math>i \mapsto \sigma(i)</math>
+| column, skyline step <code>U</code>, <code>R</code>, or <code>D</code>
+|-
+| disjoint cycle
+| disjoint peak <code>U V D</code> (an excursion above one sub-block)
+|-
+| parenthesized cycle form
+| peaks separated by <code>R</code> gaps
+|-
+| number of cycles
+| number of peaks
+|-
+| sign <math>(-1)^{n-c}</math>
+| sign <math>(-1)^{\text{blocks}}</math> (next section)
+|}
+
+Two statistics appear. The excursion count (peaks) plays the role of the cycle count, while the block count plays the role of the sign atom. One peak may contain several stacked blocks, so these are distinct.
+
+===A column-height factorization===
+
+There is a cleaner bijection behind the grammar. Let <math>c_1 \dots c_L</math> be the column heights of a tower above a length-<math>L</math> base: <math>c_i</math> is the number of blocks covering column <math>i</math>. Then each <math>c_i</math> ranges independently over <math>\{0, \dots, k\}</math>, and the tower word is recovered by
+
+<pre>
+start at height 0
+for i = 1 .. L:
+    move from height c_{i-1} to c_i with U's or D's
+    if i < L: emit one R
+emit D^{c_L} to return to the base
+</pre>
+
+with <math>c_0 = 0</math>. This never emits <code>UD</code> or <code>DU</code>, never dips below the base, and returns to it, and it is invertible. Hence
+
+<math>
+T(k,L) = (k+1)^L
+</math>
+
+each of the <math>L</math> columns independently chooses one of <math>k+1</math> heights. This is the product-form proof of the <math>(k+1)^L</math> formula on [[Project Euler/502/Solution]], in its simplest form.
+
+==The sign of a castle==
+
+A permutation sign is
+
+<math>
+\operatorname{sgn}(\sigma) = (-1)^{n - c} = \prod_{\text{cycles } \gamma} (-1)^{|\gamma|-1}
+</math>
+
+where <math>c</math> is the number of cycles and <math>|\gamma|</math> the length of a cycle. A castle has the same kind of signed count. Each block is an excursion atom (a <code>U ... D</code> pair), and each <code>D</code> move completes one block. Weight each block by <math>-1</math> and define
+
+<math>
+s(C) = (-1)^{\text{blocks}(C)}
+</math>
+
+In the column-height form, the block count is the total descent:
+
+<math>
+\text{blocks} = \sum_{i=0}^{L} \max(0, c_i - c_{i+1}), \qquad c_0 = c_{L+1} = 0
+</math>
+
+so
+
+<math>
+s(C) = (-1)^{\sum_i \max(0, c_i - c_{i+1})}
+</math>
+
+Let <math>T</math> be the unsigned count and <math>P = \sum s(C)</math> the signed count. Then
+
+<math>
+\frac{T + P}{2} = \text{even-block castles}, \qquad
+\frac{T - P}{2} = \text{odd-block castles}
+</math>
+
+exactly the <math>(1 \pm \operatorname{sgn})/2</math> trick that separates permutations into even and odd classes. This is the meaning of the signed tower recursion <math>P(k,L)</math> on [[Project Euler/502/Solution]]: it is the castle analogue of the sign homomorphism. The full castle is <code>U (tower) D</code>, so its block count is the tower block count plus one for the bottom block; "castle has even total blocks" is therefore "tower has an odd number of blocks", which is the <math>(T-P)/2</math> term in
+
+<math>
+F(w,h) = \frac{h^w - (h-1)^w - P(h-1,w) + P(h-2,w)}{2}
+</math>
+
+==A castle Foata transformation==
+
+===The permutation template===
+
+Knuth's canonical-cycle flattening is Foata's fundamental transformation. In Knuth's decreasing order the cycle leaders are the '''left-to-right minima''' of the flattened permutation; in Foata's more common presentation each cycle is written with its maximum first and the cycles are ordered increasingly, and then the leaders are the '''left-to-right maxima'''. Both are the same correspondence with the order reversed:
+
+<math>
+\text{number of cycles} = \text{number of left-to-right records}
+</math>
+
+Example (Knuth's convention): <code>(1 4)(0 2 3)</code> flattens to <code>1 4 0 2 3</code>. The left-to-right minima are <code>1</code> and <code>0</code>, one per cycle.
+
+===The castle version===
+
+The castle analogue is a concrete bijection. Put the peaks in canonical order left-to-right, i.e. in the order they occur in the tower word, with the <code>R</code> gaps acting as the parentheses. Flattening the tower into its column-height sequence <math>c_1 \dots c_L</math> (height above the base) erases the gap parentheses. The peaks are then visible as the maximal positive runs of <math>c</math>.
+
+'''Claim.''' A peak <code>U V D</code> spans a contiguous interval of columns on which <math>c_i \geq 1</math>, and consecutive peaks are separated by at least one column with <math>c_i = 0</math>. Therefore the peaks, in left-to-right order, are exactly the maximal positive runs of <math>c</math>, and the map
+
+<math>
+\text{peak} \mapsto \text{first column of its positive run}
+</math>
+
+is a bijection between peaks and the set
+
+<math>
+\{ i : c_i > 0 \text{ and } (i = 1 \text{ or } c_{i-1} = 0) \}
+</math>
+
+This set is the castle's record statistic: the left-to-right ascents from the base. In permutation Foata, a cycle leader is a new record; in castle Foata, a peak is a new excursion, a return to positive height after zero.
+
+'''Test on <math>F(4,2) = 10</math>.''' For height exactly 2, the tower above the base is a single row of blocks, encoded by a length-4 binary string whose runs of 1s are the tower blocks. Even total blocks means the tower has an odd number of blocks, so exactly one run. The 10 valid castles have tower column heights
+
+<pre>
+1000  0100  0010  0001  1100  0110  0011  1110  0111  1111
+</pre>
+
+(full castle heights are these plus one, for the bottom block). Each has exactly one positive run, hence exactly one peak, and the record set has size one. This is the castle Foata theorem in miniature.
+
+==Monotone streak factorization and fast algorithms==
+
+Represent a castle by column heights <math>c_i</math> and take first differences
+
+<math>
+d_i = c_{i+1} - c_i
+</math>
+
+with <math>c_0 = c_{L+1} = 0</math>. Factor the <math>d</math> sequence into maximal up-streaks (<math>d_i > 0</math>), flat runs (<math>d_i = 0</math>), and down-streaks (<math>d_i < 0</math>).
+
+* Each <code>D</code> move completes one block, so the number of blocks equals the number of <code>D</code> moves, the total descent <math>\sum \max(0, c_i - c_{i+1})</math>, and the sum of the magnitudes of the down-streaks.
+* The streak factorizer is a single <math>O(L)</math> scan, the castle version of Knuth's <math>O(n)</math> cycle-following loop.
+* The flat-run lengths between vertical moves are the widths of gaps and sub-blocks.
+
+The fast algorithms on [[Project Euler/502/Solution]] read naturally as sums over these canonical forms:
+
+* '''Unsigned count.''' <math>T(k,L) = (k+1)^L</math> is a product form because the <math>L</math> column heights are independent (the lemma above); equivalently, the peaks are independent excursions.
+* '''Signed count.''' <math>P(k,L) = \sum_{c \in \{0,\dots,k\}^L} (-1)^{\text{descent}(c)}</math>. It follows the rational-function update
+
+<math>
+\operatorname{num}_k = 2\operatorname{den}_{k-1} - \operatorname{num}_{k-1},
+\qquad
+\operatorname{den}_k = \operatorname{den}_{k-1}(1-2x) + x\operatorname{num}_{k-1}
+</math>
+
+evaluated in <math>O(k^2 \log L)</math> by Kitamasa in the <math>L</math> direction, or in the <math>k</math> direction by Berlekamp-Massey, which is how [[Project Euler/502/Solution]] computes <math>F(10^{12}, 100)</math> and <math>F(100, 10^{12})</math>.
+
+==New representations worth writing up==
+
+===Excursion/gap word===
+
+A tower word alternates vertical and horizontal runs: a run of <code>U</code>s or <code>D</code>s is followed by a run of <code>R</code>s and vice versa (the no-<code>UD</code>, no-<code>DU</code> rules force the alternation). So encode it as
+
+<math>
+(\text{direction}_1, \text{gap}_1, \text{direction}_2, \text{gap}_2, \dots)
+</math>
+
+where each direction is a signed vertical-run length and each gap is an <code>R</code>-run length. Validity is a Motzkin-like condition on the gap lengths: every prefix of the signed directions has sum <math>\geq 0</math> and the total is <math>0</math>.
+
+===Cycle-forest form===
+
+Match each <code>U</code> with the <code>D</code> that closes it (stack matching). Each matched pair is a block, and a block nested directly inside another is its child. The result is a rooted forest of blocks: roots sit on the base, children sit on parents. This is the castle analogue of a permutation written as a set of parenthesized cycles.
+
+The forest is only the vertical nesting skeleton: it discards the <code>R</code> steps, so it does not recover the tower word. A bare parenthesization is a two-letter Dyck word (<code>U</code> for open, <code>D</code> for close) and cannot record the horizontal moves; the tower needs the third letter <code>R</code>. That is exactly why the model generalizes a Dyck word to the three-letter Dyck grammar on [[Project Euler/502/Representations]] rather than a bare Dyck word, and why a parenthetical tree representation would need a third symbol for the horizontal moves.
+
+The discarded <code>R</code> steps are not a minor omission; they are where the empty tower lives. Above a length-<math>L</math> base the tower with no blocks is <code>R^L</code>, a simple horizontal run with no vertical steps. Its cycle forest is the empty forest: there are no matched <code>U...D</code> pairs, so all horizontal information is erased. Collapsing every gap column to nothing loses the distinction between <code>R</code>, <code>RR</code>, <code>RRR</code>, and the genuinely empty word, even though these are all different towers. This is the recurring question kept at [[Enfilade Center]]: does the empty tower count as a tower? Yes if it is a tower, no if it is a castle. There are no empty castles.
+
+===Signed column-difference sequence===
+
+The run-length encoding of the <math>d</math> sequence into up-streaks, flat runs, and down-streaks is the signed form of the castle. The down-streaks are the sign-carrying atoms: the sign is <math>(-1)^{\text{sum of down-streak magnitudes}}</math>, and the flat runs record the gap and sub-block widths.
+
+=Related=
+
+[[Project Euler/502]]
+
+[[Project Euler/502/Representations]]
+
+[[Project Euler/502/Solution]]
+
+[[Polyominoes]]
+
+[[Dyck Words]]
+
+[[LIS]]
+
+[[AOCP/Combinatorics]]
+
+=References=
+
+* Donald E. Knuth, ''The Art of Computer Programming'', Vol. 1, 3rd ed., Section 1.3.3 ("An Unusual Correspondence").
+* GNU Scientific Library, [https://www.gnu.org/software/gsl/doc/html/permutation.html Permutations], canonical cyclic form.
+* Foata's fundamental transformation (Knuth canonical-cycle flattening).
+
+=Flags=
+
+{{PE502Flag}}
+
+{{ProjectEulerFlag}}
+
+[[Category:Combinatorics]]

@@ -3,7 +3,7 @@ title: Castle counting formula
 category: Analyses
 summary: The closed form F(w,h) = [h^w − (h−1)^w − P(h−1,w) + P(h−2,w)]/2, from the unsigned tower count (k+1)^L and the signed count P_k; verified on all checkpoints.
 tags: [analysis, castle, generating-functions, closed-form, dyck]
-sources: [project-euler-502-representations]
+sources: [project-euler-502-representations, project-euler-502-castle-factoring]
 created: 2026-09-13
 updated: 2026-09-13
 ---
@@ -27,6 +27,8 @@ where `1` is the empty tower, `x·E_k` a gap column then the rest, `(E_{k−1} �
 ```
 E_k = 1 / (1 − (k+1)x)      ⟹      T(k,L) = (k+1)^L
 ```
+
+**A simpler product-form proof.** The castle-factoring reading gives the same `(k+1)^L` without solving a generating-function recurrence: reading a tower as its column heights `c_1…c_L` (the integer-tuple [[castle-representations](pages/castle-representations.md)]), each `c_i` ranges *independently* over `{0,…,k}`, and the tower word is recovered invertibly from the heights — so `T(k,L) = (k+1)^L` is immediate as a product form.[^10]
 
 So the number of towers of height at most *k* above a length-*L* block is `(k+1)^L` — the same closed form used on the Solution subpage, here derived straight from the grammar.[^2]
 
@@ -56,6 +58,10 @@ For fixed *k*, `P_k` is rational with denominator of degree *k*+1, so `P(k,L)` o
 - *k*=1: `P(1,L) = 2P(1,L−1) − 2P(1,L−2)`, closed form `P(1,L) = Re((1+i)^{L+1})`.
 - *k*=2: `P(2,L) = 3P(2,L−1) − 4P(2,L−2) + 4P(2,L−3)`.
 
+**Why `P` is the right signed object.** `P(k,L) = ∑_{c ∈ {0,…,k}^L} (−1)^{descent(c)}` is the [[castle-sign](pages/castle-sign.md)] `s(C) = (−1)^{blocks}` summed over all towers — the castle analogue of the permutation sign homomorphism. The `(T ± P)/2` combination is the `(1 ± sgn)/2` even/odd class projector, which is exactly why it isolates the even-block castles.[^11]
+
+**Evaluating at trillion scale.** For the large-parameter cases the recurrence in *L* is run with fast linear-recurrence methods: **Kitamasa** gives `O(k² log L)` in the *L* direction, and **Berlekamp–Massey** works in the *k* direction — the route the Solution subpage uses for `F(10^12, 100)` and `F(100, 10^12)`.[^12]
+
 ## The main formula
 
 A full castle is `U (tower) D`, so its block count is the tower's block count plus one (the bottom block); **even total blocks means an odd number of blocks in the tower.**[^7] Since `T(h−1,w) = h^w` counts towers of height ≤ *h*−1 of any parity and `P(h−1,w)` is the signed version, `(T − P)/2` counts towers of *odd* block count. That expression `(h^w − P(h−1,w))/2` still includes every height from 0 to *h*−1, so subtracting the height ≤ *h*−2 case forces height exactly *h*:[^8]
@@ -79,12 +85,15 @@ matching the values on [[castle-counting-function](pages/castle-counting-functio
 ## Appearances in Sources
 
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] — derives the unsigned count `(k+1)^L`, the signed count `P_k`, and the closed form for `F(w,h)`, with verifying Python.
+- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — gives the product-form proof of `(k+1)^L`, the sign-homomorphism reading of `P`, and the Kitamasa/Berlekamp–Massey evaluation.
 
 ## Related Concepts
 
 - [[castle-counting-function](pages/castle-counting-function.md)] — the function `F(w,h)` this formula computes.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the grammar the generating functions are read off.
 - [[generating-functions](pages/generating-functions.md)] — the method embodied here.
+- [[castle-sign](pages/castle-sign.md)] — the sign-homomorphism meaning of the signed count `P`.
+- [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the canonical form the fast evaluation sums over.
 - [[convex-castle](pages/convex-castle.md)] — the enumeration-side backbone, complementary to this counting-side formula.
 
 ## Footnotes
@@ -98,3 +107,6 @@ matching the values on [[castle-counting-function](pages/castle-counting-functio
 [^7]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The main formula" L350 — "The full castle is U (tower) D, so its block count is the tower's block count plus one for the bottom block. Even total blocks means an odd number of blocks in the tower."
 [^8]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The main formula" L352-367 — "h^w = T(h-1,w) counts towers ... any parity. P(h-1,w) is the signed version, so (T - P)/2 counts towers with an odd block count ... subtract the height ≤ h-2 case to force height exactly h", giving "F(w,h) = (h^w - (h-1)^w - P(h-1,w) + P(h-2,w))/2".
 [^9]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The main formula" L372-411 — the Python building P(k,L) from the num/den recurrence and F(w,h) from the formula, printing "F(4,2) = 10 / F(13,10) = 3729050610636 / F(10,13) = 37959702514"; re-run during ingest, all three reproduce exactly.
+[^10]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"A column-height factorization" L72-89 — "each c_i ranges independently over {0, …, k}, and the tower word is recovered by [the invertible procedure] ... T(k,L) = (k+1)^L ... each of the L columns independently chooses one of k+1 heights. This is the product-form proof."
+[^11]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Monotone streak factorization and fast algorithms" L185, §"The sign of a castle" L119-121 — "P(k,L) = ∑_{c ∈ {0,…,k}^L} (-1)^{descent(c)}" and "(T + P)/2 = even-block ... (T - P)/2 = odd-block ... exactly the (1 ± sgn)/2 trick ... the castle analogue of the sign homomorphism."
+[^12]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Monotone streak factorization and fast algorithms" L192 — "evaluated in O(k^2 log L) by Kitamasa in the L direction, or in the k direction by Berlekamp-Massey, which is how [Solution] computes F(10^12, 100) and F(100, 10^12)."

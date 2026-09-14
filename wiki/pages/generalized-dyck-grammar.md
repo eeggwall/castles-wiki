@@ -3,7 +3,7 @@ title: Generalized Dyck grammar for castles
 category: Concepts
 summary: The tower-word grammar E_k → empty | R E_k | U V D (empty | R E_k) that recasts the castle rules as a Dyck first-return split with a nested interior tower.
 tags: [concept, castle, dyck, grammar, generating-functions]
-sources: [project-euler-502-representations]
+sources: [project-euler-502-representations, project-euler-502-castle-factoring]
 created: 2026-09-13
 updated: 2026-09-13
 ---
@@ -45,15 +45,19 @@ This is precisely the **Dyck first-return split** `U w₁ D w₂` with one extra
 
 The grammar is the object that the [[castle-counting-formula](pages/castle-counting-formula.md)] reads its generating functions off of — the unsigned count `T(k,L) = (k+1)^L` and the signed count `P_k` that encodes the even-block rule.
 
+**Peaks are cycle-like atoms.** Read as a factorization, each `U V D` peak leaves the base, lives above one sub-block, and returns — a self-contained excursion, with `R` gaps as separators. This is the castle side of the [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)]: a peak plays the role of a disjoint permutation cycle, and the first-return split *is* the factorization loop.
+
 ## Appearances in Sources
 
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] — states the tower-word reading, the grammar, and its identification as a generalized Dyck first-return split.
+- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — reads the grammar as a factorization: peaks as cycle-like atoms separated by `R` gaps.
 
 ## Related Concepts
 
 - [[urd-step-strings](pages/urd-step-strings.md)] — the strings the grammar is defined over.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the counts read off this grammar.
 - [[generating-functions](pages/generating-functions.md)] — the tool the grammar feeds.
+- [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] — the grammar's peaks as the analogue of permutation cycles.
 - **Dyck Words**, **Lattice Paths** — the classical objects generalized here (not yet ingested; to be linked when added).
 
 ## Footnotes

@@ -3,7 +3,7 @@ title: Castle (polyomino)
 category: Concepts
 summary: A configuration of stacked integer-length unit-height blocks on a w×h grid, obeying the castle placement rules — the central object of study.
 tags: [concept, castle, polyomino, combinatorics]
-sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations]
+sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-castle-factoring]
 created: 2026-09-13
 updated: 2026-09-13
 ---
@@ -33,12 +33,14 @@ The name "castle polyomino" reflects the visual intuition: a valid configuration
 - [[project-euler-502](pages/project-euler-502.md)] — defines the block, the castle, and the five placement rules; adds the even-block parity restriction for the PE 502 count.
 - [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] — partially restates the rules (as Rule 1, 3, 4, 5, 6; not repeating Rule 2 is an incomplete restatement, not a change to the problem — no rule is dropped).
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] — encodes the castle and characterizes validity in the U/R/D word (each D completes a block; no UD, no DU).
+- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — factors a castle via its column heights, reading peaks as cycle-like atoms (the permutation-cycle analogy).
 
 ## Related Concepts
 
 - [[castle-counting-function](pages/castle-counting-function.md)] — `F(w,h)`, the function counting castles; PE 502's even-block count is a special case of counting the general castle object.
 - [[castle-representations](pages/castle-representations.md)] — exact encodings of a castle (binary strings, integer tuples, U/R/D step strings).
 - [[convex-castle](pages/convex-castle.md)] — a structurally important sub-class of castle.
+- [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] — the cycle-factorization reading of a castle.
 - [[generating-functions](pages/generating-functions.md)] — the intended method for counting castle configurations at large parameters.
 
 ## Footnotes
