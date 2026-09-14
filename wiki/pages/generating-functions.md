@@ -3,9 +3,9 @@ title: Generating functions
 category: Concepts
 summary: A multivariate polynomial whose variables are the problem's dimensions and whose coefficients are the counts — the intended tool for computing F(w,h).
 tags: [concept, generating-functions, combinatorics, method]
-sources: [project-euler-502-problem-setup, project-euler-502-representations, aocp-generating-functions]
+sources: [project-euler-502-problem-setup, project-euler-502-representations, aocp-generating-functions, generating-functions-topic]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-14
 ---
 
 # Generating functions
@@ -20,13 +20,14 @@ In the context of this wiki, the generating function is the intended tool for co
 
 **The method toolkit.** [[aocp-generating-functions](pages/aocp-generating-functions.md)] (Knuth TAOCP Vol. 1) supplies the general machinery: the Fibonacci method (posit the series → rational GF → partial fractions → closed form) and the key structural fact that a **linear recurrence yields a rational generating function** `poly / (1 − ∑ c_k z^k)`. That is exactly why the castle's `P_k = num_k/den_k` is rational, why partial fractions give the `Re((1+i)^{L+1})`-style closed forms, and why the negative binomial `1/(1−z)^{n+1} = ∑ C(n+k,n) z^k` shows up as the tower and any-parity counts.
 
-The charlesreid1.com wiki also has a separate general *Generating Functions* topic page (distinct from the AOCP one above, and not yet ingested here) that the problem-setup source credits with substantial development during the problem's study; this page will be further enriched when it is ingested.
+The two source treatments are complementary: [[aocp-generating-functions](pages/aocp-generating-functions.md)] (Knuth) and [[generating-functions-topic](pages/generating-functions-topic.md)] (Sedgewick–Flajolet / Trotter, the intuition-and-examples one). The latter has an explicit "Application: PE 502" section and worked examples that are the *same operations* the castle uses — the imaginary-roots closed form (`Re((1+i)^{L+1})`), the EGF parity projector (`(A±P)/2`), and residue-filtered "every 4th term" (the hyperbolic family).
 
 ## Appearances in Sources
 
 - [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] — describes the generating-function approach in the abstract and names it the intended method for the count.
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] — gives the concrete unsigned and signed generating functions for castles, derived from the Dyck grammar.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — Knuth's general toolkit: recurrence ⇒ rational GF, partial fractions, convolution, the negative binomial.
+- [[generating-functions-topic](pages/generating-functions-topic.md)] — the Sedgewick–Flajolet/Trotter reference, with the imaginary-roots / EGF-parity / every-4th-term examples and an explicit PE 502 section.
 
 ## Related Concepts
 

@@ -1,0 +1,143 @@
+For coverage of generating functions specific to Donald Knuth's Art of Computer Programming, see [[AOCP/Generating Functions]].
+
+=Notes=
+
+==Sedgewick Flajolet: Analysis of Algorithms==
+
+===Ordinary Generating Functions===
+
+Definition: G(z) = sum_{k>=0} a_k z^k. Coefficient notation: [z^n] G(z) = coefficient of z^n.
+G(cz) = sum a_k c^k z^k. Example: 1/(1-2z) = 1 + 2z + 4z^2 + 8z^3 + ... (powers of 2).
+
+===Addition===
+
+G_1 + G_2 = sum (a_k + b_k) z^k.
+
+===Differentiation===
+
+z G'(z) = sum_{k>=1} k a_k z^k. The derivative ladder:
+1/(1-z) = sum z^k -> 1,1,1,...
+z/(1-z)^2 = sum k z^k -> 0,1,2,3,...
+z^2/(1-z)^3 = sum C(k,2) z^k -> 0,0,1,3,6,10,...
+z^m/(1-z)^{m+1} = sum_{k>=m} C(k,m) z^k
+1/(1-z)^{m+1} = sum_{k>=0} C(k+m,m) z^k
+
+===Integration===
+
+int_0^z G(t) dt = sum_{k>=1} a_{k-1}/k z^k. Example: ln(1/(1-z)) = sum_{k>=1} z^k/k.
+
+===Partial Sum Of Prior Terms===
+
+(1/(1-z)) G(z) -> a_0, (a_0+a_1), (a_0+a_1+a_2), ... i.e. the generating function for partial sums.
+Example: (1/(1-z)) ln(1/(1-z)) = sum_{k>=1} H_k z^k (the harmonic numbers).
+
+===Multiplication===
+
+Convolution: G_1(z) G_2(z) = sum_m (sum_{0<=k<=m} a_k b_{m-k}) z^m.
+Example: 1/(1-z)^2 = (1/(1-z))^2 = sum (k+1) z^k -> 1,2,3,4,...
+
+===Expanding Generating Function===
+
+Express an unknown GF as a power series, via Taylor's theorem or a known OGF/EGF.
+
+===Example: Two-Term Recurrence===
+
+a_n = 5 a_{n-1} - 6 a_{n-2}, a_0=0, a_1=1. Multiply by z^n and sum:
+G(z) = 5z G(z) - 6z^2 G(z) + z, so G(z) = z/(1 - 5z + 6z^2).
+Partial fractions: G(z) = 1/(1-3z) - 1/(1-2z), giving a_n = 3^n - 2^n.
+
+===Example: Three-Term Recurrence===
+
+a_n = 5 a_{n-1} - 8 a_{n-2} + 4 a_{n-3}, a_0=0,a_1=1,a_2=4.
+G(z) = (z - z^2)/(1 - 5z + 8z^2 - 4z^3) = z(1-z)/((1-z)(1-2z)^2) = z/(1-2z)^2.
+Expanding: a_n = n 2^{n-1}. (A denominator factor of multiplicity p gives n^{p-1} beta^{...}.)
+
+===Example: Imaginary Roots===
+
+a_n = 2 a_{n-1} - a_{n-2} + 2 a_{n-3}, a_0=1,a_1=0,a_2=-1.
+G(z) = (1-2z)/(1 - 2z + z^2 - 2z^3) = 1/(1 + z^2) (an irreducible quadratic).
+Partial fractions: G(z) = (1/2)(1/(1-iz) + 1/(1+iz)).
+nth term: a_n = (1/2)(i^n + (-i)^n) = (1/2) i^n (1 + (-1)^n) -> 1, 0, -1, 0, 1, 0, -1, 0, 1, ...
+
+===Example: Quicksort Recurrence===
+
+C_n = n + 1 + (2/n) sum_{1<=k<=n} C_{k-1}. Turning terms into GFs gives a differential equation
+C'(z) = 2/(1-z)^3 + 2 C(z)/(1-z), solved with integrating factor rho(z) = 1/(1-z)^2, to
+C(z) = (2/(1-z)^2) ln(1/(1-z)), whence C_n = [z^n] C(z) = 2(n+1)(H_{n+1} - 1).
+
+==Trotter Chapter 8: Generating Functions==
+
+===Alternative Generating Functions Introduction===
+
+Distributing apples among children. One child, at least one apple: G_1(z) = z/(1-z) = z + z^2 + ...
+(no z^0 term = no zero-apples config). Two children: multiply two copies; smallest term z^2 (each child >= 1).
+n children: G_n(z) = z^n/(1-z)^n. The coefficient of z^n counts solutions of k_1 + ... + k_i = n.
+With "no more than 4 apples per child", each factor terminates: G(z) = z + z^2 + z^3 + z^4.
+Derivative relation: d^n/dz^n (1/(1-z)) = n!/(1-z)^{n+1}.
+
+===EXAMPLE Colored Marbles with Complicated Restrictions===
+
+Cans of 20 marbles; at least 1 red, <=3 blue, any yellow, green a multiple of 4.
+G_r = z/(1-z); G_b = 1 + z + z^2 + z^3; G_y = 1/(1-z); G_g = 1/(1-z^4) (via u = z^4).
+Product simplifies to G(z) = z/(1-z)^3.
+
+===Analysis of Generating Function===
+
+Associate (1-z)^3 to a second derivative: d^2/dx^2 (1/(1-x)) = 2/(1-x)^3 = sum n(n-1) x^{n-2}.
+So G(z) = sum_{n} C(n,2) x^{n-1} = sum_{n>=1} C(n+1,2) x^n. Note C(n,2) = n(n-1)/2 is a binomial.
+For a can of 20 marbles: 21 choose 2 = 210.
+
+===Taylor Series Analysis===
+
+G(z) = z + 3z^2 + 6z^3 + 10z^4 + 15z^5 + 21z^6 + ... (triangular numbers), matching C(n+1,2).
+Verified by hand for k=1 (R), k=2 (RR,RB,RY), k=3 (6 configs), k=4 (10 configs).
+
+===Exponential Generating Functions===
+
+When order matters, use EGFs. Base function e^x = sum_{n>=0} x^n/n! generates 1,1,1,...
+
+===EXAMPLE Counting Ternary Strings===
+
+Count length-n ternary strings (digits 0,1,2) with an EVEN number of 0s.
+1s and 2s: E_1 = E_2 = e^x. 0s (even count only): E_0 = (e^x + e^{-x})/2 = sum x^{2k}/(2k)!
+(the odd terms cancel; this is the parity-selecting trick).
+Overall: E(x) = E_0 E_1 E_2 = (e^x)(e^x)(e^x + e^{-x})/2 = (e^{3x} + e^x)/2
+       = (1/2) sum (3^n + 1) x^n/n!.
+So the n! coefficient (the count) is (3^n + 1)/2. [The page's final line drops the 1/2; the
+correct count of length-n ternary strings with an even number of 0s is (3^n + 1)/2.]
+
+==Trotter: Chapter 8 Exercises==
+
+===Problem 3===
+
+Part a. G(x) = (1+x)^10 -> nth term C(10,n) (binomial theorem).
+
+Part b. G(x) = 1/(1-x^4). Factor (1-x^4) = (1-x)(1+x)(1+x^2); partial fractions
+(1/4)/(1-x) + (1/4)/(1+x) + (1/2)/(1+x^2). The 1+(-1)^k and the imaginary ((-i)^k + i^k)
+terms leave only k divisible by 4: G(x) = sum x^{4k} = 1 + x^4 + x^8 + x^12 + ...
+
+Part c. G(x) = x^3/(1-x^4) = x^3 + x^7 + x^11 + x^15 + ... (the complement, every 4th term shifted).
+
+=Application: Project Euler 502=
+
+The P(k, L) recursion in [[Project Euler/502/Solution]] lifts to a rational generating function
+F_k(x) = num_k(x) / den_k(x) with level-by-level update rules. Coefficient extraction reduces to a
+linear recurrence with characteristic polynomial den_k(x) (reversed), which is exactly the setup
+where Kitamasa's method applies.
+
+This is the concrete pay-off for the Sedgewick/Trotter theory covered on this page: a rational
+generating function actually solving a hard combinatorial problem in code. See
+[[Project Euler/502/Solution]] and [[Project Euler/502/Implementation Notes]].
+
+=Related Pages=
+
+[[AOCP/Generating Functions]]
+
+=Flags=
+
+{{CombinatoricsFlag}}
+{{AlgorithmsFlag}}
+
+[[Category:Generating Functions]]
+[[Category:Recursion]]
+[[Category:Combinatorics]]

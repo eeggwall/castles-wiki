@@ -97,6 +97,10 @@ See `wiki/pages/oeis-cross-referencing.md`.
 - [ ] **Dyck Words/Lisp** — Dyck words as Lisp S-expression skeletons. Newly surfaced.
 - [ ] **AOCP/Multisets** — referenced by AOCP/Combinatorics and Lattice Paths; the
   multiset-permutation / multichoose machinery. Newly surfaced.
+- [x] **Generating Functions** (general topic page) — done
+  (`wiki/pages/generating-functions-topic.md`). Sedgewick–Flajolet/Trotter reference with
+  an explicit PE 502 application; the imaginary-roots / EGF-parity / every-4th-term examples
+  are the same operations the castle uses.
 - [ ] **Combinatorics** — the general umbrella topic page (distinct from AOCP/Combinatorics).
 
 ## Housekeeping

@@ -50,6 +50,7 @@ with values `P(1,L) = 0, −2, −4, −4, 0, 8, 16, 16, 0, −32, …` (re-veri
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] — `A146559 = A038503 − A038505` links the signed vein to height 2.
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] — the discipline that caught the real/imaginary error.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — why a linear recurrence gives a rational GF, and the partial-fractions → `Re((1+i)^{L+1})` closed form (the Fibonacci method).
+- [[generating-functions-topic](pages/generating-functions-topic.md)] — the imaginary-roots worked example `1/(1+z²) → ½(iⁿ+(−i)ⁿ)`, the exact mechanism of `Re((1+i)^{L+1})`.
 
 ## Footnotes
 
