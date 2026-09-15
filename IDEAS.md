@@ -10,6 +10,7 @@ Ideas that have gotten some attention and have their own wiki pages.
 - [x] **[Closed-form hunting](wiki/pages/closed-form-hunting.md)** — P(k,2) = (−1)^k(k+1) and P(k,3) = (−1)^k(k+1)²; no simple form for L ≥ 4.
 - [x] **[Generating-function gallery](wiki/pages/generating-function-gallery.md)** — catalogue num_k/den_k, denominator roots, and the C-finite recurrences; dominant eigenvalue ρ_k ~ k/log k.
 - [x] **[Mod-p observatory](wiki/pages/mod-p-observatory.md)** — F(w,h) mod p is eventually periodic; period = lcm of eigenvalue orders (small primes).
+- [x] **[Tower recursion master class](wiki/pages/tower-recursion-master-class.md)** — the two core ideas — towers are independent and parity is a sign — taught end-to-end to F(w,h).
 
 ## Rough ideas
 
@@ -22,7 +23,6 @@ Partially-formed notions worth developing further.
 
 ### Enumeration Division
 
-- [ ] **Tower recursion master class** — proving T(k,L) = (k+1)^L from a binary-string bijection plus sub-block independence; then the derived signed P(k,L) recursion and F(w,h) formula; demonstrate the even and odd approaches.
 - [ ] **Parity via signs** — the (T-P)/2 and (T+P)/2 trick, generalizing to block count modulo m using roots of unity.
 - [ ] **Two-direction enumeration** — compare the rational-function path (fixed k, Kitamasa in w) with the k-direction BM path (fixed w, Kitamasa in k); cover the complexity tradeoffs.
 - [ ] **Transfer matrices vs Kitamasa** — why the L-direction transfer matrix is O(D^3 log w) but the rational-function form is O(D^2 log w).
