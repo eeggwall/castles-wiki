@@ -1,7 +1,7 @@
 ---
 title: Generalizing the parity sign (roots of unity)
 category: Concepts
-summary: The (T±P)/2 even/odd trick, generalized — replace the sign (−1)^blocks with an m-th root of unity ω^blocks and count castles by block count modulo m via character sums.
+summary: The (T±P)/2 even/odd trick, generalized — replace the sign (−1)^blocks with an m-th root of unity ω^blocks and count castles by block count modulo m via character sums; the same character, applied to the index instead of a statistic, is the EGF parity projector (e^x ± e^{−x})/2.
 tags: [concept, castle, parity, roots-of-unity, character, pedagogy]
 sources: [project-euler-502-castle-factoring, project-euler-502-representations]
 created: 2026-09-14
@@ -39,6 +39,25 @@ P_j(k,L) = Σ_{towers} ω^{j·blocks},       j = 0, 1, …, m−1
 ```
 
 For `m = 2` this is exactly `(T ± P)/2`. So the parity idea *is* a root-of-unity formula — the `m = 2` case of a general construction.
+
+## The EGF twin — the same character on the index
+
+The projector has a second, older face, usually met in **exponential** generating functions. For any EGF `A(x) = Σ a_n x^n/n!`, the substitution `x → −x` applies the *same* order-2 character `(−1)^n` to the **index** rather than to a statistic:
+
+```
+(A(x) + A(−x))/2 = Σ_{n even} a_n x^n/n!,      (A(x) − A(−x))/2 = Σ_{n odd} a_n x^n/n!.
+```
+
+This is literally the castle's `(T ± P)/2`, with the character carried by the index variable instead of by `blocks`. The canonical instance is `A(x) = e^x` (the all-ones sequence): `(e^x + e^{−x})/2 = Σ_{n even} x^n/n!`, which the [[generating-functions-topic](pages/generating-functions-topic.md)] page uses to count even-0 ternary strings as `(3^n+1)/2` — the "classical form of the `(A±P)/2` trick."
+
+So the EGF parity projector and the castle sign are **one character sum, `½(χ₀ + χ₁)` over the cyclic group of order 2**, differing only in *which variable carries the character*:
+
+| face | variable carrying `(−1)` | projector |
+|---|---|---|
+| EGF (index parity) | the index `n`, via `x → −x` | `(A(x) ± A(−x))/2` |
+| OGF (castle sign) | the statistic `blocks`, via the weight `(−1)^blocks` | `(T ± P)/2` |
+
+The castle wants *block* parity, not *width* parity, so the EGF's `x → −x` (which filters by index — in the castle's OGF, the width) is the wrong axis. The castle must route the character through the block statistic, and that routing *is* the sign `s(C) = (−1)^blocks`. That is the answer to "how do you get EGF parity out of an OGF": make the parity a **sign in the weight** — the sign homomorphism — the OGF counterpart of the EGF's substitution-in-the-index. The duality holds at every `m`: the generalization `ω^{blocks}` above extends the *statistic* side, while `(1/m) Σ_j A(ω^j x)` extends the *index* side (substituting the main variable rather than a statistic).
 
 ## Computing P_j
 
@@ -88,6 +107,7 @@ One requested case does *not* fall out of this machinery: **"blocks is a power o
 - [[castle-sign](pages/castle-sign.md)] — the `m = 2` case this page generalizes.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] — the tower recursion whose "sign" step is replaced by `ω^j`.
 - [[signed-tower-count](pages/signed-tower-count.md)] — the `P(k,L)` family (`P_1` in the `m=2` case).
+- [[generating-functions-topic](pages/generating-functions-topic.md)] — the EGF parity projector `(e^x ± e^{−x})/2`, the same character applied to the index.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] — the mod-p periods, a different (additive) use of modular structure.
 - [[block-count-constraints](pages/block-count-constraints.md)] — the full trichotomy (residue / sparse / semigroup), of which this page is the residue case.
 

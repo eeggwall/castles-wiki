@@ -22,6 +22,9 @@ Ideas that have gotten some attention and have their own wiki pages.
 - [x] **[From Dyck words to castle towers](wiki/pages/generalized-dyck-grammar.md)** — the first-return grammar.
 - [x] **[Algorithmic seminar](wiki/pages/kitamasa.md)** — Berlekamp–Massey + Kitamasa for enormous indices ([berlekamp-massey](wiki/pages/berlekamp-massey.md)).
 - [x] **[Formal language of tower words](wiki/pages/tower-word-language.md)** — the tower word as a Motzkin-path language, its unambiguous grammar, and the Dyck/Motzkin hierarchy.
+- [x] **[Continued fractions of the tower word](wiki/pages/tower-word-continued-fraction.md)** — the tower word is a peakless-valleyless Motzkin path (OEIS A004149); Flajolet's Catalan S-fraction / Motzkin J-fraction framework, and the run constraint as the collapse to `1/(1−(k+1)x)`.
+- [x] **[Eigenvalue continued fractions](wiki/pages/eigenvalue-continued-fractions.md)** — the castle's self-reciprocal (palindromic/anti-palindromic) characteristic polynomials, Lagrange/Galois, and the two norm-−1 quadratics φ and √2+1 as purely periodic continued fractions.
+- [x] **[The algebraic/transcendental wall](wiki/pages/algebraic-transcendental-wall.md)** — C-finite counts carry only algebraic constants exactly; e and π are locked out of closed forms and enter only through limits (Stirling, Catalan, natural-log growth).
 
 ## Rough ideas
 
@@ -37,12 +40,20 @@ Partially-formed notions worth developing further.
 - [ ] **Transfer matrices vs Kitamasa** — why the L-direction transfer matrix is O(D^3 log w) but the rational-function form is O(D^2 log w).
 - [ ] **Asymptotics** — leading term h^w, corrections, and the regimes where w is fixed, h is fixed, or w = h = n.
 
+### Q Division (q-numbers — castles by area)
+
+- [ ] **Prime castles** — refine the area count by the indecomposable factorization: a castle is **prime** if no full-width horizontal cut splits it into two non-empty castles, which for a castle-as-composition `c = (c_1,…,c_w)` means some `c_i = 1` (a cut exists iff every column has height ≥ 2). Every castle factors uniquely into a stack of unit full-width rows on top of a prime castle, so prime castles by area = `2^{n−1} − F_{n−1}` — all compositions minus the parts-≥2 compositions, which are Fibonacci (`F_{n−1}`) — worth verifying against OEIS. The richer targets are the prime refinement of the convex castles (A001523) and of the parity splits on [castle-by-area](wiki/pages/castle-by-area.md) (likely new), and lining the prime g.f. `P(q)` up with the classical `A = P/(1−P)` prime-polyomino decomposition (Klarner).
+
+- [ ] **q-polyomino zoo** — pull the area variable out of the Bousquet-Mélou add-a-column perimeter+area g.f.s ([column-convex-polygon-enumeration](wiki/pages/column-convex-polygon-enumeration.md)) for each classical family — Ferrers, stack, parallelogram, column-convex, directed-convex — and read off the q-area coefficients to locate castles (stacks ↔ A001523, non-convex ↔ A115981, valley ↔ A332578). A "which restricted polyomino class = which castle class" table, each graded by area.
+
+- [ ] **q-Catalan / q-Motzkin joins and bi-statistics** — grade the tower word / generalized-Dyck grammar by area (column-height sum) and check against the Carlitz q-Catalan and the Barcucci q-Motzkin / q-Bessel families ([steep-polyominoes-q-motzkin-bessel](wiki/pages/steep-polyominoes-q-motzkin-bessel.md)); `q = 1` must land on the [castle-by-area](wiki/pages/castle-by-area.md) sequences. Then push to joint statistics (area × block-count, area × peaks, area × records) hunting q-binomial / Gaussian-binomial and Narayana-q coefficients — the open "q-equivalent thread" flagged on [q-catalan-numbers](wiki/pages/q-catalan-numbers.md) and [motzkin-numbers](wiki/pages/motzkin-numbers.md).
+
 ### The Atlas
 
-- [ ] **Taxonomy of castle classes** — column-convex, convex, unimodal, directed, parallelogram, Ferrers, staircase, bar chart; identify which PE 502 rules each class keeps/drops.
 - [ ] **Gap-rule atlas** — no adjacency, minimum gap g, no touching allowed, all via maximal-runs-of-1s encoding.
 - [ ] **Parity and block-count atlas** — even, odd, and any block counts; block-count distributions; area vs block count (column-height sum vs run count).
 - [ ] **Variation atlas** — convex skeletons plus U/D insertions into runs of R; enumerate variations and study duplicate detection.
+- [ ] **Taxonomy of castle classes** (and determining which rules each type drops, and counting them): https://charlesreid1.com/wiki/Project_Euler/502/Castle_Types
 
 ### Miscellaneous
 
