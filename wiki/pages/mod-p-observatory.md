@@ -47,6 +47,8 @@ In the height direction (fixed `w`), `F(w,h)` is `2p`-periodic for small `w` —
 
 ## The finite-field connection
 
+*A from-scratch, pedagogical build-up of this picture — F_5, F_49, and the general F_{p^d} — is on [[finite-fields](pages/finite-fields.md)].*
+
 Why does "period = lcm of eigenvalue orders" hold? It is the standard finite-field picture of a linear recurrence. Over ℚ, `P(k,L) = Σ c_i λ_i^L` is *aperiodic* — the eigenvalues `λ_i` have infinite order. Reducing mod p is what tames it:
 
 1. `char_k` factors over `F_p` into irreducibles; an irreducible factor `g` of degree `d` has its `d` roots in the finite field `F_{p^d}` (the unique degree-`d` extension).
