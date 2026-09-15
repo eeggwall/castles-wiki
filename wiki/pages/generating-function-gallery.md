@@ -171,6 +171,7 @@ This checks `k = 8` too — the recurrence, not the hand-listed table, is the so
 - [[closed-form-hunting](pages/closed-form-hunting.md)] — the k-direction closed forms the eigenvalues would have to reproduce.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] / [[castle-count-algorithms](pages/castle-count-algorithms.md)] — where `num_k/den_k` is evaluated at scale.
 - [[generating-functions](pages/generating-functions.md)] — the ordinary-GF toolkit behind a linear recurrence ⇒ rational GF.
+- [[mod-p-observatory](pages/mod-p-observatory.md)] — these `char_k` polynomials reduced mod p, whose root orders set the periods.
 
 ## Footnotes
 
