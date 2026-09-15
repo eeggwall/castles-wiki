@@ -9,6 +9,7 @@ Ideas that have gotten some attention and have their own wiki pages.
 - [x] **[Recurrence discovery](wiki/pages/recurrence-discovery.md)** — run Berlekamp–Massey on P(k,L) in both directions; order `k+1` in L (confirmed) and exactly `2L−2` in k for L ≥ 4.
 - [x] **[Closed-form hunting](wiki/pages/closed-form-hunting.md)** — P(k,2) = (−1)^k(k+1) and P(k,3) = (−1)^k(k+1)²; no simple form for L ≥ 4.
 - [x] **[Generating-function gallery](wiki/pages/generating-function-gallery.md)** — catalogue num_k/den_k, denominator roots, and the C-finite recurrences; dominant eigenvalue ρ_k ~ k/log k.
+- [x] **[Mod-p observatory](wiki/pages/mod-p-observatory.md)** — F(w,h) mod p is eventually periodic; period = lcm of eigenvalue orders (small primes).
 
 ## Rough ideas
 
@@ -17,7 +18,7 @@ Partially-formed notions worth developing further.
 ### Numbers Division
 
 - [ ] **Castle sequence bank** — count F, T, P, A, F_odd, etc., and mine OEIS for connections.
-- [ ] **Mod-p observatory** — study the periodicity and automaticity of F(w,h) mod small primes, and mod 10^9+7.
+- [ ] **Larger-prime periodicity** — extend the mod-p observatory to larger primes (and 10^9+7); the periods become infeasible to enumerate, but the eigenvalue-order structure persists.
 
 ### Enumeration Division
 
