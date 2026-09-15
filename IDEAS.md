@@ -21,6 +21,7 @@ Ideas that have gotten some attention and have their own wiki pages.
 - [x] **[Encoding atlas](wiki/pages/castle-representations.md)** — binary strings, integer tuples, U/R/D step strings, tower words, skyline tuples.
 - [x] **[From Dyck words to castle towers](wiki/pages/generalized-dyck-grammar.md)** — the first-return grammar.
 - [x] **[Algorithmic seminar](wiki/pages/kitamasa.md)** — Berlekamp–Massey + Kitamasa for enormous indices ([berlekamp-massey](wiki/pages/berlekamp-massey.md)).
+- [x] **[Formal language of tower words](wiki/pages/tower-word-language.md)** — the tower word as a Motzkin-path language, its unambiguous grammar, and the Dyck/Motzkin hierarchy.
 
 ## Rough ideas
 
@@ -50,6 +51,5 @@ Partially-formed notions worth developing further.
 - [ ] **Convex/unimodal exact enumeration with parity** — enumerate convex and unimodal castles exactly with the parity constraint; the U/R/D route was attempted and failed, so this is open.
 - [ ] **q-analogs** — refine castle counts by area, block count, number of peaks, or perimeter; look for q-Catalan and q-Motzkin connections.
 - [ ] **Higher-dimensional castles** — 3D blocks, multiple stacked rows per level, or blocks with integer height greater than 1.
-- [ ] **Formal language of tower words** — prove the grammar is unambiguous, study its algebraic generating functions, and relate it to Dyck and Motzkin languages.
 - [ ] **Convex core uniqueness** — is every castle a variation of a unique convex core? Characterize the minimal convex skeleton.
 - [ ] **Statistical physics links** — directed animals, column-convex polygons, and hard-square type models.
