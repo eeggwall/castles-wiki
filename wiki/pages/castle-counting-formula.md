@@ -111,6 +111,7 @@ The two integer values also have clean factorizations (confirmed by factoring du
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] — how `P(h−1,w)` and `P(h−2,w)` are evaluated at scale.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the canonical form the fast evaluation sums over.
 - [[convex-castle](pages/convex-castle.md)] — the enumeration-side backbone, complementary to this counting-side formula.
+- [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] — the two-idea pedagogical version of this derivation.
 
 ## Footnotes
 
