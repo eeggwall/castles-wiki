@@ -89,6 +89,7 @@ One requested case does *not* fall out of this machinery: **"blocks is a power o
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] — the tower recursion whose "sign" step is replaced by `ω^j`.
 - [[signed-tower-count](pages/signed-tower-count.md)] — the `P(k,L)` family (`P_1` in the `m=2` case).
 - [[mod-p-observatory](pages/mod-p-observatory.md)] — the mod-p periods, a different (additive) use of modular structure.
+- [[block-count-constraints](pages/block-count-constraints.md)] — the full trichotomy (residue / sparse / semigroup), of which this page is the residue case.
 
 ## Footnotes
 
