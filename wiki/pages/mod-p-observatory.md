@@ -45,6 +45,23 @@ In the height direction (fixed `w`), `F(w,h)` is `2p`-periodic for small `w` —
 
 (`p=3, w=4` is `6p = 18`, not `2p`, because the k-direction characteristic polynomial has a repeated root mod 3 — the same doubling that appears below.)
 
+## The finite-field connection
+
+Why does "period = lcm of eigenvalue orders" hold? It is the standard finite-field picture of a linear recurrence. Over ℚ, `P(k,L) = Σ c_i λ_i^L` is *aperiodic* — the eigenvalues `λ_i` have infinite order. Reducing mod p is what tames it:
+
+1. `char_k` factors over `F_p` into irreducibles; an irreducible factor `g` of degree `d` has its `d` roots in the finite field `F_{p^d}` (the unique degree-`d` extension).
+2. Every nonzero `λ ∈ F_{p^d}` lies in the **cyclic** group `F_{p^d}^*` of order `p^d − 1`, so `λ^{p^d − 1} = 1` (Lagrange) and `λ^L` is periodic in `L` with period `ord(λ) | p^d − 1`.
+3. Hence the whole sequence is periodic, with period the lcm of the root orders — each order dividing some `p^d − 1`.
+
+**Worked example.** `char_1 = x²−2x+2` has roots `1 ± i`.
+
+- **mod 5**, `−1` is a square (`2² = −1`), so `i = ±2 ∈ F_5` and the roots `1±2 = 3, 4` are plain elements of `F_5`, with orders `ord_5(3) = 4` and `ord_5(4) = 2`, lcm `4` — matching `per(char_1) mod 5 = 4`.
+- **mod 7**, `−1` is not a square, so `i ∉ F_7` and the roots live in `F_{7²}`; their order divides `7² − 1 = 48` and is in fact `24` — matching `per(char_1) mod 7 = 24`.
+
+A repeated root `g^m` adds a polynomial part `n^{m−1}λ^n` to the solution, and `n^{m−1} mod p` has period `p^{⌈log_p m⌉}` — which is why a double root multiplies the period by `p` (`char_2 mod 7`'s `(x+3)²`, hence `8400 = 1200 × 7`).
+
+This is also the finite-field reason **automaticity is automatic** here: a finite multiplicative group gives finite orders, hence periodicity, hence (Christol) p-automaticity.
+
 ## char_k mod p: splitting and repeated roots
 
 The characteristic polynomials reduce with clean structure:
