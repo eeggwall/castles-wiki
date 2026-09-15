@@ -47,6 +47,7 @@ The order is 6 rather than the naive 9 because `P(2,·)` shares the factor `(x�
 
 - [[castle-counting-function](pages/castle-counting-function.md)] — `F(w,h)`, of which this is the `h=3` row.
 - [[signed-tower-count](pages/signed-tower-count.md)] — `P(1,·)`, `P(2,·)` in the closed form.
+- [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the difference-of-powers / geometric-GF machinery behind `3^n − 2^n = A001047`.
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] — the submission discipline (draft kept in raw/).
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] — the `h=2` analogue F(w,2) = A038505(w+1).
 
@@ -56,8 +57,8 @@ The generation counterpart to the [[oeis-height2-hyperbolic-castles](pages/oeis-
 
 ## Footnotes
 
-[^1]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"The sequence" — "0, 0, 3, 21, 89, 307, 977, 3031, 9321, 28479, 86505, 261615, 788969, …"; re-verified against the brute definition during ingest (w=1..8).
-[^2]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"Data & offset" — "offset 1 ... submit with the two leading zeros a(1) = a(2) = 0 — they are meaningful ... a width-1 or width-2 castle of height 3 always has max(c) = 3 blocks (odd), so none has an even block count."
-[^3]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"Formula" — "a(n) = 8*a(n-1) - 27*a(n-2) + 54*a(n-3) - 70*a(n-4) + 56*a(n-5) - 24*a(n-6) ... Characteristic polynomial (x-3)(x-2)(x^2-x+2)(x^2-2x+2)"; and `mine-notes.md` §"Vein 3" L71-79 "F(w,3): order 6 ... loses one order because P(2,·) has x-2 as a factor, shared with 2^w."
-[^4]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"Formula" — "a(n) = (3^n - 2^n - P(2,n) + P(1,n)) / 2, where P(1,n) = Re((1+i)^(n+1)) = A146559(n+1) ... a(n) + odd(n,3) = 3^n - 2^n = A001047(n)."
+[^1]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"The sequence" L8-22 — "0, 0, 3, 21, 89, 307, 977, 3031, 9321, 28479, 86505, 261615, 788969, …"; re-verified against the brute definition during ingest (w=1..8).
+[^2]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"Data & offset" L31-33 — "offset 1 ... submit with the two leading zeros a(1) = a(2) = 0 — they are meaningful ... a width-1 or width-2 castle of height 3 always has max(c) = 3 blocks (odd), so none has an even block count."
+[^3]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"Formula" L63-68 — "a(n) = 8*a(n-1) - 27*a(n-2) + 54*a(n-3) - 70*a(n-4) + 56*a(n-5) - 24*a(n-6) ... Characteristic polynomial (x-3)(x-2)(x^2-x+2)(x^2-2x+2)"; and `mine-notes.md` §"Vein 3" L71-79 "F(w,3): order 6 ... loses one order because P(2,·) has x-2 as a factor, shared with 2^w."
+[^4]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"Formula" L56-57,L76 — "a(n) = (3^n - 2^n - P(2,n) + P(1,n)) / 2, where P(1,n) = Re((1+i)^(n+1)) = A146559(n+1) ... a(n) + odd(n,3) = 3^n - 2^n = A001047(n)."
 [^5]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `mine-notes.md` §"Vein 3" L71-79 — "F(w,4): order 9 ... F(w,5): order 11 ... Columns (fixed w, varying h) are quasi-polynomials: F(w,h) is annihilated by (x^2-1)^w."

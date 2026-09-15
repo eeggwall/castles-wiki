@@ -64,7 +64,7 @@ The open end is the tower word's *own* continued fraction. A004149 is a generali
 
 ## Footnotes
 
-[^1]: [[tower-word-language](pages/tower-word-language.md)] §"The reframing"/§"The language and its grammar" — "the tower words are a Motzkin-path language … carrying one extra run constraint: no `UD`, no `DU`"; and §"The Dyck–Motzkin–tower hierarchy" — the tower word is "Motzkin plus a run constraint," with "no `UD`/`DU`" a *stricter* constraint than steep's "no `UDU`." See also [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] §"The tower word" — "a valid tower word contains no `UD` (a zero-width block) and no `DU` (two touching blocks)."
+[^1]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The tower word" L221-230 — "A tower above a length-L block uses exactly L R's, never drops below the base, and returns to it," and "no UD ... and no DU."
 
 [^2]: Philippe Flajolet, *Combinatorial aspects of continued fractions*, Discrete Mathematics 32 (1980) 125–161; doi:10.1016/0012-365X(80)90050-3. The Stieltjes–Jacobi continued fraction as the characteristic series of labelled (Motzkin) paths, with continued-fraction expansions for Catalan, Bell/Stirling, tangent/secant, and Euler/Eulerian numbers. (Source not yet ingested; cited bibliographically.)
 
@@ -76,4 +76,4 @@ The open end is the tower word's *own* continued fraction. A004149 is a generali
 
 [^6]: Paul Barry, *Generalized Catalan recurrences, Riordan arrays, elliptic curves, and orthogonal polynomials*, arXiv:1910.00875 (2019); Andrei Asinowski, Cyril Banderier, Valerie Roitner, *Generating functions for lattice paths with several forbidden patterns* (2019) — both listed as references on OEIS A004149.
 
-[^7]: [[castle-counting-formula](pages/castle-counting-formula.md)] §"Unsigned count" — "`E_k = E_{k−1}/(1 − x·E_{k−1})`, base `E_0 = 1/(1−x)`, unwinding to `E_k = 1/(1−(k+1)x)` and `T(k,L) = (k+1)^L`."
+[^7]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Unsigned count" L297-309 — "E_k = 1/(1-(k+1)x)" and "T(k,L) = (k+1)^L".

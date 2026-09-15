@@ -41,6 +41,7 @@ The relevant thread: the **q-analog `M_n(q)`** refines the Motzkin numbers and a
 - [[q-catalan-numbers](pages/q-catalan-numbers.md)] — the sister q-analog family; both reduce at q=1.
 - [[narayana-numbers](pages/narayana-numbers.md)], [[catalan-numbers](pages/catalan-numbers.md)] — Motzkin's Catalan relatives (Motzkin sums of Narayana/Catalan-type terms).
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the castle's three-letter grammar, the same arity as Motzkin paths.
+- [[tower-word-language](pages/tower-word-language.md)] — the tower words, a Motzkin-path language with the same U/R/D step set.
 - [[dyck-words](pages/dyck-words.md)] — steep Dyck words of length 2n are counted by the (n−1)th Motzkin number.
 
 ## Footnotes

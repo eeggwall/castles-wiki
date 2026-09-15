@@ -97,6 +97,7 @@ Towers of height ≤ 1 above a length-4 block are column heights `c ∈ {0,1}⁴
 
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the reference derivation this page teaches.
 - [[castle-sign](pages/castle-sign.md)] — the sign `s(C) = (−1)^{blocks}` and the `(T±P)/2` projector in full.
+- [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] — the sign generalized to block count mod m via m-th roots of unity.
 - [[binary-string-bijection](pages/binary-string-bijection.md)] — the bijection that makes Idea 1 rigorous.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the grammar the two generating functions are read off.
 - [[signed-tower-count](pages/signed-tower-count.md)] — the C-finite `P(k,L)` family.

@@ -132,6 +132,7 @@ This is the real-number counterpart of the [[mod-p-observatory](pages/mod-p-obse
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — the `√2 + 1` growth constant and the Flajolet/Motzkin continued fractions this page's eigenvalue side mirrors.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the Fibonacci/`φ` method, the golden ratio's algebraic home.
 - [[castle-by-area](pages/castle-by-area.md)] — `2^{n−1} − F_{n−1}`, where Fibonacci/`φ` enters the castle count.
+- [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] — the algebraic/transcendental split the named constants inhabit.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] — the orders (`k+1` in L, `2L−2` in k) the two polynomial families realize.
 - [[finite-fields](pages/finite-fields.md)] — the field structure behind the mod-p eigenvalue orders.
 

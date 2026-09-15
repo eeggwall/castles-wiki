@@ -53,6 +53,7 @@ This is not background — it is the exact toolkit of the castle solution, item 
 - [[generating-functions](pages/generating-functions.md)] — the concept page this source grounds.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] / [[signed-tower-count](pages/signed-tower-count.md)] — the castle's rational GFs and partial-fraction closed forms.
 - [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] — the negative-binomial / `(1−x)^w` denominator in action.
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] — `F(w,3)`, whose complement `F(w,3) + odd(w,3) = 3^n − 2^n = A001047` is this page's difference-of-powers family.
 - [[kitamasa](pages/kitamasa.md)] / [[berlekamp-massey](pages/berlekamp-massey.md)] — tools that exploit the recurrence ⇔ rational-GF equivalence.
 
 Linked from the source but not yet ingested: Analytic Combinatorics, Applied Combinatorics.

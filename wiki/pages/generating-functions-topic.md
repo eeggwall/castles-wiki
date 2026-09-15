@@ -42,6 +42,7 @@ The page's own closing section states the castle payoff directly: the `P(k,L)` r
 - [[generating-functions](pages/generating-functions.md)] — the concept page; this and [[aocp-generating-functions](pages/aocp-generating-functions.md)] are its two source treatments.
 - [[signed-tower-count](pages/signed-tower-count.md)] — the imaginary-roots `Re((1+i)^{L+1})` closed form in action.
 - [[castle-sign](pages/castle-sign.md)] — the `(A±P)/2` parity projector, here as the EGF even-0s trick.
+- [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] — the `(T±P)/2` trick generalized to block count mod m; this page's EGF projector is its index-side `m=2` twin.
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] — "sum every 4th binomial" via the `1/(1−x^4)` residue mechanism.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] / [[kitamasa](pages/kitamasa.md)] — the `P_k = num_k/den_k` → linear-recurrence extraction the PE 502 section names.
 

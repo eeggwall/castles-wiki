@@ -58,6 +58,7 @@ So the [[castle-counting-formula](pages/castle-counting-formula.md)] and this si
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — where `P(k,L)` and the `(T−P)/2` term appear.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] — the sign trick taught as one of the two core ideas.
 - [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] — the sign generalized to mod m via m-th roots of unity.
+- [[generating-functions-topic](pages/generating-functions-topic.md)] — the EGF `(e^x ± e^{−x})/2` projector, the same even/odd trick in the index register.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the block count as the sum of down-streak magnitudes.
 - [[castle-counting-function](pages/castle-counting-function.md)] — the even-block count the sign isolates.
 - [[signed-tower-count](pages/signed-tower-count.md)] — `P(k,L)` as a C-finite sequence family (and the `P(1,L)=A146559(L+1)` OEIS identity).
