@@ -16,7 +16,7 @@ The [[urd-step-strings](pages/urd-step-strings.md)] generalize a Dyck path, and 
 
 ## The tower word
 
-A castle is read as `U (tower) D`: the outer `U…D` pair is the bottom block of width *L*, and the **tower** is everything stacked on top of it.[^2] The tower's skyline is a word over `{U, R, D}` (`U` = up one row, `R` = right one column, `D` = down one row). A tower above a length-*L* block uses exactly *L* `R`s, never drops below the base, and returns to it.[^3] Two facts drive the whole argument:[^3]
+A castle is read as `U (tower) D`: the outer `U…D` pair is the bottom block of width *L*, and the **tower** is everything stacked on top of it.[^2] The tower's skyline is a word over `{U, R, D}` (`U` = up one row, `R` = right one column, `D` = down one row). A tower above a length-*L* block uses exactly *L* `R`s, never drops below the base, and returns to it. (Read `U/R/D` as `+1/0/−1`, this is a Motzkin path; the formal-language reading is on [[tower-word-language](pages/tower-word-language.md)].)[^3] Two facts drive the whole argument:[^3]
 
 - blocks in the tower = number of `D`s = number of `U`s (each `D` completes a block);
 - a valid tower word contains no `UD` (a zero-width block) and no `DU` (two touching blocks).
@@ -69,6 +69,7 @@ This is why the model generalizes the Dyck word to this three-letter grammar rat
 - [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] — the grammar's peaks as the analogue of permutation cycles.
 - [[narayana-numbers](pages/narayana-numbers.md)] / [[tower-heap](pages/tower-heap.md)] — where the Dyck/Catalan connection becomes concrete: the tower block-count g.f. is a Narayana polynomial.
 - [[dyck-words](pages/dyck-words.md)] — the classical object this generalizes (the castle grammar is its first-return grammar with a third letter); [[lattice-paths](pages/lattice-paths.md)] — the U/R/D step-string source.
+- [[tower-word-language](pages/tower-word-language.md)] — the formal-language reading: this grammar is a Motzkin-path grammar.
 
 ## Footnotes
 
