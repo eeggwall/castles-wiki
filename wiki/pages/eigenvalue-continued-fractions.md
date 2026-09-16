@@ -112,6 +112,16 @@ So the k-direction eigenvalues come in reciprocal pairs `r ↔ ±1/r` — the tr
 
 Both are the fundamental units of their quadratic fields (`φ` of `Q(√5)`, `√2+1` of `Q(√2)`) — what "norm −1 reduced surd" means for a real quadratic field.
 
+**The metallic-mean family — this is a ladder, not two isolated cases.** `φ` and `√2 + 1` are the first two members of the [[metallic-means](pages/metallic-means.md)] family `δ_a = (a + √(a²+4))/2` for `a = 1, 2, 3, …`, each the positive root of `x² − a·x − 1 = 0` and each a norm-`−1` reduced surd with purely periodic continued fraction `[a; a, a, …]` — the same argument, one parameter substituted. The name is standard (de Spinadel 1997); on the wiki:
+
+| `a` | `δ_a = [a; a, a, …]` | Name | Integer sequence | Castle appearance |
+|---|---|---|---|---|
+| 1 | `(1+√5)/2 ≈ 1.618` | Golden | Fibonacci A000045 | `2^{n−1} − F_{n−1}` in prime-castle count ([[castle-by-area](pages/castle-by-area.md)]) |
+| 2 | `1+√2 ≈ 2.414` | Silver | Pell A000129 ([[pell-numbers](pages/pell-numbers.md)]) | tower-word growth constant; the [[pell-castle-strip](pages/pell-castle-strip.md)] mnemonic |
+| 3, 4, 5, … | Bronze, Copper, Nickel, … | (candidate rungs) | | *open — see the metallic-ratio-ladder thread on `IDEAS.md`* |
+
+The wiki was already sitting on rungs 1 and 2 of this ladder before naming it. Every future castle sub-family whose count sequence has growth constant `δ_a` for some `a ≥ 1` is a **"silver castle," "bronze castle," …** — a candidate classification axis, treated on [[metallic-means](pages/metallic-means.md)].
+
 **The honest caveat.** The k-direction eigenvalues have degree `2L−2 ≥ 6`, so they are *not* quadratic, and Lagrange cuts only one way: their continued fractions are **not** periodic. What survives is the reciprocal symmetry itself — the roots still pair as `r ↔ ±1/r`, which is the degree-`2L−2` shadow of the degree-2 periodicity condition. Periodicity is lost; the pairing remains.
 
 **The complex eigenvalues go Gaussian.** `P(1,L)` has characteristic polynomial `x² − 2x + 2`, roots `1 ± i` — Gaussian integers, with `|1+i| = √2`.[^5] A complex quadratic over `Q(i)` has a periodic **Gaussian** continued fraction (the complex Lagrange), so `1 ± i` is the `Z[i]`-counterpart of the real `φ` and `√2+1`.
@@ -133,6 +143,7 @@ This is the real-number counterpart of the [[mod-p-observatory](pages/mod-p-obse
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the Fibonacci/`φ` method, the golden ratio's algebraic home.
 - [[pell-numbers](pages/pell-numbers.md)] — the integer sequence realizing `1 + √2 = [2;2,2,…]`, the Pell/silver-ratio companion to Fibonacci/`φ`.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] — a castle-strip mnemonic realizing the silver-ratio thread through PE 502's structural rules.
+- [[metallic-means](pages/metallic-means.md)] — the family `δ_a = (a + √(a²+4))/2` (a = 1, 2, 3, …) whose first two members (`φ`, `1+√2`) this page treats; the axis of a proposed "silver castle / bronze castle / …" classification.
 - [[castle-by-area](pages/castle-by-area.md)] — `2^{n−1} − F_{n−1}`, where Fibonacci/`φ` enters the castle count.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] — the algebraic/transcendental split the named constants inhabit.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] — the orders (`k+1` in L, `2L−2` in k) the two polynomial families realize.

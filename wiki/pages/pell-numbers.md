@@ -30,7 +30,9 @@ P_n  =  0, 1, 2, 5, 12, 29, 70, 169, 408, 985, 2378, 5741, 13860, 33461, …
 ∑_{n≥0} P_n · x^n  =  x / (1 − 2x − x²).
 ```
 
-Ratios of consecutive Pell numbers `P_{n+1}/P_n` converge to `√2 + 1 = 2.41421…` — the **silver ratio** — because the characteristic polynomial `x² − 2x − 1` has roots `1 ± √2` and the recurrence is dominated by the larger root.[^2] `√2 + 1` is the norm-`−1` reduced surd whose purely periodic continued fraction is `[2; 2, 2, 2, …]` (see [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]).
+Ratios of consecutive Pell numbers `P_{n+1}/P_n` converge to `√2 + 1 = 2.41421…` — the **silver ratio** (or **silver mean**), denoted `δ_S` or `δ_2` — because the characteristic polynomial `x² − 2x − 1` has roots `1 ± √2` and the recurrence is dominated by the larger root.[^2] `√2 + 1` is the norm-`−1` reduced surd whose purely periodic continued fraction is `[2; 2, 2, 2, …]` (see [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]).
+
+**Naming caveat.** "Silver ratio" is not universal. The dominant modern usage — and the one this wiki adopts — is `1 + √2` (the metallic-mean value, per Vera W. de Spinadel's [[metallic-means](pages/metallic-means.md)] framing; matches Wikipedia and OEIS cross-references).[^7] A minority usage (typically in paper-size / A-series-paper contexts) reserves "silver ratio" for `√2 ≈ 1.4142` itself. Both are correct in their own literature; whenever this wiki says "silver ratio" we mean `1 + √2`. The Pell numbers realize the silver ratio in the same way Fibonacci realizes the golden ratio — both are members of the [[metallic-means](pages/metallic-means.md)] family (Pell at `a = 2`, Fibonacci at `a = 1`).
 
 ## Two roles in the wiki
 
@@ -85,6 +87,7 @@ The **companion Pell** (or *Pell-Lucas half*) sequence is OEIS A001333 = `1, 1, 
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the signed recurrence `den_k = den_{k−1}(1−2x) + x·num_{k−1}` whose baby case is Pell.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the Fibonacci companion (`φ`, `[1;1,1,…]`) — the same story with `a = 1`.
 - [[castle-by-area](pages/castle-by-area.md)] — the wiki's other integer-sequence-plus-quadratic-surd pairing (`2^{n−1} − F_{n−1}`).
+- [[metallic-means](pages/metallic-means.md)] — the family `δ_a = (a + √(a²+4))/2` (`a = 1, 2, 3, …`) — Fibonacci/Pell/Bronze/Copper/… — that Pell sits at `a = 2` of.
 
 ## Footnotes
 
@@ -94,3 +97,4 @@ The **companion Pell** (or *Pell-Lucas half*) sequence is OEIS A001333 = `1, 1, 
 [^4]: [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] §"Step 5 — The castle's eigenvalues" and footnote 4 — the convergents `5/2, 12/5, 29/12, 70/29, 169/70 → √2 + 1` are exactly the Pell ratios `P_{n+1}/P_n` for `n = 2..6`, verified during that page's ingest.
 [^5]: OEIS A001333 = `1, 1, 3, 7, 17, 41, 99, 239, 577, 1393, …`, the companion Pell / Pell-Lucas half. Its Binet form `Q_n = ((1+√2)^n + (1−√2)^n)/2` was verified numerically for `n = 0..10` during ingest. A001333 numerators pair with A000129 denominators to give the continued-fraction convergents of `√2 = [1; 2, 2, 2, …]`.
 [^6]: [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] §"The Pell fingerprint" L52-L54 — the note calls the sequence "half-companion Pell numbers"; direct enumeration during ingest showed `1, 2, 5, 12, 29, 70, 169, 408, 985, 2378` is A000129 (Pell) shifted by one, not A001333 (half-companion / Pell-Lucas half = `1, 1, 3, 7, 17, 41, …`).
+[^7]: [[metallic-means](pages/metallic-means.md)] §"The naming caveat" — Wikipedia "Silver ratio" and OEIS A001333 (whose comment describes it in Pell / silver-mean context) both use "silver ratio" for `1 + √2`; this is also the usage in de Spinadel's original paper (`δ_S`). Competing "silver ratio = √2" appears in paper-size / A-series / architecture literature; when meant, it is usually specified. Wiki standard: `δ_2 = 1 + √2`.
