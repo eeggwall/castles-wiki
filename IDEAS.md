@@ -25,6 +25,7 @@ Ideas that have gotten some attention and have their own wiki pages.
 - [x] **[Continued fractions of the tower word](wiki/pages/tower-word-continued-fraction.md)** — the tower word is a peakless-valleyless Motzkin path (OEIS A004149); Flajolet's Catalan S-fraction / Motzkin J-fraction framework, and the run constraint as the collapse to `1/(1−(k+1)x)`.
 - [x] **[Eigenvalue continued fractions](wiki/pages/eigenvalue-continued-fractions.md)** — the castle's self-reciprocal (palindromic/anti-palindromic) characteristic polynomials, Lagrange/Galois, and the two norm-−1 quadratics φ and √2+1 as purely periodic continued fractions.
 - [x] **[The algebraic/transcendental wall](wiki/pages/algebraic-transcendental-wall.md)** — C-finite counts carry only algebraic constants exactly; e and π are locked out of closed forms and enter only through limits (Stirling, Catalan, natural-log growth).
+- [x] **[Castles as an upgrade of the (n−1)! cycle count](wiki/pages/castles-as-upgraded-cycle-count.md)** — seminar-shaped analysis: the elementary `(n−1)!` warm-up (quotient-by-rotation, fix-a-starting-point) upgraded step-by-step into the castle's [castle-sign](wiki/pages/castle-sign.md) / [castle-foata-transform](wiki/pages/castle-foata-transform.md) / [monotone-streak-factorization](wiki/pages/monotone-streak-factorization.md) triad; `F(4,2)=10` hand-checked twice.
 
 ## Rough ideas
 

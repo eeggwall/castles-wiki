@@ -1,11 +1,11 @@
 ---
 title: Castle Foata transform
 category: Concepts
-summary: The castle analogue of Foata's canonical-cycle flattening — peaks are the maximal positive runs of the column-height sequence, giving #peaks = #records.
+summary: The castle analogue of Foata's canonical-cycle flattening — peaks are the maximal positive runs of the column-height sequence, giving #peaks = #records. The Foata upgrade in the [[castles-as-upgraded-cycle-count]] triad — paralleling "largest element = cycle leader" with "leftmost positive column = peak leader."
 tags: [concept, castle, foata, permutations, records, bijection]
-sources: [project-euler-502-castle-factoring]
+sources: [project-euler-502-castle-factoring, pe502-castle-cycle-permutations]
 created: 2026-09-13
-updated: 2026-09-14
+updated: 2026-09-15
 ---
 
 # Castle Foata transform
@@ -80,6 +80,7 @@ For height exactly 2 the tower above the base is a single row of blocks, encoded
 ## Appearances in Sources
 
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — states the permutation template, the peak↔positive-run bijection, and the `F(4,2)=10` test.
+- [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] — reads this transform as the "Foata upgrade" in the (n−1)!-to-castle triad, paralleling largest-element cycle-leaders with leftmost-positive-column peak-leaders.
 
 ## Related Concepts
 
@@ -88,6 +89,7 @@ For height exactly 2 the tower above the base is a single row of blocks, encoded
 - [[castle-representations](pages/castle-representations.md)] — the column-height sequence the transform flattens onto.
 - [[castle-sign](pages/castle-sign.md)] — the descent formula for the block count used to check the examples.
 - [[aocp-multisets](pages/aocp-multisets.md)] — Foata's intercalation product and two-line-array cycle apparatus, the Vol. 3 sibling of this Vol. 1 construction.
+- [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the seminar synthesis; this transform is the middle row of the three-move (n−1)!-to-castle table.
 
 ## Footnotes
 

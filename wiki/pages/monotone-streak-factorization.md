@@ -1,11 +1,11 @@
 ---
 title: Monotone streak factorization
 category: Concepts
-summary: Factoring the first-difference sequence d_i = c_{i+1}−c_i into up/flat/down streaks — an O(L) scan (Knuth's cycle loop analogue) the fast castle-counting algorithms sum over.
+summary: Factoring the first-difference sequence d_i = c_{i+1}−c_i into up/flat/down streaks — an O(L) scan (Knuth's cycle loop analogue) the fast castle-counting algorithms sum over. The cycle-follow upgrade in the [[castles-as-upgraded-cycle-count]] triad.
 tags: [concept, castle, factorization, algorithms, kitamasa, berlekamp-massey]
-sources: [project-euler-502-castle-factoring]
+sources: [project-euler-502-castle-factoring, pe502-castle-cycle-permutations]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-15
 ---
 
 # Monotone streak factorization
@@ -41,6 +41,7 @@ The streak factorization is thus the bridge between the combinatorial reading (p
 ## Appearances in Sources
 
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — defines the `d`-sequence streak factorization and connects it to the unsigned/signed fast algorithms.
+- [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] — names this factorization the "cycle-follow upgrade" — the `O(L)` scan is the castle-side counterpart to the `O(n)` `i ↦ σ(i)` loop on permutations.
 
 ## Related Concepts
 
@@ -49,6 +50,7 @@ The streak factorization is thus the bridge between the combinatorial reading (p
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the `T` and `P` this factorization computes.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] — the *k*-direction fast-recurrence method paired with Kitamasa here.
 - [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] — the `O(L)` scan as Knuth's cycle loop.
+- [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the seminar synthesis reading this scan as the castle upgrade of `i ↦ σ(i)`.
 
 ## Footnotes
 
