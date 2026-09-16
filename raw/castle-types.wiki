@@ -1,0 +1,65 @@
+=Castle Types=
+
+A castle on a <math>w \times h</math> grid is determined by its '''skyline''', the sequence of column heights
+
+<math>
+c_1, c_2, \dots, c_w
+</math>
+
+with <math>1 \le c_i \le h</math> and <math>\max_i c_i = h</math>. (Problem 502 also requires an even number of blocks; the types below mostly ignore, or independently re-impose, that parity rule.) Every castle is automatically column-convex and bottom-aligned, so each type is a further restriction on the skyline.
+
+==Base types==
+
+* '''Column-convex''' - every column is a single contiguous vertical run (automatic for castles).
+* '''Unimodal''' - heights first weakly increase, then weakly decrease: <math>c_1 \le \cdots \le c_p \ge \cdots \ge c_w</math>.
+* '''Directed''' - every cell is reachable from the bottom-left base cell by an east/north path.
+* '''Parallelogram''' - the intersection with every line perpendicular to the main diagonal is a connected segment.
+* '''Ferrers''' - heights are weakly decreasing: <math>c_1 \ge c_2 \ge \cdots \ge c_w</math>.
+* '''Staircase''' - a Ferrers castle whose column heights are all distinct (a strict staircase boundary).
+* '''m-disparate''' - every two neighboring columns differ by at least <math>m</math>: <math>|c_{i+1} - c_i| \ge m</math>.
+
+==Proposed additional types==
+
+# '''Convex (row-convex)''' - every row is one contiguous run of cells; for a castle this equals convexity, since column-convexity is automatic. Equivalently, the U/R/D word has the front/middle/back form on [[Project Euler/502/Representations]].
+# '''Reverse Ferrers''' - heights weakly increasing: <math>c_1 \le c_2 \le \cdots \le c_w</math>.
+# '''Strictly unimodal''' - heights strictly increase to a unique peak column, then strictly decrease.
+# '''Bimodal''' - the skyline has exactly two local maxima.
+# '''k-modal''' - the skyline has at most <math>k</math> local maxima (unimodal is the case <math>k=1</math>).
+# '''Anti-unimodal (V-shaped)''' - heights weakly decrease, then weakly increase (exactly one valley, no interior local maximum).
+# '''Plateau-free''' - no two neighboring columns have equal height: <math>c_i \ne c_{i+1}</math> for all <math>i</math>.
+# '''m-smooth (Lipschitz)''' - neighboring heights differ by at most <math>m</math>: <math>|c_{i+1} - c_i| \le m</math>.
+# '''Zigzag''' - the differences <math>c_{i+1} - c_i</math> alternate in sign.
+# '''Alternating parity''' - the column heights alternate between odd and even.
+# '''Palindromic''' - the height sequence reads the same forwards and backwards: <math>c_i = c_{w+1-i}</math>.
+# '''Centrally symmetric''' - the skyline equals its 180-degree rotation inside the bounding box: <math>c_i + c_{w+1-i} = h + 1</math>.
+# '''Dyck-path''' - <math>c_1 = c_w = 1</math>, all <math>c_i \ge 1</math>, and <math>|c_{i+1} - c_i| = 1</math>; the skyline is a Dyck path.
+# '''Motzkin-path''' - like a Dyck-path castle but allowing flat steps: <math>|c_{i+1} - c_i| \le 1</math>.
+# '''Flat-top''' - the maximum height <math>h</math> is attained in at least two consecutive columns.
+# '''Single-summit''' - the maximum height <math>h</math> is attained in exactly one column.
+# '''Even-area''' - the total area is even: <math>\sum_i c_i \equiv 0 \pmod 2</math>.
+# '''Even-peak''' - the number of local maxima is even.
+# '''Equal-block''' - every maximal horizontal block has the same length.
+# '''Two-level''' - the column heights take exactly two distinct values.
+# '''Self-conjugate''' - the skyline is its own conjugate partition: <math>c_i = \#\{j : c_j \ge i\}</math> for all <math>i</math>; the castle looks the same read by columns or by rows.
+# '''Crenellated''' - the heights alternate between two values, the taller of which is <math>h</math>: <math>c_i \in \{a, h\}</math> with <math>c_i \ne c_{i+1}</math> (battlements with low walkways and high merlons).
+# '''Moated''' - the two outer columns are at ground level and every inner column rises higher: <math>c_1 = c_w = 1</math> and <math>c_i \ge 2</math> for <math>2 \le i \le w-1</math>.
+# '''Rainbow''' - the column heights are a permutation of <math>1, 2, \dots, h</math>, so <math>w = h</math> and each height occurs exactly once.
+# '''Hook''' - one full-height tower on the left edge and a one-cell parapet everywhere else: <math>c_1 = h</math> and <math>c_i = 1</math> for <math>i \ge 2</math> (a Young-diagram hook).
+# '''Twin-peak''' - the maximum height <math>h</math> is attained in exactly two columns.
+# '''Single-valley''' - the minimum height 1 is attained in exactly one column.
+# '''Fence-post''' - every even-indexed column is a low post of height 1: <math>c_i = 1</math> for all even <math>i</math>.
+# '''Linear''' - the heights form an arithmetic progression: <math>c_i = a + (i-1)d</math> for all <math>i</math>.
+# '''Convex-skyline''' - the second differences are nonnegative: <math>c_{i-1} - 2c_i + c_{i+1} \ge 0</math>.
+# '''Concave-skyline''' - the second differences are nonpositive: <math>c_{i-1} - 2c_i + c_{i+1} \le 0</math>.
+# '''Triangular-area''' - the total area is a triangular number: <math>\sum_i c_i = \frac{n(n+1)}{2}</math> for some integer <math>n</math>.
+# '''Prime-top''' - the height <math>h</math> is a prime number.
+# '''Integer-mean''' - the average column height <math>\frac{1}{w}\sum_i c_i</math> is an integer.
+# '''Boxcastle''' - every column has height <math>h</math>; the castle is the full <math>w \times h</math> rectangle.
+
+=Flags=
+
+{{PE502Flag}}
+
+{{ProjectEulerFlag}}
+
+[[Category:Combinatorics]]

@@ -18,7 +18,7 @@ Ideas that have gotten some attention and have their own wiki pages.
 - [x] **[Castle Foata transformation](wiki/pages/castle-foata-transform.md)** — peaks are the maximal positive runs; #peaks = #records.
 - [x] **[Monotone streak factorization](wiki/pages/monotone-streak-factorization.md)** — first differences into up/flat/down streaks, the fast algorithms' canonical form.
 - [x] **[New representations](wiki/pages/castle-representations.md)** — excursion/gap word, cycle-forest form, and signed column-difference sequence.
-- [x] **[Encoding atlas](wiki/pages/castle-representations.md)** — binary strings, integer tuples, U/R/D step strings, tower words, skyline tuples.
+- [x] **[Encoding catalog](wiki/pages/castle-representations.md)** — binary strings, integer tuples, U/R/D step strings, tower words, skyline tuples.
 - [x] **[From Dyck words to castle towers](wiki/pages/generalized-dyck-grammar.md)** — the first-return grammar.
 - [x] **[Algorithmic seminar](wiki/pages/kitamasa.md)** — Berlekamp–Massey + Kitamasa for enormous indices ([berlekamp-massey](wiki/pages/berlekamp-massey.md)).
 - [x] **[Formal language of tower words](wiki/pages/tower-word-language.md)** — the tower word as a Motzkin-path language, its unambiguous grammar, and the Dyck/Motzkin hierarchy.
@@ -27,6 +27,8 @@ Ideas that have gotten some attention and have their own wiki pages.
 - [x] **[The algebraic/transcendental wall](wiki/pages/algebraic-transcendental-wall.md)** — C-finite counts carry only algebraic constants exactly; e and π are locked out of closed forms and enter only through limits (Stirling, Catalan, natural-log growth).
 - [x] **[Castles as an upgrade of the (n−1)! cycle count](wiki/pages/castles-as-upgraded-cycle-count.md)** — seminar-shaped analysis: the elementary `(n−1)!` warm-up (quotient-by-rotation, fix-a-starting-point) upgraded step-by-step into the castle's [castle-sign](wiki/pages/castle-sign.md) / [castle-foata-transform](wiki/pages/castle-foata-transform.md) / [monotone-streak-factorization](wiki/pages/monotone-streak-factorization.md) triad; `F(4,2)=10` hand-checked twice.
 - [x] **[The Pell castle strip](wiki/pages/pell-castle-strip.md)** — seminar-shaped: an Analytic Combinatorics end-of-chapter exercise on `D(x) = 1/(1−2x−x²)` opens directly onto PE 502's structural rules. The denominator splits into `2x` (per-column binary state, `T(1,L) = 2^L`) and `x²` (the mandatory-gap rule-3 tax); the counts are [pell-numbers](wiki/pages/pell-numbers.md) (OEIS A000129 shifted), growth constant `1 + √2 = [2;2,2,…]`.
+- [x] **[Metallic means](wiki/pages/metallic-means.md)** — the family `δ_a = (a + √(a²+4))/2` (Fibonacci/Pell/bronze/copper/…), all norm-`−1` reduced surds with purely periodic continued fractions `[a; a, a, …]`; the axis for a "silver castle / bronze castle / …" classification of castle sub-families by growth constant.
+- [x] **[Castle classification](wiki/pages/castle-classification.md)** — the 42-type framework from [castle-types](wiki/pages/castle-types.md) (7 base types from the polyomino literature, 35 proposed types), organized into 7 structural axes (convexity/modality, rate-of-change, path-like, symmetry, extremum, parity/area, value-pattern) plus a transversal metallic-mean growth-constant axis; ties each type to the wiki thread that already touches it.
 
 ## Rough ideas
 
@@ -55,12 +57,12 @@ Partially-formed notions worth developing further.
 
 - [ ] **q-Catalan / q-Motzkin joins and bi-statistics** — grade the tower word / generalized-Dyck grammar by area (column-height sum) and check against the Carlitz q-Catalan and the Barcucci q-Motzkin / q-Bessel families ([steep-polyominoes-q-motzkin-bessel](wiki/pages/steep-polyominoes-q-motzkin-bessel.md)); `q = 1` must land on the [castle-by-area](wiki/pages/castle-by-area.md) sequences. Then push to joint statistics (area × block-count, area × peaks, area × records) hunting q-binomial / Gaussian-binomial and Narayana-q coefficients — the open "q-equivalent thread" flagged on [q-catalan-numbers](wiki/pages/q-catalan-numbers.md) and [motzkin-numbers](wiki/pages/motzkin-numbers.md).
 
-### The Atlas
+### Classification and Variations
 
-- [ ] **Gap-rule atlas** — no adjacency, minimum gap g, no touching allowed, all via maximal-runs-of-1s encoding.
-- [ ] **Parity and block-count atlas** — even, odd, and any block counts; block-count distributions; area vs block count (column-height sum vs run count).
-- [ ] **Variation atlas** — convex skeletons plus U/D insertions into runs of R; enumerate variations and study duplicate detection.
-- [ ] **Taxonomy of castle classes** (and determining which rules each type drops, and counting them): https://charlesreid1.com/wiki/Project_Euler/502/Castle_Types
+- [ ] **Gap-rule variations** — no adjacency, minimum gap g, no touching allowed, all via maximal-runs-of-1s encoding. Corresponds directly to the m-disparate / m-smooth axis of [castle-classification](wiki/pages/castle-classification.md).
+- [ ] **Parity and block-count catalog** — even, odd, and any block counts; block-count distributions; area vs block count (column-height sum vs run count).
+- [ ] **Rule-variation enumeration** — convex skeletons plus U/D insertions into runs of R; enumerate variations and study duplicate detection.
+- [x] **[Taxonomy of castle classes](wiki/pages/castle-classification.md)** — the 42-type catalog from https://charlesreid1.com/wiki/Project_Euler/502/Castle_Types, organized into 7 structural axes (convexity/modality, rate-of-change, path-like, symmetry, extremum, parity/area, value-pattern) plus a transversal growth-constant axis via [metallic-means](wiki/pages/metallic-means.md); ingested as [castle-types](wiki/pages/castle-types.md).
 
 ### Miscellaneous
 
