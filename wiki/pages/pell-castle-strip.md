@@ -132,6 +132,7 @@ A rational generating function's denominator is a factored inventory of its **st
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] — where `1 + √2 = [2;2,2,…]` is developed.
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — where `1 + √2` also appears, as the tower-word growth constant.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the Fibonacci / `φ` companion (same story with `a = 1`).
+- [[castle-classification](pages/castle-classification.md)] — the Axis-8 meta-classification for which this strip is the canonical **silver width growth castle** example (a class whose count sequence graded by width grows at `1+√2`).
 
 ## Footnotes
 

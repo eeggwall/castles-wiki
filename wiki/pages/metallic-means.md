@@ -55,7 +55,7 @@ Two members of this family are already load-bearing on the wiki, from two indepe
 - **`δ_1 = φ`** is the growth constant of Fibonacci, which appears in the castle count as `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] (prime castles). The Fibonacci method for turning a recurrence into a rational GF is the archetype of [[aocp-generating-functions](pages/aocp-generating-functions.md)].
 - **`δ_2 = 1+√2`** is the growth constant of the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]), and appears as the count-sequence growth of the [[pell-castle-strip](pages/pell-castle-strip.md)] mnemonic where the denominator `1 − 2x − x²` splits along PE 502's structural rules. The integer realization is the [[pell-numbers](pages/pell-numbers.md)].
 
-Both are treated in parallel on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] as "the castle's two norm-`−1` reduced quadratics" — the framing that made writing this page unavoidable: **there is a ladder, and the wiki was already sitting on rungs 1 and 2 without naming it.** Naming the ladder makes explicit that the metallic-mean family is a **candidate axis for castle classification**: a "silver castle" would be one whose count sequence grows at rate `1+√2`; a "bronze castle" at rate `(3+√13)/2`; and so on. Whether such castle families exist — and if so, which castle rule-modifications tune them — is the "metallic-ratio ladder" thread on `IDEAS.md`.
+Both are treated in parallel on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] as "the castle's two norm-`−1` reduced quadratics" — the framing that made writing this page unavoidable: **there is a ladder, and the wiki was already sitting on rungs 1 and 2 without naming it.** Naming the ladder makes explicit that the metallic-mean family is a **meta-classification axis** for castle sub-families: a castle class is a **"`<metal>` `<axis>` growth castle"** iff its count sequence, graded by the chosen size axis, grows at rate `δ_a`. This is now Axis 8 of [[castle-classification](pages/castle-classification.md)]; the naming convention (`<metal>` ∈ {golden, silver, bronze, copper, nickel, …}, `<axis>` ∈ {width, vertical, area, block}) is developed there.
 
 ## Structural facts about the family
 
@@ -64,13 +64,21 @@ Both are treated in parallel on [[eigenvalue-continued-fractions](pages/eigenval
 - **Fundamental units.** Each `δ_a` is a fundamental unit of the real quadratic field `Q(√(a²+4))` (up to sign/inversion), i.e. a generator of its unit group modulo torsion. Number-theoretic weight — the metallic means are, up to a rescaling, the fundamental units of the simplest infinite family of real quadratic fields.[^6]
 - **Palindromic quadratic — reciprocal-root symmetry.** The characteristic polynomial `x² − a·x − 1` has coefficients `[1, −a, −1]`, so it is *anti*-palindromic (not palindromic) — the two roots multiply to `−1` (norm `−1`), the very reason the fraction is purely periodic ([[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] Step 3). Every metallic mean sits on the same anti-palindromic template with a different first-order coefficient.
 
-## Castle classification: an open direction
+## Castle classification: the Axis-8 realization
 
-The "silver castle / bronze castle / …" idea is speculative but concrete enough to test:
+[[castle-classification](pages/castle-classification.md)] Axis 8 defines the meta-classification **`<metal>` `<axis>` growth castle**, with:
 
-1. **Silver castle candidate:** the Pell strip already realizes `1+√2` in a small castle sub-family (height-2, one signed strip, no parity constraint) via the [[pell-castle-strip](pages/pell-castle-strip.md)] denominator `1 − 2x − x²`. Does the full castle family (unrestricted `h`, with parity) or any of its natural sub-families reach `1+√2` as a growth constant? The tower word already does ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]).
-2. **Bronze castle candidate:** the natural knob is the mandatory-gap width or the per-column state-set size. A width-≥2 mandatory gap plus a 3-state per-column atom would nominally give denominator `1 − 3x − x²` (or `1 − 3x − x³`, depending on encoding). Its coefficient sequence would be `1, 3, 10, 33, 109, 360, …` — the `a=3` Fibonacci-analog sequence above, growth `δ_3`. Whether this corresponds to any physically-meaningful castle-rule variation is the question.
-3. **General knob:** parameterize the "castle strip" mnemonic by two numbers — the width-1-atom multiplicity `w_1` and the width-2-atom multiplicity `w_2`. The denominator `1 − w_1·x − w_2·x²` has growth `(w_1 + √(w_1² + 4·w_2))/2`, which is a metallic mean iff `w_2 = 1`. So the metallic-mean ladder cleanly corresponds to "how many states per column, with the mandatory-gap rule fixed." A **classification axis** for castle rule-variations, tracked in `IDEAS.md`.
+- **`<metal>`** ∈ {golden (`a=1`, `φ`), silver (`a=2`, `1+√2`), bronze (`a=3`, `(3+√13)/2`), copper (`a=4`, `2+√5`), nickel (`a=5`, `(5+√29)/2`), …} — one per member of this family.
+- **`<axis>`** ∈ {width, vertical, area, block} — the size parameter being graded, always stated explicitly.
+
+The two rungs the wiki has real content for:
+
+1. **Silver width growth castle** — count sequence graded by width `w` grows at `1+√2`. Two structurally-distinct known members: the [[pell-castle-strip](pages/pell-castle-strip.md)] (rational GF, Pell numbers) and the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)], algebraic GF, A004149). Same growth constant, different families — the meta-classification working as intended.
+2. **Golden width growth castle** — count sequence graded by `w` grows at `φ`. Known member: the `w_1 = 1, w_2 = 1` strip case (`{0,1}`-skyline with rule-3 gap, Fibonacci `F_{w+2}`). The prime-castle count `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] is a **golden area growth castle** (Fibonacci-dominated when graded by area — different axis).
+
+Higher rungs (bronze, copper, nickel, …) and the vertical / area / block axes are the open research direction. The general "how many states per column" knob — a castle-strip family with denominator `1 − w_1·x − w_2·x²` has growth `(w_1 + √(w_1² + 4·w_2))/2`, a metallic mean iff `w_2 = 1` — gives a concrete parameterization for the width axis. Vertical / area / block axes require rethinking the strip mnemonic and are wide open.
+
+**The "every X is Y" theorem shape.** The Axis-8 framing makes cross-axis statements articulable. Example: *"every silver width growth castle has a dominant eigenvalue in `Q(√2)`"* is a theorem-shaped statement combining Axis 8 (silver width growth) with the algebraic-field type on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]. See [[castle-classification](pages/castle-classification.md)] Axis 8 for more.
 
 ## Appearances in Sources
 

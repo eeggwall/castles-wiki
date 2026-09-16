@@ -1,7 +1,7 @@
 ---
 title: Castle classification
 category: Concepts
-summary: A classification framework for castle sub-families. Every castle is column-convex + bottom-aligned by construction, so a "castle type" is a further restriction on the skyline `(c_1, …, c_w)`. Catalogs 42 types (7 base from the polyomino literature, 35 proposed) organized into 7 structural axes plus a transversal metallic-mean growth-constant axis, each tied to the wiki thread that already touches it and marked with count status.
+summary: A classification framework for castle sub-families. Axes 1-7 are structural (skyline predicates on individual castles); Axis 8 is meta-classification (a growth-type predicate on castle *classes*, named as "<metal> <axis> growth castle" for metal ∈ {golden, silver, bronze, …} and axis ∈ {width, vertical, area, block}). Catalogs 42 structural types from the polyomino literature plus the Axis-8 golden and silver width growth families with known members.
 tags: [concept, castle, classification, taxonomy, skyline]
 sources: [castle-classification]
 created: 2026-09-15
@@ -151,22 +151,73 @@ Types 19, 20, 22, 23, 25, 28, 29, 34:
 | **Prime-top** | `h` is prime | trivial family: all castles with prime `h` |
 | **Integer-mean** | `w | ∑ c_i` | *open* |
 
-### Growth-constant classification: silver, bronze, and beyond
+## Axis 8: Growth-type meta-classification
 
-The **[[metallic-means](pages/metallic-means.md)]** framework offers a **transversal classification axis** — one that groups castle sub-families not by skyline predicate but by the **growth constant of their count sequence**. From the [[pell-castle-strip](pages/pell-castle-strip.md)] mnemonic, a castle-strip family with denominator `1 − w_1·x − w_2·x²` grows at
+Axes 1-7 above are all **predicates on individual castles**: given `(c_1, …, c_w)`, is this castle unimodal? Ferrers? palindromic? Axis 8 is different: it is a **predicate on castle classes** — a property of a *sequence of counts*, not of a single castle. This makes it a **meta-classification**: golden growth castle status is not a shape a given castle has, it is a growth-rate a given class has.
 
-```
-δ = (w_1 + √(w_1² + 4·w_2)) / 2,
-```
+The framework is the [[metallic-means](pages/metallic-means.md)] family `δ_a = (a + √(a² + 4))/2` for `a = 1, 2, 3, …` — golden (`φ`), silver (`1+√2`), bronze (`(3+√13)/2`), copper, nickel, and so on. From the [[pell-castle-strip](pages/pell-castle-strip.md)] mnemonic, a castle-strip family with denominator `1 − w_1·x − w_2·x²` grows at `(w_1 + √(w_1² + 4·w_2))/2`, which is a metallic mean iff `w_2 = 1`. The metallic-mean ladder is thus a natural axis of count growth-constants along which real castle classes fall.
 
-which is the metallic mean `δ_{w_1}` exactly when `w_2 = 1`. So each metallic mean `δ_a` (for `a = 1, 2, 3, …` = golden, silver, bronze, copper, …) is a **candidate growth constant** for castle sub-families with "how many states per column" = `a` and a fixed mandatory-gap rule.
+### The naming convention
 
-- **`δ_1` = golden castle candidates** — families whose count grows like Fibonacci. Height-1 castles are trivially `F_{w+something}`, and the prime-castle count `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] is a direct hit.
-- **`δ_2` = silver castle candidates** — the [[pell-castle-strip](pages/pell-castle-strip.md)] is one instance; the tower-word growth ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]) is another.
-- **`δ_3` = bronze castle candidates** — a natural target family would have "3 states per column, mandatory-gap rule fixed." The height-3 tower with a specific same-row-adjacency rule is a candidate; the growth would be `(3+√13)/2`.
-- **Higher `δ_a`** — copper, nickel, and beyond, mapping to "state-count 4, 5, …" — genuinely open.
+A castle class is a **"`<metal>` `<axis>` growth castle"** iff its count sequence, graded by the chosen size axis, grows at rate `δ_a` (the metallic mean for that metal). The three parts:
 
-**Naming convention.** A castle sub-family whose count sequence grows at rate `δ_a` is a **"δ_a-castle"** or, informally, a **"silver / bronze / copper / … castle."** The names are shorthand; the substantive fact is the growth-constant identification. This is the classification axis the "Metallic-ratio ladder" thread on `IDEAS.md` tracks.
+- **`<metal>`** — golden (`a=1`, growth `φ`), silver (`a=2`, growth `1+√2`), bronze (`a=3`, growth `(3+√13)/2`), copper (`a=4`, growth `2+√5 = φ³`), nickel (`a=5`, growth `(5+√29)/2`), and so on. See [[metallic-means](pages/metallic-means.md)].
+- **`<axis>`** — the size parameter being graded:
+  - **width** — the sequence is graded by width `w` (height `h` fixed or bounded)
+  - **vertical** — the sequence is graded by height `h` (width `w` fixed or bounded)
+  - **area** — the sequence is graded by total area `∑ c_i`
+  - **block** — the sequence is graded by block count
+- **"growth castle"** — the noun, marking this as an Axis-8 meta-type.
+
+**The axis is always stated explicitly.** A silver width growth castle and a silver vertical growth castle are different claims; there is no default axis. The full form ("silver width growth castle") is used throughout — no shorthand like "silver castle" — to keep meta-types unambiguous.
+
+### Golden width growth castle — the `δ_1 = φ` axis-1 family
+
+A class whose width-graded count sequence has growth constant `φ = (1+√5)/2`, equivalently whose width GF has dominant singularity at `1/φ = φ − 1`. Known members:
+
+- **The {0, 1}-skyline castle strip** — a castle with `c_i ∈ {0, 1}` above the base and rule-3 mandatory gap. Count sequence: Fibonacci `F_{w+2}`, generating function `1/(1 − x − x²)`. This is the `w_1 = 1, w_2 = 1` case of the general `1 − w_1·x − w_2·x²` strip mnemonic.
+- **The prime-castle count** `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] — Fibonacci-flavored in `Q(√5)`, so its Fibonacci component makes it a golden growth castle by area (not width — the area grading is what puts Fibonacci in this sequence).
+
+### Silver width growth castle — the `δ_2 = 1 + √2` axis-2 family
+
+A class whose width-graded count sequence has growth constant `1 + √2 ≈ 2.4142`. Known members:
+
+- **The [[pell-castle-strip](pages/pell-castle-strip.md)]** — the canonical instance. Count sequence: Pell numbers shifted `P_{n+1}` (OEIS A000129), generating function `1/(1 − 2x − x²)`. Height ≤ 2, two states per column, rule-3 mandatory gap. This is the `w_1 = 2, w_2 = 1` case.
+- **The tower word** ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]) — count sequence A004149, algebraic (not rational) generating function with singularity at `√2 − 1`, so growth `1/(√2 − 1) = √2 + 1`. Structurally very different from the Pell strip (context-free rather than regular), but the same growth constant — so both are silver width growth castles.
+
+**Two structurally different classes, one growth type.** This is the meta-classification working: silver width growth castle is a property that holds across differently-shaped families, uniting them by their asymptotic count behavior rather than by their skyline predicates.
+
+### Bronze / copper / nickel width growth castles — candidates
+
+- **Bronze width growth castle** (`δ_3 = (3+√13)/2 ≈ 3.303`) — the `w_1 = 3, w_2 = 1` strip case is a candidate: three states per column above the base plus rule-3 gap, count sequence `1, 3, 10, 33, 109, 360, …`, growth `(3+√13)/2`. Whether any physically-natural castle class (height ≤ 3 tower under a specific same-row-adjacency rule?) instantiates this is open.
+- **Copper width growth castle** (`δ_4 = 2 + √5 = φ³`) — because `δ_4 = φ³`, any copper width growth castle lives in `Q(√5)` and is a "Fibonacci-decimated" family; its count sequence would be `F_{3n}/2` for the strip case. Candidates open.
+- **Nickel and beyond** — genuinely open.
+
+### Vertical / area / block growth castles
+
+The **vertical growth axis** grades by height (`h` varying, `w` fixed). Instances of silver vertical growth castle: **the k-direction signed count `P(k, L)` at fixed `L`**, whose characteristic polynomials on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] are self-reciprocal with eigenvalues that pair as `r ↔ ±1/r` — for small `L` the dominant eigenvalue can be a metallic mean; open which `L` values realize which `δ_a`.
+
+The **area growth axis** grades by `∑ c_i`. Instances: the prime-castle-by-area count `2^{n−1} − F_{n−1}` is golden area growth castle (Fibonacci-dominated); [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] (`A001523`) has area growth constant that is *not* a metallic mean (transcendental, from the partition-function saddle-point analysis) — so weakly-unimodal castles by area are *not* a `δ_a`-castle for any `a`, useful negative example.
+
+The **block growth axis** grades by block count. [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] gives the block-count generating function structure; growth-constant analysis pending.
+
+### What the meta-classification enables
+
+**Cross-type theorems become stateable.** The interesting move Axis 8 licenses is statements of the form *"every class of type X is also of type Y"* where X is a structural (Axis 1-7) type and Y is a growth-type. Some concrete instances:
+
+- **Every {0, 1}-skyline strip is a golden width growth castle.** (Immediate — it's the Fibonacci strip.)
+- **Every silver width growth castle has a dominant eigenvalue in `Q(√2)`.** (Immediate from Lagrange — periodic-in-CF means quadratic irrational; growth constant `1 + √2` sits in `Q(√2)`.)
+- **The tower word (a Motzkin-path-with-run-constraint type) is a silver width growth castle.** (Non-trivial — algebraic GF, singularity at `√2 − 1`; the Motzkin-path type is Axis 3 and the silver growth type is Axis 8, so the two axes are linked by a real theorem, not a definition.)
+
+Cross-axis-8 theorems (relating growth types under different axes) are the frontier: for instance, *"does every silver width growth castle become a bronze area growth castle when re-graded?"* — likely false, but stateable and testable.
+
+### Naming precedence and the wiki convention
+
+- **Meta-types are Axis 8.** They coexist with, do not replace, Axes 1-7. A castle can be simultaneously "unimodal (Axis 1) + silver width growth castle (Axis 8)"; the two are compatible descriptions from independent axes.
+- **Always spell out the axis.** No "silver castle" as short form; the wiki uses "silver width growth castle" or the appropriate axis explicitly. Prevents the ambiguity between the four growth axes.
+- **Only known members get named types.** If nothing on the wiki grows like copper, "copper width growth castle" is a valid empty class — it exists as a definition — but does not appear in the wiki's active vocabulary until a member is identified.
+
+This is the classification axis the "Metallic-ratio ladder" thread on `IDEAS.md` tracks.
 
 ## Open threads this classification opens
 
@@ -176,7 +227,7 @@ The taxonomy makes explicit which sub-families the wiki has, which are candidate
 2. **m-smooth / m-disparate** for `m ≥ 2` — a paired family; `m = 1` collapses to Motzkin-path.
 3. **Symmetry types** (palindromic, centrally symmetric, self-conjugate) — untouched.
 4. **Rainbow** — direct permutation-classification tie, immediate seminar target for the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] triad.
-5. **δ_a-castle identification** for `a ≥ 3` — the metallic-mean ladder growth constants realized in castle rule modifications; tied to [[metallic-means](pages/metallic-means.md)].
+5. **Bronze / copper / nickel width growth castle identification** — Axis-8 meta-types past silver; the metallic-mean ladder growth constants realized in castle rule modifications; tied to [[metallic-means](pages/metallic-means.md)].
 6. **Even-peak** — parity via peak count rather than block count; genuinely different from [[castle-sign](pages/castle-sign.md)]'s `(−1)^blocks`.
 
 ## Related Concepts
