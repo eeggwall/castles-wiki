@@ -11,6 +11,22 @@ case of the general object: **`A(w,h)`** counts *all* castles (either parity), `
 even-block restriction; the odd count is `A − F` (deliberately unnamed — `G` is reserved for
 generating functions).
 
+## What this is (and how to use it)
+
+This is **not a wiki you read and edit by hand.** It is a knowledge base that an LLM builds
+and maintains for you, following [Andrej Karpathy's LLM Wiki
+pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f): instead of
+re-deriving answers from raw documents every time (RAG), you accumulate a structured,
+interlinked set of markdown pages that gets richer with every source you feed it and every
+question you ask.
+
+The wiki is driven entirely by the **[`wiki-skills`](https://github.com/kfchou/wiki-skills)**
+Claude Code plugin — a set of skills (`wiki-init`, `wiki-ingest`, `wiki-query`, `wiki-lint`,
+`wiki-audit`, `wiki-update`, `wiki-merge`) that do the reading, writing, linking, citing, and
+fact-checking. **You talk to the wiki through those skills, not by editing files.** The rest
+of this README is about getting the plugin installed, pointed at this clone, and running your
+first ingest and query.
+
 ## Mission
 
 More than recording the solution, the wiki follows **every thread through the solution
@@ -18,8 +34,125 @@ methods — and the failed ones — outward into the broader polyomino and combi
 literature**, to surface research topics, connections to other branches of mathematics, and
 concrete, accessible problems for seminars and external collaborators. Each concept page is
 written as a thread to follow; each ingested source is an entry point into a neighboring
-domain. See `wiki/overview.md` for the current synthesis and `TODO.md` for open research
-threads and pending work.
+domain. See [`wiki/overview.md`](wiki/overview.md) for the current synthesis and
+[`TODO.md`](TODO.md) for open research threads and pending work.
+
+## Quick start (fresh clone → asking questions)
+
+You need [Claude Code](https://claude.ai/code) and, for the wiki's helper scripts,
+[`uv`](https://docs.astral.sh/uv/) (it also supplies Python 3 if you don't have it). Then:
+
+### 1. Install the `wiki-skills` plugin
+
+In Claude Code, from **any** directory:
+
+```
+/plugin marketplace add kfchou/wiki-skills
+/plugin install wiki-skills@wiki-skills
+```
+
+This gives you the `wiki-*` skills. (To remove later:
+`/plugin uninstall wiki-skills@wiki-skills` then `/plugin marketplace remove wiki-skills`.)
+
+### 2. Re-arm the pre-commit hooks
+
+`core.hooksPath` is repo-local config and does **not** survive a clone — re-run it once so the
+commit-time gates (contradiction flag + structural lint) fire:
+
+```bash
+git config core.hooksPath bin/hooks
+```
+
+The hook runs `bin/check-contradictions.py` and `bin/lint-mechanical.py --staged` via
+`uv run` before every commit. (Override an intentional commit with `git commit --no-verify`.)
+
+### 3. Wire up the MCP servers
+
+`.mcp.json` configures two MCP servers that `wiki-ingest` uses. Its paths are
+**machine-specific** and its MediaWiki credentials live in an external file, so you'll need to
+adjust it for your machine — see the [MCP servers](#mcp-servers) section below for what each
+one is and how to point `.mcp.json` at it. *(This step is only needed if you'll ingest
+MediaWiki pages or PDFs; plain URLs / files / notes work without it.)*
+
+### 4. Use it
+
+Open Claude Code **in this repo** (`cd` into the clone first — the skills find the wiki via
+[`SCHEMA.md`](SCHEMA.md)). Now you can:
+
+- **Ask a question** — invoke `wiki-query` (or just ask; the skill reads the wiki pages, never
+  answers from memory, and offers to file a good answer back as a new page):
+  > What's the connection between castle-counting and transfer matrices?
+
+- **Feed it a source** — invoke `wiki-ingest` with a paper, URL, file, transcript, or note. It
+  surfaces the key takeaways and asks what to emphasize *before* writing, then creates/updates
+  pages (one ingest may touch 10–15 of them) and runs a backlink audit to wire in
+  cross-references:
+  > Ingest https://oeis.org/A… into the wiki
+
+- **Health-check it** — run `wiki-lint` every 5–10 ingests to catch contradictions, orphans,
+  broken links, and coverage gaps; `wiki-audit <page>` fact-checks a single page's footnotes
+  against their sources.
+
+The skills **suggest** a commit after each operation and commit on your confirmation — they
+never auto-commit, and the git history *is* the operation log (see Conventions).
+
+> **Starting a wiki from scratch, elsewhere?** Run `wiki-init` in an empty repo to bootstrap
+> the same structure (it copies the `bin/` scripts, installs the hook, and writes a fresh
+> `SCHEMA.md`). This clone is already initialized — you don't run `wiki-init` here.
+
+## MCP servers
+
+`wiki-ingest` reaches sources through two [MCP](https://modelcontextprotocol.io/) servers,
+both declared in [`.mcp.json`](.mcp.json) at the repo root. Claude Code launches them
+automatically when you open the repo — but the config in this clone points at **paths on the
+original machine**, so you must edit `.mcp.json` before they'll start on yours.
+
+| Server | Package | What the wiki uses it for |
+|---|---|---|
+| `mediawiki-mcp-server` | [`@professional-wiki/mediawiki-mcp-server`](https://www.npmjs.com/package/@professional-wiki/mediawiki-mcp-server) | Read (and, with credentials, edit) MediaWiki pages — the wikitext sources under `raw/` originate here, on charlesreid1.com |
+| `pdf-reader` | [`@sylphx/pdf-reader-mcp`](https://www.npmjs.com/package/@sylphx/pdf-reader-mcp) | Read and search PDFs so `wiki-ingest` can pull their knowledge into the wiki |
+
+Neither package is committed. Install both into a directory of your choice, then point
+`.mcp.json` at each server's `dist/index.js`. To match the sample paths below:
+
+```bash
+mkdir -p ~/.local/mcp-servers && cd ~/.local/mcp-servers
+npm install @professional-wiki/mediawiki-mcp-server @sylphx/pdf-reader-mcp
+```
+
+**What to change in `.mcp.json`:**
+
+- **`command` / `args`** — the absolute paths to each server's `dist/index.js`. In this clone
+  they are under `/Users/charles/.local/mcp-servers/node_modules/…`; repoint them at your own
+  install location.
+- **`mediawiki-mcp-server` → `env.CONFIG`** — an absolute path to a **MediaWiki config JSON
+  that lives outside the repo** (credentials are never committed). It holds the wiki's API URL
+  and the OAuth / bot credentials used for reads and edits. Create your own and point `CONFIG`
+  at it. See the [server's docs](https://github.com/ProfessionalWiki/mediawiki-mcp-server) for
+  the config shape.
+
+The current wiring (edit to match your machine):
+
+```jsonc
+{
+  "mcpServers": {
+    "mediawiki-mcp-server": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["/Users/charles/.local/mcp-servers/node_modules/@professional-wiki/mediawiki-mcp-server/dist/index.js"],
+      "env": { "CONFIG": "/Users/charles/.config/mediawiki-mcp/config.json" }  // ← your external, un-committed credentials file
+    },
+    "pdf-reader": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["/Users/charles/.local/mcp-servers/node_modules/@sylphx/pdf-reader-mcp/dist/index.js"]
+    }
+  }
+}
+```
+
+You don't need either server to *ask questions* of the existing wiki or to ingest plain URLs,
+files, and notes — they matter when you're ingesting MediaWiki pages or PDFs.
 
 ## Layout
 
@@ -27,9 +160,9 @@ threads and pending work.
 SCHEMA.md          conventions + how the wiki tools locate this wiki (do not move/delete)
 TODO.md            open research threads, OEIS submissions, ingestion queue
 config/            link-style rules (markdown: [[slug](pages/slug.md)])
-bin/               stdlib helper scripts + the pre-commit hook (see below)
+bin/               stdlib helper scripts + the pre-commit hook (see Quick start)
 raw/               immutable source documents (wikitext, notes, cached refs) — never edited
-assets/            downloaded images / PDFs (git-ignored; re-fetchable, see below)
+assets/            scratch images / PDFs for ingest (git-ignored; not needed to use the wiki)
 wiki/
   index.md         GENERATED catalog (git-ignored) — never hand-edit; run bin/generate-index.py
   overview.md      evolving synthesis across all sources
@@ -41,41 +174,19 @@ Pages are grouped by `category` frontmatter into **Sources** (ingested documents
 
 ## Conventions
 
+These are enforced by the skills and the pre-commit gates; [`SCHEMA.md`](SCHEMA.md) is the
+authoritative spec.
+
 - **`raw/` is immutable** — every citation's `L…` line-numbers point into these files, so
   they are never modified after ingest. They are text (small, diffable) and tracked.
 - **Cross-references** use the markdown link style `[[slug](pages/slug.md)]`; citation
-  targets follow `config/link-style.md`. Every claim that isn't common knowledge carries a
-  footnote citing a source (a `raw/` file with a locator, or a URL).
+  targets follow [`config/link-style.md`](config/link-style.md). Every claim that isn't common
+  knowledge carries a footnote citing a source (a `raw/` file with a locator, or a URL).
 - **`wiki/index.md` is generated**, not hand-written — set page frontmatter (`category`,
-  `summary`, `created`) and run `python3 bin/generate-index.py`. It is git-ignored.
+  `summary`, `created`) and run `python3 bin/generate-index.py`. It is git-ignored, so
+  regenerate it before reading after a fresh clone.
 - **The git history is the operation log.** Each operation is one commit with a `Wiki-Op:`
   trailer (`init`, `ingest`, `update`, …); render the human log with
   `python3 bin/render-log.py`.
 - **Verify before citing.** Numeric and algorithmic claims are re-checked by execution during
   ingest; the wiki records what was confirmed.
-
-## Setup (after a fresh clone)
-
-1. **Pre-commit hooks.** `core.hooksPath` is repo-local config and does *not* survive a
-   clone — re-run it once so the pre-commit gates (contradiction flag + structural lint) fire:
-   ```
-   git config core.hooksPath bin/hooks
-   ```
-   The hook runs `bin/check-contradictions.py` and `bin/lint-mechanical.py --staged` via
-   `uv run`, so an interpreter is guaranteed. (Install `uv` if you don't have it, or edit the
-   hook to use `python3`.)
-2. **MCP config.** `.mcp.json` wires up the MediaWiki and PDF-reader MCP servers used to
-   ingest sources. Its paths are **machine-specific absolute paths** (`/Users/charles/…`) and
-   its MediaWiki credentials live in an external file, not in the repo — adjust the paths for
-   your machine.
-3. **PDFs.** The reference papers under `assets/*.pdf` are **git-ignored** (binaries don't
-   diff and bloat the repo). They are cited by the wiki and can be re-fetched from
-   charlesreid1.com (each source page names its origin). Other binary types are ignored too;
-   see `.gitignore`.
-
-## Working with the wiki
-
-The wiki is maintained with the `wiki-skills` toolkit (init / ingest / lint / audit / merge /
-query / update). Typical loop: add a source to `raw/` (or ingest a URL/file directly), write
-or update the flat pages under `wiki/pages/`, regenerate the index, and commit — the
-pre-commit gates keep every committed page structurally valid and contradiction-free.
