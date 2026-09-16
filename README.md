@@ -139,13 +139,13 @@ The current wiring (edit to match your machine):
     "mediawiki-mcp-server": {
       "type": "stdio",
       "command": "node",
-      "args": ["/Users/charles/.local/mcp-servers/node_modules/@professional-wiki/mediawiki-mcp-server/dist/index.js"],
+      "args": ["/path/to/.local/mcp-servers/node_modules/@professional-wiki/mediawiki-mcp-server/dist/index.js"],
       "env": { "CONFIG": "/Users/charles/.config/mediawiki-mcp/config.json" }  // ← your external, un-committed credentials file
     },
     "pdf-reader": {
       "type": "stdio",
       "command": "node",
-      "args": ["/Users/charles/.local/mcp-servers/node_modules/@sylphx/pdf-reader-mcp/dist/index.js"]
+      "args": ["/path/to/.local/mcp-servers/node_modules/@sylphx/pdf-reader-mcp/dist/index.js"]
     }
   }
 }
