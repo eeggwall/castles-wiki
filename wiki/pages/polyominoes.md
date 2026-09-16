@@ -1,11 +1,11 @@
 ---
 title: Polyominoes
 category: Sources
-summary: The charlesreid1.com polyomino taxonomy — Ferrers, staircase, bar-chart, column-convex, directed — placing the castle as a column-convex polyomino and linking the Catalan / q-Bessel / q-Catalan generating-function threads.
-tags: [polyomino, taxonomy, column-convex, ferrers, catalan, q-analog, source]
+summary: The charlesreid1.com polyomino taxonomy — Ferrers, staircase, bar-chart, column-convex, directed — placing the castle as a column-convex polyomino and linking the Catalan / q-Bessel / q-Catalan generating-function threads. AC's stack polyomino (Example I.8) is the direct symbolic-method castle-tower relative.
+tags: [polyomino, taxonomy, column-convex, ferrers, catalan, q-analog, stack-polyomino, source]
 sources: [polyominoes]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-15
 ---
 
 # Polyominoes
@@ -32,6 +32,8 @@ The page states directly that **castle polyominoes are column-convex polyominoes
 
 Two of the named families are exactly the OEIS-mining threads: **Ferrers/staircase/parallelogram** are the classical directed-convex families of [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], and the **Ferrers → q-Bessel / q-Catalan** remark is the same q-analog thread as the steep-parallelogram generating functions of [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)]. This page is thus the taxonomic hub tying the castle to the whole polyomino world and pointing at the q-graded direction (see the wiki TODO).
 
+**Not in this page's taxonomy but directly castle-relevant: the [[stack-polyomino-gf](pages/stack-polyomino-gf.md)]** (unimodal-skyline polyominoes) constructed in Example I.8 of [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] by the [[symbolic-method](pages/symbolic-method.md)]. A stack polyomino is a castle tower with a single peak — the closest AC-native construction of a castle-tower sub-family the wiki has, and the natural intermediate class between the unrestricted castle tower (`E_k = 1/(1−(k+1)x)`) and the fully-convex castle ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]).
+
 ## Key Takeaways
 
 - Polyomino = connected cut-point-free union of cells; parameters area, width, height.[^1]
@@ -43,6 +45,7 @@ Two of the named families are exactly the OEIS-mining threads: **Ferrers/stairca
 
 - [[column-convex-polyomino](pages/column-convex-polyomino.md)] — the class the castle belongs to.
 - [[castle-polyomino](pages/castle-polyomino.md)], [[convex-castle](pages/convex-castle.md)] — the castle and its convex sub-class.
+- [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the unimodal-skyline sub-family; the AC-native "castle tower with one peak" via the symbolic method.
 - [[q-catalan-numbers](pages/q-catalan-numbers.md)], [[motzkin-numbers](pages/motzkin-numbers.md)] — the q-analog / Motzkin threads the Ferrers remark points to.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — the papers on these families.
 

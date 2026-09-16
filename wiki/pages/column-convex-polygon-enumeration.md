@@ -46,10 +46,11 @@ This is arguably the closest external framework to the castle problem, and sever
 - [[castle-polyomino](pages/castle-polyomino.md)], [[convex-castle](pages/convex-castle.md)] — the castle objects this connects to.
 - [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] — the row-convex counterpart (Hickerson).
 - [[generating-functions](pages/generating-functions.md)] — the tool used throughout.
+- [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the "stack polyominoes" family this paper names, given a direct OGF via the [[symbolic-method](pages/symbolic-method.md)] in Example I.8 of [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] — a specification-driven alternative to this paper's add-a-column functional equation, applicable when the class has enough structure (like the unimodal skyline of a stack polyomino).
 
 ## Relation to Other Wiki Pages
 
-Cited as a reference on [[project-euler-502-solution](pages/project-euler-502-solution.md)]. It is the polyomino-enumeration framework the castle problem most resembles — an add-a-column generating-function method for column-convex shapes — and the natural home for tracing the castle's column-independence, convexity, and stack/Ferrers threads into the literature.
+Cited as a reference on [[project-euler-502-solution](pages/project-euler-502-solution.md)]. It is the polyomino-enumeration framework the castle problem most resembles — an add-a-column generating-function method for column-convex shapes — and the natural home for tracing the castle's column-independence, convexity, and stack/Ferrers threads into the literature. [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] provides a complementary route: the [[symbolic-method](pages/symbolic-method.md)] constructs specific well-structured sub-families like [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] directly, without a functional equation.
 
 ## Footnotes
 

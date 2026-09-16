@@ -1,11 +1,11 @@
 ---
 title: Dyck words
 category: Sources
-summary: The two-letter balanced words counted by the Catalan numbers, with path and plane-tree readings; steep Dyck words → Motzkin, and the first-return grammar that PE 502's castle U/R/D grammar generalizes.
-tags: [dyck-words, catalan, motzkin, grammar, first-return, lattice-path, source]
+summary: The two-letter balanced words counted by the Catalan numbers, with path and plane-tree readings; steep Dyck words → Motzkin, and the first-return grammar that PE 502's castle U/R/D grammar generalizes. Under the [[symbolic-method]], the first-return grammar *is* a recursive specification `D = ε + x·D·x̄·D`.
+tags: [dyck-words, catalan, motzkin, grammar, first-return, lattice-path, symbolic-method, source]
 sources: [dyck-words]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-15
 ---
 
 # Dyck words
@@ -39,6 +39,8 @@ whose generating function reads off as `G_SW(x) = x + x·G_SW(x) + x·G_SW(x)²`
 
 The page states the connection to the castle explicitly: the **first-return grammar generalizes** — keep the same "split at the first return to the base" decomposition but change the step set. In [[project-euler-502](pages/project-euler-502.md)] the steps become `U` (up a row), `R` (right a column), `D` (down a row), a castle tower is a word over these that stays above the base and returns to it, and the same first-return split gives the grammar whose generating function counts castles.[^9] This is precisely the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — so the castle grammar is a *bona fide* generalization of the Dyck first-return split with one extra (horizontal) letter, not merely an analogy.
 
+**The first-return grammar as a symbolic-method specification.** The Dyck grammar `D = ε + x·D·x̄·D` (empty word, or opening `x` + inner Dyck + closing `x̄` + trailing Dyck) is a recursive specification in the sense of [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)]: the [[symbolic-method](pages/symbolic-method.md)] translates it directly to `D(z) = 1 + z² · D(z)²` (with each of `x, x̄` marking size 1, so `x·x̄` contributes `z²`), and solving gives `D(z) = (1 − √(1−4z²))/(2z²) = ∑ C_n z^{2n}` — the Catalan generating function graded by half-length. AC's own §I.2 (pp. 33-35) develops the equivalent `G = Z × SEQ(G)` for general plane trees, which are in bijection with Dyck words; the castle's own first-return grammar is the same construction with a U/R/D alphabet and the U-and-D letters weight-marked separately.
+
 ## Key Takeaways
 
 - Dyck word = balanced `{x, x̄}` word, path never negative; `#` of length `2n` is `C_n` ([[catalan-numbers](pages/catalan-numbers.md)]); by inversion number → q-Catalan.[^2]
@@ -54,6 +56,7 @@ The page states the connection to the castle explicitly: the **first-return gram
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — steep Dyck words and their q-refinement.
 - [[polyominoes](pages/polyominoes.md)] — Ferrers-diagram area = Dyck inversion number.
 - [[permutation-inversions](pages/permutation-inversions.md)] — the inversion statistic (and its q-factorial g.f.) that grades Dyck words into q-Catalan / q-Motzkin.
+- [[symbolic-method](pages/symbolic-method.md)] / [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] — the framework that recasts the first-return grammar as a recursive specification.
 
 Linked from the source but not yet ingested: Lattice Paths (ingested this round — see [[lattice-paths](pages/lattice-paths.md)]), Dyck Words/Lisp, Dyck Words/Examples, Combinatorics.
 

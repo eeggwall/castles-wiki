@@ -1,11 +1,11 @@
 ---
 title: "Generating Functions (Sedgewick–Flajolet / Trotter)"
 category: Sources
-summary: The general generating-function reference — OGF operations, recurrence→rational-GF worked examples (imaginary roots, difference-of-powers), the EGF parity trick, and an explicit "Application: Project Euler 502".
+summary: A generating-function reference — OGF operations, recurrence→rational-GF worked examples (imaginary roots, difference-of-powers), the EGF parity trick, and an explicit "Application: Project Euler 502". Companion to [[analytic-combinatorics-part-a]] (the definitive treatment) and [[aocp-generating-functions]] (Knuth Fibonacci-method).
 tags: [generating-functions, ogf, egf, recurrence, parity, partial-fractions, source]
 sources: [generating-functions-topic]
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-15
 ---
 
 # Generating Functions (Sedgewick–Flajolet / Trotter)
@@ -51,6 +51,12 @@ Linked from the source: [[aocp-generating-functions](pages/aocp-generating-funct
 ## Relation to Other Wiki Pages
 
 The intuition-and-worked-examples companion to the AOCP treatment, and the page that makes the general theory's castle relevance explicit. Its examples are not analogies but the *same operations* the castle solution performs — recurrence-to-rational-GF, imaginary-root closed forms, the parity projector, and residue-filtered "every kth term" — with its own section pointing straight at the `P(k,L)` → Kitamasa pipeline.
+
+**One of three GF source treatments in the wiki**, all complementary:
+
+- [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] — the definitive treatment (Flajolet & Sedgewick 2009); the *symbolic method* dictionary that recasts recurrence-⇒-rational-GF as the SEQ / regular-language special case of a more general specification-to-OGF framework.
+- [[aocp-generating-functions](pages/aocp-generating-functions.md)] — Knuth TAOCP Vol. 1; the Fibonacci-method and the recurrence-⇒-rational-GF core.
+- This page — worked examples that hit *exactly* the castle's operations, with the explicit PE 502 application.
 
 ## Footnotes
 
