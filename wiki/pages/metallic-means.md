@@ -93,6 +93,7 @@ Higher rungs (bronze, copper, nickel, …) and the vertical / area / block axes 
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the Fibonacci / `φ` archetype (the `a=1` member).
 - [[castle-by-area](pages/castle-by-area.md)] — `2^{n−1} − F_{n−1}`, where Fibonacci / `φ` enters the castle count.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] — the metallic means are algebraic (quadratic), the exact irrationals that C-finite castle counts *can* carry.
+- [[spectral-analysis](pages/spectral-analysis.md)] — the transfer-matrix spectrum computes `λ_1(h)` directly; the metallic-mean values that appear (silver `1+√2` at `h=2`, others open) come out of that method.
 
 ## Footnotes
 

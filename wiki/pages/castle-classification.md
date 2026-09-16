@@ -253,7 +253,7 @@ Not yet populated on the wiki, but the following spectral predicates would sit h
 - **Low-pass / high-pass castle** — a soft version of sparse-spectrum: the castle's DFT energy is concentrated in low-k modes (smooth mountain-shaped skyline) or high-k modes (jagged crenellation). Not a hard predicate but a natural spectral-concentration classifier.
 - **Ihara-Ramanujan castle** — the Ramanujan condition transferred to the spectrum of the Ihara / non-backtracking operator rather than the adjacency operator. Arithmetic-combinatorial invariant analogous to Selberg zeta for hyperbolic surfaces. Longer-horizon; see the S-Division `Ramanujan castles / Ihara zeta` thread.
 
-The forthcoming `spectral-analysis` hub page (S-Division on `IDEAS.md`) will be the toolkit-side companion to these Axis-9 types when written — this axis catalogs the *predicates on individual castles*; that page will catalog the *methods for computing spectra*.
+[[spectral-analysis](pages/spectral-analysis.md)] is the toolkit-side companion to this axis — this axis catalogs the *predicates on individual castles*; that page catalogs the *methods for computing spectra*. The two evolve together: a completed spectral method + a satisfied predicate = a named castle type. Ramanujan castle is the current live pairing (method: Ihara / adjacency-spectrum; predicate: Alon-Boppana bound).
 
 ## Open threads this classification opens
 
@@ -281,6 +281,7 @@ The taxonomy makes explicit which sub-families the wiki has, which are candidate
 - [[castle-sign](pages/castle-sign.md)] / [[castle-foata-transform](pages/castle-foata-transform.md)] — the parity / peak-count / record statistics several types predicate on.
 - [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the framework the rainbow type maps onto directly.
 - [[castle-snippets](pages/castle-snippets.md)] — tested Python one-liners for each of the classification predicates on this page.
+- [[spectral-analysis](pages/spectral-analysis.md)] — the methods hub paired with Axis 9's spectral predicates.
 
 ## Footnotes
 

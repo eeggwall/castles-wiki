@@ -148,6 +148,7 @@ This is the real-number counterpart of the [[mod-p-observatory](pages/mod-p-obse
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] — the algebraic/transcendental split the named constants inhabit.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] — the orders (`k+1` in L, `2L−2` in k) the two polynomial families realize.
 - [[finite-fields](pages/finite-fields.md)] — the field structure behind the mod-p eigenvalue orders.
+- [[spectral-analysis](pages/spectral-analysis.md)] — sibling thread at the *operator* level; this page is at the *sequence* level (`P(k,L)` recurrence characteristic polynomials).
 
 ## Footnotes
 
