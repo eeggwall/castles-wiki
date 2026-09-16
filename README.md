@@ -68,11 +68,11 @@ The hook runs `bin/check-contradictions.py` and `bin/lint-mechanical.py --staged
 
 ### 3. Wire up the MCP servers
 
-`.mcp.json` configures two MCP servers that `wiki-ingest` uses. Its paths are
-**machine-specific** and its MediaWiki credentials live in an external file, so you'll need to
-adjust it for your machine — see the [MCP servers](#mcp-servers) section below for what each
-one is and how to point `.mcp.json` at it. *(This step is only needed if you'll ingest
-MediaWiki pages or PDFs; plain URLs / files / notes work without it.)*
+`.mcp.json` configures two MCP servers that `wiki-ingest` uses. Both are launched via `npx`,
+so the PDF reader works out of the box; only the MediaWiki server needs a one-line edit to
+point at your (external, un-committed) credentials file. See the [MCP
+servers](#mcp-servers) section below. *(This step is only needed if you'll ingest MediaWiki
+pages or PDFs; plain URLs / files / notes work without it.)*
 
 ### 4. Use it
 
@@ -104,48 +104,39 @@ never auto-commit, and the git history *is* the operation log (see Conventions).
 
 `wiki-ingest` reaches sources through two [MCP](https://modelcontextprotocol.io/) servers,
 both declared in [`.mcp.json`](.mcp.json) at the repo root. Claude Code launches them
-automatically when you open the repo — but the config in this clone points at **paths on the
-original machine**, so you must edit `.mcp.json` before they'll start on yours.
+automatically when you open the repo.
 
 | Server | Package | What the wiki uses it for |
 |---|---|---|
 | `mediawiki-mcp-server` | [`@professional-wiki/mediawiki-mcp-server`](https://www.npmjs.com/package/@professional-wiki/mediawiki-mcp-server) | Read (and, with credentials, edit) MediaWiki pages — the wikitext sources under `raw/` originate here, on charlesreid1.com |
 | `pdf-reader` | [`@sylphx/pdf-reader-mcp`](https://www.npmjs.com/package/@sylphx/pdf-reader-mcp) | Read and search PDFs so `wiki-ingest` can pull their knowledge into the wiki |
 
-Neither package is committed. Install both into a directory of your choice, then point
-`.mcp.json` at each server's `dist/index.js`. To match the sample paths below:
+**`pdf-reader` works with zero setup.** `.mcp.json` invokes it via `npx -y
+@sylphx/pdf-reader-mcp`, so nothing is committed and no machine-specific paths are involved
+— you just need `node` (≥ 22.13) and `npm` on `PATH`. First launch downloads the package;
+subsequent launches use the npx cache.
 
-```bash
-mkdir -p ~/.local/mcp-servers && cd ~/.local/mcp-servers
-npm install @professional-wiki/mediawiki-mcp-server @sylphx/pdf-reader-mcp
-```
+**`mediawiki-mcp-server` needs one edit** — the `CONFIG` env var must point at an external,
+un-committed credentials JSON (MediaWiki API URL + OAuth/bot credentials). Create your own
+and update the path in `.mcp.json`. See the [server's
+docs](https://github.com/ProfessionalWiki/mediawiki-mcp-server) for the config shape. The
+package itself is launched via `npx`, same as pdf-reader — no install step required.
 
-**What to change in `.mcp.json`:**
-
-- **`command` / `args`** — the absolute paths to each server's `dist/index.js`. In this clone
-  they are under `/Users/charles/.local/mcp-servers/node_modules/…`; repoint them at your own
-  install location.
-- **`mediawiki-mcp-server` → `env.CONFIG`** — an absolute path to a **MediaWiki config JSON
-  that lives outside the repo** (credentials are never committed). It holds the wiki's API URL
-  and the OAuth / bot credentials used for reads and edits. Create your own and point `CONFIG`
-  at it. See the [server's docs](https://github.com/ProfessionalWiki/mediawiki-mcp-server) for
-  the config shape.
-
-The current wiring (edit to match your machine):
+The current wiring:
 
 ```jsonc
 {
   "mcpServers": {
     "mediawiki-mcp-server": {
       "type": "stdio",
-      "command": "node",
-      "args": ["/path/to/.local/mcp-servers/node_modules/@professional-wiki/mediawiki-mcp-server/dist/index.js"],
-      "env": { "CONFIG": "/Users/charles/.config/mediawiki-mcp/config.json" }  // ← your external, un-committed credentials file
+      "command": "npx",
+      "args": ["-y", "@professional-wiki/mediawiki-mcp-server"],
+      "env": { "CONFIG": "/absolute/path/to/mediawiki-mcp/config.json" }  // ← your external, un-committed credentials file
     },
     "pdf-reader": {
       "type": "stdio",
-      "command": "node",
-      "args": ["/path/to/.local/mcp-servers/node_modules/@sylphx/pdf-reader-mcp/dist/index.js"]
+      "command": "npx",
+      "args": ["-y", "@sylphx/pdf-reader-mcp"]
     }
   }
 }

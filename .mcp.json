@@ -2,20 +2,16 @@
   "mcpServers": {
     "mediawiki-mcp-server": {
       "type": "stdio",
-      "command": "node",
-      "args": [
-        "/Users/charles/.local/mcp-servers/node_modules/@professional-wiki/mediawiki-mcp-server/dist/index.js"
-      ],
+      "command": "npx",
+      "args": ["-y", "@professional-wiki/mediawiki-mcp-server"],
       "env": {
-        "CONFIG": "/Users/charles/.config/mediawiki-mcp/config.json"
+        "CONFIG": "/absolute/path/to/mediawiki-mcp/config.json"
       }
     },
     "pdf-reader": {
       "type": "stdio",
-      "command": "node",
-      "args": [
-        "/Users/charles/.local/mcp-servers/node_modules/@sylphx/pdf-reader-mcp/dist/index.js"
-      ]
+      "command": "npx",
+      "args": ["-y", "@sylphx/pdf-reader-mcp"]
     }
   }
 }
