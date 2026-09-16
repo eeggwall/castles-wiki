@@ -42,7 +42,7 @@ The name "castle polyomino" reflects the visual intuition: a valid configuration
 - [[convex-castle](pages/convex-castle.md)] — a structurally important sub-class of castle.
 - [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] — the cycle-factorization reading of a castle.
 - [[generating-functions](pages/generating-functions.md)] — the intended method for counting castle configurations at large parameters.
-- [[castle-classification](pages/castle-classification.md)] — the framework organizing castle sub-families by skyline predicate; [[castle-types](pages/castle-types.md)] is its 42-type catalog.
+- [[castle-classification](pages/castle-classification.md)] — the framework organizing castle sub-families by skyline predicate; catalogs 42 types across 7 structural axes.
 
 ## Footnotes
 

@@ -1,9 +1,9 @@
 ---
 title: Castle classification
 category: Concepts
-summary: A classification framework for castle sub-families. Every castle is column-convex + bottom-aligned by construction, so a "castle type" is a further restriction on the skyline `(c_1, …, c_w)`. Ties the 42 types on [[castle-types]] to existing wiki threads (convex, Ferrers, Dyck/Motzkin path, stack polyomino, metallic-mean strip) and marks which have counts, candidate counts, or open questions.
+summary: A classification framework for castle sub-families. Every castle is column-convex + bottom-aligned by construction, so a "castle type" is a further restriction on the skyline `(c_1, …, c_w)`. Catalogs 42 types (7 base from the polyomino literature, 35 proposed) organized into 7 structural axes plus a transversal metallic-mean growth-constant axis, each tied to the wiki thread that already touches it and marked with count status.
 tags: [concept, castle, classification, taxonomy, skyline]
-sources: [castle-types]
+sources: [castle-classification]
 created: 2026-09-15
 updated: 2026-09-15
 ---
@@ -20,7 +20,9 @@ c_1, c_2, …, c_w      with 1 ≤ c_i ≤ h and max_i c_i = h.
 
 Every castle is automatically **column-convex** (each column is one contiguous vertical run) and **bottom-aligned** (row 1 is a full-width block). So a "**castle type**" is a **further restriction on the skyline** — a predicate on `(c_1, …, c_w)`. PE 502's even-block parity constraint is orthogonal to typing: each type is defined without reference to parity, and the even-block projector `(A ± P)/2` ([[castle-sign](pages/castle-sign.md)]) is applied on top when needed.[^1]
 
-The upstream [[castle-types](pages/castle-types.md)] page catalogs 42 such types — 7 **base types** drawn from the polyomino literature and 35 **proposed types** aggregated or newly defined. This page organizes those types into a framework tied to the wiki's existing counting apparatus.
+## Upstream source
+
+The type catalog is hydrated from `charlesreid1.com/wiki/Project_Euler/502/Castle_Types` (fetched 2026-09-15; wikitext cached at `raw/castle-types.wiki`). That page defines 42 types — **7 base types** drawn from the polyomino literature (column-convex, unimodal, directed, parallelogram, Ferrers, staircase, m-disparate)[^2] and **35 proposed types** aggregated from adjacent literature or newly defined (convex/row-convex, reverse Ferrers, k-modal, m-smooth, Dyck-path, Motzkin-path, palindromic, self-conjugate, rainbow, hook, crenellated, moated, twin-peak, single-summit, single-valley, and so on).[^3] The upstream page states the types as skyline predicates only; this page organizes them into structural axes, ties each type to the wiki thread that already touches it, and marks which have counts, which are candidates, and which are open.
 
 ## What "classification" gives you
 
@@ -177,10 +179,6 @@ The taxonomy makes explicit which sub-families the wiki has, which are candidate
 5. **δ_a-castle identification** for `a ≥ 3` — the metallic-mean ladder growth constants realized in castle rule modifications; tied to [[metallic-means](pages/metallic-means.md)].
 6. **Even-peak** — parity via peak count rather than block count; genuinely different from [[castle-sign](pages/castle-sign.md)]'s `(−1)^blocks`.
 
-## Appearances in Sources
-
-- [[castle-types](pages/castle-types.md)] — the upstream catalog of 42 castle types this page organizes.
-
 ## Related Concepts
 
 - [[castle-polyomino](pages/castle-polyomino.md)] — the base object.
@@ -196,5 +194,6 @@ The taxonomy makes explicit which sub-families the wiki has, which are candidate
 
 ## Footnotes
 
-[^1]: [[castle-types](pages/castle-types.md)] §"(lead)" L1-L9 — "A castle on a w × h grid is determined by its skyline, the sequence of column heights c_1, c_2, …, c_w with 1 ≤ c_i ≤ h and max_i c_i = h. (Problem 502 also requires an even number of blocks; the types below mostly ignore, or independently re-impose, that parity rule.) Every castle is automatically column-convex and bottom-aligned, so each type is a further restriction on the skyline."
-[^2]: [[castle-types](pages/castle-types.md)] §"Base types" L11-L19 — the 7 base types (column-convex, unimodal, directed, parallelogram, Ferrers, staircase, m-disparate) with their skyline-predicate definitions.
+[^1]: raw/castle-types.wiki L1-L9 — "A castle on a w × h grid is determined by its skyline, the sequence of column heights c_1, c_2, …, c_w with 1 ≤ c_i ≤ h and max_i c_i = h. (Problem 502 also requires an even number of blocks; the types below mostly ignore, or independently re-impose, that parity rule.) Every castle is automatically column-convex and bottom-aligned, so each type is a further restriction on the skyline." (Source: https://charlesreid1.com/wiki/Project_Euler/502/Castle_Types, fetched 2026-09-15.)
+[^2]: raw/castle-types.wiki §"Base types" L11-L19 — the 7 base types: column-convex, unimodal (`c_1 ≤ … ≤ c_p ≥ … ≥ c_w`), directed (every cell reachable from bottom-left by east/north path), parallelogram (perpendicular-to-main-diagonal sections are connected), Ferrers (`c_1 ≥ … ≥ c_w`), staircase (Ferrers with strict inequality — all distinct heights), m-disparate (`|c_{i+1} − c_i| ≥ m`).
+[^3]: raw/castle-types.wiki §"Proposed additional types" L21-L57 — the 35 proposed types, numbered 1-35: convex/row-convex, reverse Ferrers, strictly unimodal, bimodal, k-modal, anti-unimodal (V-shaped), plateau-free, m-smooth (Lipschitz), zigzag, alternating parity, palindromic, centrally symmetric, Dyck-path, Motzkin-path, flat-top, single-summit, even-area, even-peak, equal-block, two-level, self-conjugate, crenellated, moated, rainbow, hook, twin-peak, single-valley, fence-post, linear, convex-skyline (second differences ≥ 0), concave-skyline (≤ 0), triangular-area, prime-top, integer-mean, boxcastle.

@@ -64,7 +64,7 @@ where `C(m,k) = m!/(k!(m−k)!)` is the binomial coefficient. For example, at *H
 - [[column-convex-polyomino](pages/column-convex-polyomino.md)] — the column-convexity every castle already has.
 - [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] — the row-convexity that (with column-convexity) defines the convex castle.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] — the column-convex-polygon literature this convexity connects to.
-- [[castle-classification](pages/castle-classification.md)] — the framework that names this class the **unimodal type**, one of the 7 base castle types from [[castle-types](pages/castle-types.md)].
+- [[castle-classification](pages/castle-classification.md)] — the framework that names this class the **unimodal type**, one of the 7 base castle types.
 
 ## Footnotes
 
