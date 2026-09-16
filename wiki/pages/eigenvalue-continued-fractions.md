@@ -108,7 +108,7 @@ So the k-direction eigenvalues come in reciprocal pairs `r ↔ ±1/r` — the tr
 **The two quadratics are the real, purely-periodic cases.** The castle's *actual* quadratic numbers are not among these high-degree roots; they sit in the surrounding objects, and both are norm-−1 reduced surds of period one:[^4]
 
 - `φ = (1+√5)/2 = [1; 1, 1, …]`, root of `x² − x − 1` — Fibonacci's growth rate (`F_n = (φ^n − φ̂^n)/√5`, [[aocp-generating-functions](pages/aocp-generating-functions.md)]) and the `2^{n−1} − F_{n−1}` of prime-castle counting ([[castle-by-area](pages/castle-by-area.md)]).
-- `√2 + 1 = [2; 2, 2, …]`, root of `x² − 2x − 1` — the tower-word growth constant from [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)].
+- `√2 + 1 = [2; 2, 2, …]`, root of `x² − 2x − 1` — the tower-word growth constant from [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]. The integer sequence that realizes this surd via its Binet form is the [[pell-numbers](pages/pell-numbers.md)] (`P_n = 2P_{n−1} + P_{n−2}`, OEIS A000129), whose convergents `P_{n+1}/P_n = 2, 5/2, 12/5, 29/12, 70/29, 169/70, …` are the continued-fraction truncations of `1 + √2`; the Pell strip mnemonic on [[pell-castle-strip](pages/pell-castle-strip.md)] is a physical castle-strip realization.
 
 Both are the fundamental units of their quadratic fields (`φ` of `Q(√5)`, `√2+1` of `Q(√2)`) — what "norm −1 reduced surd" means for a real quadratic field.
 
@@ -131,6 +131,8 @@ This is the real-number counterpart of the [[mod-p-observatory](pages/mod-p-obse
 
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — the `√2 + 1` growth constant and the Flajolet/Motzkin continued fractions this page's eigenvalue side mirrors.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the Fibonacci/`φ` method, the golden ratio's algebraic home.
+- [[pell-numbers](pages/pell-numbers.md)] — the integer sequence realizing `1 + √2 = [2;2,2,…]`, the Pell/silver-ratio companion to Fibonacci/`φ`.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] — a castle-strip mnemonic realizing the silver-ratio thread through PE 502's structural rules.
 - [[castle-by-area](pages/castle-by-area.md)] — `2^{n−1} − F_{n−1}`, where Fibonacci/`φ` enters the castle count.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] — the algebraic/transcendental split the named constants inhabit.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] — the orders (`k+1` in L, `2L−2` in k) the two polynomial families realize.

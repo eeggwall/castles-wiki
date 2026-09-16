@@ -26,6 +26,7 @@ Ideas that have gotten some attention and have their own wiki pages.
 - [x] **[Eigenvalue continued fractions](wiki/pages/eigenvalue-continued-fractions.md)** — the castle's self-reciprocal (palindromic/anti-palindromic) characteristic polynomials, Lagrange/Galois, and the two norm-−1 quadratics φ and √2+1 as purely periodic continued fractions.
 - [x] **[The algebraic/transcendental wall](wiki/pages/algebraic-transcendental-wall.md)** — C-finite counts carry only algebraic constants exactly; e and π are locked out of closed forms and enter only through limits (Stirling, Catalan, natural-log growth).
 - [x] **[Castles as an upgrade of the (n−1)! cycle count](wiki/pages/castles-as-upgraded-cycle-count.md)** — seminar-shaped analysis: the elementary `(n−1)!` warm-up (quotient-by-rotation, fix-a-starting-point) upgraded step-by-step into the castle's [castle-sign](wiki/pages/castle-sign.md) / [castle-foata-transform](wiki/pages/castle-foata-transform.md) / [monotone-streak-factorization](wiki/pages/monotone-streak-factorization.md) triad; `F(4,2)=10` hand-checked twice.
+- [x] **[The Pell castle strip](wiki/pages/pell-castle-strip.md)** — seminar-shaped: an Analytic Combinatorics end-of-chapter exercise on `D(x) = 1/(1−2x−x²)` opens directly onto PE 502's structural rules. The denominator splits into `2x` (per-column binary state, `T(1,L) = 2^L`) and `x²` (the mandatory-gap rule-3 tax); the counts are [pell-numbers](wiki/pages/pell-numbers.md) (OEIS A000129 shifted), growth constant `1 + √2 = [2;2,2,…]`.
 
 ## Rough ideas
 
@@ -40,6 +41,8 @@ Partially-formed notions worth developing further.
 
 - [ ] **Transfer matrices vs Kitamasa** — why the L-direction transfer matrix is O(D^3 log w) but the rational-function form is O(D^2 log w).
 - [ ] **Asymptotics** — leading term h^w, corrections, and the regimes where w is fixed, h is fixed, or w = h = n.
+- [x] **The (n−1)! cycle-count upgrade** — read PE 502 as the elementary `(n−1)!` labelled-cycle count (quotient-by-rotation, fix-a-starting-point) upgraded step-by-step into the castle's [castle-sign](wiki/pages/castle-sign.md) / [castle-foata-transform](wiki/pages/castle-foata-transform.md) / [monotone-streak-factorization](wiki/pages/monotone-streak-factorization.md) triad; written up as [castles-as-upgraded-cycle-count](wiki/pages/castles-as-upgraded-cycle-count.md).
+- [x] **The Pell castle strip** — an AC end-of-chapter exercise on `D(x) = 1/(1−2x−x²)` spirals into PE 502's structural rules (`2x` = per-column binary state, `x²` = mandatory-gap rule 3), with [pell-numbers](wiki/pages/pell-numbers.md) as the count sequence and `1+√2` as the growth constant; written up as [pell-castle-strip](wiki/pages/pell-castle-strip.md).
 
 ### Q Division (q-numbers — castles by area)
 

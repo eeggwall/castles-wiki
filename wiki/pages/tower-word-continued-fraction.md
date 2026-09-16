@@ -27,7 +27,7 @@ The continued fraction the castle thread was drawn toward, `1 + 1/(1 + 1/(1 + �
 
 Mark each step `U, R, D` by `z` (total length), so a tower word of width `L` and `b` blocks is worth `z^{L + 2b}`. Each length then has finitely many tower words, and the count is **OEIS A004149**, "generalized Catalan numbers", whose entry states the object verbatim: *"Number of Motzkin paths of length n−1 (n≥1) with no peaks and no valleys, i.e., no UD's and no DU's, where U=(1,1) and D=(1,−1)."* (Emeric Deutsch, 2004).[^4] So **tower words of length `L` = A004149(`L+1`)**: `1, 1, 1, 2, 4, 8, 16, 33, 69, 146, 312, 673, 1463, 3202, 7050, …`, recomputed here two independent ways (direct enumeration and iterating the grammar) with the same result.[^4]
 
-The generating function is **algebraic, not rational** — the bounded-height language is regular, but the unbounded-height tower word is context-free (see [[tower-word-language](pages/tower-word-language.md)]). Reading the grammar with each step marked by `z` gives the fixed-point equation
+The generating function is **algebraic, not rational** — the bounded-height language is regular, but the unbounded-height tower word is context-free (see [[tower-word-language](pages/tower-word-language.md)]). The **integer sequence realization** of the growth constant `1 + √2` is the [[pell-numbers](pages/pell-numbers.md)] (`P_n = 2P_{n−1} + P_{n−2}`, OEIS A000129) — the Pell/silver-ratio counterpart of Fibonacci/`φ`; a physical castle-strip mnemonic that produces Pell directly is on [[pell-castle-strip](pages/pell-castle-strip.md)]. Reading the tower grammar with each step marked by `z` gives the fixed-point equation
 
 ```
 E(z) = (1 + z²(E − 1)) / (1 − z − z³(E − 1))   ⟹   z³E² − (1 − z − z² + z³)E + (1 − z²) = 0,
@@ -61,6 +61,7 @@ The open end is the tower word's *own* continued fraction. A004149 is a generali
 - [[castle-by-area](pages/castle-by-area.md)] — the area grading whose q-analog is the q-continued-fraction thread.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — q-Motzkin and the q-Bessel ratio, the q-side of this correspondence.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] / [[closed-form-hunting](pages/closed-form-hunting.md)] — the rational GFs and characteristic polynomials whose (palindromic) roots are the periodic-continued-fraction side of the same story.
+- [[pell-numbers](pages/pell-numbers.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] — the integer-sequence and castle-strip realizations of the growth constant `1 + √2`.
 
 ## Footnotes
 

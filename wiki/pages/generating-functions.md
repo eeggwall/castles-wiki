@@ -3,7 +3,7 @@ title: Generating functions
 category: Concepts
 summary: A multivariate polynomial whose variables are the problem's dimensions and whose coefficients are the counts — the intended tool for computing F(w,h). Framed under the [[symbolic-method]] at the top, with recurrence-⇒-rational-GF as its most-used special case.
 tags: [concept, generating-functions, combinatorics, method, symbolic-method]
-sources: [project-euler-502-problem-setup, project-euler-502-representations, aocp-generating-functions, generating-functions-topic, analytic-combinatorics-part-a]
+sources: [project-euler-502-problem-setup, project-euler-502-representations, aocp-generating-functions, generating-functions-topic, analytic-combinatorics-part-a, pe502-pell-castle-strip]
 created: 2026-09-13
 updated: 2026-09-15
 ---
@@ -24,6 +24,30 @@ In the context of this wiki, the generating function is the intended tool for co
 
 The three source treatments are complementary: [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] (Flajolet–Sedgewick, the general symbolic-method framework), [[aocp-generating-functions](pages/aocp-generating-functions.md)] (Knuth, the Fibonacci-method / rational-GF flavor), and [[generating-functions-topic](pages/generating-functions-topic.md)] (Sedgewick–Flajolet / Trotter, the intuition-and-examples one with an explicit "Application: PE 502" section). The last two work at the level of *"you have a recurrence, here is the OGF"*; the first works at the level of *"you have a specification, here is the OGF."*
 
+## GF → recurrence: the coefficient-matching mechanic
+
+The everyday operation the castle-counting apparatus depends on — read a linear recurrence off a rational generating function — is a **five-line mechanical procedure** that doesn't need "base cases" as a separate argument. If `G(x) = ∑ a_n x^n = N(x)/D(x)`, clear the denominator to get `D(x)·G(x) = N(x)`, then match coefficients of `x^n` on both sides. Every `a_i` with negative index is `0` by convention (a power series has no negative powers), so the recurrence *and* the boundary conditions come out of the same equation, evaluated at successive `n`.[^4]
+
+**Worked example** — the [[pell-castle-strip](pages/pell-castle-strip.md)] mnemonic. For `D(x) = 1/(1 − 2x − x²) = ∑ a_i x^i`, clear the denominator:
+
+```
+(1 − 2x − x²) · D(x) = 1.
+```
+
+- `[x^0]`: `a_0 = 1`.
+- `[x^1]`: `a_1 − 2·a_0 = 0`, so `a_1 = 2`.
+- `[x^{n}]` for `n ≥ 2`: `a_n − 2·a_{n−1} − a_{n−2} = 0`.
+
+Uniformly (with `a_{−1} = a_{−2} = 0`):
+
+```
+a_n − 2·a_{n−1} − a_{n−2}  =  [n = 0].
+```
+
+The "base cases" `a_0 = 1, a_1 = 2` are this recurrence evaluated at `n = 0, 1` with the negative-index zeros substituted. No separate argument.[^4]
+
+**Why this matters.** Every rational generating function in the castle machinery — `E_k = 1/(1 − (k+1)x)`, `P_k = num_k/den_k`, the C-finite recurrences on [[recurrence-discovery](pages/recurrence-discovery.md)] — is reached the same way. Coefficient matching is the shortcut that makes "read the recurrence off the denominator" fully mechanical: the coefficients of `−D(x)` (excluding the constant `1`) are the recurrence weights. This is also the mechanic behind the [[pell-castle-strip](pages/pell-castle-strip.md)] seminar arc, where a textbook end-of-chapter exercise on this technique opens directly onto PE 502's structural rules.
+
 ## Appearances in Sources
 
 - [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] — describes the generating-function approach in the abstract and names it the intended method for the count.
@@ -31,6 +55,7 @@ The three source treatments are complementary: [[analytic-combinatorics-part-a](
 - [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] — Flajolet–Sedgewick's symbolic-method framework: the general specification-to-OGF dictionary above the recurrence-first apparatus of the other two sources.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — Knuth's general toolkit: recurrence ⇒ rational GF, partial fractions, convolution, the negative binomial.
 - [[generating-functions-topic](pages/generating-functions-topic.md)] — the Sedgewick–Flajolet/Trotter reference, with the imaginary-roots / EGF-parity / every-4th-term examples and an explicit PE 502 section.
+- [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] — worked coefficient-matching example (the Pell strip mnemonic).
 
 ## Related Concepts
 
@@ -40,9 +65,12 @@ The three source treatments are complementary: [[analytic-combinatorics-part-a](
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the grammar the castle generating functions are read off; a recursive specification in the symbolic-method style.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the general generating-function method (Fibonacci example, linear-recurrence ⇒ rational GF).
 - [[castle-polyomino](pages/castle-polyomino.md)] — the object whose configurations are being counted.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] — the seminar-shaped worked example of "coefficient matching → castle mnemonic → silver-ratio thread."
+- [[pell-numbers](pages/pell-numbers.md)] — the integer sequence that mnemonic produces.
 
 ## Footnotes
 
 [^1]: [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] §"Generating functions" L17-20 — "come up with a multivariate polynomial whose variables are dimensions of the problem (width and height, or some other variables if they are more convenient) and whose coefficients are the solutions to our problem. This turns the problem of finding a solution for a particular problem into evaluating a particular term of the generating function (where each term is implemented using a recursive function or a similar method)."
 [^2]: [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] Theorem I.1 p.27 and Theorem I.2 pp. 33-34 — "The constructions of union, cartesian product, sequence, powerset, multiset, and cycle are all admissible ... Symbolic method, unlabelled universe. The generating function of a constructible class is a component of a system of functional equations whose terms are built from 1, z, +, ×, Q, Exp, Exp̄, Log."
 [^3]: [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] Proposition I.2 p.52 — "Any S-regular language has an OGF that is a rational function. This OGF is obtained from a regular specification of the language by translating each letter into the variable z, disjoint unions into sums, cartesian products into products, and sequences into quasi-inverses, (1−·)^{−1}."
+[^4]: [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] §"Where the recurrence comes from" L9-L19 — the coefficient-matching mechanic worked on `D(x) = 1/(1 − 2x − x²)`: "Matching coefficients on (1 − 2x − x²) D(x) = 1: [x^0]: a_0 = 1; [x^1]: a_1 − 2a_0 = 0, so a_1 = 2; [x^{n+2}] for n ≥ 0: a_{n+2} − 2a_{n+1} − a_n = 0. ... Uniformly: a_n − 2a_{n−1} − a_{n−2} = [n = 0] with a_{−1} = a_{−2} = 0. The base cases a_0 = 1, a_1 = 2 are the same recurrence evaluated at n = 0, 1 with those zeros substituted. Nothing special about them." Recurrence and coefficient sequence `1, 2, 5, 12, 29, 70, 169, …` re-verified during ingest.

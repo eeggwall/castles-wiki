@@ -53,6 +53,8 @@ num_k = 2·den_{k−1} − num_{k−1}
 den_k = den_{k−1}·(1 − 2x) + x·num_{k−1}
 ```
 
+**Atomic reading of the `den_k` update** (`(1 − 2x) + x·num_{k−1}` shape). The `(1 − 2x)` factor is a **per-column binary atom** — the height-2 unsigned tower count `T(1,L) = 2^L` — and the trailing `x·num_{k−1}` is a smaller `x`-weighted correction that encodes the **mandatory-gap tax** of PE 502's rule 3 (adjacent same-row blocks need width-`≥1` gaps between them). This is easiest to see in the **baby case** `k = 1` without the signed layer, `D(x) = 1/(1 − 2x − x²)`: the denominator splits into a `2x` width-1-weight-2 atom (per-column binary state) and an `x²` width-2-weight-1 atom (block-end + mandatory gap bundled), and its coefficient sequence `1, 2, 5, 12, 29, 70, 169, …` is the [[pell-numbers](pages/pell-numbers.md)] shifted (OEIS A000129). The full seminar arc from that observation is on [[pell-castle-strip](pages/pell-castle-strip.md)]; the recurrence's `(1 − 2x)`-plus-`x·num_{k−1}` shape is the general castle's version of the Pell strip's `1 − 2x − x²`, generalized to signed / higher-`k` towers.
+
 For fixed *k*, `P_k` is rational with denominator of degree *k*+1, so `P(k,L)` obeys an order-(*k*+1) linear recurrence in *L*. Two small cases:[^6]
 
 - *k*=1: `P(1,L) = 2P(1,L−1) − 2P(1,L−2)`, closed form `P(1,L) = Re((1+i)^{L+1})` — the OEIS sequence `A146559(L+1)` (see [[signed-tower-count](pages/signed-tower-count.md)]).
@@ -112,6 +114,7 @@ The two integer values also have clean factorizations (confirmed by factoring du
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the canonical form the fast evaluation sums over.
 - [[convex-castle](pages/convex-castle.md)] — the enumeration-side backbone, complementary to this counting-side formula.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] — the two-idea pedagogical version of this derivation.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[pell-numbers](pages/pell-numbers.md)] — the baby case `k=1` unsigned mnemonic; its `1 − 2x − x²` denominator splits along PE 502's rules and generates the Pell numbers.
 
 ## Footnotes
 
