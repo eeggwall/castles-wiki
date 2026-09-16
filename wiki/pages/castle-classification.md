@@ -242,6 +242,7 @@ The taxonomy makes explicit which sub-families the wiki has, which are candidate
 - [[castle-by-area](pages/castle-by-area.md)] — where several types (even-area, valley) are counted.
 - [[castle-sign](pages/castle-sign.md)] / [[castle-foata-transform](pages/castle-foata-transform.md)] — the parity / peak-count / record statistics several types predicate on.
 - [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the framework the rainbow type maps onto directly.
+- [[castle-snippets](pages/castle-snippets.md)] — tested Python one-liners for each of the classification predicates on this page.
 
 ## Footnotes
 

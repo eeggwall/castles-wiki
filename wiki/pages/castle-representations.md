@@ -81,6 +81,7 @@ The castle-factoring work sketches three additional encodings, each a re-view of
 - [[castle-polyomino](pages/castle-polyomino.md)] — the object being encoded.
 - [[castle-counting-function](pages/castle-counting-function.md)] — the count these encodings are built to enable.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)], [[castle-sign](pages/castle-sign.md)], [[castle-foata-transform](pages/castle-foata-transform.md)] — built on the column-height encoding.
+- [[castle-snippets](pages/castle-snippets.md)] — tested Python one-liners for enumerating and predicating on the column-height (skyline) encoding.
 
 ## Footnotes
 

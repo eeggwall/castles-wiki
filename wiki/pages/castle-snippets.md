@@ -1,0 +1,375 @@
+---
+title: Castle snippets — Python one-liners
+category: Concepts
+summary: A living reference of short, tested Python snippets for enumerating castles, testing classification predicates, computing growth constants, and looking up OEIS sequences. Every snippet ran during ingest; outputs pinned to the values shown.
+tags: [concept, castle, python, snippets, computational, classification, reference]
+sources: [project-euler-502-brute-force]
+created: 2026-09-16
+updated: 2026-09-16
+---
+
+# Castle snippets — Python one-liners
+
+## What this is
+
+A living reference of **short, tested Python snippets** for exploring castles computationally. Each snippet:
+
+- Runs in a plain Python REPL (no external deps unless one line justifies the import — `itertools`, `math`).
+- Follows the wiki's conventions: skyline `c = (c_1, …, c_w)` with `1 ≤ c_i ≤ h` and `max c = h` matches [[castle-representations](pages/castle-representations.md)]; block count matches [[castle-sign](pages/castle-sign.md)] and [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]; classification names match [[castle-classification](pages/castle-classification.md)].
+- Was **executed during ingest**; every printed output is pinned. If a snippet's output disagrees with what this page shows, the wiki is wrong — file a fix.
+
+The purpose is not derivations or full implementations (see [[castle-counting-formula](pages/castle-counting-formula.md)], [[kitamasa](pages/kitamasa.md)], [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] for those). The purpose is: **"the wiki mentions class X; here is a two-line function that generates it."**
+
+## Enumeration primitives
+
+### `all_castles(w, h)` → list of skylines
+
+Every castle of width `w` and exact height `h`.
+
+```python
+from itertools import product
+
+def all_castles(w, h):
+    return [c for c in product(range(1, h+1), repeat=w) if max(c) == h]
+```
+
+```
+>>> len(all_castles(4, 2))
+15
+>>> all_castles(2, 2)
+[(1, 2), (2, 1), (2, 2)]
+```
+
+Wiki tie: [[castle-representations](pages/castle-representations.md)] integer-tuple encoding; [[castle-polyomino](pages/castle-polyomino.md)] definition.
+
+### `blocks(c)` → int
+
+Block count under the wiki convention (matches [[castle-sign](pages/castle-sign.md)] and the `p_signed` DP on [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]).
+
+```python
+def blocks(c):
+    return c[0] + sum(max(0, c[i] - c[i-1]) for i in range(1, len(c)))
+```
+
+```
+>>> blocks((2, 1, 2))
+3
+>>> blocks((1, 2, 1))
+2
+>>> blocks((3, 1, 2, 1))
+4
+```
+
+### `area(c)` → int
+
+Total cell count `∑ c_i`. The natural size axis for area-graded classifications on [[castle-by-area](pages/castle-by-area.md)].
+
+```python
+def area(c):
+    return sum(c)
+```
+
+```
+>>> area((2, 1, 2))
+5
+```
+
+### `castles_where(w, h, pred)` → list of skylines
+
+Filter all castles at `(w, h)` by any predicate.
+
+```python
+def castles_where(w, h, pred):
+    return [c for c in all_castles(w, h) if pred(c)]
+```
+
+```
+>>> len(castles_where(4, 2, is_unimodal))
+10
+```
+
+Matches [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]: `C(2h+w-3, w-1) = C(5,3) = 10`.
+
+## Hand-check: `F(4, 2) = 10`
+
+Reproduce the [[castle-counting-function](pages/castle-counting-function.md)] value on the smallest interesting case using only the primitives above.
+
+```python
+even = sum(1 for c in all_castles(4, 2) if blocks(c) % 2 == 0)
+```
+
+```
+>>> even
+10
+```
+
+Also matches the [[castle-counting-formula](pages/castle-counting-formula.md)] `F(4,2) = ½(16 − 1 + 4 + 1) = 10` and the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] hand check.
+
+## Classification predicates — Axes 1-7 of [[castle-classification]]
+
+Each predicate takes a skyline `c` (a tuple or list of positive ints) and returns `bool`. Some also take `h` when the type is parameterized by height.
+
+### Axis 1: Convexity / modality
+
+```python
+def is_unimodal(c):
+    """Weakly rises to a peak, then weakly falls."""
+    i = c.index(max(c))
+    return (all(c[j] <= c[j+1] for j in range(i))
+        and all(c[j] >= c[j+1] for j in range(i, len(c)-1)))
+
+def is_ferrers(c):
+    return all(c[i] >= c[i+1] for i in range(len(c)-1))
+
+def is_reverse_ferrers(c):
+    return all(c[i] <= c[i+1] for i in range(len(c)-1))
+
+def is_staircase(c):
+    """Ferrers with all heights distinct."""
+    return is_ferrers(c) and len(set(c)) == len(c)
+
+def is_strictly_unimodal(c):
+    i = c.index(max(c))
+    return (all(c[j] < c[j+1] for j in range(i))
+        and all(c[j] > c[j+1] for j in range(i, len(c)-1)))
+```
+
+```
+>>> is_unimodal([1,2,3,2,1])
+True
+>>> is_unimodal([1,3,2,3])
+False
+>>> is_ferrers([3,3,2,1])
+True
+>>> is_ferrers([1,2,3])
+False
+>>> is_reverse_ferrers([1,2,3])
+True
+>>> is_staircase([3,2,1])
+True
+>>> is_staircase([3,3,2,1])
+False
+```
+
+Wiki ties: [[convex-castle](pages/convex-castle.md)] (unimodal), [[polyominoes](pages/polyominoes.md)] (Ferrers/staircase in the taxonomy), [[castle-classification](pages/castle-classification.md)] Axis 1.
+
+### Axis 2: Rate of change
+
+```python
+def is_m_smooth(c, m=1):
+    """|c_{i+1} - c_i| <= m for all i."""
+    return all(abs(c[i+1] - c[i]) <= m for i in range(len(c)-1))
+
+def is_m_disparate(c, m=1):
+    """|c_{i+1} - c_i| >= m for all i."""
+    return all(abs(c[i+1] - c[i]) >= m for i in range(len(c)-1))
+
+def is_plateau_free(c):
+    return all(c[i] != c[i+1] for i in range(len(c)-1))
+```
+
+```
+>>> is_m_smooth([1,2,1,2], 1)
+True
+>>> is_m_smooth([1,3,1,3], 1)
+False
+>>> is_m_disparate([1,3,1,3], 2)
+True
+```
+
+Wiki ties: [[castle-classification](pages/castle-classification.md)] Axis 2. Note `is_m_smooth(c, 1)` is exactly the **Motzkin-path** predicate for the interior — see Axis 3 below.
+
+### Axis 3: Path-like
+
+```python
+def is_dyck_path(c, h):
+    """c_1 = c_w = 1, min = 1, |Delta| = 1 always."""
+    return (c[0] == 1 and c[-1] == 1 and min(c) == 1
+        and all(abs(c[i+1] - c[i]) == 1 for i in range(len(c)-1)))
+
+def is_motzkin_path(c):
+    """|Delta| <= 1 always (Dyck-path with flat steps allowed)."""
+    return all(abs(c[i+1] - c[i]) <= 1 for i in range(len(c)-1))
+```
+
+```
+>>> is_dyck_path((1,2,1,2,1), 2)
+True
+>>> is_motzkin_path((1,2,2,1,1))
+True
+```
+
+Wiki ties: [[dyck-words](pages/dyck-words.md)], [[motzkin-numbers](pages/motzkin-numbers.md)], [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)].
+
+### Axis 4: Symmetry
+
+```python
+def is_palindromic(c):
+    return list(c) == list(c)[::-1]
+
+def is_centrally_symmetric(c, h):
+    """c_i + c_{w+1-i} = h + 1 (180-degree rotation inside bounding box)."""
+    w = len(c)
+    return all(c[i] + c[w-1-i] == h + 1 for i in range(w))
+```
+
+```
+>>> is_palindromic([1,2,3,2,1])
+True
+>>> is_centrally_symmetric([1,2,3], 3)
+True
+```
+
+Wiki tie: [[castle-classification](pages/castle-classification.md)] Axis 4.
+
+### Axis 5: Extremum / value patterns
+
+```python
+def is_rainbow(c, h):
+    """w = h, heights are a permutation of {1,...,h}."""
+    return len(c) == h and sorted(c) == list(range(1, h+1))
+
+def is_boxcastle(c, h):
+    return all(x == h for x in c)
+
+def is_hook(c, h):
+    """c_1 = h, c_i = 1 for i >= 2 (Young-diagram hook)."""
+    return c[0] == h and all(x == 1 for x in c[1:])
+```
+
+```
+>>> is_rainbow((1,3,2), 3)
+True
+>>> is_rainbow((1,1,2), 3)
+False
+>>> is_boxcastle((3,3,3), 3)
+True
+>>> is_hook((3,1,1,1), 3)
+True
+```
+
+Wiki ties: [[castle-classification](pages/castle-classification.md)] Axis 5. **Rainbow castles are in bijection with `S_h`** — the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] triad applies directly (not as an upgrade) to this class.
+
+### Axis 8: growth-type predicate skeleton — the {0, 1}-strip
+
+The [[pell-castle-strip](pages/pell-castle-strip.md)]-style predicates encode the "state above the base" (0 = empty column, 1 = height-1 tower cell). See [[castle-classification](pages/castle-classification.md)] Axis 8 for the meta-classification these strips instantiate.
+
+```python
+def is_zero_one_strip(c):
+    """Golden width growth castle predicate: c in {0,1}^w, no adjacent 1s."""
+    return (all(x in (0, 1) for x in c)
+        and all(not (c[i] == 1 and c[i+1] == 1) for i in range(len(c)-1)))
+```
+
+```
+>>> is_zero_one_strip([1,0,1,0])
+True
+>>> is_zero_one_strip([1,1,0])
+False
+```
+
+Wiki tie: [[castle-classification](pages/castle-classification.md)] Axis 8 — the {0,1}-strip is a golden width growth castle; its count sequence is Fibonacci `F_{w+2}`.
+
+## Axis 8: growth-constant probes
+
+Test whether a count sequence has a metallic-mean growth constant (see [[metallic-means](pages/metallic-means.md)]) and identify which `<metal>` if so.
+
+```python
+import math
+
+def growth_constant(seq, tail=5):
+    """Estimate the growth ratio from the last `tail` consecutive ratios."""
+    ratios = [seq[i+1]/seq[i] for i in range(len(seq)-1) if seq[i] > 0]
+    return sum(ratios[-tail:]) / tail
+
+def nearest_metallic(r, max_a=6):
+    """Which delta_a = (a + sqrt(a^2+4))/2 (a = 1..max_a) is closest to r?"""
+    return min(range(1, max_a+1),
+               key=lambda a: abs(r - (a + math.sqrt(a*a + 4))/2))
+```
+
+```
+>>> pell = [1, 2, 5, 12, 29, 70, 169, 408, 985, 2378]
+>>> f"{growth_constant(pell):.6f}"
+'2.414142'
+>>> nearest_metallic(growth_constant(pell))
+2
+
+>>> fib = [1, 2, 3, 5, 8, 13, 21, 34, 55]
+>>> f"{growth_constant(fib):.6f}"
+'1.615416'
+>>> nearest_metallic(growth_constant(fib))
+1
+```
+
+Meaning: Pell → `a=2` (silver, `1+√2 ≈ 2.4142`). Fibonacci → `a=1` (golden, `φ ≈ 1.6180`). The sequence a candidate silver / golden / bronze / … *width* growth castle would produce, in the sense of [[castle-classification](pages/castle-classification.md)] Axis 8.
+
+**Cautions:**
+- `growth_constant` estimates from **width**-graded sequences; use the appropriate size-axis sequence for vertical / area / block growth castles (see [[castle-classification](pages/castle-classification.md)] Axis 8).
+- `nearest_metallic` always returns *some* answer — even a transcendental growth constant will return the closest metallic mean. Check the actual distance if uncertain:
+
+```python
+>>> trib = [1, 1, 2, 4, 7, 13, 24, 44, 81, 149]  # Tribonacci-like
+>>> r = growth_constant(trib); r
+1.8434087882822903
+>>> a = nearest_metallic(r); a, (a + math.sqrt(a*a+4))/2, abs(r - (a + math.sqrt(a*a+4))/2)
+(1, 1.618033988749895, 0.22537479953239528)
+```
+
+A gap of ~0.225 is *not* a metallic-mean hit — this is honestly not a `δ_a`-castle for small `a`. `nearest_metallic` gives the closest metal; only trust it when the residual is small.
+
+## OEIS lookup helper
+
+Format a sequence for pasting into `oeis.org`.
+
+```python
+def oeis_snippet(seq, n=10):
+    return ", ".join(str(x) for x in seq[:n])
+```
+
+```
+>>> oeis_snippet([1, 2, 5, 12, 29, 70, 169, 408, 985, 2378])
+'1, 2, 5, 12, 29, 70, 169, 408, 985, 2378'
+```
+
+Combined with `all_castles` + `blocks` this is the [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] loop in a one-liner. Example: even-block castle count `F(w, 2)` for `w = 1..8`:
+
+```python
+>>> oeis_snippet([sum(1 for c in all_castles(w, 2) if blocks(c) % 2 == 0)
+...               for w in range(1, 9)])
+'1, 3, 6, 10, 16, 28, 56, 120'
+```
+
+Paste that into `oeis.org` to check for known-sequence hits (this one lands on the [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] hyperbolic family — height-2 castles are `A038505(w+1)`).
+
+## Extension patterns
+
+The snippets above are intentionally minimal. Common extensions the reader may want:
+
+- **Compose predicates:** filter under multiple axes with `castles_where(w, h, lambda c: is_unimodal(c) and blocks(c) % 2 == 0)`.
+- **Distributions instead of counts:** replace `sum(1 for c in ... if pred)` with a `collections.Counter` on some statistic (block count, area, peak count).
+- **Larger `w, h`:** `all_castles(w, h)` builds `h^w` tuples; expect it to hit the wall around `w * log(h) ≈ 20`. For larger parameters the DP on [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] is what to reach for; the fast algorithms on [[castle-count-algorithms](pages/castle-count-algorithms.md)] handle trillion-scale inputs.
+- **Bijective constructions:** build a skyline from a step string ([[urd-step-strings](pages/urd-step-strings.md)]) or a binary run pattern ([[binary-string-bijection](pages/binary-string-bijection.md)]); these are two-line functions the wiki has not yet snippeted.
+
+## Discipline: how to add snippets to this page
+
+1. **Write the snippet in a scratch script.** No exception, ever.
+2. **Run it.** Capture the output.
+3. **Only after** you have the actual output, paste both snippet and output into this page. The output shown must be what the snippet actually produced — never a hand-computed expectation.
+4. **Cross-reference the wiki page** the snippet supports. A snippet without a wiki-page tie-in is a snippet in search of a purpose.
+
+Snippets that break this discipline will rot; snippets that follow it stay useful.
+
+## Appearances in Sources
+
+- [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] — the `p_signed` DP, `blocks_of`, and `is_unimodal` reference implementations the wiki-convention snippets above match.
+
+## Related Concepts
+
+- [[castle-classification](pages/castle-classification.md)] — the classification framework the predicates instantiate.
+- [[castle-representations](pages/castle-representations.md)] — the skyline encoding all snippets predicate on.
+- [[castle-sign](pages/castle-sign.md)] — the block-count convention `blocks(c)` matches.
+- [[metallic-means](pages/metallic-means.md)] — the family `nearest_metallic` tests against.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] — the silver-width-growth-castle example; the `is_zero_one_strip` predicate is its `w_1 = 1` analog for golden.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — the OEIS-lookup loop the `oeis_snippet` helper feeds.
+- [[castle-count-algorithms](pages/castle-count-algorithms.md)] / [[kitamasa](pages/kitamasa.md)] — the fast-algorithm side, one abstraction level up.

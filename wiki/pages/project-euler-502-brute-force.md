@@ -62,6 +62,7 @@ These are the same four checkpoints that head the Java `main`.[^7]
 - [[castle-counting-formula](pages/castle-counting-formula.md)], [[castle-sign](pages/castle-sign.md)], [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the formula, the block-count/descent, and the third `p_signed` route.
 - [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)], [[column-convex-polyomino](pages/column-convex-polyomino.md)] — the two convexities whose intersection is the unimodal castle.
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] — the `product(range(1,h+1), repeat=w)` enumeration is Knuth's Algorithm M (mixed-radix add-one) with all radices `= h`.
+- [[castle-snippets](pages/castle-snippets.md)] — a living reference of short, tested Python one-liners for enumeration, classification predicates, growth-constant probes, and OEIS lookups; matches this page's `blocks_of` / `is_unimodal` conventions.
 
 ## Relation to Other Wiki Pages
 
