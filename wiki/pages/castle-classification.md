@@ -1,11 +1,11 @@
 ---
 title: Castle classification
 category: Concepts
-summary: A classification framework for castle sub-families. Axes 1-7 are structural (skyline predicates on individual castles); Axis 8 is meta-classification (a growth-type predicate on castle *classes*, named as "<metal> <axis> growth castle" for metal ∈ {golden, silver, bronze, …} and axis ∈ {width, vertical, area, block}). Catalogs 42 structural types from the polyomino literature plus the Axis-8 golden and silver width growth families with known members.
-tags: [concept, castle, classification, taxonomy, skyline]
+summary: A classification framework for castle sub-families. Axes 1-7 are structural skyline predicates on individual castles; Axis 8 is a growth-type meta-classification on castle *classes* (named as "<metal> <axis> growth castle"); Axis 9 is a spectral-type predicate on individual castles' polyomino graphs (Ramanujan castle first, others sketched). Catalogs 42 structural types plus the Axis-8 golden and silver width growth families and the Axis-9 Ramanujan type.
+tags: [concept, castle, classification, taxonomy, skyline, spectral, ramanujan]
 sources: [castle-classification]
 created: 2026-09-15
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 
 # Castle classification
@@ -219,6 +219,42 @@ Cross-axis-8 theorems (relating growth types under different axes) are the front
 
 This is the classification axis the "Metallic-ratio ladder" thread on `IDEAS.md` tracks.
 
+## Axis 9: Spectral predicates on the castle's polyomino graph
+
+Axes 1-7 predicate on the **skyline** `(c_1, …, c_w)`; Axis 8 predicates on a **class's growth constant**. Axis 9 predicates on the **spectrum of a graph derived from the individual castle** — treat the filled cells as vertices with orthogonal-adjacency edges, and read off eigenvalues of the adjacency matrix, combinatorial Laplacian, or a related operator. This turns "castle shape" into "graph spectrum" and lets number-theoretic and spectral-graph-theoretic predicates cut across the structural axes.
+
+Axis 9 is not fully written up yet — this section stubs the axis, populates its first named type (Ramanujan castle), and forward-links the four other spectral methods identified in the S-Division seminar plan on `IDEAS.md`. Each expected member is a **single-castle predicate**, distinct from Axis 8's per-class growth predicates.
+
+### Ramanujan castle
+
+A castle `C` is a **Ramanujan castle** iff, treating its filled cells as a graph with orthogonal-adjacency edges, its non-trivial adjacency eigenvalues `λ` (i.e. `λ ≠ ± d_max`) satisfy
+
+```
+|λ|  ≤  2 · √(d − 1)
+```
+
+where `d` is the maximum vertex degree. The bound is the **Alon-Boppana threshold** — the smallest asymptotic spectral radius achievable by an infinite family of `d`-regular graphs, and the defining property of Ramanujan graphs in arithmetic combinatorics (Lubotzky, Phillips, Sarnak; Margulis). Ramanujan castles are, informally, "the spectrally most expander-like castles at given size" — their adjacency graphs are as close to the theoretical mixing-optimum as possible.
+
+The castle graph is not regular in general (interior cells have degree 4, edge cells have degree 3, corner cells degree 2), so the strict definition invokes the **max-degree** form of the bound; refinements to the bipartite-Ramanujan condition or to spectra of the non-backtracking / Ihara-adjacency operator (see the Ihara-zeta seminar on `IDEAS.md`) are the natural generalizations. Structural-axis castles whose Ramanujan status is worth checking first:
+
+- **Boxcastle** (Axis 5) — the full `w × h` rectangle graph. Its spectrum is known: `2·(cos(iπ/(w+1)) + cos(jπ/(h+1)))` for `1 ≤ i ≤ w, 1 ≤ j ≤ h`. Whether it hits the Ramanujan bound depends on `w, h`.
+- **Hook** (Axis 5) — the L-shape. Small, spectrum computable by hand.
+- **Ferrers / staircase** (Axis 1) — the standard partition-shape polyominoes; their Laplacian spectra have partial classical results.
+- **Crenellated / battlement** (Axis 7) — alternating heights; highly regular local structure, likely a Ramanujan candidate for suitable `w, h`.
+
+**The Ramanujan castle is a photogenic classification target.** A "smallest Ramanujan castle" or "smallest non-trivial Ramanujan castle at each `(w, h)`" would be a clean result — pure combinatorics, small computer search, and directly ties castle shape to a deep number-theoretic notion of graph optimality.
+
+### Sketched additional Axis-9 types (S-Division seminar targets)
+
+Not yet populated on the wiki, but the following spectral predicates would sit here when they land:
+
+- **Isospectral castles** — a *pair* predicate (two castles with the same Laplacian spectrum but non-isomorphic shape). Kac's "hear the shape of a drum" for the castle setting. Existence is expected (Sunada-type constructions for polyominoes); the seminar target is the smallest such pair. See the S-Division `Isospectral castles — hear the shape of a castle` thread on `IDEAS.md`.
+- **Sparse-spectrum castle** — a predicate on the skyline DFT `ĉ_k`: the individual castle has `supp(ĉ) ⊆ S` for some fixed small set `S`. The Axis-7 **crenellated** type is exactly the two-atom DFT-support case (energy at `k = w/2`). The general sparse-spectrum classification (which sparse-support sequences are valid castles?) hooks into compressed sensing and turnpike reconstruction. See the S-Division `Skyline DFT — individual-castle signatures` thread.
+- **Low-pass / high-pass castle** — a soft version of sparse-spectrum: the castle's DFT energy is concentrated in low-k modes (smooth mountain-shaped skyline) or high-k modes (jagged crenellation). Not a hard predicate but a natural spectral-concentration classifier.
+- **Ihara-Ramanujan castle** — the Ramanujan condition transferred to the spectrum of the Ihara / non-backtracking operator rather than the adjacency operator. Arithmetic-combinatorial invariant analogous to Selberg zeta for hyperbolic surfaces. Longer-horizon; see the S-Division `Ramanujan castles / Ihara zeta` thread.
+
+The forthcoming `spectral-analysis` hub page (S-Division on `IDEAS.md`) will be the toolkit-side companion to these Axis-9 types when written — this axis catalogs the *predicates on individual castles*; that page will catalog the *methods for computing spectra*.
+
 ## Open threads this classification opens
 
 The taxonomy makes explicit which sub-families the wiki has, which are candidates, and which are open. The largest open groupings, in rough order of tractability:
@@ -229,6 +265,8 @@ The taxonomy makes explicit which sub-families the wiki has, which are candidate
 4. **Rainbow** — direct permutation-classification tie, immediate seminar target for the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] triad.
 5. **Bronze / copper / nickel width growth castle identification** — Axis-8 meta-types past silver; the metallic-mean ladder growth constants realized in castle rule modifications; tied to [[metallic-means](pages/metallic-means.md)].
 6. **Even-peak** — parity via peak count rather than block count; genuinely different from [[castle-sign](pages/castle-sign.md)]'s `(−1)^blocks`.
+7. **Ramanujan castles** (Axis 9) — the first named spectral-graph-theoretic type: castles whose non-trivial adjacency eigenvalues satisfy the Alon-Boppana bound `|λ| ≤ 2√(d−1)`. Photogenic seminar target; small computer search over structural sub-families (boxcastle, hook, staircase, crenellated) is the natural first pass.
+8. **Axis-9 spectral types generally** — isospectral pairs, sparse-spectrum, low/high-pass, Ihara-Ramanujan. The S-Division seminar targets on `IDEAS.md`; all currently sketched, none populated.
 
 ## Related Concepts
 
