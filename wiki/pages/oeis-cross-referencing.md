@@ -5,7 +5,7 @@ summary: The discipline of matching castle counts to existing OEIS A-numbers (in
 tags: [concept, oeis, method, cross-reference, research-workflow]
 sources: [oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-17
 ---
 
 # OEIS cross-referencing (interlinking method)
@@ -34,6 +34,7 @@ OEIS requires **human authorship** — a tool may run the verification scripts, 
 ## Appearances in Sources
 
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — applies this method across the castle veins; states the offset-verification discipline and the interlinking-vs-generation split.
+- [[oeis-index](pages/oeis-index.md)] - the wiki's OEIS directory: every A-number cited across the wiki, grouped by role (castle interpretation, metallic ladder, plastic, supporting), with occurrence counts and submission priority.
 
 ## Related Concepts
 

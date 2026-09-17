@@ -5,7 +5,7 @@ summary: A local research workspace mining the castle object against the OEIS â€
 tags: [oeis, castle, research, mining, cross-reference, source]
 sources: [oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-17
 ---
 
 # OEIS mining of PE 502 castles (first pass)
@@ -13,6 +13,8 @@ updated: 2026-09-13
 **Source:** `~/code/oeis/pe502/` (local research workspace; notes copied to `raw/oeis-pe502/`, chiefly `README.md` and `mine-notes.md`)
 **Date ingested:** 2026-09-13
 **Type:** research notes + verified computation (Python: `castle.py`, `tower.py`, `vein9_area.py`, `vein9b_concave.py`; data `tables.json`, `terms_50.txt`)
+
+> **See also:** [[oeis-index](pages/oeis-index.md)] - the wiki's OEIS directory (every A-number and its wiki pages, grouped by role).
 
 ## Summary
 
