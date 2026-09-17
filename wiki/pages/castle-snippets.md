@@ -521,6 +521,61 @@ def cycle_rank(c):
 
 Meaning: the last line is `F_{w+2}` for `w = 1..8`. Tree castles of height at most 2 are counted by Fibonacci (offset 2); Jacobsthal A001045 counts height at most 3; the k-Fibonacci family A006130, A006131 counts higher `h`. All catalogued on [[castle-graph](pages/castle-graph.md)].
 
+### `castle_to_composition(c)` / `composition_to_castle(parts)` → bijection with compositions
+
+The three-way bijection tree castle ↔ composition of `A + 1` with parts in `{1, 3, 4, 5}` ↔ SUD tournament on `A + 1` nodes ([[tree-castle-by-area](pages/tree-castle-by-area.md)]).
+
+```python
+def castle_to_composition(c):
+    aug = [1] + list(c); parts = []; i = 0
+    while i < len(aug):
+        if i + 1 < len(aug) and aug[i] == 1 and aug[i + 1] >= 2:
+            parts.append(1 + aug[i + 1]); i += 2
+        else:
+            parts.append(aug[i]); i += 1
+    return tuple(parts)
+
+def composition_to_castle(parts):
+    aug = []
+    for p in parts:
+        if p == 1: aug.append(1)
+        elif p in (3, 4, 5): aug.extend([1, p - 1])
+        else: raise ValueError(f'unexpected part {p}')
+    return tuple(aug[1:])
+```
+
+```
+>>> castle_to_composition((1, 2, 1))
+(3, 1)
+>>> composition_to_castle((3, 1))
+(1, 2, 1)
+>>> castle_to_composition((4,))
+(1, 4)
+>>> composition_to_castle((1, 4))
+(4,)
+```
+
+Meaning: prepending a virtual `1` column and merging each `(1, tall)` pair produces the composition; the inverse expands each part `k ∈ {3, 4, 5}` back into `(1, k − 1)` and drops the leading `1`.
+
+### `is_strongly_connected(T)` → SCC test for tournament matrices
+
+```python
+def is_strongly_connected(T):
+    n = len(T)
+    def reach(adj, start):
+        seen = {start}; stack = [start]
+        while stack:
+            u = stack.pop()
+            for v in range(n):
+                if adj[u][v] and v not in seen:
+                    seen.add(v); stack.append(v)
+        return seen
+    Tt = [[T[j][i] for j in range(n)] for i in range(n)]
+    return len(reach(T, 0)) == n and len(reach(Tt, 0)) == n
+```
+
+Meaning: forward and backward reachability from a single vertex - a valid SCC test for tournaments since every pair has an edge in some direction, so 0-reachability determines connectivity. Used in the SUD strongly-connected classification ([[tree-castle-by-area](pages/tree-castle-by-area.md)]).
+
 ### `tree_area_gf(h, W)` / `tree_area_by_area(h, A_max)` → area-graded tree castle counts
 
 Bivariate GF for tree castles by width and area, and the area-only sequence at fixed height ([[tree-castle-by-area](pages/tree-castle-by-area.md)]). Requires SymPy.

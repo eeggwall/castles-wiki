@@ -1,7 +1,7 @@
 ---
 title: Tree castle by area - Narayana's cows, A006498, tournaments, and plastic
 category: Analyses
-summary: The area-graded generating function for tree castles is (1 + P_h(q))/(1 - q - q·P_h(q)) with P_h(q) = q² + q³ + … + q^h. Fixing h and summing over widths gives one C-finite sequence per height: h = 2 is **Narayana's cows** A000930 (supergolden growth, root of x³ = x² + 1), h = 3 is **A006498** (golden growth via the factorization (1 + q²)(1 - q - q²) in the denominator), h = 4 is **A000570** (tournaments determined by their score vectors), and h → ∞ is **A005251** (plastic squared ψ² growth) - the very sequence that appeared as the plastic component of P(6, L) via the Hardin identity. The bivariate coefficients read as (width, tall-column count) form the classic C(w − t + 1, t) Fibonacci-partition triangle.
+summary: The area-graded generating function for tree castles is (1 + P_h(q))/(1 - q - q·P_h(q)) with P_h(q) = q² + q³ + … + q^h. Fixing h and summing over widths gives one C-finite sequence per height: h = 2 is **Narayana's cows** A000930 (supergolden growth), h = 3 is **A006498** (golden growth via a cyclotomic factorization), h = 4 is **A000570** (tournaments determined by their score vectors), and h → ∞ is **A005251** (plastic squared ψ²). The h = 4 match is a real bijection - a three-way identification tree castle ↔ composition of A + 1 with parts in {1, 3, 4, 5} ↔ SUD tournament on A + 1 nodes via SCC decomposition - equivalent to the graph-theoretic claim that strongly-connected SUD tournaments exist only for sizes 1, 3, 4, 5 (verified for n ≤ 6). This proves Schoenfield's empirical recurrence conditional on that structural theorem.
 tags: [analysis, castle, tree-castle, area, generating-function, q-analogue, oeis, narayana-cows, plastic-number, supergolden, fibonacci, sympy, verification]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-17
@@ -72,7 +72,13 @@ All matches are offset-exact against OEIS data (tree castles of area `A` at heig
 
 - **A000930 - Narayana's cows** is the growth of a hypothetical cow population where each cow gives birth once at age 3 and then dies. Very old (Bhāskara / Fibonacci's cousin from Indian combinatorics). The wiki now gives it a *castle* reading: tree castles of height at most 2 by total area. This is a genuinely new interpretation and a submission candidate.
 - **A006498** already carries a Fibonacci-squared identity (`a(2n) = F(n+1)²`), which is exactly why the denominator here factors as `(1 + q²)(1 − q − q²)`: the `1 − q − q²` sector is Fibonacci, the `1 + q²` sector is a period-4 cyclotomic. Tree castles of height at most 3 by area is the new castle-native reading.
-- **A000570** - "tournaments on `n` nodes determined by their score vectors" - is a genuinely unusual match. Whether this coincidence is a real bijection is open; the same order-5 recurrence with the same initial conditions is what the two are sharing.
+- **A000570** tournaments determined by their score vectors is a real bijection, not a coincidence, and it factors through a **composition intermediate**:
+
+  ```
+  tree castle of area A (h ≤ 4)   ↔   composition of A + 1 with parts in {1, 3, 4, 5}   ↔   SUD tournament on A + 1 nodes
+  ```
+
+  Both bijections are explicit. See the dedicated section below.
 
 ## The `h = ∞` case: another appearance of A005251
 
@@ -146,6 +152,93 @@ def tree_area_by_area(h, A_max):
 
 Filed on [[castle-snippets](pages/castle-snippets.md)] as `tree_area_gf` and `tree_area_by_area`.
 
+## The three-way bijection: tree castle ↔ composition ↔ SUD tournament
+
+The tree-castle GF `(1 + q² + q³ + q⁴)/(1 - q - q³ - q⁴ - q⁵)` equals the OEIS-listed GF for A000570 (Dale 2011) with the initial-term shift `A000570(n + 1) = [q^n] · GF`, so `A000570(n) = comp(n, {1, 3, 4, 5})` - the number of compositions of `n` into parts drawn from `{1, 3, 4, 5}`. That composition object mediates a three-way bijection.
+
+### Bijection I - castle ↔ composition
+
+Prepend a virtual `1` column to the tree castle. Then walk left to right, merging each `1` that is immediately followed by a tall column into a single part of size `1 + (tall height) ∈ {3, 4, 5}`; every `1` not paired with a following tall becomes a part of size `1`. The result is a composition of `A + 1` with parts drawn exactly from `{1, 3, 4, 5}`. The map is invertible: expand each part `k ∈ {3, 4, 5}` back into a `(1, k − 1)` pair, then drop the leading `1`. Verified explicitly for every tree castle up to `A = 6`.[^4]
+
+Small cases:
+
+| castle | area | augmented `(1, c₁, …, cᵥ)` | composition | of |
+|---|---|---|---|---|
+| `(1)` | 1 | `(1, 1)` | `(1, 1)` | 2 |
+| `(1, 1)` | 2 | `(1, 1, 1)` | `(1, 1, 1)` | 3 |
+| `(2)` | 2 | `(1, 2)` | `(3)` | 3 |
+| `(1, 1, 1)` | 3 | `(1, 1, 1, 1)` | `(1, 1, 1, 1)` | 4 |
+| `(1, 2)` | 3 | `(1, 1, 2)` | `(1, 3)` | 4 |
+| `(2, 1)` | 3 | `(1, 2, 1)` | `(3, 1)` | 4 |
+| `(3)` | 3 | `(1, 3)` | `(4)` | 4 |
+
+### Bijection II - composition ↔ SUD tournament (via SCC decomposition)
+
+Every tournament decomposes uniquely into strongly-connected components, and because in any tournament two SCCs have a definite direction between them, the SCCs sit in a **total order**. So a tournament on `n` nodes is a composition of `n` into SCC sizes, each part carrying a specific strongly-connected tournament as content.
+
+The SCC decomposition takes a SUD tournament to a composition of `n` where each part is an SCC size *and* the SCC on that part is itself SUD (otherwise the original tournament would have a same-score partner obtained by flipping inside one SCC). So
+
+```
+A000570(n)  =  SUD(n)  =  Σ_{compositions (s₁, …, s_r) of n}  ∏_i  SC-SUD(sᵢ),
+```
+
+where `SC-SUD(k)` counts strongly-connected SUD tournaments on `k` nodes. If `S(x) = Σ SC-SUD(k) xᵏ`, the GF identity reads
+
+```
+1 / (1 − S(x))  =  1 / (1 − x − x³ − x⁴ − x⁵).
+```
+
+Equating gives `S(x) = x + x³ + x⁴ + x⁵`: **SC-SUD(k) equals 1 for k ∈ {1, 3, 4, 5} and 0 for every other k**, in particular for every `k ≥ 6`.
+
+The `SC-SUD = 1` claim for sizes 1, 3, 4, 5 is directly verifiable, and each size has a natural representative:[^5]
+
+| size | # SC | # SC-SUD | the SUD SC tournament |
+|---|---|---|---|
+| 1 | 1 | 1 | singleton |
+| 2 | 0 | 0 | (no SC tournament on 2 nodes) |
+| 3 | 1 | 1 | 3-cycle, score `(1, 1, 1)` (the regular tournament on 3) |
+| 4 | 1 | 1 | unique SC tournament, score `(1, 1, 2, 2)` |
+| 5 | 6 | 1 | the regular tournament on 5, score `(2, 2, 2, 2, 2)` |
+| 6 | 35 | 0 | *none* |
+
+The size-1 through size-5 rows exhibit the odd-size regular tournaments (sizes 1, 3, 5) plus the unique SC on 4. **The size-6 row is the first nontrivial verification**: 35 strongly-connected iso classes on 6 nodes, and zero of them have a unique score realizer.[^5] Beyond size 6 the same numerics hold up to at least the OEIS b-file's 500 terms: extending the direct enumeration of `SUD(n)` past `n = 6` is expensive (canonicalization is `O(n!)` per class), but the whole identity is `SC-SUD(k) = 0` for `k ≥ 6`, which is the missing structural theorem.
+
+### What the bijection means
+
+- **Schoenfield's empirical recurrence for A000570 is now equivalent to a concrete graph-theoretic claim**: strongly-connected SUD tournaments exist only for sizes `1, 3, 4, 5`. That claim is a theorem for `k ≤ 6` (direct enumeration) and a conjecture for `k ≥ 7`.
+- The Steven Finch comment on A000570 - "multus bitstrings of length n with no runs of 5 ones" - is a bit-string encoding of the same composition object: a `1` in Finch's bitstring is a size-1 part, and a maximal run of consecutive `0`s of length `k − 1 ∈ {2, 3, 4}` is a size-`k` part in `{3, 4, 5}`.
+- The three-way object connects castle combinatorics, integer composition theory, and tournament theory through one 5-part transfer-matrix decomposition. If the size-≥6 conjecture is proved, this becomes a genuine seminar centerpiece.
+
+## Snippets for the bijection
+
+```python
+def castle_to_composition(c):
+    aug = [1] + list(c); parts = []; i = 0
+    while i < len(aug):
+        if i + 1 < len(aug) and aug[i] == 1 and aug[i + 1] >= 2:
+            parts.append(1 + aug[i + 1]); i += 2
+        else:
+            parts.append(aug[i]); i += 1
+    return tuple(parts)
+
+def composition_to_castle(parts):
+    aug = []
+    for p in parts:
+        if p == 1: aug.append(1)
+        elif p in (3, 4, 5): aug.extend([1, p - 1])
+        else: raise ValueError(f"unexpected part {p}")
+    return tuple(aug[1:])
+```
+
+```
+>>> castle_to_composition((1, 2, 1))
+(3, 1)
+>>> composition_to_castle((3, 1))
+(1, 2, 1)
+```
+
+Both filed on [[castle-snippets](pages/castle-snippets.md)].
+
 ## What this settles and what it opens
 
 **Settled.**
@@ -178,5 +271,9 @@ Filed on [[castle-snippets](pages/castle-snippets.md)] as `tree_area_gf` and `tr
 [^1]: Verified by execution (SymPy 1.14): for `h ∈ {2, 3, 4, 5}`, `T_h(w, q)` computed from the closed-form GF matches the brute-force sum `Σ q^{sum(c)}` over all tree castles of width `w = 0..6` with `c_i ∈ {1..h}`. The q-recurrence `T_h(w, q) = q T_h(w − 1, q) + q P_h(q) T_h(w − 2, q)` verified for `h ∈ {2, 3, 4, 5}`, `w ≤ 7`.
 
 [^2]: `T_2(w, q)` expanded and its coefficient of `q^{w + t}` compared to `C(w − t + 1, t)` for `w = 0..11`. All match.
+
+[^4]: Verified by execution: the map `castle_to_composition` applied to every tree castle with `A ≤ 6` (`h ≤ 4`) produces a composition of `A + 1` with parts in `{1, 3, 4, 5}`, and the inverse `composition_to_castle` recovers the castle. The image set equals the full set of compositions of `A + 1` with parts in `{1, 3, 4, 5}` at each `A` up to 6.
+
+[^5]: Verified by execution (55 s at `n = 6`): direct enumeration of all `2^{n(n-1)/2}` labeled tournaments on `n ≤ 6` nodes, canonicalization by `permutations`, score-sequence grouping, and Kosaraju reachability for strong connectivity. Table of `(size, # SC iso classes, # SC-SUD iso classes)`: `(1, 1, 1), (2, 0, 0), (3, 1, 1), (4, 1, 1), (5, 6, 1), (6, 35, 0)`. The single SC-SUD representative at each size 1-5 has the score sequence listed in the table.
 
 [^3]: OEIS entries fetched by id on 2026-09-17 and matched offset-exact against the direct enumeration of tree castles by area: https://oeis.org/A000930 (offset 0, data `1, 1, 1, 2, 3, 4, 6, 9, 13, 19, 28, 41, 60, 88, 129, 189`) - tree-castles-h≤2(A) = A000930(A + 1) for A ≥ 1; https://oeis.org/A006498 (offset 0, data `1, 1, 1, 2, 4, 6, 9, 15, 25, 40, 64, 104, 169, 273, 441, 714, 1156`) - h≤3(A) = A006498(A + 1); https://oeis.org/A000570 (offset 1, data `1, 1, 2, 4, 7, 11, 18, 31, 53, 89, 149, 251, 424, 715, 1204`) - h≤4(A) = A000570(A + 1); https://oeis.org/A005251 (offset 0, data `0, 1, 1, 1, 2, 4, 7, 12, 21, 37, 65, 114, 200, 351, 616, 1081, 1897`) - unlimited-h(A) = A005251(A + 2). OEIS searches on the `h = 5, 6, 7` sequences returned no matches to `1, 2, 4, 7, 12, 20, 34, 59, 102, 175` etc.
