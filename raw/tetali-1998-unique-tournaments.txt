@@ -1,0 +1,140 @@
+Journal of Combinatorial Theory, Series B  TB1799
+Journal of Combinatorial Theory, Series B 72, 157159 (1998)
+Article No. TB971799
+
+NOTE
+A Characterization of Unique Tournaments
+Prasad Tetali
+School of Mathematics, Georgia Institute of Technology, Atlanta, Georgia 30332-0160
+E-mail: tetalimath.gatech.edu
+Received September 20, 1995
+We call a tournament unique, if there is no other tournament (barring isomorphic
+ones) which shares the same score vector. In this note, we provide a simple
+characterization of such unique tournaments.  1998 Academic Press
+
+A tournament is a complete oriented graph. The score vector of a
+tournament is simply the sequence of outdegrees of the vertices of the
+tournament. Let T n denote a tournament on n vertices, and S(T n ) denote
+the score vector of T n . Thus S(T n )=(s 1 , ..., s n ), where 0s i n&1,
+ i s i =( n2 ), and we assume s 1 s 2  } } } s n . In general, there can be many
+non-isomorphic tournaments which share the same score vector. However,
+we shall focus on the special class (which we call Unique) consisting of
+those score vectors for which there is a unique tournament up to
+isomorphism. The score vectors (1, 1, 1), (0, 1, 2, 3), and (2, 2, 2, 2, 2) are
+some obvious examples. In general, any transitive tournament on n vertices
+(which has the score vector (0, 1, ..., n&1)) is also an example.
+More formally speaking, let T n tT$n denote the fact that T n is isomorphic
+to T $n . Let Un =[T n : S(T n )=S(T$n ) O T n tT $n ]. We define Unique=
+
+n=1 Un . In this note we report a complete characterization of the class
+Unique. The characterization is such that it gives us the following enumeration
+result. Let u n denote the cardinality of Un . That is, u n is the number of
+score vectors (or tournaments) on n vertices with the above-mentioned
+property. We show that u 1 =1, u 2 =1, u 3 =2, u 4 =4, and u 5 =7, and for all
+n>5, u n =u n&1 +u n&3 +u n&4 +u n&5 .
+This result is similar in spirit to a result of Garey [2], wherein the number
+of tournaments on n vertices (n4) having exactly one Hamiltonian cycle
+was shown to be F 2n&6 , the (2n&6)th Fibonacci number (see also [1]).
+A tournament is strong if it is strongly connected in the sense of a digraph.
+Theorem 1. There are exactly four (basic) strong tournaments in Unique
+(see Fig. 1); any other (nonstrong) tournament in Unique can be decomposed
+into strong components, each of which is one of the four basic tournaments.
+157
+0095-895698 25.00
+Copyright  1998 by Academic Press
+All rights of reproduction in any form reserved.
+
+File: DISTIL 179901 . By:CV . Date:28:01:98 . Time:08:20 LOP8M. V8.B. Page 01:01
+Codes: 4080 Signs: 2446 . Length: 50 pic 3 pts, 212 mm
+
+158
+
+NOTE
+
+Fig. 1.
+
+The four basic unique tournaments.
+
+We make use of two existing results (Theorem 2 and Theorem 3 below)
+to prove the above theorem. We begin with the definition of a simple
+tournament (see [4] for information on simple tournaments). Let T n =
+(V(T n ), A(T n )) represent a tournament on n vertices. If (w, z) # A(T n ) then
+we say w beats z (and z is beaten by w).
+Definition 1. T n is simple if, for any proper subset M of V(T n ), there
+exists a z # V(T n )"M such that z beats at least one vertex in M and z is
+beaten by at least one vertex in M.
+A simple tournament is clearly strong, but the converse is not necessarily
+truethe strong tournament on four vertices, for example, is not simple.
+Definition 2. We call a score vector S forcibly simple (FS) if every
+tournament with the score vector S is simple.
+Muller et al. [4] prove, inter alia, the following interesting theorems. We
+paraphrase the theorems to suit our terminology.
+Theorem 2 (Muller et al.). For each score vector S n which corresponds
+to a strong tournament on n{4 vertices, there is a simple tournament which
+has the same score vector.
+Theorem 3. (Muller et al.). The following two statements are equivalent:
+(1)
+
+S is forcibly simple;
+
+(2)
+
+S # [(0), (0, 1), (1, 1, 1), (2, 2, 2, 2, 2), (3, 3, 3, 3, 3, 3, 3)].
+
+Proof of Theorem 1. The proof is by drawing necessary conclusions
+from the above two theorems. Theorem 2 implies that a strong tournament
+T n , for n{4, which is unique (i.e., belongs to Un ) is (necessarily) simple,
+and its score vector is (trivially) forcibly simple. Now using Theorem 3, we
+
+File: 582B 179902 . By:XX . Date:19:01:98 . Time:15:31 LOP8M. V8.B. Page 01:01
+Codes: 2261 Signs: 1536 . Length: 45 pic 0 pts, 190 mm
+
+NOTE
+
+159
+
+can conclude that a score vector which corresponds to a tournament that
+is both strong and unique (except for n=4) must come from the list of
+five score vectors in statement (2) of Theorem 3. The score vector (0, 1)
+corresponds to a unique tournament which is not strong; it is easy to check
+that there are three nonisomorphic strong tournaments which have the
+score vector (3, 3, 3, 3, 3, 3, 3). (Note that this among other things gives us
+that there are no strong tournaments on six or more vertices which belong
+to Unique.)
+The only case not covered by the above is the unique strong tournament
+on four vertices with the score vector (1, 1, 2, 2). Thus the only strong
+tournaments which are in Unique are the four tournaments shown in
+Fig. 1. Furthermore, it is easy to see that the strong components of any
+nonstrong tournament in Unique are themselves members of Unique. Thus
+the cyclic (or strong) decomposition of any tournament in Unique consists
+of only the four basic tournaments shown in Fig. 1. K
+Remark. It is a basic exercise in recurrence relations to show that the
+above characterization yields for n6,
+u n =u n&1 +u n&3 +u n&4 +u n&5 ,
+from which it follows that there exist constants cr0.48 and :r1.685 such that
+lim u n c: n =1.
+
+n
+
+We also have u 1 =1, u 2 =1, u 3 =2, u 4 =4, u 5 =7.
+
+ACKNOWLEDGMENTS
+We thank Jeong Han Kim and Richard Duke for very valuable discussions and corrections.
+We are grateful to the anonymous referee who pointed out a mistake in an earlier version of
+this note.
+
+REFERENCES
+1. R. J. Douglas, Tournaments that admit exactly one Hamiltonian circuit, Proc. London
+Math. Soc. 3 (1970), 716730.
+2. M. R. Garey, On enumerating tournaments that admit exactly one Hamiltonian circuit,
+J. Combin. Theory Ser. B 13 (1972), 266269.
+3. J. W. Moon, ``Topics on Tournaments,'' Rinehart and Winston, New York, 1968.
+4. V. Muller, J. Nes$ etr$ il, and J. Pelant, Either tournaments or algebras?, Discrete Math. 11
+(1975), 3766.
+5. K. B. Reid and L. W. Beineke, Tournaments, in ``Selected Topics in Graph Theory''
+(L. W. Beineke and R. J. Wilson, Eds. ), Chap. 7, Academic Press, New York, 1978.
+
+File: DISTIL 179903 . By:CV . Date:28:01:98 . Time:08:36 LOP8M. V8.B. Page 01:01
+Codes: 3906 Signs: 2080 . Length: 45 pic 0 pts, 190 mm
+
+

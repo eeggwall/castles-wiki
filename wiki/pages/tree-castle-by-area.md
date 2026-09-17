@@ -3,7 +3,7 @@ title: Tree castle by area - Narayana's cows, A006498, tournaments, and plastic
 category: Analyses
 summary: The area-graded generating function for tree castles is (1 + P_h(q))/(1 - q - q·P_h(q)) with P_h(q) = q² + q³ + … + q^h. Fixing h and summing over widths gives one C-finite sequence per height: h = 2 is **Narayana's cows** A000930 (supergolden growth), h = 3 is **A006498** (golden growth via a cyclotomic factorization), h = 4 is **A000570** (tournaments determined by their score vectors), and h → ∞ is **A005251** (plastic squared ψ²). The h = 4 match is a real bijection - a three-way identification tree castle ↔ composition of A + 1 with parts in {1, 3, 4, 5} ↔ score-uniquely-determined tournament on A + 1 nodes via strongly-connected-component decomposition - equivalent to the graph-theoretic claim that strongly connected score-uniquely-determined tournaments exist only for sizes 1, 3, 4, 5 (verified for n ≤ 6). The structural theorem is Tetali's classification of unique tournaments (J. Combin. Theory Ser. B, 1998): the four basic unique tournaments are those on 1, 3, 4, 5 vertices with score vectors (0), (1,1,1), (1,1,2,2), (2,2,2,2,2). Combined with the tree-castle transfer matrix this proves Schoenfield's empirical recurrence for A000570. Directly re-verified in this wiki through n = 8 (Python at n ≤ 7 in 2 min 25 s; Java at n = 8 in 35 min 38 s: 6,880 iso classes, 31 score-uniquely-determined, all 31 non-strongly-connected).
 tags: [analysis, castle, tree-castle, area, generating-function, q-analogue, oeis, narayana-cows, plastic-number, supergolden, fibonacci, sympy, verification]
-sources: [project-euler-502-castle-factoring]
+sources: [project-euler-502-castle-factoring, tetali-1998-unique-tournaments]
 created: 2026-09-17
 updated: 2026-09-17
 ---
@@ -208,7 +208,7 @@ The size-1 through size-5 rows exhibit the odd-size regular tournaments (sizes 1
 
 ### What the bijection means
 
-**Theorem (Tetali, JCTB 1998).** The strongly connected tournaments determined by their score sequences are exactly the four tournaments on 1, 3, 4, 5 vertices with score vectors `(0)`, `(1, 1, 1)`, `(1, 1, 2, 2)`, `(2, 2, 2, 2, 2)`.[^7]
+**Theorem (Tetali, JCTB 1998).** The strongly connected tournaments determined by their score sequences are exactly the four tournaments on 1, 3, 4, 5 vertices with score vectors `(0)`, `(1, 1, 1)`, `(1, 1, 2, 2)`, `(2, 2, 2, 2, 2)`, and every non-strong such tournament decomposes into these via strong-component decomposition.[^7] The proof reduces to Muller-Nesetril-Pelant's (1975) characterization of [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)]s: the strong-and-unique scores at `n != 4` must be [[simple-tournament](pages/simple-tournament.md)] realizers, so their scores are forcibly simple, and Muller-Nesetril-Pelant list all five FS score vectors: `{(0), (0, 1), (1, 1, 1), (2, 2, 2, 2, 2), (3, 3, 3, 3, 3, 3, 3)}`. Filtering to strong-and-unique drops `(0, 1)` (not strong) and `(3, 3, 3, 3, 3, 3, 3)` (three non-isomorphic strong realizers on 7 vertices), leaving three; `(1, 1, 2, 2)` is added by direct inspection because Muller-Nesetril-Pelant's Theorem 2 fails at `n = 4`. See [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] for the paper in the wiki's raw store, and [[unique-tournament](pages/unique-tournament.md)] for the concept page.
 
 Combined with the tree-castle transfer matrix this gives:
 
@@ -217,7 +217,7 @@ Combined with the tree-castle transfer matrix this gives:
 A000570(n)  =  #{compositions of n with parts in {1, 3, 4, 5}}  =  #{tree castles of area n − 1 with column heights in {1, 2, 3, 4}}.
 ```
 
-This is the tree-castle-side proof of Schoenfield's empirical recurrence and Dale's empirical generating function for OEIS A000570: both are consequences of Tetali's tournament classification, translated across the three-way bijection.
+This is the tree-castle-side re-proof of the A000570 recurrence and GF. Historically, Tetali proved the recurrence in 1998 as a corollary of his classification; OEIS records the same recurrence as "empirical" from Schoenfield 2006 and the GF as "empirical" from Dale 2011 because those additions were user-contributions to the OEIS FORMULA field, not references to Tetali's paper (which is listed under LINKS as the sequence's original author reference). The tree-castle transfer matrix gives a third, independent derivation of the same GF from a polyomino-native starting point.
 
 Related observations:
 - The Steven Finch comment on A000570 - "multus bitstrings of length n with no runs of 5 ones" - is the same composition object re-encoded as a bitstring. Finch's own paper "Cantor-solus and Cantor-multus distributions" (arXiv:2003.09458) defines a *multus* bitstring as one with no isolated 1 bit; the additional "no runs of 5 ones" bounds 1-runs to length ≤ 4. Maximal 1-runs of length `k − 1 ∈ {1, 2, 3, 4}` become size-`k` composition parts in `{2, 3, 4, 5}`; the size-2 part is absorbed into the tree-castle bijection's leading-tall correction (the numerator `1 + q² + q³ + q⁴`).
@@ -285,6 +285,8 @@ Both filed on [[castle-snippets](pages/castle-snippets.md)].
 - [[metallic-means](pages/metallic-means.md)] - the family the area-graded tree-castle growth constants sit *near* but do not belong to.
 - [[oeis-index](pages/oeis-index.md)] - the directory that now lists A000930, A006498, A000570.
 - [[castle-by-area](pages/castle-by-area.md)] - the wiki's other area-graded families (convex, valley, non-convex).
+- [[unique-tournament](pages/unique-tournament.md)] / [[simple-tournament](pages/simple-tournament.md)] / [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] - the graph-theoretic concepts on the tournament side of the three-way bijection, and their role in Tetali's classification.
+- [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] - the primary source, ingested into the wiki as a raw file with the theorem quoted in footnote 7.
 - [[castle-snippets](pages/castle-snippets.md)] - `tree_area_gf`, `tree_area_by_area`.
 
 ## Footnotes
@@ -303,4 +305,4 @@ Both filed on [[castle-snippets](pages/castle-snippets.md)].
 
 [^8]: Verified by execution (35 min 38 s at `n = 8`): Java implementation (`bin/java/TournamentEnum.java`) enumerating all 2^28 orientations per Landau-valid score sequence, filtering to matching out-degree tuples, canonicalizing within score-buckets, and grouping by score. Enumerated 6,880 iso classes total, matching A000568(8); 31 score-uniquely-determined, matching A000570(8); 0 strongly connected among the 31 score-uniquely-determined, verifying Tetali 1998 at `n = 8` directly.
 
-[^7]: **Primary source.** P. Tetali, "A characterization of unique tournaments," Journal of Combinatorial Theory, Series B, Volume 72, Issue 1, January 1998, Pages 157-159. DOI: `10.1006/jctb.1997.1799`. https://doi.org/10.1006/jctb.1997.1799 - paywalled at Elsevier (bronze open access per Semantic Scholar). The OEIS A000570 entry lists Tetali as the sequence's author. **Freely accessible secondary source that quotes the theorem verbatim.** T. Khovanova, "Unique Tournaments and Radar Tracking," arXiv:0712.1621 [math.CO] (2007), https://arxiv.org/abs/0712.1621. From Khovanova §5: "Prasad Tetali [2] shows us that there are four basic unique tournaments. Their score vectors are: `{0}`, `{1, 1, 1}`, `{1, 1, 2, 2}` and `{2, 2, 2, 2, 2}`. [...] According to [2] any unique tournament can be decomposed into basic unique tournaments." Khovanova also gives a bijection between unique tournaments and "initial-loss non-tracking binary strings" built from the four basic strings `0`, `001`, `0011`, `00101` (sizes 1, 3, 4, 5), which is the composition-of-{1,3,4,5} intermediate object on this page in bit-string form.
+[^7]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.157 L39-41 - "Theorem 1. There are exactly four (basic) strong tournaments in Unique ... any other (nonstrong) tournament in Unique can be decomposed into strong components, each of which is one of the four basic tournaments." Published in Journal of Combinatorial Theory Series B 72(1) (1998), 157-159, DOI `10.1006/jctb.1997.1799`; ingested into `raw/tetali-1998-unique-tournaments.pdf` (plaintext extraction `raw/tetali-1998-unique-tournaments.txt` for stable line numbers).
