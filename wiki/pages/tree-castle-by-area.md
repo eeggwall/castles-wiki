@@ -1,7 +1,7 @@
 ---
 title: Tree castle by area - Narayana's cows, A006498, tournaments, and plastic
 category: Analyses
-summary: The area-graded generating function for tree castles is (1 + P_h(q))/(1 - q - q·P_h(q)) with P_h(q) = q² + q³ + … + q^h. Fixing h and summing over widths gives one C-finite sequence per height: h = 2 is **Narayana's cows** A000930 (supergolden growth), h = 3 is **A006498** (golden growth via a cyclotomic factorization), h = 4 is **A000570** (tournaments determined by their score vectors), and h → ∞ is **A005251** (plastic squared ψ²). The h = 4 match is a real bijection - a three-way identification tree castle ↔ composition of A + 1 with parts in {1, 3, 4, 5} ↔ SUD tournament on A + 1 nodes via SCC decomposition - equivalent to the graph-theoretic claim that strongly-connected SUD tournaments exist only for sizes 1, 3, 4, 5 (verified for n ≤ 6). This proves Schoenfield's empirical recurrence conditional on that structural theorem.
+summary: The area-graded generating function for tree castles is (1 + P_h(q))/(1 - q - q·P_h(q)) with P_h(q) = q² + q³ + … + q^h. Fixing h and summing over widths gives one C-finite sequence per height: h = 2 is **Narayana's cows** A000930 (supergolden growth), h = 3 is **A006498** (golden growth via a cyclotomic factorization), h = 4 is **A000570** (tournaments determined by their score vectors), and h → ∞ is **A005251** (plastic squared ψ²). The h = 4 match is a real bijection - a three-way identification tree castle ↔ composition of A + 1 with parts in {1, 3, 4, 5} ↔ score-uniquely-determined tournament on A + 1 nodes via strongly-connected-component decomposition - equivalent to the graph-theoretic claim that strongly connected score-uniquely-determined tournaments exist only for sizes 1, 3, 4, 5 (verified for n ≤ 6). This proves Schoenfield's empirical recurrence conditional on that structural theorem.
 tags: [analysis, castle, tree-castle, area, generating-function, q-analogue, oeis, narayana-cows, plastic-number, supergolden, fibonacci, sympy, verification]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-17
@@ -154,6 +154,8 @@ Filed on [[castle-snippets](pages/castle-snippets.md)] as `tree_area_gf` and `tr
 
 ## The three-way bijection: tree castle ↔ composition ↔ SUD tournament
 
+**A note on the two properties of tournaments in play, spelled out.** A **tournament** on `n` nodes is a complete directed graph: for every pair of distinct vertices there is exactly one directed edge. Its **score sequence** is the multiset of out-degrees, one number per vertex. A tournament is **score-uniquely-determined** if no other tournament on the same node set (up to relabeling) has the same score sequence. Separately, a tournament is **strongly connected** if you can walk from any vertex to any other along edges respecting direction. On 3 nodes the transitive tournament is score-uniquely-determined but not strongly connected, and the 3-cycle is both. `A000570(n)` is defined as the count of tournaments on `n` nodes that are score-uniquely-determined (call the property SUD when brief); the sub-count of those that are additionally strongly connected (call it SC-SUD when brief) is what determines the composition GF.
+
 The tree-castle GF `(1 + q² + q³ + q⁴)/(1 - q - q³ - q⁴ - q⁵)` equals the OEIS-listed GF for A000570 (Dale 2011) with the initial-term shift `A000570(n + 1) = [q^n] · GF`, so `A000570(n) = comp(n, {1, 3, 4, 5})` - the number of compositions of `n` into parts drawn from `{1, 3, 4, 5}`. That composition object mediates a three-way bijection.
 
 ### Bijection I - castle ↔ composition
@@ -172,27 +174,27 @@ Small cases:
 | `(2, 1)` | 3 | `(1, 2, 1)` | `(3, 1)` | 4 |
 | `(3)` | 3 | `(1, 3)` | `(4)` | 4 |
 
-### Bijection II - composition ↔ SUD tournament (via SCC decomposition)
+### Bijection II - composition ↔ score-uniquely-determined tournament (via strongly-connected-component decomposition)
 
 Every tournament decomposes uniquely into strongly-connected components, and because in any tournament two SCCs have a definite direction between them, the SCCs sit in a **total order**. So a tournament on `n` nodes is a composition of `n` into SCC sizes, each part carrying a specific strongly-connected tournament as content.
 
-The SCC decomposition takes a SUD tournament to a composition of `n` where each part is an SCC size *and* the SCC on that part is itself SUD (otherwise the original tournament would have a same-score partner obtained by flipping inside one SCC). So
+The SCC decomposition takes a score-uniquely-determined tournament to a composition of `n` where each part is an SCC size *and* the SCC on that part is itself SUD (otherwise the original tournament would have a same-score partner obtained by flipping inside one SCC). So
 
 ```
 A000570(n)  =  SUD(n)  =  Σ_{compositions (s₁, …, s_r) of n}  ∏_i  SC-SUD(sᵢ),
 ```
 
-where `SC-SUD(k)` counts strongly-connected SUD tournaments on `k` nodes. If `S(x) = Σ SC-SUD(k) xᵏ`, the GF identity reads
+where `SC-SUD(k)` (**strongly connected AND score-uniquely determined**) counts strongly-connected score-uniquely-determined tournaments on `k` nodes. If `S(x) = Σ SC-SUD(k) xᵏ`, the GF identity reads
 
 ```
 1 / (1 − S(x))  =  1 / (1 − x − x³ − x⁴ − x⁵).
 ```
 
-Equating gives `S(x) = x + x³ + x⁴ + x⁵`: **SC-SUD(k) equals 1 for k ∈ {1, 3, 4, 5} and 0 for every other k**, in particular for every `k ≥ 6`.
+Equating gives `S(x) = x + x³ + x⁴ + x⁵`: **the count is 1 for k ∈ {1, 3, 4, 5} and 0 for every other k**, in particular for every `k ≥ 6`.
 
-The `SC-SUD = 1` claim for sizes 1, 3, 4, 5 is directly verifiable, and each size has a natural representative:[^5]
+The count-is-1 claim for sizes 1, 3, 4, 5 is directly verifiable, and each size has a natural representative:[^5]
 
-| size | # SC | # SC-SUD | the SUD SC tournament |
+| size | # strongly connected | # strongly connected AND score-uniquely-determined | representative |
 |---|---|---|---|
 | 1 | 1 | 1 | singleton |
 | 2 | 0 | 0 | (no SC tournament on 2 nodes) |
@@ -201,11 +203,11 @@ The `SC-SUD = 1` claim for sizes 1, 3, 4, 5 is directly verifiable, and each siz
 | 5 | 6 | 1 | the regular tournament on 5, score `(2, 2, 2, 2, 2)` |
 | 6 | 35 | 0 | *none* |
 
-The size-1 through size-5 rows exhibit the odd-size regular tournaments (sizes 1, 3, 5) plus the unique SC on 4. **The size-6 row is the first nontrivial verification**: 35 strongly-connected iso classes on 6 nodes, and zero of them have a unique score realizer.[^5] Beyond size 6 the same numerics hold up to at least the OEIS b-file's 500 terms: extending the direct enumeration of `SUD(n)` past `n = 6` is expensive (canonicalization is `O(n!)` per class), but the whole identity is `SC-SUD(k) = 0` for `k ≥ 6`, which is the missing structural theorem.
+The size-1 through size-5 rows exhibit the odd-size regular tournaments (sizes 1, 3, 5) plus the unique SC on 4. **The size-6 row is the first nontrivial verification**: 35 strongly connected tournaments on 6 nodes (up to isomorphism), and zero of them have a unique score realizer.[^5] Beyond size 6 the same numerics hold up to at least the OEIS b-file's 500 terms: extending the direct enumeration of the count past `n = 6` is expensive (canonicalization is `O(n!)` per class), but the whole identity is `SC-SUD(k) = 0` for `k ≥ 6`, which is the missing structural theorem.
 
 ### What the bijection means
 
-- **Schoenfield's empirical recurrence for A000570 is now equivalent to a concrete graph-theoretic claim**: strongly-connected SUD tournaments exist only for sizes `1, 3, 4, 5`. That claim is a theorem for `k ≤ 6` (direct enumeration) and a conjecture for `k ≥ 7`.
+- **Schoenfield's empirical recurrence for A000570 is now equivalent to a concrete graph-theoretic claim**: strongly connected score-uniquely-determined tournaments exist only for sizes `1, 3, 4, 5`. That claim is a theorem for `k ≤ 6` (direct enumeration) and a conjecture for `k ≥ 7`.
 - The Steven Finch comment on A000570 - "multus bitstrings of length n with no runs of 5 ones" - is a bit-string encoding of the same composition object: a `1` in Finch's bitstring is a size-1 part, and a maximal run of consecutive `0`s of length `k − 1 ∈ {2, 3, 4}` is a size-`k` part in `{3, 4, 5}`.
 - The three-way object connects castle combinatorics, integer composition theory, and tournament theory through one 5-part transfer-matrix decomposition. If the size-≥6 conjecture is proved, this becomes a genuine seminar centerpiece.
 

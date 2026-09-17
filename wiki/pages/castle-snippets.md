@@ -574,7 +574,7 @@ def is_strongly_connected(T):
     return len(reach(T, 0)) == n and len(reach(Tt, 0)) == n
 ```
 
-Meaning: forward and backward reachability from a single vertex - a valid SCC test for tournaments since every pair has an edge in some direction, so 0-reachability determines connectivity. Used in the SUD strongly-connected classification ([[tree-castle-by-area](pages/tree-castle-by-area.md)]).
+Meaning: forward and backward reachability from a single vertex - a valid SCC test for tournaments since every pair has an edge in some direction, so 0-reachability determines connectivity. Used in the classification of strongly connected score-uniquely-determined tournaments ([[tree-castle-by-area](pages/tree-castle-by-area.md)]).
 
 ### `tree_area_gf(h, W)` / `tree_area_by_area(h, A_max)` → area-graded tree castle counts
 
