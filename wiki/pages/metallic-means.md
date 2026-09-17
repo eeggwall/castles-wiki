@@ -93,7 +93,7 @@ Higher rungs (bronze, copper, nickel, …) and the vertical / area / block axes 
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the Fibonacci / `φ` archetype (the `a=1` member).
 - [[castle-by-area](pages/castle-by-area.md)] — `2^{n−1} − F_{n−1}`, where Fibonacci / `φ` enters the castle count.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] — the metallic means are algebraic (quadratic), the exact irrationals that C-finite castle counts *can* carry.
-- [[spectral-analysis](pages/spectral-analysis.md)] — the transfer-matrix spectrum computes `λ_1(h)` directly; the metallic-mean values that appear (silver `1+√2` at `h=2`, others open) come out of that method.
+- [[spectral-analysis](pages/spectral-analysis.md)] / [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - where the metallic means do and do not appear as eigenvalues: never in PE 502's own signed transfer matrix (its eigenvalues are twice algebraic units), but as spectral radii of class transfer matrices (Axis 8) and of individual castle graphs (`φ` for the 4-cell paths, `1 + √2` for the `3×2` rectangle and three non-rectangular castles).
 - [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the convergent numerator/denominator/trace sequences of every rung `a = 1..5` matched to OEIS, and the mod-`p` signature of norm `−1` (`δ_a^{p+1} = −1` at inert primes).
 
 ## Footnotes

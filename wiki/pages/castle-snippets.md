@@ -474,6 +474,36 @@ True
 
 Meaning: `H_3` is the minimal polynomial of `ψ²` (plastic number squared), hence `ρ_6 = 2ψ²` ([[plastic-number](pages/plastic-number.md)]); the identity `g_{2d} = H_d·(H_{d+1} + μ² H_{d−1})` holds for every `d` (proof on [[tower-parity-sectors](pages/tower-parity-sectors.md)]).
 
+### `castle_graph_radius(c)` → float
+
+Largest adjacency eigenvalue of the castle's polyomino graph (cells as vertices, orthogonal neighbors as edges) - the Axis 9 statistic of [[castle-classification](pages/castle-classification.md)] and the census on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]. Requires NumPy.
+
+```python
+import numpy as np
+
+def castle_graph_radius(c):
+    cells = [(i, j) for i, h in enumerate(c) for j in range(h)]
+    idx = {cell: n for n, cell in enumerate(cells)}
+    A = np.zeros((len(cells), len(cells)))
+    for (i, j), n in idx.items():
+        for nb in ((i+1, j), (i, j+1)):
+            if nb in idx: A[n, idx[nb]] = A[idx[nb], n] = 1
+    return np.linalg.eigvalsh(A)[-1]
+```
+
+```
+>>> round(castle_graph_radius((1, 1, 1, 1)), 6)      # P_4: phi
+1.618034
+>>> round(castle_graph_radius((2, 2, 2)), 6)         # 3x2 rectangle: 1 + sqrt(2)
+2.414214
+>>> round(castle_graph_radius((1, 2, 3, 1, 2, 3)), 6)
+2.414214
+>>> [c for c in all_castles(3, 2) if abs(castle_graph_radius(c) - (1 + 2**.5)) < 1e-9]
+[(2, 2, 2)]
+```
+
+Meaning: `(1,1,1,1)` is a golden-spectrum castle, `(2,2,2)` and `(1,2,3,1,2,3)` are silver-spectrum castles. Combine with `castles_where` to census a spectral predicate; swap `eigvalsh(A)[-1]` for the full spectrum (or `np.diag(A.sum(1)) - A` for the Laplacian) to hunt isospectral pairs.
+
 ### `oeis_lookup(terms)` → list of `(A-number, name)`
 
 The live version of `oeis_snippet` below. **OEIS answers Python's default `urllib` User-Agent with HTTP 403**; go through `curl` with a real UA and sleep a second between calls.
@@ -556,5 +586,6 @@ Snippets that break this discipline will rot; snippets that follow it stay usefu
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — the OEIS-lookup loop the `oeis_snippet` helper feeds.
 - [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the analysis the continued-fraction / mod-p / quasi-polynomial snippets were written for; every pinned value here matches that page.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - the transfer-matrix, sector, and `H(d)` snippets.
+- [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the `castle_graph_radius` census.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] / [[mod-p-observatory](pages/mod-p-observatory.md)] - the two sides (real periods, finite-field orders) that `convergents` and `order_mod` compute.
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] / [[kitamasa](pages/kitamasa.md)] — the fast-algorithm side, one abstraction level up.

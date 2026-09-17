@@ -1,7 +1,7 @@
 ---
 title: Castle classification
 category: Concepts
-summary: A classification framework for castle sub-families. Axes 1-7 are structural skyline predicates on individual castles; Axis 8 is a growth-type meta-classification on castle *classes* (named as "<metal> <axis> growth castle"); Axis 9 is a spectral-type predicate on individual castles' polyomino graphs (Ramanujan castle first, others sketched). Catalogs 42 structural types plus the Axis-8 golden and silver width growth families and the Axis-9 Ramanujan type.
+summary: A classification framework for castle sub-families. Axes 1-7 are structural skyline predicates on individual castles; Axis 8 is a growth-type meta-classification on castle *classes* (named as "<metal> <axis> growth castle"); Axis 9 is a spectral-type predicate on individual castles' polyomino graphs (Ramanujan castle, golden- and silver-spectrum castles with computed members, others sketched). Catalogs 42 structural types plus the Axis-8 golden and silver width growth families and the Axis-9 Ramanujan type.
 tags: [concept, castle, classification, taxonomy, skyline, spectral, ramanujan]
 sources: [castle-classification]
 created: 2026-09-15
@@ -195,7 +195,7 @@ A class whose width-graded count sequence has growth constant `1 + √2 ≈ 2.41
 
 ### Vertical / area / block growth castles
 
-The **vertical growth axis** grades by height (`h` varying, `w` fixed). Instances of silver vertical growth castle: **the k-direction signed count `P(k, L)` at fixed `L`**, whose characteristic polynomials on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] are self-reciprocal with eigenvalues that pair as `r ↔ ±1/r` — for small `L` the dominant eigenvalue can be a metallic mean; open which `L` values realize which `δ_a`.
+The **vertical growth axis** grades by height (`h` varying, `w` fixed). No member is known. The natural candidate, the k-direction signed count `P(k, L)` at fixed `L`, is not one: its characteristic polynomial is `(x+1)^L (x−1)^{L−2}` ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]), so it is a quasi-polynomial in `k` with no exponential growth at all. The count `F(w, h)` in `h` is likewise a quasi-polynomial (annihilated by `(x²−1)^w`). A vertical growth castle with a metallic constant would have to come from a rule modification.
 
 The **area growth axis** grades by `∑ c_i`. Instances: the prime-castle-by-area count `2^{n−1} − F_{n−1}` is golden area growth castle (Fibonacci-dominated); [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] (`A001523`) has area growth constant that is *not* a metallic mean (transcendental, from the partition-function saddle-point analysis) — so weakly-unimodal castles by area are *not* a `δ_a`-castle for any `a`, useful negative example.
 
@@ -243,6 +243,16 @@ The castle graph is not regular in general (interior cells have degree 4, edge c
 - **Crenellated / battlement** (Axis 7) — alternating heights; highly regular local structure, likely a Ramanujan candidate for suitable `w, h`.
 
 **The Ramanujan castle is a photogenic classification target.** A "smallest Ramanujan castle" or "smallest non-trivial Ramanujan castle at each `(w, h)`" would be a clean result — pure combinatorics, small computer search, and directly ties castle shape to a deep number-theoretic notion of graph optimality.
+
+### Golden-spectrum and silver-spectrum castles
+
+The first Axis 9 types with computed members ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]). A castle is a **golden-spectrum castle** if its adjacency spectral radius is `φ`, a **silver-spectrum castle** if it is `1 + √2`, and a **golden-squared-spectrum castle** if it is `φ²`. Census over all castles with `w ≤ 6, h ≤ 6` and `w = 7, h ≤ 5`:
+
+- golden: the six 4-cell castles whose graph is the path `P_4` - `(4)`, `(1,3)`, `(3,1)`, `(1,1,2)`, `(2,1,1)`, `(1,1,1,1)`; no other size can qualify (a connected graph with spectral radius below 2 is a path or a star).
+- silver: the `3×2` rectangle `(3,3) = (2,2,2)` (`P_2 × P_3`) and three non-rectangular mirror pairs, `(1,2,3,1,2,3)`, `(2,1,6,2,1,3)`, `(1,1,2,4,1,3,1)`, each with `x² − 2x − 1` dividing its characteristic polynomial exactly.
+- golden-squared: `(4,4)` (`P_2 × P_4`) and `(1,3,2,3,1)`.
+
+Copper `2 + √5 = 4.236` and every higher metallic mean are impossible for any castle graph (maximum degree 4, spectral radius below 4). Bronze `3.303` is open - absent up to the scanned size. These are single-castle predicates, distinct from Axis 8's per-class growth constants: PE 502's own signed transfer matrix never has a metallic eigenvalue, so the metallic means reach individual castles only through their polyomino graphs.
 
 ### Sketched additional Axis-9 types (S-Division seminar targets)
 

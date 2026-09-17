@@ -30,13 +30,13 @@ The five methods, at a glance:
 
 The **signed transfer matrix** `T` acts on skyline states (previous column height) and encodes the [[castle-sign](pages/castle-sign.md)] `s(C) = (−1)^blocks` through its off-diagonal weights. It is the operator implicit in the `p_signed` DP of [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] — state a length-`(k+1)` vector indexed by the last column height, transition `(−1)^max(0, b−a)` from height `a` to `b` — and the operator whose rational-function shadow is the `num_k / den_k` recurrence of [[castle-counting-formula](pages/castle-counting-formula.md)].
 
-For fixed height bound `k = h − 1`, `T = T(h)` is a `h × h` real matrix whose signed row sums produce `P(k, L)` as `L → ∞`. Its eigenvalues `λ_1(h) ≥ |λ_2(h)| ≥ …` control the count's asymptotic behavior:
+For fixed height bound `k = h − 1`, `T = M_k` is an `h × h` integer matrix whose signed row sums produce `P(k, L)`. The count itself is dominated by the unsigned term:
 
 ```
-F(w, h)  ~  c(h) · λ_1(h)^w    as w → ∞.
+F(w, h)  =  [h^w − (h−1)^w − P(h−1, w) + P(h−2, w)] / 2   ~   h^w / 2,        λ_1(h) = h,
 ```
 
-`λ_1(h)` is the growth constant. It is the direct algebraic source of the metallic-mean growth constants tracked on [[metallic-means](pages/metallic-means.md)] — for `h = 2`, `λ_1 = 1 + √2` (silver, Pell), matching the [[pell-castle-strip](pages/pell-castle-strip.md)] mnemonic. For `h = 3, 4, 5, …` the values are almost certainly named algebraic numbers with clean minimal polynomials; knowing them classifies castle families by growth type at a glance.
+so the growth constant of `F(·, h)` is the integer `h` for every `h`, and the spectrum of `M_k` governs the *correction* terms `P(k, w) ~ ρ_k^w` with `ρ_1 = √2`, `ρ_2 = 2`, `ρ_3 = 2.193`, `ρ_4 = 2.796`, `ρ_5 = 2.892`, `ρ_6 = 2ψ² = 3.510` (`ψ` the [[plastic-number](pages/plastic-number.md)]). None of these is a metallic mean, and none can be: every eigenvalue of `M_k` is twice a root of the monic factor `H_{k/2}` or a root of the leading-coefficient-2 factor `V_{k/2}` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]), and a metallic mean fails both tests ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]). Metallic means enter the castle as spectral radii of the 2-state transfer matrices of castle *classes* - the [[pell-castle-strip](pages/pell-castle-strip.md)] `[[2,1],[1,0]]` with `1 + √2`, the `{0,1}`-strip with `φ` - which is what Axis 8 of [[castle-classification](pages/castle-classification.md)] records, and as adjacency spectral radii of individual castle graphs (method 4 below).
 
 **Spectral signature of a rule set.** Any modification of PE 502's rules (change the gap requirement, forbid width-1 blocks, allow diagonal stacking) modifies `T` and therefore perturbs the sequence `{λ_i(h)}_{h ≥ 2}`. Two castle families are asymptotically equivalent iff their transfer-matrix eigenvalue sequences agree — the transfer-matrix spectrum is the **canonical invariant** of a castle rule set.
 
@@ -145,23 +145,17 @@ The five spectra above are not independent of the structural axes. Concrete cons
 | **Boxcastle** (Axis 5, `c_i = h` all) | Laplacian spectrum `2·cos(iπ/(w+1)) + 2·cos(jπ/(h+1))`, explicit closed form |
 | **Unimodal / pyramidal** (Axis 1) | Skyline DFT decays like `1/k` (sawtooth-DFT class); low-pass spectrum; Laplacian spectral gap `μ_1 = Θ(1/w)` |
 | **Even-parity-only** (PE 502 rule 6) | Transfer-matrix `T` splits into `±1` eigenspaces of the block-parity involution `σ`; castles live in the `+1` half; spectral projection = `½(I + σ)`. This is [[castle-sign](pages/castle-sign.md)]'s `(T ± P)/2` at the operator level. |
-| **Silver width growth castle** (Axis 8) | Transfer-matrix `λ_1 = 1 + √2 ∈ Q(√2)`; dominant eigenvalue is a metallic mean |
+| **Silver width growth castle** (Axis 8) | The *class's* 2-state transfer matrix (`[[2,1],[1,0]]` for the Pell strip) has spectral radius `1 + √2 ∈ Q(√2)`; PE 502's own signed transfer matrix never has a metallic eigenvalue |
+| **Golden- / silver-spectrum castle** (Axis 9) | Adjacency spectral radius `φ` (the 4-cell paths) or `1 + √2` (the `3×2` rectangle and three non-rectangular castles) - see [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
 | **q-Gibbs area-weighted** (`q = e^{−β}`, area-weighted measure) | Transfer matrix `T_β` with `β`-dependent spectrum; **spectral phase transition** at some critical `β_c` where `λ_1(β)` has a non-analyticity — the castle analog of a Yang-Lee zero and the direct meeting-point of combinatorics with statistical mechanics |
 
 The last row is the sharpest open target — a critical-`β` computation for castles graded by area would connect the [[castle-by-area](pages/castle-by-area.md)] thread, the [[q-catalan-numbers](pages/q-catalan-numbers.md)] q-analog thread, and the transfer-matrix spectral analysis in a single result. Statistical-physics adjacency comes for free.
 
 ## Two immediate targets (sketched, not run)
 
-### `λ_1(h)` for `h = 2, 3, 4, 5`
+### `λ_1(h)` - settled
 
-The transfer-matrix `T(h)` is an explicit `h × h` matrix; its characteristic polynomial `χ_h(x)` is degree `h`. Compute `χ_h(x)` for `h = 2, 3, 4, 5` symbolically (SymPy), factor over `Q[x]`, extract the dominant real root, identify the resulting algebraic number.
-
-Expected form:
-
-- `h = 2`: `λ_1 = 1 + √2`. Silver-mean. Matches the [[pell-castle-strip](pages/pell-castle-strip.md)] denominator `1 − 2x − x²` and the tower-word growth of [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)].
-- `h = 3, 4, 5`: likely named algebraic numbers with clean minimal polynomials. May or may not be metallic means — determining this is the classification-relevant outcome. Non-metallic algebraic growth constants would be a *negative result* of independent interest, showing that the metallic-mean ladder does not exhaust castle growth types.
-
-Output: a table of `(h, χ_h(x), λ_1(h), field, metallic-mean status)` for `h = 2..5`, extensible upward.
+The transfer matrix `M_k` (`k = h − 1`) has characteristic polynomial `char_k` of degree `h` ([[generating-function-gallery](pages/generating-function-gallery.md)]), factored in closed form on [[tower-parity-sectors](pages/tower-parity-sectors.md)]: `char_k(2μ)/2^k = H_{k/2}(μ)·(H_{k/2+1}(μ) + μ² H_{k/2−1}(μ))` for even `k`, irreducible for odd `k`. The count's growth constant is `λ_1(h) = h`; the signed correction grows like `ρ_{h−1}` with `ρ_1 = √2`, `ρ_2 = 2`, `ρ_3 = 2.193`, `ρ_4 = 2.796`, `ρ_5 = 2.892`, `ρ_6 = 2ψ²` - algebraic, never metallic, and `2 ×` a unit exactly when `h ≡ 3 (mod 4)`. The metallic-mean ladder does not appear in PE 502's own spectrum; it appears in class transfer matrices (Axis 8) and in individual castle graphs (below). Full table and argument on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)].
 
 ### The isospectral-castle hunt
 
@@ -180,7 +174,8 @@ This page and [[castle-classification](pages/castle-classification.md)] are pair
 
 ## Open threads
 
-- **`λ_1(h)` for `h ≥ 3`** — the computational target above. Sketched, not run.
+- **`λ_1(h)`** - settled: `λ_1(h) = h`, signed corrections `ρ_{h−1}`, no metallic means ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], [[tower-parity-sectors](pages/tower-parity-sectors.md)]).
+- **Golden- and silver-spectrum castles** - the first Axis 9 census: adjacency spectral radius `φ` for the six 4-cell paths, `1 + √2` for the `3×2` rectangle and three non-rectangular castles up to `w = 7`; copper and above impossible (max degree 4), bronze open ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]).
 - **Isospectral hunt** — the computational target above. Sketched, not run.
 - **Nomography ingest** — the working note in `/Users/creid/tmp/pe502-nomography.md` develops the LGV / non-crossing-path framing for castles; ingesting it will populate §2 above with concrete kernel formulas and cross-links.
 - **q-Gibbs critical-`β`** — the transfer-matrix phase-transition computation from the construction ↔ spectrum table's last row. Statistical-mechanics-adjacent.
