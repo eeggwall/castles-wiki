@@ -521,6 +521,38 @@ def cycle_rank(c):
 
 Meaning: the last line is `F_{w+2}` for `w = 1..8`. Tree castles of height at most 2 are counted by Fibonacci (offset 2); Jacobsthal A001045 counts height at most 3; the k-Fibonacci family A006130, A006131 counts higher `h`. All catalogued on [[castle-graph](pages/castle-graph.md)].
 
+### `tree_area_gf(h, W)` / `tree_area_by_area(h, A_max)` → area-graded tree castle counts
+
+Bivariate GF for tree castles by width and area, and the area-only sequence at fixed height ([[tree-castle-by-area](pages/tree-castle-by-area.md)]). Requires SymPy.
+
+```python
+import sympy as sp
+x, q = sp.symbols('x q')
+
+def P_h(h):
+    return sum(q**i for i in range(2, h+1)) if h >= 2 else sp.Integer(0)
+
+def tree_area_gf(h, W):
+    T = sp.series((1 + P_h(h)*x) / (1 - q*x - q*P_h(h)*x**2), x, 0, W+1).removeO()
+    return [sp.expand(T.coeff(x, w)) for w in range(W+1)]
+
+def tree_area_by_area(h, A_max):
+    Ph = P_h(h)
+    S = sp.series((1 + Ph) / (1 - q - q*Ph), q, 0, A_max+1).removeO()
+    return [int(S.coeff(q, A)) for A in range(A_max+1)]
+```
+
+```
+>>> tree_area_by_area(2, 15)                       # Narayana's cows A000930(A+1)
+[1, 1, 2, 3, 4, 6, 9, 13, 19, 28, 41, 60, 88, 129, 189, 277]
+>>> tree_area_by_area(3, 15)                       # A006498(A+1), golden growth via cyclotomic factor
+[1, 1, 2, 4, 6, 9, 15, 25, 40, 64, 104, 169, 273, 441, 714, 1156]
+>>> [int(coef) for coef in [c.subs(sp.Symbol('q'), 1) for c in tree_area_gf(2, 8)]]  # Fibonacci: T_h(w, 1) at h=2
+[1, 2, 3, 5, 8, 13, 21, 34, 55]
+```
+
+Meaning: the h=∞ (unlimited height) case is A005251(A+2), the same plastic-squared sequence that appears in the Hardin identity for `P_even(6, L)` - two independent castle interpretations of A005251 meeting at the same recurrence.
+
 ### `castle_graph_radius(c)` → float
 
 Largest adjacency eigenvalue of the castle's polyomino graph (cells as vertices, orthogonal neighbors as edges) - the Axis 9 statistic of [[castle-classification](pages/castle-classification.md)] and the census on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]. Requires NumPy.
@@ -678,6 +710,7 @@ Snippets that break this discipline will rot; snippets that follow it stay usefu
 - [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the analysis the continued-fraction / mod-p / quasi-polynomial snippets were written for; every pinned value here matches that page.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - the transfer-matrix, sector, and `H(d)` snippets.
 - [[castle-graph](pages/castle-graph.md)] - the `castle_graph`, `is_tree_castle`, `cycle_rank` snippets and the graph concept behind them.
+- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the `tree_area_gf`, `tree_area_by_area` snippets.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the `castle_graph_radius` census.
 - [[isospectral-castles](pages/isospectral-castles.md)] / [[hardin-word-identity](pages/hardin-word-identity.md)] - the `compositions` and `word_matrix` snippets.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] / [[mod-p-observatory](pages/mod-p-observatory.md)] - the two sides (real periods, finite-field orders) that `convergents` and `order_mod` compute.
