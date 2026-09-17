@@ -426,6 +426,54 @@ def quasi_split(seq, deg):
 
 Meaning: `P(k,4) = (−1)^k (k+1)(2k+1)(2k+3)/6 + (k+1)/2`, and `|P(k,4)|` is A352116 (partial sums of odd triangular numbers). Always give `deg` at least the true degree (`L−1` here); with too few terms the interpolation silently returns garbage - re-check against the sequence, as the crosswalk page does.
 
+### `M_signed(k)` / `sectors(k, Lmax)` → transfer matrix and last-column-parity sectors
+
+The signed transfer matrix of [[signed-tower-count](pages/signed-tower-count.md)] and the split `P = P_even + P_odd` by the parity of the last column height ([[tower-parity-sectors](pages/tower-parity-sectors.md)]). Requires SymPy.
+
+```python
+def M_signed(k):                       # s(a, b) = (-1)^max(0, a-b)
+    return sp.Matrix(k+1, k+1, lambda a, b: 1 if a <= b else (-1)**(a-b))
+
+def sectors(k, Lmax):
+    M = M_signed(k); row = sp.Matrix([[1]+[0]*k])
+    ve = sp.Matrix([1 if b % 2 == 0 else 0 for b in range(k+1)]); vo = sp.Matrix([(-1)**b if b % 2 else 0 for b in range(k+1)])
+    E, O = [], []
+    for L in range(Lmax+1):
+        E.append(int((row*ve)[0])); O.append(int((row*vo)[0])); row = row*M
+    return E, O
+```
+
+```
+>>> sp.factor(M_signed(6).charpoly(sp.Symbol('lam')).as_expr())
+(lam**3 - 4*lam**2 + 4*lam - 8)*(lam**4 - 3*lam**3 + 8*lam**2 - 4*lam + 8)
+>>> E, O = sectors(6, 9); E, O
+([1, 4, 16, 56, 192, 672, 2368, 8320, 29184, 102400], [0, -3, -9, -7, 39, 161, 215, -431, -2681, -5023])
+>>> [e // 2**L for L, e in enumerate(E)]          # = A005251(L+3): (L+1)-bit strings with no isolated 1
+[1, 2, 4, 7, 12, 21, 37, 65, 114, 200]
+>>> sectors(1, 8)                                  # Re((1+i)^L) and -Im((1+i)^L)
+([1, 1, 0, -2, -4, -4, 0, 8, 16], [0, -1, -2, -2, 0, 4, 8, 8, 0])
+```
+
+Meaning: `E[L] + O[L] = P(k, L)`; the two sequences are C-finite with the two factors of `char_k` as characteristic polynomials. `E[L]/2^L` is an integer exactly when `k ≡ 2 (mod 4)`.
+
+### `H(d)` → the monic factor of `char_{2d}(2μ)/2^{2d}`
+
+```python
+from math import comb
+def H(d):
+    return sp.Poly(sum((-1)**i * comb((d+i)//2, i) * mu**(d-i) for i in range(d+1)), mu)
+```
+
+```
+>>> [H(d).as_expr() for d in range(1, 5)]
+[mu - 1, mu**2 - mu + 1, mu**3 - 2*mu**2 + mu - 1, mu**4 - 2*mu**3 + 3*mu**2 - mu + 1]
+>>> g6 = sp.Poly(sp.expand(c[6].subs(lam, 2*mu)/2**6), mu)          # c[6] = char_6 from the gallery recurrence
+>>> (g6 - H(3)*sp.Poly(H(4).as_expr() + mu**2*H(2).as_expr(), mu)).is_zero
+True
+```
+
+Meaning: `H_3` is the minimal polynomial of `ψ²` (plastic number squared), hence `ρ_6 = 2ψ²` ([[plastic-number](pages/plastic-number.md)]); the identity `g_{2d} = H_d·(H_{d+1} + μ² H_{d−1})` holds for every `d` (proof on [[tower-parity-sectors](pages/tower-parity-sectors.md)]).
+
 ### `oeis_lookup(terms)` → list of `(A-number, name)`
 
 The live version of `oeis_snippet` below. **OEIS answers Python's default `urllib` User-Agent with HTTP 403**; go through `curl` with a real UA and sleep a second between calls.
@@ -507,5 +555,6 @@ Snippets that break this discipline will rot; snippets that follow it stay usefu
 - [[pell-castle-strip](pages/pell-castle-strip.md)] — the silver-width-growth-castle example; the `is_zero_one_strip` predicate is its `w_1 = 1` analog for golden.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — the OEIS-lookup loop the `oeis_snippet` helper feeds.
 - [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the analysis the continued-fraction / mod-p / quasi-polynomial snippets were written for; every pinned value here matches that page.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - the transfer-matrix, sector, and `H(d)` snippets.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] / [[mod-p-observatory](pages/mod-p-observatory.md)] - the two sides (real periods, finite-field orders) that `convergents` and `order_mod` compute.
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] / [[kitamasa](pages/kitamasa.md)] — the fast-algorithm side, one abstraction level up.

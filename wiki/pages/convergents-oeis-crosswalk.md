@@ -389,8 +389,8 @@ One more thing the convergents teach: `|ρ_6 − A₁/A₀| · A₀^{3/2}` stays
 
 **Open** (also filed on IDEAS).
 - Prove `(x+1)^L (x−1)^{L−2}` (the Ehrhart sketch is the route) and find `A_L, B_L` uniformly - this is most of "General closed form for `P(k,L)`."
-- Why the plastic field at `k = 6`, and why `ρ_k/2` is a unit exactly for `k ≡ 2 (mod 4)`. Is the JPA of `ρ_k` periodic in every unit case (`k = 10` was not, within 60 steps)?
-- A bijective reading of `P(6,L) = 2^L · #(no-isolated-1 strings) + …`, and of `|P(k,4)|` as `C₃`-lattice crystal-ball / tetrahedral numbers.
+- Why the plastic field at `k = 6`, and why `ρ_k/2` is a unit exactly for `k ≡ 2 (mod 4)` - answered on [[tower-parity-sectors](pages/tower-parity-sectors.md)]: the even-`k` factors are `H_d(μ) = Σ (−1)^i C(⌊(d+i)/2⌋, i) μ^{d−i}` and its Lucas companion, `H_3` is the minimal polynomial of `ψ²`, and the dominant root lies in the monic factor `H_{k/2}` exactly when `k ≡ 2 (mod 4)`. The JPA of `ρ_10`, `ρ_10/2`, `ρ_14/2` is not periodic within 300 / 200 exact steps.
+- A bijective reading of `P(6,L) = 2^L · #(no-isolated-1 strings) + …` - sharpened on [[tower-parity-sectors](pages/tower-parity-sectors.md)] to `P_even(6,L) = 2^L·A005251(L+3)` (even last column), and generalized to Hardin's word counts for every `k ≡ 2 (mod 4)`; the bijection itself is still open. Likewise `|P(k,4)|` as `C₃`-lattice crystal-ball / tetrahedral numbers.
 - Whether the Axis-8 growth classification on [[castle-classification](pages/castle-classification.md)] should grow a non-metallic rung: `2ψ²` is a Pisot-type growth constant that is *not* a metallic mean.
 
 ## Snippet index (what each one teaches)
@@ -430,6 +430,7 @@ All snippets ran under Python 3.11 with SymPy 1.14 and mpmath 1.3; the DP and Be
 - [[castle-snippets](pages/castle-snippets.md)] - where the reusable snippets from this page are filed.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the `2^L` per-column binary state that reappears in the plastic component of `P(6,L)`.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - every constant on this page is algebraic, as C-finiteness demands; `ψ` joins `φ` and `1+√2` on the algebraic side.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - the explanation of Part 4: the symmetry that factors `char_k`, the closed-form factors, and the plastic number's own page.
 
 ## Footnotes
 

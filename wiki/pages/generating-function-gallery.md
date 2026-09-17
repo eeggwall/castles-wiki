@@ -5,7 +5,7 @@ summary: The rational generating functions F_k(x) = num_k/den_k of P(k,L) in L, 
 tags: [analysis, castle, generating-functions, c-finite, sympy, verification]
 sources: [project-euler-502-solution, oeis-mining-pe502]
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-16
 ---
 
 # Generating-function gallery for P(k,L)
@@ -89,7 +89,7 @@ The recurrence's eigenvalues are the roots of the **characteristic polynomial** 
 | 5 | `λ⁶ − 6λ⁵ + 18λ⁴ − 32λ³ + 48λ² − 32λ + 32` |
 | 6 | `(λ³ − 4λ² + 4λ − 8)(λ⁴ − 3λ³ + 8λ² − 4λ + 8)` |
 
-**Structure.** For **even `k`** the polynomial factors into two factors of degrees `k/2` and `k/2 + 1` — one of them carrying the single real root that dominates the growth. For **odd `k`** it is irreducible over ℚ, so *every* eigenvalue is non-real. The roots (eigenvalues), with the dominant modulus ρ_k = max|λ|:
+**Structure.** For **even `k`** the polynomial factors into two factors of degrees `k/2` and `k/2 + 1` — one of them carrying the single real root that dominates the growth. For **odd `k`** it is irreducible over ℚ, so *every* eigenvalue is non-real. The reason is a symmetry: the signed transfer matrix commutes with "reflect heights, flip the sign of odd heights", whose eigenspaces are the even- and odd-last-column sectors of the tower count; for odd `k` that operator squares to `−1` and the split only happens over `Q(i)`. In the variable `μ = λ/2` the factors are explicit - `H_{k/2}(μ) = Σ_i (−1)^i C(⌊(k/2+i)/2⌋, i) μ^{k/2−i}` and its Lucas companion `H_{k/2+1} + μ² H_{k/2−1}` - and `H_3 = μ³ − 2μ² + μ − 1` is the minimal polynomial of `ψ²` for `ψ` the plastic number, so `ρ_6 = 2ψ²`. See [[tower-parity-sectors](pages/tower-parity-sectors.md)]. The roots (eigenvalues), with the dominant modulus ρ_k = max|λ|:
 
 | k | eigenvalues | ρ_k ≈ |
 |---|---|---|
@@ -172,6 +172,7 @@ This checks `k = 8` too — the recurrence, not the hand-listed table, is the so
 - [[castle-counting-formula](pages/castle-counting-formula.md)] / [[castle-count-algorithms](pages/castle-count-algorithms.md)] — where `num_k/den_k` is evaluated at scale.
 - [[generating-functions](pages/generating-functions.md)] — the ordinary-GF toolkit behind a linear recurrence ⇒ rational GF.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] — these `char_k` polynomials reduced mod p, whose root orders set the periods.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the symmetry behind the even-`k` factorization, the closed-form factors `H_d`, `V_d`, and the plastic-number eigenvalue `ρ_6 = 2ψ²` ([[plastic-number](pages/plastic-number.md)]).
 
 ## Footnotes
 

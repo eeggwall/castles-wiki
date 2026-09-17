@@ -36,6 +36,8 @@ P(1,L) = Re((1+i)^{L+1}) = A146559(L+1)      (A146559: g.f. (1−x)/(1−2x+2x²
 
 with values `P(1,L) = 1, 0, −2, −4, −4, 0, 8, 16, 16, 0, −32, …` from `L = 0` (re-verified during ingest). A parent plan had claimed `P(1,L) = A009545`, but **A009545 is the imaginary part `Im((1+i)^n)`** — the companion, not `P`. The mixup is a textbook case for [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]'s "verify against OEIS data with offsets" rule: the two sequences agree in magnitude pattern but are the real vs. imaginary components of the same `(1+i)^n`.[^2]
 
+Both components are castle counts. Splitting `P(1,L)` by the parity of the last column height gives `P_even(1,L) = Re((1+i)^L) = A146559(L)` and `P_odd(1,L) = −Im((1+i)^L) = −A009545(L)`: A009545 is minus the signed count of height-`≤1` towers whose last column has height 1. The split is the `k = 1` case of the sector decomposition on [[tower-parity-sectors](pages/tower-parity-sectors.md)], which for even `k` is what factors `char_k`.
+
 `A146559` is a proposed cross-link target: `a(n) = P(1,n−1)`, the real part of `(1+i)^n` read as a signed castle count, with the genuinely new formula `A146559(n) = A038503(n) − A038505(n)` tying the signed vein to the height-2 [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)].[^3] The `P(k,·)` families for `k ≥ 2` (e.g. `P(2,·): 1,1,3,9,19,33,59,…` order 3; `P(4,·): 1,1,5,25,85,225,541,…` order 5) are new-sequence candidates generalizing A146559.[^4]
 
 ## Appearances in Sources
@@ -53,6 +55,7 @@ with values `P(1,L) = 1, 0, −2, −4, −4, 0, 8, 16, 16, 0, −32, …` from 
 - [[generating-functions-topic](pages/generating-functions-topic.md)] — the imaginary-roots worked example `1/(1+z²) → ½(iⁿ+(−i)ⁿ)`, the exact mechanism of `Re((1+i)^{L+1})`.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] — the orders `k+1` (L-direction) and `2L−2` (k-direction, L ≥ 4), verified by Berlekamp–Massey.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] — the `num_k/den_k` rational GFs and their roots (the characteristic polynomials above).
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - `P = P_even + P_odd` by last-column parity; the sectors are the factors of `char_k`, `P_even(6,L) = 2^L·A005251(L+3)`, and `P_even(4m+2, L)/2^L` are Hardin's word counts.
 - [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the k-direction characteristic polynomial is `(x+1)^L (x−1)^{L−2}`, so `P(·,L)` is a quasi-polynomial in `k`; and the exact split `P(6,L) = 2^L·A005251(L+3) + (order-4 remainder)`, tying the `k = 6` row to the plastic number `ψ` via its dominant eigenvalue `2ψ²`.
 
 ## Footnotes
