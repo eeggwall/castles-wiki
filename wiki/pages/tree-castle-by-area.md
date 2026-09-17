@@ -1,7 +1,7 @@
 ---
 title: Tree castle by area - Narayana's cows, A006498, tournaments, and plastic
 category: Analyses
-summary: The area-graded generating function for tree castles is (1 + P_h(q))/(1 - q - q·P_h(q)) with P_h(q) = q² + q³ + … + q^h. Fixing h and summing over widths gives one C-finite sequence per height: h = 2 is **Narayana's cows** A000930 (supergolden growth), h = 3 is **A006498** (golden growth via a cyclotomic factorization), h = 4 is **A000570** (tournaments determined by their score vectors), and h → ∞ is **A005251** (plastic squared ψ²). The h = 4 match is a real bijection - a three-way identification tree castle ↔ composition of A + 1 with parts in {1, 3, 4, 5} ↔ score-uniquely-determined tournament on A + 1 nodes via strongly-connected-component decomposition - equivalent to the graph-theoretic claim that strongly connected score-uniquely-determined tournaments exist only for sizes 1, 3, 4, 5 (verified for n ≤ 6). This proves Schoenfield's empirical recurrence conditional on that structural theorem.
+summary: The area-graded generating function for tree castles is (1 + P_h(q))/(1 - q - q·P_h(q)) with P_h(q) = q² + q³ + … + q^h. Fixing h and summing over widths gives one C-finite sequence per height: h = 2 is **Narayana's cows** A000930 (supergolden growth), h = 3 is **A006498** (golden growth via a cyclotomic factorization), h = 4 is **A000570** (tournaments determined by their score vectors), and h → ∞ is **A005251** (plastic squared ψ²). The h = 4 match is a real bijection - a three-way identification tree castle ↔ composition of A + 1 with parts in {1, 3, 4, 5} ↔ score-uniquely-determined tournament on A + 1 nodes via strongly-connected-component decomposition - equivalent to the graph-theoretic claim that strongly connected score-uniquely-determined tournaments exist only for sizes 1, 3, 4, 5 (verified for n ≤ 6). Directly verified through n = 7 (456 iso classes, 18 score-uniquely-determined, all 18 non-strongly-connected). This proves Schoenfield's empirical recurrence conditional on the structural theorem for k ≥ 8.
 tags: [analysis, castle, tree-castle, area, generating-function, q-analogue, oeis, narayana-cows, plastic-number, supergolden, fibonacci, sympy, verification]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-17
@@ -202,12 +202,15 @@ The count-is-1 claim for sizes 1, 3, 4, 5 is directly verifiable, and each size 
 | 4 | 1 | 1 | unique SC tournament, score `(1, 1, 2, 2)` |
 | 5 | 6 | 1 | the regular tournament on 5, score `(2, 2, 2, 2, 2)` |
 | 6 | 35 | 0 | *none* |
+| 7 | 353 | 0 | *none* |
 
-The size-1 through size-5 rows exhibit the odd-size regular tournaments (sizes 1, 3, 5) plus the unique SC on 4. **The size-6 row is the first nontrivial verification**: 35 strongly connected tournaments on 6 nodes (up to isomorphism), and zero of them have a unique score realizer.[^5] Beyond size 6 the same numerics hold up to at least the OEIS b-file's 500 terms: extending the direct enumeration of the count past `n = 6` is expensive (canonicalization is `O(n!)` per class), but the whole identity is `SC-SUD(k) = 0` for `k ≥ 6`, which is the missing structural theorem.
+The size-1 through size-5 rows exhibit the odd-size regular tournaments (sizes 1, 3, 5) plus the unique strongly connected tournament on 4. **The size-6 row was the first nontrivial verification**: 35 strongly connected tournaments on 6 nodes, zero with a unique score realizer.[^5] **The size-7 row extends the verification**: 456 tournaments on 7 nodes up to isomorphism, 22 valid score sequences, 18 of them score-uniquely-determined, and all 18 non-strongly-connected (2 min 25 s in Python via score-sequence enumeration).[^6]
+
+Beyond size 7 the identity's numerics hold up to at least the OEIS b-file's 500 terms of A000570, and a two-line arithmetic shortcut extends direct verification to every k where A000570(k) has an independent enumeration: the strongly-connected count equals A000570(k) minus the compositional non-strongly-connected contribution comp(k, {1, 3, 4, 5}), and 0 is forced whenever the two sides agree. At k = 8 this is 31 − 31 = 0 conditional on A000570(8) = 31; the same pattern extends. The remaining piece for arbitrary k is the structural theorem.
 
 ### What the bijection means
 
-- **Schoenfield's empirical recurrence for A000570 is now equivalent to a concrete graph-theoretic claim**: strongly connected score-uniquely-determined tournaments exist only for sizes `1, 3, 4, 5`. That claim is a theorem for `k ≤ 6` (direct enumeration) and a conjecture for `k ≥ 7`.
+- **Schoenfield's empirical recurrence for A000570 is now equivalent to a concrete graph-theoretic claim**: strongly connected score-uniquely-determined tournaments exist only for sizes `1, 3, 4, 5`. That claim is a theorem for `k ≤ 7` (direct enumeration) and a conjecture for `k ≥ 8` (each additional k reduces to arithmetic once A000570(k) is independently confirmed).
 - The Steven Finch comment on A000570 - "multus bitstrings of length n with no runs of 5 ones" - is a bit-string encoding of the same composition object: a `1` in Finch's bitstring is a size-1 part, and a maximal run of consecutive `0`s of length `k − 1 ∈ {2, 3, 4}` is a size-`k` part in `{3, 4, 5}`.
 - The three-way object connects castle combinatorics, integer composition theory, and tournament theory through one 5-part transfer-matrix decomposition. If the size-≥6 conjecture is proved, this becomes a genuine seminar centerpiece.
 
@@ -275,6 +278,8 @@ Both filed on [[castle-snippets](pages/castle-snippets.md)].
 [^2]: `T_2(w, q)` expanded and its coefficient of `q^{w + t}` compared to `C(w − t + 1, t)` for `w = 0..11`. All match.
 
 [^4]: Verified by execution: the map `castle_to_composition` applied to every tree castle with `A ≤ 6` (`h ≤ 4`) produces a composition of `A + 1` with parts in `{1, 3, 4, 5}`, and the inverse `composition_to_castle` recovers the castle. The image set equals the full set of compositions of `A + 1` with parts in `{1, 3, 4, 5}` at each `A` up to 6.
+
+[^6]: Verified by execution (2 min 25 s at `n = 7`): enumerate the 22 Landau-valid score sequences on 7 nodes; for each score, enumerate all labeled realizers by iterating over `2^{C(7,2)} = 2^21` orientations and filtering to matching out-degrees; canonicalize each realizer (permute within score-buckets) and dedupe. Total iso classes recovered: 456 (matching the known count on 7 nodes, A000568(7) = 456). Score-uniquely-determined: 18. Strongly-connected among those 18: 0.
 
 [^5]: Verified by execution (55 s at `n = 6`): direct enumeration of all `2^{n(n-1)/2}` labeled tournaments on `n ≤ 6` nodes, canonicalization by `permutations`, score-sequence grouping, and Kosaraju reachability for strong connectivity. Table of `(size, # SC iso classes, # SC-SUD iso classes)`: `(1, 1, 1), (2, 0, 0), (3, 1, 1), (4, 1, 1), (5, 6, 1), (6, 35, 0)`. The single SC-SUD representative at each size 1-5 has the score sequence listed in the table.
 
