@@ -206,13 +206,23 @@ The count-is-1 claim for sizes 1, 3, 4, 5 is directly verifiable, and each size 
 
 The size-1 through size-5 rows exhibit the odd-size regular tournaments (sizes 1, 3, 5) plus the unique strongly connected tournament on 4. **The size-6 row was the first nontrivial verification**: 35 strongly connected tournaments on 6 nodes, zero with a unique score realizer.[^5] **The size-7 row extends the verification**: 456 tournaments on 7 nodes up to isomorphism, 22 valid score sequences, 18 of them score-uniquely-determined, and all 18 non-strongly-connected (2 min 25 s in Python via score-sequence enumeration).[^6]
 
-Beyond size 7 the identity's numerics hold up to at least the OEIS b-file's 500 terms of A000570, and a two-line arithmetic shortcut extends direct verification to every k where A000570(k) has an independent enumeration: the strongly-connected count equals A000570(k) minus the compositional non-strongly-connected contribution comp(k, {1, 3, 4, 5}), and 0 is forced whenever the two sides agree. At k = 8 this is 31 − 31 = 0 conditional on A000570(8) = 31; the same pattern extends. The remaining piece for arbitrary k is the structural theorem.
-
 ### What the bijection means
 
-- **Schoenfield's empirical recurrence for A000570 is now equivalent to a concrete graph-theoretic claim**: strongly connected score-uniquely-determined tournaments exist only for sizes `1, 3, 4, 5`. That claim is a theorem for `k ≤ 7` (direct enumeration) and a conjecture for `k ≥ 8` (each additional k reduces to arithmetic once A000570(k) is independently confirmed).
-- The Steven Finch comment on A000570 - "multus bitstrings of length n with no runs of 5 ones" - is a bit-string encoding of the same composition object: a `1` in Finch's bitstring is a size-1 part, and a maximal run of consecutive `0`s of length `k − 1 ∈ {2, 3, 4}` is a size-`k` part in `{3, 4, 5}`.
-- The three-way object connects castle combinatorics, integer composition theory, and tournament theory through one 5-part transfer-matrix decomposition. If the size-≥6 conjecture is proved, this becomes a genuine seminar centerpiece.
+**Theorem (Tetali, JCTB 1998).** The strongly connected tournaments determined by their score sequences are exactly the four tournaments on 1, 3, 4, 5 vertices with score vectors `(0)`, `(1, 1, 1)`, `(1, 1, 2, 2)`, `(2, 2, 2, 2, 2)`.[^7]
+
+Combined with the tree-castle transfer matrix this gives:
+
+**Theorem (Tetali + tree-castle transfer matrix).** For every `n ≥ 1`,
+```
+A000570(n)  =  #{compositions of n with parts in {1, 3, 4, 5}}  =  #{tree castles of area n − 1 with column heights in {1, 2, 3, 4}}.
+```
+
+This is the tree-castle-side proof of Schoenfield's empirical recurrence and Dale's empirical generating function for OEIS A000570: both are consequences of Tetali's tournament classification, translated across the three-way bijection.
+
+Related observations:
+- The Steven Finch comment on A000570 - "multus bitstrings of length n with no runs of 5 ones" - is the same composition object re-encoded as a bitstring. Finch's own paper "Cantor-solus and Cantor-multus distributions" (arXiv:2003.09458) defines a *multus* bitstring as one with no isolated 1 bit; the additional "no runs of 5 ones" bounds 1-runs to length ≤ 4. Maximal 1-runs of length `k − 1 ∈ {1, 2, 3, 4}` become size-`k` composition parts in `{2, 3, 4, 5}`; the size-2 part is absorbed into the tree-castle bijection's leading-tall correction (the numerator `1 + q² + q³ + q⁴`).
+- Direct enumeration corroborates the theorem for small `n`: the size-6 row exhausts 35 strongly connected tournaments and finds zero score-uniquely-determined; the size-7 row exhausts 353 strongly connected tournaments (via 22 valid score sequences and 456 iso classes) and finds zero score-uniquely-determined.
+- The three-way object connects castle combinatorics, integer composition theory, and tournament theory through one classification theorem plus one transfer matrix - and closes an OEIS problem left as "empirical" for two decades.
 
 ## Snippets for the bijection
 
@@ -284,3 +294,5 @@ Both filed on [[castle-snippets](pages/castle-snippets.md)].
 [^5]: Verified by execution (55 s at `n = 6`): direct enumeration of all `2^{n(n-1)/2}` labeled tournaments on `n ≤ 6` nodes, canonicalization by `permutations`, score-sequence grouping, and Kosaraju reachability for strong connectivity. Table of `(size, # SC iso classes, # SC-SUD iso classes)`: `(1, 1, 1), (2, 0, 0), (3, 1, 1), (4, 1, 1), (5, 6, 1), (6, 35, 0)`. The single SC-SUD representative at each size 1-5 has the score sequence listed in the table.
 
 [^3]: OEIS entries fetched by id on 2026-09-17 and matched offset-exact against the direct enumeration of tree castles by area: https://oeis.org/A000930 (offset 0, data `1, 1, 1, 2, 3, 4, 6, 9, 13, 19, 28, 41, 60, 88, 129, 189`) - tree-castles-h≤2(A) = A000930(A + 1) for A ≥ 1; https://oeis.org/A006498 (offset 0, data `1, 1, 1, 2, 4, 6, 9, 15, 25, 40, 64, 104, 169, 273, 441, 714, 1156`) - h≤3(A) = A006498(A + 1); https://oeis.org/A000570 (offset 1, data `1, 1, 2, 4, 7, 11, 18, 31, 53, 89, 149, 251, 424, 715, 1204`) - h≤4(A) = A000570(A + 1); https://oeis.org/A005251 (offset 0, data `0, 1, 1, 1, 2, 4, 7, 12, 21, 37, 65, 114, 200, 351, 616, 1081, 1897`) - unlimited-h(A) = A005251(A + 2). OEIS searches on the `h = 5, 6, 7` sequences returned no matches to `1, 2, 4, 7, 12, 20, 34, 59, 102, 175` etc.
+
+[^7]: P. Tetali, "A characterization of unique tournaments," Journal of Combinatorial Theory, Series B, 72(1) (1998), 157-159, https://doi.org/10.1006/jctb.1997.1799. The OEIS A000570 entry lists Tetali as the sequence's author. Secondary sources: T. Khovanova, "Combinatorics of unique tournaments" (2007); Repine et al., PRIMES-2020 (Yang), "Analysis of Tournament Score Sequences" both cite Tetali's classification of the four basic unique tournaments with score vectors `(0)`, `(1, 1, 1)`, `(1, 1, 2, 2)`, `(2, 2, 2, 2, 2)`.
