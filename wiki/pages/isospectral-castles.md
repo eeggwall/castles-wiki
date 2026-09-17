@@ -130,6 +130,7 @@ The spectral-radius census on [[castle-graph-spectral-radius](pages/castle-graph
 - [[castle-classification](pages/castle-classification.md)] - Axis 9; isospectral pair is the pair predicate there.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the single-eigenvalue census (golden, silver, φ² castles) and the silver list checked here.
 - [[castle-snippets](pages/castle-snippets.md)] - `compositions`, `castle_graph_radius`, and the spectrum-hashing loop.
+- [[castle-graph](pages/castle-graph.md)] - the graph the spectrum lives on; the 11-cell Laplacian-isospectral pair is a pair of **tree castles** in the sense named there.
 - [[castle-representations](pages/castle-representations.md)] - the skyline encoding the enumeration runs on.
 
 ## Footnotes

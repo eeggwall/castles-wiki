@@ -1,11 +1,11 @@
 ---
 title: Castle classification
 category: Concepts
-summary: A classification framework for castle sub-families. Axes 1-7 are structural skyline predicates on individual castles; Axis 8 is a growth-type meta-classification on castle *classes* (named as "<metal> <axis> growth castle"); Axis 9 is a spectral-type predicate on individual castles' polyomino graphs (Ramanujan castle, golden- and silver-spectrum castles with computed members, others sketched). Catalogs 42 structural types plus the Axis-8 golden and silver width growth families and the Axis-9 Ramanujan type.
+summary: A classification framework for castle sub-families. Axes 1-7 are structural skyline predicates on individual castles; Axis 8 is a growth-type meta-classification on castle *classes* (named as "<metal> <axis> growth castle"); Axis 9 is a graph-theoretic / spectral predicate on individual castles' castle graphs. Populated Axis 9 types: tree castle, golden- / silver- / φ²-spectrum, isospectral pair, Ramanujan. The [[castle-graph]] concept bridges the castle to graph theory.
 tags: [concept, castle, classification, taxonomy, skyline, spectral, ramanujan]
 sources: [castle-classification]
 created: 2026-09-15
-updated: 2026-09-16
+updated: 2026-09-17
 ---
 
 # Castle classification
@@ -243,6 +243,10 @@ The castle graph is not regular in general (interior cells have degree 4, edge c
 - **Crenellated / battlement** (Axis 7) — alternating heights; highly regular local structure, likely a Ramanujan candidate for suitable `w, h`.
 
 **The Ramanujan castle is a photogenic classification target.** A "smallest Ramanujan castle" or "smallest non-trivial Ramanujan castle at each `(w, h)`" would be a clean result — pure combinatorics, small computer search, and directly ties castle shape to a deep number-theoretic notion of graph optimality.
+
+### Tree castle
+
+A castle graph is a tree iff no `2×2` block is fully filled, iff no two horizontally adjacent columns both have height at least 2. Tree castles are Axis 9's simplest named type: single-castle, structural (a skyline predicate), and graph-theoretic (`G_c` is a tree). Counted by the transfer matrix `T_h(w+2) = T_h(w+1) + (h−1) T_h(w)` with growth constant `(1 + √(4h − 3))/2`, they hit named OEIS sequences at every height: **Fibonacci** at `h = 2` (`T_2(w) = F_{w+2}`), **Jacobsthal** at `h = 3` (`T_3(w) = J_{w+2}`), then A006130, A006131, … . Tree castles of height 2 are a **golden width growth castle** in Axis 8's terminology, giving the tree-castle family a rung on the metallic ladder without leaving Axis 9. Full details on [[castle-graph](pages/castle-graph.md)].
 
 ### Golden-spectrum and silver-spectrum castles
 

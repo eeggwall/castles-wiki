@@ -5,7 +5,7 @@ summary: A living reference of short, tested Python snippets for enumerating cas
 tags: [concept, castle, python, snippets, computational, classification, reference]
 sources: [project-euler-502-brute-force]
 created: 2026-09-16
-updated: 2026-09-16
+updated: 2026-09-17
 ---
 
 # Castle snippets — Python one-liners
@@ -474,6 +474,53 @@ True
 
 Meaning: `H_3` is the minimal polynomial of `ψ²` (plastic number squared), hence `ρ_6 = 2ψ²` ([[plastic-number](pages/plastic-number.md)]); the identity `g_{2d} = H_d·(H_{d+1} + μ² H_{d−1})` holds for every `d` (proof on [[tower-parity-sectors](pages/tower-parity-sectors.md)]).
 
+### `castle_graph(c)` → adjacency matrix
+
+Adjacency matrix of the castle's polyomino graph - the [[castle-graph](pages/castle-graph.md)] object; every Axis 9 spectrum takes this matrix as input.
+
+```python
+import numpy as np
+
+def castle_graph(c):
+    cells = [(i, j) for i, h in enumerate(c) for j in range(h)]
+    idx = {cell: n for n, cell in enumerate(cells)}
+    A = np.zeros((len(cells), len(cells)))
+    for (i, j), u in idx.items():
+        for nb in ((i+1, j), (i, j+1)):
+            if nb in idx: A[u, idx[nb]] = A[idx[nb], u] = 1
+    return A
+```
+
+```
+>>> castle_graph((2, 1, 2)).astype(int).tolist()      # 5 cells arranged as two spikes on a base
+[[0, 1, 1, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 1, 1], [0, 0, 1, 0, 0], [0, 0, 1, 0, 0]]
+```
+
+Meaning: swap in `L = np.diag(A.sum(1)) - A` for the combinatorial Laplacian; feed to `numpy.linalg.eigvalsh` for the spectrum; feed to `sympy.Matrix(...).charpoly(x)` for the exact characteristic polynomial. All Axis 9 predicates on [[castle-classification](pages/castle-classification.md)] are one line off this.
+
+### `is_tree_castle(c)` / `cycle_rank(c)` → tree predicate and cycle rank
+
+The castle is a tree iff no `2 × 2` block is filled, iff no two horizontally adjacent columns both have height at least 2. Cycle rank `|E| − |V| + 1` equals the number of `2 × 2` filled blocks - a Euler-formula identity for the [[castle-graph](pages/castle-graph.md)].
+
+```python
+def is_tree_castle(c):
+    return all(not (c[i] >= 2 and c[i+1] >= 2) for i in range(len(c)-1))
+
+def cycle_rank(c):
+    return sum(max(0, min(c[i], c[i+1]) - 1) for i in range(len(c)-1))
+```
+
+```
+>>> [c for c in all_castles(3, 2) if is_tree_castle(c)]
+[(1, 1, 2), (1, 2, 1), (2, 1, 1), (2, 1, 2)]
+>>> is_tree_castle((2, 2)), cycle_rank((2, 2)), cycle_rank((3, 3)), cycle_rank((1, 2, 3, 1, 2, 3))
+(False, 1, 2, 2)
+>>> [sum(1 for c in product(range(1, 3), repeat=w) if is_tree_castle(c)) for w in range(1, 9)]
+[2, 3, 5, 8, 13, 21, 34, 55]
+```
+
+Meaning: the last line is `F_{w+2}` for `w = 1..8`. Tree castles of height at most 2 are counted by Fibonacci (offset 2); Jacobsthal A001045 counts height at most 3; the k-Fibonacci family A006130, A006131 counts higher `h`. All catalogued on [[castle-graph](pages/castle-graph.md)].
+
 ### `castle_graph_radius(c)` → float
 
 Largest adjacency eigenvalue of the castle's polyomino graph (cells as vertices, orthogonal neighbors as edges) - the Axis 9 statistic of [[castle-classification](pages/castle-classification.md)] and the census on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]. Requires NumPy.
@@ -630,6 +677,7 @@ Snippets that break this discipline will rot; snippets that follow it stay usefu
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — the OEIS-lookup loop the `oeis_snippet` helper feeds.
 - [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the analysis the continued-fraction / mod-p / quasi-polynomial snippets were written for; every pinned value here matches that page.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - the transfer-matrix, sector, and `H(d)` snippets.
+- [[castle-graph](pages/castle-graph.md)] - the `castle_graph`, `is_tree_castle`, `cycle_rank` snippets and the graph concept behind them.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the `castle_graph_radius` census.
 - [[isospectral-castles](pages/isospectral-castles.md)] / [[hardin-word-identity](pages/hardin-word-identity.md)] - the `compositions` and `word_matrix` snippets.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] / [[mod-p-observatory](pages/mod-p-observatory.md)] - the two sides (real periods, finite-field orders) that `convergents` and `order_mod` compute.

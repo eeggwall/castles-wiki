@@ -5,7 +5,7 @@ summary: Where the metallic means do and do not appear as eigenvalues. The count
 tags: [analysis, castle, spectral, adjacency, transfer-matrix, metallic-means, golden-ratio, silver-ratio, axis-9, isospectral, numpy, sympy, verification]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-16
-updated: 2026-09-16
+updated: 2026-09-17
 ---
 
 # Metallic means in castle spectra
@@ -150,6 +150,7 @@ A skyline that is a Sturmian word - two heights arranged by the rotation with sl
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - why the signed transfer matrix's eigenvalues are twice units, and `ρ_6 = 2ψ²`.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] - the `ρ_k` table.
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - `F(w,2) = A038505(w+1)`, growth 2.
+- [[castle-graph](pages/castle-graph.md)] - the polyomino graph itself as a concept, with the tree case and its Fibonacci / Jacobsthal / k-Fibonacci counts.
 - [[castle-snippets](pages/castle-snippets.md)] - `castle_graph_radius` is filed there.
 - [[isospectral-castles](pages/isospectral-castles.md)] - the full-spectrum question: smallest non-isomorphic castles with equal adjacency spectrum (10 cells), equal Laplacian spectrum (11), both (16); no two silver castles are isospectral.
 
