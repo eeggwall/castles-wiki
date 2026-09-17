@@ -157,11 +157,9 @@ The last row is the sharpest open target — a critical-`β` computation for cas
 
 The transfer matrix `M_k` (`k = h − 1`) has characteristic polynomial `char_k` of degree `h` ([[generating-function-gallery](pages/generating-function-gallery.md)]), factored in closed form on [[tower-parity-sectors](pages/tower-parity-sectors.md)]: `char_k(2μ)/2^k = H_{k/2}(μ)·(H_{k/2+1}(μ) + μ² H_{k/2−1}(μ))` for even `k`, irreducible for odd `k`. The count's growth constant is `λ_1(h) = h`; the signed correction grows like `ρ_{h−1}` with `ρ_1 = √2`, `ρ_2 = 2`, `ρ_3 = 2.193`, `ρ_4 = 2.796`, `ρ_5 = 2.892`, `ρ_6 = 2ψ²` - algebraic, never metallic, and `2 ×` a unit exactly when `h ≡ 3 (mod 4)`. The metallic-mean ladder does not appear in PE 502's own spectrum; it appears in class transfer matrices (Axis 8) and in individual castle graphs (below). Full table and argument on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)].
 
-### The isospectral-castle hunt
+### The isospectral-castle hunt - settled
 
-Enumerate castles up to size `n ≤ 20` (using `all_castles` from [[castle-snippets](pages/castle-snippets.md)] iterated over `(w, h)` pairs with `w · h ≤ 20`). For each castle: build the polyomino graph, compute the sorted Laplacian spectrum, hash. Report the smallest pair of non-isomorphic castles with identical spectrum.
-
-Expected: pairs exist (Sunada-type theory predicts them for polyominoes generally); the interesting number is *how small* the smallest pair is. A clean drawing of the two isospectral castles is the seminar payoff.
+Run exhaustively over every castle with at most 16 cells (compositions of `n`, mirror-deduped, exact integer characteristic polynomials, isomorphism by networkx) on [[isospectral-castles](pages/isospectral-castles.md)]. The smallest non-isomorphic castles with the same **adjacency** spectrum have **10 cells** (`(1,1,1,2,3,2)` vs `(1,1,2,2,3,1)`, two groups at that size); with the same **Laplacian** spectrum, **11 cells** (`(1,1,1,2,1,1,2,1,1)` vs `(1,1,3,1,1,1,2,1)`, both trees); isospectral for both operators, **16 cells**. Groups multiply quickly afterwards (50 adjacency groups at 16 cells), so the spectrum is an invariant, not a classifier.
 
 ## Where methods meet predicates
 
@@ -176,7 +174,7 @@ This page and [[castle-classification](pages/castle-classification.md)] are pair
 
 - **`λ_1(h)`** - settled: `λ_1(h) = h`, signed corrections `ρ_{h−1}`, no metallic means ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], [[tower-parity-sectors](pages/tower-parity-sectors.md)]).
 - **Golden- and silver-spectrum castles** - the first Axis 9 census: adjacency spectral radius `φ` for the six 4-cell paths, `1 + √2` for the `3×2` rectangle and three non-rectangular castles up to `w = 7`; copper and above impossible (max degree 4), bronze open ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]).
-- **Isospectral hunt** — the computational target above. Sketched, not run.
+- **Isospectral hunt** - settled: smallest pairs at 10 cells (adjacency), 11 (Laplacian), 16 (both), on [[isospectral-castles](pages/isospectral-castles.md)].
 - **Nomography ingest** — the working note in `/Users/creid/tmp/pe502-nomography.md` develops the LGV / non-crossing-path framing for castles; ingesting it will populate §2 above with concrete kernel formulas and cross-links.
 - **q-Gibbs critical-`β`** — the transfer-matrix phase-transition computation from the construction ↔ spectrum table's last row. Statistical-mechanics-adjacent.
 - **Ihara-zeta computations** for small castles — closed-form `ζ_{G_C}(u)` for boxcastles, hooks, staircases.

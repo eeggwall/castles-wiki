@@ -228,7 +228,7 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 
 **Open** (filed on IDEAS).
 - Prove that the dominant root lies in the `+1` sector and that `H_d` belongs to the `+1` sector iff `d` is odd.
-- A bijective or transfer-matrix proof of the Hardin identity, which would also confirm the four empirical OEIS recurrences.
+- The Hardin identity is proved on [[hardin-word-identity](pages/hardin-word-identity.md)] by an explicit unimodular change of basis between the word automaton and the halved even-sector matrix (every `m ≤ 8` checked symbolically; general `m` reduces to a finite entrywise check). A sign-reversing involution realizing it object by object is still open.
 - Which `H_d` have Pisot dominant roots (`d = 3` yes; `d = 5, 7, 9, …` no) and whether the Jacobi-Perron expansion of `ρ_k/2` is ever periodic beyond `k = 6` (`k = 10, 14`: not within 300 / 200 exact steps).
 - Whether Axis 8 of [[castle-classification](pages/castle-classification.md)] should admit a non-metallic rung for `2ψ²`.
 

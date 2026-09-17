@@ -504,6 +504,50 @@ def castle_graph_radius(c):
 
 Meaning: `(1,1,1,1)` is a golden-spectrum castle, `(2,2,2)` and `(1,2,3,1,2,3)` are silver-spectrum castles. Combine with `castles_where` to census a spectral predicate; swap `eigvalsh(A)[-1]` for the full spectrum (or `np.diag(A.sum(1)) - A` for the Laplacian) to hunt isospectral pairs.
 
+### `compositions(n)` → all castles with exactly `n` cells
+
+A castle with `n` cells is a composition of `n` (every column height `≥ 1`), so size-by-cells enumeration is `2^{n−1}` skylines regardless of `w, h` - the right loop for isospectral searches ([[isospectral-castles](pages/isospectral-castles.md)]).
+
+```python
+def compositions(n):
+    if n == 0: yield (); return
+    for first in range(1, n+1):
+        for rest in compositions(n-first): yield (first,) + rest
+```
+
+```
+>>> list(compositions(3))
+[(1, 1, 1), (1, 2), (2, 1), (3,)]
+>>> sum(1 for c in compositions(10) if not c[::-1] < c)      # mirror-deduped 10-cell castles
+272
+```
+
+### `word_matrix(m)` → transfer matrix of Hardin's no-local-maximum words
+
+Words over `{0..m}` in which every nonzero letter is `≤` a neighbor, counted by a `2m+1`-state automaton with a "pending" flag ([[hardin-word-identity](pages/hardin-word-identity.md)]). Requires SymPy.
+
+```python
+def word_matrix(m):
+    S = [(0, '+')] + [(a, s) for a in range(1, m+1) for s in ('+', '-')]; idx = {s: i for i, s in enumerate(S)}
+    W = sp.zeros(len(S), len(S))
+    for (a, flag) in S:
+        for b in range(m+1):
+            if flag == '-' and b < a: continue
+            new = (0, '+') if b == 0 else ((b, '+') if b <= a else (b, '-'))
+            W[idx[(a, flag)], idx[new]] += 1
+    return W, S
+```
+
+```
+>>> W, S = word_matrix(2); start = sp.Matrix(1, 5, [1, 0, 0, 0, 0]); end = sp.Matrix([1 if s[1] == '+' else 0 for s in S])
+>>> [int((start*W**n*end)[0]) for n in range(1, 10)]          # A202882
+[1, 3, 9, 22, 51, 121, 292, 704, 1691]
+>>> sp.factor(W.charpoly(mu).as_expr())                        # = H(5)
+mu**5 - 3*mu**4 + 3*mu**3 - 4*mu**2 + mu - 1
+```
+
+Meaning: the count equals `P_even(10, n−1)/2^{n−1}`, the even-last-column signed tower count at height 10 - the Hardin identity.
+
 ### `oeis_lookup(terms)` → list of `(A-number, name)`
 
 The live version of `oeis_snippet` below. **OEIS answers Python's default `urllib` User-Agent with HTTP 403**; go through `curl` with a real UA and sleep a second between calls.
@@ -587,5 +631,6 @@ Snippets that break this discipline will rot; snippets that follow it stay usefu
 - [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the analysis the continued-fraction / mod-p / quasi-polynomial snippets were written for; every pinned value here matches that page.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - the transfer-matrix, sector, and `H(d)` snippets.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the `castle_graph_radius` census.
+- [[isospectral-castles](pages/isospectral-castles.md)] / [[hardin-word-identity](pages/hardin-word-identity.md)] - the `compositions` and `word_matrix` snippets.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] / [[mod-p-observatory](pages/mod-p-observatory.md)] - the two sides (real periods, finite-field orders) that `convergents` and `order_mod` compute.
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] / [[kitamasa](pages/kitamasa.md)] — the fast-algorithm side, one abstraction level up.

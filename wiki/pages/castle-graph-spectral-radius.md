@@ -1,7 +1,7 @@
 ---
 title: Metallic means in castle spectra
 category: Analyses
-summary: Where the metallic means do and do not appear as eigenvalues. The count F(w,h) grows like h^w/2, so its transfer-matrix growth constant is h; the signed transfer matrix's eigenvalues are 2 × algebraic units or roots of a leading-coefficient-2 factor, so no metallic mean is ever among them (ρ_1 = √2, ρ_2 = 2, ρ_4 = 2.796, ρ_6 = 2ψ², …). Metallic means are the spectral radii of 2-state class transfer matrices (Axis 8) and of individual castle graphs: φ for the six 4-cell path castles, 1+√2 for the 3×2 rectangle and three non-rectangular castles, φ² for three more; copper and beyond are impossible (max degree 4), bronze is open. First Axis 9 data.
+summary: Where the metallic means do and do not appear as eigenvalues. The count F(w,h) grows like h^w/2, so its transfer-matrix growth constant is h; the signed transfer matrix's eigenvalues are 2 × algebraic units or roots of a leading-coefficient-2 factor, so no metallic mean is ever among them (ρ_1 = √2, ρ_2 = 2, ρ_4 = 2.796, ρ_6 = 2ψ², …). Metallic means are the spectral radii of 2-state class transfer matrices (Axis 8) and of individual castle graphs: φ for the six 4-cell path castles, 1+√2 for 36 castles up to width 8 (the 3×2 rectangle and 35 non-rectangular ones), φ² for three more; copper and beyond are impossible (max degree 4); bronze absent among 4.87 million castles; one castle lands within 10⁻⁸ of 2ψ² without equalling it. First Axis 9 data.
 tags: [analysis, castle, spectral, adjacency, transfer-matrix, metallic-means, golden-ratio, silver-ratio, axis-9, isospectral, numpy, sympy, verification]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-16
@@ -110,7 +110,20 @@ Exact characteristic polynomials confirm the floating-point matches:[^3]
 
 They are not products, yet `x² − 2x − 1` divides their characteristic polynomials exactly, and `(2,1,6,2,1,3)` carries `φ` and `1 + √2` in the same spectrum. The double staircase `(1,2,3,1,2,3)` and its mirror are 12-cell castles with the same spectral radius as the 6-cell rectangle - a spectral-radius coincidence between structurally different shapes, which is the kind of object the Axis 9 isospectral hunt is looking for.
 
-**What cannot happen.** A castle graph is a subgraph of the square grid, so its maximum degree is at most 4 and its spectral radius is strictly below 4 for every finite castle. Copper `2 + √5 = 4.236`, nickel, and every higher metallic mean are therefore **never** the spectral radius of a castle graph. Bronze `(3 + √13)/2 = 3.303` is below the bound and absent from all 134,111 castles scanned; whether some larger castle realizes it is open. `2ψ² = 3.510` is likewise absent in range.
+**What cannot happen, and the big scan.** A castle graph is a subgraph of the square grid, so its maximum degree is at most 4 and its spectral radius is strictly below 4 for every finite castle. Copper `2 + √5 = 4.236`, nickel, and every higher metallic mean are therefore **never** the spectral radius of a castle graph. Bronze `(3 + √13)/2 = 3.303` is below the bound, so it was hunted at scale: **4,868,525 castles** (mirror-deduped; all `w ≤ 8, h ≤ 7`, plus `w = 9, h ≤ 5` and `w = 10, h ≤ 4`), prefiltered by the edge bound `ρ ≤ max_{uv} √(d_u d_v)` (a radius above 3.3 needs an edge whose endpoint degrees multiply to at least 11), then `eigvalsh`. **No bronze castle.** The same scan found 36 silver castles (6 to 20 cells; e.g. `(1,1,2,1,4,2,1,1)`, `(3,2,1,2,2,1,2,3)`, `(1,2,4,1,3,1,2,6)`) and exactly one castle whose radius lies within `10⁻⁸` of `2ψ² = 3.510`:
+
+```
+(1,1,2,7,7,5,7,7)      radius 3.50975532447636…      2ψ² = 3.50975533249338…      difference −8.0·10⁻⁹
+...##.##
+...##.##
+...#####
+...#####
+...#####
+..######
+########
+```
+
+Its exact characteristic polynomial is `x(x−1)(x+1)·(irreducible degree 34)`, not divisible by `x³ − 4x² + 4x − 8`, so this is a near-miss, not a plastic-spectrum castle - and a reminder that a floating-point match at `10⁻⁸` over five million candidates is not evidence of anything until the exact polynomial is factored.[^3] Whether any castle has spectral radius exactly bronze or `2ψ²` remains open beyond the scanned sizes.
 
 ## Axis 9 types this populates
 
@@ -138,6 +151,7 @@ A skyline that is a Sturmian word - two heights arranged by the rotation with sl
 - [[generating-function-gallery](pages/generating-function-gallery.md)] - the `ρ_k` table.
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - `F(w,2) = A038505(w+1)`, growth 2.
 - [[castle-snippets](pages/castle-snippets.md)] - `castle_graph_radius` is filed there.
+- [[isospectral-castles](pages/isospectral-castles.md)] - the full-spectrum question: smallest non-isomorphic castles with equal adjacency spectrum (10 cells), equal Laplacian spectrum (11), both (16); no two silver castles are isospectral.
 
 ## Footnotes
 
@@ -145,6 +159,6 @@ A skyline that is a Sturmian word - two heights arranged by the rotation with sl
 
 [^2]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L31-37 - the `P(k,·)` characteristic polynomials with constant term `(−1)^{k−1} 2^k`; `ρ_k` values from [[generating-function-gallery](pages/generating-function-gallery.md)], re-computed here.
 
-[^3]: Verified by execution (NumPy 1.x `eigvalsh`, SymPy 1.14 `charpoly`/`factor`): census over all skylines with `max c = h` for `w ≤ 6, h ≤ 6` and `w = 7, h ≤ 5` (134,111 castles), matches at tolerance `1e−9`; exact characteristic polynomials for the seven castles listed.
+[^3]: Verified by execution (NumPy 1.x `eigvalsh`, SymPy 1.14 `charpoly`/`factor`, mpmath `polyroots` at 40 digits): first census over all skylines with `max c = h` for `w ≤ 6, h ≤ 6` and `w = 7, h ≤ 5` (134,111 castles) at tolerance `1e−9`; exact characteristic polynomials for the seven castles listed. Big scan: 4,868,525 mirror-deduped castles over `w ≤ 8, h ≤ 7`, `w = 9, h ≤ 5`, `w = 10, h ≤ 4`, edge-bound prefilter, tolerance `1e−8`, 211 s; bronze 0, silver 36, `2ψ²` one candidate `(1,1,2,7,7,5,7,7)` whose exact polynomial factors as `x(x−1)(x+1)` times an irreducible degree-34 polynomial with dominant root `3.509755324476362682941485`, i.e. `8.0·10⁻⁹` below `2ψ²`.
 
 [^4]: Verified by execution: no eigenvalue of `M_k` (`k ≤ 20`) within `1e−6` of `δ_a` for `a ≤ 6`. The general argument uses the factorization `char_k(2μ)/2^k = H_{k/2}(μ)·V_{k/2}(μ)` of [[tower-parity-sectors](pages/tower-parity-sectors.md)] (monic `H`, leading coefficient 2 for `V`) for even `k`, and irreducibility of `char_k` over `Q` with constant term `±2^k` for odd `k` (a quadratic factor `x² − ax − 1` would contradict irreducibility).
