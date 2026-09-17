@@ -1,7 +1,7 @@
 ---
 title: Castle snippets — Python one-liners
 category: Concepts
-summary: A living reference of short, tested Python snippets for enumerating castles, testing classification predicates, computing growth constants, and looking up OEIS sequences. Every snippet ran during ingest; outputs pinned to the values shown.
+summary: A living reference of short, tested Python snippets for enumerating castles, testing classification predicates, computing growth constants, continued-fraction convergents, mod-p eigenvalue orders, quasi-polynomial splits, and looking up OEIS sequences. Every snippet ran during ingest; outputs pinned to the values shown.
 tags: [concept, castle, python, snippets, computational, classification, reference]
 sources: [project-euler-502-brute-force]
 created: 2026-09-16
@@ -318,6 +318,140 @@ Meaning: Pell → `a=2` (silver, `1+√2 ≈ 2.4142`). Fibonacci → `a=1` (gold
 
 A gap of ~0.225 is *not* a metallic-mean hit — this is honestly not a `δ_a`-castle for small `a`. `nearest_metallic` gives the closest metal; only trust it when the residual is small.
 
+## Continued fractions, convergents, and quasi-polynomials
+
+Snippets behind [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] and [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]. The first three are stdlib-only; `quasi_split` needs SymPy (the one import that earns its keep here).
+
+### `convergents(digits)` → list of `(p_n, q_n)`
+
+The three-term recurrence `p_n = a_n p_{n−1} + p_{n−2}` (same for `q`), seeded `(1, 0)` / `(0, 1)`.
+
+```python
+def convergents(digits):
+    p, p_prev, q, q_prev = digits[0], 1, 1, 0
+    out = [(p, q)]
+    for a in digits[1:]:
+        p, p_prev = a*p + p_prev, p
+        q, q_prev = a*q + q_prev, q
+        out.append((p, q))
+    return out
+```
+
+```
+>>> convergents([1]*8)          # phi
+[(1, 1), (2, 1), (3, 2), (5, 3), (8, 5), (13, 8), (21, 13), (34, 21)]
+>>> convergents([2]*7)          # 1 + sqrt(2)
+[(2, 1), (5, 2), (12, 5), (29, 12), (70, 29), (169, 70), (408, 169)]
+>>> [p - q for p, q in convergents([2]*8)]     # numerators of sqrt(2) = A001333
+[1, 3, 7, 17, 41, 99, 239, 577]
+```
+
+Meaning: with a constant digit `a`, numerators and denominators are the *same* metallic sequence one step apart - one OEIS entry per rung of [[metallic-means](pages/metallic-means.md)], not two.
+
+### `order_mod(a, c, p)` / `period_mod(a, p)` → int
+
+The order of the root of `t² − a t + c` in `F_p[t]/(t² − a t + c)` (a hand-built `F_p` or `F_{p²}`), and the Pisano-type period of `x_n = a x_{n−1} + x_{n−2}` mod `p`. They agree - the period *is* the eigenvalue order ([[mod-p-observatory](pages/mod-p-observatory.md)]).
+
+```python
+def order_mod(a, c, p):
+    def mul(u, v):
+        (u0, u1), (v0, v1) = u, v            # u0 + u1 t, with t^2 = a t - c
+        return ((u0*v0 - c*u1*v1) % p, (u0*v1 + u1*v0 + a*u1*v1) % p)
+    cur, e = (0, 1), 1
+    while cur != (1, 0):
+        cur, e = mul(cur, (0, 1)), e + 1
+    return e
+
+def period_mod(a, p):
+    s, n = (0, 1), 0
+    while True:
+        s, n = (s[1], (a*s[1] + s[0]) % p), n + 1
+        if s == (0, 1):
+            return n
+```
+
+```
+>>> [(p, order_mod(1, -1, p), period_mod(1, p)) for p in (3, 7, 11, 13, 19)]   # Fibonacci
+[(3, 8, 8), (7, 16, 16), (11, 10, 10), (13, 28, 28), (19, 18, 18)]
+>>> [(p, order_mod(3, 1, p)) for p in (3, 7, 13)]                               # control: phi^2, norm +1
+[(3, 4), (7, 8), (13, 14)]
+```
+
+Meaning: at inert primes (`3, 7, 13` for `√5`) the norm-`−1` golden ratio has order `2(p+1)` - `8, 16, 28` - while the norm-`+1` `φ²` has order `p+1` - `4, 8, 14`. The `−1` that makes `φ`'s continued fraction purely periodic is the `−1` in `φ^{p+1} = −1`.
+
+### `P_table(max_k, max_L)` → `P[k][L]`
+
+The [[castle-sign](pages/castle-sign.md)] signed tower count as a compact DP (exact integers; `P[k][0] = 1` for the empty tower).
+
+```python
+def P_table(max_k, max_L):
+    P = [[0]*(max_L+1) for _ in range(max_k+1)]
+    for k in range(max_k+1):
+        F = [1] + [0]*k; P[k][0] = 1
+        for L in range(1, max_L+1):
+            F = [sum(F[a]*(1 if a <= b else (-1)**(a-b)) for a in range(k+1)) for b in range(k+1)]
+            P[k][L] = sum(F[b]*(-1)**b for b in range(k+1))
+    return P
+```
+
+```
+>>> P = P_table(9, 4)
+>>> [P[k][4] for k in range(10)]
+[1, -4, 19, -40, 85, -140, 231, -336, 489, -660]
+>>> [P[1][L] for L in range(11)]          # Re((1+i)^(L+1)) = A146559(L+1)
+[1, 0, -2, -4, -4, 0, 8, 16, 16, 0, -32]
+```
+
+### `quasi_split(seq, deg)` → `(A, B)` with `seq[k] = (−1)^k A(k) + B(k)`
+
+Two Lagrange interpolations (even `k`, odd `k`) - all you need when every eigenvalue is `±1`, which is the case for the k-direction of `P` ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]). Requires SymPy.
+
+```python
+import sympy as sp
+k = sp.symbols('k')
+
+def quasi_split(seq, deg):
+    E = sp.interpolate([(kk, seq[kk]) for kk in range(0, 2*deg+2, 2)], k)   # A + B on even k
+    O = sp.interpolate([(kk, seq[kk]) for kk in range(1, 2*deg+3, 2)], k)   # B - A on odd k
+    return sp.factor((E - O)/2), sp.factor((E + O)/2)
+```
+
+```
+>>> P = P_table(40, 6)
+>>> quasi_split([P[kk][4] for kk in range(41)], 3)
+((k + 1)*(2*k + 1)*(2*k + 3)/6, (k + 1)/2)
+>>> quasi_split([P[kk][5] for kk in range(41)], 4)
+(k*(k + 1)**2*(k + 2)/3, (k + 1)**2)
+```
+
+Meaning: `P(k,4) = (−1)^k (k+1)(2k+1)(2k+3)/6 + (k+1)/2`, and `|P(k,4)|` is A352116 (partial sums of odd triangular numbers). Always give `deg` at least the true degree (`L−1` here); with too few terms the interpolation silently returns garbage - re-check against the sequence, as the crosswalk page does.
+
+### `oeis_lookup(terms)` → list of `(A-number, name)`
+
+The live version of `oeis_snippet` below. **OEIS answers Python's default `urllib` User-Agent with HTTP 403**; go through `curl` with a real UA and sleep a second between calls.
+
+```python
+import json, subprocess, urllib.parse
+
+def oeis_lookup(terms, n=3):
+    q = ",".join(str(t) for t in terms)
+    url = "https://oeis.org/search?" + urllib.parse.urlencode({"q": q, "fmt": "json"})
+    raw = subprocess.run(["curl", "-s", "-m", "30", "-A", "Mozilla/5.0 castles-wiki-verifier/1.0", url],
+                         capture_output=True, text=True).stdout
+    return [(f"A{e['number']:06d}", e["name"]) for e in (json.loads(raw) or [])[:n]]
+```
+
+```
+>>> oeis_lookup([1, 2, 5, 12, 29, 70, 169, 408, 985, 2378])[0]
+('A000129', 'Pell numbers: a(0) = 0, a(1) = 1; for n > 1, a(n) = 2*a(n-1) + a(n-2).')
+>>> oeis_lookup([1, 4, 19, 40, 85, 140, 231, 336, 489, 660])
+[('A352116', 'Partial sums of the odd triangular numbers (A014493).')]
+>>> oeis_lookup([1, 2, 4, 7, 12, 21, 37, 65, 114, 200, 351, 616])
+[('A005251', 'a(0) = 0, a(1) = a(2) = a(3) = 1; thereafter, a(n) = a(n-1) + a(n-2) + a(n-4).')]
+```
+
+Discipline reminder from [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]: a hit is a *candidate* until you compare against the full stored `data` field with the offset - fetch `https://oeis.org/search?q=id:A005251&fmt=json` and read `offset` and `data` before writing anything down.
+
 ## OEIS lookup helper
 
 Format a sequence for pasting into `oeis.org`.
@@ -372,4 +506,6 @@ Snippets that break this discipline will rot; snippets that follow it stay usefu
 - [[metallic-means](pages/metallic-means.md)] — the family `nearest_metallic` tests against.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] — the silver-width-growth-castle example; the `is_zero_one_strip` predicate is its `w_1 = 1` analog for golden.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — the OEIS-lookup loop the `oeis_snippet` helper feeds.
+- [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the analysis the continued-fraction / mod-p / quasi-polynomial snippets were written for; every pinned value here matches that page.
+- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] / [[mod-p-observatory](pages/mod-p-observatory.md)] - the two sides (real periods, finite-field orders) that `convergents` and `order_mod` compute.
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] / [[kitamasa](pages/kitamasa.md)] — the fast-algorithm side, one abstraction level up.

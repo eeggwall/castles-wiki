@@ -5,7 +5,7 @@ summary: F(w,h) mod p is eventually periodic in each direction, the period being
 tags: [analysis, castle, modular-arithmetic, periodicity, automaticity, sympy]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502]
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-16
 ---
 
 # Mod-p observatory for F(w,h)
@@ -44,6 +44,8 @@ In the height direction (fixed `w`), `F(w,h)` is `2p`-periodic for small `w` —
 | 7 | 2 | 14 | 14 | 14 |
 
 (`p=3, w=4` is `6p = 18`, not `2p`, because the k-direction characteristic polynomial has a repeated root mod 3 — the same doubling that appears below.)
+
+The repeated root is exact, not a mod-3 accident: the k-direction characteristic polynomial of `P(·,L)` is `(x+1)^L (x−1)^{L−2}` over `Z` ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]), so the only eigenvalues are `±1` (orders 1 and 2) and the whole period comes from the multiplicities. `P(k,L) mod p` has period `2·p^{⌈log_p L⌉}` in `k`: `2p` while `L ≤ p`, jumping to `2p²` once `L > p` - `18 = 2·3²` at `L = 4, p = 3`, `50 = 2·5²` at `L = 6, p = 5`, `98 = 2·7²` at `L = 8, p = 7` (verified for `L ≤ 11`, `p ∈ {3, 5, 7, 11}`). The `18` in the table is the `L = w = 4 > 3` case.
 
 ## The finite-field connection
 
@@ -169,6 +171,7 @@ for h in range(2, 6):
 - [[recurrence-discovery](pages/recurrence-discovery.md)] — the orders `k+1` (L) and `2L−2` (k) that bound `per(char_k)`.
 - [[signed-tower-count](pages/signed-tower-count.md)] — `char_k` over ℚ and the `(−1)^{k−1}2^k` constant term that guarantees pure periodicity.
 - [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] — the mod-`10^9+7` path whose C-finiteness (not its period) is what's exploited.
+- [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the real-number twin of this page: continued-fraction periods of the eigenvalues, the norm-`−1` signature (`δ^{p+1} = −1` at inert primes) read on both sides, and the `2·p^{⌈log_p L⌉}` k-direction period.
 
 ## Footnotes
 

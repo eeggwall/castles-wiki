@@ -5,7 +5,7 @@ summary: Closed forms of P(k,L) in k for small L — P(k,2) = (−1)^k(k+1) (pro
 tags: [analysis, castle, closed-form, c-finite, verification]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502]
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-16
 ---
 
 # Closed-form hunting for P(k,L)
@@ -56,9 +56,18 @@ L=6: [1, 2, −3, −8, 2, 12, 2, −8, −3, 2, 1]
 
 with orders `6, 8, 10` respectively (`2L−2`).[^2]
 
+**Update (2026-09-16) - the polynomials factor completely.** Over the integers these are `(x+1)^L (x−1)^{L−2}`: `(x+1)⁴(x−1)²`, `(x+1)⁵(x−1)³`, `(x+1)⁶(x−1)⁴`, and the same shape for every `L` up to 12 tested. So every k-direction eigenvalue is `±1`, and `P(k,L)` *does* have a closed form in `k` for every `L` - a period-2 **quasi-polynomial** `P(k,L) = (−1)^k A_L(k) + B_L(k)` with `deg A_L = L−1` and `deg B_L = L−3`:
+
+```
+P(k,4) = (−1)^k (k+1)(2k+1)(2k+3)/6 + (k+1)/2
+P(k,5) = (−1)^k k(k+1)²(k+2)/3     + (k+1)²
+```
+
+What stops at `L = 3` is the *single-polynomial* form `(−1)^k (k+1)^{L−1}`: from `L = 4` on, a non-alternating part `B_L` appears and the alternating part `A_L` stops being a pure power. The full `A_L, B_L` table to `L = 8`, the OEIS hits (`|P(k,4)|` is A352116, the partial sums of the odd triangular numbers) and the code are on [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)].
+
 ## Conclusion
 
-There is **no simple general closed form** for `P(k,L)` as a function of `k`: the polynomial forms `(−1)^k(k+1)` and `(−1)^k(k+1)²` exist exactly for `L = 2, 3` (plus the parity form at `L = 1`), and from `L = 4` onward `P(·,L)` *is* the order-`(2L−2)` recurrence — the general object is the recurrence, not a closed formula. The *L*-direction is the opposite: it has clean closed forms (`P(1,L) = Re((1+i)^{L+1})`, and a degree-`(k+1)` rational GF for every `k`), collected on [[signed-tower-count](pages/signed-tower-count.md)].[^2]
+There is **no single-polynomial closed form** for `P(k,L)` as a function of `k` beyond `L = 3`: the forms `(−1)^k(k+1)` and `(−1)^k(k+1)²` exist exactly for `L = 2, 3` (plus the parity form at `L = 1`). From `L = 4` onward the closed form is a **two-polynomial quasi-polynomial** - even `k` and odd `k` each follow their own degree-`(L−1)` polynomial - which is the same thing as the order-`(2L−2)` recurrence with characteristic polynomial `(x+1)^L (x−1)^{L−2}`. A uniform formula for the pair `A_L, B_L` is still open ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]). The *L*-direction is the opposite: it has clean closed forms (`P(1,L) = Re((1+i)^{L+1})`, and a degree-`(k+1)` rational GF for every `k`), collected on [[signed-tower-count](pages/signed-tower-count.md)].[^2]
 
 ## Appearances in Sources
 
@@ -71,6 +80,7 @@ There is **no simple general closed form** for `P(k,L)` as a function of `k`: th
 - [[signed-tower-count](pages/signed-tower-count.md)] — `P(k,L)` as a C-finite family; the L-direction closed forms.
 - [[castle-sign](pages/castle-sign.md)] — the definition of `P` as the signed tower count.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] — the tool that recovers the `(1+x)^L` and palindromic polynomials.
+- [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the `(x+1)^L (x−1)^{L−2}` factorization, the quasi-polynomial table `A_L, B_L`, and its OEIS hits.
 
 ## Footnotes
 

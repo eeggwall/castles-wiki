@@ -5,7 +5,7 @@ summary: The family of quadratic irrationals `δ_a = (a + √(a²+4))/2` for a =
 tags: [concept, metallic-mean, golden-ratio, silver-ratio, pell, fibonacci, continued-fraction, quadratic-irrational, norm-minus-one]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-15
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 
 # Metallic means
@@ -34,11 +34,11 @@ Together with the associated Fibonacci-like linear recurrence `x_n = a·x_{n−1
 |---|---|---|---|---|
 | 1 | `(1+√5)/2 ≈ 1.6180` | **Golden** | 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, … — Fibonacci | [A000045](https://oeis.org/A000045) |
 | 2 | `1+√2 ≈ 2.4142` | **Silver** | 0, 1, 2, 5, 12, 29, 70, 169, 408, 985, … — Pell | [A000129](https://oeis.org/A000129) |
-| 3 | `(3+√13)/2 ≈ 3.3028` | **Bronze** | 0, 1, 3, 10, 33, 109, 360, 1189, 3927, 12970, … | (A006190; to be verified on submission) |
-| 4 | `2+√5 ≈ 4.2361` | **Copper** | 0, 1, 4, 17, 72, 305, 1292, 5473, 23184, 98209, … | (A001076; to be verified on submission) |
-| 5 | `(5+√29)/2 ≈ 5.1926` | **Nickel** | 0, 1, 5, 26, 135, 701, 3640, 18901, 98145, 509626, … | (A052918; to be verified on submission) |
+| 3 | `(3+√13)/2 ≈ 3.3028` | **Bronze** | 0, 1, 3, 10, 33, 109, 360, 1189, 3927, 12970, … | [A006190](https://oeis.org/A006190) |
+| 4 | `2+√5 ≈ 4.2361` | **Copper** | 0, 1, 4, 17, 72, 305, 1292, 5473, 23184, 98209, … | [A001076](https://oeis.org/A001076) |
+| 5 | `(5+√29)/2 ≈ 5.1926` | **Nickel** | 0, 1, 5, 26, 135, 701, 3640, 18901, 98145, 509626, … | [A052918](https://oeis.org/A052918) (offset: `A052918(n) = x_{n+1}`) |
 
-The `a=1` and `a=2` OEIS identifications are confirmed during ingest; the `a≥3` sequences are numerically the direct recurrence output but the OEIS numbers are cited without the same in-page verification (a natural follow-up for the [castle sequence bank / silver-ratio observatory](../../IDEAS.md) sweep). Companion sequences (`y_0 = 2, y_1 = a, y_n = a·y_{n−1} + y_{n−2}`) — Lucas for `a=1`, companion Pell (A001333) for `a=2` — are the `δ_a^n + δ̂_a^n` traces of the same characteristic polynomial and pair with the primary sequences to form the numerator/denominator pairs of continued-fraction convergents.[^3]
+All five OEIS identifications are verified offset-exact against the OEIS data (2026-09-16, on [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]); A052918 lists `1, 5, 26, …`, i.e. `x_{n+1}`. Companion sequences (`y_0 = 2, y_1 = a, y_n = a·y_{n−1} + y_{n−2}`) - Lucas A000032 for `a=1`, companion Pell A002203 for `a=2` (A001333, the numerators of the convergents of `√2`, is its half), A006497 / A014448 / A087130 for `a = 3, 4, 5` - are the `δ_a^n + δ̂_a^n` traces of the same characteristic polynomial. The convergents `p_n/q_n` of `[a; a, a, …]` are `x_{n+2}/x_{n+1}` - numerator and denominator are the *same* sequence, one step apart - and the trace appears as `p_n + q_{n−1}`; see the crosswalk page for the full table.[^3]
 
 ## The naming caveat
 
@@ -94,12 +94,13 @@ Higher rungs (bronze, copper, nickel, …) and the vertical / area / block axes 
 - [[castle-by-area](pages/castle-by-area.md)] — `2^{n−1} − F_{n−1}`, where Fibonacci / `φ` enters the castle count.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] — the metallic means are algebraic (quadratic), the exact irrationals that C-finite castle counts *can* carry.
 - [[spectral-analysis](pages/spectral-analysis.md)] — the transfer-matrix spectrum computes `λ_1(h)` directly; the metallic-mean values that appear (silver `1+√2` at `h=2`, others open) come out of that method.
+- [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the convergent numerator/denominator/trace sequences of every rung `a = 1..5` matched to OEIS, and the mod-`p` signature of norm `−1` (`δ_a^{p+1} = −1` at inert primes).
 
 ## Footnotes
 
 [^1]: Vera W. de Spinadel, *La familia de números metálicos* (1997) and later *The metallic means family and multifractal spectra* (Nonlinear Analysis 36, 1999) — the standard reference introducing the metallic-mean framing. Source not ingested; term usage cross-checked against the Wikipedia "Metallic mean" article and OEIS cross-references (e.g. A001333 discusses `√2` and Pell in the metallic-mean context).
 [^2]: The reduced-quadratic-surd theory (Lagrange periodicity, Galois pure periodicity) applied to `x² − a·x − 1` for arbitrary integer `a ≥ 1` is a direct specialization of the general treatment on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]. The identity `δ_a = a + 1/δ_a`, which forces `δ_a = [a; a, a, …]`, was verified for `a = 1, 2, 3, 4, 5` during ingest by fixed-point iteration.
-[^3]: The recurrence `x_n = a·x_{n−1} + x_{n−2}` with `x_0 = 0, x_1 = 1` was iterated for `a = 1..5` during ingest; the first ten values in the table match direct computation, and the ratio `x_29 / x_28` matches `δ_a` to ten decimal places for each `a` (Fibonacci: `1.6180339888` vs. `1.6180339887`; Pell: `2.4142135624` for both; and analogously for `a = 3, 4, 5`). The companion sequences (`y_0 = 2, y_1 = a`) were also iterated and identified for `a=1` (Lucas A000032) and `a=2` (companion Pell A001333).
+[^3]: The recurrence `x_n = a·x_{n−1} + x_{n−2}` with `x_0 = 0, x_1 = 1` was iterated for `a = 1..5` during ingest; the first ten values in the table match direct computation, and the ratio `x_29 / x_28` matches `δ_a` to ten decimal places for each `a` (Fibonacci: `1.6180339888` vs. `1.6180339887`; Pell: `2.4142135624` for both; and analogously for `a = 3, 4, 5`). The companion sequences (`y_0 = 2, y_1 = a`) were also iterated and identified for `a=1` (Lucas A000032) and `a=2` (companion Pell A002203 = `2, 2, 6, 14, 34, …`; A001333 = `1, 1, 3, 7, 17, …` is `y_n/2`). All five `a` were verified offset-exact against OEIS on 2026-09-16 ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]).
 [^4]: The Wikipedia "Silver ratio" article and OEIS A001333 (whose comment describes it as convergents-of-`√2` numerators, in Pell/silver-mean context) both use "silver ratio" for `1 + √2`, and this is the usage in de Spinadel's original paper (`δ_S`). The competing usage — "silver ratio = √2" (paper-size / A-series context) — appears in some architecture and design literature; when this is meant it is usually specified explicitly. Standard number-theory and OEIS usage is `δ_2 = 1 + √2`.
 [^5]: `φ² = φ + 1` (defining property of the golden ratio) gives `φ³ = φ·φ² = φ² + φ = 2φ + 1 = 1 + √5 + 1 = 2 + √5 = δ_4`; verified numerically during ingest (`φ³ = 4.2360679…`, matching `2 + √5 = 4.2360679…`). Consequence: the `a=4` integer sequence `x_n = 0, 1, 4, 17, 72, 305, 1292, 5473, 23184, 98209` equals `F_{3n}/2` where `F_n` is Fibonacci — `F_3 = 2, F_6 = 8, F_9 = 34, F_12 = 144, F_15 = 610, …`, divided by 2 gives `1, 4, 17, 72, 305, …`, matching exactly (re-verified during ingest against the Fibonacci sequence). So the copper-mean recurrence is a decimated / scaled Fibonacci, and the sequence sits inside `Q(√5)`, not in an independent quadratic field.
 [^6]: The fundamental unit of `Z[√5]` is the golden ratio (well-known); the fundamental unit of `Z[√2]` is `1 + √2` (well-known). For `a ≥ 3`, `Z[(a + √(a²+4))/2]` (or `Z[√(a²+4)]` — depending on whether `a²+4 ≡ 1 (mod 4)`, which depends on `a`'s parity) has `δ_a` as a fundamental unit up to a sign / power adjustment; the statement is standard algebraic number theory (Dirichlet's unit theorem specialized to real quadratic fields, rank 1). Not verified in depth during ingest; noted as a defining structural property of the family.

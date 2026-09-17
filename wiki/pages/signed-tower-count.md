@@ -5,7 +5,7 @@ summary: P(k,L) = Σ (−1)^blocks over towers of height ≤ k above a length-L 
 tags: [concept, castle, signed-count, c-finite, oeis, generating-functions]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-16
 ---
 
 # Signed tower count P(k,L)
@@ -53,6 +53,7 @@ with values `P(1,L) = 1, 0, −2, −4, −4, 0, 8, 16, 16, 0, −32, …` from 
 - [[generating-functions-topic](pages/generating-functions-topic.md)] — the imaginary-roots worked example `1/(1+z²) → ½(iⁿ+(−i)ⁿ)`, the exact mechanism of `Re((1+i)^{L+1})`.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] — the orders `k+1` (L-direction) and `2L−2` (k-direction, L ≥ 4), verified by Berlekamp–Massey.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] — the `num_k/den_k` rational GFs and their roots (the characteristic polynomials above).
+- [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the k-direction characteristic polynomial is `(x+1)^L (x−1)^{L−2}`, so `P(·,L)` is a quasi-polynomial in `k`; and the exact split `P(6,L) = 2^L·A005251(L+3) + (order-4 remainder)`, tying the `k = 6` row to the plastic number `ψ` via its dominant eigenvalue `2ψ²`.
 
 ## Footnotes
 

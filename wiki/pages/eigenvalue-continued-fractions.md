@@ -5,7 +5,7 @@ summary: The castle's characteristic polynomials are self-reciprocal (palindromi
 tags: [concept, castle, continued-fraction, eigenvalue, characteristic-polynomial, palindromic, lagrange, galois, quadratic, fibonacci, mod-p, pedagogy]
 sources: [project-euler-502-representations, oeis-mining-pe502]
 created: 2026-09-15
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 
 # Eigenvalue continued fractions
@@ -95,15 +95,15 @@ This is exactly Step 3's `c = ±1` story lifted to any degree. A quadratic's rec
 
 Now point it at the castle. The signed tower count `P(k,L)` ([[signed-tower-count](pages/signed-tower-count.md)]) is C-finite in both directions, and its two characteristic-polynomial families behave differently.
 
-**The k-direction is self-reciprocal.** For fixed `L`, the sequence `P(·,L)` has order `2L−2` (for `L ≥ 4`), and its characteristic polynomial is palindromic for even `L`, anti-palindromic for odd `L` ([[closed-form-hunting](pages/closed-form-hunting.md)]):[^1]
+**The k-direction is self-reciprocal - and the symmetry turns out to be trivial.** For fixed `L`, the sequence `P(·,L)` has order `2L−2` (for `L ≥ 4`), and its characteristic polynomial is palindromic for even `L`, anti-palindromic for odd `L` ([[closed-form-hunting](pages/closed-form-hunting.md)]):[^1]
 
 ```
-L=4: [1, 2, −1, −4, −1, 2, 1]
-L=5: [1, 2, −2, −6, 0, 6, 2, −2, −1]
-L=6: [1, 2, −3, −8, 2, 12, 2, −8, −3, 2, 1]
+L=4: [1, 2, −1, −4, −1, 2, 1]                  = (x+1)⁴ (x−1)²
+L=5: [1, 2, −2, −6, 0, 6, 2, −2, −1]           = (x+1)⁵ (x−1)³
+L=6: [1, 2, −3, −8, 2, 12, 2, −8, −3, 2, 1]    = (x+1)⁶ (x−1)⁴
 ```
 
-So the k-direction eigenvalues come in reciprocal pairs `r ↔ ±1/r` — the transfer matrix is reversible, and this symmetry is the algebraic fingerprint of the periodic-continued-fraction structure of Step 3.
+The factorizations on the right are the point: **every k-direction eigenvalue is `+1` or `−1`.** The polynomial is `(x+1)^L (x−1)^{L−2}` for every `L` from 4 to 12 checked ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]), so the roots are self-reciprocal in the only way a rational number can be, and `P(k,L)` is a **quasi-polynomial** in `k` - `(−1)^k A_L(k) + B_L(k)` with polynomials `A_L, B_L` - not an exponential sum with irrational bases. The palindromic symmetry is real, but its whole content is "`x+1` is palindromic, `x−1` is anti-palindromic, and the multiplicities are `L` and `L−2`." The reciprocal-pair story of Step 4 needs irrational roots to be interesting, and those live in the *other* direction (see the caveat below).
 
 **The two quadratics are the real, purely-periodic cases.** The castle's *actual* quadratic numbers are not among these high-degree roots; they sit in the surrounding objects, and both are norm-−1 reduced surds of period one:[^4]
 
@@ -122,13 +122,13 @@ Both are the fundamental units of their quadratic fields (`φ` of `Q(√5)`, `�
 
 The wiki was already sitting on rungs 1 and 2 of this ladder before naming it. Every castle class whose count sequence has growth constant `δ_a` for some `a ≥ 1` is a **`<metal>` `<axis>` growth castle** (Axis 8 of [[castle-classification](pages/castle-classification.md)]) — a meta-classification on castle *classes* (not on individual castles) whose naming convention `<metal>` ∈ {golden, silver, bronze, copper, …} and `<axis>` ∈ {width, vertical, area, block} is developed there.
 
-**The honest caveat.** The k-direction eigenvalues have degree `2L−2 ≥ 6`, so they are *not* quadratic, and Lagrange cuts only one way: their continued fractions are **not** periodic. What survives is the reciprocal symmetry itself — the roots still pair as `r ↔ ±1/r`, which is the degree-`2L−2` shadow of the degree-2 periodicity condition. Periodicity is lost; the pairing remains.
+**The honest caveat.** The k-direction roots are `±1`: rational numbers have *terminating* continued fractions, so there is nothing there to approximate. The castle's genuinely higher-degree eigenvalues are the **L-direction** roots of `char_k` on [[generating-function-gallery](pages/generating-function-gallery.md)] - degree `k+1`, product `2^k`, so *not* self-reciprocal and *not* units. For those, Lagrange cuts only one way: their simple continued fractions are provably non-periodic, and the right replacement for "period" is the multidimensional Jacobi–Perron expansion. The [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] runs that program: the `k = 6` dominant eigenvalue is `2ψ²` for `ψ` the plastic number (real root of `x³ = x + 1`), and its Jacobi–Perron expansion *is* periodic (preperiod 5, period 4) - a cubic analogue of `[2; 2, 2, …]`.
 
 **The complex eigenvalues go Gaussian.** `P(1,L)` has characteristic polynomial `x² − 2x + 2`, roots `1 ± i` — Gaussian integers, with `|1+i| = √2`.[^5] A complex quadratic over `Q(i)` has a periodic **Gaussian** continued fraction (the complex Lagrange), so `1 ± i` is the `Z[i]`-counterpart of the real `φ` and `√2+1`.
 
 ## The payoff: the mod-p twin
 
-This is the real-number counterpart of the [[mod-p-observatory](pages/mod-p-observatory.md)]. Modulo a prime, `F(w,h)` is eventually periodic with period the lcm of the **eigenvalue orders** — the smallest `m` with `λ^m ≡ 1` in `F_{p^d}^*`. Over `R`, the twin of that finite order is the eigenvalue's **continued-fraction period** (for the quadratics) and its **reciprocal symmetry** (for the higher-degree eigenvalues). In both settings the eigenvalue's structure is read off how its powers repeat: an *order* in a finite field, a *period* in a continued fraction.
+This is the real-number counterpart of the [[mod-p-observatory](pages/mod-p-observatory.md)]. Modulo a prime, `F(w,h)` is eventually periodic with period the lcm of the **eigenvalue orders** - the smallest `m` with `λ^m ≡ 1` in `F_{p^d}^*`. Over `R`, the twin of that finite order is the eigenvalue's **continued-fraction period** (simple for the quadratics, Jacobi–Perron for the cubic `2ψ²`). In both settings the eigenvalue's structure is read off how its powers repeat: an *order* in a finite field, a *period* in a continued fraction. The [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] makes the twin quantitative: for a norm-`−1` quadratic the same `−1` that makes the fraction purely periodic (Galois) forces `δ^{p+1} = −1` at every inert prime, so the mod-`p` period divides `2(p+1)` but never `p+1` - verified for all five metallic rungs and every prime below 100; and for the `±1` k-direction eigenvalues the period of `P(·,L) mod p` in `k` is `2·p^{⌈log_p L⌉}`.
 
 ## Appearances in Sources
 
@@ -149,6 +149,7 @@ This is the real-number counterpart of the [[mod-p-observatory](pages/mod-p-obse
 - [[recurrence-discovery](pages/recurrence-discovery.md)] — the orders (`k+1` in L, `2L−2` in k) the two polynomial families realize.
 - [[finite-fields](pages/finite-fields.md)] — the field structure behind the mod-p eigenvalue orders.
 - [[spectral-analysis](pages/spectral-analysis.md)] — sibling thread at the *operator* level; this page is at the *sequence* level (`P(k,L)` recurrence characteristic polynomials).
+- [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the computational follow-through of this page: every metallic rung's convergents matched to OEIS, the `(x+1)^L (x−1)^{L−2}` factorization that collapses the k-direction, the plastic-number eigenvalue `2ψ²` with its periodic Jacobi–Perron expansion, and the mod-p twin made quantitative.
 
 ## Footnotes
 
