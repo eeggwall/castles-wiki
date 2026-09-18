@@ -1010,6 +1010,50 @@ def oeis_lookup(terms, n=3):
 
 Discipline reminder from [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]: a hit is a *candidate* until you compare against the full stored `data` field with the offset - fetch `https://oeis.org/search?q=id:A005251&fmt=json` and read `offset` and `data` before writing anything down.
 
+### `castle_dh` → a working castle Diffie–Hellman
+
+Public-key exchange in the ring `F_p[x]/(Q)`, where `Q` is a castle characteristic polynomial ([[castle-cryptography](pages/castle-cryptography.md)]). The "public castle" is `Q`; a private key is a secret exponent; the trapdoor `x^a mod Q` is [[kitamasa](pages/kitamasa.md)] exponentiation. Stdlib only.
+
+```python
+def mulmod(A, B, Q, p):                       # multiply in F_p[x]/(Q), Q monic degree d
+    r = [0] * (len(A) + len(B) - 1)
+    for i, a in enumerate(A):
+        for j, b in enumerate(B):
+            r[i + j] = (r[i + j] + a * b) % p
+    d = len(Q) - 1
+    for i in range(len(r) - 1, d - 1, -1):    # reduce mod Q = the recurrence rewrite
+        c = r[i]
+        for j in range(d + 1):
+            r[i - d + j] = (r[i - d + j] - c * Q[j]) % p
+    return (r[:d] + [0] * d)[:d]
+
+def powmod(base, e, Q, p):                     # x^e mod Q by binary exponentiation (Kitamasa)
+    res = [1] + [0] * (len(Q) - 2)
+    base = (base[:len(Q)-1] + [0]*len(Q))[:len(Q)-1]
+    while e:
+        if e & 1: res = mulmod(res, base, Q, p)
+        base = mulmod(base, base, Q, p)
+        e >>= 1
+    return res
+
+def castle_dh(Q, p, a, b):                     # returns (Alice_pub, Bob_pub, shared_secret)
+    g = [0, 1] + [0] * (len(Q) - 3)            # the generator polynomial x
+    A, B = powmod(g, a, Q, p), powmod(g, b, Q, p)
+    return A, B, powmod(B, a, Q, p)            # x^{ab} mod Q; == powmod(A, b, Q, p)
+```
+
+```
+>>> p = 10**9 + 7
+>>> Q = [-4 % p, 4, -3 % p, 1]                 # char_2 = x^3 - 3x^2 + 4x - 4 (the public castle)
+>>> A, B, s = castle_dh(Q, p, 373309869, 566180101)
+>>> s == powmod(A, 566180101, Q, p)            # both parties get the same shared secret
+True
+>>> s
+[395423824, 86931747, 647893869]
+```
+
+Meaning: a running asymmetric cryptosystem built from the castle's own Kitamasa primitive — the "public castle" is `Q`, the private key is the exponent, and the shared secret is `x^{ab} mod Q`. It is a *teaching* system, not a secure one: `Q` factors (`(x−2)(x²−x+2)`) so the discrete log splits, and Berlekamp–Massey reconstructs `Q` from the count sequence — both attacks are the seminar's point ([[castle-cryptography](pages/castle-cryptography.md)], [[berlekamp-massey](pages/berlekamp-massey.md)]).
+
 ## OEIS lookup helper
 
 Format a sequence for pasting into `oeis.org`.
