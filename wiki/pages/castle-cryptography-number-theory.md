@@ -1,7 +1,7 @@
 ---
 title: Castle cryptography - the number theory, for engineers
 category: Analyses
-summary: A from-scratch, engineer-facing explainer for the three terms the castle cryptosystem leans on — characteristic polynomial, irreducible (= prime, for polynomials), and the discrete logarithm problem (DLP) — grounded in the running castle_dh code rather than lemmas. Char poly = the recurrence's tap polynomial (same as an LFSR feedback polynomial); it is the modulus Q of the ring F_p[x]/(Q). Irreducible is the polynomial version of prime: a reducible Q lets the DLP split into cheap sub-problems by CRT/Pohlig-Hellman (structure is a liability), while an irreducible Q forces the full-size discrete log in one field F_{p^d} (less degenerate). Honest caveats: irreducible ≠ secure (small-degree finite fields have subexponential index-calculus attacks), and Berlekamp-Massey breaks any linear output regardless of Q. Companion to the castle-cryptography seminar series.
+summary: A from-scratch, engineer-facing explainer for the three terms the castle cryptosystem leans on — characteristic polynomial, irreducible (= prime, for polynomials), and the discrete logarithm problem (DLP) — grounded in the running castle_dh code rather than lemmas. Char poly = the recurrence's tap polynomial (same as an LFSR feedback polynomial); it is the modulus Q of the ring F_p[x]/(Q). Irreducible is the polynomial version of prime: a reducible Q lets the DLP split into cheap sub-problems by CRT/Pohlig-Hellman (structure is a liability), while an irreducible Q forces the full-size discrete log in one field F_{p^d} (less degenerate). Honest caveats: irreducible ≠ secure (the group order p^d − 1 still factors algebraically into cyclotomic values, so Pohlig-Hellman on the group order applies, and small-degree finite fields have subexponential index-calculus attacks), and Berlekamp-Massey breaks any linear output regardless of Q. Companion to the castle-cryptography seminar series.
 tags: [analysis, cryptography, number-theory, characteristic-polynomial, irreducible-polynomial, discrete-logarithm, finite-field, pedagogy, engineer, castle]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
@@ -71,7 +71,9 @@ reducible:   pieces of group order ~ (p−1)=100  and  ~(p²−1)=10200   (attac
 irreducible (deg 4):   one group of order  p⁴−1 = 104,060,400        (attacker faces the whole thing)
 ```
 
-**Irreducible `Q` (odd-`k`): one big piece, no split.** With no factors, `F_p[x]/(Q)` is (generically) the single field `F_{p^d}`, and the DLP is the full-size discrete log in `F_{p^d}^*`, order `p^d − 1`. There is no CRT shortcut; the attacker eats the whole thing.
+**Irreducible `Q` (odd-`k`): one big piece, no split.** With no factors, `F_p[x]/(Q)` is (generically) the single field `F_{p^d}`, and the DLP is the full-size discrete log in `F_{p^d}^*`, order `p^d − 1`. There is no CRT shortcut *through the ring*; the attacker eats the whole group.
+
+Whole, but not unstructured. The group order `p^d − 1` factors **algebraically** - `p² − 1 = (p−1)(p+1)`, `p⁴ − 1 = (p−1)(p+1)(p²+1)`, in general `∏_{e|d} Φ_e(p)` - for *every* `p`, whatever `Q` is. So Pohlig–Hellman still runs, now on the factors of the group order instead of the factors of the modulus, and its cost is the square root of the largest prime dividing `p^d − 1`. At `p = 10⁹+7` that prime is `500000003 ≈ 2²⁹`, and [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] recovers the private key from an irreducible `char_1` in 0.04 s and from `char_3` in 0.18 s. **Irreducible closes the ring's split; the group's split is closed only by choosing `p` so that `Φ_d(p)` has a large prime factor.**
 
 The engineer's one-liner: **a composite structure is only as strong as its weakest piece.** Reducible = composite = weak; irreducible = "prime" = the attacker faces the whole discrete log. It's the same reason RSA's modulus must stay unfactored — knowing the factorization *is* the break.
 
@@ -84,7 +86,7 @@ The engineer's one-liner: **a composite structure is only as strong as its weake
 
 ## Two caveats a builder must not skip
 
-1. **Irreducible ≠ secure.** For `F_{p^d}` with small `d` (these char polys are degree 2–7), the discrete log has a **subexponential** attack (**index calculus**). Real finite-field crypto uses `d` huge, or elliptic curves instead, precisely because small-degree finite fields are breakable. So irreducible `Q` is *less degenerate*, not *strong*.
+1. **Irreducible ≠ secure.** For `F_{p^d}` with small `d` (these char polys are degree 2–7), the discrete log has a **subexponential** attack (**index calculus**). Real finite-field crypto uses `d` huge, or elliptic curves instead, precisely because small-degree finite fields are breakable. So irreducible `Q` is *less degenerate*, not *strong* - and even before index calculus, the algebraic factorization of `p^d − 1` above means the generic attack cost is set by the largest prime factor of `Φ_d(p)`, not by `p^d`. Sizing that number is the round-two blue-team job ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]).
 2. **Berlekamp–Massey doesn't care about `Q`.** It reconstructs *any* linear recurrence from its output ([[berlekamp-massey](pages/berlekamp-massey.md)]), irreducible or not. If a scheme ever leaks a stream of count terms, the castle is recovered in one line regardless of `Q`. That's why the deeper blue-team fix is *nonlinear* output, not a better modulus — see [[castle-cryptography](pages/castle-cryptography.md)] Seminar 3, Fix 2.
 
 ## Appearances in Sources
@@ -94,6 +96,7 @@ The engineer's one-liner: **a composite structure is only as strong as its weake
 ## Related Concepts
 
 - [[castle-cryptography](pages/castle-cryptography.md)] - the build / red-team / blue-team seminar series this page supports.
+- [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the second lap, where the irreducible-`Q` fix is shown necessary but not sufficient (group-order Pohlig–Hellman) and the keys are sized.
 - [[finite-fields](pages/finite-fields.md)] - `F_{p^d}`, cyclic groups, and why over-`ℚ`-irreducible polys can still split mod `p`.
 - [[kitamasa](pages/kitamasa.md)] - `x^a mod Q` by binary exponentiation, the "easy forward" trapdoor direction.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - recovers the char poly from the output; the linearity attack no modulus choice fixes.
