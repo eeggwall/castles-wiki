@@ -75,7 +75,7 @@ The castle first produced `ψ²` and `2ψ²`; the **bare plastic number `ψ ≈ 
 | what | value | where |
 |---|---|---|
 | `2ψ²` | `3.5098` | `k = 6` signed-tower dominant eigenvalue `ρ_6` (this page); a `10⁻⁸` adjacency near-miss on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], not exact |
-| `ψ²` | `1.7549` | growth constant of **A005251**, with *three* castle readings — the [[hardin-word-identity](pages/hardin-word-identity.md)], the `h → ∞` [[tree-castle-by-area](pages/tree-castle-by-area.md)], and the `(h=2, g=2)` [[tower-spacing-castles](pages/tower-spacing-castles.md)] (height-2 castles with towers ≥ 2 apart) |
+| `ψ²` | `1.7549` | growth constant of **A005251**, with *three* castle readings — the [[hardin-word-identity](pages/hardin-word-identity.md)], the `h → ∞` [[tree-castle-by-area](pages/tree-castle-by-area.md)], and the `(h=2, g=2)` [[tower-spacing-castles](pages/tower-spacing-castles.md)] (height-2 castles with towers ≥ 2 apart) — now unified by an explicit bijection ([[a005251-bijection](pages/a005251-bijection.md)]): the tree-castle composition side and the Hardin avoid-`010` side are the same object under the gap-string map |
 | **`ψ`** | **`1.3247`** | **a castle-strip Perron root at height 3** — [[reachable-field-census](pages/reachable-field-census.md)] |
 
 A plain (unsigned) castle statistic whose count grows at the bare `ψ` is a **Padovan / Perrin growth castle** — one graded so its count satisfies the *lag*-recurrence `a(n) = a(n−2) + a(n−3)` (Padovan A000931, Perrin A001608), the term-skipping cousin of Fibonacci's `a(n) = a(n−1) + a(n−2)`. This is a genuinely different object from `ψ²`, whose recurrence `a(n) = 2a(n−1) − a(n−2) + a(n−3)` (A005251) uses the immediately-preceding term.

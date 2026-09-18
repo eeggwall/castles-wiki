@@ -909,6 +909,34 @@ def compositions(n):
 272
 ```
 
+### `encode(c)` / `decode(s)` → the A005251 bijection
+
+Composition of `n` (no two adjacent parts `≥ 2`, = tree castle of area `n`) ↔ length-`(n−1)` binary string avoiding `010` (= Hardin no-isolated-1 word) — the classic gap-string map, constraint-preserving ([[a005251-bijection](pages/a005251-bijection.md)]).
+
+```python
+def encode(c):  return '1'.join('0' * (p - 1) for p in c)     # part c_j -> 0^{c_j-1}, join with 1
+def decode(s):  return tuple(len(r) + 1 for r in s.split('1'))  # 0-run of length r -> part r+1
+```
+
+```
+>>> encode((2, 1, 2)), encode((1, 3, 1))          # no adjacent 2s -> avoids 010
+('0110', '1001')
+>>> encode((2, 2, 1))                              # adjacent 2s -> contains 010 (excluded object)
+'0101'
+>>> decode('1001')                                 # inverse
+(1, 3, 1)
+>>> # the map is onto the avoid-010 set, term for term:
+>>> from itertools import product
+>>> n = 7
+>>> comps = [c for c in compositions(n) if all(not (c[i] >= 2 and c[i+1] >= 2) for i in range(len(c)-1))]
+>>> imgs  = {encode(c) for c in comps}
+>>> tgt   = {''.join(b) for b in product('01', repeat=n-1) if '010' not in ''.join(b)}
+>>> imgs == tgt, len(imgs)
+(True, 37)
+```
+
+Meaning: "no two adjacent parts `≥ 2`" ⟺ "no factor `010`" because a part `≥ 2` is a nonempty `0`-block and two adjacent such blocks straddle a boundary `1` as `010`. Verified onto the avoid-010 set for `n ≤ 11` — the explicit bijection closing the tree-castle ↔ Hardin-word coincidence at plastic-squared ([[a005251-bijection](pages/a005251-bijection.md)]).
+
 ### `word_matrix(m)` → transfer matrix of Hardin's no-local-maximum words
 
 Words over `{0..m}` in which every nonzero letter is `≤` a neighbor, counted by a `2m+1`-state automaton with a "pending" flag ([[hardin-word-identity](pages/hardin-word-identity.md)]). Requires SymPy.

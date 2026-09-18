@@ -102,7 +102,7 @@ Tree castles by area with unlimited height is a *second* castle interpretation o
 #{tree castles with area A, unlimited height}  =  A005251(A + 2).
 ```
 
-Both sit at the same plastic growth constant, both satisfy `a(n) = 2 a(n−1) − a(n−2) + a(n−3)`, and both have three initial terms all equal to `1`. Are they related by a bijection? The naive encoding does not obviously line up: on the Hardin side the object is a binary string of length `L + 1` avoiding the factor `010`; on the tree-castle side the object is a composition `(c_1, …, c_w)` of `A` in which no two adjacent parts are both at least `2`. Two objects of different "shape" that meet at the same recurrence. A sign-reversing involution linking them, or a Sunada-style common cover, would tie together two apparently unrelated corners of the castle machinery.
+Both sit at the same plastic growth constant, both satisfy `a(n) = 2 a(n−1) − a(n−2) + a(n−3)`, and both have three initial terms all equal to `1`. Are they related by a bijection? **Yes — the [[a005251-bijection](pages/a005251-bijection.md)] gives an explicit one, no Sunada cover needed.** The composition `(c_1, …, c_w)` of `A` with no two adjacent parts `≥ 2` maps to the length-`(A−1)` binary string `0^{c_1−1} 1 0^{c_2−1} 1 ⋯ 1 0^{c_w−1}` (the classic gap-string encoding); a part `≥ 2` is a nonempty `0`-block, so two adjacent parts `≥ 2` straddle a boundary `1` as the factor `010`, and "no two adjacent parts `≥ 2`" translates exactly to "no factor `010`" — the Hardin constraint. Verified onto the avoid-`010` set for `A ≤ 11`. (The Hardin *sign*-reversing involution — explaining the `2^L` and the sign cancellation — is a separate, still-open statement.)
 
 ## Growth constants: the h = 3 golden ratio is not an accident
 
