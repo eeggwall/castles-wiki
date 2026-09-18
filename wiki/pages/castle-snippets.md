@@ -389,6 +389,34 @@ def strip_field_census(h):
 
 Meaning: the reachable quadratic fields grow `{5} → {2,3,5} → {2,3,5,13,17,21}` as `h = 2,3,4`; every squarefree metallic discriminant `a²+4` appears (bronze `Q(√13)` at h=4), copper collapses into `Q(√5)`, and the **bare plastic number** `x³−x−1` shows up as a Perron root already at h=3 ([[reachable-field-census](pages/reachable-field-census.md)]).
 
+### `sh_canonical(M)` → S_h orbit representative (spectrum-preserving dedup)
+
+Two strip transfer matrices related by simultaneous row+column permutation `P M Pᵀ` (relabeling the `h` height-states) have identical spectra. The canonical form — lexicographically-minimal flattening over all `h!` permutations — collapses each `S_h` orbit to one representative, cutting the census work by up to `h!` (≈ 21× at h=4). Deduping by it reproduces the field lists exactly ([[reachable-field-census](pages/reachable-field-census.md)]).
+
+```python
+from itertools import permutations
+
+def sh_canonical(M):
+    h = len(M)
+    best = None
+    for p in permutations(range(h)):
+        flat = tuple(M[p[i]][p[j]] for i in range(h) for j in range(h))
+        if best is None or flat < best:
+            best = flat
+    return best                        # canonical flattened tuple; equal iff same S_h orbit
+```
+
+```
+>>> sh_canonical([[0,1],[0,0]]) == sh_canonical([[0,0],[1,0]])   # the two 1-edge 2x2 matrices
+True
+>>> # dedup a matrix list: len({sh_canonical(M) for M in matrices}) counts orbits
+>>> from itertools import product
+>>> len({sh_canonical([list(b[i*3:i*3+3]) for i in range(3)]) for b in product([0,1],repeat=9)})
+104                                    # 512 binary 3x3 matrices -> 104 S_3 orbits
+```
+
+Meaning: canonicalizing before the expensive exact-factor step means factoring one matrix per orbit instead of one per matrix. It validated the census (canonical-rep field lists match the full sweep at h ≤ 4), but even the `≈ h!` compression leaves `h = 6` at ~95M orbits — so `h ≥ 6` is settled by the reachability law plus targeted construction, not exhaustion ([[reachable-field-census](pages/reachable-field-census.md)]).
+
 ## Continued fractions, convergents, and quasi-polynomials
 
 Snippets behind [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] and [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]. The first three are stdlib-only; `quasi_split` needs SymPy (the one import that earns its keep here).

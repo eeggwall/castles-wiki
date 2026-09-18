@@ -95,12 +95,20 @@ So the "why 17, 21 at h=4 but not 11?" question dissolves: `Q(√11)` is reachab
 
 **Open:**
 - **A closed form (or tight bounds) for the minimum height** realizing a given `(p₁, p₂)`. The unfolding gives an upper bound `~p₁ + 2p₂`; the true min-height is smaller and irregular. This is the one piece of the quadratic story without a clean answer.
-- **h ≥ 6 and the `S_h`-canonical-form reduction.** h=5 was feasible by brute force (33.5M matrices, ~7,400 distinct roots); h=6 (68G matrices) needs the row+column-permutation quotient to become practical. Which new fields (`Q(√10)` at a=6, `Q(√11)`, …) first appear at h=6?
 - **Which cubics are Pisot / Salem**, and whether the Pisot cubics reachable as strip Perron roots are exactly a nameable set.
+- **A closed-form min-height for a given field.** The reachability law says every field appears; the height at which it *first* appears is the open quantity (tied to the min-height of its cheapest `(p₁, p₂)`).
+
+## `h ≥ 6`: why the law supersedes exhaustion
+
+Two facts settle the `h ≥ 6` regime without a full sweep. First, an **`S_h`-canonical-form deduper** — quotient the `2^{h²}` matrices by simultaneous row+column permutation `P M Pᵀ` (relabeling the height-states preserves the spectrum), keeping the lexicographically-minimal representative of each orbit — was built and **validated against h ≤ 4** (it reproduces the field lists `{5}`, `{2,3,5}`, `{2,3,5,13,17,21}` exactly, compressing 65 536 matrices to 3 044 orbits at h=4, ≈ 21×).[^10] But even with the full `≈ h!` compression, h=6 has `≈ 9.5 × 10⁷` orbits — too many to factor one-by-one in a session, and h=7 is `≈ 10¹¹`.
+
+Second, and decisively: **the new fields at `h ≥ 6` are dense, not sparse.** A sparse sweep (matrices with `≤ 6` of 36 ones, `S_6`-deduped) reaches only `{2, 3, 5}` — the high-discriminant metallic surds need *many* ones (nickel's `J − D` realizer has 31 of 36).[^11] So neither sparse enumeration nor session-length brute force finds them.
+
+This is exactly where the **reachability law replaces the census**: it *predicts* what `h ≥ 6` contains, and targeted construction confirms the predictions. Nickel `Q(√29)` is realized by `J − D` at h=6 (`(x+1)⁴(x²−5x−1)`, 31 ones); the `a=6` field `Q(√10)` (disc 40) first appears at h=7 via `J − D` (`δ_6 = 3+√10`), since its cheapest quadratic form needs `p₁ = 6` (i.e. 7 states) or a many-`p₂` alternative that is no smaller.[^12] So exhaustive h ≥ 6 is unnecessary: the law characterizes the full reachable set, and the census's role — mapping the *low-height* initial segments and surfacing the cubic frontier — is complete at h ≤ 5.
 
 ## Reproduce
 
-The `field_census` two-phase sweep (numeric Perron bucketing + exact SymPy field ID) and the `M = J − D` metallic realizer are on [[castle-snippets](pages/castle-snippets.md)]. h ≤ 4 runs exhaustively in seconds; h=5 in a few minutes with chunked vectorized `numpy.linalg.eigvals`.
+The `field_census` two-phase sweep (numeric Perron bucketing + exact SymPy field ID), the `S_h`-canonical-form `dedup` (validated against the exhaustive census), and the `M = J − D` metallic realizer are on [[castle-snippets](pages/castle-snippets.md)]. h ≤ 4 runs exhaustively in seconds; h=5 in a few minutes with chunked vectorized `numpy.linalg.eigvals`; h ≥ 6 is characterized by the reachability law plus targeted construction rather than exhaustion.
 
 ## Appearances in Sources
 
@@ -134,3 +142,9 @@ The `field_census` two-phase sweep (numeric Perron bucketing + exact SymPy field
 [^8]: `p₁² + 4p₂ ≡ p₁² (mod 4) ∈ {0, 1}`, so the discriminant is always `≡ 0 or 1 (mod 4)` — a quadratic discriminant — and conversely every such value `≥ 5` is `p₁² + 4p₂` for some `p₁ ≥ 0, p₂ ≥ 1`. The squarefree part hits every squarefree `d ≥ 2` (using non-fundamental multiples where needed): e.g. `Q(√11)` via `(p₁,p₂) = (6,2)`, disc `44 = 4·11`, growth `3 + √11 ≈ 6.317` — verified in SymPy; absent from the h ≤ 5 census only because it needs a taller strip. So no real quadratic field is excluded.
 
 [^9]: Realizability: the nonnegative-integer companion `[[p₁, p₂], [1, 0]]` recodes to a `0/1` matrix by replacing each weight-`w` edge with `w` parallel simple paths through fresh states (a standard state-splitting / higher-block recoding in symbolic dynamics), so every `(p₁ ≥ 1, p₂ ≥ 1)` is realized at some finite `h`. Empirical min-heights over `p₁ ≤ 3, p₂ ≤ 4` (exhaustive h ≤ 4): `(1,1)`→2; `(0,2),(2,1),(2,2)`→3; `(0,3),(1,3),(1,4),(2,4),(3,1),(3,2),(3,3)`→4; `p₁ ≥ 4` not reached by h=4. The `p₂ = 1` (metallic) line is realized by `M_h = J − D` at `h = p₁ + 1` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). No closed form fits the full grid.
+
+[^10]: The `S_h` deduper canonicalizes each matrix as the lexicographically-minimal flattening of `P M Pᵀ` over all `h!` permutations `P` (simultaneous row+column relabeling, which conjugates the matrix and preserves its spectrum), collapsing each orbit to one representative. Validated by execution: canonical-representative census reproduces the full field lists at h=2 (`{5}`, 10 orbits from 16 matrices), h=3 (`{2,3,5}`, 104 orbits from 512), h=4 (`{2,3,5,13,17,21}`, 3044 orbits from 65 536) — the quadratic fields match the exhaustive sweep exactly. Orbit compression ≈ `h!` (24× at h=4, observed 21.5×).
+
+[^11]: Sparse `S_6`-deduped census over 6×6 matrices with `≤ 6` of 36 ones: reaches quadratic fields `{2, 3, 5}` only. High-discriminant surds require dense matrices — the `J − D` realizer of nickel (`Q(√29)`) uses 31 ones — so sparse enumeration cannot reach the new h=6 fields. (Verified by execution: batched numeric Perron over all `C(36,K)` combinations for `K ≤ 6`, exact quadratic ID of the distinct roots.)
+
+[^12]: Targeted h=6 / h=7 constructions (SymPy): `J − D` at h=6 gives `(x+1)⁴(x²−5x−1)`, Perron `(5+√29)/2` = nickel ∈ `Q(√29)`, 31 ones; `J − D` at h=7 gives `(x+1)⁵(x²−6x−1)`, Perron `3+√10` = `δ₆` ∈ `Q(√10)`. The `a=6` field `Q(√10)` (disc 40) has cheapest quadratic forms `(p₁,p₂) ∈ {(6,1),(2,9),(0,10),(4,6)}`, all needing `≥ 7` states or many `p₂` two-cycles, so `Q(√10)` first appears at h=7, not h=6.
