@@ -124,6 +124,7 @@ A rational generating function's denominator is a factored inventory of its **st
 
 ## Related Concepts
 
+- [[castle-strip](pages/castle-strip.md)] — the from-scratch bridge: what a castle strip is, and how its neighbor rule becomes a transfer matrix whose states are the column heights. Read it first if the transfer-matrix language here is unfamiliar.
 - [[pell-numbers](pages/pell-numbers.md)] — the integer sequence and its silver-ratio growth.
 - [[generating-functions](pages/generating-functions.md)] — the coefficient-matching technique and the symbolic-method context.
 - [[symbolic-method](pages/symbolic-method.md)] — the `SEQ` construction the two-atom scheme is an instance of.
