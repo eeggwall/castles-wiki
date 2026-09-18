@@ -309,14 +309,14 @@ Meaning: Pell → `a=2` (silver, `1+√2 ≈ 2.4142`). Fibonacci → `a=1` (gold
 - `nearest_metallic` always returns *some* answer — even a transcendental growth constant will return the closest metallic mean. Check the actual distance if uncertain:
 
 ```python
->>> trib = [1, 1, 2, 4, 7, 13, 24, 44, 81, 149]  # Tribonacci-like
->>> r = growth_constant(trib); r
-1.8434087882822903
+>>> trib = [1, 2, 4, 7, 13, 24, 44, 81, 149, 274]   # tribonacci A000073(A+2), the h=3 bounded-height-by-area castle
+>>> r = growth_constant(trib); r                     # 5-term tail avg -> approaches tribonacci const 1.83929
+1.8397657235464842
 >>> a = nearest_metallic(r); a, (a + math.sqrt(a*a+4))/2, abs(r - (a + math.sqrt(a*a+4))/2)
-(1, 1.618033988749895, 0.22537479953239528)
+(1, 1.618033988749895, 0.22173173479658925)
 ```
 
-A gap of ~0.225 is *not* a metallic-mean hit — this is honestly not a `δ_a`-castle for small `a`. `nearest_metallic` gives the closest metal; only trust it when the residual is small.
+A gap of ~0.222 is *not* a metallic-mean hit — the tribonacci constant `≈ 1.83929` (root of `x³ = x² + x + 1`) is a genuine *cubic*, so `nearest_metallic` returning golden `φ` is a false positive. This sequence *is* a real castle count — all castles of height `≤ 3` by area ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)], `bounded_castles_by_area(3, ·)` below) — but its growth is cubic, not metallic. `nearest_metallic` gives the closest metal regardless; only trust it when the residual is small.
 
 ## Continued fractions, convergents, and quasi-polynomials
 
@@ -607,6 +607,45 @@ def tree_area_by_area(h, A_max):
 ```
 
 Meaning: the h=∞ (unlimited height) case is A005251(A+2), the same plastic-squared sequence that appears in the Hardin identity for `P_even(6, L)` - two independent castle interpretations of A005251 meeting at the same recurrence.
+
+### `bounded_castles_by_area(h, A_max)` → the n-nacci-by-height family
+
+**All** castles (not just tree castles) with column heights in `{1, …, h}`, graded by area `A`. A castle bounded by height `h` is exactly a composition of `A` into parts `{1, …, h}`, so the count is the **`h`-step Fibonacci** (n-nacci) number, GF `1 / (1 − x − x² − ⋯ − x^h)`. Growth marches up the n-nacci constants: `h = 2` **Fibonacci** (φ), `h = 3` **tribonacci** (`t ≈ 1.8393`), … → `2` as `h → ∞` ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]). Distinct from `tree_area_by_area` above, whose 2×2-block ban gives the term-*skipping* cubics (supergolden, plastic) instead.
+
+```python
+def bounded_castles_by_area(h, A_max):
+    # coeff of x^A in 1/(1 - x - x^2 - ... - x^h) = # compositions of A into parts {1..h}
+    a = [1] + [0]*A_max
+    for A in range(1, A_max+1):
+        a[A] = sum(a[A-p] for p in range(1, h+1) if A-p >= 0)
+    return a[1:]                                   # A = 1..A_max
+```
+
+```
+>>> bounded_castles_by_area(2, 12)                 # Fibonacci A000045(A+1)
+[1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233]
+>>> bounded_castles_by_area(3, 12)                 # tribonacci A000073(A+2)
+[1, 2, 4, 7, 13, 24, 44, 81, 149, 274, 504, 927]
+>>> bounded_castles_by_area(4, 12)                 # tetranacci A000078
+[1, 2, 4, 8, 15, 29, 56, 108, 208, 401, 773, 1490]
+```
+
+Brute-force cross-check against the actual castle model (`sum(c)` over height-bounded skylines) agrees term for term:
+
+```
+>>> from itertools import product
+>>> from collections import Counter
+>>> def area_bf(h, Amax):
+...     cnt = Counter()
+...     for w in range(1, Amax+1):
+...         for c in product(range(1, h+1), repeat=w):
+...             if sum(c) <= Amax: cnt[sum(c)] += 1
+...     return [cnt[A] for A in range(1, Amax+1)]
+>>> area_bf(3, 12) == bounded_castles_by_area(3, 12)    # tribonacci, verified
+True
+```
+
+Meaning: this is the "sum of the previous `h`" companion to the tree-castle family. `h = 2` here is **A000045** (Fibonacci) - a *different, denser* sequence than the `h = 2` tree-castle row `tree_area_by_area(2, ·)` = A000930 (Narayana's cows), because dropping the tree (no-2×2-block) constraint restores the `(…,2,2,…)` adjacencies. `h = 3` is the tribonacci sequence **A000073** - the castle's first tribonacci interpretation.
 
 ### `castle_graph_radius(c)` → float
 

@@ -1,8 +1,8 @@
 ---
 title: Castle classification
 category: Concepts
-summary: A classification framework for castle sub-families. Axes 1-7 are structural skyline predicates on individual castles; Axis 8 is a growth-type meta-classification on castle *classes* (named as "<metal> <axis> growth castle"); Axis 9 is a graph-theoretic / spectral predicate on individual castles' castle graphs. Populated Axis 9 types: tree castle, golden- / silver- / φ²-spectrum, isospectral pair, Ramanujan. The [[castle-graph]] concept bridges the castle to graph theory.
-tags: [concept, castle, classification, taxonomy, skyline, spectral, ramanujan]
+summary: A classification framework for castle sub-families. Axes 1-7 are structural skyline predicates on individual castles; Axis 8 is a growth-type meta-classification on castle *classes* (metallic "<metal> <axis> growth castle" for quadratic growth constants, and a parallel non-metallic "<constant> <axis>" slot for the n-nacci constants — Fibonacci, tribonacci, tetranacci — and the cubic-Pisot constants — supergolden, plastic-squared); Axis 9 is a graph-theoretic / spectral predicate on individual castles' castle graphs. Populated Axis 9 types: tree castle, golden- / silver- / φ²-spectrum, isospectral pair, Ramanujan. The [[castle-graph]] concept bridges the castle to graph theory.
+tags: [concept, castle, classification, taxonomy, skyline, spectral, ramanujan, growth-constant, fibonacci, tribonacci, n-nacci, plastic-number, supergolden]
 sources: [castle-classification]
 created: 2026-09-15
 updated: 2026-09-17
@@ -193,11 +193,43 @@ A class whose width-graded count sequence has growth constant `1 + √2 ≈ 2.41
 - **Copper width growth castle** (`δ_4 = 2 + √5 = φ³`) — because `δ_4 = φ³`, any copper width growth castle lives in `Q(√5)` and is a "Fibonacci-decimated" family; its count sequence would be `F_{3n}/2` for the strip case. Candidates open.
 - **Nickel and beyond** — genuinely open.
 
+### Non-metallic growth castles — the n-nacci and cubic-Pisot families
+
+The metallic ladder is not the whole story. The wiki has accumulated a second, structurally coherent family of growth constants that are **algebraic but not metallic means** — they are roots of `x^k = x^{k−1} + ⋯ + 1` (the "`k`-step Fibonacci" / **n-nacci** constants) and of the term-skipping cubics (the **cubic-Pisot** constants). These extend Axis 8 with a parallel naming slot: a class is an **"`<constant>` `<axis>` growth castle"** where `<constant>` names the algebraic growth rate directly (tribonacci, tetranacci, supergolden, plastic-squared, …) when it is not a metallic mean.
+
+**The n-nacci area growth family.** All castles of height `≤ h`, graded by area, grow at the `h`-step Fibonacci constant with GF `1/(1 − x − ⋯ − x^h)` ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]):
+
+| `<constant>` | `h` | growth | minimal polynomial | OEIS (by area) |
+|---|---|---|---|---|
+| **golden** (metallic `a=1`) | 2 | `φ ≈ 1.6180` | `x² − x − 1` | A000045 Fibonacci |
+| **tribonacci** | 3 | `≈ 1.8393` | `x³ − x² − x − 1` | A000073 |
+| **tetranacci** | 4 | `≈ 1.9276` | `x⁴ − x³ − x² − x − 1` | A000078 |
+| **pentanacci** | 5 | `≈ 1.9659` | `x⁵ − ⋯ − 1` | A001591 |
+| — | ∞ | `2` | `x − 2` | A011782 (`2^{A−1}`) |
+
+Only the `h = 2` rung (golden) is metallic; every `h ≥ 3` rung is a genuine degree-`h` non-metallic **tribonacci / tetranacci / … area growth castle**. The family is monotone increasing to `2`.
+
+**The cubic-Pisot family.** The tree-castle-by-area family ([[tree-castle-by-area](pages/tree-castle-by-area.md)]) — the 2×2-block-free sub-family, an Axis-9 structural type graded by area — realizes the three cubic-Pisot constants, none metallic:
+
+| `<constant>` | growth | minimal polynomial | castle realization |
+|---|---|---|---|
+| **supergolden** | `≈ 1.4656` | `x³ − x² − 1` | `h = 2` tree castles by area = Narayana's cows A000930 |
+| **plastic-squared** `ψ²` | `≈ 1.7549` | `x³ − 2x² + x − 1` | `h → ∞` tree castles by area = A005251 ([[plastic-number](pages/plastic-number.md)]) |
+| **plastic** `ψ` | `≈ 1.3247` | `x³ − x − 1` | **not yet realized** as a plain count — the open watch-note on [[plastic-number](pages/plastic-number.md)] |
+
+The plastic number `ψ` itself (`x³ = x + 1`, [[plastic-number](pages/plastic-number.md)]) also enters as the `k = 6` signed-tower eigenvalue `ρ_6 = 2ψ²`, but that is a *spectral* appearance, not a growth-castle count. The bare-`ψ` growth castle (a Padovan/Perrin-rate count) is the one open slot in the cubic-Pisot family.
+
+**Why the split matters.** The metallic naming (`<metal> <axis>`) and the non-metallic naming (`<constant> <axis>`) are the same meta-classification — a growth rate for a class along a stated axis — just with different name-sources: the metallic means `δ_a` for the quadratic ladder, the constant's own name for everything else. A class can be classified on either; the deciding question is only whether its growth constant is a metallic mean (`x² − a x − 1`, purely-periodic CF, `w_2 = 1` in the strip denominator) or a higher-degree algebraic number. See [[metallic-means](pages/metallic-means.md)] for the quadratic side and [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] for the non-metallic side.
+
 ### Vertical / area / block growth castles
 
 The **vertical growth axis** grades by height (`h` varying, `w` fixed). No member is known. The natural candidate, the k-direction signed count `P(k, L)` at fixed `L`, is not one: its characteristic polynomial is `(x+1)^L (x−1)^{L−2}` ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]), so it is a quasi-polynomial in `k` with no exponential growth at all. The count `F(w, h)` in `h` is likewise a quasi-polynomial (annihilated by `(x²−1)^w`). A vertical growth castle with a metallic constant would have to come from a rule modification.
 
-The **area growth axis** grades by `∑ c_i`. Instances: the prime-castle-by-area count `2^{n−1} − F_{n−1}` is golden area growth castle (Fibonacci-dominated); [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] (`A001523`) has area growth constant that is *not* a metallic mean (transcendental, from the partition-function saddle-point analysis) — so weakly-unimodal castles by area are *not* a `δ_a`-castle for any `a`, useful negative example.
+The **area growth axis** grades by `∑ c_i`, and this is the axis where the wiki now has the richest inventory — most of it **non-metallic** (see the non-metallic growth family below). Instances:
+
+- **Golden area growth castle** — the prime-castle-by-area count `2^{n−1} − F_{n−1}` ([[castle-by-area](pages/castle-by-area.md)], Fibonacci-dominated in `Q(√5)`), and **all castles of height ≤ 2 by area** = Fibonacci A000045 ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]). The latter is the `h = 2` rung of the n-nacci family.
+- **Non-metallic area growth castles** (the large majority): the **n-nacci family** — all castles of height `≤ h` by area, growing at the `h`-step Fibonacci constant, of which `h = 3` is the **tribonacci constant** `≈ 1.8393` ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]) — and the **cubic-Pisot** area growth constants of the tree-castle family: **supergolden** `≈ 1.4656` (Narayana's cows, `h = 2` tree castles) and **plastic-squared** `ψ² ≈ 1.7549` (`h → ∞` tree castles, [[tree-castle-by-area](pages/tree-castle-by-area.md)], [[plastic-number](pages/plastic-number.md)]). None of these is a metallic mean.
+- **Transcendental negative example** — [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] (`A001523`) has an area growth constant that is *not even algebraic* (transcendental, from the partition-function saddle-point analysis), so weakly-unimodal castles by area are not a growth castle for any algebraic constant — the outer boundary of the area axis.
 
 The **block growth axis** grades by block count. [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] gives the block-count generating function structure; growth-constant analysis pending.
 
@@ -208,6 +240,7 @@ The **block growth axis** grades by block count. [[tower-narayana-polynomial](pa
 - **Every {0, 1}-skyline strip is a golden width growth castle.** (Immediate — it's the Fibonacci strip.)
 - **Every silver width growth castle has a dominant eigenvalue in `Q(√2)`.** (Immediate from Lagrange — periodic-in-CF means quadratic irrational; growth constant `1 + √2` sits in `Q(√2)`.)
 - **The tower word (a Motzkin-path-with-run-constraint type) is a silver width growth castle.** (Non-trivial — algebraic GF, singularity at `√2 − 1`; the Motzkin-path type is Axis 3 and the silver growth type is Axis 8, so the two axes are linked by a real theorem, not a definition.)
+- **Every height-`≤ h` castle class is a `h`-nacci area growth castle; imposing the Axis-9 tree constraint changes the growth constant.** (The non-metallic analogue — the tree ban strictly lowers the area growth rate: at `h = 3`, all-castles-by-area is **tribonacci** `≈ 1.8393` but tree-castles-by-area is A006498 with **golden** growth `φ`; at `h = 2` it drops Fibonacci to supergolden; at `h → ∞` it drops `2` to plastic-squared `ψ²`. So the same structural predicate (tree, Axis 9) maps one Axis-8 growth type to another, differently at each height — a real cross-axis interaction, not a definition.)
 
 Cross-axis-8 theorems (relating growth types under different axes) are the frontier: for instance, *"does every silver width growth castle become a bronze area growth castle when re-graded?"* — likely false, but stateable and testable.
 
@@ -246,7 +279,7 @@ The castle graph is not regular in general (interior cells have degree 4, edge c
 
 ### Tree castle
 
-A castle graph is a tree iff no `2×2` block is fully filled, iff no two horizontally adjacent columns both have height at least 2. Tree castles are Axis 9's simplest named type: single-castle, structural (a skyline predicate), and graph-theoretic (`G_c` is a tree). Counted by the transfer matrix `T_h(w+2) = T_h(w+1) + (h−1) T_h(w)` with growth constant `(1 + √(4h − 3))/2`, they hit named OEIS sequences at every height: **Fibonacci** at `h = 2` (`T_2(w) = F_{w+2}`), **Jacobsthal** at `h = 3` (`T_3(w) = J_{w+2}`), then A006130, A006131, … . Tree castles of height 2 are a **golden width growth castle** in Axis 8's terminology, giving the tree-castle family a rung on the metallic ladder without leaving Axis 9. Full details on [[castle-graph](pages/castle-graph.md)].
+A castle graph is a tree iff no `2×2` block is fully filled, iff no two horizontally adjacent columns both have height at least 2. Tree castles are Axis 9's simplest named type: single-castle, structural (a skyline predicate), and graph-theoretic (`G_c` is a tree). Counted **by width** by the transfer matrix `T_h(w+2) = T_h(w+1) + (h−1) T_h(w)` with growth constant `(1 + √(4h − 3))/2`, they hit named OEIS sequences at every height: **Fibonacci** at `h = 2` (`T_2(w) = F_{w+2}`), **Jacobsthal** at `h = 3` (`T_3(w) = J_{w+2}`), then A006130, A006131, … . Tree castles of height 2 are a **golden width growth castle** in Axis 8's terminology, giving the tree-castle family a rung on the metallic ladder without leaving Axis 9. Counted **by area** ([[tree-castle-by-area](pages/tree-castle-by-area.md)]) they instead realize the non-metallic **cubic-Pisot** growth constants — supergolden at `h = 2` (Narayana's cows A000930), plastic-squared `ψ²` at `h → ∞` (A005251) — so tree castles are supergolden / plastic-squared **area growth castles** (Axis 8 non-metallic slot). The unrestricted (non-tree) counterpart, all castles of height `≤ h` by area, is the **n-nacci** family (tribonacci at `h = 3`; [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]) — the tree constraint is exactly what turns the n-nacci constants into the term-skipping cubic-Pisot ones. Full details on [[castle-graph](pages/castle-graph.md)].
 
 ### Golden-spectrum and silver-spectrum castles
 
@@ -290,7 +323,9 @@ The taxonomy makes explicit which sub-families the wiki has, which are candidate
 - [[polyominoes](pages/polyominoes.md)] / [[column-convex-polyomino](pages/column-convex-polyomino.md)] / [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] — the base-type home literature.
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the unimodal-skyline (single-peak) family from AC Ex. I.8.
 - [[dyck-words](pages/dyck-words.md)] / [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — the Dyck-path / Motzkin-path types.
-- [[metallic-means](pages/metallic-means.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] — the growth-constant classification axis.
+- [[metallic-means](pages/metallic-means.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] — the metallic (quadratic) side of the Axis-8 growth-constant classification.
+- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] — the n-nacci area growth family (Fibonacci, tribonacci, tetranacci, …), the non-metallic side of Axis 8.
+- [[tree-castle-by-area](pages/tree-castle-by-area.md)] / [[plastic-number](pages/plastic-number.md)] — the cubic-Pisot area growth constants (supergolden, plastic-squared) and the plastic number's spectral appearance.
 - [[castle-by-area](pages/castle-by-area.md)] — where several types (even-area, valley) are counted.
 - [[castle-sign](pages/castle-sign.md)] / [[castle-foata-transform](pages/castle-foata-transform.md)] — the parity / peak-count / record statistics several types predicate on.
 - [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the framework the rainbow type maps onto directly.
