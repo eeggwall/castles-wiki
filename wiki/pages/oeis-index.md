@@ -148,7 +148,7 @@ From [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]: OEIS requires 
 9. **A001523, A115981, A332578**: convex / non-convex / valley castles by area ([[castle-by-area](pages/castle-by-area.md)]).
 10. **A352116**: `|P(k,4)|` = partial sums of odd triangular numbers ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]).
 
-**Novel-candidate** submissions (no OEIS match, genuinely new): the even-block proper-castle bronze `1,7,25,70,209,697,…` and copper `0,0,10,104,604,…` rows ([[proper-castle-projection](pages/proper-castle-projection.md)]), and the parity-refined area sequences ([[castle-by-area](pages/castle-by-area.md)]). See the encyclopedia below for the full status-tagged catalogue.
+**Novel-candidate** submissions (no OEIS match, genuinely new): the **signed tower count `P(k,·)` rows for `k = 2..6`** ([[signed-tower-count](pages/signed-tower-count.md)]) — a clean C-finite family with a Pell/Chebyshev closed form, the even-`k` all-positive rows (`P(2,·)`, `P(4,·)`, `P(6,·)`) being the most submission-ready; the even-block proper-castle bronze `1,7,25,70,209,697,…` and copper `0,0,10,104,604,…` rows ([[proper-castle-projection](pages/proper-castle-projection.md)]); and the parity-refined area sequences ([[castle-by-area](pages/castle-by-area.md)]). See the encyclopedia below for the full status-tagged catalogue.
 
 ## Castle sequence encyclopedia
 
@@ -198,15 +198,16 @@ The `J − D` metallic-strip counts, and their projection to proper PE 502 castl
 
 The signed tower count `P(k,L) = Σ (−1)^blocks` in the `L`-direction at fixed `k` ([[signed-tower-count](pages/signed-tower-count.md)]); C-finite of order `k+1`. Even-`k` rows are all-positive; odd-`k` rows alternate in sign.
 
-| object | first terms (`L = 0…`) | growth | status |
-|---|---|---|---|
-| `P(1, L)` | `1, 0, −2, −4, −4, 0, 8, 16, …` | `√2` (`1±i`) | **interlink** → [A146559](https://oeis.org/A146559) (`= Re((1+i)^{L+1})`) |
-| `P(2, L)` | `1, 1, 3, 9, 19, 33, 59, 121, 259, 529` | `2` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
-| `P(4, L)` | `1, 1, 5, 25, 85, 225, 541, 1385, 3973` | `2.796` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
-| `P(3, L)` | `1, 0, −4, −16, −40, −64, −32, 192, …` | `1.79` | **unchecked** (signed; `|·|` not yet searched) |
-| `P(6, L)` | `1, 0, −6, …` (order-7) | `2ψ²` | **unchecked**; even-`k` char poly factors, dominant root `2ψ²` ([[plastic-number](pages/plastic-number.md)]) |
+| object | first terms (`L = 0…`) | order | growth | status |
+|---|---|---|---|---|
+| `P(1, L)` | `1, 0, −2, −4, −4, 0, 8, 16, …` | 2 | `√2` (`1±i`) | **interlink** → [A146559](https://oeis.org/A146559) (`= Re((1+i)^{L+1})`) |
+| `P(2, L)` | `1, 1, 3, 9, 19, 33, 59, 121, 259, 529` | 3 | `2` | **novel-candidate** (no match, 2026-09-18) |
+| `P(3, L)` | `1, 0, −4, −16, −40, −64, −32, 192, 832, …` | 4 | `2.193` (`\|r\|`) | **novel-candidate** (signed and `\|·\|` both no match, 2026-09-18) |
+| `P(4, L)` | `1, 1, 5, 25, 85, 225, 541, 1385, 3973` | 5 | `2.796` | **novel-candidate** (no match, 2026-09-18) |
+| `P(5, L)` | `1, 0, −6, −36, −140, −384, −680, −112, 5040, …` | 6 | `2.892` (`\|r\|`) | **novel-candidate** (signed and `\|·\|` both no match, 2026-09-18) |
+| `P(6, L)` | `1, 1, 7, 49, 231, 833, 2583, 7889, 26503, …` | 7 | `2ψ² = 3.5098` | **novel-candidate** (no match, 2026-09-18); char poly factors `(x³−4x²+4x−8)(x⁴−3x³+8x²−4x+8)`, dominant root `2ψ²` ([[plastic-number](pages/plastic-number.md)]) |
 
-*(The whole family has a Pell/Chebyshev closed-form denominator — `den_k = A·r_+^k + B·r_−^k`, roots `−x ± √(x²+1)` — worked out on [[generating-function-gallery](pages/generating-function-gallery.md)]. The even-`k` positive rows `P(2,·)`, `P(4,·)` are the cleanest new-sequence candidates.)*
+*(**All of `P(2..6, ·)` are novel** — no OEIS match in signed or absolute-value form, searched 2026-09-18. Even-`k` rows are all-positive and their char polys factor (dominant root `2` / `2.796` / `2ψ²`); odd-`k` rows alternate in sign with irreducible char polys and complex dominant roots. The whole family has a Pell/Chebyshev closed-form denominator — `den_k = A·r_+^k + B·r_−^k`, roots `−x ± √(x²+1)` — on [[generating-function-gallery](pages/generating-function-gallery.md)]. The even-`k` positive rows are the cleanest submission candidates.)*
 
 ### Strip Perron-root sequences (reachable-field census)
 
