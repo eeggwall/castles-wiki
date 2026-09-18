@@ -38,6 +38,8 @@ is where all the arithmetic happens. Multiplying two elements of `R` and reducin
 
 # Seminar 1 — BUILD
 
+**Expanded, standalone:** [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] runs each of the four sub-sections below as its own experiment with pinned output - the recurrence and char poly, the period appearing mod `p = 101` (`3400 = lcm(100, 3400)`, the CRT split), the ring `F_p[x]/(Q)` with multiplication-by-`x`-as-recurrence, the CRT decomposition of a reducible `Q`, element orders of `x` at `10⁹ + 7`, Kitamasa cost curves, and the DH deliverable.
+
 > *Ground rule for the room:* we are implementing a cryptosystem, not certifying one. It may well be insecure — **that is Seminar 2's job, not today's.** Today we make the thing run: reduce a castle to a ring, exponentiate, exchange a key.
 
 ## Build 1 — finite fields (why anything is periodic at all)
@@ -141,7 +143,7 @@ The essential blue-team skill: knowing what your fix *didn't* buy. Even with an 
 
 | Seminar | Track | Deliverable | Wiki tools |
 |---|---|---|---|
-| 1 | **Build** | a running castle Diffie–Hellman; security question *deferred* | [[finite-fields](pages/finite-fields.md)], [[kitamasa](pages/kitamasa.md)], [[mod-p-observatory](pages/mod-p-observatory.md)] |
+| 1 | **Build (the ring)** | a running castle Diffie–Hellman; security question *deferred* | [[castle-cryptography-ring](pages/castle-cryptography-ring.md)], [[finite-fields](pages/finite-fields.md)], [[kitamasa](pages/kitamasa.md)], [[mod-p-observatory](pages/mod-p-observatory.md)] |
 | 2 | **Red team** | two working attacks (CRT/Pohlig–Hellman split; Berlekamp–Massey LFSR recovery) | [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[berlekamp-massey](pages/berlekamp-massey.md)] |
 | 3 | **Blue team** | irreducible-`Q` fix, nonlinear-output fix, and the honest ceiling | [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)], odd-`k` char polys |
 | 2nd lap | **Build / red / blue again** | ElGamal + Schnorr signature; Alice's key recovered (0.07 s); both fixes broken; key sizes (`Φ_d(p)` prime, linear complexity, `L_q[1/3]`); the four-question method | [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] |
@@ -168,6 +170,7 @@ The `castle_dh` key exchange (the `mulmod` / `powmod` pair above) and the Berlek
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - `period = lcm of eigenvalue orders`; the group structure the discrete log lives in, and the prime-choice experiment.
 - [[signed-tower-count](pages/signed-tower-count.md)] / [[generating-function-gallery](pages/generating-function-gallery.md)] - the `P(k,L)` characteristic polynomials `char_k` used as public castles.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - why even-`k` `char_k` factors — the structural weakness Seminar 2's first attack exploits, and the odd-`k` irreducibility Seminar 3's first fix relies on.
+- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - Seminar 1 expanded as its own standalone page, every claim executed and pinned (the recurrence, period mod `p`, ring arithmetic, CRT split, element orders, Kitamasa, DH).
 - [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - the engineer-facing explainer: char poly, irreducible (= prime for polynomials), and the discrete logarithm problem, from scratch.
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the second lap: ElGamal and signature built, Alice's key recovered, both fixes broken, keys sized, and the four-question red-team method.
 - [[castle-sign](pages/castle-sign.md)] - the `(−1)^{blocks}` sign underlying `P(k,L)`; the object being exponentiated.

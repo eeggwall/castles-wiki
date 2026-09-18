@@ -10,7 +10,7 @@ updated: 2026-09-18
 
 # Castle cryptography, round two
 
-[[castle-cryptography](pages/castle-cryptography.md)] ran the loop once: **build** a castle Diffie–Hellman, **red-team** it (the modulus factors; the output is linear), **blue-team** it (irreducible odd-`k` char poly; nonlinear output). This page runs the loop a second time, and the second lap is where the discipline actually lives: the round-one fixes are themselves attacked, both fall, and the blue team learns that a fix has to move a *number*, not rename a *property*. Everything below was executed; the programs are pinned on [[castle-snippets](pages/castle-snippets.md)] (`castle_dlp`, `bm_modp`, `castle_schnorr`).
+[[castle-cryptography](pages/castle-cryptography.md)] ran the loop once (Seminar 1 expanded as [[castle-cryptography-ring](pages/castle-cryptography-ring.md)]): **build** a castle Diffie–Hellman, **red-team** it (the modulus factors; the output is linear), **blue-team** it (irreducible odd-`k` char poly; nonlinear output). This page runs the loop a second time, and the second lap is where the discipline actually lives: the round-one fixes are themselves attacked, both fall, and the blue team learns that a fix has to move a *number*, not rename a *property*. Everything below was executed; the programs are pinned on [[castle-snippets](pages/castle-snippets.md)] (`castle_dlp`, `bm_modp`, `castle_schnorr`).
 
 Notation as before: `p = 10⁹ + 7`, the ring is `R = F_p[x]/(Q)` with `Q = char_k mod p`, the generator is `x`, and `char_1 = x² − 2x + 2`, `char_2 = x³ − 3x² + 4x − 4`, `char_3 = x⁴ − 4x³ + 8x² − 8x + 8` ([[signed-tower-count](pages/signed-tower-count.md)]).
 
@@ -150,6 +150,7 @@ A builder who never runs step 4 declares victory after Fix 1. A breaker who neve
 ## Related Concepts
 
 - [[castle-cryptography](pages/castle-cryptography.md)] - round one of the loop: the build, the two original attacks, and the fixes this page breaks.
+- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring seminar; the algebra baseline whose §5 element-order table is the input Attack 3 factors.
 - [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - char poly, irreducible, and DLP from scratch; this page supplies the caveat that irreducible `Q` still leaves `p^d − 1` factored.
 - [[kitamasa](pages/kitamasa.md)] - the `x^a mod Q` exponentiation used by ElGamal, the signature, and every attack's inner loop.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - the recurrence-recovery algorithm, here run over `F_p` against nonlinear filters.

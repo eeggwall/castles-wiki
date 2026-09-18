@@ -96,6 +96,7 @@ The engineer's one-liner: **a composite structure is only as strong as its weake
 ## Related Concepts
 
 - [[castle-cryptography](pages/castle-cryptography.md)] - the build / red-team / blue-team seminar series this page supports.
+- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the Seminar 1 (ring) seminar this page is the lighter appendix to.
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the second lap, where the irreducible-`Q` fix is shown necessary but not sufficient (group-order Pohlig–Hellman) and the keys are sized.
 - [[finite-fields](pages/finite-fields.md)] - `F_{p^d}`, cyclic groups, and why over-`ℚ`-irreducible polys can still split mod `p`.
 - [[kitamasa](pages/kitamasa.md)] - `x^a mod Q` by binary exponentiation, the "easy forward" trapdoor direction.
