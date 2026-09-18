@@ -1,21 +1,21 @@
 ---
-title: OEIS index and castle sequence encyclopedia
+title: OEIS index and castle sequence catalogue
 category: Concepts
-summary: The wiki's two-layer sequence directory. Layer 1 (the OEIS index) is a lookup table of every OEIS A-number the wiki references and where it appears, grouped by role. Layer 2 (the castle sequence encyclopedia) is a castle-native catalogue that tracks every distinct castle-counting sequence with a novelty status — OEIS-known (with A-number), interlink (a known sequence reached by a new castle route), novel-candidate (searched, no OEIS match), or unchecked (computed, not yet searched) — plus its castle meaning, first terms, recurrence/GF, and growth constant. The method for verifying a match lives on [[oeis-cross-referencing]]; the source workspace on [[oeis-mining-pe502]].
-tags: [concept, oeis, index, directory, cross-reference, castle, sequence, encyclopedia, novelty, submission-candidate]
+summary: The wiki's two-layer sequence directory. Layer 1 (the OEIS index) is a lookup table of every OEIS A-number the wiki references and where it appears, grouped by role. Layer 2 (the castle sequence catalogue) tracks every distinct castle-counting sequence with a novelty status — OEIS-known (with A-number), interlink (a known sequence reached by a new castle route), novel-candidate (searched, no OEIS match), or unchecked (computed, not yet searched) — plus its castle meaning, first terms, recurrence/GF, and growth constant. The method for verifying a match lives on [[oeis-cross-referencing]]; the source workspace on [[oeis-mining-pe502]].
+tags: [concept, oeis, index, directory, cross-reference, castle, sequence, catalogue, novelty, submission-candidate]
 sources: [oeis-mining-pe502]
 created: 2026-09-17
 updated: 2026-09-18
 ---
 
-# OEIS index and castle sequence encyclopedia
+# OEIS index and castle sequence catalogue
 
 ## What this is
 
 This page is the wiki's **sequence directory**, in two layers:
 
 - **The OEIS index** (below) — a lookup table of every OEIS A-number the wiki cites and where it appears. Use it to find where an A-number is discussed, or to spot which sequences have accumulated multiple wiki appearances (a signal the cross-reference is worth submitting).
-- **The castle sequence encyclopedia** (further down) — a **castle-native** catalogue organized around the *sequences castles produce*, not around A-numbers. Every distinct castle-counting sequence gets a full record with a **novelty status**, so the wiki tracks not only its OEIS hits but also which sequences look genuinely new. Even if none are ever submitted to OEIS, this is the internal encyclopedia of castle sequences.
+- **The castle sequence catalogue** (further down) — organized around the *sequences castles produce*, not around A-numbers. Every distinct castle-counting sequence gets a full record with a **novelty status**, so the wiki tracks not only its OEIS hits but also which sequences look genuinely new. Even if none are ever submitted to OEIS, this is the wiki's internal catalogue of castle sequences.
 
 The method for identifying an OEIS match and the discipline for verifying it live on [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]; the source workspace where the first mining pass was carried out is [[oeis-mining-pe502](pages/oeis-mining-pe502.md)]; the height-2 hyperbolic interlink (a high-value candidate for submission) lives on [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)].
 
@@ -47,7 +47,7 @@ A-numbers link to OEIS. "Pages" is where the number appears in this wiki, with t
 |---|---|---|---|
 | [A000045](https://oeis.org/A000045) | Fibonacci numbers: F(n) = F(n-1) + F(n-2) with F(0) = 0 and F(1) = 1. | tree castles of height 2 (T_2(w) = F_{w+2}); Fibonacci in prime-castle count | [[castle-graph](pages/castle-graph.md)] (3), [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] (3), [[metallic-means](pages/metallic-means.md)] (2), [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] (1), [[pell-numbers](pages/pell-numbers.md)] (1), [[plastic-number](pages/plastic-number.md)] (1) |
 | [A000129](https://oeis.org/A000129) | Pell numbers: a(0) = 0, a(1) = 1; for n > 1, a(n) = 2*a(n-1) + a(n-2). | Pell castle strip; realization of 1 + √2 | [[pell-numbers](pages/pell-numbers.md)] (9), [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] (5), [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] (3), [[pell-castle-strip](pages/pell-castle-strip.md)] (3), [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] (2), [[metallic-means](pages/metallic-means.md)] (2), [[castle-classification](pages/castle-classification.md)] (1), [[castle-counting-formula](pages/castle-counting-formula.md)] (1), [[castle-snippets](pages/castle-snippets.md)] (1), [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] (1) |
-| [PLACEHOLDER-A000225](https://oeis.org/PLACEHOLDER-A000225) | a(n) = 2^n - 1. (Sometimes called Mersenne numbers, although that name is usually reserved | total height-2 castles (Mersenne): F(w,2) + odd(w,2) = 2^w - 1 | [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] (8), [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] (3), [[castle-counting-function](pages/castle-counting-function.md)] (2), [[aocp-generating-functions](pages/aocp-generating-functions.md)] (1), [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] (1) |
+| [A000225](https://oeis.org/A000225) | a(n) = 2^n - 1. (Sometimes called Mersenne numbers, although that name is usually reserved | total height-2 castles (Mersenne): F(w,2) + odd(w,2) = 2^w - 1 | [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] (8), [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] (3), [[castle-counting-function](pages/castle-counting-function.md)] (2), [[aocp-generating-functions](pages/aocp-generating-functions.md)] (1), [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] (1) |
 | [A000447](https://oeis.org/A000447) | a(n) = 1^2 + 3^2 + 5^2 + 7^2 + ... + (2*n-1)^2 = n*(4*n^2 - 1)/3. | |P(2m+1,4)| bisection: 4·A000447 = A199833 | [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] (4) |
 | [A000570](https://oeis.org/A000570) | Number of tournaments on n nodes determined by their score vectors. Author: Prasad Tetali. | tree castles of height 4 by area: T_(h=4)(A) = A000570(A+1); Tetali's classification of the four basic unique tournaments (sizes 1, 3, 4, 5) is proved in [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] (JCTB 72:157-159, 1998), ingested to `raw/` | [[tree-castle-by-area](pages/tree-castle-by-area.md)] (5), [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] (1), [[unique-tournament](pages/unique-tournament.md)] (1) |
 | [A000930](https://oeis.org/A000930) | Narayana's cows sequence: a(0) = a(1) = a(2) = 1; thereafter a(n) = a(n-1) + a(n-3). | tree castles of height 2 by area: T_(h=2)(A) = A000930(A+1) | [[tree-castle-by-area](pages/tree-castle-by-area.md)] (3) |
@@ -59,7 +59,7 @@ A-numbers link to OEIS. "Pages" is where the number appears in this wiki, with t
 | [A005060](https://oeis.org/A005060) | a(n) = 5^n - 4^n. | h^w - (h-1)^w at h=5 | [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] (2) |
 | [A005061](https://oeis.org/A005061) | a(n) = 4^n - 3^n. | h^w - (h-1)^w at h=4 | [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] (2) |
 | [A005062](https://oeis.org/A005062) | a(n) = 6^n - 5^n. | h^w - (h-1)^w at h=6 | [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] (2) |
-| [A005251](https://oeis.org/A005251) | a(0) = 0, a(1) = a(2) = a(3) = 1; thereafter, a(n) = a(n-1) + a(n-2) + a(n-4). | Hardin words at m=1 (no-isolated-1 binary), P_even(6,L)/2^L | [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] (6), [[hardin-word-identity](pages/hardin-word-identity.md)] (5), [[tower-parity-sectors](pages/tower-parity-sectors.md)] (5), [[castle-snippets](pages/castle-snippets.md)] (3), [[plastic-number](pages/plastic-number.md)] (3), [[signed-tower-count](pages/signed-tower-count.md)] (2) |
+| [A005251](https://oeis.org/A005251) | a(0) = 0, a(1) = a(2) = a(3) = 1; thereafter, a(n) = a(n-1) + a(n-2) + a(n-4). | **four linked castle readings** (see hub note below): Hardin no-isolated-1 words / `P_even(6,L)/2^L`; tree castles by area (`h→∞`); tower-spacing `(h=2,g=2)`; unified by [[a005251-bijection](pages/a005251-bijection.md)] | [[a005251-bijection](pages/a005251-bijection.md)] (1), [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] (6), [[hardin-word-identity](pages/hardin-word-identity.md)] (5), [[tower-parity-sectors](pages/tower-parity-sectors.md)] (5), [[tree-castle-by-area](pages/tree-castle-by-area.md)] (3), [[castle-snippets](pages/castle-snippets.md)] (3), [[plastic-number](pages/plastic-number.md)] (3), [[tower-spacing-castles](pages/tower-spacing-castles.md)] (2), [[signed-tower-count](pages/signed-tower-count.md)] (2) |
 | [A005408](https://oeis.org/A005408) | The odd numbers: a(n) = 2*n + 1. | tower Narayana coefficient row | [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] (7), [[narayana-numbers](pages/narayana-numbers.md)] (2), [[tower-heap](pages/tower-heap.md)] (2), [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] (1) |
 | [A005435](https://oeis.org/A005435) | Number of column-convex polyominoes with perimeter 2n+2. | column-convex polyominoes by perimeter (neighbor family) | [[castle-by-area](pages/castle-by-area.md)] (2) |
 | [A005891](https://oeis.org/A005891) | Centered pentagonal numbers: (5n^2+5n+2)/2; crystal ball sequence for 3.3.3.4.4. planar ne | tower Narayana coefficient row | [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] (6), [[narayana-numbers](pages/narayana-numbers.md)] (2), [[tower-heap](pages/tower-heap.md)] (2), [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] (1) |
@@ -139,7 +139,7 @@ From [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]: OEIS requires 
 
 1. **A038505 and A038503**: the height-2 hyperbolic interlink (`F(w,2) = A038505(w+1)`, `odd(w,2) = A038503(w+1) − 1`) is the highest-value candidate; both sequences are relatively isolated in the OEIS and gain a genuine geometric interpretation. See [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)].
 2. **A146559**: `a(n) = P(1, n − 1)` and the derived `A146559 = A038503 − A038505` identity ([[signed-tower-count](pages/signed-tower-count.md)]).
-3. **A005251, A202882, A203094, A203184**: the Hardin word identity gives each an interpretation as `2^{−L}` times an even-last-column signed tower count and proves their empirical recurrences ([[hardin-word-identity](pages/hardin-word-identity.md)]); **and now a second, unsigned geometric interpretation** as minimum-tower-spacing-2 castles ([[tower-spacing-castles](pages/tower-spacing-castles.md)]) — the `g=2` column of that family *is* the Hardin family, which strengthens this candidate.
+3. **A005251, A202882, A203094, A203184**: the Hardin word identity gives each an interpretation as `2^{−L}` times an even-last-column signed tower count and proves their empirical recurrences ([[hardin-word-identity](pages/hardin-word-identity.md)]); the `g=2` minimum-tower-spacing castles ([[tower-spacing-castles](pages/tower-spacing-castles.md)]) give each a second, unsigned geometric interpretation. For **A005251** specifically, an explicit bijection ([[a005251-bijection](pages/a005251-bijection.md)]) unifies four castle readings (tree-castle / Hardin / tower-spacing / signed-tower) into one — the strongest form of this candidate; see the multi-interpretation hub in the catalogue below.
 4. **A000073, A000078, A001591** (and A000045 by area): the n-nacci numbers as *bounded-height castles by area* ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]) — clean compositions-into-`{1..h}` interpretation, high-value for the tribonacci/tetranacci/pentanacci entries.
 5. **A217878, A217949**: the `g=3` tower-spacing castles ([[tower-spacing-castles](pages/tower-spacing-castles.md)]) as the "min of 3 adjacent elements" array family.
 6. **A001045**: tree castles of height 3 is a new castle interpretation of Jacobsthal ([[castle-graph](pages/castle-graph.md)]).
@@ -148,11 +148,26 @@ From [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]: OEIS requires 
 9. **A001523, A115981, A332578**: convex / non-convex / valley castles by area ([[castle-by-area](pages/castle-by-area.md)]).
 10. **A352116**: `|P(k,4)|` = partial sums of odd triangular numbers ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]).
 
-**Novel-candidate** submissions (no OEIS match, genuinely new): the **signed tower count `P(k,·)` rows for `k = 2..6`** ([[signed-tower-count](pages/signed-tower-count.md)]) — a clean C-finite family with a Pell/Chebyshev closed form, the even-`k` all-positive rows (`P(2,·)`, `P(4,·)`, `P(6,·)`) being the most submission-ready; the even-block proper-castle bronze `1,7,25,70,209,697,…` and copper `0,0,10,104,604,…` rows ([[proper-castle-projection](pages/proper-castle-projection.md)]); and the parity-refined area sequences ([[castle-by-area](pages/castle-by-area.md)]). See the encyclopedia below for the full status-tagged catalogue.
+**Novel-candidate** submissions (no OEIS match, genuinely new): the **signed tower count `P(k,·)` rows for `k = 2..6`** ([[signed-tower-count](pages/signed-tower-count.md)]) — a clean C-finite family with a Pell/Chebyshev closed form, the even-`k` all-positive rows (`P(2,·)`, `P(4,·)`, `P(6,·)`) being the most submission-ready; the even-block proper-castle bronze `1,7,25,70,209,697,…` and copper `0,0,10,104,604,…` rows ([[proper-castle-projection](pages/proper-castle-projection.md)]); and the parity-refined area sequences ([[castle-by-area](pages/castle-by-area.md)]). See the catalogue below for the full status-tagged listing.
 
-## Castle sequence encyclopedia
+## Castle sequence catalogue
 
 The castle-native catalogue: every distinct castle-counting sequence, organized by the castle object it counts, each with first terms, recurrence/GF, growth constant, and a **novelty status** (`known` / `interlink` / `novel-candidate` / `unchecked` — see the convention above). This is where "which castle sequences are genuinely new" is tracked, independent of whether an A-number exists.
+
+### Multi-interpretation hubs
+
+Some sequences appear as *several distinct castle objects*, and where those objects are linked by an explicit bijection the interpretations become one story — the highest-value cross-references.
+
+- **A005251** (plastic-squared `ψ²`; `1, 1, 1, 2, 4, 7, 12, 21, 37, …`) is the wiki's most-interpreted sequence, with **four linked castle readings**, all offset-verified and unified by an explicit bijection ([[a005251-bijection](pages/a005251-bijection.md)]):
+
+  | castle object | count | A005251 offset |
+  |---|---|---|
+  | tree castles of area `n`, unlimited height (= compositions of `n`, no two adjacent parts `≥ 2`) | `1, 2, 4, 7, 12, …` | `A005251(n+1)` |
+  | Hardin no-isolated-1 words, length `N` (avoid factor `010`) | `1, 2, 4, 7, 12, …` | `A005251(N+2)` |
+  | minimum-tower-spacing `(h=2, g=2)` castles, width `w` | `2, 4, 7, 12, 21, …` | `A005251(w+2)` |
+  | signed height-`≤6` towers, even last column: `P_even(6,L)/2^L` | `1, 2, 4, 7, …` | `A005251(L+3)` |
+
+  The **[[a005251-bijection](pages/a005251-bijection.md)]** connects the first two term-for-term (composition of `n` ↔ avoid-`010` string of length `n−1`, "no adjacent parts `≥ 2`" ⟺ "no factor `010`"); the third is literally the second in row 2; the fourth reaches the same count through the Hardin sign-cancellation. Status: **interlink** — a clean, high-value OEIS comment candidate (a known sequence gaining four unified castle interpretations). See [[plastic-number](pages/plastic-number.md)].
 
 ### Bounded-height castles by area — the n-nacci family
 
@@ -173,7 +188,7 @@ Height-`h` castles where every valley between raised regions is `≥ g` columns 
 
 | object | first terms | growth | status |
 |---|---|---|---|
-| `(h=2, g=2)` towers `≥2` apart | `2, 4, 7, 12, 21, 37, 65` | `ψ²` `1.7549` | **interlink** → [A005251](https://oeis.org/A005251) recurrence (a *third* castle route to plastic-squared) |
+| `(h=2, g=2)` towers `≥2` apart | `2, 4, 7, 12, 21, 37, 65` | `ψ²` `1.7549` | **interlink** → [A005251](https://oeis.org/A005251) (one node of the four-reading hub above; = the no-isolated-1 object in row 2, [[a005251-bijection](pages/a005251-bijection.md)]) |
 | `(h=3, g=2)` | `3, 9, 22, 51, 121, 292, 704` | `2.4022` (quintic) | **interlink** → [A202882](https://oeis.org/A202882) (`=A202882(w+1)`; the **Hardin word family**, geometric route) |
 | `(h=4, g=2)` | `4, 16, 50, 144, 422, 1268` | `2.9972` | **interlink** → [A203094](https://oeis.org/A203094) (Hardin) |
 | `(h=5, g=2)` | `5, 25, 95, 325, 1121, 3985` | `3.5589` | **interlink** → [A203184](https://oeis.org/A203184) (Hardin) |
@@ -216,7 +231,7 @@ Width-graded counts of the 0/1 transfer-matrix strips ([[reachable-field-census]
 - Plastic strip (height-3, rule `1→3, 2→1, 3→{1,2}`), the Padovan/Perrin-rate count — **unchecked**.
 - The non-metallic quadratic strips `Q(√17)`, `Q(√21)`, `Q(√6)`, `Q(√7)`, `Q(√33)` — **unchecked**.
 
-### Legacy generation candidates (pre-encyclopedia, statuses to refresh)
+### Legacy generation candidates (pre-catalogue, statuses to refresh)
 
 Computed earlier and listed as candidates before the status convention; most are **unchecked** pending an OEIS search on current terms.
 
@@ -240,7 +255,8 @@ Computed earlier and listed as candidates before the status convention; most are
 - [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the metallic-mean convergent tables.
 - [[hardin-word-identity](pages/hardin-word-identity.md)] - the Hardin sequences A202882 / A203094 / A203184 and their proved recurrences.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - the leading generation candidate.
-- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] - the n-nacci-by-area interlinks (A000073 / A000078 / A001591) in the encyclopedia.
+- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] - the n-nacci-by-area interlinks (A000073 / A000078 / A001591) in the catalogue.
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the tower-spacing family whose g=2 column is the Hardin sequences and g=3 the "min of 3 adjacent" family.
-- [[proper-castle-projection](pages/proper-castle-projection.md)] - the even-block proper-castle rows, the encyclopedia's novel-candidate entries.
+- [[proper-castle-projection](pages/proper-castle-projection.md)] - the even-block proper-castle rows, the catalogue's novel-candidate entries.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the strip Perron-root sequences, mostly unchecked against OEIS.
+- [[a005251-bijection](pages/a005251-bijection.md)] - the explicit bijection unifying A005251's four castle readings; the multi-interpretation hub's centerpiece.
