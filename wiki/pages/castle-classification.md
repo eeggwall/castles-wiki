@@ -82,7 +82,7 @@ Types 7, 8, 9 and the base m-disparate:
 | **Zigzag** | differences alternate in sign | *open* — a strong plateau-free variant |
 | **m-disparate** | `|c_{i+1} − c_i| ≥ m` | *open* — the "no small step" restriction |
 
-**Where the wiki already has counts:** 1-smooth castles collapse to the Motzkin-path family ([[motzkin-numbers](pages/motzkin-numbers.md)], [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]); the tower word A004149 is the 1-smooth-with-no-UD-no-DU refinement. **Open:** the full m-smooth family for `m ≥ 2`, and m-disparate for any `m`.
+**Where the wiki already has counts:** 1-smooth castles collapse to the Motzkin-path family ([[motzkin-numbers](pages/motzkin-numbers.md)], [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]); the tower word A004149 is the 1-smooth-with-no-UD-no-DU refinement. **Open:** the full m-smooth family for `m ≥ 2`, and m-disparate for any `m`. **A distinct horizontal-gap axis is now counted:** [[tower-spacing-castles](pages/tower-spacing-castles.md)] requires every valley between raised regions to be `≥ g` columns wide (a generalization of rule 3 from gap `≥ 1` to gap `≥ g`) — *not* a same-column-difference rule but a same-row spacing rule, counted by a column-sweep transfer matrix, with growth constants through `ψ²` (h=2, g=2) and `φ` (h=2, g=3) and a non-metallic zoo for `h ≥ 3`.
 
 ### Axis 3: Path-like restrictions
 

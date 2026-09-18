@@ -450,6 +450,61 @@ True
 
 Meaning: canonicalizing before the expensive exact-factor step means factoring one matrix per orbit instead of one per matrix. It validated the census (canonical-rep field lists match the full sweep at h ≤ 4), but even the `≈ h!` compression leaves `h = 6` at ~95M orbits — so `h ≥ 6` is settled by the reachability law plus targeted construction, not exhaustion ([[reachable-field-census](pages/reachable-field-census.md)]).
 
+### `tower_spacing_matrix(h, g)` → the min-tower-spacing castle counter
+
+The horizontal-gap variation of rule 3: every valley between raised regions must be `≥ g` columns wide ([[tower-spacing-castles](pages/tower-spacing-castles.md)]). Column-by-column transfer matrix; each constrained row `2..h` carries a state `pre` / `fill` / `g1..g_{g−1}` (empties since the last fill, capped at `g`), and a fill that would close a gap shorter than `g` is illegal. Requires NumPy.
+
+```python
+import itertools, numpy as np
+
+def tower_spacing_matrix(h, g):
+    rowstates = ['pre', 'fill'] + [f'g{k}' for k in range(1, g)]
+    rows = list(range(2, h + 1))
+    states = list(itertools.product(rowstates, repeat=len(rows)))
+    idx = {s: i for i, s in enumerate(states)}
+    M = np.zeros((len(states), len(states)))
+    def nxt(st, filled):
+        if filled:
+            if st.startswith('g') and int(st[1:]) < g: return None   # gap too short — illegal
+            return 'fill'
+        if st == 'pre':  return 'pre'
+        if st == 'fill': return 'g1' if g > 1 else 'pre'
+        k = int(st[1:]); return 'pre' if k + 1 >= g else f'g{k+1}'
+    for si, st in enumerate(states):
+        for height in range(1, h + 1):            # a column of this height
+            new, ok = [], True
+            for ri, r in enumerate(rows):
+                ns = nxt(st[ri], height >= r)
+                if ns is None: ok = False; break
+                new.append(ns)
+            if ok: M[si, idx[tuple(new)]] += 1
+    return M
+
+def tower_spacing_counts(h, g, W):
+    M = tower_spacing_matrix(h, g); n = M.shape[0]
+    v = np.zeros(n); v[[i for i, s in enumerate(_states(h, g)) if all(x == 'pre' for x in s)][0]] = 1
+    out = []
+    for _ in range(W):
+        v = v @ M; out.append(int(round(v.sum())))
+    return out
+
+def _states(h, g):
+    rowstates = ['pre', 'fill'] + [f'g{k}' for k in range(1, g)]
+    return list(itertools.product(rowstates, repeat=len(range(2, h + 1))))
+```
+
+```
+>>> tower_spacing_counts(3, 2, 7)          # h=3 castles, valleys >= 2 wide
+[3, 9, 22, 51, 121, 292, 704]
+>>> M = tower_spacing_matrix(2, 2)          # h=2, towers >= 2 apart -> plastic-squared psi^2
+>>> round(max(np.linalg.eigvals(M).real), 6)
+1.754878
+>>> round(max(np.linalg.eigvals(tower_spacing_matrix(2, 3)).real), 6)   # g=3 -> golden phi
+1.618034
+```
+
+Meaning: `g = 1` is the trivial rule (growth `h`, count `h^w`); `g ≥ 2` carves out sparser families whose growth constants decrease toward 1 as `g` grows, passing through `ψ²` (h=2,g=2) and `φ` (h=2,g=3). For `g ≥ 2, h ≥ 3` the constants are non-metallic ([[tower-spacing-castles](pages/tower-spacing-castles.md)]).
+
 ## Continued fractions, convergents, and quasi-polynomials
 
 Snippets behind [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] and [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]. The first three are stdlib-only; `quasi_split` needs SymPy (the one import that earns its keep here).
