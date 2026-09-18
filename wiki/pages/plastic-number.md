@@ -1,8 +1,8 @@
 ---
 title: Plastic number
 category: Concepts
-summary: ψ = 1.3247…, the real root of x³ = x + 1 - the cubic sibling of the golden ratio, the smallest Pisot number, with Padovan (A000931) and Perrin (A001608) as its Fibonacci and Lucas. Its square ψ² has minimal polynomial μ³ − 2μ² + μ − 1 and a period-1 Jacobi-Perron expansion. It enters the castle as the k = 6 signed-tower eigenvalue ρ_6 = 2ψ². Everything found so far is ψ² or 2ψ²; a plain count growing at the bare ψ (a Padovan/Perrin growth castle) is still unclaimed — see the watch note.
-tags: [concept, plastic-number, pisot, padovan, perrin, cubic, jacobi-perron, eigenvalue, castle, oeis, open-question]
+summary: ψ = 1.3247…, the real root of x³ = x + 1 - the cubic sibling of the golden ratio, the smallest Pisot number, with Padovan (A000931) and Perrin (A001608) as its Fibonacci and Lucas. Its square ψ² has minimal polynomial μ³ − 2μ² + μ − 1 and a period-1 Jacobi-Perron expansion. It enters the castle as the k = 6 signed-tower eigenvalue ρ_6 = 2ψ², and the bare ψ ≈ 1.3247 is a castle-strip Perron root at height 3 (x³ − x − 1, found in the reachable-field census) — a Padovan/Perrin growth castle.
+tags: [concept, plastic-number, pisot, padovan, perrin, cubic, jacobi-perron, eigenvalue, castle, oeis, strip-perron-root]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-16
 updated: 2026-09-17
@@ -68,22 +68,23 @@ The structural reason is on [[tower-parity-sectors](pages/tower-parity-sectors.m
 
 So the plastic number is the growth constant of height-`≤6` signed towers, and `2ψ²` sits on the wiki's list of algebraic growth constants next to `φ` and `1 + √2` ([[metallic-means](pages/metallic-means.md)]) - a non-metallic, non-quadratic rung. `2ψ²` itself is not Pisot (its conjugates have modulus `2/ψ = 1.51`), but `ψ² = ρ_6/2` is, and `ρ_k/2` is an algebraic unit for every `k ≡ 2 (mod 4)`.
 
-## Watch note: bare `ψ` growth (Padovan / Perrin) is still unclaimed
+## Where the bare `ψ` growth appears (found)
 
-Everything the castle has produced so far is `ψ²` or `2ψ²`, **never the bare plastic number `ψ ≈ 1.3247` itself**:
+The castle first produced `ψ²` and `2ψ²`; the **bare plastic number `ψ ≈ 1.3247`** was for a while unclaimed as a plain growth rate, then found via the [[reachable-field-census](pages/reachable-field-census.md)]:
 
 | what | value | where |
 |---|---|---|
 | `2ψ²` | `3.5098` | `k = 6` signed-tower dominant eigenvalue `ρ_6` (this page); a `10⁻⁸` adjacency near-miss on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], not exact |
 | `ψ²` | `1.7549` | growth constant of **A005251**, with *two* castle readings — the [[hardin-word-identity](pages/hardin-word-identity.md)] and the `h → ∞` [[tree-castle-by-area](pages/tree-castle-by-area.md)] |
-| **`ψ`** | **`1.3247`** | **not found** |
+| **`ψ`** | **`1.3247`** | **a castle-strip Perron root at height 3** — [[reachable-field-census](pages/reachable-field-census.md)] |
 
-A plain (unsigned) castle statistic whose count grows at the bare `ψ` would be a **Padovan / Perrin growth castle** — one graded so that its count satisfies the *lag*-recurrence `a(n) = a(n−2) + a(n−3)` (Padovan A000931, Perrin A001608), the term-skipping cousin of Fibonacci's `a(n) = a(n−1) + a(n−2)`. This is a genuinely different object from anything found: `ψ²`'s recurrence `a(n) = 2a(n−1) − a(n−2) + a(n−3)` (A005251) uses the immediately-preceding term, so a `ψ²` castle is **not** a `ψ` castle. Nothing on the wiki grades to a bare-`ψ` growth rate today.
+A plain (unsigned) castle statistic whose count grows at the bare `ψ` is a **Padovan / Perrin growth castle** — one graded so its count satisfies the *lag*-recurrence `a(n) = a(n−2) + a(n−3)` (Padovan A000931, Perrin A001608), the term-skipping cousin of Fibonacci's `a(n) = a(n−1) + a(n−2)`. This is a genuinely different object from `ψ²`, whose recurrence `a(n) = 2a(n−1) − a(n−2) + a(n−3)` (A005251) uses the immediately-preceding term.
 
-**Why it is plausible and worth watching for.** The natural place is a rule modification that *forbids two adjacent occupied things* — the "skip a term" flavor of `a(n) = a(n−2) + a(n−3)` is what a mandatory-gap-of-2 rule produces, the same way rule-3's mandatory single gap produced the silver Pell denominator `1 − 2x − x²` ([[pell-castle-strip](pages/pell-castle-strip.md)]). A castle-strip family with denominator `1 − x² − x³` grows at exactly `ψ`; the open question is which castle *predicate* — a stronger m-disparate / plateau-free / minimum-run-length restriction ([[castle-classification](pages/castle-classification.md)] Axes 3–4) — realizes that denominator. If a size-graded castle count ever lands on Padovan or Perrin, this is where it belongs; wire it in here and promote the IDEAS entry.
+**How it was found.** The exhaustive census of castle-strip Perron roots ([[reachable-field-census](pages/reachable-field-census.md)]) turned up `x³ − x − 1` — the minimal polynomial of `ψ` — at **height 3**, realized by 6 of the 512 binary `3×3` transfer matrices. The sparsest (4 ones) is `[[0,0,1],[1,0,0],[1,1,0]]`, a near-companion matrix of `x³ = x + 1`, i.e. the height-adjacency rule `1 → 3`, `2 → 1`, `3 → {1, 2}`. So a height-3 castle strip under that rule grows at exactly `ψ`, and its width count satisfies a `ψ`-recurrence. The intuition that a mandatory-gap-of-2 rule (denominator `1 − x² − x³`) would give `ψ` was the right *flavor* — a term-skipping restriction — but the actual realizer is the companion rule the census surfaced, on 3 states.
 
 ## Appearances in Sources
 
+- [[reachable-field-census](pages/reachable-field-census.md)] - where the bare `ψ` was found as a height-3 castle-strip Perron root (`x³ − x − 1`).
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k,·)` family whose `k = 6` row carries the plastic eigenvalue.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the `num_k/den_k` recurrence that generates `char_k`.
 

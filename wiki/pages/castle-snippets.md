@@ -345,6 +345,50 @@ def ceiling_exception_count(h, L_max):
 
 Meaning: one rule, one parameter `h`, sweeps golden → silver → bronze → copper → nickel → … as `h = 2, 3, 4, 5, 6, …` (metal `a = h−1`). The `(x+1)^{h−2}` factor is the subdominant eigenvalue `−1`; the metallic quadratic `x² − (h−1)x − 1` carries the growth. The copper (`h=5`) row is every third Fibonacci — the decimation forced by `δ_4 = φ³`.
 
+### `strip_field_census(h)` → which number fields the strips reach
+
+Two-phase census ([[reachable-field-census](pages/reachable-field-census.md)]): sweep all `2^{h²}` binary transfer matrices, bucket by numeric Perron root, then exactly identify each distinct root's number field. `h ≤ 4` exhaustive in seconds. Requires NumPy + SymPy.
+
+```python
+def strip_field_census(h):
+    import numpy as np, sympy as sp, itertools
+    from collections import defaultdict
+    x = sp.symbols('x')
+    def sqfree(m):
+        d = 1
+        for p, e in sp.factorint(int(round(m))).items():
+            if e % 2: d *= p
+        return d
+    buckets = {}                                   # rounded Perron -> example bit-int
+    for b in range(1 << (h*h)):
+        M = np.array([[ (b >> (i*h+j)) & 1 for j in range(h)] for i in range(h)], float)
+        ev = np.linalg.eigvals(M); r = ev.real[np.abs(ev.imag) < 1e-9]
+        if len(r) and r.max() > 1e-9:
+            buckets.setdefault(round(float(r.max()), 8), b)
+    fields = defaultdict(int)
+    for pv, b in buckets.items():
+        M = sp.Matrix([[ (b >> (i*h+j)) & 1 for j in range(h)] for i in range(h)])
+        for fac, _ in sp.factor_list(M.charpoly(x).as_expr())[1]:
+            poly = sp.Poly(fac, x)
+            rr = [complex(z).real for z in poly.all_roots() if abs(complex(z).imag) < 1e-9]
+            if rr and abs(max(rr) - pv) < 1e-6:
+                if poly.degree() == 2:
+                    a, bb, c = poly.all_coeffs(); d = sqfree(bb*bb - 4*a*c)
+                    fields[f"Q(sqrt{d})" if d > 1 else "Q"] += 1
+                else:
+                    fields[f"deg{poly.degree()}"] += 1
+                break
+    return dict(fields)
+```
+
+```
+>>> strip_field_census(3)         # h=3: 3 integer, quadratics Q(sqrt2,3,5), nine cubics
+{'deg1': 3, 'Q(sqrt5)': 2, 'Q(sqrt2)': 2, 'deg3': 9, 'Q(sqrt3)': 1}
+>>> # the deg-3 roots at h=3 include x^3-x-1 (plastic!), x^3-x^2-x-1 (tribonacci), supergolden, plastic^2
+```
+
+Meaning: the reachable quadratic fields grow `{5} → {2,3,5} → {2,3,5,13,17,21}` as `h = 2,3,4`; every squarefree metallic discriminant `a²+4` appears (bronze `Q(√13)` at h=4), copper collapses into `Q(√5)`, and the **bare plastic number** `x³−x−1` shows up as a Perron root already at h=3 ([[reachable-field-census](pages/reachable-field-census.md)]).
+
 ## Continued fractions, convergents, and quasi-polynomials
 
 Snippets behind [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] and [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]. The first three are stdlib-only; `quasi_split` needs SymPy (the one import that earns its keep here).
