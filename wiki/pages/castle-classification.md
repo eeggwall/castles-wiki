@@ -187,11 +187,15 @@ A class whose width-graded count sequence has growth constant `1 + √2 ≈ 2.41
 
 **Two structurally different classes, one growth type.** This is the meta-classification working: silver width growth castle is a property that holds across differently-shaped families, uniting them by their asymptotic count behavior rather than by their skyline predicates.
 
-### Bronze / copper / nickel width growth castles — candidates
+### Bronze / copper / nickel width growth castles — realized by one rule
 
-- **Bronze width growth castle** (`δ_3 = (3+√13)/2 ≈ 3.303`) — the `w_1 = 3, w_2 = 1` strip case is a candidate: three states per column above the base plus rule-3 gap, count sequence `1, 3, 10, 33, 109, 360, …`, growth `(3+√13)/2`. Whether any physically-natural castle class (height ≤ 3 tower under a specific same-row-adjacency rule?) instantiates this is open.
-- **Copper width growth castle** (`δ_4 = 2 + √5 = φ³`) — because `δ_4 = φ³`, any copper width growth castle lives in `Q(√5)` and is a "Fibonacci-decimated" family; its count sequence would be `F_{3n}/2` for the strip case. Candidates open.
-- **Nickel and beyond** — genuinely open.
+All higher rungs are **realized by a single named predicate** — the **plateau-free-except-ceiling** rule (adjacent columns differ in height unless both equal the max `h`), transfer matrix `M_h = J − D`, char poly `(x+1)^{h−2}(x² − (h−1)x − 1)`, Perron root the `(h−1)`-th metallic mean `δ_{h−1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). Metal `a` sits at height `h = a + 1`:
+
+- **Bronze width growth castle** (`δ_3 = (3+√13)/2 ≈ 3.303`) — the ceiling-exception rule at **height 4**; count `4, 13, 43, 142, 469, …`, growth `(3+√13)/2` in `Q(√13)`. (The naive "three states per column" does *not* give bronze — it is provably unreachable on ≤ 3 states and lands on non-metallic surds like `1 + √3` and `(3+√17)/2`; the ceiling exception is the decoupling that pins `w_2 = 1`.)
+- **Copper width growth castle** (`δ_4 = 2 + √5 = φ³`) — the ceiling-exception rule at **height 5**; because `δ_4 = φ³ ∈ Q(√5)`, its strip count is `F_{3n+5}` = the **Fibonacci trisection**, the decimation made concrete.
+- **Nickel and beyond** (`δ_5`, `δ_6`, …) — the same rule at heights 6, 7, …; the ladder is swept in full.
+
+A separate question — whether each rung has *other* natural realizations besides `M_h = J − D` (silver has three) — is open; see [[metallic-strip-realizability](pages/metallic-strip-realizability.md)].
 
 ### Non-metallic growth castles — the n-nacci and cubic-Pisot families
 

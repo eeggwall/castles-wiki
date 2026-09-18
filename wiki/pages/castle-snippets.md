@@ -318,6 +318,33 @@ Meaning: Pell → `a=2` (silver, `1+√2 ≈ 2.4142`). Fibonacci → `a=1` (gold
 
 A gap of ~0.222 is *not* a metallic-mean hit — the tribonacci constant `≈ 1.83929` (root of `x³ = x² + x + 1`) is a genuine *cubic*, so `nearest_metallic` returning golden `φ` is a false positive. This sequence *is* a real castle count — all castles of height `≤ 3` by area ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)], `bounded_castles_by_area(3, ·)` below) — but its growth is cubic, not metallic. `nearest_metallic` gives the closest metal regardless; only trust it when the residual is small.
 
+### `ceiling_exception_ladder(h)` → the whole metallic ladder from one rule
+
+The **plateau-free-except-ceiling** castle-strip rule — adjacent columns differ in height unless both equal the max `h` — realizes every metallic mean: at height `h` its transfer matrix is `M_h = J − D` (all-ones minus `diag(1,…,1,0)`), char poly `(x+1)^{h−2}(x² − (h−1)x − 1)`, Perron root the `(h−1)`-th metallic mean `δ_{h−1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). So bronze is `h = 4`, copper `h = 5`, and copper's count is the Fibonacci trisection `F_{3n+5}`. Requires SymPy.
+
+```python
+def ceiling_exception_M(h):
+    # M[a][b] = 1 iff a != b, or a == b == h  (heights 1..h, 0-indexed here)
+    return sp.Matrix(h, h, lambda i, j: 1 if (i != j or i == h-1) else 0)
+
+def ceiling_exception_count(h, L_max):
+    M = ceiling_exception_M(h); ones = sp.ones(h, 1)
+    return [int((ones.T * M**L * ones)[0]) for L in range(L_max+1)]
+```
+
+```
+>>> sp.factor(ceiling_exception_M(4).charpoly(sp.Symbol('x')).as_expr())   # bronze
+(x + 1)**2*(x**2 - 3*x - 1)
+>>> ceiling_exception_count(4, 6)                        # bronze (3+sqrt13)/2, Q(sqrt13)
+[4, 13, 43, 142, 469, 1549, 5116]
+>>> ceiling_exception_count(5, 8)                        # copper 2+sqrt5 = phi^3: F_{3n+5}
+[5, 21, 89, 377, 1597, 6765, 28657, 121393, 514229]
+>>> [sp.factor(ceiling_exception_M(h).charpoly(sp.Symbol('x')).as_expr()) for h in range(2,7)]
+[x**2 - x - 1, (x + 1)*(x**2 - 2*x - 1), (x + 1)**2*(x**2 - 3*x - 1), (x + 1)**3*(x**2 - 4*x - 1), (x + 1)**4*(x**2 - 5*x - 1)]
+```
+
+Meaning: one rule, one parameter `h`, sweeps golden → silver → bronze → copper → nickel → … as `h = 2, 3, 4, 5, 6, …` (metal `a = h−1`). The `(x+1)^{h−2}` factor is the subdominant eigenvalue `−1`; the metallic quadratic `x² − (h−1)x − 1` carries the growth. The copper (`h=5`) row is every third Fibonacci — the decimation forced by `δ_4 = φ³`.
+
 ## Continued fractions, convergents, and quasi-polynomials
 
 Snippets behind [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] and [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]. The first three are stdlib-only; `quasi_split` needs SymPy (the one import that earns its keep here).
