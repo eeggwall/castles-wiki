@@ -158,16 +158,16 @@ The castle-native catalogue: every distinct castle-counting sequence, organized 
 
 Some sequences appear as *several distinct castle objects*, and where those objects are linked by an explicit bijection the interpretations become one story — the highest-value cross-references.
 
-- **A005251** (plastic-squared `ψ²`; `1, 1, 1, 2, 4, 7, 12, 21, 37, …`) is the wiki's most-interpreted sequence, with **four linked castle readings**, all offset-verified and unified by an explicit bijection ([[a005251-bijection](pages/a005251-bijection.md)]):
+- **A005251** (plastic-squared `ψ²`; canonical `0, 1, 1, 1, 2, 4, 7, 12, 21, 37, …`) is the wiki's most-interpreted sequence, with **four linked castle readings**, all offset-verified and unified by an explicit bijection ([[a005251-bijection](pages/a005251-bijection.md)]):
 
   | castle object | count | A005251 offset |
   |---|---|---|
-  | tree castles of area `n`, unlimited height (= compositions of `n`, no two adjacent parts `≥ 2`) | `1, 2, 4, 7, 12, …` | `A005251(n+1)` |
-  | Hardin no-isolated-1 words, length `N` (avoid factor `010`) | `1, 2, 4, 7, 12, …` | `A005251(N+2)` |
-  | minimum-tower-spacing `(h=2, g=2)` castles, width `w` | `2, 4, 7, 12, 21, …` | `A005251(w+2)` |
-  | signed height-`≤6` towers, even last column: `P_even(6,L)/2^L` | `1, 2, 4, 7, …` | `A005251(L+3)` |
+  | tree castles of area `n`, unlimited height (= compositions of `n`, no two adjacent parts `≥ 2`) | `1, 2, 4, 7, 12, …` | `A005251(n+2)` |
+  | avoid-`010` binary strings, length `N` | `1, 2, 4, 7, 12, …` | `A005251(N+3)` |
+  | minimum-tower-spacing `(h=2, g=2)` castles, width `w` | `2, 4, 7, 12, 21, …` | `A005251(w+3)` |
+  | Hardin no-isolated-1 words / signed even-column towers `P_even(6,L)/2^L` | `1, 2, 4, 7, …` | `A005251(L+3)` (`= #{(L+1)`-bit no-isolated-1`}`) |
 
-  The **[[a005251-bijection](pages/a005251-bijection.md)]** connects the first two term-for-term (composition of `n` ↔ avoid-`010` string of length `n−1`, "no adjacent parts `≥ 2`" ⟺ "no factor `010`"); the third is literally the second in row 2; the fourth reaches the same count through the Hardin sign-cancellation. Status: **interlink** — a clean, high-value OEIS comment candidate (a known sequence gaining four unified castle interpretations). See [[plastic-number](pages/plastic-number.md)].
+  The **[[a005251-bijection](pages/a005251-bijection.md)]** connects the first two term-for-term (composition of `n` ↔ avoid-`010` string of length `n−1`, "no adjacent parts `≥ 2`" ⟺ "no factor `010`"); the third (tower-spacing) is literally the second (avoid-010) in row 2; the fourth (Hardin no-isolated-1) is the same count one bit-length over. Status: **interlink** — a clean, high-value OEIS comment candidate (a known sequence gaining four unified castle interpretations). See [[plastic-number](pages/plastic-number.md)].
 
 ### Bounded-height castles by area — the n-nacci family
 

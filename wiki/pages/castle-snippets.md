@@ -937,6 +937,27 @@ def decode(s):  return tuple(len(r) + 1 for r in s.split('1'))  # 0-run of lengt
 
 Meaning: "no two adjacent parts `≥ 2`" ⟺ "no factor `010`" because a part `≥ 2` is a nonempty `0`-block and two adjacent such blocks straddle a boundary `1` as `010`. Verified onto the avoid-010 set for `n ≤ 11` — the explicit bijection closing the tree-castle ↔ Hardin-word coincidence at plastic-squared ([[a005251-bijection](pages/a005251-bijection.md)]).
 
+### `A005251(n)` → the plastic-squared sequence directly
+
+The `n`-th A005251 term by the sequence's own matrix-power one-liner (lifted verbatim from the [OEIS A005251](https://oeis.org/A005251) page), at the canonical offset `a(0)=0, a(1)=a(2)=a(3)=1`. Handy for checking any castle count against A005251 without re-deriving the recurrence. Requires SymPy.
+
+```python
+from sympy import Matrix
+def A005251(n):
+    return (Matrix([[2, -1, 1], [1, 0, 0], [0, 1, 0]]) ** (n - 2) * Matrix([1, 1, 0]))[0]
+```
+
+```
+>>> [A005251(n) for n in range(15)]
+[0, 1, 1, 1, 2, 4, 7, 12, 21, 37, 65, 114, 200, 351, 616]
+>>> # cross-check a castle count: tree castles of area A (unlimited height) = A005251(A+2)
+>>> comps = [c for c in compositions(6) if all(not (c[i] >= 2 and c[i+1] >= 2) for i in range(len(c)-1))]
+>>> len(comps), A005251(6 + 2)
+(21, 21)
+```
+
+Meaning: the companion matrix `[[2,−1,1],[1,0,0],[0,1,0]]` is the transfer matrix of the recurrence `a(n) = 2a(n−1) − a(n−2) + a(n−3)`; its `(n−2)`-th power against the seed `[1,1,0]` reads off the **canonical** `a(n)` (OEIS offset 0, `a(0)=0`). The four castle objects that hit this sequence sit at these offsets: tree castles / compositions of `n` = `A005251(n+2)`; Hardin no-isolated-1 words of length `N` = `A005251(N+3)`; tower-spacing `(h=2,g=2)` width `w` = `A005251(w+3)`; signed height-6 even-last-column towers `P_even(6,L)/2^L` = `A005251(L+3)` ([[a005251-bijection](pages/a005251-bijection.md)], [[plastic-number](pages/plastic-number.md)]).
+
 ### `word_matrix(m)` → transfer matrix of Hardin's no-local-maximum words
 
 Words over `{0..m}` in which every nonzero letter is `≤` a neighbor, counted by a `2m+1`-state automaton with a "pending" flag ([[hardin-word-identity](pages/hardin-word-identity.md)]). Requires SymPy.
