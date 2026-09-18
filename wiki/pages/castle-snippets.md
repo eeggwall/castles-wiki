@@ -870,7 +870,7 @@ Snippets that break this discipline will rot; snippets that follow it stay usefu
 - [[castle-representations](pages/castle-representations.md)] — the skyline encoding all snippets predicate on.
 - [[castle-sign](pages/castle-sign.md)] — the block-count convention `blocks(c)` matches.
 - [[metallic-means](pages/metallic-means.md)] — the family `nearest_metallic` tests against.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] — the silver-width-growth-castle example; the `is_zero_one_strip` predicate is its `w_1 = 1` analog for golden.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] — the silver-width-growth-castle example; the `is_zero_one_strip` predicate is its `p_1 = 1` analog for golden.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — the OEIS-lookup loop the `oeis_snippet` helper feeds.
 - [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the analysis the continued-fraction / mod-p / quasi-polynomial snippets were written for; every pinned value here matches that page.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - the transfer-matrix, sector, and `H(d)` snippets.

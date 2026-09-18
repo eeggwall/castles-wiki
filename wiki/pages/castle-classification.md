@@ -155,7 +155,7 @@ Types 19, 20, 22, 23, 25, 28, 29, 34:
 
 Axes 1-7 above are all **predicates on individual castles**: given `(c_1, …, c_w)`, is this castle unimodal? Ferrers? palindromic? Axis 8 is different: it is a **predicate on castle classes** — a property of a *sequence of counts*, not of a single castle. This makes it a **meta-classification**: golden growth castle status is not a shape a given castle has, it is a growth-rate a given class has.
 
-The framework is the [[metallic-means](pages/metallic-means.md)] family `δ_a = (a + √(a² + 4))/2` for `a = 1, 2, 3, …` — golden (`φ`), silver (`1+√2`), bronze (`(3+√13)/2`), copper, nickel, and so on. From the [[pell-castle-strip](pages/pell-castle-strip.md)] mnemonic, a castle-strip family with denominator `1 − w_1·x − w_2·x²` grows at `(w_1 + √(w_1² + 4·w_2))/2`, which is a metallic mean iff `w_2 = 1`. The metallic-mean ladder is thus a natural axis of count growth-constants along which real castle classes fall.
+The framework is the [[metallic-means](pages/metallic-means.md)] family `δ_a = (a + √(a² + 4))/2` for `a = 1, 2, 3, …` — golden (`φ`), silver (`1+√2`), bronze (`(3+√13)/2`), copper, nickel, and so on. From the [[pell-castle-strip](pages/pell-castle-strip.md)] mnemonic, a castle-strip family with denominator `1 − p_1·x − p_2·x²` grows at `(p_1 + √(p_1² + 4·p_2))/2`, which is a metallic mean iff `p_2 = 1`. The metallic-mean ladder is thus a natural axis of count growth-constants along which real castle classes fall.
 
 ### The naming convention
 
@@ -175,14 +175,14 @@ A castle class is a **"`<metal>` `<axis>` growth castle"** iff its count sequenc
 
 A class whose width-graded count sequence has growth constant `φ = (1+√5)/2`, equivalently whose width GF has dominant singularity at `1/φ = φ − 1`. Known members:
 
-- **The {0, 1}-skyline castle strip** — a castle with `c_i ∈ {0, 1}` above the base and rule-3 mandatory gap. Count sequence: Fibonacci `F_{w+2}`, generating function `1/(1 − x − x²)`. This is the `w_1 = 1, w_2 = 1` case of the general `1 − w_1·x − w_2·x²` strip mnemonic.
+- **The {0, 1}-skyline castle strip** — a castle with `c_i ∈ {0, 1}` above the base and rule-3 mandatory gap. Count sequence: Fibonacci `F_{w+2}`, generating function `1/(1 − x − x²)`. This is the `p_1 = 1, p_2 = 1` case of the general `1 − p_1·x − p_2·x²` strip mnemonic.
 - **The prime-castle count** `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] — Fibonacci-flavored in `Q(√5)`, so its Fibonacci component makes it a golden growth castle by area (not width — the area grading is what puts Fibonacci in this sequence).
 
 ### Silver width growth castle — the `δ_2 = 1 + √2` axis-2 family
 
 A class whose width-graded count sequence has growth constant `1 + √2 ≈ 2.4142`. Known members:
 
-- **The [[pell-castle-strip](pages/pell-castle-strip.md)]** — the canonical instance. Count sequence: Pell numbers shifted `P_{n+1}` (OEIS A000129), generating function `1/(1 − 2x − x²)`. Height ≤ 2, two states per column, rule-3 mandatory gap. This is the `w_1 = 2, w_2 = 1` case.
+- **The [[pell-castle-strip](pages/pell-castle-strip.md)]** — the canonical instance. Count sequence: Pell numbers shifted `P_{n+1}` (OEIS A000129), generating function `1/(1 − 2x − x²)`. Height ≤ 2, two states per column, rule-3 mandatory gap. This is the `p_1 = 2, p_2 = 1` case.
 - **The tower word** ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]) — count sequence A004149, algebraic (not rational) generating function with singularity at `√2 − 1`, so growth `1/(√2 − 1) = √2 + 1`. Structurally very different from the Pell strip (context-free rather than regular), but the same growth constant — so both are silver width growth castles.
 
 **Two structurally different classes, one growth type.** This is the meta-classification working: silver width growth castle is a property that holds across differently-shaped families, uniting them by their asymptotic count behavior rather than by their skyline predicates.
@@ -191,7 +191,7 @@ A class whose width-graded count sequence has growth constant `1 + √2 ≈ 2.41
 
 All higher rungs are **realized by a single named predicate** — the **plateau-free-except-ceiling** rule (adjacent columns differ in height unless both equal the max `h`), transfer matrix `M_h = J − D`, char poly `(x+1)^{h−2}(x² − (h−1)x − 1)`, Perron root the `(h−1)`-th metallic mean `δ_{h−1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). Metal `a` sits at height `h = a + 1`:
 
-- **Bronze width growth castle** (`δ_3 = (3+√13)/2 ≈ 3.303`) — the ceiling-exception rule at **height 4**; count `4, 13, 43, 142, 469, …`, growth `(3+√13)/2` in `Q(√13)`. (The naive "three states per column" does *not* give bronze — it is provably unreachable on ≤ 3 states and lands on non-metallic surds like `1 + √3` and `(3+√17)/2`; the ceiling exception is the decoupling that pins `w_2 = 1`.)
+- **Bronze width growth castle** (`δ_3 = (3+√13)/2 ≈ 3.303`) — the ceiling-exception rule at **height 4**; count `4, 13, 43, 142, 469, …`, growth `(3+√13)/2` in `Q(√13)`. (The naive "three states per column" does *not* give bronze — it is provably unreachable on ≤ 3 states and lands on non-metallic surds like `1 + √3` and `(3+√17)/2`; the ceiling exception is the decoupling that pins `p_2 = 1`.)
 - **Copper width growth castle** (`δ_4 = 2 + √5 = φ³`) — the ceiling-exception rule at **height 5**; because `δ_4 = φ³ ∈ Q(√5)`, its strip count is `F_{3n+5}` = the **Fibonacci trisection**, the decimation made concrete.
 - **Nickel and beyond** (`δ_5`, `δ_6`, …) — the same rule at heights 6, 7, …; the ladder is swept in full.
 
@@ -223,7 +223,7 @@ Only the `h = 2` rung (golden) is metallic; every `h ≥ 3` rung is a genuine de
 
 The plastic number `ψ` itself (`x³ = x + 1`, [[plastic-number](pages/plastic-number.md)]) also enters as the `k = 6` signed-tower eigenvalue `ρ_6 = 2ψ²`, but that is a *spectral* appearance, not a growth-castle count. The bare-`ψ` growth castle (a Padovan/Perrin-rate count) is the one open slot in the cubic-Pisot family.
 
-**Why the split matters.** The metallic naming (`<metal> <axis>`) and the non-metallic naming (`<constant> <axis>`) are the same meta-classification — a growth rate for a class along a stated axis — just with different name-sources: the metallic means `δ_a` for the quadratic ladder, the constant's own name for everything else. A class can be classified on either; the deciding question is only whether its growth constant is a metallic mean (`x² − a x − 1`, purely-periodic CF, `w_2 = 1` in the strip denominator) or a higher-degree algebraic number. See [[metallic-means](pages/metallic-means.md)] for the quadratic side and [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] for the non-metallic side.
+**Why the split matters.** The metallic naming (`<metal> <axis>`) and the non-metallic naming (`<constant> <axis>`) are the same meta-classification — a growth rate for a class along a stated axis — just with different name-sources: the metallic means `δ_a` for the quadratic ladder, the constant's own name for everything else. A class can be classified on either; the deciding question is only whether its growth constant is a metallic mean (`x² − a x − 1`, purely-periodic CF, `p_2 = 1` in the strip denominator) or a higher-degree algebraic number. See [[metallic-means](pages/metallic-means.md)] for the quadratic side and [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] for the non-metallic side.
 
 ### Vertical / area / block growth castles
 
