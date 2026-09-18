@@ -76,6 +76,30 @@ assert all(sp.expand(den[k+1] - (den[k-1] - 2*x*den[k])) == 0 for k in range(1, 
 
 One recurrence generates the whole gallery with no `num` bookkeeping — the generalization the two-line system hides.
 
+## Solving the recurrence: a Pell/Chebyshev closed form
+
+The recurrence `den_{k+1} = den_{k−1} − 2x·den_k` is **linear and second-order in `k`** with coefficients constant in `k` (they depend only on the variable `x`), so it can be solved in closed form. Its characteristic equation (treating `x` as a constant) is `r² + 2x·r − 1 = 0`, with roots[^new1]
+
+```
+r_± = −x ± √(x² + 1),        r_+ · r_− = −1,    r_+ + r_− = −2x.
+```
+
+The product of roots is `−1` and the sum is `−2x`: this is exactly the defining data of the **Pell / Chebyshev polynomial** family (the recurrence `p_{k+1} = −2x·p_k + p_{k−1}` is the Pell-polynomial recurrence in the variable `−x`). So the denominators have the explicit closed form
+
+```
+den_k(x) = A(x)·r_+^k + B(x)·r_−^k,
+```
+
+with `A, B` fixed by the two seeds `den_1 = 2x² − 2x + 1` and `den_2 = −4x³ + 4x² − 3x + 1`. Verified against the computed denominators for `k = 3, …, 7` (SymPy).[^new1] The `√(x² + 1)` in the roots is why the family is a Chebyshev-type object rather than a metallic (`√(x²+4)`-type) one; the two roots are reciprocal up to sign (`r_+ = −1/r_−`), the polynomial signature of the palindromic / anti-palindromic character noted below.
+
+**Explicit coefficient formulas.** The closed form pins down the `char_k` coefficients that the catalogue below exhibits case by case. Writing `char_k(λ) = λ^{k+1} − (k+1)λ^k + ⋯`, verified through `k = 8`:[^new1]
+
+- leading two coefficients: `1` and `−(k+1)`;
+- coefficient of `λ^{k−1}`: `2⌊(k+1)²/4⌋`;
+- coefficient of `λ`: `(−1)^{k−1} 2^k` (magnitude `2^k`), and constant term `(−1)^{k−1} 2^k` (same magnitude).
+
+The constant term `(−1)^{k−1} 2^k` and leading `−(k+1)` were already noted on [[signed-tower-count](pages/signed-tower-count.md)]; the `λ^{k−1}` coefficient `2⌊(k+1)²/4⌋` and the full closed form are the new content here. A uniform formula for *every* middle coefficient follows from expanding `A·r_+^k + B·r_−^k`, the `k`-direction analogue of the still-open `L`-direction `A_L, B_L` uniform formula on [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)].
+
 ## Denominator roots (the eigenvalues)
 
 The recurrence's eigenvalues are the roots of the **characteristic polynomial** `char_k(λ) = λ^{k+1} den_k(1/λ)` (the reversed denominator). SymPy factors them:
@@ -178,3 +202,5 @@ This checks `k = 8` too — the recurrence, not the hand-listed table, is the so
 
 [^1]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The rational-function path (h ≤ 15000)" L124-138 — "F_k(x) = ∑_L P(k, L) x^L ... F_0(x) = 1/(1 - x) ... num_k(x) = 2·den_{k-1}(x) - num_{k-1}(x); den_k(x) = den_{k-1}(x)·(1 - 2x) + num_{k-1}(x)·x; F_k(x) = num_k(x)/den_k(x)."
 [^2]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L31-37 — "The general P(k,·) family is C-finite of order k+1: P(1): x^2 - 2x + 2 ... P(5): x^6 - 6x^5 + 18x^4 - 32x^3 + 48x^2 - 32x + 32 (constant term = (-1)^{k-1} 2^k; leading coeff -(k+1))."
+
+[^new1]: Verified by execution (SymPy, 2026-09-18) from the exact `p_signed(k, L)` DP. The `k`-recurrence `den_{k+1} = den_{k−1} − 2x·den_k` has characteristic equation `r² + 2x·r − 1 = 0`, roots `r_± = −x ± √(x²+1)` with `r_+ r_− = −1`, `r_+ + r_− = −2x` (Pell-polynomial data in `−x`). The closed form `den_k = A(x)·r_+^k + B(x)·r_−^k`, with `A, B` solved from `den_1 = 2x² − 2x + 1` and `den_2 = −4x³ + 4x² − 3x + 1`, matches the recurrence-recovered denominators for `k = 3, 4, 5, 6, 7` (`simplify(closed − computed) = 0`). Char-poly coefficient table for `k = 1..8`: leading `1`, next `−(k+1)`; coefficient of `λ^{k−1}` equals `2⌊(k+1)²/4⌋` (values `2, 4, 8, 12, 18, 24, 32, 40` = `2·1, 2·2, 2·4, 2·6, 2·9, 2·12, 2·16, 2·20`); coefficient of `λ` and constant term both `(−1)^{k−1} 2^k` in magnitude.

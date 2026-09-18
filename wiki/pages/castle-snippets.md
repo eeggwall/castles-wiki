@@ -505,6 +505,33 @@ def _states(h, g):
 
 Meaning: `g = 1` is the trivial rule (growth `h`, count `h^w`); `g ≥ 2` carves out sparser families whose growth constants decrease toward 1 as `g` grows, passing through `ψ²` (h=2,g=2) and `φ` (h=2,g=3). For `g ≥ 2, h ≥ 3` the constants are non-metallic ([[tower-spacing-castles](pages/tower-spacing-castles.md)]).
 
+### `p_signed(k, L)` → the signed tower count P(k,L)
+
+The signed sum `Σ (−1)^blocks` over towers of height `≤ k` above a length-`L` block, by an `O(k²L)` last-column-height DP ([[signed-tower-count](pages/signed-tower-count.md)]). A new column of height `b` after height `a` opens `max(0, b−a)` new blocks, each weighted `−1`.
+
+```python
+def p_signed(k, L):
+    dp = {0: 1}                       # last-column height -> signed count so far
+    for _ in range(L):
+        nd = {}
+        for a, w in dp.items():
+            for b in range(k + 1):
+                nd[b] = nd.get(b, 0) + w * (-1) ** max(0, b - a)
+        dp = nd
+    return sum(dp.values())
+```
+
+```
+>>> [p_signed(1, L) for L in range(8)]        # Re((1+i)^{L+1}) = A146559
+[1, 0, -2, -4, -4, 0, 8, 16]
+>>> [p_signed(2, L) for L in range(10)]       # order-3, all positive; novel (no OEIS match)
+[1, 1, 3, 9, 19, 33, 59, 121, 259, 529]
+>>> [p_signed(4, L) for L in range(9)]        # order-5; novel
+[1, 1, 5, 25, 85, 225, 541, 1385, 3973]
+```
+
+Meaning: `P(k,·)` is C-finite of order `k+1`, and the whole family's generating-function denominators satisfy `den_{k+1} = den_{k−1} − 2x·den_k`, whose roots `−x ± √(x²+1)` give the Pell/Chebyshev closed form on [[generating-function-gallery](pages/generating-function-gallery.md)]. Even-`k` rows are all-positive (the clean new-sequence candidates); odd-`k` rows alternate in sign.
+
 ## Continued fractions, convergents, and quasi-polynomials
 
 Snippets behind [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] and [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]. The first three are stdlib-only; `quasi_split` needs SymPy (the one import that earns its keep here).

@@ -194,6 +194,20 @@ The `J − D` metallic-strip counts, and their projection to proper PE 502 castl
 | bronze **even-block** proper | `1, 7, 25, 70, 209, 697, 2390` | `(3+√13)/2` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
 | copper **even-block** proper | `0, 0, 10, 104, 604, 2836, 12630` | `φ³` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
 
+### Signed tower count P(k,·) rows
+
+The signed tower count `P(k,L) = Σ (−1)^blocks` in the `L`-direction at fixed `k` ([[signed-tower-count](pages/signed-tower-count.md)]); C-finite of order `k+1`. Even-`k` rows are all-positive; odd-`k` rows alternate in sign.
+
+| object | first terms (`L = 0…`) | growth | status |
+|---|---|---|---|
+| `P(1, L)` | `1, 0, −2, −4, −4, 0, 8, 16, …` | `√2` (`1±i`) | **interlink** → [A146559](https://oeis.org/A146559) (`= Re((1+i)^{L+1})`) |
+| `P(2, L)` | `1, 1, 3, 9, 19, 33, 59, 121, 259, 529` | `2` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
+| `P(4, L)` | `1, 1, 5, 25, 85, 225, 541, 1385, 3973` | `2.796` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
+| `P(3, L)` | `1, 0, −4, −16, −40, −64, −32, 192, …` | `1.79` | **unchecked** (signed; `|·|` not yet searched) |
+| `P(6, L)` | `1, 0, −6, …` (order-7) | `2ψ²` | **unchecked**; even-`k` char poly factors, dominant root `2ψ²` ([[plastic-number](pages/plastic-number.md)]) |
+
+*(The whole family has a Pell/Chebyshev closed-form denominator — `den_k = A·r_+^k + B·r_−^k`, roots `−x ± √(x²+1)` — worked out on [[generating-function-gallery](pages/generating-function-gallery.md)]. The even-`k` positive rows `P(2,·)`, `P(4,·)` are the cleanest new-sequence candidates.)*
+
 ### Strip Perron-root sequences (reachable-field census)
 
 Width-graded counts of the 0/1 transfer-matrix strips ([[reachable-field-census](pages/reachable-field-census.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). The plastic strip (`x³−x−1`) and the non-metallic quadratic strips (`Q(√17)`, `Q(√21)`, …) generate count sequences that are mostly **unchecked** against OEIS — a mining target.
