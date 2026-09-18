@@ -115,8 +115,7 @@ Bronze and copper are now **realized** (Finding 3) — one named predicate cover
 
 - **Uniqueness / other natural rules per rung.** Is `M_h = J − D` the *only* natural predicate hitting `δ_{h−1}`, or (as with silver's three realizations) are there others? A census of named Axis-1–7 predicates by their Perron root would answer this.
 - **The proper-castle count, not just the strip.** ~~open~~ **Resolved** on [[proper-castle-projection](pages/proper-castle-projection.md)]: the metallic growth `δ_{h−1}` *does* survive `max = h` and `(A ± P)/2` — the signed transfer matrix `S_h` is spectrally subdominant (`ρ(S_h) < δ_{h−1}` at every `h`) — but the exact sequences are **new** (no OEIS match for `h ≥ 3`). Even the free counts are the *companion* metallic sequences (silver A001333, bronze A003688, copper A015448), not the primary ones (A000129, A006190, A001076).
-- **The reachable-surd landscape.** Which real quadratic fields `Q(√d)` are hit by castle-strip Perron roots at all? Data so far: the metallic fields `Q(√(a²+4))` are *all* reached (via `J − D`); the non-metallic `Q(√3)`, `Q(√7)`, `Q(√17)` also appear. A full census by state count is the systematic version of this page.
-- **The reachable-surd landscape.** Which real quadratic fields `Q(√d)` are hit by castle-strip Perron roots at all? The data so far: `Q(√5)` (golden), `Q(√2)` (silver), `Q(√3)`, `Q(√17)`, `Q(√7)` appear; `Q(√13)` (bronze) needs four states. A full census by state count is the systematic version of this page.
+- **The reachable-surd landscape** — *now settled by [[reachable-field-census](pages/reachable-field-census.md)]:* **every** real quadratic field `Q(√d)` is reachable (the metallic ones `Q(√(a²+4))` via `J − D`; the per-height census lists — `{5}, {2,3,5}, {2,3,5,13,17,21}, …` — are just initial segments). The one piece still open there is a closed form for the *minimum height* realizing a given field.
 
 ## Appearances in Sources
 

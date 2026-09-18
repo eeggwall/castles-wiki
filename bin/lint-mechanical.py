@@ -228,12 +228,16 @@ def git(*args):
 
 
 def staged_page_paths():
-    """Yield staged (added/copied/modified) wiki/pages/*.md paths, excluding audit reports."""
+    """Yield staged (added/copied/modified) wiki/pages/*.md paths, excluding
+    maintenance reports (audit-* from wiki-audit, lint-* from wiki-lint), which
+    carry category: Maintenance and legitimately have empty `sources`."""
     out = git("diff", "--cached", "--name-only", "--diff-filter=ACM")
     for path in out.splitlines():
         path = path.strip()
+        name = Path(path).name
         if (path.startswith("wiki/pages/") and path.endswith(".md")
-                and not Path(path).name.startswith("audit-")):
+                and not name.startswith("audit-")
+                and not name.startswith("lint-")):
             yield path
 
 

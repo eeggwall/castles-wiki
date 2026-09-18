@@ -152,6 +152,7 @@ Reading the columns of `S⁻¹` (differences of consecutive cumulative sets), th
 - [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - where `2^L · A005251(L+3)` first appeared as the plastic component of `P(6, L)`.
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and its column-by-column factorization.
 - [[tower-word-language](pages/tower-word-language.md)] - the wiki's other word-automaton object; the pending-flag construction here is the same technique.
+- [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the `g = 2` tower-spacing castles give the Hardin sequences (A202882 / A203094 / A203184) a plain *unsigned* geometric interpretation ("towers ≥ 2 apart" = "no isolated peak"), a third route alongside the signed identity here.
 
 ## Footnotes
 

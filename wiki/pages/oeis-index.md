@@ -236,7 +236,7 @@ Width-graded counts of the 0/1 transfer-matrix strips ([[reachable-field-census]
 Computed earlier and listed as candidates before the status convention; most are **unchecked** pending an OEIS search on current terms.
 
 - `F(w, 3…6)`: height-`h` castle counts for `h ≥ 3` ([[new-sequence-fw3](pages/new-sequence-fw3.md)]) — **unchecked**.
-- `P(k, L)` rows for `k ≥ 2`; `|P(k, L)|` in `k` at fixed `L ≥ 5` ([[signed-tower-count](pages/signed-tower-count.md)], [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]) — **unchecked**.
+- `|P(k, L)|` in the *k*-direction at fixed `L ≥ 5` ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]) — **unchecked**. *(The L-direction `P(k,·)` rows for `k = 2..6` are no longer here — they are searched and confirmed **novel-candidate** in the "Signed tower count P(k,·) rows" section above.)*
 - Parity-refined area sequences (even/odd-area convex, `strict_valley`) ([[castle-by-area](pages/castle-by-area.md)]) — **novel-candidate** (noted "none in OEIS" on that page).
 - Higher tower rows `w ≥ 6` in the Narayana table ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]) — **unchecked**.
 - Jacobi-Perron convergent denominators of `2ψ²` ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]) — **unchecked**.

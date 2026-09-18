@@ -281,6 +281,7 @@ Both filed on [[castle-snippets](pages/castle-snippets.md)].
 
 - [[castle-graph](pages/castle-graph.md)] - the tree castle concept and its width-graded counts (Fibonacci, Jacobsthal, k-Fibonacci).
 - [[plastic-number](pages/plastic-number.md)] - `ψ²` growth of the `h = ∞` case.
+- [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the third A005251/`ψ²` castle node: minimum-tower-spacing `(h=2, g=2)` castles, linked to this page's `h = ∞` composition reading by the [[a005251-bijection](pages/a005251-bijection.md)].
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[hardin-word-identity](pages/hardin-word-identity.md)] - where A005251 first appeared, as the plastic component of `P(6, L)`.
 - [[metallic-means](pages/metallic-means.md)] - the family the area-graded tree-castle growth constants sit *near* but do not belong to.
 - [[oeis-index](pages/oeis-index.md)] - the directory that now lists A000930, A006498, A000570.

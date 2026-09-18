@@ -97,6 +97,8 @@ Only golden (`h = 2`) has its free count equal to its primary metallic sequence.
 - [[castle-snippets](pages/castle-snippets.md)] — the `proper_even` snippet computing these counts.
 - [[reachable-field-census](pages/reachable-field-census.md)] — the sibling census (which *fields* the strips reach), to which this is the *sequences* complement.
 - [[castle-by-area](pages/castle-by-area.md)] / [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] — the other "new sequence from a castle count" precedents, the pattern these rows follow.
+- [[castle-classification](pages/castle-classification.md)] — Axis 8, the `<metal> <axis> growth castle` meta-classification these projected metallic-ladder rows populate.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] — the canonical silver/Pell realization; its primary sequence A000129 (Pell) is what the silver projected count fails to reproduce (it lands on companion A001333 instead).
 
 ## Footnotes
 

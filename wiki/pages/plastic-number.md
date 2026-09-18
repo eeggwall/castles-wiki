@@ -39,7 +39,7 @@ The **Pisot** property (all conjugates strictly inside the unit circle) is what 
 μ³ − 2μ² + μ − 1,        ψ² = 1.754877666…
 ```
 
-(the resultant of `x³ − x − 1` with `μ − x²`), and it is the number that actually appears on this wiki. The corresponding recurrence `a(n) = 2a(n−1) − a(n−2) + a(n−3)` is the recurrence of **A005251**, the count of `n`-bit strings with no isolated `1` (equivalently, avoiding the factor `010`); the Padovan bisection `A000931(2n)` satisfies it too.
+(the resultant of `x³ − x − 1` with `μ − x²`), and it is the number that actually appears on this wiki. The corresponding recurrence `a(n) = 2a(n−1) − a(n−2) + a(n−3)` is the recurrence of **A005251**, whose OEIS reading is "`a(n+3)` = number of `n`-bit strings avoiding the factor `010`"; the closely-related "no isolated `1`" strings of length `N` give `A005251(N+2)` (a *different* offset — the two families are equinumerous only across a one-bit length shift, see [[a005251-bijection](pages/a005251-bijection.md)]). The Padovan bisection `A000931(2n)` satisfies the recurrence too.
 
 Neither `ψ` nor `ψ²` has a periodic *simple* continued fraction - Lagrange forbids it for any cubic - but both have periodic **Jacobi-Perron** expansions (the two-dimensional continued fraction on `(α, α²)`), computed exactly on [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]:[^3]
 
