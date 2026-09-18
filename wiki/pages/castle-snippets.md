@@ -345,6 +345,39 @@ def ceiling_exception_count(h, L_max):
 
 Meaning: one rule, one parameter `h`, sweeps golden → silver → bronze → copper → nickel → … as `h = 2, 3, 4, 5, 6, …` (metal `a = h−1`). The `(x+1)^{h−2}` factor is the subdominant eigenvalue `−1`; the metallic quadratic `x² − (h−1)x − 1` carries the growth. The copper (`h=5`) row is every third Fibonacci — the decimation forced by `δ_4 = φ³`.
 
+### `proper_even(h, Wmax)` → the proper-castle projection of the ladder
+
+The `ceiling_exception_count` above is a *free-height strip* count (`𝟙ᵀM^L𝟙`); a **proper** PE-502 castle imposes `max_i c_i = h` and the even-block parity `(A±P)/2` ([[castle-sign](pages/castle-sign.md)]). This projects both on at once: subtract the `max < h` strips (which satisfy *plateau-free*, `J − I`, since the ceiling exception is unreachable) and fold in the signed count `P = Σ (−1)^{blocks}` via the signed matrix `S[a][b] = (−1)^{max(0, b−a)} M[a][b]`. The metallic growth survives (the signed matrix is spectrally subdominant), but the sequences are **new** — see [[proper-castle-projection](pages/proper-castle-projection.md)]. Requires SymPy.
+
+```python
+def proper_even(h, Wmax):
+    """Even-block proper castles (max=h) under the J-D plateau-free-except-ceiling rule.
+    Metal a = h-1. Returns counts by width w = 1..Wmax. Requires SymPy."""
+    def free(mat):
+        n = mat.shape[0]
+        ones = sp.ones(n, 1)
+        v = sp.Matrix(n, 1, [(-1)**(a+1) for a in range(n)])              # (-1)^height
+        S = sp.Matrix(n, n, lambda a, b: (-1)**max(0, b-a) * mat[a, b])    # (-1)^blocks increment
+        u, s, Mu, Ms = [], [], sp.eye(n), sp.eye(n)
+        for _ in range(Wmax):
+            u.append(int((ones.T*Mu*ones)[0])); s.append(int((v.T*Ms*ones)[0]))
+            Mu, Ms = Mu*mat, Ms*S
+        return u, s
+    JD  = sp.Matrix(h, h, lambda i, j: 1 if (i != j or i == h-1) else 0)   # J - D
+    PF  = sp.Matrix(h-1, h-1, lambda i, j: 1 if i != j else 0)             # J - I (max < h strip)
+    uJ, sJ = free(JD); uP, sP = free(PF)
+    return [(uJ[w]-uP[w] + sJ[w]-sP[w]) // 2 for w in range(Wmax)]
+```
+
+```
+>>> proper_even(4, 8)   # bronze (a=3): new sequence, growth -> 3.30278
+[1, 7, 25, 70, 209, 697, 2390, 8169]
+>>> proper_even(5, 8)   # copper (a=4): growth -> 4.23607 = phi^3
+[0, 0, 10, 104, 604, 2836, 12630, 55668]
+```
+
+Meaning: the even-block proper-castle rows are a new family (no OEIS match for `h ≥ 3`); the growth is still the metal `δ_{h−1}` (the signed matrix's spectral radius `1.000/1.575/1.768/2.242/2.413` for `h = 2..6` sits below `δ = 1.618/2.414/3.303/4.236/5.193`). Drop the `// 2` and the signed half to get the unsigned `max=h` count.
+
 ### `strip_field_census(h)` → which number fields the strips reach
 
 Two-phase census ([[reachable-field-census](pages/reachable-field-census.md)]): sweep all `2^{h²}` binary transfer matrices, bucket by numeric Perron root, then exactly identify each distinct root's number field. `h ≤ 4` exhaustive in seconds. Requires NumPy + SymPy.

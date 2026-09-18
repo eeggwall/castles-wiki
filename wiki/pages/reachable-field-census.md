@@ -12,7 +12,7 @@ updated: 2026-09-18
 
 ## The question and the method
 
-A **castle-strip rule** is a nearest-neighbor restriction on a row of columns with heights in `{1, …, h}` — an allowed-adjacency predicate `A(a, b)`, equivalently a `0/1` **transfer matrix** `M` on `h` height-states ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). Its width-graded count grows at `M`'s **Perron root** (dominant eigenvalue), an algebraic number generating a field `Q(root)`. This page censuses, **exhaustively over all `2^{h²}` binary `M`** for `h = 2, 3, 4, 5`, which algebraic numbers appear and which number fields they populate.[^1]
+A **castle-strip rule** is a nearest-neighbor restriction on a row of columns with heights in `{1, …, h}` — an allowed-adjacency predicate `A(a, b)`, equivalently a `0/1` **transfer matrix** `M` on `h` **height-states** (the matrix's rows/columns *are* the column heights `1..h`; see [[castle-strip](pages/castle-strip.md)] for the plain construction). Its width-graded count grows at `M`'s **Perron root** (dominant eigenvalue), an algebraic number generating a field `Q(root)`. This page censuses, **exhaustively over all `2^{h²}` binary `M`** for `h = 2, 3, 4, 5`, which algebraic numbers appear and which number fields they populate.[^1]
 
 The computation is two-phase: a fast numeric sweep collects the distinct Perron values and one example matrix each; then SymPy exactly factors each example's characteristic polynomial, picks the irreducible factor carrying the Perron root, and labels the field (`deg 1` rational, `deg 2` → `Q(√d)` by squarefree discriminant, `deg ≥ 3` cubic/quartic). Exact throughout — numeric values only *select* the factor; the field label is exact.[^1]
 
