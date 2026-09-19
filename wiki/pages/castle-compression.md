@@ -27,13 +27,13 @@ The encodings on [[castle-representations](pages/castle-representations.md)] for
 1. **Raster / binary string** — `w·h` bits, records every cell. The uncompressed baseline; the Solution subpage's verdict "the right encoding, wrong decomposition" is precisely that this encoding throws the structure away.
 2. **Skyline / integer tuple** — `w·log₂ h` bits. Exploits column-convexity and bottom-alignment (each column is one number). The workhorse encoding.
 3. **Block / run-length descriptions** — the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] and the excursion/gap word ([[castle-representations](pages/castle-representations.md)]) record a castle as its blocks: each ascent opens a block ([[castle-sign](pages/castle-sign.md)]), so a `b`-block castle is described by `b` (height, width) pairs against `w` column heights. A unimodal castle is "one bump" (`b ≈ 1`) and compresses hard; a jagged castle with `~ w/2` blocks does not.
-4. **Parametric** — the highly symmetric types (box, hook, staircase, the periodic/battlement type of [[castle-classification](pages/castle-classification.md)] Axis 7) are pinned by a handful of numbers — an `O(log(w·h))`-bit description even though their count is far larger.
+4. **Parametric** — the highly symmetric types (box, hook, staircase, the periodic/battlement type of [[castle-classification-geometric](pages/castle-classification-geometric.md)] Axis 7) are pinned by a handful of numbers — an `O(log(w·h))`-bit description even though their count is far larger.
 
 The U/R/D step string ([[urd-step-strings](pages/urd-step-strings.md)]) sits *below* the skyline on this ladder: it is a path of length `~ 2·area`, so it *expands* a tall castle rather than compressing it. Compression is not a property of an encoding alone — it is a property of the encoding *against* the castle's structure.
 
 ## The compressibility axis: description tiers
 
-The payoff is a classification the shape axes (1–7 of [[castle-classification](pages/castle-classification.md)]) cannot see. Those axes ask "what does the shape look like." Compressibility asks "what is the cheapest *program* that produces it" — an orthogonal question, stratifying castles by description tier:
+The payoff is a classification the shape axes (1–7 of [[castle-classification-geometric](pages/castle-classification-geometric.md)]) cannot see. Those axes ask "what does the shape look like." Compressibility asks "what is the cheapest *program* that produces it" — an orthogonal question, stratifying castles by description tier:
 
 - **Tier 0 — parametric.** A short explicit program names a shape: box, hook, staircase, or a periodic/battlement (a period plus a repeat count). Described in `O(log(w·h))` bits.
 - **Tier 1 — rule-generated.** The skyline is the column-by-column output of a tiny state machine — a 0/1 transfer matrix with a handful of ones, plus an initial state. These castles look irregular but have a short program: the plastic number's realizer in the [[reachable-field-census](pages/reachable-field-census.md)] is a **4-ones** matrix whose output is not convex, not periodic, not symmetric, yet is specified by four numbers. It is the castle analogue of a pseudorandom number generator (PRNG) with a short seed — apparent randomness, tiny Kolmogorov complexity.
@@ -54,7 +54,7 @@ The shape axes are blind to Tier 1: a rule-generated castle fails every convex /
 
 - [[castle-representations](pages/castle-representations.md)] — the encodings that form the ladder.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the run-length encoding of the difference sequence; the first compression layer past the skyline.
-- [[castle-classification](pages/castle-classification.md)] — Axes 1–7, the shape axes that compressibility cross-cuts.
+- [[castle-classification-geometric](pages/castle-classification-geometric.md)] — Axes 1–7, the shape axes that compressibility cross-cuts.
 - [[castle-entropy](pages/castle-entropy.md)] — the dual measure: the ceiling that compression approaches.
 - [[urd-step-strings](pages/urd-step-strings.md)], [[binary-string-bijection](pages/binary-string-bijection.md)] — the path and raster encodings at opposite ends of the ladder.
 - [[reachable-field-census](pages/reachable-field-census.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] — the rule factories that generate Tier-1 castles.

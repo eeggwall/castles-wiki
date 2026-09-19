@@ -97,7 +97,7 @@ Only golden (`h = 2`) has its free count equal to its primary metallic sequence.
 - [[castle-snippets-strips](pages/castle-snippets-strips.md)] — the `proper_even` snippet computing these counts.
 - [[reachable-field-census](pages/reachable-field-census.md)] — the sibling census (which *fields* the strips reach), to which this is the *sequences* complement.
 - [[castle-by-area](pages/castle-by-area.md)] / [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] — the other "new sequence from a castle count" precedents, the pattern these rows follow.
-- [[castle-classification](pages/castle-classification.md)] — Axis 8, the `<metal> <axis> growth castle` meta-classification these projected metallic-ladder rows populate.
+- [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] — Axis 8, the `<metal> <axis> growth castle` meta-classification these projected metallic-ladder rows populate.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] — the anchored 1-smooth height-3 strip, where Pell proper (A000129) does appear; the free `J − D` silver strip here lands on companion A001333 instead, and the boundary condition is the whole difference.
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] — the exact even-block counts are checked by Algorithm M enumeration of `{1..h}^w` with the two proper-castle filters.
 

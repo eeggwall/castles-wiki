@@ -102,7 +102,7 @@ The column-by-column transfer matrix (`build(h, g)`) and the growth/denominator 
 - [[plastic-number](pages/plastic-number.md)] - `ψ²` appears as the `(h=2, g=2)` growth constant (A005251 recurrence), a third castle route to the plastic-squared sequence.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the sibling strip family (a height-adjacency rule rather than a horizontal-gap rule) with silver growth.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the other two A005251 castle interpretations the `(h=2, g=2)` count joins.
-- [[castle-classification](pages/castle-classification.md)] - the m-disparate / m-smooth (Axis 2) neighborhood this variation extends into the horizontal-gap direction.
+- [[castle-classification-geometric](pages/castle-classification-geometric.md)] - the m-disparate / m-smooth (Axis 2) neighborhood this variation extends into the horizontal-gap direction.
 - [[castle-sign](pages/castle-sign.md)] / [[proper-castle-projection](pages/proper-castle-projection.md)] - the even-block parity projection that turns these raw counts into proper PE 502 castle counts.
 
 ## Footnotes

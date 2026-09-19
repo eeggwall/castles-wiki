@@ -41,7 +41,7 @@ From [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]: OEIS requires 
 7. **A006130, A006131**: tree castles of height 4 and 5 land in the k-Fibonacci family ([[castle-graph](pages/castle-graph.md)]).
 8. **A001263, A005408, A005891, A063490, A160747**: the tower / Narayana rows ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]).
 9. **A001523, A115981, A332578**: convex / non-convex / valley castles by area ([[castle-by-area](pages/castle-by-area.md)]).
-10. **A352116**: `|P(k,4)|` = partial sums of odd triangular numbers ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]).
+10. **A352116**: `|P(k,4)|` = partial sums of odd triangular numbers ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]).
 
 **Phase 2 plan (2026-09-18,** `~/code/oeis/pe502/plan-phase-2.md`**).** Phase 1 (items 1–2) is submitted; phase 2 is the next bundle. Tier 2 is the **tower = Narayana** interlink (item 8), submitted in order **A160747 → A005891 → A063490 → A001263** — skipping **A005408** (densest entry, weakest of the set) and minding that **A063490 is offset 1** (the only width-row shift). Tier 3 is the fillers: the difference-of-powers castle counts `A(w,h) = h^w − (h−1)^w` as one comment each on **A000225 / A001047 / A005061 / A005060 / A005062**, and the area synonyms (item 9) each cross-referencing the phase-1 sequences **A038505 / A038503 / A146559**. New sequences ([[new-sequence-fw3](pages/new-sequence-fw3.md)] `F(w,3)` and siblings) follow once the account's edit throttle lifts.
 
@@ -148,10 +148,10 @@ Computed earlier and listed as candidates before the status convention; most are
 
 - `F(w, 3)`: even-block castles of height exactly 3, `0, 0, 3, 21, 89, 307, 977, 3031, …` ([[new-sequence-fw3](pages/new-sequence-fw3.md)]) — **novel-candidate** (no OEIS match, searched 2026-09-19).
 - `F(w, 4…6)`: the taller rows ([[new-sequence-fw3](pages/new-sequence-fw3.md)]) — **unchecked**.
-- `|P(k, L)|` in the *k*-direction at fixed `L ≥ 5` ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]) — **unchecked**. *(The L-direction `P(k,·)` rows for `k = 2..6` are no longer here — they are searched and confirmed **novel-candidate** in the "Signed tower count P(k,·) rows" section above.)*
+- `|P(k, L)|` in the *k*-direction at fixed `L ≥ 5` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]) — **unchecked**. *(The L-direction `P(k,·)` rows for `k = 2..6` are no longer here — they are searched and confirmed **novel-candidate** in the "Signed tower count P(k,·) rows" section above.)*
 - Parity-refined area sequences (even/odd-area convex, `strict_valley`) ([[castle-by-area](pages/castle-by-area.md)]) — **novel-candidate** (noted "none in OEIS" on that page).
 - Higher tower rows `w ≥ 6` in the Narayana table ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]) — **unchecked**.
-- Jacobi-Perron convergent denominators of `2ψ²` ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]) — **unchecked**.
+- Jacobi-Perron convergent denominators of `2ψ²` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]) — **unchecked**.
 
 ## Appearances in Sources
 
@@ -165,7 +165,7 @@ Computed earlier and listed as candidates before the status convention; most are
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the A038503 / A038504 / A038505 / A000749 family collectively.
 - [[metallic-means](pages/metallic-means.md)] / [[pell-numbers](pages/pell-numbers.md)] / [[plastic-number](pages/plastic-number.md)] - the number-family threads whose OEIS sequences populate this catalogue.
 - [[castle-graph](pages/castle-graph.md)] - the tree-castle counts on Fibonacci / Jacobsthal / k-Fibonacci.
-- [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the metallic-mean convergent tables.
+- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the metallic-mean convergent tables.
 - [[hardin-word-identity](pages/hardin-word-identity.md)] - the Hardin sequences A202882 / A203094 / A203184 and their proved recurrences.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - the leading generation candidate.
 - [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] - the n-nacci-by-area interlinks (A000073 / A000078 / A001591).

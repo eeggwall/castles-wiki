@@ -18,7 +18,7 @@ For the number-theoretic snippets that read continued-fraction convergents / mod
 
 ### Axis 8: growth-type predicate skeleton — the height-2 tree-castle strip
 
-Encode the state above the base (0 = empty column, 1 = one raised cell) and forbid two adjacent raised columns; this is the height-2 tree castle of [[castle-graph](pages/castle-graph.md)]. See [[castle-classification](pages/castle-classification.md)] Axis 8 for the meta-classification these strips instantiate.
+Encode the state above the base (0 = empty column, 1 = one raised cell) and forbid two adjacent raised columns; this is the height-2 tree castle of [[castle-graph](pages/castle-graph.md)]. See [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] Axis 8 for the meta-classification these strips instantiate.
 
 ```python
 def is_zero_one_strip(c):
@@ -34,7 +34,7 @@ True
 False
 ```
 
-Wiki tie: [[castle-classification](pages/castle-classification.md)] Axis 8 — the height-2 tree castles are a golden width growth castle; their count sequence is Fibonacci `F_{w+2}` (see also `is_tree_castle` below).
+Wiki tie: [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] Axis 8 — the height-2 tree castles are a golden width growth castle; their count sequence is Fibonacci `F_{w+2}` (see also `is_tree_castle` below).
 
 ### `pell_strip_count(w)` → the Pell castle strip
 
@@ -91,10 +91,10 @@ def nearest_metallic(r, max_a=6):
 1
 ```
 
-Meaning: Pell → `a=2` (silver, `1+√2 ≈ 2.4142`). Fibonacci → `a=1` (golden, `φ ≈ 1.6180`). The sequence a candidate silver / golden / bronze / … *width* growth castle would produce, in the sense of [[castle-classification](pages/castle-classification.md)] Axis 8.
+Meaning: Pell → `a=2` (silver, `1+√2 ≈ 2.4142`). Fibonacci → `a=1` (golden, `φ ≈ 1.6180`). The sequence a candidate silver / golden / bronze / … *width* growth castle would produce, in the sense of [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] Axis 8.
 
 **Cautions:**
-- `growth_constant` estimates from **width**-graded sequences; use the appropriate size-axis sequence for vertical / area / block growth castles (see [[castle-classification](pages/castle-classification.md)] Axis 8).
+- `growth_constant` estimates from **width**-graded sequences; use the appropriate size-axis sequence for vertical / area / block growth castles (see [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] Axis 8).
 - `nearest_metallic` always returns *some* answer — even a transcendental growth constant will return the closest metallic mean. Check the actual distance if uncertain:
 
 ```python

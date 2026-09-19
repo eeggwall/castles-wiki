@@ -1,8 +1,8 @@
 ---
 title: Castle classification
 category: Concepts
-summary: A classification framework for castle sub-families. Axes 1-7 are skyline predicates on individual castles, Axis 8 a growth-type meta-classification on castle classes (metallic and non-metallic slots), Axis 9 a spectral predicate on the castle's polyomino graph.
-tags: [concept, castle, classification, taxonomy, skyline, spectral, ramanujan, growth-constant, fibonacci, tribonacci, n-nacci, plastic-number, supergolden]
+summary: Hub for the castle-type taxonomy. Geometric types (Axes 1-7, skyline predicates on individual castles) are catalogued on castle-classification-geometric; non-geometric types (Axis 8 growth type of a class, Axis 9 spectrum of the castle graph, compressibility) on castle-classification-non-geometric.
+tags: [concept, castle, classification, taxonomy, skyline, geometric, non-geometric, spectral, growth-constant]
 sources: [castle-classification]
 created: 2026-09-15
 updated: 2026-09-19
@@ -12,17 +12,24 @@ updated: 2026-09-19
 
 ## The framing
 
-A **castle** is a valid stacked-block configuration on a `w × h` grid ([[castle-polyomino](pages/castle-polyomino.md)]), and is determined by its **skyline** — the sequence of column heights[^1]
+A **castle** is a valid stacked-block configuration on a `w × h` grid ([[castle-polyomino](pages/castle-polyomino.md)]), and is determined by its **skyline** - the sequence of column heights[^1]
 
 ```
 c_1, c_2, …, c_w      with 1 ≤ c_i ≤ h and max_i c_i = h.
 ```
 
-Every castle is automatically **column-convex** (each column is one contiguous vertical run) and **bottom-aligned** (row 1 is a full-width block). So a "**castle type**" is a **further restriction on the skyline** — a predicate on `(c_1, …, c_w)`. Project Euler 502 (PE 502)'s even-block parity constraint is orthogonal to typing: each type is defined without reference to parity, and the even-block projector `(A ± P)/2` ([[castle-sign](pages/castle-sign.md)]) is applied on top when needed.[^1]
+Every castle is automatically **column-convex** (each column is one contiguous vertical run) and **bottom-aligned** (row 1 is a full-width block). A **castle type** is a further restriction, and the restrictions come in two kinds:
+
+- **Geometric (shape-based) types** are predicates on the skyline of one castle: unimodal, Ferrers, palindromic, Dyck-path, rainbow, hook. The 42 types from the upstream catalogue are all of this kind, and they are organized into seven structural axes on [[castle-classification-geometric](pages/castle-classification-geometric.md)].
+- **Non-geometric types** classify by something not read off the shape. A **growth type** (Axis 8) belongs to a *class* of castles defined by a construction rule, and is the growth constant of its count along a stated size axis - golden, silver, tribonacci, supergolden. A **spectral type** (Axis 9) belongs to an individual castle but is read from the spectrum of its polyomino graph - tree, golden-spectrum, isospectral, Ramanujan. **Compressibility** is read from the length of the shortest description that produces the castle. These are on [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)].
+
+The two kinds interact. A geometric predicate defines a class, and that class has a growth type: the height-2 tree castles (a geometric ban on adjacent raised columns) are a golden width growth castle. A spectral predicate can coincide with a geometric one: the tree-castle condition "no `2×2` filled block" is both. The wiki's convention is that a statement linking a type of one kind to a type of the other is a theorem, not a definition, and is written down as such.
+
+**Parity.** Project Euler 502 (PE 502) requires an even number of blocks. Each type is defined without reference to that clause, and the even-block projector `(A ± P)/2` ([[castle-sign](pages/castle-sign.md)]) is applied on top when needed.[^1] The clause is not independent of typing, though: a convex (unimodal) castle of height `h` has exactly `h` blocks, one per row, so every convex castle has the block parity of `h` and the projector keeps all of them or none.[^2] Whether a type's parity-projected count has the same shape as its full count is one of the three questions below.
 
 ## Upstream source
 
-The type catalog is hydrated from `charlesreid1.com/wiki/Project_Euler/502/Castle_Types` (fetched 2026-09-15; wikitext cached at `raw/castle-types.wiki`). That page defines 42 types — **7 base types** drawn from the polyomino literature (column-convex, unimodal, directed, parallelogram, Ferrers, staircase, m-disparate)[^2] and **35 proposed types** aggregated from adjacent literature or newly defined (convex/row-convex, reverse Ferrers, k-modal, m-smooth, Dyck-path, Motzkin-path, palindromic, self-conjugate, rainbow, hook, crenellated, moated, twin-peak, single-summit, single-valley, and so on).[^3] The upstream page states the types as skyline predicates only; this page organizes them into structural axes, ties each type to the wiki thread that already touches it, and marks which have counts, which are candidates, and which are open.
+The type catalogue is hydrated from `charlesreid1.com/wiki/Project_Euler/502/Castle_Types` (fetched 2026-09-15; wikitext cached at `raw/castle-types.wiki`). That page defines 42 types - **7 base types** drawn from the polyomino literature (column-convex, unimodal, directed, parallelogram, Ferrers, staircase, m-disparate) and **35 proposed types** aggregated from adjacent literature or newly defined.[^3] The upstream page states the types as skyline predicates only; the geometric page organizes them into structural axes and ties each to the wiki thread that already touches it. The non-geometric axes are the wiki's own.
 
 ## What "classification" gives you
 
@@ -32,318 +39,53 @@ Three questions attach to every type:
 2. **What is its count's shape?** Growth constant, C-finite / algebraic / transcendental character, Online Encyclopedia of Integer Sequences (OEIS) identification if any.
 3. **How does it interact with the parity clause?** Does the parity-projected version have the same shape, or is parity locked out by the type's structure?
 
-Every open (2) is a seminar topic; every open (3) is a research thread. The classification here does not answer these questions for the 42 types — it names them and marks which ones the wiki has answered, which are candidates, and which are genuinely open.
+Every open (2) is a seminar topic; every open (3) is a research thread. Question (2) is where the geometric and non-geometric pages meet: answering it for a geometric type places that type's class on Axis 8.
 
-## The base 7 types and their wiki homes
+## Map of the axes
 
-The base types are all standard polyomino / composition families. Each corresponds to an existing wiki thread:[^2]
-
-| Type | Definition (skyline predicate) | Wiki home | Count status |
-|---|---|---|---|
-| **Column-convex** | (automatic for castles) | [[column-convex-polyomino](pages/column-convex-polyomino.md)] | matches all castles; `A(w,h) = h^w − (h−1)^w` |
-| **Unimodal** | `c_1 ≤ … ≤ c_p ≥ … ≥ c_w` | [[convex-castle](pages/convex-castle.md)] | `C(2h+w−3, w−1)` via [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] |
-| **Ferrers** | `c_1 ≥ c_2 ≥ … ≥ c_w` (weakly decreasing) | [[polyominoes](pages/polyominoes.md)], [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] | classical; by area = partition GF; q-Catalan / q-Bessel refinement |
-| **Staircase** | Ferrers with all `c_i` distinct | [[polyominoes](pages/polyominoes.md)] | classical (distinct-parts partitions) |
-| **Parallelogram** | anti-diagonal sections connected | [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] | classical (Bousquet-Mélou) |
-| **Directed** | every cell reachable from `(1,1)` by east/north | [[polyominoes](pages/polyominoes.md)] | classical (directed polyominoes) |
-| **m-disparate** | `|c_{i+1} − c_i| ≥ m` for all `i` | **not yet on the wiki** | open |
-
-The first 6 rows tie the castle taxonomy directly to the polyomino literature. **m-disparate** is the one base type without an existing wiki thread — a natural target for the "gap-rule variations" idea on `IDEAS.md`.
-
-## The 35 proposed types, grouped by structural axis
-
-The proposed types cluster into a handful of structural axes, some of which the wiki has counts for.
-
-### Axis 1: Convexity / modality
-
-Types 1–6 and 30–31 restrict the shape of the skyline's local extrema:
-
-| Type | Predicate | Wiki tie |
-|---|---|---|
-| **Convex (row-convex)** | every row is one contiguous run | equals unimodal for castles ([[convex-castle](pages/convex-castle.md)]); front/middle/back U/R/D form on [[project-euler-502-representations](pages/project-euler-502-representations.md)] |
-| **Reverse Ferrers** | `c_1 ≤ … ≤ c_w` (weakly increasing) | Ferrers's mirror; same count by symmetry |
-| **Strictly unimodal** | strict rise, one peak, strict fall | strengthens unimodal; count is a sub-count of [[convex-castle](pages/convex-castle.md)] |
-| **Bimodal** | exactly two local maxima | *open* — natural refinement, no wiki count yet |
-| **k-modal** | at most `k` local maxima | *open* — unimodal is `k=1`; parameterized family |
-| **Anti-unimodal (V-shaped)** | weakly decrease then weakly increase | the "valley" family; on [[castle-by-area](pages/castle-by-area.md)] as valley castles, area-OEIS A332578; the [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] valley bijection is an open thread |
-| **Convex-skyline** | `c_{i−1} − 2c_i + c_{i+1} ≥ 0` (discrete convex) | *open* — a stronger sub-family of anti-unimodal |
-| **Concave-skyline** | `c_{i−1} − 2c_i + c_{i+1} ≤ 0` (discrete concave) | *open* — a stronger sub-family of unimodal |
-
-**Where the wiki already has counts:** unimodal and (by symmetry) reverse Ferrers, via the [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]; anti-unimodal (valley) by area on [[castle-by-area](pages/castle-by-area.md)]. **Where the wiki has candidate counts but not proofs:** the convex⟺valley bijection.
-
-### Axis 2: Rate of change (Lipschitz)
-
-Types 7, 8, 9 and the base m-disparate:
-
-| Type | Predicate | Wiki tie |
-|---|---|---|
-| **Plateau-free** | `c_i ≠ c_{i+1}` for all `i` | *open* — a Lipschitz lower bound on differences |
-| **m-smooth (Lipschitz)** | `|c_{i+1} − c_i| ≤ m` | matches **Motzkin-path** at `m = 1`; the tower-word framing on [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] |
-| **Zigzag** | differences alternate in sign | *open* — a strong plateau-free variant |
-| **m-disparate** | `|c_{i+1} − c_i| ≥ m` | *open* — the "no small step" restriction |
-
-**Where the wiki already has counts:** 1-smooth castles collapse to the Motzkin-path family ([[motzkin-numbers](pages/motzkin-numbers.md)], [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]); the tower word A004149 is the 1-smooth-with-no-UD-no-DU refinement. **Open:** the full m-smooth family for `m ≥ 2`, and m-disparate for any `m`. **A distinct horizontal-gap axis is now counted:** [[tower-spacing-castles](pages/tower-spacing-castles.md)] requires every valley between raised regions to be `≥ g` columns wide (a generalization of rule 3 from gap `≥ 1` to gap `≥ g`) — *not* a same-column-difference rule but a same-row spacing rule, counted by a column-sweep transfer matrix, with growth constants through `ψ²` (h=2, g=2) and `φ` (h=2, g=3) and a non-metallic zoo for `h ≥ 3`.
-
-### Axis 3: Path-like restrictions
-
-Types 13 and 14 identify the skyline with a classical lattice path:
-
-| Type | Predicate | Wiki tie |
-|---|---|---|
-| **Dyck-path** | `c_1 = c_w = 1`, `|c_{i+1} − c_i| = 1`, all `c_i ≥ 1` | [[dyck-words](pages/dyck-words.md)]; [[catalan-numbers](pages/catalan-numbers.md)] count |
-| **Motzkin-path** | `|c_{i+1} − c_i| ≤ 1` (Dyck-path with flat steps allowed) | [[motzkin-numbers](pages/motzkin-numbers.md)]; [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] is the run-constrained sub-family |
-
-**Where the wiki already has counts:** both, from the classical lattice-path literature. The Dyck-path castle is Catalan; the Motzkin-path castle is Motzkin (with the run constraint further reducing to A004149).
-
-### Axis 4: Symmetry
-
-Types 11, 12, 21 impose symmetry on the skyline:
-
-| Type | Predicate | Wiki tie |
-|---|---|---|
-| **Palindromic** | `c_i = c_{w+1−i}` | *open* — a natural symmetry restriction |
-| **Centrally symmetric** | `c_i + c_{w+1−i} = h + 1` (180° rotation inside bounding box) | *open* |
-| **Self-conjugate** | `c_i = #{j : c_j ≥ i}` (transpose invariance) | *open* — classical partition-conjugation, would require `w = h` |
-
-**Open across the board.** The self-conjugate type is particularly interesting because it forces `w = h` and interacts with the wiki's Fibonacci-in-prime-castle count `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)].
-
-### Axis 5: Value / extremum constraints
-
-Types 15, 16, 24, 26, 27, 33, 35, and a few others restrict where extremes occur:
-
-| Type | Predicate | Wiki tie |
-|---|---|---|
-| **Flat-top** | `h` attained in ≥ 2 consecutive columns | *open* |
-| **Single-summit** | `h` attained in exactly one column | *open* — matches strictly-unimodal at the peak |
-| **Twin-peak** | `h` attained in exactly two columns | *open* |
-| **Single-valley** | height 1 attained in exactly one column | *open* — dual to single-summit |
-| **Rainbow** | `w = h`, heights a permutation of `{1, …, h}` | exactly `h!` castles ([[aocp-permutations](pages/aocp-permutations.md)]); graded by skyline inversions they are the Mahonian numbers A008302 ([[aocp-combinatorics](pages/aocp-combinatorics.md)]); direct link to permutation-based combinatorics ([[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)]) |
-| **Boxcastle** | `c_i = h` for all `i` | trivial: count is `1` |
-| **Hook** | `c_1 = h`, `c_i = 1` for `i ≥ 2` | Young-diagram hook; count is `w` (choice of tower position × 1) after symmetry |
-
-**Rainbow castles are the natural bridge to [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)]:** they are, by definition, in bijection with permutations of `{1, …, h}` — so the wiki's cycle-count / Foata / streak triad ([[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)]) applies to them directly, not by upgrade. Rainbow castles are the "n! degenerate case" of the castle machinery.
-
-### Axis 6: Parity and area
-
-Types 10, 17, 18, 32:
-
-| Type | Predicate | Wiki tie |
-|---|---|---|
-| **Alternating parity** | `c_i` alternates odd/even | *open* |
-| **Even-area** | `∑ c_i ≡ 0 (mod 2)` | [[castle-by-area](pages/castle-by-area.md)] parity split |
-| **Even-peak** | number of local maxima is even | [[castle-sign](pages/castle-sign.md)] sibling; peak count is on [[castle-foata-transform](pages/castle-foata-transform.md)]; the block ≠ peak distinction is spelled out on [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] |
-| **Triangular-area** | `∑ c_i = n(n+1)/2` | *open* — a curiosity restriction |
-
-**The even-peak type is worth flagging.** The [[castle-sign](pages/castle-sign.md)] is `(−1)^blocks`, not `(−1)^peaks`; even-peak is a different parity constraint that the wiki hasn't investigated. The [[castle-foata-transform](pages/castle-foata-transform.md)] identifies `#peaks = #records`, so even-peak is "even-records" — a permutation-statistic parity condition.
-
-### Axis 7: Value patterns
-
-Types 19, 20, 22, 23, 25, 28, 29, 34:
-
-| Type | Predicate | Wiki tie |
-|---|---|---|
-| **Equal-block** | all maximal horizontal blocks have the same length | *open* — heavy structure |
-| **Two-level** | exactly two distinct height values | at `h = 2` this is every castle (`A(w,2) = 2^w − 1`); the height-2 tree castles ([[castle-graph](pages/castle-graph.md)]) are its Fibonacci sub-family |
-| **Crenellated** | heights alternate `{a, h}` (battlements) | *open* — very restricted two-level |
-| **Moated** | `c_1 = c_w = 1`, all interior `≥ 2` | *open* |
-| **Fence-post** | `c_i = 1` for all even `i` | *open* |
-| **Linear** | `c_i = a + (i−1)d` (arithmetic progression) | *open* — count is `O(h)` or `O(wh)` depending on parameters |
-| **Prime-top** | `h` is prime | trivial family: all castles with prime `h` |
-| **Integer-mean** | `w | ∑ c_i` | *open* |
-
-## Axis 8: Growth-type meta-classification
-
-Axes 1-7 above are all **predicates on individual castles**: given `(c_1, …, c_w)`, is this castle unimodal? Ferrers? palindromic? Axis 8 is different: it is a **predicate on castle classes** — a property of a *sequence of counts*, not of a single castle. This makes it a **meta-classification**: golden growth castle status is not a shape a given castle has, it is a growth-rate a given class has.
-
-The framework is the [[metallic-means](pages/metallic-means.md)] family `δ_a = (a + √(a² + 4))/2` for `a = 1, 2, 3, …` — golden (`φ`), silver (`1+√2`), bronze (`(3+√13)/2`), copper, nickel, and so on. A castle-strip family whose width generating function has denominator `1 − p_1·x − p_2·x²` grows at `(p_1 + √(p_1² + 4·p_2))/2`, which is a metallic mean iff `p_2 = 1` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). The metallic-mean ladder is thus a natural axis of count growth-constants along which real castle classes fall.
-
-### The naming convention
-
-A castle class is a **"`<metal>` `<axis>` growth castle"** iff its count sequence, graded by the chosen size axis, grows at rate `δ_a` (the metallic mean for that metal). The three parts:
-
-- **`<metal>`** — golden (`a=1`, growth `φ`), silver (`a=2`, growth `1+√2`), bronze (`a=3`, growth `(3+√13)/2`), copper (`a=4`, growth `2+√5 = φ³`), nickel (`a=5`, growth `(5+√29)/2`), and so on. See [[metallic-means](pages/metallic-means.md)].
-- **`<axis>`** — the size parameter being graded:
-  - **width** — the sequence is graded by width `w` (height `h` fixed or bounded)
-  - **vertical** — the sequence is graded by height `h` (width `w` fixed or bounded)
-  - **area** — the sequence is graded by total area `∑ c_i`
-  - **block** — the sequence is graded by block count
-- **"growth castle"** — the noun, marking this as an Axis-8 meta-type.
-
-**The axis is always stated explicitly.** A silver width growth castle and a silver vertical growth castle are different claims; there is no default axis. The full form ("silver width growth castle") is used throughout — no shorthand like "silver castle" — to keep meta-types unambiguous.
-
-### Golden width growth castle — the `δ_1 = φ` axis-1 family
-
-A class whose width-graded count sequence has growth constant `φ = (1+√5)/2`, equivalently whose width GF has dominant singularity at `1/φ = φ − 1`. Known members:
-
-- **The height-2 tree castles** ([[castle-graph](pages/castle-graph.md)]) — skylines with `c_i ∈ {0, 1}` above the base and no two adjacent raised columns, so every upper block has width 1. Count sequence: Fibonacci `F_{w+2}`, generating function `1/(1 − x − x²)`, the `p_1 = 1, p_2 = 1` denominator.
-- **The prime-castle count** `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] — Fibonacci-flavored in `Q(√5)`, so its Fibonacci component makes it a golden growth castle by area (not width — the area grading is what puts Fibonacci in this sequence).
-
-### Silver width growth castle — the `δ_2 = 1 + √2` axis-2 family
-
-A class whose width-graded count sequence has growth constant `1 + √2 ≈ 2.4142`. Known members:
-
-- **The anchored 1-smooth height-3 strip** ([[pell-castle-strip](pages/pell-castle-strip.md)]) — skylines over `{1, 2, 3}` with `|c_{i+1} − c_i| ≤ 1` and first column at height 1 (an Axis-2 predicate plus a boundary condition). Count sequence: Pell numbers `P_{w+1}` (OEIS A000129), generating function exactly `1/(1 − 2x − x²)`, the `p_1 = 2, p_2 = 1` denominator; with a free first column the count is companion Pell (A001333). The ceiling-exception rule `J − D` at height 3 ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) realizes the same growth constant.
-- **The tower word** ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]) — count sequence A004149, algebraic (not rational) generating function with singularity at `√2 − 1`, so growth `1/(√2 − 1) = √2 + 1`. Structurally very different from the Pell strip (context-free rather than regular), but the same growth constant — so both are silver width growth castles.
-
-**Two structurally different classes, one growth type.** This is the meta-classification working: silver width growth castle is a property that holds across differently-shaped families, uniting them by their asymptotic count behavior rather than by their skyline predicates.
-
-### Bronze / copper / nickel width growth castles — realized by one rule
-
-All higher rungs are **realized by a single named predicate** — the **plateau-free-except-ceiling** rule (adjacent columns differ in height unless both equal the max `h`), transfer matrix `M_h = J − D`, char poly `(x+1)^{h−2}(x² − (h−1)x − 1)`, Perron root the `(h−1)`-th metallic mean `δ_{h−1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). Metal `a` sits at height `h = a + 1`:
-
-- **Bronze width growth castle** (`δ_3 = (3+√13)/2 ≈ 3.303`) — the ceiling-exception rule at **height 4**; count `4, 13, 43, 142, 469, …`, growth `(3+√13)/2` in `Q(√13)`. (The naive "three states per column" does *not* give bronze — it is provably unreachable on ≤ 3 states and lands on non-metallic surds like `1 + √3` and `(3+√17)/2`; the ceiling exception is the decoupling that pins `p_2 = 1`.)
-- **Copper width growth castle** (`δ_4 = 2 + √5 = φ³`) — the ceiling-exception rule at **height 5**; because `δ_4 = φ³ ∈ Q(√5)`, its strip count is `F_{3n+5}` = the **Fibonacci trisection**, the decimation made concrete.
-- **Nickel and beyond** (`δ_5`, `δ_6`, …) — the same rule at heights 6, 7, …; the ladder is swept in full.
-
-A separate question — whether each rung has *other* natural realizations besides `M_h = J − D` (silver has three) — is open; see [[metallic-strip-realizability](pages/metallic-strip-realizability.md)].
-
-### Non-metallic growth castles — the n-nacci and cubic-Pisot families
-
-The metallic ladder is not the whole story. The wiki has accumulated a second, structurally coherent family of growth constants that are **algebraic but not metallic means** — they are roots of `x^k = x^{k−1} + ⋯ + 1` (the "`k`-step Fibonacci" / **n-nacci** constants) and of the term-skipping cubics (the **cubic-Pisot** constants). These extend Axis 8 with a parallel naming slot: a class is an **"`<constant>` `<axis>` growth castle"** where `<constant>` names the algebraic growth rate directly (tribonacci, tetranacci, supergolden, plastic-squared, …) when it is not a metallic mean.
-
-**The n-nacci area growth family.** All castles of height `≤ h`, graded by area, grow at the `h`-step Fibonacci constant with GF `1/(1 − x − ⋯ − x^h)` ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]):
-
-| `<constant>` | `h` | growth | minimal polynomial | OEIS (by area) |
+| Axis | Kind | Predicates on | Examples | Page |
 |---|---|---|---|---|
-| **golden** (metallic `a=1`) | 2 | `φ ≈ 1.6180` | `x² − x − 1` | A000045 Fibonacci |
-| **tribonacci** | 3 | `≈ 1.8393` | `x³ − x² − x − 1` | A000073 |
-| **tetranacci** | 4 | `≈ 1.9276` | `x⁴ − x³ − x² − x − 1` | A000078 |
-| **pentanacci** | 5 | `≈ 1.9659` | `x⁵ − ⋯ − 1` | A001591 |
-| — | ∞ | `2` | `x − 2` | A011782 (`2^{A−1}`) |
+| 1 Convexity / modality | geometric | skyline extrema | unimodal, k-modal, valley | [[castle-classification-geometric](pages/castle-classification-geometric.md)] |
+| 2 Rate of change | geometric | adjacent differences | m-smooth, m-disparate, plateau-free | same |
+| 3 Path-like | geometric | skyline as lattice path | Dyck-path, Motzkin-path | same |
+| 4 Symmetry | geometric | skyline symmetries | palindromic, centrally symmetric, self-conjugate | same |
+| 5 Extremum | geometric | where `h` and 1 occur | single-summit, twin-peak, rainbow, hook | same |
+| 6 Parity / area | geometric | `∑ c_i`, peak count | even-area, even-peak | same |
+| 7 Value patterns | geometric | height multiset / pattern | two-level, crenellated, linear | same |
+| 8 Growth type | non-geometric | a class's count sequence | golden / silver width growth castle, tribonacci area growth castle | [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] |
+| 9 Spectral | non-geometric | the castle graph's spectrum | tree, golden-spectrum, isospectral, Ramanujan | same |
+| Compressibility | non-geometric | description length | parametric, rule-generated, generic | [[castle-compression](pages/castle-compression.md)] |
 
-Only the `h = 2` rung (golden) is metallic; every `h ≥ 3` rung is a genuine degree-`h` non-metallic **tribonacci / tetranacci / … area growth castle**. The family is monotone increasing to `2`.
+## Open threads
 
-**The cubic-Pisot family.** The tree-castle-by-area family ([[tree-castle-by-area](pages/tree-castle-by-area.md)]) — the 2×2-block-free sub-family, an Axis-9 structural type graded by area — realizes the three cubic-Pisot constants, none metallic:
+The taxonomy makes explicit which sub-families the wiki has, which are candidates, and which are open. The largest open groupings, in rough order of tractability; each page carries the detailed list.
 
-| `<constant>` | growth | minimal polynomial | castle realization |
-|---|---|---|---|
-| **supergolden** | `≈ 1.4656` | `x³ − x² − 1` | `h = 2` tree castles by area = Narayana's cows A000930 |
-| **plastic-squared** `ψ²` | `≈ 1.7549` | `x³ − 2x² + x − 1` | `h → ∞` tree castles by area = A005251 ([[plastic-number](pages/plastic-number.md)]) |
-| **plastic** `ψ` | `≈ 1.3247` | `x³ − x − 1` | **not yet realized** as a plain count — the open watch-note on [[plastic-number](pages/plastic-number.md)] |
-
-Between those rows sits the `h = 4` tree row, `A000570` (unique tournaments, [[unique-tournament](pages/unique-tournament.md)]), growing at `α ≈ 1.6851`, the dominant root of `x⁵ − x⁴ − x² − x − 1` - a quintic, non-metallic constant filling the slot between `φ` (`h = 3`) and `ψ²` (`h → ∞`).
-
-The plastic number `ψ` itself (`x³ = x + 1`, [[plastic-number](pages/plastic-number.md)]) also enters as the `k = 6` signed-tower eigenvalue `ρ_6 = 2ψ²`, but that is a *spectral* appearance, not a growth-castle count. The bare-`ψ` growth castle (a Padovan/Perrin-rate count) is the one open slot in the cubic-Pisot family.
-
-**Why the split matters.** The metallic naming (`<metal> <axis>`) and the non-metallic naming (`<constant> <axis>`) are the same meta-classification — a growth rate for a class along a stated axis — just with different name-sources: the metallic means `δ_a` for the quadratic ladder, the constant's own name for everything else. A class can be classified on either; the deciding question is only whether its growth constant is a metallic mean (`x² − a x − 1`, purely-periodic continued fraction (CF), `p_2 = 1` in the strip denominator) or a higher-degree algebraic number. See [[metallic-means](pages/metallic-means.md)] for the quadratic side and [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] for the non-metallic side.
-
-### Vertical / area / block growth castles
-
-The **vertical growth axis** grades by height (`h` varying, `w` fixed). No member is known. The natural candidate, the k-direction signed count `P(k, L)` at fixed `L`, is not one: its characteristic polynomial is `(x+1)^L (x−1)^{L−2}` ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]), so it is a quasi-polynomial in `k` with no exponential growth at all. The count `F(w, h)` in `h` is likewise a quasi-polynomial (annihilated by `(x²−1)^w`). A vertical growth castle with a metallic constant would have to come from a rule modification.
-
-The **area growth axis** grades by `∑ c_i`, and this is the axis where the wiki now has the richest inventory — most of it **non-metallic** (see the non-metallic growth family below). Instances:
-
-- **Golden area growth castle** — the prime-castle-by-area count `2^{n−1} − F_{n−1}` ([[castle-by-area](pages/castle-by-area.md)], Fibonacci-dominated in `Q(√5)`), and **all castles of height ≤ 2 by area** = Fibonacci A000045 ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]). The latter is the `h = 2` rung of the n-nacci family.
-- **Non-metallic area growth castles** (the large majority): the **n-nacci family** — all castles of height `≤ h` by area, growing at the `h`-step Fibonacci constant, of which `h = 3` is the **tribonacci constant** `≈ 1.8393` ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]) — and the **cubic-Pisot** area growth constants of the tree-castle family: **supergolden** `≈ 1.4656` (Narayana's cows, `h = 2` tree castles) and **plastic-squared** `ψ² ≈ 1.7549` (`h → ∞` tree castles, [[tree-castle-by-area](pages/tree-castle-by-area.md)], [[plastic-number](pages/plastic-number.md)]). None of these is a metallic mean.
-- **Transcendental negative example** — [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] (`A001523`) has an area growth constant that is *not even algebraic* (transcendental, from the partition-function saddle-point analysis), so weakly-unimodal castles by area are not a growth castle for any algebraic constant — the outer boundary of the area axis.
-
-The **block growth axis** grades by block count. [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] gives the block-count generating function structure; growth-constant analysis pending.
-
-### What the meta-classification enables
-
-**Cross-type theorems become stateable.** The interesting move Axis 8 licenses is statements of the form *"every class of type X is also of type Y"* where X is a structural (Axis 1-7) type and Y is a growth-type. Some concrete instances:
-
-- **Every height-2 tree-castle class is a golden width growth castle.** (Immediate — "no two adjacent raised columns" is the Fibonacci strip.)
-- **Every silver width growth castle has a dominant eigenvalue in `Q(√2)`.** (Immediate from Lagrange — periodic-in-CF means quadratic irrational; growth constant `1 + √2` sits in `Q(√2)`.)
-- **The tower word (a Motzkin-path-with-run-constraint type) is a silver width growth castle.** (Non-trivial — algebraic GF, singularity at `√2 − 1`; the Motzkin-path type is Axis 3 and the silver growth type is Axis 8, so the two axes are linked by a real theorem, not a definition.)
-- **Every height-`≤ h` castle class is a `h`-nacci area growth castle; imposing the Axis-9 tree constraint changes the growth constant.** (The non-metallic analogue — the tree ban strictly lowers the area growth rate: at `h = 3`, all-castles-by-area is **tribonacci** `≈ 1.8393` but tree-castles-by-area is A006498 with **golden** growth `φ`; at `h = 2` it drops Fibonacci to supergolden; at `h → ∞` it drops `2` to plastic-squared `ψ²`. So the same structural predicate (tree, Axis 9) maps one Axis-8 growth type to another, differently at each height — a real cross-axis interaction, not a definition.)
-
-Cross-axis-8 theorems (relating growth types under different axes) are the frontier: for instance, *"does every silver width growth castle become a bronze area growth castle when re-graded?"* — likely false, but stateable and testable.
-
-### Naming precedence and the wiki convention
-
-- **Meta-types are Axis 8.** They coexist with, do not replace, Axes 1-7. A castle can be simultaneously "unimodal (Axis 1) + silver width growth castle (Axis 8)"; the two are compatible descriptions from independent axes.
-- **Always spell out the axis.** No "silver castle" as short form; the wiki uses "silver width growth castle" or the appropriate axis explicitly. Prevents the ambiguity between the four growth axes.
-- **Only known members get named types.** If nothing on the wiki grows like copper, "copper width growth castle" is a valid empty class — it exists as a definition — but does not appear in the wiki's active vocabulary until a member is identified.
-
-This is the classification axis the "Metallic-ratio ladder" thread on `IDEAS.md` tracks.
-
-## Axis 9: Spectral predicates on the castle's polyomino graph
-
-Axes 1-7 predicate on the **skyline** `(c_1, …, c_w)`; Axis 8 predicates on a **class's growth constant**. Axis 9 predicates on the **spectrum of a graph derived from the individual castle** — treat the filled cells as vertices with orthogonal-adjacency edges, and read off eigenvalues of the adjacency matrix, combinatorial Laplacian, or a related operator. This turns "castle shape" into "graph spectrum" and lets number-theoretic and spectral-graph-theoretic predicates cut across the structural axes.
-
-Axis 9 is not fully written up yet — this section stubs the axis, populates its first named type (Ramanujan castle), and forward-links the four other spectral methods identified in the S-Division seminar plan on `IDEAS.md`. Each expected member is a **single-castle predicate**, distinct from Axis 8's per-class growth predicates.
-
-### Ramanujan castle
-
-A castle `C` is a **Ramanujan castle** iff, treating its filled cells as a graph with orthogonal-adjacency edges, its non-trivial adjacency eigenvalues `λ` (i.e. `λ ≠ ± d_max`) satisfy
-
-```
-|λ|  ≤  2 · √(d − 1)
-```
-
-where `d` is the maximum vertex degree. The bound is the **Alon-Boppana threshold** — the smallest asymptotic spectral radius achievable by an infinite family of `d`-regular graphs, and the defining property of Ramanujan graphs in arithmetic combinatorics (Lubotzky, Phillips, Sarnak; Margulis). Ramanujan castles are, informally, "the spectrally most expander-like castles at given size" — their adjacency graphs are as close to the theoretical mixing-optimum as possible.
-
-The castle graph is not regular in general (interior cells have degree 4, edge cells have degree 3, corner cells degree 2), so the strict definition invokes the **max-degree** form of the bound; refinements to the bipartite-Ramanujan condition or to spectra of the non-backtracking / Ihara-adjacency operator (see the Ihara-zeta seminar on `IDEAS.md`) are the natural generalizations. Structural-axis castles whose Ramanujan status is worth checking first:
-
-- **Boxcastle** (Axis 5) — the full `w × h` rectangle graph. Its spectrum is known: `2·(cos(iπ/(w+1)) + cos(jπ/(h+1)))` for `1 ≤ i ≤ w, 1 ≤ j ≤ h`. Whether it hits the Ramanujan bound depends on `w, h`.
-- **Hook** (Axis 5) — the L-shape. Small, spectrum computable by hand.
-- **Ferrers / staircase** (Axis 1) — the standard partition-shape polyominoes; their Laplacian spectra have partial classical results.
-- **Crenellated / battlement** (Axis 7) — alternating heights; highly regular local structure, likely a Ramanujan candidate for suitable `w, h`.
-
-**The Ramanujan castle is a photogenic classification target.** A "smallest Ramanujan castle" or "smallest non-trivial Ramanujan castle at each `(w, h)`" would be a clean result — pure combinatorics, small computer search, and directly ties castle shape to a deep number-theoretic notion of graph optimality.
-
-### Tree castle
-
-A castle graph is a tree iff no `2×2` block is fully filled, iff no two horizontally adjacent columns both have height at least 2. Tree castles are Axis 9's simplest named type: single-castle, structural (a skyline predicate), and graph-theoretic (`G_c` is a tree). Counted **by width** by the transfer matrix `T_h(w+2) = T_h(w+1) + (h−1) T_h(w)` with growth constant `(1 + √(4h − 3))/2`, they hit named OEIS sequences at every height: **Fibonacci** at `h = 2` (`T_2(w) = F_{w+2}`), **Jacobsthal** at `h = 3` (`T_3(w) = J_{w+2}`), then A006130, A006131, … . Tree castles of height 2 are a **golden width growth castle** in Axis 8's terminology, giving the tree-castle family a rung on the metallic ladder without leaving Axis 9. Counted **by area** ([[tree-castle-by-area](pages/tree-castle-by-area.md)]) they instead realize the non-metallic **cubic-Pisot** growth constants — supergolden at `h = 2` (Narayana's cows A000930), plastic-squared `ψ²` at `h → ∞` (A005251) — so tree castles are supergolden / plastic-squared **area growth castles** (Axis 8 non-metallic slot). The unrestricted (non-tree) counterpart, all castles of height `≤ h` by area, is the **n-nacci** family (tribonacci at `h = 3`; [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]) — the tree constraint is exactly what turns the n-nacci constants into the term-skipping cubic-Pisot ones. Full details on [[castle-graph](pages/castle-graph.md)].
-
-### Golden-spectrum and silver-spectrum castles
-
-The first Axis 9 types with computed members ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]). A castle is a **golden-spectrum castle** if its adjacency spectral radius is `φ`, a **silver-spectrum castle** if it is `1 + √2`, and a **golden-squared-spectrum castle** if it is `φ²`. Census over all castles with `w ≤ 6, h ≤ 6` and `w = 7, h ≤ 5`:
-
-- golden: the six 4-cell castles whose graph is the path `P_4` - `(4)`, `(1,3)`, `(3,1)`, `(1,1,2)`, `(2,1,1)`, `(1,1,1,1)`; no other size can qualify (a connected graph with spectral radius below 2 is a path or a star).
-- silver: the `3×2` rectangle `(3,3) = (2,2,2)` (`P_2 × P_3`) and three non-rectangular mirror pairs, `(1,2,3,1,2,3)`, `(2,1,6,2,1,3)`, `(1,1,2,4,1,3,1)`, each with `x² − 2x − 1` dividing its characteristic polynomial exactly.
-- golden-squared: `(4,4)` (`P_2 × P_4`) and `(1,3,2,3,1)`.
-
-Copper `2 + √5 = 4.236` and every higher metallic mean are impossible for any castle graph (maximum degree 4, spectral radius below 4). Bronze `3.303` is open - absent up to the scanned size. These are single-castle predicates, distinct from Axis 8's per-class growth constants: PE 502's own signed transfer matrix never has a metallic eigenvalue, so the metallic means reach individual castles only through their polyomino graphs.
-
-### Sketched additional Axis-9 types (S-Division seminar targets)
-
-Not yet populated on the wiki, but the following spectral predicates would sit here when they land:
-
-- **Isospectral castles** - a *pair* predicate (two non-isomorphic castles with the same spectrum), now populated on [[isospectral-castles](pages/isospectral-castles.md)]: the smallest adjacency-isospectral pair has 10 cells (`(1,1,1,2,3,2)` and `(1,1,2,2,3,1)`), the smallest Laplacian-isospectral pair 11 cells (two trees, `(1,1,1,2,1,1,2,1,1)` and `(1,1,3,1,1,1,2,1)`), the smallest pair isospectral for both operators 16 cells; exhaustive to 16 cells, with 50 adjacency groups already at 16.
-- **Sparse-spectrum castle** — a predicate on the skyline discrete Fourier transform (DFT) `ĉ_k`: the individual castle has `supp(ĉ) ⊆ S` for some fixed small set `S`. The Axis-7 **crenellated** type is exactly the two-atom DFT-support case (energy at `k = w/2`). The general sparse-spectrum classification (which sparse-support sequences are valid castles?) hooks into compressed sensing and turnpike reconstruction. See the S-Division `Skyline DFT — individual-castle signatures` thread.
-- **Low-pass / high-pass castle** — a soft version of sparse-spectrum: the castle's DFT energy is concentrated in low-k modes (smooth mountain-shaped skyline) or high-k modes (jagged crenellation). Not a hard predicate but a natural spectral-concentration classifier.
-- **Ihara-Ramanujan castle** — the Ramanujan condition transferred to the spectrum of the Ihara / non-backtracking operator rather than the adjacency operator. Arithmetic-combinatorial invariant analogous to Selberg zeta for hyperbolic surfaces. Longer-horizon; see the S-Division `Ramanujan castles / Ihara zeta` thread.
-
-[[spectral-analysis](pages/spectral-analysis.md)] is the toolkit-side companion to this axis — this axis catalogs the *predicates on individual castles*; that page catalogs the *methods for computing spectra*. The two evolve together: a completed spectral method + a satisfied predicate = a named castle type. Ramanujan castle is the current live pairing (method: Ihara / adjacency-spectrum; predicate: Alon-Boppana bound).
-
-## Open threads this classification opens
-
-The taxonomy makes explicit which sub-families the wiki has, which are candidates, and which are open. The largest open groupings, in rough order of tractability:
-
-1. **k-modal** for `k ≥ 2` — a parametric family whose `k = 1` case is [[convex-castle](pages/convex-castle.md)] (binomial); `k = 2, 3, …` are genuinely open with no candidate closed form.
-2. **m-smooth / m-disparate** for `m ≥ 2` — a paired family; `m = 1` collapses to Motzkin-path.
-3. **Symmetry types** (palindromic, centrally symmetric, self-conjugate) — untouched.
-4. **Rainbow** — direct permutation-classification tie, immediate seminar target for the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] triad.
-5. **Alternative realizations of the bronze / copper / nickel width growth castles** — the ceiling-exception rule `J − D` at height `h = a + 1` realizes the whole metallic ladder (silver has three; bronze and above have only that one so far). Do any of the higher rungs admit a second, structurally distinct castle-strip rule the way silver does?
-6. **Even-peak** — parity via peak count rather than block count; genuinely different from [[castle-sign](pages/castle-sign.md)]'s `(−1)^blocks`.
-7. **Ramanujan castles** (Axis 9) — the first named spectral-graph-theoretic type: castles whose non-trivial adjacency eigenvalues satisfy the Alon-Boppana bound `|λ| ≤ 2√(d−1)`. Photogenic seminar target; small computer search over structural sub-families (boxcastle, hook, staircase, crenellated) is the natural first pass.
-8. **Remaining Axis-9 spectral types** — sparse-spectrum, low/high-pass, Ihara-Ramanujan. Isospectral pairs are populated on [[isospectral-castles](pages/isospectral-castles.md)] and tree / golden- / silver- / φ²-spectrum castles on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]; the three sketched types are the S-Division seminar targets on `IDEAS.md`.
-9. **Compressibility** — the description-tier axis of [[castle-compression](pages/castle-compression.md)] (parametric / rule-generated / generic) cross-cuts Axes 1-7: it separates "irregular because generated by a short rule" from "irregular because generic," a distinction no skyline predicate expresses.
+1. **k-modal** for `k ≥ 2` - the parametric family whose `k = 1` case is [[convex-castle](pages/convex-castle.md)] (binomial).
+2. **m-smooth / m-disparate** for `m ≥ 2` - a paired family; 1-smooth is strip-counted.
+3. **Symmetry types** (palindromic, centrally symmetric, self-conjugate) - untouched.
+4. **Rainbow** - direct permutation-classification tie, immediate seminar target for the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] triad.
+5. **Alternative realizations of the bronze / copper / nickel width growth castles** - the ceiling-exception rule realizes the whole ladder; does any higher rung admit a second, structurally distinct rule the way silver does?
+6. **Even-peak** - parity via peak count rather than block count.
+7. **Ramanujan castles** - the universal-cover definition is stated; the census over small castles with a `2×2` block has not been run.
+8. **Remaining Axis-9 spectral types** - sparse-spectrum, low/high-pass, Ihara-Ramanujan; the S-Division seminar targets on `IDEAS.md`.
+9. **Compressibility** - the description-tier axis of [[castle-compression](pages/castle-compression.md)] as a classifier in its own right.
 
 ## Related Concepts
 
-- [[castle-polyomino](pages/castle-polyomino.md)] — the base object.
-- [[castle-representations](pages/castle-representations.md)] — the skyline `(c_1, …, c_w)` is the integer-tuple encoding this classification predicates on.
-- [[convex-castle](pages/convex-castle.md)] / [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] — the unimodal (row-convex) type.
-- [[polyominoes](pages/polyominoes.md)] / [[column-convex-polyomino](pages/column-convex-polyomino.md)] / [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] — the base-type home literature.
-- [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the unimodal-skyline (single-peak) family from Analytic Combinatorics (AC) Ex. I.8.
-- [[dyck-words](pages/dyck-words.md)] / [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — the Dyck-path / Motzkin-path types.
-- [[metallic-means](pages/metallic-means.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] — the metallic (quadratic) side of the Axis-8 growth-constant classification.
-- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] — the n-nacci area growth family (Fibonacci, tribonacci, tetranacci, …), the non-metallic side of Axis 8.
-- [[tree-castle-by-area](pages/tree-castle-by-area.md)] / [[plastic-number](pages/plastic-number.md)] — the cubic-Pisot area growth constants (supergolden, plastic-squared) and the plastic number's spectral appearance.
-- [[castle-by-area](pages/castle-by-area.md)] — where several types (even-area, valley) are counted.
-- [[castle-sign](pages/castle-sign.md)] / [[castle-foata-transform](pages/castle-foata-transform.md)] — the parity / peak-count / record statistics several types predicate on.
-- [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the framework the rainbow type maps onto directly.
-- [[castle-snippets](pages/castle-snippets.md)] — tested Python one-liners for each of the classification predicates on this page.
-- [[spectral-analysis](pages/spectral-analysis.md)] — the methods hub paired with Axis 9's spectral predicates.
-- [[aocp-permutations](pages/aocp-permutations.md)] / [[aocp-combinatorics](pages/aocp-combinatorics.md)] — the rainbow type's count `h!` and its Mahonian inversion grading.
-- [[unique-tournament](pages/unique-tournament.md)] — the `A000570` growth constant `α ≈ 1.685` in the non-metallic Axis-8 slot.
-- [[castle-compression](pages/castle-compression.md)] — compressibility as a cross-cutting axis (open thread 9).
+- [[castle-classification-geometric](pages/castle-classification-geometric.md)] - the shape-based catalogue: base 7 types and 35 proposed types across Axes 1-7.
+- [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] - growth-type (Axis 8), spectral (Axis 9), and compressibility classification.
+- [[castle-polyomino](pages/castle-polyomino.md)] - the base object.
+- [[castle-representations](pages/castle-representations.md)] - the skyline `(c_1, …, c_w)` is the integer-tuple encoding the geometric predicates read.
+- [[castle-graph](pages/castle-graph.md)] - the polyomino graph the spectral predicates read.
+- [[castle-strip](pages/castle-strip.md)] - the construction-rule object whose growth constant places a class on Axis 8.
+- [[castle-sign](pages/castle-sign.md)] - the parity projector applied on top of any type.
+- [[convex-castle](pages/convex-castle.md)] - the type whose block count is fixed by its shape.
+- [[spectral-analysis](pages/spectral-analysis.md)] - the methods hub paired with the spectral predicates.
+- [[castle-compression](pages/castle-compression.md)] - compressibility as a cross-cutting axis.
+- [[castle-snippets](pages/castle-snippets.md)] - tested Python one-liners for the geometric predicates and the castle-graph primitives.
 
 ## Footnotes
 
-[^1]: raw/castle-types.wiki L1-L9 — "A castle on a w × h grid is determined by its skyline, the sequence of column heights c_1, c_2, …, c_w with 1 ≤ c_i ≤ h and max_i c_i = h. (Problem 502 also requires an even number of blocks; the types below mostly ignore, or independently re-impose, that parity rule.) Every castle is automatically column-convex and bottom-aligned, so each type is a further restriction on the skyline." (Source: https://charlesreid1.com/wiki/Project_Euler/502/Castle_Types, fetched 2026-09-15.)
-[^2]: raw/castle-types.wiki §"Base types" L11-L19 — the 7 base types: column-convex, unimodal (`c_1 ≤ … ≤ c_p ≥ … ≥ c_w`), directed (every cell reachable from bottom-left by east/north path), parallelogram (perpendicular-to-main-diagonal sections are connected), Ferrers (`c_1 ≥ … ≥ c_w`), staircase (Ferrers with strict inequality — all distinct heights), m-disparate (`|c_{i+1} − c_i| ≥ m`).
-[^3]: raw/castle-types.wiki §"Proposed additional types" L21-L57 — the 35 proposed types, numbered 1-35: convex/row-convex, reverse Ferrers, strictly unimodal, bimodal, k-modal, anti-unimodal (V-shaped), plateau-free, m-smooth (Lipschitz), zigzag, alternating parity, palindromic, centrally symmetric, Dyck-path, Motzkin-path, flat-top, single-summit, even-area, even-peak, equal-block, two-level, self-conjugate, crenellated, moated, rainbow, hook, twin-peak, single-valley, fence-post, linear, convex-skyline (second differences ≥ 0), concave-skyline (≤ 0), triangular-area, prime-top, integer-mean, boxcastle.
+[^1]: raw/castle-types.wiki L1-L9 - "A castle on a w × h grid is determined by its skyline, the sequence of column heights c_1, c_2, …, c_w with 1 ≤ c_i ≤ h and max_i c_i = h. (Problem 502 also requires an even number of blocks; the types below mostly ignore, or independently re-impose, that parity rule.) Every castle is automatically column-convex and bottom-aligned, so each type is a further restriction on the skyline." (Source: https://charlesreid1.com/wiki/Project_Euler/502/Castle_Types, fetched 2026-09-15.)
+[^2]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §1 L25-33 - "#blocks >= max(c) = h, with equality iff the profile is unimodal ... a convex castle of height h has exactly h blocks, and convex castles are exactly the minimum-block castles".
+[^3]: raw/castle-types.wiki §"Base types" L11-L19 and §"Proposed additional types" L21-L57 [synthesis] - the 7 base types and the 35 numbered proposed types, all stated as skyline predicates.

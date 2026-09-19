@@ -115,7 +115,7 @@ even = sum(1 for c in all_castles(4, 2) if blocks(c) % 2 == 0)
 Also matches the [[castle-counting-formula](pages/castle-counting-formula.md)] `F(4,2) = ½(16 − 1 + 4 + 1) = 10` and the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] hand check. The ten castles are those whose second row has an odd number of runs of `1`s ([[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)]); at width 4 that is exactly one run, and `all_castles(5, 2)` adds the three-run row `10101` to make `F(5,2) = 16`.
 
 
-## Classification predicates — Axes 1-7 of [[castle-classification]]
+## Classification predicates — Axes 1-7 of [[castle-classification-geometric](pages/castle-classification-geometric.md)]
 
 Each predicate takes a skyline `c` (a tuple or list of positive ints) and returns `bool`. Some also take `h` when the type is parameterized by height.
 
@@ -161,7 +161,7 @@ True
 False
 ```
 
-Wiki ties: [[convex-castle](pages/convex-castle.md)] (unimodal), [[polyominoes](pages/polyominoes.md)] (Ferrers/staircase in the taxonomy), [[castle-classification](pages/castle-classification.md)] Axis 1.
+Wiki ties: [[convex-castle](pages/convex-castle.md)] (unimodal), [[polyominoes](pages/polyominoes.md)] (Ferrers/staircase in the taxonomy), [[castle-classification-geometric](pages/castle-classification-geometric.md)] Axis 1.
 
 ### Axis 2: Rate of change
 
@@ -187,7 +187,7 @@ False
 True
 ```
 
-Wiki ties: [[castle-classification](pages/castle-classification.md)] Axis 2. Note `is_m_smooth(c, 1)` is exactly the **Motzkin-path** predicate for the interior — see Axis 3 below.
+Wiki ties: [[castle-classification-geometric](pages/castle-classification-geometric.md)] Axis 2. Note `is_m_smooth(c, 1)` is the **Motzkin-path** predicate without its endpoint condition `c_1 = c_w = 1` — see Axis 3 below.
 
 ### Axis 3: Path-like
 
@@ -198,8 +198,9 @@ def is_dyck_path(c, h):
         and all(abs(c[i+1] - c[i]) == 1 for i in range(len(c)-1)))
 
 def is_motzkin_path(c):
-    """|Delta| <= 1 always (Dyck-path with flat steps allowed)."""
-    return all(abs(c[i+1] - c[i]) <= 1 for i in range(len(c)-1))
+    """c_1 = c_w = 1, |Delta| <= 1 always (Dyck-path with flat steps allowed)."""
+    return (c[0] == 1 and c[-1] == 1
+        and all(abs(c[i+1] - c[i]) <= 1 for i in range(len(c)-1)))
 ```
 
 ```
@@ -230,7 +231,7 @@ True
 True
 ```
 
-Wiki tie: [[castle-classification](pages/castle-classification.md)] Axis 4.
+Wiki tie: [[castle-classification-geometric](pages/castle-classification-geometric.md)] Axis 4.
 
 ### Axis 5: Extremum / value patterns
 
@@ -258,7 +259,7 @@ True
 True
 ```
 
-Wiki ties: [[castle-classification](pages/castle-classification.md)] Axis 5. **Rainbow castles are in bijection with `S_h`** — the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] triad applies directly (not as an upgrade) to this class.
+Wiki ties: [[castle-classification-geometric](pages/castle-classification-geometric.md)] Axis 5. **Rainbow castles are in bijection with `S_h`** — the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] triad applies directly (not as an upgrade) to this class.
 
 
 ## Graph and enumeration primitives (Axis 9, tree predicate)
@@ -287,7 +288,7 @@ def castle_graph(c):
 [[0, 1, 1, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 1, 0], [0, 0, 1, 0, 1], [0, 0, 0, 1, 0]]
 ```
 
-Meaning: swap in `L = np.diag(A.sum(1)) - A` for the combinatorial Laplacian; feed to `numpy.linalg.eigvalsh` for the spectrum; feed to `sympy.Matrix(...).charpoly(x)` for the exact characteristic polynomial. All Axis 9 predicates on [[castle-classification](pages/castle-classification.md)] are one line off this.
+Meaning: swap in `L = np.diag(A.sum(1)) - A` for the combinatorial Laplacian; feed to `numpy.linalg.eigvalsh` for the spectrum; feed to `sympy.Matrix(...).charpoly(x)` for the exact characteristic polynomial. All Axis 9 predicates on [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] are one line off this.
 
 
 ### `is_tree_castle(c)` / `cycle_rank(c)` → tree predicate and cycle rank
@@ -316,7 +317,7 @@ Meaning: the last line is `F_{w+2}` for `w = 1..8`. Tree castles of height at mo
 
 ### `castle_graph_radius(c)` → float
 
-Largest adjacency eigenvalue of the castle's polyomino graph (cells as vertices, orthogonal neighbors as edges) - the Axis 9 statistic of [[castle-classification](pages/castle-classification.md)] and the census on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]. Requires NumPy.
+Largest adjacency eigenvalue of the castle's polyomino graph (cells as vertices, orthogonal neighbors as edges) - the Axis 9 statistic of [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] and the census on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]. Requires NumPy.
 
 ```python
 import numpy as np
