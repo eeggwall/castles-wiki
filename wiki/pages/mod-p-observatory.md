@@ -5,7 +5,7 @@ summary: F(w,h) mod p is eventually periodic in each direction, the period being
 tags: [analysis, castle, modular-arithmetic, periodicity, automaticity, sympy]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502]
 created: 2026-09-14
-updated: 2026-09-16
+updated: 2026-09-19
 ---
 
 # Mod-p observatory for F(w,h)
@@ -172,6 +172,7 @@ for h in range(2, 6):
 - [[signed-tower-count](pages/signed-tower-count.md)] — `char_k` over ℚ and the `(−1)^{k−1}2^k` constant term that guarantees pure periodicity.
 - [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] — the mod-`10^9+7` path whose C-finiteness (not its period) is what's exploited.
 - [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the real-number twin of this page: continued-fraction periods of the eigenvalues, the norm-`−1` signature (`δ^{p+1} = −1` at inert primes) read on both sides, and the `2·p^{⌈log_p L⌉}` k-direction period.
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] — `F(w,3)`, whose char poly contains `x² − x + 2` (discriminant `−7`): its period mod 7 inherits the `(x+3)²` double root above.
 
 ## Footnotes
 

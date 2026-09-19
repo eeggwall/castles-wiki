@@ -5,7 +5,7 @@ summary: The second lap of the build / red-team / blue-team loop on the castle c
 tags: [analysis, seminar, cryptography, cryptanalysis, red-team, blue-team, pohlig-hellman, baby-step-giant-step, berlekamp-massey, linear-complexity, elgamal, schnorr, signature, finite-field, cyclotomic, index-calculus, key-size, castle]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # Castle cryptography, round two
@@ -237,6 +237,8 @@ A builder who never runs step 4 declares victory after Fix 1. A breaker who neve
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - why `char_2` factors, and the root coincidence `λλ̄ = 2` behind the `d = 3` complexity deficits.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the roots `1 ± i` of `char_1` whose eighth power is the scalar `16`.
 - [[castle-snippets](pages/castle-snippets.md)] - `castle_dlp`, `bm_modp`, `castle_schnorr`, all pinned with executed output.
+- [[castle-compression](pages/castle-compression.md)] - the linear-complexity bound `C(d+e−1, e)` measures how much a nonlinear filter inflates a sequence's shortest linear description.
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `F(w,3)` is a public castle count with `char_2 = (x−2)(x²−x+2)` inside its characteristic polynomial; the root coincidence `λλ̄ = 2` is the shared `(x−2)` that drops its order to 6.
 
 ## Footnotes
 

@@ -5,7 +5,7 @@ summary: A from-scratch, engineer-facing explainer for the three terms the castl
 tags: [analysis, cryptography, number-theory, characteristic-polynomial, irreducible-polynomial, discrete-logarithm, finite-field, pedagogy, engineer, castle]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # Castle cryptography — the number theory, for engineers
@@ -136,6 +136,7 @@ The engineer's one-liner: **a composite structure is only as strong as its weake
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - recovers the char poly from the output; the linearity attack no modulus choice fixes.
 - [[signed-tower-count](pages/signed-tower-count.md)] / [[generating-function-gallery](pages/generating-function-gallery.md)] - where the `char_k` characteristic polynomials come from, and the even/odd factorization pattern.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - why even-`k` `char_k` factors (the structural fact that becomes the reducibility weakness).
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] - the height-3 castle count `F(w,3)` carries the reducible `char_2` as a factor, so its recurrence order drops from 7 to 6 by the same `(x−2)` factor that splits the DLP.
 
 ## Footnotes
 

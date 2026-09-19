@@ -5,7 +5,7 @@ summary: The fast way to get one far-off term of a linear recurrence - reduce x^
 tags: [concept, algorithm, linear-recurrence, kitamasa, method, c-finite, pedagogy, teaching]
 sources: [project-euler-502-solution, project-euler-502-implementation-notes, generating-functions-topic, oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-09-16
+updated: 2026-09-19
 ---
 
 # Kitamasa
@@ -203,6 +203,7 @@ The textbook way to jump a recurrence is the **companion (transfer) matrix** *M*
 - [[recurrence-discovery](pages/recurrence-discovery.md)] - the recurrence orders in each direction, established by Berlekamp–Massey.
 - [[castle-snippets](pages/castle-snippets.md)] - the run-it-first discipline the Python section follows; enumeration one-liners for cross-checks.
 - [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)] - a polyomino family whose count collapses to a short linear recurrence, the C-finite phenomenon Kitamasa exploits.
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `F(w,3) = (3^w − 2^w − P(2,w) + P(1,w))/2`: the `P(2,·)` jumped to `L = 10^6` in Worked example 2 is one of its four components.
 
 ## Footnotes
 

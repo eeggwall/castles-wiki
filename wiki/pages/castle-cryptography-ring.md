@@ -5,7 +5,7 @@ summary: The baseline seminar of the castle cryptography series - the algebra ev
 tags: [analysis, seminar, cryptography, ring, finite-field, quotient-ring, linear-recurrence, characteristic-polynomial, kitamasa, diffie-hellman, chinese-remainder-theorem, mod-p-observatory, baseline, pedagogy, implementation, castle]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # Castle cryptography, seminar 1 - the ring
@@ -208,6 +208,7 @@ Each of these is a *legitimate* question about the object we just built, sitting
 - [[recurrence-discovery](pages/recurrence-discovery.md)] - the recurrence order and how the char poly is discovered from data (a nice bookend to §1's "assumed known").
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the roots of `char_k` and their continued fractions; the same eigenvalues whose orders §2 takes the lcm of.
 - [[castle-snippets](pages/castle-snippets.md)] - `castle_dh` pinned; the `mulmod` / `powmod` / `p_signed` primitives used throughout.
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `F(w,3)`, an order-6 castle count whose characteristic polynomial contains this seminar's modulus `char_2 = (x−2)(x²−x+2)`.
 
 ## Footnotes
 

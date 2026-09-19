@@ -5,7 +5,7 @@ summary: The rational generating functions F_k(x) = num_k/den_k of P(k,L) in L, 
 tags: [analysis, castle, generating-functions, c-finite, sympy, verification]
 sources: [project-euler-502-solution, oeis-mining-pe502]
 created: 2026-09-14
-updated: 2026-09-16
+updated: 2026-09-19
 ---
 
 # Generating-function gallery for P(k,L)
@@ -197,6 +197,7 @@ This checks `k = 8` too — the recurrence, not the hand-listed table, is the so
 - [[generating-functions](pages/generating-functions.md)] — the ordinary-GF toolkit behind a linear recurrence ⇒ rational GF.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] — these `char_k` polynomials reduced mod p, whose root orders set the periods.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the symmetry behind the even-`k` factorization, the closed-form factors `H_d`, `V_d`, and the plastic-number eigenvalue `ρ_6 = 2ψ²` ([[plastic-number](pages/plastic-number.md)]).
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] — `Σ_w F(w,3) x^w = ½(1/(1−3x) − 1/(1−2x) − F_2(x) + F_1(x))` exactly (verified to `w = 13`); the gallery's `F_1, F_2` are its signed components.
 
 ## Footnotes
 
