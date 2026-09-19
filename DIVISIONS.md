@@ -1,6 +1,6 @@
 # Divisions
 
-Seven letters partition the castle wiki's research surface. Each Division has a one-line descriptor in four parts, a conceptual coverage list, and a set of crossovers with the other letters. The Divisions here supersede the Division headings in `IDEAS.md`: Numbers -> N, Enumeration -> E, Q -> Q, S -> S, T -> T, and Classification and Miscellaneous both -> Z. R is new and gathers the representation pages that no earlier Division claimed.
+Eight letters partition the castle wiki's research surface. Each Division has a one-line descriptor in four parts, a conceptual coverage list, and a set of crossovers with the other letters. The Divisions here supersede the Division headings in `IDEAS.md`: Numbers -> N, Enumeration -> E, Q -> Q, S -> S, T -> T, and Classification and Miscellaneous both -> Z. R is new and gathers the representation pages that no earlier Division claimed. F is new and has no pages yet; its ten founding items are in `IDEAS.md`.
 
 Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Crossover names are hooks (a titled subplot), not descriptions of theme.
 
@@ -13,6 +13,7 @@ Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Cros
 - **Q - q-Analogues:** area gradings, q-generating functions, joint statistics, and the bijections that preserve area.
 - **S - Spectra:** castle graphs, transfer and kernel eigenvalues, isospectral pairs, and what a castle sounds like.
 - **T - Transcendentals:** samplers, limit laws, geometric probability, and pi pulled out of castle ensembles.
+- **F - Fractional:** non-integer orders, power-law memory, interpolated statistics, and dense operators where the integer castle has sparse ones.
 
 ## Conceptual coverage
 
@@ -83,6 +84,16 @@ Z absorbs both the Classification and Miscellaneous Divisions from `IDEAS.md`. T
 - Random walks on castle graphs: return, cover, hitting times; loop-erased walk and conformal invariance.
 - Beyond pi: Catalan's `G`, `zeta(3)`, `gamma`; and the algebraic-transcendental wall as the reason any of this is hard.
 
+### F - Fractional
+
+- The three definitions on three castle objects: Grunwald-Letnikov on skylines (binomially weighted column differences), Riemann-Liouville on generating functions (`(1 - x)^{-alpha}`), Caputo on recurrences (initial terms preserved).
+- Interpolated statistics: the fractional block count `B_alpha` with area and block count as its endpoints; `Z(q, alpha)` joining the area GF to the Narayana block polynomial.
+- Interpolated arguments: fractional width via `M^{w-1}`, fractional height via the quasi-polynomial in `k`; the parity clause as a branch cut; the half-column embedding problem.
+- Fractional sums and transforms: Cesaro half-sums and the `sqrt(pi)` in `Gamma(1/2)`; Mittag-Leffler GFs between OGF and EGF; fractional recurrences and the constants no strip realizes.
+- Anomalous diffusion on the castle graph: the comb model and time-fractional order `1/2`; Levy flights and the space-fractional Laplacian; fractional heat traces.
+- Long memory: Hurst exponents and ARFIMA order of real skylines; power-law memory strip rules and their dense truncated transfer matrices.
+- Fractional powers in finite rings: roots of `x^w` in `F_p[x] / (char)` and the half-step oracle.
+
 ## Crossovers
 
 | Pair | Hook | Subplot |
@@ -103,5 +114,12 @@ Z absorbs both the Classification and Miscellaneous Divisions from `IDEAS.md`. T
 | T/E | counting turned into drawing | rank/unrank, Gray codes, and transfer matrices as samplers |
 | T/N | the algebraic wall | castle constants are algebraic units, pi is not; where the two worlds touch |
 | T/Z | needles dropped on the zoo | random-rule ensembles and geometric probability across variant families |
+| F/Q | one statistic, two orders | area at `alpha = 0`, block count at `alpha = 1`, and the partition function that joins them |
+| F/E | half a column | fractional width, the branch cut the parity clause forces, and which rules are two steps of a finer rule |
+| F/T | the `sqrt(pi)` door | half-sums carry `Gamma(1/2)` in an exact coefficient; a second way through the algebraic wall |
+| F/N | the rungs between rungs | growth constants of fractional recurrences as the complement of the reachable-field census |
+| F/S | the castle is a comb | subdiffusion at order `1/2` on tree castles, Levy flights on the polyomino graph, fractional heat traces |
+| F/R | the Hurst exponent of a skyline | ARFIMA order as the compressibility knob and a rule-detector statistic |
+| F/Z | long-memory specimens | real skylines (image rows, audio, tones) placed by their fractional integration order |
 
 Not yet named: Q/S has no page behind it, and Q/T exists only through area CLTs, which already sit in T/E.
