@@ -28,7 +28,7 @@ See `wiki/pages/oeis-cross-referencing.md`.
 - [ ] **Tier 3:** difference-of-powers fillers (A000225, A001047, …) and the dense-entry
   synonyms A001523 / A332578 / A115981 (`raw/oeis-pe502/xrefs/*-castle.md`).
 - [ ] **New sequence:** `F(w,3)` (`raw/oeis-pe502/new-sequence-F3.md`;
-  `wiki/pages/new-sequence-fw3.md`). Then siblings: `F(w,4)`, `F(w,5)`, `odd(w,h≥3)`,
+  `wiki/pages/new-sequence-fw3.md`). Re-searched oeis.org 2026-09-19: still no match. Then siblings: `F(w,4)`, `F(w,5)`, `odd(w,h≥3)`,
   parity-refined area sequences (`cev+cod = A001523`), `strict_valley`, tower rows `w≥6`,
   and the `P(k,·)` families for `k≥2`.
 

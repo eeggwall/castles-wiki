@@ -35,7 +35,7 @@ The status is the discipline: *novel-candidate* means someone actually searched 
 - **Castle count interpretations** (34) - sequences the wiki claims as counts of a castle-native object. These are the *interlinking targets*: candidates for submitting new OEIS comments or formulas that read the sequence as a castle count.
 - **Continued fractions / metallic ladder** (22) - the [[metallic-means](pages/metallic-means.md)] `δ_a` family, its companion / trace sequences, and the OEIS convergent tables for `√(a²+4)`.
 - **Plastic-number neighborhood** (3) - the sequences behind [[plastic-number](pages/plastic-number.md)] ψ.
-- **Supporting sequences** (9) - cross-references, ambient polyomino counts, and OEIS entries that appear as neighbors or components of a castle result.
+- **Supporting sequences** (25) - cross-references, ambient polyomino counts, and OEIS entries that appear as neighbors or components of a castle result.
 
 ## Directory
 
@@ -132,8 +132,24 @@ A-numbers link to OEIS. "Pages" is where the number appears in this wiki, with t
 | [A038504](https://oeis.org/A038504) | Sum of every 4th entry of row n in Pascal's triangle, starting at "n choose 1". | sum of every 4th binomial (hyperbolic family, k=1 residue) | [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] (3) |
 | [A107920](https://oeis.org/A107920) | Lucas and Lehmer numbers with parameters (1 +- sqrt(-7))/2. | Lucas-Lehmer with (1±√-7)/2 (P_odd(2,L) at k=2) | [[tower-parity-sectors](pages/tower-parity-sectors.md)] (3) |
 | [A202889](https://oeis.org/A202889) | T(n,k)=Number of nXk 0..2 arrays with every nonzero element less than or equal to some hor | 2D Hardin table (row axis of A202882) | [[tower-parity-sectors](pages/tower-parity-sectors.md)] (1) |
+| [A000568](https://oeis.org/A000568) | Number of outcomes of unlabeled n-team round-robin tournaments. | ambient count for unique tournaments; A000568(8) = 6880 is the isomorphism-class count the tree-castle bijection was checked against | [[tree-castle-by-area](pages/tree-castle-by-area.md)] (3), [[unique-tournament](pages/unique-tournament.md)] (2), [[simple-tournament](pages/simple-tournament.md)] (2) |
+| [A000571](https://oeis.org/A000571) | Number of different score sequences that are possible in an n-team round-robin tournament. | upper bound on unique tournaments u_n ≤ A000571(n), equality through n = 4 | [[unique-tournament](pages/unique-tournament.md)] (3), [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] (2) |
+| [A051337](https://oeis.org/A051337) | Number of strongly connected tournaments on n nodes. | the strong tournaments among which Tetali's four basic unique tournaments sit (1 of 1, 1 of 1, 1 of 6 at n = 3, 4, 5; 0 of 35, 0 of 353 at n = 6, 7) | [[unique-tournament](pages/unique-tournament.md)] (2), [[simple-tournament](pages/simple-tournament.md)] (2) |
+| [A096368](https://oeis.org/A096368) | Number of unlabeled regular tournaments with 2n+1 nodes. | 1, 1, 3 at 3, 5, 7 nodes: the regular score vectors (1,1,1), (2,2,2,2,2) are unique, (3,3,3,3,3,3,3) has three realizers | [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] (4), [[unique-tournament](pages/unique-tournament.md)] (2) |
+| [A007323](https://oeis.org/A007323) | Number of numerical semigroups of genus n. | the coin/semigroup branch of the block-count trichotomy; golden-ratio growth (Zhai 2013) | [[block-count-constraints](pages/block-count-constraints.md)] (4), [[metallic-means](pages/metallic-means.md)] (1) |
+| [A008302](https://oeis.org/A008302) | Triangle of Mahonian numbers T(n,k). | rainbow castles (w = h, skyline a permutation) graded by skyline inversions | [[aocp-combinatorics](pages/aocp-combinatorics.md)] (2), [[castle-classification](pages/castle-classification.md)] (1) |
+| [A027907](https://oeis.org/A027907) | Triangle of trinomial coefficients, rows of (1 + x + x^2)^n. | unconstrained U/R/D words by final height, the ceiling the castle grammar prunes | [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] (2), [[urd-step-strings](pages/urd-step-strings.md)] (1), [[tower-word-language](pages/tower-word-language.md)] (1) |
+| [A002426](https://oeis.org/A002426) | Central trinomial coefficients. | unconstrained U/R/D words returning to height 0; Motzkin is the ballot-restricted version | [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] (2), [[motzkin-numbers](pages/motzkin-numbers.md)] (1), [[urd-step-strings](pages/urd-step-strings.md)] (1) |
+| [A036038](https://oeis.org/A036038) | Triangle of multinomial coefficients for the partitions of n. | multiset-permutation counts (Knuth Vol. 1 / Vol. 3) | [[aocp-multisets](pages/aocp-multisets.md)] (2), [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] (2) |
+| [A003188](https://oeis.org/A003188) | Decimal equivalent of Gray code for n. | reflected Gray code (Knuth Algorithm G); the castle Gray code thread | [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] (2) |
+| [A007814](https://oeis.org/A007814) | Exponent of highest power of 2 dividing n (ruler sequence). | Knuth's ruler function ρ(k), the bit to flip in Gray-code generation | [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] (2) |
+| [A000142](https://oeis.org/A000142) | Factorial numbers n!. | rainbow castles: exactly h! at width h | [[aocp-permutations](pages/aocp-permutations.md)] (2) |
+| [A132393](https://oeis.org/A132393) | Triangle of unsigned Stirling numbers of the first kind. | [n,1] = (n−1)!, the cycle-count anchor of the castle triad | [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] (2) |
+| [A008277](https://oeis.org/A008277) | Triangle of Stirling numbers of the second kind. | Knuth's binomial-coefficient toolkit (powers ↔ falling factorials) | [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] (2) |
+| [A007318](https://oeis.org/A007318) | Pascal's triangle read by rows. | the binomial toolkit behind every binomial castle count | [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] (1) |
+| [A000217](https://oeis.org/A000217) | Triangular numbers binomial(n+1,2). | height-2 castles whose second row is a single run; F(4,2) = C(5,2) = 10 | [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] (2), [[aocp-combinatorics](pages/aocp-combinatorics.md)] (1) |
 
-## Submission status (updated 2026-09-18)
+## Submission status (updated 2026-09-19)
 
 From [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]: OEIS requires human authorship, so the wiki accumulates *verified matches* and drafts submission text elsewhere (`raw/oeis-pe502/`). One submission has been filed — the height-2 castle interlink (A038503/A038505), on 2026-09-18. **Interlink** candidates (a known OEIS sequence gaining a castle interpretation) in rough priority order:
 
@@ -151,6 +167,8 @@ From [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]: OEIS requires 
 **Phase 2 plan (2026-09-18,** `~/code/oeis/pe502/plan-phase-2.md`**).** Phase 1 (items 1–2) is submitted; phase 2 is the next bundle. Tier 2 is the **tower = Narayana** interlink (item 8), submitted in order **A160747 → A005891 → A063490 → A001263** — skipping **A005408** (densest entry, weakest of the set) and minding that **A063490 is offset 1** (the only width-row shift). Tier 3 is the fillers: the difference-of-powers castle counts `A(w,h) = h^w − (h−1)^w` as one comment each on **A000225 / A001047 / A005061 / A005060 / A005062**, and the area synonyms (item 9) each cross-referencing the phase-1 sequences **A038505 / A038503 / A146559**. New sequences ([[new-sequence-fw3](pages/new-sequence-fw3.md)] `F(w,3)` and siblings) follow once the account's edit throttle lifts.
 
 **Novel-candidate** submissions (no OEIS match, genuinely new): the **signed tower count `P(k,·)` rows for `k = 2..6`** ([[signed-tower-count](pages/signed-tower-count.md)]) — a clean C-finite family with a Pell/Chebyshev closed form, the even-`k` all-positive rows (`P(2,·)`, `P(4,·)`, `P(6,·)`) being the most submission-ready; the even-block proper-castle bronze `1,7,25,70,209,697,…` and copper `0,0,10,104,604,…` rows ([[proper-castle-projection](pages/proper-castle-projection.md)]); and the parity-refined area sequences ([[castle-by-area](pages/castle-by-area.md)]). See the catalogue below for the full status-tagged listing.
+
+**`F(w,3)`** ([[new-sequence-fw3](pages/new-sequence-fw3.md)]) is now also novel-candidate: an oeis.org search for `3, 21, 89, 307, 977, 3031` on 2026-09-19 returned no sequence. Its draft submission package already exists in `raw/oeis-pe502/`.
 
 ## Castle sequence catalogue
 
@@ -249,7 +267,8 @@ Width-graded counts of the 0/1 transfer-matrix strips ([[reachable-field-census]
 
 Computed earlier and listed as candidates before the status convention; most are **unchecked** pending an OEIS search on current terms.
 
-- `F(w, 3…6)`: height-`h` castle counts for `h ≥ 3` ([[new-sequence-fw3](pages/new-sequence-fw3.md)]) — **unchecked**.
+- `F(w, 3)`: even-block castles of height exactly 3, `0, 0, 3, 21, 89, 307, 977, 3031, …` ([[new-sequence-fw3](pages/new-sequence-fw3.md)]) — **novel-candidate** (no OEIS match, searched 2026-09-19).
+- `F(w, 4…6)`: the taller rows ([[new-sequence-fw3](pages/new-sequence-fw3.md)]) — **unchecked**.
 - `|P(k, L)|` in the *k*-direction at fixed `L ≥ 5` ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]) — **unchecked**. *(The L-direction `P(k,·)` rows for `k = 2..6` are no longer here — they are searched and confirmed **novel-candidate** in the "Signed tower count P(k,·) rows" section above.)*
 - Parity-refined area sequences (even/odd-area convex, `strict_valley`) ([[castle-by-area](pages/castle-by-area.md)]) — **novel-candidate** (noted "none in OEIS" on that page).
 - Higher tower rows `w ≥ 6` in the Narayana table ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]) — **unchecked**.
