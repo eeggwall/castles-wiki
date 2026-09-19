@@ -5,7 +5,7 @@ summary: All castles (not just tree castles) with column heights in {1, …, h},
 tags: [analysis, castle, area, generating-function, oeis, fibonacci, tribonacci, tetranacci, n-nacci, composition, growth-constant]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-17
-updated: 2026-09-17
+updated: 2026-09-19
 ---
 
 # Bounded-height castles by area
@@ -46,7 +46,7 @@ The obvious neighbor is [[tree-castle-by-area](pages/tree-castle-by-area.md)], w
 |---|---|---|
 | 2 | Fibonacci **A000045** (`φ`) | Narayana's cows **A000930** (supergolden `≈ 1.4656`) |
 | 3 | tribonacci **A000073** (`t ≈ 1.8393`) | **A006498** (golden `φ` via cyclotomic factor) |
-| 4 | tetranacci **A000078** | tournaments **A000570** (Tetali) |
+| 4 | tetranacci **A000078** | tournaments **A000570** (Tetali; [[unique-tournament](pages/unique-tournament.md)]) |
 | ∞ | `2^{A−1}` **A011782** | plastic-squared **A005251** (`ψ² ≈ 1.7549`) |
 
 At every `h` the all-castle count strictly dominates the tree count (the tree constraint deletes the `(…, 2, 2, …)` adjacencies), so the two families never coincide. The mechanism is transparent at `h = 2`: dropping the tree ban restores compositions with adjacent parts `≥ 2`, lifting the growth constant from supergolden to `φ`. The **term-skipping** denominators of the tree family (`1 − q − q³`, `1 − q − q³ − q⁴`, …, which always omit the `q²` term because a tall column carries area `≥ 2`) are exactly what excludes the tribonacci denominator `1 − x − x² − x³` there - and exactly what this all-castle grading supplies.
@@ -78,6 +78,8 @@ The `bounded_castles_by_area(h, A_max)` snippet on [[castle-snippets](pages/cast
 - [[metallic-means](pages/metallic-means.md)] - the family the `h = 2` rung (`φ`) belongs to and the `h ≥ 3` rungs sit near but outside.
 - [[castle-graph](pages/castle-graph.md)] - the tree-castle-by-width Fibonacci/Jacobsthal/k-Fibonacci ladder, the width-axis cousin of this area-axis ladder.
 - [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - the composition ↔ castle correspondence this result rests on, in its convex (stack) form.
+- [[unique-tournament](pages/unique-tournament.md)] - the graph-theoretic side of the `h = 4` tree row `A000570` in the table above.
+- [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - the by-area enumeration behind `bounded_castles_by_area` is Knuth's Algorithm M with an area filter.
 
 ## Footnotes
 

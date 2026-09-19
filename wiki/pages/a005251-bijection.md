@@ -5,7 +5,7 @@ summary: The open "A005251 bijection" is closed by an explicit, constraint-prese
 tags: [analysis, castle, bijection, a005251, plastic-number, composition, binary-string, hardin, tree-castle, tower-spacing, verification]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # The A005251 bijection
@@ -98,6 +98,7 @@ The middle two are the same object up to a bit-flip (a height-2 tower-spacing ca
 - [[plastic-number](pages/plastic-number.md)] - `ψ²`, the growth constant all four nodes share; the sequence's three (now four) castle readings are tabulated there.
 - [[castle-by-area](pages/castle-by-area.md)] - the composition-of-area framing this bijection uses.
 - [[binary-string-bijection](pages/binary-string-bijection.md)] - the wiki's other castle ↔ binary-string encoding (the `T(k,L) = (k+1)^L` bijection), a cousin of the gap-string map here.
+- [[unique-tournament](pages/unique-tournament.md)] - the `h = 4` row of the same tree-castle family, where Khovanova's basic strings `0, 001, 0011, 00101` encode compositions with parts in `{1, 3, 4, 5}` by the same composition-as-binary-string trick.
 
 ## Footnotes
 

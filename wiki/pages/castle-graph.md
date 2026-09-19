@@ -5,7 +5,7 @@ summary: Every castle carries a graph - filled cells as vertices, orthogonal nei
 tags: [concept, castle, graph, polyomino, spectral, adjacency, laplacian, tree, bipartite, planar, cycle-rank, fibonacci, jacobsthal, oeis, bridge, pedagogy]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-17
-updated: 2026-09-17
+updated: 2026-09-19
 ---
 
 # The castle graph - bridge to graph theory
@@ -161,6 +161,7 @@ def cycle_rank(c):
 - [[castle-classification](pages/castle-classification.md)] Axis 8 - the tree-castle golden growth constant sits on rung 1 of the metallic ladder for height 2.
 - [[metallic-means](pages/metallic-means.md)] - the tree-castle `h = 2` growth `φ` lands here.
 - [[castle-snippets](pages/castle-snippets.md)] - `castle_graph`, `is_tree_castle`, `cycle_rank`.
+- [[unique-tournament](pages/unique-tournament.md)] - the wiki's other graph-theoretic object (complete oriented graphs, where castle graphs are sparse bipartite grids); the two meet at `A000570`, the `h = 4` tree-castle count by area.
 
 ## Footnotes
 
