@@ -8,11 +8,11 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 
 | Slice | Value |
 |---|---|
-| Pages | 109 (30 Sources / 51 Concepts / 28 Analyses) |
-| Divisions (open + done) | Numbers 11+25, Enumeration 5+16, Q 5+0, S 5+5, T 7+0, Classification 4+4, Misc 11+3 |
-| Items | 48 open, 53 done, 101 total |
+| Pages | 110 (30 Sources / 51 Concepts / 29 Analyses) |
+| Divisions (open + done) | Numbers 13+26, Enumeration 5+16, Q 5+0, S 5+5, T 7+0, Classification 4+4, Misc 11+3 |
+| Items | 50 open, 54 done, 104 total |
 | Arcs | 12 (5 deliverable, 3 one page short, 1 half built, 3 sketch) |
-| Dates | wiki 2026-09-13, IDEAS 2026-09-14, last reorganize 2026-09-19 |
+| Dates | wiki 2026-09-13, IDEAS 2026-09-19, last reorganize 2026-09-19 |
 
 ## Seminar program
 
@@ -27,8 +27,8 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 ### S2. From a textbook exercise to the metallic ladder
 - Thesis: an Analytic Combinatorics end-of-chapter exercise opens onto the full metallic-ratio ladder and its reachable-field structure.
 - Status: deliverable.
-- Spine: [pell-castle-strip](wiki/pages/pell-castle-strip.md), [castle-strip](wiki/pages/castle-strip.md), [metallic-means](wiki/pages/metallic-means.md), [eigenvalue-continued-fractions](wiki/pages/eigenvalue-continued-fractions.md), [metallic-strip-realizability](wiki/pages/metallic-strip-realizability.md), [reachable-field-census](wiki/pages/reachable-field-census.md), [proper-castle-projection](wiki/pages/proper-castle-projection.md), [bounded-height-castles-nacci](wiki/pages/bounded-height-castles-nacci.md), [plastic-number](wiki/pages/plastic-number.md).
-- Open items feeding it: from Numbers, silver-ratio observatory, larger-prime periodicity, the min-height law for `(p1,p2)`, Pisot/Salem cubics; from Classification, the horizontal-gap reachable-field census.
+- Spine: [pell-castle-strip](wiki/pages/pell-castle-strip.md), [castle-strip](wiki/pages/castle-strip.md), [metallic-means](wiki/pages/metallic-means.md), [eigenvalue-continued-fractions](wiki/pages/eigenvalue-continued-fractions.md), [metallic-strip-realizability](wiki/pages/metallic-strip-realizability.md), [reachable-field-census](wiki/pages/reachable-field-census.md), [proper-castle-projection](wiki/pages/proper-castle-projection.md), [bounded-height-castles-nacci](wiki/pages/bounded-height-castles-nacci.md), [plastic-number](wiki/pages/plastic-number.md), [hardy-ramanujan-castle](wiki/pages/hardy-ramanujan-castle.md) (the ladder's rung 9, squared, as Ramanujan's near-miss growth constant).
+- Open items feeding it: from Numbers, silver-ratio observatory, larger-prime periodicity, the min-height law for `(p1,p2)`, Pisot/Salem cubics, the metallic rungs of the other Ramanujan-type C-finite identities; from Classification, the horizontal-gap reachable-field census.
 
 ### S3. The Hardin word identity
 - Thesis: `P_even(4m+2, L) = 2^L` times a word count; the two transfer matrices differ by one unimodular change of basis.
@@ -105,7 +105,10 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 - [ ] **Sign-reversing involution for Hardin** - realize the `2^L` factor object by object; a common thread across [tower-parity-sectors](wiki/pages/tower-parity-sectors.md), [hardin-word-identity](wiki/pages/hardin-word-identity.md), and [a005251-bijection](wiki/pages/a005251-bijection.md). (S3)
 - [ ] **Two sector-assignment conjectures** - the dominant root always lands in the even sector, and `H_{k/2}` is in the even sector iff `k ≡ 2 (mod 4)`. (S3)
 - [ ] **`h>=5` tree-castle-by-area sequences** - no OEIS match yet; identify or submit as new. (S3)
+- [ ] **A bijection behind `F(6,4) = 12^3 + 1 = 9^3 + 10^3`** - the 1729 even-block castles of the `(6,4)` cell against the length-3 tower sets `T(k,3) = (k+1)^3`; the `91`-divisibility of every count in that cell (`A = 91*37`, `F = 91*19`, odd `= 91*18`) suggests hunting a 91-to-1 structure first. (S1)
+- [ ] **Metallic rungs of the other Ramanujan-type identities** - Chen 2012, Han-Hirschhorn 2006, McLaughlin 2010 give further C-finite Diophantine near-miss families; factor each denominator and ask whether the growth constant is metallic (discriminant `a^2+4`, hence a ceiling-exception strip) or lands elsewhere in the reachable-field census. (S2)
 
+- [x] **[The Hardy-Ramanujan castle (1729)](wiki/pages/hardy-ramanujan-castle.md)** - `F(6,4) = 1729` exactly (unique for `w,h<=40`), `A(6,4) = 16^3 - 9^3`; Ramanujan's near-miss family `x^3+y^3 = z^3 +- 1` is C-finite with denominator `(1+x)(1-83x+x^2)` and growth `delta_9^2`, the ninth metallic mean squared, i.e. the height-10 ceiling-exception strip at width step 2; the first four Carmichael numbers are all castle counts; `F(.,h) mod 1729` has periods 72 / 2520 / 25200. (S2)
 - [x] **[Reachable-field census](wiki/pages/reachable-field-census.md)** - which number fields host castle-strip Perron roots; `h<=5` exhaustive, `h>=6` by the `(p1,p2)` reachability law; every real quadratic field is reachable. (S2)
 - [x] **[Proper-castle projection](wiki/pages/proper-castle-projection.md)** - metallic growth constants survive the `max_i c_i = h` and `(A±P)/2` projections; the exact sequences are new (no OEIS match for `h>=3`). (S2)
 - [x] **[Plastic / Padovan observatory](wiki/pages/plastic-number.md)** - the bare plastic number `psi` is a castle-strip Perron root at height 3, realized by 6 of 512 binary 3x3 matrices; the height-3 rule is Padovan / Perrin growth. (S2)
