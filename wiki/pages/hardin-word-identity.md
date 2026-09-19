@@ -5,7 +5,7 @@ summary: Proof that for k = 4m+2 the signed count of height-≤k towers with eve
 tags: [analysis, castle, signed-tower-count, transfer-matrix, bijection, hardin, oeis, words, sympy, verification, proof]
 sources: [oeis-mining-pe502, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-16
+updated: 2026-09-18
 ---
 
 # The Hardin word identity
@@ -19,6 +19,55 @@ P_even(k, L)  :=  Σ_{towers of height ≤ k on a length-L base, last column eve
 ```
 
 `W_0 = 1`; `W_1(n) = A005251(n+2)` (binary strings with no isolated `1`); `W_2, W_3, W_4` are Hardin's A202882, A203094, A203184.[^3] The identity was found numerically on [[tower-parity-sectors](pages/tower-parity-sectors.md)]; this page proves it, for each `m ≤ 8` outright and for general `m` up to one finite entrywise check, by exhibiting the two sides as the same transfer matrix in two bases.
+
+## A worked example (m = 1, k = 6)
+
+Before any matrices, see the identity hold on the smallest nontrivial case. For `m = 1`, `k = 4·1 + 2 = 6`, and the words are binary strings with **no isolated `1`** — every `1` has a neighbor `1`, boundaries counting as `0`. Word side first, by brute force:
+
+```python
+from itertools import product
+
+def is_hardin_word(w):                    # no nonzero letter is a strict local maximum
+    for i, a in enumerate(w):
+        if a == 0: continue
+        if (i > 0 and w[i-1] >= a) or (i+1 < len(w) and w[i+1] >= a): continue
+        return False
+    return True
+
+def W_bruteforce(m, n):
+    return sum(1 for w in product(range(m+1), repeat=n) if is_hardin_word(w))
+```
+
+```
+>>> [W_bruteforce(1, n) for n in range(1, 9)]            # = A005251(n+2)
+[1, 2, 4, 7, 12, 21, 37, 65]
+>>> [''.join(map(str, w)) for w in product(range(2), repeat=3) if is_hardin_word(w)]
+['000', '011', '110', '111']
+```
+
+The four length-3 words with no isolated `1` are `000, 011, 110, 111` — `W_1(3) = 4 = A005251(5)`. Tower side, the even-last-column sector of the signed transfer matrix:
+
+```python
+import sympy as sp
+
+def sector_even(k, Lmax):                 # the even-last-column sector: P_even(k, 0..Lmax)
+    M = sp.Matrix(k+1, k+1, lambda a, b: 1 if a <= b else (-1)**(a-b))
+    row = sp.Matrix([[1] + [0]*k])
+    ve  = sp.Matrix([1 if b % 2 == 0 else 0 for b in range(k+1)])
+    E = []
+    for L in range(Lmax+1):
+        E.append(int((row*ve)[0])); row = row*M
+    return E
+```
+
+```
+>>> sector_even(6, 7)                      # P_even(6, L) for L = 0..7
+[1, 4, 16, 56, 192, 672, 2368, 8320]
+>>> [e == 2**L * W_bruteforce(1, L+1) for L, e in enumerate(sector_even(6, 7))]
+[True, True, True, True, True, True, True, True]
+```
+
+`1, 4, 16, 56, … = 2^L · A005251(L+3)` term for term — the whole identity, in numbers, before any change of basis appears.[^4]
 
 ## The two transfer matrices
 
@@ -70,6 +119,8 @@ Matrix([[1, 0, 1, 0, 1], [1, 1, 0, 0, 1], [0, 1, 0, 0, 1], [1, 1, 0, 1, 0], [0, 
 True
 ```
 
+The "pending" flag, read on one word (`m = 1`, states `(0,+)`, `(1,+)`, `(1,−)`): **`011` is accepted** — start `(0,+)` → read `0` → `(0,+)` → read `1` (bigger than the left neighbor `0`, so it *owes* its right neighbor) → `(1,−)` pending → read `1` (≥ `1`) → `(1,+)` satisfied, and the word ends in a `+` state. **`010` is rejected** — start `(0,+)` → `(0,+)` → `(1,−)` pending → read `0`, but a pending `1` needs a right neighbor `≥ 1`, so `0` is forbidden. A pending letter is one that has not yet proved it isn't a strict local maximum; the word is valid iff every letter pays that debt before the word ends.
+
 So `W_m(L+1) = (start·W) Wᴸ end`. Both sides of the identity are `(row vector)·(matrix)ᴸ·(column vector)` on `2m+1` states.
 
 ## The change of basis
@@ -83,6 +134,21 @@ S[2a,     (b, flag)] = 1   iff  (b, flag) = (a, +)  or  (flag = −  and  b > a)
 ```
 
 - odd sector coordinates are the cumulative sets "pending with letter `≥ a`"; even ones add the single satisfied state `(a, +)`.
+
+All three matrices in full, for `m = 1` (the smallest case — three states `(0,+)`, `(1,+)`, `(1,−)`):
+
+```
+>>> sector_half(1)                     # R/2, the tower side
+Matrix([[1, 0, 1], [0, 0, 1], [1, -1, 1]])
+>>> word_matrix(1)[0]                  # W, the word side
+Matrix([[1, 0, 1], [1, 1, 0], [0, 1, 0]])
+>>> S_pattern(1)                       # the change of basis
+Matrix([[1, 0, 1], [0, 0, 1], [0, 1, 0]])
+>>> sp.det(S_pattern(1)), sector_half(1)*S_pattern(1) == S_pattern(1)*word_matrix(1)[0]
+(-1, True)
+```
+
+`(R/2)S = SW` is visible entry by entry in `3×3`, and `det S = −1` (unimodular) makes `S` an honest change of basis. The `m = 2` case is the `5×5` matrix below.
 
 ```
 >>> S_pattern(2)
@@ -161,3 +227,5 @@ Reading the columns of `S⁻¹` (differences of consecutive cumulative sets), th
 [^2]: Verified by execution (SymPy 1.14): `word_matrix(m)` counts agree with brute force for `m = 1, 2, 3`, `n ≤ 7`; `det(μI − W_m) = H_{2m+1}` for `m = 0..6` and the odd-index recurrence for `m ≤ 8`; `S_pattern(m)` satisfies `(R/2)S = SW`, `e_0ᵀ S = start·W`, `S·end = 𝟙_even`, `det S = ±1` for `m = 0..8`; the unique solution of the linear system for `S` at `m ≤ 3` (no free parameters) coincides with the pattern.
 
 [^3]: https://oeis.org/A005251, https://oeis.org/A202882, https://oeis.org/A203094, https://oeis.org/A203184 (2026-09-16) - definitions and the "Empirical: a(n) = …" recurrence lines quoted on [[tower-parity-sectors](pages/tower-parity-sectors.md)].
+
+[^4]: Verified by execution (SymPy 1.14, 2026-09-18): `W_bruteforce(1, ·) = [1, 2, 4, 7, 12, 21, 37, 65]` for `n = 1..8`, matching `A005251(n+2)`; the four length-3 no-isolated-`1` words are `000, 011, 110, 111`; `P_even(6, L) = [1, 4, 16, 56, 192, 672, 2368, 8320]` for `L = 0..7` equals `2^L · W_bruteforce(1, L+1)` term for term; and the `m = 1` matrices `R/2`, `W`, `S` with `det S = −1` and `(R/2)S = SW` are the three-state instance of [^2].
