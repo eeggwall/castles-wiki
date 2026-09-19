@@ -267,6 +267,8 @@ Phone numbers are `(7, 10)` or `(10, 10)` castles; a contact network is a graph 
 - [[castle-cryptography](pages/castle-cryptography.md)], [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the ring the toy network encrypts with, and what breaks it.
 - [[castle-snippets](pages/castle-snippets.md)] - `all_castles` and `blocks`, used to verify the bijections.
 - [[isospectral-castles](pages/isospectral-castles.md)] - where the S4 direction loses information; the lossless direction here does not.
+- [[image-as-castle](pages/image-as-castle.md)] - the same map for JPG and PNG: an image as a stack of row castles or one two-dimensional castle.
+- [[castle-steganography](pages/castle-steganography.md)] - hiding a base64 string in castles; the block-parity channel is the S12 covert channel.
 
 ## Appearances in Sources
 
