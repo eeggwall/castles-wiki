@@ -44,7 +44,7 @@ Meaning: `P(k,·)` is C-finite of order `k+1`, and the whole family's generating
 
 ## Continued fractions, convergents, and quasi-polynomials
 
-Snippets behind [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] and [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]. The first three are stdlib-only; `quasi_split` needs SymPy (the one import that earns its keep here).
+Snippets behind [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] and [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]. The first three are stdlib-only; `quasi_split` needs SymPy (the one import that earns its keep here).
 
 ### `convergents(digits)` → list of `(p_n, q_n)`
 
@@ -158,7 +158,7 @@ Meaning: the coefficients `[1, −3, 4, −4]` are `char_2 = x³ − 3x² + 4x �
 
 ### `quasi_split(seq, deg)` → `(A, B)` with `seq[k] = (−1)^k A(k) + B(k)`
 
-Two Lagrange interpolations (even `k`, odd `k`) - all you need when every eigenvalue is `±1`, which is the case for the k-direction of `P` ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]). Requires SymPy.
+Two Lagrange interpolations (even `k`, odd `k`) - all you need when every eigenvalue is `±1`, which is the case for the k-direction of `P` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]). Requires SymPy.
 
 ```python
 import sympy as sp
@@ -311,7 +311,7 @@ Meaning: `ρ_6` has a period-4 multidimensional continued fraction (the cubic an
 ## Related Concepts
 
 - [[castle-snippets](pages/castle-snippets.md)] - the enumeration and predicates hub.
-- [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the analysis these snippets were written for; every pinned value here matches that page.
+- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the analysis these snippets were written for; every pinned value here matches that page.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the real side of the CF-period / mod-p-order twin.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the finite-field mirror.
 - [[metallic-means](pages/metallic-means.md)] / [[pell-numbers](pages/pell-numbers.md)] - the rungs the convergents snippets sit on.

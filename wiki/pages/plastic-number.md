@@ -41,7 +41,7 @@ The **Pisot** property (all conjugates strictly inside the unit circle) is what 
 
 (the resultant of `x³ − x − 1` with `μ − x²`), and it is the number that actually appears on this wiki. The corresponding recurrence `a(n) = 2a(n−1) − a(n−2) + a(n−3)` is the recurrence of **A005251**, whose OEIS reading is "`a(n+3)` = number of `n`-bit strings avoiding the factor `010`"; the closely-related "no isolated `1`" strings of length `N` give `A005251(N+2)` (a *different* offset — the two families are equinumerous only across a one-bit length shift, see [[a005251-bijection](pages/a005251-bijection.md)]). The Padovan bisection `A000931(2n)` satisfies the recurrence too.
 
-Neither `ψ` nor `ψ²` has a periodic *simple* continued fraction - Lagrange forbids it for any cubic - but both have periodic **Jacobi-Perron** expansions (the two-dimensional continued fraction on `(α, α²)`), computed exactly on [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]:[^3]
+Neither `ψ` nor `ψ²` has a periodic *simple* continued fraction - Lagrange forbids it for any cubic - but both have periodic **Jacobi-Perron** expansions (the two-dimensional continued fraction on `(α, α²)`), computed exactly on [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]:[^3]
 
 ```
 ψ :  digits (1,1), (2,3), then (0,3), (0,4) repeating          preperiod 2, period 2
@@ -91,7 +91,7 @@ A plain (unsigned) castle statistic whose count grows at the bare `ψ` is a **Pa
 ## Related Concepts
 
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization `H_d · V_d` that produces `2ψ²`, and the Hardin word-count identities it implies.
-- [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - where `ρ_6 = 2ψ²` was found; the Jacobi-Perron computations.
+- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - where `ρ_6 = 2ψ²` was found; the Jacobi-Perron computations.
 - [[metallic-means](pages/metallic-means.md)] - the quadratic family (`φ`, `1+√2`, …) the plastic number sits beside; same Pisot / unit / periodic-expansion story one degree up.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - why a cubic cannot have a periodic simple continued fraction, and what replaces it.
 - [[pell-numbers](pages/pell-numbers.md)] - the impulse / trace pairing (Pell / companion Pell) that Padovan / Perrin repeat in degree 3.
@@ -103,4 +103,4 @@ A plain (unsigned) castle statistic whose count grows at the bare `ψ` is a **Pa
 
 [^2]: Verified by execution (SymPy 1.14): `factor(resultant(x³ − x − 1, μ − x², x)) = μ³ − 2μ² + μ − 1`; `factor(resultant(μ³ − 2μ² + μ − 1, λ − 2μ, μ)) = λ³ − 4λ² + 4λ − 8`, which is the cubic factor of `char_6 = (λ³ − 4λ² + 4λ − 8)(λ⁴ − 3λ³ + 8λ² − 4λ + 8)`; numerically `2ψ² = 3.5097553324933855…` against the gallery's `ρ_6`. https://oeis.org/A005251 (2026-09-16) - "a(n) = 2*a(n-1) - a(n-2) + a(n-3)", comment "a(n+3) is the number of n-bit sequences that avoid 010".
 
-[^3]: Verified by execution: exact Jacobi-Perron in `Q(ρ)` (SymPy `rem`/`invert` modulo the minimal polynomial, mpmath at 800 digits for floors) on `x³ − x − 1` near `1.32` (periodic, preperiod 2, period 2, digits `[1,1],[2,3],[0,3],[0,4]`), on `μ³ − 2μ² + μ − 1` near `1.75` (periodic, preperiod 4, period 1, digits `[1,3],[0,1],[3,9],[6,12],[7,12]`), and on `λ³ − 4λ² + 4λ − 8` near `3.5` (periodic, preperiod 5, period 4). Period matrix and Perrin identification as on [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)].
+[^3]: Verified by execution: exact Jacobi-Perron in `Q(ρ)` (SymPy `rem`/`invert` modulo the minimal polynomial, mpmath at 800 digits for floors) on `x³ − x − 1` near `1.32` (periodic, preperiod 2, period 2, digits `[1,1],[2,3],[0,3],[0,4]`), on `μ³ − 2μ² + μ − 1` near `1.75` (periodic, preperiod 4, period 1, digits `[1,3],[0,1],[3,9],[6,12],[7,12]`), and on `λ³ − 4λ² + 4λ − 8` near `3.5` (periodic, preperiod 5, period 4). Period matrix and Perrin identification as on [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)].

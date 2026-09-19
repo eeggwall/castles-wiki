@@ -44,7 +44,7 @@ and **no metallic mean is an eigenvalue of any `M_k`** - checked numerically for
 
 ## 2. Class transfer matrices: this is where Axis 8 lives, correctly
 
-A metallic mean *is* a spectral radius - of the 2-state matrix `[[a, 1], [1, 0]]`, the convergent matrix of `[a; a, a, …]` ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]). The [[pell-castle-strip](pages/pell-castle-strip.md)] (`1 − 2x − x²`, spectral radius `1 + √2`; its 0/1 transfer matrix is the `3×3` 1-smooth matrix on heights `{1,2,3}`) and the height-2 tree castles (`1 − x − x²`, `φ`; `2×2` matrix `[[1,1],[1,0]]`) are castle *classes* with their own transfer matrices, and "silver width growth castle" on [[castle-classification](pages/castle-classification.md)] Axis 8 means exactly "the class's transfer matrix has spectral radius `1 + √2`." That usage is sound. What the metallic means are *not* is eigenvalues of Project Euler 502 (PE 502)'s own count.
+A metallic mean *is* a spectral radius - of the 2-state matrix `[[a, 1], [1, 0]]`, the convergent matrix of `[a; a, a, …]` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]). The [[pell-castle-strip](pages/pell-castle-strip.md)] (`1 − 2x − x²`, spectral radius `1 + √2`; its 0/1 transfer matrix is the `3×3` 1-smooth matrix on heights `{1,2,3}`) and the height-2 tree castles (`1 − x − x²`, `φ`; `2×2` matrix `[[1,1],[1,0]]`) are castle *classes* with their own transfer matrices, and "silver width growth castle" on [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] Axis 8 means exactly "the class's transfer matrix has spectral radius `1 + √2`." That usage is sound. What the metallic means are *not* is eigenvalues of Project Euler 502 (PE 502)'s own count.
 
 ## 3. Adjacency spectra of individual castles: golden and silver castles exist
 
@@ -127,11 +127,11 @@ Its exact characteristic polynomial is `x(x−1)(x+1)·(irreducible degree 34)`,
 
 ## Axis 9 types this populates
 
-- **Golden-spectrum castle** - adjacency spectral radius `φ`. Members: the six 4-cell paths (all isomorphic to `P_4`, so one graph). The predicate is exactly "the polyomino graph is `P_4`" at this size; whether any larger castle has spectral radius `φ` is open (a connected graph with spectral radius `< 2` is a Dynkin path or star, so no).
+- **Golden-spectrum castle** - adjacency spectral radius `φ`. Members: the six 4-cell paths (all isomorphic to `P_4`, so one graph). The predicate is exactly "the polyomino graph is `P_4`" at this size; whether any larger castle has spectral radius `φ` is open (by Smith's theorem a connected graph with spectral radius `< 2` is a Dynkin diagram `A_n`, `D_n`, `E_6`, `E_7`, `E_8`, and among those only `A_4 = P_4` has radius `φ`, so no).
 - **Silver-spectrum castle** - adjacency spectral radius `1 + √2`. Members up to `w = 7`: the `3 × 2` rectangle and three mirror pairs of non-rectangular castles listed above.
 - **Golden-squared-spectrum castle** - radius `φ²`: `P_2 × P_4` and `(1,3,2,3,1)`.
 
-Each is a single-castle predicate, exactly the shape Axis 9 on [[castle-classification](pages/castle-classification.md)] asks for, and the first with computed members beyond the Ramanujan stub.
+Each is a single-castle predicate, exactly the shape Axis 9 on [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] asks for, and the first beyond the tree castle to have computed members.
 
 ## A fourth, speculative link
 
@@ -145,7 +145,7 @@ A skyline that is a Sturmian word - two heights arranged by the rotation with sl
 ## Related Concepts
 
 - [[spectral-analysis](pages/spectral-analysis.md)] - the methods hub; this page settles its `λ_1(h)` target and supplies Axis 9 data.
-- [[castle-classification](pages/castle-classification.md)] - Axis 8 (class growth constants, where metallic means correctly live) and Axis 9 (single-castle spectral predicates, populated here).
+- [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] - Axis 8 (class growth constants, where metallic means correctly live) and Axis 9 (single-castle spectral predicates, populated here).
 - [[metallic-means](pages/metallic-means.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] - the family, and the class (the anchored 1-smooth height-3 strip) whose transfer matrix has spectral radius `1 + √2`.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - why the signed transfer matrix's eigenvalues are twice units, and `ρ_6 = 2ψ²`.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] - the `ρ_k` table.

@@ -106,7 +106,7 @@ Each is exactly `k+1` — a confirmation of the proven degree-(k+1) denominator,
 
 For `L ≥ 4` the order is **exactly `2L−2`**, tightening the Solution subpage's "at most about 2w" to a precise value.[^2] The three small-*L* cases sit lower only because `P(k,L)` has a closed form there (next section); from `L = 4` onward the recurrence has the full `2L−2` terms.
 
-The `2L−2` has since been explained: the characteristic polynomial factors as `(x+1)^L (x−1)^{L−2}` (verified for `L ≤ 12`), so the order is the multiplicity sum `L + (L−2)`, every k-direction eigenvalue is `±1`, and `P(k,L)` is a period-2 quasi-polynomial in `k` - see [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)].
+The `2L−2` has since been explained: the characteristic polynomial factors as `(x+1)^L (x−1)^{L−2}` (verified for `L ≤ 12`), so the order is the multiplicity sum `L + (L−2)`, every k-direction eigenvalue is `±1`, and `P(k,L)` is a period-2 quasi-polynomial in `k` - see [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)].
 
 ### The small-L closed forms
 
@@ -137,7 +137,7 @@ i.e. `P(k,1) = 1, 0, 1, 0, …`, `P(k,2) = 1, −2, 3, −4, …`, `P(k,3) = 1, 
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] — the even-`k` factorization of `char_k` into sectors, refining the L-direction order count.
 - [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] — the catalogue where each `P(k,·)` row's order and OEIS novelty status is recorded.
 - [[castle-sign](pages/castle-sign.md)] — the definition of `P` as the signed tower count.
-- [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - why the k-direction order is `2L−2`: the characteristic polynomial is `(x+1)^L (x−1)^{L−2}`.
+- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - why the k-direction order is `2L−2`: the characteristic polynomial is `(x+1)^L (x−1)^{L−2}`.
 
 ## Footnotes
 

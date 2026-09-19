@@ -1,5 +1,5 @@
 ---
-title: Convergents-to-castle OEIS crosswalk
+title: Castle eigenvalues meet OEIS - the convergent crosswalk
 category: Analyses
 summary: Every castle eigenvalue's "convergents" run against OEIS. The metallic rungs give one sequence each (numerator = denominator shifted; A001333 is the numerator sequence of √2). The k-direction has no irrational eigenvalues at all - its characteristic polynomial is (x+1)^L (x−1)^(L−2), so P(k,L) is a quasi-polynomial in k with |P(k,4)| = A352116. The real higher-degree eigenvalues are the L-direction char_k roots; ρ_6 = 2ψ² (plastic number), P(6,L) = 2^L·A005251(L+3) + remainder, and its Jacobi–Perron expansion is periodic. The CF-period ↔ mod-p-order link is made quantitative (norm −1 ⟺ δ^(p+1) = −1 at inert primes; k-direction period 2·p^⌈log_p L⌉).
 tags: [analysis, castle, continued-fraction, convergents, oeis, eigenvalue, quasi-polynomial, plastic-number, jacobi-perron, pisano, mod-p, sympy, verification, pedagogy]
@@ -8,7 +8,7 @@ created: 2026-09-16
 updated: 2026-09-19
 ---
 
-# Convergents-to-castle Online Encyclopedia of Integer Sequences (OEIS) crosswalk
+# Castle eigenvalues meet OEIS: the convergent crosswalk
 
 ## The question, and what came out
 

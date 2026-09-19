@@ -92,7 +92,7 @@ This is the standard "a repeated eigenvalue of multiplicity `m` contributes `p^{
 ## Related Concepts
 
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, L)` and its L-direction (C-finite of order `k + 1`).
-- [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the surrounding analysis: metallic-rung convergents, the norm-`−1` CF-mod-p twin, and the plastic-number L-direction eigenvalue `2ψ²`.
+- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the surrounding analysis: metallic-rung convergents, the norm-`−1` CF-mod-p twin, and the plastic-number L-direction eigenvalue `2ψ²`.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the real-number twin of this page's mod-p result.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the finite-field side; this page's `2 · p^{ceil(log_p L)}` accounts for its irregular `18`.
 - [[closed-form-hunting](pages/closed-form-hunting.md)] - the `2L − 2` orders and palindromic coefficient lists factored here.
@@ -102,7 +102,7 @@ This is the standard "a repeated eigenvalue of multiplicity `m` contributes `p^{
 
 ## Footnotes
 
-[^1]: Verified by execution (Python 3.11, SymPy 1.14) while writing [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] Part 3. (i) `P_table(60, 12)` + Berlekamp-Massey + `sp.factor`: characteristic polynomial equals `(x + 1)^L (x − 1)^{L − 2}` for every `L = 4..12` (`sp.expand(charpoly − target) == 0`). (ii) `quasi_split` for `L = 1..12`, each `A_L, B_L` re-checked against all 61 DP values; leading coefficients read off as `2^{L − 2} / (L − 1)!` and `2^{2L − 9} / (L − 3)!` for `L ≤ 12`; `N_L(y)` obtained as the truncated series of `(Σ_k P(k, L) y^k) · (1 + y)^L (1 − y)^{L − 2}`, with all coefficients beyond degree `2L − 3` zero. (iii) k-direction periods of `P(·, L) mod p` for `L = 2..11`, `p ∈ {3, 5, 7, 11}` equal `2 · p^j` with `p^j` the least power `≥ L`.
+[^1]: Verified by execution (Python 3.11, SymPy 1.14) while writing [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] Part 3. (i) `P_table(60, 12)` + Berlekamp-Massey + `sp.factor`: characteristic polynomial equals `(x + 1)^L (x − 1)^{L − 2}` for every `L = 4..12` (`sp.expand(charpoly − target) == 0`). (ii) `quasi_split` for `L = 1..12`, each `A_L, B_L` re-checked against all 61 DP values; leading coefficients read off as `2^{L − 2} / (L − 1)!` and `2^{2L − 9} / (L − 3)!` for `L ≤ 12`; `N_L(y)` obtained as the truncated series of `(Σ_k P(k, L) y^k) · (1 + y)^L (1 − y)^{L − 2}`, with all coefficients beyond degree `2L − 3` zero. (iii) k-direction periods of `P(·, L) mod p` for `L = 2..11`, `p ∈ {3, 5, 7, 11}` equal `2 · p^j` with `p^j` the least power `≥ L`.
 
 [^2]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 3" L77-79 - "Columns (fixed w, varying h) are quasi-polynomials: F(w,h) is annihilated by (x^2-1)^w, i.e. F(w,h) = P(h) + (-1)^h Q(h) with P,Q polynomials of degree < w." and L168 - "F(w,h), w>=3 (columns) | - | NEW (quasi-poly, (x^2-1)^w)".
 

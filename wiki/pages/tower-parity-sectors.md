@@ -12,7 +12,7 @@ updated: 2026-09-19
 
 ## The question
 
-[[generating-function-gallery](pages/generating-function-gallery.md)] observed that `char_k`, the degree-`(k+1)` characteristic polynomial of the signed tower count `P(k, ·)` in the base length `L`, factors into two pieces for even `k` and is irreducible for odd `k`, and [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] found that the `k = 6` dominant eigenvalue is `2ψ²` for `ψ` the [[plastic-number](pages/plastic-number.md)]. This page explains both. The factorization is a symmetry of the transfer matrix; the factors have closed forms; and the closed form for `k = 6` is the minimal polynomial of `ψ²`. Along the way the even-last-column sector of `P(k, L)` turns out to be, for every `k ≡ 2 (mod 4)`, `2^L` times a word count that R. H. Hardin put in OEIS with an "empirical" recurrence - which this page's factors supply.
+[[generating-function-gallery](pages/generating-function-gallery.md)] observed that `char_k`, the degree-`(k+1)` characteristic polynomial of the signed tower count `P(k, ·)` in the base length `L`, factors into two pieces for even `k` and is irreducible for odd `k`, and [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] found that the `k = 6` dominant eigenvalue is `2ψ²` for `ψ` the [[plastic-number](pages/plastic-number.md)]. This page explains both. The factorization is a symmetry of the transfer matrix; the factors have closed forms; and the closed form for `k = 6` is the minimal polynomial of `ψ²`. Along the way the even-last-column sector of `P(k, L)` turns out to be, for every `k ≡ 2 (mod 4)`, `2^L` times a word count that R. H. Hardin put in OEIS with an "empirical" recurrence - which this page's factors supply.
 
 Everything below was produced by the snippets shown; every printed value is pinned.
 
@@ -56,7 +56,7 @@ Entrywise this is one line: `(JD·M·JD)_{a,b} = (−1)^{a+b} s(k−a, k−b) = 
 12 [(+1, 7, lam**7 - 7*lam**6 + 18*lam**5 - 56*lam**4 + 48*lam**3 - 112*lam**2 + 32*lam - 64, 'DOM'), (-1, 6, ..., '')]
 ```
 
-The dominant eigenvalue `ρ_k` sits in the `+1` sector for every even `k ≤ 40` tested. The `+1` sector has dimension `k/2` when `k ≡ 2 (mod 4)` and `k/2 + 1` when `k ≡ 0 (mod 4)` - the alternation behind the unit pattern of [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)].
+The dominant eigenvalue `ρ_k` sits in the `+1` sector for every even `k ≤ 40` tested. The `+1` sector has dimension `k/2` when `k ≡ 2 (mod 4)` and `k/2 + 1` when `k ≡ 0 (mod 4)` - the alternation behind the unit pattern of [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)].
 
 **What the sectors count: the parity of the last column.** The end vector decomposes as `v = v⁺ + v⁻` with `v⁺_b = [b even]` and `v⁻_b = −[b odd]` (check: `(JD v⁺)_a = (−1)^a [k−a even] = [a even]`), and `e_0` decomposes as `(e_0 ± e_k)/2`. Sectors are orthogonal (`JD` is symmetric for even `k`) and `M`-invariant, so the cross terms vanish and
 
@@ -230,7 +230,7 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 - Prove that the dominant root lies in the `+1` sector and that `H_d` belongs to the `+1` sector iff `d` is odd.
 - The Hardin identity is proved on [[hardin-word-identity](pages/hardin-word-identity.md)] by an explicit unimodular change of basis between the word automaton and the halved even-sector matrix (every `m ≤ 8` checked symbolically; general `m` reduces to a finite entrywise check). A sign-reversing involution realizing it object by object is still open.
 - Which `H_d` have Pisot dominant roots (`d = 3` yes; `d = 5, 7, 9, …` no) and whether the Jacobi-Perron expansion of `ρ_k/2` is ever periodic beyond `k = 6` (`k = 10, 14`: not within 300 / 200 exact steps).
-- Whether Axis 8 of [[castle-classification](pages/castle-classification.md)] should admit a non-metallic rung for `2ψ²`.
+- Whether Axis 8 of [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] should admit a non-metallic rung for `2ψ²`.
 
 ## Snippet index
 
@@ -254,13 +254,13 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 ## Related Concepts
 
 - [[plastic-number](pages/plastic-number.md)] - `ψ`, `ψ²`, Padovan / Perrin, and the Jacobi-Perron expansions.
-- [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - where `ρ_6 = 2ψ²` and the `k mod 4` unit pattern were found numerically; this page is their explanation.
+- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - where `ρ_6 = 2ψ²` and the `k mod 4` unit pattern were found numerically; this page is their explanation.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] - the `char_k` catalogue and three-term recurrence this page factors.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, L)`, A146559 and A009545, which are the two `k = 1` sectors.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] - the orders `k + 1` in `L`; the sector dimensions `(k+1 ± (−1)^{k/2})/2` refine them.
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and its factorization over consecutive columns.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the transfer-matrix spectrum (method 1 there); this page is a worked instance of "find the symmetry, block-diagonalize, read off the growth constant".
-- [[metallic-means](pages/metallic-means.md)] / [[castle-classification](pages/castle-classification.md)] - the Axis-8 growth-constant ladder that `2ψ²` sits beside.
+- [[metallic-means](pages/metallic-means.md)] / [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] - the Axis-8 growth-constant ladder that `2ψ²` sits beside.
 - [[finite-fields](pages/finite-fields.md)] / [[mod-p-observatory](pages/mod-p-observatory.md)] - the sector polynomials reduce mod `p` too; their orders are the pieces of `per(char_k)`.
 - [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] - Pascal's rule `C(r,k) = C(r−1,k) + C(r−1,k−1)`, the identity that proves the `H_{d+1} + μ² H_{d−1}` doubling identity in Part 2.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `char_2 = (x−2)(x²−x+2)` is why `F(w,3)` has order 6: its `(x−2)` is shared with the `2^w` term.

@@ -98,7 +98,7 @@ with `A, B` fixed by the two seeds `den_1 = 2x² − 2x + 1` and `den_2 = −4x�
 - coefficient of `λ^{k−1}`: `2⌊(k+1)²/4⌋`;
 - coefficient of `λ`: `(−1)^{k−1} 2^k` (magnitude `2^k`), and constant term `(−1)^{k−1} 2^k` (same magnitude).
 
-The constant term `(−1)^{k−1} 2^k` and leading `−(k+1)` were already noted on [[signed-tower-count](pages/signed-tower-count.md)]; the `λ^{k−1}` coefficient `2⌊(k+1)²/4⌋` and the full closed form are the new content here. A uniform formula for *every* middle coefficient follows from expanding `A·r_+^k + B·r_−^k`, the `k`-direction analogue of the still-open `L`-direction `A_L, B_L` uniform formula on [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)].
+The constant term `(−1)^{k−1} 2^k` and leading `−(k+1)` were already noted on [[signed-tower-count](pages/signed-tower-count.md)]; the `λ^{k−1}` coefficient `2⌊(k+1)²/4⌋` and the full closed form are the new content here. A uniform formula for *every* middle coefficient follows from expanding `A·r_+^k + B·r_−^k`, the `k`-direction analogue of the still-open `L`-direction `A_L, B_L` uniform formula on [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)].
 
 ## Denominator roots (the eigenvalues)
 
