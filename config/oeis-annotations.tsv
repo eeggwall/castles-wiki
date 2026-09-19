@@ -101,3 +101,10 @@ A005917	supporting	Rhombic dodecahedral numbers: n^4 - (n-1)^4.	A(4,h) = h^4 - (
 A051028	supporting	Ramanujan's a-series: expansion of (1+53x+9x^2)/(1-82x-82x^2+x^3).	near-miss family a_n^3+b_n^3 = c_n^3+(-1)^n; growth delta_9^2, the ninth metallic mean squared (height-10 ceiling-exception strip)
 A051029	supporting	Ramanujan's b-series: expansion of (2-26x-12x^2)/(1-82x-82x^2+x^3).	b-series of the near-miss family; same denominator (1+x)(1-83x+x^2)
 A051030	supporting	Ramanujan's c-series: expansion of (2+8x-10x^2)/(1-82x-82x^2+x^3).	c-series of the near-miss family; Berlekamp-Massey on c_0..c_11 recovers the order-3 recurrence
+A226321	supporting	Number of real {0,1} matrices n X n which are the square of a {0,1} matrix.	strip rules that are two half-columns of a 0/1 rule: 8, 88, 3245 at heights 2, 3, 4 (fractional-width-and-height)
+A086510	supporting	Number of n X n real (0,1)-matrices with all eigenvalues >= 0.	strip rules with a real principal square root: 13, 261, 15418 at heights 2, 3, 4 (fractional-width-and-height)
+A003024	supporting	Number of acyclic digraphs (or DAGs) with n labeled nodes.	strip rules with all eigenvalues real and positive, i.e. I + nilpotent: 3, 25, 543 at heights 2, 3, 4 (fractional-width-and-height)
+A001035	supporting	Number of partially ordered sets ("posets") with n labeled elements (or labeled acyclic transitive digraphs).	strip rules whose half-column has nonnegative weights: 3, 19, 219 at heights 2, 3, 4; the rule is a poset on the heights (fractional-width-and-height)
+A001803	supporting	Numerators in expansion of (1 - x)^(-3/2).	numerators of 2w C(2w,w)/4^w = B_{1/2}(box) / h, the half-order block count of a box castle (fractional-block-count)
+A002596	supporting	Numerators in expansion of sqrt(1+x). Absolute values give numerators in expansion of sqrt(1-x).	numerators of the half-order Grunwald-Letnikov weights (-1)^k C(1/2,k) (fractional-block-count)
+A046161	supporting	a(n) = denominator of binomial(2n,n)/4^n.	denominators of the half-order Grunwald-Letnikov weights and of the chain-rule half-column C(2k,k)/4^k (fractional-block-count, fractional-width-and-height)

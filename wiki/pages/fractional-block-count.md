@@ -1,7 +1,7 @@
 ---
 title: Fractional block count
 category: Analyses
-summary: The first F Division page. B_alpha(C) = sum_i max(0, Delta^alpha c_i), with Delta^alpha the Grunwald-Letnikov fractional difference of the skyline (binomial weights (-1)^k C(alpha,k) run back over every earlier column), equals the area at alpha = 0 and the block count at alpha = 1 exactly, verified on all 5460 castles with w <= 6, h <= 4. In between it is the total positive surprise of each column against a power-law weighted average of its past. B_{1/2} is a dyadic rational that separates all ten (4,2) even castles and 14 of the 15 castles in the cell; at an irrational alpha it separates all 15. The statistic is not monotone in alpha (829 of 5460 castles have an uptick), is bounded above by area but can undershoot the block count, is position-aware (unlike area and blocks), and is blind to a castle's descending tail for alpha near 1 for the same reason the block count is. The mean over a cell is convex decreasing in alpha; the variance has an interior minimum near alpha = 0.75. The fractional sign e^{i pi B_alpha} gives a phase sum P_alpha that runs from the area-parity sum (always +-1) at alpha = 0 to the signed count P at alpha = 1 and exceeds |P| in the interior. The L1 residual sum |Delta^alpha c| is the ARFIMA fractional-differencing cost, and its argmin recovers the integration order of a skyline (0 for i.i.d. columns, 1 for a random walk, 2 for a ramp).
+summary: The first F Division page. B_alpha(C) = sum_i max(0, Delta^alpha c_i), with Delta^alpha the Grunwald-Letnikov fractional difference of the skyline (binomial weights (-1)^k C(alpha,k) run back over every earlier column), equals the area at alpha = 0 and the block count at alpha = 1 exactly, verified on all 5460 castles with w <= 6, h <= 4. In between it is the total positive surprise of each column against a power-law weighted average of its past. B_{1/2} is a dyadic rational that separates all ten (4,2) even castles and 14 of the 15 castles in the cell; at an irrational alpha it separates all 15. The statistic is not monotone in alpha (829 of 5460 castles have an uptick), is bounded above by area but can undershoot the block count, is position-aware (unlike area and blocks), and is blind to a castle's descending tail for alpha near 1 for the same reason the block count is. The mean over a cell is convex decreasing in alpha; the variance has an interior minimum near alpha = 0.75. The fractional sign e^{i pi B_alpha} gives a phase sum P_alpha that runs from the area-parity sum (always +-1) at alpha = 0 to the signed count P at alpha = 1 and exceeds |P| in the interior. The L1 residual sum |Delta^alpha c| is the ARFIMA fractional-differencing cost, and its argmin recovers the integration order of a skyline (0 for i.i.d. columns, 1 for a random walk, 2 for a ramp). Generating functions: the fractional difference is multiplication of the skyline GF by (1 - x)^alpha, so for every nondecreasing skyline B_alpha = [x^w] (1 - x)^{alpha - 1} C(x) exactly and B_alpha is monotone in alpha (791 castles); the box castle has B_alpha = h C(w - alpha, w - 1), which at alpha = 1/2 is h 2w C(2w, w) / 4^w ~ 2h sqrt(w / pi), so sqrt(pi) enters the block count.
 tags: [analysis, castle, fractional-calculus, grunwald-letnikov, block-count, area, statistic, memory, power-law, arfima, compression, parity, f-division, computation, verification]
 sources: [project-euler-502-castle-factoring, project-euler-502-brute-force, project-euler-502-observations]
 created: 2026-09-19
@@ -104,7 +104,7 @@ The pair `(area, blocks)` separates a few percent of a cell; a single fractional
 
 `B_alpha(C)` is continuous and piecewise polynomial in `alpha` (each residual is a polynomial in `alpha`, and the positive part clips). Three facts about its shape, all from the `w <= 6`, `h <= 4` census on a grid of 201 orders:[^exec]
 
-- **It is not monotone.** 829 of the 5460 castles have at least one uptick on `[0, 1]`. The upticks are small: the largest single step is `0.014` per `0.005` of `alpha`, and the largest total rise over `[0, 1]` is `0.47`, on `(4, 3, 1, 4, 1, 4)` (area 17, blocks 10). The IDEAS conjecture that `B_alpha` decreases in `alpha` for every castle is false.
+- **It is not monotone.** 829 of the 5460 castles have at least one uptick on `[0, 1]`. The upticks are small: the largest single step is `0.014` per `0.005` of `alpha`, and the largest total rise over `[0, 1]` is `0.47`, on `(4, 3, 1, 4, 1, 4)` (area 17, blocks 10). The IDEAS conjecture that `B_alpha` decreases in `alpha` for every castle is false in general; it is true for every nondecreasing castle, by the generating-function argument below, so the upticks all come from castles with descents.
 - **It is bounded above by the area** for every castle and every `alpha` in `[0, 1]`.
 - **It is not bounded below by the block count.** `(4, 3, 1, 4, 1, 2)` has 8 blocks and `B_{0.8} = 7.58`; its residuals at `alpha = 0.8` are `4.0, -0.2, -1.72, 2.83, -2.45, 0.75`, and the two positive ones at columns 4 and 6 fall short of the ascents `3` and `1` they correspond to, because the long memory of the `4` in column 1 is still being subtracted.
 
@@ -120,6 +120,49 @@ Over a whole cell the statistic is well behaved. The mean is convex and decreasi
 | | variance | 4.608 | 2.440 | 1.133 | 0.864 | 1.278 |
 
 The mean at `alpha = 1/2` is well below the average of the endpoints (`6.23` against `8.33` for `(6, 3)`): most of the drop from area to block count happens at small `alpha`, where the harmonic-number slope is steepest. The variance minimum near `alpha = 0.75` says the uniform castle is most predictable in its three-quarter-order block count, less so in either its area or its integer block count.
+
+## Generating functions: the box, the ramp, and the nondecreasing theorem
+
+Write the skyline as a polynomial `C(x) = sum_{i=1}^{w} c_i x^i`. The Grunwald-Letnikov weights are the coefficients of `(1 - x)^alpha`, so the residual sequence is a product of generating functions:
+
+```
+sum_i (Delta^alpha c_i) x^i  =  (1 - x)^alpha C(x)          (mod x^{w+1}).
+```
+
+At `alpha = 1/2` the coefficients of `(1 - x)^{1/2}` are `1, -1/2, -1/8, -1/16, -5/128, -7/256, -21/1024, ...`; their numerators are A002596 and their denominators A046161, the same denominators as `C(2k, k) / 4^k`. Two consequences fall out of the product form.[^exec]
+
+**The fractional difference is lossless.** `(1 - x)^{-alpha}` inverts it: the map from skyline to residual sequence is a triangular Toeplitz matrix with ones on the diagonal, and the roundtrip through `alpha = 0.37` and back returns the skyline to `10^{-15}`. All the information loss in `B_alpha` is in the positive part; the residual sequence itself is an exact re-encoding of the castle.
+
+**Nondecreasing castles.** If `c_1 <= c_2 <= ... <= c_w`, then `Delta^alpha = Delta^{-(1 - alpha)} Delta^1` applies the ordinary difference first, giving the nonnegative ascents `d_j = c_j - c_{j-1}`, and then the fractional sum `(1 - x)^{-(1 - alpha)}`, all of whose coefficients are positive for `0 <= alpha <= 1`. So every residual is nonnegative, the positive part does nothing, and
+
+```
+B_alpha(C)  =  [x^w] (1 - x)^{alpha - 1} C(x)  =  sum_{j=1}^{w} d_j [x^{w-j}] (1 - x)^{alpha - 2}.
+```
+
+The coefficients of `(1 - x)^{alpha - 2}` decrease in `alpha`, so **`B_alpha` is monotone decreasing in `alpha` for every nondecreasing castle**. Checked on all 791 nondecreasing castles with `w <= 7`, `h <= 5` at 41 orders: residuals nonnegative, the formula exact to `10^{-7}`, monotone.[^exec] The monotonicity failures of the previous section are therefore all castles with a descent somewhere, where a clipped negative residual can release its memory later.
+
+**The box.** For the box castle `c_i = h` the ascent sequence is `d = (h, 0, ..., 0)` and the formula collapses to one coefficient:
+
+```
+B_alpha(box_{w,h})  =  h [x^{w-1}] (1 - x)^{alpha - 2}  =  h C(w - alpha, w - 1)  =  h Gamma(w + 1 - alpha) / (Gamma(w) Gamma(2 - alpha))  ~  h w^{1 - alpha} / Gamma(2 - alpha).
+```
+
+At `alpha = 0` this is `hw`, the area; at `alpha = 1` it is `h`, the block count (a box has `h` blocks, one per row); at `alpha = 1/2`,
+
+```
+B_{1/2}(box_{w,h})  =  h sum_{i=0}^{w-1} C(2i, i) / 4^i  =  h 2w C(2w, w) / 4^w  ~  2h sqrt(w / pi),
+```
+
+whose numerators `1, 3, 15, 35, 315, 693, 3003, ...` are A001803, the numerators of `(1 - x)^{-3/2}`.[^exec] The half-order block count of a box is `(2 / sqrt(pi)) sqrt(area * blocks)` in the limit: the geometric mean of the two integer statistics, scaled by `2 / sqrt(pi) = 1.128`. This is the [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] crossed from the block-count side, through `Gamma(1/2) = sqrt(pi)`, and it is the same mechanism the F Division's half-sum item predicts for fractional partial sums of counts. Values at `h = 3`:
+
+| `w` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+|---|---|---|---|---|---|---|---|---|
+| `B_{1/2}(box_{w,3})` | 3 | 4.5 | 5.625 | 6.5625 | 7.3828 | 8.1211 | 8.7979 | 9.4263 |
+| ratio to `2h sqrt(w/pi)` | 0.886 | 0.940 | 0.959 | 0.969 | 0.975 | 0.979 | 0.982 | 0.985 |
+
+At `w = 200` the ratio to `h w^{1-alpha} / Gamma(2 - alpha)` is `0.9994` for `alpha = 1/4, 1/2, 3/4`.[^exec]
+
+**The ramp.** For `c_i = i` the ascents are all `1`, `C(x) = x / (1 - x)^2`, and `B_alpha = [x^{w-1}] (1 - x)^{alpha - 3} = C(w + 1 - alpha, w - 1)`; at `alpha = 1/2` and `w = 6` this is `11.7305`, matching the direct computation, and it grows like `w^{3/2}`. Between the box (`w^{1/2}` at half order) and the ramp (`w^{3/2}`) the exponent is set by the growth of the skyline, `w^{1 - alpha} * (degree of C)`.
 
 ## The partition function `Z(q, alpha)`
 
@@ -176,6 +219,8 @@ Settled:
 - `B_alpha` is position-aware; only palindromes (essentially) match their reversal.
 - `P_0 = (-1)^{w+h+1}` in every cell; `|P_alpha|` exceeds `|P_1|` in the interior.
 - The L1 residual argmin recovers the integration order of synthetic skylines.
+- The fractional difference is multiplication of the skyline GF by `(1 - x)^alpha`, invertible by `(1 - x)^{-alpha}`; for nondecreasing castles `B_alpha = [x^w] (1 - x)^{alpha-1} C(x)` and `B_alpha` is monotone (791 castles).
+- `B_alpha(box_{w,h}) = h C(w - alpha, w - 1)`; at `alpha = 1/2` it is `h 2w C(2w,w) / 4^w ~ 2h sqrt(w/pi)`, so `sqrt(pi)` enters the block count.
 
 Open:
 
@@ -203,6 +248,7 @@ Open:
 - [[castle-counting-function](pages/castle-counting-function.md)] - `F(4, 2) = 10`, the worked cell.
 - [[castle-snippets](pages/castle-snippets.md)] - `all_castles`, `blocks`.
 - [[image-as-castle](pages/image-as-castle.md)] and [[song-as-castle](pages/song-as-castle.md)] - the real skylines the compression reading is aimed at.
+- [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - `sqrt(pi)` in the half-order block count of a box is a crossing of the wall via `Gamma(1/2)`.
 
 ## Footnotes
 
@@ -211,4 +257,4 @@ Open:
 [^3]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Sign" L104-107 - "In the column-height form, the block count is the total descent: blocks = sum_{i=0}^{L} max(0, c_i - c_{i+1}), c_0 = c_{L+1} = 0"; L98-101 - "Weight each block by -1 and define s(C) = (-1)^{blocks(C)}".
 [^4]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] L13 - "Even-block-count is enforced by (A + P)/2, where A is the unsigned total and P is the signed count with (-1)^{blocks}. A symmetry trick that recurs in many combinatorial-enumeration problems."
 [^5]: https://en.wikipedia.org/wiki/Autoregressive_fractionally_integrated_moving_average (2026-09-19) [synthesis] - ARFIMA generalizes ARIMA by allowing the differencing order `d` to be a non-integer; the fractional differencing operator `(1 - B)^d` is defined by the binomial series `sum_k C(d, k) (-B)^k`, and processes with `0 < d < 1/2` exhibit long memory with power-law autocorrelation decay (Granger and Joyeux 1980, Hosking 1981).
-[^exec]: Verified by execution (2026-09-19): two Python 3 scripts, standard library only. Script 1: `gl_weights`, `frac_diff` (left ground column, `c_j = 0` for `j <= 0`), `B` (positive part), `Babs` (full L1), `blocks` (total ascent), `castles(w, h)`; endpoint identities `B_0 = area`, `B_1 = blocks` asserted on all 5460 castles with `w <= 6`, `h <= 4`; partial sums of `|w_k(1/2)|` to `n = 4, 16, 64, 1024`; the `(4, 2)` table; the harmonic-slope check by finite difference at `alpha = 10^{-4}`; the distinct-value census with collisions at `alpha = 1/2` re-tested at `sqrt(2) - 1`, `0.3141592`, `0.7071`; means and variances on `alpha in {0, 0.25, 0.5, 0.75, 1}`; the `Z(q, 1/2)` exponent spectrum of `(6, 3)`; `P_alpha` on a seven-point grid; the raw L1 argmin on four width-64 skylines. Script 2: monotonicity on a 201-point grid (violators, largest single step, largest total rise, `B_alpha <= area` and `B_alpha >= blocks` tests); dyadic check `B_{1/2} * 2^{2w-2} in Z` for `w <= 6, h = 3` and the exact weights via `fractions.Fraction`; pairs equal on all 49 orders `k/50` in `(0, 1)` (zero found) and pairs equal on the 50 orders `0.5 + k/100` in `[0.5, 1)` with their last positive-residual column and common prefix; reversal test; centred L1 argmin on a grid to `alpha = 2.5`, including an ARFIMA `d = 0.3` skyline generated by `(1 - B)^{-0.3}` on Gaussian noise. All quoted numbers are the scripts' printed output.
+[^exec]: Verified by execution (2026-09-19): two Python 3 scripts, standard library only. Script 1: `gl_weights`, `frac_diff` (left ground column, `c_j = 0` for `j <= 0`), `B` (positive part), `Babs` (full L1), `blocks` (total ascent), `castles(w, h)`; endpoint identities `B_0 = area`, `B_1 = blocks` asserted on all 5460 castles with `w <= 6`, `h <= 4`; partial sums of `|w_k(1/2)|` to `n = 4, 16, 64, 1024`; the `(4, 2)` table; the harmonic-slope check by finite difference at `alpha = 10^{-4}`; the distinct-value census with collisions at `alpha = 1/2` re-tested at `sqrt(2) - 1`, `0.3141592`, `0.7071`; means and variances on `alpha in {0, 0.25, 0.5, 0.75, 1}`; the `Z(q, 1/2)` exponent spectrum of `(6, 3)`; `P_alpha` on a seven-point grid; the raw L1 argmin on four width-64 skylines. Script 2: monotonicity on a 201-point grid (violators, largest single step, largest total rise, `B_alpha <= area` and `B_alpha >= blocks` tests); dyadic check `B_{1/2} * 2^{2w-2} in Z` for `w <= 6, h = 3` and the exact weights via `fractions.Fraction`; pairs equal on all 49 orders `k/50` in `(0, 1)` (zero found) and pairs equal on the 50 orders `0.5 + k/100` in `[0.5, 1)` with their last positive-residual column and common prefix; reversal test; centred L1 argmin on a grid to `alpha = 2.5`, including an ARFIMA `d = 0.3` skyline generated by `(1 - B)^{-0.3}` on Gaussian noise. Script 3 (SymPy 1.14, NumPy 1.26): series of `(1 - x)^{1/2}` against the GL weights with `fractions`; the box identity `h sum_{i<w} C(2i,i)/4^i = h 2w C(2w,w)/4^w` for `w <= 8` and the general `h C(w - alpha, w - 1)` at `alpha = 1/4, 1/2, 3/4`; the nondecreasing theorem on all 791 nondecreasing castles with `w <= 7`, `h <= 5` (`itertools.combinations_with_replacement`) at 41 orders, checking residual nonnegativity, the coefficient formula via `(1 - x)^{alpha - 1}` and the ascent form via `(1 - x)^{alpha - 2}`, and monotonicity; the ramp value at `w = 6`; the roundtrip `(1 - x)^{-alpha} (1 - x)^{alpha}`; the box asymptotic ratio at `w = 200` by `math.lgamma`; OEIS lookups of the numerator and denominator sequences by the search API. All quoted numbers are the scripts' printed output.
