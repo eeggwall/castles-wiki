@@ -5,7 +5,7 @@ summary: Every castle eigenvalue's "convergents" run against OEIS. The metallic 
 tags: [analysis, castle, continued-fraction, convergents, oeis, eigenvalue, quasi-polynomial, plastic-number, jacobi-perron, pisano, mod-p, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-16
+updated: 2026-09-18
 ---
 
 # Convergents-to-castle OEIS crosswalk
@@ -14,12 +14,18 @@ updated: 2026-09-16
 
 [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] ends on a promise: the eigenvalue's *continued-fraction period* over `R` and its *multiplicative order* mod `p` are two readings of one structure. This page cashes that promise in integers. A continued fraction's **convergents** `p_n/q_n` are its best rational approximations, and the numerators and denominators are integer sequences in their own right - Fibonacci for `φ`, Pell for `1+√2`. So: for every eigenvalue the castle produces, what are the convergent sequences, which OEIS entries do they hit, and where does the mod-`p` order show up in them?
 
-Four things came out:
+The through-line is one sentence, and each part follows it one step:
 
-1. **The metallic rungs are a one-sequence story each.** For `δ_a = [a; a, a, …]` the numerators and denominators are the *same* recurrence sequence one step apart, and the companion (Lucas-type) sequence appears as a trace. For `1+√2` both are A000129; A001333 is the numerator sequence of `√2 = (1+√2) − 1`.
-2. **The k-direction has no irrational eigenvalues.** The order-`(2L−2)` characteristic polynomial of `P(·,L)` is `(x+1)^L (x−1)^{L−2}` for every `L ≤ 12` tested. `P(k,L)` is a period-2 quasi-polynomial in `k`, and its first non-trivial row is in OEIS: `|P(k,4)|` = A352116, the partial sums of the odd triangular numbers.
-3. **The real higher-degree eigenvalues are in the L-direction**, the roots of `char_k` on [[generating-function-gallery](pages/generating-function-gallery.md)]. The `k = 6` dominant eigenvalue is `2ψ²` for `ψ` the plastic number; the plastic component of `P(6,L)` is exactly `2^L · A005251(L+3)`; and the multidimensional (Jacobi–Perron) expansion of `ρ_6` is periodic with a period matrix whose characteristic polynomial has Perrin-number coefficients. `ρ_4`'s expansion shows no period in 400 exact steps.
-4. **The CF ↔ mod-p link, quantitatively.** For a norm-`−1` quadratic, the `−1` that makes the fraction purely periodic (Galois) is the `−1` in `δ^{p+1} = N(δ) = −1` at every inert prime, so the Pisano-type period divides `2(p+1)` and never `p+1` - verified for all five rungs and every prime below 100, with the norm-`+1` control `φ²` behaving the opposite way. For the `±1` k-direction eigenvalues the period of `P(·,L) mod p` in `k` is `2·p^{⌈log_p L⌉}`, which explains the lone `18` in the [[mod-p-observatory](pages/mod-p-observatory.md)]'s height table.
+> A castle eigenvalue is a number, and a number has two kinds of repeating behavior — a continued-fraction period (over the reals) and a multiplicative order (mod `p`). These are two readings of one structure; the page walks each side to its integers.
+
+**Four parts, each one job:**
+
+1. **Part 1 — the metallic crosswalk.** The convergent sequences of the metallic means, matched offset-exact to OEIS (Pell A000129 for `1+√2`, and so on).
+2. **Part 2 — the mod-`p` bridge.** One integer, the norm `N(δ) = ±1`, decides both the continued-fraction period and the mod-`p` order — the "two readings of one structure," made quantitative.
+3. **Part 3 — the k-direction.** Run the castle in the other variable and every eigenvalue is `±1`, so there is no irrational continued fraction at all — just a quasi-polynomial, with `|P(k,4)| = A352116`.
+4. **Part 4 — the L-direction.** The genuinely irrational eigenvalues (`ρ_6 = 2ψ²`, the plastic number) and their multidimensional Jacobi–Perron continued fractions.
+
+Part 1 feeds Part 2; Parts 3 and 4 are the two independent directions (`k` and `L`) the castle can be run in. Read any part on its own.
 
 Everything below was produced by the snippets shown, executed during writing; every printed value is pinned. The snippets are the pedagogy - each one teaches the piece of theory it computes.
 
@@ -174,7 +180,7 @@ def berlekamp_massey(s):
 
 The same run extended to `L = 12` (with `k ≤ 60`) gives `(x+1)^L (x−1)^{L−2}` every time.[^8] The palindromic/anti-palindromic symmetry is exactly `x+1` (palindromic) to the `L` and `x−1` (anti-palindromic) to the `L−2`: **every k-direction eigenvalue is `+1` or `−1`**. There is nothing here with a continued fraction to speak of - rational numbers terminate.
 
-**Why it must be so (argument sketch, not a proof).** `P(k,L)` sums `(−1)^{desc(c)}` over the lattice points `c ∈ {0, …, k}^L`, and the descent `Σ max(0, c_i − c_{i+1})` is a *linear* form on each piece of the cube cut out by the order type of `c`. A sum of a fixed root of unity raised to a linear form over the lattice points of a dilated rational polytope is an Ehrhart-type quasi-polynomial in the dilation `k` whose period divides the order of the root - here 2. So the only possible eigenvalues are `±1`, with `P(k,L) = (−1)^k A_L(k) + B_L(k)`. The first OEIS-mining pass had in fact already seen this shape for the *even-block count*: it noted that the columns `F(w, ·)` are annihilated by `(x²−1)^w`.[^4] What is new is the exact multiplicities: `L` at `−1`, `L−2` at `+1`, for the signed count.
+**Why it must be so (argument sketch, not a proof).** The short version: `P(k,L)` is a sum of a `±1` weight over lattice points, and such a sum is a quasi-polynomial whose only growth factors are the root-of-unity values `±1` — nothing irrational can come out. The long version: `P(k,L)` sums `(−1)^{desc(c)}` over the lattice points `c ∈ {0, …, k}^L`, and the descent `Σ max(0, c_i − c_{i+1})` is a *linear* form on each piece of the cube cut out by the order type of `c`. A sum of a fixed root of unity raised to a linear form over the lattice points of a dilated rational polytope is an Ehrhart-type quasi-polynomial in the dilation `k` whose period divides the order of the root - here 2. So the only possible eigenvalues are `±1`, with `P(k,L) = (−1)^k A_L(k) + B_L(k)`. The first OEIS-mining pass had in fact already seen this shape for the *even-block count*: it noted that the columns `F(w, ·)` are annihilated by `(x²−1)^w`.[^4] What is new is the exact multiplicities: `L` at `−1`, `L−2` at `+1`, for the signed count.
 
 ### The quasi-polynomials, and what they hit in OEIS
 
@@ -315,7 +321,7 @@ def cf_digits(poly_coeffs, x0, n=20):
 
 ### Multi-variable convergents: Jacobi–Perron, exactly
 
-The **Jacobi–Perron algorithm** (JPA) is the standard multidimensional continued fraction. For a degree-`d` number `ρ` start from the vector `(ρ, ρ², …, ρ^{d−1})`, take integer parts `a_i = ⌊α_i⌋`, and map
+A quadratic's continued fraction is one number and one period; a cubic needs a *vector* of numbers, and that is the **Jacobi–Perron algorithm** (JPA), the standard multidimensional continued fraction. For a degree-`d` number `ρ` start from the vector `(ρ, ρ², …, ρ^{d−1})`, take integer parts `a_i = ⌊α_i⌋`, and map
 
 ```
 (α_1, …, α_{d−1})  ↦  ( (α_2 − a_2)/(α_1 − a_1), …, (α_{d−1} − a_{d−1})/(α_1 − a_1), 1/(α_1 − a_1) ).
