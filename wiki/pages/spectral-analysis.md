@@ -1,7 +1,7 @@
 ---
 title: Spectral analysis of castles
 category: Concepts
-summary: The centerpiece hub for spectral methods applied to castles as 2D polyominoes. Five different spectra sit on a castle, each classifying different things — transfer-matrix (growth), LGV kernel (correlation universality), skyline DFT (individual signature), combinatorial Laplacian (connectivity / isospectral pairs), Ihara zeta (Ramanujan / expander). Toolkit-side companion to the Axis 9 spectral predicates on castle-classification-non-geometric.
+summary: The centerpiece hub for spectral methods applied to castles as 2D polyominoes. Five different spectra sit on a castle, each classifying different things — transfer-matrix (growth), LGV kernel (correlation universality), skyline DFT (individual signature), combinatorial Laplacian (connectivity / isospectral pairs), Ihara zeta (Ramanujan / expander). Toolkit-side companion to the spectral predicates on castle-classification-spectrum.
 tags: [concept, castle, spectral, transfer-matrix, laplacian, dft, ihara-zeta, ramanujan, isospectral, determinantal]
 sources: [spectral-analysis]
 created: 2026-09-16
@@ -36,7 +36,7 @@ For fixed height bound `k = h − 1`, `T = M_k` is an `h × h` integer matrix wh
 F(w, h)  =  [h^w − (h−1)^w − P(h−1, w) + P(h−2, w)] / 2   ~   h^w / 2,        λ_1(h) = h,
 ```
 
-so the growth constant of `F(·, h)` is the integer `h` for every `h`, and the spectrum of `M_k` governs the *correction* terms `P(k, w) ~ ρ_k^w` with `ρ_1 = √2`, `ρ_2 = 2`, `ρ_3 = 2.193`, `ρ_4 = 2.796`, `ρ_5 = 2.892`, `ρ_6 = 2ψ² = 3.510` (`ψ` the [[plastic-number](pages/plastic-number.md)]). None of these is a metallic mean, and none can be: every eigenvalue of `M_k` is twice a root of the monic factor `H_{k/2}` or a root of the leading-coefficient-2 factor `V_{k/2}` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]), and a metallic mean fails both tests ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]). Metallic means enter the castle as spectral radii of the 2-state transfer matrices of castle *classes* - the [[pell-castle-strip](pages/pell-castle-strip.md)] `[[2,1],[1,0]]` with `1 + √2`, the `{0,1}`-strip with `φ` - which is what Axis 8 of [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] records, and as adjacency spectral radii of individual castle graphs (method 4 below).
+so the growth constant of `F(·, h)` is the integer `h` for every `h`, and the spectrum of `M_k` governs the *correction* terms `P(k, w) ~ ρ_k^w` with `ρ_1 = √2`, `ρ_2 = 2`, `ρ_3 = 2.193`, `ρ_4 = 2.796`, `ρ_5 = 2.892`, `ρ_6 = 2ψ² = 3.510` (`ψ` the [[plastic-number](pages/plastic-number.md)]). None of these is a metallic mean, and none can be: every eigenvalue of `M_k` is twice a root of the monic factor `H_{k/2}` or a root of the leading-coefficient-2 factor `V_{k/2}` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]), and a metallic mean fails both tests ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]). Metallic means enter the castle as spectral radii of the 2-state transfer matrices of castle *classes* - the [[pell-castle-strip](pages/pell-castle-strip.md)] `[[2,1],[1,0]]` with `1 + √2`, the `{0,1}`-strip with `φ` - which is what Axis 8 of [[castle-classification](pages/castle-classification.md)] records, and as adjacency spectral radii of individual castle graphs (method 4 below).
 
 **Spectral signature of a rule set.** Any modification of Project Euler 502 (PE 502)'s rules (change the gap requirement, forbid width-1 blocks, allow diagonal stacking) modifies `T` and therefore perturbs the sequence `{λ_i(h)}_{h ≥ 2}`. Two castle families are asymptotically equivalent iff their transfer-matrix eigenvalue sequences agree — the transfer-matrix spectrum is the **canonical invariant** of a castle rule set.
 
@@ -44,7 +44,7 @@ so the growth constant of `F(·, h)` is the integer `h` for every `h`, and the s
 
 **Connection to [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)].** That page treats the **characteristic polynomials of the L-direction and k-direction recurrences** on `P(k, L)` — palindromic / anti-palindromic, self-reciprocal, roots pairing as `r ↔ ±1/r`. Those recurrences are *derived* from the transfer matrix via the rational-function form `P_k = num_k / den_k`, so the eigenvalues in play are related but distinct: the transfer-matrix spectrum lives at the operator level; the recurrence spectra live at the sequence level. Same underlying algebra, different objects.
 
-**Wiki ties:** [[castle-counting-formula](pages/castle-counting-formula.md)], [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] `p_signed`, [[metallic-means](pages/metallic-means.md)], [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] Axis 8 (growth-type meta-classification).
+**Wiki ties:** [[castle-counting-formula](pages/castle-counting-formula.md)], [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] `p_signed`, [[metallic-means](pages/metallic-means.md)], [[castle-classification-growth](pages/castle-classification-growth.md)] Axis 8 (growth-type meta-classification).
 
 ## 2. LGV kernel spectrum — determinantal correlation universality
 
@@ -57,7 +57,7 @@ The determinantal-process framing is what makes castles amenable to **random mat
 
 **The nomography link.** The LGV framework applies to castles through a non-crossing-path bijection that the working note `pe502-nomography.md` (in `/Users/creid/tmp/`, pending wiki ingest) develops. Once ingested that thread will become the fully-linked home of the LGV/determinantal analysis; this section will grow when it lands.
 
-**Wiki ties (pending):** the yet-to-be-ingested nomography note; downstream connections to [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] (parallelogram polyominoes are the canonical LGV castle family), [[polyominoes](pages/polyominoes.md)] (Ferrers / staircase families as non-crossing-path ensembles), and [[castle-classification-geometric](pages/castle-classification-geometric.md)] Axis 3 (path-like types) as a supply of concrete LGV-amenable castle classes.
+**Wiki ties (pending):** the yet-to-be-ingested nomography note; downstream connections to [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] (parallelogram polyominoes are the canonical LGV castle family), [[polyominoes](pages/polyominoes.md)] (Ferrers / staircase families as non-crossing-path ensembles), and [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 3 (path-like types) as a supply of concrete LGV-amenable castle classes.
 
 ## 3. Skyline DFT — individual-castle signatures
 
@@ -72,12 +72,12 @@ is a complete invariant of the skyline (modulo cyclic shift, which the DFT commu
 Three natural regimes:
 
 - **Low-pass castles** — energy concentrated in low-`k` modes. Smooth, mountain-shaped skylines with few tall peaks. The [[convex-castle](pages/convex-castle.md)] class and the [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] unimodal family sit predominantly here.
-- **High-pass castles** — energy concentrated in high-`k` modes. Jagged, alternating skylines with many blocks and gaps. The **crenellated** type ([[castle-classification-geometric](pages/castle-classification-geometric.md)] Axis 7) with heights alternating `{a, h}` is the extreme case — its DFT support is concentrated at `k = w/2`, a **two-atom spectrum**.
+- **High-pass castles** — energy concentrated in high-`k` modes. Jagged, alternating skylines with many blocks and gaps. The **crenellated** type ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 7) with heights alternating `{a, h}` is the extreme case — its DFT support is concentrated at `k = w/2`, a **two-atom spectrum**.
 - **Sparse-spectrum castles** — a specific set `S ⊂ {0, …, w−1}` of frequencies carries all the energy (`ĉ_k = 0` for `k ∉ S`). Highly periodic skylines. **Crenellated / battlement** = two-atom `S = {0, w/2}`; more general periodic patterns give richer `S`. The classification question — *which sparse-support sequences correspond to valid castles?* — is a hard combinatorial problem that hooks into **compressed sensing** and **turnpike-type reconstruction** from the signal-processing side.
 
 **Skyline energy as an ordering.** The Parseval identity `∑ |ĉ_k|² = w · ∑ c_j²` fixes total energy at the area-squared scale (area = `∑ c_j`), so the DFT gives an orthogonal decomposition of a castle's "total energy" across `w` frequency channels. Ordering castles by *which* channels carry the energy gives a continuous refinement of the discrete Axis 7 value-pattern types.
 
-**Wiki ties:** [[castle-classification-geometric](pages/castle-classification-geometric.md)] Axis 7 (crenellated = two-atom DFT support) and [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] Axis 9 (sparse-spectrum as an individual-castle predicate; low/high-pass as soft variants); [[castle-representations](pages/castle-representations.md)] (the column-height sequence being transformed); [[castle-snippets](pages/castle-snippets.md)] (a `numpy.fft.fft(c)` one-liner is the natural extension there — not yet added).
+**Wiki ties:** [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 7 (crenellated = two-atom DFT support) and [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] Axis 9 (sparse-spectrum as an individual-castle predicate; low/high-pass as soft variants); [[castle-representations](pages/castle-representations.md)] (the column-height sequence being transformed); [[castle-snippets](pages/castle-snippets.md)] (a `numpy.fft.fft(c)` one-liner is the natural extension there — not yet added).
 
 ## 4. Combinatorial Laplacian — connectivity, bottlenecks, isospectral pairs
 
@@ -99,7 +99,7 @@ Two castles with the **same Laplacian spectrum but non-isomorphic shape** are **
 
 **Sketched approach.** Enumerate all castles up to size `n ≤ 20` (or up to `w, h ≤ 6` or so) using the [[castle-snippets](pages/castle-snippets.md)] enumeration primitives. For each castle: (i) build the polyomino graph as a `NetworkX` graph or a sparse adjacency matrix; (ii) compute `L`; (iii) compute the sorted spectrum as a tuple of rounded floats (or symbolic characteristic polynomial for exactness); (iv) hash. Search for collisions across non-isomorphic castles. Report the smallest pair. Both computational and clean-statement outcomes — either an explicit pair is exhibited (and drawn), or an exhaustive search up to size `n_0` shows no pair exists up to `n_0`.
 
-**Wiki ties:** [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] Axis 9 (isospectral pair as an Axis-9 predicate; the pair predicate rather than a single-castle predicate); [[castle-snippets](pages/castle-snippets.md)] (enumeration primitives feeding the search).
+**Wiki ties:** [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] Axis 9 (isospectral pair as an Axis-9 predicate; the pair predicate rather than a single-castle predicate); [[castle-snippets](pages/castle-snippets.md)] (enumeration primitives feeding the search).
 
 ## 5. Ihara zeta / Ramanujan castles — arithmetic-flavored spectral invariant
 
@@ -125,14 +125,14 @@ Castle graphs are bipartite, so this is the bipartite-Ramanujan condition `λ_2 
 
 - **Ihara-Ramanujan castles.** Transfer the condition to the non-backtracking operator's spectrum rather than adjacency. This is the version that connects most directly to the Ihara-zeta framework.
 
-**Structural candidates worth checking first** ([[castle-classification-geometric](pages/castle-classification-geometric.md)] Axis 5 and 7 types with regular local structure):
+**Structural candidates worth checking first** ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 5 and 7 types with regular local structure):
 
 - **Boxcastle** — the full `w × h` rectangle graph. Its adjacency spectrum is known explicitly: `2·cos(iπ/(w+1)) + 2·cos(jπ/(h+1))` for `1 ≤ i ≤ w, 1 ≤ j ≤ h`. so `λ_2` is explicit; Ramanujan status needs `ρ(T)` for its universal covering tree, with `2√3` only the necessary-condition ceiling.
 - **Hook** — small, spectrum computable by hand or trivially by SymPy.
 - **Ferrers / staircase** — the standard partition-shape polyominoes with partial classical spectral results in the polyomino literature.
 - **Crenellated** — alternating heights `{a, h}`; highly regular local structure, a natural Ramanujan candidate.
 
-**Wiki tie:** [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] Axis 9 states the Ramanujan-castle predicate; this section supplies the *method* (universal-cover spectral radius, Ihara zeta, adjacency-operator spectral analysis) whose output the Axis-9 predicate tests.
+**Wiki tie:** [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] Axis 9 states the Ramanujan-castle predicate; this section supplies the *method* (universal-cover spectral radius, Ihara zeta, adjacency-operator spectral analysis) whose output the Axis-9 predicate tests.
 
 ## Construction ↔ spectrum crosswalk
 
@@ -165,7 +165,7 @@ Run exhaustively over every castle with at most 16 cells (compositions of `n`, m
 This page and [[castle-classification](pages/castle-classification.md)] are paired. The rough division of labor:
 
 - **This page** — **methods**: how to compute each of the five spectra. What operator, what algorithm, what does the output mean.
-- **[[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)]** — **predicates**: which castle satisfies which spectral condition. Axis 9's tree, golden-/silver-spectrum, isospectral, and Ramanujan types are the current named types; more will land as the methods develop.
+- **[[castle-classification-spectrum](pages/castle-classification-spectrum.md)]** — **predicates**: which castle satisfies which spectral condition. Axis 9's tree, golden-/silver-spectrum, isospectral, and Ramanujan types are the current named types; more will land as the methods develop.
 
 **A completed spectral method + a satisfied predicate = a named castle type.** The Ramanujan castle is the simplest live example: the method (Ihara / adjacency-spectrum computation) exists in general graph theory; the predicate (`λ_2 ≤ ρ(T)`, the universal-cover threshold) sits on Axis 9; the type is named. Every other spectral method on this page has a parallel Axis-9 type it would populate when its computational side is fleshed out — sparse-spectrum from the DFT method, isospectral from the Laplacian method, sine-kernel bulk-limit membership from the LGV kernel method, silver-width-growth membership from the transfer-matrix method (already Axis 8).
 
@@ -183,7 +183,7 @@ Each of these becomes its own Analysis page or Concept page when its content lan
 
 ## Related Concepts
 
-- [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] — the predicate-side companion; Axis 9 catalogs spectral types on individual castles, Axis 8 catalogs growth-type meta-classification on classes.
+- [[castle-classification](pages/castle-classification.md)] — the predicate-side companion; Axis 9 catalogs spectral types on individual castles, Axis 8 catalogs growth-type meta-classification on classes.
 - [[castle-polyomino](pages/castle-polyomino.md)] / [[castle-representations](pages/castle-representations.md)] — the base object each spectral method acts on.
 - [[metallic-means](pages/metallic-means.md)] — the family the transfer-matrix `λ_1(h)` values populate.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] — sibling eigenvalue thread on the `P(k, L)` recurrences (sequence-level rather than operator-level); the self-reciprocal / Lagrange-periodicity theory the transfer-matrix spectrum specializes.

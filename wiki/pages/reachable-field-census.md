@@ -170,7 +170,7 @@ The one-rule step (`strip_field`, above), the `strip_field_census` two-phase swe
 - [[metallic-means](pages/metallic-means.md)] - the ladder `δ_a`; this census places every rung's field and the copper collapse into `Q(√5)`.
 - [[plastic-number](pages/plastic-number.md)] - the bare-`ψ` watch note this census closes (plastic is a strip Perron root at h=3).
 - [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] - where tribonacci, supergolden, plastic² first arose (by area); the census finds them again as strip Perron roots.
-- [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] - Axis 8, the growth-type meta-classification these Perron roots populate.
+- [[castle-classification-growth](pages/castle-classification-growth.md)] - Axis 8, the growth-type meta-classification these Perron roots populate.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - why the metallic fields `Q(√(a²+4))` are the distinguished (purely-periodic-CF, norm-`−1`) quadratics among all reachable ones.
 
 ## Footnotes

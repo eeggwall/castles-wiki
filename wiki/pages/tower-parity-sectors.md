@@ -230,7 +230,7 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 - Prove that the dominant root lies in the `+1` sector and that `H_d` belongs to the `+1` sector iff `d` is odd.
 - The Hardin identity is proved on [[hardin-word-identity](pages/hardin-word-identity.md)] by an explicit unimodular change of basis between the word automaton and the halved even-sector matrix (every `m ≤ 8` checked symbolically; general `m` reduces to a finite entrywise check). A sign-reversing involution realizing it object by object is still open.
 - Which `H_d` have Pisot dominant roots (`d = 3` yes; `d = 5, 7, 9, …` no) and whether the Jacobi-Perron expansion of `ρ_k/2` is ever periodic beyond `k = 6` (`k = 10, 14`: not within 300 / 200 exact steps).
-- Whether Axis 8 of [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] should admit a non-metallic rung for `2ψ²`.
+- Whether Axis 8 of [[castle-classification-growth](pages/castle-classification-growth.md)] should admit a non-metallic rung for `2ψ²`.
 
 ## Snippet index
 
@@ -260,7 +260,7 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 - [[recurrence-discovery](pages/recurrence-discovery.md)] - the orders `k + 1` in `L`; the sector dimensions `(k+1 ± (−1)^{k/2})/2` refine them.
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and its factorization over consecutive columns.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the transfer-matrix spectrum (method 1 there); this page is a worked instance of "find the symmetry, block-diagonalize, read off the growth constant".
-- [[metallic-means](pages/metallic-means.md)] / [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] - the Axis-8 growth-constant ladder that `2ψ²` sits beside.
+- [[metallic-means](pages/metallic-means.md)] / [[castle-classification-growth](pages/castle-classification-growth.md)] - the Axis-8 growth-constant ladder that `2ψ²` sits beside.
 - [[finite-fields](pages/finite-fields.md)] / [[mod-p-observatory](pages/mod-p-observatory.md)] - the sector polynomials reduce mod `p` too; their orders are the pieces of `per(char_k)`.
 - [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] - Pascal's rule `C(r,k) = C(r−1,k) + C(r−1,k−1)`, the identity that proves the `H_{d+1} + μ² H_{d−1}` doubling identity in Part 2.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `char_2 = (x−2)(x²−x+2)` is why `F(w,3)` has order 6: its `(x−2)` is shared with the `2^w` term.

@@ -49,7 +49,7 @@ The cycle-rank identity is the crux. `G_c` is a planar graph whose bounded faces
 
 ## Named castle types from graph properties
 
-The castle graph turns each Axis 9 predicate on [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] into a graph property. Types this wiki now tracks:
+The castle graph turns each Axis 9 predicate on [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] into a graph property. Types this wiki now tracks:
 
 | type | graph condition | wiki page |
 |---|---|---|
@@ -58,7 +58,7 @@ The castle graph turns each Axis 9 predicate on [[castle-classification-non-geom
 | **Silver-spectrum castle** | adjacency spectral radius = `1 + √2` | [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
 | **φ²-spectrum castle** | adjacency spectral radius = `φ² = (3+√5)/2` | [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
 | **Isospectral pair** | two non-isomorphic castles with equal adjacency or Laplacian spectrum | [[isospectral-castles](pages/isospectral-castles.md)] |
-| **Ramanujan castle** | every eigenvalue other than `±λ_1` has modulus `≤ ρ(T)`, the spectral radius of the castle graph's universal covering tree (Greenberg's definition for irregular graphs); trivially true for tree castles | [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] Axis 9 |
+| **Ramanujan castle** | every eigenvalue other than `±λ_1` has modulus `≤ ρ(T)`, the spectral radius of the castle graph's universal covering tree (Greenberg's definition for irregular graphs); trivially true for tree castles | [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] Axis 9 |
 
 Sparse-spectrum, low-pass / high-pass, and Ihara-Ramanujan are sketched on Axis 9; they will land as populated types when their spectral method (skyline discrete Fourier transform (DFT), Ihara zeta) is worked out.
 
@@ -98,7 +98,7 @@ Characteristic polynomial `x² − x − (h − 1)`, growth constant
 
 All OEIS numbers verified offset-exact.[^2] Two things worth pinning to the wiki:
 
-- **The `h = 2` slice is Fibonacci**, so tree castles of bounded height 2 are a new castle interpretation of `A000045`. It sits next to the prime-castle formula `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] as another point where Fibonacci enters the castle count, and it plants the tree-castle family on rung 1 of the [[metallic-means](pages/metallic-means.md)] ladder ([[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] Axis 8: tree castles of height 2 are a **golden width growth castle**).
+- **The `h = 2` slice is Fibonacci**, so tree castles of bounded height 2 are a new castle interpretation of `A000045`. It sits next to the prime-castle formula `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] as another point where Fibonacci enters the castle count, and it plants the tree-castle family on rung 1 of the [[metallic-means](pages/metallic-means.md)] ladder ([[castle-classification](pages/castle-classification.md)] Axis 8: tree castles of height 2 are a **golden width growth castle**).
 - **The `h = 3` slice is Jacobsthal**, a genuine new interpretation of `A001045`. Higher rungs go to `A006130, A006131, A006131 + 1, …`, the "`k`-Fibonacci" family with `a(n) = a(n−1) + k · a(n−2)`. None of these growth constants for `h ≥ 3` is a metallic mean, so tree castles trace out a distinct algebraic family from the metallic one, indexed by `h`.
 
 The area-graded (q-analogue) count is worked out on [[tree-castle-by-area](pages/tree-castle-by-area.md)]: the bivariate generating function (GF) is `T_h(x, q) = (1 + P_h(q) x)/(1 − q x − q P_h(q) x²)`, summing over widths gives one C-finite sequence per height, and each hits a named OEIS sequence - `h = 2` is Narayana's cows A000930 (supergolden growth), `h = 3` is A006498 (golden growth via factorization), `h = 4` is A000570 (tournaments), `h → ∞` is A005251 (plastic squared, a second castle interpretation).
@@ -151,14 +151,14 @@ def cycle_rank(c):
 
 ## Related Concepts
 
-- [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] - Axis 9 is spectral predicates on this graph.
+- [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - Axis 9 is spectral predicates on this graph.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - single-eigenvalue types on this graph (golden, silver, φ²).
 - [[isospectral-castles](pages/isospectral-castles.md)] - Kac's question on this graph; the smallest Laplacian-isospectral pair is a pair of tree castles.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the methods hub for spectra on this graph.
 - [[castle-polyomino](pages/castle-polyomino.md)] - the underlying object, dropping the graph reading.
 - [[castle-representations](pages/castle-representations.md)] - other encodings; the castle graph is a further encoding, into `Z²`-subgraphs.
 - [[castle-by-area](pages/castle-by-area.md)] - `|V|` is area; the graph reading dualizes area-graded questions into vertex-graded ones.
-- [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] Axis 8 - the tree-castle golden growth constant sits on rung 1 of the metallic ladder for height 2.
+- [[castle-classification-growth](pages/castle-classification-growth.md)] Axis 8 - the tree-castle golden growth constant sits on rung 1 of the metallic ladder for height 2.
 - [[metallic-means](pages/metallic-means.md)] - the tree-castle `h = 2` growth `φ` lands here.
 - [[castle-snippets](pages/castle-snippets.md)] - `castle_graph`, `is_tree_castle`, `cycle_rank`.
 - [[unique-tournament](pages/unique-tournament.md)] - the wiki's other graph-theoretic object (complete oriented graphs, where castle graphs are sparse bipartite grids); the two meet at `A000570`, the `h = 4` tree-castle count by area.

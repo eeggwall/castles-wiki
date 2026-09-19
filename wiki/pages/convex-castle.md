@@ -62,7 +62,7 @@ where `C(m,k) = m!/(k!(m−k)!)` is the binomial coefficient. For example, at *h
 - [[column-convex-polyomino](pages/column-convex-polyomino.md)] — the column-convexity every castle already has.
 - [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] — the row-convexity that (with column-convexity) defines the convex castle.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] — the column-convex-polygon literature this convexity connects to.
-- [[castle-classification-geometric](pages/castle-classification-geometric.md)] — the framework that names this class the **unimodal type**, one of the 7 base castle types.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] — the framework that names this class the **unimodal type**, one of the 7 base castle types.
 - [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] — the home of Vandermonde's convolution (Knuth eq (21)), the identity that closes the count; [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] — the multinomial as the general form of the stars-and-bars mechanism.
 
 ## Footnotes

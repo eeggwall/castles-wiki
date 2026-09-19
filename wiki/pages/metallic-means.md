@@ -55,7 +55,7 @@ Two members of this family are already load-bearing on the wiki, from two indepe
 - **`δ_1 = φ`** is the growth constant of Fibonacci, which appears in the castle count as `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] (prime castles). The Fibonacci method for turning a recurrence into a rational generating function (GF) is the archetype of [[aocp-generating-functions](pages/aocp-generating-functions.md)].
 - **`δ_2 = 1+√2`** is the growth constant of the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]), and appears as the count-sequence growth of the anchored 1-smooth height-3 strip on [[pell-castle-strip](pages/pell-castle-strip.md)], whose width generating function is exactly `1/(1 − 2x − x²)`. The integer realization is the [[pell-numbers](pages/pell-numbers.md)].
 
-Both are treated in parallel on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] as "the castle's two norm-`−1` reduced quadratics" — the framing that made writing this page unavoidable: **there is a ladder, and the wiki was already sitting on rungs 1 and 2 without naming it.** Naming the ladder makes explicit that the metallic-mean family is a **meta-classification axis** for castle sub-families: a castle class is a **"`<metal>` `<axis>` growth castle"** iff its count sequence, graded by the chosen size axis, grows at rate `δ_a`. This is now Axis 8 of [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)]; the naming convention (`<metal>` ∈ {golden, silver, bronze, copper, nickel, …}, `<axis>` ∈ {width, vertical, area, block}) is developed there.
+Both are treated in parallel on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] as "the castle's two norm-`−1` reduced quadratics" — the framing that made writing this page unavoidable: **there is a ladder, and the wiki was already sitting on rungs 1 and 2 without naming it.** Naming the ladder makes explicit that the metallic-mean family is a **meta-classification axis** for castle sub-families: a castle class is a **"`<metal>` `<axis>` growth castle"** iff its count sequence, graded by the chosen size axis, grows at rate `δ_a`. This is now Axis 8 of [[castle-classification-growth](pages/castle-classification-growth.md)]; the naming convention (`<metal>` ∈ {golden, silver, bronze, copper, nickel, …}, `<axis>` ∈ {width, vertical, area, block}) is developed there.
 
 ## Structural facts about the family
 
@@ -66,7 +66,7 @@ Both are treated in parallel on [[eigenvalue-continued-fractions](pages/eigenval
 
 ## Castle classification: the Axis-8 realization
 
-[[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] Axis 8 defines the meta-classification **`<metal>` `<axis>` growth castle**, with:
+[[castle-classification-growth](pages/castle-classification-growth.md)] Axis 8 defines the meta-classification **`<metal>` `<axis>` growth castle**, with:
 
 - **`<metal>`** ∈ {golden (`a=1`, `φ`), silver (`a=2`, `1+√2`), bronze (`a=3`, `(3+√13)/2`), copper (`a=4`, `2+√5`), nickel (`a=5`, `(5+√29)/2`), …} — one per member of this family.
 - **`<axis>`** ∈ {width, vertical, area, block} — the size parameter being graded, always stated explicitly.
@@ -80,7 +80,7 @@ The two rungs the wiki has real content for:
 
 The realizability question the "how many states per column" knob raised is thus **settled**: a castle-strip denominator `1 − p_1·x − p_2·x²` grows at `(p_1 + √(p_1² + 4·p_2))/2`, a metallic mean iff `p_2 = 1`, but reading `p_1` as "states per column" is a **trap** — `p_1` (forward states) and `p_2` (length-2 return loops) are *coupled* in symmetric height-`h` rules, so widening the alphabet drifts `p_2` off `1` (no 0/1 matrix on `≤ 3` states reaches bronze; naive height-3 rules hit non-metallic `1 + √3`, `(3+√17)/2`). The `M_h = J − D` ceiling-exception rule is exactly the decoupling that keeps `p_2 = 1` at every height. Vertical / area / block axes require rethinking the strip mnemonic and are wide open.
 
-**The "every X is Y" theorem shape.** The Axis-8 framing makes cross-axis statements articulable. Example: *"the tower word, a Motzkin-path type with a run constraint, is a silver width growth castle"* combines an Axis 3 shape predicate with the Axis 8 growth type through a real theorem (its algebraic GF has its singularity at `√2 − 1`), and *"the tree ban lowers the area growth constant from tribonacci to golden at height 3"* combines Axis 9 with Axis 8. See [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] for more.
+**The "every X is Y" theorem shape.** The Axis-8 framing makes cross-axis statements articulable. Example: *"the tower word, a Motzkin-path type with a run constraint, is a silver width growth castle"* combines an Axis 3 shape predicate with the Axis 8 growth type through a real theorem (its algebraic GF has its singularity at `√2 − 1`), and *"the tree ban lowers the area growth constant from tribonacci to golden at height 3"* combines Axis 9 with Axis 8. See [[castle-classification](pages/castle-classification.md)] for more.
 
 ## Appearances in Sources
 

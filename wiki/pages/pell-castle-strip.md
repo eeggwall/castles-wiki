@@ -57,7 +57,7 @@ Any word `a_1 a_2 … a_k` over this alphabet has total weight `2^{#(width-1 ato
 
 ## Act III - The castle strip: 1-smooth, height at most 3, anchored at the base
 
-A castle strip is a skyline read left to right under a neighbor rule, and the rule is an `h × h` 0/1 transfer matrix whose states are the column heights ([[castle-strip](pages/castle-strip.md)]). Take the **1-smooth** rule on heights `{1, 2, 3}`: adjacent columns differ in height by at most 1 (`|c_{i+1} − c_i| ≤ 1`, the Motzkin-flavoured Axis-2 predicate of [[castle-classification-geometric](pages/castle-classification-geometric.md)]). Its transfer matrix and characteristic polynomial are
+A castle strip is a skyline read left to right under a neighbor rule, and the rule is an `h × h` 0/1 transfer matrix whose states are the column heights ([[castle-strip](pages/castle-strip.md)]). Take the **1-smooth** rule on heights `{1, 2, 3}`: adjacent columns differ in height by at most 1 (`|c_{i+1} − c_i| ≤ 1`, the Motzkin-flavoured Axis-2 predicate of [[castle-classification-shape](pages/castle-classification-shape.md)]). Its transfer matrix and characteristic polynomial are
 
 ```
         to 1  to 2  to 3
@@ -122,7 +122,7 @@ A rational generating function's denominator is a factored inventory of atoms. W
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - where `1 + √2 = [2;2,2,…]` is developed.
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] - where `1 + √2` also appears, as the tower-word growth constant.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] - the Fibonacci / `φ` companion (same story with `a = 1`).
-- [[castle-classification-geometric](pages/castle-classification-geometric.md)] - Axis 2 (the 1-smooth predicate); [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] - Axis 8, for which the anchored 1-smooth strip is the canonical **silver width growth castle** example.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - Axis 2 (the 1-smooth predicate); [[castle-classification-growth](pages/castle-classification-growth.md)] - Axis 8, for which the anchored 1-smooth strip is the canonical **silver width growth castle** example.
 
 ## Footnotes
 

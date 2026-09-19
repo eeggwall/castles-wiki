@@ -1,16 +1,16 @@
 ---
-title: Castle classification - geometric types
+title: Castle classification - shape types
 category: Concepts
-summary: The 42 shape-based castle types (7 base, 35 proposed) as skyline predicates on individual castles, grouped into Axes 1-7 - convexity, rate of change, path-like, symmetry, extremum, parity/area, value patterns - with each type's wiki home and count status.
+summary: The 42 shape-based castle types as skyline predicates on individual castles. Seven axes: convexity/modality, rate of change, path-like, symmetry, extremum, parity/area, value patterns. Each type gets its wiki home and count status.
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook]
 sources: [castle-classification]
 created: 2026-09-19
 updated: 2026-09-19
 ---
 
-# Castle classification - geometric types
+# Castle classification - shape types
 
-A **geometric** castle type is a predicate on the shape of one castle, read off its skyline `(c_1, …, c_w)` ([[castle-classification](pages/castle-classification.md)] for the framing, [[castle-polyomino](pages/castle-polyomino.md)] for the object). Every castle is column-convex and bottom-aligned already, so each type below is a further restriction on the skyline.[^1] This page is the catalogue: the 7 base types from the polyomino literature and the 35 proposed types, grouped into seven structural axes, each tied to the wiki thread that already touches it and marked as counted, candidate, or open. The non-geometric techniques (growth type of a class, spectrum of the castle graph, description length) are on [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)].
+A **geometric** castle type is a predicate on the shape of one castle, read off its skyline `(c_1, …, c_w)` ([[castle-classification](pages/castle-classification.md)] for the framing, [[castle-polyomino](pages/castle-polyomino.md)] for the object). Every castle is column-convex and bottom-aligned already, so each type below is a further restriction on the skyline.[^1] This page is the catalogue: the 7 base types from the polyomino literature and the 35 proposed types, grouped into seven structural axes, each tied to the wiki thread that already touches it and marked as counted, candidate, or open. The non-geometric techniques (growth type of a class, spectrum of the castle graph, description length) are on [[castle-classification](pages/castle-classification.md)].
 
 ## The base 7 types and their wiki homes
 
@@ -167,7 +167,7 @@ In rough order of tractability:
 ## Related Concepts
 
 - [[castle-classification](pages/castle-classification.md)] - the hub: framing, the geometric / non-geometric split, and the consolidated open-thread list.
-- [[castle-classification-non-geometric](pages/castle-classification-non-geometric.md)] - growth-type, spectral, and compressibility classification.
+- [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - growth-type, spectral, and compressibility classification.
 - [[castle-polyomino](pages/castle-polyomino.md)] / [[castle-representations](pages/castle-representations.md)] - the base object and the skyline encoding the predicates read.
 - [[convex-castle](pages/convex-castle.md)] / [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the unimodal (row-convex) type.
 - [[polyominoes](pages/polyominoes.md)] / [[column-convex-polyomino](pages/column-convex-polyomino.md)] / [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - the base-type home literature.
