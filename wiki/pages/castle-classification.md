@@ -175,7 +175,7 @@ A castle class is a **"`<metal>` `<axis>` growth castle"** iff its count sequenc
 
 A class whose width-graded count sequence has growth constant `φ = (1+√5)/2`, equivalently whose width GF has dominant singularity at `1/φ = φ − 1`. Known members:
 
-- **The height-2 tree castles** ([[castle-graph](pages/castle-graph.md)]) — skylines with `c_i ∈ {0, 1}` above the base and no two adjacent raised columns, so every upper block has width 1. Count sequence: Fibonacci `F_{w+2}`, generating function `1/(1 − x − x²)`, the `p_1 = 1, p_2 = 1` denominator. Rule 3 alone does *not* produce this family: under PE 502's rules every skyline over `{0, 1}` is a castle and the count is `2^w` ([[pell-castle-strip](pages/pell-castle-strip.md)] Act III).
+- **The height-2 tree castles** ([[castle-graph](pages/castle-graph.md)]) — skylines with `c_i ∈ {0, 1}` above the base and no two adjacent raised columns, so every upper block has width 1. Count sequence: Fibonacci `F_{w+2}`, generating function `1/(1 − x − x²)`, the `p_1 = 1, p_2 = 1` denominator.
 - **The prime-castle count** `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] — Fibonacci-flavored in `Q(√5)`, so its Fibonacci component makes it a golden growth castle by area (not width — the area grading is what puts Fibonacci in this sequence).
 
 ### Silver width growth castle — the `δ_2 = 1 + √2` axis-2 family

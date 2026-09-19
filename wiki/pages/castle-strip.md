@@ -110,7 +110,7 @@ The one-line strip counter and growth-constant / field probes are on [[castle-sn
 
 ## Related Concepts
 
-- [[pell-castle-strip](pages/pell-castle-strip.md)] - the worked seminar: the anchored 1-smooth height-3 strip is `1/(1 − 2x − x²)`, growth `1 + √2` (silver), plus the check that rules out reading it as a height-2 rule. The gentlest next step after this page.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] - the worked seminar: the anchored 1-smooth height-3 strip is `1/(1 − 2x − x²)`, growth `1 + √2` (silver). The gentlest next step after this page.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - which growth constants `λ` are strip Perron roots; the `p₁/p₂` two-knob reduction and the `J − D` metallic realizer.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the exhaustive census of strip Perron roots by number field; the reachability law.
 - [[metallic-means](pages/metallic-means.md)] - the ladder of growth constants `δ_a` these strips realize.

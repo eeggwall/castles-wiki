@@ -227,7 +227,7 @@ Skylines over `{1, 2, 3}` with adjacent heights differing by at most 1 ([[pell-c
 | 1-smooth, free first column | `3, 7, 17, 41, 99, 239, 577, 1393` | `1+√2` | **interlink** → [A001333](https://oeis.org/A001333) companion Pell |
 | 1-smooth, both end columns at height 1 | `1, 1, 2, 4, 9, 21, 50, 120` | `1+√2` | **unchecked** |
 
-*(Verified by enumeration and by `e_1ᵀ(I − xM)^{−1}𝟙` on the 3×3 transfer matrix, 2026-09-19. Height-2 castles under PE 502's own rules number `2^w`, so this is the castle home of Pell, not the height-2 count.)*
+*(Verified by enumeration and by `e_1ᵀ(I − xM)^{−1}𝟙` on the 3×3 transfer matrix, 2026-09-19.)*
 
 ### Proper-castle (max=h + even-block) metallic ladder
 

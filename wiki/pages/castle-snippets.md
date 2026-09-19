@@ -252,7 +252,7 @@ Wiki ties: [[castle-classification](pages/castle-classification.md)] Axis 5. **R
 
 ### Axis 8: growth-type predicate skeleton — the height-2 tree-castle strip
 
-Encode the state above the base (0 = empty column, 1 = one raised cell) and forbid two adjacent raised columns; this is the height-2 tree castle of [[castle-graph](pages/castle-graph.md)]. See [[castle-classification](pages/castle-classification.md)] Axis 8 for the meta-classification these strips instantiate. Rule 3 alone does not restrict `{0,1}` skylines (all `2^w` are castles), so the adjacency ban is the whole predicate.
+Encode the state above the base (0 = empty column, 1 = one raised cell) and forbid two adjacent raised columns; this is the height-2 tree castle of [[castle-graph](pages/castle-graph.md)]. See [[castle-classification](pages/castle-classification.md)] Axis 8 for the meta-classification these strips instantiate.
 
 ```python
 def is_zero_one_strip(c):
@@ -288,11 +288,9 @@ def pell_strip_count(w, anchored=True):
 [1, 2, 5, 12, 29, 70, 169, 408]
 >>> [pell_strip_count(w, anchored=False) for w in range(1, 9)]  # companion Pell, A001333
 [3, 7, 17, 41, 99, 239, 577, 1393]
->>> [len([c for c in product((1, 2), repeat=w)]) for w in range(1, 6)]   # height-2 castles under the actual rules: 2^w, not Pell
-[2, 4, 8, 16, 32]
 ```
 
-Meaning: the Pell numbers do occur as a castle-strip count, but the strip is a height-3 rate-of-change rule with a boundary condition, not a height-2 rule; every `{1,2}` skyline is a castle, so rule 3 contributes no correction term.
+Meaning: the boundary condition selects the sequence - anchoring the first column at the base gives Pell proper, a free first column gives companion Pell; both grow at `1 + √2`.
 
 ## Axis 8: growth-constant probes
 

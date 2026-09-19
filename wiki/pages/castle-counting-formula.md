@@ -112,7 +112,7 @@ The two integer values also have clean factorizations (confirmed by factoring du
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the canonical form the fast evaluation sums over.
 - [[convex-castle](pages/convex-castle.md)] — the enumeration-side backbone, complementary to this counting-side formula.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] — the two-idea pedagogical version of this derivation.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[pell-numbers](pages/pell-numbers.md)] — a coefficient-matching companion to the recurrences above. Note that the `k = 1` member of the `den_k` family is `1 − 2x + 2x²` (A146559), not the Pell denominator `1 − 2x − x²`; the Pell numbers live on a different castle strip.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[pell-numbers](pages/pell-numbers.md)] — a coefficient-matching companion to the recurrences above.
 - [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] — the pre-solution framing whose `F(13,10)` scale argument this closed form answers; [[project-euler-502-observations](pages/project-euler-502-observations.md)] — the source's own statement of the crux and of `(A + P)/2` as a recurring symmetry trick.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] — the `h = 3` row `F(w,3) = (3^w − 2^w − P(2,w) + P(1,w))/2` as a standalone order-6 sequence.
 

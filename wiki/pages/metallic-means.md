@@ -89,7 +89,7 @@ The realizability question the "how many states per column" knob raised is thus 
 ## Related Concepts
 
 - [[pell-numbers](pages/pell-numbers.md)] — the `a=2` integer sequence; the silver-mean member.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] — the anchored 1-smooth height-3 strip realizing `δ_2 = 1+√2` with Pell-number counts, and the correction of the earlier rule-3 reading.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] — the anchored 1-smooth height-3 strip realizing `δ_2 = 1+√2` with Pell-number counts.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] — which metallic means are actually castle-strip Perron roots: the `p_1`/`p_2` coupling obstruction, silver's third realization, and bronze needing four states.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] — the two members `φ` and `1+√2` already treated as the castle's norm-`−1` reduced quadratics; this page names the ladder they sit on.
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — where `1+√2` appears as the tower-word growth constant.

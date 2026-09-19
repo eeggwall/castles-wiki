@@ -148,7 +148,7 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 - [x] **[Algorithmic seminar](wiki/pages/kitamasa.md)** - Berlekamp-Massey plus Kitamasa for enormous indices, with companion [berlekamp-massey](wiki/pages/berlekamp-massey.md). (S1)
 - [x] **[Formal language of tower words](wiki/pages/tower-word-language.md)** - the tower word as a Motzkin-path language, its unambiguous grammar, and the Dyck / Motzkin hierarchy. (-)
 - [x] **[The `(n-1)!` cycle-count upgrade](wiki/pages/castles-as-upgraded-cycle-count.md)** - read PE 502 as the elementary `(n-1)!` labelled-cycle count upgraded step by step into the sign / Foata / streak triad. (S1)
-- [x] **[The Pell castle strip](wiki/pages/pell-castle-strip.md)** - an AC end-of-chapter exercise on `D(x) = 1/(1-2x-x^2)`, its two-atom tiling reading, and the castle strip that realizes it (1-smooth, height <= 3, anchored at the base); counts are [pell-numbers](wiki/pages/pell-numbers.md), growth `1+sqrt(2)`. The earlier rule-3 reading of the atoms is withdrawn there. (S2)
+- [x] **[The Pell castle strip](wiki/pages/pell-castle-strip.md)** - an AC end-of-chapter exercise on `D(x) = 1/(1-2x-x^2)`, its two-atom tiling reading, and the castle strip that realizes it (1-smooth, height <= 3, anchored at the base); counts are [pell-numbers](wiki/pages/pell-numbers.md), growth `1+sqrt(2)`. (S2)
 - [x] **[Silver-ratio observatory](wiki/pages/pell-castle-strip.md)** - Pell (A000129) and companion Pell (A001333) both occur as castle-strip counts, in one family split by the boundary condition (anchored vs free 1-smooth height-3 strip); completes the Fibonacci/Pell symmetry on [pell-numbers](wiki/pages/pell-numbers.md). (S2)
 
 ### Q Division (q-numbers - castles by area)
