@@ -56,7 +56,7 @@ A038503:  a(n) = A038505(n) + A146559(n)          (the signed-tower link, now in
 A038505:  a(n) = A000225(n-1) − A038503(n) + 1   for n ≥ 1
 ```
 
-The two A000225 formulas are equivalent to `A038503(n) + A038505(n) = 2^(n−1)` — the castle split of the Mersenne number by block parity, now stated inside OEIS itself. The third puts **A146559** ([[signed-tower-count](pages/signed-tower-count.md)]) directly into the entry as `a(n) = A038505(n) + A146559(n)` — the signed vein's first appearance in an OEIS entry.
+The two A000225 formulas are equivalent to `A038503(n) + A038505(n) = 2^(n−1)` — the castle split of the Mersenne number by block parity, now stated inside OEIS itself. The third puts **A146559** ([[signed-tower-count](pages/signed-tower-count.md)]) directly into the entry as `a(n) = A038505(n) + A146559(n)` — the signed vein's first appearance in an OEIS entry; **A146559 itself** was also updated the same day with the converse `a(n) = A038503(n) − A038505(n)`.
 
 **Also added:** the clickable `Project Euler, Problem 502: Counting Castles` link on A038505, and **A000225** (the total) to the `Cf.` list of both entries, with **A146559** added to A038503's `Cf.`.
 

@@ -11,6 +11,7 @@ Execution notes (field map, signature format, scope): see SUBMISSION-NOTES.md.
   - A038503: `a(n) = A000225(n-1) - A038505(n) + 1 for n >= 1` and `a(n) = A038505(n) + A146559(n)`.
   - A038505: `a(n) = A000225(n-1) - A038503(n) + 1 for n >= 1`.
 - A038505 gained the `Project Euler, Problem 502: Counting Castles` link; both Cf. lists gained A000225, and A038503's also gained A146559.
+- A146559 itself was also updated with `a(n) = A038503(n) - A038505(n)` (Chaz Reid, Sep 18 2026).
 - Final comment text is quoted verbatim on the wiki page `oeis-height2-hyperbolic-castles.md`.
 
 ---
