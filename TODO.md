@@ -1,53 +1,17 @@
 # Castles wiki — open threads & TODO
 
-A running tracker of open research threads and pending actions for the PE 502 castles
-wiki. This is a **hand-maintained** file (not a generated artifact and not a wiki page —
-it lives at the repo root, outside `wiki/pages/`, so it does not appear in the index).
-The authoritative discussion of each thread lives on the linked wiki page; this file is
-the checklist view.
+A running tracker of pending human actions (OEIS submissions, ingestion queue,
+housekeeping) for the PE 502 castles wiki. This is a **hand-maintained** file (not a
+generated artifact and not a wiki page — it lives at the repo root, outside
+`wiki/pages/`, so it does not appear in the index).
+
+Research and seminar ideas live in `IDEAS.md`; this file holds the human-action and
+pipeline checklists.
 
 Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
 `wiki/pages/<slug>.md`.
 
 ---
-
-## Research threads (mathematics)
-
-- [ ] **Find the q-equivalent — a q-graded (area-tracking) castle count.** The recurring
-  "next step." The castle is counted cleanly by *area* (`wiki/pages/castle-by-area.md`:
-  convex ↔ A001523); grading that count by `q` is the natural way the castle meets the
-  q-analog world. Anchors: q-Motzkin appears in the q-grammar count of steep Dyck words
-  (`wiki/pages/motzkin-numbers.md`), q-Catalan (Polya/Gessel) count parallelogram
-  polyominoes by area (`wiki/pages/q-catalan-numbers.md`), and Ferrers-polyomino area
-  g.f.s relate to q-Bessel / q-Catalan (`wiki/pages/polyominoes.md`). The steep-polyomino
-  paper's q-Bessel-ratio generating function is the template
-  (`wiki/pages/steep-polyominoes-q-motzkin-bessel.md`).
-
-- [ ] **Convex ⟺ valley bijection.** Convex and valley castles are equinumerous in every
-  `(w,h)` cell (both `C(2h+w−3, w−1)`, different sets) under a peak↔valley mirror. Write
-  up the explicit bijection. See `wiki/pages/castle-by-area.md`,
-  `wiki/pages/convex-castle.md`.
-
-- [ ] **Knuth's generation algorithms in castle space (seminar candidate).** Translate
-  TAOCP Vol. 4 combinatorial-generation algorithms into the castle's mixed-radix `{1..h}^w`
-  space. Algorithm M (mixed-radix add-one) is already the castle brute-force; a **castle
-  Gray code** would change one column height by one per step (bounded block-count / sign
-  deltas → a loopless enumerator, incremental `P`/parity updates). The twist Knuth's generic
-  algorithms don't handle: restricting to *valid* castles (exact max height *h*, even-block
-  filter). Accessible, self-contained, good for external collaborators.
-  See `wiki/pages/aocp-generating-permutations-tuples.md`.
-- [ ] **Viennot heap theory.** The tower is a heap of pieces
-  (`wiki/pages/tower-heap.md`); its block-count Narayana structure invites the
-  commutation-monoid / transfer-matrix machinery. Untraced.
-
-- [ ] **Castle recurrences vs. the outside literature.** Do the castle's C-finite
-  recurrences relate to A001169 (horizontally convex polyominoes,
-  `wiki/pages/counting-horizontally-convex-polyominoes.md`) or to the add-a-column
-  functional equations of `wiki/pages/column-convex-polygon-enumeration.md`?
-
-- [ ] **Stack / Ferrers / parallelogram ↔ castle sub-families.** Do the classical
-  directed-convex families correspond to castle sub-families? (`wiki/pages/polyominoes.md`,
-  `wiki/pages/column-convex-polygon-enumeration.md`.)
 
 ## OEIS submissions (human action — drafts in `raw/oeis-pe502/`)
 

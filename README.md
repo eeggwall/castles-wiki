@@ -149,7 +149,8 @@ files, and notes — they matter when you're ingesting MediaWiki pages or PDFs.
 
 ```
 SCHEMA.md          conventions + how the wiki tools locate this wiki (do not move/delete)
-TODO.md            open research threads, OEIS submissions, ingestion queue
+IDEAS.md           project and seminar ideas, organized by Division and seminar arc
+TODO.md            OEIS submissions (human action), ingestion queue, housekeeping
 config/            link-style rules (markdown: [[slug](pages/slug.md)])
 bin/               stdlib helper scripts + the pre-commit hook (see Quick start)
 raw/               immutable source documents (wikitext, notes, cached refs) — never edited
