@@ -14,7 +14,7 @@ updated: 2026-09-19
 **Date ingested:** 2026-09-13
 **Type:** research notes + verified computation (Python: `castle.py`, `tower.py`, `vein9_area.py`, `vein9b_concave.py`; data `tables.json`, `terms_50.txt`)
 
-> **See also:** [[oeis-index](pages/oeis-index.md)] - the wiki's OEIS directory (every A-number and its wiki pages, grouped by role).
+> **See also:** [[oeis-index](pages/oeis-index.md)] - the wiki's OEIS directory (every A-number and its wiki pages, grouped by role); [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the novelty-status catalogue of castle sequences.
 
 ## Summary
 

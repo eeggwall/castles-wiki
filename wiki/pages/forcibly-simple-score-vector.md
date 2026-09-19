@@ -64,7 +64,7 @@ On the castle side the five FS sizes `1, 2, 3, 5, 7` are *not* the composition p
 - [[unique-tournament](pages/unique-tournament.md)] - the four basic strong-and-unique tournaments come from filtering the five FS score vectors.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the castle side of the part set `{1, 3, 4, 5}`, and the wiki's brute-force re-verification through `n = 8`.
 - [[castle-snippets](pages/castle-snippets.md)] - `is_strongly_connected(T)`, the strongly connected component (SCC) test used in that verification.
-- [[oeis-index](pages/oeis-index.md)] - `A000570` catalogue entry.
+- [[oeis-index](pages/oeis-index.md)] - `A000570` directory entry.
 
 ## Footnotes
 

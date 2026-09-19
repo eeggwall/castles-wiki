@@ -34,7 +34,8 @@ OEIS requires **human authorship** — a tool may run the verification scripts, 
 ## Appearances in Sources
 
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — applies this method across the castle veins; states the offset-verification discipline and the interlinking-vs-generation split.
-- [[oeis-index](pages/oeis-index.md)] - the wiki's OEIS directory: every A-number cited across the wiki, grouped by role (castle interpretation, metallic ladder, plastic, supporting), with occurrence counts and submission priority.
+- [[oeis-index](pages/oeis-index.md)] - the wiki's OEIS directory, script-generated: every A-number cited across the wiki, grouped by role (castle interpretation, metallic ladder, plastic, supporting), with the citing pages and mention counts.
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the hand-curated catalogue: every castle-counting sequence with its novelty status (known / interlink / novel-candidate / unchecked) and the submission priority list.
 
 ## Related Concepts
 

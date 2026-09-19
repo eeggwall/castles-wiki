@@ -96,7 +96,7 @@ Four OEIS sequences frame `u_n` from the outside; the first three were read from
 - [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] - the five FS score vectors are the starting point of the classification.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the three-way bijection.
 - [[castle-graph](pages/castle-graph.md)] - tree castles, the polyomino side of the bijection.
-- [[oeis-index](pages/oeis-index.md)] - A000570 catalog entry.
+- [[oeis-index](pages/oeis-index.md)] - A000570 directory entry.
 - [[hardin-word-identity](pages/hardin-word-identity.md)] - a different castle-side realization of the same composition object (via signed tower counts).
 - [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] / [[simple-tournament](pages/simple-tournament.md)] - the Muller-Nešetřil-Pelant machinery, with the regular- and strong-tournament OEIS counts that confirm each filtering step.
 - [[block-count-constraints](pages/block-count-constraints.md)] - compositions with parts in `D` as the `SEQ` sibling of the coin-change series.

@@ -43,7 +43,7 @@ Both components are castle counts. Splitting `P(1,L)` by the parity of the last 
 The mining pass left five results about the `P(k,·)` rows:
 
 - **`A146559` is now cross-linked, both directions.** `a(n) = P(1,n−1)`, the real part of `(1+i)^n` read as a signed castle count, with the genuinely new formula `A146559(n) = A038503(n) − A038505(n)` tying the signed vein to the height-2 [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)].[^3] That identity is now in OEIS in two places: A146559 itself gained `a(n) = A038503(n) − A038505(n)`, and A038503 gained the equivalent `a(n) = A038505(n) + A146559(n)` (both submitted 2026-09-18, [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]).
-- **All of `P(2..6, ·)` are confirmed novel.** The `k ≥ 2` rows generalize A146559 and have no OEIS match, in signed or absolute-value form, searched 2026-09-18 ([[oeis-index](pages/oeis-index.md)]).[^4]
+- **All of `P(2..6, ·)` are confirmed novel.** The `k ≥ 2` rows generalize A146559 and have no OEIS match, in signed or absolute-value form, searched 2026-09-18 ([[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]).[^4]
 - **The even-`k` rows are all positive and are the cleanest submission candidates.** `P(2,·): 1,1,3,9,19,33,59,…` (order 3), `P(4,·): 1,1,5,25,85,225,541,…` (order 5), `P(6,·): 1,1,7,49,231,833,2583,…` (order 7, char poly factoring with dominant root `2ψ²` — the plastic connection).
 - **The odd-`k` rows alternate in sign with irreducible char polys.** `P(3,·): 1,0,−4,−16,−40,…` and `P(5,·): 1,0,−6,−36,−140,…`.
 - **The whole family has a Pell/Chebyshev closed-form denominator** (roots `−x ± √(x²+1)`), worked out on [[generating-function-gallery](pages/generating-function-gallery.md)].

@@ -1,0 +1,96 @@
+anum	group	name	role
+A000032	metallic	Lucas numbers beginning at 2: L(n) = L(n-1) + L(n-2), L(0) = 2, L(1) = 1.	Lucas numbers (companion of Fibonacci)
+A000045	count	Fibonacci numbers: F(n) = F(n-1) + F(n-2) with F(0) = 0 and F(1) = 1.	tree castles of height 2 (T_2(w) = F_{w+2}); Fibonacci in prime-castle count
+A000073	count	Tribonacci numbers: a(n) = a(n-1) + a(n-2) + a(n-3) for n >= 3 with a(0) = a(1) = 0 and a(2) = 1.	bounded-height castles by area, height ≤ 3: tribonacci, `=A000073(A+2)`
+A000078	count	Tetranacci numbers: a(n) = a(n-1) + a(n-2) + a(n-3) + a(n-4) for n >= 4 with a(0) = a(1) = a(2) = 0 and a(3) = 1.	bounded-height castles by area, height ≤ 4: tetranacci, `=A000078(A+3)`
+A000079	supporting	Powers of 2: a(n) = 2^n.	powers of 2 (P_even(2,L) = 2^L)
+A000129	count	Pell numbers: a(0) = 0, a(1) = 1; for n > 1, a(n) = 2*a(n-1) + a(n-2).	anchored 1-smooth height-≤3 castle strip, `P_{w+1}` (the Pell castle strip); integer realization of 1 + √2
+A000142	supporting	Factorial numbers: n! = 1*2*3*4*...*n (order of symmetric group S_n, number of permutations of n letters).	rainbow castles: exactly h! at width h
+A000217	supporting	Triangular numbers: a(n) = binomial(n+1,2) = n*(n+1)/2 = 0 + 1 + 2 + ... + n.	height-2 castles whose second row is a single run; F(4,2) = C(5,2) = 10
+A000225	count	a(n) = 2^n - 1. (Sometimes called Mersenne numbers, although that name is usually reserved for A001348.)	total height-2 castles (Mersenne): F(w,2) + odd(w,2) = 2^w - 1
+A000447	count	a(n) = 1^2 + 3^2 + 5^2 + 7^2 + ... + (2*n-1)^2 = n*(4*n^2 - 1)/3.	|P(2m+1,4)| bisection: 4·A000447 = A199833
+A000568	supporting	Number of outcomes of unlabeled n-team round-robin tournaments.	ambient count for unique tournaments; A000568(8) = 6880 is the isomorphism-class count the tree-castle bijection was checked against
+A000570	count	Number of tournaments on n nodes determined by their score vectors.	tree castles of height 4 by area: T_(h=4)(A) = A000570(A+1); Tetali's classification of the four basic unique tournaments (sizes 1, 3, 4, 5) is proved in [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] (JCTB 72:157-159, 1998), ingested to `raw/`
+A000571	supporting	Number of different score sequences that are possible in an n-team round-robin tournament.	upper bound on unique tournaments u_n ≤ A000571(n), equality through n = 4
+A000749	supporting	a(n) = 4*a(n-1) - 6*a(n-2) + 4*a(n-3), n > 3, with a(0)=a(1)=a(2)=0, a(3)=1.	sum of every 4th binomial (hyperbolic family, k=3 residue)
+A000930	count	Narayana's cows sequence: a(0) = a(1) = a(2) = 1; thereafter a(n) = a(n-1) + a(n-3).	tree castles of height 2 by area: T_(h=2)(A) = A000930(A+1)
+A000931	plastic	Padovan sequence (or Padovan numbers): a(n) = a(n-2) + a(n-3) with a(0) = 1, a(1) = a(2) = 0.	Padovan (plastic Fibonacci): a(n) = a(n-2) + a(n-3)
+A001045	count	Jacobsthal sequence (or Jacobsthal numbers): a(n) = a(n-1) + 2*a(n-2), with a(0) = 0, a(1) = 1; also a(n) = nearest integer to 2^n/3.	tree castles of height 3: T_3(w) = J_{w+2} (Jacobsthal)
+A001047	count	a(n) = 3^n - 2^n.	h^w - (h-1)^w at h=3: total h=3 castles
+A001076	metallic	Denominators of continued fraction convergents to sqrt(5).	denominators of CF convergents to √5; copper Fibonacci-3 sequence
+A001077	metallic	Numerators of continued fraction convergents to sqrt(5).	numerators of CF convergents to √5
+A001168	supporting	Number of fixed polyominoes with n cells.	fixed polyominoes
+A001169	supporting	Number of board-pile polyominoes with n cells.	board-pile polyominoes (horizontally convex)
+A001263	count	Triangle of Narayana numbers T(n,k) = C(n-1,k-1)*C(n,k-1)/k with 1 <= k <= n, read by rows. Also called the Catalan triangle.	tower Narayana polynomial coefficients
+A001333	metallic	Pell-Lucas numbers: numerators of continued fraction convergents to sqrt(2).	numerators of CF convergents to √2 (Pell-Lucas)
+A001523	count	Number of stacks, or planar partitions of n; also number of weakly unimodal compositions of n.	convex castles by area (weakly unimodal compositions)
+A001591	count	Pentanacci numbers: a(n) = a(n-1) + a(n-2) + a(n-3) + a(n-4) + a(n-5), a(0)=a(1)=a(2)=a(3)=0, a(4)=1.	bounded-height castles by area, height ≤ 5: pentanacci, `=A001591(A+4)`
+A001608	plastic	Perrin sequence (or Perrin numbers, or Ondrej Such sequence): a(n) = a(n-2) + a(n-3) with a(0) = 3, a(1) = 0, a(2) = 2.	Perrin (plastic Lucas / trace)
+A002203	metallic	Companion Pell numbers: a(n) = 2*a(n-1) + a(n-2), a(0) = a(1) = 2.	companion Pell (trace of Pell)
+A002426	supporting	Central trinomial coefficients: largest coefficient of (1 + x + x^2)^n.	unconstrained U/R/D words returning to height 0; Motzkin is the ballot-restricted version
+A003188	supporting	Decimal equivalent of Gray code for n.	reflected Gray code (Knuth Algorithm G); the castle Gray code thread
+A003688	metallic	a(n) = 3*a(n-1) + a(n-2), with a(1)=1 and a(2)=4.	bronze free strip (`h=4`), `4, 13, 43, 142, 469, …`, growth `(3+√13)/2`
+A004149	count	Generalized Catalan numbers: a(n+1) = a(n) + Sum_{k=2..n-1} a(k)*a(n-1-k).	tower word growth (algebraic GF, growth 1+√2)
+A005060	count	a(n) = 5^n - 4^n.	h^w - (h-1)^w at h=5
+A005061	count	a(n) = 4^n - 3^n.	h^w - (h-1)^w at h=4
+A005062	count	a(n) = 6^n - 5^n.	h^w - (h-1)^w at h=6
+A005251	count	a(0) = 0, a(1) = a(2) = a(3) = 1; thereafter, a(n) = a(n-1) + a(n-2) + a(n-4).	**four linked castle readings** (the multi-interpretation hub on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]): Hardin no-isolated-1 words / `P_even(6,L)/2^L`; tree castles by area (`h→∞`); tower-spacing `(h=2,g=2)`; unified by [[a005251-bijection](pages/a005251-bijection.md)]
+A005408	count	The odd numbers: a(n) = 2*n + 1.	tower Narayana coefficient row
+A005435	count	Number of column-convex polyominoes with perimeter 2n+2.	column-convex polyominoes by perimeter (neighbor family)
+A005891	count	Centered pentagonal numbers: (5n^2+5n+2)/2; crystal ball sequence for 3.3.3.4.4. planar net.	tower Narayana coefficient row
+A006130	count	a(n) = a(n-1) + 3*a(n-2) for n > 1, a(0) = a(1) = 1.	tree castles of height 4: T_4(w) = a(w+1)
+A006131	count	a(n) = a(n-1) + 4*a(n-2), a(0) = a(1) = 1.	tree castles of height 5: T_5(w) = a(w+1)
+A006190	metallic	a(n) = 3*a(n-1) + a(n-2), with a(0)=0, a(1)=1.	bronze metallic sequence: a(n) = 3a(n-1) + a(n-2)
+A006497	metallic	a(n) = 3*a(n-1) + a(n-2) with a(0) = 2, a(1) = 3.	trace sequence for bronze
+A006498	metallic	a(n) = a(n-1) + a(n-3) + a(n-4), a(0) = a(1) = a(2) = 1, a(3) = 2.	tree castles of height 3 by area: T_(h=3)(A) = A006498(A+1); GF denominator factors as (1+q^2)(1-q-q^2), giving golden growth
+A007318	supporting	Pascal's triangle read by rows: C(n,k) = binomial(n,k) = n!/(k!*(n-k)!), 0 <= k <= n.	the binomial toolkit behind every binomial castle count
+A007323	supporting	Number of numerical semigroups of genus n; conjecturally also the number of power sum bases for symmetric functions in n variables.	the coin/semigroup branch of the block-count trichotomy; golden-ratio growth (Zhai 2013)
+A007814	supporting	Exponent of highest power of 2 dividing n, a.k.a. the binary carry sequence, the ruler sequence, or the 2-adic valuation of n.	Knuth's ruler function ρ(k), the bit to flip in Gray-code generation
+A008277	supporting	Triangle of Stirling numbers of the second kind, S2(n,k), n >= 1, 1 <= k <= n.	Knuth's binomial-coefficient toolkit (powers ↔ falling factorials)
+A008302	supporting	Triangle of Mahonian numbers T(n,k): coefficients in expansion of Product_{i=0..n-1} (1 + x + ... + x^i), where k ranges from 0 to A000217(n-1). Also enumerates permutations by their major index.	rainbow castles (w = h, skyline a permutation) graded by skyline inversions
+A009545	count	Expansion of e.g.f. sin(x)*exp(x).	-P_odd(1,L): height-1 signed tower count with odd last column
+A010892	supporting	Inverse of 6th cyclotomic polynomial. A period 6 sequence.	period-6 cyclotomic (P_odd(4,L)/2^L)
+A011782	count	Coefficients of expansion of (1-x)/(1-2*x) in powers of x.	weakly unimodal compositions (unrestricted)
+A014448	metallic	Even Lucas numbers: a(n) = L(3*n).	even Lucas: trace for copper (a=4)
+A014493	metallic	Odd triangular numbers.	odd triangular numbers (row of A352116)
+A015448	metallic	a(0) = 1, a(1) = 1, and a(n) = 4*a(n-1) + a(n-2) for n >= 2.	copper free strip (`h=5`), `=F_{3n+5}` trisection, growth `φ³`
+A027907	supporting	Triangle of trinomial coefficients T(n,k) (n >= 0, 0 <= k <= 2*n), read by rows: n-th row is obtained by expanding (1 + x + x^2)^n.	unconstrained U/R/D words by final height, the ceiling the castle grammar prunes
+A033887	metallic	a(n) = Fibonacci(3*n + 1).	F(3n+1): copper-delta convergent numerators
+A034839	supporting	Triangular array formed by taking every other term of each row of Pascal's triangle.	Pascal every-other row (binomial identity)
+A036038	supporting	Triangle T(n,k) read by rows: multinomial coefficients for the partitions of n listed in Abramowitz-Stegun order, 1 <= k <= A000041(n).	multiset-permutation counts (Knuth Vol. 1 / Vol. 3)
+A038503	count	Sum of every 4th entry of row n in Pascal's triangle, starting at "n choose 0".	odd(w,2) + 1: odd-block height-2 castles
+A038504	supporting	Sum of every 4th entry of row n in Pascal's triangle, starting at "n choose 1".	sum of every 4th binomial (hyperbolic family, k=1 residue)
+A038505	count	Sum of every 4th entry of row n in Pascal's triangle, starting at binomial(n,2).	F(w,2): even-block height-2 castles
+A041010	metallic	Numerators of continued fraction convergents to sqrt(8).	numerators of CF convergents to √8
+A041011	metallic	Denominators of continued fraction convergents to sqrt(8).	denominators of CF convergents to √8
+A041018	metallic	Numerators of continued fraction convergents to sqrt(13).	numerators of CF convergents to √13
+A041019	metallic	Denominators of continued fraction convergents to sqrt(13).	denominators of CF convergents to √13
+A041030	metallic	Numerators of continued fraction convergents to sqrt(20).	numerators of CF convergents to √20
+A041031	metallic	Denominators of continued fraction convergents to sqrt(20).	denominators of CF convergents to √20
+A041046	metallic	Numerators of continued fraction convergents to sqrt(29).	numerators of CF convergents to √29
+A041047	metallic	Denominators of continued fraction convergents to sqrt(29).	denominators of CF convergents to √29
+A051337	supporting	Number of strongly connected tournaments on n nodes.	the strong tournaments among which Tetali's four basic unique tournaments sit (1 of 1, 1 of 1, 1 of 6 at n = 3, 4, 5; 0 of 35, 0 of 353 at n = 6, 7)
+A052918	metallic	a(0) = 1, a(1) = 5, a(n+1) = 5*a(n) + a(n-1).	nickel metallic sequence: a(n) = 5a(n-1) + a(n-2)
+A052924	metallic	Expansion of g.f.: (1-x)/(1 - 3*x - x^2).	bronze delta-1 CF numerators: (1-x)/(1-3x-x²)
+A060006	plastic	Decimal expansion of real root of x^3 - x - 1 (the plastic constant).	decimal expansion of plastic constant ψ
+A063490	count	a(n) = (2*n - 1)*(7*n^2 - 7*n + 6)/6.	tower Narayana coefficient row
+A063496	count	a(n) = (2*n - 1)*(8*n^2 - 8*n + 3)/3.	P(2m,4) bisection: C_3 lattice crystal-ball sequence
+A087130	metallic	a(n) = 5*a(n-1)+a(n-2) for n>1, a(0)=2, a(1)=5.	trace for nickel (a=5)
+A096368	supporting	Number of unlabeled regular tournaments with 2n+1 nodes.	1, 1, 3 at 3, 5, 7 nodes: the regular score vectors (1,1,1), (2,2,2,2,2) are unique, (3,3,3,3,3,3,3) has three realizers
+A100237	metallic	Secondary diagonal of triangle A100235 divided by row number: a(n) = A100235(n+1,n)/(n+1) for n >= 0.	nickel delta-1 CF numerators: (1-x)/(1-5x-x²)
+A107920	supporting	Lucas and Lehmer numbers with parameters (1 +- sqrt(-7))/2.	Lucas-Lehmer with (1±√-7)/2 (P_odd(2,L) at k=2)
+A112742	count	a(n) = n^2*(n^2 - 1)/3.	A_5(k): alternating part of P(k,5) quasi-polynomial
+A115981	count	The number of compositions of n which cannot be viewed as stacks.	non-convex castles by area
+A132393	supporting	Triangle of unsigned Stirling numbers of the first kind (see A048994), read by rows, T(n,k) for 0 <= k <= n.	[n,1] = (n−1)!, the cycle-count anchor of the castle triad
+A146559	count	Expansion of (1-x)/(1 - 2*x + 2*x^2).	P(1,L): signed tower count at k=1, Re((1+i)^{L+1})
+A160747	count	Expansion of (1 + 10*x + 20*x^2 + 10*x^3 + x^4)/(1-x)^5.	tower Narayana coefficient row
+A199833	count	Number of -n..n arrays of 4 elements with zero sum and no two neighbors summing to zero.	|P(2m+1,4)|: signed height-1 towers on length-4 base, odd k
+A202882	count	Number of n X 1 0..2 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor.	Hardin words at m=2: P_even(10,L)/2^L
+A202889	supporting	T(n,k)=Number of nXk 0..2 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor.	2D Hardin table (row axis of A202882)
+A203094	count	Number of nX1 0..3 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor.	Hardin words at m=3: P_even(14,L)/2^L
+A203184	count	Number of n X 1 0..4 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor.	Hardin words at m=4: P_even(18,L)/2^L
+A217878	count	Number of n-element 0..2 arrays with each element the minimum of 3 adjacent elements of a random 0..2 array of n+2 elements.	minimum-tower-spacing `(h=3, g=3)` castles: 0..2 "min of 3 adjacent" arrays
+A217949	count	Number of n-element 0..3 arrays with each element the minimum of 3 adjacent elements of a random 0..3 array of n+2 elements.	minimum-tower-spacing `(h=4, g=3)` castles: 0..3 "min of 3 adjacent" arrays
+A332578	count	Number of compositions of n whose negation is unimodal.	valley castles by area
+A332669	count	Number of compositions of n whose negation is not unimodal.	not-unimodal compositions
+A352116	count	Partial sums of the odd triangular numbers (A014493).	|P(k,4)|: partial sums of odd triangular numbers

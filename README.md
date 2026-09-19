@@ -63,8 +63,8 @@ commit-time gates (contradiction flag + structural lint) fire:
 git config core.hooksPath bin/hooks
 ```
 
-The hook runs `bin/check-contradictions.py` and `bin/lint-mechanical.py --staged` via
-`uv run` before every commit. (Override an intentional commit with `git commit --no-verify`.)
+The hook runs `bin/check-contradictions.py`, `bin/lint-mechanical.py --staged`, and
+`bin/generate-oeis-index.py --check` via `uv run` before every commit. (Override an intentional commit with `git commit --no-verify`.)
 
 ### 3. Wire up the MCP servers
 
@@ -151,7 +151,7 @@ files, and notes — they matter when you're ingesting MediaWiki pages or PDFs.
 SCHEMA.md          conventions + how the wiki tools locate this wiki (do not move/delete)
 IDEAS.md           project and seminar ideas, organized by Division and seminar arc
 TODO.md            OEIS submissions (human action), ingestion queue, housekeeping
-config/            link-style rules (markdown: [[slug](pages/slug.md)])
+config/            link-style rules (markdown: [[slug](pages/slug.md)]) + oeis-annotations.tsv
 bin/               stdlib helper scripts + the pre-commit hook (see Quick start)
 raw/               immutable source documents (wikitext, notes, cached refs) — never edited
 assets/            scratch images / PDFs for ingest (git-ignored; not needed to use the wiki)
@@ -159,10 +159,11 @@ wiki/
   index.md         GENERATED catalog (git-ignored) — never hand-edit; run bin/generate-index.py
   overview.md      evolving synthesis across all sources
   pages/           all wiki pages, flat, slug-named (no subdirectories)
+    oeis-index.md  GENERATED A-number directory (committed) — run bin/generate-oeis-index.py
 ```
 
 Pages are grouped by `category` frontmatter into **Sources** (ingested documents),
-**Concepts**, and **Analyses**. Currently ~56 pages (26 Sources, 27 Concepts, 3 Analyses).
+**Concepts**, **Analyses**, and **Reference** (script-generated lookup pages). Currently ~56 pages (26 Sources, 27 Concepts, 3 Analyses).
 
 ## Conventions
 
@@ -177,6 +178,11 @@ authoritative spec.
 - **`wiki/index.md` is generated**, not hand-written — set page frontmatter (`category`,
   `summary`, `created`) and run `python3 bin/generate-index.py`. It is git-ignored, so
   regenerate it before reading after a fresh clone.
+- **`wiki/pages/oeis-index.md` is generated** too — `bin/generate-oeis-index.py` scans every
+  page for OEIS A-numbers and lists the citing pages with mention counts; the role annotations
+  it merges in live in `config/oeis-annotations.tsv`. It is committed (other pages link to it),
+  and the pre-commit hook blocks a commit that leaves it stale. The hand-curated novelty
+  catalogue is a normal page, `castle-sequence-catalogue`.
 - **The git history is the operation log.** Each operation is one commit with a `Wiki-Op:`
   trailer (`init`, `ingest`, `update`, …); render the human log with
   `python3 bin/render-log.py`.

@@ -135,7 +135,7 @@ i.e. `P(k,1) = 1, 0, 1, 0, …`, `P(k,2) = 1, −2, 3, −4, …`, `P(k,3) = 1, 
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the canonical form underlying the recurrences.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] — the `num_k/den_k` rational GFs and the `den_{k+1} = den_{k−1} − 2x·den_k` recurrence that *realizes* the order-`(k+1)` L-direction result confirmed here.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] — the even-`k` factorization of `char_k` into sectors, refining the L-direction order count.
-- [[oeis-index](pages/oeis-index.md)] — the catalogue where each `P(k,·)` row's order and OEIS novelty status is recorded.
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] — the catalogue where each `P(k,·)` row's order and OEIS novelty status is recorded.
 - [[castle-sign](pages/castle-sign.md)] — the definition of `P` as the signed tower count.
 - [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - why the k-direction order is `2L−2`: the characteristic polynomial is `(x+1)^L (x−1)^{L−2}`.
 
