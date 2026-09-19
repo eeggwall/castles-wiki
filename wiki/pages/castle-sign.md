@@ -1,7 +1,7 @@
 ---
 title: Castle sign
 category: Concepts
-summary: s(C) = (−1)^blocks, the castle analogue of the permutation sign; (T±P)/2 splits towers into even/odd-block classes, making P(k,L) a sign homomorphism. The castle upgrade of the (1±sgn)/2 trick that peels A_n out of S_n — see [[castles-as-upgraded-cycle-count]].
+summary: s(C) = (-1)^blocks, the castle sign - the analogue of the permutation sign; (T +- P)/2 splits towers into even/odd-block classes, making P(k,L) a sign homomorphism.
 tags: [concept, castle, sign, permutations, parity, generating-functions]
 sources: [project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-brute-force, pe502-castle-cycle-permutations]
 created: 2026-09-13

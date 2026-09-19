@@ -1,7 +1,7 @@
 ---
 title: OEIS index and castle sequence catalogue
 category: Concepts
-summary: The wiki's two-layer sequence directory. Layer 1 (the OEIS index) is a lookup table of every OEIS A-number the wiki references and where it appears, grouped by role. Layer 2 (the castle sequence catalogue) tracks every distinct castle-counting sequence with a novelty status — OEIS-known (with A-number), interlink (a known sequence reached by a new castle route), novel-candidate (searched, no OEIS match), or unchecked (computed, not yet searched) — plus its castle meaning, first terms, recurrence/GF, and growth constant. The method for verifying a match lives on [[oeis-cross-referencing]]; the source workspace on [[oeis-mining-pe502]].
+summary: The wiki's two-layer sequence directory - a lookup table of every OEIS A-number cited (Layer 1) and a castle-native catalogue with novelty status (known / interlink / novel-candidate / unchecked) for every distinct castle-counting sequence (Layer 2).
 tags: [concept, oeis, index, directory, cross-reference, castle, sequence, catalogue, novelty, submission-candidate]
 sources: [oeis-mining-pe502]
 created: 2026-09-17

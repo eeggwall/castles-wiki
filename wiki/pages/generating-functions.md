@@ -1,7 +1,7 @@
 ---
 title: Generating functions
 category: Concepts
-summary: A multivariate polynomial whose variables are the problem's dimensions and whose coefficients are the counts — the intended tool for computing F(w,h). Framed under the [[symbolic-method]] at the top, with recurrence-⇒-rational-GF as its most-used special case.
+summary: A multivariate polynomial whose variables are the problem's dimensions and coefficients are the counts - the intended tool for computing F(w,h); framed under the symbolic method, with linear-recurrence-to-rational-GF as its most-used case.
 tags: [concept, generating-functions, combinatorics, method, symbolic-method]
 sources: [project-euler-502-problem-setup, project-euler-502-representations, aocp-generating-functions, generating-functions-topic, analytic-combinatorics-part-a, pe502-pell-castle-strip]
 created: 2026-09-13

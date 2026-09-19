@@ -1,7 +1,7 @@
 ---
 title: Castle classification
 category: Concepts
-summary: A classification framework for castle sub-families. Axes 1-7 are structural skyline predicates on individual castles; Axis 8 is a growth-type meta-classification on castle *classes* (metallic "<metal> <axis> growth castle" for quadratic growth constants, and a parallel non-metallic "<constant> <axis>" slot for the n-nacci constants — Fibonacci, tribonacci, tetranacci — and the cubic-Pisot constants — supergolden, plastic-squared); Axis 9 is a graph-theoretic / spectral predicate on individual castles' castle graphs. Populated Axis 9 types: tree castle, golden- / silver- / φ²-spectrum, isospectral pair, Ramanujan. The [[castle-graph]] concept bridges the castle to graph theory.
+summary: A classification framework for castle sub-families. Axes 1-7 are skyline predicates on individual castles, Axis 8 a growth-type meta-classification on castle classes (metallic and non-metallic slots), Axis 9 a spectral predicate on the castle's polyomino graph.
 tags: [concept, castle, classification, taxonomy, skyline, spectral, ramanujan, growth-constant, fibonacci, tribonacci, n-nacci, plastic-number, supergolden]
 sources: [castle-classification]
 created: 2026-09-15
