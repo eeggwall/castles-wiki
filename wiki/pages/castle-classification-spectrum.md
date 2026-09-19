@@ -69,19 +69,15 @@ The search is exhaustive to 16 cells, with 50 adjacency groups already at 16. Is
 
 ## Ramanujan castle
 
-**The regular-graph definition has no content on castles.** A Ramanujan graph in the usual (regular) sense has every eigenvalue other than `±d` satisfying `|λ| ≤ 2√(d − 1)`. Castle graphs beyond four cells are never regular, so `d` is not a single number, and for a connected irregular graph the spectral radius `λ_1` is strictly below `d_max`. Excluding `λ = ±d_max` excludes nothing, and the bound would be tested against `λ_1` itself.
+A castle is a **Ramanujan castle** iff every non-trivial eigenvalue of its adjacency matrix is bounded by `rho(T)`, the spectral radius of the universal covering tree - Greenberg's extension of the standard Ramanujan condition to irregular graphs. Bipartite castles reduce this to `lam_2 <= rho(T)`.
 
-The **Alon-Boppana theorem** is what motivates the definition: for large `d`-regular graphs the largest **non-trivial** eigenvalue `λ(G) = max(λ_2, |λ_n|)` is at least `2√(d − 1) − ε`.[^2] "Ramanujan" then means "as small as this bound allows".
+The full write-up - definition, the edge-cavity method for computing `rho(T)`, verification against known graphs, worked small examples, and the census identifying **the smallest non-Ramanujan castle as the `2 x 14` rectangle `(14, 14)` at 28 cells** - is on [[ramanujan-castles](pages/ramanujan-castles.md)].
 
-**The well-posed definition for irregular graphs is Greenberg's, via the universal cover.**[^3] Let `T` be the universal covering tree of `G_c` and `ρ(T)` its spectral radius (`2√(d − 1)` when `G_c` is `d`-regular). Greenberg's theorem says finite graphs covered by `T` have `λ(G) ≥ ρ − o(1)`, and `G_c` is **Ramanujan** iff every eigenvalue other than `±λ_1` satisfies `|λ| ≤ ρ(T)`. Castle graphs are bipartite, so this is the bipartite-Ramanujan condition `λ_2 ≤ ρ(T)`.
+Two shape-agnostic facts stay useful here:
 
-**Three consequences.**
+- **Trees are Ramanujan for free.** A finite tree is its own universal cover, so the condition holds trivially. The predicate only bites on castles with a `2 x 2` block (positive cycle rank).
+- **The regular-graph definition is empty on castles.** Castle graphs beyond four cells are never regular, so the classical `|lam| <= 2*sqrt(d - 1)` condition would be tested against no such `d`; Greenberg's universal-cover form is the right one.
 
-- **The threshold is castle-dependent.** `ρ(T)` must be computed from the castle's own covering tree. A tree of maximum degree `Δ` has spectral radius at most `2√(Δ − 1)`, so `λ_2 ≤ 2√(d_max − 1)` is a necessary condition only: `2√3 ≈ 3.464` for castles with an interior cell, `2√2 ≈ 2.828` for castles whose every cell is on the boundary.
-- **Tree castles are Ramanujan for free.** A finite tree is its own universal cover, so `ρ(T) = λ_1 ≥ λ_2` and the condition holds. The Ramanujan predicate only bites on castles with at least one `2 × 2` block, i.e. positive cycle rank.
-- **No census exists yet.** The first non-trivial cases are the boxcastle (spectrum `2 cos(iπ / (w + 1)) + 2 cos(jπ / (h + 1))`, so `λ_2` is explicit and only `ρ(T)` needs computing) and the crenellated type ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 7), whose repeated local structure makes its covering tree tractable.
-
-The Ihara / non-backtracking version transfers the same condition to the spectrum of the non-backtracking operator, which is the form that connects to the Ihara-zeta seminar on `IDEAS.md`; see [[spectral-analysis](pages/spectral-analysis.md)] §5.
 
 ## Sketched additional spectral types
 
