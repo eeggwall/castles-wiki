@@ -1,7 +1,7 @@
 ---
 title: Convex castle
 category: Concepts
-summary: A castle with a unimodal (up-then-down) skyline — equivalently column-convex AND row-convex; the umbrella for castle convexity, counted by CCC = C(2H+W−3, W−1).
+summary: A castle with a unimodal (up-then-down) skyline — equivalently column-convex AND row-convex; the umbrella for castle convexity, counted by CCC = C(2h+w−3, w−1).
 tags: [concept, castle, convex, unimodal, column-convex, row-convex, combinatorics, stars-and-bars]
 sources: [project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-mining-pe502]
 created: 2026-09-13
@@ -29,27 +29,25 @@ This page is the umbrella for castle convexity, and the three convexity notions 
 
 So *convex castle = unimodal castle = column-convex ∧ row-convex castle*, and this is the class the U/R/D variation-enumeration tried and **failed** to count directly.[^8] The brute-force enumerator tallies these separately as `conv_even` / `conv_odd`.[^7]
 
-**A thread to follow.** Because the convex castles are so cleanly counted (`C(2H+W−3, W−1)`) while their variations resist a closed form, and because they sit exactly at the intersection of the two convexity classes with their own rich literatures ([[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]), the `conv_*` sequences from the brute enumerator are prime candidates for Online Encyclopedia of Integer Sequences (OEIS) mining and for a correspondence with the classical stack / parallelogram families.
-
 ## Counting convex castles
 
-The number of convex castles on a grid of width *W* and height *H* is counted by a **stars-and-bars** argument. Starting from the bare-minimum string, one inserts the remaining `W−1` `R`s into `2(H−1)+1` partition slots: `H−1` slots between the `U`s, `H−1` between the `D`s, and one slot between the `U`-run and `D`-run (which already holds at least one `R`).[^3] This gives the count of convex castles:[^4]
+The number of convex castles on a grid of width *w* and height *h* is counted by a **stars-and-bars** argument. Starting from the bare-minimum string, one inserts the remaining `w−1` `R`s into `2(h−1)+1` partition slots: `h−1` slots between the `U`s, `h−1` between the `D`s, and one slot between the `U`-run and `D`-run (which already holds at least one `R`).[^3] This gives the count of convex castles:[^4]
 
 ```
-CCC = C(2(H−1)+W−1, W−1) = C(2H+W−3, W−1)
+CCC = C(2(h−1)+w−1, w−1) = C(2h+w−3, w−1)
 ```
 
-where `C(m,k) = m!/(k!(m−k)!)` is the binomial coefficient. For example, at *H*=4, *W*=5: `CCC = C(2·4+5−3, 5−1) = C(10, 4) = 210` convex castles.[^5]
+where `C(m,k) = m!/(k!(m−k)!)` is the binomial coefficient. For example, at *h*=4, *w*=5: `CCC = C(2·4+5−3, 5−1) = C(10, 4) = 210` convex castles.[^5]
 
-**Minimum-block characterization, and why the count is binomial.** The OEIS-mining pass sharpened this: for *any* castle `#blocks ≥ h`, with equality **iff** it is unimodal — so a convex castle has *exactly h* blocks, and convex castles are the *minimum-block* castles.[^9] The binomial (rather than Catalan) form has a clean reason — the ascending front and descending back are independent, and a generalized Vandermonde convolution closes the sum; the full derivation is [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)].[^10] Consequently the even-parity convex count is `C(2H+W−3, W−1)` when *H* is even and `0` when *H* is odd (every convex castle has *h* blocks).
+**Minimum-block characterization, and why the count is binomial.** The Online Encyclopedia of Integer Sequences (OEIS) mining pass sharpened this: for *any* castle `#blocks ≥ h`, with equality **iff** it is unimodal — so a convex castle has *exactly h* blocks, and convex castles are the *minimum-block* castles.[^9] The binomial (rather than Catalan) form has a clean reason — the ascending front and descending back are independent, and a generalized Vandermonde convolution closes the sum; the full derivation is [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)].[^10] Consequently the even-parity convex count is `C(2h+w−3, w−1)` when *h* is even and `0` when *h* is odd (every convex castle has *h* blocks).
 
-**By area, convex castles are A001523.** Re-indexed by total cells, a convex castle of area *n* is exactly a [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] of *n* — OEIS `A001523` ("stacks") — and the parity-refined `cev(n)+cod(n) = A001523(n)` is a new refinement (see [[castle-by-area](pages/castle-by-area.md)]).[^11] The mirror **valley** castles are equinumerous with convex ones in every (w,h) cell (same binomial, different sets) — a candidate bijection.[^11]
+**By area, convex castles are A001523.** Re-indexed by total cells, a convex castle of area *n* is exactly a [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] of *n* — OEIS `A001523` ("stacks") — and the parity split `CEV(n) + COD(n) = A001523(n)` — where CEV and COD are the counts of convex-even and convex-odd castles by area, i.e. convex castles split by block parity — is a new refinement (see [[castle-by-area](pages/castle-by-area.md)]).[^11] The mirror **valley** castles are equinumerous with convex ones in every (w,h) cell (same binomial, different sets) — a candidate bijection.[^11]
 
-**A thread that did not close (yet).** Enumerating *all* castles as variations on convex castles is conceptually clean, but the Solution subpage records that this route "never resolved into a formula" — the case analysis for the variations did not close, and the winning solution instead counts via the [[binary-string-bijection](pages/binary-string-bijection.md)] and independence.[^6] That the convex castles themselves count so cleanly (`C(2H+W−3, W−1)`) while their variations resist a closed form is a thread worth following into the column-convex-polygon literature (see [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)]).
+**A thread that did not close (yet).** Enumerating *all* castles as variations on convex castles is conceptually clean, but the Solution subpage records that this route "never resolved into a formula" — the case analysis for the variations did not close, and the winning solution instead counts via the [[binary-string-bijection](pages/binary-string-bijection.md)] and independence.[^6] That the convex castles themselves count so cleanly (`C(2h+w−3, w−1)`) while their variations resist a closed form, and that they sit exactly at the intersection of two convexity classes with rich literatures ([[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]), makes the `conv_*` sequences from the brute enumerator prime candidates for further OEIS mining and for a correspondence with the classical stack / parallelogram families.
 
 ## Appearances in Sources
 
-- [[project-euler-502-representations](pages/project-euler-502-representations.md)] — defines the front/middle/back structure and derives `CCC = C(2H+W−3, W−1)` by stars and bars.
+- [[project-euler-502-representations](pages/project-euler-502-representations.md)] — defines the front/middle/back structure and derives `CCC = C(2h+w−3, w−1)` by stars and bars.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] — records that convex-castle *variation* enumeration never resolved into a formula (a failed solution route).
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] — identifies the convex castle as the unimodal (column-convex ∧ row-convex) skyline and tallies `conv_even`/`conv_odd`.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — the minimum-block characterization, the binomial (Vandermonde) count, and the area↔A001523 match.
@@ -59,7 +57,7 @@ where `C(m,k) = m!/(k!(m−k)!)` is the binomial coefficient. For example, at *H
 - [[urd-step-strings](pages/urd-step-strings.md)] — the encoding whose taxonomy contains convex castles.
 - [[castle-polyomino](pages/castle-polyomino.md)] — the general object convex castles specialize.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the full count of all castles, of which convex castles are the backbone.
-- [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] — why `C(2H+W−3, W−1)` is binomial, not Catalan.
+- [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] — why `C(2h+w−3, w−1)` is binomial, not Catalan.
 - [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] — convex castles by area = A001523.
 - [[column-convex-polyomino](pages/column-convex-polyomino.md)] — the column-convexity every castle already has.
 - [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] — the row-convexity that (with column-convexity) defines the convex castle.
