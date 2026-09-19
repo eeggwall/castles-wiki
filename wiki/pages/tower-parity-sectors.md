@@ -18,7 +18,7 @@ Everything below was produced by the snippets shown; every printed value is pinn
 
 ## Part 1 - The symmetry
 
-Write the column-height DP of [[castle-sign](pages/castle-sign.md)] as a matrix. A tower of height `≤ k` on a length-`L` base is a height sequence `c_1, …, c_L ∈ {0, …, k}`, its block count is the total descent with `c_0 = c_{L+1} = 0`,[^3] and the sign `(−1)^{blocks}` factors over consecutive pairs:
+Write the column-height dynamic program (DP) of [[castle-sign](pages/castle-sign.md)] as a matrix. A tower of height `≤ k` on a length-`L` base is a height sequence `c_1, …, c_L ∈ {0, …, k}`, its block count is the total descent with `c_0 = c_{L+1} = 0`,[^3] and the sign `(−1)^{blocks}` factors over consecutive pairs:
 
 ```python
 def M_signed(k):                       # s(a, b) = (-1)^max(0, a-b): the sign of stepping from height a to height b

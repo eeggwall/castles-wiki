@@ -8,7 +8,7 @@ created: 2026-09-13
 updated: 2026-09-19
 ---
 
-# PE 502: Observations
+# Project Euler 502 (PE 502): Observations
 
 **Source:** https://charlesreid1.com/wiki/Project_Euler/502/Observations
 **Date ingested:** 2026-09-13
@@ -44,10 +44,10 @@ The source lists four methodology lessons, recorded here as its own commentary:[
 Each of the source's five observations has grown into a thread on the wiki.
 
 - **The crux (sub-block independence)** is captured on [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)], taught end-to-end on [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], and is the induction step of the [[binary-string-bijection](pages/binary-string-bijection.md)] proof of `T(k,L) = (k+1)^L`.
-- **"A symmetry trick that recurs"** is the `m = 2` case of a general extraction: [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] replaces the sign by an `m`-th root of unity, [[block-count-constraints](pages/block-count-constraints.md)] places it in a residue / sparse / semigroup trichotomy, [[generating-functions-topic](pages/generating-functions-topic.md)] shows the EGF twin `(e^x + e^{−x})/2`, and [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] gives the elementary anchor - `(1 ± sgn)/2` peeling `A_n` out of `S_n`.
+- **"A symmetry trick that recurs"** is the `m = 2` case of a general extraction: [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] replaces the sign by an `m`-th root of unity, [[block-count-constraints](pages/block-count-constraints.md)] places it in a residue / sparse / semigroup trichotomy, [[generating-functions-topic](pages/generating-functions-topic.md)] shows the exponential generating function (EGF) twin `(e^x + e^{−x})/2`, and [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] gives the elementary anchor - `(1 ± sgn)/2` peeling `A_n` out of `S_n`.
 - **"Almost the entire difficulty" is now a number.** [[castle-entropy](pages/castle-entropy.md)] shows `log₂ F(w,h) ≈ w·log₂ h − 1`: the even-block clause costs exactly one bit. The unsigned baseline `h^w − (h−1)^w` is the any-parity count `A(w,h)` on [[castle-counting-function](pages/castle-counting-function.md)], the difference-of-powers rows A000225 (`h = 2`), A001047 (`h = 3`), A005061, A005060, A005062 (`4^n − 3^n`, `5^n − 4^n`, `6^n − 5^n`) indexed on [[oeis-index](pages/oeis-index.md)]; its `h = 3` complement is the new sequence on [[new-sequence-fw3](pages/new-sequence-fw3.md)].
 - **The two factorizations** are point samples of what [[mod-p-observatory](pages/mod-p-observatory.md)] studies systematically (`F(w,h) mod p` is eventually periodic in each direction); the factoring machinery itself (Legendre's prime-multiplicity formula) is on [[aocp-permutations](pages/aocp-permutations.md)].
-- **The Berlekamp–Massey lesson** is run in both directions on [[recurrence-discovery](pages/recurrence-discovery.md)], routes the `h > 15000` targets on [[castle-count-algorithms](pages/castle-count-algorithms.md)], and turns adversarial on [[castle-cryptography](pages/castle-cryptography.md)], where the same algorithm is the LFSR attack that reconstructs a secret castle from its count stream.
+- **The Berlekamp–Massey lesson** is run in both directions on [[recurrence-discovery](pages/recurrence-discovery.md)], routes the `h > 15000` targets on [[castle-count-algorithms](pages/castle-count-algorithms.md)], and turns adversarial on [[castle-cryptography](pages/castle-cryptography.md)], where the same algorithm is the linear feedback shift register (LFSR) attack that reconstructs a secret castle from its count stream.
 
 ## Entities & Concepts
 

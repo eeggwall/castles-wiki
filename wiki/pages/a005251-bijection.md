@@ -12,7 +12,7 @@ updated: 2026-09-19
 
 ## The two objects that met at the same recurrence
 
-**A005251** — `0, 1, 1, 1, 2, 4, 7, 12, 21, 37, 65, 114, …` (canonical OEIS offset 0, `a(0)=0`), satisfying `a(n) = 2a(n−1) − a(n−2) + a(n−3)`, the plastic-squared recurrence ([[plastic-number](pages/plastic-number.md)]) — appears in the castle world through two independently-derived objects:
+**A005251** — `0, 1, 1, 1, 2, 4, 7, 12, 21, 37, 65, 114, …` (canonical Online Encyclopedia of Integer Sequences (OEIS) offset 0, `a(0)=0`), satisfying `a(n) = 2a(n−1) − a(n−2) + a(n−3)`, the plastic-squared recurrence ([[plastic-number](pages/plastic-number.md)]) — appears in the castle world through two independently-derived objects:
 
 - **Tree castles of area `n`, unlimited height** ([[tree-castle-by-area](pages/tree-castle-by-area.md)], `h → ∞`). A tree castle (no `2×2` filled block) is a skyline with no two adjacent columns both `≥ 2`, so by area it is a **composition `(c_1, …, c_w)` of `n` with no two adjacent parts `≥ 2`**. Count: `A005251(n+2)`.
 - **Binary strings avoiding the factor `010`** — the OEIS interpretation of A005251 ("`a(n+3)` is the number of `n`-bit sequences that avoid `010`"). Count of length `N`: `A005251(N+3)`. (Hardin's `W_1` object, [[hardin-word-identity](pages/hardin-word-identity.md)], is the *closely related but distinct* "no isolated `1`" family — `#{no-isolated-1, length N} = A005251(N+2)`, so avoid-`010` of length `N` and no-isolated-1 of length `N+1` share a count; the bijection below targets the avoid-`010` family, the cleaner match to compositions.)

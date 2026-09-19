@@ -60,7 +60,7 @@ The castle graph turns each Axis 9 predicate on [[castle-classification](pages/c
 | **Isospectral pair** | two non-isomorphic castles with equal adjacency or Laplacian spectrum | [[isospectral-castles](pages/isospectral-castles.md)] |
 | **Ramanujan castle** | all non-trivial adjacency eigenvalues have modulus `≤ 2√(Δ − 1)` | [[castle-classification](pages/castle-classification.md)] Axis 9 |
 
-Sparse-spectrum, low-pass / high-pass, and Ihara-Ramanujan are sketched on Axis 9; they will land as populated types when their spectral method (skyline DFT, Ihara zeta) is worked out.
+Sparse-spectrum, low-pass / high-pass, and Ihara-Ramanujan are sketched on Axis 9; they will land as populated types when their spectral method (skyline discrete Fourier transform (DFT), Ihara zeta) is worked out.
 
 ## Tree castles
 
@@ -88,7 +88,7 @@ Characteristic polynomial `x² − x − (h − 1)`, growth constant
 ρ(h)  =  (1 + √(4h − 3)) / 2.
 ```
 
-| `h` | `T_h(w)`, `w = 0..9` | growth `ρ(h)` | OEIS | recurrence |
+| `h` | `T_h(w)`, `w = 0..9` | growth `ρ(h)` | Online Encyclopedia of Integer Sequences (OEIS) | recurrence |
 |---|---|---|---|---|
 | 1 | `1, 1, 1, 1, 1, 1, 1, 1, 1, 1` | `1` | (constant) | trivial |
 | 2 | `1, 2, 3, 5, 8, 13, 21, 34, 55, 89` | **`φ`** (golden, `δ_1`) | **A000045** (Fibonacci, `T_2(w) = F_{w+2}`) | `a(n) = a(n−1) + a(n−2)` |
@@ -101,13 +101,13 @@ All OEIS numbers verified offset-exact.[^2] Two things worth pinning to the wiki
 - **The `h = 2` slice is Fibonacci**, so tree castles of bounded height 2 are a new castle interpretation of `A000045`. It sits next to the prime-castle formula `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] as another point where Fibonacci enters the castle count, and it plants the tree-castle family on rung 1 of the [[metallic-means](pages/metallic-means.md)] ladder ([[castle-classification](pages/castle-classification.md)] Axis 8: tree castles of height 2 are a **golden width growth castle**).
 - **The `h = 3` slice is Jacobsthal**, a genuine new interpretation of `A001045`. Higher rungs go to `A006130, A006131, A006131 + 1, …`, the "`k`-Fibonacci" family with `a(n) = a(n−1) + k · a(n−2)`. None of these growth constants for `h ≥ 3` is a metallic mean, so tree castles trace out a distinct algebraic family from the metallic one, indexed by `h`.
 
-The area-graded (q-analogue) count is worked out on [[tree-castle-by-area](pages/tree-castle-by-area.md)]: the bivariate GF is `T_h(x, q) = (1 + P_h(q) x)/(1 − q x − q P_h(q) x²)`, summing over widths gives one C-finite sequence per height, and each hits a named OEIS sequence - `h = 2` is Narayana's cows A000930 (supergolden growth), `h = 3` is A006498 (golden growth via factorization), `h = 4` is A000570 (tournaments), `h → ∞` is A005251 (plastic squared, a second castle interpretation).
+The area-graded (q-analogue) count is worked out on [[tree-castle-by-area](pages/tree-castle-by-area.md)]: the bivariate generating function (GF) is `T_h(x, q) = (1 + P_h(q) x)/(1 − q x − q P_h(q) x²)`, summing over widths gives one C-finite sequence per height, and each hits a named OEIS sequence - `h = 2` is Narayana's cows A000930 (supergolden growth), `h = 3` is A006498 (golden growth via factorization), `h = 4` is A000570 (tournaments), `h → ∞` is A005251 (plastic squared, a second castle interpretation).
 
 ## Bipartiteness, planarity, treewidth: what the castle graph inherits
 
 - **Bipartite.** Color `(i, j)` by the parity of `i + j`. Adjacent cells differ in exactly one coordinate by 1, so they get opposite colors. Consequence: the adjacency spectrum is symmetric about 0. Every eigenvalue `λ` is paired with `−λ`, which is visible in every exact characteristic polynomial on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] (e.g. `(x² − x − 1)(x² + x − 1)` for `P_4`).
 - **Planar and subgraph of `Z²`.** Every castle graph embeds in the square lattice with unit edges. So the castle graph carries all the theorems the grid does: 4-color, Euler's formula (used above), and the whole planar-separator toolkit.
-- **Bounded pathwidth.** Column-by-column DP is exactly a path decomposition of width `≤ h`, which is why every castle-counting recurrence on this wiki has state size `O(h)` in `L`. Pathwidth is bounded by `min(w, h)`, so castles are graph-theoretically "narrow" and every polynomial-time-on-bounded-treewidth algorithm applies without translation.
+- **Bounded pathwidth.** Column-by-column dynamic program (DP) is exactly a path decomposition of width `≤ h`, which is why every castle-counting recurrence on this wiki has state size `O(h)` in `L`. Pathwidth is bounded by `min(w, h)`, so castles are graph-theoretically "narrow" and every polynomial-time-on-bounded-treewidth algorithm applies without translation.
 
 ## Bridge to graph theory - what this concept unlocks
 
@@ -116,7 +116,7 @@ Each of these is a bridge that the castle graph turns from analogy into computat
 - **Spectral graph theory.** Adjacency, Laplacian, normalized Laplacian, signless Laplacian, and Ihara zeta all live on `G_c`. See [[spectral-analysis](pages/spectral-analysis.md)] for the methods and [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] / [[isospectral-castles](pages/isospectral-castles.md)] for two settled applications.
 - **Extremal graph theory.** The maximum spectral radius of a castle graph with `n` cells is a Turán-type problem; the min-cut / max-flow structure of the base row makes castles a natural family to test conjectures on.
 - **Algebraic graph theory.** Because `G_c` is bipartite and planar, it fits inside classical setups (Kasteleyn, dimer models) where combinatorial identities live.
-- **Random graphs.** Random castles under any of the wiki's ensembles ([[spectral-analysis](pages/spectral-analysis.md)] method 2, LGV kernel) become a random-graph model whose spectra can be sampled.
+- **Random graphs.** Random castles under any of the wiki's ensembles ([[spectral-analysis](pages/spectral-analysis.md)] method 2, Lindstrom-Gessel-Viennot (LGV) kernel) become a random-graph model whose spectra can be sampled.
 - **Sunada theory** (see [[isospectral-castles](pages/isospectral-castles.md)]) for common covers and the "hear the shape" question.
 
 The [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], [[isospectral-castles](pages/isospectral-castles.md)], and the tree-castle counting story above are the wiki's current three touchpoints of the bridge; every future Axis 9 result is a new one.

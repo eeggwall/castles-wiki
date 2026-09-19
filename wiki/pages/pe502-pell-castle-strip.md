@@ -8,7 +8,7 @@ created: 2026-09-15
 updated: 2026-09-19
 ---
 
-# PE 502: the Pell castle strip
+# Project Euler 502 (PE 502): the Pell castle strip
 
 **Source:** `raw/pe502-pell-castle-strip.md` (marginalia note authored 2026-09-15 while working through an Analytic Combinatorics end-of-chapter exercise on `D(x) = 1/(1−2x−x²)`)
 **Date ingested:** 2026-09-15
@@ -33,7 +33,7 @@ Then `a_n` is the total weight of strip tilings of length `n`, and the recurrenc
 
 ## The Pell fingerprint
 
-The counts `a_0, a_1, a_2, … = 1, 2, 5, 12, 29, 70, 169, 408, 985, 2378, …` are **Pell numbers, OEIS [A000129](https://oeis.org/A000129) shifted** (`a_n = P_{n+1}` where `P_0 = 0, P_1 = 1, P_n = 2P_{n−1} + P_{n−2}`).[^3] The growth rate is the **silver ratio** `1 + √2 ≈ 2.4142`, which the [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] page treats as one of the castle's two purely-periodic norm-`−1` quadratics (root of `x² − 2x − 1`, continued fraction `[2; 2, 2, …]`). The same constant appears as the growth rate of the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]).
+The counts `a_0, a_1, a_2, … = 1, 2, 5, 12, 29, 70, 169, 408, 985, 2378, …` are **Pell numbers, Online Encyclopedia of Integer Sequences (OEIS) [A000129](https://oeis.org/A000129) shifted** (`a_n = P_{n+1}` where `P_0 = 0, P_1 = 1, P_n = 2P_{n−1} + P_{n−2}`).[^3] The growth rate is the **silver ratio** `1 + √2 ≈ 2.4142`, which the [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] page treats as one of the castle's two purely-periodic norm-`−1` quadratics (root of `x² − 2x − 1`, continued fraction `[2; 2, 2, …]`). The same constant appears as the growth rate of the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]).
 
 ## Key Takeaways
 

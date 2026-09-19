@@ -8,7 +8,7 @@ created: 2026-09-13
 updated: 2026-09-19
 ---
 
-# AOCP Generating Functions (Knuth TAOCP Vol. 1)
+# The Art of Computer Programming (AOCP) Generating Functions (Knuth The Art of Computer Programming (TAOCP) Vol. 1)
 
 **Source:** https://charlesreid1.com/wiki/AOCP/Generating_Functions (notes on Knuth, *The Art of Computer Programming*, Vol. 1, §1.2.9)
 **Date ingested:** 2026-09-13
@@ -45,7 +45,7 @@ This is not background — it is the exact toolkit of the castle solution, item 
 
 - **Fibonacci method:** posit the series, use the recurrence to get a rational GF, partial-fraction by the denominator roots, read off the closed form (`F_n = (φ^n−φ̂^n)/√5`).[^1]
 - **Linear recurrence ⇒ `G(z) = poly / (1 − ∑ c_k z^k)`** — the castle's `P_k = num_k/den_k` is exactly this.[^2]
-- Operation algebra: add / shift / convolve (multiply) / partial-sum (`/(1−z)`) / EGF for binomial convolutions / differentiate-integrate.[^3]
+- Operation algebra: add / shift / convolve (multiply) / partial-sum (`/(1−z)`) / exponential generating function (EGF) for binomial convolutions / differentiate-integrate.[^3]
 - Negative binomial `1/(1−z)^{n+1} = ∑ C(n+k,n) z^k` — the tower / Narayana-denominator structure; `⟨2^n+3^n⟩ → 1/(1−2z)+1/(1−3z)` is the castle's any-parity count.[^4][^5]
 
 ## Entities & Concepts

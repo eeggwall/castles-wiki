@@ -32,7 +32,7 @@ The page's own closing section states the castle payoff directly: the `P(k,L)` r
 
 ## Key Takeaways
 
-- OGF toolkit: add, differentiate/integrate, partial-sum `(1/(1−z))G`, convolution; the ladder `1/(1−z)^{m+1} = ∑ C(k+m,m) z^k`.[^1]
+- ordinary generating function (OGF) toolkit: add, differentiate/integrate, partial-sum `(1/(1−z))G`, convolution; the ladder `1/(1−z)^{m+1} = ∑ C(k+m,m) z^k`.[^1]
 - **Recurrence ⇒ rational GF** worked both ways, including the **imaginary-roots** case `1/(1+z²) → ½(iⁿ+(−i)ⁿ)` — the `Re((1+i)^{L+1})` mechanism.[^4]
 - **EGF parity projector** `(e^x+e^{−x})/2` counts even-0 ternary strings as `(3^n+1)/2` — the classical `(A±P)/2` even/odd trick.[^5]
 - Explicit **Application: PE 502** — `P(k,L)` → rational GF → Kitamasa.[^8]
@@ -55,8 +55,8 @@ The intuition-and-worked-examples companion to the AOCP treatment, and the page 
 
 **One of three GF source treatments in the wiki**, all complementary:
 
-- [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] — the definitive treatment (Flajolet & Sedgewick 2009); the *symbolic method* dictionary that recasts recurrence-⇒-rational-GF as the SEQ / regular-language special case of a more general specification-to-OGF framework.
-- [[aocp-generating-functions](pages/aocp-generating-functions.md)] — Knuth TAOCP Vol. 1; the Fibonacci-method and the recurrence-⇒-rational-GF core.
+- [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] — the definitive treatment (Flajolet & Sedgewick 2009); the *symbolic method* dictionary that recasts recurrence-⇒-rational-GF as the sequence (SEQ) / regular-language special case of a more general specification-to-OGF framework.
+- [[aocp-generating-functions](pages/aocp-generating-functions.md)] — Knuth The Art of Computer Programming (TAOCP) Vol. 1; the Fibonacci-method and the recurrence-⇒-rational-GF core.
 - This page — worked examples that hit *exactly* the castle's operations, with the explicit PE 502 application.
 
 ## Footnotes

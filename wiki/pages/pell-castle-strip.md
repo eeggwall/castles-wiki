@@ -8,7 +8,7 @@ created: 2026-09-15
 updated: 2026-09-19
 ---
 
-# The Pell castle strip - from an AC exercise to the silver ratio in castle space
+# The Pell castle strip - from an Analytic Combinatorics (AC) exercise to the silver ratio in castle space
 
 ## The pedagogy is the point
 
@@ -72,7 +72,7 @@ so the growth constant is `1 + √2`. The count depends on the boundary conditio
 |---|---|---|---|
 | **first column at height 1** (anchored at the base) | `1, 2, 5, 12, 29, 70, 169, 408` | `1/(1 − 2x − x²)` | **Pell `P_{w+1}`**, A000129 |
 | any first column | `3, 7, 17, 41, 99, 239, 577, 1393` | `(3 + x)/(1 − 2x − x²)` | companion Pell, A001333 |
-| first and last column at height 1 | `1, 1, 2, 4, 9, 21, 50, 120` | `(1 − 2x)/((1 − x)(1 − 2x − x²))` | unchecked against OEIS |
+| first and last column at height 1 | `1, 1, 2, 4, 9, 21, 50, 120` | `(1 − 2x)/((1 − x)(1 − 2x − x²))` | unchecked against Online Encyclopedia of Integer Sequences (OEIS) |
 
 The anchored row is the **Pell castle strip**: `e_1ᵀ (I − xM)^{−1} 𝟙 = 1/(1 − 2x − x²)` exactly, the `(1 − x)` factor of the free strip's denominator cancelling against the numerator when the walk starts at height 1. So the two atoms of Act II count castles: `a_w` is the number of skylines of width `w` that start on the base, never jump by more than one row, and never exceed height 3. Anchoring at the base is natural for a castle (the skyline begins where the bottom block begins), and it is what selects Pell proper rather than the companion sequence. Restricting to castles of height *exactly* 3 subtracts the height-≤2 anchored strips (`2^{w−1}` of them) and gives `P_{w+1} − 2^{w−1} = 0, 0, 1, 4, 13, 38, 105, 280, …`.
 
@@ -127,6 +127,6 @@ A rational generating function's denominator is a factored inventory of atoms. W
 ## Footnotes
 
 [^1]: [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] §"Where the recurrence comes from" L9-L19 - coefficient-matching mechanics, and the uniform recurrence `a_n − 2a_{n−1} − a_{n−2} = [n = 0]` with `a_{−1} = a_{−2} = 0`. Re-verified during ingest by evaluating the recurrence at the boundary and matching against direct series expansion of `1/(1−2x−x²)`.
-[^2]: [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] §"The castle reading" L23-L28 - the two-atom composition scheme and its "peel off the last atom" recurrence. Under the SEQ construction (see [[symbolic-method](pages/symbolic-method.md)] Theorem I.1), `SEQ(2·Z + Z²)` has OGF `1/(1 − 2z − z²)`.
+[^2]: [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] §"The castle reading" L23-L28 - the two-atom composition scheme and its "peel off the last atom" recurrence. Under the SEQ construction (see [[symbolic-method](pages/symbolic-method.md)] Theorem I.1), `SEQ(2·Z + Z²)` has ordinary generating function (OGF) `1/(1 − 2z − z²)`.
 [^3]: The sequence `1, 2, 5, 12, 29, 70, 169, 408, 985, 2378, 5741, 13860` (produced by the recurrence with `a_0 = 1, a_1 = 2`) was numerically matched against OEIS A000129 = `0, 1, 2, 5, 12, 29, 70, 169, …` during ingest, confirming `a_n = P_{n+1}`. The growth ratio `a_{n+1}/a_n → 2.41421… = 1 + √2` verified for `n = 5..11`.
 [^4]: Verified by execution (Python 3, SymPy), 2026-09-19. With `M = [[1,1,0],[1,1,1],[0,1,1]]` (1-smooth on heights `{1,2,3}`), `e_1ᵀ (I − xM)^{−1} 𝟙 = 1/(1 − 2x − x²)`, `𝟙ᵀ (I − xM)^{−1} 𝟙 = (3 + x)/(1 − 2x − x²)`, `e_1ᵀ (I − xM)^{−1} e_1 = (1 − 2x)/((1 − x)(1 − 2x − x²))`, and `det(xI − M) = (x − 1)(x² − 2x − 1)`. Brute-force enumeration of 1-smooth skylines over `{1,2,3}` for `w = 1..8` gives `1, 2, 5, 12, 29, 70, 169, 408` (first column 1), `3, 7, 17, 41, 99, 239, 577, 1393` (any first column), and `1, 1, 2, 4, 9, 21, 50, 120` (both end columns 1); the anchored count restricted to `max c = 3` is `0, 0, 1, 4, 13, 38, 105, 280 = P_{w+1} − 2^{w−1}`. `det(I − xM)` over all sixteen `2×2` 0/1 matrices takes exactly the six values `1, 1 − x, 1 − 2x, 1 − x², (1 − x)², 1 − x − x²`. The free-strip denominator `(1 − x)(1 − 2x − x²)` is footnote 3 of [[metallic-strip-realizability](pages/metallic-strip-realizability.md)].

@@ -12,7 +12,7 @@ updated: 2026-09-19
 
 ## Overview
 
-`P(k,L)` — the [[castle-sign](pages/castle-sign.md)] signed tower count — has a **closed form in `k`** for the smallest widths `L`, and this page hunts for how far that goes. The result: the pattern extends through `L = 1, 2, 3`, then **stops** — for `L ≥ 4` the order of `P(·,L)` jumps to `2L−2` and no polynomial-in-`k` form exists. This page is the closed-form sibling of [[recurrence-discovery](pages/recurrence-discovery.md)] (which tabulates the orders); the computation — the column-height DP for `P(k,L)` plus Berlekamp–Massey for the minimal recurrence — is that page's program, and everything below is verified by execution.
+`P(k,L)` — the [[castle-sign](pages/castle-sign.md)] signed tower count — has a **closed form in `k`** for the smallest widths `L`, and this page hunts for how far that goes. The result: the pattern extends through `L = 1, 2, 3`, then **stops** — for `L ≥ 4` the order of `P(·,L)` jumps to `2L−2` and no polynomial-in-`k` form exists. This page is the closed-form sibling of [[recurrence-discovery](pages/recurrence-discovery.md)] (which tabulates the orders); the computation — the column-height dynamic program (DP) for `P(k,L)` plus Berlekamp–Massey for the minimal recurrence — is that page's program, and everything below is verified by execution.
 
 ## The small-L closed forms
 
@@ -63,11 +63,11 @@ P(k,4) = (−1)^k (k+1)(2k+1)(2k+3)/6 + (k+1)/2
 P(k,5) = (−1)^k k(k+1)²(k+2)/3     + (k+1)²
 ```
 
-What stops at `L = 3` is the *single-polynomial* form `(−1)^k (k+1)^{L−1}`: from `L = 4` on, a non-alternating part `B_L` appears and the alternating part `A_L` stops being a pure power. The full `A_L, B_L` table to `L = 8`, the OEIS hits (`|P(k,4)|` is A352116, the partial sums of the odd triangular numbers) and the code are on [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)].
+What stops at `L = 3` is the *single-polynomial* form `(−1)^k (k+1)^{L−1}`: from `L = 4` on, a non-alternating part `B_L` appears and the alternating part `A_L` stops being a pure power. The full `A_L, B_L` table to `L = 8`, the Online Encyclopedia of Integer Sequences (OEIS) hits (`|P(k,4)|` is A352116, the partial sums of the odd triangular numbers) and the code are on [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)].
 
 ## Conclusion
 
-There is **no single-polynomial closed form** for `P(k,L)` as a function of `k` beyond `L = 3`: the forms `(−1)^k(k+1)` and `(−1)^k(k+1)²` exist exactly for `L = 2, 3` (plus the parity form at `L = 1`). From `L = 4` onward the closed form is a **two-polynomial quasi-polynomial** - even `k` and odd `k` each follow their own degree-`(L−1)` polynomial - which is the same thing as the order-`(2L−2)` recurrence with characteristic polynomial `(x+1)^L (x−1)^{L−2}`. A uniform formula for the pair `A_L, B_L` is still open ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]). The *L*-direction is the opposite: it has clean closed forms (`P(1,L) = Re((1+i)^{L+1})`, and a degree-`(k+1)` rational GF for every `k`), collected on [[signed-tower-count](pages/signed-tower-count.md)].[^2]
+There is **no single-polynomial closed form** for `P(k,L)` as a function of `k` beyond `L = 3`: the forms `(−1)^k(k+1)` and `(−1)^k(k+1)²` exist exactly for `L = 2, 3` (plus the parity form at `L = 1`). From `L = 4` onward the closed form is a **two-polynomial quasi-polynomial** - even `k` and odd `k` each follow their own degree-`(L−1)` polynomial - which is the same thing as the order-`(2L−2)` recurrence with characteristic polynomial `(x+1)^L (x−1)^{L−2}`. A uniform formula for the pair `A_L, B_L` is still open ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]). The *L*-direction is the opposite: it has clean closed forms (`P(1,L) = Re((1+i)^{L+1})`, and a degree-`(k+1)` rational generating function (GF) for every `k`), collected on [[signed-tower-count](pages/signed-tower-count.md)].[^2]
 
 ## Appearances in Sources
 

@@ -5,10 +5,10 @@ summary: The discipline of matching castle counts to existing OEIS A-numbers (in
 tags: [concept, oeis, method, cross-reference, research-workflow]
 sources: [oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-09-17
+updated: 2026-09-19
 ---
 
-# OEIS cross-referencing (interlinking method)
+# Online Encyclopedia of Integer Sequences (OEIS) cross-referencing (interlinking method)
 
 ## Description
 

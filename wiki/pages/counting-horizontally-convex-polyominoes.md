@@ -5,7 +5,7 @@ summary: Hickerson's 1-dimensional proof that horizontally convex n-ominoes sati
 tags: [paper, polyomino, horizontally-convex, linear-recurrence, combinatorics, source]
 sources: [counting-horizontally-convex-polyominoes]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # Counting Horizontally Convex Polyominoes (Hickerson 1999)
@@ -16,7 +16,7 @@ updated: 2026-09-13
 
 ## Summary
 
-A **polyomino** is a finite edge-connected union of unit squares with integer-coordinate vertices (an *n*-omino has area *n*), counted up to translation. A polyomino is **horizontally convex** (an HC-polyomino) if every horizontal line meets it in a single segment or not at all.[^1] Let `a(n)` count HC *n*-ominoes; the sequence is `1, 2, 6, 19, 61, 196, 629, 2017, 6466, 20727, 66441, 212980, …` (OEIS **A001169**).[^2]
+A **polyomino** is a finite edge-connected union of unit squares with integer-coordinate vertices (an *n*-omino has area *n*), counted up to translation. A polyomino is **horizontally convex** (an HC-polyomino) if every horizontal line meets it in a single segment or not at all.[^1] Let `a(n)` count HC *n*-ominoes; the sequence is `1, 2, 6, 19, 61, 196, 629, 2017, 6466, 20727, 66441, 212980, …` (Online Encyclopedia of Integer Sequences (OEIS) **A001169**).[^2]
 
 The paper's result is that `a(n)` satisfies a third-order linear recurrence — remarkable for a 2-D counting problem:[^2]
 
@@ -28,7 +28,7 @@ with growth `a(n) ~ u·v^n`, where `v = 3.2055694304…` is the unique real root
 
 Hickerson's contribution is a **1-dimensional proof**: introduce four auxiliary functions `b,c,d,e(n)` counting restricted HC *n*-ominoes (by top-row width and alignment of the top square over the second/third rows), find linear relations among them by add/delete-a-square bijections, and combine to eliminate them — leaving the recurrence in `a` alone.[^5] Each of `b,c,d,e` turns out to be a fixed linear combination of `a(n),a(n−1),a(n−2)` (e.g. `e(n)=a(n)−3a(n−1)`), so all satisfy the same recurrence.[^6]
 
-## Why it matters for PE 502
+## Why it matters for Project Euler 502 (PE 502)
 
 The relevance is structural and runs along several threads this wiki is chasing:
 

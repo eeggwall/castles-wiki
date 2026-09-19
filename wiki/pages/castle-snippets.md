@@ -14,7 +14,7 @@ updated: 2026-09-19
 
 A living reference of **short, tested Python snippets** for exploring castles computationally. Each snippet:
 
-- Runs in a plain Python REPL (no external deps unless one line justifies the import — `itertools`, `math`).
+- Runs in a plain Python read-eval-print loop (REPL) (no external deps unless one line justifies the import — `itertools`, `math`).
 - Follows the wiki's conventions: skyline `c = (c_1, …, c_w)` with `1 ≤ c_i ≤ h` and `max c = h` matches [[castle-representations](pages/castle-representations.md)]; block count matches [[castle-sign](pages/castle-sign.md)] and [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]; classification names match [[castle-classification](pages/castle-classification.md)].
 - Was **executed during ingest**; every printed output is pinned. If a snippet's output disagrees with what this page shows, the wiki is wrong — file a fix.
 
@@ -44,7 +44,7 @@ Wiki tie: [[castle-representations](pages/castle-representations.md)] integer-tu
 
 ### `blocks(c)` → int
 
-Block count under the wiki convention (matches [[castle-sign](pages/castle-sign.md)] and the `p_signed` DP on [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]).
+Block count under the wiki convention (matches [[castle-sign](pages/castle-sign.md)] and the `p_signed` dynamic program (DP) on [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]).
 
 ```python
 def blocks(c):
@@ -398,7 +398,7 @@ def proper_even(h, Wmax):
 [0, 0, 10, 104, 604, 2836, 12630, 55668]
 ```
 
-Meaning: the even-block proper-castle rows are a new family (no OEIS match for `h ≥ 3`); the growth is still the metal `δ_{h−1}` (the signed matrix's spectral radius `1.000/1.575/1.768/2.242/2.413` for `h = 2..6` sits below `δ = 1.618/2.414/3.303/4.236/5.193`). Drop the `// 2` and the signed half to get the unsigned `max=h` count.
+Meaning: the even-block proper-castle rows are a new family (no Online Encyclopedia of Integer Sequences (OEIS) match for `h ≥ 3`); the growth is still the metal `δ_{h−1}` (the signed matrix's spectral radius `1.000/1.575/1.768/2.242/2.413` for `h = 2..6` sits below `δ = 1.618/2.414/3.303/4.236/5.193`). Drop the `// 2` and the signed half to get the unsigned `max=h` count.
 
 ### `strip_field_census(h)` → which number fields the strips reach
 
@@ -886,7 +886,7 @@ Meaning: the last line is `F_{w+2}` for `w = 1..8`. Tree castles of height at mo
 
 ### `castle_to_composition(c)` / `composition_to_castle(parts)` → bijection with compositions
 
-The three-way bijection tree castle ↔ composition of `A + 1` with parts in `{1, 3, 4, 5}` ↔ SUD tournament on `A + 1` nodes ([[tree-castle-by-area](pages/tree-castle-by-area.md)]).
+The three-way bijection tree castle ↔ composition of `A + 1` with parts in `{1, 3, 4, 5}` ↔ score-uniquely-determined (SUD) tournament on `A + 1` nodes ([[tree-castle-by-area](pages/tree-castle-by-area.md)]).
 
 ```python
 def castle_to_composition(c):
@@ -920,7 +920,7 @@ def composition_to_castle(parts):
 
 Meaning: prepending a virtual `1` column and merging each `(1, tall)` pair produces the composition; the inverse expands each part `k ∈ {3, 4, 5}` back into `(1, k − 1)` and drops the leading `1`.
 
-### `is_strongly_connected(T)` → SCC test for tournament matrices
+### `is_strongly_connected(T)` → strongly connected component (SCC) test for tournament matrices
 
 ```python
 def is_strongly_connected(T):
@@ -1164,7 +1164,7 @@ Meaning: for `m = 1` the valid words are binary strings with no isolated `1` (th
 
 ### `oeis_lookup(terms)` → list of `(A-number, name)`
 
-The live version of `oeis_snippet` below. **OEIS answers Python's default `urllib` User-Agent with HTTP 403**; go through `curl` with a real UA and sleep a second between calls.
+The live version of `oeis_snippet` below. **OEIS answers Python's default `urllib` User-Agent with HyperText Transfer Protocol (HTTP) 403**; go through `curl` with a real UA and sleep a second between calls.
 
 ```python
 import json, subprocess, urllib.parse
@@ -1234,7 +1234,7 @@ Meaning: a running asymmetric cryptosystem built from the castle's own Kitamasa 
 
 ### `castle_dlp(A, Q, p)` → recover the private key from a castle public key
 
-The red team's tool ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]): factor `Q mod p`, reduce `A` modulo each factor, solve each piece's discrete log by Pohlig–Hellman over the factored element order with baby-step giant-step on each prime, and CRT the pieces. Uses `mulmod` / `powmod` / `one` / `gen` from `castle_dh`. Requires SymPy.
+The red team's tool ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]): factor `Q mod p`, reduce `A` modulo each factor, solve each piece's discrete log by Pohlig–Hellman over the factored element order with baby-step giant-step on each prime, and Chinese Remainder Theorem (CRT) the pieces. Uses `mulmod` / `powmod` / `one` / `gen` from `castle_dh`. Requires SymPy.
 
 ```python
 from math import isqrt

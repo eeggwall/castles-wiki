@@ -5,7 +5,7 @@ summary: The two ideas that solve the castle count — towers are independent (T
 tags: [concept, castle, towers, parity, sign, pedagogy, dyck, teaching]
 sources: [project-euler-502-solution, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations]
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-19
 ---
 
 # Tower recursion master class
@@ -73,7 +73,7 @@ odd-block castles   = [ h^w − (h−1)^w + P(h−1,w) − P(h−2,w) ] / 2     
 
 The two differ only in the sign of the `P` terms, and they sum to the unsigned total `h^w − (h−1)^w` — the `P` terms cancel, which is the "almost the entire difficulty" observation: drop the parity clause and the answer is just `h^w − (h−1)^w`.[^9] The `h^w − (h−1)^w` subtracts off towers of height ≤ *h*−2, forcing height *exactly* *h*; the `−P(h−1,w) + P(h−2,w)` does the same subtraction at the signed level.
 
-The master-class takeaway is that the technique is **symmetric**: the same sign machinery hands you the even count *and* the odd count for the price of one. PE 502 asks for the even half; the odd half is free.
+The master-class takeaway is that the technique is **symmetric**: the same sign machinery hands you the even count *and* the odd count for the price of one. Project Euler 502 (PE 502) asks for the even half; the odd half is free.
 
 ## Worked example: F(4,2) = 10
 

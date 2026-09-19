@@ -30,7 +30,7 @@ Together with the associated Fibonacci-like linear recurrence `x_n = a·x_{n−1
 
 ## The named members
 
-| `a` | `δ_a` | Common name | Integer sequence (`x_0 = 0, x_1 = 1`) | OEIS |
+| `a` | `δ_a` | Common name | Integer sequence (`x_0 = 0, x_1 = 1`) | Online Encyclopedia of Integer Sequences (OEIS) |
 |---|---|---|---|---|
 | 1 | `(1+√5)/2 ≈ 1.6180` | **Golden** | 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, … — Fibonacci | [A000045](https://oeis.org/A000045) |
 | 2 | `1+√2 ≈ 2.4142` | **Silver** | 0, 1, 2, 5, 12, 29, 70, 169, 408, 985, … — Pell | [A000129](https://oeis.org/A000129) |
@@ -52,7 +52,7 @@ The copper mean has a special place: `δ_4 = 2 + √5 = φ³` (since `φ² = φ 
 
 Two members of this family are already load-bearing on the wiki, from two independent directions:
 
-- **`δ_1 = φ`** is the growth constant of Fibonacci, which appears in the castle count as `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] (prime castles). The Fibonacci method for turning a recurrence into a rational GF is the archetype of [[aocp-generating-functions](pages/aocp-generating-functions.md)].
+- **`δ_1 = φ`** is the growth constant of Fibonacci, which appears in the castle count as `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] (prime castles). The Fibonacci method for turning a recurrence into a rational generating function (GF) is the archetype of [[aocp-generating-functions](pages/aocp-generating-functions.md)].
 - **`δ_2 = 1+√2`** is the growth constant of the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]), and appears as the count-sequence growth of the anchored 1-smooth height-3 strip on [[pell-castle-strip](pages/pell-castle-strip.md)], whose width generating function is exactly `1/(1 − 2x − x²)`. The integer realization is the [[pell-numbers](pages/pell-numbers.md)].
 
 Both are treated in parallel on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] as "the castle's two norm-`−1` reduced quadratics" — the framing that made writing this page unavoidable: **there is a ladder, and the wiki was already sitting on rungs 1 and 2 without naming it.** Naming the ladder makes explicit that the metallic-mean family is a **meta-classification axis** for castle sub-families: a castle class is a **"`<metal>` `<axis>` growth castle"** iff its count sequence, graded by the chosen size axis, grows at rate `δ_a`. This is now Axis 8 of [[castle-classification](pages/castle-classification.md)]; the naming convention (`<metal>` ∈ {golden, silver, bronze, copper, nickel, …}, `<axis>` ∈ {width, vertical, area, block}) is developed there.
@@ -96,7 +96,7 @@ The realizability question the "how many states per column" knob raised is thus 
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the Fibonacci / `φ` archetype (the `a=1` member).
 - [[castle-by-area](pages/castle-by-area.md)] — `2^{n−1} − F_{n−1}`, where Fibonacci / `φ` enters the castle count.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] — the metallic means are algebraic (quadratic), the exact irrationals that C-finite castle counts *can* carry.
-- [[spectral-analysis](pages/spectral-analysis.md)] / [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - where the metallic means do and do not appear as eigenvalues: never in PE 502's own signed transfer matrix (its eigenvalues are twice algebraic units), but as spectral radii of class transfer matrices (Axis 8) and of individual castle graphs (`φ` for the 4-cell paths, `1 + √2` for the `3×2` rectangle and three non-rectangular castles).
+- [[spectral-analysis](pages/spectral-analysis.md)] / [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - where the metallic means do and do not appear as eigenvalues: never in Project Euler 502 (PE 502)'s own signed transfer matrix (its eigenvalues are twice algebraic units), but as spectral radii of class transfer matrices (Axis 8) and of individual castle graphs (`φ` for the 4-cell paths, `1 + √2` for the `3×2` rectangle and three non-rectangular castles).
 - [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the convergent numerator/denominator/trace sequences of every rung `a = 1..5` matched to OEIS, and the mod-`p` signature of norm `−1` (`δ_a^{p+1} = −1` at inert primes).
 - [[block-count-constraints](pages/block-count-constraints.md)] - the coin branch touches the ladder: numerical semigroups counted by genus (A007323: 1, 1, 2, 4, 7, 12, 23, 39, …) grow at the golden ratio (Zhai 2013).
 

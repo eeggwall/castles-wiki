@@ -8,7 +8,7 @@ created: 2026-09-13
 updated: 2026-09-19
 ---
 
-# PE 502: Implementation Notes
+# Project Euler 502 (PE 502): Implementation Notes
 
 **Source:** https://charlesreid1.com/wiki/Project_Euler/502/Implementation_Notes
 **Date ingested:** 2026-09-13

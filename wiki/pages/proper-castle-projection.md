@@ -17,7 +17,7 @@ updated: 2026-09-19
 1. **`max_i c_i = h`** — the castle actually reaches the ceiling (height exactly `h`, not `≤ h`).
 2. **the even-block parity** — `even = (A + P)/2` where `A` is the unsigned count and `P = Σ (−1)^{blocks(c)}` the [[castle-sign](pages/castle-sign.md)] signed count.
 
-Growth constants should be invariant under these lower-order corrections, but the *exact* sequences — and their OEIS identities — can change. This page works out the projected counts for the `J−D` ladder (bronze / copper / …) and asks whether the metallic OEIS sequences (Pell A000129, A006190, A001076, …) or new ones appear.
+Growth constants should be invariant under these lower-order corrections, but the *exact* sequences — and their Online Encyclopedia of Integer Sequences (OEIS) identities — can change. This page works out the projected counts for the `J−D` ladder (bronze / copper / …) and asks whether the metallic OEIS sequences (Pell A000129, A006190, A001076, …) or new ones appear.
 
 ## The two projections, precisely
 

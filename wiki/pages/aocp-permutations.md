@@ -8,7 +8,7 @@ created: 2026-09-13
 updated: 2026-09-19
 ---
 
-# AOCP Permutations & Factorials (Knuth TAOCP Vol. 1)
+# The Art of Computer Programming (AOCP) Permutations & Factorials (Knuth The Art of Computer Programming (TAOCP) Vol. 1)
 
 **Source:** https://charlesreid1.com/wiki/AOCP/Permutations (notes on Knuth, *The Art of Computer Programming*, Vol. 1, Ch. 1)
 **Date ingested:** 2026-09-13

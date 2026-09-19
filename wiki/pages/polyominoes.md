@@ -5,7 +5,7 @@ summary: The charlesreid1.com polyomino taxonomy — Ferrers, staircase, bar-cha
 tags: [polyomino, taxonomy, column-convex, ferrers, catalan, q-analog, stack-polyomino, source]
 sources: [polyominoes]
 created: 2026-09-13
-updated: 2026-09-15
+updated: 2026-09-19
 ---
 
 # Polyominoes
@@ -30,15 +30,15 @@ The classes:[^2]
 
 The page states directly that **castle polyominoes are column-convex polyominoes** built by stacking blocks under the "no overhang, no adjacent same-row blocks, even block count" rules, with [[project-euler-502](pages/project-euler-502.md)] as the worked example (counting castles of width *w* and height *h*, three encodings on [[project-euler-502-representations](pages/project-euler-502-representations.md)]).[^4] This is the wiki's own upstream confirmation of the placement worked out from the literature on [[column-convex-polyomino](pages/column-convex-polyomino.md)] and [[convex-castle](pages/convex-castle.md)].
 
-Two of the named families are exactly the OEIS-mining threads: **Ferrers/staircase/parallelogram** are the classical directed-convex families of [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], and the **Ferrers → q-Bessel / q-Catalan** remark is the same q-analog thread as the steep-parallelogram generating functions of [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)]. This page is thus the taxonomic hub tying the castle to the whole polyomino world and pointing at the q-graded direction (see the wiki TODO).
+Two of the named families are exactly the Online Encyclopedia of Integer Sequences (OEIS)-mining threads: **Ferrers/staircase/parallelogram** are the classical directed-convex families of [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], and the **Ferrers → q-Bessel / q-Catalan** remark is the same q-analog thread as the steep-parallelogram generating functions of [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)]. This page is thus the taxonomic hub tying the castle to the whole polyomino world and pointing at the q-graded direction (see the wiki TODO).
 
-**Not in this page's taxonomy but directly castle-relevant: the [[stack-polyomino-gf](pages/stack-polyomino-gf.md)]** (unimodal-skyline polyominoes) constructed in Example I.8 of [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] by the [[symbolic-method](pages/symbolic-method.md)]. A stack polyomino is a castle tower with a single peak — the closest AC-native construction of a castle-tower sub-family the wiki has, and the natural intermediate class between the unrestricted castle tower (`E_k = 1/(1−(k+1)x)`) and the fully-convex castle ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]).
+**Not in this page's taxonomy but directly castle-relevant: the [[stack-polyomino-gf](pages/stack-polyomino-gf.md)]** (unimodal-skyline polyominoes) constructed in Example I.8 of [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] by the [[symbolic-method](pages/symbolic-method.md)]. A stack polyomino is a castle tower with a single peak — the closest Analytic Combinatorics (AC)-native construction of a castle-tower sub-family the wiki has, and the natural intermediate class between the unrestricted castle tower (`E_k = 1/(1−(k+1)x)`) and the fully-convex castle ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]).
 
 ## Key Takeaways
 
 - Polyomino = connected cut-point-free union of cells; parameters area, width, height.[^1]
 - Classes: Ferrers, staircase, bar-chart, column-convex, directed.[^2]
-- **The castle is a column-convex polyomino** (with the extra no-overhang / same-row-gap / even-count rules); PE 502 is the worked instance.[^4]
+- **The castle is a column-convex polyomino** (with the extra no-overhang / same-row-gap / even-count rules); Project Euler 502 (PE 502) is the worked instance.[^4]
 - **Ferrers polyominoes** connect to Catalan (perimeter) and to **q-Bessel / q-Catalan** (area/width/height g.f.) — the q-analog thread.[^3]
 
 ## Entities & Concepts

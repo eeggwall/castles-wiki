@@ -8,7 +8,7 @@ created: 2026-09-13
 updated: 2026-09-19
 ---
 
-# PE 502: Problem Setup
+# Project Euler 502 (PE 502): Problem Setup
 
 **Source:** https://charlesreid1.com/wiki/Project_Euler/502/Problem_Setup
 **Date ingested:** 2026-09-13

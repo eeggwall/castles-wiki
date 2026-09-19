@@ -69,7 +69,7 @@ For an outward-facing seminar the material assembles cleanly:
 4. Land on `F(4,2) = 10` derived twice: once by direct enumeration (permutation-style), once by the closed form (castle-machine-style).
 5. Flag the block ≠ peak caveat, and set up q-analog / Viennot heap directions ([[tower-heap](pages/tower-heap.md)], `TODO.md`) as the natural next questions.
 
-The point of the talk is not the answer (`F(w,h)` exists in closed form), but that **the toolkit** — sign homomorphism, Foata flattening, cycle-following — is the same toolkit for both. PE 502 is what happens when you upgrade every move.
+The point of the talk is not the answer (`F(w,h)` exists in closed form), but that **the toolkit** — sign homomorphism, Foata flattening, cycle-following — is the same toolkit for both. Project Euler 502 (PE 502) is what happens when you upgrade every move.
 
 ## Appearances in Sources
 

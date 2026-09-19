@@ -12,7 +12,7 @@ updated: 2026-09-19
 
 ## The rule variation
 
-PE 502's **rule 3** says that within any row, two neighboring filled blocks must be separated by at least one empty cell ([[castle-polyomino](pages/castle-polyomino.md)]). The **minimum-tower-spacing** variation strengthens the "at least one" to **at least `g`**: in every row, each *internal* run of empty cells (a run with filled cells on both sides) must have length `≥ g`.
+Project Euler 502 (PE 502)'s **rule 3** says that within any row, two neighboring filled blocks must be separated by at least one empty cell ([[castle-polyomino](pages/castle-polyomino.md)]). The **minimum-tower-spacing** variation strengthens the "at least one" to **at least `g`**: in every row, each *internal* run of empty cells (a run with filled cells on both sides) must have length `≥ g`.
 
 Geometrically this is a **tower-spacing rule**. In a castle skyline `c = (c_1, …, c_w)`, row `r` is filled exactly at the columns `i` with `c_i ≥ r`; two "towers" that both reach row `r`, separated by a valley of columns shorter than `r`, produce a filled-empty-filled pattern `1…10…01…1` in that row. The rule says the valley — the `0`-run — must be at least `g` wide. So towers poking above a common level must stand at least `g` columns apart.[^1]
 
@@ -72,7 +72,7 @@ So minimum-tower-spacing castles are a **new two-parameter family of C-finite ca
 
 The `g = 2` sequences are **not new** — they are exactly the **Hardin word sequences** already on the wiki, now with a clean geometric meaning:[^7]
 
-| `(h, g=2)` | first terms | OEIS |
+| `(h, g=2)` | first terms | Online Encyclopedia of Integer Sequences (OEIS) |
 |---|---|---|
 | `h = 3` | `3, 9, 22, 51, 121, 292, 704, …` | **A202882** (offset by one) |
 | `h = 4` | `4, 16, 50, 144, 422, 1268, 3823, …` | **A203094** |

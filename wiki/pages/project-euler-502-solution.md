@@ -8,7 +8,7 @@ created: 2026-09-13
 updated: 2026-09-19
 ---
 
-# PE 502: Solution
+# Project Euler 502 (PE 502): Solution
 
 **Source:** https://charlesreid1.com/wiki/Project_Euler/502/Solution
 **Date ingested:** 2026-09-13

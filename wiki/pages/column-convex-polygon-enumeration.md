@@ -5,7 +5,7 @@ summary: Bousquet-Mélou's universal "add-a-column" (Temperley) method — one f
 tags: [paper, polyomino, column-convex, generating-functions, temperley, source]
 sources: [column-convex-polygon-enumeration]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # Enumeration of Column-Convex Polygons (Bousquet-Mélou)
@@ -24,7 +24,7 @@ The method — the **"add-a-column" / Temperley methodology** — builds a colum
 
 It also fixes a vocabulary of classical directed-and-convex families the wiki will want: **Ferrers diagrams, stack polygons, and parallelogram (staircase) polyominoes**, each characterized by which vertices of the minimal bounding rectangle the polyomino must contain.[^7]
 
-## Why it matters for PE 502
+## Why it matters for Project Euler 502 (PE 502)
 
 This is arguably the closest external framework to the castle problem, and several castle threads run straight into it:
 
@@ -46,7 +46,7 @@ This is arguably the closest external framework to the castle problem, and sever
 - [[castle-polyomino](pages/castle-polyomino.md)], [[convex-castle](pages/convex-castle.md)] — the castle objects this connects to.
 - [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] — the row-convex counterpart (Hickerson).
 - [[generating-functions](pages/generating-functions.md)] — the tool used throughout.
-- [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the "stack polyominoes" family this paper names, given a direct OGF via the [[symbolic-method](pages/symbolic-method.md)] in Example I.8 of [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] — a specification-driven alternative to this paper's add-a-column functional equation, applicable when the class has enough structure (like the unimodal skyline of a stack polyomino).
+- [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the "stack polyominoes" family this paper names, given a direct ordinary generating function (OGF) via the [[symbolic-method](pages/symbolic-method.md)] in Example I.8 of [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] — a specification-driven alternative to this paper's add-a-column functional equation, applicable when the class has enough structure (like the unimodal skyline of a stack polyomino).
 
 ## Relation to Other Wiki Pages
 

@@ -5,7 +5,7 @@ summary: Shortest lattice paths as multiset permutations of a step string — C(
 tags: [lattice-paths, project-euler, stars-and-bars, binomial, multiset, urd, symbolic-method, source]
 sources: [lattice-paths]
 created: 2026-09-13
-updated: 2026-09-15
+updated: 2026-09-19
 ---
 
 # Lattice paths (Project Euler 15)
@@ -37,7 +37,7 @@ Two direct connections:
 
 Unlike Dyck paths (which impose the never-go-negative *ballot* constraint and are counted by Catalan numbers), an unconstrained lattice path is just a multiset permutation and is counted by a plain binomial — the same binomial-vs-Catalan distinction that runs through the castle.
 
-**Under the [[symbolic-method](pages/symbolic-method.md)].** A shortest lattice path over the 2-letter alphabet `{R, D}` is a word in `SEQ(R + D)` — the compositions/words machinery of [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] §I.3-I.4. Marking `R` and `D` with separate size variables `x, y` gives the bivariate OGF `1/(1 − x − y)`, and `[x^W y^H]` extracts the `binomial(W+H, H)` count — the same stars-and-bars result derived from the specification rather than from balls-and-bars combinatorics. Lattice paths with more constraints (bounded run length, non-negativity, staying inside a strip) are analyzed at length in AC Chapter V (`Applications of Rational and Meromorphic Asymptotics`), §V.4 "Nested sequences, lattice paths, and continued fractions" — the natural next-chapter home for the wiki's [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] thread when we ingest Part B.
+**Under the [[symbolic-method](pages/symbolic-method.md)].** A shortest lattice path over the 2-letter alphabet `{R, D}` is a word in `SEQ(R + D)` — the compositions/words machinery of [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] §I.3-I.4. Marking `R` and `D` with separate size variables `x, y` gives the bivariate ordinary generating function (OGF) `1/(1 − x − y)`, and `[x^W y^H]` extracts the `binomial(W+H, H)` count — the same stars-and-bars result derived from the specification rather than from balls-and-bars combinatorics. Lattice paths with more constraints (bounded run length, non-negativity, staying inside a strip) are analyzed at length in Analytic Combinatorics (AC) Chapter V (`Applications of Rational and Meromorphic Asymptotics`), §V.4 "Nested sequences, lattice paths, and continued fractions" — the natural next-chapter home for the wiki's [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] thread when we ingest Part B.
 
 ## Key Takeaways
 

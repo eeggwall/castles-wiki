@@ -5,7 +5,7 @@ summary: Tetali's three-page JCTB note proving that the score-uniquely-determine
 tags: [source, tournament, unique, score-sequence, jctb, tetali, muller-nesetril-pelant, simple-tournament, oeis, a000570, paper]
 sources: [tetali-1998-unique-tournaments]
 created: 2026-09-17
-updated: 2026-09-17
+updated: 2026-09-19
 ---
 
 # A Characterization of Unique Tournaments (Tetali, 1998)
@@ -18,7 +18,7 @@ updated: 2026-09-17
 
 ## Summary
 
-Tetali's note gives a *complete* classification of the tournaments determined uniquely by their score vectors, and it deduces from that classification the recurrence and enumeration listed by OEIS as A000570.[^2] The set `Unique` is defined as `∪_{n ≥ 1} U_n`, where `U_n = {T_n : S(T_n) = S(T'_n) ⇒ T_n ≅ T'_n}` and `S(T_n)` is the sorted out-degree vector.[^3] Tetali's main result (Theorem 1) says there are **exactly four "basic" strong tournaments** in `Unique`, and every other member decomposes into them:[^4]
+Tetali's note gives a *complete* classification of the tournaments determined uniquely by their score vectors, and it deduces from that classification the recurrence and enumeration listed by Online Encyclopedia of Integer Sequences (OEIS) as A000570.[^2] The set `Unique` is defined as `∪_{n ≥ 1} U_n`, where `U_n = {T_n : S(T_n) = S(T'_n) ⇒ T_n ≅ T'_n}` and `S(T_n)` is the sorted out-degree vector.[^3] Tetali's main result (Theorem 1) says there are **exactly four "basic" strong tournaments** in `Unique`, and every other member decomposes into them:[^4]
 
 **Theorem 1 (Tetali 1998).** There are exactly four basic strong tournaments in `Unique`. Their score vectors are `(0)`, `(1, 1, 1)`, `(1, 1, 2, 2)`, and `(2, 2, 2, 2, 2)`, on 1, 3, 4, and 5 vertices. Any other (non-strong) tournament in `Unique` decomposes into strong components, each of which is one of the four basic tournaments.
 

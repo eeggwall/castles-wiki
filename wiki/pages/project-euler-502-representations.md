@@ -8,7 +8,7 @@ created: 2026-09-13
 updated: 2026-09-19
 ---
 
-# PE 502: Representations
+# Project Euler 502 (PE 502): Representations
 
 **Source:** https://charlesreid1.com/wiki/Project_Euler/502/Representations
 **Date ingested:** 2026-09-13

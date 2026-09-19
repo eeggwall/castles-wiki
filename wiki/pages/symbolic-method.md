@@ -12,7 +12,7 @@ updated: 2026-09-19
 
 ## Description
 
-The **symbolic method**, developed formally by Flajolet & Sedgewick, is the general framework beneath the wiki's existing generating-function machinery: instead of positing a recurrence and solving for a rational OGF, describe the combinatorial class directly as a *specification* built from a fixed alphabet of **admissible constructions**, each of which translates mechanically into an OGF operator.[^1] The dictionary is finite:
+The **symbolic method**, developed formally by Flajolet & Sedgewick, is the general framework beneath the wiki's existing generating-function machinery: instead of positing a recurrence and solving for a rational ordinary generating function (OGF), describe the combinatorial class directly as a *specification* built from a fixed alphabet of **admissible constructions**, each of which translates mechanically into an OGF operator.[^1] The dictionary is finite:
 
 | Construction | Class relation | OGF translation |
 |---|---|---|

@@ -8,7 +8,7 @@ created: 2026-09-13
 updated: 2026-09-19
 ---
 
-# PE 502: Castle Factoring
+# Project Euler 502 (PE 502): Castle Factoring
 
 **Source:** https://charlesreid1.com/wiki/Project_Euler/502/Castle_Factoring
 **Date ingested:** 2026-09-13

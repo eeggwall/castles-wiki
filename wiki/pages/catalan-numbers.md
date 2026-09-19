@@ -5,7 +5,7 @@ summary: C_n = binomial(2n,n)/(n+1) (1,1,2,5,14,42,…) — the counting sequenc
 tags: [concept, catalan, dyck, narayana, generating-functions, combinatorics, symbolic-method]
 sources: [catalan-numbers, analytic-combinatorics-part-a]
 created: 2026-09-13
-updated: 2026-09-15
+updated: 2026-09-19
 ---
 
 # Catalan numbers
@@ -47,7 +47,7 @@ Catalan numbers are the reference point for two castle threads:
 - [[q-catalan-numbers](pages/q-catalan-numbers.md)] — the q-deformation; the area-graded castle thread.
 - [[motzkin-numbers](pages/motzkin-numbers.md)] — the up/flat/down cousin.
 - [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] — why the castle count is binomial, not Catalan.
-- [[symbolic-method](pages/symbolic-method.md)] — the framework that gives the tree-spec → Catalan-OGF derivation in one line.
+- [[symbolic-method](pages/symbolic-method.md)] — the framework that gives the tree-spec → Catalan-ordinary generating function (OGF) derivation in one line.
 
 ## Footnotes
 

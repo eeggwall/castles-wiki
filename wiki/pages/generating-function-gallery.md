@@ -159,7 +159,7 @@ The first coefficient is `k+1` (the sum of the eigenvalues), and the last is `(â
 
 ## Verification: the series equals P(k,L)
 
-SymPy confirms each `num_k/den_k` expands to the actual tower count, computed independently by the column-height DP:
+SymPy confirms each `num_k/den_k` expands to the actual tower count, computed independently by the column-height dynamic program (DP):
 
 ```python
 def P_table(K, Lmax):                      # exact integers, column-height DP

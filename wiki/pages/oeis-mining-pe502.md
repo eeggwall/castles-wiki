@@ -5,10 +5,10 @@ summary: A local research workspace mining the castle object against the OEIS â€
 tags: [oeis, castle, research, mining, cross-reference, source]
 sources: [oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-09-17
+updated: 2026-09-19
 ---
 
-# OEIS mining of PE 502 castles (first pass)
+# Online Encyclopedia of Integer Sequences (OEIS) mining of Project Euler 502 (PE 502) castles (first pass)
 
 **Source:** `~/code/oeis/pe502/` (local research workspace; notes copied to `raw/oeis-pe502/`, chiefly `README.md` and `mine-notes.md`)
 **Date ingested:** 2026-09-13

@@ -77,7 +77,7 @@ x**4 - 4*x**3 + 8*x**2 - 8*x + 8
 
 One honest caveat: "irreducible" depends on *which field* you work over. The table is irreducibility over the rationals `ℚ`. When you reduce mod a specific prime `p`, an over-`ℚ`-irreducible poly can still split (that's the quadratic-reciprocity story, [[finite-fields](pages/finite-fields.md)]). But the over-`ℚ` factorization is the first-order signal, and it drives the toy's main weakness.
 
-## "DLP" — the discrete logarithm problem
+## "discrete logarithm problem (DLP)" — the discrete logarithm problem
 
 This is the hard problem the whole system's security rests on. It has the shape every toy-crypto builder knows: **easy one way, hard the other.**
 
@@ -92,7 +92,7 @@ Same shape as classic Diffie–Hellman (forward `g^a mod p` easy, backward "find
 
 This is the payoff — the reason Seminar 3's first fix swaps an even-`k` `Q` for an odd-`k` one.
 
-**Reducible `Q` (even-`k`, the toy): the DLP splits.** Because `char_2 = (x−2)(x²−x+2)`, the ring `F_p[x]/(Q)` breaks apart by the **Chinese Remainder Theorem** (the same CRT you'd use to speed up RSA) into one ring per factor:
+**Reducible `Q` (even-`k`, the toy): the DLP splits.** Because `char_2 = (x−2)(x²−x+2)`, the ring `F_p[x]/(Q)` breaks apart by the **Chinese Remainder Theorem** (the same CRT you'd use to speed up Rivest-Shamir-Adleman (RSA)) into one ring per factor:
 
 - the `(x−2)` factor is **degree 1** → lives in `F_p` → an ordinary discrete log mod `p`;
 - the `(x²−x+2)` factor is **degree 2** → lives in `F_{p²}`.

@@ -114,7 +114,7 @@ So the metallic ladder is **realizable but not naturally parameterized by the nu
 Bronze and copper are now **realized** (Finding 3) — one named predicate covers the whole ladder. What remains:
 
 - **Uniqueness / other natural rules per rung.** Is `M_h = J − D` the *only* natural predicate hitting `δ_{h−1}`, or (as with silver's three realizations) are there others? A census of named Axis-1–7 predicates by their Perron root would answer this.
-- **The proper-castle count, not just the strip.** ~~open~~ **Resolved** on [[proper-castle-projection](pages/proper-castle-projection.md)]: the metallic growth `δ_{h−1}` *does* survive `max = h` and `(A ± P)/2` — the signed transfer matrix `S_h` is spectrally subdominant (`ρ(S_h) < δ_{h−1}` at every `h`) — but the exact sequences are **new** (no OEIS match for `h ≥ 3`). Even the free counts are the *companion* metallic sequences (silver A001333, bronze A003688, copper A015448), not the primary ones (A000129, A006190, A001076).
+- **The proper-castle count, not just the strip.** ~~open~~ **Resolved** on [[proper-castle-projection](pages/proper-castle-projection.md)]: the metallic growth `δ_{h−1}` *does* survive `max = h` and `(A ± P)/2` — the signed transfer matrix `S_h` is spectrally subdominant (`ρ(S_h) < δ_{h−1}` at every `h`) — but the exact sequences are **new** (no Online Encyclopedia of Integer Sequences (OEIS) match for `h ≥ 3`). Even the free counts are the *companion* metallic sequences (silver A001333, bronze A003688, copper A015448), not the primary ones (A000129, A006190, A001076).
 - **The reachable-surd landscape** — *now settled by [[reachable-field-census](pages/reachable-field-census.md)]:* **every** real quadratic field `Q(√d)` is reachable (the metallic ones `Q(√(a²+4))` via `J − D`; the per-height census lists — `{5}, {2,3,5}, {2,3,5,13,17,21}, …` — are just initial segments). The one piece still open there is a closed form for the *minimum height* realizing a given field.
 
 ## Appearances in Sources
@@ -132,7 +132,7 @@ Bronze and copper are now **realized** (Finding 3) — one named predicate cover
 
 ## Footnotes
 
-[^1]: The width generating function of a nearest-neighbor strip with transfer matrix `M` and all-ones start/end vectors is `𝟙ᵀ(I − xM)⁻¹𝟙`, whose denominator is `det(I − xM)`; the growth constant is `1/ρ` where `ρ` is the smallest-modulus root of `det(I − xM)`, equivalently the Perron (dominant) eigenvalue of `M`. Standard transfer-matrix / analytic-combinatorics fact ([[symbolic-method](pages/symbolic-method.md)], rational SEQ case).
+[^1]: The width generating function of a nearest-neighbor strip with transfer matrix `M` and all-ones start/end vectors is `𝟙ᵀ(I − xM)⁻¹𝟙`, whose denominator is `det(I − xM)`; the growth constant is `1/ρ` where `ρ` is the smallest-modulus root of `det(I − xM)`, equivalently the Perron (dominant) eigenvalue of `M`. Standard transfer-matrix / analytic-combinatorics fact ([[symbolic-method](pages/symbolic-method.md)], rational sequence (SEQ) case).
 
 [^2]: Verified by execution (SymPy): for each rule, `M[i][j] = [A(i+1, j+1)]` over heights `{1,2,3}`, `denom = expand(det(eye(3) − x·M))`, dominant growth `= max |1/root|`. Denominators as tabulated; `no adjacent ceiling` gives `1 − 2x − 2x²` (growth `(2 + √12)/2 = 1 + √3 ≈ 2.732`), `1-smooth` gives `1 − 3x + x² + x³`.
 

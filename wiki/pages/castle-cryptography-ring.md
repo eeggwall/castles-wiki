@@ -91,9 +91,9 @@ Live, at `p = 10⁹+7`:
 
 Manually: `x · (2 + 3x + x²) = 2x + 3x² + x³`; substitute `x³ → 3x² − 4x + 4`, and you get `4 + (2 − 4)x + (3 + 3)x² = 4 − 2x + 6x²`, matching the ring output.[^3]
 
-Read from the LFSR side, this says the state of a length-3 castle register is precisely a ring element, and **stepping the register by one position is multiplying by `x` in the ring**. Every question about the sequence - value at position `n`, period, statistics - has become a question about the algebra of one ring.
+Read from the linear feedback shift register (LFSR) side, this says the state of a length-3 castle register is precisely a ring element, and **stepping the register by one position is multiplying by `x` in the ring**. Every question about the sequence - value at position `n`, period, statistics - has become a question about the algebra of one ring.
 
-## 4. Multiplicative structure - the CRT split of `F_p[x] / (Q)`
+## 4. Multiplicative structure - the Chinese Remainder Theorem (CRT) split of `F_p[x] / (Q)`
 
 A ring is more than addition and multiplication: the **units** (invertible elements) form a group whose structure is what cryptography actually rests on.
 
@@ -127,7 +127,7 @@ Given the unit-group order `N`, the **order of a specific element** `g` divides 
 
 Two facts to lodge in the room before seminar 2 opens:[^4]
 
-- **The size** of `ord(x)` sets the naive DLP work. At 60+ bits with big prime factors it looks intimidating.
+- **The size** of `ord(x)` sets the naive discrete logarithm problem (DLP) work. At 60+ bits with big prime factors it looks intimidating.
 - **The factorization** of `ord(x)` is what actually decides the DLP's cost - the largest prime factor here is `500,000,003 ≈ 2²⁹` throughout, because `p − 1 = 2 · 500,000,003` and `p − 1` divides every `p^d − 1`. This number, not `p^d`, is what the later seminars have to move.
 
 ## 6. Binary exponentiation - Kitamasa is the trapdoor

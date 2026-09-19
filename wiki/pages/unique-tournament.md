@@ -14,7 +14,7 @@ updated: 2026-09-19
 
 A **tournament** on `n` vertices is a complete oriented graph: for every pair of distinct vertices, one directed edge is present. Its **score vector** `S(T_n) = (s_1, …, s_n)` is the sorted list of out-degrees. A tournament `T_n` is **unique** if `S(T_n) = S(T'_n)` implies `T_n ≅ T'_n` for every other tournament `T'_n` on the same vertex set. Equivalently, the score vector realized by `T_n` has no other realizer up to isomorphism.[^1]
 
-The class `Unique = ∪_{n ≥ 1} U_n` and its size sequence `u_n = |U_n|` is exactly OEIS A000570:
+The class `Unique = ∪_{n ≥ 1} U_n` and its size sequence `u_n = |U_n|` is exactly Online Encyclopedia of Integer Sequences (OEIS) A000570:
 
 ```
 u_n = 1, 1, 2, 4, 7, 11, 18, 31, 53, 89, 149, 251, 424, 715, 1204, …
@@ -55,7 +55,7 @@ For every `k ≥ 6`, no strongly connected tournament on `k` vertices is unique.
 
 ## Relation to castles
 
-The tree-castle transfer matrix produces the same GF as A000570, and the three-way identification is:
+The tree-castle transfer matrix produces the same generating function (GF) as A000570, and the three-way identification is:
 
 ```
 tree castle of area A (h ≤ 4)   ↔   composition of A + 1 with parts in {1, 3, 4, 5}   ↔   unique tournament on A + 1 vertices.
@@ -101,7 +101,7 @@ Four OEIS sequences frame `u_n` from the outside; the first three were read from
 - [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] / [[simple-tournament](pages/simple-tournament.md)] - the Muller-Nešetřil-Pelant machinery, with the regular- and strong-tournament OEIS counts that confirm each filtering step.
 - [[block-count-constraints](pages/block-count-constraints.md)] - compositions with parts in `D` as the `SEQ` sibling of the coin-change series.
 - [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[a005251-bijection](pages/a005251-bijection.md)] - the neighbouring rows of the tree-castle-by-area family.
-- [[castle-snippets](pages/castle-snippets.md)] - the bijection and the SCC test as code.
+- [[castle-snippets](pages/castle-snippets.md)] - the bijection and the strongly connected component (SCC) test as code.
 
 ## Footnotes
 

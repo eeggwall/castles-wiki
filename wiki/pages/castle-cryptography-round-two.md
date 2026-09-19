@@ -35,7 +35,7 @@ Both need a **prime-order subgroup** `⟨g⟩`, `|⟨g⟩| = q`. That is where t
 
 ## Attack 3 — recover Alice's private key, for real
 
-Round one *described* the CRT split; round two *runs* it. Take the published `castle_dh` numbers: `Q = char_2`, Alice's public key `A = x^a = [704821174, 848698009, 235195321]`. Factor `Q mod p = (x − 2)(x² − x + 2)`, reduce `A` modulo each factor, solve a discrete log in each piece, and recombine by CRT:
+Round one *described* the Chinese Remainder Theorem (CRT) split; round two *runs* it. Take the published `castle_dh` numbers: `Q = char_2`, Alice's public key `A = x^a = [704821174, 848698009, 235195321]`. Factor `Q mod p = (x − 2)(x² − x + 2)`, reduce `A` modulo each factor, solve a discrete log in each piece, and recombine by CRT:
 
 | piece | where it lives | order of `x` there | log |
 |---|---|---|---|

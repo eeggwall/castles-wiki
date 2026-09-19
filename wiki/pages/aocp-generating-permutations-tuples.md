@@ -8,7 +8,7 @@ created: 2026-09-13
 updated: 2026-09-19
 ---
 
-# AOCP Generating Permutations & Tuples (Knuth TAOCP Vol. 4)
+# The Art of Computer Programming (AOCP) Generating Permutations & Tuples (Knuth The Art of Computer Programming (TAOCP) Vol. 4)
 
 **Source:** https://charlesreid1.com/wiki/AOCP/Generating_Permutations_and_Tuples (notes on Knuth, *The Art of Computer Programming*, Vol. 4A, combinatorial generation)
 **Date ingested:** 2026-09-13
@@ -43,7 +43,7 @@ Two facts make the castle Gray code concrete rather than speculative:
 
 Gray order is also a delta encoding - consecutive castles differ in one symbol - which is where it meets the encoding ladder of [[castle-compression](pages/castle-compression.md)].
 
-**OEIS.** The reflected Gray code itself is A003188 (decimal value of the Gray code of `n`: 0, 1, 3, 2, 6, 7, 5, 4, …), and Knuth's ruler function `ρ(k)` - the bit to flip at step `k` - is the 2-adic valuation A007814 (0, 1, 0, 2, 0, 1, 0, 3, …).[^6]
+**Online Encyclopedia of Integer Sequences (OEIS).** The reflected Gray code itself is A003188 (decimal value of the Gray code of `n`: 0, 1, 3, 2, 6, 7, 5, 4, …), and Knuth's ruler function `ρ(k)` - the bit to flip at step `k` - is the 2-adic valuation A007814 (0, 1, 0, 2, 0, 1, 0, 3, …).[^6]
 
 ## Key Takeaways
 

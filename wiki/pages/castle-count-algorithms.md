@@ -5,14 +5,14 @@ summary: The two computational paths for F(w,h) — a rational-function path for
 tags: [analysis, castle, algorithms, generating-functions, kitamasa, berlekamp-massey]
 sources: [project-euler-502-solution, project-euler-502-implementation-notes]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # Castle-count algorithms
 
 ## Overview
 
-Computing `F(w,h)` reduces to evaluating the signed count `P(k,L)` (the [[castle-counting-formula](pages/castle-counting-formula.md)]). The solution uses two computational paths, selected by the height *h* against a threshold of ~15000, plus an exact integer path for small sanity checks.[^1] The paths differ in which *direction* of the `P(k,L)` recurrence they exploit — *L* or *k* — and each of the three PE 502 targets is routed to the path that suits its regime.
+Computing `F(w,h)` reduces to evaluating the signed count `P(k,L)` (the [[castle-counting-formula](pages/castle-counting-formula.md)]). The solution uses two computational paths, selected by the height *h* against a threshold of ~15000, plus an exact integer path for small sanity checks.[^1] The paths differ in which *direction* of the `P(k,L)` recurrence they exploit — *L* or *k* — and each of the three Project Euler 502 (PE 502) targets is routed to the path that suits its regime.
 
 ## The rational-function path (h ≤ 15000)
 

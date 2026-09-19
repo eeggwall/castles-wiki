@@ -51,7 +51,7 @@ Both components are castle counts. Splitting `P(1,L)` by the parity of the last 
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — where `P(h−1,w)`, `P(h−2,w)` enter `F`.
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] — `A146559 = A038503 − A038505` links the signed vein to height 2.
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] — the discipline that caught the real/imaginary error.
-- [[aocp-generating-functions](pages/aocp-generating-functions.md)] — why a linear recurrence gives a rational GF, and the partial-fractions → `Re((1+i)^{L+1})` closed form (the Fibonacci method).
+- [[aocp-generating-functions](pages/aocp-generating-functions.md)] — why a linear recurrence gives a rational generating function (GF), and the partial-fractions → `Re((1+i)^{L+1})` closed form (the Fibonacci method).
 - [[generating-functions-topic](pages/generating-functions-topic.md)] — the imaginary-roots worked example `1/(1+z²) → ½(iⁿ+(−i)ⁿ)`, the exact mechanism of `Re((1+i)^{L+1})`.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] — the orders `k+1` (L-direction) and `2L−2` (k-direction, L ≥ 4), verified by Berlekamp–Massey.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] — the `num_k/den_k` rational GFs and their roots (the characteristic polynomials above).

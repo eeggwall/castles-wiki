@@ -8,7 +8,7 @@ created: 2026-09-14
 updated: 2026-09-19
 ---
 
-# AOCP Binomial Coefficients (Knuth TAOCP Vol. 1)
+# The Art of Computer Programming (AOCP) Binomial Coefficients (Knuth The Art of Computer Programming (TAOCP) Vol. 1)
 
 **Source:** https://charlesreid1.com/wiki/AOCP/Binomial_Coefficients (notes on Knuth, *The Art of Computer Programming*, Vol. 1, §1.2.6)
 **Date ingested:** 2026-09-14
@@ -38,7 +38,7 @@ Several of these are not background but the *exact* identities the castle counts
 
 - **Pascal's rule proves a castle theorem.** The doubling identity `H_{d+1} + μ² H_{d−1}` for the parity-sector factors of `char_k` on [[tower-parity-sectors](pages/tower-parity-sectors.md)] is proved by the addition formula `C(r,k) = C(r−1,k) + C(r−1,k−1)` applied to `H_d(μ) = Σ (−1)^i C(⌊(d+i)/2⌋, i) μ^{d−i}` - the first identity on this page doing structural work.
 - **Vandermonde, from the concept side.** [[convex-castle](pages/convex-castle.md)] states the minimum-block characterization and the `C(2h+w−3, w−1)` count; [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] proves it. The multinomial generalization of the same product-of-binomials pattern is on [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)].
-- **Residue-filtered binomial sums.** The height-1 tower's block-count GF `G_{1,L}(z) = Σ_r C(L+1, 2r) z^r` on [[block-count-constraints](pages/block-count-constraints.md)] is this page's `2^n` row split by a residue class of `r`: `z = 1` gives `2^L`, `z = −1` gives the alternating sum that is `P(1,L) = Re((1+i)^{L+1})`, and the even/odd classes are the every-4th sums A038503 / A038505. The degenerate alternating sum `P(k,1) = Σ_{c=0}^{k} (−1)^c = (1 + (−1)^k)/2` opens [[closed-form-hunting](pages/closed-form-hunting.md)].
+- **Residue-filtered binomial sums.** The height-1 tower's block-count generating function (GF) `G_{1,L}(z) = Σ_r C(L+1, 2r) z^r` on [[block-count-constraints](pages/block-count-constraints.md)] is this page's `2^n` row split by a residue class of `r`: `z = 1` gives `2^L`, `z = −1` gives the alternating sum that is `P(1,L) = Re((1+i)^{L+1})`, and the even/odd classes are the every-4th sums A038503 / A038505. The degenerate alternating sum `P(k,1) = Σ_{c=0}^{k} (−1)^c = (1 + (−1)^k)/2` opens [[closed-form-hunting](pages/closed-form-hunting.md)].
 - **The negative binomial's other home.** `1/(1−z)^{n+1} = Σ C(n+k, n) z^k` is developed as the geometric-GF power on the sibling Knuth page [[aocp-generating-functions](pages/aocp-generating-functions.md)].
 - **Stirling first kind, `m = 1`.** `[n, 1] = (n−1)!` is the cycle count that anchors [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)]; the full triangle is the unsigned A132393, the second kind A008277, and Pascal's triangle itself A007318.[^8]
 - **A triangular-number cameo.** `F(4,2) = 10 = C(5,2)` - the hand-check on [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] - is the `s = 0` term of `F(w,2) = Σ_s C(w+1, 4s+2)`; the triangular numbers A000217 count the height-2 castles whose second row is a single run.

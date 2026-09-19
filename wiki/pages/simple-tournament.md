@@ -24,7 +24,7 @@ Every simple tournament is strongly connected: if some `M` were a "sink" (every 
 
 ## The counts behind the exception
 
-The OEIS count of strongly connected tournaments on `n` nodes is `A051337 = 1, 0, 1, 1, 6, 35, 353, 6008, …` for `n = 1, 2, 3, …`.[^5] The `n = 4` entry is the `1` in "the unique strongly connected tournament on 4 vertices" - and it is the one strong tournament on the whole list that fails to be simple. At `n = 5` there are `6` strong tournaments, of which only the regular one is unique; at `n = 6` and `n = 7` the `35` and `353` strong tournaments are exactly the rows [[tree-castle-by-area](pages/tree-castle-by-area.md)] exhausted by brute force (using the `is_strongly_connected` test on [[castle-snippets](pages/castle-snippets.md)]) to confirm that no strong tournament of size `≥ 6` is unique. The ambient count of all tournaments up to isomorphism is `A000568 = 1, 1, 2, 4, 12, 56, 456, 6880, …`.[^5]
+The Online Encyclopedia of Integer Sequences (OEIS) count of strongly connected tournaments on `n` nodes is `A051337 = 1, 0, 1, 1, 6, 35, 353, 6008, …` for `n = 1, 2, 3, …`.[^5] The `n = 4` entry is the `1` in "the unique strongly connected tournament on 4 vertices" - and it is the one strong tournament on the whole list that fails to be simple. At `n = 5` there are `6` strong tournaments, of which only the regular one is unique; at `n = 6` and `n = 7` the `35` and `353` strong tournaments are exactly the rows [[tree-castle-by-area](pages/tree-castle-by-area.md)] exhausted by brute force (using the `is_strongly_connected` test on [[castle-snippets](pages/castle-snippets.md)]) to confirm that no strong tournament of size `≥ 6` is unique. The ambient count of all tournaments up to isomorphism is `A000568 = 1, 1, 2, 4, 12, 56, 456, 6880, …`.[^5]
 
 Tournaments are the wiki's second graph-theoretic object. The first is the [[castle-graph](pages/castle-graph.md)] - bipartite, planar, a subgraph of `Z²`, always connected because of the full base row - and the two sit at opposite corners of graph theory (complete oriented graphs versus sparse undirected grids). They meet in one number: the `h = 4` tree-castle count by area is `A000570`, the unique tournaments ([[unique-tournament](pages/unique-tournament.md)]).
 
@@ -48,7 +48,7 @@ The size-4 exception is unavoidable at Step 1 - Muller-Nešetřil-Pelant Theorem
 - [[unique-tournament](pages/unique-tournament.md)] - the class classified via simple/forcibly-simple.
 - [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] - the score-level version of simplicity.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the castle side of `A000570`, and the brute-force sweep over the `35` and `353` strong tournaments of sizes 6 and 7.
-- [[castle-snippets](pages/castle-snippets.md)] - `is_strongly_connected(T)`, the SCC test for tournament matrices.
+- [[castle-snippets](pages/castle-snippets.md)] - `is_strongly_connected(T)`, the strongly connected component (SCC) test for tournament matrices.
 - [[castle-graph](pages/castle-graph.md)] - the wiki's other graph-theoretic object; bipartite planar grids where tournaments are complete oriented graphs.
 
 ## Footnotes

@@ -56,7 +56,7 @@ Sum `T_h(w, q)` over all widths - that is, evaluate the two-variable generating 
 S_h(q)  =  T_h(1, q)  =  (1 + P_h(q)) / (1 − q − q · P_h(q)).
 ```
 
-The coefficient of `q^A` in `S_h(q)` is the number of tree castles of area exactly `A` (any width, `c_i ∈ {1, …, h}`). Every one hits a named OEIS sequence:[^3]
+The coefficient of `q^A` in `S_h(q)` is the number of tree castles of area exactly `A` (any width, `c_i ∈ {1, …, h}`). Every one hits a named Online Encyclopedia of Integer Sequences (OEIS) sequence:[^3]
 
 | `h` | `S_h(q)` denominator (up to reversal) | tree castles by area, `A = 1..14` | OEIS | growth constant |
 |---|---|---|---|---|
@@ -176,7 +176,7 @@ Small cases:
 
 ### Bijection II - composition ↔ score-uniquely-determined tournament (via strongly-connected-component decomposition)
 
-Every tournament decomposes uniquely into strongly-connected components, and because in any tournament two SCCs have a definite direction between them, the SCCs sit in a **total order**. So a tournament on `n` nodes is a composition of `n` into SCC sizes, each part carrying a specific strongly-connected tournament as content.
+Every tournament decomposes uniquely into strongly-connected components, and because in any tournament two SCCs have a definite direction between them, the SCCs sit in a **total order**. So a tournament on `n` nodes is a composition of `n` into strongly connected component (SCC) sizes, each part carrying a specific strongly-connected tournament as content.
 
 The SCC decomposition takes a score-uniquely-determined tournament to a composition of `n` where each part is an SCC size *and* the SCC on that part is itself SUD (otherwise the original tournament would have a same-score partner obtained by flipping inside one SCC). So
 

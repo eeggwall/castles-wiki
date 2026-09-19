@@ -83,7 +83,7 @@ Two quantities fall straight out of `M`, and they are what the advanced pages ac
 
 ## How the strip relates to a real castle
 
-The strip is a **rule-restricted, single-height-band slice** of the castle world, and it connects to PE 502's actual castles in two ways:
+The strip is a **rule-restricted, single-height-band slice** of the castle world, and it connects to Project Euler 502 (PE 502)'s actual castles in two ways:
 
 - **The unrestricted `h`-height strip is "all castles of height ≤ h" graded by width.** With `A(a,b)` always true, `M` is the all-ones `h × h` matrix `J`, growth constant `h` (its Perron root), count `h^w`. That is the full count of castles of height at most `h`: PE 502's rules 1-5 impose no neighbor restriction, because blocks are the maximal runs of each row and the rule-3 gap is automatic ([[castle-counting-formula](pages/castle-counting-formula.md)]).
 - **Named sub-families are specific strips.** The 1-smooth rule `|a − b| ≤ 1` on heights `{1, 2, 3}`, started at height 1, is the Pell strip `1/(1 − 2x − x²)` ([[pell-castle-strip](pages/pell-castle-strip.md)]); the tower word is a Motzkin-flavored strip ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]). A "castle-strip rule" is thus a **candidate castle sub-family** — pick a neighbor rule, and its growth constant is a Perron root you can compute from the matrix.

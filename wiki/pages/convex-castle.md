@@ -29,7 +29,7 @@ This page is the umbrella for castle convexity, and the three convexity notions 
 
 So *convex castle = unimodal castle = column-convex ∧ row-convex castle*, and this is the class the U/R/D variation-enumeration tried and **failed** to count directly.[^8] The brute-force enumerator tallies these separately as `conv_even` / `conv_odd`.[^7]
 
-**A thread to follow.** Because the convex castles are so cleanly counted (`C(2H+W−3, W−1)`) while their variations resist a closed form, and because they sit exactly at the intersection of the two convexity classes with their own rich literatures ([[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]), the `conv_*` sequences from the brute enumerator are prime candidates for OEIS mining and for a correspondence with the classical stack / parallelogram families.
+**A thread to follow.** Because the convex castles are so cleanly counted (`C(2H+W−3, W−1)`) while their variations resist a closed form, and because they sit exactly at the intersection of the two convexity classes with their own rich literatures ([[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]), the `conv_*` sequences from the brute enumerator are prime candidates for Online Encyclopedia of Integer Sequences (OEIS) mining and for a correspondence with the classical stack / parallelogram families.
 
 ## Counting convex castles
 

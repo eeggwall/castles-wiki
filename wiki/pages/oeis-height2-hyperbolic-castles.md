@@ -30,7 +30,7 @@ Both identities were re-verified by direct enumeration during ingest (`w = 1..7`
 
 ## Why it is the best target
 
-A038505 ("sum of every 4th entry starting at C(n,2)") and A038503 ("...starting at C(n,0)") are relatively isolated entries whose existing comments are algebraic (trace/subtrace over GF(2), matrix `M^n`, the Shevelev hyperbolic analog) — none geometric.[^4] The castle comment is therefore a genuinely new interpretation, and the one clearly missing cross-reference is **A000225** (the total). The draft adds a Comment and a Formula (`a(n) = F(n−1,2)` / `a(n) = odd(n−1,2)+1`) to each, plus `Cf. A000225`, and links the signed vein via `A146559(n) = A038503(n) − A038505(n)` (see [[signed-tower-count](pages/signed-tower-count.md)]).[^5]
+A038505 ("sum of every 4th entry starting at C(n,2)") and A038503 ("...starting at C(n,0)") are relatively isolated entries whose existing comments are algebraic (trace/subtrace over generating function (GF)(2), matrix `M^n`, the Shevelev hyperbolic analog) — none geometric.[^4] The castle comment is therefore a genuinely new interpretation, and the one clearly missing cross-reference is **A000225** (the total). The draft adds a Comment and a Formula (`a(n) = F(n−1,2)` / `a(n) = odd(n−1,2)+1`) to each, plus `Cf. A000225`, and links the signed vein via `A146559(n) = A038503(n) − A038505(n)` (see [[signed-tower-count](pages/signed-tower-count.md)]).[^5]
 
 Per [[oeis-cross-referencing](pages/oeis-cross-referencing.md)], the submission text started as a draft only (human authorship required); it lived in `raw/oeis-pe502/oeis-xref-draft.md`, was reworded and signed, and was submitted on 2026-09-18 (next section). This is the lead ("tier 1") interlink.
 

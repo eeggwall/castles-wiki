@@ -118,7 +118,7 @@ The spectral-radius census on [[castle-graph-spectral-radius](pages/castle-graph
 - The seminar number: **10 cells** (adjacency), **11 cells** (Laplacian), **16 cells** (both). Each with a two-line drawing.
 - Isospectral pairs are common from 12 cells on (50 adjacency groups at 16 cells), so "spectrum determines the castle" fails badly. The spectrum is an Axis 9 *invariant*, not a *classifier*.
 - The 11-cell Laplacian pair is the smallest castle instance of Schwenk's theorem; the 10-cell adjacency pair is the smallest castle instance of Sunada's phenomenon and is a candidate for an explicit common cover.
-- Open: the growth rate of the number of isospectral groups with `n`; whether the Ihara zeta or the skyline DFT separates the pairs found here; a Sunada-type construction (common cover, almost-conjugate subgroups) explaining the 10-cell adjacency pair; and whether Schwenk's asymptotic density theorem has a quantitative castle analogue.
+- Open: the growth rate of the number of isospectral groups with `n`; whether the Ihara zeta or the skyline discrete Fourier transform (DFT) separates the pairs found here; a Sunada-type construction (common cover, almost-conjugate subgroups) explaining the 10-cell adjacency pair; and whether Schwenk's asymptotic density theorem has a quantitative castle analogue.
 
 ## Appearances in Sources
 

@@ -63,7 +63,7 @@ a_n = φ(x^n) = φ(R) = r_0 a_0 + r_1 a_1 + … + r_{D−1} a_{D−1} .
 
 **That is the whole method.** The *D* weights are the coefficients of `R(x) = x^n mod Q(x)`. Working "mod Q" just means applying the rewrite rule `x^D → c_1 x^{D−1} + … + c_D` whenever a power of *x* reaches degree *D* - the recurrence itself, applied to monomials instead of numbers.
 
-**Where the `log n` comes from.** Compute `x^n mod Q` by binary exponentiation: square, reduce, square, reduce, multiplying in one more `x` whenever the corresponding bit of *n* is set. There are `log₂ n` rounds; each multiplies two polynomials of degree `< D` (`O(D²)`) and folds the degree-`< 2D` product back below degree *D* (`O(D²)`). Total `O(D² log n)`.[^1] With FFT-based polynomial multiplication the `D²` drops to `D log D`, but the castle's `D ≈ 100` makes the plain product cheap enough.
+**Where the `log n` comes from.** Compute `x^n mod Q` by binary exponentiation: square, reduce, square, reduce, multiplying in one more `x` whenever the corresponding bit of *n* is set. There are `log₂ n` rounds; each multiplies two polynomials of degree `< D` (`O(D²)`) and folds the degree-`< 2D` product back below degree *D* (`O(D²)`). Total `O(D² log n)`.[^1] With Fast Fourier Transform (FFT)-based polynomial multiplication the `D²` drops to `D log D`, but the castle's `D ≈ 100` makes the plain product cheap enough.
 
 ## Worked example 1: F_10 by hand
 

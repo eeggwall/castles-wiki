@@ -44,7 +44,7 @@ and **no metallic mean is an eigenvalue of any `M_k`** - checked numerically for
 
 ## 2. Class transfer matrices: this is where Axis 8 lives, correctly
 
-A metallic mean *is* a spectral radius - of the 2-state matrix `[[a, 1], [1, 0]]`, the convergent matrix of `[a; a, a, …]` ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]). The [[pell-castle-strip](pages/pell-castle-strip.md)] (`1 − 2x − x²`, spectral radius `1 + √2`; its 0/1 transfer matrix is the `3×3` 1-smooth matrix on heights `{1,2,3}`) and the height-2 tree castles (`1 − x − x²`, `φ`; `2×2` matrix `[[1,1],[1,0]]`) are castle *classes* with their own transfer matrices, and "silver width growth castle" on [[castle-classification](pages/castle-classification.md)] Axis 8 means exactly "the class's transfer matrix has spectral radius `1 + √2`." That usage is sound. What the metallic means are *not* is eigenvalues of PE 502's own count.
+A metallic mean *is* a spectral radius - of the 2-state matrix `[[a, 1], [1, 0]]`, the convergent matrix of `[a; a, a, …]` ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]). The [[pell-castle-strip](pages/pell-castle-strip.md)] (`1 − 2x − x²`, spectral radius `1 + √2`; its 0/1 transfer matrix is the `3×3` 1-smooth matrix on heights `{1,2,3}`) and the height-2 tree castles (`1 − x − x²`, `φ`; `2×2` matrix `[[1,1],[1,0]]`) are castle *classes* with their own transfer matrices, and "silver width growth castle" on [[castle-classification](pages/castle-classification.md)] Axis 8 means exactly "the class's transfer matrix has spectral radius `1 + √2`." That usage is sound. What the metallic means are *not* is eigenvalues of Project Euler 502 (PE 502)'s own count.
 
 ## 3. Adjacency spectra of individual castles: golden and silver castles exist
 
@@ -135,7 +135,7 @@ Each is a single-castle predicate, exactly the shape Axis 9 on [[castle-classifi
 
 ## A fourth, speculative link
 
-A skyline that is a Sturmian word - two heights arranged by the rotation with slope `1/φ` (the Fibonacci word) - is a one-dimensional quasicrystal, and its diffraction (the skyline-DFT method on [[spectral-analysis](pages/spectral-analysis.md)]) has the self-similar singular-continuous spectrum of the Fibonacci chain. That would put the golden ratio into a castle's *DFT* spectrum as a rotation number rather than as an eigenvalue. Not computed here; noted as a thread.
+A skyline that is a Sturmian word - two heights arranged by the rotation with slope `1/φ` (the Fibonacci word) - is a one-dimensional quasicrystal, and its diffraction (the skyline-discrete Fourier transform (DFT) method on [[spectral-analysis](pages/spectral-analysis.md)]) has the self-similar singular-continuous spectrum of the Fibonacci chain. That would put the golden ratio into a castle's *DFT* spectrum as a rotation number rather than as an eigenvalue. Not computed here; noted as a thread.
 
 ## Appearances in Sources
 

@@ -14,7 +14,7 @@ updated: 2026-09-19
 
 How much information does a castle carry? Two precise senses, and they agree in the limit:
 
-- **Uniform entropy.** If every valid castle of width `w` and exact height `h` is equally likely, one castle is worth `H(w,h) = log₂ F(w,h)` bits, where `F(w,h)` is the even-block count PE 502 asks for ([[castle-counting-function](pages/castle-counting-function.md)], [[castle-counting-formula](pages/castle-counting-formula.md)]).
+- **Uniform entropy.** If every valid castle of width `w` and exact height `h` is equally likely, one castle is worth `H(w,h) = log₂ F(w,h)` bits, where `F(w,h)` is the even-block count Project Euler 502 (PE 502) asks for ([[castle-counting-function](pages/castle-counting-function.md)], [[castle-counting-formula](pages/castle-counting-formula.md)]).
 - **Entropy rate.** A castle *family* defined by a rule is a shift whose transfer matrix has Perron root `ρ` (its growth constant); the entropy rate is `log₂ ρ`.
 
 The two coincide: fix `h` and grow `w`, and `(1/w)·log₂ F(w,h) → log₂ h`, which is exactly `log₂ ρ` for the unconstrained height-bounded family (`ρ = h`). The punchline: **every growth constant the wiki has catalogued is a topological entropy in disguise.**

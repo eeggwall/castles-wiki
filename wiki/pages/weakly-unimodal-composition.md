@@ -5,14 +5,14 @@ summary: A composition of n that weakly ascends then weakly descends (OEIS A0015
 tags: [concept, composition, unimodal, oeis, castle, area]
 sources: [oeis-mining-pe502, castle-by-area]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # Weakly unimodal composition
 
 ## Description
 
-A **weakly unimodal composition** of *n* is an ordered sequence of positive parts summing to *n* that is weakly increasing up to a maximum and then weakly decreasing — a "stack." These are counted by OEIS **A001523** (`1, 1, 2, 4, 8, 15, 27, 47, 79, …` with `A001523(0)=1`), described there as "number of stacks, or planar partitions of *n*; also the number of weakly unimodal compositions of *n*."
+A **weakly unimodal composition** of *n* is an ordered sequence of positive parts summing to *n* that is weakly increasing up to a maximum and then weakly decreasing — a "stack." These are counted by Online Encyclopedia of Integer Sequences (OEIS) **A001523** (`1, 1, 2, 4, 8, 15, 27, 47, 79, …` with `A001523(0)=1`), described there as "number of stacks, or planar partitions of *n*; also the number of weakly unimodal compositions of *n*."
 
 ## The castle-by-area identity
 

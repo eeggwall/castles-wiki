@@ -5,7 +5,7 @@ summary: Proof that for k = 4m+2 the signed count of height-≤k towers with eve
 tags: [analysis, castle, signed-tower-count, transfer-matrix, bijection, hardin, oeis, words, sympy, verification, proof]
 sources: [oeis-mining-pe502, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # The Hardin word identity
@@ -191,7 +191,7 @@ e_0ᵀ (R/2)ᴸ  =  (start · W^{L+1}) · S⁻¹.
 
 Reading the columns of `S⁻¹` (differences of consecutive cumulative sets), the **sector coordinate `2a` after `L` columns equals the number of words of length `L+1` ending in the satisfied state `(a, +)` minus the number ending pending in `(a, −)`**, and coordinate `2a − 1` is the number ending pending in `(a, −)` minus the number ending pending in `(a+1, −)`. Each sector coordinate is itself a signed tower count (over towers whose last column is `c` or `k − c`, with the `(−1)^c` weight, divided by `2^L`), so the identity holds state by state: the signed height-pair statistics of towers are the difference statistics of pending letters in words. A genuinely bijective (sign-reversing-involution) proof would turn this equality of state vectors into a matching of objects; the transfer-matrix proof does not need it.
 
-## Consequences for OEIS
+## Consequences for Online Encyclopedia of Integer Sequences (OEIS)
 
 - The word automaton has characteristic polynomial `H_{2m+1}(μ) = Σ_i (−1)^i C(⌊(2m+1+i)/2⌋, i) μ^{2m+1−i}` for every `m ≤ 8` (symbolic), so the recurrences Hardin recorded as "Empirical" on **A202882** (`m = 2`), **A203094** (`m = 3`) and **A203184** (`m = 4`) are the characteristic-polynomial recurrences of a 5-, 7-, 9-state automaton, hence proved. The odd-index `H` satisfy `H_{2m+1} = (1 + 2μ²) H_{2m−1} − μ⁴ H_{2m−3}`, and `det(μI − W_m)` satisfies the same recurrence for `m ≤ 8`, which is the route to a general proof by cofactor expansion.[^2]
 - Each of these sequences now has a second interpretation: `2^{−L}` times the even-last-column signed tower count at height `4m + 2`, or in Hardin's indexing, `a(n) = P_even(4m+2, n−1) / 2^{n−1}`. Submission of the interpretation and the proved recurrences is a human act ([[oeis-cross-referencing](pages/oeis-cross-referencing.md)]).

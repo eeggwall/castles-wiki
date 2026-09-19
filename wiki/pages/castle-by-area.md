@@ -43,7 +43,7 @@ By (w,h) the concave counts add nothing new: `valley(w,h) = convex(w,h) = C(2h+w
 - [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] — A001523, the convex-by-area match.
 - [[convex-castle](pages/convex-castle.md)] — convex/valley castles and their binomial (w,h) count.
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] — why dense-entry matches are low-value but real.
-- [[aocp-combinatorics](pages/aocp-combinatorics.md)] — area is the castle's natural second grading; the inversion statistic and its q-factorial GF are the permutation-level prototype of such q-gradings.
+- [[aocp-combinatorics](pages/aocp-combinatorics.md)] — area is the castle's natural second grading; the inversion statistic and its q-factorial generating function (GF) are the permutation-level prototype of such q-gradings.
 
 ## Footnotes
 

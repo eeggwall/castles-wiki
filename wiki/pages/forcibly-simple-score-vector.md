@@ -40,7 +40,7 @@ This is the exact chain by which Tetali reduces the classification of unique tou
 
 The regular tournament on 7 vertices has three non-isomorphic strong realizers, all with score `(3, 3, 3, 3, 3, 3, 3)`. Tetali cites this as the "note" observation that the strong-and-unique series stops at size 5: `(3, 3, 3, 3, 3, 3, 3)` is the only remaining candidate above size 5, and it fails uniqueness.[^3]
 
-## Cross-check against the OEIS: regular tournaments
+## Cross-check against the Online Encyclopedia of Integer Sequences (OEIS): regular tournaments
 
 Three of the five FS score vectors are regular, and the OEIS count of unlabeled regular tournaments on `2n+1` nodes is `A096368 = 1, 1, 1, 3, 15, 1223, …` for `1, 3, 5, 7, 9, 11` nodes.[^5] Read against Tetali's filter:
 
@@ -63,7 +63,7 @@ On the castle side the five FS sizes `1, 2, 3, 5, 7` are *not* the composition p
 - [[simple-tournament](pages/simple-tournament.md)] - the underlying property; FS is the score-level version.
 - [[unique-tournament](pages/unique-tournament.md)] - the four basic strong-and-unique tournaments come from filtering the five FS score vectors.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the castle side of the part set `{1, 3, 4, 5}`, and the wiki's brute-force re-verification through `n = 8`.
-- [[castle-snippets](pages/castle-snippets.md)] - `is_strongly_connected(T)`, the SCC test used in that verification.
+- [[castle-snippets](pages/castle-snippets.md)] - `is_strongly_connected(T)`, the strongly connected component (SCC) test used in that verification.
 - [[oeis-index](pages/oeis-index.md)] - `A000570` catalogue entry.
 
 ## Footnotes

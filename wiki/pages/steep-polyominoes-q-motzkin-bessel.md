@@ -5,7 +5,7 @@ summary: Barcucci–Del Lungo–Fédou–Pinzani connect steep parallelogram/sta
 tags: [paper, polyomino, dyck-words, motzkin, generating-functions, q-analog, source]
 sources: [steep-polyominoes-q-motzkin-bessel]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # Steep Polyominoes, q-Motzkin Numbers and q-Bessel Functions (Barcucci et al.)
@@ -24,7 +24,7 @@ The paper introduces **three q-analogs of the Motzkin numbers** and gives each a
 
 The steepness conditions are geometric run constraints. A **(lower) steep parallelogram polyomino** is a parallelogram polyomino whose south border has **no two consecutive horizontal steps**; the **steep staircase polyominoes** (set `SS`) are defined analogously.[^4] Object grammars — a grammar formalism over the combinatorial objects — are the engine relating these families to the q-numbers.[^3]
 
-## Why it matters for PE 502
+## Why it matters for Project Euler 502 (PE 502)
 
 This paper sits on the intersection of three of the castle's central threads — Dyck words, generating functions, and polyomino counting — and points to a richer analytic world:
 

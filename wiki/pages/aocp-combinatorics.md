@@ -8,7 +8,7 @@ created: 2026-09-13
 updated: 2026-09-19
 ---
 
-# AOCP Combinatorics (Knuth TAOCP Vol. 3)
+# The Art of Computer Programming (AOCP) Combinatorics (Knuth The Art of Computer Programming (TAOCP) Vol. 3)
 
 **Source:** https://charlesreid1.com/wiki/AOCP/Combinatorics (notes on Knuth, *The Art of Computer Programming*, Vol. 3: Sorting and Searching)
 **Date ingested:** 2026-09-13

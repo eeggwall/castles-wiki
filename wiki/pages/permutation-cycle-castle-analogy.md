@@ -30,7 +30,7 @@ Knuth factors a permutation into disjoint cycles by following the map `i ↦ σ(
 
 Two statistics come out of this, and they are **distinct**: the excursion count (peaks) plays the role of the cycle count, while the *block* count plays the role of the sign atom. One peak may contain several stacked blocks, so peaks and blocks are not the same statistic.[^3]
 
-The analogy's source side is Knuth's **canonical cycle form** (TAOCP Vol. 1, §1.3.3): write every singleton cycle explicitly, put the smallest element first within each cycle, and order cycles by decreasing first element; erasing parentheses recovers a one-line permutation.[^4] From this analogy the castle-factoring page derives three constructions — the [[castle-sign](pages/castle-sign.md)], the [[castle-foata-transform](pages/castle-foata-transform.md)], and the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — each a castle analogue of a classical permutation notion.
+The analogy's source side is Knuth's **canonical cycle form** (The Art of Computer Programming (TAOCP) Vol. 1, §1.3.3): write every singleton cycle explicitly, put the smallest element first within each cycle, and order cycles by decreasing first element; erasing parentheses recovers a one-line permutation.[^4] From this analogy the castle-factoring page derives three constructions — the [[castle-sign](pages/castle-sign.md)], the [[castle-foata-transform](pages/castle-foata-transform.md)], and the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — each a castle analogue of a classical permutation notion.
 
 ## The (n−1)! anchor
 
@@ -55,7 +55,7 @@ The `(n−1)!` proof is the degenerate case: one cycle, no factoring, trivial si
 - [[castle-sign](pages/castle-sign.md)] — the sign atom in the correspondence.
 - [[castle-foata-transform](pages/castle-foata-transform.md)] — the cycles-to-records half of the analogy.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the cycle-following loop's castle analogue.
-- [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the seminar-shaped synthesis reading PE 502 as the (n−1)! toolkit upgraded three times.
+- [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the seminar-shaped synthesis reading Project Euler 502 (PE 502) as the (n−1)! toolkit upgraded three times.
 - [[permutation-inversions](pages/permutation-inversions.md)] — the other classical permutation statistic (inversions), whose q-factorial generating function underlies the q-analog thread.
 - [[aocp-multisets](pages/aocp-multisets.md)] — Knuth's two-line arrays and unique cycle factorization (the Vol. 3 source of this analogy's permutation side).
 - [[aocp-combinatorics](pages/aocp-combinatorics.md)] — Knuth's Vol. 3 inversions and the q-factorial `∏(1−z^k)/(1−z)^n`, the source behind the inversion statistic mentioned above.

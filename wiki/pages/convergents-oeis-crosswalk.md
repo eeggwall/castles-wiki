@@ -8,7 +8,7 @@ created: 2026-09-16
 updated: 2026-09-19
 ---
 
-# Convergents-to-castle OEIS crosswalk
+# Convergents-to-castle Online Encyclopedia of Integer Sequences (OEIS) crosswalk
 
 ## The question, and what came out
 
@@ -137,7 +137,7 @@ The full sweep - `a = 1..5`, all primes `p < 100`, skipping the ramified `p | a�
 
 ### The factorization
 
-The k-direction recurrences of `P(k,L)` (fixed `L`, vary the height bound `k`) were found by Berlekamp–Massey on [[recurrence-discovery](pages/recurrence-discovery.md)], with order `2L−2` for `L ≥ 4` and coefficient lists recorded on [[closed-form-hunting](pages/closed-form-hunting.md)] as "palindromic for even `L`, anti-palindromic for odd `L`." Factoring them is the step that matters. `P(k,L)` is the DP of [[castle-sign](pages/castle-sign.md)] - the sum of `(−1)^{blocks}` over column-height tuples, blocks being the total descent[^3] - and Berlekamp–Massey is the standard one:
+The k-direction recurrences of `P(k,L)` (fixed `L`, vary the height bound `k`) were found by Berlekamp–Massey on [[recurrence-discovery](pages/recurrence-discovery.md)], with order `2L−2` for `L ≥ 4` and coefficient lists recorded on [[closed-form-hunting](pages/closed-form-hunting.md)] as "palindromic for even `L`, anti-palindromic for odd `L`." Factoring them is the step that matters. `P(k,L)` is the dynamic program (DP) of [[castle-sign](pages/castle-sign.md)] - the sum of `(−1)^{blocks}` over column-height tuples, blocks being the total descent[^3] - and Berlekamp–Massey is the standard one:
 
 ```python
 def P_table(max_k, max_L):
@@ -416,7 +416,7 @@ All snippets ran under Python 3.11 with SymPy 1.14 and mpmath 1.3; the DP and Be
 | `cf_digits` (mpmath, 200 digits) | simple CF of an algebraic number; Lagrange in action | Part 4 |
 | `jacobi_perron` (exact in `Q(ρ)`) | multidimensional CF with exact periodicity detection | Part 4 |
 | `jpa_convergents`, period matrix | Bernstein's convergents; periodic JPA ⇒ a unit (`ψ^14`), read off as Perrin numbers | Part 4 |
-| `oeis_lookup(terms)` via `curl -A` | OEIS returns HTTP 403 to Python's default `urllib` User-Agent; send a real one and throttle | castle-snippets |
+| `oeis_lookup(terms)` via `curl -A` | OEIS returns HyperText Transfer Protocol (HTTP) 403 to Python's default `urllib` User-Agent; send a real one and throttle | castle-snippets |
 
 ## Appearances in Sources
 

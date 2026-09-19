@@ -5,14 +5,14 @@ summary: N(n,k) = (1/n)C(n,k)C(n,k−1) (OEIS A001263); the Narayana polynomial 
 tags: [concept, narayana, catalan, oeis, tower, generating-functions]
 sources: [oeis-mining-pe502, tower-narayana-polynomial]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # Narayana numbers
 
 ## Description
 
-The **Narayana numbers** `N(n,k) = (1/n) C(n,k) C(n,k−1)` form the triangle OEIS **A001263** (`1; 1,1; 1,3,1; 1,6,6,1; 1,10,20,10,1; …`), a refinement of the [[catalan-numbers](pages/catalan-numbers.md)] (`∑_k N(n,k) = C_n`, verified). They count, among many things, Dyck paths by number of peaks. They are the classical Catalan/Narayana object the parent plan hoped the castle problem would touch.
+The **Narayana numbers** `N(n,k) = (1/n) C(n,k) C(n,k−1)` form the triangle Online Encyclopedia of Integer Sequences (OEIS) **A001263** (`1; 1,1; 1,3,1; 1,6,6,1; 1,10,20,10,1; …`), a refinement of the [[catalan-numbers](pages/catalan-numbers.md)] (`∑_k N(n,k) = C_n`, verified). They count, among many things, Dyck paths by number of peaks. They are the classical Catalan/Narayana object the parent plan hoped the castle problem would touch.
 
 ## The castle connection lives in the tower count
 

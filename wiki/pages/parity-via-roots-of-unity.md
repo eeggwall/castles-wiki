@@ -5,7 +5,7 @@ summary: The (T±P)/2 even/odd trick, generalized — replace the sign (−1)^bl
 tags: [concept, castle, parity, roots-of-unity, character, pedagogy]
 sources: [project-euler-502-castle-factoring, project-euler-502-representations]
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-19
 ---
 
 # Generalizing the parity sign (roots of unity)
@@ -40,7 +40,7 @@ P_j(k,L) = Σ_{towers} ω^{j·blocks},       j = 0, 1, …, m−1
 
 For `m = 2` this is exactly `(T ± P)/2`. So the parity idea *is* a root-of-unity formula — the `m = 2` case of a general construction.
 
-## The EGF twin — the same character on the index
+## The exponential generating function (EGF) twin — the same character on the index
 
 The projector has a second, older face, usually met in **exponential** generating functions. For any EGF `A(x) = Σ a_n x^n/n!`, the substitution `x → −x` applies the *same* order-2 character `(−1)^n` to the **index** rather than to a statistic:
 
@@ -55,7 +55,7 @@ So the EGF parity projector and the castle sign are **one character sum, `½(χ�
 | face | variable carrying `(−1)` | projector |
 |---|---|---|
 | EGF (index parity) | the index `n`, via `x → −x` | `(A(x) ± A(−x))/2` |
-| OGF (castle sign) | the statistic `blocks`, via the weight `(−1)^blocks` | `(T ± P)/2` |
+| ordinary generating function (OGF) (castle sign) | the statistic `blocks`, via the weight `(−1)^blocks` | `(T ± P)/2` |
 
 The castle wants *block* parity, not *width* parity, so the EGF's `x → −x` (which filters by index — in the castle's OGF, the width) is the wrong axis. The castle must route the character through the block statistic, and that routing *is* the sign `s(C) = (−1)^blocks`. That is the answer to "how do you get EGF parity out of an OGF": make the parity a **sign in the weight** — the sign homomorphism — the OGF counterpart of the EGF's substitution-in-the-index. The duality holds at every `m`: the generalization `ω^{blocks}` above extends the *statistic* side, while `(1/m) Σ_j A(ω^j x)` extends the *index* side (substituting the main variable rather than a statistic).
 

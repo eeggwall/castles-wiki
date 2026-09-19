@@ -8,7 +8,7 @@ created: 2026-09-15
 updated: 2026-09-19
 ---
 
-# PE 502 castles as an upgrade of the (n−1)! cycle-count proof
+# Project Euler 502 (PE 502) castles as an upgrade of the (n−1)! cycle-count proof
 
 **Source:** `raw/pe502-castle-cycle-permutations.md` (working note authored 2026-09-15 in preparation for a seminar spine)
 **Date ingested:** 2026-09-15

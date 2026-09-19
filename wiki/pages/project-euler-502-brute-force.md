@@ -8,7 +8,7 @@ created: 2026-09-13
 updated: 2026-09-19
 ---
 
-# PE 502: Brute Force
+# Project Euler 502 (PE 502): Brute Force
 
 **Source:** https://charlesreid1.com/wiki/Project_Euler/502/Brute_Force (module: `castle.py`)
 **Date ingested:** 2026-09-13
@@ -23,7 +23,7 @@ It exposes several counting functions:[^2]
 - `F(w,h)` — even-block castles, via the same closed form as the [[castle-counting-formula](pages/castle-counting-formula.md)].
 - `F_odd(w,h)` — odd-block castles; the complement of `F` (this wiki names the odd count `A − F`, deliberately unsymbolized — see [[castle-counting-function](pages/castle-counting-function.md)]).
 - `F_any(w,h) = h^w − (h−1)^w` — height exactly *h*, any parity; this is the general count `A(w,h)`.
-- `p_signed(k,L)` — the signed sum `P(k,L)` by an `O(k²L)` last-column-height DP.
+- `p_signed(k,L)` — the signed sum `P(k,L)` by an `O(k²L)` last-column-height dynamic program (DP).
 - `brute(w,h)` — full enumeration of column-height tuples `c ∈ {1..h}^w` with `max c = h`, tallied by parity and by unimodality.
 - `block_poly(w,h)` — the block-count distribution over height ≤ *h*.
 
@@ -35,7 +35,7 @@ Two pieces of new machinery are worth extracting. First, a clean **column-height
 
 (verified during ingest to match the run-based definition for all skylines with `w,h ≤ 6`). Rule 3 (same-row gaps) is automatic in the run decomposition; Rule 6 (even count) is imposed by parity at the end.[^3] Second, `p_signed` is a **third route to `P`** (alongside the grammar generating function and the streak factorization): a new column of height `b` after height `a` starts `max(0, b−a)` new runs, each weighted `−1`, giving an `O(k²)` transition on a length-`(k+1)` last-height state.[^4]
 
-`brute` additionally separates **unimodal** skylines — column-convex *and* row-convex — into `conv_even`/`conv_odd`, exactly the [[convex-castle](pages/convex-castle.md)] whose direct variation-enumeration failed.[^5] And the module frames **OEIS mining** as a research method: sweeping `brute` over a `(w,h)` rectangle yields sequences (even, odd, unimodal, block-count distributions) to look up in the OEIS for further structure.[^6]
+`brute` additionally separates **unimodal** skylines — column-convex *and* row-convex — into `conv_even`/`conv_odd`, exactly the [[convex-castle](pages/convex-castle.md)] whose direct variation-enumeration failed.[^5] And the module frames **Online Encyclopedia of Integer Sequences (OEIS) mining** as a research method: sweeping `brute` over a `(w,h)` rectangle yields sequences (even, odd, unimodal, block-count distributions) to look up in the OEIS for further structure.[^6]
 
 ## Verification
 

@@ -8,7 +8,7 @@ created: 2026-09-14
 updated: 2026-09-19
 ---
 
-# AOCP Multinomial Coefficients (Knuth TAOCP Vol. 1)
+# The Art of Computer Programming (AOCP) Multinomial Coefficients (Knuth The Art of Computer Programming (TAOCP) Vol. 1)
 
 **Source:** https://charlesreid1.com/wiki/AOCP/Multinomial_Coefficients (notes on Knuth, *The Art of Computer Programming*, Vol. 1, §1.2.6)
 **Date ingested:** 2026-09-14
@@ -49,7 +49,7 @@ Two concrete connections, both on the enumeration side:
 - **The q-multinomial is the q-thread's multiset case.** MacMahon's theorem: permutations of a multiset counted by inversions give the *Gaussian* multinomial coefficient, and it telescopes into Gaussian binomials exactly as the identity above telescopes into ordinary ones. This is the multiset form of the q-factorial on [[aocp-combinatorics](pages/aocp-combinatorics.md)] and [[permutation-inversions](pages/permutation-inversions.md)], and it is what an inversion-graded count of U/R/D strings would be built from.
 - **The convex-castle proof is a two-part telescope.** The up/down decomposition at the peak on [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] writes the count as a product of two binomials and then re-sums it with Vandermonde; the multinomial-into-binomials factorization is the general pattern that product instantiates.
 
-**OEIS.** The multinomial coefficients themselves are tabulated as A036038 (rows indexed by the partitions of `n`).[^4]
+**Online Encyclopedia of Integer Sequences (OEIS).** The multinomial coefficients themselves are tabulated as A036038 (rows indexed by the partitions of `n`).[^4]
 
 ## Key Takeaways
 

@@ -18,7 +18,7 @@ A **castle** is a valid stacked-block configuration on a `w × h` grid ([[castle
 c_1, c_2, …, c_w      with 1 ≤ c_i ≤ h and max_i c_i = h.
 ```
 
-Every castle is automatically **column-convex** (each column is one contiguous vertical run) and **bottom-aligned** (row 1 is a full-width block). So a "**castle type**" is a **further restriction on the skyline** — a predicate on `(c_1, …, c_w)`. PE 502's even-block parity constraint is orthogonal to typing: each type is defined without reference to parity, and the even-block projector `(A ± P)/2` ([[castle-sign](pages/castle-sign.md)]) is applied on top when needed.[^1]
+Every castle is automatically **column-convex** (each column is one contiguous vertical run) and **bottom-aligned** (row 1 is a full-width block). So a "**castle type**" is a **further restriction on the skyline** — a predicate on `(c_1, …, c_w)`. Project Euler 502 (PE 502)'s even-block parity constraint is orthogonal to typing: each type is defined without reference to parity, and the even-block projector `(A ± P)/2` ([[castle-sign](pages/castle-sign.md)]) is applied on top when needed.[^1]
 
 ## Upstream source
 
@@ -29,7 +29,7 @@ The type catalog is hydrated from `charlesreid1.com/wiki/Project_Euler/502/Castl
 Three questions attach to every type:
 
 1. **Is it counted?** Does the wiki already have a count (exact formula, generating function, or algorithm) for the type?
-2. **What is its count's shape?** Growth constant, C-finite / algebraic / transcendental character, OEIS identification if any.
+2. **What is its count's shape?** Growth constant, C-finite / algebraic / transcendental character, Online Encyclopedia of Integer Sequences (OEIS) identification if any.
 3. **How does it interact with the parity clause?** Does the parity-projected version have the same shape, or is parity locked out by the type's structure?
 
 Every open (2) is a seminar topic; every open (3) is a research thread. The classification here does not answer these questions for the 42 types — it names them and marks which ones the wiki has answered, which are candidates, and which are genuinely open.
@@ -225,7 +225,7 @@ Between those rows sits the `h = 4` tree row, `A000570` (unique tournaments, [[u
 
 The plastic number `ψ` itself (`x³ = x + 1`, [[plastic-number](pages/plastic-number.md)]) also enters as the `k = 6` signed-tower eigenvalue `ρ_6 = 2ψ²`, but that is a *spectral* appearance, not a growth-castle count. The bare-`ψ` growth castle (a Padovan/Perrin-rate count) is the one open slot in the cubic-Pisot family.
 
-**Why the split matters.** The metallic naming (`<metal> <axis>`) and the non-metallic naming (`<constant> <axis>`) are the same meta-classification — a growth rate for a class along a stated axis — just with different name-sources: the metallic means `δ_a` for the quadratic ladder, the constant's own name for everything else. A class can be classified on either; the deciding question is only whether its growth constant is a metallic mean (`x² − a x − 1`, purely-periodic CF, `p_2 = 1` in the strip denominator) or a higher-degree algebraic number. See [[metallic-means](pages/metallic-means.md)] for the quadratic side and [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] for the non-metallic side.
+**Why the split matters.** The metallic naming (`<metal> <axis>`) and the non-metallic naming (`<constant> <axis>`) are the same meta-classification — a growth rate for a class along a stated axis — just with different name-sources: the metallic means `δ_a` for the quadratic ladder, the constant's own name for everything else. A class can be classified on either; the deciding question is only whether its growth constant is a metallic mean (`x² − a x − 1`, purely-periodic continued fraction (CF), `p_2 = 1` in the strip denominator) or a higher-degree algebraic number. See [[metallic-means](pages/metallic-means.md)] for the quadratic side and [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] for the non-metallic side.
 
 ### Vertical / area / block growth castles
 
@@ -302,7 +302,7 @@ Copper `2 + √5 = 4.236` and every higher metallic mean are impossible for any 
 Not yet populated on the wiki, but the following spectral predicates would sit here when they land:
 
 - **Isospectral castles** - a *pair* predicate (two non-isomorphic castles with the same spectrum), now populated on [[isospectral-castles](pages/isospectral-castles.md)]: the smallest adjacency-isospectral pair has 10 cells (`(1,1,1,2,3,2)` and `(1,1,2,2,3,1)`), the smallest Laplacian-isospectral pair 11 cells (two trees, `(1,1,1,2,1,1,2,1,1)` and `(1,1,3,1,1,1,2,1)`), the smallest pair isospectral for both operators 16 cells; exhaustive to 16 cells, with 50 adjacency groups already at 16.
-- **Sparse-spectrum castle** — a predicate on the skyline DFT `ĉ_k`: the individual castle has `supp(ĉ) ⊆ S` for some fixed small set `S`. The Axis-7 **crenellated** type is exactly the two-atom DFT-support case (energy at `k = w/2`). The general sparse-spectrum classification (which sparse-support sequences are valid castles?) hooks into compressed sensing and turnpike reconstruction. See the S-Division `Skyline DFT — individual-castle signatures` thread.
+- **Sparse-spectrum castle** — a predicate on the skyline discrete Fourier transform (DFT) `ĉ_k`: the individual castle has `supp(ĉ) ⊆ S` for some fixed small set `S`. The Axis-7 **crenellated** type is exactly the two-atom DFT-support case (energy at `k = w/2`). The general sparse-spectrum classification (which sparse-support sequences are valid castles?) hooks into compressed sensing and turnpike reconstruction. See the S-Division `Skyline DFT — individual-castle signatures` thread.
 - **Low-pass / high-pass castle** — a soft version of sparse-spectrum: the castle's DFT energy is concentrated in low-k modes (smooth mountain-shaped skyline) or high-k modes (jagged crenellation). Not a hard predicate but a natural spectral-concentration classifier.
 - **Ihara-Ramanujan castle** — the Ramanujan condition transferred to the spectrum of the Ihara / non-backtracking operator rather than the adjacency operator. Arithmetic-combinatorial invariant analogous to Selberg zeta for hyperbolic surfaces. Longer-horizon; see the S-Division `Ramanujan castles / Ihara zeta` thread.
 
@@ -328,7 +328,7 @@ The taxonomy makes explicit which sub-families the wiki has, which are candidate
 - [[castle-representations](pages/castle-representations.md)] — the skyline `(c_1, …, c_w)` is the integer-tuple encoding this classification predicates on.
 - [[convex-castle](pages/convex-castle.md)] / [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] — the unimodal (row-convex) type.
 - [[polyominoes](pages/polyominoes.md)] / [[column-convex-polyomino](pages/column-convex-polyomino.md)] / [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] — the base-type home literature.
-- [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the unimodal-skyline (single-peak) family from AC Ex. I.8.
+- [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the unimodal-skyline (single-peak) family from Analytic Combinatorics (AC) Ex. I.8.
 - [[dyck-words](pages/dyck-words.md)] / [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — the Dyck-path / Motzkin-path types.
 - [[metallic-means](pages/metallic-means.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] — the metallic (quadratic) side of the Axis-8 growth-constant classification.
 - [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] — the n-nacci area growth family (Fibonacci, tribonacci, tetranacci, …), the non-metallic side of Axis 8.

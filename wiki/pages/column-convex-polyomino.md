@@ -5,7 +5,7 @@ summary: A polyomino whose intersection with any vertical line is contiguous (ea
 tags: [concept, polyomino, column-convex, convexity, combinatorics, symbolic-method]
 sources: [column-convex-polygon-enumeration, analytic-combinatorics-part-a]
 created: 2026-09-13
-updated: 2026-09-15
+updated: 2026-09-19
 ---
 
 # Column-convex polyomino
@@ -16,7 +16,7 @@ A **column-convex** (equivalently **vertically convex**) polyomino is one whose 
 
 The defining tool is the **add-a-column ("Temperley") method**: build the polyomino by gluing columns left to right, classifying each new column by how its top and bottom cells sit relative to the previous column, and turn that into a functional equation for a generating function tracking perimeter, area, and column heights.[^3]
 
-**Alternative construction: the [[symbolic-method](pages/symbolic-method.md)].** For unimodal-skyline column-convex polyominoes — the [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] family — Example I.8 of [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] gives the OGF directly by a Durfee-square-style specification, no add-a-column functional equation needed. The two approaches co-exist: add-a-column handles arbitrary column-convex shapes via a functional equation; the symbolic method handles well-structured sub-families (unimodal, restricted parts, etc.) directly.[^4]
+**Alternative construction: the [[symbolic-method](pages/symbolic-method.md)].** For unimodal-skyline column-convex polyominoes — the [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] family — Example I.8 of [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] gives the ordinary generating function (OGF) directly by a Durfee-square-style specification, no add-a-column functional equation needed. The two approaches co-exist: add-a-column handles arbitrary column-convex shapes via a functional equation; the symbolic method handles well-structured sub-families (unimodal, restricted parts, etc.) directly.[^4]
 
 ## Relation to the castle
 
@@ -37,7 +37,7 @@ Of all the external shape families in the wiki, the column-convex polyomino is t
 - [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] — the row-convex counterpart; both together give convex polyominoes.
 - [[convex-castle](pages/convex-castle.md)] — the castle's own convexity notion.
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the unimodal-skyline sub-family, with a symbolic-method OGF.
-- [[symbolic-method](pages/symbolic-method.md)] — the AC framework used for the stack-polyomino construction.
+- [[symbolic-method](pages/symbolic-method.md)] — the Analytic Combinatorics (AC) framework used for the stack-polyomino construction.
 
 ## Footnotes
 

@@ -8,7 +8,7 @@ created: 2026-09-14
 updated: 2026-09-19
 ---
 
-# AOCP Multisets (Knuth TAOCP Vol. 3)
+# The Art of Computer Programming (AOCP) Multisets (Knuth The Art of Computer Programming (TAOCP) Vol. 3)
 
 **Source:** https://charlesreid1.com/wiki/AOCP/Multisets (notes on Knuth, *The Art of Computer Programming*, Vol. 3, §5.1.2 "Permutations of a Multiset")
 **Date ingested:** 2026-09-14
@@ -38,7 +38,7 @@ This page is the **source-level root of the castle's permutation-cycle machinery
 - **The U/R/D string is a multiset permutation.** A castle's step string on [[urd-step-strings](pages/urd-step-strings.md)] is a word over `{U, R, D}` with fixed letter counts - a permutation of a three-letter multiset - so its two-line array (sorted letters over the string) is Knuth's object exactly, before the castle grammar constrains it. The trinomial ceiling is on [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)].
 - **Inversions of multiset permutations.** Grading Knuth's multiset permutations by inversions gives MacMahon's q-multinomial coefficient, the multiset form of the q-factorial on [[aocp-combinatorics](pages/aocp-combinatorics.md)] - the natural inversion-graded count of U/R/D strings for the q-thread.
 - **A homonym to keep apart.** Knuth's "permutations of a multiset" are *ordered* words with repeated letters (the `SEQ` side); Flajolet's `MSET` construction on [[symbolic-method](pages/symbolic-method.md)] builds *unordered* multisets and translates to `∏ 1/(1 − z^k)` - the coin-change series of [[block-count-constraints](pages/block-count-constraints.md)]. Same word, different object.
-- **OEIS.** The multinomial coefficients are tabulated as A036038.[^5]
+- **Online Encyclopedia of Integer Sequences (OEIS).** The multinomial coefficients are tabulated as A036038.[^5]
 
 ## Key Takeaways
 

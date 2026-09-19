@@ -8,7 +8,7 @@ created: 2026-09-17
 updated: 2026-09-19
 ---
 
-# OEIS index and castle sequence catalogue
+# Online Encyclopedia of Integer Sequences (OEIS) index and castle sequence catalogue
 
 ## What this is
 
@@ -231,7 +231,7 @@ Skylines over `{1, 2, 3}` with adjacent heights differing by at most 1 ([[pell-c
 
 ### Proper-castle (max=h + even-block) metallic ladder
 
-The `J − D` metallic-strip counts, and their projection to proper PE 502 castles ([[proper-castle-projection](pages/proper-castle-projection.md)]).
+The `J − D` metallic-strip counts, and their projection to proper Project Euler 502 (PE 502) castles ([[proper-castle-projection](pages/proper-castle-projection.md)]).
 
 | object | first terms | growth | status |
 |---|---|---|---|

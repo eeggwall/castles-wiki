@@ -5,7 +5,7 @@ summary: Running Berlekamp–Massey on P(k,L) in both directions — order k+1 i
 tags: [analysis, castle, recurrence, berlekamp-massey, c-finite, verification]
 sources: [project-euler-502-solution, oeis-mining-pe502, project-euler-502-castle-factoring]
 created: 2026-09-14
-updated: 2026-09-16
+updated: 2026-09-19
 ---
 
 # Recurrence discovery for P(k,L)
@@ -17,7 +17,7 @@ updated: 2026-09-16
 - **In L** (fixed *k*, vary the width): order **k+1**. Exact and proven — `P_k(x)` is rational with a degree-(k+1) denominator.[^1]
 - **In k** (fixed *L*, vary the height): order "**at most about 2w**" — an *empirical* bound from the Solution subpage, justified by a transfer-matrix argument but never pinned down.[^2]
 
-This page runs [[berlekamp-massey](pages/berlekamp-massey.md)] on both directions, from an exact DP, and pins the orders down. The *L*-direction confirms `k+1`; the *k*-direction tightens the `~2w` bound to **exactly `2L−2` for `L ≥ 4`**, with the three small-*L* cases collapsing to closed forms. Everything below is produced by the program in this page (verified by execution).
+This page runs [[berlekamp-massey](pages/berlekamp-massey.md)] on both directions, from an exact dynamic program (DP), and pins the orders down. The *L*-direction confirms `k+1`; the *k*-direction tightens the `~2w` bound to **exactly `2L−2` for `L ≥ 4`**, with the three small-*L* cases collapsing to closed forms. Everything below is produced by the program in this page (verified by execution).
 
 ## Method
 

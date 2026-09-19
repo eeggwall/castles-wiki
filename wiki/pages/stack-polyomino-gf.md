@@ -5,14 +5,14 @@ summary: A stack polyomino — column heights that weakly rise then weakly fall 
 tags: [concept, polyomino, stack-polyomino, generating-functions, symbolic-method, durfee-square, castle-tower]
 sources: [analytic-combinatorics-part-a]
 created: 2026-09-15
-updated: 2026-09-15
+updated: 2026-09-19
 ---
 
 # Stack polyomino generating function
 
 ## Description
 
-A **stack polyomino** is the diagram of a composition whose column heights weakly rise to a single peak and then weakly fall: `1 ≤ x_1 ≤ x_2 ≤ … ≤ x_j ≥ x_{j+1} ≥ … ≥ x_ℓ ≥ 1` for some `j, ℓ`.[^1] Read this as a castle-style pile of columns on a common baseline where the skyline is unimodal — a **single-peak tower**. Flajolet & Sedgewick construct its OGF directly by the [[symbolic-method](pages/symbolic-method.md)] (Example I.8, pp. 45-46 of [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)]), from the Durfee-square-style geometric decomposition[^1]
+A **stack polyomino** is the diagram of a composition whose column heights weakly rise to a single peak and then weakly fall: `1 ≤ x_1 ≤ x_2 ≤ … ≤ x_j ≥ x_{j+1} ≥ … ≥ x_ℓ ≥ 1` for some `j, ℓ`.[^1] Read this as a castle-style pile of columns on a common baseline where the skyline is unimodal — a **single-peak tower**. Flajolet & Sedgewick construct its ordinary generating function (OGF) directly by the [[symbolic-method](pages/symbolic-method.md)] (Example I.8, pp. 45-46 of [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)]), from the Durfee-square-style geometric decomposition[^1]
 
 ```
 Stack ≅ ⋃_{k≥1} ( SEQ_{≥1}(Z^k) × P^{1..k−1} × P^{1..k−1} )
@@ -26,7 +26,7 @@ S(z) = ∑_{k≥1}  z^k/(1 − z^k)  ·  1/((1−z)(1−z²)···(1−z^{k−1}
      = z + 2z² + 4z³ + 8z⁴ + 15z⁵ + 27z⁶ + 47z⁷ + 79z⁸ + …
 ```
 
-= **OEIS A001523** (unimodal compositions).[^1] Coefficients confirmed against A001523 during ingest.
+= **Online Encyclopedia of Integer Sequences (OEIS) A001523** (unimodal compositions).[^1] Coefficients confirmed against A001523 during ingest.
 
 ## The direct castle tie
 
@@ -35,7 +35,7 @@ A **castle tower** — the tower half of the wiki's [[castle-polyomino](pages/ca
 - **Stack polyominoes are the unimodal-skyline sub-family of castle towers.** Every stack polyomino, positioned on a full-width base and constrained to castle heights, is a castle tower with one peak. Not every castle tower is a stack polyomino — a castle whose skyline dips in the middle and rises again is not unimodal.
 - **The construction style matches the wiki's approach.** [[column-convex-polyomino](pages/column-convex-polyomino.md)] and the castle both build the polyomino by gluing columns; Example I.8 is exactly this style, executed as a specification rather than an add-a-column functional equation.
 
-This is the closest AC-native construction to the castle we have so far: it treats a castle-like polyomino as a *specification* over classes of columns, and reads the OGF off the specification without ever writing a recurrence.
+This is the closest Analytic Combinatorics (AC)-native construction to the castle we have so far: it treats a castle-like polyomino as a *specification* over classes of columns, and reads the OGF off the specification without ever writing a recurrence.
 
 ## Relation to convex-castle counting
 

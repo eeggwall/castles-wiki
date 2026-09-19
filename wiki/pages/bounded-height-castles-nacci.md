@@ -28,7 +28,7 @@ The identity is immediate and needs no transfer matrix: **a castle skyline `(c_1
 
 ## The ladder
 
-| `h` | area sequence, `A = 1..12` | denominator | growth constant | OEIS |
+| `h` | area sequence, `A = 1..12` | denominator | growth constant | Online Encyclopedia of Integer Sequences (OEIS) |
 |---|---|---|---|---|
 | 2 | `1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233` | `1 − x − x²` | `φ ≈ 1.6180` | **A000045** Fibonacci, `= A000045(A+1)` |
 | **3** | `1, 2, 4, 7, 13, 24, 44, 81, 149, 274, 504, 927` | `1 − x − x² − x³` | **`t ≈ 1.8393`** (root of `x³ = x² + x + 1`) | **A000073** tribonacci, `= A000073(A+2)` |
@@ -83,6 +83,6 @@ The `bounded_castles_by_area(h, A_max)` snippet on [[castle-snippets](pages/cast
 
 ## Footnotes
 
-[^1]: Verified by execution: brute-force enumeration of every height-bounded skyline `c ∈ {1, …, h}^w` (all widths `w` with `Σ c ≤ A_max`), bucketed by area, agrees term for term with the composition recurrence `a(A) = Σ_{p=1}^{h} a(A−p)` for `h = 2, 3, 4, 5` and `A ≤ 14`. The GF `1/(1 − x − ⋯ − x^h)` is the standard OGF for compositions into parts `{1, …, h}` (SEQ of `{x, x², …, x^h}`; [[symbolic-method](pages/symbolic-method.md)] SEQ construction).
+[^1]: Verified by execution: brute-force enumeration of every height-bounded skyline `c ∈ {1, …, h}^w` (all widths `w` with `Σ c ≤ A_max`), bucketed by area, agrees term for term with the composition recurrence `a(A) = Σ_{p=1}^{h} a(A−p)` for `h = 2, 3, 4, 5` and `A ≤ 14`. The GF `1/(1 − x − ⋯ − x^h)` is the standard OGF for compositions into parts `{1, …, h}` (sequence (SEQ) of `{x, x², …, x^h}`; [[symbolic-method](pages/symbolic-method.md)] SEQ construction).
 
 [^2]: OEIS (fetched 2026-09-17): https://oeis.org/A000073 - tribonacci, "a(n) = a(n-1) + a(n-2) + a(n-3)", GF `x²/(1 − x − x² − x³)`, data `0, 0, 1, 1, 2, 4, 7, 13, 24, 44, 81, 149, 274`, comment "number of compositions of n-2 with no part greater than 3"; tribonacci constant `1.839286755…`, the real root of `x³ − x² − x − 1`. https://oeis.org/A000078 - tetranacci, GF `x³/(1 − x − x² − x³ − x⁴)`, "number of compositions of n-3 with no part greater than 4". Offsets `A000073(A+2)`, `A000078(A+3)`, `A001591(A+4)` follow from the numerator power `x^{h−1}` in each GF. A000045 (Fibonacci) and A011782 (`2^{n−1}`) are standard.

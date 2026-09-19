@@ -24,7 +24,7 @@ The first values are
 P_n  =  0, 1, 2, 5, 12, 29, 70, 169, 408, 985, 2378, 5741, 13860, 33461, …
 ```
 
-= **OEIS [A000129](https://oeis.org/A000129)**. The generating function is the rational function[^1]
+= **Online Encyclopedia of Integer Sequences (OEIS) [A000129](https://oeis.org/A000129)**. The generating function is the rational function[^1]
 
 ```
 ∑_{n≥0} P_n · x^n  =  x / (1 − 2x − x²).
@@ -73,7 +73,7 @@ The **companion Pell** (or *Pell-Lucas half*) sequence is OEIS A001333 = `1, 1, 
 
 ## Related Concepts
 
-- [[pell-castle-strip](pages/pell-castle-strip.md)] — the Analysis page that runs from the AC end-of-chapter exercise to the castle interpretation.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] — the Analysis page that runs from the Analytic Combinatorics (AC) end-of-chapter exercise to the castle interpretation.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] — where `1 + √2 = [2; 2, 2, …]` is developed as one of the castle's two norm-`−1` quadratics.
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — where `1 + √2` also appears, as the tower-word growth constant.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the Fibonacci companion (`φ`, `[1;1,1,…]`) — the same story with `a = 1`.
