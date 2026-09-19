@@ -45,7 +45,7 @@ In the height direction (fixed `w`), `F(w,h)` is `2p`-periodic for small `w` —
 
 (`p=3, w=4` is `6p = 18`, not `2p`, because the k-direction characteristic polynomial has a repeated root mod 3 — the same doubling that appears below.)
 
-The repeated root is exact, not a mod-3 accident: the k-direction characteristic polynomial of `P(·,L)` is `(x+1)^L (x−1)^{L−2}` over `Z` ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]), so the only eigenvalues are `±1` (orders 1 and 2) and the whole period comes from the multiplicities. `P(k,L) mod p` has period `2·p^{⌈log_p L⌉}` in `k`: `2p` while `L ≤ p`, jumping to `2p²` once `L > p` - `18 = 2·3²` at `L = 4, p = 3`, `50 = 2·5²` at `L = 6, p = 5`, `98 = 2·7²` at `L = 8, p = 7` (verified for `L ≤ 11`, `p ∈ {3, 5, 7, 11}`). The `18` in the table is the `L = w = 4 > 3` case.
+The repeated root is exact, not a mod-3 accident: the k-direction characteristic polynomial of `P(·,L)` is `(x+1)^L (x−1)^{L−2}` over `Z` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), so the only eigenvalues are `±1` (orders 1 and 2) and the whole period comes from the multiplicities. `P(k,L) mod p` has period `2·p^{⌈log_p L⌉}` in `k`: `2p` while `L ≤ p`, jumping to `2p²` once `L > p` - `18 = 2·3²` at `L = 4, p = 3`, `50 = 2·5²` at `L = 6, p = 5`, `98 = 2·7²` at `L = 8, p = 7` (verified for `L ≤ 11`, `p ∈ {3, 5, 7, 11}`). The `18` in the table is the `L = w = 4 > 3` case.
 
 ## The finite-field connection
 
