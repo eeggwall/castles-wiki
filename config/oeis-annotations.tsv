@@ -94,3 +94,10 @@ A217949	count	Number of n-element 0..3 arrays with each element the minimum of 3
 A332578	count	Number of compositions of n whose negation is unimodal.	valley castles by area
 A332669	count	Number of compositions of n whose negation is not unimodal.	not-unimodal compositions
 A352116	count	Partial sums of the odd triangular numbers (A014493).	|P(k,4)|: partial sums of odd triangular numbers
+A001235	supporting	Taxi-cab numbers: sums of 2 cubes in more than 1 way.	1729 = F(6,4) is the first term; no other taxicab number is a castle count for w,h <= 40
+A050794	supporting	Diophantine equation x^3 + y^3 = z^3 + 1 with 1 < x < y < z ("Fermat near misses").	1729 = 9^3+10^3 = 12^3+1 is the first term; the n=-1 row of Ramanujan's recurrence
+A002997	supporting	Carmichael numbers.	first four terms 561, 1105, 1729, 2465 are all castle counts: odd(3,34), A(4,7), F(6,4), A(4,9)
+A005917	supporting	Rhombic dodecahedral numbers: n^4 - (n-1)^4.	A(4,h) = h^4 - (h-1)^4; contains the Carmichael numbers 1105 (h=7) and 2465 (h=9)
+A051028	supporting	Ramanujan's a-series: expansion of (1+53x+9x^2)/(1-82x-82x^2+x^3).	near-miss family a_n^3+b_n^3 = c_n^3+(-1)^n; growth delta_9^2, the ninth metallic mean squared (height-10 ceiling-exception strip)
+A051029	supporting	Ramanujan's b-series: expansion of (2-26x-12x^2)/(1-82x-82x^2+x^3).	b-series of the near-miss family; same denominator (1+x)(1-83x+x^2)
+A051030	supporting	Ramanujan's c-series: expansion of (2+8x-10x^2)/(1-82x-82x^2+x^3).	c-series of the near-miss family; Berlekamp-Massey on c_0..c_11 recovers the order-3 recurrence
