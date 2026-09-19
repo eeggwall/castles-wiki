@@ -162,7 +162,7 @@ Open:
 
 ## Footnotes
 
-[^1]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Counting castles" L66 - "F(w, h) = (h^w - (h-1)^w - P(h-1, w) + P(h-2, w)) / 2".
+[^1]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The main formula" L66 - "F(w, h) = (h^w - (h-1)^w - P(h-1, w) + P(h-2, w)) / 2".
 [^2]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Recursion for P(k, L)" L83-84 - "For fixed k, P(k, L) satisfies a linear recurrence in L of order roughly k ... For fixed L, P(k, L) satisfies a linear recurrence in k of order at most about 2L."
 [^3]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Recursion for P(k, L)" L103-108 - "The matrix [[1, 1], [-1, 1]] has eigenvalues 1 + i and 1 - i. So P(1, L) is a sum of terms proportional to (1+i)^L and (1-i)^L; those two are complex conjugates, so their sum is a real number ... P(1, L) = Re((1+i)^{L+1})".
 [^4]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Recursion for P(k, L)" L117-118 - "P(k, 2) = (-1)^k (k+1), satisfying (lambda+1)^2 = 0. P(k, 3) = (-1)^k (k+1)^2, satisfying (lambda+1)^3 = 0."; the general `(x + 1)^L (x - 1)^{L-2}` and the `A_L, B_L` table are on [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] and were re-derived here by interpolating even and odd `k` separately.
