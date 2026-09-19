@@ -2,16 +2,16 @@
 
 Working list of project and seminar ideas for Project Euler 502 (Castles). This file drives new Analyses; the map of the whole wiki is `wiki/index.md` (generated) and `wiki/overview.md`.
 
-Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, within each Division. A done item is one line: title link + one-sentence result; detail lives on the page and in git history. Any open follow-up is its own `[ ]` item, never a "Still open:" tail. Every item ends with an arc tag `(S1..S11)` naming the seminar it feeds; `(-)` for items outside any arc. Plain hyphens in new text, no em-dashes.
+Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, within each Division. A done item is one line: title link + one-sentence result; detail lives on the page and in git history. Any open follow-up is its own `[ ]` item, never a "Still open:" tail. Every item ends with an arc tag `(S1..S12)` naming the seminar it feeds; `(-)` for items outside any arc. Plain hyphens in new text, no em-dashes.
 
 ## Where we are (2026-09-19)
 
 | Slice | Value |
 |---|---|
-| Pages | 106 (30 Sources / 51 Concepts / 25 Analyses) |
-| Divisions (open + done) | Numbers 11+25, Enumeration 5+16, Q 5+0, S 5+5, T 7+0, Classification 4+4, Misc 6+0 |
-| Items | 43 open, 50 done, 93 total |
-| Arcs | 11 (5 deliverable, 3 one page short, 1 half built, 2 sketch) |
+| Pages | 107 (30 Sources / 51 Concepts / 26 Analyses) |
+| Divisions (open + done) | Numbers 11+25, Enumeration 5+16, Q 5+0, S 5+5, T 7+0, Classification 4+4, Misc 10+1 |
+| Items | 47 open, 51 done, 98 total |
+| Arcs | 12 (5 deliverable, 3 one page short, 1 half built, 3 sketch) |
 | Dates | wiki 2026-09-13, IDEAS 2026-09-14, last reorganize 2026-09-19 |
 
 ## Seminar program
@@ -83,6 +83,12 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 - Status: mixed.
 - Spine: [castle-classification](wiki/pages/castle-classification.md), [castle-snippets](wiki/pages/castle-snippets.md), [tower-spacing-castles](wiki/pages/tower-spacing-castles.md), [castle-representations](wiki/pages/castle-representations.md).
 - Open items feeding it: from Classification, rule-variation enumeration and the no-touching / vertical-spacing variants; from Misc, higher-dimensional castles, convex-core uniqueness, statistical-physics links, exact `(w,h)` enumeration of convex/unimodal castles with parity.
+
+### S12. The Wire, but castles
+- Thesis: a toy telephone universe in which every object is a castle - tones are periodic Tier-0 castles with sparse DFTs, pager numbers are `h=10` castles and their cipher is a skyline reflection, the audio channel is an `h=65536` castle, in-band signaling is block parity, and the network's encryption is the castle ring on huge castles; the real-world operations become maps between castles at every scale.
+- Status: sketch. One page ([song-as-castle](wiki/pages/song-as-castle.md)) computes the pieces; the walk-through and the network model do not exist.
+- Spine: [song-as-castle](wiki/pages/song-as-castle.md), [spectral-analysis](wiki/pages/spectral-analysis.md), [castle-compression](wiki/pages/castle-compression.md), [castle-cryptography](wiki/pages/castle-cryptography.md).
+- Open items feeding it: from Misc, the castle network model, the in-band-signaling exploit, the tone-castle catalogue, and the lossless song codec.
 
 ## Divisions
 
@@ -204,9 +210,14 @@ Umbrella for approximating transcendental constants (pi first, then Catalan's `G
 
 ### Miscellaneous
 
+- [ ] **Castle network model** - a contact graph whose vertices are `(7,10)` / `(10,10)` phone-number castles and whose org chart is the cycle-forest (block-nesting) form of one large castle; specify the maps (call, page, cipher, wiretap) as functions between castles and check they compose. (S12)
+- [ ] **In-band signaling as a castle exploit** - the PE 502 parity clause is control computed from the data skyline; characterize the single-column and multi-column edits that change the skyline without flipping block parity (measured 0.438 flip rate at `(33,16)`), and the reverse. (S12)
+- [ ] **Tone-castle catalogue** - every DTMF and MF digit at 8 kHz as an exactly periodic castle (period `8000/gcd(8000,f)`), with DFT support and Goertzel response; which tone pairs are exactly periodic and which only approximately. (S12)
+- [ ] **Lossless song codec on castles** - close the gap between the 9.5% LPC-8 + Rice estimate and the 26.6% `afconvert` FLAC on the same file, and state the castle codec (skyline -> Tier-1 rule + residual) as a spec. (S12)
 - [ ] **General closed form for `P(k,L)`** - for all `k` and all `L`. In `k`, `P(k,L) = (-1)^k A_L(k) + B_L(k)` with explicit `A_L, B_L` for `L<=12` on [castle-eigenvalue-oeis-crosswalk](wiki/pages/castle-eigenvalue-oeis-crosswalk.md); what remains is a uniform formula and a proof of the `(x+1)^L (x-1)^{L-2}` factorization. (S1)
 - [ ] **Minimality of empirical recurrence orders** - prove the conjectured orders are minimal (`k+1` in `L`, exactly `2L-2` in `k`); the k-direction half reduces to `deg A_L = L-1` and `deg B_L = L-3`. (S1)
 - [ ] **Convex / unimodal exact enumeration with parity** - the U/R/D route was attempted and failed; the area-graded split is done on [castle-by-area](wiki/pages/castle-by-area.md), the exact `(w,h)` enumeration remains open. (S11)
 - [ ] **Higher-dimensional castles** - 3D blocks, multiple stacked rows per level, or blocks with integer height greater than 1. (S11)
 - [ ] **Convex core uniqueness** - is every castle a variation of a unique convex core? Characterize the minimal convex skeleton. (S11)
 - [ ] **Statistical physics links** - directed animals, column-convex polygons, hard-square type models. (S11)
+- [x] **[A Spotify song as a castle](wiki/pages/song-as-castle.md)** - three rungs executed: the 128-bit URL is a `(33,16)` or `(17,256)` castle by an exact rank/unrank; the API Track object is `w~1000` at `h=256` and audio-features is the same `(33,16)` shape as the URL; a peak-normalized 16-bit waveform is an `h=65536` castle whose compression ladder (WAV/FLAC/LPC/AAC) is the tier ladder, with Berlekamp-Massey and the NTT over `F_65537` as the finite-field layer; ends with the 2600 Hz, blue-box, and jump-the-5 castles. (S12)

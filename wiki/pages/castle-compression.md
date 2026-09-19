@@ -65,6 +65,7 @@ The shape axes are blind to Tier 1: a rule-generated castle fails every convex /
 - [[spectral-analysis](pages/spectral-analysis.md)] / [[isospectral-castles](pages/isospectral-castles.md)] — spectra as lossy codes and their collisions.
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] — Gray order as a delta encoding.
 - [[castle-counting-function](pages/castle-counting-function.md)] — the exact size of the generic codebook.
+- [[song-as-castle](pages/song-as-castle.md)] - the ladder run on a real waveform: a peak-normalized 16-bit signal is an `h = 65536` castle, FLAC's LPC + Rice is Tier 1, AAC is the lossy spectral tier, and Berlekamp-Massey over `F_65537` is the exact Tier-1 detector (linear complexity `N/2` on audio, `5` on a 5-tap LFSR skyline).
 
 ## Appearances in Sources
 

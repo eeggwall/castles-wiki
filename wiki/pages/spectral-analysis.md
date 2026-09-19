@@ -79,6 +79,8 @@ Three natural regimes:
 
 **Wiki ties:** [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 7 (crenellated = two-atom DFT support) and [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] Axis 9 (sparse-spectrum as an individual-castle predicate; low/high-pass as soft variants); [[castle-representations](pages/castle-representations.md)] (the column-height sequence being transformed); [[castle-snippets](pages/castle-snippets.md)] (a `numpy.fft.fft(c)` one-liner is the natural extension there — not yet added).
 
+The reverse direction - sound to castle, lossless - is [[song-as-castle](pages/song-as-castle.md)]: a 16-bit waveform is an `h = 65536` skyline, so its DFT is the audio spectrum, a 2600 Hz tone at 8 kHz is an exactly periodic width-40 castle with a two-atom DFT, and the number-theoretic transform mod 65537 is this same transform over a finite field with no rounding.
+
 ## 4. Combinatorial Laplacian — connectivity, bottlenecks, isospectral pairs
 
 Treat the filled cells of a castle as the vertices of a graph; add an edge between every pair of orthogonally adjacent filled cells. This gives the **castle's polyomino graph** `G_C`. Its **combinatorial Laplacian** is

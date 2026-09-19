@@ -79,6 +79,7 @@ Uniform entropy and entropy rate are the same limit approached from two sides. U
 - [[reachable-field-census](pages/reachable-field-census.md)], [[tower-spacing-castles](pages/tower-spacing-castles.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] — the rule families whose Perron roots are the rungs of the entropy ladder.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] — the finite-field counterpart: growth/entropy over ℂ vs period/order mod p.
 - [[castle-compression](pages/castle-compression.md)] — the dual view: entropy measures the information content, compression measures how cheaply it is written.
+- [[song-as-castle](pages/song-as-castle.md)] - the parity bit measured at URL scale: `log₂ A(34,16) − log₂ F(34,16) = 1.000000`, and what the bit does not buy (a single-column corruption flips block parity only 44% of the time).
 - [[project-euler-502-observations](pages/project-euler-502-observations.md)] — the source's "the even-block clause is almost the entire difficulty," priced here at exactly one bit; [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] — `F(13,10)` in bits.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] — `F(w,3)`, the sequence the `h = 3` row of the table is drawn from.
 - [[aocp-permutations](pages/aocp-permutations.md)] — Stirling's `log₂ n! ≈ n·log₂ n − n·log₂ e`, the entropy of a uniform permutation, the permutation-side twin of `w·log₂ h − 1`.
