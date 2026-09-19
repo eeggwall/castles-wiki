@@ -194,3 +194,4 @@ Each of these becomes its own Analysis page or Concept page when its content lan
 - [[castle-by-area](pages/castle-by-area.md)] / [[q-catalan-numbers](pages/q-catalan-numbers.md)] — the area / q-analog threads the q-Gibbs critical-`β` row of the crosswalk connects.
 - [[castle-sign](pages/castle-sign.md)] — the block-parity involution `σ` whose `±1` eigenspaces are the operator-level form of `(T ± P)/2`.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] / [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the two smallest concrete castle families whose spectral properties are cleanly computable.
+- [[castle-compression](pages/castle-compression.md)] — sparse-spectrum castles are compressible in the transform domain; the compressed-sensing hook in the open threads is the DFT face of the compressibility axis.

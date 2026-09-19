@@ -5,7 +5,7 @@ summary: The first-pass's highest-value OEIS interlink — height-2 castles by b
 tags: [oeis, castle, height-2, hyperbolic, binomial, cross-reference, source]
 sources: [oeis-height2-hyperbolic-castles]
 created: 2026-09-13
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # Height-2 castles = A038505 / A038503 (hyperbolic family)
@@ -74,6 +74,8 @@ The two A000225 formulas are equivalent to `A038503(n) + A038505(n) = 2^(n−1)`
 - [[castle-counting-function](pages/castle-counting-function.md)] — `F(w,2)`, `odd(w,2)`.
 - [[signed-tower-count](pages/signed-tower-count.md)] — `A146559 = A038503 − A038505`.
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] — the submission discipline (draft text kept in raw/).
+- [[block-count-constraints](pages/block-count-constraints.md)] — the interlink read as a residue class: even total blocks ⟺ an odd number of runs in row 2, the `m = 2` character sum on `Σ_r C(w+1, 2r) z^r`.
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] — the `h = 3` row, where the same construction meets no OEIS entry.
 
 ## Relation to Other Wiki Pages
 

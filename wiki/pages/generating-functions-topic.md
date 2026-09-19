@@ -5,7 +5,7 @@ summary: A generating-function reference — OGF operations, recurrence→ration
 tags: [generating-functions, ogf, egf, recurrence, parity, partial-fractions, source]
 sources: [generating-functions-topic]
 created: 2026-09-14
-updated: 2026-09-15
+updated: 2026-09-19
 ---
 
 # Generating Functions (Sedgewick–Flajolet / Trotter)
@@ -47,6 +47,7 @@ The page's own closing section states the castle payoff directly: the `P(k,L)` r
 - [[castle-counting-formula](pages/castle-counting-formula.md)] / [[kitamasa](pages/kitamasa.md)] — the `P_k = num_k/den_k` → linear-recurrence extraction the PE 502 section names.
 
 Linked from the source: [[aocp-generating-functions](pages/aocp-generating-functions.md)] (ingested).
+- [[block-count-constraints](pages/block-count-constraints.md)] — the residue / sparse / semigroup trichotomy on the block count; this page's `1/(1−x⁴)` and EGF projector are its index-side twins.
 
 ## Relation to Other Wiki Pages
 

@@ -5,7 +5,7 @@ summary: P(k,L) = Σ (−1)^blocks over towers of height ≤ k above a length-L 
 tags: [concept, castle, signed-count, c-finite, oeis, generating-functions]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-13
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # Signed tower count P(k,L)
@@ -57,6 +57,8 @@ Both components are castle counts. Splitting `P(1,L)` by the parity of the last 
 - [[generating-function-gallery](pages/generating-function-gallery.md)] — the `num_k/den_k` rational GFs and their roots (the characteristic polynomials above).
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - `P = P_even + P_odd` by last-column parity; the sectors are the factors of `char_k`, `P_even(6,L) = 2^L·A005251(L+3)`, and `P_even(4m+2, L)/2^L` are Hardin's word counts.
 - [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the k-direction characteristic polynomial is `(x+1)^L (x−1)^{L−2}`, so `P(·,L)` is a quasi-polynomial in `k`; and the exact split `P(6,L) = 2^L·A005251(L+3) + (order-4 remainder)`, tying the `k = 6` row to the plastic number `ψ` via its dominant eigenvalue `2ψ²`.
+- [[block-count-constraints](pages/block-count-constraints.md)] - `P(1,L) = G_{1,L}(−1) = Σ_r (−1)^r C(L+1, 2r)`, the `m = 2` character sum on the height-1 block's block-count GF; the residue / sparse / semigroup trichotomy that generalizes the sign.
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `F(w,3) = (3^w − 2^w − P(2,w) + P(1,w))/2`, the first castle row in which `P(2,·)` enters a public count.
 
 ## Footnotes
 

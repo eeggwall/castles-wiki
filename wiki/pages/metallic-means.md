@@ -98,6 +98,7 @@ The realizability question the "how many states per column" knob raised is thus 
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] — the metallic means are algebraic (quadratic), the exact irrationals that C-finite castle counts *can* carry.
 - [[spectral-analysis](pages/spectral-analysis.md)] / [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - where the metallic means do and do not appear as eigenvalues: never in PE 502's own signed transfer matrix (its eigenvalues are twice algebraic units), but as spectral radii of class transfer matrices (Axis 8) and of individual castle graphs (`φ` for the 4-cell paths, `1 + √2` for the `3×2` rectangle and three non-rectangular castles).
 - [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the convergent numerator/denominator/trace sequences of every rung `a = 1..5` matched to OEIS, and the mod-`p` signature of norm `−1` (`δ_a^{p+1} = −1` at inert primes).
+- [[block-count-constraints](pages/block-count-constraints.md)] - the coin branch touches the ladder: numerical semigroups counted by genus (A007323: 1, 1, 2, 4, 7, 12, 23, 39, …) grow at the golden ratio (Zhai 2013).
 
 ## Footnotes
 
