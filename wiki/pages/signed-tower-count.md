@@ -24,7 +24,7 @@ P(4):  x⁵ − 5x⁴ + 12x³ − 20x² + 16x − 16
 P(5):  x⁶ − 6x⁵ + 18x⁴ − 32x³ + 48x² − 32x + 32
 ```
 
-(constant term `(−1)^{k−1} 2^k`, leading coefficient `−(k+1)`). This is the C-finiteness that [[berlekamp-massey](pages/berlekamp-massey.md)]/[[kitamasa](pages/kitamasa.md)] exploit to evaluate `P` at trillion scale.
+Each is monic, with coefficient of `x^k` equal to `−(k+1)` and constant term `(−1)^{k−1} 2^k`. This is the C-finiteness that [[berlekamp-massey](pages/berlekamp-massey.md)]/[[kitamasa](pages/kitamasa.md)] exploit to evaluate `P` at trillion scale.
 
 ## The k = 1 case and an OEIS correction
 
@@ -38,7 +38,15 @@ with values `P(1,L) = 1, 0, −2, −4, −4, 0, 8, 16, 16, 0, −32, …` from 
 
 Both components are castle counts. Splitting `P(1,L)` by the parity of the last column height gives `P_even(1,L) = Re((1+i)^L) = A146559(L)` and `P_odd(1,L) = −Im((1+i)^L) = −A009545(L)`: A009545 is minus the signed count of height-`≤1` towers whose last column has height 1. The split is the `k = 1` case of the sector decomposition on [[tower-parity-sectors](pages/tower-parity-sectors.md)], which for even `k` is what factors `char_k`.
 
-`A146559` is a proposed cross-link target: `a(n) = P(1,n−1)`, the real part of `(1+i)^n` read as a signed castle count, with the genuinely new formula `A146559(n) = A038503(n) − A038505(n)` tying the signed vein to the height-2 [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)].[^3] That identity is now in OEIS in two places: A146559 itself gained `a(n) = A038503(n) − A038505(n)`, and A038503 gained the equivalent `a(n) = A038505(n) + A146559(n)` (both submitted 2026-09-18, [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]). The `P(k,·)` families for `k ≥ 2` generalize A146559, and **all of `P(2..6, ·)` are confirmed novel** — no OEIS match, in signed or absolute-value form, searched 2026-09-18 ([[oeis-index](pages/oeis-index.md)]).[^4] The even-`k`, all-positive rows are the cleanest submission candidates: `P(2,·): 1,1,3,9,19,33,59,…` (order 3), `P(4,·): 1,1,5,25,85,225,541,…` (order 5), `P(6,·): 1,1,7,49,231,833,2583,…` (order 7, char poly factoring with dominant root `2ψ²` — the plastic connection). The odd-`k` rows `P(3,·): 1,0,−4,−16,−40,…` and `P(5,·): 1,0,−6,−36,−140,…` alternate in sign with irreducible char polys. The whole family has a Pell/Chebyshev closed-form denominator (roots `−x ± √(x²+1)`), worked out on [[generating-function-gallery](pages/generating-function-gallery.md)].
+## OEIS status of the family
+
+The mining pass left five results about the `P(k,·)` rows:
+
+- **`A146559` is now cross-linked, both directions.** `a(n) = P(1,n−1)`, the real part of `(1+i)^n` read as a signed castle count, with the genuinely new formula `A146559(n) = A038503(n) − A038505(n)` tying the signed vein to the height-2 [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)].[^3] That identity is now in OEIS in two places: A146559 itself gained `a(n) = A038503(n) − A038505(n)`, and A038503 gained the equivalent `a(n) = A038505(n) + A146559(n)` (both submitted 2026-09-18, [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]).
+- **All of `P(2..6, ·)` are confirmed novel.** The `k ≥ 2` rows generalize A146559 and have no OEIS match, in signed or absolute-value form, searched 2026-09-18 ([[oeis-index](pages/oeis-index.md)]).[^4]
+- **The even-`k` rows are all positive and are the cleanest submission candidates.** `P(2,·): 1,1,3,9,19,33,59,…` (order 3), `P(4,·): 1,1,5,25,85,225,541,…` (order 5), `P(6,·): 1,1,7,49,231,833,2583,…` (order 7, char poly factoring with dominant root `2ψ²` — the plastic connection).
+- **The odd-`k` rows alternate in sign with irreducible char polys.** `P(3,·): 1,0,−4,−16,−40,…` and `P(5,·): 1,0,−6,−36,−140,…`.
+- **The whole family has a Pell/Chebyshev closed-form denominator** (roots `−x ± √(x²+1)`), worked out on [[generating-function-gallery](pages/generating-function-gallery.md)].
 
 ## Appearances in Sources
 
