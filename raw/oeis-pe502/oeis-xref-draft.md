@@ -1,9 +1,17 @@
 # OEIS cross-reference draft — height-2 PE 502 castles -> A038505 / A038503
 
-Status: DRAFT for Charles to review, reword in his own words, and submit.
+Status: SUBMITTED to OEIS as "Chaz Reid" on 2026-09-18. The draft below is retained as the pre-submission record; the final wording differs as noted below.
 OEIS forbids AI-authored submissions; treat everything below as a checked,
 correct starting point, not as final text.
 Execution notes (field map, signature format, scope): see SUBMISSION-NOTES.md.
+
+**Changes made at submission (2026-09-18):**
+- A038503 comment reworded to "height at most 2" (folds the all-height-1 castle in directly; drops the draft's "1 more than … height 2" framing).
+- FORMULA uses the A000225 decomposition, not the direct F(w,2)/odd(w,2) form:
+  - A038503: `a(n) = A000225(n-1) - A038505(n) + 1 for n >= 1` and `a(n) = A038505(n) + A146559(n)`.
+  - A038505: `a(n) = A000225(n-1) - A038503(n) + 1 for n >= 1`.
+- A038505 gained the `Project Euler, Problem 502: Counting Castles` link; both Cf. lists gained A000225, and A038503's also gained A146559.
+- Final comment text is quoted verbatim on the wiki page `oeis-height2-hyperbolic-castles.md`.
 
 ---
 
