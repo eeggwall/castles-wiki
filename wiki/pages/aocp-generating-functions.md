@@ -38,7 +38,7 @@ This is not background — it is the exact toolkit of the castle solution, item 
 
 - **Linear recurrence ⇒ rational GF** is precisely the castle's [[castle-counting-formula](pages/castle-counting-formula.md)]: the signed tower count is `P_k = num_k/den_k`, a rational function whose denominator is the characteristic polynomial of an order-`(k+1)` linear recurrence ([[signed-tower-count](pages/signed-tower-count.md)]). The C-finiteness that [[kitamasa](pages/kitamasa.md)] and [[berlekamp-massey](pages/berlekamp-massey.md)] exploit is exactly this "recurrence ⇔ rational GF" equivalence.
 - **The Fibonacci partial-fractions → roots → closed form** procedure is the same one that turns `P(1,L)`'s recurrence (roots `1±i`) into `Re((1+i)^{L+1})` (see [[signed-tower-count](pages/signed-tower-count.md)]) — a direct structural echo of `F_n = (φ^n − φ̂^n)/√5`.
-- **The negative binomial `1/(1−z)^{n+1} = ∑ C(n+k,n) z^k`** is the castle's tower generating function: the unsigned count is `E_k = 1/(1−(k+1)x)` giving `(k+1)^L`, and the [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] block-count g.f. is a Narayana polynomial over `(1−x)^w`.
+- **The negative binomial `1/(1−z)^{n+1} = ∑ C(n+k,n) z^k`** is the castle's tower generating function: the unsigned count is `E_k = 1/(1−(k+1)x)` giving `(k+1)^L`, and the [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] block-count GF is a Narayana polynomial over `(1−x)^w`.
 - **The `⟨2^n+3^n⟩` exercise** is literally the castle's any-parity count `A(w,h) = h^w − (h−1)^w` (the difference-of-powers family `A000225`, `A001047`, …) — same "sum of two `1/(1−az)` geometric GFs" structure.
 
 ## Key Takeaways

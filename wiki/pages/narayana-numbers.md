@@ -20,12 +20,12 @@ The [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] pass established that the 
 
 ```
 T(w,b) = Σ_{k=1..w} N(w,k) · C(b + w − k, w − 1),
-   g.f. by b:  ( Σ_k N(w,k) x^{k−1} ) / (1 − x)^w   =  Narayana_w(x) / (1−x)^w
+   GF by b:  ( Σ_k N(w,k) x^{k−1} ) / (1 − x)^w   =  Narayana_w(x) / (1−x)^w
 ```
 
 i.e. the **Narayana polynomial** `Narayana_w(x)` is the numerator. Verified for `w = 1..7`. The width rows land on existing OEIS entries — `A005408` (w=2), `A005891` (w=3), `A063490` (w=4), `A160747` (w=5) — with `w ≥ 6` new (see [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]).[^2]
 
-A proposed cross-reference on A001263 itself records this: `T(w,b) = Σ_k N(w,k) C(b+w−k, w−1)` — the Narayana polynomial as the numerator of the tower block-count g.f. (stated as a generating-function identity, **not** a peaks bijection, which was tested and does not factor this way).[^3]
+A proposed cross-reference on A001263 itself records this: `T(w,b) = Σ_k N(w,k) C(b+w−k, w−1)` — the Narayana polynomial as the numerator of the tower block-count GF (stated as a generating-function identity, **not** a peaks bijection, which was tested and does not factor this way).[^3]
 
 ## Appearances in Sources
 
@@ -41,6 +41,6 @@ A proposed cross-reference on A001263 itself records this: `T(w,b) = Σ_k N(w,k)
 
 ## Footnotes
 
-[^1]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `crosslink-avenues.md` §"Tier 2" L43-47 — "T(w,b) = # towers of width w with exactly b blocks = sum_{k=1..w} Narayana(w,k) * C(b + w − k, w − 1) ... g.f. = (Narayana_w(x)) / (1 − x)^w ... Narayana(w,k) = (1/w) C(w,k) C(w,k−1) = A001263."
+[^1]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `crosslink-avenues.md` §"Tier 2" L43-47 — "T(w,b) = # towers of width w with exactly b blocks = sum_{k=1..w} Narayana(w,k) * C(b + w − k, w − 1) ... GF = (Narayana_w(x)) / (1 − x)^w ... Narayana(w,k) = (1/w) C(w,k) C(w,k−1) = A001263."
 [^2]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `crosslink-avenues.md` §"Tier 2" L49-56 — the width-row table hitting A005408 (w=2), A005891 (w=3), A063490 (w=4), A160747 (w=5), "new" for w=6,7.
 [^3]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `xrefs/A001263-tower.md` §"Identity" — "It is a generating-function identity, not a 'peaks' bijection: a direct peaks refinement was tested and does not factor this way, so do not state a peaks interpretation."

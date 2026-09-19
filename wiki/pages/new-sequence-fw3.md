@@ -1,7 +1,7 @@
 ---
 title: "New sequence candidate: F(w,3)"
 category: Sources
-summary: The cleanest new-sequence candidate — even-block castles of height exactly 3; an order-6 C-finite sequence 0,0,3,21,89,307,… with recurrence, g.f., and program, drafted for OEIS submission.
+summary: The cleanest new-sequence candidate — even-block castles of height exactly 3; an order-6 C-finite sequence 0,0,3,21,89,307,… with recurrence, GF, and program, drafted for OEIS submission.
 tags: [oeis, castle, new-sequence, c-finite, height-3, source]
 sources: [new-sequence-fw3]
 created: 2026-09-13
@@ -44,12 +44,12 @@ The characteristic polynomial `(x−3)(x−2)(x²−x+2)(x²−2x+2)` is assembl
 
 ## Draft status
 
-`new-sequence-F3.md` is a **checked, correct starting point** — name, definition, 50 terms, recurrence, g.f., Python program, crossrefs — but per [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] the prose must be reworded and signed by a human before submission (OEIS forbids AI-authored text), and new contributors are throttled, so the A038505/A038503 interlink ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]) is submitted first. The full draft lives in `raw/oeis-pe502/new-sequence-F3.md`.
+`new-sequence-F3.md` is a **checked, correct starting point** — name, definition, 50 terms, recurrence, GF, Python program, crossrefs — but per [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] the prose must be reworded and signed by a human before submission (OEIS forbids AI-authored text), and new contributors are throttled, so the A038505/A038503 interlink ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]) is submitted first. The full draft lives in `raw/oeis-pe502/new-sequence-F3.md`.
 
 ## Key Takeaways
 
 - `F(w,3)`: `0,0,3,21,89,307,977,3031,…`, no OEIS match — a genuine new sequence.[^1]
-- Order-6 C-finite, char. poly `(x−3)(x−2)(x²−x+2)(x²−2x+2)`, with explicit recurrence and g.f.[^3]
+- Order-6 C-finite, char. poly `(x−3)(x−2)(x²−x+2)(x²−2x+2)`, with explicit recurrence and GF[^3]
 - `a(n) = (3^n − 2^n − P(2,n) + P(1,n))/2`; `F(w,3) + odd(w,3) = 3^n − 2^n = A001047(n)`.[^4]
 - Siblings (also new): `F(w,4)`, `F(w,5)`, `odd(w,h≥3)`, and the quasi-polynomial column direction.[^5]
 

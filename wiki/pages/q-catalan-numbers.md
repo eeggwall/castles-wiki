@@ -30,7 +30,7 @@ The third family is the direct castle thread: **parallelogram polyominoes by are
 
 - [[catalan-numbers](pages/catalan-numbers.md)] — the q=1 specialization.
 - [[motzkin-numbers](pages/motzkin-numbers.md)] — the sister q-analog thread (q-Motzkin).
-- [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — parallelogram polyominoes by area, q-Bessel g.f.
+- [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — parallelogram polyominoes by area, q-Bessel GF
 - [[castle-by-area](pages/castle-by-area.md)] — the castle's area grading, the q-analog's entry point.
 - [[dyck-words](pages/dyck-words.md)] — the object whose inversions the Carlitz q-Catalan (and, by steepness, q-Motzkin) count.
 - [[permutation-inversions](pages/permutation-inversions.md)] — the inversion statistic and the q-factorial `∏(1−z^k)/(1−z)^n`, the prototype q-graded generating function.

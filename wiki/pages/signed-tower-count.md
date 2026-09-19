@@ -31,7 +31,7 @@ P(5):  x⁶ − 6x⁵ + 18x⁴ − 32x³ + 48x² − 32x + 32
 At `k = 1`, `P(1,L) = ∑_b (−1)^{runs(b)}` over binary strings, which is the real part of a complex power:[^2]
 
 ```
-P(1,L) = Re((1+i)^{L+1}) = A146559(L+1)      (A146559: g.f. (1−x)/(1−2x+2x²))
+P(1,L) = Re((1+i)^{L+1}) = A146559(L+1)      (A146559: GF (1−x)/(1−2x+2x²))
 ```
 
 with values `P(1,L) = 1, 0, −2, −4, −4, 0, 8, 16, 16, 0, −32, …` from `L = 0` (re-verified during ingest). A parent plan had claimed `P(1,L) = A009545`, but **A009545 is the imaginary part `Im((1+i)^n)`** — the companion, not `P`. The mixup is a textbook case for [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]'s "verify against OEIS data with offsets" rule: the two sequences agree in magnitude pattern but are the real vs. imaginary components of the same `(1+i)^n`.[^2]

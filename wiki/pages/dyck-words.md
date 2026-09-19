@@ -55,7 +55,7 @@ The page states the connection to the castle explicitly: the **first-return gram
 - [[motzkin-numbers](pages/motzkin-numbers.md)] — count steep Dyck words (length 2n → (n−1)th Motzkin).
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — steep Dyck words and their q-refinement.
 - [[polyominoes](pages/polyominoes.md)] — Ferrers-diagram area = Dyck inversion number.
-- [[permutation-inversions](pages/permutation-inversions.md)] — the inversion statistic (and its q-factorial g.f.) that grades Dyck words into q-Catalan / q-Motzkin.
+- [[permutation-inversions](pages/permutation-inversions.md)] — the inversion statistic (and its q-factorial GF) that grades Dyck words into q-Catalan / q-Motzkin.
 - [[symbolic-method](pages/symbolic-method.md)] / [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] — the framework that recasts the first-return grammar as a recursive specification.
 
 Linked from the source but not yet ingested: Lattice Paths (ingested this round — see [[lattice-paths](pages/lattice-paths.md)]), Dyck Words/Lisp, Dyck Words/Examples, Combinatorics.

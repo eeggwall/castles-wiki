@@ -29,11 +29,11 @@ Motzkin paths use *three* step types (up/flat/down), the same arity as the castl
 
 ## Connection to the castle
 
-The relevant thread: the **q-analog `M_n(q)`** refines the Motzkin numbers and appears in the **q-grammar count of steep Dyck words**[^4] — precisely the object in [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], where three q-Motzkin classes are tied to steep parallelogram polyominoes (a q-Bessel-ratio g.f.), inversions of steep Dyck words, and steep staircase polyominoes by area. The castle's [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is a three-letter (U/R/D) grammar with run constraints — the same flavor — so the Motzkin q-analog is a natural target for a q-graded castle count (see the wiki TODO's q-equivalent thread).
+The relevant thread: the **q-analog `M_n(q)`** refines the Motzkin numbers and appears in the **q-grammar count of steep Dyck words**[^4] — precisely the object in [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], where three q-Motzkin classes are tied to steep parallelogram polyominoes (a q-Bessel-ratio GF), inversions of steep Dyck words, and steep staircase polyominoes by area. The castle's [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is a three-letter (U/R/D) grammar with run constraints — the same flavor — so the Motzkin q-analog is a natural target for a q-graded castle count (see the wiki TODO's q-equivalent thread).
 
 ## Appearances in Sources
 
-- [[motzkin-numbers](pages/motzkin-numbers.md)] (charlesreid1.com topic page) — definition, values, recurrence, g.f., and the q-analog / steep-Dyck-words remark.
+- [[motzkin-numbers](pages/motzkin-numbers.md)] (charlesreid1.com topic page) — definition, values, recurrence, GF, and the q-analog / steep-Dyck-words remark.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — the paper where q-Motzkin numbers meet steep polyominoes.
 
 ## Related Concepts

@@ -39,7 +39,7 @@ Two of the named families are exactly the Online Encyclopedia of Integer Sequenc
 - Polyomino = connected cut-point-free union of cells; parameters area, width, height.[^1]
 - Classes: Ferrers, staircase, bar-chart, column-convex, directed.[^2]
 - **The castle is a column-convex polyomino** (with the extra no-overhang / same-row-gap / even-count rules); Project Euler 502 (PE 502) is the worked instance.[^4]
-- **Ferrers polyominoes** connect to Catalan (perimeter) and to **q-Bessel / q-Catalan** (area/width/height g.f.) — the q-analog thread.[^3]
+- **Ferrers polyominoes** connect to Catalan (perimeter) and to **q-Bessel / q-Catalan** (area/width/height GF) — the q-analog thread.[^3]
 
 ## Entities & Concepts
 

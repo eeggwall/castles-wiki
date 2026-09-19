@@ -26,7 +26,7 @@ G_n(z) = (1 + z + … + z^{n−1}) · G_{n−1}(z)
        = (1−z^n)(1−z^{n−1})···(1−z) / (1−z)^n
 ```
 
-This product is exactly the **q-factorial** `[n]_z!` — the ubiquitous q-analog object — verified during ingest to reproduce the inversion counts, to sum to `n!` at `z=1`, and to be symmetric `I_n(k) = I_n(binomial(n,2) − k)`.[^5] Dividing by `n!` gives the probability g.f. `g_n(z) = ∏ h_k(z)` with `h_k(z) = (1+z+…+z^{k−1})/k` the uniform distribution on `{0,…,k−1}`, so the inversion count of a random permutation is a **sum of independent uniforms**, and its mean and variance add across the factors.[^6]
+This product is exactly the **q-factorial** `[n]_z!` — the ubiquitous q-analog object — verified during ingest to reproduce the inversion counts, to sum to `n!` at `z=1`, and to be symmetric `I_n(k) = I_n(binomial(n,2) − k)`.[^5] Dividing by `n!` gives the probability GF `g_n(z) = ∏ h_k(z)` with `h_k(z) = (1+z+…+z^{k−1})/k` the uniform distribution on `{0,…,k−1}`, so the inversion count of a random permutation is a **sum of independent uniforms**, and its mean and variance add across the factors.[^6]
 
 ## Relevance to the castle
 
