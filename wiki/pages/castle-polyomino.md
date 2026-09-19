@@ -5,7 +5,7 @@ summary: A configuration of stacked integer-length unit-height blocks on a w×h 
 tags: [concept, castle, polyomino, combinatorics]
 sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-castle-factoring]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # Castle (polyomino)
@@ -42,7 +42,7 @@ The name "castle polyomino" reflects the visual intuition: a valid configuration
 - [[convex-castle](pages/convex-castle.md)] — a structurally important sub-class of castle.
 - [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] — the cycle-factorization reading of a castle.
 - [[generating-functions](pages/generating-functions.md)] — the intended method for counting castle configurations at large parameters.
-- [[castle-classification](pages/castle-classification.md)] — the framework organizing castle sub-families by skyline predicate; catalogs 42 types across 7 structural axes.
+- [[castle-classification](pages/castle-classification.md)] — the framework organizing castle sub-families by skyline predicate; catalogs 42 types across 9 axes: 7 structural, plus a growth-type meta-classification (Axis 8) and a spectral one (Axis 9).
 
 ## Footnotes
 

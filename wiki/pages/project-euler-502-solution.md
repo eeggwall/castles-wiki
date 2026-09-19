@@ -43,7 +43,7 @@ Operationally, the solution routes each target through one of two paths (see [[c
 - [[kitamasa](pages/kitamasa.md)], [[berlekamp-massey](pages/berlekamp-massey.md)] — the fast linear-recurrence toolkit.
 - [[castle-counting-formula](pages/castle-counting-formula.md)], [[castle-counting-function](pages/castle-counting-function.md)], [[castle-sign](pages/castle-sign.md)], [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — machinery this page proves and ratifies.
 
-Related topics now ingested: [[polyominoes](pages/polyominoes.md)], [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/lattice-paths.md)], [[generating-functions](pages/generating-functions.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)]. Still not yet ingested: Combinatorics. The three reference papers are ingested separately (see [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]).
+Related topics now ingested: [[polyominoes](pages/polyominoes.md)], [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/lattice-paths.md)], [[generating-functions](pages/generating-functions.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)], and the [[aocp-combinatorics](pages/aocp-combinatorics.md)] Knuth notes. The general Combinatorics umbrella source is the only related topic still unqueued (see `TODO.md`). The three reference papers are ingested separately (see [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]).
 - Sibling subpages of the [[project-euler-502](pages/project-euler-502.md)] hub: [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)], [[project-euler-502-representations](pages/project-euler-502-representations.md)], [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)], [[project-euler-502-observations](pages/project-euler-502-observations.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)], [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)].
 
 ## What did not work (negative results)
@@ -67,7 +67,7 @@ Three papers, ingested here as their own source pages:[^9]
 - Bousquet-Mélou, *A method for the enumeration of various classes of column-convex polygons* — [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)]
 - Hickerson, *Counting Horizontally Convex Polyominoes* — [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]
 
-Also cited: the Java implementation and the **Implementation Notes** subpage (not yet ingested).
+Also cited: the Java implementation and the source's **Implementation Notes** subpage; the latter is ingested as [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)].
 
 ## Relation to Other Wiki Pages
 
