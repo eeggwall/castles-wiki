@@ -22,6 +22,21 @@ P(2,L)  =  3·P(2,L−1)  −  4·P(2,L−2)  +  4·P(2,L−3).
 
 The char poly just encodes those recurrence coefficients as a polynomial: `x³ − 3x² + 4x − 4`. If you've built **LFSRs**, this *is* the feedback (tap) polynomial — same object, same role. It is the "DNA" of the sequence: from the char poly you can regenerate the whole sequence and (via [[kitamasa](pages/kitamasa.md)]) jump far ahead fast.
 
+The whole claim in one screen — three coefficients and three seeds regenerate the infinite sequence:
+
+```python
+def p2(L):               # char_2 = x^3 - 3x^2 + 4x - 4  =>  P(L) = 3P(L-1) - 4P(L-2) + 4P(L-3)
+    if L < 3: return (1, 1, 3)[L]
+    return 3*p2(L-1) - 4*p2(L-2) + 4*p2(L-3)
+```
+
+```
+>>> [p2(L) for L in range(8)]
+[1, 1, 3, 9, 19, 33, 59, 121]
+```
+
+That `[1, 1, 3, 9, 19, 33, 59, 121]` is `P(2, L)`. Six numbers — `(1, 1, 3)` and `(3, −4, 4)` — *are* the castle; the polynomial is just those six numbers written as `x³ − 3x² + 4x − 4`.[^2]
+
 In the cryptosystem, `Q` is the **modulus**: all arithmetic happens "mod `Q`", meaning whenever a polynomial reaches degree 3 you apply the rewrite `x³ → 3x² − 4x + 4` to fold it back below degree 3. That rewrite *is* the recurrence, applied to polynomials instead of to numbers. The ring is `F_p[x]/(Q)` — polynomials of degree < 3, coefficients mod `p`.
 
 ## "irreducible" — yes, it's "prime" for polynomials
@@ -41,6 +56,24 @@ For the castle char polys, the split is by parity of `k`:[^1]
 | **odd `k`** | `char_1 = x²−2x+2` | **irreducible** (prime) |
 | | `char_3 = x⁴−4x³+8x²−8x+8` | irreducible |
 | | `char_5 = x⁶−6x⁵+18x⁴−32x³+48x²−32x+32` | irreducible |
+
+The split, verified in one line:
+
+```python
+import sympy as sp
+x = sp.Symbol('x')
+sp.factor(x**3 - 3*x**2 + 4*x - 4)          # char_2 : composite
+sp.factor(x**4 - 4*x**3 + 8*x**2 - 8*x + 8)  # char_3 : irreducible
+```
+
+```
+>>> sp.factor(x**3 - 3*x**2 + 4*x - 4)
+(x - 2)*(x**2 - x + 2)
+>>> sp.factor(x**4 - 4*x**3 + 8*x**2 - 8*x + 8)
+x**4 - 4*x**3 + 8*x**2 - 8*x + 8
+```
+
+`factor` returns `char_3` unchanged — a polynomial with no factor is exactly an integer with no divisor.[^3]
 
 One honest caveat: "irreducible" depends on *which field* you work over. The table is irreducibility over the rationals `ℚ`. When you reduce mod a specific prime `p`, an over-`ℚ`-irreducible poly can still split (that's the quadratic-reciprocity story, [[finite-fields](pages/finite-fields.md)]). But the over-`ℚ` factorization is the first-order signal, and it drives the toy's main weakness.
 
@@ -107,3 +140,7 @@ The engineer's one-liner: **a composite structure is only as strong as its weake
 ## Footnotes
 
 [^1]: Verified by execution (SymPy `Poly.is_irreducible` over `ℚ`, 2026-09-18): `char_1, char_3, char_5` (odd `k`) are irreducible; `char_2 = (x−2)(x²−x+2)`, `char_4 = (x²−2x+4)(x³−3x²+2x−4)`, `char_6 = (x³−4x²+4x−8)(x⁴−3x³+8x²−4x+8)` (even `k`) factor. The even-`k` factorization is the tower-parity-sector structure ([[tower-parity-sectors](pages/tower-parity-sectors.md)]); the `x³−4x²+4x−8` factor of `char_6` is the plastic-number factor (`2ψ²`, [[plastic-number](pages/plastic-number.md)]).
+
+[^2]: Verified by execution (2026-09-18): `[p2(L) for L in range(8)] = [1, 1, 3, 9, 19, 33, 59, 121]` — the recurrence `P(L) = 3P(L−1) − 4P(L−2) + 4P(L−3)` with seeds `(1, 1, 3)` reproduces `P(2, ·)` exactly.
+
+[^3]: Verified by execution (SymPy, 2026-09-18): `sp.factor(x**3 − 3*x**2 + 4*x − 4) = (x − 2)*(x**2 − x + 2)` (composite) and `sp.factor(x**4 − 4*x**3 + 8*x**2 − 8*x + 8)` returns the polynomial unchanged (irreducible).

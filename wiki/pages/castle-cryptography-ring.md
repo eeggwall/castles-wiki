@@ -57,6 +57,29 @@ Not arbitrary. `char_2 mod 101` factors as `(x − 2)(x² − x + 2)` - the quad
 
 An element of `F_p[x] / (Q)` is a polynomial of degree less than `d = deg Q`, coefficients in `F_p`. Store it as a length-`d` list of coefficients. Addition is componentwise mod `p`. Multiplication is: polynomial multiplication in the usual way, then **reduce mod `Q`** - whenever the result reaches degree `d`, replace `x^d` with the recurrence rewrite. For `Q = char_2 = x³ − 3x² + 4x − 4` that rewrite is `x³ → 3x² − 4x + 4`.
 
+Here is the whole ring in full — every operation the seminar uses:
+
+```python
+def mulmod(A, B, Q, p):              # multiply in F_p[x]/(Q), Q monic, low->high
+    r = [0]*(len(A)+len(B)-1)
+    for i, a in enumerate(A):
+        for j, b in enumerate(B):
+            r[i+j] = (r[i+j] + a*b) % p
+    for i in range(len(r)-1, len(Q)-2, -1):        # reduce: x^d -> the recurrence
+        for j, c in enumerate(Q):
+            r[i-len(Q)+1+j] = (r[i-len(Q)+1+j] - r[i]*c) % p
+    return r[:len(Q)-1]
+
+def powmod(base, e, Q, p):           # x^e by squaring — the Kitamasa trapdoor
+    res = [1] + [0]*(len(Q)-2)
+    while e:
+        if e & 1: res = mulmod(res, base, Q, p)
+        base = mulmod(base, base, Q, p); e >>= 1
+    return res
+```
+
+`mulmod`'s second loop is the `x³ → 3x² − 4x + 4` rewrite applied to polynomials, and `powmod` is the same fast-index exponentiation as [[kitamasa](pages/kitamasa.md)]. These are the page-local teaching versions of the primitives; the full pinned set (`castle_dh` and friends) lives on [[castle-snippets](pages/castle-snippets.md)].
+
 Live, at `p = 10⁹+7`:
 
 ```
@@ -123,6 +146,24 @@ Live cost at `p = 10⁹ + 7`, `Q = char_2`:
 
 Two hundred squarings for a `2²⁰⁰` exponent - **the forward map cannot be defeated by making `a` bigger**.[^5] The castle solve's fast-index trick is the trapdoor; the same twenty lines of code produce both.
 
+The asymmetry in one screen — forward costs `log₂ a`, backward costs `a`:
+
+```python
+A = powmod(g, 12345, Q, p)          # forward: 13 squarings + 5 multiplies — instant
+cur = [1, 0, 0]; e = 0              # backward: grind x, x^2, x^3, ... until you hit A
+while cur != A:
+    cur = mulmod(cur, g, Q, p); e += 1
+```
+
+```
+>>> A
+[24371334, 336255992, 769290382]
+>>> e
+12345
+```
+
+Recovering a 14-bit exponent cost `12345` multiplies; recovering the real private key `373309869` costs that many — and making `a` bigger never slows the forward direction. That `log₂ a`-versus-`a` gap *is* the trapdoor.[^7]
+
 ## 7. Diffie-Hellman on the ring - the seminar's deliverable
 
 Public parameters: a prime `p` and a public castle `Q = char_k mod p`. Generator: the polynomial `g = x`. Private key: a secret exponent. Public key: `A = g^a mod Q`. Shared secret: `x^{ab} mod Q`, computed as `B^a` by one party and `A^b` by the other. The whole exchange is `mulmod` + `powmod`:
@@ -181,3 +222,5 @@ Each of these is a *legitimate* question about the object we just built, sitting
 [^5]: Verified by execution (2026-09-18) at `p = 10⁹ + 7`, `Q = char_2 mod p`, `g = x`, counting `mulmod` calls. Operation count for `powmod(x, a)`: 6 at `a = 7`, 20 at `a ≈ 2¹⁴`, 27 at `a ≈ 2²⁰`, 53 at `a ≈ 2⁴⁰`, 137 at `a ≈ 2¹⁰⁰`. Wall-clock 0.02-0.26 ms in pure Python. Squaring count = `⌊log₂ a⌋`, multiply count = popcount(`a`) − 1 (each set bit past the top).
 
 [^6]: Verified by execution (2026-09-18) at `p = 10⁹ + 7`, `Q = char_2 mod p`, `g = x`, `a = 373309869`, `b = 566180101`: `A = [704821174, 848698009, 235195321]`, `B = [12836899, 147220895, 148070992]`, and `powmod(B, a) == powmod(A, b) = [395423824, 86931747, 647893869]`. Same numbers as pinned on `castle_dh` in [[castle-snippets](pages/castle-snippets.md)] and [[castle-cryptography](pages/castle-cryptography.md)].
+
+[^7]: Verified by execution (2026-09-18) at `p = 10⁹ + 7`, `Q = char_2 mod p`: `powmod(g, 12345, Q, p) = [24371334, 336255992, 769290382]` costs 13 squarings + 5 multiplies (`⌊log₂ 12345⌋ = 13`, `popcount(12345) = 6`), while brute-force `x, x², x³, …` recovers the exponent only after `12345` multiplies. For the real private key the same loop is `373309869` multiplies.

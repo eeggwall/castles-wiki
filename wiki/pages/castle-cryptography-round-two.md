@@ -44,6 +44,34 @@ Round one *described* the CRT split; round two *runs* it. Take the published `ca
 
 Each piece is solved by **Pohlig–Hellman** over the factorization of the element order, with **baby-step giant-step** on each prime-power factor: the largest prime is `500000003 ≈ 2²⁹`, so the biggest BSGS table has about `2¹⁵` entries. **Alice's private key `a = 373309869` comes back in 0.07 s**, from `p`, `Q`, and `A` alone.[^2] The room should watch this happen: the secret exponent that took forty squarings to *use* takes a fraction of a second to *steal*.
 
+The cheapest piece, in one screen — the `(x−2)` factor hands the attacker an ordinary mod-`p` discrete log, and baby-step giant-step solves it with a `√500000003 ≈ 2¹⁵`-entry table:
+
+```python
+from math import isqrt
+def bsgs_modp(g, h, n, p):           # solve g^x = h (mod p), ord(g) = n
+    m = isqrt(n) + 1
+    tbl = {}; e = 1
+    for j in range(m): tbl.setdefault(e, j); e = e*g % p        # baby steps g^0..g^{m-1}
+    gs = pow(g, (n - m) % n, p)                                # g^{-m}
+    for i in range(m):                                         # giant steps h*g^{-im}
+        if h in tbl: return i*m + tbl[h]
+        h = h*gs % p
+
+p  = 10**9 + 7
+A  = [704821174, 848698009, 235195321]   # Alice's public key x^a mod char_2
+A2 = (A[0] + 2*A[1] + 4*A[2]) % p        # project onto (x-2): substitute x = 2
+bsgs_modp(2, A2, 500000003, p)           # 2^a = A2 (mod p), ord(2) = 500000003
+```
+
+```
+>>> A2
+342998455
+>>> bsgs_modp(2, A2, 500000003, p)
+373309869
+```
+
+One factor, one `√ord` search, and the private key is back — the degree-1 piece alone was enough.[^6]
+
 ## Attack 4 — the "irreducible `Q`" fix does not survive
 
 Round one's Fix 1 said: use an odd-`k` char poly, which is irreducible, so the ring is one field `F_{p^d}` and "the attacker faces the whole discrete log." True as far as it goes, and **not enough**, because the *group order* factors even when the *modulus* does not:
@@ -62,6 +90,23 @@ This is an *algebraic* factorization: it holds for every `p`, and it hands Pohli
 | `char_3` (deg 4) | yes | `2⁴ · 5 · 58699937 · 340715873 · 500000003` | `500000003 ≈ 2²⁹` | **0.18 s** |
 | Schnorr subgroup on `char_3` | yes | `q = 340715873 ≈ 2²⁹` | itself | **0.07 s** (plain BSGS) |
 
+The factorization is not a computation the attacker must redo — it is the same small primes for everyone, read off in one line:
+
+```python
+import sympy as sp
+sp.factorint(10**9 + 8)          # p + 1
+sp.factorint((10**9 + 7)**2 + 1) # p^2 + 1
+```
+
+```
+>>> sp.factorint(10**9 + 8)
+{2: 3, 3: 2, 7: 1, 109: 2, 167: 1}
+>>> sp.factorint((10**9 + 7)**2 + 1)
+{2: 1, 5: 2, 340715873: 1, 58699937: 1}
+```
+
+The two primes `58699937` and `340715873` live in `p² + 1`, the genuine degree-4 part of `F_{p⁴}^*` — the build's subgroup prime is `340715873`, and a plain BSGS table for it is `√340715873 ≈ 18,000` entries. "Irreducible" removed the ring's split, not the group's.[^7]
+
 Same private key `373309869`, same attacker, three "hardened" moduli.[^3] The fix removed the CRT split of the *ring* and left the CRT split of the *group* untouched. **Irreducible was a property; the attacker needed a number.**
 
 ## Attack 5 — the "nonlinear output" fix does not survive either
@@ -76,6 +121,39 @@ Round one's Fix 2 said: filter the linear castle stream through a nonlinear func
 | `s_n · s_{n+1} · s_{n+2}` | 9 | 20 | 56 | `C(d+2, 3)` |
 
 Tight at `d = 4` and `d = 6`; at `d = 3` the two deficits come from coincidences among products of `char_2`'s roots (its quadratic factor `x² − x + 2` has constant term `2`, so the product of its two roots *is* the third root `2`, and monomials collide — structure lowering complexity yet again). In every case the recovered recurrence predicts every later term and `2L` terms suffice. As a check on the mechanism, the exact characteristic polynomial of `s_n s_{n+1}` for `char_2` is `∏_{i≤j}(x − λ_iλ_j) = x⁶ − 5x⁵ + 8x⁴ − 12x³ − 16x² − 64x + 256`, and Berlekamp–Massey mod `p` returned precisely those coefficients.[^4]
+
+The measurement, in one screen — a four-stage register is linear complexity `4`; its "nonlinear" two-term product is still linear, complexity `10 = C(5,2)`:
+
+```python
+def bm(s, p):                        # Berlekamp-Massey: linear complexity of s mod p
+    C, B, L, m, b = [1], [1], 0, 1, 1
+    for n in range(len(s)):
+        d = (s[n] + sum(C[i]*s[n-i] for i in range(1, L+1))) % p
+        if d == 0: m += 1; continue
+        T = C[:]; coef = d * pow(b, -1, p) % p
+        C = C + [0]*(len(B)+m-len(C))
+        for i in range(len(B)): C[i+m] = (C[i+m] - coef*B[i]) % p
+        if 2*L <= n: L, B, b, m = n+1-L, T, d, 1
+        else: m += 1
+    return L
+
+def lfsr(Q, init, n, p):             # run the castle recurrence from its initial terms
+    s = list(init); d = len(Q)-1
+    while len(s) < n: s.append(sum(-Q[j]*s[-d+j] for j in range(d)) % p)
+    return s
+
+p  = 10**9 + 7
+Q3 = [8, -8 % p, 8, -4 % p, 1]       # char_3 = x^4 - 4x^3 + 8x^2 - 8x + 8
+s  = lfsr(Q3, [1, 0, -4 % p, -16 % p], 300, p)   # P(3, L) mod p: a 4-stage register
+z  = [(s[i]*s[i+1]) % p for i in range(299)]     # the "nonlinear" output s_n * s_{n+1}
+```
+
+```
+>>> bm(s, p), bm(z, p)
+(4, 10)
+```
+
+`4` becomes `10` — a quantifiable increase, not immunity. The bound `C(d+e−1, e) = C(5,2) = 10` is reached exactly, so the register stays wide open to Berlekamp–Massey.[^8]
 
 So "nonlinear defeats Berlekamp–Massey" is false as stated. What nonlinearity buys is a **quantifiable increase in linear complexity**, from `d` to roughly `C(d+e−1, e)`, and a small register with a low-degree filter stays wide open.
 
@@ -171,3 +249,9 @@ A builder who never runs step 4 declares victory after Fix 1. A breaker who neve
 [^4]: Verified by execution (2026-09-18): `bm_modp` (Berlekamp–Massey over `F_p`) on `P(k,·) mod p` returns linear complexity `d = k+1` for `k = 2, 3, 5`, and on the four filters the complexities tabulated (300 terms each); for every filter the recovered connection polynomial annihilates all later terms and `bm_modp(z[:2L])` returns the same `(C, L)`. Exact product polynomial for `char_2`: SymPy roots, `∏_{i≤j}(x − λ_iλ_j) = x⁶ − 5x⁵ + 8x⁴ − 12x³ − 16x² − 64x + 256`; `bm_modp` on `s_n s_{n+1}` returned `[256, −64, −16, −12, 8, −5, 1]` (signed representatives, high→low), the same polynomial.
 
 [^5]: Computed 2026-09-18. Linear-complexity bounds `Σ_{j=1}^{e} C(d+j−1, j)`: `(6,6) → 923`, `(32,8) → 76904684 ≈ 2²⁶`, `(64,16) ≈ 2⁵⁵`, `(128,16) ≈ 2⁶⁹`. `L_q[1/3]` with constant `(64/9)^{1/3}` at `q = p^d`, `p = 10⁹+7`: `d = 2, 3, 4, 6, 7 → 2²³, 2²⁸, 2³³, 2⁴⁰, 2⁴³`; largest prime factor of `p^d − 1` (SymPy `factorint`) `≈ 2²⁹, 2⁴⁸, 2²⁹, 2⁴⁸, 2⁶⁹` respectively. `L_q[1/3] = 2⁸⁰` near `q ≈ 2⁸⁶⁴`; `= 2¹²⁸` near `q ≈ 2²⁵⁴⁴`. These are the textbook heuristic exponents, not a tuned NFS estimate; the honest reading is the order of magnitude.
+
+[^6]: Verified by execution (2026-09-18): the degree-1 factor `(x − 2)` of `char_2` projects Alice's key to `A(2) = A[0] + 2A[1] + 4A[2] = 342998455 mod p`, and `bsgs_modp(2, 342998455, 500000003, p)` returns `373309869`. `ord(2) = 500000003` (prime, `= (p−1)/2`); the table has `√500000003 ≈ 2¹⁵` entries.
+
+[^7]: Verified by execution (SymPy `factorint`, 2026-09-18): `p + 1 = 2³ · 3² · 7 · 109² · 167`, and `p² + 1 = 2 · 5² · 58699937 · 340715873` — the two primes live in the genuine degree-4 part of `F_{p⁴}^*`. The build's subgroup prime is `340715873`; a plain BSGS table for it is `√340715873 ≈ 18,000` entries.
+
+[^8]: Verified by execution (2026-09-18): `bm(P(3,·) mod p, p) = 4` (a 4-stage register) and `bm(s_n·s_{n+1}, p) = 10 = C(5,2)`, matching the `d = 4` row of the filter table and the bound `C(d+e−1, e)`.
