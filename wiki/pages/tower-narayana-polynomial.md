@@ -5,7 +5,7 @@ summary: The tower (heap-of-pieces) block-count g.f. is Narayana_w(x)/(1−x)^w;
 tags: [oeis, tower, narayana, heap-of-pieces, generating-functions, cross-reference, source]
 sources: [tower-narayana-polynomial]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-18
 ---
 
 # Tower block-count = Narayana polynomial
@@ -35,6 +35,8 @@ The width rows land on existing OEIS entries:[^2]
 | 5 | 1, 15, 85, 295, 771, 1681, … | **A160747** |
 | 6 | 1, 21, 161, 721, 2331, 6083, … | **new** |
 | 7 | 1, 28, 280, 1582, 6244, 19348, … | **new** |
+
+**Offset note:** **A063490 is offset 1** (`a(n) = T(4, n−1)`) — the only width-row entry with a shift; A005408/A005891/A160747 are offset 0. Per the phase-2 plan, **A005408 is skipped by default** (densest entry, weakest of the set), and the submission order is A160747 → A005891 → A063490 → A001263.
 
 ## Cross-reference actions
 

@@ -5,7 +5,7 @@ summary: Re-indexing castles by total cells n instead of (w,h) — convex↔A001
 tags: [concept, castle, area, composition, oeis, unimodal, valley]
 sources: [oeis-mining-pe502, castle-by-area]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-18
 ---
 
 # Castles by area
@@ -21,6 +21,8 @@ updated: 2026-09-13
 - **Valley castles = `A332578(n)`** — a valley-shaped castle (weakly decreasing then increasing) is a composition whose *negation* is unimodal; the mirror of A001523.[^3]
 - **Non-convex castles = `A115981(n)` = `A011782(n) − A001523(n)`** — compositions "not viewable as stacks."[^3]
 - **Not-valley (complement of valley) = `A332669(n)` = `2^{n−1} − A332578(n)`.**[^3]
+
+Per the phase-2 submission plan, the three dense matches — **A001523**, **A332578**, **A115981** — cross-reference the phase-1 height-2 sequences **A038505 / A038503 / A146559** ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]), tying the area-parametrized block-parity counts back to the width-index hyperbolic family.
 
 ## New sequences (generation candidates)
 
