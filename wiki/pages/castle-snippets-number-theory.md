@@ -131,7 +131,7 @@ def P_table(max_k, max_L):
 
 ### `berlekamp_massey(s)` → the shortest recurrence over the rationals
 
-Berlekamp–Massey with exact rational coefficients (the mod-`p` cousin is `bm_modp` in the cryptography snippets). Given a sequence, returns the connection polynomial (low→high, `C[0] = 1`) and its order. Over `Q` this is exact — [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] Part 3 runs it on `P(·, L)` to recover `(x+1)^L (x−1)^{L−2}`.
+Berlekamp–Massey with exact rational coefficients (the mod-`p` cousin is `bm_modp` in the cryptography snippets). Given a sequence, returns the connection polynomial (low→high, `C[0] = 1`) and its order. Over `Q` this is exact — [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] Part 3 runs it on `P(·, L)` to recover `(x+1)^L (x−1)^{L−2}`.
 
 ```python
 from fractions import Fraction
@@ -241,7 +241,7 @@ Meaning: `H_3` is the minimal polynomial of `ψ²` (plastic number squared), hen
 
 ### `cf_digits(poly, x0, n)` → the simple continued fraction of an algebraic number
 
-The digit stream of a real algebraic number by repeated `⌊·⌋` and reciprocal, at `mpmath` precision. For a quadratic it repeats (Lagrange); for a cubic it never does, and the digits look random. Part 4 of [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] uses this to show `ρ_6` has no simple-CF period. Requires mpmath.
+The digit stream of a real algebraic number by repeated `⌊·⌋` and reciprocal, at `mpmath` precision. For a quadratic it repeats (Lagrange); for a cubic it never does, and the digits look random. Part 4 of [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] uses this to show `ρ_6` has no simple-CF period. Requires mpmath.
 
 ```python
 from mpmath import mp, mpf, findroot, floor
@@ -301,7 +301,7 @@ def jacobi_perron(f, x0, steps):
 'no period within 400 steps'
 ```
 
-Meaning: `ρ_6` has a period-4 multidimensional continued fraction (the cubic analogue of `[2; 2, 2, …]`), while `ρ_4` shows none in 400 exact steps — the unit/non-unit split: `ρ_6/2 = ψ²` is a unit, `ρ_4/2` is not even an algebraic integer ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]).
+Meaning: `ρ_6` has a period-4 multidimensional continued fraction (the cubic analogue of `[2; 2, 2, …]`), while `ρ_4` shows none in 400 exact steps — the unit/non-unit split: `ρ_6/2 = ψ²` is a unit, `ρ_4/2` is not even an algebraic integer ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]).
 
 
 ## Appearances in Sources
