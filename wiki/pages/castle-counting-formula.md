@@ -1,8 +1,8 @@
 ---
 title: Castle counting formula
-category: Analyses
-summary: The closed form F(w,h) = [h^w − (h−1)^w − P(h−1,w) + P(h−2,w)]/2, from the unsigned tower count (k+1)^L and the signed count P_k; verified on all checkpoints.
-tags: [analysis, castle, generating-functions, closed-form, dyck]
+category: Concepts
+summary: The wiki's core derivation. F(w,h) = [h^w − (h−1)^w − P(h−1,w) + P(h−2,w)]/2 from the unsigned tower count (k+1)^L (proved three independent ways) and the signed count P_k; verified on all checkpoints.
+tags: [concept, castle, generating-functions, closed-form, dyck, proof]
 sources: [project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes, project-euler-502-brute-force]
 created: 2026-09-13
 updated: 2026-09-19
@@ -12,11 +12,13 @@ updated: 2026-09-19
 
 ## Overview
 
-This is the closed-form derivation of the [[castle-counting-function](pages/castle-counting-function.md)] `F(w,h)`, read off the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] for castles. It replaces enumeration with a direct count and reproduces the problem's known checkpoints exactly. It has two ingredients — an **unsigned** tower count and a **signed** tower count that encodes the even-block rule — combined into the formula for `F(w,h)`.
+This is the closed-form derivation of the [[castle-counting-function](pages/castle-counting-function.md)] `F(w,h)`, read off the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] for castles. It replaces enumeration with a direct count and reproduces the problem's known checkpoints exactly. It has two ingredients — an **unsigned** tower count and a **signed** tower count that encodes the even-block rule — combined into the formula for `F(w,h)`. The unsigned count is proved three independent ways below; the signed count is reached by three independent routes.
 
 ## Unsigned count: T(k,L) = (k+1)^L
 
-Mark each `R` step by a variable *x*, so a tower of *L* columns is worth `x^L`. Writing `E_k(x)` for the generating function of towers of height at most *k*, the grammar `E_k → empty | R E_k | U V D (empty | R E_k)` reads off term-by-term as:[^1]
+Three independent proofs give the same count: a generating-function recurrence read off the grammar, a product form over column heights, and an induction on *k* through the binary-string bijection. Each is short enough to give in full.
+
+**Proof 1: generating-function recurrence.** Mark each `R` step by a variable *x*, so a tower of *L* columns is worth `x^L`. Writing `E_k(x)` for the generating function of towers of height at most *k*, the grammar `E_k → empty | R E_k | U V D (empty | R E_k)` reads off term-by-term as:[^1]
 
 ```
 E_k = 1 + x·E_k + (E_{k−1} − 1)(1 + x·E_k)
@@ -28,9 +30,11 @@ where `1` is the empty tower, `x·E_k` a gap column then the rest, `(E_{k−1} �
 E_k = 1 / (1 − (k+1)x)      ⟹      T(k,L) = (k+1)^L
 ```
 
-**A simpler product-form proof.** The castle-factoring reading gives the same `(k+1)^L` without solving a generating-function recurrence: reading a tower as its column heights `c_1…c_L` (the integer-tuple [[castle-representations](pages/castle-representations.md)]), each `c_i` ranges *independently* over `{0,…,k}`, and the tower word is recovered invertibly from the heights — so `T(k,L) = (k+1)^L` is immediate as a product form.[^10] That independence of the columns is exactly the crux the Observations subpage names — sibling towers never interact — captured structurally on [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]; it "took years to see."[^13]
+**Proof 2: product form over column heights.** The castle-factoring reading gives the same `(k+1)^L` without solving a generating-function recurrence: reading a tower as its column heights `c_1…c_L` (the integer-tuple [[castle-representations](pages/castle-representations.md)]), each `c_i` ranges *independently* over `{0,…,k}`, and the tower word is recovered invertibly from the heights — so `T(k,L) = (k+1)^L` is immediate as a product form.[^10] That independence of the columns is exactly the crux the Observations subpage names — sibling towers never interact — captured structurally on [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]; it "took years to see."[^13]
 
-So the number of towers of height at most *k* above a length-*L* block is `(k+1)^L` — the same closed form the Solution subpage proves by a clean induction on *k*: the [[binary-string-bijection](pages/binary-string-bijection.md)] plus sibling independence makes the count factor over runs, `T(k,L) = ∑_b ∏_{runs} T(k−1,l) = ∑_b k^{ones(b)} = (1+k)^L`, with corollary `T(h−1,w) = h^w`.[^16]
+**Proof 3: induction on *k*.** The Solution subpage proves the same closed form by a clean induction on *k*: the [[binary-string-bijection](pages/binary-string-bijection.md)] plus sibling independence makes the count factor over runs, `T(k,L) = ∑_b ∏_{runs} T(k−1,l) = ∑_b k^{ones(b)} = (1+k)^L`.[^16]
+
+All three land on the same statement: the number of towers of height at most *k* above a length-*L* block is `(k+1)^L`, with corollary `T(h−1,w) = h^w`.[^16]
 
 ## Signed count: the even-block rule as a sign
 
