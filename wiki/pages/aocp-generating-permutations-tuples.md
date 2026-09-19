@@ -5,7 +5,7 @@ summary: Knuth's combinatorial-generation algorithms — mixed-radix add-one tup
 tags: [knuth, taocp, generation, mixed-radix, gray-code, brute-force, source]
 sources: [aocp-generating-permutations-tuples]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # AOCP Generating Permutations & Tuples (Knuth TAOCP Vol. 4)
@@ -30,7 +30,20 @@ The connection is concrete and lives in the brute-force enumerator:
 - **The `2^n` binary-string count** is the [[binary-string-bijection](pages/binary-string-bijection.md)]: generating all length-*w* binary strings by counting `0…0` to `1…1` is precisely enumerating the configurations of one length-*w* block.
 - **Gray-code ordering** is a lens on the castle's local structure: successive one-coordinate changes are the smallest moves in the mixed-radix space, and the castle's block-count / `is_unimodal` deltas under such a single-column change connect to the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] view.
 
-**A seminar / research thread — Knuth's generation algorithms in castle space.** Systematically translating Vol. 4's combinatorial-generation algorithms into the castle's mixed-radix `{1..h}^w` space is a self-contained, accessible research direction (and a good seminar): Algorithm M is already the castle brute-force; a **castle Gray code** would order castles so each step changes one column height by one — inducing a bounded, predictable change in block count and in the [[castle-sign](pages/castle-sign.md)] — which could give a loopless enumerator, an incremental parity/`P` update, and a combinatorial handle on the even/odd split. Restricting the generation to *valid* castles (max height exactly *h*, and the even-block filter) is the interesting twist Knuth's generic algorithms do not handle out of the box. Tracked in the wiki TODO.
+**A seminar / research thread — Knuth's generation algorithms in castle space.** Systematically translating Vol. 4's combinatorial-generation algorithms into the castle's mixed-radix `{1..h}^w` space is a self-contained, accessible research direction (and a good seminar): Algorithm M is already the castle brute-force; a **castle Gray code** would order castles so each step changes one column height by one — inducing a bounded, predictable change in block count and in the [[castle-sign](pages/castle-sign.md)] — which could give a loopless enumerator, an incremental parity/`P` update, and a combinatorial handle on the even/odd split. Restricting the generation to *valid* castles (max height exactly *h*, and the even-block filter) is the interesting twist Knuth's generic algorithms do not handle out of the box. Tracked in `IDEAS.md` (seminar S10, "Knuth's algorithms in castle space," and the Enumeration Division's castle Gray code item).
+
+## Where Algorithm M already runs on the wiki
+
+Every exhaustive census on the wiki is Algorithm M with a post-filter. The primitive is `all_castles(w, h)` on [[castle-snippets](pages/castle-snippets.md)] - `product(range(1, h+1), repeat=w)` filtered by `max(c) == h` - and the same loop drives the big sweeps: the 65,534 skylines of [[isospectral-castles](pages/isospectral-castles.md)], the 4.87 million castles of [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], and the parity-sector, n-nacci, and proper-castle tables on [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)], and [[proper-castle-projection](pages/proper-castle-projection.md)]. The post-filter is cheap: of the `h^w` tuples visited, `h^w − (h−1)^w` are proper castles ([[castle-counting-function](pages/castle-counting-function.md)]), a fraction tending to `1` as `w` grows; the even-block half of those is `F(w,h)`, which [[castle-entropy](pages/castle-entropy.md)] prices at exactly one bit of the `w·log₂ h` the odometer spends.
+
+Two facts make the castle Gray code concrete rather than speculative:
+
+- **A one-column move changes the block count by 0 or ±1.** With `#blocks = c_1 + Σ_{i≥2} max(0, c_i − c_{i−1})` (the column-height formula on [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]), raising `c_i` by one can only raise the term `max(0, c_i − c_{i−1})` and only lower the term `max(0, c_{i+1} − c_i)`, each by at most `1`, so the net change is in `{−1, 0, +1}` (checked exhaustively for `(w,h) = (5,4)` and `(6,3)`). Along a Gray walk the [[castle-sign](pages/castle-sign.md)] `(−1)^{blocks}` therefore flips exactly when the block count moves, an `O(1)` update, and the signed count `P` accumulates incrementally.
+- **The odometer and the automaton are the two ways to walk `{1..h}^w`.** Algorithm M enumerates tuples one at a time; the [[castle-strip](pages/castle-strip.md)] transfer matrix walks the same space column by column and counts all `h^w` (or a rule-restricted subset) at once. A Gray code is the odometer given a locality property the automaton has for free.
+
+Gray order is also a delta encoding - consecutive castles differ in one symbol - which is where it meets the encoding ladder of [[castle-compression](pages/castle-compression.md)].
+
+**OEIS.** The reflected Gray code itself is A003188 (decimal value of the Gray code of `n`: 0, 1, 3, 2, 6, 7, 5, 4, …), and Knuth's ruler function `ρ(k)` - the bit to flip at step `k` - is the 2-adic valuation A007814 (0, 1, 0, 2, 0, 1, 0, 3, …).[^6]
 
 ## Key Takeaways
 
@@ -45,6 +58,11 @@ The connection is concrete and lives in the brute-force enumerator:
 - [[binary-string-bijection](pages/binary-string-bijection.md)] — the `2^n` binary-string enumeration.
 - [[castle-by-area](pages/castle-by-area.md)] — the by-area enumeration, another exhaustive tuple listing.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the single-coordinate-change lens Gray code suggests.
+- [[castle-snippets](pages/castle-snippets.md)] - `all_castles(w, h)`, the wiki's Algorithm M in `itertools` form.
+- [[isospectral-castles](pages/isospectral-castles.md)] / [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] / [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[proper-castle-projection](pages/proper-castle-projection.md)] - the censuses that run on it.
+- [[castle-counting-function](pages/castle-counting-function.md)] / [[castle-entropy](pages/castle-entropy.md)] - how many of the `h^w` visited tuples survive the filters, and what that costs in bits.
+- [[castle-strip](pages/castle-strip.md)] - the automaton alternative to the odometer.
+- [[castle-compression](pages/castle-compression.md)] - Gray order as a one-symbol delta encoding.
 
 Linked from the source but not yet ingested: (none new for this wiki).
 
@@ -59,3 +77,4 @@ An algorithmic-methods reference: it names the exhaustive-generation procedure b
 [^3]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Gray Binary Code Generation Algorithm" L85 — "it produces permutations such that each permutation changes only one bit. For example, for n=4, we have 0000, 0001, 0011, 0010, 0111, 0101, 0100, etc."
 [^4]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Recurrence Relation"/"Algorithm G" L96-169 — "Γ_{n+1} = 0 Γ_n, 1 Γ_n^R ... The last string of Γ_n equals the first string of Γ_n^R so exactly one bit changes each step ... j = rho(k) (rho is the ruler function)"; one-bit-change property re-verified for n=4 during ingest.
 [^5]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Baudot Code"/"Chinese ring puzzle" L129-139 — "The baudot telegraph machine uses Γ_5 gray code ... Chinese ring puzzle ... The state of the puzzle can be represented with binary notation."
+[^6]: https://oeis.org/A003188 (2026-09-19) — "Decimal equivalent of Gray code for n" 0, 1, 3, 2, 6, 7, 5, 4, 12, 13, 15, 14, …; https://oeis.org/A007814 (2026-09-19) — "Exponent of highest power of 2 dividing n, a.k.a. the binary carry sequence, the ruler sequence, or the 2-adic valuation of n" 0, 1, 0, 2, 0, 1, 0, 3, …

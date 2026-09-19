@@ -5,7 +5,7 @@ summary: The observations subpage — the crux (sibling sub-blocks don't interac
 tags: [project-euler, castle, observations, lessons, source, subpage]
 sources: [project-euler-502-observations]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # PE 502: Observations
@@ -39,6 +39,16 @@ The source lists four methodology lessons, recorded here as its own commentary:[
 - The right representation collapses the problem; the wrong one hides it.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] turns "I have a sequence, I don't know the recurrence" into a solved problem.
 
+## Where each observation now lives
+
+Each of the source's five observations has grown into a thread on the wiki.
+
+- **The crux (sub-block independence)** is captured on [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)], taught end-to-end on [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], and is the induction step of the [[binary-string-bijection](pages/binary-string-bijection.md)] proof of `T(k,L) = (k+1)^L`.
+- **"A symmetry trick that recurs"** is the `m = 2` case of a general extraction: [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] replaces the sign by an `m`-th root of unity, [[block-count-constraints](pages/block-count-constraints.md)] places it in a residue / sparse / semigroup trichotomy, [[generating-functions-topic](pages/generating-functions-topic.md)] shows the EGF twin `(e^x + e^{−x})/2`, and [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] gives the elementary anchor - `(1 ± sgn)/2` peeling `A_n` out of `S_n`.
+- **"Almost the entire difficulty" is now a number.** [[castle-entropy](pages/castle-entropy.md)] shows `log₂ F(w,h) ≈ w·log₂ h − 1`: the even-block clause costs exactly one bit. The unsigned baseline `h^w − (h−1)^w` is the any-parity count `A(w,h)` on [[castle-counting-function](pages/castle-counting-function.md)], the difference-of-powers rows A000225 (`h = 2`), A001047 (`h = 3`), A005061, A005060, A005062 (`4^n − 3^n`, `5^n − 4^n`, `6^n − 5^n`) indexed on [[oeis-index](pages/oeis-index.md)]; its `h = 3` complement is the new sequence on [[new-sequence-fw3](pages/new-sequence-fw3.md)].
+- **The two factorizations** are point samples of what [[mod-p-observatory](pages/mod-p-observatory.md)] studies systematically (`F(w,h) mod p` is eventually periodic in each direction); the factoring machinery itself (Legendre's prime-multiplicity formula) is on [[aocp-permutations](pages/aocp-permutations.md)].
+- **The Berlekamp–Massey lesson** is run in both directions on [[recurrence-discovery](pages/recurrence-discovery.md)], routes the `h > 15000` targets on [[castle-count-algorithms](pages/castle-count-algorithms.md)], and turns adversarial on [[castle-cryptography](pages/castle-cryptography.md)], where the same algorithm is the LFSR attack that reconstructs a secret castle from its count stream.
+
 ## Entities & Concepts
 
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — where the sub-block-independence crux is captured.
@@ -46,12 +56,17 @@ The source lists four methodology lessons, recorded here as its own commentary:[
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — `T(k,L)=(k+1)^L`, the `h^w−(h−1)^w` baseline, and the verified factorizations.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] — the recurrence-recovery method named in the lessons.
 - [[urd-step-strings](pages/urd-step-strings.md)] — bare-minimum strings and the odd-*h* parity fix.
+- [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[binary-string-bijection](pages/binary-string-bijection.md)] — the crux taught, and the induction it powers.
+- [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] / [[block-count-constraints](pages/block-count-constraints.md)] / [[generating-functions-topic](pages/generating-functions-topic.md)] / [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the parity trick generalized, twinned, and anchored.
+- [[castle-entropy](pages/castle-entropy.md)] / [[castle-counting-function](pages/castle-counting-function.md)] / [[oeis-index](pages/oeis-index.md)] / [[new-sequence-fw3](pages/new-sequence-fw3.md)] — the one-bit price of the even clause and the difference-of-powers baseline.
+- [[mod-p-observatory](pages/mod-p-observatory.md)] / [[aocp-permutations](pages/aocp-permutations.md)] — factorizations, systematic and mechanical.
+- [[recurrence-discovery](pages/recurrence-discovery.md)] / [[castle-count-algorithms](pages/castle-count-algorithms.md)] / [[castle-cryptography](pages/castle-cryptography.md)] — Berlekamp–Massey at work, and turned against the castle.
 
-Linked from the source but not yet ingested (later ingests): Project Euler/502/Solution.
+Also linked from the source, now ingested: [[project-euler-502-solution](pages/project-euler-502-solution.md)].
 
 ## Relation to Other Wiki Pages
 
-This page adds little new machinery but supplies the *motivation and attribution* behind machinery already in the wiki: it names sub-block independence as the crux behind the product form, frames the parity-sign identity as a general technique, and isolates the even-block clause as the source of the difficulty. Its lessons and the Berlekamp–Massey pointer look ahead to the still-queued Solution and Implementation Notes subpages.
+This page adds little new machinery but supplies the *motivation and attribution* behind machinery already in the wiki: it names sub-block independence as the crux behind the product form, frames the parity-sign identity as a general technique, and isolates the even-block clause as the source of the difficulty. Its lessons and the Berlekamp–Massey pointer look ahead to [[project-euler-502-solution](pages/project-euler-502-solution.md)] and [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)], both since ingested.
 
 ## Footnotes
 

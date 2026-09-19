@@ -5,7 +5,7 @@ summary: A tournament (complete oriented graph) whose score vector is realized b
 tags: [concept, tournament, unique, score-sequence, oeis, a000570, tetali, classification]
 sources: [tetali-1998-unique-tournaments]
 created: 2026-09-17
-updated: 2026-09-17
+updated: 2026-09-19
 ---
 
 # Unique tournament
@@ -65,6 +65,27 @@ See [[tree-castle-by-area](pages/tree-castle-by-area.md)] for the tree-castle-to
 
 Two independent castle-adjacent bijections converge on the same object: our tree-castle bijection (via [[castle-graph](pages/castle-graph.md)]'s tree constraint) and Khovanova's 2007 "initial-loss non-tracking binary string" bijection[^6] built from the four basic strings `0`, `001`, `0011`, `00101`. Both encode the composition parts as size-`k` blocks.
 
+## The ambient counts
+
+Four OEIS sequences frame `u_n` from the outside; the first three were read from oeis.org on 2026-09-19.[^7]
+
+| `n` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+|---|---|---|---|---|---|---|---|---|
+| all tournaments up to isomorphism, A000568 | 1 | 1 | 2 | 4 | 12 | 56 | 456 | 6880 |
+| score sequences, A000571 | 1 | 1 | 2 | 4 | 9 | 22 | 59 | 167 |
+| strongly connected tournaments, A051337 | 1 | 0 | 1 | 1 | 6 | 35 | 353 | 6008 |
+| unique tournaments, A000570 | 1 | 1 | 2 | 4 | 7 | 11 | 18 | 31 |
+
+- `u_n ≤ A000571(n)`, with equality through `n = 4`: every score sequence on at most four vertices has one realizer. The first gap is at `n = 5` (`7` of `9`).
+- The strong-and-unique tournaments are `1` of `1`, `1` of `1`, `1` of `1`, `1` of `6` at `n = 1, 3, 4, 5`, then `0` of `35` and `0` of `353` at `n = 6, 7` - the rows [[tree-castle-by-area](pages/tree-castle-by-area.md)] exhausted by brute force - and the `6880` at `n = 8` is the isomorphism-class count that page's 35-minute Java run enumerated (`31` unique, all non-strong).
+- The regular-tournament count A096368 (`1, 1, 3` at `3, 5, 7` nodes) is the OEIS face of the FS filter on [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)].
+
+## Neighbours on the castle side
+
+- **The composition is the ordered coin problem.** `1/(1 − x − x³ − x⁴ − x⁵)` is the `SEQ` version of the coin-change series over `{1, 3, 4, 5}`; [[block-count-constraints](pages/block-count-constraints.md)] draws the `SEQ` / `MSET` distinction (compositions versus numerical semigroups) that this identity sits on.
+- **Same family, other rows.** [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] tables `A000570` beside tetranacci `A000078` at `h = 4` - tree castles against all castles of that height by area - and [[a005251-bijection](pages/a005251-bijection.md)] is the `h → ∞` row of the tree-castle family encoded as binary strings, the same "composition as a binary string" trick Khovanova's basic strings `0, 001, 0011, 00101` use here. The growth constant `α ≈ 1.685` sits between the `h = 3` row's `φ ≈ 1.618` and the `h → ∞` row's `ψ² ≈ 1.755`.
+- **Code.** `castle_to_composition` / `composition_to_castle` and `is_strongly_connected` on [[castle-snippets](pages/castle-snippets.md)] are the two arrows of the bijection in executable form.
+
 ## Appearances in Sources
 
 - [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] - the paper introducing the classification.
@@ -77,6 +98,10 @@ Two independent castle-adjacent bijections converge on the same object: our tree
 - [[castle-graph](pages/castle-graph.md)] - tree castles, the polyomino side of the bijection.
 - [[oeis-index](pages/oeis-index.md)] - A000570 catalog entry.
 - [[hardin-word-identity](pages/hardin-word-identity.md)] - a different castle-side realization of the same composition object (via signed tower counts).
+- [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] / [[simple-tournament](pages/simple-tournament.md)] - the Muller-Nešetřil-Pelant machinery, with the regular- and strong-tournament OEIS counts that confirm each filtering step.
+- [[block-count-constraints](pages/block-count-constraints.md)] - compositions with parts in `D` as the `SEQ` sibling of the coin-change series.
+- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[a005251-bijection](pages/a005251-bijection.md)] - the neighbouring rows of the tree-castle-by-area family.
+- [[castle-snippets](pages/castle-snippets.md)] - the bijection and the SCC test as code.
 
 ## Footnotes
 
@@ -91,3 +116,5 @@ Two independent castle-adjacent bijections converge on the same object: our tree
 [^5]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.159 L99-103 — "it is easy to check that there are three nonisomorphic strong tournaments which have the score vector (3, 3, 3, 3, 3, 3, 3). (Note that this among other things gives us that there are no strong tournaments on six or more vertices which belong to Unique.)"
 
 [^6]: T. Khovanova, "Unique Tournaments and Radar Tracking," arXiv:0712.1621 [math.CO] (2007), https://arxiv.org/abs/0712.1621. Khovanova's paper is the accessible full-text quoting Tetali's classification and building a parallel binary-string bijection.
+
+[^7]: https://oeis.org/A000568 (2026-09-19) — "Number of outcomes of unlabeled n-team round-robin tournaments" 1, 1, 1, 2, 4, 12, 56, 456, 6880, 191536, … (offset 0); https://oeis.org/A000571 (2026-09-19) — "Number of different score sequences that are possible in an n-team round-robin tournament" 1, 1, 1, 2, 4, 9, 22, 59, 167, 490, … (offset 0); https://oeis.org/A051337 (2026-09-19) — "Number of strongly connected tournaments on n nodes" 1, 1, 0, 1, 1, 6, 35, 353, 6008, 178133, … (offset 0); https://oeis.org/A096368 (2026-09-19) — "Number of unlabeled regular tournaments with 2n+1 nodes" 1, 1, 1, 3, 15, 1223, …

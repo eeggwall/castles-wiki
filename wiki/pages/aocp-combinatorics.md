@@ -5,7 +5,7 @@ summary: Knuth's sorting-combinatorics notes — permutations, inversions and in
 tags: [knuth, taocp, combinatorics, inversions, permutations, generating-functions, q-factorial, source]
 sources: [aocp-combinatorics]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # AOCP Combinatorics (Knuth TAOCP Vol. 3)
@@ -36,6 +36,12 @@ Inversions are the hinge between the castle's Dyck-word world and the q-analog c
 - **The q-factorial is the q-graded engine.** The `∏(1−z^k)/(1−z)^n` (q-factorial / Gaussian-binomial) structure is precisely what a **q-graded castle count** would be built from — the open "find the q-equivalent" thread. The castle's `P(k,L)` recurrences are C-finite in *ordinary* generating functions; the inversion machinery shows the shape a *q*-refinement takes.
 - **Inversion tables ↔ column-height tuples.** The "encode the object by an integer tuple with bounded entries, then count via a product because the choices are independent" move is exactly the castle's [[binary-string-bijection](pages/binary-string-bijection.md)] / column-height independence (`T(k,L) = (k+1)^L`). Knuth's inversion table is the same idea one level up.
 
+## Castle statistics that are Mahonian
+
+The inversion machinery lands on the castle most directly through one classification type. A **rainbow castle** ([[castle-classification](pages/castle-classification.md)]) has `w = h` and heights that are a permutation of `{1, …, h}` - the skyline *is* a permutation, so its inversion count is a castle statistic, and the `h!` rainbow castles of width `h` graded by skyline inversions are Knuth's `I_h(k)`, the Mahonian numbers A008302 (rows `1; 1, 1; 1, 2, 2, 1; 1, 3, 5, 6, 5, 3, 1; …`).[^7] The block count of the same castle, `#blocks = c_1 + Σ max(0, c_i − c_{i−1})` (the column-height formula on [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]), is a sum of ascent sizes - an Eulerian-side statistic - so rainbow castles carry a Mahonian and an Eulerian grading at once, the classical pair Knuth's chapter is built around. The Eulerian side already has a castle home: the up/flat/down streaks of [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] are the descent structure of the skyline.
+
+The q-grading the wiki keeps reaching for is also further along than "open": area is realized as a second grading on [[castle-by-area](pages/castle-by-area.md)] and as the bivariate GF `T_h(x, q)` on [[tree-castle-by-area](pages/tree-castle-by-area.md)], and Flajolet's combinatorial continued fractions on [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] are the standard machine for q-statistics on Motzkin paths - i.e. on tower words. The multiset form of the q-factorial (MacMahon's q-multinomial) is noted on [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)]. The thread is tracked as the Q Division in `IDEAS.md`.
+
 ## Key Takeaways
 
 - **Inversion** = out-of-order pair; **inversion table** `b_j` (elements left of *j* exceeding it), `0 ≤ b_j ≤ n−j`, uniquely determines the permutation (Hall 1956).[^1][^2]
@@ -50,6 +56,10 @@ Inversions are the hinge between the castle's Dyck-word world and the q-analog c
 - [[binary-string-bijection](pages/binary-string-bijection.md)] — the castle's own bounded-integer-tuple encoding, analogous to inversion tables.
 - [[aocp-permutations](pages/aocp-permutations.md)] — the permutation/factorial basics (TAOCP Vol. 1) beneath this Vol. 3 material.
 - [[generating-functions](pages/generating-functions.md)] — the method.
+- [[castle-classification](pages/castle-classification.md)] - rainbow castles, whose skylines are permutations; inversions become a castle statistic.
+- [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] / [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] - the block-count formula and the streak factorization, the Eulerian side.
+- [[castle-by-area](pages/castle-by-area.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] / [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] - where a q-grading already exists on the wiki.
+- [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] - the q-multinomial, the multiset form of the q-factorial.
 
 Linked from the source: [[aocp-multisets](pages/aocp-multisets.md)] is ingested; [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] is now ingested (Part A Ch. I only, Chs. II-III pending); Applied Combinatorics is not yet ingested.
 
@@ -65,3 +75,4 @@ This closes the hub's last "related topic" (Combinatorics). More than a formalit
 [^4]: [[aocp-combinatorics](pages/aocp-combinatorics.md)] §"Counting Inversions with Generating Functions" L74-96 — "G_n(z) = Σ_{k≥0} I_n(k) z^k ... I_n(k) = I_n(k-1) + I_{n-1}(k) ... G_n(z) = (1 + z + ... + z^{n-1}) G_{n-1}(z) ... = (1-z^n)(...)(1-z^2)(1-z) / (1-z)^n."
 [^5]: [[aocp-combinatorics](pages/aocp-combinatorics.md)] §"Counting Inversions with Generating Functions" L69, L96 — the symmetry (stated garbled in the source as "I_n = (C(n,2) - k) = I_n(k)"; correctly I_n(k) = I_n(C(n,2) - k)) and the product form; the GF, symmetry, and row-sum = n! all re-verified by brute enumeration for n=1..6 during ingest.
 [^6]: [[aocp-combinatorics](pages/aocp-combinatorics.md)] §"Knuth Goes To Outer Space" L104-134 — "G_n(z)/n! = g_n(z) ... h_k(z) = (1+z+...+z^{k-1})/k ... the uniform distribution of a random non-negative integer less than k ... g_n(z) = h_1(z) h_2(z) ... h_n(z) ... E(g_n) = Σ E(h_k), Var(g_n) = Σ Var(h_k)."
+[^7]: https://oeis.org/A008302 (2026-09-19) — "Triangle of Mahonian numbers T(n,k): coefficients in expansion of Product_{i=0..n-1} (1 + x + ... + x^i), where k ranges from 0 to A000217(n-1). Also enumerates permutations by their major index" 1; 1, 1; 1, 2, 2, 1; 1, 3, 5, 6, 5, 3, 1; 1, 4, 9, 15, 20, 22, 20, 15, 9, 4, 1; …

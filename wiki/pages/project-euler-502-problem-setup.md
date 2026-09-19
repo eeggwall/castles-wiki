@@ -5,7 +5,7 @@ summary: The pre-solution framing subpage — restates the castle rules, points 
 tags: [project-euler, castle, generating-functions, source, subpage]
 sources: [project-euler-502-problem-setup]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # PE 502: Problem Setup
@@ -34,12 +34,24 @@ The rule restatement on this page is **partial**: it lists Rule 1, 3, 4, 5, and 
 - [[castle-polyomino](pages/castle-polyomino.md)] — the object being counted; this page restates (partially) its rules.
 - [[castle-counting-function](pages/castle-counting-function.md)] — `F(w,h)`, whose sheer scale motivates the setup.
 - [[generating-functions](pages/generating-functions.md)] — the counting approach this page points toward.
+- [[generating-function-gallery](pages/generating-function-gallery.md)] / [[castle-counting-formula](pages/castle-counting-formula.md)] — the form the generating-function approach finally took.
+- [[kitamasa](pages/kitamasa.md)] / [[castle-count-algorithms](pages/castle-count-algorithms.md)] — how the trillion-height targets are actually reached.
+- [[castle-entropy](pages/castle-entropy.md)] — the scale argument restated in bits.
+- [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] / [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] — what the 2017 direct-enumeration attempt became.
 
-Linked from the source but not yet ingested (later ingests): Project Euler/502/Representations, Project Euler/502/Solution.
+Also linked from the source, both now ingested: [[project-euler-502-representations](pages/project-euler-502-representations.md)] and [[project-euler-502-solution](pages/project-euler-502-solution.md)].
 
 ## Relation to Other Wiki Pages
 
-This subpage sits under the hub [[project-euler-502](pages/project-euler-502.md)] and elaborates the "setup" phase. It is the first source to introduce [[generating-functions](pages/generating-functions.md)] as the intended method. Because it predates the solution, its content is framing rather than result — the actual method and any solution-borne principles belong to the Solution and Observations subpages (future ingests).
+This subpage sits under the hub [[project-euler-502](pages/project-euler-502.md)] and elaborates the "setup" phase. It is the first source to introduce [[generating-functions](pages/generating-functions.md)] as the intended method. Because it predates the solution, its content is framing rather than result — the actual method and any solution-borne principles belong to [[project-euler-502-solution](pages/project-euler-502-solution.md)] and [[project-euler-502-observations](pages/project-euler-502-observations.md)].
+
+## How the setup resolved
+
+Read against the finished wiki, each of the three framing points has a landing place.
+
+- **The generating-function bet paid off, in a particular shape.** Not one bivariate polynomial in `(w, h)` but a family of rational generating functions `F_k(x) = num_k/den_k` in the width direction, one per tower height `k` ([[generating-function-gallery](pages/generating-function-gallery.md)]), whose coefficients are the signed tower counts `P(k, L)` that the [[castle-counting-formula](pages/castle-counting-formula.md)] assembles into `F(w,h)`. The "evaluate a particular term" step is literal: the `10^12` targets are single far-off coefficients pulled by [[kitamasa](pages/kitamasa.md)], and the routing by regime is on [[castle-count-algorithms](pages/castle-count-algorithms.md)].
+- **The scale argument, in bits.** `log₂ F(13,10) ≈ 41.8`, against the entropy estimate `w·log₂ h − 1 ≈ 42.2` of [[castle-entropy](pages/castle-entropy.md)] - each column is worth `log₂ h` bits and the even-block clause exactly one. The `10!` brute-force ceiling that [[aocp-permutations](pages/aocp-permutations.md)] records (`3.6 × 10^6`) is six orders of magnitude below `F(13,10)`; the wiki's own largest exhaustive census, the 4.87 million castles of [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], sits right at that ceiling.
+- **The 2017 direct-enumeration attempt matured into a tool.** The reference enumerator on [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] is Knuth's mixed-radix Algorithm M over `{1..h}^w` ([[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)]); it never reaches the targets, but it is the backstop every formula on the wiki is checked against.
 
 ## Footnotes
 

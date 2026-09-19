@@ -5,7 +5,7 @@ summary: Knuth's multiset permutations — the multinomial coefficient, two-line
 tags: [knuth, taocp, multiset, multinomial, foata, cycle-factorization, two-line-array, source]
 sources: [aocp-multisets]
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-19
 ---
 
 # AOCP Multisets (Knuth TAOCP Vol. 3)
@@ -32,6 +32,14 @@ This page is the **source-level root of the castle's permutation-cycle machinery
 - **The multinomial count** is the [[lattice-paths](pages/lattice-paths.md)] path count and the stars-and-bars mechanism shared with the [[convex-castle](pages/convex-castle.md)] enumeration.
 - **Adjacent-pair-constrained counting** (no `ca`, no `db`, etc.) rhymes with the castle's own adjacency/run constraints (no same-row touching, the no-`UD`/no-`DU` tower-word rules); the two-line-array placement method is a template for such constrained counts.
 
+## Further castle threads
+
+- **Foata's canonical form, as used on the wiki.** "Start each cycle with its largest element, order cycles increasingly, drop the parentheses" is the move the seminar note [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] and its synthesis [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] map onto the castle Foata transform; the castle-side original is the PE subpage [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)].
+- **The U/R/D string is a multiset permutation.** A castle's step string on [[urd-step-strings](pages/urd-step-strings.md)] is a word over `{U, R, D}` with fixed letter counts - a permutation of a three-letter multiset - so its two-line array (sorted letters over the string) is Knuth's object exactly, before the castle grammar constrains it. The trinomial ceiling is on [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)].
+- **Inversions of multiset permutations.** Grading Knuth's multiset permutations by inversions gives MacMahon's q-multinomial coefficient, the multiset form of the q-factorial on [[aocp-combinatorics](pages/aocp-combinatorics.md)] - the natural inversion-graded count of U/R/D strings for the q-thread.
+- **A homonym to keep apart.** Knuth's "permutations of a multiset" are *ordered* words with repeated letters (the `SEQ` side); Flajolet's `MSET` construction on [[symbolic-method](pages/symbolic-method.md)] builds *unordered* multisets and translates to `∏ 1/(1 − z^k)` - the coin-change series of [[block-count-constraints](pages/block-count-constraints.md)]. Same word, different object.
+- **OEIS.** The multinomial coefficients are tabulated as A036038.[^5]
+
 ## Key Takeaways
 
 - Multiset permutations = multinomial `n!/(n_1!n_2!…)` (`10!/(3!2!1!4!) = 12600`, verified).[^1]
@@ -45,6 +53,10 @@ This page is the **source-level root of the castle's permutation-cycle machinery
 - [[castle-foata-transform](pages/castle-foata-transform.md)] — the castle analogue of Foata's canonical-cycle apparatus.
 - [[lattice-paths](pages/lattice-paths.md)] / [[convex-castle](pages/convex-castle.md)] — the multinomial / stars-and-bars counts.
 - [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] — the Vandermonde–Chu identity used to reconcile the two counts.
+- [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] / [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] / [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — where Foata's canonical form is carried over to castles.
+- [[urd-step-strings](pages/urd-step-strings.md)] — the castle's own three-letter multiset permutation.
+- [[aocp-combinatorics](pages/aocp-combinatorics.md)] — inversions on multiset permutations (the q-multinomial).
+- [[symbolic-method](pages/symbolic-method.md)] / [[block-count-constraints](pages/block-count-constraints.md)] — the unordered `MSET` homonym and its coin-change series.
 
 Related: [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] (ingested) — the multinomial coefficient this page's multiset count equals.
 
@@ -58,3 +70,4 @@ The Vol. 3 source beneath the castle's cycle-factorization reading: Knuth's two-
 [^2]: [[aocp-multisets](pages/aocp-multisets.md)] §"Multiset Permutations" L16-25 — "Foata (1969) ... the intercalation product ... Two-line notation ... top line = elements of M in non-decreasing order; bottom line = the permutation ... place the two two-line arrays side by side, then STABLE-sort the columns ... c a d a b (top) b d d a d = c a b d d a b d a d."
 [^3]: [[aocp-multisets](pages/aocp-multisets.md)] §"Another Multiset Example" L47-53 — "with a/a,b/b,c/c removed the only prime cycles are (a b),(a c),(b c),(a b c),(a c b), and any two share a letter so the factorization is unique (eq (24)) ... Knuth simplifies with the three-term identity (eq (27), = AOCP V1 exercise 1.2.6-31, Vandermonde-Chu type)."
 [^4]: [[aocp-multisets](pages/aocp-multisets.md)] §"Complicated Multiset Counting Example"/"Another Multiset Example" L27-45 — "C(A, A-k-m) C(B, m) C(C, k) C(B+k, B-l) C(C-k, l)" (eq (20)) and "N(A,B,C,m) = C(A,m) C(B, C-A+m) C(C, B-m)" (eq (23))."
+[^5]: https://oeis.org/A036038 (2026-09-19) — "Triangle T(n,k) read by rows: multinomial coefficients for the partitions of n listed in Abramowitz-Stegun order" 1; 1, 2; 1, 3, 6; 1, 4, 6, 12, 24; …
