@@ -428,7 +428,7 @@ One more thing the convergents teach: `|ρ_6 − A₁/A₀| · A₀^{3/2}` stays
 
 ## Snippet index (what each one teaches)
 
-All snippets ran under Python 3.11 with SymPy 1.14 and mpmath 1.3; the DP and Berlekamp–Massey need only the standard library. Reusable ones are also filed on [[castle-snippets](pages/castle-snippets.md)].
+All snippets ran under Python 3.11 with SymPy 1.14 and mpmath 1.3; the DP and Berlekamp–Massey need only the standard library. Reusable ones are filed on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] (`convergents`, `order_mod` / `period_mod`, `P_table`, `quasi_split`, `M_signed` / `sectors`, `H(d)`).
 
 | snippet | teaches | where |
 |---|---|---|

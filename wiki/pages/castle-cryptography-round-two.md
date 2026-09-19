@@ -10,7 +10,7 @@ updated: 2026-09-19
 
 # Castle cryptography, round two
 
-[[castle-cryptography](pages/castle-cryptography.md)] ran the loop once (Seminar 1 expanded as [[castle-cryptography-ring](pages/castle-cryptography-ring.md)]): **build** a castle Diffie–Hellman, **red-team** it (the modulus factors; the output is linear), **blue-team** it (irreducible odd-`k` char poly; nonlinear output). This page runs the loop a second time, and the second lap is where the discipline actually lives: the round-one fixes are themselves attacked, both fall, and the blue team learns that a fix has to move a *number*, not rename a *property*. Everything below was executed; the programs are pinned on [[castle-snippets](pages/castle-snippets.md)] (`castle_dlp`, `bm_modp`, `castle_schnorr`).
+[[castle-cryptography](pages/castle-cryptography.md)] ran the loop once (Seminar 1 expanded as [[castle-cryptography-ring](pages/castle-cryptography-ring.md)]): **build** a castle Diffie–Hellman, **red-team** it (the modulus factors; the output is linear), **blue-team** it (irreducible odd-`k` char poly; nonlinear output). This page runs the loop a second time, and the second lap is where the discipline actually lives: the round-one fixes are themselves attacked, both fall, and the blue team learns that a fix has to move a *number*, not rename a *property*. Everything below was executed; the programs are pinned on [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)] (`castle_dlp`, `bm_modp`, `castle_schnorr`).
 
 Notation as before: `p = 10⁹ + 7`, the ring is `R = F_p[x]/(Q)` with `Q = char_k mod p`, the generator is `x`, and `char_1 = x² − 2x + 2`, `char_2 = x³ − 3x² + 4x − 4`, `char_3 = x⁴ − 4x³ + 8x² − 8x + 8` ([[signed-tower-count](pages/signed-tower-count.md)]).
 

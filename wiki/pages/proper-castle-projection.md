@@ -94,7 +94,7 @@ Only golden (`h = 2`) has its free count equal to its primary metallic sequence.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] — the free-height strip counts this page projects onto proper castles; the `J−D` rule and `M_h = J − D`.
 - [[castle-sign](pages/castle-sign.md)] — the sign `s(C) = (−1)^{blocks}` and the `(A ± P)/2` parity projector applied here.
 - [[metallic-means](pages/metallic-means.md)] — the ladder whose *primary* sequences (A000129, A006190, A001076, …) the projected counts fail to reproduce.
-- [[castle-snippets](pages/castle-snippets.md)] — the `proper_even` snippet computing these counts.
+- [[castle-snippets-strips](pages/castle-snippets-strips.md)] — the `proper_even` snippet computing these counts.
 - [[reachable-field-census](pages/reachable-field-census.md)] — the sibling census (which *fields* the strips reach), to which this is the *sequences* complement.
 - [[castle-by-area](pages/castle-by-area.md)] / [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] — the other "new sequence from a castle count" precedents, the pattern these rows follow.
 - [[castle-classification](pages/castle-classification.md)] — Axis 8, the `<metal> <axis> growth castle` meta-classification these projected metallic-ladder rows populate.

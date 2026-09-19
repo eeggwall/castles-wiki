@@ -64,7 +64,7 @@ On the Axis-8 meta-classification of [[castle-classification](pages/castle-class
 
 ## Reproduce
 
-The `bounded_castles_by_area(h, A_max)` snippet on [[castle-snippets](pages/castle-snippets.md)] computes the table above from the recurrence, with a brute-force cross-check against the actual height-bounded skyline model (`sum(c)` over `product(range(1, h+1), repeat=w)`) that agrees term for term.
+The `bounded_castles_by_area(h, A_max)` snippet on [[castle-snippets-strips](pages/castle-snippets-strips.md)] computes the table above from the recurrence, with a brute-force cross-check against the actual height-bounded skyline model (`sum(c)` over `product(range(1, h+1), repeat=w)`) that agrees term for term.
 
 ## Appearances in Sources
 

@@ -106,7 +106,7 @@ Because several pages use compressed phrasings, here is the plain-language key:
 
 ## Reproduce
 
-The one-line strip counter and growth-constant / field probes are on [[castle-snippets](pages/castle-snippets.md)] (`strip_field_census`, `ceiling_exception_ladder`, `sh_canonical`). The minimal counter is just `numpy`: build `M` from your rule, then `ones @ numpy.linalg.matrix_power(M, w-1) @ ones` for the width-`w` count, or `max(numpy.linalg.eigvals(M).real)` for the growth constant.
+The one-line strip counter and growth-constant / field probes are on [[castle-snippets-strips](pages/castle-snippets-strips.md)] (`strip_field_census`, `ceiling_exception_ladder`, `sh_canonical`). The minimal counter is just `numpy`: build `M` from your rule, then `ones @ numpy.linalg.matrix_power(M, w-1) @ ones` for the width-`w` count, or `max(numpy.linalg.eigvals(M).real)` for the growth constant.
 
 ## Related Concepts
 

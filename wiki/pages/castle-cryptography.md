@@ -156,7 +156,7 @@ This is a **T-Division-adjacent** seminar series (like the transcendental-approx
 
 ## Reproduce
 
-The `castle_dh` key exchange (the `mulmod` / `powmod` pair above) and the Berlekamp–Massey reconstruction demo are pinned on [[castle-snippets](pages/castle-snippets.md)]; both were executed during ingest — the shared secret matches, and Berlekamp–Massey returns `[1, −3, 4, −4]` from the `P(2,·)` terms. Round two's `castle_dlp` (Pohlig–Hellman + baby-step giant-step), `bm_modp` (Berlekamp–Massey over `F_p`), and `castle_schnorr` are pinned there too.
+The `castle_dh` key exchange (the `mulmod` / `powmod` pair above; pinned on [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)]) and the Berlekamp–Massey reconstruction demo are pinned on [[castle-snippets](pages/castle-snippets.md)]; both were executed during ingest — the shared secret matches, and Berlekamp–Massey returns `[1, −3, 4, −4]` from the `P(2,·)` terms. Round two's `castle_dlp` (Pohlig–Hellman + baby-step giant-step), `bm_modp` (Berlekamp–Massey over `F_p`), and `castle_schnorr` are pinned there too.
 
 ## Appearances in Sources
 

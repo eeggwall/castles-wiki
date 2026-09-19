@@ -150,7 +150,7 @@ def tree_area_by_area(h, A_max):
 [1, 1, 2, 4, 6, 9, 15, 25, 40, 64, 104, 169, 273, 441, 714, 1156]
 ```
 
-Filed on [[castle-snippets](pages/castle-snippets.md)] as `tree_area_gf` and `tree_area_by_area`.
+Filed on [[castle-snippets-strips](pages/castle-snippets-strips.md)] as `tree_area_gf` and `tree_area_by_area`.
 
 ## The three-way bijection: tree castle ↔ composition ↔ SUD tournament
 

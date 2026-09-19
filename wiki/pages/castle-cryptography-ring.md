@@ -176,7 +176,7 @@ True
 >>> shared secret = [395423824, 86931747, 647893869]
 ```
 
-Twenty lines of Python, no libraries, verified.[^6] Pinned as `castle_dh` on [[castle-snippets](pages/castle-snippets.md)].
+Twenty lines of Python, no libraries, verified.[^6] Pinned as `castle_dh` on [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)].
 
 The seminar hangs the natural next constructions off `castle_dh` without expanding scope: a one-time-pad symmetric cipher keyed on the shared secret; a toy ElGamal (public key `A`, encrypt as `(g^k, m · A^k)`); a Schnorr-style signature (also on the `x^a` map). Round-two builds ElGamal and the signature in earnest ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]).
 
@@ -207,7 +207,7 @@ Each of these is a *legitimate* question about the object we just built, sitting
 - [[kitamasa](pages/kitamasa.md)] - `x^a mod Q` by binary exponentiation; the castle solve's fast-index trick, and this seminar's trapdoor.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] - the recurrence order and how the char poly is discovered from data (a nice bookend to §1's "assumed known").
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the roots of `char_k` and their continued fractions; the same eigenvalues whose orders §2 takes the lcm of.
-- [[castle-snippets](pages/castle-snippets.md)] - `castle_dh` pinned; the `mulmod` / `powmod` / `p_signed` primitives used throughout.
+- [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)] - `castle_dh` and the `mulmod` / `powmod` primitives; the `p_signed` DP is on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `F(w,3)`, an order-6 castle count whose characteristic polynomial contains this seminar's modulus `char_2 = (x−2)(x²−x+2)`.
 
 ## Footnotes
