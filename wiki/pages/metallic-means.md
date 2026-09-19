@@ -5,7 +5,7 @@ summary: The family of quadratic irrationals `δ_a = (a + √(a²+4))/2` for a =
 tags: [concept, metallic-mean, golden-ratio, silver-ratio, pell, fibonacci, continued-fraction, quadratic-irrational, norm-minus-one]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-15
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # Metallic means
@@ -53,7 +53,7 @@ The copper mean has a special place: `δ_4 = 2 + √5 = φ³` (since `φ² = φ 
 Two members of this family are already load-bearing on the wiki, from two independent directions:
 
 - **`δ_1 = φ`** is the growth constant of Fibonacci, which appears in the castle count as `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] (prime castles). The Fibonacci method for turning a recurrence into a rational GF is the archetype of [[aocp-generating-functions](pages/aocp-generating-functions.md)].
-- **`δ_2 = 1+√2`** is the growth constant of the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]), and appears as the count-sequence growth of the [[pell-castle-strip](pages/pell-castle-strip.md)] mnemonic where the denominator `1 − 2x − x²` splits along PE 502's structural rules. The integer realization is the [[pell-numbers](pages/pell-numbers.md)].
+- **`δ_2 = 1+√2`** is the growth constant of the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]), and appears as the count-sequence growth of the anchored 1-smooth height-3 strip on [[pell-castle-strip](pages/pell-castle-strip.md)], whose width generating function is exactly `1/(1 − 2x − x²)`. The integer realization is the [[pell-numbers](pages/pell-numbers.md)].
 
 Both are treated in parallel on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] as "the castle's two norm-`−1` reduced quadratics" — the framing that made writing this page unavoidable: **there is a ladder, and the wiki was already sitting on rungs 1 and 2 without naming it.** Naming the ladder makes explicit that the metallic-mean family is a **meta-classification axis** for castle sub-families: a castle class is a **"`<metal>` `<axis>` growth castle"** iff its count sequence, graded by the chosen size axis, grows at rate `δ_a`. This is now Axis 8 of [[castle-classification](pages/castle-classification.md)]; the naming convention (`<metal>` ∈ {golden, silver, bronze, copper, nickel, …}, `<axis>` ∈ {width, vertical, area, block}) is developed there.
 
@@ -73,8 +73,8 @@ Both are treated in parallel on [[eigenvalue-continued-fractions](pages/eigenval
 
 The two rungs the wiki has real content for:
 
-1. **Silver width growth castle** — count sequence graded by width `w` grows at `1+√2`. Three structurally-distinct known members: the [[pell-castle-strip](pages/pell-castle-strip.md)] (rational GF, Pell numbers, `p_1 = 2, p_2 = 1` at height 2), the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)], algebraic GF, A004149), and — newly — the **1-smooth height-3 strip** (`|c_{i+1} − c_i| ≤ 1`), whose denominator factors as `(1 − x)(1 − 2x − x²)` so its growth is exactly `1 + √2` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). Same growth constant, three different families — the meta-classification working as intended.
-2. **Golden width growth castle** — count sequence graded by `w` grows at `φ`. Known member: the `p_1 = 1, p_2 = 1` strip case (`{0,1}`-skyline with rule-3 gap, Fibonacci `F_{w+2}`). The prime-castle count `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] is a **golden area growth castle** (Fibonacci-dominated when graded by area — different axis).
+1. **Silver width growth castle** — count sequence graded by width `w` grows at `1+√2`. Three structurally-distinct known members: the **1-smooth height-3 strip** (`|c_{i+1} − c_i| ≤ 1`), whose denominator factors as `(1 − x)(1 − 2x − x²)` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) and which, anchored at height 1, is the [[pell-castle-strip](pages/pell-castle-strip.md)] with generating function exactly `1/(1 − 2x − x²)` and Pell-number counts (`p_1 = 2, p_2 = 1`); the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)], algebraic GF, A004149); and the ceiling-exception rule `J − D` at height 3 (item 3 below). Same growth constant, three different families — the meta-classification working as intended.
+2. **Golden width growth castle** — count sequence graded by `w` grows at `φ`. Known member: the height-2 tree castles ([[castle-graph](pages/castle-graph.md)]) — `{0,1}`-skyline above the base with no two adjacent raised columns, Fibonacci `F_{w+2}`, the `p_1 = 1, p_2 = 1` denominator. The prime-castle count `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] is a **golden area growth castle** (Fibonacci-dominated when graded by area — different axis).
 
 3. **Bronze, copper, nickel, … width growth castles** — all realized, by **one named rule**: the **plateau-free-except-ceiling** strip (adjacent columns differ in height unless both equal the max `h`), transfer matrix `M_h = J − D`, char poly `(x+1)^{h−2}(x² − (h−1)x − 1)`, Perron root `δ_{h−1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). So metal `a` sits at height `h = a + 1`: **bronze** at `h = 4`, **copper** at `h = 5`, nickel at `h = 6`, and so on up the whole ladder. Copper (`h = 5`) is `δ_4 = 2 + √5 = φ³`, and its strip count is `F_{3n+5}` — the **Fibonacci trisection**, the decimation made concrete.
 
@@ -89,7 +89,7 @@ The realizability question the "how many states per column" knob raised is thus 
 ## Related Concepts
 
 - [[pell-numbers](pages/pell-numbers.md)] — the `a=2` integer sequence; the silver-mean member.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] — the castle-strip mnemonic realizing `δ_2 = 1+√2` through PE 502's structural rules.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] — the anchored 1-smooth height-3 strip realizing `δ_2 = 1+√2` with Pell-number counts, and the correction of the earlier rule-3 reading.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] — which metallic means are actually castle-strip Perron roots: the `p_1`/`p_2` coupling obstruction, silver's third realization, and bronze needing four states.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] — the two members `φ` and `1+√2` already treated as the castle's norm-`−1` reduced quadratics; this page names the ladder they sit on.
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — where `1+√2` appears as the tower-word growth constant.

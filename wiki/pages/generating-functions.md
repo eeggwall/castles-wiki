@@ -5,7 +5,7 @@ summary: A multivariate polynomial whose variables are the problem's dimensions 
 tags: [concept, generating-functions, combinatorics, method, symbolic-method]
 sources: [project-euler-502-problem-setup, project-euler-502-representations, aocp-generating-functions, generating-functions-topic, analytic-combinatorics-part-a, pe502-pell-castle-strip]
 created: 2026-09-13
-updated: 2026-09-15
+updated: 2026-09-19
 ---
 
 # Generating functions
@@ -28,7 +28,7 @@ The three source treatments are complementary: [[analytic-combinatorics-part-a](
 
 The everyday operation the castle-counting apparatus depends on — read a linear recurrence off a rational generating function — is a **five-line mechanical procedure** that doesn't need "base cases" as a separate argument. If `G(x) = ∑ a_n x^n = N(x)/D(x)`, clear the denominator to get `D(x)·G(x) = N(x)`, then match coefficients of `x^n` on both sides. Every `a_i` with negative index is `0` by convention (a power series has no negative powers), so the recurrence *and* the boundary conditions come out of the same equation, evaluated at successive `n`.[^4]
 
-**Worked example** — the [[pell-castle-strip](pages/pell-castle-strip.md)] mnemonic. For `D(x) = 1/(1 − 2x − x²) = ∑ a_i x^i`, clear the denominator:
+**Worked example** — the [[pell-castle-strip](pages/pell-castle-strip.md)] exercise. For `D(x) = 1/(1 − 2x − x²) = ∑ a_i x^i`, clear the denominator:
 
 ```
 (1 − 2x − x²) · D(x) = 1.
@@ -46,7 +46,7 @@ a_n − 2·a_{n−1} − a_{n−2}  =  [n = 0].
 
 The "base cases" `a_0 = 1, a_1 = 2` are this recurrence evaluated at `n = 0, 1` with the negative-index zeros substituted. No separate argument.[^4]
 
-**Why this matters.** Every rational generating function in the castle machinery — `E_k = 1/(1 − (k+1)x)`, `P_k = num_k/den_k`, the C-finite recurrences on [[recurrence-discovery](pages/recurrence-discovery.md)] — is reached the same way. Coefficient matching is the shortcut that makes "read the recurrence off the denominator" fully mechanical: the coefficients of `−D(x)` (excluding the constant `1`) are the recurrence weights. This is also the mechanic behind the [[pell-castle-strip](pages/pell-castle-strip.md)] seminar arc, where a textbook end-of-chapter exercise on this technique opens directly onto PE 502's structural rules.
+**Why this matters.** Every rational generating function in the castle machinery — `E_k = 1/(1 − (k+1)x)`, `P_k = num_k/den_k`, the C-finite recurrences on [[recurrence-discovery](pages/recurrence-discovery.md)] — is reached the same way. Coefficient matching is the shortcut that makes "read the recurrence off the denominator" fully mechanical: the coefficients of `−D(x)` (excluding the constant `1`) are the recurrence weights. This is also the opening mechanic of the [[pell-castle-strip](pages/pell-castle-strip.md)] seminar arc, where a textbook end-of-chapter exercise on this technique leads to a castle strip (the 1-smooth height-3 strip anchored at the base) whose width generating function is exactly `1/(1 − 2x − x²)`.
 
 ## Appearances in Sources
 
@@ -65,7 +65,7 @@ The "base cases" `a_0 = 1, a_1 = 2` are this recurrence evaluated at `n = 0, 1` 
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the grammar the castle generating functions are read off; a recursive specification in the symbolic-method style.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the general generating-function method (Fibonacci example, linear-recurrence ⇒ rational GF).
 - [[castle-polyomino](pages/castle-polyomino.md)] — the object whose configurations are being counted.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] — the seminar-shaped worked example of "coefficient matching → castle mnemonic → silver-ratio thread."
+- [[pell-castle-strip](pages/pell-castle-strip.md)] — the seminar-shaped worked example of "coefficient matching → two-atom tiling → the castle strip that realizes it → silver-ratio thread."
 - [[pell-numbers](pages/pell-numbers.md)] — the integer sequence that mnemonic produces.
 
 ## Footnotes

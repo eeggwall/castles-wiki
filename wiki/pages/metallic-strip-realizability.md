@@ -1,24 +1,24 @@
 ---
 title: Which metallic means are castle-strip growth constants
 category: Analyses
-summary: The Axis-8 "which metallic ratios does a castle rule produce" question, solved. A castle-strip growth constant is the Perron root of a 0/1 transfer matrix over h height-states, and metallicity of δ_a demands the strip denominator 1 − p₁x − p₂x² have p₂ = 1, which the naive "h states per column" coupling breaks. The resolution: ONE named predicate — "plateau-free except at the ceiling" (adjacent columns differ in height unless both equal the max h) — has transfer matrix M = J − D with char poly (x+1)^{h−2}(x² − (h−1)x − 1), so it realizes the WHOLE metallic ladder, metal a = h−1: golden (h=2), silver (h=3), bronze (h=4), copper (h=5), nickel (h=6), …. Bronze is thus a real named-predicate castle (also provably unreachable on ≤ 3 states, needing 4). Copper (h=5) = δ₄ = φ³, so its count is a Fibonacci trisection F_{3n+5} — the decimation made concrete. Silver also has a second realization (the 1-smooth height-3 strip, (x−1)(x²+2x−1)).
+summary: The Axis-8 "which metallic ratios does a castle rule produce" question, solved. A castle-strip growth constant is the Perron root of a 0/1 transfer matrix over h height-states, and metallicity of δ_a demands the strip denominator 1 − p₁x − p₂x² have p₂ = 1, which the naive "h states per column" coupling breaks. The resolution: ONE named predicate — "plateau-free except at the ceiling" (adjacent columns differ in height unless both equal the max h) — has transfer matrix M = J − D with char poly (x+1)^{h−2}(x² − (h−1)x − 1), so it realizes the WHOLE metallic ladder, metal a = h−1: golden (h=2), silver (h=3), bronze (h=4), copper (h=5), nickel (h=6), …. Bronze is thus a real named-predicate castle (also provably unreachable on ≤ 3 states, needing 4). Copper (h=5) = δ₄ = φ³, so its count is a Fibonacci trisection F_{3n+5} — the decimation made concrete. The 1-smooth height-3 strip, (x−1)(x²+2x−1), is silver's rational realization and, anchored at height 1, the Pell castle strip itself.
 tags: [analysis, castle, metallic-mean, growth-constant, transfer-matrix, perron-root, bronze, copper, silver, fibonacci-decimation, axis-8, realizability, sympy, verification]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # Which metallic means are castle-strip growth constants
 
 ## The question
 
-[[castle-classification](pages/castle-classification.md)] Axis 8 names a class a **"`<metal>` width growth castle"** when its width-graded count grows at the metallic mean `δ_a = (a + √(a² + 4))/2` ([[metallic-means](pages/metallic-means.md)]). Golden (`a = 1`) and silver (`a = 2`) have known members ([[pell-castle-strip](pages/pell-castle-strip.md)] and the `{0,1}`-strip); bronze and above were marked "open." The open question, precisely stated: **which metallic means arise as growth constants of an actual castle-strip rule, and how?**
+[[castle-classification](pages/castle-classification.md)] Axis 8 names a class a **"`<metal>` width growth castle"** when its width-graded count grows at the metallic mean `δ_a = (a + √(a² + 4))/2` ([[metallic-means](pages/metallic-means.md)]). Golden (`a = 1`) and silver (`a = 2`) have known members (the height-2 tree castles and the tower word; the Pell strip of [[pell-castle-strip](pages/pell-castle-strip.md)] is identified below with the anchored 1-smooth strip); bronze and above were marked "open." The open question, precisely stated: **which metallic means arise as growth constants of an actual castle-strip rule, and how?**
 
 A **castle-strip rule** is a nearest-neighbor restriction on a row of columns with heights in `{1, …, h}`: an allowed-adjacency predicate `A(a, b)` on consecutive column heights ([[castle-strip](pages/castle-strip.md)] develops this from scratch — the `h × h` 0/1 **transfer matrix** `M[a][b] = [A(a, b)]` has rows and columns indexed by the heights themselves, so "height-state" means "column height"). Its count-by-width sequence has growth constant equal to the **Perron root** (dominant eigenvalue) of `M`, and its width generating function is `1 / det(I − xM)` up to the boundary term. So the question becomes: **which `δ_a` are Perron roots of 0/1 transfer matrices, and via which rules?**[^1]
 
 ## The two-knob parameterization and its trap
 
-The [[pell-castle-strip](pages/pell-castle-strip.md)] mnemonic writes a two-state strip denominator as `1 − p₁·x − p₂·x²`, giving growth `(p₁ + √(p₁² + 4p₂))/2`. Here `p₁` and `p₂` are the **denominator's polynomial coefficients** — `p₁` is the coefficient on `x¹` and `p₂` the coefficient on `x²`; they are *not* widths (the strip has a single width, graded by the GF variable `x`). Read combinatorially, `p_k` is the weight (number of choices) of a tiling atom spanning `k` columns. This is a metallic mean **iff `p₂ = 1`**: only then does `p₁² + 4p₂ = p₁² + 4` match the metallic discriminant `a² + 4` with `a = p₁`. The Pell strip is `p₁ = 2, p₂ = 1` (silver); the `{0,1}`-strip is `p₁ = 1, p₂ = 1` (golden).
+Write a quadratic strip denominator as `1 − p₁·x − p₂·x²`, as the [[pell-castle-strip](pages/pell-castle-strip.md)] exercise does, giving growth `(p₁ + √(p₁² + 4p₂))/2`. Here `p₁` and `p₂` are the **denominator's polynomial coefficients** — `p₁` is the coefficient on `x¹` and `p₂` the coefficient on `x²`; they are *not* widths (the strip has a single width, graded by the GF variable `x`). Read combinatorially, `p_k` is the weight (number of choices) of a tiling atom spanning `k` columns. This is a metallic mean **iff `p₂ = 1`**: only then does `p₁² + 4p₂ = p₁² + 4` match the metallic discriminant `a² + 4` with `a = p₁`. The Pell denominator is `p₁ = 2, p₂ = 1` (silver); the Fibonacci denominator of the height-2 tree castles is `p₁ = 1, p₂ = 1` (golden). Note that no `2×2` 0/1 matrix has `det(I − xM) = 1 − 2x − x²` ([[pell-castle-strip](pages/pell-castle-strip.md)] Act III) - the first hint that `p₁` is not a count of states.
 
 The **trap** is to read `p₁` as "number of per-column states" and expect `p₁ = 3` (height-3 columns) to give bronze. It does not, because **`p₁` and `p₂` are coupled in natural height-`h` rules**: widening the height alphabet also widens the gap/return structure, pushing `p₂` off `1`. Measured on concrete height-3 rules (each a 3×3 transfer matrix, denominator `det(I − xM)`):[^2]
 
@@ -36,7 +36,7 @@ Two things fall out immediately.
 
 The **1-smooth height-3 strip** (`|c_{i+1} − c_i| ≤ 1`, a Motzkin-flavored rule) has denominator that factors as `(1 − x)(1 − 2x − x²)` - the silver factor `1 − 2x − x²` exactly, times a spurious `(1 − x)`.[^3] So its growth constant is `1 + √2`: it is a **silver width growth castle**, structurally distinct from both prior silver members.
 
-This is a genuine new member of the silver class - a *third* independent realization alongside the [[pell-castle-strip](pages/pell-castle-strip.md)] (rational, Pell numbers) and the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)], algebraic, A004149). Notably it lives at **height 3**, not height 2, and reaches silver by a rate-of-change rule (Axis 2, [[castle-classification](pages/castle-classification.md)]) rather than a per-column-state count - the meta-classification uniting differently-shaped families exactly as intended. The 1-smooth family is the Motzkin-path connection ([[motzkin-numbers](pages/motzkin-numbers.md)], [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]); this locates its growth constant precisely on the metallic ladder.
+This is a genuine castle realization of silver alongside the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)], algebraic, A004149), and it is where the Pell numbers themselves live: anchoring the strip at height 1 cancels the `(1 − x)` factor, so the anchored 1-smooth strip has width generating function exactly `1/(1 − 2x − x²)` and *is* the [[pell-castle-strip](pages/pell-castle-strip.md)] (counts `P_{w+1}`; the free strip gives companion Pell A001333). It lives at **height 3**, not height 2, and reaches silver by a rate-of-change rule (Axis 2, [[castle-classification](pages/castle-classification.md)]) rather than a per-column-state count - the meta-classification uniting differently-shaped families exactly as intended. The 1-smooth family is the Motzkin-path connection ([[motzkin-numbers](pages/motzkin-numbers.md)], [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]); this locates its growth constant precisely on the metallic ladder.
 
 ## Finding 2: bronze needs four states, not three
 
@@ -84,7 +84,7 @@ So **one rule sweeps the entire ladder, metal `a = h − 1`**:
 | 6 | `(5+√29)/2 ≈ 5.1926` | nickel (`a = 5`) | `x² − 5x − 1` |
 | `h` | `δ_{h−1}` | `(h−1)`-th metal | `x² − (h−1)x − 1` |
 
-**Why this rule decouples `p₁` and `p₂`.** The `M = J − D` structure is exactly the decoupling Finding 2's obstruction demanded: `J` supplies all `h` forward states (a large `p₁`) while the ceiling exception `−D` removes all but *one* length-2 return loop (pinning `p₂ = 1`). The metallic discriminant `(h−1)² + 4` is the fingerprint. This is the general mechanism behind all three prior special cases — the `{0,1}`-strip (golden), the Pell strip (silver), and the 1-smooth strip (silver again) — reorganized under one predicate.
+**Why this rule decouples `p₁` and `p₂`.** The `M = J − D` structure is exactly the decoupling Finding 2's obstruction demanded: `J` supplies all `h` forward states (a large `p₁`) while the ceiling exception `−D` removes all but *one* length-2 return loop (pinning `p₂ = 1`). The metallic discriminant `(h−1)² + 4` is the fingerprint. This is the general mechanism behind the prior special cases — the height-2 tree castles (golden) and the 1-smooth / Pell strip (silver) — reorganized under one predicate.
 
 ### Copper and the Fibonacci decimation (`δ₄ = φ³`)
 
@@ -105,9 +105,9 @@ Consequently the **off-ladder surds are the generic case** for rules that are *n
 
 - `(1 + √3)` (`Q(√3)`) - the no-adjacent-ceiling height-3 rule (`p₂ = 2`);
 - integers `h − 1` - the plateau-free height-`h` rule (real but not surd);
-- and at height `h` with a gap tax scaling as `h − 1`, growth `(h + √(h² + 4(h−1)))/2`, which is `(3 + √17)/2 ∈ Q(√17)` at `h = 3` and `(4 + √28)/2 = 2 + √7 ∈ Q(√7)` at `h = 4` - neither metallic.[^6]
+- and the hypothetical denominator `1 − h·x − (h−1)·x²` (what the withdrawn "per-column state plus gap tax" reading of [[pell-castle-strip](pages/pell-castle-strip.md)] would predict at height `h`; no 0/1 rule is claimed for it), growth `(h + √(h² + 4(h−1)))/2`, which is `(3 + √17)/2 ∈ Q(√17)` at `h = 3` and `(4 + √28)/2 = 2 + √7 ∈ Q(√7)` at `h = 4` - neither metallic.[^6]
 
-So the metallic ladder is **realizable but not naturally parameterized by the number of states per column**: `δ_a` is not "the `a`-states-per-column strip." The correct parameterization is the ceiling-exception rule `M_h = J − D` at height `h = a + 1` (Finding 3). Golden and silver additionally appear at small heights by *other* rules (the `{0,1}`-strip, Pell strip, 1-smooth strip); bronze and beyond appear only through the ceiling-exception rule (or another `p₂ = 1` decoupling). The clean "how many states per column" story of the Pell strip is a **low-rung coincidence**, not the general mechanism — the general mechanism is `J − D`.
+So the metallic ladder is **realizable but not naturally parameterized by the number of states per column**: `δ_a` is not "the `a`-states-per-column strip." The correct parameterization is the ceiling-exception rule `M_h = J − D` at height `h = a + 1` (Finding 3). Golden and silver additionally appear at small heights by *other* rules (the height-2 tree castles; the 1-smooth strip, which anchored at height 1 is the Pell strip); bronze and beyond appear only through the ceiling-exception rule (or another `p₂ = 1` decoupling). There is no "how many states per column" story at any rung: `p₁` is a denominator coefficient, and the Pell denominator already needs three height-states — the general mechanism is `J − D`.
 
 ## Open, sharpened
 
@@ -124,7 +124,7 @@ Bronze and copper are now **realized** (Finding 3) — one named predicate cover
 ## Related Concepts
 
 - [[metallic-means](pages/metallic-means.md)] - the ladder whose realizability this page settles; the `p₂ = 1` metallicity criterion.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] - the silver `p₁ = 2, p₂ = 1` strip; the canonical low-rung case where the naive "states per column" reading works.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] - the silver `p₁ = 2, p₂ = 1` denominator, realized by the anchored 1-smooth height-3 strip of Finding 1; the page also records why it is not a height-2 rule.
 - [[castle-classification](pages/castle-classification.md)] - Axis 8 (the growth-type meta-classification these are members of) and Axes 1-7 (the rules tested here: 1-smooth is Axis 2, plateau-free is Axis 2).
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] / [[motzkin-numbers](pages/motzkin-numbers.md)] - the 1-smooth / Motzkin family whose growth constant this page pins to silver.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - why metallic means have periodic continued fractions and sit in the specific fields `Q(√(a²+4))`.

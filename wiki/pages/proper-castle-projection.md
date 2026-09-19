@@ -5,7 +5,7 @@ summary: The metallic-strip-realizability counts are free-height strip counts (�
 tags: [analysis, castle, metallic-mean, growth-constant, transfer-matrix, perron-root, parity, even-block, proper-castle, bronze, copper, silver, new-sequence, oeis, sympy, verification]
 sources: [pe502-pell-castle-strip, project-euler-502-castle-factoring]
 created: 2026-09-18
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # Do metallic growth constants survive the proper-castle projection
@@ -98,7 +98,7 @@ Only golden (`h = 2`) has its free count equal to its primary metallic sequence.
 - [[reachable-field-census](pages/reachable-field-census.md)] — the sibling census (which *fields* the strips reach), to which this is the *sequences* complement.
 - [[castle-by-area](pages/castle-by-area.md)] / [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] — the other "new sequence from a castle count" precedents, the pattern these rows follow.
 - [[castle-classification](pages/castle-classification.md)] — Axis 8, the `<metal> <axis> growth castle` meta-classification these projected metallic-ladder rows populate.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] — the canonical silver/Pell realization; its primary sequence A000129 (Pell) is what the silver projected count fails to reproduce (it lands on companion A001333 instead).
+- [[pell-castle-strip](pages/pell-castle-strip.md)] — the anchored 1-smooth height-3 strip, where Pell proper (A000129) does appear; the free `J − D` silver strip here lands on companion A001333 instead, and the boundary condition is the whole difference.
 
 ## Footnotes
 

@@ -5,7 +5,7 @@ summary: A castle sub-family from a horizontal-gap variation of PE 502's rule 3:
 tags: [analysis, castle, gap-rule, tower-spacing, transfer-matrix, growth-constant, plastic-number, golden-ratio, generating-function, rule-3, sympy, verification]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # Minimum-tower-spacing castles
@@ -93,14 +93,14 @@ The column-by-column transfer matrix (`build(h, g)`) and the growth/denominator 
 
 ## Appearances in Sources
 
-- [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the rule-3 gap that this page varies (there, the `x²` mandatory-gap atom; here, generalized to gap `≥ g`).
+- [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the note whose rule-3 reading prompted the gap-rule idea carried out here with a transfer matrix; the note's `x²` gap atom itself is withdrawn on [[pell-castle-strip](pages/pell-castle-strip.md)].
 
 ## Related Concepts
 
 - [[castle-strip](pages/castle-strip.md)] - the transfer-matrix bridge; this page is a horizontal-gap cousin of the height-adjacency strips defined there.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] / [[reachable-field-census](pages/reachable-field-census.md)] - the height-adjacency rule family and its reachable growth constants; the tower-spacing family is the parallel horizontal-gap axis.
 - [[plastic-number](pages/plastic-number.md)] - `ψ²` appears as the `(h=2, g=2)` growth constant (A005251 recurrence), a third castle route to the plastic-squared sequence.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] - the `g = 1` (rule 3) baby case and its `x²` gap atom, generalized here.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] - records that the `g = 1` case (rule 3 alone) imposes no restriction at all (count `h^w`, no gap atom); the spacing rule `g ≥ 2` is what first produces a genuine correction.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the other two A005251 castle interpretations the `(h=2, g=2)` count joins.
 - [[castle-classification](pages/castle-classification.md)] - the m-disparate / m-smooth (Axis 2) neighborhood this variation extends into the horizontal-gap direction.
 - [[castle-sign](pages/castle-sign.md)] / [[proper-castle-projection](pages/proper-castle-projection.md)] - the even-block parity projection that turns these raw counts into proper PE 502 castle counts.

@@ -5,7 +5,7 @@ summary: A classification framework for castle sub-families. Axes 1-7 are struct
 tags: [concept, castle, classification, taxonomy, skyline, spectral, ramanujan, growth-constant, fibonacci, tribonacci, n-nacci, plastic-number, supergolden]
 sources: [castle-classification]
 created: 2026-09-15
-updated: 2026-09-17
+updated: 2026-09-19
 ---
 
 # Castle classification
@@ -143,7 +143,7 @@ Types 19, 20, 22, 23, 25, 28, 29, 34:
 | Type | Predicate | Wiki tie |
 |---|---|---|
 | **Equal-block** | all maximal horizontal blocks have the same length | *open* — heavy structure |
-| **Two-level** | exactly two distinct height values | contains [[pell-castle-strip](pages/pell-castle-strip.md)] with `h = 2` |
+| **Two-level** | exactly two distinct height values | at `h = 2` this is every castle (`A(w,2) = 2^w − 1`); the height-2 tree castles ([[castle-graph](pages/castle-graph.md)]) are its Fibonacci sub-family |
 | **Crenellated** | heights alternate `{a, h}` (battlements) | *open* — very restricted two-level |
 | **Moated** | `c_1 = c_w = 1`, all interior `≥ 2` | *open* |
 | **Fence-post** | `c_i = 1` for all even `i` | *open* |
@@ -155,7 +155,7 @@ Types 19, 20, 22, 23, 25, 28, 29, 34:
 
 Axes 1-7 above are all **predicates on individual castles**: given `(c_1, …, c_w)`, is this castle unimodal? Ferrers? palindromic? Axis 8 is different: it is a **predicate on castle classes** — a property of a *sequence of counts*, not of a single castle. This makes it a **meta-classification**: golden growth castle status is not a shape a given castle has, it is a growth-rate a given class has.
 
-The framework is the [[metallic-means](pages/metallic-means.md)] family `δ_a = (a + √(a² + 4))/2` for `a = 1, 2, 3, …` — golden (`φ`), silver (`1+√2`), bronze (`(3+√13)/2`), copper, nickel, and so on. From the [[pell-castle-strip](pages/pell-castle-strip.md)] mnemonic, a castle-strip family with denominator `1 − p_1·x − p_2·x²` grows at `(p_1 + √(p_1² + 4·p_2))/2`, which is a metallic mean iff `p_2 = 1`. The metallic-mean ladder is thus a natural axis of count growth-constants along which real castle classes fall.
+The framework is the [[metallic-means](pages/metallic-means.md)] family `δ_a = (a + √(a² + 4))/2` for `a = 1, 2, 3, …` — golden (`φ`), silver (`1+√2`), bronze (`(3+√13)/2`), copper, nickel, and so on. A castle-strip family whose width generating function has denominator `1 − p_1·x − p_2·x²` grows at `(p_1 + √(p_1² + 4·p_2))/2`, which is a metallic mean iff `p_2 = 1` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). The metallic-mean ladder is thus a natural axis of count growth-constants along which real castle classes fall.
 
 ### The naming convention
 
@@ -175,14 +175,14 @@ A castle class is a **"`<metal>` `<axis>` growth castle"** iff its count sequenc
 
 A class whose width-graded count sequence has growth constant `φ = (1+√5)/2`, equivalently whose width GF has dominant singularity at `1/φ = φ − 1`. Known members:
 
-- **The {0, 1}-skyline castle strip** — a castle with `c_i ∈ {0, 1}` above the base and rule-3 mandatory gap. Count sequence: Fibonacci `F_{w+2}`, generating function `1/(1 − x − x²)`. This is the `p_1 = 1, p_2 = 1` case of the general `1 − p_1·x − p_2·x²` strip mnemonic.
+- **The height-2 tree castles** ([[castle-graph](pages/castle-graph.md)]) — skylines with `c_i ∈ {0, 1}` above the base and no two adjacent raised columns, so every upper block has width 1. Count sequence: Fibonacci `F_{w+2}`, generating function `1/(1 − x − x²)`, the `p_1 = 1, p_2 = 1` denominator. Rule 3 alone does *not* produce this family: under PE 502's rules every skyline over `{0, 1}` is a castle and the count is `2^w` ([[pell-castle-strip](pages/pell-castle-strip.md)] Act III).
 - **The prime-castle count** `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] — Fibonacci-flavored in `Q(√5)`, so its Fibonacci component makes it a golden growth castle by area (not width — the area grading is what puts Fibonacci in this sequence).
 
 ### Silver width growth castle — the `δ_2 = 1 + √2` axis-2 family
 
 A class whose width-graded count sequence has growth constant `1 + √2 ≈ 2.4142`. Known members:
 
-- **The [[pell-castle-strip](pages/pell-castle-strip.md)]** — the canonical instance. Count sequence: Pell numbers shifted `P_{n+1}` (OEIS A000129), generating function `1/(1 − 2x − x²)`. Height ≤ 2, two states per column, rule-3 mandatory gap. This is the `p_1 = 2, p_2 = 1` case.
+- **The anchored 1-smooth height-3 strip** ([[pell-castle-strip](pages/pell-castle-strip.md)]) — skylines over `{1, 2, 3}` with `|c_{i+1} − c_i| ≤ 1` and first column at height 1 (an Axis-2 predicate plus a boundary condition). Count sequence: Pell numbers `P_{w+1}` (OEIS A000129), generating function exactly `1/(1 − 2x − x²)`, the `p_1 = 2, p_2 = 1` denominator; with a free first column the count is companion Pell (A001333). The ceiling-exception rule `J − D` at height 3 ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) realizes the same growth constant.
 - **The tower word** ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]) — count sequence A004149, algebraic (not rational) generating function with singularity at `√2 − 1`, so growth `1/(√2 − 1) = √2 + 1`. Structurally very different from the Pell strip (context-free rather than regular), but the same growth constant — so both are silver width growth castles.
 
 **Two structurally different classes, one growth type.** This is the meta-classification working: silver width growth castle is a property that holds across differently-shaped families, uniting them by their asymptotic count behavior rather than by their skyline predicates.
@@ -241,7 +241,7 @@ The **block growth axis** grades by block count. [[tower-narayana-polynomial](pa
 
 **Cross-type theorems become stateable.** The interesting move Axis 8 licenses is statements of the form *"every class of type X is also of type Y"* where X is a structural (Axis 1-7) type and Y is a growth-type. Some concrete instances:
 
-- **Every {0, 1}-skyline strip is a golden width growth castle.** (Immediate — it's the Fibonacci strip.)
+- **Every height-2 tree-castle class is a golden width growth castle.** (Immediate — "no two adjacent raised columns" is the Fibonacci strip.)
 - **Every silver width growth castle has a dominant eigenvalue in `Q(√2)`.** (Immediate from Lagrange — periodic-in-CF means quadratic irrational; growth constant `1 + √2` sits in `Q(√2)`.)
 - **The tower word (a Motzkin-path-with-run-constraint type) is a silver width growth castle.** (Non-trivial — algebraic GF, singularity at `√2 − 1`; the Motzkin-path type is Axis 3 and the silver growth type is Axis 8, so the two axes are linked by a real theorem, not a definition.)
 - **Every height-`≤ h` castle class is a `h`-nacci area growth castle; imposing the Axis-9 tree constraint changes the growth constant.** (The non-metallic analogue — the tree ban strictly lowers the area growth rate: at `h = 3`, all-castles-by-area is **tribonacci** `≈ 1.8393` but tree-castles-by-area is A006498 with **golden** growth `φ`; at `h = 2` it drops Fibonacci to supergolden; at `h → ∞` it drops `2` to plastic-squared `ψ²`. So the same structural predicate (tree, Axis 9) maps one Axis-8 growth type to another, differently at each height — a real cross-axis interaction, not a definition.)

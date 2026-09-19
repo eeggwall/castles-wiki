@@ -5,7 +5,7 @@ summary: Every castle eigenvalue's "convergents" run against OEIS. The metallic 
 tags: [analysis, castle, continued-fraction, convergents, oeis, eigenvalue, quasi-polynomial, plastic-number, jacobi-perron, pisano, mod-p, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # Convergents-to-castle OEIS crosswalk
@@ -294,7 +294,7 @@ That is **A005251(L+3)**: `a(n) = 2a(n−1) − a(n−2) + a(n−3)`, and by the
 P(6, L)  =  2^L · #{binary strings of length L with no isolated 1}  +  (order-4 remainder with characteristic polynomial λ⁴ − 3λ³ + 8λ² − 4λ + 8),
 ```
 
-with the remainder `−2, −3, −1, 9, 71, 289, 727, 1361, …`. The signed count of height-`≤6` towers on a length-`L` base has, as its dominant piece, the per-column binary state `2^L` of the [[pell-castle-strip](pages/pell-castle-strip.md)] times a no-isolated-1 count in the plastic field. Nothing on the wiki predicts that; a bijection is the obvious target.
+with the remainder `−2, −3, −1, 9, 71, 289, 727, 1361, …`. The signed count of height-`≤6` towers on a length-`L` base has, as its dominant piece, the per-column binary state `2^L` (the height-2 unsigned tower count `T(1, L)` of [[castle-counting-formula](pages/castle-counting-formula.md)]) times a no-isolated-1 count in the plastic field. Nothing on the wiki predicts that; a bijection is the obvious target.
 
 ### Simple continued fractions: non-periodic, as Lagrange requires
 
@@ -434,7 +434,7 @@ All snippets ran under Python 3.11 with SymPy 1.14 and mpmath 1.3; the DP and Be
 - [[finite-fields](pages/finite-fields.md)] - `F_p` vs `F_{p²}`, the Frobenius, and why `δ^{p+1} = N(δ)`.
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] - the offset-exact verification discipline every A-number here went through.
 - [[castle-snippets](pages/castle-snippets.md)] - where the reusable snippets from this page are filed.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] - the `2^L` per-column binary state that reappears in the plastic component of `P(6,L)`.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] - the silver-ratio seminar arc; its Pell numbers are the convergent denominators of `1 + √2` in Part 1.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - every constant on this page is algebraic, as C-finiteness demands; `ψ` joins `φ` and `1+√2` on the algebraic side.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - the explanation of Part 4: the symmetry that factors `char_k`, the closed-form factors, and the plastic number's own page.
 

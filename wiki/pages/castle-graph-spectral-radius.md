@@ -5,7 +5,7 @@ summary: Where the metallic means do and do not appear as eigenvalues. The count
 tags: [analysis, castle, spectral, adjacency, transfer-matrix, metallic-means, golden-ratio, silver-ratio, axis-9, isospectral, numpy, sympy, verification]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-16
-updated: 2026-09-17
+updated: 2026-09-19
 ---
 
 # Metallic means in castle spectra
@@ -146,7 +146,7 @@ A skyline that is a Sturmian word - two heights arranged by the rotation with sl
 
 - [[spectral-analysis](pages/spectral-analysis.md)] - the methods hub; this page settles its `λ_1(h)` target and supplies Axis 9 data.
 - [[castle-classification](pages/castle-classification.md)] - Axis 8 (class growth constants, where metallic means correctly live) and Axis 9 (single-castle spectral predicates, populated here).
-- [[metallic-means](pages/metallic-means.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] - the family and the class whose transfer matrix has spectral radius `1 + √2`.
+- [[metallic-means](pages/metallic-means.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] - the family, and the class (the anchored 1-smooth height-3 strip) whose transfer matrix has spectral radius `1 + √2`.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - why the signed transfer matrix's eigenvalues are twice units, and `ρ_6 = 2ψ²`.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] - the `ρ_k` table.
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - `F(w,2) = A038505(w+1)`, growth 2.

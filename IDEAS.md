@@ -9,8 +9,8 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 | Slice | Value |
 |---|---|
 | Pages | 106 (30 Sources / 51 Concepts / 25 Analyses) |
-| Divisions (open + done) | Numbers 12+24, Enumeration 5+16, Q 5+0, S 5+5, T 7+0, Classification 4+4, Misc 6+0 |
-| Items | 44 open, 49 done, 93 total |
+| Divisions (open + done) | Numbers 11+25, Enumeration 5+16, Q 5+0, S 5+5, T 7+0, Classification 4+4, Misc 6+0 |
+| Items | 43 open, 50 done, 93 total |
 | Arcs | 11 (5 deliverable, 3 one page short, 1 half built, 2 sketch) |
 | Dates | wiki 2026-09-13, IDEAS 2026-09-14, last reorganize 2026-09-19 |
 
@@ -90,7 +90,6 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 
 - [ ] **Castle sequence bank residue** - the mining pass covered F, T, P and every derived count; what remains is `F_odd = A - F` as its own bank entry, the parity-refined area sequences, and the block-count / peak / area joint distributions not yet enumerated. (S7)
 - [ ] **Larger-prime periodicity** - extend the mod-p observatory to larger primes (and `10^9+7`); the periods become infeasible to enumerate, but the eigenvalue-order structure persists. (S2)
-- [ ] **Silver-ratio observatory** - sweep the castle sub-families for Pell (A000129) and companion Pell (A001333); a Pell-in-castle-somewhere result would complete the Fibonacci/Pell symmetry on [pell-numbers](wiki/pages/pell-numbers.md). (S2)
 - [ ] **Seminar centerpiece: the Hardin word identity** - a 90-minute arc from "sum `(-1)^blocks` over towers" to "count words with no nonzero local maximum," every step on one blackboard. (S3)
 - [ ] **Min-height law for `(p1,p2)`** - a closed form or tight bound for the minimum height realizing a given reachable pair; no clean formula fits so far. (S2)
 - [ ] **Pisot/Salem classification of reachable cubics** - which reachable-field cubic Perron roots are Pisot or Salem numbers. (S2)
@@ -149,7 +148,8 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 - [x] **[Algorithmic seminar](wiki/pages/kitamasa.md)** - Berlekamp-Massey plus Kitamasa for enormous indices, with companion [berlekamp-massey](wiki/pages/berlekamp-massey.md). (S1)
 - [x] **[Formal language of tower words](wiki/pages/tower-word-language.md)** - the tower word as a Motzkin-path language, its unambiguous grammar, and the Dyck / Motzkin hierarchy. (-)
 - [x] **[The `(n-1)!` cycle-count upgrade](wiki/pages/castles-as-upgraded-cycle-count.md)** - read PE 502 as the elementary `(n-1)!` labelled-cycle count upgraded step by step into the sign / Foata / streak triad. (S1)
-- [x] **[The Pell castle strip](wiki/pages/pell-castle-strip.md)** - an AC end-of-chapter exercise on `D(x) = 1/(1-2x-x^2)` opens onto PE 502's rules; counts are [pell-numbers](wiki/pages/pell-numbers.md), growth `1+sqrt(2)`. (S2)
+- [x] **[The Pell castle strip](wiki/pages/pell-castle-strip.md)** - an AC end-of-chapter exercise on `D(x) = 1/(1-2x-x^2)`, its two-atom tiling reading, and the castle strip that realizes it (1-smooth, height <= 3, anchored at the base); counts are [pell-numbers](wiki/pages/pell-numbers.md), growth `1+sqrt(2)`. The earlier rule-3 reading of the atoms is withdrawn there. (S2)
+- [x] **[Silver-ratio observatory](wiki/pages/pell-castle-strip.md)** - Pell (A000129) and companion Pell (A001333) both occur as castle-strip counts, in one family split by the boundary condition (anchored vs free 1-smooth height-3 strip); completes the Fibonacci/Pell symmetry on [pell-numbers](wiki/pages/pell-numbers.md). (S2)
 
 ### Q Division (q-numbers - castles by area)
 

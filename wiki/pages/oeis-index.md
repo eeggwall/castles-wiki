@@ -5,7 +5,7 @@ summary: The wiki's two-layer sequence directory. Layer 1 (the OEIS index) is a 
 tags: [concept, oeis, index, directory, cross-reference, castle, sequence, catalogue, novelty, submission-candidate]
 sources: [oeis-mining-pe502]
 created: 2026-09-17
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # OEIS index and castle sequence catalogue
@@ -46,7 +46,7 @@ A-numbers link to OEIS. "Pages" is where the number appears in this wiki, with t
 | A-number | Name | Castle role | Pages |
 |---|---|---|---|
 | [A000045](https://oeis.org/A000045) | Fibonacci numbers: F(n) = F(n-1) + F(n-2) with F(0) = 0 and F(1) = 1. | tree castles of height 2 (T_2(w) = F_{w+2}); Fibonacci in prime-castle count | [[castle-graph](pages/castle-graph.md)] (3), [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] (3), [[metallic-means](pages/metallic-means.md)] (2), [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] (1), [[pell-numbers](pages/pell-numbers.md)] (1), [[plastic-number](pages/plastic-number.md)] (1) |
-| [A000129](https://oeis.org/A000129) | Pell numbers: a(0) = 0, a(1) = 1; for n > 1, a(n) = 2*a(n-1) + a(n-2). | Pell castle strip; realization of 1 + √2 | [[pell-numbers](pages/pell-numbers.md)] (9), [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] (5), [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] (3), [[pell-castle-strip](pages/pell-castle-strip.md)] (3), [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] (2), [[metallic-means](pages/metallic-means.md)] (2), [[castle-classification](pages/castle-classification.md)] (1), [[castle-counting-formula](pages/castle-counting-formula.md)] (1), [[castle-snippets](pages/castle-snippets.md)] (1), [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] (1) |
+| [A000129](https://oeis.org/A000129) | Pell numbers: a(0) = 0, a(1) = 1; for n > 1, a(n) = 2*a(n-1) + a(n-2). | anchored 1-smooth height-≤3 castle strip, `P_{w+1}` (the Pell castle strip); integer realization of 1 + √2 | [[pell-numbers](pages/pell-numbers.md)] (9), [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] (5), [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] (3), [[pell-castle-strip](pages/pell-castle-strip.md)] (3), [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] (2), [[metallic-means](pages/metallic-means.md)] (2), [[castle-classification](pages/castle-classification.md)] (1), [[castle-counting-formula](pages/castle-counting-formula.md)] (1), [[castle-snippets](pages/castle-snippets.md)] (1), [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] (1) |
 | [A000225](https://oeis.org/A000225) | a(n) = 2^n - 1. (Sometimes called Mersenne numbers, although that name is usually reserved | total height-2 castles (Mersenne): F(w,2) + odd(w,2) = 2^w - 1 | [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] (8), [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] (3), [[castle-counting-function](pages/castle-counting-function.md)] (2), [[aocp-generating-functions](pages/aocp-generating-functions.md)] (1), [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] (1) |
 | [A000447](https://oeis.org/A000447) | a(n) = 1^2 + 3^2 + 5^2 + 7^2 + ... + (2*n-1)^2 = n*(4*n^2 - 1)/3. | |P(2m+1,4)| bisection: 4·A000447 = A199833 | [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] (4) |
 | [A000570](https://oeis.org/A000570) | Number of tournaments on n nodes determined by their score vectors. Author: Prasad Tetali. | tree castles of height 4 by area: T_(h=4)(A) = A000570(A+1); Tetali's classification of the four basic unique tournaments (sizes 1, 3, 4, 5) is proved in [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] (JCTB 72:157-159, 1998), ingested to `raw/` | [[tree-castle-by-area](pages/tree-castle-by-area.md)] (5), [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] (1), [[unique-tournament](pages/unique-tournament.md)] (1) |
@@ -198,6 +198,18 @@ Height-`h` castles where every valley between raised regions is `≥ g` columns 
 | `(h=4, g=3)` | `4, 16, 50, 130, 310, 736` | `2.5398` | **interlink** → [A217949](https://oeis.org/A217949) (0..3 "min of 3 adjacent") |
 
 *(A structural discovery: the `g=2` column is the Hardin "no strict local maximum" family — tower-spacing-2 forbids an isolated peak — and the `g=3` column is the "min of 3 adjacent" family. OEIS-verified 2026-09-18. The `g ≥ 4` columns are **unchecked**.)*
+
+### The Pell castle strip - 1-smooth height-3 strips
+
+Skylines over `{1, 2, 3}` with adjacent heights differing by at most 1 ([[pell-castle-strip](pages/pell-castle-strip.md)]); the boundary condition picks the sequence.
+
+| object | first terms (`w = 1…`) | growth | status |
+|---|---|---|---|
+| 1-smooth, first column at height 1 | `1, 2, 5, 12, 29, 70, 169, 408` | `1+√2` | **interlink** → [A000129](https://oeis.org/A000129) Pell (`=P_{w+1}`; GF exactly `1/(1−2x−x²)`) |
+| 1-smooth, free first column | `3, 7, 17, 41, 99, 239, 577, 1393` | `1+√2` | **interlink** → [A001333](https://oeis.org/A001333) companion Pell |
+| 1-smooth, both end columns at height 1 | `1, 1, 2, 4, 9, 21, 50, 120` | `1+√2` | **unchecked** |
+
+*(Verified by enumeration and by `e_1ᵀ(I − xM)^{−1}𝟙` on the 3×3 transfer matrix, 2026-09-19. Height-2 castles under PE 502's own rules number `2^w`, so this is the castle home of Pell, not the height-2 count.)*
 
 ### Proper-castle (max=h + even-block) metallic ladder
 

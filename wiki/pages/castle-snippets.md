@@ -5,7 +5,7 @@ summary: A living reference of short, tested Python snippets for enumerating cas
 tags: [concept, castle, python, snippets, computational, classification, reference]
 sources: [project-euler-502-brute-force]
 created: 2026-09-16
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # Castle snippets — Python one-liners
@@ -250,9 +250,9 @@ True
 
 Wiki ties: [[castle-classification](pages/castle-classification.md)] Axis 5. **Rainbow castles are in bijection with `S_h`** — the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] triad applies directly (not as an upgrade) to this class.
 
-### Axis 8: growth-type predicate skeleton — the {0, 1}-strip
+### Axis 8: growth-type predicate skeleton — the height-2 tree-castle strip
 
-The [[pell-castle-strip](pages/pell-castle-strip.md)]-style predicates encode the "state above the base" (0 = empty column, 1 = height-1 tower cell). See [[castle-classification](pages/castle-classification.md)] Axis 8 for the meta-classification these strips instantiate.
+Encode the state above the base (0 = empty column, 1 = one raised cell) and forbid two adjacent raised columns; this is the height-2 tree castle of [[castle-graph](pages/castle-graph.md)]. See [[castle-classification](pages/castle-classification.md)] Axis 8 for the meta-classification these strips instantiate. Rule 3 alone does not restrict `{0,1}` skylines (all `2^w` are castles), so the adjacency ban is the whole predicate.
 
 ```python
 def is_zero_one_strip(c):
@@ -268,7 +268,31 @@ True
 False
 ```
 
-Wiki tie: [[castle-classification](pages/castle-classification.md)] Axis 8 — the {0,1}-strip is a golden width growth castle; its count sequence is Fibonacci `F_{w+2}`.
+Wiki tie: [[castle-classification](pages/castle-classification.md)] Axis 8 — the height-2 tree castles are a golden width growth castle; their count sequence is Fibonacci `F_{w+2}` (see also `is_tree_castle` below).
+
+### `pell_strip_count(w)` → the Pell castle strip
+
+The silver counterpart ([[pell-castle-strip](pages/pell-castle-strip.md)]): 1-smooth skylines over heights `{1, 2, 3}` (adjacent heights differ by at most 1) whose first column has height 1. Their width generating function is exactly `1/(1 − 2x − x²)`, so the counts are Pell numbers `P_{w+1}`; dropping the anchor gives companion Pell (A001333).
+
+```python
+from itertools import product
+
+def pell_strip_count(w, anchored=True):
+    return sum(1 for c in product((1, 2, 3), repeat=w)
+               if (c[0] == 1 or not anchored)
+               and all(abs(c[i+1] - c[i]) <= 1 for i in range(w-1)))
+```
+
+```
+>>> [pell_strip_count(w) for w in range(1, 9)]                  # Pell P_{w+1}, A000129
+[1, 2, 5, 12, 29, 70, 169, 408]
+>>> [pell_strip_count(w, anchored=False) for w in range(1, 9)]  # companion Pell, A001333
+[3, 7, 17, 41, 99, 239, 577, 1393]
+>>> [len([c for c in product((1, 2), repeat=w)]) for w in range(1, 6)]   # height-2 castles under the actual rules: 2^w, not Pell
+[2, 4, 8, 16, 32]
+```
+
+Meaning: the Pell numbers do occur as a castle-strip count, but the strip is a height-3 rate-of-change rule with a boundary condition, not a height-2 rule; every `{1,2}` skyline is a castle, so rule 3 contributes no correction term.
 
 ## Axis 8: growth-constant probes
 
@@ -1401,7 +1425,7 @@ Snippets that break this discipline will rot; snippets that follow it stay usefu
 - [[castle-representations](pages/castle-representations.md)] — the skyline encoding all snippets predicate on.
 - [[castle-sign](pages/castle-sign.md)] — the block-count convention `blocks(c)` matches.
 - [[metallic-means](pages/metallic-means.md)] — the family `nearest_metallic` tests against.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] — the silver-width-growth-castle example; the `is_zero_one_strip` predicate is its `p_1 = 1` analog for golden.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] — the silver-width-growth-castle example (the anchored 1-smooth height-3 strip, `pell_strip_count`); `is_zero_one_strip` is its golden analog.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — the OEIS-lookup loop the `oeis_snippet` helper feeds.
 - [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the analysis the continued-fraction / mod-p / quasi-polynomial snippets were written for; every pinned value here matches that page.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - the transfer-matrix, sector, and `H(d)` snippets.

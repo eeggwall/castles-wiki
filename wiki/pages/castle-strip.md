@@ -5,7 +5,7 @@ summary: A castle strip is a castle read left-to-right as a sequence of columns,
 tags: [concept, castle, transfer-matrix, strip, height, perron-root, growth-constant, generating-function, pedagogy, bridge]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # The castle strip - bridge to transfer matrices
@@ -85,8 +85,8 @@ Two quantities fall straight out of `M`, and they are what the advanced pages ac
 
 The strip is a **rule-restricted, single-height-band slice** of the castle world, and it connects to PE 502's actual castles in two ways:
 
-- **The unrestricted `h`-height strip is "all castles of height ≤ h" graded by width.** With `A(a,b)` always true, `M` is the all-ones `h × h` matrix `J`, growth constant `h` (its Perron root), count `h^w`. That is the raw column-product count before PE 502's structural rules ([[castle-counting-formula](pages/castle-counting-formula.md)]).
-- **PE 502's own rules are specific strips.** The mandatory-gap rule 3 turns the height-2 count into the Pell strip `1/(1 − 2x − x²)` ([[pell-castle-strip](pages/pell-castle-strip.md)]); the tower word is a Motzkin-flavored strip ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]). A "castle-strip rule" is thus a **candidate castle sub-family** — pick a neighbor rule, and its growth constant is a Perron root you can compute from the matrix.
+- **The unrestricted `h`-height strip is "all castles of height ≤ h" graded by width.** With `A(a,b)` always true, `M` is the all-ones `h × h` matrix `J`, growth constant `h` (its Perron root), count `h^w`. That is the full count of castles of height at most `h`: PE 502's rules 1-5 impose no neighbor restriction, because blocks are the maximal runs of each row and the rule-3 gap is automatic ([[castle-counting-formula](pages/castle-counting-formula.md)]).
+- **Named sub-families are specific strips.** The 1-smooth rule `|a − b| ≤ 1` on heights `{1, 2, 3}`, started at height 1, is the Pell strip `1/(1 − 2x − x²)` ([[pell-castle-strip](pages/pell-castle-strip.md)]); the tower word is a Motzkin-flavored strip ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]). A "castle-strip rule" is thus a **candidate castle sub-family** — pick a neighbor rule, and its growth constant is a Perron root you can compute from the matrix.
 
 The strip is to *width*-growth what the [[castle-graph](pages/castle-graph.md)] is to *spectral* invariants: a small, computable object that turns "castle shape" into linear algebra. Where the castle graph reads eigenvalues off an individual castle's cell-adjacency, the strip reads a growth constant off a *class's* height-adjacency rule.
 
@@ -110,7 +110,7 @@ The one-line strip counter and growth-constant / field probes are on [[castle-sn
 
 ## Related Concepts
 
-- [[pell-castle-strip](pages/pell-castle-strip.md)] - the worked seminar: the height-2 rule-3 strip is `1/(1 − 2x − x²)`, growth `1 + √2` (silver). The gentlest next step after this page.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] - the worked seminar: the anchored 1-smooth height-3 strip is `1/(1 − 2x − x²)`, growth `1 + √2` (silver), plus the check that rules out reading it as a height-2 rule. The gentlest next step after this page.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - which growth constants `λ` are strip Perron roots; the `p₁/p₂` two-knob reduction and the `J − D` metallic realizer.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the exhaustive census of strip Perron roots by number field; the reachability law.
 - [[metallic-means](pages/metallic-means.md)] - the ladder of growth constants `δ_a` these strips realize.

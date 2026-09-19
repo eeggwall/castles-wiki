@@ -5,7 +5,7 @@ summary: The centerpiece hub for spectral methods applied to castles as 2D polyo
 tags: [concept, castle, spectral, transfer-matrix, laplacian, dft, ihara-zeta, ramanujan, isospectral, determinantal]
 sources: [spectral-analysis]
 created: 2026-09-16
-updated: 2026-09-16
+updated: 2026-09-19
 ---
 
 # Spectral analysis of castles
@@ -145,7 +145,7 @@ The five spectra above are not independent of the structural axes. Concrete cons
 | **Boxcastle** (Axis 5, `c_i = h` all) | Laplacian spectrum `2·cos(iπ/(w+1)) + 2·cos(jπ/(h+1))`, explicit closed form |
 | **Unimodal / pyramidal** (Axis 1) | Skyline DFT decays like `1/k` (sawtooth-DFT class); low-pass spectrum; Laplacian spectral gap `μ_1 = Θ(1/w)` |
 | **Even-parity-only** (PE 502 rule 6) | Transfer-matrix `T` splits into `±1` eigenspaces of the block-parity involution `σ`; castles live in the `+1` half; spectral projection = `½(I + σ)`. This is [[castle-sign](pages/castle-sign.md)]'s `(T ± P)/2` at the operator level. |
-| **Silver width growth castle** (Axis 8) | The *class's* 2-state transfer matrix (`[[2,1],[1,0]]` for the Pell strip) has spectral radius `1 + √2 ∈ Q(√2)`; PE 502's own signed transfer matrix never has a metallic eigenvalue |
+| **Silver width growth castle** (Axis 8) | The *class's* transfer matrix (the 1-smooth height-3 matrix `[[1,1,0],[1,1,1],[0,1,1]]` for the Pell strip) has spectral radius `1 + √2 ∈ Q(√2)`; PE 502's own signed transfer matrix never has a metallic eigenvalue |
 | **Golden- / silver-spectrum castle** (Axis 9) | Adjacency spectral radius `φ` (the 4-cell paths) or `1 + √2` (the `3×2` rectangle and three non-rectangular castles) - see [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
 | **q-Gibbs area-weighted** (`q = e^{−β}`, area-weighted measure) | Transfer matrix `T_β` with `β`-dependent spectrum; **spectral phase transition** at some critical `β_c` where `λ_1(β)` has a non-analyticity — the castle analog of a Yang-Lee zero and the direct meeting-point of combinatorics with statistical mechanics |
 

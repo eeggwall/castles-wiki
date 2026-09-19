@@ -5,7 +5,7 @@ summary: The castle's characteristic polynomials are self-reciprocal (palindromi
 tags: [concept, castle, continued-fraction, eigenvalue, characteristic-polynomial, palindromic, lagrange, galois, quadratic, fibonacci, mod-p, pedagogy]
 sources: [project-euler-502-representations, oeis-mining-pe502]
 created: 2026-09-15
-updated: 2026-09-16
+updated: 2026-09-19
 ---
 
 # Eigenvalue continued fractions
@@ -108,7 +108,7 @@ The factorizations on the right are the point: **every k-direction eigenvalue is
 **The two quadratics are the real, purely-periodic cases.** The castle's *actual* quadratic numbers are not among these high-degree roots; they sit in the surrounding objects, and both are norm-−1 reduced surds of period one:[^4]
 
 - `φ = (1+√5)/2 = [1; 1, 1, …]`, root of `x² − x − 1` — Fibonacci's growth rate (`F_n = (φ^n − φ̂^n)/√5`, [[aocp-generating-functions](pages/aocp-generating-functions.md)]) and the `2^{n−1} − F_{n−1}` of prime-castle counting ([[castle-by-area](pages/castle-by-area.md)]).
-- `√2 + 1 = [2; 2, 2, …]`, root of `x² − 2x − 1` — the tower-word growth constant from [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]. The integer sequence that realizes this surd via its Binet form is the [[pell-numbers](pages/pell-numbers.md)] (`P_n = 2P_{n−1} + P_{n−2}`, OEIS A000129), whose convergents `P_{n+1}/P_n = 2, 5/2, 12/5, 29/12, 70/29, 169/70, …` are the continued-fraction truncations of `1 + √2`; the Pell strip mnemonic on [[pell-castle-strip](pages/pell-castle-strip.md)] is a physical castle-strip realization.
+- `√2 + 1 = [2; 2, 2, …]`, root of `x² − 2x − 1` — the tower-word growth constant from [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]. The integer sequence that realizes this surd via its Binet form is the [[pell-numbers](pages/pell-numbers.md)] (`P_n = 2P_{n−1} + P_{n−2}`, OEIS A000129), whose convergents `P_{n+1}/P_n = 2, 5/2, 12/5, 29/12, 70/29, 169/70, …` are the continued-fraction truncations of `1 + √2`; the anchored 1-smooth height-3 strip on [[pell-castle-strip](pages/pell-castle-strip.md)] is a castle-strip realization with exactly these counts.
 
 Both are the fundamental units of their quadratic fields (`φ` of `Q(√5)`, `√2+1` of `Q(√2)`) — what "norm −1 reduced surd" means for a real quadratic field.
 
@@ -117,7 +117,7 @@ Both are the fundamental units of their quadratic fields (`φ` of `Q(√5)`, `�
 | `a` | `δ_a = [a; a, a, …]` | Name | Integer sequence | Castle appearance |
 |---|---|---|---|---|
 | 1 | `(1+√5)/2 ≈ 1.618` | Golden | Fibonacci A000045 | `2^{n−1} − F_{n−1}` in prime-castle count ([[castle-by-area](pages/castle-by-area.md)]) |
-| 2 | `1+√2 ≈ 2.414` | Silver | Pell A000129 ([[pell-numbers](pages/pell-numbers.md)]) | tower-word growth constant; the [[pell-castle-strip](pages/pell-castle-strip.md)] mnemonic |
+| 2 | `1+√2 ≈ 2.414` | Silver | Pell A000129 ([[pell-numbers](pages/pell-numbers.md)]) | tower-word growth constant; the anchored 1-smooth strip of [[pell-castle-strip](pages/pell-castle-strip.md)] |
 | 3, 4, 5, … | Bronze, Copper, Nickel, … | (candidate rungs) | | *open — see the metallic-ratio-ladder thread on `IDEAS.md`* |
 
 The wiki was already sitting on rungs 1 and 2 of this ladder before naming it. Every castle class whose count sequence has growth constant `δ_a` for some `a ≥ 1` is a **`<metal>` `<axis>` growth castle** (Axis 8 of [[castle-classification](pages/castle-classification.md)]) — a meta-classification on castle *classes* (not on individual castles) whose naming convention `<metal>` ∈ {golden, silver, bronze, copper, …} and `<axis>` ∈ {width, vertical, area, block} is developed there.
@@ -142,7 +142,7 @@ This is the real-number counterpart of the [[mod-p-observatory](pages/mod-p-obse
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — the `√2 + 1` growth constant and the Flajolet/Motzkin continued fractions this page's eigenvalue side mirrors.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the Fibonacci/`φ` method, the golden ratio's algebraic home.
 - [[pell-numbers](pages/pell-numbers.md)] — the integer sequence realizing `1 + √2 = [2;2,2,…]`, the Pell/silver-ratio companion to Fibonacci/`φ`.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] — a castle-strip mnemonic realizing the silver-ratio thread through PE 502's structural rules.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] — the castle strip (1-smooth, height ≤ 3, anchored at the base) whose width counts are the Pell numbers.
 - [[metallic-means](pages/metallic-means.md)] — the family `δ_a = (a + √(a²+4))/2` (a = 1, 2, 3, …) whose first two members (`φ`, `1+√2`) this page treats; the axis of the Axis-8 "`<metal>` `<axis>` growth castle" meta-classification on [[castle-classification](pages/castle-classification.md)].
 - [[castle-by-area](pages/castle-by-area.md)] — `2^{n−1} − F_{n−1}`, where Fibonacci/`φ` enters the castle count.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] — the algebraic/transcendental split the named constants inhabit.
