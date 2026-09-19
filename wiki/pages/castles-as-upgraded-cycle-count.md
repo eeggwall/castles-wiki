@@ -5,7 +5,7 @@ summary: PE 502 as the same toolkit that proves (n−1)! for cycles, upgraded st
 tags: [analysis, castle, permutations, cycles, seminar, factorization, sign]
 sources: [pe502-castle-cycle-permutations]
 created: 2026-09-15
-updated: 2026-09-15
+updated: 2026-09-19
 ---
 
 # Castles as an upgrade of the (n−1)! cycle count
@@ -45,7 +45,7 @@ For `(w,h) = (4,2)`, the four values are `h^w = 16`, `(h−1)^w = 1`, `P(1,4) = 
 F(4,2) = (16 − 1 − (−4) + 1) / 2 = 20 / 2 = 10.
 ```
 
-Direct enumeration matches: the bottom-row block is forced full-width, and even-total parity forces exactly one tower block, which is a length-4 binary string with exactly one maximal `1`-run — `1000, 0100, 0010, 0001, 1100, 0110, 0011, 1110, 0111, 1111` — the 10 configurations of the [[castle-foata-transform](pages/castle-foata-transform.md)] miniature.[^5]
+Direct enumeration matches: the bottom-row block is forced full-width, and even-total parity forces an odd number of tower blocks - an odd number of maximal `1`-runs in a length-4 binary string, which at width 4 means exactly one run, since three runs need width at least 5 — `1000, 0100, 0010, 0001, 1100, 0110, 0011, 1110, 0111, 1111` — the 10 configurations of the [[castle-foata-transform](pages/castle-foata-transform.md)] miniature.[^5] (At width 5 the three-run string `10101` joins and `F(5,2) = 16`; the general count is `Σ_s C(w+1, 4s+2) = A038505(w+1)`, see [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)].)
 
 The three upgrades read off this hand check directly:
 
@@ -84,6 +84,7 @@ The point of the talk is not the answer (`F(w,h)` exists in closed form), but th
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the closed form the three upgrades combine to yield.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the factorization on the castle side.
 - [[aocp-multisets](pages/aocp-multisets.md)] / [[aocp-permutations](pages/aocp-permutations.md)] — Knuth's Vol. 3 and Vol. 1 sources for the two-line-array cycle apparatus and canonical cycle form.
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — the source that names `(A + P)/2` "a symmetry trick that recurs in many combinatorial-enumeration problems"; the `(1 ± sgn)/2` anchor above is its elementary case.
 
 ## Footnotes
 

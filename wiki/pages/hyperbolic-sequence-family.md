@@ -5,7 +5,7 @@ summary: The four "sum of every 4th binomial" sequences A038503/A038504/A038505/
 tags: [concept, oeis, binomial, hyperbolic, castle, height-2]
 sources: [oeis-mining-pe502, oeis-height2-hyperbolic-castles]
 created: 2026-09-13
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # Order-4 hyperbolic sequence family
@@ -45,6 +45,8 @@ These identities were **submitted to OEIS on 2026-09-18** ([[oeis-height2-hyperb
 - [[castle-counting-function](pages/castle-counting-function.md)] — `F(w,2)`, `odd(w,2)`.
 - [[signed-tower-count](pages/signed-tower-count.md)] — `A146559 = A038503 − A038505`.
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] — why isolated entries like these are the best cross-link targets.
+- [[block-count-constraints](pages/block-count-constraints.md)] - "sum every 4th binomial" is the `m = 2` residue extraction on the height-1 tower GF `Σ_r C(L+1, 2r) z^r`: `A038503(L+1)` is the even-block class, `A038505(L+1)` the odd-block class.
+- [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] - `F(4,2) = C(5,2) = 10` is the `s = 0` term of `Σ_s C(w+1, 4s+2)`; three-run second rows enter at `w = 5`.
 
 ## Footnotes
 

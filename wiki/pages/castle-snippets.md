@@ -103,7 +103,7 @@ even = sum(1 for c in all_castles(4, 2) if blocks(c) % 2 == 0)
 10
 ```
 
-Also matches the [[castle-counting-formula](pages/castle-counting-formula.md)] `F(4,2) = ½(16 − 1 + 4 + 1) = 10` and the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] hand check.
+Also matches the [[castle-counting-formula](pages/castle-counting-formula.md)] `F(4,2) = ½(16 − 1 + 4 + 1) = 10` and the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] hand check. The ten castles are those whose second row has an odd number of runs of `1`s ([[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)]); at width 4 that is exactly one run, and `all_castles(5, 2)` adds the three-run row `10101` to make `F(5,2) = 16`.
 
 ## Classification predicates — Axes 1-7 of [[castle-classification]]
 
@@ -1436,3 +1436,6 @@ Snippets that break this discipline will rot; snippets that follow it stay usefu
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] / [[mod-p-observatory](pages/mod-p-observatory.md)] - the two sides (real periods, finite-field orders) that `convergents` and `order_mod` compute.
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] / [[kitamasa](pages/kitamasa.md)] — the fast-algorithm side, one abstraction level up.
 - [[castle-cryptography](pages/castle-cryptography.md)] / [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] / [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the `castle_dh`, `castle_dlp`, `bm_modp`, `castle_schnorr` snippets: the build and the attacks of the cryptography seminar series.
+- [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - `all_castles(w, h)` is Knuth's Algorithm M (mixed-radix odometer over `{1..h}^w`) with a `max == h` post-filter; the castle Gray code thread starts there.
+- [[unique-tournament](pages/unique-tournament.md)] / [[simple-tournament](pages/simple-tournament.md)] / [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] - the concepts behind `castle_to_composition`, `composition_to_castle`, and `is_strongly_connected`.
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `sum(1 for c in all_castles(w, 3) if blocks(c) % 2 == 0)` reproduces `0, 0, 3, 21, 89, 307, …`.

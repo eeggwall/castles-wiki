@@ -5,7 +5,7 @@ summary: The castle analogue of Foata's canonical-cycle flattening — peaks are
 tags: [concept, castle, foata, permutations, records, bijection]
 sources: [project-euler-502-castle-factoring, pe502-castle-cycle-permutations]
 created: 2026-09-13
-updated: 2026-09-15
+updated: 2026-09-19
 ---
 
 # Castle Foata transform
@@ -75,7 +75,7 @@ These two peaks are genuinely independent towers — each a self-contained excur
 
 ## The F(4,2) = 10 miniature
 
-For height exactly 2 the tower above the base is a single row of blocks, encoded by a length-4 binary string whose runs of 1s are the tower blocks; even total castle blocks means an odd number of tower blocks, i.e. exactly one run. The 10 valid castles have tower column heights `1000 0100 0010 0001 1100 0110 0011 1110 0111 1111`, and each has exactly one maximal positive run — hence exactly one peak and one record — the transform in miniature across the whole case.[^9]
+For height exactly 2 the tower above the base is a single row of blocks, encoded by a length-4 binary string whose runs of 1s are the tower blocks; even total castle blocks means an odd number of tower blocks, which at width 4 means exactly one run (three runs need width at least 5; the general count is `Σ_s C(w+1, 4s+2) = A038505(w+1)`). The 10 valid castles have tower column heights `1000 0100 0010 0001 1100 0110 0011 1110 0111 1111`, and each has exactly one maximal positive run — hence exactly one peak and one record — the transform in miniature across the whole case.[^9]
 
 ## Appearances in Sources
 
