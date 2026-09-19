@@ -5,7 +5,7 @@ summary: Closed forms of P(k,L) in k for small L — P(k,2) = (−1)^k(k+1) (pro
 tags: [analysis, castle, closed-form, c-finite, verification]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502]
 created: 2026-09-14
-updated: 2026-09-16
+updated: 2026-09-19
 ---
 
 # Closed-form hunting for P(k,L)
@@ -81,6 +81,7 @@ There is **no single-polynomial closed form** for `P(k,L)` as a function of `k` 
 - [[castle-sign](pages/castle-sign.md)] — the definition of `P` as the signed tower count.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] — the tool that recovers the `(1+x)^L` and palindromic polynomials.
 - [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] - the `(x+1)^L (x−1)^{L−2}` factorization, the quasi-polynomial table `A_L, B_L`, and its OEIS hits.
+- [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] — `Σ_k (−1)^k C(n,k) = 0`, the alternating sum whose degenerate case `P(k,1) = (1 + (−1)^k)/2` opens the hunt.
 
 ## Footnotes
 

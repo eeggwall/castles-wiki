@@ -5,7 +5,7 @@ summary: The signed transfer matrix commutes with "reflect heights, flip signs",
 tags: [analysis, castle, signed-tower-count, transfer-matrix, symmetry, factorization, plastic-number, quasi-polynomial, oeis, hardin, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-16
+updated: 2026-09-19
 ---
 
 # Tower parity sectors - why `char_k` factors, and where the plastic number comes from
@@ -262,6 +262,9 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 - [[spectral-analysis](pages/spectral-analysis.md)] - the transfer-matrix spectrum (method 1 there); this page is a worked instance of "find the symmetry, block-diagonalize, read off the growth constant".
 - [[metallic-means](pages/metallic-means.md)] / [[castle-classification](pages/castle-classification.md)] - the Axis-8 growth-constant ladder that `2ψ²` sits beside.
 - [[finite-fields](pages/finite-fields.md)] / [[mod-p-observatory](pages/mod-p-observatory.md)] - the sector polynomials reduce mod `p` too; their orders are the pieces of `per(char_k)`.
+- [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] - Pascal's rule `C(r,k) = C(r−1,k) + C(r−1,k−1)`, the identity that proves the `H_{d+1} + μ² H_{d−1}` doubling identity in Part 2.
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `char_2 = (x−2)(x²−x+2)` is why `F(w,3)` has order 6: its `(x−2)` is shared with the `2^w` term.
+- [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - the sector tables are computed by Algorithm M enumeration of `{0..k}^L`.
 
 ## Footnotes
 

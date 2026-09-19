@@ -5,7 +5,7 @@ summary: The tower words as a formal language — a Motzkin-path language (U/R/D
 tags: [concept, castle, formal-language, motzkin, dyck, grammar, chomsky-schutzenberger, pedagogy]
 sources: [dyck-words, project-euler-502-representations]
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-19
 ---
 
 # Tower word language
@@ -65,6 +65,8 @@ The tower's "no `UD`/`DU`" is a *stricter* run constraint than steep's "no `UDU`
 - [[dyck-words](pages/dyck-words.md)] — the two-letter root; [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — steep Dyck words and q-Motzkin.
 - [[urd-step-strings](pages/urd-step-strings.md)] — the `U`/`R`/`D` encoding; [[castle-representations](pages/castle-representations.md)] — the column-height form the tower words encode.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] — the counting that the unambiguity makes legitimate.
+- [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] — words over `{U, R, D}` by final height are the trinomial coefficients `(1 + x + x²)^n` (A027907); the run constraint and ballot condition cut that ceiling to this language.
+- [[castle-compression](pages/castle-compression.md)] — regular (bounded height, rational GF) versus context-free as description tiers.
 
 ## Footnotes
 

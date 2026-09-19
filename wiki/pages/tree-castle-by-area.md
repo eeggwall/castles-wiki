@@ -5,7 +5,7 @@ summary: The area-graded generating function for tree castles is (1 + P_h(q))/(1
 tags: [analysis, castle, tree-castle, area, generating-function, q-analogue, oeis, narayana-cows, plastic-number, supergolden, fibonacci, sympy, verification]
 sources: [project-euler-502-castle-factoring, tetali-1998-unique-tournaments]
 created: 2026-09-17
-updated: 2026-09-17
+updated: 2026-09-19
 ---
 
 # Tree castle by area
@@ -289,6 +289,7 @@ Both filed on [[castle-snippets](pages/castle-snippets.md)].
 - [[unique-tournament](pages/unique-tournament.md)] / [[simple-tournament](pages/simple-tournament.md)] / [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] - the graph-theoretic concepts on the tournament side of the three-way bijection, and their role in Tetali's classification.
 - [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] - the primary source, ingested into the wiki as a raw file with the theorem quoted in footnote 7.
 - [[castle-snippets](pages/castle-snippets.md)] - `tree_area_gf`, `tree_area_by_area`.
+- [[aocp-combinatorics](pages/aocp-combinatorics.md)] - the bivariate `T_h(x, q)` is an area-graded (q-)count; Knuth's inversion GF `∏(1−z^k)/(1−z)^n` is the permutation-side prototype of that grading.
 
 ## Footnotes
 

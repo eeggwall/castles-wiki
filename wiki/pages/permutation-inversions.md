@@ -5,7 +5,7 @@ summary: The inversion statistic on permutations, whose generating function ∏(
 tags: [concept, inversions, permutations, q-factorial, q-analog, generating-functions]
 sources: [aocp-combinatorics]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # Permutation inversions (and the q-factorial)
@@ -44,6 +44,7 @@ The inversion statistic is the **q-analog hinge**. The q-factorial `∏(1−z^k)
 - [[binary-string-bijection](pages/binary-string-bijection.md)] — the castle's bounded-tuple encoding, analogous to inversion tables.
 - [[generating-functions](pages/generating-functions.md)] — the method.
 - [[aocp-permutations](pages/aocp-permutations.md)] — the permutation/factorial basics (the same permutations, built by insertion rather than encoded by inversion counts).
+- [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] / [[aocp-multisets](pages/aocp-multisets.md)] — MacMahon's q-multinomial: permutations of a multiset counted by inversions, the multiset form of the q-factorial.
 
 ## Footnotes
 

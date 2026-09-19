@@ -5,7 +5,7 @@ summary: A castle with a unimodal (up-then-down) skyline — equivalently column
 tags: [concept, castle, convex, unimodal, column-convex, row-convex, combinatorics, stars-and-bars]
 sources: [project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # Convex castle
@@ -65,6 +65,7 @@ where `C(m,k) = m!/(k!(m−k)!)` is the binomial coefficient. For example, at *H
 - [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] — the row-convexity that (with column-convexity) defines the convex castle.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] — the column-convex-polygon literature this convexity connects to.
 - [[castle-classification](pages/castle-classification.md)] — the framework that names this class the **unimodal type**, one of the 7 base castle types.
+- [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] — the home of Vandermonde's convolution (Knuth eq (21)), the identity that closes the count; [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] — the multinomial as the general form of the stars-and-bars mechanism.
 
 ## Footnotes
 

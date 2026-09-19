@@ -5,7 +5,7 @@ summary: The correspondence permutation cycles ↔ castle peaks/excursions — a
 tags: [concept, castle, permutations, cycles, factorization, dyck]
 sources: [project-euler-502-castle-factoring, pe502-castle-cycle-permutations]
 created: 2026-09-13
-updated: 2026-09-15
+updated: 2026-09-19
 ---
 
 # Permutation-cycle / castle-peak analogy
@@ -58,6 +58,7 @@ The `(n−1)!` proof is the degenerate case: one cycle, no factoring, trivial si
 - [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the seminar-shaped synthesis reading PE 502 as the (n−1)! toolkit upgraded three times.
 - [[permutation-inversions](pages/permutation-inversions.md)] — the other classical permutation statistic (inversions), whose q-factorial generating function underlies the q-analog thread.
 - [[aocp-multisets](pages/aocp-multisets.md)] — Knuth's two-line arrays and unique cycle factorization (the Vol. 3 source of this analogy's permutation side).
+- [[aocp-combinatorics](pages/aocp-combinatorics.md)] — Knuth's Vol. 3 inversions and the q-factorial `∏(1−z^k)/(1−z)^n`, the source behind the inversion statistic mentioned above.
 
 ## Footnotes
 

@@ -5,7 +5,7 @@ summary: Flajolet & Sedgewick's specification-to-OGF dictionary — six admissib
 tags: [concept, generating-functions, symbolic-method, admissible-construction, specification, ogf]
 sources: [analytic-combinatorics-part-a]
 created: 2026-09-15
-updated: 2026-09-15
+updated: 2026-09-19
 ---
 
 # Symbolic method
@@ -51,6 +51,8 @@ An **iterative** (non-recursive) specification builds a class from `E`, `Z`, and
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] / [[generating-functions-topic](pages/generating-functions-topic.md)] — the two source treatments in the recurrence-first tradition; both fall out as the SEQ / rational-language case here.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the castle's own specification.
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — a directly-relevant polyomino family constructed by the method (Example I.8).
+- [[block-count-constraints](pages/block-count-constraints.md)] — `SEQ` versus `MSET` over one part set: compositions with parts in `D` (`1/(1 − Σ z^d)`) versus the coin-change series `∏ 1/(1 − z^d)`, same support, different counts.
+- [[aocp-multisets](pages/aocp-multisets.md)] — a homonym to keep apart: Knuth's "permutations of a multiset" are ordered words with repeated letters (the `SEQ` side), not `MSET` objects.
 
 ## Footnotes
 

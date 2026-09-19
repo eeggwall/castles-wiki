@@ -5,7 +5,7 @@ summary: The castle version of Kac's "Can one hear the shape of a drum?" - does 
 tags: [analysis, castle, spectral, isospectral, adjacency, laplacian, axis-9, kac, sunada, schwenk, trace-formula, tree, numpy, sympy, networkx, verification, pedagogy]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-17
+updated: 2026-09-19
 ---
 
 # Isospectral castles - hearing the shape of a castle
@@ -132,6 +132,8 @@ The spectral-radius census on [[castle-graph-spectral-radius](pages/castle-graph
 - [[castle-snippets](pages/castle-snippets.md)] - `compositions`, `castle_graph_radius`, and the spectrum-hashing loop.
 - [[castle-graph](pages/castle-graph.md)] - the graph the spectrum lives on; the 11-cell Laplacian-isospectral pair is a pair of **tree castles** in the sense named there.
 - [[castle-representations](pages/castle-representations.md)] - the skyline encoding the enumeration runs on.
+- [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - the 65,534-skyline sweep is Knuth's Algorithm M (mixed-radix enumeration of `{1..h}^w`) with a cell-count filter.
+- [[castle-compression](pages/castle-compression.md)] - a spectrum is a lossy code for a castle; the isospectral pairs found here are its collisions, and their sizes (10 / 11 / 16 cells) are where spectral compression first loses information.
 
 ## Footnotes
 

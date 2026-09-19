@@ -5,7 +5,7 @@ summary: Knuth's generating-function toolkit — the Fibonacci method (guess ser
 tags: [knuth, taocp, generating-functions, c-finite, rational, partial-fractions, source]
 sources: [aocp-generating-functions]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # AOCP Generating Functions (Knuth TAOCP Vol. 1)
@@ -57,6 +57,7 @@ This is not background — it is the exact toolkit of the castle solution, item 
 - [[kitamasa](pages/kitamasa.md)] / [[berlekamp-massey](pages/berlekamp-massey.md)] — tools that exploit the recurrence ⇔ rational-GF equivalence.
 
 Linked from the source but not yet ingested: Analytic Combinatorics, Applied Combinatorics.
+- [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] — the sibling Knuth page: the negative binomial `1/(1−z)^{n+1}` via negating the upper index, and the `2^n` / alternating-sum identities.
 
 ## Relation to Other Wiki Pages
 

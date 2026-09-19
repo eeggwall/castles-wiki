@@ -153,6 +153,7 @@ A skyline that is a Sturmian word - two heights arranged by the rotation with sl
 - [[castle-graph](pages/castle-graph.md)] - the polyomino graph itself as a concept, with the tree case and its Fibonacci / Jacobsthal / k-Fibonacci counts.
 - [[castle-snippets](pages/castle-snippets.md)] - `castle_graph_radius` is filed there.
 - [[isospectral-castles](pages/isospectral-castles.md)] - the full-spectrum question: smallest non-isomorphic castles with equal adjacency spectrum (10 cells), equal Laplacian spectrum (11), both (16); no two silver castles are isospectral.
+- [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - the 4.87-million-castle census is Knuth's Algorithm M over `{1..h}^w`; [[aocp-permutations](pages/aocp-permutations.md)] - it sits at Knuth's `10! ≈ 3.6 × 10^6` "ceiling on brute-force enumeration".
 
 ## Footnotes
 

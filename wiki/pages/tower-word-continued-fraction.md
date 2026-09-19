@@ -5,7 +5,7 @@ summary: The tower word is a peakless-valleyless Motzkin path — OEIS A004149 �
 tags: [concept, castle, tower-word, continued-fraction, flajolet, motzkin, algebraic, oeis, generating-functions]
 sources: [project-euler-502-representations]
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-19
 ---
 
 # Continued fractions of the tower word
@@ -62,6 +62,8 @@ The open end is the tower word's *own* continued fraction. A004149 is a generali
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — q-Motzkin and the q-Bessel ratio, the q-side of this correspondence.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] / [[closed-form-hunting](pages/closed-form-hunting.md)] — the rational GFs and characteristic polynomials whose (palindromic) roots are the periodic-continued-fraction side of the same story.
 - [[pell-numbers](pages/pell-numbers.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] — the integer-sequence and castle-strip realizations of the growth constant `1 + √2`.
+- [[aocp-combinatorics](pages/aocp-combinatorics.md)] — the inversion statistic and q-factorial, the classical statistic Flajolet's continued fractions carry as q-weights on Motzkin paths.
+- [[castle-compression](pages/castle-compression.md)] — bounded height collapses the continued fraction to a rational GF, i.e. a regular language: the "rule-generated" tier of the compressibility axis.
 
 ## Footnotes
 
