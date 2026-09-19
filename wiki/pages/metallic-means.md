@@ -100,6 +100,8 @@ The realizability question the "how many states per column" knob raised is thus 
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the convergent numerator/denominator/trace sequences of every rung `a = 1..5` matched to OEIS, and the mod-`p` signature of norm `−1` (`δ_a^{p+1} = −1` at inert primes).
 - [[block-count-constraints](pages/block-count-constraints.md)] - the coin branch touches the ladder: numerical semigroups counted by genus (A007323: 1, 1, 2, 4, 7, 12, 23, 39, …) grow at the golden ratio (Zhai 2013).
 
+- [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - rung 9 off the wiki's own ladder: Ramanujan's near-miss family `x^3 + y^3 = z^3 +- 1` (the recurrence behind `9^3 + 10^3 = 12^3 + 1`) grows by `delta_9^2 = (83 + 9 sqrt 85)/2`, the ninth metallic mean squared; `delta_9 = [9; 9, 9, ...]` versus `delta_9^2 = [82; 1, 81, 1, 81, ...]` is the norm `-1` / norm `+1` contrast made concrete.
+
 ## Footnotes
 
 [^1]: Vera W. de Spinadel, *La familia de números metálicos* (1997) and later *The metallic means family and multifractal spectra* (Nonlinear Analysis 36, 1999) — the standard reference introducing the metallic-mean framing. Source not ingested; term usage cross-checked against the Wikipedia "Metallic mean" article and OEIS cross-references (e.g. A001333 discusses `√2` and Pell in the metallic-mean context).

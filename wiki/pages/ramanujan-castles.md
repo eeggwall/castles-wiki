@@ -277,3 +277,4 @@ Copy `rho_cover` from the "Two methods" section above; then `ramanujan_status((1
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the pedagogy page walking through small-castle adjacency spectra by hand.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the methods hub; the Ihara-zeta / non-backtracking side of this page's construction lives there.
 - [[castle-snippets](pages/castle-snippets.md)] - `castle_graph`, `castle_graph_radius`, and related primitives; the `rho_cover` function on this page fits alongside them.
+- [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - the other Ramanujan page: the taxicab number 1729 as a castle count (`F(6,4) = 1729`) and as a castle; its digit castle `(1, 7, 2, 9)` is Ramanujan in this page's spectral sense (`lam_2 = 1.898 <= rho(T) = 2.576`).

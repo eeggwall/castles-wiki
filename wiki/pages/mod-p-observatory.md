@@ -174,6 +174,8 @@ for h in range(2, 6):
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the real-number twin of this page: continued-fraction periods of the eigenvalues, the norm-`−1` signature (`δ^{p+1} = −1` at inert primes) read on both sides, and the `2·p^{⌈log_p L⌉}` k-direction period.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] — `F(w,3)`, whose char poly contains `x² − x + 2` (discriminant `−7`): its period mod 7 inherits the `(x+3)²` double root above.
 
+- [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - a composite-modulus example: `F(., h) mod 1729 = 7 * 13 * 19` has periods `72, 2520, 25200` for `h = 2, 3, 4`, the lcm of the three prime periods, with the `8400 = 1200 x 7` double-root period of `char_2 mod 7` carried through.
+
 ## Footnotes
 
 [^1]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L123-127 — "'castle has even total blocks' ... F(w,h) = (h^w - (h-1)^w - P(h-1,w) + P(h-2,w))/2."
