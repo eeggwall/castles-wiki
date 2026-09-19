@@ -5,7 +5,7 @@ summary: How much information a castle carries, in two senses that agree — uni
 tags: [concept, castle, entropy, information-theory, counting, growth-constant, metallic-means, parity, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-18
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # Castle entropy
@@ -42,7 +42,7 @@ Read it as: each column is one of `h` heights (`log₂ h` bits each, independent
  12  3    261615      17.997       18.020       −0.02
 ```
 
-The residual is `log₂(1 + P/A)` — the subdominant sign — and it decays as `w` grows. The parity bit is exact in the limit, not merely approximate.
+The residual is `log₂(1 + P/A)` — the subdominant sign — and it decays as `w` grows. The parity bit is exact in the limit, not merely approximate. (The `h = 3` row's `261615` is the twelfth term of [[new-sequence-fw3](pages/new-sequence-fw3.md)]; at `(w,h) = (13,10)`, `log₂ F ≈ 41.8` against `42.2`, the scale figure of [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)].)
 
 ## Entropy rate: log₂ of the growth constant
 
@@ -79,6 +79,9 @@ Uniform entropy and entropy rate are the same limit approached from two sides. U
 - [[reachable-field-census](pages/reachable-field-census.md)], [[tower-spacing-castles](pages/tower-spacing-castles.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] — the rule families whose Perron roots are the rungs of the entropy ladder.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] — the finite-field counterpart: growth/entropy over ℂ vs period/order mod p.
 - [[castle-compression](pages/castle-compression.md)] — the dual view: entropy measures the information content, compression measures how cheaply it is written.
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — the source's "the even-block clause is almost the entire difficulty," priced here at exactly one bit; [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] — `F(13,10)` in bits.
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] — `F(w,3)`, the sequence the `h = 3` row of the table is drawn from.
+- [[aocp-permutations](pages/aocp-permutations.md)] — Stirling's `log₂ n! ≈ n·log₂ n − n·log₂ e`, the entropy of a uniform permutation, the permutation-side twin of `w·log₂ h − 1`.
 
 ## Appearances in Sources
 

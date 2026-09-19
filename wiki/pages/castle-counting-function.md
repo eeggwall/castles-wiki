@@ -5,7 +5,7 @@ summary: F(w,h), the number of valid castles on a w×h grid; PE 502 restricts it
 tags: [concept, castle, counting-function, project-euler]
 sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-09-18
+updated: 2026-09-19
 ---
 
 # Castle counting function F(w,h)
@@ -58,6 +58,7 @@ The three arguments deliberately stress different regimes: a very wide/short gri
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the closed-form derivation of `F(w,h)`.
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] — how the large-parameter values are actually computed.
 - [[generating-functions](pages/generating-functions.md)] — the intended method for computing `F(w,h)` at large parameters.
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — the source's own statement that without the even clause the count is just `h^w − (h−1)^w`, and that the clause is "almost the entire difficulty."
 
 ## Footnotes
 

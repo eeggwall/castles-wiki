@@ -5,7 +5,7 @@ summary: The cycle-factorization subpage — the permutation-cycle/castle-peak a
 tags: [project-euler, castle, permutations, foata, factorization, source, subpage]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # PE 502: Castle Factoring
@@ -39,7 +39,10 @@ A clean by-product is a **product-form proof** of the unsigned tower count: beca
 - [[castle-representations](pages/castle-representations.md)] — the integer-tuple/column-height representation is the workhorse here; three further encodings from this source are folded in.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)], [[castle-counting-formula](pages/castle-counting-formula.md)], [[castle-polyomino](pages/castle-polyomino.md)] — updated by this source.
 
-Linked from the source but not yet ingested (later ingests): Polyominoes, Dyck Words, Project Euler/502/Solution.
+Also linked from the source and since ingested: [[polyominoes](pages/polyominoes.md)], [[dyck-words](pages/dyck-words.md)], [[project-euler-502-solution](pages/project-euler-502-solution.md)].
+- Sibling subpages of the [[project-euler-502](pages/project-euler-502.md)] hub: [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)], [[project-euler-502-representations](pages/project-euler-502-representations.md)], [[project-euler-502-observations](pages/project-euler-502-observations.md)], [[project-euler-502-solution](pages/project-euler-502-solution.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)], [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)].
+- [[aocp-multisets](pages/aocp-multisets.md)] — Knuth's Vol. 3 source for Foata's intercalation product and the two-line-array cycle factorization this subpage carries to castles; [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] — the seminar note that upgrades the `(n−1)!` proof into this subpage's sign / Foata / streak triad.
+- [[block-count-constraints](pages/block-count-constraints.md)] — the sign `(−1)^{blocks}` generalized to residue, sparse, and semigroup block-count constraints; [[castle-compression](pages/castle-compression.md)] — the run-length (streak, excursion/gap) encodings read as the second compression layer.
 
 ## Relation to Other Wiki Pages
 

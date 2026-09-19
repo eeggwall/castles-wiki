@@ -5,7 +5,7 @@ summary: A code-to-math map of Problem502.java — dispatch by (mod, h, w), the 
 tags: [project-euler, castle, implementation, java, algorithms, source, subpage]
 sources: [project-euler-502-implementation-notes]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # PE 502: Implementation Notes
@@ -83,6 +83,7 @@ A clarifying point the subpage makes explicitly: the code builds **no transfer m
 - [[berlekamp-massey](pages/berlekamp-massey.md)], [[kitamasa](pages/kitamasa.md)] — the fast-recurrence routines and their code-level details.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the `num/den` update and the `/2` (mod inverse of 2) this implements.
 - [[castle-representations](pages/castle-representations.md)], [[binary-string-bijection](pages/binary-string-bijection.md)], [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the derivation scaffolding the code does not build.
+- Sibling subpages of the [[project-euler-502](pages/project-euler-502.md)] hub: [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)], [[project-euler-502-representations](pages/project-euler-502-representations.md)], [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)], [[project-euler-502-observations](pages/project-euler-502-observations.md)], [[project-euler-502-solution](pages/project-euler-502-solution.md)], [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)].
 
 ## Relation to Other Wiki Pages
 

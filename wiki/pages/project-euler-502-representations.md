@@ -5,7 +5,7 @@ summary: The representations subpage — three castle encodings, the convex-cast
 tags: [project-euler, castle, representations, dyck, generating-functions, source, subpage]
 sources: [project-euler-502-representations]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # PE 502: Representations
@@ -39,7 +39,8 @@ A candid section, "Which representation was actually used?", notes that the winn
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the closed form for `F(w,h)`, with the signed/unsigned tower generating functions.
 - [[castle-polyomino](pages/castle-polyomino.md)], [[castle-counting-function](pages/castle-counting-function.md)], [[generating-functions](pages/generating-functions.md)] — updated by this source.
 
-Linked from the source but not yet ingested (later ingests): Dyck Words, Dyck Words/Examples, Lattice Paths, Project Euler/15, Project Euler/502/Solution, Project Euler/502/Implementation Notes.
+Also linked from the source and since ingested: [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/lattice-paths.md)] (Project Euler 15), [[project-euler-502-solution](pages/project-euler-502-solution.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)]. Still not ingested: Dyck Words/Examples.
+- Sibling subpages of the [[project-euler-502](pages/project-euler-502.md)] hub: [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)], [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)], [[project-euler-502-observations](pages/project-euler-502-observations.md)], [[project-euler-502-solution](pages/project-euler-502-solution.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)], [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)].
 
 ## Relation to Other Wiki Pages
 

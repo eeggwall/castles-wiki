@@ -5,7 +5,7 @@ summary: The Python reference module (castle.py) — exact-integer F/F_odd/F_any
 tags: [project-euler, castle, brute-force, python, verification, oeis, source, subpage]
 sources: [project-euler-502-brute-force]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-19
 ---
 
 # PE 502: Brute Force
@@ -63,6 +63,7 @@ These are the same four checkpoints that head the Java `main`.[^7]
 - [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)], [[column-convex-polyomino](pages/column-convex-polyomino.md)] — the two convexities whose intersection is the unimodal castle.
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] — the `product(range(1,h+1), repeat=w)` enumeration is Knuth's Algorithm M (mixed-radix add-one) with all radices `= h`.
 - [[castle-snippets](pages/castle-snippets.md)] — a living reference of short, tested Python one-liners for enumeration, classification predicates, growth-constant probes, and OEIS lookups; matches this page's `blocks_of` / `is_unimodal` conventions.
+- Sibling subpages of the [[project-euler-502](pages/project-euler-502.md)] hub: [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)], [[project-euler-502-representations](pages/project-euler-502-representations.md)], [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)], [[project-euler-502-observations](pages/project-euler-502-observations.md)], [[project-euler-502-solution](pages/project-euler-502-solution.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)].
 
 ## Relation to Other Wiki Pages
 
