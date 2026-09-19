@@ -422,6 +422,44 @@ def strip_field_census(h):
 
 Meaning: the reachable quadratic fields grow `{5} → {2,3,5} → {2,3,5,13,17,21}` as `h = 2,3,4`; every squarefree metallic discriminant `a²+4` appears (bronze `Q(√13)` at h=4), copper collapses into `Q(√5)`, and the **bare plastic number** `x³−x−1` shows up as a Perron root already at h=3 ([[reachable-field-census](pages/reachable-field-census.md)]).
 
+### `strip_field(M)` → the Perron root and number field of one rule
+
+The single-matrix step behind `strip_field_census` above: given one `0/1` transfer matrix, read off its growth constant and field. Factor first (irreducible factors have simple roots, which `nroots` needs), then label — degree 1 → `Q`, degree 2 → `Q(√d)` by the squarefree part of the discriminant, degree ≥ 3 → the minimal polynomial. The core step of [[reachable-field-census](pages/reachable-field-census.md)] in one function.
+
+```python
+import sympy as sp
+x = sp.Symbol('x')
+
+def strip_field(M):
+    """Perron root and number field of ONE 0/1 strip transfer matrix."""
+    p = sp.Matrix(M).charpoly(x).as_expr()
+    rho, f = -sp.oo, None
+    for g, _ in sp.factor_list(p)[1]:               # factor first: irreducible factors have simple roots
+        g = sp.Poly(g, x)
+        rr = [complex(z).real for z in sp.nroots(g, n=25) if abs(complex(z).imag) < 1e-8]
+        if rr and max(rr) > rho:
+            rho, f = max(rr), g
+    d = f.degree()
+    if d == 1: return sp.N(rho, 8), "Q"
+    if d == 2:
+        a, b, c = f.all_coeffs()
+        D = b*b - 4*a*c
+        sq = sp.Mul(*[q for q, e in sp.factorint(D).items() if e % 2])
+        return sp.N(rho, 8), f"Q(sqrt({sq}))" if sq != 1 else "Q"
+    return sp.N(rho, 8), f"deg {d} ({f.as_expr()})"
+```
+
+```
+>>> strip_field([[1,1],[1,0]])                       # golden, h=2
+(1.6180340, 'Q(sqrt(5))')
+>>> strip_field([[0,1,1],[1,0,1],[1,1,1]])           # silver, h=3 (J - D)
+(2.4142136, 'Q(sqrt(2))')
+>>> strip_field([[0,0,1],[1,0,0],[1,1,0]])           # plastic, h=3
+(1.3247180, 'deg 3 (x**3 - x - 1)')
+```
+
+Meaning: the metallic fields are `Q(√5)`, `Q(√2)`, `Q(√13)`, …; the plastic number is a degree-3 growth constant. `strip_field_census` above just loops this one step over all `2^{h²}` matrices and buckets the labels.
+
 ### `sh_canonical(M)` → S_h orbit representative (spectrum-preserving dedup)
 
 Two strip transfer matrices related by simultaneous row+column permutation `P M Pᵀ` (relabeling the `h` height-states) have identical spectra. The canonical form — lexicographically-minimal flattening over all `h!` permutations — collapses each `S_h` orbit to one representative, cutting the census work by up to `h!` (≈ 21× at h=4). Deduping by it reproduces the field lists exactly ([[reachable-field-census](pages/reachable-field-census.md)]).
@@ -616,6 +654,32 @@ def P_table(max_k, max_L):
 [1, 0, -2, -4, -4, 0, 8, 16, 16, 0, -32]
 ```
 
+### `berlekamp_massey(s)` → the shortest recurrence over the rationals
+
+Berlekamp–Massey with exact rational coefficients (the mod-`p` cousin is `bm_modp` in the cryptography section). Given a sequence, returns the connection polynomial (low→high, `C[0] = 1`) and its order. Over `Q` this is exact — [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] Part 3 runs it on `P(·, L)` to recover `(x+1)^L (x−1)^{L−2}`.
+
+```python
+from fractions import Fraction
+def berlekamp_massey(s):
+    s = [Fraction(v) for v in s]
+    C, B, L, m, b = [Fraction(1)], [Fraction(1)], 0, 1, Fraction(1)
+    for N in range(len(s)):
+        d = s[N] + sum(C[i]*s[N-i] for i in range(1, L+1))
+        if d == 0: m += 1; continue
+        T = C[:]; C += [Fraction(0)]*max(0, len(B)+m-len(C))
+        for j in range(len(B)): C[j+m] -= (d/b)*B[j]
+        if 2*L <= N: L, B, b, m = N+1-L, T, d, 1
+        else: m += 1
+    return C[:L+1], L
+```
+
+```
+>>> berlekamp_massey([1, 1, 3, 9, 19, 33, 59, 121, 259, 529])   # P(2, L)
+([Fraction(1, 1), Fraction(-3, 1), Fraction(4, 1), Fraction(-4, 1)], 3)
+```
+
+Meaning: the coefficients `[1, −3, 4, −4]` are `char_2 = x³ − 3x² + 4x − 4`, recovered from ten terms — the castle's whole identity from its output (the LFSR attack of [[castle-cryptography](pages/castle-cryptography.md)]).
+
 ### `quasi_split(seq, deg)` → `(A, B)` with `seq[k] = (−1)^k A(k) + B(k)`
 
 Two Lagrange interpolations (even `k`, odd `k`) - all you need when every eigenvalue is `±1`, which is the case for the k-direction of `P` ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]). Requires SymPy.
@@ -687,6 +751,69 @@ True
 ```
 
 Meaning: `H_3` is the minimal polynomial of `ψ²` (plastic number squared), hence `ρ_6 = 2ψ²` ([[plastic-number](pages/plastic-number.md)]); the identity `g_{2d} = H_d·(H_{d+1} + μ² H_{d−1})` holds for every `d` (proof on [[tower-parity-sectors](pages/tower-parity-sectors.md)]).
+
+### `cf_digits(poly, x0, n)` → the simple continued fraction of an algebraic number
+
+The digit stream of a real algebraic number by repeated `⌊·⌋` and reciprocal, at `mpmath` precision. For a quadratic it repeats (Lagrange); for a cubic it never does, and the digits look random. Part 4 of [[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)] uses this to show `ρ_6` has no simple-CF period. Requires mpmath.
+
+```python
+from mpmath import mp, mpf, findroot, floor
+mp.dps = 200
+def cf_digits(poly_coeffs, x0, n=20):
+    r = findroot(lambda t: sum(cc*t**(len(poly_coeffs)-1-i) for i, cc in enumerate(poly_coeffs)), mpf(x0))
+    digs, t = [], r
+    for _ in range(n):
+        a = int(floor(t)); digs.append(a); t = 1/(t - a)
+    return digs
+```
+
+```
+>>> cf_digits([1, -3, 2, -4], 2.8)        # rho_4
+[2, 1, 3, 1, 10, 13, 3, 2, 1, 30, 1, 12, 1, 1, 36, 1, 11, 10, 1, 21]
+>>> cf_digits([1, -4, 4, -8], 3.5)        # rho_6 = 2 psi^2
+[3, 1, 1, 25, 7, 1, 6, 1, 8, 1, 282, 40, 4, 2, 1, 5, 4, 5, 8, 1]
+>>> cf_digits([1, -2, -1], 2.4, 8)        # 1 + sqrt(2), for contrast
+[2, 2, 2, 2, 2, 2, 2, 2]
+```
+
+Meaning: the cubic digits (including the `282`) never repeat — eventually-periodic ⟺ quadratic — while the quadratic `1+√2` is all `2`s.
+
+### `jacobi_perron(f, x0, steps)` → the multidimensional continued fraction, exactly
+
+The Jacobi–Perron algorithm (JPA) — the `d`-dimensional continued fraction — on a degree-`d` algebraic number, with exact arithmetic in `Q(ρ)` (reduce and invert mod the minimal polynomial; mpmath only for the floors). Detects periodicity exactly: `ρ_6 = 2ψ²` is JPA-periodic, `ρ_4` is not within 400 steps. Requires SymPy + mpmath.
+
+```python
+import sympy as sp
+from mpmath import mp, mpf, findroot, floor
+lam = sp.Symbol('lam'); mp.dps = 200
+def jacobi_perron(f, x0, steps):
+    fP = sp.Poly(f, lam); d = fP.degree()
+    r = findroot(lambda t: sum(int(cc)*t**(d-i) for i, cc in enumerate(fP.all_coeffs())), mpf(x0))
+    red = lambda e: sp.rem(sp.Poly(e, lam, domain='QQ'), fP)
+    val = lambda e: sum(mpf(int(cc.p))/int(cc.q) * r**(sp.Poly(e, lam).degree()-i)
+                        for i, cc in enumerate(sp.Poly(e, lam, domain='QQ').all_coeffs()))
+    inv = lambda e: sp.Poly(sp.invert(e.as_expr(), fP.as_expr(), lam), lam, domain='QQ')
+    alphas = [red(lam**i) for i in range(1, d)]
+    seen, digits = {}, []
+    for n in range(steps):
+        key = tuple(tuple(al.all_coeffs()) for al in alphas)
+        if key in seen:
+            return digits, f"periodic: preperiod {seen[key]}, period {n - seen[key]}"
+        seen[key] = n
+        a = [int(floor(val(al))) for al in alphas]; digits.append(a)
+        i0 = inv(red(alphas[0] - a[0]))
+        alphas = [red((alphas[j] - a[j]) * i0) for j in range(1, d-1)] + [red(i0)]
+    return digits, f"no period within {steps} steps"
+```
+
+```
+>>> jacobi_perron(lam**3 - 4*lam**2 + 4*lam - 8, 3.5, 40)      # rho_6 = 2 psi^2
+([[3, 12], [0, 1], [1, 1], [1, 1], [7, 8], [1, 1], [1, 1], [1, 1], [5, 9]], 'periodic: preperiod 5, period 4')
+>>> jacobi_perron(lam**3 - 3*lam**2 + 2*lam - 4, 2.8, 400)[1]  # rho_4
+'no period within 400 steps'
+```
+
+Meaning: `ρ_6` has a period-4 multidimensional continued fraction (the cubic analogue of `[2; 2, 2, …]`), while `ρ_4` shows none in 400 exact steps — the unit/non-unit split: `ρ_6/2 = ψ²` is a unit, `ρ_4/2` is not even an algebraic integer ([[convergents-oeis-crosswalk](pages/convergents-oeis-crosswalk.md)]).
 
 ### `castle_graph(c)` → adjacency matrix
 
@@ -983,6 +1110,35 @@ mu**5 - 3*mu**4 + 3*mu**3 - 4*mu**2 + mu - 1
 ```
 
 Meaning: the count equals `P_even(10, n−1)/2^{n−1}`, the even-last-column signed tower count at height 10 - the Hardin identity.
+
+### `is_hardin_word(w)` / `W_bruteforce(m, n)` → no-local-maximum words, by brute force
+
+The brute-force definition of the Hardin words behind `word_matrix` above: every nonzero letter has a neighbor `≥` it (boundaries count as `0`), so no nonzero letter is a strict local maximum. Counts agree with the automaton and with `2^{−L}` times the even-last-column signed tower count ([[hardin-word-identity](pages/hardin-word-identity.md)]).
+
+```python
+from itertools import product
+
+def is_hardin_word(w):
+    for i, a in enumerate(w):
+        if a == 0: continue
+        if (i > 0 and w[i-1] >= a) or (i+1 < len(w) and w[i+1] >= a): continue
+        return False
+    return True
+
+def W_bruteforce(m, n):
+    return sum(1 for w in product(range(m+1), repeat=n) if is_hardin_word(w))
+```
+
+```
+>>> [W_bruteforce(1, n) for n in range(1, 9)]           # A005251(n+2)
+[1, 2, 4, 7, 12, 21, 37, 65]
+>>> [W_bruteforce(2, n) for n in range(1, 7)]           # A202882
+[1, 3, 9, 22, 51, 121]
+>>> [''.join(map(str, w)) for w in product(range(2), repeat=3) if is_hardin_word(w)]
+['000', '011', '110', '111']
+```
+
+Meaning: for `m = 1` the valid words are binary strings with no isolated `1` (the four length-3 ones are `000, 011, 110, 111`), `W_1(n) = A005251(n+2)`; for `m = 2` it is Hardin's A202882.
 
 ### `oeis_lookup(terms)` → list of `(A-number, name)`
 
