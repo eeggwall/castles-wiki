@@ -46,7 +46,7 @@ The work is organized into **veins**, each a thread from the castle out to a fam
 | non-convex castles by area | `A115981(n)` (= `A011782 − A001523`) | match |
 | `F(w,h)`, h≥3 rows; columns; `odd(w,h)` h≥3 | — | **NEW** (C-finite / quasi-poly) |
 | tower rows w≥6 | — | **NEW** (Narayana-polynomial triangle) |
-| area sequences (even/odd/cev/cod, strict-valley, parity splits) | — | **NEW** (`cev+cod = A001523`) |
+| area sequences (even/odd/CEV/COD, strict-valley, parity splits) | — | **NEW** (`cev+cod = A001523`) |
 
 ## Key facts worth remembering
 

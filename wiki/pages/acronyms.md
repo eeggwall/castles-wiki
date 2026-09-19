@@ -17,10 +17,10 @@ A flat alphabetical reference of every abbreviation used on the castles wiki. Ea
 - **BM** - Berlekamp-Massey algorithm.
 - **BSGS** - baby-step giant-step (discrete logarithm search).
 - **CCC** - convex castle count, `C(2h + w - 3, w - 1)`.
-- **CEV** - convex-even castles by area: convex castles of area `n` with an even block count. Paired with COD; `CEV(n) + COD(n) = A001523(n)`. The mining-pass sources write the sequence as `cev(n)`.
+- **CEV** - convex-even castles by area: convex castles of area `n` with an even block count. Paired with COD; `cev(n) + cod(n) = A001523(n)`. Written `cev(n)` in formulas.
 - **CF** - continued fraction.
 - **CLT** - Central Limit Theorem.
-- **COD** - convex-odd castles by area: convex castles of area `n` with an odd block count. Paired with CEV. The mining-pass sources write the sequence as `cod(n)`.
+- **COD** - convex-odd castles by area: convex castles of area `n` with an odd block count. Paired with CEV. Written `cod(n)` in formulas.
 - **CRT** - Chinese Remainder Theorem.
 - **CYC** - cycle (symbolic-method construction).
 - **DFT** - discrete Fourier transform.

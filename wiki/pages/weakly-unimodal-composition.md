@@ -22,7 +22,7 @@ Reading a [[castle-polyomino](pages/castle-polyomino.md)] by its **area** (total
 conv(n) = A001523(n)      (n ≥ 1;  A001523(0) = 1 is the empty stack)
 ```
 
-with terms `1, 2, 4, 8, 15, 27, 47, 79, 130, 209, 330, 512, 784, 1183, 1765, 2604, 3804, 5504`. This is a definition-level match, not a coincidence — a real synonym for a dense, well-studied entry (so a low-value but legitimate cross-reference). The more quotable result is the **parity refinement** `cev(n) + cod(n) = A001523(n)` (convex-even + convex-odd castles by area), a parity split of a foundational sequence that is itself new (see [[castle-by-area](pages/castle-by-area.md)]).[^3]
+with terms `1, 2, 4, 8, 15, 27, 47, 79, 130, 209, 330, 512, 784, 1183, 1765, 2604, 3804, 5504`. This is a definition-level match, not a coincidence — a real synonym for a dense, well-studied entry (so a low-value but legitimate cross-reference). The more quotable result is the **parity refinement** `cev(n) + cod(n) = A001523(n)` (CEV and COD, the convex-even and convex-odd castles by area), a parity split of a foundational sequence that is itself new (see [[castle-by-area](pages/castle-by-area.md)]).[^3]
 
 The mirror notion — **valley** compositions (weakly decreasing then increasing, i.e. negation-unimodal) — is OEIS **A332578**, matched by valley-shaped castles by area; and the complement (non-stack compositions) is **A115981 = A011782 − A001523**, matched by non-convex castles. All three sit in the same dense-composition cluster (see [[castle-by-area](pages/castle-by-area.md)]).
 

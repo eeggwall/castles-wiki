@@ -26,7 +26,7 @@ Per the phase-2 submission plan, the three dense matches — **A001523**, **A332
 
 ## New sequences (generation candidates)
 
-- **Parity splits by area** — `even/odd` (block-parity of all castles) and `cev/cod` (block-parity of convex castles), none in OEIS. The quotable identities: `even(n)+odd(n) = 2^{n−1}` and **`cev(n)+cod(n) = A001523(n)`** — a parity refinement of a foundational sequence.[^4]
+- **Parity splits by area** — `even/odd` (block-parity of all castles) and CEV/COD (convex-even and convex-odd: block-parity of convex castles), none in OEIS. The quotable identities: `even(n)+odd(n) = 2^{n−1}` and **`cev(n)+cod(n) = A001523(n)`** — a parity refinement of a foundational sequence.[^4]
 - **`strict_valley(n)`** — castles with a *true* interior dip (valley and not unimodal): `0,0,0,0,1,3,8,17,34,60,107,175,285,445,691,…`. New, no OEIS match on 15 terms.[^5]
 - **Six parity-refined concave sequences** — `valley_even/odd` (split of A332578), `nc_even/odd` (split of A115981), `sv_even/odd` — all new.[^5]
 
@@ -50,7 +50,7 @@ By (w,h) the concave counts add nothing new: `valley(w,h) = convex(w,h) = C(2h+w
 [^1]: [[castle-by-area](pages/castle-by-area.md)] `vein9-area.md` §"The trivial baseline" L8-13 — "All castles of area n = all compositions of n into positive parts = 2^(n-1) = A000079(n-1) ... every ordered sequence (c_1..c_w) ... is a valid castle shape (Rule 3 is automatic)."
 [^2]: [[castle-by-area](pages/castle-by-area.md)] `vein9-area.md` §"The main finding" L13-31 — "Convex (unimodal) castles of area n matches A001523 exactly for the 18 terms computed ... a definition-level match, not a coincidence"; re-verified during ingest.
 [^3]: [[castle-by-area](pages/castle-by-area.md)] `vein9b-concave.md` §"Results by area" L8-40 — "valley(n) = A332578(n) ... nonconv(n) = A115981(n) ... all(n) − valley(n) = A332669(n) ... A115981(n) = A011782(n) − A001523(n)."
-[^4]: [[castle-by-area](pages/castle-by-area.md)] `vein9-area.md` §"Parity splits" L35-52 — the even/odd/cev/cod table and "cev(n) + cod(n) = A001523(n) (parity split of A001523) ... a genuine refinement of a foundational sequence."
+[^4]: [[castle-by-area](pages/castle-by-area.md)] `vein9-area.md` §"Parity splits" L35-52 — the even/odd/CEV/COD table and "cev(n) + cod(n) = A001523(n) (parity split of A001523) ... a genuine refinement of a foundational sequence."
 [^5]: [[castle-by-area](pages/castle-by-area.md)] `vein9b-concave.md` §"The new sequence" L48-56 and §"Parity splits — all new" L60-78 — "strict_valley(n) = 0, 0, 0, 0, 1, 3, 8, 17, 34, 60, 107, 175, 285, 445, 691" and the six parity-refined variants with "valley_even + valley_odd = A332578 ... nc_even + nc_odd = A115981."
 [^6]: [[castle-by-area](pages/castle-by-area.md)] `vein9b-concave.md` §"Concave counts by (w, h)" L100-118 — "This is the same table as convex(w, h) — both equal C(2h + w − 3, w − 1) ... same cardinality in each (w, h) cell but different sets ... a candidate bijection worth writing up."
 [^7]: [[castle-by-area](pages/castle-by-area.md)] `vein9-area.md` §"Not-a-match" L54-63 — "A001168 (fixed polyominoes) ... and A005435 ... Neither is close numerically ... The right match for castles is unambiguously A001523 (stacks / unimodal compositions)."
