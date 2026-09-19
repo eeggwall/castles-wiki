@@ -758,8 +758,16 @@ Meaning: `E[L] + O[L] = P(k, L)`; the two sequences are C-finite with the two fa
 
 ### `H(d)` → the monic factor of `char_{2d}(2μ)/2^{2d}`
 
+Requires SymPy. Preamble: build the characteristic polynomials `c[k] = char_k(λ)` from the gallery recurrence `char_{k+1} = λ²·char_{k−1} − 2·char_k` ([[generating-function-gallery](pages/generating-function-gallery.md)]).
+
 ```python
 from math import comb
+import sympy as sp
+lam, mu = sp.symbols('lam mu')
+c = [lam - 1, lam**2 - 2*lam + 2]                          # c[0] = char_0, c[1] = char_1
+for k in range(2, 8):
+    c.append(sp.expand(lam**2 * c[k-2] - 2*c[k-1]))         # c[k] = char_k
+
 def H(d):
     return sp.Poly(sum((-1)**i * comb((d+i)//2, i) * mu**(d-i) for i in range(d+1)), mu)
 ```
@@ -856,7 +864,7 @@ def castle_graph(c):
 
 ```
 >>> castle_graph((2, 1, 2)).astype(int).tolist()      # 5 cells arranged as two spikes on a base
-[[0, 1, 1, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 1, 1], [0, 0, 1, 0, 0], [0, 0, 1, 0, 0]]
+[[0, 1, 1, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 1, 0], [0, 0, 1, 0, 1], [0, 0, 0, 1, 0]]
 ```
 
 Meaning: swap in `L = np.diag(A.sum(1)) - A` for the combinatorial Laplacian; feed to `numpy.linalg.eigvalsh` for the spectrum; feed to `sympy.Matrix(...).charpoly(x)` for the exact characteristic polynomial. All Axis 9 predicates on [[castle-classification](pages/castle-classification.md)] are one line off this.
@@ -1193,6 +1201,9 @@ Discipline reminder from [[oeis-cross-referencing](pages/oeis-cross-referencing.
 Public-key exchange in the ring `F_p[x]/(Q)`, where `Q` is a castle characteristic polynomial ([[castle-cryptography](pages/castle-cryptography.md)]). The "public castle" is `Q`; a private key is a secret exponent; the trapdoor `x^a mod Q` is [[kitamasa](pages/kitamasa.md)] exponentiation. Stdlib only.
 
 ```python
+def one(Q): return [1] + [0]*(len(Q)-2)          # multiplicative identity in F_p[x]/(Q)
+def gen(Q): return [0, 1] + [0]*(len(Q)-3)        # the generator polynomial x
+
 def mulmod(A, B, Q, p):                       # multiply in F_p[x]/(Q), Q monic degree d
     r = [0] * (len(A) + len(B) - 1)
     for i, a in enumerate(A):

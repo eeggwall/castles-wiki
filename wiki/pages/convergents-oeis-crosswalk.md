@@ -281,6 +281,20 @@ The pattern through `k = 18`: both factors of `char_k` have constant term of abs
 
 **The plastic component of `P(6,L)` is an OEIS sequence.** Partial fractions on the gallery's `num_6/den_6` split `P(6,L)` into a cubic part (the `2ψ²` block) and a quartic remainder, and the cubic part is exact:[^7][^8]
 
+```python
+# Preamble: build num_k / den_k from the recurrence in [[project-euler-502-solution]],
+# and a small series-coefficient helper.
+x = sp.symbols('x')
+num, den = sp.Integer(1), 1 - x
+for _ in range(6):
+    num, den = sp.expand(2*den - num), sp.expand(den*(1-2*x) + x*num)
+num6, den6 = num, den
+
+def series_coefficients_of(f, n):
+    s = sp.series(f, x, 0, n).removeO()
+    return [int(s.coeff(x, k)) for k in range(n)]
+```
+
 ```
 >>> sp.apart(num6/den6, x)
 -x*(4*x**2 + 3)/(8*x**4 - 4*x**3 + 8*x**2 - 3*x + 1) - (4*x**2 + 1)/(8*x**3 - 4*x**2 + 4*x - 1)
@@ -360,7 +374,19 @@ def jacobi_perron(f, x0, steps):
 
 **`ρ_6` is JPA-periodic**: five preperiod digit pairs, then `[1,1], [1,1], [1,1], [5,9]` forever - the cubic analogue of `[2; 2, 2, …]`, and the affirmative answer to the IDEAS entry's "do the multi-variable convergents hit anything?" **`ρ_4` is not** periodic within 400 exact steps (largest digit seen 646), and neither are the quintics `ρ_8`, `ρ_10` within 60 - consistent with (though not proof of) the unit/non-unit split above: `ρ_6/2` is a unit; `ρ_4/2` is not an algebraic integer at all.[^9]
 
-**The convergents, and the unit they encode.** Bernstein's convergent vectors `A^{(v)} ∈ Z³` start as the unit vectors and follow `A^{(v+3)} = A^{(v)} + a₁^{(v)} A^{(v+1)} + a₂^{(v)} A^{(v+2)}`; the first coordinate is the denominator, `A₁/A₀ → ρ`, `A₂/A₀ → ρ²`:
+**The convergents, and the unit they encode.** Bernstein's convergent vectors `A^{(v)} ∈ Z³` start as the unit vectors and follow `A^{(v+3)} = A^{(v)} + a₁^{(v)} A^{(v+1)} + a₂^{(v)} A^{(v+2)}`; the first coordinate is the denominator, `A₁/A₀ → ρ`, `A₂/A₀ → ρ²`. The preperiod / period of the `ρ_6` expansion above splits its digit pairs into `pre` and `per`:
+
+```python
+# From jacobi_perron(lam**3 - 4*lam**2 + 4*lam - 8, 3.5, 40): preperiod 5, period 4.
+pre = [[3, 12], [0, 1], [1, 1], [1, 1], [7, 8]]
+per = [[1, 1], [1, 1], [1, 1], [5, 9]]
+
+def jpa_convergents(digs):
+    A = [sp.Matrix([1, 0, 0]), sp.Matrix([0, 1, 0]), sp.Matrix([0, 0, 1])]
+    for a1, a2 in digs:
+        A.append(A[-3] + a1*A[-2] + a2*A[-1])
+    return A
+```
 
 ```
 >>> A = jpa_convergents(pre + per*10)
@@ -377,6 +403,7 @@ Because the expansion is periodic, the denominators satisfy a linear recurrence 
 >>> for a1, a2 in per: M *= sp.Matrix([[0, 1, 0], [0, 0, 1], [1, a1, a2]])
 >>> M.tolist(), M.det(), sp.factor(M.charpoly(x).as_expr())
 ([[1, 6, 10], [2, 11, 20], [4, 22, 39]], 1, x**3 - 51*x**2 - 13*x - 1)
+>>> psi = sp.real_roots(sp.Poly([1, 0, -1, -1], sp.Symbol('t')))[0]     # plastic number
 >>> sp.N(psi**14, 20)
 51.254019310876249536                                    # = the dominant eigenvalue of M
 ```
