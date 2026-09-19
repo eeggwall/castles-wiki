@@ -12,9 +12,59 @@ updated: 2026-09-18
 
 ## The question and the method
 
-A **castle-strip rule** is a nearest-neighbor restriction on a row of columns with heights in `{1, …, h}` — an allowed-adjacency predicate `A(a, b)`, equivalently a `0/1` **transfer matrix** `M` on `h` **height-states** (the matrix's rows/columns *are* the column heights `1..h`; see [[castle-strip](pages/castle-strip.md)] for the plain construction). Its width-graded count grows at `M`'s **Perron root** (dominant eigenvalue), an algebraic number generating a field `Q(root)`. This page censuses, **exhaustively over all `2^{h²}` binary `M`** for `h = 2, 3, 4, 5`, which algebraic numbers appear and which number fields they populate.[^1]
+The page answers one question — *which algebraic numbers can be the growth rate of a castle-strip, and which number fields do they live in?* — so pin the four objects down before the sweep.
+
+**A castle-strip** is a row of columns of heights `1..h`, plus a nearest-neighbor rule: which adjacent heights may touch. The rule *is* a `0/1` **transfer matrix** `M`, with `M[a][b] = 1` meaning "a column of height `a` may be followed by one of height `b`" (the plain construction is on [[castle-strip](pages/castle-strip.md)]).
+
+**The growth rate.** The number of strips of width `L` grows like `ρ^L`, where `ρ` is the largest eigenvalue of `M` — its **Perron root**, the "growth constant" of [[metallic-means](pages/metallic-means.md)].
+
+**The number field.** `ρ` is an **algebraic number**: it satisfies `M`'s characteristic polynomial, an integer polynomial. The lowest-degree such polynomial is its **minimal polynomial**, and the smallest field containing `ρ` is its **number field** `Q(ρ)`. A quadratic `ρ` has `Q(ρ) = Q(√d)` for a squarefree integer `d`, and `d` is the field's name.
+
+**One example, `h = 2`.** The rule "no two adjacent height-2 columns" is `M = [[1,1],[1,0]]`, with characteristic polynomial `x² − x − 1`, Perron root the golden ratio `φ`, field `Q(√5)`, and Fibonacci as its strip count — the first entry of the census.
+
+The census sweeps **all `2^{h²}` binary `M`** for `h = 2, 3, 4, 5`, collects the distinct Perron roots, and buckets them by number field. Three results structure the page: the **quadratic reachability law** (every real quadratic field is reachable), the **copper collapse** (`Q(√5)` is not new — which is why copper's sequence is decimated Fibonacci), and the **cubic frontier at `h = 3`** (the plastic number already shows up). The sweep itself:[^1]
 
 The computation is two-phase: a fast numeric sweep collects the distinct Perron values and one example matrix each; then SymPy exactly factors each example's characteristic polynomial, picks the irreducible factor carrying the Perron root, and labels the field (`deg 1` rational, `deg 2` → `Q(√d)` by squarefree discriminant, `deg ≥ 3` cubic/quartic). Exact throughout — numeric values only *select* the factor; the field label is exact.[^1]
+
+## In one function
+
+The whole page is one step — given a rule, read off its growth constant and field — and it is a short function:
+
+```python
+import sympy as sp
+x = sp.Symbol('x')
+
+def strip_field(M):
+    """Perron root and number field of ONE 0/1 strip transfer matrix."""
+    p = sp.Matrix(M).charpoly(x).as_expr()
+    rho, f = -sp.oo, None
+    for g, _ in sp.factor_list(p)[1]:               # factor first: irreducible factors have simple roots
+        g = sp.Poly(g, x)
+        rr = [complex(z).real for z in sp.nroots(g, n=25) if abs(complex(z).imag) < 1e-8]
+        if rr and max(rr) > rho:
+            rho, f = max(rr), g
+    d = f.degree()
+    if d == 1: return sp.N(rho, 8), "Q"
+    if d == 2:
+        a, b, c = f.all_coeffs()                    # a x^2 + b x + c
+        D = b*b - 4*a*c
+        sq = sp.Mul(*[q for q, e in sp.factorint(D).items() if e % 2])   # squarefree part of D
+        return sp.N(rho, 8), f"Q(sqrt({sq}))" if sq != 1 else "Q"
+    return sp.N(rho, 8), f"deg {d} ({f.as_expr()})"
+```
+
+```
+>>> strip_field([[1,1],[1,0]])                              # golden, h=2: no two adjacent height-2 columns
+(1.6180340, 'Q(sqrt(5))')
+>>> strip_field([[0,1,1],[1,0,1],[1,1,1]])                  # silver, h=3: J - D
+(2.4142136, 'Q(sqrt(2))')
+>>> strip_field([[0,1,1,1],[1,0,1,1],[1,1,0,1],[1,1,1,1]])  # bronze, h=4: J - D
+(3.3027756, 'Q(sqrt(13))')
+>>> strip_field([[0,0,1],[1,0,0],[1,1,0]])                  # plastic, h=3: near-companion of x^3 = x + 1
+(1.3247180, 'deg 3 (x**3 - x - 1)')
+```
+
+The three metallic fields are `Q(√5)`, `Q(√2)`, `Q(√13)`; the last line is the plastic number as a degree-3 growth constant. This is the step the exhaustive sweep runs over all `2^{h²}` matrices at once — `strip_field_census` on [[castle-snippets](pages/castle-snippets.md)] is exactly this function looped and bucketed.
 
 ## The quadratic fields — the clean result
 
@@ -108,7 +158,7 @@ This is exactly where the **reachability law replaces the census**: it *predicts
 
 ## Reproduce
 
-The `field_census` two-phase sweep (numeric Perron bucketing + exact SymPy field ID), the `S_h`-canonical-form `dedup` (validated against the exhaustive census), and the `M = J − D` metallic realizer are on [[castle-snippets](pages/castle-snippets.md)]. h ≤ 4 runs exhaustively in seconds; h=5 in a few minutes with chunked vectorized `numpy.linalg.eigvals`; h ≥ 6 is characterized by the reachability law plus targeted construction rather than exhaustion.
+The one-rule step (`strip_field`, above), the `strip_field_census` two-phase sweep (numeric Perron bucketing + exact SymPy field ID), the `sh_canonical` `S_h`-canonical-form dedup (validated against the exhaustive census), and the `ceiling_exception_M` `M = J − D` metallic realizer are on [[castle-snippets](pages/castle-snippets.md)]. h ≤ 4 runs exhaustively in seconds; h=5 in a few minutes with chunked vectorized `numpy.linalg.eigvals`; h ≥ 6 is characterized by the reachability law plus targeted construction rather than exhaustion.
 
 ## Appearances in Sources
 
