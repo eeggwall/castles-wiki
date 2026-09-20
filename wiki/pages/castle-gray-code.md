@@ -157,9 +157,9 @@ The wiki already carries the odometer end of the arc. Existing pages:
 - [[castle-snippets](pages/castle-snippets.md)] - `all_castles(w, h)` as the two-line itertools form.
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] - transfer-matrix and Kitamasa, the *count-only* counterparts to Algorithm M (they never materialise an individual castle).
 
-Open item - stub seeded in the E Department of the top-level ideas file, not as an empty page:
+Castle-native counterpart:
 
-- **Castle-native Gray tour on the valid-castle subset.** A Gray tour on `V(w, h) = { c : max c = h, blocks(c) even }` alone, size `F(w, h)`, with every step landing on another valid castle - no wasted visits on improper or odd-block tuples. The move set has to preserve *both* filters simultaneously; a single-column `±1` bump often flips parity or drops `max c` below `h`, exiting `V`, so this is a Hamiltonian-path question on the graph whose nodes are `V` and whose edges are the admitted moves. Hand-check at `(3, 2)` under the naive move set (single-column `±1` with `Δ blocks = 0`) shows no Hamiltonian path exists there, so the stub asks either what larger move set succeeds or for which `(w, h)` no tour exists at all. In the style of Ruskey's *Combinatorial Generation*.
+- [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - a Gray tour on `V(w, h) = { c : max c = h, blocks(c) even }` alone, size `F(w, h)`, no wasted visits on improper or odd-block tuples. Single-column `±1` preserving `V` admits no Hamilton path at `(3, 2)`; enlarging to include adjacent transpositions gives one (worked example on the page). Sign is invariant along the tour, so `F(w, h)` is read off directly, not via `(A + P)/2`. Ruskey-style, distinct from Knuth's algorithms on the cube.
 
 Not on the arc: Heap's algorithm and Steinhaus-Johnson-Trotter are permutation Gray codes, which apply to castle skylines only through the [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] and [[castle-foata-transform](pages/castle-foata-transform.md)] - a different object (permutations of a fixed multiset), not the full `{1..h}^w`.
 
