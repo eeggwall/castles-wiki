@@ -5,7 +5,7 @@ summary: Knuth's combinatorial-generation algorithms — mixed-radix add-one tup
 tags: [knuth, taocp, generation, mixed-radix, gray-code, brute-force, source]
 sources: [aocp-generating-permutations-tuples]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-20
 ---
 
 # The Art of Computer Programming (AOCP) Generating Permutations & Tuples (Knuth The Art of Computer Programming (TAOCP) Vol. 4)
@@ -30,7 +30,7 @@ The connection is concrete and lives in the brute-force enumerator:
 - **The `2^n` binary-string count** is the [[binary-string-bijection](pages/binary-string-bijection.md)]: generating all length-*w* binary strings by counting `0…0` to `1…1` is precisely enumerating the configurations of one length-*w* block.
 - **Gray-code ordering** is a lens on the castle's local structure: successive one-coordinate changes are the smallest moves in the mixed-radix space, and the castle's block-count / `is_unimodal` deltas under such a single-column change connect to the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] view.
 
-**A seminar / research thread — Knuth's generation algorithms in castle space.** Systematically translating Vol. 4's combinatorial-generation algorithms into the castle's mixed-radix `{1..h}^w` space is a self-contained, accessible research direction (and a good seminar): Algorithm M is already the castle brute-force; a **castle Gray code** would order castles so each step changes one column height by one — inducing a bounded, predictable change in block count and in the [[castle-sign](pages/castle-sign.md)] — which could give a loopless enumerator, an incremental parity/`P` update, and a combinatorial handle on the even/odd split. Restricting the generation to *valid* castles (max height exactly *h*, and the even-block filter) is the interesting twist Knuth's generic algorithms do not handle out of the box.
+**A seminar / research thread — Knuth's generation algorithms in castle space.** Systematically translating Vol. 4's combinatorial-generation algorithms into the castle's mixed-radix `{1..h}^w` space is a self-contained, accessible research direction (and a good seminar): Algorithm M is already the castle brute-force; the **castle Gray code** ([[castle-gray-code](pages/castle-gray-code.md)]) orders castles so each step changes one column height by one, gives a proved `Δ blocks ∈ {−1, 0, +1}` bump lemma, and reads off an O(1) update for [[castle-sign](pages/castle-sign.md)] and `P` — a loopless enumerator and a combinatorial handle on the even/odd split. Restricting the generation to *valid* castles (max height exactly *h*, and the even-block filter) is the interesting twist Knuth's generic algorithms do not handle out of the box.
 
 ## Where Algorithm M already runs on the wiki
 
@@ -57,6 +57,7 @@ Gray order is also a delta encoding - consecutive castles differ in one symbol -
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] — the castle enumerator, an instance of Algorithm M.
 - [[binary-string-bijection](pages/binary-string-bijection.md)] — the `2^n` binary-string enumeration.
 - [[castle-by-area](pages/castle-by-area.md)] — the by-area enumeration, another exhaustive tuple listing.
+- [[castle-gray-code](pages/castle-gray-code.md)] — the castle-space walk of Algorithm G, with the block-count ±1 lemma and the O(1) sign / `P` update.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the single-coordinate-change lens Gray code suggests.
 - [[castle-snippets](pages/castle-snippets.md)] - `all_castles(w, h)`, the wiki's Algorithm M in `itertools` form.
 - [[isospectral-castles](pages/isospectral-castles.md)] / [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] / [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[proper-castle-projection](pages/proper-castle-projection.md)] - the censuses that run on it.
