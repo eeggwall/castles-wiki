@@ -1,6 +1,6 @@
 # Divisions
 
-Nine letters partition the castle wiki's research surface. Each Division has a one-line descriptor in four parts, a conceptual coverage list, and a set of crossovers with the other letters. The Divisions here supersede the Division headings in `IDEAS.md`: Numbers -> N, Enumeration -> E, Q -> Q, S -> S, T -> T, and Classification and Miscellaneous both -> Z. R is new and gathers the representation pages that no earlier Division claimed. F is new and has no pages yet; its ten founding items are in `IDEAS.md`. X is new and gathers the keystream, steganography, and commitment pages the earlier Divisions only glanced at. The Abelian Group at the end of this file is not a tenth letter.
+Nine Divisions partition the castle wiki's research surface. Each Division has a one-line descriptor in four parts, a conceptual coverage list, and a set of crossovers with the other Divisions. R gathers the representation pages. F has no pages yet. X gathers the keystream, steganography, and commitment pages that the other Divisions only glanced at. The Abelian Group at the end of this file is not a tenth Division.
 
 Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Crossover names are hooks (a titled subplot), not descriptions of theme.
 
@@ -53,7 +53,7 @@ Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Cros
 - Comparative morphology: convex core uniqueness, unimodal versus convex, statistical-physics cousins.
 - Public interpretation: eigenvalues-by-example and the other pedagogy tours; the seminar layer draws its exhibits here.
 
-Z absorbs both the Classification and Miscellaneous Divisions from `IDEAS.md`. The two pages `castle-classification-geometric` and `castle-classification-non-geometric` are its natural first split.
+The two pages `castle-classification-geometric` and `castle-classification-non-geometric` are the Zoo's natural first split.
 
 ### Q - q-Analogues
 
@@ -142,7 +142,8 @@ Not yet named: Q/S has no page behind it, and Q/T exists only through area CLTs,
 
 ## The Abelian Group
 
-Not a Division. The Abelian Group has no descriptor, no coverage list, and no crossover row; it opens cases against the foundations the letters stand on and files each finding back to the letter under review. The ten founding cases are in `IDEAS.md` under "The Abelian Group" and feed arc S14. The docket:
+The Abelian Group has no descriptor, no coverage list, and no crossover row; it opens cases against the foundations
+other divisions stand on. Ten founding cases. The docket:
 
 | Case | Foundation under review | The group | Reviews |
 |---|---|---|---|
