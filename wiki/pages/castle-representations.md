@@ -5,7 +5,7 @@ summary: Three ways to encode a castle — binary strings, integer tuples, and U
 tags: [concept, castle, representations, encoding, combinatorics]
 sources: [project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-solution]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-20
 ---
 
 # Castle representations
@@ -67,6 +67,7 @@ The castle-factoring work sketches three additional encodings, each a re-view of
 - **Excursion/gap word.** The no-`UD`/no-`DU` rules force a tower word to alternate vertical and horizontal runs, so it can be written as `(direction₁, gap₁, direction₂, gap₂, …)` — each *direction* a signed vertical-run length, each *gap* an `R`-run length. Validity is a Motzkin-like condition: every prefix of the signed directions has sum ≥ 0, and the total is 0.[^10]
 - **Cycle-forest form.** Stack-match each `U` with the `D` that closes it; each matched pair is a block, and a block nested directly inside another is its child, giving a rooted forest of blocks (roots on the base). It is the castle analogue of a permutation as parenthesized cycles — but it is only the *vertical nesting skeleton*: it discards the `R` steps and so does not recover the tower word. A bare parenthesization is a two-letter Dyck word (`U` open, `D` close) and cannot record horizontal moves; the tower needs the third letter `R`. This is exactly why the model uses the three-letter [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] rather than a bare Dyck word.[^11]
 - **Signed column-difference sequence.** The run-length encoding of the first-difference sequence `d` into up-streaks, flat runs, and down-streaks — the signed form of the castle, with the down-streaks as the sign-carrying atoms and the flat runs recording gap and sub-block widths. This is the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)].[^12]
+- **BDD / ZDD.** The valid-castle set `V(w, h)` as a Binary Decision Diagram or zero-suppressed BDD: a directed-acyclic-graph representation of size `O(h · w · log h)` obtained by lifting the [[castle-strip](pages/castle-strip.md)] transfer matrix to a DFA on state `(last-column height, blocks-mod-2, is-h-reached)` and encoding each column in `⌈log_2 h⌉` Boolean variables. Not just a shorter encoding of individual castles - a compact representation of the whole family `V(w, h)`, with ZDD synthesis primitives supporting counting, uniform random sampling, rank / unrank, and free intersection with other castle-family ZDDs; see [[castle-bdd-zdd](pages/castle-bdd-zdd.md)].
 
 ## Appearances in Sources
 
