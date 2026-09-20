@@ -10,6 +10,8 @@ updated: 2026-09-20
 
 # Castle-native Gray tour
 
+> **Continued at [[castle-move-graph-zdd](pages/castle-move-graph-zdd.md)]** with a move-set × `(w, h)` Hamilton-path sweep up to `(6, 2)` and `(4, 3)`, showing M1 ∪ M6 breaks at `(5, 2)` and different enlargements are needed for `(w, 2)` vs `(4, 3)`.
+
 ## What this page is not
 
 This page is not an algorithm. It gives no successor rule of the form "current castle in, next castle out." It does not exhibit a castle-native Gray code that works uniformly on `V(w, h)`. It does not close the question of whether such a code exists.
@@ -160,6 +162,8 @@ The `(3, 2)` and `(3, 3)` failures have different flavours. At `h = 2` the parit
 
 No pattern is visible at these sizes. Ruskey-style analysis would need to work at families of `(w, h)` where a recursion or a boundary-concatenation argument can be made, and hand-analysis of `(4, 2)`, `(5, 2)`, and `(4, 3)` is the next step. This page pauses here.
 
+**Continued at [[castle-move-graph-zdd](pages/castle-move-graph-zdd.md)].** That page extends the sweep to `(w, h)` up to `(6, 2)` and `(4, 3)` under four move sets (M1, M6, M7, Mnon), and shows the pattern from this page's `(3, 2)` case breaks at `(5, 2)`: M1 ∪ M6 does not admit a Hamilton path there, and the enlargement M1 ∪ M6 ∪ Mnon (adding non-adjacent transpositions) is what rescues the `(w, 2)` family for `w ≥ 5`, while a *different* enlargement (adding M7) is needed to rescue `(4, 3)`. That page also outlines what Knuth's SimPath methodology (TAOCP §7.1.4 exercises 225-228) would settle beyond hand-DFS.
+
 ## What such a tour would give, if it existed
 
 For future reference: a castle-native Gray tour on `V(w, h)` under any move set would give three properties the cube tour does not.
@@ -183,6 +187,7 @@ Concrete next moves for someone continuing this work:
 
 ## Entities & Concepts
 
+- [[castle-move-graph-zdd](pages/castle-move-graph-zdd.md)] - the continuation working note, with the move-set × `(w, h)` Hamilton-path sweep and the Knuth SimPath methodology outline.
 - [[castle-gray-code](pages/castle-gray-code.md)] - the tour on the full cube, the counterpart this page's object is filtered from.
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the column-height block-count formula and the `F(w, h)` values used above (`F(3, 2) = 6`, `F(3, 3) = 3`, `F(4, 2) = 10`).
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - Knuth's Algorithms M / G / H on the cube; the universal counterpart Ruskey-methodology restricts.
