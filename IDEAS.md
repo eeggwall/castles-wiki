@@ -89,6 +89,12 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 - Spine: [fractional-block-count](wiki/pages/fractional-block-count.md), [fractional-width-and-height](wiki/pages/fractional-width-and-height.md), then half-sum castles and the castle comb as pages land.
 - Open items feeding it: from F, the half-sum, the comb, the power-law memory rules; the rest of the F Department by crossover.
 
+### Arc 13. Beethoven's Ninth, at every scale
+- Thesis: one recording - the Furtwängler-1951 Ninth that sized the Compact Disc - carries every castle tool the wiki owns at every scale at once: 11-character YouTube URL, ID3-style label, acoustic fingerprint, 391-million-column waveform, general compression tier ladder, finite-field spectrum, ring cipher, telephone-network toy universe, and steganographic warden channel; the sound-to-castle bijection direction, run end to end as one practical tour.
+- Status: deliverable.
+- Spine: [song-as-castle](wiki/pages/song-as-castle.md), [castle-representations](wiki/pages/castle-representations.md), [castle-counting-function](wiki/pages/castle-counting-function.md), [castle-sign](wiki/pages/castle-sign.md), [castle-compression](wiki/pages/castle-compression.md), [castle-entropy](wiki/pages/castle-entropy.md), [berlekamp-massey](wiki/pages/berlekamp-massey.md), [finite-fields](wiki/pages/finite-fields.md), [spectral-analysis](wiki/pages/spectral-analysis.md), [image-as-castle](wiki/pages/image-as-castle.md), [castle-steganography](wiki/pages/castle-steganography.md), [castle-cryptography](wiki/pages/castle-cryptography.md).
+- Open items feeding it: from R, the lossless song codec spec; from X, what survives an FM channel, the block-count warden, and the integrity check with a public order; from Z, the tone-castle catalogue; from T, the Woodward gap as a block-count meter.
+
 ## Departments
 
 ### R Department (representations - encodings, entropy, source-level readings)
