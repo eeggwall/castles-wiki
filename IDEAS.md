@@ -141,6 +141,7 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 
 ### N Department (numbers - sequences, exact arithmetic, difficult scales)
 
+- [ ] **Sum Of Three Cubes Castles** - `F(6,4) = 1729` exactly (unique for `w,h<=40`), via the hardy-ramanujan-castle.md research, and we have closed form for F(w,h), so we should be able to determine if every sum of three cubes (or, which sum of three cubes) are castle counts. 
 - [ ] **Castle sequence bank residue** - the mining pass covered F, T, P and every derived count; what remains is `F_odd = A - F` as its own bank entry, the parity-refined area sequences, and the block-count / peak / area joint distributions not yet enumerated.
 - [ ] **Larger-prime periodicity** - extend the mod-p observatory to larger primes (and `10^9+7`); the periods become infeasible to enumerate, but the eigenvalue-order structure persists.
 - [ ] **Seminar centerpiece: the Hardin word identity** - a 90-minute arc from "sum `(-1)^blocks` over towers" to "count words with no nonzero local maximum," every step on one blackboard.
