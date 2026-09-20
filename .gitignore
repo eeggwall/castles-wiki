@@ -23,3 +23,8 @@ wiki/index.md
 *.mov
 *.mp3
 *.wav
+
+# No scripts or run output in the root.
+/*.py
+/*.out
+scratch-*
