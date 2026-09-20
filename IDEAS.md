@@ -17,73 +17,73 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 
 Each arc is a titled subplot with a one-line thesis, a status, its spine pages in delivery order, and the open items it needs. Statuses: `deliverable` (spine end to end), `one page short` (spine exists, the seminar-shaped page does not), `half built`, `sketch`. Arc titles are hooks, not department names; wording may be adjusted during execution.
 
-### S1. The castle counted on one blackboard
+### Arc 1. The castle counted on one blackboard
 - Thesis: two ideas - towers are independent, parity is a sign - drive every algorithm the castle needs, from `T(k,L)=(k+1)^L` to trillion-scale Kitamasa jumps.
 - Status: deliverable.
 - Spine: [tower-recursion-master-class](wiki/pages/tower-recursion-master-class.md), [castle-sign](wiki/pages/castle-sign.md), [parity-via-roots-of-unity](wiki/pages/parity-via-roots-of-unity.md), [castles-as-upgraded-cycle-count](wiki/pages/castles-as-upgraded-cycle-count.md), [kitamasa](wiki/pages/kitamasa.md), [berlekamp-massey](wiki/pages/berlekamp-massey.md), [castle-count-algorithms](wiki/pages/castle-count-algorithms.md).
 - Open items feeding it: from Misc, a general closed form for `P(k,L)` and minimality of the empirical recurrence orders.
 
-### S2. From a textbook exercise to the metallic ladder
+### Arc 2. From a textbook exercise to the metallic ladder
 - Thesis: an Analytic Combinatorics end-of-chapter exercise opens onto the full metallic-ratio ladder and its reachable-field structure.
 - Status: deliverable.
 - Spine: [pell-castle-strip](wiki/pages/pell-castle-strip.md), [castle-strip](wiki/pages/castle-strip.md), [metallic-means](wiki/pages/metallic-means.md), [eigenvalue-continued-fractions](wiki/pages/eigenvalue-continued-fractions.md), [metallic-strip-realizability](wiki/pages/metallic-strip-realizability.md), [reachable-field-census](wiki/pages/reachable-field-census.md), [proper-castle-projection](wiki/pages/proper-castle-projection.md), [bounded-height-castles-nacci](wiki/pages/bounded-height-castles-nacci.md), [plastic-number](wiki/pages/plastic-number.md), [hardy-ramanujan-castle](wiki/pages/hardy-ramanujan-castle.md) (the ladder's rung 9, squared, as Ramanujan's near-miss growth constant).
 - Open items feeding it: from Numbers, silver-ratio observatory, larger-prime periodicity, the min-height law for `(p1,p2)`, Pisot/Salem cubics, the metallic rungs of the other Ramanujan-type C-finite identities; from Classification, the horizontal-gap reachable-field census.
 
-### S3. The Hardin word identity
+### Arc 3. The Hardin word identity
 - Thesis: `P_even(4m+2, L) = 2^L` times a word count; the two transfer matrices differ by one unimodular change of basis.
 - Status: one page short. Spine exists; the seminar-shaped centerpiece page does not.
 - Spine: [tower-parity-sectors](wiki/pages/tower-parity-sectors.md), [hardin-word-identity](wiki/pages/hardin-word-identity.md), [a005251-bijection](wiki/pages/a005251-bijection.md), [tree-castle-by-area](wiki/pages/tree-castle-by-area.md), [tetali-1998-unique-tournaments](wiki/pages/tetali-1998-unique-tournaments.md).
 - Open items feeding it: from Numbers, the centerpiece itself, the sign-reversing involution, the two sector-assignment conjectures, `h>=5` tree-castle-by-area sequences.
 
-### S4. Hear the shape of a castle
+### Arc 4. Hear the shape of a castle
 - Thesis: five spectra on a castle graph, with the 10-cell adjacency-isospectral pair as the punchline.
 - Status: one page short. Spine exists; the seminar-shaped centerpiece page does not.
 - Spine: [spectral-analysis](wiki/pages/spectral-analysis.md), [castle-graph](wiki/pages/castle-graph.md), [castle-graph-spectral-radius](wiki/pages/castle-graph-spectral-radius.md), [isospectral-castles](wiki/pages/isospectral-castles.md).
 - Open items feeding it: from S, the centerpiece itself, the bronze hunt, skyline DFT, LGV kernel spectrum, Ihara zeta / Sunada for the 10-cell pair.
 
-### S5. Castle cryptography: build, break, fix
+### Arc 5. Castle cryptography: build, break, fix
 - Thesis: build a public-key system on the castle ring, red-team it, blue-team the fixes; run the loop twice.
 - Status: deliverable (run twice).
 - Spine: [castle-cryptography](wiki/pages/castle-cryptography.md), [castle-cryptography-ring](wiki/pages/castle-cryptography-ring.md), [castle-cryptography-number-theory](wiki/pages/castle-cryptography-number-theory.md), [castle-cryptography-round-two](wiki/pages/castle-cryptography-round-two.md).
 - Open items feeding it: from X, round-three torus on `char_5`, shrinking-generator castle, the two `d=3` linear-complexity deficits.
 
-### S6. The q-thread: castles by area
+### Arc 6. The q-thread: castles by area
 - Thesis: grade every castle sub-family by area and locate where q-Catalan, q-Motzkin, and q-Bessel meet the polyomino literature.
 - Status: half built.
 - Spine: [castle-by-area](wiki/pages/castle-by-area.md), [convex-castle-binomial-identity](wiki/pages/convex-castle-binomial-identity.md), [weakly-unimodal-composition](wiki/pages/weakly-unimodal-composition.md), [stack-polyomino-gf](wiki/pages/stack-polyomino-gf.md), [tree-castle-by-area](wiki/pages/tree-castle-by-area.md), [bounded-height-castles-nacci](wiki/pages/bounded-height-castles-nacci.md), [q-catalan-numbers](wiki/pages/q-catalan-numbers.md), [steep-polyominoes-q-motzkin-bessel](wiki/pages/steep-polyominoes-q-motzkin-bessel.md).
 - Open items feeding it: from Q, prime castles, q-polyomino zoo (absorbs TODO's stack/Ferrers/parallelogram and A001169 threads), q-Catalan/q-Motzkin joins (absorbs the "find the q-equivalent" thread), convex/valley bijection, the `h=3` tree-vs-all bijection.
 
-### S7. OEIS mining as a research method
+### Arc 7. OEIS mining as a research method
 - Thesis: sweep the brute enumerator, look up every sequence, and treat matches as new castle interpretations to submit.
 - Status: deliverable.
 - Spine: [oeis-cross-referencing](wiki/pages/oeis-cross-referencing.md), [oeis-mining-pe502](wiki/pages/oeis-mining-pe502.md), [oeis-index](wiki/pages/oeis-index.md), [oeis-height2-hyperbolic-castles](wiki/pages/oeis-height2-hyperbolic-castles.md), [castle-eigenvalue-oeis-crosswalk](wiki/pages/castle-eigenvalue-oeis-crosswalk.md), [new-sequence-fw3](wiki/pages/new-sequence-fw3.md).
 - Open items feeding it: from Numbers, the castle sequence bank residue; from Classification, OEIS id of the tower-spacing 2D sequences and bounded-height rows. Submissions themselves are human action and stay in `TODO.md`.
 
-### S8. One bit: the parity clause as information
+### Arc 8. One bit: the parity clause as information
 - Thesis: the even-block clause is exactly one bit, and the entropy view re-reads every growth constant as a topological entropy.
 - Status: one page short. Spine exists; the seminar-shaped synthesis does not.
 - Spine: [castle-entropy](wiki/pages/castle-entropy.md), [castle-compression](wiki/pages/castle-compression.md), [castle-sign](wiki/pages/castle-sign.md).
 - Open items feeding it: from Enumeration, conditional entropy given block count / area, a rule-generated-castle detector, and whether the parity bit survives object by object.
 
-### S9. pi from a pile of blocks
+### Arc 9. pi from a pile of blocks
 - Thesis: castle samplers plus CLT / random-matrix / geometric-probability limits push transcendentals through combinatorial machinery.
 - Status: sketch.
 - Spine: [algebraic-transcendental-wall](wiki/pages/algebraic-transcendental-wall.md) (the wall), [spectral-analysis](wiki/pages/spectral-analysis.md) (LGV hook).
 - Open items feeding it: from T, all six items; prerequisite the `castle-samplers` page (promoted to its own `[ ]` at the head of the T Department).
 
-### S10. Knuth's algorithms in castle space
+### Arc 10. Knuth's algorithms in castle space
 - Thesis: TAOCP Vol. 4 generation algorithms translated into the mixed-radix `{1..h}^w` space, with a castle Gray code as the payoff.
 - Status: sketch.
 - Spine: [aocp-generating-permutations-tuples](wiki/pages/aocp-generating-permutations-tuples.md), [project-euler-502-brute-force](wiki/pages/project-euler-502-brute-force.md), [castle-snippets](wiki/pages/castle-snippets.md).
 - Open items feeding it: from Enumeration, castle Gray code / loopless enumerator (from TODO), Viennot heap theory via [tower-heap](wiki/pages/tower-heap.md) (from TODO).
 
-### S11. The rule zoo: variations on the castle
+### Arc 11. The rule zoo: variations on the castle
 - Thesis: change one rule, name the family, count it.
 - Status: mixed.
 - Spine: [castle-classification](wiki/pages/castle-classification.md), [castle-snippets](wiki/pages/castle-snippets.md), [tower-spacing-castles](wiki/pages/tower-spacing-castles.md), [castle-representations](wiki/pages/castle-representations.md).
 - Open items feeding it: from Classification, rule-variation enumeration and the no-touching / vertical-spacing variants; from Misc, higher-dimensional castles, convex-core uniqueness, statistical-physics links, exact `(w,h)` enumeration of convex/unimodal castles with parity.
 
-### S13. The half-derivative of a castle
+### Arc 12. The half-derivative of a castle
 - Thesis: every integer-order operation the castle already uses - the column difference that counts blocks, the partial sum that accumulates counts, the matrix power that adds a column, the Laplacian that hears the shape - has a fractional-order version, and turning the order knob continuously exposes structure the integer points hide: area and block count are the two ends of one statistic, the parity clause is real in the width and imaginary in the height, a half-sum carries `sqrt(pi)`, and a tree castle is a comb that subdiffuses at order `1/2`.
 - Status: half built. Two of the four spine pages exist.
 - Spine: [fractional-block-count](wiki/pages/fractional-block-count.md), [fractional-width-and-height](wiki/pages/fractional-width-and-height.md), then half-sum castles and the castle comb as pages land.
