@@ -157,9 +157,9 @@ The wiki already carries the odometer end of the arc. Existing pages:
 - [[castle-snippets](pages/castle-snippets.md)] - `all_castles(w, h)` as the two-line itertools form.
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] - transfer-matrix and Kitamasa, the *count-only* counterparts to Algorithm M (they never materialise an individual castle).
 
-Castle-native counterpart:
+Castle-native counterpart (working note, not an algorithm):
 
-- [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - a Gray tour on `V(w, h) = { c : max c = h, blocks(c) even }` alone, size `F(w, h)`, no wasted visits on improper or odd-block tuples. Single-column `±1` preserving `V` admits no Hamilton path at `(3, 2)`; enlarging to include adjacent transpositions gives one (worked example on the page). Sign is invariant along the tour, so `F(w, h)` is read off directly, not via `(A + P)/2`. Ruskey-style, distinct from Knuth's algorithms on the cube.
+- [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - working note on the Ruskey-methodology question of whether a Gray tour exists on `V(w, h) = { c : max c = h, blocks(c) even }` directly. Small cases: `V_proper(3, 2)` alone admits a Hamilton path under M1; `V(3, 2)` needs the enlarged M1 ∪ M6 (single-column `±1` plus adjacent transposition); `V(3, 3)` is three castles isolated under every local move set tried. Different failure modes at `h = 2` (pendants) and `h = 3` (sparseness). No general pattern visible at these sizes; the page pauses at the wall.
 
 Not on the arc: Heap's algorithm and Steinhaus-Johnson-Trotter are permutation Gray codes, which apply to castle skylines only through the [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] and [[castle-foata-transform](pages/castle-foata-transform.md)] - a different object (permutations of a fixed multiset), not the full `{1..h}^w`.
 
