@@ -52,7 +52,7 @@ Drop the "exact height `h`" bookkeeping and ask about a family of castles of *gr
 h(family) = lim_{w→∞} (1/w)·log₂(# valid castles of width w) = log₂ ρ.
 ```
 
-This is the topological entropy of the constrained system, and it is the same number as the per-column uniform entropy above — both are `log₂ ρ`. Now read the Numbers Division through this lens: every growth constant it has pinned down is an entropy rate.[^3]
+This is the topological entropy of the constrained system, and it is the same number as the per-column uniform entropy above — both are `log₂ ρ`. Read through this lens, every growth constant the wiki has pinned down is an entropy rate.[^3]
 
 | family (rule) | growth constant ρ | entropy rate log₂ ρ |
 |---|---|---|

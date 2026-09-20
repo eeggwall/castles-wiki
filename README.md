@@ -149,7 +149,7 @@ files, and notes — they matter when you're ingesting MediaWiki pages or PDFs.
 
 ```
 SCHEMA.md          conventions + how the wiki tools locate this wiki (do not move/delete)
-IDEAS.md           project and seminar ideas, organized by Division
+IDEAS.md           project and seminar ideas, organized by Department
 TODO.md            OEIS submissions (human action), ingestion queue, housekeeping
 config/            link-style rules (markdown: [[slug](pages/slug.md)]) + oeis-annotations.tsv
 bin/               stdlib helper scripts + the pre-commit hook (see Quick start)

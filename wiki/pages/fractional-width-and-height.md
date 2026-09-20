@@ -2,7 +2,7 @@
 title: Fractional width and fractional height
 category: Analyses
 summary: F(w,h) is C-finite in the width and a quasi-polynomial in the height, so both arguments interpolate to real values, and the two directions behave differently. In the width, every eigenvalue of the signed tower recurrence char_k for k <= 8 is either a positive real or one of a complex-conjugate pair (no negative real root), so on the principal branch F(w,h) is a real function of real w for every h <= 9: F(w,2) = (2^{w+1} - 2^{(w+3)/2} cos(pi(w+1)/4))/4, and F(2.5,3) = 0.689, F(3.5,4) = 60.707. In the height, P(k,L) = (-1)^k A_L(k) + B_L(k) and (-1)^k is +-i at half-integers, so F(w, m + 1/2) = (A - B_w(h-1) + B_w(h-2))/2 + i (-1)^m (A_w(h-1) + A_w(h-2))/2 is genuinely complex: F(4, 2.5) = 16.75 + 6i. Half a column is real, half a row is imaginary, and the imaginary part is the alternating part of the parity clause moved onto the imaginary axis. The half-column problem R^2 = M has OEIS answers: rules that are squares of 0/1 rules are 8, 88, 3245 at heights 2, 3, 4 (A226321); rules with a real principal square root are 13, 261, 15418 (A086510); rules with all eigenvalues positive are 3, 25, 543 (A003024, DAGs, so I + nilpotent); rules whose half-column has nonnegative weights are 3, 19, 219 (A001035, labeled posets), and for h <= 4 they are exactly the partial orders on the heights. The nondecreasing rule is the chain poset and its half-column is the (1-x)^{-1/2} Toeplitz matrix with entries C(2k,k)/4^k. The free strip J has the half-column J/sqrt(h); every metallic strip on the wiki (the 1-smooth tridiagonal, the ceiling-exception J-D at heights 3 and 4) has a simple negative eigenvalue and therefore no real square root at all. The metallic ladder has no half-steps.
-tags: [analysis, castle, fractional-calculus, interpolation, matrix-power, branch-cut, quasi-polynomial, c-finite, eigenvalues, transfer-matrix, square-root, embedding, metallic-means, f-division, computation, verification]
+tags: [analysis, castle, fractional-calculus, interpolation, matrix-power, branch-cut, quasi-polynomial, c-finite, eigenvalues, transfer-matrix, square-root, embedding, metallic-means, computation, verification]
 sources: [project-euler-502-solution]
 created: 2026-09-19
 updated: 2026-09-19
@@ -10,7 +10,7 @@ updated: 2026-09-19
 
 # Fractional width and fractional height
 
-The count `F(w, h)` is defined for integer width and integer height, but it is built from objects that make sense off the integers. In the width it is a **C-finite sequence**, a sum of exponentials `c_j lambda_j^w` in the eigenvalues of a transfer matrix, and `lambda^w` is meaningful for real `w` once a branch of `log lambda` is chosen. In the height it is a **quasi-polynomial**, `(-1)^h` times a polynomial plus a polynomial, and `(-1)^h = e^{i pi h}` is meaningful for real `h` too. This page interpolates both arguments, finds that the two directions behave differently, and traces the difference to a single fact about where the parity clause puts its eigenvalues. It then asks the question a fractional matrix power really poses, which strip rules `M` are the square of a finer rule `R`, and answers it for the strips the wiki cares about. Second page of the F Division; the first is [[fractional-block-count](pages/fractional-block-count.md)].
+The count `F(w, h)` is defined for integer width and integer height, but it is built from objects that make sense off the integers. In the width it is a **C-finite sequence**, a sum of exponentials `c_j lambda_j^w` in the eigenvalues of a transfer matrix, and `lambda^w` is meaningful for real `w` once a branch of `log lambda` is chosen. In the height it is a **quasi-polynomial**, `(-1)^h` times a polynomial plus a polynomial, and `(-1)^h = e^{i pi h}` is meaningful for real `h` too. This page interpolates both arguments, finds that the two directions behave differently, and traces the difference to a single fact about where the parity clause puts its eigenvalues. It then asks the question a fractional matrix power really poses, which strip rules `M` are the square of a finer rule `R`, and answers it for the strips the wiki cares about. Companion to [[fractional-block-count](pages/fractional-block-count.md)], which interpolates the statistic; this page interpolates the argument.
 
 Every number below was computed while writing and re-run for the final tables; the scripts are described in the execution footnote.[^exec]
 
@@ -158,7 +158,7 @@ Open:
 
 ## Related Concepts
 
-- [[fractional-block-count](pages/fractional-block-count.md)] - the F Division's first page; the statistic, not the argument, is interpolated there.
+- [[fractional-block-count](pages/fractional-block-count.md)] - the companion fractional-calculus page; the statistic, not the argument, is interpolated there.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] and [[castle-counting-function](pages/castle-counting-function.md)] - the object being interpolated.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] - `num_k / den_k` and the roots of `char_k`; the irreducibility for odd `k`.
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - `(x + 1)^L (x - 1)^{L-2}` and the `A_L, B_L` table this page evaluates at half-integers.
@@ -168,7 +168,7 @@ Open:
 - [[castle-strip](pages/castle-strip.md)] - the 0/1 rule matrices whose square roots are the half-columns.
 - [[metallic-means](pages/metallic-means.md)] and [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ceiling-exception rule `J - D` and its `(x + 1)^{h-2} (x^2 - (h-1) x - 1)`.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the 1-smooth strip whose tridiagonal matrix has no real square root.
-- [[kitamasa](pages/kitamasa.md)] and [[mod-p-observatory](pages/mod-p-observatory.md)] - where the fractional power `x^{w/2} mod char` becomes root extraction (the F Division's ring item).
+- [[kitamasa](pages/kitamasa.md)] and [[mod-p-observatory](pages/mod-p-observatory.md)] - where the fractional power `x^{w/2} mod char` becomes root extraction in the finite ring.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the skyline DFT, third operator with a spectral fractional power.
 
 ## Footnotes

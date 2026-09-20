@@ -83,15 +83,15 @@ Two shape-agnostic facts stay useful here:
 
 Not yet populated, but the following predicates would sit here when they land.
 
-- **Sparse-spectrum castle** - a predicate on the skyline discrete Fourier transform (DFT) `ĉ_k`: the individual castle has `supp(ĉ) ⊆ S` for some fixed small set `S`. The Axis-7 **crenellated** type on [[castle-classification-shape](pages/castle-classification-shape.md)] is exactly the two-atom DFT-support case (energy at `k = w/2`). The general sparse-spectrum classification (which sparse-support sequences are valid castles?) hooks into compressed sensing and turnpike reconstruction. See the S-Division `Skyline DFT - individual-castle signatures` thread.
+- **Sparse-spectrum castle** - a predicate on the skyline discrete Fourier transform (DFT) `ĉ_k`: the individual castle has `supp(ĉ) ⊆ S` for some fixed small set `S`. The Axis-7 **crenellated** type on [[castle-classification-shape](pages/castle-classification-shape.md)] is exactly the two-atom DFT-support case (energy at `k = w/2`). The general sparse-spectrum classification (which sparse-support sequences are valid castles?) hooks into compressed sensing and turnpike reconstruction.
 - **Low-pass / high-pass castle** - a soft version of sparse-spectrum: the castle's DFT energy is concentrated in low-`k` modes (smooth mountain-shaped skyline) or high-`k` modes (jagged crenellation). Not a hard predicate but a natural spectral-concentration classifier.
-- **Ihara-Ramanujan castle** - the Ramanujan condition on the non-backtracking operator rather than the adjacency operator. Arithmetic-combinatorial invariant analogous to Selberg zeta for hyperbolic surfaces. Longer-horizon; see the S-Division `Ramanujan castles / Ihara zeta` thread.
+- **Ihara-Ramanujan castle** - the Ramanujan condition on the non-backtracking operator rather than the adjacency operator. Arithmetic-combinatorial invariant analogous to Selberg zeta for hyperbolic surfaces. Longer-horizon.
 
 ## Open threads
 
 1. **Ramanujan census.** Compute `ρ(T)` for the universal covers of small castles with a `2 × 2` block and run the predicate; boxcastles and crenellated castles first.
 2. **Bronze-spectrum castles.** Absent among 4.87 million castles on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]; open beyond the scanned size.
-3. **Sparse-spectrum, low/high-pass, Ihara-Ramanujan.** The three sketched types; S-Division seminar targets on `IDEAS.md`. Each waits for its method on [[spectral-analysis](pages/spectral-analysis.md)] to land before it can be populated with worked members.
+3. **Sparse-spectrum, low/high-pass, Ihara-Ramanujan.** The three sketched types. Each waits for its method on [[spectral-analysis](pages/spectral-analysis.md)] to land before it can be populated with worked members.
 4. **Non-adjacency operators.** The Laplacian isospectral pair at 11 cells is one worked example; a full Laplacian census (or a Ihara-adjacency census) at small size would give the tree/golden/silver/`φ²` list its non-adjacency companions.
 
 ## Related Concepts

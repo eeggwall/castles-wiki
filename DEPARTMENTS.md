@@ -1,6 +1,6 @@
-# Divisions
+# Departments
 
-Nine Divisions partition the castle wiki's research surface. Each Division has a one-line descriptor in four parts, a conceptual coverage list, and a set of crossovers with the other Divisions. R gathers the representation pages. F has no pages yet. X gathers the keystream, steganography, and commitment pages that the other Divisions only glanced at.
+Nine Departments partition the castle wiki's research surface. Each Department has a one-line descriptor in four parts, a conceptual coverage list, and a set of crossovers with the other Departments. R gathers the representation pages. F has no pages yet. X gathers the keystream, steganography, and commitment pages that the other Departments only glanced at.
 
 Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Crossover names are hooks (a titled subplot), not descriptions of theme.
 
