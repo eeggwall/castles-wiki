@@ -9,9 +9,9 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 | Slice | Value |
 |---|---|
 | Pages | 110 (30 Sources / 51 Concepts / 29 Analyses) |
-| Divisions (open + done) | Numbers 10+23, Enumeration 5+17, Q 5+0, S 5+5, T 7+0, F 8+2, X 4+5, Classification 4+4, Misc 10+1 |
+| Divisions (open + done) | Numbers 10+23, Enumeration 5+17, Q 5+0, S 6+5, T 7+0, F 8+2, X 5+5, Classification 4+4, Misc 10+1 |
 | Abelian Group (open + done) | 10+0, outside every Division |
-| Items | 68 open, 57 done, 125 total |
+| Items | 70 open, 57 done, 127 total |
 | Arcs | 14 (5 deliverable, 3 one page short, 2 half built, 4 sketch) |
 | Dates | wiki 2026-09-13, IDEAS 2026-09-19, last reorganize 2026-09-19 (Abelian Group founded) |
 
@@ -89,7 +89,7 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 - Thesis: a toy telephone universe in which every object is a castle - tones are periodic Tier-0 castles with sparse DFTs, pager numbers are `h=10` castles and their cipher is a skyline reflection, the audio channel is an `h=65536` castle, in-band signaling is block parity, and the network's encryption is the castle ring on huge castles; the real-world operations become maps between castles at every scale.
 - Status: sketch. Three pages compute the pieces ([song-as-castle](wiki/pages/song-as-castle.md), [image-as-castle](wiki/pages/image-as-castle.md), [castle-steganography](wiki/pages/castle-steganography.md)); the walk-through and the network model do not exist.
 - Spine: [song-as-castle](wiki/pages/song-as-castle.md), [image-as-castle](wiki/pages/image-as-castle.md), [castle-steganography](wiki/pages/castle-steganography.md), [spectral-analysis](wiki/pages/spectral-analysis.md), [castle-compression](wiki/pages/castle-compression.md), [castle-cryptography](wiki/pages/castle-cryptography.md).
-- Open items feeding it: from Misc, the castle network model, the in-band-signaling exploit, the tone-castle catalogue, and the lossless song codec; from X, the block-counting warden.
+- Open items feeding it: from Misc, the castle network model, the in-band-signaling exploit, the tone-castle catalogue, and the lossless song codec; from X, the block-counting warden and what survives an FM channel; from S, the Woodward gap as a block-count meter.
 
 ### S13. The half-derivative of a castle
 - Thesis: every integer-order operation the castle already uses - the column difference that counts blocks, the partial sum that accumulates counts, the matrix power that adds a column, the Laplacian that hears the shape - has a fractional-order version, and turning the order knob continuously exposes structure the integer points hide: area and block count are the two ends of one statistic, the parity clause is real in the width and imaginary in the height, a half-sum carries `sqrt(pi)`, and a tree castle is a comb that subdiffuses at order `1/2`.
@@ -199,6 +199,7 @@ Five spectra sit naturally on a castle: transfer-matrix, LGV kernel, skyline DFT
 
 - [ ] **Seminar centerpiece: hear the shape of a castle** - Kac's question with two drawings as the punchline: the 10-cell adjacency-isospectral pair `(1,1,1,2,3,2)` / `(1,1,2,2,3,1)` and the 11-cell Laplacian-isospectral tree pair; a Sunada-style construction for the 10-cell pair and whether Ihara zeta or the skyline DFT separates what adjacency does not are open inside the item. (S4)
 - [ ] **Bronze-spectrum castle hunt** - is `(3+sqrt(13))/2 = 3.303` the adjacency spectral radius of any castle? None among 4.87M enumerated; next is a structured search (products, near-rectangles with notches) rather than more brute force. (S4)
+- [ ] **The Woodward gap as a block-count meter** - encode a skyline as a tone whose instantaneous frequency is the column height; Woodward's theorem says the tone's power spectrum approaches the height histogram as the modulation slows, and the block count is what makes it fast. Fit the spectrum-to-histogram distance as a function of block count over random castles at fixed histogram, and ask which pairs (same histogram, same block count) the audio spectrum still cannot separate - the audio-spectral analogue of the isospectral census. (S4)
 - [ ] **Skyline DFT - individual-castle signatures** - the DFT of a column-height sequence is a complete individual invariant modulo cyclic shift; classify castles by spectral concentration (low-pass / high-pass / sparse-spectrum). Hooks into compressed sensing and turnpike reconstruction. (S4)
 - [ ] **LGV kernel spectrum - determinantal universality** - eigenvalues of the non-crossing-path kernel `N(w; i, j)` in `[0,1]`; a sine-kernel bulk limit would put castles in the same universality class as random Young tableaux and GUE. (S4)
 - [ ] **Ramanujan castles / Ihara zeta** - `zeta_C(u)` over prime closed walks on the castle graph; the Ramanujan castle as the spectrally most expander-like shape at given size; longer-horizon, hooks into arithmetic combinatorics. (S4)
@@ -244,6 +245,7 @@ Ciphers put the castle machinery under an adversary. The castle-as-characteristi
 - [ ] **Round-three castle torus on `char_5`** - build on `char_5` (degree 6) with `p` chosen so `Phi_6(p) = p^2 - p + 1` has a large prime factor, then red-team against the real `F_{p^6}` index-calculus literature. (S5)
 - [ ] **Shrinking-generator castle** - an irregularly clocked castle as the nonlinear variant that linearization does not cover. (S5)
 - [ ] **Two `d=3` linear-complexity deficits** - trace the `8 vs 9` and `9 vs 10` gaps to specific root coincidences of `char_2`. (S5)
+- [ ] **What survives an FM channel** - send the row castles of [castle-steganography](wiki/pages/castle-steganography.md) as a frequency-modulated tone through a band-limited voice channel and measure, per bit, which castle statistics survive demodulation (LSB of height, block parity, histogram bins, low DFT modes); code channel A against the measured error profile. (S12)
 - [ ] **A warden that counts blocks** - channel B of [castle-steganography](wiki/pages/castle-steganography.md) leaves the per-row block parity a coin flip; find a second-order statistic (adjacent-row parity correlation, block-count distribution) that it disturbs, or show none does at first order. (S12)
 
 - [x] **[Castle cryptography](wiki/pages/castle-cryptography.md)** - build / red-team / blue-team as three seminars; keypair is a castle, trapdoor is Kitamasa exponentiation, DLP splits via char-poly factorization. (S5)

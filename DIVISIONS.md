@@ -1,6 +1,6 @@
 # Divisions
 
-Eight letters partition the castle wiki's research surface. Each Division has a one-line descriptor in four parts, a conceptual coverage list, and a set of crossovers with the other letters. The Divisions here supersede the Division headings in `IDEAS.md`: Numbers -> N, Enumeration -> E, Q -> Q, S -> S, T -> T, and Classification and Miscellaneous both -> Z. R is new and gathers the representation pages that no earlier Division claimed. F is new and has no pages yet; its ten founding items are in `IDEAS.md`. The Abelian Group at the end of this file is not a tenth letter.
+Nine letters partition the castle wiki's research surface. Each Division has a one-line descriptor in four parts, a conceptual coverage list, and a set of crossovers with the other letters. The Divisions here supersede the Division headings in `IDEAS.md`: Numbers -> N, Enumeration -> E, Q -> Q, S -> S, T -> T, and Classification and Miscellaneous both -> Z. R is new and gathers the representation pages that no earlier Division claimed. F is new and has no pages yet; its ten founding items are in `IDEAS.md`. X is new and gathers the keystream, steganography, and commitment pages the earlier Divisions only glanced at. The Abelian Group at the end of this file is not a tenth letter.
 
 Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Crossover names are hooks (a titled subplot), not descriptions of theme.
 
@@ -14,6 +14,7 @@ Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Cros
 - **S - Spectra:** castle graphs, transfer and kernel eigenvalues, isospectral pairs, and what a castle sounds like.
 - **T - Transcendentals:** samplers, limit laws, geometric probability, and pi pulled out of castle ensembles.
 - **F - Fractional:** non-integer orders, power-law memory, interpolated statistics, and dense operators where the integer castle has sparse ones.
+- **X - Ciphers:** keystreams, hidden payloads, commitments, and what survives an adversary.
 
 ## Conceptual coverage
 
@@ -42,7 +43,6 @@ Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Cros
 - Continued fractions, convergents, and the eigenvalue-to-OEIS crosswalk.
 - Bounded-height nacci sequences and periodicity modulo primes.
 - Exact arithmetic at scale: PE 502 targets and modular reduction.
-- Cryptography: ring, LFSR, linear complexity, and the round-two / round-three breaks.
 - The Hardin word identity, A005251, and the missing sign-reversing involution.
 
 ### Z - Zoo
@@ -94,6 +94,15 @@ Z absorbs both the Classification and Miscellaneous Divisions from `IDEAS.md`. T
 - Long memory: Hurst exponents and ARFIMA order of real skylines; power-law memory strip rules and their dense truncated transfer matrices.
 - Fractional powers in finite rings: roots of `x^w` in `F_p[x] / (char)` and the half-step oracle.
 
+### X - Ciphers
+
+- Castle keystreams: LFSR, ring arithmetic over `F_p[x]`, linear complexity, and the round-two / round-three breaks.
+- Steganography on skylines: LSB payloads, block-parity carriers, and per-castle capacity.
+- The castle as a channel: real image rows read as carriers, and degradation under crop, scale, and reencoding.
+- Commitments: whether the parity clause makes a castle a natural commitment scheme, and which invariants an opening reveals.
+- Adversarial models: what a distinguisher sees when castles are drawn from two rules with the same spectrum, and when isospectrality becomes a security parameter.
+- Hardness candidates: castle problems (isospectrality census, height reconstruction, turnpike) as sources of one-way functions.
+
 ## Crossovers
 
 | Pair | Hook | Subplot |
@@ -121,8 +130,15 @@ Z absorbs both the Classification and Miscellaneous Divisions from `IDEAS.md`. T
 | F/S | the castle is a comb | subdiffusion at order `1/2` on tree castles, Levy flights on the polyomino graph, fractional heat traces |
 | F/R | the Hurst exponent of a skyline | ARFIMA order as the compressibility knob and a rule-detector statistic |
 | F/Z | long-memory specimens | real skylines (image rows, audio, tones) placed by their fractional integration order |
+| F/X | fractional Kitamasa | fractional powers `x^{w/n}` in `F_p[x] / (Q)` as root extraction, and the half-step oracle for the DH red-team |
+| X/N | keystream on the ladder | LFSR ring arithmetic over `F_p`, linear complexity, and the round-two / round-three breaks |
+| X/R | the castle as a channel | steganography, LSB payloads, and block-parity carriers as R's entropy bullet meeting an adversary |
+| X/S | the spectrum as a leak | isospectral pairs as an adversary's ambiguity; skyline DFT as a fingerprint the eavesdropper reads |
+| X/E | rank as a key | Algorithm M and unrank as an addressing function keyed by a secret |
+| X/Z | key castles | the sub-zoo of carriers, keystream generators, and commitment shapes |
+| X/T | hardness at the wall | one-way functions as concrete sightings of the algebraic-transcendental wall |
 
-Not yet named: Q/S has no page behind it, and Q/T exists only through area CLTs, which already sit in T/E.
+Not yet named: Q/S has no page behind it, and Q/T exists only through area CLTs, which already sit in T/E. X/Q and X/F are open too.
 
 ## The Abelian Group
 
