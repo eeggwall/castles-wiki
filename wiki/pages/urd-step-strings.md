@@ -5,7 +5,7 @@ summary: The up/right/down step-string encoding of a castle — the representati
 tags: [concept, castle, representations, urd, dyck, lattice-paths]
 sources: [project-euler-502-representations]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-20
 ---
 
 # U/R/D step strings
@@ -42,6 +42,7 @@ This taxonomy and procedure are the enumeration reading of castles; the *countin
 
 - [[castle-representations](pages/castle-representations.md)] — the encoding collection this belongs to.
 - [[convex-castle](pages/convex-castle.md)] — the central class in the taxonomy.
+- [[convex-core](pages/convex-core.md)] - the variations closed per column rather than per insertion: unique convex core, product-of-tower-counts fiber.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the grammar these strings support, giving the count.
 - [[lattice-paths](pages/lattice-paths.md)] — the source of the U/R/D device.
 - [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] — a U/R/D string with fixed letter counts is a three-letter multiset permutation; the unconstrained count is the trinomial triangle A027907 (central A002426), which the castle grammar prunes.

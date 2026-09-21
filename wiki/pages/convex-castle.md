@@ -5,7 +5,7 @@ summary: A castle with a unimodal (up-then-down) skyline — equivalently column
 tags: [concept, castle, convex, unimodal, column-convex, row-convex, combinatorics, stars-and-bars]
 sources: [project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-20
 ---
 
 # Convex castle
@@ -18,7 +18,7 @@ A **convex castle** is a class of [[castle-polyomino](pages/castle-polyomino.md)
 - **middle** — any `R` steps taken at the maximum height, with at least one `R`;
 - **back** — interspersed `D` and `R` steps descending to the base, with no `U` steps.
 
-A convex castle begins with a `U` and ends with a `D`.[^1] Intuitively, its silhouette rises monotonically to a plateau and then descends monotonically — it never dips back down and climbs again. All remaining castles are generated as *variations* on convex castles (by inserting `D`/`U` pairs into runs of `R`s), which is why the convex castles are the structural backbone of the enumeration.[^2]
+A convex castle begins with a `U` and ends with a `D`.[^1] Intuitively, its silhouette rises monotonically to a plateau and then descends monotonically — it never dips back down and climbs again. All remaining castles are generated as *variations* on convex castles (by inserting `D`/`U` pairs into runs of `R`s), which is why the convex castles are the structural backbone of the enumeration.[^2] The convex castle behind a given castle is unique: its **convex core** is the pointwise minimum of the prefix and suffix running maxima of the skyline, and the castles over a core are counted by a product of tower counts, one per plateau ([[convex-core](pages/convex-core.md)]).
 
 ## Convexity: unimodal = column-convex ∧ row-convex
 
@@ -43,7 +43,7 @@ where `C(m,k) = m!/(k!(m−k)!)` is the binomial coefficient. For example, at *h
 
 **By area, convex castles are A001523.** Re-indexed by total cells, a convex castle of area *n* is exactly a [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] of *n* — OEIS `A001523` ("stacks") — and the parity split `cev(n) + cod(n) = A001523(n)` — where CEV and COD are the counts of convex-even and convex-odd castles by area, i.e. convex castles split by block parity — is a new refinement (see [[castle-by-area](pages/castle-by-area.md)]).[^11] The mirror **valley** castles are equinumerous with convex ones in every (w,h) cell (same binomial, different sets) — a candidate bijection.[^11]
 
-**A thread that did not close (yet).** Enumerating *all* castles as variations on convex castles is conceptually clean, but the Solution subpage records that this route "never resolved into a formula" — the case analysis for the variations did not close, and the winning solution instead counts via the [[binary-string-bijection](pages/binary-string-bijection.md)] and independence.[^6] That the convex castles themselves count so cleanly (`C(2h+w−3, w−1)`) while their variations resist a closed form, and that they sit exactly at the intersection of two convexity classes with rich literatures ([[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]), makes the `conv_*` sequences from the brute enumerator prime candidates for further OEIS mining and for a correspondence with the classical stack / parallelogram families.
+**Every castle over its convex core.** The Solution subpage records that enumerating all castles as `D`/`U`-pair insertions into convex castles "never resolved into a formula", and the winning solution instead counts via the [[binary-string-bijection](pages/binary-string-bijection.md)] and independence.[^6] The per-column form of the same idea does close: every castle has a unique minimal convex majorant `min(prefix max, suffix max)`, the castles sharing it lower the non-anchor columns of its plateaus, and the fiber is `prod m^(l-1)` over plateaus unsigned and `(-1)^h prod P(m-1, l-1)` signed, so `F(w,h)` is a sum over convex castles of products of signed tower counts ([[convex-core](pages/convex-core.md)]). That the convex castles themselves count so cleanly (`C(2h+w−3, w−1)`) while their variations resist a closed form, and that they sit exactly at the intersection of two convexity classes with rich literatures ([[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]), makes the `conv_*` sequences from the brute enumerator prime candidates for further OEIS mining and for a correspondence with the classical stack / parallelogram families.
 
 ## Appearances in Sources
 
@@ -55,6 +55,7 @@ where `C(m,k) = m!/(k!(m−k)!)` is the binomial coefficient. For example, at *h
 ## Related Concepts
 
 - [[urd-step-strings](pages/urd-step-strings.md)] — the encoding whose taxonomy contains convex castles.
+- [[convex-core](pages/convex-core.md)] - the unique minimal convex majorant of any castle, and the tower-count product for the castles above each convex core.
 - [[castle-polyomino](pages/castle-polyomino.md)] — the general object convex castles specialize.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the full count of all castles, of which convex castles are the backbone.
 - [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] — why `C(2h+w−3, w−1)` is binomial, not Catalan.

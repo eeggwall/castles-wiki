@@ -2,7 +2,7 @@
 title: Overview
 tags: [overview, synthesis]
 sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes, project-euler-502-brute-force, counting-horizontally-convex-polyominoes, column-convex-polygon-enumeration, steep-polyominoes-q-motzkin-bessel, oeis-mining-pe502, oeis-height2-hyperbolic-castles, tower-narayana-polynomial, convex-castle-binomial-identity, new-sequence-fw3, polyominoes, motzkin-numbers, q-catalan-numbers, catalan-numbers, dyck-words, lattice-paths, aocp-combinatorics, aocp-permutations, aocp-generating-functions, aocp-generating-permutations-tuples, generating-functions-topic, aocp-binomial-coefficients, aocp-multisets, aocp-multinomial-coefficients, analytic-combinatorics-part-a, pe502-castle-cycle-permutations, pe502-pell-castle-strip]
-updated: 2026-09-19
+updated: 2026-09-20
 ---
 
 # Project Euler 502 — Overview
@@ -37,6 +37,7 @@ The general object of interest is the castle at **any** block count, counted by 
 - **Height-2 castles are the order-4 [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]**: `F(w,2) = A038505(w+1)`, `odd(w,2) = A038503(w+1)−1` — a new geometric reading of two isolated sequences ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]); the highest-value interlink.
 - **The Catalan/Narayana thread lives in the [[tower-heap](pages/tower-heap.md)], not the convex count**: the tower block-count GF is a [[narayana-numbers](pages/narayana-numbers.md)] polynomial over `(1−x)^w`, hitting A005408/A005891/A063490/A160747 ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]).
 - **Convex castles are binomial, not Catalan**: `C(2h+w−3, w−1)` by an independence + Vandermonde argument ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]); convex ⟺ unimodal ⟺ exactly `h` blocks.
+- **Every castle has a unique convex core**, `min(prefix max, suffix max)`, and the castles over a core are a product of tower counts per plateau, `prod T(m-1, free)` unsigned and `(-1)^h prod P(m-1, free)` signed, so `F(w,h)` is a sum over convex castles of products of `P` ([[convex-core](pages/convex-core.md)]); the maximal convex minorant is not unique.
 - **By area**, convex ↔ `A001523` ([[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)]), valley ↔ `A332578`, non-convex ↔ `A115981` ([[castle-by-area](pages/castle-by-area.md)]).
 - **The signed count** `P(1,L) = A146559(L+1) = Re((1+i)^{L+1})` — correcting a real/imaginary-part confusion; `P(k,·)` is a C-finite family ([[signed-tower-count](pages/signed-tower-count.md)]).
 - **New sequences** (generation candidates): `F(w,3)` and its siblings ([[new-sequence-fw3](pages/new-sequence-fw3.md)]), parity-refined area sequences, `strict_valley`, tower rows `w≥6`. `F(w,3)` was re-searched against the OEIS on 2026-09-19 with no match, so it is a confirmed novel-candidate. Submission drafts are kept in `raw/oeis-pe502/` per the human-authorship rule ([[oeis-cross-referencing](pages/oeis-cross-referencing.md)]).

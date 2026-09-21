@@ -5,7 +5,7 @@ summary: P(k,L) = Σ (−1)^blocks over towers of height ≤ k above a length-L 
 tags: [concept, castle, signed-count, c-finite, oeis, generating-functions]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-20
 ---
 
 # Signed tower count P(k,L)
@@ -67,6 +67,7 @@ The mining pass left five results about the `P(k,·)` rows:
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the k-direction characteristic polynomial is `(x+1)^L (x−1)^{L−2}`, so `P(·,L)` is a quasi-polynomial in `k`; and the exact split `P(6,L) = 2^L·A005251(L+3) + (order-4 remainder)`, tying the `k = 6` row to the plastic number `ψ` via its dominant eigenvalue `2ψ²`.
 - [[block-count-constraints](pages/block-count-constraints.md)] - `P(1,L) = G_{1,L}(−1) = Σ_r (−1)^r C(L+1, 2r)`, the `m = 2` character sum on the height-1 block's block-count GF; the residue / sparse / semigroup trichotomy that generalizes the sign.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `F(w,3) = (3^w − 2^w − P(2,w) + P(1,w))/2`, the first castle row in which `P(2,·)` enters a public count.
+- [[convex-core](pages/convex-core.md)] - `P(m-1, L)` is also the signed count of the `L` free columns hanging below a plateau at level `m` of a convex core, so `P(h-2,w) - P(h-1,w) = (-1)^h` times a sum over convex castles of products of `P`.
 
 ## Footnotes
 
