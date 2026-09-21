@@ -1,8 +1,8 @@
 ---
 title: Mod-9 equidistribution of the F table
 category: Analyses
-summary: Do castle counts F(w,h) hit the excluded residues 4, 5 mod 9 at the equidistribution density 2/9, or is there a persistent bias? Answer - no bias. The 20.4% exclusion rate over cells with A(w,h) <= 10^9 on the sum-of-three-cubes-castles page is a finite-N artifact and converges monotonically to 2/9 - 21.36% at 10^12, 21.78% at 10^15, 21.98% at 10^18, 22.14% at 10^24, 22.214% at 10^36. The row reading confirms: the h=7 deficit at 20.10% over a period of 2184 dissolves once h grows, with rows h=12..15 all within 0.05 pp of 2/9. The column reading is the sharpest lens - columns w in {4, 6, 10, 12, 17, 28, 30} have *exactly uniform* histograms mod 9 over one full h-period (six or eighteen or fifty-four hits per residue class), so their exclusion rate is 2/9 to the digit. The deficit columns w in {5, 7, 8, 13, 14, ...} dominate the aggregate at moderate N because they are the earliest w with periods 54, 162 and populate many cells; their finite-period noise is bounded by O(sqrt(P_w)) around 2P_w/9 and drops out under weighted mixture over large N.
-tags: [analysis, castle, sum-of-cubes, mod-9, periodicity, equidistribution, finite-sample-artifact, kitamasa]
+summary: Do castle counts F(w,h) hit the excluded residues 4, 5 mod 9 at the equidistribution density 2/9, or is there a persistent bias? Answer - no bias. The 20.4% exclusion rate over cells with A(w,h) <= 10^9 on the sum-of-three-cubes-castles page is a finite-N artifact and converges monotonically to 2/9 - 21.36% at 10^12, 21.78% at 10^15, 21.98% at 10^18, 22.14% at 10^24, 22.214% at 10^36. The row / column divisibility gap explains why the two readings behave differently: column periods per_w = 2 * 3^{ceil(log_3 w) + 1} have v_3 >= 2 structurally, so 9 | per_w and the h-histogram can be exactly uniform (columns w in {4, 6, 10, 12, 17, 28, 30} through w <= 30 hit exactly 2/9 to the digit); row periods per_h have v_3 = 1 empirically for h <= 16, so 9 does not divide per_h and every row carries an unavoidable +-1-per-residue rounding jitter. The tempting {4, 5} pairing hypothesis - that some (w, h) involution forces count(4) = count(5) in every row - is refuted: no such shift or reflection exists in either direction, and rows h = 8, 10, 11 show 3 sigma asymmetries between count(4) and count(5). Equidistribution is achieved by the limit, not by any pointwise algebraic symmetry.
+tags: [analysis, castle, sum-of-cubes, mod-9, periodicity, equidistribution, finite-sample-artifact, kitamasa, three-adic]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-21
 updated: 2026-09-21
@@ -81,7 +81,7 @@ For these `w`, the `F(w, .) mod 9` sequence hits every residue class exactly `pe
 
 The non-uniform columns fluctuate around `2/9` with typical deviation `~10-30%` of the mean count per residue - the histograms for `w = 5, 8, 9, 14, 20` are the loudest. These deviations wash out when many columns are mixed, and they wash out row by row when the row period is long enough to average them.
 
-**Which `w` are uniform is an open combinatorial question.** The uniform set `{4, 6, 10, 12, 17, 28, 30}` is not obviously arithmetic. It is not a residue class modulo any small integer: mod 3, `{1, 0, 1, 0, 2, 1, 0}`; mod 6, `{4, 0, 4, 0, 5, 4, 0}`; mod 9, `{4, 6, 1, 3, 8, 1, 3}`. The relation between `w` and whether the `(x+1)^w (x-1)^{w-2}` k-direction eigenspaces of [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] project onto a full transversal of `Z/9` under the mod-9 reduction is the analytic version of this question; it is the mod-9 counterpart of "which levels of an Ehrhart quasi-polynomial mod `p` are equidistributed," a question about the polynomial part of the `k`-quasi-polynomial `P(k, w) = (-1)^k A_w(k) + B_w(k)` rather than about any of its castle-specific structure.
+**Which `w` are uniform is an open combinatorial question.** The uniform set `{4, 6, 10, 12, 17, 28, 30}` is not obviously arithmetic. It is not a residue class modulo any small integer: mod 3, `{1, 0, 1, 0, 2, 1, 0}`; mod 6, `{4, 0, 4, 0, 5, 4, 0}`; mod 9, `{4, 6, 1, 3, 8, 1, 3}`. The pair structure `(4, 6), (10, 12), (28, 30)` at each `3^k`-bracket plus the solo `17` is the most visible feature. The analytic form of the question is a character-sum condition: uniformity of column `w` is equivalent to `sum_{h=0}^{per_w - 1} exp(2 pi i xi F(w, h) / 9) = 0` for every `xi in {1..8}`, where `F(w, h)` decomposes as a linear combination of the four periodic terms in the closed form. Since `P(k, w) = (-1)^k A_w(k) + B_w(k)` with `A_w, B_w` explicit polynomials ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)] tabulates them through `w = 8`), the character sums factor into Gauss-sum-shaped evaluations of `A_w, B_w mod 9` against multiplicative characters of `(Z/9)*`. "Which `w`" is precisely which `w` make all eight sums vanish.
 
 ## The aggregate over `A(w, h) <= N`
 
@@ -130,6 +130,55 @@ The residue `0` is systematically over-represented at small `k` (10 of 24 at `k 
 
 Two `P(k, w) mod 9` histograms cancel out under `P(h-1, w) - P(h-2, w)` in the closed form for `F`, so a persistent bias in one `k`-slice does not carry into `F` unless the *joint* distribution of consecutive `k` slices is biased in the same direction. Empirically it is not: `F(w, h) mod 9` uniformity for `h >= 9` (row reading) and the seven exactly-uniform columns `w in {4, 6, 10, 12, 17, 28, 30}` say the cancellation runs efficiently.
 
+## The row / column divisibility gap
+
+The row and column readings behave qualitatively differently for a **3-adic** reason. Columns can be exactly uniform mod 9; rows cannot. The reason is 9-divisibility of the periods:[^exec]
+
+| direction | period formula | `v_3(period)` | 9 divides? |
+|---|---|---|---|
+| columns (fixed `w`, `w >= 2`) | `per_w = 2 * 3^{ceil(log_3 w) + 1}` | `ceil(log_3 w) + 1 >= 2` | **always** |
+| rows (fixed `h`, empirical `h <= 16`) | `per_h = lcm(ord_9(h), ord_9(h-1), per(char_{h-1}) mod 9, per(char_{h-2}) mod 9)` | `1` | **never** |
+
+Row periods `per_h` for `h = 2..16`, each factored, with 3-adic valuation `v_3` in the last column:
+
+| `h` | `per_h` | factorization | `v_3` |
+|---|---|---|---|
+| 2 | 24 | `2^3 * 3` | 1 |
+| 3 | 24 | `2^3 * 3` | 1 |
+| 4 | 240 | `2^4 * 3 * 5` | 1 |
+| 5 | 3120 | `2^4 * 3 * 5 * 13` | 1 |
+| 6 | 2184 | `2^3 * 3 * 7 * 13` | 1 |
+| 7 | 2184 | `2^3 * 3 * 7 * 13` | 1 |
+| 8 | 2184 | `2^3 * 3 * 7 * 13` | 1 |
+| 9 | 10920 | `2^3 * 3 * 5 * 7 * 13` | 1 |
+| 10 | 21840 | `2^4 * 3 * 5 * 7 * 13` | 1 |
+| 11 | 21840 | `2^4 * 3 * 5 * 7 * 13` | 1 |
+| 12 | 11514360 | `2^3 * 3 * 5 * 11^2 * 13 * 61` | 1 |
+| 13 | 177144 | `2^3 * 3 * 11^2 * 61` | 1 |
+| 14 | 1771440 | `2^4 * 3 * 5 * 11^2 * 61` | 1 |
+| 15 | 25170390960 | `2^4 * 3 * 5 * 7 * 11^2 * 13 * 4093 * 61` (approx) | 1 |
+| 16 | 88096368360 | (large; `v_3 = 1`) | 1 |
+
+Every row period through `h = 16` has exactly one factor of 3.
+
+**Why columns win.** The k-direction characteristic polynomial of `P(k, w)` is `(x+1)^w (x-1)^{w-2}` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), with a root of multiplicity `w` at `-1`. Reducing mod `9` and applying the "multiplicity `m` inflates the period by `p^{ceil(log_p m)}`" rule of the [[mod-p-observatory](pages/mod-p-observatory.md)] with `p = 3`, the mod-9 period picks up a factor `3^{ceil(log_3 w) + 1}` (the extra `+1` in the exponent is the second-power lift from `mod 3` to `mod 9`). For `w >= 2` this is `>= 9`. So `9 | per_w` is **structural**, not empirical, and the column histogram of `F(w, .) mod 9` splits `per_w` into `9` equal buckets whenever the residue distribution is balanced.
+
+**Why rows lose.** The w-direction period `per_h` is the lcm of the `L`-direction characteristic-polynomial periods for `char_{h-1}` and `char_{h-2}` mod 9, together with the multiplicative orders `ord_9(h), ord_9(h-1)`. The multiplicative orders divide `phi(9) = 6`, so their 3-adic content is at most 1. The `char_k mod 3` factorizations tabulated on the [[mod-p-observatory](pages/mod-p-observatory.md)] have low-multiplicity repeated roots (`(x-1)^2` in `char_4 mod 3`, `(x+3)^2` in `char_2 mod 7`, etc.), and a multiplicity-2 root inflates the mod-9 period by `3^{ceil(log_3 2)} = 3`, not by `9`. Empirically no `char_k` for `k <= 15` has a mod-3 factor of multiplicity `>= 4`, which would be needed to force `v_3 = 2`. Hence every row period through `h = 16` sits at `v_3 = 1`.
+
+**Consequence for uniformity.** If `9 | per_w` (columns), the 9-bucket histogram *can* be exactly `[per_w / 9] * 9`, and empirically it is for `w in {4, 6, 10, 12, 17, 28, 30}`. If `9 not | per_h` (rows), the 9-bucket histogram *cannot* be uniform, since some buckets hit `floor(per_h / 9)` and others `ceil(per_h / 9)`. Every row histogram carries an unavoidable `+-1`-per-residue rounding jitter, which sets a floor on the row-level equidistribution error at `1 / per_h`. That floor drops to zero as `h -> infinity` and `per_h -> infinity`, so equidistribution is still achieved in the limit, but no finite row ever hits `2/9` on the digit.
+
+Whether some `h` past `16` first inflates `v_3(per_h)` to `2` (via a mod-3 quadruple root in `char_{h-1}` or `char_{h-2}`) is open. Nothing in the machinery forbids it; nothing yet demands it.
+
+## The `{4, 5}` pairing hypothesis, refuted
+
+The two obstruction residues are `4` and `5`, and `4 + 5 = 9`, so they are negatives of each other mod 9. It is tempting to hope for a `(w, h)`-transformation involution that maps `F` to `-F mod 9`, which would force `count(4) = count(5)` in every row histogram - putting all the row-level finite-period noise onto exactly the residues that matter for sums of three cubes. The `h = 6` and `h = 12` rows in the table above show near-exact equality `(248, 248)` and `(1279601, 1277473)`, and the `h = 7` row shows `(220, 219)`, encouraging this hypothesis.
+
+**No such involution exists.** Direct search over shifts and reflections in the w-direction for every row through `h = 8`, and in the h-direction for every column through `w = 15`, returns nothing: there is no `s` such that `F(w + s, h) = -F(w, h) mod 9` for all `w`, and no `c` such that `F(c - w, h) = -F(w, h) mod 9` for all `w`, aside from the trivial reflection in the width-2 column (`F(2, h)` mod 9 has a reflection through the center of its 18-period, but that column is degenerate).[^exec]
+
+**And the empirical pattern breaks.** The `h = 8` row histogram is `[241, 274, 233, 264, 216, 262, 223, 238, 233]` with `count(4) = 216, count(5) = 262`, a difference of `46` at the noise scale of `15.4` - `3 sigma` apart. The `h = 10` row has `count(4) - count(5) = 73`. The `h = 11` row has `-58`. Across `h = 2..11` the `count(4) - count(5)` differences are `+2, -1, -6, -16, 0, +1, -46, -28, +73, -58` - no pattern, no forced pairing. The apparent equality at `h = 6, 7, 12` is coincidence at those particular row periods, not a structural constraint.
+
+The upshot is that the deficit in residues `{4, 5}` at low-`h` rows is **not** algebraically pinned to those two residues. When a row hits its `2/9` limit slowly (as `h = 7` does), it does so via generic 9-bucket rounding, not via a symmetry that folds error onto the excluded classes. That reads as bad news for a "castle counts are structurally biased toward being sums of three cubes" reading and as good news for the equidistribution thesis: nothing algebraic is helping or hurting.
+
 ## What this settles and what it opens
 
 Settled:
@@ -137,10 +186,13 @@ Settled:
 - The `20.4%` at `N = 10^9` is a finite-N mixing artifact; the aggregate converges monotonically to `2/9`.
 - The `h = 7` deficit at `20.10%` is finite-period noise in a period not divisible by `9`; longer-period rows return to `2/9`.
 - Columns `w in {4, 6, 10, 12, 17, 28, 30}` have *exactly* rate `2/9` unconditionally - uniform histograms over their full h-period.
+- **Row / column divisibility gap**: column periods `per_w = 2 * 3^{ceil(log_3 w) + 1}` have `v_3 >= 2` structurally (from the multiplicity of `-1` in the k-direction char poly); row periods `per_h` have `v_3 = 1` empirically for `h <= 16`. Columns can therefore split `per_w` into 9 equal buckets; rows never can. This is the deep reason the two readings behave differently.
+- **No `{4, 5}` pairing symmetry**: no shift or reflection in either direction sends `F(w, h) mod 9` to `-F(w, h) mod 9` universally, so `count(4) = count(5)` is not a forced equality of row histograms. The apparent near-equality at `h = 6, 7, 12` is coincidence, and rows `h = 8, 10, 11` show `3 sigma` asymmetries.
 
 Open:
 
-- **Which `w` give an exactly uniform column histogram mod 9?** The set `{4, 6, 10, 12, 17, 28, 30}` through `w <= 30` is not an obvious residue class. The mod-9 counterpart of the [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] eigenvalue-multiplicity picture should decide it: `P(k, w) = (-1)^k A_w(k) + B_w(k)`, and uniformity comes from a Chebotarev-style transversal condition on the mod-9 reduction of `A_w, B_w`.
+- **Which `w` give an exactly uniform column histogram mod 9?** The set `{4, 6, 10, 12, 17, 28, 30}` through `w <= 30` has the pair structure `(4, 6), (10, 12), (28, 30)` at each `3^k`-bracket, plus the solo `17`. The analytic form is a character-sum vanishing condition on `A_w, B_w mod 9`.
+- **Does any `h` inflate `v_3(per_h)` to `2` or more?** For `h <= 16` all row periods sit at `v_3 = 1`. A mod-3 quadruple-root in `char_{h-1}` would push `v_3(per_h)` to 2 and give some row an exactly uniform mod-9 histogram; no such `h` is known.
 - **A closed form for `alpha`** where `2/9 - rate(N) ~ N^(-alpha)`. The `1/12` from `(w = 4 with N^(1/3))` vs `(w = 5 with N^(1/4))` is a first guess; refining it needs the exact contribution of each deficit column.
 
 ## Appearances in Sources
@@ -159,7 +211,7 @@ Open:
 
 ## Footnotes
 
-[^exec]: Verified by execution (2026-09-21), Python 3 with NumPy 1.26. **Row histograms (`h = 2..11`)**: parity-refined column DP over `Z/9` iterated to width `3 * per_h + 20` past a transient of `5`; period detected by first-repeat and full-period histogram counted; verified against the `sum-of-three-cubes-castles` row-period table. **`h = 12` full period**: numpy 12x12 mod-9 matrix iterated `11,514,360` times (37s wall) for the state vectors `(P(11, .), P(10, .))`, `F` read off through the closed form, histogram counted exactly. **`h = 13, 14, 15`**: same machinery, 5,000,000-step sample (rate stable to third digit). **Column histograms (`w = 2..30`)**: seeds `P(k, w) mod 9` for `k = 0..2w-3` by column DP, extended to `k = 0..per_w + 1` by the k-direction recurrence with characteristic polynomial `(x+1)^w (x-1)^(w-2)` reduced mod 9; `F(w, h) mod 9` read off for `h = 2..2 + per_w - 1`. Uniform-histogram claim (`[per_w/9]*9`) verified equality digit for digit at `w = 4, 6, 10, 12, 17, 28, 30`. **Aggregate at `N`**: for each `w >= 4` with `h^w - (h-1)^w <= N` reachable, binary search the maximum `h`, then count exclusions in `[2, h_max]` as `floor((h_max - 1)/per_w) * (excluded_per_period) + (residues in the final partial period)`; runs in `6.8s` at `N = 10^18`, `37s` at `N = 10^24`, `330s` at `N = 10^36`. **`P(k, w) mod 9` isolation table**: same column DP, iterated to width `> 3 * per_k` for period detection. All quoted numbers are the scripts' printed output. Code sketch:
+[^exec]: Verified by execution (2026-09-21), Python 3 with NumPy 1.26 and SymPy 1.14. **Row-period `v_3` table (`h = 2..16`)**: `char_k` polynomials built from the three-term recurrence `char_{k+1} = x^2 char_{k-1} - 2 char_k` seeded by `char_0 = x - 1, char_1 = x^2 - 2x + 2`; period of `x` mod `(char_k, 9)` computed by iterating the companion-matrix state and detecting return to `(1, 0, ..., 0)`; row period computed as `lcm(ord_9(h), ord_9(h-1), per(char_{h-1}) mod 9, per(char_{h-2}) mod 9)`; three-adic valuation `v_3(per_h) = 1` verified for every `h` in the table. **`{4, 5}` pairing search**: for each row `h in {2..8}` and each column `w in {2..15}`, exhaustive search over shifts `s in [1, per - 1]` and reflection centers `c in [0, per - 1]` looking for the condition `F(w + s, h) = -F(w, h) mod 9` or `F(c - w, h) = -F(w, h) mod 9` for all indices; only the trivial `w = 2` column reflection at center 6 hit. **Row histograms (`h = 2..11`)**: parity-refined column DP over `Z/9` iterated to width `3 * per_h + 20` past a transient of `5`; period detected by first-repeat and full-period histogram counted; verified against the `sum-of-three-cubes-castles` row-period table. **`h = 12` full period**: numpy 12x12 mod-9 matrix iterated `11,514,360` times (37s wall) for the state vectors `(P(11, .), P(10, .))`, `F` read off through the closed form, histogram counted exactly. **`h = 13, 14, 15`**: same machinery, 5,000,000-step sample (rate stable to third digit). **Column histograms (`w = 2..30`)**: seeds `P(k, w) mod 9` for `k = 0..2w-3` by column DP, extended to `k = 0..per_w + 1` by the k-direction recurrence with characteristic polynomial `(x+1)^w (x-1)^(w-2)` reduced mod 9; `F(w, h) mod 9` read off for `h = 2..2 + per_w - 1`. Uniform-histogram claim (`[per_w/9]*9`) verified equality digit for digit at `w = 4, 6, 10, 12, 17, 28, 30`. **Aggregate at `N`**: for each `w >= 4` with `h^w - (h-1)^w <= N` reachable, binary search the maximum `h`, then count exclusions in `[2, h_max]` as `floor((h_max - 1)/per_w) * (excluded_per_period) + (residues in the final partial period)`; runs in `6.8s` at `N = 10^18`, `37s` at `N = 10^24`, `330s` at `N = 10^36`. **`P(k, w) mod 9` isolation table**: same column DP, iterated to width `> 3 * per_k` for period detection. All quoted numbers are the scripts' printed output. Code sketch:
 
     ```python
     p = 9
