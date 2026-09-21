@@ -147,7 +147,7 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 
 ### N Department (numbers - sequences, exact arithmetic, difficult scales)
 
-- [ ] **Mod-9 equidistribution of the `F` table** - the `w >= 4` exclusion rate for sums of three cubes is 20.4% against `2/9`, and the `h = 7` row sits at 20.1% over an exact period of 2184 ([sum-of-three-cubes-castles](wiki/pages/sum-of-three-cubes-castles.md)); decide whether `P(k,w) mod 9` carries a bias or the deficit washes out with `h` (the `h = 12` row, 22.21% over 11.5 million terms, says it does).
+- [x] **[Mod-9 equidistribution of the `F` table](wiki/pages/mod-9-equidistribution.md)** - the `20.4%` deficit at `A <= 10^9` is a finite-N mixing artifact; the aggregate converges monotonically to `2/9` (`22.21%` at `N = 10^36`), the `h = 7` row's `20.10%` is `1.5 sigma` finite-period noise in period `2184` (not divisible by `9`), and seven columns `w in {4, 6, 10, 12, 17, 28, 30}` have *exactly* uniform mod-9 histograms over their full h-period.
 - [ ] **Castle sequence bank residue** - the mining pass covered F, T, P and every derived count; what remains is `F_odd = A - F` as its own bank entry, the parity-refined area sequences, and the block-count / peak / area joint distributions not yet enumerated.
 - [ ] **Larger-prime periodicity** - extend the mod-p observatory to larger primes (and `10^9+7`); the periods become infeasible to enumerate, but the eigenvalue-order structure persists.
 - [ ] **Seminar centerpiece: the Hardin word identity** - a 90-minute arc from "sum `(-1)^blocks` over towers" to "count words with no nonzero local maximum," every step on one blackboard.
