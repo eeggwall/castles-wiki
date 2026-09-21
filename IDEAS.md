@@ -9,8 +9,8 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 | Slice | Value |
 |---|---|
 | Pages | 112 (30 Sources / 52 Concepts / 30 Analyses) |
-| Departments (open + done) | R 4+9, E 6+9, N 13+24, Z 9+4, Q 7+0, S 8+5, T 7+0, F 13+2, X 8+5 |
-| Items | 75 open, 58 done, 133 total |
+| Departments (open + done) | R 4+9, E 6+9, N 13+24, Z 8+5, Q 7+0, S 8+5, T 7+0, F 13+2, X 8+5 |
+| Items | 74 open, 59 done, 133 total |
 | Dates | wiki 2026-09-13, IDEAS 2026-09-20, last reorganize 2026-09-20 |
 
 ## Seminar program
@@ -57,7 +57,7 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 - Thesis: sweep the brute enumerator, look up every sequence, and treat matches as new castle interpretations to submit.
 - Status: deliverable.
 - Spine: [oeis-cross-referencing](wiki/pages/oeis-cross-referencing.md), [oeis-mining-pe502](wiki/pages/oeis-mining-pe502.md), [oeis-index](wiki/pages/oeis-index.md), [oeis-height2-hyperbolic-castles](wiki/pages/oeis-height2-hyperbolic-castles.md), [castle-eigenvalue-oeis-crosswalk](wiki/pages/castle-eigenvalue-oeis-crosswalk.md), [new-sequence-fw3](wiki/pages/new-sequence-fw3.md).
-- Open items feeding it: from N, the castle sequence bank residue; from Z, OEIS id of the tower-spacing 2D sequences and bounded-height rows. Submissions themselves are human action and stay in `TODO.md`.
+- Open items feeding it: from N, the castle sequence bank residue and the `h>=5` tree-castle-by-area rows. The six unfiled tower-spacing cells on [tower-spacing-castles](wiki/pages/tower-spacing-castles.md) are submission material. Submissions themselves are human action and stay in `TODO.md`.
 
 ### Arc 8. One bit: the parity clause as information
 - Thesis: the even-block clause is exactly one bit, and the entropy view re-reads every growth constant as a topological entropy.
@@ -184,7 +184,6 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 ### Z Department (zoo - specimens, taxonomy, rule variations)
 
 - [ ] **Rule-variation enumeration** - convex skeletons plus U/D insertions into runs of R; enumerate variations and study duplicate detection.
-- [ ] **OEIS id of tower-spacing 2D sequences** - the 2D `(h,g)` count table from [tower-spacing-castles](wiki/pages/tower-spacing-castles.md); identify existing rows or submit as new.
 - [ ] **Horizontal-gap reachable-field census** - which algebraic constants arise as `(h,g)` growth constants range; the horizontal-gap analogue of the height-adjacency [reachable-field-census](wiki/pages/reachable-field-census.md).
 - [ ] **No-touching / vertical-spacing variants** - beyond min-gap `g`, the no-touching (diagonal exclusion) and vertical-spacing rule families.
 - [ ] **Dihedral Burnside on the census** - [isospectral-castles](wiki/pages/isospectral-castles.md) is "mirror-deduped," the skyline DFT on [spectral-analysis](wiki/pages/spectral-analysis.md) is "a complete invariant modulo cyclic shift," and Classification counts shapes up to reflection: mirror is `Z/2`, cyclic shift is `Z/w`, together dihedral `D_w`, which is not abelian; for mirror alone over all castles with `n <= 16` cells there are 65,535 compositions and 765 palindromic ones, so Burnside gives 33,150 mirror classes and `(2^{n-1} + 2^{floor(n/2)})/2` per `n`; state the group on each relevant page and reconcile the stated counts.
@@ -193,6 +192,7 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 - [ ] **Convex core uniqueness** - is every castle a variation of a unique convex core? Characterize the minimal convex skeleton.
 - [ ] **Statistical physics links** - directed animals, column-convex polygons, hard-square type models.
 
+- [x] **[OEIS id of the tower-spacing table](wiki/pages/tower-spacing-castles.md)** - a tower-spacing-`g` castle is a skyline whose 0-based heights are the window-`g` running minimum of some array (proved via morphological closing), so the `(h,g)` table is Hardin's "minimum of `g` adjacent elements" family; all 25 cells `h,g <= 6` resolved: `h=2` is A005251 / A005252 / A005253 / A005689 / A098574 with closed form `Sum_k C(w+g-(g-1)k, 2k)`, `h=3,4` are the tables A217883 / A217954, `g=3` is A228461, and the six cells `h in {5,6}`, `g in {4,5,6}` are novel-candidates; minimal recurrence order `(h-1)g+1`; `g -> infinity` is the unimodal castles.
 - [x] **[Gap-rule variations / tower-spacing castles](wiki/pages/tower-spacing-castles.md)** - min-gap-`g` worked out via a column-sweep transfer matrix; at `h=2`, `g=2` is plastic-squared and `g=3` is golden.
 - [x] **[Parity and block-count catalog](wiki/pages/parity-via-roots-of-unity.md)** - even / odd / any-residue block counts via character sums, the full selection trichotomy on [block-count-constraints](wiki/pages/block-count-constraints.md), and the block-count distribution as the Narayana polynomial on [tower-narayana-polynomial](wiki/pages/tower-narayana-polynomial.md).
 - [x] **[Castle classification](wiki/pages/castle-classification.md)** - 42-type framework (7 base plus 35 proposed) across 7 structural axes plus meta-axis 8 (metallic growth) and axis 9 (spectral predicates).

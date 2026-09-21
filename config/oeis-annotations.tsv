@@ -116,3 +116,20 @@ A060466	supporting	Smallest solution y of x^3 + y^3 + z^3 = n for n in A060464.	
 A060467	supporting	Smallest solution z of x^3 + y^3 + z^3 = n for n in A060464.	companion table of smallest three-cube representations
 A156638	supporting	Numbers that are congruent to 4 or 5 mod 9.	the excluded residues; F(w,2) lands here iff w = 9 (mod 12), F(3,h) iff h = 4, 6 (mod 18), A(3m,h) never
 A080860	count	a(n) = 10*n^2 + 5*n + 1.	odd(3, 2n+1) = 5 C(2n+1, 2) + 1 exactly; its negative-index half 10m^2 - 5m + 1 is F(3, 2m) = 6, 31, 76, 141, ..., not in OEIS (novel candidate)
+A005252	count	a(n) = Sum_{k=0..floor(n/4)} binomial(n-2k,2k).	minimum-tower-spacing `(h=2, g=3)` castles, `a(w+3)`; golden growth
+A005253	count	Number of binary words of length n in which the ones occur only in blocks of length at least 4.	minimum-tower-spacing `(h=2, g=4)` castles, `a(w+3)`
+A005689	count	Number of Twopins positions.	minimum-tower-spacing `(h=2, g=5)` castles, `a(w+6)`
+A098574	count	a(n) = Sum_{k=0..floor(n/7)} C(n-5*k,2*k).	minimum-tower-spacing `(h=2, g=6)` castles, `a(w+6)`
+A203050	count	Number of nX1 0..5 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor.	Hardin words at m=5; minimum-tower-spacing `(h=6, g=2)` castles, `a(w+1)`
+A217879	count	Number of n element 0..2 arrays with each element the minimum of 4 adjacent elements of a random 0..2 array of n+3 elements.	minimum-tower-spacing `(h=3, g=4)` castles
+A217880	count	Number of n element 0..2 arrays with each element the minimum of 5 adjacent elements of a random 0..2 array of n+4 elements.	minimum-tower-spacing `(h=3, g=5)` castles
+A217881	count	Number of n element 0..2 arrays with each element the minimum of 6 adjacent elements of a random 0..2 array of n+5 elements.	minimum-tower-spacing `(h=3, g=6)` castles
+A217883	supporting	T(n,k) = number of n-element 0..2 arrays with each element the minimum of k adjacent elements of a random 0..2 array of n+k-1 elements.	the `h=3` row of the minimum-tower-spacing `(h,g)` table
+A217950	count	Number of n element 0..3 arrays with each element the minimum of 4 adjacent elements of a random 0..3 array of n+3 elements.	minimum-tower-spacing `(h=4, g=4)` castles
+A217951	count	Number of n element 0..3 arrays with each element the minimum of 5 adjacent elements of a random 0..3 array of n+4 elements.	minimum-tower-spacing `(h=4, g=5)` castles
+A217952	count	Number of n element 0..3 arrays with each element the minimum of 6 adjacent elements of a random 0..3 array of n+5 elements.	minimum-tower-spacing `(h=4, g=6)` castles
+A217954	supporting	T(n,k) = number of n-element 0..3 arrays with each element the minimum of k adjacent elements of a random 0..3 array of n+k-1 elements.	the `h=4` row of the minimum-tower-spacing `(h,g)` table
+A228457	count	Number of arrays of maxima of three adjacent elements of some length n+2 0..4 array.	minimum-tower-spacing `(h=5, g=3)` castles (maxima = minima by complement)
+A228458	count	Number of arrays of maxima of three adjacent elements of some length n+2 0..5 array.	minimum-tower-spacing `(h=6, g=3)` castles (maxima = minima by complement)
+A228461	supporting	Two-dimensional array read by antidiagonals: T(n,k) = number of arrays of maxima of three adjacent elements of some length n+2 0..k array.	the `g=3` column of the minimum-tower-spacing `(h,g)` table
+A000124	supporting	Central polygonal numbers (the Lazy Caterer's sequence): n(n+1)/2 + 1; or, maximal number of pieces formed when slicing a pancake with n cuts.	unimodal height-2 castles `1 + C(w+1,2)`, the `g -> infinity` limit of the `h=2` tower-spacing row

@@ -33,6 +33,11 @@ See `wiki/pages/oeis-cross-referencing.md`.
   and the `P(k,·)` families for `k≥2`. Also the fixed-width columns from
   `wiki/pages/sum-of-three-cubes-castles.md`: new sequence `F(3,2m) = 10m^2-5m+1`
   (`6, 31, 76, 141, …`, no match 2026-09-20) and the interlink `odd(3,2n+1) = A080860(n)`.
+- [ ] **Tower-spacing table** (`wiki/pages/tower-spacing-castles.md`): the six unfiled
+  cells `(h,g)` for `h in {5,6}`, `g in {4,5,6}` as new sequences (Hardin's "0..(h-1) arrays,
+  each element the minimum of `g` adjacent elements", never filed at these parameters; no
+  match 2026-09-20), and one comment each on the nineteen matched cells and the tables
+  A217883 / A217954 / A228461 giving the castle reading and the running-minimum proof.
 
 ## Ingestion queue (wiki pages not yet ingested)
 

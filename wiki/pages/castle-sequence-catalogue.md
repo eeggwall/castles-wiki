@@ -36,7 +36,7 @@ From [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]: OEIS requires 
 2. **A146559**: the `a(n) = P(1, n − 1)` comment is still unsubmitted, but the derived `A146559 = A038503 − A038505` identity is now in OEIS — as `a(n) = A038503(n) − A038505(n)` on A146559 itself and as `a(n) = A038505(n) + A146559(n)` on A038503 (both 2026-09-18, [[signed-tower-count](pages/signed-tower-count.md)]).
 3. **A005251, A202882, A203094, A203184**: the Hardin word identity gives each an interpretation as `2^{−L}` times an even-last-column signed tower count and proves their empirical recurrences ([[hardin-word-identity](pages/hardin-word-identity.md)]); the `g=2` minimum-tower-spacing castles ([[tower-spacing-castles](pages/tower-spacing-castles.md)]) give each a second, unsigned geometric interpretation. For **A005251** specifically, an explicit bijection ([[a005251-bijection](pages/a005251-bijection.md)]) unifies four castle readings (tree-castle / Hardin / tower-spacing / signed-tower) into one — the strongest form of this candidate; see the multi-interpretation hub below.
 4. **A000073, A000078, A001591** (and A000045 by area): the n-nacci numbers as *bounded-height castles by area* ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]) — clean compositions-into-`{1..h}` interpretation, high-value for the tribonacci/tetranacci/pentanacci entries.
-5. **A217878, A217949**: the `g=3` tower-spacing castles ([[tower-spacing-castles](pages/tower-spacing-castles.md)]) as the "min of 3 adjacent elements" array family.
+5. **A217878 / A217879 / A217880 / A217881, A217949 / A217950 / A217951 / A217952, A228457 / A228458, and the tables A217883 / A217954 / A228461**: the whole tower-spacing family ([[tower-spacing-castles](pages/tower-spacing-castles.md)]) is Hardin's "minimum of `g` adjacent elements" arrays, with a proof (running minimum, morphological closing); one comment per entry, plus the `h=2` row **A005252 / A005253 / A005689 / A098574** joining A005251 as height-2 castles with towers `>= g` apart and the closed form `Sum_k C(w+g-(g-1)k, 2k)`. The six unfiled cells `h in {5,6}`, `g in {4,5,6}` are new sequences (below).
 6. **A001045**: tree castles of height 3 is a new castle interpretation of Jacobsthal ([[castle-graph](pages/castle-graph.md)]).
 7. **A006130, A006131**: tree castles of height 4 and 5 land in the k-Fibonacci family ([[castle-graph](pages/castle-graph.md)]).
 8. **A001263, A005408, A005891, A063490, A160747**: the tower / Narayana rows ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]).
@@ -91,10 +91,29 @@ Height-`h` castles where every valley between raised regions is `≥ g` columns 
 | `(h=3, g=2)` | `3, 9, 22, 51, 121, 292, 704` | `2.4022` (quintic) | **interlink** → [A202882](https://oeis.org/A202882) (`=A202882(w+1)`; the **Hardin word family**, geometric route) |
 | `(h=4, g=2)` | `4, 16, 50, 144, 422, 1268` | `2.9972` | **interlink** → [A203094](https://oeis.org/A203094) (Hardin) |
 | `(h=5, g=2)` | `5, 25, 95, 325, 1121, 3985` | `3.5589` | **interlink** → [A203184](https://oeis.org/A203184) (Hardin) |
+| `(h=6, g=2)` | `6, 36, 161, 636, 2507, 10213` | `4.0967` | **interlink** → [A203050](https://oeis.org/A203050) (`=A203050(w+1)`, Hardin) |
+| `(h=2, g=3)` towers `>=3` apart | `2, 4, 7, 11, 17, 27, 44` | `φ` `1.6180` | **interlink** → [A005252](https://oeis.org/A005252) (`=A005252(w+3)`) |
+| `(h=2, g=4)` | `2, 4, 7, 11, 16, 23, 34` | `1.5289` | **interlink** → [A005253](https://oeis.org/A005253) (`=A005253(w+3)`) |
+| `(h=2, g=5)` | `2, 4, 7, 11, 16, 22, 30` | `1.4656` | **interlink** → [A005689](https://oeis.org/A005689) Twopins positions (`=A005689(w+6)`) |
+| `(h=2, g=6)` | `2, 4, 7, 11, 16, 22, 29` | `1.4178` | **interlink** → [A098574](https://oeis.org/A098574) (`=A098574(w+6)`) |
 | `(h=3, g=3)` | `3, 9, 22, 46, 91, 183, 383` | `2.1069` | **interlink** → [A217878](https://oeis.org/A217878) (0..2 "min of 3 adjacent" arrays) |
+| `(h=3, g=4)` | `3, 9, 22, 46, 86, 153, 274` | `1.9274` | **interlink** → [A217879](https://oeis.org/A217879) (0..2 "min of 4 adjacent") |
+| `(h=3, g=5)` | `3, 9, 22, 46, 86, 148, 244` | `1.8051` | **interlink** → [A217880](https://oeis.org/A217880) (0..2 "min of 5 adjacent") |
+| `(h=3, g=6)` | `3, 9, 22, 46, 86, 148, 239` | `1.7157` | **interlink** → [A217881](https://oeis.org/A217881) (0..2 "min of 6 adjacent") |
 | `(h=4, g=3)` | `4, 16, 50, 130, 310, 736` | `2.5398` | **interlink** → [A217949](https://oeis.org/A217949) (0..3 "min of 3 adjacent") |
+| `(h=4, g=4)` | `4, 16, 50, 130, 296, 624, 1289` | `2.2733` | **interlink** → [A217950](https://oeis.org/A217950) (0..3 "min of 4 adjacent") |
+| `(h=4, g=5)` | `4, 16, 50, 130, 296, 610, 1177` | `2.0966` | **interlink** → [A217951](https://oeis.org/A217951) (0..3 "min of 5 adjacent") |
+| `(h=4, g=6)` | `4, 16, 50, 130, 296, 610, 1163` | `1.9697` | **interlink** → [A217952](https://oeis.org/A217952) (0..3 "min of 6 adjacent") |
+| `(h=5, g=3)` | `5, 25, 95, 295, 821, 2227, 6254` | `2.9392` | **interlink** → [A228457](https://oeis.org/A228457) (0..4 "maxima of 3 adjacent") |
+| `(h=6, g=3)` | `6, 36, 161, 581, 1847, 5615, 17487` | `3.3154` | **interlink** → [A228458](https://oeis.org/A228458) (0..5 "maxima of 3 adjacent") |
+| `(h=5, g=4)` | `5, 25, 95, 295, 791, 1927, 4496, 10606` | `2.5888` | **novel-candidate** (no OEIS match, searched 2026-09-20; order 17) |
+| `(h=5, g=5)` | `5, 25, 95, 295, 791, 1897, 4196, 8848` | `2.3608` | **novel-candidate** (no OEIS match, searched 2026-09-20; order 21) |
+| `(h=5, g=6)` | `5, 25, 95, 295, 791, 1897, 4166, 8548` | `2.1991` | **novel-candidate** (no OEIS match, searched 2026-09-20; order 25) |
+| `(h=6, g=4)` | `6, 36, 161, 581, 1792, 4955, 12889, 33279` | `2.8839` | **novel-candidate** (no OEIS match, searched 2026-09-20; order 21) |
+| `(h=6, g=5)` | `6, 36, 161, 581, 1792, 4900, 12229, 28681` | `2.6069` | **novel-candidate** (no OEIS match, searched 2026-09-20; order 26) |
+| `(h=6, g=6)` | `6, 36, 161, 581, 1792, 4900, 12174, 28021` | `2.4123` | **novel-candidate** (no OEIS match, searched 2026-09-20; order 31) |
 
-*(A structural discovery: the `g=2` column is the Hardin "no strict local maximum" family — tower-spacing-2 forbids an isolated peak — and the `g=3` column is the "min of 3 adjacent" family. OEIS-verified 2026-09-18. The `g ≥ 4` columns are **unchecked**.)*
+*(The whole family is one thing: a tower-spacing-`g` castle is a skyline whose 0-based heights are the window-`g` running minimum of some array, so the `(h,g)` count is Hardin's "0..(h-1) arrays, each element the minimum of `g` adjacent elements", proved on [[tower-spacing-castles](pages/tower-spacing-castles.md)]. The `h=3` row is his table [A217883](https://oeis.org/A217883), the `h=4` row [A217954](https://oeis.org/A217954), the `g=3` column [A228461](https://oeis.org/A228461); the `h=2` row is the A005251 / A005252 / A005253 / A005689 / A098574 run with closed form `Sum_k C(w+g-(g-1)k, 2k)`. Every cell with `h, g <= 6` is now searched (2026-09-20, 24-term alignment on each match): nineteen interlinks, six novel-candidates. Minimal recurrence order is `(h-1)g + 1` in every cell.)*
 
 ### The Pell castle strip - 1-smooth height-3 strips
 
