@@ -108,3 +108,10 @@ A001035	supporting	Number of partially ordered sets ("posets") with n labeled el
 A001803	supporting	Numerators in expansion of (1 - x)^(-3/2).	numerators of 2w C(2w,w)/4^w = B_{1/2}(box) / h, the half-order block count of a box castle (fractional-block-count)
 A002596	supporting	Numerators in expansion of sqrt(1+x). Absolute values give numerators in expansion of sqrt(1-x).	numerators of the half-order Grunwald-Letnikov weights (-1)^k C(1/2,k) (fractional-block-count)
 A046161	supporting	a(n) = denominator of binomial(2n,n)/4^n.	denominators of the half-order Grunwald-Letnikov weights and of the chain-rule half-column C(2k,k)/4^k (fractional-block-count, fractional-width-and-height)
+A003072	supporting	Numbers that are the sum of 3 positive cubes.	castle counts as sums of three positive cubes: 56 of 552 even counts with w >= 4 below 10^8 (background rate); F(4,2) = 1+1+8, F(6,3) = 27+64+216, F(5,8) = 13^3+14^3+16^3
+A003325	supporting	Numbers that are the sum of 2 positive cubes.	F(6,4) = 1729 and F(4,85) = 5^3 + 93^3 are the only nondegenerate two-cube even counts below 10^9; height-2 row gives 2c^3 at w = 5 (mod 12) and c^3 + d^3 at w = 19 (mod 24)
+A060464	supporting	Numbers that are not congruent to 4 or 5 mod 9.	the conjectural sums of three cubes; F(w,h) mod 9 periodic in both directions, so membership of castle counts is decided cell by cell
+A060465	supporting	Smallest solution x of x^3 + y^3 + z^3 = n for n in A060464.	companion table of smallest three-cube representations; not deep enough (58 terms) to cover the castle counts 367, 439, 903
+A060466	supporting	Smallest solution y of x^3 + y^3 + z^3 = n for n in A060464.	companion table of smallest three-cube representations
+A060467	supporting	Smallest solution z of x^3 + y^3 + z^3 = n for n in A060464.	companion table of smallest three-cube representations
+A156638	supporting	Numbers that are congruent to 4 or 5 mod 9.	the excluded residues; F(w,2) lands here iff w = 9 (mod 12), F(3,h) iff h = 4, 6 (mod 18), A(3m,h) never

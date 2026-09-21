@@ -5,7 +5,7 @@ summary: 1729, the taxicab number 1^3+12^3 = 9^3+10^3, is a castle count - F(6,4
 tags: [analysis, castle, 1729, taxicab, hardy-ramanujan, sum-of-cubes, near-miss, c-finite, berlekamp-massey, metallic-mean, carmichael, mod-p, worked-example, computation]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-19
-updated: 2026-09-19
+updated: 2026-09-20
 ---
 
 # The Hardy-Ramanujan castle (1729)
@@ -212,6 +212,7 @@ Settled:
 Open:
 
 - **A bijection behind `F(6,4) = 12^3 + 1 = 9^3 + 10^3`.** The natural candidate sets are the length-3 towers `T(k, 3) = (k+1)^3`. Is there an explicit map from the 1729 even castles of `(6, 4)` onto `T(11, 3)` plus a point, or onto `T(8, 3) + T(9, 3)`? The `91`-divisibility suggests looking for a 91-to-1 structure first.
+- **Which castle counts are sums of three cubes?** Taken up on [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)]: under Heath-Brown the answer is the residue `F(w,h) mod 9`, periodic in both directions; `F(5,5) = 906` is a Booker-Sutherland 2019 number, and `F(13,2) = 16^3` is a cleaner instance of the bijection question above.
 - **Which rungs do the other Ramanujan-type identities sit on?** Chen (2012), Han and Hirschhorn (2006), and McLaughlin (2010) give further C-finite Diophantine families; each has a palindromic denominator and a growth constant. Are they metallic (a `(a^2 + 4)` discriminant, hence a ceiling-exception castle strip) or do they land in other reachable fields of the [[reachable-field-census](pages/reachable-field-census.md)]?
 
 ## Appearances in Sources
@@ -221,6 +222,7 @@ Open:
 
 ## Related Concepts
 
+- [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)] - the general question this page opened: which castle counts are sums of three cubes, signed and positive; [[sums-of-three-cubes](pages/sums-of-three-cubes.md)] is the number-theory background.
 - [[ramanujan-castles](pages/ramanujan-castles.md)] - the other Ramanujan on this wiki: the spectral expander condition on castle graphs; the digit castle `(1, 7, 2, 9)` satisfies it.
 - [[metallic-means](pages/metallic-means.md)] - the ladder `delta_a = (a + sqrt(a^2 + 4))/2`; Ramanujan's near-miss growth constant is `delta_9^2`.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ceiling-exception strip `M_h = J - D` that realizes `delta_9` at height 10.
