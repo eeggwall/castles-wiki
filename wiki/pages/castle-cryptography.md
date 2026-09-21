@@ -175,6 +175,7 @@ The `castle_dh` key exchange (the `mulmod` / `powmod` pair above; pinned on [[ca
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the second lap: ElGamal and signature built, Alice's key recovered, both fixes broken, keys sized, and the four-question red-team method.
 - [[castle-sign](pages/castle-sign.md)] - the `(−1)^{blocks}` sign underlying `P(k,L)`; the object being exponentiated.
 - [[castle-snippets](pages/castle-snippets.md)] - the runnable `castle_dh` and Berlekamp–Massey programs.
+- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the ring `R = F_p[x]/(Q)` written as an abelian group in invariant-factor form; Pohlig-Hellman is the fundamental theorem of finitely generated abelian groups run on `⟨x⟩`, security is the largest prime-power invariant factor, and the discriminant-zero primes of [[mod-p-observatory](pages/mod-p-observatory.md)] add a `p`-group `1 + (g)/(g)^m` beside the field factor.
 
 ## Footnotes
 
