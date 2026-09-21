@@ -72,6 +72,7 @@ Uniform entropy and entropy rate are the same limit approached from two sides. U
 
 ## Related Concepts
 
+- [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the refinement: conditioning on block count and area shaves an extra `log_2 w` bits off the uniform-entropy baseline, and the one-bit parity clause turns out to be redundant with `B` but not with `N`.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] / [[castle-counting-function](pages/castle-counting-function.md)] — the exact `F(w,h)` whose log is the uniform entropy.
 - [[castle-sign](pages/castle-sign.md)] — the `(A±P)/2` projector; the origin of the one-bit parity cost.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] — `λ₁(h) = h`, the Perron root behind `log₂ h`.

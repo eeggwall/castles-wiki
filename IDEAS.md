@@ -4,14 +4,14 @@ Working list of project and seminar ideas for Project Euler 502 (Castles). This 
 
 Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, within each Department. A done item is one line: title link + one-sentence result; detail lives on the page and in git history. Any open follow-up is its own `[ ]` item, never a "Still open:" tail. Plain hyphens in new text, no em-dashes.
 
-## Where we are (2026-09-20)
+## Where we are (2026-09-21)
 
 | Slice | Value |
 |---|---|
-| Pages | 130 (30 Sources / 66 Concepts / 33 Analyses) |
-| Departments (open + done) | R 4+10, E 8+12, N 14+24, Z 6+7, Q 7+0, S 12+5, T 7+0, F 13+2, X 8+5 |
-| Items | 79 open, 65 done, 144 total |
-| Dates | wiki 2026-09-13, IDEAS 2026-09-20, last reorganize 2026-09-20 |
+| Pages | 132 (30 Sources / 66 Concepts / 34 Analyses) |
+| Departments (open + done) | R 3+11, E 8+12, N 14+24, Z 6+7, Q 7+0, S 12+5, T 7+0, F 13+2, X 8+5 |
+| Items | 78 open, 66 done, 144 total |
+| Dates | wiki 2026-09-13, IDEAS 2026-09-21, last reorganize 2026-09-20 |
 
 ## Seminar program
 
@@ -105,13 +105,13 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 
 ### R Department (representations - encodings, entropy, source-level readings)
 
-- [ ] **Conditional entropy given block count and area** - refine the uniform-entropy `log_2 F(w,h)` view by conditioning on the two structural statistics.
 - [ ] **Rule-generated-castle detector** - a predicate that identifies low-complexity-but-irregular castles without simulating the rule.
 - [ ] **Parity-bit object-by-object survival** - does the "exactly one bit" story survive at the level of individual castles, not just uniform totals.
 - [ ] **Lossless song codec on castles** - close the gap between the 9.5% LPC-8 + Rice estimate and the 26.6% `afconvert` FLAC on the same file, and state the castle codec (skyline -> Tier-1 rule + residual) as a spec. One internal coder (Q12 taps, Rice residual, 4096-sample blocks, both channels) gives FLAC fixed predictors of orders 0 to 3 at 30.7 / 16.9 / 11.6 / 12.1% and least-squares LPC of orders 1 / 2 / 4 / 8 at 18.4 / 13.2 / 12.7 / 12.8%; the fractional rung between them never wins (F Department, Hurst item), so the spec is integer-order.
 
 - [x] **[Castle BDD / ZDD](wiki/pages/castle-bdd-zdd.md)** - valid-castle set `V(w, h)` as a BDD or zero-suppressed BDD of size `O(h · w · log h)`, built by lifting the [castle-strip](wiki/pages/castle-strip.md) transfer matrix to a DFA on state `(last-column height, blocks-mod-2, is-h-reached)`. Worked at `(3, 2)` (DFA of 6 reachable states, 7-node BDD). Beyond Kitamasa-equivalent counting of `F(w, h)`, the ZDD supports uniform random sampling, explicit rank / unrank with `{1, ..., F(w, h)}`, canonical-order enumeration, and free intersection with other castle-family ZDDs across [castle-classification](wiki/pages/castle-classification.md). TAOCP §7.1.4 (book pp. 202-280) is the source; scale precedent 12,988,816 chessboard-domino tilings in a 2,300-node ZDD (p. 251).
 - [x] **[Castle entropy and compression](wiki/pages/castle-entropy.md)** - information-theoretic view: uniform entropy `~ w log_2 h - 1`, growth constants as topological entropies, and the compressibility axis on [castle-compression](wiki/pages/castle-compression.md).
+- [x] **[Conditional entropy given B and N](wiki/pages/castle-conditional-entropy.md)** - refine the uniform-entropy `log_2 F(w, h)` view by conditioning on block count and area: `H(C) = H(B, N) + H(C | B, N)`, and brute force through `(12, 3)` shows `H(B, N) = log_2 w + O(1)`, so joint conditioning shaves `log_2 w` bits off the uniform baseline. Area beats blocks as a single-statistic summary at every `(w, h)` tested; the parity clause is redundant with `B` but not with `N`.
 - [x] **[Permutation cycles as castle peaks](wiki/pages/permutation-cycle-castle-analogy.md)** - a genuine factorization, not a metaphor.
 - [x] **[Castle Foata transformation](wiki/pages/castle-foata-transform.md)** - peaks are the maximal positive runs; `#peaks = #records`.
 - [x] **[Monotone streak factorization](wiki/pages/monotone-streak-factorization.md)** - first differences into up / flat / down streaks, the fast algorithms' canonical form.
