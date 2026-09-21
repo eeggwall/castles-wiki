@@ -5,7 +5,7 @@ summary: ψ = 1.3247…, the real root of x³ = x + 1 - the cubic sibling of the
 tags: [concept, plastic-number, pisot, padovan, perrin, cubic, jacobi-perron, eigenvalue, castle, oeis, strip-perron-root]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-16
-updated: 2026-09-17
+updated: 2026-09-21
 ---
 
 # Plastic number
@@ -96,6 +96,7 @@ A plain (unsigned) castle statistic whose count grows at the bare `ψ` is a **Pa
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - why a cubic cannot have a periodic simple continued fraction, and what replaces it.
 - [[pell-numbers](pages/pell-numbers.md)] - the impulse / trace pairing (Pell / companion Pell) that Padovan / Perrin repeat in degree 3.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - `ψ` is algebraic of degree 3, on the reachable side of the wall.
+- [[fractional-recurrences](pages/fractional-recurrences.md)] - `ψ² = 1.7549` is the growth constant of the fractional-Fibonacci recurrence `∇^α a_n = a_{n-1}` at `α = 2/3` exactly, and `ψ³ = ψ + 1 = 2.3247` at `α = 3/2` exactly. Two of the wiki's cubic Perron roots pinned to small rational orders of a single continuous family.
 
 ## Footnotes
 

@@ -5,7 +5,7 @@ summary: The castle's counts are C-finite, so their closed forms carry only alge
 tags: [concept, castle, algebraic, transcendental, c-finite, golden-ratio, sqrt2, e, pi, asymptotics, pedagogy]
 sources: [project-euler-502-representations, aocp-permutations, aocp-generating-functions, generating-functions-topic]
 created: 2026-09-15
-updated: 2026-09-15
+updated: 2026-09-21
 ---
 
 # The algebraic/transcendental wall
@@ -75,6 +75,7 @@ That is the wall in one sentence: **the castle's exact counts are algebraic; `e`
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — the `√2+1` growth constant.
 - [[tower-word-language](pages/tower-word-language.md)] — the regular→rational, context-free→algebraic hierarchy the wall extends one rung further.
 - [[castle-by-area](pages/castle-by-area.md)] — `2^{n−1} − F_{n−1}`, where `φ` enters the exact count.
+- [[fractional-recurrences](pages/fractional-recurrences.md)] — the wall's continuum face: the fractional-Fibonacci recurrence `∇^α a_n = a_{n-1}` has growth `g(α)` algebraic iff `α` is rational (Baker/Gelfond-Schneider on `α = log r / log(1-r)`), so irrational `α` gives transcendental growth directly, without the Stirling/Catalan/log-`k` limit gate. A new transcendental-arrival mechanism sitting beside the classical asymptotic one.
 
 ## Footnotes
 
