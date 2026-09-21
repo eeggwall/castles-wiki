@@ -30,7 +30,9 @@ See `wiki/pages/oeis-cross-referencing.md`.
 - [ ] **New sequence:** `F(w,3)` (`raw/oeis-pe502/new-sequence-F3.md`;
   `wiki/pages/new-sequence-fw3.md`). Re-searched oeis.org 2026-09-19: still no match. Then siblings: `F(w,4)`, `F(w,5)`, `odd(w,h≥3)`,
   parity-refined area sequences (`cev+cod = A001523`), `strict_valley`, tower rows `w≥6`,
-  and the `P(k,·)` families for `k≥2`.
+  and the `P(k,·)` families for `k≥2`. Also the fixed-width columns from
+  `wiki/pages/sum-of-three-cubes-castles.md`: new sequence `F(3,2m) = 10m^2-5m+1`
+  (`6, 31, 76, 141, …`, no match 2026-09-20) and the interlink `odd(3,2n+1) = A080860(n)`.
 
 ## Ingestion queue (wiki pages not yet ingested)
 

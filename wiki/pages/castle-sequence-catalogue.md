@@ -5,7 +5,7 @@ summary: Hand-curated catalogue of every castle-counting sequence, by the castle
 tags: [analysis, oeis, castle, sequence, catalogue, novelty, submission-candidate, interlink]
 sources: [oeis-mining-pe502]
 created: 2026-09-17
-updated: 2026-09-19
+updated: 2026-09-20
 ---
 
 # Castle sequence catalogue
@@ -148,6 +148,7 @@ Computed earlier and listed as candidates before the status convention; most are
 
 - `F(w, 3)`: even-block castles of height exactly 3, `0, 0, 3, 21, 89, 307, 977, 3031, …` ([[new-sequence-fw3](pages/new-sequence-fw3.md)]) — **novel-candidate** (no OEIS match, searched 2026-09-19).
 - `F(w, 4…6)`: the taller rows ([[new-sequence-fw3](pages/new-sequence-fw3.md)]) — **unchecked**.
+- Fixed-width columns ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)]): `F(3, 2m) = 10m^2 - 5m + 1 = 5·Hex(m) + 1`, `6, 31, 76, 141, 226, 331, 456, 601, 766, 951, …` — **novel-candidate** (no OEIS match by terms or formula, searched 2026-09-20; it is A080860 at negative index). `odd(3, 2n+1) = 10n^2 + 5n + 1`, `1, 16, 51, 106, 181, 276, …` — **interlink** → [A080860](https://oeis.org/A080860) (exact, offset 0). `F(3, 2m+1) = odd(3, 2m) = C(2m+1, 2)` and `C(2m, 2)` — **known**, triangular numbers A000217. The interleaved columns `F(3,h)` (`6, 3, 31, 10, 76, 21, …`), `odd(3,h)`, and `F(4,h)` (`10, 21, 117, 122, 448, 367, 1131, 820, …`) — **novel-candidate** (searched 2026-09-20, no match); `F(4,h)` is the quasi-polynomial `(4h-3)(4h^2-3h+2)/6` at even `h`, `(h-1)(8h^2-4h+3)/6` at odd `h`.
 - `|P(k, L)|` in the *k*-direction at fixed `L ≥ 5` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]) — **unchecked**. *(The L-direction `P(k,·)` rows for `k = 2..6` are no longer here — they are searched and confirmed **novel-candidate** in the "Signed tower count P(k,·) rows" section above.)*
 - Parity-refined area sequences (even/odd-area convex, `strict_valley`) ([[castle-by-area](pages/castle-by-area.md)]) — **novel-candidate** (noted "none in OEIS" on that page).
 - Higher tower rows `w ≥ 6` in the Narayana table ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]) — **unchecked**.

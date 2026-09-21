@@ -115,3 +115,4 @@ A060465	supporting	Smallest solution x of x^3 + y^3 + z^3 = n for n in A060464.	
 A060466	supporting	Smallest solution y of x^3 + y^3 + z^3 = n for n in A060464.	companion table of smallest three-cube representations
 A060467	supporting	Smallest solution z of x^3 + y^3 + z^3 = n for n in A060464.	companion table of smallest three-cube representations
 A156638	supporting	Numbers that are congruent to 4 or 5 mod 9.	the excluded residues; F(w,2) lands here iff w = 9 (mod 12), F(3,h) iff h = 4, 6 (mod 18), A(3m,h) never
+A080860	count	a(n) = 10*n^2 + 5*n + 1.	odd(3, 2n+1) = 5 C(2n+1, 2) + 1 exactly; its negative-index half 10m^2 - 5m + 1 is F(3, 2m) = 6, 31, 76, 141, ..., not in OEIS (novel candidate)
