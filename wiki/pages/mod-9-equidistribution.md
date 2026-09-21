@@ -1,7 +1,7 @@
 ---
 title: Mod-9 equidistribution of the F table
 category: Analyses
-summary: Do castle counts F(w,h) hit the excluded residues 4, 5 mod 9 at the equidistribution density 2/9, or is there a persistent bias? Answer - no bias. The 20.4% exclusion rate over cells with A(w,h) <= 10^9 on the sum-of-three-cubes-castles page is a finite-N artifact and converges monotonically to 2/9 - 21.36% at 10^12, 21.78% at 10^15, 21.98% at 10^18, 22.14% at 10^24, 22.214% at 10^36. The row / column divisibility gap explains why the two readings behave differently: column periods per_w = 2 * 3^{ceil(log_3 w) + 1} have v_3 >= 2 structurally, so 9 | per_w and the h-histogram can be exactly uniform (columns w in {4, 6, 10, 12, 17, 28, 30} through w <= 30 hit exactly 2/9 to the digit); row periods per_h have v_3 = 1 empirically for h <= 16, so 9 does not divide per_h and every row carries an unavoidable +-1-per-residue rounding jitter. The tempting {4, 5} pairing hypothesis - that some (w, h) involution forces count(4) = count(5) in every row - is refuted: no such shift or reflection exists in either direction, and rows h = 8, 10, 11 show 3 sigma asymmetries between count(4) and count(5). Equidistribution is achieved by the limit, not by any pointwise algebraic symmetry.
+summary: Do castle counts F(w,h) hit the excluded residues 4, 5 mod 9 at the equidistribution density 2/9, or is there a persistent bias? Answer - no bias. The 20.4% exclusion rate over cells with A(w,h) <= 10^9 on the sum-of-three-cubes-castles page is a finite-N artifact and converges monotonically to 2/9 - 21.36% at 10^12, 21.78% at 10^15, 21.98% at 10^18, 22.14% at 10^24, 22.214% at 10^36. The row / column divisibility gap explains why the two readings behave differently: column periods per_w = 2 * 3^{ceil(log_3 w) + 1} have v_3 >= 2 structurally, so 9 | per_w and the h-histogram can be exactly uniform (columns w in {4, 6, 10, 12, 17, 28, 30} through w <= 30 hit exactly 2/9 to the digit); row periods per_h have v_3 = 1 empirically for h <= 16, so 9 does not divide per_h and every row carries an unavoidable +-1-per-residue rounding jitter. The w = 4 blackboard proof gives the exact 2/9 rate unconditionally on Heath-Brown: closed form for F(4, h), parity split into cubic polynomials Q_e, Q_o, uniformity of F(4, h) mod 3 over m mod 9 (verified in nine direct evaluations), coset lift F(4, h + 18) = F(4, h) + 6 mod 9 (a two-line polynomial arithmetic derivation, using that the quadratic coefficient of Q_e is divisible by 3). The tempting {4, 5} pairing hypothesis - that some (w, h) involution forces count(4) = count(5) in every row - is refuted: no such shift or reflection exists in either direction, and rows h = 8, 10, 11 show 3 sigma asymmetries between count(4) and count(5). Equidistribution is achieved by the limit, not by any pointwise algebraic symmetry.
 tags: [analysis, castle, sum-of-cubes, mod-9, periodicity, equidistribution, finite-sample-artifact, kitamasa, three-adic]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-21
@@ -169,6 +169,70 @@ Every row period through `h = 16` has exactly one factor of 3.
 
 Whether some `h` past `16` first inflates `v_3(per_h)` to `2` (via a mod-3 quadruple root in `char_{h-1}` or `char_{h-2}`) is open. Nothing in the machinery forbids it; nothing yet demands it.
 
+## The `w = 4` blackboard proof
+
+The `w = 4` column is the seminar centerpiece: its uniform mod-9 histogram, and therefore its exact `2/9` exclusion rate, comes out of a completely elementary argument that fits on one blackboard. No character sums, no Heath-Brown, no computer verification of 54 values - just the closed form for `F(4, h)`, three lines of polynomial arithmetic, and a coset lift.
+
+**Step 1. Closed form.** From `P(k, 4) = (-1)^k A_4(k) + B_4(k)` with `A_4(k) = (k+1)(2k+1)(2k+3)/6` and `B_4(k) = (k+1)/2` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), substitution into `F(4, h) = (h^4 - (h-1)^4 - P(h-1, 4) + P(h-2, 4))/2` gives
+
+```
+12 * F(4, h)  =  (24 h^3 - 36 h^2 + 24 h - 9)  +  (-1)^h * (8 h^3 - 12 h^2 + 10 h - 3).
+```
+
+Verified: `F(4, 2) = 10`, `F(4, 3) = 21`, `F(4, 4) = 117`, `F(4, 5) = 122`, `F(4, 7) = 367` come out of the formula exactly.
+
+**Step 2. Split by parity.** For `h = 2m` (even),
+
+```
+F(4, 2m)  =  (64 m^3 - 48 m^2 + 17 m - 3) / 3.
+```
+
+For `h = 2m + 1` (odd),
+
+```
+F(4, 2m + 1)  =  (32 m^3 + 24 m^2 + 7 m) / 3.
+```
+
+Both numerators are divisible by 3 for every `m in Z`. On the even side, `64 m^3 - 48 m^2 + 17 m - 3 = m^3 + 2m mod 3 = m(m^2 - 1) mod 3 = m(m - 1)(m + 1) mod 3`, a product of three consecutive integers, hence `0 mod 3`. On the odd side, `32 m^3 + 24 m^2 + 7 m = 2m^3 + m = m(2m^2 + 1) mod 3`, which vanishes for `m in {0, 1, 2} mod 3` by direct check.
+
+**Step 3. Uniform mod 3.** Reduce `F(4, 2m) mod 3` for `m = 0..8`:
+
+```
+F(4, 2m) mod 3  =  (Q_e(m) mod 9) / 3    where  Q_e(m) = 64 m^3 - 48 m^2 + 17 m - 3
+                =  m^3 + 6 m^2 + 8 m + 6 (mod 9), then /3.
+```
+
+Direct evaluation gives `Q_e mod 9 = 6, 3, 0, 3, 0, 6, 0, 6, 3` for `m = 0..8`, dividing by 3 gives `F(4, 2m) mod 3 = 2, 1, 0, 1, 0, 2, 0, 2, 1` - the three residues `{0, 1, 2}` each appear **exactly three times**. Same evaluation on the odd side gives `F(4, 2m + 1) mod 3 = 0, 0, 2, 1, 1, 0, 2, 2, 1`, again three of each.
+
+**Step 4. Coset lift.** The polynomial `Q_e(m)` satisfies
+
+```
+Q_e(m + 9) - Q_e(m)   =  1728 m^2 + 14688 m + 42921   =  18 (mod 27),
+Q_e(m + 18) - Q_e(m)  =  (computed similarly)          =   9 (mod 27),
+```
+
+both constants (independent of `m`). The cubic term `1728 m^2` is `64 * 27 * m^2 = 0 mod 27`; the linear term `14688 m` is `544 * 27 * m = 0 mod 27`; only the truly constant term survives, and it survives at `9 * (17 mod 27) = 153 = 18 mod 27` for the `Delta_9` and at `18 * 17 = 306 = 9 mod 27` for `Delta_18`. Dividing by `3` (to get `F` in place of `Q_e / 3`):
+
+```
+F(4, 2(m + 9)) - F(4, 2m)   =   6 (mod 9),
+F(4, 2(m + 18)) - F(4, 2m)  =   3 (mod 9).
+```
+
+For the odd side, the same computation gives `9 mod 27` and `18 mod 27` respectively (swapped):
+
+```
+F(4, 2(m + 9) + 1) - F(4, 2m + 1)   =   3 (mod 9),
+F(4, 2(m + 18) + 1) - F(4, 2m + 1)  =   6 (mod 9).
+```
+
+**Step 5. Cosets tile the period.** In both cases, the triple `{F(4, h), F(4, h + 18), F(4, h + 36)}` mod 9 is `{v, v + 6, v + 3}` in some order - a **complete coset of `3 Z / 9` in `Z / 9`**, containing three distinct residues. So each "base" value of `m in {0..8}` gives three residues mod 9, one in each of the three cosets `{0, 3, 6}, {1, 4, 7}, {2, 5, 8}`, or, more precisely, three residues in the specific coset `F(4, 2 * base) + 3 Z / 9`.
+
+**Step 6. Counting.** From Step 3, on the even side, the 9 base values `F(4, 2m) mod 3` for `m = 0..8` land three-in-each of the three cosets `{0, 3, 6}, {1, 4, 7}, {2, 5, 8}` (uniform mod 3). Each base value lifts to a full coset of three residues mod 9. So the 27 residues `F(4, 2m) mod 9` for `m = 0..26` cover each coset `3 * 3 = 9` times, distributed `3` per residue inside the coset. Total: **each residue in `Z / 9` is hit exactly 3 times** on the even side. Same argument, same count on the odd side.
+
+**Conclusion.** Over the full period `h = 2..55`, `F(4, h) mod 9` hits each of the 9 residues exactly `3 + 3 = 6` times. The histogram is exactly `[6, 6, 6, 6, 6, 6, 6, 6, 6]`, the exclusion count is `12`, and the exclusion rate is exactly `12 / 54 = 2 / 9`. QED, without appeal to Heath-Brown or to any conjecture.
+
+**What the proof uses.** The whole argument rests on three algebraic accidents specific to `w = 4`: the quadratic coefficient of `Q_e` and `Q_o` is divisible by 3 (making `18 a_2 = 0 mod 27` in the difference); the linear coefficients happen to be `17` and `7`, both `+-1 mod 3`, giving `Delta_9 F` a nonzero coset shift; and `F mod 3` is uniform on `m mod 9` (which is the least trivial input, verified by direct 9-value evaluation). For `w in {6, 10, 12, 17, 28, 30}` the same three-step recipe applies but with the specific polynomials from `A_w, B_w`; for `w in {5, 7, 8, 9, 11, 13, 14, ...}` one of the three steps fails, either the linear-coefficient shift is a multiple of 9 (killing the coset lift) or the base `F mod 3` distribution has a non-uniform 9-value histogram. Producing a general theorem "which `w` have all three steps hold" is the open item.
+
 ## The `{4, 5}` pairing hypothesis, refuted
 
 The two obstruction residues are `4` and `5`, and `4 + 5 = 9`, so they are negatives of each other mod 9. It is tempting to hope for a `(w, h)`-transformation involution that maps `F` to `-F mod 9`, which would force `count(4) = count(5)` in every row histogram - putting all the row-level finite-period noise onto exactly the residues that matter for sums of three cubes. The `h = 6` and `h = 12` rows in the table above show near-exact equality `(248, 248)` and `(1279601, 1277473)`, and the `h = 7` row shows `(220, 219)`, encouraging this hypothesis.
@@ -186,6 +250,7 @@ Settled:
 - The `20.4%` at `N = 10^9` is a finite-N mixing artifact; the aggregate converges monotonically to `2/9`.
 - The `h = 7` deficit at `20.10%` is finite-period noise in a period not divisible by `9`; longer-period rows return to `2/9`.
 - Columns `w in {4, 6, 10, 12, 17, 28, 30}` have *exactly* rate `2/9` unconditionally - uniform histograms over their full h-period.
+- **The `w = 4` blackboard proof**: an entirely elementary argument (closed form, parity split, mod-3 uniformity, coset lift in `Z/9`) gives `F(4, h) mod 9` uniform over any 54 consecutive `h`, hence exclusion rate exactly `2/9`. No Heath-Brown, no character sums, no verification of 54 values. Rests on three algebraic features of the `w = 4` polynomials `Q_e(m) = 64 m^3 - 48 m^2 + 17 m - 3` and `Q_o(m) = 32 m^3 + 24 m^2 + 7 m` after clearing the `1/12` denominator.
 - **Row / column divisibility gap**: column periods `per_w = 2 * 3^{ceil(log_3 w) + 1}` have `v_3 >= 2` structurally (from the multiplicity of `-1` in the k-direction char poly); row periods `per_h` have `v_3 = 1` empirically for `h <= 16`. Columns can therefore split `per_w` into 9 equal buckets; rows never can. This is the deep reason the two readings behave differently.
 - **No `{4, 5}` pairing symmetry**: no shift or reflection in either direction sends `F(w, h) mod 9` to `-F(w, h) mod 9` universally, so `count(4) = count(5)` is not a forced equality of row histograms. The apparent near-equality at `h = 6, 7, 12` is coincidence, and rows `h = 8, 10, 11` show `3 sigma` asymmetries.
 
@@ -211,7 +276,7 @@ Open:
 
 ## Footnotes
 
-[^exec]: Verified by execution (2026-09-21), Python 3 with NumPy 1.26 and SymPy 1.14. **Row-period `v_3` table (`h = 2..16`)**: `char_k` polynomials built from the three-term recurrence `char_{k+1} = x^2 char_{k-1} - 2 char_k` seeded by `char_0 = x - 1, char_1 = x^2 - 2x + 2`; period of `x` mod `(char_k, 9)` computed by iterating the companion-matrix state and detecting return to `(1, 0, ..., 0)`; row period computed as `lcm(ord_9(h), ord_9(h-1), per(char_{h-1}) mod 9, per(char_{h-2}) mod 9)`; three-adic valuation `v_3(per_h) = 1` verified for every `h` in the table. **`{4, 5}` pairing search**: for each row `h in {2..8}` and each column `w in {2..15}`, exhaustive search over shifts `s in [1, per - 1]` and reflection centers `c in [0, per - 1]` looking for the condition `F(w + s, h) = -F(w, h) mod 9` or `F(c - w, h) = -F(w, h) mod 9` for all indices; only the trivial `w = 2` column reflection at center 6 hit. **Row histograms (`h = 2..11`)**: parity-refined column DP over `Z/9` iterated to width `3 * per_h + 20` past a transient of `5`; period detected by first-repeat and full-period histogram counted; verified against the `sum-of-three-cubes-castles` row-period table. **`h = 12` full period**: numpy 12x12 mod-9 matrix iterated `11,514,360` times (37s wall) for the state vectors `(P(11, .), P(10, .))`, `F` read off through the closed form, histogram counted exactly. **`h = 13, 14, 15`**: same machinery, 5,000,000-step sample (rate stable to third digit). **Column histograms (`w = 2..30`)**: seeds `P(k, w) mod 9` for `k = 0..2w-3` by column DP, extended to `k = 0..per_w + 1` by the k-direction recurrence with characteristic polynomial `(x+1)^w (x-1)^(w-2)` reduced mod 9; `F(w, h) mod 9` read off for `h = 2..2 + per_w - 1`. Uniform-histogram claim (`[per_w/9]*9`) verified equality digit for digit at `w = 4, 6, 10, 12, 17, 28, 30`. **Aggregate at `N`**: for each `w >= 4` with `h^w - (h-1)^w <= N` reachable, binary search the maximum `h`, then count exclusions in `[2, h_max]` as `floor((h_max - 1)/per_w) * (excluded_per_period) + (residues in the final partial period)`; runs in `6.8s` at `N = 10^18`, `37s` at `N = 10^24`, `330s` at `N = 10^36`. **`P(k, w) mod 9` isolation table**: same column DP, iterated to width `> 3 * per_k` for period detection. All quoted numbers are the scripts' printed output. Code sketch:
+[^exec]: Verified by execution (2026-09-21), Python 3 with NumPy 1.26 and SymPy 1.14. **`w = 4` blackboard proof**: symbolic computation of the closed form `12 F(4, h) = (24 h^3 - 36 h^2 + 24 h - 9) + (-1)^h (8 h^3 - 12 h^2 + 10 h - 3)` against direct evaluation of `F(4, h) = (h^4 - (h-1)^4 - P(h-1, 4) + P(h-2, 4))/2` for `h = 2..15` (all match); split into `Q_e(m) = 64 m^3 - 48 m^2 + 17 m - 3` and `Q_o(m) = 32 m^3 + 24 m^2 + 7 m` verified against `F(4, 2m)` and `F(4, 2m+1)` for `m = 1..27`; divisibility of `Q_e, Q_o` by 3 checked symbolically mod 3; `F(4, 2m) mod 3` and `F(4, 2m + 1) mod 3` uniform over `m mod 9` verified in 18 direct evaluations; `Q_e(m + 9) - Q_e(m) mod 27 = 18` and `Q_e(m + 18) - Q_e(m) mod 27 = 9` (and `Q_o` swapped) verified for `m = 0..5` (constant in `m` by the algebraic argument in the page). Final histogram `[6, 6, 6, 6, 6, 6, 6, 6, 6]` matches the count derived from the coset-tiling argument. **Row-period `v_3` table (`h = 2..16`)**: `char_k` polynomials built from the three-term recurrence `char_{k+1} = x^2 char_{k-1} - 2 char_k` seeded by `char_0 = x - 1, char_1 = x^2 - 2x + 2`; period of `x` mod `(char_k, 9)` computed by iterating the companion-matrix state and detecting return to `(1, 0, ..., 0)`; row period computed as `lcm(ord_9(h), ord_9(h-1), per(char_{h-1}) mod 9, per(char_{h-2}) mod 9)`; three-adic valuation `v_3(per_h) = 1` verified for every `h` in the table. **`{4, 5}` pairing search**: for each row `h in {2..8}` and each column `w in {2..15}`, exhaustive search over shifts `s in [1, per - 1]` and reflection centers `c in [0, per - 1]` looking for the condition `F(w + s, h) = -F(w, h) mod 9` or `F(c - w, h) = -F(w, h) mod 9` for all indices; only the trivial `w = 2` column reflection at center 6 hit. **Row histograms (`h = 2..11`)**: parity-refined column DP over `Z/9` iterated to width `3 * per_h + 20` past a transient of `5`; period detected by first-repeat and full-period histogram counted; verified against the `sum-of-three-cubes-castles` row-period table. **`h = 12` full period**: numpy 12x12 mod-9 matrix iterated `11,514,360` times (37s wall) for the state vectors `(P(11, .), P(10, .))`, `F` read off through the closed form, histogram counted exactly. **`h = 13, 14, 15`**: same machinery, 5,000,000-step sample (rate stable to third digit). **Column histograms (`w = 2..30`)**: seeds `P(k, w) mod 9` for `k = 0..2w-3` by column DP, extended to `k = 0..per_w + 1` by the k-direction recurrence with characteristic polynomial `(x+1)^w (x-1)^(w-2)` reduced mod 9; `F(w, h) mod 9` read off for `h = 2..2 + per_w - 1`. Uniform-histogram claim (`[per_w/9]*9`) verified equality digit for digit at `w = 4, 6, 10, 12, 17, 28, 30`. **Aggregate at `N`**: for each `w >= 4` with `h^w - (h-1)^w <= N` reachable, binary search the maximum `h`, then count exclusions in `[2, h_max]` as `floor((h_max - 1)/per_w) * (excluded_per_period) + (residues in the final partial period)`; runs in `6.8s` at `N = 10^18`, `37s` at `N = 10^24`, `330s` at `N = 10^36`. **`P(k, w) mod 9` isolation table**: same column DP, iterated to width `> 3 * per_k` for period detection. All quoted numbers are the scripts' printed output. Code sketch:
 
     ```python
     p = 9
