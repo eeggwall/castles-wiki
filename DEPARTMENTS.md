@@ -80,7 +80,7 @@ Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Cros
 - Universality: sine-kernel bulk, GUE, random Young tableaux via the LGV kernel.
 - Expanders and zeta: Ramanujan castles, prime closed walks, arithmetic combinatorics.
 - Signals: skyline DFT as a complete invariant, compressed sensing, turnpike reconstruction; the Woodward gap, a skyline played as a tone whose spectrum approaches its height histogram at a rate set by the block count.
-- Sandpiles: the 2x2 squares as a basis of the cycle lattice, the sandpile group from the Smith normal form of the Laplacian, spanning trees, the identity element and avalanche sizes as candidate invariants.
+- Sandpiles: the 2x2 squares as a basis of the cycle lattice, the sandpile group from the Smith normal form of the Laplacian, spanning trees, the identity element, the tide period of a grain dropped on the apex (castle horology), and Bak-Tang-Wiesenfeld avalanche statistics as candidate invariants.
 
 ### T - Transcendentals
 
