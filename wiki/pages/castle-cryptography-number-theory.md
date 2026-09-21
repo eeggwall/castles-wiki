@@ -137,6 +137,7 @@ The engineer's one-liner: **a composite structure is only as strong as its weake
 - [[signed-tower-count](pages/signed-tower-count.md)] / [[generating-function-gallery](pages/generating-function-gallery.md)] - where the `char_k` characteristic polynomials come from, and the even/odd factorization pattern.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - why even-`k` `char_k` factors (the structural fact that becomes the reducibility weakness).
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - the height-3 castle count `F(w,3)` carries the reducible `char_2` as a factor, so its recurrence order drops from 7 to 6 by the same `(x−2)` factor that splits the DLP.
+- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - "reducible splits the DLP" and "irreducible leaves the group-order factorization intact" are two rows of the same table: the invariant-factor decomposition of `R^*`, whose largest prime-power factor is the actual security number.
 
 ## Footnotes
 

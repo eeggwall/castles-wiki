@@ -209,6 +209,7 @@ Each of these is a *legitimate* question about the object we just built, sitting
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the roots of `char_k` and their continued fractions; the same eigenvalues whose orders §2 takes the lcm of.
 - [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)] - `castle_dh` and the `mulmod` / `powmod` primitives; the `p_signed` DP is on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `F(w,3)`, an order-6 castle count whose characteristic polynomial contains this seminar's modulus `char_2 = (x−2)(x²−x+2)`.
+- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the same ring `F_p[x]/(Q)` read as an abelian group in invariant-factor form: `R^* ≅ ∏ Z/(p^{d_i} − 1)` when `Q` is squarefree mod `p`, so §5's `ord(x)` and its factorization are the invariant-factor data of `⟨x⟩ ⊂ R^*`.
 
 ## Footnotes
 

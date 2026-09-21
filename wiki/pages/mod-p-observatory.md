@@ -176,6 +176,8 @@ for h in range(2, 6):
 
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - a composite-modulus example: `F(., h) mod 1729 = 7 * 13 * 19` has periods `72, 2520, 25200` for `h = 2, 3, 4`, the lcm of the three prime periods, with the `8400 = 1200 x 7` double-root period of `char_2 mod 7` carried through.
 
+- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the "period = lcm of eigenvalue orders" identity read as `ord(x)` in `R^* = ∏ Z/(p^{d_i} − 1)`, and the "double root multiplies the period by `p`" observation identified as the `p`-group `U = 1 + (g)/(g)^m` living beside the field factor at each discriminant-zero prime (`char_2 mod 7 → U = Z/7`, `char_3 mod 5 → U = Z/5`, `char_4 mod 3 → U = Z/3`).
+
 ## Footnotes
 
 [^1]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L123-127 — "'castle has even total blocks' ... F(w,h) = (h^w - (h-1)^w - P(h-1,w) + P(h-2,w))/2."
