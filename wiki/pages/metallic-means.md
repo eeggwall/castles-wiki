@@ -5,7 +5,7 @@ summary: The family of quadratic irrationals `δ_a = (a + √(a²+4))/2` for a =
 tags: [concept, metallic-mean, golden-ratio, silver-ratio, pell, fibonacci, continued-fraction, quadratic-irrational, norm-minus-one]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-15
-updated: 2026-09-19
+updated: 2026-09-21
 ---
 
 # Metallic means
@@ -101,6 +101,7 @@ The realizability question the "how many states per column" knob raised is thus 
 - [[block-count-constraints](pages/block-count-constraints.md)] - the coin branch touches the ladder: numerical semigroups counted by genus (A007323: 1, 1, 2, 4, 7, 12, 23, 39, …) grow at the golden ratio (Zhai 2013).
 
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - rung 9 off the wiki's own ladder: Ramanujan's near-miss family `x^3 + y^3 = z^3 +- 1` (the recurrence behind `9^3 + 10^3 = 12^3 + 1`) grows by `delta_9^2 = (83 + 9 sqrt 85)/2`, the ninth metallic mean squared; `delta_9 = [9; 9, 9, ...]` versus `delta_9^2 = [82; 1, 81, 1, 81, ...]` is the norm `-1` / norm `+1` contrast made concrete.
+- [[fractional-recurrences](pages/fractional-recurrences.md)] - the ladder is a discrete slice through a continuum. The fractional-Fibonacci `∇^α a_n = a_{n-1}` has growth `g(α) = 1/r*(α)` a continuous bijection `[0,∞) → [1,∞)`, and the ladder crosses this curve at rational-`α` **only for golden** (`α = 1/2` exactly, because `δ_1 - 1 = 1/δ_1` is a unit while `N(δ_a - 1) = -a` for `a ≥ 2`). Silver, bronze, copper, nickel land at transcendental orders `α ≈ 1.65, 3.31, 5.36, 7.70`. Golden is the unique metallic mean whose "half-order recurrence" is exactly itself.
 
 ## Footnotes
 
