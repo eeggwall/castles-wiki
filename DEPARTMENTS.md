@@ -24,6 +24,8 @@ Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Cros
 - Lattice-path and permutation-cycle readings, with the two-line array and Foata intercalation as the source-level grounding.
 - Polyomino embedding and the castle graph as an encoding rather than an object.
 - Substructures: strips, snippets, and proper projections between heights.
+- Decision diagrams: the valid-castle set as a BDD / ZDD, with rank, unrank, uniform sampling, and intersection of castle families for free.
+- Real signals as castles: a URL id, an ID3 label, a waveform, an image row; the codec ladder (WAV / FLAC / MP3, PNG / JPEG) as the compression tier ladder; the lossless castle codec as a spec.
 - Compression and entropy: what the parity clause costs in bits and whether it survives object by object.
 - Equivalences and translation loss: which invariants each encoding keeps or drops.
 
@@ -32,8 +34,10 @@ Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Cros
 - Tower recursion and the transfer matrix as the one-blackboard count.
 - Sign and parity via roots of unity; the castle as an upgraded cycle count.
 - Recurrence machinery: Kitamasa, Berlekamp-Massey, minimal recurrence order, closed forms for `P(k,L)`.
-- Convex counting by Vandermonde and the insert-into-every-slot mechanism.
+- Convex counting by Vandermonde; every castle over its unique convex core, the fiber a product of tower counts, `F(w,h)` as a sum over convex castles.
+- The sign as a character: `(T +- P)/2`, roots of unity, the skyline DFT, and mod-`p` periods as four uses of one orthogonality theorem; the Fourier spectrum of `(-1)^blocks` on `Z_h^w`.
 - Generation: Knuth's Algorithm M, castle Gray codes, loopless enumerators, rank and unrank.
+- Castle-native tours: Hamilton paths on the move graph of `V(w,h)`, SimPath ZDDs, Ruskey's polyomino and antimatroid Gray codes, Viennot heaps of pieces on the tower heap.
 - Brute force as ground truth: the PE 502 enumerator and its limits.
 
 ### N - Numbers
@@ -44,19 +48,24 @@ Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Cros
 - Bounded-height nacci sequences and periodicity modulo primes.
 - Exact arithmetic at scale: PE 502 targets and modular reduction.
 - The Hardin word identity, A005251, and the missing sign-reversing involution.
+- Castle counts as integers: sums of three cubes and the mod-9 residue, `F(6,4) = 1729` and Ramanujan's near-miss C-finite families, Carmichael and perfect numbers as castle counts.
+- Symmetry of the signed transfer matrix: the commutant of `M_k`, the parity sectors of `char_k`, cyclic sieving at `q = -1` on the tower Narayana.
+- Units and lattices: metallic means as fundamental units, Perron roots located in the unit group of their field, the min-height law as a lattice-point question.
 
 ### Z - Zoo
 
 - Taxonomy: geometric versus non-geometric classification, and the sub-family lattice (convex, valley, tree, stack, Ferrers, parallelogram, prime).
-- Rule variations: tower spacing, gap rules, no-touching, vertical spacing, higher dimensions.
+- Rule variations: tower spacing (skylines as window-`g` running minima, Hardin's min-of-`g`-adjacent tables), gap rules, no-touching, vertical spacing, higher dimensions with the superlevel-component block count.
+- Symmetry on the census: mirror, cyclic shift, the dihedral group, and Burnside counts of shapes up to reflection.
+- Signal specimens: DTMF and MF tones as exactly periodic castles, image rows and waveforms placed in the zoo.
 - Specimens: the 10-cell and 11-cell isospectral pairs, the golden and silver castles, the bronze hole.
-- Comparative morphology: convex core uniqueness, unimodal versus convex, statistical-physics cousins.
+- Comparative morphology: the convex core (unique hull above, no unique skeleton below), unimodal versus convex, statistical-physics cousins.
 - Public interpretation: eigenvalues-by-example and the other pedagogy tours; the seminar layer draws its exhibits here.
 
 ### Q - q-Analogues
 
 - Area as a grading: castle-by-area, tree-castle-by-area, bounded-height rows by area.
-- Prime castles and the Klarner `A = P/(1-P)` decomposition.
+- Prime castles and the Klarner `A = P/(1-P)` decomposition; the signed version, where `blocks - 1` is a monoid homomorphism and the sign a character of the free monoid on primes.
 - The q-polyomino zoo: Bousquet-Melou add-a-column GFs read off at the area variable; A001169 and A001523 as landmarks.
 - Classical q-families: Carlitz q-Catalan, Barcucci q-Motzkin and q-Bessel, weakly unimodal compositions, steep polyominoes.
 - Bistatistics: area with block count, peaks, records; hunting q-binomial and Narayana-q coefficients.
@@ -70,7 +79,8 @@ Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Cros
 - Isospectrality: Kac's drum, the exhaustive census to 16 cells, Sunada constructions.
 - Universality: sine-kernel bulk, GUE, random Young tableaux via the LGV kernel.
 - Expanders and zeta: Ramanujan castles, prime closed walks, arithmetic combinatorics.
-- Signals: skyline DFT as a complete invariant, compressed sensing, turnpike reconstruction.
+- Signals: skyline DFT as a complete invariant, compressed sensing, turnpike reconstruction; the Woodward gap, a skyline played as a tone whose spectrum approaches its height histogram at a rate set by the block count.
+- Sandpiles: the 2x2 squares as a basis of the cycle lattice, the sandpile group from the Smith normal form of the Laplacian, spanning trees, the identity element and avalanche sizes as candidate invariants.
 
 ### T - Transcendentals
 
@@ -85,8 +95,8 @@ Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Cros
 ### F - Fractional
 
 - The three definitions on three castle objects: Grunwald-Letnikov on skylines (binomially weighted column differences), Riemann-Liouville on generating functions (`(1 - x)^{-alpha}`), Caputo on recurrences (initial terms preserved).
-- Interpolated statistics: the fractional block count `B_alpha` with area and block count as its endpoints; `Z(q, alpha)` joining the area GF to the Narayana block polynomial.
-- Interpolated arguments: fractional width via `M^{w-1}`, fractional height via the quasi-polynomial in `k`; the parity clause as a branch cut; the half-column embedding problem.
+- Interpolated statistics: the fractional block count `B_alpha` with area and block count as its endpoints; `Z(q, alpha)` joining the area GF to the Narayana block polynomial and as a cell fingerprint; two irrational orders as injective coordinates for a castle.
+- Interpolated arguments: fractional width via `M^{w-1}`, fractional height via the quasi-polynomial in `k`; the parity clause as a branch cut; the half-column embedding problem and its poset theorem (a nonnegative half-column iff the rule is a partial order); fractional width as bit cost; the boundary defect of the semigroup law at the wall.
 - Fractional sums and transforms: Cesaro half-sums and the `sqrt(pi)` in `Gamma(1/2)`; Mittag-Leffler GFs between OGF and EGF; fractional recurrences and the constants no strip realizes.
 - Anomalous diffusion on the castle graph: the comb model and time-fractional order `1/2`; Levy flights and the space-fractional Laplacian; fractional heat traces.
 - Long memory: Hurst exponents and ARFIMA order of real skylines; power-law memory strip rules and their dense truncated transfer matrices.
@@ -98,7 +108,9 @@ Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Cros
 - Steganography on skylines: LSB payloads, block-parity carriers, and per-castle capacity.
 - The castle as a channel: real image rows read as carriers, and degradation under crop, scale, and reencoding.
 - Commitments: whether the parity clause makes a castle a natural commitment scheme, and which invariants an opening reveals.
-- Adversarial models: what a distinguisher sees when castles are drawn from two rules with the same spectrum, and when isospectrality becomes a security parameter.
+- Adversarial models: what a distinguisher sees when castles are drawn from two rules with the same spectrum, and when isospectrality becomes a security parameter; the warden who counts blocks and the joint statistics that could catch a block-parity carrier.
+- Analog channels and in-band signaling: which castle statistics survive an FM voice channel; the parity clause as control computed from data, and the edits that move the skyline without flipping it.
+- Integrity without a key: the keyed fractional phase broken with three known castles; a public-order phase as an integrity check; the castle ring by invariant factors, with Pohlig-Hellman as the structure theorem.
 - Hardness candidates: castle problems (isospectrality census, height reconstruction, turnpike) as sources of one-way functions.
 
 ## Crossovers
@@ -108,6 +120,7 @@ Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Cros
 | E/N | extreme dimensions | counting at the scales where exact arithmetic becomes the obstacle |
 | E/Z | sampling and addresses | drawing specimens from the zoo and naming where each one sits |
 | E/R | beyond parity | counts refined past the even-block clause by other statistics |
+| E/Z | hull outside, towers inside | every castle is its convex core with inverted towers hanging in the plateaus; `F(w,h)` as a sum over convex castles of signed tower counts |
 | R/E | altered rules | representations under changed castle rules and what still counts |
 | Q/E | the second variable | bivariate GFs and q-transfer matrices; area rides along with the count |
 | Q/N | coefficients at q | the area-graded sequences (A001523, A115981, A332578) as OEIS targets in their own right |

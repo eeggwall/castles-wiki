@@ -9,8 +9,8 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 | Slice | Value |
 |---|---|
 | Pages | 130 (30 Sources / 66 Concepts / 33 Analyses) |
-| Departments (open + done) | R 4+10, E 8+12, N 14+24, Z 7+6, Q 7+0, S 8+5, T 7+0, F 13+2, X 8+5 |
-| Items | 76 open, 64 done, 140 total |
+| Departments (open + done) | R 4+10, E 8+12, N 14+24, Z 6+7, Q 7+0, S 8+5, T 7+0, F 13+2, X 8+5 |
+| Items | 75 open, 65 done, 140 total |
 | Dates | wiki 2026-09-13, IDEAS 2026-09-20, last reorganize 2026-09-20 |
 
 ## Seminar program
@@ -81,7 +81,7 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 - Thesis: change one rule, name the family, count it.
 - Status: mixed.
 - Spine: [castle-classification](wiki/pages/castle-classification.md), [castle-snippets](wiki/pages/castle-snippets.md), [tower-spacing-castles](wiki/pages/tower-spacing-castles.md), [convex-core](wiki/pages/convex-core.md), [castle-representations](wiki/pages/castle-representations.md).
-- Open items feeding it: from Z, rule-variation enumeration, no-touching / vertical-spacing variants, higher-dimensional castles, statistical-physics links; from Q, exact `(w,h)` enumeration of convex/unimodal castles with parity.
+- Open items feeding it: from Z, no-touching / vertical-spacing variants, higher-dimensional castles, statistical-physics links; from Q, exact `(w,h)` enumeration of convex/unimodal castles with parity.
 
 ### Arc 12. The half-derivative of a castle
 - Thesis: every integer-order operation the castle already uses - the column difference that counts blocks, the partial sum that accumulates counts, the matrix power that adds a column, the Laplacian that hears the shape - has a fractional-order version, and turning the order knob continuously exposes structure the integer points hide: area and block count are the two ends of one statistic, the parity clause is real in the width and imaginary in the height, a half-sum carries `sqrt(pi)`, and a tree castle is a comb that subdiffuses at order `1/2`.
@@ -183,7 +183,6 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 
 ### Z Department (zoo - specimens, taxonomy, rule variations)
 
-- [ ] **Rule-variation enumeration** - convex skeletons plus U/D insertions into runs of R; enumerate variations and study duplicate detection.
 - [ ] **Horizontal-gap reachable-field census** - which algebraic constants arise as `(h,g)` growth constants range; the horizontal-gap analogue of the height-adjacency [reachable-field-census](wiki/pages/reachable-field-census.md).
 - [ ] **No-touching / vertical-spacing variants** - beyond min-gap `g`, the no-touching (diagonal exclusion) and vertical-spacing rule families.
 - [ ] **Dihedral Burnside on the census** - [isospectral-castles](wiki/pages/isospectral-castles.md) is "mirror-deduped," the skyline DFT on [spectral-analysis](wiki/pages/spectral-analysis.md) is "a complete invariant modulo cyclic shift," and Classification counts shapes up to reflection: mirror is `Z/2`, cyclic shift is `Z/w`, together dihedral `D_w`, which is not abelian; for mirror alone over all castles with `n <= 16` cells there are 65,535 compositions and 765 palindromic ones, so Burnside gives 33,150 mirror classes and `(2^{n-1} + 2^{floor(n/2)})/2` per `n`; state the group on each relevant page and reconcile the stated counts.
@@ -191,6 +190,7 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 - [ ] **Tone-castle catalogue** - every DTMF and MF digit at 8 kHz as an exactly periodic castle (period `8000/gcd(8000,f)`), with DFT support and Goertzel response; which tone pairs are exactly periodic and which only approximately.
 - [ ] **Statistical physics links** - directed animals, column-convex polygons, hard-square type models.
 
+- [x] **[Rule-variation enumeration](wiki/pages/convex-core.md)** - the variations of a convex castle are the castles over it as convex core; counted per column, `prod m^free` over plateaus, there are no duplicates, and the source's `D`/`U`-pair insertion duplicated because it counted insertions.
 - [x] **[Convex core of a castle](wiki/pages/convex-core.md)** - every castle has a unique minimal unimodal majorant `min(prefix max, suffix max)`; the castles over a core lower the non-anchor columns of its plateaus, and the fiber is a product of tower counts, `prod T(m-1, free)` unsigned and `(-1)^h prod P(m-1, free)` signed, summing to `h^w - (h-1)^w` and `P(h-2,w) - P(h-1,w)`; the maximal unimodal minorant is not unique (`(2,1,2)` has two); verified `w <= 6`, `h <= 5`.
 - [x] **[OEIS id of the tower-spacing table](wiki/pages/tower-spacing-castles.md)** - a tower-spacing-`g` castle is a skyline whose 0-based heights are the window-`g` running minimum of some array (proved via morphological closing), so the `(h,g)` table is Hardin's "minimum of `g` adjacent elements" family; all 25 cells `h,g <= 6` resolved: `h=2` is A005251 / A005252 / A005253 / A005689 / A098574 with closed form `Sum_k C(w+g-(g-1)k, 2k)`, `h=3,4` are the tables A217883 / A217954, `g=3` is A228461, and the six cells `h in {5,6}`, `g in {4,5,6}` are novel-candidates; minimal recurrence order `(h-1)g+1`; `g -> infinity` is the unimodal castles.
 - [x] **[Gap-rule variations / tower-spacing castles](wiki/pages/tower-spacing-castles.md)** - min-gap-`g` worked out via a column-sweep transfer matrix; at `h=2`, `g=2` is plastic-squared and `g=3` is golden.
