@@ -245,6 +245,7 @@ Open:
 - [[castle-representations](pages/castle-representations.md)] - the skyline tuple the difference operator acts on.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] - the first-difference sequence whose positive part is the integer block count.
 - [[castle-compression](pages/castle-compression.md)] and [[castle-entropy](pages/castle-entropy.md)] - the tier ladder the fractional order interpolates, and the one-bit parity cost.
+- [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the `alpha` axis reread as a shortening axis: `H(C | B_alpha)` interpolates between `H(C | N)` at `alpha = 0` and `H(C | B)` at `alpha = 1`, and `B_{1/2}` cuts the residual to zero on ten of the fifteen `(4, 2)` castles.
 - [[castle-counting-function](pages/castle-counting-function.md)] - `F(4, 2) = 10`, the worked cell.
 - [[castle-snippets](pages/castle-snippets.md)] - `all_castles`, `blocks`.
 - [[image-as-castle](pages/image-as-castle.md)] and [[song-as-castle](pages/song-as-castle.md)] - the real skylines the compression reading is aimed at.

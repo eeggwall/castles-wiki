@@ -44,6 +44,7 @@ By (w,h) the concave counts add nothing new: `valley(w,h) = convex(w,h) = C(2h+w
 - [[convex-castle](pages/convex-castle.md)] — convex/valley castles and their binomial (w,h) count.
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] — why dense-entry matches are low-value but real.
 - [[aocp-combinatorics](pages/aocp-combinatorics.md)] — area is the castle's natural second grading; the inversion statistic and its q-factorial generating function (GF) are the permutation-level prototype of such q-gradings.
+- [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the area marginal `H(N)` reads as an information-theoretic summary: at fixed `(w, h)` it grows as `(1/2) log_2 w + const` with the Gaussian formula matching brute force to within `0.01` bit by `w = 10`, and area beats blocks as a single-statistic summary at every `(w, h)` tested.
 
 ## Footnotes
 

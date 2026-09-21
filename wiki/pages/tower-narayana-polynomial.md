@@ -63,6 +63,8 @@ Per [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] these are draft 
 
 Resolves the "where is Catalan?" question the wiki has carried since [[project-euler-502-representations](pages/project-euler-502-representations.md)]: the Dyck-shape analogy of the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] does connect to Narayana/Catalan — through the tower block-count, giving four existing OEIS entries a heap interpretation and opening the Viennot heap-theory thread.
 
+The Narayana-polynomial GF `Narayana_w(x) / (1 - x)^w` for the block-count distribution is the analytical origin of the marginal entropy `H(B)` used on [[castle-conditional-entropy](pages/castle-conditional-entropy.md)]: taking its `w -> infty` limit gives a distribution with mean and variance both linear in `w`, so `H(B) ~ (1/2) log_2 w + const`, matching the brute-force conditional-entropy table on castles.
+
 ## Footnotes
 
 [^1]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `crosslink-avenues.md` §"Tier 2" L36-47 — "T(w,b) = # towers of width w with exactly b blocks = sum_{k=1..w} Narayana(w,k) * C(b + w − k, w − 1) ... GF = (Narayana_w(x)) / (1 − x)^w ... verified for w = 1..7 against brute force ... Narayana(w,k) = ... = A001263."
