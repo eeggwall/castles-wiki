@@ -141,6 +141,7 @@ And the discriminant-zero side of [[mod-p-observatory](pages/mod-p-observatory.m
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the roots of `char_k` in `ℝ` and `ℂ`; the same roots this page reduces mod `p` and puts into `F_{p^{d_i}}^*`.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - measures the linear complexity of a filtered sequence; the tool that produced the `d = 3` deficit numbers this page explains.
 - [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - reads `R^*` via invariant factors at `10^9 + 7`; the concrete Connection-to-castle-cryptography section that this page's structure explains.
+- [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] - the m-th-root character sums that project out block-count residue classes are exactly the invariant-factor projectors on `R^* = ∏ Z/(p^{d_i} − 1)`.
 
 ## Footnotes
 

@@ -47,6 +47,7 @@ This taxonomy and procedure are the enumeration reading of castles; the *countin
 - [[lattice-paths](pages/lattice-paths.md)] — the source of the U/R/D device.
 - [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] — a U/R/D string with fixed letter counts is a three-letter multiset permutation; the unconstrained count is the trinomial triangle A027907 (central A002426), which the castle grammar prunes.
 - [[aocp-multisets](pages/aocp-multisets.md)] — the step string as Knuth's two-line array (sorted letters over the word), before the grammar constrains it.
+- [[block-count-constraints](pages/block-count-constraints.md)] — "number of Ds is even" IS the `m = 2` residue extraction on the D-count generating function, the residue branch of the general trichotomy.
 
 ## Footnotes
 

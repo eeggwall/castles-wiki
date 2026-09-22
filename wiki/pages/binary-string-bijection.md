@@ -38,6 +38,7 @@ The *signed* count uses the same bijection with a `(−1)^{runs(b)}` weight, giv
 - [[castle-representations](pages/castle-representations.md)] — the binary-string encoding this bijection formalizes.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the induction and recursion built on the bijection.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the sibling-independence that makes the count factor.
+- [[block-count-constraints](pages/block-count-constraints.md)] — the open thread "gap-constrained placements" opens on this page is already answered there by the semigroup / lacunary branches of the trichotomy.
 
 ## Footnotes
 

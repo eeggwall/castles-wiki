@@ -177,6 +177,7 @@ Not on the arc: Heap's algorithm and Steinhaus-Johnson-Trotter are permutation G
 - [[castle-representations](pages/castle-representations.md)] - column-height tuple, binary, U/R/D step-string; the tour lives on the tuple.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] - the single-coordinate-change lens the Gray tour realises.
 - [[castle-entropy](pages/castle-entropy.md)] - why the even-block filter is one bit of the `w log_2 h` the odometer spends.
+- [[block-count-constraints](pages/block-count-constraints.md)] - the running `P = Σ s(c)` sign updates are the residue-class `m = 2` extraction of the block-count trichotomy, run at Gray-tour cost.
 
 ## Footnotes
 

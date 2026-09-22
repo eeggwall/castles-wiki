@@ -99,6 +99,7 @@ The middle two are the same object up to a bit-flip (a height-2 tower-spacing ca
 - [[castle-by-area](pages/castle-by-area.md)] - the composition-of-area framing this bijection uses.
 - [[binary-string-bijection](pages/binary-string-bijection.md)] - the wiki's other castle ↔ binary-string encoding (the `T(k,L) = (k+1)^L` bijection), a cousin of the gap-string map here.
 - [[unique-tournament](pages/unique-tournament.md)] - the `h = 4` row of the same tree-castle family, where Khovanova's basic strings `0, 001, 0011, 00101` encode compositions with parts in `{1, 3, 4, 5}` by the same composition-as-binary-string trick.
+- [[block-count-constraints](pages/block-count-constraints.md)] - the sign-reversing involution realizing `P_even(4m+2, L) = 2^L · W_m` is a residue-class-mod-m block-count filter, the same residue branch this page axiomatizes.
 
 ## Footnotes
 

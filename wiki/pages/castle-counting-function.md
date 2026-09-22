@@ -59,6 +59,7 @@ The three arguments deliberately stress different regimes: a very wide/short gri
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] — how the large-parameter values are actually computed.
 - [[generating-functions](pages/generating-functions.md)] — the intended method for computing `F(w,h)` at large parameters.
 - [[project-euler-502-observations](pages/project-euler-502-observations.md)] — the source's own statement that without the even clause the count is just `h^w − (h−1)^w`, and that the clause is "almost the entire difficulty."
+- [[block-count-constraints](pages/block-count-constraints.md)] — the "even-block PE 502 specialization" is one point in the residue / sparse / semigroup trichotomy over block-count generating functions.
 
 ## Footnotes
 

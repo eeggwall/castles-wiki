@@ -173,6 +173,7 @@ The one-rule step (`strip_field`, above), the `strip_field_census` two-phase swe
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - Axis 8, the growth-type meta-classification these Perron roots populate.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - why the metallic fields `Q(√(a²+4))` are the distinguished (purely-periodic-CF, norm-`−1`) quadratics among all reachable ones.
 - [[fractional-recurrences](pages/fractional-recurrences.md)] - the continuum-completion of this census, in a different direction. The fractional-Fibonacci growth curve `g(α) = 1/r*(α)`, `(1-r*)^α = r*`, threads three of this page's cubic Perron roots at rational `α` (supergolden at `1/3`, plastic-squared at `2/3`, plastic-cubed at `3/2`) and passes through every real `> 1` monotonically. At irrational `α` the growth is transcendental (Baker/Gelfond-Schneider), populating **the complement of the reachable-field census**: transcendentals no 0/1 castle-strip transfer matrix can ever realize.
+- [[power-law-memory-rules](pages/power-law-memory-rules.md)] - answers the N Department "is K → ∞ a new number?" against this census's algebraic universe: `K → ∞` at `h = 2` stays on integer `2` rather than crossing to a new transcendental, and the K-truncated Perron roots ratchet through this census's plastic / supergolden / golden / plastic-squared rungs.
 
 ## Footnotes
 

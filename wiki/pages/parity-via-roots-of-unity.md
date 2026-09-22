@@ -110,6 +110,7 @@ One requested case does *not* fall out of this machinery: **"blocks is a power o
 - [[generating-functions-topic](pages/generating-functions-topic.md)] — the EGF parity projector `(e^x ± e^{−x})/2`, the same character applied to the index.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] — the mod-p periods, a different (additive) use of modular structure.
 - [[block-count-constraints](pages/block-count-constraints.md)] — the full trichotomy (residue / sparse / semigroup), of which this page is the residue case.
+- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] — the `R^* = ∏ Z/(p^{d_i}−1)` invariant-factor decomposition is where the m-th roots of unity naturally act as characters; the sum-idempotents this page uses are the invariant-factor projectors.
 
 ## Footnotes
 

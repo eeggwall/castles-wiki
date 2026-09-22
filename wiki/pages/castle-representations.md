@@ -83,6 +83,7 @@ The castle-factoring work sketches three additional encodings, each a re-view of
 - [[castle-counting-function](pages/castle-counting-function.md)] — the count these encodings are built to enable.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)], [[castle-sign](pages/castle-sign.md)], [[castle-foata-transform](pages/castle-foata-transform.md)] — built on the column-height encoding.
 - [[castle-snippets](pages/castle-snippets.md)] — tested Python one-liners for enumerating and predicating on the column-height (skyline) encoding.
+- [[block-count-constraints](pages/block-count-constraints.md)] — reads the binary-subsection's run-count block formula as one point of the residue/sparse/semigroup trichotomy on `G(z)`.
 
 ## Footnotes
 

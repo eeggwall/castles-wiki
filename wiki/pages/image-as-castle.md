@@ -74,6 +74,7 @@ PNG beats zlib on the same bytes because of its per-row filters - Sub, Up, Avera
 - [[castle-representations](pages/castle-representations.md)] - the skyline encoding.
 - [[castle-snippets](pages/castle-snippets.md)] - the `blocks` predicate used for the 1D verification.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the skyline DFT, per row.
+- [[block-count-constraints](pages/block-count-constraints.md)] - the level-sum identity `blocks(c) = Σ_k #(runs c_i ≥ k)` is a specialization of the general G-mechanism this page axiomatizes into a residue/sparse/semigroup trichotomy.
 
 ## Appearances in Sources
 
