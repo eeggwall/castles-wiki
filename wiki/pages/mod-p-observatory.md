@@ -175,6 +175,8 @@ for h in range(2, 6):
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] — `F(w,3)`, whose char poly contains `x² − x + 2` (discriminant `−7`): its period mod 7 inherits the `(x+3)²` double root above.
 
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - a composite-modulus example: `F(., h) mod 1729 = 7 * 13 * 19` has periods `72, 2520, 25200` for `h = 2, 3, 4`, the lcm of the three prime periods, with the `8400 = 1200 x 7` double-root period of `char_2 mod 7` carried through.
+- [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] - the mod-9 census of the `F` table row by row, column by column, and aggregated over `A(w, h) <= N`; the deficit against `2/9 = 22.22%` is a finite-N artifact, and columns `w in {3^{k-1} + 1, 3^{k-1} + 3, 3^{k-1} + 8}` per bracket hit the equidistribution value to the digit.
+- [[mod-9-coset-lift](pages/mod-9-coset-lift.md)] - the three-adic mechanism underneath: this page's "multiplicity `m` inflates the period by `p^{ceil(log_p m)}`" rule is what gives column periods `v_3 >= 2` and forces row periods to `v_3 = 1`; joint-state cycle proof that `(x +- 1)^3` never divides `char_k mod 3`.
 
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the "period = lcm of eigenvalue orders" identity read as `ord(x)` in `R^* = ∏ Z/(p^{d_i} − 1)`, and the "double root multiplies the period by `p`" observation identified as the `p`-group `U = 1 + (g)/(g)^m` living beside the field factor at each discriminant-zero prime (`char_2 mod 7 → U = Z/7`, `char_3 mod 5 → U = Z/5`, `char_4 mod 3 → U = Z/3`).
 

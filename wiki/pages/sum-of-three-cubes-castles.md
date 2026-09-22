@@ -216,10 +216,10 @@ Settled:
 - `F(5,5) = 906` is a Booker-Sutherland 2019 number; none of the seven unsolved `n < 1000` is a castle count outside the width-2 cell.
 - Even-block counts with `w >= 4` are sums of three positive cubes at exactly the background rate (56 of 552 against 55.7); the taxicab number and `F(4,85) = 5^3 + 93^3` are the only nondegenerate two-cube even counts below `10^9`.
 - Even perfect numbers: `2^{p-1}(2^p - 1) = F(2p, 2)` for `p = 3 (mod 4)` and `= odd(3, 2^p)` for all `p`.
+- **Mod-9 equidistribution.** The `20.4%` at `A <= 10^9` is a finite-N mixing artifact and the aggregate converges monotonically to `2/9` - `21.36%` at `10^12`, `21.98%` at `10^18`, `22.214%` at `10^36`. Row rates converge by `h = 9` (all within `0.6` pp) and columns `w in {4, 6, 10, 12, 17, 28, 30}` hit `2/9` to the digit with exactly uniform histograms over their full h-period. The `h = 7` deficit is `1.5 sigma` finite-period noise in a period `2184` not divisible by `9`, not a bias in `P(k, w)`. Full analysis on [[mod-9-equidistribution](pages/mod-9-equidistribution.md)].
 
 Open:
 
-- **Mod-9 equidistribution of the `F` table.** The `w >= 4` exclusion rate is `20.4%` against `22.2%` expected, and the `h = 7` row sits at `20.1%` over an exact period of 2184; is the deficit structural (a bias in `P(k,w) mod 9`) or does it wash out with `h`? The `h = 12` row at `22.21%` over 11.5 million terms says it washes out row by row.
 - **A bijection for `F(13,2) = T(15,3)`** and for the 56 positive-cube identities, `F(4,2) = 10 = 1 + 1 + 8` first; the Hardy-Ramanujan page's `1729 = 12^3 + 1` question with a smaller test case.
 - **Representations for `367 = F(4,7)`, `439 = F(5,4)`, `903 = F(3,43)`** below `50000^3` do not exist; the literature has them, and recording the smallest is a lookup, not a computation.
 
@@ -232,6 +232,8 @@ Open:
 ## Related Concepts
 
 - [[sums-of-three-cubes](pages/sums-of-three-cubes.md)] - the number-theory background: the mod-9 obstruction, Heath-Brown, the 2019 results, the positive-cube density.
+- [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] - the row/column/aggregate reading of `F(w, h) mod 9`; the `20.4%` at `A <= 10^9` is a finite-N mixing artifact converging to `2/9` at rate `0.0786 * N^{-1/12}`.
+- [[mod-9-coset-lift](pages/mod-9-coset-lift.md)] - the mechanism companion: three-adic row/column divisibility gap, six-step blackboard proof of exact `2/9` at `w = 4`, and the coset-lift sufficiency criterion for column uniformity.
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - `F(6,4) = 1729`, the page this one generalizes.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] and [[castle-counting-function](pages/castle-counting-function.md)] - the closed form and the `A / F / odd` notation.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - period equals lcm of eigenvalue orders; the mod-9 periods here extend its tables.
