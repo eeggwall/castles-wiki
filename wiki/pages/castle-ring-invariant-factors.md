@@ -140,6 +140,7 @@ And the discriminant-zero side of [[mod-p-observatory](pages/mod-p-observatory.m
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - why `char_2` factors, and the `λ · λ̄ = 2` root relation on the quadratic factor; the same relation this page uses to explain the `d = 3` deficits.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the roots of `char_k` in `ℝ` and `ℂ`; the same roots this page reduces mod `p` and puts into `F_{p^{d_i}}^*`.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - measures the linear complexity of a filtered sequence; the tool that produced the `d = 3` deficit numbers this page explains.
+- [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - reads `R^*` via invariant factors at `10^9 + 7`; the concrete Connection-to-castle-cryptography section that this page's structure explains.
 
 ## Footnotes
 

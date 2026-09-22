@@ -138,6 +138,8 @@ i.e. `P(k,1) = 1, 0, 1, 0, …`, `P(k,2) = 1, −2, 3, −4, …`, `P(k,3) = 1, 
 - [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] — the catalogue where each `P(k,·)` row's order and OEIS novelty status is recorded.
 - [[castle-sign](pages/castle-sign.md)] — the definition of `P` as the signed tower count.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - why the k-direction order is `2L−2`: the characteristic polynomial is `(x+1)^L (x−1)^{L−2}`.
+- [[aocp-generating-functions](pages/aocp-generating-functions.md)] - Knuth's "linear recurrence ⇒ rational GF" theorem this page empirically confirms in both directions.
+- [[generating-functions](pages/generating-functions.md)] - the concept page whose "GF → recurrence: coefficient-matching mechanic" section walks through exactly the mechanism used here.
 
 ## Footnotes
 

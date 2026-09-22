@@ -77,6 +77,7 @@ The "base cases" `a_0 = 1, a_1 = 2` are this recurrence evaluated at `n = 0, 1` 
 - [[castle-polyomino](pages/castle-polyomino.md)] — the object whose configurations are being counted.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] — the seminar-shaped worked example of "coefficient matching → two-atom tiling → the castle strip that realizes it → silver-ratio thread."
 - [[pell-numbers](pages/pell-numbers.md)] — the integer sequence that mnemonic produces.
+- [[recurrence-discovery](pages/recurrence-discovery.md)] — the empirical companion: Berlekamp-Massey run in both directions of `P(k,L)`, pinning k-direction order to `2L−2`.
 
 ## Footnotes
 

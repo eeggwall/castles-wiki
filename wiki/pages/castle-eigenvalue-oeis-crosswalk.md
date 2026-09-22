@@ -371,6 +371,7 @@ All snippets ran under Python 3.11 with SymPy 1.14 and mpmath 1.3; the DP and Be
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the silver-ratio seminar arc; its Pell numbers are the convergent denominators of `1 + √2` in Part 1.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - every constant on this page is algebraic, as C-finiteness demands; `ψ` joins `φ` and `1+√2` on the algebraic side.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - the explanation of Part 4: the symmetry that factors `char_k`, the closed-form factors, and the plastic number's own page.
+- [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the from-scratch pedagogy that motivates the higher-degree eigenvalues of Part 4 by working small castles by hand.
 
 ## Footnotes
 

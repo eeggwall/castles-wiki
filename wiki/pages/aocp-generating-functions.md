@@ -58,6 +58,7 @@ This is not background — it is the exact toolkit of the castle solution, item 
 
 Linked from the source but not yet ingested: Analytic Combinatorics, Applied Combinatorics.
 - [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] — the sibling Knuth page: the negative binomial `1/(1−z)^{n+1}` via negating the upper index, and the `2^n` / alternating-sum identities.
+- [[recurrence-discovery](pages/recurrence-discovery.md)] — the empirical confirmation of "linear recurrence ⇒ rational GF" run in both directions on the castle's `P(k,L)` array.
 
 ## Relation to Other Wiki Pages
 

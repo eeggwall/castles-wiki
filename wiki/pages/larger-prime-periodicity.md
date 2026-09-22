@@ -187,6 +187,7 @@ At `10^9 + 7`, this reading says the cryptographic ring `R = F_P[x] / char_k` ha
 - [[mod-9-coset-lift](pages/mod-9-coset-lift.md)] - the mod-9 (composite) case; `p = 3` extended to `p = 9` by the same multiplicity-inflation rule.
 - [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] - the mod-`10^9 + 7` pipeline whose C-finiteness (not its period) is what's exploited.
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - a composite modulus example: `1729 = 7 * 13 * 19` periods `72, 2520, 25200` for `h = 2, 3, 4`, the lcm of the three prime-mod periods.
+- [[finite-fields](pages/finite-fields.md)] - `F_{p^d}^*` orders are this page's central mechanism; the pedagogy hub for exactly the eigenvalue-order arithmetic used here.
 
 ## Footnotes
 
