@@ -219,6 +219,7 @@ Setting `λ = 1, β = α, γ` any convenient initial fit gives exactly the denom
 - [[fractional-block-count](pages/fractional-block-count.md)] and [[fractional-width-and-height](pages/fractional-width-and-height.md)] - the F Department's two earlier fractional-order studies, which run the same `∇^α` operator on skylines rather than on the recurrence.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - `α = 1/2` gives `g = φ`, the same `φ` whose continued fraction is `[1; 1, 1, …]`; the fractional recurrence recovers φ from a different structural direction.
 - [[pell-numbers](pages/pell-numbers.md)] - silver `1 + √2` at `α = 1` in the Fibonacci-Pell interpolation, the clean "order-1-in-a-Fibonacci-family" reading.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] - the castle-side realization of the α = 1 silver rung: the anchored 1-smooth height-3 strip whose Perron root *is* `1 + √2`.
 - [[power-law-memory-rules](pages/power-law-memory-rules.md)] - runs the same GL kernel on the strip *rule* rather than on the count sequence; a K-truncation ratchets its Perron root through the reachable-field census (plastic, supergolden, golden, plastic-squared) as memory grows, and the K -> infinity limit at `h = 2` sits back on integer `2` rather than reaching a new transcendental.
 
 ## Footnotes

@@ -102,6 +102,7 @@ The realizability question the "how many states per column" knob raised is thus 
 
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - rung 9 off the wiki's own ladder: Ramanujan's near-miss family `x^3 + y^3 = z^3 +- 1` (the recurrence behind `9^3 + 10^3 = 12^3 + 1`) grows by `delta_9^2 = (83 + 9 sqrt 85)/2`, the ninth metallic mean squared; `delta_9 = [9; 9, 9, ...]` versus `delta_9^2 = [82; 1, 81, 1, 81, ...]` is the norm `-1` / norm `+1` contrast made concrete.
 - [[fractional-recurrences](pages/fractional-recurrences.md)] - the ladder is a discrete slice through a continuum. The fractional-Fibonacci `∇^α a_n = a_{n-1}` has growth `g(α) = 1/r*(α)` a continuous bijection `[0,∞) → [1,∞)`, and the ladder crosses this curve at rational-`α` **only for golden** (`α = 1/2` exactly, because `δ_1 - 1 = 1/δ_1` is a unit while `N(δ_a - 1) = -a` for `a ≥ 2`). Silver, bronze, copper, nickel land at transcendental orders `α ≈ 1.65, 3.31, 5.36, 7.70`. Golden is the unique metallic mean whose "half-order recurrence" is exactly itself.
+- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] - the n-nacci growth constants `α_h` sit near but *off* the metallic ladder for `h ≥ 3`: `α_2 = δ_1` is golden, but tribonacci / tetranacci / … are not metallic. The contrast is load-bearing structural evidence for what the ladder is not.
 
 ## Footnotes
 

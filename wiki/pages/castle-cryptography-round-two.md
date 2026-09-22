@@ -240,6 +240,8 @@ A builder who never runs step 4 declares victory after Fix 1. A breaker who neve
 - [[castle-compression](pages/castle-compression.md)] - the linear-complexity bound `C(d+e−1, e)` measures how much a nonlinear filter inflates a sequence's shortest linear description.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `F(w,3)` is a public castle count with `char_2 = (x−2)(x²−x+2)` inside its characteristic polynomial; the root coincidence `λλ̄ = 2` is the shared `(x−2)` that drops its order to 6.
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - Pohlig-Hellman (Attack 3) read as the fundamental theorem of finitely generated abelian groups run on `⟨x⟩ ⊂ R^*`; the cyclotomic factorization (Attack 4) as the invariant-factor structure of `R^* = ∏ Z/(p^{d_i} − 1)`; the two `d = 3` linear-complexity deficits (Attack 5) as the norm relation `α · ᾱ = 2` (one collides a character, the other kills a coefficient via `s_2 = −3·s_1`).
+- [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - Attack 5's `C(d+e-1, e)` linear-complexity bound read as an information-theoretic residual: the nonlinear filter inflates the linear description of the stream, and BM measures the inflation the same way conditional entropy measures residual bits.
+- [[castle-entropy](pages/castle-entropy.md)] - the growth constant of the recovered linear recurrence is an entropy rate; Attack 5 turns that rate into a key-size bound.
 
 ## Footnotes
 

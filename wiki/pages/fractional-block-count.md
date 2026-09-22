@@ -250,6 +250,7 @@ Open:
 - [[castle-snippets](pages/castle-snippets.md)] - `all_castles`, `blocks`.
 - [[image-as-castle](pages/image-as-castle.md)] and [[song-as-castle](pages/song-as-castle.md)] - the real skylines the compression reading is aimed at.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - `sqrt(pi)` in the half-order block count of a box is a crossing of the wall via `Gamma(1/2)`.
+- [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the phase-sum `P_α` at `α = 1/4` is the order-4 unit-circle rotation whose castle instance is `F(w,2) = A038505(w+1)`; the fractional order threads a continuous knob through the discrete hyperbolic family.
 
 ## Footnotes
 

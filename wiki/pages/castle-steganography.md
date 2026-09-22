@@ -80,6 +80,7 @@ The S8 arc asks what the even-block bit *is*; here it is a covert channel of cap
 - [[castle-entropy](pages/castle-entropy.md)] - the parity clause is one bit; channel B is that bit as capacity.
 - [[castle-sign](pages/castle-sign.md)] - the block count formula the flip lemma is read off.
 - [[castle-compression](pages/castle-compression.md)] - why lossless codecs preserve both channels and lossy ones destroy them.
+- [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the one bit this channel monetizes is the same bit that separates H(B) from H(N); the parity-clause thread.
 - [[castle-snippets](pages/castle-snippets.md)] - the `blocks` predicate.
 
 ## Appearances in Sources

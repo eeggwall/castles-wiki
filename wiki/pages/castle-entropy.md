@@ -82,6 +82,7 @@ Uniform entropy and entropy rate are the same limit approached from two sides. U
 - [[castle-compression](pages/castle-compression.md)] — the dual view: entropy measures the information content, compression measures how cheaply it is written.
 - [[song-as-castle](pages/song-as-castle.md)] - the parity bit measured at URL scale: `log₂ A(34,16) − log₂ F(34,16) = 1.000000`, and what the bit does not buy (a single-column corruption flips block parity only 44% of the time).
 - [[castle-steganography](pages/castle-steganography.md)] - the parity bit as capacity: one message bit per castle, set with a one-cell edit at a strict local extremum, distribution unchanged.
+- [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - linear complexity as a computational analogue of entropy rate: Attack 5 turns the recovered recurrence order into a key-size bound `C(d+e-1, e)`.
 - [[project-euler-502-observations](pages/project-euler-502-observations.md)] — the source's "the even-block clause is almost the entire difficulty," priced here at exactly one bit; [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] — `F(13,10)` in bits.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] — `F(w,3)`, the sequence the `h = 3` row of the table is drawn from.
 - [[aocp-permutations](pages/aocp-permutations.md)] — Stirling's `log₂ n! ≈ n·log₂ n − n·log₂ e`, the entropy of a uniform permutation, the permutation-side twin of `w·log₂ h − 1`.

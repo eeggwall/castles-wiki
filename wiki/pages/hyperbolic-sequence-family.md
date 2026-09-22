@@ -47,6 +47,8 @@ These identities were **submitted to OEIS on 2026-09-18** ([[oeis-height2-hyperb
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] — why isolated entries like these are the best cross-link targets.
 - [[block-count-constraints](pages/block-count-constraints.md)] - "sum every 4th binomial" is the `m = 2` residue extraction on the height-1 tower generating function (GF) `Σ_r C(L+1, 2r) z^r`: `A038503(L+1)` is the even-block class, `A038505(L+1)` the odd-block class.
 - [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] - `F(4,2) = C(5,2) = 10` is the `s = 0` term of `Σ_s C(w+1, 4s+2)`; three-run second rows enter at `w = 5`.
+- [[fractional-width-and-height](pages/fractional-width-and-height.md)] - the continuous-width extension: `F(w,2)`'s period-8 oscillation is this family read off the principal branch of a fractional-order extension.
+- [[fractional-block-count](pages/fractional-block-count.md)] - the phase-sum `P_α = Σ e^{2π i α · blocks}` interpolates through the unit-circle territory this order-4 family inhabits at `α = 1/4`.
 
 ## Footnotes
 

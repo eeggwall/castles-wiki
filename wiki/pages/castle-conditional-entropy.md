@@ -141,6 +141,8 @@ At `(w, h)` in the table, that set has size on average `F(w, h) / w`, and the re
 - [[fractional-block-count](pages/fractional-block-count.md)] - the alpha-interpolation between `H(C | N)` and `H(C | B)`, and the case where a single fractional statistic is sufficient.
 - [[castle-compression](pages/castle-compression.md)] - the dual view: conditioning is an oracle-side compression, `log_2 w + 1` bits of the raw `log_2 F` are attributed to the two structural statistics.
 - [[castle-representations](pages/castle-representations.md)] - the encodings the conditional-entropy accounting is written against.
+- [[castle-steganography](pages/castle-steganography.md)] - the one bit `H(N) - H(B)` reads as a covert channel of capacity exactly one bit per castle; the parity-clause thread.
+- [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - linear complexity as a compression story: Attack 5's `C(d+e-1, e)` linearized-filter bound is the information-theoretic residual accounting run against a nonlinear-feedback stream cipher.
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the `blocks_of`, `all_castles` reference implementations against which every number here was checked.
 
 ## Appearances in Sources

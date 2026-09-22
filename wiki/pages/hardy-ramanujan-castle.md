@@ -229,6 +229,7 @@ Open:
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - palindromic characteristic polynomials and the norm `+1` versus norm `-1` continued-fraction dichotomy that `delta_9` versus `delta_9^2` illustrates.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the same method (convergents, Lucas sequences, OEIS) applied to castle eigenvalues; A051028-A051030 are the Diophantine cousins.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] and [[recurrence-discovery](pages/recurrence-discovery.md)] - the instrument that recovers `1 - 82x - 82x^2 + x^3` from the terms.
+- [[hardin-word-identity](pages/hardin-word-identity.md)] - the palindromic-vs-anti-palindromic characteristic-polynomial theme applied to the `H_{2m+1}` Hardin family; the "which rungs do other Ramanujan-type identities sit on?" question this page opens is exactly the transfer-matrix-similarity question Hardin answered there.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] and [[castle-counting-function](pages/castle-counting-function.md)] - `F(6,4) = (A - P(3,6) + P(2,6))/2 = 1729`.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - `T(k, 3) = (k+1)^3`, the cube reading of the taxicab identity.
 - [[song-as-castle](pages/song-as-castle.md)] - the rank/unrank bijection used for "castle number 1729".
