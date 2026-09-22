@@ -127,6 +127,7 @@ The spectral-radius census on [[castle-graph-spectral-radius](pages/castle-graph
 ## Related Concepts
 
 - [[spectral-analysis](pages/spectral-analysis.md)] - method 4 (combinatorial Laplacian) and the isospectral hunt this page runs.
+- [[levy-flights](pages/levy-flights.md)] - the fractional Laplacian `L^α` on the castle graph and the local return probability at a named cell as a non-spectral separator of the 11-cell Laplacian-isospectral tree pair here (fails as a spectral invariant, works as a local one).
 - [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - Axis 9; isospectral pair is the pair predicate there.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the single-eigenvalue census (golden, silver, φ² castles) and the silver list checked here.
 - [[castle-snippets](pages/castle-snippets.md)] - `compositions`, `castle_graph_radius`, and the spectrum-hashing loop.
