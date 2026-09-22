@@ -41,6 +41,8 @@ OEIS requires **human authorship** — a tool may run the verification scripts, 
 
 - [[castle-by-area](pages/castle-by-area.md)], [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)], [[narayana-numbers](pages/narayana-numbers.md)] — sequence families reached by this method.
 - [[signed-tower-count](pages/signed-tower-count.md)] — where the offset-verification discipline caught a real/imaginary mixup.
+- [[oeis-index](pages/oeis-index.md)] — the OEIS meta-triad's mechanical half: script-generated directory of every A-number on the wiki.
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] — the OEIS meta-triad's hand-curated half: castle-counting sequences with novelty status and submission priority.
 
 ## Footnotes
 

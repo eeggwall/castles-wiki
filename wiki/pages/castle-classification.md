@@ -86,6 +86,7 @@ Each scope's page carries its own detailed open list; the largest open items acr
 - [[convex-castle](pages/convex-castle.md)] - the type whose block count is fixed by its shape.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the methods hub paired with the spectral predicates.
 - [[castle-snippets](pages/castle-snippets.md)] - tested Python one-liners for the shape predicates and the castle-graph primitives.
+- [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - each restriction axis defined here is a sub-subset of `V(w,h)` with its own single-column-change Gray-tour question, open per-axis.
 
 ## Footnotes
 

@@ -135,6 +135,7 @@ The spectral-radius census on [[castle-graph-spectral-radius](pages/castle-graph
 - [[castle-representations](pages/castle-representations.md)] - the skyline encoding the enumeration runs on.
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - the 65,534-skyline sweep is Knuth's Algorithm M (mixed-radix enumeration of `{1..h}^w`) with a cell-count filter.
 - [[castle-compression](pages/castle-compression.md)] - a spectrum is a lossy code for a castle; the isospectral pairs found here are its collisions, and their sizes (10 / 11 / 16 cells) are where spectral compression first loses information.
+- [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the from-scratch pedagogy that works out the 10-cell adjacency-isospectral pair by hand as its "two shapes, same spectrum" section.
 
 ## Footnotes
 

@@ -174,6 +174,7 @@ The Riascos-Mateos construction pays for its generality: `L^α` is dense for eve
 - [[fractional-recurrences](pages/fractional-recurrences.md)] — the same F Department program on the recurrence side of the fractional calculus wall: transcendental growth constants as the reachable-field complement.
 - [[fractional-block-count](pages/fractional-block-count.md)] and [[fractional-width-and-height](pages/fractional-width-and-height.md)] — the two other completed F Department items; each uses one of the three classical fractional-calculus definitions (Grunwald-Letnikov, Riemann-Liouville, Caputo). This page's `L^α` is the Grunwald-Letnikov-style spectral construction transferred to a finite-dimensional operator.
 - [[power-law-memory-rules](pages/power-law-memory-rules.md)] — the F Department sibling: Grunwald-Letnikov nabla on the *strip rule* rather than on the graph Laplacian; the same fractional-calculus wall from the strip-rule side.
+- [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] — the from-scratch tutorial that computes by hand the small ordinary-Laplacian spectra `L^α` is defined against here.
 
 ## Footnotes
 

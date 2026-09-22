@@ -200,6 +200,7 @@ Concrete next moves for someone continuing this work:
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] - the streak view relates single-coordinate bumps to the local block structure, useful for characterising M1 edges intrinsically.
 - [[castle-foata-transform](pages/castle-foata-transform.md)] - the records / peaks decomposition is a natural axis for a Ruskey-style recursion on `V`.
 - [[castle-compression](pages/castle-compression.md)] - the delta-encoding lens that a working castle-native tour would supply.
+- [[castle-classification](pages/castle-classification.md)] - each castle-restriction axis is a sub-subset of V with its own native-tour question; the axis-per-class Gray-tour question is an open thread this page opens.
 
 ## Footnotes
 

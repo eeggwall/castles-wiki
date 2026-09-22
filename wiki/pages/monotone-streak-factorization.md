@@ -51,6 +51,7 @@ The streak factorization is thus the bridge between the combinatorial reading (p
 - [[berlekamp-massey](pages/berlekamp-massey.md)] — the *k*-direction fast-recurrence method paired with Kitamasa here.
 - [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] — the `O(L)` scan as Knuth's cycle loop.
 - [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the seminar synthesis reading this scan as the castle upgrade of `i ↦ σ(i)`.
+- [[castle-gray-code](pages/castle-gray-code.md)] — the `O(h^w)` tuple-level cousin of this `O(L)` column scan: both are single-coordinate-change lenses on castle space.
 
 ## Footnotes
 

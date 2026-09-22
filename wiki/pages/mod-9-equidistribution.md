@@ -253,6 +253,7 @@ Open:
 - [[castle-counting-formula](pages/castle-counting-formula.md)] - the closed form `F = (h^w - (h-1)^w - P(h-1, w) + P(h-2, w))/2`.
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - `F(6, 4) = 1729`, the taxicab coincidence that opened the arc.
 - [[kitamasa](pages/kitamasa.md)] - jump-to-index-N over `Z/9` used to sanity-check the `h = 12` row.
+- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the `2 · p^{ceil(log_p L)}` k-direction period used here is pinned quantitatively there; one-hop shortcut.
 
 ## Footnotes
 

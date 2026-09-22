@@ -60,6 +60,7 @@ The work is organized into **veins**, each a thread from the castle out to a fam
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] — the interlinking method and discipline this work follows.
 - [[signed-tower-count](pages/signed-tower-count.md)], [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)], [[narayana-numbers](pages/narayana-numbers.md)], [[tower-heap](pages/tower-heap.md)], [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)], [[castle-by-area](pages/castle-by-area.md)] — the concepts these veins introduce.
 - [[convex-castle](pages/convex-castle.md)], [[castle-counting-function](pages/castle-counting-function.md)], [[castle-counting-formula](pages/castle-counting-formula.md)] — castle machinery the mining reads against.
+- [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] — the analogous native-traversal problem on `V(w,h)`; the area/height axis analogy for Vein 9/9b's native traversal on `V_area`.
 
 The verified findings are elaborated on their own source pages: [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)], [[castle-by-area](pages/castle-by-area.md)], [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)], [[new-sequence-fw3](pages/new-sequence-fw3.md)]. Submission-ready OEIS drafts live in `raw/oeis-pe502/` (kept as drafts; OEIS requires human authorship — see [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]).
 

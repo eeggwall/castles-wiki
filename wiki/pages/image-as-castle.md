@@ -75,6 +75,8 @@ PNG beats zlib on the same bytes because of its per-row filters - Sub, Up, Avera
 - [[castle-snippets](pages/castle-snippets.md)] - the `blocks` predicate used for the 1D verification.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the skyline DFT, per row.
 - [[block-count-constraints](pages/block-count-constraints.md)] - the level-sum identity `blocks(c) = Σ_k #(runs c_i ≥ k)` is a specialization of the general G-mechanism this page axiomatizes into a residue/sparse/semigroup trichotomy.
+- [[castle-entropy](pages/castle-entropy.md)] - the `w · log_2 h` bit budget and the 32× compression figure (`h / log_2 h`) are canonical castle-entropy material.
+- [[oeis-index](pages/oeis-index.md)] - the persistence identity `blocks(image) = 0-dim total persistence over 256 superlevel sets` is a new castle interpretation of persistent-homology cell counts, not yet in the directory.
 
 ## Appearances in Sources
 
