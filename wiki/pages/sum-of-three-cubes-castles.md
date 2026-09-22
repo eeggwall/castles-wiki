@@ -232,7 +232,8 @@ Open:
 ## Related Concepts
 
 - [[sums-of-three-cubes](pages/sums-of-three-cubes.md)] - the number-theory background: the mod-9 obstruction, Heath-Brown, the 2019 results, the positive-cube density.
-- [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] - the row/column/aggregate reading of `F(w, h) mod 9`; the `20.4%` at `A <= 10^9` is a finite-N mixing artifact converging to `2/9`.
+- [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] - the row/column/aggregate reading of `F(w, h) mod 9`; the `20.4%` at `A <= 10^9` is a finite-N mixing artifact converging to `2/9` at rate `0.0786 * N^{-1/12}`.
+- [[mod-9-coset-lift](pages/mod-9-coset-lift.md)] - the mechanism companion: three-adic row/column divisibility gap, six-step blackboard proof of exact `2/9` at `w = 4`, and the coset-lift sufficiency criterion for column uniformity.
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - `F(6,4) = 1729`, the page this one generalizes.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] and [[castle-counting-function](pages/castle-counting-function.md)] - the closed form and the `A / F / odd` notation.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - period equals lcm of eigenvalue orders; the mod-9 periods here extend its tables.

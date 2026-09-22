@@ -95,7 +95,8 @@ This is the standard "a repeated eigenvalue of multiplicity `m` contributes `p^{
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the surrounding analysis: metallic-rung convergents, the norm-`−1` CF-mod-p twin, and the plastic-number L-direction eigenvalue `2ψ²`.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the real-number twin of this page's mod-p result.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the finite-field side; this page's `2 · p^{ceil(log_p L)}` accounts for its irregular `18`.
-- [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] - the mod-9 histogram of `F(w, . )` over one h-period; when its period `2 · 3^(1 + ceil(log_3 w))` is divisible by 9, some columns produce exactly uniform histograms (`w in {4, 6, 10, 12, 17, 28, 30}` through `w <= 30`) and others do not.
+- [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] - the mod-9 histogram of `F(w, . )` over one h-period; when its period `2 · 3^(1 + ceil(log_3 w))` is divisible by 9, some columns produce exactly uniform histograms (`w = 3^{k-1} + d` for `d in {1, 3, 8}`) and others do not.
+- [[mod-9-coset-lift](pages/mod-9-coset-lift.md)] - the mechanism companion: the `(x + 1)^L (x - 1)^{L-2}` char poly of this page is what gives `v_3(per_w) >= 2` and drives the coset-lift proof at `w = 4`.
 - [[closed-form-hunting](pages/closed-form-hunting.md)] - the `2L − 2` orders and palindromic coefficient lists factored here.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] - where the k-direction recurrences were first extracted by Berlekamp-Massey.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] / [[castle-counting-formula](pages/castle-counting-formula.md)] - the L-direction machinery this page is the complementary direction of.
