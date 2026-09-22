@@ -57,13 +57,7 @@ Operational specifics of the implementation, recorded for fidelity (not mathemat
 
 ## Regime table
 
-Which path and extractor each composite sub-problem takes, with the dominant cost:[^9]
-
-| Sub-problem | h ≤ 15000? | w ≤ 500? | Path | Extractor | Dominant cost |
-|---|---|---|---|---|---|
-| `F(10^12, 100)` | yes | no | RationalFunction | Kitamasa | `D=101`, `O(D² log w) ≈ 4×10^5` |
-| `F(10^4, 10^4)` | yes | no | RationalFunction | Direct | `O(w·D) ≈ 10^8` |
-| `F(100, 10^12)` | no | yes | KBoth | Kitamasa | BM on ~428 terms, `O(w² log k)` |
+Which path and extractor each composite sub-problem takes, with the dominant cost, is single-sourced on [[castle-count-algorithms](pages/castle-count-algorithms.md)] §"How the three targets are routed".[^9]
 
 ## What is not in the code
 

@@ -14,7 +14,7 @@ updated: 2026-09-19
 
 A **horizontally convex polyomino** (horizontally convex (HC)-polyomino) is a polyomino — a finite edge-connected union of integer-positioned unit squares, taken up to translation — such that **every horizontal line meets it in a single line segment, or not at all**.[^1] Equivalently, each row of the shape is one contiguous run of cells; there are no horizontal gaps within a row.
 
-The number of HC *n*-ominoes is `a(n)`, Online Encyclopedia of Integer Sequences (OEIS) **A001169**: `1, 2, 6, 19, 61, 196, 629, 2017, 6466, 20727, …`, and it satisfies the third-order linear recurrence `a(n) = 5a(n−1) − 7a(n−2) + 4a(n−3)` for `n ≥ 5`, with growth rate `v = 3.2055694304…` (the real root of `v³ − 5v² + 7v − 4`).[^2] See [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)] for Hickerson's 1-dimensional proof.
+The number of HC *n*-ominoes is `a(n)`, Online Encyclopedia of Integer Sequences (OEIS) **A001169**: `1, 2, 6, 19, 61, 196, 629, 2017, 6466, 20727, …`; it satisfies a third-order linear recurrence with growth rate `v ≈ 3.2056` - the closed form of the recurrence, the growth-rate cubic, and Hickerson's 1-dimensional proof (auxiliaries `b`, `c`, `d`, `e` eliminated into a single relation) are all on the source page [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)].[^2]
 
 ## Comparison with the castle
 

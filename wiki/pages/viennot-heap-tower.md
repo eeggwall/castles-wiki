@@ -12,44 +12,7 @@ updated: 2026-09-21
 
 ## The thread
 
-The [[tower-heap](pages/tower-heap.md)] page names the tower as Viennot's "heap of pieces" and closes with a thread to follow: connect the block-count Narayana identity to the transfer-matrix and commutation-monoid machinery of statistical mechanics. This page walks that thread. It sets up the Viennot framework on the tower, derives what falls out cleanly (the cell-count generating function), notes where the direct heap-of-block-pieces recipe fails to reproduce the tower count, and reads the block-count Narayana identity of [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] through the finite-state transfer matrix that Viennot's framework promotes.
-
-## The tower as a heap of unit segments
-
-A **Viennot heap of pieces** is presented by a piece basis `B`, a symmetric and reflexive **dependency relation** `R` on `B`, and an equivalence class of finite sequences over `B` modulo the rule that consecutive pieces `a b` swap iff `not (a R b)`. The equivalence classes form the **trace monoid** (partially commutative monoid) of `(B, R)`.[^1]
-
-For the tower the natural piece basis is one piece per column:[^2]
-
-```
-B = {u_1, ..., u_w}                u_i = "place one unit-height segment at column i"
-u_i R u_j   iff   i = j            (only same-column pieces interact)
-```
-
-Different columns never obstruct each other because gravity acts column by column, so the trace monoid is the free commutative monoid `N^w` and a heap is exactly a column-height vector `c = (c_1, ..., c_w) in N^w`. This is the tower of [[tower-heap](pages/tower-heap.md)] with no extra data: heaps `=` towers, one-to-one.
-
-## Cell count via Cartier-Foata inversion
-
-Give each piece weight `x`. A heap of total cell count `|c| = c_1 + ... + c_w` has weight `x^|c|`. Summing over heaps,
-
-```
-C_w(x)  :=  Sum_{c in N^w} x^|c|  =  Prod_{i=1..w} 1/(1-x)  =  1/(1-x)^w
-```
-
-so `[x^n] C_w(x) = C(n + w - 1, w - 1)` counts towers of cell count `n` (any block count).
-
-The **Cartier-Foata inversion** for a heap monoid says
-
-```
-Sum_{heaps H} weight(H)  =  1 / Sum_{trivial heaps T} (-1)^|T| weight(T)
-```
-
-where a trivial heap is an antichain in the dependency graph, i.e. an independent set of piece types.[^1] For our diagonal dependency the graph has only self-loops, trivial heaps are exactly subsets `S` of `{1..w}` (each column present or absent), and the identity reduces to
-
-```
-1/C_w(x)  =  Sum_{S in [w]} (-x)^|S|  =  (1 - x)^w
-```
-
-which is the formal-power-series identity `1/(1-x)^w * (1-x)^w = 1`. Nothing new is bought at the cell level because the columns already commute freely - all the Cartier-Foata content sits in the mismatch between weight and piece basis, and there is no mismatch here.
+[[tower-heap](pages/tower-heap.md)] names the tower as Viennot's "heap of pieces" with piece basis `B = {u_1, …, u_w}`, diagonal dependency `u_i R u_j iff i = j`, and cell-count identity `C_w(x) = 1/(1-x)^w` from Cartier-Foata inversion (tautological here because the columns already commute freely). This page picks up where that setup ends: what happens when the *block* count enters, why the naive heap-of-block-pieces recipe fails, and how the finite-state transfer matrix Viennot's framework promotes recovers the block-count Narayana identity of [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)].
 
 ## Block count is not a piece-additive statistic
 
@@ -158,10 +121,6 @@ matches at `x^0, x^1` and diverges at `x^2`: the interval-heap has `8` at `x^2` 
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - Bousquet-Melou stack-polyomino generating functions, the polyomino cousin of this construction.
 
 ## Footnotes
-
-[^1]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `raw/oeis-pe502/crosslink-avenues.md` §"Tier 2" L38-39 - "This is Viennot's 'heap of pieces': stack unit-height segments on w columns, each segment resting on the one below, segments in the same row separated by a gap." The trace-monoid presentation `(B, R)` and the Cartier-Foata inversion `Sum heaps = 1 / Sum (-1)^|T| trivials` are standard content of Viennot's 1986 heap-of-pieces theory (Springer LNM 1234, pp. 321-350) applied to the tower here; the free-commutative case used in this section, where the inversion reduces to `1/(1-x)^w . (1-x)^w = 1`, is a formal-power-series identity independent of the Viennot machinery.
-
-[^2]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `raw/oeis-pe502/SUBMISSION-NOTES.md` §"Definitions used across the drafts" L62-63 - "Tower (tier 2): column heights c_1..c_w >= 0 (no full-bottom, no max-height, no parity); blocks = maximal runs = c_1 + Sum_{i=2..w} max(0, c_i - c_{i-1})".
 
 [^3]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `raw/oeis-pe502/xrefs/A001263-tower.md` §"The tower object (self-contained definition)" L29-34 - "each block is a horizontal segment of adjacent cells at some height, every block rests on the floor or on the block directly below it (nothing floats or overhangs), and two blocks in the same row are separated by at least one empty cell ... its number of blocks is the number of maximal horizontal runs, c_1 + Sum_{i=2..w} max(0, c_i - c_{i-1})."
 

@@ -47,11 +47,11 @@ For small *w, h* the same recurrence runs over integers with no modular reductio
 
 ## How the three targets are routed
 
-| Target | *h* | Path | Extractor |
-|---|---|---|---|
-| `F(10000, 10000)` | 10000 ≤ 15000 | rational-function | direct (`D ≈ 10001`, `w = 10000`) |
-| `F(10^12, 100)` | 100 ≤ 15000 | rational-function | Kitamasa (`D ≈ 101`, `w = 10^12`) |
-| `F(100, 10^12)` | 10^12 > 15000 | *k*-direction Berlekamp–Massey | `N ≈ 428`, fast even at `k = 10^12` |
+| Target | *h* ≤ 15000? | *w* ≤ 500? | Path | Extractor | Dominant cost |
+|---|---|---|---|---|---|
+| `F(10^12, 100)` | yes (`h = 100`) | no | rational-function | Kitamasa | `D = 101`, `O(D² log w) ≈ 4×10^5` |
+| `F(10000, 10000)` | yes (`h = 10000`) | no | rational-function | direct | `D ≈ 10001`, `O(w·D) ≈ 10^8` |
+| `F(100, 10^12)` | no (`h = 10^12`) | yes (`w = 100`) | *k*-direction Berlekamp–Massey | Kitamasa (after BM) | BM on ~428 terms, `O(w² log k)` |
 
 [^6]
 

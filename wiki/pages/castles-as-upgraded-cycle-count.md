@@ -21,13 +21,7 @@ Both proofs are instances of a **bigger machine** — Foata's fundamental transf
 
 ## The three upgrades
 
-The [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] is not decorative: it is a genuine factorization (the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is the Dyck first-return grammar with a third letter), and each move in the `(n−1)!` proof has a direct castle counterpart:
-
-| (n−1)! proof move | Castle counterpart |
-|---|---|
-| divide by `n` (quotient by rotation), or `(1 ± sgn)/2` to peel `A_n` out of `S_n` | **[[castle-sign](pages/castle-sign.md)]** — `s(C) = (−1)^{blocks}`, with `(T ± P)/2` the even/odd projector |
-| canonical form starting from element `1` (Foata: start each cycle with its largest element, order cycles increasingly, drop parentheses) | **[[castle-foata-transform](pages/castle-foata-transform.md)]** — flatten to column heights, peaks are maximal positive runs, records are the leftmost positive columns |
-| **cycle-follow** the permutation `i ↦ σ(i)` to read off cycles (the `O(n)` loop) | **[[monotone-streak-factorization](pages/monotone-streak-factorization.md)]** — first-differences `d_i = c_{i+1} − c_i` scanned into up/flat/down streaks (an `O(L)` loop; blocks = sum of down-streak magnitudes) |
+The [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] is not decorative: it is a genuine factorization (the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is the Dyck first-return grammar with a third letter), and each move in the `(n−1)!` proof has a direct castle counterpart. The three-row proof-move ↔ castle-counterpart correspondence table is single-sourced on [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] §"The (n−1)! anchor": *divide by `n` / `(1 ± sgn)/2`* → [[castle-sign](pages/castle-sign.md)], *canonical form / Foata* → [[castle-foata-transform](pages/castle-foata-transform.md)], *cycle-follow `i ↦ σ(i)`* → [[monotone-streak-factorization](pages/monotone-streak-factorization.md)].
 
 Nothing in the machine changes. Only the objects it acts on grow: `n` labelled points become `L` columns of unbounded height with `w` widths, one row's cycles become a stack that carries multiplicity, and the sign is measured on **blocks** (stacked atoms) instead of transpositions.[^3]
 

@@ -16,6 +16,10 @@ A **tower** is the castle's underlying object with the boundary rules stripped a
 
 Towers are the scaffolding of the castle solution — the [[castle-counting-formula](pages/castle-counting-formula.md)] counts towers above the bottom block, and the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is a grammar over tower words. This page treats the tower as an object in its own right, because that is where the Online Encyclopedia of Integer Sequences (OEIS) mining found its richest external connection.
 
+## Heap presentation and cell count
+
+Presented as a Viennot heap, the tower's piece basis is one piece per column, `B = {u_1, …, u_w}` with `u_i =` "place one unit-height segment at column *i*", and dependency `u_i R u_j iff i = j`. Different columns never obstruct each other because gravity acts column by column, so the trace monoid is the free commutative monoid `N^w` and a heap is exactly a column-height vector `c = (c_1, …, c_w) in N^w` - heaps `=` towers, one-to-one. Weighting each piece by `x`, the cell-count generating function is `C_w(x) = ∑_c x^{|c|} = 1/(1 - x)^w`, so `[x^n] C_w = C(n+w-1, w-1)`. Cartier-Foata inversion `1/C_w = ∑_S (-x)^{|S|} = (1-x)^w` is tautological here because the columns already commute freely - all the Viennot content sits in the block count, not the cell count.
+
 ## Block count and the Narayana polynomial
 
 Counting towers by number of blocks is where the Catalan/Narayana thread lives (not in the convex-castle count, which is binomial). The number of towers of width *w* with *b* blocks is[^3]

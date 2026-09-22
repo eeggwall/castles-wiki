@@ -38,64 +38,13 @@ is where all the arithmetic happens. Multiplying two elements of `R` and reducin
 
 # Seminar 1 — BUILD
 
-**Expanded, standalone:** [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] runs each of the four sub-sections below as its own experiment with pinned output - the recurrence and char poly, the period appearing mod `p = 101` (`3400 = lcm(100, 3400)`, the Chinese Remainder Theorem (CRT) split), the ring `F_p[x]/(Q)` with multiplication-by-`x`-as-recurrence, the CRT decomposition of a reducible `Q`, element orders of `x` at `10⁹ + 7`, Kitamasa cost curves, and the DH deliverable.
+**Full write-up:** [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] is Seminar 1 as a standalone page - every sub-experiment executed and pinned (the recurrence and `char_k`, the period appearing mod `p = 101` via CRT, the ring `F_p[x]/(Q)` with multiplication-by-`x`-as-recurrence, the CRT decomposition of a reducible `Q`, element orders of `x` at `10⁹ + 7`, Kitamasa cost curves, and the working Diffie-Hellman with private keys `a = 373309869`, `b = 566180101`).
 
-> *Ground rule for the room:* we are implementing a cryptosystem, not certifying one. It may well be insecure — **that is Seminar 2's job, not today's.** Today we make the thing run: reduce a castle to a ring, exponentiate, exchange a key.
+> *Ground rule for the room:* we are implementing a cryptosystem, not certifying one. It may well be insecure - **that is Seminar 2's job, not today's.** Today we make the thing run: reduce a castle to a ring, exponentiate, exchange a key.
 
-## Build 1 — finite fields (why anything is periodic at all)
+**The four hours in one paragraph.** (1) Reduce a castle char poly mod `p` and the eigenvalues land in `F_{p^d}` where every element now has finite order - the sequence becomes periodic, and the period is the lcm of the eigenvalue orders ([[finite-fields](pages/finite-fields.md)], [[mod-p-observatory](pages/mod-p-observatory.md)]). (2) The forward operation `x^a mod Q` by binary exponentiation costs `O(deg(Q)² · log a)` - about 40 squarings to reach `a = 10^12`, no matter how large `a` is. That is *exactly* [[kitamasa](pages/kitamasa.md)]: the castle solve's fast-index trick is a modular exponentiation, and modular exponentiation is the trapdoor of Diffie-Hellman. (3) With public parameters `(p, Q = char_2 mod p)` and generator `g = x`, Alice and Bob exchange `A = x^a mod Q` and `B = x^b mod Q`, then each computes `x^{ab} mod Q` - a working asymmetric castle cryptosystem in ~20 lines of Python, built entirely from the Kitamasa primitive. (4) Whether `Q` splits mod `p` (and how big the key space is) is answered by quadratic reciprocity: for `char_1 = x² − 2x + 2`, discriminant `−4`, `Q` splits iff `p ≡ 1 (mod 4)`. Choosing the prime *is* choosing the arithmetic. The room leaves with a running system and one deliberately unanswered question - "is it any good?" - that becomes the whole of Seminar 2.
 
-Over `ℚ`, `P(1,L) = 1, 0, −2, −4, −4, 0, 8, 16, …` never repeats: its eigenvalue `1+i` has `|1+i| = √2 ≠ 1`, so its powers spiral out. Reduce mod `p` and the eigenvalues land in a **finite field** `F_{p^d}` whose nonzero elements form a **cyclic group of order `p^d − 1`** — so every element now has finite order, and the sequence becomes periodic ([[finite-fields](pages/finite-fields.md)]). This is the seminar's first hands-on hour: reduce, factor `char_k mod p`, watch the period appear, and read the period off as the lcm of the eigenvalue orders ([[mod-p-observatory](pages/mod-p-observatory.md)]).
-
-The one program: reduce a castle char poly mod `p`, factor it, and predict the period. Ten minutes, and the whole finite-field picture is in the room.
-
-## Build 2 — binary exponentiation is the trapdoor
-
-The forward operation is **`x^a mod Q`** — raise the generator `x` to a secret power `a` in the ring `R`. Done by **binary exponentiation** (square, reduce, multiply on set bits), this costs `O(deg(Q)² · log a)` — about **40 squarings** to reach `a = 10^12`, no matter how astronomically large `a` is. This is *exactly* [[kitamasa](pages/kitamasa.md)]: the castle solve already uses `x^n mod char_k` to jump to `P(k, 10^12)`. **The castle's fast-index trick is a modular exponentiation, and modular exponentiation is the trapdoor of Diffie–Hellman.** The seminar's second hour is just noticing that we already wrote the trapdoor.
-
-## Build 3 — a working castle Diffie–Hellman (the deliverable)
-
-Public parameters: a prime `p` and a public castle `Q = char_k mod p` (here `char_2 = x³ − 3x² + 4x − 4`, degree 3). The generator is the polynomial `g = x`.
-
-```python
-p = 10**9 + 7
-Q = [-4 % p, 4, -3 % p, 1]        # x^3 - 3x^2 + 4x - 4, monic, low->high  (the public castle)
-g = [0, 1, 0]                      # the polynomial x
-
-def mulmod(A, B, Q, p):            # multiply in F_p[x]/(Q)
-    r = [0] * (len(A) + len(B) - 1)
-    for i, a in enumerate(A):
-        for j, b in enumerate(B):
-            r[i + j] = (r[i + j] + a * b) % p
-    d = len(Q) - 1                 # reduce mod Q (Q monic degree d) — the recurrence rewrite
-    for i in range(len(r) - 1, d - 1, -1):
-        c = r[i]
-        for j in range(d + 1):
-            r[i - d + j] = (r[i - d + j] - c * Q[j]) % p
-    return (r[:d] + [0] * d)[:d]
-
-def powmod(base, e, Q, p):         # x^e mod Q, by binary exponentiation (Kitamasa)
-    res = ([1] + [0] * (len(Q) - 2))
-    base = (base[:len(Q)-1] + [0]*len(Q))[:len(Q)-1]
-    while e:
-        if e & 1: res = mulmod(res, base, Q, p)
-        base = mulmod(base, base, Q, p)
-        e >>= 1
-    return res
-
-a = 373309869                      # Alice's PRIVATE key (a secret exponent)
-b = 566180101                      # Bob's PRIVATE key
-A = powmod(g, a, Q, p)             # Alice's PUBLIC castle-key = x^a mod Q
-B = powmod(g, b, Q, p)             # Bob's   PUBLIC castle-key = x^b mod Q
-sA = powmod(B, a, Q, p)            # Alice computes (x^b)^a
-sB = powmod(A, b, Q, p)            # Bob   computes (x^a)^b
-assert sA == sB                    # x^{ab} mod Q — the SHARED SECRET
-```
-
-Alice and Bob, exchanging only their public castle-keys `A` and `B`, arrive at the **same** ring element `x^{ab} mod Q` — a shared secret an eavesdropper who saw only `Q`, `A`, `B` cannot (naively) reconstruct without solving a discrete logarithm. **That is a working asymmetric castle cryptosystem in twenty lines**, built entirely from the wiki's own Kitamasa primitive.[^1] From here Seminar 1 hangs the usual constructions off the shared secret and stops: a one-time pad, a toy ElGamal, a signature by the same `x^a` map — all *implementation*, no security claims. The room leaves with a running system and one deliberately unanswered question ("is it any good?") that becomes the whole of Seminar 2.
-
-## Build 4 — primes decide the shape (quadratic reciprocity, live)
-
-Whether `Q` splits mod `p` — and therefore how the group `R^*` factors and how big the key space is — is a **prime-dependent** question answered by **quadratic reciprocity**. For `char_1 = x² − 2x + 2`, the discriminant is `−4`, so it splits iff `−1` is a square mod `p`, i.e. **`p ≡ 1 (mod 4)`** ([[finite-fields](pages/finite-fields.md)], [[mod-p-observatory](pages/mod-p-observatory.md)]). Choosing the prime is choosing the arithmetic, and the seminar makes that choice a hands-on experiment: try `p = 5` (splits) vs `p = 7` (stays irreducible, roots live in `F_{49}`), and watch the key space and period change. Integer sequences enter here too: the period sequence, the eigenvalue-order sequence, the count sequence mod `p` — all Online Encyclopedia of Integer Sequences (OEIS)-adjacent. (Foreshadowing only: whether these are *secrets* is Seminar 2's question.)
+The pinned code (`mulmod` / `powmod` in ~20 lines) and its execution are on [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] and [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)].
 
 ---
 
@@ -178,8 +127,6 @@ The `castle_dh` key exchange (the `mulmod` / `powmod` pair above; pinned on [[ca
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the ring `R = F_p[x]/(Q)` written as an abelian group in invariant-factor form; Pohlig-Hellman is the fundamental theorem of finitely generated abelian groups run on `⟨x⟩`, security is the largest prime-power invariant factor, and the discriminant-zero primes of [[mod-p-observatory](pages/mod-p-observatory.md)] add a `p`-group `1 + (g)/(g)^m` beside the field factor.
 
 ## Footnotes
-
-[^1]: Verified by execution (2026-09-18): the `mulmod` / `powmod` pair above with `Q = [−4, 4, −3, 1]` (i.e. `char_2 = x³ − 3x² + 4x − 4` monic), `p = 10⁹+7`, `g = x`, private keys `a`, `b`, yields `powmod(B,a) == powmod(A,b)` — the shared secret `x^{ab} mod Q` agrees for both parties (a nonzero degree-2 ring element). The primitive is identical to the castle solve's `P(k, 10^12)` extraction ([[kitamasa](pages/kitamasa.md)]).
 
 [^2]: Verified by execution: rational Berlekamp–Massey on `P(2,L) = 1, 1, 3, 9, 19, 33, 59, 121, 259, 529, 1035, 2025` returns the length-3 recurrence with coefficient vector `[1, −3, 4, −4]`, i.e. the characteristic polynomial `x³ − 3x² + 4x − 4` reconstructed from the count terms alone. `char_2 = (x − 2)(x² − x + 2)` (SymPy `factor`), the factorization the discrete-log split exploits.
 

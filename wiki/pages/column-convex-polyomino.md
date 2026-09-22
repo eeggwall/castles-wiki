@@ -12,7 +12,7 @@ updated: 2026-09-19
 
 ## Description
 
-A **column-convex** (equivalently **vertically convex**) polyomino is one whose intersection with any vertical line is convex — i.e. each column is a single contiguous run of cells, with no vertical gaps.[^1] A polyomino that is both column-convex and row-convex ([[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)]) is called **convex**.[^1] Column-convex polyominoes are the setting for a large, well-developed enumeration literature (see [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)]), including the classical directed-and-convex families — **Ferrers diagrams, stack polygons, and parallelogram/staircase polyominoes**.[^2]
+A **column-convex** (equivalently **vertically convex**) polyomino is one whose intersection with any vertical line is convex — each column is a single contiguous run of cells, with no vertical gaps; **convex** = column-convex ∧ row-convex ([[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)]).[^1] The [[polyominoes](pages/polyominoes.md)] taxonomy locates this class among the standard Ferrers / staircase / bar-chart / directed families and states directly that the castle *is* a column-convex polyomino; the classical directed-and-convex sub-families - **Ferrers diagrams, stack polygons, and parallelogram/staircase polyominoes** - are the setting of the enumeration literature summarized on [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)].[^2]
 
 The defining tool is the **add-a-column ("Temperley") method**: build the polyomino by gluing columns left to right, classifying each new column by how its top and bottom cells sit relative to the previous column, and turn that into a functional equation for a generating function tracking perimeter, area, and column heights.[^3]
 
@@ -20,10 +20,10 @@ The defining tool is the **add-a-column ("Temperley") method**: build the polyom
 
 ## Relation to the castle
 
-Of all the external shape families in the wiki, the column-convex polyomino is the closest structural relative of the [[castle-polyomino](pages/castle-polyomino.md)]:
+The castle placement in the taxonomy - castle-as-column-convex-polyomino - is stated on [[polyominoes](pages/polyominoes.md)] §"The castle in the taxonomy". Beyond the placement, three castle-side observations:
 
-- A castle is built on a full-width base with contiguous vertical stacks — a strongly column-structured object; whether every castle is literally column-convex (and which column-convex polyominoes are castles) is a precise correspondence worth working out.
-- The add-a-column method **is** the castle's width-direction recurrence in mature form: the castle counts towers column by column via the [[binary-string-bijection](pages/binary-string-bijection.md)] and column independence (`T(k,L)=(k+1)^L`), which is a particularly clean instance of gluing columns.
+- Which column-convex polyominoes are castles (and whether every castle is *literally* column-convex, as opposed to structurally close) is a precise correspondence worth working out.
+- The add-a-column method **is** the castle's width-direction recurrence in mature form: the castle counts towers column by column via the [[binary-string-bijection](pages/binary-string-bijection.md)] and column independence (`T(k,L)=(k+1)^L`), a particularly clean instance of gluing columns.
 - The castle's own [[convex-castle](pages/convex-castle.md)] (a skyline convexity) and the classical **stack polygon / parallelogram** families are near neighbors; mapping castle sub-families onto these is a live thread.
 
 ## Appearances in Sources
