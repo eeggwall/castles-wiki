@@ -290,6 +290,7 @@ Both filed on [[castle-snippets](pages/castle-snippets.md)].
 - [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] - the primary source, ingested into the wiki as a raw file with the theorem quoted in footnote 7.
 - [[castle-snippets](pages/castle-snippets.md)] - `tree_area_gf`, `tree_area_by_area`.
 - [[aocp-combinatorics](pages/aocp-combinatorics.md)] - the bivariate `T_h(x, q)` is an area-graded (q-)count; Knuth's inversion GF `∏(1−z^k)/(1−z)^n` is the permutation-side prototype of that grading.
+- [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] - A001169's `5a(n-1) − 7a(n-2) + 4a(n-3)` is a recurrence signature to compare with these low-order tree-castle rows; the open thread of whether castle recurrences relate to horizontally-convex polyominoes lands here.
 
 ## Footnotes
 

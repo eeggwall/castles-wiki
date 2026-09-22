@@ -45,6 +45,9 @@ with `N(w,k)` the [[narayana-numbers](pages/narayana-numbers.md)]. The width row
 - [[castle-polyomino](pages/castle-polyomino.md)] — the tower plus the full-base / max-height / parity rules.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the grammar over tower words.
 - [[viennot-heap-tower](pages/viennot-heap-tower.md)] — the trace-monoid / Cartier-Foata / transfer-matrix reading of the tower's cell and block counts.
+- [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — the same tower object counted by step, matched to A004149 via a Motzkin J-fraction with a no-UD / no-DU run constraint.
+- [[castle-foata-transform](pages/castle-foata-transform.md)] — blocks as maximal positive runs; the `c_1 + Σ max(0, c_i − c_{i−1})` block-count formula is the identity Foata builds on.
+- [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] — the tower block-count marginal whose `H(B) ~ (1/2) log_2 w` scaling this page's Narayana structure explains.
 
 ## Footnotes
 

@@ -101,6 +101,7 @@ This is the standard "a repeated eigenvalue of multiplicity `m` contributes `p^{
 - [[recurrence-discovery](pages/recurrence-discovery.md)] - where the k-direction recurrences were first extracted by Berlekamp-Massey.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] / [[castle-counting-formula](pages/castle-counting-formula.md)] - the L-direction machinery this page is the complementary direction of.
 - [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - `P_table`, `quasi_split`, `berlekamp_massey`; the reusable snippets.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the complementary L-direction: `char_k` factors into parity sectors `H_d · V_d` while the k-direction factors as `(x+1)^L (x-1)^{L-2}` here.
 
 ## Footnotes
 

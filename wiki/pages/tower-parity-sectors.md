@@ -265,6 +265,7 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 - [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] - Pascal's rule `C(r,k) = C(r−1,k) + C(r−1,k−1)`, the identity that proves the `H_{d+1} + μ² H_{d−1}` doubling identity in Part 2.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `char_2 = (x−2)(x²−x+2)` is why `F(w,3)` has order 6: its `(x−2)` is shared with the `2^w` term.
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - the sector tables are computed by Algorithm M enumeration of `{0..k}^L`.
+- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the complementary direction of the same `P(k, L)` 2D array: k-direction factors as `(x+1)^L (x-1)^{L-2}` while this page factors the L-direction char_k into parity sectors.
 
 ## Footnotes
 

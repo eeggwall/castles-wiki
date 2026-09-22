@@ -65,6 +65,7 @@ where `C(m,k) = m!/(k!(m−k)!)` is the binomial coefficient. For example, at *h
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] — the column-convex-polygon literature this convexity connects to.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] — the framework that names this class the **unimodal type**, one of the 7 base castle types.
 - [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] — the home of Vandermonde's convolution (Knuth eq (21)), the identity that closes the count; [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] — the multinomial as the general form of the stars-and-bars mechanism.
+- [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the AC-native OGF for the unimodal-skyline A001523 sub-family, built directly by the symbolic method.
 
 ## Footnotes
 

@@ -48,6 +48,7 @@ Two of the named families are exactly the Online Encyclopedia of Integer Sequenc
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the unimodal-skyline sub-family; the AC-native "castle tower with one peak" via the symbolic method.
 - [[q-catalan-numbers](pages/q-catalan-numbers.md)], [[motzkin-numbers](pages/motzkin-numbers.md)] — the q-analog / Motzkin threads the Ferrers remark points to.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — the papers on these families.
+- [[castle-strip](pages/castle-strip.md)] — the wiki's operational "castle-as-column-glued-object" page; the transfer-matrix realization of the add-a-column reading summarized here.
 
 Related topics also ingested: [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/lattice-paths.md)]. Still not yet ingested: Combinatorics.
 

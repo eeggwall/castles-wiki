@@ -35,6 +35,7 @@ Precisely characterizing which castles are horizontally convex (and vice versa),
 - [[castle-polyomino](pages/castle-polyomino.md)] — the castle object, a different shape family on the same lattice.
 - [[convex-castle](pages/convex-castle.md)] — the castle's own convexity class.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] — the broader column/row-convex polyomino literature.
+- [[tree-castle-by-area](pages/tree-castle-by-area.md)] — exhibits low-order C-finite castle sub-sequences (A000930, A006498, A000570); a natural place to compare against the A001169 recurrence signature and probe whether castle recurrences relate to the horizontally-convex family.
 
 ## Footnotes
 
