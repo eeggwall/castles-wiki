@@ -76,6 +76,9 @@ That is the wall in one sentence: **the castle's exact counts are algebraic; `e`
 - [[tower-word-language](pages/tower-word-language.md)] — the regular→rational, context-free→algebraic hierarchy the wall extends one rung further.
 - [[castle-by-area](pages/castle-by-area.md)] — `2^{n−1} − F_{n−1}`, where `φ` enters the exact count.
 - [[fractional-recurrences](pages/fractional-recurrences.md)] — the wall's continuum face: the fractional-Fibonacci recurrence `∇^α a_n = a_{n-1}` has growth `g(α)` algebraic iff `α` is rational (Baker/Gelfond-Schneider on `α = log r / log(1-r)`), so irrational `α` gives transcendental growth directly, without the Stirling/Catalan/log-`k` limit gate. A new transcendental-arrival mechanism sitting beside the classical asymptotic one.
+- [[kitamasa](pages/kitamasa.md)] — the "spectral reading" `R(λ) = λ^n` on eigenvalue roots is a direct realization of this page's thesis: C-finite closed forms carry only algebraic eigenvalues.
+- [[generating-function-gallery](pages/generating-function-gallery.md)] — the `ρ_k ~ k / log k` asymptotic derived there is one of this page's "transcendental via limit" residents.
+- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] — the k-direction eigenvalues are only `±1`, a clean limiting case (rational algebraic) rung on the wall.
 
 ## Footnotes
 

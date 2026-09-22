@@ -204,6 +204,7 @@ The textbook way to jump a recurrence is the **companion (transfer) matrix** *M*
 - [[castle-snippets](pages/castle-snippets.md)] - the run-it-first discipline the Python section follows; enumeration one-liners for cross-checks.
 - [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)] - a polyomino family whose count collapses to a short linear recurrence, the C-finite phenomenon Kitamasa exploits.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `F(w,3) = (3^w − 2^w − P(2,w) + P(1,w))/2`: the `P(2,·)` jumped to `L = 10^6` in Worked example 2 is one of its four components.
+- [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - the "spectral reading" `R(λ) = λ^n` on eigenvalue roots realizes the wall's thesis: C-finite closed forms carry only algebraic eigenvalues.
 
 ## Footnotes
 

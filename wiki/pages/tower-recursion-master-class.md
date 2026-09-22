@@ -101,6 +101,9 @@ Towers of height ≤ 1 above a length-4 block are column heights `c ∈ {0,1}⁴
 - [[binary-string-bijection](pages/binary-string-bijection.md)] — the bijection that makes Idea 1 rigorous.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the grammar the two generating functions are read off.
 - [[signed-tower-count](pages/signed-tower-count.md)] — the C-finite `P(k,L)` family.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] — the deep-analysis sibling: the sign homomorphism becomes a block diagonalization of the recursion into `(+1)` / `(−1)` sectors.
+- [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — the analytical explanation of `T(k,L) = (k+1)^L`: it is the collapse of the Motzkin J-fraction under the no-UD / no-DU run constraint.
+- [[castle-foata-transform](pages/castle-foata-transform.md)] — the permutation-analogy version of the "peak / tower atom" idea: peaks are maximal positive runs, records are their leftmost positive columns.
 
 ## Footnotes
 

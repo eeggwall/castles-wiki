@@ -105,6 +105,7 @@ Not yet populated, but the following predicates would sit here when they land.
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the pedagogy page that walks through small-castle adjacency eigenvalues by hand.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the methods hub whose five spectra feed these predicates.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree predicate's counting story.
+- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the analytic side of the spectral-type framework: `ρ_6 = 2ψ²` and the metallic-means convergent crosswalk pinned quantitatively.
 
 ## Footnotes
 

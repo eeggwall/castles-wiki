@@ -179,6 +179,7 @@ In rough order of tractability:
 - [[castle-snippets](pages/castle-snippets.md)] - tested Python one-liners for each predicate on this page.
 - [[aocp-permutations](pages/aocp-permutations.md)] / [[aocp-combinatorics](pages/aocp-combinatorics.md)] - the rainbow type's count `h!` and its Mahonian inversion grading.
 - [[castle-compression](pages/castle-compression.md)] - the description-length axis that cross-cuts these shape axes.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - a second castle route to Axis 2's Hardin family (A005251, A202882, A203094, A203184): the even sector for `k ≡ 2 (mod 4)` is `2^L` times a Hardin word count, complementing the tower-spacing route.
 
 ## Footnotes
 

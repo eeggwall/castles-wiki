@@ -198,6 +198,8 @@ This checks `k = 8` too — the recurrence, not the hand-listed table, is the so
 - [[mod-p-observatory](pages/mod-p-observatory.md)] — these `char_k` polynomials reduced mod p, whose root orders set the periods.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the symmetry behind the even-`k` factorization, the closed-form factors `H_d`, `V_d`, and the plastic-number eigenvalue `ρ_6 = 2ψ²` ([[plastic-number](pages/plastic-number.md)]).
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] — `Σ_w F(w,3) x^w = ½(1/(1−3x) − 1/(1−2x) − F_2(x) + F_1(x))` exactly (verified to `w = 13`); the gallery's `F_1, F_2` are its signed components.
+- [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] — the `ρ_k ~ k / log k` asymptotic derived here is the transcendental-via-limit resident of the wall.
+- [[symbolic-method](pages/symbolic-method.md)] — the `num_k/den_k` rational `P_k` catalogued here is the concrete realization of the symbolic-method SEQ construction over the castle grammar.
 
 ## Footnotes
 

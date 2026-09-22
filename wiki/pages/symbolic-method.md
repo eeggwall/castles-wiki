@@ -53,6 +53,7 @@ An **iterative** (non-recursive) specification builds a class from `E`, `Z`, and
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — a directly-relevant polyomino family constructed by the method (Example I.8).
 - [[block-count-constraints](pages/block-count-constraints.md)] — `SEQ` versus `MSET` over one part set: compositions with parts in `D` (`1/(1 − Σ z^d)`) versus the coin-change series `∏ 1/(1 − z^d)`, same support, different counts.
 - [[aocp-multisets](pages/aocp-multisets.md)] — a homonym to keep apart: Knuth's "permutations of a multiset" are ordered words with repeated letters (the `SEQ` side), not `MSET` objects.
+- [[generating-function-gallery](pages/generating-function-gallery.md)] — the tabulated `num_k/den_k` polynomials, factored characteristic polynomials, and closed forms: the concrete realization of `SEQ` over the castle grammar into rational OGFs.
 
 ## Footnotes
 
