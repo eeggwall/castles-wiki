@@ -196,3 +196,4 @@ Each of these becomes its own Analysis page or Concept page when its content lan
 - [[castle-sign](pages/castle-sign.md)] — the block-parity involution `σ` whose `±1` eigenspaces are the operator-level form of `(T ± P)/2`.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] / [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the two smallest concrete castle families whose spectral properties are cleanly computable.
 - [[castle-compression](pages/castle-compression.md)] — sparse-spectrum castles are compressible in the transform domain; the compressed-sensing hook in the open threads is the DFT face of the compressibility axis.
+- [[levy-flights](pages/levy-flights.md)] — the fractional Laplacian `L^α = U diag(λ^α) U^T` on the castle graph, its Lévy-flight walk, and the local return probability as a non-spectral separator of the 11-cell Laplacian-isospectral tree pair.
