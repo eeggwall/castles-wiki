@@ -37,7 +37,7 @@ Two direct connections:
 
 Unlike Dyck paths (which impose the never-go-negative *ballot* constraint and are counted by Catalan numbers), an unconstrained lattice path is just a multiset permutation and is counted by a plain binomial — the same binomial-vs-Catalan distinction that runs through the castle.
 
-**Under the [[symbolic-method](pages/symbolic-method.md)].** A shortest lattice path over the 2-letter alphabet `{R, D}` is a word in `SEQ(R + D)` — the compositions/words machinery of [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] §I.3-I.4. Marking `R` and `D` with separate size variables `x, y` gives the bivariate ordinary generating function (OGF) `1/(1 − x − y)`, and `[x^W y^H]` extracts the `binomial(W+H, H)` count — the same stars-and-bars result derived from the specification rather than from balls-and-bars combinatorics. Lattice paths with more constraints (bounded run length, non-negativity, staying inside a strip) are analyzed at length in Analytic Combinatorics (AC) Chapter V (`Applications of Rational and Meromorphic Asymptotics`), §V.4 "Nested sequences, lattice paths, and continued fractions" — the natural next-chapter home for the wiki's [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] thread when we ingest Part B.
+**Under the [[symbolic-method](pages/symbolic-method.md)].** A shortest lattice path over the 2-letter alphabet `{R, D}` is a word in `SEQ(R + D)` — the compositions/words machinery of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] §I.3-I.4. Marking `R` and `D` with separate size variables `x, y` gives the bivariate ordinary generating function (OGF) `1/(1 − x − y)`, and `[x^W y^H]` extracts the `binomial(W+H, H)` count — the same stars-and-bars result derived from the specification rather than from balls-and-bars combinatorics. Lattice paths with more constraints (bounded run length, non-negativity, staying inside a strip) are analyzed at length in Analytic Combinatorics (AC) Chapter V (`Applications of Rational and Meromorphic Asymptotics`), §V.4 "Nested sequences, lattice paths, and continued fractions" — the natural next-chapter home for the wiki's [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] thread when we ingest Part B.
 
 ## Key Takeaways
 
@@ -51,7 +51,7 @@ Unlike Dyck paths (which impose the never-go-negative *ballot* constraint and ar
 - [[urd-step-strings](pages/urd-step-strings.md)] — the castle's step-string encoding, taken from this problem.
 - [[convex-castle](pages/convex-castle.md)] / [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] — the stars-and-bars binomial count shared with lattice paths.
 - [[dyck-words](pages/dyck-words.md)] — the ballot-constrained cousin (Catalan, not binomial).
-- [[symbolic-method](pages/symbolic-method.md)] / [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] — the framework: shortest lattice paths as `SEQ(R+D)`; constrained lattice paths as AC Chapter V.4.
+- [[symbolic-method](pages/symbolic-method.md)] / [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] — the framework: shortest lattice paths as `SEQ(R+D)`; constrained lattice paths as AC Chapter V.4.
 
 Related (ingested): [[aocp-multisets](pages/aocp-multisets.md)] — the multiset-permutation machinery; [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] — the multinomial that counts the higher-D paths. Linked from the source but not yet ingested: Project Euler/172.
 

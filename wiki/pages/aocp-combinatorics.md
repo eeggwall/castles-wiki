@@ -61,7 +61,7 @@ The q-grading the wiki keeps reaching for is also further along than "open": are
 - [[castle-by-area](pages/castle-by-area.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] / [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] - where a q-grading already exists on the wiki.
 - [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] - the q-multinomial, the multiset form of the q-factorial.
 
-Linked from the source: [[aocp-multisets](pages/aocp-multisets.md)] is ingested; [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] is now ingested (Part A Ch. I only, Chs. II-III pending); Applied Combinatorics is not yet ingested.
+Linked from the source: [[aocp-multisets](pages/aocp-multisets.md)] is ingested; [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] is now ingested (Part A Ch. I only, Chs. II-III pending); Applied Combinatorics is not yet ingested.
 
 ## Relation to Other Wiki Pages
 

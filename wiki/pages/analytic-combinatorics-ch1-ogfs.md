@@ -1,18 +1,20 @@
 ---
-title: "Analytic Combinatorics, Part A (Flajolet & Sedgewick)"
+title: "Analytic Combinatorics Ch. I - OGFs and the Symbolic Method (Flajolet & Sedgewick)"
 category: Sources
-summary: Flajolet & Sedgewick's Symbolic Methods (Part A) — the OGF/EGF/MGF chapters. Ingested here: Chapter I on ordinary GFs, which recasts recurrence-⇒-rational-GF as one case of the [[symbolic-method]] (SEQ/MSET/PSET/CYC dictionary), and constructs stack polyominoes and Catalan trees directly as specifications.
+summary: Flajolet & Sedgewick's Chapter I only - Combinatorial Structures and Ordinary Generating Functions (book pp. 15-94, ~80 pages). Recasts recurrence-⇒-rational-GF as one case of the [[symbolic-method]] (SEQ/MSET/PSET/CYC dictionary), and constructs stack polyominoes and Catalan trees directly as specifications. Chapters II (EGFs) and III (MGFs) of Part A are not ingested; refer to the book directly for those.
 tags: [generating-functions, symbolic-method, ogf, admissible-construction, polyomino, catalan, stack-polyomino, source]
-sources: [analytic-combinatorics-part-a]
+sources: [analytic-combinatorics-ch1-ogfs]
 created: 2026-09-15
-updated: 2026-09-19
+updated: 2026-09-22
 ---
 
-# Analytic Combinatorics, Part A (Flajolet & Sedgewick)
+# Analytic Combinatorics Ch. I - OGFs and the Symbolic Method (Flajolet & Sedgewick)
 
-**Source:** `raw/analytic-combinatorics-part-a.pdf` (Flajolet & Sedgewick, *Analytic Combinatorics*, Cambridge University Press 2009, ISBN 978-0-521-89806-5 — Part A only, book pp. 1-220)
+**Source:** `raw/analytic-combinatorics-part-a.pdf` (Flajolet & Sedgewick, *Analytic Combinatorics*, Cambridge University Press 2009, ISBN 978-0-521-89806-5) - **Chapter I only** (book pp. 15-94, ~80 pages)
 **Date ingested:** 2026-09-15
-**Type:** book (Part A: Symbolic Methods — Chapters I / II / III on OGFs, EGFs, MGFs; ingested here: Chapter I only)
+**Type:** book chapter (Part A: Symbolic Methods, Chapter I: `Combinatorial Structures and Ordinary Generating Functions`)
+
+> **Scope of this ingest.** Only Chapter I is summarized here. Part A's remaining chapters (II: labelled structures / EGFs, book pp. 95-150; III: multivariate GFs / MGFs, pp. 151-220) and Parts B (Complex Asymptotics), C (Random Structures), D (Appendices) are *not* ingested; for those, cite the book directly by chapter and page.
 
 ## Summary
 
@@ -58,6 +60,7 @@ Chapters II (labelled structures / EGFs, pp. 95-150) and III (multivariate GFs /
 - [[polyominoes](pages/polyominoes.md)] / [[column-convex-polyomino](pages/column-convex-polyomino.md)] — stack polyominoes are a directly-relevant polyomino family.
 - [[catalan-numbers](pages/catalan-numbers.md)] / [[dyck-words](pages/dyck-words.md)] / [[lattice-paths](pages/lattice-paths.md)] — canonical objects the chapter constructs by specification.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the castle's grammar, a first-return specification in exactly this style.
+- [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the wiki's regular-language framework (bounded-run compositions, avoidance patterns) whose rational-OGF status is Prop. I.2 in action.
 
 ## Relation to Other Wiki Pages
 
@@ -67,11 +70,11 @@ The concrete castle payoff is in §I.3 (stack polyominoes / Example I.8) — a d
 
 ## Footnotes
 
-[^1]: [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] "Contents" p.iii-v — "Part A. Symbolic Methods 13 ... Part B. Complex Asymptotics 221 ... Part C. Random Structures 609 ... Part D. Appendices 719" with chapters I-III listed under Part A.
-[^2]: [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] Ch. I title page p.15 — "I. Combinatorial Structures and Ordinary Generating Functions ... I.1. Symbolic enumeration methods 16 / I.2. Admissible constructions and specifications 24 / I.3. Integer compositions and partitions 39 / I.4. Words and regular languages 49 / I.5. Tree structures 64 / I.6. Additional constructions 83 / I.7. Perspective 92."
-[^3]: [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] Theorem I.1 p.27 — "The constructions of union, cartesian product, sequence, powerset, multiset, and cycle are all admissible. The associated operators are as follows: Sum: A(z) = B(z) + C(z); Cartesian product: A(z) = B(z) · C(z); Sequence: A(z) = 1/(1−B(z)); Powerset: A(z) = ∏(1+z^n)^{B_n} = exp(∑ (−1)^{k−1}/k · B(z^k)); Multiset: A(z) = ∏(1−z^n)^{−B_n} = exp(∑ (1/k) · B(z^k)); Cycle: A(z) = ∑ (φ(k)/k) log(1/(1−B(z^k)))." Summary reproduced Figure I.18 p.93.
-[^4]: [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] Proposition I.2 p.52 — "Any S-regular language has an OGF that is a rational function. This OGF is obtained from a regular specification of the language by translating each letter into the variable z, disjoint unions into sums, cartesian products into products, and sequences into quasi-inverses, (1−·)^{−1}."
-[^5]: [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] Example I.8 "The Durfee square of partitions and stack polyominoes" pp. 45-46 — "A stack polyomino is the diagram of a composition such that for some j, ℓ, one has 1 ≤ x_1 ≤ x_2 ≤ … ≤ x_j ≥ x_{j+1} ≥ … ≥ x_ℓ ≥ 1. ... translates immediately into the OGF S(z) = ∑_{k≥1} z^k/(1−z^k) · 1/((1−z)(1−z²)···(1−z^{k−1}))² ... a bona fide algorithm for computing the initial values of the number of stack polyominoes (EIS A001523): S(z) = z + 2z² + 4z³ + 8z⁴ + 15z⁵ + 27z⁶ + 47z⁷ + 79z⁸ + ⋯"; sequence 1, 2, 4, 8, 15, 27, 47, 79 confirmed to match Online Encyclopedia of Integer Sequences (OEIS) A001523 during ingest.
-[^6]: [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] §I.2 pp. 33-35 — "The recursive specification of general trees leads to an implicit definition of their OGF, G = Z × SEQ(G) ⟹ G(z) = z/(1−G(z)) ... From this point on, basic algebra does the rest ... G − G² − z = 0 ... G(z) = ½(1 − √(1−4z)) = z + z² + 2z³ + 5z⁴ + 14z⁵ + 42z⁶ + 132z⁷ + 429z⁸ + ⋯ = ∑_{n≥1} (1/n)C(2n−2,n−1) z^n ... general trees are enumerated by Catalan numbers." Values 1, 1, 2, 5, 14, 42, 132, 429 match the standard Catalan sequence.
-[^7]: [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] Proposition I.2 p.52 and Definition I.10 p.51 — "An iterative specification that only involves atoms (e.g., letters of a finite alphabet A) together with combinatorial sums, cartesian products, and sequence constructions is said to be a regular specification. A language L is said to be S-regular ... if there exists a class M described by a regular specification such that L and M are combinatorially isomorphic."
-[^8]: [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] §I.3 pp. 40-42 — "C = SEQ(I) ⟹ C(z) = 1/(1−I(z)) = (1−z)/(1−2z) ... implying C_n = 2^{n−1}, n ≥ 1"; and "compositions all of whose summands lie in the set {1,2,…,r} have generating function C^{1..r}(z) = 1/(1−z−z²−⋯−z^r) = (1−z)/(1−2z+z^{r+1})"; the r=2 case gives Fibonacci `F_{n+1}`.
+[^1]: [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] "Contents" p.iii-v — "Part A. Symbolic Methods 13 ... Part B. Complex Asymptotics 221 ... Part C. Random Structures 609 ... Part D. Appendices 719" with chapters I-III listed under Part A.
+[^2]: [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] Ch. I title page p.15 — "I. Combinatorial Structures and Ordinary Generating Functions ... I.1. Symbolic enumeration methods 16 / I.2. Admissible constructions and specifications 24 / I.3. Integer compositions and partitions 39 / I.4. Words and regular languages 49 / I.5. Tree structures 64 / I.6. Additional constructions 83 / I.7. Perspective 92."
+[^3]: [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] Theorem I.1 p.27 — "The constructions of union, cartesian product, sequence, powerset, multiset, and cycle are all admissible. The associated operators are as follows: Sum: A(z) = B(z) + C(z); Cartesian product: A(z) = B(z) · C(z); Sequence: A(z) = 1/(1−B(z)); Powerset: A(z) = ∏(1+z^n)^{B_n} = exp(∑ (−1)^{k−1}/k · B(z^k)); Multiset: A(z) = ∏(1−z^n)^{−B_n} = exp(∑ (1/k) · B(z^k)); Cycle: A(z) = ∑ (φ(k)/k) log(1/(1−B(z^k)))." Summary reproduced Figure I.18 p.93.
+[^4]: [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] Proposition I.2 p.52 — "Any S-regular language has an OGF that is a rational function. This OGF is obtained from a regular specification of the language by translating each letter into the variable z, disjoint unions into sums, cartesian products into products, and sequences into quasi-inverses, (1−·)^{−1}."
+[^5]: [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] Example I.8 "The Durfee square of partitions and stack polyominoes" pp. 45-46 — "A stack polyomino is the diagram of a composition such that for some j, ℓ, one has 1 ≤ x_1 ≤ x_2 ≤ … ≤ x_j ≥ x_{j+1} ≥ … ≥ x_ℓ ≥ 1. ... translates immediately into the OGF S(z) = ∑_{k≥1} z^k/(1−z^k) · 1/((1−z)(1−z²)···(1−z^{k−1}))² ... a bona fide algorithm for computing the initial values of the number of stack polyominoes (EIS A001523): S(z) = z + 2z² + 4z³ + 8z⁴ + 15z⁵ + 27z⁶ + 47z⁷ + 79z⁸ + ⋯"; sequence 1, 2, 4, 8, 15, 27, 47, 79 confirmed to match Online Encyclopedia of Integer Sequences (OEIS) A001523 during ingest.
+[^6]: [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] §I.2 pp. 33-35 — "The recursive specification of general trees leads to an implicit definition of their OGF, G = Z × SEQ(G) ⟹ G(z) = z/(1−G(z)) ... From this point on, basic algebra does the rest ... G − G² − z = 0 ... G(z) = ½(1 − √(1−4z)) = z + z² + 2z³ + 5z⁴ + 14z⁵ + 42z⁶ + 132z⁷ + 429z⁸ + ⋯ = ∑_{n≥1} (1/n)C(2n−2,n−1) z^n ... general trees are enumerated by Catalan numbers." Values 1, 1, 2, 5, 14, 42, 132, 429 match the standard Catalan sequence.
+[^7]: [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] Proposition I.2 p.52 and Definition I.10 p.51 — "An iterative specification that only involves atoms (e.g., letters of a finite alphabet A) together with combinatorial sums, cartesian products, and sequence constructions is said to be a regular specification. A language L is said to be S-regular ... if there exists a class M described by a regular specification such that L and M are combinatorially isomorphic."
+[^8]: [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] §I.3 pp. 40-42 — "C = SEQ(I) ⟹ C(z) = 1/(1−I(z)) = (1−z)/(1−2z) ... implying C_n = 2^{n−1}, n ≥ 1"; and "compositions all of whose summands lie in the set {1,2,…,r} have generating function C^{1..r}(z) = 1/(1−z−z²−⋯−z^r) = (1−z)/(1−2z+z^{r+1})"; the r=2 case gives Fibonacci `F_{n+1}`.

@@ -1,7 +1,7 @@
 ---
 title: "Generating Functions (Sedgewick–Flajolet / Trotter)"
 category: Sources
-summary: A generating-function reference — OGF operations, recurrence→rational-GF worked examples (imaginary roots, difference-of-powers), the EGF parity trick, and an explicit "Application: Project Euler 502". Companion to [[analytic-combinatorics-part-a]] (the definitive treatment) and [[aocp-generating-functions]] (Knuth Fibonacci-method).
+summary: A generating-function reference — OGF operations, recurrence→rational-GF worked examples (imaginary roots, difference-of-powers), the EGF parity trick, and an explicit "Application: Project Euler 502". Companion to [[analytic-combinatorics-ch1-ogfs]] (the definitive treatment) and [[aocp-generating-functions]] (Knuth Fibonacci-method).
 tags: [generating-functions, ogf, egf, recurrence, parity, partial-fractions, source]
 sources: [generating-functions-topic]
 created: 2026-09-14
@@ -55,7 +55,7 @@ The intuition-and-worked-examples companion to the AOCP treatment, and the page 
 
 **One of three GF source treatments in the wiki**, all complementary:
 
-- [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] — the definitive treatment (Flajolet & Sedgewick 2009); the *symbolic method* dictionary that recasts recurrence-⇒-rational-GF as the sequence (SEQ) / regular-language special case of a more general specification-to-OGF framework.
+- [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] — the definitive treatment (Flajolet & Sedgewick 2009); the *symbolic method* dictionary that recasts recurrence-⇒-rational-GF as the sequence (SEQ) / regular-language special case of a more general specification-to-OGF framework.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — Knuth The Art of Computer Programming (TAOCP) Vol. 1; the Fibonacci-method and the recurrence-⇒-rational-GF core.
 - This page — worked examples that hit *exactly* the castle's operations, with the explicit PE 502 application.
 

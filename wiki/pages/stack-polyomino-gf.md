@@ -3,7 +3,7 @@ title: Stack polyomino generating function
 category: Concepts
 summary: A stack polyomino — column heights that weakly rise then weakly fall around a single peak — is a castle tower with one peak. Its OGF `S(z) = ∑_{k≥1} z^k/(1−z^k) · 1/((1−z)(1−z²)···(1−z^{k−1}))²` (OEIS A001523) is built directly by the [[symbolic-method]] from a Durfee-square-style geometric decomposition.
 tags: [concept, polyomino, stack-polyomino, generating-functions, symbolic-method, durfee-square, castle-tower]
-sources: [analytic-combinatorics-part-a]
+sources: [analytic-combinatorics-ch1-ogfs]
 created: 2026-09-15
 updated: 2026-09-19
 ---
@@ -12,7 +12,7 @@ updated: 2026-09-19
 
 ## Description
 
-A **stack polyomino** is the diagram of a composition whose column heights weakly rise to a single peak and then weakly fall: `1 ≤ x_1 ≤ x_2 ≤ … ≤ x_j ≥ x_{j+1} ≥ … ≥ x_ℓ ≥ 1` for some `j, ℓ`.[^1] Read this as a castle-style pile of columns on a common baseline where the skyline is unimodal — a **single-peak tower**. Flajolet & Sedgewick construct its ordinary generating function (OGF) directly by the [[symbolic-method](pages/symbolic-method.md)] (Example I.8, pp. 45-46 of [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)]), from the Durfee-square-style geometric decomposition[^1]
+A **stack polyomino** is the diagram of a composition whose column heights weakly rise to a single peak and then weakly fall: `1 ≤ x_1 ≤ x_2 ≤ … ≤ x_j ≥ x_{j+1} ≥ … ≥ x_ℓ ≥ 1` for some `j, ℓ`.[^1] Read this as a castle-style pile of columns on a common baseline where the skyline is unimodal — a **single-peak tower**. Flajolet & Sedgewick construct its ordinary generating function (OGF) directly by the [[symbolic-method](pages/symbolic-method.md)] (Example I.8, pp. 45-46 of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)]), from the Durfee-square-style geometric decomposition[^1]
 
 ```
 Stack ≅ ⋃_{k≥1} ( SEQ_{≥1}(Z^k) × P^{1..k−1} × P^{1..k−1} )
@@ -47,7 +47,7 @@ The book's own note (p. 46) points from Example I.8 forward to Example IX.14 p. 
 
 ## Appearances in Sources
 
-- [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] — Example I.8 pp. 45-46, "The Durfee square of partitions and stack polyominoes."
+- [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] — Example I.8 pp. 45-46, "The Durfee square of partitions and stack polyominoes."
 
 ## Related Concepts
 
@@ -60,5 +60,5 @@ The book's own note (p. 46) points from Example I.8 forward to Example IX.14 p. 
 
 ## Footnotes
 
-[^1]: [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] Example I.8 pp. 45-46 — "A stack polyomino is the diagram of a composition such that for some j, ℓ, one has 1 ≤ x_1 ≤ x_2 ≤ … ≤ x_j ≥ x_{j+1} ≥ … ≥ x_ℓ ≥ 1 ... The diagram representation of stack polyominoes ... translates immediately into the OGF S(z) = ∑_{k≥1} z^k/(1−z^k) · 1/((1−z)(1−z²)···(1−z^{k−1}))² ... a bona fide algorithm for computing the initial values of the number of stack polyominoes (EIS A001523): S(z) = z + 2z² + 4z³ + 8z⁴ + 15z⁵ + 27z⁶ + 47z⁷ + 79z⁸ + ⋯." Values confirmed against OEIS A001523 during ingest.
-[^2]: [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] p.46 — "The book of van Rensburg [592] describes many such constructions and their relation to models of statistical physics, especially polyominoes. For instance, related 'q-Bessel' functions appear in the enumeration of parallelogram polyominoes (Example IX.14, p. 660)."
+[^1]: [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] Example I.8 pp. 45-46 — "A stack polyomino is the diagram of a composition such that for some j, ℓ, one has 1 ≤ x_1 ≤ x_2 ≤ … ≤ x_j ≥ x_{j+1} ≥ … ≥ x_ℓ ≥ 1 ... The diagram representation of stack polyominoes ... translates immediately into the OGF S(z) = ∑_{k≥1} z^k/(1−z^k) · 1/((1−z)(1−z²)···(1−z^{k−1}))² ... a bona fide algorithm for computing the initial values of the number of stack polyominoes (EIS A001523): S(z) = z + 2z² + 4z³ + 8z⁴ + 15z⁵ + 27z⁶ + 47z⁷ + 79z⁸ + ⋯." Values confirmed against OEIS A001523 during ingest.
+[^2]: [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] p.46 — "The book of van Rensburg [592] describes many such constructions and their relation to models of statistical physics, especially polyominoes. For instance, related 'q-Bessel' functions appear in the enumeration of parallelogram polyominoes (Example IX.14, p. 660)."

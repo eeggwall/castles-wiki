@@ -70,7 +70,7 @@ This is why the model generalizes the Dyck word to this three-letter grammar rat
 - [[narayana-numbers](pages/narayana-numbers.md)] / [[tower-heap](pages/tower-heap.md)] — where the Dyck/Catalan connection becomes concrete: the tower block-count GF is a Narayana polynomial.
 - [[dyck-words](pages/dyck-words.md)] — the classical object this generalizes (the castle grammar is its first-return grammar with a third letter); [[lattice-paths](pages/lattice-paths.md)] — the U/R/D step-string source.
 - [[tower-word-language](pages/tower-word-language.md)] — the formal-language reading: this grammar is a Motzkin-path grammar.
-- [[symbolic-method](pages/symbolic-method.md)] — the framework this grammar fits: a recursive specification `E_k = ε + R·E_k + U·V·D·(ε + R·E_k)` in the [[analytic-combinatorics-part-a](pages/analytic-combinatorics-part-a.md)] sense, translating mechanically to the tower OGFs on [[project-euler-502-representations](pages/project-euler-502-representations.md)].
+- [[symbolic-method](pages/symbolic-method.md)] — the framework this grammar fits: a recursive specification `E_k = ε + R·E_k + U·V·D·(ε + R·E_k)` in the [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] sense, translating mechanically to the tower OGFs on [[project-euler-502-representations](pages/project-euler-502-representations.md)].
 
 ## Footnotes
 
