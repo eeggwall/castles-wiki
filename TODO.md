@@ -19,7 +19,7 @@ OEIS requires human authorship; the drafts below are checked starting points to 
 and sign, not to submit verbatim. New contributors are throttled — lead with tier 1.
 See `wiki/pages/oeis-cross-referencing.md`.
 
-- [ ] **Tier 1 (submit first):** A038505 / A038503 / A146559 — the height-2 hyperbolic
+- [x] **Tier 1 (submit first):** A038505 / A038503 / A146559 — the height-2 hyperbolic
   interlink (`raw/oeis-pe502/oeis-xref-draft.md`;
   `wiki/pages/oeis-height2-hyperbolic-castles.md`). Add the `Cf. A000225` link.
 - [ ] **Tier 2:** tower/heap = Narayana-polynomial interpretation on A005408 / A005891 /
@@ -67,19 +67,19 @@ See `wiki/pages/oeis-cross-referencing.md`.
 - [x] **AOCP/Multinomial Coefficients** — done (`wiki/pages/aocp-multinomial-coefficients.md`).
   The multinomial coefficient, the multinomial theorem, and the telescoping-into-binomials
   factorization (the higher-D lattice-path count). Completes the AOCP web the castle references.
-- [ ] (Deferred) The general **Generating Functions** topic page (distinct from
+- [x] The general **Generating Functions** topic page (distinct from
   AOCP/Generating Functions) — the concept page `wiki/pages/generating-functions.md` is
   seeded; this standalone source is still queued.
-- [ ] **Dyck Words/Examples** — worked enumeration examples (by hand, Python, SymPy) for
+- [x] **Dyck Words/Examples** — worked enumeration examples (by hand, Python, SymPy) for
   Dyck and steep Dyck words; referenced by Castle Factoring. Newly surfaced.
-- [ ] **Dyck Words/Lisp** — Dyck words as Lisp S-expression skeletons. Newly surfaced.
-- [ ] **AOCP/Multisets** — referenced by AOCP/Combinatorics and Lattice Paths; the
+- [x] **Dyck Words/Lisp** — Dyck words as Lisp S-expression skeletons. Newly surfaced.
+- [x] **AOCP/Multisets** — referenced by AOCP/Combinatorics and Lattice Paths; the
   multiset-permutation / multichoose machinery. Newly surfaced.
 - [x] **Generating Functions** (general topic page) — done
   (`wiki/pages/generating-functions-topic.md`). Sedgewick–Flajolet/Trotter reference with
   an explicit PE 502 application; the imaginary-roots / EGF-parity / every-4th-term examples
   are the same operations the castle uses.
-- [ ] **Combinatorics** — the general umbrella topic page (distinct from AOCP/Combinatorics).
+- [x] **Combinatorics** — the general umbrella topic page (distinct from AOCP/Combinatorics).
 
 ## Housekeeping
 
