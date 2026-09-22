@@ -44,19 +44,17 @@ using `∑_{m=0}^{k} (−1)^m = (1+(−1)^k)/2` and `∑_{m=0}^{k} m(−1)^m = (
 
 `P(k,3) = (−1)^k(k+1)²` has characteristic polynomial `(1+x)³` and is verified the same way (Berlekamp–Massey finds the minimal order-3 recurrence), but is not derived here.
 
-## The pattern stops at L = 3
+## The single-polynomial form stops at L = 3
 
-The `(1+x)^L` characteristic polynomial — which would give `P(k,L) = (−1)^k(k+1)^{L−1}` — holds only for `L = 2, 3` (`L = 1` is the degenerate parity form). At `L = 4` it breaks: the minimal recurrence has order **6, not 4**, so there is no `(1+x)⁴ = (−1)^k(k+1)³` closed form. The order then grows as `2L−2` for every `L ≥ 4`, and the characteristic polynomial is **palindromic** for even `L` and **anti-palindromic** for odd `L` (the reciprocal-symmetry signature of the transfer matrix):
+The `(1+x)^L` characteristic polynomial — which would give `P(k,L) = (−1)^k(k+1)^{L−1}` — holds only for `L = 2, 3` (`L = 1` is the degenerate parity form). At `L = 4` it breaks: the minimal recurrence has order **6, not 4**, so there is no `(1+x)⁴ = (−1)^k(k+1)³` closed form. The order then grows as `2L−2` for every `L ≥ 4`, and the characteristic polynomial factors over the integers as `(x+1)^L (x−1)^{L−2}` for every `L` up to 12 tested - palindromic for even `L`, anti-palindromic for odd `L` (the reciprocal-symmetry signature of the transfer matrix):
 
 ```
-L=4: [1, 2, −1, −4, −1, 2, 1]
-L=5: [1, 2, −2, −6, 0, 6, 2, −2, −1]
-L=6: [1, 2, −3, −8, 2, 12, 2, −8, −3, 2, 1]
+L=4: [1, 2, −1, −4, −1, 2, 1]     = (x+1)⁴(x−1)²
+L=5: [1, 2, −2, −6, 0, 6, 2, −2, −1] = (x+1)⁵(x−1)³
+L=6: [1, 2, −3, −8, 2, 12, 2, −8, −3, 2, 1] = (x+1)⁶(x−1)⁴
 ```
 
-with orders `6, 8, 10` respectively (`2L−2`).[^2]
-
-**Update (2026-09-16) - the polynomials factor completely.** Over the integers these are `(x+1)^L (x−1)^{L−2}`: `(x+1)⁴(x−1)²`, `(x+1)⁵(x−1)³`, `(x+1)⁶(x−1)⁴`, and the same shape for every `L` up to 12 tested. So every k-direction eigenvalue is `±1`, and `P(k,L)` *does* have a closed form in `k` for every `L` - a period-2 **quasi-polynomial** `P(k,L) = (−1)^k A_L(k) + B_L(k)` with `deg A_L = L−1` and `deg B_L = L−3`:
+with orders `6, 8, 10` respectively (`2L−2 = L + (L−2)`, the multiplicity sum).[^2] Every k-direction eigenvalue is `±1`, so `P(k,L)` *does* have a closed form in `k` for every `L` - a period-2 **quasi-polynomial** `P(k,L) = (−1)^k A_L(k) + B_L(k)` with `deg A_L = L−1` and `deg B_L = L−3`:
 
 ```
 P(k,4) = (−1)^k (k+1)(2k+1)(2k+3)/6 + (k+1)/2
