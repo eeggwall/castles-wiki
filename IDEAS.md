@@ -9,8 +9,8 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 | Slice | Value |
 |---|---|
 | Pages | 151 (35 Sources / 71 Concepts / 44 Analyses + 1 root) |
-| Departments (open + done) | R 2+12, E 7+13, N 13+25, Z 6+7, Q 9+3, S 12+5, T 7+0, F 12+3, X 8+5 |
-| Items | 76 open, 73 done, 149 total |
+| Departments (open + done) | R 2+12, E 7+13, N 13+25, Z 6+7, Q 8+2, S 12+5, T 7+0, F 12+3, X 8+5 |
+| Items | 75 open, 72 done, 147 total |
 | Dates | wiki 2026-09-13, IDEAS 2026-09-22, last reorganize 2026-09-20 |
 
 ## Seminar program
@@ -224,12 +224,10 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 - [ ] **Signed Klarner `A_s = P_s / (1 - P_s)`** - castles concatenate at height-1 columns and the Klarner decomposition says the castle monoid is free on the prime castles (not abelian); but `blocks(C_1 C_2) = blocks(C_1) + blocks(C_2) - 1`, so `blocks - 1` is a monoid homomorphism to `(Z, +)` and the sign is a one-dimensional character of the free monoid on primes, factoring through the abelianization. Check the signed identity against the parity split on [castle-by-area](wiki/pages/castle-by-area.md), count castles per multiset of primes, and decide which other statistics are monoid characters (area is; peaks, records, and the nonlocal `B_alpha` cannot be).
 - [ ] **Descents Narayana bijection** - prove that towers of width `w` with `b` blocks and `k-1` descents number `N(w,k) C(b+w-k, w-1)` (verified `w, b ≤ 7` on [narayana-numbers](wiki/pages/narayana-numbers.md)), ideally by a bijection to (width-`k` parallelogram polyomino of semi-perimeter `w+1`, weak composition) through [parallelogram-polyomino-dyck-bijection](wiki/pages/parallelogram-polyomino-dyck-bijection.md).
 - [ ] **Convex / unimodal exact enumeration with parity** - the U/R/D route was attempted and failed; the area-graded split is done on [castle-by-area](wiki/pages/castle-by-area.md), the exact `(w,h)` enumeration remains open.
-- [ ] **Signed Klarner-Rivest kernel** - write castles by area as a row-to-column transfer sum with kernel `u^{max(0, n-m)}` (the block rise), the castle analogue of the `min{m, n}` kernel on [klarner-rivest-1974-convex-n-ominoes](wiki/pages/klarner-rivest-1974-convex-n-ominoes.md), and run their separable truncations at `u = -1` to bracket the growth of the signed and even-block area counts on [castle-by-area](wiki/pages/castle-by-area.md) between algebraic numbers.
 - [ ] **Castles by perimeter and area** - Delest-Viennot's closing q-analog question asked of castles: the trivariate (width, blocks, area) generating function from the add-a-column q-shift equation, solved with the `q = 1` shadow recipe of [q-differential-system](wiki/pages/q-differential-system.md), then specialized at blocks `-> -1` to join the perimeter parity of [castle-perimeter](wiki/pages/castle-perimeter.md) with the area parity.
 
 - [x] **[Convex polyominoes by area](wiki/pages/convex-polyomino-by-area.md)** - the ladder rectangles / Ferrers / stacks (= convex castles) / parallelograms / directed convex / convex by area with one adding-a-slice construction and one growth constant `2.30913...`; blocks = height on row-convex shapes, and height-signed parallelograms are `-q/(1 + q^3/(1 + q^5/...))` (`-A049346`) from Flajolet's festoon J-fraction at `y = -1`. Concept page [convex-polyomino](wiki/pages/convex-polyomino.md).
 - [x] **[Castle perimeter](wiki/pages/castle-perimeter.md)** - semi-perimeter = width + blocks, so the parity clause is a perimeter parity; castles by semi-perimeter are A082582 with growth `τ²`, the signed count grows only like `τ`, and signed convex castles are periodic with period 6.
-- [x] **[Convex-castle cap factor](wiki/pages/convex-castle-cap-factor.md)** - the parallelogram, directed-convex and convex area prefactors are `p`, `p·κ`, `2p·κ^2` (`κ = 2.21532...`, the expected convex-castle cap weight under a random parallelogram base); Bender's eq. (11) is right and his `f = 2.67564` comes from a slip in `K` (`1.02934` printed, `1.07524` true).
 
 ### S Department (spectral analysis - castles as 2D polyominoes)
 
