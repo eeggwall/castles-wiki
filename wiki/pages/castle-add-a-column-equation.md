@@ -31,7 +31,7 @@ X(s) = x e(s) + x f(s) X(1) + x g(s) X(sq),
 e(s) = syq/(1 - syq),    f(s) = sq/(1 - sq),    g(s) = -sq(1 - y) / ((1 - sq)(1 - syq))
 ```
 
-This is the shape of the paper's Lemma 2.3, "X(s) = xe(s) + xf(s)X(1) + xg(s)X(sq)", with no `X'(1)` term.[^3] The paper says the derivative term "only occurs when construction C is used", which is not needed for directed polygons.[^4] In a castle every relative placement of two neighbouring columns has both bottoms on row 1, so construction C, where the new column sits strictly inside the old one, never happens.
+This is the shape of the paper's Lemma 2.3, "X(s) = xe(s) + xf(s)X(1) + xg(s)X(sq)", with no `X'(1)` term.[^3] The paper says the derivative term "only occurs when construction C is used", which is not needed for directed polygons.[^4] Castles are directed (every cell can be reached from the bottom-left cell by north and east steps), and the castle equation above indeed has no derivative term.
 
 At `y = 1`, `g = 0` and the equation reads `X(1) = x q/(1 - q) (1 + X(1))`. At `x = 1` that gives `X(1) = q/(1 - 2q)`, the `2^(n-1)` compositions of [[castle-by-area](pages/castle-by-area.md)].
 
@@ -107,6 +107,7 @@ OEIS has no match for this signed row or for its absolute values (searched 2026-
 
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - the framework and Lemma 2.3.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - the same closed form from the tower-word grammar.
+- [[column-convex-ladder-by-area](pages/column-convex-ladder-by-area.md)] - the paper's other families read at `y = ±1`, with castles inside the directed column-convex rung.
 - [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)], [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] - A001169 and the Temperley weight.
 - [[convex-polyomino](pages/convex-polyomino.md)], [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - the corner taxonomy and the area ladder the sub-family table intersects.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - Ferrers and reverse Ferrers as castle shape types.

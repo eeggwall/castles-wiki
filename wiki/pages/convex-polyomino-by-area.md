@@ -157,6 +157,7 @@ def convex_by_area(N, bottoms="free", tops="unimodal"):
 - [[castle-by-area](pages/castle-by-area.md)] - the castle rungs (`2^{n-1}`, A001523) and their parity splits.
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - the stack rung's symbolic-method generating function.
 - [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] - A001169, which by rotation is the column-convex rung.
+- [[column-convex-ladder-by-area](pages/column-convex-ladder-by-area.md)] - the non-convex rungs above the castle: directed column-convex (`F_(2n-1)`) and column-convex, with their vertical-perimeter-signed rows.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], [[q-catalan-numbers](pages/q-catalan-numbers.md)] - the q-Bessel and q-Catalan families the parallelogram rung belongs to.
 - [[castle-sign](pages/castle-sign.md)] - the `(-1)^blocks` specialization used in the parity section.
 - [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)], [[q-differential-system](pages/q-differential-system.md)] - the directed-convex and convex generating functions and the method that found them.
