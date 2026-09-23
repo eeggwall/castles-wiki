@@ -152,6 +152,7 @@ print(castles(-1)[1:])                              # even - odd by area
 - [[castle-perimeter](pages/castle-perimeter.md)]: blocks are the vertical half-perimeter, so this is castles by width, perimeter and area.
 - [[q-differential-system](pages/q-differential-system.md)]: the harder convex case, where the q-shift system does not close in one step.
 - [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)]: the parallelogram rung and its `J_0` growth constant.
+- [[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)]: the same `N/M` from the add-a-column equation by Bousquet-Mélou's Lemma 2.3, with `E(1) = N - M` and `1 - F(1) = M` term by term.
 
 ## Footnotes
 

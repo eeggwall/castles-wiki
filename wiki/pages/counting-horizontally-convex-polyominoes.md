@@ -5,7 +5,7 @@ summary: Hickerson's 1-dimensional proof that horizontally convex n-ominoes sati
 tags: [paper, polyomino, horizontally-convex, linear-recurrence, combinatorics, source]
 sources: [counting-horizontally-convex-polyominoes]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-23
 ---
 
 # Counting Horizontally Convex Polyominoes (Hickerson 1999)
@@ -48,6 +48,7 @@ The relevance is structural and runs along several threads this wiki is chasing:
 - [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] — the object counted; a convexity notion to compare with the castle's.
 - [[convex-castle](pages/convex-castle.md)] — the castle's own convexity class, whose variation-enumeration did not close.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[kitamasa](pages/kitamasa.md)], [[berlekamp-massey](pages/berlekamp-massey.md)] — related threads.
+- [[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)] - the `r + s - 1` weight as a rank-2 column kernel, against the castle's rank-1 kernel `1`.
 
 ## Relation to Other Wiki Pages
 

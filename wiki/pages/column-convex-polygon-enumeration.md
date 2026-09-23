@@ -60,6 +60,7 @@ This paper is the closest external framework to the castle problem, and several 
 - [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - Theorem 3.2's remark credits "special important cases" of the parallelogram result to Klarner and Rivest (area GF).[^13] Their row-to-row recursion `B(x, y) = xy/(1-xy) + xy/(1-xy)^2 (B(x, 1) - B(x, xy))` already has the Lemma 2.3 shape, one q-shift and no derivative term (own reading).
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - bar-graph polygons, which are the castles, have the quadratic functional equation (3.11). It is the directed column-convex specialisation this paper does not single out.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - a Lemma-2.3 application specialised to castles: the tower-word grammar graded by area gives `A(u) = 1 - x + x E(uq)`, `E(u) = A(u)/(1 - u A(u))`, whose linearisation is precisely Lemma 2.3 on castles.
+- [[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)] - the castle class written as a Lemma 2.3 equation, its kernel against the `k + l - 1` Temperley weight, and the Ferrers, stack and parallelogram families intersected with the castles.
 
 ## Relation to Other Wiki Pages
 
