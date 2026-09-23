@@ -1,10 +1,10 @@
 # Departments
 
-Nine Departments partition the castle wiki's research surface. Each Department has a one-line descriptor in four parts, a conceptual coverage list, and a set of crossovers with the other Departments. R gathers the representation, entropy, and source-level pages. X gathers the keystream, steganography, and commitment pages that the other Departments only glanced at.
+Nine Departments partition the castle research surface. Each Department has a one-line descriptor in four parts, a conceptual coverage list, and a set of crossovers with the other Departments. R gathers representations, entropy, and encodings. X gathers keystreams, steganography, and commitments, which the other Departments only glanced at.
 
 Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Crossover names are hooks (a titled subplot), not descriptions of theme.
 
-Alongside the nine Departments sit **Auxiliary Services** - the non-Department sisters, infrastructure and applied-mathematics divisions that sit next to the Departments the way IT or the physical plant sits next to Geology at a university. The first is **The Telephone Company**: phones, audio, coding-adjacent applied mathematics with an AT&T Bell Labs vibe. Auxiliary Services do not partition the research surface; they gather pages already covered by letter Departments into a jurisdiction with a distinct working culture.
+Alongside the nine Departments sit **Auxiliary Services** - the non-Department sisters, infrastructure and applied-mathematics divisions that sit next to the Departments the way IT or the physical plant sits next to Geology at a university. The first is **The Telephone Company**: phones, audio, coding-adjacent applied mathematics with an AT&T Bell Labs vibe. Auxiliary Services do not partition the research surface; they gather topics already covered by letter Departments into a jurisdiction with a distinct working culture.
 
 ## Descriptors
 
@@ -27,7 +27,7 @@ Alongside the nine Departments sit **Auxiliary Services** - the non-Department s
 ### R - Representations
 
 - Column-height vectors, w/h notation, and the tower word / generalized Dyck grammar.
-- Lattice-path and permutation-cycle readings, with the two-line array and Foata intercalation as the source-level grounding.
+- Lattice-path and permutation-cycle readings, with the two-line array and Foata intercalation as the classical grounding.
 - Polyomino embedding and the castle graph as an encoding rather than an object.
 - Substructures: strips, snippets, and proper projections between heights.
 - Decision diagrams: the valid-castle set as a BDD / ZDD, with rank, unrank, uniform sampling, and intersection of castle families for free.
@@ -66,7 +66,7 @@ Alongside the nine Departments sit **Auxiliary Services** - the non-Department s
 - Signal specimens: DTMF and MF tones as exactly periodic castles, image rows and waveforms placed in the zoo.
 - Specimens: the 10-cell and 11-cell isospectral pairs, the golden and silver castles, the bronze hole.
 - Comparative morphology: the convex core (unique hull above, no unique skeleton below), unimodal versus convex, statistical-physics cousins.
-- Public interpretation: eigenvalues-by-example and the other pedagogy tours; the seminar layer draws its exhibits here.
+- Public interpretation: eigenvalues by example and other pedagogy tours; seminars draw their exhibits here.
 
 ### Q - q-Analogues
 
@@ -154,7 +154,7 @@ Alongside the nine Departments sit **Auxiliary Services** - the non-Department s
 | F/Q | one statistic, two orders | area at `alpha = 0`, block count at `alpha = 1`, and the partition function that joins them |
 | F/E | half a column | fractional width, the branch cut the parity clause forces, and which rules are two steps of a finer rule |
 | F/T | the `sqrt(pi)` door | half-sums carry `Gamma(1/2)` in an exact coefficient; a second way through the algebraic wall |
-| F/N | the rungs between rungs | growth constants of fractional recurrences as the complement of the reachable-field census |
+| F/N | the rungs between rungs | growth constants of fractional recurrences as the complement of the census of reachable number fields |
 | F/S | the castle is a comb | subdiffusion at order `1/2` on tree castles, Levy flights on the polyomino graph, fractional heat traces |
 | F/R | the Hurst exponent of a skyline | ARFIMA order as the compressibility knob and a rule-detector statistic |
 | F/Z | long-memory specimens | real skylines (image rows, audio, tones) placed by their fractional integration order |
@@ -166,7 +166,7 @@ Alongside the nine Departments sit **Auxiliary Services** - the non-Department s
 | X/Z | key castles | the sub-zoo of carriers, keystream generators, and commitment shapes |
 | X/T | hardness at the wall | one-way functions as concrete sightings of the algebraic-transcendental wall |
 
-Not yet named: Q/S has no page behind it, and Q/T exists only through area CLTs, which already sit in T/E. X/Q and X/F are open too.
+Not yet named: Q/S, Q/T (area CLTs already sit in T/E), X/Q, and X/F.
 
 ### Crossovers with The Telephone Company
 
