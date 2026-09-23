@@ -160,6 +160,7 @@ def convex_by_area(N, bottoms="free", tops="unimodal"):
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], [[q-catalan-numbers](pages/q-catalan-numbers.md)] - the q-Bessel and q-Catalan families the parallelogram rung belongs to.
 - [[castle-sign](pages/castle-sign.md)] - the `(-1)^blocks` specialization used in the parity section.
 - [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)], [[q-differential-system](pages/q-differential-system.md)] - the directed-convex and convex generating functions and the method that found them.
+- [[convex-castle-cap-factor](pages/convex-castle-cap-factor.md)] - the three prefactors as residues at `1/mu`: `p`, `p·κ`, `2p·κ^2` with the convex-castle cap factor `κ = 2.21532...`.
 - [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - the source of `mu`: existence, the stack-parallelogram-stack trisection, and the kernel bounds.
 - [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] - `mu` to eleven digits, the parallelogram prefactor, and the trapezoid = stack series.
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - the same families graded by perimeter instead of area, and the question of adding area.

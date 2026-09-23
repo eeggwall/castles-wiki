@@ -42,6 +42,7 @@ For convex polyominoes he cuts at the last row where the left end moves left and
 - [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] - the exact generating function of the convex rung. Its series puts the prefactor at A067675's `2.91960`.
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - the same three-piece cut made along vertical lines and graded by perimeter. It quotes this paper's `f`.
 - [[bender-1974-partitions-of-multisets](pages/bender-1974-partitions-of-multisets.md)] - Bender's other 1974 Discrete Math. paper. Its "blocks" are partition blocks.
+- [[convex-castle-cap-factor](pages/convex-castle-cap-factor.md)] - eq. (11) re-evaluated: with `K = 1.07524...` in place of the printed `1.02934` it gives A067675's `2.91960`, and the directed-convex prefactor is `p·K/P_1(r)`.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - the q-Bessel family that `P_1` and `P_2` belong to (Flajolet and Sedgewick's `J_1`, `J_0`).
 
 ## Relation to Other Wiki Pages
