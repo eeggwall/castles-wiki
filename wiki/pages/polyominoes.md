@@ -5,7 +5,7 @@ summary: The charlesreid1.com polyomino taxonomy — Ferrers, staircase, bar-cha
 tags: [polyomino, taxonomy, column-convex, ferrers, catalan, q-analog, stack-polyomino, source]
 sources: [polyominoes]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-22
 ---
 
 # Polyominoes
@@ -44,6 +44,7 @@ Two of the named families are exactly the Online Encyclopedia of Integer Sequenc
 ## Entities & Concepts
 
 - [[column-convex-polyomino](pages/column-convex-polyomino.md)] — the class the castle belongs to.
+- [[convex-polyomino](pages/convex-polyomino.md)], [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - the row- and column-convex class, its corner taxonomy, and every sub-family counted by area.
 - [[castle-polyomino](pages/castle-polyomino.md)], [[convex-castle](pages/convex-castle.md)] — the castle and its convex sub-class.
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the unimodal-skyline sub-family; the AC-native "castle tower with one peak" via the symbolic method.
 - [[q-catalan-numbers](pages/q-catalan-numbers.md)], [[motzkin-numbers](pages/motzkin-numbers.md)] — the q-analog / Motzkin threads the Ferrers remark points to.

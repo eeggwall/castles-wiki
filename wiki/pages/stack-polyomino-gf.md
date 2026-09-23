@@ -5,7 +5,7 @@ summary: A stack polyomino — column heights that weakly rise then weakly fall 
 tags: [concept, polyomino, stack-polyomino, generating-functions, symbolic-method, durfee-square, castle-tower]
 sources: [analytic-combinatorics-ch1-ogfs]
 created: 2026-09-15
-updated: 2026-09-19
+updated: 2026-09-22
 ---
 
 # Stack polyomino generating function
@@ -57,6 +57,7 @@ The book's own note (p. 46) points from Example I.8 forward to Example IX.14 p. 
 - [[convex-castle](pages/convex-castle.md)] — the castle's own skyline-convex sub-family; a specialization of stack polyominoes to castle rules.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — the downstream q-Bessel thread the book points to.
 - [[generating-functions](pages/generating-functions.md)] — the concept page.
+- [[convex-polyomino](pages/convex-polyomino.md)], [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - stacks as the two-bottom-corner convex polyominoes, and their place on the area ladder below parallelogram, directed convex, and convex.
 
 ## Footnotes
 

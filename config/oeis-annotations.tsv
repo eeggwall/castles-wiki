@@ -133,3 +133,13 @@ A228457	count	Number of arrays of maxima of three adjacent elements of some leng
 A228458	count	Number of arrays of maxima of three adjacent elements of some length n+2 0..5 array.	minimum-tower-spacing `(h=6, g=3)` castles (maxima = minima by complement)
 A228461	supporting	Two-dimensional array read by antidiagonals: T(n,k) = number of arrays of maxima of three adjacent elements of some length n+2 0..k array.	the `g=3` column of the minimum-tower-spacing `(h,g)` table
 A000124	supporting	Central polygonal numbers (the Lazy Caterer's sequence): n(n+1)/2 + 1; or, maximal number of pieces formed when slicing a pancake with n cuts.	unimodal height-2 castles `1 + C(w+1,2)`, the `g -> infinity` limit of the `h=2` tower-spacing row
+A000005	supporting	d(n) (also called tau(n) or sigma_0(n)), the number of divisors of n.	rectangles by area, the bottom rung of the convex-polyomino ladder
+A000041	supporting	a(n) is the number of partitions of n (the partition numbers).	Ferrers diagrams by area
+A000700	supporting	Expansion of Product_{k>=0} (1 + x^(2k+1)); number of partitions of n into distinct odd parts; number of self-conjugate partitions; number of symmetric Ferrers graphs with n nodes.	height-signed Ferrers diagrams by area, `(-1)^n A000700(n)`
+A005436	supporting	Number of convex polygons of perimeter 2n on square lattice.	convex polyominoes by perimeter (Delest-Viennot)
+A006958	supporting	Number of parallelogram polyominoes with n cells (also called staircase polyominoes, although that term is overused).	parallelogram polyominoes by area, the q-Bessel rung
+A049346	supporting	Coefficient of x^(-n) in expansion of continued fraction 0, x, x^2, x^3, x^4, ... .	height-signed parallelogram polyominoes by area are `-A049346(n)`
+A067675	supporting	Number of fixed convex polyominoes with n cells.	convex polyominoes by area; the convex castle with a floating base
+A067676	supporting	Number of fixed directed convex polyominoes with n cells.	directed convex polyominoes by area
+A227310	supporting	G.f.: 1/G(0) where G(k) = 1 + (-q)^(k+1) / (1 - (-q)^(k+1)/G(k+1) ).	absolute values of height-signed parallelograms by area; growth 1.23729
+A276994	supporting	Decimal expansion of the Klarner-Rivest polyomino constant.	growth constant 2.30913... of parallelogram, directed convex and convex polyominoes by area

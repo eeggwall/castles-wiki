@@ -5,7 +5,7 @@ summary: A polyomino whose intersection with any vertical line is contiguous (ea
 tags: [concept, polyomino, column-convex, convexity, combinatorics, symbolic-method]
 sources: [column-convex-polygon-enumeration, analytic-combinatorics-ch1-ogfs]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-22
 ---
 
 # Column-convex polyomino
@@ -38,6 +38,7 @@ The castle placement in the taxonomy - castle-as-column-convex-polyomino - is st
 - [[convex-castle](pages/convex-castle.md)] — the castle's own convexity notion.
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the unimodal-skyline sub-family, with a symbolic-method OGF.
 - [[symbolic-method](pages/symbolic-method.md)] — the Analytic Combinatorics (AC) framework used for the stack-polyomino construction.
+- [[convex-polyomino](pages/convex-polyomino.md)] - column-convex plus row-convex; [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] counts it and its sub-families by area, and notes that column-convex polyominoes by area are A001169, the horizontally convex count (rotating a polyomino 90 degrees turns its rows into columns and keeps its area, so it is a one-to-one map from row-convex to column-convex polyominoes of the same area).
 
 ## Footnotes
 

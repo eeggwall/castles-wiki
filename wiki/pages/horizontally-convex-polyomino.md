@@ -5,7 +5,7 @@ summary: A polyomino meeting every horizontal line in a single segment (or not a
 tags: [concept, polyomino, horizontally-convex, convexity, combinatorics]
 sources: [counting-horizontally-convex-polyominoes]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-22
 ---
 
 # Horizontally convex polyomino
@@ -36,6 +36,7 @@ Precisely characterizing which castles are horizontally convex (and vice versa),
 - [[convex-castle](pages/convex-castle.md)] — the castle's own convexity class.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] — the broader column/row-convex polyomino literature.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] — exhibits low-order C-finite castle sub-sequences (A000930, A006498, A000570); a natural place to compare against the A001169 recurrence signature and probe whether castle recurrences relate to the horizontally-convex family.
+- [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - A001169 is also the column-convex count by area (rotating a polyomino 90 degrees turns its rows into columns and keeps its area, so it is a one-to-one map from row-convex to column-convex polyominoes of the same area), the envelope of every castle area count; the ladder of convex sub-families sits below it.
 
 ## Footnotes
 

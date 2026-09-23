@@ -5,7 +5,7 @@ summary: A castle with a unimodal (up-then-down) skyline — equivalently column
 tags: [concept, castle, convex, unimodal, column-convex, row-convex, combinatorics, stars-and-bars]
 sources: [project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-09-20
+updated: 2026-09-22
 ---
 
 # Convex castle
@@ -66,6 +66,7 @@ where `C(m,k) = m!/(k!(m−k)!)` is the binomial coefficient. For example, at *h
 - [[castle-classification-shape](pages/castle-classification-shape.md)] — the framework that names this class the **unimodal type**, one of the 7 base castle types.
 - [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] — the home of Vandermonde's convolution (Knuth eq (21)), the identity that closes the count; [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] — the multinomial as the general form of the stars-and-bars mechanism.
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the AC-native OGF for the unimodal-skyline A001523 sub-family, built directly by the symbolic method.
+- [[convex-polyomino](pages/convex-polyomino.md)] - the general row- and column-convex class; a convex castle is its stack sub-family (both bottom corners of the bounding box), and on any row-convex shape blocks = height. [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] places the convex castle on the full area ladder.
 
 ## Footnotes
 
