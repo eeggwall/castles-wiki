@@ -3,7 +3,7 @@ title: Polyominoes
 category: Sources
 summary: The charlesreid1.com polyomino taxonomy — Ferrers, staircase, bar-chart, column-convex, directed — placing the castle as a column-convex polyomino and linking the Catalan / q-Bessel / q-Catalan generating-function threads. AC's stack polyomino (Example I.8) is the direct symbolic-method castle-tower relative.
 tags: [polyomino, taxonomy, column-convex, ferrers, catalan, q-analog, stack-polyomino, source]
-sources: [polyominoes]
+sources: [polyominoes, bousquet-melou-fedou-1995-convex-polyominoes]
 created: 2026-09-13
 updated: 2026-09-22
 ---
@@ -55,7 +55,7 @@ Related topics also ingested: [[dyck-words](pages/dyck-words.md)], [[lattice-pat
 
 ## Relation to Other Wiki Pages
 
-This is the taxonomy that situates the castle, and the upstream source for "castle = column-convex polyomino." It closes several of the wiki's outstanding "Polyominoes (not yet ingested)" placeholders and connects the castle directly to the Ferrers/parallelogram families and the q-Bessel/q-Catalan generating-function world.
+This is the taxonomy that situates the castle, and the upstream source for "castle = column-convex polyomino." It closes several of the wiki's outstanding "Polyominoes (not yet ingested)" placeholders and connects the castle directly to the Ferrers/parallelogram families and the q-Bessel/q-Catalan generating-function world. The area generating functions of the parallelogram, directed-convex and convex families, as q-Bessel quotients, are on [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)].
 
 ## Footnotes
 

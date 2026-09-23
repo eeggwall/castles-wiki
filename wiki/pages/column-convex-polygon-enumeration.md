@@ -3,9 +3,9 @@ title: "Enumeration of Column-Convex Polygons (Bousquet-Mélou)"
 category: Sources
 summary: Bousquet-Mélou's universal "add-a-column" (Temperley) method — one functional-equation template for the generating functions (perimeter + area) of every natural column-convex polyomino class.
 tags: [paper, polyomino, column-convex, generating-functions, temperley, source]
-sources: [column-convex-polygon-enumeration]
+sources: [column-convex-polygon-enumeration, bousquet-melou-fedou-1995-convex-polyominoes]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-22
 ---
 
 # Enumeration of Column-Convex Polygons (Bousquet-Mélou)
@@ -50,7 +50,7 @@ This is arguably the closest external framework to the castle problem, and sever
 
 ## Relation to Other Wiki Pages
 
-Cited as a reference on [[project-euler-502-solution](pages/project-euler-502-solution.md)]. It is the polyomino-enumeration framework the castle problem most resembles — an add-a-column generating-function method for column-convex shapes — and the natural home for tracing the castle's column-independence, convexity, and stack/Ferrers threads into the literature. [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] provides a complementary route: the [[symbolic-method](pages/symbolic-method.md)] constructs specific well-structured sub-families like [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] directly, without a functional equation.
+Cited as a reference on [[project-euler-502-solution](pages/project-euler-502-solution.md)]. It is the polyomino-enumeration framework the castle problem most resembles — an add-a-column generating-function method for column-convex shapes — and the natural home for tracing the castle's column-independence, convexity, and stack/Ferrers threads into the literature. [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] provides a complementary route: the [[symbolic-method](pages/symbolic-method.md)] constructs specific well-structured sub-families like [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] directly, without a functional equation. The convex and directed-convex area generating functions that this paper recovers were first put in closed form by [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)], which solves the q-differential system from Bousquet-Mélou's earlier algebraic-language encoding ([[q-differential-system](pages/q-differential-system.md)]). All three results share the q-Bessel denominator `J_0`.
 
 ## Footnotes
 

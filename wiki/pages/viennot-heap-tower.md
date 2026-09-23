@@ -3,9 +3,9 @@ title: Viennot heaps of pieces on the tower
 category: Analyses
 summary: The tower as a Viennot heap of pieces over w free columns, its trace-monoid presentation, the Cartier-Foata inversion recovering `1/(1-x)^w` for cell count, and the transfer-matrix reading that produces `Narayana_w(x)/(1-x)^w` for block count. Also identifies where the naive block-piece basis (intervals in `[1,w]`, dependency = shared column) fails to reproduce the tower count, and what a heap-theoretic proof of the Narayana numerator would have to supply.
 tags: [analysis, tower, viennot, heap-of-pieces, commutation-monoid, trace-monoid, cartier-foata, transfer-matrix, narayana]
-sources: [tower-narayana-polynomial]
+sources: [tower-narayana-polynomial, bousquet-melou-fedou-1995-convex-polyominoes]
 created: 2026-09-21
-updated: 2026-09-21
+updated: 2026-09-22
 ---
 
 # Viennot heaps of pieces on the tower
@@ -119,6 +119,7 @@ matches at `x^0, x^1` and diverges at `x^2`: the interval-heap has `8` at `x^2` 
 - [[castle-foata-transform](pages/castle-foata-transform.md)] - blocks as maximal positive runs; the peak / record dictionary the block-start weighting realizes.
 - [[symbolic-method](pages/symbolic-method.md)] - the analytic-combinatorics framework the transfer-matrix extraction sits in.
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - Bousquet-Melou stack-polyomino generating functions, the polyomino cousin of this construction.
+- [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] - parallelogram polyominoes as heaps of segments, the heap explanation of their `J_1/J_0` quotient form.
 
 ## Footnotes
 

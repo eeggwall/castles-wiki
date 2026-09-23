@@ -3,9 +3,9 @@ title: "Steep Polyominoes, q-Motzkin Numbers and q-Bessel Functions (Barcucci et
 category: Sources
 summary: Barcucci–Del Lungo–Fédou–Pinzani connect steep parallelogram/staircase polyominoes and steep Dyck words to three q-Motzkin analogs, one a ratio of q-Bessel functions, via object grammars.
 tags: [paper, polyomino, dyck-words, motzkin, generating-functions, q-analog, source]
-sources: [steep-polyominoes-q-motzkin-bessel]
+sources: [steep-polyominoes-q-motzkin-bessel, bousquet-melou-fedou-1995-convex-polyominoes]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-22
 ---
 
 # Steep Polyominoes, q-Motzkin Numbers and q-Bessel Functions (Barcucci et al.)
@@ -51,7 +51,7 @@ This paper sits on the intersection of three of the castle's central threads —
 
 ## Relation to Other Wiki Pages
 
-Cited as a reference on [[project-euler-502-solution](pages/project-euler-502-solution.md)]. It is the thread that carries the castle's Dyck-word and generating-function structure into the world of Motzkin numbers, q-analogs, and q-Bessel functions — a direction for a possibly richer, area-graded castle enumeration, and a bridge to the parallelogram/staircase families of [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)].
+Cited as a reference on [[project-euler-502-solution](pages/project-euler-502-solution.md)]. It is the thread that carries the castle's Dyck-word and generating-function structure into the world of Motzkin numbers, q-analogs, and q-Bessel functions — a direction for a possibly richer, area-graded castle enumeration, and a bridge to the parallelogram/staircase families of [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)]. The same q-Bessel quotient form, `y J_1/J_0`, is the parallelogram rung of [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)], which extends it over the same denominator to directed convex and convex polyominoes.
 
 ## Footnotes
 

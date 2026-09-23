@@ -1,0 +1,1171 @@
+                                                                                DISCRETE
+                                                                                MATHEMATICS
+ELSEVIER                 Discrete Mathematics 137 (1995) 53 75
+
+
+
+      The generating function of convex polyominoes: the
+             resolution of a q-differential system
+                     Mireille Bousquet-M~lou*, Jean-Marc F~dou
+       LaBRI ~, Universitb Bordeaux 1,351 Cours de la Libbration, 33505 Talence Cedex France
+
+                                       Received 9 February 1993
+
+
+
+Abstract
+
+  We give a 'beautiful' though complex - formula for the generating function Z of convex
+polyominoes, according to their area, width and height. Our method consists in solving a linear
+q-differential system of size three, which was derived two years ago by encoding convex
+polyominoes with the words of an algebraic language (Schfitzenberger's methodology). Three
+other formulas had already been obtained for Z, but neither was entirely satisfying.
+
+
+
+
+O. Introduction
+
+   Polyominoes have been extensively studied by both physicists and combinatorial-
+ists alike. Sometimes referred to as animals, they have been used by theoretical
+physicists to model crystal growth and polymers. In combinatorics, counting poly-
+ominoes according to various properties has been a long ongoing endeavor.
+   Let us consider the lattice Z x 7/. An e l e m e n t a r y cell is a square [i, i + 1] x [ j , j + 1],
+where i and j are integers. A p o l y o m i n o is a finite union of elementary cells, whose
+interior is connected. Polyominoes are defined up to a translation (Fig. 1). Further-
+more, a p o l y o m i n o is said to be c o n v e x when its intersection with any vertical or
+horizontal line is convex. The p o l y o m i n o of Fig. 1 is obviously not convex.
+   The most fundamental counting problem is that of determining the n u m b e r of
+polyominoes having a given area (number of cells). To date, the best answer to this
+question remains an asymptotic upper b o u n d [11]. However, more exact results have
+been obtained for the 'simpler' question posed by K n u t h (1974) of enumerating convex
+polyominoes by area.
+
+
+
+* Corresponding author,
+1Laboratoire Bordelais de Recherche en Informatique. Research partially supported by the PRC
+'Math~matiques et InformatiqueL
+
+0012-365X/95/$09.50 © 1995--Elsevier Science B.V. All rights reserved
+SSDI 0 0 1 2 - 3 6 5 X ( 9 3 ) E 0 1 6 1 - V
+54           M. Bousquet-M~lou, J.-M. F~dou/ Discrete Mathematics 137 (1995) 53 75
+
+
+
+                                         imM
+                          Height
+
+
+                                    I              Width
+                                     Fig. 1. A polyomino.
+
+
+
+   A natural strategy for attacking the problem raised by Knuth is to break the set of
+convex polyominoes into smaller more manageable subsets. Three important subsets,
+in order of complexity, are Ferrers' diagrams, parallelogram polyominoes, and directed
+and convex polyominoes. An example, from which rigorous definitions may be
+deduced, of each type of polyomino is given in Fig. 2. By successively solving the
+problem for each subset, researchers have been able to derive different formulas for the
+generating function on convex polyominoes according to area, width and height: two
+were obtained by one of the authors of this article [-3,4, 6], and a third was given by
+Lin [14].
+   However, the formulas given thus far for the tri-variate distribution on convex
+polyominoes are all unsatisfying, as we will see in Section 1. Our purpose here is to
+give a 'beautiful' formula that does not have the flaws of other three.
+   The method we use is as interesting as the result itself: we solve a q-differential linear
+system of dimension three, introduced in Section 1. This system was obtained two
+years ago using the so-called Schfitzenberger's methodology, which relates some
+enumeration problems to the theory of algebraic languages [-3, 5, 6]. Unfortunately,
+there exists no general technique to integrate q-differential equations. Nevertheless, we
+succeeded recently in solving this system. Our method is a sort of q-analogue of the
+classical method used to solve linear systems of ordinary differential equations.
+   We first recall in Section 1 several results related to the generating function on the
+main different subfamilies of convex polyominoes. Then, we present two of the three
+formulas which were already known for convex polyominoes, and, comparing them
+with those obtained for parallelogram polyominoes or directed and convex
+polyominoes, we explain why none of these formulas is totally satisfying. Finally, we
+give two criteria that a 'beautiful' expression should satisfy.
+   In Section 2, we consider the system of ordinary differential equations associated to
+our q-differential system, and solve it. This solution will serve as a guide in the
+remainder of the paper.
+   The main theorem is proved in Section 3: we check by direct computation that the
+expression we give is indeed a solution. This formula is of the same form as the
+generating function of parallelogram or directed and convex polyominoes, and
+satisfies the two desired criteria.
+             M. Bousquet-Mklou, J.-M. Fbdou / Discrete Mathematics 137 (1995) 53-75                        55
+
+
+  A Ferrers' diagram             A parallelogram                  A directed and convex   A convex polyomino
+                                    polyomino                           polyomino
+
+
+
+
+                            Fig. 2. Different subclasses of convex polyominoes.
+
+  Finally, we explain in Section 4 how we arrived at this formula. Although not
+universal, the method we used suggests a systematic approach for integrating q-equations.
+
+
+1. A bit of history
+
+  We begin with the most useful definition of this paper: let ~ be a family of
+polyominoes. Its 9eneratinq function is the power series P(x, y, q) = ~ P . . . . . x" y " q",
+where P . . . . . is the number of elements of ~ having width n, height m and area a.
+  The generating functions associated with different subsets of convex polyominoes
+share some common properties. For instance, the distribution by width is clearly
+identical to the distribution by height for all sets of polyominoes exhibited in Fig. 2.
+This implies that the generating function on any set is symmetric in the variables
+x and y. A second shared property, which is not as obvious, is the fact that the
+generating functions according to height and width are all algebraic series. These two
+properties are exemplified by the bivariate generating function on convex poly-
+ominoes for height and width, obtained by Lin and Chang [13]:
+                     xV
+      Z (x, y, 1) = ~:~ (1 - 3x -- 31' + 3x z + 3y z + 5 x y - x 3 --3 ,3
+
+                                                                  4X2), 2
+                     - - X 2 y - - x Y Z - - x Y ( X - - Y ) 2)    A3/2 ,
+
+with A = 1 - 2x - 2y - 2 x y + x 2 + y2.
+  Incidentally, since the perimeter of a convex polyomino is twice the sum of its height
+and width, the enumeration according to height and width is a refinement of the
+enumeration according to perimeter. Thus, the formula of Lin and Chang refines the
+perimeter generating function given by Delest and Viennot [10].
+  The form of these generating functions changes as soon as one tries to take into
+account the area. Even in the simplest cases, they become q-series. For example, it is
+well-known that the generating function of Ferrers' diagrams is [1]:
+             x" q.
+      Y ,~1 (Yq),'
+where we have made use of the following standard notations.
+56          M. Bousquet-Mklou, J.-M. Fbdou / Discrete Mathematics 137 (1995) 53-75
+
+
+Notations. Let n~>l , then (y),= I]i=o.-1 ( 1 - y q )i. Moreover, (Y)o = 1 and (y)o~=
+       1
+Fii=o (__yqi).
+   We will also use the q-analogues of the binomial coefficients, defined, for p and n in
+N, by
+
+
+            (q)p ( q ) . - ,
+   The first non-trivial result which was discovered concerned the parallelogram
+polyominoes. Their generating function is the quotient of two q-analogues of Bessel-
+like functions:
+
+            ,          J1
+       X(x,y q)=Y~o'                                                                  (1)
+
+with
+                               (.~1)
+       Jl=-- 2(--1)"x"q                and   Jo = 2    (-1)"x"q(~')
+                .>~1 (q).-x(Yq).                   .>~o (q).(Yq).
+In order to see the Bessel-like nature more clearly, consider
+                                   X(x(1 _q)2, 1, q)/(l --q).
+
+The numerator and denominator of this expression are exact q-analogues of Bessel
+functions.
+   A form of this result (the area generating function) was first obtained by Klarner
+and Rivest [12]. Then, independently, Delest and F6dou [9] computed the generating
+function according to both area and width, while Brak and Guttmann gave a formula
+for counting parallelogram polyominoes by area and perimeter [8]. Finally,
+Bousquet-M6lou and Viennot gave this more general generating function [7].
+   A criticism of (1) is that the symmetry in the variables x and y is not obvious.
+However, multiplying the denominator and the numerator by (yq)~ leads to the
+following symmetric expression:
+
+                   L(xq, yq)
+       X(x,y,q)=xyq L(x,y) '                                                          (2)
+
+with
+
+       L(x,y)=      Z     (--1)"+"x"y"q("+~+l)
+                 ,~o, ~>~o       (q).(q)m
+   The next advance in the saga was the enumeration of directed and convex poly-
+ominoes [7]. Their generating function is the quotient of a q-analogue of the odd part
+f a Bessel-like function by a q-analogue of another Bessel-like function:
+
+                      MI
+       Y(x, y, q)=y j~,                                                               (3)
+             M. Bousquet-MOlou, J.-M. FOdou / Discrete Mathematics 137 (1995) 53-75           57
+
+
+with
+
+                  i x,q,      n~      (__l)kq(k)                                       ,+1)
+       M' = Y-"               ~=o   (q)k(yqk+')"-k     and   Jo = ,~oZ( - 1)"x"q(2(q)n(Yq),
+
+   Expression (3) is of the same type as (1), though a bit more complex. It is a quotient
+of two q-series which are expanded in the variable x, in the following sense: the
+coefficient of x" in Jo, as well as in J1 or in M1, is an explicit series (actually, a rational
+fraction) in y and q. In particular, this property allows to compute the first terms of the
+Taylor expansion in x of X and Y, that is the generating function of polyominoes of
+given width.
+   Both (1) and (3) can be derived from several different methods. One approach is
+based on a bijection between parallelogram polyominoes and some heaps of segments.
+The theory of heaps of pieces, introduced by Viennot, is a geometrical version of the
+theory of partially commutative monoids, which is well-known in theoretical com-
+puter science. The main advantage of this first method is that it provides a combina-
+torial explanation for the appearance of the quotients, and interpretations for their
+numerator and their denominator [7].
+   Another method is the so-called Schfitzenberger's methodology, which relates some
+enumeration problems to the theory of languages. Basically, the idea is to explain the
+algebricity of a generating function by encoding the objects it counts with the words of
+an algebraic language generated by a non-ambiguous grammar. Recently, Delest and
+F6dou introduced a generalization of this methodology, that handles q-analogues of
+algebraic series, which fits in ideally with the problem of enumerating families of
+convex polyominoes according to the area. A first application of their generalization
+was the area and width generating function of parallelogram polyominoes [9].
+   By extending both of these methods, we were able to determine two formulas for the
+trivariate distribution of area, height and width on convex polyominoes. As already
+mentioned though, neither formula was totally satisfying. However, for the record, we
+present them below. In doing so, we will use the following notations.
+
+Notations. Let S(x,y,q) be a power series in x,y and q. We will often denote S(x), or
+even S, instead of S(x,y,q), and, for k in N, S(xq k) instead of S(xqk, y,q).
+  The first formula was obtained with the theory of heaps of pieces [4]. For each
+n/> 0, define the polynomials 7". and N, by
+
+       Tn= 1 +      2         xkqk2
+                  X~<k~<L~j          m=k        k--1                                          (4)
+
+and
+                                              k]En k '
+            h+k<~n-1
+58               M. Bousquet-Mklou, J.-M. Fbdou/ Discrete Mathematics 137 (1995) 53-75
+
+
+Further, we define the polynomials N~. as follows:
+
+       N~,=-xy"              lq.,
+and
+
+       N rn, - x 2 y n   1
+                             q"+mNm_.(xq" ) i f m > n .
+Then, the trivariate generating function on convex polyominoes is
+
+                              MIU
+       Z(x,y,q)=2y                        - - 2 y V - W,                                                       (5)
+                                Jo
+with
+
+       U= E xq"+' TmNr'+x,                           V= E       ~'m+li~Tn+l TmTn ,       .    ~-, xy n q n (T.) 2
+          m>~o     (xq),,,                                 o<~.~,,       (Xq)r,,(xq).    w =.>Z~I(x~-.- ~ . "
+
+The series M1 and J0 are defined above by (3). In the rest of the paper, the reader will
+find that Appendix A is a convenient reference for all of the q-series that we use.
+   The second formula for the trivariate distribution was derived from the following
+lemma, which is due to Bousquet-M61ou and is based on Schfitzenberger's methodo-
+logy [5].
+
+Lemma 1.1. Let X (resp. Y,Z) be the generating function of parallelogram (resp.
+directed and convex, convex) polyominoes. Then, these three series are totally character-
+ized by the following q-differential system:
+
+       X ( x ) = xyq + y + X
+                   1 - xq           l - xq X (xq)'
+
+
+
+
+         zl        (X)=l Yq q                   +>Tx vw
+         Z3                                                   W2
+
+
+                                      Y          1   l+xq          q ~     Z1    (xq),
+                             ÷ (1--xq) 2         1     2                   Z3
+
+with
+                   xyq                           xyq
+       V= Y - - - -             and W = Y 1 - - - -
+                 1-xq                           1-xq"
+
+Remark. It is not difficult to see that this q-differential system has a unique solution in
+terms of power series.
+               M. Bousquet-Mklou, J.-M. F~dou / Discrete Mathematics 137 (1995) 53-75         59
+
+
+
+   Since the values of X, Y and ]I1 were already known, the problem reduced to
+solving the last part of this system. Unfortunately, as we said, there exists no general
+method to solve this type of equations. Nonetheless, we were able to derive a second
+formula by iterating the last group of equations and using some other intermediate
+results coming from the theory of heaps [3, 6]:
+
+               ~-" y m + 2 (T,.+lmo(xq m ) - y T , . m o ( x q m + l ))2 . V ~ xy"qm(T,.) 2
+       Z=2                                                                                    (7)
+
+
+where the polynomials T, are defined by (4).
+   Let us stop now and examine the two formulas (5) and (7) for Z. They are obviously
+not as satisfying as (1) and (3). The series U, V and W involve rather complicated
+polynomials and are not expanded in x. Moreover, Expression (7) appears as an
+infinite sum of series.
+   There exists a third formula for Z, which is still bigger 1-14]. There exists also an
+asymptotic result simultaneously proved by Bender on the one hand, Klarner and
+Rivest on the other hand [2, 12]: the number of convex polyominoes of area n is
+asymptotically Ca", where C-~ 2.67564 and a ~ 2.30914.
+   Thus, though these expressions are certainly interesting results, they are clearly
+lacking. At this point, we were wondering whether there existed another formula,
+similar to those obtained for parallelogram polyominoes and directed and convex
+polyominoes, or if the problem of enumerating convex polyominoes was of a really
+different nature. Clearly, it would be nice to find a 'beautiful' formula, that is, one
+which is of the same form as (1) and (3) and involves a finite number of series expanded
+in x.
+   It turns out that there is indeed such a formula, though much more complicated
+than either (1) or (3). We found it by developing another approach for solving System
+(6). Our method is a q-analogue of the one used for solving the ordinary differential
+system associated to (6).
+
+
+
+2. T h e c a s e q = 1
+
+
+   Considering the case of parallelogram polyominoes, we are going to show how one
+can associate an ordinary differential equation to a q-differential equation, and what
+one can expect from the resolution of this ordinary equation. First, in order to simplify
+the problem, we set the variable y to 1. But, since the generating function X(x, 1, q)
+diverges when q--. 1, we have to do a change of variables first.
+   Towards this end, let X = X ( x ( 1 - q)Z, 1, q ) / ( 1 - q). We deduce easily from the first
+equation of System (6) that
+
+       ) ( - - X ( x q ) = q +q(1 - q ) X +~)((xq).
+         x(1 - q )                           x
+60              M. Bousquet-Mblou, J.-M. Fbdou / Discrete Mathematics 137 (1995) 53-75
+
+
+This implies that the series X has a limit .~ when q--*l, which satisfies the ordinary
+differential equation
+                       ~2
+       )~'= l - F - - .
+                       X
+
+We solve this last equation by searching a solution of the form - xf'/f and thus get
+       )~=dl,
+          Jo
+with
+                           (-- 1)nx"                      ( - 1)"x"
+       Jx=-L                             and   Jo =2.~
+                  n~l      ( n - 1)!n!             n~>0     n!2
+
+(With a slight abuse of notations, we use the same symbol to denote a function and its
+q-analogue).
+  Our next step is to guess the 'right' q-analogue of)~, actually the right q-analogue of
+Jo and J1- This is quite easy in the case of parallelogram polyominoes (see Formula (1)).
+  For directed and convex polyominoes a similar calculation proves that
+
+       Y=lim 1 Y(x(1 _q)2, 1,q)
+          q~x 1--q
+              Jl(X)--Jl(--x          )
+                        2Jo
+so we now have to find the 'right' q-analogue of the odd part of the series J1. It turns
+out to be
+        [ x, qn n--I
+       ~L(~n
+       n>~l
+                Z ( - 1)kq (k2)],
+                               k=O
+which is obviously more difficult to guess than it was in the case of parallelogram
+polyominoes.
+   More generally, what can we expect from the integration of the ordinary differential
+system associated to a q-differential system? In the most favourable cases, we get some
+very precise indications about the form of the solution. Being less optimistic, we can
+all the same hope that solving the ordinary equations will be a sort of guide for solving
+the q-equations.
+   Thus, we computed the whole ordinary system associated to System (6). We proved
+that the series
+
+       )~ = lira 1 X(x(1--q)a,l,q),                  Z=lim            1   Z(x(l_q)2,1,q) '
+            q~l 1 - q                                       q-,i 1-q
+       Y= lira 1 r(x(1 _q)2, 1,q),                   Z1 =lim Zl(x(1 __q)2, 1,q),
+          q-~l 1 - q                                         q~l
+
+       ~'x =lim YI (x(1 _q)2, 1, q),                 Z3 = lim (1 -q)Z3(x(1 __q)2, 1,q)
+               q--*l                                         q~l
+              M. Bousquet-Mblou, J.-M. Fkdou/ Discrete Mathematics 137 (1995) 53 75                   61
+
+
+
+are defined, and satisfy the following differential system:
+                   )~2                                              ~-2
+       )~'= 1 + - - ,                     Z ' = 1+ 2 2 x + 2 - - ,
+                      X                                             X
+
+
+
+
+                               X                                X
+
+
+       ~,_ Y+XYx,                         2 ~ = 2 Z a + y2
+                      X                                X
+
+
+We already knew the values of )~, Y and Y1:
+       if=s,               ~=s,+y,                ~,=Jo-So
+            Jo                     2Jo                     2Jo
+with
+                          Xn                               Xn
+       Jo(x)=En!Z,
+            n>~O
+                   Jl(x)=E(n_l)!n!,
+                        n>~l
+       Jo(X)=Yo(-X),                 A(x)=-Yl(-x).
+   Hence we had only to solve the last three equations, which form a linear system.
+The associated homogeneous system has the following three solutions, which are
+linearly independent, and whose Wronskian is 1:
+
+
+         to_r11 Jo;x+J ro                        iSo_J l,                                             (8)
+           y2 //                 2Jo Yo          \ j2 //
+with
+       Yo =/(o + ]o log (x),              YI=/(1 + JllOg (x),
+
+       Ko=2
+                 --
+                          IXnk~_l~]
+                           ~.~
+                                           and    /(1=1+ E [ i
+                                                                          n2
+                                                                               x~(2 ~-,1k - n 1)] "
+                 n~>l                                           n~>lL            '   '\   k=l
+
+  Finally, the variation of parameters method gives, after a few integrations which are
+miraculously simple:
+
+       2 -J1- +if1 ~-2~o(1
+             2Jo
+                                    +JoR1-KoJ,),
+       Z I = 2~o (1 + Jo/(1 - Ko Yl),
+
+       23 = 2-~o(JoRo- KoYo),
+
+where   Ko(x)=Ko(-X)and Kl(x)= -- /(l ( -- x), the series Ko and /(1 being defined
+just above.
+62           M. Bousquet-Mblou,J.-M. Fbdou/ Discrete Mathematics 137 (1995) 53-75
+
+Foreword. The next two sections are overcrowded by formulas. In Section 3, we verify
+that our main theorem does indeed give the solution of the q-system (6). In Section 4,
+we (try to) explain how we found this rather complicated solution.
+   In order to keep the paper almost readable, we have listed in Appendix A all the
+expansions of the series which will appear in the computations, and, in Appendix B,
+the main identities (or q-equations) they satisfy. These identities are said to be
+'elementary', meaning that each can be proved by comparing the coefficient of x" on
+both sides. This allows us the flexibility of dealing with the equations satisfied by the
+series, rather than working with the explicit series themselves.
+   We will often be faced with the problem that two q-series, let's say S and T, are
+equal. There are (among others...) two ways to prove such an equality. Whenever
+S and Tcan be expanded in x, the algorithm will consist in searching for the identity in
+Appendix B. In the other cases, we will prove that both S and T satisfy a given
+q-differential equation, with the same initial conditions.
+
+
+3. The main theorem
+
+Theorem 3.1. The 9eneratin9 function of convex polyominoes is
+
+      Z = 2 y 2 Ma(Jlfl--~;loO              y],ba+yK, lax.                            (9)
+                             Jo
+More precisely, the unique solution of the q-differential system (6) is
+             J,
+      X = Y ~ oo,
+
+
+        Y1 = 700 Mo '
+
+
+
+       Z3         ao \
+                         /     _
+                                        2Mo(Jofl-- go~)
+                                         Lbl-    lal
+                                                             t
+                      - - y [½( Jabo--_K lao +_Jobx--Koal)
+
+                    \          Jobo-Koao
+The values of all the q-series involved in these expressions are 9iven in Appendix A.
+
+  We begin with two interesting properties. The first one allows some useful simplifi-
+cations. The second one underlines the remarkable form of the matrix
+        1     2xq            x2 q 2 )
+        1    l+xq             xq ,
+        1         2            1
+
+and partially explains why we succeeded in solving this system.
+                M. Bousquet-M~;lou, J.-M. IYdou / Discrete Mathematics 137 (1995) 53 75     63
+
+Property 3.2. (1)Let E = J 1 K o - J o K 1 .        Then E has the very simple Jbllowing
+expansion:
+
+            E    xnq n
+       E=
+            . ~ o (q).
+
+(2) Moreover,
+
+
+         =J1,            J°
+                          E =J°'      E       1,     K°
+                                                     E =/(°"
+
+
+Proof. We make extensive use of Appendix B.
+  (1) The series E is the unique solution of E(xq)=(l - x q ) E ( x ) such that E(0)= 1.
+Hence, it is sufficient (and easy...) to check that ~,>~o x'q"/(q), also satisfies these two
+conditions.
+  (2) The couple (J0,Jl) is the unique solution of
+
+
+
+
+such that Jo(0)= 1. Verifying that (Jo/E, J l / E ) also satisfies these two conditions is
+a simple task. The identities involving/(0 and K1 can be proved in the same way. []
+
+  The proof of the next property is immediate and is omitted.
+
+Property 3.3. Let Uo, U1, Vo and Va be functions of the variables x and q.
+Then
+
+
+
+       (i 2xq2q2( 2 1 1t 2 1 1)
+                 2                   2UoVo            \     2UoVo
+
+with
+
+       ~)ro=Uo-~U1,            Ul=Ol--~xqUo,              Vo--~Vo-[-V1 and      Vl=Vl +xqVo .
+
+
+Lemma 3.4. Let A =Jofl--/(o~ and B = J 1 3 - K l ~ .
+  Then
+
+       Jo(xq) (A -- B)-- Jo A (xq) = Mo(xq)
+
+and
+
+       Jo(xq)(B-- xq A)-- JoB(xq) = M l (xq).
+64              M. Bousquet-MOlou,J.-M. Fkdou/ Discrete Mathematics 137 (1995) 53 75
+
+Proof. Let E o = J o ( x q ) ( A - B ) - J o A ( x q ) and E1 = J o ( x q ) ( B - x q A ) - - J o B ( x q ) .
+            Mo
+The vector (~,)  (xq) is completely characterized by the relations:
+        Mo(xq) - y Mo(xq 2) = M1 (xq),
+        M1 ( x q ) - y M x (xq z) = xq2 Mo(xq) + xq 2 J o(xq).
+Hence, it suffices to show that (~o) also satisfies this q-system.
+Noticing that yJo(xq 2) + Jo = (1 + y - x q ) J o ( x q ) , we thus get, after a simplification by
+Jo(xq), that this condition is equivalent to:
+        (1 + xq)A - 2 B + ( 1 + y - x q ) ( B ( x q ) - A (xq))+ y A(xq2)=O,
+        (1 + xq 2) B -- xq (1 + q)A + (1 + y -- xq) (xq 2 A (xq) -- B(xq)) + y B(xq 2) = xq 2
+or
+        (1 --xq 2) (A -- B - ( 1 + y - xq)A(xq)) + y(A(xq 2) + B(xq2)) = xq 2,
+        (1 -- xq 2) (B - x q A --( 1 + y - xq)B(xq)) + y(B(xq 2 ) + xq2A(xq2)) = xq 2.
+
+Replacing A and B in these two equations, respectively, by Jo f l - / ( o a and ,I1 f l - / ( 1 ~t,
+we can rewrite them as
+        Jo(x q) ( f l - a - (1 + y - xq)fl(xq) + y(fl(xq 2) + ~(xq2)))
+                                                  2       xq2
+          -- Ko(xq) (a --(1 + y-- xq)~(xq) + y~(xq )) =-i - ~ q 2 ,
+
+        J1 (xq) (fl-- ~t-- (l + y-- xq) fl(x q) + y(fl(xq 2) + ~t(xq2)))
+
+          --/(l(Xq)(ct--(1+ y--xq)o~(xq)+ y~(xq2)) - 1 -xq2
+                                                         - x q 2"
+
+We finally combine Property 3.2 and the elementary relations satisfied by a and fl to
+complete the proof (see Appendix B). []
+
+Proof of Theorem 3.1. The proof of this theorem is simple matter of verification: we
+check that the given vector satisfies the q-differential system (6). We define A and B as
+in the previous lemma, and we introduce a few more notations:
+                               1     2xq       x2q 2                         ( V2)
+
+
+
+
+               2 2
+                      2MI (Jl fl--/(xCt)   )
+               Mo(Jlfl-gl~)+ Ml(Jofl-~;oa)
+        Y"=Joo
+                      2Mo(Jofl-/(o~)
+                             fflbl      --/(lal               )
+        ~"=y         ½(Jlbo--K_xao+J_obl-Koal)                            ~=~e'-~".
+                             Jobo--Koao
+                M. Bousquet-Mklou, J.-M, Fkdou/'Discrete Mathematics 137 (1995) 53 75                                65
+
+
+  The main steps of the verification go as follows:
+  (a) First, using the q-equations satisfied by Mo and M1, we get
+
+
+                                             xy2q      A +B
+       ~'--y~'(xq)--2~=l_xq                           \ 2A /
+
+
+                          y3                   2 U1 (M a(xq) + xqMo(xq))          \
+                                                                                                                 I
+
+                                    Uo(M1 (xq) + xqMo(xq)) + U l(Mo(xq) + M1 (xq))~ ,
+           + (1 -- xq) 2Jo Jo (x q)              2 Uo (Mo (x q) + M 1(x q))       /
+
+with
+
+       Uo = (1 - xq)Jo(xq) A - Jo (A (xq) + B(xq))-(Mo(xq) + M1 (xq))
+
+and
+
+       U 1 =(1 - x q ) J o ( x q ) B - J o ( B ( x q ) + x q A ( x q ) ) - ( M l ( x q ) + x q M o ( x q ) ) .
+But Lemma 3.4 implies that Uo = UI =0, and consequently,
+
+
+       ~'-y~'(xq)-2~=                       xy2q A + B   .
+                                            1--xq \ 2A /
+
+  (b) Then, using the elementary q-equations satisfied by Jo, J1, Ko and/(~, it follows
+that
+
+
+       ,,~ -- y J t ~. (xq) -- 2"g"        xyq
+                                          1 --xq
+
+
+
+          -2                   J*T°-+J°Tll               Y     |KaSo+KoS1
+                                 2SoTo /              2(1-xq)\     2/(oSo J                      1-xq\lJ
+with
+
+       So = 2x y q a - (1 - xq)ao + y(ao(xq) + al (xq)),
+
+       $1 = 2xyqa - (1 - xq)al + y(al (xq) + xqao(xq))
+
+and
+       To = 2x y q f l - (1 - xq)bo + y(bo(xq) + bl (xq) + ao(xq) + aa (xq)),
+
+       T1 = 2 x y q f l - (1 -- xq)bl + y(bl (xq) + xqbo(xq) + aa (xq) + xqao (xq)).
+
+But the relations satisfied by ao, al, bo and bl (see Appendix B) imply that
+
+       So=S, = x q ( J o - J l )
+66             M. Bousquet-M~;lou, J.-M. F&lou/ Discrete Mathematics 137 (1995) 53 75
+
+and
+       To= T, = x q ( R o - R1),
+and we finally get, using Property 3.2,
+
+
+      ~e--Y~C[~(xq)--2V
+                                       xyq
+                                      1- - x q
+                                                 (1)
+                                                 1 =
+                                                 1
+                                                                 .   []
+
+
+
+
+4. H o w to get it
+
+4.1. The general method
+
+  We would like now to explain how we got the solution given in Theorem 3.1.
+Actually, we will see that a linear q-differential system can (theoretically) be solved just
+as if it were an ordinary linear differential system: first, resolve the associated
+homogeneous system, and then, integrate equations of a simpler form using the
+so-called 'variation of parameters' method.
+  Let us rewrite the last part of System (6) - - which is also the crucial one         as
+         = y J f ~ ( x q ) + cg.                                                             (10)
+
+Suppose we are able to find three linearly independent solutions of the associated
+homogeneous system ~ = J g ~ e ( x q ) . That is, we know an invertible matrix ~W such
+that ~W= ~l~/'(xq).
+  Now, for a given vector ~f, let ~ = ~U- l~f. Then ~e is solution of (10) if and only if
+      ~ - y q C ( x q ) = ~/V'- 1~.                                                          (1 1)
+
+Hence, if we succeed in solving the homogeneous system, the problem will reduce to
+three equations of the following form: f ( x ) - y f ( x q ) = g, where ,q is a given series, and
+f is the unknown function. Note that solving this equation is especially easy when the
+series g is expanded in x:
+
+      if g = Z g . x " ,   then f = Z        g~n        x".
+               ./>o                    .>o 1 - y q "
+
+4.2. Solution of the homogeneous system
+
+   After a short contemplation of the solution in (8) where q equals one, it is not very
+difficult to guess that the three following vectors, which are linearly independent, are
+solutions of the homogeneous system:
+
+
+                 Yo Yx]       Jo f', + a l Yo          [JoJl,|
+                  ~2 //          2Jo Yo                \ j2 /
+             M. Bousquet-M~;Iou, J.-M. Fkdou / Discrete Mathematics 137 (1995) 53-75   67
+
+
+with Yo=/(o+Jologq(x), Y l = / ( l + J l l o g q ( x ) , and logq(x)=log(x)/log(q).
+Using the notations above, we define the matrix
+
+
+      ~lt/'~-[Jo_J1         JoY,+JtYo         Yo_YIJ
+            \ jz                 2Jo Yo        Y~ /
+
+and then apply the variation of parameters method, searching for a solution of the
+form ~ = ~#/'~.
+
+
+Remarks
+  (1) Property 3.3 explains why we could solve this homogeneous system: a vector of
+the form
+
+            2U1 V1           )
+       Ul go AcUoV1
+          2Uo Vo
+is solution of the homogeneous system as soon as (~i~
+                                                    °) and (~.o) are solutions of the
+following q-differential system in (~0):
+
+                    ,
+
+
+
+ Thus, the integration of the homogeneous system reduces to the integration of
+ a smaller system, which is of an especially convenient form, since it is close to the
+ differential system which defines the Bessel functions of the first and second type.
+    (2) The logarithm is just a formal tool: we need a function f which satisfies
+f(xq)-f(x)= 1. We could have used the matrix
+            / J~     2JIK,     f(~ \
+      Yl/"-~|Jo_J1 JoKl'bJlKo KoKaJ ,
+             \ j2                2JoK °         /~o2
+
+which is the 'power series part' of ~V'. Then, looking for a solution of the form
+~e=~C/-,~j, we would have had to solve, instead of (11), the following triangular
+system:
+
+
+      ~-y      0        1          2      ~(xq)--~:'   leg,
+               0        0
+
+which involves only power series. But the calculations would eventually have been
+exactly the same.
+68             M. Bousquet-Mblou, J.-M. Fbdou / Discrete M a t h e m a t i c s 137 (1995) 5 3 - 7 5
+
+
+  (3) The determinant of ~¢r is E 3, with the series E defined as in P r o p e r t y 3.2, and its
+inverse is
+                       ^
+
+      ~r -~=       - ro)o        Yo)l + Y1)o          - YlJl/ •
+                      J o~        _2)o)1                )2 /
+
+4.3. Solution o f the system with constant term
+
+  At this point, we could no longer 'copy' the form of the solution that we found in the
+case q = 1. But, using the variation of parameters method, we were led to solve:
+                                                ^
+
+
+      ~ - - y ~ ( x q ) = xyq(1 -- xq) i - Jo ro)
+                                            \)o        /
+                                                                        2y 3
+                                                           txqt + JoJo(xq)       (Ti)         (xq),   (12)
+
+
+with  S=M~)o-mo)~       and T = M ~ Yo--Mo~'~.
+  Let us look at the right-hand side of this equation. Its most worrying part is
+
+
+        2y3          -ST        (xq).
+      JoJo(xq)        S2
+
+The d e n o m i n a t o r is not that awful: it merely suggests that the expression of ~ will
+involve some quotients with d e n o m i n a t o r Jo.
+  Thus, let us consider a function U = f / J o . Then
+
+                           Jo(xq)f-yJof(xq)
+      U--yU(xq)=
+                               JoJo(xq)
+
+  This shows that the main difficulty comes from the fact that neither S nor T are
+expressed in terms of Jo. But here a miracle occurs, we were able to rewrite S and T in
+a more suitable form. More precisely, we found the following result.
+
+
+Lemma      4.1. Let S = M l J o - M o J I       and T = M I Y o - M o Y ~ .
+(1) Then
+
+      S - yS(xq) = x q J o ) o ( x q )
+
+and
+
+       T - y T(xq) = xq J o Yo(xq).
+
+(2) Let ~o, ~1, flo and fix be some power series satisfying:
+
+      ~ o - - (I -- xq)~o(xq) + oh (xq) = 0
+
+      oh -- yot x (xq) -- x yq~o (xq) = -- x q ) o (xq)
+              M. Bousquet-Mklou, J.-M. FOdou/ Discrete Mathematics 137 (1995) 53 75           69
+
+and
+       flo -- (1 -- xq)flo(xq) + fll (xq) = O~o,
+
+       fll -- Y fll (xq)-- x y qflo(xq) = ~, -- xq I(o(xq).
+
+Then the series S and T can be expressed in terms of Jo and J~:
+
+       S=yaoJl-~lJo
+and
+       T=yToJ1-71Jo,
+
+with
+
+       yo=flo+logq(X)Cto and 71=fll+logq(X)~1.
+
+Proof. (1)The first part is easily proved using the relations given m Appendix B.
+   (2) The series S is the unique solution (as a power series) of S - y S ( x q ) =
+xq J o ) o (x q). But y ~o J ~ - ~ 1Jo also satisfies this equation... A similar proof works for
+the function T. []
+
+Remark. We can eliminate at and fla in the equations satisfied by ~o, zl, flo and ill.
+We get
+
+       ~o -- (1 + Y -- xq)cto (xq) + Y~o ( x q 2) = xq 2 )O(Xq 2)
+and
+       flo --(1 + y -- xq)flo(xq) + yflo(Xq 2) = 2~o --(1 + y -- xq)~o(xq) + xq2 ](o(xq2).
+
+These two equations are satisfied by the series ct and fl given in Appendix A
+(see Appendix B). We can then deduce the expansions of al and fll from those of ao
+and flo.
+   We are now able to solve system (6). Thanks to L e m m a 4.1, a short computation
+proves that
+
+         S(xq)       ~o    ao(xq)
+       JoJo(xq)      Jo    Jo(xq)
+
+and
+
+        S(xq) 2 = a ° S     ~o(xq)S(xq)       xqoto)o(xq).
+       JoJo(xq) YJo           Jo(xq)           Y
+
+Similarly,
+
+        T(xq) 2      7oT    7o(xq)T(xq)
+                                              xqy o fZo(xq).
+       JoJo(xq)      YJo        Jo(xq)         Y
+70             M. Bousquet-Mklou, J.-M. F~dou/ Discrete Mathematics 137 (1995) 53 75
+
+Finally,
+
+      S(xq) T(xq)      1 (7oS      7o(xq)S(xq)          ~oT
+       JoJo(xq)        2 \YJo          Jo(xq)           YJo
+
+                          So(xq)T(xq)           XqTo)o(xq ) ___xq So Yo ( x q ) ) .
+                             Jo(xq)              y             y               /
+These relations suggest a solution ~ of the form
+
+
+      ~=~o 2 -½(?oS+soT)                     +y~,
+                 soS
+where ~ must satisfy the equation
+
+      ~ - - y,~(xq)
+
+                                            fZo(xq) [(1 --xq) f%(xq)--2y?o]
+           = xq   -- ½ Yo(xq) [(1 -- xq))o (xq)-- 2y~o] ~- ½)o(xq) [(1 -- xq) f % ( x q ) - 2y7o]
+                                            Jo(xq) [(1 -- xq)Jo(xq)-- 2yso]
+                                                                                                    (13)
+
+This last system has a simpler form than (12). The vector
+
+                         Co                             )
+           =     1   ~
+               --~(aoYx--a 2 fO .q_CO)I __ C1)O )
+                         aoJ1 - - a l J o               /
+
+with co=bo+logq(x)ao and c~ = b l +logq(x)ax, is a solution of (13)if and only if
+
+      ao - yao (x q ) - a 1 = 0,
+
+      a l - yal(xq) - xqao = xq(2yC~o - Jo + J1 )
+and
+      bo - ybo ( x q ) - b i = yao (xq),
+
+      b l - ybl(xq) - xqbo = yax (xq) + xq (2yflo - / ( o +/(1 ).
+
+But the series ao, a~, bo and bl given in Appendix A satisfy these identities (see
+Appendix B).
+   The last step of the calculation is easy and consists in multiplying the vector ~ by
+the matrix J¢' to obtain the vector ~ . We notice that the series sl and fll do not
+appear in the final expression. As we already said, the series So and flo can also be
+intrinsically defined by
+      So - (1 + y - xq)so(xq) + yso(xq 2) = xq 2 Jo(xq 2)
+and
+      flo - (1 + y - xq) flo(xq) + yflo(xq 2) = 2C~o- (1 + y - xq) ~o(xq) + xqa Ko(xq2).
+              M. Bousquet-M~'lou, J.-M. Fbdou/ Discrete Mathematics 137 (1995) 53-75        71
+
+
+
+In the statement of Theorem 3.1, we have renamed them ~ and/3 respectively in order
+to simplify the notations.
+
+
+
+5. Effective expansions
+
+   We thus have a new expression for the generating function of convex polyominoes
+(9). This formula involves a finite number of series, each of them expanded in the
+variable x. So we can compute the Taylor expansion in x of the series Z. It has been
+proved in [3] that the generating function for convex polyominoes of width n is
+a rational function:
+
+                  x"yq"P.                                                                 (14)
+                n-1              / n-2 |
+      (1 -- yq") 1-I (1 -- yqi) 1 T 3 + 2
+                 i=1
+where P. is a polynomial in y and q. For example, the first values of the P. are
+
+      P~ = 1,
+      P 2 = 1 + 2 y q + yZq 2,
+      P3 = 1 + 5yq + 2yq 2 + 4y2q 2 + 2y2q 3 - y Z q 4 _ 2y3q3 _ 4y3q4 _ 5y3q5 _ 2y4q6.
+
+These polynomials are not very remarkable. But some related polynomials are indeed
+remarkable. They are defined as follows: let us set the variable y to 1 in (14). Then the
+area generating function of convex polyominoes of width n is the rational function [-3]
+
+            x"q"Q,
+      In - 2] !(q). - 1 (q),'
+where Q. is a polynomial in q, and In]! denotes the q-analogue of n!, that is
+(q),/(1-q)". We have
+
+      QI=I,
+      Q2= 1 + 2 q + q 2,
+
+      Q 3 : 1 + 6 q + 12q2+ 1 2 q 3 + 7 q 4 + 2 q 5,
+
+      Q4 = 1 + 11 q + 43q 2 + 95q 3 + 150q 4 + 186q5 + 181 q6 _+_137qV
+            + 79q 8 + 33q 9 + 10q 1° + 2q 11.
+
+We conjecture that the Q, have positive coefficients and are unimodal.
+  We can also compute the expansions of X, Y and Z in the variable q, and we thus
+get Table 1.
+72          M. Bousquet-Mklou,J.-M. Fkdou/DiscreteMathematics137 (1995)53-75
+
+                   Table 1
+                   The number of polyominoes with given area
+
+                   n             Parallelogram         Directed and                 Convex
+                                                       convex
+
+                       1                    1                      1                          1
+                    2                     2                     2                             2
+                    3                     4                     5                             6
+                    4                     9                    13                            19
+                    5                    20                    33                            59
+                    6                    46                    82                           176
+                    7                   105                   200                          502
+                    8                   242                   481                         1374
+                    9                   557                  1144                         3630
+                   10                 1285                   2699                         9312
+                   11                 2964                   6329                       23 320
+                   12                 6842                 14 775                       57279
+                   13                15 793                34381                       138536
+                   14               36463                  79819                       331032
+                   15               84187                 185001                       783 630
+                   16              194388                428290                      1841867
+                   17              448847                990716                      4306172
+                   18            1036426                2290424                     10028276
+                   19            2 393 208              5293 153                    23 288 394
+                   20            5 526 198             12229 209                    53974959
+
+
+
+
+Appendix A: Expansions of the q-series
+
+                                 /n+ 1~
+                  (_l).x.q~ 2 /                                     Ix"q" "~        (-- 1)kq (kz)
+     Jo = Z            (q).(yq).                      Mo=    2      L(yq).        (q)k(yqk+a).   -k
+          n>~O                                              n~>l              k=0
+
+                                       tn+ 1~
+              (_l).x.qt 2 I
+     J, = - ~ (q)._,(yq).
+              n>~ l
+                                                                 I x'q" ~.22 (_l)kq(k)
+                                                      M ' =.~>~l L(yq).- , k~'J'=(oq ; k ~ _ *
+                  Xnqn                                             x n qn (n + 1)
+     Jo = E       (q)2,                               Jo= Z            (q)2         ,
+          n>~0                                              n~O
+
+               Xnqn
+     J' = 2 (q)._, (q),'                              )1 = Z     x"q"2
+          n>~ l
+                                                           .>~1(q).-l(q).'
+                       [x.q.              qk ]                         Fx"q"t"+l)~                1 J
+     Ko=2 Z
+              n~>l
+                       L(q)2 ~'. ~
+                                k =1
+                                                 ,
+                                                      g°=2Zl_-
+                                                           n~>l                         k=l             '
+
+     /('=--1+2
+                              i (q).-l(q).
+                                   x.q.              2qk q')l
+                                                     1--q k 1Z-q~ '
+                       n>~l
+        M. Bousquet-MOlou,J.-M. FPdou/DiscreteMathematics137 (1995)53 75               73
+
+
+
+
+/(l=-l+ZL(q),,_l(q).
+         n~l                                   =
+                                                    1 - q k 1 qn           '
+
+                                                  [k+li -]
+~:E
+            -            in+ l't
+                (--1)"x"qt 2 1~-'~ (--1)kq' 2 t                       I,
+   n~>l               (q)n       k=l ( q U l ~ - k +    11
+           I     ln+l'~ ~ /             [k+l~
+f l = 2 (-1)nxnq' 2 '        ( (- 1)kq' 2,
+      n>~l   (q)n      k = l \(q)k-l(yqk)n-k + 1
+
+
+
+                     k-' l + q m + y                 1     + qm
+       x    fz  k+    =     1 - q rn       t
+                                         m=k
+                                         ~   1--yq,.          ~
+                                                                       tt)]        '
+
+
+
+                                          q (2k)         Ic/(~)(1--2q k)
+a°= 2            xnqn
+      n~l                 k=O
+                                    (q)k(yq k+l) n2_k[        (q~
+
+
+      +2y(--1) k ~                     (_l),.qt 2 ,
+                           m=a (q)m-l(yqm)k-m +1   ,.+1, 1)1'
+        I   n-1                 k            I k
+al = 2 xnqn k;O (             q(2)             q(2)(l__2qk )
+     n>~l         iq)k(yqk+l)n-k-l(yqk+l)n-k [      ~
+
+
+      +2y(__l)km~l                     (__l),.qt 2 J
+                                = (q)m-l(Yq")k-m+X                '
+                                         q(Zk)           - k
+                                                         q(2)(1 --2q k)
+bo= 2            x"qn               (q)k(yqk+l)nZk            (q)k
+      n~l                 k=O
+
+
+
+
+      × { 2 k + Zk 2qm '                2yqm ~ q(k)
+               ,.=1 1--q ''+ m = k + l 1--yqr") (q)k
+
+                 ,      (__l)mq('~ 1) (     ,.-1 2qi
+      +2(-- 1)kym~__
+                   1 (q)ra-l(yqm)k-m+l k+m+ i=1
+                                             Z 1--q
+                                                 -- /
+
+
+      +                         +              +
+            i=m\l-q                 1-yq f         i=~+, l~yqi                 '
+74               M. Bousquet-Mklou, J.-M. Fkdou / Discrete Mathematics 137 (1995) 53 75
+
+
+
+                      in1 E          (q)k(yqk+X).-k l(yqk+l).-k
+                                                   -
+                                                                                      {q (~)l-2qk
+                                                                                              (q)k
+
+
+                x 2k+              2qm                2yqm
+                                  1 - q m+ m = k + l 1 - y q m
+                                         (                 gin+ 1 l
+                                                                             Yq"
+                                                                            1-yq"      t      (q)k
+
+
+                +2(-l)kY          = ((q),, l(Yqm)k-m+l
+
+
+                × +"+ X                  2q~+                  q_~_+ >q~_ + V                        2yq~     yq"
+                  \            i=, 1--q i i = . , \ l - - q i           l--yql. ] , = ~ + l l - - y q i      l~yq n        "
+
+
+
+Appendix B: A bunch of elementary relations
+
+         Jo--Jo(xq)= --J1                    J1 - Y J l ( X q ) = x q J o ( x q ) ,
+          M o - y Mo(xq)= M 1,                                   5(1 -- xq) M o = y ( M o ( x q ) + M 1(xq)) + xq Jo,
+          Ml-yMl(xq)=xqMo+xqJo,                            ~     ~(1-xq)Ml=y(Ml(Xq)+xqMo(xq))+xqJo,
+
+     {
+     J o - - Jo(xq) =.]1,
+     J1-Jl(xq)=xqJo,
+                                              ~(1 - x q ) J o = J o ( x q ) + J l ( x q ) ,
+                                     "**" ( ( 1 - x q ) J l = J l ( x q ) +       xqJo(xq),
+         {Jo--)o(xq)=Jl(xq),                            {(1--xq)Jo(xq)=)o--)l,
+          J1--Jl(xq)=xq)o(xq),                   "~       (l--xq)),(xq)=)l--xq)o,
+
+           K o - K o ( x q ) = g;1 + Jo(xq),                          (1 - - x q ) ( g o - - f r o ) = Ko(xq) + g~ (xq),
+           Fi l - K l (xq)= xq ~io + Y l (xq), "~                     (1 - xq) ( K1 -- J1)= K l (xq) + xqKo(xq),
+
+           K o - Ko(xq) = k 1(xq) + ) o ,                             (1 --xq)(Ko(xq) + )o (xq )) = Ko -- K ,,
+           [';1-f;l(xq)=xqko(xq)+ )l, ¢~                              (1 --xq)(~;1 (xq) + )1 (xq)) = [';~ -- xq~;o,
+           - (1 + y - xq) ~(xq) + y~(xq 2) = xq2)o(xq2),
+
+         fl - ~ - (1 + y - xq) fl(xq) + y(fl(xq 2) + ~ (xq2)) = xq 2 )o(xq 2) + xq 2/(o (x q2),
+
+         a o - y a o ( x q ) - a l =0,          al - y a l ( x q ) - x q a o = x q ( 2 y ~ - ) o + ) l ) ,
+         bo - y b o ( x q ) - b l = yao(xq),           b l - y b l ( x q ) - xqbo = yal (xq) + xq ( 2 y f l - Ko + ~; 1).
+
+
+Acknowledgements
+
+  We would like to thank D o n Rawlings, who read very carefully this paper, and
+suggested numerous improvements to the final version.
+              M. Bousquet-Mklou. J.-M. Fkdou / Discrete Mathematics 137 (19953 53 75                75
+
+
+References
+
+ [1] G. Andrews, The Theory of Partitions, Encyclopedia of Mathematics and its Applications 2 (Addison-
+     Wesley, London, 1976).
+ [2] E. Bender, Convex n-ominoes, Discrete Math. 8 (1974) 219 226.
+ [3] M. Bousquet-M61ou, 'q-l~num6ration de polyominos convexes', Th+se de doctorat, Universit6 Bor-
+     deaux 1, Publications du Laboratoire de Combinatoire et d'Informatique Math6matique de
+     l'Universit6 du Qu6bec ~i Montr6al, No. 9, 1991.
+ [4] M. Bousquet-M~lou, q-l~num6ration de polyominos convexes, J. Combin. Theory Ser. A 64 (1993)
+     265-288.
+ [5] M. Bousquet-M~lou, Codage des polyominos convexes et 6quations pour l'~num+ration suivant l'aire,
+     Discrete Appl. Math. 48 (1994) 21 43.
+ [6] M. Bousquet-M~lou, Convex polyominoes and algebraic languages, J. Phys. A: Math. Gen. 25 (1992)
+     1935-1944.
+ [7] M. Bousquet-M6lou and X.G. Viennot, Empilements de segments et q-6numeration de polyominos
+     convexes dirig6s, J. Combin. Theory Ser. A 60 (1992) 196-224.
+ [8] R. Brak and A.J. Guttmann, Exact solution of the staircase and row-convex polygon perimeter and
+     area generating function, J. Phys. A: Math. Gen. 23 (1990) 4581-4588.
+ [9] M.P. Delest and J.M. F6dou, Enumeration of skew Ferrers diagrams, Discrete Math. 112 (1993)
+     65 79.
+[10] M.P. Delest and G. Viennot, Algebraic languages and polyominoes enumeration, Theor. Comp. Sci.
+     34 (1984) 169-206.
+[11] D.A. Klarner and R.L. Rivest, A procedure for improving the upper bound for the number of
+     n-ominoes, Can. J. Math. 25 (1973) 585-602.
+[12] D.A. Klarner and R.L. Rivest, Asymptotic bounds for the number of convex n-ominoes, Discrete
+     Math. 8 (1974) 31-40.
+[13] K.Y. Lin and S.J. Chang, Rigourous results for the number of convex polygons on the square and
+     honeycomb lattices, J. Phys. A: Math. Gen. 21 (1988) 2635-2642.
+[14] K.Y. Lin, Exact solution of the convex polygon perimeter and area generating function, J. Phys. A:
+     Math. Gen. 24 (1991) 2411-2417.
+
