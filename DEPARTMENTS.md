@@ -4,6 +4,8 @@ Nine Departments partition the castle wiki's research surface. Each Department h
 
 Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Crossover names are hooks (a titled subplot), not descriptions of theme.
 
+Alongside the nine Departments sit **Auxiliary Services** - the non-Department sisters, infrastructure and applied-mathematics divisions that sit next to the Departments the way IT or the physical plant sits next to Geology at a university. The first is **The Telephone Company**: phones, audio, coding-adjacent applied mathematics with an AT&T Bell Labs vibe. Auxiliary Services do not partition the research surface; they gather pages already covered by letter Departments into a jurisdiction with a distinct working culture.
+
 ## Descriptors
 
 - **R - Representations:** encodings, equivalences, grammars, and what survives translation.
@@ -15,6 +17,10 @@ Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Cros
 - **T - Transcendentals:** samplers, limit laws, geometric probability, and pi pulled out of castle ensembles.
 - **F - Fractional:** non-integer orders, power-law memory, interpolated statistics, and dense operators where the integer castle has sparse ones.
 - **X - Ciphers:** keystreams, hidden payloads, commitments, and what survives an adversary.
+
+### Auxiliary services
+
+- **The Telephone Company:** phone signals, audio codecs, tone catalogues, expander-graph and Ihara-zeta reads of the castle graph, information-theoretic entropy of skylines, and the isospectral seminar.
 
 ## Conceptual coverage
 
@@ -113,6 +119,17 @@ Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Cros
 - Integrity without a key: the keyed fractional phase broken with three known castles; a public-order phase as an integrity check; the castle ring by invariant factors, with Pohlig-Hellman as the structure theorem.
 - Hardness candidates: castle problems (isospectrality census, height reconstruction, turnpike) as sources of one-way functions.
 
+### Auxiliary services: The Telephone Company
+
+- Waveform codecs: LPC-plus-Rice on the peak-normalized song waveform, the castle codec (skyline -> Tier-1 rule plus residual) as a spec; the codec ladder (WAV / FLAC / MP3 / AAC / Opus) as the tier ladder on a real signal.
+- Tone castles: DTMF and MF digits at 8 kHz as exactly periodic castles with DFT support and Goertzel response; which tone pairs are exactly periodic and which only approximately.
+- Skyline as tone: encoding a column-height sequence as an instantaneous-frequency tone; Woodward's theorem approaches the height histogram at a rate the block count sets; the audio-spectral analogue of the isospectral census.
+- The isospectral seminar: Kac's "hear the shape" question, the 10-cell adjacency-isospectral pair and the 11-cell Laplacian-isospectral tree pair, Sunada-style constructions, whether Ihara zeta or the skyline DFT separates what adjacency does not.
+- Expanders and zeta: Ramanujan castles as the spectrally-expander-like shapes, `zeta_C(u)` over prime closed walks on the castle graph; arithmetic combinatorics.
+- Voice-channel survival: which castle statistics (LSB of height, block parity, histogram bins, low DFT modes) live through FM demodulation on a band-limited voice channel.
+- Information theory of skylines: uniform entropy `~ w log_2 h - 1`, growth constants as topological entropies, and the compressibility axis.
+- Real signals as castles: URL ids, ID3 labels, and 16-bit waveforms as `h = 65536` castles; Berlekamp-Massey and the NTT over `F_65537` as the finite-field layer; Beethoven's Ninth as the crown-jewel exemplar.
+
 ## Crossovers
 
 | Pair | Hook | Subplot |
@@ -150,4 +167,13 @@ Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Cros
 | X/T | hardness at the wall | one-way functions as concrete sightings of the algebraic-transcendental wall |
 
 Not yet named: Q/S has no page behind it, and Q/T exists only through area CLTs, which already sit in T/E. X/Q and X/F are open too.
+
+### Crossovers with The Telephone Company
+
+| Pair | Hook | Subplot |
+|---|---|---|
+| TTC/S | sound as spectrum | Kac's isospectral question with two drawings, the Woodward-gap audio-spectral analogue of the isospectral census, and expander castles read as Ramanujan / Ihara zeta objects |
+| TTC/R | waveform as skyline | the codec ladder on real signals, entropy bounds on skylines, and the castle codec as a spec |
+| TTC/X | keying the wire | which castle statistics survive an adversarial voice channel, and what a band-limited FM demodulator leaks about a stego payload |
+| TTC/Z | signal specimens | DTMF and MF tone castles placed in the zoo as periodic exhibits |
 
