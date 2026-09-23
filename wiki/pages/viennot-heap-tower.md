@@ -5,7 +5,7 @@ summary: The tower as a Viennot heap of pieces over w free columns, its trace-mo
 tags: [analysis, tower, viennot, heap-of-pieces, commutation-monoid, trace-monoid, cartier-foata, transfer-matrix, narayana]
 sources: [tower-narayana-polynomial]
 created: 2026-09-21
-updated: 2026-09-21
+updated: 2026-09-22
 ---
 
 # Viennot heaps of pieces on the tower
@@ -63,7 +63,7 @@ says the block-count GF is obtained from the cell-count GF `1/(1-x)^w` by *repla
 T(w,b)  =  Sum_{k=1..w} N(w,k) . C(b + w - k, w - 1)
 ```
 
-as "pick `k in {1..w}` in `N(w,k)` ways, then a weak composition of `b - k + 1` into `w` parts in `C(b+w-k, w-1)` ways".[^5] What the `k` index *is* in the tower is the open thread: an explicit peaks refinement was tested and does not factor the tower this way, which is why the A001263 cross-reference draft states the identity at the level of generating functions rather than as a peaks bijection.[^6]
+as "pick `k in {1..w}` in `N(w,k)` ways, then a weak composition of `b - k + 1` into `w` parts in `C(b+w-k, w-1)` ways".[^5] An explicit peaks refinement was tested and does not factor the tower this way, which is why the A001263 cross-reference draft states the identity at the level of generating functions rather than as a peaks bijection.[^6] The statistic that does factor it is descents. `k - 1` is the number of **descents** of the height sequence (positions `i` with `c_i > c_{i+1}`): towers of width `w` with `b` blocks and `k - 1` descents number exactly `N(w,k) C(b+w-k, w-1)`. By the reversal symmetry, ascents give the same distribution. This was verified by brute force over all height vectors for `w ≤ 7`, `b ≤ 7`, during the second pass on [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)]. No proof is written yet. One reading (own reasoning) is that `Narayana_w(x)/(1-x)^w` has the "h-polynomial over `(1-x)^w`" shape, with descents in the role they play for Eulerian numbers in Worpitzky's identity.
 
 The heap-theoretic content of the Narayana numerator is therefore what a proof would have to supply: a labelling of trace-monoid elements (or of Cartier-Foata trivial heaps) whose signed count over the tower's dependency structure produces `Sum_k N(w,k) x^{k-1}`. The direct interval-piece attempt above already shows this is not a matter of choosing "the obvious" piece basis - some non-trivial refinement of either the pieces or their weights is required.
 

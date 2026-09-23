@@ -3,9 +3,9 @@ title: Polyominoes
 category: Sources
 summary: The charlesreid1.com polyomino taxonomy — Ferrers, staircase, bar-chart, column-convex, directed — placing the castle as a column-convex polyomino and linking the Catalan / q-Bessel / q-Catalan generating-function threads. AC's stack polyomino (Example I.8) is the direct symbolic-method castle-tower relative.
 tags: [polyomino, taxonomy, column-convex, ferrers, catalan, q-analog, stack-polyomino, source]
-sources: [polyominoes]
+sources: [polyominoes, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-22
 ---
 
 # Polyominoes
@@ -34,6 +34,8 @@ Two of the named families are exactly the Online Encyclopedia of Integer Sequenc
 
 **Not in this page's taxonomy but directly castle-relevant: the [[stack-polyomino-gf](pages/stack-polyomino-gf.md)]** (unimodal-skyline polyominoes) constructed in Example I.8 of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] by the [[symbolic-method](pages/symbolic-method.md)]. A stack polyomino is a castle tower with a single peak — the closest Analytic Combinatorics (AC)-native construction of a castle-tower sub-family the wiki has, and the natural intermediate class between the unrestricted castle tower (`E_k = 1/(1−(k+1)x)`) and the fully-convex castle ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]).
 
+**Convex polyominoes and their trisection.** Delest and Viennot cut every convex polyomino (column- and row-convex) by the vertical lines through its lowest-leftmost and highest-rightmost boundary points. This gives a **parallelogram polyomino** in the middle and two **stack polyominoes** on the sides. By perimeter, parallelograms are Catalan (Dyck words, with area = Σ peak heights; [[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)]), stacks are Fibonacci, and convex polyominoes total `(2n+11)4^n - 4(2n+1)C(2n,n)` at perimeter `2n+8` (A005436).[^5] The stack is the castle's own convex sub-family ([[convex-castle](pages/convex-castle.md)]).
+
 ## Key Takeaways
 
 - Polyomino = connected cut-point-free union of cells; parameters area, width, height.[^1]
@@ -46,6 +48,7 @@ Two of the named families are exactly the Online Encyclopedia of Integer Sequenc
 - [[column-convex-polyomino](pages/column-convex-polyomino.md)] — the class the castle belongs to.
 - [[castle-polyomino](pages/castle-polyomino.md)], [[convex-castle](pages/convex-castle.md)] — the castle and its convex sub-class.
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the unimodal-skyline sub-family; the AC-native "castle tower with one peak" via the symbolic method.
+- [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] / [[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)] - convex polyominoes by perimeter via the stack / parallelogram / stack trisection.
 - [[q-catalan-numbers](pages/q-catalan-numbers.md)], [[motzkin-numbers](pages/motzkin-numbers.md)] — the q-analog / Motzkin threads the Ferrers remark points to.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — the papers on these families.
 - [[castle-strip](pages/castle-strip.md)] — the wiki's operational "castle-as-column-glued-object" page; the transfer-matrix realization of the add-a-column reading summarized here.
@@ -62,3 +65,4 @@ This is the taxonomy that situates the castle, and the upstream source for "cast
 [^2]: [[polyominoes](pages/polyominoes.md)] §"Classes of Polyominoes" L15-42 — "Ferrer diagrams, Staircase polyominoes, Bar chart polyominoes, Column-convex polyominoes, Directed polyominoes" with each subsection's description.
 [^3]: [[polyominoes](pages/polyominoes.md)] §"Ferrers Diagrams" L26-30 — "constructed by gluing successively taller columns ... only moving east and north ... The perimeter of these polyominoes are enumerated by the Catalan numbers. Their generating functions according to area, width, and height are related to q-Bessel functions and q-Catalan numbers."
 [^4]: [[polyominoes](pages/polyominoes.md)] §"Column-convex castle polyominoes" L44-46 — "Castle polyominoes are column-convex polyominoes built by stacking blocks under the 'no overhang, no adjacent same-row blocks, even block count' rules. Project Euler/502 is a worked example ... counts castle polyominoes of width w and height h."
+[^5]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] pp.176-181 §3 and p.171 Thm 1.1 [synthesis] - the trisection by the vertical lines through S and N into a parallelogram part and two stack parts; Lemma 3.1 (parallelograms: Catalan), Lemma 3.2 (stacks: Fibonacci), and "p_{2n+8} = (2n+11)4^n - 4(2n+1)C(2n,n)".

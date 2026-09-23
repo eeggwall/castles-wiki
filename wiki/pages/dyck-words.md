@@ -3,9 +3,9 @@ title: Dyck words
 category: Sources
 summary: The two-letter balanced words counted by the Catalan numbers, with path and plane-tree readings; steep Dyck words → Motzkin, and the first-return grammar that PE 502's castle U/R/D grammar generalizes. Under the [[symbolic-method]], the first-return grammar *is* a recursive specification `D = ε + x·D·x̄·D`.
 tags: [dyck-words, catalan, motzkin, grammar, first-return, lattice-path, symbolic-method, source]
-sources: [dyck-words]
+sources: [dyck-words, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-22
 ---
 
 # Dyck words
@@ -41,11 +41,16 @@ The page states the connection to the castle explicitly: the **first-return gram
 
 **The first-return grammar as a symbolic-method specification.** The Dyck grammar `D = ε + x·D·x̄·D` (empty word, or opening `x` + inner Dyck + closing `x̄` + trailing Dyck) is a recursive specification in the sense of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)]: the [[symbolic-method](pages/symbolic-method.md)] translates it directly to `D(z) = 1 + z² · D(z)²` (with each of `x, x̄` marking size 1, so `x·x̄` contributes `z²`), and solving gives `D(z) = (1 − √(1−4z²))/(2z²) = ∑ C_n z^{2n}` — the Catalan generating function graded by half-length. Analytic Combinatorics (AC)'s own §I.2 (pp. 33-35) develops the equivalent `G = Z × SEQ(G)` for general plane trees, which are in bijection with Dyck words; the castle's own first-return grammar is the same construction with a U/R/D alphabet and the U-and-D letters weight-marked separately.
 
+## Dyck words as the carrier of algebraicity (Delest-Viennot)
+
+Delest and Viennot's convex-polyomino enumeration uses the Dyck language as its running example and as the core of every coding. The type I and type III languages are built from Dyck words by rational transductions and intersection with a rational language, so their generating functions are rational in `t` and the Catalan GF `c(t)`. In their words, the algebraicity is "concentrated" in the Dyck language.[^10] Their bijection β ([[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)]) gives a second area statistic on Dyck words besides the inversion number above: **the sum of peak heights** equals the area of the corresponding parallelogram polyomino, and the number of peaks equals its width.[^11] The two area readings differ. Inversion number measures the Ferrers diagram cut off by the path, while Σ peak heights measures the column stack β builds from the peaks.
+
 ## Key Takeaways
 
 - Dyck word = balanced `{x, x̄}` word, path never negative; `#` of length `2n` is `C_n` ([[catalan-numbers](pages/catalan-numbers.md)]); by inversion number → q-Catalan.[^2]
 - Path reading (area) and plane-tree reading (nesting) are two faces of the same word.[^5]
 - **Steep Dyck words** (no `x x̄ x`) satisfy `S → xx̄ | xSx̄ | xSx̄S`, generating function `G = x + xG + xG²` → **length `2n` counted by the `(n−1)`th Motzkin number** (verified).[^7]
+- **Σ peak heights** is a second area statistic: it equals parallelogram-polyomino area under Delest-Viennot's β, and #peaks equals width (Narayana).[^11]
 - The castle's U/R/D grammar is the **first-return grammar generalized** — the direct root of [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)].[^9]
 
 ## Entities & Concepts
@@ -56,6 +61,7 @@ The page states the connection to the castle explicitly: the **first-return gram
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — steep Dyck words and their q-refinement.
 - [[polyominoes](pages/polyominoes.md)] — Ferrers-diagram area = Dyck inversion number.
 - [[permutation-inversions](pages/permutation-inversions.md)] — the inversion statistic (and its q-factorial GF) that grades Dyck words into q-Catalan / q-Motzkin.
+- [[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)] / [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - Dyck words as parallelogram polyominoes (area = Σ peak heights) and as the algebraic core of the convex-polyomino count.
 - [[symbolic-method](pages/symbolic-method.md)] / [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] — the framework that recasts the first-return grammar as a recursive specification.
 
 Linked from the source but not yet ingested: Lattice Paths (ingested this round — see [[lattice-paths](pages/lattice-paths.md)]), Dyck Words/Lisp, Dyck Words/Examples, Combinatorics.
@@ -75,3 +81,5 @@ This is the conceptual root of the castle's whole generating-function apparatus:
 [^7]: [[dyck-words](pages/dyck-words.md)] §"Steep Dyck Words" L136-155 — the nonempty-Dyck grammar, removing the "x x̄ D'" rule to get "S → x x̄ | x S x̄ | x S x̄ S", and "G_{SW}(x) = x + x G_{SW}(x) + x G_{SW}(x)^2 ... steep Dyck words of length 2n are enumerated by the (n-1)th Motzkin number"; steep(2n) = (n−1)th Motzkin re-verified for n=1..6 during ingest.
 [^8]: [[dyck-words](pages/dyck-words.md)] §"Steep Dyck Words" L124-156 — "Via q-grammars, the generating function of steep Dyck words of length 2n, counted by inversion number, equals the (n-1)th q-Motzkin number M_{n-1}(q) ... Getting the q-refinement requires the q-analog (w;q) of a Dyck word and q-grammars."
 [^9]: [[dyck-words](pages/dyck-words.md)] §"Generalizing Dyck Grammars" L160 — "The first-return grammar generalizes ... In Project Euler/502 the up and right movements are split into U ..., R ..., and D ..., and a castle tower is a word over these that stays above the base and returns to it. The castle rules re-cast as a grammar with the same first-return split."
+[^10]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] p.189 Remark 6.2 and p.203 §12(6) [synthesis] - "The pigmented Dyck is algebraic because V is obtained from the Dyck language D using the operations rational transduction and intersection with a rational language"; "the algebraicity has been 'concentrated' in the Dyck language. The generating functions p_I(t) and p_III(t) are rational expressions in term of t and c(t)."
+[^11]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] p.183 Prop 4.1, p.184 Remark 4.4 - "The area of P is the sum of the height of the peaks"; width-k parallelogram polyominoes number (1/n)C(n,k)C(n,k-1), "the well-known formula for the number of Dyck words of length 2n having k peaks."

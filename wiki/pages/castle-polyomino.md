@@ -5,7 +5,7 @@ summary: The central object of study. A castle is a skyline (c_1, …, c_w) with
 tags: [concept, castle, polyomino, bargraph, column-convex, skyline, combinatorics]
 sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-solution, project-euler-502-brute-force]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-22
 ---
 
 # Castle (polyomino)
@@ -84,6 +84,7 @@ A castle can be encoded exactly in several ways - column-wise binary strings, th
 - [[castle-classification](pages/castle-classification.md)] - the hub for castle sub-family typing, split into geometric types ([[castle-classification-shape](pages/castle-classification-shape.md)]: the 42 skyline predicates across Axes 1-7) and non-geometric types ([[castle-classification](pages/castle-classification.md)]: Axis 8 growth type of a class, Axis 9 spectrum of the castle graph, compressibility).
 - [[castle-strip](pages/castle-strip.md)] - a castle read left to right, one column at a time, under a neighbor rule; the transfer-matrix bridge.
 - [[convex-castle](pages/convex-castle.md)] - the unimodal sub-family (skyline rises then falls); the polyomino literature's "stack" family.
+- [[castle-perimeter](pages/castle-perimeter.md)] - as a bargraph a castle has semi-perimeter `w + #blocks`, so the block count and the even-block clause are perimeter statistics; castles by semi-perimeter are A082582.
 - [[column-convex-polyomino](pages/column-convex-polyomino.md)] / [[polyominoes](pages/polyominoes.md)] - the ambient family; a castle is a bargraph (column-convex polyomino with a full contiguous bottom row).
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the tower-word grammar the counts are read off of.
 - [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] - the cycle-factorization reading.

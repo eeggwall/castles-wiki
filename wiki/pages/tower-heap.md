@@ -5,7 +5,7 @@ summary: A tower is a castle without the full-base / max-height / parity rules �
 tags: [concept, tower, heap-of-pieces, viennot, narayana, castle]
 sources: [oeis-mining-pe502, tower-narayana-polynomial, project-euler-502-representations]
 created: 2026-09-13
-updated: 2026-09-21
+updated: 2026-09-22
 ---
 
 # Tower (heap of pieces)
@@ -29,7 +29,7 @@ T(w,b) = Σ_{k=1..w} N(w,k) · C(b + w − k, w − 1),
    GF by b:  Narayana_w(x) / (1 − x)^w
 ```
 
-with `N(w,k)` the [[narayana-numbers](pages/narayana-numbers.md)]. The width rows are `A005408` (w=2, odd numbers), `A005891` (w=3, centered pentagonal), `A063490` (w=4), `A160747` (w=5), and new for `w ≥ 6` — the full [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] finding.[^3]
+with `N(w,k)` the [[narayana-numbers](pages/narayana-numbers.md)]. The `k`-th term counts the towers with exactly `k-1` descents in their height sequence (brute-force verified `w, b ≤ 7`). The block count itself is a boundary statistic: for a castle, semi-perimeter = width + blocks ([[castle-perimeter](pages/castle-perimeter.md)]). The width rows are `A005408` (w=2, odd numbers), `A005891` (w=3, centered pentagonal), `A063490` (w=4), `A160747` (w=5), and new for `w ≥ 6` - the full [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] finding.[^3]
 
 **A thread being walked.** The heap-of-pieces framing connects castles to Viennot's heap theory and to the transfer-matrix / commutation-monoid machinery of statistical mechanics, a direction into the broader combinatorics literature well beyond Project Euler 502 (PE 502). The setup is written out in [[viennot-heap-tower](pages/viennot-heap-tower.md)]: the tower as a heap over the trace monoid `N^w`, Cartier-Foata inversion recovering `1/(1-x)^w` for the cell count, and the transfer-matrix reading that produces `Narayana_w(x)/(1-x)^w` for the block count. That page also identifies where the naive heap-of-block-pieces recipe (intervals in `[1,w]`, dependency `=` shared column) fails to reproduce the tower count and what a heap-theoretic proof of the Narayana numerator would have to supply - the open half of the thread.
 

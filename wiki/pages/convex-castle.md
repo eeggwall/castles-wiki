@@ -3,9 +3,9 @@ title: Convex castle
 category: Concepts
 summary: A castle with a unimodal (up-then-down) skyline — equivalently column-convex AND row-convex; the umbrella for castle convexity, counted by CCC = C(2h+w−3, w−1).
 tags: [concept, castle, convex, unimodal, column-convex, row-convex, combinatorics, stars-and-bars]
-sources: [project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-mining-pe502]
+sources: [project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-mining-pe502, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-13
-updated: 2026-09-20
+updated: 2026-09-22
 ---
 
 # Convex castle
@@ -43,6 +43,14 @@ where `C(m,k) = m!/(k!(m−k)!)` is the binomial coefficient. For example, at *h
 
 **By area, convex castles are A001523.** Re-indexed by total cells, a convex castle of area *n* is exactly a [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] of *n* — OEIS `A001523` ("stacks") — and the parity split `cev(n) + cod(n) = A001523(n)` — where CEV and COD are the counts of convex-even and convex-odd castles by area, i.e. convex castles split by block parity — is a new refinement (see [[castle-by-area](pages/castle-by-area.md)]).[^11] The mirror **valley** castles are equinumerous with convex ones in every (w,h) cell (same binomial, different sets) — a candidate bijection.[^11]
 
+**A convex castle is a stack polyomino, and by perimeter it is Fibonacci.** The full-width base plus unimodal skyline is exactly the classical stack polyomino (bottom edge equal to the bounding box's bottom edge). In Delest-Viennot's coding, the convex castle's U/R/D word is their Fibonacci word Φ with `U, D → a` and `R → xx`. Their conditions "first and last letter `a`" and "a factor `xx` between the rising and falling `a`'s" are the front / middle (at least one `R`) / back structure above.[^12] Their Lemma 3.2 counts stacks of perimeter `2n+4` as `F_{2n}` (`F_0 = F_1 = 1`). Since the perimeter is `2(w+h)`, the convex castles along each anti-diagonal of the `(w,h)` grid sum to Fibonacci:[^13]
+
+```
+Σ_{w+h=n+2} C(2h+w-3, w-1) = F_{2n}        (n = 1..14 checked: 2, 5, 13, 34, 89, ...)
+```
+
+This is A001519, a third grading of the same class after `(w,h)` (binomial) and area (A001523). With the parity clause, the signed convex count by semi-perimeter is periodic with period 6 (`-t²(1-t)/(1-t+t²)`), and the even-block convex castles are `(A001519 + period-6)/2`, i.e. `0, 1, 3, 7, 17, 44, 116, 305, …` (no OEIS match, searched 2026-09-22; [[castle-perimeter](pages/castle-perimeter.md)]). The stack is also one of the three pieces of every convex polyomino in their trisection; see [[stack-polyomino-gf](pages/stack-polyomino-gf.md)].
+
 **Every castle over its convex core.** The Solution subpage records that enumerating all castles as `D`/`U`-pair insertions into convex castles "never resolved into a formula", and the winning solution instead counts via the [[binary-string-bijection](pages/binary-string-bijection.md)] and independence.[^6] The per-column form of the same idea does close: every castle has a unique minimal convex majorant `min(prefix max, suffix max)`, the castles sharing it lower the non-anchor columns of its plateaus, and the fiber is `prod m^(l-1)` over plateaus unsigned and `(-1)^h prod P(m-1, l-1)` signed, so `F(w,h)` is a sum over convex castles of products of signed tower counts ([[convex-core](pages/convex-core.md)]). That the convex castles themselves count so cleanly (`C(2h+w−3, w−1)`) while their variations resist a closed form, and that they sit exactly at the intersection of two convexity classes with rich literatures ([[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]), makes the `conv_*` sequences from the brute enumerator prime candidates for further OEIS mining and for a correspondence with the classical stack / parallelogram families.
 
 ## Appearances in Sources
@@ -51,6 +59,7 @@ where `C(m,k) = m!/(k!(m−k)!)` is the binomial coefficient. For example, at *h
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] — records that convex-castle *variation* enumeration never resolved into a formula (a failed solution route).
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] — identifies the convex castle as the unimodal (column-convex ∧ row-convex) skyline and tallies `conv_even`/`conv_odd`.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — the minimum-block characterization, the binomial (Vandermonde) count, and the area↔A001523 match.
+- [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - stack polyominoes by perimeter (Fibonacci words), the relabeled U/R/D word.
 
 ## Related Concepts
 
@@ -80,3 +89,5 @@ where `C(m,k) = m!/(k!(m−k)!)` is the binomial coefficient. For example, at *h
 [^9]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §1 L25-33 — "#blocks >= max(c) = h, with equality iff the profile is unimodal ... a convex castle of height h has exactly h blocks, and convex castles are exactly the minimum-block castles"; re-verified for w,h ≤ 5 during ingest.
 [^10]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §§2-4 L35-96 — the up/down decomposition, the generalized Vandermonde convolution giving `C(2h+w-3, w-1)`, and "The two halves are independent ... Catalan / Narayana counts arise when a non-crossing or ballot constraint couples the two halves."
 [^11]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `vein9-area.md` §"The main finding"/"Parity splits" L21-52 and `vein9b-concave.md` §"Concave counts by (w, h)" L100-118 — "conv(n) = A001523(n) ... cev(n) + cod(n) = A001523(n)" and "valley(w, h) = convex(w, h) ... same cardinality in each (w, h) cell but different sets ... a candidate bijection."
+[^12]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] pp.180-181 (16)-(18), Fig. 7 [synthesis] - Φ writes "the letter 'a' (respectively the factor xx) each time one meets a North or South step (respectively an East step)", "the first (respectively last) letter of w is 'a'", and there is "a factor xx" after the rising a's; the U/R/D identification is own reasoning.
+[^13]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] p.181 Lemma 3.2 [synthesis] - "The number of stack polyominoes with perimeter 2n+4 is the Fibonacci number F_{2n}"; the anti-diagonal identity is own reasoning, verified numerically n = 1..14 during ingest.

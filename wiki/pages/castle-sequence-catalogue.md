@@ -5,7 +5,7 @@ summary: Hand-curated catalogue of every castle-counting sequence, by the castle
 tags: [analysis, oeis, castle, sequence, catalogue, novelty, submission-candidate, interlink]
 sources: [oeis-mining-pe502]
 created: 2026-09-17
-updated: 2026-09-20
+updated: 2026-09-22
 ---
 
 # Castle sequence catalogue
@@ -160,6 +160,20 @@ Width-graded counts of the 0/1 transfer-matrix strips ([[reachable-field-census]
 
 - Plastic strip (height-3, rule `1→3, 2→1, 3→{1,2}`), the Padovan/Perrin-rate count — **unchecked**.
 - The non-metallic quadratic strips `Q(√17)`, `Q(√21)`, `Q(√6)`, `Q(√7)`, `Q(√33)` — **unchecked**.
+
+### Castles by semi-perimeter
+
+A castle's semi-perimeter is `w + #blocks` ([[castle-perimeter](pages/castle-perimeter.md)]), so these are the castle counts in Delest-Viennot's perimeter grading, with the PE 502 parity split. All GFs are algebraic (convex: rational) and were checked against a skyline DP through `s = 30`.
+
+| object | first terms (`s = 2…`) | GF | growth | status |
+|---|---|---|---|---|
+| all castles (bargraphs) | `1, 2, 5, 13, 35, 97, 275, 794, 2327` | `(1-2t-t²-√(1-4t+2t²+t⁴))/(2t)` | `τ² = 3.38298` (tribonacci squared) | **interlink** → [A082582](https://oeis.org/A082582) (bargraphs by semiperimeter; castle reading absent) |
+| castles by `(s, w)` | rows `1; 1,1; 1,3,1; 1,5,6,1; …` | tower Narayana re-indexed | - | **interlink** → [A271942](https://oeis.org/A271942) (Narayana tower form absent) |
+| even-block castles | `0, 1, 3, 7, 17, 47, 137, 400, 1168, 3450, 10338` | `(B + B_s)/2` | `τ²` | **novel-candidate** (no match, 2026-09-22) |
+| signed castles `Σ(-1)^blocks` | `-1, 0, 1, 1, -1, -3, -1, 6, 9, -5, -29, -20, 55` | `(1+t²-√((1+t)(1-t+3t²+t³)))/(2t)` | `τ` (complex pair, modulus `1/τ`) | **novel-candidate** (signed, negated, and `\|·\|` no match, 2026-09-22) |
+| convex castles | `1, 2, 5, 13, 34, 89, 233` | `t²(1-t)/(1-3t+t²)` | `φ²` | **known** → [A001519](https://oeis.org/A001519) (Delest-Viennot stacks by perimeter) |
+| even-block convex castles | `0, 1, 3, 7, 17, 44, 116, 305, 799, 2091` | `t³(1-t)/((1-3t+t²)(1-t+t²))` | `φ²` | **novel-candidate** (no match, 2026-09-22) |
+| signed convex castles | `-1, 0, 1, 1, 0, -1` (period 6) | `-t²(1-t)/(1-t+t²)` | periodic | trivial (not searched) |
 
 ### Legacy generation candidates (pre-catalogue, statuses to refresh)
 
