@@ -5,7 +5,7 @@ summary: Bousquet-Mélou and Fédou solve the three-equation linear q-differenti
 tags: [source, paper, polyomino, convex, directed-convex, parallelogram-polyomino, q-analog, q-bessel, q-differential-system, generating-function, area, bousquet-melou, fedou, verification, oeis]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes]
 created: 2026-09-22
-updated: 2026-09-22
+updated: 2026-09-23
 ---
 
 # The generating function of convex polyominoes (Bousquet-Mélou and Fédou, 1995)
@@ -144,6 +144,7 @@ print(div(M1, J0)[1:])              # directed convex, A067676
 - [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - the first parallelogram-by-area generating function and the growth constant.
 - [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] - the asymptotics this paper cites, and the source of its printed `C`.
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - the algebraic-language method and the perimeter count. Its closing question, adding area, is the one this paper answers for convex polyominoes.
+- [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - castles by width, blocks and area are `Π/(1 - x - Π)` with `Π = y J_1/J_0` at width `(1-x)u`, height `x`.
 - [[viennot-heap-tower](pages/viennot-heap-tower.md)] - heaps of pieces, the combinatorial explanation of the quotient form the paper mentions for (1) and (3).
 
 ## Relation to Other Wiki Pages

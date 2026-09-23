@@ -5,7 +5,7 @@ summary: M_n counts non-crossing chords on n points and Motzkin (up/flat/down) l
 tags: [concept, motzkin, lattice-paths, q-analog, generating-functions]
 sources: [motzkin-numbers, steep-polyominoes-q-motzkin-bessel]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-23
 ---
 
 # Motzkin numbers
@@ -29,7 +29,7 @@ Motzkin paths use *three* step types (up/flat/down), the same arity as the castl
 
 ## Connection to the castle
 
-The relevant thread: the **q-analog `M_n(q)`** refines the Motzkin numbers and appears in the **q-grammar count of steep Dyck words**[^4] — precisely the object in [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], where three q-Motzkin classes are tied to steep parallelogram polyominoes (a q-Bessel-ratio GF), inversions of steep Dyck words, and steep staircase polyominoes by area. The castle's [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is a three-letter (U/R/D) grammar with run constraints — the same flavor — so the Motzkin q-analog is a natural target for a q-graded castle count (see the wiki TODO's q-equivalent thread).
+The relevant thread: the **q-analog `M_n(q)`** refines the Motzkin numbers and appears in the **q-grammar count of steep Dyck words**[^4] — precisely the object in [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], where three q-Motzkin classes are tied to steep parallelogram polyominoes (a q-Bessel-ratio GF), inversions of steep Dyck words, and steep staircase polyominoes by area. The castle's [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is a three-letter (U/R/D) grammar with run constraints — the same flavor — so the Motzkin q-analog is a natural target for a q-graded castle count. Graded by area and blocks, the grammar gives a q-Bessel ratio of the same kind, built from the parallelogram series rather than a q-Motzkin one ([[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]).
 
 ## Appearances in Sources
 
@@ -39,6 +39,7 @@ The relevant thread: the **q-analog `M_n(q)`** refines the Motzkin numbers and a
 ## Related Concepts
 
 - [[q-catalan-numbers](pages/q-catalan-numbers.md)] — the sister q-analog family; both reduce at q=1.
+- [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - the castle grammar graded by area: a q-Bessel ratio over the parallelogram series.
 - [[narayana-numbers](pages/narayana-numbers.md)], [[catalan-numbers](pages/catalan-numbers.md)] — Motzkin's Catalan relatives (Motzkin sums of Narayana/Catalan-type terms).
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the castle's three-letter grammar, the same arity as Motzkin paths.
 - [[tower-word-language](pages/tower-word-language.md)] — the tower words, a Motzkin-path language with the same U/R/D step set.

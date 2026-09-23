@@ -5,7 +5,7 @@ summary: "A prime castle is a castle raised one row, so the free gluing monoid o
 tags: [analysis, castle, area, width, prime-castle, monoid, functional-equation, q-shift, q-series, parity, sign, peaks, asymptotics, residue, oeis, interlink, novel-candidate]
 sources: [oeis-mining-pe502]
 created: 2026-09-22
-updated: 2026-09-22
+updated: 2026-09-23
 ---
 
 # The castle row-raising equation
@@ -61,6 +61,8 @@ C    =  0.09850917497311562240893662663614881010...
 
 The ratio `t_n / t_(n-1)` of successive terms converges to `-rho` fast. Consecutive ratios at `n = 299, 300` differ by `1.7 × 10^(-37)`, so the error term is exponentially smaller, which is consistent with a simple pole. The digits above come from those ratios. Solving `q E(q, q) = 1` directly, with `E(q, q)` truncated at `q^300`, gives `q_0` to 15 digits and `C` from the residue to 12, in agreement. The digits of `rho`, `1/rho` and `C` have no OEIS match. These are novel-candidate constants.[^2] Already at `n = 16`, `C rho^16 = 230.2` against the true `230`.
 
+**Closed form.** The same signed series has a closed form, from the tower grammar graded by area and blocks on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]: `E(q, 1) = N(q)/M(q)` with `N`, `M` explicit q-Bessel series at block weight `-1`, built from the parallelogram series `J_0`, `J_1`. `M` is analytic in `|q| < 1`, so the signed GF is meromorphic there. `q_0` is the first zero of `M`, and it reproduces `rho` and `C` above to 30 digits. The second zero is `q_1 = -0.82027198`, so the relative error of `C(-rho)^n` is `O(0.7508^n)`, about `3 × 10^(-38)` at `n = 300`.
+
 **What the sign does to the growth.** Unsigned castles by area grow like `2^n`, and the signed count like `1.6238^n`. By semi-perimeter, [[castle-perimeter](pages/castle-perimeter.md)] finds that the sign halves the exponent, `τ^2 → τ`. By area it does not: `sqrt(2) = 1.414` is well below `rho`. The signed dominant singularity is a pole of a q-series, not an algebraic branch point (own observation). The parity clause is still a lower-order correction, `even/odd = 1 + O((rho/2)^n)`.
 
 ## Peaks: a rational specialization
@@ -110,9 +112,6 @@ print(t[1:17], t[300] / t[299])                 # even - odd; ratio -> -rho
 
 ## Open
 
-- A closed form for `E(q, q)`, or a proof that `q_0` is its only zero in the disk `|q| < 0.69`.
-- The second singularity. It sets how fast `t_n / C(-rho)^n → 1`, and the ratio data say it is well separated.
-- The z-shift equation unrolled: iterating `z → qz → q^2 z → ...` turns the equation into a nested fraction. Is it one of the J-fraction or festoon shapes behind the parallelogram series on [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)]?
 - The signed prime convex series: the convex case of the signed equation, which would give `cev - cod` on [[castle-by-area](pages/castle-by-area.md)] in closed form.
 
 ## Relation to other pages
