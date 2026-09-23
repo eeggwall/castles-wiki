@@ -3,7 +3,7 @@ title: "Enumeration of Column-Convex Polygons (Bousquet-Mélou)"
 category: Sources
 summary: Bousquet-Mélou's universal "add-a-column" (Temperley) method — one functional-equation template for the generating functions (perimeter + area) of every natural column-convex polyomino class.
 tags: [paper, polyomino, column-convex, generating-functions, temperley, source]
-sources: [column-convex-polygon-enumeration, bousquet-melou-fedou-1995-convex-polyominoes]
+sources: [column-convex-polygon-enumeration, bousquet-melou-fedou-1995-convex-polyominoes, klarner-rivest-1974-convex-n-ominoes]
 created: 2026-09-13
 updated: 2026-09-22
 ---
@@ -38,7 +38,7 @@ This is arguably the closest external framework to the castle problem, and sever
 - **Column-convex** = every vertical line meets the polyomino in one segment (each column contiguous); **convex** = column- and row-convex.[^2]
 - A **universal add-a-column (Temperley) method** produces a uniform functional equation for the perimeter+area generating function of any natural column-convex class, solvable uniformly.[^1][^4]
 - Classical directed-and-convex families named: **Ferrers diagrams, stack polygons, parallelogram/staircase polyominoes**, distinguished by which bounding-rectangle corners they must touch.[^7]
-- General polyomino enumeration is open (growth constant `K ∈ (3.87, 4.65)`), motivating the study of restricted convex classes.[^3]
+- General polyomino enumeration is open, which motivates the study of restricted convex classes. The paper quotes `3.87 < K < 4.65` for Klarner's constant `K = lim p(n)^{1/n}`.[^3] Both numbers are bounds on one constant, and the lower one has moved over time. The upper bound `4.65` is Klarner and Rivest's 1973 result and still stands (`4.6496`). The lower bound was `3.72` (Klarner 1967) when Klarner and Rivest wrote their 1974 convex paper, and `3.9801` by 2006. Existence of the limit is Klarner's 1967 theorem.[^8][^9] The `3.87` sits between those two lower bounds; the paper's own citation for it has not been read.
 
 ## Entities & Concepts
 
@@ -61,3 +61,5 @@ Cited as a reference on [[project-euler-502-solution](pages/project-euler-502-so
 [^5]: [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] p.3 §2 — the generating function "∑_{P∈P} s^{l(P)} t^{r(P)} x^{h(P)} y^{v(P)} q^{a(P)}" tracking left/right-height, horizontal/vertical perimeter steps (h = width), and area.
 [^6]: [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] p.3 §1 — "some of them are only refinements of already known results (parallelogram polyominoes, directed and convex polyominoes, convex polyominoes) ... two others are new; we obtain the perimeter and area generating function of column-convex polygons, and of directed column-convex polygons."
 [^7]: [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] p.2 §1 — "three very classical families of directed and convex polyominoes: the Ferrers diagrams, the stack polyominoes, and finally the parallelogram (or staircase) polyominoes ... characterized ... by the fact that two or three vertices of the minimal bounding rectangle ... must also belong to the polyomino."
+[^8]: [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] p.32 §1 L40-45 - "It is known [3] that the sequence ((t(n))^{1/n} : n = 1, 2, ...) tends to a limit theta ... Currently, the best lower bound (given in [3]) is 3.72 < theta, while the best upper bound (given in [5]) is theta < 4.65", with [3] Klarner, "Cell growth problems" (1967) and [5] Klarner and Rivest (1973).
+[^9]: https://oeis.org/A001168 (fetched 2026-09-22) - "The currently best-known lower and upper bounds on this constant are 3.9801 (Barequet et al., 2006) and 4.6496 (Klarner and Rivest, 1973), respectively."

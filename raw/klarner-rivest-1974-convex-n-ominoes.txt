@@ -1,0 +1,360 @@
+[Transcribed by hand from page images of _klarner1974.pdf (10 pp., scanned; no usable
+text layer). Mathematics rendered in ASCII. "[p.NN]" marks the journal page. Figures
+are described in brackets. Transcription 2026-09-22.]
+
+[p.31]
+DISCRETE MATHEMATICS 8 (1974) 31-40. (c) North-Holland Publishing Company
+
+ASYMPTOTIC BOUNDS FOR THE NUMBER
+OF CONVEX n-OMINOES*
+
+David A. KLARNER and Ronald L. RIVEST
+Computer Science Department, Stanford University, Stanford, Calif. 94305, USA
+
+Received 18 May 1973**
+
+Abstract. Unit squares having their vertices at integer points in the Cartesian plane are called
+cells. A point set equal to a union of n distinct cells which is connected and has no finite cut
+set is called an n-omino. Two n-ominoes are considered the same if one is mapped onto the
+other by some translation of the plane. An n-omino is convex if all cells in a row or column
+form a connected strip. Letting c(n) denote the number of different convex n-ominoes, we
+show that the sequence ((c(n))^{1/n} : n = 1, 2, ...) tends to a limit gamma, and gamma = 2.309138... .
+
+1. Introduction
+
+Unit squares having their vertices at integer points in the Cartesian
+plane are called cells. A point set equal to a union of n distinct cells
+which is connected and has no finite cut set is called an n-omino. Two
+n-ominoes are considered the same if one is mapped onto the other by
+some translation of the plane. (Such n-ominoes were called fixed animals
+with n cells by Read [8].) For example, there are six different 3-ominoes
+as shown in Fig. 1.
+
+[Fig. 1. The 3-ominoes. Six shapes: the vertical and horizontal I-trominoes and four L-trominoes.]
+
+* This research was supported in part by National Science Foundation Grant GJ-992, and Office
+  of Naval Research Contract N-00014-67-A-0112-0057 NR 044-402.
+** Original version received 29 December 1972.
+
+[p.32]
+Let t(n) denote the number of distinct n-ominoes. It is known [3]
+that the sequence ((t(n))^{1/n} : n = 1, 2, ...) tends to a limit theta. The inves-
+tigation of theta began with Eden's work [1]; he managed to prove that
+3.14 < theta <= 6.75. There has been considerable effort expended to im-
+prove these bounds. Currently, the best lower bound (given in [3]) is
+3.72 < theta, while the best upper bound (given in [5]) is theta < 4.65.
+    An n-omino is row-convex when each row of the n-omino is a con-
+nected strip of cells. Column-convex n-ominoes are defined analogously.
+All six of the 3-ominoes (shown in Fig. 1) are both row-convex and col-
+umn-convex; in general such n-ominoes are said to be row-column-con-
+vex, or just convex for short. It was shown in [2] (and in [3] by a sec-
+ond method) that
+
+(1)      x(1-x)^3 / (1 - 4x + 7x^2 - 5x^3)  =  sum_{n>=1} b(n) x^n ,
+
+where b(n) denotes the number of distinct row-convex n-ominoes. (This
+result was also obtained by Polya [6].) Thus it follows that the sequence
+((b(n))^{1/n} : n = 1, 2, ...) tends to a limit beta which is equal to the largest real
+root of y^3 - 4y^2 + 7y - 5 = 0; that is, beta = 3.20... .
+    Recently, Donald Knuth wrote us and asked us if the number c(n) of
+convex n-ominoes had been investigated. This paper is entirely motivated
+by Knuth's question. We shall be concerned with the problem of effec-
+tively calculating the limit gamma of the sequence ((c(n))^{1/n} : n = 1, 2, ...).
+One of the first things we prove is that this limit exists. Later on we show
+how to calculate upper and lower bounds for gamma and give the best results
+obtained by these methods.
+
+2. Existence of lim_{n->oo} (c(n))^{1/n}
+
+Following Ceasar's admonition, we divide, then conquer. A convex
+n-omino may be split into three parts by making two cuts between cer-
+tain rows so that the upper and lower parts are roughly trapezoids and
+the middle part is roughly a parallelogram. A typical sectioning of this
+sort is shown in Fig. 2. More precisely, the trisection of a convex n-omino
+A is accomplished by cutting along the lowest level of A where the left
+boundary of A goes to the right and by cutting along the lowest level of
+A where the right boundary of A goes to the left.
+
+[p.33]
+[Fig. 2. Trisection of a convex 28-omino. Three pieces drawn apart: an upper stack, a middle
+parallelogram leaning right, a lower (inverted) stack.]
+
+A convex n-omino whose left boundary climbs to the right and whose
+right boundary climbs to the left corresponds to a partition of n called
+a stack by Wright [9]. We let s(n) denote the number of distinct n-
+ominoes corresponding to stacks; for example, there are four 3-ominoes
+shown in Fig. 1 which correspond to stacks, so s(3) = 4. A convex n-
+omino whose left and right boundaries both climb to the right is called
+a parallelogram, and p(n) will denote the number of distinct n-ominoes
+which are parallelograms. Clearly, p(n) <= c(n) for all n; also, s(n) <= p(n)
+for all n (the diagram in Fig. 3 suggests a proof of this fact). Finally, an
+obvious construction establishes that p(m)p(n) <= p(m+n) for all m, n.
+Now we use the fact that if {u_n} is a sequence of natural numbers such
+that ((u_n)^{1/n} : n = 1, 2, ...) is bounded and u_m u_n <= u_{m+n} for all m, n,
+then lim_{n->oo} (u_n)^{1/n} exists. (For similar results, see Polya and Szego
+
+[Fig. 3. An injection showing s(n) <= p(n). A stack on the left, and on the right the
+parallelogram obtained by shearing its right-hand (descending) half.]
+
+[p.34]
+[7, p. 171].) We have p(n) <= b(n) < (3.20)^n for all large n, and
+p(m)p(n) <= p(m+n), so
+
+(2)      lim_{n->oo} (p(n))^{1/n} = gamma
+
+exists. Using the fact that every convex n-omino splits into two stacks
+and one parallelogram, we can reconstruct these n-ominoes by pasting
+together two stacks and one parallelogram in various ways. Again, using
+an obvious construction, and using the fact that p(i)p(j)p(k) <= p(i+j+k)
+for all i, j, k, it is easy to show that
+
+(3)      c(n) <= 2n^2 sum_{(i,j,k)} s(i)p(j)s(k) <= 2n^2 sum_{(i,j,k)} p(i)p(j)p(k)
+              <= 2n^2 C(n+2, 2) p(n) <= (n+2)^4 p(n) ,
+
+where the index of summation in the sums extends over all compositions
+(i, j, k) of n into non-negative parts. There are C(n+2, 2) such compositions.
+    Using (2) and (3) together with the fact that p(n) <= c(n) for all n, we
+have
+
+(4)      gamma = lim (p(n))^{1/n} <= lim inf (c(n))^{1/n}
+              <= lim sup (c(n))^{1/n} <= lim ((n+2)^4 p(n))^{1/n} = gamma .
+
+Hence lim_{n->oo} (c(n))^{1/n} exists, and
+
+(5)      lim_{n->oo} (c(n))^{1/n} = lim_{n->oo} (p(n))^{1/n} = gamma .
+
+3. An integral equation
+
+We shall use a theory developed in [4] concerning a double sequence
+(b(n, a) : n, a = 1, 2, ...) defined in terms of given sequences
+(f(m, n) : m, n = 1, 2, ...) and (g(n) : n = 1, 2, ...) as follows:
+
+(6)      b(n, a) = sum f(a_1, a_2) f(a_2, a_3) ... f(a_{k-1}, a_k) g(a_k) ,
+
+[p.35]
+where the index of summation extends over all k-tuples (a_1, ..., a_k) of
+natural numbers for k = 1, ..., n with a_1 = a and a_1 + ... + a_k = n. It was
+shown that if
+
+(7)      G(x) = sum_{n>=1} g(n) x^n
+
+and
+
+(8)      F(x, y) = sum_{m,n>=1} f(m, n) x^m y^n
+
+converge for |x| and |y| sufficiently small, then
+
+(9)      B(x, y) = sum_{n>=1} sum_{a=1}^{n} b(n, a) y^a x^n
+
+converges for |x| and |y| sufficiently small, and
+
+(10)     B(x, y) = G(xy) + (1/2 pi i) oint_C F(xy, 1/s) B(x, s) ds/s ,
+
+where C is a contour in the s-plane which includes s = 0 and the singular-
+ities of F(xy, 1/s) but excludes the singularities of B(x, s). The theory of
+(10) runs parallel to that of the Fredholm integral equation. In particular,
+if F(x, y) has the special form
+
+(11)     F(x, y) = R_1(x) S_1(y) + ... + R_t(x) S_t(y) ,
+
+we say F is separable, and it turns out that (10) can be converted into a
+system of t equations linear in t unknown functions. The system can be
+solved and the solution yields a formula for B(x, y). We shall give an ex-
+ample of this later on.
+    If F is not separable, we can still get information about B by approxi-
+mating F with something that is separable. Suppose
+
+(12)     K(x, y) = sum k(m, n) x^m y^n
+
+and k(m, n) <= f(m, n) for all m, n; then we say K is a lower bound on F;
+an upper bound on F is defined analogously. If K is separable, we may
+
+[p.36]
+substitute K for F in (10) and calculate a lower bound for B. Upper
+bounds for B may be obtained in a similar fashion. We shall adopt this
+strategy too, so an example is forthcoming.
+    The relevance of the foregoing discussion to the enumeration of n-
+celled parallelograms is as follows: the number of (m+n)-celled paral-
+lelograms having m cells in one row and n cells in a second row is
+
+(13)     f(m, n) = min{m, n} .
+
+It is fairly easy to show that the number of n-celled parallelograms with
+exactly k rows of cells having exactly a_i cells in the ith row for i = 1, ...,
+k is
+
+(14)     f(a_1, a_2) f(a_2, a_3) ... f(a_{k-1}, a_k) .
+
+Thus, if we take f as defined in (13) and put g(j) = 1 for all j, we can
+sum (6) over a = 1, ..., n and obtain p(n). In this case, we have
+
+(15)     F(x, y) = xy / ((1-x)(1-y)(1-xy)) ,
+
+(16)     G(x) = x/(1-x) .
+
+Substituting these functions in (10) gives
+
+(17)     B(x, y) = xy/(1-xy) + (1/2 pi i) oint_C  xy B(x, s) ds / ((1-xy)(s-1)(s-xy))
+
+                 = xy/(1-xy) + xy/(1-xy)^2 B(x, 1) - xy/(1-xy)^2 B(x, xy) .
+
+We can iterate (17) to eliminate B(x, xy), B(x, x^2 y), ... successively to
+find
+
+(18)     B(x, y) = sum_{k>=1} (-1)^{k+1} x^{k(k+1)/2} y^k (1 - x^k y + B(x, 1))
+                   / ((1-xy)^2 (1-x^2 y)^2 ... (1-x^k y)^2) .
+
+Setting y = 1 in (18), we solve for B(x, 1), the generating function of
+(p(n) : n = 1, 2, ...), which turns out to be
+
+[p.37]
+(19)     B(x, 1) = [ x/(1-x) - x^3/((1-x)^2 (1-x^2)) + x^6/((1-x)^2 (1-x^2)^2 (1-x^3)) - ... ]
+                 / [ 1 - x/(1-x)^2 + x^3/((1-x)^2 (1-x^2)^2) - x^6/((1-x)^2 (1-x^2)^2 (1-x^3)^2) + ... ]
+
+                 = sum_{n>=1} p(n) x^n .
+
+[The alternating signs in (19) are faint in the scan; they are the ones forced by (18).]
+
+We have been unable to make use of (19) in estimating p(n). Instead,
+we use upper and lower bounds for F as defined in (15), and then use
+(10) to calculate upper and lower bounds for B.
+
+4. Lower bounds
+
+Let
+
+(20)     F_k(x, y) = sum_{m,n=1}^{k} f(m, n) x^m y^n ,
+
+where f(m, n) = min{m, n} just as in (13), and let B_k(x, y) denote the
+solution of (10) having F_k substituted for F. Since F_k is a lower bound
+for F, it follows that B_k is a lower bound for B. It was shown in [4]
+that when the kernel of (10) is approximated by a polynomial as in this
+case, then B_k(x, 1) is a rational function, say B_k = P_k/Q_k with P_k and
+Q_k polynomials, and the denominator of B_k may be expressed as a de-
+terminant. In the present situation this turns out to be
+
+                | 1-x    1      1     ...   1     |
+                | 1      2-x^2  2     ...   2     |
+(21)  Q_k(x) =  | 1      2      3-x^3 ...   3     |
+                | .      .      .           .     |
+                | 1      2      3     ...   k-x^k |
+
+If we put Q_0(x) = 1 and Q_1(x) = 1 - x, we can use (21) to verify that
+
+(22)     Q_k(x) = (1 - x^{k-1} - x^k) Q_{k-1}(x) - x^{2k-2} Q_{k-2}(x)
+
+[p.38]
+for k = 2, 3, ... . For example,
+
+         Q_2(x) = 1 - 2x - x^2 + x^3 ,
+         Q_3(x) = 1 - 2x - 2x^2 + 2x^3 + 2x^4 + x^5 - x^6 ,
+         Q_4(x) = 1 - 2x - 2x^2 + x^3 + 3x^4 + 5x^5 - 2x^6 - 2x^7 - 2x^8 - x^9 + x^10 .
+
+    Letting gamma_k denote the largest real root of Q_k(1/x) = 0, we have
+gamma_1 <= gamma_2 <= ... <= gamma, where gamma is defined in (2). We have used a computer
+to calculate lower bounds for gamma_1, gamma_2, ..., gamma_10 given in Table 1. Our re-
+sults indicate that the sequence (gamma_i) converges very quickly to the val-
+ue 2.30913859..., our best lower bound for gamma.
+
+                     Table 1
+         k        gamma_k        beta_k
+         1       1.00000000    2.41421356
+         2       2.24697960    2.33578290
+         3       2.30855218    2.31475605
+         4       2.30913772    2.31023504
+         5       2.30913859    2.30934711
+         6       2.30913859    2.30917790
+         7       2.30913859    2.30914598
+         8       2.30913859    2.30913998
+         9       2.30913859    2.30913885
+        10       2.30913859    2.30913864
+
+5. Upper bounds
+
+    For k = 1, 2, ..., we define upper bounds f^k(m, n) for f(m, n) =
+min{m, n} as follows:
+
+(25)     f^k(m, n) = m          if k < n < m,
+                   = f(m, n)    otherwise.
+
+[Printed as "(25)", duplicating the label below; by sequence it is (23).]
+
+Hence
+
+(24)     F^k(x, y) = sum_{m,n>=1} f^k(m, n) x^m y^n
+                   = xy/((1-x)^2 (1-y)) - x^2 y/(1-x)^2 - ... - x^{k+1} y^k/(1-x)^2
+
+[p.39]
+is an upper bound for F; furthermore, note that F^k is separable.
+    Let B^k denote the solution of (10) with F^k substituted for F. Then
+
+(25)     B^k(x, y) = xy/(1-xy) + xy B^k(x, 1)/(1-xy)^2 - xy/(1-xy)^2 sum_{r=1}^{k} x^r y^r B^k_r(x) ,
+
+where
+
+         B^k_r(x) = (1/r!) d^r/ds^r B^k(x, s) |_{s=0} .
+
+Now we use (25) to get a system of equations involving B^k_1, ..., B^k_k. Take
+the rth partial derivative with respect to y at y = 0 and divide by r! in
+(25) to get
+
+(26)     B^k_r(x) = x^r + r x^r B^k(x, 1) - sum_{j=1}^{r-1} (r-j) x^r B^k_j(x) ,
+
+from which it follows that
+
+(27)     B^k_{r+1}(x) = (2x - x^{r+1}) B^k_r(x) - x^2 B^k_{r-1}(x) .
+
+Setting B^k_r(x) = P_r(x) + Q_r(x) B^k(x, 1) for r = 1, ..., k, it follows that P_r
+and Q_r also satisfy the difference equation (27). Also we can substitute
+P_r + Q_r B^k for B_r in (25) with y = 1 and solve for B^k(x, 1) in terms of
+P_1, Q_1, ..., P_k, Q_k to obtain
+
+(28)     B^k(x, 1) = (x - x^2 - sum_{j=1}^{k} x^{j+1} P_j(x)) / (1 - 3x + x^2 + sum_{j=1}^{k} x^{j+1} Q_j(x)) .
+
+    Thus B^k is a rational function whose numerator N_k and denominator
+D_k we know how to compute because they are defined in terms of
+P_1, ..., P_k and Q_1, ..., Q_k which we know how to compute. Let beta_k denote
+the largest real root of D_k(1/x); then we know
+
+(29)     lim_{n->oo} ( sum_{a=1}^{n} b^k(n, a) )^{1/n} = beta_k >= gamma ,
+
+and beta_1 >= beta_2 >= ... >= gamma. Thus we can calculate upper bounds for beta_1, beta_2, ...
+to obtain successively better upper bounds for gamma.
+
+[p.40]
+Using the definitions
+
+(30)     D_k = 1 - 3x + x^2 + x^2 Q_1 + ... + x^{k+1} Q_k ,
+
+(31)     Q_{r+1} = (2x - x^{r+1}) Q_r - x^2 Q_{r-1}     (r > 1) ,
+
+and Q_1 = x, Q_2 = 2x^2 - x^3, the polynomials D_1, D_2, ... are calculated with
+relative ease. For example, we found
+
+         D_1 = 1 - 3x + x^2 + x^3 ,
+         D_2 = 1 - 3x + x^2 + x^3 + 2x^5 - x^6 ,
+         D_3 = 1 - 3x + x^2 + x^3 + 2x^5 - x^6 + 3x^7 - 2x^8 - 2x^9 + x^10 .
+
+    Using a computer, the polynomials D_1, ..., D_10 were calculated via
+(30) and upper bounds for beta_k, the largest real root of D_k(1/x) = 0,
+were computed for 1 <= k <= 10 using the Newton-Raphson method.
+These upper bounds for beta_k are given in Table 1.
+    Combining our upper and lower bounds, we can conlude that
+
+(32)     gamma = lim_{n->oo} (c(n))^{1/n} = 2.309138... .
+
+References
+
+[1] M. Eden, A two-dimensional growth process, Proc. Fourth Berkeley Symposium on Mathe-
+    matical Statistics and Probability, IV (Univ. of California Press, Berkeley, Calif., 1961) 223-
+    239.
+[2] D.A. Klarner, Some results concerning polyominoes, Fibonacci Quart. 3 (1965) 9-20.
+[3] D.A. Klarner, Cell growth problems, Canad. J. Math. 19 (1967) 851-863.
+[4] D.A. Klarner, A combinatorial formula involving the Fredholm integral equation, J. Combin.
+    Theory 5 (1968) 59-74.
+[5] D.A. Klarner and R.L. Rivest, A procedure for improving the upper bound for the number
+    of n-ominoes, Canad. J. Math. 25 (3) (1973) 585-602.
+[6] G. Polya, On the number of certain lattice polygons, J. Combin. Theory 6 (1969) 102-105.
+[7] G. Polya and G. Szego, Aufgaben und Lehrsatze aus der Analysis, Vol. 1 (Berlin, 1925).
+[8] R.C. Read, Contributions to the cell growth problem, Canad. J. Math. 14 (1962) 1-20.
+[9] E.M. Wright, Stacks, Quart. J. Math. Oxford (2) 19 (1968) 313-320.
