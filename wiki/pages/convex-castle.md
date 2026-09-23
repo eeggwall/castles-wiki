@@ -3,7 +3,7 @@ title: Convex castle
 category: Concepts
 summary: A castle with a unimodal (up-then-down) skyline — equivalently column-convex AND row-convex; the umbrella for castle convexity, counted by CCC = C(2h+w−3, w−1).
 tags: [concept, castle, convex, unimodal, column-convex, row-convex, combinatorics, stars-and-bars]
-sources: [project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-mining-pe502]
+sources: [project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-mining-pe502, bender-1974-convex-n-ominoes]
 created: 2026-09-13
 updated: 2026-09-22
 ---
@@ -67,6 +67,7 @@ where `C(m,k) = m!/(k!(m−k)!)` is the binomial coefficient. For example, at *h
 - [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] — the home of Vandermonde's convolution (Knuth eq (21)), the identity that closes the count; [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] — the multinomial as the general form of the stars-and-bars mechanism.
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the AC-native OGF for the unimodal-skyline A001523 sub-family, built directly by the symbolic method.
 - [[convex-polyomino](pages/convex-polyomino.md)] - the general row- and column-convex class; a convex castle is its stack sub-family (both bottom corners of the bounding box), and on any row-convex shape blocks = height. [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] places the convex castle on the full area ladder.
+- [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] - Bender's trapezoids (nested rows over a full bottom row) are exactly convex castles. Every convex polyomino is two of them, one upright and one inverted, glued to the ends of a parallelogram.
 
 ## Footnotes
 

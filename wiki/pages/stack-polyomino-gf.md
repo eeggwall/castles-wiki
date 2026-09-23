@@ -3,7 +3,7 @@ title: Stack polyomino generating function
 category: Concepts
 summary: A stack polyomino — column heights that weakly rise then weakly fall around a single peak — is a castle tower with one peak. Its OGF `S(z) = ∑_{k≥1} z^k/(1−z^k) · 1/((1−z)(1−z²)···(1−z^{k−1}))²` (OEIS A001523) is built directly by the [[symbolic-method]] from a Durfee-square-style geometric decomposition.
 tags: [concept, polyomino, stack-polyomino, generating-functions, symbolic-method, durfee-square, castle-tower]
-sources: [analytic-combinatorics-ch1-ogfs]
+sources: [analytic-combinatorics-ch1-ogfs, bender-1974-convex-n-ominoes]
 created: 2026-09-15
 updated: 2026-09-22
 ---
@@ -41,6 +41,16 @@ This is the closest Analytic Combinatorics (AC)-native construction to the castl
 
 The [[convex-castle](pages/convex-castle.md)] enforces a *skyline* unimodality on the castle (the [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] `C(2H+W−3, W−1)` counts these), which is essentially the stack-polyomino condition plus the castle's own no-overhang / no-same-row-adjacency / even-block rules. The stack-polyomino OGF is thus the natural "unimodal but unweighted, unrestricted heights" reference count against which the convex castle's stricter binomial can be read as a specialization.
 
+## Stacks inside every convex polyomino
+
+Bender's 1974 count of convex polyominoes uses stacks under the name **trapezoids**: rows each lying inside the row below (`l_i <= l_{i+1}`, `r_i >= r_{i+1}`), counted by area and base length as[^3]
+
+```
+T(x, y) = sum_{k>=1} x^k y (1 - x^k y) / prod_{n=1..k} (1 - x^n y)^2
+```
+
+At `y = 1` the factor `(1 - x^k)` cancels one copy of the last denominator factor, which leaves `S(z)` above term by term. The coefficients agree with A001523 through area 20 (own check). Nested rows over a full bottom row are the same thing as a unimodal skyline of columns on that row, so a trapezoid is a stack polyomino as drawn. Every convex polyomino is a bottom trapezoid, a parallelogram, and an inverted top trapezoid ([[convex-polyomino](pages/convex-polyomino.md)]), so the stack series is a factor in every convex polyomino's generating function. It contributes no exponential growth: `T(x, 1)` has radius of convergence 1, and the growth `2.30914^n` comes from the parallelogram.[^4]
+
 ## Related asymptotics thread
 
 The book's own note (p. 46) points from Example I.8 forward to Example IX.14 p. 660: **parallelogram polyominoes counted by area give a q-Bessel generating function** — the same q-Bessel / q-Motzkin thread that appears in [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] and [[polyominoes](pages/polyominoes.md)]'s Ferrers-diagram remark on q-Bessel / q-Catalan.[^2] The stack polyomino is thus a middle link between the AC symbolic-method construction of a castle-shaped polyomino and the q-graded asymptotic story that the wiki has begun tracking separately.
@@ -48,6 +58,7 @@ The book's own note (p. 46) points from Example I.8 forward to Example IX.14 p. 
 ## Appearances in Sources
 
 - [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] — Example I.8 pp. 45-46, "The Durfee square of partitions and stack polyominoes."
+- [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] - the same series as Bender's trapezoid generating function (3), the end pieces of his convex-polyomino decomposition.
 
 ## Related Concepts
 
@@ -63,3 +74,5 @@ The book's own note (p. 46) points from Example I.8 forward to Example IX.14 p. 
 
 [^1]: [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] Example I.8 pp. 45-46 — "A stack polyomino is the diagram of a composition such that for some j, ℓ, one has 1 ≤ x_1 ≤ x_2 ≤ … ≤ x_j ≥ x_{j+1} ≥ … ≥ x_ℓ ≥ 1 ... The diagram representation of stack polyominoes ... translates immediately into the OGF S(z) = ∑_{k≥1} z^k/(1−z^k) · 1/((1−z)(1−z²)···(1−z^{k−1}))² ... a bona fide algorithm for computing the initial values of the number of stack polyominoes (EIS A001523): S(z) = z + 2z² + 4z³ + 8z⁴ + 15z⁵ + 27z⁶ + 47z⁷ + 79z⁸ + ⋯." Values confirmed against OEIS A001523 during ingest.
 [^2]: [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] p.46 — "The book of van Rensburg [592] describes many such constructions and their relation to models of statistical physics, especially polyominoes. For instance, related 'q-Bessel' functions appear in the enumeration of parallelogram polyominoes (Example IX.14, p. 660)."
+[^3]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.220 §2 eq. (3) - "a trapezoid is defined by a sequence such that l_i ≤ l_{i+1} and r_i ≥ r_{i+1}. Let T(x, y) be the generating function for trapezoids such that the number with n cells and base length b is the coefficient of x^n y^b ... T(x, y) = Σ_{k=1}^∞ x^k y(1 − x^k y) / Π_{n=1}^k (1 − x^n y)^2."
+[^4]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] pp.222-223 §4 - "Since T(x, 1) has radius of convergence 1 which exceeds r, it follows that c(n) ~ 2c*(n)."
