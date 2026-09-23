@@ -49,11 +49,11 @@ All by execution on 2026-09-22 (own computation, not from the paper):
 
 ## Relation to Other Wiki Pages
 
-The paper is the primary source for the growth constant already on [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)], where it was previously listed as not yet read. Its trisection gives a proof-level reason why the stack rung (convex castles, A001523) is subexponential while the rungs above it are not: every convex polyomino is a parallelogram with a stack glued to each end.
+The paper is the primary source for the growth constant on [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)]. Its trisection gives a proof-level reason why the stack rung (convex castles, A001523) is subexponential while the rungs above it are not: every convex polyomino is a parallelogram with a stack glued to each end.
 
 For the Q Department the useful object is the kernel `min{m, n}`. It is a row-to-row transfer operator on the area-graded count, which is the castle's transfer-matrix idea with the finite matrix replaced by an infinite kernel. The paper's lower-bound truncation `F_k` keeps only rows of length at most `k`, which is a finite `k x k` transfer matrix, and `gamma_k` is an algebraic number (a root of `Q_k(1/x)`). That makes `gamma` a limit of algebraic numbers from below and above, a concrete handle on the open question for this constant on [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] (this reading is this wiki's, not the paper's).
 
-The companion constant in the same paragraph is `theta` for all polyominoes. The later Klarner-Rivest bound `3.87 < K < 4.65` quoted on [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] refers to that constant; this paper cites only the earlier `3.72` lower bound.[^3]
+The companion constant in the same paragraph is `theta` for all polyominoes (Klarner's constant). This paper records the 1974 bounds, `3.72` below (Klarner 1967) and `4.65` above (Klarner and Rivest 1973).[^3] The `3.87 < K < 4.65` quoted on [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] bounds the same constant after a later improvement of the lower end. The upper end is the same 1973 number.[^13]
 
 ## Footnotes
 
@@ -69,3 +69,4 @@ The companion constant in the same paragraph is `theta` for all polyominoes. The
 [^10]: [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] p.38 Table 1 L253-270 and p.40 (32) L342-344 - "the sequence (gamma_i) converges very quickly to the value 2.30913859..., our best lower bound for gamma"; `beta_10 = 2.30913864`; "(32) gamma = lim_{n->oo} (c(n))^{1/n} = 2.309138...".
 [^11]: [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] p.37 (19) [synthesis] L211-217 - the ratio of alternating q-series; series-expanded by execution during ingest (2026-09-22) through `x^13`, agreeing with the parallelogram column of [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)].
 [^12]: [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] p.32 (1) L53-58 - "(1) x(1-x)^3 / (1 - 4x + 7x^2 - 5x^3) = sum b(n) x^n ... the largest real root of y^3 - 4y^2 + 7y - 5 = 0; that is, beta = 3.20...".
+[^13]: https://oeis.org/A001168 (fetched 2026-09-22) - "The currently best-known lower and upper bounds on this constant are 3.9801 (Barequet et al., 2006) and 4.6496 (Klarner and Rivest, 1973), respectively."
