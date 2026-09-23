@@ -8,9 +8,9 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 
 | Slice | Value |
 |---|---|
-| Pages | 138 (30 Sources / 68 Concepts / 39 Analyses) |
-| Departments (open + done) | R 2+12, E 7+13, N 13+25, Z 6+7, Q 7+1, S 12+5, T 7+0, F 12+3, X 8+5 |
-| Items | 74 open, 71 done, 145 total |
+| Pages | 139 (30 Sources / 68 Concepts / 40 Analyses + 1 root) |
+| Departments (open + done) | R 2+12, E 7+13, N 13+25, Z 6+7, Q 7+2, S 12+5, T 7+0, F 12+3, X 8+5 |
+| Items | 74 open, 72 done, 146 total |
 | Dates | wiki 2026-09-13, IDEAS 2026-09-22, last reorganize 2026-09-20 |
 
 ## Seminar program
@@ -222,9 +222,11 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 - [ ] **Convex to valley bijection** - convex and valley castles are equinumerous in every `(w,h)` cell (both `C(2h+w-3, w-1)`) under a peak/valley mirror; write up the explicit bijection. Imported from TODO.
 - [ ] **`h=3` bounded-height tree-vs-all bijection** - a bijection between bounded-height `h=3` tree castles by area and bounded-height `h=3` all castles by area.
 - [ ] **Signed Klarner `A_s = P_s / (1 - P_s)`** - castles concatenate at height-1 columns and the Klarner decomposition says the castle monoid is free on the prime castles (not abelian); but `blocks(C_1 C_2) = blocks(C_1) + blocks(C_2) - 1`, so `blocks - 1` is a monoid homomorphism to `(Z, +)` and the sign is a one-dimensional character of the free monoid on primes, factoring through the abelianization. Check the signed identity against the parity split on [castle-by-area](wiki/pages/castle-by-area.md), count castles per multiset of primes, and decide which other statistics are monoid characters (area is; peaks, records, and the nonlocal `B_alpha` cannot be).
+- [ ] **Descents Narayana bijection** - prove that towers of width `w` with `b` blocks and `k-1` descents number `N(w,k) C(b+w-k, w-1)` (verified `w, b ≤ 7` on [narayana-numbers](wiki/pages/narayana-numbers.md)), ideally by a bijection to (width-`k` parallelogram polyomino of semi-perimeter `w+1`, weak composition) through [parallelogram-polyomino-dyck-bijection](wiki/pages/parallelogram-polyomino-dyck-bijection.md).
 - [ ] **Convex / unimodal exact enumeration with parity** - the U/R/D route was attempted and failed; the area-graded split is done on [castle-by-area](wiki/pages/castle-by-area.md), the exact `(w,h)` enumeration remains open.
 
 - [x] **[Convex polyominoes by area](wiki/pages/convex-polyomino-by-area.md)** - the ladder rectangles / Ferrers / stacks (= convex castles) / parallelograms / directed convex / convex by area with one adding-a-slice construction and one growth constant `2.30913...`; blocks = height on row-convex shapes, and height-signed parallelograms are `-q/(1 + q^3/(1 + q^5/...))` (`-A049346`) from Flajolet's festoon J-fraction at `y = -1`. Concept page [convex-polyomino](wiki/pages/convex-polyomino.md).
+- [x] **[Castle perimeter](wiki/pages/castle-perimeter.md)** - semi-perimeter = width + blocks, so the parity clause is a perimeter parity; castles by semi-perimeter are A082582 with growth `τ²`, the signed count grows only like `τ`, and signed convex castles are periodic with period 6.
 
 ### S Department (spectral analysis - castles as 2D polyominoes)
 

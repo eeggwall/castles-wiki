@@ -1,0 +1,393 @@
+[Transcribed from page images of raw/bender-1974-partitions-of-multisets.pdf (a scan whose embedded OCR layer is unusable). Prose transcribed in full; displayed equations rendered in plain-text notation. C(a,b) is a binomial coefficient; P_x is Bender's script-P operator; S_r is the symmetric group on r objects.]
+
+DISCRETE MATHEMATICS 9 (1974) 301-311. (c) North-Holland Publishing Company
+
+PARTITIONS OF MULTISETS
+
+Edward A. BENDER
+Institute for Defense Analyses, Princeton, N.J. 08540, USA
+
+Received 25 October 1973 *
+* Original version received 5 October 1973.
+
+Abstract. A multiset is a set with repeated elements. There are four distinct partition numbers
+to consider, unlike the classical set partition case which involves only Stirling numbers of the
+second kind. Using inclusion-exclusion, we obtain generating functions when each element
+appears exactly r = 1, 2 or 3 times. The case r = 1 is classical and r = 2 was studied by Comtet
+and Baroti using other methods. Our approach also leads to asymptotic formulae for the total
+number of partitions of multisets in which the repetition of elements is bounded. Another approach
+to multiset enumeration, using de Bruijn's theorem for group reduced distributions, is
+described.
+
+--- p.301 ---
+1. Introduction
+
+A multiset of type m is a multiset in which exactly m_i different elements appear exactly i times.
+A multiset of type m can be thought of as a set S of cardinality sum m_i and a map mu from S to the
+positive integers such that |mu^{-1}(i)| = m_i. A partition of a multiset M is a collection of
+multisets (called blocks) whose multiset union (i.e., union with repetition) is M. We can either
+allow or not allow repeated blocks and we can either allow or not allow repeated elements within
+blocks. Therefore, we have four ways to count the number of partitions into k blocks of a multiset
+of type m. They are denoted as in Table 1.
+
+Table 1
+Counting function | Repeated blocks allowed? | Multiset blocks allowed?
+c(m,k)            | no                       | no
+v(m,k)            | yes                      | no
+c*(m,k)           | no                       | yes
+v*(m,k)           | yes                      | yes
+
+--- p.302 ---
+To fix the concepts, we will list all partitions pi of a multiset of type (2,1), say {a,b,c,c}.
+Vertical bars separate blocks, k denotes the number of blocks, and x's indicate by which functions
+the partition is counted (Table 2).
+
+Table 2
+k | pi       | c | v | c* | v*
+1 | abcc     |   |   | x  | x
+2 | a|bcc    |   |   | x  | x
+2 | ab|cc    |   |   | x  | x
+2 | ac|bc    | x | x | x  | x
+2 | abc|c    | x | x | x  | x
+2 | acc|b    |   |   | x  | x
+3 | a|b|cc   |   |   | x  | x
+3 | a|bc|c   | x | x | x  | x
+3 | ab|c|c   |   | x |    | x
+3 | ac|b|c   | x | x | x  | x
+4 | a|b|c|c  |   | x |    | x
+
+In the classical case m = (n), all four numbers equal the Stirling numbers of the second kind.
+Comtet [2] studied c((0,n),k) and v((0,n),k). His results were re-derived by Baroti [1] using
+linear operators.
+
+In the next section, we use inclusion-exclusion to obtain a basic result. From this we obtain
+generating functions for c, v, c* and v* when m = (n), (0,n) or (0,0,n). In Section 6, we use the
+basic result to obtain asymptotic formulae for c(m) = sum_k c(m,k), v(m), c*(m) and v*(m) when
+sum_i m_i -> infinity and the dimension of m is bounded. They are based on the fact that
+c(m) ~ v(m) and c*(m) ~ v*(m). In the final section, we use de Bruijn's theorem [3, Theorem 5.4,
+p.172] for group reduced distributions to study v*(m).
+
+2. An inclusion-exclusion result
+
+A function on a multiset may take different values on different copies of the same element. Let
+N_<=(K) be the number of functions from a multiset of type m to the set K and let N_=(K) be the
+number of those which are onto. By inclusion-exclusion,
+
+(1)   N_=(K) = sum_{X subset K} (-1)^{|K|-|X|} N_<=(X).
+
+--- p.303 ---
+On the other hand,
+
+(2)   N_=(K) = k! sum_pi prod_i (i!)^{-v_i(pi)},
+
+where the sum is over all partitions pi into k = |K| blocks of a multiset of type m and v_i(pi) is
+the number of distinct blocks of pi repeated exactly i times. (To see this, simply note that pi
+corresponds to precisely k!/prod_i (i!)^{v_i(pi)} onto functions.) Thus
+
+(3)   c*(m,k) <= N_=(K)/k! <= v*(m,k).
+
+We introduce the notation b*(m,k) = N_=(K)/k!. Let [k] = {1, 2, ..., k}. By (1),
+
+      sum_k b*(m,k) y^k = sum_k sum_{S subset [k]} (-1)^{k-|S|} N_<=(S) y^k/k!
+                        = sum_{k,s} (-1)^{k-s} C(k,s) N_<=([s]) y^k/k!
+                        = sum_{k,s} ((-1)^{k-s} y^{k-s}/(k-s)!) N_<=([s]) y^s/s!
+                        = e^{-y} sum_s N_<=([s]) y^s/s!.
+
+It is easily seen that
+
+(4)   N_<=([s]) = prod_i C(s+i-1, i)^{m_i}
+
+and so
+
+(5)   sum_k b*(m,k) y^k = e^{-y} sum_s (y^s/s!) prod_i C(s+i-1, i)^{m_i}.
+
+If we restrict the functions in N_<=(K) to map copies of the same element onto *different* elements
+of K, we can carry out the above procedure with the sum in (2) restricted to those pi counted by
+v(m,k). We obtain numbers b(m,k) satisfying
+
+(6)   c(m,k) <= b(m,k) <= v(m,k).
+
+--- p.304 ---
+Eqs. (4) and (5) are changed somewhat giving
+
+(7)   sum_k b(m,k) y^k = e^{-y} sum_s (y^s/s!) prod_i C(s,i)^{m_i}.
+
+Readers interested only in the asymptotic results may now skip to Section 6.
+
+3. The case m = (n)
+
+This is the case of ordinary set partitions. The vector v_i(pi) in (2) collapses to (k) and (3),
+(5), (6) and (7) collapse to
+
+      sum_k c((n),k) y^k = e^{-y} sum_s (y^s/s!) C(s,1)^n.
+
+Multiplying by x^n/n! and summing on n we obtain the classical result
+
+(8)   C_1(x,y) = sum_{n,k} c((n),k) y^k x^n/n! = exp{y(e^x - 1)}.
+
+4. The case m = (0,n)
+
+This is the double set coverings studied by Comtet and Baroti. Define
+
+      C_2(x,y) = sum_{n,k} c((0,n),k) y^k x^n/n!
+
+and likewise for B_2, V_2*, etc. It is easily seen that
+
+(9)   V_2(x,y) = C_2(x,y) C_1(x,y^2),     V_2*(x,y) = C_2*(x,y) C_1(x,y^2),
+
+because the C_1 factor counts those blocks which appear twice. By the same reasoning,
+
+(10)  B_2(x,y) = C_2(x,y) C_1(x,y^2/2),   B_2*(x,y) = C_2*(x,y) C_1(x,y^2/2).
+
+Combining (5), (7), (9) and (10) we obtain
+
+      C(x,y)  = exp{-y - y^2(e^x - 1)/2} sum_s y^s exp{x C(s,2)}/s!,
+
+--- p.305 ---
+(11)  V(x,y)  = exp{-y + y^2(e^x - 1)/2} sum_s y^s exp{x C(s,2)}/s!,
+      C*(x,y) = exp{-y - y^2(e^x - 1)/2} sum_s y^s exp{x C(s+1,2)}/s!,
+      V*(x,y) = exp{-y + y^2(e^x - 1)/2} sum_s y^s exp{x C(s+1,2)}/s!.
+
+The first two were discovered by Comtet [2].
+
+5. The case m = (0,0,n)
+
+Before computing generating functions for triple set coverings, we prove the following:
+
+Lemma 1. Let A(x), B(x), C(x) be formal power series over a field. Suppose c_0 != 0. Define
+
+      P_x( sum_{n=-inf}^{+inf} d_n x^n ) = sum_{n=0}^{+inf} d_n x^n.
+
+Then
+
+(12a) A(x) = P_x( B(x) C(x^{-1}) )
+
+if and only if
+
+(12b) B(x) = P_x( A(x) / C(x^{-1}) ),
+
+provided the coefficient expressions inside P_x in (12) converge.
+
+Proof. Let a = (a_0, a_1, ...) and b = (b_0, b_1, ...). Define the matrix M by m_ij = 0 if i < j
+and m_ij = c_{i-j} if i >= j. Eq. (12a) states a = bM. This is equivalent to b = aM^{-1} which is
+(12b).
+
+Define
+
+      C_3(x,u,y) = sum_{m,n,k} c((m,0,n),k) y^k u^m x^n/n!
+
+and likewise for B_3, V_3*, etc. We are interested in C_3(x,y) = C_3(x,0,y), etc. To obtain these
+formulas, we must study m = (m,0,n). A general
+
+--- p.306 ---
+partition of (m,0,n) (or, more precisely, of a multiset of type (m,0,n)) can be constructed as
+follows: divide the triple elements into three classes of sizes i, j and n-i-j; construct a
+partition pi_1 of (m+i,0,n-i-j) without repeated blocks, a partition pi_2 of (0,i) with each block
+appearing twice and pi_1 intersect pi_2 = empty, and a partition pi_3 of (0,0,j) with each block
+appearing thrice. These are hard to count directly so we compute S_t = sum S_{t,alpha}, where
+S_{t,alpha} is the number of partitions in which pi_1 intersect pi_2 has at least t blocks and these
+t blocks contain exactly alpha elements. The total number of blocks is k = k_1 + 2k_2 + 3k_3. Thus
+
+      S_t = sum_{i,j,alpha,k; k_1+2k_2+3k_3=k} C(n; i,j) C(i,alpha) c_1(alpha,t)  [second binomial partly illegible in scan] c((m+i-alpha,0,n-i-j), k_1-t)
+            * c_1(i-alpha, k_2-t) c_1(j, k_3).
+
+By inclusion-exclusion, the number of such partitions with pi_1 intersect pi_2 = empty is
+sum (-1)^t S_t. Hence
+
+      B(x,u,y) = sum c_1(alpha,t) (x^alpha/alpha!) (-(1/2) y^3)^t
+                 * c((m+i-alpha,0,n-i-j), k_1-t) (x^{n-i-j}/(n-i-j)!) u^{m+i-alpha} y^{k_1-t}
+                 * c_1(i-alpha, k_2-t) ((x/u)^{i-alpha}/(i-alpha)!) ((1/2)y^2)^{k_2-t} c_1(j,k_3) (x^j/j!) ((1/6)y^3)^{k_3},
+
+the sum ranging over t, j, alpha, k, i, m and n. Thus
+
+(13)  B_3(x,u,y) = P_u( C_1(x, -(1/2)y^3) C_3(x,u,y) C_1(x/u, (1/2)y^2) C_1(x, (1/6)y^3) )
+                 = P_u( C_3(x,u,y) C_1(x, -(1/3)y^3) C_1(x/u, (1/2)y^2) )
+
+since C_1(x,v) C_1(x,w) = C_1(x, v+w). By (12),
+
+(14)  C_3(x,u,y) = P_u( B_3(x,u,y) / C_1(x/u, (1/2)y^2) C_1(x, -(1/3)y^3) ).
+
+Since the coefficient of u^t in f(u^{-1})/(1 - su) is s^t f(s) when t >= 0, we have from (7), (8)
+and (14) that
+
+(15)  C_3(x,y) = exp{(1/3)(e^x - 1)y^3} e^{-y}
+                 * sum_{s>=0} (y^s/s!) exp{C(s,3)x} Coef_{u^0}( exp{(1/2)(1 - e^{x/u})y^2} / (1 - su) )
+
+--- p.307 ---
+               = exp{(1/3)(e^x - 1)y^3} e^{-y} sum_{s>=0} (y^s/s!) exp{C(s,3)x} exp{(1/2)(1 - e^{sx})y^2}.
+
+To obtain V_3 note that
+
+      V_3(x,u,y) = P_u( C_3(x,u,y) C_1(x/u, y^2) )
+
+by writing (m,0,n) = (m+i,0,n-i) + (0,i) and constructing pi_1 and pi_2 *without* the condition
+pi_1 intersect pi_2 = empty. By the same method used above,
+
+(16)  V_3(x,y) = exp{(1/3)(e^x - 1)y^3} e^{-y}
+                 * sum_{s>=0} (y^s/s!) exp{C(s,3)x} exp{(1/2)(e^{sx} - 1)y^2}.
+
+In exactly the same way using (5) in place of (7) we obtain
+
+      C_3*(x,y) = exp{(1/3)(e^x - 1)y^3} e^{-y}
+                  * sum_{s>=0} (y^s/s!) exp{C(s+2,3)x} exp{(1/2)(1 - e^{sx})y^2},
+
+(17)  V_3*(x,y) = exp{(1/3)(e^x - 1)y^3} e^{-y}
+                  * sum_{s>=0} (y^s/s!) exp{C(s+2,3)x} exp{(1/2)(e^{sx} - 1)y^2}.
+
+6. Asymptotic results
+
+The purpose of this section is to prove
+
+Theorem 1. Let r be fixed and let B(M) be the number of partitions of an M element set. Then we
+have uniformly, as m in Z^r is such that M = sum i m_i -> infinity,
+
+      c(m) ~ v(m) ~ b(m) ~ (B(M)/prod_i i!^{m_i}) exp{ - sum_i m_i C(i,2)/s }
+
+and
+
+      c*(m) ~ v*(m) ~ b*(m) ~ (B(M)/prod_i i!^{m_i}) exp{ + sum_i m_i C(i,2)/s },
+
+--- p.308 ---
+where s log s = M and B(M) has the well-known formula
+
+      B(M) ~ (s/e)^M e^{s-1} / sqrt(log s).
+
+Proof. Only c and v are discussed since the argument for c* and v* follows the same lines.
+
+We begin by estimating b(m). By (7),
+
+(18)  b(m) = e^{-1} sum_{s>=0} prod_i C(s,i)^{m_i} / s!.
+
+As s^2/M -> infinity,
+
+      prod_i i!^{m_i} prod_i C(s,i)^{m_i} = prod_i prod_{j=0}^{i-1} (s-j)^{m_i}
+          = s^M exp{ - sum_{j>0} (j/s) sum_{i>j} m_i + O(r^3 M/s^2) }
+          ~ s^M exp{ - sum_i m_i C(i,2)/s }.
+
+Using this we see that the maximum summand in (18) occurs when 1 = s((s-1)/s)^M ~ s e^{-M/s} and so
+s log s = M. When k = O(sqrt s), we have
+
+      ( prod_i C(s+k,i)^{m_i}/(s+k)! ) / ( prod_i C(s,i)^{m_i}/s! )
+          ~ (1+k/s)^M / (s^k e^{-k} (1+k/s)^{s+k}) ~ exp(kM/s - k^2 M/2s^2 - k log s)
+          ~ exp(-k^2 log s/2s).
+
+Thus
+
+(19)  b(m) ~ ( prod_i C(s,i)^{m_i} / s! e ) integral_{-inf}^{+inf} exp{ -(1/2) x^2 log s/s } dx
+           ~ ( s^M exp{ - sum_i m_i C(i,2)/s } / (s! e prod_i i!^{m_i}) ) sqrt(2 pi s / log s).
+
+With m = (M) we obtain the estimate for B(M), and thus the estimate for b(m), given in the theorem.
+
+It remains to prove that c(m) ~ v(m). Let r(k) be the number of partitions of a multiset of type k
+in which every block is repeated. Let M be a multiset of type m. We will write c(M) for c(m), etc.
+Clearly,
+
+--- p.309 ---
+      v(M) = sum_{N subset M} c(M - N) r(N).
+
+Using (6) we obtain
+
+(20)  0 <= (v(M) - c(M))/v(M) <= sum_{0 != N subset M} (b(M - N)/b(M)) r(N)
+         <= sum_{n>=2} ( max_{|N|=n, N subset M} b(M - N)/b(M) ) sum_{|N|=n} r(N).
+
+It is easily seen from (19) that for all epsilon > 0 and some C = C(epsilon),
+
+(21)  max_{|N|=n, N subset M} b(M - N)/b(M) <= C r^n M^{-(1-epsilon)n}.
+
+By choosing j = floor(n/2) of the M elements of M, partitioning them, and assigning a multiplicity
+of 2, 3, ..., r or 0 to each block, we see that
+
+(22)  sum_{|N|=n} r(N) <= C(M,j) r^j B(j).
+
+Combining (20)-(22) and setting j = floor(n/2) we obtain
+
+(23)  0 <= (v(m) - c(m))/v(m) <= 2C sum_{j>0} C(M,j) (r^3 M^{-2(1-epsilon)})^j B(j).
+
+Since B(j) <= j^j, those terms in (23) with j <= J = M^{1-3 epsilon} contribute at most
+
+      2C( sum_{j>=0} C(M,j) (r^3 J M^{-2(1-epsilon)})^j - 1 ) = 2C((1 + r^3/M^{1+epsilon})^M - 1)
+          <= 2C(exp{r^3 M^{-epsilon}} - 1) -> 0
+
+to the sum. For J <= j <= M we have B(j) <= ((1/2)j)^j <= ((1/2)M)^j <= 2^{-J} M^j. Thus the
+remainder of the sum in (23) is at most
+
+      2C 2^{-J} sum_{j>=0} C(M,j) (r^3 M^{2 epsilon - 1})^j = 2C 2^{-J} (1 + r^3 M^{2 epsilon - 1})^M
+          <= 2C 2^{-M^{1-3 epsilon}} exp{r^3 M^{2 epsilon}} -> 0
+
+provided epsilon < 1/5.
+
+To gain some feeling for the speed of convergence of the asymptotics in the theorem, we have
+computed some values (Table 3).
+
+--- p.310 ---
+Table 3
+n              | 10            | 20
+c((0,0,n))     | 7.39 x 10^14  | 1.00 x 10^43
+v((0,0,n))     | 1.41 x 10^15  | 1.49 x 10^43
+~              | 1.16 x 10^15  | 1.30 x 10^43
+c*((0,0,n))    | 1.28 x 10^17  | 4.36 x 10^45
+v*((0,0,n))    | 2.02 x 10^17  | 6.06 x 10^45
+~              | 1.69 x 10^17  | 5.35 x 10^45
+
+7. The generating function V_r*(x,y)
+
+Let
+
+(24)  V_r*(x,y) = sum_{n,k} v*(m,k) y^k x^n/n!,
+
+where m is the vector in which the r-th component equals n and all other components are zero. In
+other words, v*(m,k) is the number of k-block partitions of a multiset containing r copies each of
+n distinct elements.
+
+Theorem 2.
+
+      V_r*(x,y) = exp{ - sum_{k<r} y^k/k } exp{ x P_{S_r}(d/dz) } exp{ sum_{k<r} u_k y^k/k } |_{z=0},
+
+where
+
+      u_k = exp{ k sum_{n | k, n < r} z_n }
+
+and P_{S_r} is the cycle index for the full symmetric group on r objects.
+
+Remarks. It can be shown rather easily that if the generating function is computed explicitly it
+will involve a multiple summation over floor(r/2) indices ranging from 0 to infinity. Those for
+r = 1, 2, 3 have been given in (8), (11), (17). We have determined that
+
+--- p.311 ---
+(25)  V_4*(x,y) = exp{ - sum_{k=1}^{4} y^k/k } sum_{i,j} y^{i+2j} / (i! j! 2^j)
+                  * exp{ (1/24) x (i^4 + 6i^2(i+2j) + 3(i+2j)^2 + 8i^2 + 6i + 12j)
+                         + y^3 e^{ix}/3 + y^4 e^{ix}/4 }.
+
+Proof. Let g_r(n,k) be the number of equivalence classes of functions from A to B, where |A| = nr,
+|B| = k and the groups acting on A or B are S_r + S_r + ... + S_r and S_k, respectively. We have
+
+      g_r(n,k) = sum_{j<=k} v*(m,j),
+
+where m is as in (24). Hence
+
+(26)  (1 - y)^{-1} V_r*(x,y) = sum_{n,k} g_r(n,k) y^k x^n/n! = G_r(x,y).
+
+By de Bruijn's theorem [3],
+
+(27)  g_r(n,k) = ( P_{S_r}(d/dz) )^n P_{S_k}(u) |_{z=0}.
+
+Combining (26), (27), and the well-known formula
+
+      sum_k P_{S_k}(t) y^k = exp{ sum_{k>=1} t_k y^k/k },
+
+we obtain
+
+      V_r*(x,y) = (1 - y) exp{ x P_{S_r}(d/dz) } exp{ sum_{k=1}^{inf} u_k y^k/k } |_{z=0}.
+
+Since u_k = 1 when k >= r, this completes the proof.
+
+References
+
+[1] G. Baroti, Calcul des nombres de birecouvrements et de bireveteements d'un ensemble fini,
+    employant la methode fonctionnelle de Rota, in: P. Erdos et al., eds., Combinatorial Theory
+    and its Applications, I, Proc. Colloq. Balatonfured, 1969 (North-Holland, Amsterdam, 1970)
+    93-103.
+[2] L. Comtet, Birecouvrements et birevetements d'un ensemble fini, Studia Sci. Math. Hungar.
+    3 (1968) 137-152.
+[3] N.G. De Bruijn, Polya's theory of counting, in: E.F. Beckenbach, ed., Applied Combinatorial
+    Mathematics (Wiley, New York, 1964).

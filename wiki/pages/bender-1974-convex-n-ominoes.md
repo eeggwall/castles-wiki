@@ -1,0 +1,66 @@
+---
+title: "Convex n-ominoes (Bender, 1974)"
+category: Sources
+summary: Bender's eight-page Discrete Math. paper that computes the Klarner-Rivest growth constant gamma = 2.30913859330 (A276994) and the parallelogram asymptotic 0.29745 gamma^n (A006958), both correct, and a convex-polyomino prefactor (2.67564 in the abstract, 2.67483 in eq. (11)) that is about 8% below the true 2.91960 of A067675. The paper splits every convex polyomino into trapezoid + parallelogram + trapezoid, and its trapezoid generating function at y = 1 is the stack series A001523, so a convex polyomino is two convex castles glued to the ends of a parallelogram. A typical convex n-omino is a rod tilted 45 degrees, about 2.376 cells thick.
+tags: [source, paper, polyomino, convex, parallelogram-polyomino, stack-polyomino, asymptotics, growth-constant, klarner-rivest, bender, discrete-math, a276994, a006958, a067675, a001523]
+sources: [bender-1974-convex-n-ominoes]
+created: 2026-09-22
+updated: 2026-09-22
+---
+
+# Convex n-ominoes (Bender, 1974)
+
+**Source:** raw/bender-1974-convex-n-ominoes.pdf (local copy only; PDFs are gitignored)
+**Publication:** Edward A. Bender, "Convex n-ominoes," Discrete Mathematics 8 (1974) 219-226. Received 19 April 1973; original version received 13 February 1973.[^1]
+**Date ingested:** 2026-09-22
+**Type:** paper
+
+## Summary
+
+Klarner and Rivest had defined a convex animal (every horizontal or vertical line meets it in an interval) and shown that `c(n)^{1/n}` tends to a constant `gamma`, with an effective procedure for computing it. Bender sharpens this to `c(n) ~ f gamma^n` and describes the typical shape.[^2] His building blocks are two row-by-row families. A **trapezoid** has each row inside the one below (`l_i <= l_{i+1}`, `r_i >= r_{i+1}`). A **parallelogram** slanting to the right has both row ends moving weakly right (`l_i <= l_{i+1} < r_i <= r_{i+1}`).[^3] Using Klarner's Fredholm-integral method he gets the trapezoid generating function in closed form and the parallelogram one as a ratio `P = P_1/(1 - P_2)` of two alternating q-series.[^4]
+
+The growth constant is `1/r`, where `r` is the first pole of `P(x)`: the simple root of `P_2(x, 1, 1) = 1`. Because `P_2` is an alternating series with decreasing terms, truncating it brackets the root, and ten terms give `gamma = 2.30913859330`.[^5] The same pole gives `p(n) ~ 0.29745 gamma^n` parallelograms slanting one way, and `2p(n) ~ 0.59491 gamma^n` counting both slants.[^6]
+
+For convex polyominoes he cuts at the last row where the left end moves left and the first row where the right end moves right (his Fig. 1). The result is a trapezoid below, a parallelogram in the middle, and an inverted trapezoid on top. The trapezoid series has radius of convergence 1, larger than `r`, so asymptotically only the parallelogram part matters, and `c(n) ~ 2c*(n)`, where `c*(n)` counts convex n-ominoes with a nonempty northeast-slanting middle.[^7] A residue computation then gives the prefactor, and a local limit theorem gives the shape: parallelogram height is asymptotically normal, so a typical convex n-omino is a thin rod tilted 45 degrees.[^8]
+
+## Key Takeaways
+
+- **`gamma = 2.30913859330`**, from the first ten terms of (5b).[^5] It agrees with OEIS A276994 (`2.3091385933304947...`) in every printed digit.[^9] The wrong value OEIS flags in Flajolet and Sedgewick (`...331230`) is theirs, not Bender's.
+- **Parallelograms: `p(n) ~ 0.29745 gamma^n`** (7a), with `2p(n) ~ 0.59491 gamma^n` for both slants (7b).[^6] This matches A006958's `c = 0.2974535058...`.[^9]
+- **The convex prefactor is misprinted, and wrong either way.** The abstract says `c(n) ~ f gamma^n` with `f = 2.67564`, and equation (11) says `f = 2.67483`.[^10] Neither matches A067675's `c = 2.9195985097...`.[^9] A column-sweep enumeration to area 40 gives `c(n)/gamma^n = 2.91962` at `n = 40`, still falling toward the OEIS value, so both of Bender's values are about 8% low.[^11] The error is in the constant `f` only. The growth rate and the parallelogram prefactor are right.
+- **Parallelogram share.** Bender compares (11) with (7b): about 22% of convex animals are parallelograms, or 44% if 90-degree rotations are allowed.[^12] With the corrected prefactor the ratio is `0.59491 / 2.91960 = 0.204`, so about 20% (own arithmetic). The 44% figure is his, and this wiki has not checked what the 90-degree rotation adds beyond the two slants already in `2p(n)`.
+- **Trapezoids are stacks.** Equation (3) at `y = 1` is `sum_k x^k (1 - x^k) / prod_{n<=k} (1 - x^n)^2 = sum_k x^k/(1 - x^k) * 1/((1-x)...(1-x^{k-1}))^2`, the stack-polyomino series A001523. Its coefficients were checked to be 1, 2, 4, 8, 15, 27, 47, 79, ... through area 20 (own check). Nested rows over a full bottom row make a unimodal skyline on a common base, so a trapezoid is a stack polyomino as drawn, and so a convex castle.
+- **Typical shape.** Parallelogram height is asymptotically normal, with mean `0.42088n` and variance `0.20806n`, so the average width is `n / mu_n = 2.37597`.[^13] Base length has mean `2.06030` and variance `0.57609` for parallelograms.[^14] For convex animals only the bases change, since that is where the trapezoids attach. There the base mean is `K^{-1}` times the coefficient `3.13352`, with `K = 1.02934`, which is about `3.044` (own arithmetic; Bender does not state the quotient).[^14] Bender conjectures, without proof, that every row away from the ends has mean length equal to the average width.[^15] The slope is within `f(n)` of 45 degrees for almost all parallelograms, whenever `f(n)/sqrt(n) -> infinity`.[^16]
+
+## Entities & Concepts
+
+- [[convex-polyomino](pages/convex-polyomino.md)] - the class Bender counts. His trapezoid + parallelogram + trapezoid split is the structural form of the corner taxonomy.
+- [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - the area ladder whose shared growth constant and parallelogram prefactor this paper computes.
+- [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - Bender's trapezoid generating function at `y = 1`.
+- [[convex-castle](pages/convex-castle.md)] - the castle name for a stack, and so for each end piece of Bender's decomposition.
+- [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - the q-Bessel family that `P_1` and `P_2` belong to (Flajolet and Sedgewick's `J_1`, `J_0`).
+
+## Relation to Other Wiki Pages
+
+- **Moves Bender from "cited" to "read."** [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] cited Bender's parallelogram asymptotic through Flajolet's "Polya Festoons" and Flajolet and Sedgewick Example IX.14. Both of those citations quote him correctly.
+- **Castle tie.** A convex polyomino is two stacks (convex castles), one upright and one inverted, glued to the ends of a parallelogram. The castle-side piece carries none of the exponential growth, because its series converges out to radius 1. This makes "convex castle with a floating base" on [[convex-polyomino](pages/convex-polyomino.md)] precise: freeing the base inserts a parallelogram, and all the exponential growth comes from the parallelogram.
+- **Not superseded.** Bender gives asymptotics, plus an exact generating function only for `c*(n)`, written as a constant-term extraction (8). The exact generating function of the convex and directed-convex rungs remains the unread Bousquet-Mélou and Fédou paper.
+
+## Footnotes
+
+[^1]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.219 - "DISCRETE MATHEMATICS 8 (1974) 219-226 ... Received 19 April 1973 ... Original version received 13 February 1973."
+[^2]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.219 §1 - "Klarner and Rivest [4] have defined a convex animal to be an animal such that every intersection with a vertical or horizontal line is a (possibly empty) interval ... Klarner and Rivest showed that c(n)^{1/n} ~ γ and found an effective procedure for calculating γ. We will study the typical shape of convex animals and obtain improved asymptotic results for c(n)."
+[^3]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.220 §2 - "a trapezoid is defined by a sequence such that l_i ≤ l_{i+1} and r_i ≥ r_{i+1}. A parallelogram (to the right) is defined by a sequence such that l_i ≤ l_{i+1} < r_i ≤ r_{i+1}."
+[^4]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] pp.220-221 §2 eqs. (3), (5a), (5b), (6) [synthesis] - applies "the method of [3]" (Klarner's Fredholm-integral formula) to get T(x, y) as the sum (3) and P as P_1 + P_1 P_2/(1 - P_2), "a simple adaptation of the procedure Klarner and Rivest used to obtain P(x, 1, y, 1)."
+[^5]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] pp.221-222 §3 - "It was shown in [4] that γ = r^{-1}, where r is the radius of convergence of P(x) ... Because the series (5b) for P_2(x, 1, 1) is an alternating series with strictly decreasing terms ... upper and lower bounds can be found ... by truncating the series ... We found r^{-1} = γ = 2.30913859330 by using the first ten terms in (5b)."
+[^6]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.222 §3 eqs. (7a), (7b) - "p(n) ~ 0.29745γ^n since the pole is simple. The total number of parallelograms is asymptotic to 2p(n) ~ 0.59491γ^n."
+[^7]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] pp.222-223 §4 and Fig. 1 - "Let c*(n) be the number of convex n-ominoes with J > I + 1, i.e., those animals with a non-empty parallelogram part slanting to the northeast. Since T(x, 1) has radius of convergence 1 which exceeds r, it follows that c(n) ~ 2c*(n)."
+[^8]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.219 abstract - "When viewed from a distance, most convex n-ominoes resemble rods tilted 45° from the vertical with horizontal (and vertical) thickness roughly equal to 2.37597."
+[^9]: https://oeis.org/A276994, https://oeis.org/A006958, https://oeis.org/A067675 (fetched 2026-09-22 in an earlier session; not re-fetched for this page) - A276994 "2.3091385933304947..."; A006958 "c = 0.2974535058111219..."; A067675 "c = 2.9195985097136070...".
+[^10]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.219 abstract and p.224 eq. (11) - "If c(n) denotes the number of convex n-ominoes, then c(n) ~ fγ^n, where γ = 2.30914 and f = 2.67564"; "(11) f = 2K^2/(rP_1(r, 1, 1, 1)P_2'(r, 1, 1)) = 2.67483."
+[^11]: Verified by execution, 2026-09-22, with the column sweep on [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] (convex case, parity dropped) run to area 40 [synthesis] - `c(n)/2.3091385933304947^n` = 2.92061 (n = 26), 2.91995 (32), 2.91970 (36), 2.91962 (40), decreasing monotonically from n = 26 toward A067675's 2.91960; `c(40) = 1007688926337136`.
+[^12]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.224 §4 - "Comparing (11) and (7b), we see that about 22% of the convex animals are parallelograms. If we allow parallelograms which have been rotated 90°, then about 44% of the convex animals are parallelograms."
+[^13]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] pp.224-225 §5 - "the probability that the height is less than h_n converges to a normal distribution with mean μ_n ~ 0.42088n and variance σ_n^2 ~ 0.20806n ... the average width is n/μ_n ~ 2.37597."
+[^14]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.225 §5 and pp.225-226 §6 - "the base has mean and variance μ(n) = p_1(n)/p_0(n) ~ 2.06030, σ^2(n) = p_2(n)/p_0(n) − μ(n)^2 ~ 0.57609"; for convex animals "All the results are the same except for the length of the bases to which the trapezoids are attached", with "c_k(n)/c_0(n) ~ K^{-1} C(y^0, P_1^{[k]}(r, 1, 1, y^{-1})S(r, y))" and "In particular C(y^0, P_1^{[1]}(r, 1, 1, y^{-1})S(r, y)) = ... = 3.13352"; K = 1.02934 is from p.224.
+[^15]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.226 §6 - "it is likely that all widths except those near the top and bottom have a mean equal to the average width. I have not been able to prove this."
+[^16]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.225 §5 - "if f(n)/√n → ∞, then the fraction of parallelograms whose slope is within ±f(n) of ±45° goes to 1 as n → ∞."

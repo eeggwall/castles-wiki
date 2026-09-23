@@ -3,7 +3,7 @@ title: Horizontally convex polyomino
 category: Concepts
 summary: A polyomino meeting every horizontal line in a single segment (or not at all); its count A001169 obeys a(n)=5a(n−1)−7a(n−2)+4a(n−3) — a convexity class to compare with the castle.
 tags: [concept, polyomino, horizontally-convex, convexity, combinatorics]
-sources: [counting-horizontally-convex-polyominoes]
+sources: [counting-horizontally-convex-polyominoes, klarner-rivest-1974-convex-n-ominoes]
 created: 2026-09-13
 updated: 2026-09-22
 ---
@@ -29,6 +29,7 @@ Precisely characterizing which castles are horizontally convex (and vice versa),
 ## Appearances in Sources
 
 - [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)] — defines HC-polyominoes and proves the order-3 recurrence for their count.
+- [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - uses the row-convex count as its comparison family, with growth `3.20...` against `2.309...` for convex polyominoes. Its printed generating function has the denominator coefficients reversed (`1 - 4x + 7x^2 - 5x^3`); the correct denominator is `1 - 5x + 7x^2 - 4x^3`, as the paper's own `beta = 3.20` requires.
 
 ## Related Concepts
 
