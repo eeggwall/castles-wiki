@@ -143,3 +143,11 @@ A067675	supporting	Number of fixed convex polyominoes with n cells.	convex polyo
 A067676	supporting	Number of fixed directed convex polyominoes with n cells.	directed convex polyominoes by area
 A227310	supporting	G.f.: 1/G(0) where G(k) = 1 + (-q)^(k+1) / (1 - (-q)^(k+1)/G(k+1) ).	absolute values of height-signed parallelograms by area; growth 1.23729
 A276994	supporting	Decimal expansion of the Klarner-Rivest polyomino constant.	growth constant 2.30913... of parallelogram, directed convex and convex polyominoes by area
+A002718	supporting	Number of bicoverings of an n-set.	Bender's c((0,n)): partitions of a multiset with every element twice, no repeated blocks, no repeated element in a block
+A020554	supporting	Number of multigraphs on n labeled edges (without loops).	Bender's v((0,n)): every element twice, repeated blocks allowed, no repeated element in a block
+A020555	supporting	Number of multigraphs on n labeled edges (with loops). Also number of genetically distinct states amongst n individuals.	Bender's v*((0,n)): all partitions of a multiset with every element twice
+A094574	supporting	Number of (<=2)-covers of an n-set.	Bender's c*((0,n)): every element twice, no repeated blocks, repeated elements in a block allowed
+A060486	supporting	Tricoverings of an n-set.	Bender's c((0,0,n)): every element three times, no repeated blocks, no repeated element in a block
+A165434	supporting	Number of tri-coverings of a set.	Bender's v((0,0,n)): every element three times, repeated blocks allowed, no repeated element in a block
+A319591	supporting	Number of nonnegative integer matrices with n columns and any number of nonzero distinct rows with every column summing to 3 up to permutation of rows.	Bender's c*((0,0,n)): every element three times, no repeated blocks
+A322487	supporting	Number of (3*n) X n matrices with nonnegative integer entries and each column sum being 3 up to permutation of rows.	Bender's v*((0,0,n)): all partitions of a multiset with every element three times

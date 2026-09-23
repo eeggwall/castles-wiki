@@ -5,7 +5,7 @@ summary: The multinomial coefficient n!/(k_1!…k_m!) — the multinomial theore
 tags: [knuth, taocp, multinomial, binomial, multiset, lattice-path, source]
 sources: [aocp-multinomial-coefficients]
 created: 2026-09-14
-updated: 2026-09-19
+updated: 2026-09-22
 ---
 
 # The Art of Computer Programming (AOCP) Multinomial Coefficients (Knuth The Art of Computer Programming (TAOCP) Vol. 1)
@@ -68,6 +68,8 @@ Two concrete connections, both on the enumeration side:
 - [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the two-binomial product the peak decomposition produces.
 
 ## Relation to Other Wiki Pages
+
+The multinomial counts orderings of a fixed multiset; its unordered counterpart, splitting the multiset into blocks, is [[multiset-partitions](pages/multiset-partitions.md)].
 
 The third corner of the AOCP binomial/multiset/multinomial triangle. Its lasting content for the castle is the telescoping factorization — the general mechanism behind the higher-dimensional lattice-path count and the two-line-array binomial products, both kin to the castle's stars-and-bars convex enumeration.
 
