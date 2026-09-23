@@ -1,0 +1,1399 @@
+Journal of Statistical Physics, Vol. 78, Nos. 3/4, 1995
+
+
+
+
+Critical Exponents from Nonlinear Functional
+Equations for Partially Directed Cluster Models
+T. Prellberg t and R. Brak ~
+
+
+                Received May 23, 1994
+
+               We present a method for the derivation of the generating function and computa-
+               tion of critical exponents for several cluster models (staircase, bar-graph, and
+               directed column-convex polygons, as well as partially directed self-avoiding
+               walks), starting with nonlinear functional equations for the generating function.
+               By linearizing these equations, we first give a derivation of the generating func-
+               tions. The nonlinear equations are further used to compute the thermodynamic
+               critical exponents via a formal perturbation ansatz. Alternatively, taking the
+               continuum limit leads to nonlinear differential equations, from which one can
+               extract the scaling function. We find that all the above models are in the same
+               universality class with exponents y,,= -1/2, 7, = -1/3, and ~b= 2/3. All models
+               have as their scaling function the logarithmic derivative of the Airy function.
+
+               KEY WORDS: Functional equations; cluster models; polygons; critical
+               exponents; scaling functions; nonlinear differential equation.
+
+
+1. I N T R O D U C T I O N
+
+Steady progress is b e i n g m a d e in the m a t h e m a t i c a l analysis of certain
+geometric cluster models. These objects c a n be c o n s i d e r e d as c o m b i n a t o r i a l
+objects to be e n u m e r a t e d , o r as m o d e l s of physical systems such as vesicles
+or polymers. A selection of these m o d e l s is illustrated in Fig. 1. T r a d i -
+tionally o n l y the s q u a r e lattice objects have been studied, a l t h o u g h the
+g e n e r a l i z a t i o n to o t h e r lattices is straightforward. C o m b i n a t o r i a l i s t s have
+generally studied the p o l y g o n m o d e l s a n d call these objects p o l y o m i n o e s .
+A short review of the history of the s o l u t i o n s of the v a r i o u s types of
+p o l y o m i n o e s c a n be f o u n d in Delest. (t~
+
+~Department of Mathematics, University of Melbourne, Parkville, Victoria 3052, Australia.
+ E-mail: prel,brak@mundoe.maths.mu.oz.au.
+                                                   701
+                                           0022-4?15/95]0200-0701$07.50/0 9 1995 Plenum Publishing Corporation
+702                                                              Prellberg and Brak
+
+
+
+
+Fig. 1. Typical configurations for a selection of directed geometric cluster models.
+(a) staircase polygons, (b) directed column-convex polygons, (c)column-convex polygons,
+(d) bar-graph polygons, (e) alternating bar-graph polygons, and (f) ZL walks.
+
+
+     The two-variable generating functions for the area and perimeter
+(polygon models), or length and interactions (walk models), have been
+solved by a variety of methods. It is frequently possible to prove a bijection
+between words of an algebraic language and the combinatorial objects of
+interest, t2~ an idea going back to Schiitzenberger. (3J An alternative method
+of solution involving recurrence relations goes back to Temperley. t4~ This
+method has been subsequently extended to solve several more models. ~5-8~
+Some of the walk models can also be partially solved using transfer matrix
+techniques. 191
+     All these models possess the characteristic feature that their single-
+variable generating functions are algebraic, while the two-variable generat-
+ing functions are expressed in terms of q-series. These are generally q-Bessel
+functions ~ 0 , ~ or q-hypergeometric functions. ~2~ The q-series solutions to
+this class of models have been obtained by several techniques. A method
+developed by Temperley ~4~leads to a recurrence relation which is solved by
+a q-series, tS~ The recurrence relation is directly related to a linear functional
+equation which can also be solved by q-series methods, c8~ In algebraic
+language theory the q-series appear as q-extensions or q-grammars, t~3)
+     We will use the language and notation of the polygon models in what
+follows, but mutatis mutandis the same results apply for the walk models.
+     The q-series solutions are satisfactory representations of the com-
+binatorial problem in that the numbers of configurations of a given length
+and area can be computed in polynomial time (compared with the
+exponential time required for explicit enumeration). However, it is still not
+possible to easily extract the asymptotic behavior of the generating function
+from the q-series.
+Partially Directed Cluster Models                                             703
+
+
+     The principal purpose of this paper is to "solve" this asymptotic
+problem without a direct assault on the q-functions. If only the asymptotics
+of the generating function is required, then a direct assault on the
+q-functions is a wasted effort, as a large part of the leading asymptotic
+function cancels and only the subdominant factors contribute to the
+generating function.
+     We approach the asymptotic problem using two different methods:
+(i) A formal perturbation theory. This method has the advantage of giving
+several critical exponents for the lattice models. For this, the asymptotic
+form has to be assumed in order to identify the exponents. (ii)Nonlinear
+differential equations. This method has the advantage of deriving the
+asymptotic function and hence the critical exponents exactly; however, it
+only applies to the semicontinuous version of the lattice model. If one
+accepts that the continuous version of a model has the same asymptotic
+behavior as the lattice model, then of course one has the lattice exponents
+as well.
+     We now outline the general form of the asymptotic behavior of this
+class of models (for more details see Brak et al.(14)). The principal object of
+study is the area-perimeter generating function G(y, q), defined as
+
+                  G(y, q)= ~ A,,(y) qm = ~" p~_,,(q)y,,                      (1.1)
+                             rtl =   l                  n=   2
+
+
+where
+
+                 Am(y)= ~ c,,Z....
+                               Y,                   Pz,,(q) = ~ c,,,2q
+                                                                    .....    (1.2)
+                          n = 2                                  m   =   1
+
+
+
+      2n is the number of polygons of the required type with perimeter 2n
+and c m
+and area m. Thus, Am(y) and P2,,(q) are the generating functions for
+polygons with a fixed area, respectively perimeter.
+     If we consider q as a parameter and y the variable, then G is a series
+in y with coefficients P2,,(q). If G converges, then its radius of convergence
+Yc(q) is given by
+                           yc(q)= lim P2,,(q) -~/"                           (1.3)
+                                         n ~   o3
+
+
+
+
+It is usually straightforward to prove the existence of y,.(q) using super- or
+submultiplicative inequalities. 1~5,6~ For the polygon models a plot of the
+radius of convergence Yc(q) as a function of q is of the general form shown
+in Fig. 2. Alternatively one can fix y and consider G as a function of q with
+radius of. convergence qc(Y). Then for polygon models the generating
+function is singular along the line q = 1 between y = 0 and some point
+704                                                                       Prellberg and Brak
+
+
+
+
+                                                           TricriticalPoint
+                     8.. Yt                            ~        (l'Yt)
+
+                                   q - Areavariable           1
+Fig. 2. The schematic form of the radius of convergence of the area-perimeter generating
+                           function for the polygon models.
+
+Y, = Yc(1). For other models this line m a y be more complicated. The point
+(q,, y,) is an example of a "tricritical" point 1~4~ where q,=qc(Y,). F o r
+polygon models q, = 1. Elucidating the singularity structure of the generating
+function around this point is the principal interest of this paper.
+     When q = 1, G only generates the polygons by perimeter. For all the
+above models G(y, 1) is an algebraic function and hence has a branch
+point with exponent 7, at y,, that is,
+
+                       G(y, 1 ) ~ A ( y , - y ) -~,          y-*y?                     (1.4)
+
+For y = y,, the generating function has a branch point-like singularity in q
+at q,, but with a different exponent 7 , where ~,, is defined through
+
+                       G(y,,q)~B(q,-q)           ~",          q-*q?                    (1.5)
+
+These two different asymptotic behaviors can be combined into a scaling
+function f, where
+
+                  G(y, q) ~ ( q , - q)-~" f ( { q , - q} -r { y , - y})                (1.6)
+
+with
+
+                              f(z) ~   {~
+                                        -~'"    if z --* oo
+                                                if z - * O +
+                                                                                       (1.7)
+
+where ~ is called the tricritical crossover exponent and 7, = ~,/4.
+     What exactly does (1.6) mean? The right-hand side is the asymptotic
+behavior of G as q--'q7 but is uniform in the variable y in some
+neighborhood of y,. The uniformity is essential, as it enables one to inter-
+change the order of the two limits q - * q , and y - * Y7 and hence obtain
+the two different asymptotic behaviors (1.4) and (1.5). This uniformity will
+be explicitly shown for the staircase model.
+Partially Directed Cluster M o d e l s                                      705
+
+
+     One further behavior of G is of interest: the shape of the yc(q) curve
+in the neighborhood of the tricritical point. For these polygon models,
+unlike some walk models, it is just a straight line for y c ( q ) < y,; however,
+for Yc(q) > Y, it is expected that
+
+                       Yc(q) - Y, ~ ( q , - q)'/r   q ~ q?                 (1.8)
+
+with a shape exponent ~ which is related to the crossover exponent 06 via
+~p= 1/~l '4~
+      Considerable success at calculating the critical exponents was achieved
+by solving a semicontinuous model related to the lattice model. In par-
+ticular, the ZL walk model, where the configurations are alternating
+partially directed self-avoiding walks, 116~ has been solved on the lattice Isl
+and in semicontinuum. ~16~The semicontinuous model is exactly the same as
+the lattice model except that the length of the vertical steps of the walk can
+take any positive real value instead of being constrained to integer values.
+The exponents for the semicontinuous model are easily computed for ZL
+walks, as the solution is expressible in terms of Bessel functions whose
+asymptotics are well documented. For the lattice model the situation is
+quite different. Here the solution is expressible in terms of q-Besset func-
+tions, and very little is known about their asymptotics. Because of this
+problem we have concentrated on obtaining the asymptotics along a route
+that does not depend on the q-Bessel functions. By using a formal pertur-
+bation expansion it has been shown in the case of IPDSAW ~8~ that the
+exponents for the lattice model and the semicontinuous model are exactly
+the same. Furthermore, renormalization group arguments show that a
+lattice model and its semicontinuous version should have the same asymp-
+totic behavior. Accepting this argument means that it is sufficient to find
+the asymptotic behavior of the semicontinuous model to have it for the
+lattice model as well.
+      It has also been shown for the ZL walk model that the semicontinuous
+model can be obtained from the lattice model by taking the continuum
+limit, cs~ The continuum limit for this model corresponds to letting the
+lattice spacing in the vertical direction tend to zero while the "physical"
+height is held fixed. In this limit the q-Bessel functions of the lattice model
+become the Bessel functions of the semicontinuous model. ~8~ In this sense
+one can think of the lattice model as the q-extension of the semicontinuous
+model.
+      The idea of using the continuum limit to compute the critical
+exponents is extended in this paper. The essential new ingredient of this
+paper is the starting point. Previous solutions have been obtained via
+recurrence relations or equivalently via linear functional equations. In this
+706                                                         Prellberg and Brak
+
+
+paper we use nonlinear functional equations. This form of the functional
+equation is more suited to the limit q ~ q,.
+      We will show that the generating function for all the models in this class
+satisfies a quadratically nonlinear functional equation, or set of coupled
+nonlinear functional equations. All the nonlinear functional equations
+obtained in this paper are solved by a linearizing transformation. The linear
+functional equation can then by solved with a q-series Ansatz. This gives a
+new and elegant derivation of results obtained elsewhere. (z2)
+      Starting from the nonlinear functional equation, we take the continuum
+limit. This gives rise to a nonlinear differential equation or a coupled set of
+nonlinear differential equations. Solving the differential equation gives the
+solution to the semicontinuous version. For the all the models we study in
+this paper the differential equation is a generalized Riccati equation, c~7)
+A kth-order generalized Riccati equation can be linearized by a simple
+transformation and always leads to a solution of the form
+
+                                      Zf=l
+                             g ( t ) - Y~i=l
+                                             ciw;(t)
+                                         k ciwi(t)                        (1.9)
+
+where wi(t) are solutions of the iinearized equation (the prime denotes
+differentiation). Even though the column-convex model does not appear
+to be of an exact Riccati form (1.9), (~SJ it is amenable to the methods
+presented here.
+      Having obtained the nonlinear differential equation, one has two
+immediate methods to obtain the asymptotic behavior. Either one attempts
+to solve the equation explicitly and extracts the asymptotics from the
+resulting solutions, or one works directly with the nonlinear differential
+equation. For the simpler models we will use both methods, while for the
+more complex models we use only the latter method.
+      The asymptotics can be obtained directly from the differential equation
+by using the method of dominant balance/19) We show that asymptotically
+the nonlinear differential equations for all the models have a generalized
+homogeneous or scaling solution. The scaling function [i.e., f(z) of (1.7)]
+satisfies a Riccati equation of the form
+
+                                ~=cf2-bz                                 (1.10)
+
+where b and c are model-dependent constants. This equation can be
+linearized by the transformation
+
+                                             1   dh
+                              f(z):                                      (1.11)
+                                        ch(z) dz
+Partially Directed Cluster Models                                          707
+
+
+if h(z) satisfies the linear equation
+
+                               d2h
+                               (17_2    bezh(z)=O                        (1.12)
+
+This is the Airy equation. Thus, after changing back to the original
+variables and inserting initial conditions, we find that asymptotically all the
+area perimeter generating functions have the scaling function
+
+                                 { b ,~,/3 Ai,({cb},/3 z)
+                        f(z) = + \ ~ 1     Ai({cb} I/3 Z)                (1.13)
+
+and the critical exponents are
+
+                 y,,-- -89       y,-- -~,      ~b=~,        ~--~         (1.14)
+
+2. M O D E L S
+
+     The particular models we consider are subsets of column-convex
+polygons. A polygon is called column-convex if the intersection with any
+vertical line is convex, i.e., the intersection consists of only one connected
+line segment. Equivalently, column-convex polygons are generated by two
+mutually self-avoiding partially directed self-avoiding walks with common
+start and end points. (Partially directed walks are self-avoiding walks in
+which no steps into the negative x direction are allowed.) By putting
+several restrictions on these walks, we can define various models (see
+Fig. 1).
+     If the lower and upper walks are fully directed (i.e., only steps into the
+positive x and y directions are allowed), we get the model of staircase
+polygons S (Fig. la).
+     If the upper walk is partially directed and the lower walk is fully
+directed, we get the model of directed column-convex polygons D (Fig. lb).
+If both walks are partially directed without restrictions, we get the model
+of column-convex polygons (Fig. lc).
+     If the upper walk is partially directed and the lower walk is restricted
+to be horizontal, we get the model of bar-graph polygons B (Fig. ld).
+A particularly simple subset is given by the additional restriction that the
+upper walk reverse direction after every horizontal step, leading to alter-
+nathTg bar-graph polygons R (Fig. le).
+     For each of these models, we extend the definition of the generating
+function from the introduction as follows. Let c',',~'", be the number of
+polygons with 2n,. horizontal steps and 2ny vertical steps which enclose an
+708                                                         Prellberg and Brak
+
+area of size m. (Clearly the numbers of horizontal and vertical steps are
+even.) We then define the polygon generating function G(x, y, q) to be
+
+                           G(x, y, q) =-~ c;;~'"~x"~y'q''                (2.1)
+    We further consider models of interacting partially directed self-avoid-
+ing walks (IPDSAW) which are enumerated with respect to their length
+and the number of nearest-neighbor bonds. A particular subset is given by
+walks which reverse direction after every horizontal step (ZL); see Fig. lf.
+     Let c',',~''',~ be the number of walks with nx horizontal and ny vertical
+steps and m the number of nearest-neighbor bonds. Then we define the
+walk generating function
+
+                          H(x, y, o~) = ~ c~""*x"'y"."w"'                (2.2)
+
+
+3. F U N C T I O N A L   EQUATIONS
+
+     The technique for solving these models is to use a geometrical parti-
+tion of the set of all polygons into disjoint subsets. These subsets are
+chosen such that they enable one to give construction rules that can be
+transformed into equations for the corresponding generating functions.
+A related method for the derivation of functional equations based on the
+theory of algebraic languages has been developed in refs. 20 and 21.
+     These equations can then in principle be used to solve for the generat-
+ing function. As we shall see, one can also extract information about the
+singularity structure of the generating function directly from the functional
+equations.
+     We start this section by presenting an example with a particularly
+simple partition to illustrate the method. In general, the partition will be
+more complicated. The partitions of all of the following models have,
+however, one feature in common with this example. One set of the partition
+will be a set P~ of "inflated" polygons, i.e., polygons which are generated
+from the set P of all polygons by increasing the height of each column by
+one (replacement of x by qx) and thereby increasing the number of vertical
+perimeter bonds by 2 (multiplication by y), leading to the equation
+
+                            P~(x, y, q)= P(qx, y, q)y                    (3.1)
+
+    To start with the example, assume that we would like to describe the
+generating function C(x, y, q) for the set C of all columns of width 1. In an
+abuse of notation, we will use the same symbol for a set and its associated
+generating function. A partition of the set C of all columns into two sets
+Partially Directed Cluster Models                                                   709
+
+                         Columns
+
+
+
+
+                         C(z)                    C(qz)y          qxy
+
+Fig. 3. The diagrammatic form of the functional equation for single columns together with
+                        its generating function representation.
+
+is given by collecting all columns of height larger than 1 into the set C~,
+leaving the set C2 = C \ C ~ , which contains only the unit square. The set Cl
+can easily be seen to be constructed from the set of all columns by increas-
+ing their height by one area element. This is shown symbolically in Fig. 3.
+     In terms of generating functions, we can write this as
+
+                                Cl(x, y, q)= C(qx, y, q) y                         (3.2)
+
+The generating function for C2 is simply
+
+                                         C 2 ( x , y, q) = qxy                     (3.3)
+
+and summing up C = CI + C2 leads to a functional equation for C,
+
+                             C(x, y, q) = C(qx, y, q) y + qxy                      (3.4)
+
+which can be immediately solved by iteration to give
+
+                                     C(x, y, q)= qxy                               (3.5)
+                                                 1 - qy
+
+
+
+3.1. B a r - G r a p h P o l y g o n s
+
+     Our next example will be bar-graph polygons, that is, column-convex
+polygons with a horizontal lower boundary. We can partition the set B of
+all bar-graph polygons by first splitting off the set Bl of inflated bar-graph
+polygons. If B(x, y, q) denotes the generating function for the set of all
+bar-graph polygons, then the generating function B~(x, y, q) of the subset
+Bl is given as
+
+                                B,(x, y, q)= B(qx, y, q) y                         (3.6)
+710                                                                      Prellberg and Brak
+
+
+                  Alternating Bar-graph Polygons
+
+
+
+                                         +                   +l
+                  R(z)         R(qz)lJ       R(qz)qzR(z)           qxy
+
+
+                  Bar-graph Polygons
+
+
+
+                                         +                   +
+                  B(~c)        B(qx)y        B(qx)qxB(x)          B(qx)qxy
+
+
+                                                           + . + J---]
+
+                                                             qxy     qxB(x)
+
+Fig. 4. The diagrammatic form of the functionalequations for bar-graph polygonsand alter-
+                              nating bar-graph polygons.
+
+
+     The further decomposition is shown symbolically in Fig. 4. The
+remaining bar-graph polygons in the set B\BI have at least one column of
+height 1. In general, to the left of the leftmost column of height 1 there is
+an inflated bar-graph polygon from the set BI, whereas to the right of this
+column the remaining bar-graph polygon is a simple bar-graph polygon
+from the set B. We now define the set B2 to be the set of bar-graph
+polygons generated by concatenating inflated bar-graph polygons with a
+bar-graph polygon to the right by a single column of height 1. The generat-
+ing function for the set B2 therefore fulfills
+
+                     Bz(x, y, q)= Bt(x, y, q)y-lqxB(x, y, q)
+
+                                    = B(qx, y, q) qxB(x, y, q)                        (3.7)
+
+where division by y takes care of the reduction of the perimeter due to
+concatenation. The remaining bar-graph polygons in the set B\(Bt w Bz)
+have the property that the leftmost column of height 1 is at the right or left
+end of the polygon, symbolized by the remaining configurations in Fig. 4.
+They can be uniquely partitioned into the set B3 of bar-graph polygons
+generated by concatenation of inflated bar-graph polygons with a single
+square to the right, the set B 4 containing only the single square, and the
+set B5 of bar-graph polygons generated by concatenation of bar-graph
+Partially Directed Cluster M o d e l s                                                   711
+
+
+polygons with a single square to the left, leading to the following equations
+for the respective generating functions:
+
+                               B3(x, y, q) = B(qx, y, q) qxy                            (3.8)
+                               B4(x, y, q) = qxy                                        (3.9)
+                               Bs(x, y, q) = qxB(x, y, q)                              (3.10)
+
+Thus, we have partitioned the set B of all bar-graph polygons into five
+disjoint subsets. Therefore the generating function for B is the sum of the
+individual generating functions, B = B 1 -t- B_, + B 3 -t- B4 + Bs, and we get the
+functional equation
+
+    B(x,y,q)=B(qx, y , q ) y + { l + B ( q x , y , q ) } q x { y + B ( x , y , q ) }   (3.11)
+
+This equation can be solved for B(x, y, q) and leads to a continued-fraction
+representation of the generating function, given by iteration of
+
+                   B(x, y, q)=qx
+                              Y-J-{ 1 --qx--qxB(qx,l         Y, q)-- 1 - q x }         (3.12)
+
+At this point one can of course easily generate related models, for example,
+the set of alternating bar-graph polygons (the subset of bar-graph polygons
+with an upper boundary whose vertical components alternate in direction)
+can be obtained by prohibiting the concatenations which lead to the sets
+B 3 and B s because these concatenations generate the nonalternating
+segments in the upper boundary. Denoting the generating function by
+R(x, y, q), we therefore get immediately
+               R(x, y, q) = R(qx, y, q) y + R(qx, y, q) qxR(x, y, q) + qxy             (3.13)
+
+which also leads to a continued-fraction expansion.
+
+
+3.2. Staircase Polygons
+     For staircase polygons, one can employ a rather similar method of
+partitioning (see Fig. 5). Here it is more convenient to consider the overlap
+between neighboring columns rather than the height of the columns, as the
+columns can be.shifted against each other. One again splits up the set S
+into the set S, of inflated staircase polygons and the set S\S~ of the
+remaining staircase polygons. These polygons share the property that they
+have at least one overlap of height 1, so that we can consider the leftmost
+overlap of height 1. Generally, this overlap splits the staircase polygon into
+two parts, an inflated one (S~) and a regular one (S). Directedness of the
+
+
+822/78/3-4-4
+712                                                                                 Prellberg and Brak
+
+                 Staircase Polygons
+
+
+
+
+                           =              +
+                 s(z)          s(ax)u         s(q=)s(=)            qzy       qzS(z)
+
+
+                 Directed Cohmm-Convex Polygons
+
+
+
+
+                 D(z;#)        D(qz; ,u)y,u   Du(qz;1)qxD(x;l~ )       D(qz;1)D(:r.;lt)
+
+
+
+                                              +              +     9     +   m            t
+                                                  Du(qx; 1)qxyp    q:r.y# qxD(x; y)
+
+Fig. 5. The diagrammatic form of the functional equations for staircase polygons and
+                          directed column-convexpolygons.
+
+staircase polygon ensures that these parts are joined by their respective
+corners. We therefore define the set S_, to consist of those staircase
+polygons that are generated by concatenating to the right all inflated
+polygons of the set S~ with all polygons of the set S by their respective
+corners. The remaining set S\(S, w $2) contains degenerate cases which
+arise when the height of the first column is 1 (see Fig. 5 for details). The
+complete partition leads to the functional equation
+
+                 S(x,y,q)={S(qx, y,q)+qx}{y+S(x,y,q)}                                           (3.14)
+
+[this is exactly Eq.(6.1) in ref. 24, where it has been derived using
+Schfitzenberger's methodology].
+
+
+3.3. D i r e c t e d C o l u m n - C o n v e x Polygons
+
+      We now turn to a more complex model, directed column-convex
+polygons. (211 The additional degree of freedom in the construction neces-
+sitates the introduction of another variable in the generating function. As
+in the case of staircase polygons, the set D of all directed column-convex
+polygons is partitioned by first splitting off the set D I of inflated directed
+column-convex polygons. The set D\D~ of the remaining polygons is
+further partitioned by again considering the leftmost overlap of two
+neighboring columns of height 1. As above, this overlap splits the polygon
+Partially Directed Cluster Models                                                    713
+
+
+into two parts. To the left of the overlap is an inflated directed column-
+convex polygon (D~) which is joined to another polygon (D) by a single
+square. This single square is attached to the bottom corner of the right
+polygon, but can be joined to the inflated polygon on the left everywhere
+along its right height. We define the set D2 to be the set of all directed
+column-convex polygons generated in just such a way; however, we exclude
+the case when the single square is attached to the inflated polygon in the
+topmost position. Here the polygons can be joined directly, as was the case
+for staircase polygons, leading to the set D3. Naturally, we also have a few
+degenerate cases, which we partition further into the sets D4, Ds, and D 6
+(see Fig. 5 for details).
+     In order to write down a functional equation for this model, we need
+to keep track of the height r of the rightmost column of these polygons. We
+write
+
+
+                                     .......-"-
+                                    Cm       -     ~     ......,"~
+                                                        Cm                         (3.15)
+                                                  r=l
+
+
+and define
+
+                      D(x, y, q; #) = v c .,;;
+                                            . . . . , . . . .x
+                                                             . . .-
+                                                                  . y    q Iz
+                                                                        ,. . . .   (3.16)
+
+The first term in the functional equation for D is again given by inflation
+
+                       D~(x, y, q; p) = D(qx, y, q; I~) yl.t                       (3.17)
+
+The next term describes the concatenation of an inflated polygon to
+another one. There is a multiplicity due to the arbitrary position of the
+middle square with respect to the left polygon (i.e., if the height of the left
+column is r units, then the single square can be attached at r - 1 locations).
+This gives rise to a factor of r - 1 in the generating function and thus can
+be written as
+
+
+    3 1 D~(x, y, q;p)      = - -OD ( q x , y, q ; p ) y J,=~ =D~,(qx, y, q; 1)y
+    Op It             ~,= j Op
+                                                                              (3.18)
+
+where we denote differentiation with respect to the parameter # with a
+subscript. The generating function for the second diagram can therefore be
+written as
+
+               D2(x, y, q; #) = D~,(qx, y, q; 1 ) qxD(x, y, q; p)                  (3.19)
+714                                                                        Prellberg and Brak
+
+
+      If the polygons get joined directly at the corners, we set p--- 1 for the
+left polygon and write
+
+                  D3(x, y, q; #) = D(qx, y, q; 1 ) D(x, y, q; p)                          (3.20)
+
+The remaining terms can be written as
+
+                      D4(x, y, q; p) = D,(qx, y, q; 1 ) qxyp                              (3.21)
+                      Ds(x, y, q; #) = qxyp                                               (3.22)
+                      D 6 ( x , y, q; p) = qxD(x, y, q; p)                                (3.23)
+
+and summing up D=D~ + D 2 + D 3 + D 4 + D s + D 6 leads to the
+
+  D(x, y , q ; u ) = {1 + D,,(qx, y,q; 1)} q x { y p + D(x, Y,q;u)}
+                    +D(qx, y , q ; p ) y p + D ( q x , y , q ; 1 ) D ( x , y , q ; p )    (3.24)
+
+We can transform this functional-differential equation to a set of functional
+equations by partially differentiating (3.24) with respect to p and setting
+kt = 1. This leads to
+
+                 d = {1 + D,,} q x { y + d } + D { y + d }                               (3.25a)
+               d,,={l+D,,}qx{y+d,}+D{y+d~,}+D,y                                          (3.25b)
+
+where now
+
+          d(x, y , q ) = D ( x , y,q; l),         d,(x, y , q ) = D , ( x , y,q; l)       (3.26)
+
+and
+
+            D(x, y, q) = d(qx, y, q),            D,,(x, y, q) = du(qx, y, q)              (3.27)
+
+We can simplify this system of two functional equations further to get one
+equation in D ( x ) = D(x, y, q; 1 ),
+
+        0 = D(q2x) D(qx) D(x)
+             + yD(q'-x) D(qx) + yD(q2x) D(x) - (1 + q) D(qx) D(x)
+             + y2D(q2x) - y(1 + q) D(qx) + q[ 1 + q x ( y - 1 )] D(x)
+             + y q 2 x ( y - 1)                                                           (3.28)
+
+and in the next sections it is merely a matter of taste that we choose to
+continue to work with the system (3.25) instead.
+Partially Directed Cluster M o d e l s                                     715
+
+
+3.4. ZL W a l k s
+     Finally, the functional equation for the ZL walks is
+
+          H(x) = xy + xqH(x) + (1/o~ + xy) H(qx) + xqH(xq) H(x)          (3.29)
+
+where q = w y . This functional equation is very similar to the bar-graph
+equation. In fact in the continuum limit the same form of differential equa-
+tion is obtained leading to the same scaling function and critical exponents.
+The only real difference between the ZL walks and the bar-graph polygons
+is the process of inflation. For ZL walks the process corresponds to adding
+on edge to each vertical segment of the walk (as opposed to adding one
+square to each column of the polygon).
+
+
+4. S O L U T I O N OF T H E F U N C T I O N A L E Q U A T I O N S
+    We now present an explicit solution of the above-mentioned functional
+equations. First we note that the functional equations for bar-graph
+polygons, alternating bar-graph polygons, staircase polygons, and ZL
+walks can all be linearized, as they are of the form
+
+                G(x) G(qx) + a(x) G(x) + b(x) G(qx) + c(x) = 0            (4.1)
+
+which can be linearized by use of the transformation
+
+                                        H(qx)
+                               G(x) = ~ - -   - b(x)                      (4.2)
+                                         H(x)
+
+where ~ has to be chosen to match the initial condition. This leads to a
+linear functional equation in H(x),
+
+ ~2H(qZx)+a[a(x)-b(qx)] H(qx)+ [ e ( x ) - a ( x ) b ( x ) ] H(x) = 0     (4.3)
+
+Due to the special structure of the coefficients in this equation, we can now
+give explicit solutions to each of the above models as well as to the model
+of directed column-convex polygons. As we will encounter a similar equa-
+tion below, we shall state the solution for this type of equation in a slightly
+more general way.
+     Assume that we have a linear functional equation of the form
+
+                                 N                        N
+               O=xH(qx)+ ~ ~kH(qkx)               with    ~ C~k=O         (4.4)
+                               k=O                       k=O
+716                                                                                      Prellberg and Brak
+
+
+with ctk independent of x. The solution of (4.4) which is regular at x = 0 is
+then given by
+
+                                                                                     N
+                           ( - x ) " q('~)
+              H(x) = L - - - - -                             with         A ( t ) = ~ ~kt k                (4.5)
+                    , - o 1--I",,=1A(q")                                           kffi0
+
+
+We reiterate that it is crucial that A(1) = ~ k =
+                                                N 0 k =0"
+     We now apply this method in the case of staircase polygons. We use
+the transformation
+
+                                               (T(qx)                1)                                    (4.6)
+                                      S(x) = y \ T(x)
+
+as only the choice of a = y leads to the needed cancellation of the x ~ coef-
+ficient. This transforms Eq. (3.14) into
+
+                       0 = yT(qZx) + (qx - 1 - y) T(qx) + T(x)                                             (4.7)
+
+Therefore, we have
+
+                                    A(t)=l            l +_.myt+ y t 2                                      (4.8)
+                                                 q      q       q
+
+The condition A(1)--0 holds, so that we can solve Eq. (4.8) using (4.5).
+We get the solution
+
+                                                ( - q x ) " q(~)
+                                     T(x) = ,,=o (q, qY; q),,                                              (4.9)
+
+where we have used the q-product notation
+                                       n-- 1
+
+        ( x l , x z ..... x k ; q ) , = 1--[ ( 1 - - x l q m ) ( 1 - - x 2 q m ) ' ' ' ( 1 - - X k q ")   (4.10)
+                                       m ffi 0
+
+
+
+The function T(x) = T(x, y, q) is a q-deformation of a Bessel function. This
+calculation easily generalizes for the other models with quadratic functional
+equations.
+     In the case of directed column-convex polygons, we have a "cubic"
+equation, and there is no general way of linearizing it. Surprisingly, it turns
+out that the same transformation, i.e.,
+
+                                      D ( x ) = y(E(qx)\E(x)         1)                                   (4.11)
+Partially Directed Cluster Models                                          717
+
+transforms Eq. (3.28) into a linear one,
+
+              y2E(q3x) - y[q + y + 1] E(q2x)
+                       + [ y + q + q y + q 2 x ( y - 1)] E(qx)-qE(x)=O   (4.12)
+
+Moreover, this linear equation is of the desired form (4.4). Using (4.5)
+results now in
+
+
+                                    ,,=o   (q, qY, Y" q),,               (4.13)
+
+Transformations (4.6) and (4.11) are the discrete analogs of the transfor-
+mation (5.14) used to linearize the nonlinear Riccati equation. The method
+presented in this section thus gives new and simple derivations of results
+previously via the Temperley method (which leads to linear functional
+equations with an auxiliary parameterC22)).
+     It is remarkable that both models have generating functions which can
+be expressed in the form
+
+                                         (H(qx, y,q)         1)          (4.14)
+                           G(x, y, q)= y \ H(x, y, q)
+
+where the function H satisfies a linear functional equation. In the case of
+staircase polygons, this structure can also be explained via a bijection with
+heaps, which indicates that in the case of directed column-convex polygons
+there might be a similar bijection3 TM
+     Finally, it is worth mentioning that in ref. 24 a related class of convex
+polygons (as opposed to column-convex) has been studied via systems of
+q-differential equations. There, the authors first looked at the associated
+differential equations (these are constructed in a purely formal way and do
+not have the continuum limit interpretation of the differential equations in
+this paper). Upon finding the solution of the differential equations, a
+q-analog had to be "guessed."
+
+
+5. C O N T I N U U M      LIMIT
+
+     In this section we define the semicontinuous staircase polygon and
+semicontinuous directed column-convex polygon models. We use this
+definition to construct explicitly a transformation which will allow us to
+take the continuum limit of the lattice model and hence obtain its corre-
+sponding semicontinuous version. The precise details of this formal method
+of constructing the continuum will be model dependent.
+718                                                                                Prellberg and Brak
+
+      Taking the continuum limit on the level of the lattice model functional
+equations, we find that they reduce to nonlinear differential equations.
+From these equations we deduce the asymptotic behavior of the two
+models either by solving the differential equation explicitly and working
+with the solution or by extracting the asymptotics directly from the
+equation.
+      The semicontinuous model corresponds to allowing the lengths of
+the vertical segments of the corresponding lattice model to take on positive
+real values rather than only positive integer values. Mathematically
+this can be achieved in two ways: either by writing the generating function
+immediately allowing for continuous length segments, or by inserting the
+lattice spacing a explicitly into the lattice generating function and then
+taking the limit a--* 0. We will illustrate these two equivalent approaches
+using the staircase model.
+
+5.1. S e m i c o n t i n u o u s    Staircase Model
+     We can explicitly introduce the constraint using two length variables
+for each column of the staircase as shown in Fig. 6. The semicontinuous
+generating function is then defined by
+
+
+                                       n=l      ~0
+                                                                          f
+                                                                          -~7-1
+
+
+                                        x     dsj..,           dr,,exp(-~,,)                      (5.1)
+                                                       Sn- I
+
+with
+
+                                   ~ = ~'. {r(r;-s,_~)+~,',.}                                     (5.2)
+                                        i=1
+
+Note that there are two integrals for every column except for the last, and
+the limits on the first pair are slightly different from those on the inter-
+mediate pairs. This expression can be evaluated by Temperley's method. C~8~
+     On the other hand, the lattice generating function can be written in an
+analogous form,
+                                                /i                   tj
+             S(x;y,q)= ~ x" ~                  Z "'" ~              ~ "'"                   ~,,   (5.3)
+                              n=l      /1=1   ml=l     Ij=mj-    1 mj=l           In=mn-i
+
+with
+                                       ~,, = (] y/'-"'-'q/'                                       (5.4)
+                                              i=l
+Partially Directed Cluster Models                                                     719
+
+
+
+
+                              S2
+
+
+
+
+      Fig. 6. The continuous staircase polygon model showing the length variables.
+
+Clearly ~,, is equivalent to ~ if we let y = e x p ( - r ) and q = e x p ( - e ) and
+consider ! and m as continuous. This can be done explicitly as follows.
+Insert the vertical lattice spacing a into the lattice generating function by
+replacing x by a2x, y by y% and q by qa, so that S(x, y, q) becomes
+
+                               S,,(x) = S(a'-x, y", q")                              (5.5)
+This gives one factor of a for each sum (with one to spare). Thus, as a ~ 0
+we then have
+
+                                    1
+                              lim - S,(x) = 5e(x; r, ~)                              (5.6)
+                             a~oa
+
+
+Equation (5.6) is a transformation which takes the lattice model to the
+semicontinuous model and hence defines the "continuum limit" for the
+staircase model. Note that we have S , ( x ) = O(a). The way the factors of a
+have to be inserted varies from model to model and generally depends on
+the number of length variables associated with each column.
+     We now apply the above-defined continuum limit to the staircase
+functional equation. The functional equation will become a nonlinear
+differential equation. The process consists of two stages: first the lattice
+spacing is inserted explicitly, then the limit a ~ 0 is taken.
+     Thus, upon inserting the lattice spacing in the staircase model the
+functional equation (3.14) becomes
+
+         Sa(x) = a2xy~q ~'+ a2xq~S~(x) + y~S,,(q"x) + S,(q~x) S,,(x)                 (5.7)
+
+Letting y = exp( - r), q = exp( - e) and using the result
+
+                                                 0
+                   S o ( x e - % = S,,(x) - tax ~ G ( x ) + O(a 2)                   (5.8)
+720                                                                      Prellberg and Brak
+
+gives
+                                                3
+             0 = a2x - raS~(x) + S~(x) z - eax ~ S~(x) + O(a 3)                        (5.9)
+
+Thus, dividing by a 2, taking the limit a--* 0 using (5.6), gives
+
+                          At 0 5~(t ) = t - 6e(t) + 6a(t) ~                          (5.1o)
+                             of
+where
+
+             A
+                 = -E,        x
+                          t=---;,        5~(t)=ff~                1 5:(x; z, e)      (5.11)
+                    "(        "t'-                                "C
+
+This differential equation is a Riccati equation [-with initial condition
+5~(0)= I-]. It is easily solved for the perimeter-only generating function
+(which corresponds to q = 1, or equivalently, 2 = 0 ) , as the equation
+reduces to a quadratic whose solution is
+                         52'(t; A= 0) = 89{ 1 - (1 - 4 t ) '/2 }                     (5.12)
+Hence we see that the perimeter generating function has a square-root
+singularity at t = 1/4 and thus we have
+                            y. _- --~l       and         tc = l                      (5.13)
+
+
+For 2 # 0 the Riccati equation can be solved by the substitution
+
+                                     if: = - 2 t h'(t)                               (5.14)
+                                                 h(t)
+where the prime denotes differentiation with respect to the function's
+argument. The function h(t) satisfies the linear differential equation
+                            2~th" + 2(2 + l ) h ' + h = 0                            (5.15)
+A few simple changes of variable reduce this equation to Bessel's equation.
+The general solution is
+              h ( t ) = t - l / l '-~~)'~, J ~/;.(2x/~t/2)+czYt/~(2x/~t/2)}          (5.16)
+Inserting the initial condition and backsubstituting gives
+
+                                  = ~ + ,,/5 J'~/:,(2 x/~/2)                         (5.17 )
+                                             J1/:.( 2   ,A/A)
+This is the explicit solution of the semicontinuous model. In Section 7 we
+consider its asymptotic behavior.
+Partially Directed Cluster Models                                                           721
+
+
+5.2. Semicontinuous Directed C o l u m n - C o n v e x M o d e l
+     For the directed column-convex polygons we have two coupled func-
+tional equations. An analogous expression to (5.1) for the semicontinuous
+generating function ~(x; ,, e) shows that
+                                         d(a2x; y", q~)= O(a)
+but that
+                                        d,(a2x; ya, q , ) = O(1)
+Thus the continuum limit of (3.25) gives
+
+                               0
+                                          = t{1 + ~ , ( t ) } + ~(t) 2 - ~ ( t )          (5.18)
+
+
+                        2t ~t ~,(t) = {1 + ~,(t)} {~(t)-- 1} + 1                          (5.19)
+
+where
+
+                         j.     g                x
+                              =-,         t =-          ~(t) = _1@(x; z, e)               (5.20)
+                                ~-            T 2'                I;-
+
+
+and ~,(t) is the semicontinuous analog of Du(x).
+     As for the staircase model, we can find the perimeter-only generating
+function by putting 2 = 0. Eliminating 9,(t) from the two equations (5.18)
+and (5.19) gives a cubic equation for ~ = ~ - 1 , where
+                                     ~ 3 + ~ 2 _ t --- 0        (2 = 0)                   (5.21)
+
+For t ~ 4/27, the relevant solution of (5.21) gives
+                                         : ~ _] _ ( 4 _ t),/2                             (5.22)
+
+Thus the perimeter generating function for directed column-convex model
+has a square-root singularity at t = 4/27, and hence
+                                         ?,, = -+,         t,. = 4                        (5.23)
+
+     For 2 ~0, @~, can be eliminated from the coupled equations (5.19) to
+give a single nonlinear differential equation for d : ( t ) = ~/2t, where
+
+           ~'4e" + ( - 23 J :1 + -)t-     ~      ,X~' + ~r + ( 1~ - {) our2 2 31t 2 - 0   (5.24)
+722                                                                     Prellberg and Brak
+
+This is a generalized Riccati equation which is linearized by the transfor-
+mation .~('(t)= w'(t)/w(t), where w(t) satisfies the third-order equation
+
+                            23t2w'' + 2zt(1 -- 22) w" -- w = 0                      (5.25)
+
+Now, this equation can be explicitly solved by Frobenius series. However,
+to obtain the asymptotic behavior as 2 ~ 0 would require the asymptotic
+analysis of the resulting series. These series are not conveniently available
+in the literature. Furthermore, doing the asymptotics this way involves a
+lot of unnecessary work, as a large part of the asymptotic expression of
+w(t) cancels upon backsubstitution to get ~ ( t ) . Thus, in order to avoid
+this unnecessary work, we develop a method of analyzing the Riccati equa-
+tion directly based on the method of dominant balance. This latter method
+also generalizes to nonlinear equations that cannot be linearized, as
+appears to be the case for column-convex polygons. ~8~
+
+
+6. F O R M A L   PERTURBATION               THEORY
+
+      One can use the functional equations (3.11), (3.13), (3.14), and (3.25)
+to derive the critical exponents for these models via singular perturbation
+theory around q = 1. We will describe this method in detail for staircase
+polygons and then apply it to directed column-convex polygons.
+      The method rests on two assumptions. Initially, it is assumed that an
+asymptotic expansion in e = - l o g q exists. Then, the results of the pertur-
+bation expansion are interpreted in terms of a tricritical scaling ansatz 1~4~
+in order to get the crossover exponent.
+      On the other hand, one can study the asymptotics of the semicon-
+tinuous limit, which we shall do below. In this limit it turns out that the
+scaling behavior can be calculated explicitly without the need to resort to
+additional assumptions. Needless to say, both methods give consistent
+results. However, as it is not rigorously shown that the semicontinuous
+limit preserves the critical structure of the generating functions concerned,
+it is still useful (and instructive) to directly work within the discrete model.
+      We now turn to the investigation of the critical structure of staircase
+polygons. First, we note that Eq. (3.14) can be solved explicitly for q = 1,
+resulting in the well-known result for the perimeter generating function for
+So(x, y)= S(x, y, 1),
+
+          So(x,y)= 89                                                        '/2}    (6.1)
+
+Setting x - - y , we get
+
+                           So(x, x ) = 89 - 2 x - ( 1   - 4 x ) '/2 }                (6.2)
+Partially Directed Cluster Models                                                              723
+
+
+which has a square-root singularity at x c = 1/4, leading to an exponent
+7,, = - 1 / 2 .
+      In order to get information about the critical structure around this
+singularity for q < 1, we now assume that S(x, y, q) has an asymptotic
+expansion in e = - l o g q. F o r practical purposes, we choose an (equivalent)
+expansion in the variable ~ = q - I      1 instead,
+
+                                S(x, y, q)= ~ S,,(x, y) g'                                    (6.3)
+                                                   tl=O
+
+
+and insert this expansion into (3.14). This leads to Eq. (6.1) and, for all
+11>0, to
+               S,,(x, 3't--- { 1 - x - y - 2 S o ( x ,            3,)} -1
+
+                               x { [y+ So(x, y)] ....i 1 S ~'"1 (x, y ) -x"
+                                                           ......        m!-
+                                   ii - 1                n -- k                       xm~
+                               + ~ S~(x, y) ~ S I''l                         k(x, y ) - -     (6.4)
+                                   k= l                  ,,=o - " - " -               m!J
+If we look at the behavior of S,,(x, x) at xc = 1/4 we see that the prefactor
+causes a square-root divergence at x,.. Further divergences are caused from
+the derivatives in the sums, and closer inspection reveals that S,,(x,x)
+diverges with an exponent
+
+                 l,l"~=~,,+nA                with         7,,=- 89          and    A= 3       (6.5)
+
+This constant increase of yl") by a gap exponent A can now be interpreted
+within the setting of tricritical scaling theory, which is assumed to describe
+the vicinity of the critical point. 1~4) The assumption of a scaling form,
+
+      S(x, x, q) ~ (x,.- x)-;'" g(e(xc- x)-~/~)                       with g(t) ~ 1 for t ~ 0 (6.6)
+
+implies that
+
+                    S , , ( x , x ) ~ ( x c - x ) -;''-''/r          for      x ~ x,.         (6.7)
+
+so that we can identify
+                                                          1
+                                                    =-                                        (6.8)
+                                                         A
+
+Using the relation 3,,=~b7,, we find that this leads to a complete set of
+tricritical exponents for staircase polygons,
+
+                            7,-        ~,        ~,,= - 89             ~b= ~                  (6.9)
+724                                                           Prellberg and Brak
+
+
+Applied to bar-graph polygons, this method gives identical results. The
+situation is a little more complicated for directed row-convex polygons, as
+we have to deal with two coupled equations. First, setting q = 1 gives the
+perimeter generating function Do(x,y)= D(x, y, 1 ) as well as Eo(x, y)=
+Du(x, y, 1) as solution of
+              D o = {1 +Eo} x { y + D o } + D o { y + D o }              (6.10a)
+              Eo = {1 +Eo} qx{y+Eo} +Do{y+Eo} +Eoy                       (6.10b)
+
+This can be further reduced to cubic equations for Do and Eo,
+
+         O=D3o+2(y-I)D~+(y-l)(y+x--1)Do+(y-1)yx                          (6.1 la)
+         O=xE3+(y+2)xE~+(2xy-y2+2y+x-1)Eo+yx                             (6.1 lb)
+
+Do(x, x) has a square-root singularity at
+                                  1001/3_4
+                           xc--      3     ~0.21386                       (6.12)
+
+
+implying that, as for staircase polygons,
+
+                                     ]) u ~
+                                                  l
+                                                  2
+                                                                          (6.13)
+
+holds. We now apply the above-described method to compute the cross-
+over exponent ~b. Expanding to first order in ~ = - l o g q, we write
+
+           D(x, y, q)=Do(x, y)+~D~(x, y)                                 (6.14a)
+           D.(x, y, q)= Eo(x, y)+ eEl(x, y)                              (6.14b)
+
+           D(qx, y,q)=Do(x,y)+~ D~(x,y)-X-~xDo(x,y)                      (6.14c)
+
+
+           D.(x,y,q)=Eo(x,y)+e El(x,y)-x-~-s  [          o        1      (6.14d)
+
+
+which results in the set of equations
+
+
+Dl+X~xDo=(l+Eo)x Dl+X~xDo
+
+                +E,x(y+Do)+Do(D,+x~Do)+D,(y+Do)                          (6.15a)
+Partially Directed Cluster M o d e l s                                                725
+
+
+
+E~ + X-~xEo=(l + Eo) x E~ + X'~xEo
+
+                     + E,x(y+ Eo)+ Do(E~ + x f---~Eo) + DI(y+ Eo)+ EI y
+                                                                               (6.15b)
+
+These equations are linear in D t and E~. On solving these equations for DI
+and El, one can see on closer inspection that the determinant in the
+denominator gives a square-root divergence and the derivatives of Do and
+Eo in the numerator give an additional exponent increase of 1, similar to
+the behavior of Eq. (6.4). Alternatively, inserting the expressions for Do and
+Eo gives the following cubic equation for Dr(x, x):
+
+      0 = ( X - - 1 ) ( X 4 71- 4 X 3 -t- 6 X 2 - - 4x +   1) x 2
+
+            - (x -- 1 )(x 7 + 8x 6 + 31x s + 54x 4 + 34x 3 -- 27x 2 + 8x - 1 ) D~
+
+            + (x -- 1 )(3X 3 + 12x 2 + 16x - 4)(x 3 + 3x 2 + 6x - 2) D~
+
+            - (3x 3 + 12x 2 + 16x - 4) 2 D~                                         (6.16)
+
+This implies that Dl(x, x) diverges at xc with an exponent of y l ] l = 1,
+leading to a gap exponent A = 3/2, which in turn gives the same set of
+tricritical exponents for directed row-convex polygons as for staircase
+polygons,
+                                          1                   1        9
+                               ~',,= - ~ ,         Y,=        3,    ~b=~            (6.17)
+
+with the only difference being a shift in the location x,. of the phase
+transition.
+
+
+
+7. A S Y M P T O T I C A N A L Y S I S
+     F o r the staircase model the explicit solution of the semicontinuous
+model and the subsequent asymptotic analysis are possible because of two
+equally important factors. First, the differential equation can be linearized
+and second, the asymptotic forms of the solutions (i.e., Bessel functions) to
+the linear equation can be readily found in the literature. Unfortunately
+this not possible with the directed column-convex or more complex models.
+Thus we develop a technique that works directly with the nonlinear equa-
+tion. The technique uses the method of dominant balance] ~9~ similar to
+that used in W K B calculations.
+726                                                                         Prellberg and B r a k
+
+
+     We use the dominant balance method and see that the same result
+is obtained as from the asymptotics of the explicit solution, t~8~ Not only
+does this provide a check on the method, but it also sheds light on the
+uniformity of the dominant balance result. The dominant balance method
+is then applied to the directed column-convex model.
+
+7.1. Staircase Model
+     We can now recall ~18~the asymptotic behavior of the staircase generat-
+ing function (5.17) in the limit 2--* 0. This corresponds to an asymptotic
+behavior of the Bessel function. Using Olver's result t25~ gives
+
+                         (1 --4t'~ m 2 '/3 Ai'(2-2/3~)                  2 -*0              (7.1)
+               5P~+      \--~       /            Ai(2-2/3~) '
+
+where
+
+                 2 3/,                  + ( 1 - 4 t ) 1/2"]
+                 5~ -=l~            1      2~-          J -(I-4t)'/2                       (7.2)
+
+As shown by Olver, this result is certainly uniform for t > 0 . In the
+neighborhood of t = 1/4,
+
+                                    ~ 2-2/3(1 - 4t)                                        (7.3)
+
+and thus (7.1) becomes
+
+            ~+{~})/3 Ai'({2/4}-z/3{1/4-t}),                                 2--*0          (7.4)
+                                " ~ - { - ~ ~ - 2-77i 1 - ~ - f~-})-
+
+Note that (7.4) is no longer uniform for all t > 0 , as was (7.1), but only
+applies in the neighborhood of t = 1/4, which is a turning point. Comparing
+(7.4) with the scaling form (1.6) shows that
+
+                           Ai'(z)                       1           2
+                   f(z)=                      7,-                ~b=~-                     (7.5)
+                           Ai(z)'                       3'             .5
+
+
+The uniformity of the result (7.4) is important, as it allows us to inter-
+change the asymptotic limits 2 ~ 0 and t ~ 1/4. Interchanging the limits
+shows that the asymptotic behavior (7.4) is consistent with (5.12), as is
+seen by using the result
+
+                          Ai'(x) ~ _ x m ,              x ~ oo                             (7.6)
+                          Ai(x)
+Partially Directed Cluster M o d e l s                                     727
+
+
+     We now rederive the asymptotic behavior directly from the differential
+equation using dominant balance. The technique consists of three stages.
+First a change of variables is made to shift the singular point to origin,
+then we look for a generalized homogeneous or scaling solution to the
+differential equation, which, finally, is obtained asymptotically using
+dominant balance.
+     Thus, for the staircase model the singular point occurs at t = 1/4 where
+   = 1/2, and so, letting 4s = 1 - 4t and 6~ = ~ - 1/2 and substituting into
+(5.10) gives
+
+
+
+     Now we look for a generalized homogeneous solution by scaling both
+the dependent and independent variables. Trying s = 2~g and ~ = 2 ~
+gives
+
+
+
+
+A simple analysis shows there are no real values of ~ and 0 which would
+provide a generalized homogeneous solution. However, as 2 ~ 0, the equa-
+tion is asymptotically dominated by those terms for which the exponent of
+2 is smallest. Thus we look for values of • or 0 which give rise to terms
+having an equally smallest exponent of 2. In general there may be several
+different values of ~b and 0 that satisfy this condition. In this situation we
+choose that solution which asymptotically matches the 2 = 0 solution.
+     Thus, for (7.8) there are the four terms with exponents
+
+               rl= 1 +0-~b,            r2=l+0,       r3 =20,   r4=~ fl    (7.9)
+Having all four exponents equal (i.e., I"1 = r2 = r3 = r4) produces an incon-
+sistent set of equations; we thus look for sets of three equal exponents.
+Inserting rl = r3--r4 produces the solution
+                                   ~b=~,         0= 89                   (7.10)
+As will be shown below, this solution leads to the correct asymptotic
+matching. Furthermore, the values of the exponents are I"1 = r3 = r4 = 2/3
+and 1"2=4/3; thus the elements of the set {r,, r3, r4} are equally smallest.
+Hence by the principle of dominant balance the term corresponding to r 2
+may be dropped, as it does not contribute to the dominant asymptotic
+behavior. We are thus left with the 2-independent equation
+
+                                   1 ~ ~o = ~o~_ ~                       (7.11)
+                                   4
+
+
+822/78/3-4-5
+728                                                                   Prellberg and Brak
+
+for the asymptotically dominant part of 6e, 6ao. Note that we have divided
+out the common factor of 2 2/3. Equation (7.11) is another Riccati equation,
+which is linearized by the transformation
+
+                                     ~o = -z'(g)/4z(g)                                      (7.12)
+if z(g) satisfies
+                                       d2z
+                                       ---       16gz = 0                                   (7.13)
+                                       de 2
+
+A further change of independent variable to g = 16-1/3g gives an Airy
+equation
+                                             d2z
+                                             d----~_= gz                                    (7.14)
+
+Hence, the general solution is
+
+           1 f~t 1/3Ai'({2/4} -2/3 {l/4-t})+cBi'({2/4}                2/3 { I / a - t } )
+                    Ai/{2/4}--',3                                        (1N-tT/'
+                2--,0                                                                       (7.15)
+where c is an arbitrary constant. Now, this form must asymptotically
+match (5.12). This is only possible if c = 0 , giving
+
+                         1 { ~ } l/3Ai'({2/4}-2/3 {1/4-t})            2~0                   (7.16)
+                ~2--                Ai({2/4} -2/3 { 1 / 4 - t } ) '
+
+which is the same result as going via the exact solution. The asymptotic
+matching of this solution to the 2 = 0 solution also shows that the solution
+  = 2/3, 0 = 1/3 is correct. Note for this choice of 0 and q~ that 570 = O(1 ),
+while the order of the remaining term appearing in (7.8) is 2 2/3, and hence
+dropping the r2 term is consistent, as it is of higher order than the retained
+terms.
+
+7.2. D i r e c t e d C o l u m n - C o n v e x M o d e l
+     We now repeat the technique for the directed column-convex model,
+omitting most of the details. First, the singular point is shifted to the origin
+by t=s            and o ~ = J ~ - 2 / 3 .  This is followed by the change of
+variables to g = 2r and ~ = 2 ~           which results in
+            2z + o - _~(2~s + 4/27 )z '~V" - 321 + 20- ~(2~s + 4/27) '~t//'~F"
+                    + 21 + o-~(2r + 4/27) ~/" + 23~ r3 - - 2 2 ~ 1 -- 2) ~/g-2
+
+                    --
+                         l~l +o~r _ 92 _ 20S = 0
+                         5"*
+                                                                                            (7.17)
+Partially Directed Cluster Models                                            729
+
+
+If we further assume that 0 and ~b are positive, then only five of the
+exponents can possibly be in a set of equally smallest. The five exponents
+are
+                             rl = 2 + 0-2~b
+                                  r2= 1 + 0 - ~ b
+                                  r 3 = 20
+
+                                  /'4=( ~
+
+                                  rs=l
+
+     We now systematically search for sets of equally smallest exponents.
+One set is r 2 = r 3 =/'4- Solving this set of equations gives the same
+                                                                   result as
+the staircase model, i.e.,
+
+                                  ~b= 3,     0= 89                         (7.18)
+
+Omitting the seven subdominant terms in (7.17) gives the Riccati equation
+
+                                  4:0(~ = ~ o + g                          (7.19)
+
+which again leads to Airy's equation and hence to
+
+    ~      - 3+ 2 { 4 2}   mAi'({(4/27,2 2} -2/3
+                                        }-2/3{4/27-t})Ai({(4/27)
+                                                 {4/27- t})'       2--*0   (7.20)
+
+This shows once again that 7, = - 1 / 3 and ~b= 2/3. Taking the limit 2--* 0
+gives the result (5.22), confirming that (7.18) is the correct choice.
+
+
+8. C O N C L U S I O N
+     We conclude by summarizing the principal results of the paper: We
+have derived nonlinear functional equations for the generating functions of
+the models illustrated in Fig. 1. The method of derivation of these func-
+tional equations relies on the process of "inflation," which, for the polygon
+models, corresponds to adding an area element to the top of each column
+of the polygon. We obtain q-series solutions by linearizing the equations.
+Additionally we take the continuum limit to obtain Riccati differential
+equations for the corresponding semicontinuous models. These equations
+can be transformed into linear differential equations and hence solved.
+     We have also studied the asymptotics of the generating functions in
+the neighborhood of the critical point. This has been done for the discrete
+730                                                                                  Prellberg and Brak
+
+m o d e l s by using a f o r m a l p e r t u r b a t i o n e x p a n s i o n of the n o n l i n e a r func-
+tional e q u a t i o n s a n d for the s e m i c o n t i n u o u s m o d e l s by using the m e t h o d
+of d o m i n a n t balance. T h e a s y m p t o t i c forms o b t a i n e d s h o w t h a t all the
+m o d e l s of Fig. 1 b e l o n g to the s a m e universality class.
+
+
+ACKNOWLEDGMENTS
+       W e w o u l d like to t h a n k W. W o o d for very fruitful discussions a n d
+A. L. O w c z a r e k , A. J. G. G u t t m a n n , a n d C. Pisani for carefully r e a d i n g the
+m a n u s c r i p t . W e w o u l d like to t h a n k the A u s t r a l i a n R e s e a r c h C o u n c i l for
+financial s u p p o r t .
+
+
+REFERENCES
+ 1. M. Delest, J. Math. Chem. 8:3-18 (1991).
+ 2. M. Delest and G. Viennot, Theor. Comp. Sci., 34:169-2068 (1984).
+ 3. M. P. Schfitzenberger, In Proceedings Symposium on Mathematical Theory of Automata,
+    Lecture Notes in Computer Science (Polytechnic Institute of Brooklyn, Brooklyn,
+    New York, 1962), pp. 246-264.
+ 4. H. N. V. Temperley, Proc. Camb. Phil. Soc. 48:638 (1952).
+ 5. R. Brak and A. J. Guttmann, J. Phys. A 23:4581 (1990).
+ 6. R. Brak, A. Guttmann, and S. Whittington, J. Phys. A 25:2437 (1992).
+ 7. A. L. Owczarek and T. Prellberg, J. Stat. Phys. 70:1175-1194 (1993).
+ 8. A. L. Owczarek, T. Prellberg, and R. Brak, J. Star. Phys. 72:737-772 (1993).
+ 9. P. M. Binder, A. L. Owczarek, A. R. Veal, and J. M. Yeomans, J. Phys. A 23:L975 (1990).
+10. F. H. Jackson, Trans. R. Soe. Edin. 41:1-28 (1903).
+11. M. Rahman, J. Math. Anal. AppL 125:58-71 (1987).
+12. G. Gasper and M. Rahman, Basic Hypergeometric Series (Cambridge University Press,
+    Cambridge, 1990).
+13. M. P. Delest and J. M. Fedou, In Proceedings Workshop on Attribute Grammars,
+    P. Deransart and M. Jourdan, eds. (1990), pp. 46-60.
+14. R. Brak, A. L. Owczarek, and T. Prellberg, J. Phys. A 26:4565 (1993).
+15. E. Hille, Functional Analysis and Semi-Groups (American Mathematical Society,
+    New York, 1948).
+16. R. Zwanzig and J. I. Lauritzen, Jr., J. Chem. Phys. 48:3351 (1968).
+17. H. T. Davis, Introduction to Non-linear Differential and hltegral Equations (Dover,
+    New York, 1962).
+18. R. Brak, A. L. Owczarek, and T. Prellberg, J. Stat. Phys. 76:1101-1128 (1994).
+19. C. M. Bender and S. A. Orszag, Advanced Mathematical Methods for Scientists and
+    Eng#~eers (McGraw-Hill, New York, 1978).
+20. J. M. F6dou and I. Dutour, University of Bordeaux preprint (1994).
+21. M. P. Delest and S. Dulucq, Croat. Chem. Acta 66:59-80 (1993).
+22. M. Bousquet-Melou, University of Bordeaux preprint (1993).
+23. X. G. Viennot, Private communication.
+24. M. Bousquet-Melou and J. M. F6dou, University of Bordeaux preprint (1994).
+25. F. W. J. Olver, Asymptotics and Special Functions (Academic Press, London, 1974).
+

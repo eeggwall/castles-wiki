@@ -58,6 +58,8 @@ Own reasoning, not from the source:
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - Bousquet-Mélou's later add-a-column functional equations, a different route to the same generating functions.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - q-Bessel quotients from another polyomino family.
 - [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - an early one-unknown instance (own reasoning): parallelograms by area satisfy `B(x, y) = xy/(1-xy) + xy/(1-xy)^2 (B(x, 1) - B(x, xy))`, a shift `y -> xy`, which Klarner and Rivest solved by iteration as a ratio of alternating q-series.
+- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - the *nonlinear* companion. Quadratic q-shift equations for the same families, linearised by `G(x) = α H(qx)/H(x) - b(x)`; the closed forms are q-Bessel ratios of the same shape but the linearisation route bypasses the 3×3 system this page describes for convex polyominoes.
+- [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - a one-step-q-shift closing case: the castle grammar graded by area is `E(u) = A/(1 - uA)`, `A(u) = 1 - x + x E(uq)`, and the linearisation closes to `A = N/M` in one Möbius step rather than the coupled 3×3 system needed for convex polyominoes.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] - ordinary generating-function background.
 
 ## Footnotes

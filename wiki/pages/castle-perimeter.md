@@ -84,6 +84,8 @@ The signed convex count is periodic because `1 - t + t²` has its roots at primi
 - [[convex-polyomino](pages/convex-polyomino.md)], [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)]: on a row-convex shape blocks = height, so a convex polyomino's semi-perimeter is `w + h`. Lin and Chang's convex generating function `Z(x, y, 1)`, with width and height marked, is the convex-polyomino counterpart of the (width, blocks) grading on this page (own reasoning).
 - [[castle-sign](pages/castle-sign.md)]: the `(-1)^blocks` weight is `(-1)^{s-w}`.
 - [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]: tribonacci appears there in the area grading at height `≤ 3`. Here `τ²` is the unrestricted perimeter growth. Whether the two appearances are related is open.
+- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)]: the bar-graph GF by (horizontal, vertical, area) satisfies eq. 3.11, `B = B(qx) y + {1 + B(qx)} qx {y + B(x)}`, quadratic in `B`. The Airy-universality result there (`γ_u = -1/2, γ_t = -1/3, φ = 2/3`) is the perimeter-area asymptotic tricritical exponent for exactly the (width, blocks, area) statistics graded here.
+- [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]: the trivariate castle GF `Π/(1 - x - Π)` gives the perimeter-area GF at `s = w + b`, with blocks = vertical half-perimeter.
 
 ## Footnotes
 

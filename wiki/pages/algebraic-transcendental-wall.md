@@ -79,6 +79,7 @@ That is the wall in one sentence: **the castle's exact counts are algebraic; `e`
 - [[kitamasa](pages/kitamasa.md)] — the "spectral reading" `R(λ) = λ^n` on eigenvalue roots is a direct realization of this page's thesis: C-finite closed forms carry only algebraic eigenvalues.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] — the `ρ_k ~ k / log k` asymptotic derived there is one of this page's "transcendental via limit" residents.
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] — the k-direction eigenvalues are only `±1`, a clean limiting case (rational algebraic) rung on the wall.
+- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] — the bar-graph GF at fixed perimeter and area is a q-Bessel function, and the tricritical asymptotic scaling function is the logarithmic derivative of Airy, `Ai'/Ai`. Both cross the wall on the limit side — the exact q-series is D-finite (holonomic) but not algebraic, and its scaling function is a bona fide transcendental special function.
 
 ## Footnotes
 

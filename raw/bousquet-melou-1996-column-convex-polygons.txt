@@ -1,0 +1,1417 @@
+                                                                                         DISCRETE
+                                                                                         MATl-iEMATICS
+EISEWIER                   Discrete Mathematics    154 (1996)   1-25
+
+
+
+
+       A method for the enumeration of various classes of
+                  column-convex polygons 12
+                                    Mireille Bousquet-Mklou               *
+      LaBRI,     Universitk Bordeaux I, 351 cows de la Liberation, 33405 Talence Cedex, France
+
+                         Received   20 December   1993: revised 29 November     1994
+
+
+
+
+Abstract
+
+   We present a new method that allows to enumerate many classes of column-convex polygons,
+according to their perimeter, width and area. The first step of this method leads to a functional
+equation which defines implicitly the generating function for the class of polygons under consid-
+eration. The second step consists in solving this equation. We apply systematically our method
+to all the usual classes of column-convex polygons: thus, we first refine some already known
+results for parallelogram polygons, directed and convex polygons, and convex polygons, and
+then we obtain two new results, namely the generating function for column-convex polygons
+and directed column-convex polygons.
+
+
+
+
+1. Introduction
+
+
+   One of the most famous problems in combinatorics      is (may be) the enumeration
+of self-avoiding walks, or self-avoiding polygons, on a regular lattice [26]. A closely
+related problem     consists   in enumerating      polyominoes:        a polyomino       is a finite union of
+elementary     cells of the lattice, whose interior is connected          (Fig. 1). The only lattice we
+consider     in this paper is the square lattice. Note that any polygon                defines a polyomino,
+but the converse is false since a polyomino can have holes. The interesting parameters
+are the perimeter (or the length for self-avoiding walks), and, for polyominoes,    the
+area, that is, the number of cells.
+   These questions are not only interesting for combinatorialists, but are also of con-
+siderable importance in the study of lattice models in physics and chemistry. These
+models give simplified descriptions of physical phenomena, and are used to describe
+phase transitions,. Self-avoiding walks, polygons and polyominoes arise, for example,
+in models of polymers, of cell-growth, of percolation.. . Moreover, the self-avoiding
+
+
+
+* Partially supported by EC grant CHRX-CT93-0400       and PRC ‘Mathimatiques     et Informatique’.
+* E-mail : bousquet@labri.u-bordeaux.fr.
+
+
+0012-365X/96/$15.00  @ 1996-Elsevier      Science B.V. All rights reserved
+SSDZ 0012-365X(95)00003-8
+                          M. Bouquet-MPlouI          Discrete    Mathematics   154 (1996)      l-25
+
+
+                                                                                      Width
+                                                                               <                      >
+
+
+
+
+                                                                                                           T Height
+
+
+
+
+          Self-avoiding walk                    Polygon                              Polyomino
+
+                             Fig. 1. Self-avoiding      walks, polygons    and polyominoes.
+
+
+
+walk problem       is equivalent      to the resolution            of the limit IZ + 0 of the n-vector               model,
+which generalizes         the famous Ising model [9]. Another                      important      example      is the cor-
+respondence between the enumeration  of directed polyominoes on a regular lattice
+in dimension D and the resolution of a gas-model in dimension D - 1, shown by
+Dhar [14].
+  Despite serious efforts over the last 40 years, these problems are completely open.
+However, a few asymptotic results are known. For example, let p(n) denote the number
+of polyominoes      having IZ cells. Klamer and Rivest proved that (p(n))“”                               tends to a limit
+K, which satisfies the following             inequality:         3.87 < K -C 4.65 [21]. The situation                 could
+hardly be worse, since the first digit of K is not even known..
+   The difficulty        of these questions          has led to the study of various                  restricted     classes
+of polyominoes       or polygons.       Most of them can be defined by combining                            two notions:
+a geometric     notion of convexity, and a notion of directed growth, which comes from
+statistical   physics,     A polyomino        is said to be vertically convex (or column-convex)
+when its intersection with any vertical line is convex (Fig. 2). We can define sim-
+ilarly a notion of horizontal (or row-) convexity. A polyomino is convex if it is
+both vertically     and horizontally          convex.           The problem        of counting        convex       polyomi-
+noes was raised by D. Knuth,               around        1970. Note that any column-convex                     polyomino
+is actually a polygon, so we can use indifferently the word ‘polyomino’ or ‘poly-
+gon’ in this case. The notion of directed structures is more recent. A polyomino P is
+said to be directed when every cell of P can be reached from a distinguished     cell,
+called the root, by a path that is contained in P and has only North and East steps
+(Fig. 2). The problem of enumerating      directed polyominoes   was studied by many
+authors [4,14,17,18]. The area generating function for directed polyominoes is an al-
+gebraic series.
+   We study in this paper several families of column-convex   polyominoes. Combining
+the two notions described above, we can already define four types of polyominoes,
+depending on whether they are only column-convex,      or also row-convex, directed or
+not. Namely, here are the four main sub-classes                        of polygons      we deal with:
+   ?? column-convex polyominoes,
+   0 convex polyominoes,
+                      M. Bousquet-Mdoul        Discrete Mathematics 154 (1996)          1-25
+
+
+
+
+ Column-convex polygon        Convex polygon            Directed polyomino
+
+
+                                   Fig. 2. Convexity    and directed growth
+
+
+
+
+    Perrers diagram        Parallelogram polygon          Stack polygon             Directed and convex polygon
+
+
+                                   Fig. 3. Directed and convex polygons
+
+
+
+
+  ??   directed and column-convex          polyominoes,
+  ??   directed and convex polyominoes.
+Let us also mention        three very classical        families of directed and convex polyominoes:
+Ferrers   diagrams,      stack polyominoes,        and parallelogram           (or staircase)       polyominoes.
+As Fig. 3 shows,         each of these subsets          can be characterized,            in the set of convex
+polyominoes,   by the fact that two or three vertices of the minimal bounding rectan-
+gle of the polyomino belong to the polyomino itself. Moreover, a convex polyomino
+is directed   if and only if it contains           the south-west         vertex    of its minimal      bounding
+rectangle.
+   We are interested       in the enumeration          of these objects       according        to their perimeter
+and area. Roughly,       we can say that two kinds of generating                   functions   occur, depending
+on the convexity      properties    of the class of polygons              that is being enumerated.           More
+precisely:
+   - the perimeter generating function for any usual family of convex polyominoes is
+an algebraic series, whereas the area generating function involves q-series; moreover,
+taking into account the perimeter (or the width and the height) when one already knows
+the area generating function is usually a rather easy task;
+   - the situation is different for families of column-convex polyominoes: the perimeter
+generating function and the area generating function are both algebraic, but the difficulty
+consists in taking into account simultaneously the two parameters.
+   The aim of this paper is to show how, by a single method, we can first get, for
+any ‘natural’ class of column-convex   polyominoes, a functional equation that implicitly
+4                   AK Bousquet-MPlouI Discrete Mathematics 154 (1996)   1-25
+
+
+defines its generating function, and then solve it. The generating function takes into
+account not only the perimeter and the area, but also a few other parameters, for
+example the width of the polyomino. All the equations we thus obtain are of the same
+type, and hence can be solved in the same way. Thus, the way of establishing the
+equation and the way of solving it are both systematic. Practically, this ‘universal’
+method provides many enumeration results:
+?? some of them are only refinements of already known results (parallelogram poly-
+
+   ominoes, directed and convex polyominoes, convex polyominoes),
+?? two others are new; we obtain the perimeter and area generating function for column-
+
+   convex polygons, and for directed column-convex polygons.
+   The following section is, in some sense, the central one. It does not contain any
+enumeration result, but it gives all the tools that we need to enumerate families of
+column-convex polyominoes. The two remaining sections can be viewed as corollar-
+ies of Section 2. Since the equations obtained for classes of directed column-convex
+polyominoes are of a particularly simple kind, we have studied separately these classes
+in Section 3 (parallelogram, directed and convex, directed and column-convex poly-
+ominoes). Section 4 is devoted to the two other classes: convex polygons and column-
+convex polygons.
+
+
+
+
+2. The general technique
+
+   Our method is based on the following simple idea: a column-convex polyomino can
+be obtained by successively gluing columns, in a way that depends on the class of
+polygons one studies. This idea is sometimes known as ‘Temperley methodology’ in
+statistical physics, where it has been already intensively used [27]. The first problem
+consists is translating this idea into an equation. The second problem is to solve this
+equation. A paragraph of this section is devoted to each of these two questions. Then,
+as an illustration, we apply our method to the set of stack polygons.
+
+Notations and definitions. Let W[[s,t,x, y, q]] be the algebra of formal power series in
+the variables s, t,x, y, q, with real coefficients. If X(s, t,x, y, q) is such a series, we will
+often denote it, for short, by X(s). Its derivative with respect to s will be denoted by
+8X/&(s) or X’(s). We denote by d the sub-algebra of W[[s,t,x, y, q]] formed with the
+series S such that S( 1, t,x, y, q) and S’( 1, t, x, y, q) are well-defined in R[[t, x, y, q]] .
+
+   Let P be a polyomino. Its left height (resp. right height) is the height of its leftmost
+(resp. rightmost) column. We denote:
+?? its left height (resp. right height) by 8(P) (resp. r(P)),
+
+?? the number of horizontal (resp. vertical) steps in its perimeter by 2w(P) (resp. 2u(P))
+
+   (note that w(P) is the width of P),
+?? its area by a(P).
+                                 M. Bousquet-Mklou I Discrete Mathematics 154 (1996) l-25                          5
+
+
+   Let B be a set of column-convex    polyominoes.                          Its generating function is the fol-
+lowing formal series, which lies in &:
+                 ,c(P)t’(P)Xw(P)yu(P)~~(~).
+         c
+         PEP
+
+
+The right height is mainly                     introduced    for the sake of symmetry:     the left height and
+the right height play symmetric roles for several families of column-convex    polyomi-
+noes (for example, parallelogram   polyominoes,   column-convex   polyominoes,   convex
+polyominoes).             The generating         functions    for these families   are symmetric     in s and t.
+
+2.1. Establishing equations
+
+
+     We describe            here three ways of adding a new column                 to a polyomino,       which are
+respectively            schematized       by the first polygon      in Figs. 4-6. Let P be a column-convex
+polyomino. Let A(P) (resp. B(P), C(P)) be the set of column-convex                              polyominoes        Q
+satisfying the three following properties:
+0 removing              the first column        of Q gives P;
+??   the top-cell         of the first column        of Q is higher (resp. lower, lower) than the top-cell
+     of the first column               of P;
+??   the bottom-cell of the first column of Q is lower (resp.                         lower,   higher)    than the
+     bottom-cell of the first column of P.
+In these definitions,                 a cell ci is said to be higher (resp. lower) than a cell c2 if the
+level (ordinate)              of cl is greater than or equal to (resp. less than or equal to) the level
+of ~2. If 9 is a set of column-convex                        polyominoes,   we define the set A(P)       by
+
+         A(P)           = u      A(P).
+                          PG.9
+
+
+We define the sets B(9)                    and C(P)     in a similar way.
+
+Proposition 2.1. Let 9’ be a set of column-convex polygons, and X(s, t,x, y, q) be its
+generating function.
+     1. The generating function for A(9)                      is
+
+         (1 -xsy4)2X(sq).
+
+     2. The generating function for B(9)                      is
+                        xsq
+         (1    -sq)(l         -syq)      (x(1)-x(sq)).
+     3. The generating function for C(Y)                       is
+
+
+
+
+Proof. First, note that it is sufficient to prove this proposition                      in the case where the
+set 9 is reduced to a single polygon P.
+                      A4. Bousquet-MPloui Discrete Mathematics 154 (1996) l-25
+
+
+
+
+                                                          T
+
+                                                 --
+
+
+                                                          I
+                                       Fig. 4. Construction   A.
+
+
+
+
+                                       Fig. 5. Construction   B.
+
+
+
+
+  1. The polygons      lying in A(P) can be obtained           in two steps (Fig. 4).
+      ??   We first duplicate the leftmost column of P; in terms of generating             functions,
+           this corresponds to multiplying X(sq) by x.
+      ??   Then, we glue two pieces       of columns,         the first one at the top of the new
+           column,   the other one at its bottom.       This corresponds     to a multiplication   by
+           Ml - vd2.
+  2. The polygons lying in B(P) can be obtained in two steps (Fig. 5).
+        We first add a new cell c at the left of the lowest cell of the first column
+           of P. The left height of the new polyomino              is 1. The associated   generating
+           function is xsqX( 1).
+           Then, we glue two pieces of columns, the first one at the top of c, the
+           other one at the bottom of c. This operation corresponds to multiplying by
+          l/((l - =?)(l - s.Yq)).
+But, in doing this, we have built some polyominoes       that do not lie in B(P): such
+polyominoes     occur when the column added at the top of c is ‘too’ high. These
+‘undesired’ polyominoes     can be independently constructed in a way similar to con-
+struction A, but by adding a non-empty piece of column at the top of the first column.
+                         M. Bouquet-Mdou I Discrete Mathematics 154 (19%) l-2.5
+
+
+
+
+                                               Fig. 6. Construction     C
+
+
+
+Their generating       function     is hence
+
+               xs4
+        (1 - sq)( 1 - syqf@q).
+
+   3. The polygons           lying in C(P)     can be obtained           in two steps (Fig. 6).
+       ??   We first add a new cell c anywhere                 on the left of the first column       of P. The
+            left height of the new polyomino                is 1. The associated        generating   function      is
+            xsqCYx/as(
+                   1).
+       ?? Then, we glue one piece of column                     at the top of c. This corresponds           to a
+            multiplication      by l/( 1 - sq).
+But, by doing this, we have built some polyominoes                             that do not lie in C(P):     such
+polyominoes       occur      when    the column        added     at the top of c is ‘too’ high.           These
+‘undesired’     polyominoes         can be independently              constructed   in a way similar    to con-
+struction    B, but by adding a non-empty              piece of column          at the top of the first column.
+Their generating       function     is hence
+
+
+            xs2q2
+       (1 -sqj2
+               (X(           1) - X(sq)) .
+
+
+
+Remark. The above proposition                  gives the theme,             here are a few useful    variations.
+Again, a polygon         Q is obtained       by adding a column              C to a polygon   P in such a way
+that:
+   Construction  Al: the top-cell (resp. the bottom-cell) of C is higher (resp. strictly
+   lower) than the top-cell (resp. the bottom-cell) of the first column of P; the associated
+   generating function is xsyqX(sq)/(    1 - syq)2.
+  Construction AZ: the top-cell (resp. the bottom-cell) of C is strictly higher (resp.
+  lower) than the top-cell (resp. the bottom-cell) of the first column of P; the associated
+  generating function is again xsyqX(sq)/(    1 - syq)2.
+  Construction A-3: the top-cell (resp. the bottom-cell) of C is strictly higher (resp.
+  strictly lower) than the top-cell (resp. the bottom-cell) of the first column of P; the
+  associated generating function is dy2q2X(sq)/(      1 - syq)2.
+                             M. Bousquet-Mdoul        Discrete     Mathematics       1.54 (1996)    l-25
+
+
+  Construction B’: the top-cell                       (resp.       the     bottom-cell)        of     C    is higher      (resp.
+  higher)      than the top-cell             (resp.    the bottom-cell)              of the first column           of P; the
+  associated       generating          function    is of course the same as for construction                        B, that is
+  x4X(l)        -Wq))l((l               - ?!)(l     -sYq)).
+  Construction B1: the top-cell                    (resp. the bottom-cell)               of C is lower (resp. strictly
+  lower) than the top-cell (resp. the bottom-cell)                          of the first column of P; the associated
+  generating       function       is xs2yq2(X(        1) - X(sq))/((          1 - sq)( 1 - syq)).
+  Construction B;: the top-cell                    (resp. the bottom-cell)               of C is stricly higher (resp.
+  higher)      than the top-cell           (resp. the bottom-cell)               of the first column            of P; the as-
+  sociated     generating         function        is of course the same as for construction                        Bi, that is
+  xs2Yq2(x(l)             - Wq))/((l        - sq)(l      - syq)).
+
+Note.    Feretic     and Svrtan           have     independently            shown,      on some        examples,        that the
+Temperley       methodology             can be translated            into linear        q-equations.       They established
+such equations            for the generating        function       for column-convex               polygons     on the square
+lattice and on the honeycomb                  lattice. However,            their approach          for solving these equa-
+tions is less efficient than the method we give in this paper, and does not give simple
+closed expressions            for the generating         functions         [ 161. See also Eq. 17 in [22].
+
+
+2.2. Solving equations
+
+
+  It becomes        clear from the previous                        that we shall obtain linear equations
+                                                          subsection
+expressing X(s) in terms of X(sq),                     X( 1) and LX/&( 1). The following lemma gives
+the solution of such equations.
+
+
+Lemma 2.2. Let X(s, t,x, y, q) be a formal power series lying in d.                                           Suppose    that
+
+
+        X(s)   = xe(s> + xf(s)X(             1) + xg(s)X(sq)              + xh(s)$l),                                           (1)
+
+where e(s), f(s),            g(s) and h(s) are some given power series lying in d.                                Then
+
+                                E(l)+H(l)E’(l)-E(l)H’(l)
+        X(1) =
+                     1 -F(l)-H’(l)-H(l)F’(l)+F(l)H’(l)’
+                                                                                                                                (2)
+
+where
+
+        E(s) = Xx”+1             g(s)g(sq). . . dsq”-*           Mw”),
+
+                   II>0
+
+
+
+        F(s) = Cxn+’s(sMsq). . . scv”-’
+                                      lmf)>
+               IZBO
+
+and
+
+        H(s) = Xx””              g(s)g(sq). . . dsq”-’           Msq”).
+                    PI>0
+                              M. Bousquet-MPloui Discrete Mathematics 154 (1996)                       l-25                       9
+
+
+
+Moreover,
+
+                         F(s)[E(l)+H(l)E’(l)                -E(l)H’(l)]        +H(s)[E’(l)+E(l)F’(l)             -F(l)E’(l)]
+X(s)   = E(s) +
+                                                    1 -F(1)-H’(1)-H(l)F’(l)+F(1)H’(1)
+
+
+Proof. Let us substitute                        s by sq in Eq. (1).            We get an expression               of X(sq)       in
+terms of X( 1), 8X/&( 1) and X(sq2).                            Now, we substitute           X(sq)      by this expression       in
+Eq. (1): we obtain                  an expression           of X(s)        in terms of X(l),           dX/&(l)     and X(sq2).
+Iterating     this procedure               shows that, for k > 1:
+
+                     k-l
+
+       X(s)     =    c       xn+’    s(s)g(sq) . g(sq”-’            Met)
+
+                     n=O
+
+
+                                    k-l
+
+                     -tX(l)-+j+“fl                  s(s )s(sq ) . . . d$     - ’u-bl”    >
+                               n=O
+
+                     + xkds
+                          Msq >. . . Scvk
+                                        - l yr(sqk
+                                                 >
+
+                     +     g(l)Exn+’
+                                 s(sMsq).. . d=f-’ ml”).
+                                          n=O
+
+
+But, when k + 00, the polynomial                            xk, as a formal power series, tends to zero. There-
+fore, taking the limit when k -+ 00 of this identity gives, with the notations                                        defined in
+the lemma:
+
+       X(s)=E(s)+X(l)F(s)+X’(l)H(s).                                                                                           (3)
+
+Let us differentiate             this identity          with respect to s:
+
+       X’(s) = E’(s) +x(                        1 )F’(s) + X’( l)H’(s).
+
+Substituting        s by 1 leads to a system of two linear equations                              in X( 1) and X’( 1), with
+a non-zero determinant. Hence, we first compute X( 1) and X’( 1), and then we deduce
+X(s) using these results and Eq. (3). Cl
+
+
+   The resolution of Eq. (1) is greatly simplified when no partial derivative arises, that
+is, when the series h(s) equals 0. According to Proposition 2.1, this partial derivative
+only occurs when construction C is used. Looking at Fig. 6 suggests that this con-
+struction is not needed as soon as the class of polygons under consideration is formed
+with directed polygons. So, in all these cases, we shall apply the following simplified
+version of Lemma 2.2.
+
+Lemma 2.3. Let X(s, t,x, y,q) be a formal power series in d.                                           Suppose    that
+
+       X(s)     = xc(s) + xf (s)x(l)                    + xg(s)x(sq),
+10                            M.     Bousquet-Mdou     I Discrete   Mathematics   154 (1996)   1-25
+
+
+
+where e(s), f(s)              and g(s) are some given power series lying in d.                        Then
+
+        X(1)       =         E(1)
+                        1 -F(l)’
+
+where
+
+        E(s) = cxn+l                 g(s)g(sq).      ..dsq"-')eW),
+                       fl30
+
+and
+
+        F(s) = Xx”+1 g(s)g(sq) 4lwYfw).
+                       ?lbO
+
+Moreover,
+
+        X(s)=E(s)+E(l)F(s)-E(s)F(l)
+                                          1 -F(l)                   .
+
+Remarks. (1) In this study, we take into account the three most usual parameters: the
+area, the vertical perimeter and the horizontal perimeter. The left height and the right
+height of the polygon are also involved: the former is essential to use our method,
+and the latter has been chosen for symmetry reasons. However, this method allows to
+consider many other parameters that might be of interest: for example, the site-perimeter
+and the directed perimeter.
+   (2) We mentioned in the introduction that the width and height generating functions
+for all the classes of polyominoes we consider in this paper are algebraic. However, for
+each studied class, we give a linear equation that defines the generating function. How
+can a linear equation define an algebraic generating function? As shown by Feretic and
+Svrtan on the example of column-convex polyominoes, the algebraic width and height
+generating function can indeed be derived from a linear equation [ 161. We illustrate
+their nice method in the next section, taking the example of parallelogram polyominoes.
+
+2.3. Example: stack polygons
+
+Lemma 2.4. Let S(s, t,x, y, q) be the generating function for stack polygons. Then
+
+        S(s)   =       xstyq
+                       1-    (1 -:JJq)2s(sq).
+                              styq    +
+
+
+Proof. Applying construction A to the set of stack polygons provides all the stack
+polygons of width at least 2. Moreover, the generating function for stack polygons of
+width 1 is xstyq/( 1 - styq).
+
+Notation. Let a be an indeterminate. Then
+             n-l
+      (a), = JJ(l - aq’).
+                       i=o
+                        M. Bousquet-Mdoul      Discrete Mathematics 154 (1996)   l-25                 11
+
+
+Lemma 2.5. The generating function S(s, t,x, y, q) for stack polyominoes is given by
+
+       w,t,x,Y,q)                                                                                    (4)
+
+
+Proof. Apply Lemma 2.3.              0
+
+
+
+3. Families of directed and column-convex polygons
+
+
+   We study here three classes of directed column-convex polyominoes: parallelogram
+polyominoes, directed and convex polyominoes, directed and column-convex    polyomi-
+noes. For each of these classes, we first give the q-equation that defines its generating
+function, and then solve this equation by a blind application of Lemma 2.3.
+
+
+3.1. Parallelogram polygons
+
+
+Lemma 3.1. Let P(s, t,x, y, q) be the generating function for parallelogram polyomi-
+noes. Then
+
+       p(s) = xstyq
+              1 - styq + (1 - sq;;              - syq)
+                                                         (P(1) -P(sq)).                              (5)
+
+Proof. Applying         construction B to the set of parallelogram          polyominoes   provides    all
+the parallelogram       polyominoes of width at least 2. 0
+
+
+Theorem 3.2. The generating function P(s, t,x, y, q) for parallelogram polyominoes
+satisfies:
+
+                                JI(~)
+       p(Lt,x,Y,q)           = CYJoo'
+
+with
+
+                        (-    1 yx~s~qc’   )
+       Jo(s) =      c
+                  n20        @9MY9)"
+
+and
+
+                         (-,),-Q,~,(“:‘)
+       JIG)   =   c (s4h-l(sY9h-l(1
+                  nB,                    styq")'-
+
+
+
+
+Moreover,
+
+       m 64 y, 4) = tY J~(sYo(l) - Jl(lYo(s) + JI(~)
+                                                Jo(l)
+
+Proof. Apply Lemma 2.3.              cl
+12                           M.    Bousquet-Miloul Discrete Mathematics 154 (1996) 1-25
+
+
+Remarks. ( 1) The parameters                          ‘left height’ and ‘right height’ play obviously                     the same
+role in the generating                 function       for parallelogram        polyominoes.             Hence, P(s, t, x, y, q) is
+symmetric         in the variables          s and t. Since its denominator                      Jo(l)     depends     neither on s
+nor on t, this means that its numerator                           Jl(s)Jo( 1) - Jl( 1 r/a(s) + Jl( 1) is symmetric.
+One could try to write it in a way where this symmetry                                     becomes         apparent.
+      (2) Special important              cases of this theorem were proved by Klarner and Rivest [22]
+(area generating          function),        Delest and Fedou [ 121 (width and area generating                            function),
+Bousquet-Mtlou            and Viennot             [6] (width,         height and area generating                  function).   Brak
+and Guttmann           give the perimeter               and area generating          function       under a form that seems
+a bit more complicated                  but is finally equivalent           [7].
+      (3) The width and height generating                        function   is algebraic         of degree 2 (see for exam-
+ple     [3]    or     [ 131).     Surprisingly,           this    generating       function         can      be     derived    from
+Eq. (5). Let us set t and q to 1. Eq. (5) can be written                                   as
+
+         (1 -(l       -x+y)s+ys2)P(s)=xs(P(1)+Y(l                                  -s)).
+
+Let SO be the series of Iw[x,y] defined by
+
+                    1+y-x-v9
+         so =
+                           2Y                ’
+where A = 1 - 2x - 2y - 2xy + x2 + y2. Then                                     1 - (1 - x + y)so + ysi = 0. This
+implies that the width and height generating                           function      for parallelogram            polyominoes         is
+P( 1) = y(so - 1), that is:
+
+                       l-x-y-&
+         P(1) =
+                                   2              .
+
+3.2. Directed          and convex polygons
+
+
+Lemma 3.3. Let DC@, t,x, y, q) be the generating function                                         for     directed and convex
+polyominoes.          Then
+
+                                                                               xsq
+         DC(s)       = xstyq z                    + syqS(s)       +                               (DC( 1) - DC(sq)),
+                                                                      (1 - sq)(l     - syq)
+where S(s) is the generating function                         for stack polyominoes.
+
+Proof. Let P be a directed and convex polyomino. Three cases can occur.
+  1. First case: P is reduced to a single column, The generating function                                                 for such
+polyominoes is xstyq/( 1 - styq).
+    2. Second case: P has at least two columns, and the top-cell of its first column is
+strictly higher than the top-cell of its second column (P is actually a stack polyomino).
+Removing the top cell of the first column proves that the generating function for such
+polyominoes is
+
+         SY4
+                (                 xstyq
+                    S(s) - ~1 - styq
+                                            ) .
+                          M. Bousquet-Melou                 Discrete Mathematics 154 (1996)        1-25                        13
+
+
+
+  3. Third case: P has at least two columns,                                     and the top-cell     of its first column
+is lower than the top-cell of its second column. Such polygons can be obtained                                                by
+applying construction B to the set of directed and convex polyominoes.
+  Combining        these three cases, we get the lemma.                               ??
+
+
+Theorem 3.4. The generating function                                DC(s, t,x, y, q) jbr directed         and convex       poly-
+
+ominoes     satis$es:
+
+                                        Ml(l)
+       DC(l,t,x,y,q) = TV               Jo(l)          2
+
+
+
+
+with
+
+                                          n      (“;‘)
+                   c (-l) xsq
+                                n   n
+       Jo(s)   =                                                                                                              (6)
+                   n>O       (w)n(SYqh
+
+and
+
+                                                                                     n-l
+
+
+
+                                                                     (
+                                                                                                 (-1 )"Smqw
+
+                            (
+                                                x”q”                        S
+       M(S)     = c                                                   --+c                                                    (7)
+                  n2,        cwqh-I(1               -      styq”)     (syq)n-I       m=, (sq),(sYq”+‘)n-m-l        11 .
+
+Moreover,
+
+                                        ~l(~)Jo(l)-~I(1)Jo(~)+~l(1)
+       Ws, t,x, Y, q 1 = ty                            _ ,_.                                                                  (8)
+                                                                    Jo(l)
+
+Proof. Using the expression                       of S(s) given by (4), we obtain,                  with the notations         of
+Lemma 2.3,
+
+                                         x”q”E,
+       E(s) = ty c
+                         nB, (syq)n-I(1             - styq”)’
+
+with
+
+       E = (-ly%“q(~)(l                         - syq”)                 n-1       (_l)ms”q(~“;z)
+        n                                                     +s2YC
+                     (sq)n-I                                            m=O(sq)m(sYqm+’ L-1               .
+
+To obtain the expression                 of Ml given in (7), just note that the sequence                         E,, can be
+defined by El = s and, for n 3 1, E,,+I = (- 1>“s”q(;)/(sq)n + E,,/( 1 - syq”).                                        0
+
+
+Remarks. ( 1) The width, height and area generating                                   function    for directed and convex
+polygons was already given by Bousquet-Mtlou  and Viennot [6].
+   (2) To our knowledge, Lin and Chang were the first to consider this family of
+polygons. They computed the width and height generating function, which is algebraic
+of degree 2 [24]. See also [3].
+14                       M. Bouquet-MloulDiscrete                   Mathematics 154 (1996)   I-25
+
+
+3.3. Directed and column-convex polygons
+
+
+Lemma 3.5. Let DV(s, t,x, y, q) be the generating function for directed and column-
+convex polyominoes. Then
+
+       DV(s) = =+                                   xsq            MY-l)
+                                                                                                    DW).    (9)
+                     1-stycl          (1 -sq)(l -sYq) Dv(1)+(1-sq)(l-syq)2
+
+Proof. Applying the constructions A2 and B to the set of directed and column-convex
+polyominoes provides all the directed and column-convex polyominoes of width at
+least 2. 0
+
+Theorem 3.6. The generating function DV(s, t,x, y, q) for directed and column-convex
+polyominoes satisjes:
+
+                           Ll(1)
+       DV(l, t,x, y,q) = tyLoo,                                                                            (10)
+
+with
+
+                               x”s”( y -            1 )n--lq(“:‘)
+       Lo(s) = 1 - c
+                         n>l   (sqMYqLl(sYqh
+
+
+
+
+                               x%"(y - 1)n-‘q(“3
+       Ll(S)   =   c
+                   n2,   wn-l(~Yq)~_~(l                     -   styq”)’
+
+Moreover,
+
+                                      L*(s)Lo(l)-L1(l)Lo(s)+L1(1)
+       DVts, 6x2 Y, 4) = 0
+                                                                Lo(l)
+
+Proof. Apply Lemma 2.3.                         0
+
+Remarks. (1) From this theorem - which is new - we deduce easily that the gen-
+erating function for directed column-convex polygons, counted according to their left
+height, right height, width and area is a rational function. In particular, the area gen-
+erating function is
+
+                                      4u - 4)
+       DV(l,l,l,l,q)=             1   _3q+q2.
+
+
+
+
+This result was proved by Delest and Dulucq [ 111. See also the Florentine papers [l]
+and [2], as well as [19].
+   (2) Delest and Dulucq also proved that the width and perimeter generating function
+is algebraic of degree 3. This generating function can be derived from Eq. (9) via the
+method already used for parallelogram polygons.
+                        M. Bousquet-Mdoul   Discrete Mathematics 154 (1996)    1-25
+
+
+4. Families of non-directed column-convex polygons
+
+4. I. Convex polygons
+
+
+Lemma 4.1. Let C(s, t,x, y, q) be the generating function for convex polyominoes.
+Then
+
+
+       C(s) = xstyq(;        1;;;     + 2syqDC(s)       - s2y2q2S(s)
+
+
+
+                    +   Egi’) - (~$I(C(l)
+                                       - C(sq)l
+where S(s)    (resp. DC(s))         is the generating function for stack polyominoes (resp.
+directed and convex polyominoes).
+
+
+Proof. Let us consider          a convex polygon     P.
+  1. First case: P is reduced           to a single column.      The generating       function   for such
+polygons is xstyq/( 1 - styq).
+   2. Second case: P has at least two columns,             the top-cell of its first column is strictly
+higher than the top-cell of its second column, and the bottom-cell of its first column is
+strictly lower than the bottom-cell of its second column. Hence, P is a stack polygon,
+and the generating       function   for this class is
+
+
+                             xstyq.
+       s2y2q2
+                (
+                S(s)     -
+                              1 - styq >
+
+  3. Third case: P has at least two columns,              the top-cell   of its first column     is lower
+than the top-cell of its second column,          and the bottom-cell     of its first column is strictly
+lower than the bottom-cell          of its second column.      Hence, P is a directed        and convex
+polygon,   and the generating        function   for this class is
+
+
+       syq DC(s) -
+
+   4. Fourth case: P has at least two columns, the top-cell of its first column is strictly
+higher than the top-cell of its second column, and the bottom-cell of its first column
+is higher than the bottom-cell of its second column. This class of polygons and the
+previous one are symmetric, and hence have the same generating function.
+   5. Fifth case: P has at least two columns, the top-cell of its first column is, lower
+than the top-cell of its second column, and the bottom-cell of its first column is higher
+than the bottom-cell of its second column. Such polygons can be obtained by applying
+construction C to the set of convex polygons.
+   We prove the lemma by combining these five cases. 0
+16                         M. Bousquet-MklouI Discrete Mathematics 154 (1996)                   I-25
+
+
+Proposition 4.2. The generating function                             C(s, t,x, y, q) for         convex       polyominoes
+satisjes
+
+                                        E(1) +H(l)E’(l)               -E(l)H’(l)
+        C(l,tAyYq)=             1 -F(l)-H’(l)-H(l)F’(l)+F(l)H’(l)’
+                                                                                                                     (11)
+where
+
+        F(s) = _ c           x”sZnqn@+l))
+                                                                                                                     (12)
+                       n>,       cY?x
+
+
+                                                                                                                     (13)
+
+
+and jnally
+
+                  ,Ml(l)
+        E(s) = 2ty -a(s)                 - tya(s),                                                                   (14)
+                           Jo(l)
+with
+
+                             (- 1 )mxmsmq(“?) m       (- 1 )“fq(“?)
+        a(s) = c                             c                                                                       (15)
+                In>1               (sq)?n     n=l (%?)n-l(~Yq”h-n+1
+
+and
+                                               s2m-l        m(m-1)           Ii-1
+                                                                                    Pqn2(syq”          - 2)
+        a(s)=   c
+                m>l A          xmqm
+                             1 -styqm    ( -
+
+
+                                                 (-
+                                                      (sq;2_
+
+
+                                                        1
+                                                            m 1
+                                                                      -tYC
+
+
+                                                            )n+ks”+kqCY
+                                                                     ),C>
+                                                                             n=l    (~&(~Y~“L
+
+
+
+                +2Y          c                                                                                       (16)
+                           *gngk<m (s4>n-l(sY4”>m-n(s4)k(syqk+‘),_k_l                           ))     .
+
+The series JO and Ml are given by (6) and (7), respectively. Moreover,
+
+
+
+
+Proof. We use the notations              of Lemma              2.2. Computing         the series F(s)         and H(s)   is
+quite easy. To get the announced expression of E(s), one has to use relations (4) and
+(8) giving S(s) and DC(s), respectively. Let us give a bit more details. Let xc(s) =
+xc(‘)(s) + xec2)(s) + xec3)(s), with:
+
+        xc(‘)(s) = xstyq(l         -   syq)2 xec2)(s) = -s2 y2q2S(s),
+                                 1 - styq ’
+
+        xec3)(s) = 2syqDC(s).
+
+For l<i<3       let:
+
+        E(‘)(s)= Cx”+‘g(s)g(sq).                . . g(sq”-‘)e(‘)(sq”),
+                    !I>0
+                                 M. Bousquet-MtVoul Discrete Mathematics 154 (1996) l-25                                                       17
+
+
+
+with
+                          2 2
+        q(s) =    (1s;q)2.
+
+
+Then E(s) = E(‘)(s) + Ec2)(s) + Ec3)(s). We successively                                                        compute        the E(‘)‘s:
+
+                                           X”S2n-‘ 1
+                                                 qn2(- syqy
+        E”)(S) = ty c
+                                 na,           (sq)L(l                   -   styq”)        ’
+
+                                                                                           S2n+l       n(n+l)
+                                                                                                   4
+        @‘(+            -ty3           c                     xmqm                5
+
+                                       m>,
+                                           /     c
+                                                     1   -styqm                  n=, (~q);-,(~Yq”);-,            1 ’
+
+and finally
+
+
+        E@)(s) = Zty@%(s)                                      + 2&(s),
+                                      Jo(l)
+where a(s) is defined by (15) and
+
+                                                                                      2n   II*
+
+        y(s)=     c
+                   A
+                 m>l              1
+                                       x”qm 2
+                                       -styqm                ( n=, (~q)::,(JYq%,,
+
+                                                                                 )n+kS”+kqc’:‘)qc)
+                                                                                                                      0
+                                                                    (-       1
+                  -
+                       ,sn<k<m
+                                 c              (sq),-l(sYq"),-,(sq>k(syqk+'),_k_l                                         .
+
+
+
+
+Combining        these three results leads to the expression                                               of E(s).    0
+
+
+  The denominator                     of C( 1) given by (11) turns out to have a very nice expression,
+which allows us to obtain for the generating function C( 1, t,x, y, q) a simpler formula.
+In the case where t = 1, a short computation proves that this new formula is the
+same as the one given by Bousquet-MClou                                                and Fedou [5]. We first need the following
+lemma.
+
+
+Lemma 4.3. (1) Let F(s) and H(s) be dejned by (12) and (13). Then
+
+         1 -F(l)-H’(l)-H(                                    1)F’(1) + F(l)H’(l)                       = 8,
+
+where
+
+                       (-l)"x"q(3
+         &=C
+                iI30              (qh                    .
+
+
+  (2) Moreover, let x = H( 1)/d and I?, = (H’( 1) - 1)/a.                                                             Then
+
+
+                                                                                                                                             (17)
+18                  M. Bouquet-Mdou I Discrete Mathematics 154 (1996) I-25
+
+
+and
+
+
+                                                                                                    (18)
+
+Proof. In this proof, any series X(s,x,q)  (resp. X(x,q)) will be denoted X&c)                     (resp.
+X(X)). The derivatives are still taken with respect to s.
+  1. We have
+
+      F(s,x) - sF(s,xq)       = -sH(s,xq)                                                           (19)
+
+and
+
+      H(s, X) - sH(s,xq)      = xsq( 1 -     F(s, xq)).                                             (20)
+
+These identities imply that
+
+      F’(s,x) - F(s,xq)      - sF’(s,xq)     = -H(s,xq)     - sH’(s,xq)
+
+
+and
+
+      H’(s,x) - H(s,xq)       - sH’(s,xq)      = xq( 1 - F(s,xq))    - xsqF’(s,xq).
+
+
+Let D(x, q) = 1 - F( 1) - H’( 1) - H( 1)F’( 1) + F( 1)H’( 1) be the denominator of
+Expression (11). We deduce from the four equations above that
+
+      D(x) = (1 - xq)D(xq).                                                                         (21)
+
+Moreover, D(0) = 1. But the unique power series D that is solution of Eq. (21) and
+satisfies D(0) = 1 is D = 8.
+   2. We have
+
+      $0) =$l,O)=&.                                                                                 (22)
+
+Moreover, Eqs. (19) and (20) lead to
+
+      qH(l,x)-(1       +q)H(l,xq)+(l            -xq2)H(l,xq2)       =O.
+
+
+Using d = (1 - xq)d(xq),        this gives
+
+      q( 1 - xq)&(x)    -    (1 + q)J,(xq)     $1 J,(xq2)   = 0,
+
+and solving this equation, with the initial condition (22), provides the expression of
+.& given in (17). The same method allows to compute Ri. We get successively:
+
+      qH’( 1,x) - (1 + q)H’( 1,xq) + (1 - xq2)H’( l,xq2)
+
+        = qH(l,x)      - (1 - xq2)H( l,xq2) - xq2,
+
+      q(1 - xq) G(x)        - (1 + 4) K(xq)      + &(xq2)       = q(1 -x&&(x)         -   J&q*),
+                          M. Bousquet-MdouIDiscrete              Mathematics 154 (1996)     l-25                    19
+
+
+and the unique          solution        of this equation     satisfying
+
+
+
+
+is given by (18).             0
+
+
+We can now give the following                    simpler expression         for C( 1, t, x, y, q).
+
+
+Theorem 4.4. The generating function C(s, t,x, y, q) for convex polyominoes satisjes:
+
+      C(l.f,x,     y,q) = .w(l)               - &w),
+
+the series E(s),         _?I and I?, being given by (14)                  (17) and (18), respectively.
+
+
+Remarks. (1) The derivative E’(s) can be easily explicited, but it still takes a bit more
+space. For example,
+
+                                  (_l)m,m,m-I,(“‘:‘)
+
+                                           (?I )m
+                                  n-l
+
+                              2)+-+m~(l-+s’ $-)
+                    x
+
+                          (   1
+                                 l - sqk
+                                  k=,
+
+
+
+
+                                       1
+                                         - sqk 1 - syqk
+                                                    I&_      1
+                           1-    +
+                        +--- sq*   1 -syqm >>> .
+
+   (2) The width, height and area generating function for convex polygons was already
+obtained by Bousquet-MClou     and FCdou, thanks to a different method [5]. Another
+formula is due to Lin, but is much more complicated [23].
+   (3) Delest and Viennot computed the perimeter generating                              function    for convex poly-
+gons [ 131. Later on, Lin and Chang refined their result by giving the width and height
+generating function, which is algebraic of degree 2 [24].
+
+
+4.2. Column-convex polygons
+
+
+Lemma 4.5. Let V(s, t,x, y, q) be the generating function for column-convex polyomi-
+noes. Then
+
+       V(s)    =   xstyq
+                   1 - styq
+                            +xs4V(l)
+                             1 - sq as
+                                       + x.?q2(2y - s yq - 1)
+                                          (1 - sq)2(1 -                           SYq)
+                                                                                          V(l)
+
+
+                                   xs2q2( 1 - y)2
+                                                          V(sq).
+                        +(l       - sq)2(1 - syq)2
+
+Proof. Applying            the constructions  As, Bl, B{ and C to the set of column-convex
+polygons      provides      all the column-convex  polygons of width at least 2. This sequence
+20                          M. Bousquet-MPlou I Discrete Mathematics I54 (1996)                 1-25
+
+
+of constructions          is chosen in such a way that every column-convex                           polygon is obtained
+once.     0
+
+Proposition 4.6. The generating function V(s, t,x, y, q) for column-convex polyomi-
+noes satisjies:
+
+                                             E(l)+H(l)E’(l)-E(l)H’(l)
+                                                                                                                          (23)
+         V(1,tYx,y9q)=             1 -F(l)-H’(l)-H(l)F’(l)+F(l)H’(l)’
+with
+                                    ys2n-     l(1    _ y)2n-2qn*
+
+        E(s) = ty c
+                          nal    (~q)~-,(~YdL(l              - stY4”)’
+
+                            ypyl       - y)2”-2q”(“+‘)(2y              -   syq”    -   1)
+
+        F(s) =     c
+                   fl>l
+                                            (~qx(~Ydd~Yqh
+
+and
+                            ps2n-l(     1 _      y)2n-2qn2
+        H(s) =     c
+                   n,l          Wn-l(S4MSY4)L
+
+Moreover,
+
+                   F(s)[E(l)+H(l)E’(l)                   -E(l)H’(l)]         +H(s)[E’(l)+E(l)F’(l)         -F(l)E’(l)]
+V(s) = E(s) +
+                                                 1 -F(l)-H’(l)-H(l)F’(l)+F(l)H’(l)
+
+Proof. Apply Lemma 2.2.                      0
+
+     The derivatives        E’( 1 ), F’( 1) and H’( 1) can be easily explicited                       from the values of
+E(s), F(s)     and H(s).           But the generating            function         for column-convex     polygons,        given
+by (23), remains obviously                  more complicated           than, for example, the generating          function
+for directed    column-convex                polygons        (10). The reason for this complexity              is that we
+do not deal any longer with directed polyominoes.
+   However, in the case where the variable t is equal to 1, it turns out that both the nu-
+merator and the denominator of Expression (23) have a more pleasant expression, that
+is, a simple expansion in the variable x. In what follows, we compute these two expan-
+sions, and finally obtain a nice expression for the generating function V( 1,1,x, y, q).
+The impatient reader might skip the technicalities of Lemma 4.7 to contemplate the
+final formula      in Theorem          4.8.
+
+Notations. From now on, the variable       t is set to 1, thus all the power series we
+consider lie in R[[s,x, y,q]]. Moreover, the q-equations we are going to handle do not
+involve series of the type S(sq’), for i 20, but of the type S(s,xq’, y, q). Hence, we
+choose the following conventions.
+   Let S(s,x, y,q) be a formal power series lying in R[[s,x, y,q]]. It will be conve-
+nient to denote it S(x), or even S, if there is no ambiguity. We define S to be the
+                          M. Bousquet-Mdou I Discrete Mathematics 154 (1996) l-25                               21
+
+
+series S( 1, x, y, q) (when defined).                    The derivatives   are still taken with respect to s. For
+example,     ,?’ stands for z( 1,x, y, q).
+  Let S and T be two power series lying in R[[s,x, y,q]]. We denote                               [S, 2’1 the fol-
+lowing element          of R[[x, y, q]] (when defined):
+
+       [S, T] = sI2= - s P.
+
+Note that [T,S] = -[S, T] and [sS,sT] = [S, T].
+
+
+Lemma 4.1. (1) Let I be the following power series:
+
+                         X”S2n-l(     1 _       y)2n-2qn?
+       I=C
+              n>l   (s4>n-l(s4),(sYq),-l(syq),’
+
+
+Then I satisfies the q-equation:
+
+        421(x) - sqcCI(xq) + s2flZ(xq2) - s3yal(xq3) + s4y21(xq4)
+
+             = xsq3( 1 - s)( 1 - sy),                                                                        (24)
+
+with a = (1 + y)( 1 + q) and /? = y + q + 2yq + y2q + yq2 - xq3( 1 - Y)~.
+  (2) Let X, Y and Z be the elements of R[[x, y,q]] deJined by
+
+                                    I-l(xq)
+       x = [LaY)l +                    1   _     y   >
+
+
+
+
+                                      I - J(xq2)
+       Y = [Z,s21(xq2)] +                                                                                     (25)
+                                               l-y          ’
+
+                                      I - J(xq3)
+       z = [Z,s3Z(xq3)] +
+                                               l-y
+
+Then, X, Y and Z are totally determined by the following system:
+
+        q2JW)                              - BX(xq)             + Y~wq)      -   Y2Zb?)    = 0,
+
+        q2yw        -    q~(xq)                                 +   yccy(xq2) - y2Y(xq2)   = 0,               (26)
+        q2Z(x)      - quY(xq)              + PX(xq2)                         - y2X(xq3) = 0
+
+and the initial condition
+
+       g(o)         =
+                        (1 - Y)t           - yq)’
+
+ The expansions of X, Y and Z can be deduced from this system.
+
+                                             (- 1 )n+lX”( 1 - y)Z”-4q(“:‘)(y2q)2n_2
+                                      +c                                                                      (27)
+       x   = (1 - y;;:          - yq)    n>2 (4>n-I(Y4>n-2(Y4)~-*(yg)n(y2q)n-1                    ’
+22                              M. Bousquet-Mdoul            Discrete Mathematics I54 (1996) l-25
+
+
+and
+
+                        Ml+            4)
+       y=(l-Y)(l-Yq)
+                 +(I      +   y)(l      +4)x            (-l)“+wl        - Y)2”-4q(“:z)-2(y2q)2,_3                  (28)
+                                                nb2       (q)"-I(Yq)~_2(Yq)n-I(yq)non-l             .
+
+
+
+
+The expansion of Z is a bit more complicated and will not be used
+
+
+Proof. (1) For n 2 1, let Z, be the coefficient of x” in the expansion of 1. Then, for
+n>2:
+
+       (1 -sq”_‘)(l                   -sq”)(l         -Syq”-‘)(l      -syq”)Z,   =s2(1 -y)2q2”-‘z,_&
+
+Hence,
+
+       c
+       n32
+             (1 - sqn-l )( 1 - sq”)( 1 - syq”- l )( 1 - syq”)Z,x” = xs2q( 1 - y)2 c
+                                                                                                        flbl
+                                                                                                               q2nznxn,
+
+
+and this identity, combined with the initial condition It = sq/ (( 1 - sq)( 1 - syq)), is
+nothing but the announced equation (24).
+   (2) Let 1 < i < 3. One gets the ith equation of (26) by applying the following algo-
+rithm:
+   ?? divide each side of (24) by s’  Z(xq’),
+   ?? differentiate the identity thus obtained with respect to S,
+
+   0 set s to 1.
+   Now, let X,, (resp. Y,, Z,) be the coefficient of x” in X (resp. Y, Z). After a few
+reductions, one finds that (26) implies that, for any n:
+
+         (1 - qn-‘)( 1 - y4”_2)( 1 - yq”-I)( 1 - yq”)( 1 - y2q”-1 yr,
+             = -qn(l                 - y)2(1 + yq”_‘)(l            - y2q2n-3).Xn-_1,
+         (1 + Yq”-%I                    = CPU           + Y)(l     +4)x,,
+         (1 - C2(Y                   + 4 + 2Yq + Y24 + Yq2Nxl               + Yq”-2u   + Y)(l   + qvn - Y2q”-*zn
+             =         -q”(l - y)%,_,.
+
+These three equations do not suffice to determine uniquely X, Y and Z. The initial
+condition XI = q/ (( 1 - y)( 1 - yq)) is needed, and allows to compute by induction X,,,
+Y,,andZ,,. 0
+
+Theorem 4.0. The generating function                                V(s, t, x, y, q) for column-convex polyominoes
+satisfies:
+
+                                             Cl-YW
+       V(L Lx,y,q)                    = y
+                                            1+w+yx'
+                           M. Bousquet-Mloul     Discrete Mathematics 154 (1996) I-25
+
+
+with
+
+                                       +pu           n+‘x”( 1 -   y)*“-4q(“f’)(,2,)2,_2
+
+
+       x    =    (1 - y;      - yq)       n22 (4)n-l(Y4>n-2(Y4)~_1(Y4)n(Y29)n-I                    ’
+
+and
+
+                       (-l>“x”(l      - y)2”-3q(“:‘)(y*q)2n_,
+       w=c                                                                                                       (29)
+                 n>l         (4>n(Y4>~_,(Y4>n(Y24>n-1              .
+
+Proof. Let N and D be the numerator                        and the denominator               of the expression     of
+V(1, l,x,y,q)       given by (23):
+
+           N = I? + [E,H],
+           D = 1 -&i?+[H,F].
+
+In order to compute           N and D, let us express the series E, F and H in terms of 1.
+First, note that
+
+           E = VW) - syZ(xq),                                                                                    (30)
+       H = Z(x) - syl(xq).                                                                                       (31)
+
+Moreover,        one can check that
+
+       xq*U- yY'(s) = -d(x) + dv + q + yq - xq2U- y)(l - 2y))Wz)
+                                   -s2y( 1 + y + q)Z(xq2) + s3y2Z(xq3) + xsq2( 1 - sy).                          (32)
+
+Using (30) and (31)            we can now compute N:
+
+           N = E+[E,H]
+
+                = Y (icx, - Gx,> + [I(x) - eq),m)                 - SYmdl)
+
+                = 4.(G)     - Kw       + (1 - Y)[lw4m)
+
+                = Y(1 - Y>x,
+
+the series X being defined by (25).
+  Using (3 1) and (32), a similar calculation                 proves that
+
+       xq2(l - Y)D=(Y               +q -xq2(l     - y)(l    - 2y)yr’(x)+            Y*U +q+Y)x(xq)
+
+                              -Y(l     + 4 +    Y)Y(X) - Y3Wd          + Y2Z(4
+
+where X, Y and Z are defined by (25).
+  We now use the first equation                 of (26) to get rid of the series Z. We obtain
+
+       xq3(l - y)D(xq)             = q*X(x) - yq(2 + Y + q - xq2(l - y))x(xq)
+                                     +Y*(l + Y + q)x(xq2)         + Y24Wd                 - Y3Jw?2).
+24                       M. Bouquet-Mkloul     Discrete Mathematics 154 (1996) 1-25
+
+
+Substituting       Y(xq2) by its value derived from the third equation             of (26) gives
+
+           xq2u- Y)(QXd- YWd)
+             = G(x) + Y(Yq - 1)x(w) - Y3Jm2) - Y4Y(X) + Y2YM.
+Finally,    the expansions      of X and Y given by (27) and (28) lead to the announced
+expression     for D:
+
+        D=l+W+yX,
+
+the series W being defined by (29).                0
+
+Remarks. (1) Again,            the parameters     ‘left height’ and ‘right height’ play the same
+role in the generating         function    for column-convex        polyominoes.   Hence,     V(s, t,x, y, q)
+is symmetric       in the variables       s and t. One could try to write V in a way where this
+symmetry       becomes    apparent.
+     (2) From Proposition       4.6, we deduce easily that the generating          function   for column-
+convex polygons according to their left height, right height, width and area is a rational
+function. In particular, the area generating function is
+
+                                      4(1 - cd3
+           Vl, 1,1,Lq) =
+                               1 -5q+7q2-4q3’
+
+   This result can be found at several places [ 10,201.
+   (3) Delest [lo], and then Brak et al. [8], have proved that the perimeter                    generating
+function is an algebraic series of degree 4. See also [ 15,161.
+     (4) Several     authors   found other expressions       for the perimeter      and area generating
+function     for column-convex         polyominoes     [7,16,25].     But all of them are much more
+complicated      than the formula         given in Theorem     4.8.
+
+
+
+References
+
+ [l] E. Barcucci, R. Pinzani, E. Rodella and R. Sprugnoli, A characterization    of binary search networks,
+     Lecture Notes in Comp. Sci. 529 (1991) 126135.
+ [2] E. Barcucci, R. Pinzani and R. Sprugnoli, Directed column-convex polyominoes by recurrence relations,
+     Lecture Notes in Comp. Sci. 668 (1993) 282-298.
+ [3] M. Bousquet-Mtlou,      Codage des polyominos convexes et equations pour I’enumeration suivant l’aire,
+     Discrete Appl. Math. 48 (1994) 21-43.
+ [4] M. Bousquet-Melou,      New enumerative results on two-dimensional directed animals, Discrete Math. to
+     be published.
+ [5] M. Bousquet-Milou      and J.-M. Fedou, The generating function of convex polyominoes: the resolution
+     of a q-differential system, Discrete Math. 137 (1995) 53-75.
+ [6] M. Bousquet-Melou       and X.G. Viennot, Empilements de segments et q-enumeration      de polyominos
+     convexes diriges, J. Combin. Theory Ser. A 60 (1992) 196224.
+ [7] R. Brak and A.J. Guttmann, Exact solution of the staircase and row-convex polygon perimeter and area
+     generating function, J. Phys. A: Math. Gen. 23 (1990) 45814588.
+ [8] R. Brak, A.J. Guttmann and LG. Enting, Exact solution of the row-convex polygon perimeter generating
+     function, J. Phys. A: Math. Gen. 23 (1990) 2319-2326.
+                       M. Bousquet-Mdoul      Discrete Mathematics 154 (1996)      1-2s                      25
+
+
+  [9] P.-G. de Gennes, Scaling Concepts in Polymers Physics (Cornell Univ. Press, 1979).
+[lo] M.-P. Delest, Generating functions for column-convex          polyominoes,  J. Combin. Theory Ser. A 48
+      (1988) 12-31.
+[I l] M.-P. Delest and S. Dulucq, Enumeration of directed column-convex          animals by perimeter and area,
+      Croatica Chemica Acta 66 (1993) 59-80.
+[ 121 M.-P. Delest and J.-M. FCdou, Enumeration of skew Ferrers diagrams, Discrete Math. 112(1993) 65-79.
+[ 131 M.-P. Delest and G. Viennot, Algebraic languages and polyominoes enumeration, Theoret. Comput. Sci.
+      34 (1984) 169-206.
+[14] D. Dhar, Exact solution of a directed site animals enumeration problem in three dimensions, Phys. Rev.
+      Lett. 51 (1983) 853-856.
+[15] S. Feretic, A new way of counting the column-convex          polyomihoes by perimeter, in: B. Leclerc and
+      J.-Y. Thibon eds., Proc. 7th Conf. Formal Power Series and Algebraic Combinatorics,        Mame-la-Vallie,
+      France (June 1995).
+[16] S. Feretic and D. Svrtan, On the number of column-convex            polyominoes with given perimeter and
+      number of columns, in: A. Barlotti, M. Delest and R. Pinzani eds., Proc. 5th Conf. Formal Power
+      Series and Algebraic Combinatorics,    Florence, Italy (June 1993).
+1171 D. Gouyou-Beauchamps        and G. Viennot, Equivalence of the two-dimensional     directed animal problem
+      to a one-dimensional   path problem, Adv. Appi. Math. 9 (1988) 334357.
+[18] V. Hakim and J.-P. Nadal, Exact results for 2D directed animals on a strip of finite width, J. Phys. A:
+      Math. Gen. 16 (1983) L213-L218.
+[19] G.S. Joyce and A.J. Guttmann, Exact results for the generating function of directed column-convex
+      animals on the square lattice, J. Phys. A: Math. Gen. 27 (1994) 43594367.
+[20] D.A. Klamer, Some results concerning polyominoes, Fibonacci Quart. 3 (1965) 9-20.
+[21] D.A. Klamer and R.L. Rivest, A procedure for improving the upper bound for the number of
+      n-ominoes, Can. J. Math. 25 (1973) 585-602.
+[22] D.A. Klamer and R.L. Rivest, Asymptotic bounds for the number of convex n-ominoes, Discrete Math.
+      8 (1974) 3140.
+[23] K.Y. Lin, Exact solution of the convex polygon perimeter and area generating function, J. Phys. A:
+      Math. Gen. 24 (1991) 2411-2417.
+[24] K.Y. Lin and S.J. Chang, Rigorous results for the number of convex polygons on the square and
+      honeycomb lattices, J. Phys. A: Math. Gen. 21 (1988) 2635-2642.
+[25] K.Y. Lin and W.J. Tzeng, Perimeter and area generating functions of the staircase and row-convex
+      polygons on the rectangular lattice, Int. J. Mod. Phys. B 5 (1991) 1913-1925.
+[26] N. Madras and G. Slade, The self-avoiding walk, in: Probabilities and its Applications (Birkhauser,
+      Boston, 1993).
+[27] H.N.V. Temperley, Combinatorial       problems suggested by the statistical mechanics of domains and
+      rubber-like molecules,   Phys. Rev. 103 (1956) l-16.
+

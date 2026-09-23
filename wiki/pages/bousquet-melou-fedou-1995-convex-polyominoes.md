@@ -139,7 +139,8 @@ print(div(M1, J0)[1:])              # directed convex, A067676
 - [[convex-polyomino](pages/convex-polyomino.md)] - the family solved, with the Fig. 2 subclasses.
 - [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - the area ladder whose directed-convex and convex rungs this paper supplies.
 - [[q-differential-system](pages/q-differential-system.md)] - the solution method.
-- [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - Bousquet-Mélou's later add-a-column method, which recovers these generating functions by another route.
+- [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - Bousquet-Mélou's 1996 add-a-column method, which re-derives this paper's parallelogram Theorem 3.2 in one Lemma 2.3 step (no q-differential system), and extends to two 1996-new results: directed-column-convex (Theorem 3.6) and column-convex (Theorem 4.8).
+- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - a same-era nonlinear-functional-equation route to the same q-Bessel families. Their eq. 3.11 gives the bar-graph GF (quadratic in `B`), their eq. 4.9 the staircase closed form as a q-Bessel ratio; the same-year Airy universality result across five cluster models is a companion to the exact-`J_0`/`J_1` results here.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - Fédou's q-Bessel quotients for steep parallelograms.
 - [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - the first parallelogram-by-area generating function and the growth constant.
 - [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] - the asymptotics this paper cites, and the source of its printed `C`.

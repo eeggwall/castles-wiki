@@ -52,6 +52,8 @@ By (w,h) the concave counts add nothing new: `valley(w,h) = convex(w,h) = C(2h+w
 - [[prime-castles](pages/prime-castles.md)] - cutting at height-1 columns makes castles a free monoid; the primes are the `F_{n-1}` castles with no height-1 column, a convex castle has at most one nontrivial prime (giving A001523 from the prime convex castles), and the `even`/`odd` and `cev`/`cod` splits are refined by the prime.
 - [[prime-convex-castles](pages/prime-convex-castles.md)] - the second difference of A001523 counts convex castles with no height-1 column, the same holds for `cev`/`cod` from `n = 3`, and the first difference is A342528.
 - [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] - the `even`/`odd` split to area 300 by a `z → qz` recursion; `even(n) - odd(n) ~ 0.0985 · (-1.62383)^n`.
+- [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - closed form for the trivariate (width, blocks, area) GF as `Π/(1 - x - Π)` over the parallelogram q-Bessel series, with meromorphy-in-|q|<1 for the signed count.
+- Bousquet-Mélou and Rechnitzer, "Lattice animals and heaps of dimers," *Discrete Math.* 258 (2002) 235-274 (`raw/bousquet-melou-rechnitzer-2002-lattice-animals-heaps-of-dimers.pdf`) Table 1 p.237 - "state of the art" summary of solved square-lattice polyomino subclasses; **Bargraph (Compositions), growth 2, Rational, "Obvious"** confirms the `2^{n-1}` count as the standard bar-graph-by-area result, and column-convex growth 3.20... (Temperley) is the natural envelope above the castle's own growth.
 - [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)] - the block sign is a character of that monoid, and `1/(1 - P_s)` over the signed primes reproduces `odd(n) - even(n)` term by term.
 
 ## Footnotes
