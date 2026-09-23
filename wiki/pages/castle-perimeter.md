@@ -81,6 +81,7 @@ The signed convex count is periodic because `1 - t + t²` has its roots at primi
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)]: the perimeter grading and the grammar-to-algebraic-GF method. `B(t)` is algebraic (context-free) and becomes rational at bounded height, as [[tower-word-language](pages/tower-word-language.md)] explains.
 - [[convex-castle](pages/convex-castle.md)], [[stack-polyomino-gf](pages/stack-polyomino-gf.md)]: convex castles = stacks, now with the parity split by perimeter.
 - [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)], [[narayana-numbers](pages/narayana-numbers.md)]: the identity whose re-indexing is A271942. Its `k` is the number of descents plus one (verified `w, b ≤ 7`), recorded on those pages.
+- [[convex-polyomino](pages/convex-polyomino.md)], [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)]: on a row-convex shape blocks = height, so a convex polyomino's semi-perimeter is `w + h`. Lin and Chang's convex generating function `Z(x, y, 1)`, with width and height marked, is the convex-polyomino counterpart of the (width, blocks) grading on this page (own reasoning).
 - [[castle-sign](pages/castle-sign.md)]: the `(-1)^blocks` weight is `(-1)^{s-w}`.
 - [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]: tribonacci appears there in the area grading at height `≤ 3`. Here `τ²` is the unrestricted perimeter growth. Whether the two appearances are related is open.
 

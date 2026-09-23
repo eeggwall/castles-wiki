@@ -136,6 +136,7 @@ A000124	supporting	Central polygonal numbers (the Lazy Caterer's sequence): n(n+
 A000005	supporting	d(n) (also called tau(n) or sigma_0(n)), the number of divisors of n.	rectangles by area, the bottom rung of the convex-polyomino ladder
 A000041	supporting	a(n) is the number of partitions of n (the partition numbers).	Ferrers diagrams by area
 A000700	supporting	Expansion of Product_{k>=0} (1 + x^(2k+1)); number of partitions of n into distinct odd parts; number of self-conjugate partitions; number of symmetric Ferrers graphs with n nodes.	height-signed Ferrers diagrams by area, `(-1)^n A000700(n)`
+A000009	supporting	Expansion of Product_{m >= 1} (1 + x^m); number of partitions of n into distinct parts; number of partitions of n into odd parts.	multiset partitions c* of one element repeated n times (distinct-part partitions)
 A005436	supporting	Number of convex polygons of perimeter 2n on square lattice.	convex polyominoes by perimeter (Delest-Viennot)
 A006958	supporting	Number of parallelogram polyominoes with n cells (also called staircase polyominoes, although that term is overused).	parallelogram polyominoes by area, the q-Bessel rung
 A049346	supporting	Coefficient of x^(-n) in expansion of continued fraction 0, x, x^2, x^3, x^4, ... .	height-signed parallelogram polyominoes by area are `-A049346(n)`

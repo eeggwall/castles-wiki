@@ -15,7 +15,7 @@ updated: 2026-09-22
 **Date ingested:** 2026-09-22
 **Type:** paper
 
-Not to be confused with Bender's "Convex n-ominoes" (Discrete Math. 8, 1974), the source of the convex-polyomino growth constant; this paper has no polyominoes and no area statistic.
+Not to be confused with Bender's "Convex n-ominoes" (Discrete Math. 8, 1974; [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)]), the source of the convex-polyomino growth constant; this paper has no polyominoes and no area statistic.
 
 ## Summary
 

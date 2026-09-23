@@ -57,6 +57,7 @@ Own reasoning, not from the source:
 - [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - the area ladder whose top three rungs this method solves.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - Bousquet-Mélou's later add-a-column functional equations, a different route to the same generating functions.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - q-Bessel quotients from another polyomino family.
+- [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - an early one-unknown instance (own reasoning): parallelograms by area satisfy `B(x, y) = xy/(1-xy) + xy/(1-xy)^2 (B(x, 1) - B(x, xy))`, a shift `y -> xy`, which Klarner and Rivest solved by iteration as a ratio of alternating q-series.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] - ordinary generating-function background.
 
 ## Footnotes

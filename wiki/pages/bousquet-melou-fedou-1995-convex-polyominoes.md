@@ -67,7 +67,7 @@ Three readings of the ladder:
 
 ## Other results reported in the paper
 
-- **Height and width without area (Lin and Chang).** `Z(x, y, 1) = xy/Delta^2 (1 - 3x - 3y + 3x^2 + 3y^2 + 5xy - x^3 - y^3 - x^2 y - xy^2 - xy(x - y)^2) - 4x^2y^2/Delta^{3/2}` with `Delta = 1 - 2x - 2y - 2xy + x^2 + y^2`. It is algebraic and symmetric in `x, y`, and at `x = y` it refines the Delest-Viennot perimeter count.[^17]
+- **Height and width without area (Lin and Chang).** `Z(x, y, 1) = xy/Delta^2 (1 - 3x - 3y + 3x^2 + 3y^2 + 5xy - x^3 - y^3 - x^2 y - xy^2 - xy(x - y)^2) - 4x^2y^2/Delta^{3/2}` with `Delta = 1 - 2x - 2y - 2xy + x^2 + y^2`. It is algebraic and symmetric in `x, y`, and at `x = y` it refines the Delest-Viennot perimeter count ([[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)]).[^17]
 - **Parallelograms, symmetric form.** Multiplying by `(yq)_infinity` gives `X = xyq L(xq, yq) / L(x, y)` with `L(x, y) = sum_{n,m>=0} (-1)^{n+m} x^n y^m q^{C(n+m+1,2)} / ((q)_n (q)_m)`. This makes the `x <-> y` symmetry visible.[^9]
 - **The width polynomials.** `Q_1 = 1`, `Q_2 = 1 + 2q + q^2`, `Q_3 = 1 + 6q + 12q^2 + 12q^3 + 7q^4 + 2q^5`, `Q_4 = 1 + 11q + 43q^2 + 95q^3 + 150q^4 + 186q^5 + 181q^6 + 137q^7 + 79q^8 + 33q^9 + 10q^10 + 2q^11`. The authors conjecture that every `Q_n` has positive coefficients and is unimodal.[^16]
 - **Table 1** gives parallelogram, directed convex and convex counts by area for `n = 1..20`. It agrees term for term with the ladder on [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)].[^18]
@@ -88,7 +88,7 @@ The Appendix A series were transcribed from the page images into truncated q-ser
 | directed convex | `0.6589555418` | A067676 lists no asymptotic formula (checked 2026-09-22) |
 | convex | `2.9195985097` | A067675 gives `2.9195985097136070...` |
 
-The paper's printed convex prefactor, `C ≃ 2.67564`, is therefore not the constant of the series it derives. The value that fits is `2.91960`, the one OEIS records. The paper gives no derivation of its `C`, only the citation to Bender and Klarner-Rivest, which were not read here. So where the mismatch arose is not known.
+The paper's printed convex prefactor, `C ≃ 2.67564`, is therefore not the constant of the series it derives. The value that fits is `2.91960`, the one OEIS records. The paper gives no derivation of its `C`. The number is from the abstract of Bender's paper ([[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)]), whose own eq. (11) prints `2.67483`. Delest and Viennot had already quoted it ([[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)]). Klarner and Rivest give no prefactor ([[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)]).
 
 The parallelogram and directed-convex rungs fit in a short block (`N` is the area cutoff):
 
@@ -141,6 +141,9 @@ print(div(M1, J0)[1:])              # directed convex, A067676
 - [[q-differential-system](pages/q-differential-system.md)] - the solution method.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - Bousquet-Mélou's later add-a-column method, which recovers these generating functions by another route.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - Fédou's q-Bessel quotients for steep parallelograms.
+- [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - the first parallelogram-by-area generating function and the growth constant.
+- [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] - the asymptotics this paper cites, and the source of its printed `C`.
+- [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - the algebraic-language method and the perimeter count. Its closing question, adding area, is the one this paper answers for convex polyominoes.
 - [[viennot-heap-tower](pages/viennot-heap-tower.md)] - heaps of pieces, the combinatorial explanation of the quotient form the paper mentions for (1) and (3).
 
 ## Relation to Other Wiki Pages

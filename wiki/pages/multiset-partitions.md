@@ -36,6 +36,8 @@ The `(0,n)` row matches the ingest recomputation of Bender's eq. (11) for `n <= 
 
 **Not to be confused with** Knuth's multiset *permutations* (ordered words with repeated letters, counted by the multinomial) or with Flajolet's `MSET` construction (building unordered multisets of objects, `exp(sum_k B(z^k)/k)`). Both are covered elsewhere on the wiki.
 
+**One repeated element gives integer partitions** (own reasoning). For the multiset `{a^n}`, a single element repeated `n` times, every block has the form `a^j`. So `v*(·, k)` counts partitions of `n` into `k` parts and `c*(·, k)` counts partitions into `k` distinct parts, with totals `p(n)` (A000041) and A000009. `c` and `v` are trivial there, since no block may repeat `a`. Checked by enumeration for `n <= 12`. The Ferrers rung of [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] is therefore Bender's `v*` at one element, and his four-way split generalizes the unrestricted/distinct pair of integer partitions to several elements.
+
 ## Appearances in Sources
 
 - [[bender-1974-partitions-of-multisets](pages/bender-1974-partitions-of-multisets.md)] - defines the four functions, the inclusion-exclusion sandwich, the EGFs for `r = 1, 2, 3`, the Bell-number asymptotic, and a cycle-index GF for `v*`.
@@ -46,6 +48,7 @@ The `(0,n)` row matches the ingest recomputation of Bender's eq. (11) for `n <= 
 - [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] - Stirling numbers of the second kind, the set case of all four functions.
 - [[symbolic-method](pages/symbolic-method.md)] - the `MSET` construction, a different operation under the same word.
 - [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] - the multinomial counting orderings of a fixed multiset.
+- [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - Ferrers diagrams by area, the one-element case of `v*`.
 
 ## Footnotes
 
