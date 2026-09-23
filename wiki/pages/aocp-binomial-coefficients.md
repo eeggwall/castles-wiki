@@ -5,7 +5,7 @@ summary: Knuth's binomial-coefficient identity toolkit — symmetry, addition, h
 tags: [knuth, taocp, binomial, vandermonde, hockey-stick, stirling, source]
 sources: [aocp-binomial-coefficients]
 created: 2026-09-14
-updated: 2026-09-19
+updated: 2026-09-22
 ---
 
 # The Art of Computer Programming (AOCP) Binomial Coefficients (Knuth The Art of Computer Programming (TAOCP) Vol. 1)
@@ -41,6 +41,7 @@ Several of these are not background but the *exact* identities the castle counts
 - **Residue-filtered binomial sums.** The height-1 tower's block-count generating function (GF) `G_{1,L}(z) = Σ_r C(L+1, 2r) z^r` on [[block-count-constraints](pages/block-count-constraints.md)] is this page's `2^n` row split by a residue class of `r`: `z = 1` gives `2^L`, `z = −1` gives the alternating sum that is `P(1,L) = Re((1+i)^{L+1})`, and the even/odd classes are the every-4th sums A038503 / A038505. The degenerate alternating sum `P(k,1) = Σ_{c=0}^{k} (−1)^c = (1 + (−1)^k)/2` opens [[closed-form-hunting](pages/closed-form-hunting.md)].
 - **The negative binomial's other home.** `1/(1−z)^{n+1} = Σ C(n+k, n) z^k` is developed as the geometric-GF power on the sibling Knuth page [[aocp-generating-functions](pages/aocp-generating-functions.md)].
 - **Stirling first kind, `m = 1`.** `[n, 1] = (n−1)!` is the cycle count that anchors [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)]; the full triangle is the unsigned A132393, the second kind A008277, and Pascal's triangle itself A007318.[^8]
+- **Stirling second kind, for multisets.** `{n k}` counts partitions of an `n`-set into `k` blocks; for a multiset the count splits four ways by whether blocks may repeat and whether a block may repeat an element, and all four collapse back to `{n k}` when nothing repeats - see [[multiset-partitions](pages/multiset-partitions.md)] and [[bender-1974-partitions-of-multisets](pages/bender-1974-partitions-of-multisets.md)].
 - **A triangular-number cameo.** `F(4,2) = 10 = C(5,2)` - the hand-check on [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] - is the `s = 0` term of `F(w,2) = Σ_s C(w+1, 4s+2)`; the triangular numbers A000217 count the height-2 castles whose second row is a single run.
 
 ## Key Takeaways

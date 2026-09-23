@@ -5,7 +5,7 @@ summary: Knuth's multiset permutations — the multinomial coefficient, two-line
 tags: [knuth, taocp, multiset, multinomial, foata, cycle-factorization, two-line-array, source]
 sources: [aocp-multisets]
 created: 2026-09-14
-updated: 2026-09-19
+updated: 2026-09-22
 ---
 
 # The Art of Computer Programming (AOCP) Multisets (Knuth The Art of Computer Programming (TAOCP) Vol. 3)
@@ -38,6 +38,7 @@ This page is the **source-level root of the castle's permutation-cycle machinery
 - **The U/R/D string is a multiset permutation.** A castle's step string on [[urd-step-strings](pages/urd-step-strings.md)] is a word over `{U, R, D}` with fixed letter counts - a permutation of a three-letter multiset - so its two-line array (sorted letters over the string) is Knuth's object exactly, before the castle grammar constrains it. The trinomial ceiling is on [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)].
 - **Inversions of multiset permutations.** Grading Knuth's multiset permutations by inversions gives MacMahon's q-multinomial coefficient, the multiset form of the q-factorial on [[aocp-combinatorics](pages/aocp-combinatorics.md)] - the natural inversion-graded count of U/R/D strings for the q-thread.
 - **A homonym to keep apart.** Knuth's "permutations of a multiset" are *ordered* words with repeated letters (the `SEQ` side); Flajolet's `MSET` construction on [[symbolic-method](pages/symbolic-method.md)] builds *unordered* multisets and translates to `∏ 1/(1 − z^k)` - the coin-change series of [[block-count-constraints](pages/block-count-constraints.md)]. Same word, different object.
+- **Partitions, not permutations.** Splitting a multiset into unordered blocks, rather than arranging it, is [[multiset-partitions](pages/multiset-partitions.md)]: four counts depending on whether blocks may repeat and whether a block may repeat an element, worked out by [[bender-1974-partitions-of-multisets](pages/bender-1974-partitions-of-multisets.md)].
 - **Online Encyclopedia of Integer Sequences (OEIS).** The multinomial coefficients are tabulated as A036038.[^5]
 
 ## Key Takeaways

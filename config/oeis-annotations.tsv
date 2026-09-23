@@ -133,3 +133,11 @@ A228457	count	Number of arrays of maxima of three adjacent elements of some leng
 A228458	count	Number of arrays of maxima of three adjacent elements of some length n+2 0..5 array.	minimum-tower-spacing `(h=6, g=3)` castles (maxima = minima by complement)
 A228461	supporting	Two-dimensional array read by antidiagonals: T(n,k) = number of arrays of maxima of three adjacent elements of some length n+2 0..k array.	the `g=3` column of the minimum-tower-spacing `(h,g)` table
 A000124	supporting	Central polygonal numbers (the Lazy Caterer's sequence): n(n+1)/2 + 1; or, maximal number of pieces formed when slicing a pancake with n cuts.	unimodal height-2 castles `1 + C(w+1,2)`, the `g -> infinity` limit of the `h=2` tower-spacing row
+A002718	supporting	Number of bicoverings of an n-set.	Bender's c((0,n)): partitions of a multiset with every element twice, no repeated blocks, no repeated element in a block
+A020554	supporting	Number of multigraphs on n labeled edges (without loops).	Bender's v((0,n)): every element twice, repeated blocks allowed, no repeated element in a block
+A020555	supporting	Number of multigraphs on n labeled edges (with loops). Also number of genetically distinct states amongst n individuals.	Bender's v*((0,n)): all partitions of a multiset with every element twice
+A094574	supporting	Number of (<=2)-covers of an n-set.	Bender's c*((0,n)): every element twice, no repeated blocks, repeated elements in a block allowed
+A060486	supporting	Tricoverings of an n-set.	Bender's c((0,0,n)): every element three times, no repeated blocks, no repeated element in a block
+A165434	supporting	Number of tri-coverings of a set.	Bender's v((0,0,n)): every element three times, repeated blocks allowed, no repeated element in a block
+A319591	supporting	Number of nonnegative integer matrices with n columns and any number of nonzero distinct rows with every column summing to 3 up to permutation of rows.	Bender's c*((0,0,n)): every element three times, no repeated blocks
+A322487	supporting	Number of (3*n) X n matrices with nonnegative integer entries and each column sum being 3 up to permutation of rows.	Bender's v*((0,0,n)): all partitions of a multiset with every element three times
