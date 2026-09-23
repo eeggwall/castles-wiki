@@ -196,14 +196,13 @@ Castles glued at a shared height-1 column form a free monoid whose primes are th
 
 ### Zoo sub-families of castles by area
 
-The classical polyomino families intersected with the castles ([[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)]): a monotone castle is a Ferrers or reverse-Ferrers skyline, and convex castles are the stacks, which Bousquet-Mélou's 1996 stack formula signs by width ([[column-convex-ladder-by-area](pages/column-convex-ladder-by-area.md)]). Terms from `n = 1`, checked by enumerating compositions through `n = 20` (width-signed stacks through `n = 44` from the formula, `n = 16` by enumeration).
+The classical polyomino families intersected with the castles ([[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)]): a monotone castle is a Ferrers or reverse-Ferrers skyline. Terms from `n = 1`, checked by enumerating compositions through `n = 20`.
 
 | object | first terms | GF / formula | status |
 |---|---|---|---|
 | monotone castles (weakly increasing or weakly decreasing) | `1, 2, 4, 7, 12, 18, 28, 40, 57, 80, 110, 148` | `2p(n) - d(n)` | **interlink** → [A329398](https://oeis.org/A329398) (defined by Lyndon factorizations; the monotone reading and `2 A000041 - A000005` are a conjecture on the entry; agreement checked through `n = 20`) |
 | non-monotone castles | `0, 0, 0, 1, 4, 14, 36, 88, 199, 432` | `2^(n-1) - 2p(n) + d(n)` | **known** → [A332834](https://oeis.org/A332834) (compositions neither weakly increasing nor weakly decreasing) |
 | signed monotone castles `even - odd` | `-1, 0, 0, 1, 0, 2, 0, 2, -1, 4, -2, 4, -4, 6` | `2(-1)^n A000700(n) - sum_{d\|n} (-1)^d` | **novel-candidate** (signed, negated and `\|·\|` no match, 2026-09-23) |
-| convex castles signed by width `Σ(-1)^w` | `-1, 0, 0, 0, 1, -1, 1, -1, 2, -3, 2, -2, 4, -5, 3, -4` | Bousquet-Mélou Lemma 2.5 at `y = -1`: `-sum_k q^k/((-q;q)_(k-1)^2 (1 + q^k))` | **novel-candidate** (signed, negated and `\|·\|` no match, 2026-09-23) |
 
 ### Legacy generation candidates (pre-catalogue, statuses to refresh)
 
