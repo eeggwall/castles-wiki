@@ -5,7 +5,7 @@ summary: A tower is a castle without the full-base / max-height / parity rules �
 tags: [concept, tower, heap-of-pieces, viennot, narayana, castle]
 sources: [oeis-mining-pe502, tower-narayana-polynomial, project-euler-502-representations]
 created: 2026-09-13
-updated: 2026-09-22
+updated: 2026-09-23
 ---
 
 # Tower (heap of pieces)
@@ -46,6 +46,7 @@ with `N(w,k)` the [[narayana-numbers](pages/narayana-numbers.md)]. The `k`-th te
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the grammar over tower words.
 - [[viennot-heap-tower](pages/viennot-heap-tower.md)] — the trace-monoid / Cartier-Foata / transfer-matrix reading of the tower's cell and block counts.
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — the same tower object counted by step, matched to A004149 via a Motzkin J-fraction with a no-UD / no-DU run constraint.
+- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] — the heap-bijection explanation of the staircase `H(qx)/H(x)` form, and the bar-graph (castle) equation in the same linearizable class.[^4]
 - [[castle-foata-transform](pages/castle-foata-transform.md)] — blocks as maximal positive runs; the `c_1 + Σ max(0, c_i − c_{i−1})` block-count formula is the identity Foata builds on.
 - [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] — the tower block-count marginal whose `H(B) ~ (1/2) log_2 w` scaling this page's Narayana structure explains.
 
@@ -54,3 +55,4 @@ with `N(w,k)` the [[narayana-numbers](pages/narayana-numbers.md)]. The `k`-th te
 [^1]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `SUBMISSION-NOTES.md` §"Definitions" L60-62 — "Tower (tier 2): column heights c_1..c_w >= 0 (no full-bottom, no max-height, no parity); blocks = maximal runs = c_1 + Sum_{i=2..w} max(0, c_i - c_{i-1})."
 [^2]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `crosslink-avenues.md` §"Tier 2" L38-40 — "This is Viennot's 'heap of pieces': stack unit-height segments on w columns, each segment resting on the one below, segments in the same row separated by a gap."
 [^3]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `crosslink-avenues.md` §"Tier 2" L43-56 — the tower block-count formula, its Narayana-polynomial GF, and the width-row table (A005408, A005891, A063490, A160747; new for w≥6).
+[^4]: [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] `prellberg-brak-1995-partially-directed-cluster-models.txt` §4 L771-778 - "both models have generating functions which can be expressed in the form G(x, y, q) = y(H(qx, y, q)/H(x, y, q) - 1) (4.14) where the function H satisfies a linear functional equation. In the case of staircase polygons, this structure can also be explained via a bijection with heaps".

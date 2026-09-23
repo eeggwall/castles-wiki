@@ -5,7 +5,7 @@ summary: The tower word is a peakless-valleyless Motzkin path — OEIS A004149 �
 tags: [concept, castle, tower-word, continued-fraction, flajolet, motzkin, algebraic, oeis, generating-functions]
 sources: [project-euler-502-representations]
 created: 2026-09-14
-updated: 2026-09-19
+updated: 2026-09-23
 ---
 
 # Continued fractions of the tower word
@@ -60,6 +60,7 @@ The open end is the tower word's *own* continued fraction. A004149 is a generali
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the Fibonacci/`φ` method, the golden ratio's algebraic home.
 - [[castle-by-area](pages/castle-by-area.md)] — the area grading whose q-analog is the q-continued-fraction thread.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — q-Motzkin and the q-Bessel ratio, the q-side of this correspondence.
+- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] — an area-graded continued fraction for castles. Their bar-graph equation (3.11) is the castle GF by width, blocks and area, and iterating it gives a continued fraction in the q-shifted width variable (eq. 3.12).[^8]
 - [[generating-function-gallery](pages/generating-function-gallery.md)] / [[closed-form-hunting](pages/closed-form-hunting.md)] — the rational GFs and characteristic polynomials whose (palindromic) roots are the periodic-continued-fraction side of the same story.
 - [[pell-numbers](pages/pell-numbers.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] — the integer-sequence and castle-strip realizations of the growth constant `1 + √2`.
 - [[aocp-combinatorics](pages/aocp-combinatorics.md)] — the inversion statistic and q-factorial, the classical statistic Flajolet's continued fractions carry as q-weights on Motzkin paths.
@@ -80,3 +81,5 @@ The open end is the tower word's *own* continued fraction. A004149 is a generali
 [^6]: Paul Barry, *Generalized Catalan recurrences, Riordan arrays, elliptic curves, and orthogonal polynomials*, arXiv:1910.00875 (2019); Andrei Asinowski, Cyril Banderier, Valerie Roitner, *Generating functions for lattice paths with several forbidden patterns* (2019) — both listed as references on OEIS A004149.
 
 [^7]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Unsigned count" L297-309 — "E_k = 1/(1-(k+1)x)" and "T(k,L) = (k+1)^L".
+
+[^8]: [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] `prellberg-brak-1995-partially-directed-cluster-models.txt` §3.1 L473-479 - "This equation can be solved for B(x, y, q) and leads to a continued-fraction representation of the generating function, given by iteration of" eq. (3.12).

@@ -5,7 +5,7 @@ summary: The central object of study. A castle is a skyline (c_1, …, c_w) with
 tags: [concept, castle, polyomino, bargraph, column-convex, skyline, combinatorics]
 sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-solution, project-euler-502-brute-force]
 created: 2026-09-13
-updated: 2026-09-22
+updated: 2026-09-23
 ---
 
 # Castle (polyomino)
@@ -86,6 +86,8 @@ A castle can be encoded exactly in several ways - column-wise binary strings, th
 - [[convex-castle](pages/convex-castle.md)] - the unimodal sub-family (skyline rises then falls); the polyomino literature's "stack" family.
 - [[castle-perimeter](pages/castle-perimeter.md)] - as a bargraph a castle has semi-perimeter `w + #blocks`, so the block count and the even-block clause are perimeter statistics; castles by semi-perimeter are A082582.
 - [[column-convex-polyomino](pages/column-convex-polyomino.md)] / [[polyominoes](pages/polyominoes.md)] - the ambient family; a castle is a bargraph (column-convex polyomino with a full contiguous bottom row).
+- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - the bargraph functional equation (3.11), which is the castle GF with `x` = width, `y` = blocks, `q` = area, and the Airy scaling class bargraphs share with staircase and column-convex polygons.
+- [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - the add-a-column method for column-convex classes. A castle is a directed column-convex polygon with every column bottom on row 1, a specialisation of the class its Theorem 3.6 solves.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the tower-word grammar the counts are read off of.
 - [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] - the cycle-factorization reading.
 - [[generating-functions](pages/generating-functions.md)] - the intended method for counting castle configurations at large parameters.

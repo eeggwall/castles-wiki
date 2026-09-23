@@ -5,7 +5,7 @@ summary: The charlesreid1.com polyomino taxonomy — Ferrers, staircase, bar-cha
 tags: [polyomino, taxonomy, column-convex, ferrers, catalan, q-analog, stack-polyomino, source]
 sources: [polyominoes, bousquet-melou-fedou-1995-convex-polyominoes, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-13
-updated: 2026-09-22
+updated: 2026-09-23
 ---
 
 # Polyominoes
@@ -52,6 +52,7 @@ Two of the named families are exactly the Online Encyclopedia of Integer Sequenc
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] / [[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)] - convex polyominoes by perimeter via the stack / parallelogram / stack trisection.
 - [[q-catalan-numbers](pages/q-catalan-numbers.md)], [[motzkin-numbers](pages/motzkin-numbers.md)] — the q-analog / Motzkin threads the Ferrers remark points to.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] — the papers on these families; the last gives the convex growth constant `2.309138...`.
+- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] — bar-chart (bar-graph) polygons by width, perimeter and area; with `y` on vertical steps their equation (3.11) is the castle GF by blocks.
 - [[castle-strip](pages/castle-strip.md)] — the wiki's operational "castle-as-column-glued-object" page; the transfer-matrix realization of the add-a-column reading summarized here.
 
 Related topics also ingested: [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/lattice-paths.md)]. Still not yet ingested: Combinatorics.

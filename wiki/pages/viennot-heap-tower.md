@@ -5,7 +5,7 @@ summary: The tower as a Viennot heap of pieces over w free columns, its trace-mo
 tags: [analysis, tower, viennot, heap-of-pieces, commutation-monoid, trace-monoid, cartier-foata, transfer-matrix, narayana]
 sources: [tower-narayana-polynomial, bousquet-melou-fedou-1995-convex-polyominoes]
 created: 2026-09-21
-updated: 2026-09-22
+updated: 2026-09-23
 ---
 
 # Viennot heaps of pieces on the tower
@@ -119,6 +119,7 @@ matches at `x^0, x^1` and diverges at `x^2`: the interval-heap has `8` at `x^2` 
 - [[castle-foata-transform](pages/castle-foata-transform.md)] - blocks as maximal positive runs; the peak / record dictionary the block-start weighting realizes.
 - [[symbolic-method](pages/symbolic-method.md)] - the analytic-combinatorics framework the transfer-matrix extraction sits in.
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - Bousquet-Melou stack-polyomino generating functions, the polyomino cousin of this construction.
+- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - their linearization writes the staircase GF as `y(H(qx)/H(x) - 1)`, a structure that "can also be explained via a bijection with heaps". The castle bar-graph equation (3.11) is in the same linearizable class, so a heap reading of the castle's area-graded GF is the matching open question.[^7]
 - [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] - parallelogram polyominoes as heaps of segments, the heap explanation of their `J_1/J_0` quotient form.
 
 ## Footnotes
@@ -130,3 +131,5 @@ matches at `x^0, x^1` and diverges at `x^2`: the interval-heap has `8` at `x^2` 
 [^5]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `raw/oeis-pe502/xrefs/A001263-tower.md` §"Identity (verified)" L14-21 - "A tower of width w has, by number of blocks, the generating function sum_b (number of towers of width w with b blocks) x^b = ( sum_{k=1..w} N(w,k) x^{k-1} ) / (1 - x)^w. Equivalently, the number of towers of width w with exactly b blocks is sum_{k=1..w} N(w,k) * C(b + w - k, w - 1). This is verified for w = 1..7 by python3 tower.py (DP == closed form == brute force)."
 
 [^6]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `raw/oeis-pe502/xrefs/A001263-tower.md` §"Identity (verified)" L24-25 - "It is a generating-function identity, not a 'peaks' bijection: a direct peaks refinement was tested and does not factor this way, so do not state a peaks interpretation."
+
+[^7]: [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] `prellberg-brak-1995-partially-directed-cluster-models.txt` §4 L771-778 - "both models have generating functions which can be expressed in the form G(x, y, q) = y(H(qx, y, q)/H(x, y, q) - 1) (4.14) where the function H satisfies a linear functional equation. In the case of staircase polygons, this structure can also be explained via a bijection with heaps"; the linearizable class including bar-graphs is L673-682.

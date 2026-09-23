@@ -5,7 +5,7 @@ summary: A stack polyomino — column heights that weakly rise then weakly fall 
 tags: [concept, polyomino, stack-polyomino, generating-functions, symbolic-method, durfee-square, castle-tower]
 sources: [analytic-combinatorics-ch1-ogfs, klarner-rivest-1974-convex-n-ominoes, algebraic-languages-and-polyominoes-enumeration, bender-1974-convex-n-ominoes]
 created: 2026-09-15
-updated: 2026-09-22
+updated: 2026-09-23
 ---
 
 # Stack polyomino generating function
@@ -34,6 +34,7 @@ A **castle tower** — the tower half of the wiki's [[castle-polyomino](pages/ca
 
 - **Stack polyominoes are the unimodal-skyline sub-family of castle towers.** Every stack polyomino, positioned on a full-width base and constrained to castle heights, is a castle tower with one peak. Not every castle tower is a stack polyomino — a castle whose skyline dips in the middle and rises again is not unimodal.
 - **The construction style matches the wiki's approach.** [[column-convex-polyomino](pages/column-convex-polyomino.md)] and the castle both build the polyomino by gluing columns; Example I.8 is exactly this style, executed as a specification rather than an add-a-column functional equation.
+- **The add-a-column route, by perimeter and area.** [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] uses stacks as its worked example. Applying its construction A to stacks gives a one-shift q-equation in the left-column-height variable (Lemma 2.4), and its Lemma 2.3 solves that in closed form (Lemma 2.5). So the wiki has three constructions of one class: this specification, the Fibonacci-word coding by perimeter below, and the q-shift equation.[^8]
 
 This is the closest Analytic Combinatorics (AC)-native construction to the castle we have so far: it treats a castle-like polyomino as a *specification* over classes of columns, and reads the OGF off the specification without ever writing a recurrence.
 
@@ -91,3 +92,4 @@ The book's own note (p. 46) points from Example I.8 forward to Example IX.14 p. 
 [^5]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] p.204 §12(8) - "This has been done for stack polyominoes [42] and parallelogram polyominoes [30, 12, 18]", with [42] = E.M. Wright, "Stacks", Quart. J. Math. Oxford (2) 19 (1968) 313-320 (cited via Delest-Viennot, not read).
 [^6]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.220 §2 eq. (3) - "a trapezoid is defined by a sequence such that l_i ≤ l_{i+1} and r_i ≥ r_{i+1}. Let T(x, y) be the generating function for trapezoids such that the number with n cells and base length b is the coefficient of x^n y^b ... T(x, y) = Σ_{k=1}^∞ x^k y(1 − x^k y) / Π_{n=1}^k (1 − x^n y)^2."
 [^7]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] pp.222-223 §4 - "Since T(x, 1) has radius of convergence 1 which exceeds r, it follows that c(n) ~ 2c*(n)."
+[^8]: [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] `bousquet-melou-1996-column-convex-polygons.txt` §2.3 L500-525 - "Example: stack polygons ... Lemma 2.4. Let S(s, t, x, y, q) be the generating function for stack polygons ... Proof. Applying construction A to the set of stack polygons provides all the stack polygons of width at least 2 ... Lemma 2.5. The generating function S(s, t, x, y, q) for stack polyominoes is given by (4) ... Proof. Apply Lemma 2.3."

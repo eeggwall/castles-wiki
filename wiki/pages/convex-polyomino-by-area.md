@@ -5,12 +5,12 @@ summary: Every convex-polyomino family counted by area n on one ladder - rectang
 tags: [analysis, polyomino, convex, area, q-analog, generating-function, parity, ferrers, stack-polyomino, parallelogram-polyomino, directed-convex, continued-fraction, oeis, verification]
 sources: [analytic-combinatorics-ch1-ogfs, column-convex-polygon-enumeration, counting-horizontally-convex-polyominoes, castle-by-area, bousquet-melou-fedou-1995-convex-polyominoes, klarner-rivest-1974-convex-n-ominoes, bender-1974-convex-n-ominoes]
 created: 2026-09-22
-updated: 2026-09-22
+updated: 2026-09-23
 ---
 
 # Convex polyominoes by area
 
-The Q Department grades castles by area. This page sets the classical baseline it grades against: every [[convex-polyomino](pages/convex-polyomino.md)] family counted by area `n` (the number of cells), on one ladder, with the castle's own families beside it. It is the polyomino-side foundation for [[castle-by-area](pages/castle-by-area.md)], [[stack-polyomino-gf](pages/stack-polyomino-gf.md)], and the q-polyomino zoo in `IDEAS.md`.
+Castles graded by area need a classical baseline, and this page sets it: every [[convex-polyomino](pages/convex-polyomino.md)] family counted by area `n` (the number of cells), on one ladder, with the castle's own families beside it. It is the polyomino-side foundation for [[castle-by-area](pages/castle-by-area.md)], and [[stack-polyomino-gf](pages/stack-polyomino-gf.md)].
 
 ## The ladder
 
@@ -162,6 +162,7 @@ def convex_by_area(N, bottoms="free", tops="unimodal"):
 - [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)], [[q-differential-system](pages/q-differential-system.md)] - the directed-convex and convex generating functions and the method that found them.
 - [[convex-castle-cap-factor](pages/convex-castle-cap-factor.md)] - the three prefactors as residues at `1/mu`: `p`, `p·κ`, `2p·κ^2` with the convex-castle cap factor `κ = 2.21532...`.
 - [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - the source of `mu`: existence, the stack-parallelogram-stack trisection, and the kernel bounds.
+- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - where `1/mu` sits in the area-perimeter phase diagram. It is the area singularity of staircase polygons at unit perimeter weight, on the branch away from the tricritical point where their Airy scaling holds.
 - [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] - `mu` to eleven digits, the parallelogram prefactor, and the trapezoid = stack series.
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - the same families graded by perimeter instead of area, and the question of adding area.
 - [[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)] - parallelogram area as the sum of peak heights of a Dyck word.

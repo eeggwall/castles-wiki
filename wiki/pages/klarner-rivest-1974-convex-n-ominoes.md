@@ -5,7 +5,7 @@ summary: Klarner and Rivest prove that the number c(n) of convex n-ominoes has a
 tags: [paper, source, polyomino, convex, parallelogram-polyomino, stack-polyomino, row-convex, area, growth-constant, integral-equation, q-analog]
 sources: [klarner-rivest-1974-convex-n-ominoes]
 created: 2026-09-22
-updated: 2026-09-22
+updated: 2026-09-23
 ---
 
 # Asymptotic Bounds for the Number of Convex n-Ominoes (Klarner & Rivest 1974)
@@ -53,7 +53,7 @@ All by execution on 2026-09-22 (own computation, not from the paper):
 
 The paper is the primary source for the growth constant on [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)]. Its trisection gives a proof-level reason why the stack rung (convex castles, A001523) is subexponential while the rungs above it are not: every convex polyomino is a parallelogram with a stack glued to each end.
 
-For the Q Department the useful object is the kernel `min{m, n}`. It is a row-to-row transfer operator on the area-graded count, which is the castle's transfer-matrix idea with the finite matrix replaced by an infinite kernel. The paper's lower-bound truncation `F_k` keeps only rows of length at most `k`, which is a finite `k x k` transfer matrix, and `gamma_k` is an algebraic number (a root of `Q_k(1/x)`). That makes `gamma` a limit of algebraic numbers from below and above, a concrete handle on the open question for this constant on [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] (this reading is this wiki's, not the paper's).
+For castles by area the useful object is the kernel `min{m, n}`. It is a row-to-row transfer operator on the area-graded count, which is the castle's transfer-matrix idea with the finite matrix replaced by an infinite kernel. The paper's lower-bound truncation `F_k` keeps only rows of length at most `k`, which is a finite `k x k` transfer matrix, and `gamma_k` is an algebraic number (a root of `Q_k(1/x)`). That makes `gamma` a limit of algebraic numbers from below and above, a concrete handle on the open question for this constant on [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] (this reading is this wiki's, not the paper's).
 
 The companion constant in the same paragraph is `theta` for all polyominoes (Klarner's constant). This paper records the 1974 bounds, `3.72` below (Klarner 1967) and `4.65` above (Klarner and Rivest 1973).[^3] The `3.87 < K < 4.65` quoted on [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] bounds the same constant after a later improvement of the lower end. The upper end is the same 1973 number.[^13]
 
@@ -63,7 +63,7 @@ The companion constant in the same paragraph is `theta` for all polyominoes (Kla
 - **Bousquet-Mélou and Fédou** ([[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)]) credit this paper as the first to give the area generating function of parallelograms.[^14] Their `X = y J_1/J_0` at `x = y = 1` and this paper's (19) both expand to A006958.
 - **Delest and Viennot** ([[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)]) cite this paper. Their trisection cuts along the vertical lines through two extreme boundary points rather than along rows, so their stacks stand "up to 90° rotation".
 - **The kernel is a Dyck-word statistic** (own reasoning). Under Delest-Viennot's bijection β, peak heights are the parallelogram's column heights, and the trough between peaks of heights `m` and `n` can take any of `min{m, n}` values ([[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)]). So the `min{m, n}` transfer sum counts Dyck words by the sum of their peak heights, grouped by peak-height sequence.[^15]
-- **The recursion is a q-shift equation** (own reasoning). `B(x, y) = xy/(1-xy) + xy/(1-xy)^2 (B(x, 1) - B(x, xy))` relates `B` at `y` to `B` at `xy`. It is a one-unknown instance of the systems on [[q-differential-system](pages/q-differential-system.md)], 21 years before the three-block convex system.
+- **The recursion is a q-shift equation** (own reasoning). `B(x, y) = xy/(1-xy) + xy/(1-xy)^2 (B(x, 1) - B(x, xy))` relates `B` at `y` to `B` at `xy`. It is a one-unknown instance of the systems on [[q-differential-system](pages/q-differential-system.md)], 21 years before the three-block convex system. It is also the shape of Lemma 2.3 of [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], one shift and no derivative term, whose parallelogram theorem credits this paper with the area case.[^16]
 
 ## Footnotes
 
@@ -82,3 +82,4 @@ The companion constant in the same paragraph is `theta` for all polyominoes (Kla
 [^13]: https://oeis.org/A001168 (fetched 2026-09-22) - "The currently best-known lower and upper bounds on this constant are 3.9801 (Barequet et al., 2006) and 4.6496 (Klarner and Rivest, 1973), respectively."
 [^14]: [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] p.56 L153-184 [synthesis] - the parallelogram generating function (1) was first obtained "by Klarner and Rivest" for area, then refined by Delest-Fédou, Brak-Guttmann and Bousquet-Mélou-Viennot.
 [^15]: Verified by execution, 2026-09-22 (own computation): summing `prod_i min(a_i, a_{i+1})` over all compositions `(a_1, ..., a_k)` of `n` gives `1, 2, 4, 9, 20, 46, 105, 242, 557, 1285, ...` through `n = 20`, which is A006958 and matches the parallelogram column of [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] Table 1 (`5526198` at `n = 20`).
+[^16]: [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] `bousquet-melou-1996-column-convex-polygons.txt` p.12 Remark (2) after Theorem 3.2 L587-588 - "Special important cases of this theorem were proved by Klarner and Rivest [22] (area generating function)"; Lemma 2.3 at L459-461, "X(s) = xe(s) + xf(s)X(1) + xg(s)X(sq)".
