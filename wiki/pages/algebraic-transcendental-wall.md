@@ -5,7 +5,7 @@ summary: The castle's counts are C-finite, so their closed forms carry only alge
 tags: [concept, castle, algebraic, transcendental, c-finite, golden-ratio, sqrt2, e, pi, asymptotics, pedagogy]
 sources: [project-euler-502-representations, aocp-permutations, aocp-generating-functions, generating-functions-topic]
 created: 2026-09-15
-updated: 2026-09-21
+updated: 2026-09-22
 ---
 
 # The algebraic/transcendental wall
@@ -34,7 +34,7 @@ where the `r_i` are the roots of the characteristic polynomial — algebraic —
 
 **Exact (algebraic) — and the named ones are all quadratic.** The constants that appear *exactly* are characteristic roots, and the ones with names are all degree 2:[^4]
 
-- `φ = (1+√5)/2` — Fibonacci's growth rate (`F_n = (φ^n − φ̂^n)/√5`) and the `2^{n−1} − F_{n−1}` of prime castles.
+- `φ = (1+√5)/2` — Fibonacci's growth rate (`F_n = (φ^n − φ̂^n)/√5`) and the `F_{n−1}` prime castles of [[prime-castles](pages/prime-castles.md)].
 - `√2` — `|1+i| = √2` in `P(1,L) = Re((1+i)^{L+1})`, and the tower-word growth constant `√2 + 1`.
 - `√5` — the Fibonacci denominator.
 - `i` — the `1±i` eigenvalues of `P(1,·)`.

@@ -5,7 +5,7 @@ summary: The castle analogue of Foata's canonical-cycle flattening — peaks are
 tags: [concept, castle, foata, permutations, records, bijection]
 sources: [project-euler-502-castle-factoring, pe502-castle-cycle-permutations]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-22
 ---
 
 # Castle Foata transform
@@ -89,6 +89,8 @@ For height exactly 2 the tower above the base is a single row of blocks, encoded
 - [[castle-representations](pages/castle-representations.md)] — the column-height sequence the transform flattens onto.
 - [[castle-sign](pages/castle-sign.md)] — the descent formula for the block count used to check the examples.
 - [[aocp-multisets](pages/aocp-multisets.md)] — Foata's intercalation product and two-line-array cycle apparatus, the Vol. 3 sibling of this Vol. 1 construction.
+- [[prime-castles](pages/prime-castles.md)] - the peaks are exactly the nontrivial prime factors when castles are cut at their height-1 columns.
+- [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)] - peaks and base-leaving records are additive over prime factors; left-to-right maxima are not.
 - [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the seminar synthesis; this transform is the middle row of the three-move (n−1)!-to-castle table.
 
 ## Footnotes

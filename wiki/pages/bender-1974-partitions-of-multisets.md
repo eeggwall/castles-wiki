@@ -55,7 +55,7 @@ The wiki's multiset material so far is Knuth's: permutations of a multiset and t
 
 **A homonym to keep apart.** Bender's "blocks" are the parts of a partition. On castle pages, a block is a height-1, integer-length rectangle ([[project-euler-502](pages/project-euler-502.md)]), and the block count is the statistic filtered on [[block-count-constraints](pages/block-count-constraints.md)]. The two words share nothing but spelling.
 
-**Own reasoning, not in the paper:** if castles concatenate freely over prime castles, then the number of castles built from a given multiset of primes is a multinomial over orderings, which is Knuth's side. Bender's numbers would enter only for a question about unordered groupings of a castle's primes.
+**Own reasoning, not in the paper:** castles glued at height-1 columns form a free monoid on the prime castles ([[prime-castles](pages/prime-castles.md)]), so the number of castles built from a given multiset of primes is a multinomial over orderings, which is Knuth's side ([[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)]). Bender's numbers would enter only for a question about unordered groupings of a castle's primes.
 
 ## Footnotes
 

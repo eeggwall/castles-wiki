@@ -175,6 +175,20 @@ A castle's semi-perimeter is `w + #blocks` ([[castle-perimeter](pages/castle-per
 | even-block convex castles | `0, 1, 3, 7, 17, 44, 116, 305, 799, 2091` | `t³(1-t)/((1-3t+t²)(1-t+t²))` | `φ²` | **novel-candidate** (no match, 2026-09-22) |
 | signed convex castles | `-1, 0, 1, 1, 0, -1` (period 6) | `-t²(1-t)/(1-t+t²)` | periodic | trivial (not searched) |
 
+### Prime castles by area
+
+Castles glued at a shared height-1 column form a free monoid whose primes are the castles with no height-1 column ([[prime-castles](pages/prime-castles.md)]). A convex castle has at most one nontrivial prime ([[prime-convex-castles](pages/prime-convex-castles.md)]). Terms from `n = 2`.
+
+| object | first terms | GF / formula | status |
+|---|---|---|---|
+| prime castles | `1, 1, 2, 3, 5, 8, 13, 21` | `q^2/(1-q-q^2)` | **known** → [A000045](https://oeis.org/A000045) (compositions into parts `≥ 2`) |
+| prime convex castles `U` | `1, 1, 2, 3, 5, 8, 12, 19, 28, 42, 61, 90` | `Δ^2 A001523`; `sum_k q^k/((1-q^k)(q^2;q)_{k-2}^2)` | **novel-candidate** (no match, 2026-09-22) |
+| non-convex prime castles `F_{n-1} - U` | `1, 2, 6, 13, 28, 54, 106, 194` (from `n = 8`) | | **novel-candidate** (no match, 2026-09-22) |
+| `U` by width | rows `1; 1; 1,1; 1,2; 1,3,1; 1,4,3; 1,5,5,1` | convex castles of area `n-w`, width `w` | **novel-candidate** (no match, 2026-09-22) |
+| convex castles, first column not 1 | `1, 2, 4, 7, 12, 20, 32, 51, 79` | `Δ A001523` | **interlink** → [A342528](https://oeis.org/A342528) (verified through area 120; neither entry cites the other) |
+| castles per multiset of primes | `1, 2, 3, 5, 9, 15, 26, 45, 78` (from `n = 1`) | Euler transform of the prime counts | **novel-candidate** (no match, 2026-09-22), [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)] |
+| prime parity splits (all and convex) | see the two pages | | **novel-candidate** (no match, 2026-09-22) |
+
 ### Legacy generation candidates (pre-catalogue, statuses to refresh)
 
 Computed earlier and listed as candidates before the status convention; most are **unchecked** pending an OEIS search on current terms.

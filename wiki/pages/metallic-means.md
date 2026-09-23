@@ -5,7 +5,7 @@ summary: The family of quadratic irrationals `δ_a = (a + √(a²+4))/2` for a =
 tags: [concept, metallic-mean, golden-ratio, silver-ratio, pell, fibonacci, continued-fraction, quadratic-irrational, norm-minus-one]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-15
-updated: 2026-09-21
+updated: 2026-09-22
 ---
 
 # Metallic means
@@ -52,7 +52,7 @@ The copper mean has a special place: `δ_4 = 2 + √5 = φ³` (since `φ² = φ 
 
 Two members of this family are already load-bearing on the wiki, from two independent directions:
 
-- **`δ_1 = φ`** is the growth constant of Fibonacci, which appears in the castle count as `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] (prime castles). The Fibonacci method for turning a recurrence into a rational generating function (GF) is the archetype of [[aocp-generating-functions](pages/aocp-generating-functions.md)].
+- **`δ_1 = φ`** is the growth constant of Fibonacci, which appears in the castle count as the `F_{n−1}` prime castles and `2^{n−1} − F_{n−1}` composite castles of [[prime-castles](pages/prime-castles.md)]. The Fibonacci method for turning a recurrence into a rational generating function (GF) is the archetype of [[aocp-generating-functions](pages/aocp-generating-functions.md)].
 - **`δ_2 = 1+√2`** is the growth constant of the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]), and appears as the count-sequence growth of the anchored 1-smooth height-3 strip on [[pell-castle-strip](pages/pell-castle-strip.md)], whose width generating function is exactly `1/(1 − 2x − x²)`. The integer realization is the [[pell-numbers](pages/pell-numbers.md)].
 
 Both are treated in parallel on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] as "the castle's two norm-`−1` reduced quadratics" — the framing that made writing this page unavoidable: **there is a ladder, and the wiki was already sitting on rungs 1 and 2 without naming it.** Naming the ladder makes explicit that the metallic-mean family is a **meta-classification axis** for castle sub-families: a castle class is a **"`<metal>` `<axis>` growth castle"** iff its count sequence, graded by the chosen size axis, grows at rate `δ_a`. This is now Axis 8 of [[castle-classification-growth](pages/castle-classification-growth.md)]; the naming convention (`<metal>` ∈ {golden, silver, bronze, copper, nickel, …}, `<axis>` ∈ {width, vertical, area, block}) is developed there.
