@@ -5,7 +5,7 @@ summary: s(C) = (-1)^blocks, the castle sign - the analogue of the permutation s
 tags: [concept, castle, sign, permutations, parity, generating-functions]
 sources: [project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-brute-force, pe502-castle-cycle-permutations]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-22
 ---
 
 # Castle sign
@@ -55,6 +55,7 @@ F(w,h) = [ h^w − (h−1)^w − P(h−1,w) + P(h−2,w) ] / 2
 
 ## Related Concepts
 
+- [[castle-perimeter](pages/castle-perimeter.md)] - the sign is `(-1)^{s-w}` for semi-perimeter `s`; signed castles by semi-perimeter have an algebraic GF with growth `τ` against `τ²` unsigned.
 - [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] — the analogy in which the sign is the "sign atom."
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — where `P(k,L)` and the `(T−P)/2` term appear.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] — the sign trick taught as one of the two core ideas.

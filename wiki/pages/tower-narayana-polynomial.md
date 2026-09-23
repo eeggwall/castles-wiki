@@ -5,7 +5,7 @@ summary: The tower (heap-of-pieces) block-count GF is Narayana_w(x)/(1−x)^w; w
 tags: [oeis, tower, narayana, heap-of-pieces, generating-functions, cross-reference, source]
 sources: [tower-narayana-polynomial]
 created: 2026-09-13
-updated: 2026-09-18
+updated: 2026-09-22
 ---
 
 # Tower block-count = Narayana polynomial
@@ -51,7 +51,8 @@ Per [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] these are draft 
 - Tower block-count GF `= Narayana_w(x)/(1−x)^w`; `T(w,b) = Σ_k N(w,k) C(b+w−k, w−1)`, verified `w=1..7`.[^1]
 - Width rows: A005408, A005891, A063490, A160747 (w=2..5); new for w≥6.[^2]
 - **This — not the convex count — is where Catalan/Narayana enters the castle world**, via the heap-of-pieces tower.[^1]
-- The A001263 link is a generating-function identity, explicitly not a peaks bijection.[^3]
+- The A001263 link is a generating-function identity, explicitly not a peaks bijection.[^3] The refinement that does factor it is by **descents**: towers with `k-1` descents number `N(w,k) C(b+w-k, w-1)` (brute-force verified `w, b ≤ 7`, second Delest-Viennot pass; see [[narayana-numbers](pages/narayana-numbers.md)]).
+- Re-indexed by semi-perimeter `s = w + blocks` (a castle's semi-perimeter, [[castle-perimeter](pages/castle-perimeter.md)]), castles by `(s, w)` are the bargraph triangle A271942, and by `s` alone A082582.
 
 ## Entities & Concepts
 

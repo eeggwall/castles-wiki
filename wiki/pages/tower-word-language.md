@@ -3,9 +3,9 @@ title: Tower word language
 category: Concepts
 summary: The tower words as a formal language — a Motzkin-path language (U/R/D = +1/0/−1) with a run constraint, its unambiguous first-return grammar, and where it sits among Dyck and Motzkin.
 tags: [concept, castle, formal-language, motzkin, dyck, grammar, chomsky-schutzenberger, pedagogy]
-sources: [dyck-words, project-euler-502-representations]
+sources: [dyck-words, project-euler-502-representations, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-14
-updated: 2026-09-19
+updated: 2026-09-22
 ---
 
 # Tower word language
@@ -53,10 +53,19 @@ Two precise relationships anchor it:
 
 The tower's "no `UD`/`DU`" is a *stricter* run constraint than steep's "no `UDU`" (it forbids all vertical-step adjacency, not just the `UDU` sandwich), which is precisely why the tower count `(k+1)^L` is simpler than the Motzkin `M_n`. The `R` (flat step) is doing the work: it is what lets the vertical runs sit apart, and the run constraint is what turns an algebraic Motzkin count into a rational one.
 
+## Why a boundary word works here: Boasson's lemma
+
+Delest and Viennot show that a convex polyomino **cannot** be coded by an algebraic language just by following its boundary. By Boasson's lemma, no word of an algebraic language has two overlapping iterative pairs. Boundary words of convex polyominoes do have them, because pumping two parallel stretches of the boundary together keeps the shape convex.[^4] They get around this by cutting the polyomino into a parallelogram and two stacks and coding each piece separately.
+
+The tower word is a boundary word, yet it is context-free (regular at fixed height). The difference, in own reasoning, is the flat base. A castle's lower boundary is one straight run of length `w`, so the word only has to encode the upper boundary, a single path whose constraint (stay `≥ 0`, return to `0`) is a one-counter condition. A convex polyomino has two free boundary paths that must stay non-crossing *relative to each other*. That coupling is what Boasson's lemma detects. The castle is on the one-path side, which is also why its convex sub-family is binomial rather than Catalan ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]). Delest-Viennot's stack word, read along the same one path, is the castle's convex U/R/D word with `U, D → a` and `R → xx` (see [[convex-castle](pages/convex-castle.md)]).
+
+The methodology is the same one this page uses: write an unambiguous grammar, translate it to an algebraic system, commute the variables. Delest-Viennot is the classic application of it to polyominoes, and also the first to use it to discover a formula instead of explaining one already known.[^5]
+
 ## Appearances in Sources
 
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] — the tower word and the grammar.
 - [[dyck-words](pages/dyck-words.md)] — the Dyck first-return grammar and the steep-Dyck → Motzkin bijection.
+- [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - Boasson's lemma against boundary words, and the grammar-to-GF method applied to convex polyominoes.
 
 ## Related Concepts
 
@@ -73,3 +82,5 @@ The tower's "no `UD`/`DU`" is a *stricter* run constraint than steep's "no `UDU`
 [^1]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The tower word" L221-230, §"The grammar" L258-269 — "A tower above a length-L block uses exactly L R's, never drops below the base, and returns to it," plus "no UD ... and no DU," and "E_k -> empty | R E_k | U V D ( empty | R E_k )" with "V ... one row lower ... and V is nonempty."
 [^2]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Unsigned count" L297-309 — "E_k = 1/(1-(k+1)x)" and "T(k,L) = (k+1)^L".
 [^3]: [[dyck-words](pages/dyck-words.md)] §"Steep Dyck Words" L114, L136-155 — "A Dyck word is steep if it is nonempty and contains no x x̄ x factor," the steep grammar "S → x x̄ | x S x̄ | x S x̄ S", and "steep Dyck words of length 2n are enumerated by the (n-1)th Motzkin number."
+[^4]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] p.176 §2, Fig. 3 [synthesis] - "Boasson's lemma [4] says that no word of an algebraic language has overlapping iterative pairs. We show that this lemma implies that there is no hope to encode a convex polyomino P with word of an algebraic language L by just following the border of P"; an iterative pair corresponds to two boundary portions forming a parallelogram, and "Overlapping iterative pairs are easily found."
+[^5]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] pp.169-170 §1 - "from the non-ambiguous grammar, one can associate a proper algebraic system of equations in noncommutative power series ... By sending all variables x of X onto one variable t"; "In this paper, the method is reversed: no formula is known."
