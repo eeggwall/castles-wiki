@@ -3,7 +3,7 @@ title: Convex polyominoes by area - the ladder from rectangles to 2.30913^n
 category: Analyses
 summary: Every convex-polyomino family counted by area n on one ladder - rectangles d(n), Ferrers p(n), stacks = convex castles A001523, parallelograms A006958, directed convex A067676, convex A067675 - with the castle's own bar graphs (2^{n-1}) and column-convex polyominoes (A001169) beside it. Each rung has an "adding a slice" generating function, and the last three share the growth constant 2.3091385933... (A276994). With the PE 502 parity clause carried over (on row-convex shapes, blocks = height), signed Ferrers are (-1)^n A000700 by conjugation and signed parallelograms are -q/(1 + q^3/(1 + q^5/(1 + ...))) = -A049346, because the height variable at y = -1 cancels the linear terms of Flajolet's festoon J-fraction; the even/odd splits of stacks, directed convex and convex have no OEIS match. Verified by column-sweep enumeration to area 40 (parallelograms) and 32 (convex).
 tags: [analysis, polyomino, convex, area, q-analog, generating-function, parity, ferrers, stack-polyomino, parallelogram-polyomino, directed-convex, continued-fraction, oeis, verification]
-sources: [analytic-combinatorics-ch1-ogfs, column-convex-polygon-enumeration, counting-horizontally-convex-polyominoes, castle-by-area]
+sources: [analytic-combinatorics-ch1-ogfs, column-convex-polygon-enumeration, counting-horizontally-convex-polyominoes, castle-by-area, klarner-rivest-1974-convex-n-ominoes]
 created: 2026-09-22
 updated: 2026-09-22
 ---
@@ -73,7 +73,7 @@ mu = 2.30913 85933 30494 73...     (OEIS A276994, the Klarner-Rivest constant)
 1/mu = 0.43306 19231 29...         the smallest positive zero of J_0(z, 1) = sum_n (-1)^n z^{n(n+1)/2} / ((1-z)...(1-z^n))^2
 ```
 
-The prefactors are `0.29745...` for parallelograms and `2.91959...` for convex polyominoes.[^8] Bender obtained the parallelogram asymptotic from the singularity of the generating function, and Flajolet and Sedgewick follow his analysis in Example IX.14.[^6][^14] The printed digits there end `...331230`, which OEIS flags as wrong; the value above is the corrected one.[^8] Directed convex polyominoes sit between the two (parallelogram ⊂ directed convex ⊂ convex), so their growth rate is squeezed to the same `mu`. Numerically the parallelogram ratio `a(n+1)/a(n)` is already `2.30914` at `n = 25`, while the directed-convex (`2.30924`) and convex (`2.3093`) ratios approach it more slowly.[^1]
+Klarner and Rivest proved that the convex and parallelogram limits exist and coincide: every convex polyomino cuts into a stack, a parallelogram and an inverted stack, so `p(n) <= c(n) <= (n+2)^4 p(n)`. They then bracketed the common limit to `2.309138...` by truncating the parallelogram row-to-row kernel `min{m, n}` from both sides.[^15] The prefactors are `0.29745...` for parallelograms and `2.91959...` for convex polyominoes.[^8] Bender obtained the parallelogram asymptotic from the singularity of the generating function, and Flajolet and Sedgewick follow his analysis in Example IX.14.[^6][^14] The printed digits there end `...331230`, which OEIS flags as wrong; the value above is the corrected one.[^8] Directed convex polyominoes sit between the two (parallelogram ⊂ directed convex ⊂ convex), so their growth rate is squeezed to the same `mu`. Numerically the parallelogram ratio `a(n+1)/a(n)` is already `2.30914` at `n = 25`, while the directed-convex (`2.30924`) and convex (`2.3093`) ratios approach it more slowly.[^1]
 
 The castle's fixed-`h` growth constants are algebraic Perron roots of a finite transfer matrix. This `mu` is instead the reciprocal of the first zero of a q-series with no finite transfer matrix behind it, so no Perron-root argument makes it algebraic, and the question on [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] is open for it.
 
@@ -156,7 +156,6 @@ These appear only in OEIS link lists and were not read. Nothing on this page res
 
 - M. Bousquet-Mélou and J.-M. Fédou, "The generating function of convex polyominoes: the resolution of a q-differential system", Discrete Math. 137 (1995) 53-75 - listed on A067675 and A067676; per its title, the generating function of the convex and directed-convex rungs.
 - E. A. Bender, "Convex n-ominoes", Discrete Math. 8 (1974) 219-226 - listed on A006958 and A276994; the asymptotic analysis behind `mu`.
-- D. A. Klarner and R. L. Rivest, "Asymptotic bounds for the number of convex n-ominoes", Discrete Math. 8 (1974) 31-40 - listed on A006958 and A276994; the source of the constant's name.
 - M.-P. Delest and G. Viennot, "Algebraic languages and polyominoes enumeration", Theoretical Computer Sci. 34 (1984) 169-206 - listed on A005436; the perimeter count.
 
 ## Related
@@ -167,6 +166,7 @@ These appear only in OEIS link lists and were not read. Nothing on this page res
 - [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] - A001169, which by rotation is the column-convex rung.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], [[q-catalan-numbers](pages/q-catalan-numbers.md)] - the q-Bessel and q-Catalan families the parallelogram rung belongs to.
 - [[castle-sign](pages/castle-sign.md)] - the `(-1)^blocks` specialization used in the parity section.
+- [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - the source of `mu`: existence, the stack-parallelogram-stack trisection, and the kernel bounds.
 
 ## Footnotes
 
@@ -184,3 +184,4 @@ These appear only in OEIS link lists and were not read. Nothing on this page res
 [^12]: https://oeis.org/A227310 and https://oeis.org/A049346 (fetched 2026-09-22) - A227310 "G.f.: 1 + q/(1 - q^3/(1 - q^5/(1 - q^7/ (...))))" and "a(n) ~ c * d^n, where d = 1.23729141259673487...", data "1,1,0,0,1,0,0,1,0,1,1,0,2,1,1,3,2,3,4,4,6,7,8,11,13,16,20"; A049346 "a(0) = 1 and a(n) = abs(A049346(n)) for n>=1" (from A227310), data "0,1,0,0,-1,0,0,1,0,1,-1,0,-2,1,-1,3,-2,3,-4,4,-6".
 [^13]: OEIS search, 2026-09-22 - no results for the convex even row "1,4,10,28,84,244,686,1820", the convex odd row "1,2,9,31,92,258,688,1810", the directed-convex even and odd rows, or the unsigned directed-convex and convex signed rows; the stack rows were already recorded as new on [[castle-by-area](pages/castle-by-area.md)].
 [^14]: P. Flajolet, "Polya Festoons", INRIA Research Report 1507 (1991), https://inria.hal.science/inria-00075055 (PDF downloaded and read as OCR text, 2026-09-22), closing section - "Bender [1] proved [q^n] C(1, 1; q) = 0.29745 · 2.30913859330^n, by considering singularities of the GF (6)" (OCR spelling normalized).
+[^15]: [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] §2 and §4-5 [synthesis] L69-124,L226-344 - the trisection into "two stacks and one parallelogram", (3) `c(n) <= (n+2)^4 p(n)`, (5) `lim c(n)^{1/n} = lim p(n)^{1/n} = gamma`, and the kernel bounds of Table 1 giving "(32) gamma = lim_{n->oo} (c(n))^{1/n} = 2.309138...".

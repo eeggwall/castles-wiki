@@ -3,7 +3,7 @@ title: Stack polyomino generating function
 category: Concepts
 summary: A stack polyomino — column heights that weakly rise then weakly fall around a single peak — is a castle tower with one peak. Its OGF `S(z) = ∑_{k≥1} z^k/(1−z^k) · 1/((1−z)(1−z²)···(1−z^{k−1}))²` (OEIS A001523) is built directly by the [[symbolic-method]] from a Durfee-square-style geometric decomposition.
 tags: [concept, polyomino, stack-polyomino, generating-functions, symbolic-method, durfee-square, castle-tower]
-sources: [analytic-combinatorics-ch1-ogfs]
+sources: [analytic-combinatorics-ch1-ogfs, klarner-rivest-1974-convex-n-ominoes]
 created: 2026-09-15
 updated: 2026-09-22
 ---
@@ -48,6 +48,7 @@ The book's own note (p. 46) points from Example I.8 forward to Example IX.14 p. 
 ## Appearances in Sources
 
 - [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] — Example I.8 pp. 45-46, "The Durfee square of partitions and stack polyominoes."
+- [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] p.33 - Wright's stacks, `s(3) = 4`, injected into parallelograms (`s(n) <= p(n)`); every convex polyomino is two stacks glued to the ends of a parallelogram, which is why stacks cost only a polynomial factor in the convex count.
 
 ## Related Concepts
 

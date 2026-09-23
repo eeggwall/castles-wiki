@@ -3,7 +3,7 @@ title: Convex polyomino
 category: Concepts
 summary: A polyomino that is both column-convex and row-convex - equivalently a run of overlapping column intervals whose tops weakly rise then fall and whose bottoms weakly fall then rise. The classical sub-families are named by which bounding-box corners they contain (Ferrers, stack, parallelogram, directed-convex); the wiki's convex castle is exactly the stack polyomino, and on any row-convex shape the castle block count is the height.
 tags: [concept, polyomino, convex, column-convex, row-convex, ferrers, stack-polyomino, parallelogram-polyomino, directed-convex, q-analog]
-sources: [column-convex-polygon-enumeration, counting-horizontally-convex-polyominoes, analytic-combinatorics-ch1-ogfs]
+sources: [column-convex-polygon-enumeration, counting-horizontally-convex-polyominoes, analytic-combinatorics-ch1-ogfs, klarner-rivest-1974-convex-n-ominoes]
 created: 2026-09-22
 updated: 2026-09-22
 ---
@@ -44,6 +44,7 @@ These nest: rectangle ⊂ Ferrers ⊂ stack ⊂ directed convex ⊂ convex, and 
 - **A castle is a bar graph.** Every castle skyline has all its columns standing on a common base, so a castle is a column-convex polyomino with constant bottoms. By area every composition is a castle, and there are `2^{n-1}` of them ([[castle-by-area](pages/castle-by-area.md)]).
 - **A convex castle is a stack polyomino.** Adding row-convexity to constant bottoms forces a unimodal skyline, which is the stack row of the table. That is the identity behind "convex castles by area = A001523" on [[convex-castle](pages/convex-castle.md)] and [[stack-polyomino-gf](pages/stack-polyomino-gf.md)].
 - **So the general convex polyomino is a convex castle with a floating base.** Letting the bottoms follow their own anti-unimodal profile is the only change, and it moves the area count from subexponential (stacks) to exponential growth `2.30913...^n` (convex).
+- **Two convex castles and a parallelogram.** Klarner and Rivest cut every convex polyomino along two rows into an upper stack, a middle parallelogram and a lower upside-down stack. Reassembling costs at most a factor `(n+2)^4`, so convex polyominoes grow exactly as fast as parallelograms.[^4] In castle terms, every convex polyomino is a parallelogram with a convex castle on top and another hung underneath.
 - **Blocks become height.** A castle block is a maximal horizontal run of cells in one row. On any row-convex shape each row is one run, so the block count is the number of rows, the height. This is the general form of "a convex castle of height `h` has exactly `h` blocks" on [[convex-castle](pages/convex-castle.md)], and it is why the Project Euler 502 parity clause, carried over to convex polyominoes, becomes **height parity**.
 
 ## Related Concepts
@@ -53,9 +54,11 @@ These nest: rectangle ⊂ Ferrers ⊂ stack ⊂ directed convex ⊂ convex, and 
 - [[convex-castle](pages/convex-castle.md)], [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - the stack row of the table under its castle name and its symbolic-method generating function.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - Bousquet-Mélou's add-a-column method, which recovers the convex-polyomino generating functions.
 - [[polyominoes](pages/polyominoes.md)] - the wider taxonomy.
+- [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - the trisection and the growth constant `2.309138...`.
 
 ## Footnotes
 
 [^1]: [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] p.1 §1 - "A polyomino is said to be vertically convex (or column-convex) when its intersection with any vertical line is convex ... A polyomino is convex if it is both vertically and horizontally convex."
 [^2]: https://oeis.org/A005436 (fetched 2026-09-22) - "Number of convex polygons of perimeter 2n on square lattice ... a(n) = (2*n+11)*4^n - 4*(2*n+1)*binomial(2*n,n) produces the terms (except the first two) with a different offset", (formula line signed N. J. A. Sloane, 2017). The entry's link list includes Delest and Viennot, "Algebraic languages and polyominoes enumeration" (1984); that paper was not read for this page.
 [^3]: [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] p.2 §1 - "three very classical families of directed and convex polyominoes: the Ferrers diagrams, the stack polyominoes, and finally the parallelogram (or staircase) polyominoes ... characterized ... by the fact that two or three vertices of the minimal bounding rectangle ... must also belong to the polyomino."
+[^4]: [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] p.32-34 §2 [synthesis] L69-124 - "the trisection of a convex n-omino A is accomplished by cutting along the lowest level of A where the left boundary of A goes to the right and by cutting along the lowest level of A where the right boundary of A goes to the left"; "every convex n-omino splits into two stacks and one parallelogram"; (3) `c(n) <= (n+2)^4 p(n)` and (5).
