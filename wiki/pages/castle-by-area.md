@@ -51,6 +51,7 @@ By (w,h) the concave counts add nothing new: `valley(w,h) = convex(w,h) = C(2h+w
 - [[proper-castle-projection](pages/proper-castle-projection.md)] - reciprocates the "new sequence from a castle count" precedent this page opened.
 - [[prime-castles](pages/prime-castles.md)] - cutting at height-1 columns makes castles a free monoid; the primes are the `F_{n-1}` castles with no height-1 column, a convex castle has at most one nontrivial prime (giving A001523 from the prime convex castles), and the `even`/`odd` and `cev`/`cod` splits are refined by the prime.
 - [[prime-convex-castles](pages/prime-convex-castles.md)] - the second difference of A001523 counts convex castles with no height-1 column, the same holds for `cev`/`cod` from `n = 3`, and the first difference is A342528.
+- [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] - the `even`/`odd` split to area 300 by a `z → qz` recursion; `even(n) - odd(n) ~ 0.0985 · (-1.62383)^n`.
 - [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)] - the block sign is a character of that monoid, and `1/(1 - P_s)` over the signed primes reproduces `odd(n) - even(n)` term by term.
 
 ## Footnotes

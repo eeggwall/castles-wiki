@@ -50,13 +50,7 @@ P(q) = q (1 + q^2/(1 - q - q^2)) = q (1 - q)/(1 - q - q^2)
 
 On the right, `1` is the identity `(1)`, `q` is the empty castle `(1, 1)`, and `q · q/(1 - 2q)` is the padded castles, the `2^{n-1}` of [[castle-by-area](pages/castle-by-area.md)] shifted by one. Without the identity this is the sequence construction `M - 1 = P/(1 - P)` of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)]. Klarner's `A = P/(1 - P)` prime-polyomino decomposition has the same form. The wiki holds no Klarner source for it, so the two are not compared in detail here (Klarner's paper not read).
 
-**The primes are castles raised one row.** A nonempty `X` with no height-1 column is a castle `Y` with a full row slid under it: `X = (y_1 + 1, ..., y_w + 1)`, so `area(X) = area(Y) + width(Y)`. With `A(q, z)` the castle GF by area and width, `P = q (1 + A(q, q))`, and the factorization becomes the functional equation
-
-```
-1 + q + q A(q, 1)  =  1 / (1 - q - q A(q, q))
-```
-
-a `z → q` substitution, the kind of shift the adding-a-slice equations on [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] are built from (own reasoning). Unsigned it holds trivially, since `A(q, 1) = q/(1 - 2q)` and `A(q, q) = q^2/(1 - q - q^2)`. It has more content when a statistic rides along. The block sign, carried through the same equation, is on [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)].
+**The primes are castles raised one row.** A nonempty `X` with no height-1 column is a castle with a full row slid under it, so `P = q (1 + A(q, q))`, with `A(q, z)` the castle GF by area and width. With width tracked, the factorization becomes a `z → qz` functional equation. That equation is trivial unsigned, but signed or weighted by peaks it has content. It is on [[castle-row-raising-equation](pages/castle-row-raising-equation.md)].
 
 ## Counting factors
 
@@ -116,6 +110,7 @@ for n in range(1, 17):
 ## Relation to other pages
 
 - [[castle-by-area](pages/castle-by-area.md)]: the area counts and the `even`/`odd`/`cev`/`cod` splits refined here.
+- [[castle-row-raising-equation](pages/castle-row-raising-equation.md)]: the functional equation the raised primes give, signed and by peaks.
 - [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)]: the sign as a character of this monoid, the signed `P_s/(1 - P_s)` identity, and counts per multiset of primes.
 - [[prime-convex-castles](pages/prime-convex-castles.md)]: the one nontrivial prime of a convex castle, counted.
 - [[convex-castle](pages/convex-castle.md)]: the convex castles.

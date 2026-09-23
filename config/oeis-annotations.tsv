@@ -158,3 +158,4 @@ A271942	count	Triangle read by rows: T(n,k) is the number of bargraphs of semipe
 A105422	supporting	Triangle read by rows: T(n,k) is the number of compositions of n having exactly k parts equal to 1.	prime-factor counts of castles by area (k+1 factors for k height-1 columns)
 A045623	supporting	Number of 1's in all compositions of n+1.	total height-1 columns over castles of area n; mean prime-factor count (n+6)/4
 A342528	count	Number of compositions with alternating parts weakly decreasing (or weakly increasing).	convex castles of area n+1 whose first column is not 1 (first difference of A001523)
+A001924	supporting	Apply partial sum operator twice to Fibonacci numbers.	one-peak castles of area n+1: (1^a, X, 1^b) with X free of height-1 columns

@@ -188,6 +188,10 @@ Castles glued at a shared height-1 column form a free monoid whose primes are th
 | convex castles, first column not 1 | `1, 2, 4, 7, 12, 20, 32, 51, 79` | `Δ A001523` | **interlink** → [A342528](https://oeis.org/A342528) (verified through area 120; neither entry cites the other) |
 | castles per multiset of primes | `1, 2, 3, 5, 9, 15, 26, 45, 78` (from `n = 1`) | Euler transform of the prime counts | **novel-candidate** (no match, 2026-09-22), [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)] |
 | prime parity splits (all and convex) | see the two pages | | **novel-candidate** (no match, 2026-09-22) |
+| signed castles by area `even - odd` | `-1, 0, 0, 2, 0, 2, -4, 2, -12, 10, -20, 38` (from `n = 1`, 300 terms computed) | row-raising recursion; `~ C(-rho)^n` | **novel-candidate** (no match, 2026-09-22), [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] |
+| signed growth constant `rho` and prefactor `C` | `1.62382967400459...`, `0.09850917497311...` | pole at `q E(q,q) = 1` | **novel-candidate** decimal expansions (no match, 2026-09-22) |
+| castles by area and peaks | rows `1; 1,1; 1,3; 1,7; 1,14,1; 1,26,5` | `(1-q-q^2+tq^2)/(1-2q+q^3-tq^3)` | **novel-candidate** (no match, 2026-09-22) |
+| one-peak castles | `1, 3, 7, 14, 26, 46, 79, 133` | `q^2/((1-q)^2(1-q-q^2))` | **interlink** → [A001924](https://oeis.org/A001924) (no composition reading on the entry) |
 
 ### Legacy generation candidates (pre-catalogue, statuses to refresh)
 

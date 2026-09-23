@@ -46,7 +46,7 @@ U(n)  =  a(n) - 2 a(n-1) + a(n-2),        a = A001523, a(0) = 1
 
 Proof: putting a height-1 column in front, `C ↦ (1, C)`, keeps a castle convex and is a bijection from the convex castles of area `n - 1` onto the convex castles of area `n` that begin with a height-1 column. So `a(n) - a(n-1)` counts the convex castles whose first column is not 1. Doing the same at the right end takes away the ones that end in a height-1 column, which leaves `U(n)`. Checked through area 1000.[^1] Equivalently, `A001523(q) - 1 = q/(1 - q) + U(q)/(1 - q)^2`, which counts the ways to place the prime `X` inside runs of height-1 columns. The `q/(1 - q)` term is the all-ones castles.
 
-**3. Convex castles raised one row.** Subtracting 1 from every part turns a unimodal composition of `n` into `w` parts `≥ 2` into a unimodal composition of `n - w` into `w` parts. So with `K(q, z)` the convex castle GF by area and width, `U(q) = K(q, q)`. This is the convex case of the row-raising substitution `z → q` on [[prime-castles](pages/prime-castles.md)]. By width `w`, `U(n, w)` is the number of convex castles of area `n - w` and width `w`:
+**3. Convex castles raised one row.** Subtracting 1 from every part turns a unimodal composition of `n` into `w` parts `≥ 2` into a unimodal composition of `n - w` into `w` parts. So with `K(q, z)` the convex castle GF by area and width, `U(q) = K(q, q)`. This is the convex case of [[castle-row-raising-equation](pages/castle-row-raising-equation.md)]. By width `w`, `U(n, w)` is the number of convex castles of area `n - w` and width `w`:
 
 ```
 n =  2:  1
