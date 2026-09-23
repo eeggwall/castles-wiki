@@ -116,7 +116,7 @@ These are the coefficients of `-A049346`, equivalently `(-1)^n A227310(n)`, whos
 
 The same object has an S-fraction form that makes the height variable visible on every other numerator, `1 + P(q, y) = 1/(1 - yq/(1 - q/(1 - yq^2/(1 - q^2/(1 - yq^3/...)))))`, which matches the full height distribution through area 28.[^1]
 
-**Stacks, directed convex, convex: open.** None of these signed or even/odd rows is in OEIS.[^13] Their signed counts oscillate with empirical growth near `1.18^n` (stack, directed convex) and `1.3^n` (convex), so they are also close to balanced. Finding the height-marked analogue of the festoon J-fraction for them is the next Q-Department question this page opens.
+**Stacks, directed convex, convex: open.** None of these signed or even/odd rows is in OEIS.[^13] Their signed counts oscillate with empirical growth near `1.18^n` (stack, directed convex) and `1.3^n` (convex), so they are also close to balanced. Finding the height-marked analogue of the festoon J-fraction for them is the next question this page opens.
 
 ## The column sweep
 

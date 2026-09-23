@@ -5,7 +5,7 @@ summary: The metallic ladder δ_a = (a + √(a²+4))/2 is a discrete slice throu
 tags: [analysis, castle, fractional-calculus, atici-eloe, nabla, mittag-leffler, metallic-mean, golden-ratio, transcendental, algebraic, baker-theorem, gelfond-schneider, plastic-number, supergolden, reachable-field, characteristic-equation]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-21
-updated: 2026-09-21
+updated: 2026-09-23
 ---
 
 # Fractional recurrences: the rung between rungs
@@ -178,7 +178,7 @@ So the Fibonacci-Pell interpolation family has **exactly two rational-`α` metal
 
 ## The discrete Mittag-Leffler function - the solution
 
-The continuous-time counterpart of `∇^α a_n = a_{n-1}` is the fractional differential equation `D^α y(t) = y(t - 1)` or the simpler `D^α y(t) = λ y(t)`, and the classical solution is the **Mittag-Leffler function** `E_α(z) = Σ_{k≥0} z^k / Γ(αk + 1)`, the fractional exponential (see the "Mittag-Leffler generating functions" item on `IDEAS.md`, F Department). The discrete analog is the **discrete/nabla Mittag-Leffler function**, one common form of which is[^11]
+The continuous-time counterpart of `∇^α a_n = a_{n-1}` is the fractional differential equation `D^α y(t) = y(t - 1)` or the simpler `D^α y(t) = λ y(t)`, and the classical solution is the **Mittag-Leffler function** `E_α(z) = Σ_{k≥0} z^k / Γ(αk + 1)`, the fractional exponential. The discrete analog is the **discrete/nabla Mittag-Leffler function**, one common form of which is[^11]
 
 ```
 F_{α, β}(λ; n)  =  Σ_{k=0}^{∞}  λ^k · <rising-factorial coefficient in n, α, β>,
@@ -205,7 +205,7 @@ Setting `λ = 1, β = α, γ` any convenient initial fit gives exactly the denom
 **Open:**
 - **Cubic frontier at rational `α`.** The rational orders `1/3, 2/3, 3/2` hit three of the wiki's named cubic Perron roots; do other small rational `α` land on the remaining census cubics (`Q(ζ₇)⁺` at `x³ - x² - 2x + 1`, tribonacci at `x³ - x² - x - 1`, the Pisot `x³ - 3x² + 2x - 1`)? A direct computation of `α = p/q` up to `p + q ≤ 8` and comparison to the census cubic list would settle this.
 - **Where the *other* metallic ladders live.** The `∇^α a_n = c a_{n-1}` family with `c ≥ 2` is not treated above. Its characteristic `(1 - r)^α = c r` gives at `α = 1`, growth `1 + c`, an integer; at `α = 2`, a member of `Q(√(4c + 1))` - a metallic-adjacent quadratic field. Which `c` produce silver, bronze, etc. at integer `α`?
-- **The Caputo variant.** The Grunwald-Letnikov nabla `∇^α` used above respects the initial condition `a_{-1} = 0` implicitly; the Caputo version differentiates first and keeps a classical set of initial values (F Department preamble on `IDEAS.md`). The characteristic equation is the same at the level of growth constants, but the specific sequence values differ by a `(1 - x)^{α-1}` factor. Whether the *sequences* (not just their growth) match any OEIS entry is unexplored.
+- **The Caputo variant.** The Grunwald-Letnikov nabla `∇^α` used above respects the initial condition `a_{-1} = 0` implicitly; the Caputo version differentiates first and keeps a classical set of initial values. The characteristic equation is the same at the level of growth constants, but the specific sequence values differ by a `(1 - x)^{α-1}` factor. Whether the *sequences* (not just their growth) match any OEIS entry is unexplored.
 - **The `α → ∞` regime and Lambert-W control.** The asymptotic `r*(α) ~ log(α)/α` and `g(α) ~ α / W(α)` (Lambert `W`) is stated as a limit; a full asymptotic expansion, and whether the correction terms are algebraically or transcendentally structured, is left open.
 
 ## Related Concepts
@@ -216,7 +216,7 @@ Setting `λ = 1, β = α, γ` any convenient initial fit gives exactly the denom
 - [[plastic-number](pages/plastic-number.md)] - `ψ² = 1.7549` at α = 2/3 and `ψ³ = 2.3247` at α = 3/2, cleanly parameterized as fractional-Fibonacci growths.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the supergolden `1.4656` (α = 1/3) appears here as a fractional-Fibonacci growth.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the discrete side: `M_h = J - D` realizes `δ_{h-1}` at integer `h`; here the same rung is a specific transcendental `α`, so integer-strip realizability and rational-α realizability are two different regularity properties on the ladder.
-- [[fractional-block-count](pages/fractional-block-count.md)] and [[fractional-width-and-height](pages/fractional-width-and-height.md)] - the F Department's two earlier fractional-order studies, which run the same `∇^α` operator on skylines rather than on the recurrence.
+- [[fractional-block-count](pages/fractional-block-count.md)] and [[fractional-width-and-height](pages/fractional-width-and-height.md)] - the two earlier fractional-order studies, which run the same `∇^α` operator on skylines rather than on the recurrence.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - `α = 1/2` gives `g = φ`, the same `φ` whose continued fraction is `[1; 1, 1, …]`; the fractional recurrence recovers φ from a different structural direction.
 - [[pell-numbers](pages/pell-numbers.md)] - silver `1 + √2` at `α = 1` in the Fibonacci-Pell interpolation, the clean "order-1-in-a-Fibonacci-family" reading.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the castle-side realization of the α = 1 silver rung: the anchored 1-smooth height-3 strip whose Perron root *is* `1 + √2`.
