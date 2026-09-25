@@ -1,11 +1,11 @@
 ---
 title: Reachable-field census of castle-strip growth constants
 category: Analyses
-summary: An exhaustive census (h ≤ 5) of which algebraic numbers are Perron roots of 0/1 castle-strip transfer matrices, bucketed by number field. The quadratic reachability law: every real quadratic field Q(√d) is reachable, via the dominant root of x² − p₁x − p₂ (p₁,p₂ ≥ 1), field = squarefree part of p₁²+4p₂; the metallic means are exactly the p₂=1 line; no field is excluded (the per-height lists are just initial segments), and min-height has no closed form. Every squarefree metallic discriminant a²+4 is reached at height ≤ a+1, and copper collapses into Q(√5) (disc 20 = 4·5) precisely because δ₄ = φ³ — the field-theoretic root of the Fibonacci decimation. The cubic frontier is already at h=3, where the plastic number x³−x−1 shows up as a strip Perron root — closing the bare-ψ watch note — together with supergolden, plastic-squared, tribonacci, and the Q(ζ₇)⁺ cubic. Counts by degree at h=4: 5 integer, 6 quadratic, 56 cubic, 110 quartic distinct minimal polynomials.
+summary: An exhaustive census (h ≤ 5) of which algebraic numbers are Perron roots of 0/1 castle-strip transfer matrices, bucketed by number field. The quadratic reachability law: every real quadratic field Q(√d) is reachable, via the dominant root of x² − p₁x − p₂ (p₁,p₂ ≥ 1), field = squarefree part of p₁²+4p₂; the metallic means are exactly the p₂=1 line; no field is excluded (the per-height lists are just initial segments), and the minimum height of each pair is worked out on quadratic-min-height. Every metallic mean δ_a first appears at exactly height a+1, and copper collapses into Q(√5) (disc 20 = 4·5) precisely because δ₄ = φ³ — the field-theoretic root of the Fibonacci decimation. The cubic frontier is already at h=3, where the plastic number x³−x−1 shows up as a strip Perron root — closing the bare-ψ watch note — together with supergolden, plastic-squared, tribonacci, and the Q(ζ₇)⁺ cubic. Counts by degree at h=4: 5 integer, 6 quadratic, 56 cubic, 110 quartic distinct minimal polynomials.
 tags: [analysis, castle, growth-constant, transfer-matrix, perron-root, number-field, metallic-mean, plastic-number, census, pisot, quadratic-field, sympy, verification]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-09-23
+updated: 2026-09-25
 ---
 
 # Reachable-field census of castle-strip growth constants
@@ -75,7 +75,7 @@ Bucketing every quadratic Perron root by its field `Q(√d)` gives a sharp, mono
 | 2 | **5** | golden `φ` (`Q(√5)`) | — |
 | 3 | **2**, **3**, 5 | silver `1+√2` (`Q(√2)`) | `Q(√3)` |
 | 4 | 2, 3, 5, **13**, **17**, **21** | bronze `(3+√13)/2` (`Q(√13)`) | `Q(√17)`, `Q(√21)` |
-| 5 | 2, 3, 5, **6**, **7**, 13, 17, 21, **29**, **33** | nickel `(5+√29)/2` (`Q(√29)`) | `Q(√6)`, `Q(√7)`, `Q(√33)` |
+| 5 | 2, 3, 5, **6**, **7**, 13, 17, 21, **29**, **33** | copper `2+√5` (`Q(√5)`, not new) | `Q(√6)`, `Q(√7)`, `Q(√29)` (via `(3+√29)/2`), `Q(√33)` |
 
 Two structural facts fall out.
 
@@ -92,11 +92,11 @@ The `a`-th metallic mean `δ_a = (a + √(a²+4))/2` lives in `Q(√(a²+4))`, w
 | nickel 5 | 29 | 29 | `Q(√29)` |
 | 6 | 40 = 4·10 | 10 | `Q(√10)` |
 
-The census confirms each of these fields is reached: `Q(√5)` (golden) at h=2, `Q(√2)` (silver) at h=3, `Q(√13)` (bronze) at h=4, `Q(√29)` (nickel) at h=5. **Copper is the striking case: it introduces no new field**, because `20 = 4·5` collapses to `Q(√5)`. And that collapse *is* the reason `δ₄ = 2 + √5 = φ³` and the copper strip counts the Fibonacci trisection `F_{3n+5}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)] Finding 3): copper lives inside the golden field, so it is a power of `φ`, so its integer sequence is decimated Fibonacci. The census makes the Fibonacci decimation a **field-theoretic necessity**, not a coincidence.[^2]
+The census confirms each of these fields is reached: `Q(√5)` (golden) at h=2, `Q(√2)` (silver) at h=3, `Q(√13)` (bronze) at h=4, and nickel's field `Q(√29)` at h=5 through the non-metallic `(3+√29)/2 = 4.1926` - nickel itself, `5.1926`, needs h=6. **Copper is the striking case: it introduces no new field**, because `20 = 4·5` collapses to `Q(√5)`. And that collapse *is* the reason `δ₄ = 2 + √5 = φ³` and the copper strip counts the Fibonacci trisection `F_{3n+5}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)] Finding 3): copper lives inside the golden field, so it is a power of `φ`, so its integer sequence is decimated Fibonacci. The census makes the Fibonacci decimation a **field-theoretic necessity**, not a coincidence.[^2]
 
-### The metallic surd's minimum height is `≤ a + 1`, tight through copper
+### The metallic surd's minimum height is exactly `a + 1`
 
-The `M_h = J − D` "plateau-free-except-ceiling" rule realizes `δ_{h−1}` at height `h` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]), so `δ_a` is always reachable by height `h = a + 1`. The census shows this bound is **tight for `a = 1, 2, 3, 4`** (golden/silver/bronze/copper first appear at exactly `h = a+1`) but **not for `a = 5`**: nickel `δ₅` already appears at `h = 5`, not `h = 6` — 120 matrices realize it early, off the `J − D` diagonal.[^3] So `J − D` is the *canonical* realization, giving the exact upper bound, but not always the minimal one.
+The `M_h = J − D` "plateau-free-except-ceiling" rule realizes `δ_{h−1}` at height `h` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]), so `δ_a` is always reachable by height `h = a + 1`. The bound is **exact for every `a`**: a 0/1 matrix of size `h` has Perron root at most `h`, with equality only for the all-ones matrix, and `a < δ_a < a + 1`, so no height below `a + 1` can reach `δ_a`.[^3] So `J − D` is a minimal realization of every metallic mean ([[quadratic-min-height](pages/quadratic-min-height.md)] has the proof and the full min-height table).
 
 Within a single field the surds are also height-stratified. `Q(√5)` fills in as `h` grows: `φ` at h=2; `φ²` at h=3; `2φ = 3.236` at h=4; and **`φ³` (copper) only at h=5** — so "which surds of `Q(√5)` are Perron roots" is itself a height-indexed question, and copper genuinely waits until h=5.[^4]
 
@@ -138,13 +138,13 @@ So the "why 17, 21 at h=4 but not 11?" question dissolves: `Q(√11)` is reachab
 ## What this settles, and what it leaves
 
 **Settled:**
-- **The full quadratic reachability law** (above): every real quadratic field is a castle-strip Perron field, via `x² − p₁x − p₂`; metallic means are the `p₂ = 1` line; min-height has no closed form. The per-height census lists are initial segments.
-- Every squarefree `a²+4` metallic field is reached at height `≤ a+1` (tight through copper); copper collapses into `Q(√5)` (whence the Fibonacci decimation).
+- **The full quadratic reachability law** (above): every real quadratic field is a castle-strip Perron field, via `x² − p₁x − p₂`; metallic means are the `p₂ = 1` line. The per-height census lists are initial segments.
+- Every metallic mean `δ_a` first appears at exactly height `a+1`; copper collapses into `Q(√5)` (whence the Fibonacci decimation).
 - The bare plastic number is a castle-strip growth constant (h=3) — the [[plastic-number](pages/plastic-number.md)] watch note is closed.
 - The cubic frontier is at h=3, and it contains plastic / supergolden / plastic² / tribonacci / the `Q(ζ₇)⁺` cubic — the "area-grading-only" cubics also appear as *strip* Perron roots.
 
 **Open:**
-- **A closed form (or tight bounds) for the minimum height** realizing a given `(p₁, p₂)`. The unfolding gives an upper bound `~p₁ + 2p₂`; the true min-height is smaller and irregular. This is the one piece of the quadratic story without a clean answer.
+- **A closed form for the minimum height** realizing a given `(p₁, p₂)`. [[quadratic-min-height](pages/quadratic-min-height.md)] computes it exactly through height 6, proves it on the metallic line (`p₁ + 1`) and the square-root line (`⌈2√p₂⌉`), and conjectures that at most three evenly connected groups of heights always reach it.
 - **Which cubics are Pisot / Salem**, and whether the Pisot cubics reachable as strip Perron roots are exactly a nameable set.
 - **A closed-form min-height for a given field.** The reachability law says every field appears; the height at which it *first* appears is the open quantity (tied to the min-height of its cheapest `(p₁, p₂)`).
 
@@ -166,6 +166,7 @@ The one-rule step (`strip_field`, above), the `strip_field_census` two-phase swe
 
 ## Related Concepts
 
+- [[quadratic-min-height](pages/quadratic-min-height.md)] - the minimum height for each `(p₁, p₂)`: exact through height 6, proved on the metallic and square-root lines, and the three-group conjecture.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the companion page: the `J − D` rule that realizes each metallic mean, whose reachability this census confirms exhaustively.
 - [[metallic-means](pages/metallic-means.md)] - the ladder `δ_a`; this census places every rung's field and the copper collapse into `Q(√5)`.
 - [[plastic-number](pages/plastic-number.md)] - the bare-`ψ` watch note this census closes (plastic is a strip Perron root at h=3).
@@ -181,7 +182,7 @@ The one-rule step (`strip_field`, above), the `strip_field_census` two-phase swe
 
 [^2]: The squarefree-part computation is `d = ∏ p^{e mod 2}` over `factorint(a²+4)`. `a²+4` for `a = 1..6` is `5, 8, 13, 20, 29, 40`, squarefree parts `5, 2, 13, 5, 29, 10`. `a = 4` (copper) gives `20 = 2²·5 → 5`, so copper `∈ Q(√5)`; `δ₄ = 2 + √5 = φ³` (verified exactly, [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] footnote). The census independently finds `4.23607 = φ³` in the `Q(√5)` bucket at h=5.
 
-[^3]: Census first-appearance heights: golden `1.6180` at h=2, silver `2.4142` at h=3, bronze `3.3028` at h=4, copper `4.2361` at h=5 — each `= a+1`, matching the `J − D` realization. Nickel `4.19258 = (5+√29)/2` appears at **h=5** (120 matrices in the `Q(√29)` bucket), *below* the `J − D` height `a+1 = 6`. So `J − D` gives the tight upper bound `h ≤ a+1` for `a ≤ 4` and a non-tight one for `a = 5`.
+[^3]: Census first-appearance heights: golden `1.6180` at h=2, silver `2.4142` at h=3, bronze `3.3028` at h=4, copper `4.2361` at h=5 — each `= a+1`, matching the `J − D` realization. The `Q(√29)` bucket at h=5 (120 matrices) is `(3+√29)/2 = 4.19258`, the root of `x² − 3x − 5`; nickel `(5+√29)/2 = 5.19258` first appears at h=6, confirmed by the exhaustive height-6 census on [[quadratic-min-height](pages/quadratic-min-height.md)].
 
 [^4]: Restricting the h≤4 Perron roots to `Q(√5)` (those `v` with `v² − pv ∈ ℤ` for some integer `p` and squarefree discriminant `5`): h=2 gives `{φ}`, h=3 gives `{φ, φ²}`, h=4 gives `{φ, φ², 2φ}`; `φ³ = 4.23607` first appears at h=5. Verified by execution.
 
