@@ -5,7 +5,7 @@ summary: Living reference of short, tested Python snippets for enumerating castl
 tags: [concept, castle, python, snippets, computational, classification, reference]
 sources: [project-euler-502-brute-force]
 created: 2026-09-16
-updated: 2026-09-19
+updated: 2026-09-24
 ---
 
 # Castle snippets - Python one-liners
@@ -344,6 +344,31 @@ def castle_graph_radius(c):
 ```
 
 Meaning: `(1,1,1,1)` is a golden-spectrum castle, `(2,2,2)` and `(1,2,3,1,2,3)` are silver-spectrum castles. Combine with `castles_where` to census a spectral predicate; swap `eigvalsh(A)[-1]` for the full spectrum (or `np.diag(A.sum(1)) - A` for the Laplacian) to hunt isospectral pairs.
+
+### `metallic_in_spectrum(c, a)` → bool
+
+Exact test: is the metallic mean `(a + sqrt(a^2 + 4))/2` (golden `a = 1`, silver `a = 2`, bronze `a = 3`) an eigenvalue of the castle's graph? It is a root of `x^2 - a x - 1`, so it is an eigenvalue exactly when the integer matrix `A^2 - aA - I` has determinant 0; the determinant is computed without rounding. This is the check that settles every floating-point near-miss on [[bronze-castle-hunt](pages/bronze-castle-hunt.md)]. Requires NumPy and SymPy; uses `castle_graph` above.
+
+```python
+import numpy as np
+from sympy import Matrix
+
+def metallic_in_spectrum(c, a):
+    A = castle_graph(c).astype(int)
+    return Matrix(A @ A - a * A - np.eye(len(A), dtype=int)).det(method='bareiss') == 0
+```
+
+```
+>>> metallic_in_spectrum((1, 1, 1, 1), 1), metallic_in_spectrum((2, 2, 2), 2), metallic_in_spectrum((1, 2, 3, 1, 2, 3), 2)
+(True, True, True)
+>>> near = (4, 4, 1, 4, 4, 1, 3, 5, 3, 1, 2, 4, 5, 4, 5, 1)
+>>> "%.1e" % (castle_graph_radius(near) - (3 + 13**.5)/2)
+'2.3e-12'
+>>> metallic_in_spectrum(near, 3)
+False
+```
+
+Meaning: the 51-cell `near` agrees with bronze to 2.3 × 10⁻¹² in floating point and still does not have bronze anywhere in its spectrum. A floating-point match is a candidate; this determinant is the verdict.
 
 
 ### `compositions(n)` → all castles with exactly `n` cells
