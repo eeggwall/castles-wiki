@@ -5,7 +5,7 @@ summary: Where the metallic means do and do not appear as eigenvalues. The count
 tags: [analysis, castle, spectral, adjacency, transfer-matrix, metallic-means, golden-ratio, silver-ratio, axis-9, isospectral, numpy, sympy, verification]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-16
-updated: 2026-09-19
+updated: 2026-09-24
 ---
 
 # Metallic means in castle spectra
@@ -123,7 +123,7 @@ They are not products, yet `x² − 2x − 1` divides their characteristic polyn
 ########
 ```
 
-Its exact characteristic polynomial is `x(x−1)(x+1)·(irreducible degree 34)`, not divisible by `x³ − 4x² + 4x − 8`, so this is a near-miss, not a plastic-spectrum castle - and a reminder that a floating-point match at `10⁻⁸` over five million candidates is not evidence of anything until the exact polynomial is factored.[^3] Whether any castle has spectral radius exactly bronze or `2ψ²` remains open beyond the scanned sizes.
+Its exact characteristic polynomial is `x(x−1)(x+1)·(irreducible degree 34)`, not divisible by `x³ − 4x² + 4x − 8`, so this is a near-miss, not a plastic-spectrum castle - and a reminder that a floating-point match at `10⁻⁸` over five million candidates is not evidence of anything until the exact polynomial is factored.[^3] Whether any castle has spectral radius exactly bronze or `2ψ²` remains open beyond the scanned sizes; [[bronze-castle-hunt](pages/bronze-castle-hunt.md)] extends the bronze search to about `7.1 × 10¹¹` skylines with none found, and proves no rectangle and no two-group even split can give bronze.
 
 ## Axis 9 types this populates
 
@@ -144,6 +144,7 @@ A skyline that is a Sturmian word - two heights arranged by the rotation with sl
 
 ## Related Concepts
 
+- [[bronze-castle-hunt](pages/bronze-castle-hunt.md)] - the bronze search at scale, with the rectangle and two-group proofs.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the methods hub; this page settles its `λ_1(h)` target and supplies Axis 9 data.
 - [[castle-classification](pages/castle-classification.md)] - Axis 8 (class growth constants, where metallic means correctly live) and Axis 9 (single-castle spectral predicates, populated here).
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the from-scratch tutorial that computes the small castles behind this census's named types (golden-spectrum, silver-spectrum, `φ²`-spectrum) by hand, with the adjacency matrices, characteristic polynomials, and walk-count verification pinned.

@@ -5,7 +5,7 @@ summary: Two ways to hide an arbitrary base64 string inside castles, both execut
 tags: [analysis, castle, steganography, base64, lsb, parity, block-parity, image, covert-channel, implementation, seminar]
 sources: [project-euler-502-representations]
 created: 2026-09-19
-updated: 2026-09-19
+updated: 2026-09-24
 ---
 
 # Castle steganography - hiding a base64 string in a castle
@@ -76,6 +76,7 @@ The S8 arc asks what the even-block bit *is*; here it is a covert channel of cap
 ## Related Concepts
 
 - [[image-as-castle](pages/image-as-castle.md)] - the cover: an image as 512 row castles.
+- [[castle-phone-line](pages/castle-phone-line.md)] - both channels sent down a simulated phone line as pitch-stepping tones; block parity does not survive, a spaced-out height bit does.
 - [[song-as-castle](pages/song-as-castle.md)] - the rank/unrank bijection, the 44% random-flip figure, and the S12 seminar seed.
 - [[castle-entropy](pages/castle-entropy.md)] - the parity clause is one bit; channel B is that bit as capacity.
 - [[castle-sign](pages/castle-sign.md)] - the block count formula the flip lemma is read off.
