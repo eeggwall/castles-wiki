@@ -204,6 +204,18 @@ The classical polyomino families intersected with the castles ([[castle-add-a-co
 | non-monotone castles | `0, 0, 0, 1, 4, 14, 36, 88, 199, 432` | `2^(n-1) - 2p(n) + d(n)` | **known** → [A332834](https://oeis.org/A332834) (compositions neither weakly increasing nor weakly decreasing) |
 | signed monotone castles `even - odd` | `-1, 0, 0, 1, 0, 2, 0, 2, -1, 4, -2, 4, -4, 6` | `2(-1)^n A000700(n) - sum_{d\|n} (-1)^d` | **novel-candidate** (signed, negated and `\|·\|` no match, 2026-09-23) |
 
+### Half-sum rows
+
+The order-`1/2` fractional partial sum of `F(w, h)` in the width ([[half-sum-castles](pages/half-sum-castles.md)]), as the binomial half-sum `K_h(w) = sum_k C(2k, k) F(w - k, h)`, GF `G_h(x)/sqrt(1 - 4x)`. Terms from the first nonzero width.
+
+| object | first terms | growth | status |
+|---|---|---|---|
+| `K_2` | `1, 5, 18, 60, 202, 702, 2508, 9136, 33742, 125934` | `4` | **novel-candidate** (no match, 2026-09-23) |
+| `K_3` | `3, 27, 149, 671, 2755, 10833, 41679, 158465, 598681` | `4` | **novel-candidate** (no match, 2026-09-23) |
+| `K_4` | `1, 9, 51, 241, 1069, 4671, 20353, 88383, 381583, 1635893` | `4`, `~ 4^w sqrt(w/pi)`; `pi = lim w 16^w / K_4(w)^2` | **novel-candidate** (no match, 2026-09-23) |
+| `K_5` | `10, 142, 1210, 8222, 49806, 283570, 1557158, 8354490` | `5` | **novel-candidate** (no match, 2026-09-23) |
+| dyadic half-sum `4^w H_h(w)`, `h = 2..5`, and the `H_2` numerators `1, 7, 63, 231, 3131, 10929` | see the page | `4h` | **novel-candidate** (no match, 2026-09-23) |
+
 ### Legacy generation candidates (pre-catalogue, statuses to refresh)
 
 Computed earlier and listed as candidates before the status convention; most are **unchecked** pending an OEIS search on current terms.
