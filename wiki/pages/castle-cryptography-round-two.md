@@ -5,7 +5,7 @@ summary: The second lap of the build / red-team / blue-team loop on the castle c
 tags: [analysis, seminar, cryptography, cryptanalysis, red-team, blue-team, pohlig-hellman, baby-step-giant-step, berlekamp-massey, linear-complexity, elgamal, schnorr, signature, finite-field, cyclotomic, index-calculus, key-size, castle]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
-updated: 2026-09-19
+updated: 2026-09-24
 ---
 
 # Castle cryptography, round two
@@ -217,7 +217,6 @@ A builder who never runs step 4 declares victory after Fix 1. A breaker who neve
 
 ## Still open
 
-- **Round three build:** a castle torus system — `char_5` (degree 6) with `p` chosen so `Φ_6(p) = p² − p + 1` has a large prime factor; then red-team it with the actual index-calculus literature for `F_{p⁶}`.
 - **Irregular clocking:** a shrinking-generator castle (one castle register clocks another) as the nonlinear variant that linearization does *not* cover; measure its linear complexity empirically.
 - **The `d = 3` deficits:** prove which monomial coincidences among `char_2`'s roots account for `8` vs `9` and `9` vs `10`.
 
@@ -228,6 +227,7 @@ A builder who never runs step 4 declares victory after Fix 1. A breaker who neve
 ## Related Concepts
 
 - [[castle-cryptography](pages/castle-cryptography.md)] - round one of the loop: the build, the two original attacks, and the fixes this page breaks.
+- [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] - round three: Fix 4 built as a castle torus on `char_5` (512-bit `p`, prime `p² − p + 1`, 3-to-1 trace compression), and Fix 6's `L_q[1/3]` ceiling updated for the 2016 extended tower sieve, which applies because 6 is composite.
 - [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring seminar; the algebra baseline whose §5 element-order table is the input Attack 3 factors.
 - [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - char poly, irreducible, and DLP from scratch; this page supplies the caveat that irreducible `Q` still leaves `p^d − 1` factored.
 - [[kitamasa](pages/kitamasa.md)] - the `x^a mod Q` exponentiation used by ElGamal, the signature, and every attack's inner loop.
