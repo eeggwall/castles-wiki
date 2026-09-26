@@ -181,6 +181,7 @@ for h in range(2, 6):
 
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the "period = lcm of eigenvalue orders" identity read as `ord(x)` in `R^* = ∏ Z/(p^{d_i} − 1)`, and the "double root multiplies the period by `p`" observation identified as the `p`-group `U = 1 + (g)/(g)^m` living beside the field factor at each discriminant-zero prime (`char_2 mod 7 → U = Z/7`, `char_3 mod 5 → U = Z/5`, `char_4 mod 3 → U = Z/3`).
 - [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - Ch. 14 exercises 14.7-14.9 factor small polynomials over `F_3`, `F_5`, `F_7` by hand (root-finding and coefficient matching), including `x³ + x + 2 = (x + 1)(x² − x + 2)`, whose quadratic factor is `char_2`'s.
+- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - each row of this page is a fiber of `Spec Z[x]/(char_k) → Spec Z`; the double-root period inflation is the fiber's nilradical.
 
 ## Footnotes
 

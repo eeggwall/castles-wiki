@@ -1,7 +1,7 @@
 ---
 title: Castle snippets - number theory
 category: Concepts
-summary: Snippets for the signed tower count, continued-fraction convergents, mod-p orders / Pisano-type periods, quasi-polynomial splits, sector transfer matrices, the H(d) factor, and the ring theory of char_k (mod-2 shape, CRT and Lagrange idempotents, sector resultant). Sibling of the core castle-snippets hub.
+summary: Snippets for the signed tower count, continued-fraction convergents, mod-p orders / Pisano-type periods, quasi-polynomial splits, sector transfer matrices, the H(d) factor, and the ring theory of char_k (mod-2 shape, CRT and Lagrange idempotents, sector resultant, reduced period, sectors mod 2). Sibling of the core castle-snippets hub.
 tags: [concept, castle, python, snippets, signed-tower-count, continued-fraction, mod-p, quasi-polynomial, plastic-number]
 sources: [project-euler-502-brute-force, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-19
@@ -304,7 +304,7 @@ Meaning: `ρ_6` has a period-4 multidimensional continued fraction (the cubic an
 
 ## Ring theory of `char_k`
 
-Snippets behind [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)], [[idempotent-decomposition](pages/idempotent-decomposition.md)], [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] and the mod-2 note on [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], written while reading Chapters 17 and 14 of [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)]. All need SymPy.
+Snippets behind [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)], [[idempotent-decomposition](pages/idempotent-decomposition.md)], [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] and the mod-2 note on [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] and [[castle-ring-spectrum](pages/castle-ring-spectrum.md)], written while reading Chapters 17, 14 and 13 of [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)]. All need SymPy.
 
 ```python
 import sympy as sp
@@ -394,6 +394,62 @@ True
 
 Meaning: the two sectors can share a root only mod 2, so the parity-sector split of `Q[x]/(char_k)` is already defined over `Z[1/2]`. The exponent `k(k+2)/4 = d(d+1)` for `k = 2d` is conjectural beyond `k = 30`.
 
+### `x_order(Q, p)` / `reduced_period(k, p)` → the period of `P(k, ·) mod p`, split into reduced part and nilpotent inflation
+
+`x_order` is the multiplicative order of `x` in `F_p[x]/(Q)` (odd `p`, so `x` is a unit): start from the unit-group order `∏ (p^d − 1)·p^{d(m−1)}` and strip prime factors. `reduced_period` computes it twice, for `char_k` and for its radical (the product of the distinct factors, i.e. the ring modulo its nilradical), and reports the inflation `p^⌈log_p m⌉` for the largest multiplicity `m`.
+
+```python
+def x_order(Q, p):
+    F = sp.Poly(Q, x, modulus=p)
+    fl = sp.factor_list(F)[1]
+    N = 1
+    for g, m in fl:
+        N *= (p**g.degree() - 1) * p**(g.degree()*(m - 1))
+    one = sp.Poly(1, x, modulus=p)
+    def pow_mod(e):
+        r, b = one, sp.Poly(x, x, modulus=p)
+        while e:
+            if e & 1: r = (r*b).rem(F)
+            b, e = (b*b).rem(F), e >> 1
+        return r
+    o = N
+    for q in sp.factorint(N):
+        while o % q == 0 and pow_mod(o // q) == one:
+            o //= q
+    return o
+
+def reduced_period(k, p):
+    fl = sp.factor_list(sp.Poly(char_k(k), x, modulus=p))[1]
+    rad = sp.prod([g for g, _ in fl]).as_expr()
+    m, e = max(m for _, m in fl), 0
+    while p**e < m:
+        e += 1
+    return x_order(rad, p), p**e, x_order(char_k(k), p)
+```
+
+```
+>>> [reduced_period(k, p) for k, p in [(2, 7), (3, 5), (4, 3), (6, 23)]]
+[(3, 7, 21), (24, 5, 120), (13, 3, 39), (264, 23, 6072)]
+>>> reduced_period(2, 5)                      # squarefree mod 5: no nilradical, no inflation
+(24, 1, 24)
+```
+
+Meaning: in every case the full period is the reduced period times `p^⌈log_p m⌉` - the nilradical of `F_p[x]/(char_k)` accounts for exactly the extra `p`.
+
+### `sectors_mod2(k)` → the two parity-sector factors of `char_k` (even `k`), reduced mod 2
+
+```python
+def sectors_mod2(k):
+    return [sp.Poly(f, x, modulus=2).as_expr() for f, _ in sp.factor_list(char_k(k))[1]]
+```
+
+```
+>>> [sectors_mod2(k) for k in (2, 4, 6)]
+[[x, x**2 + x], [x**2, x**3 + x**2], [x**3, x**4 + x**3]]
+```
+
+Meaning: `x^{k/2}` and `x^{k/2}(x + 1)` - the two sector components of `Spec Z[x]/(char_k)` share exactly one point, `(2, x)`.
+
 ## Appearances in Sources
 
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the reference `p_signed` DP.
@@ -411,3 +467,4 @@ Meaning: the two sectors can share a root only mod 2, so the parity-sector split
 - [[castle-sign](pages/castle-sign.md)] - the block-count convention `p_signed` matches.
 - [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] / [[idempotent-decomposition](pages/idempotent-decomposition.md)] - `crt_idempotents`, `lagrange_idempotents`, `sector_resultant`.
 - [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - `char_k` and its mod-2 shape.
+- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - `reduced_period` and `sectors_mod2`.

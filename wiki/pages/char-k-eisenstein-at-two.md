@@ -123,6 +123,7 @@ print([k for k in range(5001) if q[k] == 1])
 - [[finite-fields](pages/finite-fields.md)] - the Frobenius identity `(α + β)^{2^m} = α^{2^m} + β^{2^m}` in characteristic 2 is the whole of Step 3.
 - [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - discriminants of `char_k`; total ramification at 2 is the extreme case of 2 dividing the discriminant.
 - [[pell-numbers](pages/pell-numbers.md)] - another Lucas/Fibonacci-type sequence on the wiki; here a Fibonacci recurrence appears one level down, over `F_2[t]`.
+- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the fiber over 2: for `k = 1`, `Z[x]/(char_1) ≅ Z[i]` and the prime `(2, x)` is `(1 + i)` with `2 = −i(1 + i)²`, the smallest case of the total ramification proved here.
 
 ## Footnotes
 

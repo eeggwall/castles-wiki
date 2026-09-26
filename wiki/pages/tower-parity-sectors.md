@@ -227,7 +227,7 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 - `P_even(4m+2, L) = 2^L ·` Hardin word count (A005251, A202882, A203094, A203184), verified `m ≤ 4`; `P_odd(4, L) = −2^L · A010892(L)`; `P_even(1, L) = A146559(L)`, `P_odd(1, L) = −A009545(L)`; `P_odd(2, L) = −A107920(L)`.
 
 **Open** (filed on IDEAS).
-- Prove that the two sector factors of `char_{2d}` have resultant `2^{d(d+1)}` (`= 2^{k(k+2)/4}`; verified every even `k ≤ 30`, [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]). Equivalently, the sector split of `Q[x]/(char_k)` already holds over `Z[1/2]` and survives reduction mod every odd prime.
+- Prove that the two sector factors of `char_{2d}` have resultant `2^{d(d+1)}` (`= 2^{k(k+2)/4}`; verified every even `k ≤ 30`, [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]). Equivalently, the sector split of `Q[x]/(char_k)` already holds over `Z[1/2]` and survives reduction mod every odd prime. Geometrically the two sectors are the components of `Spec Z[x]/(char_k)` and meet only at the point `(2, x)` (sector factors `≡ x^d` and `x^d(x + 1)` mod 2, checked `k ≤ 30`, [[castle-ring-spectrum](pages/castle-ring-spectrum.md)]).
 - Prove `char_k` irreducible over `Q` for every odd `k`. Eisenstein at 2 reaches exactly `k = 2^m − 1` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]); `k = 5, 9, 11, 13, …` need another argument.
 - Prove that the dominant root lies in the `+1` sector and that `H_d` belongs to the `+1` sector iff `d` is odd.
 - The Hardin identity is proved on [[hardin-word-identity](pages/hardin-word-identity.md)] by an explicit unimodular change of basis between the word automaton and the halved even-sector matrix (every `m ≤ 8` checked symbolically; general `m` reduces to a finite entrywise check). A sign-reversing involution realizing it object by object is still open.
@@ -268,6 +268,7 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `char_2 = (x−2)(x²−x+2)` is why `F(w,3)` has order 6: its `(x−2)` is shared with the `2^w` term.
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - the sector tables are computed by Algorithm M enumeration of `{0..k}^L`.
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the complementary direction of the same `P(k, L)` 2D array: k-direction factors as `(x+1)^L (x-1)^{L-2}` while this page factors the L-direction char_k into parity sectors.
+- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the sectors as the two components of `Spec Z[x]/(char_k)`, meeting only at `(2, x)`; the `k = 4` minor sector `H_2` gives `Z[ω]`.
 
 ## Footnotes
 

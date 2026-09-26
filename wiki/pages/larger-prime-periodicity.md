@@ -5,7 +5,7 @@ summary: The mod-p observatory covers primes p = 3, 5, 7 with periods small enou
 tags: [analysis, castle, modular-arithmetic, periodicity, large-primes, chebotarev, discriminant, project-euler-502]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502]
 created: 2026-09-22
-updated: 2026-09-22
+updated: 2026-09-26
 ---
 
 # Larger-prime periodicity of char_k
@@ -18,7 +18,7 @@ For `char_k mod p`:
 
 - If `char_k` is irreducible over `F_p`, its unique irreducible factor has degree `k + 1`, and `per(char_k) mod p = ord(root)` where the root lives in `F_{p^{k+1}}^*`. The order divides `p^{k+1} - 1`. **Ceiling grows as `p^{k+1}`**, exponential in both `p` and `k`.
 - If `char_k` splits into irreducibles of degrees `d_1, ..., d_r`, the period is `lcm(ord(root_1), ..., ord(root_r))`, each order dividing its `p^{d_i} - 1`.
-- If some irreducible factor `g` has multiplicity `m > 1`, the period picks up an extra factor `p^{ceil(log_p m)}` (the "multiplicity-inflation" rule). Repeated roots occur exactly when `p | disc(char_k)`.
+- If some irreducible factor `g` has multiplicity `m > 1`, the period picks up an extra factor `p^{ceil(log_p m)}` (the "multiplicity-inflation" rule). Repeated roots occur exactly when `p | disc(char_k)`. The factor is the nilradical of `F_p[x]/(char_k)`: the rule is checked as an exact equality at seven discriminant-zero primes on [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §3, but its exactness (rather than divisibility) is not proved.
 
 `per(char_k) mod p` for larger primes, tabulated:[^exec]
 
@@ -188,6 +188,7 @@ At `10^9 + 7`, this reading says the cryptographic ring `R = F_P[x] / char_k` ha
 - [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] - the mod-`10^9 + 7` pipeline whose C-finiteness (not its period) is what's exploited.
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - a composite modulus example: `1729 = 7 * 13 * 19` periods `72, 2520, 25200` for `h = 2, 3, 4`, the lcm of the three prime-mod periods.
 - [[finite-fields](pages/finite-fields.md)] - `F_{p^d}^*` orders are this page's central mechanism; the pedagogy hub for exactly the eigenvalue-order arithmetic used here.
+- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the fibers over each `p` as points of `Spec Z[x]/(char_k)`, and the inflation rule split into reduced part and nilradical.
 
 ## Footnotes
 
