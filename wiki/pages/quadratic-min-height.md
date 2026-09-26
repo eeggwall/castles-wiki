@@ -124,6 +124,7 @@ Through height 6 these are proved minima; beyond 6 they are upper bounds that th
 
 ## Related Concepts
 
+- [[area-growth-census](pages/area-growth-census.md)] - the same rules counted by area instead of width: growth constants in `(1, 2)`, cubics already at height 2, and the Pisot and Salem numbers that appear.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the reachability law this page sharpens, and the census grid through height 5 it extends to 6.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the `J - D` rule that makes the metallic line exact.
 - [[metallic-means](pages/metallic-means.md)] - the `p2 = 1` line.

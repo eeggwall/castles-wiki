@@ -5,7 +5,7 @@ summary: Re-indexing castles by total cells n instead of (w,h) — convex↔A001
 tags: [concept, castle, area, composition, oeis, unimodal, valley]
 sources: [oeis-mining-pe502, castle-by-area]
 created: 2026-09-13
-updated: 2026-09-23
+updated: 2026-09-25
 ---
 
 # Castles by area
@@ -41,6 +41,7 @@ By (w,h) the concave counts add nothing new: `valley(w,h) = convex(w,h) = C(2h+w
 ## Related Concepts
 
 - [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] — A001523, the convex-by-area match.
+- [[area-growth-census](pages/area-growth-census.md)] - castle strips under every 0/1 adjacency rule, counted by area: which growth constants appear up to height 4, including the ten smallest Pisot numbers and small Salem numbers.
 - [[convex-castle](pages/convex-castle.md)] — convex/valley castles and their binomial (w,h) count.
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] — why dense-entry matches are low-value but real.
 - [[aocp-combinatorics](pages/aocp-combinatorics.md)] — area is the castle's natural second grading; the inversion statistic and its q-factorial generating function (GF) are the permutation-level prototype of such q-gradings.
