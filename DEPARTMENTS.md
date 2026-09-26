@@ -22,6 +22,7 @@ Alongside the nine Departments sit **Auxiliary Services** - the non-Department s
 
 - **The Telephone Company:** phone signals, audio codecs, tone catalogues, expander-graph and Ihara-zeta reads of the castle graph, information-theoretic entropy of skylines, and the isospectral seminar.
 - **Department of Chinese Remainders:** department specializing in applying the Chinese Remainder Theorem
+- **Facilities:** applied, physical-world tooling: real objects turned into castles (key photographs and key blanks), and interactive web apps for the seminars.
 
 ## Conceptual coverage
 
@@ -130,6 +131,11 @@ Alongside the nine Departments sit **Auxiliary Services** - the non-Department s
 - Voice-channel survival: which castle statistics (LSB of height, block parity, histogram bins, low DFT modes) live through FM demodulation on a band-limited voice channel.
 - Information theory of skylines: uniform entropy `~ w log_2 h - 1`, growth constants as topological entropies, and the compressibility axis.
 - Real signals as castles: URL ids, ID3 labels, and 16-bit waveforms as `h = 65536` castles; Berlekamp-Massey and the NTT over `F_65537` as the finite-field layer; Beethoven's Ninth as the crown-jewel exemplar.
+
+### Auxiliary services: Facilities
+
+- Keys as castles: pin-tumbler bitting read as column heights, key photographs converted to castles, standard key blanks (pin positions, depths, maximum adjacent cut) as castle families with countable keyspaces.
+- Interactive apps: one small web app per seminar or paper page, published as an artifact, so each idea can be played with as well as read.
 
 ## Crossovers
 
