@@ -67,6 +67,17 @@ Those theorems classify the integer series with an exceptional value. The denomi
 
 Page numbers are the book's own, from the table of contents.[^28]
 
+## Unsolved problems (pp. 62-63)
+
+The book closes with four problems.[^29]
+
+1. Does `‖λθ^n‖ → 0` for some real `λ ≠ 0` force `θ` into S? Equivalently, can such a `θ` be transcendental? This is Chapter I's open case ([[pisot-number](pages/pisot-number.md)]).
+2. Do Salem numbers have limit points other than Pisot numbers, and if so, which ([[salem-number](pages/salem-number.md)])?
+3. For two Cantor-type ratios `ξ_1, ξ_2` whose reciprocals are both Pisot, neither product `∏ cos πuξ_i^k` tends to 0. Can the product of the two? A yes would make the sum set `E(ξ_1) + E(ξ_2)` a set of multiplicity.
+4. For `1/2 < ξ < 1`, the measure with transform `∏ cos πuξ^k` is either absolutely continuous or purely singular. Which `ξ` give which? It is purely singular when `1/ξ` is Pisot, so the question concerns the other `ξ`.
+
+Problems 3 and 4 belong to the Fourier-analytic Chapters IV-VII, which this wiki summarizes only through the contents table.
+
 ## Entities & Concepts
 
 - [[pisot-number](pages/pisot-number.md)] - class S; the chapter's central object.
@@ -117,3 +128,4 @@ On the generating-function side, the wiki's standing principle "linear recurrenc
 [^26]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. III §5 and Theorem V pp.32-35 [synthesis] L2167-2484 - powers of τ "everywhere dense in the interval (0, 1)", linear independence "due to Pisot", Kronecker's theorem, non-uniform distribution via the distribution function of `2cos 2πx` and `J_0(4πh)`.
 [^27]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. III Exercise p.35 L2486-2487 - "any number T of the class T is the quotient θ/θ' of two numbers of the class S belonging to the field of T."
 [^28]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Contents [synthesis] L73-172 - chapter and section titles with their page numbers.
+[^29]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Some Unsolved Problems pp.62-63 [synthesis] L4178-4238 - problem 1 ("Can one conclude that θ belongs to the class S?" / "do there exist numbers θ which are not algebraic?"), problem 2 ("Do there exist other limit points of the numbers T, and, if so, which ones?"), problem 3 (the product of two non-decaying Cantor-type transforms; sets of multiplicity; Kahane and Salem 1958), problem 4 (absolutely continuous versus purely singular for `1/2 < ξ < 1`; Jessen and Wintner 1935).
