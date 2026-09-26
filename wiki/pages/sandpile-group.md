@@ -10,7 +10,7 @@ updated: 2026-09-26
 
 # Sandpile groups of castles - sand, cycles, and 2×2 blocks
 
-This page introduces the **sandpile group** of a castle for readers who have not met it before. It starts with a game you can play on paper, then connects the game to matrices the wiki already uses: the Laplacian of [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], the boundary matrix, and the cycles of [[castle-graph](pages/castle-graph.md)]. The one picture to keep is at the end of Part 3: **a castle's sand lives in its 2×2 blocks**.
+This page introduces the **sandpile group** of a castle for readers who have not met it before. It starts with a game you can play on paper, then connects the game to matrices the wiki already uses: the Laplacian of [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], the boundary matrix, and the cycles of [[castle-graph](pages/castle-graph.md)]. The one picture to keep is at the end of Part 3: **a castle's sand lives in its 2×2 blocks**. Part 1 works two examples by hand: the recurrent configurations of the 4-cycle `(2, 2)`, and a full avalanche on the silver rectangle `(2, 2, 2)`.
 
 ## Part 1 - the game
 
@@ -35,6 +35,41 @@ transient:                                                 (0,0,0)  (1,0,0)  (0,
 
 Four recurrent configurations means `K = Z/4`, and the square has 4 spanning trees (delete any one of its 4 edges). The identity element is `(1, 1, 0)`: one grain on each cell next to the drain and none on the far corner. Adding it to any recurrent configuration and stabilizing gives that configuration back.[^2]
 
+### Worked example: one avalanche on the silver rectangle `(2, 2, 2)`
+
+The sand in this game does not behave like physical sand. There is no gravity and there are no columns: every cell is a bowl, and "neighbour" means a cell that shares a side in any direction. Three rules settle every question about where a grain goes:
+
+- **A bowl's capacity is its number of neighbours.** It tips over when it holds that many grains.
+- **A neighbour always accepts a grain.** If that makes it overflow, it tips over in turn. That chain reaction is an **avalanche**.
+- **Grains leave the castle only through the drain.** Any grain sent to the drain is removed, and the drain never tips. Without a drain the total amount of sand would never change, and an overfull pile would topple forever.
+
+Label the six cells of the `3 × 2` rectangle and make the bottom-left cell `BL` the drain:
+
+```
+top     TL  TM  TR            corners TL, TR, BR have 2 neighbours;  TM, BM have 3
+bottom  BL  BM  BR            BL = the drain
+```
+
+Start from the fullest stable pile, each bowl one grain short of tipping, and drop one grain on `TR`:
+
+```
+start        top [1 2 1]   bottom [D 2 1]
+drop on TR   top [1 2 2]   bottom [D 2 1]
+topple TR    top [1 3 0]   bottom [D 2 2]
+topple TM    top [2 0 1]   bottom [D 3 2]
+topple TL    top [0 1 1]   bottom [D 3 2]   <- one grain into the drain
+topple BM    top [0 2 1]   bottom [D 0 3]   <- another into the drain
+topple BR    top [0 2 2]   bottom [D 1 1]
+topple TR    top [0 3 0]   bottom [D 1 2]
+topple TM    top [1 0 1]   bottom [D 2 2]
+topple BR    top [1 0 2]   bottom [D 3 0]
+topple BM    top [1 1 2]   bottom [D 0 1]   <- a third into the drain
+topple TR    top [1 2 0]   bottom [D 0 2]
+topple BR    top [1 2 1]   bottom [D 1 0]   settled
+```
+
+One grain triggers 11 topplings. Sand moves right, left, up and down, and 3 grains leave through the drain: `7 + 1 = 8` grains before the avalanche, `5` after. Only `TL` and `BM` ever feed the drain, because they are its neighbours. Toppling the unstable cells in a different order ends in the same settled pile, which is the abelian property.[^3] Keep dropping grains and the pile eventually cycles through exactly 15 recurrent configurations, one for each spanning tree of the `3 × 2` grid. That is the group `Z/15` of the silver rectangle in the gallery below.
+
 ## Part 2 - the matrices behind the game
 
 **Toppling is subtracting a column of the Laplacian.** When cell `v` topples it loses `deg(v)` grains and each neighbour gains one. That is subtracting column `v` of the Laplacian `L = D − A` ([[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], Stop 0) from the configuration. So two configurations that differ by topplings are the same element of
@@ -51,7 +86,7 @@ This is a finite abelian group of order `det L̃`, the number of spanning trees 
 L  =  ∂ ∂ᵀ
 ```
 
-because `(∂∂ᵀ)[u, u]` counts the edges at `u`, and `(∂∂ᵀ)[u, v] = −1` when an edge joins `u` and `v`.[^3]
+because `(∂∂ᵀ)[u, u]` counts the edges at `u`, and `(∂∂ᵀ)[u, v] = −1` when an edge joins `u` and `v`.[^4]
 
 ## Part 3 - cycles, and why the 2×2 blocks hold the sand
 
@@ -71,7 +106,7 @@ For a planar graph like a castle, this small matrix, **one row per 2×2 block**,
 K(castle)  =  Z^r / (CᵀC) Z^r          (r = number of 2×2 blocks)
 ```
 
-It is the sandpile group of the planar dual graph, whose vertices are the blocks. This was checked against the cell-side formula on all 1,023 castles with up to 10 cells.[^4] So **the 2×2 blocks hold the sand**. A castle with no `2 × 2` block has no cycles, a single spanning tree, and a trivial group: sand washes straight out. A castle's sandpile group depends only on how its blocks are arranged, not on the towers and spikes around them.
+It is the sandpile group of the planar dual graph, whose vertices are the blocks. This was checked against the cell-side formula on all 1,023 castles with up to 10 cells.[^5] So **the 2×2 blocks hold the sand**. A castle with no `2 × 2` block has no cycles, a single spanning tree, and a trivial group: sand washes straight out. A castle's sandpile group depends only on how its blocks are arranged, not on the towers and spikes around them.
 
 ## Part 4 - the castle gallery
 
@@ -93,7 +128,7 @@ It is the sandpile group of the planar dual graph, whose vertices are the blocks
 
 ## A variant: the bottom row as the tide
 
-Some `IDEAS.md` items describe the base row as the sink, as if the ground were the tide that washes sand away. That is a different graph: the whole bottom row is merged into a single drain. It gives a different group, for example `Z/3` for `(2, 2)` instead of `Z/4`, and `Z/8` for `(2, 2, 2)` instead of `Z/15`. Everything on this page uses the castle graph itself with one cell as the drain, whose group does not depend on the choice of drain cell.[^5]
+Some `IDEAS.md` items describe the base row as the sink, as if the ground were the tide that washes sand away. That is a different graph: the whole bottom row is merged into a single drain. It gives a different group, for example `Z/3` for `(2, 2)` instead of `Z/4`, and `Z/8` for `(2, 2, 2)` instead of `Z/15`. Everything on this page uses the castle graph itself with one cell as the drain, whose group does not depend on the choice of drain cell.[^6]
 
 ## Snippet
 
@@ -185,6 +220,8 @@ def recurrent(c, drain=0):                 # configurations reachable again and 
 [(0, 0, 1, 1), (0, 1, 0, 1), (0, 1, 1, 0), (0, 1, 1, 1)]
 >>> sandpile_group((2, 2)), laplacian((2, 2))[1:, 1:].det()
 ([4], 4)
+>>> stabilize((2, 2, 2), (0, 1, 2, 2, 1, 2))      # the avalanche above: cells BL, TL, BM, TM, BR, TR
+(0, 1, 1, 2, 0, 1)
 >>> c = (3, 3, 3)
 >>> laplacian(c) == boundary(c) * boundary(c).T, (boundary(c) * cycle_matrix(c)).is_zero_matrix
 (True, True)
@@ -223,6 +260,7 @@ In the recurrent tuples the positions are the cells in the order `castle_graph` 
 
 [^1]: https://en.wikipedia.org/wiki/Abelian_sandpile_model - toppling at the degree, a sink vertex, order-independence of stabilization (the abelian property), recurrent configurations forming the sandpile group under addition followed by stabilization, its presentation as `Z^{n−1}` modulo the reduced Laplacian, and its order equal to the number of spanning trees (Kirchhoff's matrix-tree theorem, with Dhar's burning bijection between recurrent configurations and spanning trees).
 [^2]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `recurrent((2, 2))` is the four configurations listed; `det L̃ = 4`; the identity `stab(2·c_max − stab(2·c_max))` evaluates to one grain on each of the drain's two neighbours and none on the far corner.
-[^3]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `laplacian(c) == boundary(c)·boundary(c)ᵀ` and `boundary(c)·cycle_matrix(c) = 0` for `c = (3, 3, 3)`, as pinned; the identity `L = ∂∂ᵀ` is the standard factorization of the graph Laplacian through the oriented incidence matrix.
-[^4]: Verified by execution (Python 3.10, SymPy, 2026-09-26): for every castle with at most 10 cells (1,023 compositions), the invariant factors of the reduced Laplacian equal those of the block matrix with `4` on the diagonal and `−1` for edge-sharing blocks; `CᵀC` equals that block matrix for `(3, 3, 3)` as pinned. The underlying fact, that the sandpile group of a connected plane graph equals that of its dual, is standard (Cori and Rossin, 2000).
-[^5]: Verified by execution (Python 3.10, SymPy, 2026-09-26): merging all bottom-row cells into one drain gives invariant factors `[3]` for `(2, 2)`, `[8]` for `(2, 2, 2)`, `[95]` for `(3, 3, 3)`, and the trivial group for `(1, 2, 1)`.
+[^3]: Verified by execution (Python 3.10, 2026-09-26): the step-by-step trace topples one unstable cell at a time (first unstable cell in the order BL, TL, BM, TM, BR, TR) from `TL=1, TM=2, TR=1, BM=2, BR=1` plus one grain on `TR`, and settles at `TL=1, TM=2, TR=1, BM=1, BR=0` after 11 topplings with 3 grains absorbed; the Snippet's `stabilize`, which topples every unstable cell in each sweep, reaches the same pile, as pinned.
+[^4]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `laplacian(c) == boundary(c)·boundary(c)ᵀ` and `boundary(c)·cycle_matrix(c) = 0` for `c = (3, 3, 3)`, as pinned; the identity `L = ∂∂ᵀ` is the standard factorization of the graph Laplacian through the oriented incidence matrix.
+[^5]: Verified by execution (Python 3.10, SymPy, 2026-09-26): for every castle with at most 10 cells (1,023 compositions), the invariant factors of the reduced Laplacian equal those of the block matrix with `4` on the diagonal and `−1` for edge-sharing blocks; `CᵀC` equals that block matrix for `(3, 3, 3)` as pinned. The underlying fact, that the sandpile group of a connected plane graph equals that of its dual, is standard (Cori and Rossin, 2000).
+[^6]: Verified by execution (Python 3.10, SymPy, 2026-09-26): merging all bottom-row cells into one drain gives invariant factors `[3]` for `(2, 2)`, `[8]` for `(2, 2, 2)`, `[95]` for `(3, 3, 3)`, and the trivial group for `(1, 2, 1)`.
