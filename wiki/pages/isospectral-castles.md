@@ -140,6 +140,7 @@ The spectral-radius census on [[castle-graph-spectral-radius](pages/castle-graph
 - [[sandpile-group](pages/sandpile-group.md)] - the sandpile group of each castle; both small cospectral pairs have equal groups (Z/15 and trivial).
 - [[sandpile-census](pages/sandpile-census.md)] - the sandpile group of every castle in this page's census; it separates none of the cospectral groups, because each shares its block graph.
 - [[sandcastle-clock](pages/sandcastle-clock.md)] - the clock spectrum separates 62 of this page's 105 adjacency-cospectral groups and 5 of its 17 Laplacian ones.
+- [[sandpile-identity](pages/sandpile-identity.md)] - the avalanche profile separates every cospectral group on this page to 16 cells.
 
 
 ## Footnotes

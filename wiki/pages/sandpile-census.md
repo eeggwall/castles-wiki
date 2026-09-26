@@ -189,6 +189,7 @@ def cospectral_groups(castles, operator):  # sets of non-isomorphic castles shar
 - [[castle-graph](pages/castle-graph.md)] - cycle rank as the number of 2×2 blocks, and tree castles.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the other castle spectra that might separate what the sandpile group cannot.
 - [[sandcastle-clock](pages/sandcastle-clock.md)] - the clock spectrum, which separates cospectral castles the sandpile group cannot.
+- [[sandpile-identity](pages/sandpile-identity.md)] - the avalanche profile, which separates every cospectral group the sandpile group cannot.
 
 
 ## Appearances in Sources

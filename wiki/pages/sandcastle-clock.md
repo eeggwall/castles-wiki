@@ -73,7 +73,7 @@ So the answer to the `IDEAS.md` question "the smallest castle whose period is no
 - The clock spectrum separates 62 of 105 adjacency-cospectral groups and 5 of 17 Laplacian ones to 16 cells, where the sandpile group separates none.
 
 **Open.**
-- Which cospectral castles does the clock spectrum still fail to separate (43 adjacency and 12 Laplacian groups to 16 cells)? Is there a finer sandpile invariant that separates them all?
+- Which cospectral castles does the clock spectrum still fail to separate (43 adjacency and 12 Laplacian groups to 16 cells)? A finer sandpile invariant that separates them all to 16 cells is the avalanche profile on [[sandpile-identity](pages/sandpile-identity.md)].
 - A canonical "tide" clock: merge the bottom row into one drain ([[sandpile-group](pages/sandpile-group.md)], the tide variant) and drop on every top cell. Does it remove the mirror dependence?
 - The identity element itself and the avalanches each tick causes, the remaining S-department items.
 
@@ -166,6 +166,8 @@ def clock_spectrum(c):                     # periods over every (drain, grain ce
 - [[sandpile-census](pages/sandpile-census.md)] - the group of every castle to 16 cells, which separates no cospectral pair.
 - [[isospectral-castles](pages/isospectral-castles.md)] / [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the cospectral pairs the clock spectrum separates.
 - [[castle-graph](pages/castle-graph.md)] - tree castles, whose clock never ticks.
+- [[sandpile-identity](pages/sandpile-identity.md)] - the identity the clock starts from, and the avalanche profile, which separates every cospectral group to 16 cells.
+
 
 ## Appearances in Sources
 
