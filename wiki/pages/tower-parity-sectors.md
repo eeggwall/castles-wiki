@@ -5,7 +5,7 @@ summary: The signed transfer matrix commutes with "reflect heights, flip signs",
 tags: [analysis, castle, signed-tower-count, transfer-matrix, symmetry, factorization, plastic-number, quasi-polynomial, oeis, hardin, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Tower parity sectors - why `char_k` factors, and where the plastic number comes from
@@ -44,7 +44,7 @@ JD commutes: True                     # k = 4 and k = 6 shown; verified for all 
 
 Entrywise this is one line: `(JD·M·JD)_{a,b} = (−1)^{a+b} s(k−a, k−b) = (−1)^{a+b+max(0,b−a)} = (−1)^{max(0,a−b)} = M_{a,b}`, since `a + b + max(0, b−a) ≡ a − b + max(0, b−a) = max(0, a−b) (mod 2)`.[^8] Reflecting heights turns descents into ascents; flipping the sign of odd heights turns them back.
 
-**Even `k`: two real sectors.** `(JD)² = (−1)^k I`. For even `k` it is an involution with trace `(−1)^{k/2}`, so `M_k` preserves its `+1` and `−1` eigenspaces, of dimensions `(k+1 ± (−1)^{k/2})/2`, and `char_k` is the product of the two restricted characteristic polynomials - **that is the gallery's factorization.** For odd `k`, `(JD)² = −I`: the eigenspaces are the `±i` eigenspaces over `Q(i)`, each of dimension `(k+1)/2`, and `char_k` factors over `Q(i)` into a conjugate pair but stays irreducible over `Q` - which is why odd `k` never splits and why `k = 1` gives `1 ± i`.
+**Even `k`: two real sectors.** `(JD)² = (−1)^k I`. For even `k` it is an involution with trace `(−1)^{k/2}`, so `M_k` preserves its `+1` and `−1` eigenspaces, of dimensions `(k+1 ± (−1)^{k/2})/2`, and `char_k` is the product of the two restricted characteristic polynomials - **that is the gallery's factorization.** For odd `k`, `(JD)² = −I`: the eigenspaces are the `±i` eigenspaces over `Q(i)`, each of dimension `(k+1)/2`, and `char_k` factors over `Q(i)` into a conjugate pair `g·ḡ`. That removes the sector split over `Q`, but on its own it does not prove `char_k` irreducible over `Q`: `g` could factor further. Irreducibility for odd `k` is proved for `k = 2^m − 1` by Eisenstein at 2 after the rescaling `λ = 2μ` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]) and is SymPy-verified for every odd `k ≤ 31`. This is why `k = 1` gives `1 ± i`.
 
 ```
 >>> # M restricted to each JD-eigenspace, k even: sector (eigenvalue of JD), dimension, char poly, dominant?
@@ -221,12 +221,13 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 ## What this settles and what it opens
 
 **Settled.**
-- `char_k` factors for even `k` because `M_k` commutes with `JD`; the factors are the even- and odd-last-column sectors; odd `k` is irreducible over `Q` because `JD` is then a complex structure.
+- `char_k` factors for even `k` because `M_k` commutes with `JD`; the factors are the even- and odd-last-column sectors; for odd `k`, `JD` is a complex structure and `char_k` is a norm `g·ḡ` from `Q(i)[x]`. Irreducibility over `Q` is proved for `k = 2^m − 1` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]) and verified for odd `k ≤ 31`.
 - Closed forms: `char_{2d}(λ) = 2^{2d} H_d(λ/2) V_d(λ/2)` with `H_d = Σ (−1)^i C(⌊(d+i)/2⌋, i) μ^{d−i}` and `V_d = H_{d+1} + μ² H_{d−1}`, proved via Pascal's rule and a Lucas doubling computation.
 - `ρ_6 = 2ψ²` because `H_3` is the minimal polynomial of `ψ²`; `ρ_k/2` is a unit for `k ≡ 2 (mod 4)` because the dominant root then lies in the monic factor.
 - `P_even(4m+2, L) = 2^L ·` Hardin word count (A005251, A202882, A203094, A203184), verified `m ≤ 4`; `P_odd(4, L) = −2^L · A010892(L)`; `P_even(1, L) = A146559(L)`, `P_odd(1, L) = −A009545(L)`; `P_odd(2, L) = −A107920(L)`.
 
 **Open** (filed on IDEAS).
+- Prove `char_k` irreducible over `Q` for every odd `k`. Eisenstein at 2 reaches exactly `k = 2^m − 1` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]); `k = 5, 9, 11, 13, …` need another argument.
 - Prove that the dominant root lies in the `+1` sector and that `H_d` belongs to the `+1` sector iff `d` is odd.
 - The Hardin identity is proved on [[hardin-word-identity](pages/hardin-word-identity.md)] by an explicit unimodular change of basis between the word automaton and the halved even-sector matrix (every `m ≤ 8` checked symbolically; general `m` reduces to a finite entrywise check). A sign-reversing involution realizing it object by object is still open.
 - Which `H_d` have Pisot dominant roots (`d = 3` yes; `d = 5, 7, 9, …` no) and whether the Jacobi-Perron expansion of `ρ_k/2` is ever periodic beyond `k = 6` (`k = 10, 14`: not within 300 / 200 exact steps).

@@ -3,9 +3,9 @@ title: Castle cryptography, seminar 1 - the ring
 category: Analyses
 summary: The baseline seminar of the castle cryptography series - the algebra everyone needs before red team or blue team makes sense - as its own standalone page, peer to castle-cryptography-round-two. Seven executed sections. (1) The characteristic polynomial x^3 - 3x^2 + 4x - 4 is the recurrence P(2, L) = 3 P(2, L-1) - 4 P(2, L-2) + 4 P(2, L-3) - six numbers encode the whole sequence. (2) Reducing mod p = 101 makes the sequence periodic; period 3400 verified as lcm of eigenvalue orders (order of 2 in F_101 is 100, order of the quadratic factor's root in F_101^2 is 3400). (3) The ring F_p[x]/(Q) - elements are polynomials of degree less than d, multiplying by x is one step of the recurrence, verified in one line ([2, 3, 1] * x mod (x^3 - 3x^2 + 4x - 4) = [4, -2, 6]). (4) When Q factors, F_p[x]/(Q) splits by CRT into a product of fields; A * B in the big ring commutes with projection to each factor, verified over char_2 mod 101 which factors (x - 2)(x^2 - x + 2). (5) Element orders of x at p = 10^9 + 7 across k = 1, 2, 3, all factored - the input to every Pohlig-Hellman analysis in the later seminars. (6) Binary exponentiation - x^a mod Q for a as large as 10^30 takes 137 ring multiplies (log a squarings), so the fast index Kitamasa trick that produces P(k, 10^12) also produces the trapdoor. (7) Diffie-Hellman on the ring - twenty lines of code, security question deferred to seminar 2 by design. Companion to castle-cryptography (series overview) and castle-cryptography-round-two (second lap of the loop).
 tags: [analysis, seminar, cryptography, ring, finite-field, quotient-ring, linear-recurrence, characteristic-polynomial, kitamasa, diffie-hellman, chinese-remainder-theorem, mod-p-observatory, baseline, pedagogy, implementation, castle]
-sources: [oeis-mining-pe502]
+sources: [oeis-mining-pe502, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-18
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Castle cryptography, seminar 1 - the ring
@@ -98,7 +98,7 @@ Read from the linear feedback shift register (LFSR) side, this says the state of
 A ring is more than addition and multiplication: the **units** (invertible elements) form a group whose structure is what cryptography actually rests on.
 
 - **`Q` irreducible over `F_p`.** Then `F_p[x] / (Q)` is a *field*, `F_{p^d}`, all `p^d − 1` nonzero elements are units, and the unit group is **cyclic** of order `p^d − 1`.
-- **`Q` factors as `Q_1 · Q_2` over `F_p`.** Then by the **Chinese Remainder Theorem** the whole ring splits as `F_p[x] / (Q_1) × F_p[x] / (Q_2)`. Multiplication is componentwise, so the unit group is the *product* of the two factor groups.
+- **`Q` factors as `Q_1 · Q_2` over `F_p` with `gcd(Q_1, Q_2) = 1`.** Then by the **Chinese Remainder Theorem** ([[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]) the whole ring splits as `F_p[x] / (Q_1) × F_p[x] / (Q_2)`.[^8] Multiplication is componentwise, so the unit group is the *product* of the two factor groups.
 
 The split isn't abstract - it's a **projection you can compute**. At `p = 101` with `Q = char_2 mod 101 = (x − 2)(x² − x + 2)`, take a ring element `A = 7 + 3x + 5x²`:
 
@@ -114,6 +114,8 @@ And multiplication commutes with these projections. With `B = 2 + x²`:
 ```
 
 The whole point: **the ring's structure is only as coarse as its coarsest factor.** Any question about the group - element order, discrete log - splits along the factorization of `Q`. This is the setup Pohlig-Hellman will exploit in seminar 2; here it is only the algebra.
+
+The way back is just as concrete. The two **idempotents** `e_1 = (x² − x + 2)/4 = 76x² + 25x + 51` and `e_2 = 1 − e_1` (mod `char_2`, `p = 101`) are `1` in one factor and `0` in the other, so a pair of projections `(a_1, a_2)` lifts back to the big ring as `a_1 e_1 + a_2 e_2`. Multiplying by `e_1` also isolates the dominant eigenvalue: `x^L e_1 = 2^L e_1` ([[idempotent-decomposition](pages/idempotent-decomposition.md)]).
 
 ## 5. Element orders of `x` - the number the whole later series turns on
 
@@ -210,6 +212,9 @@ Each of these is a *legitimate* question about the object we just built, sitting
 - [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)] - `castle_dh` and the `mulmod` / `powmod` primitives; the `p_signed` DP is on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `F(w,3)`, an order-6 castle count whose characteristic polynomial contains this seminar's modulus `char_2 = (x−2)(x²−x+2)`.
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the same ring `F_p[x]/(Q)` read as an abelian group in invariant-factor form: `R^* ≅ ∏ Z/(p^{d_i} − 1)` when `Q` is squarefree mod `p`, so §5's `ord(x)` and its factorization are the invariant-factor data of `⟨x⟩ ⊂ R^*`.
+- [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the theorem behind §4, stated for comaximal ideals.
+- [[idempotent-decomposition](pages/idempotent-decomposition.md)] - the CRT split as explicit elements `e_i` of `R`; `2^r` idempotents for `r` distinct factors of `Q`.
+
 
 ## Footnotes
 
@@ -226,3 +231,4 @@ Each of these is a *legitimate* question about the object we just built, sitting
 [^6]: Verified by execution (2026-09-18) at `p = 10⁹ + 7`, `Q = char_2 mod p`, `g = x`, `a = 373309869`, `b = 566180101`: `A = [704821174, 848698009, 235195321]`, `B = [12836899, 147220895, 148070992]`, and `powmod(B, a) == powmod(A, b) = [395423824, 86931747, 647893869]`. Same numbers as pinned on `castle_dh` in [[castle-snippets](pages/castle-snippets.md)] and [[castle-cryptography](pages/castle-cryptography.md)].
 
 [^7]: Verified by execution (2026-09-18) at `p = 10⁹ + 7`, `Q = char_2 mod p`: `powmod(g, 12345, Q, p) = [24371334, 336255992, 769290382]` costs 13 squarings + 5 multiplies (`⌊log₂ 12345⌋ = 13`, `popcount(12345) = 6`), while brute-force `x, x², x³, …` recovers the exponent only after `12345` multiplies. For the real private key the same loop is `373309869` multiplies.
+[^8]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.20 p.76; solution p.193 [synthesis] - for pairwise comaximal ideals `I_1, …, I_n`, `R/∩I_i → ∏ R/I_i` is an isomorphism (equivalently every congruence system is solvable); in `F_p[x]`, `(f)` and `(g)` are comaximal iff `gcd(f, g) = 1`.

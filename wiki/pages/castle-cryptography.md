@@ -5,7 +5,7 @@ summary: A three-seminar series that treats a castle-based public-key system the
 tags: [analysis, seminar, cryptography, public-key, finite-field, kitamasa, berlekamp-massey, discrete-log, diffie-hellman, cryptanalysis, red-team, blue-team, pedagogy, implementation, castle]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Castle cryptography
@@ -78,7 +78,7 @@ A verdict: **the toy, as built, is broken two independent ways** — one exploit
 
 ## Fix 1 — an irreducible (prime) char poly closes the CRT split
 
-Attack 1 exploited `Q` factoring. The fix is to choose a `Q` that **does not factor** — an *irreducible* polynomial, the polynomial analogue of a prime number. And the castle family hands us exactly that for free: the **odd-`k`** char polys are irreducible over `ℚ` (`char_1 = x²−2x+2`, `char_3 = x⁴−4x³+8x²−8x+8`, `char_5`), while the even-`k` ones factor.[^3] Swap the reducible even-`k` modulus for an irreducible odd-`k` one and the ring `F_p[x]/(Q)` stops decomposing — it is (generically) the single field `F_{p^d}`, and the discrete log is now the full-size problem in one group of order `p^d − 1`, with no CRT shortcut. **The ring's Pohlig–Hellman split is gone** - but only the ring's: `p^d − 1 = ∏_{e|d} Φ_e(p)` factors *algebraically*, so Pohlig–Hellman on the **group order** still applies, and round two recovers the private key from an irreducible `char_1` in 0.04 s ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], Attack 4). Irreducibility is necessary, and a number - a large prime factor of `Φ_d(p)` - is what actually has to be bought. ([[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] unpacks *char poly*, *irreducible = prime*, and *discrete logarithm problem (DLP)* from scratch for the engineer, with the reducible-vs-irreducible comparison worked out.)
+Attack 1 exploited `Q` factoring. The fix is to choose a `Q` that **does not factor** — an *irreducible* polynomial, the polynomial analogue of a prime number. And the castle family hands us exactly that for free: the **odd-`k`** char polys are irreducible over `ℚ` (proved for `k = 2^m − 1` on [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]; `char_1 = x²−2x+2`, `char_3 = x⁴−4x³+8x²−8x+8`, `char_5`), while the even-`k` ones factor.[^3] Swap the reducible even-`k` modulus for an irreducible odd-`k` one and the ring `F_p[x]/(Q)` stops decomposing — it is (generically) the single field `F_{p^d}`, and the discrete log is now the full-size problem in one group of order `p^d − 1`, with no CRT shortcut. **The ring's Pohlig–Hellman split is gone** - but only the ring's: `p^d − 1 = ∏_{e|d} Φ_e(p)` factors *algebraically*, so Pohlig–Hellman on the **group order** still applies, and round two recovers the private key from an irreducible `char_1` in 0.04 s ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], Attack 4). Irreducibility is necessary, and a number - a large prime factor of `Φ_d(p)` - is what actually has to be bought. ([[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] unpacks *char poly*, *irreducible = prime*, and *discrete logarithm problem (DLP)* from scratch for the engineer, with the reducible-vs-irreducible comparison worked out.)
 
 ## Fix 2 — nonlinear feedback defeats Berlekamp–Massey
 

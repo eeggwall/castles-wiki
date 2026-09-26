@@ -5,7 +5,7 @@ summary: The (T±P)/2 even/odd trick, generalized — replace the sign (−1)^bl
 tags: [concept, castle, parity, roots-of-unity, character, pedagogy]
 sources: [project-euler-502-castle-factoring, project-euler-502-representations]
 created: 2026-09-14
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Generalizing the parity sign (roots of unity)
@@ -111,6 +111,8 @@ One requested case does *not* fall out of this machinery: **"blocks is a power o
 - [[mod-p-observatory](pages/mod-p-observatory.md)] — the mod-p periods, a different (additive) use of modular structure.
 - [[block-count-constraints](pages/block-count-constraints.md)] — the full trichotomy (residue / sparse / semigroup), of which this page is the residue case.
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] — the `R^* = ∏ Z/(p^{d_i}−1)` invariant-factor decomposition is where the m-th roots of unity naturally act as characters; the sum-idempotents this page uses are the invariant-factor projectors.
+- [[idempotent-decomposition](pages/idempotent-decomposition.md)] - ring idempotents `e² = e` in `F_p[x]/(char_k)`; this page's character-sum projectors are the group-algebra version of the same idea.
+
 
 ## Footnotes
 

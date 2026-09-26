@@ -5,7 +5,7 @@ summary: Every castle eigenvalue's "convergents" run against OEIS. The metallic 
 tags: [analysis, castle, continued-fraction, convergents, oeis, eigenvalue, quasi-polynomial, plastic-number, jacobi-perron, pisano, mod-p, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Castle eigenvalues meet OEIS: the convergent crosswalk
@@ -158,7 +158,7 @@ The full derivation - the factorization from Berlekamp-Massey, the **Ehrhart arg
 
 ### Where they live, and the plastic surprise
 
-The L-direction recurrences (fixed `k`, vary the base length `L`) have characteristic polynomials `char_k` of degree `k+1`, built by `char_{k+1} = λ²·char_{k−1} − 2·char_k` from `char_0 = λ−1`, `char_1 = λ²−2λ+2`, with constant term `(−1)^{k−1}2^k`.[^1][^2] Their roots are the castle's genuinely irrational eigenvalues. For even `k` the polynomial splits into two factors and the dominant eigenvalue `ρ_k` is real; for odd `k` it is irreducible with a complex dominant pair ([[generating-function-gallery](pages/generating-function-gallery.md)]). Take the dominant factor for even `k`, and - because the product of *all* eigenvalues is `2^k` - try dividing the root by 2:
+The L-direction recurrences (fixed `k`, vary the base length `L`) have characteristic polynomials `char_k` of degree `k+1`, built by `char_{k+1} = λ²·char_{k−1} − 2·char_k` from `char_0 = λ−1`, `char_1 = λ²−2λ+2`, with constant term `(−1)^{k−1}2^k`.[^1][^2] Their roots are the castle's genuinely irrational eigenvalues. For even `k` the polynomial splits into two factors and the dominant eigenvalue `ρ_k` is real; for odd `k` it is irreducible with a complex dominant pair ([[generating-function-gallery](pages/generating-function-gallery.md)]; irreducibility proved for `k = 2^m − 1` on [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]). Take the dominant factor for even `k`, and - because the product of *all* eigenvalues is `2^k` - try dividing the root by 2:
 
 ```
 >>> sp.factor(c[6])

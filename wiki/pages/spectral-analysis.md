@@ -5,7 +5,7 @@ summary: The centerpiece hub for spectral methods applied to castles as 2D polyo
 tags: [concept, castle, spectral, transfer-matrix, laplacian, dft, ihara-zeta, ramanujan, isospectral, determinantal]
 sources: [spectral-analysis]
 created: 2026-09-16
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Spectral analysis of castles
@@ -156,7 +156,7 @@ The last row is the sharpest open target — a critical-`β` computation for cas
 
 ### `λ_1(h)` - settled
 
-The transfer matrix `M_k` (`k = h − 1`) has characteristic polynomial `char_k` of degree `h` ([[generating-function-gallery](pages/generating-function-gallery.md)]), factored in closed form on [[tower-parity-sectors](pages/tower-parity-sectors.md)]: `char_k(2μ)/2^k = H_{k/2}(μ)·(H_{k/2+1}(μ) + μ² H_{k/2−1}(μ))` for even `k`, irreducible for odd `k`. The count's growth constant is `λ_1(h) = h`; the signed correction grows like `ρ_{h−1}` with `ρ_1 = √2`, `ρ_2 = 2`, `ρ_3 = 2.193`, `ρ_4 = 2.796`, `ρ_5 = 2.892`, `ρ_6 = 2ψ²` - algebraic, never metallic, and `2 ×` a unit exactly when `h ≡ 3 (mod 4)`. The metallic-mean ladder does not appear in PE 502's own spectrum; it appears in class transfer matrices (Axis 8) and in individual castle graphs (below). Full table and argument on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)].
+The transfer matrix `M_k` (`k = h − 1`) has characteristic polynomial `char_k` of degree `h` ([[generating-function-gallery](pages/generating-function-gallery.md)]), factored in closed form on [[tower-parity-sectors](pages/tower-parity-sectors.md)]: `char_k(2μ)/2^k = H_{k/2}(μ)·(H_{k/2+1}(μ) + μ² H_{k/2−1}(μ))` for even `k`, irreducible for odd `k` (verified `k ≤ 31`, proved for `k = 2^m − 1` on [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]). The count's growth constant is `λ_1(h) = h`; the signed correction grows like `ρ_{h−1}` with `ρ_1 = √2`, `ρ_2 = 2`, `ρ_3 = 2.193`, `ρ_4 = 2.796`, `ρ_5 = 2.892`, `ρ_6 = 2ψ²` - algebraic, never metallic, and `2 ×` a unit exactly when `h ≡ 3 (mod 4)`. The metallic-mean ladder does not appear in PE 502's own spectrum; it appears in class transfer matrices (Axis 8) and in individual castle graphs (below). Full table and argument on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)].
 
 ### The isospectral-castle hunt - settled
 

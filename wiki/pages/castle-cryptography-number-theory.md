@@ -5,7 +5,7 @@ summary: A from-scratch, engineer-facing explainer for the three terms the castl
 tags: [analysis, cryptography, number-theory, characteristic-polynomial, irreducible-polynomial, discrete-logarithm, finite-field, pedagogy, engineer, castle]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Castle cryptography — the number theory, for engineers
@@ -73,7 +73,7 @@ sp.factor(x**4 - 4*x**3 + 8*x**2 - 8*x + 8)  # char_3 : irreducible
 x**4 - 4*x**3 + 8*x**2 - 8*x + 8
 ```
 
-`factor` returns `char_3` unchanged — a polynomial with no factor is exactly an integer with no divisor.[^3]
+`factor` returns `char_3` unchanged — a polynomial with no factor is exactly an integer with no divisor.[^3] For `char_1` and `char_3` there is also a one-line *proof*: substitute `x = 2y`, divide by `2^k`, reverse the coefficients, and the result (`y⁴ − 2y³ + 4y² − 4y + 2` for `char_3`) is Eisenstein at 2. That works for exactly `k = 1, 3, 7, 15, …` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]); `char_5` is only SymPy-verified.
 
 One honest caveat: "irreducible" depends on *which field* you work over. The table is irreducibility over the rationals `ℚ`. When you reduce mod a specific prime `p`, an over-`ℚ`-irreducible poly can still split (that's the quadratic-reciprocity story, [[finite-fields](pages/finite-fields.md)]). But the over-`ℚ` factorization is the first-order signal, and it drives the toy's main weakness.
 
@@ -92,7 +92,7 @@ Same shape as classic Diffie–Hellman (forward `g^a mod p` easy, backward "find
 
 This is the payoff — the reason Seminar 3's first fix swaps an even-`k` `Q` for an odd-`k` one.
 
-**Reducible `Q` (even-`k`, the toy): the DLP splits.** Because `char_2 = (x−2)(x²−x+2)`, the ring `F_p[x]/(Q)` breaks apart by the **Chinese Remainder Theorem** (the same CRT you'd use to speed up Rivest-Shamir-Adleman (RSA)) into one ring per factor:
+**Reducible `Q` (even-`k`, the toy): the DLP splits.** Because `char_2 = (x−2)(x²−x+2)`, the ring `F_p[x]/(Q)` breaks apart by the **Chinese Remainder Theorem** ([[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]) (the same CRT you'd use to speed up Rivest-Shamir-Adleman (RSA)) into one ring per factor:
 
 - the `(x−2)` factor is **degree 1** → lives in `F_p` → an ordinary discrete log mod `p`;
 - the `(x²−x+2)` factor is **degree 2** → lives in `F_{p²}`.
@@ -138,6 +138,9 @@ The engineer's one-liner: **a composite structure is only as strong as its weake
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - why even-`k` `char_k` factors (the structural fact that becomes the reducibility weakness).
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - the height-3 castle count `F(w,3)` carries the reducible `char_2` as a factor, so its recurrence order drops from 7 to 6 by the same `(x−2)` factor that splits the DLP.
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - "reducible splits the DLP" and "irreducible leaves the group-order factorization intact" are two rows of the same table: the invariant-factor decomposition of `R^*`, whose largest prime-power factor is the actual security number.
+- [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - the Eisenstein proof behind the odd-`k` rows for `k = 2^m − 1`.
+- [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the ring-level CRT that splits a reducible `Q`.
+
 
 ## Footnotes
 

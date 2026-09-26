@@ -3,9 +3,9 @@ title: Finite fields for the castle count
 category: Concepts
 summary: Why reducing char_k mod p turns aperiodic eigenvalues into periodic ones — F_{p^d} and its cyclic multiplicative group, built up from F_5 to F_49 to the general rule.
 tags: [concept, finite-field, modular-arithmetic, periodicity, pedagogy]
-sources: [oeis-mining-pe502]
+sources: [oeis-mining-pe502, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-26
 ---
 
 # Finite fields for the castle count
@@ -66,6 +66,8 @@ From this one picture, everything about the mod-p periods follows:
 
 - **Primitive roots give the maximal period.** If a root is a *generator* of `F_{p^d}^*` (a primitive element), its order is the full `p^d − 1`. For an irreducible `char_k` of degree `k+1` that is `p^{k+1} − 1` — the reason the period of `F(w,h) mod p` can reach `~p^h`, and why the `10^9+7` observatory can *name* the orders but never *print* a period.
 
+Two ring-theory facts sit under this picture. First, when `char_k mod p` has several distinct irreducible factors, `F_p[x]/(char_k)` is the *product* of the corresponding fields and local rings, by the [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]; that is why the period is an `lcm`. Second, over a finite field every function `F_q → F_q` is a polynomial (Lagrange interpolation through all `q` points), so any residue pattern read off as a function of a field element has a polynomial formula of degree `< q`.[^2]
+
 So the finite field does all the work: it replaces "infinite-order complex eigenvalue" with "element of a cyclic group," and periodicity is the automatic consequence.
 
 ## Appearances in Sources
@@ -77,7 +79,11 @@ So the finite field does all the work: it replaces "infinite-order complex eigen
 - [[mod-p-observatory](pages/mod-p-observatory.md)] — the periods this field structure produces.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] — the `char_k` polynomials whose roots reduce mod p.
 - [[signed-tower-count](pages/signed-tower-count.md)] — `P(1,L) = Re((1+i)^{L+1})` over ℚ.
+- [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the product decomposition over the distinct irreducible factors.
+- [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - Frobenius in characteristic 2 (`(α + β)^{2^m} = α^{2^m} + β^{2^m}`) proves `char_k` irreducible over `Q` for `k = 2^m − 1`.
+
 
 ## Footnotes
 
 [^1]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L19-37 [synthesis] — "P(1,L) = Re((1+i)^{L+1}) = A146559(L+1)" and the `char_k` family ("P(1): x^2 - 2x + 2 ...").
+[^2]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.13 p.75; solution p.191 [synthesis] - over a finite field `K`, `P(X) = Σ_{a ∈ K} f(a) ∏_{b ≠ a} (X − b)/(a − b)` agrees with `f` everywhere, so every map `K → K` is polynomial.

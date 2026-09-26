@@ -5,7 +5,7 @@ summary: The rational generating functions F_k(x) = num_k/den_k of P(k,L) in L, 
 tags: [analysis, castle, generating-functions, c-finite, sympy, verification]
 sources: [project-euler-502-solution, oeis-mining-pe502]
 created: 2026-09-14
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Generating-function gallery for P(k,L)
@@ -113,7 +113,7 @@ The recurrence's eigenvalues are the roots of the **characteristic polynomial** 
 | 5 | `λ⁶ − 6λ⁵ + 18λ⁴ − 32λ³ + 48λ² − 32λ + 32` |
 | 6 | `(λ³ − 4λ² + 4λ − 8)(λ⁴ − 3λ³ + 8λ² − 4λ + 8)` |
 
-**Structure.** For **even `k`** the polynomial factors into two factors of degrees `k/2` and `k/2 + 1` — one of them carrying the single real root that dominates the growth. For **odd `k`** it is irreducible over ℚ, so *every* eigenvalue is non-real. The reason is a symmetry: the signed transfer matrix commutes with "reflect heights, flip the sign of odd heights", whose eigenspaces are the even- and odd-last-column sectors of the tower count; for odd `k` that operator squares to `−1` and the split only happens over `Q(i)`. In the variable `μ = λ/2` the factors are explicit - `H_{k/2}(μ) = Σ_i (−1)^i C(⌊(k/2+i)/2⌋, i) μ^{k/2−i}` and its Lucas companion `H_{k/2+1} + μ² H_{k/2−1}` - and `H_3 = μ³ − 2μ² + μ − 1` is the minimal polynomial of `ψ²` for `ψ` the plastic number, so `ρ_6 = 2ψ²`. See [[tower-parity-sectors](pages/tower-parity-sectors.md)]. The roots (eigenvalues), with the dominant modulus ρ_k = max|λ|:
+**Structure.** For **even `k`** the polynomial factors into two factors of degrees `k/2` and `k/2 + 1` — one of them carrying the single real root that dominates the growth. For **odd `k`** it is irreducible over ℚ (SymPy-verified for odd `k ≤ 31`; proved for `k = 2^m − 1` by Eisenstein at 2, [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]), so *every* eigenvalue is non-real. The reason is a symmetry: the signed transfer matrix commutes with "reflect heights, flip the sign of odd heights", whose eigenspaces are the even- and odd-last-column sectors of the tower count; for odd `k` that operator squares to `−1` and the split only happens over `Q(i)`. In the variable `μ = λ/2` the factors are explicit - `H_{k/2}(μ) = Σ_i (−1)^i C(⌊(k/2+i)/2⌋, i) μ^{k/2−i}` and its Lucas companion `H_{k/2+1} + μ² H_{k/2−1}` - and `H_3 = μ³ − 2μ² + μ − 1` is the minimal polynomial of `ψ²` for `ψ` the plastic number, so `ρ_6 = 2ψ²`. See [[tower-parity-sectors](pages/tower-parity-sectors.md)]. The roots (eigenvalues), with the dominant modulus ρ_k = max|λ|:
 
 | k | eigenvalues | ρ_k ≈ |
 |---|---|---|

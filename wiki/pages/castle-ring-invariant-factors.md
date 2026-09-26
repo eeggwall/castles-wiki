@@ -3,16 +3,16 @@ title: Castle ring by invariant factors
 category: Analyses
 summary: The unit group of `R = F_p[x]/(char_k)` written as a product of cyclic groups. When `char_k` is squarefree mod `p`, CRT gives `R^* ≅ ∏ F_{p^{d_i}}^* = ∏ Z/(p^{d_i} - 1)`, and everything the seminars do collapses to one picture: the mod-`p` period is `ord(x)` in that product; Kitamasa is exponentiation in it; Pohlig-Hellman is the fundamental theorem of finitely generated abelian groups run on `⟨x⟩`; security in `castle_dh` is set by the largest prime-power invariant factor of `⟨x⟩`. At a discriminant-zero prime `char_k` acquires a repeated factor `g^m` and the ring gains a `p`-group `1 + (g)/(g)^m` of order `p^{d·(m-1)}` beside the field factor - that is exactly the extra `p` the observatory measured (`per(char_2 mod 7) = 21 = 3·7`, the extra `7` being the size of the `p`-group). The two `d = 3` linear-complexity deficits on round-two are one line in this language: for `char_2` the norm relation `α·ᾱ = 2` identifies a pair-product with the linear factor's root (`8 = 6 + 3 − 1`), and the character `4 = 2·α·ᾱ` in `s_n·s_{n+1}·s_{n+2}` has coefficient `6·s_1 + 2·s_2 = 6 − 6 = 0` (`9 = 10 − 1`).
 tags: [analysis, cryptography, ring, finite-field, unit-group, invariant-factors, structure-theorem, pohlig-hellman, kitamasa, discriminant, discriminant-zero, linear-complexity, castle]
-sources: [oeis-mining-pe502]
+sources: [oeis-mining-pe502, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-21
-updated: 2026-09-21
+updated: 2026-09-26
 ---
 
 # Castle ring by invariant factors
 
 The [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] seminar builds arithmetic in `R = F_p[x]/(Q)` with `Q = char_k mod p`, and [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] runs Pohlig-Hellman on `⟨x⟩ ⊂ R^*`. Both pages talk in terms of "factor `Q`, then reduce mod each factor." This page names the same object as an **abelian group written in invariant factors**, and reads five separate seminar facts as one identity.
 
-The one identity: for `Q = ∏_i g_i^{m_i}` with `g_i` distinct irreducibles of degree `d_i` over `F_p`, [[finite-fields](pages/finite-fields.md)] + CRT give
+The one identity: for `Q = ∏_i g_i^{m_i}` with `g_i` distinct irreducibles of degree `d_i` over `F_p`, [[finite-fields](pages/finite-fields.md)] + CRT ([[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)], for the pairwise comaximal ideals `(g_i^{m_i})`)[^8] give
 
 ```
 R^*  =  ∏_i  ( F_{p^{d_i}}^*  ×  U_i )         where   U_i = (1 + (g_i))/(g_i)^{m_i}
@@ -142,6 +142,9 @@ And the discriminant-zero side of [[mod-p-observatory](pages/mod-p-observatory.m
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - measures the linear complexity of a filtered sequence; the tool that produced the `d = 3` deficit numbers this page explains.
 - [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - reads `R^*` via invariant factors at `10^9 + 7`; the concrete Connection-to-castle-cryptography section that this page's structure explains.
 - [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] - the m-th-root character sums that project out block-count residue classes are exactly the invariant-factor projectors on `R^* = ∏ Z/(p^{d_i} − 1)`.
+- [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the comaximal-ideal CRT that produces the product decomposition this page starts from.
+- [[idempotent-decomposition](pages/idempotent-decomposition.md)] - the same decomposition by idempotents: repeated factors change the unit group (the `p`-group `U_i`) but not the number of idempotents, `2^r`.
+
 
 ## Footnotes
 
@@ -158,3 +161,4 @@ And the discriminant-zero side of [[mod-p-observatory](pages/mod-p-observatory.m
 [^6]: Verified by execution (2026-09-21): `bm(P(2, ·) mod p, p) = 3` (matching the recurrence order), `bm(s_n · s_{n+1} + s_{n+2}) mod p = 8` at `p = 10⁹+7`; the six pair-products of `char_2`'s roots are `{4, 2α, 2ᾱ, α², ᾱ², αᾱ = 2}` and the three linear characters are `{2, α, ᾱ}`, so their union has cardinality `6 + 3 − 1 = 8` because `αᾱ = 2` is in both sets (Vieta on `x² − x + 2` gives constant term `2 = αᾱ`).
 
 [^7]: Verified by execution (SymPy, 2026-09-21) with `α = (1 + i√7)/2` a root of `x² − x + 2` and `ᾱ` its conjugate: `α · ᾱ = 2`, `α + ᾱ = 1`, `α² + ᾱ² = 1 − 4 = −3`. For the ten multisets of size 3 from `{2, α, ᾱ}` the products are `{8, 4α, 4ᾱ, 2α², 4, 2ᾱ², α³, 2α, 2ᾱ, ᾱ³}` (ten distinct values). The character `μ = 4` comes from the multiset `{2, α, ᾱ}`, i.e., six ordered triples; the sum of `c_i c_j c_k · λ_j · λ_k²` across those six triples is `c_1 c_2 c_3 · (6(α + ᾱ) + 2(α² + ᾱ²)) = c_1 c_2 c_3 · (6 − 6) = 0`, so the character `4` is absent from `s_n · s_{n+1} · s_{n+2}` and the linear complexity is `10 − 1 = 9`. `bm(s_n s_{n+1} s_{n+2}, p) = 9` at `p = 10⁹+7`.
+[^8]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.20 p.76; solution p.193 [synthesis] - for pairwise comaximal ideals `I_1, …, I_n`, `R/∩I_i → ∏ R/I_i` is an isomorphism (equivalently every congruence system is solvable); in `F_p[x]`, `(f)` and `(g)` are comaximal iff `gcd(f, g) = 1`.

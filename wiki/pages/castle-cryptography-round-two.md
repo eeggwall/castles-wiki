@@ -5,7 +5,7 @@ summary: The second lap of the build / red-team / blue-team loop on the castle c
 tags: [analysis, seminar, cryptography, cryptanalysis, red-team, blue-team, pohlig-hellman, baby-step-giant-step, berlekamp-massey, linear-complexity, elgamal, schnorr, signature, finite-field, cyclotomic, index-calculus, key-size, castle]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
-updated: 2026-09-24
+updated: 2026-09-26
 ---
 
 # Castle cryptography, round two
@@ -35,7 +35,7 @@ Both need a **prime-order subgroup** `⟨g⟩`, `|⟨g⟩| = q`. That is where t
 
 ## Attack 3 — recover Alice's private key, for real
 
-Round one *described* the Chinese Remainder Theorem (CRT) split; round two *runs* it. Take the published `castle_dh` numbers: `Q = char_2`, Alice's public key `A = x^a = [704821174, 848698009, 235195321]`. Factor `Q mod p = (x − 2)(x² − x + 2)`, reduce `A` modulo each factor, solve a discrete log in each piece, and recombine by CRT:
+Round one *described* the Chinese Remainder Theorem (CRT) split ([[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]); round two *runs* it. Take the published `castle_dh` numbers: `Q = char_2`, Alice's public key `A = x^a = [704821174, 848698009, 235195321]`. Factor `Q mod p = (x − 2)(x² − x + 2)`, reduce `A` modulo each factor, solve a discrete log in each piece, and recombine by CRT:
 
 | piece | where it lives | order of `x` there | log |
 |---|---|---|---|
