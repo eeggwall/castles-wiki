@@ -1,7 +1,7 @@
 ---
 title: "Exercises in Basic Ring Theory (Călugăreanu, Hamburg 1998)"
 category: Sources
-summary: An exercise book with full solutions (17 chapters, mostly general and often noncommutative ring theory), read selectively for the algebra behind the castle ring F_p[x]/(char_k). Chapter 17 is ingested - CRT for comaximal ideals (17.20), idempotents as ring splittings (17.19, 17.8), Eisenstein over a UFD (17.21), functions on a finite field are polynomials (17.13), Z[i]/H finite (17.18). Eisenstein turned into a new result - char_k is irreducible for k = 2^m - 1. Chapter 14 is ingested - quotient maps Q[X]/(f) → Q[X]/(g) (14.4), hand factoring over Z_3, Z_5, Z_7 (14.7-14.9), polynomials vs polynomial functions (14.10), units and nilpotents of R[X] (14.15-14.16), R[X]/(X²+1) ≅ C (14.18). Chapter 13 is ingested - Spec, the nilradical, local rings R/M^n, Z[i] and Z[ω] - and gave castle-ring-spectrum. Chapter 12 is ingested - Z_n semisimple iff squarefree, ideals as Re, idempotents that do not lift - extending castle-ring-spectrum. Chapter 5 is ingested - Frobenius and Artin-Schreier give the rank and point count of each fiber. Chapter 4 is queued.
+summary: An exercise book with full solutions (17 chapters, mostly general and often noncommutative ring theory), read selectively for the algebra behind the castle ring F_p[x]/(char_k). Chapter 17 is ingested - CRT for comaximal ideals (17.20), idempotents as ring splittings (17.19, 17.8), Eisenstein over a UFD (17.21), functions on a finite field are polynomials (17.13), Z[i]/H finite (17.18). Eisenstein turned into a new result - char_k is irreducible for k = 2^m - 1. Chapter 14 is ingested - quotient maps Q[X]/(f) → Q[X]/(g) (14.4), hand factoring over Z_3, Z_5, Z_7 (14.7-14.9), polynomials vs polynomial functions (14.10), units and nilpotents of R[X] (14.15-14.16), R[X]/(X²+1) ≅ C (14.18). Chapter 13 is ingested - Spec, the nilradical, local rings R/M^n, Z[i] and Z[ω] - and gave castle-ring-spectrum. Chapter 12 is ingested - Z_n semisimple iff squarefree, ideals as Re, idempotents that do not lift - extending castle-ring-spectrum. Chapter 5 is ingested - Frobenius and Artin-Schreier give the rank and point count of each fiber. Chapter 4 is ingested - what reduction maps preserve, and telling quadratic rings apart - completing the chapters read for the wiki.
 tags: [book, source, ring-theory, exercises, chinese-remainder-theorem, idempotent, eisenstein, finite-field, gaussian-integers, quotient-ring]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-26
@@ -11,7 +11,7 @@ updated: 2026-09-26
 # Exercises in Basic Ring Theory (Călugăreanu, Hamburg 1998)
 
 **Source:** `assets/ExercisesBasicRingTheory.pdf` (Grigore Călugăreanu and Peter Hamburg, *Exercises in Basic Ring Theory*, Kluwer Texts in the Mathematical Sciences, Kluwer Academic Publishers, Dordrecht, 1998; ISBN 0-7923-4918-0). The PDF is a scan with no text layer. Page numbers below are the book's printed pages: exercises in Part I (pp. 1-76), solutions in Part II (pp. 77-194).
-**Date ingested:** 2026-09-26 (Chapters 17, 14, 13, 12 and 5)
+**Date ingested:** 2026-09-26 (Chapters 17, 14, 13, 12, 5 and 4)
 **Type:** book (exercises with solutions)
 
 ## Summary
@@ -74,6 +74,17 @@ Chapter 5 (Characteristics, exercises pp. 23-25, solutions pp. 111-114) computes
 
 Also noted: 5.3 (`char(R × R') = lcm`, the characteristic of a CRT product) and 5.15 (`X² + Y² − 1` irreducible by Eisenstein at the polynomial prime `Y + 1`, a second use of 17.21).[^26]
 
+## Chapter 4 - the exercises used
+
+Chapter 4 (Ring Homomorphisms, exercises pp. 19-21, solutions pp. 107-110) is about maps between rings: kernels, images, and what a map preserves. Four exercises bear on castles.
+
+- **4.4, the integer CRT map.** `Z → Z_3 × Z_5`, `x ↦ (x mod 3, x mod 5)`, is surjective with kernel `15Z`, and the same holds for any coprime `m, n`.[^27] It is the model for every CRT split on [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)].
+- **4.8-4.9, ring maps between the `Z_n`.** Every ring map `Z_n → Z_m` is multiplication by an idempotent `a` of `Z_m` with `n·a = 0`; in particular the ring endomorphisms of `Z_n` are the maps `x ↦ e·x`, one per idempotent `e`.[^28] `Z/10` has four (`e = 0, 1, 5, 6`), the idempotents of the `Z/10` lifting example on [[idempotent-decomposition](pages/idempotent-decomposition.md)].
+- **4.10, what a surjective map preserves.** Images of idempotents, nilpotents, central elements and units are again idempotents, nilpotents, central and units, but no converse holds: `3` is idempotent in `Z_6` but not in `Z`, `2` is nilpotent in `Z_4` but not in `Z`, and every integer other than `0, ±1` is a unit in `Z_5` but not in `Z`.[^29] The castle ring fails all three converses, and all three failures sit at the prime 2 ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §5): fiber idempotents need `1/2`, fiber nilpotents never lift because `Z[x]/(char_k)` is reduced, and `x` is a unit in every odd fiber but needs `1/2^k` to be inverted in `Z[x]/(char_k)`.
+- **4.11, telling rings apart by the equations they solve.** An isomorphism preserves solutions of `x² = 1 + 1`, so `Z[√2] ≇ Z[√3]`.[^30] On castles, the three quadratic rings `Z[i]`, `Z[(1 + √−7)/2]`, `Z[√−3]` of `char_1`, `char_2`, `char_4` are pairwise non-isomorphic, and `Z[√−3]` is not the full ring of integers ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §4). On the metallic ladder, golden and copper share the field `Q(√5)` but generate different rings, and several rungs are odd powers of smaller ones ([[metallic-means](pages/metallic-means.md)]).
+
+The rest (4.1-4.3, 4.6-4.7, 4.12-4.15: unital maps, maps out of `Q`, preimages of ideals) is not used here.
+
 ## Key Takeaways
 
 - The castle ring's CRT split is 17.20 applied to the ideals `(g_i^{m_i})` of `F_p[x]`, which are pairwise comaximal because the `g_i` are distinct irreducibles.[^1]
@@ -83,6 +94,7 @@ Also noted: 5.3 (`char(R × R') = lcm`, the characteristic of a CRT product) and
 - Chapter 13 gives the geometric picture: `Spec Z[x]/(char_k)` over `Spec Z` has the mod-`p` factorizations as fibers, the even-`k` parity sectors as its two components meeting only at `(2, x)`, and nilradicals at discriminant primes that carry exactly the extra `p` in the periods ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)]).[^14][^15]
 - Chapter 12: a castle fiber is semisimple exactly when it is not fat, and `Z[x]/(char_k)` has no idempotents besides `0, 1`, so its mod-`p` splittings do not lift to the integers; the sector idempotent lives in `Z[1/2][x]/(char_k)` with denominator `2^{v_2(k!) + 1}` (checked `k ≤ 40`).[^18][^22]
 - Chapter 5: Frobenius `a ↦ a^p` is linear on each castle fiber; its rank is full exactly when the fiber is not fat, and its fixed space has dimension equal to the number of points (Berlekamp), so a fiber's shape can be read off without factoring `char_k`.[^23][^24]
+- Chapter 4: reduction mod `p` preserves idempotents, nilpotents and units but none lift back to `Z[x]/(char_k)`, and every failure is at 2; the ring a quadratic eigenvalue or metallic rung generates can be a proper suborder of its field's integers (`Z[√−3]` for `char_4`, `Z[√5]` for copper).[^29][^30]
 - `P(1, ·)` lives in the Gaussian integers. The book's `Z[i]` exercises (17.18, and 4.5, 4.11, 15.2 elsewhere) are statements about `Z[x]/(char_1)`.[^6]
 
 ## Chapters queued for later ingests
@@ -130,3 +142,7 @@ This book gives textbook proofs for the ring-theory steps that [[castle-cryptogr
 [^24]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 5.16 p.25; solution p.113 [synthesis] - roots of `X^p − X − a` are `u, u + 1, …, u + p − 1`, so it is irreducible or splits completely; two variants reduce to it by substitution.
 [^25]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 5.11 p.24; solution p.112 [synthesis] - `Z_3 × Z_3` with `(a, b) + (c, d) = (a + c, b + d)`, `(a, b)(c, d) = (ac − bd, ad + bc)` is a field `K_9` of characteristic 3.
 [^26]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Exs. 5.3, 5.15 pp.24-25; solutions pp.111, 113 [synthesis] - `char(Z_m × Z_n) = [m; n]`, generalizing to `char(R × R') = lcm`; `X² + Y² − 1` is irreducible in `K[Y][X]` for `char K ≠ 2` by Eisenstein at `Y + 1`, which divides `Y² − 1` but whose square does not.
+[^27]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 4.4 p.20; solutions pp.107-108 [synthesis] - `f(x) = ([x]_3, [x]_5)` is surjective (using `2·3 − 1·5 = 1`) with kernel `3Z ∩ 5Z = 15Z`; generalized to coprime `n, m` with kernel `nmZ`.
+[^28]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Exs. 4.8-4.9 p.20; solutions pp.108-109 [synthesis] - ring endomorphisms of `Z_n` are the translations `t_e(x) = e·x` by idempotents `e`; ring maps `Z_n → Z_m` are `[x]_n ↦ [a x]_m` for idempotents `a ∈ Z_m` with `n·a = 0`.
+[^29]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 4.10 p.20; solution p.109 [synthesis] - surjective maps preserve idempotents, nilpotents, central elements and units; counterexamples to the converses via `Z → Z_n`: `3` in `Z_6`, `2` in `Z_4`, units of `Z_5`.
+[^30]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 4.11 p.21; solution p.109 [synthesis] - isomorphisms preserve solutions of `x² = 1 + 1`; `Z[√2] ≇ Z[√3]`, and generally `Z[√d] ≇ Z[√e]` for distinct squarefree `d, e`.

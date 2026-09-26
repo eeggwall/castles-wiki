@@ -1,7 +1,7 @@
 ---
 title: Castle snippets - number theory
 category: Concepts
-summary: Snippets for the signed tower count, continued-fraction convergents, mod-p orders / Pisano-type periods, quasi-polynomial splits, sector transfer matrices, the H(d) factor, and the ring theory of char_k (mod-2 shape, CRT and Lagrange idempotents, sector resultant, reduced period, sectors mod 2, rational sector idempotent, fiber ideal counts, Frobenius rank and fixed space). Sibling of the core castle-snippets hub.
+summary: Snippets for the signed tower count, continued-fraction convergents, mod-p orders / Pisano-type periods, quasi-polynomial splits, sector transfer matrices, the H(d) factor, and the ring theory of char_k (mod-2 shape, CRT and Lagrange idempotents, sector resultant, reduced period, sectors mod 2, rational sector idempotent, fiber ideal counts, Frobenius rank and fixed space, metallic ring conductors, the inverse of x). Sibling of the core castle-snippets hub.
 tags: [concept, castle, python, snippets, signed-tower-count, continued-fraction, mod-p, quasi-polynomial, plastic-number]
 sources: [project-euler-502-brute-force, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-19
@@ -304,7 +304,7 @@ Meaning: `ρ_6` has a period-4 multidimensional continued fraction (the cubic an
 
 ## Ring theory of `char_k`
 
-Snippets behind [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)], [[idempotent-decomposition](pages/idempotent-decomposition.md)], [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] and the mod-2 note on [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] and [[castle-ring-spectrum](pages/castle-ring-spectrum.md)], written while reading Chapters 17, 14, 13, 12 and 5 of [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)]. All need SymPy.
+Snippets behind [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)], [[idempotent-decomposition](pages/idempotent-decomposition.md)], [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] and the mod-2 note on [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] and [[castle-ring-spectrum](pages/castle-ring-spectrum.md)], written while reading Chapters 17, 14, 13, 12, 5 and 4 of [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)]. All need SymPy.
 
 ```python
 import sympy as sp
@@ -519,6 +519,43 @@ def frobenius_profile(k, p):
 
 Meaning: `char_2 mod 5` is squarefree (rank 3 = full) with 2 points; `char_2 mod 7 = (x − 2)(x + 3)²` is fat (rank 2 < 3, the missing dimension is the nilpotent `(x − 2)(x + 3)`) and still has 2 points; `char_4 mod 5` has 3 points, `char_6 mod 3` is fat with 3 points. The rank is `Σ d_i ⌈m_i/p⌉` in all 12 fibers checked on [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §6.
 
+### `metallic_ring(a)` → `(D0, f)`: the ring `Z[δ_a] = Z[x]/(x² − a x − 1)` as an order of conductor `f` in the field of fundamental discriminant `D0`
+
+`disc(x² − a x − 1) = a² + 4 = f² · D0`. The rung generates the full ring of integers of `Q(√(a²+4))` exactly when `f = 1`.
+
+```python
+def metallic_ring(a):
+    D, f = a*a + 4, 1
+    for q, e in sp.factorint(D).items():
+        f *= q**(e // 2)
+    D0 = D // (f*f)
+    if D0 % 4 in (2, 3):
+        D0, f = 4*D0, f // 2
+    return D0, f
+```
+
+```
+>>> [(a, metallic_ring(a)) for a in (1, 2, 3, 4, 8, 11, 14)]
+[(1, (5, 1)), (2, (8, 1)), (3, (13, 1)), (4, (5, 2)), (8, (17, 2)), (11, (5, 5)), (14, (8, 5))]
+```
+
+Meaning: golden, silver, bronze generate full rings of integers; copper (`a = 4`, `= φ³`) generates `Z[√5]`, index 2 in `Z[φ]`; `a = 11` (`= φ⁵`) and `a = 14` (`= (1 + √2)³`) have index 5, the Fibonacci and Pell numbers `F_5` and `P_3`; `a = 8` has index 2 without being a power of a smaller rung.
+
+### `x_inverse(k)` → `(h, c)` with `x · h(x) = c = ±2^k` in `Z[x]/(char_k)`
+
+Since `char_k(x) = 0`, moving the constant term across gives `x · h(x) = −char_k(0) = ±2^k`. So `x^{−1} = h(x)/c`: a unit in every fiber over an odd prime, but not in `Z[x]/(char_k)`, where the inverse needs `1/2^k`.
+
+```python
+def x_inverse(k):
+    c = -char_k(k).subs(x, 0)
+    return sp.expand((char_k(k) + c) / x), c
+```
+
+```
+>>> [x_inverse(k) for k in (1, 2, 3)]
+[(x - 2, -2), (x**2 - 3*x + 4, 4), (x**3 - 4*x**2 + 8*x - 8, -8)]
+```
+
 ## Appearances in Sources
 
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the reference `p_signed` DP.
@@ -536,4 +573,5 @@ Meaning: `char_2 mod 5` is squarefree (rank 3 = full) with 2 points; `char_2 mod
 - [[castle-sign](pages/castle-sign.md)] - the block-count convention `p_signed` matches.
 - [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] / [[idempotent-decomposition](pages/idempotent-decomposition.md)] - `crt_idempotents`, `lagrange_idempotents`, `sector_resultant`.
 - [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - `char_k` and its mod-2 shape.
-- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - `reduced_period`, `sectors_mod2`, `sector_idempotent`, `fiber_ideal_count`, `frobenius_profile`.
+- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - `reduced_period`, `sectors_mod2`, `sector_idempotent`, `fiber_ideal_count`, `frobenius_profile`, `x_inverse`.
+- [[metallic-means](pages/metallic-means.md)] - `metallic_ring`.

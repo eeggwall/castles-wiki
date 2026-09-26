@@ -3,9 +3,9 @@ title: Metallic means
 category: Concepts
 summary: The family of quadratic irrationals `δ_a = (a + √(a²+4))/2` for a = 1, 2, 3, … — the roots of `x² − ax − 1 = 0`. Each is a norm-`−1` reduced surd with purely periodic continued fraction `[a; a, a, …]`; the first two are golden (`φ`) and silver (`1+√2`), the family the wiki's continued-fraction and eigenvalue threads sit inside.
 tags: [concept, metallic-mean, golden-ratio, silver-ratio, pell, fibonacci, continued-fraction, quadratic-irrational, norm-minus-one]
-sources: [pe502-pell-castle-strip]
+sources: [pe502-pell-castle-strip, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-15
-updated: 2026-09-22
+updated: 2026-09-26
 ---
 
 # Metallic means
@@ -46,7 +46,7 @@ All five OEIS identifications are verified offset-exact against the OEIS data (2
 
 ## The `a=4` coincidence: copper = φ³
 
-The copper mean has a special place: `δ_4 = 2 + √5 = φ³` (since `φ² = φ + 1`, so `φ³ = 2φ + 1 = 1 + √5 + 1 = 2 + √5`).[^5] So the `a=4` member is not "a new quadratic" — it is a power of the golden ratio living inside `Q(√5)`. The `a=4` integer sequence 0, 1, 4, 17, 72, 305, 1292, 5473, 23184, 98209 is `F_{3n}` up to a shift (Fibonacci taken every third term), which explains the entry sitting inside `Q(√5)` rather than `Q(√20)`. No other `a` has this coincidence: `a=1, 2, 3, 5, 6, …` all sit in genuinely distinct real quadratic fields.
+The copper mean has a special place: `δ_4 = 2 + √5 = φ³` (since `φ² = φ + 1`, so `φ³ = 2φ + 1 = 1 + √5 + 1 = 2 + √5`).[^5] So the `a=4` member is not "a new quadratic" — it is a power of the golden ratio living inside `Q(√5)`, and it generates the smaller ring `Z[√5]` (index 2 in `Z[φ]`). The `a=4` integer sequence 0, 1, 4, 17, 72, 305, 1292, 5473, 23184, 98209 is `F_{3n}` up to a shift (Fibonacci taken every third term), which explains the entry sitting inside `Q(√5)` rather than `Q(√20)`. It is the first of an infinite family of such coincidences: whenever `δ_a` is an odd power of a smaller rung it shares that rung's field, as `δ_11 = φ⁵` (also in `Q(√5)`) and `δ_14 = (1 + √2)³` (in `Q(√2)`) do; for `a ≤ 100` the full list is `a = 4, 11, 14, 29, 36, 76, 82` (see "Which ring each rung generates" below). The rungs `a = 1, 2, 3, 5, 6, 7, 8, 9, 10` all sit in distinct real quadratic fields.
 
 ## Why the family matters here
 
@@ -61,8 +61,29 @@ Both are treated in parallel on [[eigenvalue-continued-fractions](pages/eigenval
 
 - **Binet-style formula.** Every member's recurrence-realization satisfies `x_n = (δ_a^n − δ̂_a^n) / (δ_a − δ̂_a)` with `δ̂_a = (a − √(a²+4))/2` the conjugate root. Growth is `x_{n+1}/x_n → δ_a`; the conjugate contribution decays because `|δ̂_a| < 1` for every `a ≥ 1`.
 - **Purely periodic continued fraction.** `δ_a = [a; a, a, …]` since `δ_a = a + 1/δ_a` (i.e. `δ_a` is a fixed point of `x ↦ a + 1/x`), the fundamental self-similarity property that [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] develops. The conjugate `δ̂_a` sits in `(−1, 0)` for every `a ≥ 1`, so all members are Galois-reduced (norm `−1`, sum of roots `= a > 0`, product `= −1`), hence purely periodic.
-- **Fundamental units.** Each `δ_a` is a fundamental unit of the real quadratic field `Q(√(a²+4))` (up to sign/inversion), i.e. a generator of its unit group modulo torsion. Number-theoretic weight — the metallic means are, up to a rescaling, the fundamental units of the simplest infinite family of real quadratic fields.[^6]
+- **Fundamental units.** Each `δ_a` is a unit of norm `−1`, and it is the fundamental unit of the ring it generates, `Z[δ_a]`. It is also the fundamental unit of its field `Q(√(a²+4))` unless it is an odd power of a smaller rung: copper `δ_4 = φ³` is a cube in `Q(√5)`, whose fundamental unit is `φ`. Conversely every norm `−1` unit greater than 1 in a real quadratic field is some `δ_t`, so the metallic means include the fundamental unit of every real quadratic field whose fundamental unit has norm `−1` ("Which ring each rung generates" below).[^6]
 - **Palindromic quadratic — reciprocal-root symmetry.** The characteristic polynomial `x² − a·x − 1` has coefficients `[1, −a, −1]`, so it is *anti*-palindromic (not palindromic) — the two roots multiply to `−1` (norm `−1`), the very reason the fraction is purely periodic ([[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] Step 3). Every metallic mean sits on the same anti-palindromic template with a different first-order coefficient.
+
+## Which ring each rung generates
+
+A metallic mean generates more than a field. It generates a *ring*, `Z[δ_a] = Z[x]/(x² − a x − 1)`, the integer combinations of powers of `δ_a`, and two rungs can share a field without sharing a ring. The textbook way to tell rings apart is to ask which equations they can solve. An isomorphism of rings carries solutions of `x² = 1 + 1` to solutions, so `Z[√2]` (which has one) is not isomorphic to `Z[√3]` (which does not).[^7]
+
+**The ring is an order of conductor `f`.** `disc(x² − a x − 1) = a² + 4 = f² · D0` with `D0` a fundamental discriminant. `Z[δ_a]` is the full ring of integers of `Q(√D0)` exactly when `f = 1`, and otherwise it sits inside with index `f`:[^8]
+
+| `a` | `a² + 4` | field `Q(√D0)` | index `f` | note |
+|---|---|---|---|---|
+| 1, 2, 3, 5, 6, 7, 9, 10 | 5, 8, 13, 29, 40, 53, 85, 104 | each its own | 1 | full ring of integers |
+| 4 (copper) | 20 | `Q(√5)` | 2 | `δ_4 = φ³`, ring `Z[√5]` |
+| 8 | 68 | `Q(√17)` | 2 | not a power of a smaller rung |
+| 11 | 125 | `Q(√5)` | 5 | `δ_11 = φ⁵` |
+| 12 | 148 | `Q(√37)` | 2 | |
+| 14 | 200 | `Q(√2)` | 5 | `δ_14 = (1 + √2)³` |
+
+**Powers give Fibonacci-type indices.** If `δ = δ_b` and `n` is odd, `δ^n` has norm `−1` and trace `t`, so `δ^n = δ_t` is itself a rung. Writing `δ^n = U_n δ + U_{n−1}` (with `U_n` the Fibonacci numbers for `b = 1`, Pell numbers for `b = 2`), the ring it generates is `Z[δ^n] = Z + U_n δ Z`, of index `U_n` in `Z[δ]`. So copper `φ³` has index `F_3 = 2` in `Z[φ]`, `φ⁵ = δ_11` has index `F_5 = 5`, and `(1 + √2)³ = δ_14` has index `P_3 = 5` in `Z[√2]`.[^8]
+
+**Same field, different rings.** Golden and copper both live in `Q(√5)`, but `x² = x + 1` has the solution `φ` in `Z[φ]` and no solution in `Z[√5]` (its roots `(1 ± √5)/2` have half-integer coordinates). By the argument above, `Z[δ_1] ≇ Z[δ_4]`. The field loses information that the ring keeps.
+
+**Which rungs are fundamental units.** Every unit of norm `−1` that is greater than 1 in a real quadratic field is a metallic mean: if `ε = (t + u√D0)/2` has norm `−1` then `t² + 4 = u² D0`, so `ε = (t + √(t² + 4))/2 = δ_t`. So `δ_a` is the fundamental unit of its field unless it is an odd power of a smaller rung. For `a ≤ 100` that happens exactly for `a = 4, 11, 14, 29, 36, 76, 82` (`φ³, φ⁵, (1 + √2)³, φ⁷, δ_3³, φ⁹ = δ_4³, (1 + √2)⁵`).[^9]
 
 ## Castle classification: the Axis-8 realization
 
@@ -103,6 +124,8 @@ The realizability question the "how many states per column" knob raised is thus 
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - rung 9 off the wiki's own ladder: Ramanujan's near-miss family `x^3 + y^3 = z^3 +- 1` (the recurrence behind `9^3 + 10^3 = 12^3 + 1`) grows by `delta_9^2 = (83 + 9 sqrt 85)/2`, the ninth metallic mean squared; `delta_9 = [9; 9, 9, ...]` versus `delta_9^2 = [82; 1, 81, 1, 81, ...]` is the norm `-1` / norm `+1` contrast made concrete.
 - [[fractional-recurrences](pages/fractional-recurrences.md)] - the ladder is a discrete slice through a continuum. The fractional-Fibonacci `∇^α a_n = a_{n-1}` has growth `g(α) = 1/r*(α)` a continuous bijection `[0,∞) → [1,∞)`, and the ladder crosses this curve at rational-`α` **only for golden** (`α = 1/2` exactly, because `δ_1 - 1 = 1/δ_1` is a unit while `N(δ_a - 1) = -a` for `a ≥ 2`). Silver, bronze, copper, nickel land at transcendental orders `α ≈ 1.65, 3.31, 5.36, 7.70`. Golden is the unique metallic mean whose "half-order recurrence" is exactly itself.
 - [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] - the n-nacci growth constants `α_h` sit near but *off* the metallic ladder for `h ≥ 3`: `α_2 = δ_1` is golden, but tribonacci / tetranacci / … are not metallic. The contrast is load-bearing structural evidence for what the ladder is not.
+- [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - Ex. 4.11 (isomorphisms preserve solutions of `x² = 2`, so `Z[√2] ≇ Z[√3]`), the tool behind "same field, different rings".
+- [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - `metallic_ring(a)` computes the field and index of `Z[δ_a]`.
 
 ## Footnotes
 
@@ -111,4 +134,7 @@ The realizability question the "how many states per column" knob raised is thus 
 [^3]: The recurrence `x_n = a·x_{n−1} + x_{n−2}` with `x_0 = 0, x_1 = 1` was iterated for `a = 1..5` during ingest; the first ten values in the table match direct computation, and the ratio `x_29 / x_28` matches `δ_a` to ten decimal places for each `a` (Fibonacci: `1.6180339888` vs. `1.6180339887`; Pell: `2.4142135624` for both; and analogously for `a = 3, 4, 5`). The companion sequences (`y_0 = 2, y_1 = a`) were also iterated and identified for `a=1` (Lucas A000032) and `a=2` (companion Pell A002203 = `2, 2, 6, 14, 34, …`; A001333 = `1, 1, 3, 7, 17, …` is `y_n/2`). All five `a` were verified offset-exact against OEIS on 2026-09-16 ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]).
 [^4]: The Wikipedia "Silver ratio" article and OEIS A001333 (whose comment describes it as convergents-of-`√2` numerators, in Pell/silver-mean context) both use "silver ratio" for `1 + √2`, and this is the usage in de Spinadel's original paper (`δ_S`). The competing usage — "silver ratio = √2" (paper-size / A-series context) — appears in some architecture and design literature; when this is meant it is usually specified explicitly. Standard number-theory and OEIS usage is `δ_2 = 1 + √2`.
 [^5]: `φ² = φ + 1` (defining property of the golden ratio) gives `φ³ = φ·φ² = φ² + φ = 2φ + 1 = 1 + √5 + 1 = 2 + √5 = δ_4`; verified numerically during ingest (`φ³ = 4.2360679…`, matching `2 + √5 = 4.2360679…`). Consequence: the `a=4` integer sequence `x_n = 0, 1, 4, 17, 72, 305, 1292, 5473, 23184, 98209` equals `F_{3n}/2` where `F_n` is Fibonacci — `F_3 = 2, F_6 = 8, F_9 = 34, F_12 = 144, F_15 = 610, …`, divided by 2 gives `1, 4, 17, 72, 305, …`, matching exactly (re-verified during ingest against the Fibonacci sequence). So the copper-mean recurrence is a decimated / scaled Fibonacci, and the sequence sits inside `Q(√5)`, not in an independent quadratic field.
-[^6]: The fundamental unit of `Z[√5]` is the golden ratio (well-known); the fundamental unit of `Z[√2]` is `1 + √2` (well-known). For `a ≥ 3`, `Z[(a + √(a²+4))/2]` (or `Z[√(a²+4)]` — depending on whether `a²+4 ≡ 1 (mod 4)`, which depends on `a`'s parity) has `δ_a` as a fundamental unit up to a sign / power adjustment; the statement is standard algebraic number theory (Dirichlet's unit theorem specialized to real quadratic fields, rank 1). Not verified in depth during ingest; noted as a defining structural property of the family.
+[^6]: The fundamental unit of `Z[φ]` (the ring of integers of `Q(√5)`) is the golden ratio `φ`, and the fundamental unit of the smaller ring `Z[√5]` is `φ³ = 2 + √5`, since `φ ∉ Z[√5]`; the fundamental unit of `Z[√2]` is `1 + √2` (both well-known). Dirichlet's unit theorem gives rank 1 for every real quadratic order. That `δ_a` is the fundamental unit of `Z[δ_a]`, and of its field exactly when it is not an odd power of a smaller rung, follows from the norm `−1` argument in "Which ring each rung generates"; the list of exceptions for `a ≤ 100` is verified there.
+[^7]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 4.11 p.21; solution p.109 [synthesis] - a ring isomorphism preserves elements with `x² = 1 + 1`; `Z[√2]` has one and `Z[√3]` does not (`a² + 3b² = 2, 2ab = 0` has no integer solution); generalized there to `Z[√d] ≇ Z[√e]` for distinct squarefree `d, e`.
+[^8]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `a² + 4 = f² D0` for `a = 1..20` (table rows are the `a ≤ 14` entries; `a = 16, 20` also have `f = 2`); `φ³ = 2 + √5`, `φ⁵ = (11 + 5√5)/2`, `(1 + √2)³ = 7 + 5√2` by `sp.expand`; indices `U_3 = 2`, `U_5 = 5` (`b = 1`) and `U_3 = 5` (`b = 2`) from `U_n = b U_{n−1} + U_{n−2}`. Pinned under `metallic_ring` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].
+[^9]: Verified by execution (Python 3.10, 2026-09-26): traces `V_n = b V_{n−1} + V_{n−2}` (`V_0 = 2`, `V_1 = b`) of `δ_b^n` for odd `n ≥ 3` and `b ≤ 100`, keeping `V_n ≤ 100`: exactly `{4, 11, 14, 29, 36, 76, 82}`. The norm `−1` argument is standard (a unit of norm `−1` in `Z[(1 + √D0)/2]` has the form `(t + u√D0)/2`).
