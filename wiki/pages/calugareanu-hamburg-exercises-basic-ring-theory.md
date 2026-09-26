@@ -1,7 +1,7 @@
 ---
 title: "Exercises in Basic Ring Theory (Călugăreanu, Hamburg 1998)"
 category: Sources
-summary: An exercise book with full solutions (17 chapters, mostly general and often noncommutative ring theory), read selectively for the algebra behind the castle ring F_p[x]/(char_k). Chapter 17 is ingested - CRT for comaximal ideals (17.20), idempotents as ring splittings (17.19, 17.8), Eisenstein over a UFD (17.21), functions on a finite field are polynomials (17.13), Z[i]/H finite (17.18). Eisenstein turned into a new result - char_k is irreducible for k = 2^m - 1. Chapter 14 is ingested - quotient maps Q[X]/(f) → Q[X]/(g) (14.4), hand factoring over Z_3, Z_5, Z_7 (14.7-14.9), polynomials vs polynomial functions (14.10), units and nilpotents of R[X] (14.15-14.16), R[X]/(X²+1) ≅ C (14.18). Chapter 13 is ingested - Spec, the nilradical, local rings R/M^n, Z[i] and Z[ω] - and gave castle-ring-spectrum. Chapter 12 is ingested - Z_n semisimple iff squarefree, ideals as Re, idempotents that do not lift - extending castle-ring-spectrum. Chapters 5 and 4 are queued.
+summary: An exercise book with full solutions (17 chapters, mostly general and often noncommutative ring theory), read selectively for the algebra behind the castle ring F_p[x]/(char_k). Chapter 17 is ingested - CRT for comaximal ideals (17.20), idempotents as ring splittings (17.19, 17.8), Eisenstein over a UFD (17.21), functions on a finite field are polynomials (17.13), Z[i]/H finite (17.18). Eisenstein turned into a new result - char_k is irreducible for k = 2^m - 1. Chapter 14 is ingested - quotient maps Q[X]/(f) → Q[X]/(g) (14.4), hand factoring over Z_3, Z_5, Z_7 (14.7-14.9), polynomials vs polynomial functions (14.10), units and nilpotents of R[X] (14.15-14.16), R[X]/(X²+1) ≅ C (14.18). Chapter 13 is ingested - Spec, the nilradical, local rings R/M^n, Z[i] and Z[ω] - and gave castle-ring-spectrum. Chapter 12 is ingested - Z_n semisimple iff squarefree, ideals as Re, idempotents that do not lift - extending castle-ring-spectrum. Chapter 5 is ingested - Frobenius and Artin-Schreier give the rank and point count of each fiber. Chapter 4 is queued.
 tags: [book, source, ring-theory, exercises, chinese-remainder-theorem, idempotent, eisenstein, finite-field, gaussian-integers, quotient-ring]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-26
@@ -11,7 +11,7 @@ updated: 2026-09-26
 # Exercises in Basic Ring Theory (Călugăreanu, Hamburg 1998)
 
 **Source:** `assets/ExercisesBasicRingTheory.pdf` (Grigore Călugăreanu and Peter Hamburg, *Exercises in Basic Ring Theory*, Kluwer Texts in the Mathematical Sciences, Kluwer Academic Publishers, Dordrecht, 1998; ISBN 0-7923-4918-0). The PDF is a scan with no text layer. Page numbers below are the book's printed pages: exercises in Part I (pp. 1-76), solutions in Part II (pp. 77-194).
-**Date ingested:** 2026-09-26 (Chapters 17, 14, 13 and 12)
+**Date ingested:** 2026-09-26 (Chapters 17, 14, 13, 12 and 5)
 **Type:** book (exercises with solutions)
 
 ## Summary
@@ -64,6 +64,16 @@ Chapter 12 (Semisimple Rings, exercises pp. 49-51, solutions pp. 153-158) is mos
 - **12.9, a direct-summand ideal is `Re` for a central idempotent `e`.**[^21] In a semisimple fiber every ideal is of this form, so ideals and idempotents correspond (`2^r` each); a fat fiber has `∏ (m_i + 1)` ideals but still only `2^r` idempotents.
 - **12.19, idempotents need not lift.** In `R = {m/n : gcd(n, 6) = 1}`, the quotient `R/6R ≅ Z_2 × Z_3` has the idempotent `3`, but `R` itself has only `0` and `1`.[^22] "Lifting" asks whether a splitting visible in a quotient ring comes from a splitting of the ring itself; the simplest example is `5`, idempotent mod 10 but not in `Z`. The castle ring behaves the same way: `Z[x]/(char_k)` has only `0` and `1` because its spectrum is connected, so none of the mod-`p` splittings lift, and the parity-sector idempotent needs exactly a power of 2 in its denominator, `2^{v_2(k!) + 1}` for every even `k ≤ 40` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §5).
 
+## Chapter 5 - the exercises used
+
+Chapter 5 (Characteristics, exercises pp. 23-25, solutions pp. 111-114) computes the characteristic of rings: the smallest `n` with `n·a = 0` for all `a`. Most of it is routine; three exercises matter for castles, all about what happens in characteristic `p`.
+
+- **5.14, Frobenius is an injective ring map on a field.** In characteristic `p`, `x ↦ x^{p^n}` preserves sums and products, and on a field it is injective, so `X^{p^n} − a` has at most one root.[^23] On a castle fiber, Frobenius is an `F_p`-linear map whose rank drops exactly on fat fibers ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §6).
+- **5.16, Artin-Schreier polynomials.** `X^p − X − a` is irreducible or splits completely, because its roots come in the arithmetic progression `u, u + 1, …, u + p − 1`.[^24] The kernel of `a ↦ a^p − a` on a castle fiber is the span of its idempotents, of dimension `r` = the number of points, the Berlekamp count ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §6, [[idempotent-decomposition](pages/idempotent-decomposition.md)]).
+- **5.11, the field `K_9`.** `Z_3 × Z_3` with `(a, b)(c, d) = (ac − bd, ad + bc)` is a field of 9 elements.[^25] The rule is Gaussian-integer multiplication mod 3, so `K_9 = Z[i]/(3) = F_3[x]/(char_1)`: the fiber of `Z[x]/(char_1)` over 3, a single point with residue field `F_9`. It is the `p = 3` sibling of the `F_49 = F_7[i]` step on [[finite-fields](pages/finite-fields.md)].
+
+Also noted: 5.3 (`char(R × R') = lcm`, the characteristic of a CRT product) and 5.15 (`X² + Y² − 1` irreducible by Eisenstein at the polynomial prime `Y + 1`, a second use of 17.21).[^26]
+
 ## Key Takeaways
 
 - The castle ring's CRT split is 17.20 applied to the ideals `(g_i^{m_i})` of `F_p[x]`, which are pairwise comaximal because the `g_i` are distinct irreducibles.[^1]
@@ -72,11 +82,12 @@ Chapter 12 (Semisimple Rings, exercises pp. 49-51, solutions pp. 153-158) is mos
 - Chapter 14 turns two castle facts into textbook exercises: over `Q`, even-`k` `Q[x]/(char_k)` is a product of two number fields (14.4), and the ring of functions `F_p → F_p` is `F_p[x]/(x^p − x)` with Lagrange idempotents (14.10 with 17.13). Snippets for both are on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].[^7][^9]
 - Chapter 13 gives the geometric picture: `Spec Z[x]/(char_k)` over `Spec Z` has the mod-`p` factorizations as fibers, the even-`k` parity sectors as its two components meeting only at `(2, x)`, and nilradicals at discriminant primes that carry exactly the extra `p` in the periods ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)]).[^14][^15]
 - Chapter 12: a castle fiber is semisimple exactly when it is not fat, and `Z[x]/(char_k)` has no idempotents besides `0, 1`, so its mod-`p` splittings do not lift to the integers; the sector idempotent lives in `Z[1/2][x]/(char_k)` with denominator `2^{v_2(k!) + 1}` (checked `k ≤ 40`).[^18][^22]
+- Chapter 5: Frobenius `a ↦ a^p` is linear on each castle fiber; its rank is full exactly when the fiber is not fat, and its fixed space has dimension equal to the number of points (Berlekamp), so a fiber's shape can be read off without factoring `char_k`.[^23][^24]
 - `P(1, ·)` lives in the Gaussian integers. The book's `Z[i]` exercises (17.18, and 4.5, 4.11, 15.2 elsewhere) are statements about `Z[x]/(char_1)`.[^6]
 
 ## Chapters queued for later ingests
 
-Ch. 5 Characteristics (5.14, 5.16: `X^p − X − a` and `X^{p^n} − a` in characteristic `p`); Ch. 4 Ring Homomorphisms (4.4, 4.8-4.9, and the `Z[√d]` exercises 4.5, 4.11).
+Ch. 4 Ring Homomorphisms (4.4, 4.8-4.9, and the `Z[√d]` exercises 4.5, 4.11).
 
 ## Entities & Concepts
 
@@ -115,3 +126,7 @@ This book gives textbook proofs for the ring-theory steps that [[castle-cryptogr
 [^20]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 12.3 p.50; solution p.153 [synthesis] - every ideal of a semisimple ring is a direct summand, so `R/I ≅` a complement of `I`, again semisimple.
 [^21]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 12.9 p.50; solution p.154 [synthesis] - if `R = A ⊕ B` as ideals and `1 = e + b`, then `e` is a central idempotent and `A = eA = Ae`.
 [^22]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 12.19 p.51; solution p.158 [synthesis] - `R = {m/n : gcd(6, n) = 1}` has maximal ideals `2R, 3R` only, `R/rad(R) = R/6R ≅ Z_2 ⊕ Z_3`, and the idempotent `3 + 6R` has no idempotent preimage in `R`.
+[^23]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 5.14 p.25; solution p.113 [synthesis] - `x ↦ x^{p^n}` is an injective ring homomorphism of a field of characteristic `p`, so `X^{p^n} − a` has at most one root.
+[^24]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 5.16 p.25; solution p.113 [synthesis] - roots of `X^p − X − a` are `u, u + 1, …, u + p − 1`, so it is irreducible or splits completely; two variants reduce to it by substitution.
+[^25]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 5.11 p.24; solution p.112 [synthesis] - `Z_3 × Z_3` with `(a, b) + (c, d) = (a + c, b + d)`, `(a, b)(c, d) = (ac − bd, ad + bc)` is a field `K_9` of characteristic 3.
+[^26]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Exs. 5.3, 5.15 pp.24-25; solutions pp.111, 113 [synthesis] - `char(Z_m × Z_n) = [m; n]`, generalizing to `char(R × R') = lcm`; `X² + Y² − 1` is irreducible in `K[Y][X]` for `char K ≠ 2` by Eisenstein at `Y + 1`, which divides `Y² − 1` but whose square does not.
