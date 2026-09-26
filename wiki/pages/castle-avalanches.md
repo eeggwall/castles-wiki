@@ -79,7 +79,7 @@ With a single drain cell (bottom-left) instead of the tide, sand has only one wa
 - Prove the inequality and its equality case for all castles.
 - How the rectangle's largest avalanche and tail slope scale with width and height, and whether a genuine exponent emerges for large castles with the drain only at the bottom. The classic results assume drains on all four sides.
 - Avalanche statistics with a single drain cell, and whether duration and size are related by a power law here.
-- With this page Arc 14 has its full spine, so its seminar walk-through is next.
+- Arc 14's seminar walk-through, built on this page and the other sandpile pages, is [[sandcastle-seminar](pages/sandcastle-seminar.md)].
 
 ## Snippet
 
