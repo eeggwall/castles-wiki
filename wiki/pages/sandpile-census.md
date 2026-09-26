@@ -188,6 +188,8 @@ def cospectral_groups(castles, operator):  # sets of non-isomorphic castles shar
 - [[isospectral-castles](pages/isospectral-castles.md)] / [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the cospectral groups tested here.
 - [[castle-graph](pages/castle-graph.md)] - cycle rank as the number of 2×2 blocks, and tree castles.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the other castle spectra that might separate what the sandpile group cannot.
+- [[sandcastle-clock](pages/sandcastle-clock.md)] - the clock spectrum, which separates cospectral castles the sandpile group cannot.
+
 
 ## Appearances in Sources
 

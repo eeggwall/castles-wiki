@@ -212,6 +212,7 @@ In the recurrent tuples the positions are the cells in the order `castle_graph` 
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the golden and silver castles of the gallery.
 - [[spectral-analysis](pages/spectral-analysis.md)] - method 4 (the Laplacian) and method 5 (the Ihara zeta), which also sees the spanning-tree count.
 - [[sandpile-census](pages/sandpile-census.md)] - the census: every castle to 16 cells, and why the group separates no cospectral pair.
+- [[sandcastle-clock](pages/sandcastle-clock.md)] - the clock: drop one grain per tick and count ticks until the identity returns.
 
 
 ## Appearances in Sources
