@@ -21,6 +21,7 @@ Alongside the nine Departments sit **Auxiliary Services** - the non-Department s
 ### Auxiliary services
 
 - **The Telephone Company:** phone signals, audio codecs, tone catalogues, expander-graph and Ihara-zeta reads of the castle graph, information-theoretic entropy of skylines, and the isospectral seminar.
+- **Department of Chinese Remainders:** department specializing in applying the Chinese Remainder Theorem
 
 ## Conceptual coverage
 

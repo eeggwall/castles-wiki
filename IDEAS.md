@@ -363,3 +363,11 @@ Phones, audio, coding-theory-adjacent applied mathematics with an AT&T Bell Labs
 - [x] **[What survives a phone line](wiki/pages/castle-phone-line.md)** - row castles played as pitch-stepping tones (like a dial-up modem, not FM radio) through a simulated phone line: the odd/even block count stays at a coin flip until the line is nearly perfect, the height histogram and slow skyline trends always survive, and hiding each bit as height 0 or 3 modulo 6 instead of in the lowest bit brings the 56-character message back exact from one 2-second row.
 - [x] **[Castle entropy and compression](wiki/pages/castle-entropy.md)** - information-theoretic view: uniform entropy `~ w log_2 h - 1`, growth constants as topological entropies, and the compressibility axis on [castle-compression](wiki/pages/castle-compression.md).
 - [x] **[A song as a castle](wiki/pages/song-as-castle.md)** - three rungs on Rick Astley's "Never Gonna Give You Up" as the running example: the 66-bit YouTube id `dQw4w9WgXcQ` is a `(17,16)` or `(12,64)` castle by exact rank/unrank; a generic ID3-style label is `w~200` at `h=256` and an acoustic fingerprint is the same 17-column shape as the URL; a peak-normalized 16-bit waveform is an `h=65536` castle whose codec ladder (WAV / FLAC / MP3 / AAC / Opus) is the tier ladder, with Berlekamp-Massey and the NTT over `F_65537` as the finite-field layer; seminar seed on 2600 Hz, blue-box, and jump-the-5 castles; crown-jewel finale ties every tool to **Beethoven's Ninth**, the Furtwängler-1951 recording whose 74-minute length set the Red Book CD (`w = 391,608,000` at `h = 65536`; 78-min high-density variant is `w = 412,776,000`), including the pianissimo A-E opening as a two-atom Tier-0 tone castle and the "Ode to Joy" phrase as a diatonic `h=5` castle.
+
+### Department of Chinese Remainders
+
+Specialization in applying the Chinese Remainder Theorem.
+
+
+
+
