@@ -5,7 +5,7 @@ summary: A pedagogy tour of eigenvalues that appear on the castle wiki. Small ca
 tags: [concept, castle, eigenvalue, spectral, adjacency-matrix, pedagogy, worked-example, tutorial]
 sources: [project-euler-502-brute-force, oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Castle eigenvalues by example
@@ -282,6 +282,8 @@ Those pages will be readable once the intuition above is in place. Every eigenva
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] / [[generating-function-gallery](pages/generating-function-gallery.md)] - the counting-recurrence eigenvalues left out of the adjacency story.
 - [[metallic-means](pages/metallic-means.md)] - the family the growth constants `φ`, `1 + √2`, `(3 + √13) / 2` etc. belong to.
 - [[castle-snippets](pages/castle-snippets.md)] - the `castle_graph` and `castle_graph_radius` snippets used to run every computation on this page.
+- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar this page's worked examples lead into.
+
 
 ## Footnotes
 

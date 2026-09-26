@@ -258,6 +258,8 @@ These are the open items feeding Arc 3 in `IDEAS.md`:
 - [[signed-tower-count](pages/signed-tower-count.md)] / [[castle-sign](pages/castle-sign.md)] - the signed count and the block sign.
 - [[plastic-number](pages/plastic-number.md)] - the `ψ²` growth of the `m = 1` case.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the other seminar pages.
+- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar on castle spectra and Kac's question.
+
 
 ## Footnotes
 

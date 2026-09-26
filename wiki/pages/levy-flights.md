@@ -5,7 +5,7 @@ summary: Riascos-Mateos define a space-fractional Laplacian `L^α` on any graph 
 tags: [analysis, castle, fractional-calculus, fractional-laplacian, riascos-mateos, levy-flight, anomalous-diffusion, isospectral, cospectral, tree-castle, spectral-graph-theory, laplacian, heat-kernel, spectral-invariant, walk-regular]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-22
-updated: 2026-09-23
+updated: 2026-09-26
 ---
 
 # Lévy flights on the castle graph
@@ -175,6 +175,8 @@ The Riascos-Mateos construction pays for its generality: `L^α` is dense for eve
 - [[fractional-block-count](pages/fractional-block-count.md)] and [[fractional-width-and-height](pages/fractional-width-and-height.md)] — the two other fractional-order studies; each uses one of the three classical fractional-calculus definitions (Grunwald-Letnikov, Riemann-Liouville, Caputo). This page's `L^α` is the Grunwald-Letnikov-style spectral construction transferred to a finite-dimensional operator.
 - [[power-law-memory-rules](pages/power-law-memory-rules.md)] — the fractional sibling: Grunwald-Letnikov nabla on the *strip rule* rather than on the graph Laplacian; the same fractional-calculus wall from the strip-rule side.
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] — the from-scratch tutorial that computes by hand the small ordinary-Laplacian spectra `L^α` is defined against here.
+- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - Stop 4 uses this page's local-return separation of the 11-cell pair.
+
 
 ## Footnotes
 

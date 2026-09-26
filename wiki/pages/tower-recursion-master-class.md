@@ -106,6 +106,7 @@ Towers of height ≤ 1 above a length-4 block are column heights `c ∈ {0,1}⁴
 - [[castle-foata-transform](pages/castle-foata-transform.md)] — the permutation-analogy version of the "peak / tower atom" idea: peaks are maximal positive runs, records are their leftmost positive columns.
 - [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the companion seminar on the algebra side: one castle recurrence read through its fibers mod each prime.
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the seminar on the signed tower count's even sector.
+- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar on castle spectra and Kac's question.
 
 
 ## Footnotes

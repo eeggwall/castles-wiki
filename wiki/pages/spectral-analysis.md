@@ -198,3 +198,4 @@ Each of these becomes its own Analysis page or Concept page when its content lan
 - [[castle-compression](pages/castle-compression.md)] — sparse-spectrum castles are compressible in the transform domain; the compressed-sensing hook in the open threads is the DFT face of the compressibility axis.
 - [[levy-flights](pages/levy-flights.md)] — the fractional Laplacian `L^α = U diag(λ^α) U^T` on the castle graph, its Lévy-flight walk, and the local return probability as a non-spectral separator of the 11-cell Laplacian-isospectral tree pair.
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] — the from-scratch pedagogy tutorial for Method 1 (adjacency spectrum) that this hub organizes.
+- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar walk-through of method 4 and the isospectral pairs.

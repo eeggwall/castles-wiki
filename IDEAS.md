@@ -8,11 +8,11 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 
 | Slice | Value |
 |---|---|
-| Pages | 175 (37 Sources / 75 Concepts / 60 Analyses / 1 Reference / 2 Maintenance) |
-| Departments (open + done) | R 2+9, E 7+13, N 14+30, E/N 1+0, Z 5+7, Q 6+9, S 9+5, T 7+0, F 11+6, X 5+7 |
+| Pages | 176 (37 Sources / 76 Concepts / 60 Analyses / 1 Reference / 2 Maintenance) |
+| Departments (open + done) | R 2+9, E 7+13, N 14+30, E/N 1+0, Z 5+7, Q 6+9, S 8+6, T 7+0, F 11+6, X 5+7 |
 | Auxiliary Services (open + done) | Telephone Company 5+3, Chinese Remainders 3+3 |
-| Items | 75 open, 92 done, 167 total (Departments 67+86, Auxiliary Services 8+6; top-level items only) |
-| Seminar arcs | 16 (6 delivered, 8 in progress, 2 planned) |
+| Items | 74 open, 93 done, 167 total (Departments 66+87, Auxiliary Services 8+6; top-level items only) |
+| Seminar arcs | 16 (7 delivered, 7 in progress, 2 planned) |
 | Dates | wiki 2026-09-13, IDEAS 2026-09-26, last reorganize 2026-09-20 |
 
 ## Prize Problems
@@ -59,7 +59,7 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 | 1. The castle counted on one blackboard | delivered | [tower-recursion-master-class](wiki/pages/tower-recursion-master-class.md) |
 | 2. From a textbook exercise to the metallic ladder | delivered | [pell-castle-strip](wiki/pages/pell-castle-strip.md) |
 | 3. The Hardin word identity | delivered | [hardin-identity-seminar](wiki/pages/hardin-identity-seminar.md) |
-| 4. Hear the shape of a castle | in progress | next: seminar page |
+| 4. Hear the shape of a castle | delivered | [hear-the-shape-seminar](wiki/pages/hear-the-shape-seminar.md) |
 | 5. Castle cryptography: build, break, fix | delivered | [castle-cryptography](wiki/pages/castle-cryptography.md) series |
 | 6. The q-thread: castles by area | in progress | next: q-analog pages, then seminar page |
 | 7. OEIS mining as a research method | in progress | next: seminar page |
@@ -93,9 +93,9 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 
 ### Arc 4. Hear the shape of a castle
 - Thesis: five spectra on a castle graph, with the 10-cell adjacency-isospectral pair as the punchline.
-- Status: in progress. Spine exists; the seminar page does not.
-- Spine: [spectral-analysis](wiki/pages/spectral-analysis.md), [castle-graph](wiki/pages/castle-graph.md), [castle-graph-spectral-radius](wiki/pages/castle-graph-spectral-radius.md), [isospectral-castles](wiki/pages/isospectral-castles.md).
-- Open items feeding it: from S, the centerpiece itself, the bronze hunt, skyline DFT, LGV kernel spectrum, Ihara zeta / Sunada for the 10-cell pair.
+- Status: delivered. Seminar page: [hear-the-shape-seminar](wiki/pages/hear-the-shape-seminar.md).
+- Spine: [hear-the-shape-seminar](wiki/pages/hear-the-shape-seminar.md) (the seminar itself), then [spectral-analysis](wiki/pages/spectral-analysis.md), [castle-graph](wiki/pages/castle-graph.md), [castle-graph-spectral-radius](wiki/pages/castle-graph-spectral-radius.md), [isospectral-castles](wiki/pages/isospectral-castles.md).
+- Open items feeding it: from S, the bronze hunt, skyline DFT, LGV kernel spectrum, Ihara zeta / Sunada for the 10-cell pair.
 
 ### Arc 5. Castle cryptography: build, break, fix
 - Thesis: build a public-key system on the castle ring, red-team it, blue-team the fixes; run the loop three times.
@@ -325,6 +325,7 @@ Five spectra sit naturally on a castle: transfer-matrix, LGV kernel, skyline DFT
 - [ ] **Bak-Tang-Wiesenfeld on a real castle** - the original self-organized-criticality sandpile run on castle graphs instead of square grids, base row as sink: drop grains uniformly at random, record avalanche sizes and durations, and fit the tail; ladders versus rectangles versus battlements, and whether the block count or the 2x2 count sets the power-law cutoff; the identity element is where the dropping starts.
 - [ ] **Sandpile identity element on the castle graph** - the abelian sandpile model with the base row as sink: chips on cells, toppling at degree, recurrent configurations biject with spanning trees by Dhar's burning algorithm and form `K(G)` under addition-and-stabilization. Compute and draw the identity element for the golden and silver castles and the 10-cell isospectral pair; measure single-chip apex avalanche size as a function of shape; ask whether the identity or the avalanche count is a spectral invariant.
 
+- [x] **[Seminar: hear the shape of a castle](wiki/pages/hear-the-shape-seminar.md)** - Kac's question as a list of what a castle's spectrum hears (area, edges, `2 x 2` blocks, spanning trees) and the smallest failures: the 10-cell adjacency pair separated by degree sequence, the 11-cell Laplacian tree pair separated only by per-cell walk counts at length 3, both at 16 cells.
 - [x] **[Tree castle by area](wiki/pages/tree-castle-by-area.md)** - area-graded GF `T_h(x,q) = (1 + P_h(q) x) / (1 - qx - q P_h(q) x^2)`; `h=2` is Narayana's cows A000930, `h=3` is A006498, `h=4` is A000570, `h->inf` is A005251.
 - [x] **[Isospectral castles](wiki/pages/isospectral-castles.md)** - exhaustive over castles with `<=16` cells; smallest non-isomorphic adjacency-isospectral pair at 10 cells, Laplacian-isospectral tree pair at 11, both at 16.
 - [x] **[The castle graph](wiki/pages/castle-graph.md)** - polyomino graph off the skyline: cycle rank equals the number of 2x2 filled blocks, bipartite, planar; tree castles by height give Fibonacci, Jacobsthal, and the k-Fibonacci family.
@@ -394,7 +395,6 @@ Phones, audio, coding-theory-adjacent applied mathematics with an AT&T Bell Labs
 
 - [ ] **Lossless song codec on castles** - close the gap between the 9.5% LPC-8 + Rice estimate and the 26.6% `afconvert` FLAC on the same file, and state the castle codec (skyline -> Tier-1 rule + residual) as a spec. One internal coder (Q12 taps, Rice residual, 4096-sample blocks, both channels) gives FLAC fixed predictors of orders 0 to 3 at 30.7 / 16.9 / 11.6 / 12.1% and least-squares LPC of orders 1 / 2 / 4 / 8 at 18.4 / 13.2 / 12.7 / 12.8%; the fractional rung between them never wins (F Department, Hurst item), so the spec is integer-order.
 - [ ] **Tone-castle catalogue** - every DTMF and MF digit at 8 kHz as an exactly periodic castle (period `8000/gcd(8000,f)`), with DFT support and Goertzel response; which tone pairs are exactly periodic and which only approximately.
-- [ ] **Seminar centerpiece: hear the shape of a castle** - Kac's question with two drawings as the punchline: the 10-cell adjacency-isospectral pair `(1,1,1,2,3,2)` / `(1,1,2,2,3,1)` and the 11-cell Laplacian-isospectral tree pair; a Sunada-style construction for the 10-cell pair and whether Ihara zeta or the skyline DFT separates what adjacency does not are open inside the item.
 - [ ] **The Woodward gap as a block-count meter** - encode a skyline as a tone whose instantaneous frequency is the column height; Woodward's theorem says the tone's power spectrum approaches the height histogram as the modulation slows, and the block count is what makes it fast. Fit the spectrum-to-histogram distance as a function of block count over random castles at fixed histogram, and ask which pairs (same histogram, same block count) the audio spectrum still cannot separate - the audio-spectral analogue of the isospectral census.
 - [ ] **Ramanujan castles / Ihara zeta** - `zeta_C(u)` over prime closed walks on the castle graph; the Ramanujan castle as the spectrally most expander-like shape at given size; longer-horizon, hooks into arithmetic combinatorics.
 

@@ -175,6 +175,7 @@ def fiber_board(k, primes):
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the companion seminar for the counting side.
 - [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - the functions the board uses.
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the seminar on the same parity sectors from the combinatorial side.
+- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar on castle spectra and Kac's question.
 
 
 ## Footnotes
