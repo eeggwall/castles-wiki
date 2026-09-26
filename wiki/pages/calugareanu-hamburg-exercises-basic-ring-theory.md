@@ -1,7 +1,7 @@
 ---
 title: "Exercises in Basic Ring Theory (Călugăreanu, Hamburg 1998)"
 category: Sources
-summary: An exercise book with full solutions (17 chapters, mostly general and often noncommutative ring theory), read selectively for the algebra behind the castle ring F_p[x]/(char_k). Chapter 17 is ingested - CRT for comaximal ideals (17.20), idempotents as ring splittings (17.19, 17.8), Eisenstein over a UFD (17.21), functions on a finite field are polynomials (17.13), Z[i]/H finite (17.18). Eisenstein turned into a new result - char_k is irreducible for k = 2^m - 1. Chapter 14 is ingested - quotient maps Q[X]/(f) → Q[X]/(g) (14.4), hand factoring over Z_3, Z_5, Z_7 (14.7-14.9), polynomials vs polynomial functions (14.10), units and nilpotents of R[X] (14.15-14.16), R[X]/(X²+1) ≅ C (14.18). Chapter 13 is ingested - Spec, the nilradical, local rings R/M^n, Z[i] and Z[ω] - and gave castle-ring-spectrum. Chapters 12, 5, 4 are queued.
+summary: An exercise book with full solutions (17 chapters, mostly general and often noncommutative ring theory), read selectively for the algebra behind the castle ring F_p[x]/(char_k). Chapter 17 is ingested - CRT for comaximal ideals (17.20), idempotents as ring splittings (17.19, 17.8), Eisenstein over a UFD (17.21), functions on a finite field are polynomials (17.13), Z[i]/H finite (17.18). Eisenstein turned into a new result - char_k is irreducible for k = 2^m - 1. Chapter 14 is ingested - quotient maps Q[X]/(f) → Q[X]/(g) (14.4), hand factoring over Z_3, Z_5, Z_7 (14.7-14.9), polynomials vs polynomial functions (14.10), units and nilpotents of R[X] (14.15-14.16), R[X]/(X²+1) ≅ C (14.18). Chapter 13 is ingested - Spec, the nilradical, local rings R/M^n, Z[i] and Z[ω] - and gave castle-ring-spectrum. Chapter 12 is ingested - Z_n semisimple iff squarefree, ideals as Re, idempotents that do not lift - extending castle-ring-spectrum. Chapters 5 and 4 are queued.
 tags: [book, source, ring-theory, exercises, chinese-remainder-theorem, idempotent, eisenstein, finite-field, gaussian-integers, quotient-ring]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-26
@@ -11,7 +11,7 @@ updated: 2026-09-26
 # Exercises in Basic Ring Theory (Călugăreanu, Hamburg 1998)
 
 **Source:** `assets/ExercisesBasicRingTheory.pdf` (Grigore Călugăreanu and Peter Hamburg, *Exercises in Basic Ring Theory*, Kluwer Texts in the Mathematical Sciences, Kluwer Academic Publishers, Dordrecht, 1998; ISBN 0-7923-4918-0). The PDF is a scan with no text layer. Page numbers below are the book's printed pages: exercises in Part I (pp. 1-76), solutions in Part II (pp. 77-194).
-**Date ingested:** 2026-09-26 (Chapters 17, 14 and 13)
+**Date ingested:** 2026-09-26 (Chapters 17, 14, 13 and 12)
 **Type:** book (exercises with solutions)
 
 ## Summary
@@ -54,6 +54,16 @@ Chapter 13 (Prime Ideals, Local Rings, exercises pp. 53-57, solutions pp. 159-16
 
 The rest (13.3, 13.7-13.8, 13.10: noncommutative or identity-free counterexamples; 13.14-13.15: ideals of `C[X, Y]`, `Q[X, Y]`; 13.17, 13.22: Boolean rings; 13.24: `Q^(p)`) is not used here.
 
+## Chapter 12 - the exercises used
+
+Chapter 12 (Semisimple Rings, exercises pp. 49-51, solutions pp. 153-158) is mostly about noncommutative semisimple rings (matrix rings, von Neumann regular rings, socles). For a finite commutative ring such as a castle fiber, *semisimple* just means "a product of fields, with no nonzero nilpotents", and five exercises carry over:
+
+- **12.6, `Z_n` is semisimple iff `n` is squarefree.**[^18] The castle version: the fiber `F_p[x]/(char_k mod p)` is semisimple iff `char_k mod p` is squarefree, iff `p ∤ disc(char_k)`, iff the fiber is not fat ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §5). The same exercise explains why `Z/1729 = Z/7 × Z/13 × Z/19` on [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] is a product of fields and `Z/9` on the mod-9 pages is not.
+- **12.12, semisimple iff zero radical and Artinian.**[^19] Finite rings are Artinian, so for a castle fiber semisimplicity comes down to the nilradical of Chapter 13 being zero.
+- **12.3, quotients of semisimple rings are semisimple.**[^20] The reduced fiber `R/N(R)` is semisimple, and so is every quotient of it.
+- **12.9, a direct-summand ideal is `Re` for a central idempotent `e`.**[^21] In a semisimple fiber every ideal is of this form, so ideals and idempotents correspond (`2^r` each); a fat fiber has `∏ (m_i + 1)` ideals but still only `2^r` idempotents.
+- **12.19, idempotents need not lift.** In `R = {m/n : gcd(n, 6) = 1}`, the quotient `R/6R ≅ Z_2 × Z_3` has the idempotent `3`, but `R` itself has only `0` and `1`.[^22] "Lifting" asks whether a splitting visible in a quotient ring comes from a splitting of the ring itself; the simplest example is `5`, idempotent mod 10 but not in `Z`. The castle ring behaves the same way: `Z[x]/(char_k)` has only `0` and `1` because its spectrum is connected, so none of the mod-`p` splittings lift, and the parity-sector idempotent needs exactly a power of 2 in its denominator, `2^{v_2(k!) + 1}` for every even `k ≤ 40` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §5).
+
 ## Key Takeaways
 
 - The castle ring's CRT split is 17.20 applied to the ideals `(g_i^{m_i})` of `F_p[x]`, which are pairwise comaximal because the `g_i` are distinct irreducibles.[^1]
@@ -61,11 +71,12 @@ The rest (13.3, 13.7-13.8, 13.10: noncommutative or identity-free counterexample
 - Eisenstein at the prime 2, after rescaling `x = 2y`, proves `char_k` irreducible over `Q` for all `k = 2^m − 1`, and exactly those `k` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]).[^4]
 - Chapter 14 turns two castle facts into textbook exercises: over `Q`, even-`k` `Q[x]/(char_k)` is a product of two number fields (14.4), and the ring of functions `F_p → F_p` is `F_p[x]/(x^p − x)` with Lagrange idempotents (14.10 with 17.13). Snippets for both are on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].[^7][^9]
 - Chapter 13 gives the geometric picture: `Spec Z[x]/(char_k)` over `Spec Z` has the mod-`p` factorizations as fibers, the even-`k` parity sectors as its two components meeting only at `(2, x)`, and nilradicals at discriminant primes that carry exactly the extra `p` in the periods ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)]).[^14][^15]
+- Chapter 12: a castle fiber is semisimple exactly when it is not fat, and `Z[x]/(char_k)` has no idempotents besides `0, 1`, so its mod-`p` splittings do not lift to the integers; the sector idempotent lives in `Z[1/2][x]/(char_k)` with denominator `2^{v_2(k!) + 1}` (checked `k ≤ 40`).[^18][^22]
 - `P(1, ·)` lives in the Gaussian integers. The book's `Z[i]` exercises (17.18, and 4.5, 4.11, 15.2 elsewhere) are statements about `Z[x]/(char_1)`.[^6]
 
 ## Chapters queued for later ingests
 
-Ch. 12 Semisimple Rings (12.6: `Z_n` is semisimple iff `n` is squarefree); Ch. 5 Characteristics (5.14, 5.16: `X^p − X − a` and `X^{p^n} − a` in characteristic `p`); Ch. 4 Ring Homomorphisms (4.4, 4.8-4.9, and the `Z[√d]` exercises 4.5, 4.11).
+Ch. 5 Characteristics (5.14, 5.16: `X^p − X − a` and `X^{p^n} − a` in characteristic `p`); Ch. 4 Ring Homomorphisms (4.4, 4.8-4.9, and the `Z[√d]` exercises 4.5, 4.11).
 
 ## Entities & Concepts
 
@@ -99,3 +110,8 @@ This book gives textbook proofs for the ring-theory steps that [[castle-cryptogr
 [^15]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 13.11 p.55; solution p.161 [synthesis] - the prime radical of a commutative ring is its nilradical; a non-nilpotent `a` is avoided by some prime maximal with respect to missing `{a, a², …}`.
 [^16]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Exs. 13.23, 13.25-13.26 pp.56-57; solutions pp.166-167 [synthesis] - local iff the non-units form an ideal; if `a + 1` is a unit for all `a` in a maximal `M` then `R` is local; `R/M^n` is local via `(a + 1)(1 − a + … + (−1)^{n−1} a^{n−1}) = 1 + (−1)^{n−1} a^n`.
 [^17]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Exs. 13.1, 13.6 p.54; solutions pp.159-160 [synthesis] - `(3)` and `(1 + i)` prime in `Z[i]`, `(2)` not (`2 = (1 + i)(1 − i)`); `F_4` of characteristic 2 with `x² = x + 1`, `(2)` prime in `Z[ω]`, `Z[ω]/(2) ≅ F_4`.
+[^18]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 12.6 p.50; solution p.154 [synthesis] - `Z_n` is semisimple iff `n` is squarefree (via the socle of `Z_n`).
+[^19]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 12.12 p.50; solutions pp.155-156 [synthesis] - left semisimple iff `rad(R) = 0` and `R` left Artinian.
+[^20]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 12.3 p.50; solution p.153 [synthesis] - every ideal of a semisimple ring is a direct summand, so `R/I ≅` a complement of `I`, again semisimple.
+[^21]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 12.9 p.50; solution p.154 [synthesis] - if `R = A ⊕ B` as ideals and `1 = e + b`, then `e` is a central idempotent and `A = eA = Ae`.
+[^22]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 12.19 p.51; solution p.158 [synthesis] - `R = {m/n : gcd(6, n) = 1}` has maximal ideals `2R, 3R` only, `R/rad(R) = R/6R ≅ Z_2 ⊕ Z_3`, and the idempotent `3 + 6R` has no idempotent preimage in `R`.

@@ -10,8 +10,8 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 |---|---|
 | Pages | 173 (37 Sources / 73 Concepts / 60 Analyses / 1 Reference / 2 Maintenance) |
 | Departments (open + done) | R 2+9, E 7+13, N 14+28, E/N 1+0, Z 5+7, Q 6+9, S 9+5, T 7+0, F 11+6, X 5+7 |
-| Auxiliary Services (open + done) | Telephone Company 5+3, Chinese Remainders 2+3 |
-| Items | 74 open, 90 done, 164 total (Departments 67+84, Auxiliary Services 7+6; top-level items only) |
+| Auxiliary Services (open + done) | Telephone Company 5+3, Chinese Remainders 3+3 |
+| Items | 75 open, 90 done, 165 total (Departments 67+84, Auxiliary Services 8+6; top-level items only) |
 | Dates | wiki 2026-09-13, IDEAS 2026-09-26, last reorganize 2026-09-20 |
 
 ## Prize Problems
@@ -373,6 +373,7 @@ Specialization in applying the Chinese Remainder Theorem.
 
 - [ ] **The parity-sector idempotent lives over `Z[1/2]`** - for even `k` the two parity-sector factors of `char_k` in `lambda` (the `lambda = 2 mu` forms of `H_{k/2}` and its Lucas companion on [tower-parity-sectors](wiki/pages/tower-parity-sectors.md)) have resultant exactly `2^{k(k+2)/4}` (checked every even `k <= 30`; `sector_resultant` on [castle-snippets-number-theory](wiki/pages/castle-snippets-number-theory.md)), so the over-`Q` sector idempotent has only powers of 2 in its denominator and reduces to a genuine idempotent of `F_p[x]/(char_k)` at every odd `p`; prove the resultant formula, and read the mod-`p` period of each parity sector off its own CRT factor ([idempotent-decomposition](wiki/pages/idempotent-decomposition.md)).
 - [ ] **Unipotent part of `x` has full order** - at a discriminant-zero prime `p` with largest multiplicity `m`, the period of `P(k, .) mod p` equals the reduced period (in `F_p[x]/(radical of char_k)`) times `p^ceil(log_p m)` at all 7 cases tested on [castle-ring-spectrum](wiki/pages/castle-ring-spectrum.md) (`k <= 8`, `p < 200`); prove that `x`'s component in `1 + N(R)` never has a smaller order, which would make the multiplicity-inflation rule of [larger-prime-periodicity](wiki/pages/larger-prime-periodicity.md) an exact theorem.
+- [ ] **Denominator of the sector idempotent** - for even `k` the rational idempotent that splits `Q[x]/(char_k)` into its two parity sectors has only powers of 2 in its denominators, and the largest is exactly `2^{v_2(k!) + 1}` for every even `k <= 40` (`sector_idempotent` on [castle-snippets-number-theory](wiki/pages/castle-snippets-number-theory.md)); prove it, and explain why the exponent is `k` exactly at powers of 2 ([castle-ring-spectrum](wiki/pages/castle-ring-spectrum.md) §5).
 
 - [x] **[Chinese Remainder Theorem](wiki/pages/chinese-remainder-theorem.md)** - the comaximal-ideal form (Calugareanu-Hamburg Ex. 17.20) splits `F_p[x]/(char_k)` along the distinct factors `g_i^{m_i}` of `char_k mod p`; one theorem behind period-as-lcm, `R^* = ∏` of factor unit groups, and both CRT steps of Pohlig-Hellman.
 - [x] **[Idempotent decomposition](wiki/pages/idempotent-decomposition.md)** - `F_p[x]/(char_k)` has exactly `2^r` idempotents for `r` distinct factors, repeated factors adding none (brute force on 8 `(k, p)` cases); at `k = 2`, `p = 101` the idempotent `e_1 = (x^2 - x + 2)/4` isolates the dominant root, `x^L e_1 = 2^L e_1`, and lifts CRT projections back to the ring.

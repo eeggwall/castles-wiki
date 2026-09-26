@@ -30,7 +30,7 @@ Each factor with `m_i = 1` is the field `F_{p^{d_i}}` ([[finite-fields](pages/fi
 
 **Going backwards.** A CRT isomorphism is only useful computationally if you can invert it. The inverse is a sum `r = Σ a_i e_i`, where `e_i` is the element with `e_i ≡ 1 (mod I_i)` and `e_i ≡ 0 (mod I_j)` for `j ≠ i`. These `e_i` are the **orthogonal idempotents** of the splitting: `e_i² = e_i`, `e_i e_j = 0`, `Σ e_i = 1`. They are the subject of [[idempotent-decomposition](pages/idempotent-decomposition.md)].
 
-**Over `Q`, and over `Z[1/2]`.** CRT works before reducing mod `p` too. For even `k`, `char_k = f·g` with `f, g` the two parity-sector factors, both irreducible over `Q` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]). Then `Q[x]/(char_k) ≅ Q[x]/(f) × Q[x]/(g)`, a product of two number fields, and each projection is a surjection `Q[x]/(char_k) → Q[x]/(f)` whose kernel is maximal because `f` is irreducible.[^2] Over the integers the split is obstructed only where `f` and `g` can share a root, measured by the resultant `Res(f, g)`: it equals `2^{k(k+2)/4}` for every even `k ≤ 30`, so the sector split holds over `Z[1/2]` and survives reduction mod every odd prime (unproved in general; filed in IDEAS).[^3]
+**Over `Q`, and over `Z[1/2]`.** CRT works before reducing mod `p` too. For even `k`, `char_k = f·g` with `f, g` the two parity-sector factors, both irreducible over `Q` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]). Then `Q[x]/(char_k) ≅ Q[x]/(f) × Q[x]/(g)`, a product of two number fields, and each projection is a surjection `Q[x]/(char_k) → Q[x]/(f)` whose kernel is maximal because `f` is irreducible.[^2] Over the integers the split is obstructed only where `f` and `g` can share a root, measured by the resultant `Res(f, g)`: it equals `2^{k(k+2)/4}` for every even `k ≤ 30`, so the sector split holds over `Z[1/2]` and survives reduction mod every odd prime (unproved in general; filed in IDEAS).[^3] Concretely, the idempotent that performs the split has coefficients with pure powers of 2 in the denominators: `(x² − x + 2)/4` at `k = 2`, and `2^{v_2(k!) + 1}` in general (every even `k ≤ 40`). Over `Z` itself there is no such idempotent, because the two sectors meet at `(2, x)` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §5).
 
 ## In the castle work
 
@@ -55,6 +55,7 @@ Each factor with `m_i = 1` is the field `F_{p^{d_i}}` ([[finite-fields](pages/fi
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - Pohlig-Hellman, CRT on the exponent side.
 - [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - the same split at `p = 10⁹ + 7`.
 - [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - `crt_idempotents(Q, p)` and `sector_resultant(k)`, runnable and pinned.
+- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the sectors as components of `Spec Z[x]/(char_k)`; §5 on why the sector split needs the `1/2`.
 
 ## Footnotes
 

@@ -1,7 +1,7 @@
 ---
 title: The castle ring's spectrum - Spec Z[x]/(char_k) over Spec Z
 category: Analyses
-summary: Read Z[x]/(char_k) as a family of rings over the primes. The fiber over p is F_p[x]/(char_k mod p), whose points are the distinct irreducible factors - exactly the mod-p observatory's factor signatures. The fiber over Q has one point for odd k and two for even k (the parity sectors, the irreducible components). The two sector components meet at exactly one point, (2, x), because the sector factors reduce mod 2 to x^(k/2) and x^(k/2)(x+1) - the geometric reading of their resultant 2^(k(k+2)/4). Fibers at discriminant primes carry nilpotents, and the nilradical accounts for exactly the extra p in the periods - per = (reduced period) · p^⌈log_p m⌉ at all 7 discriminant-zero primes tested. Small cases are classical rings - Z[i] for k = 1 (the castle prime (2, x) is the Gaussian prime (1 + i)) and Z[ω] for the k = 4 minor sector (mod 2 it is the field F_4).
+summary: Read Z[x]/(char_k) as a family of rings over the primes. The fiber over p is F_p[x]/(char_k mod p), whose points are the distinct irreducible factors - exactly the mod-p observatory's factor signatures. The fiber over Q has one point for odd k and two for even k (the parity sectors, the irreducible components). The two sector components meet at exactly one point, (2, x), because the sector factors reduce mod 2 to x^(k/2) and x^(k/2)(x+1) - the geometric reading of their resultant 2^(k(k+2)/4). Fibers at discriminant primes carry nilpotents, and the nilradical accounts for exactly the extra p in the periods - per = (reduced period) · p^⌈log_p m⌉ at all 7 discriminant-zero primes tested. Small cases are classical rings - Z[i] for k = 1 (the castle prime (2, x) is the Gaussian prime (1 + i)) and Z[ω] for the k = 4 minor sector (mod 2 it is the field F_4). A fiber is semisimple exactly when it is not fat. Because Spec is connected, Z[x]/(char_k) has only the idempotents 0 and 1 - no fiber splitting lifts to the integers - and the sector idempotent needs exactly a power of 2 in its denominator, 2^(v_2(k!)+1) for every even k ≤ 40.
 tags: [analysis, castle, ring, spectrum, prime-ideal, nilradical, local-ring, finite-field, parity-sector, resultant, period, gaussian-integers, eisenstein-integers, sympy, verification]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory, oeis-mining-pe502]
 created: 2026-09-26
@@ -68,25 +68,53 @@ This is the "multiplicity-inflation" rule `per · p^⌈log_p m⌉` that [[larger
 - **`k = 1`: `A_1 = Z[x]/(x² − 2x + 2) ≅ Z[i]`** via `x ↦ 1 + i`. The castle prime `(2, x)` goes to `(2, 1 + i) = (1 + i)`, the Gaussian prime over 2, and `2 = −i(1 + i)²` is the total ramification that [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] proves for every `k = 2^m − 1`. The primes of `Z[i]` over odd `p` are the fibers of [[finite-fields](pages/finite-fields.md)] Step 5: two points when `p ≡ 1 (mod 4)` (`char_1` splits), one when `p ≡ 3 (mod 4)` (`(p)` stays prime, exercise 13.1's `(3)`).[^8]
 - **`k = 4`, minor sector: `λ² − 2λ + 4`**, roots `1 ± i√3`. Rescaled by `λ = 2μ` it is `H_2 = μ² − μ + 1` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]), roots `−ω, −ω²` for `ω` a primitive cube root of unity, so `Z[μ]/(H_2) ≅ Z[ω]`, the Eisenstein integers. Mod 2, `H_2 ≡ μ² + μ + 1` is irreducible and `Z[ω]/(2) ≅ F_4` is a field (exercise 13.6).[^9] The unrescaled `λ² − 2λ + 4 ≡ λ²` mod 2 is instead a fat point at `(2, λ)`. Rescaling by 2 turns the fat point into a field, which is the same move that makes Eisenstein work on [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)].
 
+## 5. Semisimple fibers, and why `A_k` has no idempotents
+
+**Semisimple, in plain terms.** For a finite commutative ring like a castle fiber, *semisimple* means "a product of fields, with nothing nilpotent left over." The book's `Z_n` example (exercise 12.6) is the model: `Z/1729 = Z/7 × Z/13 × Z/19` is a product of fields because `1729` is squarefree, while `Z/9` is not, because `3` is a nonzero element with `3² = 0`.[^10] For a finite ring, being semisimple is the same as having zero radical (exercise 12.12), which for these rings is the nilradical of §3.[^11] So the castle version is:
+
+```
+fiber F_p[x]/(char_k mod p) is semisimple   ⇔   char_k mod p is squarefree   ⇔   p ∤ disc(char_k)   ⇔   the fiber is not fat
+```
+
+**Counting ideals against idempotents.** In a semisimple ring every ideal is cut out by an idempotent: `I = Re` (exercise 12.9).[^12] A fat fiber has extra ideals that no idempotent reaches. The ideals of `F_p[x]/(char_k)` correspond to monic divisors of `char_k mod p`, so there are `∏ (m_i + 1)` of them, against `2^r` idempotents ([[idempotent-decomposition](pages/idempotent-decomposition.md)]). The counts agree exactly on semisimple fibers. `char_2 mod 5` has 4 ideals and 4 idempotents; `char_2 mod 7 = (x − 2)(x + 3)²` has 6 ideals and 4 idempotents, and the two extras, `(x + 3)` and `(x − 2)(x + 3)`, cut partway into the fat factor `(x + 3)²`.[^13]
+
+**What "lifting an idempotent" means.** Reducing mod `p` is a map from `A_k` down to the fiber: take a polynomial with integer coefficients and reduce each coefficient mod `p`. An idempotent `ē` of the fiber (`ē² = ē` after reducing mod `p`) **lifts** to `A_k` if some integer polynomial `e` has `e² = e` *exactly* in `A_k` (not just mod `p`) and reduces to `ē`. Lifting asks whether a splitting you can see mod `p` comes from a splitting that was already there over the integers.
+
+The integers themselves show how this can fail. Mod 10, `5² = 25 ≡ 5`, so `5` is an idempotent of `Z/10 = Z/2 × Z/5`, the CRT splitting. But no integer except `0` and `1` satisfies `e² = e`, so `5` does not lift from `Z/10` to `Z`. `Z/10` falls apart into two pieces; `Z` does not. The book's exercise 12.19 is the same phenomenon one step more subtle: in `R = {m/n : gcd(n, 6) = 1}`, the quotient `R/6R ≅ Z/2 × Z/3` has the idempotent `3`, but `R` has only `0` and `1`.[^14]
+
+**`A_k` has only the idempotents `0` and `1`.** For odd `k`, `A_k` is an integral domain (`char_k` irreducible), and a domain has no other idempotents. For even `k`, an idempotent `e ∉ {0, 1}` of `A_k` would split `Spec A_k` into two disjoint pieces (exercise 17.19), but §2 showed the two components meet at `(2, x)`, so `Spec A_k` is connected. So none of the fiber idempotents lift. The splittings of [[idempotent-decomposition](pages/idempotent-decomposition.md)] exist only after reducing mod `p`, exactly like `5` in `Z/10`.
+
+**Allowing division by 2 is exactly enough.** The sector split does exist over `Q`: the element that is `1` on one sector and `0` on the other is an honest idempotent of `Q[x]/(char_k)`. Its coefficients are fractions whose denominators are pure powers of 2, and the power is `2^{v_2(k!) + 1}` for every even `k ≤ 40` (`v_2(k!)` = the number of factors of 2 in `k!`):[^15]
+
+```
+k = 2:    e = (x² − x + 2)/4                          denominator 2^2
+k = 4, 6, 8, 10, 12, …:                               denominators 2^4, 2^5, 2^8, 2^9, 2^11, …
+```
+
+So the idempotent needs "divide by 2" and nothing else. It lives in `A_k[1/2]`, polynomials whose coefficients may have powers of 2 in the denominator. Mod any odd `p`, dividing by 2 is allowed (2 is invertible mod `p`), so the idempotent reduces to an honest idempotent of every odd fiber. At `p = 101` it is `(x² − x + 2)·4^{−1} = 76x² + 25x + 51`, the idempotent computed on [[idempotent-decomposition](pages/idempotent-decomposition.md)]. At `p = 2` the division is impossible, which is the meeting point `(2, x)` seen algebraically. The denominator reaches `2^k` exactly when `k` is a power of 2, since `v_2(k!) = k − (number of 1s in the binary expansion of k)`.
+
 ## What this settles and what it opens
 
 **Settled.**
 - The fiber of `Spec Z[x]/(char_k)` over each prime is the observatory's factor signature, and the CRT and idempotent structure is that fiber's decomposition into points.
 - For even `k ≤ 30` the two parity-sector components meet only over 2, and there only at the single point `(2, x)`.
 - The period inflation at discriminant primes is the nilradical: `per = (reduced period) · p^⌈log_p m⌉` in all 7 tested cases.
+- A fiber is semisimple exactly when it is not fat, and then its ideals and idempotents agree (`2^r` each); fat fibers have `∏ (m_i + 1)` ideals.
+- `A_k` has only the idempotents `0, 1`, so no fiber splitting lifts to the integers; the sector idempotent needs exactly the denominator 2 (conjecturally `2^{v_2(k!) + 1}`).
 
 **Open.**
+- Prove that the rational sector idempotent has denominator exactly `2^{v_2(k!) + 1}` (verified every even `k ≤ 40`).
 - Prove that `x`'s component in `1 + N(R)` always has full order `p^⌈log_p m⌉` at discriminant-zero primes (equivalently: that the multiplicity-inflation rule is an equality, not just a divisibility).
 - Prove the resultant formula `2^{k(k+2)/4}`, which would make "sectors meet only at `(2, x)`" a theorem for all even `k`.
 - For odd `k` not of the form `2^m − 1`, `A_k` is not the full ring of integers at 2 (the 2-adic Newton polygon has several segments, [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]); describe the primes of the normalization above 2.
 
 ## Snippets
 
-`reduced_period(k, p)` and `sectors_mod2(k)` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] reproduce the table in §3 and the mod-2 sector factors in §2.
+`reduced_period(k, p)`, `sectors_mod2(k)`, `fiber_ideal_count(k, p)` and `sector_idempotent(k)` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] reproduce the table in §3, the mod-2 sector factors in §2, and the ideal counts and denominators in §5.
 
 ## Appearances in Sources
 
-- [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - Chapter 13: prime ideals of `Z[X]` (13.16), `Z[i]` and `Z[ω]` (13.1, 13.6), the nilradical (13.11), Spec and the Zariski topology (13.18-13.21), local rings `R/M^n` (13.23, 13.26).
+- [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - Chapter 13: prime ideals of `Z[X]` (13.16), `Z[i]` and `Z[ω]` (13.1, 13.6), the nilradical (13.11), Spec and the Zariski topology (13.18-13.21), local rings `R/M^n` (13.23, 13.26); Chapter 12: `Z_n` semisimple iff squarefree (12.6), semisimple = zero radical for Artinian rings (12.12), ideals as `Re` (12.9), idempotents that do not lift (12.19).
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `char_k` family.
 
 ## Related Concepts
@@ -110,3 +138,9 @@ This is the "multiplicity-inflation" rule `per · p^⌈log_p m⌉` that [[larger
 [^7]: Verified by execution (Python 3.10, SymPy, 2026-09-26): for every odd prime `p < 200` dividing `disc(char_k)`, `2 ≤ k ≤ 8`, with a repeated factor mod `p`, `ord(x)` in `F_p[x]/(char_k)` equals `ord(x)` in `F_p[x]/(∏ g_i)` times `p^⌈log_p m_max⌉`; orders computed by stripping prime factors from the unit-group order `∏ (p^{d_i} − 1) p^{d_i(m_i − 1)}`. Four rows pinned under `reduced_period` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)]. The `k = 2, 3, 4` full periods match [[mod-p-observatory](pages/mod-p-observatory.md)] (21, 120, 39).
 [^8]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 13.1 p.54; solution p.159 [synthesis] - `(3)` and `(1 + i)` are prime in `Z[i]` and `(2)` is not; an odd prime `p` stays prime in `Z[i]` iff `a² + b² = p` has no integer solution. (The solution's opening claim that `x` is prime iff its norm is prime holds for the non-rational primes only; the book handles rational primes separately in the same solution.) `char_1(1 + i) = 0` is checked on the source page.
 [^9]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 13.6 p.54; solution p.160 [synthesis] - `F_4` has characteristic 2, its two non-prime-field elements satisfy `x² = x + 1`, `(2)` is prime in `Z[ω]` with `ω² + ω + 1 = 0`, and `Z[ω]/(2) ≅ F_4`. The identification `H_2(μ) = μ² − μ + 1` with roots `−ω, −ω²` (so `Z[μ]/(H_2) = Z[ω]`) is direct: `(−ω)² − (−ω) + 1 = ω² + ω + 1 = 0`.
+[^10]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 12.6 p.50; solution p.154 [synthesis] - `Z_n` is semisimple iff `n` is squarefree.
+[^11]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 12.12 p.50; solutions pp.155-156 [synthesis] - a ring is left semisimple iff its radical is zero and it is left Artinian; finite rings are Artinian, and for a finite commutative ring the radical (intersection of maximal ideals) equals the nilradical (every prime of a finite ring is maximal).
+[^12]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 12.9 p.50; solution p.154 [synthesis] - in a ring with identity, an ideal that is a direct summand is generated by a central idempotent, `A = eA = Ae`; in a semisimple ring every ideal is a direct summand.
+[^13]: Verified by execution (Python 3.10, SymPy, 2026-09-26): ideals of `F_p[x]/(char_k)` counted by brute force as the distinct monic `gcd(e, char_k)` over all `p^{k+1}` elements `e`, for `(k, p) ∈ {(1, 3), (2, 5), (2, 7), (3, 5), (4, 3)}`; each equals `∏ (m_i + 1)`, against `2^r` idempotents. Four cases pinned under `fiber_ideal_count` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].
+[^14]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 12.19 p.51; solution p.158 [synthesis] - `R = {m/n ∈ Q : gcd(6, n) = 1}` has exactly the maximal ideals `2R, 3R`, `R/rad(R) = R/6R ≅ Z_2 × Z_3` is semisimple, and the idempotent `3 + 6R` has no idempotent preimage in `R`. The `Z/10` example is the same situation for `Z` and is standard.
+[^15]: Verified by execution (Python 3.10, SymPy, 2026-09-26): for each even `k ≤ 40`, `e = g·(g^{−1} mod f) mod char_k` over `Q` for the two `sp.factor_list` factors `f, g`; every coefficient denominator is a power of 2, and the largest is `2^{v_2(k!) + 1}`. Pinned under `sector_idempotent` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].

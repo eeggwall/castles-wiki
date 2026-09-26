@@ -55,15 +55,23 @@ The formula for `e_1` is Lagrange interpolation: the other factor, divided by it
 
 The repeated-factor rows (`char_2 mod 7`, `char_3 mod 5`, `char_4 mod 3`, the discriminant-zero cases of [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] §4) still have `2^r` idempotents. The multiplicity shows up only in the local factor's `p`-group of units, never in the idempotents. The irreducible rows (`char_1 mod 3`, `char_3 mod 3`) have only `0, 1`: `R` is a field, and the product in 17.8 is `1`.
 
+## Do these idempotents come from the integers? (lifting)
+
+The idempotents above live in a fiber, the ring `F_p[x]/(char_k)` obtained by reducing integer polynomials mod `p`. It is natural to ask whether each one is the reduction of an idempotent of the integer ring `Z[x]/(char_k)` itself. That question is called **lifting**: an idempotent `ē` mod `p` *lifts* if some integer polynomial `e` satisfies `e² = e` exactly, not just mod `p`, and reduces to `ē`.
+
+The answer is no, for every `k` and every `p`. The integer ring has only the idempotents `0` and `1`, because its spectrum is connected ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §5). The situation is the same as `Z/10`: `5² ≡ 5 (mod 10)` splits `Z/10 = Z/2 × Z/5`, but no integer other than `0, 1` squares to itself, so the splitting is only visible after reducing.[^5] For the parity sectors (even `k`), the splitting does exist once division by 2 is allowed. The `k = 2`, `p = 101` idempotent `e_1 = 76x² + 25x + 51` above is the reduction of the rational idempotent `(x² − x + 2)/4`, and in general the sector idempotent's denominator is `2^{v_2(k!) + 1}` (every even `k ≤ 40`). So every odd fiber sees the sector split and the integer ring does not.
+
+Inside a single fiber, lifting always works: the idempotents of the reduced fiber `R/N(R)` lift to the fat fiber `R`, which is why both have `2^r`.
+
 ## A second example: the ring of functions on `F_p`
 
-Over `F_p` two different polynomials can define the same function (`x^5 + x^3 + x` and `x^5 + 2x` agree everywhere on `F_3`), and every function `F_p → F_p` is some polynomial. Together these say the ring of functions is `F_p[x]/(x^p − x)`.[^5] Since `x^p − x = ∏_a (x − a)` has `p` distinct linear factors, CRT splits this ring as `F_p^p`, and its `p` primitive idempotents are the **Lagrange indicators**
+Over `F_p` two different polynomials can define the same function (`x^5 + x^3 + x` and `x^5 + 2x` agree everywhere on `F_3`), and every function `F_p → F_p` is some polynomial. Together these say the ring of functions is `F_p[x]/(x^p − x)`.[^6] Since `x^p − x = ∏_a (x − a)` has `p` distinct linear factors, CRT splits this ring as `F_p^p`, and its `p` primitive idempotents are the **Lagrange indicators**
 
 ```
 δ_a(x)  =  1 − (x − a)^{p−1}          δ_a(b) = 1 if b = a, else 0   (Fermat: (b − a)^{p−1} = 1 for b ≠ a)
 ```
 
-They are orthogonal and sum to `1` mod `x^p − x` (checked for `p = 3, 5, 7`).[^6] This is the fully split end of the castle picture: when `char_k mod p` splits into distinct linear factors `x − λ_i`, the primitive idempotents of `F_p[x]/(char_k)` are the Lagrange polynomials through its roots, `e_i = ∏_{j ≠ i} (x − λ_j)/(λ_i − λ_j)`, exactly the shape of `e_1 = (x² − x + 2)/4` above. The runnable versions are `crt_idempotents` and `lagrange_idempotents` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].
+They are orthogonal and sum to `1` mod `x^p − x` (checked for `p = 3, 5, 7`).[^7] This is the fully split end of the castle picture: when `char_k mod p` splits into distinct linear factors `x − λ_i`, the primitive idempotents of `F_p[x]/(char_k)` are the Lagrange polynomials through its roots, `e_i = ∏_{j ≠ i} (x − λ_j)/(λ_i − λ_j)`, exactly the shape of `e_1 = (x² − x + 2)/4` above. The runnable versions are `crt_idempotents` and `lagrange_idempotents` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].
 
 ## Why it is worth having on the wiki
 
@@ -84,6 +92,7 @@ They are orthogonal and sum to `1` mod `x^p − x` (checked for `p = 3, 5, 7`).[
 - [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] - character-sum idempotents in a group algebra; the same idea applied to a statistic.
 - [[finite-fields](pages/finite-fields.md)] - the field factors.
 - [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - `crt_idempotents(Q, p)` and `lagrange_idempotents(p)`, runnable and pinned.
+- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - §5: why no fiber idempotent lifts to `Z[x]/(char_k)`, and the sector idempotent's power-of-2 denominator.
 
 ## Footnotes
 
@@ -91,5 +100,6 @@ They are orthogonal and sum to `1` mod `x^p − x` (checked for `p = 3, 5, 7`).[
 [^2]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ch. 17 preamble p.73 and Ex. 17.10 p.74 [synthesis] - a nonzero idempotent is primitive if it is not the sum of two orthogonal idempotents; 17.10 characterizes this as `eRe` having no idempotents besides `0` and `e`.
 [^3]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.8 p.74; solution p.190 [synthesis] - in a finite commutative ring with `1 ≠ 0`, nonzero idempotents pair as `e, 1 − e` with `e(1 − e) = 0`, so their product is `1` if `1` is the only one and `0` otherwise.
 [^4]: Verified by execution (Python 3.10, SymPy, 2026-09-26). (i) `char_2 mod 101` factors as `(x − 2)(x² − x + 2)`; the CRT idempotents computed as `N_i · (N_i^{−1} mod g_i)` are `−25x² + 25x − 50 ≡ 76x² + 25x + 51` and `25x² − 25x − 50 ≡ 25x² − 25x + 51`; each satisfies `e² − e ≡ 0 mod (char_2, 101)`, their sum is `1` and their product is `0`. (ii) For each `(k, p)` in the table, all `p^{k+1}` residues `e` were tested for `e² ≡ e mod char_k`; the count equals `2^r` with `r = len(sp.factor_list(char_k, modulus=p)[1])`, and the product of the nonzero idempotents is as shown.
-[^5]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 14.10 p.60; solution p.170, with Ex. 17.13 p.75; solution p.191 [synthesis] - `X⁵ + X³ + X` and `X⁵ + 2X` induce the same function on `Z_3`; every function on a finite field is given by the Lagrange interpolation polynomial. The kernel of polynomials → functions is `(x^p − x)` because a polynomial vanishing on all of `F_p` is divisible by `∏ (x − a) = x^p − x`.
-[^6]: Verified by execution (Python 3.10, SymPy, 2026-09-26): for `p ∈ {3, 5, 7}`, each `δ_a = 1 − (x − a)^{p−1}` satisfies `δ_a² ≡ δ_a`, `δ_a δ_b ≡ 0` (`a ≠ b`), `Σ δ_a ≡ 1` mod `x^p − x`, and `δ_a(b) = [a = b]`; output pinned under `lagrange_idempotents` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].
+[^5]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 12.19 p.51; solution p.158 [synthesis] - the book's example of idempotents that do not lift: `R = {m/n : gcd(6, n) = 1}` has only `0, 1`, while `R/6R ≅ Z_2 × Z_3` has the idempotent `3`. The `Z/10` example is the same phenomenon for `Z`.
+[^6]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 14.10 p.60; solution p.170, with Ex. 17.13 p.75; solution p.191 [synthesis] - `X⁵ + X³ + X` and `X⁵ + 2X` induce the same function on `Z_3`; every function on a finite field is given by the Lagrange interpolation polynomial. The kernel of polynomials → functions is `(x^p − x)` because a polynomial vanishing on all of `F_p` is divisible by `∏ (x − a) = x^p − x`.
+[^7]: Verified by execution (Python 3.10, SymPy, 2026-09-26): for `p ∈ {3, 5, 7}`, each `δ_a = 1 − (x − a)^{p−1}` satisfies `δ_a² ≡ δ_a`, `δ_a δ_b ≡ 0` (`a ≠ b`), `Σ δ_a ≡ 1` mod `x^p − x`, and `δ_a(b) = [a = b]`; output pinned under `lagrange_idempotents` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].

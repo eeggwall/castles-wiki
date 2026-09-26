@@ -5,7 +5,7 @@ summary: Do castle counts F(w,h) hit the excluded residues 4, 5 mod 9 at the equ
 tags: [analysis, castle, sum-of-cubes, mod-9, periodicity, equidistribution, finite-sample-artifact, kitamasa, cube-near-miss, mordell-curve]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-21
-updated: 2026-09-22
+updated: 2026-09-26
 ---
 
 # Mod-9 equidistribution of the F table
@@ -108,7 +108,7 @@ The non-uniform, non-rate-matched columns fluctuate around `2/9` with typical de
 
 The census the `20.4%` figure came from is the mixture over `(w, h)` cells with `A(w, h) <= N`. For fixed `w`, the number of `h` with `A(w, h) = h^w - (h-1)^w <= N` is approximately `(N/w)^(1/(w-1))`, so `w = 4` supplies about `N^(1/3)` cells, `w = 5` about `N^(1/4)`, and higher `w` a diminishing tail. The aggregate rate is the number-of-cells-weighted average of column rates; since `w = 4` has exact rate `2/9`, and the deficit columns `w = 5, 7, 8` supply only `O(N^(1/4))` cells against `w = 4`'s `O(N^(1/3))`, the mixture is pulled toward `2/9` at rate `O(N^(-1/12))`.
 
-Computed with the k-direction recurrence (order `2w - 2` over `Z/9`), extended by the char-poly `(x+1)^w (x-1)^(w-2)`, then read off through the closed form `F(w, h) mod 9 = (h^w - (h-1)^w - P(h-1, w) + P(h-2, w)) * 5 mod 9`:[^exec]
+Computed with the k-direction recurrence (order `2w - 2` over `Z/9`, a ring that is *not* a product of fields: `3² = 0`, so it is not semisimple and CRT cannot split it; see [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §5), extended by the char-poly `(x+1)^w (x-1)^(w-2)`, then read off through the closed form `F(w, h) mod 9 = (h^w - (h-1)^w - P(h-1, w) + P(h-2, w)) * 5 mod 9`:[^exec]
 
 | `N` | cells `w >= 4` | excluded | rate | deficit vs `2/9` |
 |---|---|---|---|---|

@@ -5,7 +5,7 @@ summary: 1729, the taxicab number 1^3+12^3 = 9^3+10^3, is a castle count - F(6,4
 tags: [analysis, castle, 1729, taxicab, hardy-ramanujan, sum-of-cubes, near-miss, c-finite, berlekamp-massey, metallic-mean, carmichael, mod-p, worked-example, computation]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-19
-updated: 2026-09-20
+updated: 2026-09-26
 ---
 
 # The Hardy-Ramanujan castle (1729)
@@ -187,7 +187,7 @@ Two more readings of 1729 as a single castle:
 
 ## 1729 as a modulus
 
-1729 is Carmichael, so `a^1728 = 1 (mod 1729)` for every `a` coprime to it - a composite that passes every Fermat test. Reducing the castle counts modulo 1729 is a CRT exercise over `7, 13, 19`, and [[mod-p-observatory](pages/mod-p-observatory.md)] predicts the answer: `F(., h) mod p` is eventually periodic with period the lcm of the eigenvalue orders, and the period mod 1729 is the lcm of the three prime periods. Computed by running the parity transfer DP modulo each modulus and detecting the first repeated DP state:[^exec]
+1729 is Carmichael, so `a^1728 = 1 (mod 1729)` for every `a` coprime to it - a composite that passes every Fermat test. Reducing the castle counts modulo 1729 is a CRT exercise over `7, 13, 19` (`1729` is squarefree, so `Z/1729 = Z/7 × Z/13 × Z/19` is a product of fields, a semisimple ring; see [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §5), and [[mod-p-observatory](pages/mod-p-observatory.md)] predicts the answer: `F(., h) mod p` is eventually periodic with period the lcm of the eigenvalue orders, and the period mod 1729 is the lcm of the three prime periods. Computed by running the parity transfer DP modulo each modulus and detecting the first repeated DP state:[^exec]
 
 | `h` | period mod 7 | mod 13 | mod 19 | lcm | period mod 1729 (direct) | DP transient |
 |---|---|---|---|---|---|---|
