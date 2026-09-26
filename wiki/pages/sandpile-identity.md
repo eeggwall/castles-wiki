@@ -93,7 +93,7 @@ The avalanche profile separates **every** cospectral group to 16 cells, includin
 **Open.**
 - Prove the tide-identity pattern for all rectangles, and describe the tide identity of a general castle.
 - Is the avalanche profile a complete invariant of castle graphs, or do two non-isomorphic castles share one at some larger size?
-- The avalanche statistics under random dropping (Bak-Tang-Wiesenfeld), the next S-department item.
+- The avalanche statistics under random dropping (Bak-Tang-Wiesenfeld): [[castle-avalanches](pages/castle-avalanches.md)].
 
 ## Snippet
 
@@ -174,6 +174,8 @@ True
 - [[sandpile-census](pages/sandpile-census.md)] - the sandpile group of every castle, which separates no cospectral pair.
 - [[isospectral-castles](pages/isospectral-castles.md)] / [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the cospectral pairs.
 - [[castle-graph](pages/castle-graph.md)] - tree castles, whose identity is their fullest stable pile.
+- [[castle-avalanches](pages/castle-avalanches.md)] - random dropping from the identity: the mean avalanche depends only on height for rectangles and battlements.
+
 
 ## Appearances in Sources
 

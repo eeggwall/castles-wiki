@@ -166,6 +166,7 @@ def cycle_rank(c):
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar built on this graph: what its spectrum hears and the smallest failures.
 - [[sandpile-group](pages/sandpile-group.md)] - the sandpile group: the 2×2 blocks that make the cycle rank also hold all the sand; tree castles hold none.
 - [[sandpile-census](pages/sandpile-census.md)] - the census of sandpile groups; 6,963 of the 33,150 castles to 16 cells are tree castles with trivial group.
+- [[castle-avalanches](pages/castle-avalanches.md)] - battlements and rectangles have the same mean avalanche; the 2×2 blocks set the tail.
 
 
 ## Footnotes

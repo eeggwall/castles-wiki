@@ -167,6 +167,7 @@ def clock_spectrum(c):                     # periods over every (drain, grain ce
 - [[isospectral-castles](pages/isospectral-castles.md)] / [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the cospectral pairs the clock spectrum separates.
 - [[castle-graph](pages/castle-graph.md)] - tree castles, whose clock never ticks.
 - [[sandpile-identity](pages/sandpile-identity.md)] - the identity the clock starts from, and the avalanche profile, which separates every cospectral group to 16 cells.
+- [[castle-avalanches](pages/castle-avalanches.md)] - dropping at random instead of on one cell.
 
 
 ## Appearances in Sources

@@ -251,6 +251,7 @@ In the recurrent tuples the positions are the cells in the order `castle_graph` 
 - [[sandpile-census](pages/sandpile-census.md)] - the census: every castle to 16 cells, and why the group separates no cospectral pair.
 - [[sandcastle-clock](pages/sandcastle-clock.md)] - the clock: drop one grain per tick and count ticks until the identity returns.
 - [[sandpile-identity](pages/sandpile-identity.md)] - the identity element drawn in both drain models, and the avalanche profile.
+- [[castle-avalanches](pages/castle-avalanches.md)] - dropping sand at random: exact mean avalanche sizes and heavy tails.
 
 
 ## Appearances in Sources

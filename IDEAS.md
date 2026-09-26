@@ -8,10 +8,10 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 
 | Slice | Value |
 |---|---|
-| Pages | 183 (37 Sources / 82 Concepts / 61 Analyses / 1 Reference / 2 Maintenance) |
-| Departments (open + done) | R 2+9, E 7+13, N 14+30, E/N 1+0, Z 5+7, Q 6+9, S 8+9, T 7+0, F 11+6, X 7+7 |
+| Pages | 184 (37 Sources / 82 Concepts / 62 Analyses / 1 Reference / 2 Maintenance) |
+| Departments (open + done) | R 2+9, E 7+13, N 14+30, E/N 1+0, Z 5+7, Q 6+9, S 8+10, T 7+0, F 11+6, X 7+7 |
 | Auxiliary Services (open + done) | Telephone Company 4+3, Chinese Remainders 3+3, Facilities 5+0 |
-| Items | 80 open, 96 done, 176 total (Departments 68+90, Auxiliary Services 12+6; top-level items only) |
+| Items | 80 open, 97 done, 177 total (Departments 68+91, Auxiliary Services 12+6; top-level items only) |
 | Seminar arcs | 16 (9 delivered, 6 in progress, 1 planned) |
 | Dates | wiki 2026-09-13, IDEAS 2026-09-26, last reorganize 2026-09-20 |
 
@@ -69,7 +69,7 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 | 11. The rule zoo: variations on the castle | in progress | next: seminar page |
 | 12. The half-derivative of a castle | in progress | next: castle comb page, then seminar page |
 | 13. Beethoven's Ninth, at every scale | delivered | [song-as-castle](wiki/pages/song-as-castle.md) |
-| 14. Sandcastles | in progress | next: avalanche (Bak-Tang-Wiesenfeld) page, then seminar page |
+| 14. Sandcastles | in progress | next: seminar page |
 | 15. The taxicab thread | in progress | next: seminar page |
 | 16. Castle fibers: one ring, every prime at once | delivered | [castle-fibers-char-2-walkthrough](wiki/pages/castle-fibers-char-2-walkthrough.md) |
 
@@ -153,8 +153,8 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 
 ### Arc 14. Sandcastles
 - Thesis: the abelian sandpile is literally sand on a castle - the base row is the tide, the sink; trees wash away (trivial group) and only the 2x2 ladder cores hold sand - so the sandpile group, its identity element, the tide period of a grain dropped on the apex, and the avalanche statistics of Bak-Tang-Wiesenfeld are castle invariants finer than the Laplacian spectrum, or provably not.
-- Status: in progress. The introduction, the census, the clock and the identity exist; the avalanche (Bak-Tang-Wiesenfeld) page does not.
-- Spine: [sandpile-group](wiki/pages/sandpile-group.md) (the introduction), [sandpile-census](wiki/pages/sandpile-census.md) (every castle to 16 cells), [sandcastle-clock](wiki/pages/sandcastle-clock.md) (the clock and the clock spectrum), [sandpile-identity](wiki/pages/sandpile-identity.md) (the identity and the avalanche profile), [castle-graph](wiki/pages/castle-graph.md), [isospectral-castles](wiki/pages/isospectral-castles.md), [spectral-analysis](wiki/pages/spectral-analysis.md), then the sandpile pages as they land.
+- Status: in progress. The spine is complete (introduction, census, clock, identity, avalanches); the seminar page does not exist yet.
+- Spine: [sandpile-group](wiki/pages/sandpile-group.md) (the introduction), [sandpile-census](wiki/pages/sandpile-census.md) (every castle to 16 cells), [sandcastle-clock](wiki/pages/sandcastle-clock.md) (the clock and the clock spectrum), [sandpile-identity](wiki/pages/sandpile-identity.md) (the identity and the avalanche profile), [castle-avalanches](wiki/pages/castle-avalanches.md) (random dropping and avalanche statistics), [castle-graph](wiki/pages/castle-graph.md), [isospectral-castles](wiki/pages/isospectral-castles.md), [spectral-analysis](wiki/pages/spectral-analysis.md), then the sandpile pages as they land.
 - Open items feeding it: from S, the sandpile group, the identity element, the sandcastle clock, and Bak-Tang-Wiesenfeld avalanches.
 
 ### Arc 15. The taxicab thread
@@ -322,8 +322,9 @@ Five spectra sit naturally on a castle: transfer-matrix, LGV kernel, skyline DFT
 - [ ] **Cyclic sandcastles** - the original conjecture ("`K` is cyclic iff every maximal cluster of 2x2 blocks is a 2-wide ladder") is refuted on [sandpile-census](wiki/pages/sandpile-census.md): its own example `(2,2,1,2,2)` has two single-block clusters and `K = Z/4 x Z/4`, and with "ladder" read as a horizontal row it fails on 9,547 castles to 16 cells, starting with `(3,3)`. Proved there: a path-shaped cluster (straight or bent) always gives a cyclic group, so a castle whose clusters are all paths is cyclic iff the cluster orders are pairwise coprime. Open: which non-path clusters give cyclic groups - 921 castles to 16 cells do, the smallest `(2,3,3,3)` (`Z/712`), while the `2 x 2` square of blocks `(3,3,3)` gives `Z/8 x Z/24`.
 - [ ] **Cospectral castles with different block graphs** - on [sandpile-census](wiki/pages/sandpile-census.md) all 105 adjacency- and 17 Laplacian-cospectral groups to 16 cells share their graph of 2x2 blocks, which is why the sandpile group separates none of them; find a cospectral pair with different block graphs (the only way `K` could separate cospectral castles), or prove cospectrality forces the same block graph.
 - [ ] **Is the avalanche profile complete?** - the clock spectrum misses 43 adjacency and 12 Laplacian cospectral groups to 16 cells, but the avalanche profile on [sandpile-identity](wiki/pages/sandpile-identity.md) (topplings from one grain on every cell, starting at every drain cell's identity) separates all 105 + 17, and no two castles that colour refinement proves non-isomorphic share a profile up to 13 cells; is it a complete invariant of castle graphs, and can it be computed without the full table?
-- [ ] **Bak-Tang-Wiesenfeld on a real castle** - (note: "base row as sink" merges the bottom row into one drain, the tide variant on [sandpile-group](wiki/pages/sandpile-group.md), a different group from the castle graph's own) the original self-organized-criticality sandpile run on castle graphs instead of square grids, base row as sink: drop grains uniformly at random, record avalanche sizes and durations, and fit the tail; ladders versus rectangles versus battlements, and whether the block count or the 2x2 count sets the power-law cutoff; the identity element is where the dropping starts.
+- [ ] **The tide avalanche inequality** - on [castle-avalanches](wiki/pages/castle-avalanches.md), for every castle up to 12 cells the mean avalanche size under the tide (the average of `x` with `L~ x = 1`, by Dhar's theorem) is at most the column-by-column prediction `sum (h-1) h (2h-1)/6 / sum (h-1)`, with equality exactly when every run of adjacent columns rising above the base has constant height; prove it for all castles (rectangles and battlements, `mean = h(2h-1)/6`, are proved there).
 
+- [x] **[Castle avalanches](wiki/pages/castle-avalanches.md)** - Bak-Tang-Wiesenfeld dropping under the tide from the identity; the mean avalanche is exact by Dhar's theorem and equals `h(2h-1)/6` for rectangles and battlements (height alone), while the 2x2 blocks set the tail: a 20x20 rectangle and a height-20 battlement both average ~130 topplings, but their largest avalanches are 3,701 and 190.
 - [x] **[Sandpile identity](wiki/pages/sandpile-identity.md)** - `stab(2m - stab(2m))`, the fullest stable pile on trees; irregular and drain-dependent with one drain cell, regular under the tide (every rectangle at least 2 wide: 1 on the top row, 2 below, checked to 7x7); one apex grain sets off 57 topplings on one castle of the 10-cell pair and 1 on the other; the avalanche profile separates all 122 cospectral groups to 16 cells.
 - [x] **[Sandcastle clock](wiki/pages/sandcastle-clock.md)** - one grain per tick on the apex returns the identity after the order of that grain in `K` (least common denominator of a column of the inverse reduced Laplacian); tree branches are transparent; the period depends on drain and apex, so the graph invariant is the clock spectrum, which separates the 10-cell adjacency pair (15 vs 5) and 62 of 105 adjacency- and 5 of 17 Laplacian-cospectral groups where `K` separates none.
 - [x] **[Sandpile census](wiki/pages/sandpile-census.md)** - `K` for all 33,150 castles to 16 cells from the 2x2-block matrix (introduced on [sandpile-group](wiki/pages/sandpile-group.md)); the block loops are an integer basis of the cycles, 6,963 tree castles are trivial, and the sandpile group separates none of the 122 cospectral groups because cospectral castles always share their block graph.
