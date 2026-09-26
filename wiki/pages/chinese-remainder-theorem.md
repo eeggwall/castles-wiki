@@ -30,6 +30,8 @@ Each factor with `m_i = 1` is the field `F_{p^{d_i}}` ([[finite-fields](pages/fi
 
 **Going backwards.** A CRT isomorphism is only useful computationally if you can invert it. The inverse is a sum `r = Σ a_i e_i`, where `e_i` is the element with `e_i ≡ 1 (mod I_i)` and `e_i ≡ 0 (mod I_j)` for `j ≠ i`. These `e_i` are the **orthogonal idempotents** of the splitting: `e_i² = e_i`, `e_i e_j = 0`, `Σ e_i = 1`. They are the subject of [[idempotent-decomposition](pages/idempotent-decomposition.md)].
 
+**Over `Q`, and over `Z[1/2]`.** CRT works before reducing mod `p` too. For even `k`, `char_k = f·g` with `f, g` the two parity-sector factors, both irreducible over `Q` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]). Then `Q[x]/(char_k) ≅ Q[x]/(f) × Q[x]/(g)`, a product of two number fields, and each projection is a surjection `Q[x]/(char_k) → Q[x]/(f)` whose kernel is maximal because `f` is irreducible.[^2] Over the integers the split is obstructed only where `f` and `g` can share a root, measured by the resultant `Res(f, g)`: it equals `2^{k(k+2)/4}` for every even `k ≤ 30`, so the sector split holds over `Z[1/2]` and survives reduction mod every odd prime (unproved in general; filed in IDEAS).[^3]
+
 ## In the castle work
 
 `R = F_p[x]/(char_k mod p)` is the ring in which the signed tower count `P(k, ·)` runs mod `p` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)] §3). Everything the wiki does with it goes through CRT:
@@ -41,7 +43,7 @@ Each factor with `m_i = 1` is the field `F_{p^{d_i}}` ([[finite-fields](pages/fi
 
 ## Appearances in Sources
 
-- [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - Ex. 17.20, CRT as the equivalence of comaximality, solvability of congruences, and the product isomorphism.
+- [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - Ex. 17.20, CRT as the equivalence of comaximality, solvability of congruences, and the product isomorphism; Ex. 14.4, quotient maps `Q[X]/(f) → Q[X]/(g)` with maximal kernel.
 
 ## Related Concepts
 
@@ -52,7 +54,10 @@ Each factor with `m_i = 1` is the field `F_{p^{d_i}}` ([[finite-fields](pages/fi
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - periods as `lcm` over CRT factors.
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - Pohlig-Hellman, CRT on the exponent side.
 - [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - the same split at `p = 10⁹ + 7`.
+- [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - `crt_idempotents(Q, p)` and `sector_resultant(k)`, runnable and pinned.
 
 ## Footnotes
 
 [^1]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.20 p.76; solution p.193 [synthesis] - pairwise comaximality ⇔ every congruence system solvable ⇔ `R/∩I_i → ∏ R/I_i` an isomorphism; the map is injective by construction and surjective iff the congruences are solvable.
+[^2]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 14.4 p.60; solution p.169 [synthesis] - for `g | f` in `Q[X]` the map `Q[X]/(f) → Q[X]/(g)` is a well-defined surjective ring homomorphism with maximal kernel when `g` is irreducible.
+[^3]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `sp.resultant(f, g, x) == 2**(k*(k+2)//4)` for the two `sp.factor_list` factors of `char_k`, every even `k` from 2 to 30; values for `k ≤ 12` pinned under `sector_resultant` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].

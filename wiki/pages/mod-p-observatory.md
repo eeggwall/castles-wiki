@@ -5,7 +5,7 @@ summary: F(w,h) mod p is eventually periodic in each direction, the period being
 tags: [analysis, castle, modular-arithmetic, periodicity, automaticity, sympy]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502]
 created: 2026-09-14
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Mod-p observatory for F(w,h)
@@ -180,6 +180,7 @@ for h in range(2, 6):
 - [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - the extension beyond `p = 7`: discriminants of `char_k` list the "special" primes (`7, 5, 3 * 107, 53, 3 * 23 * 643, 5449, ...`); Chebotarev-style splitting patterns at `p in {11..97}`; the `10^9 + 7` case (irreducibility of `char_1`, three linear roots at `k = 6`, per(char_k) full-period ceiling `~ 10^{18..63}` beyond enumeration).
 
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the "period = lcm of eigenvalue orders" identity read as `ord(x)` in `R^* = ∏ Z/(p^{d_i} − 1)`, and the "double root multiplies the period by `p`" observation identified as the `p`-group `U = 1 + (g)/(g)^m` living beside the field factor at each discriminant-zero prime (`char_2 mod 7 → U = Z/7`, `char_3 mod 5 → U = Z/5`, `char_4 mod 3 → U = Z/3`).
+- [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - Ch. 14 exercises 14.7-14.9 factor small polynomials over `F_3`, `F_5`, `F_7` by hand (root-finding and coefficient matching), including `x³ + x + 2 = (x + 1)(x² − x + 2)`, whose quadratic factor is `char_2`'s.
 
 ## Footnotes
 

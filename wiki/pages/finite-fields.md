@@ -66,7 +66,7 @@ From this one picture, everything about the mod-p periods follows:
 
 - **Primitive roots give the maximal period.** If a root is a *generator* of `F_{p^d}^*` (a primitive element), its order is the full `p^d − 1`. For an irreducible `char_k` of degree `k+1` that is `p^{k+1} − 1` — the reason the period of `F(w,h) mod p` can reach `~p^h`, and why the `10^9+7` observatory can *name* the orders but never *print* a period.
 
-Two ring-theory facts sit under this picture. First, when `char_k mod p` has several distinct irreducible factors, `F_p[x]/(char_k)` is the *product* of the corresponding fields and local rings, by the [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]; that is why the period is an `lcm`. Second, over a finite field every function `F_q → F_q` is a polynomial (Lagrange interpolation through all `q` points), so any residue pattern read off as a function of a field element has a polynomial formula of degree `< q`.[^2]
+Two ring-theory facts sit under this picture. First, when `char_k mod p` has several distinct irreducible factors, `F_p[x]/(char_k)` is the *product* of the corresponding fields and local rings, by the [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]; that is why the period is an `lcm`. Second, over a finite field every function `F_q → F_q` is a polynomial (Lagrange interpolation through all `q` points), so any residue pattern read off as a function of a field element has a polynomial formula of degree `< q`.[^2] The formula is unique only modulo `x^q − x`: `x^5 + x^3 + x` and `x^5 + 2x` are different polynomials over `F_3` but the same function, since `x^3 − x` vanishes on all of `F_3`.[^3] That is why Kitamasa computes `x^n mod char_k` as a *polynomial*: even though `a^p = a` for every `a ∈ F_p`, the Frobenius image `x^p` equals `x` in `F_p[x]/(char_k)` only when `char_k` divides `x^p − x`, i.e. when `char_k mod p` splits into distinct linear factors.
 
 So the finite field does all the work: it replaces "infinite-order complex eigenvalue" with "element of a cyclic group," and periodicity is the automatic consequence.
 
@@ -82,8 +82,8 @@ So the finite field does all the work: it replaces "infinite-order complex eigen
 - [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the product decomposition over the distinct irreducible factors.
 - [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - Frobenius in characteristic 2 (`(α + β)^{2^m} = α^{2^m} + β^{2^m}`) proves `char_k` irreducible over `Q` for `k = 2^m − 1`.
 
-
 ## Footnotes
 
 [^1]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L19-37 [synthesis] — "P(1,L) = Re((1+i)^{L+1}) = A146559(L+1)" and the `char_k` family ("P(1): x^2 - 2x + 2 ...").
 [^2]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.13 p.75; solution p.191 [synthesis] - over a finite field `K`, `P(X) = Σ_{a ∈ K} f(a) ∏_{b ≠ a} (X − b)/(a − b)` agrees with `f` everywhere, so every map `K → K` is polynomial.
+[^3]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 14.10 p.60; solution p.170 [synthesis] - `f = X⁵ + X³ + X`, `g = X⁵ + 2X` over `Z_3` agree at `0, 1, 2`.

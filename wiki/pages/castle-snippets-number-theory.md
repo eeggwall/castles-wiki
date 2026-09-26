@@ -1,11 +1,11 @@
 ---
 title: Castle snippets - number theory
 category: Concepts
-summary: Snippets for the signed tower count, continued-fraction convergents, mod-p orders / Pisano-type periods, quasi-polynomial splits, sector transfer matrices, and the H(d) factor. Sibling of the core castle-snippets hub.
+summary: Snippets for the signed tower count, continued-fraction convergents, mod-p orders / Pisano-type periods, quasi-polynomial splits, sector transfer matrices, the H(d) factor, and the ring theory of char_k (mod-2 shape, CRT and Lagrange idempotents, sector resultant). Sibling of the core castle-snippets hub.
 tags: [concept, castle, python, snippets, signed-tower-count, continued-fraction, mod-p, quasi-polynomial, plastic-number]
-sources: [project-euler-502-brute-force]
+sources: [project-euler-502-brute-force, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-19
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Castle snippets - number theory
@@ -40,7 +40,6 @@ def p_signed(k, L):
 ```
 
 Meaning: `P(k,·)` is C-finite of order `k+1`, and the whole family's generating-function denominators satisfy `den_{k+1} = den_{k−1} − 2x·den_k`, whose roots `−x ± √(x²+1)` give the Pell/Chebyshev closed form on [[generating-function-gallery](pages/generating-function-gallery.md)]. Even-`k` rows are all-positive (the clean new-sequence candidates); odd-`k` rows alternate in sign.
-
 
 ## Continued fractions, convergents, and quasi-polynomials
 
@@ -303,10 +302,102 @@ def jacobi_perron(f, x0, steps):
 
 Meaning: `ρ_6` has a period-4 multidimensional continued fraction (the cubic analogue of `[2; 2, 2, …]`), while `ρ_4` shows none in 400 exact steps — the unit/non-unit split: `ρ_6/2 = ψ²` is a unit, `ρ_4/2` is not even an algebraic integer ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]).
 
+## Ring theory of `char_k`
+
+Snippets behind [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)], [[idempotent-decomposition](pages/idempotent-decomposition.md)], [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] and the mod-2 note on [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], written while reading Chapters 17 and 14 of [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)]. All need SymPy.
+
+```python
+import sympy as sp
+x = sp.symbols('x')
+```
+
+### `char_k(k)` → the characteristic polynomial of `P(k, ·)`, and its shape mod 2
+
+The three-term recurrence `char_{k+1} = x²·char_{k−1} − 2·char_k` from `char_0 = x − 1`, `char_1 = x² − 2x + 2`. Mod 2 the `−2·char_k` term drops out, which is the whole proof of the pattern below.
+
+```python
+def char_k(k):
+    a, b = x - 1, x**2 - 2*x + 2
+    for _ in range(k):
+        a, b = b, sp.expand(x**2*a - 2*b)
+    return a
+```
+
+```
+>>> [sp.Poly(char_k(k), x, modulus=2).as_expr() for k in range(1, 7)]
+[x**2, x**3 + x**2, x**4, x**5 + x**4, x**6, x**7 + x**6]
+```
+
+Meaning: `char_k ≡ x^{k+1}` (odd `k`) or `x^k(x + 1)` (even `k`) mod 2, so `x` is never a unit of `F_2[x]/(char_k)`, which is why the mod-`p` pages start at `p = 3`.
+
+### `crt_idempotents(Q, p)` → the primitive idempotents of `F_p[x]/(Q)`
+
+One per distinct irreducible factor `g^m` of `Q mod p`: `N · (N^{−1} mod g^m)` with `N = Q/g^m`, which is `1` on that CRT factor and `0` on the others.
+
+```python
+def crt_idempotents(Q, p):
+    F = sp.Poly(Q, x, modulus=p)
+    mods = [g**m for g, m in sp.factor_list(F)[1]]
+    out = []
+    for i, Mi in enumerate(mods):
+        Ni = sp.prod([mods[j] for j in range(len(mods)) if j != i]) if len(mods) > 1 else sp.Poly(1, x, modulus=p)
+        inv = sp.invert(Ni.as_expr(), Mi.as_expr(), x, modulus=p) if len(mods) > 1 else 1
+        out.append(sp.Poly(Ni.as_expr() * inv, x, modulus=p).rem(F))
+    return out
+```
+
+```
+>>> E = crt_idempotents(char_k(2), 101); F = sp.Poly(char_k(2), x, modulus=101)
+>>> [e.as_expr() for e in E]
+[-25*x**2 + 25*x - 50, 25*x**2 - 25*x - 50]
+>>> [(e*e - e).rem(F).is_zero for e in E], (E[0]*E[1]).rem(F).is_zero, (E[0] + E[1]).rem(F).as_expr()
+([True, True], True, 1)
+>>> len(crt_idempotents(char_k(3), 3)), len(crt_idempotents(char_k(3), 5))
+(1, 2)
+```
+
+Meaning: at `k = 2`, `p = 101` the first idempotent is `(x² − x + 2)/4 ≡ 76x² + 25x + 51`, the projector onto the dominant eigenvalue `2`. `char_3` is irreducible mod 3 (a field, only the idempotent `1`) and has two distinct factors mod 5 (`(x − 1)²` and a quadratic).
+
+### `lagrange_idempotents(p)` → the indicator polynomials of `F_p`
+
+`δ_a = 1 − (x − a)^{p−1}` is `1` at `a` and `0` at every other point (Fermat), so the `δ_a` are the primitive idempotents of `F_p[x]/(x^p − x)`, the ring of all functions `F_p → F_p`.
+
+```python
+def lagrange_idempotents(p):
+    return [sp.Poly(1 - (x - a)**(p - 1), x, modulus=p) for a in range(p)]
+```
+
+```
+>>> [[int(d.eval(b)) % 5 for b in range(5)] for d in lagrange_idempotents(5)]
+[[1, 0, 0, 0, 0], [0, 1, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 1, 0], [0, 0, 0, 0, 1]]
+>>> f, g = sp.Poly(x**5 + x**3 + x, x, modulus=3), sp.Poly(x**5 + 2*x, x, modulus=3)
+>>> f == g, [int((f - g).eval(b)) % 3 for b in range(3)], (f - g).rem(sp.Poly(x**3 - x, x, modulus=3)).as_expr()
+(False, [0, 0, 0], 0)
+```
+
+Meaning: the second line is exercise 14.10 - two different polynomials, one function, because their difference is a multiple of `x^3 − x`.
+
+### `sector_resultant(k)` → the resultant of the two parity-sector factors (even `k`)
+
+```python
+def sector_resultant(k):
+    (f, _), (g, _) = sp.factor_list(char_k(k))[1]
+    return sp.resultant(f, g, x)
+```
+
+```
+>>> [(k, sp.factorint(sector_resultant(k))) for k in range(2, 13, 2)]
+[(2, {2: 2}), (4, {2: 6}), (6, {2: 12}), (8, {2: 20}), (10, {2: 30}), (12, {2: 42})]
+>>> all(sector_resultant(k) == 2**(k*(k+2)//4) for k in range(2, 31, 2))
+True
+```
+
+Meaning: the two sectors can share a root only mod 2, so the parity-sector split of `Q[x]/(char_k)` is already defined over `Z[1/2]`. The exponent `k(k+2)/4 = d(d+1)` for `k = 2d` is conjectural beyond `k = 30`.
 
 ## Appearances in Sources
 
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the reference `p_signed` DP.
+- [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - Chapters 17 and 14, the ring theory the `char_k` snippets implement (CRT 17.20, idempotents 17.19, Lagrange 17.13 and 14.10, `Z[X]/(2, X)` 14.13).
 
 ## Related Concepts
 
@@ -318,3 +409,5 @@ Meaning: `ρ_6` has a period-4 multidimensional continued fraction (the cubic an
 - [[recurrence-discovery](pages/recurrence-discovery.md)] / [[closed-form-hunting](pages/closed-form-hunting.md)] - the recurrence orders and coefficients `quasi_split` factors.
 - [[signed-tower-count](pages/signed-tower-count.md)] / [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - the `M_signed`, sectors, and `H(d)` snippets.
 - [[castle-sign](pages/castle-sign.md)] - the block-count convention `p_signed` matches.
+- [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] / [[idempotent-decomposition](pages/idempotent-decomposition.md)] - `crt_idempotents`, `lagrange_idempotents`, `sector_resultant`.
+- [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - `char_k` and its mod-2 shape.
