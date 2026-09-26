@@ -3,9 +3,9 @@ title: The k-direction of P(k, L) as a quasi-polynomial
 category: Concepts
 summary: At fixed base length L, the signed tower count P(k, L) has k-direction characteristic polynomial (x+1)^L (x-1)^{L-2}, so the only eigenvalues are +1 and -1. P(k, L) is a period-2 quasi-polynomial in k, (-1)^k A_L(k) + B_L(k), with A_L, B_L given explicitly to L = 8; the mod-p period in k is 2·p^{ceil(log_p L)}. Includes the |P(k,4)| = A352116 OEIS hit and its C_3-crystal-ball / tetrahedral bisections.
 tags: [concept, signed-tower-count, quasi-polynomial, k-direction, ehrhart, mod-p, oeis]
-sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
+sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring, salem-1963-algebraic-numbers-fourier-analysis]
 created: 2026-09-19
-updated: 2026-09-19
+updated: 2026-09-25
 ---
 
 # The k-direction of P(k, L) as a quasi-polynomial
@@ -31,6 +31,8 @@ P(k, L)  =  (−1)^k · A_L(k)  +  B_L(k),        deg A_L ≤ L − 1,   deg B_L
 ```
 
 **Why it must be so (argument sketch).** `P(k, L)` sums `(−1)^{desc(c)}` over the lattice points `c ∈ {0, …, k}^L`, and the descent `Σ max(0, c_i − c_{i+1})` is a *linear* form on each piece of the cube cut out by the order type of `c`. A sum of a fixed root of unity raised to a linear form over the lattice points of a dilated rational polytope is an **Ehrhart-type quasi-polynomial** in the dilation `k` (Ehrhart's theorem: the number of lattice points in `k · P` for a rational polytope `P` is a quasi-polynomial in `k` of degree `dim P`) whose period divides the order of the root - here 2. So the only possible eigenvalues are `±1`, with `P(k, L) = (−1)^k A_L(k) + B_L(k)`. The first OEIS-mining pass had already seen this shape for the *even-block count*: it noted that the columns `F(w, ·)` are annihilated by `(x²−1)^w`.[^2] What is new is the exact multiplicities: `L` at `−1`, `L − 2` at `+1`, for the signed count.
+
+**A second route to "roots of unity only" (Kronecker).** Take as given that `P(k, L)` is C-finite in `k`. Then its minimal recurrence has integer coefficients and its characteristic polynomial is monic with nonzero integer constant term. Fatou's lemma gives that normalization for any integer sequence with a rational generating function. Because `|P(k, L)| ≤ (k + 1)^L` grows only polynomially, no eigenvalue can exceed modulus 1. The eigenvalues are closed under conjugation, and their product is a nonzero integer, so every eigenvalue has modulus exactly 1. By Kronecker's theorem, an algebraic integer whose conjugates all have modulus 1 is a root of unity. This recovers "no irrational eigenvalues" without Ehrhart, but not the period 2: that needs the sign `(−1)^{desc}`.[^salem3]
 
 A full proof from the Ehrhart route is still open (see IDEAS, "General closed form for `P(k, L)`"); the identity is verified for `L ≤ 12`.
 
@@ -110,3 +112,5 @@ This is the standard "a repeated eigenvalue of multiplicity `m` contributes `p^{
 [^2]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 3" L77-79 - "Columns (fixed w, varying h) are quasi-polynomials: F(w,h) is annihilated by (x^2-1)^w, i.e. F(w,h) = P(h) + (-1)^h Q(h) with P,Q polynomials of degree < w." and L168 - "F(w,h), w>=3 (columns) | - | NEW (quasi-poly, (x^2-1)^w)".
 
 [^3]: https://oeis.org/A352116 (2026-09-16) - "Partial sums of the odd triangular numbers (A014493)", data `1, 4, 19, 40, 85, 140, 231, 336, 489, 660, 891, 1144, 1469, …`; https://oeis.org/A014493 - "Odd triangular numbers", `1, 3, 15, 21, 45, 55, …`; https://oeis.org/A063496 - "a(n) = (2*n - 1)*(8*n^2 - 8*n + 3)/3", with Peter Bala's comment "this sequence is the crystal ball sequence for the C_3 lattice"; https://oeis.org/A199833 - data `4, 40, 140, 336, 660, 1144, …`, formula "a(n) = (16/3)*n^3 - (4/3)*n = 4*A000447(n)"; https://oeis.org/A000447 - "a(n) = 1^2 + 3^2 + 5^2 + … + (2*n-1)^2 = n*(4*n^2 - 1)/3", "a(n) = binomial(2*n+1, 3)"; https://oeis.org/A112742 - "a(n) = n^2*(n^2 - 1)/3".
+
+[^salem3]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Appendix 3 L4263-4264 - "If an algebraic integer and all its conjugates have all moduli equal to 1, they are all roots of unity"; Ch. I §3 Lemma II (Fatou) L405-410 - integer coefficients ⇒ `P, Q` integral with `Q(0) = 1`. The growth bound and the modulus argument are own reasoning.

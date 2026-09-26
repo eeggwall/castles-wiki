@@ -148,10 +148,11 @@ So the "why 17, 21 at h=4 but not 11?" question dissolves: `Q(√11)` is reachab
 - The bare plastic number is a castle-strip growth constant (h=3) — the [[plastic-number](pages/plastic-number.md)] watch note is closed.
 - The cubic frontier is at h=3: nine cubics, among them plastic / supergolden / plastic² / tribonacci / the `Q(ζ₇)⁺` cubic — the "area-grading-only" cubics also appear as *strip* Perron roots.
 - **The Pisot status of every cubic through h=4**: 8 of 9 at h=3 (all but `2cos(π/7)`), 32 of 56 at h=4 ([[pisot-number](pages/pisot-number.md)]).
+- **The Salem question through h=4.** No cubic is a Salem number: a Salem number's minimal polynomial is reciprocal of even degree at least 4. Of the 110 h=4 quartics, **7 are Salem** (`1.722084`, `1.883204`, `2.081019`, `2.153721`, `2.296630`, `2.369205`, `2.890054`), 41 are Pisot and 62 are neither. Six of the seven Salem quartics come out of Salem's two-sided limit construction applied to the census's own cubics ([[salem-number](pages/salem-number.md)]).[^14]
 
 **Open:**
 - **A closed form for the minimum height** realizing a given `(p₁, p₂)`. [[quadratic-min-height](pages/quadratic-min-height.md)] computes it exactly through height 6, proves it on the metallic line (`p₁ + 1`) and the square-root line (`⌈2√p₂⌉`), and conjectures that at most three evenly connected groups of heights always reach it.
-- **Whether the Pisot cubics reachable as strip Perron roots are exactly a nameable set**, and the Salem question for the quartics (a Salem number has degree at least 4, so the 110 h=4 quartics are the first candidates).
+- **Whether the Pisot cubics reachable as strip Perron roots are exactly a nameable set.**
 - **A closed-form min-height for a given field.** The reachability law says every field appears; the height at which it *first* appears is the open quantity (tied to the min-height of its cheapest `(p₁, p₂)`).
 
 ## `h ≥ 6`: why the law supersedes exhaustion
@@ -173,6 +174,7 @@ The one-rule step (`strip_field`, above), the `strip_field_census` two-phase swe
 
 ## Related Concepts
 
+- [[salem-number](pages/salem-number.md)] - the 7 Salem quartics at h=4, and where they come from.
 - [[pisot-number](pages/pisot-number.md)] - the Pisot test applied to every cubic Perron root above; Salem's theorem that every real field contains Pisot numbers.
 - [[quadratic-min-height](pages/quadratic-min-height.md)] - the minimum height for each `(p₁, p₂)`: exact through height 6, proved on the metallic and square-root lines, and the three-group conjecture.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the companion page: the `J − D` rule that realizes each metallic mean, whose reachability this census confirms exhaustively.
@@ -211,3 +213,5 @@ The one-rule step (`strip_field`, above), the `strip_field_census` two-phase swe
 [^12]: Targeted h=6 / h=7 constructions (SymPy): `J − D` at h=6 gives `(x+1)⁴(x²−5x−1)`, Perron `(5+√29)/2` = nickel ∈ `Q(√29)`, 31 ones; `J − D` at h=7 gives `(x+1)⁵(x²−6x−1)`, Perron `3+√10` = `δ₆` ∈ `Q(√10)`. The `a=6` field `Q(√10)` (disc 40) has cheapest quadratic forms `(p₁,p₂) ∈ {(6,1),(2,9),(0,10),(4,6)}`, all needing `≥ 7` states or many `p₂` two-cycles, so `Q(√10)` first appears at h=7, not h=6.
 
 [^13]: Verified by execution (2026-09-25, own computation; NumPy, SymPy): all 512 binary `3×3` and 65 536 binary `4×4` matrices, characteristic polynomial by `numpy.poly`, the irreducible SymPy factor carrying the Perron root kept, Perron root `> 1`. h=3 gives nine cubic minimal polynomials (matrix counts by exact SymPy `charpoly`, e.g. `[[1,1,1],[1,0,1],[1,0,0]]` for `x³ − x² − 2x − 1`, `[[1,1,0],[1,1,1],[1,0,0]]` for `x³ − 2x² − 1`, `[[1,1,1],[1,1,0],[1,0,0]]` for `x³ − 2x² − x + 1`); h=4 gives 56. Discriminants by SymPy; Pisot = every non-Perron root of modulus `< 1`. Definitions from [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. I §2 L275-282 (class S) and Theorem 2 L316-347.
+
+[^14]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. III §3 p.26 [synthesis] L1740-1756 - class T: reciprocal minimal polynomial, even degree at least 4. Classification by execution (2026-09-25, own computation; the h=4 sweep of [^13], quartic factors carrying the Perron root; Salem = one root outside and one inside the unit circle, the rest of modulus 1 within `10⁻⁷`).

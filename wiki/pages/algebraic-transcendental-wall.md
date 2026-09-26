@@ -5,7 +5,7 @@ summary: The castle's counts are C-finite, so their closed forms carry only alge
 tags: [concept, castle, algebraic, transcendental, c-finite, golden-ratio, sqrt2, e, pi, asymptotics, pedagogy]
 sources: [project-euler-502-representations, aocp-permutations, aocp-generating-functions, generating-functions-topic]
 created: 2026-09-15
-updated: 2026-09-22
+updated: 2026-09-25
 ---
 
 # The algebraic/transcendental wall
@@ -78,6 +78,7 @@ That is the wall in one sentence: **the castle's exact counts are algebraic; `e`
 - [[fractional-recurrences](pages/fractional-recurrences.md)] — the wall's continuum face: the fractional-Fibonacci recurrence `∇^α a_n = a_{n-1}` has growth `g(α)` algebraic iff `α` is rational (Baker/Gelfond-Schneider on `α = log r / log(1-r)`), so irrational `α` gives transcendental growth directly, without the Stirling/Catalan/log-`k` limit gate. A new transcendental-arrival mechanism sitting beside the classical asymptotic one.
 - [[kitamasa](pages/kitamasa.md)] — the "spectral reading" `R(λ) = λ^n` on eigenvalue roots is a direct realization of this page's thesis: C-finite closed forms carry only algebraic eigenvalues.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] — the `ρ_k ~ k / log k` asymptotic derived there is one of this page's "transcendental via limit" residents.
+- [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] — Salem's Theorem I, a test for which side of the wall an integer series lives on: an integer power series (finitely many poles in the disc) that keeps a fixed distance from some value near the unit circle is rational. So every non-rational integer count series takes values arbitrarily close to every complex number inside the disc.
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] — the k-direction eigenvalues are only `±1`, a clean limiting case (rational algebraic) rung on the wall.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] — the bar-graph GF at fixed perimeter and area is a q-Bessel function, and the tricritical asymptotic scaling function is the logarithmic derivative of Airy, `Ai'/Ai`. Both cross the wall on the limit side — the exact q-series is D-finite (holonomic) but not algebraic, and its scaling function is a bona fide transcendental special function.
 

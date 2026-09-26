@@ -93,6 +93,7 @@ A plain (unsigned) castle statistic whose count grows at the bare `ψ` is a **Pa
 
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization `H_d · V_d` that produces `2ψ²`, and the Hardin word-count identities it implies.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - where `ρ_6 = 2ψ²` was found; the Jacobi-Perron computations.
+- [[salem-number](pages/salem-number.md)] - Salem's limit construction applied to `ψ`: its eighth step `(x^8(x^3 − x − 1) + x^3 + x^2 − 1)/(x − 1)` is exactly Lehmer's polynomial.
 - [[pisot-number](pages/pisot-number.md)] - the class the plastic number belongs to; why the trace makes powers near-integers, and the Pisot test on the other height-3 cubics.
 - [[metallic-means](pages/metallic-means.md)] - the quadratic family (`φ`, `1+√2`, …) the plastic number sits beside; same Pisot / unit / periodic-expansion story one degree up.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - why a cubic cannot have a periodic simple continued fraction, and what replaces it.

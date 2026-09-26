@@ -101,6 +101,7 @@ pisot_check([1, -1, -2, 1])   # (False, [1.247..., 0.445...], 0.27...)
 
 ## Related Concepts
 
+- [[salem-number](pages/salem-number.md)] - class T; every Pisot number is a two-sided limit of Salem numbers, and the plastic number's descendants include Lehmer's polynomial.
 - [[plastic-number](pages/plastic-number.md)] - a cubic Pisot number; `ψ^n − Perrin(n) → 0` is Theorem 1 for it.
 - [[metallic-means](pages/metallic-means.md)] - the quadratic Pisot units of norm `−1`.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the castle-strip Perron roots, whose cubic frontier is classified above.
