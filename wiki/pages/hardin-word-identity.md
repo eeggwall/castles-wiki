@@ -194,7 +194,7 @@ Reading the columns of `S⁻¹` (differences of consecutive cumulative sets), th
 ## Consequences for Online Encyclopedia of Integer Sequences (OEIS)
 
 - The word automaton has characteristic polynomial `H_{2m+1}(μ) = Σ_i (−1)^i C(⌊(2m+1+i)/2⌋, i) μ^{2m+1−i}` for every `m ≤ 8` (symbolic), so the recurrences Hardin recorded as "Empirical" on **A202882** (`m = 2`), **A203094** (`m = 3`) and **A203184** (`m = 4`) are the characteristic-polynomial recurrences of a 5-, 7-, 9-state automaton, hence proved. The odd-index `H` satisfy `H_{2m+1} = (1 + 2μ²) H_{2m−1} − μ⁴ H_{2m−3}`, and `det(μI − W_m)` satisfies the same recurrence for `m ≤ 8`, which is the route to a general proof by cofactor expansion.[^2]
-- Each of these sequences now has a second interpretation: `2^{−L}` times the even-last-column signed tower count at height `4m + 2`, or in Hardin's indexing, `a(n) = P_even(4m+2, n−1) / 2^{n−1}`. Submission of the interpretation and the proved recurrences is a human act ([[oeis-cross-referencing](pages/oeis-cross-referencing.md)]).
+- Each of these sequences now has a second interpretation: `2^{−L}` times the even-last-column signed tower count at tower height `4m + 2`, or in Hardin's indexing, `a(n) = P_even(4m+2, n−1) / 2^{n−1}`. Submission of the interpretation and the proved recurrences is a human act ([[oeis-cross-referencing](pages/oeis-cross-referencing.md)]).
 
 ## Snippet index
 
@@ -220,6 +220,7 @@ Reading the columns of `S⁻¹` (differences of consecutive cumulative sets), th
 - [[tower-word-language](pages/tower-word-language.md)] - the wiki's other word-automaton object; the pending-flag construction here is the same technique.
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the `g = 2` tower-spacing castles give the Hardin sequences (A202882 / A203094 / A203184) a plain *unsigned* geometric interpretation ("towers ≥ 2 apart" = "no isolated peak"), a third route alongside the signed identity here.
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the classroom version: the `m = 1` case in seven stops, with runnable `sector_half` and `S_pattern`.
+- [[castle-notation](pages/castle-notation.md)] - tower height `k` (here `4m + 2`) versus castle height `k + 1`.
 
 
 ## Footnotes

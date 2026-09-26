@@ -79,7 +79,7 @@ A metallic mean generates more than a field. It generates a *ring*, `Z[δ_a] = Z
 | 12 | 148 | `Q(√37)` | 2 | |
 | 14 | 200 | `Q(√2)` | 5 | `δ_14 = (1 + √2)³` |
 
-**Powers give Fibonacci-type indices.** If `δ = δ_b` and `n` is odd, `δ^n` has norm `−1` and trace `t`, so `δ^n = δ_t` is itself a rung. Writing `δ^n = U_n δ + U_{n−1}` (with `U_n` the Fibonacci numbers for `b = 1`, Pell numbers for `b = 2`), the ring it generates is `Z[δ^n] = Z + U_n δ Z`, of index `U_n` in `Z[δ]`. So copper `φ³` has index `F_3 = 2` in `Z[φ]`, `φ⁵ = δ_11` has index `F_5 = 5`, and `(1 + √2)³ = δ_14` has index `P_3 = 5` in `Z[√2]`.[^8]
+**Powers give Fibonacci-type indices.** If `δ = δ_b` and `n` is odd, `δ^n` has norm `−1` and trace `t`, so `δ^n = δ_t` is itself a rung. Writing `δ^n = U_n δ + U_{n−1}` (with `U_n` the Fibonacci numbers `F_n` for `b = 1` and the Pell numbers `Pell(n)` for `b = 2`), the ring it generates is `Z[δ^n] = Z + U_n δ Z`, of index `U_n` in `Z[δ]`. So copper `φ³` has index `F_3 = 2` in `Z[φ]`, `φ⁵ = δ_11` has index `F_5 = 5`, and `(1 + √2)³ = δ_14` has index `Pell(3) = 5` in `Z[√2]`.[^8]
 
 **Same field, different rings.** Golden and copper both live in `Q(√5)`, but `x² = x + 1` has the solution `φ` in `Z[φ]` and no solution in `Z[√5]` (its roots `(1 ± √5)/2` have half-integer coordinates). By the argument above, `Z[δ_1] ≇ Z[δ_4]`. The field loses information that the ring keeps.
 

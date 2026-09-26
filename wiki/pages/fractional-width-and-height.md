@@ -5,7 +5,7 @@ summary: F(w,h) is C-finite in the width and a quasi-polynomial in the height, s
 tags: [analysis, castle, fractional-calculus, interpolation, matrix-power, branch-cut, quasi-polynomial, c-finite, eigenvalues, transfer-matrix, square-root, embedding, metallic-means, computation, verification]
 sources: [project-euler-502-solution]
 created: 2026-09-19
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Fractional width and fractional height
@@ -26,7 +26,7 @@ with `P(k, L) = sum (-1)^{blocks}` over towers of height at most `k` on a base o
 
 ## Fractional width: real, on the principal branch
 
-Interpolating `P(k, w)` in `w` means writing `P(k, w) = sum_j c_j lambda_j^w` over the roots `lambda_j` of `char_k` (the coefficients `c_j` are fixed by the first `k + 1` integer values) and evaluating `lambda_j^w = exp(w log lambda_j)`. The result is real for all real `w` exactly when every non-real contribution cancels against its conjugate, and that depends on the sign pattern of the roots:
+Here `P(k, w)` is the signed tower count `P(k, L)` at base length `L = w`, the castle width, exactly as it enters `F` ([[castle-notation](pages/castle-notation.md)]). Interpolating `P(k, w)` in `w` means writing `P(k, w) = sum_j c_j lambda_j^w` over the roots `lambda_j` of `char_k` (the coefficients `c_j` are fixed by the first `k + 1` integer values) and evaluating `lambda_j^w = exp(w log lambda_j)`. The result is real for all real `w` exactly when every non-real contribution cancels against its conjugate, and that depends on the sign pattern of the roots:
 
 | `k` | degree | positive real roots | negative real roots | complex pairs | factorization of `char_k` |
 |---|---|---|---|---|---|

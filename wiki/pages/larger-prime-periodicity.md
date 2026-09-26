@@ -1,7 +1,7 @@
 ---
 title: Larger-prime periodicity of char_k
 category: Analyses
-summary: The mod-p observatory covers primes p = 3, 5, 7 with periods small enough to enumerate. This page extends the picture to larger primes and to the Project Euler 502 modulus 10^9 + 7. Full periods explode - per(char_k) mod p divides p^{k+1} - 1, so at p = 10^9 + 7 and k = 6 the ceiling is 10^{63} and no computation reaches it. The eigenvalue-order structure persists: char_k factors over F_p by Chebotarev-type patterns predictable from the Galois group of char_k over Q. Discriminants of char_k over Z control where repeated roots appear: disc(char_k) odd prime factors are 7 (at k=2), 5 (k=3), 3 and 107 (k=4), 53 (k=5), 3 and 23 and 643 (k=6), 5449 (k=7) - a sporadic-looking list that determines the "special" primes where the mod-9 observatory's factor-of-p period inflation reappears at a new prime. At 10^9 + 7 specifically: P ≡ 3 (mod 4) makes char_1 irreducible (period divides P^2 - 1 = ~10^18); char_2 has (x - 2) as a linear factor with ord_P(2) = 500000003 (the odd half of P - 1, which is itself prime); char_6 splits with three linear factors (three rational roots mod P), giving three eigenvalue orders each dividing P - 1. The full period at any k >= 1 is beyond enumeration, but the factorization structure is one polynomial-factor-list call.
+summary: The mod-p observatory covers primes p = 3, 5, 7 with periods small enough to enumerate. This page extends the picture to larger primes and to the Project Euler 502 modulus 10^9 + 7. Full periods explode - per(char_k) mod p divides p^{k+1} - 1, so at p = 10^9 + 7 and k = 6 the ceiling is 10^{63} and no computation reaches it. The eigenvalue-order structure persists: char_k factors over F_p by Chebotarev-type patterns predictable from the Galois group of char_k over Q. Discriminants of char_k over Z control where repeated roots appear: disc(char_k) odd prime factors are 7 (at k=2), 5 (k=3), 3 and 107 (k=4), 53 (k=5), 3 and 23 and 643 (k=6), 5449 (k=7) - a sporadic-looking list that determines the "special" primes where the mod-9 observatory's factor-of-p period inflation reappears at a new prime. At 10^9 + 7 specifically: M ≡ 3 (mod 4) makes char_1 irreducible (period divides M^2 - 1 = ~10^18); char_2 has (x - 2) as a linear factor with ord_M(2) = 500000003 (the odd half of M - 1, which is itself prime); char_6 splits with three linear factors (three rational roots mod M), giving three eigenvalue orders each dividing M - 1. The full period at any k >= 1 is beyond enumeration, but the factorization structure is one polynomial-factor-list call.
 tags: [analysis, castle, modular-arithmetic, periodicity, large-primes, chebotarev, discriminant, project-euler-502]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502]
 created: 2026-09-22
@@ -109,56 +109,56 @@ The **repeated-factor rows** are highlighted by the caret notation `d^m` where `
 
 ## The `10^9 + 7` case
 
-Set `P = 10^9 + 7`. This is a Mersenne-adjacent prime widely used in competitive programming and as the mod for Project Euler 502. Its small-prime residues shape which `char_k mod P` splittings occur:[^exec]
+Set `M = 10^9 + 7` (the Project Euler modulus; `M` rather than `P`, which the wiki reserves for the signed tower count, [[castle-notation](pages/castle-notation.md)]). This is a Mersenne-adjacent prime widely used in competitive programming and as the mod for Project Euler 502. Its small-prime residues shape which `char_k mod M` splittings occur:[^exec]
 
 ```
-P = 1000000007  (prime)
-P mod 4 = 3          (so -1 is a non-residue; char_1 is irreducible)
-P mod 7 = 6          (a non-residue of 7; char_2's quadratic is irreducible)
-P - 1 = 2 * 500000003     (500000003 is prime)
-P + 1 = 2^3 * 3^2 * 7 * 109^2 * 167
+M = 1000000007  (prime)
+M mod 4 = 3          (so -1 is a non-residue; char_1 is irreducible)
+M mod 7 = 6          (a non-residue of 7; char_2's quadratic is irreducible)
+M - 1 = 2 * 500000003     (500000003 is prime)
+M + 1 = 2^3 * 3^2 * 7 * 109^2 * 167
 ```
 
-The factorization of `P - 1` is remarkably clean: `P - 1 = 2 * q` for a single big odd prime `q = 500000003`. Every element of `F_P^*` has order dividing `2 * q`, and only orders in `{1, 2, q, 2q}` are possible. This makes eigenvalue-order computations for linear factors of `char_k mod P` trivial once the root is known.
+The factorization of `M - 1` is remarkably clean: `M - 1 = 2 * q` for a single big odd prime `q = 500000003`. Every element of `F_M^*` has order dividing `2 * q`, and only orders in `{1, 2, q, 2q}` are possible. This makes eigenvalue-order computations for linear factors of `char_k mod M` trivial once the root is known.
 
-**`char_k mod P` factorizations for `k = 1..6`:**
+**`char_k mod M` factorizations for `k = 1..6`:**
 
-| `k` | deg | factorization mod `P` | linear-root eigenvalue orders |
+| `k` | deg | factorization mod `M` | linear-root eigenvalue orders |
 |---|---|---|---|
-| 1 | 2 | irreducible (deg 2) | root in `F_{P^2}`, order divides `P^2 - 1 ~ 10^{18}` |
-| 2 | 3 | `(x - 2) * (x^2 - x + 2)` | `ord_P(2) = 500000003 = q` (`2` is a QR of `P`, so ord divides `q`, and `q` is prime, so `ord in {1, q}`; not 1, so `q`) |
-| 3 | 4 | irreducible (deg 4) | root in `F_{P^4}`, order divides `P^4 - 1 ~ 10^{36}` |
-| 4 | 5 | (deg 2) `*` (deg 3) | root in `F_{P^2}` (order `\| P^2 - 1`); root in `F_{P^3}` (order `\| P^3 - 1`) |
-| 5 | 6 | (deg 2) `*` (deg 4) | roots in `F_{P^2}` and `F_{P^4}` |
-| 6 | 7 | `(x - r_1)(x - r_2)(x - r_3) * (deg 2) * (deg 2)` | **three linear factors** with roots `r_1 = 958603953, r_2 = 708901077, r_3 = 332494988`; each order divides `P - 1 = 2q` |
+| 1 | 2 | irreducible (deg 2) | root in `F_{M^2}`, order divides `M^2 - 1 ~ 10^{18}` |
+| 2 | 3 | `(x - 2) * (x^2 - x + 2)` | `ord_M(2) = 500000003 = q` (`2` is a QR of `M`, so ord divides `q`, and `q` is prime, so `ord in {1, q}`; not 1, so `q`) |
+| 3 | 4 | irreducible (deg 4) | root in `F_{M^4}`, order divides `M^4 - 1 ~ 10^{36}` |
+| 4 | 5 | (deg 2) `*` (deg 3) | root in `F_{M^2}` (order `\| M^2 - 1`); root in `F_{M^3}` (order `\| M^3 - 1`) |
+| 5 | 6 | (deg 2) `*` (deg 4) | roots in `F_{M^2}` and `F_{M^4}` |
+| 6 | 7 | `(x - r_1)(x - r_2)(x - r_3) * (deg 2) * (deg 2)` | **three linear factors** with roots `r_1 = 958603953, r_2 = 708901077, r_3 = 332494988`; each order divides `M - 1 = 2q` |
 
-The `k = 6` line is the surprise: `char_6 mod P` picks up **three linear factors**, i.e. three rational roots mod `P`. Their orders in `F_P^*` are each in `{1, 2, q, 2q}` and computable by one exponentiation per root. Combined with the two quadratic factors (each contributing a root in `F_{P^2}` of order dividing `P^2 - 1`), `per(char_6) mod P` is the lcm of five eigenvalue orders, each computable.
+The `k = 6` line is the surprise: `char_6 mod M` picks up **three linear factors**, i.e. three rational roots mod `M`. Their orders in `F_M^*` are each in `{1, 2, q, 2q}` and computable by one exponentiation per root. Combined with the two quadratic factors (each contributing a root in `F_{M^2}` of order dividing `M^2 - 1`), `per(char_6) mod M` is the lcm of five eigenvalue orders, each computable.
 
 **Full-period ceiling by k:**
 
-| `k` | max `per(char_k) mod P` (from largest-degree factor) |
+| `k` | max `per(char_k) mod M` (from largest-degree factor) |
 |---|---|
-| 1 | `P^2 - 1 ~ 10^{18}` |
-| 2 | `P^2 - 1 ~ 10^{18}` |
-| 3 | `P^4 - 1 ~ 10^{36}` |
-| 4 | `P^3 - 1 ~ 10^{27}` |
-| 5 | `P^4 - 1 ~ 10^{36}` |
-| 6 | `P^2 - 1 ~ 10^{18}` (due to 3 linear + 2 quadratic factors) |
-| 7 | `P^{d_max} - 1`, up to `P^8 - 1 ~ 10^{72}` |
+| 1 | `M^2 - 1 ~ 10^{18}` |
+| 2 | `M^2 - 1 ~ 10^{18}` |
+| 3 | `M^4 - 1 ~ 10^{36}` |
+| 4 | `M^3 - 1 ~ 10^{27}` |
+| 5 | `M^4 - 1 ~ 10^{36}` |
+| 6 | `M^2 - 1 ~ 10^{18}` (due to 3 linear + 2 quadratic factors) |
+| 7 | `M^{d_max} - 1`, up to `M^8 - 1 ~ 10^{72}` |
 
-**Does `P` divide any `disc(char_k)` for `k <= 10`?** Checking directly: `disc(char_k) mod P` is `1000000003, 999999895, 20480, 21037056, 183367454, 996996034, 176533116, 740488628, ...` for `k = 1..8` - none zero. **No `char_k` for `k <= 10` has a repeated factor mod `P`**, so every factorization is squarefree and the period is a clean lcm of eigenvalue orders. The full period at each `k` is beyond enumeration but the factorization structure is one polynomial-`factor_list` call, and each individual eigenvalue order is computable from the standard discrete-log-in-`F_{P^d}^*` machinery.
+**Does `M` divide any `disc(char_k)` for `k <= 10`?** Checking directly: `disc(char_k) mod M` is `1000000003, 999999895, 20480, 21037056, 183367454, 996996034, 176533116, 740488628, ...` for `k = 1..8` - none zero. **No `char_k` for `k <= 10` has a repeated factor mod `M`**, so every factorization is squarefree and the period is a clean lcm of eigenvalue orders. The full period at each `k` is beyond enumeration but the factorization structure is one polynomial-`factor_list` call, and each individual eigenvalue order is computable from the standard discrete-log-in-`F_{M^d}^*` machinery.
 
 ## What can be computed vs. what can be enumerated
 
 The mod-p observatory at `p = 3, 5, 7` printed full periods (up to `58824`) as one column of a table. At `p = 10^9 + 7` the analogous table is empty - the periods are astronomical - but the following is one call each:
 
-- `char_k mod P` factorization (SymPy `factor_list`, milliseconds).
+- `char_k mod M` factorization (SymPy `factor_list`, milliseconds).
 - Degrees `d_1, ..., d_r` of the irreducible factors.
 - Repeated-factor detection (compare degree sum to `k + 1`).
-- For each linear factor `(x - r_i)`, the order of `r_i` in `F_P^*` when `P - 1` has known factorization.
-- For each degree-`d` factor, the order divides `p^d - 1`; when `p^d - 1` is factorable (rare for `p = 10^9 + 7, d >= 2`, since `p^2 - 1 = 10^{18}` has no obvious factor structure past `(P-1)(P+1)`), the order is computable by discrete-log.
+- For each linear factor `(x - r_i)`, the order of `r_i` in `F_M^*` when `M - 1` has known factorization.
+- For each degree-`d` factor, the order divides `p^d - 1`; when `p^d - 1` is factorable (rare for `p = 10^9 + 7, d >= 2`, since `p^2 - 1 = 10^{18}` has no obvious factor structure past `(M-1)(M+1)`), the order is computable by discrete-log.
 
-**The "full period" itself is never computed at `10^9 + 7`.** The [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] pipeline never needs it - it uses Kitamasa evaluation to jump directly to `x^w mod char_k` in `F_P[x] / char_k`, sidestepping period enumeration entirely.
+**The "full period" itself is never computed at `10^9 + 7`.** The [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] pipeline never needs it - it uses Kitamasa evaluation to jump directly to `x^w mod char_k` in `F_M[x] / char_k`, sidestepping period enumeration entirely.
 
 ## Connection to castle cryptography
 
@@ -170,7 +170,7 @@ R^* = (F_p[x] / char_k)^*  =  prod_i Z / (p^{d_i} - 1),
 
 with one factor per irreducible piece of `char_k mod p`. The invariant-factor decomposition of `R^*` and the mod-`p` period structure of `char_k` are the same theorem stated in two languages: **the period is the order of `x` in `R^*`**, and the order of `x` is `lcm(ord_i(x))` across the invariant factors. When `char_k mod p` has a repeated factor at a discriminant prime, the ring picks up a local `p`-group `U = 1 + (g) / (g)^m` beside the field factor, and `x`'s order in `U` is `p` (for multiplicity 2) - reproducing the multiplicity-inflation rule of [[mod-p-observatory](pages/mod-p-observatory.md)].
 
-At `10^9 + 7`, this reading says the cryptographic ring `R = F_P[x] / char_k` has invariant-factor group `prod_i Z / (P^{d_i} - 1)`, with `d_i` read directly from the mod-`P` factorization: at `k = 2`, `R^* = Z/(P - 1) * Z/(P^2 - 1)`; at `k = 6`, five factors including three `Z/(P - 1)` copies from the linear roots and two `Z/(P^2 - 1)` from the quadratics.
+At `10^9 + 7`, this reading says the cryptographic ring `R = F_M[x] / char_k` has invariant-factor group `prod_i Z / (M^{d_i} - 1)`, with `d_i` read directly from the mod-`M` factorization: at `k = 2`, `R^* = Z/(M - 1) * Z/(M^2 - 1)`; at `k = 6`, five factors including three `Z/(M - 1)` copies from the linear roots and two `Z/(M^2 - 1)` from the quadratics.
 
 ## Appearances in Sources
 
@@ -192,7 +192,7 @@ At `10^9 + 7`, this reading says the cryptographic ring `R = F_P[x] / char_k` ha
 
 ## Footnotes
 
-[^exec]: Verified by execution (2026-09-22), Python 3 with SymPy 1.14. **`char_k` construction**: three-term recurrence `char_0 = x - 1, char_1 = x^2 - 2x + 2, char_{k+1} = x^2 char_{k-1} - 2 char_k`; verified against [[generating-function-gallery](pages/generating-function-gallery.md)]. **Discriminants**: `sp.Poly(char_k, x).discriminant()` for `k = 1..10`, factored with `sp.factorint`; odd-prime parts read directly. **Factor signatures**: `sp.factor_list(sp.Poly(char_k, x, modulus=p))[1]` for each `p in {3..97}` and `k in {1..5}`, degree-of-each-irreducible-factor recorded as a sorted multiset. **`per(char_k) mod p` table**: for each irreducible factor `g` of degree `d`, order of `x mod g` computed by iterating the linear recurrence in state `(F_p)^d` until return to `x^0 = 1`; total `per = lcm` of factor orders, with `* p^{ceil(log_p m)}` for any multiplicity-`m` repeated factor. Runs in seconds up to `p = 97, k = 6`; the biggest period computed is `205346960` at `(p, k) = (29, 6)`. **`10^9 + 7` factorization**: `sp.factor_list(..., modulus=10**9 + 7)` for `k = 1..6`; `char_6 mod P` produced three linear factors with roots computed as `-c_0 * pow(c_1, -1, P) mod P`. **`ord_P(2)` computation**: `pow(2, (P-1)/2, P) = 1`, so `ord | (P-1)/2 = 500000003`; since `500000003` is prime, `ord in {1, 500000003}`; `pow(2, 1, P) = 2 != 1`, so `ord = 500000003`. **Disc-mod-P table**: `int(sp.Poly(char_k, x).discriminant()) % P` for `k = 1..8`; no `k` in that range hits zero.
+[^exec]: Verified by execution (2026-09-22), Python 3 with SymPy 1.14. **`char_k` construction**: three-term recurrence `char_0 = x - 1, char_1 = x^2 - 2x + 2, char_{k+1} = x^2 char_{k-1} - 2 char_k`; verified against [[generating-function-gallery](pages/generating-function-gallery.md)]. **Discriminants**: `sp.Poly(char_k, x).discriminant()` for `k = 1..10`, factored with `sp.factorint`; odd-prime parts read directly. **Factor signatures**: `sp.factor_list(sp.Poly(char_k, x, modulus=p))[1]` for each `p in {3..97}` and `k in {1..5}`, degree-of-each-irreducible-factor recorded as a sorted multiset. **`per(char_k) mod p` table**: for each irreducible factor `g` of degree `d`, order of `x mod g` computed by iterating the linear recurrence in state `(F_p)^d` until return to `x^0 = 1`; total `per = lcm` of factor orders, with `* p^{ceil(log_p m)}` for any multiplicity-`m` repeated factor. Runs in seconds up to `p = 97, k = 6`; the biggest period computed is `205346960` at `(p, k) = (29, 6)`. **`10^9 + 7` factorization**: `sp.factor_list(..., modulus=10**9 + 7)` for `k = 1..6`; `char_6 mod M` produced three linear factors with roots computed as `-c_0 * pow(c_1, -1, M) mod M`. **`ord_M(2)` computation**: `pow(2, (M-1)/2, M) = 1`, so `ord | (M-1)/2 = 500000003`; since `500000003` is prime, `ord in {1, 500000003}`; `pow(2, 1, M) = 2 != 1`, so `ord = 500000003`. **Disc-mod-M table**: `int(sp.Poly(char_k, x).discriminant()) % M` for `k = 1..8`; no `k` in that range hits zero.
 
     ```python
     import sympy as sp
@@ -210,18 +210,18 @@ At `10^9 + 7`, this reading says the cryptographic ring `R = F_P[x] / char_k` ha
         odd_primes = sorted(q for q in sp.factorint(abs(d)) if q > 2)
         print(k, d, odd_primes)
 
-    # char_k mod P factorization signature
+    # char_k mod M factorization signature
     def factor_signature(char_poly, p):
         factors = sp.factor_list(sp.Poly(char_poly, x, modulus=p))[1]
         return sorted((sp.Poly(g, x, modulus=p).degree(), m) for g, m in factors)
 
     # 10^9 + 7 case: which k give linear factors?
-    P = 10**9 + 7
+    M = 10**9 + 7
     for k in range(1, 7):
-        factors = sp.factor_list(sp.Poly(c[k], x, modulus=P))[1]
+        factors = sp.factor_list(sp.Poly(c[k], x, modulus=M))[1]
         for g, m in factors:
-            if sp.Poly(g, x, modulus=P).degree() == 1:
-                coeffs = [int(v) % P for v in sp.Poly(g, x, modulus=P).all_coeffs()]
-                root = (-coeffs[1] * pow(coeffs[0], -1, P)) % P
+            if sp.Poly(g, x, modulus=M).degree() == 1:
+                coeffs = [int(v) % M for v in sp.Poly(g, x, modulus=M).all_coeffs()]
+                root = (-coeffs[1] * pow(coeffs[0], -1, M)) % M
                 print(f'k={k}: rational root {root}')
     ```

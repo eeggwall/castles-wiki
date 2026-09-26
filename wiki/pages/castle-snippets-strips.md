@@ -5,7 +5,7 @@ summary: Snippets for castle strips, Axis-8 growth-constant probes, tree-castle-
 tags: [concept, castle, python, snippets, strip, growth-constant, metallic-mean, tree-castle, hardin]
 sources: [project-euler-502-brute-force]
 created: 2026-09-19
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Castle snippets - strips and growth
@@ -550,7 +550,7 @@ def word_matrix(m):
 mu**5 - 3*mu**4 + 3*mu**3 - 4*mu**2 + mu - 1
 ```
 
-Meaning: the count equals `P_even(10, n−1)/2^{n−1}`, the even-last-column signed tower count at height 10 - the Hardin identity.
+Meaning: the count equals `P_even(10, n−1)/2^{n−1}`, the even-last-column signed tower count at tower height 10 - the Hardin identity.
 
 
 ### `is_hardin_word(w)` / `W_bruteforce(m, n)` → no-local-maximum words, by brute force

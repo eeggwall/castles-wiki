@@ -16,7 +16,7 @@ updated: 2026-09-26
 
 ## Stop 0 - the surprise
 
-A **tower** of height `≤ k` on a base of length `L` is a row of column heights `c_1, …, c_L ∈ {0, …, k}`. Its **blocks** are counted by the total downward step, with the ground at height 0 on both sides, and the **signed tower count** is `P(k, L) = Σ (−1)^{blocks}` ([[signed-tower-count](pages/signed-tower-count.md)], [[castle-sign](pages/castle-sign.md)]). At `k = 6`:
+A **tower** of height `≤ k` on a base of length `L` is a row of column heights `c_1, …, c_L ∈ {0, …, k}`, sitting on a castle's bottom row, so together they form a castle of height `≤ k + 1` ([[castle-notation](pages/castle-notation.md)]). Its **blocks** are counted by the total downward step, with the ground at height 0 on both sides, and the **signed tower count** is `P(k, L) = Σ (−1)^{blocks}` ([[signed-tower-count](pages/signed-tower-count.md)], [[castle-sign](pages/castle-sign.md)]). At `k = 6`:
 
 ```
 P(6, L)  =  1, 1, 7, 49, 231, 833, …

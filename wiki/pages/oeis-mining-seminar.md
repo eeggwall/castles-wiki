@@ -73,7 +73,7 @@ That is the whole proof.[^4] A match with a proof is a new **interpretation** of
 
 ## Stop 5 - the trap
 
-The signed tower count `P(1, L)` (towers of height `≤ 1`, weighted by `(−1)^{blocks}`) is `1, 0, −2, −4, −4, 0, 8, 16, …`. A plan claimed it was **A009545**, `Im((1+i)^n)`. At `L = 0` both give 1, so a first-term check passes. The offset-exact comparison fails from `L = 1` on ([[signed-tower-count](pages/signed-tower-count.md)]):
+The signed tower count `P(1, L)` (towers of height `≤ 1` above the bottom row, so castles of height `≤ 2`, weighted by `(−1)^{blocks}`; [[castle-notation](pages/castle-notation.md)]) is `1, 0, −2, −4, −4, 0, 8, 16, …`. A plan claimed it was **A009545**, `Im((1+i)^n)`. At `L = 0` both give 1, so a first-term check passes. The offset-exact comparison fails from `L = 1` on ([[signed-tower-count](pages/signed-tower-count.md)]):
 
 ```
 P(1, L)            =  1, 0, −2, −4, −4,  0,  8, 16, …        =  Re((1+i)^(L+1))  =  A146559(L+1)

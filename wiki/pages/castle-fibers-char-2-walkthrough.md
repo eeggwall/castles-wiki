@@ -16,7 +16,7 @@ updated: 2026-09-26
 
 ## Stop 0 - the object
 
-The signed tower count at height `k = 2` ([[signed-tower-count](pages/signed-tower-count.md)]) is
+The signed tower count at tower height `k = 2` ([[signed-tower-count](pages/signed-tower-count.md)]), that is towers of height `≤ 2` above the bottom row, so castles of height `≤ 3` ([[castle-notation](pages/castle-notation.md)]), is
 
 ```
 P(2, L) = 1, 1, 3, 9, 19, 33, 59, 121, 259, 529, 1035, 2025, …        P(L) = 3P(L−1) − 4P(L−2) + 4P(L−3)

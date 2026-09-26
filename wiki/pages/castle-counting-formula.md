@@ -5,7 +5,7 @@ summary: The wiki's core derivation. F(w,h) = [h^w − (h−1)^w − P(h−1,w) 
 tags: [concept, castle, generating-functions, closed-form, dyck, proof]
 sources: [project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes, project-euler-502-brute-force]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Castle counting formula
@@ -120,6 +120,8 @@ The two integer values also have clean factorizations (confirmed by factoring du
 - [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] — the pre-solution framing whose `F(13,10)` scale argument this closed form answers; [[project-euler-502-observations](pages/project-euler-502-observations.md)] — the source's own statement of the crux and of `(A + P)/2` as a recurring symmetry trick.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] — the `h = 3` row `F(w,3) = (3^w − 2^w − P(2,w) + P(1,w))/2` as a standalone order-6 sequence.
 - [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the seminar-shape derivation of this formula as the `(n−1)!` cycle-count toolkit upgraded three times, ending on the same `F(4,2) = 10` hand-check the Verification here uses.
+- [[castle-notation](pages/castle-notation.md)] - the notation reference: castle quantities width first, tower quantities `T(k, L)`, `P(k, L)` height first, `k = h − 1`.
+
 
 ## Footnotes
 

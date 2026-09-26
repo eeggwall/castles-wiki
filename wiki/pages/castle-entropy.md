@@ -5,7 +5,7 @@ summary: How much information a castle carries, in two senses that agree — uni
 tags: [concept, castle, entropy, information-theory, counting, growth-constant, metallic-means, parity, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-18
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Castle entropy
@@ -21,13 +21,13 @@ The two coincide: fix `h` and grow `w`, and `(1/w)·log₂ F(w,h) → log₂ h`,
 
 ## Uniform entropy: the parity is exactly one bit
 
-The even-block count `F(w,h)` is the even half of the unsigned count `A(w,h) = h^w − (h−1)^w` (all castles, exact height `h`), split by the sign `P = Σ (−1)^blocks` ([[castle-sign](pages/castle-sign.md)]):[^1]
+The even-block count `F(w,h)` is the even half of the unsigned count `A(w,h) = h^w − (h−1)^w` (all castles, exact height `h`), split by the signed castle count `S(w,h) = Σ (−1)^blocks` (in tower notation `S(w,h) = P(h−2,w) − P(h−1,w)`, [[castle-notation](pages/castle-notation.md)]) ([[castle-sign](pages/castle-sign.md)]):[^1]
 
 ```
-F(w,h) = (A(w,h) + P(w,h)) / 2,     with  |P| ≪ A  as  w → ∞.
+F(w,h) = (A(w,h) + S(w,h)) / 2,     with  |S| ≪ A  as  w → ∞.
 ```
 
-`A` is the dominant term and `P` the subdominant signed sum, so in the limit
+`A` is the dominant term and `S` the subdominant signed sum, so in the limit
 
 ```
 H(w,h) = log₂ F(w,h)  ≈  log₂ A − 1  ≈  w·log₂ h − 1.
@@ -42,7 +42,7 @@ Read it as: each column is one of `h` heights (`log₂ h` bits each, independent
  12  3    261615      17.997       18.020       −0.02
 ```
 
-The residual is `log₂(1 + P/A)` — the subdominant sign — and it decays as `w` grows. The parity bit is exact in the limit, not merely approximate. (The `h = 3` row's `261615` is the twelfth term of [[new-sequence-fw3](pages/new-sequence-fw3.md)]; at `(w,h) = (13,10)`, `log₂ F ≈ 41.8` against `42.2`, the scale figure of [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)].)
+The residual is `log₂(1 + S/A)` — the subdominant sign — and it decays as `w` grows. The parity bit is exact in the limit, not merely approximate. (The `h = 3` row's `261615` is the twelfth term of [[new-sequence-fw3](pages/new-sequence-fw3.md)]; at `(w,h) = (13,10)`, `log₂ F ≈ 41.8` against `42.2`, the scale figure of [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)].)
 
 ## Entropy rate: log₂ of the growth constant
 
@@ -74,7 +74,7 @@ Uniform entropy and entropy rate are the same limit approached from two sides. U
 
 - [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the refinement: conditioning on block count and area shaves an extra `log_2 w` bits off the uniform-entropy baseline, and the one-bit parity clause turns out to be redundant with `B` but not with `N`.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] / [[castle-counting-function](pages/castle-counting-function.md)] — the exact `F(w,h)` whose log is the uniform entropy.
-- [[castle-sign](pages/castle-sign.md)] — the `(A±P)/2` projector; the origin of the one-bit parity cost.
+- [[castle-sign](pages/castle-sign.md)] — the `(A±S)/2` projector; the origin of the one-bit parity cost.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] — `λ₁(h) = h`, the Perron root behind `log₂ h`.
 - [[metallic-means](pages/metallic-means.md)], [[plastic-number](pages/plastic-number.md)], [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] — growth constants re-read as entropy rates.
 - [[reachable-field-census](pages/reachable-field-census.md)], [[tower-spacing-castles](pages/tower-spacing-castles.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] — the rule families whose Perron roots are the rungs of the entropy ladder.
@@ -86,6 +86,8 @@ Uniform entropy and entropy rate are the same limit approached from two sides. U
 - [[project-euler-502-observations](pages/project-euler-502-observations.md)] — the source's "the even-block clause is almost the entire difficulty," priced here at exactly one bit; [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] — `F(13,10)` in bits.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] — `F(w,3)`, the sequence the `h = 3` row of the table is drawn from.
 - [[aocp-permutations](pages/aocp-permutations.md)] — Stirling's `log₂ n! ≈ n·log₂ n − n·log₂ e`, the entropy of a uniform permutation, the permutation-side twin of `w·log₂ h − 1`.
+- [[castle-notation](pages/castle-notation.md)] - the symbol conventions; `S(w,h)` here is the parity term of `F`.
+
 
 ## Appearances in Sources
 
@@ -94,6 +96,6 @@ Uniform entropy and entropy rate are the same limit approached from two sides. U
 
 ## Footnotes
 
-[^1]: `F` even, `A − F` odd, so `P = Σ(−1)^blocks = F − (A−F) = 2F − A`, giving `F = (A + P)/2`. The projector on [[castle-sign](pages/castle-sign.md)] is the same `(T±P)/2` split stated in tower coordinates.
+[^1]: `F` even, `A − F` odd, so `S = Σ(−1)^blocks = F − (A−F) = 2F − A`, giving `F = (A + S)/2`. The projector on [[castle-sign](pages/castle-sign.md)] is the same `(T±P)/2` split stated in tower coordinates.
 [^2]: Verified by execution (2026-09-18): brute-force `F(w,h)` via the [[castle-snippets](pages/castle-snippets.md)] `all_castles` + `blocks` predicates; the residual `log₂ F − (w·log₂ h − 1)` is `+0.022` at `(12,2)` and `−0.022` at `(12,3)`.
 [^3]: Growth constants from [[metallic-means](pages/metallic-means.md)] and [[reachable-field-census](pages/reachable-field-census.md)]; `log₂` values computed to three places.

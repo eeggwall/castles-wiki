@@ -147,7 +147,7 @@ The `h = 12` row settles the question. Its period is `11,514,360` - three orders
 
 ## Distribution of `P(k, w) mod 9` in isolation
 
-The joint machinery hides one asymmetry worth naming: the signed tower count `P(k, w) mod 9` (fixed `k`, varying `w`), which is one of the four ingredients in `F`, is *not* uniformly distributed even over its full width-direction period. Histograms of `P(k, w) mod 9` over one period in `w`:[^exec]
+The joint machinery hides one asymmetry worth naming: the signed tower count `P(k, w) mod 9` (fixed `k`, varying `w`; this is `P(k, L)` at base length `L = w`, [[castle-notation](pages/castle-notation.md)]), which is one of the four ingredients in `F`, is *not* uniformly distributed even over its full width-direction period. Histograms of `P(k, w) mod 9` over one period in `w`:[^exec]
 
 | `k` | period of `P(k, .) mod 9` in `w` | histogram over `0..8` |
 |---|---|---|

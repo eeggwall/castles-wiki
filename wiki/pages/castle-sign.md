@@ -5,7 +5,7 @@ summary: s(C) = (-1)^blocks, the castle sign - the analogue of the permutation s
 tags: [concept, castle, sign, permutations, parity, generating-functions]
 sources: [project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-brute-force, pe502-castle-cycle-permutations]
 created: 2026-09-13
-updated: 2026-09-22
+updated: 2026-09-26
 ---
 
 # Castle sign
@@ -65,6 +65,8 @@ F(w,h) = [ h^w − (h−1)^w − P(h−1,w) + P(h−2,w) ] / 2
 - [[castle-counting-function](pages/castle-counting-function.md)] — the even-block count the sign isolates.
 - [[signed-tower-count](pages/signed-tower-count.md)] — `P(k,L)` as a C-finite sequence family (and the `P(1,L)=A146559(L+1)` Online Encyclopedia of Integer Sequences (OEIS) identity).
 - [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the seminar synthesis reading `(T ± P)/2` as one of three upgrades of the `(n−1)!` cycle-count toolkit.
+- [[castle-notation](pages/castle-notation.md)] - the notation reference for `T`, `P`, `F` and the parity term `S(w, h)`.
+
 
 ## Footnotes
 

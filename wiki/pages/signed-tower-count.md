@@ -14,6 +14,8 @@ updated: 2026-09-26
 
 `P(k,L)` is the signed tower count — the sum of `(−1)^{blocks}` over all towers of height at most *k* above a length-*L* block — the object that encodes the even-block rule in the [[castle-counting-formula](pages/castle-counting-formula.md)] and is read as a sign homomorphism on [[castle-sign](pages/castle-sign.md)]. This page collects its sequence structure as surfaced by the [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] pass. The width `L` is indexed from 0 — the empty tower (zero columns, zero blocks) is a tower — so `P(k,0) = 1` for every `k`; the sequences below begin at `L = 0`, whereas the OEIS notes quoted in the footnotes list them starting at `L = 1`.
 
+**Indexing.** `k` counts layers above the castle's bottom row: a tower of height `≤ k` plus the bottom row is a castle of height `≤ k + 1`. So `P(k, ·)` is the parity ingredient for castles of height up to `k + 1`, it enters the castle formula as `P(h−1, w)` and `P(h−2, w)`, and `P(0, L) = 1` is the trivial case. `P(1, L)` is about castles of height up to 2, not height 1 ([[castle-notation](pages/castle-notation.md)]).
+
 For fixed *k*, `P(k,·)` is **C-finite** (satisfies a linear recurrence) of order `k+1`, with characteristic polynomials:[^1]
 
 ```
@@ -36,7 +38,7 @@ P(1,L) = Re((1+i)^{L+1}) = A146559(L+1)      (A146559: GF (1−x)/(1−2x+2x²))
 
 with values `P(1,L) = 1, 0, −2, −4, −4, 0, 8, 16, 16, 0, −32, …` from `L = 0` (re-verified during ingest). A parent plan had claimed `P(1,L) = A009545`, but **A009545 is the imaginary part `Im((1+i)^n)`** — the companion, not `P`. The mixup is a textbook case for [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]'s "verify against OEIS data with offsets" rule: the two sequences agree in magnitude pattern but are the real vs. imaginary components of the same `(1+i)^n`.[^2]
 
-Both components are castle counts. Splitting `P(1,L)` by the parity of the last column height gives `P_even(1,L) = Re((1+i)^L) = A146559(L)` and `P_odd(1,L) = −Im((1+i)^L) = −A009545(L)`: A009545 is minus the signed count of height-`≤1` towers whose last column has height 1. The split is the `k = 1` case of the sector decomposition on [[tower-parity-sectors](pages/tower-parity-sectors.md)], which for even `k` is what factors `char_k`.
+Both components are castle counts. Splitting `P(1,L)` by the parity of the last column height gives `P_even(1,L) = Re((1+i)^L) = A146559(L)` and `P_odd(1,L) = −Im((1+i)^L) = −A009545(L)`: A009545 is minus the signed count of height-`≤1` towers (castles of height `≤ 2`) whose last column has height 1. The split is the `k = 1` case of the sector decomposition on [[tower-parity-sectors](pages/tower-parity-sectors.md)], which for even `k` is what factors `char_k`.
 
 ## OEIS status of the family
 

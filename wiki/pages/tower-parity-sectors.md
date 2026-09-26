@@ -82,7 +82,7 @@ P_even(1, L) =  Re((1+i)^L) = A146559(L):   1, 1, 0, −2, −4, −4, 0, 8, 16,
 P_odd(1, L)  = −Im((1+i)^L) = −A009545(L):  0, −1, −2, −2, 0, 4, 8, 8, 0, −16, …
 ```
 
-so **A009545 is a castle count after all**: minus the signed number of height-`≤1` towers whose last column has height 1. The two sequences the OEIS-mining pass had to tell apart ([[signed-tower-count](pages/signed-tower-count.md)]) are the two `JD` sectors of the same matrix.[^5]
+so **A009545 is a castle count after all**: minus the signed number of height-`≤1` towers (castles of height `≤ 2`) whose last column has height 1. The two sequences the OEIS-mining pass had to tell apart ([[signed-tower-count](pages/signed-tower-count.md)]) are the two `JD` sectors of the same matrix.[^5]
 
 ## Part 2 - The factors in closed form
 
@@ -270,6 +270,7 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the complementary direction of the same `P(k, L)` 2D array: k-direction factors as `(x+1)^L (x-1)^{L-2}` while this page factors the L-direction char_k into parity sectors.
 - [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the sectors as the two components of `Spec Z[x]/(char_k)`, meeting only at `(2, x)`; the `k = 4` minor sector `H_2` gives `Z[ω]`.
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the seminar that starts from this page's even-sector surprise and ends at the Hardin identity.
+- [[castle-notation](pages/castle-notation.md)] - tower height `k` versus castle height `h = k + 1`, and the argument orders of `P(k, L)` and `F(w, h)`.
 
 
 ## Footnotes

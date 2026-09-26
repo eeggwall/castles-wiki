@@ -8,7 +8,7 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 
 | Slice | Value |
 |---|---|
-| Pages | 177 (37 Sources / 77 Concepts / 60 Analyses / 1 Reference / 2 Maintenance) |
+| Pages | 178 (37 Sources / 78 Concepts / 60 Analyses / 1 Reference / 2 Maintenance) |
 | Departments (open + done) | R 2+9, E 7+13, N 14+30, E/N 1+0, Z 5+7, Q 6+9, S 8+6, T 7+0, F 11+6, X 5+7 |
 | Auxiliary Services (open + done) | Telephone Company 5+3, Chinese Remainders 3+3 |
 | Items | 74 open, 93 done, 167 total (Departments 66+87, Auxiliary Services 8+6; top-level items only) |

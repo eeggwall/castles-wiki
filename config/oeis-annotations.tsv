@@ -48,7 +48,7 @@ A007323	supporting	Number of numerical semigroups of genus n; conjecturally also
 A007814	supporting	Exponent of highest power of 2 dividing n, a.k.a. the binary carry sequence, the ruler sequence, or the 2-adic valuation of n.	Knuth's ruler function ρ(k), the bit to flip in Gray-code generation
 A008277	supporting	Triangle of Stirling numbers of the second kind, S2(n,k), n >= 1, 1 <= k <= n.	Knuth's binomial-coefficient toolkit (powers ↔ falling factorials)
 A008302	supporting	Triangle of Mahonian numbers T(n,k): coefficients in expansion of Product_{i=0..n-1} (1 + x + ... + x^i), where k ranges from 0 to A000217(n-1). Also enumerates permutations by their major index.	rainbow castles (w = h, skyline a permutation) graded by skyline inversions
-A009545	count	Expansion of e.g.f. sin(x)*exp(x).	-P_odd(1,L): height-1 signed tower count with odd last column
+A009545	count	Expansion of e.g.f. sin(x)*exp(x).	-P_odd(1,L): signed count of towers of height <= 1 (castles of height <= 2) with odd last column
 A010892	supporting	Inverse of 6th cyclotomic polynomial. A period 6 sequence.	period-6 cyclotomic (P_odd(4,L)/2^L)
 A011782	count	Coefficients of expansion of (1-x)/(1-2*x) in powers of x.	weakly unimodal compositions (unrestricted)
 A014448	metallic	Even Lucas numbers: a(n) = L(3*n).	even Lucas: trace for copper (a=4)

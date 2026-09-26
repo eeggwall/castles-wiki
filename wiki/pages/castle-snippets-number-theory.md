@@ -539,7 +539,7 @@ def metallic_ring(a):
 [(1, (5, 1)), (2, (8, 1)), (3, (13, 1)), (4, (5, 2)), (8, (17, 2)), (11, (5, 5)), (14, (8, 5))]
 ```
 
-Meaning: golden, silver, bronze generate full rings of integers; copper (`a = 4`, `= φ³`) generates `Z[√5]`, index 2 in `Z[φ]`; `a = 11` (`= φ⁵`) and `a = 14` (`= (1 + √2)³`) have index 5, the Fibonacci and Pell numbers `F_5` and `P_3`; `a = 8` has index 2 without being a power of a smaller rung.
+Meaning: golden, silver, bronze generate full rings of integers; copper (`a = 4`, `= φ³`) generates `Z[√5]`, index 2 in `Z[φ]`; `a = 11` (`= φ⁵`) and `a = 14` (`= (1 + √2)³`) have index 5, the Fibonacci and Pell numbers `F_5` and `Pell(3)`; `a = 8` has index 2 without being a power of a smaller rung.
 
 ### `x_inverse(k)` → `(h, c)` with `x · h(x) = c = ±2^k` in `Z[x]/(char_k)`
 

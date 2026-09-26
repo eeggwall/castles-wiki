@@ -5,7 +5,7 @@ summary: Why convex(w,h) = C(2h+w−3, w−1) — an up/down decomposition at th
 tags: [analysis, castle, convex, binomial, vandermonde, catalan]
 sources: [oeis-mining-pe502, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-13
-updated: 2026-09-22
+updated: 2026-09-26
 ---
 
 # Convex castle count is binomial (Vandermonde)
@@ -44,7 +44,7 @@ For example `convex(w,2) = C(w+1, 2)` (triangular), `convex(w,3) = C(w+3,4)` —
 
 The two halves combine by an ordinary product (then a Vandermonde sum) precisely because they are **independent**. Catalan/Narayana counts arise when a **non-crossing or ballot constraint couples the halves** (as a Dyck path's up and down segments must jointly stay above the diagonal). The castle's Rule 3 (same-row gap) imposes no such coupling - in the run decomposition it is automatic - so the hoped-for "Catalan find" does not exist for the (w,h) parameterization; a Catalan object would require grafting on an extra condition the castle does not contain.[^5] (The Catalan/Narayana thread does appear elsewhere - in the [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] block-count.) The coupled counterpart is the parallelogram polyomino. Its two boundary paths share both endpoints and must not cross, and it is Catalan by perimeter ([[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)]).
 
-The binomial character runs through the whole object: the height-2 block distribution `C(w+1, 2r)` (feeding the [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]), the height-≤1 tower distribution `C(w+1, 2b) = A034839`, and the any-parity `h^w − (h−1)^w` differences are all binomial.[^6]
+The binomial character runs through the whole object: the height-2 block distribution `C(w+1, 2r)` (feeding the [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]), the height-≤1 tower (castle height ≤ 2) distribution `C(w+1, 2b) = A034839`, and the any-parity `h^w − (h−1)^w` differences are all binomial.[^6]
 
 ## The anti-diagonal sums are Fibonacci
 
