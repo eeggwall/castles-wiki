@@ -5,7 +5,7 @@ summary: Every castle eigenvalue's "convergents" run against OEIS. The metallic 
 tags: [analysis, castle, continued-fraction, convergents, oeis, eigenvalue, quasi-polynomial, plastic-number, jacobi-perron, pisano, mod-p, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-19
+updated: 2026-09-25
 ---
 
 # Castle eigenvalues meet OEIS: the convergent crosswalk
@@ -169,7 +169,7 @@ mu**3 - 2*mu**2 + mu - 1
 lam**3 - 4*lam**2 + 4*lam - 8
 ```
 
-**`ρ_6 = 2ψ²`, where `ψ = 1.3247…` is the plastic number**, the real root of `x³ = x + 1` (A060006) - the smallest **Pisot number** (a real algebraic integer `> 1` all of whose other Galois conjugates lie strictly inside the unit circle), whose Fibonacci and Lucas are the Padovan (A000931) and Perrin (A001608) sequences.[^7] Numerically `2ψ² = 3.50975533249…`, matching the gallery's `ρ_6 = 3.510`. The same rescaling test for every even `k ≤ 18`:[^8]
+**`ρ_6 = 2ψ²`, where `ψ = 1.3247…` is the plastic number**, the real root of `x³ = x + 1` (A060006) - the smallest **Pisot number** ([[pisot-number](pages/pisot-number.md)]; a real algebraic integer `> 1` all of whose other Galois conjugates lie strictly inside the unit circle), whose Fibonacci and Lucas are the Padovan (A000931) and Perrin (A001608) sequences.[^7] Numerically `2ψ² = 3.50975533249…`, matching the gallery's `ρ_6 = 3.510`. The same rescaling test for every even `k ≤ 18`:[^8]
 
 | `k` | `ρ_k` | minimal polynomial of `ρ_k` | degree | `ρ_k / 2` | unit? |
 |---|---|---|---|---|---|

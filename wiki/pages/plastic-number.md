@@ -3,9 +3,9 @@ title: Plastic number
 category: Concepts
 summary: ψ = 1.3247…, the real root of x³ = x + 1 - the cubic sibling of the golden ratio, the smallest Pisot number, with Padovan (A000931) and Perrin (A001608) as its Fibonacci and Lucas. Its square ψ² has minimal polynomial μ³ − 2μ² + μ − 1 and a period-1 Jacobi-Perron expansion. It enters the castle as the k = 6 signed-tower eigenvalue ρ_6 = 2ψ², and the bare ψ ≈ 1.3247 is a castle-strip Perron root at height 3 (x³ − x − 1, found in the reachable-field census) — a Padovan/Perrin growth castle.
 tags: [concept, plastic-number, pisot, padovan, perrin, cubic, jacobi-perron, eigenvalue, castle, oeis, strip-perron-root]
-sources: [oeis-mining-pe502, project-euler-502-solution]
+sources: [oeis-mining-pe502, project-euler-502-solution, salem-1963-algebraic-numbers-fourier-analysis]
 created: 2026-09-16
-updated: 2026-09-21
+updated: 2026-09-25
 ---
 
 # Plastic number
@@ -29,7 +29,7 @@ It is the cubic analogue of the golden ratio `φ` (`x² = x + 1`) and stands to 
 | Pisot? | yes | yes - the **smallest** Pisot number |
 | unit? | fundamental unit of `Q(√5)` | fundamental unit of the cubic field `Q(ψ)`, discriminant `−23` |
 
-The **Pisot** property (all conjugates strictly inside the unit circle) is what makes `ψ^n` approach integers: `ψ^n − Perrin(n) → 0`. Padovan numbers are the impulse response of the recurrence, Perrin the trace; the same relationship as [[pell-numbers](pages/pell-numbers.md)] and companion Pell for `1 + √2`.
+The **Pisot** property (all conjugates strictly inside the unit circle, [[pisot-number](pages/pisot-number.md)]) is what makes `ψ^n` approach integers: Perrin(n) is the integer trace `ψ^n + ψ'^n + ψ''^n` and the conjugate part decays like `0.8688^n`, so `ψ^n − Perrin(n) → 0`.[^salem1] Padovan numbers are the impulse response of the recurrence, Perrin the trace; the same relationship as [[pell-numbers](pages/pell-numbers.md)] and companion Pell for `1 + √2`.
 
 ## The square, and its expansion
 
@@ -84,6 +84,7 @@ A plain (unsigned) castle statistic whose count grows at the bare `ψ` is a **Pa
 
 ## Appearances in Sources
 
+- [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] - Chapter I, Theorem 1: why a Pisot number's powers approach its integer trace (here Perrin).
 - [[reachable-field-census](pages/reachable-field-census.md)] - where the bare `ψ` was found as a height-3 castle-strip Perron root (`x³ − x − 1`).
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k,·)` family whose `k = 6` row carries the plastic eigenvalue.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the `num_k/den_k` recurrence that generates `char_k`.
@@ -92,6 +93,7 @@ A plain (unsigned) castle statistic whose count grows at the bare `ψ` is a **Pa
 
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization `H_d · V_d` that produces `2ψ²`, and the Hardin word-count identities it implies.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - where `ρ_6 = 2ψ²` was found; the Jacobi-Perron computations.
+- [[pisot-number](pages/pisot-number.md)] - the class the plastic number belongs to; why the trace makes powers near-integers, and the Pisot test on the other height-3 cubics.
 - [[metallic-means](pages/metallic-means.md)] - the quadratic family (`φ`, `1+√2`, …) the plastic number sits beside; same Pisot / unit / periodic-expansion story one degree up.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - why a cubic cannot have a periodic simple continued fraction, and what replaces it.
 - [[pell-numbers](pages/pell-numbers.md)] - the impulse / trace pairing (Pell / companion Pell) that Padovan / Perrin repeat in degree 3.
@@ -105,3 +107,5 @@ A plain (unsigned) castle statistic whose count grows at the bare `ψ` is a **Pa
 [^2]: Verified by execution (SymPy 1.14): `factor(resultant(x³ − x − 1, μ − x², x)) = μ³ − 2μ² + μ − 1`; `factor(resultant(μ³ − 2μ² + μ − 1, λ − 2μ, μ)) = λ³ − 4λ² + 4λ − 8`, which is the cubic factor of `char_6 = (λ³ − 4λ² + 4λ − 8)(λ⁴ − 3λ³ + 8λ² − 4λ + 8)`; numerically `2ψ² = 3.5097553324933855…` against the gallery's `ρ_6`. https://oeis.org/A005251 (2026-09-16) - "a(n) = 2*a(n-1) - a(n-2) + a(n-3)", comment "a(n+3) is the number of n-bit sequences that avoid 010".
 
 [^3]: Verified by execution: exact Jacobi-Perron in `Q(ρ)` (SymPy `rem`/`invert` modulo the minimal polynomial, mpmath at 800 digits for floors) on `x³ − x − 1` near `1.32` (periodic, preperiod 2, period 2, digits `[1,1],[2,3],[0,3],[0,4]`), on `μ³ − 2μ² + μ − 1` near `1.75` (periodic, preperiod 4, period 1, digits `[1,3],[0,1],[3,9],[6,12],[7,12]`), and on `λ³ − 4λ² + 4λ − 8` near `3.5` (periodic, preperiod 5, period 4). Period matrix and Perrin identification as on [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)].
+
+[^salem1]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. I §2 Theorem 1 p.3 [synthesis] L289-308 - for θ in class S the trace `θ^n + α_1^n + … + α_{k−1}^n` is a rational integer and the conjugate part is at most `(k−1)ρ^n`, so `θ^n → 0 (mod 1)` "in the same way as the general term of a convergent geometric progression".

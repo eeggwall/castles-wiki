@@ -1,0 +1,4456 @@
+Algebraic Numbers
+and Fourier Analysis
+
+RAPHAEL SALEM
+Professor of Mathematics
+Faculty of Sciences, University of Paris
+
+D. C. HEATH AND COMPANY
+
+BOSTON
+
+Library of Congress Catalog Card Number: 63-19065
+Copyright © 1963 by D. C. HEATH AND COMPANY
+No part of the material covered by this copyright may be reproduced in
+any form without written permission of the publisher. (6 G 3)
+PRINTED IN THE UNITED STATES OF AMERICA
+
+To the memory of my father to the memory of my nephew, Emmanuel Amar,
+who died in 1944 in a concentration campto my w({e and my children, to whom
+I owe so much -
+
+this book is dedicated
+
+PREFACE
+THIS SMALL BOOK contains, with but a few developments, the substance of the
+
+lectures I gave in the fall of 1960 at Brandeis University at the invitation of its
+Department of Mathematics.
+Although some of the material contained in this book appears in the latest
+edition of Zygmund's treatise, the subject matter covered here has never until
+now been presented as a whole, and part of it has, in fact, appeared only in original memoirs. This, together with the presentation of a number of problems which
+remain unsolved, seems to justify a publication which, I hope, may be of some
+value to research students. In order to facilitate the reading of the book, I have
+included in an Appendix the definitions and the results (though elementary)
+borrowed from algebra and from number theory.
+I wish to express my thanks to Dr. Abram L. Sachar, President of Brandeis
+University, and to the Department of Mathematics of the University for the invitation which allowed me to present this subject before a learned audience, as
+well as to Professor D. V. Widder, who has kindly suggested that I release my
+manuscript for publication in the series of Heath Mathematical Monographs.
+I am very grateful to Professor A. Zygmund and Professor J.-P. Kahane for
+having read carefully the manuscript, and for having made very useful suggestions.
+R. Salem
+Paris, 1 November 1961
+
+Professor Raphael Salem died suddenly in Paris on the twentieth ofJune, 1963, a few days after seeing final proof of his work.
+
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+
+CONTENTS
+Chapter I. A REMARKABLE SET OF ALGEBRAIC INTEGERS
+
+1. Introduction
+
+1
+
+1
+
+2. The algebraic integers of the class S
+
+2
+
+3. Characterization of the numbers of the class S
+4. An unsolved problem
+
+4
+
+11
+
+Chapter Il. A PROPERTY OF THE SET OF NUMBERS OF THE CLASS S
+
+1. The closure of the set of numbers belonging to S
+
+13
+
+13
+
+2. Another proof of the closure of the set of numbers belonging to the
+class S
+
+16
+
+Chapter Ill. APPLICATIONS TO THE THEORY OF POWER SERIES;
+ANOTHER CLASS OF ALGEBRAIC INTEGERS
+
+1. A generalization of the preceding results
+
+22
+
+22
+
+2. Schlicht power series with integral coefficients 25
+3. A class of power series with integral coefficients; the class T of algebraic integers and their characterization 25
+4. Properties of the numbers of the class T
+
+30
+
+5. Arithmetical properties of the numbers of the class T
+
+32
+
+Chapter IV. A CLASS OF SINGULAR FUNCTIONS; BEHAVIOR OF THEIR
+FOURIER-STIELTJES TRANSFORMS AT INFINITY
+
+1. Introduction 36
+2. The problem of the behavior at infinity 38
+
+36
+
+Chapter V. THE UNIQUENESS OF THE EXPANSION IN TRIGONOMETRIC
+SERIES; GENERAL PRINCIPLES
+42
+
+1. Fundamental definitions and results
+2. Sets of multiplicity
+
+42
+
+44
+
+3. Construction of sets of uniqueness
+
+47
+
+Chapter VI. SYMMETRICAL PERFECT SETS WITH CONSTANT RATIO
+OF DISSECTION; THEIR CLASSIFICATION INTO M-SETS
+AND U-SETS
+
+53
+
+Chapter VII. THE CASE OF GENERAL "HOMOGENEOUS" SETS
+
+57
+
+1. Homogeneous sets
+
+57
+
+2. Necessary conditions for the homogeneous set E to be a U-set
+3. Sufficiency of the conditions
+
+Some Unsolved Problems
+Appendix
+
+64
+
+Bibliography 67
+Index
+
+68
+
+62
+
+59
+
+57
+
+ALGEBRAIC NUMBERS AND FOURIER ANALYSIS
+
+Chapter I
+
+A REMARKABLE SET OF ALGEBRAIC INTEGERS
+
+1. Introduction
+We shall first recall some notation. Given any real number a, we shall denote
+by [aJ its integral part, that is, the integer such that
+[aJ < a < [aJ + 1.
+
+By (a) we shall denote the fractional part of a; that is,
+[aJ + (a) = a.
+
+We shall denote by 11 a 11 the absolute value of the difference between a and the
+nearest integer. Thus,
+11 a 11 =
+
+n = 0, ± I, ± 2, ....
+
+min I a - n I,
+
+If m is the integer nearest to a, we shall also write
+a=m+{a}
+
+so that 11 a 11 is the absolute value of {a}.
+Next we consider a sequence of numbers t Ul, U2, ••., Un' ••• such that
+
+°< <
+Uj
+
+I.
+
+Let A be an interval contained in (0, 1), and let I A I be its length. Suppose
+that among the first N members of the sequence there are v(A, N) numbers in
+the interval A. Then if for any fixed A we have
+lim v(AN N) = I A /,
+N-HO
+
+we say that the sequence {Un} is uniformly distributed. This means, roughly
+speaking, that each subinterval of (0, 1) contains its proper quota of points.
+We shall now extend this definition to the case where the numbers Uj do not
+fall between and I. For these we consider the fractional parts, (Uj) , of Uj,
+and we say that the sequence {Un} is uniformly distributed modulo 1 if the sequence of the fractional parts, (Ui), (U2), •.., (Un), .•., is uniformly distributed as
+defined above.
+The notion of uniform distribution (which can be extended to several dimensions) is due to H. Weyl, who in a paper [16J, t by now classical, has also
+given a very useful criterion for determining whether a sequence is uniformly
+distributed modulo 1 (cf. Appendix, 7).
+
+°
+
+t By "number" we shall mean "real number" unless otherwise stated.
+
+t See the Bibliography on page 67.
+
+2
+
+A Remarkable Set of Algebraic Integers
+
+Without further investigation, we shall recall the following facts (see, for
+example, [2J).
+1. If ~ is an irrational number, the sequence of the fractional parts
+(n~), n = 1, 2, ..., is uniformly distributed. (This is obviously untrue for
+~ rational.)
+2. Let P(x) = akxk + ... + ao be a polynomial where at least one coefficient
+aj, with j > 0, is irrational. Then the sequence pen), n = 1, 2, ..., is uniformly distributed modul0 1.
+The preceding results give us some information about the uniform distribution
+modulo 1 of numbersf(n), n = 1, 2, ..., whenf(x) increases to 00 with x not
+faster than a polynomial.
+We also have some information on the behavior - from the viewpoint of
+uniform distribution - of functions fen) which increase to 00 slower than n.
+We know, for instance, that the sequence ana (a > 0, 0 < a < 1) is uniformly
+distributed modulo 1. The same is true for the sequence a loga n if a > 1, but
+untrue if a < 1.
+However, almost nothing is known when the growth of fen) is exponential.
+Koksma [7J has proved that wn is uniformly distributed modulo 1 for almost
+all (in the Lebesgue sense) numbers w > 1, but nothing is known for particular
+values of w. Thus, we do not know whether sequences as simple as en or Ci)n
+are or are not uniformly distributed modulo 1. We do not even know whether
+they are everywhere dense (modulo 1) on the interval (0, 1).
+It is natural, then, to turn in the other direction and try to study the numbers
+w > 1 such that wn is "badly" distributed. Besides the case where w is a rational
+integer (in which case for all n, wn is obviously congruent to 0 modulo 1), there
+are less trivial examples of distributions which are as far as possible from being
+uniform. Take, for example, the quadratic algebraic integer t
+w = !(l + VS) with conjugate !(l- vS) = w'.
+Here wn + w'n is a rational integer; that is,
+
+=
+
+wn + w'n 0 (mod 1).
+But I w' I < 1, and so w'n ~ 0 as n ~ 00, which means that wn ~ 0 (modulo 1).
+In other words, the sequence wn has (modulo 1) a single limit point, which is o.
+This is a property shared by some other algebraic integers, as we shall see.
+2. The algebraic integers of the class S
+DEFINITION. Let 0 be an algebraic integer such that all its conjugates (not 0
+itself) have moduli strictly less than 1. Then we shall say that 0 belongs to the
+class S.t
+
+t For the convenience of the reader, some classical notions on algebraic integers are given
+in the Appendix.
+t We shall always suppose (without loss of generality) that (J > O. (J is necessarily real. Although every natural integer belongs properly to S, it is convenient, to simplify many statements, to exclude the number 1 from S. Thus, in the definition we can always assume () > 1.
+
+A Remarkable Set of Algebraic Integers
+
+3
+
+Then we have the following.
+THEOREM 1.
+
+If 0 belongs to the class S, then On tends to 0 (modulo I) as n ~ 00.
+
+Suppose that 0 is of degree k and let ah a2, •••, ak-l be its conjugates.
+The number On + aln + ... + ak_ln is a rational integer. Since I aj I < 1 for
+all j, we have, denoting by p the greatest of the I aj I, j = I, 2, ..., k - I,
+PROOF.
+
+I a1 In + ... + I ak-1 In < (k - I)pn,
+and thus, since
+
+On + a1 n + ... + ak_ln
+
+p < I,
+
+= 0 (mod 1),
+
+we see that (modulo 1) On ~ 0, and even that it tends to zero in the same way
+as the general term of a convergent geometric progression.
+With the notation of section I, we write " On 11 ~ O.
+Remark. The preceding result can be extended in the following way. Let
+'A be any algebraic integer of the field of 0, and let 11-1, 11-2, •.., I1-k-1 be its conjugates. Then
+'AO n + 11-1a1n + ... + I1-k-la k_l n
+
+is again a rational integer, and thus 11 AO n 11 also tends to zero as n ~ 00, as can
+be shown by an argument identical to the preceding one. Further generalizations
+are possible to other numbers 'A.
+Up to now, we have not constructed any number of the class S except the
+quadratic number to + VS). (Of course, all rational integers belong trivially
+to S.) It will be of interest, therefore, to prove the following result [IOJ.
+THEOREM 2.
+
+In every real algebraic field, there exist numbers of the class S. t
+
+Denote by Wl, W2, ..., Wk a basis t for the integers of the field, and
+.
+, , ••• , k - I b e t h e num b ers conjugate
+to
+Iet W1 , W2 (i) , ••• , Wk ( i ) for I'-12
+Wh W2, ..., Wk. By Minkowski's theorem on linear forms [5J (cf. Appendix, 9),
+we can determine rational integers Xl, X2, .•., Xk, not all zero, such that
+PROOF.
+(i)
+
+provided
+
+I X1W1 + ... + XkWk I < A
+I X1Wl(i) + .. '+XkWk(i) I <p < 1 (i= 1,2, ..., k-I)
+Apk-l > vTDl,
+
+D being the discriminant of the field.
+
+For A large enough, this is always possible,
+
+and thus the integer of the field
+
+o= XIW1 + .. + XkWk
+belongs to the class S.
+t We shall prove, more exactly, that there exist numbers of S having the degree of the field.
+t The notion of "basis" of the integers of the field is not absolutely necessary for this proof,
+since we can take instead of Wt, •• " Wk the numbers 1, a, ..., a h - 1, where a is any integer of
+the field having the degree of the field.
+
+4
+
+A Remarkable Set of Algebraic Integers
+
+3. Characterization of the numbers of the class S
+The fundamental property of the numbers of the class S raises the following
+question.
+Suppose that 0 > 1 is a number such that liOn 11 ~ 0 as n ~ 00 (or, more
+generally, that 0 is such that there exists a real number A such that 11 "AO n 11 ~ 0
+as n ~ 00). Can we assert that 0 is an algebraic integer belonging to the class S?
+This important problem is still unsolved. But it can be answered positively
+if one of the two following conditions is satisfied in addition:
+1. The sequence 11 "AO n 11 tends to zero rapidly enough to make the series
+n 2
+11 "AO 11 convergent.
+2. We know beforehand that 0 is algebraic.
+
+L:
+
+In other words, we have the two following theorems.
+THEOREM A.
+
+If 0 > 1 is such that there exists a "A with
+
+L: "AO
+11
+
+n
+
+11
+
+2
+
+< 00,
+
+then 0 is an algebraic integer of the class S, and "A is an algebraic number of the
+field of O.
+THEOREM B. If 0 > 1 is an algebraic number such that there exists a real
+number "A with the property 11 "AO n 11 ~ 0 as n ~ 00, then 0 is an algebraic integer
+of the class S, and "A is algebraic and belongs to the field of O.
+The proof of Theorem A is based on several lemmas.
+'" LEMMA I. A necessary and sufficient condition for the power series
+
+(1)
+to represent a rational function,
+
+P(z)
+Q(z)
+
+(P and Q polynomials), is that its coefficients satisfy a recurrence relation,
+
+valid for all m > mo, the integer p and the coefficients ao, ab ..., a p being independent of m.
+LEMMA 11 (Fatou's lemma). If in the series (1) the coefficients Cn are rational
+integers and if the series represents a rational [unction, then
+
+fez) = P(z) ,
+Q(z)
+
+where f/Q is irreducible, P and Q are polynomials with rational integral coefficients, and QCO) = 1.
+
+A Remarkable Set of Algebraic Integers
+
+LEMMA III (Kronecker).
+only if the determinants
+
+j
+
+The series (1) represents a rational function if and
+
+cm
+
+Cm+l
+
+• ••
+
+Cm
+
+• ••
+
+Cm+l
+
+•••
+
+C2m
+
+are all zero for m > ml.
+LEMMA IV (Hadamard). Let the determinant
+
+D=
+
+have real or complex elements. Then
+
+We shall not prove here Lemma I, the proof of which is classical and almost
+immediate [3J, nor Lemma IV, which can be found in all treatises on calculus
+[4J. We shall use Lemma IV only in the case where the elements of D are real;
+the proof in that case is much easier. For the convenience of the reader, we
+shall give the proofs of Lemma 11 and Lemma Ill.
+PROOF of Lemma 11.
+
+We start with a definition: A formal power series
+
+with rational integral coefficients will be said to be primitive if no rational integer
+d > 1 exists which divides all coefficients.
+Let us now show that if two series,
+
+are both primitive, their formal product,
+n
+
+00
+
+~ cnz n ,
+
+o
+
+Cn =
+
+~ apb n _ p,
+
+p=o
+
+is also primitive. Suppose that the prime rational integer p divides all the Cn'
+Since p cannot divide all the an, suppose that
+
+(mod p),
+
+ak ~ 0 (mod p).
+
+6
+
+A Remarkable Set of Algebraic Integers
+
+We should then have
+
+= Qkbo (mod p), whence b a = 0 (mod p),
+Ck+I = Qkb I (mod p), whence b I = 0 (mod p),
+Ck
+
+Ck+2
+
+=
+
+Qkb 2
+
+(mod p), whence b 2
+
+=0 (mod p),
+
+and so on, and thus
+
+would not be primitive.
+We now proceed to prove our lemma.
+rational integers, and that the series
+
+Suppose that the coefficients Cn are
+
+represents a rational function
+
+which we assume to be irreducible. As the polynomial Q(z) IS wholly determined (except for a constant factor), the equations
+
+determine completely the coefficients qi (except for a constant factor). Since
+the CB are rational, there is a solution with all qj rational integers, and it follows
+that the Pi are also rational integers.
+We shall now prove that qo = ± 1. One can assume that no integer
+d> 1 divides all Pi and all qj. (Without loss of generality, we may suppose
+that there is no common divisor to all coefficients Cn; i.e., L cnzn is primitive.)
+The polynomial Q is primitive, for otherwise if d divided qj for allj, we should
+have
+
+and d would divide all Pj, contrary to our hypothesis.
+Now let U and V be polynomials with integral rational coefficients such that
+PU+ QV= m ~ 0,
+
+m being an integer. Then
+m=Q(Uf+ V).
+
+Since Q is primitive, Uf + V cannot be primitive, for m is not primitive unless
+I m I = 1. Hence, the coefficients of Uf + V are divisible by m. If 1'0 is the
+constant term of Uf + V, we have
+m = qo'Yo,
+
+and, thus, since m divides 1'0, one has qo = ± 1, which proves Lemma 11.
+
+A Remarkable Set of Algebraic Integers
+PROOF of Lemma Ill.
+
+7
+
+The recurrence relation of Lemma I,
+
+(2)
+
+for all m > mo, the integer p and the coefficients an, ..., a p being independent
+of m, shows that in the determinant
+Co
+
+~m =
+
+Cl
+
+Cm
+
+Cm+l
+
+•••
+
+Cm
+
+• ..
+
+Cm+l
+
+•.•
+
+C2m
+
+where m > mo + p, the columns of order mo, mo + 1, ..., mo + p are dependent;
+hence, ~m = 0.
+We must now show that if ~m = for m > mb then the Cn satisfy a recurrence
+relation of the type (2); if this is so, Lemma III follows from Lemma I. Let
+p be the first value of m for which ~m = 0. Then the last column of ~p is a
+linear combination of the first p columns; that is:
+
+°
+
+Lj+p = aOCj
+
++ alCj+l + ... + ap-lCj+~l + Cj+p = 0, j = 0, 1, ..., p.
+
+We shall now show that Lj+p =
+Lj+p =
+
+°for all values ofj. Suppose that
+
+0, j = 0, 1, 2, ..., m-I,
+
+(m > p).
+
+If we can prove that L m+p = 0, we shall have proved our assertion by recurrence.
+Now let us write
+
+l Cp
+~~l! :
+
+Cm
+
+,.
+I
+I
+
+•
+
+I
+
+~m =
+
+,.Cp+m
+
+Cp
+;",;'
+
+,-
+
+. """
+
+c~
+
+Cm
+
+,
+
+.
+
+C2m
+
+and let us add to every column of order > p a linear combination with coefficients ao, al, ..., ap-l of the p preceding columns. Hence,
+
+i Lp
+~~l i :
+, .
+
+Lm
+
+I
+
+I
+________ I1
+
+~m=
+
+•
+
+•
+
+_
+
+Cp
+
+Cm
+
+and since the terms above the diagonal are all zero, we have
+~m = (-l)P+m~~l(LP+m)m-p+l.
+
+Since ~m = 0, we have L m +p = 0, which we wanted to show, and Lemma III
+follows.
+
+8
+
+A Remarkable Set of Algebraic Integers
+
+We can now prove Theorem A.
+PROOF of Theorem A [10].
+
+We write
+
+where an is a rational integer and I En I < i; thus I En I = 11 "A(jn 11. Our hypothesis
+is, therefore, that the series L: En 2 converges.
+The first step will be to prove by application of Lemma III that the series
+
+represents a rational function. Considering the determinant
+
+we shall prove that An = 0 for all n large enough. Writing
+
+we have
+'1]m2
+
+< «(j2 + l)(Em_12+ Em 2).
+
+Transforming the columns of An, beginning with the last one, we have
+
+an
+
+'1]n+t
+
+• ••
+
+'11n
+
+• ••
+
+'11n+l
+
+•••
+
+'112n
+
+and, by Lemma IV,
+
+where Rh denotes the remainder of the convergent series
+
+But, by the definition of Om,
+
+where C = C("A, (j) depends on "A and (j only.
+
+A Remarkable Set of Algebraic Integers
+
+9
+
+Hence,
+n
+
+D. n2 < c IT «(J2Rh ),
+h=l
+
+and since Rh ~ 0 for h ~ 00, D. n ~ 0 as n ~ 00, which proves, since D.n is a
+rational integer, that D. n is zero when n is larger than a certain integer.
+Hence
+~
+P(z)
+..to
+anzn = Q(z) , (irreducible)
+
+where, by Lemma Ill, P and Q are polynomials with rational integral coefficients
+and Q(O) = 1. Writing
+
+we have
+
+00
+
+=
+
+00
+
+L: X(Jnzn - L: anZn
+o
+
+_
+
+0
+
+X
+
+P(z)
+
+1 + qlZ + ... + qkzk
+
+- 1 - (Jz
+
+Since the radius of convergence of
+
+is at least 1, we see that
+
+has only one zero inside the unit circle, that is to say, 1/(J. Besides, since
+L: En 2 < 00, f(z) has no pole of modulus 1; thence, Q(z) has one root, I/(J, of
+modulus less than 1, all other roots being of modulus strictly larger than 1. The
+reciprocal polynomial,
+Zk + qlzk-l + ... + qk,
+
+has one root (J with modulus larger than 1, all other roots being strictly interior
+to the unit circle I z I < 1. Thus (J is, as stated, a number of the class S.
+Since
+
+X
+
+PO/(J)
+- -0 = Q'O/(J) '
+
+X is an algebraic number belonging to the field of (J.
+t See footnote on page 10.
+
+10
+
+A Remarkable Set of Algebraic Integers
+PROOF of Theorem B.
+
+In this theorem, we again write
+
+AOn = On + En,
+AOn 11 <!. The assumption here is
+merely that En ~ 0 as n ~ 00, without any hypothesis about the rapidity with
+which En tends to zero. But here, we assume from the start that 0 is algebraic,
+and we wish to prove that 0 belongs to the class S.
+Again, the first step will be to prove that the series
+On being a rational integer and
+
+I En I =
+
+represents a rational function.
+Lemma Ill. Let
+
+But we shall not need here to make use of
+
+11
+
+A o + AIO + ... + AkOk = 0
+
+be the equation with rational integral coefficients which is satisfied by the algebraic number O. We have, N being a positive integer,
+AON(A o+ AIO + ... + AkOk) = 0,
+
+and, since
+we have
+AOQN + AIQN+I + ... + AkQN+k = - (AoEN + AIEN+I + ... + AkEN+k).
+
+Since the A j are fixed numbers, the second member tends to zero as N ~ 00,
+and since the first member is a rational integer, it follows that
+AOQN + AIQN+I + ... + AkQN+k = 0
+
+for all N > No. This is a recurrence relation satisfied by the coefficients Qn,
+and thus, by Lemma I, the series
+
+represents a rational function.
+From this point on, the proof follows identically the proof of Theorem A.
+(In order to show that fez) has no pole of modulus I, the hypothesis En ~ 0 is
+sufficient. t) Thus, the statement that 0 belongs to the class S is proved.
+00
+
+t A power series fez) = L: cnzn with Cn = 0(1) cannot have a pole on the unit circle. Suppose
+o
+
+in fact, without loss of generality, that this pole is at the point z = 1. And let z = r tend to
+00
+
+1 - 0 along the real axis.
+
+z = 1 is a pole.
+
+Then Ifez) I ~
+
+L:o I I r = 0(1 - r)-l, which is impossible if
+en
+
+n
+
+A Remarkable Set of Algebraic Integers
+
+11
+
+4. An unsolved problem
+
+As we pointed out before stating Theorems A and B, if we know only that
+() > 1 is such that there exists a real "A with the condition 11 "A(}n 11 ~ 0 as n ~ 00,
+we are unable to conclude that () belongs to the class S. We are only able to
+draw this conclusion either if we know that L: 11 "A(}n 11 2 < 00 or if we know
+that () is algebraic. In other words, the problem that is open is the existence
+of transcendental numbers () with the property 11 "A(}n 11 ~ 0 as n ~ 00.
+We shall prove here the only theorem known to us about the numbers ()
+such that there exists a "A with 11 "A(}n 11 ~ 0 as n ~ 00 (without any further
+assumption) .
+THEOREM.
+
+The set of all numbers () having the preceding property is denumer-
+
+able.
+PROOF.
+
+We again write
+
+where an is an integer and I En I = 11 "A(}n 11. We have
+
+("A(}n -
+
+En)("A(}n+2 -
+
+-
+
+En+2) -
+
+"A(}n -
+
+("A(}nH - En+l)2
+
+En
+
+'
+
+and an easy calculation shows that, since En ~ 0, the last expression tends to
+zero as n ~ 00. Hence, for n > no, no = no("A, ()), we have
+
+this shows that the integer an +2 is uniquely determined by the two preceding
+integers, an, an+l. Hence, the infinite sequence of integers {an} is determined
+uniquely by the first no + 1 terms of the sequence.
+This shows that the set of all possible sequences {an} is denumerable, and,
+SInce
+
+an+l
+() = 1l. m
+-,
+an
+that the set of all possible numbers () is denumerable.
+proved.
+We can finally observe that since
+"'1\ = l'lm-,
+an
+
+On
+
+the set of all values of Ais also denumerable.
+
+The theorem is thus
+
+12
+
+A Remarkable Set of Algebraic Integers
+EXERCISES
+
+1. Let K be a real algebraic field of degree n. Let (J and (J' be two numbers
+of the class S, both of degree n and belonging to K. Then (J(J' is a number of the
+class S. In particular, if q is any positive natural integer, (Jq belongs to S if (J does.
+2. The result of Theorem A of this chapter can be improved in the sense that
+the hypothesis
+
+can be replaced by the weaker one
+n
+
+Lj 11 }..(Ji 11 = o(n).
+2
+
+j=l
+
+It suffices, in the proof of Theorem A, and with the notations used in this proof,
+
+to remark that
+
+and to show, by an easy calculation, that under the new hypothesis, the second
+member tends to zero for n ~ 00.
+
+Chapter II
+
+A PROPERTY OF THE SET OF N~ERS
+OF THE CLASS S
+
+1. The closure of the set of numbers belonging to S
+THEOREM.
+
+The set of numbers of the class S is a closed set.
+
+The proof of this theorem [12] is based on the following lemma.
+To every number f) of the class S there corresponds a real number 'A
+such that 1 < 'A < f) and such that the series
+LEMMA.
+
+converges with a sum less than an absolute constant (i.e., independent of f) and 'A).
+Let P(z) be the irreducible polynomial with rational integral coefficients having f) as one of its roots (all other roots being thus strictly interior
+to the unit circle I z I < 1), and write
+PROOF.
+
+P(z) = Zk + qlzk-l + ... + qk.
+
+Let Q(z) be the reciprocal polynomial
+Q(z) = Zkp (~) = 1 + qlZ + ... + qkZk.
+
+We suppose first that P and Q are not identical, which amounts to supposing
+that f) is not a quadratic unit. (We shall revert later to this particular case.)
+The power series
+P(z)
+Q(z) = Co + CIZ + ... + cnz n + ...
+has rational integral coefficients (since Q(O) = 1) and its radius of convergence
+is f)-I. Let us determine }J- such that
+
+(1)
+
+}JP(z)
+g(z) = 1 - f)z - Q(z)
+
+will be regular in the unit circle. If we set
+P(z) = (z - f)PI(z),
+Q(z) = (l - f)Z)QI(Z),
+
+then PI and QI are reciprocal polynomials, and we have
+
+P.
+
+=
+
+(1 _f)) QI(l/f)
+PI(l/f) .
+f)
+
+14
+
+A Property of the Set of Numbers of the Class S
+
+Since
+
+I~:~;j I= 1 for I z I = 1, and since ~: is regular for I z I < 1, we have
+
+and, thus,
+1
+
+Ip. I < () - -0 < ().
+
+(2)
+
+Finally,
+g(z) =
+
+ao
+
+ao
+
+o
+
+0
+
+L p.(}nzn - L cnzn
+ao
+
+=
+
+L (p.(}n - cn)zn
+o
+
+has a radius of convergence larger than 1, since the roots of Q(z) different from
+(}-l are all exterior to the unit circle. Hence,
+
+Lo (p.(}n ao
+
+)2 = - 1 /.21T / g(eifl') /2 dcp.
+21T' 0
+
+Cn
+
+But, by (1) and (2), we have for I z I = 1
+
+IPI (}2-1
+1
+I g(z) I < ()1p.1
+_ 1 + Q < (}«() _ I) + 1 = 2 + 7J < 3.
+Hence,
+
+which, of course, gives
+ao
+
+(3)
+
+L 11 p.(}n W < 9.
+o
+
+Now, by (2) I p.1 < () and one can assume, by changing, if necessary, the sign of
+
+~, that p. > O.
+
+(The case p. = 0, which would imply P (~) = 0, is excluded
+
+for the moment, since we have assumed that () is not a quadratic unit.) We can,
+therefore, write 0 < P. < ().
+To finish the proof of the lemma, we suppose p. < 1. (Otherwise we can take
+A = p. and there is nothing to prove.) There exists an integer s such that
+
+l<II.<_I_
+(}s - r(}s-l
+or
+
+A Property of the Set of Numbers of the Class S
+
+15
+
+We take A = (JsJJ- and have by (3)
+""
+""
+I:
+11 "A()n 11 = I: 11 JJ-()n+s 11
+2
+
+o
+
+2
+
+0
+
+Since 1 < A < (J, this last inequality proves the lemma when (J is not a quadratic
+unit.
+It remains to consider the case when () is a quadratic unit. (This particular
+case is not necessary for the proof of the theorem, but we give it for the sake
+of completeness.) In this case
+()n
+
++ ()-n
+
+is a rational integer, and
+
+Thus,
+""
+
+""
+
+~
+
+I
+
+~ 11 (In W < ~ ~n = ()2 _ I
+and since (J + ~ is at least equal to 3, we have (J > 2 and
+
+4
+
+()2
+
+~-l <:3'
+Thus, since I: 11 (In 11 2 < !, the lemma remains true, with A = 1.
+Remark. Instead of considering in the lemma the convergence of
+
+I:"" 11 "A(Jn W
+o
+
+we can consider the convergence (obviously equivalent) of
+
+I:"" sin 1r"A()n.
+2
+
+o
+
+In this case we have
+""
+I:
+sin 1r"A(Jn < 91r
+2
+
+o
+
+2•
+
+A Property of the Set of Numbers of the Class S
+
+/6
+
+of the theorem. Consider a sequence of numbers of the class S,
+(Jt, (J2, •••, (Jp, ••• tending to a number w. We have to prove that w belongs to
+S also.
+Let us associate to every (Jp the corresponding Ap of the lemma such that
+PROOF
+
+00
+
+(4)
+
+1 < Ap < (Jp,
+
+L sin 7rA p(Jpn < 97r
+2
+
+2
+
+•
+
+o
+
+Considering, if necessary, a subsequence only of the (Jp, we can assume that the
+Ap which are included, for p large enough, between 1 and, say, 2w, tend to a
+limit fJ-. Then (4) gives immediately
+00
+
+Lo sin 7rfJ-W n < 97r
+2
+
+2
+
+which, by Theorem A of Chapter I, proves that w belongs to the class S. Hence,
+the set of all numbers of S is closed.
+It follows that 1 is not a limit point of S. In fact it is immediate that (J E S
+implies, for all integers q > 0, that (Jq E S. Hence, if 1 + Em E S, with Em ~ 0,
+one would have
+(1 + Em) [E:] E S,
+
+abeing any real positive number and [a ] denoting the integral part of a.
+
+°
+
+Em
+
+Em
+
+But, as m ~ 00, Em ~ and
+(1 + Em) [1;;;1 ~ ea.
+
+It would follow that the numbers of S would be everywhere dense, which is
+
+contrary to our theorem.
+2. Another proof of the closure of the set of numbers belonging to the class S
+This proof, [13J, [11J, is interesting because it may be applicable to different
+problems.
+Let us first recall a classical definition: If fez) is analytic and regular in the
+unit circle I z I < 1, we say that it belongs to the class Hp (p > 0) if the integral
+
+{27r
+} 0
+
+If(rei<p) Ip dcp
+
+(r < 1)
+
+is bounded for r < 1. (See, e.g., [17J.)
+This definition can be extended in the following way. Suppose that fez) is
+meromorphic for I z I < 1, and that it has only a finite number of poles there
+(nothing is assumed for I z I = 1). Let Zt, ••• , Zm, be the poles and denote by
+Pj(z) the principal part of fez) in the neighborhood of Zj. Then the function
+m
+
+g(z) = fez) -
+
+L Pj(z)
+j=l
+
+is regular for I z I < 1, and if g(z) E Hp (in the classical sense), we shall say that
+fez) E Hp (in the extended sense).
+
+A Property of the Set of Numbers of the Class S
+
+17
+
+We can now state Theorem A of Chapter I in the following equivalent form.
+THEOREM A'.
+
+Let fez) be analytic, regular in the neighborhood of the origin,
+and such that its expansion there
+
+has rational integral coefficients. Suppose that fez) is regular for I z I < 1, except for a simple pole 1/0 (0) 1). Then, if fez) E H2, it is a rational function
+and 0 belongs to the class S.
+
+The reader will see at once that the two forms of Theorem A are equivalent.
+Now, before giving the new proof of the theorem of the closure of S, we shall
+prove a lemma.
+Let P(z) be the irreducible polynomial having rational integral coefficients and having a number 0 E S (or one of its roots. Let
+LEMMA.
+
+Q(z) = Zkp (~)
+be the reciprocal polynomial (k being the degree of P). Let A be such that
+
+A
+
+P(z)
+1 - Oz - Q(z)
+is regular in the neighborhood of 1/0 and, hence, for all I z I < 1. [We have
+
+already seen that I A I < 0 - ~ (and that thus, changing if necessary the sign of
+Q, we can take 0 < A < 0 - ~). ]
+
+Then, in the opposite direction [1IJ,
+1
+
+A> 2(0+ 1)'
+provided 0 is not quadratic, and thus P r! Q.
+PROOF.
+
+We have already seen that
+P(z)
+Q(z) =
+
+i= cnzn,
+ao
+
+the coefficients Cn being rational integers. We now write
+
+We have
+(5)
+as already stated.
+
+18
+
+A Property of the Set of Numbers of the Class S
+
+On the other hand, the integral can be written
+
+(!) }dZ,z
+
+I = ~ ( { X _ P (z)} {~ _ P
+21rl C'-" 1 - Oz Q
+1_ ~ Q z
+
+J
+
+z
+
+where the integral is taken along the unit circle, or
+1-
+
+2~i fc {, ~ Oz - ~}{z \- z~} dz.
+~
+
+But changing z into 1/z, we have
+
+X P
+J~I-0zzpdz=-J~l_~Qz= C z- 0 Q
+
+(
+
+X
+
+Q
+
+(X
+
+J
+
+Pdz
+
+---dz
+
+~
+
+z
+
+Therefore,
+
+1=_1_ ( dz _ 2X2 + _1_ (
+}...2
+dz
+21ri}c z
+02 - 1 21ri}c (1 - Oz)(z - 0)
+~
+
+= 1-
+
+2X2
+
+02 -
+
+~
+
+X2
+
+1]
+[
+Z
+
+--0
+
++-1 ! _ 0 1 - Oz z =i
+
+o
+
+2}...2}...2
+X2
+= 1- 02-1 + 02-1 = 1- 02-1
+
+and thus (5) gives
+(6)
+
+This leads to
+
+I}... I < v02 - 1
+or changing, if necessary, the sign of Q, to }... < v02 - 1 (an inequality weaker
+than}... < 0 - ~ already obtained in (2».
+On the other hand, since X - Co = Eo, we have
+
+I X- Co I = I Eo I < 1.
+But
+
+P(O)
+
+Co = Q(O) =
+
+Hence X > 0 and Co < }... + 1.
+
+qk
+
+± 1 > 1.
+
+A Property of the Set of Numbers of the Class S
+
+We shall now prove that
+I
+
+A> 2(0 + I)·
+In fact, suppose that
+
+then A < ! and necessarily Co = I. But, since
+p
+
+00
+
+Q (1 - Oz) = Co + ~ (c n - OCn_l)Zn,
+
+we have, if z = ei<p,
+
+2~ 10""1 ~ (I - IJz) I' drp = co' + ~ (c
+and since
+
+n -
+
+IJC~l)"
+
+I ~ I= 1 for / z I = 1 and the integral is
+1 + (f-,
+
+the equality Co = 1 implies
+
+I Cl - 0/ < O.
+Hence, since Cl is an integer, Cl > 1.
+And thus, since by (6)
+2
+
+02 A
+_ 1 + eo2+ el2 < I,
+
+we have, with Co = 1, Cl > 1, AO < !-,
+
+A2
+
+A2
+
+(J2 _ 1 + (A - 1)2 + (AO - 1)2 < 02 _ 1 + (A - CO)2 + (AO - CI)2 < I,
+
+02 ~ 1 + A2(l + (2) - 2A(l + 0) + 1 < 0,
+
+This contradicts
+
+1
+A < 2(0+ 1)·
+Thus, as stated,
+1
+
+A> 2(1 + 0)
+
+19
+
+A Property of the Set of Numbers of the Class S
+
+20
+
+We can now give the new proof of the theorem stating the closure of S.
+Let w be a limit point of the set S, and suppose first w > 1. Let
+{Os} be an infinite sequence of numbers of S, tending to w as s ~ 00. Denote
+by Ps(z) the irreducible polynomial with rational integral coefficients and having
+the root Os and let Ks be its degree (the coefficient of ZK. being 1). Let
+PROOF.
+
+Qs(z) = ZK·p s (~)
+
+be the reciprocal polynomial. The rational function Ps/ Qs is regular for
+I z I < 1 except for a single pole at z = Os-I, and its expansion around the origin
+
+P
+
+_s = L an(s)zn
+Qs n=O
+<Xl
+
+has rational integral coefficients.
+Determine now "As such that
+(7)
+
+will be regular for I z I <1. (We can discard in the sequence {Os} the quadratic
+units, for since Os ~ w, K s is necessarily unbounded.)t By the lemma, and
+changing, if necessary, the sign of Qs, we have
+
+Therefore, we can extract from the sequence {"As} a subsequence tending to a
+limit different from O. (We avoid complicating the notations by assuming that
+this subsequence is the original sequence itself.)
+On the other hand, if I z I = 1,
+
+I gs(z) I < ~s~ 'I + 1 < A,
+A being a constant independent of s. Since gs(z) is regular, this inequality holds
+for I z I < 1.
+We can then extract from the sequence {gsCz)}, which forms a normal family,
+a subsequence tending to a limit g*(z). (And again we suppose, as we may,
+that this subsequence is the original sequence itself.) Then (7) gives
+g*(z) =
+
+J.1.
+
+1 - wz
+
+-lim P
+
+Il
+
+Qs
+
+•
+
+Since the coefficients an (s) of the expansion of Ps/ Qs are rational integers, their
+limits can only be rational integers. Thus the limit of Psi Qs satisfies all requirements of Theorem A'. (The fact that g*(z) E H2 is a trivial consequence of its
+
+t See Appendix, 5.
+
+A Property of the Set of Numbers of the Class S
+
+boundedness, since I g*(z) I <A.)
+since l/w is actually a pole for
+
+21
+
+Therefore w is a number of the class S,
+· Ps
+1lm
+Qs'
+
+because Jl -:;t. O. (This is essential, and is the reason for proving a lemma to the
+effect that the As are bounded below.)
+EXERCISE
+
+Let a be a natural positive integer > 2. Then a is a limit point for the numbers of the class S. (Considering the equation
+zn(z - a) - 1 = 0,
+
+the result for a > 2 is a straightforward application of Rouche's theorem.
+With a little care, the argument can be extended to a = 2.)
+
+Chapter III
+APPLICATIONS TO THE THEORY OF POWER SERIES;
+ANOTHER CLASS OF ALGEBRAIC INTEGERS
+
+1. A generalization of the preceding results
+Theorem A' of Chapter 11 can be extended, and thus restated in the following
+way.
+
+Let fez) be analytic, regular in the neighborhood of the origin,
+and such that the coefficients of its expansion in this neighborhood,
+THEOREM A".
+
+00
+
+'L anzn
+o
+
+are either rational integers or integers of an imaginary quadratic field. Suppose
+that fez) is regular for I z I < 1 except for afinite number ofpoles Ij8 i (I 8 i I > 1,
+i = 1, 2, ..., k). Then if fez) belongs to the class H2 (in the extended sense),
+fez) is a rational function, and the 8i are algebraic integers.
+The new features of this theorem, when compared with Theorem A', are:
+1. We can have several (although afinite number of) poles.
+2. The coefficients an need not be rational integers, but can be integers of an
+imaginary quadratic field.
+Nevertheless, the proof, like that for Theorem A', follows exactly the pattern
+of the proof of Theorem A (see [IOJ). Everything depends on showing that a
+certain Kronecker determinant is zero when its order is large enough. The
+transformation of the determinant is based on the same idea, and the fact that
+it is zero is proved by showing that it tends to zero. For this purpose, one uses
+the well-known fact [9J that the integers of imaginary quadratic fields share
+with the rational integers the property of not having zero as a limit point.
+Theorem A" shows, in particular, that if
+
+where the an are rational integers, is regular in the neighborhood of z = 0, has
+only a finite number of poles in I z I < 1, and is uniformly bounded in the neighborhood of the circumference I z I = 1, then fez) is a rational function.
+This result suggests the following extension.
+THEOREM I.
+
+Let
+00
+
+fez) = L anzn,
+o
+
+where the an are rational integers, be regular in the neighborhood of z = 0, and
+
+Applications to Power Series,. Another Class of Algebraic Integers
+
+23
+
+suppose that f(z) is regular for! z I < I except for a finite number of poles. Let
+a be any imaginary or real number. If there exist two positive numbers, 0, TJ (TJ < 1)
+such that If(z) - a I > 0 for 1 - TJ < I z I < 1, then f(z) is a rational function.
+
+For the sake of simplicity, we shall assume that there is only one pole,
+the proof in this case being typical. We shall also suppose, to begin with, that
+a = 0, and we shall revert later to the general case.
+PROOF.
+
+Let E be any positive number such that E < TJ. If E is small enough, there
+is one pole of f(z) for I z I < I - E, and, say N zeros, N being independent of E.
+Consider
+1
+
+g(z) = 1 + mzf(z) ,
+m being a positive integer, and consider the variation of the argument of mz f(z)
+along the circumference I z I = I-E. We have, denoting this circumference
+by r,
+
++ 1 - IJ = 21rN.
+If now we choose m such that m(1 - TJ)o > 2, we have for I z I = I - E,
+~r Arg[mz f(z)] = 27T-[N
+
+I mz f(z) I > m(1 - TJ)o > 2,
+and thus we have also
+~r Arg[1
+
++ mz f(z) J = 21rN.
+
+But mz f(z) + I has one pole in I z I < I - E; hence it has N + I zeros. Since
+E can be taken arbitrarily small, it follows that g(z) has N + I poles for I z I < 1.
+But the expansion of g(z) in the neighborhood of the origin,
+
+has rational integral coefficients. And, in the neighborhood of the circumference I z I = I, g(z) is bounded, since
+
+I I + mif I > I mif I - I > m(1 - TJ) 0 - I > 1.
+Hence, by Theorem A" g is a rational function, and so is f(z).
+If now a ~ 0, let a = A + Ili; we can obviously suppose A and Il rational,
+and thus
+a=
+
+p+ qi ,
+r
+
+p, q, and r being rational integers. Then
+
+I rf - (p + qi) I > ro,
+and we consider f* = rf - (p + qi). Then we apply Theorem A" in the case of
+Gaussian integers (integers of K(i)).
+
+24
+
+Applications to Power Series,. Another Class of Algebraic Integers
+Extensions. The theorem can be extended [I3J (1) to the case of the an being
+
+integers of an imaginary quadratic field, (2) to the case where the number of
+poles in I z I < 1 is infinite (with limit points on I z I = 1), (3) to the case of the
+an being integers after only a certain rank n > no, (4) to the case when z = 0
+is itself a pole. The proof with these extensions does not bring any new difficulties or significant changes into the arguments.
+A particular case of the theorem can be stated in the following simple way.
+Let
+
+be a power series with rational integral coefficients, converging for I z I < 1.
+Let S be the set of values taken by f(z) when I z I < 1. If the derived set S' is not
+the whole plane, f(z) is a rational function.
+
+In other words iff(z) is not a rational function, it takes in the unit circle values
+arbitrarily close to any given number a.
+It is interesting to observe that the result would become false if we replace
+the whole unit circle by a circular sector. We shall, in fact, construct a power
+series with integral coefficients, converging for I z I < 1, which is not a rational
+function, and which is bounded in a certain circular sector of I z I < 1. Consider the series
+co
+
+f(z) =
+
+:';0
+
+zp2
+(1 - z)p'
+
+It converges uniformly for I z I < r if r is any number less than 1. In fact
+Zp2
+(l-z)p
+
+I
+
+I
+
+r P2
+< (l-r)p'
+
+which is the general term of a positive convergent series. Hence,f(z) is analytic
+and regular for I z I < 1. It is obvious that its expansion in the unit circle has
+integral rational coefficients. The function f(z) cannot be rational, for z = 1
+cannot be a pole of f(z) , since (1 - z)'j(z) increases infinitely as z ~ 1 - 0 on
+the real axis, no matter how large the integer k. Finally, f(z) is bounded, say,
+in the half circle
+
+I z I < 1,
+
+<R(z) < O.
+
+For, iLl < I z I < 1, say, then
+11 - z I > (1 + f6)! = i,
+and thus
+co
+
+If(z) I < L: (!)p.
+o
+
+The function f(z) is even continuous on the arc I z I = 1, <R(z) < O.
+
+Applications to Power Series.. Another Class of Algebraic Integers
+
+25
+
+2. Schlicht power series with integral coefficients [13J
+THEOREM 11.
+
+Let fez) be analytic and schlicht (simple) inside the unit circle
+I z I < 1. Let its expansion in the neighborhood of the origin be
+co
+
+fez) = a_Iz- + L: anz n.
+o
+1
+
+If an integer p exists such that for all n > p the coefficients an are rational integers
+(or integers of an imaginary quadratic field), then fez) is a rational function.
+
+Suppose first that a-I ~ O. Then the origin is a pole, and since
+there can be no other pole for I z I < I, the expansion written above is valid
+in all the open disc I z I < 1. Moreover, the point at infinity being an interior
+point for the transformed domain,f(z) is bounded for, say,! < I z I < 1. Hence
+the power series
+PROOF.
+
+is bounded in the unit circle, and the nature of its coefficients shows that it is a
+polynomial, which proves the theorem in this case.
+Suppose now that a-I = O. Then fez) mayor may not have a pole inside the
+unit circle. The point f(O) = 11o is an interior point for the transformed domain.
+Let u = fez). To the circle C, I u - ao I < 0, in the u-plane there corresponds,
+for 0 small enough, a domain D in the z-plane, including the origin, and completely interior, say, to the circle I z I <!. Now, by Theorem I, if fez) is not rational, there exists in the ring i < I z I < 1 a point ZI such that I f(zl) - ao I < 0/2.
+Then UI = f(zl) belongs to the circle C and consequently there exists in the
+domain D a point Z2, necessarily distinct from Zl, such that f(z2) = UI = f(zl).
+This contradicts the hypothesis that fez) is schlicht. Hence, fez) is a rational
+function.
+3. A class of power series with integral coefficients [13J; the class T of algebraic integers and their characterization
+Let fez) be a power series with rational integral coefficients, converging for
+I z I < 1 and admitting at least one "exceptional value" in the sense of Theorem I;
+i.e., we assume that Ifez) - a I > 0 > 0 uniformly as I z I ~ 1. Then fez) is
+rational and it is easy to find its form. For
+
+P(z)
+
+fez) = Q(z) ,
+P and Q being polynomials with rational integral coefficients, and by Fatou's
+lemma (see Chapter I) Q(O) = 1. The polynomial Q(z) must have no zeros
+inside the unit circle (P/Q being irreducible) and, since Q(O) = 1, it means that
+all zeros are on the unit circle. By a well-known theorem of Kronecker [9J
+these zeros are all roots of unity unless Q(z) is the constant 1.
+
+26
+
+Applications to Power Series,. Another Class of Algebraic Integers
+
+Now, suppose that the expansion
+
+with rational integral coefficients, offez) is valid only in the neighborhood of the
+origin, but that fez) has a simple pole liT (/ T I > 1) and no other singularity
+for I z I < 1.
+Suppose again that there exists at least one exceptional value a such that
+Ifez) - a I > 0 > 0 uniformly as I z I ~ 1. Then fez) is rational; I.e.,
+P
+
+fez) = Q'
+P, Q being polynomials with rational integral coefficients, PIQ irreducible,
+and Q(O) = 1. The point liT is a simple zero for Q(z) and there are no other
+zeros of modulus less than 1. If fez) is bounded on the circumference I z , = 1,
+Q(z) has no zeros of modulus 1, all the conjugates of liT lie outside the unit
+circle, and T belongs to the class S.
+If, on the contrarY,f(z) is unbounded on I z I = 1, Q(z) has zeros of modulus 1.
+If all these zeros are roots of unity, Q(z) is divisible by a cyclotomic polynomial,
+and again T belongs to the class S. If not, T is an algebraic integer whose
+conjugates lie all inside or on the unit circle.
+We propose to discuss certain properties of this new class of algebraic integers.
+A number T belongs to the class T if it is an algebraic integer
+whose conjugates all lie inside or on the unit circle, assuming that some conjugates
+lie actually on the unit circle (for otherwise T would belong to the class S).
+DEFINITION.
+
+Let P(z) = 0 be the irreducible equation determining T. Since there must
+be at least one root of modulus 1, and since this root is not ± 1, there must be
+two roots, imaginary conjugates, a and l/a on the unit circle. Since pea) = 0
+and P(lla) = 0 and P is irreducible, P is a reciprocal polynomial; T is its only
+root outside, and liT its only root inside, the unit circle; T is real (we may
+always suppose T > 0; hence T > 1). There is an even number of imaginary
+roots of modulus 1, and the degree of P is even, at least equal to 4. Finally, T
+is a unit. If P(z) is of degree 2k and if we write
+1
+y = z+-,
+z
+
+the equation P(z) = 0 is transformed into an equation of degree k, R(y) = 0,
+whose roots are algebraic integers, all real. One of these, namely T + T-1, is
+larger than 2, and all others lie between - 2 and +2.
+We know that the characteristic property of the numbers () of the class S
+is that to each () E S we can associate a real "A ¥= 0 such that L 11 "A()n 11 2 < 00;
+i.e., the series L I1 "A()n 11 zn belongs to the class H2. t
+t Of course, if e E S, the series is even bounded in I z I < 1. But it is enough that it should belong
+to H2 in order that () should belong to S.
+
+Applications to Power Series,. Another Class of Algebraic Integers
+
+27
+
+The corresponding theorem for the class T is the following one.
+THEOREM Ill.
+
+Let T be a real number> 1. A necessary and sufficient condition for the existence of a real jJ. ~ 0 such that the power series t
+
+should have its real part bounded above (without belonging to the class H2) for
+I z / < 1 is that T should belong to the class T. Then jJ. is algebraic and belongs
+to the field of T.
+The condition is necessary.
+n
+that jJ.T = an + {jJ.T n }. We have
+PROOF.
+
+Let an be the integer nearest to jJ.T n , so
+
+Now if
+T+l
+
+2T</z/<1
+we have
+11 -
+
+TZ I
+
+> ·HT - 1).
+
+Hence,
+
+21 I
+
+I L anz n + L {jJ.T n } zn I < ------!!.-.
+00
+
+00
+
+o
+
+0
+
+T -
+
+1
+
+Therefore, the real part of
+
+is bounded below in the ring
+T+l
+
+2T<l z l<l.
+Since this power series has rational integral coefficients and is regular in I z I < 1
+except for the pole I/T, it follows, by Theorem I, that it represents a rational
+function and, hence, that T is a number, either of the class S or of the class T.
+Since fez) is not in H2, T is not in S, and thus belongs to T. The calculation
+of residues shows that jJ. is algebraic and belongs to the field of T.
+The condition is sufficient. Let T be a number of the class T and let 2k be
+its degree. Let
+
+* (j = I, 2, ..., k - 1; aja/ = 1)
+
+F\J
+F\J
+T -1 ,u.j,
+u.j
+
+be its conjugates. Let
+so that (J', PI, P2, ..., P"--l are conjugate algebraic integers of degree k.
+
+t See the Introduction (page 1) for the notation {a}. We recall that 11 all = Ila} I.
+
+28
+
+Applications to Power Series,. Another Class of Algebraic Integers
+
+The determinant
+
+Ll =
+
+1 u
+
+• ••
+
+U k- 1
+
+1 PI
+
+. ..
+
+PIk-l
+
+1
+
+•••
+
+Pk-l
+
+Pho-l
+
+k-l
+
+being not zero, we can, by Minkowski's theorem (as given at the beginning of
+Chapter VI and Appendix, 9), find rational integers AI, ... , Ak, such that the
+number
+
+o= A1u + ... + Ak-IU + A
+k
+
+-
+
+1
+
+k
+
+has its conjugates (31, .••, (3k-1 all less than 1 in absolute value. In other words,
+o is a number of the class S belonging to the field of u. Its conjugates are all
+real. Take now
+J,L = 02h and l'j = (3lh,
+
+h being a positive integer such that
+1'1
+
++ + ... +
+1'2
+
+'Yk-l
+
+< j-.
+
+Since u = r + r- 1 and r is a unit, J,L is an algebraic integer of the field of r, K(r),
+and the numbers
+
+correspond to J,L in the conjugate fields
+K( r-1) , K(al), K(al*)' ..., K(ak-I), K(ak-l*)
+
+respectively. It follows that the function
+k-I
+
+k-I
+
+'Yi +"
+'Yi
+fi\ - 1 - rz + 1 - J,Lr-1z +"
+~ 1 - ajZ
+~ 1 - a/z
+'f z) -
+
+J,L
+
+has, in the neighborhood of the origin, an expansion
+ClO
+
+L: anzn
+o
+
+with rational integral coefficients. The only singularity of fez) for I z I < 1 IS
+the pole l/r. We have
+ClO
+
+k-l
+
+ClO
+
+k-l
+
+L:
+(a - J,Lrn)zn = L: a zn J,L
+=
+J,L
++ ~I 1 -'YiajZ + ~I 1 - 'Yia/z .
+ono n
+1 - rz 1 - r-Iz
+By well-known properties of linear functions we have for I a I = I and I z I < 1
+
+m( l-az
+1 »1
+- 2
+and
+r
+CR - -1- - ) >--.
+
+( 1 - r-1z - r + 1
+
+Applications to Power Series,. Another Class of Algebraic Integers
+
+29
+
+Therefore, since "11' > 0, we have for I z I < 1
+
+t
+
++ 'f "11' > T+I
+~.
+10 (an - )J.Tn)zn} > ~
+T+I
+
+(R J
+
+1
+
+On the other hand,
+an = }J.T n + }J.T- n +
+
+k-l
+
+I:1 'Y1'(af + a/ n)
+
+and, since I a1'n + a/ n I < 2,
+l,-l
+
+k-l
+
+I I: 'YiCa/ + a/ ) I < 2 I: "11' < i·
+n
+
+1
+
+1
+
+Take now for m the smallest integer such that
+}J.
+I..
+[log 4}J.]
+-71/i
+< 4-'
+I.e., m = 1og T + 1.
+Then, for n > m
+
+I an - }J.Tn I <!;
+
+i.e., an - }J.T n = - {}J.T n}.
+
+Therefore, we can write
+l
+
+(R Jmt (an -
+
+10
+
+}J.Tn)Zn -
+
+t
+
+m
+
+{}J.T n} zn} > ~.
+T+I
+
+On the other hand, since for all n
+
+we have for I z I < 1
+
+I < m- +}J. I: -1 < -m + -}J.T
+I:
+(an
+}J.Tn)Zn
+-,
+j o
+4
+0 T
+4
+T - 1
+m-l
+
+m-l
+
+n
+
+whence, finally,
+
+JI: {}J.Tn} zn} < m + ~ - ~
+OCl
+
+(R
+
+1
+
+4
+
+m
+
+=
+
+T-l
+
+T+l
+
+m + 2}J.T .
+4
+T2 - 1
+
+Thus
+
+where A is a function of }J. and T only, which proves the second part of our
+theorem.
+
+30
+
+Applications to Power Series,. Another Class of Algebraic Integers
+
+4. Properties of the numbers of the class T
+THEOREM IV. Every number of the class S t is a limit point of numbers of the
+class T on both sides [13].
+PROOF.
+
+Let 0 be a number of the class S, root of the irreducible polynomial
+P(z) = zP + CIZp-l + ... + C p
+
+with rational integral coefficients. Let Q(z) be the reciprocal polynomial.
+We suppose first that 0 is not a quadratic unit, so that Q and P will not be identical.
+We denote by m a positive integer, and let
+Rm(z) = zmp(z) + Q(z).
+
+Then Rm(z) is a reciprocal polynomial whose zeros are algebraic integers.
+We denote by e a positive number and consider the equation
+(1 + e)zmp+ Q = 0.
+
+Since for I z I = 1 we have' P I = I Q I, it follows by Rouche's theorem that in
+the circle I z I = 1 the number of roots of the last equation is equal to the number of roots of zmp, that is to say, m + p - 1. As e ~ 0, these roots vary continuously. Hence, for e = we have m + p - 1 roots with modulus < 1 and,
+hence, at most one root outside the unit circle.t
+It is easy to show now that the root of Rm(z) with modulus larger than 1
+actually exists. In fact, we have first
+
+°
+
+Rm(O) = Q(O) ~ 0,
+
+since 0 is not quadratic. On the other hand, it is easily seen that P'(O) > 0. We
+fix u > small enough for P'(z) to have no zeros on the real axis in the interval
+
+°
+
+o- u < z < 0 + u.
+We suppose that in this interval P'(z) > J1., J1. being a positive number fixed as
+soon as (J' is fixed.
+If we take 0 real and I 0 I < u, P(O + 0) has the sign of 0 and is in absolute
+value not less than I 0 I J1.. Hence, taking e.g.,
+
+t We recall that we do not consider the number 1 as belonging to the class S (see Chapter I).
+t This proof, much shorter and simpler than the original one, has been communicated to me
+by Prof. Hirschman, during one of my lectures at the Sorbonne.
+
+Applications to Power Series,. Another Class of Algebraic Integers
+
+31
+
+we see that for m large enough
+R m(() + 0) = (() + o)mp(() + 0) + Q(() + 0)
+
+o.
+
+has the sign of
+Taking oQ(()) < 0, we see that R m (()) and R m (() + 0) are, for
+m large enough, of opposite sign, so that Rm(z) has a root T m
+between () and () + m- t if Q(()) < 0,
+and
+between () - m- t and () if Q(()) > 0.
+Hence, T m ~ () as m ~ 00.
+This proves, incidentally, since we can have a sequence of T m all different
+tending to (), that there exist numbers of the class T of arbitrarily large degree.
+It proves also that T m has, actually, conjugates of modulus 1, for'm large enough,
+for evidently T m cannot be constantly quadratic (see Appendix, 5).
+To complete the proof for () not quadratic, we consider, instead of zmp + Q,
+the polynomial
+zmp- Q
+,
+z- 1
+
+which is also reciprocal, and we find a sequence of numbers of the class T approaching () from the other side.
+Suppose now that () is a quadratic unit. Thus () is a quadratic integer> I,
+with conjugate ~.
+
+Then () + ()-I is a rational integer r > 3. Denote by Tm(x)
+
+the first Tchebycheff polynomial of degree m (i.e., Tm(x) = 2 cos mcp for
+x = 2 cos cp). T m has m distinct real zeros between -2 and +2. The equation
+(x - r) Tm (x) - I =
+
+°
+
+has then m - I real roots (algebraic integers) between -2 and +2, and one real
+root between rand r + Em (Em > 0, Em ~ as m ~ (0). Putting
+
+°
+
+1
+x = y+-,
+
+y
+
+we get an equation in y which gives us a number of the class T approaching ()
+from the right as m ~ 00.
+We get numbers of T approaching () from the left if we start from the equation
+(x - r)Tm(x) + 1 = 0.
+
+This completes the proof of the theorem.
+We do not know whether numbers of T have limit points other than numbers of S.
+
+32
+
+Applications to Power Series,' Another Class of Algebraic lntegers
+
+5. Arithmetical properties of the numbers of the class T
+We have seen at the beginning of Chapter I that, far from being uniformly
+distributed, the powers (}n of a number () of the class S tend to zero modulo I.
+On the contrary, the powers T m of a number T of the class Tare, modulo 1,
+everywhere dense in the interval (0, 1). In order to prove this, let us consider a
+number T > I of the class T, root of an irreducible equation of degree 2k.
+We denote the roots of this equation by
+T
+
+1
+
+,
+
+...,
+
+-,
+
+T
+
+...,
+
+ak-h
+
+where I aj I = 1 and aj = arl is the imaginary conjugate of aj. We write
+
+Our first step will be to show that the Wj (j = I, 2, ..., k - I) and 1 are
+linearly independent.t For suppose, on the contrary, the existence of a relation
+A o + AlWl + ... + Ak-lWk-l = 0,
+
+the A j being rational integers. Then
+or
+(1)
+
+Since the equation considered is irreducible, it is known ([1] and Appendix, 6)
+that its Galois group is transitive; i.e., there exists an automorphism u of the
+Galois group sending, e.g., the root al into the root T. This automorphism can
+not send any aj into 1/T; for, since u(al) = T,
+
+and thus this would imply
+1
+
+a·=-,
+3 al
+which is not the case. Thus the automorphism applied to (1) gives
+
+if u(aj) = aj (j ~ 1). This is clearly impossible since T > 1 and I a~ I = 1.
+Hence, we have proved the linear independence of the Wj and I.
+Now, we have, modulo I,
+Tm
+
+1
+
+k-l
+
+T
+
+j=1
+
++ ---;;, + L: (e27rifflWj + e-27rimwi)
+
+t This argument is due to Pisot.
+
+=0
+
+Applications to Power Series.. Another Class of Algebraic Integers
+
+33
+
+or
+k-l
+
+Tm
+
++ 2 L: cos 27rmwj ~ 0 (mod 1)
+;j=1
+
+as m ~ 00. But by the well-known theorem of Kronecker on linearly independent numbers ([2J and Appendix, 8) we can determine the integer m, arbitrarily large, such that
+k-l
+
+2 L: cos 27rmwj
+;j=l
+
+will be arbitrarily close to any number given in advance (mod 1). It is enough
+to take m, according to Kronecker, such that
+
+I mWl - 0 I < E (mod 1)
+I mWj - ! I < E (mod 1)
+
+(j = 2, 3, ..., k - 1).
+
+We have thus proved that the {T m I (mod 1) are everywhere dense.
+The same argument applied to ATm , A being an integer of the field of T, shows
+that Arm (mod 1) is everywhere dense in a certain interval.
+Although the powers r m of a number T of the class Tare, modulo 1, everywhere dense, they are not uniformly distributed in (0, 1).
+THEOREM V.
+
+In order to grasp better the argument, we shall first consider a number T of
+the class T of the 4th degree. In this case the roots of the equation giving T
+are
+T,
+
+1
+
+-,
+
+T
+
+ex,
+
+1
+
+ex = ex
+
+(I ex I = 1),
+
+and we have, m being a positive integer,
+
+Writing ex = e27riw , we have
+Tm
+
++ T_1m + 2 cos 27rmw
+
+=0 (mod 1).
+
+The number W is irrational. This is a particular case of the above result, where
+we prove linear independence of Wl, W2, ••• , Wk-l, and 1. One can also argue
+in the following way. If W were rational, ex would be a root of 1, and the equation giving T would not be irreducible.
+Now, in order to prove the nonuniform distribution of T m (mod 1), it is enough
+to prove the nonuniform distribution of 2 cos 27rmw. This is a consequence of
+the more general lemma which follows.
+
+34
+
+Applications to Power Series,. Another Class of Algebraic Integers
+
+If the sequence {Un} ~ is uniformly distributed modulo 1, and if
+w(x) is a continuous function, periodic with period 1, the sequence w(u n ) = Vn
+is uniformly distributed if and only if the distribution function of w(x) (mod 1)
+is linear.t
+LEMMA.
+
+PROOF of the lemma.
+
+Let (a, b) be any subinterval of (0, I) and let X(x) be a
+periodic function, with period I, equal for 0 < x < I to the characteristic function of (a, b). The uniform distribution modulo 1 of {v n } is equivalent to
+N
+
+2: X(v
+lim
+
+n)
+
+N
+
+1
+
+=
+
+b - a.
+
+But, owing to the uniform distribution of {Un},
+1 N
+
+1
+
+N
+
+(1
+
+lim N ~ X(Vn) = lim N ~ X[W(Un)J = }o X(W(X» dx.
+Let w*(x) = w(x) (mod I), 0 < w*(x) < 1. The last integral is
+
+/,1 X(w*(x»dx meas E {a < w*(x) < b}.
+=
+
+Hence,
+(2)
+
+meas E {a < w*(x) < b} = b - a,
+
+which proves the lemma.
+An alternative necessary and sufficient condition for the uniform distribution
+modulo 1 of Vn = w(un ) is that
+
+/,' e'''''''''x) dx ~ 0
+
+(3)
+
+for all integers h -:;e 0.
+For the uniform distribution of {v n } is equivalent to
+lim 1
+N
+
+t
+
+e21fihw(un)
+
+= lim 1
+N
+
+1
+
+t
+
+e27rihVn
+
+=
+
+1
+
+°
+
+by Weyl's criterion. But
+
+N
+
+lim -1 2: e27rihw(un) =
+
+N 1
+
+/,1
+
+e27rihw(x)
+
+dx.
+
+0
+
+Hence, we have the result, and it can be proved directly without difficulty, cousidering again w*(x) , that (3) is equivalent to (2).
+In our case {Urn} = {mw} is uniformly distributed modulo 1, and it is enough
+to remark that the function 2 cos 27T"x has a distribution function (mod 1) which
+t No confusion can arise from the notation w(x) for the distribution function and the number
+w occurring in the proof of the theorem.
+
+Applications to Power Series,. Another Class of Algebraic Integers
+
+35
+
+is not linear. This can be shown by direct computation or by remarking that
+
+/.' e'ril'~ ,.. = Jo( 47rh)
+is not zero for all integers h ~ o.
+In the general case (T not quadratic) if 2k is the degree of T, we have, using
+the preceding notations,
+T
+
+I
+
+k-1
+
+k-l
+
+T
+
+i=l
+
+i=l
+
+m+ --; + L: ar + L: arm = 0 (mod I)
+
+or
+T
+
+m
+
+I
+
++ ----;
++ i=1
+L: 2 cos 27rmWi =0 (mod I)
+T
+k-1
+
+and we have to prove that the sequence
+
+vm = 2 cos 27rmWl + ... + 2 cos 27rmWk_l
+is not uniformly distributed modu10 I.
+We use here a lemma analogous to the preceding one.
+
+If the p-dimensional vector {u n i }
+distributed modulo I in Rp, the sequence
+LEMMA.
+
+:=1 (j 1, 2, ... p) is uniformly
+=
+
+where w(x) is continuous with period I is uniformly distributed if and only if condition (2) or the equivalent condition (3) is satisfied.
+PROOF of the lemma.
+
+It is convenient here to use the second form of the
+
+proof. The condition is
+I
+
+IV
+
+-NIL:
+But
+
+1- t
+
+N n=l
+
+e27rihvn ~
+
+0 (h is any integer ~ 0).
+
+e27rih{w(unl)+ ...
+
++"'(UnP)I~ { (1 e27rihw (x) dx 1p.
+}o
+f
+
+Hence the lemma.
+Theorem V about T m follows from the fact that {mwl' mW2, . • •, mWk-l} is
+uniformly distributed in the unit torus of Rk-l owing to the fact that w}, ...,
+Wk-}, and I are linearly independent. This completes the proof.
+EXERCISE
+
+Show that any number T of the class T is the quotient 0/0' of two numbers of
+the class S belonging to the field of T. (For this and other remarks, see [13].)
+
+Chapter IV
+
+A CLASS OF SINGULAR FUNCTIONS; BEHAVIOR OF THEIR
+FOURIER-STIELTJES TRANSFORMS AT INFINITY
+
+1. Introduction
+By a singular function I(x) we shall mean, in what follows, a singular continuous monotonic function (e.g., nondecreasing), bounded, and whose derivative
+vanishes for almost all (in the Lebesgue sense) values of the real variable x.
+A wide class of singular functions is obtained by constructing, say, in (0, 21r)
+a perfect set of measure zero, and by considering a nondecreasing continuous
+function I(x), constant in every interval contiguous to the set (but not everywhere).
+A very interesting and simple example of perfect sets to be considered is the
+case of symmetrical perfect sets with constant ratio of dissection. Let ~ be a
+positive number, strictly less than -!, and divide the fundamental interval, say,
+(0, 21r), into three parts of lengths proportional to ~, I - 2~, and ~ respectively.
+Remove the central open interval ("black" interval). Two intervals ("white"
+intervals) are left on which we perform the same operation. At the kth step
+we are left with 2k white intervals, each one of length 21r~k. Denote by E k the
+set of points belonging to these 2k closed white intervals. Their left-hand end
+points are given by the formula
+(1)
+
+x = 21r[El(1 -
+
+~)
+
++ E2~(1 - ~) + ... + Ek~k-l(1 - ~)],
+
+where the Ei are 0 or I. The intersection of all E k is a perfect set E of measure
+equal to
+21r Hm (~k2k) = 0
+k=oo
+
+and whose points are given by the infinite series
+(2)
+
+x = 21r[El(1 -
+
+~)
+
++ E2~(1 - ~) + ... + Ek~k-l(1 - ~) + ...],
+
+where the Ei can take the values 0 or I. The reader will recognize that the classical
+Cantor's ternary set is obtained by taking ~ = !.
+We define now, when x E E, a function f(x) given by
+
+when x is given by (2). It is easily seen that at the end points of a black interval
+(e.g., El = 0, E2 = E3 = ... = I and El = I, E2 = E3 = ... = 0) I(x) takes the same
+value. We then define f(x) in this interval as a constant equal to this common
+value. The function f(x) is now defined for 0 < x < 21r (f(O) = 0, f(21r") = I),
+
+Behavior of Fourier-Stieltjes Transforms at Infinity
+
+is continuous, nondecreasing, and obviously singular.
+"Lebesgue function" associated with the set E.
+The Fourier-Stieltjes coefficients of df are given by
+
+37
+
+We shall call it the
+
+{21r
+
+(3)
+
+Cn =
+
+(271")-1}O eni.r- df(x),
+
+and, likewise, the Fourier-Stieltjes transform of df is defined by
+"(u) = (211")-1
+= (211")-1
+
+f-:
+
+e,d. df(x)
+
+/.2.
+
+euix df(x)
+
+for the continuous parameter u, f being defined to be equal to 0 in (- 00, 0)
+and to I in (271", 00).
+One can easily calculate the Riemann-Stieltjes integral in (3) by remarking
+that in each "white" interval of the kth step of the dissection f increases by
+1/2k • The origins of the intervals are given by (I), or, for the sake of brevity, by
+
+with 'k = ~k-1(1 -
+
+~).
+
+Hence an approximate expression of the integral
+{21r
+
+}o
+
+e
+
+nix
+
+df
+
+IS
+
+the summation being extended to the 2k combinations of f j = 0, I. This sum
+equals
+I k
+-2k IT (1 + e21rnir)• --
+
+k
+
+1rni ~r.
+e
+1
+
+8=1
+
+k
+
+IT cos 7I"n'lI.
+
+8=1
+
+00
+
+Since
+
+L: '8 = 1, we have
+1
+
+(4)
+
+e- 1rni 271"C n =
+
+00
+
+00
+
+k=1
+
+k=l
+
+IT cos 7I"nr k = IT cos 7I"n~k-1 (I - ~)
+
+and likewise
+00
+
+(5)
+
+e- 1rlti 271")'(u) =
+
+IT cos 7I"U~k-1 (I - ~).
+k=l
+
+38
+
+Behavior of Fourier-Stieltjes Transforms at Infinity
+
+2. The problem of the behavior at infinity
+It is well known in the elementary theory of trigonometric series that if f is
+absolutely continuous, the Fourier-Stieltjes transform
+"f(u) = (27r)-1 f,21r euix df
+
+tends to zero as I u I ~ 00, because in this case "f(u) is nothing but the ordinary
+Fourier transform of a function of the class L. The situation is quite different
+iff is continuous, but singular. In this case "f(u) need not tend to zero, although
+there do exist singular functions for which "f(u) ~ 0 ([17J, and other examples
+in this chapter). The same remarks apply to the Fourier-Stieltjes coefficients cn •
+The problem which we shall solve here is the following one. Given a symmetrical perfect set with constant ratio of dissection ~, which we shall denote
+by E(~), we construct the Lebesgue function f connected with it, and we try
+to determine for what values of ~ the Fourier-Stieltjes transform (5) (or the
+Fourier-Stieltjes coefficient (4» tends or does not tend to zero as I u I (or I n J)
+increases infinitely.
+We shall prove first the following general theorem.
+THEOREM I.
+
+For any function of bounded variation f the Riemann-Stieltjes
+
+integrals
+
+1"21r nix
+
+27rcn =}o
+
+e
+
+df
+
+and
+
+1"21r uix
+
+27r"y'(u) =}o
+
+e
+
+df
+
+tend or do not tend to zero together when I n I or I u I tends to 00.
+
+Since it is obvious that "f(u) = 0(1) implies Cn = 0(1), we have only to prove
+the converse proposition. We shall base this proof on the following lemma, interesting in itself.
+LEMMA.
+
+Let f(x) be a function of bounded variation such that, as I n f ~ 00,
+
+}ot
+
+(6)
+
+1r
+
+e nicr df ~ o.
+
+Let B(x) be any function such that the Lebesgue-Stieltjes integral
+
+f,21r B(x)df(x)
+has a meaning. Then the integral
+
+}ot
+tends also to zero for I n I =
+
+00.
+
+1r
+enixB(x)dj
+
+Behavior of Fourier-Stieltjes Transforms at Infinity
+
+39
+
+PROOF of the lemma.
+
+We observe first that by the properties of the LebesgueStieltjes integral, there exists a step function T(x) such that
+(7)
+
+J.27r I B(x) - T(x) I df < E,
+
+E being arbitrarily small.
+
+Secondly, by a well-known theorem of Wiener [17J,
+the condition (6) implies that f is continuous. Hence, in (7) we can replace T(x)
+by a trigonometric polynomial P(x). But (6) implies
+
+27r
+
+o e nix P(x)df ~ O.
+
+J.
+
+Hence, E being arbitrarily small in (7), we have
+
+27r
+o
+
+J.
+
+B(x)e nix df ~ 0
+
+as stated in the lemma.
+PROOF of Theorem I.
+
+Suppose that
+Cn ~ 0 as
+
+In I~
+
+00.
+
+If "f(u) does not tend to zero as I u I ~ 00, we can find a sequence
+{Udk=l with
+
+I Uk I ~
+
+00
+
+such that
+
+Let
+
+nk being an integer and 0
+
+< CY.k < 1. By extracting, if necessary, a subsequence
+
+from {ud, we can suppose that CY.k tends to a limit CY.. We would then have
+
+I J.27r enlcixeaix df I > ~ > 0,
+which is contrary to the lemma, since Cn ~ 0 and eaix is continuous.
+It follows now that in order to study the behavior of C n or "f(u), it is enough
+to study
+00
+
+(8)
+
+r(u) =
+
+IT cos 1rU~k
+k=l
+
+when u~ 00.
+
+40
+
+Behavior of Fourier-Stieltjes Transforms at Infinity
+
+The infinite product r(u) tends to zero as u ~ 00 if and only
+if 1/~ is not a number of the class S (as defined in Chapter I). We suppose here
+THEOREM 11.
+
+~ ~~.
+
+Remark. We have seen that the expressions (4) and (5) represent respectively
+the Fourier-Stieltjes coefficient and the Fourier-Stieltjes transform of the Lebesgue
+function constructed on the set E(~) if 0 < ~ <~. Nevertheless, it is easy to
+see that in order that the infinite products (4), (5), (8) have a meaning, it is
+enough to suppose that 0 < ~ < 1. For example, r(u) still represents a FourierStieltjes transform if only 0 < ~ < 1, namely the transform of the monotonic
+function which is the convolution of an infinity of discontinuous measures
+(mass ~ at each of the two points 1r~k, - 1r~k).
+
+Our theorem being true in the general case 0 < ~ < 1, we shall only assume
+this condition to prove it.
+If r(u) ~ 0(1) for u = 00, we can find an infinite
+increasing sequence of numbers Us such that
+PROOF of Theorem 11.
+
+I r(us ) I > 0 > o.
+Writing 1/~ = 0 (0 > 1), we can write
+where the m s are natural integers increasing to 00, and I < 'As < O.
+By extracting, if necessary, a subsequence from {us}, we can suppose that
+'As ~ A (1 < A <0). We write
+I r (us) I < cos 1rAs cos 1r'AsO . . . cos 1rAsOm.,
+whence
+m.
+
+IT [1 - sin 1rAsOq] > 0
+q=O
+
+2,
+
+2
+
+and, since 1 + x < ex,
+m.
+
+- I
+
+sin 2 1rX,fJQ
+
+e q=O
+
+-> 02 ,•
+
+that is to say,
+m.
+
+~ sin2 1rA sOq < log (1/0 2).
+
+q=O
+
+Choosing any r > s, we have
+m.
+
+1nr
+
+~ sin 1r'Al)q < ~ sin2 1r'A rOq < log (1/0 2).
+2
+
+q=O
+
+q=O
+
+Behavior of Fourier-Stieltjes Transforms at Infinity
+
+41
+
+Keeping now s fixed and letting r ~ 00, we have
+m.
+
+L: sin2 7rA()q < log (1/0
+
+2
+
+),
+
+q=o
+
+and, since s is arbitrarily large,
+00
+
+L: sin2 7rA()q < log 0/0
+
+2),
+
+q=O
+
+which, according to the results of Chapter I, shows that () = ~-1 belongs to the
+class S.
+We have thus shown that r(u) -:;e 0(1) implies that () E S.
+Conversely, if () E Sand () -:;e 2, then r(u) does not tend to zero. (Remark
+that if ~ = t, the Fourier-Stieltjes coefficient en of (4) is zero for all n -:;e 0 and
+thenf(x) = x (0 < x < 27r).)
+Supposing now () = ~-1 -:;e 2, we have
+7r
+7r
+7r
+r«()k) = I cos 7r() cos 7r()2 ..• cos 7r()k I. I cos (j cos ()2 ... COS()k··· I·
+
+Since () E S, we have L: sin2 7r()n < 00. Hence, the infinite product
+00
+
+IT cos 7r()m
+2
+
+m=l
+
+converges to a number A -:;e 0 (except if ()q = h + t, h being a natural integer,
+but this is incompatible with the fact that () E S). Hence,
+
+I r«()k) I > v_/-A I cos (j7r cos ()27r ... I
+and the last product converges to a number B > 0, since () ~ 2 «()q = 2 is impossible for q > 1 if () E S). Hence,
+
+I r«()k) I > BVA,
+which completes the proof of Theorem 11.
+
+Chapter V
+
+THE UNIQUENESS OF THE EXPANSION
+IN TRIGONOMETRIC SERIES;
+GENERAL PRINCIPLES
+
+1. Fundamental definitions and results
+
+Let us consider a trigonometric series
+00
+
+(S)
+
+~ (an cos nx + bn sin nx),
+o
+
+where the variable x is real. The classical theory of Cantor shows [I7J that
+if this series converges everywhere to zero, it vanishes identically.
+Cantor himself has generalized this result by proving that if (S) converges to
+zero for all values of x except for an exceptional set E containing afinite number
+of points x, then the conclusion is the same one, i.e.,
+an = 0, bn =
+
+°
+
+for all n.
+
+Cantor proved also that the conclusion is still valid if E is infinite, provided
+that the derived set E' is finite, or even provided that anyone of the derived sets
+of E (of finite or transfinite order) is empty, in other words if E is a denumerable
+set which is reducible [17J.
+The results of Cantor go back to the year 1870. Not until 1908 was it proved
+by W. H. Young that the result of Cantor can be extended to the case where E
+is any denumerable set (even if it is not reducible).
+The preceding results lead to the following definition.
+Let E be a set ofpoints x in (0, 271"). Then E is a set of uniqueness
+(set U) if no trigonometric series exists (except vanishing identically) converging
+to zero everywhere, except, perhaps, for x E E. Otherwise E will be called set of
+multiplicity (set M).
+DEFINITION.
+
+We have just seen that any denumerable set is a set U. On the other hand,
+as we shall easily show (page 44);
+If E is of positive measure, E is a set M.
+It is, therefore, natural to try to characterize the sets of measure zero by classifying them in "sets U" and "sets M." We shall give a partial solution of this
+
+problem in the next two chapters, but we must begin here by recalling certain
+classical theorems of the theory of trigonometric series of Riemann [17J.
+
+The Uniqueness of the Expansion in Trigonometric Series
+
+43
+
+(a) Given any function G(x) of the real variable x, we shall write
+
+DEFINITIONS.
+
+! d 2G(
+h2
+
+X,
+
+h) = G(x + h) + G(x - h) - 2G(x)
+h2
+'
+
+and, if this expression tends for a given fixed x to a limit A, as h ~ 0, we shall
+say that G(x) has, at the point x, a second generalized derivative equal to A.
+(b) If, at a given point x, the expression
+
+~ d 2G(x, h) = G(x + h) + G~ - h) - 2G(x)
+tends to zero as h ~ 0, we shall say that G(x) is smooth at the point x.
+THEOREM I (Cantor-Lebesgue).
+
+If the trigonometric series
+
+""
+
+!ao + L: (an cos nx + bn sin nx)
+
+(1)
+
+1
+
+converges in a set of positive measure, its coefficients an and bn tend to zero.
+Ifwe integrate the series (1) formally twice, assuming that an ~ 0,
+bn ~ 0, we obtain the continuous function
+DEFINITION.
+
+1 2 L:"" (an COS nx + bn sin nx) ,
+x=-aoXF()
+2
+
+(2)
+
+4
+
+1
+
+n
+
+the last series being uniformly convergent. If, at a given point x, F(x) has a second
+generalized derivative equal to s, we shall say that the series (1) is summableRiemann (or summable-R) and that its sum is s.
+THEOREM H.
+
+If the series (1) (an, bn ~ 0) converges to s at the point x, it is also
+
+summable-R to s at this point.
+If the series (1) with coefficients tending to zero is summable-R
+to zero for all the points of an interval, it converges to zero in this interval (consequence of the principle of "localization").
+THEOREM HA.
+
+THEOREM HI.
+
+The function F(x) (always assuming an ~ 0, bn ~ 0) is smooth
+
+at every point x.
+Let G(x) be continuous in an interval (a, b). If the generalized
+second derivative exists and is zero in (a, b), G(x) is linear in (a, b).
+THEOREM IV.
+
+Theorem IV remains valid if one supposes that the generalized
+second derivative exists and is zero except at the points of a denumerable set E,
+provided that at these points G is smooth.
+THEOREM V.
+
+Historically, this last theorem was proved first by Cantor (a) when E is finite,
+(b) when E is reducible, i.e., has a derived set of finite or transfinite order which
+is empty. It was extended much later by Young to the general case where E
+is supposed only to be denumerable.
+
+44
+
+The Uniqueness of the Expansion in Trigonometric Series
+
+From Theorem V we deduce finally:
+If the series (1) converges to 0 at all points of (0, 27r) except
+perhaps when x belongs to a denumerable set E, the series vanishes identically. In
+other words every denumerable set is a set U, which is the above stated result.
+THEOREM VI.
+
+This follows immediately as a consequence of Theorems 11, Ill, and
+V. For the application of these theorems shows that the function F(x) of (2) is
+linear. Hence, for all x,
+PROOF.
+
+an cos nx + bn sin nx I
+A
+B
+2:1 - - - - - -n:2- - - - - - = -4 aoX - x2
+
+00
+
+and the periodicity of the series implies ao = A = 0; next, the series being uniformly convergent, B = 0 and an = b n = 0 for all n.
+We shall now prove the theorem on page 42:
+THEOREM.
+
+Every set ofpositive measure is a set M.
+
+Let EC (0, 27r) and I El> O. It will be enough to prove that there
+exists a trigonometric series (not vanishing identically) and converging to zero
+in the complementary set of E, that is, CE.
+Let P be perfect such that PC E, and I PI> O. Let x(x) be its characteristic
+function. In an interval ~ contiguous to P, one has x(x) = 0; hence the Fourier
+series of X(x),
+PROOF.
+
+ao
+"2 + ~ (an cos nx + (3n sin nx)
+00
+
+t'o.I
+
+X(x),
+
+converges to zero in~. Hence it converges to zero in CP, and also in CE C CP.
+But this series does not vanish identically, since
+1 /.211"
+I PI
+ao = i- 0 X(x)dx = 1r > 0,
+
+which proves the theorem.
+2. Sets of multiplicity
+The problem of the classification of sets of measure zero into sets U and sets M
+is far from solved. But it is completely solved for certain families of perfect
+sets, as we shall show in the next two chapters.
+We shall need the following theorem.
+A necessary and sufficient condition for a closed set E to be a set of
+multiplicity is that there should exist a trigonometric series
+THEOREM.
+
+The Uniqueness of the Expansion in Trigonometric Series
+
+45
+
+(not vanishing identically) with coefficients cn = 0 (~) t and representing a constant t
+in each interval contiguous to E.
+The condition is necessary. Let E, closed, be of the type M, and
+consider a nonvanishing trigonometric series
+PROOF.
+
+(S)
+-00
+
+converging to zero in every interval contiguous to E.
+We show first that we can then construct a series
+(S')
+-00
+
+but with 1'0 = 0, having the same property. For (S) has at least one nonvanishing
+coefficient, say, I'k. Let I ~ k. The series
+(S') = I'ke-ilx (S) - I'le- ikx (S)
+has a vanishing constant term, and converges to zero, like (S), for all x belonging
+to CE, the complementary set of E. Let El be the set where (S) does not converge to zero. (S') cannot vanish identically, for the only points of El (which is
+necessarily infinite) where (S') converges to zero are the points (finite in number)
+where
+Let us then consider the series
+00
+
+I: I'n enix (1'0 = 0),
+-00
+
+converging to zero in CE. The series integrated twice,
+-1
+
+00
+
+-00
+
+I-
+
+I: + I: I'nn einx,
+2
+
+represents by Riemann theorems (11 and IV on page 43) a linear function in each
+interval of CE. But this series is the integral of the Fourier series
+-1
+
+00
+
+-00
+
+1
+
+I: + I: I'~
+e
+nl
+
+inx
+
+,
+
+which must hence represent a constant in each interval of CE, and it is now
+enough to remark that
+cn = I'~ = 0
+m
+
+(!),
+n
+
+since necessarily l' n ~ 0 (Th. I).
+t The series is a Fourier series by the Riesz-Fischer theorem.
+t Hence, by the elementary theory, converging to this constant.
+
+46
+
+The Uniqueness of the Expansion in Trigonometric Series
+
+The condition is sufficient. Suppose that the series
+
+(not vanishing identically) with Cn = 0 (~) represents a constant in each interval
+of CE. One can write
+Cn =
+
+'Yn
+. h
+. WIt
+1"n ~ 0 •
+
+m
+
+It follows that the integrated series
+CoX -
+
+~ 1"; einx
+
+Inl~l n
+
+represents a linear function in each interval of CE. Hence, the series
+
+is summable-R to zero in each interval of CE, and thus, by Theorem HA, converges to zero in each interval contiguous to E, the set E being, therefore, a set
+of multiplicity.
+
+Remark. If the series
+
+of the theorem represents a function of bounded variation, the series
+
+converging to zero in CE is a Fourier-Stieltjes series (in the usual terminology,
+the Fourier-Stieltjes series of a "measure" whose "support" is E). In this case,
+we say that E is a set of multiplicity in the restricted sense.
+To construct a set of multiplicity in the restricted sense, it is enough to construct a perfect set, support of a measure
+
+whose Fourier-Stieltjes coefficients,
+'Yn =
+
+1 /.211"
+21T" 0 e- inx dp,(x),
+
+tend to 0 for I n I ~ 00.
+Consequence. The results of Chapter IV show that every symmetrical perfect
+set E(~) with constant ratio ~, such that 1/ ~ is not a number of the class S, is
+
+a set of multiplicity. In view of the preceding remark, it is enough to take for
+p, the Lebesgue function constructed on the set.
+
+The Uniqueness of the Expansion in Trigonometric Series
+
+47
+
+3. Construction of sets of uniqueness
+We have just seen that in order to show that a closed set E is a set of uniqueness,
+we must prove that there is no series
+
+(not vanishing identically) with coefficients Cn = 0 (~) representing a constant
+in each interval of CE.
+We were able to prove only that a symmetrical perfect set E(~) is a set M
+if ~-1 does not belong to the class S, but we cannot, at this stage, prove that if
+~-1 E S, then E(~) is a set U. This is because we only know that if ~-1 E S, the
+Fourier-Stieltjes coefficients of the Lebesgue measure constructed on the set
+do not tend to zero. But we do not know (a) whether this is true for every
+measure whose support is E(~) or (b) whether there does not exist a series
+
+-00
+
+with Cn = 0 (~) representing a constant in each interval of CE, and which is
+not a function of bounded variation (i.e., the derived series
+
+L: 'Ynenix is not a
+
+Fourier-Stieltjes series).
+A negative proof of this kind would be rather difficult to establish. In general,
+to prove that a set E is a set of the type U, one tries to prove that it belongs to a
+family of sets of which one knows, by certain properties of theirs, that they
+are U sets.
+In this connection, we shall make use of the following theorem.
+THEOREM I.
+
+Let E be a closed set such that there exists an infinite sequence
+offunctions {Ak(X)} ~ with the following properties:
+
+1. Ak(X) = 0 for all k when x E E.
+2. The Fourier series of each
+n
+
+is absolutely convergent, and we have
+
+L: I "In I < A, constant independent of k.
+(k)
+
+n
+
+3. We have
+
+lim 'Yn(k) = 0 for
+
+n ~ 0,
+
+k=oo
+
+lim 'Yo(k) = I ~ o.
+k= 00
+
+4. The derivative A£(X) exists for each x and each k, and is bounded (the bound
+may depend on k).
+Under these conditions, E is a set of uniqueness.
+
+18
+
+The Uniqueness of the Expansion in Trigonometric Series
+
+We shall first prove the following lemma.
+Let E be a closed set, X(x) a function vanishing for x E E and having
+an absolutely convergent Fourier series L 'Ynenix, and a bounded derivative X'(x).
+Let L cnenix be a trigonometric series converging to zero in every interval of the
+complementary set CE. Under these conditions we have
+LEMMA.
+
+L 'YnCn = O.
+(The series is obviously convergent, since L I 'Yn I <
+PROOF.
+
+00
+
+and en ~ 0.)
+
+Let ~ be an interval contiguous to E. The series
+2
+
+Co
+
+"' C
+2x - 'Ln2 e .
+
+n
+
+nlX
+
+converges to a linear function in~. Hence, the Fourier series
+f
+
+1"0.1
+
+'"'* cneninix
+
+L- - - ,
+
+where the star means that there is no constant term, represents in ~ a function
+-cox + a, the constant a = a(A) depending on A. Parseval's formula is applicable
+[17J in our hypothesis to the functionsf(x) and
+X'(x)
+
+and gives
+1
+-2
+7r
+
+1"0.1
+
+L 'Ynnienix
+
+1,271'-
+
+X'(x)[(x)dx = -
+
+0
+
+L 'YnCn.
+
+Inl~ 1
+
+The integral is equal to
+(27r)-1
+
+L ( X'(x) (-coX + a)dx,
+d }d
+
+since X and X' are zero for x E E. (Note that if E is closed, but not perfect,
+its isolated points are denumerable.) Integrating by parts,
+
+1.
+
+X'(x) (-coX + a)dx ~ [(-coX + a))\J. + Co
+
+and comparing the three last relations, we have
+
+or, as stated,
+
+1.
+
+X(x)dx,
+
+The Uniqueness of the Expansion in Trigonometric Series
+
+49
+
+Remark. The hypothesis that A'(x) is bounded could be relaxed (which would
+lead also to a relaxation of the hypothesis (4) of the theorem), but this is of no
+interest for our applications. It should be observed, however, t~at some hypothesis on A(x) is necessary. We know, in fact, since the obtention of recent
+results on spectral synthesis [6J, [8J, that the lemma would not be true if we
+assume only that A(x) = 0 for x E E, and that its Fourier series is absolutely
+convergent
+PROOF of Theorem I.
+
+Suppose that E is not a set of uniqueness.
+
+Hence,
+
+suppose the existence of
+(not identically 0) converging to 0 in each interval of CE. The lemma would
+then give
+(3)
+
+for all k.
+Since Cn ~ 0 for n = 00 (by general Theorem I on page 43), the hypothesis (2)
+gives
+
+E being arbitrarily small for N large enough.
+
+I L
+
+'Yn(k)C n
+
+Having fixed N, we have
+
+I< E
+
+l~lnl<N
+
+for k large enough, by the hypothesis (3) of the_theorem.
+Hence the first member of (3) differs from col by a quantity arbitrarily small,
+for k large enough. This proves that Co = O.
+Multiplying the series
+by e- ki .r , we find its constant term to be Ck. Thus the argument gives that Ck = 0
+for all k, that the series
+cne ni .r is identically 0, and that E is a set of the type U.
+
+L
+
+First application: Sets of the type H. A linear set E C (0, 27r) is said to be
+"of the type H" if there exists an interval (a, (3) contained in (0, 27r) and an
+infinite sequence of integers {nd 7 such that, for whatever x E E none of the
+points of abscissa nkX (reduced modulo 27r) belongs to (a, (3).
+For example, the points of Cantor's ternary set constructed on (0, 27r):
+El
+X = 27r [ --
+
+3
+
++ -3E2 + ... + -3Ek + ... ]
+2
+
+k
+
+where Ej is 0 or 2, form a set of the type H, since the points 3k x (mod 27r) never
+belong to the middle third of (0, 27r). The situation is the same for every symmetrical perfect set E(~) with constant ratio ~, if l/~ is a rational integer.
+
+50
+
+The Uniqueness of the Expansion in Trigonometric Series
+
+THEOREM 11. Every closed set of the type H (and thus also every set of the
+type H t) is a set U.
+PROOF. Let us fix an e > 0, arbitrarily small and denote by A(X) a function
+vanishing in (0, a) and in ({3, 211"), equal to 1 in (a + e, (3 - e) and having a
+bounded derivative A'(X), so that its Fourier series is absolutely convergent.
+Write
+A(X) = :E 'Yme mix
+m
+
+and
+
+Ak(X) = "'A(nkX) = :E 'Ymemn"ix.
+m
+
+The sequence of functions {Ak(X)} satisfy the conditions (1), (2), (3), (4) of
+Theorem I. In particular, A(nkx) is zero for all x E E and all k, and since
+
+'Yn (k) = I'm
+if and only if n = mnk and 'Yn (k) = 0 if nkln, we see that the conditions (3) are
+satisfied, with
+1 (21r
+1= 1'0 = 211"}o A(x)dx = (211")-1({3 - a - 2e),
+which is positive if e has been chosen small enough.
+
+Second application. Sets of the type H(n). The sets of the type H have been
+generalized by Piatecki-Shapiro, who described as follows the sets which he calls
+"of the type H(n)."
+Consider, in the n-dimensional Euclidean space Rn, an infinite
+family of vectors {Vk } with rational integral coordinates
+DEFINITION.
+
+Vk = {Pk(l),Pk(2), ...,pk(n)}
+
+(k = 1,2, ...).
+
+This family will be called normal, if, given n fixed arbitrary integers al, a2, ..., an
+not all zero, we have
+
+I alpk + a2pk + ... + anpk(n) I ~
+(l)
+
+(2)
+
+00
+
+ask~oo.
+
+Let ~ be a domain in the n-dimensional torus
+
+o < Xj < 211" (j = 1, 2, ..., n).
+A set E will be said to belong to the type H(n) if there exists a domain ~ and
+a normal family of vectors Vk such that for all x E E and all k, the point with
+coordinates
+all reduced modulo 211", never belongs to ~.
+
+t If E is of the type H, so is its closure, and a subset of a U-set is also a U-set.
+
+The Uniqueness of the Expansion in Trigonometric Series
+THEOREM Ill.
+
+51
+
+Every set E of the type H(nl is a set of uniqueness.
+
+We can again suppose that E is closed, and we shall take n = 2,
+the two-dimensional case being typical. Suppose that the family of vectors
+PROOF.
+
+Vk = (pk' qk)
+
+is normal. We can assume that A consists of the points (Xl, X2) such that
+
+al < Xl < {3t,
+a2 < X2 < {32,
+the intervals (al, (31) and (a2' (32) being contained in (0, 27r).
+We shall denote by X(x) and J1.(x) respectively two functions constructed with
+respect to the intervals (at, (31) and (a2, (32) as was, in the case of sets H, the
+function X(x) with respect to (a, (3). Under these conditions, the functions
+
+X(PkX) J1.(qkX)
+
+(k = 1, 2, ...)
+
+are equal to zero for all k and all X E E. This sequence of functions will play
+the role of the sequence denoted by Xk(x) in Theorem I. Thus, the condition (1)
+of that theorem is satisfied.
+Write
+X(x) = ~ 'Ymeimx,
+
+J1.(x) = ~ Om eimx .
+
+The Fourier series of X(PkX)J1.(qkX) is absolutely convergent, and, writing
+X(Pk X)J1.(qk X) = ~ Cn(kleinx,
+
+we have
+
+and
+
+This proves that condition (2) is also satisfied.
+Condition (4) is satisfied if we have chosen X(x) and J1.(x) possessing bounded
+derivatives.
+Finally, for condition (3) we note that
+(4)
+
+~
+
+Cn(kl =
+
+'YmOm"
+
+n=mpk+m'qk
+
+Suppose first n = O. Then
+CO(kl
+
+=
+
+~
+
+'YmOm'
+
+mPk+m'qk =0
+
+=
+
+0+
+
+"10 0
+
+L*
+
+mPk+m'qk=O
+
+'YmOm' = "'10 00 + T
+
+the star meaning that I m I + I m' I ~ O. We shall prove that T tends to zero
+for k ~ 00. Write T = T l + T 2 , where T l is extended to the indices I m I < N,
+
+52
+
+The Uniqueness of the Expansion in Trigonometric Series
+
+Since the family of vectors {Vk} is normal, if I rn I + I rn' I ¥= 0,
+rnpk + rn'qk cannot be zero if k is large enough, and if rn and rn' are chosen
+among the finite number of integers such that I rn I < N, I rn' I <N. On the
+other hand, in T 2 either I rn I > Ni or I rn' I > N and thus
+
+I rn' I <N.
+
+00
+
+00
+
+I T 1< ( L I'm)(L I Om' J) + (L II'm D( L I Om' I)
+2
+
+Inl>N
+
+-00
+
+-00
+
+Im'I>N
+
+is arbitrarily small for N large enough. Choosing first N, and then k, we see
+that
+CO(k) ~
+
+1'000
+
+as k ~ 00, and since 1'000 ¥= 0, the second part of condition (3) is satisfied.
+If now n ¥= 0, the second member of (4) does not contain the term where
+rn = 0, rn' = O. The same argument leads then to
+Cn (k) ~
+
+0 for k = 00, n ¥= O.
+
+This concludes the proof that all conditions of the general theorem are satisfied
+and hence that the set E is a set of uniqueness.
+In the following two chapters we shall apply the preceding theorems to special
+sets: symmetrical perfect sets with constant ratio of dissection, and "homogeneous sets."
+
+Chapter VI
+
+SYMMETRICAL PERFECT SETS WITH CONSTANT
+RATIO OF DISSECTION; THEIR CLASSIFICATION
+INTO M-SETS AND U-SETS
+
+In this chapter and in the following one we shall make use of the fundamental
+theorem of Minkowski on linear forms. For the proof we refer the reader to
+the classical literature. (See, e.g., [5J.)
+MINKOWSKI'S THEOREM.
+
+Consider n linear forms of n variables
+n
+
+Aix) = ~ aqPXq (p = I, 2, ..., n)
+q=l
+
+where we suppose first the coefficients aqP to be real. We assume that the determinant D of the forms is not zero. If the positive numbers 01, 02, ..., On are such
+that
+there exists a point x with rational integral coordinates (Xl, X2, ••• , x ra ) not all zero
+such that
+I Ap(x) I <op (p = I, 2, ..., n).
+
+The theorem remains valid if the coefficients aq P are complex numbers provided:
+1. the complex forms figure in conjugate pairs
+2. the op corresponding to conjugate forms are equal.
+Let E(~) be a symmetrical perfect set in (0, 271'") with constant ratio
+of dissection~. A necessary and sufficient conditionfor E(~) to be a set of uniqueness is that I/~ be a number of the class S [14].
+THEOREM.
+
+The necessity of the condition follows from what has been said in
+the preceding chapter. We have only to prove here the sufficiency: If ~-I belongs to the class S, E(~) is a U-set.
+We simplify the formulas a little by constructing the set E(~) on [0, 1]. We
+write 0 = I/~ and suppose, naturally, that 0 > 2. We assume that 0 is an
+algebraic integer of the class S and denote by n its degree. We propose to show
+that E(~) is of the type H(n), and hence a set of uniqueness.
+The points of E(~) are given by
+PROOF.
+
+x = EIrI
+
+where
+
+rj =
+
++ E2r2 + ... + Ejrj + ...
+
+.
+1 ( 1 - 7JI) = (
+0 -j i1
+~1-I(l
+- ~) = OiI
+
+and the Ej are
+
+°or 1.
+
+54
+
+Symmetrical Perfect Sets with Constant Ratio of Dissection
+
+Thus,
+x = «() - I) [~l
+
++ ~~ + ... + dj + .. -J.
+
+By X we denote a positive algebraic integer of the field of (), which we shall
+determine later. We denote by ab a2, ..., an-l the conjugates of () and by
+J.L1, J.L2, ••., J.Ln-1 the conjugates of X.
+We have, x being a fixed point in E(~) and m a rational integer > 0,
+
+X()mX = X«() -
+
+(1)
+
+I) (EOH + .. -) + R
+
+R = X«() - I) (EI()m-1 + E2()m-2 + ... + Em).
+Observe that, for any natural integer p > 0,
+n-l
+
+X«() - I)()p + L: J.Li(ai - l)aiP
+i=l
+
+=° (mod I).
+
+That is to say
+
+=- L: J.Llai n-l
+
+X«() - I)()p
+
+i=l .
+
+I)a~.p.
+
+Hence, remembering that the I ai I are < I,
+(2)
+
+I R I < 2 }; I J.Li Ito I ai Im = 2 }; 1 ~Iili I (mod 1).
+
+Let us now write (1), after breaking the sum in parenthesis into two parts, as
+(3) X()mx = X«() - I)
+=
+
+(Eft + ... + EotN)+ X«() - 1) (E'Ot:t + ...) + R
+l
+
+P+ Q+R.
+
+We have
+()-N-I
+
+X
+
+I Q I < X«() - I) 1 _ ()-I = ()N'
+
+(4)
+
+We now choose X of the form
+
+X = Xl + X2() + ... + xn()n-l,
+where the Xj are rational integers. Then, obviously,
+}J-i = Xl
+
++ X2ai + ... + xnain-
+
+I
+
+(i = I, 2, ..., n - I).
+
+By Minkowski's theorem, we determine the rational integers, such that
+(5)
+
+~ < ~.'
+
+() n -
+
+n2NI n
+
+(2
+)
+12- I IJ.LiaiI I -< _0"_
+n2NIn i = I, •..., n - 1 ,
+
+Symmetrical Perfect Sets with Constant Ratio o/Dissection
+
+55
+
+where (J' will be determined ina moment. The determinant of the forms
+,.
+
+X·
+(}N
+
+, , 2JJ.i
+
+1 _ I (Xi I (i = 1, 2,' ..., n = 1)
+
+and
+
+can be written as
+
+A'
+
+(}N'
+I
+
+where ~ is a nonvanishing determinant depending only on () (and independent
+of N), say, ~ = ~((}). Minkowski's theorem can be applied, provided
+~
+
+fr
+
+nn2N> (}N'
+
+and, after choosing (J', we can always determine N so that this condition be
+fulfilled, since ()/2 > 1.
+By (2), (3),(4), and (5), we shall rhen obtain for an arbitrary fixed x E E(~)
+and any arbitrary natural integer m > 0
+(J'
+
+I }..(}mx -- P I <
+- 2 N1n
+
+(mod 1),
+
+that is to say
+(6)
+
+IX(}mx - X((} - 1) (em+l
++ ... + e(}N+ I -< -!!- (mod 1).
+()
+m N
+
+)
+
+2N1n
+
+Denote now by gm the fractional part of P (depending on m), and denote by Ok,
+k an arbitrary natural integer, the point having the coordinates gk+h gk+2, ..•, gk+n.
+The number of points Ok depends evidently on k, n, and the choice of the e's;
+but we shall prove that there are at most 2N+-n-l distinct points Ok. In fact,
+observe that gk+l can take 2N values (according to the choice of the e's). But,
+once gk+l is fixed, gk+2 can only take 2 different values; and, once' gk+l and gk+2
+are fixed, gk+3 can take only, 2, distinct v,alues. ,Thus the number of points Ok
+is at most 2 N +n - 1•
+,,'
+'
+Let now M k be thep'oint whose coord,inatesare
+
+(X(}k+lX ), {'A(}k'4-2i), ..., (X(}k+ n x ),
+where (z) denotes, as' usual,. the fractional part of z. This point considered as
+belonging to the n-dimensional unit tonus is, by (6), interior to a cube of side
+2(J'
+·2zv,1n,
+
+and of center Ok. The number of cubes is at most 2N+n- 1 and their total volume
+IS
+
+56
+
+Symmetrical Perfect Sets with Constant Ratio of Dissection
+
+If we take (j < t, there will remain in the torus 0 < Xi < 1 U = 1, 2, ..., n)
+a "cell" free of points M k • This will also be true, for every k > k o large enough,
+
+for the point M~ of coordinates
+(C/c+l X ), •••, (C/c+n X ),
+
+if we denote generally by Cm the integer nearest to X(}m, since we know that
+XOm = Cm + Om with Om ~ 0 (m ~ <Xl).
+To show now that E(~) is of the type H(n), we have only to prove that the
+sequence of vectors
+Vk = (Ck+J, C/c+2, •.•, Ck+n)
+
+in the Euclidean space Rn is normal. Let ah a2, •••, an be natural integers, not
+all zero.. We have
+alCk+l
+
++ ... + anCk+n = X(al(}k+l + ... + an(}k+n) + (aIOk+l + ... + anOh+n).
+
+If k ~ <Xl, the last parenthesis tends to zero. On the other hand, the first paren-
+
+thesis equals
+X(}k+l(al
+
++ a2(} + ... + an(}n-l),
+
+and its absolute value increases infinitely with k, since, (} being of degree n,
+we have
+
+This completes the proof.
+Remark. We have just proved that if (} belongs to the class S and has degree n
+the set E(~) is of the type H(n). But it does not follow that E cannot be of a
+simpler type. Thus, for instance, if (} is quadratic, our theorem shows that E
+is of the type H(2). But in this particular case, one can prove that E is, more
+simply, of the type H. t
+
+We have shown in Chapter Il that the set
+of numbers of the class S is closed. If E(~o) is a set M, ~O-l belongs to an open
+interval contiguous to S. Hence, there exists a neighborhood of ~o such that
+all numbers of this neighborhood give again sets M. Thus, a symmetrical
+perfect set of the type M presents a certain stability for small variations of ~.
+On the contrary, if E(~o) is a U-set, there are in the neighborhood of ~o numbers
+~ such that E(~) is an M-set. The sets of uniqueness are are "stable" for small
+variations of ~.
+Stability of sets of uniqueness.
+
+t See Trans. Amer. Math. Soc., Vol. 63 (1948), p. 597.
+
+Chapter VII
+
+THE CASE OF GENERAL "HOMOGENEOUS" SETS
+
+1. Homogeneous sets
+The notion of symmetrical perfect set with constant ratio of dissection can be
+generalized as follows.
+Considering, to fix the ideas, the interval [0, IJ as "fundamental interval,"
+let us mark in this interval the points of abscissas
+T/o = 0,
+
+T/h T/2, •••, T/d
+
+(d > I; T/d = 1 - ~),
+
+and consider each of these points as the origin of an interval ("white" interval)
+of length ~, ~ being a positive number such that
+1
+
+~ < d+ I
+T/i+l - T/j > ~
+
+(for allj)
+
+so that no two white intervals can have any point in common. The intervals
+between two successive "white" intervals are "black" intervals and are removed.
+Such a dissection of [0, IJ will be called of the type (d, ~; T/o, T/h T/2, •••, T/d).
+We operate on each white interval a dissection homothetic to the preceding
+one. We get thus (d+ 1)2 white intervals of length ~, and so on indefinitely.
+By always removing the black intervals, we get, in the limit, a nowhere dense
+perfect set of measure zero, whose points are given by
+
+x = Eo + El~ + E2~ + .. "
+
+(1)
+
+where each Ej can take the values T/o, T/h •••, T/d.
+The case of the symmetrical perfect set is obtained by taking
+d = 1, T/o = 0, T/l = I - ~.
+
+The set E of points (1) will be called "homogeneous" because, as is readily
+seen, E can be decomposed in (d + I)k portions, all homothetic to E in the
+ratio ~k (k = I, 2, ...).
+2. Necessary conditions for the homogeneous set E to be a U-set
+
+Since each subset of a set of uniqueness is also a set of uniqueness, if we consider the set Eo C E whose points are given by (1) but allowing the Ej to take
+only the values T/o = or T/d = I - ~, then Eo is a set U, if E is a set U.
+But Eo is a symmetrical perfect set with constant ratio of dissection~. Hence,
+if the homogeneous set E is a U-set, we have necessarily ~ = 1/8, where 8 is a
+.
+number of the class S.
+
+°
+
+58
+
+The Case o/General "Homogeneous" Sets
+
+Consider further the subset E' of E whose points are given by (1) but with the
+choice of the Ej restricted as follows:
+0 or
+El = 0 or
+
+''1]1
+
+, 'Ei'=~ O,'or ''1]1
+
+'1]2
+
+Ed+l =
+
+0
+
+or
+
+'1]2
+
+0 or
+
+'1]d
+
+E2d-l =
+
+0 or
+
+1]d
+
+Eo =
+
+Ed-l =
+
+etc.
+
+The points of this set E' are given by
+.
+
+,.,
+
+x' = Ei'1]l + E~'1]2~ + ... + E~'1]d~d-l + E~+l'1]l~d + ... = L E;rj,
+where the E; are either 0 or 1.
+We can, as in the case of symmetrical perfect sets, define a measure carried by
+this set and prove that its Fourier-Stieltjes transform is
+00
+
+,
+
+IT cos ' -rrur". '
+k=l
+
+(2)
+
+If E is a U-set, E' is a U-set and (2) cannot tend to zero if u ~ 00. It follows
+that there exists an infinite sequence of values of u for which each of the infinite
+products
+cos 7rU'1]1 • cos 7ru'1]1~d • cos 7rU'1]1~2d ••.
+cos 7rU'1]2~ • cos 7rU'1]2~d+I cos 7rU'1]2e-d+1 ••• '
+i'
+
+cos 7rU'1]d~d-l • cos 7rU'1]~~d-l • cos 7rU'1]d~d-l
+has absolute value larger than a fixed positive number a. Write w = 1/~d. We
+have, for an infinite sequence of values of u:
+00
+
+IT I cos 7rU'1]h~h-l • ~kdl > a" (h .:.. 1, 2, ..., d),
+k=O
+
+and from this we deduce, by the same argument 'as in Chapter IV, the existence
+of a real number A rr= 0 such that
+
+L sin 7rA'1]h~h-lWn<.
+2
+
+00
+
+(h, = ,.1, 2, ..., d).
+
+We know that from this condition it follows that (1) w ES, a condition which
+we shall suppose to be fulfilled (since we know that we have the necessary
+condition ~-l E S, which implies ~-d E S), (2) the numbers
+A'1]1, A'1]2, •• :, A'1]d
+
+all belong to the field of w (hence to the field off), = ~-l). Since '1]d = 1 - ~,
+it follows that
+.'1]1, '1]2, • • .', 1]d
+
+are algebraic numbers of the field of 8.
+
+The Case of General "Homogeneous" Sets
+
+59
+
+Summing up our results we get:
+THEOREM. If the homogeneous set E is a set of uniqueness, then:
+I. I/ ~ is an algebraic integer (J of the class S.
+2. The abscissas 1]], ••• , 1]d are algebraic numbers of the field of (J.
+We proceed now to prove that the preceding conditions are sufficient in order
+that E be a U-set.
+
+3. Sufficiency of the conditions
+THEOREM. The homogeneous set E whose points are given by (1), where I/~ = (J
+is an algebraic integer of the class S and the numbers 1]1, ••• , 1]d are algebraic
+belonging to the field of (J, is a set of the type H(n) (n being the degree of (J), and
+thus a set of uniqueness.
+Let a be a rational positive integer such that a1]l, a1]2, ..., a1]d are
+integers of the field of (J. Denote by
+PROOF.
+
+"" (1) , . . . , \A,.
+"" (n-l)
+
+\A.
+
+the conjugates of (J and by
+W J·(1) , • • • , w·(n-ll
+J
+
+(J' -- I , 2 , • • • , d)
+
+the conjugates of 1]j. Denote further by A an algebraic integer of the field of (J,
+whose conjugates shall be denoted by
+
+Writing (1) in the form
+
+we have, if m is a natural integer > 0,
+n-l
+
+Aa(Jm1]j + L: jJ.(i)a . aWmw/ i) =
+i=l
+
+° (mod
+
+1).
+
+Thus, x E E being fixed, we have always
+
+Aa(Jmx = Aa (Em+l
+(J + ... + Em+N)
+(IN + Aa (Em+N+l
+(IN+l + ...) + R
+
+(mod 1),
+
+where N > I is a natural integer to be chosen later on, and where, putting
+
+M = max {I w/i} I, 1]j}
+i,j
+
+we have
+
+60
+
+The Case of General "Homogeneous" Sets
+
+Just as in the case considered in Chapter VI, Minkowski's theorem leads to
+the determination of the positive algebraic integer A of the field of () such that
+AaM
+I
+(}N(() - I) < 2n(d + 1)(Nlnl+l'
+
+I J.Li I
+1
+Ma 1 _ I a(i) I < 2n(d + 1)(Nlnl+l'
+provided that
+N
+
+[2n(d + l)n+ 1J-n > , .11 (}-N.
+
+Here .1 is a certain nonvanishing determinant depending on the set E and on (),
+but not on N. This condition can be written
+(}N > .1(d + I)N[2n(d + l)Jn
+
+and will certainly be satisfied for a convenient choice of N, since () > d + I.
+The numbers A and N being now thus determined, we shall have, for all m and
+all x E E,
+N
+
+I
+
+'Aa(}m X - Aa (EO+! + ... + Eot ) < 2(d+ :)(Nlnl+l (mod I).
+The argument is now identical with the one of Chapter VI. It is enough to
+observe that
+1
+(d+ I)N+n-l [ (d+ 1)(Nlnl+l
+
+In = d+1 1
+
+in order to see that there exists in the torus 0 < Xj < 1 (j = 1, 2, ..., n) a "cell"
+free of points whose coordinates are the fractional parts of
+
+the natural integer k > 0 and the point x E E being arbitrary.
+Since () E S, we have Aa(}m = Cm + Om, Cm being a rational integer and Om ~ O.
+The remainder of the proof is as before, and we observe that the vectors
+Vk(Ck+!, Ck+2, ••• , Ck+n)
+
+form a normal family.
+EXERCISE
+
+The notion of symmetric perfect set with constant ratio of dissection (described at the beginning of Chapter IV) can be generalized as follows.
+Divide the fundamental interval (say [0, IJ) in three parts of respective lengths
+~l' 1 - 2~1' ~l (where 0 < ~l < i). Remove the central part ("black" interval)
+and divide each of the two "white" intervals left in three parts of lengths pro-
+
+The Case o/General"Homogeneous" Sets
+
+61
+
+portional to ~2, 1 - 2~2, ~2 (0 < ~2 < i). The central parts are removed, and the 4
+white intervals left are divided in parts proportional to ~3' 1 - 2~3, ~3 (0 < ~3 < ~).
+We proceed like this using an infinite sequence of ratios ~h ~2, ••• , ~n,
+and we
+obtain a symmetric perfect set with variable rates of dissection E(~h
+, ~n, ...).
+Suppose now that the sequence {~n} i is periodic, i.e., that ~p+j = ~j for all j,
+the period p being a fixed integer. Prove that the set E(~h ..., ~n •••) can be
+considered as a "homogeneous set" in the sense of Chapter VII, with a constant
+rate of dissection
+
+x = ~l ••• ~p.
+Using the results of this chapter, prove that this set is a set of uniqueness if and
+only if the following hold.
+1. X-I belongs to the class S.
+2. The numbers ~h ••• , ~p are algebraic and belong to the field of X.
+
+SOME UNSOLVED PROBLEMS
+
+1. The following problem has already been quoted in Chapter I:
+Suppose that the real number () > 1 is such that there exists a real "A, with
+the property that 1I "A,(}n " ~ 0 as the integer n increases infinitely (without any
+other hypothesis). Can one conclude that () belongs to the class S?
+Another way to state the same problem is:
+Among the numbers () > I such that, for a certain real "A,, 11 "A,()n 11 ~ 0 as
+n ~ 00, do there exist numbers () which are not algebraic?
+2. Let us consider the numbers T of the class T defined in Chapter Ill. It
+is known that every number () of the class S is a limit point of numbers T (on
+both sides). Do there exist other limit points of the numbers T, and, if so,
+which ones?
+3. It has been shown in Chapter IV that the infinite product
+00
+
+r(u) =
+
+IT cos 7rU~k
+
+k=O
+
+is, for 0 < ~ < !, the Fourier-Stieltjes transform of a positive measure whose
+support is a set E(~) of the Cantor type and of constant rate of dissection ~.
+But this infinite product has a meaning if we suppose only 0 < ~ < I, and in
+the case! < ~ < 1 it is the Fourier-Stieltjes transform of a positive measure
+whose support is a whole interva1.t We know that r(u) = 0(1) for u ~ 00, if
+and only if ~-l does not belong to the class S. Let
+00
+
+r1(u) =
+
+IT cos 7rU~lk,
+o
+
+00
+
+r2(u) = ITo cos 7ru~2k
+where ~l-l and ~2-1 both belong to the class S, so that neither r1(u) nor r 2(u)
+tends to zero for u = 00. What is the behavior of the product
+
+as u ~ oo? Can this product tend to zero? Example, ~l = t, ~2 = ,".
+This may have an application to the problem of sets of multiplicity. In fact,
+if ~l and ~2 are small enough, r 1 r 2 is the Fourier-Stieltjes transform of a measure
+whose support is a perfect set of measure zero, namely E(~l) + E(~2).t If
+r 1r 2 ~ 0, this set would be a set of multiplicity.
+t See Kahane and Salem, Colloquium Mathematicum, Vol. VI (1958), p. 193. By E(~l) + E(~2)
+we denote the set of all numbers Xl + X2 such that Xl E E(~l) and X2 E E(~2).
+
+Some Unsolved Problems
+
+63
+
+4. In the case! < ~ < I, the measure of which r(u) is the Fourier-Stieltjes
+transform can be either absolutely continuous or purely singular. t Determine
+the values of ~ for which one or the other case arises. (Of course, if ~-1 E S,
+r(u) ~ o(l) and the measure is purely singular. The problem is interesting
+only if ~-1 does not belong to the class S.)
+
+t See lessen and Wintner, Trans. Amer. Math. Soc., Vol. 38 (1935), p. 48.
+
+APPENDIX
+
+For the convenience of the reader we state here a few definitions and results
+which are used throughout the book.
+We assume that the reader is familiar with the elementary notions of algebraic
+numbers and algebraic fields. (See, e.g., [5].)
+1. An algebraic integer is a root of an equation of the form
+x k + alxk- 1 + ... + ak = 0,
+where the aj are rational integers, the coefficient of the term of highest degree
+being 1.
+If a is any algebraic number, there exists a natural integer m such that ma
+be an algebraic integer.
+If {} is an algebraic integer of degree n, then the irreducible equation of degree
+n with rational coefficients, with coefficient of x n equal to 1, and having {} as
+one of its roots, has all its coefficients rational integers. The other roots, which
+are also algebraic integers, are the conjugates of {}.
+Every symmetric function of {} and its conjugates is a rational integer. This
+is the case, in particular, for the product of {} and all its conjugates, which proves
+that it is impossible that {} and all its conjugates have all moduli less than 1.
+The algebraic integer {} is a unit if I/{} is an algebraic integer.
+2. If (in a given field) f(x) is an irreducible polynomial, and if a root ~ of
+f(x) is also a root of a polynomial P(x), thenf(x) divides P(x) and thus all roots
+off are roots of P.
+3. If an algebraic integer and all its conjugates have all moduli equal to I,
+they are all roots of unity (see [9J).
+4. Let R be a ring of real or complex numbers such that 0 is not a limit point
+of numbers of R. (R is then called a discontinuous domain of integrity.) Then
+the elements of R are rational integers or integers of an imaginary quadratic
+field (see [9J).
+
+5. There exist only a finite number of algebraic integers of given degree n,
+which lie with all their conjugates in a bounded domain of the complex plane
+(see [9J).
+6. Let P(x) be a polynomial in a field k. Let K be an extension of k such
+that, in K, P(x) can be factored into linear factors. If P(x) cannot be so factored
+in an intermediate field K' (i.e., such that k C K' C K), the field K is said to be
+a splitting field of P(x), and the roots of P(x) generate K.
+Let ab ..., an be the roots of P(x) in the splitting field K = k(al, ..., an).
+Each automorphism of K over k (i.e., each automorphism of K whose restriction
+
+Appendix
+
+65
+
+to k is the identity) maps a root of P(x) into a root of P(x), i.e., permutes the
+roots. The group of automorphisms of K over k is called the (Galois) group
+of the equation P(x) = O. This group is a permutation group acting on the
+roots al, ••• , an of P(x).
+If P(x) is irreducible in k, the group thus defined is transitive.
+See, for all this, [lJ.
+7. Uniform distribution modulo 1 of a sequence of numbers has been defined
+in Chapter I.
+A necessary and sufficient condition for the sequence {Un} i to be uniformly
+distributed modulo 1 is that for every function [(x) periodic with period 1 and
+Riemann integrable,
+
+· f(UI) + ... + f(u n ) = f.lf()d
+1lm
+x x.
+n
+
+n-+oo
+
+0
+
+H. Weyl has shown that the sequence {Un} is uniformly distributed modulo 1
+if and only if for every integer h ~ 0,
+
+In Rp (p-dimensional Euclidean space) the sequence of vectors
+
+is uniformly distributed modulo 1 in the torus Tp, if for every Riemann integrable
+function
+[(x) = f(xt, •.., x p ),
+
+periodic with period 1 in each xi, we have
+
+· f(Vl) + ... + f(Vn ) =
+1lm
+n-+oo
+
+n
+
+f, x x,
+fi()d
+
+Tp
+
+the integral being taken in the p-dimensional unit torus Tp.
+H. Weyl's criterion becomes
+
+where (HVn ) is the scalar product
+
+and hI, ..., hn are rational integers not all O.
+If Wl, W2, ••• , W p , and 1 are linearly independent, the vector (nwl, ..., nwp ) is
+uniformly distributed modulo 1 (see [2].
+
+66
+
+Appendix
+
+8. Kronecker's theorem. See [2]. In the form in which we use it in Chapter
+III it may be stated as follows:
+
+If
+are linearly independent, al, a2, ..., ak are arbitrary, and N and E are positive,
+there exist integers
+
+such that
+
+I nOj - pj - aj I < E (j = 1, 2, ..., k).
+(This may be considered as a weak consequence of the preceding result on
+uniform distribution modulo 1 of the vector (nOI, ..., nOk).)
+9. We had occasion to cite Minkowski's theorem on linear forms in Chapters
+I, Ill, and VI. We restate it here as follows.
+Let
+Tt
+
+Ap(x) = L aqPxq (p = 1, 2, ..., n)
+q=1
+
+be n linear forms of the n variables Xl, •.. , X n where the coefficients are real and the
+determinant D of the forms is not zero. There exists a point x with integral coordinates not all zero, Xl, ••. , X n such that
+provided that 01 ... op > I D I.
+
+The result holds if the coefficients aqP are complex, provided that complex
+forms figure in conjugate pairs, and that the two op's corresponding to a conjugate pair are equal.
+The theorem is usually proved by using the following result. If K is a convex
+region of volume V in the Euc1idean space Rn with center of symmetry at the
+origin and if V> 2n , the region K contains points of integral coordinates other
+than the origin. An extremely elegant proof of this result has been given by
+C. L. Siegel, Acta M athematica, Vol. 65 (1935).
+
+BIBLIOGRAPHY
+[1] ARTIN, E., Galois Theory (Notre Dame Mathematical Lectures, No. 2), 2d ed., rev. Notre
+Dame, Indiana; University of Notre Dame Press, 1944. See particularly pp. 30 ff.,
+46, and 76.
+[2] CASSELS, J. W. S., An Introduction to Diophantine Approximation. Cambridge: Cambridge
+University Press, 1957. See particularly Chapter IV.
+[3] HARDY, G. H., A Course of Pure Mathematics, 10th ed. Cambridge: Cambridge University Press, 1952. See particularly Chapter VIII, p. 392.
+[4] HARDY, G. H., LITTLEWOOD, J. E., and POLYA, G., Inequalities, 2d ed. Cambridge:
+Cambridge University Press, 1952. See p. 30.
+[5] HEcKE, E., Vorlesungen uber die Theorie der Algebraischen Zahlen, 2. Auflage. Leipzig,
+1954. See p. 116.
+[6] KAHANE, J.-P., Comptes Rendus, t Vol. 248 (1959), p. 2943.
+[7] KOKSMA, J. E, Compositio mathematica, Vol. 2 (1935), p. 250.
+[8] MALLIAVIN, P., Comptes Rendus, t Vol. 248 (1959), p. 2155.
+[9] POLYA, G. and SZEOO, G., Aufgaben und Lehrsiitze aus der Analysis, 2 vols. Berlin: Julius
+Springer, 1925. See Vol. 11, pp. 149-150.
+[to] PISOT, C, Annali di Pisa, Vol. 7 (1938), pp. 205-248.
+[11] PISOT, C, and DUFRESNOY, J., Annales Scientifiques de l'Ecole Normale Superieure, Vol.
+70 (1953), pp. 105-133.
+[12] SALEM, R., Duke Mathematical Journal, Vol. 11 (1944), pp. 103-108.
+[13] SALEM, R., Duke Mathematical Journal, Vol. 12 (1945), pp. 153-172.
+[14] SALEM, R., and ZYGMUND, A, Comptes Rendus, t Vol. 240 (1955), pp. 2040-2042. See
+footnotes.
+[15] SALEM, R., and ZYGMUND, A, Comptes Rendus, t Vol. 240 (1955), pp. 2281-2285. See
+footnotes.
+[16] WEYL, H., Mathematische Annalen, Vol. 77 (1916), pp. 313-352.
+[17] ZYGMUND, A, Trigonometric Series, 2d ed., 2 vols. Cambridge: Cambridge University
+Press, 1959. See particularly Vol. I, Chapter VII and Chapter IX.
+
+t Comptes Rendus Hebdomadaires des Seances de l'Academie des Sciences.
+
+INDEX
+Algebraic integers, Chap. I-Ill; 59,64
+class S, Chap. 1-11
+class T, 25-35
+Algebraic numbers, 4, 59,64
+Cantor, 36, 42, 43, 49, 62
+cantor-Lebesgue theorem, 43
+Classes Hp, 16
+Fatou, 4
+,Pourier-Stieltjes transforms, Chap. IV;
+58,62,63
+Functions, schlicht, 25
+singular, Chap. IV; 63
+smooth, 43
+Galois group, 32, 65
+Gaussian integers, 23
+Generalized second derivative, 43
+Hadamard,5
+Hirschman,30
+Homogeneous sets, Chap. VII
+Koksma,2
+Kronecker, 5, 22, 25, 33, 66
+
+Piatecki-Shapiro, 50
+Pisot, 32
+Power series with integral coefficients, 22-25
+Riemann, 37, 42, 43, 45, 65
+Riemann-Stieltjes integral, 37
+Rouche, 21, 30
+Schlicht functions, 25
+Sets, homogeneous, Chap. VII
+of multiplicity (sets M), 42, 44-46; Chap. VI
+symmetrical perfect, 36; Chap. VI; 57, 60
+of the type H, 49
+of the type H(n), 50, 51, 59
+of uniqueness (sets U), 42, 44, 47-52;
+Chap. VI; 57-59
+Singular functions, Chap. IV; 63
+Smooth functions, 43
+Symmetrical perfect sets, 36; Chap. VI;
+57,60
+Tchebycheff, 31
+Uniform distribution, 1-2, 33-35, 65
+
+Lebesgue-Stieltjes integrals, 38
+
+Weyl, H., 1, 65
+Wiener,39
+
+Minkowski's theorem, 3, 28, 53, 55, 60, 66
+
+Young, W. H., 42, 43
+
+

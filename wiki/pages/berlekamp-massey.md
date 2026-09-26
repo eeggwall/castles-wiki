@@ -5,7 +5,7 @@ summary: The algorithm that recovers the shortest linear recurrence generating a
 tags: [concept, algorithm, linear-recurrence, berlekamp-massey, method]
 sources: [project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-25
 ---
 
 # Berlekamp–Massey
@@ -26,6 +26,7 @@ This page is a stub keyed to the castle problem's use of the method; the general
 
 ## Related Concepts
 
+- [[pisot-number](pages/pisot-number.md)] — Kronecker's Hankel-determinant criterion (a series is rational iff its Hankel determinants eventually vanish), the determinant form of the minimal-order question this algorithm answers, and Fatou's lemma (`Q(0) = 1` for integer series).
 - [[kitamasa](pages/kitamasa.md)] — the partner method that jumps to a far index once the recurrence is known.
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] — the *k*-direction path where Berlekamp–Massey is used.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the canonical form underlying the recurrences.

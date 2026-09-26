@@ -5,7 +5,7 @@ summary: Running Berlekamp–Massey on P(k,L) in both directions — order k+1 i
 tags: [analysis, castle, recurrence, berlekamp-massey, c-finite, verification]
 sources: [project-euler-502-solution, oeis-mining-pe502, project-euler-502-castle-factoring]
 created: 2026-09-14
-updated: 2026-09-19
+updated: 2026-09-25
 ---
 
 # Recurrence discovery for P(k,L)
@@ -130,6 +130,7 @@ i.e. `P(k,1) = 1, 0, 1, 0, …`, `P(k,2) = 1, −2, 3, −4, …`, `P(k,3) = 1, 
 - [[signed-tower-count](pages/signed-tower-count.md)] — `P(k,L)` as a C-finite family; the order-(k+1) characteristic polynomials.
 - [[closed-form-hunting](pages/closed-form-hunting.md)] — the closed forms of `P(k,L)` in `k` for small `L`, and where they stop.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] — the tool that recovers these recurrences.
+- [[pisot-number](pages/pisot-number.md)] — the classical theory under the method: recurrence ⇔ rational series, Kronecker's Hankel test for the order, and Fatou's lemma for integer counts.
 - [[kitamasa](pages/kitamasa.md)] — jumps to a far index once the recurrence is known.
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] — the two directions as computational paths.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the canonical form underlying the recurrences.

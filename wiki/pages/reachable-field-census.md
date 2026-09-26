@@ -1,9 +1,9 @@
 ---
 title: Reachable-field census of castle-strip growth constants
 category: Analyses
-summary: An exhaustive census (h ≤ 5) of which algebraic numbers are Perron roots of 0/1 castle-strip transfer matrices, bucketed by number field. The quadratic reachability law: every real quadratic field Q(√d) is reachable, via the dominant root of x² − p₁x − p₂ (p₁,p₂ ≥ 1), field = squarefree part of p₁²+4p₂; the metallic means are exactly the p₂=1 line; no field is excluded (the per-height lists are just initial segments), and the minimum height of each pair is worked out on quadratic-min-height. Every metallic mean δ_a first appears at exactly height a+1, and copper collapses into Q(√5) (disc 20 = 4·5) precisely because δ₄ = φ³ — the field-theoretic root of the Fibonacci decimation. The cubic frontier is already at h=3, where the plastic number x³−x−1 shows up as a strip Perron root — closing the bare-ψ watch note — together with supergolden, plastic-squared, tribonacci, and the Q(ζ₇)⁺ cubic. Counts by degree at h=4: 5 integer, 6 quadratic, 56 cubic, 110 quartic distinct minimal polynomials.
+summary: An exhaustive census (h ≤ 5) of which algebraic numbers are Perron roots of 0/1 castle-strip transfer matrices, bucketed by number field. The quadratic reachability law: every real quadratic field Q(√d) is reachable, via the dominant root of x² − p₁x − p₂ (p₁,p₂ ≥ 1), field = squarefree part of p₁²+4p₂; the metallic means are exactly the p₂=1 line; no field is excluded (the per-height lists are just initial segments), and the minimum height of each pair is worked out on quadratic-min-height. Every metallic mean δ_a first appears at exactly height a+1, and copper collapses into Q(√5) (disc 20 = 4·5) precisely because δ₄ = φ³ — the field-theoretic root of the Fibonacci decimation. The cubic frontier is already at h=3, where the plastic number x³−x−1 shows up as a strip Perron root — closing the bare-ψ watch note — among nine cubics with supergolden, plastic-squared, tribonacci, and the Q(ζ₇)⁺ cubic; eight of the nine are Pisot (all but 2cos(π/7)), and 32 of the 56 h=4 cubics are. Counts by degree at h=4: 5 integer, 6 quadratic, 56 cubic, 110 quartic distinct minimal polynomials.
 tags: [analysis, castle, growth-constant, transfer-matrix, perron-root, number-field, metallic-mean, plastic-number, census, pisot, quadratic-field, sympy, verification]
-sources: [pe502-pell-castle-strip]
+sources: [pe502-pell-castle-strip, salem-1963-algebraic-numbers-fourier-analysis]
 created: 2026-09-18
 updated: 2026-09-25
 ---
@@ -106,20 +106,25 @@ Alongside the metallic fields sit `Q(√3)` (h=3), `Q(√17)`, `Q(√21)` (h=4),
 
 ## The cubic frontier is at `h = 3` — and it contains the plastic number
 
-The census's most surprising output: **genuine cubics appear immediately at `h = 3`**, six distinct minimal polynomials, and they are exactly the cubic constants the wiki had reached only through *area* grading:
+The census's most surprising output: **genuine cubics appear immediately at `h = 3`**, nine distinct minimal polynomials, including exactly the cubic constants the wiki had reached only through *area* grading. The Pisot column ([[pisot-number](pages/pisot-number.md)]: every other conjugate strictly inside the unit circle) is the test Salem's Theorem B makes decisive for an algebraic growth constant:[^13]
 
-| minimal polynomial | Perron root | identity | # matrices (h=3) |
-|---|---|---|---|
-| `x³ − x − 1` | `1.3247` | **plastic number `ψ`** ([[plastic-number](pages/plastic-number.md)]) | 6 |
-| `x³ − x² − 1` | `1.4656` | supergolden ([[tree-castle-by-area](pages/tree-castle-by-area.md)]) | 6 |
-| `x³ − 2x² + x − 1` | `1.7549` | plastic-squared `ψ²` | 6 |
-| `x³ − x² − 2x + 1` | `1.8019` | `Q(ζ₇)⁺` cubic (conjugate `2cos(2π/7)`) | 6 |
-| `x³ − x² − x − 1` | `1.8393` | **tribonacci** ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]) | 12 |
-| `x³ − 3x² + 2x − 1` | `2.3247` | (Pisot; `ψ + 1`) | 6 |
+| minimal polynomial | Perron root | identity | disc | Pisot? | # matrices (h=3) |
+|---|---|---|---|---|---|
+| `x³ − x − 1` | `1.3247` | **plastic number `ψ`** ([[plastic-number](pages/plastic-number.md)]) | `−23` | yes | 6 |
+| `x³ − x² − 1` | `1.4656` | supergolden ([[tree-castle-by-area](pages/tree-castle-by-area.md)]) | `−31` | yes | 6 |
+| `x³ − 2x² + x − 1` | `1.7549` | plastic-squared `ψ²` | `−23` | yes | 6 |
+| `x³ − x² − 2x + 1` | `1.8019` | `Q(ζ₇)⁺` cubic, `2cos(π/7)` | `49` | **no** (conjugate `−1.247`) | 6 |
+| `x³ − x² − x − 1` | `1.8393` | **tribonacci** ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]) | `−44` | yes | 12 |
+| `x³ − x² − 2x − 1` | `2.1479` | | `−31` | yes | 6 |
+| `x³ − 2x² − 1` | `2.2056` | | `−59` | yes | 6 |
+| `x³ − 2x² − x + 1` | `2.2470` | second `Q(ζ₇)⁺` root | `49` | yes (totally real, conjugates `0.802`, `0.555`) | 12 |
+| `x³ − 3x² + 2x − 1` | `2.3247` | `ψ + 1` | `−23` | yes | 6 |
+
+Eight of the nine are Pisot. `Q(ζ₇)⁺` is the instructive field: it carries both a non-Pisot Perron root (`1.8019`) and a Pisot one (`2.2470`), as Salem's Theorem 2 (every real field contains Pisot numbers of full degree) says it must. Three fields repeat: `Q(ψ)` (disc `−23`) three times, and the supergolden field (disc `−31`) and `Q(ζ₇)⁺` twice each.
 
 The `x³ − x − 1` line **closes the open bare-plastic watch note** on [[plastic-number](pages/plastic-number.md)]: the plastic number `ψ ≈ 1.3247` — which had appeared only as `ψ²` and `2ψ²` — **is a castle-strip Perron root at height 3**, realized by 6 matrices, the sparsest with just 4 ones (a near-companion of `x³ = x + 1`).[^5] The [[plastic-number](pages/plastic-number.md)] "Padovan/Perrin growth castle" slot is filled: a strip whose transfer matrix is that companion grows at bare `ψ`.
 
-At `h = 4` the cubic count explodes to **56 distinct minimal polynomials** (including `x³ − 2`, the cube root of 2 at `1.2599`), plus **110 quartic** minimal polynomials — the field zoo becomes genuinely wild, while the quadratic layer stays orderly (6 fields). The degree breakdown at h=4: **5 integer, 6 quadratic, 56 cubic, 110 quartic** distinct minimal polynomials among the 236 distinct Perron values.[^6]
+At `h = 4` the cubic count explodes to **56 distinct minimal polynomials** (including `x³ − 2`, the cube root of 2 at `1.2599`, whose conjugates share its modulus), plus **110 quartic** minimal polynomials — the field zoo becomes genuinely wild, while the quadratic layer stays orderly (6 fields). The degree breakdown at h=4: **5 integer, 6 quadratic, 56 cubic, 110 quartic** distinct minimal polynomials among the 236 distinct Perron values.[^6] Of the 56 cubics, **32 are Pisot and 24 are not**. The non-Pisot ones run from `∛2` (`1.2599`) through `x³ − 4x² + 2x + 2` (`3.1701`), and their largest other conjugate modulus runs from `1.063` to `1.814`.[^13]
 
 ## The reachability law for quadratic fields
 
@@ -141,11 +146,12 @@ So the "why 17, 21 at h=4 but not 11?" question dissolves: `Q(√11)` is reachab
 - **The full quadratic reachability law** (above): every real quadratic field is a castle-strip Perron field, via `x² − p₁x − p₂`; metallic means are the `p₂ = 1` line. The per-height census lists are initial segments.
 - Every metallic mean `δ_a` first appears at exactly height `a+1`; copper collapses into `Q(√5)` (whence the Fibonacci decimation).
 - The bare plastic number is a castle-strip growth constant (h=3) — the [[plastic-number](pages/plastic-number.md)] watch note is closed.
-- The cubic frontier is at h=3, and it contains plastic / supergolden / plastic² / tribonacci / the `Q(ζ₇)⁺` cubic — the "area-grading-only" cubics also appear as *strip* Perron roots.
+- The cubic frontier is at h=3: nine cubics, among them plastic / supergolden / plastic² / tribonacci / the `Q(ζ₇)⁺` cubic — the "area-grading-only" cubics also appear as *strip* Perron roots.
+- **The Pisot status of every cubic through h=4**: 8 of 9 at h=3 (all but `2cos(π/7)`), 32 of 56 at h=4 ([[pisot-number](pages/pisot-number.md)]).
 
 **Open:**
 - **A closed form for the minimum height** realizing a given `(p₁, p₂)`. [[quadratic-min-height](pages/quadratic-min-height.md)] computes it exactly through height 6, proves it on the metallic line (`p₁ + 1`) and the square-root line (`⌈2√p₂⌉`), and conjectures that at most three evenly connected groups of heights always reach it.
-- **Which cubics are Pisot / Salem**, and whether the Pisot cubics reachable as strip Perron roots are exactly a nameable set.
+- **Whether the Pisot cubics reachable as strip Perron roots are exactly a nameable set**, and the Salem question for the quartics (a Salem number has degree at least 4, so the 110 h=4 quartics are the first candidates).
 - **A closed-form min-height for a given field.** The reachability law says every field appears; the height at which it *first* appears is the open quantity (tied to the min-height of its cheapest `(p₁, p₂)`).
 
 ## `h ≥ 6`: why the law supersedes exhaustion
@@ -162,10 +168,12 @@ The one-rule step (`strip_field`, above), the `strip_field_census` two-phase swe
 
 ## Appearances in Sources
 
+- [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] - class S (Pisot numbers), Theorem 2 (every real field contains them), and Theorem B (for algebraic θ, near-integer powers force Pisot).
 - [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the strip transfer-matrix model this census sweeps.
 
 ## Related Concepts
 
+- [[pisot-number](pages/pisot-number.md)] - the Pisot test applied to every cubic Perron root above; Salem's theorem that every real field contains Pisot numbers.
 - [[quadratic-min-height](pages/quadratic-min-height.md)] - the minimum height for each `(p₁, p₂)`: exact through height 6, proved on the metallic and square-root lines, and the three-group conjecture.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the companion page: the `J − D` rule that realizes each metallic mean, whose reachability this census confirms exhaustively.
 - [[metallic-means](pages/metallic-means.md)] - the ladder `δ_a`; this census places every rung's field and the copper collapse into `Q(√5)`.
@@ -201,3 +209,5 @@ The one-rule step (`strip_field`, above), the `strip_field_census` two-phase swe
 [^11]: Sparse `S_6`-deduped census over 6×6 matrices with `≤ 6` of 36 ones: reaches quadratic fields `{2, 3, 5}` only. High-discriminant surds require dense matrices — the `J − D` realizer of nickel (`Q(√29)`) uses 31 ones — so sparse enumeration cannot reach the new h=6 fields. (Verified by execution: batched numeric Perron over all `C(36,K)` combinations for `K ≤ 6`, exact quadratic ID of the distinct roots.)
 
 [^12]: Targeted h=6 / h=7 constructions (SymPy): `J − D` at h=6 gives `(x+1)⁴(x²−5x−1)`, Perron `(5+√29)/2` = nickel ∈ `Q(√29)`, 31 ones; `J − D` at h=7 gives `(x+1)⁵(x²−6x−1)`, Perron `3+√10` = `δ₆` ∈ `Q(√10)`. The `a=6` field `Q(√10)` (disc 40) has cheapest quadratic forms `(p₁,p₂) ∈ {(6,1),(2,9),(0,10),(4,6)}`, all needing `≥ 7` states or many `p₂` two-cycles, so `Q(√10)` first appears at h=7, not h=6.
+
+[^13]: Verified by execution (2026-09-25, own computation; NumPy, SymPy): all 512 binary `3×3` and 65 536 binary `4×4` matrices, characteristic polynomial by `numpy.poly`, the irreducible SymPy factor carrying the Perron root kept, Perron root `> 1`. h=3 gives nine cubic minimal polynomials (matrix counts by exact SymPy `charpoly`, e.g. `[[1,1,1],[1,0,1],[1,0,0]]` for `x³ − x² − 2x − 1`, `[[1,1,0],[1,1,1],[1,0,0]]` for `x³ − 2x² − 1`, `[[1,1,1],[1,1,0],[1,0,0]]` for `x³ − 2x² − x + 1`); h=4 gives 56. Discriminants by SymPy; Pisot = every non-Perron root of modulus `< 1`. Definitions from [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. I §2 L275-282 (class S) and Theorem 2 L316-347.

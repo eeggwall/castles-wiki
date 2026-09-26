@@ -5,7 +5,7 @@ summary: A class-level classification. A castle class - an infinite family defin
 tags: [concept, castle, classification, taxonomy, growth-constant, metallic-means, non-metallic, meta-classification, n-nacci, cubic-pisot, plastic-number, class-predicate]
 sources: [castle-classification, oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-09-19
+updated: 2026-09-25
 ---
 
 # Castle classification - growth types
@@ -28,7 +28,7 @@ The main axis of growth constants is the [[metallic-means](pages/metallic-means.
 Not every algebraic growth constant is a metallic mean. The wiki has two other families:
 
 - **n-nacci constants**, roots of `x^h = x^{h − 1} + ⋯ + 1`: tribonacci at `h = 3`, tetranacci at `h = 4`, pentanacci, and so on to `2` in the limit.
-- **cubic-Pisot constants**, roots of term-skipping cubics: supergolden (`x³ − x² − 1`), plastic-squared `ψ²` (`x³ − 2x² + x − 1`), and the still-unrealized plastic number `ψ` (`x³ − x − 1`).
+- **cubic-Pisot constants** ([[pisot-number](pages/pisot-number.md)]), roots of term-skipping cubics: supergolden (`x³ − x² − 1`), plastic-squared `ψ²` (`x³ − 2x² + x − 1`), and the still-unrealized plastic number `ψ` (`x³ − x − 1`).
 
 Together the metallic ladder and these two families cover every algebraic growth constant on the wiki so far. Transcendental growth constants do occur - weakly-unimodal-composition area growth is one - and they fall outside the classification (no named slot).
 
@@ -145,6 +145,7 @@ Cross-growth theorems - relating types under different axes - are the frontier: 
 - [[metallic-means](pages/metallic-means.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] / [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the metallic ladder side.
 - [[castle-strip](pages/castle-strip.md)] - the construction-rule object (a skyline read left to right under a neighbor rule) whose transfer matrix supplies width growth constants.
 - [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] - the n-nacci area growth family.
+- [[pisot-number](pages/pisot-number.md)] - what "Pisot" means and why it makes powers near-integers; the Pisot test on the castle-strip cubics.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] / [[plastic-number](pages/plastic-number.md)] - the cubic-Pisot area growth constants and the plastic number's spectral appearance.
 - [[unique-tournament](pages/unique-tournament.md)] - the A000570 growth constant `α ≈ 1.685` in the non-metallic slot.
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the pedagogy page explaining what "eigenvalue" means at each scope.

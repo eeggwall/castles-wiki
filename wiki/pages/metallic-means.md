@@ -3,9 +3,9 @@ title: Metallic means
 category: Concepts
 summary: The family of quadratic irrationals `δ_a = (a + √(a²+4))/2` for a = 1, 2, 3, … — the roots of `x² − ax − 1 = 0`. Each is a norm-`−1` reduced surd with purely periodic continued fraction `[a; a, a, …]`; the first two are golden (`φ`) and silver (`1+√2`), the family the wiki's continued-fraction and eigenvalue threads sit inside.
 tags: [concept, metallic-mean, golden-ratio, silver-ratio, pell, fibonacci, continued-fraction, quadratic-irrational, norm-minus-one]
-sources: [pe502-pell-castle-strip]
+sources: [pe502-pell-castle-strip, salem-1963-algebraic-numbers-fourier-analysis]
 created: 2026-09-15
-updated: 2026-09-22
+updated: 2026-09-25
 ---
 
 # Metallic means
@@ -60,6 +60,7 @@ Both are treated in parallel on [[eigenvalue-continued-fractions](pages/eigenval
 ## Structural facts about the family
 
 - **Binet-style formula.** Every member's recurrence-realization satisfies `x_n = (δ_a^n − δ̂_a^n) / (δ_a − δ̂_a)` with `δ̂_a = (a − √(a²+4))/2` the conjugate root. Growth is `x_{n+1}/x_n → δ_a`; the conjugate contribution decays because `|δ̂_a| < 1` for every `a ≥ 1`.
+- **Pisot numbers.** Norm `−1` puts the conjugate at `δ̂_a = −1/δ_a ∈ (−1, 0)`, so every metallic mean is a quadratic Pisot number ([[pisot-number](pages/pisot-number.md)]). The integer trace `δ_a^n + δ̂_a^n` (Lucas for `a = 1`, companion Pell for `a = 2`) is the near-integer the powers approach, exactly as in Salem's golden-ratio model of the class.[^salem1]
 - **Purely periodic continued fraction.** `δ_a = [a; a, a, …]` since `δ_a = a + 1/δ_a` (i.e. `δ_a` is a fixed point of `x ↦ a + 1/x`), the fundamental self-similarity property that [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] develops. The conjugate `δ̂_a` sits in `(−1, 0)` for every `a ≥ 1`, so all members are Galois-reduced (norm `−1`, sum of roots `= a > 0`, product `= −1`), hence purely periodic.
 - **Fundamental units.** Each `δ_a` is a fundamental unit of the real quadratic field `Q(√(a²+4))` (up to sign/inversion), i.e. a generator of its unit group modulo torsion. Number-theoretic weight — the metallic means are, up to a rescaling, the fundamental units of the simplest infinite family of real quadratic fields.[^6]
 - **Palindromic quadratic — reciprocal-root symmetry.** The characteristic polynomial `x² − a·x − 1` has coefficients `[1, −a, −1]`, so it is *anti*-palindromic (not palindromic) — the two roots multiply to `−1` (norm `−1`), the very reason the fraction is purely periodic ([[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] Step 3). Every metallic mean sits on the same anti-palindromic template with a different first-order coefficient.
@@ -84,10 +85,13 @@ The realizability question the "how many states per column" knob raised is thus 
 
 ## Appearances in Sources
 
-*(no primary sources ingested for this page yet; the material is standard number theory and is verified by direct calculation. Candidate sources for future ingest: Vera W. de Spinadel, "The metallic means family and multifractal spectra," Nonlinear Analysis 36 (1999) 721–745; Wikipedia article "Metallic mean" as a hydration source for definitions.)*
+- [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] - Chapter I opens class S with the golden ratio: `φ^n + φ'^n` is an integer, so `φ^n → 0 (mod 1)`; the metallic means are the norm-`−1` quadratic members of that class.
+
+*(The remaining material is standard number theory, verified by direct calculation. Candidate sources for future ingest: Vera W. de Spinadel, "The metallic means family and multifractal spectra," Nonlinear Analysis 36 (1999) 721–745; Wikipedia article "Metallic mean" as a hydration source for definitions.)*
 
 ## Related Concepts
 
+- [[pisot-number](pages/pisot-number.md)] - the class of algebraic integers whose powers approach integers; every metallic mean is in it.
 - [[pell-numbers](pages/pell-numbers.md)] — the `a=2` integer sequence; the silver-mean member.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] — the anchored 1-smooth height-3 strip realizing `δ_2 = 1+√2` with Pell-number counts.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] — which metallic means are actually castle-strip Perron roots: the `p_1`/`p_2` coupling obstruction, silver's third realization, and bronze needing four states.
@@ -112,3 +116,4 @@ The realizability question the "how many states per column" knob raised is thus 
 [^4]: The Wikipedia "Silver ratio" article and OEIS A001333 (whose comment describes it as convergents-of-`√2` numerators, in Pell/silver-mean context) both use "silver ratio" for `1 + √2`, and this is the usage in de Spinadel's original paper (`δ_S`). The competing usage — "silver ratio = √2" (paper-size / A-series context) — appears in some architecture and design literature; when this is meant it is usually specified explicitly. Standard number-theory and OEIS usage is `δ_2 = 1 + √2`.
 [^5]: `φ² = φ + 1` (defining property of the golden ratio) gives `φ³ = φ·φ² = φ² + φ = 2φ + 1 = 1 + √5 + 1 = 2 + √5 = δ_4`; verified numerically during ingest (`φ³ = 4.2360679…`, matching `2 + √5 = 4.2360679…`). Consequence: the `a=4` integer sequence `x_n = 0, 1, 4, 17, 72, 305, 1292, 5473, 23184, 98209` equals `F_{3n}/2` where `F_n` is Fibonacci — `F_3 = 2, F_6 = 8, F_9 = 34, F_12 = 144, F_15 = 610, …`, divided by 2 gives `1, 4, 17, 72, 305, …`, matching exactly (re-verified during ingest against the Fibonacci sequence). So the copper-mean recurrence is a decimated / scaled Fibonacci, and the sequence sits inside `Q(√5)`, not in an independent quadratic field.
 [^6]: The fundamental unit of `Z[√5]` is the golden ratio (well-known); the fundamental unit of `Z[√2]` is `1 + √2` (well-known). For `a ≥ 3`, `Z[(a + √(a²+4))/2]` (or `Z[√(a²+4)]` — depending on whether `a²+4 ≡ 1 (mod 4)`, which depends on `a`'s parity) has `δ_a` as a fundamental unit up to a sign / power adjustment; the statement is standard algebraic number theory (Dirichlet's unit theorem specialized to real quadratic fields, rank 1). Not verified in depth during ingest; noted as a defining structural property of the family.
+[^salem1]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. I §1 p.2 [synthesis] L262-273 - `ω = (1+√5)/2` with conjugate `ω'`: `ω^n + ω'^n` is a rational integer and `|ω'| < 1`, so `ω^n → 0 (mod 1)`; the property is "shared by some other algebraic integers", introducing class S (L275-282).
