@@ -164,6 +164,7 @@ def cycle_rank(c):
 - [[unique-tournament](pages/unique-tournament.md)] - the wiki's other graph-theoretic object (complete oriented graphs, where castle graphs are sparse bipartite grids); the two meet at `A000570`, the `h = 4` tree-castle count by area.
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the from-scratch pedagogy that computes by hand the small golden / silver / `φ²`-spectrum castles this page's Named-castle-types table tabulates.
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar built on this graph: what its spectrum hears and the smallest failures.
+- [[sandpile-group](pages/sandpile-group.md)] - the sandpile group: the 2×2 blocks that make the cycle rank also hold all the sand; tree castles hold none.
 
 
 ## Footnotes

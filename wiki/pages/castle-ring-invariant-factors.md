@@ -147,6 +147,7 @@ And the discriminant-zero side of [[mod-p-observatory](pages/mod-p-observatory.m
 - [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - `char_k` mod 2 in one line, and `crt_idempotents` for the CRT pieces.
 - [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the fibers of `Spec Z[x]/(char_k)` over each `p`; §3 splits the period into reduced part and nilradical.
 - [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the same `char_2` fibers as a seminar; Stop 7 reads the §5 relation `α·ᾱ = 2` as the prime 2 splitting in `Q(√−7)`.
+- [[sandpile-group](pages/sandpile-group.md)] - another finite abelian group read off a Smith normal form: the sandpile group of a castle graph.
 
 
 ## Footnotes

@@ -1,9 +1,13 @@
 anum	group	name	role
+A000005	supporting	d(n) (also called tau(n) or sigma_0(n)), the number of divisors of n.	rectangles by area, the bottom rung of the convex-polyomino ladder
+A000009	supporting	Expansion of Product_{m >= 1} (1 + x^m); number of partitions of n into distinct parts; number of partitions of n into odd parts.	multiset partitions c* of one element repeated n times (distinct-part partitions)
 A000032	metallic	Lucas numbers beginning at 2: L(n) = L(n-1) + L(n-2), L(0) = 2, L(1) = 1.	Lucas numbers (companion of Fibonacci)
+A000041	supporting	a(n) is the number of partitions of n (the partition numbers).	Ferrers diagrams by area
 A000045	count	Fibonacci numbers: F(n) = F(n-1) + F(n-2) with F(0) = 0 and F(1) = 1.	tree castles of height 2 (T_2(w) = F_{w+2}); Fibonacci in prime-castle count
 A000073	count	Tribonacci numbers: a(n) = a(n-1) + a(n-2) + a(n-3) for n >= 3 with a(0) = a(1) = 0 and a(2) = 1.	bounded-height castles by area, height ≤ 3: tribonacci, `=A000073(A+2)`
 A000078	count	Tetranacci numbers: a(n) = a(n-1) + a(n-2) + a(n-3) + a(n-4) for n >= 4 with a(0) = a(1) = a(2) = 0 and a(3) = 1.	bounded-height castles by area, height ≤ 4: tetranacci, `=A000078(A+3)`
 A000079	supporting	Powers of 2: a(n) = 2^n.	powers of 2 (P_even(2,L) = 2^L)
+A000124	supporting	Central polygonal numbers (the Lazy Caterer's sequence): n(n+1)/2 + 1; or, maximal number of pieces formed when slicing a pancake with n cuts.	unimodal height-2 castles `1 + C(w+1,2)`, the `g -> infinity` limit of the `h=2` tower-spacing row
 A000129	count	Pell numbers: a(0) = 0, a(1) = 1; for n > 1, a(n) = 2*a(n-1) + a(n-2).	anchored 1-smooth height-≤3 castle strip, `P_{w+1}` (the Pell castle strip); integer realization of 1 + √2
 A000142	supporting	Factorial numbers: n! = 1*2*3*4*...*n (order of symmetric group S_n, number of permutations of n letters).	rainbow castles: exactly h! at width h
 A000217	supporting	Triangular numbers: a(n) = binomial(n+1,2) = n*(n+1)/2 = 0 + 1 + 2 + ... + n.	height-2 castles whose second row is a single run; F(4,2) = C(5,2) = 10
@@ -12,37 +16,58 @@ A000447	count	a(n) = 1^2 + 3^2 + 5^2 + 7^2 + ... + (2*n-1)^2 = n*(4*n^2 - 1)/3.	
 A000568	supporting	Number of outcomes of unlabeled n-team round-robin tournaments.	ambient count for unique tournaments; A000568(8) = 6880 is the isomorphism-class count the tree-castle bijection was checked against
 A000570	count	Number of tournaments on n nodes determined by their score vectors.	tree castles of height 4 by area: T_(h=4)(A) = A000570(A+1); Tetali's classification of the four basic unique tournaments (sizes 1, 3, 4, 5) is proved in [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] (JCTB 72:157-159, 1998), ingested to `raw/`
 A000571	supporting	Number of different score sequences that are possible in an n-team round-robin tournament.	upper bound on unique tournaments u_n ≤ A000571(n), equality through n = 4
+A000700	supporting	Expansion of Product_{k>=0} (1 + x^(2k+1)); number of partitions of n into distinct odd parts; number of self-conjugate partitions; number of symmetric Ferrers graphs with n nodes.	height-signed Ferrers diagrams by area, `(-1)^n A000700(n)`
 A000749	supporting	a(n) = 4*a(n-1) - 6*a(n-2) + 4*a(n-3), n > 3, with a(0)=a(1)=a(2)=0, a(3)=1.	sum of every 4th binomial (hyperbolic family, k=3 residue)
 A000930	count	Narayana's cows sequence: a(0) = a(1) = a(2) = 1; thereafter a(n) = a(n-1) + a(n-3).	tree castles of height 2 by area: T_(h=2)(A) = A000930(A+1)
 A000931	plastic	Padovan sequence (or Padovan numbers): a(n) = a(n-2) + a(n-3) with a(0) = 1, a(1) = a(2) = 0.	Padovan (plastic Fibonacci): a(n) = a(n-2) + a(n-3)
+A001035	supporting	Number of partially ordered sets ("posets") with n labeled elements (or labeled acyclic transitive digraphs).	strip rules whose half-column has nonnegative weights: 3, 19, 219 at heights 2, 3, 4; the rule is a poset on the heights (fractional-width-and-height)
 A001045	count	Jacobsthal sequence (or Jacobsthal numbers): a(n) = a(n-1) + 2*a(n-2), with a(0) = 0, a(1) = 1; also a(n) = nearest integer to 2^n/3.	tree castles of height 3: T_3(w) = J_{w+2} (Jacobsthal)
 A001047	count	a(n) = 3^n - 2^n.	h^w - (h-1)^w at h=3: total h=3 castles
 A001076	metallic	Denominators of continued fraction convergents to sqrt(5).	denominators of CF convergents to √5; copper Fibonacci-3 sequence
 A001077	metallic	Numerators of continued fraction convergents to sqrt(5).	numerators of CF convergents to √5
 A001168	supporting	Number of fixed polyominoes with n cells.	fixed polyominoes
 A001169	supporting	Number of board-pile polyominoes with n cells.	board-pile polyominoes (horizontally convex)
+A001235	supporting	Taxi-cab numbers: sums of 2 cubes in more than 1 way.	1729 = F(6,4) is the first term; no other taxicab number is a castle count for w,h <= 40
 A001263	count	Triangle of Narayana numbers T(n,k) = C(n-1,k-1)*C(n,k-1)/k with 1 <= k <= n, read by rows. Also called the Catalan triangle.	tower Narayana polynomial coefficients
 A001333	metallic	Pell-Lucas numbers: numerators of continued fraction convergents to sqrt(2).	numerators of CF convergents to √2 (Pell-Lucas)
+A001353	count		sandpile group order (spanning trees) of the 2-wide ladder castle (2,...,2) of width n: |K| = A001353(n), cyclic
+A001519	count	a(n) = 3*a(n-1) - a(n-2) for n >= 2, with a(0) = a(1) = 1.	convex castles (stack polyominoes) by semi-perimeter: anti-diagonal sums of C(2h+w-3, w-1)
 A001523	count	Number of stacks, or planar partitions of n; also number of weakly unimodal compositions of n.	convex castles by area (weakly unimodal compositions)
 A001591	count	Pentanacci numbers: a(n) = a(n-1) + a(n-2) + a(n-3) + a(n-4) + a(n-5), a(0)=a(1)=a(2)=a(3)=0, a(4)=1.	bounded-height castles by area, height ≤ 5: pentanacci, `=A001591(A+4)`
 A001608	plastic	Perrin sequence (or Perrin numbers, or Ondrej Such sequence): a(n) = a(n-2) + a(n-3) with a(0) = 3, a(1) = 0, a(2) = 2.	Perrin (plastic Lucas / trace)
+A001803	supporting	Numerators in expansion of (1 - x)^(-3/2).	numerators of 2w C(2w,w)/4^w = B_{1/2}(box) / h, the half-order block count of a box castle (fractional-block-count)
+A001924	supporting	Apply partial sum operator twice to Fibonacci numbers.	one-peak castles of area n+1: (1^a, X, 1^b) with X free of height-1 columns
 A002203	metallic	Companion Pell numbers: a(n) = 2*a(n-1) + a(n-2), a(0) = a(1) = 2.	companion Pell (trace of Pell)
 A002426	supporting	Central trinomial coefficients: largest coefficient of (1 + x + x^2)^n.	unconstrained U/R/D words returning to height 0; Motzkin is the ballot-restricted version
+A002596	supporting	Numerators in expansion of sqrt(1+x). Absolute values give numerators in expansion of sqrt(1-x).	numerators of the half-order Grunwald-Letnikov weights (-1)^k C(1/2,k) (fractional-block-count)
+A002620	count	Quarter-squares: a(n) = floor(n/2)*ceiling(n/2). Equivalently, a(n) = floor(n^2/4).	two-block castles of area n (1^a 2^m 1^c)
+A002624	count	Expansion of (1-x)^(-3) * (1-x^2)^(-2).	three-block two-peak castles of area n+5
+A002718	supporting	Number of bicoverings of an n-set.	Bender's c((0,n)): partitions of a multiset with every element twice, no repeated blocks, no repeated element in a block
+A002997	supporting	Carmichael numbers.	first four terms 561, 1105, 1729, 2465 are all castle counts: odd(3,34), A(4,7), F(6,4), A(4,9)
+A003024	supporting	Number of acyclic digraphs (or DAGs) with n labeled nodes.	strip rules with all eigenvalues real and positive, i.e. I + nilpotent: 3, 25, 543 at heights 2, 3, 4 (fractional-width-and-height)
+A003072	supporting	Numbers that are the sum of 3 positive cubes.	castle counts as sums of three positive cubes: 56 of 552 even counts with w >= 4 below 10^8 (background rate); F(4,2) = 1+1+8, F(6,3) = 27+64+216, F(5,8) = 13^3+14^3+16^3
 A003188	supporting	Decimal equivalent of Gray code for n.	reflected Gray code (Knuth Algorithm G); the castle Gray code thread
+A003325	supporting	Numbers that are the sum of 2 positive cubes.	F(6,4) = 1729 and F(4,85) = 5^3 + 93^3 are the only nondegenerate two-cube even counts below 10^9; height-2 row gives 2c^3 at w = 5 (mod 12) and c^3 + d^3 at w = 19 (mod 24)
 A003688	metallic	a(n) = 3*a(n-1) + a(n-2), with a(1)=1 and a(2)=4.	bronze free strip (`h=4`), `4, 13, 43, 142, 469, …`, growth `(3+√13)/2`
 A004149	count	Generalized Catalan numbers: a(n+1) = a(n) + Sum_{k=2..n-1} a(k)*a(n-1-k).	tower word growth (algebraic GF, growth 1+√2)
 A005060	count	a(n) = 5^n - 4^n.	h^w - (h-1)^w at h=5
 A005061	count	a(n) = 4^n - 3^n.	h^w - (h-1)^w at h=4
 A005062	count	a(n) = 6^n - 5^n.	h^w - (h-1)^w at h=6
 A005251	count	a(0) = 0, a(1) = a(2) = a(3) = 1; thereafter, a(n) = a(n-1) + a(n-2) + a(n-4).	**four linked castle readings** (the multi-interpretation hub on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]): Hardin no-isolated-1 words / `P_even(6,L)/2^L`; tree castles by area (`h→∞`); tower-spacing `(h=2,g=2)`; unified by [[a005251-bijection](pages/a005251-bijection.md)]
+A005252	count	a(n) = Sum_{k=0..floor(n/4)} binomial(n-2k,2k).	minimum-tower-spacing `(h=2, g=3)` castles, `a(w+3)`; golden growth
+A005253	count	Number of binary words of length n in which the ones occur only in blocks of length at least 4.	minimum-tower-spacing `(h=2, g=4)` castles, `a(w+3)`
 A005408	count	The odd numbers: a(n) = 2*n + 1.	tower Narayana coefficient row
 A005435	count	Number of column-convex polyominoes with perimeter 2n+2.	column-convex polyominoes by perimeter (neighbor family)
+A005436	supporting	Number of convex polygons of perimeter 2n on square lattice.	convex polyominoes by perimeter (Delest-Viennot)
+A005689	count	Number of Twopins positions.	minimum-tower-spacing `(h=2, g=5)` castles, `a(w+6)`
 A005891	count	Centered pentagonal numbers: (5n^2+5n+2)/2; crystal ball sequence for 3.3.3.4.4. planar net.	tower Narayana coefficient row
+A005917	supporting	Rhombic dodecahedral numbers: n^4 - (n-1)^4.	A(4,h) = h^4 - (h-1)^4; contains the Carmichael numbers 1105 (h=7) and 2465 (h=9)
 A006130	count	a(n) = a(n-1) + 3*a(n-2) for n > 1, a(0) = a(1) = 1.	tree castles of height 4: T_4(w) = a(w+1)
 A006131	count	a(n) = a(n-1) + 4*a(n-2), a(0) = a(1) = 1.	tree castles of height 5: T_5(w) = a(w+1)
 A006190	metallic	a(n) = 3*a(n-1) + a(n-2), with a(0)=0, a(1)=1.	bronze metallic sequence: a(n) = 3a(n-1) + a(n-2)
 A006497	metallic	a(n) = 3*a(n-1) + a(n-2) with a(0) = 2, a(1) = 3.	trace sequence for bronze
 A006498	metallic	a(n) = a(n-1) + a(n-3) + a(n-4), a(0) = a(1) = a(2) = 1, a(3) = 2.	tree castles of height 3 by area: T_(h=3)(A) = A006498(A+1); GF denominator factors as (1+q^2)(1-q-q^2), giving golden growth
+A006958	supporting	Number of parallelogram polyominoes with n cells (also called staircase polyominoes, although that term is overused).	parallelogram polyominoes by area, the q-Bessel rung
 A007318	supporting	Pascal's triangle read by rows: C(n,k) = binomial(n,k) = n!/(k!*(n-k)!), 0 <= k <= n.	the binomial toolkit behind every binomial castle count
 A007323	supporting	Number of numerical semigroups of genus n; conjecturally also the number of power sum bases for symmetric functions in n variables.	the coin/semigroup branch of the block-count trichotomy; golden-ratio growth (Zhai 2013)
 A007814	supporting	Exponent of highest power of 2 dividing n, a.k.a. the binary carry sequence, the ruler sequence, or the 2-adic valuation of n.	Knuth's ruler function ρ(k), the bit to flip in Gray-code generation
@@ -54,6 +79,8 @@ A011782	count	Coefficients of expansion of (1-x)/(1-2*x) in powers of x.	weakly 
 A014448	metallic	Even Lucas numbers: a(n) = L(3*n).	even Lucas: trace for copper (a=4)
 A014493	metallic	Odd triangular numbers.	odd triangular numbers (row of A352116)
 A015448	metallic	a(0) = 1, a(1) = 1, and a(n) = 4*a(n-1) + a(n-2) for n >= 2.	copper free strip (`h=5`), `=F_{3n+5}` trisection, growth `φ³`
+A020554	supporting	Number of multigraphs on n labeled edges (without loops).	Bender's v((0,n)): every element twice, repeated blocks allowed, no repeated element in a block
+A020555	supporting	Number of multigraphs on n labeled edges (with loops). Also number of genetically distinct states amongst n individuals.	Bender's v*((0,n)): all partitions of a multiset with every element twice
 A027907	supporting	Triangle of trinomial coefficients T(n,k) (n >= 0, 0 <= k <= 2*n), read by rows: n-th row is obtained by expanding (1 + x + x^2)^n.	unconstrained U/R/D words by final height, the ceiling the castle grammar prunes
 A033887	metallic	a(n) = Fibonacci(3*n + 1).	F(3n+1): copper-delta convergent numerators
 A034839	supporting	Triangular array formed by taking every other term of each row of Pascal's triangle.	Pascal every-other row (binomial identity)
@@ -69,101 +96,75 @@ A041030	metallic	Numerators of continued fraction convergents to sqrt(20).	numer
 A041031	metallic	Denominators of continued fraction convergents to sqrt(20).	denominators of CF convergents to √20
 A041046	metallic	Numerators of continued fraction convergents to sqrt(29).	numerators of CF convergents to √29
 A041047	metallic	Denominators of continued fraction convergents to sqrt(29).	denominators of CF convergents to √29
+A045623	supporting	Number of 1's in all compositions of n+1.	total height-1 columns over castles of area n; mean prime-factor count (n+6)/4
+A046161	supporting	a(n) = denominator of binomial(2n,n)/4^n.	denominators of the half-order Grunwald-Letnikov weights and of the chain-rule half-column C(2k,k)/4^k (fractional-block-count, fractional-width-and-height)
+A049346	supporting	Coefficient of x^(-n) in expansion of continued fraction 0, x, x^2, x^3, x^4, ... .	height-signed parallelogram polyominoes by area are `-A049346(n)`
+A050794	supporting	Diophantine equation x^3 + y^3 = z^3 + 1 with 1 < x < y < z ("Fermat near misses").	1729 = 9^3+10^3 = 12^3+1 is the first term; the n=-1 row of Ramanujan's recurrence
+A051028	supporting	Ramanujan's a-series: expansion of (1+53x+9x^2)/(1-82x-82x^2+x^3).	near-miss family a_n^3+b_n^3 = c_n^3+(-1)^n; growth delta_9^2, the ninth metallic mean squared (height-10 ceiling-exception strip)
+A051029	supporting	Ramanujan's b-series: expansion of (2-26x-12x^2)/(1-82x-82x^2+x^3).	b-series of the near-miss family; same denominator (1+x)(1-83x+x^2)
+A051030	supporting	Ramanujan's c-series: expansion of (2+8x-10x^2)/(1-82x-82x^2+x^3).	c-series of the near-miss family; Berlekamp-Massey on c_0..c_11 recovers the order-3 recurrence
 A051337	supporting	Number of strongly connected tournaments on n nodes.	the strong tournaments among which Tetali's four basic unique tournaments sit (1 of 1, 1 of 1, 1 of 6 at n = 3, 4, 5; 0 of 35, 0 of 353 at n = 6, 7)
 A052918	metallic	a(0) = 1, a(1) = 5, a(n+1) = 5*a(n) + a(n-1).	nickel metallic sequence: a(n) = 5a(n-1) + a(n-2)
 A052924	metallic	Expansion of g.f.: (1-x)/(1 - 3*x - x^2).	bronze delta-1 CF numerators: (1-x)/(1-3x-x²)
 A060006	plastic	Decimal expansion of real root of x^3 - x - 1 (the plastic constant).	decimal expansion of plastic constant ψ
+A060464	supporting	Numbers that are not congruent to 4 or 5 mod 9.	the conjectural sums of three cubes; F(w,h) mod 9 periodic in both directions, so membership of castle counts is decided cell by cell
+A060465	supporting	Smallest solution x of x^3 + y^3 + z^3 = n for n in A060464.	companion table of smallest three-cube representations; not deep enough (58 terms) to cover the castle counts 367, 439, 903
+A060466	supporting	Smallest solution y of x^3 + y^3 + z^3 = n for n in A060464.	companion table of smallest three-cube representations
+A060467	supporting	Smallest solution z of x^3 + y^3 + z^3 = n for n in A060464.	companion table of smallest three-cube representations
+A060486	supporting	Tricoverings of an n-set.	Bender's c((0,0,n)): every element three times, no repeated blocks, no repeated element in a block
 A063490	count	a(n) = (2*n - 1)*(7*n^2 - 7*n + 6)/6.	tower Narayana coefficient row
 A063496	count	a(n) = (2*n - 1)*(8*n^2 - 8*n + 3)/3.	P(2m,4) bisection: C_3 lattice crystal-ball sequence
+A067675	supporting	Number of fixed convex polyominoes with n cells.	convex polyominoes by area; the convex castle with a floating base
+A067676	supporting	Number of fixed directed convex polyominoes with n cells.	directed convex polyominoes by area
+A080860	count	a(n) = 10*n^2 + 5*n + 1.	odd(3, 2n+1) = 5 C(2n+1, 2) + 1 exactly; its negative-index half 10m^2 - 5m + 1 is F(3, 2m) = 6, 31, 76, 141, ..., not in OEIS (novel candidate)
+A082582	count	Expansion of (1 + x^2 - sqrt( 1 - 4*x + 2*x^2 + x^4)) / (2*x) in powers of x.	castles (bargraphs) by semi-perimeter w + #blocks; growth tribonacci squared
+A086510	supporting	Number of n X n real (0,1)-matrices with all eigenvalues >= 0.	strip rules with a real principal square root: 13, 261, 15418 at heights 2, 3, 4 (fractional-width-and-height)
 A087130	metallic	a(n) = 5*a(n-1)+a(n-2) for n>1, a(0)=2, a(1)=5.	trace for nickel (a=5)
+A094574	supporting	Number of (<=2)-covers of an n-set.	Bender's c*((0,n)): every element twice, no repeated blocks, repeated elements in a block allowed
 A096368	supporting	Number of unlabeled regular tournaments with 2n+1 nodes.	1, 1, 3 at 3, 5, 7 nodes: the regular score vectors (1,1,1), (2,2,2,2,2) are unique, (3,3,3,3,3,3,3) has three realizers
+A097701	count	Expansion of 1/((1-x)^2*(1-x^2)^2*(1-x^3)).	three-block one-peak castles of area n+3
+A098574	count	a(n) = Sum_{k=0..floor(n/7)} C(n-5*k,2*k).	minimum-tower-spacing `(h=2, g=6)` castles, `a(w+6)`
 A100237	metallic	Secondary diagonal of triangle A100235 divided by row number: a(n) = A100235(n+1,n)/(n+1) for n >= 0.	nickel delta-1 CF numerators: (1-x)/(1-5x-x²)
+A105422	supporting	Triangle read by rows: T(n,k) is the number of compositions of n having exactly k parts equal to 1.	prime-factor counts of castles by area (k+1 factors for k height-1 columns)
 A107920	supporting	Lucas and Lehmer numbers with parameters (1 +- sqrt(-7))/2.	Lucas-Lehmer with (1±√-7)/2 (P_odd(2,L) at k=2)
 A112742	count	a(n) = n^2*(n^2 - 1)/3.	A_5(k): alternating part of P(k,5) quasi-polynomial
 A115981	count	The number of compositions of n which cannot be viewed as stacks.	non-convex castles by area
 A132393	supporting	Triangle of unsigned Stirling numbers of the first kind (see A048994), read by rows, T(n,k) for 0 <= k <= n.	[n,1] = (n−1)!, the cycle-count anchor of the castle triad
 A146559	count	Expansion of (1-x)/(1 - 2*x + 2*x^2).	P(1,L): signed tower count at k=1, Re((1+i)^{L+1})
+A156638	supporting	Numbers that are congruent to 4 or 5 mod 9.	the excluded residues; F(w,2) lands here iff w = 9 (mod 12), F(3,h) iff h = 4, 6 (mod 18), A(3m,h) never
 A160747	count	Expansion of (1 + 10*x + 20*x^2 + 10*x^3 + x^4)/(1-x)^5.	tower Narayana coefficient row
+A165434	supporting	Number of tri-coverings of a set.	Bender's v((0,0,n)): every element three times, repeated blocks allowed, no repeated element in a block
 A199833	count	Number of -n..n arrays of 4 elements with zero sum and no two neighbors summing to zero.	|P(2m+1,4)|: signed height-1 towers on length-4 base, odd k
 A202882	count	Number of n X 1 0..2 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor.	Hardin words at m=2: P_even(10,L)/2^L
 A202889	supporting	T(n,k)=Number of nXk 0..2 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor.	2D Hardin table (row axis of A202882)
+A203050	count	Number of nX1 0..5 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor.	Hardin words at m=5; minimum-tower-spacing `(h=6, g=2)` castles, `a(w+1)`
 A203094	count	Number of nX1 0..3 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor.	Hardin words at m=3: P_even(14,L)/2^L
 A203184	count	Number of n X 1 0..4 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor.	Hardin words at m=4: P_even(18,L)/2^L
 A217878	count	Number of n-element 0..2 arrays with each element the minimum of 3 adjacent elements of a random 0..2 array of n+2 elements.	minimum-tower-spacing `(h=3, g=3)` castles: 0..2 "min of 3 adjacent" arrays
-A217949	count	Number of n-element 0..3 arrays with each element the minimum of 3 adjacent elements of a random 0..3 array of n+2 elements.	minimum-tower-spacing `(h=4, g=3)` castles: 0..3 "min of 3 adjacent" arrays
-A332578	count	Number of compositions of n whose negation is unimodal.	valley castles by area
-A332669	count	Number of compositions of n whose negation is not unimodal.	not-unimodal compositions
-A352116	count	Partial sums of the odd triangular numbers (A014493).	|P(k,4)|: partial sums of odd triangular numbers
-A001235	supporting	Taxi-cab numbers: sums of 2 cubes in more than 1 way.	1729 = F(6,4) is the first term; no other taxicab number is a castle count for w,h <= 40
-A050794	supporting	Diophantine equation x^3 + y^3 = z^3 + 1 with 1 < x < y < z ("Fermat near misses").	1729 = 9^3+10^3 = 12^3+1 is the first term; the n=-1 row of Ramanujan's recurrence
-A002997	supporting	Carmichael numbers.	first four terms 561, 1105, 1729, 2465 are all castle counts: odd(3,34), A(4,7), F(6,4), A(4,9)
-A005917	supporting	Rhombic dodecahedral numbers: n^4 - (n-1)^4.	A(4,h) = h^4 - (h-1)^4; contains the Carmichael numbers 1105 (h=7) and 2465 (h=9)
-A051028	supporting	Ramanujan's a-series: expansion of (1+53x+9x^2)/(1-82x-82x^2+x^3).	near-miss family a_n^3+b_n^3 = c_n^3+(-1)^n; growth delta_9^2, the ninth metallic mean squared (height-10 ceiling-exception strip)
-A051029	supporting	Ramanujan's b-series: expansion of (2-26x-12x^2)/(1-82x-82x^2+x^3).	b-series of the near-miss family; same denominator (1+x)(1-83x+x^2)
-A051030	supporting	Ramanujan's c-series: expansion of (2+8x-10x^2)/(1-82x-82x^2+x^3).	c-series of the near-miss family; Berlekamp-Massey on c_0..c_11 recovers the order-3 recurrence
-A226321	supporting	Number of real {0,1} matrices n X n which are the square of a {0,1} matrix.	strip rules that are two half-columns of a 0/1 rule: 8, 88, 3245 at heights 2, 3, 4 (fractional-width-and-height)
-A086510	supporting	Number of n X n real (0,1)-matrices with all eigenvalues >= 0.	strip rules with a real principal square root: 13, 261, 15418 at heights 2, 3, 4 (fractional-width-and-height)
-A003024	supporting	Number of acyclic digraphs (or DAGs) with n labeled nodes.	strip rules with all eigenvalues real and positive, i.e. I + nilpotent: 3, 25, 543 at heights 2, 3, 4 (fractional-width-and-height)
-A001035	supporting	Number of partially ordered sets ("posets") with n labeled elements (or labeled acyclic transitive digraphs).	strip rules whose half-column has nonnegative weights: 3, 19, 219 at heights 2, 3, 4; the rule is a poset on the heights (fractional-width-and-height)
-A001803	supporting	Numerators in expansion of (1 - x)^(-3/2).	numerators of 2w C(2w,w)/4^w = B_{1/2}(box) / h, the half-order block count of a box castle (fractional-block-count)
-A002596	supporting	Numerators in expansion of sqrt(1+x). Absolute values give numerators in expansion of sqrt(1-x).	numerators of the half-order Grunwald-Letnikov weights (-1)^k C(1/2,k) (fractional-block-count)
-A046161	supporting	a(n) = denominator of binomial(2n,n)/4^n.	denominators of the half-order Grunwald-Letnikov weights and of the chain-rule half-column C(2k,k)/4^k (fractional-block-count, fractional-width-and-height)
-A003072	supporting	Numbers that are the sum of 3 positive cubes.	castle counts as sums of three positive cubes: 56 of 552 even counts with w >= 4 below 10^8 (background rate); F(4,2) = 1+1+8, F(6,3) = 27+64+216, F(5,8) = 13^3+14^3+16^3
-A003325	supporting	Numbers that are the sum of 2 positive cubes.	F(6,4) = 1729 and F(4,85) = 5^3 + 93^3 are the only nondegenerate two-cube even counts below 10^9; height-2 row gives 2c^3 at w = 5 (mod 12) and c^3 + d^3 at w = 19 (mod 24)
-A060464	supporting	Numbers that are not congruent to 4 or 5 mod 9.	the conjectural sums of three cubes; F(w,h) mod 9 periodic in both directions, so membership of castle counts is decided cell by cell
-A060465	supporting	Smallest solution x of x^3 + y^3 + z^3 = n for n in A060464.	companion table of smallest three-cube representations; not deep enough (58 terms) to cover the castle counts 367, 439, 903
-A060466	supporting	Smallest solution y of x^3 + y^3 + z^3 = n for n in A060464.	companion table of smallest three-cube representations
-A060467	supporting	Smallest solution z of x^3 + y^3 + z^3 = n for n in A060464.	companion table of smallest three-cube representations
-A156638	supporting	Numbers that are congruent to 4 or 5 mod 9.	the excluded residues; F(w,2) lands here iff w = 9 (mod 12), F(3,h) iff h = 4, 6 (mod 18), A(3m,h) never
-A080860	count	a(n) = 10*n^2 + 5*n + 1.	odd(3, 2n+1) = 5 C(2n+1, 2) + 1 exactly; its negative-index half 10m^2 - 5m + 1 is F(3, 2m) = 6, 31, 76, 141, ..., not in OEIS (novel candidate)
-A005252	count	a(n) = Sum_{k=0..floor(n/4)} binomial(n-2k,2k).	minimum-tower-spacing `(h=2, g=3)` castles, `a(w+3)`; golden growth
-A005253	count	Number of binary words of length n in which the ones occur only in blocks of length at least 4.	minimum-tower-spacing `(h=2, g=4)` castles, `a(w+3)`
-A005689	count	Number of Twopins positions.	minimum-tower-spacing `(h=2, g=5)` castles, `a(w+6)`
-A098574	count	a(n) = Sum_{k=0..floor(n/7)} C(n-5*k,2*k).	minimum-tower-spacing `(h=2, g=6)` castles, `a(w+6)`
-A203050	count	Number of nX1 0..5 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor.	Hardin words at m=5; minimum-tower-spacing `(h=6, g=2)` castles, `a(w+1)`
 A217879	count	Number of n element 0..2 arrays with each element the minimum of 4 adjacent elements of a random 0..2 array of n+3 elements.	minimum-tower-spacing `(h=3, g=4)` castles
 A217880	count	Number of n element 0..2 arrays with each element the minimum of 5 adjacent elements of a random 0..2 array of n+4 elements.	minimum-tower-spacing `(h=3, g=5)` castles
 A217881	count	Number of n element 0..2 arrays with each element the minimum of 6 adjacent elements of a random 0..2 array of n+5 elements.	minimum-tower-spacing `(h=3, g=6)` castles
 A217883	supporting	T(n,k) = number of n-element 0..2 arrays with each element the minimum of k adjacent elements of a random 0..2 array of n+k-1 elements.	the `h=3` row of the minimum-tower-spacing `(h,g)` table
+A217949	count	Number of n-element 0..3 arrays with each element the minimum of 3 adjacent elements of a random 0..3 array of n+2 elements.	minimum-tower-spacing `(h=4, g=3)` castles: 0..3 "min of 3 adjacent" arrays
 A217950	count	Number of n element 0..3 arrays with each element the minimum of 4 adjacent elements of a random 0..3 array of n+3 elements.	minimum-tower-spacing `(h=4, g=4)` castles
 A217951	count	Number of n element 0..3 arrays with each element the minimum of 5 adjacent elements of a random 0..3 array of n+4 elements.	minimum-tower-spacing `(h=4, g=5)` castles
 A217952	count	Number of n element 0..3 arrays with each element the minimum of 6 adjacent elements of a random 0..3 array of n+5 elements.	minimum-tower-spacing `(h=4, g=6)` castles
 A217954	supporting	T(n,k) = number of n-element 0..3 arrays with each element the minimum of k adjacent elements of a random 0..3 array of n+k-1 elements.	the `h=4` row of the minimum-tower-spacing `(h,g)` table
+A226321	supporting	Number of real {0,1} matrices n X n which are the square of a {0,1} matrix.	strip rules that are two half-columns of a 0/1 rule: 8, 88, 3245 at heights 2, 3, 4 (fractional-width-and-height)
+A227310	supporting	G.f.: 1/G(0) where G(k) = 1 + (-q)^(k+1) / (1 - (-q)^(k+1)/G(k+1) ).	absolute values of height-signed parallelograms by area; growth 1.23729
 A228457	count	Number of arrays of maxima of three adjacent elements of some length n+2 0..4 array.	minimum-tower-spacing `(h=5, g=3)` castles (maxima = minima by complement)
 A228458	count	Number of arrays of maxima of three adjacent elements of some length n+2 0..5 array.	minimum-tower-spacing `(h=6, g=3)` castles (maxima = minima by complement)
 A228461	supporting	Two-dimensional array read by antidiagonals: T(n,k) = number of arrays of maxima of three adjacent elements of some length n+2 0..k array.	the `g=3` column of the minimum-tower-spacing `(h,g)` table
-A000124	supporting	Central polygonal numbers (the Lazy Caterer's sequence): n(n+1)/2 + 1; or, maximal number of pieces formed when slicing a pancake with n cuts.	unimodal height-2 castles `1 + C(w+1,2)`, the `g -> infinity` limit of the `h=2` tower-spacing row
-A000005	supporting	d(n) (also called tau(n) or sigma_0(n)), the number of divisors of n.	rectangles by area, the bottom rung of the convex-polyomino ladder
-A000041	supporting	a(n) is the number of partitions of n (the partition numbers).	Ferrers diagrams by area
-A000700	supporting	Expansion of Product_{k>=0} (1 + x^(2k+1)); number of partitions of n into distinct odd parts; number of self-conjugate partitions; number of symmetric Ferrers graphs with n nodes.	height-signed Ferrers diagrams by area, `(-1)^n A000700(n)`
-A000009	supporting	Expansion of Product_{m >= 1} (1 + x^m); number of partitions of n into distinct parts; number of partitions of n into odd parts.	multiset partitions c* of one element repeated n times (distinct-part partitions)
-A005436	supporting	Number of convex polygons of perimeter 2n on square lattice.	convex polyominoes by perimeter (Delest-Viennot)
-A006958	supporting	Number of parallelogram polyominoes with n cells (also called staircase polyominoes, although that term is overused).	parallelogram polyominoes by area, the q-Bessel rung
-A049346	supporting	Coefficient of x^(-n) in expansion of continued fraction 0, x, x^2, x^3, x^4, ... .	height-signed parallelogram polyominoes by area are `-A049346(n)`
-A067675	supporting	Number of fixed convex polyominoes with n cells.	convex polyominoes by area; the convex castle with a floating base
-A067676	supporting	Number of fixed directed convex polyominoes with n cells.	directed convex polyominoes by area
-A227310	supporting	G.f.: 1/G(0) where G(k) = 1 + (-q)^(k+1) / (1 - (-q)^(k+1)/G(k+1) ).	absolute values of height-signed parallelograms by area; growth 1.23729
+A253943	count	a(n) = 3*binomial(n+1,6).	height-3 castles of width n-2 with 4 blocks
+A271942	count	Triangle read by rows: T(n,k) is the number of bargraphs of semiperimeter n having width k (n>=2, k>=1).	castles by (semi-perimeter, width): tower Narayana T(w, s-w-1) re-indexed
 A276994	supporting	Decimal expansion of the Klarner-Rivest polyomino constant.	growth constant 2.30913... of parallelogram, directed convex and convex polyominoes by area
-A002718	supporting	Number of bicoverings of an n-set.	Bender's c((0,n)): partitions of a multiset with every element twice, no repeated blocks, no repeated element in a block
-A020554	supporting	Number of multigraphs on n labeled edges (without loops).	Bender's v((0,n)): every element twice, repeated blocks allowed, no repeated element in a block
-A020555	supporting	Number of multigraphs on n labeled edges (with loops). Also number of genetically distinct states amongst n individuals.	Bender's v*((0,n)): all partitions of a multiset with every element twice
-A094574	supporting	Number of (<=2)-covers of an n-set.	Bender's c*((0,n)): every element twice, no repeated blocks, repeated elements in a block allowed
-A060486	supporting	Tricoverings of an n-set.	Bender's c((0,0,n)): every element three times, no repeated blocks, no repeated element in a block
-A165434	supporting	Number of tri-coverings of a set.	Bender's v((0,0,n)): every element three times, repeated blocks allowed, no repeated element in a block
 A319591	supporting	Number of nonnegative integer matrices with n columns and any number of nonzero distinct rows with every column summing to 3 up to permutation of rows.	Bender's c*((0,0,n)): every element three times, no repeated blocks
 A322487	supporting	Number of (3*n) X n matrices with nonnegative integer entries and each column sum being 3 up to permutation of rows.	Bender's v*((0,0,n)): all partitions of a multiset with every element three times
-A001519	count	a(n) = 3*a(n-1) - a(n-2) for n >= 2, with a(0) = a(1) = 1.	convex castles (stack polyominoes) by semi-perimeter: anti-diagonal sums of C(2h+w-3, w-1)
-A082582	count	Expansion of (1 + x^2 - sqrt( 1 - 4*x + 2*x^2 + x^4)) / (2*x) in powers of x.	castles (bargraphs) by semi-perimeter w + #blocks; growth tribonacci squared
-A271942	count	Triangle read by rows: T(n,k) is the number of bargraphs of semiperimeter n having width k (n>=2, k>=1).	castles by (semi-perimeter, width): tower Narayana T(w, s-w-1) re-indexed
-A105422	supporting	Triangle read by rows: T(n,k) is the number of compositions of n having exactly k parts equal to 1.	prime-factor counts of castles by area (k+1 factors for k height-1 columns)
-A045623	supporting	Number of 1's in all compositions of n+1.	total height-1 columns over castles of area n; mean prime-factor count (n+6)/4
-A342528	count	Number of compositions with alternating parts weakly decreasing (or weakly increasing).	convex castles of area n+1 whose first column is not 1 (first difference of A001523)
-A001924	supporting	Apply partial sum operator twice to Fibonacci numbers.	one-peak castles of area n+1: (1^a, X, 1^b) with X free of height-1 columns
-A329398	count	Number of compositions of n with uniform Lyndon factorization and uniform co-Lyndon factorization.	monotone castles by area, 2p(n) - d(n) (interlink via Wiseman conjecture)
-A332834	count	Number of compositions of n that are neither weakly increasing nor weakly decreasing.	non-monotone castles by area
-A002620	count	Quarter-squares: a(n) = floor(n/2)*ceiling(n/2). Equivalently, a(n) = floor(n^2/4).	two-block castles of area n (1^a 2^m 1^c)
-A097701	count	Expansion of 1/((1-x)^2*(1-x^2)^2*(1-x^3)).	three-block one-peak castles of area n+3
-A002624	count	Expansion of (1-x)^(-3) * (1-x^2)^(-2).	three-block two-peak castles of area n+5
-A253943	count	a(n) = 3*binomial(n+1,6).	height-3 castles of width n-2 with 4 blocks
 A325668	supporting		false positive rejected by the first OEIS mining pass (a "sqrt(5) difference" sequence agreeing on a few terms of a castle distribution)
 A325842	supporting		false positive rejected by the first OEIS mining pass (a "sqrt(5) difference" sequence agreeing on a few terms of a castle distribution)
+A329398	count	Number of compositions of n with uniform Lyndon factorization and uniform co-Lyndon factorization.	monotone castles by area, 2p(n) - d(n) (interlink via Wiseman conjecture)
+A332578	count	Number of compositions of n whose negation is unimodal.	valley castles by area
+A332669	count	Number of compositions of n whose negation is not unimodal.	not-unimodal compositions
+A332834	count	Number of compositions of n that are neither weakly increasing nor weakly decreasing.	non-monotone castles by area
+A342528	count	Number of compositions with alternating parts weakly decreasing (or weakly increasing).	convex castles of area n+1 whose first column is not 1 (first difference of A001523)
+A352116	count	Partial sums of the odd triangular numbers (A014493).	|P(k,4)|: partial sums of odd triangular numbers

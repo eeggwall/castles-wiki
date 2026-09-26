@@ -8,11 +8,11 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 
 | Slice | Value |
 |---|---|
-| Pages | 179 (37 Sources / 79 Concepts / 60 Analyses / 1 Reference / 2 Maintenance) |
+| Pages | 180 (37 Sources / 80 Concepts / 60 Analyses / 1 Reference / 2 Maintenance) |
 | Departments (open + done) | R 2+9, E 7+13, N 14+30, E/N 1+0, Z 5+7, Q 6+9, S 8+6, T 7+0, F 11+6, X 5+7 |
 | Auxiliary Services (open + done) | Telephone Company 5+3, Chinese Remainders 3+3 |
 | Items | 74 open, 93 done, 167 total (Departments 66+87, Auxiliary Services 8+6; top-level items only) |
-| Seminar arcs | 16 (9 delivered, 5 in progress, 2 planned) |
+| Seminar arcs | 16 (9 delivered, 6 in progress, 1 planned) |
 | Dates | wiki 2026-09-13, IDEAS 2026-09-26, last reorganize 2026-09-20 |
 
 ## Prize Problems
@@ -69,7 +69,7 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 | 11. The rule zoo: variations on the castle | in progress | next: seminar page |
 | 12. The half-derivative of a castle | in progress | next: castle comb page, then seminar page |
 | 13. Beethoven's Ninth, at every scale | delivered | [song-as-castle](wiki/pages/song-as-castle.md) |
-| 14. Sandcastles | planned | next: sandpile pages, then spine |
+| 14. Sandcastles | in progress | next: the `K(G)` census, identity element, clock and avalanche pages, then seminar page |
 | 15. The taxicab thread | in progress | next: seminar page |
 | 16. Castle fibers: one ring, every prime at once | delivered | [castle-fibers-char-2-walkthrough](wiki/pages/castle-fibers-char-2-walkthrough.md) |
 
@@ -153,8 +153,8 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 
 ### Arc 14. Sandcastles
 - Thesis: the abelian sandpile is literally sand on a castle - the base row is the tide, the sink; trees wash away (trivial group) and only the 2x2 ladder cores hold sand - so the sandpile group, its identity element, the tide period of a grain dropped on the apex, and the avalanche statistics of Bak-Tang-Wiesenfeld are castle invariants finer than the Laplacian spectrum, or provably not.
-- Status: planned. Thesis only; the spine lists background pages, and the sandpile pages do not exist yet.
-- Spine: [castle-graph](wiki/pages/castle-graph.md), [isospectral-castles](wiki/pages/isospectral-castles.md), [spectral-analysis](wiki/pages/spectral-analysis.md), then the sandpile pages as they land.
+- Status: in progress. The first sandpile page exists; the census, the identity element, the clock and the avalanche pages do not.
+- Spine: [sandpile-group](wiki/pages/sandpile-group.md) (the introduction), [castle-graph](wiki/pages/castle-graph.md), [isospectral-castles](wiki/pages/isospectral-castles.md), [spectral-analysis](wiki/pages/spectral-analysis.md), then the sandpile pages as they land.
 - Open items feeding it: from S, the sandpile group, the identity element, the sandcastle clock, and Bak-Tang-Wiesenfeld avalanches.
 
 ### Arc 15. The taxicab thread
@@ -318,12 +318,12 @@ Five spectra sit naturally on a castle: transfer-matrix, LGV kernel, skyline DFT
 - [ ] **Bronze-spectrum castle hunt** - is `(3+sqrt(13))/2 = 3.303` the adjacency spectral radius of any castle? None in twelve exhaustive boxes (about `7.1 x 10^11` skylines, [bronze-castle-hunt](wiki/pages/bronze-castle-hunt.md)), and rectangles and two-group even splits are proved impossible; what remains is a reason `x^2 - 3x - 1` never divides a castle's characteristic polynomial, or a three-or-more-group construction that forces it.
 - [ ] **Skyline DFT - individual-castle signatures** - the DFT of a column-height sequence is a complete individual invariant modulo cyclic shift; classify castles by spectral concentration (low-pass / high-pass / sparse-spectrum). Hooks into compressed sensing and turnpike reconstruction.
 - [ ] **LGV kernel spectrum - determinantal universality** - eigenvalues of the non-crossing-path kernel `N(w; i, j)` in `[0,1]`; a sine-kernel bulk limit would put castles in the same universality class as random Young tableaux and GUE.
-- [ ] **Sandpile group `K(G)` from the 2x2 cycle basis** - "cycle rank = number of 2x2 filled blocks" on [castle-graph](wiki/pages/castle-graph.md) is `H_1(G; Z) = Z^{#2x2}`; the same boundary matrix gives the sandpile group `K(G)` as the torsion of the cokernel of `L = ∂ ∂^T`, whose order is the number of spanning trees (Kirchhoff) and whose invariant factors are the Smith normal form of `L`. Exhibit the 2x2 squares as a `Z`-basis of the cycle lattice; compute `K(G)` for every castle to 16 cells; tabulate which isospectral pairs on [isospectral-castles](wiki/pages/isospectral-castles.md) it separates; find the smallest pair with equal Laplacian spectrum and non-isomorphic `K`.
+- [ ] **Sandpile group `K(G)` from the 2x2 cycle basis** - (introduction and first results: [sandpile-group](wiki/pages/sandpile-group.md), including the block-matrix formula `K = Z^r / (4I - A_blocks)` checked on all castles to 10 cells) "cycle rank = number of 2x2 filled blocks" on [castle-graph](wiki/pages/castle-graph.md) is `H_1(G; Z) = Z^{#2x2}`; the same boundary matrix gives the sandpile group `K(G)` as the torsion of the cokernel of `L = ∂ ∂^T`, whose order is the number of spanning trees (Kirchhoff) and whose invariant factors are the Smith normal form of `L`. Exhibit the 2x2 squares as a `Z`-basis of the cycle lattice; compute `K(G)` for every castle to 16 cells; tabulate which isospectral pairs on [isospectral-castles](wiki/pages/isospectral-castles.md) it separates; find the smallest pair with equal Laplacian spectrum and non-isomorphic `K`.
 - [ ] **Sandcastle clock (castle horology)** - drop one grain per tick on the apex of the recurrent identity; the orbit closes after the order of the apex's unit chip in `K(G)`, so every castle has a tide period (15 on the 2x3 ladder `(2,2,2)`, trivial on every tree castle); tabulate the period over the census to 16 cells, compare with `|K|` and the Laplacian spectrum, and find the smallest castle whose period is not determined by its spectrum.
 - [ ] **Hear the sand (Ihara zeta at u=1)** - Hashimoto's `1/zeta(u) = (1-u^2)^(r-1) det(I - Au + Q u^2)` on castle graphs where `r` is the 2x2-block count and `Q = D - I`; Northshield's theorem gives `d/du (1/zeta)|_{u=1} = 2(r-1) kappa` with `kappa` the spanning-tree count = `|K(G)|`, so the order of the sandpile group is a coefficient of the zeta - a single function that says Ramanujan through its poles ([[ramanujan-castles]]) and sand-content through its vanishing at 1; tabulate over the census and ask which higher zeta coefficients see the invariant factors of `K`.
 - [ ] **Cyclic sandcastles** - `K(G)` is cyclic for every 2 x n ladder rectangle (verified n <= 14, orders A001353) and non-cyclic starting at `(3,3,3)` (`Z/8 x Z/24`) and `(2,2,1,2,2)` (`Z/4 x Z/4`); conjecture: `K` is cyclic iff every maximal connected core of 2x2 blocks is a 2-wide ladder, so cyclicity is the height-2 predicate on the sand-carrying subgraph; first test cases `(2,3,3,2)` (2x3 ladder above a 4x2 base) and the 3-wide staircase.
-- [ ] **Bak-Tang-Wiesenfeld on a real castle** - the original self-organized-criticality sandpile run on castle graphs instead of square grids, base row as sink: drop grains uniformly at random, record avalanche sizes and durations, and fit the tail; ladders versus rectangles versus battlements, and whether the block count or the 2x2 count sets the power-law cutoff; the identity element is where the dropping starts.
-- [ ] **Sandpile identity element on the castle graph** - the abelian sandpile model with the base row as sink: chips on cells, toppling at degree, recurrent configurations biject with spanning trees by Dhar's burning algorithm and form `K(G)` under addition-and-stabilization. Compute and draw the identity element for the golden and silver castles and the 10-cell isospectral pair; measure single-chip apex avalanche size as a function of shape; ask whether the identity or the avalanche count is a spectral invariant.
+- [ ] **Bak-Tang-Wiesenfeld on a real castle** - (note: "base row as sink" merges the bottom row into one drain, the tide variant on [sandpile-group](wiki/pages/sandpile-group.md), a different group from the castle graph's own) the original self-organized-criticality sandpile run on castle graphs instead of square grids, base row as sink: drop grains uniformly at random, record avalanche sizes and durations, and fit the tail; ladders versus rectangles versus battlements, and whether the block count or the 2x2 count sets the power-law cutoff; the identity element is where the dropping starts.
+- [ ] **Sandpile identity element on the castle graph** - (note: "base row as sink" is the tide variant on [sandpile-group](wiki/pages/sandpile-group.md); the identity on the 4-cycle `(2,2)` with one drain cell is computed there) the abelian sandpile model with the base row as sink: chips on cells, toppling at degree, recurrent configurations biject with spanning trees by Dhar's burning algorithm and form `K(G)` under addition-and-stabilization. Compute and draw the identity element for the golden and silver castles and the 10-cell isospectral pair; measure single-chip apex avalanche size as a function of shape; ask whether the identity or the avalanche count is a spectral invariant.
 
 - [x] **[Seminar: hear the shape of a castle](wiki/pages/hear-the-shape-seminar.md)** - Kac's question as a list of what a castle's spectrum hears (area, edges, `2 x 2` blocks, spanning trees) and the smallest failures: the 10-cell adjacency pair separated by degree sequence, the 11-cell Laplacian tree pair separated only by per-cell walk counts at length 3, both at 16 cells.
 - [x] **[Tree castle by area](wiki/pages/tree-castle-by-area.md)** - area-graded GF `T_h(x,q) = (1 + P_h(q) x) / (1 - qx - q P_h(q) x^2)`; `h=2` is Narayana's cows A000930, `h=3` is A006498, `h=4` is A000570, `h->inf` is A005251.

@@ -137,6 +137,7 @@ The spectral-radius census on [[castle-graph-spectral-radius](pages/castle-graph
 - [[castle-compression](pages/castle-compression.md)] - a spectrum is a lossy code for a castle; the isospectral pairs found here are its collisions, and their sizes (10 / 11 / 16 cells) are where spectral compression first loses information.
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the from-scratch pedagogy that works out the 10-cell adjacency-isospectral pair by hand as its "two shapes, same spectrum" section.
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the classroom version: what the spectrum hears, and the 10- and 11-cell pairs reproduced by one runnable search.
+- [[sandpile-group](pages/sandpile-group.md)] - the sandpile group of each castle; both small cospectral pairs have equal groups (Z/15 and trivial).
 
 
 ## Footnotes
