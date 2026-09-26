@@ -241,6 +241,7 @@ These are the S-department items feeding Arc 4 in `IDEAS.md`:
 - [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the seminar on OEIS mining as a research method.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
 - [[sandpile-group](pages/sandpile-group.md)] - the sandpile group, a finer relative of the Laplacian spectrum; it does not separate the 10- or 11-cell pairs.
+- [[sandpile-census](pages/sandpile-census.md)] - the sandpile census: the group hears nothing the spectrum misses up to 16 cells.
 
 
 ## Footnotes

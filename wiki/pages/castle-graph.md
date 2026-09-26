@@ -165,6 +165,7 @@ def cycle_rank(c):
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the from-scratch pedagogy that computes by hand the small golden / silver / `φ²`-spectrum castles this page's Named-castle-types table tabulates.
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar built on this graph: what its spectrum hears and the smallest failures.
 - [[sandpile-group](pages/sandpile-group.md)] - the sandpile group: the 2×2 blocks that make the cycle rank also hold all the sand; tree castles hold none.
+- [[sandpile-census](pages/sandpile-census.md)] - the census of sandpile groups; 6,963 of the 33,150 castles to 16 cells are tree castles with trivial group.
 
 
 ## Footnotes

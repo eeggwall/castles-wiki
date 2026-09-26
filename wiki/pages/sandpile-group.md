@@ -89,7 +89,7 @@ It is the sandpile group of the planar dual graph, whose vertices are the blocks
 
 **The prototype: the ladder.** A 2-wide ladder `(2, 2, …, 2)` has a single row of blocks, so its block matrix is tridiagonal, with `4` on the diagonal and `−1` beside it. The group is cyclic, of order `4, 15, 56, 209, …` (OEIS A001353, `a(n) = 4a(n−1) − a(n−2)`). Picture any castle as its skeleton of `2 × 2` blocks. Separated groups of blocks contribute independent factors (two isolated squares give `Z/4 × Z/4`), a row of `r` blocks contributes one cyclic group of that ladder order, and denser arrangements such as the `2 × 2` square of blocks in `(3, 3, 3)` or the T in `(2, 3, 3, 2)` split into two cyclic factors.
 
-**What this means for the isospectral pairs.** The 10-cell adjacency-isospectral pair of [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] has the same sandpile group, `Z/15`, because both castles have two side-by-side blocks. The 11-cell Laplacian-isospectral pair are trees, so both groups are trivial. On these two pairs the sandpile group separates nothing. Whether it separates any pair with the same Laplacian spectrum is the census question on `IDEAS.md`.
+**What this means for the isospectral pairs.** The 10-cell adjacency-isospectral pair of [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] has the same sandpile group, `Z/15`, because both castles have two side-by-side blocks. The 11-cell Laplacian-isospectral pair are trees, so both groups are trivial. On these two pairs the sandpile group separates nothing. [[sandpile-census](pages/sandpile-census.md)] checks every castle to 16 cells: it separates no cospectral pair at all, because cospectral castles there always share their graph of 2×2 blocks.
 
 ## A variant: the bottom row as the tide
 
@@ -211,6 +211,8 @@ In the recurrent tuples the positions are the cells in the order `castle_graph` 
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the other place the wiki reads a finite abelian group off a Smith normal form.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the golden and silver castles of the gallery.
 - [[spectral-analysis](pages/spectral-analysis.md)] - method 4 (the Laplacian) and method 5 (the Ihara zeta), which also sees the spanning-tree count.
+- [[sandpile-census](pages/sandpile-census.md)] - the census: every castle to 16 cells, and why the group separates no cospectral pair.
+
 
 ## Appearances in Sources
 
