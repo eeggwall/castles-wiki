@@ -26,7 +26,7 @@ It is the cubic analogue of the golden ratio `φ` (`x² = x + 1`) and stands to 
 | "Fibonacci" (`a(n) = a(n−2) + a(n−3)`) | `F_n`, A000045 | Padovan `1, 1, 1, 2, 2, 3, 4, 5, 7, 9, 12, 16, 21, 28, …`, A000931 |
 | "Lucas" (trace `ψ^n + ψ'^n + ψ''^n`) | `L_n`, A000032 | Perrin `3, 0, 2, 3, 2, 5, 5, 7, 10, 12, 17, 22, 29, 39, 51, …`, A001608 |
 | conjugates | `−1/φ`, modulus `0.618` | a complex pair of modulus `ψ^{−1/2} = 0.8688` |
-| Pisot? | yes | yes - the **smallest** Pisot number |
+| Pisot? | yes | yes - the **smallest** Pisot number (a smallest one exists because 1 is not a limit point of the closed Pisot set, [[pisot-number](pages/pisot-number.md)])[^salem2] |
 | unit? | fundamental unit of `Q(√5)` | fundamental unit of the cubic field `Q(ψ)`, discriminant `−23` |
 
 The **Pisot** property (all conjugates strictly inside the unit circle, [[pisot-number](pages/pisot-number.md)]) is what makes `ψ^n` approach integers: Perrin(n) is the integer trace `ψ^n + ψ'^n + ψ''^n` and the conjugate part decays like `0.8688^n`, so `ψ^n − Perrin(n) → 0`.[^salem1] Padovan numbers are the impulse response of the recurrence, Perrin the trace; the same relationship as [[pell-numbers](pages/pell-numbers.md)] and companion Pell for `1 + √2`.
@@ -109,3 +109,5 @@ A plain (unsigned) castle statistic whose count grows at the bare `ψ` is a **Pa
 [^3]: Verified by execution: exact Jacobi-Perron in `Q(ρ)` (SymPy `rem`/`invert` modulo the minimal polynomial, mpmath at 800 digits for floors) on `x³ − x − 1` near `1.32` (periodic, preperiod 2, period 2, digits `[1,1],[2,3],[0,3],[0,4]`), on `μ³ − 2μ² + μ − 1` near `1.75` (periodic, preperiod 4, period 1, digits `[1,3],[0,1],[3,9],[6,12],[7,12]`), and on `λ³ − 4λ² + 4λ − 8` near `3.5` (periodic, preperiod 5, period 4). Period matrix and Perrin identification as on [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)].
 
 [^salem1]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. I §2 Theorem 1 p.3 [synthesis] L289-308 - for θ in class S the trace `θ^n + α_1^n + … + α_{k−1}^n` is a rational integer and the conjugate part is at most `(k−1)ρ^n`, so `θ^n → 0 (mod 1)` "in the same way as the general term of a convergent geometric progression".
+
+[^salem2]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. II §1 p.16 [synthesis] L1160-1178 - "It follows that 1 is not a limit point of S", from the closure of S (L933-936). The book proves that a least element exists and does not identify it. That it is `ψ`: https://oeis.org/A060006 (fetched 2026-09-25) - "This is the smallest Pisot-Vijayaraghavan number."

@@ -3,9 +3,9 @@ title: Bounded-height castles by area - the n-nacci family
 category: Analyses
 summary: All castles (not just tree castles) with column heights in {1, …, h}, graded by total area A, are counted by the h-step Fibonacci (n-nacci) numbers, GF 1/(1 − x − x² − ⋯ − x^h). A castle bounded by height h is a composition of A into parts {1, …, h}, and compositions into {1..h} are the n-nacci numbers. The growth constant marches up the n-nacci constants: h = 2 is Fibonacci A000045 (φ ≈ 1.618), h = 3 is tribonacci A000073 (t ≈ 1.8393), h = 4 is tetranacci A000078, h = 5 is pentanacci A001591, tending to 2 as h → ∞. This is the castle's first tribonacci interpretation, and a new, denser sibling of the tree-castle-by-area family, whose 2×2-block ban instead produces the term-skipping cubics (supergolden, plastic).
 tags: [analysis, castle, area, generating-function, oeis, fibonacci, tribonacci, tetranacci, n-nacci, composition, growth-constant]
-sources: [project-euler-502-castle-factoring]
+sources: [project-euler-502-castle-factoring, salem-1963-algebraic-numbers-fourier-analysis]
 created: 2026-09-17
-updated: 2026-09-19
+updated: 2026-09-25
 ---
 
 # Bounded-height castles by area
@@ -36,7 +36,7 @@ The identity is immediate and needs no transfer matrix: **a castle skyline `(c_1
 | 5 | `1, 2, 4, 8, 16, 31, 61, 120, 236, 464, 912, 1793` | `1 − x − ⋯ − x⁵` | `≈ 1.9659` | **A001591** pentanacci, `= A001591(A+4)` |
 | ∞ | `1, 2, 4, 8, 16, 32, 64, …` | `(1 − x)/(1 − 2x)` | `2` | `2^{A−1}`, **A011782** ([[castle-by-area](pages/castle-by-area.md)] baseline) |
 
-The n-nacci constants increase monotonically from `φ` to their limit `2` (the `h → ∞` row is the wiki's `2^{A−1}` all-castles baseline, recovered as the unbounded-height case). OEIS offsets verified against the OEIS generating functions (2026-09-17): A000073 has GF `x²/(1−x−x²−x³)`, A000078 has GF `x³/(1−x−x²−x³−x⁴)`, so the area-`A` count is `A000073(A+2)` and `A000078(A+3)` respectively.[^2]
+Every n-nacci constant is a Pisot number ([[pisot-number](pages/pisot-number.md)]). Checked for `h = 2..12`, the other roots have modulus `0.618, 0.737, 0.818, …, 0.980`, creeping toward 1 as the constant approaches 2. So this castle ladder is a sequence in Salem's class S converging to `2`, one of the integer limit points his Chapter II exercise constructs from the other side (`z^n(z − 2) − 1`, roots `2.414, 2.206, 2.107, …` decreasing to 2; the first is the silver ratio).[^salem2] The n-nacci constants increase monotonically from `φ` to their limit `2` (the `h → ∞` row is the wiki's `2^{A−1}` all-castles baseline, recovered as the unbounded-height case). OEIS offsets verified against the OEIS generating functions (2026-09-17): A000073 has GF `x²/(1−x−x²−x³)`, A000078 has GF `x³/(1−x−x²−x³−x⁴)`, so the area-`A` count is `A000073(A+2)` and `A000078(A+3)` respectively.[^2]
 
 ## Why this is not the tree-castle-by-area family
 
@@ -72,6 +72,7 @@ The `bounded_castles_by_area(h, A_max)` snippet on [[castle-snippets-strips](pag
 
 ## Related Concepts
 
+- [[pisot-number](pages/pisot-number.md)] - every n-nacci constant is Pisot; the ladder converges to the limit point 2 of the Pisot set.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the sparser sibling (2×2-block ban) that produces the term-skipping cubics instead; the closest neighbor on the wiki.
 - [[castle-by-area](pages/castle-by-area.md)] - the `h → ∞` case (`2^{A−1}`, all compositions) and the area-re-indexing that this page bounds by height.
 - [[plastic-number](pages/plastic-number.md)] - the third cubic constant (`ψ`, `x³ = x + 1`); this page adds the tribonacci constant (`x³ = x² + x + 1`) to the cubic-constant map.
@@ -86,3 +87,5 @@ The `bounded_castles_by_area(h, A_max)` snippet on [[castle-snippets-strips](pag
 [^1]: Verified by execution: brute-force enumeration of every height-bounded skyline `c ∈ {1, …, h}^w` (all widths `w` with `Σ c ≤ A_max`), bucketed by area, agrees term for term with the composition recurrence `a(A) = Σ_{p=1}^{h} a(A−p)` for `h = 2, 3, 4, 5` and `A ≤ 14`. The GF `1/(1 − x − ⋯ − x^h)` is the standard OGF for compositions into parts `{1, …, h}` (sequence (SEQ) of `{x, x², …, x^h}`; [[symbolic-method](pages/symbolic-method.md)] SEQ construction).
 
 [^2]: OEIS (fetched 2026-09-17): https://oeis.org/A000073 - tribonacci, "a(n) = a(n-1) + a(n-2) + a(n-3)", GF `x²/(1 − x − x² − x³)`, data `0, 0, 1, 1, 2, 4, 7, 13, 24, 44, 81, 149, 274`, comment "number of compositions of n-2 with no part greater than 3"; tribonacci constant `1.839286755…`, the real root of `x³ − x² − x − 1`. https://oeis.org/A000078 - tetranacci, GF `x³/(1 − x − x² − x³ − x⁴)`, "number of compositions of n-3 with no part greater than 4". Offsets `A000073(A+2)`, `A000078(A+3)`, `A001591(A+4)` follow from the numerator power `x^{h−1}` in each GF. A000045 (Fibonacci) and A011782 (`2^{n−1}`) are standard.
+
+[^salem2]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. II Exercise p.21 [synthesis] L1491-1498 - every natural integer a ≥ 2 is "a limit point for the numbers of the class S", from the roots of `z^n(z − a) − 1 = 0`. Pisot checks by execution (2026-09-25, own computation; NumPy roots of `x^h − x^{h−1} − … − 1` for `h = 2..12`, SymPy factorization of `x^n(x − 2) − 1` for `n = 1..7`, all irreducible and Pisot).

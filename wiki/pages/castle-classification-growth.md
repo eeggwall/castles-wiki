@@ -102,7 +102,7 @@ Only the `h = 2` rung is metallic; every `h ≥ 3` rung is a genuine degree-`h` 
 | **plastic-squared** `ψ²` | `≈ 1.7549` | `x³ − 2x² + x − 1` | `h → ∞` tree castles by area = A005251 ([[plastic-number](pages/plastic-number.md)]) |
 | **plastic** `ψ` | `≈ 1.3247` | `x³ − x − 1` | **not yet realized** as a plain count - the open watch-note on [[plastic-number](pages/plastic-number.md)] |
 
-Between the cubic-Pisot rows sits the `h = 4` tree row, A000570 (unique tournaments, [[unique-tournament](pages/unique-tournament.md)]), growing at `α ≈ 1.6851`, the dominant root of `x⁵ − x⁴ − x² − x − 1` - a quintic, non-metallic constant filling the slot between `φ` (`h = 3`) and `ψ²` (`h → ∞`).
+Between the cubic-Pisot rows sits the `h = 4` tree row, A000570 (unique tournaments, [[unique-tournament](pages/unique-tournament.md)]), growing at `α ≈ 1.6851`, the dominant root of `x⁵ − x⁴ − x² − x − 1` - a quintic, non-metallic, **non-Pisot** constant (a conjugate of modulus `1.0325`; [[pisot-number](pages/pisot-number.md)]) filling the slot between `φ` (`h = 3`) and `ψ²` (`h → ∞`).
 
 The plastic number `ψ` itself (`x³ = x + 1`) also enters as the `k = 6` signed-tower eigenvalue `ρ_6 = 2ψ²`, but that is a *spectral* appearance in the counting recurrence, not a growth-castle count. The bare-`ψ` growth castle (a Padovan/Perrin-rate count) is the one open slot in the cubic-Pisot family.
 

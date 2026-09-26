@@ -1,7 +1,7 @@
 ---
 title: "Algebraic Numbers and Fourier Analysis (Salem 1963)"
 category: Sources
-summary: Raphael Salem's 1960 Brandeis lectures, the founding monograph on the Pisot numbers (his class S) and the Salem numbers (his class T), and their use in harmonic analysis. Chapter I defines class S, proves θ^n → 0 mod 1 through the integer trace, shows every real number field contains Pisot numbers, and proves the two converses (Σ‖λθ^n‖² < ∞, or θ algebraic with ‖λθ^n‖ → 0, forces θ into S) with the rational-series toolkit of Fatou's lemma and Kronecker's Hankel-determinant test.
+summary: Raphael Salem's 1960 Brandeis lectures, the founding monograph on the Pisot numbers (his class S) and the Salem numbers (his class T), and their use in harmonic analysis. Chapter I defines class S, proves θ^n → 0 mod 1 through the integer trace, shows every real number field contains Pisot numbers, and proves the two converses (Σ‖λθ^n‖² < ∞, or θ algebraic with ‖λθ^n‖ → 0, forces θ into S) with the rational-series toolkit of Fatou's lemma and Kronecker's Hankel-determinant test. Chapter II proves S is closed, so 1 is not a limit point (a smallest Pisot number exists) while every integer a ≥ 2 is one.
 tags: [book, source, pisot-number, salem-number, algebraic-integer, diophantine-approximation, uniform-distribution, rational-generating-function, hankel-determinant, fatou-lemma, fourier-analysis]
 sources: [salem-1963-algebraic-numbers-fourier-analysis]
 created: 2026-09-25
@@ -33,12 +33,17 @@ Once the series is rational, the only pole inside the unit disc is `1/θ` (from 
 
 The chapter ends on the open case. The existence of a *transcendental* `θ` with `‖λθ^n‖ → 0` is open, and the one theorem known is that the set of all such `θ` is countable. Once the errors are small, `a_{n+2}` is determined by `a_n` and `a_{n+1}` (it is the integer nearest `a_{n+1}²/a_n`), so the whole integer sequence, and with it `θ = lim a_{n+1}/a_n`, is fixed by finitely many initial terms.[^13] Two exercises follow. Products of same-degree elements of S in one field stay in S (in particular `θ^q`), and Theorem A's hypothesis weakens to `Σ_{j ≤ n} ‖λθ^j‖² = o(n)`.[^14]
 
+**Chapter II, "A property of the set of numbers of the class S."** The one theorem is that **S is a closed set**.[^15] The first proof rests on a uniform lemma: every `θ` in S has a companion `λ` with `1 ≤ λ < θ` and `Σ ‖λθ^n‖² < 9`, a bound independent of `θ`. It comes from writing the integer series `P(z)/Q(z)` (Q the reciprocal of the minimal polynomial) as `μ/(1 − θz)` plus a function regular past the unit circle, then Parseval. The quadratic units are handled separately.[^16] Given `θ_p → ω` in S, pass to a subsequence with `λ_p → μ`; the bound survives the limit, and Theorem A of Chapter I puts `ω` in S. **Corollary: 1 is not a limit point of S.** If `1 + ε_m` were in S with `ε_m → 0`, then so would be its powers `(1 + ε_m)^{[a/ε_m]} → e^a` for every `a > 0`, making S dense and contradicting closure.[^17]
+
+A second proof, "interesting because it may be applicable to different problems", restates Theorem A for functions in the Hardy space `H²` with integer Taylor coefficients (Theorem A'), bounds the companion from below (`λ > 1/(2(θ+1))` for non-quadratic `θ`), and extracts a normal-family limit of the functions `λ_s/(1 − θ_s z) − P_s/Q_s`. The lower bound is what keeps the limiting pole `1/ω` alive.[^18] The chapter's exercise: every integer `a ≥ 2` is a limit point of S, via the roots of `z^n(z − a) − 1 = 0` (Rouché's theorem for `a > 2`, "a little care" for `a = 2`).[^19]
+
 ## Key Takeaways
 
 - **Class S = Pisot numbers**: real algebraic integers `θ > 1` with every other conjugate of modulus `< 1`. Rational integers `> 1` belong trivially; `1` is excluded by convention.[^3]
 - **Near-integer powers come from the integer trace.** `θ^n + Σ α_j^n` is a rational integer and the conjugate part decays geometrically, so `‖θ^n‖ → 0` (Theorem 1).[^7] This is the mechanism behind `ψ^n − Perrin(n) → 0` on [[plastic-number](pages/plastic-number.md)] and the trace sequences of [[metallic-means](pages/metallic-means.md)].
 - **Every real field has Pisot numbers** of full degree (Theorem 2, via Minkowski).[^8]
 - **Two converses.** `Σ‖λθ^n‖² < ∞` forces `θ` into S (Theorem A). For algebraic `θ`, `‖λθ^n‖ → 0` is enough (Theorem B).[^9] The unconditional converse, whether a transcendental `θ` can have `‖λθ^n‖ → 0`, is open. Such `θ` form a countable set.[^13]
+- **S is closed, with a gap at 1** (Chapter II). Limits of Pisot numbers are Pisot, 1 is not a limit point (so a smallest Pisot number exists), and every integer `a ≥ 2` is a limit point.[^15][^17][^19] On castle constants: the n-nacci growth rates approach 2 through S, and the family `x^n(x − 1) − 1` leaves S after `n = 4` ([[pisot-number](pages/pisot-number.md)]).
 - **The rational-series toolkit.** Linear recurrence ⇔ rational series (Lemma I). Integer coefficients force `Q(0) = 1` (Fatou). Eventually-vanishing Hankel determinants ⇔ rational (Kronecker).[^10] These are the theory behind reading a recurrence off a castle count ([[recurrence-discovery](pages/recurrence-discovery.md)], [[berlekamp-massey](pages/berlekamp-massey.md)]).
 
 ## Contents
@@ -46,7 +51,7 @@ The chapter ends on the open case. The existence of a *transcendental* `θ` with
 | Chapter | Title | pp. |
 |---|---|---|
 | I | A remarkable set of algebraic integers (class S, Theorems 1, 2, A, B, the open problem) | 1-12 |
-| II | A property of the set of numbers of the class S (S is closed) | 13-21 |
+| II | A property of the set of numbers of the class S (S is closed; 1 is not a limit point; integers `a ≥ 2` are) | 13-21 |
 | III | Applications to the theory of power series; another class of algebraic integers (class T) | 22-35 |
 | IV | A class of singular functions; behavior of their Fourier-Stieltjes transforms at infinity | 36-41 |
 | V | The uniqueness of the expansion in trigonometric series; general principles | 42-52 |
@@ -54,7 +59,7 @@ The chapter ends on the open case. The existence of a *transcendental* `θ` with
 | VII | The case of general "homogeneous" sets | 57-61 |
 | - | Some unsolved problems; Appendix (algebraic integers, Kronecker, Weyl's criterion, Minkowski) | 62-66 |
 
-Page numbers are the book's own, from the table of contents.[^15]
+Page numbers are the book's own, from the table of contents.[^20]
 
 ## Entities & Concepts
 
@@ -62,6 +67,8 @@ Page numbers are the book's own, from the table of contents.[^15]
 - [[plastic-number](pages/plastic-number.md)] - a cubic element of S; `ψ^n − Perrin(n) → 0` is Theorem 1 for it.
 - [[metallic-means](pages/metallic-means.md)] - the quadratic elements of S with norm `−1`, generalizing the golden-ratio example.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] / [[berlekamp-massey](pages/berlekamp-massey.md)] - the computational side of Lemmas I and III.
+- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] - n-nacci growth constants, a castle sequence in S converging to the limit point 2 (Chapter II).
+- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - tree-castle growth constants converging to the Pisot `ψ²` through mostly non-Pisot values.
 - [[generating-functions](pages/generating-functions.md)] - the rational-GF toolkit that Lemma I restates.
 
 ## Relation to Other Wiki Pages
@@ -86,4 +93,9 @@ On the generating-function side, the wiki's standing principle "linear recurrenc
 [^12]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. I §3 proof of Theorem B p.10 [synthesis] L775-822 - multiplying the minimal equation `A_0 + A_1θ + … + A_kθ^k = 0` by `λθ^N` makes `A_0 a_N + … + A_k a_{N+k}` an integer tending to 0, hence 0 for `N > N_0`; Lemma I then gives rationality; footnote: a series with `o(1)` coefficients "cannot have a pole on the unit circle".
 [^13]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. I §4 p.11 [synthesis] L839-898 - "the problem that is open is the existence of transcendental numbers" θ with `‖λθ^n‖ → 0`; Theorem: the set of such θ is denumerable, because `a_n a_{n+2} − a_{n+1}²` over `a_n` tends to 0, so "the integer a_{n+2} is uniquely determined by the two preceding integers"; θ = lim `a_{n+1}/a_n`; the λ are denumerable too.
 [^14]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. I Exercises p.12 [synthesis] L905-927 - Exercise 1 (θθ' in S for same-degree θ, θ' of S in one field; θ^q in S), Exercise 2 (Theorem A holds under `Σ_{j=1}^{n} ‖λθ^j‖² = o(n)`).
-[^15]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Contents [synthesis] L73-172 - chapter and section titles with their page numbers.
+[^15]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. II §1 p.13 L933-936 - "THEOREM. The set of numbers of the class S is a closed set."
+[^16]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. II §1 Lemma pp.13-15 [synthesis] L938-1118 - to every θ in S corresponds λ with `1 < λ < θ` (λ = 1 allowed in the quadratic-unit case) such that `Σ‖λθ^n‖²` "converges with a sum less than an absolute constant"; `g(z) = μ/(1 − θz) − P(z)/Q(z)` regular past the unit circle, `|g| < 3` on it, hence `Σ‖μθ^n‖² < 9`; λ = θ^s μ; quadratic units treated separately; the equivalent form with `Σ sin² πλθ^n < 9π²`.
+[^17]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. II §1 proof of the theorem p.16 [synthesis] L1131-1178 - a sequence `θ_p → ω`, companions `λ_p → μ`, `Σ sin² πμω^n ≤ 9π²`, "which, by Theorem A of Chapter I, proves that w belongs to the class S"; "It follows that 1 is not a limit point of S", via `(1 + ε_m)^{[a/ε_m]} → e^a` and "the numbers of S would be everywhere dense".
+[^18]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. II §2 pp.16-21 [synthesis] L1179-1490 - the second proof, "interesting because it may be applicable to different problems": Hardy classes `H^p` in an extended sense, Theorem A' (integer coefficients, one simple pole `1/θ`, `f ∈ H²` ⇒ rational, θ in S), the Lemma `λ > 1/(2(θ + 1))` for non-quadratic θ, the normal family `{g_s}`, and "the reason for proving a lemma to the effect that the As are bounded below".
+[^19]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. II Exercise p.21 [synthesis] L1491-1498 - a natural integer a is "a limit point for the numbers of the class S", considering `z^n(z − a) − 1 = 0`; "the result for a > 2 is a straightforward application of Rouche's theorem. With a little care, the argument can be extended to a = 2."
+[^20]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Contents [synthesis] L73-172 - chapter and section titles with their page numbers.

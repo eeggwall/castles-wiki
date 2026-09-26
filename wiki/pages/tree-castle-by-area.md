@@ -3,9 +3,9 @@ title: Tree castle by area - Narayana's cows, A006498, tournaments, and plastic
 category: Analyses
 summary: The area-graded generating function for tree castles is (1 + P_h(q))/(1 - q - q·P_h(q)) with P_h(q) = q² + q³ + … + q^h. Fixing h and summing over widths gives one C-finite sequence per height: h = 2 is **Narayana's cows** A000930 (supergolden growth), h = 3 is **A006498** (golden growth via a cyclotomic factorization), h = 4 is **A000570** (tournaments determined by their score vectors), and h → ∞ is **A005251** (plastic squared ψ²). The h = 4 match is a real bijection - a three-way identification tree castle ↔ composition of A + 1 with parts in {1, 3, 4, 5} ↔ score-uniquely-determined tournament on A + 1 nodes via strongly-connected-component decomposition - equivalent to the graph-theoretic claim that strongly connected score-uniquely-determined tournaments exist only for sizes 1, 3, 4, 5 (verified for n ≤ 6). The structural theorem is Tetali's classification of unique tournaments (J. Combin. Theory Ser. B, 1998): the four basic unique tournaments are those on 1, 3, 4, 5 vertices with score vectors (0), (1,1,1), (1,1,2,2), (2,2,2,2,2). Combined with the tree-castle transfer matrix this proves Schoenfield's empirical recurrence for A000570. Directly re-verified in this wiki through n = 8 (Python at n ≤ 7 in 2 min 25 s; Java at n = 8 in 35 min 38 s: 6,880 iso classes, 31 score-uniquely-determined, all 31 non-strongly-connected).
 tags: [analysis, castle, tree-castle, area, generating-function, q-analogue, oeis, narayana-cows, plastic-number, supergolden, fibonacci, sympy, verification]
-sources: [project-euler-502-castle-factoring, tetali-1998-unique-tournaments]
+sources: [project-euler-502-castle-factoring, tetali-1998-unique-tournaments, salem-1963-algebraic-numbers-fourier-analysis]
 created: 2026-09-17
-updated: 2026-09-19
+updated: 2026-09-25
 ---
 
 # Tree castle by area
@@ -63,7 +63,7 @@ The coefficient of `q^A` in `S_h(q)` is the number of tree castles of area exact
 | 2 | `1 − q − q³` | `1, 2, 3, 4, 6, 9, 13, 19, 28, 41, 60, 88, 129, 189` | **A000930** Narayana's cows (`a(n) = a(n−1) + a(n−3)`) | supergolden `≈ 1.4656` (root of `x³ = x² + 1`) |
 | 3 | `1 − q − q³ − q⁴ = (1 + q²)(1 − q − q²)` | `1, 2, 4, 6, 9, 15, 25, 40, 64, 104, 169, 273, 441, 714` | **A006498** (`a(n) = a(n−1) + a(n−3) + a(n−4)`) | **golden `φ`** (the second factor is Fibonacci) |
 | 4 | `1 − q − q³ − q⁴ − q⁵` | `1, 2, 4, 7, 11, 18, 31, 53, 89, 149, 251, 424, 715, 1204` | **A000570** (tournaments on `n` nodes determined by their score vectors) | root of `x⁵ − x⁴ − x² − x − 1 ≈ 1.6851` |
-| 5 | `1 − q − q³ − q⁴ − q⁵ − q⁶` | `1, 2, 4, 7, 12, 20, 34, 59, 102, 175, 300, 515, 885, 1521` | (not in OEIS as of 2026-09-17) | root of `x⁶ − x⁵ − x² − x − 1` |
+| 5 | `1 − q − q³ − q⁴ − q⁵ − q⁶` | `1, 2, 4, 7, 12, 20, 34, 59, 102, 175, 300, 515, 885, 1521` | (not in OEIS as of 2026-09-17) | root of `x⁶ − x⁵ − x³ − x² − x − 1 ≈ 1.7178` |
 | ∞ | `1 − 2q + q² − q³` | `1, 2, 4, 7, 12, 21, 37, 65, 114, 200, 351, 616, 1081, 1897` | **A005251** (`a(n) = 2a(n−1) − a(n−2) + a(n−3)`) | **plastic squared `ψ²`** (`≈ 1.7549`) |
 
 All matches are offset-exact against OEIS data (tree castles of area `A` at height `h = 2, 3` equal `A000930(A + 1)` and `A006498(A + 1)`; at `h = 4`, `A000570(A + 1)`; unlimited height, `A005251(A + 2)`).[^3]
@@ -113,10 +113,12 @@ The area-graded growth constants scan through unfamiliar territory:
 | 2 | supergolden `≈ 1.4656` | `Q(ρ)`, `ρ³ = ρ² + 1` |
 | 3 | golden `φ ≈ 1.6180` | `Q(√5)` |
 | 4 | `≈ 1.6851` | degree-5 extension |
-| 5 | `≈ 1.7141` | degree-6 extension |
+| 5 | `≈ 1.7178` | degree-6 extension |
 | ∞ | plastic-squared `ψ² ≈ 1.7549` | `Q(ψ)` |
 
 The **h = 3 slot lands on the golden ratio** because `1 − q − q³ − q⁴ = (1 + q²)(1 − q − q²)`, and the golden factor `1 − q − q²` dominates. This is a nontrivial cancellation - the tree-castle-of-height-3 by-area count is *not* a Fibonacci sequence, but its dominant term is Fibonacci and the correction from the `(1 + q²)` factor is a length-4 cyclic pattern. Explicitly, `A006498(2n) = F(n+1)²` and `A006498(2n−1) = F(n+1) F(n)`, an identity that predates any castle interpretation.
+
+**The constants approach `ψ²` mostly from outside the Pisot class** ([[pisot-number](pages/pisot-number.md)]). Taking the irreducible factor that carries each growth constant, the constant is Pisot at `h = 2, 3, 6, 7` and not at `h = 4, 5` or `h = 8..15`. For those, the largest other conjugate has modulus between `1.006` and `1.033`, just outside the unit circle. The limit `ψ²` is Pisot all the same, consistent with Salem's theorem that the set of Pisot numbers is closed, which constrains limits of Pisot numbers and says nothing about limits of non-Pisot ones.[^salem2]
 
 **None of the growth constants for finite `h` is a metallic mean**, extending the pattern from [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]: metallic means appear as transfer-matrix spectral radii of 2-state castle classes and as adjacency spectral radii of individual castle graphs, but not as growth constants of area-graded tree castles or of the full castle count. The area-graded tree-castle family is instead a new algebraic family, indexed by `h` and converging to `ψ²`.
 
@@ -281,6 +283,7 @@ Both filed on [[castle-snippets](pages/castle-snippets.md)].
 
 - [[castle-graph](pages/castle-graph.md)] - the tree castle concept and its width-graded counts (Fibonacci, Jacobsthal, k-Fibonacci).
 - [[plastic-number](pages/plastic-number.md)] - `ψ²` growth of the `h = ∞` case.
+- [[pisot-number](pages/pisot-number.md)] - which of the height-`h` growth constants are Pisot, and the closure of the Pisot set.
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the third A005251/`ψ²` castle node: minimum-tower-spacing `(h=2, g=2)` castles, linked to this page's `h = ∞` composition reading by the [[a005251-bijection](pages/a005251-bijection.md)].
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[hardin-word-identity](pages/hardin-word-identity.md)] - where A005251 first appeared, as the plastic component of `P(6, L)`.
 - [[metallic-means](pages/metallic-means.md)] - the family the area-graded tree-castle growth constants sit *near* but do not belong to.
@@ -309,3 +312,5 @@ Both filed on [[castle-snippets](pages/castle-snippets.md)].
 [^8]: Verified by execution (35 min 38 s at `n = 8`): Java implementation (`bin/java/TournamentEnum.java`) enumerating all 2^28 orientations per Landau-valid score sequence, filtering to matching out-degree tuples, canonicalizing within score-buckets, and grouping by score. Enumerated 6,880 iso classes total, matching A000568(8); 31 score-uniquely-determined, matching A000570(8); 0 strongly connected among the 31 score-uniquely-determined, verifying Tetali 1998 at `n = 8` directly.
 
 [^7]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.157 L39-41 - "Theorem 1. There are exactly four (basic) strong tournaments in Unique ... any other (nonstrong) tournament in Unique can be decomposed into strong components, each of which is one of the four basic tournaments." Published in Journal of Combinatorial Theory Series B 72(1) (1998), 157-159, DOI `10.1006/jctb.1997.1799`; ingested into `raw/tetali-1998-unique-tournaments.pdf` (plaintext extraction `raw/tetali-1998-unique-tournaments.txt` for stable line numbers).
+
+[^salem2]: [[salem-1963-algebraic-numbers-fourier-analysis](pages/salem-1963-algebraic-numbers-fourier-analysis.md)] Ch. II §1 p.13 L933-936 - "The set of numbers of the class S is a closed set." Pisot status by execution (2026-09-25, own computation; SymPy `factor_list` on `x^{h+1} − x^h − x^{h−2} − … − 1`, the reversal of `1 − q − q³ − … − q^{h+1}`, with the irreducible factor carrying the dominant root; `h = 2..15`). The `h = 5` constant `1.7178` is also the ratio limit of the tabulated sequence `1, 2, 4, 7, 12, 20, 34, …`.
