@@ -238,6 +238,8 @@ These are the S-department items feeding Arc 4 in `IDEAS.md`:
 - [[levy-flights](pages/levy-flights.md)] - local return probabilities that separate the 11-cell pair.
 - [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - Axis 9, where the spectrum is an invariant.
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the other seminar pages.
+- [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the seminar on OEIS mining as a research method.
+
 
 ## Footnotes
 

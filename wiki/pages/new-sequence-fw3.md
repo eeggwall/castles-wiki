@@ -5,7 +5,7 @@ summary: The cleanest new-sequence candidate — even-block castles of height ex
 tags: [oeis, castle, new-sequence, c-finite, height-3, source]
 sources: [new-sequence-fw3]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # New sequence candidate: F(w,3)
@@ -66,6 +66,8 @@ The characteristic polynomial `(x−3)(x−2)(x²−x+2)(x²−2x+2)` is assembl
 - [[castle-snippets](pages/castle-snippets.md)] / [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] — brute-force cross-checks.
 - [[castle-entropy](pages/castle-entropy.md)] — the `w = 12` term as an entropy data point.
 - [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] — catalogue status.
+- [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - Stop 6 of the seminar: the non-match and how Berlekamp-Massey turns it into a generation candidate.
+
 
 ## Relation to Other Wiki Pages
 

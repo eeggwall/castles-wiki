@@ -5,7 +5,7 @@ summary: The discipline of matching castle counts to existing OEIS A-numbers (in
 tags: [concept, oeis, method, cross-reference, research-workflow]
 sources: [oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Online Encyclopedia of Integer Sequences (OEIS) cross-referencing (interlinking method)
@@ -43,6 +43,8 @@ OEIS requires **human authorship** — a tool may run the verification scripts, 
 - [[signed-tower-count](pages/signed-tower-count.md)] — where the offset-verification discipline caught a real/imaginary mixup.
 - [[oeis-index](pages/oeis-index.md)] — the OEIS meta-triad's mechanical half: script-generated directory of every A-number on the wiki.
 - [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] — the OEIS meta-triad's hand-curated half: castle-counting sequences with novelty status and submission priority.
+- [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the classroom version of this method: one sequence end to end, a trap, and a non-match.
+
 
 ## Footnotes
 

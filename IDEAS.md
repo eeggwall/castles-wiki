@@ -8,11 +8,11 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 
 | Slice | Value |
 |---|---|
-| Pages | 176 (37 Sources / 76 Concepts / 60 Analyses / 1 Reference / 2 Maintenance) |
+| Pages | 177 (37 Sources / 77 Concepts / 60 Analyses / 1 Reference / 2 Maintenance) |
 | Departments (open + done) | R 2+9, E 7+13, N 14+30, E/N 1+0, Z 5+7, Q 6+9, S 8+6, T 7+0, F 11+6, X 5+7 |
 | Auxiliary Services (open + done) | Telephone Company 5+3, Chinese Remainders 3+3 |
 | Items | 74 open, 93 done, 167 total (Departments 66+87, Auxiliary Services 8+6; top-level items only) |
-| Seminar arcs | 16 (7 delivered, 7 in progress, 2 planned) |
+| Seminar arcs | 16 (8 delivered, 6 in progress, 2 planned) |
 | Dates | wiki 2026-09-13, IDEAS 2026-09-26, last reorganize 2026-09-20 |
 
 ## Prize Problems
@@ -62,7 +62,7 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 | 4. Hear the shape of a castle | delivered | [hear-the-shape-seminar](wiki/pages/hear-the-shape-seminar.md) |
 | 5. Castle cryptography: build, break, fix | delivered | [castle-cryptography](wiki/pages/castle-cryptography.md) series |
 | 6. The q-thread: castles by area | in progress | next: q-analog pages, then seminar page |
-| 7. OEIS mining as a research method | in progress | next: seminar page |
+| 7. OEIS mining as a research method | delivered | [oeis-mining-seminar](wiki/pages/oeis-mining-seminar.md) |
 | 8. One bit: the parity clause as information | in progress | next: seminar page |
 | 9. pi from a pile of blocks | planned | next: castle-samplers page, then spine |
 | 10. Knuth's algorithms in castle space | in progress | next: seminar page |
@@ -111,8 +111,8 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 
 ### Arc 7. OEIS mining as a research method
 - Thesis: sweep the brute enumerator, look up every sequence, and treat matches as new castle interpretations to submit.
-- Status: in progress. Spine exists; the seminar page (mining as a method, one sequence end to end) does not.
-- Spine: [oeis-cross-referencing](wiki/pages/oeis-cross-referencing.md), [oeis-mining-pe502](wiki/pages/oeis-mining-pe502.md), [oeis-index](wiki/pages/oeis-index.md), [oeis-height2-hyperbolic-castles](wiki/pages/oeis-height2-hyperbolic-castles.md), [castle-eigenvalue-oeis-crosswalk](wiki/pages/castle-eigenvalue-oeis-crosswalk.md), [new-sequence-fw3](wiki/pages/new-sequence-fw3.md), [odd-castles-and-block-tables](wiki/pages/odd-castles-and-block-tables.md).
+- Status: delivered. Seminar page: [oeis-mining-seminar](wiki/pages/oeis-mining-seminar.md).
+- Spine: [oeis-mining-seminar](wiki/pages/oeis-mining-seminar.md) (the seminar itself), then [oeis-cross-referencing](wiki/pages/oeis-cross-referencing.md), [oeis-mining-pe502](wiki/pages/oeis-mining-pe502.md), [oeis-index](wiki/pages/oeis-index.md), [oeis-height2-hyperbolic-castles](wiki/pages/oeis-height2-hyperbolic-castles.md), [castle-eigenvalue-oeis-crosswalk](wiki/pages/castle-eigenvalue-oeis-crosswalk.md), [new-sequence-fw3](wiki/pages/new-sequence-fw3.md), [odd-castles-and-block-tables](wiki/pages/odd-castles-and-block-tables.md).
 - Open items feeding it: from N, the `h>=5` tree-castle-by-area rows. The six unfiled tower-spacing cells on [tower-spacing-castles](wiki/pages/tower-spacing-castles.md) are submission material. Submissions themselves are human action and stay in `TODO.md`.
 
 ### Arc 8. One bit: the parity clause as information

@@ -266,3 +266,4 @@ Computed earlier and listed as candidates before the status convention; most are
 - [[reachable-field-census](pages/reachable-field-census.md)] - the strip Perron-root sequences, mostly unchecked against OEIS.
 - [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)] - the odd-count rows, the dated parity-area searches, and the area / blocks / peaks and `(w, h)` / blocks tables.
 - [[a005251-bijection](pages/a005251-bijection.md)] - the explicit bijection unifying A005251's four castle readings; the multi-interpretation hub's centerpiece.
+- [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the seminar that walks one catalogue row through the whole method.
