@@ -10,8 +10,8 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 |---|---|
 | Pages | 183 (37 Sources / 82 Concepts / 61 Analyses / 1 Reference / 2 Maintenance) |
 | Departments (open + done) | R 2+9, E 7+13, N 14+30, E/N 1+0, Z 5+7, Q 6+9, S 8+9, T 7+0, F 11+6, X 7+7 |
-| Auxiliary Services (open + done) | Telephone Company 4+3, Chinese Remainders 3+3, Facilities 2+0 |
-| Items | 77 open, 96 done, 173 total (Departments 68+90, Auxiliary Services 9+6; top-level items only) |
+| Auxiliary Services (open + done) | Telephone Company 4+3, Chinese Remainders 3+3, Facilities 4+0 |
+| Items | 79 open, 96 done, 175 total (Departments 68+90, Auxiliary Services 11+6; top-level items only) |
 | Seminar arcs | 16 (9 delivered, 6 in progress, 1 planned) |
 | Dates | wiki 2026-09-13, IDEAS 2026-09-26, last reorganize 2026-09-20 |
 
@@ -424,3 +424,5 @@ Applied, physical-world tooling: turning real objects into castles.
 
 - [ ] **Key photographs to castles** - a converter from a photograph of a key to its castle: find the blade, read the bitting (cut depth at each pin position) against the key blank's standard spacing and depth increments, and output the castle of heights. Test on photographs of common house keys; report where the reading fails (wear, angle, lighting).
 - [ ] **Standard key blanks as castle families** - collect manufacturer bitting specifications (number of pin positions, number of depths, maximum adjacent cut) for common blanks, and tabulate each blank as a castle family with its keyspace size; feeds the lock-and-key item in the X Department.
+- [ ] **Cities as castles** - famous city skylines (building heights read left to right from a fixed viewpoint) as castles, with their block counts, parity and entropy; then use the skyline as a lead-in to fractals: zooming into a skyline changes how much detail each column carries, the way measuring a coastline with a shorter ruler makes it longer (the coastline paradox), so the skyline's length and block count as functions of resolution give a fractal dimension. Ties to [image-as-castle](wiki/pages/image-as-castle.md) (an image read as skylines) and [castle-entropy](wiki/pages/castle-entropy.md).
+- [ ] **Mountains as castles** - mountain ranges and ridgelines as castles: national-park skylines and city mountainscapes (the Wasatch Front behind Salt Lake City, for example) sampled from elevation profiles into column heights; compare their block statistics and roughness with city skylines, and ask whether a ridgeline's castle has a stable fractal dimension as the sampling gets finer.

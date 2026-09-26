@@ -22,7 +22,7 @@ Alongside the nine Departments sit **Auxiliary Services** - the non-Department s
 
 - **The Telephone Company:** phone signals, audio codecs, tone catalogues, expander-graph and Ihara-zeta reads of the castle graph, information-theoretic entropy of skylines, and the isospectral seminar.
 - **Department of Chinese Remainders:** department specializing in applying the Chinese Remainder Theorem
-- **Facilities:** applied, physical-world tooling: real objects turned into castles (key photographs and key blanks).
+- **Facilities:** applied, physical-world tooling: real objects turned into castles (keys, city skylines, mountain ridgelines).
 
 ## Conceptual coverage
 
@@ -135,6 +135,7 @@ Alongside the nine Departments sit **Auxiliary Services** - the non-Department s
 ### Auxiliary services: Facilities
 
 - Keys as castles: pin-tumbler bitting read as column heights, key photographs converted to castles, standard key blanks (pin positions, depths, maximum adjacent cut) as castle families with countable keyspaces.
+- Skylines and ridgelines: famous city skylines and mountain ranges (national parks, city mountainscapes such as Salt Lake City's) read as castles, and zooming into them as a lead-in to fractals and the coastline paradox.
 
 ## Crossovers
 
