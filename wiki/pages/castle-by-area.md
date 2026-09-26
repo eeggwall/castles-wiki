@@ -5,7 +5,7 @@ summary: Re-indexing castles by total cells n instead of (w,h) — convex↔A001
 tags: [concept, castle, area, composition, oeis, unimodal, valley]
 sources: [oeis-mining-pe502, castle-by-area]
 created: 2026-09-13
-updated: 2026-09-25
+updated: 2026-09-26
 ---
 
 # Castles by area
@@ -29,6 +29,7 @@ Per the phase-2 submission plan, the three dense matches — **A001523**, **A332
 - **Parity splits by area** — `even/odd` (block-parity of all castles) and CEV/COD (convex-even and convex-odd: block-parity of convex castles), none in OEIS. The quotable identities: `even(n)+odd(n) = 2^{n−1}` and **`cev(n)+cod(n) = A001523(n)`** — a parity refinement of a foundational sequence.[^4]
 - **`strict_valley(n)`** — castles with a *true* interior dip (valley and not unimodal): `0,0,0,0,1,3,8,17,34,60,107,175,285,445,691,…`. New, no OEIS match on 15 terms.[^5]
 - **Six parity-refined concave sequences** — `valley_even/odd` (split of A332578), `nc_even/odd` (split of A115981), `sv_even/odd` — all new.[^5]
+- All ten parity splits, `strict_valley` and the signed differences, sixteen terms each, returned no OEIS match on 2026-09-26; the terms and the joint area / blocks / peaks tables are on [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)].
 
 ## The (w,h) view, and a candidate bijection
 

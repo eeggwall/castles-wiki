@@ -5,7 +5,7 @@ summary: Hand-curated catalogue of every castle-counting sequence, by the castle
 tags: [analysis, oeis, castle, sequence, catalogue, novelty, submission-candidate, interlink]
 sources: [oeis-mining-pe502]
 created: 2026-09-17
-updated: 2026-09-23
+updated: 2026-09-26
 ---
 
 # Castle sequence catalogue
@@ -204,6 +204,23 @@ The classical polyomino families intersected with the castles ([[castle-add-a-co
 | non-monotone castles | `0, 0, 0, 1, 4, 14, 36, 88, 199, 432` | `2^(n-1) - 2p(n) + d(n)` | **known** → [A332834](https://oeis.org/A332834) (compositions neither weakly increasing nor weakly decreasing) |
 | signed monotone castles `even - odd` | `-1, 0, 0, 1, 0, 2, 0, 2, -1, 4, -2, 4, -4, 6` | `2(-1)^n A000700(n) - sum_{d\|n} (-1)^d` | **novel-candidate** (signed, negated and `\|·\|` no match, 2026-09-23) |
 
+### Odd count, parity-refined area, and joint block tables
+
+The residue of the first mining pass, with full terms and the 2026-09-26 searches on [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)].
+
+| object | first terms | GF / formula | status |
+|---|---|---|---|
+| `odd(w, h)` rows, `h = 3..7` | `h = 3`: `1, 5, 16, 44, 122, 358, 1082, 3274` | `(A + P(h-1,w) - P(h-2,w))/2`; order 5, 9, 11, 13, 15 | **novel-candidate** (no match, 2026-09-26) |
+| `odd(4..6, h)`, `F(5, h)`, `F(6, h)` columns | `odd(4, h)`: `1, 5, 44, 58, 247, 223, 738, 564` | quasi-polynomial in `h` | **novel-candidate** (no match, 2026-09-26) |
+| `even`, `odd`, `cev`, `cod`, `valley_even/odd`, `nc_even/odd`, `sv_even/odd` by area, and their signed differences | see the page | `cev + cod = A001523`, `valley_even + valley_odd = A332578`, `nc_even + nc_odd = A115981` | **novel-candidate** (no match, 2026-09-26) |
+| castles by area and blocks, triangle | rows `1; 1,1; 1,2,1; 1,4,2,1; 1,6,6,2,1` | column `b` rational for `b <= 4` | **novel-candidate** (no match, 2026-09-26) |
+| two-block castles by area | `1, 2, 4, 6, 9, 12, 16, 20, 25` | `q^2/((1-q)^2(1-q^2))` | **interlink** → [A002620](https://oeis.org/A002620) quarter-squares (`= A002620(n)`) |
+| three-block one-peak castles by area | `1, 2, 5, 9, 16, 25, 39, 56, 80` | `q^3/((1-q)^2(1-q^2)^2(1-q^3))` | **interlink** → [A097701](https://oeis.org/A097701) (`= A097701(n-3)`, verified through area 40) |
+| three-block two-peak castles by area | `1, 3, 8, 16, 30, 50, 80, 120, 175` | `q^5/((1-q)^3(1-q^2)^2)` | **interlink** → [A002624](https://oeis.org/A002624) (`= A002624(n-5)`, verified through area 40) |
+| three-, four- and five-block columns; other blocks and peaks cells | see the page | rational | **novel-candidate** (no match, 2026-09-26) |
+| `(w, h)` castles with `h + 1` blocks | `h = 3`: `3, 21, 84, 252, 630, 1386` | `(2h-3) C(w+2h-3, 2h)` | **interlink** → [A253943](https://oeis.org/A253943) at `h = 3` (`3 C(n+1, 6)`, `n = w + 2`); `h >= 4` **novel-candidate** |
+| `(w, h)` block-count triangles `h = 3, 4`, and the `h + 2` column | `h = 3` rows `1; 5; 15,3,1; 35,21,9; 70,84,51,5,1` | first three columns in closed form | **novel-candidate** (no match, 2026-09-26) |
+
 ### Half-sum rows
 
 The order-`1/2` fractional partial sum of `F(w, h)` in the width ([[half-sum-castles](pages/half-sum-castles.md)]), as the binomial half-sum `K_h(w) = sum_k C(2k, k) F(w - k, h)`, GF `G_h(x)/sqrt(1 - 4x)`. Terms from the first nonzero width.
@@ -224,7 +241,7 @@ Computed earlier and listed as candidates before the status convention; most are
 - `F(w, 4…6)`: the taller rows ([[new-sequence-fw3](pages/new-sequence-fw3.md)]) — **unchecked**.
 - Fixed-width columns ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)]): `F(3, 2m) = 10m^2 - 5m + 1 = 5·Hex(m) + 1`, `6, 31, 76, 141, 226, 331, 456, 601, 766, 951, …` — **novel-candidate** (no OEIS match by terms or formula, searched 2026-09-20; it is A080860 at negative index). `odd(3, 2n+1) = 10n^2 + 5n + 1`, `1, 16, 51, 106, 181, 276, …` — **interlink** → [A080860](https://oeis.org/A080860) (exact, offset 0). `F(3, 2m+1) = odd(3, 2m) = C(2m+1, 2)` and `C(2m, 2)` — **known**, triangular numbers A000217. The interleaved columns `F(3,h)` (`6, 3, 31, 10, 76, 21, …`), `odd(3,h)`, and `F(4,h)` (`10, 21, 117, 122, 448, 367, 1131, 820, …`) — **novel-candidate** (searched 2026-09-20, no match); `F(4,h)` is the quasi-polynomial `(4h-3)(4h^2-3h+2)/6` at even `h`, `(h-1)(8h^2-4h+3)/6` at odd `h`.
 - `|P(k, L)|` in the *k*-direction at fixed `L ≥ 5` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]) — **unchecked**. *(The L-direction `P(k,·)` rows for `k = 2..6` are no longer here — they are searched and confirmed **novel-candidate** in the "Signed tower count P(k,·) rows" section above.)*
-- Parity-refined area sequences (even/odd-area convex, `strict_valley`) ([[castle-by-area](pages/castle-by-area.md)]) — **novel-candidate** (noted "none in OEIS" on that page).
+- Parity-refined area sequences (even/odd, convex, valley, non-convex, `strict_valley`) ([[castle-by-area](pages/castle-by-area.md)]) — **novel-candidate**, searched 2026-09-26; terms in the section above.
 - Higher tower rows `w ≥ 6` in the Narayana table ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]) — **unchecked**.
 - Jacobi-Perron convergent denominators of `2ψ²` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]) — **unchecked**.
 
@@ -247,4 +264,5 @@ Computed earlier and listed as candidates before the status convention; most are
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the tower-spacing family whose g=2 column is the Hardin sequences and g=3 the "min of 3 adjacent" family.
 - [[proper-castle-projection](pages/proper-castle-projection.md)] - the even-block proper-castle rows, the novel-candidate entries.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the strip Perron-root sequences, mostly unchecked against OEIS.
+- [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)] - the odd-count rows, the dated parity-area searches, and the area / blocks / peaks and `(w, h)` / blocks tables.
 - [[a005251-bijection](pages/a005251-bijection.md)] - the explicit bijection unifying A005251's four castle readings; the multi-interpretation hub's centerpiece.

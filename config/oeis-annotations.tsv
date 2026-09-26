@@ -161,3 +161,7 @@ A342528	count	Number of compositions with alternating parts weakly decreasing (o
 A001924	supporting	Apply partial sum operator twice to Fibonacci numbers.	one-peak castles of area n+1: (1^a, X, 1^b) with X free of height-1 columns
 A329398	count	Number of compositions of n with uniform Lyndon factorization and uniform co-Lyndon factorization.	monotone castles by area, 2p(n) - d(n) (interlink via Wiseman conjecture)
 A332834	count	Number of compositions of n that are neither weakly increasing nor weakly decreasing.	non-monotone castles by area
+A002620	count	Quarter-squares: a(n) = floor(n/2)*ceiling(n/2). Equivalently, a(n) = floor(n^2/4).	two-block castles of area n (1^a 2^m 1^c)
+A097701	count	Expansion of 1/((1-x)^2*(1-x^2)^2*(1-x^3)).	three-block one-peak castles of area n+3
+A002624	count	Expansion of (1-x)^(-3) * (1-x^2)^(-2).	three-block two-peak castles of area n+5
+A253943	count	a(n) = 3*binomial(n+1,6).	height-3 castles of width n-2 with 4 blocks
