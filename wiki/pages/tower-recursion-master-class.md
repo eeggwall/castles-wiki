@@ -109,6 +109,7 @@ Towers of height ≤ 1 above a length-4 block are column heights `c ∈ {0,1}⁴
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar on castle spectra and Kac's question.
 - [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the seminar on OEIS mining as a research method.
 - [[castle-notation](pages/castle-notation.md)] - the notation reference: tower height `k = h − 1`, argument orders, and the parity term.
+- [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
 
 
 ## Footnotes

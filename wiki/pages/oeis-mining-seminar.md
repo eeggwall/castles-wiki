@@ -206,6 +206,8 @@ These are the open items feeding Arc 7 in `IDEAS.md`: the `h ≥ 5` tree-castle-
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - the recurrence finder of Stop 6.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] / [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)] - the method run on eigenvalue convergents and on the odd and joint tables.
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the other seminar pages.
+- [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
+
 
 ## Footnotes
 

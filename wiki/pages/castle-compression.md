@@ -5,7 +5,7 @@ summary: How cheaply a castle can be written down. The castle rules are themselv
 tags: [concept, castle, compression, kolmogorov-complexity, encoding, representations, classification, information-theory]
 sources: [project-euler-502-representations, project-euler-502-castle-factoring]
 created: 2026-09-18
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Castle compression
@@ -69,6 +69,8 @@ The shape axes are blind to Tier 1: a rule-generated castle fails every convex /
 - [[image-as-castle](pages/image-as-castle.md)] - the ladder on an image: PNG's Sub/Up/Average/Paeth filters are the Tier-1 predictors, JPEG's DCT the spectral tier, and the 2D height field is 32x smaller than its voxel raster.
 - [[castle-steganography](pages/castle-steganography.md)] - the "skip rule" reading of compression: one bit per castle of hidden capacity is exactly the parity clause priced on this page.
 - [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the dual view: conditioning is an oracle-side compression; H(B) vs H(N) makes the one-bit gap this page prices explicit.
+- [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
+
 
 ## Appearances in Sources
 

@@ -66,6 +66,7 @@ F(w,h) = [ h^w − (h−1)^w − P(h−1,w) + P(h−2,w) ] / 2
 - [[signed-tower-count](pages/signed-tower-count.md)] — `P(k,L)` as a C-finite sequence family (and the `P(1,L)=A146559(L+1)` Online Encyclopedia of Integer Sequences (OEIS) identity).
 - [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the seminar synthesis reading `(T ± P)/2` as one of three upgrades of the `(n−1)!` cycle-count toolkit.
 - [[castle-notation](pages/castle-notation.md)] - the notation reference for `T`, `P`, `F` and the parity term `S(w, h)`.
+- [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as one bit, including the one-cell flip rule.
 
 
 ## Footnotes

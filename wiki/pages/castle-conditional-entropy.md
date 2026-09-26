@@ -5,7 +5,7 @@ summary: Refining the uniform-entropy `log_2 F(w,h)` view by conditioning on the
 tags: [analysis, castle, entropy, information-theory, conditional-entropy, block-count, area, statistic, verification]
 sources: [project-euler-502-brute-force, project-euler-502-observations]
 created: 2026-09-21
-updated: 2026-09-21
+updated: 2026-09-26
 ---
 
 # Conditional entropy given block count and area
@@ -144,6 +144,8 @@ At `(w, h)` in the table, that set has size on average `F(w, h) / w`, and the re
 - [[castle-steganography](pages/castle-steganography.md)] - the one bit `H(N) - H(B)` reads as a covert channel of capacity exactly one bit per castle; the parity-clause thread.
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - linear complexity as a compression story: Attack 5's `C(d+e-1, e)` linearized-filter bound is the information-theoretic residual accounting run against a nonlinear-feedback stream cipher.
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the `blocks_of`, `all_castles` reference implementations against which every number here was checked.
+- [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar that closes on this page's conditioning result.
+
 
 ## Appearances in Sources
 

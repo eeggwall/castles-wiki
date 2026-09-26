@@ -260,6 +260,7 @@ These are the open items feeding Arc 3 in `IDEAS.md`:
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the other seminar pages.
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar on castle spectra and Kac's question.
 - [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the seminar on OEIS mining as a research method.
+- [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
 
 
 ## Footnotes

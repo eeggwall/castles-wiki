@@ -5,7 +5,7 @@ summary: Two ways to hide an arbitrary base64 string inside castles, both execut
 tags: [analysis, castle, steganography, base64, lsb, parity, block-parity, image, covert-channel, implementation, seminar]
 sources: [project-euler-502-representations]
 created: 2026-09-19
-updated: 2026-09-24
+updated: 2026-09-26
 ---
 
 # Castle steganography - hiding a base64 string in a castle
@@ -83,6 +83,8 @@ The S8 arc asks what the even-block bit *is*; here it is a covert channel of cap
 - [[castle-compression](pages/castle-compression.md)] - why lossless codecs preserve both channels and lossy ones destroy them.
 - [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the one bit this channel monetizes is the same bit that separates H(B) from H(N); the parity-clause thread.
 - [[castle-snippets](pages/castle-snippets.md)] - the `blocks` predicate.
+- [[one-bit-seminar](pages/one-bit-seminar.md)] - Stop 5 of the one-bit seminar; Stop 3 gives the exact one-cell flip rule behind channel B.
+
 
 ## Appearances in Sources
 

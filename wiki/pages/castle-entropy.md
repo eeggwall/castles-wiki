@@ -87,6 +87,7 @@ Uniform entropy and entropy rate are the same limit approached from two sides. U
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] — `F(w,3)`, the sequence the `h = 3` row of the table is drawn from.
 - [[aocp-permutations](pages/aocp-permutations.md)] — Stirling's `log₂ n! ≈ n·log₂ n − n·log₂ e`, the entropy of a uniform permutation, the permutation-side twin of `w·log₂ h − 1`.
 - [[castle-notation](pages/castle-notation.md)] - the symbol conventions; `S(w,h)` here is the parity term of `F`.
+- [[one-bit-seminar](pages/one-bit-seminar.md)] - the classroom version: the one bit in aggregate, per castle, under noise, as a channel, and in the rate.
 
 
 ## Appearances in Sources

@@ -177,6 +177,7 @@ def fiber_board(k, primes):
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the seminar on the same parity sectors from the combinatorial side.
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar on castle spectra and Kac's question.
 - [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the seminar on OEIS mining as a research method.
+- [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
 
 
 ## Footnotes

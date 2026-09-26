@@ -8,11 +8,11 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 
 | Slice | Value |
 |---|---|
-| Pages | 178 (37 Sources / 78 Concepts / 60 Analyses / 1 Reference / 2 Maintenance) |
+| Pages | 179 (37 Sources / 79 Concepts / 60 Analyses / 1 Reference / 2 Maintenance) |
 | Departments (open + done) | R 2+9, E 7+13, N 14+30, E/N 1+0, Z 5+7, Q 6+9, S 8+6, T 7+0, F 11+6, X 5+7 |
 | Auxiliary Services (open + done) | Telephone Company 5+3, Chinese Remainders 3+3 |
 | Items | 74 open, 93 done, 167 total (Departments 66+87, Auxiliary Services 8+6; top-level items only) |
-| Seminar arcs | 16 (8 delivered, 6 in progress, 2 planned) |
+| Seminar arcs | 16 (9 delivered, 5 in progress, 2 planned) |
 | Dates | wiki 2026-09-13, IDEAS 2026-09-26, last reorganize 2026-09-20 |
 
 ## Prize Problems
@@ -63,7 +63,7 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 | 5. Castle cryptography: build, break, fix | delivered | [castle-cryptography](wiki/pages/castle-cryptography.md) series |
 | 6. The q-thread: castles by area | in progress | next: q-analog pages, then seminar page |
 | 7. OEIS mining as a research method | delivered | [oeis-mining-seminar](wiki/pages/oeis-mining-seminar.md) |
-| 8. One bit: the parity clause as information | in progress | next: seminar page |
+| 8. One bit: the parity clause as information | delivered | [one-bit-seminar](wiki/pages/one-bit-seminar.md) |
 | 9. pi from a pile of blocks | planned | next: castle-samplers page, then spine |
 | 10. Knuth's algorithms in castle space | in progress | next: seminar page |
 | 11. The rule zoo: variations on the castle | in progress | next: seminar page |
@@ -117,8 +117,8 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 
 ### Arc 8. One bit: the parity clause as information
 - Thesis: the even-block clause is exactly one bit, and the entropy view re-reads every growth constant as a topological entropy.
-- Status: in progress. Spine exists; the seminar page does not.
-- Spine: [castle-entropy](wiki/pages/castle-entropy.md), [castle-compression](wiki/pages/castle-compression.md), [castle-sign](wiki/pages/castle-sign.md).
+- Status: delivered. Seminar page: [one-bit-seminar](wiki/pages/one-bit-seminar.md).
+- Spine: [one-bit-seminar](wiki/pages/one-bit-seminar.md) (the seminar itself), then [castle-entropy](wiki/pages/castle-entropy.md), [castle-compression](wiki/pages/castle-compression.md), [castle-sign](wiki/pages/castle-sign.md).
 - Open items feeding it: from R, conditional entropy given block count / area, a rule-generated-castle detector, and whether the parity bit survives object by object.
 
 ### Arc 9. pi from a pile of blocks
@@ -175,7 +175,7 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 ### R Department (representations - encodings, entropy, source-level readings)
 
 - [ ] **Rule-generated-castle detector** - a predicate that identifies low-complexity-but-irregular castles without simulating the rule.
-- [ ] **Parity-bit object-by-object survival** - does the "exactly one bit" story survive at the level of individual castles, not just uniform totals.
+- [ ] **Parity-bit object-by-object survival** - does the "exactly one bit" story survive at the level of individual castles, not just uniform totals. Partial answer on [one-bit-seminar](wiki/pages/one-bit-seminar.md) Stop 3: raising column `i` changes the block count by `[c_i >= c_{i-1}] - [c_{i+1} > c_i]`, so one chosen cell flips the parity at a weak local maximum or strict local minimum, a random one-cell edit flips it 43-52% of the time, and a small set of castles (1 of 15 at `(4,2)`, 35 of 781 at `(5,4)`) has no flipping edit at all; open are that set's description and a parity-reversing involution.
 
 - [x] **[Castle BDD / ZDD](wiki/pages/castle-bdd-zdd.md)** - valid-castle set `V(w, h)` as a BDD or zero-suppressed BDD of size `O(h · w · log h)`, built by lifting the [castle-strip](wiki/pages/castle-strip.md) transfer matrix to a DFA on state `(last-column height, blocks-mod-2, is-h-reached)`. Worked at `(3, 2)` (DFA of 6 reachable states, 7-node BDD). Beyond Kitamasa-equivalent counting of `F(w, h)`, the ZDD supports uniform random sampling, explicit rank / unrank with `{1, ..., F(w, h)}`, canonical-order enumeration, and free intersection with other castle-family ZDDs across [castle-classification](wiki/pages/castle-classification.md). TAOCP §7.1.4 (book pp. 202-280) is the source; scale precedent 12,988,816 chessboard-domino tilings in a 2,300-node ZDD (p. 251).
 - [x] **[Conditional entropy given B and N](wiki/pages/castle-conditional-entropy.md)** - refine the uniform-entropy `log_2 F(w, h)` view by conditioning on block count and area: `H(C) = H(B, N) + H(C | B, N)`, and brute force through `(12, 3)` shows `H(B, N) = log_2 w + O(1)`, so joint conditioning shaves `log_2 w` bits off the uniform baseline. Area beats blocks as a single-statistic summary at every `(w, h)` tested; the parity clause is redundant with `B` but not with `N`.
