@@ -8,7 +8,7 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 
 | Slice | Value |
 |---|---|
-| Pages | 173 (37 Sources / 73 Concepts / 60 Analyses / 1 Reference / 2 Maintenance) |
+| Pages | 174 (37 Sources / 74 Concepts / 60 Analyses / 1 Reference / 2 Maintenance) |
 | Departments (open + done) | R 2+9, E 7+13, N 15+29, E/N 1+0, Z 5+7, Q 6+9, S 9+5, T 7+0, F 11+6, X 5+7 |
 | Auxiliary Services (open + done) | Telephone Company 5+3, Chinese Remainders 3+3 |
 | Items | 76 open, 91 done, 167 total (Departments 68+85, Auxiliary Services 8+6; top-level items only) |
@@ -139,8 +139,8 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 
 ### Arc 16. Castle fibers: one ring, every prime at once
 - Thesis: the signed tower count lives in one integer ring, `Z[x]/(char_k)`, and every mod-`p` experiment on the wiki is a look at one of its fibers `F_p[x]/(char_k mod p)`; reading the fibers together - points = distinct factors, fat fibers = nilpotents = the extra `p` in the periods, Frobenius rank and fixed space = fatness and point count without factoring, the two parity sectors as components that meet only at `(2, x)`, and no idempotent surviving to the integers - turns the observatory's tables into a single picture, built from a textbook of ring-theory exercises.
-- Status: one page short. The spine exists end to end; the seminar-shaped walk-through (one castle, `char_2`, followed across `p = 2, 5, 7, 101` and then over `Q`) does not.
-- Spine: [finite-fields](wiki/pages/finite-fields.md), [mod-p-observatory](wiki/pages/mod-p-observatory.md), [chinese-remainder-theorem](wiki/pages/chinese-remainder-theorem.md), [idempotent-decomposition](wiki/pages/idempotent-decomposition.md), [castle-ring-invariant-factors](wiki/pages/castle-ring-invariant-factors.md), [castle-ring-spectrum](wiki/pages/castle-ring-spectrum.md), [char-k-eisenstein-at-two](wiki/pages/char-k-eisenstein-at-two.md), [larger-prime-periodicity](wiki/pages/larger-prime-periodicity.md), [mod-9-coset-lift](wiki/pages/mod-9-coset-lift.md); source [calugareanu-hamburg-exercises-basic-ring-theory](wiki/pages/calugareanu-hamburg-exercises-basic-ring-theory.md), runnable pieces on [castle-snippets-number-theory](wiki/pages/castle-snippets-number-theory.md).
+- Status: deliverable. The seminar-shaped walk-through is [castle-fibers-char-2-walkthrough](wiki/pages/castle-fibers-char-2-walkthrough.md): `char_2` followed across `p = 5, 101, 11, 7, 2`, then over `Q` and `Z`, ending on one pinned board.
+- Spine: [castle-fibers-char-2-walkthrough](wiki/pages/castle-fibers-char-2-walkthrough.md) (the seminar itself), then for depth [finite-fields](wiki/pages/finite-fields.md), [mod-p-observatory](wiki/pages/mod-p-observatory.md), [chinese-remainder-theorem](wiki/pages/chinese-remainder-theorem.md), [idempotent-decomposition](wiki/pages/idempotent-decomposition.md), [castle-ring-invariant-factors](wiki/pages/castle-ring-invariant-factors.md), [castle-ring-spectrum](wiki/pages/castle-ring-spectrum.md), [char-k-eisenstein-at-two](wiki/pages/char-k-eisenstein-at-two.md), [larger-prime-periodicity](wiki/pages/larger-prime-periodicity.md), [mod-9-coset-lift](wiki/pages/mod-9-coset-lift.md); source [calugareanu-hamburg-exercises-basic-ring-theory](wiki/pages/calugareanu-hamburg-exercises-basic-ring-theory.md), runnable pieces on [castle-snippets-number-theory](wiki/pages/castle-snippets-number-theory.md).
 - Open items feeding it: from Chinese Remainders, the sector idempotent over `Z[1/2]` (resultant `2^{k(k+2)/4}`), the unipotent part of `x` having full order, and the `2^{v_2(k!) + 1}` denominator; from N, odd-`k` irreducibility of `char_k` beyond `k = 2^m - 1`; from the mod-9 work, the fibers over 3 ([mod-9-coset-lift](wiki/pages/mod-9-coset-lift.md)'s residual conjecture that no irreducible factor of degree `>= 2` repeats in `char_k mod 3`).
 
 ## Departments

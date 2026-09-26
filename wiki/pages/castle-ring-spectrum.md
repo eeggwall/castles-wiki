@@ -168,6 +168,8 @@ Frobenius also explains why every root of one irreducible factor gives the same 
 - [[mod-9-coset-lift](pages/mod-9-coset-lift.md)] - the fibers over 3: fat exactly for `k ≡ 4, 6 (mod 12)`, never with a cube.
 - [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - `reduced_period`, `sectors_mod2`.
 - [[metallic-means](pages/metallic-means.md)] - the same "which ring, not just which field" question for the metallic rungs: copper `φ³` generates `Z[√5]`, index 2 in `Z[φ]`.
+- [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the seminar walk-through: `char_2` across `p = 5, 101, 11, 7, 2`, then over `Q` and `Z`, with every section of this page appearing as one stop.
+
 
 ## Footnotes
 

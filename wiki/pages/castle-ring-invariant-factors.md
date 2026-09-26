@@ -146,6 +146,8 @@ And the discriminant-zero side of [[mod-p-observatory](pages/mod-p-observatory.m
 - [[idempotent-decomposition](pages/idempotent-decomposition.md)] - the same decomposition by idempotents: repeated factors change the unit group (the `p`-group `U_i`) but not the number of idempotents, `2^r`.
 - [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - `char_k` mod 2 in one line, and `crt_idempotents` for the CRT pieces.
 - [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the fibers of `Spec Z[x]/(char_k)` over each `p`; §3 splits the period into reduced part and nilradical.
+- [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the same `char_2` fibers as a seminar; Stop 7 reads the §5 relation `α·ᾱ = 2` as the prime 2 splitting in `Q(√−7)`.
+
 
 ## Footnotes
 

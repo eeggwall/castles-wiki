@@ -5,7 +5,7 @@ summary: The two ideas that solve the castle count — towers are independent (T
 tags: [concept, castle, towers, parity, sign, pedagogy, dyck, teaching]
 sources: [project-euler-502-solution, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations]
 created: 2026-09-14
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Tower recursion master class
@@ -104,6 +104,8 @@ Towers of height ≤ 1 above a length-4 block are column heights `c ∈ {0,1}⁴
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] — the deep-analysis sibling: the sign homomorphism becomes a block diagonalization of the recursion into `(+1)` / `(−1)` sectors.
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — the analytical explanation of `T(k,L) = (k+1)^L`: it is the collapse of the Motzkin J-fraction under the no-UD / no-DU run constraint.
 - [[castle-foata-transform](pages/castle-foata-transform.md)] — the permutation-analogy version of the "peak / tower atom" idea: peaks are maximal positive runs, records are their leftmost positive columns.
+- [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the companion seminar on the algebra side: one castle recurrence read through its fibers mod each prime.
+
 
 ## Footnotes
 
