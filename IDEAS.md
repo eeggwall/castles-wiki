@@ -4,14 +4,15 @@ Working list of project and seminar ideas for Project Euler 502 (Castles). This 
 
 Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, within each Department. A done item is one line: title link + one-sentence result; detail lives on the page and in git history. Any open follow-up is its own `[ ]` item, never a "Still open:" tail. Plain hyphens in new text, no em-dashes.
 
-## Where we are (2026-09-23)
+## Where we are (2026-09-26)
 
 | Slice | Value |
 |---|---|
-| Pages | 160 (36 Sources / 71 Concepts / 52 Analyses + 1 root) |
-| Departments (open + done) | R 2+9, E 7+13, N 12+26, Z 5+7, Q 4+9, S 9+5, T 7+0, F 11+6, X 6+6 |
-| Items | 63 open, 81 done, 144 total |
-| Dates | wiki 2026-09-13, IDEAS 2026-09-23, last reorganize 2026-09-20 |
+| Pages | 172 (37 Sources / 73 Concepts / 59 Analyses / 1 Reference / 2 Maintenance) |
+| Departments (open + done) | R 2+9, E 7+13, N 14+28, E/N 1+0, Z 5+7, Q 6+9, S 9+5, T 7+0, F 11+6, X 5+7 |
+| Auxiliary Services (open + done) | Telephone Company 5+3, Chinese Remainders 1+2 |
+| Items | 73 open, 89 done, 162 total (Departments 67+84, Auxiliary Services 6+5; top-level items only) |
+| Dates | wiki 2026-09-13, IDEAS 2026-09-26, last reorganize 2026-09-20 |
 
 ## Prize Problems
 
@@ -192,6 +193,7 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 - [ ] **Cyclic sieving at `q = -1` on the tower Narayana** - Reiner-Stanton-White supplies a `Z/n` action whose `X(omega^d) = |Fix(c^d)|`, and the block-count distribution of a tower is Narayana ([tower-narayana-polynomial](wiki/pages/tower-narayana-polynomial.md)) so `P(k,L)` at `q = -1` would be the fixed-point count of a half-turn; make the rotation explicit on towers through the cycle-forest form, verify sieving numerically for `L <= 6`, check whether the half-turn is sign-reversing with fixed points `2^L W_m(L+1)`, then run the same test on the area-graded polynomials of [castle-by-area](wiki/pages/castle-by-area.md) and [tree-castle-by-area](wiki/pages/tree-castle-by-area.md).
 - [ ] **Metallic ladder as a unit-group lattice** - each metallic mean is a fundamental unit of `Q(sqrt(a^2 + 4))`, whose unit group is `Z/2 x Z`, and `copper = delta_4 = phi^3` lands on the cube of the generator of `Z[phi]^*`; for every Perron root in [reachable-field-census](wiki/pages/reachable-field-census.md), decide whether it is a unit (the signed transfer eigenvalues are twice algebraic units, so they are not) and if so locate it in the unit group of its field, which power of a fundamental unit for the quadratics and which lattice point of `Z^r` for the cubics by Dirichlet; the min-height law for `(p1,p2)` becomes a lattice-point question.
 - [ ] **Min height for every algebraic width constant** - the width-graded counterpart of [area-growth-census](wiki/pages/area-growth-census.md): every growth constant of a 0/1 castle-strip rule counted by width (not only the quadratic ones of [quadratic-min-height](wiki/pages/quadratic-min-height.md)), with its minimal polynomial and first height, read from the 758,878 distinct characteristic polynomials already computed through height 6, cross-checked against the smallest Pisot and Salem numbers.
+- [ ] **Odd-`k` irreducibility of `char_k` beyond `k = 2^m - 1`** - SymPy says irreducible over `Q` for every odd `k <= 31`, but Eisenstein and Dumas at 2 reach exactly `k = 2^m - 1` ([char-k-eisenstein-at-two](wiki/pages/char-k-eisenstein-at-two.md)) and the `JD` complex structure only makes `char_k` a norm from `Q(i)[x]`; `k = 5` is the smallest open case.
 
 - [x] **[Castle sequence bank residue](wiki/pages/odd-castles-and-block-tables.md)** - `odd(w,h) = (A + P(h-1,w) - P(h-2,w))/2` has the same characteristic polynomial as `F` for `4 <= h <= 7`, all parity-area sequences are novel-candidates as of 2026-09-26, the joint tables give three interlinks (A002620, A097701, A002624), and the `(w,h)` block columns are `C(N,2h-2)` and `(2h-3) C(N,2h)` with `N = w+2h-3`.
 - [x] **[Mod-9 equidistribution of the `F` table](wiki/pages/mod-9-equidistribution.md)** - the base case of "castle counts inherit ambient number theory": under Heath-Brown, `F(w,h)` is a sum of three cubes iff `F(w,h) mod 9` is not `4` or `5`, so the density of unconditionally-excluded castle counts is the equidistribution question on `Z/9`. Started from the `F(6,4) = 1729` coincidence on [hardy-ramanujan-castle](wiki/pages/hardy-ramanujan-castle.md); the seven sub-questions below resolve the base case (aggregate converges to `2/9` at rate `N^{-1/12}` with closed-form constant, blackboard proof at `w = 4`, structural offset template, and a short sporadic list of cube-adjacent counts).
@@ -227,6 +229,7 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 - [x] **[Plastic number](wiki/pages/plastic-number.md)** - `psi`, real root of `x^3 = x + 1`; smallest Pisot; enters the castle as `rho_6 = 2 psi^2` with `H_3` the minimal polynomial of `psi^2`.
 - [x] **[OEIS index](wiki/pages/oeis-index.md)** - script-generated directory of every A-number cited on the wiki, grouped by role (count / metallic / plastic / supporting), with citing pages and mention counts; regenerated by `bin/generate-oeis-index.py`, roles curated in `config/oeis-annotations.tsv`.
 - [x] **[Castle sequence catalogue](wiki/pages/castle-sequence-catalogue.md)** - hand-curated catalogue of every castle-counting sequence with novelty status (known / interlink / novel-candidate / unchecked) and the submission priority list.
+- [x] **[Eisenstein at 2](wiki/pages/char-k-eisenstein-at-two.md)** - `char_k(2y)/2^k` reversed is Eisenstein at 2 iff `k + 1` is a power of 2 (mod 2 it is a Fibonacci polynomial over `F_2[y^2]`), so `char_k` is irreducible over `Q` with 2 totally ramified for `k = 1, 3, 7, 15, ...`, by proof.
 
 #### E/N Extreme Dimensions Subdepartment (counting at the scales where exact arithmetic becomes the obstacle)
 
@@ -368,6 +371,7 @@ Phones, audio, coding-theory-adjacent applied mathematics with an AT&T Bell Labs
 
 Specialization in applying the Chinese Remainder Theorem.
 
+- [ ] **The parity-sector idempotent lives over `Z[1/2]`** - for even `k` the two parity-sector factors of `char_k` in `lambda` (the `lambda = 2 mu` forms of `H_{k/2}` and its Lucas companion on [tower-parity-sectors](wiki/pages/tower-parity-sectors.md)) have resultant exactly `2^{k(k+2)/4}` (checked `k = 2, 4, ..., 12`), so the over-`Q` sector idempotent has only powers of 2 in its denominator and reduces to a genuine idempotent of `F_p[x]/(char_k)` at every odd `p`; prove the resultant formula, and read the mod-`p` period of each parity sector off its own CRT factor ([idempotent-decomposition](wiki/pages/idempotent-decomposition.md)).
 
-
-
+- [x] **[Chinese Remainder Theorem](wiki/pages/chinese-remainder-theorem.md)** - the comaximal-ideal form (Calugareanu-Hamburg Ex. 17.20) splits `F_p[x]/(char_k)` along the distinct factors `g_i^{m_i}` of `char_k mod p`; one theorem behind period-as-lcm, `R^* = ∏` of factor unit groups, and both CRT steps of Pohlig-Hellman.
+- [x] **[Idempotent decomposition](wiki/pages/idempotent-decomposition.md)** - `F_p[x]/(char_k)` has exactly `2^r` idempotents for `r` distinct factors, repeated factors adding none (brute force on 8 `(k, p)` cases); at `k = 2`, `p = 101` the idempotent `e_1 = (x^2 - x + 2)/4` isolates the dominant root, `x^L e_1 = 2^L e_1`, and lifts CRT projections back to the ring.
