@@ -244,6 +244,7 @@ These are the S-department items feeding Arc 4 in `IDEAS.md`:
 - [[sandpile-census](pages/sandpile-census.md)] - the sandpile census: the group hears nothing the spectrum misses up to 16 cells.
 - [[sandcastle-clock](pages/sandcastle-clock.md)] - the sandcastle clock ticks 15 and 5 on this seminar's 10-cell pair, which share spectrum and sandpile group.
 - [[sandpile-identity](pages/sandpile-identity.md)] - one grain on the apex of the 10-cell pair's identity: 57 topplings against 1.
+- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
 
 
 ## Footnotes

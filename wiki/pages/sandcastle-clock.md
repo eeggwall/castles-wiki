@@ -168,6 +168,7 @@ def clock_spectrum(c):                     # periods over every (drain, grain ce
 - [[castle-graph](pages/castle-graph.md)] - tree castles, whose clock never ticks.
 - [[sandpile-identity](pages/sandpile-identity.md)] - the identity the clock starts from, and the avalanche profile, which separates every cospectral group to 16 cells.
 - [[castle-avalanches](pages/castle-avalanches.md)] - dropping at random instead of on one cell.
+- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
 
 
 ## Appearances in Sources

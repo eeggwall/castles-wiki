@@ -190,6 +190,7 @@ def cospectral_groups(castles, operator):  # sets of non-isomorphic castles shar
 - [[spectral-analysis](pages/spectral-analysis.md)] - the other castle spectra that might separate what the sandpile group cannot.
 - [[sandcastle-clock](pages/sandcastle-clock.md)] - the clock spectrum, which separates cospectral castles the sandpile group cannot.
 - [[sandpile-identity](pages/sandpile-identity.md)] - the avalanche profile, which separates every cospectral group the sandpile group cannot.
+- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
 
 
 ## Appearances in Sources

@@ -5,7 +5,7 @@ summary: Where the metallic means do and do not appear as eigenvalues. The count
 tags: [analysis, castle, spectral, adjacency, transfer-matrix, metallic-means, golden-ratio, silver-ratio, axis-9, isospectral, numpy, sympy, verification]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-16
-updated: 2026-09-24
+updated: 2026-09-26
 ---
 
 # Metallic means in castle spectra
@@ -156,6 +156,8 @@ A skyline that is a Sturmian word - two heights arranged by the rotation with sl
 - [[castle-snippets](pages/castle-snippets.md)] - `castle_graph_radius` is filed there.
 - [[isospectral-castles](pages/isospectral-castles.md)] - the full-spectrum question: smallest non-isomorphic castles with equal adjacency spectrum (10 cells), equal Laplacian spectrum (11), both (16); no two silver castles are isospectral.
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - the 4.87-million-castle census is Knuth's Algorithm M over `{1..h}^w`; [[aocp-permutations](pages/aocp-permutations.md)] - it sits at Knuth's `10! ≈ 3.6 × 10^6` "ceiling on brute-force enumeration".
+- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
+
 
 ## Footnotes
 

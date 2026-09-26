@@ -252,6 +252,7 @@ In the recurrent tuples the positions are the cells in the order `castle_graph` 
 - [[sandcastle-clock](pages/sandcastle-clock.md)] - the clock: drop one grain per tick and count ticks until the identity returns.
 - [[sandpile-identity](pages/sandpile-identity.md)] - the identity element drawn in both drain models, and the avalanche profile.
 - [[castle-avalanches](pages/castle-avalanches.md)] - dropping sand at random: exact mean avalanche sizes and heavy tails.
+- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
 
 
 ## Appearances in Sources

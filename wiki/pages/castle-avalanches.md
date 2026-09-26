@@ -167,6 +167,8 @@ The `12 × 12` rectangle and the battlement of height-12 spikes both average abo
 - [[sandcastle-clock](pages/sandcastle-clock.md)] - dropping always on the same cell instead of at random.
 - [[sandpile-census](pages/sandpile-census.md)] - the sandpile group of every castle to 16 cells.
 - [[castle-graph](pages/castle-graph.md)] - tree castles and battlements, and the `2 × 2` blocks that tie columns together.
+- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
+
 
 ## Appearances in Sources
 

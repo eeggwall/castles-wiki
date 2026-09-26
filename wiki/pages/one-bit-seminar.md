@@ -205,6 +205,8 @@ These are the R-department items feeding Arc 8 in `IDEAS.md`:
 - [[castle-compression](pages/castle-compression.md)] / [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - description length and conditioning on block count and area.
 - [[castle-notation](pages/castle-notation.md)] - `A`, `S`, `F` and `P(k, L)`.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the other seminar pages.
+- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
+
 
 ## Footnotes
 

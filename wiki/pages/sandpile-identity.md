@@ -175,6 +175,7 @@ True
 - [[isospectral-castles](pages/isospectral-castles.md)] / [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the cospectral pairs.
 - [[castle-graph](pages/castle-graph.md)] - tree castles, whose identity is their fullest stable pile.
 - [[castle-avalanches](pages/castle-avalanches.md)] - random dropping from the identity: the mean avalanche depends only on height for rectangles and battlements.
+- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
 
 
 ## Appearances in Sources

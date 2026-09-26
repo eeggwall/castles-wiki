@@ -8,11 +8,11 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 
 | Slice | Value |
 |---|---|
-| Pages | 184 (37 Sources / 82 Concepts / 62 Analyses / 1 Reference / 2 Maintenance) |
+| Pages | 185 (37 Sources / 83 Concepts / 62 Analyses / 1 Reference / 2 Maintenance) |
 | Departments (open + done) | R 2+9, E 7+13, N 14+30, E/N 1+0, Z 5+7, Q 6+9, S 8+10, T 7+0, F 11+6, X 7+7 |
 | Auxiliary Services (open + done) | Telephone Company 4+3, Chinese Remainders 3+3, Facilities 5+0 |
 | Items | 80 open, 97 done, 177 total (Departments 68+91, Auxiliary Services 12+6; top-level items only) |
-| Seminar arcs | 16 (9 delivered, 6 in progress, 1 planned) |
+| Seminar arcs | 16 (10 delivered, 5 in progress, 1 planned) |
 | Dates | wiki 2026-09-13, IDEAS 2026-09-26, last reorganize 2026-09-20 |
 
 ## Prize Problems
@@ -69,7 +69,7 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 | 11. The rule zoo: variations on the castle | in progress | next: seminar page |
 | 12. The half-derivative of a castle | in progress | next: castle comb page, then seminar page |
 | 13. Beethoven's Ninth, at every scale | delivered | [song-as-castle](wiki/pages/song-as-castle.md) |
-| 14. Sandcastles | in progress | next: seminar page |
+| 14. Sandcastles | delivered | [sandcastle-seminar](wiki/pages/sandcastle-seminar.md) |
 | 15. The taxicab thread | in progress | next: seminar page |
 | 16. Castle fibers: one ring, every prime at once | delivered | [castle-fibers-char-2-walkthrough](wiki/pages/castle-fibers-char-2-walkthrough.md) |
 
@@ -153,8 +153,8 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 
 ### Arc 14. Sandcastles
 - Thesis: the abelian sandpile is literally sand on a castle - the base row is the tide, the sink; trees wash away (trivial group) and only the 2x2 ladder cores hold sand - so the sandpile group, its identity element, the tide period of a grain dropped on the apex, and the avalanche statistics of Bak-Tang-Wiesenfeld are castle invariants finer than the Laplacian spectrum, or provably not.
-- Status: in progress. The spine is complete (introduction, census, clock, identity, avalanches); the seminar page does not exist yet.
-- Spine: [sandpile-group](wiki/pages/sandpile-group.md) (the introduction), [sandpile-census](wiki/pages/sandpile-census.md) (every castle to 16 cells), [sandcastle-clock](wiki/pages/sandcastle-clock.md) (the clock and the clock spectrum), [sandpile-identity](wiki/pages/sandpile-identity.md) (the identity and the avalanche profile), [castle-avalanches](wiki/pages/castle-avalanches.md) (random dropping and avalanche statistics), [castle-graph](wiki/pages/castle-graph.md), [isospectral-castles](wiki/pages/isospectral-castles.md), [spectral-analysis](wiki/pages/spectral-analysis.md), then the sandpile pages as they land.
+- Status: delivered. Seminar page: [sandcastle-seminar](wiki/pages/sandcastle-seminar.md), following the 16-cell silver castle `(3,2,1,2,2,1,2,3)`.
+- Spine: [sandcastle-seminar](wiki/pages/sandcastle-seminar.md) (the seminar itself), then [sandpile-group](wiki/pages/sandpile-group.md) (the introduction), [sandpile-census](wiki/pages/sandpile-census.md) (every castle to 16 cells), [sandcastle-clock](wiki/pages/sandcastle-clock.md) (the clock and the clock spectrum), [sandpile-identity](wiki/pages/sandpile-identity.md) (the identity and the avalanche profile), [castle-avalanches](wiki/pages/castle-avalanches.md) (random dropping and avalanche statistics), [castle-graph](wiki/pages/castle-graph.md), [isospectral-castles](wiki/pages/isospectral-castles.md), [spectral-analysis](wiki/pages/spectral-analysis.md), then the sandpile pages as they land.
 - Open items feeding it: from S, the sandpile group, the identity element, the sandcastle clock, and Bak-Tang-Wiesenfeld avalanches.
 
 ### Arc 15. The taxicab thread
