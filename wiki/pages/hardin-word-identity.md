@@ -5,7 +5,7 @@ summary: Proof that for k = 4m+2 the signed count of height-≤k towers with eve
 tags: [analysis, castle, signed-tower-count, transfer-matrix, bijection, hardin, oeis, words, sympy, verification, proof]
 sources: [oeis-mining-pe502, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # The Hardin word identity
@@ -219,6 +219,8 @@ Reading the columns of `S⁻¹` (differences of consecutive cumulative sets), th
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and its column-by-column factorization.
 - [[tower-word-language](pages/tower-word-language.md)] - the wiki's other word-automaton object; the pending-flag construction here is the same technique.
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the `g = 2` tower-spacing castles give the Hardin sequences (A202882 / A203094 / A203184) a plain *unsigned* geometric interpretation ("towers ≥ 2 apart" = "no isolated peak"), a third route alongside the signed identity here.
+- [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the classroom version: the `m = 1` case in seven stops, with runnable `sector_half` and `S_pattern`.
+
 
 ## Footnotes
 

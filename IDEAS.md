@@ -8,11 +8,11 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 
 | Slice | Value |
 |---|---|
-| Pages | 174 (37 Sources / 74 Concepts / 60 Analyses / 1 Reference / 2 Maintenance) |
-| Departments (open + done) | R 2+9, E 7+13, N 15+29, E/N 1+0, Z 5+7, Q 6+9, S 9+5, T 7+0, F 11+6, X 5+7 |
+| Pages | 175 (37 Sources / 75 Concepts / 60 Analyses / 1 Reference / 2 Maintenance) |
+| Departments (open + done) | R 2+9, E 7+13, N 14+30, E/N 1+0, Z 5+7, Q 6+9, S 9+5, T 7+0, F 11+6, X 5+7 |
 | Auxiliary Services (open + done) | Telephone Company 5+3, Chinese Remainders 3+3 |
-| Items | 76 open, 91 done, 167 total (Departments 68+85, Auxiliary Services 8+6; top-level items only) |
-| Seminar arcs | 16 (5 delivered, 9 in progress, 2 planned) |
+| Items | 75 open, 92 done, 167 total (Departments 67+86, Auxiliary Services 8+6; top-level items only) |
+| Seminar arcs | 16 (6 delivered, 8 in progress, 2 planned) |
 | Dates | wiki 2026-09-13, IDEAS 2026-09-26, last reorganize 2026-09-20 |
 
 ## Prize Problems
@@ -58,7 +58,7 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 |---|---|---|
 | 1. The castle counted on one blackboard | delivered | [tower-recursion-master-class](wiki/pages/tower-recursion-master-class.md) |
 | 2. From a textbook exercise to the metallic ladder | delivered | [pell-castle-strip](wiki/pages/pell-castle-strip.md) |
-| 3. The Hardin word identity | in progress | next: seminar page |
+| 3. The Hardin word identity | delivered | [hardin-identity-seminar](wiki/pages/hardin-identity-seminar.md) |
 | 4. Hear the shape of a castle | in progress | next: seminar page |
 | 5. Castle cryptography: build, break, fix | delivered | [castle-cryptography](wiki/pages/castle-cryptography.md) series |
 | 6. The q-thread: castles by area | in progress | next: q-analog pages, then seminar page |
@@ -87,9 +87,9 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 
 ### Arc 3. The Hardin word identity
 - Thesis: `P_even(4m+2, L) = 2^L` times a word count; the two transfer matrices differ by one unimodular change of basis.
-- Status: in progress. Spine exists; the seminar page (the Hardin identity on one blackboard) does not.
-- Spine: [tower-parity-sectors](wiki/pages/tower-parity-sectors.md), [hardin-word-identity](wiki/pages/hardin-word-identity.md), [a005251-bijection](wiki/pages/a005251-bijection.md), [tree-castle-by-area](wiki/pages/tree-castle-by-area.md), [tetali-1998-unique-tournaments](wiki/pages/tetali-1998-unique-tournaments.md).
-- Open items feeding it: from N, the centerpiece itself, the sign-reversing involution, the two sector-assignment conjectures, `h>=5` tree-castle-by-area sequences.
+- Status: delivered. Seminar page: [hardin-identity-seminar](wiki/pages/hardin-identity-seminar.md).
+- Spine: [hardin-identity-seminar](wiki/pages/hardin-identity-seminar.md) (the seminar itself), then [tower-parity-sectors](wiki/pages/tower-parity-sectors.md), [hardin-word-identity](wiki/pages/hardin-word-identity.md), [a005251-bijection](wiki/pages/a005251-bijection.md), [tree-castle-by-area](wiki/pages/tree-castle-by-area.md), [tetali-1998-unique-tournaments](wiki/pages/tetali-1998-unique-tournaments.md).
+- Open items feeding it: from N, the sign-reversing involution, the two sector-assignment conjectures, `h>=5` tree-castle-by-area sequences.
 
 ### Arc 4. Hear the shape of a castle
 - Thesis: five spectra on a castle graph, with the 10-cell adjacency-isospectral pair as the punchline.
@@ -214,7 +214,6 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 ### N Department (numbers - sequences, exact arithmetic, difficult scales)
 
 - [ ] **Block-count column law** - prove the `(w,h)` block columns on [odd-castles-and-block-tables](wiki/pages/odd-castles-and-block-tables.md), `C(N,2h-2)`, `(2h-3) C(N,2h)` and the three-term `h+2` column with `N = w+2h-3` (verified `w <= 25`, `h <= 6`), and find the general `h+j` column.
-- [ ] **Seminar centerpiece: the Hardin word identity** - a 90-minute arc from "sum `(-1)^blocks` over towers" to "count words with no nonzero local maximum," every step on one blackboard.
 - [ ] **Min-height law for `(p1,p2)`** - exact through height 6 and proved on the metallic line (`p1 + 1`) and the square-root line (`ceil(2 sqrt p2)`) on [quadratic-min-height](wiki/pages/quadratic-min-height.md); open is a proof that at most three evenly connected groups of heights always reach the minimum (true for all 53 known pairs), or a height-7 counterexample, and a closed form for `p1 > 0`.
 - [ ] **Pisot/Salem classification of reachable cubics** - which reachable-field cubic Perron roots are Pisot or Salem numbers.
 - [ ] **Sign-reversing involution for Hardin** - realize the `2^L` factor object by object; a common thread across [tower-parity-sectors](wiki/pages/tower-parity-sectors.md), [hardin-word-identity](wiki/pages/hardin-word-identity.md), and [a005251-bijection](wiki/pages/a005251-bijection.md).
@@ -263,6 +262,7 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 - [x] **[Plastic number](wiki/pages/plastic-number.md)** - `psi`, real root of `x^3 = x + 1`; smallest Pisot; enters the castle as `rho_6 = 2 psi^2` with `H_3` the minimal polynomial of `psi^2`.
 - [x] **[OEIS index](wiki/pages/oeis-index.md)** - script-generated directory of every A-number cited on the wiki, grouped by role (count / metallic / plastic / supporting), with citing pages and mention counts; regenerated by `bin/generate-oeis-index.py`, roles curated in `config/oeis-annotations.tsv`.
 - [x] **[Castle sequence catalogue](wiki/pages/castle-sequence-catalogue.md)** - hand-curated catalogue of every castle-counting sequence with novelty status (known / interlink / novel-candidate / unchecked) and the submission priority list.
+- [x] **[Seminar: the Hardin word identity](wiki/pages/hardin-identity-seminar.md)** - seven stops at `k = 6` from the surprise that the even-last-column signed tower count is `2^L` times A005251 to a `3 x 3` change of basis with `det S = -1` that proves it, generalized to Hardin's A202882 / A203094 / A203184.
 - [x] **[Eisenstein at 2](wiki/pages/char-k-eisenstein-at-two.md)** - `char_k(2y)/2^k` reversed is Eisenstein at 2 iff `k + 1` is a power of 2 (mod 2 it is a Fibonacci polynomial over `F_2[y^2]`), so `char_k` is irreducible over `Q` with 2 totally ramified for `k = 1, 3, 7, 15, ...`, by proof.
 - [x] **[Which ring each metallic rung generates](wiki/pages/metallic-means.md)** - `Z[delta_a]` is the order of discriminant `a^2 + 4`, maximal exactly when the conductor is 1; copper `phi^3` generates `Z[sqrt 5]` (index `F_3 = 2` in `Z[phi]`), and `delta_a` fails to be a fundamental unit exactly when it is an odd power of a smaller rung (`a = 4, 11, 14, 29, 36, 76, 82` for `a <= 100`).
 

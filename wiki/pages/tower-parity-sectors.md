@@ -269,6 +269,8 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - the sector tables are computed by Algorithm M enumeration of `{0..k}^L`.
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the complementary direction of the same `P(k, L)` 2D array: k-direction factors as `(x+1)^L (x-1)^{L-2}` while this page factors the L-direction char_k into parity sectors.
 - [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the sectors as the two components of `Spec Z[x]/(char_k)`, meeting only at `(2, x)`; the `k = 4` minor sector `H_2` gives `Z[ω]`.
+- [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the seminar that starts from this page's even-sector surprise and ends at the Hardin identity.
+
 
 ## Footnotes
 

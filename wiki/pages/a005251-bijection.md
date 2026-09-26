@@ -5,7 +5,7 @@ summary: The open "A005251 bijection" is closed by an explicit, constraint-prese
 tags: [analysis, castle, bijection, a005251, plastic-number, composition, binary-string, hardin, tree-castle, tower-spacing, verification]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # The A005251 bijection
@@ -100,6 +100,8 @@ The middle two are the same object up to a bit-flip (a height-2 tower-spacing ca
 - [[binary-string-bijection](pages/binary-string-bijection.md)] - the wiki's other castle ↔ binary-string encoding (the `T(k,L) = (k+1)^L` bijection), a cousin of the gap-string map here.
 - [[unique-tournament](pages/unique-tournament.md)] - the `h = 4` row of the same tree-castle family, where Khovanova's basic strings `0, 001, 0011, 00101` encode compositions with parts in `{1, 3, 4, 5}` by the same composition-as-binary-string trick.
 - [[block-count-constraints](pages/block-count-constraints.md)] - the sign-reversing involution realizing `P_even(4m+2, L) = 2^L · W_m` is a residue-class-mod-m block-count filter, the same residue branch this page axiomatizes.
+- [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - Stop 7 of the Hardin seminar uses this bijection to connect the word count to tree castles.
+
 
 ## Footnotes
 

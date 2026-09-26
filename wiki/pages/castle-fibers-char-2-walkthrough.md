@@ -174,6 +174,8 @@ def fiber_board(k, primes):
 - [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the same ring used as a cryptosystem.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the companion seminar for the counting side.
 - [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - the functions the board uses.
+- [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the seminar on the same parity sectors from the combinatorial side.
+
 
 ## Footnotes
 
