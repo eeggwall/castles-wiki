@@ -13,6 +13,35 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 | Items | 63 open, 81 done, 144 total |
 | Dates | wiki 2026-09-13, IDEAS 2026-09-23, last reorganize 2026-09-20 |
 
+## Prize Problems
+
+Not checkboxes: each prize problem bridges Departments and moves a limit every castle researcher has hit. Tiers are scales: kilo is objects about `10^3` wide, tall, or in cells; mega `10^6`; giga `10^9`; tera `10^12`, where the PE 502 targets live. Departments bridged are in parentheses.
+
+### Kilo
+
+- **The kilo-drum** (S, Z, Telephone Company) - prove that almost all tree castles have an isospectral mate as the cell count grows, the castle analogue of Schwenk's "almost all trees are cospectral," or prove castles are the family you can hear; exhibit a 1000-cell isospectral family by construction.
+- **The thousandth polynomial** (N, S, E) - factor `char_k` completely at `k = 1000`, with the Galois group of every factor, and prove for all `k` that the two parity sectors are the only splitting.
+- **The kilo sandcastle** (S, Z, T) - the sandpile identity element of the 1000 x 1000 castle with the base row as sink, and a proof of its scaling limit; the square-grid identity is a famous fractal, and the question is what the tide does to it.
+
+### Mega
+
+- **The castle's own random-matrix law** (S, T, N) - the limiting eigenvalue distribution of the normalized signed transfer matrix as `k -> infinity`, checked at `k = 10^6`, and the pi it carries; Arc 9 with a spectrum the castle owns rather than borrows.
+- **The shape of a million blocks** (Q, T, Z) - the limit shape of a uniformly random convex castle of area `10^6`, as random partitions have one, and whether the parity clause leaves any trace on it.
+
+### Giga
+
+- **The address of the Ninth** (R, E, Telephone Company) - the exact rank of the Furtwängler Ninth in `V(391,608,000, 65536)`, a roughly 6-gigabit integer, then unrank it back to the recording bit for bit: the sound-to-castle bijection as one address.
+- **The period at P** (N, X) - the exact period of `F(., h) mod 10^9+7` for every `h <= 100`, which needs the cyclotomic factorizations of `P^j - 1`: the full castle ring at Project Euler's own prime, and the true security of castle Diffie-Hellman there.
+
+### Tera
+
+- **The tera square** (E, N) - `F(10^12, 10^12) mod 10^9+7`. Kitamasa in the width needs a `10^12`-state matrix and the height direction a quasi-polynomial of degree `2 * 10^12`; PE 502 stopped its square target at `10^4` for this reason, and the prize is an algorithm sublinear in both directions.
+- **The tera Gray tour** (E, R, Z) - a loopless castle-native Gray code, moving a bounded number of cells per step, run through more than `10^12` castles at O(1) per step; settles for all sizes the tour that breaks at `(3, 3)` today.
+
+### Capstone
+
+- **The end of the census** (N, Q, F, S) - a decision rule that says, for every algebraic integer, whether it is a castle growth constant by width, area, or perimeter, at what minimum height, and whether any castle carries it as an adjacency spectral radius; the quadratic min-height law, the missing Salem numbers, and the bronze hunt fall out as one theorem.
+
 ## Seminar program
 
 Each arc is a titled subplot with a one-line thesis, a status, its spine pages in delivery order, and the open items it needs. Statuses: `deliverable` (spine end to end), `one page short` (spine exists, the seminar-shaped page does not), `half built`, `sketch`. Arc titles are hooks, not department names; wording may be adjusted during execution.
@@ -123,6 +152,7 @@ Each arc is a titled subplot with a one-line thesis, a status, its spine pages i
 - [x] **[Encoding catalog](wiki/pages/castle-representations.md)** - binary strings, integer tuples, U/R/D step strings, tower words, skyline tuples.
 - [x] **[From Dyck words to castle towers](wiki/pages/generalized-dyck-grammar.md)** - the first-return grammar the castle U/R/D grammar generalizes.
 - [x] **[Formal language of tower words](wiki/pages/tower-word-language.md)** - the tower word as a Motzkin-path language, its unambiguous grammar, and the Dyck / Motzkin hierarchy.
+
 ### E Department (enumeration - counting, recurrences, generation)
 
 - [ ] **Every sign is one character theorem** - the `(T±P)/2` projector on [castle-sign](wiki/pages/castle-sign.md), the m-th-root generalization on [parity-via-roots-of-unity](wiki/pages/parity-via-roots-of-unity.md), the skyline DFT on [spectral-analysis](wiki/pages/spectral-analysis.md), and the mod-`p` period on [mod-p-observatory](wiki/pages/mod-p-observatory.md) are four uses of one theorem: characters of a finite abelian group are orthogonal and the group is its own dual; write it down once with Parseval and Poisson and re-derive the four uses as instances; the mirror `c_i -> c_{w+1-i}` does not commute with cyclic shift, so any "mod cyclic shift" invariant or "mirror-deduped" census lives under a dihedral group whose characters are not all one-dimensional.
