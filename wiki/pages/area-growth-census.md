@@ -1,7 +1,7 @@
 ---
 title: Castle strips counted by area - the growth-constant census
 category: Analyses
-summary: Count castle strips (a 0/1 rule saying which column heights may follow which) by total area instead of width, and ask which growth constants appear and at what smallest height. The area generating function has denominator det(I - A diag(x, ..., x^h)), which expands over principal minors of the 0/1 rule, so an exhaustive census of every rule up to height 4 (66,066 rules) is cheap. Heights 1 to 4 give 1, 3, 64 and 6,226 new growth constants, of degree up to the triangle number T = h(h+1)/2 (2,611 of the 6,226 at height 4 have the full degree 10). The smallest constant at each height is the root of z^T - z - 1 (1.3247, 1.1347, 1.0758 at heights 2, 3, 4), realized by a cycle through every height plus a cycle skipping height 1; the largest is the h-nacci constant of all compositions with parts at most h. The census meets two classical lists. All ten of the ten smallest Pisot numbers (Dufresnoy-Pisot) appear by height 4 - plastic and supergolden at 2, five more at 3, three at 4. Among Salem numbers it finds every one of degree 4 and 6 below the height-4 ceiling 1.9276 (2 of degree 4, 7 of degree 6, checked against a complete search), the smallest Salem number of degree at most 8 (1.280638), and five of the six known Salem numbers below 1.3 of degree at most 10 - the one missing is Lehmer's number 1.17628, the smallest known Salem number, whose degree 10 fits at height 4 but which no height-4 rule produces.
+summary: Count castle strips (a 0/1 rule saying which column heights may follow which) by total area instead of width, and ask which growth constants appear and at what smallest height. The area generating function has denominator det(I - A diag(x, ..., x^h)), which expands over principal minors of the 0/1 rule, so an exhaustive census of every rule up to height 4 (66,066 rules) is cheap. Heights 1 to 4 give 1, 3, 64 and 6,226 new growth constants, of degree up to the triangle number T = h(h+1)/2 (2,611 of the 6,226 at height 4 have the full degree 10). The smallest constant at each height is proved to be the root of z^T - z - 1 (1.3247, 1.1347, 1.0758 at heights 2, 3, 4): unrolling each column into one state per cell turns area counting into width counting on a T-state 0/1 table, any such table growing faster than 1 contains a cycle plus an ear and so grows at least at the root of x^n - x - 1, and the rule 1 -> 2 -> ... -> h -> 1 plus h -> 2 attains it; the largest is the h-nacci constant of all compositions with parts at most h. The census meets two classical lists. All ten of the ten smallest Pisot numbers (Dufresnoy-Pisot) appear by height 4 - plastic and supergolden at 2, five more at 3, three at 4. Among Salem numbers it finds every one of degree 4 and 6 below the height-4 ceiling 1.9276 (2 of degree 4, 7 of degree 6, checked against a complete search), the smallest Salem number of degree at most 8 (1.280638), and five of the six known Salem numbers below 1.3 of degree at most 10 - the one missing is Lehmer's number 1.17628, the smallest known Salem number, whose degree 10 fits at height 4 but which no height-4 rule produces.
 tags: [analysis, castle, castle-strip, area, generating-function, transfer-matrix, growth-constant, perron-number, pisot-number, salem-number, lehmer, mahler-measure, plastic-number, supergolden, n-nacci, census, exhaustive-search, min-height, implementation, verification]
 sources: [oeis-mining-pe502]
 created: 2026-09-25
@@ -68,16 +68,31 @@ The count explodes with height: most constants at height 4 have the full degree 
 
 ## The smallest constant at each height
 
-The smallest growth constant above 1 at each height is the root of
+**Theorem.** For every height `h >= 2`, the smallest area growth constant above 1 is the root of
 
 ```
 z^T - z - 1,     T = h(h+1)/2
 h = 2:  1.324718  (z^3 - z - 1, the plastic number)
 h = 3:  1.134724  (z^6 - z - 1)
 h = 4:  1.075766  (z^10 - z - 1)
+h = 5:  1.048985  (z^15 - z - 1)
 ```
 
-The rules that realize it have one shape: a cycle through every height (area `T`) and a second cycle that skips height 1 (area `T - 1`). The denominator is `1 - x^(T-1) - x^T`. At height 4 the rule is `1 -> 3`, `2 -> 1 or 3`, `3 -> 4`, `4 -> 2`: the cycle `1 3 4 2` has area 10, and `3 4 2` has area 9. That this is the minimum at every height is observed through height 4, not yet proved.
+The proof has three steps.
+
+**1. Unrolling: area counting is width counting on a bigger table.** Replace each height `j` by a chain of `j` states, one per cell, with a forced step from each cell to the next, and let the last cell of height `a` step to the first cell of height `b` whenever the rule allows `a -> b`. This is a 0/1 table `U` with `1 + 2 + ... + h = T` states, and a strip of area `n` is exactly a walk of `n` steps through it. So the area growth constant of the rule is the largest eigenvalue of `U`. The two denominators also agree exactly: `det(I - xU)` expands as a sum over sets of vertex-disjoint cycles, `U`'s cycles are the rule's cycles with length equal to area, and disjoint cycles stay disjoint, which reproduces the principal-minor formula above.[^exec]
+
+**2. A lower bound for any 0/1 table.** Let `G` be a 0/1 table on `n` states whose growth exceeds 1. Its growth is the growth of one of its strongly connected parts (a set of states that can all reach each other), and that part is not a single cycle, since a single cycle grows at exactly 1. So it contains a cycle `C` together with an ear: a path that leaves `C` at one state and rejoins it at another (or the same) state, through states off `C`. That subgraph `H` has exactly two cycles, `C` of length `a` and the ear's cycle of length `b`, and they share a state. By the same cycle expansion, `det(I - xH) = 1 - x^a - x^b`, so `H` grows at the root of `x^-a + x^-b = 1`, and `G` grows at least that fast.
+
+- Both cycles lie inside `H`, so `a <= n` and `b <= n`.
+- They cannot both have length `n`. If `a = n`, the cycle `C` uses every state, so the ear has no room for extra states and is a single step between two states of `C`. For the ear's cycle to have length `n` too, that step would have to join two states already joined by a step of `C` - a repeated step, which a 0/1 table cannot have.
+- The root of `x^-a + x^-b = 1` gets smaller as `a` or `b` grows, so the smallest case is `(a, b) = (n, n - 1)`: the root of `x^n - x - 1`.
+
+So every 0/1 table on `n` states with growth above 1 grows at least at the root of `x^n - x - 1`. Applied to `U`, which has `T` states, this gives the lower bound.
+
+**3. The bound is attained.** Take the rule `1 -> 2 -> ... -> h -> 1` together with one extra step `h -> 2`. Its only cycles are the full cycle (area `T`) and `2 -> ... -> h -> 2` (area `T - 1`), which share heights, so its denominator is `1 - x^(T-1) - x^T` and its growth is the root of `z^T - z - 1`. Checked exactly for every height from 2 to 8.[^exec] The census's own minimizers are the same shape with the heights visited in another order: at height 4, `1 -> 3`, `2 -> 1 or 3`, `3 -> 4`, `4 -> 2`, with cycles `1 3 4 2` (area 10) and `3 4 2` (area 9).
+
+At `n = 3` states the bound in step 2 is the plastic number itself, which is why height 2 (three cells in all) bottoms out there. Step 2 is proved here directly rather than cited.
 
 ## The census meets the classical lists
 
@@ -117,7 +132,7 @@ The one it misses is the first entry, Lehmer's number. Its degree fits the heigh
 
 ## What comes next
 
-- **Proofs on the height-4 data.** Prove that `z^T - z - 1` is the smallest constant at every height; state the unrolling that turns an area count into a width count (each column of height `c` becomes `c` forced steps, giving a 0/1 table with up to `T` states); and see whether a min-height pattern emerges for families such as the Pisot sequences converging to the golden ratio.
+- **Min-height patterns.** Whether the minimum height follows a pattern along families such as the Pisot sequences converging to the golden ratio, and whether the smallest-constant rule is unique up to relabeling.
 - **Height 5.** The census at height 5 reaches degree 15 and would settle whether Lehmer's number appears there.
 - **Lehmer's number.** Its min height, or a proof that no castle rule produces it.
 
@@ -136,7 +151,7 @@ The one it misses is the first entry, Lehmer's number. Its degree fits the heigh
 
 ## Footnotes
 
-[^exec]: Verified by execution (2026-09-25): Python 3 with NumPy and SymPy. For every 0/1 matrix of size 1 to 4, the denominator was built from its principal minors as above and deduplicated; each distinct denominator was factored over the integers, the smallest positive real root found per factor at 30 digits, and the factor carrying it reversed to the minimal polynomial of the growth constant. Pisot and Salem classes were read from the sizes of the other roots at 30 digits. Salem search: every monic palindromic integer polynomial of degree 4 and 6 with `|a_k| <= 2 C(d, k)`, tested for one real root above 1, a root on the unit circle, no other roots outside, and irreducibility. All quoted numbers are the programs' printed output.
+[^exec]: Verified by execution (2026-09-25): Python 3 with NumPy and SymPy. For every 0/1 matrix of size 1 to 4, the denominator was built from its principal minors as above and deduplicated; each distinct denominator was factored over the integers, the smallest positive real root found per factor at 30 digits, and the factor carrying it reversed to the minimal polynomial of the growth constant. Pisot and Salem classes were read from the sizes of the other roots at 30 digits. Unrolling identity: `det(I - xU)` equal to the principal-minor denominator on 300 random rules of heights 2 to 5 (SymPy Berkowitz determinant); the rule `1 -> ... -> h -> 1` plus `h -> 2` has denominator `1 - x^(T-1) - x^T` and growth equal to the root of `z^T - z - 1` to 9 digits for `h = 2..8`. Salem search: every monic palindromic integer polynomial of degree 4 and 6 with `|a_k| <= 2 C(d, k)`, tested for one real root above 1, a root on the unit circle, no other roots outside, and irreducibility. All quoted numbers are the programs' printed output.
 
 [^pisot]: https://en.wikipedia.org/wiki/Pisot%E2%80%93Vijayaraghavan_number (read 2026-09-25) - definition ("a real algebraic integer greater than 1, all of whose Galois conjugates are less than 1 in absolute value"), the near-integer powers and Pisot's converse, Salem's closedness, Siegel's minimal element "the positive root of the equation x3 − x − 1 = 0", "The smallest of them is the golden ratio" for the limit points, Dufresnoy and Pisot "determined all elements of S that are less than φ", "It has been proved that S is contained in the set T' of the limit points of T", and the table "ten smallest Pisot numbers in increasing order".
 
