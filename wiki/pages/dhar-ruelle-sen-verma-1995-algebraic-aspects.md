@@ -42,6 +42,7 @@ Section 7 takes up two questions. A deterministic sandpile that always adds its 
 - [[castle-avalanches](pages/castle-avalanches.md)] - Dhar's steady state behind the exact mean avalanche.
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the other place the wiki reads a group off a Smith normal form.
 - [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] - the seminar summary that cites this paper for the `2 × 2` grid's group.
+- [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - the 1990 paper whose steady-state results this one's §2 summarizes (commuting addition operators, equally likely recurrent configurations, `det Δ`).
 
 ## Relation to Other Wiki Pages
 

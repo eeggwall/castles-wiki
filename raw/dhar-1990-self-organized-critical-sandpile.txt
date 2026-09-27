@@ -1,0 +1,313 @@
+VOLUME 64, NUMBER 14                       PHYSICAL REVIEW LETTERS                                                        2 APRIL 1990
+
+
+                          Self-Organized         Critical State of Sandpile Automaton Models
+                                                              Deepak Dhar
+         Theoretical Physics Group, Tata Institute    of Fundamental     ResearehH, orni Bhabha Road, Bombay 400 005, India
+                                                       (Received 21 November   1989)
+
+
+                 We study a general Bak-Tang-Wiesenfeld-type        automaton model of self-organized criticality in which
+              the toppling conditions depend on local height, but not on its gradient. We characterize the critical
+              state, and determine its entropy for an arbitrary finite lattice in any dimension. The two-point correla-
+              tion function is shown to satisfy a linear equation. The spectrum of relaxation times describing the ap-
+              proach to the critical state is also determined exactly.
+
+              PACS numbers:    05.40.+j, 05.60.+w, 46. 10.+z, 64.60.—i
+
+
+
+
+   Recently Bak, Tang, and Wiesenfeld (BTW) have in-                     prescribed critical value. Our treatment is valid even
+troduced a simple automaton model that captures some                     when the toppling rules differ from site to site, and for
+important features of the dynamics of sandpiles. ' It                    any dimension of the lattice. In the following, we shall
+displays the remarkable property that starting from an                   refer to this model as the Abelian model (AM) to distin-
+arbitrary initial state, its stochastic evolution produces at            guish    it from other BTW-type models in which the
+long times a unique critical state characterized              by         operators do not satisfy a commutative algebra when the
+power-law correlations in space and time. This state has                 toppling criteria depend on gradients of height. We
+been called the self-organized critical (SOC) state, and                 show that in the SOC state of the AM, some stable
+BTW have argued that such models provide a natural                       configurations are forbidden, but all the allowed con-
+framework to describe diverse phenomena involving dis-                   figurations occur with equal probability. The number of
+sipative, nonlinear transport in open systems, such as 1/f               allowed configurations is shown to be equal to the deter-
+noise in electrical networks, distribution of visible matter             minant of an integer matrix 6 that specifies the evolution
+in the Universe, earthquakes, etc.                                       rules. The two-point correlation functions of the model
+   To determine the critical exponents characterizing the                are given by the matrix h, '. We define operators corre-
+SOC state, BTW have relied mainly on numerical simu-                     sponding to adding a particle at different sites and show
+lations, ' and the mean-field approximation.           More ex-          that they commute with each other. The algebra of
+tensive simulations have been made by Kadanoff et al.                    these operators is used to determine the spectrum of re-
+and Manna and Grassberger.            A directed version of this         laxation times of the AM.
+problem      has been solved exactly by Dhar and                            Deftnition of the model.     — We consider a set of IV
+Ramaswamy,         and its critical exponents are known in all           sites, labeled by integers 1 to %. To each site i is as-
+dimensions. Using some assumptions about compactness                     signed an integer variable z;. The AM is specified by
+of avalanche clusters, Zhang has determined the critical                 two rules.
+exponents of the undirected BTW model in all dimen-                         (i) Adding a particle: We select a site at random
+sions. For the cluster-size exponent r (probability that                 (probability of selecting site i being p;, all p s not neces-
+adding a particle at random causes exactly n topplings                   sarily equal) and increase z; by 1. Other zj's (jWi) are
+ n'),      h-e finds that r                            (
+                                2(1 —I/d) for 1 d ~. For
+                                                 ~
+d 2, this value disagrees with the numerical estimate
+                                                                         unchanged.
+                                                                            (ii) The toppling rule: This is specified in terms of an
+ =
+r 1.22 obtained in Ref. 5. Obukhov has argued that                       IV &1V integer matrix 6, and a set of 1V threshold values
+the avalanche process may be viewed as a branching
+self-avoiding walk, and using e.-expansion techniques he
+                                                                                                         )
+                                                                         z;, (i 1 to 1V). If any z; z;„ that site topples, and in
+                                                                         the language of sandpiles, some of the particles from the
+finds that the upper critical dimension for the undirected               toppled site drop onto other sites, and some may leave
+BTW model is 4, and       i=      2 for d~ 4. Hwa and Kar-               the system. On toppling at site i,
+dar have studied the evolution of a nonlinear continuum
+model in the presence of noise, which they argue is in the
+                                                                               zj   ~ zj — , for j =1 to W.
+                                                                                            h, ;J.
+
+same universality class as the BTW model with a pre-                     The integer matrix h, satisfies the conditions
+ferred direction, but the upper critical dimension (and
+also the critical exponents) in this model differs from its
+                                                                               h,   ;;)0, for alii,                               (2)
+value in the model studied in Ref. 6.                                          hj ~0, for alii&j,                                 (3)
+   In this Letter, we study the SOC state of a general
+                                                                         and
+BTW-type automaton model on an arbitrary finite set of
+                                                                                 N
+sites. We consider the case when the toppling at a site
+occurs if the "height" at the site exceeds some locally                        j
+                                                                                g A;1 ~ 0, for all i .
+                                                                                     1
+                                                                                                                                  (4)
+
+                                                 1990 The American Physical Society                                              1613
+VOLUME 64, NUMBER 14                   PHYSICAL REVIEW LETTERS                                                               2 APRIL 1990
+
+
+These conditions ensure that on toppling at site i, z; must    figuration, it can never get out of R under the Markovi-
+decrease, zj for j&i cannot decrease, and there is no          an evolution of AM. It follows that all nonrecurrent
+creation of particles in the toppling process. Particles       configurations are transients, and have zero probability
+can leave the system, say at the edges; in fact, no steady     of occurrence in the SOC state.
+state is possible otherwise. We assume in addition that           For operators a; restricted to domain R, inverses can
+the matrix h, is such that any configuration relaxes to a      be defined. For any configuration C satisfying Eq. (6),
+stable configuration in a finite number of steps. We do        we define
+not assume that the matrix 6 is symmetrical.       The con-
+ventional undirected nearest-neighbor    BTW model' as            a; 'C            a; '       C, foralli=l         toN.                (7)
+well as its directed and partially directed variants     are   As argued in Ref. 9, the existence of a unique inverse in
+obtainable as special cases of the AM.                         the set of recurrent configurations implies that the state
+   Without loss of generality, we can assume that z;, =6;;     in which all recurrent configurations     occur with equal
+for all i The. n, any configuration [z;} in which 1 ~z;        probability is the invariant state of the Markovian evolu-
+ ~h;; is a stable configuration under the toppling rule.       tion. We thus have a full characterization of the SOC
+We define N operators a; (i 1 to N) on this space of           state of AM: In it only recurrent configurations have a
+stable configurations by requiring that a;C be the stable      nonzero probability     of occurrence, and this nonzero
+configuration obtained by adding a particle at site i to       value is the same for all recurrent configurations.
+the configuration C and allowing the system to evolve by          Consider now any configuration C 6 R, to which we
+toppling.                                                      add 6;; particles at some site i one after another. Since
+   Consider an unstable configuration in which two sites       z; & 0 in C, after these additions the site will become un-
+a and P are both critical (i.e. , z, & d„, and zp& d, pp).     stable, and topple, in the process adding ( —5;J) particles
+Then first toppling a leaves P critical [Eq. (3)], and after
+toppling both a and P we get a configuration in which z;
+                                                                                          j
+                                                               at all other sites (jWi). We thus see that the operators
+                                                               a; (i 1 to N) satisfy the equations
+decreases by 6„+hp; for i I to N. This is clearly
+symmetrical under exchange of a and P. Thus we get
+                                                                          Il   ~    a       (J
+
+
+the same resulting configuration irrespective of whether
+                                                               where the primed product sign indicates product over all
+a or P is toppled first. By a repeated use of this argu-
+ment, we see that in an avalanche, the same final stable
+                                                               j~i. Equivalently, we write
+configuration is reached irrespective of the sequence in
+which unstable sites are toppled. Also toppling at an un-         j~
+                                                                     gaJ" f
+                                                                                    1, foralli          1   toN.                       (9)
+stable site a, and then adding a particle at site P gives
+the same result as first adding at P, and then toppling at     Since the a's commute with each other, all representa-
+                                                               tions of the algebra given by Eq. (9) are one-dimen-
+a. From these two properties it follows that for all
+                                                               sional. We write
+configurations C, and all i and j, we get a;ajC=aja;C.
+In other words the operators a; commute with each oth-
+er:
+                                                                     aJ        exp(i&J ),        j = to N,
+                                                                                                    1                                 (10)
+                                                               where p~ are some real numbers.                     In terms of p's, Eq. (9)
+      [a;, aJ]              j
+                 0, for alii, .                          (5)   can be written as
+   Note that in BTW models with toppling condition de-
+pending on gradients, the inequality (3) is not satisfied
+and the operators a; do not commute.
+   The commutativity of a's is the crucial property un-        where n;, i          1 to N,        are some integers.     Solving Eq. (11)
+derlying the tractability of AM. In particular, it implies     we get
+that the steady state (the SOC state) of the model can
+be characterized very simply. ' From the general theory                                                                               (12)
+of Markov chains, the set of all stable configurations can
+be divided into two classes: recurrent and transient. We       Equation (12) shows that the allowed values of {p;}form
+define a configuration C to be recurrent, iff there exist      a periodic lattice in the N-dimensional space. For each
+positive integers m; (i =1 to N) such that                     choice of [n;}, we have a set of values [p;}, which gives a
+                                                               representation of the operator algebra of Eq. (9). But
+      a; 'C=C, for alii.
+                                                               P s are phases, and are defined only modulo 2x. Thus in
+From Eq. (5), it is easy to see that if C is recurrent then    Eq. (12), only points lying with the N-dimensional cube
+configurations a;C (i=1 to N) are also recurrent.    "
+denote the set of all recurrent configurations by %. It
+                                                        We       ~            (
+                                                               0 p; 2ir (i =1 to N) give rise to distinct representa-
+                                                               tions. The number of such representations is the ratio of
+follows that % is closed under multiplication by opera-        volumes of the cube and the volume of the unit cell of
+tors a;. Once our system gets into a recurrent con-            the p lattice. This number is also equal to the number of
+
+1614
+VOLUME 64, NUMBER 14                              PHYSICAL REVIEW LETTERS                                         2 ApRiL 1990
+
+
+distinct elements of the algebra, i. e. , products of the type     probability distributions of avalanches by their mass,
+a~ 'a2'. . . a~   (ml, m2, . . . are non-negative integers)        durations, etc. This has been accomplished so far only
+which are not equal under Eq. (9). But each such ele-              for the SOC state on a Bethe lattice, the details of which
+ment acting on a configuration C gives rise to a distinct          will be reported in a future publication. 'i We find that
+configuration.   Hence, this number must equal AIR, the            the probability that avalanche contains more than n sites
+number of distinct configurations in %. Thus we get                varies as n ' for n      T. he probability that its duration
+                                                                   exceeds t varies as t ' for large t.
+    JVR =Deta.                                             (i3)       There is a simple recursive procedure to determine if a
+   Since all these configurations occur with equal proba-          given configuration is allowed. We consider a test set T
+bility in the SOC state, the entropy of the SOC state S is         of sites. In the beginning, T consists of all the sites of
+given by                                                           the lattice. We test the hypothesis F=T, using the in-
+                                                                   equalities (18). If these are satisfied for all sites in T,
+    S    ln Deth, .                                                then the hypothesis is true and the configuration disal-
+                                                                   lowed. Otherwise, there are some sites for which the in-
+   For the directed models, the matrix 6 is upper triangu-
+                                                                   equality is violated. These sites cannot be part of any
+lar, and one recovers the result of Ref. 9,
+                                                                   FSC, as the inequalities (18) will remain unsatisfied if T
+                                                                   is replaced by any smaller subset in its right-hand side.
+                                                                   Deleting these sites from T, we get a smaller test set T',
+                                                                   and repeat the previous procedure. In the end, we either
+   As another example, for the undirected         nearest-
+                                                                   get a finite FSC F, else the set T becomes empty, and
+neighbor AM on the square lattice with free boundary
+                                                                   then the configuration is allowed.
+conditions studied in Refs. 1 and 5, we get for s, the en-
+                                                                      We now show that the set of allowed, stable con-
+tropy per site of the SOC state in the thermodynamic
+                                                                   figurations is closed under the dynamics of AM. Assume
+limit,
+                                                                   the contrary. Then there exists an allowed configuration
+                         +2@'   p2m                                C such that by a single toppling it becomes the con-
+    s    (2tr)               d8 a!p dpln(4 —2cos8 —2cosp) . (16)
+                    aJ   p                                         figuration C' which contains a FSC F (adding particles
+   Equation (13) can be obtained more directly. In the             only increases heights, and cannot create a FSC). If this
+space of all possible (including unstable) configurations          toppling occurs at site i, from the toppling rule (1) one
+obtainable from % by addition of particles, we define two          gets that if F is a FSC in C', then the set obtained by de-
+configurations fz;j and fz j as equivalent iff under top-          leting i from F is a FSC in C. This contradicts our as-
+plings, they evolve to the same stable configuration.              sumption that C is allowed. Hence the set of allowed
+Then, if fz;j and fz ) are equivalent, there exist some in-        configurations    is closed. The recurrent configuration
+tegers r; (i 1 to N) such that                                     with z; 6;; for all i, is clearly allowed [by Eq. (4)].
+                   jv
+                                                                   Since all recurrent configurations are reachable from this
+    zJ   zJ       Q ] rthjJ
+                 j~
+                                for all   j                        particular one, it follows that all recurrent configurations
+                                                                   are allowed. The converse statement appears quite plau-
+Thus if we represent fz;j's by points of a N-dimensional           sible, though a strict proof is lacking. Together, these
+hypercubical     lattice with basis vectors e;, the set of         would imply that the set of allowed stable configurations
+equivalent points forms a superlattice with basis vectors          is %.
+                                                                      There is an interesting relationship between FSC's and
+g,"-lit;JeJ (i =1 to N). Since to each equivalence class           avalanche clusters. To see this, consider a recurrent
+of configurations there corresponds a unique recurrent
+configuration, ' the volume of the unit cell of the super-         configuration    C, and let us try to construct the
+                                                                   C' a; 'C. Let C" be the configuration obtained by de-
+lattice must equal JVR. This again gives Eq. (13).
+   It is desirable to get a more direct characterization of        creasing z; in C by 1, and leaving other sites unchanged.
+                                                                   If C" is allowed, then C' C", by uniqueness of inverse.
+                                              )
+the set %. We define a forbidden subconfiguration
+(FSC) as any set F of r sites (r 1) if the corresponding           If C" is disallowed, it must contain an FSC, say F such
+                                                                                                                 j
+                                j
+height variables [Z,J), E F, satisfy the inequalities              that i E F. Since the inequality (18) at site is preserved
+
+    zJ   (P —    ( 6;J ), for all     j 6 F,               (is)
+                                                                   by toppling at all other sites, it follows that F is a subset
+                                                                   of the cluster of sites in C' where at least one toppling
+                                                                   occurs on adding a particle at i. In fact, F is the set of
+where the primed summation denotes sum over all i C F              sites where as many topplings occur as at i.
+with iAj. A (stable or unstable) configuration that con-               We now calculate the two-point correlation function in
+tains no FSC's is called an allowed configuration.     We          the SOC state. Let G;J be the expected number of top-
+argue below that the set of stable allowed configurations          plings at site j, due to the avalanche caused by adding a
+is the same as R. A more explicit characterization of %            particle at i. Then the total average flux of particles out
+is needed for calculation of various ensemble-averaged                     j
+                                                                   of site is G;jAjj. The total average flux of particles into
+quantities in the SOC state such as the average height,                j
+                                                                   site is pt, G;t, ( —t4J ), where k is summed over all sites
+                                                                                                                            1615
+VOLUME 64, NUMBER 14                          PHYSICAL REVIEW LETTERS                                                       2 AVRrL 1990
+
+
+~j. In the SOC state, the average influx must equal the                  when the matrix 6 is a Laplacian operator. Note that
+average outflux, and we get                                              the argument leading to Eq. (19) is quite general. The
+                                                                         equation would hold even in a non-Abelian case when
+    ZGik~kj       i5ij                                          (19)     the toppling condition depends on gradients.
+    k
+                                                                            As a simple application of Eq. (20), let us calculate
+                                                                         (T), the average number of topplings per added particle
+   G;i=[8 '];1, for alii, .         j                           (20)     on a finite LxL lattice for the square-lattice nearest-
+An analog of Eq. (19) for the coarse-grained            energy den-      neighbor AM. If a toppling occurs at the edge (corner),
+sity was already         written   down by inspection    in   Ref. 7,    one (two) of the particles leaves the system. Writing
+                                                                         down the matrix 6, a straightforward calculation gives
+
+
+
+               L'(L+ I)'~,         . 2(L+1)         2(L+ I)             2(L+I)          2(L+ I)
+                                                                                                                                       (21)
+
+ where the summation over rn, n extends over all odd in-
+ tegers 1 & m     +            ~
+                    L, 1 n & L. For large L, we get                       correspondence, and M. Barma and           T. R. Ramadas for
+ (T)-L     . This formula agrees with the recent numerical                useful comments on the manuscript.
+ estimates of (T) within numerical uncertainties.
+    Finally, we determine the spectrum of relaxation to
+ the SOC state. Let P, (C) be the probability that the
+ stable configuration obtained after the tth Particle has                    iP Bak, C. Tang, and K. Wiesenfeld, Phys. Rev. Lett. $9
+ been added is C. Then these satisfy the master equation                  381 (1987) Ph s. Rev. A 3$, 364 (1988).
+                                                                             2P. Bak and K. Chen, Physica (Amsterdam) 38D, 5 (1984);
+     P, +, (C) -QW(C, C')~, (C') .                               (22)     K. Chen and P. Bak, Phys. Lett. A 140, 299 (1989).
+                   C'
+                                                                             3C. Tang and P. Bak, Phys. Rev. Lett. 60, 2347 (1988); J.
+ The rates W(C, C ) can be written in terms of an ÃR-                     Stat. Phys. Sl, 797 (1988).
+ dimensionalmatrix W, which in terms of operators ja;}                       4L. P. Kadanoff, S. R. Nagel, L. Wu, and S. M. Zhou, Phys.
+ is given by                                                              Rev. A 39, 6524 (1989).
+           N
+                                                                             5S. S. Manna, Hochstleistungsrechenzentrum     Julich report,
+     W    gp;a;.                                                 (23)     1989 (to be published); P. Grassberger and S. S. Manna,
+                                                                          Wuppertal report, 1990 (to be published).
+                                                                              D. Dhar and R. Ramaswamy, Phys. Rev. Lett. 63, 1659
+ Since the operators    la;} are simultaneously diagonaliz-
+                                                                          (1989); see also D. Dhar, in Proceedings of the ICTP-BCSPIN
+ able with eigenvalues given by Eqs. (10) and (12), the
+                                                                          Kathmandu       Summer     School, May-June      1989 [World
+ eigenvalues of Ware completely determined.                               Scientific, Singapore (to be published)].
+    The choice n; =0 for all i in Eq. (12) corresponds to                    7Y. C. Zhang, Phys. Rev. Lett. 63, 470 (1989).
+ the steady state with eigenvalue 1. The next largest ei-                    8S. P. Obukhov, in Random Fluctuations and Pat tern
+ genvalue determines the relaxation time of the slowest                   Growth: Experiments and Models, edited by H. E. Stanley
+ decaying fluctuations in the SOC state. For the un-                      and N. Ostrowsky, NATO Advanced Study Institutes, Ser. C,
+ directed d-dimensional AM with nearest-neighbor drops                    Vol. 157 (Kluwer, Dordrecht, 1988).
+ only, we find that this relaxation time varies as   whereL,                 sT. Hwa and M. Kardar, Phys. Rev. Lett. 62, 1813 (1989);
+ L is the linear extent of the system. Note that, for large               Physica (Amsterdam) 3SD, 198 (1989).
+                                                                            ' We use the word "state" to denote an ensemble of
+ L, this is much larger than the average duration of an
+ avalanche r which satisfies r          ~
+                                    (T)-L . In fact, in the               configurations with specified probabilities.
+                                                                            ''Thus the integers m; are independent of C, and using their
+ numerical simulations of AM, one can speed up relaxa-
+                                                                          product, can be chosen to be independent of i as well.
+ tion in the SOC state substantially by using the commu-                    ' The geometrical shape of the set 9' in this representation  is
+ tativity of a' s, and evolve by toppling only after (say)                quite nontrivial, but copies of 8' can be arranged to give a sim-
+ every Nth particle is added.                                             ple periodic tiling of the N-dimensional space.
+     I thank R. Ramaswamy for many discussions and                          '3D. Dhar and S. N. Majumdar (to be published).
+
+
+
+
+ 1616
+

@@ -3,7 +3,7 @@ title: Sandcastles seminar - one silver castle, grain by grain, in the sink and 
 category: Concepts
 summary: The seminar walk-through for the "Sandcastles" arc, following one castle, the 16-cell silver castle (3,2,1,2,2,1,2,3), through the whole sandpile story in two models that differ only in where the sand leaves - the sink model (one sink cell, the bottom-left cell) and the tide model (the whole bottom row, the ground). One grain on its left tower sets off a 16-toppling wave across the castle in the sink model, losing 2 grains to the sink, but only 4 topplings under the tide, where the ground swallows sand everywhere. Its recurrent piles form Z/4 × Z/4 × Z/4 (64 piles) in the sink model and Z/3 × Z/3 × Z/3 (27 piles) under the tide, read straight off its three separate 2×2 blocks: the block matrix is 4I in the sink model and 3I under the tide, because every block sits on the ground. The sink group depends only on how the blocks touch, which is why on every castle up to 16 cells it hears nothing the spectrum misses; the tide group also sees how high the blocks stand, so it tells the silver rectangle lying down (Z/8) from standing up (Z/11). Its clock ticks 4 in the sink model, with a clock spectrum of periods 1, 2, 4 occurring 16, 48, 176 times over every sink and grain cell, and 3 under the tide, on every one of its 8 raised cells. Its identity has empty tower tops in both models. Under the tide it barely avalanches (mean 1.667 topplings, never more than 4); in the sink model the mean is 32.1 and avalanches reach 149. One runnable block pins every value in both models.
 tags: [concept, castle, seminar, pedagogy, teaching, sandpile, silver-ratio, critical-group, identity-element, clock, avalanche, sink-model, tide-model, isospectral]
-sources: [project-euler-502-castle-factoring, rossin-2000-group-of-a-sandpile, dhar-ruelle-sen-verma-1995-algebraic-aspects]
+sources: [project-euler-502-castle-factoring, rossin-2000-group-of-a-sandpile, dhar-ruelle-sen-verma-1995-algebraic-aspects, dhar-1990-self-organized-critical-sandpile, bak-tang-wiesenfeld-1988-self-organized-criticality]
 created: 2026-09-26
 updated: 2026-09-27
 ---
@@ -303,6 +303,8 @@ def random_drops(b, drops, seed=2):        # from the identity; returns the topp
 
 ## Appearances in Sources
 
+- [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)] - the original self-organized-criticality paper; the random-dropping stop of the seminar is its experiment on a castle.
+- [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - Dhar's theorems the seminar uses in both models: the abelian property, the group of `det L̃` recurrent piles, and the exact mean avalanche from `G = L̃⁻¹`.
 - [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] - the sink-model algebra (Smith normal form, `|K| = det Δ`) behind Stops 2-4.
 - [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] - the sandpile group, its sink independence and the identity recipe the seminar uses in both models.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle definition behind the castle graph.

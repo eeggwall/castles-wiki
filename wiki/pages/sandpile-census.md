@@ -3,7 +3,7 @@ title: Sandpile census - every castle to 16 cells, in the sink and tide models
 category: Analyses
 summary: The sandpile group of every castle with at most 16 cells (33,150 castles, mirror images removed) in both models of sandpile-group - the sink model (one sink cell) and the tide model (the bottom row as the sink) - computed from the 2×2-block matrices and checked against the cospectral census of isospectral-castles. The 2×2 blocks' boundary cycles are an integer basis of the cycle lattice in every case tested (938 castles). In both models the trivial group occurs exactly on the 6,963 tree castles. Sink model - the commonest groups are Z/4 (one isolated block), Z/15 (two adjacent blocks), Z/56 and Z/209 (paths of three and four blocks); the group separates none of the 105 adjacency- and 17 Laplacian-cospectral groups, because cospectral castles always share their graph of blocks; the census refutes the "cyclic sandcastles" conjecture as stated, proves that every path-shaped cluster gives a cyclic group, and finds 921 castles with a non-path cluster and a cyclic group. Tide model - each sink group splits by how many blocks sit on the ground (Z/15 becomes Z/8 lying down or Z/11 standing up; Z/56 becomes Z/21, Z/29 or Z/41 as three, two or one of its blocks touch the ground), 2,254 of the 6,443 graphs realized by several skylines get different tide groups on different skylines, and the group is far more often cyclic (30,617 castles against 29,439): (3,3,3) is Z/95 under the tide but Z/8 × Z/24 in the sink model, while (4,4,4) goes the other way (Z/2415 against Z/13 × Z/91). The cyclic and distinct-group counts per cell count are OEIS novel candidates in both models.
 tags: [analysis, castle, sandpile, critical-group, census, isospectral, laplacian, adjacency, smith-normal-form, cyclic-group, tree-castle, block-graph, sink-model, tide-model, numpy, sympy, verification]
-sources: [project-euler-502-castle-factoring, rossin-2000-group-of-a-sandpile, dhar-ruelle-sen-verma-1995-algebraic-aspects]
+sources: [project-euler-502-castle-factoring, rossin-2000-group-of-a-sandpile, dhar-ruelle-sen-verma-1995-algebraic-aspects, dhar-1990-self-organized-critical-sandpile, chau-cheng-1991-deterministic-soc-sandpile]
 created: 2026-09-26
 updated: 2026-09-27
 ---
@@ -129,6 +129,8 @@ Where the models differ is the non-path clusters:
 
 The ground's 3s break the symmetry that splits the sink group of the `2 × 2` square of blocks: `(3, 3, 3)` is `Z/8 × Z/24` in the sink model and `Z/95` under the tide. The effect also runs the other way. `(4, 4, 4)` is cyclic in the sink model (`Z/2415`) and splits under the tide (`Z/13 × Z/91`).[^7]
 
+**Cyclic is not deterministic.** A cyclic group does not mean every grain acts the same. Chau and Cheng's *completely deterministic* sandpiles, where all grains coincide, have cyclic groups, but a castle sandpile is deterministic only when its group is trivial, in both models, because every cell next to the sink has a single sink edge ([[sandpile-group](pages/sandpile-group.md)], [[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)]).
+
 ## What this settles and what it opens
 
 **Settled (to 16 cells).**
@@ -252,6 +254,8 @@ def cospectral_groups(castles, operator):  # sets of non-isomorphic castles shar
 
 ## Appearances in Sources
 
+- [[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)] - deterministic steady states, a strictly stronger property than a cyclic group.
+- [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - the count `det Δ` of recurrent configurations that this census tabulates as `|K|` in both models; its logarithm `ln det Δ` is the entropy of the self-organized critical state (0 for the 6,963 tree castles).
 - [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] - the rank of the square castles' sink groups and the exact sink group of the height-3 castles, both through the open-boundary grids that are their duals.
 - [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] - the dual-graph theorem behind the block matrices, and the `2 × 2` grid example that is the dual of `(3, 3, 3)`.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle definition (column heights `≥ 1`) that makes "every castle with `n` cells" the compositions of `n`.

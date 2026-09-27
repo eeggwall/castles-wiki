@@ -210,6 +210,7 @@ True
 
 - [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] - the identity as the recurrent configuration with all toppling invariants zero, and its fractal patterns on square grids (the dual of a castle, not its cells).
 - [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] - the identity `δ ⊕ (δ ⊕ δ)‾` from the fullest stable pile, and the unexplained fractal patterns of the identity on large grids.
+- [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - the steady state and the group the identity belongs to; the identity element itself is not treated there (its recipe is Rossin's, above).
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle definition behind the castle graph.
 
 ## Footnotes

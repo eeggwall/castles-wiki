@@ -1,0 +1,743 @@
+PHYSICAL REVIEW A                                      VOLUME 38, NUMBER 1                                                    JULY 1, 1988
+
+                                                     Self-organized criticality
+
+                                              Per Bak, Chao Tang, and Kurt Wiesenfeld
+                            Department   of Physics, Brookhaven National Laboratory, Upton, New York 11973
+                                                        (Received 28 August 1987)
+                     We show that certain extended dissipative dynamical systems naturally evolve into a critical state,
+                  with no characteristic time or length scales. The temporal "fingerprint" of the self-organized criti-
+                  cal state is the presence of flicker noise or 1/f noise; its spatial signature is the emergence of scale-
+                  invariant (fractal) structure.
+
+
+
+
+                      I. INTRODUCTION                                   The same interdependence        of species also makes the
+                                                                        ecosystem very susceptible to small changes or "noise.
+                                                                                                                                        "
+    This paper concerns the behavior of spatially extended              However, the system cannot be too sensitive since then it
+dynamical systems     — that is, systems with both temporal             could not have evolved into its present state in the first
+and spatial degrees of freedom. Such systems are com-                   place. Owing to this balance we may say that such a sys-
+mon in physics, biology, and even social sciences such as                                  "
+                                                                        tem is "critical. We shall see that this qualitative con-
+economics. Despite their abundance, there is little under-              cept of criticality can be put on a firm quantitative basis.
+standing of the spatiotemporal evolution of these com-                      Such critical systems are abundant in nature. We shaB
+plex systems. ' Seemingly disconnected from this problem                see that the dynamics of a critical state has a specific tern-
+are two widely occurring phenomena whose very general-                                                                   "
+                                                                        poral fingerprint, namely "flicker noise, in which the
+ity require some unifying underlying explanation.        The            power spectrum S(f) scales as 1/f at low frequencies.
+first is a temporal effect known as 1/f noise or flicker                Flicker noise is characterized by correlations extended
+noise; the second concerns the evolution of a spatial                   over a wide range of time scales, a clear indication of
+structure with scale-invariant, self-similar (fractal) prop-            some sort of cooperative effect. Flicker noise has been
+erties. Here we report the discovery of a general organ-                observed, for example, in the light from quasars, the in-
+izing principle governing a class of dissipative coupled                tensity of sunspots, the current through resistors, the
+systems. Remarkably, the systems evolve naturally to-                   sand flow in an hour glass, the flow of rivers such as the
+ward a critical state, with no intrinsic time or length                 Nile, and even stock exchange price indices. ' All of
+scale. The emergence of the self-organized critical state               these may be considered to be extended dynamical sys-
+provides a connection between nonlinear dynamics, the                   tems. Despite the ubiquity of flicker noise, its origin is
+appearance of spatial self-similarity, and 1/f noise in a               not well understood. Indeed, one may say that because of
+natural and robust way. A short account of some of                      its ubiquity, no proposed mechanism to data can lay
+these results has been published previously.                            claim as the single general underlying root of 1/f noise.
+    The usual strategy in physics is to reduce a given prob-            We shall argue that flicker noise is in fact not noise but
+lem to one or a few important degrees of freedom. The                   reflects the intrinsic dynamics of self-organized critical
+effect of coupling between the individual degrees of free-              systems. Another signature of criticality is spatial self-
+dom is usually dealt with in a perturbative manner         —
+                                                           or           similarity. It has been pointed out that nature is full of
+in a "mean-field manner" where the surroundings act on                  self-similar "fractal" structures, though the physical
+a given degree of freedom as an external field thus        —             reason for this is not understood.       "Most notably, the
+again reducing the problem to a one-body one. In dy-                    whole universe is an extended dynamical system where a
+namics theory one sometimes finds that complicated sys-                  self-similar cosmic string structure has been claimed.
+tems reduce to a few collective degrees of freedom. This                Turbulence is a phenomenon where self-similarity is be-
+"dimensional      reduction'*    has been     termed    "self-           lieved to occur in both space and time.
+organization, "  or the so-called "slaving principle,       "
+                                                          and               Cooperative critical phenomena are well known in the
+much insight into the behavior of dynamical systems has                 context of phase transitions in equilibrium statistical
+been achieved       by studying      the behavior    of low-            mechanics. '       At the transition     point, spatial self-
+dimensional at tractors.                                                sirnilarity occurs, and the dynamical response function
+    On the other hand, it is well known that some dynami-                has a characteristic power-law "1/f" behavior. (We use
+cal systems act in a more concerted way, where the indi-                 quotes because often flicker noise involves frequency
+vidual degrees of freedom keep each other in a more or
+less stab1e balance, which cannot be described as a "per-
+                                                                        spectra with dependence        f~ with
+                                                                                                                P only roughly equal
+                                                                         to 1.0.) Low-dimensional nonequilibrium dynamical sys-
+turbation" of some decoupled state, nor in terms of a few                tems also undergo phase transitions (bifurcations, mode
+collective degrees of freedom. For instance, ecological                  locking, intermittency, etc. ) where the properties of the
+systems are organized such that the different species                    attractors change. However, the critical point can be
+"support" each other in a way which cannot be under-                     reached only by fine tuning a parameter (e.g. , tempera-
+stood by studying the individual constituents in isolation.              ture), and so may occur only accidentally in nature: It
+
+                                                                 38     364                        1988 The American Physical Society
+38                                            SELF-ORGANIZED CRITICALITY                                                     365
+
+
+cannot be invoked as an explanation for the dynamical               at the critical point.
+phenomena discussed above where no fine tuning is need-                The paper is organized as follows. In Sec. II we con-
+ed.                                                                 sider for pedagogical reasons an example in one spatial
+    In this paper, we argue and demonstrate numerically             dimension. In this case the spatial degrees of freedom
+that dynamical systems with extended spatial degrees of             "decouple" and the system ends up in the least stable
+freedom in two or three dimensions naturally evolve into            metastable state. This minimally stable state is a trivial
+self org-anized critical states. By self-organized we mean          critical state with no spatial patterns and uninteresting
+that the system naturally evolves to the state without de-          temporal behavior. [In a sense this is similar to the one-
+tailed specification of the initial conditions (i.e. , the criti-   dimensional (1D) Ising model at zero temperature, or the
+cal state is an attractor of the dynamics). Moreover, the           1D percolation problem at the percolation threshold. ]
+critical state is robust with respect to variations of pa-          The interesting cases of two and three dimensions are
+rameters, and the presence of quenched randomness. We               treated in Sec. III, where simulations on two different
+suggest that this self-organized criticality is the common          "sand-pile automata" are presented. It is shown how one
+underlying mechanism behind the phenomena described                 is led naturally to a flicker-noise output spectrum. The
+above.                                                              connection between the automata and actual physical
+    More specifically, we consider dissipative dynamical            systems is also discussed. Scaling laws are conjectured,
+systems with local, interacting degrees of freedom. It is           and a finite-size-scaling hypothesis is successfully tested.
+essential that the system has many rnetastable states. Al-          It is also shown that the criticality is not affected by vari-
+though the details of the local states are not important to         ous types of local randomness; this is essential for the
+the general theory, for the sake of clarity we focus atten-         self-organized criticality to be a generic property of natu-
+tion on specific models. We choose the simplest possible            rally occurring dynamical systems. We close with a dis-
+models rather than wholly realistic and therefore com-              cussion and summary in Sec. IV. In particular, we dis-
+plex models of actual physical systems. Besides our ex-             cuss the relations between our models and "turbulence.      "
+pectation that the overall qualitative features are cap-            In fact our models can be thought of as "toy" turbulence
+tured in this way, it is certainly possible that quantitative       models where energy is dissipated on all length scales,
+properties (such as scaling exponents) may apply to more            with spatial correlations described by a generalized Kol-
+realistic situations, since the system operates at a critical       mogorov exponent. We also suggest an experiment the
+point where universality may apply. The philosophy is               reader can perform in his or her own home.
+analogous to that of equilibrium statistical physics where
+ results are based on Ising models (and Heisenberg mod-                        II. THE ONE-DIMENSIONAL          CASE
+ els, etc. ) which have only the symmetry in common with                            AND MINIMAL STABILITY
+ real systems. Our "Ising models" are discrete cellular au-
+ tomata, which are much simpler to study than continu-                 In this section we study a one-dimensional model of
+ ous partial differential equations.                                transport. The model has a huge number of metastable
+    To illustrate the basic idea of self-organized criticality      states, growing exponentially with the length of the sys-
+ in a transport system, consider a simple "pile of sand.       "    tern. To understand the origin of this proliferation of
+ Suppose we start from scratch and build the pile by ran-           states, or "attractors" of the dynamics of extended sys-
+ domly adding sand, a grain at a time. The pile will grow,          tems, consider for instance an array of N uncoupled oscil-
+ and the slope will increase. Eventually, the slope will            lators, or torsion pendula, each having m stable fixed
+ reach a critical value (called the "angle of repose"' ); if        points. Then the array has m stable configurations.
+ more sand is added it will slide off. Alternatively, if we         The presence of weak coupling does not alter this basic
+ start from a situation where the pile is too steep, the pile       arithmetic. Surprisingly, our model evolves towards the
+ will collapse until it reaches the critical state, such that it    very least stable of all these state. We call this state the
+ is just barely stable with respect to further perturbations.       global minimally stable state. ' This state is distinctly
+ The critical state is an attractor for the dynamics. The           different from the critical state observed in two and three
+ quantity which exhibits I/f noise is simply the flow of            spatial dimensions, and which is the central focus of this
+ the sand falling off the pile (this is analogous to the situa-     paper. Nevertheless, an understanding of the minimally
+ tion in an hour glass). One of the models studied in this          stable state is essential also in understanding    the self-
+ paper can be thought of as a model of a sand pile, or al-          organized critical state.
+ ternatively as modeling an array of coupled pendula.                   Figure 1(a) shows a model of a one-dimensional sand
+ These models evolve into a critical state: as the pile is          pile of length N. The boundary conditions are such that
+ built up, the characteristic size of the largest avalanches        sand can leave the system at the right-hand side only.
+ grows, until at the critical point there are avalanches of         We may think of this arrangement as half of a symmetric
+ all sizes up to the size of the system, analogous to the           sand pile with both ends open. The numbers z„represent
+ domain distribution of a magnetic system at a phase tran-          height differences  z„—= h(n) —h (n +1) between successive
+ sition. The energy is dissipated at all length scales. Once        positions along the sand pile. The dynamics is very sim-
+ the critical point is reached, the system stays there. The         ple. From the figure one sees that sand is added at the
+ behavior of systems at the self-organized critical point is         nth position by letting
+ characterized by a number of critical exponents       —  which
+                                                                         z„~z„+
+                                                                              1,
+ are connected by scaling relations   —   and the systems obey
+ "finite-size scaling" just as equilibrium statistical systems           z„)~z„)
+                                                                              —.        1
+                                                                                                                             (2. 1)
+366                                     PER BAK, CHAO TANG, AND KURT WIESENFELD                                                    38
+
+
+When the height difference becomes higher than a fixed                pends on the state of the variable and its neighbors at
+critical value z„one unit of sand tumbles to the lower                time t.
+level, i.e. ,                                                            Alternatively, the system can be thought of as an array
+                                                                      of damped pendula in a gravitational field, coupled by
+      z. ~z. —2                                                       torsion springs: The heights h (n) are the winding num-
+                                                              (2.2)
+      zn+]          n+)+         & c                                  bers of the springs, and the z„arethe spring forces on the
+                             n
+                                                                      pendula. When z„exceeds the critical value         z„so that
+closed and open boundary conditions are used for the left             the spring force exceeds the gravitational force, the pen-
+and right boundaries, respectively,                                   dulum rotates one revolution, leading precisely to the dy-
+      zo — —0;                                                        namics Eq. (2.2). By a change of language, this nonlinear
+                                                                      diffusion dynamics can also be used to model other of the
+      ZN     ZN     —1                                                systems mentioned in the Introduction, describing the
+                                                                      fiow of electrons, or water, or light, etc. But for conveni-
+      zN     )~zN )+1 for zN &z, .                                    ence we shall continue to use the "sand" language in or-
+Equation (2.2) is a nonlinear discretized diffusion equa-             der to keep in mind a concrete physical picture.
+tion (nonlinear because of the threshold condition). The                 The condition for stability is
+process continues until all the z„arebelow threshold, at                  z„&z, (n =1,2, . . . , N),
+which point another grain of sand is added (at a random
+site) via Eq. (2. 1). The model is a cellular automaton               so the total number of stable states is z, .
+where the state of the discrete variable      z„at
+                                            time t + 1 de-               If sand is added randomly from an empty system, the
+                                                                      pile will build up, eventually reaching the point where all
+                                                                      the height differences z„assume the critical value     z„=z,   .
+                                                                      This is the least stable of all the stationary states. Any
+                                                                      additional sand simply falls from site to site (left to right)
+                                                                      and falls off at the end n =N, leaving the system in the
+                                                                      minimally stable state. Alternatively, if one pushes one
+                    Zi                                                unit downwards it will also continue its fall until it
+                                                                      reaches the edge. In the pendulum picture, this corre-
+                                   Zn-[   ~   Zn-&+     ~
+                                                                      sponds to kicking one pendulum in the forward direction.
+                                                                      This will cause the force on the two nearest-neighbor
+                                   Zn         Zfl   2                 pendula to exceed the critical value and the perturbation
+                                   Zn~)    = Zn+)+I                   will propagate by a domino effect until it hits the ends of
+                                                                      the array. At the end of this process the forces are back
+                                                                      to their original values and all pendula have rotated one
+                                                                      period. In other words, the effect of a small local pertur-
+                                                                      bation is communicated throughout the system, but the
+              (0)                                                     system is robust with respect to noise insofar as it returns
+                                                                      to the globally minimally stable state. If units are added
+                                                                      randomly, the resulting sandAow is also random white
+                                                                      noise, i.e. , with power spectrum I/f . As we shall see in
+                                                                      the next section, the robustness of the minimally stable
+                                                                      state is lost in two and higher dimensions.
+                                                                         The dynamical selection principle leading to the least
+                                                                      stable stationary state is quite independent of how the
+                                                                      sand pile is built up. Instead of building the pile by add-
+                                                                      ing sand, we might start with a flat sand surface and
+                                                                      slowly raise the left end of the bar. Or, we could random-
+                                                                      ly add "slope,
+                                                                                      " z„~z„+1,      and let the system obey the
+                                                                      dynamics [Eq. (2.2)]. This would represent the dynamics
+                                                                      of a system with a random distribution of critical height
+                                                                      differences and a uniformly increasing slope. We could
+                                                                      also start with a very unstable state, z„&z,for all n, and
+                                                                      let the system relax. In all these cases the minimally
+                                                            ZN=O      stable state will be reached even if the boundary condi-
+              (b)
+                                                                      tions are such that the sand cannot leave the bar, i.e.,
+                                                                      closed boundary conditions at both ends [zo —     zN ——0; Fig.
+   FIG. 1. One-dimensional "sand-pile automaton. " The state          1(b)].
+of the system is specified by an array of integers representing the      In the more general case of transport (both in one and
+height difference between neighboring plateaus. (a) There is a        higher dimensions), the slope z„canbe thought of as the
+wall at the left and sand can exit only at the right; (b) there are   pressure (or energy, etc. ), which builds up precisely to the
+walls at both ends.                                                   point where the transport is stationary. A lower slope
+                                               SELF-ORGANIZED CRITICALITY                                                     367
+
+
+will prevent transport, and with a higher slope the output             Naively, one might expect that the situation is the
+will exceed the input for a while until stationarity is re-         same as in one dimension, namely that the pile wi11 build-
+stored.                                                             up (or collapse) to the minimally stable state where the
+   In one dimension, the minimally stable state is critical         slopes  z„all    assume the critical value. A moments
+in the restricted sense that any small perturbation can             reflection will convince us that it cannot be so. Suppose
+just propagate infinitely through the system, while any             we punch two units of sand downwards in the diagonal
+lowering of the slope will prevent this. This is analogous          direction by applying rule (3.2). This will render the sur-
+to some other one-dimensional (1D) critical phenomena,              rounding sites unstable (z &z, ), and the noise will spread
+such as percolation where at the percolation threshold              to the neighbors, then their neighbors, in a chain reac-
+particles can just percolate to infinity. Also, like other          tion, ever amplifying since the sites are generally connect-
+ 1D systems, the critical state has no spatial structure, and       ed with more than two minimally stable sites, and the
+correlation functions are trivial. In the next section we           perturbation eventually propagates throughout the entire
+shall see that in higher dimensions the critical states and         lattice. The minimally stable state is thus unstable with
+their dynamics are dramatically different.                          respect to small fluctuations and cannot represent an at-
+                                                                    tracting fixed point for the dynamics. As the system fur-
+           III. SELF-ORGANIZED CRITICALITY                          ther evolves, more and more more-than-minimally          stable
+            IN TWO AND THREE DIMENSIONS                             states will be generated, and these states will impede the
+                                                                    motion of the noise. The system will become stable pre-
+         A. Why do we expect self-organized criticality?            cisely at the point when the network of minimally stable
+                                                                    clusters has been broken down to the leUel where the noise
+  The rules (2. 1) and (2.2) for the one-dimensional model          signal cannot be communicated through infinite distances
+can easily be generalized to higher dimensions. In two              At this point there will be no length scale, and, consequent-
+dimensions                                                          ly, no time scale. Hence one might expect that the system
+                                                                    approaches, through a self-organizing process, a critical
+      z(x —l, y ) ~z(x —l, y) —1,                                   state with a power-law correlation function for physically
+      z (x, y —1)~z(x,y —1) —     1,                       (3. 1)   observable quantities, including the power spectrum. In
+                                                                    analogy with the discussion for the one dimensional case,
+      z(x, y}~z(x,y}+2,                                             the slope (or "pressure") will build up to the point where
+                                                                    stationarity is obtained:       this is assured by the self
+and
+                                                                    organized critical state, but not the minimally stable state.
+      z(x, y) ~z (x,y) —4,                                          The slope of the critical state is reduced compared to the
+                                                                    slope of the minimally stable state.
+             }~z(x,y+1)+ 1,
+      z (x,y+1                                             (3.2)        Suppose that we perturb the critical state locally, by
+      z(x+1,y)~z(x+1, y)+ I for z(x, y) &z, ,                       adding one unit, or by locally changing the slope. We ex-
+                                                                    pect the perturbation to grow over all length scales. That
+where we have the square array (x, y), for       1(x,y (N. If       is, a given perturbation can lead to anything from a shift
+one insists on interpreting this discrete diffusion equation        of a single unit to an avalanche. The lack of a charac-
+in terms of sand piles, the correspondence between the              teristic length scale leads directly to a lack of a charac-
+quantity z and the slope is not as straightforward        as in     teristic time scale for the fluctuations. As is well known,
+the 1D case. The sand columns are represented by the                a random superposition of pulses of a physical quantity
+bonds between nearest neighbors in the x and y direc-               with a distribution of lifetimes D(T) = T          (weighed by
+tions, and z (x, y) represents the average slope in the diag-       the average value of the quantity during the pulse) leads
+onal direction, i.e. , the sum of the height differences in          to a power frequency spectrum,         S(f)=f +,          so a
+the x and y direction. Equations (3. 1) represent the addi-          power-law 1/f frequency spectrum is equivalent to a
+tion of two units at the upper and left bonds. Equations             power-law distribution of lifetimes.
+(3.2) represent two units of sand, located at the left and              The nature of the boundary conditions is essential to
+upper bonds at (x, y) sliding in the diagonal direction to           the nature (though not the existence) of the critical state,
+the right and lower bonds. [If one wants a more "realis-             since the dynamics and the physical situation is largely
+tic" sand pile, one can (for instance) define                        defined by the properties at the boundaries, for instance
+z (x, y) =2h (x, y) — h (x + l, y) —h (x, y + 1), in analogy         whether material is being transport in or out. In this
+with 1D. When z ~z„one unit of sand slides in the x                  sense the criticality introduced here is different from the
+direction and one in the y direction. The resulting dy-              criticality at phase transitions where boundary effects al-
+namics will involve next-nearest-neighbor         interactions       ways disappear in the thermodynamic           limit. We per-
+with the basic physic unchanged; here we stick to the                formed simulations with two types of boundary condi-
+simplest Ising model (3.2).] In principle the slope in two-          tions on the 2D cellular automaton:          (i) with "closed
+dimensional (2D) is a vector field, but the scalar field z is        boundaries" where "sand" cannot leave the box at
+easier to work with, and these rules incorporate the                 x, y =1,N and (ii) with open boundary conditions where
+essential physics involved. Again, we emphasize that we              sand can leave the box on two of the sides, namely at
+are interested in the general behavior of nonlinear                  x =N and y =N. In the case of closed boundary condi-
+diffusion dynamics such as Eq. (3.2), and not in sand                tions we also performed simulations in three dimensions
+piles, per se.                                                       and simulations with quenched randomness.
+368                                                    PER BAK, CHAO TANG, AND KURT WIESENFELD                                                                                                         38
+
+       B. Simulations with closed boundary conditions                                                   did not "randomly select" the minimally stable seed site,
+                                                                                                        but systematically went through all of them. We then
+  In the case of closed boundary          conditions, z(O, y)                                           performed an ensemble average by starting at each of a
+=z(x, O)=z(N+1, y}=z(x,N+1)=0, the               system was                                             large number of initial far-from-equilibrium    configu-
+simulated with two types of initial condition: far from                                                 rations.
+equilibrium and from a flat surface. In the first case we                                                  Figure 3(a} shows the results for the distribution func-
+chose random initial conditions such that z exceeded the                                                tion D(s), for a 50X 50 array, averaged over 200 samples.
+threshold z, at each and every site. This initial state can                                             The log-log plot follows a pretty respectable straight line,
+be visualized as a pile of sand with a huge slope in the di-                                            with slope —1.0, i.e. ,
+agonal direction. The system then relaxes under the dy-
+namics (3.2} until it reaches a static state. Note that Eq.                                                 D(s)=s ', r=1.0 for D=2 .                                                                (3.3)
+(3.2) conserves g„z„exceptat the boundary, so that any
+"excess z" must be transported to the boundary for global                                               That this slope is close to minus one is certainly sugges-
+                                                                                                        tive, but our current understanding only tells us to expect
+relaxation to occur. The relaxation is quite a lengthy
+                                                                                                        a power law without nailing down the exponent. Indeed,
+process. The physical quantity which is transported in
+this simulation is the "slope.                     "                                                    in three-dimensional    (3D) simulations on a 20X20X20
+   Once relaxed, the properties of the state are probed by
+locally perturbing the system. Specifically, we randomly
+                                                                                                                   '
+                                                                                                        array [Fig. 3(b)] one again finds a power law, but now
+                                                                                                        D(s) =s        . At small sizes the curve deviates from the
+                                                                                                        straight line because discreteness effects of the lattice
+select a minimally stable site [i.e. , with z(x, y)=z, ] and
+                                                                                                        come into play.
+enforce Eq. (3.2). This corresponds to pushing two units
+                                                                                                           The fact that the distributions in Fig. 3 begin to deviate
+of sand downward in the diagonal direction; we thus in-
+                                          "
+duce a "sand slide. This, in general, will cause further
+                                                                                                        from a power law at large cluster sizes is a finite-size
+                                                                                                        effect. For example, in the 50/ 50 array the deviation be-
+slidings as the perturbation spreads. We then measure
+                                                                                                        gins around s =200, whereas simulations on a 20)(20 ar-
+the total number of slidings s induced by the single per-
+                                                                                                        ray (not shown) deviate at s =70. To verify that this is
+turbation. Note that this operationally defines a domain
+                                                                                                        really a finite-size effect, we borrowed a page from the
+over which a given perturbation is communicated. After
+                                                                                                        analysis of equilibrium statistical physics and performed
+each perturbation, the original static state is restored,
+and another site is perturbed, and so on. Figure 2 shows
+a typical domain structure obtained from a number of
+single-site-induced   perturbations.   The dark sites are
+domains affected by perturbing a single interior site. One
+sees that domains of a variety of sizes exist, from a single
+site up to one that is comparable to the system size itself.
+(Note that tickling the interior of a single domain at
+different individual sites need not result in precisely the                                                            (A C3
+same domain boundary. ) In a sense, we are measuring                                                                   CI
+the linear response of the system under infinitesimal per-
+turbations. The quantity being measured is the distribu-
+tion function D(s) of slide sizes. In the simulation, we
+                                                                                                                            C)
+                                                                                                                                      I   I I I   III)   I   I   I I   Illtl   I   I   I I I llli
+
+        C3
+        C3
+                                                                                                                                 10                10                     10                    10
+
+
+         o I,
+         QQ   &ill
+              II I
+                            ~I    t
+
+
+
+
+                                                                                                                            C)
+                                                            ~Ol   1       I    I   I   I I   0~                        (A
+                                                                  I       I              II~
+
+
+                                                                                                                            o
+                                                                      I        I
+                                                                          I
+                                                                          II
+
+
+                                                                          I
+                                                                               I
+
+                                                                                                                       c:}
+         C3
+                     1 IIII/III
+
+
+
+
+                                                                                                                                      I   f I I   Jill   I   I   I I   ltlll   I   1   I I   llll
+                                                                                                                                 10                10                     10                    10
+
+                                      I       I         I                 l                                FIG. 3. Distribution of cluster sizes at criticality in two and
+                                      20      60       60         80                              100   three dimensions computed as described in the text. The data
+                                                                                                        have been coarse grained. (a) 50X50 array, averaged over 200
+   FIG. 2. Typical domain structures resulted from several local                                        samples. The dashed line is a straight line with slope —1.0; (b)
+perturbations for a 100X 100 array. Each cluster is triggered by                                        20X20&20 array, averaged over 200 samples. The dashed
+a single perturbation.                                                                                  straight line has a slope —1.37.
+                                                                        SELF-ORGANIZED CRITICALITY
+
+a finite-size-scaling analysis, a point we will discuss later.                                                                         f
+                                                                                           unit of energy at the position x at time t, (x, t ) =5(x, t ).
+   In order to understand the dynamics of the critical                                     Thus, the size s of a cluster represents the total energy
+state, we now investigate the temporal evolution of the                                    dissipated as a consequence of a local disturbance. The
+clusters above. Imagine first the effect of a perturbation                                 total number of slidings (3.2) at time t (the growth rate
+at a single site on a static critical state. A local perturba-                             of the cluster) represents the (instantaneous) dissipa-
+tion will spread to (some} nearest-neighbor sites, then to
+next-nearest neighbors, and so on in a "domino" effect,
+                                                                                                                I
+                                                                                           tion rate, F(t)= f(x, t )dx. The total cluster size
+                                                                                           s= F t dt, integrated over the duration of a single
+eventually dying out after a total time T, having induced                                  avalanche.
+a total of s slidings. In general, T is less than s since the                                 We now consider the response to a situation where the
+growth rate is usually greater than unity. (We will return                                 system is locally perturbed randomly in space and time,
+to the relation between growth rate and cluster distribu-                                  so that the dissipation F(t) is a superposition of the
+tion at a later stage. ) Figure 4 shows the distribution of                                events above, acting concurrently and independently.  We
+lifetimes D(T) weighted by the average response s/T.
+This quantity also has power-law behavior,
+                                                                                                                                      f
+                                                                                           want to calculate the power spectrum S ( ) of the quanti-
+                                                                                           ty F(t) defined by
+    D(T)=T                                                                                     S(f) = J (F(t o+t)F(to) )exp(2nift)dt,               (3.5)
+                                                                                   (3.4}
+    a=0. 43 for D =2, a=0. 92 for D=3 .                                                    where ( ) represents an average over all times to. In
+Note that the curves for the lifetime distribution fit a                                   fact, the power-law distribution of lifetimes, Eq. (3.4),
+power law only over a decade or so, while the cluster size                                                             f
+                                                                                           leads to a power law for S ( ), as we now describe.
+                                                                                              The idea that a distribution of relaxation times T,
+distributions fit for at least two decades. This is due to
+the fact that the lifetime of a cluster is much smaller than                               operating simultaneously and independently, can lead to
+its size, thus limiting the range over which we have reli-                                  1/f noise is an old one, originally due to van der Ziel. '
+able data in Fig. 4.                                                                       The present context requires a small generalization of the
+    We now give the "sliding" a new meaning, namely a                                      argument, leading to the following simple formula for the
+point of energy dissipation: When a sliding event occurs,                                  spectrum expressed in terms of the weighted distribution
+a unit of energy is dissipated. Let us introduce the quan-                                 function:
+    f
+tity (x, t ) representing dissipation of energy at site x at
+time t. The process (3.2) represents dissipation of one
+                                                                                               S(f}=J TD(T)dT,                                     (3.6a)
+                                                                                           to be compared with van der Ziel's formula for exponen-
+                                                                                           tial relaxation
+
+                                                                                                         f
+                                                                                               S(f)= TD'(T)/[1+(fT) ]dT=f                  +      (3.6b)
+                                                                                           where O'=T         is the distribution of linear relaxation
+                                                                                           times, each having the same intensity. To see how these
+                                                                                           last two equations are related, consider first the relaxa-
+                                                                                           tion due to a single event in a given domain. In general,
+                                                                                           the resulting correlation function c (t) is characterized by
+                                                                                           two parameters: the duration of the response T and the
+                                                                                           total integrated response J c(t)dt:—A. (In fact, in our
+                C3
+                                                                                           simulations, A is just the total slidings s. ) For example,
+                X         I   I   I   I   I   IIIl      I   I   I   I   I   III            for a linear process, c ( t) = ( A /T)exp(                  —
+                                                                                                                                         t /T), giving a
+                     10                            10                         1G
+                                                                                           contribution Sz T(f) to the power spectrum of (up to a
+                                                   t
+                                                                                           numerical constant)
+
+                                                                                               Sq T(f)= A/(1+4~f T ) .
+                                                                                           The total power spectrum is the (incoherent) sum of these
+                                                                                           over all events. Now, the usual van der Ziel argument as-
+                                                                                           sumes that A is strictly proportional to T for all events
+                                                                                           (i.e., that each event has the same initial effect), which
+                                                                                           leads directly to Eq. (3.6b). More generally, A and T
+                C3                                                                         need not be strictly proportional [see Eq. (3.9)]. In our
+                                                                                           simulations, since A is simply the total energy dissipated
+                C)
+                X                                                                          s, we get
+                          I   I   I   I   I   I   III   I   I   I   I   I   III
+                     10                            10                         10
+                                                   t                                           S(f)=QSg T(f)
+   FIG. 4. Distribution of lifetimes corresponding to Fig. 3. (a}
+For the 50X 50 array, the exponent a=0. 43 yields a 1/f noise
+                                                                                                     =   f dT T[sD'(T)/T]/(1+4nf T ),
+spectrum  f ";     (b) 20X20X20 array, a=0. 92, yielding an                                where the quantity in square brackets is just what we
+f '08 spectrum.                                                                            called D(T)=distribution of lifetimes "weighted by the
+370                               PER BAK, CHAO TANG, AND KURT WIESENFELD                                                                                             3S
+
+
+average response s/T.
+                        " Finally, treating the denomina-                 C3
+tor as a high-frequency cutoff,  we recover the simple ex-
+pression Eq. (3.6a).
+   Thus, the power-law distribution for lifetimes leads irn-
+mediately to the 1/f spectrum
+
+      S(f)=f P=f
+                                                        (3.7)
+      P=1.57 for D =2, P=1.08 for D=3 .
+Hence, our prediction that the system must go to a criti-
+cal state with power-law spatial correlations and 1/f
+noise is fully consistent with the numerical simulations.
+The 1/f noise is the temporal signature of the self-similar
+properties of the critical state.
+   The critical state can be approached in a different way,
+which shows directly how the 1/f noise represents the
+intrinsic dynamics in a stationary dynamic system in the                  C3
+                                                                                    I   I   I   I   I   Illa'   I   I   I   I   I   III(   I   I   I   I   I   ill}
+self-organized critical state. Starting from a flat surface,                   10                          10                         10                         10
+z„=0,the slope or pressure is increased by one unit at a
+random position (x, y),                                             FIG. 5. Cluster size distribution for system built up from
+                                                                 scratch according to rules (3.2) and (3.8) for a 50X50 array.
+      z(x, y)~z(x, y)+1 .                                (3.8)   The curve is indistinguishable from that in Fig. 3(a). For this
+Then z is increased by one at another position n, and so         system the system is in a stationary critical state and it is self-
+on. When z eventually exceeds the critical value z, some-        averaging. Rule (3.8) has been applied 100000 times to the sta-
+                                                                 tionary critical state to obtain this curve.
+where, the system evolves according to (3.2) until it be-
+comes stable again, and a cluster involving s slidings is
+created. After a while the system arrives at a (statistical-
+ly) stationary state with clusters of all sizes up to the size
+of the system. The system "self-averages" over many              size effects, or by too rapid flow through                                        the stationary
+configurations as time progresses, and no resetting is           state.
+necessary. The process described here simulates a situa-            For a picturesque example, consider a mountain
+tion where the slope increases gradually and takes the           landscape built from some long-wavelength tectonic plate
+system to the critical point. This has a lot of similarity       motion. When the landscape reaches the critical state,
+                                                                 the landscape will be self-similar, and there will be
+with turbulence where energy is fed into the system in a
+long-wavelength mode. We find, as before, that energy is         avalanches on "all time scales.                            "
+                                                                                                          Clearly, the geological
+dissipated on all length scales and all time scales. We          time scales involved in building the landscape separate
+shall return to the subject of turbulence in the discussion      from all realistic avalanche lifetimes.
+section.                                                            The fact that 1/f noise arises from the random super-
+   Figure 5 shows the distribution of cluster sizes mea-         position of events can be demonstrated directly. Figure 6
+sured in a 2D system of size 50)&50 after the system ar-         shows the total dissipation as a function of time F(t)
+rived at the critical state. The distribution is indistin-       formed by superimposing the time dissipation functions
+guishable from the one in Fig. 3 obtained from the re-           F„(t)     for the evolution of the individual clusters in the
+laxed state, indicating that we are indeed dealing with the      20&(20)&20 system, starting each cluster at a random
+same critical state. The distribution of lifetimes was also      time. The curve has the features of a 1/f noise, i.e. ,
+measured and was indistinguishable       from that of Fig. 4.    there are events on all time scales. It is more regular
+Similar measurements were also performed in a 3D sys-            than white noise, and less regular than a random walk.
+tem of size 20X20X20 and again the results were indis-           Figure 7 shows the power spectrum S(f) of the curve.
+tinguishable from their counterparts in Figs. 3 and 4.           Indeed, the log-log plot shows a power-law behavior with
+Thus, in a situation where the processes occur indepen-          the exponent p=0. 98 as expected from the distribution
+dently, the system exhibits 1/f noise.                           of weighted lifetimes. The crossover to white noise at
+   In principle, in an actual physical situation, the build-     f  = —,', is the same finite-size effect as found for the distri-
+up z(x, y)~z(x, y)+1 might take place at a speed which           bution of lifetimes. The absence of very large clusters
+is so large that the individual processes will overlap, and      reduces correlations at very low frequencies.
+the system will go into a state with higher-than-critical            How robust are these results? It is important that our
+slope. This will cause a cutoff in the time scales over          results be insensitive to randomness to have any chance
+which 1/f noise occurs. This represents the situation for        to explain 1/f noise in general, since few of the systems
+a wildly turbulent system. Thus, for 1/f noise to occur          where 1/f noise occurs are simple translational invariant
+over many orders of magnitude, it is important that the          systems. To test this, we modified our model by intro-
+time scale of the build-up of the critical state is much         ducing some "quenched randomness.                Specifically, we         "
+larger than the time scales of the measured noise. To            removed certain nearest-neighbor connections in the ar-
+summarize, the 1/f noise may be cut off either by finite-         ray, the disrupted connections being fixed through the
+38                                                                                    SELF-ORGANIZED CRITICALITY                                                                                                      371
+
+
+                                                                                                                              C3
+
+
+
+
+     C)
+     Y)
+                                                                                                                                          I       I   I   I   I   I   I   I)       I   I   I   I   I   I   I   I
+
+
+                                                                                                                                   10                                     10                                   10
+
+                                                                                                                         FIG. 8. Cluster size distribution for 20)(20 array with 10%
+                                                                                                                      of the bonds removed, averaged over 1000 samples. The slope is
+                            300                        600                            900                      1200   —1.0, same as for the pure system.
+                                                        t
+   FIG. 6. F(t) generated by superimposing randomly the
+response represented by the individual clusters for a 20X 20)&20                                                      up to a higher slope, by the self-organization process, un-
+array. Note the fluctuations on a wide range of time scales.                                                          til criticality is achieved again.
+                                                                                                                          The exponents ~ and a representing the spatial and
+                                                                                                                      temporal evolution of the clusters, respectively, can be re-
+simulation.   We found that removing at random as many                                                                lated through "scaling relations.        If the perturbation         "
+at 25% of the bonds still led to power-law distributions.                                                             grows with an exponent y within the clusters, the lifetime
+Figure 8 shows the cluster size distribution for a situation                                                          T of a cluster is related to its size by
+with 10% of the bonds removed. No change in the ex-                                                                                                                                                                  (3.9)
+ponent was detected. Whether this is due to true univer-
+sality of the exponent, or due to our inability to detect a                                                           The distribution of lifetimes weighted by the average
+small change numerically is not known. Quantitatively,                                                                response D ( T} can then be related to the distribution of
+the presence of this kind of randomness increases the                                                                 cluster sizes
+mean value of the pressure z since fewer nearest neigh-
+bors are available to communicate the noise. In the sand
+                                                                                                                          D(T)=(slT)D[s(T)](ds jdT)
+picture, the introduction of impedements causes a build-                                                                                T —p+ ~&+2& —T —
+                                                                                                                                              ~       &
+                                                                                                                                                                                                                    (3.10)
+                                                                                                                      The scaling laws
+                                                                                                                          a =2 —P= (y+ 1 }r                                2y—                                      (3. 11)
+                                                                                                                      can be directly read off Eqs. (3.7) and (3. 10). Since we
+                                                                                                                      have measured a and ~ independently,     we can find the
+                                                                                                                      anomalous growth exponent y from Eq. (3. 11),
+
+                                                                                                                          y=0. 57 for D =2, y'=0. 71 for D =3 .                                                     (3.9')
+
+                                                                                                                                        C. Simulations                         with open boundaries
+
+                                                                                                                         In this set of simulations we consider an "open-ended"
+                                                                                                                      system where particles are transported through the sys-
+                                                                                                                      tem and are allowed to leave the box at the two edges
+                                                                                                                      x =X and y =N. The idea is to simulate a situation
+          C3
+                                                                                                                      resembling some of the systems known to have 1/f noise.
+          X         I   I    I   I   I   I   III   I    I   I   I   I   I   II]   I     I   I   I   I   III           In the hour glass, sand is transported through the system;
+               10                             10                             10                           10          in quasars (and in the case of sunspots) light is transport-
+                                                                                                                      ed through an open-ended system, and in the case of
+  FIG. 7. Power spectrum of the function F(t) depicted in Fig.                                                        rivers,     water    is    transported. '  The     open-end
+6. The spectrum is 1/f, varying as                 The crossover to f ".                                              configuration is simulated by modifying the first equation
+white noise at very low frequencies is a finite-size e6ect.                                                           of (3.2) at the boundaries
+372                                PER BAK, CHAO TANG, AND KURT WIESENFELD                                                         38
+
+
+      z(N, y)~z(N, y) —3,
+                           3—                                          In   D(T)
+      z(x, N)~z(x, N)       ,                           (3. 12)
+      z (N, N) ~z(N, N) —  2,
+when the appropriate     value of z exceeds the critical value.
+Starting from scratch, the sand pile is built up by adding
+particles randomly according to the rule (3. 1). After each
+particle is added, the system is allowed to relax (if need
+be) according to (3.2). The relaxation represents the slid-
+ing in the diagonal direction of one particle. In addition
+to the boundary conditions (3. 12) we also studied a diago-
+nally cut system where particles are allowed to leave the
+pile along the edge x +y =N, perpendicular to the flow
+direction. The results for the two systems were the same.
+                                                                                                        2
+Again, the process is continuous and no resetting is
+necessary. After an initial transient period, we found
+                                                                                                      In(T)
+that the system reached a statistically stationary state              FIG. 10. Lifetime distribution of the sand flow for a system
+with clusters of all sizes.                                        of size 75 &(75. The straight line has a slope —1.05.
+   Figure 9 shows the critical sandpile in the diagonal
+case. The heights represent the value of the bonds as de-
+scribed above. For each cluster, we monitor only the               of second-order transitions. At a critical point one ex-
+flow  f (t) of sand that falls off the edges of the box. Most
+of the time, the relaxation following a single kick results
+                                                                   pects D ( T) to obey a finite-size-scaling relation
+                                                                       D(T)=T F(L /T),                                          (3.14)
+in no sand falling off the edge, though, of course, on aver-
+age one unit of sand falls off for every unit added, once          where F is a crossover scaling function of the single
+steady state has been achieved. For those perturbations            scaled variable L /T, and o is a dynamical critical ex-
+which do result in a response, we again form D ( T) as be-         ponent. Similarly, one would expect a scaling relation for
+fore Fig.ure 10 shows D(T) for a 2D system of size                 the size s of bulk clusters to obey a relation of the form
+ 75)&75. Again the distribution follows a power law for a
+decade or so, this time with exponent equal to unity,
+                                                                       D(s)=s 'F'(L /s),                                        (3. 15)
+a = 1.05. The distribution on lifetimes translates directly        where the critical exponent d can be thought of as the
+into a power-law frequency spectrum                                fractal dimension of the clusters. Figure 11 shows the
+                                                                   product D(T)T versus L /T for o =0.75: The points
+      S(f)=f ~ p=0 95                                    (3. 13)
+                                                                   for different L all fall on the same curve F(x) to within
+(To convince himself that this description has some con-           numerical accuracy. (Actually it would not be surprising
+nection with reality, we suggest that the reader study             if the scaling was anisotropic     —
+                                                                                                    because of the anisotropic
+visually the fluctuating flow of an hour glass and notes           boundary conditions    — such that F would be a function of
+the pulses of widely different time scales. ) We cannot            two variables. The exponent found here would then be
+rule out that the exponent is identical to unity with the          the smaller of the two exponents. ) The finite-size-scaling
+present numerical accuracy.
+   To test the assertion that the lifetime distribution is
+scaling, with cutoff due only to the finite size, we applied
+a technique familiar from the study of critical phenomena
+
+                                                                       p{r)T
+
+
+                                                                                                              +L= IO
+                                                                                                              oL=20
+                                                                                                              ~ L=30
+                                                                                                              a L=50
+
+
+
+
+                                                                                                         1
+
+
+                                                                                     I     2      3                     6   7
+  FIG. 9. The critical sand pile for a 2D system with open edge                                       L/T
+perpendicular   to flow.                                                           FIG. 11. Finite-size-scaling plot.
+38                                           SELF-ORGANIZED CRITICALITY                                                         373
+
+
+conjecture (3.15) was also successfully tested for the           and our simulations may provide an entrance into the
+closed boundary case; in this case the scaling cannot be         problem of dynamical scale invariance. For instance, we
+anisotropic since the dynamics is isotropic. An exponent         could measure equal time correlation functions for the
+of d =1.92 was found for the 2D system. We suggest               dissipation, S(x)=((f(xo+x, t)f(xo, t))), where (( ))
+that experiments be performed to check the finite-size-          denotes a spatial average. Because of the scaling proper-
+scaling conjecture. This would be a direct proof of spa-         ties of the critical state, we expect
+tial organization.
+                                                                     S(x) =x
+            IV. SUMMARY AND DISCUSSION                           with p the "Kolmogorov exponent" for our "Ising" tur-
+                                                                 bulence model. This equation indicates that the dissipa-
+   To summarize, our general arguments and numerical             tion at any given instant takes place on a fractal rather
+simulations show that dissipative dynamical systems with         than in the bulk. It would be interesting to calculate this
+extended degrees of freedom can evolve towards a self-           exponent and compare with experiments on real tur-
+organized    critical state, with spatial and temporal           bulence.
+power-law scaling behavior. The spatial scaling leads to            Another application might be to the problem of the dy-
+self-similar "fractal" structure. The frequency spectrum         namics of quenched glasses and spin glasses. These are
+is 1/f noise or flicker noise with a power-law spectrum          frustrated systems far from equilibrium, and it appears
+S(f)=f ~                                                         that they have much in common with our three-
+   Thus, in our picture 1/f noise is not noise but reflects      dimensional (3D) model. It might be that glasses quench
+the generic dynamics of extended dynamical systems. We           into critical states where they are just barely stable with
+found values of P tolerably close to one (and certainly be-
+                                                                 respect to noise, but this speculation has to be developed
+tween 0 and 2). It remains to be seen to what extend sys-        further. In fact if one wants to understand 1/f noise in
+tems can be grouped into universality        classes within      resistors one probably first has to understand              the
+which the exponents are the same, depending on symme-            "glassy" dynamics of the material forming the resistor.
+try, dimension, and so on. We strongly suspect that the             Finally, we invite the reader to perform the following
+criticality discovered here cannot depend on the local de-       home experiment. To demonstrate self-organized criti-
+tails of the models, in analogy with equilibrium second-
+                                                                 cality, one needs a shoebox and a cup or two of sand—
+order phase transitions.
+                                                                  sugar or salt will do in a pinch. Wet the sand with a
+   Moreover, we conclude that 1/f noise is intimately re-        small amount of water, mix, and gather the sand into the
+lated to the underlying spatial organization. This can be
+                                                                 steepest possible pile in one corner of the box. The angle
+tested directly, for instance by measuring the frequency         of repose (i.e. , the threshold slope) is larger for wet sand,
+cutoff versus the system size. In retrospect, it is hard to      so as the water evaporates, one observes a sequence of
+see how 1/f noise, with long temporal correlations, could
+possibly occur without long-range spatial correlations,
+                                                                 slides—   some very small, others quite large        —
+                                                                                                                      occurring
+                                                                 at random places on the pile. (The evaporation process
+except by "fine-tuning" models with few degrees of free-         can be sped up by placing the box on a warm surface, or
+dom.                                                             under direct sunlight. } This is essentially the situation
+   We believe that the concept of self-organized criticality
+                                                                 analogous to that of Fig. 5 where the slope of the pile is
+can be taken much further and might be the underlying            increased gradually, but instead it is the parameter z,
+concept for temporal and spatial scaling in dissipative          that is gradually decreasing. This experiment is also ex-
+nonequilibrium    systems. One of our models (with closed
+                                                                 ceptionally portable, and is best done on a sunny day at
+boundary conditions} could be considered a toy model of
+                                                                 the beach.
+generalized turbulence, with dissipation correlated on all
+length scales. Of course, there is no direct connection
+with (for instance) the Navier-Stokes equation, where the                            ACKNOWLEDGMENT
+metastability is due to the storage of kinetic energy in
+vortices, not potential energy as in the models discussed          This work was supported by the Division of Materials
+here. Nevertheless, there is a one-to-one connection for         Science, U. S. Department of Energy, under Contract No.
+the phenomenology used to describe the two situations,           DE-AC02-76CH00016.
+
+
+
+
+'For a collection of papers on spatiotemporal dynamical sys-     5H. Haken, Rev. Mod. Phys. 47, 67 (1975).
+  tems, see Physica 23D, 1 —482 (1987).                           P. L. Nolan et al. , Astrophys. J. 246, 494 (1981); A. Lawrence,
+2For reviews on 1/f noise, see W. H. Press, Comm. Mod. Phy's.      M. G. Watson, K. A. Pounds, and M. Elvis, Nature 325, 694
+  C7, 103 (1978); P. Dutta and P. M. Horn, Rev. Mod. Phys. 53,     (1987); I. McHardy and B. Czerny, ibid. 325, 696 (1987).
+  497 (1981).                                                    7B. B. Mandelbrot and J. R. Wallis, Water Resour. Res. 5, 321
+3B. Mandelbrot, The Fraetar Geometry of Nature (Freeman, San       (1969).
+  Francisco, 1982).                                              SSee, e.g. , R. F. Voss and J. Clarke, Phys. Rev. B 13, 556 (1976).
+4P. Bak, C. Tang, and K. Wiesenfeld, Phys. Rev. Lett. 59, 381     K. L. Schick and A. A. Verveen, Nature 251, 599 (1974).
+  (1987)~                                                          B. B. Mandelbrot and J. W. Van Ness, SIAM (Soc. Ind. Appl.
+374                                 PER BAK, CHAO TANG, AND KURT WIESENFELD                                                      38
+
+
+  Math. ) Rev. 10, 422 (1968).                                     '~In some realistic situations the quantity which is measured is
+ L. P. Kadanoff, Phys. Today 39(2), 6 (1986).                         not the flow of the quantity which is being transported. For
+ For a collection of articles on this subject, see Phase Transi-      instance, in resistors the fluctuations are probably caused by
+ tions and Critical Phenomena, edited by C. Domb and M. S.            the dynamics of the bulk material, not by the current itself.
+ Green (Academic, New York, 1972), Vols. 1-6.                         In other situations the experiment directly measures the ener-
+ A. van der Ziel, Physica 16, 359 (1950).                             gy release (photons or phonons) related to the individual pro-
+ C. Tang, K. Wiesenfeld, P. Bak, S. Coppersmith,    and P. Lit-       cesses in the bulk. These scenarios are more like the "closed
+ tlewood, Phys. Rev. Lett. 58, 1161 (1987).                           boundary" case.
+

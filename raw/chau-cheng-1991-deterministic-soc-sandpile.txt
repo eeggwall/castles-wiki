@@ -1,0 +1,212 @@
+Volume 157, number 2,3                                PHYSICS LETTERS A                                                  22 July I99 1
+
+
+
+
+      Completely deterministic self-organized critical state
+      of sandpile automaton models
+      H.F. Chau      and K.S. Cheng
+      Department of Physics, University of Hong Kong, Hong Kong
+
+
+      Received I8 March 199 1; revised manuscript received 13 May 199 1; accepted for publication 20 May 199 1
+      Communicated by A.R. Bishop
+
+
+
+         We study the general Abelian sandpile cellular automaton model of self-organized criticality in which the toppling conditions
+      depend on the local height. We find that under some special kind of toppling rules, the self-organized critical states become
+      completely deterministic, that is, the evolution of the system depends only on the total number of particles added to it but is
+      totally independent of where you drop those particles. The result is quite general and can be applied to various models of self-
+      organized criticality. The result has a close resemblance with the study of periodic behavior of circle maps in chaos.
+
+
+
+    Recently, Bak, Tang and Wiesenfeld (BTW) have                     similar to the order of a chaotic system (for a general
+introduced a simple cellular automaton model whose                    review and reference for deterministic      chaos see ref.
+toppling conditions depend on the local gradient to                    [ 51). We shall return to this point later in the
+study the behavior of sandpiles [ 11. Starting from                   discussion.
+an arbitrary initial state, the system will naturally                     In this Letter, we study the SOC state of a general
+evolve to a self-organized critical (SOC ) state. This                ASM-type automaton model on a finite set of sites.
+type of model can be used to describe a wide range                    The toppling conditions depend on the local height
+of physical phenomena        including earthquakes   and              of the sites, that is, toppling occurs provided that the
+ 1/f noise in electrical networks [ 21. Later on, Dhar                height of a given site exceeds some prescribed crit-
+modified the toppling conditions        so that they de-              ical value. Although we restrict ourselves to such kind
+pend on the local height instead of the local gradient                of toppling conditions, most of the results are so gen-
+ [ 3 1. He called this general model the Abelian sand-                eral that it also applies to the traditional       toppling
+pile model ( ASM ). While in the original BTW model                   conditions which depend on the local gradient in-
+particle addition operations do not commute with                      stead. In the following, we shall show that for a com-
+each other, he found that under this modification the                 pletely deterministic     SOC system, the set of all SOC
+particle addition operations are commutative.      In ad-             states R is one-dimensional      in the sense that it can
+dition, the SOC states can be described by the theory                 be characterized by exactly one local height of a par-
+of Abelian groups and hence a number of useful an-                    ticular site. In addition, we present an if and only if
+alytic results such as the total number of SOC states,                condition in the identification    of deterministic    SOC
+the entropy of the system and the spectrum of re-                     systems. Finally, we shall show the similarity be-
+laxation times can be calculated exactly.                             tween the completely deterministic ASM systems and
+    While the conventional     studies of the SOC states              the onset of periodic behavior of a chaotic system.
+mainly focus on the spectra of relaxation times, crit-                    Definition of the model [ 3 1. We consider a finite
+ical exponents and the two-point correlation func-                    set of sites labelled by integers 1 to N. Each site i is
+tions by means of both numerical and analytic meth-                   then assigned an integer zi which is the height of site
+ods [ 1,3,4], we look into the possibility of getting a               i. The evolution of the system is then governed by
+completely deterministic      SOC system. The physical                two rules:
+motivation      of this approach is to find something                      (i) Addition of particles. We select a site i at ran-
+
+0375-9601/91/$   03.50 0 1991 - Elsevier Science Publishers B.V. (North-Holland)                                                 103
+Volume 157, number        2,3                                  PHYSICS   LETTERS         A                                                 22 July 1991
+
+
+dom according to a prescribed probability distribu-                         particles are added and hence the prescribed prob-
+tion. A particle is then added to i, that is z, is in-                      ability distribution  governing the addition of parti-
+creased by 1. All other z, remain unchanged.                                cles to the system cannot govern the evolution of the
+   (ii) Toppling rules. Each site is associated with an                     system any more.
+integer z,, which is the critical number of particles                          With the resealing that z,~=O for all i as discussed
+that a site can hold. Provided that z, > zlc, site i must                   above, we first want to show that a system is com-
+release a certain number of particles, called toppling,                     pletely deterministic   if up to a relabelling of the site
+according to the rules                                                      label i, R is in the form
+
+z,+z,-A,            Vj= 1, .... N,                                (1)       R={(O,           0, 0, .... 0), (-    1, 0, 0, .... 0),
+where the integer           matrix        A satisfies   the following                 (-2,   0, 0, ...) 0) ,...) (-n,   0, 0, ...) 0)) )           (6)
+conditions,
+                                                                            for some non-negative      integer n.
+A,,>0       Vi=1 ,..., N,                                         (2)          First, it is easy to note that if IcR, I can have at
+A,<0        Vj#i,                                                 (3)       most one height function z, different from zero. Oth-
+                                                                            erwise there exists more than one site for the con-
+and                                                                         figuration I such that addition of a particle at those
+                                                                            sites will not cause any toppling. But addition of par-
+,:,A,,>0        Vi=1 ,..., N.                                     (4)       ticles to these distinct sites will result in distinct con-
+                                                                            figurations in R, contradicting     our assumption. Fur-
+The above conditions ensure that no particle can be                         thermore, it is easy to see that if addition of a particle
+created by the toppling process, but particles can                          to site j of a particular configuration    IeR causes top-
+leave the system by toppling. Otherwise, no steady                          pling, the result is that the particle must somehow
+state is possible. Without loss of generality, we may                       transport the added particle to site i where addition
+rescale our system so that the z,, are all zero for con-                    of a particle will not cause any toppling, if it exists.
+venience. Therefore, the evolution of the system in                         In this process, no particle can leave the system, that
+the long run will depend only on the matrix A and                           is
+the prescribed probability distribution      in (i).
+   Let R be the set of all possible SOC state conlig-                             f    A,,=0         Vj#i,                                         (7)
+urations where a configuration    I is defined to be a set                  X=l
+
+of heights of site zi such that no further toppling can
+                                                                            on the other hand. it is obvious                  that
+occur. We denote the operation of dropping a par-
+ticle in a given site i by a,. As shown by Dhar [ 3 1,
+the operators a, are Abelian. As a result, if we fix any                      f        A,, > 0   .                                                 (8)
+                                                                            /=I
+
+arbitrary element in R, we can go to any other con-
+figuration in R by repeated operations of ai. In this                       otherwise there is no way that the particles can leave
+respect, we can regard R as a finite Abelian group.                         the system and hence no steady state exists. From
+   We say that the system is completely deterministic                       eqs. (7) and (8), we know that the number of sites
+provided that once the system has evolved to any                            for which addition of particles will not produce any
+configuration    in R, then dropping particles to site i                    toppling is at most one. Hence our claim is justified.
+and site j will result in the same final stable config-                     As a consequence, R is isomorphic to the group Z,,, ,.
+urations, that is                                                              Physically, it means that the deterministic       SOC
+                                                                            system is a one-dimensional       system in the sense that
+u,)~=u,I~           Vi,j=l,...,      N.                           (5)
+                                                                            we can label the system R by a single height function.
+Physically, it means that once the system has evolved                       Note that our above arguments do not make use of
+to any given configuration  in R, the future evolution                      the Abelian properties of a, and therefore the above
+of the system depends only on the total number of                           result, after a slight modification, is valid for any sort
+particles added. The exact location of where these                          of toppling conditions      including the BTW model
+
+104
+Volume       157, number   2,3                     PHYSICS   LETTERS   A                                         22 July 1991
+
+
+where the toppling condition depends on the local               pling rules are, after a suitable   reorganization    of the
+gradient instead of the local height.                           site labels, of the form
+   Before going further, let us first define a new con-
+                                                                I1                 \     In                  \
+cept. Let d and d’ be two toppling matrices. We say
+that they are equivalent provided that under both
+toppling rules the SOC configurations       R and R’ are
+equal and also the following relation holds:
+                                                                where n is a positive integer greater than 1.
+a,I.=a:l,,            Vi=l,...,   N,                  (9)
+                                                                   The if part of this assertion is obvious and we need
+where a, and a: denote the operations of adding a               only to show the converse. From the above assertion
+particle to site i under the toppling matrices A and            we may assume that R is given by eq. (6 ). Because
+A’ respectively. Note that two different toppling rules         we are working in fundamental         toppling rules and
+are equivalent if with the same initial system con-             using eqs. (7) and (8), it suffices to show that
+figuration and the same location for adding the par-            A,=1       Vi#l.                                       (14)
+ticle the same final stable configuration     is obtained.
+However, the total number of topplings required, i.e.           Suppose that we can find i such that Ai,# 1, then from
+the total number of sites affected together with the            eq. (2), A,, must be greater than 1. From eq. (6),
+configurations   of all the intermediate  states for these      once a particle is added to site i, Ai, ( > 1) particles
+two toppling rules, can be quite different. As a result,        will topple away from this site. Because the system
+we cannot directly apply the concept of equivalent              is completely deterministic, the result is just the same
+toppling rules to study the scaling behavior of SOC             as adding one particle to site 1. Therefore, the top-
+systems. As pointed out by Dhar [ 31 two configu-               pling of a particle at site i must always induce further
+rations (stable or not) are equivalent if and only if           toppling in the system so that the net effect is to bring
+we can find integers r, such that                               exactly one particle to site 1 and Aj,- 1 particles back
+                                                                to site i. From the above discussions, there exists
+z;=z,-         5 r,A,, .                             (10)
+                                                                some site j in the system such that j must topple pro-
+              j=l                                               vided that i does and hence eq. ( 12) holds. This,
+                                                                however, contradicts the assumption that A is a fun-
+   From this it is easy to see that two toppling     rules
+                                                                damental toppling rule.
+A and A’ are equivalent if and only if one can trans-
+                                                                   Note that the argument above is quite general and
+form A to A’ by elementary row addition and sub-
+                                                                therefore, after a slight modification,    is valid even if
+traction. As far as we restrict ourselves to contigu-
+                                                                the toppling rules depend on the local gradient. Thus,
+rations in R, we can always use elementary        row
+                                                                we have sorted out all the possible toppling rules
+addition or subtraction   to adjust A so that the fol-
+                                                                which will lead to a deterministic      SOC state.
+lowing condition is satisfied,
+                                                                   In fact, this sort of interesting behavior of the sys-
+-A~j<A~~ Vi#j.                                       (11)       tem was first observed by BTW in their numerical
+                                                                simulations using local gradients as the toppling rules
+Any toppling rules with A satisfying eq. ( 11) is called        for one-dimensional      sandpiles [ 11. In their model,
+a fundamental   toppling rule.                                  the SOC configuration       is nothing but a single state
+   In addition, we can partition the set of all config-         where all the local gradients are just below the crit-
+urations (stable or not) into equivalence classes and           ical one. So it is clear that any particle added to the
+each class has at most one element which is con-                system will simply slide off to the system boundary.
+tained in R. Hence, a site j always topples whenever            So the SOC state is just isomorphic to the trivial
+another site i does if and only if                              group consisting of only the identity element. Al-
+-A,j>Ajj.                                                       though the particle addition operation in this model
+                                                     (12)
+                                                                is non-commutative      in general, they are indeed com-
+   Finally, we claim that a SOC system is completely            mutative when the system has relaxed to the SOC
+deterministic  if and only if their fundamental  top-           state.
+
+                                                                                                                         105
+Volume   157, number   2,3                             PHYSICS     LETTERS   A                                            22 July 1991
+
+
+    Although the class of completely deterministic SOC                [ 2 ] P. Bak and K. Chen, Physics D 38 ( 1984) 5;
+                                                                            T. Hwa and M. Kardar, Phys. Rev. Lett. 62 ( 1989) 18 13;
+ systems is so restricted, they have a very close sim-
+                                                                            K. Chen and P. Bak, Phys. Lett. A 140 ( 1989) 299;
+ ilarity with the periodic behavior of chaotic systems.                     X. Cha and H. Suhl, Phys. Rev. Lett. 64 ( 1990) 1670.
+ One of the simplest examples of chaotic systems is                   [ 31 D. Dhar, Phys. Rev. Lett. 64 ( 1990) 16 13.
+ the circle map. Namely, f: [ 0, 2n) -+ [ 0, 2n) such that            [ 41 C. Tang and P. Bak, Phys. Rev. Lett. 60 ( 1988 ) 2347;
+f(x) = (x+ 6) mod 2~ for some fixed BE [ 0, 2~). If                         L.P. Kadanoff, S.R. Nagel, L. Wu and S.M. Zhou, Phys. Rev.
+                                                                            A 39 (1989) 6524;
+ we consider a collection of circle maps, the evolution
+                                                                            Y.C. Zhang, Phys. Rev. Lett. 63 (1989) 470;
+ of the system is completely deterministic       provided                   D. Dhar and R. Ramaswamy,       Phys. Rev. Lett. 63 ( 1989)
+ that all the 8’s of the maps are equal. In this case, for                  1659;
+ a given XE [ 0, 2x), the repeated operation off onto                       B. McNamara and K. Wiesenfeld, Phys. Rev. A 41 ( 1990)
+x forms a group Z, for some n if 1912~ is rational and                      1867;
+                                                                            B. Grossmann, H. Guo and M. Grant, Phys. Rev. A 4 1 ( 1990)
+ is isomorphic to H if 79/2rr is irrational. This marks
+                                                                            4195;
+ the great similarity of this low-dimensional    behavior                   P. Bak, K. Chen and C. Tang, Phys. Lett. A 147 ( 1990) 295.
+ for both the SOC and chaotic systems.                                [ 51 H.G. Schuster, Deterministic chaos: an introduction (Physik-
+                                                                            Verlag, Weinheim, 1984).
+
+
+References
+
+[ 11 P. Bak, C. Tang and K. Wiesenfeld,  Phys.   Rev. Lett.   59
+     (1987) 381;Phys. Rev. A 38 (1988) 364.
+
+
+
+
+106
+
