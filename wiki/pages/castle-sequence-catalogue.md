@@ -135,7 +135,7 @@ The Motzkin family in castle counts ([[motzkin-castles](pages/motzkin-castles.md
 | object | first terms | growth | status |
 |---|---|---|---|
 | Motzkin-path castles by width | `1, 1, 2, 4, 9, 21, 51, 127, 323, 835` | `3` | **known** → [A001006](https://oeis.org/A001006) (`=M_{w−1}`) |
-| even-block Motzkin-path castles (`F`) | `0, 0, 1, 3, 6, 10, 20, 56, 168, 456, 1137, 2827` | `3` | **interlink** → [A343386](https://oeis.org/A343386) (`=a(w−1)`, odd Motzkin paths; castle reading absent) |
+| even-block Motzkin-path castles (PE 502 parity, all heights) | `0, 0, 1, 3, 6, 10, 20, 56, 168, 456, 1137, 2827` | `3` | **interlink** → [A343386](https://oeis.org/A343386) (`=a(w−1)`, odd Motzkin paths; castle reading absent) |
 | odd-block Motzkin-path castles | `1, 1, 1, 1, 3, 11, 31, 71, 155, 379, 1051, 2971` | `3` | **interlink** → [A107587](https://oeis.org/A107587) (`=a(w−1)`, even Motzkin paths) |
 | signed `Σ(−1)^blocks` | `−1, −1, 0, 2, 3, −1, −11, −15, 13, 77, 86, −144` | `\|1±2i\| = √5` | **interlink** → [A343773](https://oeis.org/A343773) (`=−a(w−1)`; `= ±A007440`, reversion of Fibonacci) |
 | Motzkin-path castles, heights `≤ 4` | `1, 1, 2, 4, 9, 21, 51, 127, 322, 826` | `φ²` | **known** → [A005207](https://oeis.org/A005207) (`=a(w−1) = (F(2w−3)+F(w))/2`; Kociemba's bounded-walk comment is the castle family) |

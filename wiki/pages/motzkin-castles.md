@@ -43,12 +43,12 @@ The bijection also unifies two gradings the wiki already has. Counted by **path 
 
 Add the **1-smooth** rule `|c_{i+1} - c_i| ≤ 1` and pin both end columns to height 1. Then the skyline minus one is a Motzkin path of length `w - 1`, so these castles number `M_{w-1}` (A001006, offset `w - 1`). This type is already on [[castle-classification-shape](pages/castle-classification-shape.md)] (Axis 3), with the fixed-height refinement A097862.
 
-**New here: the PE 502 parity clause splits `M_{w-1}` exactly.** On a Motzkin-path castle every rise is a single up step, so `#blocks = 1 + #U`. Even-block castles, the ones `F` counts, are therefore the **odd** Motzkin paths (an odd number of up steps), and odd-block castles are the **even** Motzkin paths:
+**New here: the PE 502 parity clause splits `M_{w-1}` exactly.** On a Motzkin-path castle every rise is a single up step, so `#blocks = 1 + #U`. Even-block castles, the parity PE 502 keeps, are therefore the **odd** Motzkin paths (an odd number of up steps), and odd-block castles are the **even** Motzkin paths:
 
 | width `w` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | all, `M_{w-1}` | 1 | 1 | 2 | 4 | 9 | 21 | 51 | 127 | 323 | 835 | 2188 | 5798 |
-| even-block (`F`) | 0 | 0 | 1 | 3 | 6 | 10 | 20 | 56 | 168 | 456 | 1137 | 2827 |
+| even-block (PE 502 parity) | 0 | 0 | 1 | 3 | 6 | 10 | 20 | 56 | 168 | 456 | 1137 | 2827 |
 | odd-block | 1 | 1 | 1 | 1 | 3 | 11 | 31 | 71 | 155 | 379 | 1051 | 2971 |
 | `Σ (-1)^blocks` | -1 | -1 | 0 | 2 | 3 | -1 | -11 | -15 | 13 | 77 | 86 | -144 |
 
@@ -71,7 +71,7 @@ unsigned (t = 1):   1 + 2cos(πj/(h+1))       real, Perron root → 3
 signed  (t = -1):   1 + 2i·cos(πj/(h+1))     all on the line Re = 1
 ```
 
-(checked numerically for `h = 2..6`). At `h = 2` the signed eigenvalues are `1 ± i`. Every castle of height `≤ 2` is automatically 1-smooth, so this is the signed height-2 count, and it matches the `1 ± i` of the signed tower count `P(1, L) = Re((1+i)^{L+1})` on [[signed-tower-count](pages/signed-tower-count.md)] (castle sign = `-`(tower sign), because the base block adds one). The wiki's first Gaussian-integer fact about the castle sign is the `h = 2` case of this Chebyshev pattern. Whether the general signed tower count `P(k, L)` has a comparable "put `i` into the weight" description is an open thread (see [[castle-sign](pages/castle-sign.md)] and `IDEAS.md`, E Department).
+(checked numerically for `h = 2..6`). At `h = 2` the signed eigenvalues are `1 ± i`. Every castle of height `≤ 2` is automatically 1-smooth, so this is the signed height-2 count, and it matches the `1 ± i` of the signed tower count `P(1, L) = Re((1+i)^{L+1})` on [[signed-tower-count](pages/signed-tower-count.md)] (castle sign = `-`(tower sign), because the base block adds one). The wiki's first Gaussian-integer fact about the castle sign is the `h = 2` case of this Chebyshev pattern. The general signed tower count `P(k, L)` has the same description: with a weight `t` per block, the unrestricted height-`k` transfer matrix is diagonally similar to the Kac-Murdock-Szegő matrix `ρ^|a−b|` with `ρ = √t`, whose tridiagonal part is this strip, and the sign is `ρ = i` ([[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)]).
 
 ## 4. Bounded height: the Motzkin strip ladder
 
@@ -137,7 +137,7 @@ By mirror symmetry the same numbers count castles whose columns never *rise* by 
 
 - **Castle readings of the Deutsch-Elizalde statistics.** Their §3 table (first-column height, double rises, corners, horizontal segments, columns of height `h`, least column height, area, …) is a list of castle statistics with quadratic GFs in `(width, blocks)`; each has a PE 502 parity split at `y → −y` ([[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]). Prodinger 2025 is still to be ingested.
 - **A bijection castles ↔ skew Motzkin paths** by semi-perimeter, which A082582 implies but the wiki does not have. Prodinger's peak- and valley-refined skew GF says which castle statistics such a map would have to carry.
-- **The Gaussian sign in general.** Does `P(k, L)`, or the full signed castle count by semi-perimeter (growth `τ`, complex pair, on [[castle-perimeter](pages/castle-perimeter.md)]), come from substituting `√t = i` into an unsigned kernel whose growth is a real algebraic number? Tracked in `IDEAS.md`, E Department.
+- **The Gaussian sign in general.** Settled for the three gradings on the wiki ([[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)]): `P(k, L)` is the KMS matrix at `ρ = √t = i`, and the signed semi-perimeter discriminant is the unsigned one at `√y → i√y`. Open there: the spectrum of `K(i)` in closed form and its growth in `k`.
 - **q-Motzkin castles.** The Motzkin-path castle graded by area is a q-Motzkin number of the kind [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] studies; with the sign, it is a joint `(q, -1)` specialization.
 - **OEIS.** The three parity-split entries (A343386, A107587, A343773) and A171842, A005773 are interlink candidates. The two unmatched semi-perimeter rows are novel candidates.
 
@@ -161,6 +161,7 @@ By mirror symmetry the same numbers count castles whose columns never *rise* by 
 - [[dyck-words](pages/dyck-words.md)] / [[catalan-numbers](pages/catalan-numbers.md)] - steep Dyck words (`M_{n-1}`) and the Catalan "drops at most 1" family.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - the q-Motzkin direction.
 - [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the status-tagged record of every sequence on this page.
+- [[castle-notation](pages/castle-notation.md)] - the symbol conventions; the Motzkin-path castle, the Motzkin strip (castle heights `1, …, h`), `M_n`, `B(x, y)` and `s` are recorded there.
 
 ## Footnotes
 

@@ -5,7 +5,7 @@ summary: The signed transfer matrix commutes with "reflect heights, flip signs",
 tags: [analysis, castle, signed-tower-count, transfer-matrix, symmetry, factorization, plastic-number, quasi-polynomial, oeis, hardin, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # Tower parity sectors - why `char_k` factors, and where the plastic number comes from
@@ -228,6 +228,7 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 
 **Open** (filed on IDEAS).
 - Prove that the two sector factors of `char_{2d}` have resultant `2^{d(d+1)}` (`= 2^{k(k+2)/4}`; verified every even `k ≤ 30`, [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]). Equivalently, the sector split of `Q[x]/(char_k)` already holds over `Z[1/2]` and survives reduction mod every odd prime. Geometrically the two sectors are the components of `Spec Z[x]/(char_k)` and meet only at the point `(2, x)` (sector factors `≡ x^d` and `x^d(x + 1)` mod 2, checked `k ≤ 30`, [[castle-ring-spectrum](pages/castle-ring-spectrum.md)]).
+- The involution `JD` is the reversal symmetry of the KMS matrix `K(i) = (i^|a−b|)` pulled back through the similarity `diag(i^c)`, which is where `(JD)² = (−1)^k` comes from ([[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)]).
 - Prove `char_k` irreducible over `Q` for every odd `k`. Eisenstein at 2 reaches exactly `k = 2^m − 1` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]); `k = 5, 9, 11, 13, …` need another argument.
 - Prove that the dominant root lies in the `+1` sector and that `H_d` belongs to the `+1` sector iff `d` is odd.
 - The Hardin identity is proved on [[hardin-word-identity](pages/hardin-word-identity.md)] by an explicit unimodular change of basis between the word automaton and the halved even-sector matrix (every `m ≤ 8` checked symbolically; general `m` reduces to a finite entrywise check). A sign-reversing involution realizing it object by object is still open.

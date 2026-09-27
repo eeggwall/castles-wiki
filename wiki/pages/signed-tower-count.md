@@ -5,7 +5,7 @@ summary: P(k,L) = Σ (−1)^blocks over towers of height ≤ k above a length-L 
 tags: [concept, castle, signed-count, c-finite, oeis, generating-functions]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-13
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # Signed tower count P(k,L)
@@ -65,6 +65,7 @@ The mining pass left five results about the `P(k,·)` rows:
 - [[generating-functions-topic](pages/generating-functions-topic.md)] — the imaginary-roots worked example `1/(1+z²) → ½(iⁿ+(−i)ⁿ)`, the exact mechanism of `Re((1+i)^{L+1})`.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] — the orders `k+1` (L-direction) and `2L−2` (k-direction, L ≥ 4), verified by Berlekamp–Massey.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] — the `num_k/den_k` rational GFs and their roots (the characteristic polynomials above).
+- [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] - with block weight `t` the transfer matrix is diagonally similar to the KMS matrix `ρ^|a−b|`, `ρ = √t`; `P(k, L)` is the point `ρ = i`, and `P(1, L) = Re((1+i)^{L+1})` is its `2 × 2` case.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - `P = P_even + P_odd` by last-column parity; the sectors are the factors of `char_k`, `P_even(6,L) = 2^L·A005251(L+3)`, and `P_even(4m+2, L)/2^L` are Hardin's word counts.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the k-direction characteristic polynomial is `(x+1)^L (x−1)^{L−2}`, so `P(·,L)` is a quasi-polynomial in `k`; and the exact split `P(6,L) = 2^L·A005251(L+3) + (order-4 remainder)`, tying the `k = 6` row to the plastic number `ψ` via its dominant eigenvalue `2ψ²`.
 - [[block-count-constraints](pages/block-count-constraints.md)] - `P(1,L) = G_{1,L}(−1) = Σ_r (−1)^r C(L+1, 2r)`, the `m = 2` character sum on the height-1 block's block-count GF; the residue / sparse / semigroup trichotomy that generalizes the sign.

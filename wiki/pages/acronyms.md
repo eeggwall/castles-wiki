@@ -5,7 +5,7 @@ summary: Flat alphabetical reference of every abbreviation used on the castles w
 tags: [reference, acronyms, abbreviations]
 sources: [project-euler-502]
 created: 2026-09-19
-updated: 2026-09-19
+updated: 2026-09-27
 ---
 
 # Acronyms and abbreviations
@@ -14,6 +14,7 @@ A flat alphabetical reference of every abbreviation used on the castles wiki. Ea
 
 - **AC** - Analytic Combinatorics (Flajolet-Sedgewick, Cambridge University Press 2009).
 - **AOCP** - The Art of Computer Programming (Knuth). Interchangeable with TAOCP.
+- **AR(1)** - first-order autoregressive process; its correlation matrix is the KMS matrix.
 - **BM** - Berlekamp-Massey algorithm.
 - **BSGS** - baby-step giant-step (discrete logarithm search).
 - **CCC** - convex castle count, `C(2h + w - 3, w - 1)`.
@@ -45,6 +46,7 @@ A flat alphabetical reference of every abbreviation used on the castles wiki. Ea
 - **JCTB** - Journal of Combinatorial Theory, Series B.
 - **JIS** - Journal of Integer Sequences.
 - **JPA** - Jacobi-Perron algorithm (multidimensional continued fraction).
+- **KMS** - Kac-Murdock-Szegő (matrix): the symmetric Toeplitz matrix `ρ^|a-b|`.
 - **LFSR** - linear feedback shift register.
 - **LGV** - Lindstrom-Gessel-Viennot (non-intersecting lattice path lemma / kernel).
 - **MSET** - multiset (symbolic-method construction).
@@ -55,6 +57,7 @@ A flat alphabetical reference of every abbreviation used on the castles wiki. Ea
 - **PRNG** - pseudorandom number generator.
 - **PSET** - powerset (symbolic-method construction).
 - **REPL** - read-eval-print loop.
+- **RNA** - ribonucleic acid; "RNA secondary structures" are the planar pairings counted by A004148.
 - **RSA** - Rivest-Shamir-Adleman cryptosystem.
 - **SC** - strongly connected (tournament).
 - **SCC** - strongly connected component.
