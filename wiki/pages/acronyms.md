@@ -15,6 +15,7 @@ A flat alphabetical reference of every abbreviation used on the castles wiki. Ea
 - **AC** - Analytic Combinatorics (Flajolet-Sedgewick, Cambridge University Press 2009).
 - **AM** - Abelian model: Dhar's general sandpile with an integer toppling matrix `Δ` (1990).
 - **AOCP** - The Art of Computer Programming (Knuth). Interchangeable with TAOCP.
+- **AR(1)** - first-order autoregressive process; its correlation matrix is the KMS matrix.
 - **ASM** - Abelian sandpile model (Dhar's model under the name used by Chau and Cheng and later papers; Dhar wrote AM).
 - **BM** - Berlekamp-Massey algorithm.
 - **BSGS** - baby-step giant-step (discrete logarithm search).
@@ -49,6 +50,7 @@ A flat alphabetical reference of every abbreviation used on the castles wiki. Ea
 - **JCTB** - Journal of Combinatorial Theory, Series B.
 - **JIS** - Journal of Integer Sequences.
 - **JPA** - Jacobi-Perron algorithm (multidimensional continued fraction).
+- **KMS** - Kac-Murdock-Szegő (matrix): the symmetric Toeplitz matrix `ρ^|a-b|`.
 - **LFSR** - linear feedback shift register.
 - **LGV** - Lindstrom-Gessel-Viennot (non-intersecting lattice path lemma / kernel).
 - **MSET** - multiset (symbolic-method construction).
@@ -59,6 +61,7 @@ A flat alphabetical reference of every abbreviation used on the castles wiki. Ea
 - **PRNG** - pseudorandom number generator.
 - **PSET** - powerset (symbolic-method construction).
 - **REPL** - read-eval-print loop.
+- **RNA** - ribonucleic acid; "RNA secondary structures" are the planar pairings counted by A004148.
 - **RSA** - Rivest-Shamir-Adleman cryptosystem.
 - **SC** - strongly connected (tournament).
 - **SCC** - strongly connected component.

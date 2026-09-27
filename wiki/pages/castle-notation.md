@@ -1,7 +1,7 @@
 ---
 title: Castle notation - castles, towers, and the parity term
 category: Concepts
-summary: The wiki's symbol conventions in one place, including the sandpile symbols (the reduced Laplacian L̃, Dhar's Δ, K(G), L̃⁻¹, a_v). Castle quantities are written width first, F(w, h); tower quantities are written tower height first, T(k, L) and P(k, L), where a tower sits on the castle's bottom row, so tower height k = castle height h − 1. T is the unsigned tower count (k+1)^L, P the signed ("parity") tower count Σ(−1)^blocks, and the parity term of F is S(w, h) = P(h−2, w) − P(h−1, w), so F(w, h) = [h^w − (h−1)^w − P(h−1, w) + P(h−2, w)]/2. P(0, L) = 1 is the trivial case; P(1, ·) is the parity ingredient for castles of height up to 2. Also lists the other things the letters P and T mean on the wiki, so the collisions are visible.
+summary: The wiki's symbol conventions in one place, including the sandpile symbols (the reduced Laplacian L̃, Dhar's Δ, K(G), L̃⁻¹, a_v, avalanche statistics) and the block-weighted and Motzkin-path layer (block weight t, M_k(t), the KMS matrix K(ρ), semi-perimeter s, B(x, y), Motzkin-path castles). Castle quantities are written width first, F(w, h); tower quantities are written tower height first, T(k, L) and P(k, L), where a tower sits on the castle's bottom row, so tower height k = castle height h − 1. T is the unsigned tower count (k+1)^L, P the signed ("parity") tower count Σ(−1)^blocks, and the parity term of F is S(w, h) = P(h−2, w) − P(h−1, w), so F(w, h) = [h^w − (h−1)^w − P(h−1, w) + P(h−2, w)]/2. P(0, L) = 1 is the trivial case; P(1, ·) is the parity ingredient for castles of height up to 2. Also lists the other things the letters P and T mean on the wiki, so the collisions are visible.
 tags: [concept, castle, notation, reference, signed-tower-count, castle-sign, pedagogy]
 sources: [project-euler-502-solution, project-euler-502-representations]
 created: 2026-09-26
@@ -101,9 +101,32 @@ The sandpile pages run grains on the castle graph (cells as vertices, edge-shari
 
 Sources: [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)], [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)], [[castle-avalanches](pages/castle-avalanches.md)].
 
+## Weights, transfer matrices, and path models
+
+The block weight, the semi-perimeter, and the Motzkin-path readings add a second layer of symbols. They keep the two argument orders above: tower quantities are indexed by tower height `k`, castle quantities by width and castle height.
+
+| symbol | meaning | where |
+|---|---|---|
+| block weight `t` | a factor `t` per block, so a tower contributes `t^blocks`. The weighted sum over towers is `T(k, L)` at `t = 1`, `P(k, L)` at `t = −1`, and the roots-of-unity `P_j(k, L)` at `t = ω^j`. It has no symbol of its own: `P` stays the signed count | [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)], [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] |
+| `M_k(t)` | block-weighted tower transfer matrix on tower heights `0, …, k` (size `k + 1`, the castle height bound), entry `t^max(0, b − a)` (rises); the weighted tower sum is `e_0ᵀ M_k(t)ᴸ 𝟙` | [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
+| `M_k` | the signed transfer matrix of [[tower-parity-sectors](pages/tower-parity-sectors.md)], entry `(−1)^max(0, a − b)` (descents): the transpose of `M_k(−1)` | [[tower-parity-sectors](pages/tower-parity-sectors.md)] |
+| `K(ρ)` | the Kac-Murdock-Szegő matrix `ρ^|a − b|`, with `ρ = √t`: `D_ρ M_k(ρ²) D_ρ⁻¹ = K(ρ)`; signed is `K(i)` | [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
+| `A_path`, `E_∂` | adjacency matrix of the path on the heights, and `diag(1, 0, …, 0, 1)`; `K(i)⁻¹ = (E_∂ − i·A_path)/2`. Written `A_path`, `E_bd` in ASCII text (`IDEAS.md`) | [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
+| `s` | semi-perimeter of a castle, `w + #blocks` (a castle quantity) | [[castle-perimeter](pages/castle-perimeter.md)] |
+| `B(x, y)` | castle GF by width `x` and blocks `y` (Deutsch-Elizalde's bargraph GF); `B(z, z)` is castles by semi-perimeter, `B(z, −z)` the signed version | [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)], [[castle-perimeter](pages/castle-perimeter.md)] |
+| `M_n`, `M(x)` | Motzkin numbers and their GF | [[motzkin-numbers](pages/motzkin-numbers.md)], [[motzkin-castles](pages/motzkin-castles.md)] |
+| Motzkin-path castle | castle type: 1-smooth (`\|c_{i+1} − c_i\| ≤ 1`) with `c_1 = c_w = 1`; `M_{w−1}` of them over all heights | [[castle-classification-shape](pages/castle-classification-shape.md)], [[motzkin-castles](pages/motzkin-castles.md)] |
+| Motzkin strip of height `h` | 1-smooth skylines on **castle** heights `1, …, h` (`h` states); its transfer matrix is `I + A_path` | [[motzkin-castles](pages/motzkin-castles.md)] |
+| cornerless Motzkin path | the tower word (castle lowered by one row) read with `U = +1`, `R = 0`, `D = −1`; Deutsch-Elizalde's `Δ` adds back the outer `U…D` | [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)], [[tower-word-language](pages/tower-word-language.md)] |
+| peak `UD`, valley `DU` | in a tower word, a zero-width block and two touching blocks: the two castle rules | [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)], [[tower-word-language](pages/tower-word-language.md)] |
+
+**Height bookkeeping for matrices.** A tower-height matrix (`M_k(t)`, `K(ρ)`, `M_k`) has size `k + 1` = the castle height bound `h`. A castle-height strip (the Motzkin strip, the Pell strip of [[pell-castle-strip](pages/pell-castle-strip.md)]) has `h` states, heights `1, …, h`. Both have `h` states; they differ in whether the states are labelled from 0 or from 1.
+
+**Parity words.** "Even-block" always means the PE 502 parity. `F(w, h)` is reserved for height **exactly** `h`; a count over all heights (for example the even-block Motzkin-path castles) is described in words, not written `F`.
+
 ## Other meanings of P, T, and other shared letters on the wiki
 
-These are local notations on specific pages and are unrelated to the tower counts:
+These are local notations on specific pages and are unrelated to the tower counts, or reuse a letter from the tables above:
 
 | symbol | meaning | where |
 |---|---|---|
@@ -119,11 +142,18 @@ These are local notations on specific pages and are unrelated to the tower count
 | `S` | Dhar's entropy `S = ln det Δ` of the sandpile steady state; the wiki writes `ln det L̃` instead, keeping `S(w, h)` for the parity term | [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
 | `G` | a graph (as in `K(G)`), or Dhar's expected-toppling matrix `G = Δ⁻¹` (written `L̃⁻¹` on the wiki); never a castle count, and elsewhere reserved for generating functions | [[sandpile-group](pages/sandpile-group.md)], [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
 | `A`, `D` | the adjacency and degree matrices in `L = D − A`; `A(w, h)` with arguments is the castle count, `D` is also used for diagonal sign matrices on [[tower-parity-sectors](pages/tower-parity-sectors.md)] | [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] |
-| `τ` | the avalanche size exponent on the sandpile pages; the tribonacci constant on [[castle-perimeter](pages/castle-perimeter.md)] | [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)], [[castle-perimeter](pages/castle-perimeter.md)] |
 | `α`, `α_w` | `α` is the fractional order on the F-Department pages ([[fractional-block-count](pages/fractional-block-count.md)]); BTW's weighted-duration exponent is written `α_w` | [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)] |
 | `β`, `γ` | the spectral and growth exponents of avalanche statistics (`γ` written `γ_g`); elsewhere local roots and constants | [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)] |
 | `ℓ` | side of a square lattice in sandpile statements, keeping `L` for the Laplacian and the tower base length | [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)], [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
-| `K` | the sandpile group `K(G)`; elsewhere a local GF name (`K(q, z)`, the convex castle GF) | [[sandpile-group](pages/sandpile-group.md)], [[prime-convex-castles](pages/prime-convex-castles.md)] |
+| `P_ρ(θ)` | the Poisson kernel `(1 − ρ²)/(1 − 2ρ cos θ + ρ²)`, the symbol of `K(ρ)` | [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
+| `M_n`, `M(x)`, `M(x, y)`, `M_k`, `M_k(t)` | Motzkin numbers and GF; Deutsch-Elizalde's cornerless-path GF; the signed and block-weighted transfer matrices (see the table above). The Project Euler modulus `M` has its own row | [[motzkin-numbers](pages/motzkin-numbers.md)], [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)], [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
+| `F(u)`, `G(u)`, `H(u)`, `K(u)` | Prodinger's automaton-layer GFs in the final-height variable `u`; `F(u)` is not `F(w, h)` and `K(u)` is not `K(ρ)` | [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] |
+| `K(q, z)`, `K(G)`, `K`, `K(w)` | the convex castle GF; the sandpile group `K(G)` (written `K`, or `K_sink`, `K_tide` by model, on the sandpile pages); a central-binomial sum; `K(ρ)` is the KMS matrix of the table above | [[prime-convex-castles](pages/prime-convex-castles.md)], [[sandpile-group](pages/sandpile-group.md)], [[half-sum-castles](pages/half-sum-castles.md)] |
+| `τ` | the tribonacci constant on [[castle-perimeter](pages/castle-perimeter.md)] (`τ²` = growth of castles by semi-perimeter); the avalanche size exponent on the sandpile pages; on the Prodinger page, the peak weight, with `σ` the valley weight (the paper's prose states the reverse; its formulas use `τ` for `UD`) | [[castle-perimeter](pages/castle-perimeter.md)], [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)], [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] |
+| `ρ` | usually a spectral radius or growth constant (`ρ_k` on [[tower-parity-sectors](pages/tower-parity-sectors.md)]); on the KMS page, the matrix parameter `√t` | [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
+| `A(w, h)` vs `A_path` | all castles of width `w`, height `h` (the core table) vs the path adjacency matrix | [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
+| `E_k` vs `E_∂` | the tower GF of height `≤ k` in `x` vs `diag(1, 0, …, 0, 1)` | [[castle-counting-formula](pages/castle-counting-formula.md)], [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
+| `Δ` | Dhar's toppling matrix on the sandpile pages (`Δ = L̃` for a castle); Deutsch-Elizalde's bijection from cornerless Motzkin paths to bargraphs; elsewhere a difference or a discriminant | [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)], [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
 
 ## Related Concepts
 
@@ -132,6 +162,8 @@ These are local notations on specific pages and are unrelated to the tower count
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the `(T ± P)/2` split.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the seminar where towers and parity are introduced.
 - [[sandpile-group](pages/sandpile-group.md)] - the reduced Laplacian `L̃` and the sandpile group ([[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)] and [[chau-1993-abelian-sandpile-model](pages/chau-1993-abelian-sandpile-model.md)] use the same `Δ`); [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] for the general toppling matrix `Δ`.
+- [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] - the block-weighted matrices `M_k(t)` and `K(ρ)`.
+- [[motzkin-castles](pages/motzkin-castles.md)] - the Motzkin-path symbols and the path models of castles.
 
 ## Footnotes
 

@@ -5,7 +5,7 @@ summary: s(C) = (-1)^blocks, the castle sign - the analogue of the permutation s
 tags: [concept, castle, sign, permutations, parity, generating-functions]
 sources: [project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-brute-force, pe502-castle-cycle-permutations]
 created: 2026-09-13
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # Castle sign
@@ -60,6 +60,7 @@ F(w,h) = [ h^w − (h−1)^w − P(h−1,w) + P(h−2,w) ] / 2
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — where `P(k,L)` and the `(T−P)/2` term appear.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] — the sign trick taught as one of the two core ideas.
 - [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] — the sign generalized to mod m via m-th roots of unity.
+- [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] - the sign seen by the transfer matrix: a block weight `t` enters only as `√t` (a KMS matrix `ρ^|a−b|`), so `(−1)^blocks` is the point `ρ = i`; the Gaussian integers in `P(1, L)` and the `Q(i)` norm form of odd-`k` `char_k` are this `i`.
 - [[generating-functions-topic](pages/generating-functions-topic.md)] — the exponential generating function (EGF) `(e^x ± e^{−x})/2` projector, the same even/odd trick in the index register.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the block count as the sum of down-streak magnitudes.
 - [[castle-counting-function](pages/castle-counting-function.md)] — the even-block count the sign isolates.

@@ -5,7 +5,7 @@ summary: "Gluing castles at a shared height-1 column makes a free monoid, and it
 tags: [analysis, castle, area, composition, prime-castle, monoid, factorization, fibonacci, convex-castle, parity, q-series, oeis, novel-candidate]
 sources: [oeis-mining-pe502]
 created: 2026-09-22
-updated: 2026-09-22
+updated: 2026-09-26
 ---
 
 # Prime castles
@@ -111,6 +111,7 @@ for n in range(1, 17):
 
 - [[castle-by-area](pages/castle-by-area.md)]: the area counts and the `even`/`odd`/`cev`/`cod` splits refined here.
 - [[castle-row-raising-equation](pages/castle-row-raising-equation.md)]: the functional equation the raised primes give, signed and by peaks.
+- [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]: the raising map is its least-column-height bijection at `h = 1`, so by semi-perimeter the primes are all castles shifted by one (`0, 1, 2, 5, 13, 35, 97, …`, A082582(`s − 1`)), with the sign flipped.
 - [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)]: the sign as a character of this monoid, the signed `P_s/(1 - P_s)` identity, and counts per multiset of primes.
 - [[prime-convex-castles](pages/prime-convex-castles.md)]: the one nontrivial prime of a convex castle, counted.
 - [[convex-castle](pages/convex-castle.md)]: the convex castles.

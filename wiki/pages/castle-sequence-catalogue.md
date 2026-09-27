@@ -5,7 +5,7 @@ summary: Hand-curated catalogue of every castle-counting sequence, by the castle
 tags: [analysis, oeis, castle, sequence, catalogue, novelty, submission-candidate, interlink]
 sources: [oeis-mining-pe502]
 created: 2026-09-17
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # Castle sequence catalogue
@@ -42,6 +42,7 @@ From [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]: OEIS requires 
 8. **A001263, A005408, A005891, A063490, A160747**: the tower / Narayana rows ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]).
 9. **A001523, A115981, A332578**: convex / non-convex / valley castles by area ([[castle-by-area](pages/castle-by-area.md)]).
 10. **A352116**: `|P(k,4)|` = partial sums of odd triangular numbers ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]).
+11. **A343386, A107587, A343773, A171842, A005773**: the Motzkin-path castle and its PE 502 parity split (even-block = odd Motzkin paths), the height-`≤ 3` Motzkin strip, and the Motzkin prefixes ([[motzkin-castles](pages/motzkin-castles.md)]).
 
 **Phase 2 plan (2026-09-18,** `~/code/oeis/pe502/plan-phase-2.md`**).** Phase 1 (items 1–2) is submitted; phase 2 is the next bundle. Tier 2 is the **tower = Narayana** interlink (item 8), submitted in order **A160747 → A005891 → A063490 → A001263** — skipping **A005408** (densest entry, weakest of the set) and minding that **A063490 is offset 1** (the only width-row shift). Tier 3 is the fillers: the difference-of-powers castle counts `A(w,h) = h^w − (h−1)^w` as one comment each on **A000225 / A001047 / A005061 / A005060 / A005062**, and the area synonyms (item 9) each cross-referencing the phase-1 sequences **A038505 / A038503 / A146559**. New sequences ([[new-sequence-fw3](pages/new-sequence-fw3.md)] `F(w,3)` and siblings) follow once the account's edit throttle lifts.
 
@@ -123,9 +124,31 @@ Skylines over `{1, 2, 3}` with adjacent heights differing by at most 1 ([[pell-c
 |---|---|---|---|
 | 1-smooth, first column at height 1 | `1, 2, 5, 12, 29, 70, 169, 408` | `1+√2` | **interlink** → [A000129](https://oeis.org/A000129) Pell (`=P_{w+1}`; GF exactly `1/(1−2x−x²)`) |
 | 1-smooth, free first column | `3, 7, 17, 41, 99, 239, 577, 1393` | `1+√2` | **interlink** → [A001333](https://oeis.org/A001333) companion Pell |
-| 1-smooth, both end columns at height 1 | `1, 1, 2, 4, 9, 21, 50, 120` | `1+√2` | **unchecked** |
+| 1-smooth, both end columns at height 1 | `1, 1, 2, 4, 9, 21, 50, 120` | `1+√2` | **interlink** → [A171842](https://oeis.org/A171842) (`=a(w−1)`, "Motzkin n-paths of height <= 2"; searched 2026-09-26, 16 terms, see [[motzkin-castles](pages/motzkin-castles.md)]) |
 
 *(Verified by enumeration and by `e_1ᵀ(I − xM)^{−1}𝟙` on the 3×3 transfer matrix, 2026-09-19.)*
+
+### Motzkin castles
+
+The Motzkin family in castle counts ([[motzkin-castles](pages/motzkin-castles.md)]). A **Motzkin-path castle** is 1-smooth (`|c_{i+1} − c_i| ≤ 1`) with both end columns at height 1; its skyline minus one is a Motzkin path of length `w − 1`, and its block count is `1 + #up-steps`, so the PE 502 parity clause splits the Motzkin numbers into odd/even Motzkin paths. All rows aligned against OEIS data on 2026-09-26 (16 terms by width, 21 by semi-perimeter).
+
+| object | first terms | growth | status |
+|---|---|---|---|
+| Motzkin-path castles by width | `1, 1, 2, 4, 9, 21, 51, 127, 323, 835` | `3` | **known** → [A001006](https://oeis.org/A001006) (`=M_{w−1}`) |
+| even-block Motzkin-path castles (PE 502 parity, all heights) | `0, 0, 1, 3, 6, 10, 20, 56, 168, 456, 1137, 2827` | `3` | **interlink** → [A343386](https://oeis.org/A343386) (`=a(w−1)`, odd Motzkin paths; castle reading absent) |
+| odd-block Motzkin-path castles | `1, 1, 1, 1, 3, 11, 31, 71, 155, 379, 1051, 2971` | `3` | **interlink** → [A107587](https://oeis.org/A107587) (`=a(w−1)`, even Motzkin paths) |
+| signed `Σ(−1)^blocks` | `−1, −1, 0, 2, 3, −1, −11, −15, 13, 77, 86, −144` | `\|1±2i\| = √5` | **interlink** → [A343773](https://oeis.org/A343773) (`=−a(w−1)`; `= ±A007440`, reversion of Fibonacci) |
+| Motzkin-path castles, heights `≤ 4` | `1, 1, 2, 4, 9, 21, 51, 127, 322, 826` | `φ²` | **known** → [A005207](https://oeis.org/A005207) (`=a(w−1) = (F(2w−3)+F(w))/2`; Kociemba's bounded-walk comment is the castle family) |
+| Motzkin-path castles, heights `≤ 5` | `1, 1, 2, 4, 9, 21, 51, 127, 323, 835, 2187` | `1+√3` | **known** → [A094286](https://oeis.org/A094286) (`=a(w−1)`, same comment with `< 6`) |
+| 1-smooth, first column at height 1, by width | `1, 2, 5, 13, 35, 96, 267, 750` | `3` | **interlink** → [A005773](https://oeis.org/A005773) (`=a(w)`, Motzkin left factors / directed animals) |
+| drops of at most 1, last column at height 1, by width | `1, 2, 5, 14, 42, 132, 429` | `4` | **interlink** → [A000108](https://oeis.org/A000108) (`=C_w`) |
+| Motzkin-path castles by semi-perimeter (`s = 2…`) | `1, 1, 1, 2, 4, 7, 13, 26, 52, 104, 212, 438` | - | **interlink** → [A023431](https://oeis.org/A023431) (`=a(s−2)`, Motzkin paths with no `UD`, no `UU`) |
+| drops of at most 1, last column at height 1, by semi-perimeter | `1, 1, 2, 4, 8, 17, 37, 82, 185, 423, 978` | - | **interlink** → [A004148](https://oeis.org/A004148) (`=a(s−1)`, peakless Motzkin paths; the no-double-rise mirror is Deutsch-Elizalde's RNA-secondary-structure bijection, [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]) |
+| drops of at most 1, any ends, by semi-perimeter | `1, 2, 5, 12, 29, 71, 175, 434, 1082, 2709, 6807, 17157` | - | **novel-candidate** (no OEIS match, searched 2026-09-27); = valleyless Motzkin meanders of length `s−2` by an explicit bijection, the sequence [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] reports as not in OEIS; refined by last-column height and spires ([[motzkin-castles](pages/motzkin-castles.md)] §7) |
+| 1-smooth, first column at height 1, by semi-perimeter | `1, 1, 2, 4, 8, 16, 33, 69, 145, 307, 655, 1405, 3027` | - | **novel-candidate** (no OEIS match, searched 2026-09-26) |
+| 1-smooth, free ends, by semi-perimeter | `1, 2, 5, 11, 24, 52, 113, 246, 537, 1176, 2583, 5688` | - | **novel-candidate** (no OEIS match, searched 2026-09-26) |
+
+*(All castles by semi-perimeter, A082582, are cornerless Motzkin paths graded by `#flats + #ups` and are equinumerous with skew Motzkin paths; that row stays under "Castles by semi-perimeter" below. Its first five terms `1, 2, 5, 13, 35` coincide with A005773 before `97 ≠ 96`.)*
 
 ### Proper-castle (max=h + even-block) metallic ladder
 
@@ -174,6 +197,8 @@ A castle's semi-perimeter is `w + #blocks` ([[castle-perimeter](pages/castle-per
 | convex castles | `1, 2, 5, 13, 34, 89, 233` | `t²(1-t)/(1-3t+t²)` | `φ²` | **known** → [A001519](https://oeis.org/A001519) (Delest-Viennot stacks by perimeter) |
 | even-block convex castles | `0, 1, 3, 7, 17, 44, 116, 305, 799, 2091` | `t³(1-t)/((1-3t+t²)(1-t+t²))` | `φ²` | **novel-candidate** (no match, 2026-09-22) |
 | signed convex castles | `-1, 0, 1, 1, 0, -1` (period 6) | `-t²(1-t)/(1-t+t²)` | periodic | trivial (not searched) |
+| palindromic castles | `1, 2, 3, 5, 9, 15, 27, 46, 83` | symmetric-bargraph GF ([[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] §4.1) | - | **known** → [A273905](https://oeis.org/A273905) (symmetric bargraphs = palindromic castles; checked by brute force 2026-09-26) |
+| prime castles (no height-1 column) | `0, 1, 2, 5, 13, 35, 97, 275, 794, 2327` | `t·B(t)` | `τ²` | **known** → [A082582](https://oeis.org/A082582)(`s − 1`) (row-deletion bijection, [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] §3.9; checked 2026-09-26) |
 
 ### Prime castles by area
 
@@ -297,3 +322,4 @@ Computed earlier and listed as candidates before the status convention; most are
 - [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)] - the odd-count rows, the dated parity-area searches, and the area / blocks / peaks and `(w, h)` / blocks tables.
 - [[a005251-bijection](pages/a005251-bijection.md)] - the explicit bijection unifying A005251's four castle readings; the multi-interpretation hub's centerpiece.
 - [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the seminar that walks one catalogue row through the whole method.
+- [[motzkin-castles](pages/motzkin-castles.md)] - the Motzkin-family rows: cornerless Motzkin paths, the parity split of `M_{w−1}`, the bounded-height Motzkin ladder, and the semi-perimeter relatives.

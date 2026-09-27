@@ -1,0 +1,968 @@
+                                                  Statistics on bargraphs viewed as cornerless Motzkin paths
+                                                                          Emeric Deutsch∗             Sergi Elizalde†
+
+                                                                                       March 19, 2018
+
+
+
+
+arXiv:1609.00088v1 [math.CO] 1 Sep 2016
+                                                                                           Abstract
+                                                      A bargraph is a self-avoiding lattice path with steps U = (0, 1), H = (1, 0) and D =
+                                                  (0, −1) that starts at the origin and ends on the x-axis, and stays strictly above the x-axis
+                                                  everywhere except at the endpoints. Bargraphs have been studied as a special class of convex
+                                                  polyominoes, and enumerated using the so-called wasp-waist decomposition of Bousquet-Mélou
+                                                  and Rechnitzer. In this paper we note that there is a trivial bijection between bargraphs
+                                                  and Motzkin paths without peaks or valleys. This allows us to use the recursive structure
+                                                  of Motzkin paths to enumerate bargraphs with respect to several statistics, finding simpler
+                                                  derivations of known results and obtaining many new ones. We also count symmetric bargraphs
+                                                  and alternating bargraphs. In some cases we construct statistic-preserving bijections between
+                                                  different combinatorial objects, proving some identities that we encounter along the way.
+
+
+                                          1       Introduction
+                                          Bargraphs have appeared in the literature with different names, from skylines [9] to wall poly-
+                                          ominoes [8]. Their enumeration was addressed by Bousquet-Mélou and Rechnitzer [7], Prellberg
+                                          and Brak [11], and Feretić [8]. These papers use the so-called wasp-waist decomposition or some
+                                          variation of it to find a generating function with two variables x and y keeping track of the number
+                                          of H and U steps, respectively. The same decomposition has later been exploited by Blecher, Bren-
+                                          nan and Knopfmacher to obtain refined enumerations with respect to statistics such as peaks [2],
+                                          levels [1], walls [4], descents and area [3]. Bargraphs are used to represent histograms and they also
+                                          have connections to statistical physics, where they are used to model polymers.
+                                              There is a trivial bijection between bargraphs and Motzkin paths with no peaks or valleys, which
+                                          surprisingly seems not to have been noticed before. In Section 2 we present this bijection and we
+                                          use it to describe our basic recursive decomposition. In Section 3 we find the generating functions
+                                          for bargraphs with respect to several statistics, most of which are new, but in some cases we also
+                                          present simpler derivations for statistics that have been considered before. In cases where we obtain
+                                          enumeration sequences that coincide with each other or with sequences that have appeared in the
+                                          literature, we construct bijections between the relevant combinatorial objects. Finally, in Section 4
+                                          we find the generating functions for symmetric bargraphs and for alternating bargraphs.
+                                              ∗
+                                              NYU Tandon School of Engineering, Brooklyn, NY 11201, USA.
+                                              †
+                                              Department of Mathematics, Dartmouth College, Hanover, NH 03755, USA. sergi.elizalde@dartmouth.edu.
+                                          Partially supported by grant #280575 from the Simons Foundation and by grant H98230-14-1-0125 from the NSA.
+
+
+
+
+                                                                                               1
+2      Bijection to Motzkin paths
+A bargraph is a lattice path with steps U = (0, 1), H = (1, 0) and D = (0, −1) that starts at the
+origin and ends on the x-axis, stays strictly above the x-axis everywhere except at the endpoints,
+and has no pair of consecutive steps of the form U D or DU . Sometimes it is convenient to identify
+a bargraph with the correspodning word on the alphabet {U, D, H}. The semiperimeter of a
+bargraph is the number of U steps plus the number of H steps (this terminology makes sense when
+considering the closed polyomino obtained by connecting the two endpoints of the path with a
+horizontal segment). A bargraph of semiperimeter 15 is drawn on the right of Figure 1. Let B
+denote the set of bargraphs, and let Bn denote those of semiperimeter n. Let B = B(x, y) be the
+generating function for B where x marks the number of H steps and y marks the number of U
+steps. Note that the coefficient of z n in B(z, z) is |Bn |. We do not consider the trivial bargraphs
+with no steps, so the smallest possible semiperimeter is 2.
+    Recall that a Motzkin path is a lattice path with up steps (1, 1), horizontal steps (1, 0) and
+down steps (1, −1) that starts at the origin, ends on the x-axis, and never goes below the x-axis. A
+peak in a Motzkin path is an up step followed by a down step, and a valley is a down step followed
+by an up step.
+    Let M denote the set of Motzkin paths without peaks or valleys, and let Mn denote the subset
+of those where the number of up steps plus the number of horizontal steps equals n. Elements of
+M will be called cornerless Motzkin paths. Let M = M (x, y) be the generating function for M
+where x marks the number of H steps and y marks the number of U steps. The coefficient of z n in
+M (z, z) is |Mn |. Let ǫ denote the empty Motzkin path, so that M0 = {ǫ}. To make our notation
+less clunky, we will sometimes write ǫ instead of {ǫ}.
+    For n ≥ 2, there is an obvious bijection between Mn−1 and Bn that appears not to have been
+noticed in the literature. Given a path in M, insert an up step at the beginning and a down
+step at the end (resulting in an elevated Motzkin path), and then turn all the up steps (1, 1)
+into U = (1, 0), all the down steps (1, −1) into D = (0, −1), and leave the horizontal steps (1, 0)
+unchanged as H = (1, 0). Denote by ∆ : Mn−1 → Bn the resulting bijection. An example is shown
+in Figure 1.
+
+
+
+
+                                                                   →
+
+
+    Figure 1: A cornerless Motzkin path and the corresponding bargraph obtained by applying ∆.
+
+   With some abuse of notation, we will denote up steps and down steps in a Motzkin path by U
+and D respectively, just like the steps in bargraphs that map to them via ∆.
+   Cornerless Motzkin paths admit a very simple decomposition that parallels the standard re-
+cursive decomposition of Motzkin paths. Namely, every nonempty path in M can be decomposed
+uniquely as HA, U A′ D, or U A′ DHA, where A is an arbitrary path in M and A′ is an arbitrary
+nonempty path. Figure 2 illustrates these cases. It follows that M = M (x, y) satisfies the equation
+
+                             M = 1 + xM + y(M − 1) + y(M − 1)xM
+                                = (1 + y(M − 1))(1 + xM ).                                       (1)
+
+
+                                                 2
+Using that B = y(M − 1), which is a consequence of the bijection ∆, we obtain
+
+                                        xB 2 − (1 − x − y − xy)B + xy = 0.                                 (2)
+
+Solving for B, we get
+                                                         p
+                                      1 − x − y − xy −       (1 − x − y − xy)2 − 4x2 y
+                              B=                                                       ,
+                                                              2x
+which agrees with [7, p. 92], [6, Eq. (3.6)], and [8, Eq. (8)] (with y replaced by y 2 ). The generating
+function for bargraphs by semiperimeter is
+
+                                      1 − 2z − z 2 − (1 − 2z − z 2 )2 − 4z 3
+                                                     p
+                          B(z, z) =                                          ,
+                                                        2z
+and the beginning of its series expansion is z 2 + 2z 3 + 5z 4 + 13z 5 + 35z 6 + 97z 7 + 275z 8 + · · · , given
+by sequence A082582 from the OEIS [10].
+
+                                                              M\ǫ                    M\ǫ
+       M              ǫ                  M                                                          M
+                =     .       ⊔                  ⊔                           ⊔
+
+                                          M\ǫ
+                          ǫ                                          ǫ             M
+                = (       .       ⊔                      ) × (       .   ⊔                 )
+
+              Figure 2: The decomposition of Motzkin paths without peaks or valleys.
+
+     We point out that whereas the wasp-waist decomposition considers five cases by splitting bar-
+graphs in different ways, the decomposition in Figure 2 is significantly simpler. It can in fact be
+considered as having one single case by interpreting the factorization M = (1 + y(M − 1))(1 + xM )
+as follows: every element of M can be uniquely split into two pieces: an elevated non-empty path
+(this piece could be empty), and a path that is either empty or starts with an H.
+     Via the bijection ∆, the statistics on B that we will consider correspond naturally to statistics
+on M. When it creates no confusion, we will use the same notation for both a statistic on B
+and the corresponding statistic on M. Given such a statistic st, we let Mst = Mst (t, x, y) and
+Bst = Bst (t, x, y) denote the generating functions for M and B, respectively, where t marks st, x
+marks the number of H, and y marks the number of U . We will also use the analogous notation with
+the letter M replaced by any symbol denoting a subset of M. If st(ǫ) = 0 and st(M ) = st(∆(M ))
+for all M ∈ M, then Bst = y(Mst − 1) using the bijection ∆. For some statistics these conditions
+do not hold, but we find similar relations between Bst and Mst . Substituting x = z and y = z in
+Bst we obtain the generating function for B by semiperimeter and the statistic st.
+     In the study of some statistics, it will be helpful to separate cornerless paths according to the
+first and the last step. The generating function of paths that start with an H is xM , and the same
+applies for paths that end with an H. Thus, the generating function for paths that start with a
+U is M − 1 − xM , and similarly for paths that end with a D. The generating function for paths
+that start and end with an H is x + x2 M . By subtracting it from the generating function of paths
+that start with an H, it follows that paths that start with an H and end with a D are counted
+
+                                                         3
+by xM − x − x2 M , and by symmetry so are paths that start with a U and end with an H. By
+subtracting this from the generating function for paths that start with a U , we obtain that the
+generating function for paths that start with a U and end with a D is
+
+                      M − 1 − xM − (xM − x − x2 M ) = (1 − x)2 M + x − 1.
+
+Table 1 summarizes these generating functions.
+
+                                  end with an H           end with a D         total
+              start with an H        x + x2 M            (x − x2 )M − x         xM
+               start with a U     (x − x2 )M − x       (1 − x)2 M + x − 1   M − 1 − xM
+                    total              xM                 M − 1 − xM          M −1
+
+Table 1: The generating functions for nonempty cornerless Motzkin paths with given initial and
+final steps.
+
+
+
+3     Statistics on bargraphs
+In this section we use the bijection ∆ and the decomposition of cornerless Motzkin paths in Figure 2
+to find the generating functions for bargraphs with respect to several statistics, while also keeping
+track of the number of U and H steps. For each statistic st we obtain an explicit formula for Bst .
+In some cases, for the sake of simplicity, we will only state the equation that it satisfies, which is
+quadratic for all the statistics in this paper.
+    The statistics that we consider are the height of the first column (Section 3.1); the number of
+double rises and double falls (3.2); the number of valleys or peaks of width ℓ along with the number
+of horizontal steps in such valleys and peaks (3.3); the number of corners of different types (3.4);
+the number of horizontal segments (3.5) and horizontal segments of length 1 (3.6); the length of
+the first descent, together with a bijective proof of a simple recurrence satisfied by this statistic,
+and the x-coordinate of the first descent (3.7); the number of columns of height h for any fixed h,
+and the number of initial columns of height 1 (3.8); the least column height (3.9) and the width of
+the leftmost horizontal segment (3.10), together with a bijective proof of their equidistribution on
+bargraphs with fixed semiperimeter, and a bijection relating the latter statistic with the number
+of initial columns of height 1 (3.10); the number of occurrences of U HU (3.11); the length of the
+initial staircase U HU H . . . (3.12); the number of odd-height and even-height columns (3.13); and
+the area (3.14). Table 2 lists the OEIS reference [10] of the sequences that occur in the paper, most
+of which have been added as a result of this work.
+    We use the term ascent (resp. descent) to refer to a maximal consecutive sequence of U (resp.
+D) steps.
+
+3.1   Height of the first column
+Let hfc be the statistic “height of the first column” on B. On M, let hfc denote the statistic that
+measures the length of the initial ascent of the path, that is, the number of steps U right at the
+beginning of the path. Then, using the second line of the decomposition in Figure 2, we get
+
+                                Mhfc = (1 + ty(Mhfc − 1))(1 + xM ),
+
+                                                   4
+ Sect.    Statistic or subset of bargraphs                   OEIS sequences
+ 3.1      height of the first column                         A273342, A273343
+ 3.2      number of double rises                             A273713, A273714
+ 3.2      number of double rises and double falls            A276066
+ 3.3      number of valleys of width 1                       A273721, A273722
+ 3.3      number of peaks of width 1                         A273715, A273716
+ 3.4      number of x corners                                A273717, A273718
+ 3.5      number of horizontal segments                      A274486
+ 3.6      number of horizontal segments of length 1          A274491 A274492
+ 3.7      length of the first descent                        A276067, A276068
+ 3.7      x-coordinate of the first descent                  A273897, A273898
+ 3.8      number of columns of height 1                      A273899, A273900
+ 3.8      number of initial columns of height 1              A274490
+ 3.9      least column height                                A274488
+ 3.10     width of the leftmost horizontal segment           A274488
+ 3.11     number of occurrences of U HU                      A273896
+ 3.12     length of the initial staircase U HU H . . .       A274494, A274495
+ 3.13     number of odd-height and even-height columns       A273901, A273902, A273903, A273904
+ 3.14     area                                               A273346, A273347, A273348
+ 4.1      symmetric bargraphs                                A273905
+ 4.2      weakly alternating bargraphs                       A275448
+ 4.2      strictly alternating bargraphs                     A023342
+
+Table 2: The OIES sequences [10] corresponding to the statistics and subsets of bargraphs studied
+in this paper.
+
+where we can easily use the expression for M coming from (1) and solve for Mhfc .
+   If A ∈ M and G = ∆(M ), then hfc(G) = hfc(A) + 1. It follows that Bhfc = ty(Mhfc − 1), and
+Bhfc satisfies the equation
+         (1 − t(1 − x + y + xy) + t2 y)Bhfc
+                                        2
+                                            − t(1 − y)(1 − x − ty − txy)Bhfc + t2 xy(1 − y) = 0.
+In particular, the generating function for B with respect to semiperimeter and height of the first
+column is
+                              1 − 2z − tz + z 2 + tz 3 − (1 − tz) (1 − z)(1 − 3z − z 2 − z 3 )
+                                                                  p
+           Bhfc (t, z, z) = t                                                                  .
+                                                    2(1 − t + t2 z − tz 2 )
+
+3.2      Number of double rises and number of double falls
+Let dr (resp. df) be the statistic that counts pairs of adjacent U steps (resp. D steps) —also called
+double rises (resp. double falls)— in bargraphs and in cornerless Motzkin paths. By symmetry, dr
+and df are equidistributed. Using the second line of the decomposition in Figure 2, we have
+                        Mdr = [1 + y(t(Mdr − 1 − xMdr ) + xMdr )] (1 + xMdr ).                      (3)
+This is because, in this decomposition, the number of double rises in a path is obtained by summing
+the number of double rises in each of the two pieces, except that if the first piece is the elevation of
+
+                                                   5
+a path starting with a U , it creates an additional double rise. The generating function with respect
+to dr for paths starting with an H is xMdr , and for paths starting with a U is Mdr − 1 − xMdr .
+Equation (3) can be solved to find an expression for Mdr .
+   For every A ∈ M, dr(∆(A)) equals dr(A) + 1 if A starts with an U step and it equals dr(A)
+otherwise. It follows that Bdr = y (t(Mdr − 1 − xMdr ) + xMdr ), and so it satisfies
+                                2
+                              xBdr − (1 − x − ty − xy)Bdr + xy = 0.
+
+In particular, the generating function for bargraphs with no double rises according to semiperimeter
+is                                                       √
+                                            1 − z − z 2 − 1 − 2z − z 2 − 2z 3 + z 4
+                            Bdr (0, z, z) =                                         ,
+                                                             2z
+which agrees with the generating function for RNA secondary structure numbers [13, Exer. 6.43]
+with the exponents shifted by one. Recall that a secondary structure is a simple graph with vertices
+{1, 2, . . . , n} such that every i is adjacent to at most one vertex j with |j − i| > 1, {i, i + 1} is an
+edge for all i, and there are no two edges {i, k}, {j, l} with i < j < k < l.
+    Next we give a bijection between bargraphs of semiperimeter n + 1 with no double rises and
+secondary structures on n vertices. Given such a bargraph, delete the initial U and the final D.
+Since the bargraph has no double rises, the remaining steps can be written uniquely as a sequence
+of blocks HU , H and D. Note that there are n blocks, and that no HU is immediately followed
+by a D. Each block will correspond to a vertex of the secondary structure, labeled increasingly
+from left to right. For each HU block, consider the first D block to its right that is at the same
+height in the bargraph, and draw an edge between the two corresponding vertices in the secondary
+structure. Finally, draw edges between every pair of consecutive vertices. It is easy to see that this
+construction produces a secondary structure, and that it is a bijection.
+    We end this section by refining the argument behind Equation (3) in order to give the joint
+distribution of dr and df on bargraphs and cornerless Motzkin paths. Let Bdr,df and Mdr,df be
+the corresponding generating functions where t marks dr and s marks df. In the decomposition in
+Figure 2, the elevated piece of the path creates an additional double rise if it starts with a U , and
+an additional double fall if it ends with a D. The generating function by dr and df of paths that
+start with an H is xMdr,df , since the initial H step does not affect the statistics dr and df, and
+the same holds for paths that end with an H. The generating function by dr and df of paths that
+start and end with an H is x + x2 Mdr,df . Thus, by the same argument used to obtain Table 1, but
+keeping track of dr and df, it follows that paths that start with an H and end with a D are counted
+by xMdr,df − x − x2 Mdr,df , and so are paths that start with a U and end with an H. Similarly, the
+generating function for paths that start with a U and end with a D is (1 − x)2 Mdr,df + x − 1.
+    Adding the contributions of the elevated path in the different cases, we get the equation
+
+Mdr,df = 1 + y x + x2 Mdr,df + (t + s)((x − x2 )Mdr,df − x) + ts((1 − x)2 Mdr,df + x − 1) (1+xMdr,df ).
+                                                                                             
+
+
+Using that Bdr,df = y x + x2 Mdr,df + (t + s)((x − x2 )Mdr,df − x) + ts((1 − x)2 Mdr,df + x − 1) , we
+                                                                                                    
+
+obtain the following equation for Bdr,df :
+                       2
+                     xBdr,df − (1 − x − (t + s)xy − tsy + tsxy)Bdr,df + xy = 0.
+
+
+
+
+                                                  6
+3.3    Number of valleys and peaks of width ℓ
+For ℓ ≥ 1, define a valley (resp. peak) of width ℓ in a bargraph or a cornerless Motzkin path to be
+a sequence of steps DH ℓ U (resp. U H ℓ D). Let vℓ (resp. pℓ ) be statistic counting the number of
+valleys (resp. peaks) of width ℓ.
+    To count valleys of width ℓ, we use the first line in the decomposition in Figure 2 to obtain
+                                                       h                                   i
+        Mvℓ = 1 + xMvℓ + y(Mvℓ − 1) + xy(Mvℓ − 1) Mvℓ + (t − 1)xℓ−1 (Mvℓ − 1 − xMvℓ ) .
+
+Indeed, an extra valley of width ℓ is created in the last case when the second part of the path starts
+with H ℓ−1 U ; these paths are counted by xℓ−1 (Mvℓ − 1 − xMvℓ ). Using that Bvℓ = y(Mvℓ − 1), we
+obtain the following equation for Bvℓ :
+
+             (1 − (1 − t)(1 − x)xℓ−1 )Bv2ℓ − (1 − x − y − xy − (1 − t)xℓ+1 y)Bvℓ + xy = 0.
+
+Solving it and setting x = z and y = z, we get
+                                             p
+                1 − 2z − z 2 + (t − 1)z ℓ+2 − 1 − 4z + 2z 2 + z 4 + 2(1 − t)z ℓ+2 (1 + z 2 ) + (1 − t)2 z 2ℓ+4
+Bvℓ (t, z, z) =                                                                                                .
+                                                2(z − (1 − t)(1 − z)z ℓ )
+    Similarly, for peaks of width ℓ, using the second line in the decomposition in Figure 2, we have
+
+                               Mpℓ = [1 + y(Mpℓ − 1 + (t − 1)xℓ )](1 + xMpℓ ),
+
+since an extra peak of width ℓ is created when the path that is elevated is precisely H ℓ . Using that
+Bpℓ = y(Mpℓ − 1 + (t − 1)xℓ ), we obtain the equation
+
+              xBp2ℓ − (1 − x − y − xy − (1 − t)xℓ+1 y)Bpℓ + y(x − (1 − t)(1 − x)xℓ ) = 0.
+
+It follows that
+                  1 − 2z − z 2 + (t − 1)z ℓ+2 −
+                                                  p
+                                                   1 − 4z + 2z 2 + z 4 + 2(1 − t)z ℓ+2 (1 + z 2 ) + (1 − t)2 z 2ℓ+4
+Bpℓ (t, z, z) =                                                                                                     .
+                                                               2z
+   Generating functions for several statistics related to peaks in bargraphs were found in [2] using
+the wasp-waist decomposition. The statistics include the total number of peaks, the number of
+horizontal steps in peaks, and the height of the first peak. All of them can be derived using
+the decomposition in Figure 2. For example, to find the generating function Bp,hsp (t, s, x, y) for
+bargraphs where t marks the number of peaks and s marks the number of horizontal steps in peaks,
+we first note that the corresponding generating function Mp,hsp (t, s, x, y) for cornerless Motzkin
+paths satisfies
+                                                                
+                                                    tsx      x
+                 Mp,hsp = 1 + y Mp,hsp − 1 +             −           (1 + xMp,hsp ).
+                                                  1 − sx 1 − x
+This is because in the decomposition in Figure 2, when the elevated path in the first piece is of
+the form H ℓ for ℓ ≥ 1, it creates a peak of width ℓ, contributing tsℓ xℓ to the generating function
+                                                                tsx      x
+instead of xℓ . Summing tsℓ xℓ − xℓ for ℓ ≥ 1 gives the term 1−sx    − 1−x . Solving for Mp,hsp and
+using that                                                           
+                                                        tsx        x
+                             Bp,hsp = y Mp,hsp − 1 +         −
+                                                      1 − sx 1 − x
+
+                                                          7
+we obtain an expression for Bp,hsp .
+    We can similarly find the generating function Bv,hsv (t, s, x, y) where t marks the number of
+valleys and s marks the number of horizontal steps in valleys. In this case, the corresponding
+generating function Mv,hsv (t, s, x, y) for M satisfies
+                                                                                                 
+                                                             ts        1
+Mv,hsv = 1+xMv,hsv +y(Mv,hsv −1)+xy(Mv,hsv −1) H +                 −         (Mv,hsv − 1 − xMv,hsv ) .
+                                                          1 − sx 1 − x
+
+Indeed, in the fourth case of the decomposition in the first line of Figure 2, an extra valley of width
+ℓ appears if the path to the right of the red H step starts with H ℓ−1 U for ℓ ≥ 1. Such paths thus
+contribute tsℓ xℓ−1 (Mv,hsv − 1 − xMv,hsv ) instead of xℓ−1 (Mv,hsv − 1 − xMv,hsv ). Solving for Mv,hsv
+and using that Bv,hsv = y(Mv,hsv − 1) we obtain an expression for Bv,hsv .
+
+3.4   Number of corners
+Denote by x, y, p and q the statistics counting the number of occurrences of DH, HU , U H and
+HD in a bargraph, respectively. For every G ∈ B, we have p(G) = 1+y(G) and q(G) = 1 + x(G).
+Also, by symmetry, the statistics p and q are equidistributed on bargraphs, and so are x and y. The
+statistic q coincides with the number of descents, and similarly the statistic p equals the number
+of ascents.
+    We can find the distribution of these statistics using the decomposition for M in the first
+line of Figure 2. Let x and p denote the number of DH and U H in paths in M, respectively,
+and let Mx,p = Mx,p (t, s, x, y) be the generating function where t and s mark these two statistics,
+respectively. Then
+
+                    Mx,p = 1 + xMx,p + y(Mx,p − 1 + (s − 1)xMx,p )(1 + txMx,p ),                   (4)
+
+since an extra occurrence of U H is created when the elevated piece of the decomposition starts
+with an H, and an extra occurrence of DH is created in the fourth case of the decomposition. The
+generating function for bargraphs where s and t mark the statistics x and p, respectively, is then
+Bx,p = y(Mx,p − 1 + (s − 1)xMx,p ). Eliminating Mx,p from this equation and (4), we see that Bx,p
+satisfies
+                          2
+                      txBx,p − (1 − x − y + xy − txy − sxy)Bx,p + sxy = 0.
+    Setting t = 0 and s = 1 in the above equation, we see that the generating function for bargraphs
+                                   xy
+with no occurrences of DH is 1−x−y     . These are nondecreasing bargraphs, namely those where the
+heights of the columns increase weakly from left to right. Their generating function can be easily
+explained combinatorially, since such a bargraph is determined by the left boundary, which consists
+of any sequence of U and H steps that starts with a U and ends with an H. A related family is
+that of increasing bargraphs, which are those avoiding DH and HH. Their generating function
+      xy
+is 1−y−xy  , since the left boundary has the additional restriction of not containing two consecutive
+Hs.
+    Since the total number of corners in a bargraph is counted by x+y + p+q = 2(x+p), the
+generating function
+
+                      1 − x − y + (1 − 2u2 )xy − (1 − y)(1 − 2x − y + (2 − 4u2 )xy + x2 − (1 − 2u2 )2 x2 y)
+                                                p
+       2 2
+Bx,p (u , u , x, y) =
+                                                              2u2 x
+
+
+                                                  8
+enumerates bargraphs with respect to the total number of corners, marked by u. Viewing the
+bargraph as a polyomino, the two additional bottom corners can be easily included by multiplying
+the generating function by u2 .
+   In [4], the authors find the distribution of the number of ascents (called walls in that paper) of
+any fixed length r.
+
+3.5   Number of horizontal segments
+Define a horizontal segment to be a maximal sequence of consecutive H steps, and let hs be the
+statistic “number of horizontal segments,” both on B and on M. Horizontal segments of length at
+least 2 are considered in [1], where they are called levels.
+    In any bargraph, the number of horizontal segments equals half of the total number of corners.
+It follows that Bhs = Bx,p (t, t, x, y), and so
+                                         p
+            1 − x − y + xy − 2txy − (1 − y)(1 − 2x − y + x2 + (2 − 4t)xy − (1 − 2t)2 x2 y)
+     Bhs =                                                                                  .    (5)
+                                                    2tx
+    Alternatively, a direct derivation can be given as follows. Let MH be the subset of M consisting
+of paths that start with an H. For A ∈ M, he have that hs(HA) equals hs(A) if A ∈ MH and it
+equals hs(A) + 1 otherwise. Via the usual decomposition, we have
+                               H               H       H
+                              Mhs = x[t(Mhs − Mhs ) + Mhs ],
+                                         H                    H
+                              Mhs = 1 + Mhs + y(Mhs − 1)(1 + Mhs ).
+             H from these equations and using that B = y(M − 1), we recover (5).
+Eliminating Mhs                                     hs    hs
+
+
+3.6   Number of horizontal segments of length 1
+Let uhs denote the statistic “number of horizontal segments of length 1,” also called unit horizontal
+segments, both on B and on M. Let M(1) be the subset of M consisting of paths that start
+with a horizonal segment of length 1 (note that these are the paths that start with HU , plus the
+length-one path H). Let M(2) be the subset of M consisting of paths that start with HH. Note
+that the paths in M but not in M(1) or M(2) are precisely those that are empty or start with a U .
+    For A ∈ M,                           
+                                                                   (1)
+                                         uhs(A) − 1 if A ∈ M ,
+                                         
+                              uhs(HA) = uhs(A)          if A ∈ M(2) ,
+                                         
+                                            uhs(A) + 1 otherwise.
+                                         
+
+Using the standard decomposition, it follows that
+                      (1)                 (1)     (2)
+                    Muhs = tx(Muhs − Muhs − Muhs ),
+                                (1)
+                                           !
+                     (2)      Muhs     (2)
+                    Muhs = x        + Muhs ,
+                                t
+                                   (1)     (2)                      (1)     (2)
+                    Muhs = 1 + Muhs + Muhs + y(Muhs − 1)(1 + Muhs + Muhs ).
+Solving this system of equations, we get an expression for Muhs . Using that Buhs = y(Muhs − 1),
+we obtain the equation
+                      2
+        x(t + x − tx)Buhs − (1 − x − y + xy − 2xy(t + x − tx))Buhs + xy(t + x − tx) = 0.
+
+                                                 9
+3.7   Length and abcissa of the first descent
+Let fd denote the length of the first descent in a bargraph. The corresponding statistic on M, via
+∆, is the length of the first descent of the cornerless Motzkin path, with the caveat that we have
+to add one if this first descent occurs at the end of the path. We also denote this statistic by fd.
+    Let MI be the subset of M consisting of Motzkin paths that have the first descent (equiva-
+lently, all their D steps) at the end. These correspond to nondecreasing bargraphs, mentioned in
+Section 3.4. Clearly,
+                                             I       tx
+                                          Mfd  =            ,
+                                                 1 − x − ty
+since such a path is determined by a sequence of U and H steps that ends with an H, and only the
+U steps contribute to fd, with the t in the numerator accounting for the fact that we have to add
+one when the first descent occurs at the end.
+    For a path of the form U ADB ∈ M (where A ∈ M is nonempty and B ∈ M is either empty
+or starts with an H), we have fd(U ADB) = fd(A) except when A ∈ MI and B is empty, in which
+case fd(U ADB) = fd(A) + 1. It follows that
+                                                        I
+                   Mfd = t + xMfd + y(Mfd − t + (t − 1)Mfd ) + y(Mfd − t)xM.
+
+We can now use the known expressions for Mfd   I and M and solve for M . Since B = y(M − t),
+                                                                      fd           fd fd
+it follows that
+                                                   p
+                                   1 − x − y − xy − (1 − y)((1 − x)2 − y(1 + x)2 )
+                Bfd = t(1 − x − y)                                                 .     (6)
+                                                   2x(1 − x − ty)
+
+    If we denote by an,k the number of bargraphs of semiperimeter n whose first descent has length
+k, so that                                          X
+                                    Bfd (t, z, z) =   an,k tk z n ,
+                                                       k,n
+
+then Equation (6) implies that
+                                                X
+                                 (1 − x − tz)         an,k tk z n = tg(z)                        (7)
+                                                k,n
+
+for some function g(z) that does not depend on t. For any fixed k, n ≥ 2, extracting the coefficient
+of tk z n on both sides of (7) gives
+
+                                   an,k − an−1,k − an−1,k−1 = 0.
+
+    This simple recurrence can also be proved directly by the following combinatorial argument.
+Let An,k denote the set of bargraphs with semiperimeter n and first descent of length k, so that
+an,k = |An,k |. Fix n, k ≥ 2. Given a bargraph in An,k , the step before the first descent must be
+an H. The step before that, which we denote by s, must be either an H or a U . This splits the set
+An,k into two disjoint sets AH         U
+                              n,k and An,k , where the superindex indicates the step s. A bijection
+between AH                                                                                  U
+           n,k and An−1,k is obtained by removing the step s = H. A bijection between An,k and
+An−1,k−1 is obtained by removing the step s = U and a D from the first descent of the path. For
+
+
+
+                                                  10
+example, for n = 6 and k = 3, the bargraph U U U U HHHDDDD is mapped to U U U HHDDD,
+and U U U U HDDDHD is mapped to U U U HDDHD. It follows that
+                                                     U
+                        an,k = |An,k | = |AH
+                                           n,k | + |An,k | = an−1,k + an−1,k−1 .
+
+   A related statistic that one can consider is the x-coordinate of the first descent in a bargraph.
+Let xfd denote this statistic on B, and also the corresponding statistic on M under ∆, which is the
+number of H steps before the first descent. Then
+                       Mxfd = 1 + txMxfd + y(Mxfd − 1) + xy(Mxfd − 1)M,
+and
+                                                     p
+                              1 + x − y − 2tx − xy − (1 − y)(1 − 2x − y − 2xy + x2 − x2 y)
+      Bxfd = y(Mxfd − 1) = ty                                                              .
+                                           2(1 − t − (1 − t)y + (t2 − t)x + txy)
+
+3.8    Number of columns of height h and number of initial columns of height 1
+Let ch1 denote the number of columns of height 1 in bargraphs. The corresponding statistic on
+M, via ∆, is the number of H steps on the x-axis, which we also denote by ch1 . Using the usual
+decomposition,
+                             Mch1 = (1 + y(M − 1))(1 + txMch1 )
+and
+                      1 − x − y − xy + 2t(1 − t)x2 (1 − y) − (1 − y)(1 − 2x − y − 2xy + x2 − x2 y)
+                                                            p
+Bch1 = y(Mch1 −1) = y                                                                              .
+                                            2x(1 − t + ty + (t2 − t)x(1 − y))
+   We can now recursively count the number of columns of height h in bargraphs, which we denote
+by chh , for any h ≥ 2. They correspond to H steps at height h − 1 in cornerless Motzkin paths.
+From the decomposition,
+                             Mchh = (1 + y(Mchh−1 − 1))(1 + xMchh ),
+and so
+                                                         1
+                                  Mchh =                             ,
+                                                     1
+                                                                −x
+                                           1 + y(Mchh−1 − 1)
+from where one can find Bchh = y(Mchh − 1). The above recurrence, in terms of bargraphs, can be
+written as                                                   
+                                    y         1
+                             Bchh =                    −1−x .
+                                    x 1 − x − xBchh−1
+    A related statistic is the number of initial columns of height 1, which we denote by ich1 . The
+corresponding statistic on M is the number of initial H steps. We now have
+                         Mich1 = 1 + txMich1 + y(M − 1) + xy(M − 1)M
+and
+                        1 − 2x − y + x2 + (2t − 1)x2 y − (1 − x) (1 − y)[(1 − x)2 − y(1 + x)2 ]
+                                                                p
+ Bich1 = y(Mich1 − 1) =                                                                         .
+                                                       2x(1 − tx)
+                                                                                               (8)
+
+                                                  11
+3.9    Least column height
+Let lch be the statistic “least column height” (that is, height of a shortest column) in a bargraph.
+The corresponding statistic on M, which we also denote by lch, is the least height of a horizontal
+step. From the decomposition in the first line of Figure 2,
+
+                           Mlch = 1 + xM + ty(Mlch − 1) + xy(M − 1)M,
+
+since in the second and fourth cases there is a step at height 0, and in the third case the least height
+increases by one. Solving for Mlch and using that Blch = ty(Mlch − 1), we get
+                                                    p
+                                  1 − x − y − xy − (1 − y)[(1 − x)2 − y(1 + x)2 ]
+                  Blch = t(1 − y)                                                    .               (9)
+                                                      2x(1 − ty)
+
+3.10    Width of leftmost horizontal segment
+Let lhs be the statistic “width of leftmost horizontal segment,” both in bargraphs and cornerless
+Motzkin paths. From the usual decomposition,
+                                   tx(1 − x)
+                      Mlhs = 1 +             M + y(Mlhs − 1) + xy(Mlhs − 1)M.
+                                     1 − tx
+For the second summand, note that paths of the form HA where A ∈ M starts with H ℓ (but not
+H ℓ+1 ) contributes tℓ+1 xℓ+1 (M − xM ); summing over ℓ ≥ 0 we get tx(1−x)
+                                                                     1−tx M . Solving for Mlhs and
+using that Blhs = y(Mlhs − 1), we get
+                                                  p
+                                  1 − x − y − xy − (1 − y)[(1 − x)2 − y(1 + x)2 ]
+                  Blhs = t(1 − x)                                                 .            (10)
+                                                   2x(1 − tx)
+   By comparing (9) and (10), we see that (1 − x)(1 − ty)Blch = (1 − y)(1 − tx)Blhs . In particular,
+
+                                      Blch (t, z, z) = Blhs (t, z, z),
+
+that is, the statistics lch and lhs are equidistributed on bargraphs of fixed semiperimeter. Let us
+describe a direct combinatorial proof of this equality by showing that both {A ∈ Bn : lch(A) > h}
+and {A ∈ Bn : lhs(A) > h} are in bijection with Bn−h . The bijection {A ∈ Bn : lch(A) > h} → Bn−h
+is obtained by deleting the initial U h and the final D h . The bijection {A ∈ Bn : lhs(A) > h} → Bn−h
+is obtained by deleting the initial H h from the leftmost horizontal segment. Examples of these
+bijections for all bargraphs with n = 6 and h = 2 are given in Figure 3.
+    Another remarkable equidistribution phenomenon arises when comparing the statistics lhs and
+ich1 . In terms of generating functions, it can be checked by comparing (8) and (10) that
+                                                                      
+                                          txy                    txy
+                                 Blhs −          = t Bich1 −             .
+                                         1 − tx                 1 − tx
+Combinatorially, this formula states that if we ignore bargraphs consisting of one row —which
+             txy
+contribute 1−tx  to both generating functions—, then the distribution of the statistics lhs and ich1 +1
+on the remaining bargraphs with a fixed number of U and H steps is the same. In particular, these
+statistics are equidistributed on bargraphs of fixed semiperimeter (and at least two rows), that is,
+
+                       |{A ∈ Bn : lhs(A) = h}| = |{A ∈ Bn : ich1 (A) = h − 1}|
+
+                                                    12
+                                                                                     →
+
+
+
+                                                                                     →
+
+
+     ↓        ↓           ↓          ↓           ↓
+                                                                                     →
+
+
+
+                                                                                     →
+
+
+
+                                                                                     →
+
+
+Figure 3: The bijections {A ∈ Bn : lch(A) > h} → Bn−h (left) and {A ∈ Bn : lhs(A) > h} → Bn−h
+(right) for n = 6 and h = 2.
+
+
+for all 1 ≤ h ≤ n − 2.
+    Next we give a combinatorial proof of this fact, by providing a bijection φ from the set of
+bargraphs with at least two rows to itself that preserves the number of U s and the number of Hs,
+and such that ich1 (φ(A)) = lhs(A) − 1. Given a bargraph A with at least two rows, let h = lhs(A).
+Consider two cases, as illustrated in Figure 4:
+
+   • If the first column has height 1, then A starts with U H h U i H (for some i ≥ 1). Replace
+     this initial piece with U H h−1 U i HH, and let φ(A) be the resulting bargraph. Viewing the
+     bargraph as a polyomino, the height of column h has been increased to match the height of
+     column h + 1.
+
+   • If the first column has height at least 2, then A starts with U i+1 H h V (for some i ≥ 1), with
+     V ∈ {U, D}. Replace this initial piece with U H h−1 U i HV , and let φ(A) be the resulting
+     bargraph. In terms of the polyomino, the first h − 1 columns have been shortened to height 1.
+
+In both cases, it is clear that ich1 (φ(A)) = h − 1. Note that in the second case, if h = 1, then
+φ(A) = A.
+    To see that φ is a bijection, observe that every bargraph A′ with at least two rows starts
+either with U H h−1 U i HH or with U H h−1 U i HV (where V ∈ {U, D}), for some i, h ≥ 1, where
+ich1 (A′ ) = h − 1. Indeed, these cases are determined by whether the first horizontal segment that
+is not at height 1 has length 1 or at least 2, respectively. These cases correspond to the two bullets
+above, and so φ−1 (A′ ) is obtained by replacing U H h−1 U i HH with U H h U i H, or U H h−1 U i HV
+with U i+1 H h V , respectively.
+
+
+
+                                                 13
+                                       h                      h−1
+                                 1
+                                                   →
+                                  U H hU iH               U H h−1 U i HH
+
+
+                                       h
+
+                                 ≥2                           h−1
+                                                    →
+                                  U i+1 H h V              U H h−1 U i HV
+
+                                        Figure 4: The bijection φ.
+
+3.11    Number of occurrences of UHU
+Let uhu count the number of occurrences of U HU in B and M. From the decomposition, we have
+               Muhu = [1 + y (Muhu − 1 + (t − 1)x(Muhu − 1 − xMuhu ))] (1 + xMuhu ).
+This is because when the elevated path in the first piece starts with a HU , it creates an additional
+occurrence of U HU . Since the generating function with respect to uhu for paths that start with H
+is xMuhu , the one for paths that start with U is Muhu − 1 − xMuhu , and so the one for paths that
+start with HU is x(Muhu − 1 − xMuhu ).
+    Now, since Buhu = y (Muhu − 1 + (t − 1)x(Muhu − 1 − xMuhu )), we get that Buhu satisfies
+                                 2
+                               xBuhu − (1 − x − y − txy)Buhu + xy = 0.
+
+3.12    Length of the initial staircase UHUH . . .
+Let stair be the statistic that measures the length of the longest initial sequence of the form
+U HU H . . . in a bargraph. The corresponding statistic on M, also denoted stair, is the length of
+the longest initial sequence of the form HU HU . . . .
+   Using the first line of the decomposition in Figure 2,
+   M = ǫ ∪ HM ∪ [U × (M \ ǫ) × D] × (ǫ ∪ HM)
+       = ǫ ∪ H ∪ HHM ∪ [HU × (M \ ǫ) × D] × (ǫ ∪ HM) ∪ [U × (M \ ǫ) × D] × (ǫ ∪ HM),
+where to obtain the second line we have applied the decomposition again to the M in the term
+HM. It now follows that
+            Mstair = 1 + tx + tx2 M + [t2 xy(Mstair − 1)](1 + xM ) + y(M − 1)(1 + xM ).
+Solving for Mstair and using that Bstair = ty(Mstair − 1), we get
+                                                                       √
+                                           R − (1 − x + tx2 − t2 xy) S
+                          Bstair = t                                               ,
+                                     2x(1 − t2 x + t2 x2 − t2 xy + (t4 − t2 )x2 y)
+where R = 1 − 2x − y + (1 + t)x2 − t2 xy + (t2 + t − 1)x2 y + t2 xy 2 − tx3 + (t − 2t3 )x3 y + t2 x2 y 2 and
+S = (1 − y)(1 − 2x − y + x2 − 2xy − x2 y).
+
+                                                     14
+3.13    Number of odd-height and even-height columns
+Let oh and eh denote the statistics that count the number of columns of odd and even height
+in bargraphs, respectively. The corresponding statistics on M, which we also denote by oh and
+eh, are the number of H steps at even and odd height, respectively. Let Boh,eh (t, s, x, y) and
+Moh,eh (t, s, x, y) be the generating functions on B and M where t marks oh and s marks eh. Let
+Meh,oh (t, s, x, y) = Moh,eh (s, t, x, y).
+    From the usual decomposition,
+                             Moh,eh = (1 + y(Meh,oh − 1))(1 + txMoh,eh ),
+                             Meh,oh = (1 + y(Moh,eh − 1))(1 + syMeh,oh ).
+The second equation can be obtained from the first one by interchanging the variables t and s.
+Solving for Moh,eh and using that Boh,eh = y(Moh,eh − 1), we get
+                                                                       √
+                               (1 − tx)(1 − sy) − (1 + tx)(1 + sy)y 2 − S
+                      Boh,eh =                                            ,
+                                         2y(s + t(1 − s)x + tsxy)
+where
+S = (1−y)(1−tx+y+txy)(1−tx−2sy+2t(s−1)xy+(s2 −1)y 2 −t(s2 +1)xy 2 −2sy 3 +2ts(s−1)xy 3 −s2 y 4 −s2 txy 4 ).
+
+3.14    Area
+The enumeration of bargraphs according to semiperimeter and area was obtained in [6, 3] by using
+a construction that adds one column at a time. Here we show that our decomposition of cornerless
+Motzkin paths can be used to derive a continued fraction. By area of a bargraph we mean the area
+of the region under the bargraph and above the x-axis. On cornerless Motzkin paths, the statistic
+area will refer to the area of the region directly below the H steps of the path and above the x-axis
+(that is, the regions below U and D steps are not included). With this definition, we have
+                                 Barea (t, x, y) = y(Marea (t, tx, y) − 1),                     (11)
+since ∆ lifts all the H steps, and so each H step contributes an additional unit to the area.
+    From the second line of the decomposition in Figure 2,
+                   Marea (t, x, y) = (1 + y(Marea (t, tx, y) − 1))(1 + xMarea (t, x, y)).
+Solving for Marea (t, x, y), we get
+                                                               1
+                            Marea (t, x, y) =                                  .
+                                                            1
+                                                                            −x
+                                                1 + y(Marea (t, tx, y) − 1)
+Iterating this formula to get a continued fraction and using (11), we get
+                                                        y
+                    Barea = −y +                                                .
+                                                           1
+                                   −tx +                       y
+                                          1−y+
+                                                                   1
+                                                  −t2 x +               y
+                                                          1−y+
+                                                                            1
+                                                                   −t3 x +
+                                                                           ..
+                                                                              .
+
+                                                     15
+Note that truncating the above continued fraction by stopping at −tn x + 1 produces the correct
+generating polynomial for bargraphs with up to n vertical steps, since the contribution of the
+truncated terms contains a factor y n+1 .
+
+
+4     Subsets of bargraphs
+In this section we find generating functions for three subsets of bargraphs: symmetric, weakly
+alternating, and strictly alternating.
+
+4.1    Symmetric bargraphs
+Symmetric bargraphs are those that are invariant under reflection along a vertical line. Let B S
+denote the set of symmetric bargraphs. These bargraphs correspond via the bijection ∆ to paths
+in M that are symmetric, which we denote by MS . For convenience, the set MS does not include
+the empty path. We use the term Motzkin path prefix to refer to a path with steps U , H and D
+starting at the origin and not going under the x-axis, but ending at any height. Let Ph denote the
+set of Motzkin path prefixes without peaks and valleys ending at height h, and let Ph = Ph (x, y)
+be corresponding generating function where x marks the number of Hs and y marks the number
+of U s, as usual. Clearly, P0 = M . For h ≥ 1, we obtain
+                                     Ph = yPh−1 + xPh + xy(M − 1)Ph
+by separating the cases when the path starts with a U and does not return to the x-axis, when
+it starts with an H, and when starts with a U and returns to the x-axis. In the latter case, the
+first return gives a decomposition of the form U ADHB, where A ∈ M is non-empty and B ∈ Ph .
+Solving for Ph , we get
+                                                     yPh−1
+                                         Ph =                       ,
+                                              1 − x − xy(M − 1)
+and iterating over h,
+                                                      yhM
+                                        Ph =
+                                             (1 − x − xy(M − 1))h
+for all h ≥ 0.
+     In a path in MS with an odd number of steps, the middle step must be an H. In a path in
+MS with an even number of steps, the two steps in the middle must be HH, since otherwise it
+would contain a peak or a valley. It follows that every path in MS is of the form AHA′ or AHHA′ ,
+where A ∈ Ph for some h ≥ 0, and A′ is the vertical reflection of A. In that case, the number of
+horizontal steps in AHA′ or AHHA′ equals twice the number of horizontal steps in A plus 1 or 2,
+respectively, while the number of up steps in AHA′ or AHHA′ equals the number of up steps in
+A plus the number of down steps in A, i.e. twice the number of up steps in A minus h. It follows
+that
+             X           Ph (x2 , y 2 ) X         (x + x2 )y h M (x2 , y 2 )            (x + x2 )M (x2 , y 2 )
+M S (x, y) =     (x+x2 )               =                                           =                  y               .
+              h≥0
+                             yh             (1 − x2 − x2 y 2 (M (x2 , y 2 ) − 1))h
+                                          h≥0
+                                                                                     1 − 1−x2 −x2 y2 (M (x2 ,y 2 )−1)
+
+The generating function for symmetric bargraphs is then B S = yM S (x, y), and we get the expression
+                          (1 − y 2 )[(1 − x2 )2 − y 2 (1 + x2 )2 ] − 1 + x2 + y 2 + 2x2 y + x2 y 2
+                        p
+           S
+         B = (1 + x)                                                                               .
+                                                2x (1 − y − x2 − x2 y)
+
+                                                        16
+4.2   Alternating bargraphs
+Weakly alternating bargraphs are those where ascents and descents alternate. Equivalently, they
+are of the form
+                         U i1 H j 1 D k 1 H ℓ 1 U i2 H j 2 D k 2 H ℓ 2 . . . U im H j m D k m
+for some m ≥ 1 and ir , jr , kr , ℓr ≥ 1 for all r. Strictly alternating bargraphs (called alternating
+bargraphs in [11, 12]), are those of the form
+
+                                    U i1 HD k1 HU i2 HD k2 H . . . U im HD km
+
+for some m ≥ 1 and ir , kr ≥ 1 for all r. Here we derive generating functions for these sets of
+bargraphs by using our decomposition of cornerless Motzkin paths.
+    Let B WA be the set of weakly alternating bargraphs, and let MWA denote the set of alternat-
+ing paths in M, which we define as those whose ascents and descents alternate. Adapting the
+decomposition in the second line of Figure 2 to alternating paths, we get
+
+                                   MWA = (ǫ ∪ U MΛ D) × (ǫ ∪ HMWA ),                              (12)
+
+where MΛ is the subset of MWA consisting of nonempty paths that do not start or end with an
+H, or consist only of Hs.
+   Since xM WA is the generating function for paths in MWA that start (respectively, end) with
+an H, and x + x2 M WA is the generating function for paths in MWA that start and end with an H,
+we have, by inclusion-exclusion, that
+
+                  M WA − xM WA − xM WA + (x + x2 M WA ) = (1 − x)2 M WA + x
+
+is the generating function for paths that neither start nor end with an H. Removing the empty
+path and adding paths consisting only of Hs, it follows that
+                                                                            x
+                                    M Λ = (1 − x)2 M WA + x − 1 +              .
+                                                                           1−x
+   By Equation (12), we have
+
+                                       M WA = (1 + yM Λ )(1 + xM WA ),
+
+which we can solve to obtain M WA and M Λ . Finally, using that B WA = yM Λ , we get
+                                         2−
+                                            p
+                    1 − 2x − y + 2xy + x      ((1 − x)2 − y) ((1 − x)2 − y(1 − 2x)2 )
+           B WA =                                                                     .
+                                              2x(1 − x)
+
+    To obtain the generating function B SA for the set B SA of strictly alternating bargraphs, we note
+that weakly alternating bargraphs can be obtained uniquely from strictly alternating bargraphs by
+replacing each H with an arbitrary non-empty sequence of H steps. Therefore, B WA (x, y) =
+B SA ( 1−x
+        x
+           , y), or equivalently, B SA (x, y) = B WA ( 1+x
+                                                        x
+                                                           , y), giving
+                                                  p
+                        SA       1 − y + x2 y −       1 − 2y + y 2 − 2x2 y − 2x2 y 2 + x4 y 2
+                    B        =                                                                .   (13)
+                                                              2x
+
+
+                                                           17
+   Interestingly, this generating function happens to be closely related with the generating function
+K of Motzkin paths with no occurrences of U D, U U and DD, where x marks the number of U
+and D steps, and y marks the number of H steps. Indeed, letting K be the set of such Motzkin
+paths, it is clear that every nonempty path in K can be decomposed uniquely either as HA or as
+U A′ DA, where A ∈ K is arbitrary, and A′ is any path in K that starts and ends with an H. Thus,
+K satisfies the equation
+                                    K = 1 + yK + x2 (y + y 2 K)K,
+where the factor y + y 2 K is the contribution of the piece A′ . Solving this equation we obtain
+                                   p
+                   1 − y − x2 y − 1 − 2y + y 2 − 2x2 y − 2x2 y 2 + x4 y 2     B SA − xy
+              K=                                                          =             ,
+                                            2x2 y 2                              xy 2
+
+where the last equality is obtained by comparing with Equation (13). The generating function for
+these paths by semiperimeter, K(z, z), gives sequence A023432 in [10].
+    Next we give a recursive bijection f : B SA \ {U HD} → K that maps the statistics #H (i.e.,
+number of H steps) and #U in bargraphs to the statistics #U + #D + 1 and #H + 2 in Motzkin
+paths, respectively. In particular, the bijection takes bargraphs of semiperimeter n (for n ≥ 3) to
+paths with n − 3 steps. The base case consists of bargraphs with only one H step, for which we
+define f (U a HD a ) = H a−2 , where a ≥ 2.
+    Every bargraph G ∈ B SA with at least two H steps can be uniquely decomposed as
+
+                                        G = U a G1 HG2 D a ,                                       (14)
+
+where a ≥ 1, G1 ∈ B SA and U G2 D ∈ B SA . Note that a is the height of the lowest H step in G, and
+that the H that appears in the decomposition (14) is the leftmost H step at height a. For such G,
+let
+                            f (G) = H a−1 U f (U G1 D) HD f (U G2 D).
+Note that f (U G1 D) is either empty (when G1 = U HD) or it starts with an H. By induction, the
+path f (G) contains no U D, U U or DD. Figure 5 shows an example of this construction.
+
+
+
+
+            H
+                                   →
+
+
+Figure 5: A strictly alternating bargraph and the corresponding Motzkin path in K obtained by
+applying f .
+
+
+
+References
+[1] A. Blecher, C. Brennan and A. Knopfmacher, Levels in bargraphs, Ars Math. Contemp. 9
+   (2015), 297–310.
+
+
+                                                 18
+[2] A. Blecher, C. Brennan and A. Knopfmacher, Peaks in bargraphs, Transactions of the Royal
+   Society of South Africa 71 (2016), 97–103.
+
+[3] A. Blecher, C. Brennan and A. Knopfmacher, Combinatorial parameters in bargraphs, preprint.
+
+[4] A. Blecher, C. Brennan and A. Knopfmacher, Walls in bargraphs, preprint.
+
+[5] A. Blecher, C. Brennan, A. Knopfmacher and H. Prodinger, The height and width of bargraphs,
+   Discrete Appl. Math. 180 (2015), 36–44.
+
+[6] M. Bousquet-Mélou and R. Brak, Exactly solved models, Chapter of Polygons, polyominoes and
+   polycubes, pp. 43–78, Lecture Notes in Phys. 775, Springer, Dordrecht, 2009.
+
+[7] M. Bousquet-Mélou and A. Rechnitzer, The site-perimeter of bargraphs, Adv. in Appl. Math.
+   31 (2003), 86–112.
+
+[8] S. Feretić, A perimeter enumeration of column-convex polyominoes, Discrete Math. Theor.
+   Comput. Sci. 9 (2007), 57–84.
+
+[9] A. Geraschenko, An investigation of skyline polynomials, preprint.
+
+[10] The On-Line Encyclopedia          of   Integer   Sequences,    published   electronically   at
+   https://oeis.org, 2016.
+
+[11] T. Prellberg and R. Brak, Critical exponents from nonlinear functional equations for partially
+   directed cluster models, J. Stat. Phys. 78 (1995), 701–730.
+
+[12] A. Rechnitzer, Some problems in the counting of lattice animals polyominoes, polygons and
+   walks, Ph.D Thesis, University of Melbourne, 2000.
+
+[13] R. P. Stanley, Enumerative Combinatorics, vol. 2, Cambridge Studies in Advanced Mathemat-
+   ics 62, Cambridge University Press, Cambridge, 1999.
+
+
+
+
+                                                19
+
