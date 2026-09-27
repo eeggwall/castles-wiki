@@ -5,7 +5,7 @@ summary: Every castle carries a graph - filled cells as vertices, orthogonal nei
 tags: [concept, castle, graph, polyomino, spectral, adjacency, laplacian, tree, bipartite, planar, cycle-rank, fibonacci, jacobsthal, oeis, bridge, pedagogy]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-17
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # The castle graph - bridge to graph theory
@@ -117,7 +117,7 @@ Each of these is a bridge that the castle graph turns from analogy into computat
 
 - **Spectral graph theory.** Adjacency, Laplacian, normalized Laplacian, signless Laplacian, and Ihara zeta all live on `G_c`. See [[spectral-analysis](pages/spectral-analysis.md)] for the methods and [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] / [[isospectral-castles](pages/isospectral-castles.md)] for two settled applications.
 - **Extremal graph theory.** The maximum spectral radius of a castle graph with `n` cells is a Turán-type problem; the min-cut / max-flow structure of the base row makes castles a natural family to test conjectures on.
-- **Algebraic graph theory.** Because `G_c` is bipartite and planar, it fits inside classical setups (Kasteleyn, dimer models) where combinatorial identities live. Planarity also gives the critical group through the planar dual, whose vertices are the `2 × 2` blocks ([[sandpile-group](pages/sandpile-group.md)]).
+- **Algebraic graph theory.** Because `G_c` is bipartite and planar, it fits inside classical setups (Kasteleyn, dimer models) where combinatorial identities live. Planarity also gives the critical group through the planar dual, whose vertices are the `2 × 2` blocks ([[sandpile-group](pages/sandpile-group.md)]); the dual-graph theorem is Cori and Rossin's, reached on the wiki through [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)].
 - **Random graphs.** Random castles under any of the wiki's ensembles ([[spectral-analysis](pages/spectral-analysis.md)] method 2, Lindstrom-Gessel-Viennot (LGV) kernel) become a random-graph model whose spectra can be sampled.
 - **Sunada theory** (see [[isospectral-castles](pages/isospectral-castles.md)]) for common covers and the "hear the shape" question.
 
@@ -169,7 +169,7 @@ def cycle_rank(c):
 - [[sandpile-group](pages/sandpile-group.md)] - the sandpile group: the 2×2 blocks that make the cycle rank also hold all the sand; tree castles hold none.
 - [[sandpile-census](pages/sandpile-census.md)] - the census of sandpile groups; 6,963 of the 33,150 castles to 16 cells are tree castles with trivial group.
 - [[castle-avalanches](pages/castle-avalanches.md)] - battlements and rectangles have the same mean avalanche; the 2×2 blocks set the tail.
-
+- [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] - source for the sandpile group of a graph, its sink independence, and the dual-graph theorem the block matrices rest on.
 
 ## Footnotes
 

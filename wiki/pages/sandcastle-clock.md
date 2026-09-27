@@ -3,9 +3,9 @@ title: The sandcastle clock - dropping sand until the castle repeats, in the sin
 category: Concepts
 summary: Start a castle's sandpile at its identity configuration and drop one grain on the apex every tick; the pile returns to the identity after a whole number of ticks, the clock period. The period is the order of "one grain at the apex" in the castle's sandpile group, the least common denominator of a column of the inverse reduced Laplacian, and simulation agrees with that on every test castle. The clock runs in both models of sandpile-group. In the sink model (one sink cell, bottom-left) tree branches are transparent, so tree castles never tick, and the period depends on where the sink and the apex are (on the silver rectangle it can be 1, 3, 5 or 15, and a castle and its mirror image differ in 1,018 of 1,953 cases to 12 cells); the graph invariant is the clock spectrum over every (sink, grain) pair, which separates 62 of the 105 adjacency-cospectral groups (the 10-cell pair ticks 15 against 5) and 5 of the 17 Laplacian-cospectral groups. In the tide model (the whole bottom row as the sink) there is no sink to choose, the clock depends only on the castle's runs of raised columns, and a spike standing on the ground is a branch of the sink, so 6,611 castles with a nontrivial tide group still never tick. The tide removes the mirror dependence up to one tie-break: a castle and its mirror image have different tide periods in 204 of 1,953 cases to 12 cells, every one of them a castle with two or more tallest columns. Cospectral separation is the natural test for the sink clock, a graph invariant; the tide clock sees the skyline, and every cospectral group contains castles of different widths, so any tide count over the cells above the ground separates them all for that trivial reason. The fixed-apex tide clock, which counts no cells, separates 49 of the 105 adjacency-cospectral groups and none of the 17 Laplacian ones.
 tags: [concept, castle, sandpile, critical-group, clock, period, identity-element, isospectral, laplacian, tree-castle, census, sink-model, tide-model, mirror-symmetry, sympy, verification, pedagogy]
-sources: [project-euler-502-castle-factoring]
+sources: [project-euler-502-castle-factoring, rossin-2000-group-of-a-sandpile, dhar-ruelle-sen-verma-1995-algebraic-aspects]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # The sandcastle clock - dropping sand until the castle repeats, in the sink and tide models
@@ -34,7 +34,7 @@ clock period  =  order of "one grain at the apex" in K
               =  the least common denominator of the column of L̃⁻¹ belonging to the apex
 ```
 
-where `L̃` is the Laplacian with the sink's rows and columns deleted: one row and column in the sink model, the whole bottom row in the tide model. `K` is `K_sink` or `K_tide` accordingly. The second line is how to compute it without simulating. `t` grains at `v` topple away exactly when `L̃⁻¹ (t·e_v)` has integer entries. Direct simulation and this formula agree on every castle tested, in both models.[^1] [^7] The period always divides the **exponent** of `K` (its largest cyclic factor), and it equals the group order `|K|` exactly when the apex grain generates the whole group.
+where `L̃` is the Laplacian with the sink's rows and columns deleted: one row and column in the sink model, the whole bottom row in the tide model. `K` is `K_sink` or `K_tide` accordingly. The second line is how to compute it without simulating. `t` grains at `v` topple away exactly when `L̃⁻¹ (t·e_v)` has integer entries. Direct simulation and this formula agree on every castle tested, in both models.[^1] [^7] The period always divides the **exponent** of `K` (its largest cyclic factor), and it equals the group order `|K|` exactly when the apex grain generates the whole group. The same principle appears in the physics literature: a deterministic sandpile that always adds at one site cycles with the order of that site's addition operator, computed from its column of `Δ⁻¹`.[^11]
 
 ## Tree branches are transparent
 
@@ -69,10 +69,10 @@ Over all 33,150 castles with at most 16 cells (mirror images removed), with the 
 | … apex grain generates `K` (period `= |K|`) | 8,839 | 13,159 |
 | … period equals the exponent of `K` | 10,915 | 15,286 |
 | … period below the exponent | 15,272 | 10,901 |
-| … period 1 all the same | 3,769 | 6,611 |
+| … period 1 anyway (nontrivial group) | 3,769 | 6,611 |
 | most common periods | 4, 1, 2, 15, 5, 3, 209, 56 | 1, 3, 11, 8, 21, 29, 4, 41 |
 
-In the sink model, period 1 with a nontrivial group happens when the sink cell and the apex hang off the same part of the block skeleton, as the transparency rule predicts. Under the tide it happens almost twice as often, because every spike standing on the ground is part of the sink's tree. The tide grain generates its group more often because tide groups are more often cyclic ([[sandpile-census](pages/sandpile-census.md)]).
+In the sink model, period 1 with a nontrivial group happens when the sink cell and the apex hang off the same part of the block skeleton, as the transparency rule predicts. Under the tide it happens almost twice as often, because every spike standing on the ground is part of the sink's tree. The tide grain also generates its whole group more often (13,159 against 8,839), which fits tide groups being cyclic more often ([[sandpile-census](pages/sandpile-census.md)]); whether that is the whole reason has not been checked.
 
 ## Hearing cospectral castles
 
@@ -210,11 +210,13 @@ def clock_spectrum(c, model='sink'):       # sink: every (sink cell, grain cell)
 
 ## Appearances in Sources
 
+- [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] - the period of a deterministic sandpile as the order of one addition operator, and the toppling invariants built from `Δ⁻¹`.
+- [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] - the group operation (add, then stabilize) that makes the clock period an order in the group.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle definition behind the castle graph.
 
 ## Footnotes
 
-[^1]: Verified by execution (Python 3.10, SymPy, 2026-09-26): in the sink model, `clock_by_simulation` (start at `stab(2m − stab(2m))`, add one grain at the apex, stabilize, count ticks to return) equals the least common denominator of `L̃⁻¹ e_apex` for `(2,2)`, `(2,2,2)`, `(1,2,1)`, `(3,3,3)`, `(2,2,2,2)`, `(1,1,1,2,3,2)`, `(1,1,2,2,3,1)`, `(2,2,1,2,2)` and `(2,3,3,2)` (periods 4, 15, 1, 8, 56, 15, 5, 4, 52); four of these are pinned in the Snippet. The identity formula and the equivalence "adding a grain = adding in `K`" are standard (https://en.wikipedia.org/wiki/Abelian_sandpile_model).
+[^1]: Verified by execution (Python 3.10, SymPy, 2026-09-26): in the sink model, `clock_by_simulation` (start at `stab(2m − stab(2m))`, add one grain at the apex, stabilize, count ticks to return) equals the least common denominator of `L̃⁻¹ e_apex` for `(2,2)`, `(2,2,2)`, `(1,2,1)`, `(3,3,3)`, `(2,2,2,2)`, `(1,1,1,2,3,2)`, `(1,1,2,2,3,1)`, `(2,2,1,2,2)` and `(2,3,3,2)` (periods 4, 15, 1, 8, 56, 15, 5, 4, 52); four of these are pinned in the Snippet. The identity formula and the equivalence "adding a grain = adding in `K`" are standard (https://en.wikipedia.org/wiki/Abelian_sandpile_model; also [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] §2 L37-39, the group operation `u ⊕ v` as stabilized sum and the identity recipe).
 [^2]: Verified by execution (Python 3.10, SymPy, 2026-09-26): with the bottom-left sink cell, grain orders on `(2,2,3)` are 15 at `(0,1)`, `(1,0)` and `(1,1)`, 3 at `(2,0)`, and 5 at both `(2,1)` and the spike top `(2,2)`; on `(2,2,1,1,1)` the tail cells `(2,0)`, `(3,0)`, `(4,0)` all have order 4, the same as `(1,0)` where the tail attaches.
 [^3]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `grain_orders((2,2,2), {d})` for each of the six sink cells, as pinned for the top-right cell; the full 6 × 6 table has entries 1, 3, 5 and 15.
 [^4]: Verified by execution (Python 3.10, 2026-09-26): for every castle with at most 12 cells that is not its own mirror image (1,953 pairs), the fixed-convention sink period of the castle and of its mirror image differ in 1,018 cases, the first being `(2,3)` (2) against `(3,2)` (4).
@@ -224,3 +226,4 @@ def clock_spectrum(c, model='sink'):       # sink: every (sink cell, grain cell)
 [^8]: Verified by execution (Python 3.10, 2026-09-26): tide periods by exact rational solution of `L̃ x = e_apex` (bottom row deleted, full degrees kept) for all 33,150 castles, compared with the order and exponent of `K_tide` from the tide block matrix of [[sandpile-group](pages/sandpile-group.md)]; period 1 with nontrivial `K_tide` in 6,611 castles, among them `(3,1,2,2)` (`K_tide = Z/3`), as pinned.
 [^9]: Verified by execution (Python 3.10, 2026-09-26): for the 1,953 castles with at most 12 cells that are not their own mirror image, the tide period with the leftmost apex differs from the mirror image's in 204 cases, none of them with a unique tallest column; the first by cell count are `(2,1,2,2)` (1) against `(2,2,1,2)` (3) and `(1,2,1,2,2)` (1) against its mirror (3), the first pinned. The tide clock spectrum of a castle equals its mirror image's on the first 400 of those pairs, as the symmetry of the ground requires.
 [^10]: Verified by execution (Python 3.10, 2026-09-26): for the 105 adjacency and 17 Laplacian cospectral groups of [[sandpile-census](pages/sandpile-census.md)], taken with every skyline of every graph in the group, a group counts as separated when two castles with non-isomorphic graphs get different tide periods (leftmost apex); 49 adjacency and 0 Laplacian groups are separated. Every one of the 122 groups contains castles of two or more widths. The 10-cell pair's tide values are pinned in the Snippet.
+[^11]: [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] §7 Question 1 pp. 25-27, eqs. (7.1)-(7.3) - "the period of the cycle T_L is independent of the initial configuration"; "T_L is the order of the operator a(L+1, L+1) on the space R of recurrent configurations"; `T_L = (Det Δ)/M` with `M` the gcd of the centre column of `E = (Det Δ)Δ⁻¹`, and `T_L` dividing the largest elementary divisor. The paper's toppling invariants `Q_i = Σ_j (Δ⁻¹)_ij z_j mod 1` (§3 p. 6, eq. 3.3) are the reason a grain count `t e_v` topples away exactly when `L̃⁻¹ (t e_v)` is integral.
