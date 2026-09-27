@@ -93,11 +93,12 @@ with `D` the diagonal degree matrix and `A` the adjacency matrix. The Laplacian 
 
 - **Algebraic connectivity `μ_1` (Fiedler value)** — measures how "bottlenecked" the castle is. A pyramidal castle (broad base) has larger `μ_1` than a T-shape or a castle with a narrow neck between two bulges. Fiedler eigenvector localizes on the bottleneck.
 - **Cheeger inequality** — `h(G_C) ≥ μ_1 / 2`, where the Cheeger constant `h(G_C)` is the minimum boundary-to-volume ratio over vertex subsets. Detects **necks and bridges** in the castle geometrically.
+- **Kirchhoff and the sandpile group** - every cofactor of `L` is the number of spanning trees, and the Smith normal form of the reduced Laplacian `L̃` is the castle's sandpile group, of that order. The group sees only the castle's graph of `2 × 2` blocks ([[sandpile-group](pages/sandpile-group.md)], [[sandpile-census](pages/sandpile-census.md)]).
 - **Heat-kernel trace** — `Tr(e^{−tL}) = ∑_i e^{−t μ_i}`. Encodes the entire Laplacian spectrum in a single time-parameter function, and captures the polyomino up to isospectral isomorphism.
 
 ### Isospectral castles — "hear the shape of a castle"
 
-Two castles with the **same Laplacian spectrum but non-isomorphic shape** are **isospectral**. This is Kac's classical "hear the shape of a drum" question specialized to the castle setting: given the spectrum of `L(G_C)`, can we recover `C` up to isomorphism? For polyominoes generally the answer is **no** — Sunada-type constructions produce isospectral non-isomorphic pairs — and it is essentially certain that isospectral castle pairs exist. The seminar target is finding the **smallest**.
+Two castles with the **same Laplacian spectrum but non-isomorphic shape** are **isospectral**. This is Kac's classical "hear the shape of a drum" question specialized to the castle setting: given the spectrum of `L(G_C)`, can we recover `C` up to isomorphism? For polyominoes generally the answer is **no** — Sunada-type constructions produce isospectral non-isomorphic pairs — and castles are no exception: the smallest isospectral castle pairs have 10 cells (adjacency) and 11 cells (Laplacian), settled below.
 
 **Sketched approach.** Enumerate all castles up to size `n ≤ 20` (or up to `w, h ≤ 6` or so) using the [[castle-snippets](pages/castle-snippets.md)] enumeration primitives. For each castle: (i) build the polyomino graph as a `NetworkX` graph or a sparse adjacency matrix; (ii) compute `L`; (iii) compute the sorted spectrum as a tuple of rounded floats (or symbolic characteristic polynomial for exactness); (iv) hash. Search for collisions across non-isomorphic castles. Report the smallest pair. Both computational and clean-statement outcomes — either an explicit pair is exhibited (and drawn), or an exhaustive search up to size `n_0` shows no pair exists up to `n_0`.
 
@@ -111,7 +112,7 @@ For the castle polyomino graph `G_C`, the **Ihara zeta function** is
 ζ_{G_C}(u)  =  ∏_{[γ]}  (1 − u^{|γ|})^{−1}
 ```
 
-where the product runs over equivalence classes of prime, backtrackless, tailless closed walks. `ζ_{G_C}(u)` is a rational function, and its poles are the eigenvalues of a modified **non-backtracking / edge-adjacency operator** on the graph. This is the graph-theoretic analog of the **Selberg zeta function** on hyperbolic surfaces — spectral information about the graph packaged as an arithmetic-flavored generating function over closed walks.
+where the product runs over equivalence classes of prime, backtrackless, tailless closed walks. `ζ_{G_C}(u)` is a rational function, and its poles are the eigenvalues of a modified **non-backtracking / edge-adjacency operator** on the graph. This is the graph-theoretic analog of the **Selberg zeta function** on hyperbolic surfaces — spectral information about the graph packaged as an arithmetic-flavored generating function over closed walks. Its behaviour at `u = 1` also sees the spanning-tree count, the order of the sandpile group ([[sandpile-group](pages/sandpile-group.md)]).
 
 ### Ramanujan castles
 
@@ -143,16 +144,16 @@ The five spectra above are not independent of the structural axes. Concrete cons
 | Structural rule / type | Forced spectral consequence |
 |---|---|
 | **Crenellated** (Axis 7, `c_i ∈ {a, h}` alternating) | Skyline DFT support at `k = w/2` (two-atom); high-pass spectrum |
-| **Boxcastle** (Axis 5, `c_i = h` all) | Laplacian spectrum `2·cos(iπ/(w+1)) + 2·cos(jπ/(h+1))`, explicit closed form |
+| **Boxcastle** (Axis 5, `c_i = h` all) | Adjacency spectrum `2·cos(iπ/(w+1)) + 2·cos(jπ/(h+1))` (`1 ≤ i ≤ w`, `1 ≤ j ≤ h`) and Laplacian spectrum `4 − 2·cos(iπ/w) − 2·cos(jπ/h)` (`0 ≤ i < w`, `0 ≤ j < h`), explicit closed forms |
 | **Unimodal / pyramidal** (Axis 1) | Skyline DFT decays like `1/k` (sawtooth-DFT class); low-pass spectrum; Laplacian spectral gap `μ_1 = Θ(1/w)` |
 | **Even-parity-only** (PE 502 rule 6) | Transfer-matrix `T` splits into `±1` eigenspaces of the block-parity involution `σ`; castles live in the `+1` half; spectral projection = `½(I + σ)`. This is [[castle-sign](pages/castle-sign.md)]'s `(T ± P)/2` at the operator level. |
 | **Silver width growth castle** (Axis 8) | The *class's* transfer matrix (the 1-smooth height-3 matrix `[[1,1,0],[1,1,1],[0,1,1]]` for the Pell strip) has spectral radius `1 + √2 ∈ Q(√2)`; PE 502's own signed transfer matrix never has a metallic eigenvalue |
-| **Golden- / silver-spectrum castle** (Axis 9) | Adjacency spectral radius `φ` (the 4-cell paths) or `1 + √2` (the `3×2` rectangle and three non-rectangular castles) - see [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
+| **Golden- / silver-spectrum castle** (Axis 9) | Adjacency spectral radius `φ` (the 4-cell paths) or `1 + √2` (36 castles up to width 8: the `3×2` rectangle and 35 non-rectangular ones) - see [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
 | **q-Gibbs area-weighted** (`q = e^{−β}`, area-weighted measure) | Transfer matrix `T_β` with `β`-dependent spectrum; **spectral phase transition** at some critical `β_c` where `λ_1(β)` has a non-analyticity — the castle analog of a Yang-Lee zero and the direct meeting-point of combinatorics with statistical mechanics |
 
 The last row is the sharpest open target — a critical-`β` computation for castles graded by area would connect the [[castle-by-area](pages/castle-by-area.md)] thread, the [[q-catalan-numbers](pages/q-catalan-numbers.md)] q-analog thread, and the transfer-matrix spectral analysis in a single result. Statistical-physics adjacency comes for free.
 
-## Two immediate targets (sketched, not run)
+## Two immediate targets
 
 ### `λ_1(h)` - settled
 
@@ -160,7 +161,7 @@ The transfer matrix `M_k` (`k = h − 1`) has characteristic polynomial `char_k`
 
 ### The isospectral-castle hunt - settled
 
-Run exhaustively over every castle with at most 16 cells (compositions of `n`, mirror-deduped, exact integer characteristic polynomials, isomorphism by networkx) on [[isospectral-castles](pages/isospectral-castles.md)]. The smallest non-isomorphic castles with the same **adjacency** spectrum have **10 cells** (`(1,1,1,2,3,2)` vs `(1,1,2,2,3,1)`, two groups at that size); with the same **Laplacian** spectrum, **11 cells** (`(1,1,1,2,1,1,2,1,1)` vs `(1,1,3,1,1,1,2,1)`, both trees); isospectral for both operators, **16 cells**. Groups multiply quickly afterwards (50 adjacency groups at 16 cells), so the spectrum is an invariant, not a classifier.
+Run exhaustively over every castle with at most 16 cells (compositions of `n`, mirror-deduped, exact integer characteristic polynomials, isomorphism by networkx) on [[isospectral-castles](pages/isospectral-castles.md)]. The smallest non-isomorphic castles with the same **adjacency** spectrum have **10 cells** (`(1,1,1,2,3,2)` vs `(1,1,2,2,3,1)`, two groups at that size); with the same **Laplacian** spectrum, **11 cells** (`(1,1,1,2,1,1,2,1,1)` vs `(1,1,3,1,1,1,2,1)`, both trees); isospectral for both operators, **16 cells**. Groups multiply quickly afterwards (50 adjacency groups at 16 cells), so the spectrum is an invariant, not a classifier. Sand separates more: to 16 cells the sandpile group separates no cospectral group ([[sandpile-census](pages/sandpile-census.md)]), the clock spectrum 62 of 105 adjacency and 5 of 17 Laplacian ones ([[sandcastle-clock](pages/sandcastle-clock.md)]), and the avalanche profile all of them ([[sandpile-identity](pages/sandpile-identity.md)]).
 
 ## Where methods meet predicates
 

@@ -63,7 +63,7 @@ The most common periods are 4, 1, 2, 15, 5, 3, 209, 56. Period 1 with a nontrivi
 - **The 10-cell pair.** The adjacency-cospectral pair `(1,1,1,2,3,2)` and `(1,1,2,2,3,1)` of [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] has the same spectrum and the same group `Z/15`. Its clocks tick **15** and **5** times, and its clock spectra differ: over the 90 (drain, grain) pairs, periods `1, 3, 5, 15` occur `14, 10, 14, 52` times against `10, 16, 18, 46`.
 - **The smallest Laplacian-cospectral pair the clock spectrum separates** has 13 cells: `(1,1,1,2,3,1,1,2,1)` and `(1,2,1,2,6,1)`. Both have period 2 under the fixed convention, but over all 156 pairs their periods `1, 2, 4` occur `44, 28, 84` times against `42, 54, 60`. With the fixed convention alone, the first separated Laplacian pair has 15 cells (periods 4 and 2).
 
-So the answer to the `IDEAS.md` question "the smallest castle whose period is not determined by its spectrum" is 10 cells for the adjacency spectrum and 13 cells for the Laplacian spectrum, using the clock spectrum.
+So, reading the period through the clock spectrum, the smallest castles whose period is not determined by their spectrum have 10 cells for the adjacency spectrum and 13 cells for the Laplacian spectrum.
 
 ## What this settles and what it opens
 
@@ -75,7 +75,6 @@ So the answer to the `IDEAS.md` question "the smallest castle whose period is no
 **Open.**
 - Which cospectral castles does the clock spectrum still fail to separate (43 adjacency and 12 Laplacian groups to 16 cells)? A finer sandpile invariant that separates them all to 16 cells is the avalanche profile on [[sandpile-identity](pages/sandpile-identity.md)].
 - A canonical "tide" clock: merge the bottom row into one drain ([[sandpile-group](pages/sandpile-group.md)], the tide variant) and drop on every top cell. Does it remove the mirror dependence?
-- The identity element itself and the avalanches each tick causes, the remaining S-department items.
 
 ## Snippet
 
@@ -169,7 +168,8 @@ def clock_spectrum(c):                     # periods over every (drain, grain ce
 - [[sandpile-identity](pages/sandpile-identity.md)] - the identity the clock starts from, and the avalanche profile, which separates every cospectral group to 16 cells.
 - [[castle-avalanches](pages/castle-avalanches.md)] - dropping at random instead of on one cell.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
-
+- [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the 10-cell isospectral pair worked by hand, whose clocks tick 15 and 5.
+- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the same order-versus-exponent reading of a group from its Smith normal form: the mod-`p` period is `ord(x)`, which need not be the exponent.
 
 ## Appearances in Sources
 

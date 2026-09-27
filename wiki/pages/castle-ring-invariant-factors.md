@@ -37,7 +37,7 @@ The seminar's `(char_k, p)` cases in this language:[^1]
 Two facts to read off:
 
 - **The mod-`p` period is `ord(x)` in the product.** From [[mod-p-observatory](pages/mod-p-observatory.md)] `period = lcm of eigenvalue orders`; the eigenvalues are the projections of `x` into each `F_{p^{d_i}}^*`, and `ord(x)` in a product of cyclic groups is the `lcm` of the componentwise orders. Row 1: `lcm(100, 3400) = 3400`, the period observed at `p = 101`.
-- **`ord(x)` need not be the exponent.** Row 1: exponent `= 10200`, `ord(x) = 3400`; the projection of `x` into the `F_{101²}^*` factor has order `3400 = (p²−1)/3`, one-third of the max. Row 3: exponent `= p²−1`, `ord(x)` is `(p²−1)/2` (because `ord(2 mod p) = (p−1)/2`, not `p−1`).
+- **`ord(x)` need not be the exponent.** The sandcastle clock has the same shape: its period is the order of one grain in the sandpile group, below the group's exponent on 15,272 castles to 16 cells ([[sandcastle-clock](pages/sandcastle-clock.md)]). Row 1: exponent `= 10200`, `ord(x) = 3400`; the projection of `x` into the `F_{101²}^*` factor has order `3400 = (p²−1)/3`, one-third of the max. Row 3: exponent `= p²−1`, `ord(x)` is `(p²−1)/2` (because `ord(2 mod p) = (p−1)/2`, not `p−1`).
 
 ## 2. Kitamasa is exponentiation in `R^*`
 

@@ -183,7 +183,7 @@ lam**3 - 4*lam**2 + 4*lam - 8
 | 16 | `6.563018640…` | degree 9 | 9 | half-integer coefficients | no |
 | 18 | `7.117830358…` | degree 9 | 9 | `μ⁹ − 5μ⁸ + 10μ⁷ − 20μ⁶ + 15μ⁵ − 21μ⁴ + 7μ³ − 8μ² + μ − 1` | yes |
 
-The pattern through `k = 18`: both factors of `char_k` have constant term of absolute value `2^{k/2}`; the dominant root sits in the degree-`k/2` factor when `k ≡ 2 (mod 4)` - making **`ρ_k/2` an algebraic unit** - and in the degree-`(k/2+1)` factor when `k ≡ 0 (mod 4)`, where `ρ_k/2` is not even an algebraic integer. Units are what the metallic means are (fundamental units of their fields), so for `k ≡ 2 (mod 4)` the L-direction eigenvalue keeps the number-theoretic structure that makes continued fractions of quadratic units so clean; for `k ≡ 0 (mod 4)` that structure is gone. A proof of the pattern is open (IDEAS, "Plastic eigenvalue and the unit pattern").
+The pattern through `k = 18`: both factors of `char_k` have constant term of absolute value `2^{k/2}`; the dominant root sits in the degree-`k/2` factor when `k ≡ 2 (mod 4)` - making **`ρ_k/2` an algebraic unit** - and in the degree-`(k/2+1)` factor when `k ≡ 0 (mod 4)`, where `ρ_k/2` is not even an algebraic integer. Units are what the metallic means are (fundamental units of their fields), so for `k ≡ 2 (mod 4)` the L-direction eigenvalue keeps the number-theoretic structure that makes continued fractions of quadratic units so clean; for `k ≡ 0 (mod 4)` that structure is gone. A proof of the pattern is open.
 
 **The plastic component of `P(6,L)` is an OEIS sequence.** Partial fractions on the gallery's `num_6/den_6` split `P(6,L)` into a cubic part (the `2ψ²` block) and a quartic remainder, and the cubic part is exact:[^7][^8]
 
@@ -278,7 +278,7 @@ def jacobi_perron(f, x0, steps):
 'no period within 400 steps'
 ```
 
-**`ρ_6` is JPA-periodic**: five preperiod digit pairs, then `[1,1], [1,1], [1,1], [5,9]` forever - the cubic analogue of `[2; 2, 2, …]`, and the affirmative answer to the IDEAS entry's "do the multi-variable convergents hit anything?" **`ρ_4` is not** periodic within 400 exact steps (largest digit seen 646), and neither are the quintics `ρ_8`, `ρ_10` within 60 - consistent with (though not proof of) the unit/non-unit split above: `ρ_6/2` is a unit; `ρ_4/2` is not an algebraic integer at all.[^9]
+**`ρ_6` is JPA-periodic**: five preperiod digit pairs, then `[1,1], [1,1], [1,1], [5,9]` forever - the cubic analogue of `[2; 2, 2, …]`, and an affirmative answer to "do the multi-variable convergents hit anything?" **`ρ_4` is not** periodic within 400 exact steps (largest digit seen 646), and neither are the quintics `ρ_8`, `ρ_10` within 60 - consistent with (though not proof of) the unit/non-unit split above: `ρ_6/2` is a unit; `ρ_4/2` is not an algebraic integer at all.[^9]
 
 **The convergents, and the unit they encode.** Bernstein's convergent vectors `A^{(v)} ∈ Z³` start as the unit vectors and follow `A^{(v+3)} = A^{(v)} + a₁^{(v)} A^{(v+1)} + a₂^{(v)} A^{(v+2)}`; the first coordinate is the denominator, `A₁/A₀ → ρ`, `A₂/A₀ → ρ²`. The preperiod / period of the `ρ_6` expansion above splits its digit pairs into `pre` and `per`:
 
@@ -326,7 +326,7 @@ One more thing the convergents teach: `|ρ_6 − A₁/A₀| · A₀^{3/2}` stays
 - The CF ↔ mod-`p` twin made quantitative: `N(δ) = −1` ⟺ purely periodic ⟺ `δ^{p+1} = −1` at inert primes (Part 2).
 - `ρ_6 = 2ψ²`, `P(6,L) = 2^L·A005251(L+3) + remainder`, and a periodic Jacobi–Perron expansion for `ρ_6` with unit `ψ^14`.
 
-**Open** (also filed on IDEAS).
+**Open.**
 - Prove `(x+1)^L (x−1)^{L−2}` (the Ehrhart sketch is the route) and find `A_L, B_L` uniformly - this is most of "General closed form for `P(k,L)`."
 - Why the plastic field at `k = 6`, and why `ρ_k/2` is a unit exactly for `k ≡ 2 (mod 4)` - answered on [[tower-parity-sectors](pages/tower-parity-sectors.md)]: the even-`k` factors are `H_d(μ) = Σ (−1)^i C(⌊(d+i)/2⌋, i) μ^{d−i}` and its Lucas companion, `H_3` is the minimal polynomial of `ψ²`, and the dominant root lies in the monic factor `H_{k/2}` exactly when `k ≡ 2 (mod 4)`. The JPA of `ρ_10`, `ρ_10/2`, `ρ_14/2` is not periodic within 300 / 200 exact steps.
 - A bijective reading of `P(6,L) = 2^L · #(no-isolated-1 strings) + …` - sharpened on [[tower-parity-sectors](pages/tower-parity-sectors.md)] to `P_even(6,L) = 2^L·A005251(L+3)` (even last column), and generalized to Hardin's word counts for every `k ≡ 2 (mod 4)`; the bijection itself is still open. Likewise `|P(k,4)|` as `C₃`-lattice crystal-ball / tetrahedral numbers.

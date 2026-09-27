@@ -104,7 +104,7 @@ The pair `(area, blocks)` separates a few percent of a cell; a single fractional
 
 `B_alpha(C)` is continuous and piecewise polynomial in `alpha` (each residual is a polynomial in `alpha`, and the positive part clips). Three facts about its shape, all from the `w <= 6`, `h <= 4` census on a grid of 201 orders:[^exec]
 
-- **It is not monotone.** 829 of the 5460 castles have at least one uptick on `[0, 1]`. The upticks are small: the largest single step is `0.014` per `0.005` of `alpha`, and the largest total rise over `[0, 1]` is `0.47`, on `(4, 3, 1, 4, 1, 4)` (area 17, blocks 10). The IDEAS conjecture that `B_alpha` decreases in `alpha` for every castle is false in general; it is true for every nondecreasing castle, by the generating-function argument below, so the upticks all come from castles with descents.
+- **It is not monotone.** 829 of the 5460 castles have at least one uptick on `[0, 1]`. The upticks are small: the largest single step is `0.014` per `0.005` of `alpha`, and the largest total rise over `[0, 1]` is `0.47`, on `(4, 3, 1, 4, 1, 4)` (area 17, blocks 10). The conjecture that `B_alpha` decreases in `alpha` for every castle is false in general; it is true for every nondecreasing castle, by the generating-function argument below, so the upticks all come from castles with descents.
 - **It is bounded above by the area** for every castle and every `alpha` in `[0, 1]`.
 - **It is not bounded below by the block count.** `(4, 3, 1, 4, 1, 2)` has 8 blocks and `B_{0.8} = 7.58`; its residuals at `alpha = 0.8` are `4.0, -0.2, -1.72, 2.83, -2.45, 0.75`, and the two positive ones at columns 4 and 6 fall short of the ascents `3` and `1` they correspond to, because the long memory of the `4` in column 1 is still being subtracted.
 

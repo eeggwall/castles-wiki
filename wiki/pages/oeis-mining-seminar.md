@@ -189,7 +189,7 @@ True
 
 ## What is still open
 
-These are the open items feeding Arc 7 in `IDEAS.md`: the `h ≥ 5` tree-castle-by-area rows (no OEIS match yet), and the unfiled tower-spacing cells on [[tower-spacing-castles](pages/tower-spacing-castles.md)], which are submission material. Submissions themselves are a human action.
+The `h ≥ 8` tree-castle-by-area rows (no OEIS match yet; `h = 5, 6, 7` matched A079816, A189593 and A189600 on 2026-09-26, [[tree-castle-by-area](pages/tree-castle-by-area.md)]), and the unfiled tower-spacing cells on [[tower-spacing-castles](pages/tower-spacing-castles.md)], which are submission material. Submissions themselves are a human action.
 
 ## Appearances in Sources
 
@@ -208,6 +208,7 @@ These are the open items feeding Arc 7 in `IDEAS.md`: the `h ≥ 5` tree-castle-
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the other seminar pages.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
 
 
 ## Footnotes

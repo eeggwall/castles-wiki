@@ -26,7 +26,7 @@ The base types are all standard polyomino / composition families. Each correspon
 | **Directed** | every cell reachable from `(1,1)` by east/north | [[polyominoes](pages/polyominoes.md)] | classical (directed polyominoes) |
 | **m-disparate** | `|c_{i+1} − c_i| ≥ m` for all `i` | **not yet on the wiki** | open |
 
-The first 6 rows tie the castle taxonomy directly to the polyomino literature. **m-disparate** is the one base type without an existing wiki thread - a natural target for the "gap-rule variations" idea on `IDEAS.md`; its horizontal-gap cousin is already counted on [[tower-spacing-castles](pages/tower-spacing-castles.md)].
+The first 6 rows tie the castle taxonomy directly to the polyomino literature. **m-disparate** is the one base type without an existing wiki thread - a natural target for gap-rule variations; its horizontal-gap cousin is already counted on [[tower-spacing-castles](pages/tower-spacing-castles.md)].
 
 ## The 35 proposed types, grouped by structural axis
 

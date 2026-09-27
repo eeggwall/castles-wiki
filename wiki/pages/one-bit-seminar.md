@@ -188,7 +188,6 @@ True
 
 ## What is still open
 
-These are the R-department items feeding Arc 8 in `IDEAS.md`:
 - **Parity-bit object-by-object survival.** Stop 3 gives the flip rule and the small exceptional set; exercises 4 and 5 are the open parts.
 - **Rule-generated-castle detector.** A predicate for low-complexity-but-irregular castles, the middle tier of [[castle-compression](pages/castle-compression.md)].
 
@@ -206,6 +205,7 @@ These are the R-department items feeding Arc 8 in `IDEAS.md`:
 - [[castle-notation](pages/castle-notation.md)] - `A`, `S`, `F` and `P(k, L)`.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the other seminar pages.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
 
 
 ## Footnotes

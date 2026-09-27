@@ -161,7 +161,7 @@ The Riascos-Mateos construction pays for its generality: `L^α` is dense for eve
 ## What this opens
 
 - Does the Lévy-erases-traps mechanism reverse the isospectrality frontier of [[isospectral-castles](pages/isospectral-castles.md)] at some `α < 1`, i.e. is there an `α` at which the pair's sorted-multiset separation drops below numerical detection?  The `α = 0.10, t = 5` entry `1.2e-3` is already close to the noise floor of a double-precision eigen-decomposition.
-- The **fractional Ihara zeta** and **fractional Kirchhoff index**: both are functions of the Laplacian spectrum, so also spectral. What is their fractional counterpart at the local level (a "fractional effective resistance" at a named vertex)?
+- The **fractional Ihara zeta** and **fractional Kirchhoff index**: both are functions of the Laplacian spectrum, so also spectral. What is their fractional counterpart at the local level (a "fractional effective resistance" at a named vertex)? The ordinary version is already on the wiki: the inverse reduced Laplacian of [[castle-avalanches](pages/castle-avalanches.md)], whose entries are Dhar's expected topplings, is the effective-resistance matrix grounded at the drain.
 - **Coupling the two regimes.** A castle with teeth (comb-subdiffusive) walked with a Lévy generator: does the exponent `1/2` from tooth-trapping compete or cooperate with the Lévy jump-length exponent `α`?  This is the two-parameter anomalous-diffusion phase diagram on castle graphs.
 - Whether **`L^α`'s dense block matrix** has a low-rank + sparse decomposition on tree castles specifically. Trees have `n − 1` edges; `L^{1/2}` may be sparse-plus-low-rank in a way the general-graph literature does not name.
 
@@ -176,7 +176,8 @@ The Riascos-Mateos construction pays for its generality: `L^α` is dense for eve
 - [[power-law-memory-rules](pages/power-law-memory-rules.md)] — the fractional sibling: Grunwald-Letnikov nabla on the *strip rule* rather than on the graph Laplacian; the same fractional-calculus wall from the strip-rule side.
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] — the from-scratch tutorial that computes by hand the small ordinary-Laplacian spectra `L^α` is defined against here.
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - Stop 4 uses this page's local-return separation of the 11-cell pair.
-
+- [[sandpile-identity](pages/sandpile-identity.md)] - the avalanche profile, a second non-spectral separator of the same 11-cell tree pair.
+- [[castle-avalanches](pages/castle-avalanches.md)] - Dhar's inverse reduced Laplacian, the grounded effective-resistance matrix, and a second power-law tail on castles.
 
 ## Footnotes
 

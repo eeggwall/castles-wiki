@@ -1,7 +1,7 @@
 ---
 title: Sandcastles seminar - one silver castle, grain by grain
 category: Concepts
-summary: The seminar walk-through for the "Sandcastles" arc, following one castle, the 16-cell silver castle (3,2,1,2,2,1,2,3), through the whole sandpile story. One grain on its left tower sets off a 16-toppling avalanche that sweeps the castle left to right and loses 2 grains to the drain. Its 64 recurrent piles form the group Z/4 × Z/4 × Z/4, read straight off its three separate 2×2 blocks (the silver rectangle's two touching blocks give Z/15 instead), and any castle with three separate blocks has the same group, which is why the sandpile group hears nothing the spectrum misses. Its clock ticks 4, with a clock spectrum of periods 1, 2, 4 occurring 16, 48, 176 times. Its identity, in both drain models, has empty tower tops (tree branches are transparent). Under the tide it barely avalanches (mean 1.667 topplings, never more than 4); with a single drain cell the mean is 32.1 and avalanches reach 149. One runnable block pins every value.
+summary: The seminar walk-through for the "Sandcastles" arc, following one castle, the 16-cell silver castle (3,2,1,2,2,1,2,3), through the whole sandpile story. One grain on its left tower sets off a 16-toppling avalanche that sweeps the castle left to right and loses 2 grains to the drain. Its 64 recurrent piles form the group Z/4 × Z/4 × Z/4, read straight off its three separate 2×2 blocks (the silver rectangle's two touching blocks give Z/15 instead), and any castle with three separate blocks has the same group, which is why, on every castle up to 16 cells, the sandpile group hears nothing the spectrum misses. Its clock ticks 4, with a clock spectrum of periods 1, 2, 4 occurring 16, 48, 176 times. Its identity, in both drain models, has empty tower tops (tree branches are transparent). Under the tide it barely avalanches (mean 1.667 topplings, never more than 4); with a single drain cell the mean is 32.1 and avalanches reach 149. One runnable block pins every value.
 tags: [concept, castle, seminar, pedagogy, teaching, sandpile, silver-ratio, critical-group, identity-element, clock, avalanche, tide, isospectral]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-26
@@ -12,7 +12,9 @@ updated: 2026-09-26
 
 **Thesis.** Pour sand on a castle, one grain at a time, and a rich mathematical object appears: a finite group, a clock, an identity pile, and avalanches of every size. All of it is controlled by the castle's `2 × 2` blocks and by where the sand drains. This seminar follows a single castle through the whole story.
 
-**The castle.**
+**Format.** About 60 minutes, seven stops. Every value quoted is pinned by the Snippet block at the end. The research pages behind the stops are [[sandpile-group](pages/sandpile-group.md)], [[sandpile-census](pages/sandpile-census.md)], [[sandcastle-clock](pages/sandcastle-clock.md)], [[sandpile-identity](pages/sandpile-identity.md)] and [[castle-avalanches](pages/castle-avalanches.md)].
+
+## Stop 0 - the castle
 
 ```
 #......#
@@ -22,7 +24,7 @@ updated: 2026-09-26
 
 It is a **silver castle**: the largest eigenvalue of its graph is `1 + √2`, the same as the `3 × 2` silver rectangle's ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]). It is also its own mirror image, so choices like "the leftmost apex" cause no ambiguity.
 
-**Format.** About 60 minutes, seven stops. Every value quoted is pinned by the Snippet block at the end. The research pages behind the stops are [[sandpile-group](pages/sandpile-group.md)], [[sandpile-census](pages/sandpile-census.md)], [[sandcastle-clock](pages/sandcastle-clock.md)], [[sandpile-identity](pages/sandpile-identity.md)] and [[castle-avalanches](pages/castle-avalanches.md)].
+*Idea:* one well-chosen castle can carry the whole theory, because every measurement below is taken on the same 16 cells.
 
 ## Stop 1 - the game
 
@@ -70,7 +72,7 @@ Its structure can be read off the `2 × 2` blocks. For a castle, the group is `Z
 
 Each separate block holds its own `Z/4` of sand. Compare the silver rectangle `(2, 2, 2)`, whose two blocks touch: its block matrix `[[4, −1], [−1, 4]]` gives one bigger cyclic group, `Z/15`.[^2]
 
-*Idea:* the sand lives in the 2×2 blocks. Separate blocks multiply, and touching blocks merge into one larger cyclic factor.
+*Idea:* the sand lives in the 2×2 blocks. Separate blocks multiply, and touching blocks merge into a bigger group. A path of touching blocks, like the rectangle's pair, always gives one cyclic factor; denser clusters such as the `2 × 2` square of blocks in `(3, 3, 3)` can split into two ([[sandpile-census](pages/sandpile-census.md)]).
 
 ## Stop 3 - what the group cannot hear
 
@@ -101,18 +103,18 @@ Both have empty tower tops. A grain on a tower top can always topple down into t
 
 ## Stop 6 - avalanches, and where the drain is
 
-Now drop grains at **random** cells, starting from the identity. By Dhar's theorem the average avalanche size is exact: the average entry of the inverse Laplacian ([[castle-avalanches](pages/castle-avalanches.md)]).
+Now drop grains at **random** cells, starting from the identity. By Dhar's theorem the average avalanche size is exact: the average row sum of the inverse reduced Laplacian, that is, the total of its entries divided by the number of cells ([[castle-avalanches](pages/castle-avalanches.md)]).
 
 | drain | mean topplings per grain (exact) | simulated mean (20,000 drops) | largest avalanche |
 |---|---|---|---|
 | tide (whole bottom row) | 1.667 | 1.66 | 4 |
 | one cell (bottom-left) | 32.133 | 32.06 | 149 |
 
-The castle is only 3 high, so under the tide sand reaches the ground almost at once, and nothing ever avalanches far. With a single drain every grain must cross the castle to escape, as in Stop 1, and the mean rises twentyfold. The tide mean, 1.667, is just below this castle's column-by-column prediction of 1.75, because its raised columns are not all the same height ([[castle-avalanches](pages/castle-avalanches.md)], the inequality).[^5]
+The castle is only 3 high, so under the tide sand reaches the ground almost at once, and nothing ever avalanches far. With a single drain every grain must cross the castle to escape, as in Stop 1, and the mean rises twentyfold. The tide mean, 1.667, is just below this castle's column-by-column prediction of 1.75. The prediction is exact only when every run of adjacent columns rising above the base has constant height, and here the outer runs `(3, 2)` and `(2, 3)` do not. On [[castle-avalanches](pages/castle-avalanches.md)] the mean never exceeds the prediction on any castle up to 12 cells; for larger castles, this one included, the inequality is conjectured.[^5]
 
 *Idea:* the same castle can be calm or explosive depending on one modelling choice, where the sand leaves.
 
-## Stop 7 - what the silver castle taught
+## The board
 
 | stop | measurement | value for `(3,2,1,2,2,1,2,3)` |
 |---|---|---|
@@ -124,14 +126,6 @@ The castle is only 3 high, so under the tide sand reaches the ground almost at o
 | 6 | mean avalanche, tide vs one drain | 1.667 vs 32.133 |
 
 The silver rectangle `(2, 2, 2)` shares this castle's spectral radius but not its sand. Its two blocks touch and give `Z/15`, its clock ticks 15, and it has no towers. Same "silver" loudest note, different sandcastle.
-
-## Exercises for the room
-
-1. In the Stop 1 trace, the wave reaches the middle block only through `(2,0)`. Why is that cell the only link, and which cell plays the same role between the middle and right blocks?
-2. Write down the block matrix of `(3, 3, 3)`, a `2 × 2` square of blocks, and check that its group is `Z/8 × Z/24`.
-3. Explain why every tower top holds 0 grains in every recurrent pile.
-4. Find a castle whose tide mean equals its column prediction and one where it falls short. Which runs of columns decide it?
-5. (Open.) Is the avalanche profile of [[sandpile-identity](pages/sandpile-identity.md)] a complete fingerprint of castle graphs?
 
 ## Snippet
 
@@ -209,7 +203,7 @@ def grain_orders(c, drain):                # order of one grain at each cell: lc
     b = board(c, {drain}); Linv = reduced_laplacian(b).inv()
     return {v: lcm(*[sp.fraction(x)[1] for x in Linv[:, k]]) for k, v in enumerate(b[0])}
 
-def mean_avalanche(b):                     # Dhar: average of all entries of L~^-1, per drop cell
+def mean_avalanche(b):                     # Dhar: sum of all entries of L~^-1 over the number of cells
     Linv = np.linalg.inv(np.array(reduced_laplacian(b).tolist(), dtype=float))
     return Linv.sum() / Linv.shape[0]
 
@@ -245,6 +239,27 @@ def random_drops(b, drops, seed=2):        # from the identity; returns the topp
 (1.66, 4, 32.06, 149)
 ```
 
+## Exercises for the room
+
+1. In the Stop 1 trace, the wave reaches the middle block only through `(2,0)`. Why is that cell the only link, and which cell plays the same role between the middle and right blocks?
+2. Write down the block matrix of `(3, 3, 3)`, a `2 × 2` square of blocks, and check that its group is `Z/8 × Z/24`.
+3. Explain why every tower top holds 0 grains in every recurrent pile.
+4. Find a castle whose tide mean equals its column prediction and one where it falls short. Which runs of columns decide it?
+5. (Open.) Is the avalanche profile of [[sandpile-identity](pages/sandpile-identity.md)] a complete fingerprint of castle graphs?
+
+## What is still open
+
+- whether the avalanche profile is a complete invariant of castle graphs ([[sandpile-identity](pages/sandpile-identity.md)]; no counterexample up to 13 cells);
+- whether two cospectral castles can have different block graphs, the only way the sandpile group could separate them ([[sandpile-census](pages/sandpile-census.md)]);
+- which clusters of blocks that are not paths still give a cyclic group (`(2, 3, 3, 3)` does, `(3, 3, 3)` does not);
+- a proof that the tide mean never exceeds the column prediction, checked to 12 cells ([[castle-avalanches](pages/castle-avalanches.md)]);
+- a clock with the whole bottom row as the drain, and whether it removes the clock's mirror dependence ([[sandcastle-clock](pages/sandcastle-clock.md)]);
+- the tide identity of a general castle, beyond the rectangle pattern ([[sandpile-identity](pages/sandpile-identity.md)]).
+
+## Appearances in Sources
+
+- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle definition behind the castle graph.
+
 ## Related Concepts
 
 - [[sandpile-group](pages/sandpile-group.md)] - the game, the matrices, and the 2×2-block picture (Stops 1-2).
@@ -254,10 +269,7 @@ def random_drops(b, drops, seed=2):        # from the identity; returns the topp
 - [[castle-avalanches](pages/castle-avalanches.md)] - random dropping, Dhar's theorem, and the tide inequality (Stop 6).
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the silver castles.
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[one-bit-seminar](pages/one-bit-seminar.md)] / [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the other seminar pages.
-
-## Appearances in Sources
-
-- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle definition behind the castle graph.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
 
 ## Footnotes
 

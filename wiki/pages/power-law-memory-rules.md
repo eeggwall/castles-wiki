@@ -94,7 +94,7 @@ alpha = 0.75:  gap ratio  ~ 0.84
 alpha = 0.90:  gap ratio  ~ 0.82
 ```
 
-The item on `IDEAS.md` predicts a **power-law** rate `K^{-alpha}` set by the tail decay of the GL kernel `(-1)^k C(alpha, k) ~ k^{-alpha - 1} / |Gamma(-alpha)|`, whose truncation error at `K` is `O(K^{-alpha})`. A log-log fit on the last six `K` values gives slopes `-1.52, -2.35, -2.80` at `alpha = 0.5, 0.75, 0.9` - not `-alpha`, and not a stable slope. The geometric picture is the better empirical fit within `K <= 16`; whether the true asymptotic crosses over to a power law at `K >> 16` is open. One line of the diagnostic:
+The natural prediction is a **power-law** rate `K^{-alpha}` set by the tail decay of the GL kernel `(-1)^k C(alpha, k) ~ k^{-alpha - 1} / |Gamma(-alpha)|`, whose truncation error at `K` is `O(K^{-alpha})`. A log-log fit on the last six `K` values gives slopes `-1.52, -2.35, -2.80` at `alpha = 0.5, 0.75, 0.9` - not `-alpha`, and not a stable slope. The geometric picture is the better empirical fit within `K <= 16`; whether the true asymptotic crosses over to a power law at `K >> 16` is open. One line of the diagnostic:
 
 ```python
 for K in range(11, 17):
@@ -123,7 +123,7 @@ At `alpha = 1.25, 1.5`, the growth constant is `1` at every `K` tested (h = 2, 3
 
 ## The NTT / Toeplitz question
 
-The item's `IDEAS.md` line closes with a proposal: use the length-1024 NTT over `F_65537` of [[song-as-castle](pages/song-as-castle.md)] (Fermat prime, exact bijection) to exploit the **binomial-Toeplitz** structure of the GL kernel and evaluate the count fast. This is a mismatch to the counting problem at hand, for one specific reason:
+A tempting proposal is to use the length-1024 NTT over `F_65537` of [[song-as-castle](pages/song-as-castle.md)] (Fermat prime, exact bijection) to exploit the **binomial-Toeplitz** structure of the GL kernel and evaluate the count fast. This is a mismatch to the counting problem at hand, for one specific reason:
 
 The strip count `strips(w) = 1^T M(alpha, K)^{w-1} 1` is a **transfer-matrix power**, not a length-`w` convolution of the kernel with anything. The Toeplitz structure of the *rule* enters the *construction* of `M` - one convolution of length `K` per window - but there are `h^{K-1}` windows and each convolution costs `K`, so construction is `O(h^{K-1} K)`, dominated by the matrix size, not the kernel evaluation. NTT over `F_65537` accelerates each convolution to `O(K log K)`, buying a `log K` factor at best, and only on construction, not counting.
 
@@ -137,7 +137,7 @@ The question: is the K -> infinity growth constant a new number, or does it land
 
 **At every finite K, rho(alpha, K) is inside the census.** Each `M(alpha, K)` is a 0/1 matrix, so its Perron root is an algebraic integer that is the growth constant of *some* 0/1 castle-strip rule (namely `M(alpha, K)` itself, read as a rule on the `h^{K-1}`-state expanded height alphabet). The census asks "which algebraic numbers are Perron roots of 0/1 transfer matrices at *some* height," and every `rho(alpha, K)` trivially answers "yes, at expanded height `h^{K-1}`." So the ratchet visits census members exclusively, and the interesting question is *which* census members appear at which `(alpha, K)` - a non-trivial pattern the table above sketches.
 
-**At K = infinity, rho appears to be 2, an integer already in the census.** The empirical limit is `2` for every `alpha in (0, 1)` tested at `h = 2`, and there is no evidence in the numerics of a strictly smaller limit. So the fractional-memory strip's K -> infinity limit is *not* a new transcendental of the [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] complement type - it is an integer already in the census. If a stronger threshold `T < 1` were substituted, the K -> infinity limit could be strictly less than `2` and the algebraic-vs-transcendental status of the limit would need Baker-theorem tools to settle; that variant is not what the IDEAS.md item asks about.
+**At K = infinity, rho appears to be 2, an integer already in the census.** The empirical limit is `2` for every `alpha in (0, 1)` tested at `h = 2`, and there is no evidence in the numerics of a strictly smaller limit. So the fractional-memory strip's K -> infinity limit is *not* a new transcendental of the [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] complement type - it is an integer already in the census. If a stronger threshold `T < 1` were substituted, the K -> infinity limit could be strictly less than `2` and the algebraic-vs-transcendental status of the limit would need Baker-theorem tools to settle; that variant is not the question here.
 
 ## What this settles, and what it leaves
 
@@ -166,12 +166,12 @@ The question: is the K -> infinity growth constant a new number, or does it land
 - [[fractional-recurrences](pages/fractional-recurrences.md)] - the recurrence-side sibling: `nabla^alpha a_n = a_{n-1}` produces a continuum of algebraic growth constants at rational `alpha`, transcendental at irrational `alpha`. This page runs the fractional operator on the *rule* rather than the count, and finds a different (discrete, ratcheting) algebraic structure.
 - [[fractional-block-count](pages/fractional-block-count.md)] - the block-count-side fractional operator on skylines; the per-skyline evaluation of the GL sum this page uses is the same primitive.
 - [[fractional-width-and-height](pages/fractional-width-and-height.md)] - the coordinate-side fractional operator; different axis, same GL kernel.
-- [[reachable-field-census](pages/reachable-field-census.md)] - the algebraic universe every `rho(alpha, K)` on this page lives inside; the "K -> infinity is a new number" question of the IDEAS.md item, answered negative at `T = 1`.
+- [[reachable-field-census](pages/reachable-field-census.md)] - the algebraic universe every `rho(alpha, K)` on this page lives inside; the "K -> infinity is a new number" question, answered negative at `T = 1`.
 - [[plastic-number](pages/plastic-number.md)] - the first named Perron root the ratchet lands on, at `(alpha, K) = (0.5, 6)`.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the second: supergolden at `(0.5, 7)`.
 - [[metallic-means](pages/metallic-means.md)] - golden phi at `(0.5, 9)`, the fourth ratchet stop; also the alpha = 1 Markov growth `2` at `h = 2` and silver `2.4142` at `h = 3`.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the Markov-side minimum-height law; the fractional rule's expanded-height matrix `M(alpha, K)` is a 0/1 realizer at height `h^{K-1}` for the Perron roots it produces.
-- [[song-as-castle](pages/song-as-castle.md)] §"Finite fields" - the F_65537 NTT the IDEAS.md item points at; this page argues that it is the right tool for per-skyline evaluation but not for the transfer-matrix count.
+- [[song-as-castle](pages/song-as-castle.md)] §"Finite fields" - the F_65537 NTT proposed for this count; this page argues that it is the right tool for per-skyline evaluation but not for the transfer-matrix count.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - the exact/asymptotic partition; every `rho(alpha, K)` on this page is on the exact / algebraic side, and the K -> infinity limit at `T = 1` stays algebraic (in fact integer) rather than crossing to the transcendental complement.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the `alpha = 1, h = 3` case: growth `1 + sqrt 2`, reproduced by this page's table.
 - [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] - the Fibonacci-nacci growth constants at fixed heights; the `alpha = 2, h = 2` case here recovers phi and slots into the nacci ladder.

@@ -233,6 +233,32 @@ The order-`1/2` fractional partial sum of `F(w, h)` in the width ([[half-sum-cas
 | `K_5` | `10, 142, 1210, 8222, 49806, 283570, 1557158, 8354490` | `5` | **novel-candidate** (no match, 2026-09-23) |
 | dyadic half-sum `4^w H_h(w)`, `h = 2..5`, and the `H_2` numerators `1, 7, 63, 231, 3131, 10929` | see the page | `4h` | **novel-candidate** (no match, 2026-09-23) |
 
+### Tree castles by area at fixed height
+
+Tree castles (no `2 × 2` block) of height at most `h`, counted by area ([[tree-castle-by-area](pages/tree-castle-by-area.md)]). At every height the count at area `A` is the number of compositions of `A + 1` into parts `{1, 3, 4, …, h + 1}`. Terms from `A = 1`. The unlimited-height row is A005251, in the multi-interpretation hub above.
+
+| object | first terms | GF / formula | status |
+|---|---|---|---|
+| `h <= 2` | `1, 2, 3, 4, 6, 9, 13, 19, 28, 41` | parts `{1, 3}` | **interlink** → [A000930](https://oeis.org/A000930) Narayana's cows (`= A000930(A+1)`) |
+| `h <= 3` | `1, 2, 4, 6, 9, 15, 25, 40, 64, 104` | parts `{1, 3, 4}` | **interlink** → [A006498](https://oeis.org/A006498) (`= A006498(A+1)`) |
+| `h <= 4` | `1, 2, 4, 7, 11, 18, 31, 53, 89, 149` | parts `{1, 3, 4, 5}` | **interlink** → [A000570](https://oeis.org/A000570) tournaments determined by their score vectors (`= A000570(A+1)`) |
+| `h <= 5` | `1, 2, 4, 7, 12, 20, 34, 59, 102, 175` | parts `{1, 3, …, 6}` | **interlink** → [A079816](https://oeis.org/A079816) (`= A079816(A+1)`, all 37 listed terms, 2026-09-26) |
+| `h <= 6` | `1, 2, 4, 7, 12, 21, 36, 62, 108, 188` | parts `{1, 3, …, 7}` | **interlink** → [A189593](https://oeis.org/A189593) (`= A189593(A+1)`; the composition reading proves the entry's empirical recurrence) |
+| `h <= 7` | `1, 2, 4, 7, 12, 21, 37, 64, 111, 194` | parts `{1, 3, …, 8}` | **interlink** → [A189600](https://oeis.org/A189600) (`= A189600(A+1)`) |
+| `h <= 8` | `1, 2, 4, 7, 12, 21, 37, 65, 113, 197, 345, 604, 1056, 1846` | parts `{1, 3, …, 9}` | **novel-candidate** (no match, 2026-09-26) |
+
+### Sandpile groups
+
+The sandpile group `K` of every castle to 16 cells, mirror images removed ([[sandpile-census](pages/sandpile-census.md)]). Terms by cell count from `n = 1`.
+
+| object | first terms | GF / formula | status |
+|---|---|---|---|
+| castles with trivial `K` (tree castles) | `1, 2, 3, 5, 8, 13, 22, 37, 63, 108, 186, 322, 559, 973, 1697, 2964` | `(A005251(n+2) + A000931(n+6))/2` | **interlink** → [A005683](https://oeis.org/A005683) Twopins positions (agreement through `n = 26`, 2026-09-26) |
+| palindromic tree castles | `1, 2, 2, 3, 4, 5, 7, 9, 12, 16, 21, 28, 37, 49, 65, 86` | `A000931(n+6)` | **interlink** → [A000931](https://oeis.org/A000931) Padovan (checked through `n = 16`) |
+| castles with cyclic `K` | `1, 2, 3, 6, 10, 20, 36, 72, 134, 264, 503, 997, 1933, 3791, 7338, 14329` | | **novel-candidate** (no match, 2026-09-26) |
+| distinct groups `K` among castles of `n` cells | `1, 1, 1, 2, 2, 3, 3, 4, 6, 8, 10, 13, 18, 25, 34, 48` | | **novel-candidate** (no match, 2026-09-26) |
+| `|K|` of the 2-wide ladder `(2, …, 2)` by width | `1, 4, 15, 56, 209, 780` | `a(n) = 4a(n−1) − a(n−2)`, cyclic | **known** → [A001353](https://oeis.org/A001353) (spanning trees of the `2 × n` grid) |
+
 ### Legacy generation candidates (pre-catalogue, statuses to refresh)
 
 Computed earlier and listed as candidates before the status convention; most are **unchecked** pending an OEIS search on current terms.

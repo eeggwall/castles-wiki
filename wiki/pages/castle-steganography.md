@@ -71,20 +71,20 @@ Capacity is one bit per castle: 512 bits = 85 base64 characters per 512x512 imag
 
 ## Where this sits
 
-The S8 arc asks what the even-block bit *is*; here it is a covert channel of capacity exactly one bit per castle, written with one cell. The S12 seed on [[song-as-castle](pages/song-as-castle.md)] ("The Wire, but castles") gets its steganography from this page: a wiretap that reads skylines sees a picture, the receiver counting blocks sees a message. The next step is the obvious one - a warden that counts blocks: is there a second-order statistic (parity of adjacent rows, block count distribution) that channel B disturbs? That is open.
+What is the even-block bit? Here it is a covert channel of capacity exactly one bit per castle, written with one cell. The "The Wire, but castles" seed on [[song-as-castle](pages/song-as-castle.md)] gets its steganography from this page: a wiretap that reads skylines sees a picture, the receiver counting blocks sees a message. The next step is the obvious one - a warden that counts blocks: is there a second-order statistic (parity of adjacent rows, block count distribution) that channel B disturbs? That is open.
 
 ## Related Concepts
 
 - [[image-as-castle](pages/image-as-castle.md)] - the cover: an image as 512 row castles.
 - [[castle-phone-line](pages/castle-phone-line.md)] - both channels sent down a simulated phone line as pitch-stepping tones; block parity does not survive, a spaced-out height bit does.
-- [[song-as-castle](pages/song-as-castle.md)] - the rank/unrank bijection, the 44% random-flip figure, and the S12 seminar seed.
+- [[song-as-castle](pages/song-as-castle.md)] - the rank/unrank bijection, the 44% random-flip figure, and "The Wire, but castles" seed.
 - [[castle-entropy](pages/castle-entropy.md)] - the parity clause is one bit; channel B is that bit as capacity.
 - [[castle-sign](pages/castle-sign.md)] - the block count formula the flip lemma is read off.
 - [[castle-compression](pages/castle-compression.md)] - why lossless codecs preserve both channels and lossy ones destroy them.
 - [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the one bit this channel monetizes is the same bit that separates H(B) from H(N); the parity-clause thread.
 - [[castle-snippets](pages/castle-snippets.md)] - the `blocks` predicate.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - Stop 5 of the one-bit seminar; Stop 3 gives the exact one-cell flip rule behind channel B.
-
+- [[sandpile-identity](pages/sandpile-identity.md)] - the avalanche profile, a castle-graph fingerprint that no two non-isomorphic castle graphs share up to 13 cells; like block parity, it cannot tell a castle from its mirror image.
 
 ## Appearances in Sources
 

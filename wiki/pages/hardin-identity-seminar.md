@@ -239,11 +239,10 @@ def S_pattern(m):                          # the 0/1 change of basis, sector coo
 
 ## What is still open
 
-These are the open items feeding Arc 3 in `IDEAS.md`:
 - the general-`m` proof (a finite entrywise check of the three equations);
 - a sign-reversing involution that realizes the `2^L` object by object;
 - the two sector-assignment conjectures of [[tower-parity-sectors](pages/tower-parity-sectors.md)];
-- the `h ≥ 5` tree-castle-by-area sequences, which have no OEIS match yet.
+- the `h ≥ 8` tree-castle-by-area sequences, which have no OEIS match yet (`h = 5, 6, 7` are A079816, A189593, A189600; [[tree-castle-by-area](pages/tree-castle-by-area.md)]).
 
 ## Appearances in Sources
 
@@ -262,6 +261,7 @@ These are the open items feeding Arc 3 in `IDEAS.md`:
 - [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the seminar on OEIS mining as a research method.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
 
 
 ## Footnotes

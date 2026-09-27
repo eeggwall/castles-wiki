@@ -18,7 +18,7 @@ Companion to [[song-as-castle](pages/song-as-castle.md)], which does the same fo
 
 **2. Row castles.** Each row is a width-512 skyline with heights `pixel + 1`. Of the 512 rows, 163 contain a 255 and are castles at `h = 256` as they stand; the others have maxima from 175 to 254 and are castles only at their own `h`, or after a per-row peak-normalize - the same bookkeeping [[song-as-castle](pages/song-as-castle.md)] does for a waveform that does not reach full scale. A grayscale image is 512 castles of width 512, and any per-castle statistic ([[castle-sign](pages/castle-sign.md)]'s block count, the skyline DFT of [[spectral-analysis](pages/spectral-analysis.md)]) becomes a per-row feature. [[castle-steganography](pages/castle-steganography.md)] uses this reading.
 
-**3. Height field - the two-dimensional castle.** Take heights `1..256` over the 512x512 base. The bottom layer is full, the maximum is reached, and the object is a stack of unit cubes with no overhangs - a castle with a 2D base. The open item "higher-dimensional castles" on IDEAS (S11) asks what the block count should be. The 1D count answers it. On a skyline,
+**3. Height field - the two-dimensional castle.** Take heights `1..256` over the 512x512 base. The bottom layer is full, the maximum is reached, and the object is a stack of unit cubes with no overhangs - a castle with a 2D base. For higher-dimensional castles, the open question is what the block count should be. The 1D count answers it. On a skyline,
 
 ```
 blocks(c) = c_1 + sum_i max(0, c_i - c_{i-1})  =  sum_{k=1}^{h}  #(maximal runs of columns with c_i >= k)

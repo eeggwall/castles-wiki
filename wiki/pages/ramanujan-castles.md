@@ -42,7 +42,7 @@ Castle graphs are **bipartite** (color cells by `(i + j) mod 2`; every adjacency
 lam_2(G)  <=  rho(T).
 ```
 
-**Why the d-regular version is empty on castles.** A castle graph is `d`-regular iff every cell has the same number of orthogonal neighbours. The leftmost cell of the top row has at most two neighbours (its column-neighbour below and its row-neighbour to the right), so a regular castle has max degree at most 2, i.e. is a path or cycle. The full list: `(1)` (`P_1`), `(1, 1)` = `(2)` (`P_2`), `(1, 1, 1)` = `(1, 2)` (`P_3`), and `(2, 2)` (`C_4`). Everything else is irregular, and only the Greenberg form has content.
+**Why the d-regular version is empty on castles.** A castle graph is `d`-regular iff every cell has the same number of orthogonal neighbours. The leftmost cell of the top row has at most two neighbours (its column-neighbour below and its row-neighbour to the right), so a regular castle has max degree at most 2, i.e. is a path or cycle. A path longer than two cells has ends of degree 1 and middle cells of degree 2, so the full list is `(1)` (`P_1`), `(1, 1)` = `(2)` (`P_2`), and `(2, 2)` (`C_4`). Everything else is irregular, and only the Greenberg form has content.
 
 ## The universal covering tree of a castle
 
@@ -168,7 +168,7 @@ The transition happens in the `2 x h` rectangle family. As `h` grows, the rectan
 | `(15, 15)` | 30 | 2.96157 | 2.84776 | 2.81641 | 1.011 | no |
 | `(16, 16)` | 32 | 2.96595 | 2.86494 | 2.81838 | 1.017 | no |
 
-The 2x14 rectangle `(14, 14)` is the smallest non-Ramanujan castle. Its second-largest adjacency eigenvalue is `lam_2 = 1 + 2 cos(2 pi / 15) = 2.82709`, and the cover-tree spectral radius is `rho(T) = 2.81393`, so `lam_2 > rho(T)` by about `0.013`. Every non-tree castle at area `< 28` is Ramanujan; every non-tree castle at area `28` with lower cycle rank than `(14, 14)` is also Ramanujan, because they have a smaller `lam_2`. Confirmed by exhaustive sweep over compositions of `n <= 22` and by a further pattern-scan at 23-30 cells.
+The 2x14 rectangle `(14, 14)` is the smallest non-Ramanujan castle. Its graph is the 14-rung ladder, whose sandpile group is cyclic of order A001353(14) = 29,354,524 ([[sandpile-group](pages/sandpile-group.md)]). Its second-largest adjacency eigenvalue is `lam_2 = 1 + 2 cos(2 pi / 15) = 2.82709`, and the cover-tree spectral radius is `rho(T) = 2.81393`, so `lam_2 > rho(T)` by about `0.013`. Every non-tree castle at area `< 28` is Ramanujan; every non-tree castle at area `28` with lower cycle rank than `(14, 14)` is also Ramanujan, because they have a smaller `lam_2`. Confirmed by exhaustive sweep over compositions of `n <= 22` and by a further pattern-scan at 23-30 cells.
 
 **Independent confirmation.** The truncated-ball estimate for `(14, 14)` at depth 9 gives `rho(T)_9 = 2.7365`, still increasing toward the cavity value 2.8139. Whichever method one uses, `lam_2 = 2.8271` sits strictly above.
 

@@ -96,7 +96,7 @@ The asymmetry has one cause. A linear recurrence interpolates to a real function
 - in the **width**, the roots of `char_k`: complex pairs and one positive real, never a negative real (for `k <= 8`; the general statement is open);
 - in the **height**, exactly `+1` and `-1`, with `-1` carrying the whole alternating polynomial `A_L`.
 
-So the same clause is invisible to fractional width and is the entire imaginary part of fractional height. This is a sharper version of the IDEAS claim that "the parity clause is a branch cut": in the width it is a *choice* of branch (real either way), in the height it is a *forced* imaginary part. The imaginary part `(-1)^m (A_w(h - 1) + A_w(h - 2)) / 2` is a polynomial in `h` of degree `w - 1`, and it is a clean numerical measure of how much of `F(w, h)` the parity clause is responsible for at a given width.
+So the same clause is invisible to fractional width and is the entire imaginary part of fractional height. This is a sharper version of the claim that "the parity clause is a branch cut": in the width it is a *choice* of branch (real either way), in the height it is a *forced* imaginary part. The imaginary part `(-1)^m (A_w(h - 1) + A_w(h - 2)) / 2` is a polynomial in `h` of degree `w - 1`, and it is a clean numerical measure of how much of `F(w, h)` the parity clause is responsible for at a given width.
 
 ## The half-column problem
 

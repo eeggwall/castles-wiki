@@ -19,7 +19,7 @@ Here the grid is a castle. The drain is the **tide**, the whole bottom row, so s
 - its **size**, the number of topplings it causes;
 - its **duration**, the number of rounds, where one round topples everything that is unstable at once.
 
-The item on `IDEAS.md` asked how ladders, rectangles and battlements compare, and whether the block count or the number of `2 × 2` blocks sets the largest avalanches.
+The questions: how do ladders, rectangles and battlements compare, and does the block count (the castle's horizontal blocks, as in Project Euler 502) or the number of `2 × 2` blocks set the largest avalanches?
 
 ## The mean avalanche is exact
 
@@ -61,7 +61,7 @@ Two castles with the same mean can avalanche completely differently. From 60,000
 
 In the battlement each spike is a separate path, so an avalanche can never be bigger than one spike's worth. The largest observed are 45, 66 and 190 topplings at heights 10, 12 and 20, which is `(h − 1)h/2`. In the rectangle the `2 × 2` blocks tie the columns together, so sand spreads sideways and the largest avalanches grow with the rectangle's area: 447 at `10 × 10`, over 3,500 at `20 × 20`. The size density looks like a power law over two decades, the Bak-Tang-Wiesenfeld signature. These castles are small, though, and the slope is an estimate over a finite range, not an exponent.
 
-**Answer to the `IDEAS.md` question.** Neither the block count nor the `2 × 2` count sets the *mean*: height does. The `2 × 2` count (more exactly, how the columns are joined above the base) sets the *tail* and the size of the largest avalanches.
+**Answer.** Neither the block count nor the `2 × 2` count sets the *mean*: height does. The `2 × 2` count (more exactly, how the columns are joined above the base) sets the *tail* and the size of the largest avalanches.
 
 ## Where the drain is matters
 
@@ -78,8 +78,7 @@ With a single drain cell (bottom-left) instead of the tide, sand has only one wa
 **Open.**
 - Prove the inequality and its equality case for all castles.
 - How the rectangle's largest avalanche and tail slope scale with width and height, and whether a genuine exponent emerges for large castles with the drain only at the bottom. The classic results assume drains on all four sides.
-- Avalanche statistics with a single drain cell, and whether duration and size are related by a power law here.
-- Arc 14's seminar walk-through, built on this page and the other sandpile pages, is [[sandcastle-seminar](pages/sandcastle-seminar.md)].
+- The tail and largest avalanches with a single drain cell (the mean is exact by Dhar, 129.9 on the `10 × 10` square above), and whether duration and size follow a power law in either drain model.
 
 ## Snippet
 

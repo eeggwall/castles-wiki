@@ -12,7 +12,7 @@ updated: 2026-09-20
 
 **The one idea:** a castle with `h = 65536` *is* a peak-normalized 16-bit waveform, one sample per column. Everything else on this page is either climbing down to that (the URL and the metadata are small castles) or measuring how cheaply that big castle can be written (compression), and then asking what happens when the column heights are read as elements of a finite field. The finale then unwinds the whole page against one work: Beethoven's Ninth Symphony, the recording whose length set the size of the Compact Disc.
 
-This is the reverse direction of the S4 arc, "hear the shape of a castle" ([[spectral-analysis](pages/spectral-analysis.md)]). S4 starts from a castle and takes a spectrum - a lossy invariant, and the whole point is what collides ([[isospectral-castles](pages/isospectral-castles.md)]). This page starts from sound and builds a castle, and the map is a **bijection**: nothing is lost, the skyline is the waveform, and the skyline DFT of [[spectral-analysis](pages/spectral-analysis.md)] §3 is literally the audio spectrum. Same map, read the other way.
+This is the reverse direction of "hear the shape of a castle" ([[spectral-analysis](pages/spectral-analysis.md)]), which starts from a castle and takes a spectrum - a lossy invariant, and the whole point is what collides ([[isospectral-castles](pages/isospectral-castles.md)]). This page starts from sound and builds a castle, and the map is a **bijection**: nothing is lost, the skyline is the waveform, and the skyline DFT of [[spectral-analysis](pages/spectral-analysis.md)] §3 is literally the audio spectrum. Same map, read the other way.
 
 The encodings used are the skyline (integer tuple) of [[castle-representations](pages/castle-representations.md)], the exact codebook size `A(w,h) = h^w - (h-1)^w` of [[castle-counting-function](pages/castle-counting-function.md)], and the tier ladder of [[castle-compression](pages/castle-compression.md)]. Every number below follows from those formulas plus one running example - Rick Astley's "Never Gonna Give You Up" for the rungs, Beethoven's Ninth for the finale.
 
@@ -95,7 +95,7 @@ That picture is the address of "Never Gonna Give You Up". At `(12, 64)` the same
 
 ### The even-block codebook: exactly one bit, and a weak checksum
 
-PE 502 counts only even-block castles, `F(w,h)`. Enumerative coding still works: a DP over `(column, last height, touched h yet, block parity)` counts completions and unranks directly into the even-block codebook. At `(w,h)` sizes of this order the difference `log2 A - log2 F` is one bit to six decimal places - [[castle-entropy](pages/castle-entropy.md)]'s asymptotic `-1` is already exact for a URL-sized castle. But what does the bit *buy*? A true parity bit detects every single-symbol error. Block parity does not: corrupting one random column flips the block parity only about 44% of the time on random `h=16` castles. The block count is the total upward variation `c_1 + sum max(0, c_i - c_{i-1})`, and a single-column edit changes two adjacent rises whose parities cancel more often than not. The one bit of [[castle-sign](pages/castle-sign.md)] is real information, but it is spent on a statistic of the *shape*, not on error detection - a fact for the S8 arc.
+PE 502 counts only even-block castles, `F(w,h)`. Enumerative coding still works: a DP over `(column, last height, touched h yet, block parity)` counts completions and unranks directly into the even-block codebook. At `(w,h)` sizes of this order the difference `log2 A - log2 F` is one bit to six decimal places - [[castle-entropy](pages/castle-entropy.md)]'s asymptotic `-1` is already exact for a URL-sized castle. But what does the bit *buy*? A true parity bit detects every single-symbol error. Block parity does not: corrupting one random column flips the block parity only about 44% of the time on random `h=16` castles. The block count is the total upward variation `c_1 + sum max(0, c_i - c_{i-1})`, and a single-column edit changes two adjacent rises whose parities cancel more often than not. The one bit of [[castle-sign](pages/castle-sign.md)] is real information, but it is spent on a statistic of the *shape*, not on error detection.
 
 ---
 
@@ -311,14 +311,15 @@ Everything above uses only maps declared on rung 0, rung 1, rung 2, and the fini
 - [[castle-sign](pages/castle-sign.md)] - the block count as total upward variation.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - exact linear complexity over `F_65537`; the finite-field cousin of LPC.
 - [[finite-fields](pages/finite-fields.md)] - `F_p` and roots of unity; the NTT lives here.
-- [[spectral-analysis](pages/spectral-analysis.md)] - the skyline DFT, read as an audio spectrum; the S4 arc this page reverses.
+- [[spectral-analysis](pages/spectral-analysis.md)] - the skyline DFT, read as an audio spectrum; the "hear the shape" direction this page reverses.
 - [[castle-classification-spectrum](pages/castle-classification-spectrum.md)], [[castle-classification-shape](pages/castle-classification-shape.md)] - sparse-spectrum and crenellated castles; the tones and the Ninth's opening chord.
 - [[castle-cryptography](pages/castle-cryptography.md)], [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the ring the toy network encrypts with, and what breaks it.
 - [[castle-snippets](pages/castle-snippets.md)] - `all_castles` and `blocks`, used to verify the bijections.
-- [[isospectral-castles](pages/isospectral-castles.md)] - where the S4 direction loses information; the lossless direction here does not.
+- [[isospectral-castles](pages/isospectral-castles.md)] - where the "hear the shape" direction loses information; the lossless direction here does not.
 - [[image-as-castle](pages/image-as-castle.md)] - the same map for JPG and PNG: an image as a stack of row castles or one two-dimensional castle.
-- [[castle-steganography](pages/castle-steganography.md)] - hiding a base64 string in castles; the block-parity channel is the S12 covert channel.
+- [[castle-steganography](pages/castle-steganography.md)] - hiding a base64 string in castles; the block-parity channel is the covert channel of "The Wire, but castles".
 - [[castle-entropy](pages/castle-entropy.md)] - the `log_2 A(w,h)` budget and the `-1` bit even-block price used throughout Rung 0/1; the "castle-entropy asymptotic -1" this page invokes.
+- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[one-bit-seminar](pages/one-bit-seminar.md)] / [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] / [[sandcastle-seminar](pages/sandcastle-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] - the other seminar pages.
 
 ## Appearances in Sources
 

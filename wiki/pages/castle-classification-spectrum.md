@@ -19,7 +19,7 @@ This turns "castle shape" into "graph spectrum" and lets number-theoretic and sp
 **Two facts about castle graphs shape every type below.**
 
 - **Bipartite.** Colour cells by `(i + j) mod 2`. Adjacency edges connect opposite colours, so the adjacency spectrum is symmetric about 0 (every eigenvalue `λ` has a mate `−λ`).
-- **Almost never regular.** The leftmost cell of the top row has at most two neighbours, so a regular castle graph has degree at most 2 and is a path or a cycle. The only castle graphs that qualify are the single cell, the domino `(1, 1)` = `P_2`, the three-cell path `(1, 1, 1)` = `P_3`, and the `2 × 2` square `(2, 2)` = `C_4`; a longer cycle would enclose a hole, which a bottom-aligned column-convex shape cannot. Every castle graph with more than four cells is irregular, with corner cells of degree 2, edge cells of degree 3, and interior cells of degree 4.
+- **Almost never regular.** The leftmost cell of the top row has at most two neighbours, so a regular castle graph has degree at most 2 and is a path or a cycle. The only castle graphs that qualify are the single cell, the domino `(1, 1)` = `P_2`, and the `2 × 2` square `(2, 2)` = `C_4`; a longer path has ends of degree 1 and middle cells of degree 2, and a longer cycle would enclose a hole, which a bottom-aligned column-convex shape cannot. Every other castle graph is irregular, with corner cells of degree 2, edge cells of degree 3, and interior cells of degree 4.
 
 The irregularity forces the Ramanujan definition to use Greenberg's universal-cover form rather than the regular-graph definition; the bipartite structure means the adjacency spectrum's second-largest eigenvalue in absolute value is really `max(λ_2, |λ_n|)`, and for bipartite graphs `λ_n = −λ_1` always, so the "non-trivial" spectrum is what sits between `−λ_1` and `λ_1` strictly.
 
@@ -36,6 +36,8 @@ The irregularity forces the Ramanujan definition to use Greenberg's universal-co
 - `h ≥ 4`: A006130, A006131, and so on.
 
 Tree castles of height 2 are a **golden width growth castle** in the class-level terminology of [[castle-classification-growth](pages/castle-classification-growth.md)] - a rung on the metallic ladder without leaving spectral territory. Counted by *area* ([[tree-castle-by-area](pages/tree-castle-by-area.md)]) tree castles instead realize the non-metallic **cubic-Pisot** growth constants - supergolden at `h = 2` (Narayana's cows A000930), plastic-squared `ψ²` at `h → ∞` (A005251). The unrestricted (non-tree) counterpart, all castles of height `≤ h` by area, is the **n-nacci** family - the tree constraint is exactly what turns the n-nacci constants into the term-skipping cubic-Pisot ones.
+
+Tree castles are also exactly the castles with a trivial sandpile group ([[sandpile-census](pages/sandpile-census.md)]).
 
 Full details on [[castle-graph](pages/castle-graph.md)] and [[tree-castle-by-area](pages/tree-castle-by-area.md)].
 
@@ -65,7 +67,7 @@ The metallic means reach individual castles only through their polyomino graphs.
 - Smallest **Laplacian-isospectral** pair: 11 cells, two trees, `(1, 1, 1, 2, 1, 1, 2, 1, 1)` and `(1, 1, 3, 1, 1, 1, 2, 1)`.
 - Smallest pair **isospectral for both operators**: 16 cells.
 
-The search is exhaustive to 16 cells, with 50 adjacency groups already at 16. Isospectral pairs are common from 12 cells on, so the spectrum is an *invariant* rather than a *classifier* at that scale.
+The search is exhaustive to 16 cells, with 50 adjacency groups already at 16. Isospectral pairs are common from 12 cells on, so the spectrum is an *invariant* rather than a *classifier* at that scale. Non-spectral invariants go further: the sandpile clock spectrum separates 62 of the 105 adjacency groups ([[sandcastle-clock](pages/sandcastle-clock.md)]), and the avalanche profile separates all 122 cospectral groups and behaves like a complete fingerprint up to 13 cells ([[sandpile-identity](pages/sandpile-identity.md)]).
 
 ## Ramanujan castle
 
@@ -89,10 +91,10 @@ Not yet populated, but the following predicates would sit here when they land.
 
 ## Open threads
 
-1. **Ramanujan census.** Compute `ρ(T)` for the universal covers of small castles with a `2 × 2` block and run the predicate; boxcastles and crenellated castles first.
+1. **Ramanujan census beyond 22 cells.** [[ramanujan-castles](pages/ramanujan-castles.md)] finds every castle of area at most 22 Ramanujan and the `2 × 14` rectangle the smallest that is not; which families fail next is open.
 2. **Bronze-spectrum castles.** Absent among 4.87 million castles on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]; open beyond the scanned size.
 3. **Sparse-spectrum, low/high-pass, Ihara-Ramanujan.** The three sketched types. Each waits for its method on [[spectral-analysis](pages/spectral-analysis.md)] to land before it can be populated with worked members.
-4. **Non-adjacency operators.** The Laplacian isospectral pair at 11 cells is one worked example; a full Laplacian census (or a Ihara-adjacency census) at small size would give the tree/golden/silver/`φ²` list its non-adjacency companions.
+4. **Non-adjacency operators.** The Laplacian-cospectral census to 16 cells is on [[isospectral-castles](pages/isospectral-castles.md)] (17 groups), with the sandpile invariants of the same castles on [[sandpile-census](pages/sandpile-census.md)]; an Ihara census at small size would give the tree/golden/silver/`φ²` list its non-adjacency companions.
 
 ## Related Concepts
 

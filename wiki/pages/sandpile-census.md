@@ -12,7 +12,7 @@ updated: 2026-09-26
 
 ## The question
 
-The S-department item on `IDEAS.md` asked four things about the sandpile group `K` of a castle ([[sandpile-group](pages/sandpile-group.md)] introduces it):
+This page answers four questions about the sandpile group `K` of a castle ([[sandpile-group](pages/sandpile-group.md)] introduces it):
 
 1. Show that the `2 × 2` blocks give an integer basis of the castle's cycles.
 2. Compute `K` for every castle up to 16 cells.
@@ -33,15 +33,25 @@ Put the boundary loop of each `2 × 2` block as a column of the cycle matrix `C`
 
 | cells | castles | trivial group (tree castles) | cyclic group | distinct groups |
 |---|---|---|---|---|
+| 1 | 1 | 1 | 1 | 1 |
+| 2 | 2 | 2 | 2 | 1 |
+| 3 | 3 | 3 | 3 | 1 |
 | 4 | 6 | 5 | 6 | 2 |
+| 5 | 10 | 8 | 10 | 2 |
 | 6 | 20 | 13 | 20 | 3 |
+| 7 | 36 | 22 | 36 | 3 |
 | 8 | 72 | 37 | 72 | 4 |
 | 9 | 136 | 63 | 134 | 6 |
 | 10 | 272 | 108 | 264 | 8 |
+| 11 | 528 | 186 | 503 | 10 |
 | 12 | 1,056 | 322 | 997 | 13 |
+| 13 | 2,080 | 559 | 1,933 | 18 |
 | 14 | 4,160 | 973 | 3,791 | 25 |
+| 15 | 8,256 | 1,697 | 7,338 | 34 |
 | 16 | 16,512 | 2,964 | 14,329 | 48 |
-| **1-16** | **33,150** | **6,963** | | |
+| **1-16** | **33,150** | **6,963** | **29,439** | |
+
+The trivial column is OEIS A005683 term for term (`(A005251(n+2) + A000931(n+6))/2`, the palindromic tree castles being Padovan numbers); the cyclic and distinct-group columns match nothing in the OEIS (searched 2026-09-26; [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]).
 
 The commonest groups, with the smallest castle that has each one. The group depends only on how the blocks are arranged, so the third column is what to picture:[^4]
 
@@ -71,9 +81,9 @@ The reason is visible in the data. In **every** one of the 122 cospectral groups
 
 **Answer to question 4:** there is no pair of castles with the same Laplacian spectrum and different sandpile groups up to 16 cells. Finding one would need two cospectral castles with different block graphs. None occur this small, and whether any exist at all is open.
 
-## 4. Cyclic sandcastles, corrected
+## 4. Cyclic sandcastles
 
-`IDEAS.md` conjectured that `K` is cyclic exactly when every cluster of blocks is a 2-wide ladder. The census refutes this as stated. Its own example `(2, 2, 1, 2, 2)` has two 2-wide ladder clusters (single blocks) and group `Z/4 × Z/4`, which is not cyclic. Read with "ladder" as a horizontal row of blocks, it fails on 9,547 castles, starting with `(3, 3)`, a vertical 2-wide ladder with cyclic group `Z/15`.[^6]
+A natural guess is that `K` is cyclic exactly when every cluster of blocks is a 2-wide ladder. The census refutes it. `(2, 2, 1, 2, 2)` has two 2-wide ladder clusters (single blocks) and group `Z/4 × Z/4`, which is not cyclic. Read with "ladder" as a horizontal row of blocks, it fails on 9,547 castles, starting with `(3, 3)`, a vertical 2-wide ladder with cyclic group `Z/15`.[^6]
 
 What is true:
 
@@ -85,14 +95,15 @@ What is true:
 
 **Settled (to 16 cells).**
 - The block loops are an integer basis of the cycle lattice in every case tested.
-- The census of sandpile groups, with the tree castles (6,963) as the trivial ones.
+- The census of sandpile groups, with the tree castles (6,963, mirror images removed; [[tree-castle-by-area](pages/tree-castle-by-area.md)] counts them with mirrors kept) as the trivial ones.
 - The sandpile group separates no cospectral pair, because cospectral castles always share their block graph.
-- Path-shaped clusters give cyclic groups (proof above). The original cyclicity conjecture is false.
+- Path-shaped clusters give cyclic groups (proof above). The 2-wide-ladder guess for cyclicity is false.
 
 **Open.**
-- Do two cospectral castles with different block graphs exist at any size? That is the only way the sandpile group could separate a cospectral pair.
+- Do two cospectral castles with different block graphs exist at any size? That is the only way the sandpile group could separate a cospectral pair. The spectrum already hears the number of blocks ([[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] Stop 2); the question is whether it hears how they touch.
 - Which non-path clusters give cyclic groups? `(2, 3, 3, 3)` is cyclic and `(3, 3, 3)` is not.
-- The next S-department items: the identity element, the tide period ("sandcastle clock"), and avalanches. The clock depends on the order of a single grain in `K`, which the census now supplies.
+
+The group computed here feeds the rest of the sandpile pages: the clock period is the order of one grain in `K` ([[sandcastle-clock](pages/sandcastle-clock.md)]), the identity is its zero element ([[sandpile-identity](pages/sandpile-identity.md)]), and the random-dropping statistics use the same inverse reduced Laplacian ([[castle-avalanches](pages/castle-avalanches.md)]).
 
 ## Snippet
 
@@ -191,7 +202,7 @@ def cospectral_groups(castles, operator):  # sets of non-isomorphic castles shar
 - [[sandcastle-clock](pages/sandcastle-clock.md)] - the clock spectrum, which separates cospectral castles the sandpile group cannot.
 - [[sandpile-identity](pages/sandpile-identity.md)] - the avalanche profile, which separates every cospectral group the sandpile group cannot.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
-
+- [[castle-avalanches](pages/castle-avalanches.md)] - random dropping, which uses the same inverse reduced Laplacian.
 
 ## Appearances in Sources
 

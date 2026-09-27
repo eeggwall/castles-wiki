@@ -48,7 +48,7 @@ The **trace formula** makes this systematic. `trace(Aᵏ)` is the number of clos
 The Laplacian hears more:
 
 - the number of zero eigenvalues is the number of **connected pieces** (1 for a castle);
-- by Kirchhoff's matrix-tree theorem, the number of **spanning trees** is any cofactor of `L`, so it is determined by the spectrum. The 4-cycle `(2, 2)` has 4 spanning trees, the `3 × 2` grid has 15, and a tree castle has 1.[^1]
+- by Kirchhoff's matrix-tree theorem, the number of **spanning trees** is any cofactor of `L`, so it is determined by the spectrum. The 4-cycle `(2, 2)` has 4 spanning trees, the `3 × 2` grid has 15, and a tree castle has 1.[^1] The spanning-tree count is also the order of the castle's sandpile group ([[sandpile-group](pages/sandpile-group.md)]).
 
 *Idea:* a spectrum is a list of numbers, and its power sums are counts of objects you can name.
 
@@ -63,7 +63,7 @@ A = (1,1,1,2,3,2)            B = (1,1,2,2,3,1)
 ######                       ######
 ```
 
-Both have characteristic polynomial `x¹⁰ − 11x⁸ + 34x⁶ − 36x⁴ + 12x²`. They agree on everything Stop 2 lists: area 10, 11 edges, two `2 × 2` blocks, the traces `22, 0, 106` of `A², A³, A⁴`, and even 15 spanning trees each. Yet they are different graphs. `A` has a cell with **four** neighbors (the second cell up in its tallest column, with filled cells left, right, above and below), while no cell of `B` has more than three:[^2]
+Both have characteristic polynomial `x¹⁰ − 11x⁸ + 34x⁶ − 36x⁴ + 12x²`. They agree on everything Stop 2 lists: area 10, 11 edges, two `2 × 2` blocks, the traces `22, 0, 106` of `A², A³, A⁴`, and even 15 spanning trees each, so both have the sandpile group `Z/15` ([[sandpile-census](pages/sandpile-census.md)]). Yet they are different graphs. `A` has a cell with **four** neighbors (the second cell up in its tallest column, with filled cells left, right, above and below), while no cell of `B` has more than three:[^2]
 
 ```
 degrees(A) = 4, 3, 3, 2, 2, 2, 2, 2, 1, 1
@@ -106,11 +106,13 @@ Two classical reasons cover every pair above ([[isospectral-castles](pages/isosp
 
 ## Stop 7 - hearing more
 
-Three ways to separate what the eigenvalues cannot, each an open thread in the S Department of `IDEAS.md`:
+Ways to separate what the eigenvalues cannot:
 
 - **Local spectra** (Stop 4): diagonals of powers or of the heat kernel, cell by cell.
 - **The Ihara zeta function**, which counts non-backtracking closed walks, a finer invariant than the spectrum for graphs with cycles ([[spectral-analysis](pages/spectral-analysis.md)] §5).
 - **The skyline DFT**, the Fourier transform of the height sequence itself rather than of the graph ([[spectral-analysis](pages/spectral-analysis.md)] §3).
+
+- **Sand.** Drop grains on the castle and watch them topple. The sandpile group sees only the block graph, which cospectral castles share, but the clock spectrum ticks 15 against 5 on the 10-cell pair and separates 62 of 105 adjacency and 5 of 17 Laplacian groups to 16 cells ([[sandcastle-clock](pages/sandcastle-clock.md)]), and the avalanche profile separates all of them ([[sandpile-identity](pages/sandpile-identity.md)]).
 
 Whether Ihara or the DFT separates the 10-cell pair is not yet known.
 
@@ -122,6 +124,8 @@ Whether Ihara or the DFT separates the 10-cell pair is not yet known.
 | Laplacian `L = D − A` | area, edges, connectivity, spanning trees, `Σ deg²` | branching of trees | 11 cells: `(1,1,1,2,1,1,2,1,1)` / `(1,1,3,1,1,1,2,1)` |
 | both | all of the above | the shape | 16 cells: a pair of trees |
 | per-cell walk counts (not spectral) | separates both small pairs | - | - |
+| sandpile clock spectrum (not spectral) | 62 of 105 adjacency and 5 of 17 Laplacian groups to 16 cells | trees (they never tick) | - |
+| avalanche profile (not spectral) | every cospectral group to 16 cells | none found | - |
 
 ## Snippet
 
@@ -218,7 +222,6 @@ False
 
 ## What is still open
 
-These are the S-department items feeding Arc 4 in `IDEAS.md`:
 - a Sunada-type construction for the 10-cell adjacency pair;
 - whether the Ihara zeta function or the skyline DFT separates the cospectral pairs;
 - the bronze spectral-radius hunt ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]: no castle among 4.87 million has spectral radius `(3 + √13)/2`);
@@ -240,12 +243,13 @@ These are the S-department items feeding Arc 4 in `IDEAS.md`:
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the other seminar pages.
 - [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the seminar on OEIS mining as a research method.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
-- [[sandpile-group](pages/sandpile-group.md)] - the sandpile group, a finer relative of the Laplacian spectrum; it does not separate the 10- or 11-cell pairs.
+- [[sandpile-group](pages/sandpile-group.md)] - the sandpile group, built from the Laplacian; it separates neither the 10- nor the 11-cell pair.
 - [[sandpile-census](pages/sandpile-census.md)] - the sandpile census: the group hears nothing the spectrum misses up to 16 cells.
 - [[sandcastle-clock](pages/sandcastle-clock.md)] - the sandcastle clock ticks 15 and 5 on this seminar's 10-cell pair, which share spectrum and sandpile group.
 - [[sandpile-identity](pages/sandpile-identity.md)] - one grain on the apex of the 10-cell pair's identity: 57 topplings against 1.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
-
+- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
+- [[castle-avalanches](pages/castle-avalanches.md)] - random dropping on castles; the mean is Laplacian data, the tail is set by the `2 × 2` blocks.
 
 ## Footnotes
 

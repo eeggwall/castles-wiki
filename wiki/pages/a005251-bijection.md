@@ -17,7 +17,7 @@ updated: 2026-09-26
 - **Tree castles of area `n`, unlimited height** ([[tree-castle-by-area](pages/tree-castle-by-area.md)], `h → ∞`). A tree castle (no `2×2` filled block) is a skyline with no two adjacent columns both `≥ 2`, so by area it is a **composition `(c_1, …, c_w)` of `n` with no two adjacent parts `≥ 2`**. Count: `A005251(n+2)`.
 - **Binary strings avoiding the factor `010`** — the OEIS interpretation of A005251 ("`a(n+3)` is the number of `n`-bit sequences that avoid `010`"). Count of length `N`: `A005251(N+3)`. (Hardin's `W_1` object, [[hardin-word-identity](pages/hardin-word-identity.md)], is the *closely related but distinct* "no isolated `1`" family — `#{no-isolated-1, length N} = A005251(N+2)`, so avoid-`010` of length `N` and no-isolated-1 of length `N+1` share a count; the bijection below targets the avoid-`010` family, the cleaner match to compositions.)
 
-Both hit the same recurrence with the same three-1 initial run, but the objects looked unrelated — one a constrained composition, the other a constrained binary string. The open question on `IDEAS.md` asked for an explicit bijection, or a Sunada-style common cover ([[isospectral-castles](pages/isospectral-castles.md)]) generating both. **It needs no cover: there is a direct, elementary, constraint-preserving bijection.**
+Both hit the same recurrence with the same three-1 initial run, but the objects looked unrelated — one a constrained composition, the other a constrained binary string. The question was whether there is an explicit bijection, or a Sunada-style common cover ([[isospectral-castles](pages/isospectral-castles.md)]) generating both. **It needs no cover: there is a direct, elementary, constraint-preserving bijection.**
 
 ## The bijection
 

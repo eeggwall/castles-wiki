@@ -22,7 +22,7 @@ Discrete fractional calculus (Atici and Eloe, 2007-2009) gives one clean answer.
 
 is the **fractional Fibonacci** of the Atici-Eloe school. At `α = 1` it is `a_n - a_{n-1} = a_{n-1}`, i.e. `a_n = 2 a_{n-1}` - a geometric sequence, growth `2`. At `α = 2` it is `a_n - 2 a_{n-1} + a_{n-2} = a_{n-1}`, i.e. `a_n = 3 a_{n-1} - a_{n-2}` - a Fibonacci-tier second-order recurrence with characteristic polynomial `x² - 3x + 1`, growth `(3 + √5)/2 = φ²`. Between them the order `α` sweeps continuously, and past `α = 2` it climbs into higher-order territory.
 
-This page executes the program stated on `IDEAS.md`: **compute the growth constant `g(α)` of the fractional Fibonacci as a function of `α`, ask whether it hits the metallic ladder at any non-integer point, and settle whether the growth constants are algebraic at all.** All three questions have clean answers, and the answers make fractional recurrences the natural continuum-completion of the reachable-field census.
+This page carries out a three-part program: **compute the growth constant `g(α)` of the fractional Fibonacci as a function of `α`, ask whether it hits the metallic ladder at any non-integer point, and settle whether the growth constants are algebraic at all.** All three questions have clean answers, and the answers make fractional recurrences the natural continuum-completion of the reachable-field census.
 
 ## The characteristic equation
 

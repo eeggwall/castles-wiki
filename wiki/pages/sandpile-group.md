@@ -1,7 +1,7 @@
 ---
 title: Sandpile groups of castles - sand, cycles, and 2×2 blocks
 category: Concepts
-summary: An introduction to the sandpile group (also called the critical group or Jacobian) of a castle graph, starting from the game and ending at the linear algebra. Grains sit on cells; a cell holding at least as many grains as it has neighbours topples, sending one grain to each; one cell is a drain where grains vanish. The configurations that keep coming back as sand is added form a finite group whose size is the number of spanning trees. In matrix terms it is Z^n modulo the reduced Laplacian, and the Laplacian factors through the boundary matrix as L = ∂∂ᵀ. The cycles of the castle graph (the kernel of ∂) have the castle's 2×2 blocks as a basis, and because castles are planar the group can be read off a much smaller matrix, one row per 2×2 block, with 4 on the diagonal and −1 for each pair of blocks sharing an edge (checked on all 1,023 castles up to 10 cells). So the 2×2 blocks hold the sand. Tree castles (golden paths, battlements) hold none, the 4-cycle (2,2) gives Z/4, the silver rectangle (2,2,2) and any castle with two side-by-side blocks give Z/15, the 2-wide ladders give Z/4, Z/15, Z/56, Z/209, …, and (3,3,3) gives Z/8 × Z/24. A runnable block reproduces every example.
+summary: An introduction to the sandpile group (also called the critical group or Jacobian) of a castle graph, starting from the game and ending at the linear algebra. Grains sit on cells; a cell holding at least as many grains as it has neighbours topples, sending one grain to each; one cell is a drain where grains vanish. The configurations that keep coming back as sand is added form a finite group whose size is the number of spanning trees. In matrix terms it is Z^n modulo the reduced Laplacian, and the Laplacian factors through the boundary matrix as L = ∂∂ᵀ. The cycles of the castle graph (the kernel of ∂) have the castle's 2×2 blocks as a basis, and because castles are planar the group can be read off a much smaller matrix, one row per 2×2 block, with 4 on the diagonal and −1 for each pair of blocks sharing an edge (checked on all 1,023 castles up to 10 cells, counting mirror images separately; 558 up to mirror image). So the 2×2 blocks hold the sand. Tree castles (golden paths, battlements) hold none, the 4-cycle (2,2) gives Z/4, the silver rectangle (2,2,2) and any castle with two side-by-side blocks give Z/15, the 2-wide ladders give Z/4, Z/15, Z/56, Z/209, …, and (3,3,3) gives Z/8 × Z/24. A runnable block reproduces every example.
 tags: [concept, castle, sandpile, abelian-sandpile, critical-group, chip-firing, laplacian, boundary-matrix, cycle-space, spanning-trees, smith-normal-form, tree-castle, planar-dual, pedagogy]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-26
@@ -106,7 +106,7 @@ For a planar graph like a castle, this small matrix, **one row per 2×2 block**,
 K(castle)  =  Z^r / (CᵀC) Z^r          (r = number of 2×2 blocks)
 ```
 
-It is the sandpile group of the planar dual graph, whose vertices are the blocks. This was checked against the cell-side formula on all 1,023 castles with up to 10 cells.[^5] So **the 2×2 blocks hold the sand**. A castle with no `2 × 2` block has no cycles, a single spanning tree, and a trivial group: sand washes straight out. A castle's sandpile group depends only on how its blocks are arranged, not on the towers and spikes around them.
+It is the sandpile group of the planar dual graph, whose vertices are the blocks. This was checked against the cell-side formula on all 1,023 castles with up to 10 cells, mirror images counted separately (558 up to mirror image).[^5] So **the 2×2 blocks hold the sand**. A castle with no `2 × 2` block has no cycles, a single spanning tree, and a trivial group: sand washes straight out. A castle's sandpile group depends only on how its blocks are arranged, not on the towers and spikes around them.
 
 ## Part 4 - the castle gallery
 
@@ -122,13 +122,13 @@ It is the sandpile group of the planar dual graph, whose vertices are the blocks
 | `(3, 3, 3)` | `3 × 3` square | 4 | a `2 × 2` square of blocks | `Z/8 × Z/24` |
 | `(2, 3, 3, 2)` | a hill | 4 | a T of blocks | `Z/4 × Z/52` |
 
-**The prototype: the ladder.** A 2-wide ladder `(2, 2, …, 2)` has a single row of blocks, so its block matrix is tridiagonal, with `4` on the diagonal and `−1` beside it. The group is cyclic, of order `4, 15, 56, 209, …` (OEIS A001353, `a(n) = 4a(n−1) − a(n−2)`). Picture any castle as its skeleton of `2 × 2` blocks. Separated groups of blocks contribute independent factors (two isolated squares give `Z/4 × Z/4`), a row of `r` blocks contributes one cyclic group of that ladder order, and denser arrangements such as the `2 × 2` square of blocks in `(3, 3, 3)` or the T in `(2, 3, 3, 2)` split into two cyclic factors.
+**The prototype: the ladder.** A 2-wide ladder `(2, 2, …, 2)` has a single row of blocks, so its block matrix is tridiagonal, with `4` on the diagonal and `−1` beside it. The group is cyclic, of order `4, 15, 56, 209, …` (OEIS A001353, `a(n) = 4a(n−1) − a(n−2)`). Picture any castle as its skeleton of `2 × 2` blocks. Separated groups of blocks contribute independent factors (two isolated squares give `Z/4 × Z/4`), a row of `r` blocks contributes one cyclic group of that ladder order, and denser arrangements can split: the `2 × 2` square of blocks in `(3, 3, 3)` and the T in `(2, 3, 3, 2)` each give two cyclic factors. Not every dense cluster splits: `(2, 3, 3, 3)` has a `2 × 2` square of blocks plus one more, and a cyclic group `Z/712` ([[sandpile-census](pages/sandpile-census.md)]).
 
 **What this means for the isospectral pairs.** The 10-cell adjacency-isospectral pair of [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] has the same sandpile group, `Z/15`, because both castles have two side-by-side blocks. The 11-cell Laplacian-isospectral pair are trees, so both groups are trivial. On these two pairs the sandpile group separates nothing. [[sandpile-census](pages/sandpile-census.md)] checks every castle to 16 cells: it separates no cospectral pair at all, because cospectral castles there always share their graph of 2×2 blocks.
 
 ## A variant: the bottom row as the tide
 
-Some `IDEAS.md` items describe the base row as the sink, as if the ground were the tide that washes sand away. That is a different graph: the whole bottom row is merged into a single drain. It gives a different group, for example `Z/3` for `(2, 2)` instead of `Z/4`, and `Z/8` for `(2, 2, 2)` instead of `Z/15`. Everything on this page uses the castle graph itself with one cell as the drain, whose group does not depend on the choice of drain cell.[^6]
+A natural variant makes the base row the sink, as if the ground were the tide that washes sand away. That is a different graph: the whole bottom row is merged into a single drain. It gives a different group, for example `Z/3` for `(2, 2)` instead of `Z/4`, and `Z/8` for `(2, 2, 2)` instead of `Z/15`. Everything on this page uses the castle graph itself with one cell as the drain, whose group does not depend on the choice of drain cell.[^6]
 
 ## Snippet
 
@@ -253,7 +253,8 @@ In the recurrent tuples the positions are the cells in the order `castle_graph` 
 - [[sandpile-identity](pages/sandpile-identity.md)] - the identity element drawn in both drain models, and the avalanche profile.
 - [[castle-avalanches](pages/castle-avalanches.md)] - dropping sand at random: exact mean avalanche sizes and heavy tails.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
-
+- [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the 10-cell isospectral pair worked by hand; both castles have `K = Z/15`.
+- [[ramanujan-castles](pages/ramanujan-castles.md)] - the 2-wide ladder again: the 14-rung ladder `(14, 14)` is the smallest non-Ramanujan castle.
 
 ## Appearances in Sources
 

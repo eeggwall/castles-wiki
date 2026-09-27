@@ -123,6 +123,7 @@ A rational generating function's denominator is a factored inventory of atoms. W
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] - where `1 + √2` also appears, as the tower-word growth constant.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] - the Fibonacci / `φ` companion (same story with `a = 1`).
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - Axis 2 (the 1-smooth predicate); [[castle-classification-growth](pages/castle-classification-growth.md)] - Axis 8, for which the anchored 1-smooth strip is the canonical **silver width growth castle** example.
+- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[one-bit-seminar](pages/one-bit-seminar.md)] / [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] / [[sandcastle-seminar](pages/sandcastle-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the other seminar pages.
 
 ## Footnotes
 

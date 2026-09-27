@@ -293,7 +293,7 @@ Meaning: swap in `L = np.diag(A.sum(1)) - A` for the combinatorial Laplacian; fe
 
 ### `is_tree_castle(c)` / `cycle_rank(c)` → tree predicate and cycle rank
 
-The castle is a tree iff no `2 × 2` block is filled, iff no two horizontally adjacent columns both have height at least 2. Cycle rank `|E| − |V| + 1` equals the number of `2 × 2` filled blocks - a Euler-formula identity for the [[castle-graph](pages/castle-graph.md)].
+The castle is a tree iff no `2 × 2` block is filled, iff no two horizontally adjacent columns both have height at least 2. Cycle rank `|E| − |V| + 1` equals the number of `2 × 2` filled blocks - a Euler-formula identity for the [[castle-graph](pages/castle-graph.md)]. A tree castle has a trivial sandpile group; the sandpile helpers (block matrix, Smith normal form, stabilize, identity, grain orders, Dhar's mean) are the snippets on [[sandpile-group](pages/sandpile-group.md)], [[sandpile-census](pages/sandpile-census.md)], [[sandcastle-clock](pages/sandcastle-clock.md)], [[sandpile-identity](pages/sandpile-identity.md)] and [[castle-avalanches](pages/castle-avalanches.md)].
 
 ```python
 def is_tree_castle(c):

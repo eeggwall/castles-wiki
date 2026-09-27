@@ -206,7 +206,7 @@ m=1 (k=6):  words(L+1) = [1, 2, 4, 7, 12, 21, 37, 65, 114]     P_even/2^L = [1, 
 m=2 (k=10): words(L+1) = [1, 3, 9, 22, 51, 121, 292, 704, 1691] P_even/2^L = [1, 3, 9, 22, 51, 121, 292, 704, 1691]
 ```
 
-Hardin's OEIS entries carry their recurrences as "Empirical: a(n) = 3a(n−1) − 3a(n−2) + 4a(n−3) − a(n−4) + a(n−5)" (A202882), and likewise for A203094 and A203184. Those are exactly `H_5`, `H_7`, `H_9`. On the castle side they are theorems (the sector's characteristic polynomial); what the word side still lacks is a bijective or transfer-matrix argument that the two objects agree - the open item filed on IDEAS. A proof would confirm four empirical OEIS recurrences at once and give the castle a genuinely new interpretation of a family of sequences.
+Hardin's OEIS entries carry their recurrences as "Empirical: a(n) = 3a(n−1) − 3a(n−2) + 4a(n−3) − a(n−4) + a(n−5)" (A202882), and likewise for A203094 and A203184. Those are exactly `H_5`, `H_7`, `H_9`. On the castle side they are theorems (the sector's characteristic polynomial); what the word side still lacks is a bijective or transfer-matrix argument that the two objects agree - still open. A proof would confirm four empirical OEIS recurrences at once and give the castle a genuinely new interpretation of a family of sequences.
 
 **`k ≡ 0 (mod 4)`: the odd sector carries `H_d`.**[^8]
 
@@ -226,7 +226,7 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 - `ρ_6 = 2ψ²` because `H_3` is the minimal polynomial of `ψ²`; `ρ_k/2` is a unit for `k ≡ 2 (mod 4)` because the dominant root then lies in the monic factor.
 - `P_even(4m+2, L) = 2^L ·` Hardin word count (A005251, A202882, A203094, A203184), verified `m ≤ 4`; `P_odd(4, L) = −2^L · A010892(L)`; `P_even(1, L) = A146559(L)`, `P_odd(1, L) = −A009545(L)`; `P_odd(2, L) = −A107920(L)`.
 
-**Open** (filed on IDEAS).
+**Open.**
 - Prove that the two sector factors of `char_{2d}` have resultant `2^{d(d+1)}` (`= 2^{k(k+2)/4}`; verified every even `k ≤ 30`, [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]). Equivalently, the sector split of `Q[x]/(char_k)` already holds over `Z[1/2]` and survives reduction mod every odd prime. Geometrically the two sectors are the components of `Spec Z[x]/(char_k)` and meet only at the point `(2, x)` (sector factors `≡ x^d` and `x^d(x + 1)` mod 2, checked `k ≤ 30`, [[castle-ring-spectrum](pages/castle-ring-spectrum.md)]).
 - Prove `char_k` irreducible over `Q` for every odd `k`. Eisenstein at 2 reaches exactly `k = 2^m − 1` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]); `k = 5, 9, 11, 13, …` need another argument.
 - Prove that the dominant root lies in the `+1` sector and that `H_d` belongs to the `+1` sector iff `d` is odd.

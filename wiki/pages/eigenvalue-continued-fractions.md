@@ -118,7 +118,7 @@ Both are the fundamental units of their quadratic fields (`φ` of `Q(√5)`, `�
 |---|---|---|---|---|
 | 1 | `(1+√5)/2 ≈ 1.618` | Golden | Fibonacci A000045 | `2^{n−1} − F_{n−1}` in prime-castle count ([[castle-by-area](pages/castle-by-area.md)]) |
 | 2 | `1+√2 ≈ 2.414` | Silver | Pell A000129 ([[pell-numbers](pages/pell-numbers.md)]) | tower-word growth constant; the anchored 1-smooth strip of [[pell-castle-strip](pages/pell-castle-strip.md)] |
-| 3, 4, 5, … | Bronze, Copper, Nickel, … | (candidate rungs) | | *open — see the metallic-ratio-ladder thread on `IDEAS.md`* |
+| 3, 4, 5, … | Bronze, Copper, Nickel, … | (candidate rungs) | | *open* |
 
 The wiki was already sitting on rungs 1 and 2 of this ladder before naming it. Every castle class whose count sequence has growth constant `δ_a` for some `a ≥ 1` is a **`<metal>` `<axis>` growth castle** (Axis 8 of [[castle-classification-growth](pages/castle-classification-growth.md)]) — a meta-classification on castle *classes* (not on individual castles) whose naming convention `<metal>` ∈ {golden, silver, bronze, copper, …} and `<axis>` ∈ {width, vertical, area, block} is developed there.
 

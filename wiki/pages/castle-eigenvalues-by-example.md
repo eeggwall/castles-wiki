@@ -224,13 +224,12 @@ There are two levels of "same spectrum" on the wiki.
 
 ```
 (1, 1, 1, 2, 3, 2)               (1, 1, 2, 2, 3, 1)
-          ■                            ■
-        ■ ■                            ■
-        ■ ■                          ■ ■ ■
+          ■                                ■
+        ■ ■ ■                          ■ ■ ■
   ■ ■ ■ ■ ■ ■                  ■ ■ ■ ■ ■ ■
 ```
 
-Both are castles of width 6, height 3, 10 cells. Neither is a graph-isomorphic copy of the other - one has a 2×3 block on the right, the other has a 2×2 block in the middle. And yet both have the same 10 eigenvalues:
+Both are castles of width 6, height 3, 10 cells. Neither is a graph-isomorphic copy of the other. Both hold a `2 × 3` rectangle of cells (two `2 × 2` blocks sharing an edge) with a one-cell tower on top, but the first castle's tower stands on the middle column of the rectangle, giving a cell of degree 4, and the second's stands on an end column. And yet both have the same 10 eigenvalues:
 
 ```
 ±2.583181, ±1.627286, ±1.000000, ±0.824085, and 0 with multiplicity 2.
@@ -238,7 +237,7 @@ Both are castles of width 6, height 3, 10 cells. Neither is a graph-isomorphic c
 
 Same characteristic polynomial. The adjacency matrix cannot see the shape difference between them. This means the "number of walks of length `n`" is identical between the two castles, for every `n` and every starting/ending vertex distribution - a physical claim that is testable and, if you count carefully, correct.
 
-The isospectral phenomenon is small: the smallest examples in general graph theory sit at 5 vertices (`K_{1, 4}` and `C_4 ∪ K_1`), but castles are more constrained, and 10 cells is the smallest that works for the castle model. See [[isospectral-castles](pages/isospectral-castles.md)] for the full census; the wiki knows all adjacency-isospectral castle pairs up to 16 cells.
+The isospectral phenomenon is small: the smallest examples in general graph theory sit at 5 vertices (`K_{1, 4}` and `C_4 ∪ K_1`), but castles are more constrained, and 10 cells is the smallest that works for the castle model. See [[isospectral-castles](pages/isospectral-castles.md)] for the full census; the wiki knows all adjacency-isospectral castle pairs up to 16 cells. Sand tells this pair apart: both castles have the sandpile group `Z/15` ([[sandpile-group](pages/sandpile-group.md)]), but their sandcastle clocks tick 15 and 5 ([[sandcastle-clock](pages/sandcastle-clock.md)]), and one grain on the apex of the identity sets off 57 topplings in one and 1 in the other ([[sandpile-identity](pages/sandpile-identity.md)]).
 
 ## Scaling up: what stays and what changes
 
@@ -283,7 +282,7 @@ Those pages will be readable once the intuition above is in place. Every eigenva
 - [[metallic-means](pages/metallic-means.md)] - the family the growth constants `φ`, `1 + √2`, `(3 + √13) / 2` etc. belong to.
 - [[castle-snippets](pages/castle-snippets.md)] - the `castle_graph` and `castle_graph_radius` snippets used to run every computation on this page.
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar this page's worked examples lead into.
-
+- [[sandpile-group](pages/sandpile-group.md)] / [[sandcastle-clock](pages/sandcastle-clock.md)] / [[sandpile-identity](pages/sandpile-identity.md)] - the sandpile invariants of the 10-cell pair: same group `Z/15`, clocks 15 and 5, apex avalanches 57 and 1.
 
 ## Footnotes
 

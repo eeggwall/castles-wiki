@@ -115,6 +115,7 @@ That is the end of the loop's arc: the castle cryptosystem, done correctly, beco
 - [[finite-fields](pages/finite-fields.md)] - `F_{p^6}`, its subfields, and the cyclotomic factorization of `p^6 - 1`.
 - [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - how often `char_5` stays irreducible mod `p`.
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - security as the largest prime-power invariant factor, here a single prime `q`.
+- [[sandpile-group](pages/sandpile-group.md)] - another castle group read off a Smith normal form, the same largest-invariant-factor yardstick used here.
 
 ## Appearances in Sources
 

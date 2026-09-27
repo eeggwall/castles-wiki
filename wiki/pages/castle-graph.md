@@ -43,7 +43,7 @@ Every invariant of `G_c` a graph theorist wants is a small formula in `c`.[^1]
 | bipartite? | always (color `(i, j)` by parity of `i + j`) |
 | planar? | always (drawn on `Z²` with no crossings) |
 
-The cycle-rank identity is the crux. `G_c` is a planar graph whose bounded faces in the grid embedding are exactly the fully-filled unit squares; each such square contributes one independent cycle, and the total is `|E| − |V| + 1` by Euler. Verified for every castle with `w ≤ 4, h ≤ 4`.[^1]
+The cycle-rank identity is the crux. `G_c` is a planar graph whose bounded faces in the grid embedding are exactly the fully-filled unit squares; each such square contributes one independent cycle, and the total is `|E| − |V| + 1` by Euler. Verified for every castle with `w ≤ 4, h ≤ 4`.[^1] The block loops are more than a count: they are an integer basis of the cycle lattice on all 938 castles tested ([[sandpile-census](pages/sandpile-census.md)] §1), which is why the sandpile group can be read off the blocks ([[sandpile-group](pages/sandpile-group.md)] Part 3).
 
 **A castle graph is a tree iff it has no 2×2 filled block**, equivalently, no two horizontally adjacent columns both have height at least 2.
 
@@ -73,6 +73,8 @@ A **tree castle** is a castle whose graph is a tree: connected, `|V| = |E| + 1`,
 - `(1, 1, 1, 2, 1, 1, 2, 1, 1)`, the 11-cell tree from the isospectral pair on [[isospectral-castles](pages/isospectral-castles.md)].
 
 Non-examples: `(2, 2)`, `(3, 3)`, `(1, 2, 3, 1, 2, 3)` all contain `2×2` blocks and are therefore not trees.
+
+A tree castle has exactly one spanning tree, so its sandpile group is trivial: sand washes straight out, and the identity is the fullest stable pile. Up to 16 cells there are 6,963 tree castles, mirror images removed ([[sandpile-census](pages/sandpile-census.md)], [[sandpile-identity](pages/sandpile-identity.md)]).
 
 ### Counting tree castles: Fibonacci, Jacobsthal, and the k-Fibonacci family
 
@@ -115,11 +117,11 @@ Each of these is a bridge that the castle graph turns from analogy into computat
 
 - **Spectral graph theory.** Adjacency, Laplacian, normalized Laplacian, signless Laplacian, and Ihara zeta all live on `G_c`. See [[spectral-analysis](pages/spectral-analysis.md)] for the methods and [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] / [[isospectral-castles](pages/isospectral-castles.md)] for two settled applications.
 - **Extremal graph theory.** The maximum spectral radius of a castle graph with `n` cells is a Turán-type problem; the min-cut / max-flow structure of the base row makes castles a natural family to test conjectures on.
-- **Algebraic graph theory.** Because `G_c` is bipartite and planar, it fits inside classical setups (Kasteleyn, dimer models) where combinatorial identities live.
+- **Algebraic graph theory.** Because `G_c` is bipartite and planar, it fits inside classical setups (Kasteleyn, dimer models) where combinatorial identities live. Planarity also gives the critical group through the planar dual, whose vertices are the `2 × 2` blocks ([[sandpile-group](pages/sandpile-group.md)]).
 - **Random graphs.** Random castles under any of the wiki's ensembles ([[spectral-analysis](pages/spectral-analysis.md)] method 2, Lindstrom-Gessel-Viennot (LGV) kernel) become a random-graph model whose spectra can be sampled.
 - **Sunada theory** (see [[isospectral-castles](pages/isospectral-castles.md)]) for common covers and the "hear the shape" question.
 
-The [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], [[isospectral-castles](pages/isospectral-castles.md)], and the tree-castle counting story above are the wiki's current three touchpoints of the bridge; every future Axis 9 result is a new one.
+The [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], [[isospectral-castles](pages/isospectral-castles.md)], [[ramanujan-castles](pages/ramanujan-castles.md)], the sandpile pages from [[sandpile-group](pages/sandpile-group.md)] on, and the tree-castle counting story above are the wiki's touchpoints of the bridge; every future Axis 9 result is a new one.
 
 ## Snippet index
 

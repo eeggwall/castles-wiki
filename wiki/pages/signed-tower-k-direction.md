@@ -32,7 +32,7 @@ P(k, L)  =  (−1)^k · A_L(k)  +  B_L(k),        deg A_L ≤ L − 1,   deg B_L
 
 **Why it must be so (argument sketch).** `P(k, L)` sums `(−1)^{desc(c)}` over the lattice points `c ∈ {0, …, k}^L`, and the descent `Σ max(0, c_i − c_{i+1})` is a *linear* form on each piece of the cube cut out by the order type of `c`. A sum of a fixed root of unity raised to a linear form over the lattice points of a dilated rational polytope is an **Ehrhart-type quasi-polynomial** in the dilation `k` (Ehrhart's theorem: the number of lattice points in `k · P` for a rational polytope `P` is a quasi-polynomial in `k` of degree `dim P`) whose period divides the order of the root - here 2. So the only possible eigenvalues are `±1`, with `P(k, L) = (−1)^k A_L(k) + B_L(k)`. The first OEIS-mining pass had already seen this shape for the *even-block count*: it noted that the columns `F(w, ·)` are annihilated by `(x²−1)^w`.[^2] What is new is the exact multiplicities: `L` at `−1`, `L − 2` at `+1`, for the signed count.
 
-A full proof from the Ehrhart route is still open (see IDEAS, "General closed form for `P(k, L)`"); the identity is verified for `L ≤ 12`.
+A full proof from the Ehrhart route is still open; the identity is verified for `L ≤ 12`.
 
 ## The quasi-polynomials A_L, B_L
 

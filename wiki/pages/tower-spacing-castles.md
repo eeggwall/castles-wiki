@@ -120,7 +120,7 @@ These six are **novel-candidate** on [[castle-sequence-catalogue](pages/castle-s
 
 - **The reachable-field question, gap-flavored:** which algebraic numbers arise as tower-spacing growth constants, as `(h, g)` range? This is the horizontal-gap analogue of the [[reachable-field-census](pages/reachable-field-census.md)] (which censused height-adjacency strips). The `h = 2` column already gives the `x^k + x − 1` and `1 − 2x + x² − x^{g+1}` families; the full 2D reachable set is open.
 - **Parity projection:** the counts here are raw (no even-block clause); imposing PE 502's `(A ± P)/2` parity ([[castle-sign](pages/castle-sign.md)]) gives the honest even-block tower-spacing counts, whose growth is unchanged but whose sequences differ (cf. [[proper-castle-projection](pages/proper-castle-projection.md)]).
-- **The "no-touching" / "no-adjacency" variants** from the gap-rule IDEAS item — vertical or diagonal spacing rules — are further knobs the same transfer-matrix method reaches.
+- **The "no-touching" / "no-adjacency" variants** among the gap rules — vertical or diagonal spacing rules — are further knobs the same transfer-matrix method reaches.
 
 ## Reproduce
 

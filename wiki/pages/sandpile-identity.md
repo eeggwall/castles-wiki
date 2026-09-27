@@ -71,7 +71,7 @@ Start at the identity and drop one grain on the apex (the top cell of the leftmo
 
 ## Does the identity hear more than the spectrum?
 
-A single drain cell or a single drop cell makes a measurement depend on that choice. The fair comparison uses **every** choice. The **avalanche profile** of a castle records the number of topplings caused by one grain on each cell, starting from the identity for each possible drain cell. It depends only on the castle's graph. Tested on every cospectral group of [[isospectral-castles](pages/isospectral-castles.md)] to 16 cells, alongside two tide measurements (which depend on the shape) and the sandpile group and clock spectrum from [[sandpile-census](pages/sandpile-census.md)] and [[sandcastle-clock](pages/sandcastle-clock.md)]:[^4]
+A single drain cell or a single drop cell makes a measurement depend on that choice. The fair comparison uses **every** choice. The **avalanche profile** of a castle records the number of topplings caused by one grain on each cell, starting from the identity for each possible drain cell. It depends only on the castle's graph. Tested on every cospectral group of [[isospectral-castles](pages/isospectral-castles.md)] to 16 cells, alongside two measurements of the identity itself (its grain totals over every drain cell, and the tide identity, which depends on the shape and not only on the graph) and the sandpile group and clock spectrum from [[sandpile-census](pages/sandpile-census.md)] and [[sandcastle-clock](pages/sandcastle-clock.md)]:[^4]
 
 | invariant | adjacency-cospectral groups separated (of 105) | Laplacian-cospectral groups separated (of 17) |
 |---|---|---|
@@ -81,7 +81,7 @@ A single drain cell or a single drop cell makes a measurement depend on that cho
 | tide identity (sorted grain counts) | 90 | 13 |
 | **avalanche profile** | **105 (all)** | **17 (all)** |
 
-The avalanche profile separates **every** cospectral group to 16 cells, including the 11-cell Laplacian pair of trees. There the sandpile group is trivial and the identity is just the fullest stable pile, yet the avalanches still differ. Going further, up to 13 cells no two castles that colour refinement proves non-isomorphic share an avalanche profile.[^5] At these sizes the avalanche profile behaves like a complete fingerprint of the castle graph, which neither the spectrum nor the sandpile group is.
+The avalanche profile separates **every** cospectral group to 16 cells, including the 11-cell Laplacian pair of trees, which local return probabilities also separate ([[levy-flights](pages/levy-flights.md)]). There the sandpile group is trivial and the identity is just the fullest stable pile, yet the avalanches still differ. Going further, up to 13 cells no two castles that colour refinement proves non-isomorphic share an avalanche profile.[^5] At these sizes the avalanche profile behaves like a complete fingerprint of the castle graph, which neither the spectrum nor the sandpile group is.
 
 ## What this settles and what it opens
 
@@ -93,7 +93,6 @@ The avalanche profile separates **every** cospectral group to 16 cells, includin
 **Open.**
 - Prove the tide-identity pattern for all rectangles, and describe the tide identity of a general castle.
 - Is the avalanche profile a complete invariant of castle graphs, or do two non-isomorphic castles share one at some larger size?
-- The avalanche statistics under random dropping (Bak-Tang-Wiesenfeld): [[castle-avalanches](pages/castle-avalanches.md)].
 
 ## Snippet
 
@@ -176,7 +175,7 @@ True
 - [[castle-graph](pages/castle-graph.md)] - tree castles, whose identity is their fullest stable pile.
 - [[castle-avalanches](pages/castle-avalanches.md)] - random dropping from the identity: the mean avalanche depends only on height for rectangles and battlements.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
-
+- [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the 10-cell isospectral pair worked by hand, 57 against 1 apex topplings.
 
 ## Appearances in Sources
 
