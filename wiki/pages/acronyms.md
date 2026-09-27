@@ -15,6 +15,7 @@ A flat alphabetical reference of every abbreviation used on the castles wiki. Ea
 - **AC** - Analytic Combinatorics (Flajolet-Sedgewick, Cambridge University Press 2009).
 - **AM** - Abelian model: Dhar's general sandpile with an integer toppling matrix `Δ` (1990).
 - **AOCP** - The Art of Computer Programming (Knuth). Interchangeable with TAOCP.
+- **ASM** - Abelian sandpile model (Dhar's model under the name used by Chau and Cheng and later papers; Dhar wrote AM).
 - **BM** - Berlekamp-Massey algorithm.
 - **BSGS** - baby-step giant-step (discrete logarithm search).
 - **BTW** - Bak-Tang-Wiesenfeld (sandpile model of self-organized criticality, 1987).

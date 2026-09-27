@@ -3,7 +3,7 @@ title: Sandpile groups of castles - sand, cycles, and 2×2 blocks
 category: Concepts
 summary: An introduction to the sandpile group (also called the critical group or Jacobian) of a castle graph, starting from the game and ending at the linear algebra. Grains sit on cells; a cell holding at least as many grains as it has neighbours topples, sending one grain to each; one cell is a drain where grains vanish. The configurations that keep coming back as sand is added form a finite group whose size is the number of spanning trees. In matrix terms it is Z^n modulo the reduced Laplacian, and the Laplacian factors through the boundary matrix as L = ∂∂ᵀ. The cycles of the castle graph (the kernel of ∂) have the castle's 2×2 blocks as a basis, and because castles are planar the group can be read off a much smaller matrix, one row per 2×2 block, with 4 on the diagonal and −1 for each pair of blocks sharing an edge (checked on all 1,023 castles up to 10 cells). So the 2×2 blocks hold the sand. Tree castles (golden paths, battlements) hold none, the 4-cycle (2,2) gives Z/4, the silver rectangle (2,2,2) and any castle with two side-by-side blocks give Z/15, the 2-wide ladders give Z/4, Z/15, Z/56, Z/209, …, and (3,3,3) gives Z/8 × Z/24. A runnable block reproduces every example.
 tags: [concept, castle, sandpile, abelian-sandpile, critical-group, chip-firing, laplacian, boundary-matrix, cycle-space, spanning-trees, smith-normal-form, tree-castle, planar-dual, pedagogy]
-sources: [project-euler-502-castle-factoring, dhar-1990-self-organized-critical-sandpile]
+sources: [project-euler-502-castle-factoring, dhar-1990-self-organized-critical-sandpile, chau-cheng-1991-deterministic-soc-sandpile]
 created: 2026-09-26
 updated: 2026-09-27
 ---
@@ -84,13 +84,15 @@ This is Dhar's presentation. Adding `deg(v)` grains at `v` forces one toppling, 
 
 **What Dhar's paper does and does not give.** It contains a test for recurrence by *forbidden subconfigurations*: sets of cells in which every cell holds fewer grains (counting from 0, as on this page) than it has neighbours inside the set. Start from all the cells and repeatedly delete the ones that break this condition; either a forbidden set is left, or the set empties and the configuration passes. That is the burning test. Dhar proves only that recurrent configurations pass it; the converse he leaves unproved, and the bijection between recurrent configurations and spanning trees is later work, not in this paper.[^9]
 
+**Deterministic sandcastles.** Chau and Cheng call a sandpile *completely deterministic* when every grain acts the same on the recurrent configurations, so only the number of grains added matters, not where they land; the recurrent set is then cyclic, and they classify the toppling matrices that do this.[^10] For castles the answer is short: **a castle sandpile is deterministic exactly when its group is trivial.** If every grain is the same element `g` of `K`, toppling a cell `v` gives `s(v)·g = 0`, where `s(v)` is the number of drain edges at `v`. Every cell next to the drain, whether one drain cell or the tide, has exactly one drain edge, so `g = 0` (own argument). Among castles with at most 12 cells, none with a nontrivial group is deterministic under either drain convention.[^11] So the tree castles, which have trivial groups, are the deterministic ones, and a nontrivial deterministic sandpile needs a cell joined to the drain by several edges, as in Chau and Cheng's classification.
+
 **The Laplacian factors through the boundary matrix.** Give every edge a direction. The **boundary matrix** `∂` has one row per cell and one column per edge, with `+1` at the edge's tail and `−1` at its head. It records which cells each edge joins. Then
 
 ```
 L  =  ∂ ∂ᵀ
 ```
 
-because `(∂∂ᵀ)[u, u]` counts the edges at `u`, and `(∂∂ᵀ)[u, v] = −1` when an edge joins `u` and `v`.[^10]
+because `(∂∂ᵀ)[u, u]` counts the edges at `u`, and `(∂∂ᵀ)[u, v] = −1` when an edge joins `u` and `v`.[^12]
 
 ## Part 3 - cycles, and why the 2×2 blocks hold the sand
 
@@ -110,7 +112,7 @@ For a planar graph like a castle, this small matrix, **one row per 2×2 block**,
 K(castle)  =  Z^r / (CᵀC) Z^r          (r = number of 2×2 blocks)
 ```
 
-It is the sandpile group of the planar dual graph, whose vertices are the blocks. This was checked against the cell-side formula on all 1,023 castles with up to 10 cells.[^11] So **the 2×2 blocks hold the sand**. A castle with no `2 × 2` block has no cycles, a single spanning tree, and a trivial group: sand washes straight out. A castle's sandpile group depends only on how its blocks are arranged, not on the towers and spikes around them.
+It is the sandpile group of the planar dual graph, whose vertices are the blocks. This was checked against the cell-side formula on all 1,023 castles with up to 10 cells.[^13] So **the 2×2 blocks hold the sand**. A castle with no `2 × 2` block has no cycles, a single spanning tree, and a trivial group: sand washes straight out. A castle's sandpile group depends only on how its blocks are arranged, not on the towers and spikes around them.
 
 ## Part 4 - the castle gallery
 
@@ -132,7 +134,7 @@ It is the sandpile group of the planar dual graph, whose vertices are the blocks
 
 ## A variant: the bottom row as the tide
 
-Some `IDEAS.md` items describe the base row as the sink, as if the ground were the tide that washes sand away. That is a different graph: the whole bottom row is merged into a single drain. It gives a different group, for example `Z/3` for `(2, 2)` instead of `Z/4`, and `Z/8` for `(2, 2, 2)` instead of `Z/15`. Everything on this page uses the castle graph itself with one cell as the drain, whose group does not depend on the choice of drain cell.[^12]
+Some `IDEAS.md` items describe the base row as the sink, as if the ground were the tide that washes sand away. That is a different graph: the whole bottom row is merged into a single drain. It gives a different group, for example `Z/3` for `(2, 2)` instead of `Z/4`, and `Z/8` for `(2, 2, 2)` instead of `Z/15`. Everything on this page uses the castle graph itself with one cell as the drain, whose group does not depend on the choice of drain cell.[^14]
 
 ## Snippet
 
@@ -261,6 +263,7 @@ In the recurrent tuples the positions are the cells in the order `castle_graph` 
 
 ## Appearances in Sources
 
+- [[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)] - completely deterministic steady states and their classification; for castles, deterministic iff trivial.
 - [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - the abelian property, the uniform steady state on recurrent configurations, the presentation `Z^N / Z^N Δ` with `det Δ` elements, the entropy `ln det Δ`, and the forbidden-subconfiguration test.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle definition (column heights `≥ 1`) behind the castle graph.
 
@@ -275,6 +278,8 @@ In the recurrent tuples the positions are the cells in the order `castle_graph` 
 [^7]: [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] p.1615 L173-177 - "Since all these configurations occur with equal probability in the SOC state, the entropy of the SOC state S is given by S = ln Det Δ" (eq. 14).
 [^8]: Verified by execution (NumPy, SciPy, 2026-09-27): the double integral of eq. 16 of [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] evaluates to `1.166244`, equal to `4 × 0.915966/π`; `slogdet` of the reduced Laplacian of `L × L` rectangles with the corner cell as drain, and of `L × L` cells above a bottom tide row, for `L = 10, 20, 40, 60`.
 [^9]: [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] p.1615 L191-214 [synthesis] - forbidden subconfigurations (eq. 18) and the recursive deletion test; "all recurrent configurations are allowed. The converse statement appears quite plausible, though a strict proof is lacking."
-[^10]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `laplacian(c) == boundary(c)·boundary(c)ᵀ` and `boundary(c)·cycle_matrix(c) = 0` for `c = (3, 3, 3)`, as pinned; the identity `L = ∂∂ᵀ` is the standard factorization of the graph Laplacian through the oriented incidence matrix.
-[^11]: Verified by execution (Python 3.10, SymPy, 2026-09-26): for every castle with at most 10 cells (1,023 compositions), the invariant factors of the reduced Laplacian equal those of the block matrix with `4` on the diagonal and `−1` for edge-sharing blocks; `CᵀC` equals that block matrix for `(3, 3, 3)` as pinned. The underlying fact, that the sandpile group of a connected plane graph equals that of its dual, is standard (Cori and Rossin, 2000).
-[^12]: Verified by execution (Python 3.10, SymPy, 2026-09-26): merging all bottom-row cells into one drain gives invariant factors `[3]` for `(2, 2)`, `[8]` for `(2, 2, 2)`, `[95]` for `(3, 3, 3)`, and the trivial group for `(1, 2, 1)`.
+[^10]: [[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)] p.104-105 L99-111, L173-174 [synthesis] - completely deterministic means `a_i|_R = a_j|_R` for all `i, j` (eq. 5), the evolution depending "only on the total number of particles added"; then "R is isomorphic to the group Z_{n+1}", and eq. 13 gives the fundamental toppling rules that are deterministic.
+[^11]: Verified by execution (Python 3.10, exact rational arithmetic, 2026-09-27): for every mirror-distinct castle with at most 12 cells, with the drain at the bottom-left cell and with the tide, the grain classes `L̃⁻¹ e_v` agree modulo integers for all cells `v` only when `L̃⁻¹` is integral (trivial group): 769 trivial and 1,372 nontrivial castles with the single drain, 758 and 1,372 with the tide, and no nontrivial deterministic one.
+[^12]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `laplacian(c) == boundary(c)·boundary(c)ᵀ` and `boundary(c)·cycle_matrix(c) = 0` for `c = (3, 3, 3)`, as pinned; the identity `L = ∂∂ᵀ` is the standard factorization of the graph Laplacian through the oriented incidence matrix.
+[^13]: Verified by execution (Python 3.10, SymPy, 2026-09-26): for every castle with at most 10 cells (1,023 compositions), the invariant factors of the reduced Laplacian equal those of the block matrix with `4` on the diagonal and `−1` for edge-sharing blocks; `CᵀC` equals that block matrix for `(3, 3, 3)` as pinned. The underlying fact, that the sandpile group of a connected plane graph equals that of its dual, is standard (Cori and Rossin, 2000).
+[^14]: Verified by execution (Python 3.10, SymPy, 2026-09-26): merging all bottom-row cells into one drain gives invariant factors `[3]` for `(2, 2)`, `[8]` for `(2, 2, 2)`, `[95]` for `(3, 3, 3)`, and the trivial group for `(1, 2, 1)`.

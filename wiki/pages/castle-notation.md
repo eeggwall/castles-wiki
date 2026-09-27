@@ -77,10 +77,11 @@ The sandpile pages run grains on the castle graph (cells as vertices, edge-shari
 |---|---|---|
 | `L` | the Laplacian `D − A` of the castle graph: `D` the diagonal of cell degrees, `A` the adjacency matrix (not the castle count `A(w, h)`) | [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], [[sandpile-group](pages/sandpile-group.md)] |
 | `L̃` | the **reduced Laplacian**: `L` with the drain's rows and columns deleted (one cell's row and column for a single drain cell, every bottom-row cell's for the tide). Toppling cell `v` subtracts row `v` of `L̃` | [[sandpile-group](pages/sandpile-group.md)], [[castle-avalanches](pages/castle-avalanches.md)] |
-| `Δ` | Dhar's toppling matrix of a general abelian sandpile; for a castle `Δ = L̃`. Dhar's stable heights run `1..Δ_vv`, the wiki's `0..deg − 1` shifted by one | [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
+| `Δ` | Dhar's toppling matrix of a general abelian sandpile; for a castle `Δ = L̃`. Stable heights differ by a shift between sources: Dhar `1..Δ_vv`, Chau-Cheng `≤ 0` (critical height moved to 0), the wiki `0..deg − 1`. Chau 1993 writes toppling as `h_i → h_i − Δ_ji`, the transpose, which is the same for a symmetric castle `L̃` | [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
 | `K(G)`, `K` | the sandpile group `Z^{n−1} / L̃ Z^{n−1}` of the recurrent configurations, of order `det L̃` (the number of spanning trees) | [[sandpile-group](pages/sandpile-group.md)], [[sandpile-census](pages/sandpile-census.md)] |
 | `L̃⁻¹` | expected topplings: entry `(v, u)` is the mean number of topplings at `u` caused by a grain at `v` in the steady state (Dhar's `G = Δ⁻¹`); its row means give the mean avalanche | [[castle-avalanches](pages/castle-avalanches.md)], [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
 | `a_v` | Dhar's grain operator "add a grain at `v`, then stabilize"; the operators commute, and the order of `a_v` is the clock period | [[sandcastle-clock](pages/sandcastle-clock.md)], [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
+| completely deterministic | every grain operator acts the same on the recurrent configurations, `a_v = a_u`; for castles this happens only when `K` is trivial | [[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)], [[sandpile-group](pages/sandpile-group.md)] |
 | `stab(·)` | stabilization: topple until no cell is unstable | [[sandpile-identity](pages/sandpile-identity.md)] |
 | `ln det L̃` | the entropy of the steady state (uniform on `det L̃` recurrent piles), written in words on the wiki, not as `S` | [[sandpile-group](pages/sandpile-group.md)] |
 
@@ -110,7 +111,7 @@ These are local notations on specific pages and are unrelated to the tower count
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, L)` and its recurrences.
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the `(T ± P)/2` split.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the seminar where towers and parity are introduced.
-- [[sandpile-group](pages/sandpile-group.md)] - the reduced Laplacian `L̃` and the sandpile group; [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] for the general toppling matrix `Δ`.
+- [[sandpile-group](pages/sandpile-group.md)] - the reduced Laplacian `L̃` and the sandpile group ([[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)] and [[chau-1993-abelian-sandpile-model](pages/chau-1993-abelian-sandpile-model.md)] use the same `Δ`); [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] for the general toppling matrix `Δ`.
 
 ## Footnotes
 
