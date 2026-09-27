@@ -5,7 +5,7 @@ summary: M_n counts non-crossing chords on n points and Motzkin (up/flat/down) l
 tags: [concept, motzkin, lattice-paths, q-analog, generating-functions]
 sources: [motzkin-numbers, steep-polyominoes-q-motzkin-bessel]
 created: 2026-09-13
-updated: 2026-09-23
+updated: 2026-09-26
 ---
 
 # Motzkin numbers
@@ -38,6 +38,7 @@ The relevant thread: the **q-analog `M_n(q)`** refines the Motzkin numbers and a
 
 ## Related Concepts
 
+- [[motzkin-castles](pages/motzkin-castles.md)] - the hub for exact Motzkin appearances in castles: castles as cornerless Motzkin paths, the parity split of `M_{w-1}` (A343386 / A107587), the Gaussian `1 ± 2i` sign, and the bounded-height ladder.
 - [[q-catalan-numbers](pages/q-catalan-numbers.md)] — the sister q-analog family; both reduce at q=1.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - the castle grammar graded by area: a q-Bessel ratio over the parallelogram series.
 - [[narayana-numbers](pages/narayana-numbers.md)], [[catalan-numbers](pages/catalan-numbers.md)] — Motzkin's Catalan relatives (Motzkin sums of Narayana/Catalan-type terms).
