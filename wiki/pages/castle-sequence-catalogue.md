@@ -143,7 +143,7 @@ The Motzkin family in castle counts ([[motzkin-castles](pages/motzkin-castles.md
 | 1-smooth, first column at height 1, by width | `1, 2, 5, 13, 35, 96, 267, 750` | `3` | **interlink** → [A005773](https://oeis.org/A005773) (`=a(w)`, Motzkin left factors / directed animals) |
 | drops of at most 1, last column at height 1, by width | `1, 2, 5, 14, 42, 132, 429` | `4` | **interlink** → [A000108](https://oeis.org/A000108) (`=C_w`) |
 | Motzkin-path castles by semi-perimeter (`s = 2…`) | `1, 1, 1, 2, 4, 7, 13, 26, 52, 104, 212, 438` | - | **interlink** → [A023431](https://oeis.org/A023431) (`=a(s−2)`, Motzkin paths with no `UD`, no `UU`) |
-| drops of at most 1, last column at height 1, by semi-perimeter | `1, 1, 2, 4, 8, 17, 37, 82, 185, 423, 978` | - | **interlink** → [A004148](https://oeis.org/A004148) (`=a(s−1)`, peakless Motzkin paths) |
+| drops of at most 1, last column at height 1, by semi-perimeter | `1, 1, 2, 4, 8, 17, 37, 82, 185, 423, 978` | - | **interlink** → [A004148](https://oeis.org/A004148) (`=a(s−1)`, peakless Motzkin paths; the no-double-rise mirror is Deutsch-Elizalde's RNA-secondary-structure bijection, [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]) |
 | 1-smooth, first column at height 1, by semi-perimeter | `1, 1, 2, 4, 8, 16, 33, 69, 145, 307, 655, 1405, 3027` | - | **novel-candidate** (no OEIS match, searched 2026-09-26) |
 | 1-smooth, free ends, by semi-perimeter | `1, 2, 5, 11, 24, 52, 113, 246, 537, 1176, 2583, 5688` | - | **novel-candidate** (no OEIS match, searched 2026-09-26) |
 
@@ -196,6 +196,8 @@ A castle's semi-perimeter is `w + #blocks` ([[castle-perimeter](pages/castle-per
 | convex castles | `1, 2, 5, 13, 34, 89, 233` | `t²(1-t)/(1-3t+t²)` | `φ²` | **known** → [A001519](https://oeis.org/A001519) (Delest-Viennot stacks by perimeter) |
 | even-block convex castles | `0, 1, 3, 7, 17, 44, 116, 305, 799, 2091` | `t³(1-t)/((1-3t+t²)(1-t+t²))` | `φ²` | **novel-candidate** (no match, 2026-09-22) |
 | signed convex castles | `-1, 0, 1, 1, 0, -1` (period 6) | `-t²(1-t)/(1-t+t²)` | periodic | trivial (not searched) |
+| palindromic castles | `1, 2, 3, 5, 9, 15, 27, 46, 83` | symmetric-bargraph GF ([[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] §4.1) | - | **known** → [A273905](https://oeis.org/A273905) (symmetric bargraphs = palindromic castles; checked by brute force 2026-09-26) |
+| prime castles (no height-1 column) | `0, 1, 2, 5, 13, 35, 97, 275, 794, 2327` | `t·B(t)` | `τ²` | **known** → [A082582](https://oeis.org/A082582)(`s − 1`) (row-deletion bijection, [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] §3.9; checked 2026-09-26) |
 
 ### Prime castles by area
 

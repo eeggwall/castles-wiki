@@ -5,7 +5,7 @@ summary: The tower-word grammar E_k → empty | R E_k | U V D (empty | R E_k) th
 tags: [concept, castle, dyck, grammar, generating-functions]
 sources: [project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-26
 ---
 
 # Generalized Dyck grammar for castles
@@ -60,6 +60,7 @@ This is why the model generalizes the Dyck word to this three-letter grammar rat
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] — states the tower-word reading, the grammar, and its identification as a generalized Dyck first-return split.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — reads the grammar as a factorization: peaks as cycle-like atoms separated by `R` gaps.
 - [[project-euler-502-observations](pages/project-euler-502-observations.md)] — names sibling-tower independence as the crux that makes the problem tractable.
+- [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] - the same first-return split in the bargraph literature: cornerless Motzkin paths decompose as `HA | UA′D | UA′DHA` with `A′` nonempty, which is this grammar with the height bound removed.
 
 ## Related Concepts
 

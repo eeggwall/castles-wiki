@@ -5,7 +5,7 @@ summary: The 42 shape-based castle types as skyline predicates on individual cas
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook]
 sources: [castle-classification]
 created: 2026-09-19
-updated: 2026-09-19
+updated: 2026-09-26
 ---
 
 # Castle classification - shape types
@@ -39,7 +39,7 @@ Types 1-6 and 30-31 restrict the shape of the skyline's local extrema:
 | Type | Predicate | Wiki tie |
 |---|---|---|
 | **Convex (row-convex)** | every row is one contiguous run | equals unimodal for castles ([[convex-castle](pages/convex-castle.md)]); front/middle/back U/R/D form on [[project-euler-502-representations](pages/project-euler-502-representations.md)] |
-| **Reverse Ferrers** | `c_1 ≤ … ≤ c_w` (weakly increasing) | Ferrers's mirror; same count by symmetry |
+| **Reverse Ferrers** | `c_1 ≤ … ≤ c_w` (weakly increasing) | Ferrers's mirror; same count by symmetry; by width `x` and blocks `y` the GF is `xy/(1 − x − y)` ([[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] §3.4, checked by brute force) |
 | **Strictly unimodal** | strict rise, one peak, strict fall | strengthens unimodal; count is a sub-count of [[convex-castle](pages/convex-castle.md)] |
 | **Bimodal** | exactly two local maxima | *open* - natural refinement, no wiki count yet |
 | **k-modal** | at most `k` local maxima | *open* - unimodal is `k=1`; parameterized family |
@@ -103,11 +103,11 @@ Types 11, 12, 21 impose symmetry on the skyline:
 
 | Type | Predicate | Wiki tie |
 |---|---|---|
-| **Palindromic** | `c_i = c_{w+1−i}` | *open* - a natural symmetry restriction |
+| **Palindromic** | `c_i = c_{w+1−i}` | counted by width and blocks: the symmetric-bargraph GF of [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] §4.1, built from cornerless Motzkin prefixes; by semi-perimeter A273905, `1, 2, 3, 5, 9, 15, 27, 46, 83` (checked by brute force); fixed `(w, h)` still open |
 | **Centrally symmetric** | `c_i + c_{w+1−i} = h + 1` (180° rotation inside bounding box) | *open* |
 | **Self-conjugate** | `c_i = #{j : c_j ≥ i}` (transpose invariance) | *open* - classical partition-conjugation, would require `w = h` |
 
-**Open across the board.** The self-conjugate type is particularly interesting because it forces `w = h` and interacts with the wiki's Fibonacci-in-prime-castle count `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)].
+**Open apart from the palindromic GF.** The self-conjugate type is particularly interesting because it forces `w = h` and interacts with the wiki's Fibonacci-in-prime-castle count `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)].
 
 ### Axis 5: Value / extremum constraints
 
@@ -159,7 +159,7 @@ In rough order of tractability:
 
 1. **k-modal** for `k ≥ 2` - a parametric family whose `k = 1` case is [[convex-castle](pages/convex-castle.md)] (binomial); `k = 2, 3, …` are genuinely open with no candidate closed form.
 2. **m-smooth / m-disparate** for `m ≥ 2` - a paired family; `m = 1` smooth is the strip-counted case above.
-3. **Symmetry types** (palindromic, centrally symmetric, self-conjugate) - untouched.
+3. **Symmetry types** (palindromic, centrally symmetric, self-conjugate) - palindromic has a GF by width and blocks ([[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]); its `(w, h)` table, its parity split, and the other two types are untouched.
 4. **Rainbow** - direct permutation-classification tie, immediate seminar target for the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] triad.
 5. **Even-peak** - parity via peak count rather than block count; genuinely different from [[castle-sign](pages/castle-sign.md)]'s `(−1)^blocks`.
 6. **Dyck- and Motzkin-path castles at fixed height** - the A080936 / A097862 columns as castle counts; which other geometric types have a bounded-height rational GF of the same Chebyshev-quotient shape?

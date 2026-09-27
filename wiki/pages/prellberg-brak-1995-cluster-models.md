@@ -5,7 +5,7 @@ summary: Prellberg-Brak derive nonlinear (quadratic) functional equations for st
 tags: [paper, source, bar-graph, polyomino, cluster-model, functional-equation, q-shift, q-bessel, airy-function, universality, critical-exponent, temperley, staircase, directed-column-convex, ZL-walks, continuum-limit, source]
 sources: [prellberg-brak-1995-cluster-models]
 created: 2026-09-23
-updated: 2026-09-23
+updated: 2026-09-26
 ---
 
 # Critical exponents for partially directed cluster models (Prellberg-Brak, 1995)
@@ -84,7 +84,7 @@ The bar-graph case is checked by formal perturbation theory (§6): the same gap 
 
 ## Relation to Other Wiki Pages
 
-Cited on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] as the primary literature source for the linearization method used there, and on [[castle-perimeter](pages/castle-perimeter.md)] as the bar-graph functional equation source (perimeter and area together). The Airy universality result is a candidate Open on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]: does the signed-castle meromorphy picture in `|q| < 1` (dominated by `q_0 = -0.6158`) join up with the `q → 1` Airy scaling PB proves for bar-graphs? Same paper, but different critical direction. The linearization-heap connection (§4 closing paragraphs) rhymes with [[viennot-heap-tower](pages/viennot-heap-tower.md)] and [[tower-heap](pages/tower-heap.md)]: their equation `G = α H(qx)/H(x) - b` "can be explained via a bijection with heaps," suggesting a heap-of-pieces derivation of the castle q-Bessel form is also available.
+Cited on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] as the primary literature source for the linearization method used there, and on [[castle-perimeter](pages/castle-perimeter.md)] as the bar-graph functional equation source (perimeter and area together). The Airy universality result is a candidate Open on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]: does the signed-castle meromorphy picture in `|q| < 1` (dominated by `q_0 = -0.6158`) join up with the `q → 1` Airy scaling PB proves for bar-graphs? Same paper, but different critical direction. The linearization-heap connection (§4 closing paragraphs) rhymes with [[viennot-heap-tower](pages/viennot-heap-tower.md)] and [[tower-heap](pages/tower-heap.md)]: their equation `G = α H(qx)/H(x) - b` "can be explained via a bijection with heaps," suggesting a heap-of-pieces derivation of the castle q-Bessel form is also available. Deutsch and Elizalde ([[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]) cite this paper for bar-graph enumeration and reach the same bar-graph GF, and an area continued fraction, from the cornerless-Motzkin decomposition instead of a functional equation in the width.
 
 ## Footnotes
 

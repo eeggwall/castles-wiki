@@ -5,7 +5,7 @@ summary: A castle's semi-perimeter is `w + #blocks`, so the block count is Deles
 tags: [analysis, castle, perimeter, blocks, parity, bargraph, generating-function, algebraic, tribonacci, fibonacci, delest-viennot, oeis, novel-candidate]
 sources: [algebraic-languages-and-polyominoes-enumeration, project-euler-502-brute-force, tower-narayana-polynomial]
 created: 2026-09-22
-updated: 2026-09-22
+updated: 2026-09-26
 ---
 
 # Castle perimeter - blocks are the vertical half-perimeter
@@ -82,6 +82,7 @@ The signed convex count is periodic because `1 - t + t²` has its roots at primi
 - [[convex-castle](pages/convex-castle.md)], [[stack-polyomino-gf](pages/stack-polyomino-gf.md)]: convex castles = stacks, now with the parity split by perimeter.
 - [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)], [[narayana-numbers](pages/narayana-numbers.md)]: the identity whose re-indexing is A271942. Its `k` is the number of descents plus one (verified `w, b ≤ 7`), recorded on those pages.
 - [[convex-polyomino](pages/convex-polyomino.md)], [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)]: on a row-convex shape blocks = height, so a convex polyomino's semi-perimeter is `w + h`. Lin and Chang's convex generating function `Z(x, y, 1)`, with width and height marked, is the convex-polyomino counterpart of the (width, blocks) grading on this page (own reasoning).
+- [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]: the same `B` from a different route. Castles are cornerless Motzkin paths, and the first-return decomposition gives `xB² − (1 − x − y − xy)B + xy = 0` with `x` marking width and `y` marking blocks, which at `x = y = t` is the quadratic above; the signed split is `y → −y`. Its row-deletion bijection sends castles with every column `≥ 2` to castles of semi-perimeter one less, so prime castles by semi-perimeter are A082582 shifted by one, and their sign is flipped (raising adds one block).
 - [[castle-sign](pages/castle-sign.md)]: the `(-1)^blocks` weight is `(-1)^{s-w}`.
 - [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]: tribonacci appears there in the area grading at height `≤ 3`. Here `τ²` is the unrestricted perimeter growth. Whether the two appearances are related is open.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)]: the bar-graph GF by (horizontal, vertical, area) satisfies eq. 3.11, `B = B(qx) y + {1 + B(qx)} qx {y + B(x)}`, quadratic in `B`. The Airy-universality result there (`γ_u = -1/2, γ_t = -1/3, φ = 2/3`) is the perimeter-area asymptotic tricritical exponent for exactly the (width, blocks, area) statistics graded here.

@@ -5,7 +5,7 @@ summary: The tower words as a formal language — a Motzkin-path language (U/R/D
 tags: [concept, castle, formal-language, motzkin, dyck, grammar, chomsky-schutzenberger, pedagogy]
 sources: [dyck-words, project-euler-502-representations, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-14
-updated: 2026-09-22
+updated: 2026-09-26
 ---
 
 # Tower word language
@@ -65,6 +65,7 @@ The methodology is the same one this page uses: write an unambiguous grammar, tr
 
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] — the tower word and the grammar.
 - [[dyck-words](pages/dyck-words.md)] — the Dyck first-return grammar and the steep-Dyck → Motzkin bijection.
+- [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] - the tower words are its cornerless Motzkin paths, and its decomposition is this page's first-return grammar at unbounded height.
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - Boasson's lemma against boundary words, and the grammar-to-GF method applied to convex polyominoes.
 
 ## Related Concepts
