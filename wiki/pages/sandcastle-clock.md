@@ -3,9 +3,9 @@ title: The sandcastle clock - dropping sand until the castle repeats
 category: Concepts
 summary: Start a castle's sandpile at its identity configuration and drop one grain on the apex every tick; the pile returns to the identity after a whole number of ticks, the clock period. The period is the order of "one grain at the apex" in the castle's sandpile group, the least common denominator of a column of the inverse reduced Laplacian, and simulation agrees with that on every test castle. Tree branches are transparent - a grain anywhere on a branch acts like a grain where the branch attaches - so tree castles never tick (period 1). The period depends on where the drain and the apex are, not just on the castle's graph (on the silver rectangle it can be 1, 3, 5 or 15, and a castle and its mirror image differ in 1,018 of 1,953 cases to 12 cells). Over all 33,150 castles to 16 cells the apex grain generates the whole group only 8,839 times out of 26,187. The graph invariant is the clock spectrum, the periods of every (drain, grain) pair, and it hears what the Laplacian spectrum and the sandpile group cannot. It separates 62 of the 105 adjacency-cospectral groups (the 10-cell pair ticks 15 against 5) and 5 of the 17 Laplacian-cospectral groups, the smallest at 13 cells.
 tags: [concept, castle, sandpile, critical-group, clock, period, identity-element, isospectral, laplacian, tree-castle, census, sympy, verification, pedagogy]
-sources: [project-euler-502-castle-factoring]
+sources: [project-euler-502-castle-factoring, dhar-1990-self-organized-critical-sandpile]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # The sandcastle clock - dropping sand until the castle repeats
@@ -25,23 +25,23 @@ clock period  =  order of "one grain at the apex" in K
               =  the least common denominator of the column of L̃⁻¹ belonging to the apex
 ```
 
-where `L̃` is the Laplacian with the drain's row and column deleted. The second line is how to compute it without simulating. `t` grains at `v` topple away exactly when `L̃⁻¹ (t·e_v)` has integer entries. Direct simulation and this formula agree on every castle tested.[^1] The period always divides the **exponent** of `K` (its largest cyclic factor), and it equals the group order `|K|` exactly when the apex grain generates the whole group.
+where `L̃` is the Laplacian with the drain's row and column deleted. The second line is how to compute it without simulating. `t` grains at `v` topple away exactly when `L̃⁻¹ (t·e_v)` has integer entries. Direct simulation and this formula agree on every castle tested.[^1] The formula is Dhar's: every grain operator acts as a phase `exp(iφ_v)` with `φ = 2π L̃⁻¹ n` for integer vectors `n`, so the order of one grain at `v` is the least common denominator of the entries of `L̃⁻¹` in its column.[^2] The period always divides the **exponent** of `K` (its largest cyclic factor), and it equals the group order `|K|` exactly when the apex grain generates the whole group.
 
 ## Tree branches are transparent
 
-Put a grain on a leaf, a cell with one neighbour. It can topple straight to that neighbour. So in the sandpile group, **a grain on a leaf is the same as a grain on its neighbour**, and by repeating the argument a grain anywhere on a tree branch is the same as a grain where the branch joins the rest of the castle. On `(2, 2, 3)` the spike's top cell and the cell it sits on both have order 5. On `(2, 2, 1, 1, 1)` every cell of the tail behaves like the cell where the tail starts (order 4).[^2]
+Put a grain on a leaf, a cell with one neighbour. It can topple straight to that neighbour. So in the sandpile group, **a grain on a leaf is the same as a grain on its neighbour**, and by repeating the argument a grain anywhere on a tree branch is the same as a grain where the branch joins the rest of the castle. On `(2, 2, 3)` the spike's top cell and the cell it sits on both have order 5. On `(2, 2, 1, 1, 1)` every cell of the tail behaves like the cell where the tail starts (order 4).[^3]
 
 This is the clock's version of "the 2×2 blocks hold the sand". A castle's clock only notices where the drain and the apex attach to its skeleton of `2 × 2` blocks. Tree castles have no skeleton, so their clock never ticks.
 
 ## The period depends on where you put the drain and the apex
 
-The clock is a property of a castle **plus two chosen cells**, not of the castle's graph alone. On `(2, 2, 2)`, a grain on the top-right cell has period 5, 3, 15, 15, 15 or 1 as the drain moves through the six cells.[^3] Even the convention "bottom-left drain, leftmost apex" is not symmetric. `(2, 3)` ticks with period 2 and its mirror image `(3, 2)` with period 4. Up to 12 cells, a castle and its mirror image have different periods in 1,018 of the 1,953 cases where they differ as castles.[^4]
+The clock is a property of a castle **plus two chosen cells**, not of the castle's graph alone. On `(2, 2, 2)`, a grain on the top-right cell has period 5, 3, 15, 15, 15 or 1 as the drain moves through the six cells.[^4] Even the convention "bottom-left drain, leftmost apex" is not symmetric. `(2, 3)` ticks with period 2 and its mirror image `(3, 2)` with period 4. Up to 12 cells, a castle and its mirror image have different periods in 1,018 of the 1,953 cases where they differ as castles.[^5]
 
 **The clock spectrum.** To get something that depends only on the castle, record the period for **every** choice of drain and grain cell. That multiset is the castle's **clock spectrum**. Isomorphic castles have the same clock spectrum, so it can be compared across castles the way eigenvalues are.
 
 ## What the census shows
 
-Over all 33,150 castles with at most 16 cells (mirror images removed), with the bottom-left drain and leftmost apex:[^5]
+Over all 33,150 castles with at most 16 cells (mirror images removed), with the bottom-left drain and leftmost apex:[^6]
 
 | | castles |
 |---|---|
@@ -53,7 +53,7 @@ Over all 33,150 castles with at most 16 cells (mirror images removed), with the 
 
 The most common periods are 4, 1, 2, 15, 5, 3, 209, 56. Period 1 with a nontrivial group (3,769 castles) happens when the drain and the apex hang off the same part of the block skeleton, as the transparency rule predicts.
 
-**The clock hears what the spectrum and the sandpile group cannot.** [[sandpile-census](pages/sandpile-census.md)] found that the sandpile group separates none of the cospectral groups of [[isospectral-castles](pages/isospectral-castles.md)]. The clock does:[^6]
+**The clock hears what the spectrum and the sandpile group cannot.** [[sandpile-census](pages/sandpile-census.md)] found that the sandpile group separates none of the cospectral groups of [[isospectral-castles](pages/isospectral-castles.md)]. The clock does:[^7]
 
 | cospectral groups (to 16 cells) | number | separated by the clock (fixed drain and apex) | separated by the clock spectrum |
 |---|---|---|---|
@@ -173,13 +173,15 @@ def clock_spectrum(c):                     # periods over every (drain, grain ce
 
 ## Appearances in Sources
 
+- [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - the grain operators as phases `φ = 2πΔ⁻¹n`, from which the clock period formula follows.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle definition behind the castle graph.
 
 ## Footnotes
 
 [^1]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `clock_by_simulation` (start at `stab(2m − stab(2m))`, add one grain at the apex, stabilize, count ticks to return) equals the least common denominator of `L̃⁻¹ e_apex` for `(2,2)`, `(2,2,2)`, `(1,2,1)`, `(3,3,3)`, `(2,2,2,2)`, `(1,1,1,2,3,2)`, `(1,1,2,2,3,1)`, `(2,2,1,2,2)` and `(2,3,3,2)` (periods 4, 15, 1, 8, 56, 15, 5, 4, 52); four of these are pinned in the Snippet. The identity formula and the equivalence "adding a grain = adding in `K`" are standard (https://en.wikipedia.org/wiki/Abelian_sandpile_model).
-[^2]: Verified by execution (Python 3.10, SymPy, 2026-09-26): with the bottom-left drain, grain orders on `(2,2,3)` are 15 at `(0,1)`, `(1,0)` and `(1,1)`, 3 at `(2,0)`, and 5 at both `(2,1)` and the spike top `(2,2)`; on `(2,2,1,1,1)` the tail cells `(2,0)`, `(3,0)`, `(4,0)` all have order 4, the same as `(1,0)` where the tail attaches.
-[^3]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `grain_orders((2,2,2), d)` for each of the six drains, as pinned for the top-right cell; the full 6 × 6 table has entries 1, 3, 5 and 15.
-[^4]: Verified by execution (Python 3.10, 2026-09-26): for every castle with at most 12 cells that is not its own mirror image (1,953 pairs), the fixed-convention period of the castle and of its mirror image differ in 1,018 cases, the first being `(2,3)` (2) against `(3,2)` (4).
-[^5]: Verified by execution (Python 3.10, 2026-09-26): periods by exact rational inversion of `L̃` for all 33,150 castles of [[sandpile-census](pages/sandpile-census.md)] (about 5 minutes), compared with the group order and exponent from that census.
-[^6]: Verified by execution (Python 3.10, 2026-09-26): for each castle in the 105 adjacency and 17 Laplacian cospectral groups to 16 cells, the fixed-convention period and the clock spectrum (orders of one grain at `v` with drain `d`, over all ordered pairs `d ≠ v`); groups counted as separated when their castles do not all agree. The 13-cell pair's spectra are `{1: 44, 2: 28, 4: 84}` and `{1: 42, 2: 54, 4: 60}`; the first fixed-convention separation among Laplacian groups is at 15 cells, `(1,1,1,1,2,2,1,2,3,1)` (4) against `(1,1,1,2,3,1,1,2,2,1)` (2).
+[^2]: [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] p.1614 L126-156 [synthesis] - since the `a_j` commute, the representations of `∏_j a_j^{Δ_ij} = 1` are one-dimensional, `a_j = exp(iφ_j)` (eq. 10), with `Σ_j Δ_ij φ_j = 2πn_i` and `φ_i = 2π Σ_j [Δ⁻¹]_ij n_j` (eqs. 11-12, read from the page image); `Δ = L̃` is symmetric for a castle, so rows and columns agree.
+[^3]: Verified by execution (Python 3.10, SymPy, 2026-09-26): with the bottom-left drain, grain orders on `(2,2,3)` are 15 at `(0,1)`, `(1,0)` and `(1,1)`, 3 at `(2,0)`, and 5 at both `(2,1)` and the spike top `(2,2)`; on `(2,2,1,1,1)` the tail cells `(2,0)`, `(3,0)`, `(4,0)` all have order 4, the same as `(1,0)` where the tail attaches.
+[^4]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `grain_orders((2,2,2), d)` for each of the six drains, as pinned for the top-right cell; the full 6 × 6 table has entries 1, 3, 5 and 15.
+[^5]: Verified by execution (Python 3.10, 2026-09-26): for every castle with at most 12 cells that is not its own mirror image (1,953 pairs), the fixed-convention period of the castle and of its mirror image differ in 1,018 cases, the first being `(2,3)` (2) against `(3,2)` (4).
+[^6]: Verified by execution (Python 3.10, 2026-09-26): periods by exact rational inversion of `L̃` for all 33,150 castles of [[sandpile-census](pages/sandpile-census.md)] (about 5 minutes), compared with the group order and exponent from that census.
+[^7]: Verified by execution (Python 3.10, 2026-09-26): for each castle in the 105 adjacency and 17 Laplacian cospectral groups to 16 cells, the fixed-convention period and the clock spectrum (orders of one grain at `v` with drain `d`, over all ordered pairs `d ≠ v`); groups counted as separated when their castles do not all agree. The 13-cell pair's spectra are `{1: 44, 2: 28, 4: 84}` and `{1: 42, 2: 54, 4: 60}`; the first fixed-convention separation among Laplacian groups is at 15 cells, `(1,1,1,1,2,2,1,2,3,1)` (4) against `(1,1,1,2,3,1,1,2,2,1)` (2).

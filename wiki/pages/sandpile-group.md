@@ -3,9 +3,9 @@ title: Sandpile groups of castles - sand, cycles, and 2×2 blocks
 category: Concepts
 summary: An introduction to the sandpile group (also called the critical group or Jacobian) of a castle graph, starting from the game and ending at the linear algebra. Grains sit on cells; a cell holding at least as many grains as it has neighbours topples, sending one grain to each; one cell is a drain where grains vanish. The configurations that keep coming back as sand is added form a finite group whose size is the number of spanning trees. In matrix terms it is Z^n modulo the reduced Laplacian, and the Laplacian factors through the boundary matrix as L = ∂∂ᵀ. The cycles of the castle graph (the kernel of ∂) have the castle's 2×2 blocks as a basis, and because castles are planar the group can be read off a much smaller matrix, one row per 2×2 block, with 4 on the diagonal and −1 for each pair of blocks sharing an edge (checked on all 1,023 castles up to 10 cells). So the 2×2 blocks hold the sand. Tree castles (golden paths, battlements) hold none, the 4-cycle (2,2) gives Z/4, the silver rectangle (2,2,2) and any castle with two side-by-side blocks give Z/15, the 2-wide ladders give Z/4, Z/15, Z/56, Z/209, …, and (3,3,3) gives Z/8 × Z/24. A runnable block reproduces every example.
 tags: [concept, castle, sandpile, abelian-sandpile, critical-group, chip-firing, laplacian, boundary-matrix, cycle-space, spanning-trees, smith-normal-form, tree-castle, planar-dual, pedagogy]
-sources: [project-euler-502-castle-factoring]
+sources: [project-euler-502-castle-factoring, dhar-1990-self-organized-critical-sandpile]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # Sandpile groups of castles - sand, cycles, and 2×2 blocks
@@ -18,9 +18,9 @@ Take a castle and its graph: one vertex per filled cell, one edge per pair of ce
 
 - **Sand.** Put a whole number of grains on every other cell. That is a *configuration*.
 - **Toppling.** A cell that holds at least as many grains as it has neighbours is unstable. It **topples**: it sends one grain to each neighbour. Grains that reach the drain disappear.
-- **Stabilizing.** Keep toppling until no cell is unstable. Because the drain removes sand, this always stops, and the final configuration does not depend on the order of the topplings. That is why the model is called **abelian**.[^1]
+- **Stabilizing.** Keep toppling until no cell is unstable. Because the drain removes sand, this always stops, and the final configuration does not depend on the order of the topplings. That is why the model is called **abelian**.[^1] Dhar proved it in 1990 for any toppling matrix of this kind: two unstable cells can be toppled in either order, and toppling commutes with adding a grain, so the operators "add a grain at `v`, then stabilize" commute.[^2]
 
-**Add sand forever.** Drop grains on cells one at a time, stabilizing after each drop. Some stable configurations appear only near the start and never come back. The others, the **recurrent** configurations, keep coming back no matter how long you play.
+**Add sand forever.** Drop grains on cells one at a time, stabilizing after each drop. Some stable configurations appear only near the start and never come back. The others, the **recurrent** configurations, keep coming back no matter how long you play. In the long run every recurrent configuration is equally likely, and the others (the transients) never occur.[^3]
 
 **The recurrent configurations form a group.** Add two recurrent configurations cell by cell and stabilize: the result is recurrent again. This operation has an identity element and inverses, so the recurrent configurations form a finite abelian group, the **sandpile group** `K(G)`. It is also called the critical group or the Jacobian of the graph. Its size is the **number of spanning trees** of the graph, and it does not depend on which cell is the drain.[^1]
 
@@ -33,7 +33,7 @@ recurrent (grains on top-left, bottom-right, top-right):   (0,1,1)  (1,0,1)  (1,
 transient:                                                 (0,0,0)  (1,0,0)  (0,1,0)  (0,0,1)
 ```
 
-Four recurrent configurations means `K = Z/4`, and the square has 4 spanning trees (delete any one of its 4 edges). The identity element is `(1, 1, 0)`: one grain on each cell next to the drain and none on the far corner. Adding it to any recurrent configuration and stabilizing gives that configuration back.[^2]
+Four recurrent configurations means `K = Z/4`, and the square has 4 spanning trees (delete any one of its 4 edges). The identity element is `(1, 1, 0)`: one grain on each cell next to the drain and none on the far corner. Adding it to any recurrent configuration and stabilizing gives that configuration back.[^4]
 
 ### Worked example: one avalanche on the silver rectangle `(2, 2, 2)`
 
@@ -68,7 +68,7 @@ topple TR    top [1 2 0]   bottom [D 0 2]
 topple BR    top [1 2 1]   bottom [D 1 0]   settled
 ```
 
-One grain triggers 11 topplings. Sand moves right, left, up and down, and 3 grains leave through the drain: `7 + 1 = 8` grains before the avalanche, `5` after. Only `TL` and `BM` ever feed the drain, because they are its neighbours. Toppling the unstable cells in a different order ends in the same settled pile, which is the abelian property.[^3] Keep dropping grains and the pile eventually cycles through exactly 15 recurrent configurations, one for each spanning tree of the `3 × 2` grid. That is the group `Z/15` of the silver rectangle in the gallery below.
+One grain triggers 11 topplings. Sand moves right, left, up and down, and 3 grains leave through the drain: `7 + 1 = 8` grains before the avalanche, `5` after. Only `TL` and `BM` ever feed the drain, because they are its neighbours. Toppling the unstable cells in a different order ends in the same settled pile, which is the abelian property.[^5] Keep dropping grains and the pile eventually cycles through exactly 15 recurrent configurations, one for each spanning tree of the `3 × 2` grid. That is the group `Z/15` of the silver rectangle in the gallery below.
 
 ## Part 2 - the matrices behind the game
 
@@ -78,7 +78,11 @@ One grain triggers 11 topplings. Sand moves right, left, up and down, and 3 grai
 K(G)  =  Z^{n−1} / L̃ Z^{n−1}          (L̃ = L with the drain's row and column deleted)
 ```
 
-This is a finite abelian group of order `det L̃`, the number of spanning trees by Kirchhoff's matrix-tree theorem. Its structure, a product of cyclic groups `Z/d_1 × Z/d_2 × …`, is read off the **Smith normal form** of `L̃`, the same tool [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] uses for unit groups.[^1]
+This is Dhar's presentation. Adding `deg(v)` grains at `v` forces one toppling, so the grain operators satisfy `∏_u a_u^{L̃_vu} = 1`, and two configurations are equivalent exactly when they differ by an integer combination of the rows of `L̃`. He counted the recurrent configurations as `det L̃`.[^6] So `K(G)` is a finite abelian group of order `det L̃`, the number of spanning trees by Kirchhoff's matrix-tree theorem. Its structure, a product of cyclic groups `Z/d_1 × Z/d_2 × …`, is read off the **Smith normal form** of `L̃`, the same tool [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] uses for unit groups.[^1]
+
+**Entropy.** Since every recurrent configuration is equally likely, the steady state's entropy is `S = ln det L̃ = ln |K(G)|`.[^7] Tree castles have `S = 0`. For large rectangles the entropy per cell tends to Dhar's square-lattice value `(2π)⁻² ∫∫ ln(4 − 2cos θ − 2cos φ) dθ dφ = 1.16624…` (numerically `4G/π`, `G` Catalan's constant). `ln det L̃ / cells` is `0.984, 1.076, 1.121, 1.136` for `10 × 10` to `60 × 60` with a corner drain, and `1.050, 1.108, 1.137, 1.147` for the same numbers of cells above the tide.[^8]
+
+**What Dhar's paper does and does not give.** It contains a test for recurrence by *forbidden subconfigurations*: sets of cells in which every cell holds fewer grains (counting from 0, as on this page) than it has neighbours inside the set. Start from all the cells and repeatedly delete the ones that break this condition; either a forbidden set is left, or the set empties and the configuration passes. That is the burning test. Dhar proves only that recurrent configurations pass it; the converse he leaves unproved, and the bijection between recurrent configurations and spanning trees is later work, not in this paper.[^9]
 
 **The Laplacian factors through the boundary matrix.** Give every edge a direction. The **boundary matrix** `∂` has one row per cell and one column per edge, with `+1` at the edge's tail and `−1` at its head. It records which cells each edge joins. Then
 
@@ -86,7 +90,7 @@ This is a finite abelian group of order `det L̃`, the number of spanning trees 
 L  =  ∂ ∂ᵀ
 ```
 
-because `(∂∂ᵀ)[u, u]` counts the edges at `u`, and `(∂∂ᵀ)[u, v] = −1` when an edge joins `u` and `v`.[^4]
+because `(∂∂ᵀ)[u, u]` counts the edges at `u`, and `(∂∂ᵀ)[u, v] = −1` when an edge joins `u` and `v`.[^10]
 
 ## Part 3 - cycles, and why the 2×2 blocks hold the sand
 
@@ -106,7 +110,7 @@ For a planar graph like a castle, this small matrix, **one row per 2×2 block**,
 K(castle)  =  Z^r / (CᵀC) Z^r          (r = number of 2×2 blocks)
 ```
 
-It is the sandpile group of the planar dual graph, whose vertices are the blocks. This was checked against the cell-side formula on all 1,023 castles with up to 10 cells.[^5] So **the 2×2 blocks hold the sand**. A castle with no `2 × 2` block has no cycles, a single spanning tree, and a trivial group: sand washes straight out. A castle's sandpile group depends only on how its blocks are arranged, not on the towers and spikes around them.
+It is the sandpile group of the planar dual graph, whose vertices are the blocks. This was checked against the cell-side formula on all 1,023 castles with up to 10 cells.[^11] So **the 2×2 blocks hold the sand**. A castle with no `2 × 2` block has no cycles, a single spanning tree, and a trivial group: sand washes straight out. A castle's sandpile group depends only on how its blocks are arranged, not on the towers and spikes around them.
 
 ## Part 4 - the castle gallery
 
@@ -128,7 +132,7 @@ It is the sandpile group of the planar dual graph, whose vertices are the blocks
 
 ## A variant: the bottom row as the tide
 
-Some `IDEAS.md` items describe the base row as the sink, as if the ground were the tide that washes sand away. That is a different graph: the whole bottom row is merged into a single drain. It gives a different group, for example `Z/3` for `(2, 2)` instead of `Z/4`, and `Z/8` for `(2, 2, 2)` instead of `Z/15`. Everything on this page uses the castle graph itself with one cell as the drain, whose group does not depend on the choice of drain cell.[^6]
+Some `IDEAS.md` items describe the base row as the sink, as if the ground were the tide that washes sand away. That is a different graph: the whole bottom row is merged into a single drain. It gives a different group, for example `Z/3` for `(2, 2)` instead of `Z/4`, and `Z/8` for `(2, 2, 2)` instead of `Z/15`. Everything on this page uses the castle graph itself with one cell as the drain, whose group does not depend on the choice of drain cell.[^12]
 
 ## Snippet
 
@@ -257,13 +261,20 @@ In the recurrent tuples the positions are the cells in the order `castle_graph` 
 
 ## Appearances in Sources
 
+- [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - the abelian property, the uniform steady state on recurrent configurations, the presentation `Z^N / Z^N Δ` with `det Δ` elements, the entropy `ln det Δ`, and the forbidden-subconfiguration test.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle definition (column heights `≥ 1`) behind the castle graph.
 
 ## Footnotes
 
-[^1]: https://en.wikipedia.org/wiki/Abelian_sandpile_model - toppling at the degree, a sink vertex, order-independence of stabilization (the abelian property), recurrent configurations forming the sandpile group under addition followed by stabilization, its presentation as `Z^{n−1}` modulo the reduced Laplacian, and its order equal to the number of spanning trees (Kirchhoff's matrix-tree theorem, with Dhar's burning bijection between recurrent configurations and spanning trees).
-[^2]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `recurrent((2, 2))` is the four configurations listed; `det L̃ = 4`; the identity `stab(2·c_max − stab(2·c_max))` evaluates to one grain on each of the drain's two neighbours and none on the far corner.
-[^3]: Verified by execution (Python 3.10, 2026-09-26): the step-by-step trace topples one unstable cell at a time (first unstable cell in the order BL, TL, BM, TM, BR, TR) from `TL=1, TM=2, TR=1, BM=2, BR=1` plus one grain on `TR`, and settles at `TL=1, TM=2, TR=1, BM=1, BR=0` after 11 topplings with 3 grains absorbed; the Snippet's `stabilize`, which topples every unstable cell in each sweep, reaches the same pile, as pinned.
-[^4]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `laplacian(c) == boundary(c)·boundary(c)ᵀ` and `boundary(c)·cycle_matrix(c) = 0` for `c = (3, 3, 3)`, as pinned; the identity `L = ∂∂ᵀ` is the standard factorization of the graph Laplacian through the oriented incidence matrix.
-[^5]: Verified by execution (Python 3.10, SymPy, 2026-09-26): for every castle with at most 10 cells (1,023 compositions), the invariant factors of the reduced Laplacian equal those of the block matrix with `4` on the diagonal and `−1` for edge-sharing blocks; `CᵀC` equals that block matrix for `(3, 3, 3)` as pinned. The underlying fact, that the sandpile group of a connected plane graph equals that of its dual, is standard (Cori and Rossin, 2000).
-[^6]: Verified by execution (Python 3.10, SymPy, 2026-09-26): merging all bottom-row cells into one drain gives invariant factors `[3]` for `(2, 2)`, `[8]` for `(2, 2, 2)`, `[95]` for `(3, 3, 3)`, and the trivial group for `(1, 2, 1)`.
+[^1]: https://en.wikipedia.org/wiki/Abelian_sandpile_model - toppling at the degree, a sink vertex, order-independence of stabilization (the abelian property), recurrent configurations forming the sandpile group under addition followed by stabilization, its presentation as `Z^{n−1}` modulo the reduced Laplacian, and its order equal to the number of spanning trees (Kirchhoff's matrix-tree theorem, and a bijection between recurrent configurations and spanning trees).
+[^2]: [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] p.1614 L104-137 [synthesis] - two critical sites give the same configuration in either toppling order, toppling commutes with adding a particle, so `a_i a_j C = a_j a_i C` for all `i, j` (eq. 5).
+[^3]: [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] p.1614 L85-101 [synthesis] - "all nonrecurrent configurations are transients, and have zero probability of occurrence in the SOC state"; "only recurrent configurations have a nonzero probability of occurrence, and this nonzero value is the same for all recurrent configurations."
+[^4]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `recurrent((2, 2))` is the four configurations listed; `det L̃ = 4`; the identity `stab(2·c_max − stab(2·c_max))` evaluates to one grain on each of the drain's two neighbours and none on the far corner.
+[^5]: Verified by execution (Python 3.10, 2026-09-26): the step-by-step trace topples one unstable cell at a time (first unstable cell in the order BL, TL, BM, TM, BR, TR) from `TL=1, TM=2, TR=1, BM=2, BR=1` plus one grain on `TR`, and settles at `TL=1, TM=2, TR=1, BM=1, BR=0` after 11 topplings with 3 grains absorbed; the Snippet's `stabilize`, which topples every unstable cell in each sweep, reaches the same pile, as pinned.
+[^6]: [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] pp.1614-1615 L102-172, L199-220 [synthesis] - adding `Δ_ii` particles at `i` gives `∏_j a_j^{Δ_ij} = 1` (eqs. 8-9); equivalent configurations differ by `Σ_j r_j Δ_ij` (eq. 17); `N_R = Det Δ` (eq. 13). For a castle, `Δ = L̃`.
+[^7]: [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] p.1615 L173-177 - "Since all these configurations occur with equal probability in the SOC state, the entropy of the SOC state S is given by S = ln Det Δ" (eq. 14).
+[^8]: Verified by execution (NumPy, SciPy, 2026-09-27): the double integral of eq. 16 of [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] evaluates to `1.166244`, equal to `4 × 0.915966/π`; `slogdet` of the reduced Laplacian of `L × L` rectangles with the corner cell as drain, and of `L × L` cells above a bottom tide row, for `L = 10, 20, 40, 60`.
+[^9]: [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] p.1615 L191-214 [synthesis] - forbidden subconfigurations (eq. 18) and the recursive deletion test; "all recurrent configurations are allowed. The converse statement appears quite plausible, though a strict proof is lacking."
+[^10]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `laplacian(c) == boundary(c)·boundary(c)ᵀ` and `boundary(c)·cycle_matrix(c) = 0` for `c = (3, 3, 3)`, as pinned; the identity `L = ∂∂ᵀ` is the standard factorization of the graph Laplacian through the oriented incidence matrix.
+[^11]: Verified by execution (Python 3.10, SymPy, 2026-09-26): for every castle with at most 10 cells (1,023 compositions), the invariant factors of the reduced Laplacian equal those of the block matrix with `4` on the diagonal and `−1` for edge-sharing blocks; `CᵀC` equals that block matrix for `(3, 3, 3)` as pinned. The underlying fact, that the sandpile group of a connected plane graph equals that of its dual, is standard (Cori and Rossin, 2000).
+[^12]: Verified by execution (Python 3.10, SymPy, 2026-09-26): merging all bottom-row cells into one drain gives invariant factors `[3]` for `(2, 2)`, `[8]` for `(2, 2, 2)`, `[95]` for `(3, 3, 3)`, and the trivial group for `(1, 2, 1)`.

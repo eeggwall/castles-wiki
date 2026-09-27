@@ -5,7 +5,7 @@ summary: Every castle's sandpile group has an identity element, the one recurren
 tags: [concept, castle, sandpile, identity-element, recurrent-configuration, avalanche, isospectral, laplacian, tree-castle, tide, census, verification, pedagogy]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # The sandpile identity of a castle - the pile that acts like zero
@@ -180,6 +180,7 @@ True
 
 ## Appearances in Sources
 
+- [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - the steady state and the group the identity belongs to; the identity element itself is not treated there, so the general reference [^1] remains its source.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle definition behind the castle graph.
 
 ## Footnotes

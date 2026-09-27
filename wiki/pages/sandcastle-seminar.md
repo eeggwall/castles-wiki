@@ -3,9 +3,9 @@ title: Sandcastles seminar - one silver castle, grain by grain
 category: Concepts
 summary: The seminar walk-through for the "Sandcastles" arc, following one castle, the 16-cell silver castle (3,2,1,2,2,1,2,3), through the whole sandpile story. One grain on its left tower sets off a 16-toppling avalanche that sweeps the castle left to right and loses 2 grains to the drain. Its 64 recurrent piles form the group Z/4 × Z/4 × Z/4, read straight off its three separate 2×2 blocks (the silver rectangle's two touching blocks give Z/15 instead), and any castle with three separate blocks has the same group, which is why the sandpile group hears nothing the spectrum misses. Its clock ticks 4, with a clock spectrum of periods 1, 2, 4 occurring 16, 48, 176 times. Its identity, in both drain models, has empty tower tops (tree branches are transparent). Under the tide it barely avalanches (mean 1.667 topplings, never more than 4); with a single drain cell the mean is 32.1 and avalanches reach 149. One runnable block pins every value.
 tags: [concept, castle, seminar, pedagogy, teaching, sandpile, silver-ratio, critical-group, identity-element, clock, avalanche, tide, isospectral]
-sources: [project-euler-502-castle-factoring]
+sources: [project-euler-502-castle-factoring, dhar-1990-self-organized-critical-sandpile]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # Sandcastles seminar - one silver castle, grain by grain
@@ -257,6 +257,7 @@ def random_drops(b, drops, seed=2):        # from the identity; returns the topp
 
 ## Appearances in Sources
 
+- [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - Dhar's theorems the seminar uses: the abelian property, the group of `det L̃` recurrent piles, and the exact mean avalanche from `G = L̃⁻¹`.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle definition behind the castle graph.
 
 ## Footnotes

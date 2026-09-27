@@ -3,9 +3,9 @@ title: Avalanches on castles - Bak-Tang-Wiesenfeld sand, ground as the drain
 category: Analyses
 summary: The original self-organized-criticality sandpile (Bak, Tang and Wiesenfeld, 1987) run on castles, with the bottom row as the drain (the tide), starting from the identity and dropping grains on random cells. Dhar's theorem makes the mean avalanche size exact - the average of the solution of L̃x = 1 - and simulation agrees to within 0.3% on every shape tested. The mean depends only on height for rectangles and battlements - exactly h(2h−1)/6, the value for a single column - so a 10×10 rectangle full of 2×2 blocks and a battlement with none both average 31.67 topplings per grain. For every castle up to 12 cells (2,130 castles), the mean is at most the column-by-column prediction, with equality exactly when every run of adjacent columns rising above the base has constant height. What the 2×2 blocks change is the tail: a 20×20 rectangle and a battlement of height-20 spikes both average about 130 topplings, but the rectangle's largest avalanches reach 3,701 topplings and 601 rounds with a size density falling like s^(−0.93), while the battlement never exceeds 190. The drain matters too: with a single drain cell a 10×10 square averages 129.9 topplings, four times the tide's 31.7.
 tags: [analysis, castle, sandpile, avalanche, self-organized-criticality, bak-tang-wiesenfeld, dhar, green-function, laplacian, tide, battlement, rectangle, heavy-tail, numpy, simulation, verification]
-sources: [project-euler-502-castle-factoring]
+sources: [project-euler-502-castle-factoring, dhar-1990-self-organized-critical-sandpile]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # Avalanches on castles - Bak-Tang-Wiesenfeld sand, ground as the drain
@@ -77,7 +77,7 @@ With a single drain cell (bottom-left) instead of the tide, sand has only one wa
 
 **Open.**
 - Prove the inequality and its equality case for all castles.
-- How the rectangle's largest avalanche and tail slope scale with width and height, and whether a genuine exponent emerges for large castles with the drain only at the bottom. The classic results assume drains on all four sides.
+- How the rectangle's largest avalanche and tail slope scale with width and height, and whether a genuine exponent emerges for large castles with the drain only at the bottom. The classic results assume drains on all four sides. For comparison, the probability of exactly `n` topplings falls like `n^{-τ}` with `τ = 2(1 − 1/d) = 1` (Zhang) or `τ ≈ 1.22` (simulation) on the two-dimensional lattice, as Dhar's introduction reports, and his four-side-open square has mean `⟨T⟩ ∼ L²` against the tide rectangle's `h(2h − 1)/6`.[^8]
 - Avalanche statistics with a single drain cell, and whether duration and size are related by a power law here.
 - Arc 14's seminar walk-through, built on this page and the other sandpile pages, is [[sandcastle-seminar](pages/sandcastle-seminar.md)].
 
@@ -172,14 +172,16 @@ The `12 × 12` rectangle and the battlement of height-12 spikes both average abo
 
 ## Appearances in Sources
 
+- [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - the theorem `G = Δ⁻¹` behind the exact mean, the uniform steady state the dropping converges to, and the two-dimensional exponent estimates.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle definition behind the castle graph.
 
 ## Footnotes
 
 [^1]: P. Bak, C. Tang and K. Wiesenfeld, "Self-organized criticality: An explanation of the 1/f noise", Physical Review Letters 59 (1987) 381; summarized at https://en.wikipedia.org/wiki/Abelian_sandpile_model (the Bak-Tang-Wiesenfeld model, random grain addition, and power-law avalanche statistics on large grids).
-[^2]: D. Dhar, "Self-organized critical state of sandpile automaton models", Physical Review Letters 64 (1990) 1613: in the stationary state of the abelian sandpile, the expected number of topplings at site `j` caused by adding a grain at site `i` is `(Δ⁻¹)_{ij}`, the inverse of the reduced Laplacian. The statement is checked against simulation here in [^3].
+[^2]: [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] pp.1615-1616 L235-254 [synthesis] - `G_ij`, "the expected number of topplings at site j, due to the avalanche caused by adding a particle at i", satisfies `Σ_k G_ik Δ_kj = δ_ij` (eq. 19), so `G_ij = [Δ⁻¹]_ij` (eq. 20); for a castle `Δ` is the reduced Laplacian `L̃`. The statement is checked against simulation here in [^3].
 [^3]: Verified by execution (Python 3.10, NumPy, 2026-09-26): 20,000 uniformly random drops starting from the tide identity on `(2,)*20`, `(10,)*10`, `(20,)*20`, `(1,10)*10`, `(3,)*20`, `(6,)*40` give simulated means 1.000, 31.571, 129.875, 31.584, 2.497, 11.002 against exact means 1.000, 31.667, 130.000, 31.667, 2.500, 11.000.
 [^4]: Verified by execution (Python 3.10, NumPy, 2026-09-26): `mean_avalanche_exact` equals `h(2h − 1)/6` to `10⁻⁹` for every rectangle `(h,)*w` and every battlement `(1, h)*w` with `2 ≤ h ≤ 12`, `1 ≤ w ≤ 8`.
 [^5]: Verified by execution (Python 3.10, NumPy, 2026-09-26): for all 2,130 mirror-distinct castles with at most 12 cells and height at least 2, `mean_avalanche_exact(c) ≤ column_prediction(c) + 10⁻⁹`, with equality (to `10⁻⁹`) in 1,129 cases, exactly those in which every maximal run of adjacent columns of height at least 2 has constant height.
 [^6]: Verified by execution (Python 3.10, NumPy, 2026-09-26): 60,000 random drops (seed 5) from the tide identity of `(20,)*20` and `(1,20)*10`; median and 99th percentile over drops with size `> 0`; slope from a least-squares fit of log density against log size in 10 logarithmic bins on `[10, 1000]`. The battlement maxima 45, 66, 190 at heights 10, 12, 20 are from the runs of [^3], the Snippet and this footnote; the `10 × 10` rectangle maximum 447 is from [^3]. The `12 × 12` comparison is pinned in the Snippet.
 [^7]: Verified by execution (Python 3.10, NumPy, 2026-09-26): the exact mean with the single bottom-left drain cell on `(10,)*10` is 129.9, against 31.7 for the tide.
+[^8]: [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] pp.1613, 1616 L42-53, L252-268 [synthesis] - the cluster-size exponent "τ = 2(1 − 1/d)" (Zhang) against "the numerical estimate τ ≈ 1.22" at `d = 2`; for the `L × L` lattice with losses at the edges, eq. 21 and "⟨T⟩ ∼ L²" (exponents read from the page images).

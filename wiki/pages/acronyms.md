@@ -5,7 +5,7 @@ summary: Flat alphabetical reference of every abbreviation used on the castles w
 tags: [reference, acronyms, abbreviations]
 sources: [project-euler-502]
 created: 2026-09-19
-updated: 2026-09-19
+updated: 2026-09-27
 ---
 
 # Acronyms and abbreviations
@@ -13,9 +13,11 @@ updated: 2026-09-19
 A flat alphabetical reference of every abbreviation used on the castles wiki. Each is also spelled out on first use within its host page; this page is the master list.
 
 - **AC** - Analytic Combinatorics (Flajolet-Sedgewick, Cambridge University Press 2009).
+- **AM** - Abelian model: Dhar's general sandpile with an integer toppling matrix `Δ` (1990).
 - **AOCP** - The Art of Computer Programming (Knuth). Interchangeable with TAOCP.
 - **BM** - Berlekamp-Massey algorithm.
 - **BSGS** - baby-step giant-step (discrete logarithm search).
+- **BTW** - Bak-Tang-Wiesenfeld (sandpile model of self-organized criticality, 1987).
 - **CCC** - convex castle count, `C(2h + w - 3, w - 1)`.
 - **CEV** - convex-even castles by area: convex castles of area `n` with an even block count. Paired with COD; `cev(n) + cod(n) = A001523(n)`. Written `cev(n)` in formulas.
 - **CF** - continued fraction.
@@ -35,6 +37,7 @@ A flat alphabetical reference of every abbreviation used on the castles wiki. Ea
 - **EIS** - Encyclopedia of Integer Sequences (OEIS's original pre-1996 name; still cited by A-numbers in older sources).
 - **FFT** - Fast Fourier Transform.
 - **FS** - forcibly simple (score vector).
+- **FSC** - forbidden subconfiguration (Dhar's test for recurrent sandpile configurations; the burning test).
 - **GF** - generating function.
 - **GNU** - GNU's Not Unix (recursive; free-software project name).
 - **GUE** - Gaussian Unitary Ensemble (random-matrix theory).
@@ -59,6 +62,7 @@ A flat alphabetical reference of every abbreviation used on the castles wiki. Ea
 - **SC** - strongly connected (tournament).
 - **SCC** - strongly connected component.
 - **SEQ** - sequence (symbolic-method construction).
+- **SOC** - self-organized criticality / self-organized critical (state).
 - **SSH** - Secure Shell.
 - **SUD** - score-uniquely-determined (tournament).
 - **TAOCP** - The Art of Computer Programming (Knuth). Interchangeable with AOCP.

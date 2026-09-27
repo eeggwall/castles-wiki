@@ -3,9 +3,9 @@ title: Sandpile census - every castle to 16 cells
 category: Analyses
 summary: The sandpile group of every castle with at most 16 cells (33,150 castles, mirror images removed), computed from the 2×2-block matrix and checked against the cospectral census of isospectral-castles. The 2×2 blocks' boundary cycles are an integer basis of the cycle lattice in every case tested (938 castles). 6,963 castles (the tree castles) have trivial group; the commonest groups are Z/4 (one isolated block, 8,027), Z/15 (two adjacent blocks), Z/56 and Z/209 (paths of three and four blocks), Z/4 × Z/4 (two separated blocks) and Z/60 = Z/15 × Z/4. The main result is negative - the sandpile group separates none of the 105 adjacency-cospectral groups and none of the 17 Laplacian-cospectral groups, because in every one of them the castles have the same graph of 2×2 blocks, and the group depends only on that graph. So there is no Laplacian-cospectral pair with different sandpile groups up to 16 cells. The census also refutes the "cyclic sandcastles" conjecture as stated, proves that every path-shaped cluster of blocks gives a cyclic group, and finds 921 castles whose clusters are not paths but whose group is still cyclic, the smallest being (2,3,3,3) with Z/712.
 tags: [analysis, castle, sandpile, critical-group, census, isospectral, laplacian, adjacency, smith-normal-form, cyclic-group, tree-castle, block-graph, numpy, sympy, verification]
-sources: [project-euler-502-castle-factoring]
+sources: [project-euler-502-castle-factoring, dhar-1990-self-organized-critical-sandpile]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # Sandpile census - every castle to 16 cells
@@ -195,6 +195,7 @@ def cospectral_groups(castles, operator):  # sets of non-isomorphic castles shar
 
 ## Appearances in Sources
 
+- [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - the count `det Δ` of recurrent configurations that this census tabulates as `|K|`; its logarithm `ln det Δ` is the entropy of the self-organized critical state (0 for the 6,963 tree castles).
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle definition (column heights `≥ 1`) that makes "every castle with `n` cells" the compositions of `n`.
 
 ## Footnotes

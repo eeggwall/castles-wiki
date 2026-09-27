@@ -1,11 +1,11 @@
 ---
 title: Castle notation - castles, towers, and the parity term
 category: Concepts
-summary: The wiki's symbol conventions in one place. Castle quantities are written width first, F(w, h); tower quantities are written tower height first, T(k, L) and P(k, L), where a tower sits on the castle's bottom row, so tower height k = castle height h − 1. T is the unsigned tower count (k+1)^L, P the signed ("parity") tower count Σ(−1)^blocks, and the parity term of F is S(w, h) = P(h−2, w) − P(h−1, w), so F(w, h) = [h^w − (h−1)^w − P(h−1, w) + P(h−2, w)]/2. P(0, L) = 1 is the trivial case; P(1, ·) is the parity ingredient for castles of height up to 2. Also lists the other things the letters P and T mean on the wiki, so the collisions are visible.
+summary: The wiki's symbol conventions in one place, including the sandpile symbols (the reduced Laplacian L̃, Dhar's Δ, K(G), L̃⁻¹, a_v). Castle quantities are written width first, F(w, h); tower quantities are written tower height first, T(k, L) and P(k, L), where a tower sits on the castle's bottom row, so tower height k = castle height h − 1. T is the unsigned tower count (k+1)^L, P the signed ("parity") tower count Σ(−1)^blocks, and the parity term of F is S(w, h) = P(h−2, w) − P(h−1, w), so F(w, h) = [h^w − (h−1)^w − P(h−1, w) + P(h−2, w)]/2. P(0, L) = 1 is the trivial case; P(1, ·) is the parity ingredient for castles of height up to 2. Also lists the other things the letters P and T mean on the wiki, so the collisions are visible.
 tags: [concept, castle, notation, reference, signed-tower-count, castle-sign, pedagogy]
 sources: [project-euler-502-solution, project-euler-502-representations]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # Castle notation - castles, towers, and the parity term
@@ -69,7 +69,22 @@ and at `w = 2`, `P(1, 2) = −2` gives `F(2, 2) = (4 + 2)/2 = 3`, the three cast
 - **`P(k, w)`** on a few pages ([[fractional-width-and-height](pages/fractional-width-and-height.md)], [[mod-9-equidistribution](pages/mod-9-equidistribution.md)]) is `P(k, L)` evaluated at base length `L = w`, the castle width, exactly as it appears in the formula for `F`.
 - **Generating functions.** The source derivation also writes `P_k` and `E_k` for the tower generating functions in `x` (the sums over `L`), not for single values ([[castle-counting-formula](pages/castle-counting-formula.md)], [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]).
 
-## Other meanings of P and T on the wiki
+## Sandpile symbols
+
+The sandpile pages run grains on the castle graph (cells as vertices, edge-sharing cells joined) with a **drain**: either one chosen cell, or the whole bottom row, called the **tide** ([[castle-avalanches](pages/castle-avalanches.md)]). Heights count grains from 0, and a cell topples when it holds at least as many grains as it has neighbours.
+
+| symbol | meaning | where |
+|---|---|---|
+| `L` | the Laplacian `D − A` of the castle graph: `D` the diagonal of cell degrees, `A` the adjacency matrix (not the castle count `A(w, h)`) | [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], [[sandpile-group](pages/sandpile-group.md)] |
+| `L̃` | the **reduced Laplacian**: `L` with the drain's rows and columns deleted (one cell's row and column for a single drain cell, every bottom-row cell's for the tide). Toppling cell `v` subtracts row `v` of `L̃` | [[sandpile-group](pages/sandpile-group.md)], [[castle-avalanches](pages/castle-avalanches.md)] |
+| `Δ` | Dhar's toppling matrix of a general abelian sandpile; for a castle `Δ = L̃`. Dhar's stable heights run `1..Δ_vv`, the wiki's `0..deg − 1` shifted by one | [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
+| `K(G)`, `K` | the sandpile group `Z^{n−1} / L̃ Z^{n−1}` of the recurrent configurations, of order `det L̃` (the number of spanning trees) | [[sandpile-group](pages/sandpile-group.md)], [[sandpile-census](pages/sandpile-census.md)] |
+| `L̃⁻¹` | expected topplings: entry `(v, u)` is the mean number of topplings at `u` caused by a grain at `v` in the steady state (Dhar's `G = Δ⁻¹`); its row means give the mean avalanche | [[castle-avalanches](pages/castle-avalanches.md)], [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
+| `a_v` | Dhar's grain operator "add a grain at `v`, then stabilize"; the operators commute, and the order of `a_v` is the clock period | [[sandcastle-clock](pages/sandcastle-clock.md)], [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
+| `stab(·)` | stabilization: topple until no cell is unstable | [[sandpile-identity](pages/sandpile-identity.md)] |
+| `ln det L̃` | the entropy of the steady state (uniform on `det L̃` recurrent piles), written in words on the wiki, not as `S` | [[sandpile-group](pages/sandpile-group.md)] |
+
+## Other meanings of P, T, and other shared letters on the wiki
 
 These are local notations on specific pages and are unrelated to the tower counts:
 
@@ -84,6 +99,10 @@ These are local notations on specific pages and are unrelated to the tower count
 | `T_h(w)`, `T_h(w, q)`, `T_2(w)`, `T_3(w)` | **tree-castle** counts (castles with no `2 × 2` block), not tower counts | [[tree-castle-by-area](pages/tree-castle-by-area.md)], [[castle-graph](pages/castle-graph.md)] |
 | `M` | the Project Euler modulus `10⁹ + 7` | [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] |
 | `S(w, h)` | the parity term of `F` (this page), also used on [[castle-entropy](pages/castle-entropy.md)] | - |
+| `S` | Dhar's entropy `S = ln det Δ` of the sandpile steady state; the wiki writes `ln det L̃` instead, keeping `S(w, h)` for the parity term | [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
+| `G` | a graph (as in `K(G)`), or Dhar's expected-toppling matrix `G = Δ⁻¹` (written `L̃⁻¹` on the wiki); never a castle count, and elsewhere reserved for generating functions | [[sandpile-group](pages/sandpile-group.md)], [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
+| `A`, `D` | the adjacency and degree matrices in `L = D − A`; `A(w, h)` with arguments is the castle count, `D` is also used for diagonal sign matrices on [[tower-parity-sectors](pages/tower-parity-sectors.md)] | [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] |
+| `K` | the sandpile group `K(G)`; elsewhere a local GF name (`K(q, z)`, the convex castle GF) | [[sandpile-group](pages/sandpile-group.md)], [[prime-convex-castles](pages/prime-convex-castles.md)] |
 
 ## Related Concepts
 
@@ -91,6 +110,7 @@ These are local notations on specific pages and are unrelated to the tower count
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, L)` and its recurrences.
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the `(T ± P)/2` split.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the seminar where towers and parity are introduced.
+- [[sandpile-group](pages/sandpile-group.md)] - the reduced Laplacian `L̃` and the sandpile group; [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] for the general toppling matrix `Δ`.
 
 ## Footnotes
 
