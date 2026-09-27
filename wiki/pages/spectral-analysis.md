@@ -93,7 +93,7 @@ with `D` the diagonal degree matrix and `A` the adjacency matrix. The Laplacian 
 
 - **Algebraic connectivity `μ_1` (Fiedler value)** — measures how "bottlenecked" the castle is. A pyramidal castle (broad base) has larger `μ_1` than a T-shape or a castle with a narrow neck between two bulges. Fiedler eigenvector localizes on the bottleneck.
 - **Cheeger inequality** — `h(G_C) ≥ μ_1 / 2`, where the Cheeger constant `h(G_C)` is the minimum boundary-to-volume ratio over vertex subsets. Detects **necks and bridges** in the castle geometrically.
-- **Kirchhoff and the sandpile group** - every cofactor of `L` is the number of spanning trees, and the Smith normal form of the reduced Laplacian `L̃` is the castle's sandpile group, of that order. The group sees only the castle's graph of `2 × 2` blocks ([[sandpile-group](pages/sandpile-group.md)], [[sandpile-census](pages/sandpile-census.md)]).
+- **Kirchhoff and the sandpile group** - every cofactor of `L` is the number of spanning trees, and the Smith normal form of the reduced Laplacian `L̃` is the castle's sandpile group, of that order, in the sink model (one sink cell); merging the bottom row into the sink gives the tide model's group. The sink group sees only the castle's graph of `2 × 2` blocks ([[sandpile-group](pages/sandpile-group.md)], [[sandpile-census](pages/sandpile-census.md)]).
 - **Heat-kernel trace** — `Tr(e^{−tL}) = ∑_i e^{−t μ_i}`. Encodes the entire Laplacian spectrum in a single time-parameter function, and captures the polyomino up to isospectral isomorphism.
 
 ### Isospectral castles — "hear the shape of a castle"
@@ -112,7 +112,7 @@ For the castle polyomino graph `G_C`, the **Ihara zeta function** is
 ζ_{G_C}(u)  =  ∏_{[γ]}  (1 − u^{|γ|})^{−1}
 ```
 
-where the product runs over equivalence classes of prime, backtrackless, tailless closed walks. `ζ_{G_C}(u)` is a rational function, and its poles are the eigenvalues of a modified **non-backtracking / edge-adjacency operator** on the graph. This is the graph-theoretic analog of the **Selberg zeta function** on hyperbolic surfaces — spectral information about the graph packaged as an arithmetic-flavored generating function over closed walks. Its behaviour at `u = 1` also sees the spanning-tree count, the order of the sandpile group ([[sandpile-group](pages/sandpile-group.md)]).
+where the product runs over equivalence classes of prime, backtrackless, tailless closed walks. `ζ_{G_C}(u)` is a rational function, and its poles are the eigenvalues of a modified **non-backtracking / edge-adjacency operator** on the graph. This is the graph-theoretic analog of the **Selberg zeta function** on hyperbolic surfaces — spectral information about the graph packaged as an arithmetic-flavored generating function over closed walks. Its behaviour at `u = 1` also sees the spanning-tree count, the order of the sink-model sandpile group ([[sandpile-group](pages/sandpile-group.md)]).
 
 ### Ramanujan castles
 
@@ -161,7 +161,7 @@ The transfer matrix `M_k` (`k = h − 1`) has characteristic polynomial `char_k`
 
 ### The isospectral-castle hunt - settled
 
-Run exhaustively over every castle with at most 16 cells (compositions of `n`, mirror-deduped, exact integer characteristic polynomials, isomorphism by networkx) on [[isospectral-castles](pages/isospectral-castles.md)]. The smallest non-isomorphic castles with the same **adjacency** spectrum have **10 cells** (`(1,1,1,2,3,2)` vs `(1,1,2,2,3,1)`, two groups at that size); with the same **Laplacian** spectrum, **11 cells** (`(1,1,1,2,1,1,2,1,1)` vs `(1,1,3,1,1,1,2,1)`, both trees); isospectral for both operators, **16 cells**. Groups multiply quickly afterwards (50 adjacency groups at 16 cells), so the spectrum is an invariant, not a classifier. Sand separates more: to 16 cells the sandpile group separates no cospectral group ([[sandpile-census](pages/sandpile-census.md)]), the clock spectrum 62 of 105 adjacency and 5 of 17 Laplacian ones ([[sandcastle-clock](pages/sandcastle-clock.md)]), and the avalanche profile all of them ([[sandpile-identity](pages/sandpile-identity.md)]).
+Run exhaustively over every castle with at most 16 cells (compositions of `n`, mirror-deduped, exact integer characteristic polynomials, isomorphism by networkx) on [[isospectral-castles](pages/isospectral-castles.md)]. The smallest non-isomorphic castles with the same **adjacency** spectrum have **10 cells** (`(1,1,1,2,3,2)` vs `(1,1,2,2,3,1)`, two groups at that size); with the same **Laplacian** spectrum, **11 cells** (`(1,1,1,2,1,1,2,1,1)` vs `(1,1,3,1,1,1,2,1)`, both trees); isospectral for both operators, **16 cells**. Groups multiply quickly afterwards (50 adjacency groups at 16 cells), so the spectrum is an invariant, not a classifier. Sand separates more: to 16 cells the sink-model sandpile group separates no cospectral group ([[sandpile-census](pages/sandpile-census.md)]), the sink clock spectrum 62 of 105 adjacency and 5 of 17 Laplacian ones ([[sandcastle-clock](pages/sandcastle-clock.md)]), and the avalanche profile all of them ([[sandpile-identity](pages/sandpile-identity.md)]).
 
 ## Where methods meet predicates
 

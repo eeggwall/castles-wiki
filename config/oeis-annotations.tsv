@@ -30,12 +30,14 @@ A001169	supporting	Number of board-pile polyominoes with n cells.	board-pile pol
 A001235	supporting	Taxi-cab numbers: sums of 2 cubes in more than 1 way.	1729 = F(6,4) is the first term; no other taxicab number is a castle count for w,h <= 40
 A001263	count	Triangle of Narayana numbers T(n,k) = C(n-1,k-1)*C(n,k-1)/k with 1 <= k <= n, read by rows. Also called the Catalan triangle.	tower Narayana polynomial coefficients
 A001333	metallic	Pell-Lucas numbers: numerators of continued fraction convergents to sqrt(2).	numerators of CF convergents to √2 (Pell-Lucas)
-A001353	count	a(n) = 4*a(n-1) - a(n-2) with a(0) = 0, a(1) = 1.	sandpile group order (spanning trees) of the 2-wide ladder castle (2,...,2) of width n: |K| = A001353(n), cyclic
+A001353	count	a(n) = 4*a(n-1) - a(n-2) with a(0) = 0, a(1) = 1.	sink-model sandpile group order (spanning trees) of the 2-wide ladder castle, lying down (2,...,2) of width n or standing up (n,n): |K_sink| = A001353(n), cyclic
 A001519	count	a(n) = 3*a(n-1) - a(n-2) for n >= 2, with a(0) = a(1) = 1.	convex castles (stack polyominoes) by semi-perimeter: anti-diagonal sums of C(2h+w-3, w-1)
 A001523	count	Number of stacks, or planar partitions of n; also number of weakly unimodal compositions of n.	convex castles by area (weakly unimodal compositions)
 A001591	count	Pentanacci numbers: a(n) = a(n-1) + a(n-2) + a(n-3) + a(n-4) + a(n-5), a(0)=a(1)=a(2)=a(3)=0, a(4)=1.	bounded-height castles by area, height ≤ 5: pentanacci, `=A001591(A+4)`
 A001608	plastic	Perrin sequence (or Perrin numbers, or Ondrej Such sequence): a(n) = a(n-2) + a(n-3) with a(0) = 3, a(1) = 0, a(2) = 2.	Perrin (plastic Lucas / trace)
 A001803	supporting	Numerators in expansion of (1 - x)^(-3/2).	numerators of 2w C(2w,w)/4^w = B_{1/2}(box) / h, the half-order block count of a box castle (fractional-block-count)
+A001835	count	a(n) = 4*a(n-1) - a(n-2), with a(0) = 1, a(1) = 1.	tide-model sandpile group order of the 2-wide ladder standing up (n,n): |K_tide| = A001835(n), cyclic
+A001906	count	F(2n) = bisection of Fibonacci sequence: a(n) = 3*a(n-1) - a(n-2).	tide-model sandpile group order of the 2-wide ladder lying down (2,...,2) of width n: |K_tide| = A001906(n), cyclic; also the Cartier-Foata reciprocal of the interval-piece heap
 A001924	supporting	Apply partial sum operator twice to Fibonacci numbers.	one-peak castles of area n+1: (1^a, X, 1^b) with X free of height-1 columns
 A002203	metallic	Companion Pell numbers: a(n) = 2*a(n-1) + a(n-2), a(0) = a(1) = 2.	companion Pell (trace of Pell)
 A002426	supporting	Central trinomial coefficients: largest coefficient of (1 + x + x^2)^n.	unconstrained U/R/D words returning to height 0; Motzkin is the ballot-restricted version

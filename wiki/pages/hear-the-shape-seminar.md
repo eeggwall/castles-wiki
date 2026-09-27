@@ -112,7 +112,7 @@ Ways to separate what the eigenvalues cannot:
 - **The Ihara zeta function**, which counts non-backtracking closed walks, a finer invariant than the spectrum for graphs with cycles ([[spectral-analysis](pages/spectral-analysis.md)] §5).
 - **The skyline DFT**, the Fourier transform of the height sequence itself rather than of the graph ([[spectral-analysis](pages/spectral-analysis.md)] §3).
 
-- **Sand.** Drop grains on the castle and watch them topple. The sandpile group sees only the block graph, which cospectral castles share, but the clock spectrum ticks 15 against 5 on the 10-cell pair and separates 62 of 105 adjacency and 5 of 17 Laplacian groups to 16 cells ([[sandcastle-clock](pages/sandcastle-clock.md)]), and the avalanche profile separates all of them ([[sandpile-identity](pages/sandpile-identity.md)]).
+- **Sand.** Drop grains on the castle and watch them topple, with one sink cell (the sink model, a graph invariant). The sink sandpile group sees only the block graph, which cospectral castles share, but the sink clock spectrum ticks 15 against 5 on the 10-cell pair and separates 62 of 105 adjacency and 5 of 17 Laplacian groups to 16 cells ([[sandcastle-clock](pages/sandcastle-clock.md)]), and the avalanche profile separates all of them ([[sandpile-identity](pages/sandpile-identity.md)]).
 
 Whether Ihara or the DFT separates the 10-cell pair is not yet known.
 
@@ -124,8 +124,8 @@ Whether Ihara or the DFT separates the 10-cell pair is not yet known.
 | Laplacian `L = D − A` | area, edges, connectivity, spanning trees, `Σ deg²` | branching of trees | 11 cells: `(1,1,1,2,1,1,2,1,1)` / `(1,1,3,1,1,1,2,1)` |
 | both | all of the above | the shape | 16 cells: a pair of trees |
 | per-cell walk counts (not spectral) | separates both small pairs | - | - |
-| sandpile clock spectrum (not spectral) | 62 of 105 adjacency and 5 of 17 Laplacian groups to 16 cells | trees (they never tick) | - |
-| avalanche profile (not spectral) | every cospectral group to 16 cells | none found | - |
+| sink-model clock spectrum (not spectral) | 62 of 105 adjacency and 5 of 17 Laplacian groups to 16 cells | trees (they never tick) | - |
+| sink avalanche profile (not spectral) | every cospectral group to 16 cells | none found | - |
 
 ## Snippet
 
@@ -243,9 +243,9 @@ False
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the other seminar pages.
 - [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the seminar on OEIS mining as a research method.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
-- [[sandpile-group](pages/sandpile-group.md)] - the sandpile group, built from the Laplacian; it separates neither the 10- nor the 11-cell pair.
-- [[sandpile-census](pages/sandpile-census.md)] - the sandpile census: the group hears nothing the spectrum misses up to 16 cells.
-- [[sandcastle-clock](pages/sandcastle-clock.md)] - the sandcastle clock ticks 15 and 5 on this seminar's 10-cell pair, which share spectrum and sandpile group.
+- [[sandpile-group](pages/sandpile-group.md)] - the sandpile group in the sink and tide models, built from the Laplacian; neither separates the 10- or the 11-cell pair.
+- [[sandpile-census](pages/sandpile-census.md)] - the sandpile census: the sink group hears nothing the spectrum misses up to 16 cells; the tide group hears the skyline instead.
+- [[sandcastle-clock](pages/sandcastle-clock.md)] - the sink-model clock ticks 15 and 5 on this seminar's 10-cell pair, which share spectrum and sandpile group (the tide clocks tick 4 and 8).
 - [[sandpile-identity](pages/sandpile-identity.md)] - one grain on the apex of the 10-cell pair's identity: 57 topplings against 1.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.

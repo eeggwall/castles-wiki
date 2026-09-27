@@ -1,39 +1,59 @@
 ---
-title: Sandpile groups of castles - sand, cycles, and 2×2 blocks
+title: Sandpile groups of castles - sand, cycles, and 2×2 blocks, in the sink and tide models
 category: Concepts
-summary: An introduction to the sandpile group (also called the critical group or Jacobian) of a castle graph, starting from the game and ending at the linear algebra. Grains sit on cells; a cell holding at least as many grains as it has neighbours topples, sending one grain to each; one cell is a drain where grains vanish. The configurations that keep coming back as sand is added form a finite group whose size is the number of spanning trees. In matrix terms it is Z^n modulo the reduced Laplacian, and the Laplacian factors through the boundary matrix as L = ∂∂ᵀ. The cycles of the castle graph (the kernel of ∂) have the castle's 2×2 blocks as a basis, and because castles are planar the group can be read off a much smaller matrix, one row per 2×2 block, with 4 on the diagonal and −1 for each pair of blocks sharing an edge (checked on all 1,023 castles up to 10 cells, counting mirror images separately; 558 up to mirror image). So the 2×2 blocks hold the sand. Tree castles (golden paths, battlements) hold none, the 4-cycle (2,2) gives Z/4, the silver rectangle (2,2,2) and any castle with two side-by-side blocks give Z/15, the 2-wide ladders give Z/4, Z/15, Z/56, Z/209, …, and (3,3,3) gives Z/8 × Z/24. A runnable block reproduces every example.
-tags: [concept, castle, sandpile, abelian-sandpile, critical-group, chip-firing, laplacian, boundary-matrix, cycle-space, spanning-trees, smith-normal-form, tree-castle, planar-dual, pedagogy]
+summary: An introduction to the sandpile group (also called the critical group or Jacobian) of a castle, in two models that differ only in where the sand leaves. Grains sit on cells; a cell holding at least as many grains as it has neighbours topples, sending one grain to each; grains that reach the sink vanish. In the sink model the sink is one cell (the bottom-left cell on these pages), and the group does not depend on which cell it is; in the tide model the sink is the whole bottom row, the ground. The configurations that keep coming back as sand is added form a finite group whose size is the number of spanning trees, Z^n modulo the reduced Laplacian, and the Laplacian factors through the boundary matrix as L = ∂∂ᵀ. Because castles are planar the group can be read off a small matrix with one row per 2×2 block and −1 for each pair of blocks sharing an edge. The diagonal is where the models differ: 4 for every block in the sink model, but 3 for a block sitting on the ground and 4 above it in the tide model, because merging the bottom row turns each ground block's 4-cycle into a triangle (proved from planar duality, checked on all 33,150 castles to 16 cells). So the sink group depends only on how the blocks touch, while the tide group also sees how high they sit - (2,2,2) and (3,3) have the same graph and the same sink group Z/15, but tide groups Z/8 and Z/11 - and the tide model splits a castle into its runs of raised columns. Both models give the trivial group exactly on tree castles. The horizontal ladders give A001353 (sink) and the even Fibonacci numbers A001906 (tide); the vertical ladders give A001353 (sink) and A001835 (tide). A runnable block reproduces every example in both models.
+tags: [concept, castle, sandpile, abelian-sandpile, critical-group, chip-firing, laplacian, boundary-matrix, cycle-space, spanning-trees, smith-normal-form, tree-castle, planar-dual, sink-model, tide-model, pedagogy]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-26
 updated: 2026-09-26
 ---
 
-# Sandpile groups of castles - sand, cycles, and 2×2 blocks
+# Sandpile groups of castles - sand, cycles, and 2×2 blocks, in the sink and tide models
 
-This page introduces the **sandpile group** of a castle for readers who have not met it before. It starts with a game you can play on paper, then connects the game to matrices the wiki already uses: the Laplacian of [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], the boundary matrix, and the cycles of [[castle-graph](pages/castle-graph.md)]. The one picture to keep is at the end of Part 3: **a castle's sand lives in its 2×2 blocks**. Part 1 works two examples by hand: the recurrent configurations of the 4-cycle `(2, 2)`, and a full avalanche on the silver rectangle `(2, 2, 2)`.
+This page introduces the **sandpile group** of a castle for readers who have not met it before. It starts with a game you can play on paper, then connects the game to matrices the wiki already uses: the Laplacian of [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], the boundary matrix, and the cycles of [[castle-graph](pages/castle-graph.md)]. The game needs a place where sand leaves the castle, and there are two natural choices, the **sink model** and the **tide model**. Every result on this page is stated for both, because the two models see different cycles and so different groups. The one picture to keep is at the end of Part 3: **a castle's sand lives in its 2×2 blocks**, and the tide also cares how high each block sits.
 
-## Part 1 - the game
+## Part 1 - the game, and the two models
 
-Take a castle and its graph: one vertex per filled cell, one edge per pair of cells that share a side ([[castle-graph](pages/castle-graph.md)]). Pick one cell as the **drain**. In this page it is always the bottom-left cell, but any cell works.
+Take a castle and its graph: one vertex per filled cell, one edge per pair of cells that share a side ([[castle-graph](pages/castle-graph.md)]). Some cells form the **sink**, where sand leaves.
 
-- **Sand.** Put a whole number of grains on every other cell. That is a *configuration*.
-- **Toppling.** A cell that holds at least as many grains as it has neighbours is unstable. It **topples**: it sends one grain to each neighbour. Grains that reach the drain disappear.
-- **Stabilizing.** Keep toppling until no cell is unstable. Because the drain removes sand, this always stops, and the final configuration does not depend on the order of the topplings. That is why the model is called **abelian**.[^1]
+- **Sand.** Put a whole number of grains on every cell outside the sink. That is a *configuration*.
+- **Toppling.** A cell that holds at least as many grains as it has neighbours is unstable. It **topples**: it sends one grain to each neighbour. Grains that reach the sink disappear.
+- **Stabilizing.** Keep toppling until no cell is unstable. Because the sink removes sand, this always stops, and the final configuration does not depend on the order of the topplings. That is why the model is called **abelian**.[^1]
+
+**Two models.** They differ only in which cells form the sink.
+
+| | sink model | tide model |
+|---|---|---|
+| the sink | one cell; on these pages the bottom-left cell | the whole bottom row, the ground |
+| where sand leaves | only through that one cell's neighbours | from every cell standing on the ground |
+| the graph behind it | the castle graph itself | the castle graph with the bottom row merged into one vertex |
+| does a choice matter? | the group does not depend on which cell is the sink; clocks and identities do | no choice: the ground is canonical |
+
+A cell keeps its full number of neighbours in both models, so a cell standing on the ground still needs as many grains to topple as before, and in the tide model one of those grains falls into the ground.
 
 **Add sand forever.** Drop grains on cells one at a time, stabilizing after each drop. Some stable configurations appear only near the start and never come back. The others, the **recurrent** configurations, keep coming back no matter how long you play.
 
-**The recurrent configurations form a group.** Add two recurrent configurations cell by cell and stabilize: the result is recurrent again. This operation has an identity element and inverses, so the recurrent configurations form a finite abelian group, the **sandpile group** `K(G)`. It is also called the critical group or the Jacobian of the graph. Its size is the **number of spanning trees** of the graph, and it does not depend on which cell is the drain.[^1]
+**The recurrent configurations form a group.** Add two recurrent configurations cell by cell and stabilize: the result is recurrent again. This operation has an identity element and inverses, so the recurrent configurations form a finite abelian group, the **sandpile group** `K`. It is also called the critical group or the Jacobian of the graph. Its size is the **number of spanning trees** of the graph behind the model.[^1] Write `K_sink` and `K_tide` for the two groups of the same castle.
 
-### Worked example: the 4-cycle `(2, 2)`
+### Worked example: the 4-cycle `(2, 2)` in both models
 
-`(2, 2)` is a `2 × 2` square of four cells, each with two neighbours. Make the bottom-left cell the drain. The other three cells are stable with 0 or 1 grain each, so there are `2³ = 8` stable configurations. Exactly **4** of them are recurrent: the ones with **at most one empty cell**.
+**Sink model.** `(2, 2)` is a `2 × 2` square of four cells, each with two neighbours. Make the bottom-left cell the sink. The other three cells are stable with 0 or 1 grain each, so there are `2³ = 8` stable configurations. Exactly **4** of them are recurrent: the ones with **at most one empty cell**.
 
 ```
 recurrent (grains on top-left, bottom-right, top-right):   (0,1,1)  (1,0,1)  (1,1,0)  (1,1,1)
 transient:                                                 (0,0,0)  (1,0,0)  (0,1,0)  (0,0,1)
 ```
 
-Four recurrent configurations means `K = Z/4`, and the square has 4 spanning trees (delete any one of its 4 edges). The identity element is `(1, 1, 0)`: one grain on each cell next to the drain and none on the far corner. Adding it to any recurrent configuration and stabilizing gives that configuration back.[^2]
+Four recurrent configurations means `K_sink = Z/4`, and the square has 4 spanning trees (delete any one of its 4 edges). The identity element is `(1, 1, 0)`: one grain on each cell next to the sink and none on the far corner. Adding it to any recurrent configuration and stabilizing gives that configuration back.[^2]
+
+**Tide model.** Now the whole bottom row is the ground. Only the two top cells hold sand, and each has two neighbours: the other top cell, and the ground below it. Each holds 0 or 1 grain, so there are 4 stable configurations, and exactly **3** are recurrent: every one except the empty pile.
+
+```
+recurrent (grains on top-left, top-right):   (0,1)  (1,0)  (1,1)
+transient:                                   (0,0)
+```
+
+So `K_tide = Z/3`. The graph behind the tide model is a triangle (the two top cells and the ground), which has 3 spanning trees. The identity is the full pile `(1, 1)`.[^2]
 
 ### Worked example: one avalanche on the silver rectangle `(2, 2, 2)`
 
@@ -41,44 +61,56 @@ The sand in this game does not behave like physical sand. There is no gravity an
 
 - **A bowl's capacity is its number of neighbours.** It tips over when it holds that many grains.
 - **A neighbour always accepts a grain.** If that makes it overflow, it tips over in turn. That chain reaction is an **avalanche**.
-- **Grains leave the castle only through the drain.** Any grain sent to the drain is removed, and the drain never tips. Without a drain the total amount of sand would never change, and an overfull pile would topple forever.
+- **Grains leave the castle only through the sink.** Any grain sent to the sink is removed, and the sink never tips. Without a sink the total amount of sand would never change, and an overfull pile would topple forever.
 
-Label the six cells of the `3 × 2` rectangle and make the bottom-left cell `BL` the drain:
-
-```
-top     TL  TM  TR            corners TL, TR, BR have 2 neighbours;  TM, BM have 3
-bottom  BL  BM  BR            BL = the drain
-```
-
-Start from the fullest stable pile, each bowl one grain short of tipping, and drop one grain on `TR`:
+Label the six cells of the `3 × 2` rectangle:
 
 ```
-start        top [1 2 1]   bottom [D 2 1]
-drop on TR   top [1 2 2]   bottom [D 2 1]
-topple TR    top [1 3 0]   bottom [D 2 2]
-topple TM    top [2 0 1]   bottom [D 3 2]
-topple TL    top [0 1 1]   bottom [D 3 2]   <- one grain into the drain
-topple BM    top [0 2 1]   bottom [D 0 3]   <- another into the drain
-topple BR    top [0 2 2]   bottom [D 1 1]
-topple TR    top [0 3 0]   bottom [D 1 2]
-topple TM    top [1 0 1]   bottom [D 2 2]
-topple BR    top [1 0 2]   bottom [D 3 0]
-topple BM    top [1 1 2]   bottom [D 0 1]   <- a third into the drain
-topple TR    top [1 2 0]   bottom [D 0 2]
-topple BR    top [1 2 1]   bottom [D 1 0]   settled
+top     TL  TM  TR            corners TL, TR, BL, BR have 2 neighbours;  TM, BM have 3
+bottom  BL  BM  BR
 ```
 
-One grain triggers 11 topplings. Sand moves right, left, up and down, and 3 grains leave through the drain: `7 + 1 = 8` grains before the avalanche, `5` after. Only `TL` and `BM` ever feed the drain, because they are its neighbours. Toppling the unstable cells in a different order ends in the same settled pile, which is the abelian property.[^3] Keep dropping grains and the pile eventually cycles through exactly 15 recurrent configurations, one for each spanning tree of the `3 × 2` grid. That is the group `Z/15` of the silver rectangle in the gallery below.
+**Sink model, sink `BL`.** Start from the fullest stable pile, each bowl one grain short of tipping, and drop one grain on `TR`:
+
+```
+start        top [1 2 1]   bottom [S 2 1]
+drop on TR   top [1 2 2]   bottom [S 2 1]
+topple TR    top [1 3 0]   bottom [S 2 2]
+topple TM    top [2 0 1]   bottom [S 3 2]
+topple TL    top [0 1 1]   bottom [S 3 2]   <- one grain into the sink
+topple BM    top [0 2 1]   bottom [S 0 3]   <- another into the sink
+topple BR    top [0 2 2]   bottom [S 1 1]
+topple TR    top [0 3 0]   bottom [S 1 2]
+topple TM    top [1 0 1]   bottom [S 2 2]
+topple BR    top [1 0 2]   bottom [S 3 0]
+topple BM    top [1 1 2]   bottom [S 0 1]   <- a third into the sink
+topple TR    top [1 2 0]   bottom [S 0 2]
+topple BR    top [1 2 1]   bottom [S 1 0]   settled
+```
+
+One grain triggers 11 topplings. Sand moves right, left, up and down, and 3 grains leave through the sink: `7 + 1 = 8` grains before the avalanche, `5` after. Only `TL` and `BM` ever feed the sink, because they are its neighbours. Toppling the unstable cells in a different order ends in the same settled pile, which is the abelian property.[^3] Keep dropping grains and the pile eventually cycles through exactly 15 recurrent configurations, one for each spanning tree of the `3 × 2` grid. That is the group `K_sink = Z/15` of the silver rectangle in the gallery below.
+
+**Tide model.** The bottom row is now the ground, so only the top row holds sand, with capacities 2, 3, 2. The same drop on `TR` of the fullest pile:
+
+```
+start        top [1 2 1]   bottom [~ ~ ~]
+drop on TR   top [1 2 2]
+topple TR    top [1 3 0]   <- one grain into the ground
+topple TM    top [2 0 1]   <- another
+topple TL    top [0 1 1]   <- a third          settled
+```
+
+Three topplings, and every one of them loses a grain, because every top cell stands on the ground. The pile cycles through 8 recurrent configurations: `K_tide = Z/8`.[^3]
 
 ## Part 2 - the matrices behind the game
 
 **Toppling is subtracting a column of the Laplacian.** When cell `v` topples it loses `deg(v)` grains and each neighbour gains one. That is subtracting column `v` of the Laplacian `L = D − A` ([[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], Stop 0) from the configuration. So two configurations that differ by topplings are the same element of
 
 ```
-K(G)  =  Z^{n−1} / L̃ Z^{n−1}          (L̃ = L with the drain's row and column deleted)
+K  =  Z^m / L̃ Z^m          (L̃ = L with the sink's rows and columns deleted)
 ```
 
-This is a finite abelian group of order `det L̃`, the number of spanning trees by Kirchhoff's matrix-tree theorem. Its structure, a product of cyclic groups `Z/d_1 × Z/d_2 × …`, is read off the **Smith normal form** of `L̃`, the same tool [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] uses for unit groups.[^1]
+In the sink model `L̃` deletes one row and column. In the tide model it deletes the whole bottom row, and each remaining cell keeps its full degree on the diagonal, which is the reduced Laplacian of the castle graph with the bottom row merged into one vertex. Either way this is a finite abelian group of order `det L̃`, the number of spanning trees of the graph behind the model by Kirchhoff's matrix-tree theorem. Its structure, a product of cyclic groups `Z/d_1 × Z/d_2 × …`, is read off the **Smith normal form** of `L̃`, the same tool [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] uses for unit groups.[^1]
 
 **The Laplacian factors through the boundary matrix.** Give every edge a direction. The **boundary matrix** `∂` has one row per cell and one column per edge, with `+1` at the edge's tail and `−1` at its head. It records which cells each edge joins. Then
 
@@ -94,7 +126,7 @@ because `(∂∂ᵀ)[u, u]` counts the edges at `u`, and `(∂∂ᵀ)[u, v] = �
 
 **For a castle, the cycles are generated by the 2×2 blocks.** A castle graph is a piece of the square grid with no holes, so its only "faces" are the filled `2 × 2` blocks. Going once around a block's four edges is a cycle, and the blocks' cycles form a basis of all cycles. The cycle rank is the number of `2 × 2` blocks ([[castle-graph](pages/castle-graph.md)]). Put these basis cycles as the columns of the **cycle matrix** `C`, one column per block. Then `∂C = 0`.
 
-**The block matrix.** The Gram matrix `CᵀC` compares the block cycles with each other. Each block's cycle has four edges, and two blocks that share an edge traverse it in opposite directions:
+**The block matrix, sink model.** The Gram matrix `CᵀC` compares the block cycles with each other. Each block's cycle has four edges, and two blocks that share an edge traverse it in opposite directions:
 
 ```
 CᵀC[a, a]  =  4          CᵀC[a, b]  =  −1  if blocks a and b share an edge,   0 otherwise
@@ -103,32 +135,51 @@ CᵀC[a, a]  =  4          CᵀC[a, b]  =  −1  if blocks a and b share an edge
 For a planar graph like a castle, this small matrix, **one row per 2×2 block**, carries the whole sandpile group:
 
 ```
-K(castle)  =  Z^r / (CᵀC) Z^r          (r = number of 2×2 blocks)
+K_sink  =  Z^r / (CᵀC) Z^r          (r = number of 2×2 blocks)
 ```
 
-It is the sandpile group of the planar dual graph, whose vertices are the blocks. This was checked against the cell-side formula on all 1,023 castles with up to 10 cells, mirror images counted separately (558 up to mirror image).[^5] So **the 2×2 blocks hold the sand**. A castle with no `2 × 2` block has no cycles, a single spanning tree, and a trivial group: sand washes straight out. A castle's sandpile group depends only on how its blocks are arranged, not on the towers and spikes around them.
+It is the sandpile group of the planar dual graph, whose vertices are the blocks and the outer face. This was checked against the cell-side formula on all 1,023 castles with up to 10 cells, mirror images counted separately (558 up to mirror image).[^5] So **the 2×2 blocks hold the sand**. A castle with no `2 × 2` block has no cycles, a single spanning tree, and a trivial group: sand washes straight out. The sink group depends only on how the blocks touch each other, not on the towers and spikes around them, and not on which cell is the sink.
+
+**The tide changes the cycles.** Merging the bottom row into one vertex collapses the bottom edge of every block that sits on the ground. Such a block's cycle, which went around four edges, now goes around three: two cells in row 1 and the ground. Blocks higher up keep their four edges. So the tide model's block matrix has the same `−1` pattern, with a different diagonal:
+
+```
+tide block matrix[a, a]  =  3  if block a sits on the ground (rows 0 and 1),   4  otherwise
+K_tide  =  Z^r / (tide block matrix) Z^r
+```
+
+**Why 3.** Merging the bottom row contracts its horizontal edges. In a plane graph, contracting an edge is the same as deleting the matching edge of the dual graph. The dual edge of a bottom-row edge joins the block above it, if there is one, to the outer face. So a ground block loses one of its four dual edges, and nothing else in the dual changes. The sandpile group of a plane graph is that of its dual (Cori and Rossin), so the tide group is the dual's group with those edges gone, which is the matrix above. (The argument is assembled here from those two standard facts; the formula also agrees with the cell-side computation on all 33,150 castles with at most 16 cells.)[^6]
+
+**The tide sees how high the blocks sit.** The sink block matrix depends only on the graph of blocks. The tide block matrix also records which blocks touch the ground, so two castles with the same graph can have different tide groups. The silver rectangle `(2, 2, 2)` and the tall pair `(3, 3)` are the same `3 × 2` grid, lying down and standing up. Both have `K_sink = Z/15`. Lying down, both blocks sit on the ground, `[[3, −1], [−1, 3]]`, and `K_tide = Z/8`; standing up, only the lower one does, `[[3, −1], [−1, 4]]`, and `K_tide = Z/11`.
+
+**The tide splits a castle into runs.** Under the tide the bottom row is gone, and what stands on it falls apart into its **runs of raised columns**, the maximal runs of adjacent columns of height at least 2. Two runs separated by a height-1 column never exchange sand, so the tide group is the product of the runs' groups, and two castles with the same runs (in any order, any distance apart, each run either way round) have the same tide model.
+
+**Trivial in both models exactly for tree castles.** A castle with no `2 × 2` block is a tree, and its raised columns are separate spikes each touching the ground once, so both graphs are trees and both groups are trivial. A castle with a block has a cycle in both graphs (a 4-cycle, or a triangle through the ground), hence at least 3 spanning trees and a nontrivial group in both.
 
 ## Part 4 - the castle gallery
 
-| castle | kind of castle | 2×2 blocks | block arrangement | sandpile group |
-|---|---|---|---|---|
-| `(1,1,1,1)`, `(1,2,1)`, `(1,2,1,3,1)` | tree castles: golden path, spike, battlement | 0 | - | trivial |
-| `(2, 2)` | the 4-cycle | 1 | one block | `Z/4` |
-| `(2, 2, 2)` | silver rectangle `3 × 2` | 2 | two side by side | `Z/15` |
-| `(3, 3)`, `(1, 2, 3, 2, 1)` | tall pair, staircase | 2 | two sharing an edge | `Z/15` |
-| `(1,1,1,2,3,2)`, `(1,1,2,2,3,1)` | the 10-cell isospectral pair | 2 | two sharing an edge | `Z/15` |
-| `(2, 2, 2, 2)`, `(2, 2, 2, 2, 2)` | 2-wide ladders | 3, 4 | a row of blocks | `Z/56`, `Z/209` |
-| `(2, 2, 1, 2, 2)` | two separated squares | 2 | two apart | `Z/4 × Z/4` |
-| `(3, 3, 3)` | `3 × 3` square | 4 | a `2 × 2` square of blocks | `Z/8 × Z/24` |
-| `(2, 3, 3, 2)` | a hill | 4 | a T of blocks | `Z/4 × Z/52` |
+| castle | kind of castle | 2×2 blocks | block arrangement | `K_sink` | `K_tide` |
+|---|---|---|---|---|---|
+| `(1,1,1,1)`, `(1,2,1)`, `(1,2,1,3,1)` | tree castles: golden path, spike, battlement | 0 | - | trivial | trivial |
+| `(2, 2)` | the 4-cycle | 1 | one block, on the ground | `Z/4` | `Z/3` |
+| `(2, 2, 2)` | silver rectangle `3 × 2` | 2 | two side by side, on the ground | `Z/15` | `Z/8` |
+| `(3, 3)` | tall pair (same graph as `(2, 2, 2)`) | 2 | two stacked, one on the ground | `Z/15` | `Z/11` |
+| `(1, 2, 3, 2, 1)` | staircase | 2 | two side by side, on the ground | `Z/15` | `Z/8` |
+| `(1,1,1,2,3,2)`, `(1,1,2,2,3,1)` | the 10-cell isospectral pair | 2 | two side by side, on the ground | `Z/15` | `Z/8` |
+| `(2, 2, 2, 2)`, `(2, 2, 2, 2, 2)` | 2-wide ladders lying down | 3, 4 | a row of blocks, on the ground | `Z/56`, `Z/209` | `Z/21`, `Z/55` |
+| `(2, 2, 1, 2, 2)` | two separated squares | 2 | two apart | `Z/4 × Z/4` | `Z/3 × Z/3` |
+| `(3, 3, 3)` | `3 × 3` square | 4 | a `2 × 2` square of blocks | `Z/8 × Z/24` | `Z/95` |
+| `(2, 3, 3, 2)` | a hill | 4 | a T of blocks | `Z/4 × Z/52` | `Z/75` |
 
-**The prototype: the ladder.** A 2-wide ladder `(2, 2, …, 2)` has a single row of blocks, so its block matrix is tridiagonal, with `4` on the diagonal and `−1` beside it. The group is cyclic, of order `4, 15, 56, 209, …` (OEIS A001353, `a(n) = 4a(n−1) − a(n−2)`). Picture any castle as its skeleton of `2 × 2` blocks. Separated groups of blocks contribute independent factors (two isolated squares give `Z/4 × Z/4`), a row of `r` blocks contributes one cyclic group of that ladder order, and denser arrangements can split: the `2 × 2` square of blocks in `(3, 3, 3)` and the T in `(2, 3, 3, 2)` each give two cyclic factors. Not every dense cluster splits: `(2, 3, 3, 3)` has a `2 × 2` square of blocks plus one more, and a cyclic group `Z/712` ([[sandpile-census](pages/sandpile-census.md)]).
+**The prototype: the ladder.** A 2-wide ladder has a single path of blocks, so its block matrix is tridiagonal with `−1` beside the diagonal, and its group is cyclic in both models. In the sink model the diagonal is all 4s whichever way the ladder stands, and the orders are `4, 15, 56, 209, …` (OEIS A001353, `a(n) = 4a(n−1) − a(n−2)`). Under the tide the orientation matters:
 
-**What this means for the isospectral pairs.** The 10-cell adjacency-isospectral pair of [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] has the same sandpile group, `Z/15`, because both castles have two side-by-side blocks. The 11-cell Laplacian-isospectral pair are trees, so both groups are trivial. On these two pairs the sandpile group separates nothing. [[sandpile-census](pages/sandpile-census.md)] checks every castle to 16 cells: it separates no cospectral pair at all, because cospectral castles there always share their graph of 2×2 blocks.
+| 2-wide ladder | `K_sink` orders | `K_tide` orders | tide OEIS |
+|---|---|---|---|
+| lying down, `(2, …, 2)` of width `w` | `4, 15, 56, 209, 780` (A001353(w)) | `3, 8, 21, 55, 144` (every block on the ground: all 3s) | A001906(w) `= F(2w)`, the even Fibonacci numbers |
+| standing up, `(h, h)` | `4, 15, 56, 209, 780` (A001353(h)) | `3, 11, 41, 153, 571` (one ground block, then 4s) | A001835(h) |
 
-## A variant: the bottom row as the tide
+Picture any castle as its skeleton of `2 × 2` blocks. In the sink model, separated groups of blocks contribute independent factors (two isolated squares give `Z/4 × Z/4`), a row of `r` blocks contributes one cyclic group of that ladder order, and denser arrangements can split: the `2 × 2` square of blocks in `(3, 3, 3)` and the T in `(2, 3, 3, 2)` each give two cyclic factors. Not every dense cluster splits: `(2, 3, 3, 3)` has a `2 × 2` square of blocks plus one more, and a cyclic group `Z/712` ([[sandpile-census](pages/sandpile-census.md)]). Under the tide the same two dense castles are cyclic, `Z/95` and `Z/75`: the 3s on the ground break the symmetry that splits the sink group.
 
-A natural variant makes the base row the sink, as if the ground were the tide that washes sand away. That is a different graph: the whole bottom row is merged into a single drain. It gives a different group, for example `Z/3` for `(2, 2)` instead of `Z/4`, and `Z/8` for `(2, 2, 2)` instead of `Z/15`. Everything on this page uses the castle graph itself with one cell as the drain, whose group does not depend on the choice of drain cell.[^6]
+**What this means for the isospectral pairs.** The 10-cell adjacency-isospectral pair of [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] has the same group in both models, `Z/15` and `Z/8`, because both castles have two side-by-side blocks on the ground. The 11-cell Laplacian-isospectral pair are trees, so both groups are trivial in both models. [[sandpile-census](pages/sandpile-census.md)] checks every castle to 16 cells: the sink group separates no cospectral pair, because cospectral castles there always share their graph of blocks, while the tide group separates 11 adjacency-cospectral groups, because it also sees which blocks sit on the ground.
 
 ## Snippet
 
@@ -154,6 +205,14 @@ def laplacian(c):
     D = boundary(c)
     return D * D.T
 
+def sink_cells(c, model):                  # 'sink': the bottom-left cell; 'tide': the whole bottom row
+    return {(0, 0)} if model == 'sink' else {(i, 0) for i in range(len(c))}
+
+def reduced_laplacian(c, model):           # delete the sink's rows and columns; degrees stay full
+    cells, idx, _ = castle_graph(c)
+    keep = [idx[v] for v in cells if v not in sink_cells(c, model)]
+    return laplacian(c).extract(keep, keep)
+
 def blocks(c):                             # 2x2 blocks, by lower-left cell
     return [(i, j) for i in range(len(c) - 1) for j in range(min(c[i], c[i+1]) - 1)]
 
@@ -169,92 +228,103 @@ def cycle_matrix(c):                       # |edges| x |blocks|: each block's fo
             else:             C[eid[(v, u)], b] = -1
     return C
 
+def block_matrix(c, model):                # -1 for blocks sharing an edge; 4 on the diagonal, 3 for ground blocks under the tide
+    B = blocks(c)
+    return sp.Matrix(len(B), len(B), lambda a, b: (3 if model == 'tide' and B[a][1] == 0 else 4) if a == b else
+                     -1 if abs(B[a][0] - B[b][0]) + abs(B[a][1] - B[b][1]) == 1 else 0)
+
 def invariant_factors(M):                  # the group Z^n / M Z^n, as its nontrivial cyclic factors
     if M.rows == 0:
         return []
     S = smith_normal_form(M, domain=ZZ)
     return [abs(S[i, i]) for i in range(M.rows) if abs(S[i, i]) != 1]
 
-def sandpile_group(c):                     # from the cells: reduced Laplacian (drop the drain cell)
-    return invariant_factors(laplacian(c)[1:, 1:])
+def sandpile_group(c, model='sink'):       # from the cells
+    return invariant_factors(reduced_laplacian(c, model))
 
-def sandpile_group_from_blocks(c):         # from the 2x2 blocks: Gram matrix of the cycle basis
-    C = cycle_matrix(c)
-    return invariant_factors(C.T * C)
+def sandpile_group_from_blocks(c, model='sink'):   # from the 2x2 blocks
+    return invariant_factors(block_matrix(c, model))
 
-def stabilize(c, grains, drain=0):         # topple every cell holding >= its degree, until none does
-    cells, _, edges = castle_graph(c)
-    nbrs = [[] for _ in cells]
+def board(c, model):                       # sand-holding cells, their non-sink neighbours, full degrees
+    cells, idx, edges = castle_graph(c)
+    sink = {idx[v] for v in sink_cells(c, model)}
+    nbrs = {v: [] for v in range(len(cells))}
     for u, v in edges:
         nbrs[u].append(v); nbrs[v].append(u)
-    g = list(grains)
-    while any(g[v] >= len(nbrs[v]) for v in range(len(g)) if v != drain):
-        for v in range(len(g)):
-            if v != drain and g[v] >= len(nbrs[v]):
-                g[v] -= len(nbrs[v])
-                for u in nbrs[v]:
-                    g[u] += 1
-        g[drain] = 0
-    g[drain] = 0
-    return tuple(g)
+    live = [v for v in range(len(cells)) if v not in sink]
+    return live, {v: [u for u in nbrs[v] if u not in sink] for v in live}, {v: len(nbrs[v]) for v in live}
 
-def recurrent(c, drain=0):                 # configurations reachable again and again by adding sand
-    cells, _, edges = castle_graph(c)
-    deg = [sum(v in e for e in edges) for v in range(len(cells))]
-    top = tuple(0 if v == drain else deg[v] - 1 for v in range(len(cells)))
+def stabilize(b, g):                       # topple every cell holding >= its degree, until none does
+    live, nb, deg = b
+    g = dict(g)
+    while any(g[v] >= deg[v] for v in live):
+        for v in live:
+            if g[v] >= deg[v]:
+                g[v] -= deg[v]
+                for u in nb[v]:
+                    g[u] += 1
+    return g
+
+def recurrent(c, model='sink'):            # configurations reachable again and again by adding sand
+    b = board(c, model); live, nb, deg = b
+    top = tuple(deg[v] - 1 for v in live)
     seen, todo = {top}, [top]
     while todo:
         x = todo.pop()
-        for v in range(len(cells)):
-            if v != drain:
-                y = stabilize(c, x[:v] + (x[v] + 1,) + x[v+1:], drain)
-                if y not in seen:
-                    seen.add(y); todo.append(y)
+        for k, v in enumerate(live):
+            y = stabilize(b, {u: x[i] + (u == v) for i, u in enumerate(live)})
+            y = tuple(y[u] for u in live)
+            if y not in seen:
+                seen.add(y); todo.append(y)
     return seen
 ```
 
 ```
->>> castle_graph((2, 2))[0]
-[(0, 0), (0, 1), (1, 0), (1, 1)]
->>> sorted(recurrent((2, 2)))
-[(0, 0, 1, 1), (0, 1, 0, 1), (0, 1, 1, 0), (0, 1, 1, 1)]
->>> sandpile_group((2, 2)), laplacian((2, 2))[1:, 1:].det()
-([4], 4)
->>> stabilize((2, 2, 2), (0, 1, 2, 2, 1, 2))      # the avalanche above: cells BL, TL, BM, TM, BR, TR
-(0, 1, 1, 2, 0, 1)
+>>> sorted(recurrent((2, 2))), sorted(recurrent((2, 2), 'tide'))
+([(0, 1, 1), (1, 0, 1), (1, 1, 0), (1, 1, 1)], [(0, 1), (1, 0), (1, 1)])
+>>> sandpile_group((2, 2)), sandpile_group((2, 2), 'tide'), reduced_laplacian((2, 2), 'sink').det()
+([4], [3], 4)
+>>> b = board((2, 2, 2), 'sink'); pile = {v: b[2][v] - 1 for v in b[0]}; pile[5] += 1
+>>> stabilize(b, pile)                                  # the avalanche above: cells BL, TL, BM, TM, BR, TR
+{1: 1, 2: 1, 3: 2, 4: 0, 5: 1}
 >>> c = (3, 3, 3)
 >>> laplacian(c) == boundary(c) * boundary(c).T, (boundary(c) * cycle_matrix(c)).is_zero_matrix
 (True, True)
->>> cycle_matrix(c).T * cycle_matrix(c)
-Matrix([
-[ 4, -1, -1,  0],
-[-1,  4,  0, -1],
-[-1,  0,  4, -1],
-[ 0, -1, -1,  4]])
+>>> cycle_matrix(c).T * cycle_matrix(c) == block_matrix(c, 'sink')
+True
 >>> sandpile_group(c), sandpile_group_from_blocks(c), len(recurrent(c))
 ([8, 24], [8, 24], 192)
->>> [(c, len(blocks(c)), sandpile_group_from_blocks(c)) for c in [(1, 2, 1, 3, 1), (2, 2), (2, 2, 2), (2, 2, 2, 2), (2, 2, 1, 2, 2), (2, 3, 3, 2)]]
-[((1, 2, 1, 3, 1), 0, []), ((2, 2), 1, [4]), ((2, 2, 2), 2, [15]), ((2, 2, 2, 2), 3, [56]), ((2, 2, 1, 2, 2), 2, [4, 4]), ((2, 3, 3, 2), 4, [4, 52])]
->>> [sandpile_group(c) for c in [(3, 3), (1, 2, 3, 2, 1), (1, 1, 1, 2, 3, 2), (1, 1, 2, 2, 3, 1)]]
-[[15], [15], [15], [15]]
+>>> sandpile_group(c, 'tide'), sandpile_group_from_blocks(c, 'tide'), block_matrix(c, 'tide')
+([95], [95], Matrix([
+[ 3, -1, -1,  0],
+[-1,  4,  0, -1],
+[-1,  0,  3, -1],
+[ 0, -1, -1,  4]]))
+>>> [(c, sandpile_group_from_blocks(c), sandpile_group_from_blocks(c, 'tide')) for c in [(1, 2, 1, 3, 1), (2, 2, 2), (3, 3), (2, 2, 1, 2, 2), (2, 3, 3, 2)]]
+[((1, 2, 1, 3, 1), [], []), ((2, 2, 2), [15], [8]), ((3, 3), [15], [11]), ((2, 2, 1, 2, 2), [4, 4], [3, 3]), ((2, 3, 3, 2), [4, 52], [75])]
+>>> [sandpile_group_from_blocks((2,) * w, 'tide')[0] for w in range(2, 7)], [sandpile_group_from_blocks((h, h), 'tide')[0] for h in range(2, 7)]
+([3, 8, 21, 55, 144], [3, 11, 41, 153, 571])
+>>> len(recurrent((2, 2, 2), 'tide'))
+8
 ```
 
-In the recurrent tuples the positions are the cells in the order `castle_graph` lists them: the drain `(0,0)` first, which always holds 0, then top-left `(0,1)`, bottom-right `(1,0)` and top-right `(1,1)`.
+In the recurrent tuples the positions are the non-sink cells in the order `castle_graph` lists them. For the sink model of `(2, 2)` that is top-left `(0,1)`, bottom-right `(1,0)` and top-right `(1,1)`; for the tide model it is top-left `(0,1)` and top-right `(1,1)`.
 
 ## Related Concepts
 
 - [[castle-graph](pages/castle-graph.md)] - the graph, its cycle rank (the number of 2×2 blocks), and tree castles.
-- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[isospectral-castles](pages/isospectral-castles.md)] - the Laplacian and the cospectral pairs the sandpile group is tested against.
+- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[isospectral-castles](pages/isospectral-castles.md)] - the Laplacian and the cospectral pairs the sandpile groups are tested against.
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the other place the wiki reads a finite abelian group off a Smith normal form.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the golden and silver castles of the gallery.
 - [[spectral-analysis](pages/spectral-analysis.md)] - method 4 (the Laplacian) and method 5 (the Ihara zeta), which also sees the spanning-tree count.
-- [[sandpile-census](pages/sandpile-census.md)] - the census: every castle to 16 cells, and why the group separates no cospectral pair.
-- [[sandcastle-clock](pages/sandcastle-clock.md)] - the clock: drop one grain per tick and count ticks until the identity returns.
-- [[sandpile-identity](pages/sandpile-identity.md)] - the identity element drawn in both drain models, and the avalanche profile.
-- [[castle-avalanches](pages/castle-avalanches.md)] - dropping sand at random: exact mean avalanche sizes and heavy tails.
-- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
-- [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the 10-cell isospectral pair worked by hand; both castles have `K = Z/15`.
+- [[sandpile-census](pages/sandpile-census.md)] - the census in both models: every castle to 16 cells, and what each group separates.
+- [[sandcastle-clock](pages/sandcastle-clock.md)] - the clock in both models: drop one grain per tick and count ticks until the identity returns.
+- [[sandpile-identity](pages/sandpile-identity.md)] - the identity element in both models, and the avalanche profiles.
+- [[castle-avalanches](pages/castle-avalanches.md)] - dropping sand at random in both models: exact mean avalanche sizes and tails.
+- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through both models.
+- [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the 10-cell isospectral pair worked by hand; both castles have `K_sink = Z/15`.
 - [[ramanujan-castles](pages/ramanujan-castles.md)] - the 2-wide ladder again: the 14-rung ladder `(14, 14)` is the smallest non-Ramanujan castle.
+- [[viennot-heap-tower](pages/viennot-heap-tower.md)] - the tide ladder orders `3, 8, 21, 55, …` (A001906) are the Cartier-Foata reciprocal `1/(1 − 3x + x²)` of the interval-piece heap there.
 
 ## Appearances in Sources
 
@@ -262,9 +332,9 @@ In the recurrent tuples the positions are the cells in the order `castle_graph` 
 
 ## Footnotes
 
-[^1]: https://en.wikipedia.org/wiki/Abelian_sandpile_model - toppling at the degree, a sink vertex, order-independence of stabilization (the abelian property), recurrent configurations forming the sandpile group under addition followed by stabilization, its presentation as `Z^{n−1}` modulo the reduced Laplacian, and its order equal to the number of spanning trees (Kirchhoff's matrix-tree theorem, with Dhar's burning bijection between recurrent configurations and spanning trees).
-[^2]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `recurrent((2, 2))` is the four configurations listed; `det L̃ = 4`; the identity `stab(2·c_max − stab(2·c_max))` evaluates to one grain on each of the drain's two neighbours and none on the far corner.
-[^3]: Verified by execution (Python 3.10, 2026-09-26): the step-by-step trace topples one unstable cell at a time (first unstable cell in the order BL, TL, BM, TM, BR, TR) from `TL=1, TM=2, TR=1, BM=2, BR=1` plus one grain on `TR`, and settles at `TL=1, TM=2, TR=1, BM=1, BR=0` after 11 topplings with 3 grains absorbed; the Snippet's `stabilize`, which topples every unstable cell in each sweep, reaches the same pile, as pinned.
+[^1]: https://en.wikipedia.org/wiki/Abelian_sandpile_model - toppling at the degree, a sink vertex, order-independence of stabilization (the abelian property), recurrent configurations forming the sandpile group under addition followed by stabilization, its presentation as `Z^{n−1}` modulo the reduced Laplacian, its order equal to the number of spanning trees (Kirchhoff's matrix-tree theorem, with Dhar's burning bijection between recurrent configurations and spanning trees), and its independence of the choice of sink vertex.
+[^2]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `recurrent((2, 2))` is the four configurations listed and `recurrent((2, 2), 'tide')` the three listed; `det L̃ = 4` (sink) and 3 (tide); the identities `stab(2·c_max − stab(2·c_max))` are `(1, 1, 0)` (sink) and `(1, 1)` (tide).
+[^3]: Verified by execution (Python 3.10, 2026-09-26): the sink trace topples one unstable cell at a time (first unstable cell in the order BL, TL, BM, TM, BR, TR) from `TL=1, TM=2, TR=1, BM=2, BR=1` plus one grain on `TR`, and settles at `TL=1, TM=2, TR=1, BM=1, BR=0` after 11 topplings with 3 grains absorbed; the Snippet's `stabilize`, which topples every unstable cell in each sweep, reaches the same pile, as pinned. The tide trace from `TL=1, TM=2, TR=1` plus one grain on `TR` settles at `TL=0, TM=1, TR=1` after 3 topplings with 3 grains absorbed; `recurrent((2, 2, 2), 'tide')` has 8 elements, as pinned.
 [^4]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `laplacian(c) == boundary(c)·boundary(c)ᵀ` and `boundary(c)·cycle_matrix(c) = 0` for `c = (3, 3, 3)`, as pinned; the identity `L = ∂∂ᵀ` is the standard factorization of the graph Laplacian through the oriented incidence matrix.
-[^5]: Verified by execution (Python 3.10, SymPy, 2026-09-26): for every castle with at most 10 cells (1,023 compositions), the invariant factors of the reduced Laplacian equal those of the block matrix with `4` on the diagonal and `−1` for edge-sharing blocks; `CᵀC` equals that block matrix for `(3, 3, 3)` as pinned. The underlying fact, that the sandpile group of a connected plane graph equals that of its dual, is standard (Cori and Rossin, 2000).
-[^6]: Verified by execution (Python 3.10, SymPy, 2026-09-26): merging all bottom-row cells into one drain gives invariant factors `[3]` for `(2, 2)`, `[8]` for `(2, 2, 2)`, `[95]` for `(3, 3, 3)`, and the trivial group for `(1, 2, 1)`.
+[^5]: Verified by execution (Python 3.10, SymPy, 2026-09-26): for every castle with at most 10 cells (1,023 compositions), the invariant factors of the reduced Laplacian equal those of the block matrix with `4` on the diagonal and `−1` for edge-sharing blocks; `CᵀC` equals that block matrix for `(3, 3, 3)` as pinned. On 300 random castles to 16 cells the group is the same for every choice of sink cell. The underlying fact, that the sandpile group of a connected plane graph equals that of its dual, is standard (Cori and Rossin, 2000).
+[^6]: Verified by execution (Python 3.10, 2026-09-26): for all 33,150 mirror-distinct castles with at most 16 cells, the invariant factors of the tide model's reduced Laplacian (bottom row deleted, full degrees kept) equal those of the tide block matrix (3 for blocks with lower-left cell in row 0, 4 otherwise, −1 for edge-sharing blocks); an integer Smith normal form routine used for the sweep agrees with SymPy's on 300 random castles in both models. The ladder orders are pinned in the Snippet and match OEIS A001906 and A001835 (fetched 2026-09-26). The planar-dual argument in the text combines two standard facts, contraction in a plane graph is deletion in its dual and Cori-Rossin duality, and is the page's own assembly of them.

@@ -176,7 +176,7 @@ The Riascos-Mateos construction pays for its generality: `L^α` is dense for eve
 - [[power-law-memory-rules](pages/power-law-memory-rules.md)] — the fractional sibling: Grunwald-Letnikov nabla on the *strip rule* rather than on the graph Laplacian; the same fractional-calculus wall from the strip-rule side.
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] — the from-scratch tutorial that computes by hand the small ordinary-Laplacian spectra `L^α` is defined against here.
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - Stop 4 uses this page's local-return separation of the 11-cell pair.
-- [[sandpile-identity](pages/sandpile-identity.md)] - the avalanche profile, a second non-spectral separator of the same 11-cell tree pair.
+- [[sandpile-identity](pages/sandpile-identity.md)] - the sink avalanche profile, a second non-spectral separator of the same 11-cell tree pair.
 - [[castle-avalanches](pages/castle-avalanches.md)] - Dhar's inverse reduced Laplacian, the grounded effective-resistance matrix, and a second power-law tail on castles.
 
 ## Footnotes

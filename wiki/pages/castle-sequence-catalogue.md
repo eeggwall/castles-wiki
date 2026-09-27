@@ -249,15 +249,19 @@ Tree castles (no `2 × 2` block) of height at most `h`, counted by area ([[tree-
 
 ### Sandpile groups
 
-The sandpile group `K` of every castle to 16 cells, mirror images removed ([[sandpile-census](pages/sandpile-census.md)]). Terms by cell count from `n = 1`.
+The sandpile groups of every castle to 16 cells in both models, `K_sink` (one sink cell) and `K_tide` (the bottom row as the sink), mirror images removed ([[sandpile-census](pages/sandpile-census.md)]). Terms by cell count from `n = 1`.
 
 | object | first terms | GF / formula | status |
 |---|---|---|---|
-| castles with trivial `K` (tree castles) | `1, 2, 3, 5, 8, 13, 22, 37, 63, 108, 186, 322, 559, 973, 1697, 2964` | `(A005251(n+2) + A000931(n+6))/2` | **interlink** → [A005683](https://oeis.org/A005683) Twopins positions (agreement through `n = 26`, 2026-09-26) |
+| castles with trivial group (tree castles, both models) | `1, 2, 3, 5, 8, 13, 22, 37, 63, 108, 186, 322, 559, 973, 1697, 2964` | `(A005251(n+2) + A000931(n+6))/2` | **interlink** → [A005683](https://oeis.org/A005683) Twopins positions (agreement through `n = 26`, 2026-09-26) |
 | palindromic tree castles | `1, 2, 2, 3, 4, 5, 7, 9, 12, 16, 21, 28, 37, 49, 65, 86` | `A000931(n+6)` | **interlink** → [A000931](https://oeis.org/A000931) Padovan (checked through `n = 16`) |
-| castles with cyclic `K` | `1, 2, 3, 6, 10, 20, 36, 72, 134, 264, 503, 997, 1933, 3791, 7338, 14329` | | **novel-candidate** (no match, 2026-09-26) |
-| distinct groups `K` among castles of `n` cells | `1, 1, 1, 2, 2, 3, 3, 4, 6, 8, 10, 13, 18, 25, 34, 48` | | **novel-candidate** (no match, 2026-09-26) |
-| `|K|` of the 2-wide ladder `(2, …, 2)` by width | `1, 4, 15, 56, 209, 780` | `a(n) = 4a(n−1) − a(n−2)`, cyclic | **known** → [A001353](https://oeis.org/A001353) (spanning trees of the `2 × n` grid) |
+| castles with cyclic `K_sink` | `1, 2, 3, 6, 10, 20, 36, 72, 134, 264, 503, 997, 1933, 3791, 7338, 14329` | | **novel-candidate** (no match, 2026-09-26) |
+| distinct groups `K_sink` among castles of `n` cells | `1, 1, 1, 2, 2, 3, 3, 4, 6, 8, 10, 13, 18, 25, 34, 48` | | **novel-candidate** (no match, 2026-09-26) |
+| castles with cyclic `K_tide` | `1, 2, 3, 6, 10, 20, 36, 72, 135, 268, 513, 1015, 1975, 3902, 7631, 15028` | | **novel-candidate** (no match, 2026-09-26) |
+| distinct groups `K_tide` among castles of `n` cells | `1, 1, 1, 2, 2, 4, 4, 7, 9, 14, 18, 27, 38, 56, 78, 113` | | **novel-candidate** (no match, 2026-09-26) |
+| `|K_sink|` of the 2-wide ladder, lying down `(2, …, 2)` by width or standing up `(h, h)` by height | `1, 4, 15, 56, 209, 780` | `a(n) = 4a(n−1) − a(n−2)`, cyclic | **known** → [A001353](https://oeis.org/A001353) (spanning trees of the `2 × n` grid) |
+| `|K_tide|` of the 2-wide ladder lying down `(2, …, 2)` by width | `1, 3, 8, 21, 55, 144` | `a(n) = 3a(n−1) − a(n−2)`, cyclic | **interlink** → [A001906](https://oeis.org/A001906) `F(2n)` (`= A001906(w)`; every block on the ground) |
+| `|K_tide|` of the 2-wide ladder standing up `(h, h)` by height | `1, 3, 11, 41, 153, 571` | `a(n) = 4a(n−1) − a(n−2)`, cyclic | **interlink** → [A001835](https://oeis.org/A001835) (`= A001835(h)`; one block on the ground) |
 
 ### Legacy generation candidates (pre-catalogue, statuses to refresh)
 

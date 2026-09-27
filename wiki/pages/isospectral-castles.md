@@ -118,7 +118,7 @@ The spectral-radius census on [[castle-graph-spectral-radius](pages/castle-graph
 - The seminar number: **10 cells** (adjacency), **11 cells** (Laplacian), **16 cells** (both). Each with a two-line drawing.
 - Isospectral pairs are common from 12 cells on (50 adjacency groups at 16 cells), so "spectrum determines the castle" fails badly. The spectrum is an Axis 9 *invariant*, not a *classifier*.
 - The 11-cell Laplacian pair is the smallest castle instance of Schwenk's theorem; the 10-cell adjacency pair is the smallest castle instance of Sunada's phenomenon and is a candidate for an explicit common cover.
-- Sand hears more than the spectrum. To 16 cells the sandpile group separates none of the 122 cospectral groups, because cospectral castles share their block graph ([[sandpile-census](pages/sandpile-census.md)]); the clock spectrum separates 62 of the 105 adjacency groups and 5 of the 17 Laplacian ones ([[sandcastle-clock](pages/sandcastle-clock.md)]); and the avalanche profile separates all of them ([[sandpile-identity](pages/sandpile-identity.md)]).
+- Sand hears more than the spectrum. To 16 cells the sink-model sandpile group separates none of the 122 cospectral groups, because cospectral castles share their block graph ([[sandpile-census](pages/sandpile-census.md)]); the clock spectrum separates 62 of the 105 adjacency groups and 5 of the 17 Laplacian ones ([[sandcastle-clock](pages/sandcastle-clock.md)]); and the avalanche profile separates all of them ([[sandpile-identity](pages/sandpile-identity.md)]).
 - Open: the growth rate of the number of isospectral groups with `n`; whether the Ihara zeta or the skyline discrete Fourier transform (DFT) separates the pairs found here; a Sunada-type construction (common cover, almost-conjugate subgroups) explaining the 10-cell adjacency pair; and whether Schwenk's asymptotic density theorem has a quantitative castle analogue.
 
 ## Appearances in Sources
@@ -138,10 +138,10 @@ The spectral-radius census on [[castle-graph-spectral-radius](pages/castle-graph
 - [[castle-compression](pages/castle-compression.md)] - a spectrum is a lossy code for a castle; the isospectral pairs found here are its collisions, and their sizes (10 / 11 / 16 cells) are where spectral compression first loses information.
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the from-scratch pedagogy that works out the 10-cell adjacency-isospectral pair by hand as its "two shapes, same spectrum" section.
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the classroom version: what the spectrum hears, and the 10- and 11-cell pairs reproduced by one runnable search.
-- [[sandpile-group](pages/sandpile-group.md)] - the sandpile group of each castle; both small cospectral pairs have equal groups (Z/15 and trivial).
-- [[sandpile-census](pages/sandpile-census.md)] - the sandpile group of every castle in this page's census; it separates none of the cospectral groups, because each shares its block graph.
+- [[sandpile-group](pages/sandpile-group.md)] - the sandpile group of each castle in the sink and tide models; both small cospectral pairs have equal groups in both (Z/15 and Z/8, and trivial).
+- [[sandpile-census](pages/sandpile-census.md)] - the sandpile group of every castle in this page's census; the sink group separates none of the cospectral groups, because each shares its block graph.
 - [[sandcastle-clock](pages/sandcastle-clock.md)] - the clock spectrum separates 62 of this page's 105 adjacency-cospectral groups and 5 of its 17 Laplacian ones.
-- [[sandpile-identity](pages/sandpile-identity.md)] - the avalanche profile separates every cospectral group on this page to 16 cells.
+- [[sandpile-identity](pages/sandpile-identity.md)] - the sink avalanche profile separates every cospectral group on this page to 16 cells.
 
 
 ## Footnotes

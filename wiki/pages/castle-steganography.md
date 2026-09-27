@@ -84,7 +84,7 @@ What is the even-block bit? Here it is a covert channel of capacity exactly one 
 - [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the one bit this channel monetizes is the same bit that separates H(B) from H(N); the parity-clause thread.
 - [[castle-snippets](pages/castle-snippets.md)] - the `blocks` predicate.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - Stop 5 of the one-bit seminar; Stop 3 gives the exact one-cell flip rule behind channel B.
-- [[sandpile-identity](pages/sandpile-identity.md)] - the avalanche profile, a castle-graph fingerprint that no two non-isomorphic castle graphs share up to 13 cells; like block parity, it cannot tell a castle from its mirror image.
+- [[sandpile-identity](pages/sandpile-identity.md)] - the sink avalanche profile, a castle-graph fingerprint that no two non-isomorphic castle graphs share up to 13 cells; like block parity, it cannot tell a castle from its mirror image.
 
 ## Appearances in Sources
 

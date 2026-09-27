@@ -121,6 +121,7 @@ matches at `x^0, x^1` and diverges at `x^2`: the interval-heap has `8` at `x^2` 
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - Bousquet-Melou stack-polyomino generating functions, the polyomino cousin of this construction.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - their linearization writes the staircase GF as `y(H(qx)/H(x) - 1)`, a structure that "can also be explained via a bijection with heaps". The castle bar-graph equation (3.11) is in the same linearizable class, so a heap reading of the castle's area-graded GF is the matching open question.[^7]
 - [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] - parallelogram polyominoes as heaps of segments, the heap explanation of their `J_1/J_0` quotient form.
+- [[sandpile-group](pages/sandpile-group.md)] - the same series `1/(1 − 3x + x²)` (A001906) counts the tide-model sandpile group of the 2-wide ladder lying down, whose block matrix is tridiagonal with 3 on the diagonal.
 
 ## Footnotes
 

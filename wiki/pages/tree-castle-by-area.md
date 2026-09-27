@@ -296,7 +296,7 @@ Both filed on [[castle-snippets](pages/castle-snippets.md)].
 - [[castle-snippets](pages/castle-snippets.md)] - `tree_area_gf`, `tree_area_by_area`.
 - [[aocp-combinatorics](pages/aocp-combinatorics.md)] - the bivariate `T_h(x, q)` is an area-graded (q-)count; Knuth's inversion GF `∏(1−z^k)/(1−z)^n` is the permutation-side prototype of that grading.
 - [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] - A001169's `5a(n-1) − 7a(n-2) + 4a(n-3)` is a recurrence signature to compare with these low-order tree-castle rows; the open thread of whether castle recurrences relate to horizontally-convex polyominoes lands here.
-- [[sandpile-group](pages/sandpile-group.md)] / [[sandpile-census](pages/sandpile-census.md)] - tree castles are exactly the castles with a trivial sandpile group. The census counts them with mirror images removed (2,964 at 16 cells); this page counts every castle (5,842 at 16 cells).
+- [[sandpile-group](pages/sandpile-group.md)] / [[sandpile-census](pages/sandpile-census.md)] - tree castles are exactly the castles with a trivial sandpile group, in both the sink and the tide model. The census counts them with mirror images removed (2,964 at 16 cells); this page counts every castle (5,842 at 16 cells).
 
 ## Footnotes
 

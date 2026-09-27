@@ -37,7 +37,7 @@ The irregularity forces the Ramanujan definition to use Greenberg's universal-co
 
 Tree castles of height 2 are a **golden width growth castle** in the class-level terminology of [[castle-classification-growth](pages/castle-classification-growth.md)] - a rung on the metallic ladder without leaving spectral territory. Counted by *area* ([[tree-castle-by-area](pages/tree-castle-by-area.md)]) tree castles instead realize the non-metallic **cubic-Pisot** growth constants - supergolden at `h = 2` (Narayana's cows A000930), plastic-squared `ψ²` at `h → ∞` (A005251). The unrestricted (non-tree) counterpart, all castles of height `≤ h` by area, is the **n-nacci** family - the tree constraint is exactly what turns the n-nacci constants into the term-skipping cubic-Pisot ones.
 
-Tree castles are also exactly the castles with a trivial sandpile group ([[sandpile-census](pages/sandpile-census.md)]).
+Tree castles are also exactly the castles with a trivial sandpile group, in both the sink and the tide model ([[sandpile-census](pages/sandpile-census.md)]).
 
 Full details on [[castle-graph](pages/castle-graph.md)] and [[tree-castle-by-area](pages/tree-castle-by-area.md)].
 
@@ -67,7 +67,7 @@ The metallic means reach individual castles only through their polyomino graphs.
 - Smallest **Laplacian-isospectral** pair: 11 cells, two trees, `(1, 1, 1, 2, 1, 1, 2, 1, 1)` and `(1, 1, 3, 1, 1, 1, 2, 1)`.
 - Smallest pair **isospectral for both operators**: 16 cells.
 
-The search is exhaustive to 16 cells, with 50 adjacency groups already at 16. Isospectral pairs are common from 12 cells on, so the spectrum is an *invariant* rather than a *classifier* at that scale. Non-spectral invariants go further: the sandpile clock spectrum separates 62 of the 105 adjacency groups ([[sandcastle-clock](pages/sandcastle-clock.md)]), and the avalanche profile separates all 122 cospectral groups and behaves like a complete fingerprint up to 13 cells ([[sandpile-identity](pages/sandpile-identity.md)]).
+The search is exhaustive to 16 cells, with 50 adjacency groups already at 16. Isospectral pairs are common from 12 cells on, so the spectrum is an *invariant* rather than a *classifier* at that scale. Non-spectral invariants go further: the sink-model clock spectrum separates 62 of the 105 adjacency groups ([[sandcastle-clock](pages/sandcastle-clock.md)]), and the sink avalanche profile separates all 122 cospectral groups and behaves like a complete fingerprint up to 13 cells ([[sandpile-identity](pages/sandpile-identity.md)]).
 
 ## Ramanujan castle
 

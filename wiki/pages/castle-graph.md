@@ -74,7 +74,7 @@ A **tree castle** is a castle whose graph is a tree: connected, `|V| = |E| + 1`,
 
 Non-examples: `(2, 2)`, `(3, 3)`, `(1, 2, 3, 1, 2, 3)` all contain `2×2` blocks and are therefore not trees.
 
-A tree castle has exactly one spanning tree, so its sandpile group is trivial: sand washes straight out, and the identity is the fullest stable pile. Up to 16 cells there are 6,963 tree castles, mirror images removed ([[sandpile-census](pages/sandpile-census.md)], [[sandpile-identity](pages/sandpile-identity.md)]).
+A tree castle has exactly one spanning tree, so its sandpile group is trivial in both the sink and the tide model: sand washes straight out, and the identity is the fullest stable pile. Up to 16 cells there are 6,963 tree castles, mirror images removed ([[sandpile-census](pages/sandpile-census.md)], [[sandpile-identity](pages/sandpile-identity.md)]).
 
 ### Counting tree castles: Fibonacci, Jacobsthal, and the k-Fibonacci family
 
