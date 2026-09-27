@@ -5,7 +5,7 @@ summary: The tower word is a peakless-valleyless Motzkin path — OEIS A004149 �
 tags: [concept, castle, tower-word, continued-fraction, flajolet, motzkin, algebraic, oeis, generating-functions]
 sources: [project-euler-502-representations]
 created: 2026-09-14
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # Continued fractions of the tower word
@@ -61,6 +61,7 @@ The open end is the tower word's *own* continued fraction. A004149 is a generali
 - [[castle-by-area](pages/castle-by-area.md)] — the area grading whose q-analog is the q-continued-fraction thread.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — q-Motzkin and the q-Bessel ratio, the q-side of this correspondence.
 - [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] - peakless-valleyless Motzkin paths are its "cornerless" paths, in bijection with bargraphs (castles); its §3.14 area continued fraction is a second area-graded expansion.
+- [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] - the kernel-method GF of Motzkin paths by length with peaks and valleys weighted; at both weights 0 its returning series is A004149, the tower word by length, and its prefixes (any final height) are A308435.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] — an area-graded continued fraction for castles. Their bar-graph equation (3.11) is the castle GF by width, blocks and area, and iterating it gives a continued fraction in the q-shifted width variable (eq. 3.12).[^8]
 - [[generating-function-gallery](pages/generating-function-gallery.md)] / [[closed-form-hunting](pages/closed-form-hunting.md)] — the rational GFs and characteristic polynomials whose (palindromic) roots are the periodic-continued-fraction side of the same story.
 - [[pell-numbers](pages/pell-numbers.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] — the integer-sequence and castle-strip realizations of the growth constant `1 + √2`.

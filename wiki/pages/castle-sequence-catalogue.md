@@ -5,7 +5,7 @@ summary: Hand-curated catalogue of every castle-counting sequence, by the castle
 tags: [analysis, oeis, castle, sequence, catalogue, novelty, submission-candidate, interlink]
 sources: [oeis-mining-pe502]
 created: 2026-09-17
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # Castle sequence catalogue
@@ -144,6 +144,7 @@ The Motzkin family in castle counts ([[motzkin-castles](pages/motzkin-castles.md
 | drops of at most 1, last column at height 1, by width | `1, 2, 5, 14, 42, 132, 429` | `4` | **interlink** → [A000108](https://oeis.org/A000108) (`=C_w`) |
 | Motzkin-path castles by semi-perimeter (`s = 2…`) | `1, 1, 1, 2, 4, 7, 13, 26, 52, 104, 212, 438` | - | **interlink** → [A023431](https://oeis.org/A023431) (`=a(s−2)`, Motzkin paths with no `UD`, no `UU`) |
 | drops of at most 1, last column at height 1, by semi-perimeter | `1, 1, 2, 4, 8, 17, 37, 82, 185, 423, 978` | - | **interlink** → [A004148](https://oeis.org/A004148) (`=a(s−1)`, peakless Motzkin paths; the no-double-rise mirror is Deutsch-Elizalde's RNA-secondary-structure bijection, [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]) |
+| drops of at most 1, any ends, by semi-perimeter | `1, 2, 5, 12, 29, 71, 175, 434, 1082, 2709, 6807, 17157` | - | **novel-candidate** (no OEIS match, searched 2026-09-27); = valleyless Motzkin meanders of length `s−2` by an explicit bijection, the sequence [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] reports as not in OEIS; refined by last-column height and spires ([[motzkin-castles](pages/motzkin-castles.md)] §7) |
 | 1-smooth, first column at height 1, by semi-perimeter | `1, 1, 2, 4, 8, 16, 33, 69, 145, 307, 655, 1405, 3027` | - | **novel-candidate** (no OEIS match, searched 2026-09-26) |
 | 1-smooth, free ends, by semi-perimeter | `1, 2, 5, 11, 24, 52, 113, 246, 537, 1176, 2583, 5688` | - | **novel-candidate** (no OEIS match, searched 2026-09-26) |
 

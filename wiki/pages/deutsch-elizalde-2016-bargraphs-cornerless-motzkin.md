@@ -5,7 +5,7 @@ summary: Deutsch and Elizalde map bargraphs bijectively to cornerless Motzkin pa
 tags: [paper, source, bargraph, motzkin, cornerless, lattice-paths, generating-functions, bijection, statistics, rna-secondary-structure, palindromic, continued-fraction, oeis]
 sources: [deutsch-elizalde-2016-bargraphs-cornerless-motzkin]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # Statistics on bargraphs viewed as cornerless Motzkin paths (Deutsch-Elizalde, 2016)
@@ -46,7 +46,7 @@ The rest of the paper is a toolkit. Whenever a statistic behaves well under `Δ`
 
 ## Relation to Other Wiki Pages
 
-This paper confirms the wiki's tower-word machinery rather than contradicting anything. The semiperimeter convention, the A082582 series, and the quadratic GF all agree with [[castle-perimeter](pages/castle-perimeter.md)]. That page derives the same `B(t)` from the tower-Narayana identity; this paper derives it from the cornerless decomposition. Its variables `(x, y)` are the wiki's `(width, blocks)`, so the whole statistic table can be read as castle statistics and split by PE 502 parity with `y → −y`. Most of those splits are not done yet (see `IDEAS.md`). The companion paper that extends the method with the kernel method, counting `UD`/`DU` occurrences and skew paths, is Prodinger 2025 (arXiv:2501.13645, not yet ingested).
+This paper confirms the wiki's tower-word machinery rather than contradicting anything. The semiperimeter convention, the A082582 series, and the quadratic GF all agree with [[castle-perimeter](pages/castle-perimeter.md)]. That page derives the same `B(t)` from the tower-Narayana identity; this paper derives it from the cornerless decomposition. Its variables `(x, y)` are the wiki's `(width, blocks)`, so the whole statistic table can be read as castle statistics and split by PE 502 parity with `y → −y`. Most of those splits are not done yet (see `IDEAS.md`). The follow-up is [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)]: the same bijection read from the prefix side, with `UD` and `DU` weighted instead of forbidden, solved by the kernel method, and extended to skew Motzkin paths.
 
 ## Footnotes
 

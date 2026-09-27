@@ -1,0 +1,488 @@
+                                                 CORNERLESS, PEAKLESS, VALLEYLESS MOTZKIN PATHS
+                                              (REGULAR AND SKEW) AND APPLICATIONS TO BAR GRAPHS
+
+
+
+
+arXiv:2501.13645v1 [math.CO] 23 Jan 2025
+                                                                                         HELMUT PRODINGER
+
+                                                   Abstract. Motzkin paths consist of up-steps, down-steps, horizontal steps, never go
+                                                   below the x-axis and return to the x-axis. Versions where the return to the x-axis isn’t
+                                                   required are also considered. A path is peakless (valleyless) if U D (if DU ) never occurs. If
+                                                   it is both peakless and valleyless, it is called cornerless. Deutsch and Elizalde have linked
+                                                   cornerless Motzkin paths and bargraphs bijectly. Thus, instead of prefixes of bargraphs
+                                                   one might consider prefixes of cornerless Motzkin paths. In this paper, this is extended
+                                                   by counting the occurrences of U D resp. DU .
+                                                       The concepts are extended to so-called skew Motzkin paths. Methods are generating
+                                                   functions and the kernel method to compute explicit forms.
+
+
+
+
+                                                                                           1. Introduction
+                                             Motzkin paths consist of steps U = (1, 1), D = (1, −1), H = (1, 0), start at the origin,
+                                           never go below the x-axis and return to the x-axis. Motzkin meanders (partial Motzkin
+                                           paths, prefixes of Motzkin paths) are similar, but must not necessarily return to the x-axis.
+                                           The letter H stands for ‘horizontal’, sometimes one finds the symbol F (‘flat’). Motzkin
+                                           meanders can be seen as prefixes of Motzkin paths, [2]. The notations ‘excursion’ and
+                                           ‘meander’ were Philippe Flajolet’s favorites, see e. g. [1].
+                                             Any sequence labelled A*** in this paper refers to the encyclopedia of integer sequences
+                                           [10].
+
+                                                                                  • •                                                                     • •
+                                                          • • •               •         • • • •                                   • • •               •         •
+                                                  • • •           •       •                       • •                     • • •           •       •
+                                            • •                       •                                     • • •   • •                       •
+
+                                                  Figure 1. A Motzkin excursion and a Motzkin meander (ending at level 2).
+
+                                              Motzkin paths can be recognized by a graph (automaton); if one ends at level 0, it is a
+                                           Motzkin path. If it ends at level j or if j ≥ 0 can take any value, we speak about prefixes
+                                           of Motzkin paths.
+                                             2020 Mathematics Subject Classification. 05A15.
+                                             Key words and phrases. Motzkin paths, height, forbidden pattern, kernel method, generating functions,
+                                           continued fractions .
+                                                                                                        1
+2                                        H. PRODINGER
+
+
+                0        1       2       3       4       5        6        7       8
+
+
+
+
+                    Figure 2. Graph (automaton) to recognize Motzkin paths
+
+  If an up-step and a down-step are added at the beginning resp. end, we get elevated
+Motzkin paths. The use of them will become clear later when we discuss the connections
+to bargraphs. They can also be recognized by an automaton with a special state.
+
+       start                 0       1       2       3       4        5        6       7
+
+        end
+
+
+               Figure 3. Graph (automaton) to recognize elevated Motzkin paths
+
+   Motzkin paths without horizontal steps, thus only comprising up-steps and down-steps
+are called Dyck paths. This family is much older and more prominent; their enumeration
+leads to Catalan numbers which are the subject of a whole book, see [11].
+   A variation of Dyck paths was introduced in [4]; a third step L = (−1, −1) is introduced,
+but the resulting path is not allowed to intersect itself, which can be described by forbidding
+the contiguous subwords UL and LU. This variation is called skew Dyck paths.
+   The concept can be lifted to the instance of Motzkin paths, leading to skew Motzkin
+paths, again forbidding the contiguous subwords UL and LU. I have seen this concept
+first in [5]. Some progress has been reported in [7].
+   The situation is best described by a graph (state-diagram); see Figure 4.
+
+
+
+
+       Figure 4. Four layers of states according to the type of steps leading to
+       them. Traditional up-steps and down-steps are black, level-steps are blue,
+       and left steps are red.
+                   CORNERLESS, PEAKLESS, VALLEYLESS MOTZKIN PATHS                              3
+
+   A Motzkin path (or a prefix of it) is called peakless if a U-step is never followed by a
+D-step, or it is does not contain the contiguous subword UD. A Motzkin path (or a prefix
+of it) is called valleyless if a U-step is never followed by a D-step, or it is does not contain
+the contiguous subword UD. A Motzkin path (or a prefix of it) is called cornerless if it is
+peakless end valleyless. Both contiguous subwords DU and UD are forbidden.
+   For the reader’s convenience, here is an automaton to recognize peakless Motzkin paths
+(borrowed from [8]).
+
+
+             0        1        2        3       4        5        6        7        8
+
+
+
+
+       Figure 5. Graph (automaton) to recognize peakless Motzkin paths; only
+       the first few states are shown. Starting at the origin and ending at nodes
+       labelled 0 corresponds to Motzkin paths, and ending at a node labelled k to
+       a path that ends at level k.
+
+  And, again for convenience, here is an automaton to recognize cornerless Motzkin paths,
+borrowed from [7].
+
+             0        1        2        3        4        5       6        7        8
+
+
+
+
+       Figure 6. Graph (automaton) to recognize Motzkin paths with forbidden
+       subwords UD and DU.
+
+  A main part of this paper will be the enumeration of Motzkin paths where peaks resp.
+valleys may occur but are counted using extra variables σ and τ . If σ = 0 we are in the
+peakless domain, if τ = 0, we are in the valleyless domain, if both variables are zero, we
+are in the cornerless world, and if σ = τ = 1, we have ordinary Motzkin paths. In a last
+section, the skew Motzkin paths are analyzed with respect to peaks resp. valleys. Recall
+that UL and LU are still not allowed.
+
+  We describe a major application of cornerless Motzkin paths, which deals with bargraphs;
+4                                           H. PRODINGER
+
+                                                        • •
+                                    • • •           •         • • • •
+                            • • •           • • •                       • •
+                      • •                                                     • • •
+                  •                                                                   •
+
+                        Figure 7. Elevated cornerless Motzkin path
+
+   Bargraphs are non-intersecting lattice path in N × N with three allowable steps: up
+U = (0, 1), down step D = (0, −1) and horizontal step H = (1, 0). An up-step may not
+immediately follow a down step nor vice versa; thus, UD and DU as contiguous subwords
+are forbidden. A bargraph starts at the origin with an up step and terminates immediately
+upon return to the x-axis. Thus, the x-axis is only visited at the beginning and the end of
+the bargraph, not inbetween. We consider bargraphs defined by ‘semi-perimeter’ (number
+of U-steps plus number of H-steps). See [2] for more details; Blecher and Knopfmacher
+analyze the progress of walking along a bargraph, but being allowed to stop anywhere.
+This results in prefixes of bargraphs.
+   Instead of following such an approach directly, as Blecher and Knopfmacher did, we
+consider the equivalend concept of cornerless Motzkin paths. The bijection [3] goes from
+cornerless Motzkin paths to elevated paths, by attaching a U-step in the beginning and a
+D-step at the end. Then we imagine the picture rotated by 45 degrees, and translating
+U into (0, 1) leaving H as (1, 0) and translating D into (0, −1). The pictures that are
+provided explain this easily.
+   For convenience, we ignore the additional steps that elevates the path, although this
+could be handled without too much effort. Recall that our own paper [6] covers several
+other instances where both, UD and DU are forbidden. The paper [6] contains references
+to earlier efforts on the subject, notably by Valerie Roitner who included the material in
+her Ph.D. thesis [9].
+   Here, we go one step further: we allow UD but use a variable σ to count often it occured,
+likewise we use τ to count the occurrences of DU. Eventually we are interested in the count
+(n, j, k, ℓ) where n is the number of steps of the prefix of a Motzkin path, j is the height
+of the end point, k is the number of of UD’s and ℓ is the number of DU’s. In generating
+functions, we use the variables z, u, σ, τ . For convenience, we mostly write Φ(u) for what
+is really Φ(u; z, σ, τ ). (Φ is just a generic name of a generating function.)
+   This important bijection is due to [3]. Here (Figure 1) are some small examples:
+
+                 2. The occurrences of UD and DU are counted.
+   We start in Figure 10 with the relevant automaton. This automaton is based on Figure 5,
+but the extra steps are introduced as ultra thick arcs, which will be labelled by σz resp.
+τ z.
+   From the automaton, we deduce sequences of generating functions. Since there are three
+layers of states, we will have fj , gj , hj for j ≥ 0. Each of these functions depends on z, σ, τ
+                     CORNERLESS, PEAKLESS, VALLEYLESS MOTZKIN PATHS                                                 5
+
+
+
+                     • •
+               • • • • • • • •
+           • • • • • •       • •
+         • •                   • • •
+         •                         •
+
+                               Figure 8. After rotation; the bargraph
+
+
+                         •••                        ••                    ••
+                     •         •               ••        •            •        ••           •••••
+                 •                 •       •                 •    •                 •   •                •
+
+
+
+
+                             Figure 9. Small examples of the bijection
+
+             0           1             2             3            4             5           6             7     8
+
+
+
+
+       Figure 10. Graph (automaton) to count Motzkin paths with ‘forbidden’
+       subwords UD and DU.
+
+
+which is not written, for sake of clarity. The recursions are obtained by looking at the last
+step, that leads to the state in question.
+
+                                       fi+1 = zfi + zgi + σzhi , f0 = 0,
+                                           gi = [i = 0] + zfi + zgi + zhi ,
+                                           hi = τ zfi+1 + zgi+1 + zhi+1 .
+
+Then we have generating functions
+                       X                  X                                                     X
+               F (u) =     uj fj , G(u) =   u j gj ,                                H(u) =            uj hj ,
+                               j≥0                               j≥0                            j≥0
+6                                                  H. PRODINGER
+
+and, by summing the above recursions,
+                         F (u) = zuF (u) + zuG(u) + σzuH(u),
+                  G(u) = 1 + zF (u) + zG(u) + H(u),
+                          τz         z              z
+                 H(u) =      F (u) + (G(u) − G(0)) + (H(u) − H(0)).
+                           u        u               u
+To write out the solutions, we use abbreviations:
+               p
+        W =     (1 − 3z + (1 − τ σ)z 2 + (τ σ − σ + 1 − τ )z 3 )(1 + z + (1 − τ σ)z 2 + (τ σ − σ + 1 − τ )z 3 ),
+and can factorize the (common) denominators; we have = z(u − r1 )(u − r2 ) with
+                        1 − z + (1 − τ σ)z 2 + (τ σ − σ + 1 − τ )z 3 + W
+                          r1 =                                           ,
+                                               2z
+                        1 − z + (1 − τ σ)z 2 + (τ σ − σ + 1 − τ )z 3 − W
+                   r2 =                                                  ,
+                                               2z
+and thus the solutions
+       −zu(σz − z − zσG(0) − zσH(0) + z 2 σG(0) + z 2 σH(0) − z 2 G(0) − z 2 H(0) + u)
+    F (u) =                                                                                   ,
+                                        z(u − r1 )(u − r2 )
+       zu2 + z 3 σuG(0) − z 3 uG(0) + z 3 σuH(0) − z 3 uH(0) + τ σz 2 u − z 2 u − u + z 2 G(0) + z 2 H(0) + z
+G(u) =                                                                                                        ,
+                                               z(u − r1 )(u − r2 )
+       −z(−zu + 1 + zuH(0) + zuτ − G(0) − H(0) + zG(0) + zuG(0) + zH(0))
+H(u) =                                                                                .
+                                    z(u − r1 )(u − r2 )
+The factor u − r2 can be divided out (this is the ‘bad’ factor, as in many examples of [7]):1
+       −(r2 + u + z 2 σG(0) + z 2 σH(0) − z 2 G(0) − z 2 H(0) + σz − z − zσG(0) − zσH(0))z
+F (u) =                                                                                    ,
+                                                 z(u − r1 )
+       r2 z + z 3 σG(0) − z 3 G(0) + z 3 σH(0) − z 3 H(0) + τ σz 2 − z 2 − 1 + zu
+G(u) =                                                                            ,
+                                         z(u − r1 )
+       −z 2 (H(0) + τ − 1 + G(0))
+H(u) =                               .
+                  z(u − r1 )
+Now one can set u = 0 and compute G(0) and H(0); F (0) = 0 by inspection. Then
+                      r2 z + z 3 σG(0) − z 3 G(0) + z 3 σH(0) − z 3 H(0) + τ σz 2 − z 2 − 1
+               G(0) =                                                                       ,
+                                                     z(−r1 )
+                      −z 2 (H(0) + τ − 1 + G(0))         z(H(0) + τ − 1 + G(0))
+               H(0) =                                =                            ,
+                                  z(−r1 )                           r1
+and further
+                       τ σz 2 − τ z 3 σ + τ z 3 + σz 3 − z 3 − z 2 + z − 2σz + W − 1
+              G(0) =                                                                 ,
+                                                2z(−σ + σz − z)
+     11/(u − r ) has no power series expansion around u = z = 0, which cannot happen.
+                2
+                       CORNERLESS, PEAKLESS, VALLEYLESS MOTZKIN PATHS                                              7
+
+              −τ σz 2 + 2τ z 3 σ − τ z 3 − τ z 4 σ + τ z 4 + σz 4 − z 4 − σz 3 + zW − 2z + 1 − W
+        H(0) =                                                                                   ,
+                                                −2z 2 (−σ + σz − z)
+              −1 + W − z 3 + τ z 2 σ − τ z 3 σ + τ z 3 + z + z 2 − 2z 2 σ + z 3 σ
+G(0) + H(0) =                                                                     .
+                                     2z 2 (−z − σ + zσ)
+The expression for F (u) + G(u) + H(u) is somewhat long; we first print a few terms of the
+series expansion:
+     F (u) + G(u) + H(u) = 1 + (1 + u)z + (u2 + 2u + τ + 1)z 2 + (2 + τ σu + u3 + uτ + 3u + 2τ + 3u2 )z 3
+                 +(4 + 2τ u2 σ + 2τ σu + 4u3 + u4 + τ u2 + 4uτ + uσ + τ 2 σ + 5u + 4τ + 6u2 )z 4
+              +(8 + 6τ u2 σ + 4τ σu + 2uτ 2 σ + uτ 2 σ 2 + 10u3 + 5u4 + 6τ u2 + 2u2 σ + τ u3 + 10uτ
+                          +2τ σ + 3uσ + u5 + 2τ 2 σ + 3τ σu3 + 10u + 8τ + 11u2 + τ 2 )z 5
+               +(16 + 14τ u2 σ + 2uσ 2 τ + 12τ σu + 8uτ 2 σ + 2uτ 2 σ 2 + 21u3 + σ + 15u4 + 19τ u2
+              +8u2 σ + 8τ u3 + 3u2 τ 2 σ 2 + 2uτ 2 + 22uτ + 6τ σ + τ u4 + 3u3 σ + 7uσ + τ 3 σ 2 + 6u5
+                     + u6 + 6τ 2 σ + 12τ σu3 + 4τ σu4 + 3τ 2 σu2 + 21u + 18τ + 22u2 + 3τ 2 )z 6
+             + (33 + 36τ u2 σ + 6uσ 2 τ + 36τ σu + 23uτ 2 σ + 6uτ 2 σ 2 + 6τ u2 σ 2 + 44u3 + 4σ + 36u4
+          +2τ 3 σ + 48τ u2 + 22u2 σ + uσ 2 + 4u4 σ + 31τ u3 + 9u2 τ 2 σ 2 + 9uτ 2 + 50uτ + 18τ σ + 10τ u4
+       + 3τ 2 u2 + u5 τ + 15u3 σ + 17uσ + 2τ 3 σ 2 + 21u5 + 7u6 + u7 + 3uτ 3 σ 2 + 4τ 2 σu3 + 16τ 2 σ + 3τ 2 σ 2
+        +33τ σu3 + 20τ σu4 + τ 3 σ 3 u + 18τ 2 σu2 + 5τ σu5 + 6τ 2 σ 2 u3 + 44u + 40τ + 47u2 + 9τ 2 )z 7 + · · ·
+
+Some special cases: Return to the x-axis (u = 0):
+    1 + z + (1 + τ )z 2 + 2(1 + τ )z 3 + (4 + τ 2 σ + 4τ )z 4 + (8 + 2τ σ + 2τ 2 σ + 8τ + τ 2 )z 5
+                           +(16 + σ + 6τ σ + τ 3 σ 2 + 6τ 2 σ + 18τ + 3τ 2 )z 6
+         +(33 + 4σ + 2τ 3 σ + 18τ σ + 2τ 3 σ 2 + 16τ 2 σ + 3τ 2 σ 2 + 40τ + 9τ 2 )z 7 + · · ·
+
+σ = 0, τ = 1 (peakless paths, final level as coefficient of uj ):
+  1 + (1 + u)z + (2u + u2 + 2)z 2 + (4 + 4u + 3u2 + u3 )z 3 + (8 + 9u + 7u2 + 4u3 + u4 )z 4
++ (17 + 20u + 17u2 + 11u3 + 5u4 + u5 )z 5 + (37 + 29u3 + 45u + 16u4 + 6u5 + 41u2 + u6 )z 6 ,
+σ = 1, τ = 0 (valleyless)
+  1 + (1 + u)z + (2u + u2 + 2)z 2 + (4 + 4u + 3u2 + u3 )z 3 + (8 + 9u + 7u2 + 4u3 + u4 )z 4
++(17 + 20u + 17u2 + 11u3 + 5u4 + u5 )z 5 + (37 + 29u3 + 45u + 16u4 + 6u5 + 41u2 + u6 )z 6 ,
+σ = 0, τ = 0 (borderless)
+     1 + (1 + u)z + (1 + u)2 z 2 + (2 + u)(u2 + u + 1)z 3 + (4 + 5u + 6u2 + 4u3 + u4 )z 4
+  +(2 + u)(u4 + 3u3 + 4u2 + 3u + 4)z 5 + (16 + 21u + 22u2 + 21u3 + 15u4 + 6u5 + u6 )z 6
+                    +(33 + 44u3 + 36u4 + 21u5 + 7u6 + u7 + 44u + 47u2)z 7 .
+8                                                          H. PRODINGER
+
+Return to the x-axis, peakless (u = 0, σ = 0, τ = 1) leads to sequence A004148 in [10]
+              p
+z 2 + z − 1 + (1 + z 2 + z)(z 2 − 3z + 1)
+                                          = 1+z +2z 2 +4z 3 +8z 4 +17z 5 +37z 6 +82z 7 +· · · .
+                  −2z 3
+Return to the x-axis, valleyless (u = 0, σ = 1, τ = 0) leads to sequence A004148
+              p
+z − 1 − z 2 + (1 + z 2 + z)(z 2 − 3z + 1)
+                                          = 1 + z + z 2 + 2z 3 + 4z 4 + 8z 5 + 17z 6 + 37z 7 + · · · .
+                  −2z 2
+Return to the x-axis, borderless (u = 0, σ = 0, τ = 0) leads to sequence A004149
+     p
+z + (1 − z 4 )(−z 2 − 2z + 1) − 1 + z 2 − z 3
+                                              = 1+z+z 2 +2z 3 +4z 4 +8z 5 +16z 6 +33z 7 +· · · .
+                   −2z 3
+Ordinary Motzkin paths (u = 0, σ = 1, τ = 1) occur in sequence A001006
+          √
+  1 − z − 1 − 2z − 3z 2
+                         = 1 + z + 2z 2 + 4z 3 + 9z 4 + 21z 5 + 51z 6 + 127z 7 + 323z 8 + · · · .
+            2z 2
+For u = 1, σ = 0, τ = 1 (peakless, arbitrary end) we obtain a sequence that is not in [10]
+    1 + 2z + 5z 2 + 12z 3 + 29z 4 + 71z 5 + 175z 6 + 434z 7 + 1082z 8 + 2709z 9 + 6807z 10 + · · · .
+For u = 1, σ = 1, τ = 0 (valleyless, open end) we obtain sequence A091964
+      1 + 2z + 4z 2 + 9z 3 + 21z 4 + 50z 5 + 121z 6 + 296z 7 + 730z 8 + 1812z 9 + 4521z 10 + · · ·
+Further, u = 1, σ = 0, τ = 0 (cornerless, open end): sequence A308435
+     1 + 2z + 4z 2 + 9z 3 + 20z 4 + 45z 5 + 102z 6 + 233z 7 + 535z 8 + 1234z 9 + 2857z 10 + · · · .
+Finally we get open Motzkin paths (u = 1, σ = 1, τ = 1), which is sequence A005773
+ 1 + 2z + 5z 2 + 13z 3 + 35z 4 + 96z 5 + 267z 6 + 750z 7 + 2123z 8 + 6046z 9 + 17303z 10 + · · · .
+Here are open Motzkin paths (u = 1) with σ and τ still unspecified:
+F (1) + G(1) + H(1) = 1 + 2z + (4 + τ )z 2 + (τ σ + 9 + 3τ )z 3 + (σ + 9τ + 20 + 4τ σ + τ 2 σ)z 4
+                                + (25τ + 5σ + 4τ 2 σ + 15τ σ + 45 + τ 2 + τ 2 σ 2 )z 5
+                + (68τ + 19σ + 17τ 2 σ + 5τ 2 + 48τ σ + 102 + 5τ 2 σ 2 + 2τ σ 2 + τ 3 σ 2 )z 6
++ (233 + 148τ σ + 180τ + 21τ 2 + σ 2 + 24τ 2 σ 2 + 61τ 2 σ + 12τ σ 2 + 62σ + τ 3 σ 3 + 5τ 3 σ 2 + 2τ 3 σ)z 7 + · · ·
+Knowing F (0), G(0), H(0) we can write the full set of solutions (the expressions are some-
+what lengthy, and we abbreviate R = r2 ):
+            z(R2 z − z 3 R − τ z 3 σR + τ z 3 R + z 3 σR + Rτ z 2 σ − Rz 2 + uRz + Rz − R − τ z 3 uσ + τ z 3 u + τ z 2 uσ + zu + z − u)
+F (u) = −
+                      (Rz − τ z 3 σ + τ z 3 + τ z 2 σ − z 2 − 1 + z − z 3 + z 3 σ + zu)(−1 + τ z 3 + τ z 2 σ − τ z 3 σ + z + Rz)
+                              1+uRz 2 −uτ z 4 σ−2τ z 2 σ+2τ z 3 σ−τ z 3 +2τ z 3 σR−τ z 4 σR+uτ z 4 −z 3 R+Rz 2 −z 4 R+R2 z 2
+                      −z+τ z 3 uσ+z 2 u+τ z 4 R+z 4 σR−z 5 στ −zu+z 2 −τ 2 z 5 σ 2 −τ z 4 σ+τ 2 z 5 σ+τ 2 z 4 σ 2 +τ z 5 σ 2 −2Rz−z 3 σ
+        G(u) =
+                 (Rz − τ z 3 σ + τ z 3 + τ z 2 σ − z 2 − 1 + z − z 3 + z 3 σ + zu)(−1 + τ z 3 + τ z 2 σ − τ z 3 σ + z + Rz)
+                                z 2 (−τ + z 3 τ 2 + τ 2 z 2 σ − τ 2 z 3 σ − τ z 2 + τ z + Rτ z − τ z 3 + τ z 3 σ − z)
+       H(u) = −
+                  (Rz − τ z 3 σ + τ z 3 + τ z 2 σ − z 2 − 1 + z − z 3 + z 3 σ + zu)(−1 + τ z 3 + τ z 2 σ − τ z 3 σ + z + Rz)
+                  CORNERLESS, PEAKLESS, VALLEYLESS MOTZKIN PATHS                          9
+
+The coefficients of uj could be written out, as u appears only in linear form in the denom-
+inator. The coefficients of u0 (return to the origin), viz. G(0) and H(0) have been given
+just above.
+  3. Enumeration of skew Motzkin paths relative to peaks and valleys
+  As already indicated, we move to the family of skew Motzkin paths [5], [7]. There is an
+additional left-step L = (−1, −1), and UL and LU are forbidden, to avoid overlaps. The
+counts of UD and DU are performed with extra variables σ, τ . To model this instance,
+we need a fourth layer, for which we use letters kj and K(u). For left-steps we use curvy
+arcs.
+            0        1       2        3       4        5        6      7        8
+
+
+
+
+       Figure 11. Graph (automaton) to recognize skew Motzkin paths with for-
+       bidden subwords UD and DU.
+  The system of recursions is as follows:
+                          fi+1 = zfi + zgi + σzhi , f0 = 0,
+                            gi = [i = 0] + zfi + zgi + zhi + zki ,
+                            hi = τ zfi+1 + zgi+1 + zhi+1 + zki+1 ,
+                            ki = zgi+1 + zhi+1 + zki+1 ,
+and as a consequence
+        F (u) = zuF (u) + zuG(u) + σzuH(u),
+       G(u) = 1 + zF (u) + zG(u) + zH(u) + zK(u),
+              τz         z                z                z
+       H(u) =    F (u) + (G(u) − G(0)) + (H(u) − H(0)) + (K(u) − K(0)),
+               u         u                u                u
+               z                 z                  z
+       K(u) = (G(u) − G(0)) + (H(u) − H(0)) + (K(u) − K(0)).
+              u                 u                   u
+  The system can be solved:
+                                            F
+                             F (u) =                     ,
+                                     z(u − r1 )(u − r2 )
+10                                                H. PRODINGER
+
+                                                        G
+                                          G(u) =                     ,
+                                                 z(u − r1 )(u − r2 )
+                                                        H
+                                          H(u) =                     ,
+                                                 z(u − r1 )(u − r2 )
+                                                        K
+                                          K(u) =                     ;
+                                                 z(u − r1 )(u − r2 )
+the following abbreviations are used:
+          F = −zu(−2z 2 K(0) + z 2 σK(0) + z 2 σG(0) + z 2 σH(0) − K(0)zσ − G(0)zσ
+                              −H(0)zσ − 2z 2 G(0) − 2z 2 H(0) + zσ − 2z + u)
+            G = −z 3 στ − z 4 στ G(0) − z 4 στ H(0) − z 4 στ K(0) + uz 2 στ + zu2 − 2z 2 u
+                    +K(0)z 3 uσ + G(0)z 3 uσ + H(0)z 3 uσ − 2z 3 uK(0) − 2z 3 uG(0)
+                        −2z 3 uH(0) + 2z 2 G(0) + 2z 2 H(0) + 2z 2 K(0) + 2z − u
+          H = (τ z 2 + z 3 τ G(0) + z 3 τ H(0) + z 3 τ K(0) − τ zu + H(0) + G(0) − zK(0)
+                +zu − zG(0) − zH(0) − uzG(0) − uzH(0) − uzK(0) − 1 + K(0))z
+               K = z(z 2 στ − z 2 στ H(0) − z 2 στ K(0) + z 3 στ G(0) − z 2 στ G(0) + H(0)
+                  +z 3 στ H(0) + z 3 στ K(0) + G(0) − zK(0) + zu − zG(0) − zH(0)
+                            −uzG(0) − uzH(0) − τ z 2 − z 3 τ G(0) − z 3 τ H(0)
+                                     −uzK(0) − 1 + K(0) − z 3 τ K(0)).
+Again, the factors u − r2 can be cancelled out from numerators resp. denominators; the
+square root and the solutions of the quadratic equation (= the denominator (u−r1 )(u−r2))
+are
+     W = 1 − 2z 2 στ + 4z 3 στ − 2z 4 στ − 3z 2 + 2z 4 τ + z 6 τ 2 − 4z 6 τ − 4z 5 τ + z 6 σ 2 − 4z 6 σ
+                 −4z 5 σ + 4z 6 + 8z 5 + 6z 6 τ σ − 2z 6 τ 2 σ + 2z 5 τ 2 σ − 2z 6 σ 2 τ + 2z 5 σ 2 τ
+                                                                                             1/2
+                   +z 6 σ 2 τ 2 − 2z 5 σ 2 τ 2 + z 4 σ 2 τ 2 − 2z 3 τ + 2z 4 σ − 2z 3 σ − 2z      ,
+
+                      z 3 στ − z 2 στ − z 3 σ − z 3 τ − z + 1 + 2z 2 + 2z 3 + W
+                       r1 =                                                     ,
+                                                    2z
+                      z 3 στ − z 2 στ − z 3 σ − z 3 τ − z + 1 + 2z 2 + 2z 3 − W
+                r2 =                                                            .
+                                                    2z
+Dividing out u − r2 ,
+               −(r2 − 2z 2 K(0) + z(z − 1)σ(G(0) + H(0) + K(0)) − 2z 2 G(0) − 2z 2 H(0) + zσ − 2z + u)z
+     F (u) =                                                                                            ,
+                                                     z(u − r1 )
+                         r2 z + z 3 (σ − 2)(G(0) + H(0) + K(0)) + z 2 στ − 2z 2 − 1 + zu
+               G(u) =                                                                    ,
+                                                    z(u − r1 )
+                        CORNERLESS, PEAKLESS, VALLEYLESS MOTZKIN PATHS                                               11
+
+                                         z 2 (−1 + τ + G(0) + H(0) + K(0))
+                              H(u) =                                       ,
+                                                      z(u − r1 )
+                                 −z 2 (−1 + G(0) + H(0) + K(0))
+                        K(u) =                                  .
+                                            z(u − r1 )
+The total generating function is
+                                                          A
+                           F (u) + G(u) + H(u) + K(u) =     ,
+                                                          B
+with abbreviations
+  A = r2 z 3 στ − r2 z 3 τ − r2 z − z 5 σ 2 τ 2 + 2z 5 τ − z 5 τ 2 − 3z 5 στ + 2z 5 τ 2 σ + z 5 σ 2 τ − z 4 στ
+        +z 4 σ 2 τ 2 − z 4 στ 2 + 2z 4 τ − 2z 3 τ + 2z 3 + 2z 3 στ − z 3 σ − 2z 2 στ + τ z 2 − z + 1,
+                 B = (r2 z + z 3 τ + z 3 σ − 2z 3 − z 3 στ + z 2 στ − 2z 2 + z − 1 + zu)
+                                         ×(r2 z + z 3 τ − z 3 στ + z 2 στ + z − 1).
+The generating function comprising skew Motzkins returning to the x-axis is
+             F (0) + G(0) + H(0) + K(0) = 1 + z + (τ + 1)z 2 + (3 + 2τ )z 3 + (τ 2 σ + 7 + 5τ )z 4
+            + (τ 2 + 3στ + 2τ 2 σ + 17 + 12τ )z 5 + (2σ + 3τ 2 + 9στ + 8τ 2 σ + σ 2 τ 3 + 41 + 33τ )z 6
+                   + (8σ + 12τ 2 + 34στ + 24τ 2 σ + 2σ 2 τ 3 + 2στ 3 + 4σ 2 τ 2 + 103 + 86τ )z 7
+ + (32σ + 40τ 2 + 110στ + 83τ 2 σ + 12σ 2 τ 3 + 6στ 3 + 12σ 2 τ 2 + 5σ 2 τ + τ 3 + σ 3 τ 4 + 259 + 233τ )z 8 + · · · .
+The generating function comprising open skew Motzkins (ending at any level) is
+                    F (1) + G(1) + H(1) + K(1) = 1 + 2z + (4 + τ )z 2 + (3τ + τ σ + 10)z 3
+             + (24 + 4τ σ + 10τ + στ 2 + σ)z 4 + (16τ σ + 5σ + 30τ + 60 + 4στ 2 + τ 2 + σ 2 τ 2 )z 5
+                    + (5σ 2 τ 2 + 53τ σ + 152 + 21σ + 5τ 2 + 90τ + 19στ 2 + 2σ 2 τ + τ 3 σ 2 )z 6
+ + (392 + τ 3 σ 3 + 5τ 3 σ 2 + 2τ 3 σ + 24τ 2 + 12σ 2 τ + 75σ + σ 2 + 72στ 2 + 25σ 2 τ 2 + 178τ σ + 262τ )z 7 + · · · .
+For σ = τ = 1, we obtain sequence A082582 in [10] and more special cases could be listed
+since the functions F (u), G(u), H(u), K(u) are explicitly known.
+
+                                                4. Conclusion
+   Asymptotic questions are not addressed in this paper. For those interested in the subject,
+it is mentioned that everything is driven by square-root singularities; what we abbreviated
+by W , leads to a dominated singularity ρ. For questions like the average endpoint, a
+differentiation w.r.t. u, followed by u = 1, will be crucial.
+
+                                                  References
+ [1] Cyril Banderier and Philippe Flajolet. Basic analytic combinatorics of directed lattice paths. Theoret.
+     Comput. Sci., 281(1-2):37–80, 2002. Selected papers in honour of Maurice Nivat.
+ [2] Aubrey Blecher and Arnold Knopfmacher. Prefixes of bargraph paths. Aequationes Math., 98(4):1133–
+     1149, 2024.
+12                                          H. PRODINGER
+
+ [3] Emeric Deutsch and Sergi Elizalde. Statistics on bargraphs viewed as cornerless Motzkin paths. Dis-
+     crete Appl. Math., 221:54–66, 2017.
+ [4] Emeric Deutsch, Emanuele Munarini, and Simone Rinaldi. Skew Dyck paths. J. Statist. Plann. In-
+     ference, 140(8):2191–2203, 2010.
+ [5] Qing Lin Lu. Skew Motzkin paths. Acta Math. Sin. (Engl. Ser.), 33(5):657–667, 2017.
+ [6] Helmut Prodinger. Motzkin paths of bounded height with two forbidden contiguous subwords of length
+     two, 2023.
+ [7] Helmut Prodinger. A walk in my lattice path garden. Sém. Lothar. Combin., 87B:Art. 1, 49, 2023.
+ [8] Helmut Prodinger. Peakless Motzkin paths of bounded height. BICA, page to appear, 2025.
+ [9] Valerie Roitner. Studies on several parameters in lattice paths. PhD thesis, Dissertation, Technische
+     Universität Wien, 2020.
+[10] Neil J. A. Sloane and The OEIS Foundation Inc. The On-Line Encyclopedia of Integer Sequences,
+     2023.
+[11] Richard P. Stanley. Catalan numbers. Cambridge University Press, New York, 2015.
+
+  Department of Mathematics, University of Stellenbosch 7602, Stellenbosch, South
+Africa and NITheCS (National Institute for Theoretical and Computational Sciences),
+South Africa.
+  Email address: hproding@sun.ac.za
+
