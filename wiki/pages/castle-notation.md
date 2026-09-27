@@ -85,6 +85,22 @@ The sandpile pages run grains on the castle graph (cells as vertices, edge-shari
 | `stab(·)` | stabilization: topple until no cell is unstable | [[sandpile-identity](pages/sandpile-identity.md)] |
 | `ln det L̃` | the entropy of the steady state (uniform on `det L̃` recurrent piles), written in words on the wiki, not as `S` | [[sandpile-group](pages/sandpile-group.md)] |
 
+**Avalanche statistics.** Dynamical quantities are written in words, because the founding papers' letters (`T`, `D`, `F`, `S`, `L`) are core castle symbols here.
+
+| written as | meaning | the founding papers wrote |
+|---|---|---|
+| avalanche **size** | number of topplings caused by one grain | `s` (BTW), `⟨T⟩` for its mean (Dhar) |
+| avalanche **duration** | number of rounds, one round toppling every unstable cell at once | `T` (BTW, "lifetime"), `τ` (Dhar) |
+| size distribution | probability of an avalanche of a given size; `∼ size^{−τ}` | `D(s)` (BTW) |
+| weighted duration distribution | duration distribution weighted by size/duration; `∼ duration^{−α_w}` | `D(T)`, exponent `α` (BTW) |
+| toppling rate, power spectrum | topplings per round over time, and its spectrum `∼ frequency^{−β}` (1/f noise when `β ≈ 1`) | `F(t)`, `S(f)` (BTW) |
+| `τ`, `α_w`, `β`, `γ_g` | size exponent, weighted-duration exponent, spectral exponent, growth exponent (size `∼` duration`^{1+γ_g}`) | `τ`, `α`, `β`, `γ` (BTW) |
+| `d`, `d_f` | lattice dimension, fractal dimension of avalanches | `D`, `d` (BTW); `d` (Dhar) |
+| `ℓ` | side of a square (or `ℓ × ℓ` rectangle) lattice | `N`, `L` (BTW), `L` (Dhar) |
+| grains, threshold `deg` | grains on a cell, toppling when a cell holds at least `deg` | `z`, `z_c` (BTW, read as a slope), `z_i ≤ Δ_ii` (Dhar) |
+
+Sources: [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)], [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)], [[castle-avalanches](pages/castle-avalanches.md)].
+
 ## Other meanings of P, T, and other shared letters on the wiki
 
 These are local notations on specific pages and are unrelated to the tower counts:
@@ -103,6 +119,10 @@ These are local notations on specific pages and are unrelated to the tower count
 | `S` | Dhar's entropy `S = ln det Δ` of the sandpile steady state; the wiki writes `ln det L̃` instead, keeping `S(w, h)` for the parity term | [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
 | `G` | a graph (as in `K(G)`), or Dhar's expected-toppling matrix `G = Δ⁻¹` (written `L̃⁻¹` on the wiki); never a castle count, and elsewhere reserved for generating functions | [[sandpile-group](pages/sandpile-group.md)], [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
 | `A`, `D` | the adjacency and degree matrices in `L = D − A`; `A(w, h)` with arguments is the castle count, `D` is also used for diagonal sign matrices on [[tower-parity-sectors](pages/tower-parity-sectors.md)] | [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] |
+| `τ` | the avalanche size exponent on the sandpile pages; the tribonacci constant on [[castle-perimeter](pages/castle-perimeter.md)] | [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)], [[castle-perimeter](pages/castle-perimeter.md)] |
+| `α`, `α_w` | `α` is the fractional order on the F-Department pages ([[fractional-block-count](pages/fractional-block-count.md)]); BTW's weighted-duration exponent is written `α_w` | [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)] |
+| `β`, `γ` | the spectral and growth exponents of avalanche statistics (`γ` written `γ_g`); elsewhere local roots and constants | [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)] |
+| `ℓ` | side of a square lattice in sandpile statements, keeping `L` for the Laplacian and the tower base length | [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)], [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
 | `K` | the sandpile group `K(G)`; elsewhere a local GF name (`K(q, z)`, the convex castle GF) | [[sandpile-group](pages/sandpile-group.md)], [[prime-convex-castles](pages/prime-convex-castles.md)] |
 
 ## Related Concepts
