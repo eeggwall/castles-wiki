@@ -5,7 +5,7 @@ summary: "On the free gluing monoid of prime castles, blocks - 1 is additive, so
 tags: [analysis, castle, area, prime-castle, monoid, character, parity, block-count, sign, multinomial, peaks, records, fractional, q-series, oeis, novel-candidate]
 sources: [oeis-mining-pe502]
 created: 2026-09-22
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Signed Klarner decomposition
@@ -84,7 +84,7 @@ A statistic `f` is a character, after a shift, when `f(x ∘ y) = f(x) + f(y) - 
 
 So peaks and records are characters, provided "record" means a column leaving the base as on [[castle-foata-transform](pages/castle-foata-transform.md)]. Read as left-to-right maxima of the column heights, records compare against the whole prefix and fail. The fractional block count of [[fractional-block-count](pages/fractional-block-count.md)] fails for the same reason: `Delta^alpha c_i` averages over every earlier column with a power-law weight, so the right factor feels the left one through the seam. The two endpoints, `B_0 = area` and `B_1 = blocks`, are characters, and the interior of the family is not.
 
-**What the characters buy.** Any list of characters weights the primes and passes through `1/(1 - P)`. Marking peaks this way gives a rational GF for castles by area and peaks, and marking peaks and sign together gives a joint recursion. Both are on [[castle-row-raising-equation](pages/castle-row-raising-equation.md)].
+**Weighted generating functions.** Any list of characters weights the primes and passes through `1/(1 - P)`. Marking peaks this way gives a rational GF for castles by area and peaks, and marking peaks and sign together gives a joint recursion. Both are on [[castle-row-raising-equation](pages/castle-row-raising-equation.md)].
 
 ## Computation
 
@@ -105,8 +105,7 @@ for n in range(1, N + 1):
 
 ## Open
 
-- A closed form for the signed GF, and the growth of `odd - even`: moved to [[castle-row-raising-equation](pages/castle-row-raising-equation.md)], where the growth is found to be `C · (-1.62383)^n`.
-- A sign-reversing involution between multiset classes. Every castle in a class has the same sign, so all cancellation in `odd - even` happens between classes. Which classes pair off?
+- A sign-reversing involution between multiset classes. Every castle in a class has the same sign, so all cancellation in `odd - even` happens between classes; which classes pair off is open.
 
 ## Relation to other pages
 

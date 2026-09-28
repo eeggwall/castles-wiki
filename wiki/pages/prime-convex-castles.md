@@ -5,7 +5,7 @@ summary: "A prime convex castle is a convex castle with no height-1 column, a un
 tags: [analysis, castle, area, composition, prime-castle, convex-castle, unimodal, stack-polyomino, fibonacci, asymptotics, parity, q-series, oeis, interlink, novel-candidate]
 sources: [oeis-mining-pe502]
 created: 2026-09-22
-updated: 2026-09-22
+updated: 2026-09-28
 ---
 
 # Prime convex castles
@@ -26,7 +26,7 @@ It has at most one nontrivial prime, `X`, and `X` is convex. This page counts th
 | all prime, `F_{n-1}` | 1 | 1 | 2 | 3 | 5 | 8 | 13 | 21 | 34 | 55 | 89 | 144 | 233 | 377 | 610 | 987 | 1597 | 2584 | 4181 |
 | gap `F_{n-1} - U(n)` | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 2 | 6 | 13 | 28 | 54 | 106 | 194 | 353 | 626 | 1097 | 1890 | 3233 |
 
-`U(n) = 0` at `n = 1`. It continues `1298, 1757, 2374, 3184, 4262, 5661, 7508, 9899, 13016, 17033` for `n = 21..30`.[^1] Every composition into parts `≥ 2` is unimodal through `n = 7`, so `U` is Fibonacci up to there. At `n = 8`, `(3, 2, 3)` is the first one that dips, and from then on the gap takes over. `F_{n-1}` grows like `φ^n` and `U` grows subexponentially, so almost every prime castle is non-convex. `U`, the gap, and `U` without its leading term have no OEIS match. All are novel-candidates.[^2]
+`U(n) = 0` at `n = 1`. It continues `1298, 1757, 2374, 3184, 4262, 5661, 7508, 9899, 13016, 17033` for `n = 21..30`.[^1] Every composition into parts `≥ 2` is unimodal through `n = 7`, so `U` is Fibonacci up to there. At `n = 8`, `(3, 2, 3)` is the first one that dips, and the gap is positive from then on. `F_{n-1}` grows like `φ^n` and `U` grows subexponentially, so almost every prime castle is non-convex. `U`, the gap, and `U` without its leading term have no OEIS match. All are novel-candidates.[^2]
 
 ## Three descriptions of `U`
 
@@ -68,7 +68,7 @@ The middle step of the proof above, `a(n) - a(n-1)` = convex castles whose first
 1, 2, 4, 7, 12, 20, 32, 51, 79, 121, 182, 272, 399, 582, 839, ...    (n = 2, 3, 4, ...)
 ```
 
-This is A342528(n - 1), "Number of compositions with alternating parts weakly decreasing (or weakly increasing)", term by term for all 43 terms OEIS lists. Through area 120 it also agrees with Howroyd's generating function there, `sum_k ([y^k] P)([y^k] (1 + y) P)` with `P = prod 1/(1 - y x^k)`.[^3] Neither A342528 nor A001523 points to the other. So this is an **interlink**: a castle reading of A342528, and a cross-reference between the two entries. No bijection is known here. A convex castle not starting with 1 has one unimodal constraint, and an A342528 composition has two interleaved weakly decreasing chains. Matching the peak split `left | k^m | right` of description 1 against the odd and even subsequences is the natural first attempt.
+This is A342528(n - 1), "Number of compositions with alternating parts weakly decreasing (or weakly increasing)", term by term for all 43 terms OEIS lists. Through area 120 it also agrees with Howroyd's generating function there, `sum_k ([y^k] P)([y^k] (1 + y) P)` with `P = prod 1/(1 - y x^k)`.[^3] Neither A342528 nor A001523 points to the other. So this is an **interlink**: a castle reading of A342528, and a cross-reference between the two entries. No bijection is known here. A convex castle not starting with 1 has one unimodal constraint, and an A342528 composition has two interleaved weakly decreasing chains.
 
 ## Asymptotics
 

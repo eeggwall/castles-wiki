@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 160 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
-| Spot fixes only | 7 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 27 |
-| Words still to read | about 96,000 |
+| Fully read and cleaned | 165 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Spot fixes only | 4 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
+| Not started | 25 |
+| Words still to read | about 84,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -194,7 +194,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-snippets-strips (0.0)
 - [x] acronyms (0.0)
 
-### Analyses (64 pages, 46 fully read)
+### Analyses (64 pages, 50 fully read)
 
 - [x] castle-cryptography (5.1)
 - [x] isospectral-castles (4.9)
@@ -231,7 +231,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-steganography (1.5)
 - [ ] motzkin-castles (1.5)
 - [x] mod-9-equidistribution (1.4)
-- [~] signed-klarner-decomposition (1.4)
+- [x] signed-klarner-decomposition (1.4)
 - [x] fractional-block-count (1.4)
 - [x] reachable-field-census (1.4)
 - [x] castle-sequence-catalogue (1.3)
@@ -253,15 +253,15 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] convex-polyomino-by-area (0.7)
 - [ ] castle-avalanches (0.6)
 - [x] hardin-word-identity (0.6)
-- [ ] prime-convex-castles (0.5)
+- [x] prime-convex-castles (0.5)
 - [x] sum-of-three-cubes-castles (0.5)
-- [~] castle-row-raising-equation (0.5)
+- [x] castle-row-raising-equation (0.5)
 - [~] castle-cryptography-round-three (0.4)
 - [ ] odd-castles-and-block-tables (0.0)
 - [x] convex-castle-cap-factor (0.0)
-- [~] castle-q-bessel-closed-form (0.0)
+- [x] castle-q-bessel-closed-form (0.0)
 
-### Sources (44 pages, 34 fully read)
+### Sources (44 pages, 35 fully read)
 
 - [x] oeis-mining-pe502 (25.6)
 - [x] oeis-height2-hyperbolic-castles (5.9)
@@ -292,7 +292,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] chau-1993-abelian-sandpile-model (0.9)
 - [x] aocp-multisets (0.9)
 - [x] column-convex-polygon-enumeration (0.9)
-- [ ] prellberg-brak-1995-cluster-models (0.9)
+- [x] prellberg-brak-1995-cluster-models (0.9)
 - [x] aocp-binomial-coefficients (0.9)
 - [x] project-euler-502-castle-factoring (0.9)
 - [x] project-euler-502-observations (0.8)

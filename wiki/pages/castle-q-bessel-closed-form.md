@@ -5,14 +5,14 @@ summary: "Grading the tower-word first-return grammar by area turns it into the 
 tags: [analysis, castle, area, blocks, perimeter, q-analog, q-series, q-bessel, q-catalan, parallelogram-polyomino, grammar, functional-equation, q-shift, parity, sign, asymptotics, narayana, descents, q-binomial, novel-candidate]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes, prellberg-brak-1995-cluster-models, column-convex-polygon-enumeration, project-euler-502-representations]
 created: 2026-09-23
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Castles by width, blocks and area
 
 The [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] counts towers by width and blocks. This page adds area to it. Graded by area, the grammar becomes a q-shift equation. The equation is a Möbius recursion, so it linearizes, and its solution is a ratio of q-Bessel series. The series are the ones Bousquet-Mélou and Fédou use for parallelogram polyominoes, and the castle generating function (GF) comes out as a sequence of parallelograms. That puts castles next to the Pólya q-Catalan family on [[q-catalan-numbers](pages/q-catalan-numbers.md)] and the q-Bessel ratios of [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)].
 
-Everything on this page is own derivation, checked by execution. The ingredients are literature-standard. The `J_0, J_1` series and the parallelogram GF `Π = y J_1/J_0` are from [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)]. The linearization step `A = N/M` is the Möbius map [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] use to linearize quadratic q-shift functional equations for bar-graph, staircase and directed-column-convex polygons; their §4 says "This calculation easily generalises for the other models with quadratic functional equations," but they display only the staircase closed form. Applied via [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] Lemma 2.3 (Bousquet-Mélou 1996), the same route gives all six column-convex families in closed form. So the derivation method is squarely in the 1995-1996 literature; what this page adds is (i) the tower-word-grammar starting point, (ii) the specific packaging that identifies `N` with `J_0(width (1-x)u, height x, area q)`, (iii) the meromorphy-in-|q|<1 statement for `N(q)/M(q)`, and (iv) the second signed singularity `q_1 = -0.82027`. Direct arXiv / MathSciNet retrieval to check whether (ii)-(iv) are in later work (e.g. Blecher-Brennan-Knopfmacher on bargraphs by perimeter and area, mid-2010s) was not run.[^7]
+Everything on this page is own derivation, checked by execution. The ingredients are literature-standard. The `J_0, J_1` series and the parallelogram GF `Π = y J_1/J_0` are from [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)]. The linearization step `A = N/M` is the Möbius map [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] use to linearize quadratic q-shift functional equations for bar-graph, staircase and directed-column-convex polygons; their §4 says "This calculation easily generalises for the other models with quadratic functional equations," but they display only the staircase closed form. Applied via [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] Lemma 2.3 (Bousquet-Mélou 1996), the same route gives all six column-convex families in closed form, so the derivation method is in the 1995-1996 literature. The tower-word-grammar starting point, the identification of `N` with `J_0(width (1-x)u, height x, area q)`, the meromorphy of `N(q)/M(q)` in `|q| < 1` and the second signed singularity `q_1 = -0.82027` were not found in those three papers; later work (for example Blecher, Brennan and Knopfmacher on bargraphs by perimeter and area) was not checked.[^7]
 
 ## The graded grammar
 
@@ -29,7 +29,7 @@ E(u) = A(u) / (1 - u A(u)),        A(u) = 1 - x + x E(uq)
 
 `E(u) = E(u, x, q)` counts towers (column heights `≥ 0`) with the empty tower as `1`. A castle is a tower with a full base block slid under it, so castles are `x (E(uq) - 1) = A(u) - 1`.
 
-**Unsigned area alone carries no information.** At `x = 1`, `1/E(u) = 1/E(uq) - u` telescopes to `E = 1/(1 - u/(1 - q))`, every height vector counted once, which is the `2^(n-1)` compositions of [[castle-by-area](pages/castle-by-area.md)]. The area enters nontrivially only jointly with blocks, which are the perimeter ([[castle-perimeter](pages/castle-perimeter.md)]).
+**Area alone.** At `x = 1`, `1/E(u) = 1/E(uq) - u` telescopes to `E = 1/(1 - u/(1 - q))`, every height vector counted once, which is the `2^(n-1)` compositions of [[castle-by-area](pages/castle-by-area.md)]. The area enters nontrivially only jointly with blocks, which are the perimeter ([[castle-perimeter](pages/castle-perimeter.md)]).
 
 ## Linearizing
 
@@ -67,7 +67,7 @@ castles(u, x, q)  =  Π / (1 - x - Π),        Π = Π(width (1-x)u, height x, a
 
 So `1 + castles` is the sequence construction on parallelograms, each weighted `(1-x)^(w-1) x^h` in place of `x^h`. A width-1 parallelogram is a single column of height `h`. It gets weight `x^h q^h`, which is the height-`h` one-column castle with its `h` blocks. The signed weights say the correspondence is an inclusion-exclusion, not a bijection. A combinatorial reading of `(1-x)^(w-1)` as "each of the `w - 1` internal column joins either merges blocks or is cancelled" is a guess, not worked out. At `q = 1`, `Π` is the Narayana GF of parallelograms by width and height ([[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)]), which is the same Narayana thread as [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)], now carried to all `q`.
 
-This answers the q-Catalan question for castles. The q-analogue that castles meet is the Pólya/Gessel one, parallelograms by area, with width and height kept separate. Its q-Bessel denominator `J_0` is the numerator `N` of the castle GF. The castle denominator `M = J_0 - (Y/(1-Y)) J_1` is a second q-Bessel combination. The Carlitz inversion family does not appear in the formula.[^3]
+The q-analogue that castles meet is the Pólya/Gessel one, parallelograms by area, with width and height kept separate. Its q-Bessel denominator `J_0` is the numerator `N` of the castle GF. The castle denominator `M = J_0 - (Y/(1-Y)) J_1` is a second q-Bessel combination. The Carlitz inversion family does not appear in the formula.[^3]
 
 **Checks.** `N/M - 1` equals brute force over all compositions of `n ≤ 13`, as bivariate series in `u` and `q`, at 15 integer values `x = -7..7`. Block counts are at most the area, so the coefficients are polynomials in `x` of degree `≤ 13`, and 15 values make this an exact identity through area 13. Independently, `Π/(1 - x - Π)` built from brute-force parallelograms (their area counts reproduce A006958) equals brute-force castles through area 12 at 13 values of `x`, again an exact identity to that order.[^4]
 
@@ -91,7 +91,7 @@ C    = -N(q_0) / (q_0 M'(q_0)) = 0.0985091749731156224089366266361
 q_1  = -0.82027198,   then  0.64813 ± 0.51516 i  (|q| = 0.82793),  -0.41543 ± 0.71641 i  (0.82815),  0.00215 ± 0.83183 i  (0.83183)
 ```
 
-`q_0` and `C` agree with the row-raising values to all 30 digits. The second zero is real, so `even(n) - odd(n) = C (1/q_0)^n (1 + O((q_0/q_1)^n))` with `q_0/q_1 = 0.7508`. At `n = 300` that is `0.75^300 ≈ 3 × 10^(-38)`, which matches the `1.7 × 10^(-37)` spread of consecutive ratios seen there. In parallelogram terms, the pole is where `Π(width 2, height -1; q) = 2`: parallelograms weighted `2^w (-1)^h q^area` sum to 2. The digits of `q_1` are a novel-candidate constant, in line with `q_0` (not searched in OEIS).[^5]
+`q_0` and `C` agree with the row-raising values to all 30 digits. The second zero is real, so `even(n) - odd(n) = C (1/q_0)^n (1 + O((q_0/q_1)^n))` with `q_0/q_1 = 0.7508`. At `n = 300` that is `0.75^300 ≈ 3 × 10^(-38)`, consistent with the `1.7 × 10^(-37)` spread of consecutive ratios seen there. In parallelogram terms, the pole is where `Π(width 2, height -1; q) = 2`: parallelograms weighted `2^w (-1)^h q^area` sum to 2. The digits of `q_1` were not searched in OEIS.[^5]
 
 ## By descents: q-binomials at the ends only
 
@@ -140,7 +140,7 @@ print(castles(-1)[1:])                              # even - odd by area
 - A combinatorial proof of `1 + castles = 1/(1 - Π~)`: which cancellations the `(1-x)^(w-1)` weights encode.
 - A proof that `q_0` is the only zero of `M` in `|q| < 0.82` (the argument-principle count is numerical).
 - The joint statistics the grammar also carries: area with peaks, and area with left-to-right records, graded the same way.
-- **Airy universality vs meromorphy.** [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] prove that the bar-graph GF (unsigned, area and perimeter together) has an Airy scaling function `Ai'/Ai` at the tricritical point `q → 1, y → y_c(1)`, with `γ_u = -1/2, γ_t = -1/3, φ = 2/3`. Our meromorphy result at `x = -1, u = 1` is a different critical direction (`q → q_0 = -0.6158`, signed count). Whether the two limits commute - does the double series `sum_{w, n} (even(w, n) - odd(w, n)) u^w q^n` inherit the Airy scaling, or does the signed weighting kill it - is not written down.
+- **Airy universality vs meromorphy.** [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] prove that the bar-graph GF (unsigned, area and perimeter together) has an Airy scaling function `Ai'/Ai` at the tricritical point `q → 1, y → y_c(1)`, with `γ_u = -1/2, γ_t = -1/3, φ = 2/3`. The meromorphy result at `x = -1, u = 1` is a different critical direction (`q → q_0 = -0.6158`, signed count). Whether the two limits commute - does the double series `sum_{w, n} (even(w, n) - odd(w, n)) u^w q^n` inherit the Airy scaling, or does the signed weighting kill it - is not written down.
 
 ## Relation to other pages
 

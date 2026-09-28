@@ -5,12 +5,12 @@ summary: "A prime castle is a castle raised one row, so the free gluing monoid o
 tags: [analysis, castle, area, width, prime-castle, monoid, functional-equation, q-shift, q-series, parity, sign, peaks, asymptotics, residue, oeis, interlink, novel-candidate]
 sources: [oeis-mining-pe502]
 created: 2026-09-22
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # The castle row-raising equation
 
-[[prime-castles](pages/prime-castles.md)] glues castles at a shared height-1 column. The result is a free monoid `M`: its elements are the padded castles `(1, C, 1)`, and its primes are `(1, X, 1)` with `X` a castle having no height-1 column. Such an `X` is a castle `Y` with a full row slid under it: `X = (y_1 + 1, ..., y_w + 1)`. So the primes are the castles again, raised one row, and freeness turns that into a functional equation. This page writes the equation with width tracked. That makes it a genuine `z → qz` recursion rather than a one-variable identity. It then reads off the three specializations: unsigned, signed, and by peaks.
+[[prime-castles](pages/prime-castles.md)] glues castles at a shared height-1 column. The result is a free monoid `M`: its elements are the padded castles `(1, C, 1)`, and its primes are `(1, X, 1)` with `X` a castle having no height-1 column. Such an `X` is a castle `Y` with a full row slid under it: `X = (y_1 + 1, ..., y_w + 1)`. So the primes are the castles again, raised one row, and freeness turns that into a functional equation. This page writes the equation with width tracked, which turns it into a `z → qz` recursion, and reads off the three specializations: unsigned, signed, and by peaks.
 
 ## The equation
 
@@ -24,7 +24,7 @@ freeness:  M = 1/(1 - P)
            1 + qz B(z)  =  1 / (1 - qz B(qz))
 ```
 
-Unsigned, this is a true identity with no content: `B = 1 + qz/(1 - q - qz)`, the compositions by parts. It becomes useful once a character of `M` rides along. [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)] shows that any statistic additive over prime factors does, and the block sign is one.
+Unsigned, the equation holds for the known `B = 1 + qz/(1 - q - qz)` (compositions by parts) and adds nothing. It carries information once a character of `M` weights the primes: [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)] shows that any statistic additive over prime factors is one, and the block sign is such a statistic.
 
 ## The signed equation
 
@@ -65,7 +65,7 @@ The ratio `t_n / t_(n-1)` of successive terms converges to `-rho` fast. Consecut
 
 **A Prellberg-Brak equation.** Clearing the denominator, the unsigned equation reads `B(z)B(qz) - B(z)/(qz) + B(qz)/(qz) = 0` and the signed one `E(z)E(qz) - E(z)/(qz) - (2 + 1/(qz)) E(qz) + 2/(qz) = 0`. Both have the shape `G(x)G(qx) + a(x)G(x) + b(x)G(qx) + c(x) = 0` that [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] linearize with `G(x) = α H(qx)/H(x) - b(x)`, which turns them into a three-term linear q-difference equation for `H`.[^4] The linearization was checked symbolically for both (2026-09-23). Their bar-graph equation (3.11) is a second castle equation of the same shape. There `x` marks width, `y` blocks and `q` area, and at `y = -1` its series satisfies the signed equation here through area 7 (own computation, 2026-09-23).[^5]
 
-**What the sign does to the growth.** Unsigned castles by area grow like `2^n`, and the signed count like `1.6238^n`. By semi-perimeter, [[castle-perimeter](pages/castle-perimeter.md)] finds that the sign halves the exponent, `τ^2 → τ`. By area it does not: `sqrt(2) = 1.414` is well below `rho`. The signed dominant singularity is a pole of a q-series, not an algebraic branch point (own observation). The parity clause is still a lower-order correction, `even/odd = 1 + O((rho/2)^n)`.
+**Sign and growth.** Unsigned castles by area grow like `2^n`, and the signed count like `1.6238^n`. By semi-perimeter, [[castle-perimeter](pages/castle-perimeter.md)] finds that the sign halves the exponent, `τ^2 → τ`. By area it does not: `sqrt(2) = 1.414` is well below `rho`. The signed dominant singularity is a pole of a q-series, not an algebraic branch point (own observation). The parity clause is still a lower-order correction, `even/odd = 1 + O((rho/2)^n)`.
 
 ## Peaks: a rational specialization
 
@@ -114,13 +114,13 @@ print(t[1:17], t[300] / t[299])                 # even - odd; ratio -> -rho
 
 ## Open
 
-- Solve the linearized signed equation for `H` as a q-series in `z`. At `z = 1`, a pole of `E(q, 1)` is a zero of `H`, so does the first zero of `H(q, 1)` give `q_0`, and is `H` the `M` of [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] up to a factor? That would be a second derivation of the closed form, from the prime-castle monoid instead of the tower grammar.
+- Solve the linearized signed equation for `H` as a q-series in `z`. At `z = 1` a pole of `E(q, 1)` is a zero of `H`; whether the first zero of `H(q, 1)` is `q_0`, and whether `H` is the `M` of [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] up to a factor, is open. Either would give a second derivation of the closed form, from the prime-castle monoid instead of the tower grammar.
 - The signed prime convex series: the convex case of the signed equation, which would give `cev - cod` on [[castle-by-area](pages/castle-by-area.md)] in closed form.
 
 ## Relation to other pages
 
 - [[prime-castles](pages/prime-castles.md)]: the monoid, and the primes as raised castles.
-- [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)]: the sign and the peaks as characters, which is what lets them ride through the equation.
+- [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)]: the sign and the peaks as characters, which is what lets them pass through the equation.
 - [[prime-convex-castles](pages/prime-convex-castles.md)]: `U = K(q, q)`, the convex case.
 - [[castle-by-area](pages/castle-by-area.md)]: the `even`/`odd` split extended here from area 18 to area 300.
 - [[castle-perimeter](pages/castle-perimeter.md)]: the semi-perimeter version, where the sign halves the exponent.
