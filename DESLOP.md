@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 117 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
-| Spot fixes only | 14 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 63 |
-| Words still to read | about 222,000 |
+| Fully read and cleaned | 120 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Spot fixes only | 13 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
+| Not started | 61 |
+| Words still to read | about 208,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 60 fully read)
+### Concepts (85 pages, 62 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
@@ -179,7 +179,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] convex-polyomino (0.6)
 - [x] castle-foata-transform (0.6)
 - [ ] q-differential-system (0.6)
-- [ ] castle-snippets-number-theory (0.5)
+- [x] castle-snippets-number-theory (0.5)
 - [x] unique-tournament (0.0)
 - [x] symbolic-method (0.0)
 - [x] simple-tournament (0.0)
@@ -191,10 +191,10 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] convex-castle (0.0)
 - [ ] chinese-remainder-theorem (0.0)
 - [x] catalan-numbers (0.0)
-- [ ] castle-snippets-strips (0.0)
+- [x] castle-snippets-strips (0.0)
 - [x] acronyms (0.0)
 
-### Analyses (64 pages, 27 fully read)
+### Analyses (64 pages, 28 fully read)
 
 - [x] castle-cryptography (5.1)
 - [x] isospectral-castles (4.9)
@@ -234,7 +234,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [~] signed-klarner-decomposition (1.4)
 - [x] fractional-block-count (1.4)
 - [ ] reachable-field-census (1.4)
-- [~] castle-sequence-catalogue (1.3)
+- [x] castle-sequence-catalogue (1.3)
 - [x] bounded-height-castles-nacci (1.3)
 - [ ] castle-add-a-column-equation (1.3)
 - [ ] bronze-castle-hunt (1.3)

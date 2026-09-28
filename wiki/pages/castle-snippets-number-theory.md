@@ -5,12 +5,12 @@ summary: Snippets for the signed tower count, continued-fraction convergents, mo
 tags: [concept, castle, python, snippets, signed-tower-count, continued-fraction, mod-p, quasi-polynomial, plastic-number]
 sources: [project-euler-502-brute-force, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-19
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # Castle snippets - number theory
 
-A sibling page to [[castle-snippets](pages/castle-snippets.md)]: snippets that compute the signed tower count `P(k, L)`, continued-fraction convergents, Pisano-type periods, quasi-polynomial splits, and the Hilbert factor `H(d)` behind the plastic-eigenvalue identity. Same conventions as the hub page - every output pinned, every snippet executed during ingest.
+A sibling page to [[castle-snippets](pages/castle-snippets.md)]: snippets that compute the signed tower count `P(k, L)`, continued-fraction convergents, Pisano-type periods, quasi-polynomial splits, and the factor `H(d)` behind the plastic-eigenvalue identity. Same conventions as the hub page - every output pinned, every snippet executed during ingest.
 
 ## The signed tower count
 
@@ -39,11 +39,11 @@ def p_signed(k, L):
 [1, 1, 5, 25, 85, 225, 541, 1385, 3973]
 ```
 
-Meaning: `P(k,·)` is C-finite of order `k+1`, and the whole family's generating-function denominators satisfy `den_{k+1} = den_{k−1} − 2x·den_k`, whose roots `−x ± √(x²+1)` give the Pell/Chebyshev closed form on [[generating-function-gallery](pages/generating-function-gallery.md)]. Even-`k` rows are all-positive (the clean new-sequence candidates); odd-`k` rows alternate in sign.
+Meaning: `P(k,·)` is C-finite of order `k+1`, and the whole family's generating-function denominators satisfy `den_{k+1} = den_{k−1} − 2x·den_k`, whose roots `−x ± √(x²+1)` give the Pell/Chebyshev closed form on [[generating-function-gallery](pages/generating-function-gallery.md)]. Even-`k` rows are positive (checked `k ≤ 12`, `L < 40`); odd-`k` rows change sign in runs, their dominant eigenvalues being a complex pair.
 
 ## Continued fractions, convergents, and quasi-polynomials
 
-Snippets behind [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] and [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]. The first three are stdlib-only; `quasi_split` needs SymPy (the one import that earns its keep here).
+Snippets behind [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] and [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]. The snippets through `berlekamp_massey` are stdlib-only; the rest need SymPy or mpmath, as marked.
 
 ### `convergents(digits)` → list of `(p_n, q_n)`
 
@@ -74,7 +74,7 @@ Meaning: with a constant digit `a`, numerators and denominators are the *same* m
 
 ### `order_mod(a, c, p)` / `period_mod(a, p)` → int
 
-The order of the root of `t² − a t + c` in `F_p[t]/(t² − a t + c)` (a hand-built `F_p` or `F_{p²}`), and the Pisano-type period of `x_n = a x_{n−1} + x_{n−2}` mod `p`. They agree - the period *is* the eigenvalue order ([[mod-p-observatory](pages/mod-p-observatory.md)]).
+The order of the root of `t² − a t + c` in `F_p[t]/(t² − a t + c)` (a hand-built `F_p` or `F_{p²}`), and the Pisano-type period of `x_n = a x_{n−1} + x_{n−2}` mod `p`. They agree: the period is the order of `t` in that ring, the lcm of the two eigenvalue orders ([[mod-p-observatory](pages/mod-p-observatory.md)]). At inert primes the two conjugate eigenvalues have the same order; at split primes they can differ (`a = 1, p = 11`: the roots `8, 4` have orders 10 and 5).
 
 ```python
 def order_mod(a, c, p):
@@ -101,7 +101,7 @@ def period_mod(a, p):
 [(3, 4), (7, 8), (13, 14)]
 ```
 
-Meaning: at inert primes (`3, 7, 13` for `√5`) the norm-`−1` golden ratio has order `2(p+1)` - `8, 16, 28` - while the norm-`+1` `φ²` has order `p+1` - `4, 8, 14`. The `−1` that makes `φ`'s continued fraction purely periodic is the `−1` in `φ^{p+1} = −1`.
+Meaning: at inert primes (`3, 7, 13` for `√5`) the norm-`−1` golden ratio has order `2(p+1)` - `8, 16, 28` - while the norm-`+1` `φ²` has order `p+1` - `4, 8, 14`. At an inert prime `x^{p+1}` is the norm, so `φ^{p+1} = −1`, the same norm `−1` that makes `φ`'s continued fraction purely periodic.
 
 
 ### `P_table(max_k, max_L)` → `P[k][L]`
@@ -152,7 +152,7 @@ def berlekamp_massey(s):
 ([Fraction(1, 1), Fraction(-3, 1), Fraction(4, 1), Fraction(-4, 1)], 3)
 ```
 
-Meaning: the coefficients `[1, −3, 4, −4]` are `char_2 = x³ − 3x² + 4x − 4`, recovered from ten terms — the castle's whole identity from its output (the LFSR attack of [[castle-cryptography](pages/castle-cryptography.md)]).
+Meaning: the coefficients `[1, −3, 4, −4]` are `char_2 = x³ − 3x² + 4x − 4`, recovered from ten terms (the LFSR attack of [[castle-cryptography](pages/castle-cryptography.md)]).
 
 
 ### `quasi_split(seq, deg)` → `(A, B)` with `seq[k] = (−1)^k A(k) + B(k)`
@@ -208,7 +208,7 @@ def sectors(k, Lmax):
 ([1, 1, 0, -2, -4, -4, 0, 8, 16], [0, -1, -2, -2, 0, 4, 8, 8, 0])
 ```
 
-Meaning: `E[L] + O[L] = P(k, L)`; the two sequences are C-finite with the two factors of `char_k` as characteristic polynomials. `E[L]/2^L` is an integer exactly when `k ≡ 2 (mod 4)`.
+Meaning: `E[L] + O[L] = P(k, L)`; for even `k` the two sequences are C-finite with the two factors of `char_k` as characteristic polynomials. `E[L]/2^L` is an integer exactly when `k ≡ 2 (mod 4)`.
 
 
 ### `H(d)` → the monic factor of `char_{2d}(2μ)/2^{2d}`
@@ -240,7 +240,7 @@ Meaning: `H_3` is the minimal polynomial of `ψ²` (plastic number squared), hen
 
 ### `cf_digits(poly, x0, n)` → the simple continued fraction of an algebraic number
 
-The digit stream of a real algebraic number by repeated `⌊·⌋` and reciprocal, at `mpmath` precision. For a quadratic it repeats (Lagrange); for a cubic it never does, and the digits look random. Part 4 of [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] uses this to show `ρ_6` has no simple-CF period. Requires mpmath.
+The digit stream of a real algebraic number by repeated `⌊·⌋` and reciprocal, at `mpmath` precision. For a quadratic it repeats (Lagrange); for a cubic it never does. Part 4 of [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] uses this to show `ρ_6` has no simple-CF period. Requires mpmath.
 
 ```python
 from mpmath import mp, mpf, findroot, floor
@@ -300,11 +300,11 @@ def jacobi_perron(f, x0, steps):
 'no period within 400 steps'
 ```
 
-Meaning: `ρ_6` has a period-4 multidimensional continued fraction (the cubic analogue of `[2; 2, 2, …]`), while `ρ_4` shows none in 400 exact steps — the unit/non-unit split: `ρ_6/2 = ψ²` is a unit, `ρ_4/2` is not even an algebraic integer ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]).
+Meaning: `ρ_6` has a period-4 multidimensional continued fraction (the cubic analogue of `[2; 2, 2, …]`), while `ρ_4` shows none in 400 exact steps. (`ρ_6/2 = ψ²` is a unit; `ρ_4/2` is not an algebraic integer; [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)].)
 
 ## Ring theory of `char_k`
 
-Snippets behind [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)], [[idempotent-decomposition](pages/idempotent-decomposition.md)], [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] and the mod-2 note on [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] and [[castle-ring-spectrum](pages/castle-ring-spectrum.md)], written while reading Chapters 17, 14, 13, 12, 5 and 4 of [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)]. All need SymPy.
+Snippets behind [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)], [[idempotent-decomposition](pages/idempotent-decomposition.md)], [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] and the mod-2 note on [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] and [[castle-ring-spectrum](pages/castle-ring-spectrum.md)], following Chapters 17, 14, 13, 12, 5 and 4 of [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)]. All need SymPy.
 
 ```python
 import sympy as sp
@@ -313,7 +313,7 @@ x = sp.symbols('x')
 
 ### `char_k(k)` → the characteristic polynomial of `P(k, ·)`, and its shape mod 2
 
-The three-term recurrence `char_{k+1} = x²·char_{k−1} − 2·char_k` from `char_0 = x − 1`, `char_1 = x² − 2x + 2`. Mod 2 the `−2·char_k` term drops out, which is the whole proof of the pattern below.
+The three-term recurrence `char_{k+1} = x²·char_{k−1} − 2·char_k` from `char_0 = x − 1`, `char_1 = x² − 2x + 2`. Mod 2 the `−2·char_k` term drops out, which proves the pattern below.
 
 ```python
 def char_k(k):
@@ -328,7 +328,7 @@ def char_k(k):
 [x**2, x**3 + x**2, x**4, x**5 + x**4, x**6, x**7 + x**6]
 ```
 
-Meaning: `char_k ≡ x^{k+1}` (odd `k`) or `x^k(x + 1)` (even `k`) mod 2, so `x` is never a unit of `F_2[x]/(char_k)`, which is why the mod-`p` pages start at `p = 3`.
+Meaning: `char_k ≡ x^{k+1}` (odd `k`) or `x^k(x + 1)` (even `k`) mod 2, so `x` is never a unit of `F_2[x]/(char_k)`, and the mod-`p` pages start at `p = 3`.
 
 ### `crt_idempotents(Q, p)` → the primitive idempotents of `F_p[x]/(Q)`
 
@@ -434,7 +434,7 @@ def reduced_period(k, p):
 (24, 1, 24)
 ```
 
-Meaning: in every case the full period is the reduced period times `p^⌈log_p m⌉` - the nilradical of `F_p[x]/(char_k)` accounts for exactly the extra `p`.
+Meaning: in each case shown the full period is the reduced period times `p^⌈log_p m⌉` - the nilradical of `F_p[x]/(char_k)` accounts for exactly the extra `p`.
 
 ### `sectors_mod2(k)` → the two parity-sector factors of `char_k` (even `k`), reduced mod 2
 
@@ -565,8 +565,8 @@ def x_inverse(k):
 
 - [[castle-snippets](pages/castle-snippets.md)] - the enumeration and predicates hub.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the analysis these snippets were written for; every pinned value here matches that page.
-- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the real side of the CF-period / mod-p-order twin.
-- [[mod-p-observatory](pages/mod-p-observatory.md)] - the finite-field mirror.
+- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the real side of the CF-period / mod-p-order correspondence.
+- [[mod-p-observatory](pages/mod-p-observatory.md)] - the finite-field side.
 - [[metallic-means](pages/metallic-means.md)] / [[pell-numbers](pages/pell-numbers.md)] - the rungs the convergents snippets sit on.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] / [[closed-form-hunting](pages/closed-form-hunting.md)] - the recurrence orders and coefficients `quasi_split` factors.
 - [[signed-tower-count](pages/signed-tower-count.md)] / [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - the `M_signed`, sectors, and `H(d)` snippets.

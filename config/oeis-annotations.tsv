@@ -9,7 +9,7 @@ A000078	count	Tetranacci numbers: a(n) = a(n-1) + a(n-2) + a(n-3) + a(n-4) for n
 A000079	supporting	Powers of 2: a(n) = 2^n.	powers of 2 (P_even(2,L) = 2^L)
 A000108	count	Catalan numbers: C(n) = binomial(2n,n)/(n+1) = (2n)!/(n!(n+1)!).	castles whose columns drop by at most 1, last column at height 1, by width (`=C_w`)
 A000124	supporting	Central polygonal numbers (the Lazy Caterer's sequence): n(n+1)/2 + 1; or, maximal number of pieces formed when slicing a pancake with n cuts.	unimodal height-2 castles `1 + C(w+1,2)`, the `g -> infinity` limit of the `h=2` tower-spacing row
-A000129	count	Pell numbers: a(0) = 0, a(1) = 1; for n > 1, a(n) = 2*a(n-1) + a(n-2).	anchored 1-smooth height-≤3 castle strip, `P_{w+1}` (the Pell castle strip); integer realization of 1 + √2
+A000129	count	Pell numbers: a(0) = 0, a(1) = 1; for n > 1, a(n) = 2*a(n-1) + a(n-2).	anchored 1-smooth height-≤3 castle strip, `P_w` strips of width `w` (the Pell castle strip); integer realization of 1 + √2
 A000142	supporting	Factorial numbers: n! = 1*2*3*4*...*n (order of symmetric group S_n, number of permutations of n letters).	rainbow castles: exactly h! at width h
 A000217	supporting	Triangular numbers: a(n) = binomial(n+1,2) = n*(n+1)/2 = 0 + 1 + 2 + ... + n.	height-2 castles whose second row is a single run; F(4,2) = C(5,2) = 10
 A000225	count	a(n) = 2^n - 1. (Sometimes called Mersenne numbers, although that name is usually reserved for A001348.)	total height-2 castles (Mersenne): F(w,2) + odd(w,2) = 2^w - 1

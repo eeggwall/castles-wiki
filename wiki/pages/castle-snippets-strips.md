@@ -5,7 +5,7 @@ summary: Snippets for castle strips, Axis-8 growth-constant probes, tree-castle-
 tags: [concept, castle, python, snippets, strip, growth-constant, metallic-mean, tree-castle, hardin]
 sources: [project-euler-502-brute-force]
 created: 2026-09-19
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # Castle snippets - strips and growth
@@ -38,7 +38,7 @@ Wiki tie: [[castle-classification](pages/castle-classification.md)] Axis 8 — t
 
 ### `pell_strip_count(w)` → the Pell castle strip
 
-The silver counterpart ([[pell-castle-strip](pages/pell-castle-strip.md)]): 1-smooth skylines over heights `{1, 2, 3}` (adjacent heights differ by at most 1) whose first column has height 1. Their width generating function is exactly `1/(1 − 2x − x²)`, so the counts are Pell numbers `P_{w+1}`; dropping the anchor gives companion Pell (A001333).
+The silver counterpart ([[pell-castle-strip](pages/pell-castle-strip.md)]): 1-smooth skylines over heights `{1, 2, 3}` (adjacent heights differ by at most 1) whose first column has height 1. Their counts are the Pell numbers `P_w` (width generating function `x/(1 − 2x − x²)`); dropping the anchor gives companion Pell (A001333).
 
 ```python
 from itertools import product
@@ -50,7 +50,7 @@ def pell_strip_count(w, anchored=True):
 ```
 
 ```
->>> [pell_strip_count(w) for w in range(1, 9)]                  # Pell P_{w+1}, A000129
+>>> [pell_strip_count(w) for w in range(1, 9)]                  # Pell P_w, A000129
 [1, 2, 5, 12, 29, 70, 169, 408]
 >>> [pell_strip_count(w, anchored=False) for w in range(1, 9)]  # companion Pell, A001333
 [3, 7, 17, 41, 99, 239, 577, 1393]
@@ -105,7 +105,7 @@ Meaning: Pell → `a=2` (silver, `1+√2 ≈ 2.4142`). Fibonacci → `a=1` (gold
 (1, 1.618033988749895, 0.22173173479658925)
 ```
 
-A gap of ~0.222 is *not* a metallic-mean hit — the tribonacci constant `≈ 1.83929` (root of `x³ = x² + x + 1`) is a genuine *cubic*, so `nearest_metallic` returning golden `φ` is a false positive. This sequence *is* a real castle count — all castles of height `≤ 3` by area ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)], `bounded_castles_by_area(3, ·)` below) — but its growth is cubic, not metallic. `nearest_metallic` gives the closest metal regardless; only trust it when the residual is small.
+A gap of ~0.222 is *not* a metallic-mean hit: the tribonacci constant `≈ 1.83929` (root of `x³ = x² + x + 1`) is a *cubic*, so `nearest_metallic` returning golden `φ` is a false positive. The sequence counts all castles of height `≤ 3` by area ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)], `bounded_castles_by_area(3, ·)` below), and its growth is cubic. `nearest_metallic` gives the closest metal regardless; only trust it when the residual is small.
 
 
 ## Named strip rules
@@ -135,12 +135,12 @@ def ceiling_exception_count(h, L_max):
 [x**2 - x - 1, (x + 1)*(x**2 - 2*x - 1), (x + 1)**2*(x**2 - 3*x - 1), (x + 1)**3*(x**2 - 4*x - 1), (x + 1)**4*(x**2 - 5*x - 1)]
 ```
 
-Meaning: one rule, one parameter `h`, sweeps golden → silver → bronze → copper → nickel → … as `h = 2, 3, 4, 5, 6, …` (metal `a = h−1`). The `(x+1)^{h−2}` factor is the subdominant eigenvalue `−1`; the metallic quadratic `x² − (h−1)x − 1` carries the growth. The copper (`h=5`) row is every third Fibonacci — the decimation forced by `δ_4 = φ³`.
+Meaning: one rule, one parameter `h`, sweeps golden → silver → bronze → copper → nickel → … as `h = 2, 3, 4, 5, 6, …` (metal `a = h−1`). The `(x+1)^{h−2}` factor is the subdominant eigenvalue `−1`; the metallic quadratic `x² − (h−1)x − 1` carries the growth. The copper (`h = 5`) row is every third Fibonacci number, `F_{3n+5}`, with growth `δ_4 = φ³`.
 
 
 ### `proper_even(h, Wmax)` → the proper-castle projection of the ladder
 
-The `ceiling_exception_count` above is a *free-height strip* count (`𝟙ᵀM^L𝟙`); a **proper** PE-502 castle imposes `max_i c_i = h` and the even-block parity `(A±P)/2` ([[castle-sign](pages/castle-sign.md)]). This projects both on at once: subtract the `max < h` strips (which satisfy *plateau-free*, `J − I`, since the ceiling exception is unreachable) and fold in the signed count `P = Σ (−1)^{blocks}` via the signed matrix `S[a][b] = (−1)^{max(0, b−a)} M[a][b]`. The metallic growth survives (the signed matrix is spectrally subdominant), but the sequences are **new** — see [[proper-castle-projection](pages/proper-castle-projection.md)]. Requires SymPy.
+The `ceiling_exception_count` above is a *free-height strip* count (`𝟙ᵀM^L𝟙`); a **proper** PE-502 castle imposes `max_i c_i = h` and the even-block parity `(A±P)/2` ([[castle-sign](pages/castle-sign.md)]). This projects both on at once: subtract the `max < h` strips (which satisfy *plateau-free*, `J − I`, since the ceiling exception is unreachable) and fold in the signed count `P = Σ (−1)^{blocks}` via the signed matrix `S[a][b] = (−1)^{max(0, b−a)} M[a][b]`. The metallic growth survives (the signed matrix is spectrally subdominant), and the sequences have no OEIS match; see [[proper-castle-projection](pages/proper-castle-projection.md)]. Requires SymPy.
 
 ```python
 def proper_even(h, Wmax):
@@ -169,7 +169,7 @@ def proper_even(h, Wmax):
 [0, 0, 10, 104, 604, 2836, 12630, 55668]
 ```
 
-Meaning: the even-block proper-castle rows are a new family (no Online Encyclopedia of Integer Sequences (OEIS) match for `h ≥ 3`); the growth is still the metal `δ_{h−1}` (the signed matrix's spectral radius `1.000/1.575/1.768/2.242/2.413` for `h = 2..6` sits below `δ = 1.618/2.414/3.303/4.236/5.193`). Drop the `// 2` and the signed half to get the unsigned `max=h` count.
+Meaning: the even-block proper-castle rows have no Online Encyclopedia of Integer Sequences (OEIS) match for `h ≥ 3`; the growth is still the metal `δ_{h−1}` (the signed matrix's spectral radius `1.000/1.575/1.768/2.242/2.413` for `h = 2..6` sits below `δ = 1.618/2.414/3.303/4.236/5.193`). Drop the `// 2` and the signed half to get the unsigned `max=h` count.
 
 
 ### `strip_field(M)` → the Perron root and number field of one rule
@@ -250,10 +250,10 @@ def strip_field_census(h):
 ```
 >>> strip_field_census(3)         # h=3: 3 integer, quadratics Q(sqrt2,3,5), nine cubics
 {'deg1': 3, 'Q(sqrt5)': 2, 'Q(sqrt2)': 2, 'deg3': 9, 'Q(sqrt3)': 1}
->>> # the deg-3 roots at h=3 include x^3-x-1 (plastic!), x^3-x^2-x-1 (tribonacci), supergolden, plastic^2
+>>> # the deg-3 roots at h=3 include x^3-x-1 (plastic), x^3-x^2-x-1 (tribonacci), supergolden, plastic^2
 ```
 
-Meaning: the reachable quadratic fields grow `{5} → {2,3,5} → {2,3,5,13,17,21}` as `h = 2,3,4`; every squarefree metallic discriminant `a²+4` appears (bronze `Q(√13)` at h=4), copper collapses into `Q(√5)`, and the **bare plastic number** `x³−x−1` shows up as a Perron root already at h=3 ([[reachable-field-census](pages/reachable-field-census.md)]).
+Meaning: the reachable quadratic fields grow `{5} → {2,3,5} → {2,3,5,13,17,21}` as `h = 2,3,4`; the metallic fields `Q(√(a²+4))` appear as the height grows (bronze `Q(√13)` at `h = 4`, via `J − D`), copper falls in `Q(√5)`, and the plastic number `x³−x−1` is already a Perron root at `h = 3` ([[reachable-field-census](pages/reachable-field-census.md)]).
 
 
 ### `sh_canonical(M)` → S_h orbit representative (spectrum-preserving dedup)
@@ -397,7 +397,7 @@ def is_strongly_connected(T):
     return len(reach(T, 0)) == n and len(reach(Tt, 0)) == n
 ```
 
-Meaning: forward and backward reachability from a single vertex - a valid SCC test for tournaments since every pair has an edge in some direction, so 0-reachability determines connectivity. Used in the classification of strongly connected score-uniquely-determined tournaments ([[tree-castle-by-area](pages/tree-castle-by-area.md)]).
+Meaning: forward and backward reachability from one vertex; a directed graph is strongly connected exactly when both reach every vertex. Used in the classification of strongly connected score-uniquely-determined tournaments ([[tree-castle-by-area](pages/tree-castle-by-area.md)]).
 
 
 ### `tree_area_gf(h, W)` / `tree_area_by_area(h, A_max)` → area-graded tree castle counts
@@ -435,7 +435,7 @@ Meaning: the h=∞ (unlimited height) case is A005251(A+2), the same plastic-squ
 
 ### `bounded_castles_by_area(h, A_max)` → the n-nacci-by-height family
 
-**All** castles (not just tree castles) with column heights in `{1, …, h}`, graded by area `A`. A castle bounded by height `h` is exactly a composition of `A` into parts `{1, …, h}`, so the count is the **`h`-step Fibonacci** (n-nacci) number, GF `1 / (1 − x − x² − ⋯ − x^h)`. Growth marches up the n-nacci constants: `h = 2` **Fibonacci** (φ), `h = 3` **tribonacci** (`t ≈ 1.8393`), … → `2` as `h → ∞` ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]). Distinct from `tree_area_by_area` above, whose 2×2-block ban gives the term-*skipping* cubics (supergolden, plastic) instead.
+**All** castles (not just tree castles) with column heights in `{1, …, h}`, graded by area `A`. A castle bounded by height `h` is exactly a composition of `A` into parts `{1, …, h}`, so the count is the **`h`-step Fibonacci** (n-nacci) number, GF `1 / (1 − x − x² − ⋯ − x^h)`. Growth marches up the n-nacci constants: `h = 2` **Fibonacci** (φ), `h = 3` **tribonacci** (`t ≈ 1.8393`), … → `2` as `h → ∞` ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]). Distinct from `tree_area_by_area` above, whose 2×2-block ban gives term-*skipping* denominators instead.
 
 ```python
 def bounded_castles_by_area(h, A_max):
@@ -470,14 +470,14 @@ Brute-force cross-check against the actual castle model (`sum(c)` over height-bo
 True
 ```
 
-Meaning: this is the "sum of the previous `h`" companion to the tree-castle family. `h = 2` here is **A000045** (Fibonacci) - a *different, denser* sequence than the `h = 2` tree-castle row `tree_area_by_area(2, ·)` = A000930 (Narayana's cows), because dropping the tree (no-2×2-block) constraint restores the `(…,2,2,…)` adjacencies. `h = 3` is the tribonacci sequence **A000073** - the castle's first tribonacci interpretation.
+Meaning: this is the "sum of the previous `h`" companion to the tree-castle family. `h = 2` here is **A000045** (Fibonacci) - a *different, denser* sequence than the `h = 2` tree-castle row `tree_area_by_area(2, ·)` = A000930 (Narayana's cows), because dropping the tree (no-2×2-block) constraint restores the `(…,2,2,…)` adjacencies. `h = 3` is the tribonacci sequence **A000073**.
 
 
 ## A005251 and the Hardin word automaton
 
 ### `encode(c)` / `decode(s)` → the A005251 bijection
 
-Composition of `n` (no two adjacent parts `≥ 2`, = tree castle of area `n`) ↔ length-`(n−1)` binary string avoiding `010` (= Hardin no-isolated-1 word) — the classic gap-string map, constraint-preserving ([[a005251-bijection](pages/a005251-bijection.md)]).
+Composition of `n` (no two adjacent parts `≥ 2`, = tree castle of area `n`) ↔ length-`(n−1)` binary string avoiding `010` — the classic gap-string map, constraint-preserving ([[a005251-bijection](pages/a005251-bijection.md)]). Hardin's no-isolated-1 words have the same count one length up: those of length `n` also number `A005251(n+2)`.
 
 ```python
 def encode(c):  return '1'.join('0' * (p - 1) for p in c)     # part c_j -> 0^{c_j-1}, join with 1
@@ -501,7 +501,7 @@ def decode(s):  return tuple(len(r) + 1 for r in s.split('1'))  # 0-run of lengt
 (True, 37)
 ```
 
-Meaning: "no two adjacent parts `≥ 2`" ⟺ "no factor `010`" because a part `≥ 2` is a nonempty `0`-block and two adjacent such blocks straddle a boundary `1` as `010`. Verified onto the avoid-010 set for `n ≤ 11` — the explicit bijection closing the tree-castle ↔ Hardin-word coincidence at plastic-squared ([[a005251-bijection](pages/a005251-bijection.md)]).
+Meaning: "no two adjacent parts `≥ 2`" ⟺ "no factor `010`" because a part `≥ 2` is a nonempty `0`-block and two adjacent such blocks straddle a boundary `1` as `010`. Verified onto the avoid-010 set for `n ≤ 11` ([[a005251-bijection](pages/a005251-bijection.md)]).
 
 
 ### `A005251(n)` → the plastic-squared sequence directly
@@ -523,7 +523,7 @@ def A005251(n):
 (21, 21)
 ```
 
-Meaning: the companion matrix `[[2,−1,1],[1,0,0],[0,1,0]]` is the transfer matrix of the recurrence `a(n) = 2a(n−1) − a(n−2) + a(n−3)`; its `(n−2)`-th power against the seed `[1,1,0]` reads off the **canonical** `a(n)` (OEIS offset 0, `a(0)=0`). The four castle objects that hit this sequence sit at these offsets: tree castles / compositions of `n` = `A005251(n+2)`; Hardin no-isolated-1 words of length `N` = `A005251(N+3)`; tower-spacing `(h=2,g=2)` width `w` = `A005251(w+3)`; signed height-6 even-last-column towers `P_even(6,L)/2^L` = `A005251(L+3)` ([[a005251-bijection](pages/a005251-bijection.md)], [[plastic-number](pages/plastic-number.md)]).
+Meaning: the companion matrix `[[2,−1,1],[1,0,0],[0,1,0]]` is the transfer matrix of the recurrence `a(n) = 2a(n−1) − a(n−2) + a(n−3)`; its `(n−2)`-th power against the seed `[1,1,0]` reads off the **canonical** `a(n)` (OEIS offset 0, `a(0)=0`). The four castle objects that hit this sequence sit at these offsets: tree castles / compositions of `n` = `A005251(n+2)`; Hardin no-isolated-1 words of length `N` = `A005251(N+2)`; tower-spacing `(h=2,g=2)` width `w` = `A005251(w+3)`; signed height-6 even-last-column towers `P_even(6,L)/2^L` = `A005251(L+3)` ([[a005251-bijection](pages/a005251-bijection.md)], [[plastic-number](pages/plastic-number.md)]).
 
 
 ### `word_matrix(m)` → transfer matrix of Hardin's no-local-maximum words
