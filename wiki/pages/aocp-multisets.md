@@ -8,7 +8,7 @@ created: 2026-09-14
 updated: 2026-09-28
 ---
 
-# The Art of Computer Programming (AOCP) Multisets (Knuth The Art of Computer Programming (TAOCP) Vol. 3)
+# AOCP Multisets (Knuth, *The Art of Computer Programming*, Vol. 3)
 
 **Source:** https://charlesreid1.com/wiki/AOCP/Multisets (notes on Knuth, *The Art of Computer Programming*, Vol. 3, §5.1.2 "Permutations of a Multiset")
 **Date ingested:** 2026-09-14

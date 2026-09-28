@@ -8,7 +8,7 @@ created: 2026-09-13
 updated: 2026-09-28
 ---
 
-# The Art of Computer Programming (AOCP) Generating Permutations & Tuples (Knuth The Art of Computer Programming (TAOCP) Vol. 4)
+# AOCP Generating Permutations & Tuples (Knuth, *The Art of Computer Programming*, Vol. 4)
 
 **Source:** https://charlesreid1.com/wiki/AOCP/Generating_Permutations_and_Tuples (notes on Knuth, *The Art of Computer Programming*, Vol. 4A, combinatorial generation)
 **Date ingested:** 2026-09-13

@@ -8,7 +8,7 @@ created: 2026-09-13
 updated: 2026-09-28
 ---
 
-# The Art of Computer Programming (AOCP) Generating Functions (Knuth The Art of Computer Programming (TAOCP) Vol. 1)
+# AOCP Generating Functions (Knuth, *The Art of Computer Programming*, Vol. 1)
 
 **Source:** https://charlesreid1.com/wiki/AOCP/Generating_Functions (notes on Knuth, *The Art of Computer Programming*, Vol. 1, §1.2.9)
 **Date ingested:** 2026-09-13

@@ -8,7 +8,7 @@ created: 2026-09-14
 updated: 2026-09-28
 ---
 
-# The Art of Computer Programming (AOCP) Binomial Coefficients (Knuth The Art of Computer Programming (TAOCP) Vol. 1)
+# AOCP Binomial Coefficients (Knuth, *The Art of Computer Programming*, Vol. 1)
 
 **Source:** https://charlesreid1.com/wiki/AOCP/Binomial_Coefficients (notes on Knuth, *The Art of Computer Programming*, Vol. 1, §1.2.6)
 **Date ingested:** 2026-09-14
