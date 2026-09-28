@@ -1,10 +1,10 @@
-# Departments
+# Divisions
 
-Nine Departments partition the castle research surface. Each Department has a one-line descriptor in four parts, a conceptual coverage list, and a set of crossovers with the other Departments. R gathers representations, entropy, and encodings. X gathers keystreams, steganography, and commitments, which the other Departments only glanced at.
+Divisions partition the castle research surface. Each Division has a one-line descriptor in four parts, a conceptual coverage list, and a set of crossovers with the other Divisions. R gathers representations, entropy, and encodings. X gathers keystreams, steganography, and commitments, which the other Divisions only glanced at.
 
 Crossovers are written `home/lens`: `E/R` and `R/E` are different subplots. Crossover names are hooks (a titled subplot), not descriptions of theme.
 
-Alongside the nine Departments sit **Auxiliary Services** - the non-Department sisters, infrastructure and applied-mathematics divisions that sit next to the Departments the way IT or the physical plant sits next to Geology at a university. The first is **The Telephone Company**: phones, audio, coding-adjacent applied mathematics with an AT&T Bell Labs vibe. Auxiliary Services do not partition the research surface; they gather topics already covered by letter Departments into a jurisdiction with a distinct working culture.
+Two Divisions, **The Telephone Company** and **Facilities**, have no letter name; in every other respect they are Divisions like the rest.
 
 ## Descriptors
 
@@ -17,11 +17,8 @@ Alongside the nine Departments sit **Auxiliary Services** - the non-Department s
 - **T - Transcendentals:** samplers, limit laws, geometric probability, and pi pulled out of castle ensembles.
 - **F - Fractional:** non-integer orders, power-law memory, interpolated statistics, and dense operators where the integer castle has sparse ones.
 - **X - Ciphers:** keystreams, hidden payloads, commitments, and what survives an adversary.
-
-### Auxiliary services
-
+- **C - Chinese Remainder Theorem:** applying the Chinese Remainder Theorem.
 - **The Telephone Company:** phone signals, audio codecs, tone catalogues, expander-graph and Ihara-zeta reads of the castle graph, information-theoretic entropy of skylines, and the isospectral seminar.
-- **Department of Chinese Remainders:** department specializing in applying the Chinese Remainder Theorem
 - **Facilities:** applied, physical-world tooling: real objects turned into castles (keys, city skylines, mountain ridgelines, ballparks).
 
 ## Conceptual coverage
@@ -77,7 +74,7 @@ Alongside the nine Departments sit **Auxiliary Services** - the non-Department s
 - The q-polyomino zoo: Bousquet-Melou add-a-column GFs read off at the area variable; A001169 and A001523 as landmarks.
 - Classical q-families: Carlitz q-Catalan, Barcucci q-Motzkin and q-Bessel, weakly unimodal compositions, steep polyominoes.
 - Bistatistics: area with block count, peaks, records; hunting q-binomial and Narayana-q coefficients.
-- Area-preserving bijections: convex to valley, and `h=3` tree versus all.
+- Bijections: `h=3` tree versus all by area, and convex to valley cell by cell in `(w,h)`.
 
 ### S - Spectra
 
@@ -121,7 +118,16 @@ Alongside the nine Departments sit **Auxiliary Services** - the non-Department s
 - Integrity without a key: the keyed fractional phase broken with three known castles; a public-order phase as an integrity check; the castle ring by invariant factors, with Pohlig-Hellman as the structure theorem.
 - Hardness candidates: castle problems (isospectrality census, height reconstruction, turnpike) as sources of one-way functions.
 
-### Auxiliary services: The Telephone Company
+### C - Chinese Remainder Theorem
+
+- The theorem in ring form: comaximal ideals, the product isomorphism, and the integer CRT as its special case.
+- Idempotent decompositions: orthogonal idempotents as the inverse of the CRT map, and eigenvalue sectors of the castle ring.
+- The castle ring mod `p`: `F_p[x]/(char_k)` split along the factors of `char_k`, periods as lcms over the factors, unit groups and invariant factors.
+- Local factors and prime powers: repeated factors at discriminant primes, nilradicals, and moduli such as `Z/9` that do not split.
+- The castle ring over the integers: parity sectors over `Q`, `Spec Z[x]/(char_k)` and its fibers, and lifting idempotents.
+- CRT in cryptanalysis: Pohlig-Hellman on the ring and on the exponent against the castle Diffie-Hellman.
+
+### The Telephone Company
 
 - Waveform codecs: LPC-plus-Rice on the peak-normalized song waveform, the castle codec (skyline -> Tier-1 rule plus residual) as a spec; the codec ladder (WAV / FLAC / MP3 / AAC / Opus) as the tier ladder on a real signal.
 - Tone castles: DTMF and MF digits at 8 kHz as exactly periodic castles with DFT support and Goertzel response; which tone pairs are exactly periodic and which only approximately.
@@ -132,11 +138,11 @@ Alongside the nine Departments sit **Auxiliary Services** - the non-Department s
 - Information theory of skylines: uniform entropy `~ w log_2 h - 1`, growth constants as topological entropies, and the compressibility axis.
 - Real signals as castles: URL ids, ID3 labels, and 16-bit waveforms as `h = 65536` castles; Berlekamp-Massey and the NTT over `F_65537` as the finite-field layer; Beethoven's Ninth as the crown-jewel exemplar.
 
-### Auxiliary services: Facilities
+### Facilities
 
 - Keys as castles: pin-tumbler bitting read as column heights, key photographs converted to castles, standard key blanks (pin positions, depths, maximum adjacent cut) as castle families with countable keyspaces.
 - Skylines and ridgelines: famous city skylines and mountain ranges (national parks, city mountainscapes such as Salt Lake City's) read as castles, and zooming into them as a lead-in to fractals and the coastline paradox.
-- Ballparks: each ray out of home plate as a castle (field, wall, stands), the bare field-and-wall ray as a hook castle, overhanging decks lost to the no-overhang rule, and a park as a fan of castles to compare across the 30 MLB parks (an R Department representation crossover).
+- Ballparks: each ray out of home plate as a castle (field, wall, stands), the bare field-and-wall ray as a hook castle, overhanging decks lost to the no-overhang rule, and a park as a fan of castles to compare across the 30 MLB parks (an R Division representation crossover).
 
 ## Crossovers
 
@@ -150,7 +156,7 @@ Alongside the nine Departments sit **Auxiliary Services** - the non-Department s
 | Q/E | the second variable | bivariate GFs and q-transfer matrices; area rides along with the count |
 | Q/N | coefficients at q | the area-graded sequences (A001523, A115981, A332578) as OEIS targets in their own right |
 | Q/Z | prime factorization of shapes | prime castles and sub-family refinements as taxonomy done by area |
-| Q/R | bijections that keep the area | convex to valley, tree versus all, as translations with a conserved quantity |
+| Q/R | bijections that keep the area | tree versus all as a translation with a conserved quantity |
 | S/N | the ladder heard twice | metallic means as Perron roots of counts versus as spectral radii of single castles; why signed eigenvalues are never metallic |
 | S/Z | same drum, different castle | isospectral pairs as the zoo's twin exhibits |
 | S/R | the castle as a signal | skyline DFT and castle graph as encodings, and what each spectrum forgets |
