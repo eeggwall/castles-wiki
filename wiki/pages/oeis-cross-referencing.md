@@ -5,25 +5,25 @@ summary: The discipline of matching castle counts to existing OEIS A-numbers (in
 tags: [concept, oeis, method, cross-reference, research-workflow]
 sources: [oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # Online Encyclopedia of Integer Sequences (OEIS) cross-referencing (interlinking method)
 
 ## Description
 
-**OEIS cross-referencing** is the research method at the heart of the wiki's mission: take a real combinatorial object (here the [[castle-polyomino](pages/castle-polyomino.md)]), compute its counting sequences, and connect them to the On-Line Encyclopedia of Integer Sequences. Two complementary actions:
+**OEIS cross-referencing** is a research method of this wiki: take a combinatorial object (here the [[castle-polyomino](pages/castle-polyomino.md)]), compute its counting sequences, and connect them to the On-Line Encyclopedia of Integer Sequences. Two complementary actions:
 
-- **Interlinking** — find an existing A-number whose terms a castle count reproduces, and record the castle as a new interpretation of that sequence (a cross-reference comment/formula). This is how the castle problem is tied into the wider web of combinatorics.
+- **Interlinking** — find an existing A-number whose terms a castle count reproduces, and record the castle as a new interpretation of that sequence (a cross-reference comment/formula).
 - **Generation** — identify a castle count with *no* OEIS match; that is a candidate new sequence to mint.
 
 The [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] work is a full pass of both.
 
 ## Discipline
 
-The method only has value if the matches are real, so a few rules hold throughout:[^1]
+A few rules hold throughout:[^1]
 
-- **Verify against the actual OEIS data, with offsets** — not just the first few terms. The single most important catch of the first pass was `P(1,L)`: a plan had claimed `A009545`, but that is `Im((1+i)^n)`; the real match is `A146559(L+1) = Re((1+i)^{L+1})`. Only an offset-correct comparison against the stored data distinguishes them (see [[signed-tower-count](pages/signed-tower-count.md)]).
+- **Verify against the actual OEIS data, with offsets**, not just the first few terms. Example: `P(1,L)` agrees with `A009545 = Im((1+i)^n)` only after a shift and halving, `P(1,L) = A009545(L+3)/2`; the exact match is `A146559(L+1) = Re((1+i)^{L+1})` (see [[signed-tower-count](pages/signed-tower-count.md)]).
 - **Reject short-term false positives** — coincidental agreement on a handful of terms (e.g. sqrt-5 difference sequences, decimal-expansion hits on short block distributions) is discarded unless there is a structural reason.
 - **Prefer isolated entries** — a cross-reference is highest-value on a sparse, under-connected sequence (like the "sum of every 4th binomial" entries A038503/A038505) and marginal on a dense one (like A001523, already richly commented).
 
@@ -34,15 +34,13 @@ OEIS requires **human authorship** — a tool may run the verification scripts, 
 ## Appearances in Sources
 
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — applies this method across the castle veins; states the offset-verification discipline and the interlinking-vs-generation split.
-- [[oeis-index](pages/oeis-index.md)] - the wiki's OEIS directory, script-generated: every A-number cited across the wiki, grouped by role (castle interpretation, metallic ladder, plastic, supporting), with the citing pages and mention counts.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the hand-curated catalogue: every castle-counting sequence with its novelty status (known / interlink / novel-candidate / unchecked) and the submission priority list.
 
 ## Related Concepts
 
 - [[castle-by-area](pages/castle-by-area.md)], [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)], [[narayana-numbers](pages/narayana-numbers.md)] — sequence families reached by this method.
-- [[signed-tower-count](pages/signed-tower-count.md)] — where the offset-verification discipline caught a real/imaginary mixup.
-- [[oeis-index](pages/oeis-index.md)] — the OEIS meta-triad's mechanical half: script-generated directory of every A-number on the wiki.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] — the OEIS meta-triad's hand-curated half: castle-counting sequences with novelty status and submission priority.
+- [[signed-tower-count](pages/signed-tower-count.md)] — `P(1,L) = A146559(L+1)`, the offset example above.
+- [[oeis-index](pages/oeis-index.md)] — the wiki's script-generated OEIS directory: every A-number cited across the wiki, grouped by role (castle interpretation, metallic ladder, plastic, supporting), with the citing pages and mention counts.
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] — the hand-curated catalogue: every castle-counting sequence with its novelty status (known / interlink / novel-candidate / unchecked) and the submission priority list.
 - [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the classroom version of this method: one sequence end to end, a trap, and a non-match.
 
 

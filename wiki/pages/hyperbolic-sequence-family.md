@@ -5,7 +5,7 @@ summary: The four "sum of every 4th binomial" sequences A038503/A038504/A038505/
 tags: [concept, oeis, binomial, hyperbolic, castle, height-2]
 sources: [oeis-mining-pe502, oeis-height2-hyperbolic-castles]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Order-4 hyperbolic sequence family
@@ -19,11 +19,11 @@ The **order-4 "hyperbolic" family** is the set of four Online Encyclopedia of In
 - **A038505** = `Σ_k C(n, 4k+2)` (start at `C(n,2)`)
 - **A000749** = `Σ_k C(n, 4k+3)` (start at `C(n,3)`)
 
-They satisfy a common order-4 linear recurrence (roots the 8th roots of unity scaled — the "hyperbolic" analog of `Re/Im` of `(1+i)^n`) and sum to `2^n`. Two of them are relatively isolated "sum of every 4th entry" entries, under-connected in the OEIS.
+They satisfy a common linear recurrence, `a(n) = 4a(n−1) − 6a(n−2) + 4a(n−3)` for `n ≥ 4` (characteristic roots `2` and `1 ± i`), and sum to `2^n`; OEIS describes them as the difference analog of the hyperbolic functions of order 4, as `Re` and `Im` of `(1+i)^n` are of `cos` and `sin`. Two of them are relatively isolated "sum of every 4th entry" entries, under-connected in the OEIS.
 
 ## The castle reading
 
-The height-2 [[castle-polyomino](pages/castle-polyomino.md)] gives two members of this family a genuine new combinatorial interpretation — the central win of the [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] pass (see [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]):[^2]
+The height-2 [[castle-polyomino](pages/castle-polyomino.md)] gives two members of this family a new combinatorial interpretation from the [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] pass (see [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]):[^2]
 
 ```
 F(w,2)   = A038505(w+1) = Σ_k C(w+1, 4k+2)        (even-block castles)
@@ -31,9 +31,9 @@ odd(w,2) = A038503(w+1) − 1 = Σ_{k≥1} C(w+1, 4k)  (odd-block castles)
 total    = A000225(w) = 2^w − 1
 ```
 
-A height-2 castle is fixed by which columns reach height 2 (a length-*w* binary string, ≥1 one); if those columns form *r* runs, the block count is `1 + r`, and there are `C(w+1, 2r)` strings with *r* runs. Even blocks ⟺ *r* odd ⟺ `2r ≡ 2 (mod 4)`, which is exactly A038505; odd blocks ⟺ *r* even (excluding `r=0`), which is A038503 minus one.[^2] So the height-2 castle **decomposes the Mersenne number `2^w−1` by block-count parity** into two of the four hyperbolic sequences. The signed count `A146559 = Re((1+i)^n)` closes the circle: `A146559(n) = A038503(n) − A038505(n)` (see [[signed-tower-count](pages/signed-tower-count.md)]).[^3]
+A height-2 castle is fixed by which columns reach height 2 (a length-*w* binary string, ≥1 one); if those columns form *r* runs, the block count is `1 + r`, and there are `C(w+1, 2r)` strings with *r* runs. Even blocks ⟺ *r* odd ⟺ `2r ≡ 2 (mod 4)`, which is exactly A038505; odd blocks ⟺ *r* even (excluding `r=0`), which is A038503 minus one.[^2] So the height-2 castle **decomposes the Mersenne number `2^w−1` by block-count parity** into two of the four hyperbolic sequences. The signed count `A146559 = Re((1+i)^n)` is their difference: `A146559(n) = A038503(n) − A038505(n)` (see [[signed-tower-count](pages/signed-tower-count.md)]).[^3]
 
-These identities were **submitted to OEIS on 2026-09-18** ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]): A038503 is now stated directly as "height ≤ 2, odd blocks" (the height-1 castle folded in, no `−1`), and the entries carry the decomposition formulas `a(n) = A000225(n−1) − A038505(n) + 1` and `a(n) = A038505(n) + A146559(n)` on A038503, plus `a(n) = A000225(n−1) − A038503(n) + 1` on A038505; A146559 itself gained the converse `a(n) = A038503(n) − A038505(n)`.
+These identities were drafted on OEIS on 2026-09-18 and proposed for review on 2026-09-26 ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]); as of 2026-09-28 the A038503 and A038505 edits await editor approval. The proposed A038503 comment states it directly as "height ≤ 2, odd blocks" (the height-1 castle folded in, no `−1`), with the decomposition formulas `a(n) = A000225(n−1) − A038505(n) + 1` and `a(n) = A038505(n) + A146559(n)`, plus `a(n) = A000225(n−1) − A038503(n) + 1` on A038505. A146559 carries the approved converse `a(n) = A038503(n) − A038505(n)`.
 
 ## Appearances in Sources
 
@@ -48,7 +48,7 @@ These identities were **submitted to OEIS on 2026-09-18** ([[oeis-height2-hyperb
 - [[block-count-constraints](pages/block-count-constraints.md)] - "sum every 4th binomial" is the `m = 2` residue extraction on the height-1 tower generating function (GF) `Σ_r C(L+1, 2r) z^r`: `A038503(L+1)` is the even-block class, `A038505(L+1)` the odd-block class.
 - [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] - `F(4,2) = C(5,2) = 10` is the `s = 0` term of `Σ_s C(w+1, 4s+2)`; three-run second rows enter at `w = 5`.
 - [[fractional-width-and-height](pages/fractional-width-and-height.md)] - the continuous-width extension: `F(w,2)`'s period-8 oscillation is this family read off the principal branch of a fractional-order extension.
-- [[fractional-block-count](pages/fractional-block-count.md)] - the phase-sum `P_α = Σ e^{2π i α · blocks}` interpolates through the unit-circle territory this order-4 family inhabits at `α = 1/4`.
+- [[fractional-block-count](pages/fractional-block-count.md)] - the phase-sum `P_α = Σ e^{2π i α · blocks}`, which at `α = 1/4` weights blocks by powers of `i`.
 
 ## Footnotes
 

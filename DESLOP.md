@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 49 (song-as-castle and the 20 pages linking to it; batches 1-3, the 28 oldest pages) |
-| Spot fixes only | 20 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 125 |
-| Words still to read | about 336,000 |
+| Fully read and cleaned | 58 (song-as-castle and the 20 pages linking to it; batches 1-3, the 28 oldest pages) |
+| Spot fixes only | 19 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
+| Not started | 117 |
+| Words still to read | about 325,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,11 +106,11 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 29 fully read)
+### Concepts (85 pages, 33 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
-- [ ] hyperbolic-sequence-family (6.2)
-- [ ] narayana-numbers (5.7)
+- [x] hyperbolic-sequence-family (6.2)
+- [x] narayana-numbers (5.7)
 - [x] sandcastle-seminar (5.5)
 - [x] berlekamp-massey (5.5)
 - [ ] sandcastle-clock (4.9)
@@ -144,7 +144,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] q-thread-seminar (2.5)
 - [x] castle-samplers (2.4)
 - [ ] idempotent-decomposition (2.3)
-- [~] castle-by-area (2.3)
+- [x] castle-by-area (2.3)
 - [x] urd-step-strings (2.1)
 - [x] kitamasa (2.1)
 - [ ] castle-classification-spectrum (1.9)
@@ -155,7 +155,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] castle-snippets-cryptography (1.7)
 - [ ] mod-9-coset-lift (1.6)
 - [~] q-catalan-numbers (1.6)
-- [ ] oeis-cross-referencing (1.6)
+- [x] oeis-cross-referencing (1.6)
 - [x] castle-compression (1.5)
 - [ ] metallic-means (1.4)
 - [~] castle-snippets (1.4)
@@ -194,7 +194,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] castle-snippets-strips (0.0)
 - [ ] acronyms (0.0)
 
-### Analyses (64 pages, 10 fully read)
+### Analyses (64 pages, 11 fully read)
 
 - [x] castle-cryptography (5.1)
 - [ ] isospectral-castles (4.9)
@@ -243,7 +243,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] viennot-heap-tower (1.1)
 - [ ] closed-form-hunting (1.1)
 - [ ] generating-function-gallery (1.1)
-- [ ] convex-castle-binomial-identity (1.0)
+- [x] convex-castle-binomial-identity (1.0)
 - [ ] recurrence-discovery (1.0)
 - [ ] quadratic-min-height (1.0)
 - [~] castle-sign-kms-matrix (1.0)
@@ -261,11 +261,11 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] convex-castle-cap-factor (0.0)
 - [~] castle-q-bessel-closed-form (0.0)
 
-### Sources (44 pages, 9 fully read)
+### Sources (44 pages, 13 fully read)
 
 - [ ] oeis-mining-pe502 (25.6)
-- [ ] oeis-height2-hyperbolic-castles (5.9)
-- [ ] new-sequence-fw3 (4.3)
+- [x] oeis-height2-hyperbolic-castles (5.9)
+- [x] new-sequence-fw3 (4.3)
 - [ ] aocp-generating-permutations-tuples (3.4)
 - [x] steep-polyominoes-q-motzkin-bessel (3.4)
 - [ ] lattice-paths (3.2)
@@ -302,8 +302,8 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] bender-1974-convex-n-ominoes (0.5)
 - [ ] klarner-rivest-1974-convex-n-ominoes (0.5)
 - [x] project-euler-502-representations (0.0)
-- [ ] project-euler-502-implementation-notes (0.0)
-- [ ] project-euler-502-brute-force (0.0)
+- [x] project-euler-502-implementation-notes (0.0)
+- [x] project-euler-502-brute-force (0.0)
 - [x] project-euler-502 (0.0)
 - [ ] dhar-1990-self-organized-critical-sandpile (0.0)
 - [ ] aocp-multinomial-coefficients (0.0)

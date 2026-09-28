@@ -5,14 +5,14 @@ summary: Why convex(w,h) = C(2h+w−3, w−1) — an up/down decomposition at th
 tags: [analysis, castle, convex, binomial, vandermonde, catalan]
 sources: [oeis-mining-pe502, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-13
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # Convex castle count is binomial (Vandermonde)
 
 ## Overview
 
-This is the *reason* the [[convex-castle](pages/convex-castle.md)] count is a binomial coefficient, `C(2h+w−3, w−1)`, and why no Catalan/Narayana number appears in the natural (w,h) parameterization. The short answer: a convex castle's ascending front and descending back are chosen **independently** — there is no ballot / non-crossing condition to couple them — and a product of two monotone-piece counts is a binomial. Everything below was verified numerically (up/down decomposition and the Vandermonde identity checked against brute force for `w,h ≤ 7`; the binomial and the "exactly h blocks" facts re-verified for `w,h ≤ 5` during ingest).[^1]
+This is the *reason* the [[convex-castle](pages/convex-castle.md)] count is a binomial coefficient, `C(2h+w−3, w−1)`, and why no Catalan/Narayana number appears in the natural (w,h) parameterization. A convex castle's ascending front and descending back are chosen **independently** (there is no ballot / non-crossing condition to couple them), and a product of two monotone-piece counts is a binomial. Everything below was verified numerically (up/down decomposition and the Vandermonde identity checked against brute force for `w,h ≤ 7`; the binomial and the "exactly h blocks" facts re-verified for `w,h ≤ 5` during ingest).[^1]
 
 ## Convex ⟺ unimodal ⟺ exactly *h* blocks
 
@@ -42,13 +42,13 @@ For example `convex(w,2) = C(w+1, 2)` (triangular), `convex(w,3) = C(w+3,4)` —
 
 ## Why binomial and not Catalan
 
-The two halves combine by an ordinary product (then a Vandermonde sum) precisely because they are **independent**. Catalan/Narayana counts arise when a **non-crossing or ballot constraint couples the halves** (as a Dyck path's up and down segments must jointly stay above the diagonal). The castle's Rule 3 (same-row gap) imposes no such coupling - in the run decomposition it is automatic - so the hoped-for "Catalan find" does not exist for the (w,h) parameterization; a Catalan object would require grafting on an extra condition the castle does not contain.[^5] (The Catalan/Narayana thread does appear elsewhere - in the [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] block-count.) The coupled counterpart is the parallelogram polyomino. Its two boundary paths share both endpoints and must not cross, and it is Catalan by perimeter ([[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)]).
+The two halves combine by an ordinary product (then a Vandermonde sum) because they are **independent**. Catalan/Narayana counts arise when a **non-crossing or ballot constraint couples the halves** (as a Dyck path's up and down segments must jointly stay above the diagonal). The castle's Rule 3 (same-row gap) imposes no such coupling - in the run decomposition it is automatic - so no Catalan count appears in the (w,h) parameterization.[^5] (The Catalan/Narayana thread does appear elsewhere - in the [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] block-count.) The coupled counterpart is the parallelogram polyomino. Its two boundary paths share both endpoints and must not cross, and it is Catalan by perimeter ([[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)]).
 
-The binomial character runs through the whole object: the height-2 block distribution `C(w+1, 2r)` (feeding the [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]), the height-≤1 tower (castle height ≤ 2) distribution `C(w+1, 2b) = A034839`, and the any-parity `h^w − (h−1)^w` differences are all binomial.[^6]
+Other castle counts are binomial too: the height-2 block distribution `C(w+1, 2r)` (feeding the [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]), the height-≤1 tower (castle height ≤ 2) distribution `C(w+1, 2b) = A034839`, and the any-parity `h^w − (h−1)^w` differences are all binomial.[^6]
 
 ## The anti-diagonal sums are Fibonacci
 
-Summing the binomial along `w + h = n + 2` (fixed perimeter `2n+4`) gives `F_{2n}` with `F_0 = F_1 = 1` (A001519: 2, 5, 13, 34, 89, ...; checked for `n = 1..14` during ingest). This is Delest-Viennot's count of stack polyominoes by perimeter. They obtain it from a rational grammar of "Fibonacci words" rather than from the binomial.[^7] The Vandermonde argument and the Fibonacci-word argument are two proofs that the same generating function `Σ_{w,h} C(2h+w-3, w-1) x^w y^h` is rational. The Fibonacci words specialize it at `x = y = t`.
+Summing the binomial along `w + h = n + 2` (fixed perimeter `2n+4`) gives `F_{2n}` with `F_0 = F_1 = 1` (A001519: 2, 5, 13, 34, 89, ...; checked for `n = 1..14` during ingest). This is Delest-Viennot's count of stack polyominoes by perimeter. They obtain it from a rational grammar of "Fibonacci words" rather than from the binomial.[^7] The Vandermonde argument gives the binomial in every `(w,h)` cell; the Fibonacci-word argument counts the anti-diagonal sums directly, as the specialization `x = y = t` of `Σ_{w,h} C(2h+w-3, w-1) x^w y^h`.
 
 ## Appearances in Sources
 

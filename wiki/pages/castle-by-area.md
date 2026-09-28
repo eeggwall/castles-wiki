@@ -5,7 +5,7 @@ summary: Re-indexing castles by total cells n instead of (w,h) — convex↔A001
 tags: [concept, castle, area, composition, oeis, unimodal, valley]
 sources: [oeis-mining-pe502, castle-by-area]
 created: 2026-09-13
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Castles by area
@@ -22,18 +22,16 @@ updated: 2026-09-27
 - **Non-convex castles = `A115981(n)` = `A011782(n) − A001523(n)`** — compositions "not viewable as stacks."[^3]
 - **Not-valley (complement of valley) = `A332669(n)` = `2^{n−1} − A332578(n)`.**[^3]
 
-Per the phase-2 submission plan, the three dense matches — **A001523**, **A332578**, **A115981** — cross-reference the phase-1 height-2 sequences **A038505 / A038503 / A146559** ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]), tying the area-parametrized block-parity counts back to the width-index hyperbolic family.
-
 ## New sequences (generation candidates)
 
-- **Parity splits by area** — `even/odd` (block-parity of all castles) and CEV/COD (convex-even and convex-odd: block-parity of convex castles), none in OEIS. The quotable identities: `even(n)+odd(n) = 2^{n−1}` and **`cev(n)+cod(n) = A001523(n)`** — a parity refinement of a foundational sequence.[^4]
+- **Parity splits by area** — `even/odd` (block-parity of all castles) and CEV/COD (convex-even and convex-odd: block-parity of convex castles), none in OEIS. The identities: `even(n)+odd(n) = 2^{n−1}` and **`cev(n)+cod(n) = A001523(n)`**, a parity refinement of A001523.[^4]
 - **`strict_valley(n)`** — castles with a *true* interior dip (valley and not unimodal): `0,0,0,0,1,3,8,17,34,60,107,175,285,445,691,…`. New, no OEIS match on 15 terms.[^5]
 - **Six parity-refined concave sequences** — `valley_even/odd` (split of A332578), `nc_even/odd` (split of A115981), `sv_even/odd` — all new.[^5]
 - All ten parity splits, `strict_valley` and the signed differences, sixteen terms each, returned no OEIS match on 2026-09-26; the terms and the joint area / blocks / peaks tables are on [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)].
 
 ## The (w,h) view, and a candidate bijection
 
-By (w,h) the concave counts add nothing new: `valley(w,h) = convex(w,h) = C(2h+w−3, w−1)` — the same binomial as [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)], different *sets*. Convex and valley castles are therefore **equinumerous in every (w,h) cell** under the peak↔valley mirror — a candidate bijection worth writing up, even though it yields no new OEIS entry on the (w,h) axis.[^6] (The plan's speculated matches — A001168 fixed polyominoes, A005435 column-convex-by-perimeter — were numerically far off; castles-by-area live in the "stacks of boards" class, not the general polyomino class.)[^7]
+By (w,h) the concave counts add nothing new: `valley(w,h) = convex(w,h) = C(2h+w−3, w−1)` - the same binomial as [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)], different *sets*. Convex and valley castles are therefore **equinumerous in every (w,h) cell**; an explicit bijection between them is open.[^6]
 
 ## Appearances in Sources
 
@@ -45,17 +43,17 @@ By (w,h) the concave counts add nothing new: `valley(w,h) = convex(w,h) = C(2h+w
 - [[area-growth-census](pages/area-growth-census.md)] - castle strips under every 0/1 adjacency rule, counted by area: which growth constants appear up to height 4, including the ten smallest Pisot numbers and small Salem numbers.
 - [[convex-castle](pages/convex-castle.md)] — convex/valley castles and their binomial (w,h) count.
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] — why dense-entry matches are low-value but real.
-- [[aocp-combinatorics](pages/aocp-combinatorics.md)] — area is the castle's natural second grading; the inversion statistic and its q-factorial generating function (GF) are the permutation-level prototype of such q-gradings.
+- [[aocp-combinatorics](pages/aocp-combinatorics.md)] — area is a second grading of the castle; the inversion statistic and its q-factorial generating function (GF) are the permutation-level prototype of such q-gradings.
 - [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the area marginal `H(N)` reads as an information-theoretic summary: at fixed `(w, h)` it grows as `(1/2) log_2 w + const` with the Gaussian formula matching brute force to within `0.01` bit by `w = 10`, and area beats blocks as a single-statistic summary at every `(w, h)` tested.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree-castle sibling by area: A000930 / A006498 / A000570 / A005251 as `h = 2, 3, 4, ≥ 5` cousins of the convex/valley/non-convex splits on this page.
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - the direct symbolic-method OGF for A001523 (convex castles by area), no recurrence needed.
 - [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - the polyomino-side ladder these counts sit on (rectangles, Ferrers, stacks, parallelograms, directed convex, convex), with the `cev`/`cod` split extended up the ladder as height parity.
-- [[proper-castle-projection](pages/proper-castle-projection.md)] - reciprocates the "new sequence from a castle count" precedent this page opened.
+- [[proper-castle-projection](pages/proper-castle-projection.md)] - imposing the exact-height and even-block clauses on the metallic strip counts keeps the growth constant and gives new exact sequences.
 - [[prime-castles](pages/prime-castles.md)] - cutting at height-1 columns makes castles a free monoid; the primes are the `F_{n-1}` castles with no height-1 column, a convex castle has at most one nontrivial prime (giving A001523 from the prime convex castles), and the `even`/`odd` and `cev`/`cod` splits are refined by the prime.
 - [[prime-convex-castles](pages/prime-convex-castles.md)] - the second difference of A001523 counts convex castles with no height-1 column, the same holds for `cev`/`cod` from `n = 3`, and the first difference is A342528.
 - [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] - the `even`/`odd` split to area 300 by a `z → qz` recursion; `even(n) - odd(n) ~ 0.0985 · (-1.62383)^n`.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - closed form for the trivariate (width, blocks, area) GF as `Π/(1 - x - Π)` over the parallelogram q-Bessel series, with meromorphy-in-|q|<1 for the signed count.
-- Bousquet-Mélou and Rechnitzer, "Lattice animals and heaps of dimers," *Discrete Math.* 258 (2002) 235-274 (`raw/bousquet-melou-rechnitzer-2002-lattice-animals-heaps-of-dimers.pdf`) Table 1 p.237 - "state of the art" summary of solved square-lattice polyomino subclasses; **Bargraph (Compositions), growth 2, Rational, "Obvious"** confirms the `2^{n-1}` count as the standard bar-graph-by-area result, and column-convex growth 3.20... (Temperley) is the natural envelope above the castle's own growth.
+- Bousquet-Mélou and Rechnitzer, "Lattice animals and heaps of dimers," *Discrete Math.* 258 (2002) 235-274 (`raw/bousquet-melou-rechnitzer-2002-lattice-animals-heaps-of-dimers.pdf`) Table 1 p.237 - "state of the art" summary of solved square-lattice polyomino subclasses; **Bargraph (Compositions), growth 2, Rational, "Obvious"** confirms the `2^{n-1}` count as the standard bar-graph-by-area result, and column-convex polyominoes, which contain the castles, grow like 3.20... (Temperley).
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - their bar-graph equation (3.11) is the castle GF by width, blocks and area. At unit width and block weights it gives the `2^(n-1)` here, and at block weight `-1` it gives `even(n) - odd(n)` (own computation through area 7, 2026-09-23).
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - the add-a-column method behind the column-convex rung (growth 3.20...) above the castle's `2^(n-1)`. Castles are its directed column-convex polygons with every column bottom on row 1.
 - [[column-convex-ladder-by-area](pages/column-convex-ladder-by-area.md)] - castles by area between stacks and the directed column-convex `F_(2n-1)`, with the block sign read as the vertical-perimeter sign on every rung.
@@ -70,4 +68,3 @@ By (w,h) the concave counts add nothing new: `valley(w,h) = convex(w,h) = C(2h+w
 [^4]: [[castle-by-area](pages/castle-by-area.md)] `vein9-area.md` §"Parity splits" L35-52 — the even/odd/CEV/COD table and "cev(n) + cod(n) = A001523(n) (parity split of A001523) ... a genuine refinement of a foundational sequence."
 [^5]: [[castle-by-area](pages/castle-by-area.md)] `vein9b-concave.md` §"The new sequence" L48-56 and §"Parity splits — all new" L60-78 — "strict_valley(n) = 0, 0, 0, 0, 1, 3, 8, 17, 34, 60, 107, 175, 285, 445, 691" and the six parity-refined variants with "valley_even + valley_odd = A332578 ... nc_even + nc_odd = A115981."
 [^6]: [[castle-by-area](pages/castle-by-area.md)] `vein9b-concave.md` §"Concave counts by (w, h)" L100-118 — "This is the same table as convex(w, h) — both equal C(2h + w − 3, w − 1) ... same cardinality in each (w, h) cell but different sets ... a candidate bijection worth writing up."
-[^7]: [[castle-by-area](pages/castle-by-area.md)] `vein9-area.md` §"Not-a-match" L54-63 — "A001168 (fixed polyominoes) ... and A005435 ... Neither is close numerically ... The right match for castles is unambiguously A001523 (stacks / unimodal compositions)."

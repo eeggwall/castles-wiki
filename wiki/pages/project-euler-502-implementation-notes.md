@@ -1,11 +1,11 @@
 ---
 title: "PE 502: Implementation Notes"
 category: Sources
-summary: A code-to-math map of Problem502.java — dispatch by (mod, h, w), the rational-function and k-direction BM paths, extractor switches, numerics, and what the code deliberately does NOT do.
+summary: A code-to-math map of Problem502.java - dispatch by (mod, h, w), the rational-function and k-direction BM paths, extractor switches, numerics, and what the code does not build.
 tags: [project-euler, castle, implementation, java, algorithms, source, subpage]
 sources: [project-euler-502-implementation-notes]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Project Euler 502 (PE 502): Implementation Notes
@@ -27,7 +27,7 @@ mod > 0, h > 15000, w <= 500 -> computePviaKBoth
 mod > 0, h > 15000, w > 500  -> computePviaKBoth   (identical branch; placeholder for a future third path)
 ```
 
-The rest of the page details the two live paths, the extractor switch, the matrix helpers that go unused on the composite path, the numerics, and — usefully — a statement of what the code deliberately does *not* build.
+The rest of the page details the two live paths, the extractor switch, the matrix helpers that go unused on the composite path, the numerics, and a statement of what the code does *not* build.
 
 ## The two computational paths, in code
 
@@ -52,7 +52,7 @@ The rest of the page details the two live paths, the extractor switch, the matri
 
 Operational specifics of the implementation, recorded for fidelity (not mathematical content):
 
-- **Speculative composite cache.** When the first composite sub-problem (`F(10^12,100)`) arrives on the calling thread, the other two are eagerly submitted to `ForkJoinPool.commonPool()` and their `Future<Long>` stored under `cacheKey(w,h,mod)`; later `solve` calls hit the cache. Parallel on multi-core, gracefully serial on one core, no correctness impact. `cacheKey = w*2_000_000_007L + h*1_000_003L + mod` — not a serious hash, but the three inputs are far apart in key space.[^7]
+- **Speculative composite cache.** When the first composite sub-problem (`F(10^12,100)`) arrives on the calling thread, the other two are eagerly submitted to `ForkJoinPool.commonPool()` and their `Future<Long>` stored under `cacheKey(w,h,mod)`; later `solve` calls hit the cache. Parallel on multi-core, serial on one core, no correctness impact. `cacheKey = w*2_000_000_007L + h*1_000_003L + mod` is not a serious hash, but the three inputs are far apart in key space.[^7]
 - **Numerics.** `modpow` is binary exponentiation (used for the modular inverse and for `h^w mod p`). `p = 10^9+7` is supplied via the `main` test table, not a field; `solveMod` accepts any prime `p`, but the division by 2 in the `F` formula assumes `p ≠ 2` (it is a multiply by the modular inverse of 2).[^8]
 
 ## Regime table
