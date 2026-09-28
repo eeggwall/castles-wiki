@@ -64,7 +64,6 @@ A005251	count	a(0) = 0, a(1) = a(2) = a(3) = 1; thereafter, a(n) = a(n-1) + a(n-
 A005252	count	a(n) = Sum_{k=0..floor(n/4)} binomial(n-2k,2k).	minimum-tower-spacing `(h=2, g=3)` castles, `a(w+3)`; golden growth
 A005253	count	Number of binary words of length n in which the ones occur only in blocks of length at least 4.	minimum-tower-spacing `(h=2, g=4)` castles, `a(w+3)`
 A005408	count	The odd numbers: a(n) = 2*n + 1.	tower Narayana coefficient row
-A005435	count	Number of column-convex polyominoes with perimeter 2n+2.	column-convex polyominoes by perimeter (neighbor family)
 A005436	supporting	Number of convex polygons of perimeter 2n on square lattice.	convex polyominoes by perimeter (Delest-Viennot)
 A005683	count	Numbers of Twopins positions.	tree castles (trivial sandpile group) of n cells, mirror images removed: (A005251(n+2) + A000931(n+6))/2, agreement through n = 26
 A005689	count	Number of Twopins positions.	minimum-tower-spacing `(h=2, g=5)` castles, `a(w+6)`
