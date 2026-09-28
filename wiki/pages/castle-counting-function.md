@@ -1,20 +1,20 @@
 ---
 title: Castle counting function F(w,h)
 category: Concepts
-summary: F(w,h), the number of valid castles on a w×h grid; PE 502 restricts it to even block counts and asks for a sum of three large evaluations mod 1e9+7.
+summary: F(w,h), Project Euler 502's count of castles with an even number of blocks on a w×h grid (all castles are counted by A(w,h) = h^w − (h−1)^w); PE 502 asks for a sum of three large evaluations mod 1e9+7.
 tags: [concept, castle, counting-function, project-euler]
 sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Castle counting function F(w,h)
 
 ## Description
 
-`F(w,h)` is the function that returns the number of valid [[castle-polyomino](pages/castle-polyomino.md)] configurations for a game grid *w* units wide and *h* units tall.[^1] It is the quantity Project Euler 502 asks the solver to compute.
+`F(w,h)` is the number of valid [[castle-polyomino](pages/castle-polyomino.md)] configurations for a game grid *w* units wide and *h* units tall.[^1] It is the quantity Project Euler 502 asks the solver to compute.
 
-**The even-block restriction is a special case.** As stated in Project Euler 502, `F(w,h)` counts only castles made from an **even** number of blocks.[^2] In this wiki's framing, that parity constraint is a restriction on top of the general castle object — the general and more interesting problem is counting *all* castles regardless of parity, of which the even-only count is a special case (see [[castle-polyomino](pages/castle-polyomino.md)]). The parity restriction is precisely what makes PE 502 hard and interesting rather than a trivial specialization.
+**The even-block restriction is a special case.** As stated in Project Euler 502, `F(w,h)` counts only castles made from an **even** number of blocks.[^2] In this wiki's framing, that parity constraint is a restriction on top of the general castle object, which is studied at any block count (see [[castle-polyomino](pages/castle-polyomino.md)]). Without the restriction the count is `h^w − (h−1)^w`; the parity clause is what makes PE 502 hard.
 
 **Notation: `A` for all castles, `F` for even.** The Solution subpage names the general (any-parity) count `A(w,h)` — the number of castles with bottom block of length *w* and height *exactly* *h* — and defines `F(w,h)` as `A(w,h)` restricted to an even total block count.[^5] This wiki adopts that convention: `A` is the parity-agnostic object of primary interest, and `F` its even-block special case. The odd-block count is `A − F` and has no symbol of its own on this wiki. (The reference Python module calls these `F_any = A = h^w − (h−1)^w`, `F`, and `F_odd = A − F`; `F_odd` is a code variable name, not a wiki symbol.)[^6]
 
@@ -35,9 +35,9 @@ Note that `F(13,10) ≠ F(10,13)` — the function is **not** symmetric in *w* a
 (F(10^12, 100) + F(10000, 10000) + F(100, 10^12)) mod 1,000,000,007
 ```
 
-The three arguments deliberately stress different regimes: a very wide/short grid, a large square grid, and a narrow/very tall grid — so a solution must handle both dimensions scaling independently and to sizes far beyond brute-force enumeration.
+The three arguments are a very wide/short grid, a large square grid, and a narrow/very tall grid, so a solution must handle both dimensions scaling independently and to sizes far beyond brute-force enumeration.
 
-**A closed form exists.** `F(w,h)` is not only computable but has a closed form derived from a generalized Dyck grammar: `F(w,h) = [h^w − (h−1)^w − P(h−1,w) + P(h−2,w)] / 2`, where `P` is a signed tower count encoding the even-block rule. The derivation is the [[castle-counting-formula](pages/castle-counting-formula.md)]; it reproduces all three integer checkpoints exactly (verified during ingest). The large-parameter evaluations are carried out by the [[castle-count-algorithms](pages/castle-count-algorithms.md)] (a rational-function path and a Berlekamp–Massey path, routed by *h*).
+**A closed form exists.** `F(w,h)` has a closed form derived from a generalized Dyck grammar: `F(w,h) = [h^w − (h−1)^w − P(h−1,w) + P(h−2,w)] / 2`, where `P` is a signed tower count encoding the even-block rule. The derivation is the [[castle-counting-formula](pages/castle-counting-formula.md)]; it reproduces all three integer checkpoints exactly (verified during ingest). The large-parameter evaluations are carried out by the [[castle-count-algorithms](pages/castle-count-algorithms.md)] (a rational-function path and a Berlekamp–Massey path, routed by *h*).
 
 **The composite answer.** The Solution subpage records the final value of the target sum only in obfuscated form (a base64 checksum). Following Project Euler etiquette, this wiki does not reproduce the decoded answer; the checksum is preserved on [[project-euler-502-solution](pages/project-euler-502-solution.md)].
 

@@ -5,7 +5,7 @@ summary: The second lap of the build / red-team / blue-team loop on the castle c
 tags: [analysis, seminar, cryptography, cryptanalysis, red-team, blue-team, pohlig-hellman, baby-step-giant-step, berlekamp-massey, linear-complexity, elgamal, schnorr, signature, finite-field, cyclotomic, index-calculus, key-size, castle]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # Castle cryptography, round two
@@ -200,7 +200,7 @@ Even with Fixes 4 and 5 in place, `F_{p^d}` for small `d` has the subexponential
 | 6 | `≈ 2¹⁸⁰` | `2²⁴` | `≈ 2⁴⁰` |
 | 7 | `≈ 2²¹⁰` | `2³⁴` | `≈ 2⁴³` |
 
-and the field size at which `L_q[1/3]` reaches `2¹²⁸` is about `q ≈ 2²⁵⁰⁰` — `p ≈ 2¹²⁷²` at `d = 2`, `2⁶³⁶` at `d = 4`, `2⁴²⁴` at `d = 6` (the same ballpark as the 3072-bit finite-field recommendation for 128-bit security). This is the honest ceiling of round one, now with a number: the castle DLP is not made safe by any *structural* choice; it is made safe, if at all, by a `p` hundreds of bits wide, at which point it is ordinary finite-field cryptography wearing a castle.
+and the field size at which `L_q[1/3]` reaches `2¹²⁸` is about `q ≈ 2²⁵⁰⁰` — `p ≈ 2¹²⁷²` at `d = 2`, `2⁶³⁶` at `d = 4`, `2⁴²⁴` at `d = 6` (the same ballpark as the 3072-bit finite-field recommendation for 128-bit security). This is the ceiling of round one: no *structural* choice makes the castle DLP safe, only a `p` hundreds of bits wide, at which point it is ordinary finite-field cryptography.
 
 ---
 

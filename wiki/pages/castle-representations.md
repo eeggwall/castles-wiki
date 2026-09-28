@@ -5,7 +5,7 @@ summary: Three ways to encode a castle — binary strings, integer tuples, and U
 tags: [concept, castle, representations, encoding, combinatorics]
 sources: [project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-solution]
 created: 2026-09-13
-updated: 2026-09-20
+updated: 2026-09-28
 ---
 
 # Castle representations
@@ -39,7 +39,7 @@ differences:            +2 +1 +2 −3 +1 −2 +4 −1 −4
 negative sum:          |(−3)+(−2)+(−1)+(−4)| = 10 blocks
 ```
 
-The binary encoding did not lead to the solution, but it is not incidental: it supplies the [[binary-string-bijection](pages/binary-string-bijection.md)] — a length-*L* block admits `2^L` sub-configurations, and a string with *r* runs of 1s gives *r* sub-blocks — which is the base of the induction proving `T(k,L)=(k+1)^L`.[^5] The Solution subpage is explicit that binary strings *alone* were a dead end: "the right encoding, wrong decomposition" — there is no way to count without also having the sibling-independence insight (the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] crux).[^13]
+The binary encoding did not lead to the solution, but it supplies the [[binary-string-bijection](pages/binary-string-bijection.md)] — a length-*L* block admits `2^L` sub-configurations, and a string with *r* runs of 1s gives *r* sub-blocks — which is the base of the induction proving `T(k,L)=(k+1)^L`.[^5] The Solution subpage is explicit that binary strings *alone* were a dead end: "the right encoding, wrong decomposition" — there is no way to count without also having the sibling-independence insight (the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] crux).[^13]
 
 ### 2. Integer tuples
 
@@ -65,9 +65,9 @@ The step-based encoding writes a castle as a string of `U` (up), `R` (right), `D
 The castle-factoring work sketches three additional encodings, each a re-view of the tower word:[^9]
 
 - **Excursion/gap word.** The no-`UD`/no-`DU` rules force a tower word to alternate vertical and horizontal runs, so it can be written as `(direction₁, gap₁, direction₂, gap₂, …)` — each *direction* a signed vertical-run length, each *gap* an `R`-run length. Validity is a Motzkin-like condition: every prefix of the signed directions has sum ≥ 0, and the total is 0.[^10]
-- **Cycle-forest form.** Stack-match each `U` with the `D` that closes it; each matched pair is a block, and a block nested directly inside another is its child, giving a rooted forest of blocks (roots on the base). It is the castle analogue of a permutation as parenthesized cycles — but it is only the *vertical nesting skeleton*: it discards the `R` steps and so does not recover the tower word. A bare parenthesization is a two-letter Dyck word (`U` open, `D` close) and cannot record horizontal moves; the tower needs the third letter `R`. This is exactly why the model uses the three-letter [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] rather than a bare Dyck word.[^11]
+- **Cycle-forest form.** Stack-match each `U` with the `D` that closes it; each matched pair is a block, and a block nested directly inside another is its child, giving a rooted forest of blocks (roots on the base). It is the castle analogue of a permutation as parenthesized cycles — but it is only the *vertical nesting skeleton*: it discards the `R` steps and so does not recover the tower word. A bare parenthesization is a two-letter Dyck word (`U` open, `D` close) and cannot record horizontal moves; the tower needs the third letter `R`. This is why the model uses the three-letter [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] rather than a bare Dyck word.[^11]
 - **Signed column-difference sequence.** The run-length encoding of the first-difference sequence `d` into up-streaks, flat runs, and down-streaks — the signed form of the castle, with the down-streaks as the sign-carrying atoms and the flat runs recording gap and sub-block widths. This is the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)].[^12]
-- **BDD / ZDD.** The valid-castle set `V(w, h)` as a Binary Decision Diagram or zero-suppressed BDD: a directed-acyclic-graph representation of size `O(h · w · log h)` obtained by lifting the [[castle-strip](pages/castle-strip.md)] transfer matrix to a DFA on state `(last-column height, blocks-mod-2, is-h-reached)` and encoding each column in `⌈log_2 h⌉` Boolean variables. Not just a shorter encoding of individual castles - a compact representation of the whole family `V(w, h)`, with ZDD synthesis primitives supporting counting, uniform random sampling, rank / unrank, and free intersection with other castle-family ZDDs; see [[castle-bdd-zdd](pages/castle-bdd-zdd.md)].
+- **BDD / ZDD.** The valid-castle set `V(w, h)` as a Binary Decision Diagram or zero-suppressed BDD: a directed-acyclic-graph representation of size `O(h · w · log h)` obtained by lifting the [[castle-strip](pages/castle-strip.md)] transfer matrix to a DFA on state `(last-column height, blocks-mod-2, is-h-reached)` and encoding each column in `⌈log_2 h⌉` Boolean variables. It represents the whole family `V(w, h)` rather than single castles, and ZDD operations support counting, uniform random sampling, rank / unrank, and intersection with other castle-family ZDDs; see [[castle-bdd-zdd](pages/castle-bdd-zdd.md)].
 
 ## Appearances in Sources
 
@@ -82,7 +82,7 @@ The castle-factoring work sketches three additional encodings, each a re-view of
 - [[castle-polyomino](pages/castle-polyomino.md)] — the object being encoded.
 - [[castle-counting-function](pages/castle-counting-function.md)] — the count these encodings are built to enable.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)], [[castle-sign](pages/castle-sign.md)], [[castle-foata-transform](pages/castle-foata-transform.md)] — built on the column-height encoding.
-- [[castle-snippets](pages/castle-snippets.md)] — tested Python one-liners for enumerating and predicating on the column-height (skyline) encoding.
+- [[castle-snippets](pages/castle-snippets.md)] — short tested Python snippets for enumerating and predicating on the column-height (skyline) encoding.
 - [[block-count-constraints](pages/block-count-constraints.md)] — reads the binary-subsection's run-count block formula as one point of the residue/sparse/semigroup trichotomy on `G(z)`.
 
 ## Footnotes

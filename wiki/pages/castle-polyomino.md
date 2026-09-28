@@ -5,7 +5,7 @@ summary: The central object of study. A castle is a skyline (c_1, …, c_w) with
 tags: [concept, castle, polyomino, bargraph, column-convex, skyline, combinatorics]
 sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-solution, project-euler-502-brute-force]
 created: 2026-09-13
-updated: 2026-09-23
+updated: 2026-09-28
 ---
 
 # Castle (polyomino)
@@ -25,8 +25,6 @@ The `i`-th column of the castle is the vertical stack of unit cells at heights `
 - **exactly `h` tall** - at least one column reaches the ceiling.
 
 In the polyomino literature the object *"column-convex polyomino with a full contiguous bottom row"* is called a **bargraph** (or a **skyline polyomino**), so a castle is a bargraph of width `w`, height at most `h`, that touches the ceiling `h` in at least one column. That places castles inside a well-studied family, next to Ferrers, staircase, stack, and parallelogram polyominoes ([[polyominoes](pages/polyominoes.md)], [[column-convex-polyomino](pages/column-convex-polyomino.md)]).
-
-The name "castle polyomino" reflects the visual intuition: a valid configuration resembles the crenellated silhouette of a castle wall.
 
 ## Blocks and the any-parity count
 
@@ -50,17 +48,17 @@ A(w, h)  =  # castles of width w, height exactly h  =  h^w − (h−1)^w.
 
 The definition above already forces every castle rule Project Euler 502 states. The five rules from the source, translated into the skyline model:[^5]
 
-- **Rule 1 - no overhangs, no floating blocks.** A block rests on a horizontal support: either the base row, or the top of another block, or two other blocks sitting at the same level with no gap between them (so their tops form a continuous surface). The skyline model builds this in from the start - each column is a contiguous stack of unit cells rising from row 1 - so there is nothing to overhang and nothing to float.
+- **Rule 1 - no overhangs, no floating blocks.** A block is placed on top of other blocks with nothing sticking out past the edges or hanging over open space. The skyline model builds this in from the start - each column is a contiguous stack of unit cells rising from row 1 - so there is nothing to overhang and nothing to float.
 - **Rule 2 - grid-snapped.** Every cell is aligned to the integer grid; automatic in the skyline model.
 - **Rule 3 - same-row spacing.** Any two neighboring row-`r` blocks are separated by at least one column of empty space. Automatic: two adjacent columns `c_i, c_{i+1} ≥ r` are one block on row `r`, not two, because the blocks are defined as maximal runs. This is the point [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] records as "no-overhang needs no separate rule".
 - **Rule 4 - full base.** Row 1 is a single block of length `w`. Encoded by `c_i ≥ 1` for every `i`.
 - **Rule 5 - exact height.** The castle reaches height exactly `h`. Encoded by `max_i c_i = h`.
 
-The equivalence between the source's block-level rules and the skyline conditions above is the content of [[castle-representations](pages/castle-representations.md)]; the U/R/D step-string form, which reads validity off a two-letter forbidden-substring rule, is the deepest of the three encodings and lives on [[urd-step-strings](pages/urd-step-strings.md)].
+The equivalence between the source's block-level rules and the skyline conditions above is the content of [[castle-representations](pages/castle-representations.md)]; the U/R/D step-string form, which reads validity off a two-letter forbidden-substring rule, is on [[urd-step-strings](pages/urd-step-strings.md)].
 
 ## Relationship to Project Euler 502
 
-Project Euler 502 counts a *restricted* family of castles: those made from an **even** number of blocks.[^4] The parity constraint is a filter on top of the general castle object, and this wiki treats it that way - `A(w, h)` is the ambient count and `F(w, h)` its even-block restriction, following the notation of [[project-euler-502-solution](pages/project-euler-502-solution.md)]. The parity constraint is precisely what gives PE 502 its particular character; the general castle, at any block count, is the object most threads on this wiki follow.
+Project Euler 502 counts a *restricted* family of castles: those made from an **even** number of blocks.[^4] The parity constraint is a filter on top of the general castle object, and this wiki treats it that way - `A(w, h)` is the ambient count and `F(w, h)` its even-block restriction, following the notation of [[project-euler-502-solution](pages/project-euler-502-solution.md)].
 
 ## Encodings
 
@@ -79,7 +77,7 @@ A castle can be encoded exactly in several ways - column-wise binary strings, th
 
 - [[castle-representations](pages/castle-representations.md)] - the three encodings of a castle (binary strings, skyline tuples, U/R/D step strings).
 - [[castle-counting-function](pages/castle-counting-function.md)] - `F(w, h)`, the even-block count; `A(w, h) = h^w − (h−1)^w` is the ambient any-parity count above.
-- [[castle-counting-formula](pages/castle-counting-formula.md)] - the closed form `F(w, h) = (A − P)/2` in terms of the signed tower count.
+- [[castle-counting-formula](pages/castle-counting-formula.md)] - the closed form `F(w, h) = [A(w, h) − P(h−1, w) + P(h−2, w)]/2` in terms of the signed tower count.
 - [[castle-sign](pages/castle-sign.md)] - `(−1)^{#blocks}` as a homomorphism, block count as the total descent of the skyline.
 - [[castle-classification](pages/castle-classification.md)] - the hub for castle sub-family typing, split into geometric types ([[castle-classification-shape](pages/castle-classification-shape.md)]: the 42 skyline predicates across Axes 1-7) and non-geometric types ([[castle-classification](pages/castle-classification.md)]: Axis 8 growth type of a class, Axis 9 spectrum of the castle graph, compressibility).
 - [[castle-strip](pages/castle-strip.md)] - a castle read left to right, one column at a time, under a neighbor rule; the transfer-matrix bridge.

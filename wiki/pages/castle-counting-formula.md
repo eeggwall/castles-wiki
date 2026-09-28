@@ -5,7 +5,7 @@ summary: The wiki's core derivation. F(w,h) = [h^w − (h−1)^w − P(h−1,w) 
 tags: [concept, castle, generating-functions, closed-form, dyck, proof]
 sources: [project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes, project-euler-502-brute-force]
 created: 2026-09-13
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # Castle counting formula
@@ -30,9 +30,9 @@ where `1` is the empty tower, `x·E_k` a gap column then the rest, `(E_{k−1} �
 E_k = 1 / (1 − (k+1)x)      ⟹      T(k,L) = (k+1)^L
 ```
 
-**Proof 2: product form over column heights.** The castle-factoring reading gives the same `(k+1)^L` without solving a generating-function recurrence: reading a tower as its column heights `c_1…c_L` (the integer-tuple [[castle-representations](pages/castle-representations.md)]), each `c_i` ranges *independently* over `{0,…,k}`, and the tower word is recovered invertibly from the heights — so `T(k,L) = (k+1)^L` is immediate as a product form.[^10] That independence of the columns is exactly the crux the Observations subpage names — sibling towers never interact — captured structurally on [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]; it "took years to see."[^13]
+**Proof 2: product form over column heights.** The castle-factoring reading gives the same `(k+1)^L` without solving a generating-function recurrence: reading a tower as its column heights `c_1…c_L` (the integer-tuple [[castle-representations](pages/castle-representations.md)]), each `c_i` ranges *independently* over `{0,…,k}`, and the tower word is recovered invertibly from the heights — so `T(k,L) = (k+1)^L` is immediate as a product form.[^10] That independence of the columns is the crux the Observations subpage names — sibling towers never interact — captured structurally on [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]; it "took years to see."[^13]
 
-**Proof 3: induction on *k*.** The Solution subpage proves the same closed form by a clean induction on *k*: the [[binary-string-bijection](pages/binary-string-bijection.md)] plus sibling independence makes the count factor over runs, `T(k,L) = ∑_b ∏_{runs} T(k−1,l) = ∑_b k^{ones(b)} = (1+k)^L`.[^16]
+**Proof 3: induction on *k*.** The Solution subpage proves the same closed form by induction on *k*: the [[binary-string-bijection](pages/binary-string-bijection.md)] plus sibling independence makes the count factor over runs, `T(k,L) = ∑_b ∏_{runs} T(k−1,l) = ∑_b k^{ones(b)} = (1+k)^L`.[^16]
 
 All three land on the same statement: the number of towers of height at most *k* above a length-*L* block is `(k+1)^L`, with corollary `T(h−1,w) = h^w`.[^16]
 
@@ -64,7 +64,7 @@ For fixed *k*, `P_k` is rational with denominator of degree *k*+1, so `P(k,L)` o
 
 The full C-finite `P(k,·)` family (order `k+1`, characteristic polynomials with constant term `(−1)^{k−1}2^k`) is catalogued on [[signed-tower-count](pages/signed-tower-count.md)].
 
-**Why `P` is the right signed object.** `P(k,L) = ∑_{c ∈ {0,…,k}^L} (−1)^{descent(c)}` is the [[castle-sign](pages/castle-sign.md)] `s(C) = (−1)^{blocks}` summed over all towers — the castle analogue of the permutation sign homomorphism. The `(T ± P)/2` combination is the `(1 ± sgn)/2` even/odd class projector, which is exactly why it isolates the even-block castles.[^11]
+**`P` as a sign sum.** `P(k,L) = ∑_{c ∈ {0,…,k}^L} (−1)^{descent(c)}` is the [[castle-sign](pages/castle-sign.md)] `s(C) = (−1)^{blocks}` summed over all towers — the castle analogue of the permutation sign homomorphism. The `(T ± P)/2` combination is the `(1 ± sgn)/2` even/odd class projector, which isolates the even-block castles.[^11]
 
 **A third route to `P`.** Besides the generating-function recurrence (above) and the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)], `P(k,L)` can be computed by a direct `O(k²L)` dynamic program over the last column height: carry a length-`(k+1)` state indexed by the previous column's height, and on appending a column of height `b` after `a` multiply by `(−1)^{max(0, b−a)}` (the new runs each contribute `−1`). This is the [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] `p_signed`, used as exact-integer ground truth for the formula.[^18]
 
@@ -92,9 +92,9 @@ F(10,13) = 37959702514
 
 matching the values on [[castle-counting-function](pages/castle-counting-function.md)].[^9]
 
-The two integer values also have clean factorizations (confirmed by factoring during ingest): `F(13,10) = 3729050610636 = 2²·3·13·1163·20553887` and `F(10,13) = 37959702514 = 2·102859·184523`.[^14]
+The two integer values factor as (confirmed by factoring during ingest): `F(13,10) = 3729050610636 = 2²·3·13·1163·20553887` and `F(10,13) = 37959702514 = 2·102859·184523`.[^14]
 
-**The parity clause is the whole difficulty.** Almost all of the formula's complexity — the signed count `P` — is there to enforce the even-block rule. Drop that rule and the count collapses to the unsigned baseline `h^w − (h−1)^w` (all castles of height ≤ *h* minus those of height ≤ *h*−1), i.e. the `P` terms vanish. The even-block clause is "almost the entire difficulty."[^15]
+**The parity clause.** The signed count `P` is in the formula only to enforce the even-block rule. Without that rule the count is the unsigned baseline `h^w − (h−1)^w` (all castles of height ≤ *h* minus those of height ≤ *h*−1); the source calls the clause "almost the entire difficulty."[^15]
 
 ## Appearances in Sources
 

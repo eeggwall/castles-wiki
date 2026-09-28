@@ -5,7 +5,7 @@ summary: The Project Euler 502 hub page — defines the castle object, the count
 tags: [project-euler, castle, polyomino, source, hub]
 sources: [project-euler-502]
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-28
 ---
 
 # Project Euler 502: Castle Polyominoes
@@ -18,7 +18,7 @@ updated: 2026-09-13
 
 This is the hub page for Project Euler problem 502 on the charlesreid1.com wiki. It states the problem, defines the central object — a **[[castle-polyomino](pages/castle-polyomino.md)]** — and introduces the counting function that the problem asks about. A castle is a configuration of stacked *blocks*, where a block is a height-1 rectangle of integer length, arranged on a game grid *w* units wide and *h* units tall.[^1]
 
-The problem asks for the value of a specific counting function, the **[[castle-counting-function](pages/castle-counting-function.md)]** `F(w,h)`, evaluated at three large grid sizes and summed modulo 1,000,000,007.[^2] The Project Euler formulation restricts the count to castles built from an **even** number of blocks[^3] — a parity constraint that, in this wiki's framing, is a *special case* of the more general and more interesting problem of counting all castles regardless of block parity.
+The problem asks for the value of a specific counting function, the **[[castle-counting-function](pages/castle-counting-function.md)]** `F(w,h)`, evaluated at three large grid sizes and summed modulo 1,000,000,007.[^2] The Project Euler formulation restricts the count to castles built from an **even** number of blocks[^3] — a parity constraint that, in this wiki's framing, is a *special case* of counting all castles regardless of block parity.
 
 The page functions as an index into a worked solution: it links seven subpages covering the problem setup, three encodings of a castle, a cycle-factorization reading, key observations, the full mathematical solution, implementation notes for the Java program, and a Python brute-force cross-check.[^4] It also situates the problem within a cluster of related combinatorial topics — polyominoes, Dyck words, lattice paths, combinatorics, and generating functions.[^5] The problem was first discussed in July 2017 and solved March 31, 2026.[^6]
 
@@ -33,16 +33,15 @@ The page functions as an index into a worked solution: it links seven subpages c
 ## Entities & Concepts
 
 - [[castle-polyomino](pages/castle-polyomino.md)] — the central object: a valid configuration of stacked blocks on a grid.
-- [[castle-counting-function](pages/castle-counting-function.md)] — `F(w,h)`, the number of castles; the PE 502 even-block restriction is a special case.
-
-- [[generating-functions](pages/generating-functions.md)] — the intended counting method (concept page seeded from the Problem Setup subpage; the dedicated *Generating Functions* source page is still queued).
+- [[castle-counting-function](pages/castle-counting-function.md)] — `F(w,h)`, the even-block castle count; `A(w,h)` counts all castles.
+- [[generating-functions](pages/generating-functions.md)] — the intended counting method; the linked *Generating Functions* source page is [[generating-functions-topic](pages/generating-functions-topic.md)].
 - [[polyominoes](pages/polyominoes.md)] — the polyomino taxonomy that places the castle as a column-convex polyomino.
 
-Related topics also ingested: [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/lattice-paths.md)], and the Knuth combinatorics notes [[aocp-combinatorics](pages/aocp-combinatorics.md)]. Still not yet ingested: the general Combinatorics topic page.
+Related topics: [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/lattice-paths.md)], and the Knuth combinatorics notes [[aocp-combinatorics](pages/aocp-combinatorics.md)].
 
 ## Relation to Other Wiki Pages
 
-As the first source ingested, this page seeds the wiki. It defines the two foundational concepts ([[castle-polyomino](pages/castle-polyomino.md)] and [[castle-counting-function](pages/castle-counting-function.md)]) that every subsequent PE 502 subpage will elaborate. The seven subpages and five related-topic pages linked here are the planned ingestion queue; when ingested, each will backlink to this hub.
+This page defines the two foundational concepts ([[castle-polyomino](pages/castle-polyomino.md)] and [[castle-counting-function](pages/castle-counting-function.md)]) that the seven PE 502 subpages elaborate: [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)], [[project-euler-502-representations](pages/project-euler-502-representations.md)], [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)], [[project-euler-502-observations](pages/project-euler-502-observations.md)], [[project-euler-502-solution](pages/project-euler-502-solution.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] and [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)].
 
 ## Footnotes
 

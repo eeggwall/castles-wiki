@@ -5,7 +5,7 @@ summary: A multivariate polynomial whose variables are the problem's dimensions 
 tags: [concept, generating-functions, combinatorics, method, symbolic-method]
 sources: [project-euler-502-problem-setup, project-euler-502-representations, aocp-generating-functions, generating-functions-topic, analytic-combinatorics-ch1-ogfs, pe502-pell-castle-strip]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Generating functions
@@ -18,17 +18,17 @@ In the context of this wiki, the generating function is the intended tool for co
 
 ## The concrete instance for castles
 
-The representations subpage supplies the actual generating functions for the castle problem, read off the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]: an *unsigned* tower generating function `E_k(x) = 1/(1−(k+1)x)`, giving `T(k,L) = (k+1)^L`, and a *signed* generating function `P_k` (each block/`D` weighted −1) that encodes the even-block rule via a rational-function recurrence in `x`. These combine into the [[castle-counting-formula](pages/castle-counting-formula.md)] for `F(w,h)`, where `P(k,L)` is exactly "the coefficient of `x^L` in the generating function" - the "evaluate a particular term" step, realized.
+The representations subpage supplies the actual generating functions for the castle problem, read off the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]: an *unsigned* tower generating function `E_k(x) = 1/(1−(k+1)x)`, giving `T(k,L) = (k+1)^L`, and a *signed* generating function `P_k` (each block/`D` weighted −1) that encodes the even-block rule via a rational-function recurrence in `x`. These combine into the [[castle-counting-formula](pages/castle-counting-formula.md)] for `F(w,h)`, where `P(k,L)` is "the coefficient of `x^L` in the generating function" - the "evaluate a particular term" step.
 
-The **negative binomial** `1/(1−z)^{n+1} = ∑_k C(n+k, n) z^k` also appears, but not in `(k+1)^L` (unsigned tower) or `h^w − (h−1)^w` (any-parity) - both of those are pure exponentials in width. It appears in the **[[convex-castle](pages/convex-castle.md)] count** `C(2h+w−3, w−1) = [z^{w−1}] (1−z)^{−(2h−1)}`: with `2h−1` up steps and `2h−1` down steps interleaving the `w−1` extra `R`s, the negative-binomial expansion is exactly the stars-and-bars generating function for the front and back halves of a convex castle ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]).
+The **negative binomial** `1/(1−z)^{n+1} = ∑_k C(n+k, n) z^k` also appears, but not in `(k+1)^L` (unsigned tower) or `h^w − (h−1)^w` (any-parity) - both of those are pure exponentials in width. It appears in the **[[convex-castle](pages/convex-castle.md)] count** `C(2h+w−3, w−1) = [z^{w−1}] (1−z)^{−(2h−1)}`: a convex castle's word has `h` `U`s and `h` `D`s, the `w−1` extra `R`s go into the `2h−1` slots between them, and the negative-binomial expansion is the stars-and-bars generating function for that placement ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]).
 
 ## Three source treatments
 
-The wiki has ingested three complementary references, each attacking generating functions from a different level.
+Three references treat generating functions at different levels.
 
 **The general framing - the [[symbolic-method](pages/symbolic-method.md)].** Flajolet & Sedgewick's specification-to-ordinary generating function (OGF) dictionary ([[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)], Chapter I) sits above the recurrence-first apparatus below: six admissible constructions - `+`, `×`, `SEQ`, `MSET`, `PSET`, `CYC` - each with a mechanical OGF operator, over the neutral / atomic ground classes `E` and `Z`.[^2] Describe a combinatorial class as a *specification* built from these primitives, and the OGF is a component of a system of functional equations, read off automatically.[^2] The castle's own [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is a recursive specification in exactly this style - a first-return decomposition of a tower - and the tower OGFs on [[project-euler-502-representations](pages/project-euler-502-representations.md)] are what the SEQ operator, plus a `(−1)`-weighting for the even-block projector, translates the grammar to.
 
-**The method toolkit - the rational / SEQ case.** [[aocp-generating-functions](pages/aocp-generating-functions.md)] (Knuth's *The Art of Computer Programming* (TAOCP) Vol. 1) supplies the machinery for the rational-GF case: the Fibonacci method (posit the series → rational GF → partial fractions → closed form) and the key structural fact that a **linear recurrence yields a rational generating function** `poly / (1 − ∑ c_k z^k)`. Under the symbolic-method framing this is the "SEQ over a finite atomic alphabet" special case - regular languages have rational OGFs (Prop. I.2 of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)]).[^3] This is exactly why the castle's `P_k = num_k/den_k` is rational and why partial fractions give the `Re((1+i)^{L+1})`-style closed forms.
+**The method toolkit - the rational / SEQ case.** [[aocp-generating-functions](pages/aocp-generating-functions.md)] (Knuth's *The Art of Computer Programming* (TAOCP) Vol. 1) supplies the machinery for the rational-GF case: the Fibonacci method (posit the series → rational GF → partial fractions → closed form) and the fact that a **linear recurrence yields a rational generating function** `poly / (1 − ∑ c_k z^k)`. Under the symbolic-method framing this is the "SEQ over a finite atomic alphabet" special case - regular languages have rational OGFs (Prop. I.2 of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)]).[^3] This is why the castle's `P_k = num_k/den_k` is rational and why partial fractions give the `Re((1+i)^{L+1})`-style closed forms.
 
 **The intuition-and-examples one.** [[generating-functions-topic](pages/generating-functions-topic.md)] (Sedgewick–Flajolet / Trotter) is the reference to reach for when the reader wants worked examples rather than a framework - imaginary-roots CF expansions, exponential generating function (EGF) parity projectors, every-4th-term OGFs - together with an explicit "Application: Project Euler 502 (PE 502)" section.
 
@@ -56,7 +56,7 @@ a_n − 2·a_{n−1} − a_{n−2}  =  [n = 0].
 
 The "base cases" `a_0 = 1, a_1 = 2` are this recurrence evaluated at `n = 0, 1` with the negative-index zeros substituted. No separate argument.[^4]
 
-**Why this matters.** Every rational generating function in the castle machinery — `E_k = 1/(1 − (k+1)x)`, `P_k = num_k/den_k`, the C-finite recurrences on [[recurrence-discovery](pages/recurrence-discovery.md)] — is reached the same way. Coefficient matching is the shortcut that makes "read the recurrence off the denominator" fully mechanical: the coefficients of `−D(x)` (excluding the constant `1`) are the recurrence weights. This is also the opening mechanic of the [[pell-castle-strip](pages/pell-castle-strip.md)] seminar, where a textbook end-of-chapter exercise on this technique leads to a castle strip (the 1-smooth height-3 strip anchored at the base) whose width generating function is exactly `1/(1 − 2x − x²)`.
+Every rational generating function in the castle machinery — `E_k = 1/(1 − (k+1)x)`, `P_k = num_k/den_k`, the C-finite recurrences on [[recurrence-discovery](pages/recurrence-discovery.md)] — is read the same way. Coefficient matching makes "read the recurrence off the denominator" mechanical: the coefficients of `−D(x)` (excluding the constant `1`) are the recurrence weights. This is also the opening mechanic of the [[pell-castle-strip](pages/pell-castle-strip.md)] seminar, where a textbook end-of-chapter exercise on this technique leads to a castle strip (the 1-smooth height-3 strip anchored at the base) whose width generating function is exactly `1/(1 − 2x − x²)`.
 
 ## Appearances in Sources
 

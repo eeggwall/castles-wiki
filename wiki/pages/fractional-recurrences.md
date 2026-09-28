@@ -152,7 +152,7 @@ The [[reachable-field-census](pages/reachable-field-census.md)] settles which al
 
 2. **The curve is transcendental almost everywhere.** As `α` ranges over the irrationals - a full-measure set - `g(α)` is transcendental. These transcendental growth constants are **complement of the reachable-field census**: no 0/1 castle-strip transfer matrix has a transcendental Perron root, because a transfer matrix's characteristic polynomial has integer coefficients, so its eigenvalues are algebraic. So the fractional-Fibonacci curve visits every real `≥ 1`, of which the algebraic ones live inside the census and the transcendental ones live outside it.
 
-The **complement statement** is the item's expected outcome: fractional recurrences fill the transcendental interior between the metallic-ladder rungs, and their generic growth constants are numbers a castle strip can never realize. What was surprising during the derivation is that the complement is not quite full - a countable dense subset of the fractional-recurrence curve *does* land back on the algebraic side, and in fact hits three of the cubic Perron roots the reachable-field census had surfaced from a different direction.
+The **complement statement**: fractional recurrences fill the transcendental interior between the metallic-ladder rungs, and their generic growth constants are numbers a castle strip can never realize. The complement is not full: a countable dense subset of the fractional-recurrence curve lands on the algebraic side, and it hits three of the cubic Perron roots in the reachable-field census.
 
 ## The Pell / Fibonacci-Pell interpolation family
 
