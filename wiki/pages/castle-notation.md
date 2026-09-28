@@ -85,9 +85,9 @@ The sandpile pages run grains on the castle graph (cells as vertices, edge-shari
 | `stab(·)` | stabilization: topple until no cell is unstable | [[sandpile-identity](pages/sandpile-identity.md)] |
 | `ln det L̃` | the entropy of the steady state (uniform on `det L̃` recurrent piles), written in words on the wiki, not as `S` | [[sandpile-group](pages/sandpile-group.md)] |
 
-**Avalanche statistics.** Dynamical quantities are written in words, because the founding papers' letters (`T`, `D`, `F`, `S`, `L`) are core castle symbols here.
+**Avalanche statistics.** Dynamical quantities are written in words, because the source papers' letters (`T`, `D`, `F`, `S`, `L`) are core castle symbols here.
 
-| written as | meaning | the founding papers wrote |
+| written as | meaning | the source papers wrote |
 |---|---|---|
 | avalanche **size** | number of topplings caused by one grain | `s` (BTW), `⟨T⟩` for its mean (Dhar) |
 | avalanche **duration** | number of rounds, one round toppling every unstable cell at once | `T` (BTW, "lifetime"), `τ` (Dhar) |

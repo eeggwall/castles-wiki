@@ -282,7 +282,7 @@ True
 104                                    # 512 binary 3x3 matrices -> 104 S_3 orbits
 ```
 
-Meaning: canonicalizing before the expensive exact-factor step means factoring one matrix per orbit instead of one per matrix. It validated the census (canonical-rep field lists match the full sweep at h ≤ 4), but even the `≈ h!` compression leaves `h = 6` at ~95M orbits — so `h ≥ 6` is settled by the reachability law plus targeted construction, not exhaustion ([[reachable-field-census](pages/reachable-field-census.md)]).
+Meaning: canonicalizing before the expensive exact-factor step means factoring one matrix per orbit instead of one per matrix. It validated the census (canonical-rep field lists match the full sweep at h ≤ 4), but even the `≈ h!` compression leaves `h = 6` at ~95M orbits — so for `h ≥ 6` the census relies on the reachability law and targeted constructions ([[reachable-field-census](pages/reachable-field-census.md)]).
 
 
 ### `tower_spacing_matrix(h, g)` → the min-tower-spacing castle counter

@@ -1,11 +1,11 @@
 ---
 title: "Abelian sandpile model (Chau, 1993)"
 category: Sources
-summary: A three-page Physical Review E Rapid Communication in the abelian sandpile programme. It states the model in Dhar's form (toppling h_i → h_i − Δ_ji, det Δ recurrent states, two-point function G = Δ⁻¹) and proposes a method for higher-order correlation functions and the avalanche-size distribution. The wiki records the paper's framing and its reference list, which maps the early abelian sandpile literature (Dhar, Creutz, Dhar-Majumdar, Lee-Liang-Tzeng, Ruelle-Sen, Markošová-Markoš, Chau-Cheng); its computational method is not summarized here.
+summary: A three-page Physical Review E Rapid Communication in the abelian sandpile programme. It states the model in Dhar's form (toppling h_i → h_i − Δ_ji, det Δ recurrent states, two-point function G = Δ⁻¹) and proposes a method for higher-order correlation functions and the avalanche-size distribution. This page records the paper's framing and its reference list of early abelian sandpile papers (Dhar, Creutz, Dhar-Majumdar, Lee-Liang-Tzeng, Ruelle-Sen, Markošová-Markoš, Chau-Cheng); its computational method is not summarized here.
 tags: [paper, source, sandpile, abelian-sandpile, self-organized-criticality, bibliography, correlation-function, avalanche]
 sources: [chau-1993-abelian-sandpile-model]
 created: 2026-09-27
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Abelian sandpile model (Chau, 1993)
@@ -25,21 +25,21 @@ The paper places itself in the line of work that began with Bak, Tang and Wiesen
 
 The model is stated in Dhar's form. There are `N` cells with local heights (sometimes real numbers), a unit of sand is added at a random cell with probability `μ(i)`, and a cell above its triggering level topples by `h_i → h_i − Δ_ji` for all `i` (eq. 1).[^4] Following Dhar, the number of self-organized critical states is `det Δ`, which for real heights is the volume of the phase space of recurrent states, and the two-point function, the average number of topplings at `j` caused by a grain added at `i`, is `G_ij = Δ⁻¹_ij`.[^4] The toppling is written with `Δ_ji`, the transpose of Dhar's `z_j → z_j − Δ_ij`, which makes no difference for a symmetric castle Laplacian ([[castle-notation](pages/castle-notation.md)]).
 
-## References as a map of the early literature
+## References
 
-The reference list is a compact guide to the abelian sandpile papers of 1987-1992, most not yet on the wiki:[^5]
+The reference list covers abelian sandpile papers of 1987-1992, most without a source page on the wiki:[^5]
 
 | ref. | work | on the wiki |
 |---|---|---|
-| [1] | Bak, Tang and Wiesenfeld, *Phys. Rev. Lett.* 59 (1987) 381; *Phys. Rev. A* 38 (1988) 364 | cited on [[castle-avalanches](pages/castle-avalanches.md)] |
+| [1] | Bak, Tang and Wiesenfeld, *Phys. Rev. Lett.* 59 (1987) 381; *Phys. Rev. A* 38 (1988) 364 | [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)] |
 | [2] | Dhar, *Phys. Rev. Lett.* 64 (1990) 1613 | [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
-| [3] | Creutz, *Comput. Phys.* 5 (1991) 198 | not yet |
-| [4] | Dhar and Majumdar, *J. Phys. A* 23 (1990) 4333; Lee, Liang and Tzeng, *Phys. Rev. Lett.* 67 (1991) 1479 and 68 (1992) 1442(E); Lee and Tzeng, *Phys. Rev. A* 45 (1992) 1253; Ruelle and Sen, *J. Phys. A (Lett.)* 25 (1992) L1257 | not yet |
+| [3] | Creutz, *Comput. Phys.* 5 (1991) 198 | no |
+| [4] | Dhar and Majumdar, *J. Phys. A* 23 (1990) 4333; Lee, Liang and Tzeng, *Phys. Rev. Lett.* 67 (1991) 1479 and 68 (1992) 1442(E); Lee and Tzeng, *Phys. Rev. A* 45 (1992) 1253; Ruelle and Sen, *J. Phys. A (Lett.)* 25 (1992) L1257 | no |
 | [5] | Gabrielov (unpublished) | - |
-| [6] | Chau and Cheng, *Phys. Rev. A* 46 (1992) 2981, and unpublished | not yet |
-| [7] | Markošová and Markoš, *Phys. Rev. A* 46 (1992) 3531; Peng, *J. Phys. A* 25 (1992) 5279; Chau and Cheng (unpublished) | not yet |
+| [6] | Chau and Cheng, *Phys. Rev. A* 46 (1992) 2981, and unpublished | no |
+| [7] | Markošová and Markoš, *Phys. Rev. A* 46 (1992) 3531; Peng, *J. Phys. A* 25 (1992) 5279; Chau and Cheng (unpublished) | no |
 | [8] | Chau and Cheng, *Phys. Lett. A* 157 (1991) 103 | [[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)] |
-| [9] | Grimmett, *Percolation* (Springer, 1989) | not yet |
+| [9] | Grimmett, *Percolation* (Springer, 1989) | no |
 
 In the text, [2, 3] support the exact count of critical states and the two-point function, [4] the other exactly computed quantities, [5, 6] the extensions to other toppling triggers, and [7] the relation to percolation and spanning trees.[^2] [2] and [8] are also cited for elementary row operations and the equivalence of toppling rules.[^6]
 
@@ -47,8 +47,8 @@ In the text, [2, 3] support the exact count of critical states and the two-point
 
 - [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - the model and results the paper builds on.
 - [[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)] - the companion paper on equivalent toppling rules (its ref. [8]).
-- [[sandpile-group](pages/sandpile-group.md)] / [[castle-avalanches](pages/castle-avalanches.md)] - the castle sandpile pages; the reference table above lists the sources that would close their remaining gaps (the spanning-tree correspondence and the identity element).
-- [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] - now on the wiki, closing the "not yet" gap in ref. [4] above (Ruelle and Sen 1992, the direct predecessor of this 1995 paper's algebraic treatment).
+- [[sandpile-group](pages/sandpile-group.md)] / [[castle-avalanches](pages/castle-avalanches.md)] - the castle sandpile pages, which use the model in the form stated here.
+- [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] - the 1995 algebraic treatment by Dhar, Ruelle, Sen and Verma; Ruelle and Sen are the authors of the 1992 paper in ref. [4].
 
 ## Footnotes
 

@@ -1,11 +1,11 @@
 ---
 title: "Self-organized criticality (Bak-Tang-Wiesenfeld, 1988)"
 category: Sources
-summary: The long companion to the 1987 letter that introduced self-organized criticality. Extended dissipative systems with many metastable states evolve by themselves to a critical state with no characteristic length or time, whose temporal signature is 1/f noise and whose spatial signature is fractal structure. In one dimension the sandpile settles into a "minimally stable" staircase with trivial dynamics; in two and three dimensions the square-lattice automaton (topple when above threshold, one grain to each neighbour) reaches a critical state with power-law avalanche sizes (exponent about 1.0 in 2D, 1.37 in 3D), weighted durations, and a power spectrum near 1/f, robust to removing bonds, with scaling relations and finite-size scaling. The castle sandpile is this automaton on the castle graph.
+summary: The long companion to the 1987 letter that introduced self-organized criticality. Extended dissipative systems with many metastable states evolve by themselves to a critical state with no characteristic length or time, whose temporal signature is 1/f noise and whose spatial signature is fractal structure. In one dimension the sandpile settles into a "minimally stable" staircase with trivial dynamics; in two and three dimensions the square-lattice automaton (topple when above threshold, one grain to each neighbour) reaches a critical state with power-law avalanche sizes (exponent about 1.0 in 2D, 1.37 in 3D), weighted durations, and a power spectrum near 1/f, robust to removing bonds, with scaling relations and finite-size scaling. On the wiki's reading, the castle sandpile is this automaton on the castle graph.
 tags: [paper, source, sandpile, self-organized-criticality, bak-tang-wiesenfeld, 1-over-f-noise, fractal, avalanche, critical-exponent, finite-size-scaling, minimally-stable, cellular-automaton]
 sources: [bak-tang-wiesenfeld-1988-self-organized-criticality]
 created: 2026-09-27
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Self-organized criticality (Bak-Tang-Wiesenfeld, 1988)
@@ -17,7 +17,7 @@ updated: 2026-09-27
 
 ## Notation used on this page
 
-This is the founding paper, and its symbols clash with the wiki's ([[castle-notation](pages/castle-notation.md)]). This page writes the paper's quantities the wiki's way:
+The paper's symbols clash with the wiki's ([[castle-notation](pages/castle-notation.md)]). This page writes the paper's quantities the wiki's way:
 
 | paper | meaning | written here as |
 |---|---|---|
@@ -45,10 +45,10 @@ The paper proposes a common mechanism behind two widespread phenomena: 1/f ("fli
 
 ## Key Takeaways
 
-- **The castle sandpile is this automaton.** Grains on a cell, toppling when a cell holds too many, one grain to each neighbour, and dropping one grain at a random cell is eq. 3.2 with the build-up rule eq. 3.8, on the castle graph instead of the square array ([[castle-avalanches](pages/castle-avalanches.md)], [[sandpile-group](pages/sandpile-group.md)]). BTW's "closed" boundaries lose grains on all four sides (Dhar's four-side-open square, [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)]). The castle tide loses them only through the bottom row. Dhar's `Δ` for BTW's square is the reduced Laplacian with every boundary site losing grains.
-- **The tide rectangle sits near the original 2D exponent.** [[castle-avalanches](pages/castle-avalanches.md)] measures a size-density slope of about `−0.93` on the `20 × 20` tide rectangle, close to BTW's `τ ≈ 1.0` on `50 × 50`. The larger `τ ≈ 1.22` quoted by Dhar came from later, bigger simulations.
-- **The one-dimensional sandpile lives on skylines.** BTW's one-dimensional state is a row of plateau heights, a castle skyline whose cells are the sand. Its attractor, with every drop equal to `z_c`, is a staircase castle (a Ferrers skyline with distinct heights, [[castle-classification-shape](pages/castle-classification-shape.md)]) with constant step. This reading differs from the castle sandpile, where grains sit on a fixed castle. On the castle graph the one-dimensional case is a tree, whose sandpile group is trivial ([[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)]).
-- **What the wiki has not measured.** The castle pages have exact mean avalanche sizes and measured size tails, but no duration statistics, no toppling-rate signal, and no power spectrum. So there is nothing yet to compare with `α_w`, `β` or `γ_g`, and no test of `β = 2 − α_w` or of finite-size scaling on castles. These are open problems.
+- **The castle sandpile.** On the wiki's reading, grains on a cell, toppling when a cell holds too many, one grain to each neighbour, and dropping one grain at a random cell is eq. 3.2 with the build-up rule eq. 3.8, on the castle graph instead of the square array ([[castle-avalanches](pages/castle-avalanches.md)], [[sandpile-group](pages/sandpile-group.md)]). BTW's "closed" boundaries lose grains on all four sides (Dhar's four-side-open square, [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)]). The castle tide loses them only through the bottom row. Dhar's `Δ` for BTW's square is the reduced Laplacian with every boundary site losing grains.
+- **Size exponent.** [[castle-avalanches](pages/castle-avalanches.md)] measures a size-density slope of about `−0.93` on the `20 × 20` tide rectangle, which the wiki compares with BTW's `τ ≈ 1.0` on `50 × 50`. Dhar's introduction quotes `τ ≈ 1.22` from the simulations of Manna and of Grassberger and Manna (his ref. 5, [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)]).
+- **The one-dimensional pile as a skyline.** On the wiki's reading, BTW's one-dimensional state is a row of plateau heights, a castle skyline whose cells are the sand. Its attractor, with every drop equal to `z_c`, is a staircase castle (a Ferrers skyline with distinct heights, [[castle-classification-shape](pages/castle-classification-shape.md)]) with constant step. This reading differs from the castle sandpile, where grains sit on a fixed castle. On the castle graph the one-dimensional case is a tree, whose sandpile group is trivial ([[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)]).
+- **Not measured on castles.** The castle pages have exact mean avalanche sizes and measured size tails, but no duration statistics, no toppling-rate signal and no power spectrum, so `α_w`, `β`, `γ_g`, the relation `β = 2 − α_w` and finite-size scaling have no castle counterpart.
 
 ## Entities & Concepts
 
@@ -61,7 +61,7 @@ The paper proposes a common mechanism behind two widespread phenomena: 1/f ("fli
 
 ## Relation to Other Wiki Pages
 
-The wiki cited this paper's short letter (1987) on [[castle-avalanches](pages/castle-avalanches.md)] without a source page. This page supplies the model, the protocols, and the exponents, translated into the wiki's notation. Later work made the model exact: Dhar's matrix theory ([[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)]), where only local heights matter, the literature mapped on [[chau-1993-abelian-sandpile-model](pages/chau-1993-abelian-sandpile-model.md)], and the group-theoretic algebra worked out on [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)]. No contradiction with existing pages. The size exponent `τ ≈ 1.0` here and `τ ≈ 1.22` in Dhar's introduction are different estimates of the same quantity from different system sizes.
+[[castle-avalanches](pages/castle-avalanches.md)] cites this paper for the model and the two-dimensional size exponent; this page gives the model, the protocols and the exponents in the wiki's notation. The exact results for the height-triggered model are on [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] (the toppling-matrix theory) and [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] (the group structure), and [[chau-1993-abelian-sandpile-model](pages/chau-1993-abelian-sandpile-model.md)] lists the early abelian sandpile papers. `τ ≈ 1.0` here and the `τ ≈ 1.22` Dhar quotes are two numerical estimates of the size exponent.
 
 ## Footnotes
 

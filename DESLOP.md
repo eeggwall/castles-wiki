@@ -2,16 +2,16 @@
 
 Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planning residue out of `wiki/`. Hand-maintained, outside `wiki/pages/`, never linked from the wiki. Conventions: `[ ]` not started, `[~]` spot fixes only (still needs a full read), `[x]` fully read and cleaned. Plain hyphens, no em-dashes.
 
-## Where we are (2026-09-28)
+## Where we are (2026-09-28, pass complete)
 
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 188 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
-| Spot fixes only | 2 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 4 |
-| Words still to read | about 11,000 |
-| Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
+| Fully read and cleaned | 194, every page (the first-pass 21, then 34 batches oldest-first) |
+| Spot fixes only | 0 |
+| Not started | 0 |
+| Words still to read | 0 |
+| Commits | first pass `908bada`..`0a3e953`; then one commit per batch, `git log --oneline --grep 'deslop batch'`; tooling `a7c53c3` |
 
 ## What the first pass found
 
@@ -77,7 +77,7 @@ Reading is the method. A keyword scan (a throwaway script in the first pass, not
 - `--rank`: pattern density per 1000 prose words (code, frontmatter and footnotes skipped), used to order a batch.
 - `--regress`: fails if any retired phrase reappears in `wiki/overview.md` or `wiki/pages/`. `--regress --staged` scans the git index and runs in the pre-commit hook. The retired list holds every phrase quoted in "What the first pass found", `arc` / `the item's` / `IDEAS` / effort columns, and each phrase a later batch cuts. Add phrases as they are retired.
 
-The seminar stage directions ("Exercises for the room", "at one blackboard", "About 60 minutes") go on the retired list once the seminar pages have been revisited; until then they would block every commit.
+The seminar stage directions ("Exercises for the room", "at one blackboard", "About 60 minutes") are on the retired list since batch 34, when the last seminar pages were revisited.
 
 ## Order of work
 
@@ -261,7 +261,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] convex-castle-cap-factor (0.0)
 - [x] castle-q-bessel-closed-form (0.0)
 
-### Sources (44 pages, 38 fully read)
+### Sources (44 pages, 44 fully read)
 
 - [x] oeis-mining-pe502 (25.6)
 - [x] oeis-height2-hyperbolic-castles (5.9)
@@ -269,7 +269,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] aocp-generating-permutations-tuples (3.4)
 - [x] steep-polyominoes-q-motzkin-bessel (3.4)
 - [x] lattice-paths (3.2)
-- [ ] dhar-ruelle-sen-verma-1995-algebraic-aspects (3.2)
+- [x] dhar-ruelle-sen-verma-1995-algebraic-aspects (3.2)
 - [x] aocp-generating-functions (3.1)
 - [x] prodinger-2025-cornerless-motzkin-bargraphs (2.9)
 - [x] aocp-permutations (2.8)
@@ -283,20 +283,20 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] bender-1974-partitions-of-multisets (1.7)
 - [x] calugareanu-hamburg-exercises-basic-ring-theory (1.6)
 - [x] aocp-combinatorics (1.5)
-- [ ] rossin-2000-group-of-a-sandpile (1.3)
-- [~] chau-cheng-1991-deterministic-soc-sandpile (1.1)
+- [x] rossin-2000-group-of-a-sandpile (1.3)
+- [x] chau-cheng-1991-deterministic-soc-sandpile (1.1)
 - [x] dyck-words (1.1)
 - [x] project-euler-502-problem-setup (1.1)
 - [x] analytic-combinatorics-ch1-ogfs (1.1)
 - [x] generating-functions-topic (0.9)
-- [ ] chau-1993-abelian-sandpile-model (0.9)
+- [x] chau-1993-abelian-sandpile-model (0.9)
 - [x] aocp-multisets (0.9)
 - [x] column-convex-polygon-enumeration (0.9)
 - [x] prellberg-brak-1995-cluster-models (0.9)
 - [x] aocp-binomial-coefficients (0.9)
 - [x] project-euler-502-castle-factoring (0.9)
 - [x] project-euler-502-observations (0.8)
-- [~] bak-tang-wiesenfeld-1988-self-organized-criticality (0.8)
+- [x] bak-tang-wiesenfeld-1988-self-organized-criticality (0.8)
 - [x] project-euler-502-solution (0.7)
 - [x] tetali-1998-unique-tournaments (0.5)
 - [x] bender-1974-convex-n-ominoes (0.5)
@@ -305,7 +305,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] project-euler-502-implementation-notes (0.0)
 - [x] project-euler-502-brute-force (0.0)
 - [x] project-euler-502 (0.0)
-- [ ] dhar-1990-self-organized-critical-sandpile (0.0)
+- [x] dhar-1990-self-organized-critical-sandpile (0.0)
 - [x] aocp-multinomial-coefficients (0.0)
 
 ### Top level (1 page, 1 fully read)
