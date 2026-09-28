@@ -5,14 +5,14 @@ summary: Flajolet & Sedgewick's specification-to-OGF dictionary — six admissib
 tags: [concept, generating-functions, symbolic-method, admissible-construction, specification, ogf]
 sources: [analytic-combinatorics-ch1-ogfs]
 created: 2026-09-15
-updated: 2026-09-22
+updated: 2026-09-28
 ---
 
 # Symbolic method
 
 ## Description
 
-The **symbolic method**, developed formally by Flajolet & Sedgewick, is the general framework beneath the wiki's existing generating-function machinery: instead of positing a recurrence and solving for a rational ordinary generating function (OGF), describe the combinatorial class directly as a *specification* built from a fixed alphabet of **admissible constructions**, each of which translates mechanically into an OGF operator.[^1] The dictionary is finite:
+The **symbolic method**, as set out by Flajolet & Sedgewick, is the general framework beneath the wiki's existing generating-function machinery: instead of positing a recurrence and solving for a rational ordinary generating function (OGF), describe the combinatorial class directly as a *specification* built from a fixed alphabet of **admissible constructions**, each of which translates mechanically into an OGF operator.[^1] The dictionary is finite:
 
 | Construction | Class relation | OGF translation |
 |---|---|---|
@@ -25,17 +25,17 @@ The **symbolic method**, developed formally by Flajolet & Sedgewick, is the gene
 
 with two ground classes — the neutral class `E = {ε}` (a single object of size 0, OGF `E(z) = 1`) and the atomic class `Z` (a single object of size 1, OGF `Z(z) = z`) — and two supplementary operations, **pointing** `Θ(A)(z) = z · A'(z)` and **substitution** `(B ∘ C)(z) = B(C(z))`.[^2] A construction is **admissible** iff the counting sequence of the output depends only on the counting sequences of the inputs (Definition I.5).[^3] A class is **constructible** (or **specifiable**) iff it admits a specification — possibly recursive, i.e. a system of construction equations — in terms of these primitives.[^4]
 
-The payoff is Theorem I.2: **the OGF of any constructible class is a component of a system of functional equations built from the operators in the dictionary.**[^5] Iterative specifications yield explicit OGFs; recursive specifications yield implicit ones (e.g. `G = Z × SEQ(G)` → `G(z) = z/(1−G(z))`, solved by the quadratic to give the Catalan OGF `½(1−√(1−4z))`).[^6]
+Theorem I.2: **the OGF of any constructible class is a component of a system of functional equations built from the operators in the dictionary.**[^5] Iterative specifications yield explicit OGFs; recursive specifications yield implicit ones (e.g. `G = Z × SEQ(G)` → `G(z) = z/(1−G(z))`, solved by the quadratic to give the Catalan OGF `½(1−√(1−4z))`).[^6]
 
 ## Relation to the castle
 
-The castle's counting apparatus fits the symbolic method exactly, and this framing changes what its ingredients *are*, not what they compute:
+The castle's counting apparatus fits the symbolic method:
 
-- **The [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is a specification.** The first-return decomposition of a castle tower over the U/R/D alphabet — as [[dyck-words](pages/dyck-words.md)] describes it — is a recursive specification of the tower class, in exactly the style of `G = Z × SEQ(G)` for general trees. The generating functions that fall out — the unsigned tower GF `E_k(x) = 1/(1−(k+1)x)` and the signed tower GF `P_k` on [[project-euler-502-representations](pages/project-euler-502-representations.md)] — are what the SEQ construction, plus a `(−1)` weighting for the even-block projector, translates the grammar to.
-- **"Linear recurrence ⇒ rational OGF" (the [[aocp-generating-functions](pages/aocp-generating-functions.md)] Fibonacci-method thesis) is the sequence case of the symbolic method.** Any class specifiable as `SEQ` over a finite atomic alphabet is an *S-regular* language (Definition I.10), and its OGF is rational (Proposition I.2 p.52) — the same rational form the castle's `P_k = num_k/den_k` takes.[^7] The recurrence-first framing is one road up the same mountain; the symbolic method reaches the top by a different path (specification → OGF, no recurrence needed).
-- **Constructions we already use, un-named.** The compositions of a positive integer are `SEQ(I)` where `I = SEQ_{≥1}(Z) = z/(1−z)`; the tower is a `SEQ` over columns; the "no k consecutive as" bounded-run family of [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] is the classical `SEQ`-with-run-constraint construction of §I.4.
+- **The [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is a specification.** The first-return decomposition of a castle tower over the U/R/D alphabet — as [[dyck-words](pages/dyck-words.md)] describes it — is a recursive specification of the tower class, in the style of `G = Z × SEQ(G)` for general trees. The generating functions that fall out — the unsigned tower GF `E_k(x) = 1/(1−(k+1)x)` and the signed tower GF `P_k` on [[project-euler-502-representations](pages/project-euler-502-representations.md)] — are what the SEQ construction, plus a `(−1)` weighting for the even-block projector, translates the grammar to.
+- **"Linear recurrence ⇒ rational OGF" (the [[aocp-generating-functions](pages/aocp-generating-functions.md)] Fibonacci-method thesis) is the sequence case of the symbolic method.** Any class specifiable as `SEQ` over a finite atomic alphabet is an *S-regular* language (Definition I.10), and its OGF is rational (Proposition I.2 p.52) — the same rational form the castle's `P_k = num_k/den_k` takes.[^7] The symbolic method reaches the OGF from the specification, with no recurrence needed.
+- **Constructions already on the wiki.** The compositions of a positive integer are `SEQ(I)` where `I = SEQ_{≥1}(Z) = z/(1−z)`; the unsigned tower is a sequence of `L` columns, each one of `k+1` heights; and words with bounded runs, the `SEQ`-with-run-constraint construction of §I.4, are regular like the castle's tower words at bounded height ([[tower-word-language](pages/tower-word-language.md)]).
 
-**What the symbolic method does *not* buy us for the castle** (yet): the block-parity constraint (even blocks only) is a **weighted sum**, not a set-theoretic construction, so `F(w,h)` is *not* itself the OGF of a constructible class — it is `(A+P)/2` of two such OGFs (see [[castle-sign](pages/castle-sign.md)] and [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)]). The symbolic method supplies the pieces (`A` and `P`); the parity projector is applied above it.
+**The parity clause.** The castle solution applies PE 502's even-block clause as a **weighted sum**, not a set-theoretic construction: `F = (A + S)/2` with `S` the signed count (see [[castle-sign](pages/castle-sign.md)] and [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)]). The unsigned `A` counts a constructible class; the signed `S` is a weighted count. At fixed height the even-block castles are also a regular language (an automaton can carry the block parity), so they have a regular specification too.
 
 ## Iterative vs. recursive specifications
 
@@ -50,11 +50,11 @@ An **iterative** (non-recursive) specification builds a class from `E`, `Z`, and
 - [[generating-functions](pages/generating-functions.md)] — the concept page; the symbolic method sits above its recurrence-⇒-rational-GF framing.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] / [[generating-functions-topic](pages/generating-functions-topic.md)] — the two source treatments in the recurrence-first tradition; both fall out as the SEQ / rational-language case here.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the castle's own specification.
-- [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — a directly-relevant polyomino family constructed by the method (Example I.8).
+- [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the stack polyominoes (the convex castles), constructed by the method (Example I.8).
 - [[block-count-constraints](pages/block-count-constraints.md)] — `SEQ` versus `MSET` over one part set: compositions with parts in `D` (`1/(1 − Σ z^d)`) versus the coin-change series `∏ 1/(1 − z^d)`, same support, different counts.
 - [[aocp-multisets](pages/aocp-multisets.md)] — a homonym to keep apart: Knuth's "permutations of a multiset" are ordered words with repeated letters (the `SEQ` side), not `MSET` objects.
 - [[multiset-partitions](pages/multiset-partitions.md)] — a second homonym: partitioning one fixed multiset into blocks ([[bender-1974-partitions-of-multisets](pages/bender-1974-partitions-of-multisets.md)]), not building a class of multisets.
-- [[generating-function-gallery](pages/generating-function-gallery.md)] — the tabulated `num_k/den_k` polynomials, factored characteristic polynomials, and closed forms: the concrete realization of `SEQ` over the castle grammar into rational OGFs.
+- [[generating-function-gallery](pages/generating-function-gallery.md)] — the tabulated `num_k/den_k` polynomials, factored characteristic polynomials, and closed forms: the rational OGFs of the castle grammar.
 
 ## Footnotes
 

@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 104 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
-| Spot fixes only | 17 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 73 |
-| Words still to read | about 247,000 |
+| Fully read and cleaned | 112 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Spot fixes only | 16 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
+| Not started | 66 |
+| Words still to read | about 234,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 52 fully read)
+### Concepts (85 pages, 58 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
@@ -119,7 +119,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] finite-fields (4.6)
 - [ ] sandpile-identity (4.5)
 - [x] signed-tower-count (4.2)
-- [~] eigenvalue-continued-fractions (4.1)
+- [x] eigenvalue-continued-fractions (4.1)
 - [x] weakly-unimodal-composition (4.0)
 - [x] castle-fibers-char-2-walkthrough (3.8)
 - [ ] castle-eigenvalues-by-example (3.7)
@@ -148,7 +148,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] urd-step-strings (2.1)
 - [x] kitamasa (2.1)
 - [~] castle-classification-spectrum (1.9)
-- [ ] stack-polyomino-gf (1.9)
+- [x] stack-polyomino-gf (1.9)
 - [x] castle-sign (1.9)
 - [x] binary-string-bijection (1.8)
 - [ ] ramanujan-castles (1.7)
@@ -170,18 +170,18 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] tower-heap (1.1)
 - [x] castle-counting-formula (1.0)
 - [ ] castle-move-graph-zdd (0.9)
-- [ ] algebraic-transcendental-wall (0.8)
+- [x] algebraic-transcendental-wall (0.8)
 - [x] pell-numbers (0.8)
-- [ ] tower-word-language (0.7)
+- [x] tower-word-language (0.7)
 - [x] generating-functions (0.7)
 - [ ] parallelogram-polyomino-dyck-bijection (0.6)
-- [ ] tower-word-continued-fraction (0.6)
+- [x] tower-word-continued-fraction (0.6)
 - [ ] convex-polyomino (0.6)
 - [x] castle-foata-transform (0.6)
 - [ ] q-differential-system (0.6)
 - [ ] castle-snippets-number-theory (0.5)
 - [x] unique-tournament (0.0)
-- [ ] symbolic-method (0.0)
+- [x] symbolic-method (0.0)
 - [x] simple-tournament (0.0)
 - [x] permutation-cycle-castle-analogy (0.0)
 - [x] motzkin-numbers (0.0)
@@ -194,7 +194,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] castle-snippets-strips (0.0)
 - [ ] acronyms (0.0)
 
-### Analyses (64 pages, 23 fully read)
+### Analyses (64 pages, 24 fully read)
 
 - [x] castle-cryptography (5.1)
 - [x] isospectral-castles (4.9)
@@ -204,7 +204,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [~] castle-cryptography-round-two (3.6)
 - [x] pell-castle-strip (3.4)
 - [x] castle-graph-spectral-radius (3.3)
-- [ ] castles-as-upgraded-cycle-count (3.2)
+- [x] castles-as-upgraded-cycle-count (3.2)
 - [x] mod-p-observatory (3.0)
 - [ ] levy-flights (2.9)
 - [~] fractional-recurrences (2.8)
@@ -261,7 +261,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] convex-castle-cap-factor (0.0)
 - [~] castle-q-bessel-closed-form (0.0)
 
-### Sources (44 pages, 28 fully read)
+### Sources (44 pages, 29 fully read)
 
 - [x] oeis-mining-pe502 (25.6)
 - [x] oeis-height2-hyperbolic-castles (5.9)
@@ -287,7 +287,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [~] chau-cheng-1991-deterministic-soc-sandpile (1.1)
 - [x] dyck-words (1.1)
 - [x] project-euler-502-problem-setup (1.1)
-- [ ] analytic-combinatorics-ch1-ogfs (1.1)
+- [x] analytic-combinatorics-ch1-ogfs (1.1)
 - [x] generating-functions-topic (0.9)
 - [ ] chau-1993-abelian-sandpile-model (0.9)
 - [x] aocp-multisets (0.9)

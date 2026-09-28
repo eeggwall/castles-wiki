@@ -1,11 +1,11 @@
 ---
 title: "Analytic Combinatorics Ch. I - OGFs and the Symbolic Method (Flajolet & Sedgewick)"
 category: Sources
-summary: Flajolet & Sedgewick's Chapter I only - Combinatorial Structures and Ordinary Generating Functions (book pp. 15-94, ~80 pages). Recasts recurrence-⇒-rational-GF as one case of the [[symbolic-method]] (SEQ/MSET/PSET/CYC dictionary), and constructs stack polyominoes and Catalan trees directly as specifications. Chapters II (EGFs) and III (MGFs) of Part A are not ingested; refer to the book directly for those.
+summary: Flajolet & Sedgewick's Chapter I only - Combinatorial Structures and Ordinary Generating Functions (book pp. 15-94, ~80 pages). Recasts recurrence-⇒-rational-GF as one case of the [[symbolic-method]] (SEQ/MSET/PSET/CYC dictionary), and constructs stack polyominoes (the convex castles) and Catalan trees directly as specifications. Chapters II (EGFs) and III (MGFs) of Part A are outside this page; cite the book directly for those.
 tags: [generating-functions, symbolic-method, ogf, admissible-construction, polyomino, catalan, stack-polyomino, source]
 sources: [analytic-combinatorics-ch1-ogfs]
 created: 2026-09-15
-updated: 2026-09-22
+updated: 2026-09-28
 ---
 
 # Analytic Combinatorics Ch. I - OGFs and the Symbolic Method (Flajolet & Sedgewick)
@@ -14,27 +14,27 @@ updated: 2026-09-22
 **Date ingested:** 2026-09-15
 **Type:** book chapter (Part A: Symbolic Methods, Chapter I: `Combinatorial Structures and Ordinary Generating Functions`)
 
-> **Scope of this ingest.** Only Chapter I is summarized here. Part A's remaining chapters (II: labelled structures / EGFs, book pp. 95-150; III: multivariate GFs / MGFs, pp. 151-220) and Parts B (Complex Asymptotics), C (Random Structures), D (Appendices) are *not* ingested; for those, cite the book directly by chapter and page.
+> **Scope.** Only Chapter I is summarized here. Part A's remaining chapters (II: labelled structures / EGFs, book pp. 95-150; III: multivariate GFs / MGFs, pp. 151-220) and Parts B (Complex Asymptotics), C (Random Structures), D (Appendices) are not read here; cite the book directly by chapter and page for those.
 
 ## Summary
 
-Flajolet & Sedgewick's *Analytic Combinatorics* is the definitive treatment of the generating-function method, structured in four parts: Part A **Symbolic Methods** (unlabelled OGFs, labelled EGFs, multivariate MGFs), Part B **Complex Asymptotics**, Part C **Random Structures**, Part D **Appendices**.[^1] This ingest covers **Part A, Chapter I** (`Combinatorial Structures and Ordinary Generating Functions`, pp. 15-94) — the seven sections that build the OGF half of the *symbolic method*: symbolic enumeration (§I.1), admissible constructions and specifications (§I.2), integer compositions and partitions (§I.3), words and regular languages (§I.4), tree structures (§I.5), additional constructions (§I.6), and a perspective closer (§I.7).[^2]
+Flajolet & Sedgewick's *Analytic Combinatorics* is structured in four parts: Part A **Symbolic Methods** (unlabelled OGFs, labelled EGFs, multivariate MGFs), Part B **Complex Asymptotics**, Part C **Random Structures**, Part D **Appendices**.[^1] This page covers **Part A, Chapter I** (`Combinatorial Structures and Ordinary Generating Functions`, pp. 15-94) — the seven sections that build the OGF half of the *symbolic method*: symbolic enumeration (§I.1), admissible constructions and specifications (§I.2), integer compositions and partitions (§I.3), words and regular languages (§I.4), tree structures (§I.5), additional constructions (§I.6), and a perspective closer (§I.7).[^2]
 
-The chapter's thesis reframes the generating-function method — as we have it in [[aocp-generating-functions](pages/aocp-generating-functions.md)] (Knuth's Fibonacci-method, recurrence ⇒ rational GF) and [[generating-functions-topic](pages/generating-functions-topic.md)] (Sedgewick / Trotter, worked examples with an explicit Project Euler 502 (PE 502) section) — from **"recurrences yield rational GFs"** up to a more general **"specifications yield GFs by a mechanical dictionary."** The dictionary (Theorem I.1 p.27, summary Figure I.18 p.93) is the [[symbolic-method](pages/symbolic-method.md)]: six admissible constructions — disjoint union `+`, cartesian product `×`, sequence `SEQ`, powerset `PSET`, multiset `MSET`, cycle `CYC` — each with a mechanical OGF translation.[^3] The output of that method is exactly the rational-GF-from-linear-recurrence story we already have; the recurrence route is one case of it (regular languages → rational GFs, Prop. I.2 p.52).[^4]
+The chapter generalizes the generating-function method of [[aocp-generating-functions](pages/aocp-generating-functions.md)] (Knuth's Fibonacci-method, recurrence ⇒ rational GF) and [[generating-functions-topic](pages/generating-functions-topic.md)] (Sedgewick / Trotter, worked examples with an explicit Project Euler 502 (PE 502) section) from **"recurrences yield rational GFs"** to **"specifications yield GFs by a mechanical dictionary."** The dictionary (Theorem I.1 p.27, summary Figure I.18 p.93) is the [[symbolic-method](pages/symbolic-method.md)]: six admissible constructions — disjoint union `+`, cartesian product `×`, sequence `SEQ`, powerset `PSET`, multiset `MSET`, cycle `CYC` — each with a mechanical OGF translation.[^3] The recurrence route is one case of it (regular languages → rational GFs, Prop. I.2 p.52).[^4]
 
-Two connections make this castle-relevant, not just theory:
+Two connections to the castle:
 
-- **Stack polyominoes are constructed here by the symbolic method** (Example I.8, pp. 45-46), giving the direct OGF `S(z) = ∑_{k≥1} z^k/(1−z^k) · 1/((1−z)(1−z²)···(1−z^{k−1}))²` from a Durfee-square-style decomposition of a partition into a fixed peak column plus a bounded-height staircase on each side.[^5] A stack polyomino — a composition whose parts first weakly rise then weakly fall — is a castle tower with a single peak, so this Example is the AC-native construction of a castle sub-family. See [[stack-polyomino-gf](pages/stack-polyomino-gf.md)].
-- **Catalan / Dyck / general trees are the canonical recursive example.** The specification `G = Z × SEQ(G)` gives `G(z) = z/(1−G(z))` and, after solving the quadratic, the Catalan generating function `(1−√(1−4z))/2` = `∑ (1/n)C(2n−2,n−1) z^n` — the same closed form we already cite from [[project-euler-502-solution](pages/project-euler-502-solution.md)] and [[dyck-words](pages/dyck-words.md)], but derived here in one line from the tree spec.[^6] The castle's own [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is a first-return grammar in exactly this style, with a third letter.
+- **Stack polyominoes are constructed here by the symbolic method** (Example I.8, pp. 45-46), giving the direct OGF `S(z) = ∑_{k≥1} z^k/(1−z^k) · 1/((1−z)(1−z²)···(1−z^{k−1}))²` from the decomposition `P^{1..k−1} × Z^k × P^{1..k}`: a first column of maximal height `k`, with a partition into parts `≤ k−1` before it and a partition into parts `≤ k` after it.[^5] A stack polyomino — a composition whose parts first weakly rise then weakly fall — is the shape of a [[convex-castle](pages/convex-castle.md)] (a unimodal skyline on a full base), so this Example constructs a castle sub-family by the symbolic method. See [[stack-polyomino-gf](pages/stack-polyomino-gf.md)].
+- **Catalan / Dyck / general trees are the canonical recursive example.** The specification `G = Z × SEQ(G)` gives `G(z) = z/(1−G(z))` and, after solving the quadratic, the Catalan generating function `(1−√(1−4z))/2` = `∑ (1/n)C(2n−2,n−1) z^n`, also on [[catalan-numbers](pages/catalan-numbers.md)] and [[dyck-words](pages/dyck-words.md)], derived here in one line from the tree specification.[^6] The castle's own [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is a first-return grammar in this style, with a third letter.
 
-The chapter is thorough on the operations we already use — compositions of integers with restricted / bounded summands (§I.3.1, e.g. `SEQ(SEQ_{1..r}(Z))` giving the Fibonacci-like `(1−z)/(1−2z+z^{r+1})` for parts ≤ r), regular-language OGFs and rational-generating-function equivalence (§I.4.2), and the neutral/atomic-class primitives (`ε`, `Z`) that ground the whole apparatus.
+The chapter also covers operations used elsewhere on the wiki: compositions of integers with restricted / bounded summands (§I.3.1, e.g. `SEQ(SEQ_{1..r}(Z))` giving the Fibonacci-like `(1−z)/(1−2z+z^{r+1})` for parts ≤ r), regular-language OGFs and rational-generating-function equivalence (§I.4.2), and the neutral/atomic-class primitives (`ε`, `Z`) that ground the whole apparatus.
 
 ## Key Takeaways
 
 - **The symbolic method** (Theorem I.1 p.27, summary Figure I.18 p.93) — six admissible constructions with mechanical OGF translations: `+ → A+B`, `× → A·B`, `SEQ → 1/(1−B)`, `PSET → exp(∑_k (−1)^{k−1} B(z^k)/k)`, `MSET → exp(∑_k B(z^k)/k)`, `CYC → ∑_k φ(k)/k · log(1/(1−B(z^k)))`.[^3] This is the *general* result for which "linear recurrence ⇒ rational GF" is the SEQ-only special case.
-- **Stack polyominoes**, Example I.8 (pp. 45-46): the OGF `S(z) = ∑_{k≥1} z^k/(1−z^k) · 1/((1−z)(1−z²)···(1−z^{k−1}))²` (EIS A001523), read off directly from the Durfee-square-style geometric decomposition `P ≅ ⋃_{h≥0}(Z^{h²} × P^{≤h} × P^{1..h})`. The direct AC-native tie to the castle-as-polyomino thread.[^5]
-- **Catalan trees and triangulations** are canonical recursive specifications (§I.2, p. 34-35): `G = Z × SEQ(G)` → `G(z) = (1−√(1−4z))/2`; this same one-line derivation supplies the [[catalan-numbers](pages/catalan-numbers.md)] generating function that our existing pages cite from other sources.[^6]
-- **Regular languages have rational OGFs** (Proposition I.2, p. 52): any *S-regular* language — specifiable by atoms + `+`, `×`, `SEQ` — has a rational OGF.[^7] The compositions-with-bounded-parts, avoidance-of-a-pattern, and bounded-run families of §I.4 are then all rational by construction, matching the wiki's [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] / [[urd-step-strings](pages/urd-step-strings.md)] framework.
+- **Stack polyominoes**, Example I.8 (pp. 45-46): the OGF `S(z) = ∑_{k≥1} z^k/(1−z^k) · 1/((1−z)(1−z²)···(1−z^{k−1}))²` (EIS A001523), read off directly from the decomposition `P^{1..k−1} × Z^k × P^{1..k}` (a first tallest column with a partition on each side), the companion in the same Example of the Durfee-square decomposition `P ≅ ⋃_{h≥0}(Z^{h²} × P^{(≤h)} × P^{1..h})` of partitions. Stack polyominoes are the convex castles.[^5]
+- **Catalan trees and triangulations** are canonical recursive specifications (§I.2, p. 34-35): `G = Z × SEQ(G)` → `G(z) = (1−√(1−4z))/2`, the [[catalan-numbers](pages/catalan-numbers.md)] generating function.[^6]
+- **Regular languages have rational OGFs** (Proposition I.2, p. 52): any *S-regular* language — specifiable by atoms + `+`, `×`, `SEQ` — has a rational OGF.[^7] The compositions-with-bounded-parts, avoidance-of-a-pattern, and bounded-run families of §I.4 are then all rational by construction, as are the castle's tower words at bounded height ([[tower-word-language](pages/tower-word-language.md)], over the [[urd-step-strings](pages/urd-step-strings.md)] alphabet).
 - **Integer compositions and partitions** are literal specifications (§I.3): `C = SEQ(I)`, `P = MSET(I)` with `I = SEQ_{≥1}(Z) = z/(1−z)`; the bounded-parts family `C^{1..r} = SEQ(SEQ_{1..r}(Z))` is rational with OGF `(1−z)/(1−2z+z^{r+1})` and generalizes to r-Fibonacci counts.[^8]
 
 ## Chapter I structure
@@ -49,24 +49,24 @@ The seven sections build the OGF machinery in this order (page numbers are book 
 6. **§I.6 Additional constructions** (p. 83) — pointing (`Θ`) and substitution (`B ∘ C`).
 7. **§I.7 Perspective** (p. 92) — the chapter's own map (Figure I.18 dictionary, bibliographic notes).
 
-Chapters II (labelled structures / EGFs, pp. 95-150) and III (multivariate GFs / MGFs, pp. 151-220) are pending — they are the labelled and parameter-tracking companions to this OGF story.
+Chapters II (labelled structures / EGFs, pp. 95-150) and III (multivariate GFs / MGFs, pp. 151-220) are the labelled and parameter-tracking companions to this chapter and are not covered here.
 
 ## Entities & Concepts
 
 - [[symbolic-method](pages/symbolic-method.md)] — the top-level page for the chapter's thesis; Theorem I.1 dictionary lives here.
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — Example I.8, direct polyomino tie-in.
-- [[generating-functions](pages/generating-functions.md)] — the concept page; the recurrence-⇒-rational-GF framing sits inside the symbolic-method framing this ingest introduces.
+- [[generating-functions](pages/generating-functions.md)] — the concept page; the recurrence-⇒-rational-GF framing sits inside the symbolic-method framing of this chapter.
 - [[generating-functions-topic](pages/generating-functions-topic.md)] — the third GF source; complementary to this one (Sedgewick / Trotter worked-example flavor) and to [[aocp-generating-functions](pages/aocp-generating-functions.md)] (Knuth Fibonacci-method flavor).
-- [[polyominoes](pages/polyominoes.md)] / [[column-convex-polyomino](pages/column-convex-polyomino.md)] — stack polyominoes are a directly-relevant polyomino family.
+- [[polyominoes](pages/polyominoes.md)] / [[column-convex-polyomino](pages/column-convex-polyomino.md)] — the polyomino families around the stacks, which are the convex castles.
 - [[catalan-numbers](pages/catalan-numbers.md)] / [[dyck-words](pages/dyck-words.md)] / [[lattice-paths](pages/lattice-paths.md)] — canonical objects the chapter constructs by specification.
-- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the castle's grammar, a first-return specification in exactly this style.
-- [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the wiki's regular-language framework (bounded-run compositions, avoidance patterns) whose rational-OGF status is Prop. I.2 in action.
+- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the castle's grammar, a first-return specification in this style.
+- [[tower-word-language](pages/tower-word-language.md)] — the castle's tower words, a regular language at bounded height, rational by Prop. I.2.
 
 ## Relation to Other Wiki Pages
 
-This is now the third and most general GF source in the wiki, joining [[aocp-generating-functions](pages/aocp-generating-functions.md)] (Knuth: recurrence ⇒ rational GF; the Fibonacci method) and [[generating-functions-topic](pages/generating-functions-topic.md)] (Sedgewick / Trotter: worked examples including PE 502). Where those two operate at the level of *"you have a recurrence, here is the OGF,"* this one operates at the level of *"you have a combinatorial specification, here is the OGF."* Both prior sources' machinery falls out as the SEQ / rational-language special case of the dictionary here.
+This is the most general of the wiki's three GF sources, with [[aocp-generating-functions](pages/aocp-generating-functions.md)] (Knuth: recurrence ⇒ rational GF; the Fibonacci method) and [[generating-functions-topic](pages/generating-functions-topic.md)] (Sedgewick / Trotter: worked examples including PE 502). Where those two operate at the level of *"you have a recurrence, here is the OGF,"* this one operates at the level of *"you have a combinatorial specification, here is the OGF."* Both prior sources' machinery falls out as the SEQ / rational-language special case of the dictionary here.
 
-The concrete castle payoff is in §I.3 (stack polyominoes / Example I.8) — a direct construction of a castle-tower-with-one-peak family by the symbolic method — and in §I.5 (recursive tree specifications) which is exactly the specification style of the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)].
+The castle-side content is in §I.3 (Example I.8, a symbolic-method construction of the stack polyominoes, which are the convex castles) and §I.5 (recursive tree specifications, the specification style of the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]).
 
 ## Footnotes
 

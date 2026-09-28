@@ -1,18 +1,18 @@
 ---
 title: The algebraic/transcendental wall
 category: Concepts
-summary: The castle's counts are C-finite, so their closed forms carry only algebraic constants — √2, √5, φ, i — while the transcendental e and π are structurally locked out of exact formulas and can only enter through limits (Stirling, Catalan, natural-log growth).
+summary: The castle's width-and-height counts (T, P, F) are C-finite, so their canonical closed forms carry only algebraic constants — √2, √5, φ, i, the plastic number — while e and π enter only through limits (Stirling, Catalan, natural-log growth) or inside algebraic values such as cos(π/4).
 tags: [concept, castle, algebraic, transcendental, c-finite, golden-ratio, sqrt2, e, pi, asymptotics, pedagogy]
 sources: [project-euler-502-representations, aocp-permutations, aocp-generating-functions, generating-functions-topic]
 created: 2026-09-15
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # The algebraic/transcendental wall
 
-## The idea in one breath
+## Summary
 
-Every exact count in the castle is **C-finite**: it satisfies a linear recurrence, so its generating function is rational and its closed form is a finite sum of polynomial×exponential terms whose bases are **algebraic** numbers. The transcendental constants `e` and `π` therefore cannot appear in any exact castle formula — they only leak in through **limits** (Stirling's formula, Catalan asymptotics, natural-log growth). The wall is the boundary between the algebraic numbers the castle can *contain* exactly, and the transcendents it can only *approach*.
+Every exact count of castles by width and height, `T(k,L)`, `P(k,L)` and `F(w,h)`, is **C-finite**: it satisfies a linear recurrence, so its generating function is rational and its canonical closed form is a finite sum of polynomial×exponential terms whose bases are **algebraic** numbers. The transcendental constants `e` and `π` are not needed in these formulas. Where they appear in an equivalent form, as in `Re((1+i)^{L+1}) = 2^{(L+1)/2} cos((L+1)π/4)` or a root of unity `e^{2πi/m}`, they sit inside an algebraic value; otherwise they enter through **limits** (Stirling's formula, Catalan asymptotics, natural-log growth). Some counts by area are not C-finite (the convex castles, A001523, and the signed count by area, a q-series on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]) and fall outside this page.
 
 ## The two sides
 
@@ -22,44 +22,42 @@ Every exact count in the castle is **C-finite**: it satisfies a linear recurrenc
 
 ## Why the wall holds: C-finite ⟹ algebraic closed forms
 
-The step that welds the two sides to the castle is the **Binet formula**. A C-finite sequence `(a_n)` has a rational generating function `N(x)/D(x)`, and its `n`-th term expands as
+The link to the castle is the **Binet formula**. A C-finite sequence `(a_n)` has a rational generating function `N(x)/D(x)`, and its `n`-th term expands as
 
 ```
 a_n = Σ_i  p_i(n) · r_i^n,
 ```
 
-where the `r_i` are the roots of the characteristic polynomial — algebraic — and the `p_i` are polynomials with algebraic coefficients. Fibonacci is the one-term prototype: `x² = x + 1` has roots `φ, φ̂`, and `F_n = (φ^n − φ̂^n)/√5` is exactly this form.[^1] The constants entering the *canonical* closed form of a C-finite sequence are therefore always algebraic. Since the castle's counts — `T(k,L) = (k+1)^L`, `P(k,L)`, and `F(w,h)` — are all C-finite ([[signed-tower-count](pages/signed-tower-count.md)], [[castle-counting-formula](pages/castle-counting-formula.md)]), their closed forms live entirely on the algebraic side.
+where the `r_i` are the roots of the characteristic polynomial — algebraic — and the `p_i` are polynomials with algebraic coefficients. Fibonacci is the simplest example: `x² = x + 1` has roots `φ, φ̂`, and `F_n = (φ^n − φ̂^n)/√5` has this form.[^1] The constants entering the *canonical* closed form of a C-finite sequence are therefore always algebraic. Since the castle's counts — `T(k,L) = (k+1)^L`, `P(k,L)`, and `F(w,h)` — are all C-finite ([[signed-tower-count](pages/signed-tower-count.md)], [[castle-counting-formula](pages/castle-counting-formula.md)]), their closed forms live entirely on the algebraic side.
 
 ## The castle's residents on each side
 
-**Exact (algebraic) — and the named ones are all quadratic.** The constants that appear *exactly* are characteristic roots, and the ones with names are all degree 2:[^4]
+**Exact (algebraic).** The constants that appear exactly are characteristic roots. The named quadratic ones:[^4]
 
 - `φ = (1+√5)/2` — Fibonacci's growth rate (`F_n = (φ^n − φ̂^n)/√5`) and the `F_{n−1}` prime castles of [[prime-castles](pages/prime-castles.md)].
 - `√2` — `|1+i| = √2` in `P(1,L) = Re((1+i)^{L+1})`, and the tower-word growth constant `√2 + 1`.
 - `√5` — the Fibonacci denominator.
 - `i` — the `1±i` eigenvalues of `P(1,·)`.
 
-The higher-degree eigenvalues (the `ρ_k` of [[generating-function-gallery](pages/generating-function-gallery.md)]) are algebraic too, but of degree `k+1` or more — algebraic, yet *unnamed*. The named constants are exactly the quadratic ones.
+The higher-degree eigenvalues (the `ρ_k` of [[generating-function-gallery](pages/generating-function-gallery.md)]) are algebraic too, of degree at most `k+1`: the dominant root of `char_4` is a cubic, and `ρ_6 = 2ψ²` is cubic, for `ψ` the plastic number ([[plastic-number](pages/plastic-number.md)]).
 
-**Asymptotic (transcendental) — `e` and `π` through the window of limits.** Both are already in the wiki, and each sits on the far side, reachable only as `n → ∞`:[^3]
+**Asymptotic.** `e` and `π` appear in these limits as `n → ∞`:[^3]
 
-- Stirling `n! ≈ √(2πn)(n/e)^n` — "the tool for the castle's astronomical counts" ([[aocp-permutations](pages/aocp-permutations.md)]).
+- Stirling `n! ≈ √(2πn)(n/e)^n` ([[aocp-permutations](pages/aocp-permutations.md)]).
 - Catalan `C_n ~ 4^n/(n^{3/2}√π)` ([[catalan-numbers](pages/catalan-numbers.md)]) and the central binomial `C(2n,n) ~ 4^n/√(πn)`.
 - The natural log in `ρ_k ~ k/log k` ([[generating-function-gallery](pages/generating-function-gallery.md)]).
 
-One caveat keeps the wall honest: the `e` in the exponential generating function `e^x` is **not** the transcendental — it is formal bookkeeping, `e^x = Σ x^n/n!`, which only equals the number `e` on evaluating `x = 1`. The EGF parity projector `(e^x ± e^{−x})/2` ([[generating-functions-topic](pages/generating-functions-topic.md)]) is the classical EGF form of the castle's `(T±P)/2` even/odd split, and its `e` is a *formal* symbol, not a breach. The transcendental `e` enters only through Stirling's `(n/e)^n` and the natural log.
+One caveat: the `e` in the exponential generating function `e^x` is formal bookkeeping, `e^x = Σ x^n/n!`, which only equals the number `e` on evaluating `x = 1`. The EGF parity projector `(e^x ± e^{−x})/2` ([[generating-functions-topic](pages/generating-functions-topic.md)]) is the classical EGF form of the castle's `(T±P)/2` even/odd split, and its `e` is a formal symbol. Among the limits above, the number `e` enters through Stirling's `(n/e)^n` and the natural log.
 
-## The breach — how the transcendents get in
+## How the transcendental constants enter
 
-The wall is airtight for *exact* statements; its one gate is the **limit**. The cleanest illustration is `n!` itself. The factorial is an integer — trivially algebraic — yet its asymptotic
+In the exact formulas `e` and `π` are not needed; they enter through **limits**. The standard illustration is `n!`. The factorial is an integer — trivially algebraic — yet its asymptotic
 
 ```
 n! ≈ √(2πn) · (n/e)^n      (relative error → 0)
 ```
 
-carries both `e` and `π`.[^3] The equality holds only in the limit `n → ∞`; for every finite `n` the two sides differ. The transcendents enter precisely because Stirling's formula is an *asymptotic*, not an identity. The same mechanism runs through Catalan and central-binomial asymptotics (`π`) and the natural-log growth rate `k/log k` (`e`): each is a limit statement over a family whose exact terms are integers. The residents who breach the wall — Stirling, Catalan, the natural log — are always asymptotics, never exact formulas; the transcendents ride in on the `n → ∞`.
-
-That is the wall in one sentence: **the castle's exact counts are algebraic; `e` and `π` belong to the asymptotics, because the only gate in the wall is a limit.**
+carries both `e` and `π`.[^3] The equality holds only in the limit `n → ∞`; for every finite `n` the two sides differ. The transcendental constants enter because Stirling's formula is an asymptotic statement, not an identity. The same holds for the Catalan and central-binomial asymptotics (`π`) and the natural-log growth rate `k/log k` (`e`): each is a limit statement over a family whose exact terms are integers.
 
 ## Appearances in Sources
 
@@ -75,12 +73,12 @@ That is the wall in one sentence: **the castle's exact counts are algebraic; `e`
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — the `√2+1` growth constant.
 - [[tower-word-language](pages/tower-word-language.md)] — the regular→rational, context-free→algebraic hierarchy the wall extends one rung further.
 - [[castle-by-area](pages/castle-by-area.md)] — `2^{n−1} − F_{n−1}`, where `φ` enters the exact count.
-- [[fractional-recurrences](pages/fractional-recurrences.md)] — the wall's continuum face: the fractional-Fibonacci recurrence `∇^α a_n = a_{n-1}` has growth `g(α)` algebraic iff `α` is rational (Baker/Gelfond-Schneider on `α = log r / log(1-r)`), so irrational `α` gives transcendental growth directly, without the Stirling/Catalan/log-`k` limit gate. A new transcendental-arrival mechanism sitting beside the classical asymptotic one.
-- [[kitamasa](pages/kitamasa.md)] — the "spectral reading" `R(λ) = λ^n` on eigenvalue roots is a direct realization of this page's thesis: C-finite closed forms carry only algebraic eigenvalues.
-- [[generating-function-gallery](pages/generating-function-gallery.md)] — the `ρ_k ~ k / log k` asymptotic derived there is one of this page's "transcendental via limit" residents.
-- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] — the k-direction eigenvalues are only `±1`, a clean limiting case (rational algebraic) rung on the wall.
-- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] — the bar-graph GF at fixed perimeter and area is a q-Bessel function, and the tricritical asymptotic scaling function is the logarithmic derivative of Airy, `Ai'/Ai`. Both cross the wall on the limit side — the exact q-series is D-finite (holonomic) but not algebraic, and its scaling function is a bona fide transcendental special function.
-- [[castle-samplers](pages/castle-samplers.md)] - the samplers that draw random castles for limit-law experiments, the route by which transcendental constants reach the castle.
+- [[fractional-recurrences](pages/fractional-recurrences.md)] — the fractional-Fibonacci recurrence `∇^α a_n = a_{n-1}` has an algebraic growth constant `g(α)` for rational `α`; by Gelfond-Schneider on `α = log r / log(1-r)`, an algebraic `g(α)` forces `α` rational or transcendental, so every algebraic irrational `α` (and all `α` outside a countable set) gives a transcendental growth constant with no limit involved.
+- [[kitamasa](pages/kitamasa.md)] — the reduced polynomial `R` with `R(λ) = λ^n` on the eigenvalues, which are algebraic.
+- [[generating-function-gallery](pages/generating-function-gallery.md)] — derives the `ρ_k ~ k / log k` asymptotic.
+- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] — the k-direction eigenvalues are only `±1`, which are rational.
+- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] — the bar-graph GF at fixed perimeter and area is a q-Bessel function, and the tricritical asymptotic scaling function is the logarithmic derivative of Airy, `Ai'/Ai`. The exact q-series is not holonomic, and the scaling function is a transcendental special function obtained in a limit.
+- [[castle-samplers](pages/castle-samplers.md)] - samplers for random castles, used in limit-law experiments.
 
 ## Footnotes
 

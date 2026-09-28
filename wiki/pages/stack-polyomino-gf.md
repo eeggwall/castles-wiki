@@ -1,24 +1,24 @@
 ---
 title: Stack polyomino generating function
 category: Concepts
-summary: A stack polyomino — column heights that weakly rise then weakly fall around a single peak — is a castle tower with one peak. Its OGF `S(z) = ∑_{k≥1} z^k/(1−z^k) · 1/((1−z)(1−z²)···(1−z^{k−1}))²` (OEIS A001523) is built directly by the [[symbolic-method]] from a Durfee-square-style geometric decomposition.
+summary: A stack polyomino — column heights that weakly rise then weakly fall — is the shape of a convex castle (a unimodal skyline on a full base). Its OGF `S(z) = ∑_{k≥1} z^k/(1−z^k) · 1/((1−z)(1−z²)···(1−z^{k−1}))²` (OEIS A001523) is built directly by the [[symbolic-method]] from a decomposition at the first tallest column.
 tags: [concept, polyomino, stack-polyomino, generating-functions, symbolic-method, durfee-square, castle-tower]
 sources: [analytic-combinatorics-ch1-ogfs, klarner-rivest-1974-convex-n-ominoes, algebraic-languages-and-polyominoes-enumeration, bender-1974-convex-n-ominoes]
 created: 2026-09-15
-updated: 2026-09-23
+updated: 2026-09-28
 ---
 
 # Stack polyomino generating function
 
 ## Description
 
-A **stack polyomino** is the diagram of a composition whose column heights weakly rise to a single peak and then weakly fall: `1 ≤ x_1 ≤ x_2 ≤ … ≤ x_j ≥ x_{j+1} ≥ … ≥ x_ℓ ≥ 1` for some `j, ℓ`.[^1] Read this as a castle-style pile of columns on a common baseline where the skyline is unimodal — a **single-peak tower**. Flajolet & Sedgewick construct its ordinary generating function (OGF) directly by the [[symbolic-method](pages/symbolic-method.md)] (Example I.8, pp. 45-46 of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)]), from the Durfee-square-style geometric decomposition[^1]
+A **stack polyomino** is the diagram of a composition whose column heights weakly rise to a single peak and then weakly fall: `1 ≤ x_1 ≤ x_2 ≤ … ≤ x_j ≥ x_{j+1} ≥ … ≥ x_ℓ ≥ 1` for some `j, ℓ`.[^1] On a common baseline this is a unimodal skyline, the shape of a [[convex-castle](pages/convex-castle.md)]. Flajolet & Sedgewick construct its ordinary generating function (OGF) directly by the [[symbolic-method](pages/symbolic-method.md)] (Example I.8, pp. 45-46 of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)]), from the decomposition[^1]
 
 ```
-Stack ≅ ⋃_{k≥1} ( SEQ_{≥1}(Z^k) × P^{1..k−1} × P^{1..k−1} )
+Stack ≅ ⋃_{k≥1} ( P^{1..k−1} × Z^k × P^{1..k} )
 ```
 
-— identify the (fixed) peak column of height `k`, prepend a partition with parts `≤ k−1` (the ascending side) and append another (the descending side). Translating each piece into an OGF via the dictionary gives[^1]
+— the first column of maximal height `k`, a partition with parts `≤ k−1` before it (the ascending side) and a partition with parts `≤ k` after it (the descending side, which may repeat height `k`). Translating each piece into an OGF via the dictionary, with `P^{1..k}(z) = P^{1..k−1}(z)/(1 − z^k)`, gives[^1]
 
 ```
 S(z) = ∑_{k≥1}  z^k/(1 − z^k)  ·  1/((1−z)(1−z²)···(1−z^{k−1}))²
@@ -28,19 +28,17 @@ S(z) = ∑_{k≥1}  z^k/(1 − z^k)  ·  1/((1−z)(1−z²)···(1−z^{k−1}
 
 = **Online Encyclopedia of Integer Sequences (OEIS) A001523** (unimodal compositions).[^1] Coefficients confirmed against A001523 during ingest.
 
-## The direct castle tie
+## Stacks and castles
 
-A **castle tower** — the tower half of the wiki's [[castle-polyomino](pages/castle-polyomino.md)], as counted by the unsigned tower OGF `E_k(x) = 1/(1−(k+1)x)` on [[project-euler-502-representations](pages/project-euler-502-representations.md)] — has strictly more freedom than a stack polyomino: castle blocks can rise and fall repeatedly across width, so the skyline is a general unrestricted composition, not a unimodal one. In other words:
+A general [[castle-polyomino](pages/castle-polyomino.md)] has more freedom than a stack polyomino: its skyline can rise and fall repeatedly, so it is an arbitrary composition of its area (castles by area are `2^{n−1}`), where a stack's skyline is unimodal.
 
-- **Stack polyominoes are the unimodal-skyline sub-family of castle towers.** Every stack polyomino, positioned on a full-width base and constrained to castle heights, is a castle tower with one peak. Not every castle tower is a stack polyomino — a castle whose skyline dips in the middle and rises again is not unimodal.
-- **The construction style matches the wiki's approach.** [[column-convex-polyomino](pages/column-convex-polyomino.md)] and the castle both build the polyomino by gluing columns; Example I.8 is exactly this style, executed as a specification rather than an add-a-column functional equation.
+- **Stack polyominoes are the unimodal castles.** A castle whose skyline is unimodal is a stack polyomino, the [[convex-castle](pages/convex-castle.md)]; a castle whose skyline dips in the middle and rises again is not.
+- **Specification versus functional equation.** [[column-convex-polyomino](pages/column-convex-polyomino.md)] enumeration and the castle build shapes by gluing columns; Example I.8 instead decomposes the stack at its tallest column and reads the OGF off that specification, with no add-a-column functional equation.
 - **The add-a-column route, by perimeter and area.** [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] uses stacks as its worked example. Applying its construction A to stacks gives a one-shift q-equation in the left-column-height variable (Lemma 2.4), and its Lemma 2.3 solves that in closed form (Lemma 2.5). So the wiki has three constructions of one class: this specification, the Fibonacci-word coding by perimeter below, and the q-shift equation.[^8]
-
-This is the closest Analytic Combinatorics (AC)-native construction to the castle we have so far: it treats a castle-like polyomino as a *specification* over classes of columns, and reads the OGF off the specification without ever writing a recurrence.
 
 ## Relation to convex-castle counting
 
-The [[convex-castle](pages/convex-castle.md)] is the castle with a unimodal skyline, and it is exactly a stack polyomino. On a unimodal skyline every row is a single run, so the no-overhang and same-row-gap rules hold automatically, and the only castle rule left is PE 502's even-block clause, which is a parity filter (a convex castle has exactly `h` blocks). One class, three gradings: `C(2H+W−3, W−1)` by bounding box ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]), A001523 by area (this OGF), and Fibonacci by perimeter (below).
+The [[convex-castle](pages/convex-castle.md)] is the castle with a unimodal skyline, and it is a stack polyomino. On a unimodal skyline every row is a single run, so the no-overhang and same-row-gap rules hold automatically, and the only castle rule left is PE 502's even-block clause, which is a parity filter (a convex castle has exactly `h` blocks). One class, three gradings: `C(2H+W−3, W−1)` by bounding box ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]), A001523 by area (this OGF), and Fibonacci by perimeter (below).
 
 ## By perimeter: Fibonacci words (Delest-Viennot)
 
@@ -50,7 +48,7 @@ Stack polyominoes graded by **perimeter** have a simpler count than by area. Del
 Σ_n F_{2n} t^{2n} = (1 - t^2) / ((1 - t - t^2)(1 + t - t^2))      1, 2, 5, 13, 34, 89, ...
 ```
 
-The perimeter of a stack in a `w × h` box is `2(w+h)`, and stacks are the [[convex-castle](pages/convex-castle.md)] shapes. So this count is the anti-diagonal sum `Σ_{w+h=n+2} C(2h+w-3, w-1) = F_{2n}` of the convex-castle binomial (checked for `n = 1..14` during ingest).[^4] The two gradings of the same class give A001523 by area and Fibonacci (A001519) by semi-perimeter. The joint area-and-perimeter GF is Wright's "Stacks" (1968), which Delest-Viennot cite as the solved q-analog for this class but which is not ingested here.[^5]
+The perimeter of a stack in a `w × h` box is `2(w+h)`, and stacks are the [[convex-castle](pages/convex-castle.md)] shapes. So this count is the anti-diagonal sum `Σ_{w+h=n+2} C(2h+w-3, w-1) = F_{2n}` of the convex-castle binomial (checked for `n = 1..14` during ingest).[^4] The two gradings of the same class give A001523 by area and Fibonacci (A001519) by semi-perimeter. The joint area-and-perimeter GF is Wright's "Stacks" (1968), which Delest-Viennot cite as the solved q-analog for this class (Wright's paper is not read here).[^5]
 
 ## Stacks inside every convex polyomino
 
@@ -60,11 +58,11 @@ Bender's 1974 count of convex polyominoes uses stacks under the name **trapezoid
 T(x, y) = sum_{k>=1} x^k y (1 - x^k y) / prod_{n=1..k} (1 - x^n y)^2
 ```
 
-At `y = 1` the factor `(1 - x^k)` cancels one copy of the last denominator factor, which leaves `S(z)` above term by term. The coefficients agree with A001523 through area 20 (own check). Nested rows over a full bottom row are the same thing as a unimodal skyline of columns on that row, so a trapezoid is a stack polyomino as drawn. Every convex polyomino is a bottom trapezoid, a parallelogram, and an inverted top trapezoid ([[convex-polyomino](pages/convex-polyomino.md)]), so the stack series is a factor in every convex polyomino's generating function. It contributes no exponential growth: `T(x, 1)` has radius of convergence 1, and the growth `2.30914^n` comes from the parallelogram.[^7]
+At `y = 1` the factor `(1 - x^k)` cancels one copy of the last denominator factor, which leaves `S(z)` above term by term. The coefficients agree with A001523 through area 20 (own check). Nested rows over a full bottom row are the same thing as a unimodal skyline of columns on that row, so a trapezoid is a stack polyomino as drawn. Every convex polyomino is a bottom trapezoid, a parallelogram, and an inverted top trapezoid ([[convex-polyomino](pages/convex-polyomino.md)]), so stacks enter the convex-polyomino generating function as the end pieces. It contributes no exponential growth: `T(x, 1)` has radius of convergence 1, and the growth `2.30914^n` comes from the parallelogram.[^7]
 
 ## Related asymptotics thread
 
-The book's own note (p. 46) points from Example I.8 forward to Example IX.14 p. 660: **parallelogram polyominoes counted by area give a q-Bessel generating function** — the same q-Bessel / q-Motzkin thread that appears in [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] and [[polyominoes](pages/polyominoes.md)]'s Ferrers-diagram remark on q-Bessel / q-Catalan.[^2] The stack polyomino is thus a middle link between the AC symbolic-method construction of a castle-shaped polyomino and the q-graded asymptotic story that the wiki has begun tracking separately.
+The book's own note (p. 46) points from Example I.8 forward to Example IX.14 p. 660: **parallelogram polyominoes counted by area give a q-Bessel generating function** — the same q-Bessel / q-Motzkin thread that appears in [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] and [[polyominoes](pages/polyominoes.md)]'s Ferrers-diagram remark on q-Bessel / q-Catalan.[^2]
 
 ## Appearances in Sources
 
@@ -77,7 +75,7 @@ The book's own note (p. 46) points from Example I.8 forward to Example IX.14 p. 
 
 - [[symbolic-method](pages/symbolic-method.md)] — the method the OGF is derived by.
 - [[polyominoes](pages/polyominoes.md)] / [[column-convex-polyomino](pages/column-convex-polyomino.md)] — the taxonomic hosts.
-- [[castle-polyomino](pages/castle-polyomino.md)] / [[tower-heap](pages/tower-heap.md)] — the castle tower, of which the stack polyomino is the unimodal-skyline sub-family.
+- [[castle-polyomino](pages/castle-polyomino.md)] / [[tower-heap](pages/tower-heap.md)] — castles and towers, general skylines of which the stack is the unimodal case.
 - [[convex-castle](pages/convex-castle.md)] - the castle's own skyline-convex sub-family, the same class as the stack polyominoes (even-block clause aside).
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — the downstream q-Bessel thread the book points to.
 - [[generating-functions](pages/generating-functions.md)] — the concept page.

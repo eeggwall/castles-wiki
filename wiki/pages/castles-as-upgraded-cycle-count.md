@@ -1,11 +1,11 @@
 ---
 title: "Castles as an upgrade of the (n−1)! cycle count"
 category: Analyses
-summary: PE 502 as the same toolkit that proves (n−1)! for cycles, upgraded step-by-step to handle stacked, width-weighted, sign-selected cycles. Seminar-ready framing that ties the elementary anchor to the [[castle-sign]] / [[castle-foata-transform]] / [[monotone-streak-factorization]] triad.
+summary: PE 502 as the same toolkit that proves (n−1)! for cycles, upgraded step-by-step to handle stacked, width-weighted, sign-selected cycles. A seminar framing that ties the elementary anchor to the [[castle-sign]] / [[castle-foata-transform]] / [[monotone-streak-factorization]] triad.
 tags: [analysis, castle, permutations, cycles, seminar, factorization, sign]
 sources: [permutation-cycle-castle-analogy]
 created: 2026-09-15
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Castles as an upgrade of the (n−1)! cycle count
@@ -17,13 +17,13 @@ A **cycle on `n` labelled items** is a cyclic arrangement — an ordering up to 
 1. **Quotient by rotation.** There are `n!` linear orderings of the `n` items; the free `Z/n` rotation action groups them into cycle-equivalence classes of size `n`, giving `n!/n = (n−1)!` cycles.[^1]
 2. **Fix a starting point.** Every cycle can be written uniquely starting with the item labelled `1`; the remaining `n−1` items then order freely, giving `(n−1)!` cycles.[^1]
 
-Both proofs are instances of a **bigger machine** — Foata's fundamental transformation, the sign homomorphism, and Knuth's `O(n)` cycle-following loop — and that same machine, upgraded three times, is what proves the [[castle-counting-formula](pages/castle-counting-formula.md)] and drives the fast [[castle-count-algorithms](pages/castle-count-algorithms.md)].[^2]
+The source reads both proofs as instances of one toolkit — Foata's fundamental transformation, the sign of a permutation, and Knuth's `O(n)` cycle-following loop — and reads PE 502 as that toolkit upgraded three times, ending at the [[castle-counting-formula](pages/castle-counting-formula.md)].[^2]
 
 ## The three upgrades
 
-The [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] is not decorative: it is a genuine factorization (the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is the Dyck first-return grammar with a third letter), and each move in the `(n−1)!` proof has a direct castle counterpart. The three-row proof-move ↔ castle-counterpart correspondence table is single-sourced on [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] §"The (n−1)! anchor": *divide by `n` / `(1 ± sgn)/2`* → [[castle-sign](pages/castle-sign.md)], *canonical form / Foata* → [[castle-foata-transform](pages/castle-foata-transform.md)], *cycle-follow `i ↦ σ(i)`* → [[monotone-streak-factorization](pages/monotone-streak-factorization.md)].
+The [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] rests on a factorization (the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is the Dyck first-return grammar with a third letter), and each move in the `(n−1)!` proof has a castle counterpart. The three-row proof-move ↔ castle-counterpart table is on [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] §"The (n−1)! anchor": *divide by `n` / `(1 ± sgn)/2`* → [[castle-sign](pages/castle-sign.md)], *canonical form / Foata* → [[castle-foata-transform](pages/castle-foata-transform.md)], *cycle-follow `i ↦ σ(i)`* → [[monotone-streak-factorization](pages/monotone-streak-factorization.md)].
 
-Nothing in the machine changes. Only the objects it acts on grow: `n` labelled points become `L` columns of unbounded height with `w` widths, one row's cycles become a stack that carries multiplicity, and the sign is measured on **blocks** (stacked atoms) instead of transpositions.[^3]
+The moves stay the same and the objects change: `n` labelled points become `L` columns of height at most `k`, cycles become peaks that can hold several stacked blocks, and the sign is taken over **blocks** instead of transpositions.[^3]
 
 ## Hand check: F(4,2) = 10 via the closed form
 
@@ -47,23 +47,19 @@ The three upgrades read off this hand check directly:
 - **Foata upgrade.** Each of the 10 configurations has exactly one maximal positive run → exactly one peak, one record — the [[castle-foata-transform](pages/castle-foata-transform.md)] bijection in miniature.[^7]
 - **Streak upgrade.** Each configuration's first-difference sequence has a single up-streak and a single down-streak of magnitude 1 — the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] one-block reading.[^8]
 
-## The caveat that makes the castle richer than a permutation
+## Block count and peak count
 
 **Block count ≠ peak count.** A single peak — one `U…D` excursion — can be several stacked blocks. So the `(−1)^{blocks}` sign atom of [[castle-sign](pages/castle-sign.md)] and the peak-count analogue of the cycle count are **different statistics on the same castle**.[^9] The Foata bijection is with peaks; the sign is measured on blocks. `3! = 6 ≠ 10`: the analogy is one-peak ↔ one-cycle in structure, not in cardinality, because castle rows have arbitrary integer widths where cycles have unit-labelled elements.[^10]
 
-This is the fingerprint of a genuinely richer combinatorial object than plain permutations — the castle sits between **cycles of a permutation** and **cycles with multiplicity and height**. The `(n−1)!` proof is the degenerate case where multiplicity and height are trivial; the castle machinery is running the same three moves at industrial scale.
+## Seminar outline
 
-## Seminar shape
+1. `(n−1)!` and its two proofs.
+2. The correspondence table from [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)].
+3. The three upgrades, one row of the table each.
+4. `F(4,2) = 10` derived twice: by direct enumeration and by the closed form.
+5. The block ≠ peak caveat, and where the thread continues: the area-graded count ([[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]) and heap theory ([[tower-heap](pages/tower-heap.md)]).
 
-For an outward-facing seminar the material assembles cleanly:
-
-1. Open with `(n−1)!` and its two proofs (the elementary hook).
-2. Present the correspondence table from [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] as an analogy — this is where the audience begins to guess where the talk is heading.
-3. State the three upgrades as the three-row table above, one row per subsequent lecture beat.
-4. Land on `F(4,2) = 10` derived twice: once by direct enumeration (permutation-style), once by the closed form (castle-machine-style).
-5. Flag the block ≠ peak caveat, and set up q-analog / Viennot heap directions ([[tower-heap](pages/tower-heap.md)], `TODO.md`) as the natural next questions.
-
-The point of the talk is not the answer (`F(w,h)` exists in closed form), but that **the toolkit** — sign homomorphism, Foata flattening, cycle-following — is the same toolkit for both. Project Euler 502 (PE 502) is what happens when you upgrade every move.
+The same three moves (the sign, Foata flattening, cycle-following) run on both sides; the source's summary is that PE 502 is the `(n−1)!` toolkit with every step upgraded.[^3]
 
 ## Appearances in Sources
 
@@ -71,13 +67,13 @@ The point of the talk is not the answer (`F(w,h)` exists in closed form), but th
 
 ## Related Concepts
 
-- [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] — the analogy this analysis upgrades from metaphor to seminar spine.
+- [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] — the analogy this page organizes as a seminar.
 - [[castle-sign](pages/castle-sign.md)] — the sign upgrade.
 - [[castle-foata-transform](pages/castle-foata-transform.md)] — the Foata upgrade.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the cycle-following upgrade.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the closed form the three upgrades combine to yield.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the factorization on the castle side.
-- [[aocp-multisets](pages/aocp-multisets.md)] / [[aocp-permutations](pages/aocp-permutations.md)] — Knuth's Vol. 3 and Vol. 1 sources for the two-line-array cycle apparatus and canonical cycle form.
+- [[aocp-multisets](pages/aocp-multisets.md)] — Knuth's Vol. 3 two-line arrays, the multiset form of the cycle factorization; the canonical cycle form (Vol. 1 §1.3.3) is cited on [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)]. [[aocp-permutations](pages/aocp-permutations.md)] — the `n!` counts behind the anchor.
 - [[project-euler-502-observations](pages/project-euler-502-observations.md)] — the source that names `(A + P)/2` "a symmetry trick that recurs in many combinatorial-enumeration problems"; the `(1 ± sgn)/2` anchor above is its elementary case.
 
 ## Footnotes
