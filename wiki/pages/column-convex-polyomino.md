@@ -5,7 +5,7 @@ summary: A polyomino whose intersection with any vertical line is contiguous (ea
 tags: [concept, polyomino, column-convex, convexity, combinatorics, symbolic-method]
 sources: [column-convex-polygon-enumeration, analytic-combinatorics-ch1-ogfs]
 created: 2026-09-13
-updated: 2026-09-22
+updated: 2026-09-28
 ---
 
 # Column-convex polyomino
@@ -22,9 +22,9 @@ The defining tool is the **add-a-column ("Temperley") method**: build the polyom
 
 The castle placement in the taxonomy - castle-as-column-convex-polyomino - is stated on [[polyominoes](pages/polyominoes.md)] §"The castle in the taxonomy". Beyond the placement, three castle-side observations:
 
-- Which column-convex polyominoes are castles (and whether every castle is *literally* column-convex, as opposed to structurally close) is a precise correspondence worth working out.
-- The add-a-column method **is** the castle's width-direction recurrence in mature form: the castle counts towers column by column via the [[binary-string-bijection](pages/binary-string-bijection.md)] and column independence (`T(k,L)=(k+1)^L`), a particularly clean instance of gluing columns.
-- The castle's own [[convex-castle](pages/convex-castle.md)] (a skyline convexity) and the classical **stack polygon / parallelogram** families are near neighbors; mapping castle sub-families onto these is a live thread.
+- Every castle is column-convex by construction, and the castles are exactly the column-convex polyominoes whose columns all start on row 1 (the bargraphs, [[castle-polyomino](pages/castle-polyomino.md)]).
+- Adding a column to a castle gives its own add-a-column equation, solved by Bousquet-Mélou's Lemma 2.3 ([[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)]). The castle solution's `T(k,L)=(k+1)^L` counts row by row instead, through the [[binary-string-bijection](pages/binary-string-bijection.md)].
+- The castle's [[convex-castle](pages/convex-castle.md)] is the classical **stack polygon**, and castles meet the **parallelogram** family in the reverse Ferrers diagrams ([[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)]).
 
 ## Appearances in Sources
 
@@ -33,7 +33,7 @@ The castle placement in the taxonomy - castle-as-column-convex-polyomino - is st
 
 ## Related Concepts
 
-- [[castle-polyomino](pages/castle-polyomino.md)] — the castle, a column-structured object closely related to this class.
+- [[castle-polyomino](pages/castle-polyomino.md)] — the castle, a column-convex polyomino with every column starting on row 1.
 - [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] — the row-convex counterpart; both together give convex polyominoes.
 - [[convex-castle](pages/convex-castle.md)] — the castle's own convexity notion.
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the unimodal-skyline sub-family, with a symbolic-method OGF.

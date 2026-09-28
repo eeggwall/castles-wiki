@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 40 (song-as-castle and the 20 pages linking to it; batches 1-2, the 19 oldest pages) |
+| Fully read and cleaned | 49 (song-as-castle and the 20 pages linking to it; batches 1-3, the 28 oldest pages) |
 | Spot fixes only | 20 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 134 |
-| Words still to read | about 348,000 |
+| Not started | 125 |
+| Words still to read | about 336,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 25 fully read)
+### Concepts (85 pages, 29 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [ ] hyperbolic-sequence-family (6.2)
@@ -133,7 +133,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] sandpile-group (3.0)
 - [ ] castle-native-gray-tour (3.0)
 - [ ] block-count-constraints (3.0)
-- [ ] column-convex-polyomino (3.0)
+- [x] column-convex-polyomino (3.0)
 - [ ] parity-via-roots-of-unity (3.0)
 - [x] castle-counting-function (2.8)
 - [ ] multiset-partitions (2.7)
@@ -146,11 +146,11 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] idempotent-decomposition (2.3)
 - [~] castle-by-area (2.3)
 - [x] urd-step-strings (2.1)
-- [ ] kitamasa (2.1)
+- [x] kitamasa (2.1)
 - [ ] castle-classification-spectrum (1.9)
 - [ ] stack-polyomino-gf (1.9)
 - [x] castle-sign (1.9)
-- [ ] binary-string-bijection (1.8)
+- [x] binary-string-bijection (1.8)
 - [ ] ramanujan-castles (1.7)
 - [ ] castle-snippets-cryptography (1.7)
 - [ ] mod-9-coset-lift (1.6)
@@ -186,7 +186,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] permutation-cycle-castle-analogy (0.0)
 - [ ] motzkin-numbers (0.0)
 - [x] monotone-streak-factorization (0.0)
-- [ ] horizontally-convex-polyomino (0.0)
+- [x] horizontally-convex-polyomino (0.0)
 - [ ] forcibly-simple-score-vector (0.0)
 - [x] convex-castle (0.0)
 - [ ] chinese-remainder-theorem (0.0)
@@ -194,7 +194,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] castle-snippets-strips (0.0)
 - [ ] acronyms (0.0)
 
-### Analyses (64 pages, 9 fully read)
+### Analyses (64 pages, 10 fully read)
 
 - [x] castle-cryptography (5.1)
 - [ ] isospectral-castles (4.9)
@@ -219,7 +219,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] convex-core (2.0)
 - [ ] larger-prime-periodicity (1.9)
 - [ ] castle-perimeter (1.9)
-- [ ] castle-count-algorithms (1.8)
+- [x] castle-count-algorithms (1.8)
 - [ ] tower-spacing-castles (1.8)
 - [ ] char-k-eisenstein-at-two (1.8)
 - [ ] proper-castle-projection (1.8)
@@ -261,13 +261,13 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] convex-castle-cap-factor (0.0)
 - [~] castle-q-bessel-closed-form (0.0)
 
-### Sources (44 pages, 5 fully read)
+### Sources (44 pages, 9 fully read)
 
 - [ ] oeis-mining-pe502 (25.6)
 - [ ] oeis-height2-hyperbolic-castles (5.9)
 - [ ] new-sequence-fw3 (4.3)
 - [ ] aocp-generating-permutations-tuples (3.4)
-- [ ] steep-polyominoes-q-motzkin-bessel (3.4)
+- [x] steep-polyominoes-q-motzkin-bessel (3.4)
 - [ ] lattice-paths (3.2)
 - [ ] dhar-ruelle-sen-verma-1995-algebraic-aspects (3.2)
 - [ ] aocp-generating-functions (3.1)
@@ -277,7 +277,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [~] pe502-pell-castle-strip (2.3)
 - [ ] algebraic-languages-and-polyominoes-enumeration (2.3)
 - [ ] bousquet-melou-fedou-1995-convex-polyominoes (2.2)
-- [ ] counting-horizontally-convex-polyominoes (2.1)
+- [x] counting-horizontally-convex-polyominoes (2.1)
 - [ ] deutsch-elizalde-2016-bargraphs-cornerless-motzkin (2.0)
 - [ ] polyominoes (2.0)
 - [ ] bender-1974-partitions-of-multisets (1.7)
@@ -291,13 +291,13 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] generating-functions-topic (0.9)
 - [ ] chau-1993-abelian-sandpile-model (0.9)
 - [ ] aocp-multisets (0.9)
-- [ ] column-convex-polygon-enumeration (0.9)
+- [x] column-convex-polygon-enumeration (0.9)
 - [ ] prellberg-brak-1995-cluster-models (0.9)
 - [ ] aocp-binomial-coefficients (0.9)
 - [x] project-euler-502-castle-factoring (0.9)
 - [x] project-euler-502-observations (0.8)
 - [~] bak-tang-wiesenfeld-1988-self-organized-criticality (0.8)
-- [ ] project-euler-502-solution (0.7)
+- [x] project-euler-502-solution (0.7)
 - [ ] tetali-1998-unique-tournaments (0.5)
 - [ ] bender-1974-convex-n-ominoes (0.5)
 - [ ] klarner-rivest-1974-convex-n-ominoes (0.5)

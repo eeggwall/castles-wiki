@@ -5,7 +5,7 @@ summary: A polyomino meeting every horizontal line in a single segment (or not a
 tags: [concept, polyomino, horizontally-convex, convexity, combinatorics]
 sources: [counting-horizontally-convex-polyominoes, klarner-rivest-1974-convex-n-ominoes]
 created: 2026-09-13
-updated: 2026-09-22
+updated: 2026-09-28
 ---
 
 # Horizontally convex polyomino
@@ -18,25 +18,25 @@ The number of HC *n*-ominoes is `a(n)`, Online Encyclopedia of Integer Sequences
 
 ## Comparison with the castle
 
-HC-polyominoes and [[castle-polyomino](pages/castle-polyomino.md)]s are two different convexity/shape families over the same lattice, and comparing them is one of the threads that links Project Euler 502 (PE 502) to the wider polyomino world:
+HC-polyominoes and [[castle-polyomino](pages/castle-polyomino.md)]s are two different convexity/shape families over the same lattice:
 
-- **The convexity differs.** HC = one contiguous segment *per row* (horizontal convexity). A castle's [[convex-castle](pages/convex-castle.md)] notion is instead a *skyline* condition (monotone rise to a plateau, then monotone descent) with a full-width base and same-row gaps allowed between stacked blocks. A castle is generally **not** horizontally convex — its rows may contain several separated blocks (the ≥1-unit gap rule) — so the two families overlap only partially.
-- **Shared method.** Both are counted by introducing restricted-shape auxiliary functions and eliminating them into a recurrence: Hickerson's `b,c,d,e` for HC-polyominoes, and the tower counts `T`/`P` (with the [[binary-string-bijection](pages/binary-string-bijection.md)]) for castles.
+- **The convexity differs.** HC = one contiguous segment *per row* (horizontal convexity). A castle's [[convex-castle](pages/convex-castle.md)] notion is instead a *skyline* condition (monotone rise to a plateau, then monotone descent) with a full-width base and same-row gaps allowed between stacked blocks. A castle is generally **not** horizontally convex — its rows may contain several separated blocks (the ≥1-unit gap rule). The castles that are horizontally convex are exactly the convex castles: every row is one segment exactly when the skyline is unimodal.
+- **Auxiliary counts.** Both counts go through auxiliary counts: Hickerson's `b,c,d,e` for HC-polyominoes, and the tower counts `T`/`P` (with the [[binary-string-bijection](pages/binary-string-bijection.md)]) for castles.
 - **Shared phenomenon.** A 2-D family collapsing to a short linear recurrence — the same C-finiteness the castle solution exploits via [[kitamasa](pages/kitamasa.md)] and [[berlekamp-massey](pages/berlekamp-massey.md)].
 
-Precisely characterizing which castles are horizontally convex (and vice versa), and whether the castle's counting recurrences relate to `A001169`, is an open thread worth pursuing.
+Against `A001169`, [[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)] compares the two column kernels: the castle keeps 1 of Temperley's `k+l−1` placements, a rank-1 area kernel (castles by area are `2^(n−1)`), against the rank-2 kernel behind Hickerson's order-3 recurrence.
 
 ## Appearances in Sources
 
 - [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)] — defines HC-polyominoes and proves the order-3 recurrence for their count.
-- [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - uses the row-convex count as its comparison family, with growth `3.20...` against `2.309...` for convex polyominoes. Its printed generating function has the denominator coefficients reversed (`1 - 4x + 7x^2 - 5x^3`); the correct denominator is `1 - 5x + 7x^2 - 4x^3`, as the paper's own `beta = 3.20` requires.
+- [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - uses the row-convex count, with generating-function denominator `1 - 5x + 7x^2 - 4x^3` and growth `3.20...`, as its comparison family against `2.309...` for convex polyominoes.
 
 ## Related Concepts
 
 - [[castle-polyomino](pages/castle-polyomino.md)] — the castle object, a different shape family on the same lattice.
 - [[convex-castle](pages/convex-castle.md)] — the castle's own convexity class.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] — the broader column/row-convex polyomino literature.
-- [[tree-castle-by-area](pages/tree-castle-by-area.md)] — exhibits low-order C-finite castle sub-sequences (A000930, A006498, A000570); a natural place to compare against the A001169 recurrence signature and probe whether castle recurrences relate to the horizontally-convex family.
+- [[tree-castle-by-area](pages/tree-castle-by-area.md)] — low-order C-finite castle sequences by area (A000930, A006498, A000570), for comparison with the A001169 recurrence.
 - [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - A001169 is also the column-convex count by area (rotating a polyomino 90 degrees turns its rows into columns and keeps its area, so it is a one-to-one map from row-convex to column-convex polyominoes of the same area), the envelope of every castle area count; the ladder of convex sub-families sits below it.
 
 ## Footnotes

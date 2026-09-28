@@ -5,7 +5,7 @@ summary: The fast way to get one far-off term of a linear recurrence - reduce x^
 tags: [concept, algorithm, linear-recurrence, kitamasa, method, c-finite, pedagogy, teaching]
 sources: [project-euler-502-solution, project-euler-502-implementation-notes, generating-functions-topic, oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Kitamasa
@@ -20,7 +20,7 @@ a_n = c_1 a_{n−1} + c_2 a_{n−2} + … + c_D a_{n−D},
 
 you know the first *D* terms `a_0, …, a_{D−1}`, and you want **one** term `a_n` at an enormous index - `n = 10^12`, say - without visiting the trillion terms in between. Walking the recurrence costs `O(nD)`. **Kitamasa** gets the same term in `O(D² log n)`: reduce the polynomial `x^n` modulo the recurrence's characteristic polynomial, then read `a_n` off as a fixed linear combination of `a_0, …, a_{D−1}`.[^1]
 
-It is the natural partner of [[berlekamp-massey](pages/berlekamp-massey.md)]: Berlekamp–Massey *discovers* the minimal recurrence from sample terms; Kitamasa then *jumps* to any index of that recurrence. In the castle solve this is how the signed tower count `P(k,L)` is reached at index `10^12`, in both the *L* and the *k* direction (see [[castle-count-algorithms](pages/castle-count-algorithms.md)] and the section "How the castle solve uses it" below).
+It pairs with [[berlekamp-massey](pages/berlekamp-massey.md)]: Berlekamp–Massey *discovers* the minimal recurrence from sample terms; Kitamasa then *jumps* to any index of that recurrence. In the castle solve this is how the signed tower count `P(k,L)` is reached at index `10^12`, in both the *L* and the *k* direction (see [[castle-count-algorithms](pages/castle-count-algorithms.md)] and the section "How the castle solve uses it" below).
 
 ## The idea: every term is a fixed combination of the first D
 
@@ -61,7 +61,7 @@ So two polynomials that differ by a multiple of `Q` have the same φ-value. Now 
 a_n = φ(x^n) = φ(R) = r_0 a_0 + r_1 a_1 + … + r_{D−1} a_{D−1} .
 ```
 
-**That is the whole method.** The *D* weights are the coefficients of `R(x) = x^n mod Q(x)`. Working "mod Q" just means applying the rewrite rule `x^D → c_1 x^{D−1} + … + c_D` whenever a power of *x* reaches degree *D* - the recurrence itself, applied to monomials instead of numbers.
+The *D* weights are the coefficients of `R(x) = x^n mod Q(x)`. Working "mod Q" just means applying the rewrite rule `x^D → c_1 x^{D−1} + … + c_D` whenever a power of *x* reaches degree *D* - the recurrence itself, applied to monomials instead of numbers.
 
 **Where the `log n` comes from.** Compute `x^n mod Q` by binary exponentiation: square, reduce, square, reduce, multiplying in one more `x` whenever the corresponding bit of *n* is set. There are `log₂ n` rounds; each multiplies two polynomials of degree `< D` (`O(D²)`) and folds the degree-`< 2D` product back below degree *D* (`O(D²)`). Total `O(D² log n)`.[^1] With Fast Fourier Transform (FFT)-based polynomial multiplication the `D²` drops to `D log D`, but the castle's `D ≈ 100` makes the plain product cheap enough.
 
@@ -161,8 +161,8 @@ Run in a scratch script, outputs pinned (the [[castle-snippets](pages/castle-sni
 [914524917, 0]
 >>> [kitamasa([3, -4, 4], [1, 1, 3], L) for L in range(9)]  # P(2, L), order 3
 [1, 1, 3, 9, 19, 33, 59, 121, 259]
->>> kitamasa([3, -4, 4], [1, 1, 3], 10**6, p), naive_walk_to(10**6)
-233243828 233243828
+>>> kitamasa([3, -4, 4], [1, 1, 3], 10**6, p)   # walking the recurrence 10**6 steps mod p gives the same
+233243828
 ```
 
 The last two lines exercise an order-3 case: `P(2,·)` has characteristic polynomial `x³ − 3x² + 4x − 4`,[^10] i.e. `rec = [3, −4, 4]`, and the jump to `L = 10^6` agrees with walking the recurrence a million steps (the `P(2,L)` values were also re-verified by brute-force enumeration of the height-≤2 towers).
@@ -179,11 +179,11 @@ Both computational paths of the castle solve hand Kitamasa a recurrence - but th
 
 The textbook way to jump a recurrence is the **companion (transfer) matrix** *M* - the `D×D` matrix whose characteristic polynomial is `Q`, with the `c_i` across its top row and a shifted identity beneath - which advances the state vector `(a_{n+D−1}, …, a_n)` by one step, so *n* steps is `M^n`. Powering *M* by repeated squaring costs `log n` matrix products at `O(D³)` each. Kitamasa is the *same* computation with a *D*-times smaller footprint: by Cayley–Hamilton `Q(M) = 0`, so `M^n = S(M)Q(M) + R(M) = R(M)` with `R = x^n mod Q`, and the *D* coefficients of `R` already carry everything `a_n` needs (`a_n = Σ r_i a_i`). Tracking *D* numbers instead of `D²` is the whole saving. This is why the castle solution rejected the *L*-direction transfer matrix as the primary solve - `O(D³ log w)` versus `O(D² log w)`[^4] - and why the Java's `matmul`/`matpow` helpers sit unused on the composite path.[^6]
 
-## Names and a thread to follow
+## Names
 
 "Kitamasa" is the competitive-programming name for the method, and the name the castle sources use.[^1] In the algorithms literature the same idea - evaluate `x^n` modulo the characteristic polynomial, then combine with the initial terms - is credited to Fiduccia (1985).[^11]
 
-**A thread to follow.** Kitamasa applies to any C-finite (linear-recurrent, equivalently rational-generating-function) enumeration, which is what places the castle count alongside other polyomino families that collapse to short recurrences - [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)] (a 2-D family with an order-3 recurrence) and [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)]. For how the castle's own recurrence orders were pinned down (`k+1` in the *L*-direction, `2L−2` in the *k*-direction), see [[recurrence-discovery](pages/recurrence-discovery.md)].
+**Scope.** Kitamasa applies to any C-finite (linear-recurrent, equivalently rational-generating-function) enumeration, including other polyomino families that collapse to short recurrences - [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)] (a 2-D family with an order-3 recurrence) and [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)]. For how the castle's own recurrence orders were pinned down (`k+1` in the *L*-direction, `2L−2` in the *k*-direction), see [[recurrence-discovery](pages/recurrence-discovery.md)].
 
 ## Appearances in Sources
 
@@ -204,7 +204,7 @@ The textbook way to jump a recurrence is the **companion (transfer) matrix** *M*
 - [[castle-snippets](pages/castle-snippets.md)] - the run-it-first discipline the Python section follows; enumeration one-liners for cross-checks.
 - [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)] - a polyomino family whose count collapses to a short linear recurrence, the C-finite phenomenon Kitamasa exploits.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `F(w,3) = (3^w − 2^w − P(2,w) + P(1,w))/2`: the `P(2,·)` jumped to `L = 10^6` in Worked example 2 is one of its four components.
-- [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - the "spectral reading" `R(λ) = λ^n` on eigenvalue roots realizes the wall's thesis: C-finite closed forms carry only algebraic eigenvalues.
+- [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - C-finite sequences with integer recurrences have algebraic eigenvalues, the roots on which `R(λ) = λ^n` is evaluated.
 
 ## Footnotes
 

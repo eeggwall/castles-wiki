@@ -5,7 +5,7 @@ summary: The two computational paths for F(w,h) — a rational-function path for
 tags: [analysis, castle, algorithms, generating-functions, kitamasa, berlekamp-massey]
 sources: [project-euler-502-solution, project-euler-502-implementation-notes]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Castle-count algorithms
@@ -39,7 +39,7 @@ For a fixed *w*, generate `P(0,w), P(1,w), …, P(N−1,w)` with `N = 4(w+2) + 2
 2. [[kitamasa](pages/kitamasa.md)] jumps directly to any index *k*.
 3. Both `P(h−2,w)` and `P(h−1,w)` come out of one pass, saving a factor of 2.
 
-Berlekamp–Massey discovers the recurrence so no proof is needed to *use* it; the transfer-matrix argument merely justifies that one exists.[^4]
+Berlekamp–Massey discovers the recurrence so no proof is needed to *use* it; the transfer-matrix argument only justifies that one exists.[^4]
 
 ## The exact path
 
@@ -57,7 +57,7 @@ For small *w, h* the same recurrence runs over integers with no modular reductio
 
 **In the code.** `Problem502.java` dispatches on `(mod, h, w)`: `mod==0 → solveExact` (integers, no reduction), `h ≤ 15000 → computeViaRationalFunction`, `h > 15000 → computePviaKBoth`.[^7] The dispatch also has a `w ≤ 500` vs `w > 500` split under the `h > 15000` case, but both branches are identical — a dead placeholder for a future third path.[^7] Within the rational-function path the direct-vs-Kitamasa choice is the `extractCoeff` switch, and the extraction is deferred to a `Future` when it is expensive (`w·min(w,k+1) > 10^6`).[^8] See [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] for the full code-to-math map and the per-target dominant costs (`F(10^12,100)` ≈ `4×10^5`, `F(10^4,10^4)` ≈ `10^8`).
 
-**A thread to follow.** Both paths rest on `P(k,L)` being C-finite (linear-recurrent) in each direction — the same phenomenon by which other lattice-shape families collapse to short recurrences (e.g. horizontally convex polyominoes, [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]). The choice of Kitamasa over an L-direction transfer-matrix power (`O(D² log w)` vs `O(D³ log w)`) is one of the suboptimal threads recorded on [[project-euler-502-solution](pages/project-euler-502-solution.md)].
+**C-finiteness.** Both paths rest on `P(k,L)` being C-finite (linear-recurrent) in each direction — the same phenomenon by which other lattice-shape families collapse to short recurrences (e.g. horizontally convex polyominoes, [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]). The L-direction transfer-matrix power (`O(D³ log w)`, against Kitamasa's `O(D² log w)`) is one of the approaches recorded as not working on [[project-euler-502-solution](pages/project-euler-502-solution.md)].
 
 ## Appearances in Sources
 

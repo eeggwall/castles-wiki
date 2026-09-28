@@ -5,7 +5,7 @@ summary: Hickerson's 1-dimensional proof that horizontally convex n-ominoes sati
 tags: [paper, polyomino, horizontally-convex, linear-recurrence, combinatorics, source]
 sources: [counting-horizontally-convex-polyominoes]
 created: 2026-09-13
-updated: 2026-09-23
+updated: 2026-09-28
 ---
 
 # Counting Horizontally Convex Polyominoes (Hickerson 1999)
@@ -18,7 +18,7 @@ updated: 2026-09-23
 
 A **polyomino** is a finite edge-connected union of unit squares with integer-coordinate vertices (an *n*-omino has area *n*), counted up to translation. A polyomino is **horizontally convex** (an HC-polyomino) if every horizontal line meets it in a single segment or not at all.[^1] Let `a(n)` count HC *n*-ominoes; the sequence is `1, 2, 6, 19, 61, 196, 629, 2017, 6466, 20727, 66441, 212980, …` (Online Encyclopedia of Integer Sequences (OEIS) **A001169**).[^2]
 
-The paper's result is that `a(n)` satisfies a third-order linear recurrence — remarkable for a 2-D counting problem:[^2]
+The paper's result is that `a(n)` satisfies a third-order linear recurrence:[^2]
 
 ```
 a(n) = 5 a(n−1) − 7 a(n−2) + 4 a(n−3),    n ≥ 5
@@ -30,9 +30,9 @@ Hickerson's contribution is a **1-dimensional proof**: introduce four auxiliary 
 
 ## Why it matters for Project Euler 502 (PE 502)
 
-The relevance is structural and runs along several threads this wiki is chasing:
+Three connections:
 
-- **Restricted-shape auxiliary counts to force a recurrence.** Hickerson's method — introduce restricted-configuration counting functions, relate them by adding/removing cells, and eliminate — is exactly the shape of the castle argument, where restricted counts (the [[convex-castle](pages/convex-castle.md)], the unsigned `T` and signed `P` towers) combine into the [[castle-counting-formula](pages/castle-counting-formula.md)]. The failed "U/R/D convex-castle variation enumeration" thread on [[project-euler-502-solution](pages/project-euler-502-solution.md)] is an attempt at this same style that did not close; Hickerson shows the style *can* close for a neighboring convexity class.
+- **Restricted-shape auxiliary counts to force a recurrence.** Hickerson's method — introduce restricted-configuration counting functions, relate them by adding/removing cells, and eliminate — resembles the castle argument, where the auxiliary unsigned `T` and signed `P` tower counts combine into the [[castle-counting-formula](pages/castle-counting-formula.md)]. The failed "U/R/D convex-castle variation enumeration" thread on [[project-euler-502-solution](pages/project-euler-502-solution.md)] is an attempt at this same style that did not close; Hickerson shows the style *can* close for a neighboring convexity class.
 - **Horizontal convexity vs. the castle's convexity.** An HC-polyomino's "single horizontal segment per row" is a different convexity from the castle's [[convex-castle](pages/convex-castle.md)] (monotone-up-then-down skyline). Comparing the two is a direct connection to the broader column/row-convex polyomino literature (see [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)]).
 - **A linear recurrence with a small transfer/companion structure.** That a 2-D family collapses to an order-3 recurrence is the same phenomenon the castle solution exploits: `P(k,L)` is linear-recurrent in each direction, evaluated by [[kitamasa](pages/kitamasa.md)] / [[berlekamp-massey](pages/berlekamp-massey.md)]. The characteristic polynomial `v³−5v²+7v−4` is the HC analogue of the castle recurrences' characteristic polynomials.
 
@@ -52,7 +52,7 @@ The relevance is structural and runs along several threads this wiki is chasing:
 
 ## Relation to Other Wiki Pages
 
-Cited as a reference on [[project-euler-502-solution](pages/project-euler-502-solution.md)]. It is a worked instance of the restricted-count-elimination method that the castle solution uses, applied to a neighboring convexity class, and an entry point into the polyomino-convexity literature.
+Cited as a reference on [[project-euler-502-solution](pages/project-euler-502-solution.md)]. It is a worked instance of restricted-count elimination on a neighboring convexity class, and an entry point into the polyomino-convexity literature.
 
 ## Footnotes
 

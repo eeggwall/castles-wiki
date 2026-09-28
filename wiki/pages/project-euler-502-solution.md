@@ -5,7 +5,7 @@ summary: The full mathematical solution — the binary-string bijection, the ind
 tags: [project-euler, castle, solution, generating-functions, algorithms, source, subpage]
 sources: [project-euler-502-solution]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Project Euler 502 (PE 502): Solution
@@ -16,15 +16,15 @@ updated: 2026-09-19
 
 ## Summary
 
-This is the authoritative mathematical solution the other subpages point to. It fixes notation, proves the counting closed form, gives the recursion for the signed count, and specifies exactly how the large-parameter values are computed.
+This is the full mathematical solution the other subpages point to. It fixes notation, proves the counting closed form, gives the recursion for the signed count, and specifies how the large-parameter values are computed.
 
-The notation is worth adopting wiki-wide: **`A(w,h)`** is the number of castles with bottom block of length *w* and height *exactly* *h*, counting **all** parities; **`F(w,h)`** is `A(w,h)` restricted to an even total block count — the quantity Project Euler 502 asks for.[^1] Everything above the mandatory bottom block (Rule 4) is a "tower," counted unsigned by `T(k,L)` and with sign `(−1)^{blocks}` by `P(k,L)`.[^1]
+The wiki adopts its notation: **`A(w,h)`** is the number of castles with bottom block of length *w* and height *exactly* *h*, counting **all** parities; **`F(w,h)`** is `A(w,h)` restricted to an even total block count — the quantity Project Euler 502 asks for.[^1] Everything above the mandatory bottom block (Rule 4) is a "tower," counted unsigned by `T(k,L)` and with sign `(−1)^{blocks}` by `P(k,L)`.[^1]
 
-The engine is the **[[binary-string-bijection](pages/binary-string-bijection.md)]**: configurations of non-overlapping, non-adjacent sub-blocks within a length-*L* block biject with length-*L* binary strings via maximal runs of 1s, so a block holds `2^L` configurations and a string with *r* runs gives *r* sub-blocks.[^2] Combined with sibling independence, an induction on *k* proves `T(k,L) = (k+1)^L`, whose corollary `T(h−1,w) = h^w` counts all height-≤*h* castles.[^3] Height-exactly-*h* and the even-block projection then give the [[castle-counting-formula](pages/castle-counting-formula.md)] `F(w,h) = [h^w − (h−1)^w − P(h−1,w) + P(h−2,w)]/2`.[^4]
+The proof rests on the **[[binary-string-bijection](pages/binary-string-bijection.md)]**: configurations of non-overlapping, non-adjacent sub-blocks within a length-*L* block biject with length-*L* binary strings via maximal runs of 1s, so a block holds `2^L` configurations and a string with *r* runs gives *r* sub-blocks.[^2] Combined with sibling independence, an induction on *k* proves `T(k,L) = (k+1)^L`, whose corollary `T(h−1,w) = h^w` counts all height-≤*h* castles.[^3] Height-exactly-*h* and the even-block projection then give the [[castle-counting-formula](pages/castle-counting-formula.md)] `F(w,h) = [h^w − (h−1)^w − P(h−1,w) + P(h−2,w)]/2`.[^4]
 
 The signed count obeys the run-product recursion `P(k,L) = ∑_b (−1)^{runs(b)} ∏_{runs of length l} P(k−1,l)`, with two structural facts: for fixed *k*, `P(k,·)` is a linear recurrence in *L* of order ~*k* (a sum of ≤ *k*+1 exponentials, `O(k² log L)`); for fixed *L*, a linear recurrence in *k* of order ~2*L* (`O(L² log k)` once [[berlekamp-massey](pages/berlekamp-massey.md)] finds it).[^5] The `k=1` case reduces to counting `(−1)^{runs}` over binary strings, a 2×2 transfer matrix with eigenvalues `1±i`, giving `P(1,L) = Re((1+i)^{L+1})` — verified here (`P(1,4) = −4`, both by the formula and by a 6-even/10-odd brute-force count).[^6]
 
-Operationally, the solution routes each target through one of two paths (see [[castle-count-algorithms](pages/castle-count-algorithms.md)]): a rational-function path for `h ≤ 15000` (extract `[x^w]` of `num_k/den_k` by direct power series or [[kitamasa](pages/kitamasa.md)], chosen by a crossover rule) and a *k*-direction [[berlekamp-massey](pages/berlekamp-massey.md)] path for `h > 15000`.[^7] It also records **what did not work** — a rare and valuable negative-results section — and cites three papers from the polyomino / column-convex / transfer-matrix literature.[^8][^9]
+Operationally, the solution routes each target through one of two paths (see [[castle-count-algorithms](pages/castle-count-algorithms.md)]): a rational-function path for `h ≤ 15000` (extract `[x^w]` of `num_k/den_k` by direct power series or [[kitamasa](pages/kitamasa.md)], chosen by a crossover rule) and a *k*-direction [[berlekamp-massey](pages/berlekamp-massey.md)] path for `h > 15000`.[^7] It also records **what did not work** and cites three papers from the polyomino / column-convex / transfer-matrix literature.[^8][^9]
 
 ## Key Takeaways
 
@@ -43,12 +43,12 @@ Operationally, the solution routes each target through one of two paths (see [[c
 - [[kitamasa](pages/kitamasa.md)], [[berlekamp-massey](pages/berlekamp-massey.md)] — the fast linear-recurrence toolkit.
 - [[castle-counting-formula](pages/castle-counting-formula.md)], [[castle-counting-function](pages/castle-counting-function.md)], [[castle-sign](pages/castle-sign.md)], [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — machinery this page proves and ratifies.
 
-Related topics now ingested: [[polyominoes](pages/polyominoes.md)], [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/lattice-paths.md)], [[generating-functions](pages/generating-functions.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)], and the [[aocp-combinatorics](pages/aocp-combinatorics.md)] Knuth notes. The general Combinatorics umbrella source is the only related topic still unqueued (see `TODO.md`). The three reference papers are ingested separately (see [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]).
+Related topics: [[polyominoes](pages/polyominoes.md)], [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/lattice-paths.md)], [[generating-functions](pages/generating-functions.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)], and the [[aocp-combinatorics](pages/aocp-combinatorics.md)] Knuth notes. The three reference papers have their own source pages ([[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]).
 - Sibling subpages of the [[project-euler-502](pages/project-euler-502.md)] hub: [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)], [[project-euler-502-representations](pages/project-euler-502-representations.md)], [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)], [[project-euler-502-observations](pages/project-euler-502-observations.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)], [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)].
 
 ## What did not work (negative results)
 
-The source records approaches that failed, each a thread worth following into the broader domain:[^8]
+The source records approaches that failed:[^8]
 
 - **Direct enumeration** of castles — killed by `F(13,10) ~ 4×10^12`.
 - **Column-wise binary strings without the runs/independence insight** — the right encoding, wrong decomposition: no way to count without independence.
@@ -61,17 +61,17 @@ The composite target `(F(10^12,100) + F(10000,10000) + F(100,10^12)) mod (10^9+7
 
 ## References (from the source)
 
-Three papers, ingested here as their own source pages:[^9]
+Three papers, each with its own source page:[^9]
 
 - Barcucci, Del Lungo, Fédou, Pinzani, *Steep polyominoes, q-Motzkin numbers and q-Bessel functions* — [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)]
 - Bousquet-Mélou, *A method for the enumeration of various classes of column-convex polygons* — [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)]
 - Hickerson, *Counting Horizontally Convex Polyominoes* — [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]
 
-Also cited: the Java implementation and the source's **Implementation Notes** subpage; the latter is ingested as [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)].
+Also cited: the Java implementation and the source's **Implementation Notes** subpage, [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)].
 
 ## Relation to Other Wiki Pages
 
-This page is the trunk from which the earlier subpages branch: it proves `T(k,L)=(k+1)^L` (the [[castle-counting-formula](pages/castle-counting-formula.md)] had it from the grammar; here it is the binary-string induction), states the [[binary-string-bijection](pages/binary-string-bijection.md)] precisely, and specifies the [[castle-count-algorithms](pages/castle-count-algorithms.md)] that make the trillion-scale targets computable. Its "what did not work" list and its three reference papers are the launch points for following every solution thread — successful and failed — outward into the broader polyomino and combinatorics literature.
+This page proves `T(k,L)=(k+1)^L` (the [[castle-counting-formula](pages/castle-counting-formula.md)] also derives it from the grammar; here it is the binary-string induction), states the [[binary-string-bijection](pages/binary-string-bijection.md)] precisely, and specifies the [[castle-count-algorithms](pages/castle-count-algorithms.md)] that make the trillion-scale targets computable. Its "what did not work" list and its three reference papers lead into the broader polyomino and combinatorics literature.
 
 ## Footnotes
 
