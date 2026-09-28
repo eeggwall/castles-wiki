@@ -5,7 +5,7 @@ summary: The seminar walk-through for the "Hear the shape of a castle" arc - Kac
 tags: [concept, castle, seminar, pedagogy, teaching, spectral, isospectral, adjacency, laplacian, kac, schwenk, sunada, trace-formula, matrix-tree-theorem, tree-castle, golden-ratio, silver-ratio]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # Hear the shape of a castle - seminar
@@ -248,6 +248,7 @@ False
 - [[sandcastle-clock](pages/sandcastle-clock.md)] - the sink-model clock ticks 15 and 5 on this seminar's 10-cell pair, which share spectrum and sandpile group (the tide clocks tick 4 and 8).
 - [[sandpile-identity](pages/sandpile-identity.md)] - one grain on the apex of the 10-cell pair's identity: 57 topplings against 1.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
 - [[castle-avalanches](pages/castle-avalanches.md)] - random dropping on castles; the mean is Laplacian data, the tail is set by the `2 × 2` blocks.
 

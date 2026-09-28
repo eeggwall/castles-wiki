@@ -5,7 +5,7 @@ summary: The seminar walk-through for the "Hardin word identity" arc. Start from
 tags: [concept, castle, seminar, pedagogy, teaching, signed-tower-count, transfer-matrix, symmetry, bijection, hardin, words, automaton, oeis, a005251, plastic-number]
 sources: [oeis-mining-pe502, tetali-1998-unique-tournaments]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # Hardin identity seminar - towers, words, and one change of basis
@@ -261,6 +261,7 @@ def S_pattern(m):                          # the 0/1 change of basis, sector coo
 - [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the seminar on OEIS mining as a research method.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
 
 

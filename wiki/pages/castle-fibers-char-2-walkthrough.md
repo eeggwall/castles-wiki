@@ -5,7 +5,7 @@ summary: The seminar walk-through for the "Castle fibers" arc - one castle recur
 tags: [concept, castle, seminar, pedagogy, teaching, ring, spectrum, finite-field, chinese-remainder-theorem, idempotent, nilradical, frobenius, quadratic-reciprocity, signed-tower-count, parity-sector]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory, oeis-mining-pe502]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # Castle fibers seminar - `char_2` across the primes
@@ -179,6 +179,7 @@ def fiber_board(k, primes):
 - [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the seminar on OEIS mining as a research method.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
 
 

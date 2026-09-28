@@ -5,7 +5,7 @@ summary: Every convex-polyomino family counted by area n on one ladder - rectang
 tags: [analysis, polyomino, convex, area, q-analog, generating-function, parity, ferrers, stack-polyomino, parallelogram-polyomino, directed-convex, continued-fraction, oeis, verification]
 sources: [analytic-combinatorics-ch1-ogfs, column-convex-polygon-enumeration, counting-horizontally-convex-polyominoes, castle-by-area, bousquet-melou-fedou-1995-convex-polyominoes, klarner-rivest-1974-convex-n-ominoes, bender-1974-convex-n-ominoes]
 created: 2026-09-22
-updated: 2026-09-23
+updated: 2026-09-27
 ---
 
 # Convex polyominoes by area
@@ -168,6 +168,7 @@ def convex_by_area(N, bottoms="free", tops="unimodal"):
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - the same families graded by perimeter instead of area, and the question of adding area.
 - [[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)] - parallelogram area as the sum of peak heights of a Dyck word.
 - [[multiset-partitions](pages/multiset-partitions.md)] - the Ferrers rung, read as partitions of a multiset with one repeated element.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the seminar walk-through of the q-thread arc, which teaches this page as one of its stops.
 
 ## Footnotes
 

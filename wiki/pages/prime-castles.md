@@ -5,7 +5,7 @@ summary: "Gluing castles at a shared height-1 column makes a free monoid, and it
 tags: [analysis, castle, area, composition, prime-castle, monoid, factorization, fibonacci, convex-castle, parity, q-series, oeis, novel-candidate]
 sources: [oeis-mining-pe502]
 created: 2026-09-22
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # Prime castles
@@ -118,6 +118,7 @@ for n in range(1, 17):
 - [[castle-foata-transform](pages/castle-foata-transform.md)]: peaks, which count the nontrivial prime factors.
 - [[metallic-means](pages/metallic-means.md)], [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)]: the golden ratio as the growth constant of the prime count.
 - [[motzkin-castles](pages/motzkin-castles.md)]: the same castle bivariate generating function manipulated by the same width-variable substitution.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the seminar walk-through of the q-thread arc, which teaches this page as one of its stops.
 
 ## Footnotes
 

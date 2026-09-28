@@ -5,7 +5,7 @@ summary: Polynomial q-analogs of the Catalan numbers (C_n(q) → C_n at q=1) —
 tags: [concept, q-catalan, q-analog, catalan, dyck-words, polyomino]
 sources: [q-catalan-numbers, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-13
-updated: 2026-09-23
+updated: 2026-09-27
 ---
 
 # q-Catalan numbers
@@ -38,6 +38,7 @@ Delest and Viennot also state the next step as open. Their convex-polyomino peri
 - [[dyck-words](pages/dyck-words.md)] — the object whose inversions the Carlitz q-Catalan (and, by steepness, q-Motzkin) count.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - castles as a sequence of parallelograms, over the q-Bessel series `J_0`, `J_1`.
 - [[permutation-inversions](pages/permutation-inversions.md)] — the inversion statistic and the q-factorial `∏(1−z^k)/(1−z)^n`, the prototype q-graded generating function.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the seminar walk-through of the q-thread arc, which teaches this page as one of its stops.
 
 ## Footnotes
 

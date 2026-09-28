@@ -5,7 +5,7 @@ summary: "Grading the tower-word first-return grammar by area turns it into the 
 tags: [analysis, castle, area, blocks, perimeter, q-analog, q-series, q-bessel, q-catalan, parallelogram-polyomino, grammar, functional-equation, q-shift, parity, sign, asymptotics, narayana, descents, q-binomial, novel-candidate]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes, prellberg-brak-1995-cluster-models, column-convex-polygon-enumeration, project-euler-502-representations]
 created: 2026-09-23
-updated: 2026-09-23
+updated: 2026-09-27
 ---
 
 # Castles by width, blocks and area
@@ -153,6 +153,7 @@ print(castles(-1)[1:])                              # even - odd by area
 - [[q-differential-system](pages/q-differential-system.md)]: the harder convex case, where the q-shift system does not close in one step.
 - [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)]: the parallelogram rung and its `J_0` growth constant.
 - [[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)]: the same `N/M` from the add-a-column equation by Bousquet-Mélou's Lemma 2.3, with `E(1) = N - M` and `1 - F(1) = M` term by term.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the seminar walk-through of the q-thread arc, which teaches this page as one of its stops.
 
 ## Footnotes
 

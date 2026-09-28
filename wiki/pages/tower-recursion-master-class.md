@@ -5,7 +5,7 @@ summary: The two ideas that solve the castle count — towers are independent (T
 tags: [concept, castle, towers, parity, sign, pedagogy, dyck, teaching]
 sources: [project-euler-502-solution, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations]
 created: 2026-09-14
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # Tower recursion master class
@@ -111,6 +111,7 @@ Towers of height ≤ 1 above a length-4 block are column heights `c ∈ {0,1}⁴
 - [[castle-notation](pages/castle-notation.md)] - the notation reference: tower height `k = h − 1`, argument orders, and the parity term.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
 - [[tower-heap](pages/tower-heap.md)] - the block-count refinement of Idea 1's `T(k,L) = (k+1)^L`, as a Narayana polynomial.
 

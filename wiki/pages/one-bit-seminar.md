@@ -5,7 +5,7 @@ summary: The seminar walk-through for the "One bit" arc - Project Euler 502's ev
 tags: [concept, castle, seminar, pedagogy, teaching, entropy, information, parity, castle-sign, steganography, compression, topological-entropy]
 sources: [project-euler-502-observations, project-euler-502-castle-factoring]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # One bit seminar - the parity clause as information
@@ -205,6 +205,7 @@ True
 - [[castle-notation](pages/castle-notation.md)] - `A`, `S`, `F` and `P(k, L)`.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the other seminar pages.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
 - [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] - the `m = 2` projector taught here generalized to `m`-th roots of unity.
 

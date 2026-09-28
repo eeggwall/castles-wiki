@@ -5,7 +5,7 @@ summary: The seminar walk-through for the "OEIS mining as a research method" arc
 tags: [concept, castle, seminar, pedagogy, teaching, oeis, interlinking, generation, offsets, false-positive, berlekamp-massey, hyperbolic-sequence, a038505, a038503, a146559, a009545]
 sources: [oeis-mining-pe502, oeis-height2-hyperbolic-castles, new-sequence-fw3]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-27
 ---
 
 # OEIS mining seminar - one castle sequence, end to end
@@ -208,6 +208,7 @@ The `h ≥ 8` tree-castle-by-area rows (no OEIS match yet; `h = 5, 6, 7` matched
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the other seminar pages.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
 
 

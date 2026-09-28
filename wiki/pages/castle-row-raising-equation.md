@@ -5,7 +5,7 @@ summary: "A prime castle is a castle raised one row, so the free gluing monoid o
 tags: [analysis, castle, area, width, prime-castle, monoid, functional-equation, q-shift, q-series, parity, sign, peaks, asymptotics, residue, oeis, interlink, novel-candidate]
 sources: [oeis-mining-pe502]
 created: 2026-09-22
-updated: 2026-09-23
+updated: 2026-09-27
 ---
 
 # The castle row-raising equation
@@ -127,6 +127,7 @@ print(t[1:17], t[300] / t[299])                 # even - odd; ratio -> -rho
 - [[castle-foata-transform](pages/castle-foata-transform.md)]: peaks.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)]: the linearizable shape of this equation, and the bar-graph equation (3.11), which is the castle GF by width, blocks and area.
 - [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]: statuses for the sequences and constants here.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the seminar walk-through of the q-thread arc, which teaches this page as one of its stops.
 
 ## Footnotes
 
