@@ -1,20 +1,20 @@
 ---
 title: The convex core of a castle
 category: Analyses
-summary: Every castle has a unique minimal convex (unimodal) majorant, its convex core, given in one line by min(prefix max, suffix max). The castles sharing a core are exactly those that lower the non-anchor columns of its plateaus; the anchors are the first column of a rising plateau, the last column of a falling plateau, and both ends of the top plateau. The material lowered below a plateau at level m is an upside-down tower of height at most m-1, so the fiber over a core is a product of tower counts, prod T(m-1, free) = prod m^free unsigned and (-1)^h prod P(m-1, free) signed, with free = l-1 (l-2 on the top plateau). Summed over the C(2h+w-3, w-1) cores these give h^w - (h-1)^w and P(h-2,w) - P(h-1,w), so F(w,h) is a sum over convex cores of products of signed tower counts. The inside direction fails - the maximal convex minorant is not unique, (2,1,2) has two - and the source's D/U-pair insertion never closed because the freedom is per column, not per insertion. Verified for every cell 2 <= w <= 6, 2 <= h <= 5.
+summary: Every castle has a unique minimal convex (unimodal) majorant, its convex core, given in one line by min(prefix max, suffix max). The castles sharing a core are exactly those that lower the non-anchor columns of its plateaus; the anchors are the first column of a rising plateau, the last column of a falling plateau, and both ends of the top plateau. The material lowered below a plateau at level m is an upside-down tower of height at most m-1, so the fiber over a core is a product of tower counts, prod T(m-1, free) = prod m^free unsigned and (-1)^h prod P(m-1, free) signed, with free = l-1 (l-2 on the top plateau). Summed over the C(2h+w-3, w-1) cores these give h^w - (h-1)^w and P(h-2,w) - P(h-1,w), so F(w,h) is a sum over convex cores of products of signed tower counts. The inside direction fails - the maximal convex minorant is not unique, (2,1,2) has two - and the source's D/U-pair insertion never closed because the freedom is per column. Verified for every cell 2 <= w <= 6, 2 <= h <= 5.
 tags: [analysis, castle, convex, unimodal, tower, signed-tower-count, parity, verification, hull]
 sources: [project-euler-502-representations, project-euler-502-solution, oeis-mining-pe502]
 created: 2026-09-20
-updated: 2026-09-20
+updated: 2026-09-28
 ---
 
 # The convex core of a castle
 
-## The claim in the source, and what is true
+## The source's taxonomy
 
 The Representations subpage of the Project Euler 502 (PE 502) solution organizes castles as rectangular, then convex, then "variations on convex castles": a convex castle's U/R/D word has runs of `R`s, and inserting `D`/`U` pairs into the slots of a run produces the non-convex castles.[^1] The Solution subpage records that enumerating these variations "never resolved into a formula".[^2] Two questions were left open on [[convex-castle](pages/convex-castle.md)]: is the convex castle behind a given castle unique, and if so what is the set of castles it generates?
 
-Both close. Every castle has a unique smallest [[convex-castle](pages/convex-castle.md)] above it, its **convex core**, and the set of castles over a core is a product of the tower counts `T(k,L)` and `P(k,L)` of [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] and [[signed-tower-count](pages/signed-tower-count.md)], one factor per plateau. The variation enumeration did not close because it counted insertions; the freedom is per column.[^4]
+Every castle has a unique smallest [[convex-castle](pages/convex-castle.md)] above it, its **convex core**, and the set of castles over a core is a product of the tower counts `T(k,L)` and `P(k,L)` of [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] and [[signed-tower-count](pages/signed-tower-count.md)], one factor per plateau. The variation enumeration did not close because it counted insertions; the freedom is per column.[^4]
 
 ## The core in one line
 
@@ -64,15 +64,15 @@ sum over convex u of  prod T(m-1, free)          =  h^w - (h-1)^w
 F(w,h) = (1/2) sum over convex u of [ prod T(m-1, free) + (-1)^h prod P(m-1, free) ]
 ```
 
-The first identity says the `h^w - (h-1)^w` skylines are partitioned by their cores. The second is the parity clause read plateau by plateau. Both hold in every cell `2 <= w <= 6`, `2 <= h <= 5`, and the plateau signed sum `P(m-1, free)` was also checked directly against the tower definition for `m <= 5`, `free <= 5`.[^4] So the even-block clause does refine the fiber, and the refinement is the existing `P(k,L)` family: the same signed transfer matrix that counts towers standing on the base counts the towers hanging in a plateau, and the core decomposition is the dual of the tower recursion, convex hull outside and inverted towers inside instead of a base block below and towers above.
+The first identity says the `h^w - (h-1)^w` skylines are partitioned by their cores. The second is the parity clause read plateau by plateau. Both hold in every cell `2 <= w <= 6`, `2 <= h <= 5`, and the plateau signed sum `P(m-1, free)` was also checked directly against the tower definition for `m <= 5`, `free <= 5`.[^4] So the even-block clause refines each fiber through the same `P(k,L)` family: towers hanging from a plateau are counted, with sign, like towers standing on the base.
 
 ## The inside direction fails
 
-If "convex skeleton" is read as the largest convex castle *inside* a given castle, there is no unique answer. `(2,1,2)` has two maximal unimodal minorants, `(2,1,1)` and `(1,1,2)`, and neither dominates the other. Non-uniqueness is the common case: in the `(6,4)` cell 2,905 of the 3,367 castles have more than one maximal convex minorant, and in `(6,5)` 10,242 of 11,529.[^4] The hull direction is canonical because running maxima are; the skeleton direction is not.
+If "convex skeleton" is read as the largest convex castle *inside* a given castle, there is no unique answer. `(2,1,2)` has two maximal unimodal minorants, `(2,1,1)` and `(1,1,2)`, and neither dominates the other. Non-uniqueness is the common case: in the `(6,4)` cell 2,905 of the 3,367 castles have more than one maximal convex minorant, and in `(6,5)` 10,242 of 11,529.[^4]
 
 ## Why the insertion enumeration did not close
 
-The source inserts one `D`/`U` pair at a time into a run of `R`s, with the rules "insert `D` first", "in pairs", "never adjacent".[^1] Each insertion lowers a stretch of a plateau by one. A valley of depth two, or two valleys side by side, or a bump inside a valley, is reached by several insertion sequences, and the rules above remove only some of the duplicates. The per-column description has none: a free column is chosen once, from `{1, ..., m}`, independently of every other free column. The case analysis that would not close is the product formula above, and its parity refinement is `P(k,L)`.
+The source inserts one `D`/`U` pair at a time into a run of `R`s, with the rules "insert `D` first", "in pairs", "never adjacent".[^1] Each insertion lowers a stretch of a plateau by one. On the wiki's reading of the source (own reasoning), a valley of depth two, two valleys side by side, or a bump inside a valley is reached by several insertion sequences, and the rules above remove only some of the duplicates. The per-column description has no duplicates: a free column is chosen once, from `{1, ..., m}`, independently of every other free column. The product formula above replaces that case analysis, and its parity refinement is `P(k,L)`.
 
 ## Reproduce
 
