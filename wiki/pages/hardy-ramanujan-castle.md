@@ -5,7 +5,7 @@ summary: 1729, the taxicab number 1^3+12^3 = 9^3+10^3, is a castle count - F(6,4
 tags: [analysis, castle, 1729, taxicab, hardy-ramanujan, sum-of-cubes, near-miss, c-finite, berlekamp-massey, metallic-mean, carmichael, mod-p, worked-example, computation]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-19
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # The Hardy-Ramanujan castle (1729)
@@ -43,7 +43,7 @@ The `F(w, 4)` row of the brute-force tabulation reads `1, 7, 31, 117, 439, 1729,
 | `P(2,6)`, `P(3,6)` (signed towers) | 59, -32 | |
 | `F - odd = P(2,6) - P(3,6)` | 91 | `7 * 13` |
 
-The formula `F(w,h) = [h^w - (h-1)^w - P(h-1,w) + P(h-2,w)] / 2` of [[castle-counting-formula](pages/castle-counting-formula.md)] gives `(3367 + 32 + 59)/2 = 1729` on the nose. Three cube facts sit in this one cell:
+The formula `F(w,h) = [h^w - (h-1)^w - P(h-1,w) + P(h-2,w)] / 2` of [[castle-counting-formula](pages/castle-counting-formula.md)] gives `(3367 + 32 + 59)/2 = 1729` exactly. Three cube facts sit in this one cell:
 
 - **`A(6,4)` is a difference of cubes.** `4^6 = 16^3` and `3^6 = 9^3`, so `A(6,4) = 16^3 - 9^3 = (16 - 9)(16^2 + 16*9 + 9^2) = 7 * 481 = 3367`. The `9^3 = 729` here is the same `9^3` as in `9^3 + 10^3 = 1729`.
 - **`F(6,4)` is a sum of cubes twice.** In tower language, `T(k, L) = (k+1)^L` counts towers of height at most `k` over a block of length `L` ([[tower-recursion-master-class](pages/tower-recursion-master-class.md)]), so `T(k, 3) = (k+1)^3` is always a cube and the taxicab identity reads `T(0,3) + T(11,3) = T(8,3) + T(9,3) = F(6,4)`. Four families of length-3 towers and one family of width-6 height-4 even castles, all of size 1729. Whether any of these equalities has a natural bijection is open (see the end of the page); `T(0,3) = 1` is the empty tower, so the left-hand side is "the towers of height at most 11 over three columns, plus one."
@@ -210,7 +210,7 @@ Settled:
 Open:
 
 - **A bijection behind `F(6,4) = 12^3 + 1 = 9^3 + 10^3`.** The natural candidate sets are the length-3 towers `T(k, 3) = (k+1)^3`. Is there an explicit map from the 1729 even castles of `(6, 4)` onto `T(11, 3)` plus a point, or onto `T(8, 3) + T(9, 3)`? The `91`-divisibility suggests looking for a 91-to-1 structure first.
-- **Which castle counts are sums of three cubes?** Taken up on [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)]: under Heath-Brown the answer is the residue `F(w,h) mod 9`, periodic in both directions; `F(5,5) = 906` is a Booker-Sutherland 2019 number, and `F(13,2) = 16^3` is a cleaner instance of the bijection question above.
+- **Which castle counts are sums of three cubes?** Taken up on [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)]: under Heath-Brown the answer is the residue `F(w,h) mod 9`, periodic in both directions; `F(5,5) = 906` is a number whose three-cube representation Booker found in 2019, and `F(13,2) = 16^3` is another instance of the bijection question above.
 - **Which rungs do the other Ramanujan-type identities sit on?** Chen (2012), Han and Hirschhorn (2006), and McLaughlin (2010) give further C-finite Diophantine families; each has a palindromic denominator and a growth constant. Are they metallic (a `(a^2 + 4)` discriminant, hence a ceiling-exception castle strip) or do they land in other reachable fields of the [[reachable-field-census](pages/reachable-field-census.md)]?
 
 ## Appearances in Sources
