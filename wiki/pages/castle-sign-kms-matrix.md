@@ -5,14 +5,14 @@ summary: Weight each block by t. The block-weighted tower transfer matrix M_k(t)
 tags: [analysis, castle, sign, parity, transfer-matrix, toeplitz, kms-matrix, poisson-kernel, gaussian-integers, cayley-transform, characteristic-polynomial, signed-tower-count, semi-perimeter, motzkin]
 sources: [project-euler-502-solution, project-euler-502-brute-force, deutsch-elizalde-2016-bargraphs-cornerless-motzkin]
 created: 2026-09-27
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # The castle sign is a KMS matrix at ρ = i
 
-## The question
+## Overview
 
-On the Motzkin-path castle the parity sign `(−1)^blocks` acts by putting `√t = i` into the up-step weight: the growth constant `1 ± 2√t` becomes `1 ± 2i`, and the bounded-height spectrum `1 + 2cos(πj/(h+1))` becomes `1 + 2i·cos(πj/(h+1))` ([[motzkin-castles](pages/motzkin-castles.md)] §3). The signed tower count has `P(1, L) = Re((1+i)^{L+1})`, another Gaussian fingerprint ([[signed-tower-count](pages/signed-tower-count.md)]). This page asks whether that is a coincidence of 1-smooth skylines or a property of the castle itself. It is a property of the castle. For **unrestricted** skylines at any height bound, the block weight `t` enters the transfer matrix only through `√t`, via a classical structured matrix, and the sign is the point `√t = i` of that family. Everything below was checked by execution (SymPy and NumPy, 2026-09-27); the checks are listed with each claim.
+On the Motzkin-path castle the parity sign `(−1)^blocks` acts by putting `√t = i` into the up-step weight: the growth constant `1 ± 2√t` becomes `1 ± 2i`, and the bounded-height spectrum `1 + 2cos(πj/(h+1))` becomes `1 + 2i·cos(πj/(h+1))` ([[motzkin-castles](pages/motzkin-castles.md)] §3). The signed tower count has `P(1, L) = Re((1+i)^{L+1})`, another Gaussian value ([[signed-tower-count](pages/signed-tower-count.md)]). The same holds for **unrestricted** skylines at any height bound: the block weight `t` enters the transfer matrix only through `√t`, via a classical structured matrix, and the sign is the point `√t = i` of that family. Everything below was checked by execution (SymPy and NumPy, 2026-09-27); the checks are listed with each claim.
 
 ## 1. The transfer matrix is a KMS matrix
 
@@ -65,7 +65,7 @@ a tridiagonal determinant with diagonal `(λ − 2, −2, …, −2, λ − 2)` 
 char_{k+1}(λ) = λ²·char_{k−1}(λ) − 2·char_k(λ)
 ```
 
-that [[generating-function-gallery](pages/generating-function-gallery.md)] obtained by eliminating `num_k` from the rational-function recursion, and whose roots `r_± = −1 ± √(1 + λ²)` give its Pell/Chebyshev closed form. The characteristic polynomials of `M_k(−1)` satisfy it for `k = 1..7` (checked). Here it has a structural reason: **the `i` in the off-diagonal squares to `−1`**, and that sign is what turns the Chebyshev recurrence of a real path graph into the Pell-type one.
+that [[generating-function-gallery](pages/generating-function-gallery.md)] obtained by eliminating `num_k` from the rational-function recursion, and whose roots `r_± = −1 ± √(1 + λ²)` give its Pell/Chebyshev closed form. The characteristic polynomials of `M_k(−1)` satisfy it for `k = 1..7` (checked). The `i` in the off-diagonal squares to `−1`, which turns the Chebyshev recurrence of a real path graph into this Pell-type one.
 
 ## 3. The sector involution is the KMS reversal symmetry
 
@@ -75,7 +75,7 @@ that [[generating-function-gallery](pages/generating-function-gallery.md)] obtai
 D_i⁻¹ J D_i = i^k · D J,      D = diag((−1)^c),
 ```
 
-and this commutes with `M_k(−1)` (both checked for sizes up to 9). That is the involution `JD` of [[tower-parity-sectors](pages/tower-parity-sectors.md)], up to the transpose convention and the scalar. The page found it by inspection and verified the commutation entrywise. Here it is the persymmetry of the KMS matrix. The scalar explains the sector dichotomy: `(D_i⁻¹ J D_i)² = I`, so `(DJ)² = i^{−2k} = (−1)^k`. For even `k` the symmetry is a real involution and `char_k` splits over `Q` into the two parity sectors. For odd `k` it squares to `−1`, and `char_k` splits only over `Q(i)`, into two conjugate halves of degree `(k+1)/2`. SymPy confirms both patterns for `k ≤ 11` (over `Q`: `[1,2], [4], [2,3], [6], …`; over `Q(i)`: `[1,1], [1,2], [2,2], [2,3], [3,3], …`). The Gaussian integers in `P(1, L)` and the Gaussian norm form of odd-`k` `char_k` are the same `i`: the square root of the block sign.
+and this commutes with `M_k(−1)` (both checked for sizes up to 9). That is the involution `JD` of [[tower-parity-sectors](pages/tower-parity-sectors.md)], up to the transpose convention and the scalar: the persymmetry of the KMS matrix. The scalar gives the sector dichotomy: `(D_i⁻¹ J D_i)² = I`, so `(DJ)² = i^{−2k} = (−1)^k`. For even `k` the symmetry is a real involution and `char_k` splits over `Q` into the two parity sectors. For odd `k` it squares to `−1`, and `char_k` splits over `Q(i)` into two conjugate halves of degree `(k+1)/2` (over `Q` it is irreducible for odd `k ≤ 31` by SymPy and for all `k = 2^m − 1` by [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]). SymPy confirms both patterns for `k ≤ 11` (over `Q`: `[1,2], [4], [2,3], [6], …`; over `Q(i)`: `[1,1], [1,2], [2,2], [2,3], [3,3], …`). The Gaussian integers in `P(1, L)` and the Gaussian norm form of odd-`k` `char_k` both come from this `i`, the square root of the block sign.
 
 ## 4. The symbol is the Poisson kernel
 
@@ -93,7 +93,7 @@ At `ρ = i` the formula gives `P_i(θ) = 2/(−2i cos θ) = i·sec θ`: purely i
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | max `\|λ\|` | `√2` | 2 | 2.1928 | 2.7963 | 2.8920 | 3.5098 | 4.156 | 6.936 | 11.81 | 20.43 | 35.87 | 63.73 |
 
-The first six entries are the `P(k, ·)` growth constants `√2, 2, 2.193, 2.796, 2.892, 2ψ²` on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)], computed there from `char_k`. Here they come from the tridiagonal `(E_∂ − i·A_path)/2` in the form `λ = 2/μ`, which is numerically stable. The growth is sublinear, about ×1.77 per doubling of the height between 80 and 320. Against it, the unsigned rank-one matrix grows exactly linearly (`k + 1`). The exact rate is open.
+The first six entries are the `P(k, ·)` growth constants `√2, 2, 2.193, 2.796, 2.892, 2ψ²` on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)], computed there from `char_k`. Here they come from the tridiagonal `(E_∂ − i·A_path)/2` in the form `λ = 2/μ`, which is numerically stable. The growth is sublinear, about ×1.77 per doubling of the height between 80 and 320, against the linear `k + 1` of the unsigned rank-one matrix, and consistent with the `ρ_k ~ k/log k` asymptotic derived on [[generating-function-gallery](pages/generating-function-gallery.md)].
 
 ## 5. The same √t in the generating function
 
@@ -103,7 +103,7 @@ The castle GF by width `x` and blocks `y` satisfies Deutsch and Elizalde's quadr
 (1 − x − y − xy)² − 4x²y = (1 − ρ²) · [(1 − ρ) − x(1 + ρ)] · [(1 + ρ) − x(1 − ρ)]      (ρ = √y)
 ```
 
-(checked symbolically). The first singularity in `x` is `x = (1 − ρ)/(1 + ρ)`, the **Cayley transform** of `ρ`. That is the reciprocal of the Poisson-kernel maximum of §4, so the transfer matrix and the generating function see the same `ρ = √y`.
+(checked symbolically). The first singularity in `x` is `x = (1 − ρ)/(1 + ρ)`, the **Cayley transform** of `ρ`. That is the reciprocal of the Poisson-kernel maximum of §4, so the transfer matrix and the generating function involve the same `ρ = √y`.
 
 The semi-perimeter grading marks width and blocks with one variable, `x = z` and `y = ±z` (so `z` counts the semi-perimeter `s = w + #blocks`), and the sign is again `ρ → iρ`:
 
@@ -114,15 +114,15 @@ signed,   ρ = i√z:   [(1 − ρ) − z(1 + ρ)]·[(1 + ρ) − z(1 − ρ)] =
 
 The full discriminants are `(z − 1)(z³ + z² + 3z − 1)` and `(z + 1)(z³ + 3z² − z + 1)` (SymPy). These are the two cubics [[castle-perimeter](pages/castle-perimeter.md)] found separately, the first giving castles by semi-perimeter growth `τ²` (τ the tribonacci constant) and the second giving the signed count growth `τ`. They are one norm form, `(1 − z)² − ρ²(1 + z)²`, evaluated at `ρ² = z` and at `ρ² = −z`.
 
-## What this settles
+## Summary
 
-The open question was whether the castle sign always acts by putting `i` into the up-step weight. For the three gradings the wiki uses, yes:
+For the three gradings the wiki uses, the castle sign acts by putting `i` into the up-step weight:
 
 - **by base length at bounded height** (`P(k, L)`): the eigenvalues are those of `K(√t)` at `√t = i`; the recurrence in `k`, the sector split, and the odd-`k` norm form all follow from `K(i)`.
 - **on the 1-smooth strip**: `I + √t·A_path` at `√t = i` ([[motzkin-castles](pages/motzkin-castles.md)] §3).
 - **by semi-perimeter**: the discriminant is a norm form in `ρ = √y`, and the sign is `ρ → iρ`.
 
-What stays open: a closed form for the eigenvalues of `K(i)` (for real `ρ` they lie in the range of the Poisson kernel and can be written `P_ρ(θ_j)` for real `θ_j`; at `ρ = i` the symbol is imaginary while the eigenvalues are not, so the `θ_j` must leave the real line, and the classical KMS spectral theory for complex `ρ` is not yet a wiki source), the growth rate of the dominant `|λ|` in `k`, and whether the other castle statistics (area, peaks) enter through square roots in the same way.
+Open: a closed form for the eigenvalues of `K(i)` (for real `ρ` they lie in the range of the Poisson kernel and can be written `P_ρ(θ_j)` for real `θ_j`; at `ρ = i` the symbol is imaginary while the eigenvalues are not, so the `θ_j` must leave the real line; the classical KMS spectral theory for complex `ρ` was not read), a proof of the growth rate of the dominant `|λ|` in `k`, and whether the other castle statistics (area, peaks) enter through square roots in the same way.
 
 ## Relation to other pages
 
@@ -132,7 +132,7 @@ What stays open: a closed form for the eigenvalues of `K(i)` (for real `ρ` they
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the involution `JD`, identified here as the KMS reversal symmetry pulled back through `D_i`.
 - [[castle-perimeter](pages/castle-perimeter.md)] - the two semi-perimeter cubics, unified here as one norm form.
 - [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] - the (width, blocks) quadratic whose discriminant factors over `Q(√y)`.
-- [[castle-sign](pages/castle-sign.md)] / [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] - the sign as a character; here the character's square root is what the matrix sees. The roots-of-unity counts `P_j(k, L)` are the block-weighted sum at `t = ω^j`, and that page's `P_j(1, L) = ½[(1 + √ω^j)^{L+1} + (1 − √ω^j)^{L+1}]` already shows the weight entering as its square root at `k = 1`.
+- [[castle-sign](pages/castle-sign.md)] / [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] - the sign as a character; the matrix involves the character's square root. The roots-of-unity counts `P_j(k, L)` are the block-weighted sum at `t = ω^j`, and that page's `P_j(1, L) = ½[(1 + √ω^j)^{L+1} + (1 − √ω^j)^{L+1}]` already shows the weight entering as its square root at `k = 1`.
 - [[castle-strip](pages/castle-strip.md)] - transfer matrices whose states are the heights; `M_k(t)` is the unrestricted strip with block weight `t`.
 - [[castle-notation](pages/castle-notation.md)] - the symbol conventions; `M_k(t)`, `K(ρ)`, `A_path`, `E_∂` are recorded there.
 

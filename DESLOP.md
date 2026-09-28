@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 184 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
-| Spot fixes only | 3 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 7 |
-| Words still to read | about 22,000 |
+| Fully read and cleaned | 188 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Spot fixes only | 2 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
+| Not started | 4 |
+| Words still to read | about 11,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -194,7 +194,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-snippets-strips (0.0)
 - [x] acronyms (0.0)
 
-### Analyses (64 pages, 62 fully read)
+### Analyses (64 pages, 64 fully read)
 
 - [x] castle-cryptography (5.1)
 - [x] isospectral-castles (4.9)
@@ -229,7 +229,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] fractional-width-and-height (1.6)
 - [x] tree-castle-by-area (1.5)
 - [x] castle-steganography (1.5)
-- [ ] motzkin-castles (1.5)
+- [x] motzkin-castles (1.5)
 - [x] mod-9-equidistribution (1.4)
 - [x] signed-klarner-decomposition (1.4)
 - [x] fractional-block-count (1.4)
@@ -246,7 +246,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] convex-castle-binomial-identity (1.0)
 - [x] recurrence-discovery (1.0)
 - [x] quadratic-min-height (1.0)
-- [~] castle-sign-kms-matrix (1.0)
+- [x] castle-sign-kms-matrix (1.0)
 - [x] area-growth-census (0.9)
 - [x] half-sum-castles (0.8)
 - [x] castle-conditional-entropy (0.8)
@@ -261,7 +261,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] convex-castle-cap-factor (0.0)
 - [x] castle-q-bessel-closed-form (0.0)
 
-### Sources (44 pages, 36 fully read)
+### Sources (44 pages, 38 fully read)
 
 - [x] oeis-mining-pe502 (25.6)
 - [x] oeis-height2-hyperbolic-castles (5.9)
@@ -271,14 +271,14 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] lattice-paths (3.2)
 - [ ] dhar-ruelle-sen-verma-1995-algebraic-aspects (3.2)
 - [x] aocp-generating-functions (3.1)
-- [ ] prodinger-2025-cornerless-motzkin-bargraphs (2.9)
+- [x] prodinger-2025-cornerless-motzkin-bargraphs (2.9)
 - [x] aocp-permutations (2.8)
 - [x] tower-narayana-polynomial (2.5)
 - [x] pe502-pell-castle-strip (2.3)
 - [x] algebraic-languages-and-polyominoes-enumeration (2.3)
 - [x] bousquet-melou-fedou-1995-convex-polyominoes (2.2)
 - [x] counting-horizontally-convex-polyominoes (2.1)
-- [ ] deutsch-elizalde-2016-bargraphs-cornerless-motzkin (2.0)
+- [x] deutsch-elizalde-2016-bargraphs-cornerless-motzkin (2.0)
 - [x] polyominoes (2.0)
 - [x] bender-1974-partitions-of-multisets (1.7)
 - [x] calugareanu-hamburg-exercises-basic-ring-theory (1.6)

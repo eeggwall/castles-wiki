@@ -23,7 +23,7 @@ Every castle sequence carries one of four status tags:
 - **`known`** — matches an existing OEIS sequence that already has this (or an equivalent) interpretation. The A-number is cited.
 - **`interlink`** — matches an existing OEIS sequence, but the castle reading is a *new* interpretation of it (a comment/formula to submit).
 - **`novel-candidate`** — computed and **searched against OEIS with no match**. A candidate for a new submission (human authorship required). Dated, so a later re-search is possible.
-- **`unchecked`** — computed on the wiki but **not yet OEIS-searched**. A to-do, not a claim of novelty.
+- **`unchecked`** — computed on the wiki and **not yet searched against OEIS**; no novelty is claimed.
 
 The status is the discipline: *novel-candidate* means someone actually searched and found nothing on that date, not merely that the wiki hasn't mentioned an A-number.
 
