@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 130 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
-| Spot fixes only | 12 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 52 |
-| Words still to read | about 181,000 |
+| Fully read and cleaned | 134 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Spot fixes only | 11 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
+| Not started | 49 |
+| Words still to read | about 171,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 68 fully read)
+### Concepts (85 pages, 72 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
@@ -124,14 +124,14 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-fibers-char-2-walkthrough (3.8)
 - [x] castle-eigenvalues-by-example (3.7)
 - [x] spectral-analysis (3.5)
-- [~] castle-gray-code (3.4)
+- [x] castle-gray-code (3.4)
 - [x] permutation-inversions (3.3)
 - [x] tower-recursion-master-class (3.3)
 - [x] hardin-identity-seminar (3.2)
 - [x] castle-polyomino (3.2)
 - [x] oeis-mining-seminar (3.2)
 - [ ] sandpile-group (3.0)
-- [ ] castle-native-gray-tour (3.0)
+- [x] castle-native-gray-tour (3.0)
 - [x] block-count-constraints (3.0)
 - [x] column-convex-polyomino (3.0)
 - [x] parity-via-roots-of-unity (3.0)
@@ -159,7 +159,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-compression (1.5)
 - [x] metallic-means (1.4)
 - [x] castle-snippets (1.4)
-- [ ] castle-bdd-zdd (1.3)
+- [x] castle-bdd-zdd (1.3)
 - [x] generalized-dyck-grammar (1.3)
 - [x] castle-classification-growth (1.2)
 - [ ] castle-notation (1.2)
@@ -169,7 +169,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] signed-tower-k-direction (1.1)
 - [x] tower-heap (1.1)
 - [x] castle-counting-formula (1.0)
-- [ ] castle-move-graph-zdd (0.9)
+- [x] castle-move-graph-zdd (0.9)
 - [x] algebraic-transcendental-wall (0.8)
 - [x] pell-numbers (0.8)
 - [x] tower-word-language (0.7)
