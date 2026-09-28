@@ -1,18 +1,18 @@
 ---
 title: Reachable-field census of castle-strip growth constants
 category: Analyses
-summary: An exhaustive census (h ≤ 5) of which algebraic numbers are Perron roots of 0/1 castle-strip transfer matrices, bucketed by number field. The quadratic reachability law: every real quadratic field Q(√d) is reachable, via the dominant root of x² − p₁x − p₂ (p₁,p₂ ≥ 1), field = squarefree part of p₁²+4p₂; the metallic means are exactly the p₂=1 line; no field is excluded (the per-height lists are just initial segments), and the minimum height of each pair is worked out on quadratic-min-height. Every metallic mean δ_a first appears at exactly height a+1, and copper collapses into Q(√5) (disc 20 = 4·5) precisely because δ₄ = φ³ — the field-theoretic root of the Fibonacci decimation. The cubic frontier is already at h=3, where the plastic number x³−x−1 shows up as a strip Perron root — closing the bare-ψ watch note — together with supergolden, plastic-squared, tribonacci, and the Q(ζ₇)⁺ cubic. Counts by degree at h=4: 5 integer, 6 quadratic, 56 cubic, 110 quartic distinct minimal polynomials.
+summary: An exhaustive census (h ≤ 5) of which algebraic numbers are Perron roots of 0/1 castle-strip transfer matrices, bucketed by number field. Every real quadratic field Q(√d) is reachable, already through the larger root of x² − p₁x − p₂ with p₁ ≥ 0, p₂ ≥ 1 (field = squarefree part of p₁² + 4p₂); quadratic Perron roots with negative p₂ also occur (φ², from x² − 3x + 1, at h = 3). The metallic means are the p₂ = 1 line, every metallic mean δ_a first appears at exactly height a + 1, and copper lies in Q(√5) (disc 20 = 4·5) as δ₄ = φ³. The per-height field lists are initial segments; the minimum height of each (p₁, p₂) is on quadratic-min-height. Nine cubics already appear at h = 3, among them the plastic number x³ − x − 1, supergolden, plastic-squared, tribonacci and two Q(ζ₇)⁺ cubics. At h = 4 the 184 distinct positive Perron values are 4 integer, 14 quadratic (6 fields), 56 cubic and 110 quartic.
 tags: [analysis, castle, growth-constant, transfer-matrix, perron-root, number-field, metallic-mean, plastic-number, census, pisot, quadratic-field, sympy, verification]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-09-25
+updated: 2026-09-28
 ---
 
 # Reachable-field census of castle-strip growth constants
 
 ## The question and the method
 
-The page answers one question — *which algebraic numbers can be the growth rate of a castle-strip, and which number fields do they live in?* — so pin the four objects down before the sweep.
+The question: which algebraic numbers can be the growth rate of a castle strip, and which number fields do they live in? Four definitions first.
 
 **A castle-strip** is a row of columns of heights `1..h`, plus a nearest-neighbor rule: which adjacent heights may touch. The rule *is* a `0/1` **transfer matrix** `M`, with `M[a][b] = 1` meaning "a column of height `a` may be followed by one of height `b`" (the plain construction is on [[castle-strip](pages/castle-strip.md)]).
 
@@ -22,13 +22,13 @@ The page answers one question — *which algebraic numbers can be the growth rat
 
 **One example, `h = 2`.** The rule "no two adjacent height-2 columns" is `M = [[1,1],[1,0]]`, with characteristic polynomial `x² − x − 1`, Perron root the golden ratio `φ`, field `Q(√5)`, and Fibonacci as its strip count — the first entry of the census.
 
-The census sweeps **all `2^{h²}` binary `M`** for `h = 2, 3, 4, 5`, collects the distinct Perron roots, and buckets them by number field. Three results structure the page: the **quadratic reachability law** (every real quadratic field is reachable), the **copper collapse** (`Q(√5)` is not new — which is why copper's sequence is decimated Fibonacci), and the **cubic frontier at `h = 3`** (the plastic number already shows up). The sweep itself:[^1]
+The census sweeps **all `2^{h²}` binary `M`** for `h = 2, 3, 4, 5`, collects the distinct Perron roots, and buckets them by number field. Three results structure the page: the **quadratic reachability law** (every real quadratic field is reachable), the **copper case** (copper `δ₄ = φ³` adds no new field), and the **cubics at `h = 3`** (the plastic number among them).[^1]
 
 The computation is two-phase: a fast numeric sweep collects the distinct Perron values and one example matrix each; then SymPy exactly factors each example's characteristic polynomial, picks the irreducible factor carrying the Perron root, and labels the field (`deg 1` rational, `deg 2` → `Q(√d)` by squarefree discriminant, `deg ≥ 3` cubic/quartic). Exact throughout — numeric values only *select* the factor; the field label is exact.[^1]
 
 ## In one function
 
-The whole page is one step — given a rule, read off its growth constant and field — and it is a short function:
+The step behind the census (given a rule, read off its growth constant and field) is a short function:
 
 ```python
 import sympy as sp
@@ -64,11 +64,11 @@ def strip_field(M):
 (1.3247180, 'deg 3 (x**3 - x - 1)')
 ```
 
-The three metallic fields are `Q(√5)`, `Q(√2)`, `Q(√13)`; the last line is the plastic number as a degree-3 growth constant. This is the step the exhaustive sweep runs over all `2^{h²}` matrices at once — `strip_field_census` on [[castle-snippets](pages/castle-snippets.md)] is exactly this function looped and bucketed.
+The three metallic fields are `Q(√5)`, `Q(√2)`, `Q(√13)`; the last line is the plastic number as a degree-3 growth constant. The exhaustive sweep runs this step over all `2^{h²}` matrices; `strip_field_census` on [[castle-snippets](pages/castle-snippets.md)] is this function looped and bucketed.
 
 ## The quadratic fields — the clean result
 
-Bucketing every quadratic Perron root by its field `Q(√d)` gives a sharp, monotone picture:
+Bucketing every quadratic Perron root by its field `Q(√d)`:
 
 | `h` | reachable `d` (new at this height in **bold**) | new metallic mean | new non-metallic |
 |---|---|---|---|
@@ -77,9 +77,7 @@ Bucketing every quadratic Perron root by its field `Q(√d)` gives a sharp, mono
 | 4 | 2, 3, 5, **13**, **17**, **21** | bronze `(3+√13)/2` (`Q(√13)`) | `Q(√17)`, `Q(√21)` |
 | 5 | 2, 3, 5, **6**, **7**, 13, 17, 21, **29**, **33** | copper `2+√5` (`Q(√5)`, not new) | `Q(√6)`, `Q(√7)`, `Q(√29)` (via `(3+√29)/2`), `Q(√33)` |
 
-Two structural facts fall out.
-
-### Every squarefree metallic discriminant is reached — and copper is the exception that proves the rule
+### Every metallic field is reached; copper adds none
 
 The `a`-th metallic mean `δ_a = (a + √(a²+4))/2` lives in `Q(√(a²+4))`, whose field depends only on the **squarefree part** of `a²+4`:
 
@@ -92,69 +90,70 @@ The `a`-th metallic mean `δ_a = (a + √(a²+4))/2` lives in `Q(√(a²+4))`, w
 | nickel 5 | 29 | 29 | `Q(√29)` |
 | 6 | 40 = 4·10 | 10 | `Q(√10)` |
 
-The census confirms each of these fields is reached: `Q(√5)` (golden) at h=2, `Q(√2)` (silver) at h=3, `Q(√13)` (bronze) at h=4, and nickel's field `Q(√29)` at h=5 through the non-metallic `(3+√29)/2 = 4.1926` - nickel itself, `5.1926`, needs h=6. **Copper is the striking case: it introduces no new field**, because `20 = 4·5` collapses to `Q(√5)`. And that collapse *is* the reason `δ₄ = 2 + √5 = φ³` and the copper strip counts the Fibonacci trisection `F_{3n+5}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)] Finding 3): copper lives inside the golden field, so it is a power of `φ`, so its integer sequence is decimated Fibonacci. The census makes the Fibonacci decimation a **field-theoretic necessity**, not a coincidence.[^2]
+The census confirms each of these fields is reached: `Q(√5)` (golden) at h=2, `Q(√2)` (silver) at h=3, `Q(√13)` (bronze) at h=4, and nickel's field `Q(√29)` at h=5 through the non-metallic `(3+√29)/2 = 4.1926` - nickel itself, `5.1926`, needs h=6. **Copper introduces no new field**, because `20 = 4·5` gives `Q(√5)`. Every metallic mean is a unit of norm `−1`, and the units of `Z[φ]` are `±φ^n`, so `δ₄ = 2 + √5 = φ³`; the copper strip counts the Fibonacci trisection `F_{3n+5}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)] Finding 3).[^2]
 
 ### The metallic surd's minimum height is exactly `a + 1`
 
-The `M_h = J − D` "plateau-free-except-ceiling" rule realizes `δ_{h−1}` at height `h` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]), so `δ_a` is always reachable by height `h = a + 1`. The bound is **exact for every `a`**: a 0/1 matrix of size `h` has Perron root at most `h`, with equality only for the all-ones matrix, and `a < δ_a < a + 1`, so no height below `a + 1` can reach `δ_a`.[^3] So `J − D` is a minimal realization of every metallic mean ([[quadratic-min-height](pages/quadratic-min-height.md)] has the proof and the full min-height table).
+The `M_h = J − D` "plateau-free-except-ceiling" rule realizes `δ_{h−1}` at height `h` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]), so `δ_a` is always reachable by height `h = a + 1`. The bound is **exact for every `a`**: a 0/1 matrix of size `h` has Perron root at most `h`, with equality only for the all-ones matrix, and `a < δ_a < a + 1`, so no height below `a + 1` can reach `δ_a`.[^3] So `J − D` realizes every metallic mean at the minimum height ([[quadratic-min-height](pages/quadratic-min-height.md)] has the proof and the full min-height table).
 
-Within a single field the surds are also height-stratified. `Q(√5)` fills in as `h` grows: `φ` at h=2; `φ²` at h=3; `2φ = 3.236` at h=4; and **`φ³` (copper) only at h=5** — so "which surds of `Q(√5)` are Perron roots" is itself a height-indexed question, and copper genuinely waits until h=5.[^4]
+Within a single field the surds are also height-stratified. `Q(√5)` fills in as `h` grows: `φ` at h=2; `φ²` at h=3; `2φ = 3.236` at h=4; and **`φ³` (copper) only at h=5**. Which elements of `Q(√5)` are Perron roots depends on the height.[^4]
 
-### The non-metallic quadratics are the generic case
+### The non-metallic quadratic fields
 
-Alongside the metallic fields sit `Q(√3)` (h=3), `Q(√17)`, `Q(√21)` (h=4), `Q(√6)`, `Q(√7)`, `Q(√33)` (h=5) — non-metallic real quadratic fields with no `p₂ = 1` structure. These outnumber the metallic ones and confirm the [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] point that off-ladder surds are what generic rules produce; the metallic means are the thin distinguished subfamily (`p₂ = 1`, one length-2 return loop, purely periodic continued fraction).
+Alongside the metallic fields sit `Q(√3)` (h=3), `Q(√17)`, `Q(√21)` (h=4), `Q(√6)`, `Q(√7)`, `Q(√33)` (h=5), reached through non-metallic roots (`p₂ ≠ 1`). `Q(√17)` does contain a metallic mean, `δ_8 = 4 + √17` (since `8² + 4 = 4·17`), which is not reached by h = 5; the other five contain none, because `a² + 4 ≡ 0` has no solution mod 3 or mod 7. The metallic means are the `p₂ = 1` subfamily (norm `−1`, continued fraction `[a; a, a, …]`).
 
-## The cubic frontier is at `h = 3` — and it contains the plastic number
+## Cubics at `h = 3`, including the plastic number
 
-The census's most surprising output: **genuine cubics appear immediately at `h = 3`**, six distinct minimal polynomials, and they are exactly the cubic constants the wiki had reached only through *area* grading:
+Nine cubic minimal polynomials already appear at `h = 3`:[^6]
 
 | minimal polynomial | Perron root | identity | # matrices (h=3) |
 |---|---|---|---|
 | `x³ − x − 1` | `1.3247` | **plastic number `ψ`** ([[plastic-number](pages/plastic-number.md)]) | 6 |
 | `x³ − x² − 1` | `1.4656` | supergolden ([[tree-castle-by-area](pages/tree-castle-by-area.md)]) | 6 |
 | `x³ − 2x² + x − 1` | `1.7549` | plastic-squared `ψ²` | 6 |
-| `x³ − x² − 2x + 1` | `1.8019` | `Q(ζ₇)⁺` cubic (conjugate `2cos(2π/7)`) | 6 |
+| `x³ − x² − 2x + 1` | `1.8019` | `2cos(π/7)`, in `Q(ζ₇)⁺` | 6 |
 | `x³ − x² − x − 1` | `1.8393` | **tribonacci** ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]) | 12 |
+| `x³ − x² − 2x − 1` | `2.1479` | | 6 |
+| `x³ − 2x² − 1` | `2.2056` | | 6 |
+| `x³ − 2x² − x + 1` | `2.2470` | `1 + 2cos(2π/7)`, in `Q(ζ₇)⁺` | 12 |
 | `x³ − 3x² + 2x − 1` | `2.3247` | (Pisot; `ψ + 1`) | 6 |
 
-The `x³ − x − 1` line **closes the open bare-plastic watch note** on [[plastic-number](pages/plastic-number.md)]: the plastic number `ψ ≈ 1.3247` — which had appeared only as `ψ²` and `2ψ²` — **is a castle-strip Perron root at height 3**, realized by 6 matrices, the sparsest with just 4 ones (a near-companion of `x³ = x + 1`).[^5] The [[plastic-number](pages/plastic-number.md)] "Padovan/Perrin growth castle" slot is filled: a strip whose transfer matrix is that companion grows at bare `ψ`.
+The plastic number `ψ ≈ 1.3247` is a castle-strip Perron root at height 3, realized by 6 matrices, the sparsest with just 4 ones (a near-companion of `x³ = x + 1`);[^5] a strip whose transfer matrix is that companion is the "Padovan/Perrin growth castle" of [[plastic-number](pages/plastic-number.md)].
 
-At `h = 4` the cubic count explodes to **56 distinct minimal polynomials** (including `x³ − 2`, the cube root of 2 at `1.2599`), plus **110 quartic** minimal polynomials — the field zoo becomes genuinely wild, while the quadratic layer stays orderly (6 fields). The degree breakdown at h=4: **5 integer, 6 quadratic, 56 cubic, 110 quartic** distinct minimal polynomials among the 236 distinct Perron values.[^6]
+At `h = 4` there are **184 distinct positive Perron values**: 4 integers, 14 quadratic minimal polynomials (in 6 fields), **56 cubic** (including `x³ − 2`, the cube root of 2 at `1.2599`) and **110 quartic**. At `h = 5` there are 5,978: 5 integers, 29 quadratic (10 fields), 253 cubic, 1,355 quartic and 4,336 quintic.[^6]
 
 ## The reachability law for quadratic fields
 
-The census's finite lists (`{5}`, `{2,3,5}`, `{2,3,5,13,17,21}`, `{2,3,5,6,7,13,17,21,29,33}` at h = 2..5) are **initial segments of a completely characterized set**, not a mysterious pattern. Recording the `(p₁, p₂)` two-state reduction `x² − p₁x − p₂` of each field's minimal example gives the law.[^7]
+The census's finite lists (`{5}`, `{2,3,5}`, `{2,3,5,13,17,21}`, `{2,3,5,6,7,13,17,21,29,33}` at h = 2..5) are **initial segments of the set of all real quadratic fields**. Write a quadratic Perron root's minimal polynomial as `x² − p₁x − p₂`.[^7]
 
-**Every reachable quadratic Perron root is the dominant root of `x² − p₁x − p₂` for integers `p₁ ≥ 1, p₂ ≥ 1`** — a nonnegative-integer 2×2 companion `[[p₁, p₂], [1, 0]]` — and its field is `Q(√d)` with `d = ` squarefree part of the discriminant `p₁² + 4p₂`. Three consequences:
+**Each quadratic Perron root is the larger root of its minimal polynomial `x² − p₁x − p₂`**, and its field is `Q(√d)` with `d = ` squarefree part of the discriminant `p₁² + 4p₂`. `p₂` can be negative: `φ²`, the root of `x² − 3x + 1`, is a Perron root at h = 3, and `(4, −2)`, `(4, −1)` appear at h = 4. Three consequences:
 
 1. **No real quadratic field is excluded.** As `(p₁, p₂)` range over `p₁ ≥ 0, p₂ ≥ 1`, the discriminant `p₁² + 4p₂` takes every value `≡ 0 or 1 (mod 4)` — exactly the integers that *are* quadratic discriminants — and its squarefree part takes **every** squarefree `d ≥ 2`. For example `Q(√11)` (absent from the h ≤ 5 list) is reached by `(p₁, p₂) = (6, 2)` (disc `44 = 4·11`, growth `3 + √11`), just at a height taller than 5. So the h ≤ 5 lists are "reachable *by that height*," not the whole reachable set — which is **all real quadratic fields**.[^8]
 
-2. **The metallic means are exactly the `p₂ = 1` slice.** `x² − p₁x − 1` is the metallic mean `δ_{p₁}`; its discriminant `p₁² + 4` is the metallic form. So the metallic ladder is the **single distinguished line `p₂ = 1`** through the `(p₁, p₂)` lattice of all reachable quadratics — the cheapest to realize (one length-2 return loop), and the only one with purely periodic continued fraction ([[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]). Everything with `p₂ ≥ 2` is non-metallic and generic.
+2. **The metallic means are exactly the `p₂ = 1` slice.** `x² − p₁x − 1` is the metallic mean `δ_{p₁}`; its discriminant `p₁² + 4` is the metallic form. So the metallic ladder is the **line `p₂ = 1`** through the `(p₁, p₂)` lattice: the roots of norm `−1`, with continued fraction `[a; a, a, …]` ([[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]). Roots with `p₂ ≠ 1` are non-metallic.
 
-3. **The obstruction is `0/1` realizability, not the field.** Every `(p₁, p₂)` is realizable at *some* height — the nonnegative-integer companion unfolds to a `0/1` transfer matrix by splitting each weight-`w` edge into `w` parallel simple paths through fresh states (standard symbolic-dynamics recoding). The **minimum** height grows with both `p₁` and `p₂` but has **no simple closed form** (the h ≤ 4 grid: `(1,1)` at h=2; `(0,2), (2,1), (2,2)` at h=3; `(0,3), (1,3), (1,4), (2,4), (3,1), (3,2), (3,3)` at h=4 — `p₂ = 1` metallic is cheapest, realized by `J − D` at `h = p₁ + 1`). This is why the census's per-height lists look irregular: they are level sets of an irregular min-height function over a fully-characterized lattice.[^9]
+3. **The obstruction is `0/1` realizability, not the field.** Every pair with `p₁ ≥ 0, p₂ ≥ 1` is realizable at *some* height: the edge graph of the multigraph with adjacency matrix `[[p₁, p₂], [1, 0]]` is a `0/1` transfer matrix (one state per edge) with the same nonzero spectrum, a standard symbolic-dynamics recoding. The **minimum** height grows with both `p₁` and `p₂` and has no known closed form (the h ≤ 4 grid: `(1,1)` at h=2; `(0,2), (2,1), (2,2), (3,−1)` at h=3; `(0,3), (1,3), (1,4), (2,4), (3,1), (3,2), (3,3), (4,−2), (4,−1)` at h=4; the metallic line is realized by `J − D` at `h = p₁ + 1`). The census's per-height lists are level sets of this min-height function ([[quadratic-min-height](pages/quadratic-min-height.md)]).[^9]
 
-So the "why 17, 21 at h=4 but not 11?" question dissolves: `Q(√11)` is reachable too, just deeper; and `d ≡ 3 (mod 4)` fields like `Q(√11)` need a discriminant `p₁² + 4p₂ = 4·11` (a non-fundamental multiple), which forces a larger `(p₁, p₂)` and hence a taller strip.
+`Q(√11)` is reachable too, at a greater height: a `d ≡ 3 (mod 4)` field needs a discriminant `p₁² + 4p₂` that is a multiple such as `4·11`, which forces a larger `(p₁, p₂)` than the `d ≡ 1 (mod 4)` fields `Q(√13)`, `Q(√17)`, `Q(√21)` need.
 
-## What this settles, and what it leaves
+## Summary and open questions
 
-**Settled:**
-- **The full quadratic reachability law** (above): every real quadratic field is a castle-strip Perron field, via `x² − p₁x − p₂`; metallic means are the `p₂ = 1` line. The per-height census lists are initial segments.
-- Every metallic mean `δ_a` first appears at exactly height `a+1`; copper collapses into `Q(√5)` (whence the Fibonacci decimation).
-- The bare plastic number is a castle-strip growth constant (h=3) — the [[plastic-number](pages/plastic-number.md)] watch note is closed.
-- The cubic frontier is at h=3, and it contains plastic / supergolden / plastic² / tribonacci / the `Q(ζ₇)⁺` cubic — the "area-grading-only" cubics also appear as *strip* Perron roots.
+**Results:**
+- Every real quadratic field is a castle-strip Perron field (via `x² − p₁x − p₂` with `p₂ ≥ 1`); metallic means are the `p₂ = 1` line. The per-height census lists are initial segments.
+- Every metallic mean `δ_a` first appears at exactly height `a+1`; copper lies in `Q(√5)` as `φ³`.
+- The plastic number is a castle-strip growth constant at h=3.
+- Nine cubics appear at h=3, among them plastic, supergolden, plastic², tribonacci and two `Q(ζ₇)⁺` cubics; supergolden, plastic² and tribonacci also arise by area.
 
 **Open:**
 - **A closed form for the minimum height** realizing a given `(p₁, p₂)`. [[quadratic-min-height](pages/quadratic-min-height.md)] computes it exactly through height 6, proves it on the metallic line (`p₁ + 1`) and the square-root line (`⌈2√p₂⌉`), and conjectures that at most three evenly connected groups of heights always reach it.
 - **Which cubics are Pisot / Salem**, and whether the Pisot cubics reachable as strip Perron roots are exactly a nameable set.
 - **A closed-form min-height for a given field.** The reachability law says every field appears; the height at which it *first* appears is the open quantity (tied to the min-height of its cheapest `(p₁, p₂)`).
 
-## `h ≥ 6`: why the law supersedes exhaustion
+## `h ≥ 6`
 
-Two facts settle the `h ≥ 6` regime without a full sweep. First, an **`S_h`-canonical-form deduper** — quotient the `2^{h²}` matrices by simultaneous row+column permutation `P M Pᵀ` (relabeling the height-states preserves the spectrum), keeping the lexicographically-minimal representative of each orbit — was built and **validated against h ≤ 4** (it reproduces the field lists `{5}`, `{2,3,5}`, `{2,3,5,13,17,21}` exactly, compressing 65 536 matrices to 3 044 orbits at h=4, ≈ 21×).[^10] But even with the full `≈ h!` compression, h=6 has `≈ 9.5 × 10⁷` orbits — too many to factor one-by-one in a session, and h=7 is `≈ 10¹¹`.
+An **`S_h`-canonical-form deduper** (quotient the `2^{h²}` matrices by simultaneous row and column permutation `P M Pᵀ`, which preserves the spectrum, keeping the lexicographically minimal representative of each orbit) reproduces the field lists `{5}`, `{2,3,5}`, `{2,3,5,13,17,21}` for h ≤ 4, compressing 65 536 matrices to 3 044 orbits at h=4.[^10] At h=6 it still leaves `≈ 9.5 × 10⁷` orbits (h=7: `≈ 10¹¹`). [[quadratic-min-height](pages/quadratic-min-height.md)] instead enumerates the 1.28 billion row-sorted `6 × 6` tables and finds every quadratic Perron root through height 6.
 
-Second, and decisively: **the new fields at `h ≥ 6` are dense, not sparse.** A sparse sweep (matrices with `≤ 6` of 36 ones, `S_6`-deduped) reaches only `{2, 3, 5}` — the high-discriminant metallic surds need *many* ones (nickel's `J − D` realizer has 31 of 36).[^11] So neither sparse enumeration nor session-length brute force finds them.
-
-This is exactly where the **reachability law replaces the census**: it *predicts* what `h ≥ 6` contains, and targeted construction confirms the predictions. Nickel `Q(√29)` is realized by `J − D` at h=6 (`(x+1)⁴(x²−5x−1)`, 31 ones); the `a=6` field `Q(√10)` (disc 40) first appears at h=7 via `J − D` (`δ_6 = 3+√10`), since its cheapest quadratic form needs `p₁ = 6` (i.e. 7 states) or a many-`p₂` alternative that is no smaller.[^12] So exhaustive h ≥ 6 is unnecessary: the law characterizes the full reachable set, and the census's role — mapping the *low-height* initial segments and surfacing the cubic frontier — is complete at h ≤ 5.
+The new fields at `h ≥ 6` need dense matrices: a sparse sweep (`≤ 6` of 36 ones, `S_6`-deduped) reaches only `{2, 3, 5}`, while nickel's `J − D` realizer has 31 of 36 ones.[^11] Targeted constructions: nickel `Q(√29)` by `J − D` at h=6 (`(x+1)⁴(x²−5x−1)`); `δ_6 = 3 + √10` by `J − D` at h=7. The field `Q(√10)` itself first appears at h=6, through `(p₁, p₂) = (4, 6)` (`2 + √10`) and `(2, 9)` (`1 + √10`) in the exhaustive height-6 census.[^12]
 
 ## Reproduce
 
@@ -167,14 +166,14 @@ The one-rule step (`strip_field`, above), the `strip_field_census` two-phase swe
 ## Related Concepts
 
 - [[quadratic-min-height](pages/quadratic-min-height.md)] - the minimum height for each `(p₁, p₂)`: exact through height 6, proved on the metallic and square-root lines, and the three-group conjecture.
-- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the companion page: the `J − D` rule that realizes each metallic mean, whose reachability this census confirms exhaustively.
+- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the companion page: the `J − D` rule that realizes each metallic mean, confirmed here for h ≤ 5.
 - [[metallic-means](pages/metallic-means.md)] - the ladder `δ_a`; this census places every rung's field and the copper collapse into `Q(√5)`.
-- [[plastic-number](pages/plastic-number.md)] - the bare-`ψ` watch note this census closes (plastic is a strip Perron root at h=3).
-- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] - where tribonacci, supergolden, plastic² first arose (by area); the census finds them again as strip Perron roots.
+- [[plastic-number](pages/plastic-number.md)] - the plastic number is a strip Perron root at h=3.
+- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] - where tribonacci, supergolden and plastic² arise by area; they are also strip Perron roots.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - Axis 8, the growth-type meta-classification these Perron roots populate.
-- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - why the metallic fields `Q(√(a²+4))` are the distinguished (purely-periodic-CF, norm-`−1`) quadratics among all reachable ones.
-- [[fractional-recurrences](pages/fractional-recurrences.md)] - the continuum-completion of this census, in a different direction. The fractional-Fibonacci growth curve `g(α) = 1/r*(α)`, `(1-r*)^α = r*`, threads three of this page's cubic Perron roots at rational `α` (supergolden at `1/3`, plastic-squared at `2/3`, plastic-cubed at `3/2`) and passes through every real `> 1` monotonically. At irrational `α` the growth is transcendental (Baker/Gelfond-Schneider), populating **the complement of the reachable-field census**: transcendentals no 0/1 castle-strip transfer matrix can ever realize.
-- [[power-law-memory-rules](pages/power-law-memory-rules.md)] - answers "is K → ∞ a new number?" against this census's algebraic universe: `K → ∞` at `h = 2` stays on integer `2` rather than crossing to a new transcendental, and the K-truncated Perron roots ratchet through this census's plastic / supergolden / golden / plastic-squared rungs.
+- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the metallic means as the norm-`−1` quadratics with period-1 continued fractions `[a; a, a, …]`.
+- [[fractional-recurrences](pages/fractional-recurrences.md)] - the continuum-completion of this census, in a different direction. The fractional-Fibonacci growth curve `g(α) = 1/r*(α)`, `(1-r*)^α = r*`, threads three of this page's cubic Perron roots at rational `α` (supergolden at `1/3`, plastic-squared at `2/3`, plastic-cubed at `3/2`) and passes through every real `> 1` monotonically. At algebraic irrational `α` the growth is transcendental (Gelfond-Schneider), so those values lie **outside the reachable-field census**: no 0/1 castle-strip transfer matrix realizes them.
+- [[power-law-memory-rules](pages/power-law-memory-rules.md)] - at `h = 2` the `K → ∞` limit stays at the integer `2`, and the K-truncated Perron roots ratchet through this census's plastic / supergolden / golden / plastic-squared rungs.
 
 ## Footnotes
 
@@ -188,16 +187,16 @@ The one-rule step (`strip_field`, above), the `strip_field_census` two-phase swe
 
 [^5]: Exhaustive over the 512 binary `3×3` matrices: exactly 6 have characteristic polynomial with irreducible factor `x³ − x − 1` (Perron root `1.324718`, the plastic number). The sparsest has 4 ones, e.g. `[[0,0,1],[1,0,0],[1,1,0]]` (rule: height 1→3, 2→1, 3→{1,2}), a near-companion matrix of `x³ = x + 1`; SymPy `factor(charpoly) = x³ − x − 1`.
 
-[^6]: h=4 distinct-Perron-value degree census (SymPy exact factorization of one example per distinct value): 5 integer roots (`0,1,2,3,4`), 6 quadratic fields (`d = 2,3,5,13,17,21`), 56 cubic minimal polynomials, 110 quartic minimal polynomials; 236 distinct Perron values over the non-nilpotent matrices (707 matrices are nilpotent / zero-growth). h=3: 15 fields (3 integer, 3 quadratic `d=2,3,5`, 9 cubic) over 17 distinct Perron values. h=5 quadratic layer: `d = 2,3,5,6,7,13,17,21,29,33`.
+[^6]: Exact recount (2026-09-28): integer characteristic polynomials of all `2^{h²}` matrices by Newton's identities, one SymPy factorization per distinct polynomial, Perron root = largest real root over the irreducible factors. h=3: 32 distinct characteristic polynomials, 25 nilpotent matrices, 17 distinct positive Perron values (3 integer, 5 quadratic in `d = 2, 3, 5`, 9 cubic). h=4: 333 characteristic polynomials, 543 nilpotent matrices, 184 distinct positive Perron values (4 integer, 14 quadratic in `d = 2, 3, 5, 13, 17, 21`, 56 cubic, 110 quartic). h=5: 8,927 characteristic polynomials, 29,281 nilpotent matrices, 5,978 distinct positive Perron values (5 integer, 29 quadratic in `d = 2,3,5,6,7,13,17,21,29,33`, 253 cubic, 1,355 quartic, 4,336 quintic). The nilpotent counts are the acyclic-digraph counts 25, 543, 29,281.
 
-[^7]: For each reachable quadratic field the minimal (fewest-ones) example matrix was recorded and its Perron factor `x² − p₁x − p₂` read off (SymPy). At h ≤ 4, by **discriminant** `Δ = p₁² + 4p₂` (field is `Q(√d)` with `d = ` squarefree part of `Δ`): `Δ=5` → `(p₁,p₂)=(1,1)`, `Q(√5)`; `Δ=8` → `(2,1)` and `(0,2)`, `Q(√2)`; `Δ=12` → `(2,2)`, `Q(√3)`; `Δ=13` → `(1,3)` and `(3,1)`, `Q(√13)`; `Δ=17` → `(1,4)` and `(3,2)`, `Q(√17)`; `Δ=21` → `(3,3)`, `Q(√21)`.
+[^7]: The 14 quadratic Perron minimal polynomials at h ≤ 4 (exact recount, 2026-09-28), by discriminant `Δ = p₁² + 4p₂`: `Δ = 5`: `x² − x − 1`, `x² − 3x + 1`; `Δ = 20`: `x² − 2x − 4`; `Δ = 8`: `x² − 2`, `x² − 2x − 1`, `x² − 4x + 2`; `Δ = 12`: `x² − 3`, `x² − 2x − 2`, `x² − 4x + 1`; `Δ = 13`: `x² − x − 3`, `x² − 3x − 1`; `Δ = 17`: `x² − x − 4`, `x² − 3x − 2`; `Δ = 21`: `x² − 3x − 3`.
 
 [^8]: `p₁² + 4p₂ ≡ p₁² (mod 4) ∈ {0, 1}`, so the discriminant is always `≡ 0 or 1 (mod 4)` — a quadratic discriminant — and conversely every such value `≥ 5` is `p₁² + 4p₂` for some `p₁ ≥ 0, p₂ ≥ 1`. The squarefree part hits every squarefree `d ≥ 2` (using non-fundamental multiples where needed): e.g. `Q(√11)` via `(p₁,p₂) = (6,2)`, disc `44 = 4·11`, growth `3 + √11 ≈ 6.317` — verified in SymPy; absent from the h ≤ 5 census only because it needs a taller strip. So no real quadratic field is excluded.
 
-[^9]: Realizability: the nonnegative-integer companion `[[p₁, p₂], [1, 0]]` recodes to a `0/1` matrix by replacing each weight-`w` edge with `w` parallel simple paths through fresh states (a standard state-splitting / higher-block recoding in symbolic dynamics), so every `(p₁ ≥ 1, p₂ ≥ 1)` is realized at some finite `h`. Empirical min-heights over `p₁ ≤ 3, p₂ ≤ 4` (exhaustive h ≤ 4): `(1,1)`→2; `(0,2),(2,1),(2,2)`→3; `(0,3),(1,3),(1,4),(2,4),(3,1),(3,2),(3,3)`→4; `p₁ ≥ 4` not reached by h=4. The `p₂ = 1` (metallic) line is realized by `M_h = J − D` at `h = p₁ + 1` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). No closed form fits the full grid.
+[^9]: Realizability: the nonnegative-integer companion `[[p₁, p₂], [1, 0]]` recodes to a `0/1` matrix by passing to its edge graph (states are the `p₁ + p₂ + 1` edges of the multigraph, a standard symbolic-dynamics recoding that keeps the nonzero spectrum), so every `(p₁ ≥ 0, p₂ ≥ 1)` is realized at some finite `h`. Min-heights at h ≤ 4 (exhaustive): `(1,1)`→2; `(0,2),(2,1),(2,2),(3,−1)`→3; `(0,3),(1,3),(1,4),(2,4),(3,1),(3,2),(3,3),(4,−2),(4,−1)`→4. The `p₂ = 1` (metallic) line is realized by `M_h = J − D` at `h = p₁ + 1` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). No closed form fits the full grid.
 
 [^10]: The `S_h` deduper canonicalizes each matrix as the lexicographically-minimal flattening of `P M Pᵀ` over all `h!` permutations `P` (simultaneous row+column relabeling, which conjugates the matrix and preserves its spectrum), collapsing each orbit to one representative. Validated by execution: canonical-representative census reproduces the full field lists at h=2 (`{5}`, 10 orbits from 16 matrices), h=3 (`{2,3,5}`, 104 orbits from 512), h=4 (`{2,3,5,13,17,21}`, 3044 orbits from 65 536) — the quadratic fields match the exhaustive sweep exactly. Orbit compression ≈ `h!` (24× at h=4, observed 21.5×).
 
 [^11]: Sparse `S_6`-deduped census over 6×6 matrices with `≤ 6` of 36 ones: reaches quadratic fields `{2, 3, 5}` only. High-discriminant surds require dense matrices — the `J − D` realizer of nickel (`Q(√29)`) uses 31 ones — so sparse enumeration cannot reach the new h=6 fields. (Verified by execution: batched numeric Perron over all `C(36,K)` combinations for `K ≤ 6`, exact quadratic ID of the distinct roots.)
 
-[^12]: Targeted h=6 / h=7 constructions (SymPy): `J − D` at h=6 gives `(x+1)⁴(x²−5x−1)`, Perron `(5+√29)/2` = nickel ∈ `Q(√29)`, 31 ones; `J − D` at h=7 gives `(x+1)⁵(x²−6x−1)`, Perron `3+√10` = `δ₆` ∈ `Q(√10)`. The `a=6` field `Q(√10)` (disc 40) has cheapest quadratic forms `(p₁,p₂) ∈ {(6,1),(2,9),(0,10),(4,6)}`, all needing `≥ 7` states or many `p₂` two-cycles, so `Q(√10)` first appears at h=7, not h=6.
+[^12]: Targeted h=6 / h=7 constructions (SymPy): `J − D` at h=6 gives `(x+1)⁴(x²−5x−1)`, Perron `(5+√29)/2` = nickel ∈ `Q(√29)`, 31 ones; `J − D` at h=7 gives `(x+1)⁵(x²−6x−1)`, Perron `3+√10` = `δ₆` ∈ `Q(√10)`. The `a=6` field `Q(√10)` (disc 40) first appears at h=6: the exhaustive height-6 census on [[quadratic-min-height](pages/quadratic-min-height.md)] realizes `(p₁, p₂) = (4, 6)` and `(2, 9)` at height 6, while `(6, 1)` and `(0, 10)` need height 7.

@@ -1,11 +1,11 @@
 ---
 title: Do metallic growth constants survive the proper-castle projection
 category: Analyses
-summary: The metallic-strip-realizability counts are free-height strip counts (𝟙ᵀM^L𝟙); imposing the two proper PE-502 clauses — max_i c_i = h and the even-block parity (A±P)/2 — leaves the metallic growth constant δ_{h−1} invariant, but the exact sequences are new. The signed transfer matrix S_h (entries (−1)^max(0,b−a)·M[a][b]) has spectral radius strictly below δ_{h−1} (1.000 / 1.575 / 1.768 / 2.242 / 2.413 for h = 2..6 vs δ = 1.618 / 2.414 / 3.303 / 4.236 / 5.193), so the parity projector (A±P)/2 preserves the leading term. The even-block proper-castle counts by width are a new family with no OEIS match for h ≥ 3: bronze (h=4) 1, 7, 25, 70, 209, 697, 2390, 8169, …; copper (h=5) 0, 0, 10, 104, 604, 2836, 12630, 55668, …. Even the free counts are not the primary metallic sequences — silver → A001333 (Pell–Lucas) not A000129, bronze → A003688 not A006190, copper → A015448 (the Fibonacci trisection F_{3n+5}) not A001076 — so neither the free nor the projected counts reproduce Pell / A006190 / A001076.
+summary: The metallic-strip-realizability counts are free-height strip counts (𝟙ᵀM^L𝟙); imposing the two proper PE-502 clauses — max_i c_i = h and the even-block parity (A±P)/2 — leaves the metallic growth constant δ_{h−1} invariant, but the exact sequences are new. The signed transfer matrix S_h (entries (−1)^max(0,b−a)·M[a][b]) has spectral radius strictly below δ_{h−1} (1.000 / 1.575 / 1.768 / 2.242 / 2.413 for h = 2..6 vs δ = 1.618 / 2.414 / 3.303 / 4.236 / 5.193), so the parity projector (A±P)/2 preserves the leading term. The even-block proper-castle counts by width are a new family with no OEIS match for h ≥ 3: bronze (h=4) 1, 7, 25, 70, 209, 697, 2390, 8169, …; copper (h=5) 0, 0, 10, 104, 604, 2836, 12630, 55668, …. Even the free counts are not the primary metallic sequences — silver → A001333 (Pell-Lucas) not A000129, bronze → A003688 not A006190, copper → A015448 (the Fibonacci trisection F_{3n+5}) not A001076, nickel → A015449 not A052918 — so neither the free nor the projected counts reproduce Pell / A006190 / A001076 / A052918.
 tags: [analysis, castle, metallic-mean, growth-constant, transfer-matrix, perron-root, parity, even-block, proper-castle, bronze, copper, silver, new-sequence, oeis, sympy, verification]
 sources: [pe502-pell-castle-strip, project-euler-502-castle-factoring]
 created: 2026-09-18
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Do metallic growth constants survive the proper-castle projection
@@ -29,7 +29,7 @@ A proper castle under the `J−D` rule is a skyline `c = (c_1, …, c_w) ∈ {1,
 u_proper(w)  =  𝟙ᵀ M_h^{w−1} 𝟙  −  𝟙ᵀ (J_{h−1} − I_{h−1})^{w−1} 𝟙 .
 ```
 
-**Projection 2 — parity.** The sign factorizes over the skyline: `(−1)^{blocks} = (−1)^{c_1} · Π (−1)^{max(0, c_i − c_{i−1})}`. So the signed count is `vᵀ S_h^{w−1} 𝟙` with start vector `v[a] = (−1)^{a+1}` and signed transfer matrix[^2]
+**Projection 2 — parity.** The sign factorizes over the skyline: `(−1)^{blocks} = (−1)^{c_1} · Π (−1)^{max(0, c_i − c_{i−1})}`. So the signed count is `vᵀ S_h^{w−1} 𝟙` with start vector `v[a] = (−1)^a` and signed transfer matrix[^2]
 
 ```
 S_h[a][b]  =  (−1)^{max(0, b−a)} · M_h[a][b].
@@ -81,13 +81,13 @@ Even *before* the projection, the free strip count `𝟙ᵀM_h^L𝟙` is not the
 | silver `h=3` | 3, 7, 17, 41, 99, 239, 577 | **A001333** (Pell–Lucas) | A000129 (Pell) |
 | bronze `h=4` | 4, 13, 43, 142, 469, 1549, 5116 | **A003688** | A006190 |
 | copper `h=5` | 5, 21, 89, 377, 1597, 6765, 28657 | **A015448** (= `F_{3n+5}` trisection) | A001076 (= `F_{3n}/2`) |
-| nickel `h=6` | 6, 31, 161, 836, 4341, 22541, 117046 | *no match* | A052918 |
+| nickel `h=6` | 6, 31, 161, 836, 4341, 22541, 117046 | **A015449** | A052918 |
 
-Only golden (`h = 2`) has its free count equal to its primary metallic sequence. **Copper** is the instructive case: `δ_4 = φ³`, so the free count is `A015448 = F_{3n+5}`, the *unhalved* Fibonacci trisection — already *not* the halved trisection `A001076 = F_{3n}/2` that [[metallic-means](pages/metallic-means.md)] lists as copper's sequence. The `max=h` and parity projections scramble it further, so the copper even count (`0, 0, 10, 104, 604, …`) is not a clean decimation of anything familiar.
+Only golden (`h = 2`) has its free count equal to its primary metallic sequence. For copper, `δ_4 = φ³` and the free count is `A015448 = F_{3n+5}`, the unhalved Fibonacci trisection, while [[metallic-means](pages/metallic-means.md)] lists the halved trisection `A001076 = F_{3n}/2` as copper's sequence. The copper even count (`0, 0, 10, 104, 604, …`) has no OEIS match.
 
 ## Answer
 
-**Growth constants survive; the metallic sequences do not.** The `J−D` ladder's metallic growth `δ_{h−1}` is unchanged by `max = h` and `(A ± P)/2`, because the signed matrix `S_h` is spectrally subdominant (Finding 1). But the *exact* sequences are a genuinely new family (Finding 2), and the metallic OEIS entries Pell A000129 / A006190 / A001076 / A052918 appear in neither the free nor the projected counts — only golden's Fibonacci survives (Finding 3). The even-block proper-castle rows above are OEIS **submission candidates**, and the natural next questions are whether any of them satisfy a recognizable low-order recurrence (Berlekamp–Massey on the `even` rows) or admit a bijection to a known object.
+**Growth constants survive; the metallic sequences do not.** The `J−D` ladder's metallic growth `δ_{h−1}` is unchanged by `max = h` and `(A ± P)/2`, because the signed matrix `S_h` is spectrally subdominant (Finding 1). But the *exact* sequences have no OEIS match (Finding 2), and the primary metallic entries Pell A000129 / A006190 / A001076 / A052918 appear in neither the free nor the projected counts; only golden's Fibonacci survives (Finding 3). The even-block proper-castle rows above are OEIS **submission candidates**; bijections to known objects are open.
 
 ## Related Concepts
 
@@ -96,16 +96,16 @@ Only golden (`h = 2`) has its free count equal to its primary metallic sequence.
 - [[metallic-means](pages/metallic-means.md)] — the ladder whose *primary* sequences (A000129, A006190, A001076, …) the projected counts fail to reproduce.
 - [[castle-snippets-strips](pages/castle-snippets-strips.md)] — the `proper_even` snippet computing these counts.
 - [[reachable-field-census](pages/reachable-field-census.md)] — the sibling census (which *fields* the strips reach), to which this is the *sequences* complement.
-- [[castle-by-area](pages/castle-by-area.md)] / [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] — the other "new sequence from a castle count" precedents, the pattern these rows follow.
+- [[castle-by-area](pages/castle-by-area.md)] / [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] — castle counts by area, with and without a height bound.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] — Axis 8, the `<metal> <axis> growth castle` meta-classification these projected metallic-ladder rows populate.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] — the anchored 1-smooth height-3 strip, where Pell proper (A000129) does appear; the free `J − D` silver strip here lands on companion A001333 instead, and the boundary condition is the whole difference.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] — the anchored 1-smooth height-3 strip, where Pell A000129 does appear (`P_w` strips of width `w`); the free 1-smooth strip and the free `J − D` silver strip here both give A001333.
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] — the exact even-block counts are checked by Algorithm M enumeration of `{1..h}^w` with the two proper-castle filters.
 
 ## Footnotes
 
-[^1]: [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] §"Open, sharpened" — "the honest castle count imposes `max_i c_i = h` and the even-block parity clause"; this page is that open item resolved.
+[^1]: [[project-euler-502](pages/project-euler-502.md)] §"Project 502: Castle Polyominoes" L19-20 — "The maximum achieved height of the entire castle is exactly h." and "The castle is made from an even number of blocks."
 
-[^2]: The sign convention matches [[castle-sign](pages/castle-sign.md)]: `blocks(c)` is the total ascent from `c_0 = 0`, `s(C) = (−1)^{blocks}`, and `(A + P)/2 = even` (verified by direct `blocks(c) % 2 == 0` brute force below).
+[^2]: The sign convention matches [[castle-sign](pages/castle-sign.md)]: `blocks(c)` is the total ascent from `c_0 = 0`, `s(C) = (−1)^{blocks}`, the start vector carries the `(−1)^{c_1}` factor, and `(A + P)/2 = even` (verified by direct `blocks(c) % 2 == 0` brute force for `h ≤ 6`, `w ≤ 6`, 2026-09-28).
 
 [^3]: `S_h` is the signed transfer matrix; `ρ(S_h)` is its spectral radius. SymPy `charpoly` gives `char(S_2) = x²−x+1` (primitive 6th roots of unity — the golden signed count is period-6), `char(S_3) = x³−x²+x−3`, `char(S_4) = x⁴−x³+2x²−x+7`, `char(S_5) = x⁵−x⁴+2x³−6x²−3x−17`, `char(S_6) = x⁶−x⁵+3x⁴−2x³+19x²+19x+41`.
 
@@ -115,4 +115,4 @@ Only golden (`h = 2`) has its free count equal to its primary metallic sequence.
 
 [^6]: OEIS search (2026-09-18, `oeis.org` JSON search on 12 terms) returns no match for any projected row at `h ≥ 3`; the unsigned bronze row `1, 7, 31, 118, 421, 1453, …` and copper row `1, 9, 53, 269, 1273, 5793, …` are also unmatched. Sanity checks: Pell `1,2,5,12,29,70,169,408` → A000129; copper free `5,21,89,377,1597,6765` → A015448.
 
-[^7]: Free strip counts are `𝟙ᵀ M_h^{L} 𝟙` (with `L = w−1`); OEIS identifications offset-exact: silver `3,7,17,41,99,239,577` = A001333 (Pell–Lucas), bronze `4,13,43,142,469,1549,5116` = A003688 (`a(n) = 3a(n−1) + a(n−2)`, `a(1)=1, a(2)=4`), copper `5,21,89,377,…` = A015448 (`a(n) = 4a(n−1) + a(n−2)`), matching the `F_{3n+5}` trisection exactly ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)] Finding 3).
+[^7]: Free strip counts are `𝟙ᵀ M_h^{L} 𝟙` (with `L = w−1`); OEIS identifications offset-exact: silver `3,7,17,41,99,239,577` = A001333 (Pell–Lucas), bronze `4,13,43,142,469,1549,5116` = A003688 (`a(n) = 3a(n−1) + a(n−2)`, `a(1)=1, a(2)=4`), copper `5,21,89,377,…` = A015448 (`a(n) = 4a(n−1) + a(n−2)`), matching the `F_{3n+5}` trisection exactly ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)] Finding 3); nickel `6,31,161,836,…` = A015449 (expansion of `(1 − 4x)/(1 − 5x − x²)`, checked 2026-09-28).

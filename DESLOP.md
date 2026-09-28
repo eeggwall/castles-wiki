@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 120 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Fully read and cleaned | 125 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
 | Spot fixes only | 13 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 61 |
-| Words still to read | about 208,000 |
+| Not started | 56 |
+| Words still to read | about 193,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 62 fully read)
+### Concepts (85 pages, 63 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
@@ -163,7 +163,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] generalized-dyck-grammar (1.3)
 - [ ] castle-classification-growth (1.2)
 - [ ] castle-notation (1.2)
-- [ ] castle-strip (1.1)
+- [x] castle-strip (1.1)
 - [ ] sums-of-three-cubes (1.1)
 - [ ] castle-classification-shape (1.1)
 - [ ] signed-tower-k-direction (1.1)
@@ -194,7 +194,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-snippets-strips (0.0)
 - [x] acronyms (0.0)
 
-### Analyses (64 pages, 28 fully read)
+### Analyses (64 pages, 32 fully read)
 
 - [x] castle-cryptography (5.1)
 - [x] isospectral-castles (4.9)
@@ -220,10 +220,10 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] larger-prime-periodicity (1.9)
 - [ ] castle-perimeter (1.9)
 - [x] castle-count-algorithms (1.8)
-- [ ] tower-spacing-castles (1.8)
+- [x] tower-spacing-castles (1.8)
 - [ ] char-k-eisenstein-at-two (1.8)
-- [ ] proper-castle-projection (1.8)
-- [ ] a005251-bijection (1.7)
+- [x] proper-castle-projection (1.8)
+- [x] a005251-bijection (1.7)
 - [ ] castle-ring-spectrum (1.6)
 - [ ] column-convex-ladder-by-area (1.6)
 - [ ] fractional-width-and-height (1.6)
@@ -233,7 +233,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [~] mod-9-equidistribution (1.4)
 - [~] signed-klarner-decomposition (1.4)
 - [x] fractional-block-count (1.4)
-- [ ] reachable-field-census (1.4)
+- [x] reachable-field-census (1.4)
 - [x] castle-sequence-catalogue (1.3)
 - [x] bounded-height-castles-nacci (1.3)
 - [ ] castle-add-a-column-equation (1.3)

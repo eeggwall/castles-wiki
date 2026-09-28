@@ -1,11 +1,11 @@
 ---
 title: The A005251 bijection - compositions ↔ no-010 strings
 category: Analyses
-summary: The open "A005251 bijection" is closed by an explicit, constraint-preserving map. A composition (c_1,…,c_w) of n with no two adjacent parts ≥ 2 (= tree castles of area n by unlimited height) corresponds to the length-(n−1) binary string 0^{c_1−1} 1 0^{c_2−1} 1 ⋯ 1 0^{c_w−1} avoiding the factor 010 (the OEIS interpretation of A005251). The classic "cut the n−1 gaps" encoding does it: a part ≥ 2 is a nonempty zero-block, two adjacent parts ≥ 2 put a zero on each side of a boundary 1 — exactly the factor 010 — so "no two adjacent parts ≥ 2" translates term for term to "no factor 010." Verified as an exact bijection onto the avoid-010 set for n ≤ 11. Offsets against canonical OEIS A005251 (a(0)=0): compositions of n = A005251(n+2), avoid-010 length N = A005251(N+3). This ties tree-castle-by-area to the avoid-010 reading, and a third node — minimum-tower-spacing (h=2, g=2) castles by width — joins the same web; Hardin's distinct no-isolated-1 family (A005251(N+2) at length N) is one trivial bit-shift away.
+summary: An explicit, constraint-preserving bijection between two castle readings of A005251. A composition (c_1,…,c_w) of n with no two adjacent parts ≥ 2 (= tree castles of area n by unlimited height) corresponds to the length-(n−1) binary string 0^{c_1−1} 1 0^{c_2−1} 1 ⋯ 1 0^{c_w−1} avoiding the factor 010 (the OEIS interpretation of A005251). The classic "cut the n−1 gaps" encoding does it: a part ≥ 2 is a nonempty zero-block, two adjacent parts ≥ 2 put a zero on each side of a boundary 1 — exactly the factor 010 — so "no two adjacent parts ≥ 2" translates to "no factor 010." Verified as an exact bijection onto the avoid-010 set for n ≤ 14. Offsets against canonical OEIS A005251 (a(0)=0): compositions of n = A005251(n+2), avoid-010 length N = A005251(N+3). This ties tree-castle-by-area to the avoid-010 reading; minimum-tower-spacing (h=2, g=2) castles by width are a third reading (row 2 avoids 101, the bit-flip), and Hardin's distinct no-isolated-1 strings (A005251(N+2) at length N) are equinumerous with avoid-010 strings one bit shorter.
 tags: [analysis, castle, bijection, a005251, plastic-number, composition, binary-string, hardin, tree-castle, tower-spacing, verification]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # The A005251 bijection
@@ -17,7 +17,7 @@ updated: 2026-09-26
 - **Tree castles of area `n`, unlimited height** ([[tree-castle-by-area](pages/tree-castle-by-area.md)], `h → ∞`). A tree castle (no `2×2` filled block) is a skyline with no two adjacent columns both `≥ 2`, so by area it is a **composition `(c_1, …, c_w)` of `n` with no two adjacent parts `≥ 2`**. Count: `A005251(n+2)`.
 - **Binary strings avoiding the factor `010`** — the OEIS interpretation of A005251 ("`a(n+3)` is the number of `n`-bit sequences that avoid `010`"). Count of length `N`: `A005251(N+3)`. (Hardin's `W_1` object, [[hardin-word-identity](pages/hardin-word-identity.md)], is the *closely related but distinct* "no isolated `1`" family — `#{no-isolated-1, length N} = A005251(N+2)`, so avoid-`010` of length `N` and no-isolated-1 of length `N+1` share a count; the bijection below targets the avoid-`010` family, the cleaner match to compositions.)
 
-Both hit the same recurrence with the same three-1 initial run, but the objects looked unrelated — one a constrained composition, the other a constrained binary string. The question was whether there is an explicit bijection, or a Sunada-style common cover ([[isospectral-castles](pages/isospectral-castles.md)]) generating both. **It needs no cover: there is a direct, elementary, constraint-preserving bijection.**
+Both satisfy the same recurrence with the same initial terms, one a constrained composition and the other a constrained binary string. A direct, constraint-preserving bijection links them.
 
 ## The bijection
 
@@ -35,7 +35,7 @@ The map is the **classic composition ↔ gap-string encoding**. Lay `n` unit cel
 
 The inverse splits the string at its `1`s and reads each maximal `0`-run of length `r` as a part `r + 1`. This is a bijection between *all* compositions of `n` and *all* length-`(n−1)` binary strings; the content is that it carries the two constraints onto each other.
 
-## Why the constraints match — term for term
+## Why the constraints match
 
 Read the constraint through the encoding:
 
@@ -48,7 +48,7 @@ Conversely, every `010` in the string must straddle a boundary, because the only
 "no two adjacent parts ≥ 2"     ⟺     "no factor 010".
 ```
 
-The tree-castle constraint (no `2×2` filled block = no two adjacent columns `≥ 2`) *is* the avoid-`010` constraint, read across the composition ↔ gap-string dictionary. The bijection is verified exact — onto the full avoid-`010` set, no misses, no extras — for `n ≤ 11` (parts-side sizes `1, 2, 4, 7, 12, 21, 37, 65, 114, 200, 351`).[^2] (Avoid-`010` is *not* the same as Hardin's "no isolated `1`": those are different string families, equinumerous at lengths differing by one, so linking this bijection to Hardin's `W_1` object needs one further trivial bit-shift.)
+The tree-castle constraint (no `2×2` filled block = no two adjacent columns `≥ 2`) *is* the avoid-`010` constraint, read across the composition ↔ gap-string dictionary. The bijection is verified exact — onto the full avoid-`010` set, no misses, no extras — for `n ≤ 14` (parts-side sizes `1, 2, 4, 7, 12, 21, 37, 65, 114, 200, 351, …`).[^2] Avoid-`010` differs from Hardin's "no isolated `1`": an avoid-`010` string may start or end with a lone `1`. The two families are equinumerous at lengths differing by one; an explicit map between them is not given here (dropping the first bit is not injective: `0110` and `1110` both give `110`).
 
 Worked example (`n = 5`): the 12 no-adj-`≥2` compositions map to the 12 length-4 avoid-`010` strings.
 
@@ -65,7 +65,7 @@ Worked example (`n = 5`): the 12 no-adj-`≥2` compositions map to the 12 length
 
 ## The four-node A005251 web
 
-With this bijection, the plastic-squared sequence now has **four** castle-adjacent readings that are all explicitly linked, not just numerically coincident:
+The plastic-squared sequence has **four** castle-adjacent readings; the first three are linked by explicit maps:
 
 | object | count | A005251 offset | link |
 |---|---|---|---|
@@ -74,13 +74,11 @@ With this bijection, the plastic-squared sequence now has **four** castle-adjace
 | minimum-tower-spacing `(h=2, g=2)` castles, width `w` | `2, 4, 7, 12, 21, …` | `A005251(w+3)` | row 2 is a width-`w` string avoiding `101` (a width-1 valley `1 0 1` between towers); avoid-`101` is the bit-flip of avoid-`010`, so same count ([[tower-spacing-castles](pages/tower-spacing-castles.md)]) |
 | Hardin no-isolated-1 words / signed even-column towers `P_even(6,L)/2^L` | `1, 2, 4, 7, …` | `A005251(L+3)` (`= #{(L+1)`-bit no-isolated-1`}`) | the Hardin identity ([[hardin-word-identity](pages/hardin-word-identity.md)]); a bit-shift from the avoid-`010` family |
 
-The middle two are the same object up to a bit-flip (a height-2 tower-spacing castle records, in its row 2, an avoid-`101` string, the `0↔1` complement of an avoid-`010` string), and this page's bijection connects them to the tree-castle-by-area composition side. The fourth (Hardin no-isolated-1 words / signed even-column towers) is the same sequence one bit-length over — no-isolated-1 of length `N+1` and avoid-`010` of length `N` share a count — reached through the sign-cancellation of the Hardin identity. So the "two apparently independent castle threads" the open item named are one thread, and the plastic-squared sequence is the fixed point where the tree-castle, avoid-`010`, tower-spacing, and Hardin families all coincide.[^3]
+The middle two are the same object up to a bit-flip (a height-2 tower-spacing castle records, in its row 2, an avoid-`101` string, the `0↔1` complement of an avoid-`010` string), and this page's bijection connects them to the tree-castle-by-area composition side. The fourth (Hardin no-isolated-1 words / signed even-column towers) is the same sequence one bit-length over — no-isolated-1 of length `N+1` and avoid-`010` of length `N` share a count — reached through the sign-cancellation of the Hardin identity.[^3]
 
-## What this closes and leaves
+## Open
 
-**Closed:** the explicit bijection between the two A005251 castle objects — no Sunada cover needed; it is the classic composition ↔ gap-string map, and the constraint correspondence "adjacent parts `≥ 2` ⟺ factor `010`" is a one-line proof.
-
-**Still open** (from the Hardin thread, unaffected): the *sign-reversing involution* realizing the Hardin identity `P_even(4m+2, L) = 2^L · W_m` object by object ([[hardin-word-identity](pages/hardin-word-identity.md)]) — that is a different statement (it explains the `2^L` and the sign cancellation, not the plain-count bijection this page gives).
+A *sign-reversing involution* realizing the Hardin identity `P_even(4m+2, L) = 2^L · W_m` object by object ([[hardin-word-identity](pages/hardin-word-identity.md)]) is open; it would explain the `2^L` and the sign cancellation, a different statement from the plain-count bijection here.
 
 ## Reproduce
 
@@ -92,14 +90,14 @@ The middle two are the same object up to a bit-flip (a height-2 tower-spacing ca
 
 ## Related Concepts
 
-- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the composition side (`h → ∞` tree castles by area), and where this bijection was posed as open.
-- [[hardin-word-identity](pages/hardin-word-identity.md)] - the no-isolated-1 / avoid-010 side (`W_1`), and the still-open sign-reversing involution.
-- [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the third node: `(h=2, g=2)` tower-spacing castles are the same no-isolated-1 object in row 2.
-- [[plastic-number](pages/plastic-number.md)] - `ψ²`, the growth constant all four nodes share; the sequence's three (now four) castle readings are tabulated there.
+- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the composition side (`h → ∞` tree castles by area).
+- [[hardin-word-identity](pages/hardin-word-identity.md)] - the no-isolated-1 side (`W_1`), and the open sign-reversing involution.
+- [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the third node: row 2 of an `(h=2, g=2)` tower-spacing castle avoids `101`, the bit-flip of the avoid-`010` strings.
+- [[plastic-number](pages/plastic-number.md)] - `ψ²`, the growth constant all four readings share; its castle readings are tabulated there.
 - [[castle-by-area](pages/castle-by-area.md)] - the composition-of-area framing this bijection uses.
 - [[binary-string-bijection](pages/binary-string-bijection.md)] - the wiki's other castle ↔ binary-string encoding (the `T(k,L) = (k+1)^L` bijection), a cousin of the gap-string map here.
 - [[unique-tournament](pages/unique-tournament.md)] - the `h = 4` row of the same tree-castle family, where Khovanova's basic strings `0, 001, 0011, 00101` encode compositions with parts in `{1, 3, 4, 5}` by the same composition-as-binary-string trick.
-- [[block-count-constraints](pages/block-count-constraints.md)] - the sign-reversing involution realizing `P_even(4m+2, L) = 2^L · W_m` is a residue-class-mod-m block-count filter, the same residue branch this page axiomatizes.
+- [[block-count-constraints](pages/block-count-constraints.md)] - the residue / sparse / semigroup trichotomy for selecting castles by block count.
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - Stop 7 of the Hardin seminar uses this bijection to connect the word count to tree castles.
 
 
@@ -107,6 +105,6 @@ The middle two are the same object up to a bit-flip (a height-2 tower-spacing ca
 
 [^1]: The composition ↔ gap-string encoding is standard: compositions of `n` are in bijection with subsets of the `n−1` gaps (`2^{n−1}` of each). Here a `1` marks a chosen gap (part boundary) and a `0` an unchosen one; part `c_j` becomes `0^{c_j−1}` and consecutive parts are separated by a single `1`. Verified round-trip (`decode(encode(c)) = c`) for all no-adj-`≥2` compositions of `n = 5`.
 
-[^2]: Verified by execution (2026-09-18): for `n = 5, 7, 9, 11`, the image `{ encode(c) : c a composition of n, no two adjacent parts ≥ 2 }` equals exactly `{ length-(n−1) binary strings with no factor 010 }` — same cardinality (`12, 37, 114, 351`), no element missing or extra. The constraint proof: a part `≥ 2` is a nonempty `0`-block; two adjacent parts `≥ 2` place a `0` on each side of their boundary `1`, i.e. a `010`; and every `010` straddles a boundary since all `1`s are boundaries.
+[^2]: Verified by execution (2026-09-18 for `n = 5, 7, 9, 11`; 2026-09-28 for every `n ≤ 14`): the image `{ encode(c) : c a composition of n, no two adjacent parts ≥ 2 }` equals exactly `{ length-(n−1) binary strings with no factor 010 }` — same cardinality (`12, 37, 114, 351` at the odd `n ≤ 11`), no element missing or extra. The constraint proof: a part `≥ 2` is a nonempty `0`-block; two adjacent parts `≥ 2` place a `0` on each side of their boundary `1`, i.e. a `010`; and every `010` straddles a boundary since all `1`s are boundaries.
 
 [^3]: The four offsets, against the **canonical** OEIS A005251 (offset 0, `a(0)=0, a(1)=a(2)=a(3)=1`, data `0, 1, 1, 1, 2, 4, 7, 12, 21, …`): tree/compositions of `n` = `A005251(n+2)`; avoid-010 length `N` = `A005251(N+3)` (so `N = n−1` gives `A005251(n+2)`, matching the bijection); tower-spacing `(2,2)` width `w` = `A005251(w+3)`; `P_even(6,L)/2^L` = `A005251(L+3)` ([[hardin-word-identity](pages/hardin-word-identity.md)]). All re-verified 2026-09-18 against the OEIS matrix one-liner `A005251(n)` on [[castle-snippets](pages/castle-snippets.md)].
