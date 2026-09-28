@@ -116,7 +116,7 @@ The full discriminants are `(z − 1)(z³ + z² + 3z − 1)` and `(z + 1)(z³ + 
 
 ## What this settles
 
-The IDEAS question was whether the castle sign always acts by putting `i` into the up-step weight. For the three gradings the wiki uses, yes:
+The open question was whether the castle sign always acts by putting `i` into the up-step weight. For the three gradings the wiki uses, yes:
 
 - **by base length at bounded height** (`P(k, L)`): the eigenvalues are those of `K(√t)` at `√t = i`; the recurrence in `k`, the sector split, and the odd-`k` norm form all follow from `K(i)`.
 - **on the 1-smooth strip**: `I + √t·A_path` at `√t = i` ([[motzkin-castles](pages/motzkin-castles.md)] §3).
