@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 21 (song-as-castle and the 20 pages linking to it) |
+| Fully read and cleaned | 31 (song-as-castle and the 20 pages linking to it; batch 1, the ten oldest pages) |
 | Spot fixes only | 20 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 153 |
-| Words still to read | about 350,000 |
+| Not started | 143 |
+| Words still to read | about 332,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki); `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -72,16 +72,18 @@ Lesson: cleaning prose is also an audit. Recompute every claim a flourish was at
 
 Reading is the method. A keyword scan (a throwaway script in the first pass, not in the repo: about 45 regexes such as `in disguise`, `the point is`, `for free`, `honest`, `the room`, `the audience`, `\barcs?\b`, rhetorical `?`, "is the X of") is only a pre-filter for ordering the queue. It misses most slop: the ARFIMA aside and the phase-transition claim scored nothing. It also flags defined terms, which are not slop: "veins" on oeis-mining-pe502 (30 hits) and "hear" on the Kac pages. Drop such terms from the pattern list.
 
-**Step 0:** promote the scan to `bin/slop-scan.py` with two modes:
+**Step 0 (done):** the scan is `bin/slop-scan.py`, with two modes:
 
-- `--rank`: pattern density per 1000 words, used to order each batch.
-- `--regress`: fails if any retired phrase reappears anywhere under `wiki/`. The retired list starts with every phrase quoted in "What the first pass found", plus `arc` / `Arc N` / `the item`. It currently reports 0 hits.
+- `--rank`: pattern density per 1000 prose words (code, frontmatter and footnotes skipped), used to order a batch.
+- `--regress`: fails if any retired phrase reappears in `wiki/overview.md` or `wiki/pages/`. `--regress --staged` scans the git index and runs in the pre-commit hook. The retired list holds every phrase quoted in "What the first pass found", `arc` / `the item's` / `IDEAS` / effort columns, and each phrase a later batch cuts. Add phrases as they are retired.
 
-Consider wiring `--regress` into the existing pre-commit hook next to the OEIS-index check.
+The seminar stage directions ("Exercises for the room", "at one blackboard", "About 60 minutes") go on the retired list once the seminar pages have been revisited; until then they would block every commit.
 
 ## Order of work
 
-Batches of 8 to 10 related pages, one wiki commit per batch (`fix: deslop <batch>`, with corrections listed in the body). Related pages go together so shared terminology is fixed consistently.
+Batches of 8 to 10 pages **in order of first commit, oldest first** (owner decision, 2026-09-28), one wiki commit per batch (`fix: deslop <batch>`, with corrections listed in the body). Pages first committed together were ingested together, so age order keeps related pages in one batch. List the queue with `git log --diff-filter=A --follow --format=%ad --date=iso -- <page> | tail -1` per page. A finished seminar page gets its stage-direction revisit (item 0 below) when it comes up in age order.
+
+The topical order below was the original plan and is kept for reference.
 
 0. **Revisit the 21 finished pages** under the owner decisions: stage directions on the seminar pages (hear-the-shape, hardin-identity, oeis-mining, one-bit, q-thread, sandcastle, castle-fibers-char-2-walkthrough, tower-recursion-master-class, pell-castle-strip, castle-cryptography), and the relevance of *The Wire*, the CD story and the 2600 Hz aside on song-as-castle.
 1. **overview.md**, the entry page.
@@ -95,6 +97,7 @@ After each batch, update "Where we are".
 
 ## Owner decisions (2026-09-28)
 
+- **Order of work is by page age**, oldest first by git history, replacing the topical order.
 - **Metaphors that double as terms stay.** "veins" (OEIS mining), "ladder" / "rungs" (metallic means, polyomino families, encodings), "tiers" (castle-compression), "ratchet" (power-law-memory-rules), "threads" and the like are the wiki's vocabulary. Do not replace or flag them. Slop is a metaphor doing rhetorical work in a sentence, not a named term.
 - **Historical anecdotes stay only when relevant.** They anchor the mathematics in reality but must not get cute. Keep one only if the page's mathematics uses it. The 1729 taxi story is key color and stays. *The Wire*'s pager code on song-as-castle is a candidate to cut. Check the Red Book CD story and the Cap'n Crunch / 2600 Hz aside against the same test.
 - **Neutralize seminar stage directions.** "Exercises for the room", "at one blackboard", "About 60 minutes", "Format." paragraphs about the room, "on the board", "the room leaves with". Keep the structure (stops, *Idea:* lines, board table, snippet, exercises) with plain headings: "Exercises", not "Exercises for the room". Drop duration and blackboard framing.
@@ -103,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 12 fully read)
+### Concepts (85 pages, 19 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [ ] hyperbolic-sequence-family (6.2)
@@ -125,19 +128,19 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] permutation-inversions (3.3)
 - [x] tower-recursion-master-class (3.3)
 - [x] hardin-identity-seminar (3.2)
-- [ ] castle-polyomino (3.2)
+- [x] castle-polyomino (3.2)
 - [x] oeis-mining-seminar (3.2)
 - [ ] sandpile-group (3.0)
 - [ ] castle-native-gray-tour (3.0)
 - [ ] block-count-constraints (3.0)
 - [ ] column-convex-polyomino (3.0)
 - [ ] parity-via-roots-of-unity (3.0)
-- [ ] castle-counting-function (2.8)
+- [x] castle-counting-function (2.8)
 - [ ] multiset-partitions (2.7)
 - [x] one-bit-seminar (2.7)
 - [ ] plastic-number (2.6)
 - [x] castle-entropy (2.5)
-- [ ] castle-representations (2.5)
+- [x] castle-representations (2.5)
 - [x] q-thread-seminar (2.5)
 - [x] castle-samplers (2.4)
 - [ ] idempotent-decomposition (2.3)
@@ -157,7 +160,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] metallic-means (1.4)
 - [~] castle-snippets (1.4)
 - [ ] castle-bdd-zdd (1.3)
-- [ ] generalized-dyck-grammar (1.3)
+- [x] generalized-dyck-grammar (1.3)
 - [ ] castle-classification-growth (1.2)
 - [ ] castle-notation (1.2)
 - [ ] castle-strip (1.1)
@@ -165,12 +168,12 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] castle-classification-shape (1.1)
 - [ ] signed-tower-k-direction (1.1)
 - [ ] tower-heap (1.1)
-- [ ] castle-counting-formula (1.0)
+- [x] castle-counting-formula (1.0)
 - [ ] castle-move-graph-zdd (0.9)
 - [ ] algebraic-transcendental-wall (0.8)
 - [ ] pell-numbers (0.8)
 - [ ] tower-word-language (0.7)
-- [~] generating-functions (0.7)
+- [x] generating-functions (0.7)
 - [ ] parallelogram-polyomino-dyck-bijection (0.6)
 - [ ] tower-word-continued-fraction (0.6)
 - [ ] convex-polyomino (0.6)
@@ -185,7 +188,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] monotone-streak-factorization (0.0)
 - [ ] horizontally-convex-polyomino (0.0)
 - [ ] forcibly-simple-score-vector (0.0)
-- [ ] convex-castle (0.0)
+- [x] convex-castle (0.0)
 - [ ] chinese-remainder-theorem (0.0)
 - [ ] catalan-numbers (0.0)
 - [ ] castle-snippets-strips (0.0)
@@ -198,13 +201,13 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] castle-cryptography-number-theory (4.4)
 - [~] castle-cryptography-ring (4.0)
 - [ ] sandpile-census (3.8)
-- [ ] castle-cryptography-round-two (3.6)
+- [~] castle-cryptography-round-two (3.6)
 - [x] pell-castle-strip (3.4)
 - [ ] castle-graph-spectral-radius (3.3)
 - [ ] castles-as-upgraded-cycle-count (3.2)
 - [ ] mod-p-observatory (3.0)
 - [ ] levy-flights (2.9)
-- [ ] fractional-recurrences (2.8)
+- [~] fractional-recurrences (2.8)
 - [~] castle-eigenvalue-oeis-crosswalk (2.8)
 - [x] castle-phone-line (2.7)
 - [x] song-as-castle (2.6)
@@ -258,7 +261,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] convex-castle-cap-factor (0.0)
 - [~] castle-q-bessel-closed-form (0.0)
 
-### Sources (44 pages, 0 fully read)
+### Sources (44 pages, 2 fully read)
 
 - [ ] oeis-mining-pe502 (25.6)
 - [ ] oeis-height2-hyperbolic-castles (5.9)
@@ -283,7 +286,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] rossin-2000-group-of-a-sandpile (1.3)
 - [~] chau-cheng-1991-deterministic-soc-sandpile (1.1)
 - [ ] dyck-words (1.1)
-- [ ] project-euler-502-problem-setup (1.1)
+- [x] project-euler-502-problem-setup (1.1)
 - [ ] analytic-combinatorics-ch1-ogfs (1.1)
 - [ ] generating-functions-topic (0.9)
 - [ ] chau-1993-abelian-sandpile-model (0.9)
@@ -301,10 +304,10 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] project-euler-502-representations (0.0)
 - [ ] project-euler-502-implementation-notes (0.0)
 - [ ] project-euler-502-brute-force (0.0)
-- [ ] project-euler-502 (0.0)
+- [x] project-euler-502 (0.0)
 - [ ] dhar-1990-self-organized-critical-sandpile (0.0)
 - [ ] aocp-multinomial-coefficients (0.0)
 
-### Top level (1 pages, 0 fully read)
+### Top level (1 page, 1 fully read)
 
-- [~] overview (3.5)
+- [x] overview (3.5)
