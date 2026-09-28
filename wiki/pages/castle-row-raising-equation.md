@@ -127,7 +127,7 @@ print(t[1:17], t[300] / t[299])                 # even - odd; ratio -> -rho
 - [[castle-foata-transform](pages/castle-foata-transform.md)]: peaks.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)]: the linearizable shape of this equation, and the bar-graph equation (3.11), which is the castle GF by width, blocks and area.
 - [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]: statuses for the sequences and constants here.
-- [[q-thread-seminar](pages/q-thread-seminar.md)] - the seminar walk-through of the q-thread arc, which teaches this page as one of its stops.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the castles-by-area seminar, which uses this page as one of its stops.
 
 ## Footnotes
 

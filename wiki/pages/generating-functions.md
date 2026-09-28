@@ -56,7 +56,7 @@ a_n − 2·a_{n−1} − a_{n−2}  =  [n = 0].
 
 The "base cases" `a_0 = 1, a_1 = 2` are this recurrence evaluated at `n = 0, 1` with the negative-index zeros substituted. No separate argument.[^4]
 
-**Why this matters.** Every rational generating function in the castle machinery — `E_k = 1/(1 − (k+1)x)`, `P_k = num_k/den_k`, the C-finite recurrences on [[recurrence-discovery](pages/recurrence-discovery.md)] — is reached the same way. Coefficient matching is the shortcut that makes "read the recurrence off the denominator" fully mechanical: the coefficients of `−D(x)` (excluding the constant `1`) are the recurrence weights. This is also the opening mechanic of the [[pell-castle-strip](pages/pell-castle-strip.md)] seminar arc, where a textbook end-of-chapter exercise on this technique leads to a castle strip (the 1-smooth height-3 strip anchored at the base) whose width generating function is exactly `1/(1 − 2x − x²)`.
+**Why this matters.** Every rational generating function in the castle machinery — `E_k = 1/(1 − (k+1)x)`, `P_k = num_k/den_k`, the C-finite recurrences on [[recurrence-discovery](pages/recurrence-discovery.md)] — is reached the same way. Coefficient matching is the shortcut that makes "read the recurrence off the denominator" fully mechanical: the coefficients of `−D(x)` (excluding the constant `1`) are the recurrence weights. This is also the opening mechanic of the [[pell-castle-strip](pages/pell-castle-strip.md)] seminar, where a textbook end-of-chapter exercise on this technique leads to a castle strip (the 1-smooth height-3 strip anchored at the base) whose width generating function is exactly `1/(1 − 2x − x²)`.
 
 ## Appearances in Sources
 

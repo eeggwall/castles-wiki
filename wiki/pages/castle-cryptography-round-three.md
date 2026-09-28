@@ -101,9 +101,9 @@ Granger and Vercauteren gave an index calculus attack on tori (CRYPTO 2005); per
 
 ## Blue team verdict
 
-Round one fixed properties. Round two learned to move numbers. Round three moves every number it can: prime group order (Pohlig-Hellman gone), torus subgroup (subfield collapse gone), `sqrt q ≈ 2^512` (rho gone), and a 512-bit random `p` (index calculus at the edge of `2^128`). What is left is **XTR wearing a castle**: the castle supplies a convenient irreducible degree-6 polynomial and a recurrence reading of trace exponentiation, and nothing that makes the system harder or easier to break than XTR itself. And the literature's verdict on XTR is that after the move to 128-bit security and the improvements in finite-field discrete logs it is "no longer competitive with elliptic curves".[^stam-abs]
+Round three sets every parameter the earlier rounds identified: prime group order (Pohlig-Hellman gone), torus subgroup (subfield collapse gone), `sqrt q ≈ 2^512` (rho gone), and a 512-bit random `p` (index calculus at the edge of `2^128`). What is left is **XTR**: the castle supplies a convenient irreducible degree-6 polynomial and a recurrence reading of trace exponentiation, and nothing that makes the system harder or easier to break than XTR itself. And the literature's verdict on XTR is that after the move to 128-bit security and the improvements in finite-field discrete logs it is "no longer competitive with elliptic curves".[^stam-abs]
 
-That is the end of the loop's arc: the castle cryptosystem, done correctly, becomes a known good system, and the remaining gap to modern practice is the gap between finite fields and elliptic curves, not anything about castles.
+So the castle cryptosystem, done correctly, is a known system, and the remaining gap to modern practice is the gap between finite fields and elliptic curves, not anything about castles.
 
 ## Related Concepts
 

@@ -168,7 +168,7 @@ def convex_by_area(N, bottoms="free", tops="unimodal"):
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - the same families graded by perimeter instead of area, and the question of adding area.
 - [[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)] - parallelogram area as the sum of peak heights of a Dyck word.
 - [[multiset-partitions](pages/multiset-partitions.md)] - the Ferrers rung, read as partitions of a multiset with one repeated element.
-- [[q-thread-seminar](pages/q-thread-seminar.md)] - the seminar walk-through of the q-thread arc, which teaches this page as one of its stops.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the castles-by-area seminar, which uses this page as one of its stops.
 
 ## Footnotes
 

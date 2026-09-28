@@ -20,9 +20,9 @@ A living reference of **short, tested Python snippets** for exploring castles co
 
 The purpose is not derivations or full implementations (see [[castle-counting-formula](pages/castle-counting-formula.md)], [[kitamasa](pages/kitamasa.md)], [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] for those). The purpose is: **"the wiki mentions class X; here is a two-line function that generates it."**
 
-## Sibling snippet pages (by arc)
+## Sibling snippet pages (by topic)
 
-The strips-and-growth, number-theory, and cryptography arcs each have their own snippet page; this page keeps the enumeration primitives and Axis 1-7 classification predicates.
+The strips-and-growth, number-theory, and cryptography topics each have their own snippet page; this page keeps the enumeration primitives and Axis 1-7 classification predicates.
 
 - [[castle-snippets-strips](pages/castle-snippets-strips.md)] - Axis-8 growth-constant probes, the ceiling-exception ladder, the plateau-free strip census, tower-spacing, tree-castle-by-area, the A005251 bijection, and Hardin's word automaton.
 - [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - the signed tower count `p_signed`, continued-fraction convergents, mod-`p` orders / Pisano-type periods, `P_table`, quasi-polynomial splits, sector transfer matrices, and the `H(d)` factor.
@@ -474,4 +474,4 @@ Snippets that break this discipline will rot; snippets that follow it stay usefu
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the OEIS-lookup loop the `oeis_snippet` helper feeds.
 - [[castle-graph](pages/castle-graph.md)] - the `castle_graph`, `is_tree_castle`, `cycle_rank` snippets and the graph concept behind them.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the `castle_graph_radius` census.
-- [[castle-snippets-strips](pages/castle-snippets-strips.md)] / [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] / [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)] - the arc-specific snippet pages this hub points to.
+- [[castle-snippets-strips](pages/castle-snippets-strips.md)] / [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] / [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)] - the topic-specific snippet pages this hub points to.

@@ -12,7 +12,7 @@ updated: 2026-09-27
 
 The castle sits inside the mixed-radix space `{1..h}^w`, which is exactly the space [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] enumerates in two orderings: the **odometer** (Algorithm M, one carry per step) and the **reflected Gray code** (Algorithm G, one digit changing by one per step).[^1] This page walks the Gray order on castles, proves the property that makes it useful - the block count moves by at most one per step - and reads off an O(1) update for the [[castle-sign](pages/castle-sign.md)] `s(c)=(-1)^{blocks(c)}` and its signed sum `P`, giving a loopless enumerator for the proper (`max c = h`) and even-block (`s(c)=+1`) subsets.
 
-This is the entry page for the "Knuth's algorithms in castle space" seminar arc; the closing section names where the arc's other algorithms already live and what is still open.
+This is the first of the pages on Knuth's generation algorithms applied to castles; the closing section lists where the others are and what is still open.
 
 ## Representation and filters
 
@@ -80,7 +80,7 @@ For `(w,h)=(3,2)` the tour, read as `(c_1, c_2, c_3)` with `c_1` the most signif
 | 6 | (2,1,2)      | `c_2` −1 | +1  | 3 | −1 |
 | 7 | (2,1,1)      | `c_3` −1 | −1  | 2 | +1 |
 
-Every `Δ blocks ∈ {−1, 0, +1}`. This is the property the whole arc turns on:
+Every `Δ blocks ∈ {−1, 0, +1}`. This is the property the rest of the page uses:
 
 **Lemma (single-column block delta).** Bumping `c_i` by `±1` changes `blocks(c)` by `0` or `±1`.
 
@@ -150,7 +150,7 @@ For enumeration where visiting only the proper-and-even-block set matters (as op
 
 ## Other generation algorithms in castle space
 
-The wiki already carries the odometer end of the arc. Existing pages:
+Existing pages:
 
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - Algorithm M and Algorithm G as Knuth states them, plus the observation that the castle brute-force is Algorithm M with uniform radix.
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - `brute(w,h)` (Algorithm M with the proper-and-parity filter) and `p_signed` (column-height DP for `P`).
@@ -161,7 +161,7 @@ Castle-native counterpart (working note, not an algorithm):
 
 - [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - working note on the Ruskey-methodology question of whether a Gray tour exists on `V(w, h) = { c : max c = h, blocks(c) even }` directly. Small cases: `V_proper(3, 2)` alone admits a Hamilton path under M1; `V(3, 2)` needs the enlarged M1 ∪ M6 (single-column `±1` plus adjacent transposition); `V(3, 3)` is three castles isolated under every local move set tried. Different failure modes at `h = 2` (pendants) and `h = 3` (sparseness). No general pattern visible at these sizes; the page pauses at the wall.
 
-Not on the arc: Heap's algorithm and Steinhaus-Johnson-Trotter are permutation Gray codes, which apply to castle skylines only through the [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] and [[castle-foata-transform](pages/castle-foata-transform.md)] - a different object (permutations of a fixed multiset), not the full `{1..h}^w`.
+Not covered: Heap's algorithm and Steinhaus-Johnson-Trotter are permutation Gray codes, which apply to castle skylines only through the [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] and [[castle-foata-transform](pages/castle-foata-transform.md)] - a different object (permutations of a fixed multiset), not the full `{1..h}^w`.
 
 ## Entities & Concepts
 

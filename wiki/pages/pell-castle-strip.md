@@ -107,7 +107,7 @@ A rational generating function's denominator lists atoms. Showing that those ato
 
 ## Appearances in Sources
 
-- [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the working note that seeded this seminar arc: the coefficient-matching mechanic and the two-atom reading.
+- [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the working note this seminar is built on: the coefficient-matching mechanic and the two-atom reading.
 
 ## Related Concepts
 

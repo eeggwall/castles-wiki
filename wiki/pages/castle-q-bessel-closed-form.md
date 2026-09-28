@@ -153,7 +153,7 @@ print(castles(-1)[1:])                              # even - odd by area
 - [[q-differential-system](pages/q-differential-system.md)]: the harder convex case, where the q-shift system does not close in one step.
 - [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)]: the parallelogram rung and its `J_0` growth constant.
 - [[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)]: the same `N/M` from the add-a-column equation by Bousquet-Mélou's Lemma 2.3, with `E(1) = N - M` and `1 - F(1) = M` term by term.
-- [[q-thread-seminar](pages/q-thread-seminar.md)] - the seminar walk-through of the q-thread arc, which teaches this page as one of its stops.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the castles-by-area seminar, which uses this page as one of its stops.
 
 ## Footnotes
 

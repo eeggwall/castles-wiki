@@ -251,7 +251,7 @@ Open:
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the mechanism giving row and column periods.
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - `P(k, L) = (-1)^k A_L(k) + B_L(k)`, the `(x+1)^L (x-1)^(L-2)` char poly, and the `2 p^(ceil(log_p L))` mod-p period behind `per_w`.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] - the closed form `F = (h^w - (h-1)^w - P(h-1, w) + P(h-2, w))/2`.
-- [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - `F(6, 4) = 1729`, the taxicab coincidence that opened the arc.
+- [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - `F(6, 4) = 1729`, the taxicab coincidence behind the sum-of-three-cubes pages.
 - [[kitamasa](pages/kitamasa.md)] - jump-to-index-N over `Z/9` used to sanity-check the `h = 12` row.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the `2 · p^{ceil(log_p L)}` k-direction period used here is pinned quantitatively there; one-hop shortcut.
 

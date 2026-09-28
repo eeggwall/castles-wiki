@@ -60,7 +60,7 @@ By (w,h) the concave counts add nothing new: `valley(w,h) = convex(w,h) = C(2h+w
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - the add-a-column method behind the column-convex rung (growth 3.20...) above the castle's `2^(n-1)`. Castles are its directed column-convex polygons with every column bottom on row 1.
 - [[column-convex-ladder-by-area](pages/column-convex-ladder-by-area.md)] - castles by area between stacks and the directed column-convex `F_(2n-1)`, with the block sign read as the vertical-perimeter sign on every rung.
 - [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)] - the block sign is a character of that monoid, and `1/(1 - P_s)` over the signed primes reproduces `odd(n) - even(n)` term by term.
-- [[q-thread-seminar](pages/q-thread-seminar.md)] - the seminar walk-through of the q-thread arc, which teaches this page as one of its stops.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the castles-by-area seminar, which uses this page as one of its stops.
 
 ## Footnotes
 

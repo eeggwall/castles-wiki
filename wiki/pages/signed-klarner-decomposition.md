@@ -116,7 +116,7 @@ for n in range(1, N + 1):
 - [[castle-foata-transform](pages/castle-foata-transform.md)]: the peak and record definitions under which both are characters.
 - [[fractional-block-count](pages/fractional-block-count.md)]: `B_alpha`, a character only at its endpoints.
 - [[bender-1974-partitions-of-multisets](pages/bender-1974-partitions-of-multisets.md)], [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)]: the multiset side of counting castles per class.
-- [[q-thread-seminar](pages/q-thread-seminar.md)] - the seminar walk-through of the q-thread arc, which teaches this page as one of its stops.
+- [[q-thread-seminar](pages/q-thread-seminar.md)] - the castles-by-area seminar, which uses this page as one of its stops.
 
 ## Footnotes
 

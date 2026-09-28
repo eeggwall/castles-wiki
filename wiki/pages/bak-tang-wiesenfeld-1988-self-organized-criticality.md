@@ -56,7 +56,7 @@ The paper proposes a common mechanism behind two widespread phenomena: 1/f ("fli
 - [[sandpile-group](pages/sandpile-group.md)] - the toppling rule on the castle graph.
 - [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - the exact theory of the height-triggered version of this automaton.
 - [[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)] - BTW's one-dimensional pile as the trivial deterministic case.
-- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the taught arc on castle sandpiles.
+- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the seminar on castle sandpiles.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - the staircase type that the one-dimensional attractor is.
 
 ## Relation to Other Wiki Pages

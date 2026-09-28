@@ -31,7 +31,7 @@ The main theorem is that an SOC system is completely deterministic iff, after re
 - **Nontrivial examples need multiple sink edges.** The general version of the same argument gives `s(v)·g = 0` for every site, so a deterministic group has order dividing every nonzero dissipation `s(v)`. That is Chau-Cheng's form (13), where the only dissipating site loses `n` grains and the group is cyclic of order `det Δ = n` (this `n` is eq. 13's; eq. 6 uses `n` for the largest height offset, so there `|R| = n + 1`). A castle can only reach it if the sink is joined to a cell by several edges, for instance a tide that pulls `n` grains per toppling.
 - **Deterministic is stronger than cyclic.** A deterministic sandpile has a cyclic group, but the census on [[sandpile-census](pages/sandpile-census.md)] has many cyclic castle groups, and by the argument above none of the nontrivial ones is deterministic. So "cyclic sandcastles" and "deterministic sandcastles" are different questions, and the second is settled.
 - **Row operations as the natural equivalence.** Chau-Cheng's equivalence (same `R`, same grain operators) is invariance of the row lattice `Z^n Δ` under unimodular row operations. That is a finer relation than having the same group, which is all that the 2×2-block presentation of the census preserves (it has a different size).
-- **Trees wash away.** Arc 14's slogan that tree castles "wash away" is the castle version of the paper's 1D BTW remark: every added grain leaves, and the steady state is a single configuration. BTW's one-dimensional pile is itself a skyline, and its single steady state is a staircase with every drop equal to the threshold ([[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)]).
+- **Trees hold no sand.** A tree castle has one spanning tree, so its sandpile group is trivial: every added grain leaves, and the steady state is a single configuration. This is the castle version of the paper's 1D BTW remark. BTW's one-dimensional pile is itself a skyline, and its single steady state is a staircase with every drop equal to the threshold ([[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)]).
 
 ## Entities & Concepts
 
@@ -39,7 +39,7 @@ The main theorem is that an SOC system is completely deterministic iff, after re
 - [[sandpile-group](pages/sandpile-group.md)] - the castle sandpile group, where the deterministic-iff-trivial result is recorded.
 - [[sandpile-census](pages/sandpile-census.md)] - the census of castle groups; cyclic versus deterministic.
 - [[castle-graph](pages/castle-graph.md)] - tree castles, whose group is trivial.
-- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the taught arc where trees "wash away".
+- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the seminar on castle sandpiles, including tree castles.
 
 ## Relation to Other Wiki Pages
 

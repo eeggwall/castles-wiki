@@ -40,7 +40,7 @@ The counts `a_0, a_1, a_2, … = 1, 2, 5, 12, 29, 70, 169, 408, 985, 2378, …` 
 - **Coefficient-matching as a mechanical method.** `(1 − 2x − x²)·D(x) = 1` → uniform recurrence `a_n − 2a_{n−1} − a_{n−2} = [n=0]` with `a_{negative} = 0`. Base cases are the same recurrence, not a special argument.[^1]
 - **Two-atom composition reading.** `1/(1 − 2x − x²)` counts strip tilings with a width-1 weight-2 atom and a width-2 weight-1 atom.[^2]
 - **Pell fingerprint.** Sequence `1, 2, 5, 12, 29, …` = OEIS A000129 shifted (Pell); growth constant `1 + √2 = [2;2,2,…]` — the silver ratio tracked as one of the wiki's two norm-`−1` reduced quadratics.[^3]
-- **Pedagogy shape.** A textbook end-of-chapter question about extracting a recurrence from a generating function *spirals into* a seminar on castles and polyomino theory. The Analysis page [[pell-castle-strip](pages/pell-castle-strip.md)] captures that arc.
+- **Seminar.** The Analysis page [[pell-castle-strip](pages/pell-castle-strip.md)] turns this exercise into a seminar on the Pell castle strip.
 
 ## Entities & Concepts
 
