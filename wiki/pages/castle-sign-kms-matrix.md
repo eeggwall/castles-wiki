@@ -14,7 +14,7 @@ updated: 2026-09-27
 
 On the Motzkin-path castle the parity sign `(−1)^blocks` acts by putting `√t = i` into the up-step weight: the growth constant `1 ± 2√t` becomes `1 ± 2i`, and the bounded-height spectrum `1 + 2cos(πj/(h+1))` becomes `1 + 2i·cos(πj/(h+1))` ([[motzkin-castles](pages/motzkin-castles.md)] §3). The signed tower count has `P(1, L) = Re((1+i)^{L+1})`, another Gaussian fingerprint ([[signed-tower-count](pages/signed-tower-count.md)]). This page asks whether that is a coincidence of 1-smooth skylines or a property of the castle itself. It is a property of the castle. For **unrestricted** skylines at any height bound, the block weight `t` enters the transfer matrix only through `√t`, via a classical structured matrix, and the sign is the point `√t = i` of that family. Everything below was checked by execution (SymPy and NumPy, 2026-09-27); the checks are listed with each claim.
 
-## 1. The transfer matrix is a KMS matrix in disguise
+## 1. The transfer matrix is a KMS matrix
 
 A tower of height `≤ k` on a base of length `L` is a sequence of column heights `c_1, …, c_L ∈ {0, …, k}`. Its block count is the total rise from height 0,[^1] so a weight `t` per block factors over consecutive columns:
 

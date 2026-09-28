@@ -73,7 +73,7 @@ Galois' theorem says exactly this:[^3]
 
 > A quadratic surd `α` is **purely** periodic if and only if it is **reduced**: `α > 1` and its conjugate lies in `(−1, 0)`.
 
-And "conjugate in `(−1, 0)`" is a reciprocal condition in disguise. For a quadratic `x² − s·x + c`, the constant term `c` is the product of the roots, so it decides how the conjugate is placed:
+And "conjugate in `(−1, 0)`" is a reciprocal condition. For a quadratic `x² − s·x + c`, the constant term `c` is the product of the roots, so it decides how the conjugate is placed:
 
 - **`c = +1`** — roots `r` and `1/r` (reciprocals). This is the **palindromic** quadratic (`x² − s·x + 1`), and `r` is *not* reduced (`1/r ∈ (0,1)`), so its fraction has a head: `(3+√5)/2 = [2; 1, 1, …]`.
 - **`c = −1`** — roots `r` and `−1/r`. For `r > 1` the conjugate `−1/r` sits in `(−1, 0)` automatically, so `r` **is** reduced, hence **purely** periodic: `φ = [1;1,1,…]`, `√2+1 = [2;2,2,…]`.

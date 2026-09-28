@@ -186,7 +186,7 @@ The seminar hangs the natural next constructions off `castle_dh` without expandi
 
 **Deliverable:** a running asymmetric cryptosystem built entirely from the castle's own [[kitamasa](pages/kitamasa.md)] primitive - keypair, exchange, shared secret, all executable.
 
-**Deliberately unanswered - and this is the point:** three open questions, each a red-team hook, each set up by an observation already made above:
+**Open questions for Seminar 2:** three, each following from an observation above:
 
 1. `char_2` **factored** over `F_101` (§4). Does the same thing happen mod `10⁹ + 7`, and if so, does that factorization *do* something to the discrete log? (Seminar 2 - Attack 1.)
 2. **`ord(x)` factors** as `2³ · 3² · 7 · 109² · 167 · 500,000,003` (§5). If the whole reason we chose big `p` is to make the DLP hard, does the *factorization* of the group order weaken it? (Seminar 2 - Attack 3 in round two.)
