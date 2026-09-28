@@ -5,7 +5,7 @@ summary: A tournament T_n is simple if, for every proper vertex subset M, some o
 tags: [concept, tournament, simple, strong, muller-nesetril-pelant, definition]
 sources: [tetali-1998-unique-tournaments]
 created: 2026-09-17
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Simple tournament
@@ -14,19 +14,19 @@ updated: 2026-09-19
 
 A tournament `T_n = (V, A)` is **simple** if for every proper subset `M ⊂ V` there exists a vertex `z ∈ V ∖ M` such that `z` both beats at least one vertex in `M` and is beaten by at least one vertex in `M`.[^1]
 
-Equivalently: no proper vertex subset `M` is "seen uniformly" from the outside - no outside vertex beats all of `M` or loses to all of `M` alone; every outside vertex has a mixed relation to `M`.
+The condition can only hold for `|M| ≥ 2`, and it is read that way. Equivalently, no subset `M` with `2 ≤ |M| < n` is uniform from the outside, that is, a set that every outside vertex either beats entirely or loses to entirely.
 
 ## Simple versus strongly connected
 
-Every simple tournament is strongly connected: if some `M` were a "sink" (every outside vertex loses to all of `M`) or "source" (every outside vertex beats all of `M`), the tournament would not be strongly connected, and simplicity would already fail on that `M`. So simple ⇒ strong.[^2]
+Tetali calls a simple tournament "clearly strong"; the argument works from three vertices up. A tournament on `n ≥ 3` vertices that is not strong splits as `V = X ∪ Y` with every vertex of `X` beating every vertex of `Y`, and whichever of `X`, `Y` has at least two vertices is uniform from the outside. On two vertices the transitive tournament is simple vacuously but not strong, which is why `(0, 1)` is forcibly simple.[^2]
 
 **The converse fails at `n = 4`.** The unique strongly connected tournament on 4 vertices (score `(1, 1, 2, 2)`) is strong but *not* simple. This is the exception noted by Tetali in the discussion after Definition 1.[^2] For `n ≠ 4`, Muller-Nešetřil-Pelant's Theorem 2 says every strong score vector has a simple realizer, making "simple" and "strong" interchangeable at the level of score sequences.[^3]
 
 ## The counts behind the exception
 
-The Online Encyclopedia of Integer Sequences (OEIS) count of strongly connected tournaments on `n` nodes is `A051337 = 1, 0, 1, 1, 6, 35, 353, 6008, …` for `n = 1, 2, 3, …`.[^5] The `n = 4` entry is the `1` in "the unique strongly connected tournament on 4 vertices" - and it is the one strong tournament on the whole list that fails to be simple. At `n = 5` there are `6` strong tournaments, of which only the regular one is unique; at `n = 6` and `n = 7` the `35` and `353` strong tournaments are exactly the rows [[tree-castle-by-area](pages/tree-castle-by-area.md)] exhausted by brute force (using the `is_strongly_connected` test on [[castle-snippets-strips](pages/castle-snippets-strips.md)]) to confirm that no strong tournament of size `≥ 6` is unique. The ambient count of all tournaments up to isomorphism is `A000568 = 1, 1, 2, 4, 12, 56, 456, 6880, …`.[^5]
+The Online Encyclopedia of Integer Sequences (OEIS) count of strongly connected tournaments on `n` nodes is `A051337 = 1, 0, 1, 1, 6, 35, 353, 6008, …` for `n = 1, 2, 3, …`.[^5] The `n = 4` entry is the `1` in "the unique strongly connected tournament on 4 vertices", which is not simple. At `n = 5` there are `6` strong tournaments, of which only the regular one is unique; at `n = 6` and `n = 7` the `35` and `353` strong tournaments are exactly the rows [[tree-castle-by-area](pages/tree-castle-by-area.md)] exhausted by brute force (using the `is_strongly_connected` test on [[castle-snippets-strips](pages/castle-snippets-strips.md)]) to confirm that no strong tournament of size `≥ 6` is unique. The ambient count of all tournaments up to isomorphism is `A000568 = 1, 1, 2, 4, 12, 56, 456, 6880, …`.[^5]
 
-Tournaments are the wiki's second graph-theoretic object. The first is the [[castle-graph](pages/castle-graph.md)] - bipartite, planar, a subgraph of `Z²`, always connected because of the full base row - and the two sit at opposite corners of graph theory (complete oriented graphs versus sparse undirected grids). They meet in one number: the `h = 4` tree-castle count by area is `A000570`, the unique tournaments ([[unique-tournament](pages/unique-tournament.md)]).
+The wiki's other graph-theoretic object is the [[castle-graph](pages/castle-graph.md)] - bipartite, planar, a subgraph of `Z²`, always connected because of the full base row. The two meet in one number: the `h = 4` tree-castle count by area is `A000570`, the unique tournaments ([[unique-tournament](pages/unique-tournament.md)]).
 
 ## Role in Tetali's proof
 
@@ -37,7 +37,7 @@ Tetali's classification of [[unique-tournament](pages/unique-tournament.md)]s us
 3. Muller-Nešetřil-Pelant Theorem 3 lists all forcibly simple score vectors: exactly five, on 1, 2, 3, 5, 7 vertices.
 4. Filter the five to those with strong-and-unique realizers, and add the size-4 case by inspection.
 
-The size-4 exception is unavoidable at Step 1 - Muller-Nešetřil-Pelant Theorem 2 fails at `n = 4` precisely because the unique strong tournament on 4 vertices is not simple.
+The size-4 exception is unavoidable at Step 1 - Muller-Nešetřil-Pelant Theorem 2 fails at `n = 4` because the unique strong tournament on 4 vertices is not simple.
 
 ## Appearances in Sources
 

@@ -5,7 +5,7 @@ summary: A tournament (complete oriented graph) whose score vector is realized b
 tags: [concept, tournament, unique, score-sequence, oeis, a000570, tetali, classification]
 sources: [tetali-1998-unique-tournaments]
 created: 2026-09-17
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Unique tournament
@@ -47,11 +47,11 @@ and hence the recurrence `u_n = u_{n-1} + u_{n-3} + u_{n-4} + u_{n-5}` for `n �
 | 4 | `(1, 1, 2, 2)` | the unique strongly connected tournament on 4 vertices |
 | 5 | `(2, 2, 2, 2, 2)` | the regular tournament on 5 (the unique regular tournament on 5) |
 
-Sizes 3 and 5 are the odd regular tournaments (unique at those sizes); size 1 is trivially the singleton; size 4 is the one *strongly connected* tournament on 4 vertices, which is *not* simple in the Muller-Nešetřil-Pelant sense and therefore appears as an exception in Tetali's Theorem 2.
+Sizes 3 and 5 are the odd regular tournaments (unique at those sizes); size 1 is trivially the singleton; size 4 is the one *strongly connected* tournament on 4 vertices, which is *not* simple in the Muller-Nešetřil-Pelant sense and is therefore the exception to their Theorem 2 as Tetali quotes it.
 
 ## The size-6-and-larger gap
 
-For every `k ≥ 6`, no strongly connected tournament on `k` vertices is unique. Tetali gives the explicit exception at `k = 7`: the regular tournament score `(3, 3, 3, 3, 3, 3, 3)` is *forcibly simple* (by Muller-Nešetřil-Pelant Theorem 3) but has three non-isomorphic strong realizers, so it is not unique.[^5] For `k ≥ 6` no strong-score gives a unique tournament (Muller-Nešetřil-Pelant's Theorem 3 lists all five forcibly-simple score vectors and none has size 6 or larger).[^5]
+For every `k ≥ 6`, no strongly connected tournament on `k` vertices is unique. For `k ≥ 6` a strong unique tournament would need a forcibly simple score (Muller-Nešetřil-Pelant's Theorems 2 and 3), and the only forcibly simple score on six or more vertices is the regular score `(3, 3, 3, 3, 3, 3, 3)`, which has three non-isomorphic strong realizers, so it is not unique.[^5]
 
 ## Relation to castles
 
@@ -63,7 +63,7 @@ tree castle of area A (h ≤ 4)   ↔   composition of A + 1 with parts in {1, 3
 
 See [[tree-castle-by-area](pages/tree-castle-by-area.md)] for the tree-castle-to-composition arrow and the OEIS matches at heights 2, 3, 4, and ∞. Tetali's classification is the composition-to-tournament arrow.
 
-Two independent castle-adjacent bijections converge on the same object: our tree-castle bijection (via [[castle-graph](pages/castle-graph.md)]'s tree constraint) and Khovanova's 2007 "initial-loss non-tracking binary string" bijection[^6] built from the four basic strings `0`, `001`, `0011`, `00101`. Both encode the composition parts as size-`k` blocks.
+Two bijections reach the same object: the tree-castle bijection (via [[castle-graph](pages/castle-graph.md)]'s tree constraint) and Khovanova's 2007 bijection to "initial-loss non-tracking" binary strings,[^6] built from the four basic strings `0`, `001`, `0011`, `00101`. Both encode the composition parts as blocks of size 1, 3, 4, 5.
 
 ## The ambient counts
 
@@ -77,8 +77,8 @@ Four OEIS sequences frame `u_n` from the outside; the first three were read from
 | unique tournaments, A000570 | 1 | 1 | 2 | 4 | 7 | 11 | 18 | 31 |
 
 - `u_n ≤ A000571(n)`, with equality through `n = 4`: every score sequence on at most four vertices has one realizer. The first gap is at `n = 5` (`7` of `9`).
-- The strong-and-unique tournaments are `1` of `1`, `1` of `1`, `1` of `1`, `1` of `6` at `n = 1, 3, 4, 5`, then `0` of `35` and `0` of `353` at `n = 6, 7` - the rows [[tree-castle-by-area](pages/tree-castle-by-area.md)] exhausted by brute force - and the `6880` at `n = 8` is the isomorphism-class count that page's 35-minute Java run enumerated (`31` unique, all non-strong).
-- The regular-tournament count A096368 (`1, 1, 3` at `3, 5, 7` nodes) is the OEIS face of the FS filter on [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)].
+- The strong-and-unique tournaments are `1` of `1`, `1` of `1`, `1` of `1`, `1` of `6` at `n = 1, 3, 4, 5`, then `0` of `35` and `0` of `353` at `n = 6, 7` - the rows [[tree-castle-by-area](pages/tree-castle-by-area.md)] exhausted by brute force - and the `6880` at `n = 8` is the isomorphism-class count that page's enumeration reached (`31` unique, all non-strong).
+- The regular-tournament count A096368 (`1, 1, 3` at `3, 5, 7` nodes) is the OEIS count behind the FS filter on [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)].
 
 ## Neighbours on the castle side
 
@@ -97,7 +97,7 @@ Four OEIS sequences frame `u_n` from the outside; the first three were read from
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the three-way bijection.
 - [[castle-graph](pages/castle-graph.md)] - tree castles, the polyomino side of the bijection.
 - [[oeis-index](pages/oeis-index.md)] - A000570 directory entry.
-- [[hardin-word-identity](pages/hardin-word-identity.md)] - a different castle-side realization of the same composition object (via signed tower counts).
+- [[hardin-word-identity](pages/hardin-word-identity.md)] - A005251, the unbounded-part version of the same composition family (parts `{1, 3, 4, 5, …}`), realized through signed tower counts.
 - [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] / [[simple-tournament](pages/simple-tournament.md)] - the Muller-Nešetřil-Pelant machinery, with the regular- and strong-tournament OEIS counts that confirm each filtering step.
 - [[block-count-constraints](pages/block-count-constraints.md)] - compositions with parts in `D` as the `SEQ` sibling of the coin-change series.
 - [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[a005251-bijection](pages/a005251-bijection.md)] - the neighbouring rows of the tree-castle-by-area family.

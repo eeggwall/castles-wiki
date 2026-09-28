@@ -1,11 +1,11 @@
 ---
 title: Bounded-height castles by area - the n-nacci family
 category: Analyses
-summary: All castles (not just tree castles) with column heights in {1, …, h}, graded by total area A, are counted by the h-step Fibonacci (n-nacci) numbers, GF 1/(1 − x − x² − ⋯ − x^h). A castle bounded by height h is a composition of A into parts {1, …, h}, and compositions into {1..h} are the n-nacci numbers. The growth constant marches up the n-nacci constants: h = 2 is Fibonacci A000045 (φ ≈ 1.618), h = 3 is tribonacci A000073 (t ≈ 1.8393), h = 4 is tetranacci A000078, h = 5 is pentanacci A001591, tending to 2 as h → ∞. This is the castle's first tribonacci interpretation, and a new, denser sibling of the tree-castle-by-area family, whose 2×2-block ban instead produces the term-skipping cubics (supergolden, plastic).
+summary: All castles (not just tree castles) with column heights in {1, …, h}, graded by total area A, are counted by the h-step Fibonacci (n-nacci) numbers, GF 1/(1 − x − x² − ⋯ − x^h). A castle bounded by height h is a composition of A into parts {1, …, h}, and compositions into {1..h} are the n-nacci numbers. The growth constant marches up the n-nacci constants: h = 2 is Fibonacci A000045 (φ ≈ 1.618), h = 3 is tribonacci A000073 (t ≈ 1.8393), h = 4 is tetranacci A000078, h = 5 is pentanacci A001591, tending to 2 as h → ∞. It is a denser sibling of the tree-castle-by-area family, whose 2×2-block ban produces term-skipping denominators instead (supergolden, golden, plastic squared).
 tags: [analysis, castle, area, generating-function, oeis, fibonacci, tribonacci, tetranacci, n-nacci, composition, growth-constant]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-17
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Bounded-height castles by area
@@ -24,7 +24,7 @@ with ordinary generating function[^1]
 Σ_A (count) x^A  =  1 / (1 − x − x² − ⋯ − x^h)  −  1        (the −1 drops the empty A = 0 term).
 ```
 
-The identity is immediate and needs no transfer matrix: **a castle skyline `(c_1, …, c_w)` is literally a composition of its area** ([[castle-representations](pages/castle-representations.md)]), Rule 3 is automatic for area-graded *all*-castles (the same observation that gives the `2^{n−1}` baseline on [[castle-by-area](pages/castle-by-area.md)]), and "column height `≤ h`" is exactly "every part `≤ h`". Compositions of `A` into parts `{1, …, h}` satisfy the `h`-term recurrence `a(A) = a(A−1) + a(A−2) + ⋯ + a(A−h)` - the defining n-nacci recurrence - because the last part is one of `1, …, h`.
+The identity is immediate and needs no transfer matrix: **a castle skyline `(c_1, …, c_w)` is a composition of its area** ([[castle-representations](pages/castle-representations.md)]), Rule 3 is automatic for area-graded *all*-castles (the same observation that gives the `2^{n−1}` baseline on [[castle-by-area](pages/castle-by-area.md)]), and "column height `≤ h`" is exactly "every part `≤ h`". Compositions of `A` into parts `{1, …, h}` satisfy the `h`-term recurrence `a(A) = a(A−1) + a(A−2) + ⋯ + a(A−h)` - the defining n-nacci recurrence - because the last part is one of `1, …, h`.
 
 ## The ladder
 
@@ -40,7 +40,7 @@ The n-nacci constants increase monotonically from `φ` to their limit `2` (the `
 
 ## Why this is not the tree-castle-by-area family
 
-The obvious neighbor is [[tree-castle-by-area](pages/tree-castle-by-area.md)], which grades **tree** castles (no 2×2 filled block, i.e. no two adjacent columns both `≥ 2`) by area at fixed height. That family produces a completely different, sparser set of sequences - and crucially, the *term-skipping* cubics, not the n-nacci ones:
+The obvious neighbor is [[tree-castle-by-area](pages/tree-castle-by-area.md)], which grades **tree** castles (no 2×2 filled block, i.e. no two adjacent columns both `≥ 2`) by area at fixed height. That family produces sparser sequences, with *term-skipping* denominators instead of the n-nacci ones:
 
 | `h` | this page (all castles) | tree-castle-by-area (no 2×2 block) |
 |---|---|---|
@@ -49,18 +49,18 @@ The obvious neighbor is [[tree-castle-by-area](pages/tree-castle-by-area.md)], w
 | 4 | tetranacci **A000078** | tournaments **A000570** (Tetali; [[unique-tournament](pages/unique-tournament.md)]) |
 | ∞ | `2^{A−1}` **A011782** | plastic-squared **A005251** (`ψ² ≈ 1.7549`) |
 
-At every `h` the all-castle count strictly dominates the tree count (the tree constraint deletes the `(…, 2, 2, …)` adjacencies), so the two families never coincide. The mechanism is transparent at `h = 2`: dropping the tree ban restores compositions with adjacent parts `≥ 2`, lifting the growth constant from supergolden to `φ`. The **term-skipping** denominators of the tree family (`1 − q − q³`, `1 − q − q³ − q⁴`, …, which always omit the `q²` term because a tall column carries area `≥ 2`) are exactly what excludes the tribonacci denominator `1 − x − x² − x³` there - and exactly what this all-castle grading supplies.
+For `h ≥ 2` the all-castle count exceeds the tree count from area 4 on (the tree constraint deletes the compositions with adjacent parts `≥ 2`). At `h = 2`, dropping the tree ban lifts the growth constant from supergolden to `φ`. The tree family's denominators (`1 − q − q³`, `1 − q − q³ − q⁴`, …) have no `q²` term, because in its composition form every tall column merges with a short one into a part of size at least 3; the all-castle denominators `1 − x − ⋯ − x^h` keep it.
 
 ## Fibonacci and tribonacci, on one ladder
 
-The two rungs answer a standing question directly: **where do Fibonacci and tribonacci both enter the castle?** They are the `h = 2` and `h = 3` members of *this single family*.
+Fibonacci and tribonacci are the `h = 2` and `h = 3` members of this one family.
 
-- **Fibonacci (`h = 2`).** All castles of height `≤ 2` by area is a *new, cleaner* Fibonacci-in-castle appearance, distinct from the two already on the wiki: the prime-castle formula `2^{n−1} − F_{n−1}` ([[castle-by-area](pages/castle-by-area.md)]) and the tree-castle-by-width `h = 2` row ([[castle-graph](pages/castle-graph.md)]). Here Fibonacci is simply "compositions into `{1, 2}`" - the textbook interpretation - realized as a castle area count.
-- **Tribonacci (`h = 3`).** This is the **castle's first tribonacci interpretation** anywhere on the wiki (the only prior mention was a mislabeled helper-function example in [[castle-snippets](pages/castle-snippets.md)], since corrected). It completes the cubic-constant map: the castle now realizes the tribonacci constant (`x³ = x² + x + 1`, this page), the supergolden (`x³ = x² + 1`, Narayana's cows on [[tree-castle-by-area](pages/tree-castle-by-area.md)]), and the plastic (`x³ = x + 1`, as `ψ²` and `2ψ²` on [[plastic-number](pages/plastic-number.md)]).
+- **Fibonacci (`h = 2`).** All castles of height `≤ 2` by area are a Fibonacci appearance distinct from the prime-castle count `F_{n−1}` ([[prime-castles](pages/prime-castles.md)]) and the tree-castle-by-width `h = 2` row ([[castle-graph](pages/castle-graph.md)]). Here Fibonacci is simply "compositions into `{1, 2}`" - the textbook interpretation - realized as a castle area count.
+- **Tribonacci (`h = 3`).** All castles of height `≤ 3` by area are the tribonacci numbers. With the supergolden constant (`x³ = x² + 1`, Narayana's cows on [[tree-castle-by-area](pages/tree-castle-by-area.md)]) and the plastic number (`x³ = x + 1`, as `ψ²` and `2ψ²` on [[plastic-number](pages/plastic-number.md)]), the castle realizes three cubic constants.
 
 ## Relation to the metallic-means classification
 
-On the Axis-8 meta-classification of [[castle-classification](pages/castle-classification.md)] / [[metallic-means](pages/metallic-means.md)], the growth-by-area axis for this family is **not** metallic: the n-nacci constants for `h ≥ 3` are roots of `x^h = x^{h−1} + ⋯ + 1`, algebraic of degree `h`, none of which is a metallic mean `(a + √(a²+4))/2`. Only the `h = 2` rung (`φ`) lands on the metallic ladder. So the bounded-height-by-area family is a distinct algebraic family indexed by `h`, converging to `2` - a companion to (and denser than) the tree-castle-by-area family, which is *also* non-metallic for `h ≥ 2` (both are open research directions the wiki keeps flagging: metallic means appear as spectral radii, not as area growth constants; see [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]).
+On the Axis-8 meta-classification of [[castle-classification](pages/castle-classification.md)] / [[metallic-means](pages/metallic-means.md)], the growth-by-area axis for this family is **not** metallic: the n-nacci constants for `h ≥ 3` are roots of `x^h = x^{h−1} + ⋯ + 1`, algebraic of degree `h`, none of which is a metallic mean `(a + √(a²+4))/2`. Only the `h = 2` rung (`φ`) lands on the metallic ladder. So the bounded-height-by-area family is an algebraic family indexed by `h` and converging to `2`, denser than the tree-castle-by-area family (which is metallic only at `h = 3`, where its growth is `φ`).
 
 ## Reproduce
 
@@ -72,7 +72,7 @@ The `bounded_castles_by_area(h, A_max)` snippet on [[castle-snippets-strips](pag
 
 ## Related Concepts
 
-- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the sparser sibling (2×2-block ban) that produces the term-skipping cubics instead; the closest neighbor on the wiki.
+- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the sparser sibling (2×2-block ban), with term-skipping denominators.
 - [[castle-by-area](pages/castle-by-area.md)] - the `h → ∞` case (`2^{A−1}`, all compositions) and the area-re-indexing that this page bounds by height.
 - [[plastic-number](pages/plastic-number.md)] - the third cubic constant (`ψ`, `x³ = x + 1`); this page adds the tribonacci constant (`x³ = x² + x + 1`) to the cubic-constant map.
 - [[metallic-means](pages/metallic-means.md)] - the family the `h = 2` rung (`φ`) belongs to and the `h ≥ 3` rungs sit near but outside.

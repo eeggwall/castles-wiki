@@ -5,7 +5,7 @@ summary: A score vector S is forcibly simple if every tournament realizing S is 
 tags: [concept, tournament, forcibly-simple, score-vector, muller-nesetril-pelant, classification, tetali]
 sources: [tetali-1998-unique-tournaments]
 created: 2026-09-17
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Forcibly simple score vector
@@ -20,7 +20,7 @@ Muller-Nešetřil-Pelant proved:[^2]
 
 **Theorem (Muller-Nešetřil-Pelant 1975).** A score vector `S` is forcibly simple if and only if `S ∈ {(0), (0, 1), (1, 1, 1), (2, 2, 2, 2, 2), (3, 3, 3, 3, 3, 3, 3)}`.
 
-Five score vectors, on 1, 2, 3, 5, 7 vertices respectively. Three of them are odd regular tournaments (`(1, 1, 1)` = `R_3`, `(2, 2, 2, 2, 2)` = `R_5`, `(3, 3, 3, 3, 3, 3, 3)` = a regular score on 7 vertices with 3 non-isomorphic realizers), one is the empty tournament (`(0)`), and one is the transitive tournament on 2 vertices (`(0, 1)`).
+Five score vectors, on 1, 2, 3, 5, 7 vertices respectively. Three of them are odd regular tournaments (`(1, 1, 1)` = `R_3`, `(2, 2, 2, 2, 2)` = `R_5`, `(3, 3, 3, 3, 3, 3, 3)` = a regular score on 7 vertices with 3 non-isomorphic realizers), one is the one-vertex tournament (`(0)`), and one is the transitive tournament on 2 vertices (`(0, 1)`).
 
 ## Role in Tetali's classification
 
@@ -34,7 +34,7 @@ Tetali's Theorem 1 filters this list to the strong-and-unique cases:[^3]
 
 The `n = 4` case (`(1, 1, 2, 2)`) is *not* on the FS list because the strong tournament on 4 vertices is not simple; Tetali adds it back by direct inspection.[^4]
 
-This is the exact chain by which Tetali reduces the classification of unique tournaments to the five-element list above.
+This is how Tetali reduces the classification of unique tournaments to the five-element list above.
 
 ## Why the size-7 regular tournament is not unique
 
@@ -50,7 +50,7 @@ Three of the five FS score vectors are regular, and the OEIS count of unlabeled 
 | 5 | `(2, 2, 2, 2, 2)` | 1 | unique, strong → basic |
 | 7 | `(3, 3, 3, 3, 3, 3, 3)` | 3 | three realizers → not unique |
 
-The "three non-isomorphic strong realizers" Tetali checks by hand is `A096368(3) = 3` (a regular tournament on `≥ 3` nodes is automatically strong). The same table explains why the FS list is so short relative to the ambient supply of score vectors - `A000571 = 1, 1, 2, 4, 9, 22, 59, …` score sequences on `1, 2, 3, 4, 5, 6, 7` nodes - the FS vectors are `1` of `1`, `1` of `1`, `1` of `2`, `1` of `9`, and `1` of `59`.[^5] The wiki's own brute force on [[tree-castle-by-area](pages/tree-castle-by-area.md)] re-derived the same picture through `n = 8` (zero strong unique tournaments at sizes 6 and 7, all 31 unique tournaments at `n = 8` non-strong), using the `is_strongly_connected` snippet on [[castle-snippets-strips](pages/castle-snippets-strips.md)].
+The "three non-isomorphic strong realizers" Tetali checks by hand is `A096368(3) = 3` (a regular tournament on `≥ 3` nodes is automatically strong). For comparison with all score vectors (`A000571 = 1, 1, 2, 4, 9, 22, 59, …` on `1, 2, 3, 4, 5, 6, 7` nodes), the FS vectors are `1` of `1`, `1` of `1`, `1` of `2`, `1` of `9` and `1` of `59` at `n = 1, 2, 3, 5, 7`.[^5] The wiki's own brute force on [[tree-castle-by-area](pages/tree-castle-by-area.md)] re-derived the same picture through `n = 8` (zero strong unique tournaments at sizes 6 and 7, all 31 unique tournaments at `n = 8` non-strong), using the `is_strongly_connected` snippet on [[castle-snippets-strips](pages/castle-snippets-strips.md)].
 
 On the castle side the five FS sizes `1, 2, 3, 5, 7` are *not* the composition parts: the parts are Tetali's basic sizes `{1, 3, 4, 5}`, with `4` the strong-but-not-simple exception added by inspection. That part set is what makes the `h = 4` tree-castle row of [[tree-castle-by-area](pages/tree-castle-by-area.md)] equal `A000570` ([[oeis-index](pages/oeis-index.md)]).
 

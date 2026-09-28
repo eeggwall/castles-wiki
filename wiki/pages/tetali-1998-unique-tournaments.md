@@ -5,7 +5,7 @@ summary: Tetali's three-page JCTB note proving that the score-uniquely-determine
 tags: [source, tournament, unique, score-sequence, jctb, tetali, muller-nesetril-pelant, simple-tournament, oeis, a000570, paper]
 sources: [tetali-1998-unique-tournaments]
 created: 2026-09-17
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # A Characterization of Unique Tournaments (Tetali, 1998)
@@ -37,15 +37,15 @@ u_n = u_{n-1} + u_{n-3} + u_{n-4} + u_{n-5},
 
 with `u_n · c · α^n → 1` for constants `c ≈ 0.48` and `α ≈ 1.685` (the dominant root of `x^5 = x^4 + x^2 + x + 1`).[^11]
 
-**Why this matters here.** The identity is what `A000570` records - and Tetali's proof, from 1998, predates OEIS's "empirical" label on Schoenfield's 2006 recurrence and Dale's 2011 generating function on that entry by many years.[^12] The three-way bijection tree castle ↔ composition of `{1, 3, 4, 5}` parts ↔ unique tournament developed on [[tree-castle-by-area](pages/tree-castle-by-area.md)] is *exactly* Tetali's strong-component decomposition read across a transfer matrix: the composition parts are the strong-component sizes and each part carries a unique-realizer basic tournament.
+**Relation to OEIS and the castles.** The recurrence is the one `A000570` lists as a formula (Jon E. Schoenfield, 2006), with the generating function (Harvey P. Dale, 2011); the entry links Tetali's paper.[^12] The three-way bijection tree castle ↔ composition of `{1, 3, 4, 5}` parts ↔ unique tournament on [[tree-castle-by-area](pages/tree-castle-by-area.md)] is Tetali's strong-component decomposition read across a transfer matrix: the composition parts are the strong-component sizes and each part carries a unique-realizer basic tournament.
 
 ## Key Takeaways
 
 - **Four basic strong-and-unique tournaments** (Tetali 1998, Theorem 1): sizes 1, 3, 4, 5 with score vectors `(0)`, `(1, 1, 1)`, `(1, 1, 2, 2)`, `(2, 2, 2, 2, 2)`. No others.[^4]
 - **Every unique tournament decomposes into these** via strong-component decomposition, so `A000570(n) = #{compositions of n with parts in {1, 3, 4, 5}}`.[^4]
-- **Proof strategy** is not compositional in the modern sense - Tetali reduces to Muller-Nešetřil-Pelant's 1975 characterization of forcibly simple score vectors.[^5]
+- **Proof strategy**: Tetali reduces to Muller-Nešetřil-Pelant's 1975 characterization of forcibly simple score vectors.[^5]
 - **The size-4 exception**: Theorem 2 (Muller et al.) works for `n ≠ 4`; at `n = 4` the strong tournament exists but is not simple, so it is handled by direct inspection.[^13]
-- **The size-7 near-miss**: the regular tournament score `(3, 3, 3, 3, 3, 3, 3)` is forcibly simple but not unique - three non-isomorphic strong realizers. This is Tetali's explicit example of why the strong-and-unique series stops at size 5.[^14]
+- **The size-7 case**: the regular tournament score `(3, 3, 3, 3, 3, 3, 3)` is forcibly simple but not unique - three non-isomorphic strong realizers. This is Tetali's explicit example of why the strong-and-unique series stops at size 5.[^14]
 - **Growth constant `α ≈ 1.685`** is the dominant root of `x^5 = x^4 + x^2 + x + 1`, distinct from the metallic and plastic families.[^11]
 - **References cited by Tetali**: Douglas 1970 (Hamiltonian tournaments), Garey 1972 (single-Hamiltonian tournaments count `F_{2n−6}`, cited as analogous), Moon 1968 (*Topics on Tournaments*), Muller-Nešetřil-Pelant 1975 (simple/forcibly-simple), Reid-Beineke 1978 (tournament survey).[^15]
 
@@ -54,18 +54,14 @@ with `u_n · c · α^n → 1` for constants `c ≈ 0.48` and `α ≈ 1.685` (the
 - [[unique-tournament](pages/unique-tournament.md)] - the class `Unique` defined by score-vector-uniqueness up to isomorphism; enumerated by A000570.
 - [[simple-tournament](pages/simple-tournament.md)] - Muller-Nešetřil-Pelant condition; strictly stronger than "strongly connected" (fails at `n = 4`).
 - [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] - a score vector every realizer of which is simple; Muller et al. classified these exactly.
-- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - our three-way bijection tree castle ↔ composition of `{1, 3, 4, 5}` parts ↔ unique tournament, whose graph-theoretic arrow is now theorem, not conjecture.
-- [[oeis-index](pages/oeis-index.md)] - A000570's authoritative source for the recurrence is this paper, not the OEIS "empirical" formula tag.
+- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - our three-way bijection tree castle ↔ composition of `{1, 3, 4, 5}` parts ↔ unique tournament, whose graph-theoretic arrow is this theorem.
+- [[oeis-index](pages/oeis-index.md)] - A000570, whose recurrence this paper proves.
 - [[castle-graph](pages/castle-graph.md)] - tree castles of height 4 by area are exactly A000570-counted, via this classification.
-- [[hardin-word-identity](pages/hardin-word-identity.md)] / [[tower-parity-sectors](pages/tower-parity-sectors.md)] - siblings on the wiki that also count objects with the same 4-block decomposition (bit-strings with no run of 5 ones).
+- [[hardin-word-identity](pages/hardin-word-identity.md)] / [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the unbounded-part case: compositions with parts in `{1, 3, 4, 5, …}` are A005251, which the Hardin identity realizes through signed tower counts.
 
 ## Relation to Other Wiki Pages
 
-The classification here is the "primary source" that the wiki has been citing as *Tetali 1998* on [[tree-castle-by-area](pages/tree-castle-by-area.md)]. Ingesting the paper resolves three loose ends:
-
-1. **The OEIS "empirical" tags are historical, not mathematical.** Schoenfield's 2006 recurrence and Dale's 2011 generating function on A000570 are labeled "empirical" on OEIS, but Tetali proved the same recurrence in 1998 as a consequence of Theorem 1.[^10] The wiki should present the identity `A000570(n) = comp(n, {1, 3, 4, 5})` as a theorem citing Tetali, not as an empirically-observed pattern with a separate proof from the tree-castle side.
-2. **The 4-basic-tournaments claim is now a first-source quote**, not a claim relayed through Khovanova 2007 or Repine-Yang 2020. Both stay useful - Khovanova gives an accessible full-text and an independent binary-string bijection, and Repine-Yang give a modern reworking - but the primary is Tetali.
-3. **The proof strategy differs from the wiki's presentation.** Our page proved the composition-of-`{1, 3, 4, 5}` identity by exhibiting explicit bijections and by direct enumeration; Tetali proves it by reducing to Muller-Nešetřil-Pelant's classification of *forcibly simple* score vectors. Both are valid; the wiki records both to keep the graph-theoretic and the transfer-matrix routes in one place.
+This paper is the source for the tournament side of [[tree-castle-by-area](pages/tree-castle-by-area.md)]: `A000570(n) = comp(n, {1, 3, 4, 5})` is a theorem by Theorem 1 and the strong-component decomposition.[^10] The castle side (tree castles ↔ compositions) is a direct bijection; the tournament side rests on Muller-Nešetřil-Pelant's classification of forcibly simple score vectors, and the wiki's enumeration through `n = 8` checks it. Khovanova (2007) gives a parallel bijection to binary strings ([[unique-tournament](pages/unique-tournament.md)]).
 
 ## Footnotes
 
@@ -91,7 +87,7 @@ The classification here is the "primary source" that the wiki has been citing as
 
 [^11]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.159 L114-115 — "there exist constants c ≈ 0.48 and α ≈ 1.685 such that `lim_{n → ∞} u_n · c · α^n = 1`." The characteristic polynomial `x^5 − x^4 − x^2 − x − 1 = 0` follows from the recurrence.
 
-[^12]: OEIS A000570 (https://oeis.org/A000570, fetched 2026-09-17) — "Formula" section lists "a(n) = a(n-5) + a(n-4) + a(n-3) + a(n-1). - Jon E. Schoenfield, Aug 07 2006" and "G.f.: (1+x^2+x^3+x^4)/(1-x-x^3-x^4-x^5). - Harvey P. Dale, May 05 2011"; both are listed as user contributions without citing Tetali 1998 (though Tetali is the sequence's original author).
+[^12]: OEIS A000570 (https://oeis.org/A000570, fetched 2026-09-17) — "Formula" section lists "a(n) = a(n-5) + a(n-4) + a(n-3) + a(n-1). - Jon E. Schoenfield, Aug 07 2006" and "G.f.: (1+x^2+x^3+x^4)/(1-x-x^3-x^4-x^5). - Harvey P. Dale, May 05 2011"; the entry's LINKS include Tetali's paper (re-checked 2026-09-28).
 
 [^13]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.158 L66-67 — "A simple tournament is clearly strong, but the converse is not necessarily true - the strong tournament on four vertices, for example, is not simple." Also p.159 L104-107 — "The only case not covered by the above is the unique strong tournament on four vertices with the score vector (1, 1, 2, 2). Thus the only strong tournaments which are in Unique are the four tournaments shown in Fig. 1."
 
