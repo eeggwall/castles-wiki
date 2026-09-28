@@ -1,18 +1,18 @@
 ---
 title: Eisenstein at 2 - char_k is irreducible for k = 2^m - 1
 category: Analyses
-summary: Rescale x = 2y and divide out 2^k - Q_k(y) = char_k(2y)/2^k is an integer polynomial with the same shape of recurrence, Q_{k+1} = y² Q_{k-1} - Q_k. Its reversal is Eisenstein at 2 exactly when Q_k ≡ 1 (mod 2), and mod 2 the recurrence is a Fibonacci recurrence over F_2[y²] whose k-th term is α^(k+1) + β^(k+1) - equal to 1 iff k+1 is a power of 2. So char_k is irreducible over Q, with 2 totally ramified, for k = 1, 3, 7, 15, 31, …, by a proof, not a computation. The same condition is exactly "the 2-adic Newton polygon of char_k is one segment", so no other k is reached this way; irreducibility for the remaining odd k is still only SymPy-verified.
+summary: Rescale x = 2y and divide out 2^k - Q_k(y) = char_k(2y)/2^k is an integer polynomial with the same shape of recurrence, Q_{k+1} = y² Q_{k-1} - Q_k. Its reversal is Eisenstein at 2 exactly when Q_k ≡ 1 (mod 2), and mod 2 the recurrence is a Fibonacci recurrence over F_2[y²] whose k-th term is α^(k+1) + β^(k+1) - equal to 1 iff k+1 is a power of 2. So char_k is irreducible over Q, with 2 totally ramified, for k = 1, 3, 7, 15, 31, …, by proof. The same condition is exactly "the 2-adic Newton polygon of char_k is one segment", so no other k is reached this way; irreducibility for the remaining odd k is still only SymPy-verified.
 tags: [analysis, castle, characteristic-polynomial, irreducible-polynomial, eisenstein, newton-polygon, two-adic, fibonacci-polynomial, signed-tower-count, proof, sympy, verification]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory, oeis-mining-pe502]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # Eisenstein at 2 - `char_k` is irreducible for `k = 2^m − 1`
 
-## The gap this closes
+## Context
 
-[[generating-function-gallery](pages/generating-function-gallery.md)] and [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] record that `char_k` - the degree-`(k+1)` characteristic polynomial of the signed tower count `P(k, ·)` ([[signed-tower-count](pages/signed-tower-count.md)]) - is irreducible over `Q` for every odd `k` tested. [[tower-parity-sectors](pages/tower-parity-sectors.md)] explains the *even* `k` factorization by a symmetry `JD` of the transfer matrix, but for odd `k` that symmetry is a complex structure, and a complex structure only says `char_k` is a norm `g·ḡ` from `Q(i)[x]`. It does not rule out a further split over `Q`. So until now odd-`k` irreducibility was a computation, not a theorem.
+[[generating-function-gallery](pages/generating-function-gallery.md)] and [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] record that `char_k` - the degree-`(k+1)` characteristic polynomial of the signed tower count `P(k, ·)` ([[signed-tower-count](pages/signed-tower-count.md)]) - is irreducible over `Q` for every odd `k` tested. [[tower-parity-sectors](pages/tower-parity-sectors.md)] explains the *even* `k` factorization by a symmetry `JD` of the transfer matrix, but for odd `k` that symmetry is a complex structure, and a complex structure only says `char_k` is a norm `g·ḡ` from `Q(i)[x]`. It does not rule out a further split over `Q`, and odd-`k` irreducibility is otherwise a computation (SymPy, `k ≤ 31`).
 
 This page proves it for the infinite subfamily `k = 2^m − 1` using the Eisenstein criterion in its unique-factorization-domain form (Gauss's lemma plus Eisenstein, exercise 17.21 of [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)]), and shows the method reaches exactly that subfamily and no more.
 
@@ -22,7 +22,7 @@ The criterion is not limited to integer primes: exercise 5.15 of the same book p
 
 ## Step 1 - rescale by 2
 
-`char_k` obeys `char_0 = x − 1`, `char_1 = x² − 2x + 2`, `char_{k+1} = x²·char_{k−1} − 2·char_k`.[^3] Its constant term is `±2^k`, and in general its coefficients carry a lot of 2s. Take them out: set
+`char_k` obeys `char_0 = x − 1`, `char_1 = x² − 2x + 2`, `char_{k+1} = x²·char_{k−1} − 2·char_k`.[^3] Its constant term is `±2^k`. Set
 
 ```
 Q_k(y)  =  char_k(2y) / 2^k .
@@ -87,7 +87,7 @@ The 2-adic valuations of `char_k`'s coefficients `a_i` run from `v(a_0) = k` dow
 
 **Open.**
 - Odd `k` not of the form `2^m − 1` (`k = 5, 9, 11, 13, 17, …`): irreducible by SymPy through `k = 31`, with no proof. A proof needs a different prime, a different substitution, or a Galois-theoretic argument (for instance, showing the `Q(i)`-factors `g, ḡ` from the `JD` complex structure are themselves irreducible and not defined over `Q`).
-- Which odd primes divide `disc(char_k)` ([[larger-prime-periodicity](pages/larger-prime-periodicity.md)] lists `k ≤ 10`), and whether any of them is totally ramified for other `k`, is a natural next place to look for further Eisenstein primes.
+- Which odd primes divide `disc(char_k)` ([[larger-prime-periodicity](pages/larger-prime-periodicity.md)] lists `k ≤ 10`), and whether any of them is totally ramified for other `k`; such a prime would be a candidate for a further Eisenstein argument.
 
 ## Snippet
 
@@ -122,7 +122,7 @@ print([k for k in range(5001) if q[k] == 1])
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the `JD` symmetry: it explains the even-`k` split and makes odd-`k` `char_k` a norm from `Q(i)[x]`. That is the step this page's proof replaces for `k = 2^m − 1`.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] - the `char_k` table and the even/odd factorization pattern.
 - [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - "irreducible = prime for polynomials"; the odd-`k` rows of its table are proved here for `k = 1, 3`.
-- [[finite-fields](pages/finite-fields.md)] - the Frobenius identity `(α + β)^{2^m} = α^{2^m} + β^{2^m}` in characteristic 2 is the whole of Step 3.
+- [[finite-fields](pages/finite-fields.md)] - the Frobenius identity `(α + β)^{2^m} = α^{2^m} + β^{2^m}` in characteristic 2, the key step of Step 3.
 - [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - discriminants of `char_k`; total ramification at 2 is the extreme case of 2 dividing the discriminant.
 - [[pell-numbers](pages/pell-numbers.md)] - another Lucas/Fibonacci-type sequence on the wiki; here a Fibonacci recurrence appears one level down, over `F_2[t]`.
 - [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the fiber over 2: for `k = 1`, `Z[x]/(char_1) ≅ Z[i]` and the prime `(2, x)` is `(1 + i)` with `2 = −i(1 + i)²`, the smallest case of the total ramification proved here.

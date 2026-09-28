@@ -5,7 +5,7 @@ summary: An idempotent e (e² = e) other than 0 and 1 splits a commutative ring 
 tags: [concept, ring, idempotent, chinese-remainder-theorem, quotient-ring, finite-field, eigenvalue, projection, castle]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # Idempotent decomposition
@@ -28,7 +28,7 @@ Take `R = F_p[x]/(Q)` with `Q = char_k mod p = ∏_{i=1}^r g_i^{m_i}` ([[castle-
 
 - **`R` has exactly `2^r` idempotents**, where `r` counts *distinct* irreducible factors. Repeated factors do not add idempotents; they add nilpotents instead.
 - **The primitive idempotent `e_i`** is the element that is `1` in the `g_i` factor and `0` in the others. It is the CRT inverse of a unit vector, computed as `e_i = N_i · (N_i^{−1} mod g_i^{m_i})` with `N_i = Q/g_i^{m_i}`.
-- **Multiplying by `x` respects the split.** Multiplication by `x` is one step of the recurrence ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)] §3), and it commutes with every `e_i`. So `e_i` picks out the part of the sequence that comes from the eigenvalues that are roots of `g_i`. For a linear factor `g_i = x − λ`, `x^L e_i = λ^L e_i`.
+- **Multiplying by `x` respects the split.** Multiplication by `x` is one step of the recurrence ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)] §3), and it commutes with every `e_i`. So `e_i` picks out the part of the sequence that comes from the eigenvalues that are roots of `g_i`. For a simple linear factor `g_i = x − λ` (`m_i = 1`), `x^L e_i = λ^L e_i`; for a repeated one, `x − λ` is nilpotent on `e_i R` and the powers pick up polynomial terms.
 
 **Worked example - `k = 2`, `p = 101`.** Here `char_2 = (x − 2)(x² − x + 2)`, `r = 2`, and `R` has four idempotents `0, e_1, e_2, 1`:[^4]
 
@@ -38,7 +38,7 @@ e_2  =  1 − e_1           =  25x² − 25x + 51      (0 at x = 2;  1 mod x² �
 e_1 + e_2 = 1,    e_1 · e_2 = 0 (mod char_2, p = 101)
 ```
 
-The formula for `e_1` is Lagrange interpolation: the other factor, divided by its value at the root `2`, and `4^{−1} = 76 (mod 101)`. Since `x·(x² − x + 2) ≡ 2·(x² − x + 2) (mod char_2)`, `x^L e_1 = 2^L e_1`. So `e_1` isolates the **dominant eigenvalue `2`** of `P(2, ·)`, the `+1` parity sector of [[tower-parity-sectors](pages/tower-parity-sectors.md)], and `e_2` isolates the complex pair `(1 ± √−7)/2`. The eigenvalue sectors that [[tower-parity-sectors](pages/tower-parity-sectors.md)] finds over `Q` show up mod `p` as idempotents.
+The formula for `e_1` is Lagrange interpolation: the other factor, divided by its value at the root `2`, and `4^{−1} = 76 (mod 101)`. Since `x·(x² − x + 2) ≡ 2·(x² − x + 2) (mod char_2)`, `x^L e_1 = 2^L e_1`. So `e_1` isolates the **dominant eigenvalue `2`** of `P(2, ·)`, the `+1` parity sector of [[tower-parity-sectors](pages/tower-parity-sectors.md)], and `e_2` isolates the conjugate pair `(1 ± √−7)/2`, which mod 101 lies in `F_{101²}`. The eigenvalue sectors that [[tower-parity-sectors](pages/tower-parity-sectors.md)] finds over `Q` show up mod `p` as idempotents.
 
 **Brute-force check.** The table below counts every idempotent of `F_p[x]/(char_k)` over all `p^{k+1}` elements, and takes the product of the nonzero ones:[^4]
 
@@ -59,11 +59,11 @@ The repeated-factor rows (`char_2 mod 7`, `char_3 mod 5`, `char_4 mod 3`, the di
 
 On a fiber `F_p[x]/(char_k mod p)`, the map `a ↦ a^p` is `F_p`-linear, and its fixed space `{a : a^p = a}` is exactly the span of the primitive idempotents: one copy of `F_p` per distinct irreducible factor. So `dim {a : a^p = a} = r` and there are `2^r` idempotents, whatever the multiplicities, and both can be computed by one rank computation without factoring `char_k` (the first step of Berlekamp's algorithm). Checked on 12 fibers ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §6, `frobenius_profile` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)]).[^5]
 
-## Do these idempotents come from the integers? (lifting)
+## Lifting to the integers
 
-The idempotents above live in a fiber, the ring `F_p[x]/(char_k)` obtained by reducing integer polynomials mod `p`. It is natural to ask whether each one is the reduction of an idempotent of the integer ring `Z[x]/(char_k)` itself. That question is called **lifting**: an idempotent `ē` mod `p` *lifts* if some integer polynomial `e` satisfies `e² = e` exactly, not just mod `p`, and reduces to `ē`.
+The idempotents above live in a fiber, the ring `F_p[x]/(char_k)` obtained by reducing integer polynomials mod `p`. An idempotent `ē` mod `p` **lifts** if some integer polynomial `e` satisfies `e² = e` exactly, not just mod `p`, and reduces to `ē`.
 
-The answer is no, for every `k` and every `p`. The integer ring has only the idempotents `0` and `1`, because its spectrum is connected ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §5). The situation is the same as `Z/10`: `5² ≡ 5 (mod 10)` splits `Z/10 = Z/2 × Z/5`, but no integer other than `0, 1` squares to itself, so the splitting is only visible after reducing.[^6] Multiplying by `5` is even a ring map `Z/10 → Z/10` (it projects onto the `Z/2` factor), and the four ring endomorphisms of `Z/10` are exactly multiplication by its four idempotents `0, 1, 5, 6`.[^7] For the parity sectors (even `k`), the splitting does exist once division by 2 is allowed. The `k = 2`, `p = 101` idempotent `e_1 = 76x² + 25x + 51` above is the reduction of the rational idempotent `(x² − x + 2)/4`, and in general the sector idempotent's denominator is `2^{v_2(k!) + 1}` (every even `k ≤ 40`). So every odd fiber sees the sector split and the integer ring does not.
+No idempotent other than `0` and `1` lifts, for any `k` and `p`. The integer ring has only the idempotents `0` and `1`, because its spectrum is connected ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §5). The situation is the same as `Z/10`: `5² ≡ 5 (mod 10)` splits `Z/10 = Z/2 × Z/5`, but no integer other than `0, 1` squares to itself, so the splitting is only visible after reducing.[^6] Multiplying by `5` is even a ring map `Z/10 → Z/10` (it projects onto the `Z/2` factor), and the four ring endomorphisms of `Z/10` are exactly multiplication by its four idempotents `0, 1, 5, 6`.[^7] For the parity sectors (even `k`), the splitting does exist once division by 2 is allowed. The `k = 2`, `p = 101` idempotent `e_1 = 76x² + 25x + 51` above is the reduction of the rational idempotent `(x² − x + 2)/4`, and in general the sector idempotent's denominator is `2^{v_2(k!) + 1}` (every even `k ≤ 40`). So every odd fiber sees the sector split and the integer ring does not.
 
 Inside a single fiber, lifting always works: the idempotents of the reduced fiber `R/N(R)` lift to the fat fiber `R`, which is why both have `2^r`.
 
@@ -75,9 +75,9 @@ Over `F_p` two different polynomials can define the same function (`x^5 + x^3 + 
 δ_a(x)  =  1 − (x − a)^{p−1}          δ_a(b) = 1 if b = a, else 0   (Fermat: (b − a)^{p−1} = 1 for b ≠ a)
 ```
 
-They are orthogonal and sum to `1` mod `x^p − x` (checked for `p = 3, 5, 7`).[^9] This is the fully split end of the castle picture: when `char_k mod p` splits into distinct linear factors `x − λ_i`, the primitive idempotents of `F_p[x]/(char_k)` are the Lagrange polynomials through its roots, `e_i = ∏_{j ≠ i} (x − λ_j)/(λ_i − λ_j)`, exactly the shape of `e_1 = (x² − x + 2)/4` above. The runnable versions are `crt_idempotents` and `lagrange_idempotents` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].
+They are orthogonal and sum to `1` mod `x^p − x` (checked for `p = 3, 5, 7`).[^9] This is the fully split end of the castle picture: when `char_k mod p` splits into distinct linear factors `x − λ_i`, the primitive idempotents of `F_p[x]/(char_k)` are the Lagrange polynomials through its roots, `e_i = ∏_{j ≠ i} (x − λ_j)/(λ_i − λ_j)`, the same construction as `e_1 = (x² − x + 2)/4` above. The runnable versions are `crt_idempotents` and `lagrange_idempotents` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].
 
-## Why it is worth having on the wiki
+## Uses on the wiki
 
 - It gives the CRT split as **explicit elements of `R`**. The projections of [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] §4 become multiplication by `e_i`, and lifting back is `Σ a_i e_i`.
 - It connects the combinatorial sector split over `Q` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]) with the arithmetic split mod `p` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)]).

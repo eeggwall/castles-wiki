@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 173 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Fully read and cleaned | 177 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
 | Spot fixes only | 3 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 18 |
-| Words still to read | about 63,000 |
+| Not started | 14 |
+| Words still to read | about 53,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 79 fully read)
+### Concepts (85 pages, 81 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
@@ -143,7 +143,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-representations (2.5)
 - [x] q-thread-seminar (2.5)
 - [x] castle-samplers (2.4)
-- [ ] idempotent-decomposition (2.3)
+- [x] idempotent-decomposition (2.3)
 - [x] castle-by-area (2.3)
 - [x] urd-step-strings (2.1)
 - [x] kitamasa (2.1)
@@ -189,12 +189,12 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] horizontally-convex-polyomino (0.0)
 - [x] forcibly-simple-score-vector (0.0)
 - [x] convex-castle (0.0)
-- [ ] chinese-remainder-theorem (0.0)
+- [x] chinese-remainder-theorem (0.0)
 - [x] catalan-numbers (0.0)
 - [x] castle-snippets-strips (0.0)
 - [x] acronyms (0.0)
 
-### Analyses (64 pages, 58 fully read)
+### Analyses (64 pages, 59 fully read)
 
 - [x] castle-cryptography (5.1)
 - [x] isospectral-castles (4.9)
@@ -221,7 +221,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-perimeter (1.9)
 - [x] castle-count-algorithms (1.8)
 - [x] tower-spacing-castles (1.8)
-- [ ] char-k-eisenstein-at-two (1.8)
+- [x] char-k-eisenstein-at-two (1.8)
 - [x] proper-castle-projection (1.8)
 - [x] a005251-bijection (1.7)
 - [ ] castle-ring-spectrum (1.6)
@@ -261,7 +261,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] convex-castle-cap-factor (0.0)
 - [x] castle-q-bessel-closed-form (0.0)
 
-### Sources (44 pages, 35 fully read)
+### Sources (44 pages, 36 fully read)
 
 - [x] oeis-mining-pe502 (25.6)
 - [x] oeis-height2-hyperbolic-castles (5.9)
@@ -281,7 +281,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] deutsch-elizalde-2016-bargraphs-cornerless-motzkin (2.0)
 - [x] polyominoes (2.0)
 - [x] bender-1974-partitions-of-multisets (1.7)
-- [ ] calugareanu-hamburg-exercises-basic-ring-theory (1.6)
+- [x] calugareanu-hamburg-exercises-basic-ring-theory (1.6)
 - [x] aocp-combinatorics (1.5)
 - [ ] rossin-2000-group-of-a-sandpile (1.3)
 - [~] chau-cheng-1991-deterministic-soc-sandpile (1.1)

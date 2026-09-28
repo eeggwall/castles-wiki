@@ -5,7 +5,7 @@ summary: For pairwise comaximal ideals I_1..I_n, R/∩I_i ≅ ∏ R/I_i, equival
 tags: [concept, ring, chinese-remainder-theorem, comaximal-ideals, quotient-ring, finite-field, castle]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # Chinese Remainder Theorem (rings)
@@ -28,13 +28,13 @@ F_p[x]/(Q)   ≅   ∏_i  F_p[x]/(g_i^{m_i}) .
 
 Each factor with `m_i = 1` is the field `F_{p^{d_i}}` ([[finite-fields](pages/finite-fields.md)]). Each factor with `m_i ≥ 2` is a local ring whose unit group is `F_{p^{d_i}}^*` times a `p`-group ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] §4).
 
-**Going backwards.** A CRT isomorphism is only useful computationally if you can invert it. The inverse is a sum `r = Σ a_i e_i`, where `e_i` is the element with `e_i ≡ 1 (mod I_i)` and `e_i ≡ 0 (mod I_j)` for `j ≠ i`. These `e_i` are the **orthogonal idempotents** of the splitting: `e_i² = e_i`, `e_i e_j = 0`, `Σ e_i = 1`. They are the subject of [[idempotent-decomposition](pages/idempotent-decomposition.md)].
+**Going backwards.** The inverse of the CRT map is a sum `r = Σ a_i e_i`, where `e_i` is the element with `e_i ≡ 1 (mod I_i)` and `e_i ≡ 0 (mod I_j)` for `j ≠ i`. These `e_i` are the **orthogonal idempotents** of the splitting: `e_i² = e_i`, `e_i e_j = 0`, `Σ e_i = 1`. They are the subject of [[idempotent-decomposition](pages/idempotent-decomposition.md)].
 
-**Over `Q`, and over `Z[1/2]`.** CRT works before reducing mod `p` too. For even `k`, `char_k = f·g` with `f, g` the two parity-sector factors, both irreducible over `Q` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]). Then `Q[x]/(char_k) ≅ Q[x]/(f) × Q[x]/(g)`, a product of two number fields, and each projection is a surjection `Q[x]/(char_k) → Q[x]/(f)` whose kernel is maximal because `f` is irreducible.[^3] Over the integers the split is obstructed only where `f` and `g` can share a root, measured by the resultant `Res(f, g)`: it equals `2^{k(k+2)/4}` for every even `k ≤ 30`, so the sector split holds over `Z[1/2]` and survives reduction mod every odd prime (unproved in general).[^4] Concretely, the idempotent that performs the split has coefficients with pure powers of 2 in the denominators: `(x² − x + 2)/4` at `k = 2`, and `2^{v_2(k!) + 1}` in general (every even `k ≤ 40`). Over `Z` itself there is no such idempotent, because the two sectors meet at `(2, x)` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §5).
+**Over `Q`, and over `Z[1/2]`.** CRT works before reducing mod `p` too. For even `k`, `char_k = f·g` with `f, g` the two parity-sector factors, both irreducible over `Q` in every case checked ([[tower-parity-sectors](pages/tower-parity-sectors.md)]). Then `Q[x]/(char_k) ≅ Q[x]/(f) × Q[x]/(g)`, a product of two number fields, and each projection is a surjection `Q[x]/(char_k) → Q[x]/(f)` whose kernel is maximal because `f` is irreducible.[^3] Over the integers the split is obstructed only where `f` and `g` can share a root, measured by the resultant `Res(f, g)`: it equals `2^{k(k+2)/4}` for every even `k ≤ 30`, so the sector split holds over `Z[1/2]` and survives reduction mod every odd prime (unproved in general).[^4] Concretely, the idempotent that performs the split has coefficients with pure powers of 2 in the denominators: `(x² − x + 2)/4` at `k = 2`, and `2^{v_2(k!) + 1}` in general (every even `k ≤ 40`). Over `Z` itself there is no such idempotent, because the two sectors meet at `(2, x)` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §5).
 
 ## In the castle work
 
-`R = F_p[x]/(char_k mod p)` is the ring in which the signed tower count `P(k, ·)` runs mod `p` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)] §3). Everything the wiki does with it goes through CRT:
+`R = F_p[x]/(char_k mod p)` is the ring in which the signed tower count `P(k, ·)` runs mod `p` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)] §3). CRT enters in four places:
 
 - **Periods.** The mod-`p` period of `P(k, ·)` is `ord(x)` in `R^*`, and under CRT that is the `lcm` of the orders of `x`'s images in each factor ([[mod-p-observatory](pages/mod-p-observatory.md)], [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] §1).
 - **Unit groups.** For squarefree `Q`, `R^* ≅ ∏ Z/(p^{d_i} − 1)`. With a repeated factor, the corresponding CRT factor is local and adds a `p`-group, which is the extra `p` in the observatory's periods ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] §4).
