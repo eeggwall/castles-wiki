@@ -152,7 +152,7 @@ Each is a single-castle predicate of the kind Axis 9 on [[castle-classification-
 - [[castle-snippets](pages/castle-snippets.md)] - `castle_graph_radius` is filed there.
 - [[isospectral-castles](pages/isospectral-castles.md)] - the full-spectrum question: smallest non-isomorphic castles with equal adjacency spectrum (10 cells), equal Laplacian spectrum (11), both (16); no two silver castles are isospectral.
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - the 4.87-million-castle census is Knuth's Algorithm M over `{1..h}^w`; [[aocp-permutations](pages/aocp-permutations.md)] - it is the same order as Knuth's `10! ≈ 3.6 × 10^6` "upper ceiling on computable tasks".
-- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
+- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through its sandpile group, clock, identity and avalanches.
 
 
 ## Footnotes

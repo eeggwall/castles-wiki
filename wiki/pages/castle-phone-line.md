@@ -5,7 +5,7 @@ summary: The cameraman image's 512 row castles, each played as a tone whose pitc
 tags: [analysis, castle, steganography, audio, telephone, modem, frequency-shift-keying, error-profile, image, implementation, seminar]
 sources: [project-euler-502-representations]
 created: 2026-09-24
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # What survives a phone line - castles sent as pitch-stepping tones
@@ -65,7 +65,7 @@ Column meanings: **block count error** is the average relative change in the cas
 Four readings:
 
 - **The odd/even block count is the most fragile statistic.** It sits at a coin flip (about 50%) until the line is nearly perfect, and even when 99.9% of heights arrive exact it is right only 83-86% of the time. The block count is `c_1 + sum of every upward step`, so its odd/even value depends on every column's error at once; a single stray off-by-one anywhere in the row can flip it. This is the one-bit statistic [[castle-entropy](pages/castle-entropy.md)] prices the even-block rule at, and the one the block-parity scheme of [[castle-steganography](pages/castle-steganography.md)] writes its message into. JPEG destroys it too.
-- **The histogram and the slow trends survive everything.** Both average over the whole row, so single-column errors wash out: under 5% histogram drift and under 1.5% slow-trend error even at 1000 columns per second with the loudest hiss. They carry only a few numbers per castle.
+- **The histogram and the slow trends survive everything.** Both average over the whole row, so single-column errors average out: under 5% histogram drift and under 1.5% slow-trend error even at 1000 columns per second with the strongest hiss (20 dB). They carry only a few numbers per castle.
 - **The lowest bit of each height is in between**, and its failure has a single shape: the line's errors are almost all off-by-one. At 250 columns per second and 30 dB hiss, 4.6% of columns are off by one and only 0.18% by two or more. An off-by-one error flips the lowest bit every time, so the lowest-bit error rate tracks the off-by-one rate.
 - **At the fastest rate, the big errors sit at cliffs.** At 1000 columns per second with no hiss, 69% of the errors of two or more fall on columns next to a height jump of 16 or more, though such columns are only 20% of all columns: the band cutoff smears a sudden pitch jump across the neighbouring column's time slot. The effect fades as columns get longer (17% at 500 columns per second, 8% at 250, both with 30 dB hiss).
 
@@ -112,12 +112,12 @@ At 250 columns per second with 30 dB hiss, one row castle is 2 seconds of audio 
 | 16-bin height histogram | a few numbers per castle | yes, everywhere tested |
 | 8 slowest up-and-down waves | a few numbers per castle | yes, everywhere tested |
 
-The statistics that carry the most information do not survive best, and the odd/even block count, one bit per castle, survives worst.
+The exact heights survive only on a slow, quiet line, the averaged statistics (histogram and slow trends) survive everywhere tested, and the odd/even block count, one bit per castle, survives worst.
 
 ## Open questions
 
 - **A real line's delay.** The band cutoff here was applied without delaying the signal. A real line delays it by a few samples, which shifts where each column's time slot starts; does the receiver need to find the column boundaries itself?
-- **An eavesdropper who listens.** [[castle-steganography](pages/castle-steganography.md)] asks whether a warden counting blocks can detect the hidden message. Here the warden hears the tone: does moving columns to multiples of 3 leave an audible or measurable trace in the tone's pitch statistics?
+- **An eavesdropper who listens.** [[castle-steganography](pages/castle-steganography.md)] asks whether a warden counting blocks can detect the hidden message. Here the warden has the audio itself, and it is open whether moving columns to multiples of 3 leaves an audible or measurable trace in the tone's pitch statistics.
 - **The speed limit.** At fixed hiss, what is the largest number of columns per second at which some spacing plus copies still delivers the message exactly, and how close is that to the phone line's theoretical capacity?
 
 ## Related Concepts
@@ -129,7 +129,7 @@ The statistics that carry the most information do not survive best, and the odd/
 - [[castle-entropy](pages/castle-entropy.md)] - the even-block rule is worth one bit; this page shows that bit does not survive a phone line.
 - [[castle-compression](pages/castle-compression.md)] - lossless and lossy recoding, the other damage models the hiding schemes were tested against.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the skyline's Fourier modes, whose slowest members survive the line.
-- [[one-bit-seminar](pages/one-bit-seminar.md)] - Stop 4 of the one-bit seminar: why the parity is the first statistic to go.
+- [[one-bit-seminar](pages/one-bit-seminar.md)] - Stop 4 of the one-bit seminar, the parity as the most fragile statistic.
 
 
 ## Appearances in Sources

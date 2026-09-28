@@ -243,7 +243,7 @@ Under the tide the `12 × 12` rectangle and the battlement of height-12 spikes b
 - [[sandpile-census](pages/sandpile-census.md)] - the sandpile groups of every castle to 16 cells.
 - [[castle-graph](pages/castle-graph.md)] - tree castles and battlements, and the `2 × 2` blocks that tie columns together.
 - [[levy-flights](pages/levy-flights.md)] - the inverse reduced Laplacian as a grounded effective-resistance matrix, and another power-law tail on castles.
-- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
+- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through its sandpile group, clock, identity and avalanches.
 
 ## Appearances in Sources
 

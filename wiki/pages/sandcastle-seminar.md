@@ -1,18 +1,18 @@
 ---
 title: Sandcastles seminar - one silver castle, grain by grain, in the sink and tide models
 category: Concepts
-summary: A seminar following one castle, the 16-cell silver castle (3,2,1,2,2,1,2,3), through the whole sandpile story in two models that differ only in where the sand leaves - the sink model (one sink cell, the bottom-left cell) and the tide model (the whole bottom row, the ground). One grain on its left tower sets off a 16-toppling wave across the castle in the sink model, losing 2 grains to the sink, but only 4 topplings under the tide, where the ground swallows sand everywhere. Its recurrent piles form Z/4 × Z/4 × Z/4 (64 piles) in the sink model and Z/3 × Z/3 × Z/3 (27 piles) under the tide, read straight off its three separate 2×2 blocks: the block matrix is 4I in the sink model and 3I under the tide, because every block sits on the ground. The sink group depends only on how the blocks touch, which is why on every castle up to 16 cells it hears nothing the spectrum misses; the tide group also sees how high the blocks stand, so it tells the silver rectangle lying down (Z/8) from standing up (Z/11). Its clock ticks 4 in the sink model, with a clock spectrum of periods 1, 2, 4 occurring 16, 48, 176 times over every sink and grain cell, and 3 under the tide, on every one of its 8 raised cells. Its identity has empty tower tops in both models. Under the tide it barely avalanches (mean 1.667 topplings, never more than 4); in the sink model the mean is 32.1 and avalanches reach 149. One runnable block pins every value in both models.
+summary: A seminar following one castle, the 16-cell silver castle (3,2,1,2,2,1,2,3), through its sandpile group, clock, identity and avalanches in two models that differ only in where the sand leaves - the sink model (one sink cell, the bottom-left cell) and the tide model (the whole bottom row, the ground). One grain on its left tower sets off a 16-toppling wave across the castle in the sink model, losing 2 grains to the sink, but only 4 topplings under the tide, where the ground swallows sand everywhere. Its recurrent piles form Z/4 × Z/4 × Z/4 (64 piles) in the sink model and Z/3 × Z/3 × Z/3 (27 piles) under the tide, read straight off its three separate 2×2 blocks: the block matrix is 4I in the sink model and 3I under the tide, because every block sits on the ground. The sink group depends only on how the blocks touch, which is why it separates no cospectral pair among castles up to 16 cells; the tide group also sees how high the blocks stand, so it tells the silver rectangle lying down (Z/8) from standing up (Z/11). Its clock ticks 4 in the sink model, with a clock spectrum of periods 1, 2, 4 occurring 16, 48, 176 times over every sink and grain cell, and 3 under the tide, on every one of its 8 raised cells. Its identity has empty tower tops in both models. Under the tide it barely avalanches (mean 1.667 topplings, never more than 4); in the sink model the mean is 32.1 and avalanches reach 149. One runnable block pins every value in both models.
 tags: [concept, castle, seminar, pedagogy, teaching, sandpile, silver-ratio, critical-group, identity-element, clock, avalanche, sink-model, tide-model, isospectral]
 sources: [project-euler-502-castle-factoring, rossin-2000-group-of-a-sandpile, dhar-ruelle-sen-verma-1995-algebraic-aspects, dhar-1990-self-organized-critical-sandpile, bak-tang-wiesenfeld-1988-self-organized-criticality]
 created: 2026-09-26
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Sandcastles seminar - one silver castle, grain by grain, in the sink and tide models
 
-**Thesis.** Adding sand to a castle one grain at a time gives a finite group, a clock, an identity pile, and avalanches. All of it is controlled by the castle's `2 × 2` blocks and by where the sand leaves. There are two natural places for it to leave, one sink cell or the whole ground, and they give two different theories of the same castle. This seminar follows a single castle through the whole story in both, side by side.
+**Thesis.** Adding sand to a castle one grain at a time gives a finite group, a clock, an identity pile, and avalanches. All of it is controlled by the castle's `2 × 2` blocks and by where the sand leaves. There are two natural places for it to leave, one sink cell or the whole ground, and they give two different theories of the same castle. This seminar follows a single castle through the group, the clock, the identity and the avalanches in both models, side by side.
 
-**Format.** About 60 minutes, seven stops. Every value quoted is pinned by the Snippet block at the end. The research pages behind the stops are [[sandpile-group](pages/sandpile-group.md)], [[sandpile-census](pages/sandpile-census.md)], [[sandcastle-clock](pages/sandcastle-clock.md)], [[sandpile-identity](pages/sandpile-identity.md)] and [[castle-avalanches](pages/castle-avalanches.md)], each of which treats both models.
+**Structure.** Seven stops (0 to 6). Every value quoted is pinned by the Snippet block at the end. The research pages behind the stops are [[sandpile-group](pages/sandpile-group.md)], [[sandpile-census](pages/sandpile-census.md)], [[sandcastle-clock](pages/sandcastle-clock.md)], [[sandpile-identity](pages/sandpile-identity.md)] and [[castle-avalanches](pages/castle-avalanches.md)], each of which treats both models.
 
 ## Stop 0 - the castle, and the two models
 
@@ -30,7 +30,7 @@ The two models ([[sandpile-group](pages/sandpile-group.md)], Part 1):
 |---|---|---|
 | where sand leaves | one sink cell, the bottom-left cell, drawn `S` | the whole bottom row, the ground, drawn `~` |
 | what the castle becomes | the castle graph | the castle with its bottom row merged into one vertex |
-| what this castle looks like to the sand | one connected castle | three separate runs of raised columns, `(3, 2)`, `(2, 2)` and `(2, 3)`, each standing on the ground |
+| what remains once the sink is removed | one connected castle | three separate runs of raised columns, `(3, 2)`, `(2, 2)` and `(2, 3)`, each standing on the ground |
 
 *Idea:* where the sand leaves determines the graph, and so every invariant below.
 
@@ -97,15 +97,15 @@ sink model                          tide model
 
 Each separate block holds its own `Z/4` of sand in the sink model and its own `Z/3` under the tide. Compare the silver rectangle `(2, 2, 2)`, whose two blocks touch: its block matrix gives one bigger cyclic group, `Z/15` in the sink model (`[[4, −1], [−1, 4]]`) and `Z/8` under the tide (`[[3, −1], [−1, 3]]`).[^2]
 
-*Idea:* the sand lives in the 2×2 blocks. Separate blocks multiply, and touching blocks merge into a bigger group. A path of touching blocks always gives one cyclic factor, in both models; denser clusters can split, and the models disagree on which: the `2 × 2` square of blocks `(3, 3, 3)` is `Z/8 × Z/24` in the sink model but `Z/95` under the tide ([[sandpile-census](pages/sandpile-census.md)]).
+*Idea:* the group is read off the 2×2 blocks. Separate blocks give a direct product, and touching blocks merge into a bigger group. A path of touching blocks always gives one cyclic factor, in both models; denser clusters can split, and the models disagree on which: the `2 × 2` square of blocks `(3, 3, 3)` is `Z/8 × Z/24` in the sink model but `Z/95` under the tide ([[sandpile-census](pages/sandpile-census.md)]).
 
-## Stop 3 - what each group can and cannot hear
+## Stop 3 - what each group separates
 
 **Sink model.** The block matrix depends only on how the blocks touch each other. So **any** castle with three separate blocks has the same sink group. `(2, 2, 1, 2, 2, 1, 2, 2)` has no towers and a different spectrum, yet its sink group is also `Z/4 × Z/4 × Z/4`. That is also why the sink group separates no cospectral pair: across every castle up to 16 cells, castles with the same spectrum always have the same block arrangement, so they always have the same sink group ([[sandpile-census](pages/sandpile-census.md)]).
 
-**Tide model.** The tide block matrix also records which blocks touch the ground, so the tide group hears something the sink group cannot: how the blocks stand. `(2, 2, 1, 2, 2, 1, 2, 2)` still matches this castle (three separate ground blocks, `Z/3 × Z/3 × Z/3`), but the silver rectangle `(2, 2, 2)` and the tall pair `(3, 3)`, the same graph lying down and standing up, have the same sink group `Z/15` and different tide groups, `Z/8` and `Z/11`. What the tide cannot hear is where the runs of raised columns sit along the ground: sliding a run, or swapping two runs, changes nothing.[^2]
+**Tide model.** The tide block matrix also records which blocks touch the ground, so the tide group records something the sink group does not: how the blocks stand. `(2, 2, 1, 2, 2, 1, 2, 2)` still matches this castle (three separate ground blocks, `Z/3 × Z/3 × Z/3`), but the silver rectangle `(2, 2, 2)` and the tall pair `(3, 3)`, the same graph lying down and standing up, have the same sink group `Z/15` and different tide groups, `Z/8` and `Z/11`. The tide group does not record where the runs of raised columns sit along the ground: sliding a run, or swapping two runs, changes nothing.[^2]
 
-*Idea:* a graph invariant cannot tell a shape from its rotation; the ground can.
+*Idea:* the sink group is a graph invariant, so it cannot separate a castle from a rotated castle with the same graph; the tide group depends on the ground and can.
 
 ## Stop 4 - the clock
 
@@ -115,7 +115,7 @@ Start at the **identity** pile (Stop 5) and drop one grain on the left tower's t
 |---|---|---|
 | clock period | **4**, the largest order in `Z/4 × Z/4 × Z/4` | **3**, the largest order in `Z/3 × Z/3 × Z/3` |
 | clock spectrum | over every sink cell and grain cell (240 pairs): periods `1, 2, 4` occur `16, 48, 176` times | over every cell above the ground (8 cells): period `3` every time |
-| what it depends on | the castle's graph (the spectrum); the fixed-sink period depends on where the sink is | the castle's shape; there is no sink to choose |
+| what it depends on | the clock spectrum depends only on the castle's graph; the fixed-sink period depends on where the sink is | the castle's shape; there is no sink to choose |
 
 In the sink model the clock spectrum is a graph invariant, and unlike the group it separates many cospectral castles (62 of the 105 adjacency-cospectral groups to 16 cells). Under the tide every raised cell of this castle ticks 3: each separate block is a `Z/3`, and a grain anywhere on a tower is the same as a grain on the block below it.[^3]
 
@@ -132,33 +132,33 @@ sink model (sink S)              tide model (ground ~)
 S2122121                         ~~~~~~~~
 ```
 
-Both have empty tower tops. A grain on a tower top can always topple down into the block below, so in the group it is the same as a grain on that block. The towers carry no sand in either identity. Under the tide the identity is almost trivially regular, and in the sink model it is irregular. One grain dropped on the apex of either identity topples once and settles.[^4]
+Both have empty tower tops. A grain on a tower top can always topple down into the block below, so in the group it is the same as a grain on that block. Under the tide the identity is one grain on every middle-row cell; in the sink model it varies from cell to cell. One grain dropped on the apex of either identity topples once and settles.[^4]
 
 ## Stop 6 - avalanches, and where the sand leaves
 
-Now drop grains at **random** cells, starting from the identity. By Dhar's theorem the average avalanche size is exact: the average row sum of the inverse reduced Laplacian, that is, the total of its entries divided by the number of cells ([[castle-avalanches](pages/castle-avalanches.md)]).
+Now drop grains at **random** cells, starting from the identity. By Dhar's theorem the average avalanche size has an exact formula: the average row sum of the inverse reduced Laplacian, that is, the total of its entries divided by the number of cells that hold sand ([[castle-avalanches](pages/castle-avalanches.md)]).
 
 | model | mean topplings per grain (exact) | simulated mean (20,000 drops) | largest avalanche |
 |---|---|---|---|
 | tide (the ground) | 1.667 | 1.66 | 4 |
 | sink (bottom-left cell) | 32.133 | 32.06 | 149 |
 
-The castle is only 3 high, so under the tide sand reaches the ground almost at once, and nothing ever avalanches far. In the sink model every grain must cross the castle to escape, as in Stop 1, and the mean rises twentyfold. The tide mean, 1.667, is just below this castle's column-by-column prediction of 1.75. The prediction is exact only when every run of adjacent columns rising above the base has constant height, and here the outer runs `(3, 2)` and `(2, 3)` do not. On [[castle-avalanches](pages/castle-avalanches.md)] the tide mean never exceeds the prediction on any castle up to 12 cells; for larger castles, this one included, the inequality is conjectured. No such prediction is known in the sink model, where the mean depends on width as well as height and the `2 × 2` blocks lower it by giving sand more routes to the sink.[^5]
+The castle is only 3 high, so under the tide sand reaches the ground almost at once, and nothing ever avalanches far. In the sink model every grain must cross the castle to escape, as in Stop 1, and the mean rises about nineteenfold. The tide mean, 1.667, is just below this castle's column-by-column prediction of 1.75. Up to 12 cells the prediction is exact precisely when every run of adjacent columns rising above the base has constant height, and here the outer runs `(3, 2)` and `(2, 3)` do not. On [[castle-avalanches](pages/castle-avalanches.md)] the tide mean is at most the prediction on every castle up to 12 cells, as it is here; the general inequality is conjectured. No such prediction is known in the sink model, where the mean depends on width as well as height and the `2 × 2` blocks lower it by giving sand more routes to the sink.[^5]
 
-*Idea:* the mean avalanche differs by a factor of about 19 between the two models.
+*Idea:* a single exit cell makes every grain cross the castle, and the mean avalanche grows by a factor of about 19.
 
-## The board
+## Summary table
 
 | stop | measurement | sink model | tide model |
 |---|---|---|---|
 | 1 | one grain on the full pile | 16 topplings, 2 grains lost | 4 topplings, 2 grains lost |
 | 2 | recurrent piles, group | 64, `Z/4 × Z/4 × Z/4` from `4I` | 27, `Z/3 × Z/3 × Z/3` from `3I` |
-| 3 | what the group hears | how the blocks touch | how the blocks touch and how they stand on the ground |
+| 3 | what the group records | how the blocks touch | how the blocks touch and how they stand on the ground |
 | 4 | clock, clock spectrum | 4; periods `1, 2, 4` × `16, 48, 176` | 3; period `3` on all 8 raised cells |
-| 5 | identity | tower tops empty, irregular | tower tops empty, regular |
+| 5 | identity | tower tops empty, uneven | tower tops empty, one grain on every middle-row cell |
 | 6 | mean avalanche, largest | 32.133, 149 | 1.667, 4 |
 
-The silver rectangle `(2, 2, 2)` shares this castle's spectral radius but not its sand. Its two blocks touch and give `Z/15` (sink) and `Z/8` (tide), its clocks tick 15 and 8, and it has no towers. Same spectral radius, different sandpile invariants in both models.
+The silver rectangle `(2, 2, 2)` has the same spectral radius as this castle and different sandpile invariants in both models: its two blocks touch and give `Z/15` (sink) and `Z/8` (tide), its clocks tick 15 and 8, and it has no towers.
 
 ## Snippet
 
@@ -278,14 +278,14 @@ def random_drops(b, drops, seed=2):        # from the identity; returns the topp
 (1.66, 4, 32.06, 149)
 ```
 
-## Exercises for the room
+## Exercises
 
 1. In the sink-model Stop 1 trace, the wave reaches the middle block only through `(2,0)`. Why is that cell the only link, and why does no such link exist under the tide?
 2. Write down the block matrix of `(3, 3, 3)`, a `2 × 2` square of blocks, in both models, and check that the groups are `Z/8 × Z/24` (sink) and `Z/95` (tide).
 3. Explain why every tower top holds 0 grains in every recurrent pile, in both models.
 4. Find a castle whose tide mean equals its column prediction and one where it falls short. Which runs of columns decide it?
 5. Why does every raised cell of this castle tick 3 under the tide? Find a castle where two raised cells tick at different periods under the tide.
-6. (Open.) Is the sink avalanche profile of [[sandpile-identity](pages/sandpile-identity.md)] a complete fingerprint of castle graphs?
+6. (Open.) Is the sink avalanche profile of [[sandpile-identity](pages/sandpile-identity.md)] a complete invariant of castle graphs?
 
 ## What is still open
 

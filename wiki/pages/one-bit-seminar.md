@@ -5,20 +5,20 @@ summary: A seminar on Project Euler 502's even-block clause read as information,
 tags: [concept, castle, seminar, pedagogy, teaching, entropy, information, parity, castle-sign, steganography, compression, topological-entropy]
 sources: [project-euler-502-observations, project-euler-502-castle-factoring]
 created: 2026-09-26
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # One bit seminar - the parity clause as information
 
 **Thesis.** Project Euler 502 counts castles with an even number of blocks. That clause is worth **exactly one bit**. In aggregate it halves the count up to an exponentially small correction. For a single castle it is a sign that one well-chosen cell can flip, which makes it easy to write a message into and easy to destroy. In the growth rate (the entropy per column) the bit disappears.
 
-**Format.** About 60 minutes at one blackboard, seven stops. Every value quoted is pinned by the Snippet block at the end. The research pages behind it are [[castle-entropy](pages/castle-entropy.md)], [[castle-sign](pages/castle-sign.md)], [[castle-compression](pages/castle-compression.md)], [[castle-steganography](pages/castle-steganography.md)] and [[castle-phone-line](pages/castle-phone-line.md)]. Notation follows [[castle-notation](pages/castle-notation.md)].
+**Structure.** Seven stops (0 to 6). Every value quoted is pinned by the Snippet block at the end. The research pages behind it are [[castle-entropy](pages/castle-entropy.md)], [[castle-sign](pages/castle-sign.md)], [[castle-compression](pages/castle-compression.md)], [[castle-steganography](pages/castle-steganography.md)] and [[castle-phone-line](pages/castle-phone-line.md)]. Notation follows [[castle-notation](pages/castle-notation.md)].
 
 ## Stop 0 - the clause
 
 A castle of width `w` and height `h` is a skyline of column heights `1..h` with some column exactly `h`. Its blocks are the runs of cells row by row, and each rise in the skyline starts new ones. There are `A(w, h) = h^w − (h−1)^w` castles in all, and Project Euler asks only for the ones with an even number of blocks, `F(w, h)`.
 
-How much does "even" cost? If all `A` castles are equally likely, naming one takes `log₂ A` bits. Naming one of the even ones takes `log₂ F` bits. The difference is the price of the clause.
+If all `A` castles are equally likely, naming one takes `log₂ A` bits and naming one of the even ones takes `log₂ F` bits. The difference `log₂ A − log₂ F` is the price of the clause.
 
 ## Stop 1 - exactly one bit
 
@@ -30,7 +30,7 @@ How much does "even" cost? If all `A` castles are equally likely, naming one tak
 40   3   6078831630016984399     62.398     62.399
 ```
 
-The last column is the usual approximation, "each column is `log₂ h` bits, minus one bit for the parity". It gets closer as `w` grows. There are two separate corrections in it, and they should not be confused:
+The last column is the usual approximation, "each column is `log₂ h` bits, minus one bit for the parity". It gets closer as `w` grows. It carries two separate corrections:
 
 - **the parity**, which costs `log₂ A − log₂ F = 1 − log₂(1 + S/A)` bits, exactly one bit in the limit;
 - **"height exactly `h`"**, which makes `log₂ A = w·log₂ h + log₂(1 − ((h−1)/h)^w)`. This is noticeable when `h` is large compared with `w`. At `w = 13, h = 10`, `log₂ F = 41.762` equals `log₂ A − 1` to three decimals but sits 0.42 bits below `w·log₂ h − 1`, and all of that gap is the exact-height term.[^1]
@@ -51,7 +51,7 @@ S/A  =  −5.9·10⁻²  (w = 8, h = 2),    −7.8·10⁻³  (w = 12, h = 3),   
 
 The reason is that `S = P(h−2, w) − P(h−1, w)` is built from signed tower counts, which grow like `ρ^w` with `ρ` well below `h` ([[castle-counting-formula](pages/castle-counting-formula.md)], [[generating-function-gallery](pages/generating-function-gallery.md)]). So `F/A → 1/2`, and "even" is worth one bit.
 
-*Idea:* a parity condition costs one bit whenever the signed sum is negligible next to the total, and a projector turns the parity into arithmetic.
+*Idea:* a parity condition costs one bit whenever the signed sum is negligible next to the total, and the projector `(1 ± sign)/2` reduces the parity count to one signed sum.
 
 ## Stop 3 - one castle, one cell
 
@@ -69,7 +69,7 @@ because the rise into column `i` grows exactly when column `i` was at least as t
 
 Lowering is the same move in reverse. So almost every castle is **one chosen cell** away from the other parity ([[castle-steganography](pages/castle-steganography.md)] uses the raise-a-maximum and lower-a-minimum cases).
 
-**Almost, not all.** A move must keep the castle a castle: heights stay in `1..h`, and some column stays at `h`. That rule blocks a few castles completely. At `w = 4, h = 2`, the castle `(1, 2, 2, 1)` has no parity-flipping one-cell edit. Its only flipping move would raise the plateau top above the height cap, and every other move is a slope or plateau-edge move with `Δ = 0`.[^4]
+**Exceptions.** A move must keep the castle a castle: heights stay in `1..h`, and some column stays at `h`. That rule blocks a few castles completely. At `w = 4, h = 2`, the castle `(1, 2, 2, 1)` has no parity-flipping one-cell edit. Its only flipping move would raise the plateau top above the height cap, and every other move is a slope or plateau-edge move with `Δ = 0`.[^4]
 
 | `w`, `h` | castles | castles with no flipping one-cell edit | random one-cell edit flips parity |
 |---|---|---|---|
@@ -82,15 +82,15 @@ Lowering is the same move in reverse. So almost every castle is **one chosen cel
 
 ## Stop 4 - the bit is easy to lose
 
-The last column of the table says a **random** one-cell nudge flips the parity about half the time. So under noise the parity is the first thing to go. [[castle-phone-line](pages/castle-phone-line.md)] plays castles as tones through a simulated telephone line. The block parity sits at a coin flip until the line is almost perfect: 83% correct even when 99.9% of heights arrive exact. Meanwhile the height histogram and the slow trend of the skyline survive every setting. [[song-as-castle](pages/song-as-castle.md)] measured a 44% flip rate for random single-column edits, in the same range.
+The last column of the table says a **random** one-cell nudge flips the parity about half the time. Under noise the parity is the most fragile statistic measured. [[castle-phone-line](pages/castle-phone-line.md)] plays castles as tones through a simulated telephone line. The block parity sits at a coin flip until the line is almost perfect: 83% correct even when 99.9% of heights arrive exact. Meanwhile the height histogram and the slow trend of the skyline survive every setting. [[song-as-castle](pages/song-as-castle.md)] measured a 43% flip rate when one random column of a `(17, 16)` castle gets a different random height, in the same range.
 
-*Idea:* a single bit that every column's error can flip is the least robust statistic measured here.
+*Idea:* a single bit that every column's error can flip is the least robust statistic on the phone line.
 
 ## Stop 5 - the bit is easy to write
 
-The same fact makes the bit a channel. Hide a message one bit per castle by setting each castle's parity, fixing it with one chosen cell when needed. [[castle-steganography](pages/castle-steganography.md)] (channel B) did this on the 512 row castles of the cameraman image. 336 bits went into 336 rows, 161 rows needed a one-cell change and 175 already had the right parity. The change is invisible in the parity statistics, since untouched rows split 249 odd to 263 even, a coin flip. The message survives a lossless PNG round trip exactly and is destroyed by JPEG (175 of 336 bits, chance level): Stop 4 again.
+The same fact makes the bit a channel. Hide a message one bit per castle by setting each castle's parity, fixing it with one chosen cell when needed. [[castle-steganography](pages/castle-steganography.md)] (channel B) did this on the 512 row castles of the cameraman image. 336 bits went into 336 rows, 161 rows needed a one-cell change and 175 already had the right parity. The change is invisible in the parity statistics, since untouched rows split 249 odd to 263 even, a coin flip. The message survives a lossless PNG round trip exactly and is destroyed by JPEG (175 of 336 bits, chance level), the fragility of Stop 4.
 
-*Idea:* a statistic that is cheap to change is a good place to hide a bit, and for the same reason a bad place to store one.
+*Idea:* the one-cell flip that writes a channel B bit is the same move line noise makes, so the channel survives lossless storage only.
 
 ## Stop 6 - in the growth rate, the bit disappears
 
@@ -103,17 +103,17 @@ Divide by `w`. The entropy per column of a castle family is `log₂ ρ`, where `
 | silver rule | `1 + √2 = 2.414` | 1.272 |
 | plastic rule | `ψ = 1.325` | 0.406 |
 
-Conditioning refines the picture. Knowing a castle's block count `B` already tells you its parity, so the parity bit is redundant with `B`, but not with its area `N` ([[castle-conditional-entropy](pages/castle-conditional-entropy.md)]).
+Knowing a castle's block count `B` already tells you its parity, so the parity bit is redundant with `B`, but not with its area `N` ([[castle-conditional-entropy](pages/castle-conditional-entropy.md)]).
 
-*Idea:* a boundary constraint is visible in finite counts and invisible in rates.
+*Idea:* a constraint that costs a bounded number of bits in total changes the finite counts and leaves every entropy rate unchanged.
 
-## The board
+## Summary table
 
 | reading | what the parity clause is | number |
 |---|---|---|
 | aggregate count | a projector `(A ± S)/2` | costs `1 − log₂(1 + S/A)` bits, exactly 1 in the limit |
 | one castle | a sign, flipped by one chosen cell at a weak max or strict min | all but a few castles are one cell from the other parity |
-| noise | the most fragile statistic | a random one-cell edit flips it ~50% of the time |
+| noise | the most fragile statistic on the phone line | a random one-cell edit flips it ~50% of the time |
 | channel | one hidden bit per castle | 161 one-cell changes for 336 bits |
 | growth rate | a boundary term | contributes `1/w → 0` bits per column |
 
@@ -178,12 +178,12 @@ def flip_stats(w, h):                      # castles with no parity-flipping edi
 True
 ```
 
-## Exercises for the room
+## Exercises
 
 1. Check the formula for `Δ` on `(1, 3, 2)` by raising each column in turn.
 2. Show that `(1, 2, 2, 1)` at `h = 2` has no flipping edit by listing its legal one-cell edits and their block counts.
 3. At `w = 13, h = 10`, split the 0.42-bit gap into the parity part and the exact-height part using `log₂(1 − 0.9^13)`.
-4. (Open.) Describe exactly which castles have no flipping one-cell edit. In the examples found, plateaus are pinned by the height cap (`(1, 2, 2, 1)`, `(1, 2, 3, 3, 2, 1)`) or by the cap and the floor together (`(3, 3, 1, 1, 3, 3)`). Is that always the mechanism?
+4. (Open.) Describe exactly which castles have no flipping one-cell edit. In the examples found, plateaus are pinned by the height cap (`(1, 2, 2, 1)`, `(1, 2, 3, 3, 2, 1)`) or by the cap and the floor together (`(3, 3, 1, 1, 3, 3)`). Decide whether that is always the mechanism.
 5. (Open.) Find a parity-reversing involution on castles of width `w`, height `h`, pairing even with odd castles except for about `|S|` of them. That would be the object-by-object version of "exactly one bit".
 
 ## What is still open
@@ -198,13 +198,13 @@ True
 
 ## Related Concepts
 
-- [[castle-entropy](pages/castle-entropy.md)] - uniform entropy and entropy rate; this page is its classroom version.
+- [[castle-entropy](pages/castle-entropy.md)] - uniform entropy and entropy rate; this page is its seminar version.
 - [[castle-sign](pages/castle-sign.md)] - the sign, the projector, and the permutation analogy.
 - [[castle-steganography](pages/castle-steganography.md)] / [[castle-phone-line](pages/castle-phone-line.md)] - the bit written and the bit lost.
 - [[castle-compression](pages/castle-compression.md)] / [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - description length and conditioning on block count and area.
 - [[castle-notation](pages/castle-notation.md)] - `A`, `S`, `F` and `P(k, L)`.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the other seminar pages.
-- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
+- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through its sandpile group, clock, identity and avalanches.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series, and audio as castles.
 - [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] - the `m = 2` projector taught here generalized to `m`-th roots of unity.

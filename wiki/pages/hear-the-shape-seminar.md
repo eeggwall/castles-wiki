@@ -1,18 +1,18 @@
 ---
 title: Hear the shape of a castle - seminar
 category: Concepts
-summary: A seminar on Kac's drum question asked of castles, organized as a list of what a spectrum can and cannot hear. A castle becomes a graph (cells, orthogonal neighbors); its adjacency and Laplacian eigenvalues are the "notes". Worked by hand on the golden path, the 4-cycle and the silver 3×2 rectangle, the spectrum hears the area, the number of edges and hence the number of 2×2 blocks, bipartiteness, and (Laplacian) connectivity and the number of spanning trees. It fails first at 10 cells - (1,1,1,2,3,2) and (1,1,2,2,3,1) share every adjacency eigenvalue, trace and spanning-tree count (15) but have different degree sequences, and the Laplacian hears the difference. The Laplacian fails first at 11 cells, on two trees with identical degree sequences, separated only by per-cell closed-walk counts at length 3. Both operators fail together at 16 cells. Schwenk (trees) and Sunada (covers) explain why; a Sunada cover for the 10-cell pair, Ihara zeta and the skyline DFT are open. One runnable block reproduces both smallest pairs by exhaustive search.
+summary: A seminar on Kac's drum question asked of castles, organized as a list of what a spectrum can and cannot hear. A castle becomes a graph (cells, orthogonal neighbors); its adjacency and Laplacian eigenvalues are the "notes". Worked by hand on the golden path, the 4-cycle and the silver 3×2 rectangle, the spectrum hears the area, the number of edges and hence the number of 2×2 blocks, bipartiteness, and (Laplacian) connectivity and the number of spanning trees. It fails first at 10 cells - (1,1,1,2,3,2) and (1,1,2,2,3,1) share every adjacency eigenvalue, trace and spanning-tree count (15) but have different degree sequences, and the Laplacian hears the difference. The Laplacian fails first at 11 cells, on two trees with identical degree sequences, separated only by per-cell closed-walk counts at length 3. Both operators fail together at 16 cells. Schwenk and McKay (trees) and Sunada (covers) are the known mechanisms; a Sunada cover for the 10-cell pair, Ihara zeta and the skyline DFT are open. One runnable block reproduces both smallest pairs by exhaustive search.
 tags: [concept, castle, seminar, pedagogy, teaching, spectral, isospectral, adjacency, laplacian, kac, schwenk, sunada, trace-formula, matrix-tree-theorem, tree-castle, golden-ratio, silver-ratio]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-26
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Hear the shape of a castle - seminar
 
-**Thesis.** In 1966 Mark Kac asked whether you can hear the shape of a drum, that is, whether a membrane's vibration frequencies determine its shape. Ask the same of a castle: turn it into a graph and take its eigenvalues. The answer is a list. The spectrum hears the area, the number of edges, the number of `2 × 2` blocks and (with the Laplacian) the number of spanning trees. It first fails to hear the shape at **10 cells** for the adjacency spectrum, at **11 cells** for the Laplacian, and at **16 cells** for both at once. The seminar builds that list one stop at a time and ends on the two drawings.
+**Thesis.** In 1966 Mark Kac asked whether you can hear the shape of a drum, that is, whether a membrane's vibration frequencies determine its shape. Ask the same of a castle: turn it into a graph and take its eigenvalues. The answer is a list. The spectrum hears the area, the number of edges, the number of `2 × 2` blocks and (with the Laplacian) the number of spanning trees. It first fails to hear the shape at **10 cells** for the adjacency spectrum, at **11 cells** for the Laplacian, and at **16 cells** for both at once. The seminar builds that list one stop at a time.
 
-**Format.** About 60 minutes at one blackboard, seven stops. Every value quoted is pinned by the Snippet block at the end, which also re-runs the exhaustive search for the smallest pairs. The research pages behind it are [[isospectral-castles](pages/isospectral-castles.md)] (the search through 16 cells), [[castle-graph](pages/castle-graph.md)], [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] and the methods hub [[spectral-analysis](pages/spectral-analysis.md)]. [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] is the slower from-scratch version of Stop 1.
+**Structure.** Eight stops (0 to 7). Every value quoted is pinned by the Snippet block at the end, which also re-runs the exhaustive search for the smallest pairs. The research pages behind it are [[isospectral-castles](pages/isospectral-castles.md)] (the search through 16 cells), [[castle-graph](pages/castle-graph.md)], [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] and the methods hub [[spectral-analysis](pages/spectral-analysis.md)]. [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] is the slower from-scratch version of Stop 1.
 
 ## Stop 0 - a castle is a graph
 
@@ -25,7 +25,7 @@ Their eigenvalues are the castle's spectrum. **Hearing the shape** means that tw
 
 *Idea:* Kac's question needs only a matrix attached to a shape, so it can be asked of any combinatorial object.
 
-## Stop 1 - three castles, heard by hand
+## Stop 1 - three spectra by hand
 
 | castle | graph | characteristic polynomial of `A` | spectral radius |
 |---|---|---|---|
@@ -33,7 +33,7 @@ Their eigenvalues are the castle's spectrum. **Hearing the shape** means that tw
 | `(2, 2)` | 4-cycle | `x²(x − 2)(x + 2)` | `2` |
 | `(2, 2, 2)` | `3 × 2` grid | `(x − 1)(x + 1)(x² − 2x − 1)(x² + 2x − 1)` | `1 + √2`, silver |
 
-The golden and silver ratios are the spectral radii of the smallest paths and rectangles ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]). Multiplied out, each polynomial has only even powers of `x` (`x⁴ − 3x² + 1`, `x⁴ − 4x²`, `x⁶ − 7x⁴ + 7x² − 1`), so every eigenvalue `λ` comes with `−λ`; Stop 2 shows this holds for every castle.[^1]
+The golden and silver ratios are the spectral radii of the 4-cell path and the `3 × 2` rectangle ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]). Multiplied out, each polynomial has only even powers of `x` (`x⁴ − 3x² + 1`, `x⁴ − 4x²`, `x⁶ − 7x⁴ + 7x² − 1`), so every eigenvalue `λ` comes with `−λ`; Stop 2 shows this holds for every castle.[^1]
 
 *Idea:* compute small cases completely before asking general questions.
 
@@ -85,26 +85,26 @@ S = (1,1,1,2,1,1,2,1,1)            T = (1,1,3,1,1,1,2,1)
                                    ########
 ```
 
-Same Laplacian spectrum, the same degree sequence, and one spanning tree each. What differs is the branching. `S` has two single-cell spikes on a row of 9, and `T` has a two-cell spike and a single-cell spike on a row of 8. Even the per-cell counts of closed walks of length 2 agree. The first local statistic that separates them is the multiset of per-cell closed-walk counts at length 3, the diagonal of `L³`.[^3] [[levy-flights](pages/levy-flights.md)] finds the same separation in continuous time: local return probabilities at single cells tell the pair apart, although every global heat trace agrees.
+Same Laplacian spectrum, the same degree sequence, and one spanning tree each. What differs is the branching. `S` has two single-cell spikes on a row of 9, and `T` has a two-cell spike and a single-cell spike on a row of 8. Even the per-cell counts of closed walks of length 2 agree. The first local statistic that separates them is the multiset of per-cell closed-walk counts at length 3, the diagonal of `L³`.[^3] [[levy-flights](pages/levy-flights.md)] finds the same separation in continuous time: the local return probabilities of the fractional walk (`0 < α ≤ 1`) at single cells tell the pair apart, although every global heat trace agrees.
 
-*Idea:* global sums (traces) are spectral. Local diagonals are not, and they hear what the spectrum misses.
+*Idea:* traces are spectral and local diagonals are not; the diagonals separate what the spectrum misses.
 
 ## Stop 5 - both at once: 16 cells
 
 The first castles that share **both** the adjacency and the Laplacian spectrum have 16 cells, again a pair of trees, for example `(1,1,1,1,2,1,1,3,1,2,1,1)` and `(1,1,1,1,3,1,2,1,1,2,1,1)`. From 12 cells on, cospectral pairs are common: 50 adjacency groups at 16 cells alone ([[isospectral-castles](pages/isospectral-castles.md)], Results).
 
-So the spectrum is a castle **invariant**, not a **classifier**. In the wiki's classification it is the Axis 9 data, which sorts castles but does not name them ([[castle-classification-spectrum](pages/castle-classification-spectrum.md)]).
+So the spectrum is an invariant that does not determine the castle; in the wiki's classification it is the Axis 9 data ([[castle-classification-spectrum](pages/castle-classification-spectrum.md)]).
 
 ## Stop 6 - why pairs exist
 
-Two classical reasons cover every pair above ([[isospectral-castles](pages/isospectral-castles.md)], "Why cospectral pairs exist"):
+Two classical mechanisms produce cospectral pairs ([[isospectral-castles](pages/isospectral-castles.md)], "Why cospectral pairs exist"):
 
-- **Schwenk (1973): almost every tree has a cospectral mate.** The fraction of trees on `n` vertices with a non-isomorphic cospectral partner tends to 1. So the 11-cell Laplacian pair being two trees is the generic case.
+- **Schwenk (1973): almost every tree has an adjacency-cospectral mate.** The fraction of trees on `n` vertices with a non-isomorphic cospectral partner tends to 1, and McKay (1977) showed the mates can also have cospectral line graphs, which for a tree means the same Laplacian spectrum. So the 11-cell Laplacian pair being two trees is the generic case.
 - **Sunada (1985): covers and almost-conjugate subgroups.** Two quotients of one space by "almost conjugate" subgroups have the same spectrum. Gordon, Webb and Wolpert used this in 1992 to answer Kac with two planar drums. A Sunada-style explanation of the 10-cell pair would be a small graph covering both `A` and `B` with matching walk counts. None is known.
 
-*Idea:* an isospectral pair is a coincidence until a construction explains it. Schwenk explains the trees, and Sunada is the candidate for the pairs with cycles.
+*Idea:* the tree pairs are instances of the Schwenk-McKay construction; for the pairs with cycles Sunada's construction is the candidate, and no cover is known.
 
-## Stop 7 - hearing more
+## Stop 7 - separating more
 
 Ways to separate what the eigenvalues cannot:
 
@@ -112,11 +112,11 @@ Ways to separate what the eigenvalues cannot:
 - **The Ihara zeta function**, which counts non-backtracking closed walks, a finer invariant than the spectrum for graphs with cycles ([[spectral-analysis](pages/spectral-analysis.md)] §5).
 - **The skyline DFT**, the Fourier transform of the height sequence itself rather than of the graph ([[spectral-analysis](pages/spectral-analysis.md)] §3).
 
-- **Sand.** Drop grains on the castle and watch them topple, with one sink cell (the sink model, a graph invariant). The sink sandpile group sees only the block graph, which cospectral castles share, but the sink clock spectrum ticks 15 against 5 on the 10-cell pair and separates 62 of 105 adjacency and 5 of 17 Laplacian groups to 16 cells ([[sandcastle-clock](pages/sandcastle-clock.md)]), and the avalanche profile separates all of them ([[sandpile-identity](pages/sandpile-identity.md)]).
+- **Sandpiles**, with one sink cell (the sink model, a graph invariant). The sink sandpile group depends only on the block graph, which in the census cospectral castles always share, but the sink clock spectrum ticks 15 against 5 on the 10-cell pair and separates 62 of 105 adjacency and 5 of 17 Laplacian groups to 16 cells ([[sandcastle-clock](pages/sandcastle-clock.md)]), and the avalanche profile separates all of them ([[sandpile-identity](pages/sandpile-identity.md)]).
 
-Whether Ihara or the DFT separates the 10-cell pair is not yet known.
+Whether Ihara or the DFT separates the 10-cell pair is open.
 
-## The board
+## Summary table
 
 | operator | hears | cannot hear | smallest failure |
 |---|---|---|---|
@@ -124,7 +124,7 @@ Whether Ihara or the DFT separates the 10-cell pair is not yet known.
 | Laplacian `L = D − A` | area, edges, connectivity, spanning trees, `Σ deg²` | branching of trees | 11 cells: `(1,1,1,2,1,1,2,1,1)` / `(1,1,3,1,1,1,2,1)` |
 | both | all of the above | the shape | 16 cells: a pair of trees |
 | per-cell walk counts (not spectral) | separates both small pairs | - | - |
-| sink-model clock spectrum (not spectral) | 62 of 105 adjacency and 5 of 17 Laplacian groups to 16 cells | trees (they never tick) | - |
+| sink-model clock spectrum (not spectral) | 62 of 105 adjacency and 5 of 17 Laplacian groups to 16 cells | trees (trivial group) | - |
 | sink avalanche profile (not spectral) | every cospectral group to 16 cells | none found | - |
 
 ## Snippet
@@ -212,7 +212,7 @@ False
 (True, False)
 ```
 
-## Exercises for the room
+## Exercises
 
 1. Find the degree-4 cell of `A = (1,1,1,2,3,2)` in the drawing, and check that no cell of `B` has four neighbors even though `B` has the same number of `2 × 2` blocks.
 2. Explain from the chessboard coloring why `trace(A³) = 0` for every castle.
@@ -233,9 +233,9 @@ False
 
 ## Related Concepts
 
-- [[isospectral-castles](pages/isospectral-castles.md)] - the exhaustive search through 16 cells; this page is its classroom version.
+- [[isospectral-castles](pages/isospectral-castles.md)] - the exhaustive search through 16 cells; this page is its seminar version.
 - [[castle-graph](pages/castle-graph.md)] - the graph, its invariants, and tree castles.
-- [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - golden and silver castles, and the loudest-note census.
+- [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - golden and silver castles, and the spectral-radius census.
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the slower from-scratch version of Stop 1.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the five spectra of a castle and the open separators.
 - [[levy-flights](pages/levy-flights.md)] - local return probabilities that separate the 11-cell pair.
@@ -244,10 +244,10 @@ False
 - [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the seminar on OEIS mining as a research method.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
 - [[sandpile-group](pages/sandpile-group.md)] - the sandpile group in the sink and tide models, built from the Laplacian; neither separates the 10- or the 11-cell pair.
-- [[sandpile-census](pages/sandpile-census.md)] - the sandpile census: the sink group hears nothing the spectrum misses up to 16 cells; the tide group hears the skyline instead.
+- [[sandpile-census](pages/sandpile-census.md)] - the sandpile census: the sink group separates no cospectral group up to 16 cells; the tide group depends on how the blocks stand and separates 23 of the 105 adjacency groups.
 - [[sandcastle-clock](pages/sandcastle-clock.md)] - the sink-model clock ticks 15 and 5 on this seminar's 10-cell pair, which share spectrum and sandpile group (the tide clocks tick 4 and 8).
 - [[sandpile-identity](pages/sandpile-identity.md)] - one grain on the apex of the 10-cell pair's identity: 57 topplings against 1.
-- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
+- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through its sandpile group, clock, identity and avalanches.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series, and audio as castles.
 - [[castle-avalanches](pages/castle-avalanches.md)] - random dropping on castles; the mean is Laplacian data, the tail is set by the `2 × 2` blocks.

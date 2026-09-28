@@ -1,18 +1,18 @@
 ---
 title: q-thread seminar - castles by area
 category: Concepts
-summary: A seminar on castles graded by area, one castle (2,1,3,3,1,1,2) carried through. A castle of area n is a composition of n, so there are 2^{n-1} of them, and area alone says nothing new. Area becomes informative only together with the block sign. On the convex-polyomino ladder the castle sits on two rungs (bar graphs 2^{n-1}, convex castles = stacks A001523). Convex and valley castles tie in every (w,h) cell at C(2h+w-3, w-1), but by area they already differ at n = 4 (8 against 7). Cutting at height-1 columns makes castles a free monoid whose primes are castles raised one row (F_{n-1} by area). The sign (-1)^{blocks-1} is a character of that monoid, so the signed count obeys the row-raising equation 1 + qz(2 - E(z)) = 1/(1 - qz E(qz)) and grows like 0.0985 (-1.62383)^n. The closed form is a sequence of parallelograms, Π/(1 - x - Π), over the Bousquet-Mélou-Fédou q-Bessel series. That is where the Pólya q-Catalan numbers meet the castle, and the pole is the first zero q_0 = -0.61583 of a q-Bessel denominator whose second zero q_1 = -0.82027 sets the error. q-Motzkin is the one meeting left open, through the cornerless-Motzkin reading and the corner weights. One runnable block pins every new value.
+summary: A seminar on castles graded by area, one castle (2,1,3,3,1,1,2) carried through. A castle of area n is a composition of n, so there are 2^{n-1} of them, and area alone says nothing new. Area becomes informative only together with the block sign. On the convex-polyomino ladder the castle sits on two rungs (bar graphs 2^{n-1}, convex castles = stacks A001523). Convex and valley castles tie in every (w,h) cell at C(2h+w-3, w-1), but by area they already differ at n = 4 (8 against 7). Cutting at height-1 columns makes castles a free monoid whose primes are castles raised one row (F_{n-1} by area). The sign (-1)^{blocks-1} is a character of that monoid, so the signed count obeys the row-raising equation 1 + qz(2 - E(z)) = 1/(1 - qz E(qz)) and grows like 0.0985 (-1.62383)^n. The closed form is a sequence of parallelograms, Π/(1 - x - Π), over the Bousquet-Mélou-Fédou q-Bessel series. That is the link to the Pólya q-Catalan numbers, and the pole is the first zero q_0 = -0.61583 of a q-Bessel denominator whose second zero q_1 = -0.82027 sets the error. The link to the q-Motzkin numbers, through the cornerless-Motzkin reading and the corner weights, is open. One runnable block pins every new value.
 tags: [concept, castle, seminar, pedagogy, teaching, area, q-analog, q-catalan, q-motzkin, q-bessel, prime-castles, signed-count, polyomino, composition]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes, steep-polyominoes-q-motzkin-bessel]
 created: 2026-09-27
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # q-thread seminar - castles by area
 
-**Thesis.** Count castles by the number of cells instead of by width and height, and the castle joins the classical polyomino literature. Area alone gives nothing new: every composition is a castle. The structure comes from area together with the block sign. The sign is a character of a free monoid of prime castles. That gives a q-shift equation, and the equation solves in the same q-Bessel series that count parallelogram polyominoes, the Pólya q-Catalan family. The q-Motzkin family is the one meeting still open.
+**Thesis.** Count castles by the number of cells instead of by width and height, and the castle joins the classical polyomino literature. Area alone gives nothing new: every composition is a castle. The structure comes from area together with the block sign. The sign is a character of a free monoid of prime castles. That gives a q-shift equation, and the equation solves in the same q-Bessel series that count parallelogram polyominoes, the Pólya q-Catalan family. The link to the q-Motzkin family is open.
 
-**Format.** About 75 minutes, eight stops, one castle carried through: `(2, 1, 3, 3, 1, 1, 2)`, area 13, width 7, 5 blocks. The research pages behind it are [[castle-by-area](pages/castle-by-area.md)], [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)], [[prime-castles](pages/prime-castles.md)], [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)], [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] and [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]. Every new computation is pinned by the Snippet block at the end. Values quoted from a research page link to it. Notation follows [[castle-notation](pages/castle-notation.md)]: `q` marks area, `z` or `u` width, and `x` blocks.
+**Structure.** Eight stops (0 to 7), one castle carried through: `(2, 1, 3, 3, 1, 1, 2)`, area 13, width 7, 5 blocks. The research pages behind it are [[castle-by-area](pages/castle-by-area.md)], [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)], [[prime-castles](pages/prime-castles.md)], [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)], [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] and [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]. Every new computation is pinned by the Snippet block at the end. Values quoted from a research page link to it. Notation follows [[castle-notation](pages/castle-notation.md)]: `q` marks area, `z` or `u` width, and `x` blocks.
 
 ## Stop 0 - area as the second variable
 
@@ -49,7 +49,7 @@ A **convex** castle rises weakly and then falls weakly. A **valley** castle fall
 convex(w, h)  =  valley(w, h)  =  C(2h + w - 3, w - 1)          checked at (3,2) 6, (4,3) 35, (5,3) 70, (6,4) 462
 ```
 
-By area they split at once:
+By area they split at `n = 4`:
 
 ```
  n        1  2  3  4   5   6   7   8    9   10   11   12
@@ -59,7 +59,7 @@ valley    1  2  4  7  13  21  36  57   91  140  217  323     A332578
 
 At `n = 4` all 8 compositions are convex, but `(1, 2, 1)` is not a valley.[^1] So the bijection the cell counts ask for, still open, cannot also keep the area. Area is a statistic the two families do not share, even though width and height are.
 
-*Idea:* equal counts in one grading are a question for a bijection, and a second grading is the quickest way to rule a bijection in or out.
+*Idea:* equal counts in one grading ask for a bijection, and a second grading shows which statistics that bijection can keep.
 
 ## Stop 3 - primes: cutting at the ground floor
 
@@ -81,7 +81,7 @@ glued by merging the last column of one piece with the first column of the next.
 
 ## Stop 4 - the sign is a character
 
-Under gluing, `blocks - 1` is additive: the running castle has `5 - 1 = 4 = 1 + 2 + 0 + 1`. So the sign `(-1)^{blocks - 1}` is a **character** of the monoid, a homomorphism to `{±1}` ([[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)]). A character rides through the sequence construction. With `E(q, z)` the signed castle GF by area and width, empty castle included, the free monoid gives
+Under gluing, `blocks - 1` is additive: the running castle has `5 - 1 = 4 = 1 + 2 + 0 + 1`. So the sign `(-1)^{blocks - 1}` is a **character** of the monoid, a homomorphism to `{±1}` ([[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)]). A character passes through the sequence construction. With `E(q, z)` the signed castle GF by area and width, empty castle included, the free monoid gives
 
 ```
 1 + qz (2 - E(z))  =  1 / (1 - qz E(qz))
@@ -95,7 +95,7 @@ even(n) - odd(n),  n = 1..16:   -1, 0, 0, 2, 0, 2, -4, 2, -12, 10, -20, 38, -44,
 even(n) - odd(n)  ~  C (-ρ)^n,     ρ = 1.6238296740...,   C = 0.0985091750...
 ```
 
-Already at `n = 16`, `C ρ^16 = 230.2` against the true `230`.[^3] The sign does not halve the growth exponent: `√2 = 1.414` is well below `ρ`. By semi-perimeter it does, `τ² → τ` ([[castle-perimeter](pages/castle-perimeter.md)]). Which statistics are characters is a short list: area, width, blocks, height-1 columns, peaks and base-leaving records are, while left-to-right maxima and height are not.
+Already at `n = 16`, `C ρ^16 = 230.2` against the true `230`.[^3] The sign does not halve the growth exponent: `√2 = 1.414` is well below `ρ`. By semi-perimeter it does, `τ² → τ` ([[castle-perimeter](pages/castle-perimeter.md)]). Area, width, blocks, height-1 columns, peaks and base-leaving records are characters; left-to-right maxima and height are not.
 
 *Idea:* a statistic that is additive over a free factorization passes straight into the generating function. Check additivity before looking for a formula.
 
@@ -109,7 +109,7 @@ castles(u, x, q)  =  Π / (1 - x - Π),          Π = Y J_1 / J_0  at width X = 
 J_0(X, Y) = Σ_{n≥0} (-1)^n X^n q^{C(n+1,2)} / ((q)_n (Yq)_n)         (Bousquet-Mélou-Fédou)
 ```
 
-`Π` is the generating function of **parallelogram polyominoes** by width, height and area, a quotient of two q-analogues of Bessel functions.[^4] So `1 + castles` is a sequence of parallelograms, each weighted `(1 - x)^{w - 1} x^h`. This is where the q-Catalan thread lands. Of the three q-Catalan families (Carlitz by inversions, MacMahon by the down set, Pólya-Gessel by area), the castle meets the Pólya-Gessel one, parallelograms by area, with width and height kept apart.[^5] The Carlitz family does not appear.
+`Π` is the generating function of **parallelogram polyominoes** by width, height and area, a quotient of two q-analogues of Bessel functions.[^4] So `1 + castles` is a sequence of parallelograms, each weighted `(1 - x)^{w - 1} x^h`. Of the three q-Catalan families (Carlitz by inversions, MacMahon by the down set, Pólya-Gessel by area), the castle meets the Pólya-Gessel one, parallelograms by area, with width and height kept apart.[^5] The Carlitz family does not appear.
 
 At the block sign `x = -1` the formula is `N(q)/M(q) - 1`, with `N` and `M` q-series that converge in the whole unit disk. The signed count is **meromorphic** there, and its poles are the zeros of `M`:
 
@@ -120,23 +120,23 @@ q_1 = -0.8202719776...         q_0/q_1 = 0.7508
 
 The first zero is the `ρ` of Stop 4, found a second way. The second zero is real, so the relative error of `C(-ρ)^n` is `O(0.7508^n)`.[^3]
 
-*Idea:* a Möbius q-shift equation linearizes; here the linear pieces are the Bousquet-Mélou–Fédou q-Bessel series.
+*Idea:* a Möbius q-shift equation linearizes; here the linear pieces are the Bousquet-Mélou-Fédou q-Bessel series.
 
-## Stop 6 - why a q-series, and the q-Motzkin door
+## Stop 6 - why a q-series, and the q-Motzkin link
 
 Unsigned, castles by area are rational (`2^{n-1}`), and so are column-convex polyominoes (A001169). Add a column, recording the height of the new first column, and both obey the Bousquet-Mélou add-a-column equation ([[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)], [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)]). A castle keeps 1 of Temperley's `k + l - 1` ways to place a column next to the last one, an area kernel of rank 1 against A001169's rank 2. The block weight `y^{max(0, l - k)}` has **no finite rank**, and that is why the signed count is a q-series rather than a rational function.
 
-The third classical q-family is **q-Motzkin**. Barcucci, Del Lungo, Fédou and Pinzani give three q-Motzkin analogues. The first counts steep parallelogram polyominoes by width, perimeter and area, again as a quotient of two q-Bessel functions.[^6] On the castle side, a castle is a cornerless Motzkin path ([[motzkin-castles](pages/motzkin-castles.md)], [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]). Restoring the corners with Prodinger's weights ([[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)]) walks from castles to all Motzkin paths. Doing that walk with area tracked would join the castle q-Bessel form to a q-Motzkin number directly. That join has not been done.
+The third classical q-family is **q-Motzkin**. Barcucci, Del Lungo, Fédou and Pinzani give three q-Motzkin analogues. The first counts steep parallelogram polyominoes by width, perimeter and area, again as a quotient of two q-Bessel functions.[^6] On the castle side, a castle is a cornerless Motzkin path ([[motzkin-castles](pages/motzkin-castles.md)], [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]). Restoring the corners with Prodinger's weights ([[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)]) interpolates from castles to all Motzkin paths. Tracking area through that interpolation would connect the castle q-Bessel form to a q-Motzkin number directly; that is open.
 
-*Idea:* the rank of the kernel separates rational generating functions from q-series.
+*Idea:* in the add-a-column equation, a kernel of finite rank gives a rational series, and the block weight's infinite rank gives a q-series.
 
 ## Stop 7 - fix the height
 
-Bounding the height keeps everything rational, and the area grading then tests the number theory of the growth constants. Tree castles by area (no `2 × 2` block) give one C-finite sequence per height: Narayana's cows at `h = 2`, A006498 at `h = 3`, the score-determined tournaments A000570 at `h = 4`, and A005251, growth `ψ²`, as `h → ∞` ([[tree-castle-by-area](pages/tree-castle-by-area.md)]). Over all 0/1 strip rules, [[area-growth-census](pages/area-growth-census.md)] finds that the growth constants by area lie in `(1, 2)`. The smallest one at height `h` is the root of `z^T - z - 1` with `T = h(h+1)/2`. All ten smallest Pisot numbers appear by height 4, and Lehmer's number first appears at height 5.
+Bounding the height keeps everything rational, and the growth constants by area are then algebraic numbers. Tree castles by area (no `2 × 2` block) give one C-finite sequence per height: Narayana's cows at `h = 2`, A006498 at `h = 3`, the score-determined tournaments A000570 at `h = 4`, and A005251, growth `ψ²`, as `h → ∞` ([[tree-castle-by-area](pages/tree-castle-by-area.md)]). Over all 0/1 strip rules, [[area-growth-census](pages/area-growth-census.md)] finds that the growth constants by area lie in `(1, 2)`. The smallest one at height `h` is the root of `z^T - z - 1` with `T = h(h+1)/2`. All ten smallest Pisot numbers appear by height 4, and Lehmer's number first appears at height 5.
 
-*Idea:* bounded height turns area counting into a finite transfer matrix. The question then moves from "what is the series" to "which algebraic numbers are reachable".
+*Idea:* bounded height turns area counting into a finite transfer matrix, and the open question becomes which algebraic numbers occur as growth constants.
 
-## The board
+## Summary table
 
 | grading | what castles are | number |
 |---|---|---|
@@ -258,7 +258,7 @@ True
 230.2
 ```
 
-## Exercises for the room
+## Exercises
 
 1. Factor `(3, 1, 1, 2, 2, 1)` into primes, and check that `blocks - 1` adds up over the factors.
 2. Show that raising a castle one row adds exactly one block. Why does it matter for Stop 4 that it adds exactly one, not "at least one"?
@@ -269,11 +269,9 @@ True
 
 ## What is still open
 
-The open problems that bear on this seminar:
-
 - **Convex to valley bijection**, in every `(w, h)` cell (Exercise 5).
 - **`h = 3` bounded-height tree-vs-all bijection** by area.
-- **Area with the corner weights**, the q-Motzkin join of Stop 6 (Exercise 6).
+- **Area with the corner weights**, the q-Motzkin link of Stop 6 (Exercise 6).
 - **Descents Narayana bijection.** By descents only the end cells are q-binomials, so area does not factor as q-Narayana times q-binomial ([[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]).
 - **Convex / unimodal exact enumeration with parity** at fixed `(w, h)`.
 - **Min height for every algebraic area constant**, and its perimeter counterpart (Stop 7).
@@ -289,7 +287,7 @@ The open problems that bear on this seminar:
 - [[castle-by-area](pages/castle-by-area.md)] / [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] / [[column-convex-ladder-by-area](pages/column-convex-ladder-by-area.md)] - the counts and the ladder of Stops 0-2.
 - [[prime-castles](pages/prime-castles.md)] / [[prime-convex-castles](pages/prime-convex-castles.md)] / [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)] / [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] - the monoid, the character and the recursion of Stops 3-4.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] / [[q-catalan-numbers](pages/q-catalan-numbers.md)] / [[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)] - the closed form, the q-Catalan families and the rank argument of Stops 5-6.
-- [[motzkin-castles](pages/motzkin-castles.md)] - cornerless Motzkin paths, whose corner weights are the route to the q-Motzkin join of Stop 6.
+- [[motzkin-castles](pages/motzkin-castles.md)] - cornerless Motzkin paths, whose corner weights are the route to the q-Motzkin link of Stop 6.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] / [[area-growth-census](pages/area-growth-census.md)] - bounded height by area, Stop 7.
 - [[fractional-block-count](pages/fractional-block-count.md)] - a statistic that interpolates between area and block count.
 - [[castle-notation](pages/castle-notation.md)] - the area-layer symbols `E(q, z)`, `N(q)`, `M(q)`, `Π`, `J_0`, `J_1`.
