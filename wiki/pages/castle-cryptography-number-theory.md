@@ -138,7 +138,7 @@ With a reducible `Q` the discrete log is only as hard as its largest piece; with
 - [[signed-tower-count](pages/signed-tower-count.md)] / [[generating-function-gallery](pages/generating-function-gallery.md)] - where the `char_k` characteristic polynomials come from, and the even/odd factorization pattern.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - why even-`k` `char_k` factors (the reducibility the toy's first attack uses).
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - the height-3 castle count `F(w,3)` carries the reducible `char_2` as a factor, so its recurrence order drops from 7 to 6 by the same `(x−2)` factor that splits the DLP.
-- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - "reducible splits the DLP" and "irreducible leaves the group-order factorization intact" are two rows of the same table: the invariant-factor decomposition of `R^*`, whose largest prime-power factor sets the security level.
+- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - "reducible splits the DLP" and "irreducible leaves the group-order factorization intact" are two rows of the same table: the invariant-factor decomposition of `R^*`, whose largest prime factor sets the security level (Pohlig-Hellman reduces each prime-power part to discrete logs of prime order).
 - [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - the Eisenstein proof behind the odd-`k` rows for `k = 2^m − 1`.
 - [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the ring-level CRT that splits a reducible `Q`.
 

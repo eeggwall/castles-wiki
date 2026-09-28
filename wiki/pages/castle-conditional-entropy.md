@@ -1,11 +1,11 @@
 ---
 title: Conditional entropy given block count and area
 category: Analyses
-summary: Refining the uniform-entropy `log_2 F(w,h)` view by conditioning on the two structural statistics `B` (block count) and `N` (area). The chain rule reads `H(C) = H(B, N) + H(C | B, N)`, and brute-force at `(w, h)` up to `(12, 3)` shows the two marginal entropies each scale as `(1/2) log_2 w + O(1)`, the joint as `H(B, N) = log_2 w + O(1)`, so conditioning on the two structural statistics shaves `log_2 w` bits off the uniform baseline: `H(C | B, N) = w log_2 h - 1 - log_2 w - c(h) + o(1)`. Area beats blocks as a single-statistic summary at every `(w, h)` tested (by 1.5 to 2.2 bits), for two reasons: area's alphabet is larger, and the parity clause is redundant with `B` (knowing `B` tells you `B mod 2`) but not with `N`. The mutual information `I(B; N)` stays bounded (about 0.05 to 0.35 bits at every `(w, h)` tested) - `B` and `N` are two nearly-independent length-`log_2 w` summaries of the castle.
+summary: Refining the uniform-entropy `log_2 F(w,h)` view by conditioning on the two structural statistics `B` (block count) and `N` (area). The chain rule reads `H(C) = H(B, N) + H(C | B, N)`, and brute force at `(w, h)` up to `(12, 3)` shows, for `h ≥ 3`, the two marginal entropies each growing like `(1/2) log_2 w + O(1)` and the joint like `H(B, N) = log_2 w + O(1)`, so conditioning on the two statistics removes about `log_2 w + c(h)` bits from the uniform baseline: `H(C | B, N) ≈ w log_2 h - 1 - log_2 w - c(h)`, with `c(3) ≈ 1.4`, `c(4) ≈ 2.3`, `c(5) ≈ 3.0` on the widths computed. Area beats blocks as a single-statistic summary at every `(w, h)` tested (by 1.5 to 2.2 bits), for two reasons: area's alphabet is larger, and the parity clause is redundant with `B` (knowing `B` tells you `B mod 2`) but not with `N`. The mutual information `I(B; N)` stays between about 0.05 and 0.35 bits at every `(w, h)` tested, so `B` and `N` share only a bounded amount of information.
 tags: [analysis, castle, entropy, information-theory, conditional-entropy, block-count, area, statistic, verification]
 sources: [project-euler-502-brute-force, project-euler-502-observations]
 created: 2026-09-21
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # Conditional entropy given block count and area
@@ -18,7 +18,7 @@ updated: 2026-09-26
 H(C) = log_2 F(w, h) ~ w log_2 h - 1,
 ```
 
-the parity clause worth exactly one bit ([[castle-sign](pages/castle-sign.md)]). That reading treats every valid castle as a black box. This page refines it by asking how much of the entropy sits in the two most natural structural summaries the wiki already tracks, together on [[fractional-block-count](pages/fractional-block-count.md)] as "the castle's two structural statistics":
+the parity clause worth one bit ([[castle-sign](pages/castle-sign.md)]). That reading treats every valid castle alike. This page asks how much of the entropy sits in two structural summaries, named together on [[fractional-block-count](pages/fractional-block-count.md)] as "the castle's two structural statistics":
 
 - **Block count** `B(c) = c_1 + sum_{i>=2} max(0, c_i - c_{i-1})`, matching [[castle-sign](pages/castle-sign.md)] and the [[castle-snippets](pages/castle-snippets.md)] `blocks` predicate;
 - **Area** `N(c) = sum_i c_i`, the natural size axis of [[castle-by-area](pages/castle-by-area.md)].
@@ -31,11 +31,11 @@ H(C)  =  H(B, N)  +  H(C | B, N),
 
 so the two structural statistics jointly cost exactly `H(B, N)` bits, and what is left in `H(C | B, N)` is the residual - the entropy that survives after telling the reader "this castle has `b` blocks and area `n`."
 
-Every number below was computed while writing and re-run for the final tables against `all_castles` plus `blocks` and `area` from [[castle-snippets](pages/castle-snippets.md)]; the ensemble is uniform on the `F(w, h)` even-block-count castles of exact height `h`.[^exec]
+Every number below was computed with `all_castles`, `blocks` and `area` from [[castle-snippets](pages/castle-snippets.md)]; the ensemble is uniform on the `F(w, h)` even-block-count castles of exact height `h`.[^exec]
 
 ## The two marginals
 
-`H(B)` is the entropy of the block-count marginal on the `F(w, h)` ensemble, `H(N)` the entropy of the area marginal, both in bits. On the uniform-castle ensemble the two are close to Gaussian by a central-limit argument (both `B` and `N` are sums of nearly-independent per-column increments, with an `O(1)` correction for the exact-height constraint), so each marginal entropy should scale as `(1/2) log_2 (2 pi e Var) = (1/2) log_2 w + O(1)`. The table confirms this across two heights and a decade of widths:[^exec]
+`H(B)` is the entropy of the block-count marginal on the `F(w, h)` ensemble, `H(N)` the entropy of the area marginal, both in bits. On the uniform-castle ensemble the two are close to Gaussian by a central-limit argument (both `B` and `N` are sums of nearly-independent per-column increments, with an `O(1)` correction for the exact-height constraint), so each marginal entropy should scale as `(1/2) log_2 (2 pi e Var) = (1/2) log_2 w + O(1)`. The table shows this at `h ≥ 3`; at `h = 2` the widths computed are too small for `B`:[^exec]
 
 | `(w, h)` | `F(w, h)` | `H(C)` | `H(B)` | `H(N)` | `H(B, N)` | `H(B, N) - log_2 w` | `I(B; N)` |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -55,9 +55,9 @@ Every number below was computed while writing and re-run for the final tables ag
 | `(4, 5)` | 122 | 6.931 | 0.950 | 3.191 | 4.029 | 2.029 | 0.112 |
 | `(5, 5)` | 906 | 9.823 | 1.234 | 3.444 | 4.575 | 2.253 | 0.103 |
 
-Reading down the `h = 3` block, `H(B, N) - log_2 w` stabilizes near `1.37` for `w >= 8`; on the `h = 2` block the same quantity hovers near zero because the parity clause forces the block count into a two- or three-valued marginal (`H(B)` never exceeds `1` bit at `h = 2`), so the joint is essentially the area marginal alone. The general shape is that `H(B, N)` grows like `log_2 w` with a constant that depends on `h`.
+Reading down the `h = 3` block, `H(B, N) - log_2 w` stabilizes near `1.37` for `w >= 8`; on the `h = 2` block the same quantity hovers near zero because at these widths the parity clause leaves the block count only two or three values (`H(B)` stays below `1` bit at `h = 2`, `w ≤ 12`), so the joint is essentially the area marginal alone. The general shape is that `H(B, N)` grows like `log_2 w` with a constant that depends on `h`.
 
-The mutual information `I(B; N) = H(B) + H(N) - H(B, N)` stays bounded: between `0.05` and `0.35` bits for every `(w, h)` in the table. That is exactly the behaviour of two correlated Gaussian statistics with bounded correlation `rho`: `I = -(1/2) log_2 (1 - rho^2)` is a function of `rho` alone, not of `w`. `B` and `N` are therefore two nearly-independent length-`log_2 w` summaries of the castle, not two names for the same information.
+The mutual information `I(B; N) = H(B) + H(N) - H(B, N)` stays bounded: between `0.05` and `0.35` bits for every `(w, h)` in the table. Two jointly Gaussian statistics behave this way: `I = -(1/2) log_2 (1 - rho^2)` depends only on the correlation `rho`, not on `w`. So `B` and `N` each carry about `(1/2) log_2 w` bits and share a bounded amount.
 
 ## The conditional entropy
 
@@ -78,21 +78,21 @@ The chain rule turns the marginal-entropy table into a table of shortenings. Uni
 
 Two features of this table read straight off the entropy chain rule.
 
-**Area beats blocks as a single-statistic summary.** At every `(w, h)` in the table `H(C | N) < H(C | B)`, and the gap is between `1.5` bits (at `(6, 2)`) and `2.2` bits (at `(5, 5)`). Two causes contribute. First, `H(N) > H(B)` by about `2` bits at every `(w, h)` because area has a larger alphabet than blocks (roughly `wh` versus `w`), so `N` is intrinsically more granular. Second, the parity clause hits `B` and `N` asymmetrically: on `(10, 2)`, moving from the any-parity ensemble to the even-only ensemble drops `H(C)` by `1` bit (the parity-clause bit of [[castle-entropy](pages/castle-entropy.md)]), drops `H(B)` by `1.14` bits, and drops `H(N)` by only `0.06` bits. Since `H(C \| B) = H(C) - H(B)` and the two decreases cancel, `H(C \| B)` is essentially unchanged by adding the parity clause; `H(C \| N)` on the other hand drops by nearly a full bit. **The parity clause is redundant with `B` but not with `N`** - a first place the parity clause visibly asymmetrizes the two structural axes.
+**Area beats blocks as a single-statistic summary.** At every `(w, h)` in the table `H(C | N) < H(C | B)`, and the gap is between `1.5` bits (at `(6, 2)`) and `2.2` bits (at `(5, 5)`). Two causes contribute. First, `H(N) > H(B)` by about `2` bits at every `(w, h)` because area has a larger alphabet than blocks (roughly `wh` versus `w`), so `N` is intrinsically more granular. Second, the parity clause hits `B` and `N` asymmetrically: on `(10, 2)`, moving from the any-parity ensemble to the even-only ensemble drops `H(C)` by `0.95` bits (the parity-clause bit of [[castle-entropy](pages/castle-entropy.md)]), drops `H(B)` by `1.14` bits, and drops `H(N)` by only `0.06` bits. Since `H(C \| B) = H(C) - H(B)`, the two decreases nearly cancel and `H(C \| B)` rises by only `0.19` bits when the parity clause is added; `H(C \| N)` drops by `0.90` bits. **The parity clause is redundant with `B` but not with `N`.**
 
-**Joint conditioning shaves `log_2 w` bits.** Both `H(B, N)` and `log_2 w` were tabulated above; subtracting `H(B, N)` from `w log_2 h - 1 + O(1)` gives
+**Joint conditioning removes about `log_2 w + c(h)` bits.** Both `H(B, N)` and `log_2 w` were tabulated above; subtracting `H(B, N)` from `H(C) ≈ w log_2 h - 1` gives
 
 ```
 H(C | B, N)  =  w log_2 h  -  1  -  log_2 w  -  c(h)  +  o(1),
 ```
 
-with `c(3) ≈ 0.37`, `c(4) ≈ 1.1`, `c(5) ≈ 1.3` on this data. The one-bit parity clause of [[castle-entropy](pages/castle-entropy.md)] is joined by a `log_2 w` term whose payment goes to *localizing* the castle in `(B, N)` space: given the joint statistic, the reader has narrowed the castle to a cell of size `~ F(w, h) / w` on the ensemble, which is exactly the count of shapes with the given `(b, n)`.
+with `c(3) ≈ 1.39` (`w = 8..12`), `c(4) ≈ 2.3` (`w = 6..9`) and `c(5) ≈ 3.0` (`w = 5..7`), stable across those widths. The constant absorbs both the offset of `H(B, N)` over `log_2 w` and the exact-height correction to `H(C)`. Given the joint statistic, the castle lies in a cell of typical size `2^{H(C | B, N)}`, about `F(w, h) / (w · 2^{c(h)})`.
 
 The `H(C) - w log_2 h` column - a check on the [[castle-entropy](pages/castle-entropy.md)] `-1` residual - is close to `-1` at `h = 3` for `w >= 10` and drifts to `-1` at `h = 2` for `w >= 10` (the parity bit is asymptotic in `w`).
 
 ## Where the two statistics come from
 
-The two marginal distributions are already on the wiki, in two different disguises.
+The two marginal distributions connect to other pages.
 
 **Block count.** For an unbounded tower of width `w`, the block-count generating function is the Narayana polynomial over `(1 - x)^w` ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]):
 
@@ -101,11 +101,11 @@ T(w, b)  =  sum_{k=1..w}  N(w, k)  C(b + w - k, w - 1),
 GF by b:   Narayana_w(x) / (1 - x)^w,   N(w, k) = C(w, k) C(w, k-1) / w  =  A001263(w, k).
 ```
 
-This is the closest analytical model of `B` on the castle ensemble - the castle block count is the tower block count plus one for the bottom row ([[castle-counting-formula](pages/castle-counting-formula.md)]), and the parity restriction picks off every other value. Both the tower Narayana marginal and its parity-restricted version have mean scaling as `~ w/2` and variance as `~ w`, so `H(B)` from this distribution would scale as `(1/2) log_2 w + O(1)` after the parity-restriction bit is subtracted - matching the empirical `H(B) ~ (1/2) log_2 w + c` in the table.
+It is an approximate model of `B` on the castle ensemble: the castle block count is the tower block count plus one for the bottom row ([[castle-counting-formula](pages/castle-counting-formula.md)]), and the parity restriction picks off every other value. `T(w, b)` itself counts towers of every height and has no finite total, so it is not a probability distribution and gives no mean or variance; the `(1/2) log_2 w` growth of `H(B)` in the table comes from the fixed-`(w, h)` ensemble.
 
-**Area.** [[castle-by-area](pages/castle-by-area.md)] re-indexes castles by `n = sum c_i` and matches the resulting distributions against known composition sequences: convex castles of area `n` are `A001523(n)` (weakly unimodal compositions), valley castles are `A332578(n)`, all castles of area `n` are `2^{n-1}`. The area marginal on the fixed-`(w, h)` ensemble is the projection onto sum: at fixed `h` the area is a sum of `w` almost-independent column heights with an `O(1)` correction from `max c = h`, so `Var(N) ~ w sigma^2(h)` with `sigma^2(h) -> (h^2 - 1) / 12` as `w` grows, and the Gaussian entropy `H_gauss(N) = (1/2) log_2 (2 pi e Var(N))` should agree with the exact `H(N)` to within terms decaying in `w`. Empirically the agreement is very sharp: at `h = 3`, `w = 6, 8, 10, 12` the two differ by `0.056, 0.013, 0.004, 0.002` bits respectively; at `h = 4` the same widths give `0.011, 0.006, 0.003, 0.001`. The area distribution on the even-block castle ensemble is Gaussian to two decimal places by `w = 10`.[^exec]
+**Area.** [[castle-by-area](pages/castle-by-area.md)] re-indexes castles by `n = sum c_i` and matches the resulting distributions against known composition sequences: convex castles of area `n` are `A001523(n)` (weakly unimodal compositions), valley castles are `A332578(n)`, all castles of area `n` are `2^{n-1}`. The area marginal on the fixed-`(w, h)` ensemble is the projection onto sum: at fixed `h` the area is a sum of `w` almost-independent column heights with an `O(1)` correction from `max c = h`, so `Var(N) ~ w sigma^2(h)` with `sigma^2(h) -> (h^2 - 1) / 12` as `w` grows, and the Gaussian entropy `H_gauss(N) = (1/2) log_2 (2 pi e Var(N))` should agree with the exact `H(N)` to within terms decaying in `w`. At `h = 3`, `w = 6, 8, 10, 12` the two differ by `0.055, 0.014, 0.005, 0.002` bits; at `h = 4` the same widths give `0.011, 0.005, 0.003, 0.0015`. The area entropy matches the Gaussian value to within `0.005` bits by `w = 10`.[^exec]
 
-**Joint.** Since `B` and `N` are jointly nearly-Gaussian with bounded correlation, `H(B, N) = log_2(2 pi e sqrt(det Sigma)) = log_2 w + O(1)` and `I(B; N) = -(1/2) log_2 (1 - rho^2)` is a bounded function of the (bounded) correlation. The observed `I(B; N)` never crosses `0.4` bits in the entire table, consistent with `|rho| < 0.6` in the joint distribution.
+**Joint.** If `B` and `N` are jointly close to Gaussian with bounded correlation (as the `h ≥ 3` rows suggest), `H(B, N) = log_2(2 pi e sqrt(det Sigma)) = log_2 w + O(1)` and `I(B; N) = -(1/2) log_2 (1 - rho^2)`. The observed `I(B; N)` stays below `0.32` bits in the table, which under this model means `|rho| < 0.6`.
 
 ## Where the two statistics are equal (and where they are not)
 
@@ -116,7 +116,7 @@ alpha = 0:   H(C | B_alpha)  =  H(C | N)     (area conditioning)
 alpha = 1:   H(C | B_alpha)  =  H(C | B)     (block-count conditioning)
 ```
 
-so the interior of the alpha axis is a family of intermediate summaries, each with its own shortening. Because `H(C | N) < H(C | B)`, the interpolation is monotone at the endpoints: **the alpha axis of [[fractional-block-count](pages/fractional-block-count.md)] is by construction a shortening axis** (from `alpha = 0` to `alpha = 1`, the residual grows by about `1.5-2.2` bits at every `(w, h)` in the table). [[fractional-block-count](pages/fractional-block-count.md)] reports that `B_{1/2}` separates all ten `(4, 2)` even castles: that fact is the extreme end of the conditional-entropy shortening, `H(C | B_{1/2}) = 0` when the statistic is injective. The fractional block count is a *finer* summary than either endpoint on that cell.
+so the interior of the alpha axis is a family of intermediate summaries, each with its own shortening. From `alpha = 0` to `alpha = 1` the residual grows by about `1.5` to `2.2` bits at every `(w, h)` in the table; the values in between are not computed here. [[fractional-block-count](pages/fractional-block-count.md)] reports that `B_{1/2}` separates all ten `(4, 2)` even castles: that fact is the extreme end of the conditional-entropy shortening, `H(C | B_{1/2}) = 0` when the statistic is injective. The fractional block count is a *finer* summary than either endpoint on that cell.
 
 ## What is left in the residual
 
@@ -126,32 +126,32 @@ so the interior of the alpha axis is a family of intermediate summaries, each wi
 { c in {1, ..., h}^w :  max c_i = h,  blocks(c) = b,  area(c) = n }.
 ```
 
-At `(w, h)` in the table, that set has size on average `F(w, h) / w`, and the residual is `log_2 F(w, h) - log_2 w - O(1)`. Two questions follow:
+At `(w, h)` in the table the residual is `log_2 F(w, h) - log_2 w - c(h)` up to small corrections. Open questions:
 
-- **Is the isostatistic set combinatorially named?** The isoarea set alone is a composition of `n` with parts in `[1, h]`, one part per column, with `max = h` - a truncation of [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] when convex, of `A011782 = 2^{n-1}` in general. The iso-`(B, N)` set is finer and does not appear in [[oeis-index](pages/oeis-index.md)] under any name checked so far; it is a good candidate for the "block-count / peak / area joint distributions not yet enumerated" residue named in the [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] follow-ups.
+- **Is the isostatistic set combinatorially named?** The isoarea set alone is a composition of `n` with parts in `[1, h]`, one part per column, with `max = h` - a truncation of [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] when convex, of `A011782 = 2^{n-1}` in general. The iso-`(B, N)` set is finer and has no OEIS name among the entries checked ([[oeis-index](pages/oeis-index.md)], [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]).
 
-- **Does a finer sufficient statistic reduce the residual further?** [[fractional-block-count](pages/fractional-block-count.md)] answers yes at the toy scale (`B_{1/2}` alone gives `H(C | B_{1/2}) = 0` on ten of the fifteen `(4, 2)` castles), but the general question - which finite family of column-space statistics is sufficient for the castle ensemble - is open on this wiki.
+- **Does a finer sufficient statistic reduce the residual further?** [[fractional-block-count](pages/fractional-block-count.md)] answers yes at the toy scale (`B_{1/2}` alone gives `H(C | B_{1/2}) = 0` on the ten even `(4, 2)` castles), but the general question - which finite family of column-space statistics is sufficient for the castle ensemble - is open on this wiki.
 
 ## Related Concepts
 
 - [[castle-entropy](pages/castle-entropy.md)] - the uniform-entropy baseline `log_2 F(w, h) ~ w log_2 h - 1` this page conditions.
-- [[castle-sign](pages/castle-sign.md)] - the parity clause whose one bit is now visible as the one-bit gap `H(N) - H(B)`.
+- [[castle-sign](pages/castle-sign.md)] - the parity clause, whose bit falls on `B`: it lowers `H(B)` by about a bit and `H(N)` barely.
 - [[castle-by-area](pages/castle-by-area.md)] - the area re-indexing whose marginal is `H(N)` here.
 - [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] - the tower block-count marginal whose `H(B)` scales as `(1/2) log_2 w`.
 - [[fractional-block-count](pages/fractional-block-count.md)] - the alpha-interpolation between `H(C | N)` and `H(C | B)`, and the case where a single fractional statistic is sufficient.
-- [[castle-compression](pages/castle-compression.md)] - the dual view: conditioning is an oracle-side compression, `log_2 w + 1` bits of the raw `log_2 F` are attributed to the two structural statistics.
+- [[castle-compression](pages/castle-compression.md)] - the compression view: about `log_2 w + c(h)` bits of the raw `log_2 F` are attributed to the two structural statistics.
 - [[castle-representations](pages/castle-representations.md)] - the encodings the conditional-entropy accounting is written against.
-- [[castle-steganography](pages/castle-steganography.md)] - the one bit `H(N) - H(B)` reads as a covert channel of capacity exactly one bit per castle; the parity-clause thread.
-- [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - linear complexity as a compression story: Attack 5's `C(d+e-1, e)` linearized-filter bound is the information-theoretic residual accounting run against a nonlinear-feedback stream cipher.
+- [[castle-steganography](pages/castle-steganography.md)] - the parity bit as a covert channel of one bit per castle.
+- [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - Attack 5's linear-complexity bound `C(d+e-1, e)` for filtered castle sequences.
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the `blocks_of`, `all_castles` reference implementations against which every number here was checked.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar that closes on this page's conditioning result.
 
 
 ## Appearances in Sources
 
-- [[project-euler-502-observations](pages/project-euler-502-observations.md)] - the source's "the even-block clause is almost the entire difficulty," priced on [[castle-entropy](pages/castle-entropy.md)] at one bit and shown here to be the one bit that separates `H(B)` from `H(N)` on the conditioning side.
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] - the source's "the even-block clause is almost the entire difficulty," priced on [[castle-entropy](pages/castle-entropy.md)] at one bit; here that bit falls on `B` (at `(10, 2)` it lowers `H(B)` by 1.14 bits and `H(N)` by 0.06).
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - `blocks_of`, `all_castles`, and the `F(w, h)` enumeration that ground the entire table.
 
 ## Footnotes
 
-[^exec]: Verified by execution (2026-09-21): the enumerator iterates `product(range(1, h+1), repeat=w)` filtered by `max == h`, computes `blocks(c) = c[0] + sum(max(0, c[i] - c[i-1]))` per [[castle-snippets](pages/castle-snippets.md)] and `area(c) = sum(c)`, restricts to `blocks % 2 == 0`, and accumulates the joint `(B, N)` distribution. Entropies are `-sum p log_2 p` over that distribution. Cross-checks: `F(4, 2) = 10`, `F(6, 4) = 1729`, `F(12, 3) = 261615` - matching [[castle-counting-function](pages/castle-counting-function.md)] and [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)]; brute-force `H(C) = log_2 F` recovered exactly. The Gaussian match `H(N) ≈ (1/2) log_2 (2 pi e Var(N))` is exact within `0.06` bits at `w = 6` and within `0.01` bit at `w = 10` for `h ∈ {3, 4}`, checked at every row of the sweep.
+[^exec]: Verified by execution (2026-09-21): the enumerator iterates `product(range(1, h+1), repeat=w)` filtered by `max == h`, computes `blocks(c) = c[0] + sum(max(0, c[i] - c[i-1]))` per [[castle-snippets](pages/castle-snippets.md)] and `area(c) = sum(c)`, restricts to `blocks % 2 == 0`, and accumulates the joint `(B, N)` distribution. Entropies are `-sum p log_2 p` over that distribution. Cross-checks: `F(4, 2) = 10`, `F(6, 4) = 1729`, `F(12, 3) = 261615` - matching [[castle-counting-function](pages/castle-counting-function.md)] and [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)]; brute-force `H(C) = log_2 F` recovered exactly. The Gaussian match `H(N) ≈ (1/2) log_2 (2 pi e Var(N))` holds within `0.06` bits at `w = 6` and within `0.005` bits at `w = 10` for `h ∈ {3, 4}` (the `h = 4, w = 12` value by a transfer-matrix DP over area). The constants `c(h)` were read off the extra rows `(8,4), (9,4), (6,5), (7,5)` of the same enumeration.
