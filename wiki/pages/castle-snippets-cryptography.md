@@ -3,9 +3,9 @@ title: Castle snippets - cryptography
 category: Concepts
 summary: The castle_dh / castle_dlp / bm_modp / castle_schnorr snippets: build and red-team the castle cryptosystem, plus the linearization attack. Sibling of the core castle-snippets hub.
 tags: [concept, castle, python, snippets, cryptography, diffie-hellman, discrete-log, berlekamp-massey, schnorr, elgamal]
-sources: [project-euler-502-brute-force]
+sources: [oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Castle snippets - cryptography
@@ -14,7 +14,7 @@ A sibling page to [[castle-snippets](pages/castle-snippets.md)]: the build-and-a
 
 ### `castle_dh` → a working castle Diffie–Hellman
 
-Public-key exchange in the ring `F_p[x]/(Q)`, where `Q` is a castle characteristic polynomial ([[castle-cryptography](pages/castle-cryptography.md)]). The "public castle" is `Q`; a private key is a secret exponent; the trapdoor `x^a mod Q` is [[kitamasa](pages/kitamasa.md)] exponentiation. Stdlib only.
+Public-key exchange in the ring `F_p[x]/(Q)`, where `Q` is a castle characteristic polynomial ([[castle-cryptography](pages/castle-cryptography.md)]). The "public castle" is `Q`; a private key is a secret exponent; the one-way map `x^a mod Q` is [[kitamasa](pages/kitamasa.md)] exponentiation. Stdlib only.
 
 ```python
 def one(Q): return [1] + [0]*(len(Q)-2)          # multiplicative identity in F_p[x]/(Q)
@@ -57,7 +57,7 @@ True
 [395423824, 86931747, 647893869]
 ```
 
-Meaning: a running asymmetric cryptosystem built from the castle's own Kitamasa primitive — the "public castle" is `Q`, the private key is the exponent, and the shared secret is `x^{ab} mod Q`. It is a *teaching* system, not a secure one: `Q` factors (`(x−2)(x²−x+2)`) so the discrete log splits, and Berlekamp–Massey reconstructs `Q` from the count sequence — both attacks are the seminar's point ([[castle-cryptography](pages/castle-cryptography.md)], [[berlekamp-massey](pages/berlekamp-massey.md)]).
+Meaning: a running asymmetric cryptosystem built from the castle's own Kitamasa primitive — the "public castle" is `Q`, the private key is the exponent, and the shared secret is `x^{ab} mod Q`. It is a *teaching* system, not a secure one: `Q` factors (`(x−2)(x²−x+2)`) so the discrete log splits, and Berlekamp–Massey reconstructs `Q` from the count sequence; both attacks are on [[castle-cryptography](pages/castle-cryptography.md)] ([[berlekamp-massey](pages/berlekamp-massey.md)]).
 
 
 ### `castle_dlp(A, Q, p)` → recover the private key from a castle public key
@@ -66,6 +66,7 @@ The red team's tool ([[castle-cryptography-round-two](pages/castle-cryptography-
 
 ```python
 from math import isqrt
+import sympy as sp
 from sympy.ntheory.modular import crt
 
 def bsgs(g, h, n, Q, p):                       # solve g^x = h in F_p[x]/(Q), ord(g) | n
@@ -128,7 +129,7 @@ Meaning: the private key falls in a fraction of a second whether or not `Q` fact
 
 ### `bm_modp(s, p)` → Berlekamp–Massey over `F_p`, and the linearization attack
 
-Linear complexity of a sequence mod `p` ([[berlekamp-massey](pages/berlekamp-massey.md)]), used to measure what a nonlinear filter on a castle register actually buys ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], Attack 5). Stdlib only.
+Linear complexity of a sequence mod `p` ([[berlekamp-massey](pages/berlekamp-massey.md)]), used to measure how much a nonlinear filter on a castle register raises the linear complexity ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], Attack 5). Stdlib only.
 
 ```python
 def bm_modp(s, p):                             # -> (connection poly low->high, C[0] = 1; linear complexity L)
@@ -165,17 +166,17 @@ True
 20
 ```
 
-Meaning: a degree-`e` polynomial filter on a `d`-stage linear register is itself linear of complexity `≤ C(d+e−1, e)` (the characteristic roots are the degree-`e` monomials in the roots of `Q`), so Berlekamp–Massey still recovers it from `2L` terms. Nonlinearity buys a computable increase in `L`, not immunity.
+Meaning: a degree-`e` polynomial filter on a `d`-stage linear register is itself linear of complexity `≤ C(d+e−1, e)` (the characteristic roots are the degree-`e` monomials in the roots of `Q`), so Berlekamp–Massey still recovers it from `2L` terms. Nonlinearity raises `L` by a computable amount.
 
 
 ### `castle_schnorr` → ElGamal and a Schnorr-style signature on the `x^a` map
 
-Seminar 1's round-two deliverable ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]): encryption and signatures from the same `powmod` as `castle_dh`, in a prime-order subgroup of `F_p[x]/(char_3) ≅ F_{p⁴}`. The subgroup prime `q = 340715873` divides `p² + 1`, so `⟨g⟩` lives in the genuine degree-4 part of the field (on `char_1` the analogous subgroup collapses to scalars: `x^8 = 16`).
+The round-two build ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]): encryption and signatures from the same `powmod` as `castle_dh`, in a prime-order subgroup of `F_p[x]/(char_3) ≅ F_{p⁴}`. The subgroup prime `q = 340715873` divides `p² + 1`, so `⟨g⟩` lives in the degree-4 part of the field (on `char_1` the analogous subgroup collapses to scalars: `x^8 = 16`).
 
 ```python
 import hashlib, random
 Q, N = Q3, p**4 - 1                            # char_3 mod p is irreducible: the ring is F_{p^4}
-q = 340715873                                  # a prime factor of p^2 + 1 -> a subgroup living in the genuine degree-4 part
+q = 340715873                                  # a prime factor of p^2 + 1 -> a subgroup in the degree-4 part
 random.seed(502)
 while True:
     g = powmod([random.randrange(p) for _ in range(4)], N // q, Q, p)
@@ -195,16 +196,16 @@ def verify(pub, msg, e, s): return H(mulmod(powmod(g, s, Q, p), powmod(pub, (q -
 [1, 1, 3, 9]
 >>> e, sg = sign(a, b'castle 502'); (e, sg), verify(pub, b'castle 502', e, sg), verify(pub, b'castle 503', e, sg)
 (129461214, 65798226) True False
->>> bsgs(g, pub, q, Q, p) == a   # red team: q is 29 bits, so ~2^15 steps
+>>> bsgs(g, pub, q, Q, p) == a   # red team: q is 29 bits, so ~18,000 baby steps
 True # 0.07s
 ```
 
-Meaning: key exchange, encryption, and signatures all hang off one exponentiation — and the same `bsgs` that the red team wrote for `castle_dlp` recovers the signing key in a fraction of a second, because a 29-bit subgroup is a 15-bit search. The build works; the size does not.
+Meaning: key exchange, encryption and signatures all come from one exponentiation, and the same `bsgs` the red team wrote for `castle_dlp` recovers the signing key in a fraction of a second, because a 29-bit subgroup needs a table of about `√q ≈ 18,000` entries. The construction runs; its parameters are far too small.
 
 
 ## Appearances in Sources
 
-- [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - not a direct source for the crypto snippets; kept for schema consistency across the sibling pages.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k, ·)` characteristic polynomials used as moduli and registers.
 
 ## Related Concepts
 

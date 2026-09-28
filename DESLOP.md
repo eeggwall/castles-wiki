@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 112 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
-| Spot fixes only | 16 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 66 |
-| Words still to read | about 234,000 |
+| Fully read and cleaned | 117 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Spot fixes only | 14 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
+| Not started | 63 |
+| Words still to read | about 222,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 58 fully read)
+### Concepts (85 pages, 60 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
@@ -152,7 +152,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-sign (1.9)
 - [x] binary-string-bijection (1.8)
 - [ ] ramanujan-castles (1.7)
-- [ ] castle-snippets-cryptography (1.7)
+- [x] castle-snippets-cryptography (1.7)
 - [ ] mod-9-coset-lift (1.6)
 - [x] q-catalan-numbers (1.6)
 - [x] oeis-cross-referencing (1.6)
@@ -192,16 +192,16 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] chinese-remainder-theorem (0.0)
 - [x] catalan-numbers (0.0)
 - [ ] castle-snippets-strips (0.0)
-- [ ] acronyms (0.0)
+- [x] acronyms (0.0)
 
-### Analyses (64 pages, 24 fully read)
+### Analyses (64 pages, 27 fully read)
 
 - [x] castle-cryptography (5.1)
 - [x] isospectral-castles (4.9)
-- [ ] castle-cryptography-number-theory (4.4)
-- [~] castle-cryptography-ring (4.0)
+- [x] castle-cryptography-number-theory (4.4)
+- [x] castle-cryptography-ring (4.0)
 - [ ] sandpile-census (3.8)
-- [~] castle-cryptography-round-two (3.6)
+- [x] castle-cryptography-round-two (3.6)
 - [x] pell-castle-strip (3.4)
 - [x] castle-graph-spectral-radius (3.3)
 - [x] castles-as-upgraded-cycle-count (3.2)

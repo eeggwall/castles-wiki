@@ -1,16 +1,16 @@
 ---
 title: Acronyms and abbreviations
 category: Concepts
-summary: Flat alphabetical reference of every abbreviation used on the castles wiki. Pure reference, no cross-links; each abbreviation is also spelled out on first use within its host page.
+summary: Flat alphabetical reference of abbreviations used on the castles wiki. Pure reference, no cross-links; each abbreviation is also spelled out on first use within its host page.
 tags: [reference, acronyms, abbreviations]
 sources: [project-euler-502]
 created: 2026-09-19
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Acronyms and abbreviations
 
-A flat alphabetical reference of every abbreviation used on the castles wiki. Each is also spelled out on first use within its host page; this page is the master list.
+A flat alphabetical reference of abbreviations used on the castles wiki. Each is also spelled out on first use within its host page.
 
 - **AC** - Analytic Combinatorics (Flajolet-Sedgewick, Cambridge University Press 2009).
 - **AM** - Abelian model: Dhar's general sandpile with an integer toppling matrix `Δ` (1990).
@@ -30,7 +30,6 @@ A flat alphabetical reference of every abbreviation used on the castles wiki. Ea
 - **DFT** - discrete Fourier transform.
 - **DH** - Diffie-Hellman (key exchange).
 - **DLP** - discrete logarithm problem.
-- **DNA** - deoxyribonucleic acid. Used metaphorically ("DNA of the sequence" = characteristic polynomial).
 - **DOI** - Digital Object Identifier.
 - **DP** - dynamic program.
 - **DPP** - Determinantal Point Process.
