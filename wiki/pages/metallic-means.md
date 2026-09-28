@@ -5,7 +5,7 @@ summary: The family of quadratic irrationals `δ_a = (a + √(a²+4))/2` for a =
 tags: [concept, metallic-mean, golden-ratio, silver-ratio, pell, fibonacci, continued-fraction, quadratic-irrational, norm-minus-one]
 sources: [pe502-pell-castle-strip, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-15
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # Metallic means
@@ -18,7 +18,7 @@ The **metallic means** are the family of positive real numbers
 δ_a  =  (a + √(a² + 4)) / 2,      a = 1, 2, 3, 4, 5, …,
 ```
 
-each the positive root of the monic quadratic `x² − a·x − 1 = 0`. The name and framing are due to Vera W. de Spinadel (1997), who introduced the family under this name in the number-theory / recreational-mathematics literature to organize the ladder of quadratic irrationals of this form.[^1] It is now standard shorthand for the family; a mathematician will recognize "silver ratio" and "silver mean" for `1+√2`, though "the positive root of `x² − 2x − 1`" is the more universal spelling.
+each the positive root of the monic quadratic `x² − a·x − 1 = 0`. The name is due to Vera W. de Spinadel (1997).[^1] It is now standard shorthand for the family.
 
 Each member `δ_a` is a **norm-`−1` reduced quadratic surd** — its conjugate `(a − √(a²+4))/2` sits in `(−1, 0)` — so by Galois' theorem (see [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]) its continued-fraction expansion is **purely periodic of period one**:
 
@@ -26,7 +26,7 @@ Each member `δ_a` is a **norm-`−1` reduced quadratic surd** — its conjugate
 δ_a  =  [a; a, a, a, …].
 ```
 
-Together with the associated Fibonacci-like linear recurrence `x_n = a·x_{n−1} + x_{n−2}` (integer sequence realization) and the shared characteristic polynomial `x² − a·x − 1` (algebraic side), this makes the metallic means a coherent structural family — every property that holds for the golden ratio holds for each with a single parameter substituted.[^2]
+The members share the Fibonacci-like recurrence `x_n = a·x_{n−1} + x_{n−2}` (integer sequence realization) and the characteristic polynomial `x² − a·x − 1` (algebraic side), with `a` the only parameter.[^2]
 
 ## The named members
 
@@ -46,23 +46,23 @@ All five OEIS identifications are verified offset-exact against the OEIS data (2
 
 ## The `a=4` coincidence: copper = φ³
 
-The copper mean has a special place: `δ_4 = 2 + √5 = φ³` (since `φ² = φ + 1`, so `φ³ = 2φ + 1 = 1 + √5 + 1 = 2 + √5`).[^5] So the `a=4` member is not "a new quadratic" — it is a power of the golden ratio living inside `Q(√5)`, and it generates the smaller ring `Z[√5]` (index 2 in `Z[φ]`). The `a=4` integer sequence 0, 1, 4, 17, 72, 305, 1292, 5473, 23184, 98209 is `F_{3n}` up to a shift (Fibonacci taken every third term), which explains the entry sitting inside `Q(√5)` rather than `Q(√20)`. It is the first of an infinite family of such coincidences: whenever `δ_a` is an odd power of a smaller rung it shares that rung's field, as `δ_11 = φ⁵` (also in `Q(√5)`) and `δ_14 = (1 + √2)³` (in `Q(√2)`) do; for `a ≤ 100` the full list is `a = 4, 11, 14, 29, 36, 76, 82` (see "Which ring each rung generates" below). The rungs `a = 1, 2, 3, 5, 6, 7, 8, 9, 10` all sit in distinct real quadratic fields.
+`δ_4 = 2 + √5 = φ³` (since `φ² = φ + 1`, so `φ³ = 2φ + 1 = 1 + √5 + 1 = 2 + √5`).[^5] So the `a=4` member is a power of the golden ratio in `Q(√5)`, and it generates the smaller ring `Z[√5]` (index 2 in `Z[φ]`). The `a=4` integer sequence 0, 1, 4, 17, 72, 305, 1292, 5473, 23184, 98209 is `F_{3n}/2` (every third Fibonacci number, halved). It is the first of an infinite family of such coincidences: whenever `δ_a` is an odd power of a smaller rung it shares that rung's field, as `δ_11 = φ⁵` (also in `Q(√5)`) and `δ_14 = (1 + √2)³` (in `Q(√2)`) do; for `a ≤ 100` the full list is `a = 4, 11, 14, 29, 36, 76, 82` (see "Which ring each rung generates" below). The rungs `a = 1, 2, 3, 5, 6, 7, 8, 9, 10` all sit in distinct real quadratic fields.
 
-## Why the family matters here
+## The family on the wiki
 
-Two members of this family are already load-bearing on the wiki, from two independent directions:
+Two members appear on the wiki independently:
 
 - **`δ_1 = φ`** is the growth constant of Fibonacci, which appears in the castle count as the `F_{n−1}` prime castles and `2^{n−1} − F_{n−1}` composite castles of [[prime-castles](pages/prime-castles.md)]. The Fibonacci method for turning a recurrence into a rational generating function (GF) is the archetype of [[aocp-generating-functions](pages/aocp-generating-functions.md)].
 - **`δ_2 = 1+√2`** is the growth constant of the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]), and appears as the count-sequence growth of the anchored 1-smooth height-3 strip on [[pell-castle-strip](pages/pell-castle-strip.md)], whose width generating function is exactly `1/(1 − 2x − x²)`. The integer realization is the [[pell-numbers](pages/pell-numbers.md)].
 
-Both are treated in parallel on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] as "the castle's two norm-`−1` reduced quadratics" — the framing that made writing this page unavoidable: **there is a ladder, and the wiki was already sitting on rungs 1 and 2 without naming it.** Naming the ladder makes explicit that the metallic-mean family is a **meta-classification axis** for castle sub-families: a castle class is a **"`<metal>` `<axis>` growth castle"** iff its count sequence, graded by the chosen size axis, grows at rate `δ_a`. This is now Axis 8 of [[castle-classification-growth](pages/castle-classification-growth.md)]; the naming convention (`<metal>` ∈ {golden, silver, bronze, copper, nickel, …}, `<axis>` ∈ {width, vertical, area, block}) is developed there.
+Both are treated in parallel on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] as "the castle's two norm-`−1` reduced quadratics". The family also gives a **classification axis** for castle sub-families: a castle class is a **"`<metal>` `<axis>` growth castle"** iff its count sequence, graded by the chosen size axis, grows at rate `δ_a`. This is Axis 8 of [[castle-classification-growth](pages/castle-classification-growth.md)]; the naming convention (`<metal>` ∈ {golden, silver, bronze, copper, nickel, …}, `<axis>` ∈ {width, vertical, area, block}) is developed there.
 
 ## Structural facts about the family
 
 - **Binet-style formula.** Every member's recurrence-realization satisfies `x_n = (δ_a^n − δ̂_a^n) / (δ_a − δ̂_a)` with `δ̂_a = (a − √(a²+4))/2` the conjugate root. Growth is `x_{n+1}/x_n → δ_a`; the conjugate contribution decays because `|δ̂_a| < 1` for every `a ≥ 1`.
-- **Purely periodic continued fraction.** `δ_a = [a; a, a, …]` since `δ_a = a + 1/δ_a` (i.e. `δ_a` is a fixed point of `x ↦ a + 1/x`), the fundamental self-similarity property that [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] develops. The conjugate `δ̂_a` sits in `(−1, 0)` for every `a ≥ 1`, so all members are Galois-reduced (norm `−1`, sum of roots `= a > 0`, product `= −1`), hence purely periodic.
+- **Purely periodic continued fraction.** `δ_a = [a; a, a, …]` since `δ_a = a + 1/δ_a` (i.e. `δ_a` is a fixed point of `x ↦ a + 1/x`), which [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] develops. The conjugate `δ̂_a` sits in `(−1, 0)` for every `a ≥ 1`, so all members are Galois-reduced (norm `−1`, sum of roots `= a > 0`, product `= −1`), hence purely periodic.
 - **Fundamental units.** Each `δ_a` is a unit of norm `−1`, and it is the fundamental unit of the ring it generates, `Z[δ_a]`. It is also the fundamental unit of its field `Q(√(a²+4))` unless it is an odd power of a smaller rung: copper `δ_4 = φ³` is a cube in `Q(√5)`, whose fundamental unit is `φ`. Conversely every norm `−1` unit greater than 1 in a real quadratic field is some `δ_t`, so the metallic means include the fundamental unit of every real quadratic field whose fundamental unit has norm `−1` ("Which ring each rung generates" below).[^6]
-- **Palindromic quadratic — reciprocal-root symmetry.** The characteristic polynomial `x² − a·x − 1` has coefficients `[1, −a, −1]`, so it is *anti*-palindromic (not palindromic) — the two roots multiply to `−1` (norm `−1`), the very reason the fraction is purely periodic ([[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] Step 3). Every metallic mean sits on the same anti-palindromic template with a different first-order coefficient.
+- **Root symmetry.** The roots of `x² − a·x − 1` multiply to `−1` (norm `−1`), so `x ↦ −1/x` swaps them (`x² p(−1/x) = −p(x)`), and the conjugate `−1/δ_a` lies in `(−1, 0)`, which is why the fraction is purely periodic ([[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] Step 3).
 
 ## Which ring each rung generates
 
@@ -72,7 +72,7 @@ A metallic mean generates more than a field. It generates a *ring*, `Z[δ_a] = Z
 
 | `a` | `a² + 4` | field `Q(√D0)` | index `f` | note |
 |---|---|---|---|---|
-| 1, 2, 3, 5, 6, 7, 9, 10 | 5, 8, 13, 29, 40, 53, 85, 104 | each its own | 1 | full ring of integers |
+| 1, 2, 3, 5, 6, 7, 9, 10, 13 | 5, 8, 13, 29, 40, 53, 85, 104, 173 | each its own | 1 | full ring of integers |
 | 4 (copper) | 20 | `Q(√5)` | 2 | `δ_4 = φ³`, ring `Z[√5]` |
 | 8 | 68 | `Q(√17)` | 2 | not a power of a smaller rung |
 | 11 | 125 | `Q(√5)` | 5 | `δ_11 = φ⁵` |
@@ -81,7 +81,7 @@ A metallic mean generates more than a field. It generates a *ring*, `Z[δ_a] = Z
 
 **Powers give Fibonacci-type indices.** If `δ = δ_b` and `n` is odd, `δ^n` has norm `−1` and trace `t`, so `δ^n = δ_t` is itself a rung. Writing `δ^n = U_n δ + U_{n−1}` (with `U_n` the Fibonacci numbers `F_n` for `b = 1` and the Pell numbers `Pell(n)` for `b = 2`), the ring it generates is `Z[δ^n] = Z + U_n δ Z`, of index `U_n` in `Z[δ]`. So copper `φ³` has index `F_3 = 2` in `Z[φ]`, `φ⁵ = δ_11` has index `F_5 = 5`, and `(1 + √2)³ = δ_14` has index `Pell(3) = 5` in `Z[√2]`.[^8]
 
-**Same field, different rings.** Golden and copper both live in `Q(√5)`, but `x² = x + 1` has the solution `φ` in `Z[φ]` and no solution in `Z[√5]` (its roots `(1 ± √5)/2` have half-integer coordinates). By the argument above, `Z[δ_1] ≇ Z[δ_4]`. The field loses information that the ring keeps.
+**Same field, different rings.** Golden and copper both live in `Q(√5)`, but `x² = x + 1` has the solution `φ` in `Z[φ]` and no solution in `Z[√5]` (its roots `(1 ± √5)/2` have half-integer coordinates). By the argument above, `Z[δ_1] ≇ Z[δ_4]`.
 
 **Which rungs are fundamental units.** Every unit of norm `−1` that is greater than 1 in a real quadratic field is a metallic mean: if `ε = (t + u√D0)/2` has norm `−1` then `t² + 4 = u² D0`, so `ε = (t + √(t² + 4))/2 = δ_t`. So `δ_a` is the fundamental unit of its field unless it is an odd power of a smaller rung. For `a ≤ 100` that happens exactly for `a = 4, 11, 14, 29, 36, 76, 82` (`φ³, φ⁵, (1 + √2)³, φ⁷, δ_3³, φ⁹ = δ_4³, (1 + √2)⁵`).[^9]
 
@@ -92,20 +92,23 @@ A metallic mean generates more than a field. It generates a *ring*, `Z[δ_a] = Z
 - **`<metal>`** ∈ {golden (`a=1`, `φ`), silver (`a=2`, `1+√2`), bronze (`a=3`, `(3+√13)/2`), copper (`a=4`, `2+√5`), nickel (`a=5`, `(5+√29)/2`), …} — one per member of this family.
 - **`<axis>`** ∈ {width, vertical, area, block} — the size parameter being graded, always stated explicitly.
 
-The two rungs the wiki has real content for:
+The rungs with castle realizations:
 
-1. **Silver width growth castle** — count sequence graded by width `w` grows at `1+√2`. Three structurally-distinct known members: the **1-smooth height-3 strip** (`|c_{i+1} − c_i| ≤ 1`), whose denominator factors as `(1 − x)(1 − 2x − x²)` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) and which, anchored at height 1, is the [[pell-castle-strip](pages/pell-castle-strip.md)] with generating function exactly `1/(1 − 2x − x²)` and Pell-number counts (`p_1 = 2, p_2 = 1`); the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)], algebraic GF, A004149); and the ceiling-exception rule `J − D` at height 3 (item 3 below). Same growth constant, three different families — the meta-classification working as intended.
-2. **Golden width growth castle** — count sequence graded by `w` grows at `φ`. Known member: the height-2 tree castles ([[castle-graph](pages/castle-graph.md)]) — `{0,1}`-skyline above the base with no two adjacent raised columns, Fibonacci `F_{w+2}`, the `p_1 = 1, p_2 = 1` denominator. The prime-castle count `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] is a **golden area growth castle** (Fibonacci-dominated when graded by area — different axis).
+1. **Silver width growth castle** — count sequence graded by width `w` grows at `1+√2`. Three structurally-distinct known members: the **1-smooth height-3 strip** (`|c_{i+1} − c_i| ≤ 1`), whose denominator factors as `(1 − x)(1 − 2x − x²)` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) and which, anchored at height 1, is the [[pell-castle-strip](pages/pell-castle-strip.md)] with generating function exactly `1/(1 − 2x − x²)` and Pell-number counts (`p_1 = 2, p_2 = 1`); the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)], algebraic GF, A004149); and the ceiling-exception rule `J − D` at height 3 (item 3 below).
+2. **Golden width growth castle** — count sequence graded by `w` grows at `φ`. Known member: the height-2 tree castles ([[castle-graph](pages/castle-graph.md)]) — `{0,1}`-skyline above the base with no two adjacent raised columns, Fibonacci `F_{w+2}`, the `p_1 = 1, p_2 = 1` denominator. The prime castles, `F_{n−1}` of them by area ([[prime-castles](pages/prime-castles.md)]), are a **golden area growth castle** (a different axis).
 
-3. **Bronze, copper, nickel, … width growth castles** — all realized, by **one named rule**: the **plateau-free-except-ceiling** strip (adjacent columns differ in height unless both equal the max `h`), transfer matrix `M_h = J − D`, char poly `(x+1)^{h−2}(x² − (h−1)x − 1)`, Perron root `δ_{h−1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). So metal `a` sits at height `h = a + 1`: **bronze** at `h = 4`, **copper** at `h = 5`, nickel at `h = 6`, and so on up the whole ladder. Copper (`h = 5`) is `δ_4 = 2 + √5 = φ³`, and its strip count is `F_{3n+5}` — the **Fibonacci trisection**, the decimation made concrete.
+3. **Bronze, copper, nickel, … width growth castles** — all realized, by **one named rule**: the **plateau-free-except-ceiling** strip (adjacent columns differ in height unless both equal the max `h`), transfer matrix `M_h = J − D`, char poly `(x+1)^{h−2}(x² − (h−1)x − 1)`, Perron root `δ_{h−1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). So metal `a` sits at height `h = a + 1`: **bronze** at `h = 4`, **copper** at `h = 5`, nickel at `h = 6`, and so on up the whole ladder. Copper (`h = 5`) is `δ_4 = 2 + √5 = φ³`, and its strip count is `F_{3n+5}` (`n = 0, 1, 2, …` for width `n + 1`), a **Fibonacci trisection**.
 
-The realizability question the "how many states per column" knob raised is thus **settled**: a castle-strip denominator `1 − p_1·x − p_2·x²` grows at `(p_1 + √(p_1² + 4·p_2))/2`, a metallic mean iff `p_2 = 1`, but reading `p_1` as "states per column" is a **trap** — `p_1` (forward states) and `p_2` (length-2 return loops) are *coupled* in symmetric height-`h` rules, so widening the alphabet drifts `p_2` off `1` (no 0/1 matrix on `≤ 3` states reaches bronze; naive height-3 rules hit non-metallic `1 + √3`, `(3+√17)/2`). The `M_h = J − D` ceiling-exception rule is exactly the decoupling that keeps `p_2 = 1` at every height. Vertical / area / block axes require rethinking the strip mnemonic and are wide open.
+**Realizability.** A castle-strip denominator `1 − p_1·x − p_2·x²` grows at `(p_1 + √(p_1² + 4·p_2))/2`, a metallic mean iff `p_2 = 1`, but `p_1` is not the number of states per column: `p_1` (forward states) and `p_2` (length-2 return loops) are *coupled* in symmetric height-`h` rules, so widening the alphabet drifts `p_2` off `1` (a 0/1 matrix on 3 states has spectral radius at most 3, below bronze's 3.30; the no-adjacent-ceiling height-3 rule gives the non-metallic `1 + √3`). The `M_h = J − D` ceiling-exception rule is the decoupling that keeps `p_2 = 1` at every height. The vertical and block axes have no known members; the area axis has the n-nacci and cubic-Pisot families of [[castle-classification-growth](pages/castle-classification-growth.md)].
 
-**The "every X is Y" theorem shape.** The Axis-8 framing makes cross-axis statements articulable. Example: *"the tower word, a Motzkin-path type with a run constraint, is a silver width growth castle"* combines an Axis 3 shape predicate with the Axis 8 growth type through a real theorem (its algebraic GF has its singularity at `√2 − 1`), and *"the tree ban lowers the area growth constant from tribonacci to golden at height 3"* combines Axis 9 with Axis 8. See [[castle-classification](pages/castle-classification.md)] for more.
+**Cross-axis statements.** The tower word, a Motzkin-path type with a run constraint (Axis 3), is a silver width growth castle: its algebraic GF has its singularity at `√2 − 1`. The tree ban (Axis 9) lowers the area growth constant from tribonacci to golden at height 3. See [[castle-classification](pages/castle-classification.md)] for more.
 
 ## Appearances in Sources
 
-*(no primary sources ingested for this page yet; the material is standard number theory and is verified by direct calculation. Candidate sources for future ingest: Vera W. de Spinadel, "The metallic means family and multifractal spectra," Nonlinear Analysis 36 (1999) 721–745; Wikipedia article "Metallic mean" as a hydration source for definitions.)*
+- [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the silver member's generating function `1/(1 − 2x − x²)`.
+- [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - Ex. 4.11, the ring-isomorphism test behind "Same field, different rings".
+
+The rest is standard number theory, verified by direct calculation; de Spinadel's papers (footnote 1) are cited, not read.
 
 ## Related Concepts
 
@@ -115,15 +118,15 @@ The realizability question the "how many states per column" knob raised is thus 
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] — the two members `φ` and `1+√2` already treated as the castle's norm-`−1` reduced quadratics; this page names the ladder they sit on.
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — where `1+√2` appears as the tower-word growth constant.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the Fibonacci / `φ` archetype (the `a=1` member).
-- [[castle-by-area](pages/castle-by-area.md)] — `2^{n−1} − F_{n−1}`, where Fibonacci / `φ` enters the castle count.
+- [[prime-castles](pages/prime-castles.md)] — the `F_{n−1}` prime castles by area, where Fibonacci / `φ` enters the castle count.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] — the metallic means are algebraic (quadratic), the exact irrationals that C-finite castle counts *can* carry.
 - [[spectral-analysis](pages/spectral-analysis.md)] / [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - where the metallic means do and do not appear as eigenvalues: never in Project Euler 502 (PE 502)'s own signed transfer matrix (its eigenvalues are twice algebraic units), but as spectral radii of class transfer matrices (Axis 8) and of individual castle graphs (`φ` for the 4-cell paths, `1 + √2` for the `3×2` rectangle and three non-rectangular castles).
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the convergent numerator/denominator/trace sequences of every rung `a = 1..5` matched to OEIS, and the mod-`p` signature of norm `−1` (`δ_a^{p+1} = −1` at inert primes).
 - [[block-count-constraints](pages/block-count-constraints.md)] - the coin branch touches the ladder: numerical semigroups counted by genus (A007323: 1, 1, 2, 4, 7, 12, 23, 39, …) grow at the golden ratio (Zhai 2013).
 
-- [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - rung 9 off the wiki's own ladder: Ramanujan's near-miss family `x^3 + y^3 = z^3 +- 1` (the recurrence behind `9^3 + 10^3 = 12^3 + 1`) grows by `delta_9^2 = (83 + 9 sqrt 85)/2`, the ninth metallic mean squared; `delta_9 = [9; 9, 9, ...]` versus `delta_9^2 = [82; 1, 81, 1, 81, ...]` is the norm `-1` / norm `+1` contrast made concrete.
-- [[fractional-recurrences](pages/fractional-recurrences.md)] - the ladder is a discrete slice through a continuum. The fractional-Fibonacci `∇^α a_n = a_{n-1}` has growth `g(α) = 1/r*(α)` a continuous bijection `[0,∞) → [1,∞)`, and the ladder crosses this curve at rational-`α` **only for golden** (`α = 1/2` exactly, because `δ_1 - 1 = 1/δ_1` is a unit while `N(δ_a - 1) = -a` for `a ≥ 2`). Silver, bronze, copper, nickel land at transcendental orders `α ≈ 1.65, 3.31, 5.36, 7.70`. Golden is the unique metallic mean whose "half-order recurrence" is exactly itself.
-- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] - the n-nacci growth constants `α_h` sit near but *off* the metallic ladder for `h ≥ 3`: `α_2 = δ_1` is golden, but tribonacci / tetranacci / … are not metallic. The contrast is load-bearing structural evidence for what the ladder is not.
+- [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - Ramanujan's near-miss family `x^3 + y^3 = z^3 +- 1` (the recurrence behind `9^3 + 10^3 = 12^3 + 1`) grows by `delta_9^2 = (83 + 9 sqrt 85)/2`, the ninth metallic mean squared; `delta_9 = [9; 9, 9, ...]` (norm `-1`) against `delta_9^2 = [82; 1, 81, 1, 81, ...]` (norm `+1`).
+- [[fractional-recurrences](pages/fractional-recurrences.md)] - the ladder is a discrete slice through a continuum. The fractional-Fibonacci `∇^α a_n = a_{n-1}` has growth `g(α) = 1/r*(α)` a continuous bijection `[0,∞) → [1,∞)`, and the ladder crosses this curve at rational-`α` **only for golden** (`α = 1/2` exactly, because `δ_1 - 1 = 1/δ_1` is a unit while `N(δ_a - 1) = -a` for `a ≥ 2`). Silver, bronze, copper, nickel land at transcendental orders `α ≈ 1.65, 3.31, 5.36, 7.70`.
+- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] - the n-nacci growth constants `α_h` sit near but *off* the metallic ladder for `h ≥ 3`: `α_2 = δ_1` is golden, but tribonacci / tetranacci / … are not metallic.
 - [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - Ex. 4.11 (isomorphisms preserve solutions of `x² = 2`, so `Z[√2] ≇ Z[√3]`), the tool behind "same field, different rings".
 - [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - `metallic_ring(a)` computes the field and index of `Z[δ_a]`.
 

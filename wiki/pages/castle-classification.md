@@ -5,7 +5,7 @@ summary: Hub for the castle-type taxonomy. Three scopes with different classifyi
 tags: [concept, castle, classification, taxonomy, hub, scope, shape, spectral, growth]
 sources: [castle-classification]
 created: 2026-09-15
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Castle classification
@@ -34,21 +34,19 @@ A fourth invariant, **compressibility** - the length of the shortest description
 
 ## Reading the scope column
 
-The **shape** and **spectrum** scopes both classify a single castle, but they read different features of it. A shape predicate looks at the skyline `(c_1, …, c_w)` directly - is it unimodal? does it have a palindromic pattern? does it have exactly two peaks? A spectral predicate builds the polyomino graph (cells as vertices, orthogonal neighbours as edges) and reads eigenvalues off some operator on it. Two castles with different shapes can share a spectrum (isospectral pairs); two castles with the same shape trivially share every graph invariant, so the spectral predicate is *coarser* on the shape side but sees structure the shape cannot see (walks, mixing, expander behaviour).
+The **shape** and **spectrum** scopes both classify a single castle, but they read different features of it. A shape predicate looks at the skyline `(c_1, …, c_w)` directly (unimodal, palindromic, exactly two peaks). A spectral predicate builds the polyomino graph (cells as vertices, orthogonal neighbours as edges) and reads eigenvalues off some operator on it. Two castles with different shapes can share a spectrum (isospectral pairs); two castles with the same shape trivially share every graph invariant. Every spectral predicate is therefore a function of the shape, a *coarser* one, that sorts castles by walks, mixing and expansion rather than by the skyline.
 
-The **growth** scope is fundamentally different. It classifies not a single castle but an entire family - a construction rule (a neighbour rule read left to right, a ceiling exception, a tree ban, or any other predicate defining an infinite class of castles) - and asks how fast the count sequence grows. "Silver width growth castle" is not a property a single castle either has or does not have; it is a property of an infinite family and the rule that defines it.
+The **growth** scope is different: it classifies not a single castle but an entire family - a construction rule (a neighbour rule read left to right, a ceiling exception, a tree ban, or any other predicate defining an infinite class of castles) - and asks how fast the count sequence grows. "Silver width growth castle" is not a property a single castle either has or does not have; it is a property of an infinite family and the rule that defines it.
 
-The **cross-scope** interactions are where classification stops being bookkeeping and becomes theorem-shaped: a shape predicate defines a class, and the class has a growth type; a spectral predicate can coincide with a shape one (the tree-castle condition "no `2 × 2` filled block" is both a shape restriction and a graph-theoretic one); the same class can be classified twice, at different scopes, and the two answers are related by real theorems, not by definition. [[castle-classification-growth](pages/castle-classification-growth.md)] closes with a section of cross-scope theorems the meta-classification licenses.
+The scopes interact: a shape predicate defines a class, and the class has a growth type; a spectral predicate can coincide with a shape one (the tree-castle condition "no `2 × 2` filled block" is both a shape restriction and a graph-theoretic one); and the same class can be classified at two scopes. [[castle-classification-growth](pages/castle-classification-growth.md)] ends with the cross-scope theorems.
 
-## What "classification" gives you
-
-Three questions attach to every type:
+## Three questions per type
 
 1. **Is it counted?** Does the wiki already have a count (exact formula, generating function, algorithm) for the type?
 2. **What is its count's shape?** Growth constant, C-finite / algebraic / transcendental character, OEIS identification if any.
 3. **How does it interact with the parity clause?** Does the parity-projected version have the same shape, or is parity locked out by the type's structure?
 
-Every open (2) is a seminar topic; every open (3) is a research thread. Question (2) is where the shape and growth pages meet: answering it for a shape type places that type's class on the growth axis.
+Question (2) is where the shape and growth pages meet: answering it for a shape type places that type's class on the growth axis.
 
 **Parity.** Project Euler 502 (PE 502) requires an even number of blocks. Each type is defined without reference to that clause, and the even-block projector `(A ± P) / 2` ([[castle-sign](pages/castle-sign.md)]) is applied on top when needed.[^1] The clause is not independent of typing: a convex (unimodal) castle of height `h` has exactly `h` blocks, one per row, so every convex castle has the block parity of `h` and the projector keeps all of them or none.[^2]
 
@@ -62,15 +60,13 @@ Each scope's page carries its own detailed open list; the largest open items acr
 
 1. **k-modal for `k ≥ 2`** (shape) - the parametric family whose `k = 1` case is [[convex-castle](pages/convex-castle.md)] (binomial).
 2. **Symmetry types** (shape) - palindromic, centrally symmetric, self-conjugate - untouched.
-3. **Rainbow** (shape) - direct permutation-classification tie, immediate seminar target for the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] triad.
+3. **Rainbow** (shape) - skylines that are permutations of `{1, …, h}`, tied to the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] triad.
 4. **Ramanujan castles** (spectrum) - the universal-cover definition is stated on [[castle-classification-spectrum](pages/castle-classification-spectrum.md)]; the census on [[ramanujan-castles](pages/ramanujan-castles.md)] finds every castle of area at most 22 Ramanujan, and the `2 × 14` rectangle the smallest that is not.
 5. **Bronze-spectrum castles** (spectrum) - absent among 4.87 million castles on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]; open beyond the scanned size.
 6. **Sparse-spectrum, low / high-pass, Ihara-Ramanujan** (spectrum) - the three sketched types on [[castle-classification-spectrum](pages/castle-classification-spectrum.md)].
 7. **Alternative realizations of the bronze / copper / nickel width growth castles** (growth) - does any higher rung admit a second, structurally distinct rule the way silver does?
 8. **Vertical and block growth axes** (growth) - no member known for either.
 9. **Compressibility** as a classifier in its own right ([[castle-compression](pages/castle-compression.md)]).
-
-*(Resolved: the bare plastic number `ψ` as an area growth constant, formerly the one open slot in the cubic-Pisot family, is now realized - [[area-growth-census](pages/area-growth-census.md)].)*
 
 ## Related Concepts
 
@@ -86,9 +82,9 @@ Each scope's page carries its own detailed open list; the largest open items acr
 - [[castle-sign](pages/castle-sign.md)] - the parity projector applied on top of any type.
 - [[convex-castle](pages/convex-castle.md)] - the type whose block count is fixed by its shape.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the methods hub paired with the spectral predicates.
-- [[castle-snippets](pages/castle-snippets.md)] - tested Python one-liners for the shape predicates and the castle-graph primitives.
-- [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - each restriction axis defined here is a sub-subset of `V(w,h)` with its own single-column-change Gray-tour question, open per-axis.
-- [[area-growth-census](pages/area-growth-census.md)] - resolves the formerly-open bare plastic number `ψ` growth-type slot (item 8 above).
+- [[castle-snippets](pages/castle-snippets.md)] - short tested Python snippets for the shape predicates and the castle-graph primitives.
+- [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - each restriction axis defined here gives a subset of `V(w,h)` with its own single-column-change Gray-tour question.
+- [[area-growth-census](pages/area-growth-census.md)] - realizes the bare plastic number `ψ` as an area growth constant, at height 2.
 
 ## Footnotes
 

@@ -5,7 +5,7 @@ summary: P_n = 2·P_{n−1} + P_{n−2} with P_0=0, P_1=1 — the integer sequen
 tags: [concept, pell, integer-sequence, silver-ratio, quadratic-irrational, continued-fraction, oeis]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-15
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Pell numbers
@@ -36,26 +36,26 @@ Ratios of consecutive Pell numbers `P_{n+1}/P_n` converge to `√2 + 1 = 2.41421
 
 ## Two roles in the wiki
 
-The Pell numbers earn a page here because they land at two structurally-informative points:
+The Pell numbers appear in two roles:
 
 ### 1. As the count sequence of the [[pell-castle-strip](pages/pell-castle-strip.md)]
 
-The rational function `1/(1 − 2x − x²)` — one degree of freedom away from Pell's own generating function `x/(1 − 2x − x²)` — has coefficients `1, 2, 5, 12, 29, 70, 169, …` = `P_{n+1}` shifted.[^3] Read symbolically it is a two-atom tiling scheme (a width-1 atom of weight 2 and a width-2 atom of weight 1), and it has an exact castle realization: the **1-smooth strip of height at most 3, anchored at the base** — skylines over `{1, 2, 3}` with `|c_{i+1} − c_i| ≤ 1` and first column at height 1 — whose width generating function is exactly `1/(1 − 2x − x²)`, so the number of such strips of width `w` is `P_{w+1}`. Freeing the first column gives the companion Pell numbers (A001333) instead.[^8]
+The rational function `1/(1 − 2x − x²)`, Pell's own generating function `x/(1 − 2x − x²)` divided by `x`, has coefficients `1, 2, 5, 12, 29, 70, 169, …`: the coefficient of `x^n` is `P_{n+1}`.[^3] Read symbolically it is a two-atom tiling scheme (a width-1 atom of weight 2 and a width-2 atom of weight 1), and it has an exact castle realization: the **1-smooth strip of height at most 3, anchored at the base** — skylines over `{1, 2, 3}` with `|c_{i+1} − c_i| ≤ 1` and first column at height 1 — whose width generating function is exactly `1/(1 − 2x − x²)` (the coefficient of `x^{w−1}` counts width `w`), so the number of such strips of width `w` is `P_w`. Freeing the first column gives the companion Pell numbers (A001333) instead.[^8]
 
 ### 2. As the concrete integer realization of `1 + √2`
 
-The [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] page presents `1 + √2 = [2; 2, 2, …]` as one of the castle's two purely periodic norm-`−1` quadratics (the other being `φ` for Fibonacci). Pell is what `1 + √2` looks like as an integer recurrence, in the way that Fibonacci is what `φ` looks like — the *convergents* of `[2; 2, 2, …]` are Pell ratios `P_{n+1}/P_n = 2, 5/2, 12/5, 29/12, 70/29, 169/70, …`, verified in [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] footnote 4.[^4] The tower-word growth constant is the same `1 + √2` ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]) — so Pell is the integer skeleton of the castle's silver-ratio thread the same way Fibonacci is the integer skeleton of its golden-ratio thread.
+The [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] page presents `1 + √2 = [2; 2, 2, …]` as one of the castle's two purely periodic norm-`−1` quadratics (the other being `φ` for Fibonacci). The Pell numbers relate to `1 + √2` as the Fibonacci numbers relate to `φ`: the *convergents* of `[2; 2, 2, …]` are Pell ratios `P_{n+1}/P_n = 2, 5/2, 12/5, 29/12, 70/29, 169/70, …`, verified in [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] footnote 4.[^4] The tower-word growth constant is the same `1 + √2` ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]).
 
 ## The Pell / Fibonacci parallelism
 
-The wiki now tracks the two norm-`−1` quadratics symmetrically:
+The two norm-`−1` quadratics side by side:
 
 | Quadratic surd | Continued fraction | Recurrence | Sequence | Wiki appearance |
 |---|---|---|---|---|
-| `φ = (1+√5)/2` | `[1; 1, 1, …]` | `F_n = F_{n−1} + F_{n−2}` | Fibonacci (A000045) | prime-castle count `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)]; the Fibonacci method of [[aocp-generating-functions](pages/aocp-generating-functions.md)] |
+| `φ = (1+√5)/2` | `[1; 1, 1, …]` | `F_n = F_{n−1} + F_{n−2}` | Fibonacci (A000045) | the `F_{n−1}` prime castles by area on [[prime-castles](pages/prime-castles.md)]; the Fibonacci method of [[aocp-generating-functions](pages/aocp-generating-functions.md)] |
 | `1 + √2` | `[2; 2, 2, …]` | `P_n = 2·P_{n−1} + P_{n−2}` | **Pell (A000129)** | the anchored 1-smooth height-3 strip of [[pell-castle-strip](pages/pell-castle-strip.md)]; tower-word growth constant on [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] |
 
-Both are the fundamental units of their respective real quadratic fields (`φ` of `Q(√5)`, `1+√2` of `Q(√2)`), both are period-one purely periodic, and both realize their surd through a linear recurrence with characteristic polynomial `x² − ax − 1` (`a = 1` for Fibonacci, `a = 2` for Pell). The Pell case adds nothing conceptually new; it fills in the wiki's second row of a two-row family we had already implicitly assembled.
+Both are the fundamental units of their respective real quadratic fields (`φ` of `Q(√5)`, `1+√2` of `Q(√2)`), both are period-one purely periodic, and both realize their surd through a linear recurrence with characteristic polynomial `x² − ax − 1` (`a = 1` for Fibonacci, `a = 2` for Pell).
 
 ## Closed forms and identities
 
@@ -77,7 +77,7 @@ The **companion Pell** (or *Pell-Lucas half*) sequence is OEIS A001333 = `1, 1, 
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] — where `1 + √2 = [2; 2, 2, …]` is developed as one of the castle's two norm-`−1` quadratics.
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — where `1 + √2` also appears, as the tower-word growth constant.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the Fibonacci companion (`φ`, `[1;1,1,…]`) — the same story with `a = 1`.
-- [[castle-by-area](pages/castle-by-area.md)] — the wiki's other integer-sequence-plus-quadratic-surd pairing (`2^{n−1} − F_{n−1}`).
+- [[prime-castles](pages/prime-castles.md)] — the Fibonacci counterpart: `F_{n−1}` prime castles by area (and `2^{n−1} − F_{n−1}` composite ones).
 - [[metallic-means](pages/metallic-means.md)] — the family `δ_a = (a + √(a²+4))/2` (`a = 1, 2, 3, …`) — Fibonacci/Pell/Bronze/Copper/… — that Pell sits at `a = 2` of.
 
 ## Footnotes

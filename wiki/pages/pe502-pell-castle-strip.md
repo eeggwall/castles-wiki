@@ -5,7 +5,7 @@ summary: A marginalia note from an Analytic Combinatorics chapter — coefficien
 tags: [note, castle, pell, generating-functions, coefficient-matching, seminar, source]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-15
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Project Euler 502 (PE 502): the Pell castle strip
@@ -22,7 +22,7 @@ The note starts with a textbook-shaped question: given the generating function `
 a_n − 2·a_{n−1} − a_{n−2}  =  [n = 0]
 ```
 
-with the "negative index equals zero" convention (`a_{−1} = a_{−2} = 0`). The base cases `a_0 = 1, a_1 = 2` are simply this recurrence evaluated at the boundary — the `a_n` term at `n = 1` multiplies `a_{−1} = 0`, and so on. Nothing special is happening at the boundary; the appearance of a special base-case argument is what the coefficient-matching mechanic dissolves.[^1]
+with the "negative index equals zero" convention (`a_{−1} = a_{−2} = 0`). The base cases `a_0 = 1, a_1 = 2` are this recurrence evaluated at the boundary — at `x^1` the `a_n` term of the `[x^{n+2}]` equation is `a_{−1} = 0`, and so on. Nothing special happens at the boundary.[^1]
 
 The note then reads `D(x)` as a two-atom composition scheme:[^2]
 
@@ -52,7 +52,7 @@ The counts `a_0, a_1, a_2, … = 1, 2, 5, 12, 29, 70, 169, 408, 985, 2378, …` 
 
 ## Relation to Other Wiki Pages
 
-The note is the seed of a small but coherent thread: (i) a general method (coefficient matching, on [[generating-functions](pages/generating-functions.md)]), (ii) a sequence page ([[pell-numbers](pages/pell-numbers.md)]) that connects existing continued-fraction and eigenvalue material to a castle strip, (iii) an Analysis page ([[pell-castle-strip](pages/pell-castle-strip.md)]) that captures the pedagogy — how a small AC exercise opens onto castle strips and the silver ratio.
+The note connects to three pages: (i) a general method (coefficient matching, on [[generating-functions](pages/generating-functions.md)]), (ii) a sequence page ([[pell-numbers](pages/pell-numbers.md)]) that connects the continued-fraction and eigenvalue material to a castle strip, and (iii) an Analysis page ([[pell-castle-strip](pages/pell-castle-strip.md)]) that develops the exercise into castle strips and the silver ratio.
 
 ## Footnotes
 

@@ -1,20 +1,20 @@
 ---
-title: Castle snippets - Python one-liners
+title: Castle snippets
 category: Concepts
-summary: Living reference of short, tested Python snippets for enumerating castles, checking classification predicates, and computing basic graph invariants. Three sibling pages carry the strips/growth, number-theory, and cryptography snippets.
+summary: Reference of short, tested Python snippets for enumerating castles, checking classification predicates, and computing basic graph invariants. Three sibling pages carry the strips/growth, number-theory, and cryptography snippets.
 tags: [concept, castle, python, snippets, computational, classification, reference]
 sources: [project-euler-502-brute-force]
 created: 2026-09-16
-updated: 2026-09-24
+updated: 2026-09-28
 ---
 
-# Castle snippets - Python one-liners
+# Castle snippets
 
 ## What this is
 
-A living reference of **short, tested Python snippets** for exploring castles computationally. Each snippet:
+A reference of **short, tested Python snippets** for exploring castles computationally. Each snippet:
 
-- Runs in a plain Python REPL (no external deps unless one line justifies the import - `itertools`, `math`).
+- Runs in a plain Python REPL with `itertools` and `math` only, except where a snippet says it needs NumPy or SymPy.
 - Follows the wiki's conventions: skyline `c = (c_1, …, c_w)` with `1 ≤ c_i ≤ h` and `max c = h` matches [[castle-representations](pages/castle-representations.md)]; block count matches [[castle-sign](pages/castle-sign.md)] and [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]; classification names match [[castle-classification](pages/castle-classification.md)].
 - Was **executed during ingest**; every printed output is pinned. If a snippet's output disagrees with what this page shows, the wiki is wrong - file a fix.
 
@@ -70,7 +70,7 @@ def blocks(c):
 
 ### `area(c)` → int
 
-Total cell count `∑ c_i`. The natural size axis for area-graded classifications on [[castle-by-area](pages/castle-by-area.md)].
+Total cell count `∑ c_i`, the size axis for area-graded classifications on [[castle-by-area](pages/castle-by-area.md)].
 
 ```python
 def area(c):
@@ -347,7 +347,7 @@ Meaning: `(1,1,1,1)` is a golden-spectrum castle, `(2,2,2)` and `(1,2,3,1,2,3)` 
 
 ### `metallic_in_spectrum(c, a)` → bool
 
-Exact test: is the metallic mean `(a + sqrt(a^2 + 4))/2` (golden `a = 1`, silver `a = 2`, bronze `a = 3`) an eigenvalue of the castle's graph? It is a root of `x^2 - a x - 1`, so it is an eigenvalue exactly when the integer matrix `A^2 - aA - I` has determinant 0; the determinant is computed without rounding. This is the check that settles every floating-point near-miss on [[bronze-castle-hunt](pages/bronze-castle-hunt.md)]. Requires NumPy and SymPy; uses `castle_graph` above.
+Exact test of whether the metallic mean `(a + sqrt(a^2 + 4))/2` (golden `a = 1`, silver `a = 2`, bronze `a = 3`) is an eigenvalue of the castle's graph. It is a root of `x^2 - a x - 1`, so it is an eigenvalue exactly when the integer matrix `A^2 - aA - I` has determinant 0; the determinant is computed without rounding. This is the check that settles every floating-point near-miss on [[bronze-castle-hunt](pages/bronze-castle-hunt.md)]. Requires NumPy and SymPy; uses `castle_graph` above.
 
 ```python
 import numpy as np
@@ -368,7 +368,7 @@ def metallic_in_spectrum(c, a):
 False
 ```
 
-Meaning: the 51-cell `near` agrees with bronze to 2.3 × 10⁻¹² in floating point and still does not have bronze anywhere in its spectrum. A floating-point match is a candidate; this determinant is the verdict.
+Meaning: the 51-cell `near` agrees with bronze to 2.3 × 10⁻¹² in floating point and does not have bronze anywhere in its spectrum. A floating-point match is only a candidate; the exact determinant decides.
 
 
 ### `compositions(n)` → all castles with exactly `n` cells
@@ -439,7 +439,7 @@ Combined with `all_castles` + `blocks` this is the [[oeis-mining-pe502](pages/oe
 '1, 3, 6, 10, 16, 28, 56, 120'
 ```
 
-Paste that into `oeis.org` to check for known-sequence hits (this one lands on the [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] hyperbolic family — height-2 castles are `A038505(w+1)`).
+Paste that into `oeis.org` to check for known-sequence hits (this one lands on the [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] hyperbolic family: the even-block height-2 castles are `A038505(w+1)`).
 
 
 ## Extension patterns
@@ -449,17 +449,15 @@ The snippets above are intentionally minimal. Common extensions the reader may w
 - **Compose predicates:** filter under multiple axes with `castles_where(w, h, lambda c: is_unimodal(c) and blocks(c) % 2 == 0)`.
 - **Distributions instead of counts:** replace `sum(1 for c in ... if pred)` with a `collections.Counter` on some statistic (block count, area, peak count).
 - **Larger `w, h`:** `all_castles(w, h)` builds `h^w` tuples; expect it to hit the wall around `w * log(h) ≈ 20`. For larger parameters the DP on [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] is what to reach for; the fast algorithms on [[castle-count-algorithms](pages/castle-count-algorithms.md)] handle trillion-scale inputs.
-- **Bijective constructions:** build a skyline from a step string ([[urd-step-strings](pages/urd-step-strings.md)]) or a binary run pattern ([[binary-string-bijection](pages/binary-string-bijection.md)]); these are two-line functions the wiki has not yet snippeted.
+- **Bijective constructions:** build a skyline from a step string ([[urd-step-strings](pages/urd-step-strings.md)]) or a binary run pattern ([[binary-string-bijection](pages/binary-string-bijection.md)]).
 
 
 ## Discipline: how to add snippets to this page
 
-1. **Write the snippet in a scratch script.** No exception, ever.
+1. **Write the snippet in a scratch script.**
 2. **Run it.** Capture the output.
 3. **Only after** you have the actual output, paste both snippet and output into this page. The output shown must be what the snippet actually produced — never a hand-computed expectation.
-4. **Cross-reference the wiki page** the snippet supports. A snippet without a wiki-page tie-in is a snippet in search of a purpose.
-
-Snippets that break this discipline will rot; snippets that follow it stay useful.
+4. **Cross-reference the wiki page** the snippet supports.
 
 
 ## Appearances in Sources
