@@ -67,7 +67,7 @@ Peeling `A_n` from `S_n` is the `m = 2` character sum; [[parity-via-roots-of-uni
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the cycle-following loop's castle analogue.
 - [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the seminar-shaped synthesis reading Project Euler 502 (PE 502) as the (n−1)! toolkit upgraded three times.
 - [[permutation-inversions](pages/permutation-inversions.md)] — the other classical permutation statistic (inversions), whose q-factorial generating function underlies the q-analog thread.
-- [[aocp-multisets](pages/aocp-multisets.md)] — Knuth's two-line arrays and unique cycle factorization (the Vol. 3 source of this analogy's permutation side).
+- [[aocp-multisets](pages/aocp-multisets.md)] — Knuth's two-line arrays and unique cycle factorization, the Vol. 3 multiset form of this analogy's permutation side (which comes from Vol. 1 §1.3.3).
 - [[aocp-combinatorics](pages/aocp-combinatorics.md)] — Knuth's Vol. 3 inversions and the q-factorial `∏(1−z^k)/(1−z)^n`, the source behind the inversion statistic mentioned above.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] — rainbow castles (skyline = permutation) and the even-peak type (the block ≠ peak caveat as a predicate).
 - [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[castle-counting-function](pages/castle-counting-function.md)] / [[castle-snippets](pages/castle-snippets.md)] — the sign move generalized and taught; `F(4,2) = 10` as checkpoint and as code.

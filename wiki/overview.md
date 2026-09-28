@@ -59,7 +59,7 @@ The general object of interest is the castle at **any** block count, counted by 
 
 **Seminars.** Eleven pages are written as seminars: [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], [[pell-castle-strip](pages/pell-castle-strip.md)], [[hardin-identity-seminar](pages/hardin-identity-seminar.md)], [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], the [[castle-cryptography](pages/castle-cryptography.md)] series, [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[one-bit-seminar](pages/one-bit-seminar.md)], [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)], [[song-as-castle](pages/song-as-castle.md)], [[sandcastle-seminar](pages/sandcastle-seminar.md)] and [[q-thread-seminar](pages/q-thread-seminar.md)].
 
-**Knuth's AOCP notes.** [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] is the home of **Vandermonde's convolution**, the identity that closes the convex-castle count, and [[aocp-multisets](pages/aocp-multisets.md)] supplies the **two-line-array cycle factorization and Foata intercalation** behind the castle's permutation-cycle analogy.
+**Knuth's AOCP notes.** [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] is the home of **Vandermonde's convolution**, the identity that closes the convex-castle count, and [[aocp-multisets](pages/aocp-multisets.md)] gives the multiset form of the cycle factorization (two-line arrays, Foata intercalation) whose permutation form, from Knuth Vol. 1 §1.3.3, underlies the castle's permutation-cycle analogy.
 
 ## Open Questions
 
