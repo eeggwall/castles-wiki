@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 134 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Fully read and cleaned | 136 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
 | Spot fixes only | 11 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 49 |
-| Words still to read | about 171,000 |
+| Not started | 47 |
+| Words still to read | about 163,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 72 fully read)
+### Concepts (85 pages, 73 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
@@ -151,7 +151,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] stack-polyomino-gf (1.9)
 - [x] castle-sign (1.9)
 - [x] binary-string-bijection (1.8)
-- [ ] ramanujan-castles (1.7)
+- [x] ramanujan-castles (1.7)
 - [x] castle-snippets-cryptography (1.7)
 - [ ] mod-9-coset-lift (1.6)
 - [x] q-catalan-numbers (1.6)
@@ -194,7 +194,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-snippets-strips (0.0)
 - [x] acronyms (0.0)
 
-### Analyses (64 pages, 32 fully read)
+### Analyses (64 pages, 33 fully read)
 
 - [x] castle-cryptography (5.1)
 - [x] isospectral-castles (4.9)
@@ -226,7 +226,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] a005251-bijection (1.7)
 - [ ] castle-ring-spectrum (1.6)
 - [ ] column-convex-ladder-by-area (1.6)
-- [ ] fractional-width-and-height (1.6)
+- [x] fractional-width-and-height (1.6)
 - [x] tree-castle-by-area (1.5)
 - [x] castle-steganography (1.5)
 - [ ] motzkin-castles (1.5)

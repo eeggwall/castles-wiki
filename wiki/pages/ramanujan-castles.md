@@ -1,18 +1,18 @@
 ---
 title: Ramanujan castles
 category: Concepts
-summary: The spectral-graph-theoretic Ramanujan condition for irregular graphs, applied to castle polyomino graphs. Greenberg's universal-cover formulation, an executable edge-cavity method for computing the cover-tree spectral radius rho(T), verification on known graphs, and a census of small castles - every castle at area <= 22 is Ramanujan, and the smallest non-Ramanujan castle is the 2x14 rectangle at 28 cells.
+summary: The spectral-graph-theoretic Ramanujan condition for irregular graphs, applied to castle polyomino graphs. Greenberg's universal-cover formulation, an executable edge-cavity method for computing the cover-tree spectral radius rho(T), verification on known graphs, and an exhaustive census to 22 cells - every castle with at most 14 cells is Ramanujan; the smallest non-Ramanujan castles have 15 cells (two 2x3 blocks joined by a path of three cells, lam_2/rho(T) = 1.0003); the smallest non-Ramanujan rectangle is the 2x14 ladder at 28 cells.
 tags: [concept, castle, spectral, ramanujan, universal-cover, alon-boppana, cavity-method, non-backtracking, expander, computation, worked-example]
 sources: [oeis-mining-pe502, project-euler-502-brute-force]
 created: 2026-09-19
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Ramanujan castles
 
-A Ramanujan graph is one whose adjacency spectrum is as compressed as any infinite family of graphs at its size and degree can achieve - the graph-theoretic analogue of "optimally expanding" or "optimally mixing". The definition originally applies to `d`-regular graphs (Lubotzky-Phillips-Sarnak, Margulis, 1988): every eigenvalue other than `±d` has absolute value at most `2*sqrt(d - 1)`. Castle graphs are almost never regular, so the regular definition is empty on castles; the right generalization is Greenberg's, via the spectral radius `rho(T)` of the universal covering tree. This page states that definition carefully, computes `rho(T)` from scratch on small castles, sweeps every small castle for Ramanujan status, and identifies **the smallest non-Ramanujan castle: the 2x14 rectangle `(14, 14)` at 28 cells**.
+A Ramanujan graph is one whose adjacency spectrum is as compressed as any infinite family of graphs at its size and degree can achieve - the graph-theoretic analogue of "optimally expanding" or "optimally mixing". The definition originally applies to `d`-regular graphs (Lubotzky-Phillips-Sarnak, Margulis, 1988): every eigenvalue other than `±d` has absolute value at most `2*sqrt(d - 1)`. Only four castle graphs are regular, so the regular definition says almost nothing about castles; the generalization used here is Greenberg's, via the spectral radius `rho(T)` of the universal covering tree. This page states that definition, computes `rho(T)` on small castles, sweeps every castle with at most 22 cells for Ramanujan status, and finds **the smallest non-Ramanujan castles at 15 cells** (one graph: two `2 x 3` blocks joined by a path of three cells) and **the smallest non-Ramanujan rectangle, the 2x14 ladder `(14, 14)` at 28 cells**.
 
-Everything below was computed during writing; every stated value is pinned. The two Python programs are on this page in full and were re-run for the final table.
+Every value below was computed with the programs on this page; the census method is in the execution footnote.[^exec]
 
 ## What the definition asks
 
@@ -42,7 +42,7 @@ Castle graphs are **bipartite** (color cells by `(i + j) mod 2`; every adjacency
 lam_2(G)  <=  rho(T).
 ```
 
-**Why the d-regular version is empty on castles.** A castle graph is `d`-regular iff every cell has the same number of orthogonal neighbours. The leftmost cell of the top row has at most two neighbours (its column-neighbour below and its row-neighbour to the right), so a regular castle has max degree at most 2, i.e. is a path or cycle. A path longer than two cells has ends of degree 1 and middle cells of degree 2, so the full list is `(1)` (`P_1`), `(1, 1)` = `(2)` (`P_2`), and `(2, 2)` (`C_4`). Everything else is irregular, and only the Greenberg form has content.
+**Why the d-regular version covers only four castles.** A castle graph is `d`-regular iff every cell has the same number of orthogonal neighbours. The leftmost cell of the top row has at most two neighbours (its column-neighbour below and its row-neighbour to the right), so a regular castle has max degree at most 2, i.e. is a path or cycle. A path longer than two cells has ends of degree 1 and middle cells of degree 2, so the full list is `(1)` (`P_1`), `(1, 1)` and `(2)` (both `P_2`), and `(2, 2)` (`C_4`). Everything else is irregular, and only the Greenberg form applies.
 
 ## The universal covering tree of a castle
 
@@ -113,7 +113,7 @@ def rho_cover(G, tol=1e-8, max_iter=1500):
 | `K_{3,4}` biregular | `sqrt(2) + sqrt(3) = 3.1462644` | `3.1462646` |
 | `K_{2,3}` biregular | `1 + sqrt(2) = 2.4142136` | `2.4142138` |
 
-Every case agrees to seven decimals. On `(14, 14)` (the 28-cell rectangle below) the truncated-ball estimate at depths 3, 5, 7, 9 gives `2.4495, 2.6286, 2.7008, 2.7365`, monotonically approaching the cavity value `2.8139`.
+Every case agrees to within `3 x 10^-7`. On `(14, 14)` (the 28-cell rectangle below) the truncated-ball estimate at depths 3, 5, 7, 9 gives `2.4495, 2.6286, 2.7008, 2.7365`, monotonically approaching the cavity value `2.8139`.
 
 ## Small worked cases
 
@@ -129,7 +129,7 @@ Six cells arranged as `P_3 * P_2`. The adjacency spectrum has closed form `2 cos
 sqrt(2) + 1,  1,  sqrt(2) - 1,  -(sqrt(2) - 1),  -1,  -(sqrt(2) + 1).
 ```
 
-So `lam_1 = 1 + sqrt(2) = 2.4142`, `lam_2 = 1`. The cavity method gives `rho(T) = 2.3892`. The graph is irregular: four corner cells of degree 2 and two interior-column cells of degree 3. The Kesten-McKay biregular formula would give `sqrt(1) + sqrt(2) = 2.4142` if the graph were `(2, 3)`-biregular, but it is not - the degrees are not distributed across the bipartition classes uniformly, so `rho(T)` is smaller.
+So `lam_1 = 1 + sqrt(2) = 2.4142`, `lam_2 = 1`. The cavity method gives `rho(T) = 2.3892`. The graph is irregular: four corner cells of degree 2 and two interior-column cells of degree 3. The Kesten-McKay biregular formula would give `sqrt(1) + sqrt(2) = 2.4142` if the graph were `(2, 3)`-biregular, but it is not: the degrees are not constant on the bipartition classes, and `rho(T)` is smaller.
 
 Ramanujan condition: `lam_2 = 1 <= 2.3892 = rho(T)`. **Yes.**
 
@@ -137,26 +137,38 @@ Ramanujan condition: `lam_2 = 1 <= 2.3892 = rho(T)`. **Yes.**
 
 Eight cells, `P_2 * P_4`, closed-form spectrum. `lam_1 = phi^2 = 2.6180`, `lam_2 = phi = 1.6180`, `rho(T) = 2.5653`. Ramanujan: `1.6180 <= 2.5653`. **Yes.**
 
-## Every small castle is Ramanujan
+## The census to 22 cells
 
-A brute-force sweep over every non-tree castle up to area 22 - shown by cycle rank 1 or more, deduplicated by left-right reflection - finds that **every one is Ramanujan**. The count of non-tree castles per area:
+An exhaustive sweep over every castle with at most 22 cells (every composition, mirror images removed) finds that **every castle with at most 14 cells is Ramanujan, and the first failures have 15 cells**. Only non-tree castles with `lam_2 > 2` need testing: a castle graph with a cycle has a bi-infinite path in its universal cover, so `rho(T) >= 2`, and the cavity iteration at `z = lam_2` then decides the inequality.[^exec]
 
-| area | non-tree castles | ratio range `lam_2 / rho(T)` |
-|---|---|---|
-| 4 | 1 | 0.000 |
-| 6 | 4 | 0.418 - 0.518 |
-| 8 | 20 | 0.480 - 0.757 |
-| 10 | 84 | 0.594 - 0.930 |
-| 12 | 300 | 0.653 - 0.977 |
-| 14 | > 900 | up to 0.992 |
-| ... | | (all `<= 1`) |
-| 22 | 595,339 (high-cyc-rank checked) | all `<= 1` |
+| cells | non-tree castles | with `lam_2 > 2` | non-Ramanujan |
+|---|---|---|---|
+| 4 | 1 | 0 | 0 |
+| 5 | 2 | 0 | 0 |
+| 6 | 7 | 0 | 0 |
+| 7 | 14 | 0 | 0 |
+| 8 | 35 | 0 | 0 |
+| 9 | 73 | 0 | 0 |
+| 10 | 164 | 6 | 0 |
+| 11 | 342 | 22 | 0 |
+| 12 | 734 | 97 | 0 |
+| 13 | 1,521 | 335 | 0 |
+| 14 | 3,187 | 1,117 | 0 |
+| 15 | 6,559 | 3,168 | 3 |
+| 16 | 13,548 | 8,072 | 3 |
+| 17 | 27,713 | 19,210 | 22 |
+| 18 | 56,721 | 44,120 | 75 |
+| 19 | 115,442 | 98,031 | 271 |
+| 20 | 234,821 | 211,405 | 844 |
+| 21 | 476,010 | 445,228 | 2,432 |
+| 22 | 964,055 | 924,048 | 6,836 |
 
-The ratio `lam_2 / rho(T)` slowly climbs toward 1 as area grows, but never crosses it below area 28. The tightest cases at each cell count are consistently the "flat, wide" shapes.
 
-## The smallest non-Ramanujan castle
+**The smallest failures.** The three 15-cell failures `(3, 3, 1, 1, 1, 3, 3)`, `(2, 2, 2, 1, 1, 1, 2, 2, 2)` and `(2, 2, 2, 1, 1, 1, 3, 3)` are one graph: two `2 x 3` blocks joined at corners by a path of three cells. Its `lam_1 = 2.50719`, `lam_2 = 2.47367` and `rho(T) = 2.47288`, a ratio of `1.0003`. `lam_2` is close to `lam_1` because the two blocks are joined only by the path, and the long path of degree-2 cells keeps `rho(T)` below `lam_2`. The 16-cell failures are the same shape with a four-cell path. Two `3 x 3` blocks joined by one height-1 column, `(3, 3, 3, 1, 3, 3, 3)` at 19 cells, fail with ratio `1.018`.
 
-The transition happens in the `2 x h` rectangle family. As `h` grows, the rectangle `(h, h)` (two columns each of height `h`, a ladder graph) closes the Ramanujan gap:
+## The 2 x h ladders
+
+Among rectangles the transition happens first in the `2 x h` family. As `h` grows, the rectangle `(h, h)` (two columns each of height `h`, a ladder graph) closes the Ramanujan gap:
 
 | skyline | area | `lam_1` | `lam_2` | `rho(T)` | ratio | Ramanujan? |
 |---|---|---|---|---|---|---|
@@ -168,65 +180,51 @@ The transition happens in the `2 x h` rectangle family. As `h` grows, the rectan
 | `(15, 15)` | 30 | 2.96157 | 2.84776 | 2.81641 | 1.011 | no |
 | `(16, 16)` | 32 | 2.96595 | 2.86494 | 2.81838 | 1.017 | no |
 
-The 2x14 rectangle `(14, 14)` is the smallest non-Ramanujan castle. Its graph is the 14-rung ladder, whose sandpile group is cyclic of order A001353(14) = 29,354,524 in the sink model and A001835(14) = 21,489,003 in the tide model ([[sandpile-group](pages/sandpile-group.md)]). Its second-largest adjacency eigenvalue is `lam_2 = 1 + 2 cos(2 pi / 15) = 2.82709`, and the cover-tree spectral radius is `rho(T) = 2.81393`, so `lam_2 > rho(T)` by about `0.013`. Every non-tree castle at area `< 28` is Ramanujan; every non-tree castle at area `28` with lower cycle rank than `(14, 14)` is also Ramanujan, because they have a smaller `lam_2`. Confirmed by exhaustive sweep over compositions of `n <= 22` and by a further pattern-scan at 23-30 cells.
+The 2x14 rectangle `(14, 14)` is the smallest non-Ramanujan rectangle. Its graph is the 14-rung ladder, whose sandpile group is cyclic of order A001353(14) = 29,354,524 in the sink model and A001835(14) = 21,489,003 in the tide model ([[sandpile-group](pages/sandpile-group.md)]). Its second-largest adjacency eigenvalue is `lam_2 = 1 + 2 cos(2 pi / 15) = 2.82709`, and the cover-tree spectral radius is `rho(T) = 2.81393`, so `lam_2 > rho(T)` by about `0.013`. Smaller non-rectangular castles fail earlier (the census above, from 15 cells); a search over castles with two adjacent columns of height at least 8 finds `(2, 12, 12)` at 26 cells failing with ratio `1.001`.
 
 **Independent confirmation.** The truncated-ball estimate for `(14, 14)` at depth 9 gives `rho(T)_9 = 2.7365`, still increasing toward the cavity value 2.8139. Whichever method one uses, `lam_2 = 2.8271` sits strictly above.
 
-**Where the failure comes from.** The `2 x h` rectangle's adjacency graph is `P_h x P_2`, the ladder graph. Its spectrum has `lam_2 = 1 + 2 cos(2 pi / (h + 1))`, which approaches `3` as `h -> infty`. The universal covering tree's spectral radius, however, sits below `2 + sqrt(2) ~= 2.828` for this shape (it's an irregular tree with degree pattern `2` at the ends and `3` at the interior), so eventually `lam_2` overtakes `rho(T)`. The crossover happens at `h = 14`.
+**Where the failure comes from.** The `2 x h` rectangle's adjacency graph is `P_h x P_2`, the ladder graph. Its spectrum has `lam_2 = 1 + 2 cos(2 pi / (h + 1))`, which approaches `3` as `h -> infty`. The universal covering tree has maximum degree 3 (the ladder's corners have degree 2 and every other cell degree 3), so its spectral radius stays below `2*sqrt(2) ~= 2.828`, and eventually `lam_2` overtakes `rho(T)`. The crossover happens at `h = 14`.
 
 ## The boxcastle census
 
-Fixing `c = (h, h, ..., h)` with `w` columns (the `w x h` rectangle), the adjacency spectrum is exact from the product formula and `rho(T)` was computed by the cavity code above. The full table for `w, h <= 10`:
+Fixing `c = (h, h, ..., h)` with `w` columns (the `w x h` rectangle), the adjacency spectrum is exact from the product formula and `rho(T)` comes from the cavity code above. The graph is `P_w x P_h`, so `w x h` and `h x w` are the same graph. For each width, the first height `h >= w` at which the rectangle fails, computed for `h <= 16`:
 
-Ramanujan (yes): every `(w, h)` with `w * h <= 36` **and** `(w, h)` not in the list below.
+| width `w` | first failing `h` | cells | `lam_2` | `rho(T)` | ratio |
+|---|---|---|---|---|---|
+| 2 | 14 | 28 | 2.8271 | 2.8139 | 1.005 |
+| 3 | 11 | 33 | 3.1463 | 3.1099 | 1.012 |
+| 4 | 10 | 40 | 3.3005 | 3.2477 | 1.016 |
+| 5 | 9 | 45 | 3.3501 | 3.3141 | 1.011 |
+| 6 | 9 | 54 | 3.4200 | 3.3559 | 1.019 |
+| 7 | 8 | 56 | 3.3798 | 3.3702 | 1.003 |
+| 8 | 8 | 64 | 3.4115 | 3.3862 | 1.007 |
 
-Non-Ramanujan (`lam_2 / rho(T) > 1`): the `(w, h)` with:
+In this range the ratio grows with `h` at every width, so each width fails from its threshold on. Along the diagonal `w = h` the ratios are `0.516, 0.732, 0.850, 0.923, 0.973` for `3 x 3` to `7 x 7`, then `1.007` at `8 x 8` (the first failing square) and `1.033, 1.053` at `9 x 9, 10 x 10`. Cell count alone does not decide: at 40 cells `4 x 10` fails while `5 x 8` is Ramanujan (ratio `0.988`).
 
-| `w x h` | `lam_2` | `rho(T)` | ratio |
-|---|---|---|---|
-| `2 x 14, 15, 16, ...` | (see table above) | | crosses at `h = 14` |
-| `3 x 11` (33 cells) | 3.1463 | 3.1099 | 1.012 |
-| `3 x h` for `h >= 11` | ...climbs steadily... | | |
-| `4 x 10` (40 cells) | 3.3005 | 3.2477 | 1.016 |
-| `5 x 9` (45 cells) | 3.3501 | 3.3141 | 1.011 |
-| `6 x 9`, `7 x 8`, `8 x 7`, `9 x 5`, `10 x 4` | ... | ... | crosses in the mid-40s cell count |
-| `10 x 10` | 3.6015 | 3.4216 | 1.053 |
+## Crenellated castles
 
-So the width-2 family fails first (at 28 cells), width-3 second (at 33 cells), width-4 third (at 40 cells). Wider rectangles keep raising `rho(T)` faster than `lam_2` grows, until eventually the width overtakes the height and the pattern repeats symmetrically. The `w = h` diagonal fails at `(4, 4)` (`4 x 4` boxcastle) but rescues itself again in the `(6, 6)` and `(7, 7)` cases before failing permanently.
-
-Wait - that reads oddly. Actually the diagonal from `w = h` goes: `2x2` yes, `3x3` yes (ratio 0.516), `4x4` yes (0.732), `5x5` yes (0.850), `6x6` yes (0.923), `7x7` yes (0.973), `8x8` **no** (1.007), and then `9x9`, `10x10` all no. So there is no rescue; the failure grows monotonically with `w = h`. What isn't monotonic is the initial off-diagonal: `4x10` fails at 40 cells but `5x8` and `8x5` also at 40 cells are Ramanujan (ratio 0.988). The shape matters, not just the cell count.
-
-## Crenellated castles: asymptotically Ramanujan
-
-The **crenellated** type ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 7) alternates heights `(h, 1, h, 1, ...)`. Its adjacency graph is a chain of `h`-vertex vertical stacks joined by single edges at their base. The sweep:
+The **crenellated** type ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 7) alternates heights `(h, 1, h, 1, ...)`. No two adjacent columns both have height at least 2, so every crenellated castle is a tree castle and is Ramanujan for the reason above (`rho(T) = lam_1`):
 
 | skyline | `lam_1` | `lam_2` | `rho(T)` | ratio |
 |---|---|---|---|---|
-| `cren w=13, h=5` | 2.2685 | 2.1599 | 2.2684 | 0.9522 |
-| `cren w=13, h=3` | 2.2470 | 2.1284 | 2.2463 | 0.9475 |
-
-Every crenellated castle checked (widths 3 to 13, heights 2 to 5) is Ramanujan, with `lam_2 / rho(T)` bounded around `0.95`. The narrow "necks" at the base-1 columns force `rho(T)` down (fewer branching options) but they also force `lam_2` down (the eigenvector must decay across the neck), and the net is a stable ratio. Crenellated castles appear to be a Ramanujan family, all the way up.
+| `cren w=13, h=5` | 2.2685 | 2.1599 | 2.2685 | 0.9521 |
+| `cren w=13, h=3` | 2.2470 | 2.1284 | 2.2470 | 0.9472 |
 
 ## The Ihara / non-backtracking view
 
-For every graph `G` there is an operator `B` on directed edges - the **non-backtracking matrix** - with `B_{(u->v), (v'->w)} = 1` if `v = v'` and `u != w`, else 0. Its spectrum is the natural home for `rho(T)`: an old result (Angel-Friedman-Hoory; Grohe) writes
-
-```
-rho(T)  =  1  /  (smallest positive real root of the Ihara zeta polynomial in u).
-```
-
-The cavity equation above is the fixed-point form of the same eigenproblem. The Ihara / non-backtracking spectrum on `G` and the adjacency spectrum on the cover `T` are two views of one object; the equivalent Ihara-Ramanujan condition ("every non-trivial eigenvalue of `B` has `|mu| <= sqrt(rho_B)` where `rho_B` is the leading non-backtracking eigenvalue") is the natural framing for connections to Ihara zeta and arithmetic combinatorics. Whether a given castle is Ihara-Ramanujan is the same question as whether it is adjacency-Ramanujan for bipartite graphs, so all results above transfer.
+For every graph `G` there is an operator `B` on directed edges - the **non-backtracking matrix** - with `B_{(u->v), (v'->w)} = 1` if `v = v'` and `u != w`, else 0. The poles of the Ihara zeta function are the reciprocals of the eigenvalues of `B`, and the cavity equation above runs on the same directed edges. For a `d`-regular graph, `B` has spectral radius `d - 1`, `rho(T) = 2*sqrt(d - 1)`, and the Ihara-Ramanujan condition (every non-trivial eigenvalue of `B` has modulus at most `sqrt(d - 1)`) is equivalent to the adjacency one. For irregular castles `rho(T)` is not a simple function of the spectral radius `rho_B` of `B`: at `(14, 14)`, `rho_B = 1.9299`, `2*sqrt(rho_B) = 2.7785` and `rho(T) = 2.8139`. How Ihara-Ramanujan and adjacency-Ramanujan compare on castles is not worked out here.
 
 ## Open questions
 
-1. **The census as `h` grows.** Every `2 x h` rectangle for `h >= 14` fails. Every `3 x h` for `h >= 11` fails. Do *all* rectangles beyond some size fail, or is there a wider family (`k x h` with `k, h` both large and roughly equal) that stays Ramanujan? The 8x8 boxcastle is the first square boxcastle to fail; whether some other symmetric shape at higher cell count is Ramanujan is not settled.
-2. **Asymptotic proportion.** As the cell count grows, what fraction of castles are Ramanujan? For random d-regular graphs, most are Ramanujan-close (Friedman 2003). For castles, the shape distribution matters: high-cycle-rank castles (roughly, the fat, rectangular ones) fail; low-cycle-rank shapes (branchy, tree-like castles with occasional `2 x 2` blocks) stay Ramanujan far longer.
-3. **Explicit Ramanujan families among irregular castles.** Are there infinite families of non-tree castles all of which are Ramanujan (i.e., a construction analogous to LPS-Margulis but for castle graphs)? The crenellated family is a candidate: every crenellated castle up to width 13 checked here is Ramanujan, and the eigenvector structure at the narrow "necks" suggests the bound stays uniform.
-4. **The Alon-Boppana lower bound for castles.** For a d-regular family, Alon-Boppana forces every family to reach the Ramanujan bound in the limit. For castle families with a fixed universal cover, Greenberg's inequality gives the same asymptotic - but whether *any* concrete castle family saturates the bound (i.e., has `lam_2 -> rho(T)`) is unclear. The `2 x h` family has `lam_2 -> 3` and `rho(T) -> 1 + 2*sqrt(2 - 1) + ... hm`, that limit needs care; likely `rho(T) -> 1 + 2*sqrt(2) - eps` from the specific irregular tree structure. Working this out is the natural sequel.
+1. **Rectangles as `h` grows.** Every `2 x h` rectangle with `14 <= h <= 16` fails, and every `3 x h` with `11 <= h <= 16`. Do *all* rectangles beyond some size fail, or does some family with both sides large stay Ramanujan? The 8x8 boxcastle is the first square boxcastle to fail.
+2. **Asymptotic proportion.** As the cell count grows, what fraction of castles are Ramanujan? For random `d`-regular graphs, most are Ramanujan-close (Friedman 2003). In the census the non-Ramanujan fraction of non-tree castles grows from `3/6,559` at 15 cells to `6,836/964,055` at 22 cells, and the smallest failures have cycle rank 4 (two `2 x 3` blocks joined by a path).
+3. **Explicit Ramanujan families among non-tree castles.** Are there infinite families of non-tree castles all of which are Ramanujan, a construction analogous to Lubotzky-Phillips-Sarnak and Margulis for castle graphs? (The crenellated castles are trees, so they do not count.)
+4. **Saturating families.** For a family with a fixed universal cover, Greenberg's inequality says `lam_2` cannot stay much below `rho(T)`; whether some concrete castle family has `lam_2 - rho(T) -> 0` is open. The `2 x h` family overshoots: `lam_2 -> 3` while `rho(T)` stays below `2*sqrt(2)`.
 
 ## Reproduce
 
-The Python program used to produce every value on this page:
+The Python program for a single castle (the census adds the `lam_2 > 2` filter and one cavity test at `z = lam_2`, footnote):
 
 ```python
 import numpy as np, networkx as nx
@@ -278,3 +276,5 @@ Copy `rho_cover` from the "Two methods" section above; then `ramanujan_status((1
 - [[spectral-analysis](pages/spectral-analysis.md)] - the methods hub; the Ihara-zeta / non-backtracking side of this page's construction lives there.
 - [[castle-snippets](pages/castle-snippets.md)] - `castle_graph`, `castle_graph_radius`, and related primitives; the `rho_cover` function on this page fits alongside them.
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - the other Ramanujan page: the taxicab number 1729 as a castle count (`F(6,4) = 1729`) and as a castle; its digit castle `(1, 7, 2, 9)` is Ramanujan in this page's spectral sense (`lam_2 = 1.898 <= rho(T) = 2.576`).
+
+[^exec]: Verified by execution (2026-09-28, Python 3, NumPy): the cavity map `x -> 1/(z - Cx)` on directed edges, iterated from `x = 0`, increases monotonically; it converges exactly when a positive fixed point exists, which gives a positive eigenfunction of the cover at eigenvalue `z` (so `z >= rho(T)`), and it reaches a nonpositive denominator when `z < rho(T)`. `rho(T)` by bisection on that test (widths `<= 3e-5`). Census: every composition of `n <= 22` with mirror images removed; tree castles skipped (`rho(T) = lam_1`); castles with `lam_2 <= 2` skipped (`rho(T) >= 2` for a graph with a cycle); for the rest one cavity test at `z = lam_2`, with no undetermined cases. The 15-cell failures re-checked by bisection and by truncated-ball lower bounds (`2.379, 2.420, 2.439` at depths 6, 9, 12, increasing toward the cavity value `2.4729`). Rectangles `w <= h <= 16` and the ladder table by bisection. Non-backtracking spectral radii from the eigenvalues of the directed-edge matrix.
