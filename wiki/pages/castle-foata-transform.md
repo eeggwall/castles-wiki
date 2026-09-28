@@ -3,7 +3,7 @@ title: Castle Foata transform
 category: Concepts
 summary: The castle analogue of Foata's canonical-cycle flattening — peaks are the maximal positive runs of the column-height sequence, giving #peaks = #records. The Foata upgrade in the [[castles-as-upgraded-cycle-count]] triad — paralleling "largest element = cycle leader" with "leftmost positive column = peak leader."
 tags: [concept, castle, foata, permutations, records, bijection]
-sources: [project-euler-502-castle-factoring, pe502-castle-cycle-permutations]
+sources: [project-euler-502-castle-factoring, permutation-cycle-castle-analogy]
 created: 2026-09-13
 updated: 2026-09-22
 ---
@@ -80,7 +80,7 @@ For height exactly 2 the tower above the base is a single row of blocks, encoded
 ## Appearances in Sources
 
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — states the permutation template, the peak↔positive-run bijection, and the `F(4,2)=10` test.
-- [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] — reads this transform as the "Foata upgrade" in the (n−1)!-to-castle triad, paralleling largest-element cycle-leaders with leftmost-positive-column peak-leaders.
+- [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] — reads this transform as the "Foata upgrade" in the (n−1)!-to-castle triad, paralleling largest-element cycle-leaders with leftmost-positive-column peak-leaders.
 
 ## Related Concepts
 

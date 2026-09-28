@@ -112,7 +112,7 @@ even = sum(1 for c in all_castles(4, 2) if blocks(c) % 2 == 0)
 10
 ```
 
-Also matches the [[castle-counting-formula](pages/castle-counting-formula.md)] `F(4,2) = ½(16 − 1 + 4 + 1) = 10` and the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] hand check. The ten castles are those whose second row has an odd number of runs of `1`s ([[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)]); at width 4 that is exactly one run, and `all_castles(5, 2)` adds the three-run row `10101` to make `F(5,2) = 16`.
+Also matches the [[castle-counting-formula](pages/castle-counting-formula.md)] `F(4,2) = ½(16 − 1 + 4 + 1) = 10` and the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] hand check. The ten castles are those whose second row has an odd number of runs of `1`s ([[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)]); at width 4 that is exactly one run, and `all_castles(5, 2)` adds the three-run row `10101` to make `F(5,2) = 16`.
 
 
 ## Classification predicates — Axes 1-7 of [[castle-classification-shape](pages/castle-classification-shape.md)]

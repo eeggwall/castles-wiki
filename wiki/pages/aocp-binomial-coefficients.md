@@ -42,7 +42,7 @@ Several of these are not background but the *exact* identities the castle counts
 - **The negative binomial's other home.** `1/(1−z)^{n+1} = Σ C(n+k, n) z^k` is developed as the geometric-GF power on the sibling Knuth page [[aocp-generating-functions](pages/aocp-generating-functions.md)].
 - **Stirling first kind, `m = 1`.** `[n, 1] = (n−1)!` is the cycle count that anchors [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)]; the full triangle is the unsigned A132393, the second kind A008277, and Pascal's triangle itself A007318.[^8]
 - **Stirling second kind, for multisets.** `{n k}` counts partitions of an `n`-set into `k` blocks; for a multiset the count splits four ways by whether blocks may repeat and whether a block may repeat an element, and all four collapse back to `{n k}` when nothing repeats - see [[multiset-partitions](pages/multiset-partitions.md)] and [[bender-1974-partitions-of-multisets](pages/bender-1974-partitions-of-multisets.md)].
-- **A triangular-number cameo.** `F(4,2) = 10 = C(5,2)` - the hand-check on [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] - is the `s = 0` term of `F(w,2) = Σ_s C(w+1, 4s+2)`; the triangular numbers A000217 count the height-2 castles whose second row is a single run.
+- **A triangular-number cameo.** `F(4,2) = 10 = C(5,2)` - the hand-check on [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] - is the `s = 0` term of `F(w,2) = Σ_s C(w+1, 4s+2)`; the triangular numbers A000217 count the height-2 castles whose second row is a single run.
 
 ## Key Takeaways
 
@@ -62,7 +62,7 @@ Several of these are not background but the *exact* identities the castle counts
 - [[convex-castle](pages/convex-castle.md)] / [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] - the Vandermonde count from the concept side, and its multinomial generalization.
 - [[block-count-constraints](pages/block-count-constraints.md)] / [[closed-form-hunting](pages/closed-form-hunting.md)] - residue-filtered and alternating binomial sums on the castle.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] - the negative binomial as a geometric-GF power.
-- [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] / [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] - `[n,1] = (n−1)!`, and `F(4,2) = C(5,2)`.
+- [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] / [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] - `[n,1] = (n−1)!`, and `F(4,2) = C(5,2)`.
 
 Related: [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] (ingested). Linked from the source but not yet ingested: Cards.
 

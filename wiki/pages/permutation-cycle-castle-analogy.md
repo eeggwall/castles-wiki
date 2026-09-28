@@ -3,9 +3,9 @@ title: Permutation-cycle / castle-peak analogy
 category: Concepts
 summary: The correspondence permutation cycles ↔ castle peaks/excursions — a genuine factorization (Dyck first-return with an extra letter), the spine of the castle-factoring reading. The elementary anchor is (n−1)!, upgraded step-by-step into the castle triad — see [[castles-as-upgraded-cycle-count]].
 tags: [concept, castle, permutations, cycles, factorization, dyck]
-sources: [project-euler-502-castle-factoring, pe502-castle-cycle-permutations]
+sources: [project-euler-502-castle-factoring]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-27
 ---
 
 # Permutation-cycle / castle-peak analogy
@@ -44,10 +44,20 @@ The three constructions have a joint elementary anchor: the classical `(n−1)!`
 
 The `(n−1)!` proof is the degenerate case: one cycle, no factoring, trivial sign. The castle machinery is the same three moves at industrial scale — stacked, width-weighted, sign-selected cycles.[^6] The seminar-ready form of this synthesis is [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)].
 
+## Where the analogy becomes literal
+
+A **rainbow castle** ([[castle-classification-shape](pages/castle-classification-shape.md)]: `w = h`, heights a permutation of `{1..h}`) has a skyline that *is* a permutation, so the three moves above apply to it verbatim, and the classification's **even-peak** type is precisely the "block count ≠ peak count" caveat turned into a predicate the wiki has not yet investigated.
+
+## The (1 ± sgn)/2 move, generalized, and the F(4,2) = 10 hand-check
+
+Peeling `A_n` from `S_n` is the `m = 2` character sum; [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] does it for `Z/m`, and [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] teaches the `(T ± P)/2` lesson end-to-end, `F(4,2) = 10` included. `F(4,2) = 10` is also one of the three checkpoints the problem statement supplies ([[castle-counting-function](pages/castle-counting-function.md)]), and `all_castles(4, 2)` on [[castle-snippets](pages/castle-snippets.md)] reproduces the ten strings.
+
+**Even blocks ⟺ odd runs.** A height-2 castle has `1 + (number of maximal positive runs in row 2)` blocks, so the even-block castles are those whose second row has an odd number of runs: `F(w,2) = Σ_s C(w+1, 4s+2) = A038505(w+1)` ([[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]), the `m = 2` residue extraction of [[block-count-constraints](pages/block-count-constraints.md)]. At `w = 4` the only odd run count that fits is one, so the hand-check's ten strings are the one-run strings, `C(5,2) = 10`; at `w = 5` the three-run string `10101` joins and `F(5,2) = C(6,2) + C(6,6) = 16`.
+
 ## Appearances in Sources
 
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — states the analogy, the correspondence table, and Knuth's canonical cycle form as the source-side template.
-- [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] — supplies the (n−1)! elementary anchor and the closing "proof-move ↔ castle counterpart" table.
+- `raw/pe502-castle-cycle-permutations.md` — the working note (2026-09-15) that supplies the (n−1)! elementary anchor, the closing "proof-move ↔ castle counterpart" table, the rainbow-castle literalization, and the F(5,2) = 16 extension.
 
 ## Related Concepts
 
@@ -59,6 +69,9 @@ The `(n−1)!` proof is the degenerate case: one cycle, no factoring, trivial si
 - [[permutation-inversions](pages/permutation-inversions.md)] — the other classical permutation statistic (inversions), whose q-factorial generating function underlies the q-analog thread.
 - [[aocp-multisets](pages/aocp-multisets.md)] — Knuth's two-line arrays and unique cycle factorization (the Vol. 3 source of this analogy's permutation side).
 - [[aocp-combinatorics](pages/aocp-combinatorics.md)] — Knuth's Vol. 3 inversions and the q-factorial `∏(1−z^k)/(1−z)^n`, the source behind the inversion statistic mentioned above.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] — rainbow castles (skyline = permutation) and the even-peak type (the block ≠ peak caveat as a predicate).
+- [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[castle-counting-function](pages/castle-counting-function.md)] / [[castle-snippets](pages/castle-snippets.md)] — the sign move generalized and taught; `F(4,2) = 10` as checkpoint and as code.
+- [[block-count-constraints](pages/block-count-constraints.md)] — why the one-run description of `F(4,2)` does not survive to `w = 5`.
 
 ## Footnotes
 
@@ -66,5 +79,5 @@ The `(n−1)!` proof is the degenerate case: one cycle, no factoring, trivial si
 [^2]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Castle Factoring and the Knuth-Castle Foata Transform" L7 — "each U V D peak leaves the base, lives entirely above a sub-block, and returns to the same level, and disjoint peaks are separated by R gaps. This is a genuine factorization, not a metaphor: it is the Dyck first-return decomposition with one extra letter (R)."
 [^3]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The tower grammar" L68 — "The excursion count (peaks) plays the role of the cycle count, while the block count plays the role of the sign atom. One peak may contain several stacked blocks, so these are distinct."
 [^4]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Knuth canonical cycle form" L19-25 — "writing every singleton cycle explicitly; putting the smallest element first within each cycle; ordering the cycles in decreasing order of their first element ... Erasing the parentheses recovers a one-line permutation."
-[^5]: [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] §"Warm-up: labelled cycles" L5-L10 — "The number of such directed cycles is (n-1)!, with two standard proofs: 1. Quotient by rotation. n! linear orderings collapse under the free Z/n rotation action, so n!/n = (n-1)! cycles. 2. Fix a starting point ... Both proofs are instances of a bigger machine (Foata, sign, cycle-follow) that reappears in PE 502."
-[^6]: [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] §"Tying back to (n-1)!" L80-L86 — the three-row proof-move-to-castle-counterpart table and "PE 502 is essentially: take the toolkit that proves (n-1)!, upgrade every step to a version that handles stacked, width-weighted, sign-selected cycles, and you get a closed form plus a fast recurrence."
+[^5]: raw/pe502-castle-cycle-permutations.md §"Warm-up: labelled cycles" L5-L10 — "The number of such directed cycles is (n-1)!, with two standard proofs: 1. Quotient by rotation. n! linear orderings collapse under the free Z/n rotation action, so n!/n = (n-1)! cycles. 2. Fix a starting point ... Both proofs are instances of a bigger machine (Foata, sign, cycle-follow) that reappears in PE 502."
+[^6]: raw/pe502-castle-cycle-permutations.md §"Tying back to (n-1)!" L80-L86 — the three-row proof-move-to-castle-counterpart table and "PE 502 is essentially: take the toolkit that proves (n-1)!, upgrade every step to a version that handles stacked, width-weighted, sign-selected cycles, and you get a closed form plus a fast recurrence."

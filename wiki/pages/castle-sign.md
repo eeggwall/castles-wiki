@@ -3,7 +3,7 @@ title: Castle sign
 category: Concepts
 summary: s(C) = (-1)^blocks, the castle sign - the analogue of the permutation sign; (T +- P)/2 splits towers into even/odd-block classes, making P(k,L) a sign homomorphism.
 tags: [concept, castle, sign, permutations, parity, generating-functions]
-sources: [project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-brute-force, pe502-castle-cycle-permutations]
+sources: [project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-brute-force, permutation-cycle-castle-analogy]
 created: 2026-09-13
 updated: 2026-09-27
 ---
@@ -51,7 +51,7 @@ F(w,h) = [ h^w − (h−1)^w − P(h−1,w) + P(h−2,w) ] / 2
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — defines `s(C) = (−1)^blocks`, gives the descent formula for the block count, and shows the `(T±P)/2` even/odd split.
 - [[project-euler-502-observations](pages/project-euler-502-observations.md)] — frames the `(A+P)/2` parity-sign identity as a general recurring symmetry trick.
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] — gives the ascent-side block-count formula and the `p_signed` dynamic program (DP) that verifies the sign directly.
-- [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] — identifies `(T ± P)/2` as the castle upgrade of the `(1 ± sgn)/2` projector that peels `A_n` from `S_n`.
+- [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] — identifies `(T ± P)/2` as the castle upgrade of the `(1 ± sgn)/2` projector that peels `A_n` from `S_n`.
 
 ## Related Concepts
 
@@ -78,4 +78,4 @@ F(w,h) = [ h^w − (h−1)^w − P(h−1,w) + P(h−2,w) ] / 2
 [^4]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L123-127 — "'castle has even total blocks' is therefore 'tower has an odd number of blocks', which is the (T-P)/2 term in F(w,h) = (h^w - (h-1)^w - P(h-1,w) + P(h-2,w))/2."
 [^5]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Parity via signs" L13 — "Even-block-count is enforced by (A + P)/2, where A is the unsigned total and P is the signed count with (-1)^{blocks}. A symmetry trick that recurs in many combinatorial-enumeration problems."
 [^6]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Column-height encoding" L24, §"p_signed" L31 — "#blocks = ... = c_1 + ∑_{i=2}^{w} max(0, c_i − c_{i−1})" and "A new column of height b after a column of height a starts max(0, b − a) new runs, each contributing a factor of −1"; both re-verified against direct run-count enumeration during ingest (w,h ≤ 6; DP vs brute for w,h ≤ 5)."
-[^7]: [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] §"Connection 1: Castle sign ↔ (1 ± sgn)/2 trick" L38 — "Weight each castle by (−1)^blocks, splitting the total count T into even- and odd-block halves via (T ± P)/2. This is exactly the (1 ± sgn)/2 trick used to peel A_n out of S_n."
+[^7]: raw/pe502-castle-cycle-permutations.md §"Connection 1: Castle sign ↔ (1 ± sgn)/2 trick" L38 — "Weight each castle by (−1)^blocks, splitting the total count T into even- and odd-block halves via (T ± P)/2. This is exactly the (1 ± sgn)/2 trick used to peel A_n out of S_n."

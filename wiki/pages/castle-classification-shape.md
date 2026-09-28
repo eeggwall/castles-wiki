@@ -133,7 +133,7 @@ Types 10, 17, 18, 32:
 |---|---|---|
 | **Alternating parity** | `c_i` alternates odd/even | *open* |
 | **Even-area** | `∑ c_i ≡ 0 (mod 2)` | [[castle-by-area](pages/castle-by-area.md)] parity split |
-| **Even-peak** | number of local maxima is even | [[castle-sign](pages/castle-sign.md)] sibling; peak count is on [[castle-foata-transform](pages/castle-foata-transform.md)]; the block ≠ peak distinction is spelled out on [[pe502-castle-cycle-permutations](pages/pe502-castle-cycle-permutations.md)] |
+| **Even-peak** | number of local maxima is even | [[castle-sign](pages/castle-sign.md)] sibling; peak count is on [[castle-foata-transform](pages/castle-foata-transform.md)]; the block ≠ peak distinction is spelled out on [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] |
 | **Triangular-area** | `∑ c_i = n(n+1)/2` | *open* - a curiosity restriction |
 
 **The even-peak type is worth flagging.** The [[castle-sign](pages/castle-sign.md)] is `(−1)^blocks`, not `(−1)^peaks`; even-peak is a different parity constraint that the wiki hasn't investigated. The [[castle-foata-transform](pages/castle-foata-transform.md)] identifies `#peaks = #records`, so even-peak is "even-records" - a permutation-statistic parity condition.
