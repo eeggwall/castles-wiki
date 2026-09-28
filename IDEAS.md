@@ -8,7 +8,7 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 
 | Slice | Value |
 |---|---|
-| Pages | 193 (44 Sources / 84 Concepts / 64 Analyses / 1 Reference / 0 Maintenance) |
+| Pages | 194 (44 Sources / 85 Concepts / 64 Analyses / 1 Reference / 0 Maintenance) |
 | Divisions (open + done) | R 4+9, E 15+14, N 16+30, E/N 1+0, Z 6+7, Q 7+9, S 24+11, T 7+0, F 12+6, X 8+7, C 3+3, Telephone Company 5+3, Facilities 6+0 |
 | Items | 114 open, 99 done, 213 total (top-level items only) |
 | Seminar arcs | 17 (11 delivered, 5 in progress, 1 planned) |
@@ -63,7 +63,7 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 | 6. The q-thread: castles by area | delivered | [q-thread-seminar](wiki/pages/q-thread-seminar.md) |
 | 7. OEIS mining as a research method | delivered | [oeis-mining-seminar](wiki/pages/oeis-mining-seminar.md) |
 | 8. One bit: the parity clause as information | delivered | [one-bit-seminar](wiki/pages/one-bit-seminar.md) |
-| 9. pi from a pile of blocks | planned | next: castle-samplers page, then spine |
+| 9. pi from a pile of blocks | planned | next: spine (samplers page delivered) |
 | 10. Knuth's algorithms in castle space | in progress | next: seminar page |
 | 11. The rule zoo: variations on the castle | in progress | next: seminar page |
 | 12. The half-derivative of a castle | in progress | next: castle comb page, then seminar page |
@@ -123,9 +123,9 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 
 ### Arc 9. pi from a pile of blocks
 - Thesis: castle samplers plus CLT / random-matrix / geometric-probability limits push transcendentals through combinatorial machinery.
-- Status: planned. Thesis only; the spine lists background pages, and the arc's own pages (samplers, limit laws) do not exist yet.
-- Spine: [algebraic-transcendental-wall](wiki/pages/algebraic-transcendental-wall.md) (the wall), [spectral-analysis](wiki/pages/spectral-analysis.md) (LGV hook).
-- Open items feeding it: from T, all six items; prerequisite the `castle-samplers` page (promoted to its own `[ ]` at the head of the T Division).
+- Status: planned. The samplers page exists ([castle-samplers](wiki/pages/castle-samplers.md)); the limit-law pages do not.
+- Spine: [algebraic-transcendental-wall](wiki/pages/algebraic-transcendental-wall.md) (the wall), [castle-samplers](wiki/pages/castle-samplers.md) (the sampler substrate), [spectral-analysis](wiki/pages/spectral-analysis.md) (LGV hook).
+- Open items feeding it: from T, all six items; the prerequisite `castle-samplers` page is delivered.
 
 ### Arc 10. Knuth's algorithms in castle space
 - Thesis: TAOCP Vol. 4 generation algorithms translated into the mixed-radix `{1..h}^w` space, with a castle Gray code as the payoff.
@@ -377,7 +377,7 @@ Five spectra sit naturally on a castle: transfer-matrix, LGV kernel, skyline DFT
 
 Umbrella for approximating transcendental constants (pi first, then Catalan's `G`, `zeta(3)`, `gamma`, ...) via castle-native machinery. Ten sampler techniques (rejection, transfer-matrix, Sattolo-Foata, Gray-code, rank/unrank, MCMC, coupling-from-the-past, Wilson-on-LGV, Wang-Landau, random-rule ensembles) are the substrate.
 
-- [ ] **`castle-samplers` page (prerequisite)** - the ten sampler techniques as one dedicated wiki page; every T-Division item depends on it. Promoted from a header parenthetical to a `[ ]` open item.
+- [x] **[Castle samplers](wiki/pages/castle-samplers.md) (prerequisite)** - the ten sampler techniques on one page, each implemented and checked by execution. Transfer-matrix sampler exact in rational arithmetic, `O(wh)` per draw; `V(w, h)` has 191 components under single-column +-1 moves at `(8, 4)`, so MCMC and CFTP run on the cube and filter at emit; heat-bath is monotone for `t <= 1` and antimonotone for `t > 1` (CFTP after flipping odd columns); Wilson trees match `det L~` (sink and tide) with edge marginals = effective resistance; LGV sequential sampler exact on parallelogram polyominoes; Wang-Landau resolves a 4e12 dynamic range at `(20, 6)` with percent-level saturation; Bernoulli random rules follow the circular and semicircle laws. Calibration: permutation cycle-count variance - ln n -> gamma - pi^2/6, while castle peaks grow linearly in `w`.
 - [ ] **pi via CLT-style castle statistics** - pick a castle statistic `X(C)` (area, block count, peak count, tallest-peak position, ...), establish a CLT `(X - mu)/sigma -> N(0,1)`, and read pi off the mode density `1/(sigma sqrt(2 pi))`. Tier-1: area CLT via transfer-matrix sampler.
 - [ ] **pi via castle spectral limit densities** - every RMT limit density carries pi (sine-kernel spacings, Wigner semicircle, Tracy-Widom, Airy edge, Marchenko-Pastur, Kesten-McKay); each is a direct hook into a [spectral-analysis](wiki/pages/spectral-analysis.md) method.
 - [ ] **pi via castle geometric probability** - Buffon needle across skyline, Buffon-Laplace disk fit inside castle, random chord in bounding box, Barbier for uniform-rotation silhouettes; plus Ehrhart / lattice-point routes on the castle polytope. Tier-1: Buffon needle.
