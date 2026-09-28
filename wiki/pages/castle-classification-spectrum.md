@@ -5,7 +5,7 @@ summary: A classification of individual castles by the spectrum of a graph deriv
 tags: [concept, castle, classification, taxonomy, spectral, adjacency-matrix, laplacian, ramanujan, smith-theorem, dynkin, tree-castle, isospectral, single-castle-predicate]
 sources: [castle-classification, oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Castle classification - spectral types
@@ -55,7 +55,7 @@ Full details on [[castle-graph](pages/castle-graph.md)] and [[tree-castle-by-are
 
 **Metallic means beyond copper are impossible for castle graphs.** Copper is `2 + √5 = 4.236` and every higher metallic mean exceeds 4. A castle graph has maximum degree 4 (each cell has at most 4 orthogonal neighbours), so its spectral radius is bounded above by 4. Bronze `3.303` is open - absent up to the scanned size but not ruled out by any obstruction.
 
-The metallic means reach individual castles only through their polyomino graphs. **Project Euler 502's own signed transfer matrix never has a metallic eigenvalue** ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]): its eigenvalues are twice algebraic units and never metallic. The class-level growth constants on [[castle-classification-growth](pages/castle-classification-growth.md)] and the single-castle adjacency spectral radii here are different operators; when they happen to produce the same eigenvalue (`φ` appears in both settings), it is a structural coincidence worth investigating case by case.
+The metallic means reach individual castles only through their polyomino graphs. **Project Euler 502's own signed transfer matrix never has a metallic eigenvalue** ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]): its eigenvalues are twice the roots of an integer polynomial with leading coefficient 2, so never metallic. The class-level growth constants on [[castle-classification-growth](pages/castle-classification-growth.md)] and the single-castle adjacency spectral radii here are different operators; when they happen to produce the same eigenvalue (`φ` appears in both settings), it is a structural coincidence worth investigating case by case.
 
 ## Isospectral castles
 

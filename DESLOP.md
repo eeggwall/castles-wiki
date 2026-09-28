@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 100 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Fully read and cleaned | 104 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
 | Spot fixes only | 17 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 77 |
-| Words still to read | about 262,000 |
+| Not started | 73 |
+| Words still to read | about 247,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 51 fully read)
+### Concepts (85 pages, 52 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
@@ -138,7 +138,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-counting-function (2.8)
 - [ ] multiset-partitions (2.7)
 - [x] one-bit-seminar (2.7)
-- [ ] plastic-number (2.6)
+- [x] plastic-number (2.6)
 - [x] castle-entropy (2.5)
 - [x] castle-representations (2.5)
 - [x] q-thread-seminar (2.5)
@@ -147,7 +147,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-by-area (2.3)
 - [x] urd-step-strings (2.1)
 - [x] kitamasa (2.1)
-- [ ] castle-classification-spectrum (1.9)
+- [~] castle-classification-spectrum (1.9)
 - [ ] stack-polyomino-gf (1.9)
 - [x] castle-sign (1.9)
 - [x] binary-string-bijection (1.8)
@@ -194,7 +194,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] castle-snippets-strips (0.0)
 - [ ] acronyms (0.0)
 
-### Analyses (64 pages, 20 fully read)
+### Analyses (64 pages, 23 fully read)
 
 - [x] castle-cryptography (5.1)
 - [x] isospectral-castles (4.9)
@@ -203,12 +203,12 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] sandpile-census (3.8)
 - [~] castle-cryptography-round-two (3.6)
 - [x] pell-castle-strip (3.4)
-- [ ] castle-graph-spectral-radius (3.3)
+- [x] castle-graph-spectral-radius (3.3)
 - [ ] castles-as-upgraded-cycle-count (3.2)
 - [x] mod-p-observatory (3.0)
 - [ ] levy-flights (2.9)
 - [~] fractional-recurrences (2.8)
-- [~] castle-eigenvalue-oeis-crosswalk (2.8)
+- [x] castle-eigenvalue-oeis-crosswalk (2.8)
 - [x] castle-phone-line (2.7)
 - [x] song-as-castle (2.6)
 - [x] power-law-memory-rules (2.6)
@@ -239,7 +239,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] castle-add-a-column-equation (1.3)
 - [ ] bronze-castle-hunt (1.3)
 - [ ] castle-ring-invariant-factors (1.2)
-- [ ] tower-parity-sectors (1.1)
+- [x] tower-parity-sectors (1.1)
 - [ ] viennot-heap-tower (1.1)
 - [x] closed-form-hunting (1.1)
 - [x] generating-function-gallery (1.1)

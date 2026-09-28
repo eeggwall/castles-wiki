@@ -5,36 +5,32 @@ summary: Every castle eigenvalue's "convergents" run against OEIS. The metallic 
 tags: [analysis, castle, continued-fraction, convergents, oeis, eigenvalue, quasi-polynomial, plastic-number, jacobi-perron, pisano, mod-p, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # Castle eigenvalues meet OEIS: the convergent crosswalk
 
 ## The question, and what came out
 
-[[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] ends on a promise: the eigenvalue's *continued-fraction period* over `R` and its *multiplicative order* mod `p` are two readings of one structure. This page cashes that promise in integers. A continued fraction's **convergents** `p_n/q_n` are its best rational approximations, and the numerators and denominators are integer sequences in their own right - Fibonacci for `φ`, Pell for `1+√2`. So: for every eigenvalue the castle produces, what are the convergent sequences, which OEIS entries do they hit, and where does the mod-`p` order show up in them?
-
-The through-line is one sentence, and each part follows it one step:
-
-> A castle eigenvalue is a number, and a number has two kinds of repeating behavior — a continued-fraction period (over the reals) and a multiplicative order (mod `p`). These are two readings of one structure; the page walks each side to its integers.
+[[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] relates an eigenvalue's *continued-fraction period* over `R` and its *multiplicative order* mod `p`. This page computes both in integers. A continued fraction's **convergents** `p_n/q_n` are its best rational approximations, and the numerators and denominators are integer sequences in their own right - Fibonacci for `φ`, Pell for `1+√2`. So: for every eigenvalue the castle produces, what are the convergent sequences, which OEIS entries do they hit, and where does the mod-`p` order show up in them?
 
 **Four parts, each one job:**
 
 1. **Part 1 — the metallic crosswalk.** The convergent sequences of the metallic means, matched offset-exact to OEIS (Pell A000129 for `1+√2`, and so on).
-2. **Part 2 — the mod-`p` bridge.** One integer, the norm `N(δ) = ±1`, decides both the continued-fraction period and the mod-`p` order — the "two readings of one structure," made quantitative.
+2. **Part 2 — the mod-`p` bridge.** One integer, the norm `N(δ) = ±1`, decides both whether the continued fraction is purely periodic and the mod-`p` order at inert primes.
 3. **Part 3 — the k-direction.** Run the castle in the other variable and every eigenvalue is `±1`, so there is no irrational continued fraction at all — just a quasi-polynomial, with `|P(k,4)| = A352116`. Full write-up on [[signed-tower-k-direction](pages/signed-tower-k-direction.md)].
-4. **Part 4 — the L-direction.** The genuinely irrational eigenvalues (`ρ_6 = 2ψ²`, the plastic number) and their multidimensional Jacobi–Perron continued fractions.
+4. **Part 4 — the L-direction.** The irrational eigenvalues (`ρ_6 = 2ψ²`, the plastic number) and their multidimensional Jacobi–Perron continued fractions.
 
 Part 1 feeds Part 2; Parts 3 and 4 are the two independent directions (`k` and `L`) the castle can be run in. Read any part on its own.
 
 **What comes out (headline results):**
 
-1. **The metallic rungs are a one-sequence story each.** For `δ_a = [a; a, a, …]` the numerators and denominators are the *same* recurrence sequence one step apart, and the companion (Lucas-type) sequence appears as a trace. For `1+√2` both are A000129; A001333 is the numerator sequence of `√2 = (1+√2) − 1`.
+1. **Each metallic rung gives one sequence.** For `δ_a = [a; a, a, …]` the numerators and denominators are the *same* recurrence sequence one step apart, and the companion (Lucas-type) sequence appears as a trace. For `1+√2` both are A000129; A001333 is the numerator sequence of `√2 = (1+√2) − 1`.
 2. **The k-direction has no irrational eigenvalues.** The order-`(2L − 2)` characteristic polynomial of `P(·, L)` is `(x + 1)^L (x − 1)^{L − 2}` for every `L ≤ 12` tested. `P(k, L)` is a period-2 quasi-polynomial in `k`, and its first non-trivial row is in OEIS: `|P(k, 4)|` = A352116, the partial sums of the odd triangular numbers.
-3. **The real higher-degree eigenvalues are in the L-direction**, the roots of `char_k` on [[generating-function-gallery](pages/generating-function-gallery.md)]. The `k = 6` dominant eigenvalue is `2ψ²` for `ψ` the plastic number; the plastic component of `P(6,L)` is exactly `2^L · A005251(L+3)`; and the multidimensional (Jacobi–Perron) expansion of `ρ_6` is periodic with a period matrix whose characteristic polynomial has Perrin-number coefficients. `ρ_4`'s expansion shows no period in 400 exact steps.
+3. **The higher-degree eigenvalues are in the L-direction**, the roots of `char_k` on [[generating-function-gallery](pages/generating-function-gallery.md)]. The `k = 6` dominant eigenvalue is `2ψ²` for `ψ` the plastic number; the plastic component of `P(6,L)` is exactly `2^L · A005251(L+3)`; and the multidimensional (Jacobi–Perron) expansion of `ρ_6` is periodic with a period matrix whose characteristic polynomial has Perrin-number coefficients. `ρ_4`'s expansion shows no period in 400 exact steps.
 4. **The CF ↔ mod-p link, quantitatively.** For a norm-`−1` quadratic, the `−1` that makes the fraction purely periodic (Galois) is the `−1` in `δ^{p+1} = N(δ) = −1` at every inert prime, so the Pisano-type period divides `2(p+1)` and never `p+1` - verified for all five rungs and every prime below 100, with the norm-`+1` control `φ²` behaving the opposite way. For the `±1` k-direction eigenvalues the period of `P(·,L) mod p` in `k` is `2·p^{⌈log_p L⌉}`, which explains the lone `18` in the [[mod-p-observatory](pages/mod-p-observatory.md)]'s height table.
 
-Everything below was produced by the snippets shown, executed during writing; every printed value is pinned. The snippets are the pedagogy - each one teaches the piece of theory it computes.
+Everything below was produced by the snippets shown, executed during writing; every printed value is pinned.
 
 ## Part 1 - Convergents, and the metallic crosswalk
 
@@ -90,9 +86,9 @@ Every OEIS number below was checked offset-exact against the stored OEIS data on
 | 4 | `2+√5 = φ³` | **A001076** = denominators of `√5` | **A014448** `L_{3n}` | A033887 `F_{3n+1}` | `[4; 2, 8]` (period 2) | A041030 / A041031 |
 | 5 | `(5+√29)/2` | **A052918** (offset: `A052918(n) = x_{n+1}`) | **A087130** | A100237 | `[5; 2, 1, 1, 2, 10]` (period 5) | A041046 / A041047 |
 
-Three lessons sit in this table.
+Three observations from the table:
 
-- **Same field, different number, different period.** `δ_3 = (3+√13)/2` has period 1, but `√13` in the same field `Q(√13)` has period 5. The continued-fraction period is a property of the *number*, and the unit `δ_a` is the number in its field with the simplest expansion. (`√(a²+4) = 2δ_a − a`; multiplying by 2 destroys the period-1 structure except when it does not: `√5 = [2; 4̄]` because `√5 = δ_4 − 2 = φ³ − 2`, the copper coincidence of [[metallic-means](pages/metallic-means.md)] - which is why the copper sequence A001076 is literally "denominators of continued fraction convergents to `√5`".)
+- **Same field, different number, different period.** `δ_3 = (3+√13)/2` has period 1, but `√13` in the same field `Q(√13)` has period 5. The continued-fraction period belongs to the *number*: `δ_3` has period 1 and `√13` period 5 in the same field. (`√(a²+4) = 2δ_a − a`, and doubling lengthens the period; the exception is `√5 = [2; 4̄]`, because `√5 = δ_4 − 2 = φ³ − 2`, the copper coincidence of [[metallic-means](pages/metallic-means.md)], which is why the copper sequence A001076 is also "denominators of continued fraction convergents to `√5`".)
 - **`√(a²+4)` CFs were generated with SymPy** (`sp.continued_fraction_periodic(0, 1, a*a + 4)` returns `[a₀, [period]]`): `[2, [4]]`, `[2, [1, 4]]`, `[3, [1, 1, 1, 1, 6]]`, `[4, [2, 8]]`, `[5, [2, 1, 1, 2, 10]]`.
 - **Trace versus half-trace.** The trace sequence for `a = 2` (`2, 2, 6, 14, 34, …`) is A002203; A001333 (`1, 1, 3, 7, 17, …`) is its half, and is the sequence that shows up as convergent numerators of `√2`.
 
@@ -133,12 +129,12 @@ def period_mod(a, p):
 **What it teaches.** Read the two lists for `a = 1` (Fibonacci) and the control together:
 
 - **Split primes** (Legendre `+1`): `δ ∈ F_p`, so its order divides `p − 1`. `p = 11`: order 10; `p = 19`: order 18. This is the classical "Pisano period divides `p − 1` when `p ≡ ±1 (mod 5)`."
-- **Inert primes** (Legendre `−1`): `δ ∈ F_{p²}`, and the **Frobenius** `x ↦ x^p` - the field automorphism of `F_{p²}` that fixes `F_p` pointwise and swaps the two roots of any irreducible quadratic - sends `δ` to `δ̂`, so `δ^{p+1} = δ · δ̂ = N(δ)`. For a metallic mean `N(δ) = −1`, hence **`δ^{p+1} = −1`**: the order divides `2(p + 1)` and does *not* divide `p + 1`. `p = 3`: order 8 = `2 · 4`; `p = 7`: 16 = `2 · 8`; `p = 13`: 28 = `2 · 14`. The classical "Pisano period divides `2(p + 1)` when `p ≡ ±2 (mod 5)`" - and now you can see *why the 2 is there*.
+- **Inert primes** (Legendre `−1`): `δ ∈ F_{p²}`, and the **Frobenius** `x ↦ x^p` - the field automorphism of `F_{p²}` that fixes `F_p` pointwise and swaps the two roots of any irreducible quadratic - sends `δ` to `δ̂`, so `δ^{p+1} = δ · δ̂ = N(δ)`. For a metallic mean `N(δ) = −1`, hence **`δ^{p+1} = −1`**: the order divides `2(p + 1)` and does *not* divide `p + 1`. `p = 3`: order 8 = `2 · 4`; `p = 7`: 16 = `2 · 8`; `p = 13`: 28 = `2 · 14`. This is the classical "Pisano period divides `2(p + 1)` when `p ≡ ±2 (mod 5)`", and the factor 2 is the norm `−1`.
 - **The control `φ² = (3+√5)/2`**, root of the palindromic `x² − 3x + 1`, has norm `+1`. At inert primes `(φ²)^{p+1} = +1`, so its order divides `p + 1` outright: `p = 3`: 4; `p = 7`: 8; `p = 13`: 14. No factor of 2.
 
-So the single integer `N(δ) = ±1` is read twice: over `R` it decides whether the continued fraction is *purely* periodic (**Galois' reduced-surd criterion**: a quadratic surd `α > 1` has a purely periodic simple CF iff its conjugate `α̂` lies in `(−1, 0)`, which for a norm-`−1` surd `α > 1` with `α · α̂ = −1` is automatic; see [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] Step 3), and mod `p` it decides whether `δ^{p + 1}` is `−1` or `+1` at the inert primes, i.e. whether the Pisano-type period carries an extra factor 2 beyond `p + 1`. **That is the concrete quantitative link the eigenvalue page drew in the abstract.**
+So the single integer `N(δ) = ±1` is read twice: over `R` it decides whether the continued fraction is *purely* periodic (**Galois' reduced-surd criterion**: a quadratic surd `α > 1` has a purely periodic simple CF iff its conjugate `α̂` lies in `(−1, 0)`, which for a norm-`−1` surd `α > 1` with `α · α̂ = −1` is automatic; see [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] Step 3), and mod `p` it decides whether `δ^{p + 1}` is `−1` or `+1` at the inert primes, i.e. whether the Pisano-type period carries an extra factor 2 beyond `p + 1`.
 
-The full sweep - `a = 1..5`, all primes `p < 100`, skipping the ramified `p | a²+4` - asserted, without exception: `period_mod(a, p) == lcm(ord δ, ord δ̂)`; split ⇒ `ord | p−1`; inert ⇒ `δ^{p+1} = −1`, `ord | 2(p+1)`, `ord ∤ p+1`.[^8] (Aside for the observant: `ord δ = ord δ̂` in every row of the sweep, so the period is simply `ord δ`; the two are equal because `δ̂ = −1/δ` has the same order as `−δ`, and the order of `δ` is even at every prime tested.)
+The full sweep - `a = 1..5`, all primes `p < 100`, skipping the ramified `p | a²+4` - asserted, without exception: `period_mod(a, p) == lcm(ord δ, ord δ̂)`; split ⇒ `ord | p−1`; inert ⇒ `δ^{p+1} = −1`, `ord | 2(p+1)`, `ord ∤ p+1`.[^8] (At inert primes `ord δ = ord δ̂`, since `δ̂ = δ^p`. At split primes the two orders can differ: for `a = 1, p = 11`, `δ ≡ 8` has order 10 and `δ̂ ≡ 4` has order 5, and the period is their lcm.)
 
 ## Part 3 - The k-direction: there are no irrational eigenvalues
 
@@ -150,15 +146,15 @@ P(k, L)  =  (−1)^k · A_L(k) + B_L(k),         deg A_L ≤ L − 1,  deg B_L �
 
 The full derivation - the factorization from Berlekamp-Massey, the **Ehrhart argument** sketch (Ehrhart's theorem: the number of lattice points in a dilated rational polytope `k · P` is a quasi-polynomial in `k`; here the sign-weighted variant, summing a root of unity raised to a linear form, cuts the period down to the order of the root - here 2), the explicit `A_L, B_L` table through `L = 8`, the OEIS hits (`|P(k, 4)| = A352116` with the `C_3` crystal-ball / tetrahedral bisections `P(2m, 4) = A063496`, `|P(2m + 1, 4)| = A199833 = 4·A000447`), and the mod-`p` period formula `2 · p^{⌈log_p L⌉}` (which accounts for the lone `18` in the [[mod-p-observatory](pages/mod-p-observatory.md)] table) all live on [[signed-tower-k-direction](pages/signed-tower-k-direction.md)]. From there:
 
-- Nothing in this direction has a continued fraction to speak of - rational numbers terminate. The interesting eigenvalues live in the L-direction (Part 4).
+- The eigenvalues here are `±1`, so there is no continued fraction to compute; the irrational eigenvalues are in the L-direction (Part 4).
 - The `(x + 1)^L (x − 1)^{L − 2}` factorization sharpens the OEIS-mining pass's `(x² − 1)^w` observation for the even-block count `F(w, ·)`[^4] to exact multiplicities for the signed count.
-- The mod-`p` result is the finite-field twin of Part 2, in the direction where every eigenvalue is `±1`: no `p + 1` versus `2(p + 1)` distinction (that requires a norm-`−1` quadratic), just a multiplicity effect from the repeated eigenvalues.
+- The mod-`p` result is the finite-field counterpart of Part 2, in the direction where every eigenvalue is `±1`: no `p + 1` versus `2(p + 1)` distinction (that requires a norm-`−1` quadratic), just a multiplicity effect from the repeated eigenvalues.
 
-## Part 4 - The L-direction: the real higher-degree eigenvalues
+## Part 4 - The L-direction: the higher-degree eigenvalues
 
-### Where they live, and the plastic surprise
+### Where they live, and the plastic number
 
-The L-direction recurrences (fixed `k`, vary the base length `L`) have characteristic polynomials `char_k` of degree `k+1`, built by `char_{k+1} = λ²·char_{k−1} − 2·char_k` from `char_0 = λ−1`, `char_1 = λ²−2λ+2`, with constant term `(−1)^{k−1}2^k`.[^1][^2] Their roots are the castle's genuinely irrational eigenvalues. For even `k` the polynomial splits into two factors and the dominant eigenvalue `ρ_k` is real; for odd `k` it is irreducible with a complex dominant pair ([[generating-function-gallery](pages/generating-function-gallery.md)]; irreducibility proved for `k = 2^m − 1` on [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]). Take the dominant factor for even `k`, and - because the product of *all* eigenvalues is `2^k` - try dividing the root by 2:
+The L-direction recurrences (fixed `k`, vary the base length `L`) have characteristic polynomials `char_k` of degree `k+1`, built by `char_{k+1} = λ²·char_{k−1} − 2·char_k` from `char_0 = λ−1`, `char_1 = λ²−2λ+2`, with constant term `(−1)^{k−1}2^k`.[^1][^2] Their roots are the castle's irrational eigenvalues. For even `k` the polynomial splits into two factors and the dominant eigenvalue `ρ_k` is real; for odd `k` it is irreducible (checked `k ≤ 31`, proved for `k = 2^m − 1` on [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]) with a complex dominant pair ([[generating-function-gallery](pages/generating-function-gallery.md)]). Take the dominant factor for even `k`, and - because the product of *all* eigenvalues is `2^k` - try dividing the root by 2:
 
 ```
 >>> sp.factor(c[6])
@@ -183,7 +179,7 @@ lam**3 - 4*lam**2 + 4*lam - 8
 | 16 | `6.563018640…` | degree 9 | 9 | half-integer coefficients | no |
 | 18 | `7.117830358…` | degree 9 | 9 | `μ⁹ − 5μ⁸ + 10μ⁷ − 20μ⁶ + 15μ⁵ − 21μ⁴ + 7μ³ − 8μ² + μ − 1` | yes |
 
-The pattern through `k = 18`: both factors of `char_k` have constant term of absolute value `2^{k/2}`; the dominant root sits in the degree-`k/2` factor when `k ≡ 2 (mod 4)` - making **`ρ_k/2` an algebraic unit** - and in the degree-`(k/2+1)` factor when `k ≡ 0 (mod 4)`, where `ρ_k/2` is not even an algebraic integer. Units are what the metallic means are (fundamental units of their fields), so for `k ≡ 2 (mod 4)` the L-direction eigenvalue keeps the number-theoretic structure that makes continued fractions of quadratic units so clean; for `k ≡ 0 (mod 4)` that structure is gone. A proof of the pattern is open.
+The pattern through `k = 18`: both factors of `char_k` have constant term of absolute value `2^{k/2}`; the dominant root sits in the degree-`k/2` factor when `k ≡ 2 (mod 4)` - making **`ρ_k/2` an algebraic unit** - and in the degree-`(k/2+1)` factor when `k ≡ 0 (mod 4)`, where `ρ_k/2` is not even an algebraic integer. (The metallic means are units too, the fundamental units of their fields.) The factor structure is proved on [[tower-parity-sectors](pages/tower-parity-sectors.md)]; that the dominant root lies in the monic factor exactly when `k ≡ 2 (mod 4)` is verified through `k = 40` and open in general.
 
 **The plastic component of `P(6,L)` is an OEIS sequence.** Partial fractions on the gallery's `num_6/den_6` split `P(6,L)` into a cubic part (the `2ψ²` block) and a quartic remainder, and the cubic part is exact:[^7][^8]
 
@@ -208,13 +204,13 @@ def series_coefficients_of(f, n):
 [1, 2, 4, 7, 12, 21, 37, 65, 114, 200, 351, 616]
 ```
 
-That is **A005251(L+3)**: `a(n) = 2a(n−1) − a(n−2) + a(n−3)`, and by the OEIS comment `a(n+3)` is "the number of `n`-bit sequences that avoid 010" - binary strings with no isolated 1. So
+That is **A005251(L+3)**: `a(n) = 2a(n−1) − a(n−2) + a(n−3)`, and by the OEIS comment `a(n+3)` is "the number of `n`-bit sequences that avoid 010"; `A005251(L+3)` is also the number of binary strings of length `L + 1` with no isolated 1 ([[a005251-bijection](pages/a005251-bijection.md)]). So
 
 ```
-P(6, L)  =  2^L · #{binary strings of length L with no isolated 1}  +  (order-4 remainder with characteristic polynomial λ⁴ − 3λ³ + 8λ² − 4λ + 8),
+P(6, L)  =  2^L · #{binary strings of length L+1 with no isolated 1}  +  (order-4 remainder with characteristic polynomial λ⁴ − 3λ³ + 8λ² − 4λ + 8),
 ```
 
-with the remainder `−2, −3, −1, 9, 71, 289, 727, 1361, …`. The signed count of height-`≤6` towers on a length-`L` base has, as its dominant piece, the per-column binary state `2^L` (the height-2 unsigned tower count `T(1, L)` of [[castle-counting-formula](pages/castle-counting-formula.md)]) times a no-isolated-1 count in the plastic field. Nothing on the wiki predicts that; a bijection is the obvious target.
+with the remainder `0, −3, −9, −7, 39, 161, 215, −431, …`. [[tower-parity-sectors](pages/tower-parity-sectors.md)] identifies the two pieces as the even- and odd-last-column sectors, and [[hardin-word-identity](pages/hardin-word-identity.md)] proves the `2^L · A005251(L+3)` identity by a change of basis; an object-by-object bijection is open.
 
 ### Simple continued fractions: non-periodic, as Lagrange requires
 
@@ -237,7 +233,7 @@ def cf_digits(poly_coeffs, x0, n=20):
 [2, 2, 2, 2, 2, 2, 2, 2]
 ```
 
-**What it teaches.** The digits of a cubic look random - `282` shows up in `ρ_6`'s expansion - and by Lagrange they *cannot* repeat: eventually periodic ⟺ quadratic. Their convergents are integer sequences, but ones with no linear recurrence, and unsurprisingly none of them (nor the digit strings, nor the decimal expansions of `ρ_4`, `ρ_6`) is in OEIS. The digits are believed to follow the Gauss–Kuzmin statistics of a "typical" real number, but nothing about the castle is visible in them. For a cubic the right object is the next one.
+**What it teaches.** The digits of a cubic show no pattern (`282` appears in `ρ_6`'s expansion), and by Lagrange they *cannot* repeat: eventually periodic ⟺ quadratic. None of the convergent sequences, digit strings or decimal expansions of `ρ_4`, `ρ_6` is in OEIS. The digits are conjectured to follow the Gauss–Kuzmin statistics of a typical real number. For a cubic the periodic object is the Jacobi–Perron expansion below.
 
 ### Multi-variable convergents: Jacobi–Perron, exactly
 
@@ -247,7 +243,7 @@ A quadratic's continued fraction is one number and one period; a cubic needs a *
 (α_1, …, α_{d−1})  ↦  ( (α_2 − a_2)/(α_1 − a_1), …, (α_{d−1} − a_{d−1})/(α_1 − a_1), 1/(α_1 − a_1) ).
 ```
 
-For `d = 2` this is the ordinary Euclidean step. Its periodicity for cubic irrationals is the famous open question the classical theory (Bernstein) answers only for special families,[^10] so the honest way to test it is with *exact* arithmetic in `Q(ρ)` - represent every quantity as a polynomial in `ρ` reduced modulo the minimal polynomial, invert with the extended Euclidean algorithm, and use floating point only to take floors:
+For `d = 2` this is the ordinary Euclidean step. Whether it is periodic for every cubic irrational is an open question that the classical theory (Bernstein) answers only for special families,[^10] so this page tests it with *exact* arithmetic in `Q(ρ)` - represent every quantity as a polynomial in `ρ` reduced modulo the minimal polynomial, invert with the extended Euclidean algorithm, and use floating point only to take floors:
 
 ```python
 def jacobi_perron(f, x0, steps):
@@ -278,7 +274,7 @@ def jacobi_perron(f, x0, steps):
 'no period within 400 steps'
 ```
 
-**`ρ_6` is JPA-periodic**: five preperiod digit pairs, then `[1,1], [1,1], [1,1], [5,9]` forever - the cubic analogue of `[2; 2, 2, …]`, and an affirmative answer to "do the multi-variable convergents hit anything?" **`ρ_4` is not** periodic within 400 exact steps (largest digit seen 646), and neither are the quintics `ρ_8`, `ρ_10` within 60 - consistent with (though not proof of) the unit/non-unit split above: `ρ_6/2` is a unit; `ρ_4/2` is not an algebraic integer at all.[^9]
+**`ρ_6` is JPA-periodic**: five preperiod digit pairs, then `[1,1], [1,1], [1,1], [5,9]` repeating. **`ρ_4` is not** periodic within 400 exact steps (largest digit seen 646), and neither are the quintics `ρ_8`, `ρ_10` within 60.[^9]
 
 **The convergents, and the unit they encode.** Bernstein's convergent vectors `A^{(v)} ∈ Z³` start as the unit vectors and follow `A^{(v+3)} = A^{(v)} + a₁^{(v)} A^{(v+1)} + a₂^{(v)} A^{(v+2)}`; the first coordinate is the denominator, `A₁/A₀ → ρ`, `A₂/A₀ → ρ²`. The preperiod / period of the `ρ_6` expansion above splits its digit pairs into `pre` and `per`:
 
@@ -314,23 +310,23 @@ Because the expansion is periodic, the denominators satisfy a linear recurrence 
 51.254019310876249536                                    # = the dominant eigenvalue of M
 ```
 
-Determinant 1 and dominant eigenvalue **`ψ^14`**: a periodic JPA expansion produces a unit of the field (Bernstein's theorem),[^10] and here it is the fourteenth power of the plastic number. The coefficients `51` and `−13` are `Perrin(14)` and `Perrin(−14)` - the trace of `ψ^14` and of `ψ^{−14}` - so **the period matrix is written in Perrin numbers**.[^9] None of the JPA convergent sequences is in OEIS (searched 2026-09-16); they are generation candidates, though a weaker kind than a castle count, since OEIS's convergent tables (the A041xxx family above) cover simple continued fractions only.
+Determinant 1 and dominant eigenvalue **`ψ^14`**: a periodic JPA expansion produces a unit of the field (Bernstein's theorem),[^10] and here it is the fourteenth power of the plastic number. The coefficients `51` and `−13` are `Perrin(14)` and `Perrin(−14)` - the trace of `ψ^14` and of `ψ^{−14}` - so the period matrix's characteristic polynomial has Perrin-number coefficients.[^9] None of the JPA convergent sequences is in OEIS (searched 2026-09-16); they are generation candidates, though a weaker kind than a castle count, since OEIS's convergent tables (the A041xxx family above) cover simple continued fractions only.
 
-One more thing the convergents teach: `|ρ_6 − A₁/A₀| · A₀^{3/2}` stays between 0.15 and 0.9 for `v = 20, 40, 60, 80`, i.e. JPA convergents approximate a cubic to about `q^{−3/2}` - the Dirichlet rate for *simultaneous* approximation of `(ρ, ρ²)` - not the `q^{−2}` a simple continued fraction achieves for one number. That is the price of periodicity: the multidimensional expansion is the one that repeats, and the one-dimensional expansion is the one that approximates best.
+The convergents also show the approximation rate: `|ρ_6 − A₁/A₀| · A₀^{3/2}` stays between 0.14 and 0.91 for `v = 20, 40, 60, 80`, so JPA convergents approximate a cubic to about `q^{−3/2}`, the Dirichlet rate for *simultaneous* approximation of `(ρ, ρ²)`, against the `q^{−2}` a simple continued fraction achieves for one number.
 
 ## What this settles and what it opens
 
 **Settled.**
 - The convergent crosswalk for all five metallic rungs (Part 1): primary, trace, and `δ_a − 1` sequences, all offset-verified.
 - The k-direction of `P(k, L)` is a quasi-polynomial with eigenvalues `±1` only, `(x + 1)^L (x − 1)^{L − 2}` (`L ≤ 12`), explicit `A_L, B_L` to `L = 12`, `|P(k, 4)|` = A352116 with the `C_3` crystal-ball and tetrahedral bisections, and the `2 · p^{⌈log_p L⌉}` mod-`p` period. Full write-up: [[signed-tower-k-direction](pages/signed-tower-k-direction.md)].
-- The CF ↔ mod-`p` twin made quantitative: `N(δ) = −1` ⟺ purely periodic ⟺ `δ^{p+1} = −1` at inert primes (Part 2).
+- The CF ↔ mod-`p` link made quantitative: `N(δ) = −1` ⟺ purely periodic ⟺ `δ^{p+1} = −1` at inert primes (Part 2).
 - `ρ_6 = 2ψ²`, `P(6,L) = 2^L·A005251(L+3) + remainder`, and a periodic Jacobi–Perron expansion for `ρ_6` with unit `ψ^14`.
 
 **Open.**
-- Prove `(x+1)^L (x−1)^{L−2}` (the Ehrhart sketch is the route) and find `A_L, B_L` uniformly - this is most of "General closed form for `P(k,L)`."
-- Why the plastic field at `k = 6`, and why `ρ_k/2` is a unit exactly for `k ≡ 2 (mod 4)` - answered on [[tower-parity-sectors](pages/tower-parity-sectors.md)]: the even-`k` factors are `H_d(μ) = Σ (−1)^i C(⌊(d+i)/2⌋, i) μ^{d−i}` and its Lucas companion, `H_3` is the minimal polynomial of `ψ²`, and the dominant root lies in the monic factor `H_{k/2}` exactly when `k ≡ 2 (mod 4)`. The JPA of `ρ_10`, `ρ_10/2`, `ρ_14/2` is not periodic within 300 / 200 exact steps.
-- A bijective reading of `P(6,L) = 2^L · #(no-isolated-1 strings) + …` - sharpened on [[tower-parity-sectors](pages/tower-parity-sectors.md)] to `P_even(6,L) = 2^L·A005251(L+3)` (even last column), and generalized to Hardin's word counts for every `k ≡ 2 (mod 4)`; the bijection itself is still open. Likewise `|P(k,4)|` as `C₃`-lattice crystal-ball / tetrahedral numbers.
-- Whether the Axis-8 growth classification on [[castle-classification-growth](pages/castle-classification-growth.md)] should grow a non-metallic rung: `2ψ²` is a Pisot-type growth constant that is *not* a metallic mean.
+- Prove `(x+1)^L (x−1)^{L−2}` (the Ehrhart sketch is the route) and find `A_L, B_L` uniformly, which would give a general closed form for `P(k, L)` in `k`.
+- Prove that the dominant root lies in the monic factor `H_{k/2}` exactly when `k ≡ 2 (mod 4)` (verified through `k = 40`). The factorization itself, `H_d(μ) = Σ (−1)^i C(⌊(d+i)/2⌋, i) μ^{d−i}` and its Lucas companion with `H_3` the minimal polynomial of `ψ²`, is proved on [[tower-parity-sectors](pages/tower-parity-sectors.md)].
+- Whether the JPA of `ρ_k` or `ρ_k/2` is periodic for any even `k ≠ 6` (`ρ_10` and `ρ_10/2`: no period within 300 exact steps; `ρ_14/2`: none within 200).
+- An object-by-object bijection for `P_even(6,L) = 2^L·A005251(L+3)` (even last column, [[tower-parity-sectors](pages/tower-parity-sectors.md)]) and for Hardin's word counts at every `k ≡ 2 (mod 4)`; the identity itself is proved by a change of basis on [[hardin-word-identity](pages/hardin-word-identity.md)]. Likewise a combinatorial reading of `|P(k,4)|` as `C₃`-lattice crystal-ball / tetrahedral numbers.
 
 ## Snippet index (what each one teaches)
 
@@ -341,12 +337,12 @@ All snippets ran under Python 3.11 with SymPy 1.14 and mpmath 1.3; the DP and Be
 | `convergents(digits)` | the three-term convergent recurrence; why period 1 ⇒ numerator = denominator shifted | Part 1 |
 | `sp.continued_fraction_periodic(0, 1, d)` | SymPy's periodic CF of `√d`; period is a property of the number, not the field | Part 1 |
 | `order_mod(a, c, p)`, `period_mod(a, p)` | build `F_p[t]/(t² − at + c)` by hand; Pisano period = eigenvalue order; the `δ^{p+1} = N(δ)` Frobenius argument | Part 2 |
-| `P_table`, `berlekamp_massey`, `sp.factor` | the signed-tower DP; minimal recurrence; *always factor the characteristic polynomial* | [[signed-tower-k-direction]] |
+| `P_table`, `berlekamp_massey`, `sp.factor` | the signed-tower DP; minimal recurrence; factoring the characteristic polynomial | [[signed-tower-k-direction]] |
 | `quasi_split(seq, deg)` | a period-2 quasi-polynomial is two interpolations | [[signed-tower-k-direction]] |
 | `period(seq)` on `P mod p` | repeated eigenvalues give `p^{⌈log_p m⌉}` | [[signed-tower-k-direction]] |
 | `sp.resultant` twice | minimal polynomial of `ψ²` and of `2ψ²` without solving anything | Part 4 |
 | `sp.apart` on `num_k/den_k` | partial fractions split a C-finite sequence into its eigenvalue blocks | Part 4 |
-| `cf_digits` (mpmath, 200 digits) | simple CF of an algebraic number; Lagrange in action | Part 4 |
+| `cf_digits` (mpmath, 200 digits) | simple CF of an algebraic number; Lagrange's theorem | Part 4 |
 | `jacobi_perron` (exact in `Q(ρ)`) | multidimensional CF with exact periodicity detection | Part 4 |
 | `jpa_convergents`, period matrix | Bernstein's convergents; periodic JPA ⇒ a unit (`ψ^14`), read off as Perrin numbers | Part 4 |
 | `oeis_lookup(terms)` via `curl -A` | OEIS returns HyperText Transfer Protocol (HTTP) 403 to Python's default `urllib` User-Agent; send a real one and throttle | castle-snippets |
@@ -359,10 +355,10 @@ All snippets ran under Python 3.11 with SymPy 1.14 and mpmath 1.3; the DP and Be
 
 ## Related Concepts
 
-- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the page whose abstract twin (CF period ↔ mod-p order) this one makes quantitative.
-- [[metallic-means](pages/metallic-means.md)] / [[pell-numbers](pages/pell-numbers.md)] - the rungs of Part 1; their OEIS numbers are now all verified.
+- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the page whose CF period ↔ mod-p order link this one makes quantitative.
+- [[metallic-means](pages/metallic-means.md)] / [[pell-numbers](pages/pell-numbers.md)] - the rungs of Part 1, their OEIS numbers offset-verified here.
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the full write-up of Part 3: `(x + 1)^L (x − 1)^{L − 2}`, the `A_L, B_L` quasi-polynomial table, `|P(k, 4)| = A352116`, and the mod-`p` period `2 · p^{⌈log_p L⌉}`.
-- [[mod-p-observatory](pages/mod-p-observatory.md)] - the finite-field side; Part 2 is its real-number mirror.
+- [[mod-p-observatory](pages/mod-p-observatory.md)] - the finite-field side; Part 2 is its real-number counterpart.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] / [[closed-form-hunting](pages/closed-form-hunting.md)] - the `2L−2` orders and palindromic coefficient lists whose k-direction factorization is on the split page above.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] / [[signed-tower-count](pages/signed-tower-count.md)] - `char_k`, `ρ_k`, and the `P(k,·)` rows Part 4 decomposes.
 - [[finite-fields](pages/finite-fields.md)] - `F_p` vs `F_{p²}`, the Frobenius, and why `δ^{p+1} = N(δ)`.

@@ -1,11 +1,11 @@
 ---
 title: Tower parity sectors - why char_k factors, and where the plastic number comes from
 category: Analyses
-summary: The signed transfer matrix commutes with "reflect heights, flip signs", so for even k the signed tower count splits by the parity of the last column height, P = P_even + P_odd, and char_k factors accordingly. Rescaled by λ = 2μ the factors are explicit - H_d(μ) = Σ (−1)^i C(⌊(d+i)/2⌋, i) μ^(d−i) and its Lucas companion H_(d+1) + μ² H_(d−1) - a doubling identity proved via Pascal's rule. H_3 is the minimal polynomial of ψ² (plastic), and for k = 4m+2 the even sector is 2^L times Hardin's "every nonzero letter ≤ a neighbor" word counts (A005251, A202882, A203094, A203184).
+summary: The signed transfer matrix commutes with "reflect heights, flip signs", so for even k the signed tower count splits by the parity of the last column height, P = P_even + P_odd, and char_k factors accordingly. Rescaled by λ = 2μ the factors are explicit - H_d(μ) = Σ (−1)^i C(⌊(d+i)/2⌋, i) μ^(d−i) and its Lucas companion H_(d+1) + μ² H_(d−1) - a doubling identity, proved from the H_d recurrence (Pascal's rule) and a Lucas-type computation. H_3 is the minimal polynomial of ψ² (plastic), and for k = 4m+2 the even sector is 2^L times Hardin's "every nonzero letter ≤ a neighbor" word counts (A005251, A202882, A203094, A203184).
 tags: [analysis, castle, signed-tower-count, transfer-matrix, symmetry, factorization, plastic-number, quasi-polynomial, oeis, hardin, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Tower parity sectors - why `char_k` factors, and where the plastic number comes from
@@ -75,20 +75,20 @@ def blocks(cc):
 be = sum((-1)**blocks(cc) for cc in product(range(k+1), repeat=L) if cc[-1] % 2 == 0)   # == e_0 M^L [b even]
 ```
 
-One consequence is immediate and pretty: at `k = 1` the two sectors are the real and imaginary parts of `(1+i)^L`,
+At `k = 1` the even- and odd-last-column parts are the real and imaginary parts of `(1+i)^L`,
 
 ```
 P_even(1, L) =  Re((1+i)^L) = A146559(L):   1, 1, 0, −2, −4, −4, 0, 8, 16, 16, …
 P_odd(1, L)  = −Im((1+i)^L) = −A009545(L):  0, −1, −2, −2, 0, 4, 8, 8, 0, −16, …
 ```
 
-so **A009545 is a castle count after all**: minus the signed number of height-`≤1` towers (castles of height `≤ 2`) whose last column has height 1. The two sequences the OEIS-mining pass had to tell apart ([[signed-tower-count](pages/signed-tower-count.md)]) are the two `JD` sectors of the same matrix.[^5]
+so **A009545 is also a castle count**: minus the signed number of height-`≤1` towers (castles of height `≤ 2`) whose last column has height 1. The two sequences that [[signed-tower-count](pages/signed-tower-count.md)] distinguishes are the even- and odd-last-column parts of the same count.[^5]
 
 ## Part 2 - The factors in closed form
 
 ### Rescale by 2
 
-Every eigenvalue of `M_k` has product `2^k` with the others (constant term of `char_k`),[^1] so set `λ = 2μ` and `g_k(μ) = char_k(2μ)/2^k`. The gallery's three-term recurrence `char_{k+1} = λ² char_{k−1} − 2 char_k`[^2] becomes
+The eigenvalues of `M_k` multiply to `2^k` (from the constant term of `char_k`),[^1] so set `λ = 2μ` and `g_k(μ) = char_k(2μ)/2^k`. The gallery's three-term recurrence `char_{k+1} = λ² char_{k−1} − 2 char_k`[^2] becomes
 
 ```
 g_{k+1} = μ² g_{k−1} − g_k,        g_0 = 2μ − 1,   g_1 = 2μ² − 2μ + 1,
@@ -138,9 +138,9 @@ def H(d):
 (1, mu - 1, mu**2 - mu + 1, mu**3 - 2*mu**2 + mu - 1)
 ```
 
-`H_1 = μ − 1` (the `k = 2` eigenvalue `2`), `H_2 = μ² − μ + 1` (the sixth cyclotomic polynomial: the `k = 4` non-dominant eigenvalues `2e^{±iπ/3} = 1 ± i√3`), and **`H_3 = μ³ − 2μ² + μ − 1` is the minimal polynomial of `ψ²`**, the plastic number squared - the whole reason `ρ_6 = 2ψ²`.[^4] Every `H_d` for `d ≤ 16` is irreducible over `Q`, with constant term `(−1)^d`, and `H_d(1) = (−1)^{d+1} F_{d−1}`, `H_d(−1) = (−1)^{d+1} F_{d+2}` (Fibonacci numbers).[^8]
+`H_1 = μ − 1` (the `k = 2` eigenvalue `2`), `H_2 = μ² − μ + 1` (the sixth cyclotomic polynomial: the `k = 4` non-dominant eigenvalues `2e^{±iπ/3} = 1 ± i√3`), and **`H_3 = μ³ − 2μ² + μ − 1` is the minimal polynomial of `ψ²`**, the plastic number squared - the reason `ρ_6 = 2ψ²`.[^4] Every `H_d` for `d ≤ 16` is irreducible over `Q`, with constant term `(−1)^d`, and `H_d(1) = (−1)^d F_{d−1}`, `H_d(−1) = (−1)^d F_{d+2}` (Fibonacci numbers).[^8]
 
-### The other factor is the Lucas companion, and the identity is a theorem
+### The other factor: the Lucas companion
 
 The leading-coefficient-2 factor is `V_d(μ) = H_{d+1}(μ) + μ² H_{d−1}(μ)`:
 
@@ -155,7 +155,7 @@ and the full statement, checked symbolically for every even `k ≤ 40`,[^8] is
 g_{2d}(μ)  =  H_d(μ) · ( H_{d+1}(μ) + μ² H_{d−1}(μ) ).
 ```
 
-This is not just a pattern; it is a **doubling identity** of Lucas-sequence type, and it has a proof:
+This is a **doubling identity** of Lucas-sequence type, with a proof:
 
 1. **`H_d` satisfies the same recurrence as `g_k`.** `H_{d+2} = −H_{d+1} + μ² H_d`, with `H_0 = 1`, `H_1 = μ − 1`. Coefficient by coefficient this is Pascal's rule: the coefficient of `μ^{d+2−i}` in `H_{d+2}`, `−H_{d+1}`, `μ²H_d` is `(−1)^i C(n+1, i)`, `(−1)^i C(n, i−1)`, `(−1)^i C(n, i)` with `n = ⌊(d+i)/2⌋`, and `C(n, i−1) + C(n, i) = C(n+1, i)`. (Verified symbolically for `d ≤ 40`.)
 2. **A one-line Lucas-type computation.** With `r, s` the roots of `z² + z − μ² = 0` (so `r + s = −1`, `rs = −μ²`), any solution `x_n = αrⁿ + βsⁿ` of the recurrence has `x_{n+1} + μ² x_{n−1} = (r − s)(αrⁿ − βsⁿ)`, hence `x_n (x_{n+1} + μ² x_{n−1}) = (r−s)(α² r^{2n} − β² s^{2n})` - a solution of the same recurrence at index `2n`. Applied to `x = H`, its values at `n = 0, 1` are `(r−s)(α² − β²) = 2μ − 1 = g_0` and `(r−s)(α² r − β² s) = 2μ² − 2μ + 1 = g_1` (both verified symbolically), so the product agrees with `g_{2n}` at two consecutive indices and therefore for all `n`.
@@ -206,17 +206,17 @@ m=1 (k=6):  words(L+1) = [1, 2, 4, 7, 12, 21, 37, 65, 114]     P_even/2^L = [1, 
 m=2 (k=10): words(L+1) = [1, 3, 9, 22, 51, 121, 292, 704, 1691] P_even/2^L = [1, 3, 9, 22, 51, 121, 292, 704, 1691]
 ```
 
-Hardin's OEIS entries carry their recurrences as "Empirical: a(n) = 3a(n−1) − 3a(n−2) + 4a(n−3) − a(n−4) + a(n−5)" (A202882), and likewise for A203094 and A203184. Those are exactly `H_5`, `H_7`, `H_9`. On the castle side they are theorems (the sector's characteristic polynomial); what the word side still lacks is a bijective or transfer-matrix argument that the two objects agree - still open. A proof would confirm four empirical OEIS recurrences at once and give the castle a genuinely new interpretation of a family of sequences.
+Hardin's OEIS entries carry their recurrences as "Empirical: a(n) = 3a(n−1) − 3a(n−2) + 4a(n−3) − a(n−4) + a(n−5)" (A202882), and likewise for A203094 and A203184. Those are `H_5`, `H_7`, `H_9`. On the castle side they are theorems (the sector's characteristic polynomial), and [[hardin-word-identity](pages/hardin-word-identity.md)] proves that the two objects agree, by an explicit change of basis between the word automaton and the halved even-sector matrix (every `m ≤ 8` checked symbolically; the general case is a finite entrywise check). An object-by-object bijection is open.
 
 **`k ≡ 0 (mod 4)`: the odd sector carries `H_d`.**[^8]
 
 | `k` | `P_odd(k, L) / 2^L` | characteristic polynomial |
 |---|---|---|
-| 4 | `0, −1, −1, 0, 1, 1, 0, −1, −1, …` = `−A010892(L)` (period 6) | `H_2 = μ² − μ + 1` |
+| 4 | `0, −1, −1, 0, 1, 1, 0, −1, −1, …` = `−A010892(L−1)` (period 6) | `H_2 = μ² − μ + 1` |
 | 8 | `0, −2, −4, −3, 4, 15, 19, 0, −46, −88, −57, 104, …` (not in OEIS) | `H_4 = μ⁴ − 2μ³ + 3μ² − μ + 1` |
 | 12 | `0, −3, −9, −13, 3, 65, 167, 182, −215, −1378, …` (not in OEIS) | `H_6` |
 
-So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1, 1, 0, −1, −1, …)`: a `2^L` times a sixth-root-of-unity pattern, the eigenvalues `1 ± i√3` in action. The even sectors for `k ≡ 0 (mod 4)` (`1, 3, 9, 25, 69, 193, 541, …` at `k = 4`; `1, 5, 25, 105, 425, 1761, …` at `k = 8`) carry the leading-coefficient-2 factor, are not divisible by `2^L`, and are not in OEIS. The `k = 2` odd sector is `−A107920`, the Lucas-type sequence of `(1 ± √−7)/2` - the `k = 2` non-dominant eigenvalues.
+So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1, 1, 0, −1, −1, …)`: `2^L` times a sixth-root-of-unity pattern, from the eigenvalues `1 ± i√3`. The even sectors for `k ≡ 0 (mod 4)` (`1, 3, 9, 25, 69, 193, 541, …` at `k = 4`; `1, 5, 25, 105, 425, 1761, …` at `k = 8`) carry the leading-coefficient-2 factor, are not divisible by `2^L`, and are not in OEIS. The `k = 2` odd sector is `−A107920`, the Lucas-type sequence of `(1 ± √−7)/2` - the `k = 2` non-dominant eigenvalues.
 
 ## What this settles and what it opens
 
@@ -224,29 +224,28 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 - `char_k` factors for even `k` because `M_k` commutes with `JD`; the factors are the even- and odd-last-column sectors; for odd `k`, `JD` is a complex structure and `char_k` is a norm `g·ḡ` from `Q(i)[x]`. Irreducibility over `Q` is proved for `k = 2^m − 1` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]) and verified for odd `k ≤ 31`.
 - Closed forms: `char_{2d}(λ) = 2^{2d} H_d(λ/2) V_d(λ/2)` with `H_d = Σ (−1)^i C(⌊(d+i)/2⌋, i) μ^{d−i}` and `V_d = H_{d+1} + μ² H_{d−1}`, proved via Pascal's rule and a Lucas doubling computation.
 - `ρ_6 = 2ψ²` because `H_3` is the minimal polynomial of `ψ²`; `ρ_k/2` is a unit for `k ≡ 2 (mod 4)` because the dominant root then lies in the monic factor.
-- `P_even(4m+2, L) = 2^L ·` Hardin word count (A005251, A202882, A203094, A203184), verified `m ≤ 4`; `P_odd(4, L) = −2^L · A010892(L)`; `P_even(1, L) = A146559(L)`, `P_odd(1, L) = −A009545(L)`; `P_odd(2, L) = −A107920(L)`.
+- `P_even(4m+2, L) = 2^L ·` Hardin word count (A005251, A202882, A203094, A203184), verified `m ≤ 4`; `P_odd(4, L) = −2^L · A010892(L−1)`; `P_even(1, L) = A146559(L)`, `P_odd(1, L) = −A009545(L)`; `P_odd(2, L) = −A107920(L)`.
+- The involution `JD` is the reversal symmetry of the KMS matrix `K(i) = (i^|a−b|)` pulled back through the similarity `diag(i^c)`, which is where `(JD)² = (−1)^k` comes from ([[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)]).
 
 **Open.**
 - Prove that the two sector factors of `char_{2d}` have resultant `2^{d(d+1)}` (`= 2^{k(k+2)/4}`; verified every even `k ≤ 30`, [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]). Equivalently, the sector split of `Q[x]/(char_k)` already holds over `Z[1/2]` and survives reduction mod every odd prime. Geometrically the two sectors are the components of `Spec Z[x]/(char_k)` and meet only at the point `(2, x)` (sector factors `≡ x^d` and `x^d(x + 1)` mod 2, checked `k ≤ 30`, [[castle-ring-spectrum](pages/castle-ring-spectrum.md)]).
-- The involution `JD` is the reversal symmetry of the KMS matrix `K(i) = (i^|a−b|)` pulled back through the similarity `diag(i^c)`, which is where `(JD)² = (−1)^k` comes from ([[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)]).
 - Prove `char_k` irreducible over `Q` for every odd `k`. Eisenstein at 2 reaches exactly `k = 2^m − 1` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]); `k = 5, 9, 11, 13, …` need another argument.
 - Prove that the dominant root lies in the `+1` sector and that `H_d` belongs to the `+1` sector iff `d` is odd.
 - The Hardin identity is proved on [[hardin-word-identity](pages/hardin-word-identity.md)] by an explicit unimodular change of basis between the word automaton and the halved even-sector matrix (every `m ≤ 8` checked symbolically; general `m` reduces to a finite entrywise check). A sign-reversing involution realizing it object by object is still open.
 - Which `H_d` have Pisot dominant roots (`d = 3` yes; `d = 5, 7, 9, …` no) and whether the Jacobi-Perron expansion of `ρ_k/2` is ever periodic beyond `k = 6` (`k = 10, 14`: not within 300 / 200 exact steps).
-- Whether Axis 8 of [[castle-classification-growth](pages/castle-classification-growth.md)] should admit a non-metallic rung for `2ψ²`.
 
 ## Snippet index
 
 | snippet | teaches | where |
 |---|---|---|
 | `M_signed(k)` | the signed transfer matrix; `char(M_k) = char_k` | Part 1 |
-| `J`, `D`, `JD` commutation test | find the symmetry by testing candidate involutions, not by staring | Part 1 |
+| `J`, `D`, `JD` commutation test | find the symmetry by testing candidate involutions | Part 1 |
 | `(X ± I).columnspace()` + restricted matrix | block-diagonalize along an involution's eigenspaces | Part 1 |
 | `blocks(cc)` + parity filter | brute-force check that a sector is a combinatorial statistic | Part 1 |
 | `H(d)` | a binomial closed form for a factor; test it against `sp.factor` output | Part 2 |
 | `sp.solve` on coefficient equations | recover a polynomial recurrence `H_{d+2} = A H_{d+1} + B H_d` from data | Part 2 |
 | `sectors(k, Lmax)` | C-finite subsequences from invariant subspaces | Part 3 |
-| `hardin_count(m, L)` | brute-force a conjectured OEIS interpretation before believing it | Part 3 |
+| `hardin_count(m, L)` | brute-force check of a conjectured OEIS interpretation | Part 3 |
 
 ## Appearances in Sources
 
@@ -265,14 +264,14 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 - [[spectral-analysis](pages/spectral-analysis.md)] - the transfer-matrix spectrum (method 1 there); this page is a worked instance of "find the symmetry, block-diagonalize, read off the growth constant".
 - [[metallic-means](pages/metallic-means.md)] / [[castle-classification-growth](pages/castle-classification-growth.md)] - the Axis-8 growth-constant ladder that `2ψ²` sits beside.
 - [[finite-fields](pages/finite-fields.md)] / [[mod-p-observatory](pages/mod-p-observatory.md)] - the sector polynomials reduce mod `p` too; their orders are the pieces of `per(char_k)`.
-- [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] - Pascal's rule `C(r,k) = C(r−1,k) + C(r−1,k−1)`, the identity that proves the `H_{d+1} + μ² H_{d−1}` doubling identity in Part 2.
+- [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] - Pascal's rule `C(r,k) = C(r−1,k) + C(r−1,k−1)`, which proves the recurrence `H_{d+2} = −H_{d+1} + μ² H_d`, the first step of the Part 2 proof of the doubling identity.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `char_2 = (x−2)(x²−x+2)` is why `F(w,3)` has order 6: its `(x−2)` is shared with the `2^w` term.
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - the sector tables are computed by Algorithm M enumeration of `{0..k}^L`.
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the complementary direction of the same `P(k, L)` 2D array: k-direction factors as `(x+1)^L (x-1)^{L-2}` while this page factors the L-direction char_k into parity sectors.
 - [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the sectors as the two components of `Spec Z[x]/(char_k)`, meeting only at `(2, x)`; the `k = 4` minor sector `H_2` gives `Z[ω]`.
-- [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the seminar that starts from this page's even-sector surprise and ends at the Hardin identity.
+- [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the seminar that starts from this page's even-sector identity and ends at the Hardin identity.
 - [[castle-notation](pages/castle-notation.md)] - tower height `k` versus castle height `h = k + 1`, and the argument orders of `P(k, L)` and `F(w, h)`.
-- [[tower-heap](pages/tower-heap.md)] - the unsigned twin: the same column-height tower's block count as a Narayana polynomial, rather than the signed transfer matrix this page block-diagonalizes.
+- [[tower-heap](pages/tower-heap.md)] - the unsigned counterpart: the same column-height tower's block count as a Narayana polynomial, rather than the signed transfer matrix this page block-diagonalizes.
 
 
 ## Footnotes
@@ -285,7 +284,7 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 
 [^4]: Verified by execution (SymPy 1.14): `resultant(x³ − x − 1, μ − x², x)` factors to `μ³ − 2μ² + μ − 1 = H_3`; `resultant(H_3, λ − 2μ, μ) = λ³ − 4λ² + 4λ − 8`, the cubic factor of `char_6`.
 
-[^5]: https://oeis.org/A146559 (2026-09-16) - "Expansion of (1-x)/(1 - 2*x + 2*x^2)", data `1, 1, 0, -2, -4, -4, 0, 8, 16, 16, 0, -32`; https://oeis.org/A009545 - "Expansion of exponential generating function (EGF) sin(x)*exp(x)", data `0, 1, 2, 2, 0, -4, -8, -8, 0, 16`; https://oeis.org/A107920 - "Lucas and Lehmer numbers with parameters (1 +- sqrt(-7))/2", data `0, 1, 1, -1, -3, 1, 5, 7, -3, -17`; https://oeis.org/A010892 - "Inverse of 6th cyclotomic polynomial. A period 6 sequence", `1, 1, 0, -1, -1, 0, …` (our `P_odd(4,L)/2^L` is `−A010892(L−1)`-aligned: `0, −1, −1, 0, 1, 1, …`; matched by OEIS search on the terms). Sector sequences computed by execution, `L ≤ 24`.
+[^5]: https://oeis.org/A146559 (2026-09-16) - "Expansion of (1-x)/(1 - 2*x + 2*x^2)", data `1, 1, 0, -2, -4, -4, 0, 8, 16, 16, 0, -32`; https://oeis.org/A009545 - "Expansion of exponential generating function (EGF) sin(x)*exp(x)", data `0, 1, 2, 2, 0, -4, -8, -8, 0, 16`; https://oeis.org/A107920 - "Lucas and Lehmer numbers with parameters (1 +- sqrt(-7))/2", data `0, 1, 1, -1, -3, -1, 5, 7, -3, -17`; https://oeis.org/A010892 - "Inverse of 6th cyclotomic polynomial. A period 6 sequence", `1, 1, 0, -1, -1, 0, …` (`P_odd(4,L)/2^L = −A010892(L−1)`: `0, −1, −1, 0, 1, 1, …`). Sector sequences computed by execution, `L ≤ 24`.
 
 [^6]: https://oeis.org/A005251 (2026-09-16) - offset 0, "a(n) = 2*a(n-1) - a(n-2) + a(n-3)", comment "a(n+3) is the number of n-bit sequences that avoid 010"; https://oeis.org/A202882 - offset 1, "Number of n X 1 0..2 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor", data `1, 3, 9, 22, 51, 121, 292, 704, 1691, 4059, 9749`, formula "Empirical: a(n) = 3*a(n-1) -3*a(n-2) +4*a(n-3) -a(n-4) +a(n-5)", xref "Column 1 of A202889"; https://oeis.org/A203094 - "Number of nX1 0..3 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor", data `1, 4, 16, 50, 144, 422, 1268, 3823, 11472, 34350`, "Empirical: a(n) = 4*a(n-1) -6*a(n-2) +10*a(n-3) -5*a(n-4) +6*a(n-5) -a(n-6) +a(n-7)"; https://oeis.org/A203184 - "Number of n X 1 0..4 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor", data `1, 5, 25, 95, 325, 1121, 3985, 14288, 50995, 181336`, "Empirical: a(n) = 5*a(n-1) -10*a(n-2) +20*a(n-3) -15*a(n-4) +21*a(n-5) -7*a(n-6) +8*a(n-7) -a(n-8) +a(n-9)". The three empirical recurrences are the coefficient lists of `H_5`, `H_7`, `H_9`.
 

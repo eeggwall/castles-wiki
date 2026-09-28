@@ -5,7 +5,7 @@ summary: The centerpiece hub for spectral methods applied to castles as 2D polyo
 tags: [concept, castle, spectral, transfer-matrix, laplacian, dft, ihara-zeta, ramanujan, isospectral, determinantal]
 sources: [spectral-analysis]
 created: 2026-09-16
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # Spectral analysis of castles
@@ -148,7 +148,7 @@ The five spectra above are not independent of the structural axes. Concrete cons
 | **Unimodal / pyramidal** (Axis 1) | Skyline DFT decays like `1/k` (sawtooth-DFT class); low-pass spectrum |
 | **Even-parity-only** (PE 502 rule 6) | Transfer-matrix `T` splits into `±1` eigenspaces of the block-parity involution `σ`; castles live in the `+1` half; spectral projection = `½(I + σ)`. This is [[castle-sign](pages/castle-sign.md)]'s `(T ± P)/2` at the operator level. |
 | **Silver width growth castle** (Axis 8) | The *class's* transfer matrix (the 1-smooth height-3 matrix `[[1,1,0],[1,1,1],[0,1,1]]` for the Pell strip) has spectral radius `1 + √2 ∈ Q(√2)`; PE 502's own signed transfer matrix never has a metallic eigenvalue |
-| **Golden- / silver-spectrum castle** (Axis 9) | Adjacency spectral radius `φ` (the 4-cell paths) or `1 + √2` (36 castles up to width 8: the `3×2` rectangle and 35 non-rectangular ones) - see [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
+| **Golden- / silver-spectrum castle** (Axis 9) | Adjacency spectral radius `φ` (the 4-cell paths) or `1 + √2` (36 mirror classes in a scan to width 10: both orientations of the `3×2` rectangle and 34 non-rectangular castles) - see [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
 | **q-Gibbs area-weighted** (`q = e^{−β}`, area-weighted measure) | Transfer matrix `T_β` with `β`-dependent spectrum. For fixed `h` the Perron root `λ_1(β)` of a finite positive matrix is simple and analytic in `β`, so there is no phase transition; one can occur only as `h → ∞` |
 
 The last row is open in the `h → ∞` limit; it would connect [[castle-by-area](pages/castle-by-area.md)], the [[q-catalan-numbers](pages/q-catalan-numbers.md)] q-analogs, and the transfer-matrix spectrum.
