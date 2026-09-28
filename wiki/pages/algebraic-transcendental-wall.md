@@ -5,7 +5,7 @@ summary: The castle's counts are C-finite, so their closed forms carry only alge
 tags: [concept, castle, algebraic, transcendental, c-finite, golden-ratio, sqrt2, e, pi, asymptotics, pedagogy]
 sources: [project-euler-502-representations, aocp-permutations, aocp-generating-functions, generating-functions-topic]
 created: 2026-09-15
-updated: 2026-09-22
+updated: 2026-09-27
 ---
 
 # The algebraic/transcendental wall
@@ -80,6 +80,7 @@ That is the wall in one sentence: **the castle's exact counts are algebraic; `e`
 - [[generating-function-gallery](pages/generating-function-gallery.md)] — the `ρ_k ~ k / log k` asymptotic derived there is one of this page's "transcendental via limit" residents.
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] — the k-direction eigenvalues are only `±1`, a clean limiting case (rational algebraic) rung on the wall.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] — the bar-graph GF at fixed perimeter and area is a q-Bessel function, and the tricritical asymptotic scaling function is the logarithmic derivative of Airy, `Ai'/Ai`. Both cross the wall on the limit side — the exact q-series is D-finite (holonomic) but not algebraic, and its scaling function is a bona fide transcendental special function.
+- [[castle-samplers](pages/castle-samplers.md)] - the samplers that draw random castles for limit-law experiments, the route by which transcendental constants reach the castle.
 
 ## Footnotes
 

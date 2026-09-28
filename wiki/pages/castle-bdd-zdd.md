@@ -5,7 +5,7 @@ summary: The valid-castle set V(w, h) as a Binary Decision Diagram or zero-suppr
 tags: [concept, castle, bdd, zdd, decision-diagram, representation, dfa, generation]
 sources: [castle-count-algorithms, castle-representations, castle-strip]
 created: 2026-09-20
-updated: 2026-09-20
+updated: 2026-09-27
 ---
 
 # Castle BDD / ZDD
@@ -122,6 +122,7 @@ The dominoes example is the closest structural analog to `V(w, h)`: a family of 
 - [[castle-cryptography](pages/castle-cryptography.md)] - the rank-based castle encoding thread that a ZDD's rank / unrank operations feed directly.
 - [[castle-gray-code](pages/castle-gray-code.md)] / [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - the sibling generation-algorithm lens; the ZDD gives a compact representation, Gray codes give a walking order.
 - [[castle-entropy](pages/castle-entropy.md)] - `w · log_2 h - 1` bits of entropy; the ZDD's rank operation realises this bit budget as a natural bijection.
+- [[castle-samplers](pages/castle-samplers.md)] - the top-down sampling and rank/unrank of this page implemented on the DFA state, with exactness checked in rational arithmetic; one of ten castle samplers.
 
 ## Footnotes
 

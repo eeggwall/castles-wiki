@@ -5,7 +5,7 @@ summary: A working note on the Ruskey-methodology question of whether a Gray tou
 tags: [concept, castle, gray-code, ruskey, hamiltonian-path, generation, algorithm, working-note]
 sources: [aocp-generating-permutations-tuples, project-euler-502-brute-force]
 created: 2026-09-20
-updated: 2026-09-20
+updated: 2026-09-27
 ---
 
 # Castle-native Gray tour
@@ -201,6 +201,7 @@ Concrete next moves for someone continuing this work:
 - [[castle-foata-transform](pages/castle-foata-transform.md)] - the records / peaks decomposition is a natural axis for a Ruskey-style recursion on `V`.
 - [[castle-compression](pages/castle-compression.md)] - the delta-encoding lens that a working castle-native tour would supply.
 - [[castle-classification](pages/castle-classification.md)] - each castle-restriction axis is a sub-subset of V with its own native-tour question; the axis-per-class Gray-tour question is an open thread this page opens.
+- [[castle-samplers](pages/castle-samplers.md)] - the same fragmentation seen by Markov chains: `V(w, h)` has 191 components under single-column `±1` moves at `(8, 4)`, so chains run on the cube and filter at emit.
 
 ## Footnotes
 

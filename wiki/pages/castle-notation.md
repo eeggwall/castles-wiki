@@ -138,6 +138,20 @@ The pages that count castles by area (the q-thread, [[q-thread-seminar](pages/q-
 | `J_0`, `J_1`, `Π` | Bousquet-Mélou-Fédou's q-Bessel series and the parallelogram GF `Π = Y J_1/J_0`, with width `X` and height `Y` in their slots | [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)], [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] |
 | `ρ`, `C` | growth and prefactor of the signed count by area, `even − odd ~ C(−ρ)^n`, `ρ = −1/q_0 = 1.62383` | [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] |
 
+## Sampling symbols
+
+The random-castle pages ([[castle-samplers](pages/castle-samplers.md)]) keep the core symbols and add a few of their own.
+
+| symbol | meaning | where |
+|---|---|---|
+| `V(w, h)` | the set of even-block castles of width `w`, height exactly `h`, so `\|V(w, h)\| = F(w, h)` | [[castle-samplers](pages/castle-samplers.md)], [[castle-native-gray-tour](pages/castle-native-gray-tour.md)], [[castle-bdd-zdd](pages/castle-bdd-zdd.md)] |
+| `blocks(c)` | the block count of skyline `c`, `c_1 + Σ max(0, c_i − c_{i−1})` | [[castle-samplers](pages/castle-samplers.md)], [[castle-gray-code](pages/castle-gray-code.md)] |
+| block weight `t`, area weight `q` | the measure `t^blocks q^area / Z` on castles, `Z` its normalizer; `t = q = 1` is uniform | [[castle-samplers](pages/castle-samplers.md)] |
+| `N_i(state)` | the sampler's completion table: weighted ways to finish a castle with `i` columns left | [[castle-samplers](pages/castle-samplers.md)] |
+| `g(b)` | density of states: castles in the cell with `b` blocks (the block profile), as estimated by Wang-Landau | [[castle-samplers](pages/castle-samplers.md)] |
+| `H_n`, `H_n^{(2)}` | harmonic numbers `Σ 1/i` and `Σ 1/i²` | [[castle-samplers](pages/castle-samplers.md)], [[fractional-block-count](pages/fractional-block-count.md)] |
+| `p` | the entry probability of a Bernoulli random rule | [[castle-samplers](pages/castle-samplers.md)] |
+
 ## Other meanings of P, T, and other shared letters on the wiki
 
 These are local notations on specific pages and are unrelated to the tower counts, or reuse a letter from the tables above:
@@ -168,6 +182,9 @@ These are local notations on specific pages and are unrelated to the tower count
 | `A(w, h)` vs `A_path` | all castles of width `w`, height `h` (the core table) vs the path adjacency matrix | [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
 | `E_k` vs `E_∂` vs `E(q, z)` | the tower GF of height `≤ k` in `x` vs `diag(1, 0, …, 0, 1)` vs the signed castle GF by area and width (Area gradings above) | [[castle-counting-formula](pages/castle-counting-formula.md)], [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
 | `Δ` | Dhar's toppling matrix on the sandpile pages (`Δ = L̃` for a castle); Deutsch-Elizalde's bijection from cornerless Motzkin paths to bargraphs; elsewhere a difference or a discriminant | [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)], [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
+| `V` | the valid-castle set `V(w, h)` (Sampling symbols above); in a tower word `U V D`, the sub-tower between a peak's `U` and `D` | [[castle-samplers](pages/castle-samplers.md)], [[castle-foata-transform](pages/castle-foata-transform.md)] |
+| `H_n` vs `H_d(μ)` | harmonic numbers vs the rescaled factor polynomials of `char_k` | [[castle-samplers](pages/castle-samplers.md)], [[tower-parity-sectors](pages/tower-parity-sectors.md)] |
+| `N_i(state)` vs `N(q)` | the samplers' completion table vs the q-Bessel numerator (Area gradings above) | [[castle-samplers](pages/castle-samplers.md)], [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] |
 
 ## Related Concepts
 

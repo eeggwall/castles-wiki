@@ -5,7 +5,7 @@ summary: Knuth's reflected Gray code on the mixed-radix space `{1..h}^w`, walked
 tags: [concept, castle, gray-code, generation, algorithm, mixed-radix, loopless, taocp]
 sources: [aocp-generating-permutations-tuples, project-euler-502-brute-force]
 created: 2026-09-20
-updated: 2026-09-20
+updated: 2026-09-27
 ---
 
 # Castle Gray code
@@ -178,6 +178,7 @@ Not on the arc: Heap's algorithm and Steinhaus-Johnson-Trotter are permutation G
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] - the single-coordinate-change lens the Gray tour realises.
 - [[castle-entropy](pages/castle-entropy.md)] - why the even-block filter is one bit of the `w log_2 h` the odometer spends.
 - [[block-count-constraints](pages/block-count-constraints.md)] - the running `P = Σ s(c)` sign updates are the residue-class `m = 2` extraction of the block-count trichotomy, run at Gray-tour cost.
+- [[castle-samplers](pages/castle-samplers.md)] - the Gray walk used as exhaustive ground truth for the random castle samplers.
 
 ## Footnotes
 
