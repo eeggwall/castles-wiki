@@ -5,7 +5,7 @@ summary: Bender's eleven-page Discrete Math. paper - four partition numbers c, v
 tags: [source, paper, bender, multiset, set-partition, stirling, bell-number, inclusion-exclusion, egf, asymptotics, de-bruijn, cycle-index, comtet, oeis]
 sources: [bender-1974-partitions-of-multisets]
 created: 2026-09-22
-updated: 2026-09-22
+updated: 2026-09-28
 ---
 
 # Partitions of Multisets (Bender, 1974)
@@ -19,15 +19,15 @@ Not to be confused with Bender's "Convex n-ominoes" (Discrete Math. 8, 1974; [[b
 
 ## Summary
 
-A set has one partition number per block count, the Stirling number of the second kind. A multiset has four, because two independent choices open up once elements repeat: whether two blocks may be equal, and whether a block may itself contain a repeated element. Bender names them `c(m,k)` (neither allowed), `v(m,k)` (repeated blocks allowed), `c*(m,k)` (multiset blocks allowed), and `v*(m,k)` (both), where the type vector `m` records that exactly `m_i` distinct elements appear exactly `i` times.[^2] His worked example is `{a,b,c,c}`, type `(2,1)`, whose 12 partitions split `c = 0,2,2,0`, `v = 0,2,3,1`, `c* = 1,5,3,0`, `v* = 1,5,4,1` over `k = 1..4`.[^3]
+A set has one partition number per block count, the Stirling number of the second kind. A multiset has four, because two independent choices open up once elements repeat: whether two blocks may be equal, and whether a block may itself contain a repeated element. Bender names them `c(m,k)` (neither allowed), `v(m,k)` (repeated blocks allowed), `c*(m,k)` (multiset blocks allowed), and `v*(m,k)` (both), where the type vector `m` records that exactly `m_i` distinct elements appear exactly `i` times.[^2] His worked example is `{a,b,c,c}`, type `(2,1)`, whose 11 partitions split `c = 0,2,2,0`, `v = 0,2,3,1`, `c* = 1,5,3,0`, `v* = 1,5,4,1` over `k = 1..4`.[^3]
 
-The engine is a single inclusion-exclusion count of onto functions from the multiset to a `k`-set. Onto functions overcount a partition by `k!/prod_i (i!)^{v_i}`, where `v_i` is the number of distinct blocks repeated exactly `i` times, so the normalized count `b*(m,k)` lands between `c*` and `v*`; restricting to functions that send copies of one element to different targets gives `b(m,k)` between `c` and `v`.[^4] Summing over `k` turns both into Dobinski-shaped series, `e^{-y} sum_s (y^s/s!) prod_i C(s+i-1,i)^{m_i}` and `e^{-y} sum_s (y^s/s!) prod_i C(s,i)^{m_i}`.[^5] For `m = (n)` this collapses to the classical `exp{y(e^x - 1)}`.[^6] For `m = (0,n)` (every element twice) the correction for repeated blocks is one extra `C_1` factor, which gives four closed EGFs, two of them Comtet's.[^7] For `m = (0,0,n)` (every element three times) the correction is subtler, since a doubled block and a tripled block can interact; Bender handles it with a second inclusion-exclusion plus a lemma on the nonnegative-part operator `P_x`, and ends with four EGFs of the same shape.[^8]
+The method is a single inclusion-exclusion count of onto functions from the multiset to a `k`-set. Onto functions overcount a partition by `k!/prod_i (i!)^{v_i}`, where `v_i` is the number of distinct blocks repeated exactly `i` times, so the normalized count `b*(m,k)` lands between `c*` and `v*`; restricting to functions that send copies of one element to different targets gives `b(m,k)` between `c` and `v`.[^4] Summing over `k` turns both into Dobinski-shaped series, `e^{-y} sum_s (y^s/s!) prod_i C(s+i-1,i)^{m_i}` and `e^{-y} sum_s (y^s/s!) prod_i C(s,i)^{m_i}`.[^5] For `m = (n)` this collapses to the classical `exp{y(e^x - 1)}`.[^6] For `m = (0,n)` (every element twice) the correction for repeated blocks is one extra `C_1` factor, which gives four closed EGFs, two of them Comtet's.[^7] For `m = (0,0,n)` (every element three times) the correction is subtler, since a doubled block and a tripled block can interact; Bender handles it with a second inclusion-exclusion plus a lemma on the nonnegative-part operator `P_x`, and ends with four EGFs of the same shape.[^8]
 
 Two results reach past the explicit cases. Theorem 1: with repetition bounded by a fixed `r`, all six counts `c, v, b` and `c*, v*, b*` are asymptotic to `B(M)/prod_i i!^{m_i}` times `exp{-sum_i m_i C(i,2)/s}` or `exp{+sum_i m_i C(i,2)/s}`, where `M = sum i m_i`, `s log s = M`, and `B(M)` is the Bell number; the proof is a saddle-point estimate of the Dobinski-shaped sum plus a bound showing repeated blocks are asymptotically negligible.[^9] Table 3 tests it at `m = (0,0,10)` and `(0,0,20)`.[^10] Theorem 2 gives `V_r*`, the EGF of `v*` for `r` copies of each of `n` elements, as a differential operator in the cycle index of `S_r`, derived from de Bruijn's form of Pólya counting; `r = 4` is written out explicitly.[^11]
 
 ## Key Takeaways
 
-- **Four numbers, one sandwich.** `c(m,k) <= b(m,k) <= v(m,k)` and `c*(m,k) <= b*(m,k) <= v*(m,k)`, with `b` and `b*` exactly computable by inclusion-exclusion; for an ordinary set all four equal `S(n,k)`.[^4][^3]
+- **The bounds.** `c(m,k) <= b(m,k) <= v(m,k)` and `c*(m,k) <= b*(m,k) <= v*(m,k)`, with `b` and `b*` exactly computable by inclusion-exclusion; for an ordinary set all four equal `S(n,k)`.[^4][^3]
 - **Dobinski generalized.** Eq. (18), `b(m) = e^{-1} sum_{s>=0} prod_i C(s,i)^{m_i}/s!`, reduces at `m = (n)` to Dobinski's formula for the Bell numbers.[^12]
 - **Closed EGFs for `r = 1, 2, 3`.** Eqs. (8), (11), (15)-(17); the `r = 2` pair for `c` and `v` is Comtet's 1968 result, rederived by Baróti.[^6][^7][^8]
 - **Repeated blocks don't matter asymptotically.** `c(m) ~ v(m)` and `c*(m) ~ v*(m)` under bounded repetition, so each pair shares one Bell-number asymptotic.[^9]
@@ -37,13 +37,13 @@ Two results reach past the explicit cases. Theorem 1: with repetition bounded by
 
 - Brute-force enumeration of all multiset partitions of `{a,b,c,c}` reproduces every row of Table 2.
 - The four EGFs (15)-(17) for `m = (0,0,n)`, evaluated at `y = 1`, reproduce brute-force totals for `n = 1, 2, 3`: `c = 0, 0, 5`; `v = 1, 4, 39`; `c* = 2, 17, 364`; `v* = 3, 31, 686`. The four EGFs (11) for `m = (0,n)` give `c = 0, 1, 8, 80, 1088`; `v = 1, 3, 16, 139, 1750`; `c* = 1, 5, 40, 457, 6995`; `v* = 2, 9, 66, 712, 10457` for `n = 1..5`.
-- Recomputing Table 3 from (15)-(17) and from Theorem 1 reproduces every printed entry to three digits except the Theorem 1 estimate for `c, v` at `n = 20`: the formula gives `1.335 x 10^43`, and the table prints `1.30 x 10^43`.[^10]
+- Recomputing Table 3 from (15)-(17) reproduces its exact counts to three digits.[^10]
 
 The totals are OEIS sequences. For every element twice, `c` is A002718 (bicoverings of an n-set), `v` is A020554, `c*` is A094574 ((<=2)-covers), and `v*` is A020555 (multigraphs on labeled edges with loops).[^13] For every element three times, `c` is A060486 (tricoverings of an n-set), `v` is A165434, `c*` is A319591, and `v*` is A322487.[^14]
 
 ## Entities & Concepts
 
-- [[multiset-partitions](pages/multiset-partitions.md)] - the four counting functions and the sandwich; concept page created with this ingest.
+- [[multiset-partitions](pages/multiset-partitions.md)] - the four counting functions and the inclusion-exclusion bounds.
 - [[aocp-multisets](pages/aocp-multisets.md)] - multiset *permutations* (ordered words, the multinomial); this paper counts the unordered splittings of the same objects.
 - [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] - Stirling numbers of the second kind, the `m = (n)` case of all four counts.
 - [[symbolic-method](pages/symbolic-method.md)] - Flajolet's `MSET` construction builds unordered multisets of objects; Bender partitions a fixed multiset, a different operation.
@@ -51,9 +51,9 @@ The totals are OEIS sequences. For every element twice, `c` is A002718 (bicoveri
 
 ## Relation to Other Wiki Pages
 
-The wiki's multiset material so far is Knuth's: permutations of a multiset and the multinomial on [[aocp-multisets](pages/aocp-multisets.md)] and [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)]. This paper supplies the partition side of the same objects, and it is the first source on the wiki to treat set partitions beyond the Stirling-number identities on [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)].
+Knuth's pages treat permutations of a multiset and the multinomial ([[aocp-multisets](pages/aocp-multisets.md)], [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)]); this paper supplies the partition side of the same objects, beyond the Stirling-number identities on [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)].
 
-**A homonym to keep apart.** Bender's "blocks" are the parts of a partition. On castle pages, a block is a height-1, integer-length rectangle ([[project-euler-502](pages/project-euler-502.md)]), and the block count is the statistic filtered on [[block-count-constraints](pages/block-count-constraints.md)]. The two words share nothing but spelling.
+**A homonym to keep apart.** Bender's "blocks" are the parts of a partition. On castle pages, a block is a height-1, integer-length rectangle ([[project-euler-502](pages/project-euler-502.md)]), and the block count is the statistic filtered on [[block-count-constraints](pages/block-count-constraints.md)]. The two uses are unrelated.
 
 **Own reasoning, not in the paper:** castles glued at height-1 columns form a free monoid on the prime castles ([[prime-castles](pages/prime-castles.md)]), so the number of castles built from a given multiset of primes is a multinomial over orderings, which is Knuth's side ([[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)]). Bender's numbers would enter only for a question about unordered groupings of a castle's primes.
 

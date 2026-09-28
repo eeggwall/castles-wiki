@@ -5,7 +5,7 @@ summary: A polyomino that is both column-convex and row-convex - equivalently a 
 tags: [concept, polyomino, convex, column-convex, row-convex, ferrers, stack-polyomino, parallelogram-polyomino, directed-convex, q-analog]
 sources: [column-convex-polygon-enumeration, counting-horizontally-convex-polyominoes, analytic-combinatorics-ch1-ogfs, bousquet-melou-fedou-1995-convex-polyominoes, klarner-rivest-1974-convex-n-ominoes, bender-1974-convex-n-ominoes, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-22
-updated: 2026-09-22
+updated: 2026-09-28
 ---
 
 # Convex polyomino
@@ -37,15 +37,14 @@ The classical sub-families are distinguished by which corners of the bounding re
 | directed convex | one (bottom-left) | bottoms weakly increasing, tops unimodal |
 | convex | none required | tops unimodal, bottoms anti-unimodal |
 
-These nest: rectangle ⊂ Ferrers ⊂ stack ⊂ directed convex ⊂ convex, and Ferrers ⊂ parallelogram ⊂ directed convex. Above convex sit column-convex (drop row-convexity) and then all polyominoes.
+These nest: rectangle ⊂ Ferrers ⊂ stack ⊂ directed convex ⊂ convex, and, after a left-right reflection of the Ferrers row, Ferrers ⊂ parallelogram ⊂ directed convex. Above convex sit column-convex (drop row-convexity) and then all polyominoes.
 
 ## Bender's three pieces
 
-Bender reads a convex polyomino row by row and cuts it in two places: after the last row where the left end moves left, and before the first row where the right end moves right. The result is three pieces.[^7]
+Bender reads a convex polyomino row by row, with left and right row ends `l_i`, `r_i`, and cuts it at the rows `I = max{i : l_i > l_{i+1}}` and `J = min{j : r_{j−1} > r_j}`. The result is three pieces.[^7]
 
-- **Bottom trapezoid.** Each row lies inside the row below it, so the columns stand on the bottom row with a unimodal skyline. This is a stack polyomino, the convex castle: at `y = 1`, Bender's trapezoid series is the A001523 stack series (own check through area 20).
-- **Middle parallelogram.** Both row ends move weakly right. This piece can be empty; when it is nonempty it slants either northeast or northwest, and by symmetry the two cases count equally.
-- **Top trapezoid.** The same as the bottom one, inverted.
+- **Two trapezoids.** In each, consecutive rows are nested (`l_i ≤ l_{i+1}`, `r_i ≥ r_{i+1}`), so the columns stand on the widest row with a unimodal skyline: a stack polyomino, the convex castle, one upright and one inverted. At `y = 1`, Bender's trapezoid series is the A001523 stack series (own check through area 20).
+- **Middle parallelogram.** Both row ends move weakly the same way. This piece can be empty; when it is nonempty it slants either northeast or northwest, and by symmetry the two cases count equally.
 
 The trapezoid series converges out to radius 1 and the parallelogram series only to `1/2.30914`, so all the exponential growth is in the middle piece.[^7] A typical convex polyomino of area `n` is therefore a parallelogram, a rod tilted 45 degrees whose height is asymptotically normal with mean `0.42088n` and whose rows average `2.37597` cells, capped at each end by a small stack.[^8] Bender's count is on [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] and its growth constant on [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)].
 
@@ -53,8 +52,8 @@ The trapezoid series converges out to radius 1 and the parallelogram series only
 
 - **A castle is a bar graph.** Every castle skyline has all its columns standing on a common base, so a castle is a column-convex polyomino with constant bottoms. By area every composition is a castle, and there are `2^{n-1}` of them ([[castle-by-area](pages/castle-by-area.md)]).
 - **A convex castle is a stack polyomino.** Adding row-convexity to constant bottoms forces a unimodal skyline, which is the stack row of the table. That is the identity behind "convex castles by area = A001523" on [[convex-castle](pages/convex-castle.md)] and [[stack-polyomino-gf](pages/stack-polyomino-gf.md)].
-- **So the general convex polyomino is a convex castle with a floating base.** Letting the bottoms follow their own anti-unimodal profile is the only change, and it moves the area count from subexponential (stacks) to exponential growth `2.30913...^n` (convex). Bender's pieces show where the growth comes from: a floating base lets a parallelogram sit between an upright stack and an inverted one, and the exponential growth is all in the parallelogram.
-- **Two convex castles and a parallelogram.** Klarner and Rivest cut every convex polyomino along two rows into an upper stack, a middle parallelogram and a lower upside-down stack. Reassembling costs at most a factor `(n+2)^4`, so convex polyominoes grow exactly as fast as parallelograms.[^6] In castle terms, every convex polyomino is a parallelogram with a convex castle on top and another hung underneath. Delest and Viennot make the same cut along the vertical lines through two extreme boundary points, so their stacks stand sideways, and they code each piece as a word: stacks by Fibonacci words, the parallelogram by a Dyck word ([[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)], [[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)]).
+- **A convex polyomino is a convex castle with a floating base.** Letting the bottoms follow their own anti-unimodal profile is the only change, and it moves the area count from subexponential (stacks) to exponential growth `2.30913...^n` (convex). Bender's pieces show where the growth comes from: a floating base lets a parallelogram sit between an upright stack and an inverted one, and the exponential growth is all in the parallelogram.
+- **Two convex castles and a parallelogram.** Klarner and Rivest cut every convex polyomino along two rows into an upper stack, a middle parallelogram and a lower upside-down stack. Reassembling costs at most a factor `(n+2)^4`, so convex polyominoes and parallelograms have the same growth constant.[^6] In castle terms, every convex polyomino is a parallelogram with a convex castle on top and another hung underneath. Delest and Viennot make the same cut along the vertical lines through two extreme boundary points, so their stacks stand sideways, and they code each piece as a word: stacks by Fibonacci words, the parallelogram by a Dyck word ([[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)], [[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)]).
 - **Blocks become height.** A castle block is a maximal horizontal run of cells in one row. On any row-convex shape each row is one run, so the block count is the number of rows, the height. This is the general form of "a convex castle of height `h` has exactly `h` blocks" on [[convex-castle](pages/convex-castle.md)], and it is why the Project Euler 502 parity clause, carried over to convex polyominoes, becomes **height parity**.
 
 ## Related Concepts
