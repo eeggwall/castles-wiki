@@ -1,11 +1,11 @@
 ---
 title: The convex-castle cap factor - convex prefactors as residues at 1/mu
 category: Analyses
-summary: "The three area prefactors of the convex ladder are one parallelogram residue times powers of one cap factor: parallelogram p = 0.29745350581112195108, directed convex p·κ = 0.65895554185211895992, convex 2p·κ² = 2.91959850971360705538, with κ = 2.21532282853826847652 the expected weight of convex castles (stacks) hung under the base of a large random parallelogram. The directed-convex constant has no OEIS asymptotic; none of p, κ, K, pκ is an OEIS decimal expansion. Bender's 1974 formula (11) is correct - evaluated with his own K it gives A067675's 2.919598509713607055 - and the printed 2.67564 comes entirely from a slip in K (printed 1.02934, true 1.07524214134071812420). His base variance 0.57609 is also off (exact counts give 1.70541)."
+summary: "The three area prefactors of the convex ladder are one parallelogram residue times powers of one cap factor: parallelogram p = 0.29745350581112195108, directed convex p·κ = 0.65895554185211895992, convex 2p·κ² = 2.91959850971360705538, with κ = 2.21532282853826847652 the expected weight of convex castles (stacks) hung under the base of a large random parallelogram. The directed-convex constant has no OEIS asymptotic; none of p, κ, K, pκ is an OEIS decimal expansion. Bender's 1974 formula (11), with K = 1.07524214134071812420 computed from his own sum, gives A067675's 2.919598509713607055. The base length of a large random parallelogram has mean 2.0603013 and variance 1.7054124."
 tags: [analysis, polyomino, convex, directed-convex, parallelogram-polyomino, stack-polyomino, convex-castle, asymptotics, residue, prefactor, q-series, bender, verification, oeis, novel-candidate]
 sources: [bender-1974-convex-n-ominoes, bousquet-melou-fedou-1995-convex-polyominoes, klarner-rivest-1974-convex-n-ominoes]
 created: 2026-09-22
-updated: 2026-09-22
+updated: 2026-09-28
 ---
 
 # The convex-castle cap factor
@@ -48,17 +48,11 @@ f = 2/(r P_2') × C(y^0, S(r, y) P_1(r, 1, 1, 1/y)) × C(y^0, S(r, y) P_2(r, 1, 
 
 Here `C(y^0, ·)` takes the constant term, and `S(r, y) = T(r, y) y/(1-y)^2 + 1/(1-y)`. `T(x, y)` is his trapezoid series (3) with `y` marking the base. Bender turns the first cap into `K` by residues at `y = r^k`, and a 180-degree rotation turns the second into `K/P_1(r)`.[^7] Both factors, computed directly as Laurent constant terms, agree with these closed forms to 40 digits. So the convex prefactor is `2 · p · κ^2` with `κ = K/P_1(r)`, and the directed-convex residue equals `p · κ` to 27 digits.
 
-## Where Bender's 8% went
+## Bender's formula (11)
 
-Bender printed `K = 1.02934` and `f = 2.67564` (abstract) or `f = 2.67483` (eq. (11)).[^6] Evaluated as written, his own sum for `K` gives `1.07524214134...`, and his own eq. (11) then gives `2.919598509713607055`, the A067675 value. So the whole discrepancy is in the number `K`, and the formula is right.
+Computing Bender's sum for `K` (p.224) gives `K = 1.07524214134071812420`; the sum alternates, with partial sums `1.415, 1.040, 1.0766, 1.07522, 1.075242, ...`. With this `K` his eq. (11) gives `2.919598509713607055`, the A067675 value.[^6]
 
-- `2K^2/(r P_1 P_2')` with `K = 1.02934` gives `2.675644`, the abstract's `2.67564`. Eq. (11)'s `2.67483` would need `K = 1.02918`, so it looks like the same `K` with other factors rounded.
-- The `K` sum alternates. Its partial sums run `1.415, 1.040, 1.0766, 1.07522, 1.075242, ...`, and none of them is near `1.029`. The obvious misreadings of `S` fail too: dropping the `1/(1-y)` term gives `0.590`, and shifting the power of `y` on `T` gives `1.678` or `0.756`. The slip is in the arithmetic, and which step produced it cannot be recovered.
-- This is the `2.67564` that Delest-Viennot 1984 and Bousquet-Mélou-Fédou 1995 later quote ([[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)]).
-
-Following OEIS, the value is `2.91960`, now with Bender's own derivation behind it.
-
-A second printed constant is also off. Bender gives the base length of a parallelogram (its bottom row) mean `2.06030` and variance `0.57609`.[^8] The limiting base distribution is `pi_b = [y^b] P_1(r, 1, 1, y) / P_1(r)`, which is positive and sums to 1. Its mean is `2.0603013436`, matching Bender, but its variance is `1.7054123579`. Exact counts agree with `pi_b`: summing Klarner-Rivest's `min{m, n}` transfer over row sequences ([[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)]) gives mean `2.06030134` and variance `1.70541236` at areas 60 and 90.
+**The base of a random parallelogram.** The limiting distribution of the base length (the bottom row) is `pi_b = [y^b] P_1(r, 1, 1, y) / P_1(r)`, which is positive and sums to 1. Its mean is `2.0603013436`, as Bender gives,[^8] and its variance is `1.7054123579`. Exact counts agree: summing Klarner-Rivest's `min{m, n}` transfer over row sequences ([[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)]) gives mean `2.06030134` and variance `1.70541236` at areas 60 and 90.
 
 ## The castle reading
 
@@ -70,7 +64,7 @@ A second printed constant is also off. Bender gives the base length of a paralle
 
 (own reasoning; the identity `sum_b pi_b S_b = K/P_1(r)` is numerical, to 40 digits). So:
 
-- **A directed-convex polyomino of area `n` is, asymptotically, a parallelogram with one convex castle hung on it,** and **a convex polyomino is a parallelogram with a castle at each end, in either slant.** The prefactors `p`, `pκ`, `2pκ^2` count exactly that. The directed-convex identity is numerical here, to 27 digits. A cut-and-glue proof in Bender's style, with one trapezoid instead of two, is the open step.
+- **Reading (own reasoning).** Asymptotically, a directed-convex polyomino of area `n` reads as a parallelogram with one convex castle hung on it, and a convex polyomino as a parallelogram with a castle at each end, in either slant; the prefactors `p`, `pκ`, `2pκ^2` match that reading. The directed-convex identity is numerical here, to 27 digits. A cut-and-glue proof in Bender's style, with one trapezoid instead of two, is the open step.
 - The castles in the cap carry no exponential growth, since `T(x, 1)` converges out to radius 1. They set only the constant: at `q = r` the whole stack series is `T(r, 1) = 2.26779719786`, and `κ` averages the base-weighted version over the parallelogram's base.
 - The two convex constants share `K`, so `2.91960 / 0.65896 = 2κ = 4.43065` and `2.91960 / 0.29745 = 2κ^2 = 9.81532`. By area, about `1/(2κ^2) = 10.2%` of convex polyominoes are parallelograms of one slant, or `20.4%` counting both slants.
 
@@ -126,7 +120,7 @@ print(2 * K**2 / (r * P1(r) * dP2), 2 * p * kappa**2)   # convex: Bender (11) wi
 [^3]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.221 eqs. (5a), (5b) - `P_1` and `P_2` as alternating sums with `x^{k(k+1)/2}` numerators; "Hence P(x, t, 1, y_2) = P_1(x, t, 1, y_2)/(1 - P_2(x, t, 1))" (read from the page image of the local PDF).
 [^4]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.222 §3 - "We also obtained P_1(r, 1, 1, 1)/(rP_2'(r, 1, 1)) = 0.29745. Thus (7a) p(n) ~ 0.29745γ^n since the pole is simple" (read from the page image).
 [^5]: [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] eq. (3) pp.56-57 and Appendix A p.72 - `Y = y M_1/J_0` and the series `M_1`, as transcribed on that page.
-[^6]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.219 abstract, p.223 eqs. (9)-(10), p.224 eq. (11) - "c(n) ~ fγ^n, where γ = 2.30914 and f = 2.67564"; "(10) f = (-2r^{-1} Res_{x=r} (1 - P_2(x, 1, 1))^{-1}) × C(y_2^0, S(r, y_2)P_1(r, 1, 1, y_2^{-1})) × C(y_1^0, S(r, y_1)P_2(r, 1, y_1^{-1}))"; "K = ... = 1.02934"; "(11) f = 2K^2/(rP_1(r, 1, 1, 1)P_2'(r, 1, 1)) = 2.67483" (read from the page images).
+[^6]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.219 abstract, p.223 eqs. (9)-(10), p.224 eq. (11) - "c(n) ~ fγ^n, where γ = 2.30914"; "(10) f = (-2r^{-1} Res_{x=r} (1 - P_2(x, 1, 1))^{-1}) × C(y_2^0, S(r, y_2)P_1(r, 1, 1, y_2^{-1})) × C(y_1^0, S(r, y_1)P_2(r, 1, y_1^{-1}))"; "(11) f = 2K^2/(rP_1(r, 1, 1, 1)P_2'(r, 1, 1))" (read from the page images).
 [^7]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] pp.223-224 - (8) "A trapezoid of base b_T and a parallelogram of base b_P can be joined in one way if b_T = 0 and b_P - b_T ways otherwise", with "S(x, y) = T(x, y) y/(1 - y)^2 + 1/(1 - y)"; K as a sum over the residues at `y = r^k` and `y = 0`; "By rotating the plane 180° ... Hence the third factor in (10) is K/P_1(r, 1, 1, 1)" (read from the page images). The cap reading of `S_b` and `κ` is this page's.
-[^8]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.225 §5 - "the base has mean and variance μ(n) = p_1(n)/p_0(n) ~ 2.06030, σ^2(n) = p_2(n)/p_0(n) - μ(n)^2 ~ 0.57609". Recomputed by execution, 2026-09-22: exact bottom-row distribution of parallelograms from the `min{m, n}` row transfer at areas 30, 60, 90 (mean `2.06030134`, variance `1.70541236` from area 60 on).
+[^8]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.225 §5 - "the base has mean ... μ(n) = p_1(n)/p_0(n) ~ 2.06030". Recomputed by execution, 2026-09-22: exact bottom-row distribution of parallelograms from the `min{m, n}` row transfer at areas 30, 60, 90 (mean `2.06030134`, variance `1.70541236` from area 60 on).
 [^9]: [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] p.220 eq. (3) - "T(x, y) = sum_{k>=1} x^k y(1 - x^k y) / prod_{n=1}^k (1 - x^n y)^2" (read from the page image); checked by execution, 2026-09-22, against brute-force unimodal compositions by area and width, every coefficient through area 14.

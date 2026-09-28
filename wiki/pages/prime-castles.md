@@ -5,12 +5,12 @@ summary: "Gluing castles at a shared height-1 column makes a free monoid, and it
 tags: [analysis, castle, area, composition, prime-castle, monoid, factorization, fibonacci, convex-castle, parity, q-series, oeis, novel-candidate]
 sources: [oeis-mining-pe502]
 created: 2026-09-22
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Prime castles
 
-[[castle-by-area](pages/castle-by-area.md)] reads a castle of area `n` as a composition `(c_1, ..., c_w)` of `n`, and every composition is a castle. This page factors castles, cutting them at their height-1 columns, and refines the area counts by the factorization. The block count behaves well under the cut, which is what makes the parity split factor. The signed version is on [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)].
+[[castle-by-area](pages/castle-by-area.md)] reads a castle of area `n` as a composition `(c_1, ..., c_w)` of `n`, and every composition is a castle. This page factors castles, cutting them at their height-1 columns, and refines the area counts by the factorization. The block count is additive under the cut after a shift by one, so the parity split factors. The signed version is on [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)].
 
 ## The gluing monoid
 
@@ -32,8 +32,8 @@ The block identity holds because the two bottom rows merge into one block, and n
 
 **`M` is free.** Cut a padded castle at every interior height-1 column. The pieces are `(1, X, 1)` with `X` a castle having no height-1 column (possibly empty), and gluing them back gives the castle again. No other factorization exists, since every interior height-1 column must be a seam: a seam is a height-1 column, and a prime has none inside it. So:
 
-- **The prime castles are the castles with no height-1 column**, plus the empty castle, whose padded form `(1, 1)` is the one trivial prime. By area they are the compositions of `n` into parts `≥ 2`, which number `F_{n-1}`: `0, 1, 1, 2, 3, 5, 8, 13, 21, ...` for `n = 1, 2, 3, ...`.
-- **The composite castles are the castles with at least one height-1 column**, `2^{n-1} - F_{n-1}`: `1, 1, 3, 6, 13, 27, 56, ...`. This is the Fibonacci term in the castle count noted on [[metallic-means](pages/metallic-means.md)].
+- **The prime castles are the castles with no height-1 column**, plus the empty castle, whose padded form `(1, 1)` is the one trivial prime. By area they are the compositions of `n` into parts `≥ 2`, which number `F_{n-1}`: `0, 1, 1, 2, 3, 5, 8, 13, 21, ...` for `n = 1, 2, 3, ...`. Their growth constant is the golden ratio, the golden area growth castle on [[metallic-means](pages/metallic-means.md)].
+- **The composite castles are the castles with at least one height-1 column**, `2^{n-1} - F_{n-1}`: `1, 1, 3, 6, 13, 27, 56, ...`.
 - A castle with `k` height-1 columns has `k + 1` prime factors. For example `(2, 1, 3, 3, 1, 1, 2)` has three height-1 columns and four prime factors, and its padded form is `(1,2,1) ∘ (1,3,3,1) ∘ (1,1) ∘ (1,2,1)`.
 
 All three statements, and the three identities above, were checked on every castle through area 16.[^1]
@@ -103,7 +103,7 @@ for n in range(1, 17):
 ## Open
 
 - Castles per multiset of prime factors, and which statistics besides area and blocks are additive over factors: on [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)].
-- Klarner's prime-polyomino decomposition, which needs a source. The comparison to make: are Klarner's primes cut at a single shared cell, as here, and does his cell-growth constant bound come from the same free monoid?
+- Klarner's prime-polyomino decomposition (no source on the wiki): are Klarner's primes cut at a single shared cell, as here, and does his cell-growth constant bound come from the same free monoid?
 - The prime refinement of the valley castles (A332578) and of `strict_valley` on [[castle-by-area](pages/castle-by-area.md)]. A valley castle can have height-1 columns in its interior, so it can have many nontrivial factors, unlike a convex castle.
 - A product or q-series closed form for the prime parity GFs.
 

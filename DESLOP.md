@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 149 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
-| Spot fixes only | 8 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 37 |
-| Words still to read | about 117,000 |
+| Fully read and cleaned | 155 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Spot fixes only | 7 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
+| Not started | 32 |
+| Words still to read | about 106,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 75 fully read)
+### Concepts (85 pages, 77 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
@@ -174,11 +174,11 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] pell-numbers (0.8)
 - [x] tower-word-language (0.7)
 - [x] generating-functions (0.7)
-- [ ] parallelogram-polyomino-dyck-bijection (0.6)
+- [x] parallelogram-polyomino-dyck-bijection (0.6)
 - [x] tower-word-continued-fraction (0.6)
 - [ ] convex-polyomino (0.6)
 - [x] castle-foata-transform (0.6)
-- [ ] q-differential-system (0.6)
+- [x] q-differential-system (0.6)
 - [x] castle-snippets-number-theory (0.5)
 - [x] unique-tournament (0.0)
 - [x] symbolic-method (0.0)
@@ -194,7 +194,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-snippets-strips (0.0)
 - [x] acronyms (0.0)
 
-### Analyses (64 pages, 41 fully read)
+### Analyses (64 pages, 44 fully read)
 
 - [x] castle-cryptography (5.1)
 - [x] isospectral-castles (4.9)
@@ -212,13 +212,13 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-phone-line (2.7)
 - [x] song-as-castle (2.6)
 - [x] power-law-memory-rules (2.6)
-- [~] prime-castles (2.3)
+- [x] prime-castles (2.3)
 - [x] image-as-castle (2.3)
 - [x] hardy-ramanujan-castle (2.2)
 - [x] metallic-strip-realizability (2.1)
 - [x] convex-core (2.0)
 - [ ] larger-prime-periodicity (1.9)
-- [ ] castle-perimeter (1.9)
+- [x] castle-perimeter (1.9)
 - [x] castle-count-algorithms (1.8)
 - [x] tower-spacing-castles (1.8)
 - [ ] char-k-eisenstein-at-two (1.8)
@@ -258,10 +258,10 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [~] castle-row-raising-equation (0.5)
 - [~] castle-cryptography-round-three (0.4)
 - [ ] odd-castles-and-block-tables (0.0)
-- [ ] convex-castle-cap-factor (0.0)
+- [x] convex-castle-cap-factor (0.0)
 - [~] castle-q-bessel-closed-form (0.0)
 
-### Sources (44 pages, 32 fully read)
+### Sources (44 pages, 33 fully read)
 
 - [x] oeis-mining-pe502 (25.6)
 - [x] oeis-height2-hyperbolic-castles (5.9)
@@ -275,7 +275,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] aocp-permutations (2.8)
 - [x] tower-narayana-polynomial (2.5)
 - [x] pe502-pell-castle-strip (2.3)
-- [ ] algebraic-languages-and-polyominoes-enumeration (2.3)
+- [x] algebraic-languages-and-polyominoes-enumeration (2.3)
 - [x] bousquet-melou-fedou-1995-convex-polyominoes (2.2)
 - [x] counting-horizontally-convex-polyominoes (2.1)
 - [ ] deutsch-elizalde-2016-bargraphs-cornerless-motzkin (2.0)

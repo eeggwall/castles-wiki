@@ -1,11 +1,11 @@
 ---
 title: Parallelogram polyomino - Dyck word bijection (β)
 category: Concepts
-summary: Delest-Viennot's β reads a Dyck word's peak heights as column heights and its trough heights as column overlaps, giving a bijection from Dyck words of length 2n onto parallelogram polyominoes of perimeter 2n+2 with area = sum of peak heights and width = number of peaks. It is the area-preserving bijection behind the Pólya/Gessel q-Catalan and a bijective Narayana.
+summary: Delest-Viennot's β reads a Dyck word's peak heights as column heights and its trough heights as column overlaps, giving a bijection from Dyck words of length 2n onto parallelogram polyominoes of perimeter 2n+2 with area = sum of peak heights and width = number of peaks. It carries the Pólya/Gessel q-Catalan (parallelograms by area) onto Dyck words graded by sum of peak heights, and gives a bijective Narayana count.
 tags: [concept, bijection, dyck-words, parallelogram-polyomino, area, q-catalan, narayana, peaks, q-analog]
 sources: [algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-22
-updated: 2026-09-23
+updated: 2026-09-28
 ---
 
 # Parallelogram polyomino - Dyck word bijection (β)
@@ -32,10 +32,10 @@ Width-`k` parallelogram polyominoes of perimeter `2n+2` number `(1/n)C(n,k)C(n,k
 
 ## Castle relevance
 
-- **An area-preserving bijection.** β turns area, a two-dimensional statistic, into a word statistic. So the Pólya/Gessel q-Catalan of [[q-catalan-numbers](pages/q-catalan-numbers.md)] ("parallelogram polyominoes by area") is the same as Dyck words graded by Σ peak heights. It is a translation that keeps the area, done in 1984 for the neighboring class.
+- **An area-preserving bijection.** β turns area, a two-dimensional statistic, into a word statistic. So the Pólya/Gessel q-Catalan of [[q-catalan-numbers](pages/q-catalan-numbers.md)] ("parallelogram polyominoes by area") is the same as Dyck words graded by Σ peak heights.
 - **Column heights as peaks.** For a castle, the skyline `c_1..c_w` is the whole shape and each block sits on its parent. In β, the parallelogram's column heights are the peak heights and the column overlaps are the trough heights. Both encodings read a column-convex polyomino column by column as one number per column plus one contact per adjacent pair. This parallel is own reasoning, not the paper's.
 - **A bijective Narayana.** The tower block-count identity `T(w,b) = Σ_k N(w,k) C(b+w-k, w-1)` on [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] is refined by descents, not peaks: towers with `k-1` descents give the `k`-th term (verified `w, b ≤ 7`, [[narayana-numbers](pages/narayana-numbers.md)]). Via β, `N(w,k)` also counts width-`k` parallelogram polyominoes of semi-perimeter `w+1`, so a bijection that sends tower descents to parallelogram width, plus a weak composition, would explain the identity.
-- **Klarner-Rivest's kernel, read off β** (own reasoning). Between peaks of heights `a_i` and `a_{i+1}` the trough height `b_i` can be anything in `1..min(a_i, a_{i+1})`. So `prod_i min(a_i, a_{i+1})` Dyck words share the peak-height sequence `(a_1, ..., a_k)`, and this is exactly the row-to-row transfer with kernel `f(m, n) = min{m, n}` of [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)], read on columns. Summing over compositions of `n` gives parallelograms by area. The sum reproduces A006958 through area 20 (own computation, 2026-09-22). β makes Klarner's Fredholm-type kernel a count of troughs. Its closed form, with `x` marking width (the number of peaks), is `X = y J_1/J_0` ([[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)]).
+- **Klarner-Rivest's kernel, read off β** (own reasoning). Between peaks of heights `a_i` and `a_{i+1}` the trough height `b_i` can be anything in `1..min(a_i, a_{i+1})`. So `prod_i min(a_i, a_{i+1})` Dyck words share the peak-height sequence `(a_1, ..., a_k)`, and this is the row-to-row transfer with kernel `f(m, n) = min{m, n}` of [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)], read on columns. Summing over compositions of `n` gives parallelograms by area. The sum reproduces A006958 through area 20 (own computation, 2026-09-22). β makes Klarner's Fredholm-type kernel a count of troughs. Its closed form, with `x` marking width (the number of peaks), is `X = y J_1/J_0` ([[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)]).
 - **Contrast with the convex-castle binomial.** Parallelogram polyominoes are Catalan because their two boundary paths are coupled by non-crossing. Convex castles are binomial because the castle has one free boundary path over a flat base. This is the same divide described on [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)].
 
 ## Appearances in Sources

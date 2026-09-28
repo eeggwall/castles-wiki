@@ -5,7 +5,7 @@ summary: A castle's semi-perimeter is `w + #blocks`, so the block count is Deles
 tags: [analysis, castle, perimeter, blocks, parity, bargraph, generating-function, algebraic, tribonacci, fibonacci, delest-viennot, oeis, novel-candidate]
 sources: [algebraic-languages-and-polyominoes-enumeration, project-euler-502-brute-force, tower-narayana-polynomial]
 created: 2026-09-22
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Castle perimeter - blocks are the vertical half-perimeter
@@ -27,8 +27,8 @@ perimeter = 2(w + #blocks),        semi-perimeter s = w + #blocks.
 Checked by brute force for every skyline with `w, h ≤ 6` during this analysis. Three consequences:
 
 - **The parity clause is a perimeter parity.** PE 502's `F(w,h)` counts the castles in the `w × h` box whose semi-perimeter has the same parity as `w`. The block-count distribution of a fixed `(w,h)` cell *is* its perimeter distribution, shifted by `w`.
-- **The minimum-block theorem is the convexity-perimeter fact.** [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] proves `#blocks ≥ h` with equality iff the skyline is unimodal. Adding `w`, this says `s ≥ w + h`: the perimeter is at least the bounding-box perimeter, with equality iff the castle is convex. That is the classical characterization of convex polyominoes, and it is why Delest and Viennot can say a convex polyomino's perimeter is its box's (own reasoning; the equivalence was re-checked for all skylines `w ≤ 6`, heights `≤ 5`).
-- **The castle's natural enumeration variable is Delest-Viennot's.** Their paper grades by perimeter.[^2] For castles that grading is width times blocks, which is exactly the bivariate statistic the tower-Narayana identity already tracks.
+- **The minimum-block theorem is the convexity-perimeter fact.** [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] proves `#blocks ≥ h` with equality iff the skyline is unimodal. Adding `w`, this says `s ≥ w + h`: the perimeter is at least the bounding-box perimeter, with equality iff the castle is convex. That is the classical characterization of convex polyominoes, perimeter equal to bounding-box perimeter (own reasoning; the equivalence was re-checked for all skylines `w ≤ 6`, heights `≤ 5`).
+- **Perimeter grading.** Delest and Viennot grade convex polyominoes by perimeter.[^2] For castles the semi-perimeter is width plus blocks, the pair of statistics the tower-Narayana identity tracks.
 
 ## Castles by semi-perimeter
 
@@ -42,7 +42,7 @@ B(t) = (1 - 2t - t² - sqrt(1 - 4t + 2t² + t⁴)) / (2t)
 
 This is **A082582**, "the number of bargraphs of semiperimeter n". The triangle by (semi-perimeter, width) is **A271942**, "bargraphs of semiperimeter n having width k", whose entries are the tower-Narayana identity re-indexed: `A271942(s, w) = T(w, s-w-1)` (rows `s = 2..8` matched).[^4] Neither entry has the PE 502 castle reading or the tower form `Σ_k N(w,k) C(s-k-1, w-1)`. A271942's formulas are its bivariate GF (the same quadratic as `B` with width marked), a hypergeometric form, and a triple binomial sum. A082582 links Baril, Flórez and Ramírez, "Generalized Narayana arrays, restricted Dyck paths, and related bijections" (2025), which may contain the Narayana form (cited via the OEIS entry, not read). Status: interlink candidate.
 
-**Growth `τ²`.** The discriminant factors as `(1-t)(t³ + t² + 3t - 1)`, and at `t = 1/y` the cubic becomes `-(y³ - 3y² - y - 1)`, the minimal polynomial of `τ²`, where `τ = 1.83928...` is the tribonacci constant (`τ³ = τ² + τ + 1`). So castles by semi-perimeter grow like `τ^{2s} s^{-3/2}` with `τ² = 3.38297...` (resultant computation during this analysis; coefficient ratio 3.29999 at `s = 60`, consistent with the `1 - 3/(2s)` square-root correction). Whether this is already stated in the bargraph literature was not checked.
+**Growth `τ²`.** The discriminant factors as `(t-1)(t³ + t² + 3t - 1)`, and at `t = 1/y` the cubic becomes `-(y³ - 3y² - y - 1)`, the minimal polynomial of `τ²`, where `τ = 1.83928...` is the tribonacci constant (`τ³ = τ² + τ + 1`). So castles by semi-perimeter grow like `τ^{2s} s^{-3/2}` with `τ² = 3.38297...` (resultant computation during this analysis; coefficient ratio 3.29999 at `s = 60`, consistent with the `1 - 3/(2s)` square-root correction). Whether this is already stated in the bargraph literature was not checked.
 
 ## The parity split
 
@@ -62,7 +62,7 @@ s = 2..16:   0, 1, 3, 7, 17, 47, 137, 400, 1168, 3450, 10338, 31311, 95521, 2931
 
 Both series match a direct DP over skylines through `s = 30`. **No OEIS match** for the even sequence or for the signed sequence, under either sign convention or as absolute values (searched 2026-09-22): novel-candidates.
 
-**The sign halves the exponent.** At `t = -1/y` the signed cubic `t³ + 3t² - t + 1` becomes `-(y³ + y² + 3y - 1)`, the unsigned cubic again. So the signed singularities are `-τ²` and a complex pair of modulus exactly `1/τ`. The signed count therefore grows like `τ^s s^{-3/2}` with an oscillating factor (`|B_s[n]| n^{3/2} / τ^n` stays in `(0.07, 0.84)` for `n = 300..320`), against `τ^{2s}` for the unsigned count. The even and odd halves differ by the square root of their size. This is the perimeter-graded version of the wiki's standing theme that the parity clause is "almost the entire difficulty" but only a lower-order correction to the count.
+**The sign halves the exponent.** At `t = -1/y` the signed cubic `t³ + 3t² - t + 1` becomes `-(y³ + y² + 3y - 1)`, the unsigned cubic again. So the signed singularities are `-τ²` and a complex pair of modulus exactly `1/τ`. The signed count therefore grows like `τ^s s^{-3/2}` with an oscillating factor (`|B_s[n]| n^{3/2} / τ^n` stays in `(0.07, 0.84)` for `n = 300..320`), against `τ^{2s}` for the unsigned count. The even and odd halves differ by about the square root of their size.
 
 ## Convex castles by semi-perimeter
 
@@ -74,20 +74,20 @@ A convex castle has exactly `h` blocks, so `s = w + h` and the grading is the an
 | signed | `-t²(1-t)/(1-t+t²)` | -1, 0, 1, 1, 0, -1, repeating with period 6 |
 | even `h` | `t³(1-t)/((1-3t+t²)(1-t+t²))` | 0, 1, 3, 7, 17, 44, 116, 305, 799, 2091, 5473, ... |
 
-The signed convex count is periodic because `1 - t + t²` has its roots at primitive sixth roots of unity. The even-`h` sequence has no OEIS match (searched 2026-09-22, with and without the leading 0). It closes the "exact enumeration with parity" question for convex castles in the perimeter grading: `even = (A001519 + period-6)/2`. All three series were checked against the DP through `s = 30`.
+The signed convex count is periodic because `1 - t + t²` has its roots at primitive sixth roots of unity. The even-`h` sequence has no OEIS match (searched 2026-09-22, with and without the leading 0). So `even = (A001519 + period-6)/2` gives the parity split of convex castles by perimeter exactly. All three series were checked against the DP through `s = 30`.
 
 ## Relation to other pages
 
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)]: the perimeter grading and the grammar-to-algebraic-GF method. `B(t)` is algebraic (context-free) and becomes rational at bounded height, as [[tower-word-language](pages/tower-word-language.md)] explains.
-- [[convex-castle](pages/convex-castle.md)], [[stack-polyomino-gf](pages/stack-polyomino-gf.md)]: convex castles = stacks, now with the parity split by perimeter.
+- [[convex-castle](pages/convex-castle.md)], [[stack-polyomino-gf](pages/stack-polyomino-gf.md)]: convex castles = stacks, with the parity split by perimeter.
 - [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)], [[narayana-numbers](pages/narayana-numbers.md)]: the identity whose re-indexing is A271942. Its `k` is the number of descents plus one (verified `w, b ≤ 7`), recorded on those pages.
 - [[convex-polyomino](pages/convex-polyomino.md)], [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)]: on a row-convex shape blocks = height, so a convex polyomino's semi-perimeter is `w + h`. Lin and Chang's convex generating function `Z(x, y, 1)`, with width and height marked, is the convex-polyomino counterpart of the (width, blocks) grading on this page (own reasoning).
 - [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]: the same `B` from a different route. Castles are cornerless Motzkin paths, and the first-return decomposition gives `xB² − (1 − x − y − xy)B + xy = 0` with `x` marking width and `y` marking blocks, which at `x = y = t` is the quadratic above; the signed split is `y → −y`. Its row-deletion bijection sends castles with every column `≥ 2` to castles of semi-perimeter one less, so prime castles by semi-perimeter are A082582 shifted by one, and their sign is flipped (raising adds one block).
-- [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)]: skew Motzkin paths returning to the axis are also A082582 (length `n` ↔ semi-perimeter `n + 1`), with an explicit GF refined by peaks and valleys; no castle-to-skew-path bijection is known yet.
+- [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)]: skew Motzkin paths returning to the axis are also A082582 (length `n` ↔ semi-perimeter `n + 1`), with an explicit GF refined by peaks and valleys; no castle-to-skew-path bijection is known.
 - [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)]: the two cubics `t³ + t² + 3t − 1` (unsigned, `τ²`) and `t³ + 3t² − t + 1` (signed, `τ`) are one norm form `(1 − t)² − s²(1 + t)²` at `s² = t` and `s² = −t`: the Deutsch-Elizalde discriminant factors over `Q(√y)` into Cayley-transform factors, and the sign is `√y → i√y`.
 - [[castle-sign](pages/castle-sign.md)]: the `(-1)^blocks` weight is `(-1)^{s-w}`.
 - [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]: tribonacci appears there in the area grading at height `≤ 3`. Here `τ²` is the unrestricted perimeter growth. Whether the two appearances are related is open.
-- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)]: the bar-graph GF by (horizontal, vertical, area) satisfies eq. 3.11, `B = B(qx) y + {1 + B(qx)} qx {y + B(x)}`, quadratic in `B`. The Airy-universality result there (`γ_u = -1/2, γ_t = -1/3, φ = 2/3`) is the perimeter-area asymptotic tricritical exponent for exactly the (width, blocks, area) statistics graded here.
+- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)]: the bar-graph GF by (horizontal, vertical, area) satisfies eq. 3.11, `B = B(qx) y + {1 + B(qx)} qx {y + B(x)}`, quadratic in `B`. The Airy-universality result there (`γ_u = -1/2, γ_t = -1/3, φ = 2/3`) are the perimeter-area tricritical exponents for the (width, blocks, area) statistics graded here.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]: the trivariate castle GF `Π/(1 - x - Π)` gives the perimeter-area GF at `s = w + b`, with blocks = vertical half-perimeter.
 
 ## Footnotes

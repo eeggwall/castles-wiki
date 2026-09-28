@@ -5,7 +5,7 @@ summary: A linear q-differential system relates a vector of series at x to the s
 tags: [concept, q-analog, q-differential-system, q-bessel, variation-of-parameters, generating-function, polyomino, convex, functional-equation]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes]
 created: 2026-09-22
-updated: 2026-09-22
+updated: 2026-09-28
 ---
 
 # Linear q-differential systems and their q = 1 shadow
@@ -46,7 +46,7 @@ At the inhomogeneous step the `q = 1` template ran out: "we could no longer 'cop
 Own reasoning, not from the source:
 
 - **Fixed height is the finite case.** A castle of bounded height has a finite transfer matrix and a rational generating function ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]). Letting height be unbounded while marking area is what turns the column recurrence into a q-shift equation like the ones above. On the area ladder, Ferrers diagrams and stacks still solve as sums of q-products. The parallelogram rung, `y J_1/J_0`, is the first whose solution is a ratio of q-series.
-- **The scalar step is the adding-a-slice step.** `g_n = h_n/(1 - yq^n)` is the same geometric-series resolution that the "adding a slice" construction on [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] performs when one column height is iterated. The method's added power is the solution matrix `W`, which keeps track of several interacting boundary phases at once.
+- **The scalar step is the adding-a-slice step.** `g_n = h_n/(1 - yq^n)` is the same geometric-series resolution that the "adding a slice" construction on [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] performs when one column height is iterated. What the method adds is the solution matrix `W`, which tracks several interacting boundary phases at once.
 
 ## Appearances in Sources
 
@@ -59,7 +59,7 @@ Own reasoning, not from the source:
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - q-Bessel quotients from another polyomino family.
 - [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - an early one-unknown instance (own reasoning): parallelograms by area satisfy `B(x, y) = xy/(1-xy) + xy/(1-xy)^2 (B(x, 1) - B(x, xy))`, a shift `y -> xy`, which Klarner and Rivest solved by iteration as a ratio of alternating q-series.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - the *nonlinear* companion. Quadratic q-shift equations for the same families, linearised by `G(x) = α H(qx)/H(x) - b(x)`; the closed forms are q-Bessel ratios of the same shape but the linearisation route bypasses the 3×3 system this page describes for convex polyominoes.
-- [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - a one-step-q-shift closing case: the castle grammar graded by area is `E(u) = A/(1 - uA)`, `A(u) = 1 - x + x E(uq)`, and the linearisation closes to `A = N/M` in one Möbius step rather than the coupled 3×3 system needed for convex polyominoes.
+- [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - a case closed by one q-shift: the castle grammar graded by area is `E(u) = A/(1 - uA)`, `A(u) = 1 - x + x E(uq)`, and the linearisation closes to `A = N/M` in one Möbius step rather than the coupled 3×3 system needed for convex polyominoes.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] - ordinary generating-function background.
 
 ## Footnotes
