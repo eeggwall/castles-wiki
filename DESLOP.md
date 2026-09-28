@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 125 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
-| Spot fixes only | 13 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 56 |
-| Words still to read | about 193,000 |
+| Fully read and cleaned | 130 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Spot fixes only | 12 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
+| Not started | 52 |
+| Words still to read | about 181,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 63 fully read)
+### Concepts (85 pages, 68 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
@@ -122,7 +122,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] eigenvalue-continued-fractions (4.1)
 - [x] weakly-unimodal-composition (4.0)
 - [x] castle-fibers-char-2-walkthrough (3.8)
-- [ ] castle-eigenvalues-by-example (3.7)
+- [x] castle-eigenvalues-by-example (3.7)
 - [x] spectral-analysis (3.5)
 - [~] castle-gray-code (3.4)
 - [x] permutation-inversions (3.3)
@@ -147,7 +147,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-by-area (2.3)
 - [x] urd-step-strings (2.1)
 - [x] kitamasa (2.1)
-- [~] castle-classification-spectrum (1.9)
+- [x] castle-classification-spectrum (1.9)
 - [x] stack-polyomino-gf (1.9)
 - [x] castle-sign (1.9)
 - [x] binary-string-bijection (1.8)
@@ -161,12 +161,12 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-snippets (1.4)
 - [ ] castle-bdd-zdd (1.3)
 - [x] generalized-dyck-grammar (1.3)
-- [ ] castle-classification-growth (1.2)
+- [x] castle-classification-growth (1.2)
 - [ ] castle-notation (1.2)
 - [x] castle-strip (1.1)
 - [ ] sums-of-three-cubes (1.1)
-- [ ] castle-classification-shape (1.1)
-- [ ] signed-tower-k-direction (1.1)
+- [x] castle-classification-shape (1.1)
+- [x] signed-tower-k-direction (1.1)
 - [x] tower-heap (1.1)
 - [x] castle-counting-formula (1.0)
 - [ ] castle-move-graph-zdd (0.9)

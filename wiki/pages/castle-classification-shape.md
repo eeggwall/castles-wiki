@@ -5,7 +5,7 @@ summary: The 42 shape-based castle types as skyline predicates on individual cas
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook]
 sources: [castle-classification]
 created: 2026-09-19
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # Castle classification - shape types
@@ -24,9 +24,9 @@ The base types are all standard polyomino / composition families. Each correspon
 | **Staircase** | Ferrers with all `c_i` distinct | [[polyominoes](pages/polyominoes.md)] | classical (distinct-parts partitions) |
 | **Parallelogram** | anti-diagonal sections connected | [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] | classical (Bousquet-Mélou) |
 | **Directed** | every cell reachable from `(1,1)` by east/north | [[polyominoes](pages/polyominoes.md)] | classical (directed polyominoes) |
-| **m-disparate** | `|c_{i+1} − c_i| ≥ m` for all `i` | **not yet on the wiki** | open |
+| **m-disparate** | `|c_{i+1} − c_i| ≥ m` for all `i` | no wiki page | open |
 
-The first 6 rows tie the castle taxonomy directly to the polyomino literature. **m-disparate** is the one base type without an existing wiki thread - a natural target for gap-rule variations; its horizontal-gap cousin is already counted on [[tower-spacing-castles](pages/tower-spacing-castles.md)].
+The first 6 rows tie the castle taxonomy directly to the polyomino literature. **m-disparate** is the one base type without a wiki page; its horizontal-gap counterpart is counted on [[tower-spacing-castles](pages/tower-spacing-castles.md)].
 
 ## The 35 proposed types, grouped by structural axis
 
@@ -41,15 +41,15 @@ Types 1-6 and 30-31 restrict the shape of the skyline's local extrema:
 | **Convex (row-convex)** | every row is one contiguous run | equals unimodal for castles ([[convex-castle](pages/convex-castle.md)]); front/middle/back U/R/D form on [[project-euler-502-representations](pages/project-euler-502-representations.md)] |
 | **Reverse Ferrers** | `c_1 ≤ … ≤ c_w` (weakly increasing) | Ferrers's mirror; same count by symmetry; by width `x` and blocks `y` the GF is `xy/(1 − x − y)` ([[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] §3.4, checked by brute force) |
 | **Strictly unimodal** | strict rise, one peak, strict fall | strengthens unimodal; count is a sub-count of [[convex-castle](pages/convex-castle.md)] |
-| **Bimodal** | exactly two local maxima | *open* - natural refinement, no wiki count yet |
+| **Bimodal** | exactly two local maxima | *open* |
 | **k-modal** | at most `k` local maxima | *open* - unimodal is `k=1`; parameterized family |
 | **Anti-unimodal (V-shaped)** | weakly decrease then weakly increase | the "valley" family; on [[castle-by-area](pages/castle-by-area.md)] as valley castles, area-OEIS A332578; the [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] valley bijection is an open thread |
 | **Convex-skyline** | `c_{i−1} − 2c_i + c_{i+1} ≥ 0` (discrete convex) | *open* - a stronger sub-family of anti-unimodal |
 | **Concave-skyline** | `c_{i−1} − 2c_i + c_{i+1} ≤ 0` (discrete concave) | *open* - a stronger sub-family of unimodal |
 
-**Where the wiki already has counts:** unimodal and (by symmetry) reverse Ferrers, via the [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]; anti-unimodal (valley) by area on [[castle-by-area](pages/castle-by-area.md)]. **Where the wiki has candidate counts but not proofs:** the convex⟺valley bijection.
+**Where the wiki already has counts:** unimodal and (by symmetry) reverse Ferrers, via the [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]; anti-unimodal (valley) by area on [[castle-by-area](pages/castle-by-area.md)]. **Open:** an explicit convex ⟺ valley bijection (the two classes are equinumerous in every `(w, h)` cell).
 
-**Convexity fixes the block count.** A convex castle of height `h` has exactly `h` blocks, one per row, and convex castles are exactly the minimum-block castles.[^4] So the Project Euler 502 (PE 502) parity clause is not independent of this axis: every convex castle has the block parity of `h`, and the even-block projector of [[castle-sign](pages/castle-sign.md)] keeps all of them or none.
+**Convexity fixes the block count.** A convex castle of height `h` has exactly `h` blocks, one per row, and convex castles are exactly the minimum-block castles.[^4] So on this axis the Project Euler 502 (PE 502) parity clause is decided by `h`: every convex castle has the block parity of `h`, and the even-block projector of [[castle-sign](pages/castle-sign.md)] keeps all of them (`h` even) or none (`h` odd).
 
 ### Axis 2: Rate of change (Lipschitz)
 
@@ -57,12 +57,12 @@ Types 7, 8, 9 and the base m-disparate:
 
 | Type | Predicate | Wiki tie |
 |---|---|---|
-| **Plateau-free** | `c_i ≠ c_{i+1}` for all `i` | the plateau-free-except-ceiling variant realizes the whole metallic ladder ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]); the strict version is open |
+| **Plateau-free** | `c_i ≠ c_{i+1}` for all `i` | elementary: `h(h−1)^{w−1}` skylines of height `≤ h`, so `h(h−1)^{w−1} − (h−1)(h−2)^{w−1}` castles, growth `h − 1`; the plateau-free-except-ceiling variant realizes the whole metallic ladder ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) |
 | **m-smooth (Lipschitz)** | `|c_{i+1} − c_i| ≤ m` | at `m = 1` this is the **Motzkin-path** predicate without its endpoint condition (Axis 3); the 1-smooth strip over heights `≤ 3` is the silver realization on [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] and, anchored at height 1, the [[pell-castle-strip](pages/pell-castle-strip.md)] |
 | **Zigzag** | differences alternate in sign | *open* - a strong plateau-free variant |
 | **m-disparate** | `|c_{i+1} − c_i| ≥ m` | *open* - the "no small step" restriction |
 
-**Where the wiki already has counts:** 1-smooth strips at bounded height, by transfer matrix ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]: companion Pell A001333 over heights `≤ 3`, Pell A000129 when anchored at height 1). A 1-smooth castle is not a Motzkin path unless its skyline also starts and ends at height 1, so 1-smooth counts are strip counts, not Motzkin numbers. The tower word A004149 ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]) is the 1-smooth-with-no-UD-no-DU refinement. **Open:** the full m-smooth family for `m ≥ 2`, and m-disparate for any `m`. **A distinct horizontal-gap axis is counted:** [[tower-spacing-castles](pages/tower-spacing-castles.md)] requires every valley between raised regions to be `≥ g` columns wide - a same-row spacing rule rather than a same-column-difference rule - counted by a column-sweep transfer matrix, with growth constants through `ψ²` (h=2, g=2) and `φ` (h=2, g=3) and a non-metallic zoo for `h ≥ 3`.
+**Where the wiki already has counts:** 1-smooth strips at bounded height, by transfer matrix ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]: companion Pell A001333 over heights `≤ 3`, Pell A000129 when anchored at height 1). A 1-smooth castle is not a Motzkin path unless its skyline also starts and ends at height 1, so 1-smooth counts are strip counts, not Motzkin numbers. The tower word A004149 ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]) is a different object: Motzkin paths with no `UD` or `DU` factor, counted by word length, which as skylines are unrestricted towers. **Open:** the full m-smooth family for `m ≥ 2`, and m-disparate for any `m`. **A distinct horizontal-gap axis is counted:** [[tower-spacing-castles](pages/tower-spacing-castles.md)] requires every valley between raised regions to be `≥ g` columns wide - a same-row spacing rule rather than a same-column-difference rule - counted by a column-sweep transfer matrix, with growth constants through `ψ²` (h=2, g=2) and `φ` (h=2, g=3) and a non-metallic zoo for `h ≥ 3`.
 
 ### Axis 3: Path-like restrictions
 
@@ -107,7 +107,7 @@ Types 11, 12, 21 impose symmetry on the skyline:
 | **Centrally symmetric** | `c_i + c_{w+1−i} = h + 1` (180° rotation inside bounding box) | *open* |
 | **Self-conjugate** | `c_i = #{j : c_j ≥ i}` (transpose invariance) | *open* - classical partition-conjugation, would require `w = h` |
 
-**Open apart from the palindromic GF.** The self-conjugate type is particularly interesting because it forces `w = h` and interacts with the wiki's Fibonacci-in-prime-castle count `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)].
+**Open apart from the palindromic GF.** The self-conjugate type forces `w = h`.
 
 ### Axis 5: Value / extremum constraints
 
@@ -123,7 +123,7 @@ Types 15, 16, 24, 26, 27, 33, 35, and a few others restrict where extremes occur
 | **Boxcastle** | `c_i = h` for all `i` | trivial: count is `1` |
 | **Hook** | `c_1 = h`, `c_i = 1` for `i ≥ 2` | Young-diagram hook; count is `1` at every `(w, h)`, since the predicate fixes every column. Admitting the mirror `c_w = h` gives 2; letting the tower stand in any column gives `w` |
 
-**Rainbow castles are the natural bridge to [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)]:** they are, by definition, in bijection with permutations of `{1, …, h}` - so the wiki's cycle-count / Foata / streak triad ([[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)]) applies to them directly, not by upgrade. Rainbow castles are the "n! degenerate case" of the castle machinery.
+**Rainbow castles and permutations.** Rainbow castles are in bijection with permutations of `{1, …, h}` ([[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)]), so the cycle-count / Foata / streak triad of [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] applies to them without modification.
 
 ### Axis 6: Parity and area
 
@@ -133,10 +133,10 @@ Types 10, 17, 18, 32:
 |---|---|---|
 | **Alternating parity** | `c_i` alternates odd/even | *open* |
 | **Even-area** | `∑ c_i ≡ 0 (mod 2)` | [[castle-by-area](pages/castle-by-area.md)] parity split |
-| **Even-peak** | number of local maxima is even | [[castle-sign](pages/castle-sign.md)] sibling; peak count is on [[castle-foata-transform](pages/castle-foata-transform.md)]; the block ≠ peak distinction is spelled out on [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] |
-| **Triangular-area** | `∑ c_i = n(n+1)/2` | *open* - a curiosity restriction |
+| **Even-peak** | number of local maxima is even | a second parity statistic beside [[castle-sign](pages/castle-sign.md)]'s `(−1)^blocks`; *open* |
+| **Triangular-area** | `∑ c_i = n(n+1)/2` | *open* |
 
-**The even-peak type is worth flagging.** The [[castle-sign](pages/castle-sign.md)] is `(−1)^blocks`, not `(−1)^peaks`; even-peak is a different parity constraint that the wiki hasn't investigated. The [[castle-foata-transform](pages/castle-foata-transform.md)] identifies `#peaks = #records`, so even-peak is "even-records" - a permutation-statistic parity condition.
+**Even-peak.** The [[castle-sign](pages/castle-sign.md)] is `(−1)^blocks`; even-peak is a parity constraint on the number of local maxima of the skyline, and the wiki has no count for it. The "peaks" of [[castle-foata-transform](pages/castle-foata-transform.md)] and [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] are a different statistic, the excursions above the base (maximal runs of columns of height at least 2): `(2, 3, 2, 3, 2)` has one excursion and two local maxima.
 
 ### Axis 7: Value patterns
 
@@ -145,11 +145,11 @@ Types 19, 20, 22, 23, 25, 28, 29, 34:
 | Type | Predicate | Wiki tie |
 |---|---|---|
 | **Equal-block** | all maximal horizontal blocks have the same length | *open* - heavy structure |
-| **Two-level** | exactly two distinct height values | at `h = 2` this is every castle (`A(w,2) = 2^w − 1`); the height-2 tree castles ([[castle-graph](pages/castle-graph.md)]) are its Fibonacci sub-family |
+| **Two-level** | exactly two distinct height values | at `h = 2` this is every castle except the all-2 rectangle (`2^w − 2`); the height-2 tree castles ([[castle-graph](pages/castle-graph.md)]) are a Fibonacci-counted sub-family |
 | **Crenellated** | heights alternate `{a, h}` (battlements) | *open* - very restricted two-level; the two-atom skyline-DFT case on [[spectral-analysis](pages/spectral-analysis.md)] |
 | **Moated** | `c_1 = c_w = 1`, all interior `≥ 2` | *open* |
 | **Fence-post** | `c_i = 1` for all even `i` | *open* |
-| **Linear** | `c_i = a + (i−1)d` (arithmetic progression) | *open* - count is `O(h)` or `O(wh)` depending on parameters |
+| **Linear** | `c_i = a + (i−1)d` (arithmetic progression) | elementary: `2⌊(h−1)/(w−1)⌋ + 1` castles for `w ≥ 2` |
 | **Prime-top** | `h` is prime | trivial family: all castles with prime `h` |
 | **Integer-mean** | `w | ∑ c_i` | *open* |
 
@@ -157,26 +157,26 @@ Types 19, 20, 22, 23, 25, 28, 29, 34:
 
 In rough order of tractability:
 
-1. **k-modal** for `k ≥ 2` - a parametric family whose `k = 1` case is [[convex-castle](pages/convex-castle.md)] (binomial); `k = 2, 3, …` are genuinely open with no candidate closed form.
+1. **k-modal** for `k ≥ 2` - a parametric family whose `k = 1` case is [[convex-castle](pages/convex-castle.md)] (binomial); `k = 2, 3, …` are open.
 2. **m-smooth / m-disparate** for `m ≥ 2` - a paired family; `m = 1` smooth is the strip-counted case above.
 3. **Symmetry types** (palindromic, centrally symmetric, self-conjugate) - palindromic has a GF by width and blocks ([[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]); its `(w, h)` table, its parity split, and the other two types are untouched.
-4. **Rainbow** - direct permutation-classification tie, immediate seminar target for the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] triad.
-5. **Even-peak** - parity via peak count rather than block count; genuinely different from [[castle-sign](pages/castle-sign.md)]'s `(−1)^blocks`.
+4. **Rainbow** - skylines that are permutations of `{1, …, h}`, tied to the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] triad.
+5. **Even-peak** - parity of the number of local maxima rather than of the block count ([[castle-sign](pages/castle-sign.md)]).
 6. **Dyck- and Motzkin-path castles at fixed height** - the A080936 / A097862 columns as castle counts; which other geometric types have a bounded-height rational GF of the same Chebyshev-quotient shape?
 
 ## Related Concepts
 
 - [[castle-classification](pages/castle-classification.md)] - the hub: framing, the geometric / non-geometric split, and the consolidated open-thread list.
-- [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - growth-type, spectral, and compressibility classification.
+- [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - spectral types; [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types.
 - [[castle-polyomino](pages/castle-polyomino.md)] / [[castle-representations](pages/castle-representations.md)] - the base object and the skyline encoding the predicates read.
 - [[convex-castle](pages/convex-castle.md)] / [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the unimodal (row-convex) type.
 - [[polyominoes](pages/polyominoes.md)] / [[column-convex-polyomino](pages/column-convex-polyomino.md)] / [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - the base-type home literature.
-- [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - the unimodal-skyline (single-peak) family from Analytic Combinatorics (AC) Ex. I.8.
+- [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - the unimodal-skyline family from Analytic Combinatorics (AC) Ex. I.8.
 - [[dyck-words](pages/dyck-words.md)] / [[motzkin-numbers](pages/motzkin-numbers.md)] / [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] - the path-like types and their run-constrained refinement.
 - [[castle-by-area](pages/castle-by-area.md)] - where several types (even-area, valley) are counted.
 - [[castle-sign](pages/castle-sign.md)] / [[castle-foata-transform](pages/castle-foata-transform.md)] - the parity / peak-count / record statistics several types predicate on.
 - [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] - the framework the rainbow type maps onto directly.
-- [[castle-snippets](pages/castle-snippets.md)] - tested Python one-liners for each predicate on this page.
+- [[castle-snippets](pages/castle-snippets.md)] - short tested Python snippets for the predicates on this page.
 - [[aocp-permutations](pages/aocp-permutations.md)] / [[aocp-combinatorics](pages/aocp-combinatorics.md)] - the rainbow type's count `h!` and its Mahonian inversion grading.
 - [[castle-compression](pages/castle-compression.md)] - the description-length axis that cross-cuts these shape axes.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - a second castle route to Axis 2's Hardin family (A005251, A202882, A203094, A203184): the even sector for `k ≡ 2 (mod 4)` is `2^L` times a Hardin word count, complementing the tower-spacing route.
