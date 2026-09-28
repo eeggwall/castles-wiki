@@ -54,7 +54,7 @@ The transient is at most 2 in every row (the "has some column reached `h`" flag 
 
 The height-direction periods fit `2 * 3^{1 + ceil(log_3 w)}` for `w >= 2`: `18` for `w = 2, 3`, `54` for `w = 4..9`, `162` for `w = 10..27`, and `1458` at `w = 100`. This is the observatory's `2 p^{ceil(log_p L)}` law for `P(k, L) mod p` with one extra factor of 3 for the second power of the prime; `P(k, w) mod 9` itself was checked to have exactly these periods in `k` for `w <= 10` and `w = 100`.[^exec]
 
-**Over all cells with `A(w,h) <= 10^9`** (19,132 cells, `3 <= w <= 30`): the `F` table has 18,256 entries at `w = 3` of which 2,029 (11.1%) are excluded, and 876 entries at `w >= 4` of which 179 (20.4%) are excluded; the `A` table is *never* excluded at `w = 3` (a theorem, next section) and excluded 225 of 876 times (25.7%) at `w >= 4`; the odd table runs 11.1% and 21.0%. Across all three tables there are 57,349 distinct castle counts below `10^9`, of which 4,643 (8.1%) are provably not sums of three cubes and the remaining 52,706 conjecturally are, out of 777,777,777 admissible integers in range: castle counts are a sparse set (about `sqrt N` of them below `N`, dominated by the width-3 quadratics).[^exec]
+**Over all cells with `A(w,h) <= 10^9`** (19,132 cells, `3 <= w <= 30`): the `F` table has 18,256 entries at `w = 3` of which 2,029 (11.1%) are excluded, and 875 entries at `w >= 4` of which 179 (20.5%) are excluded; the `A` table is *never* excluded at `w = 3` (a theorem, next section) and excluded 225 of 875 times (25.7%) at `w >= 4`; the odd table runs 11.1% and 21.0%. Across all three tables there are 57,349 distinct castle counts below `10^9`, of which 4,643 (8.1%) are provably not sums of three cubes and the remaining 52,706 conjecturally are, out of 777,777,777 admissible integers in range: castle counts are a sparse set (about `sqrt N` of them below `N`, dominated by the width-3 quadratics).[^exec]
 
 ## Three cells that close in closed form
 
@@ -233,7 +233,7 @@ Open:
 
 - [[sums-of-three-cubes](pages/sums-of-three-cubes.md)] - the number-theory background: the mod-9 obstruction, Heath-Brown, the 2019 results, the positive-cube density.
 - [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] - the row/column/aggregate reading of `F(w, h) mod 9`; the `20.4%` at `A <= 10^9` is a finite-N mixing artifact converging to `2/9` at rate `0.0786 * N^{-1/12}`.
-- [[mod-9-coset-lift](pages/mod-9-coset-lift.md)] - the mechanism companion: three-adic row/column divisibility gap, six-step blackboard proof of exact `2/9` at `w = 4`, and the coset-lift sufficiency criterion for column uniformity.
+- [[mod-9-coset-lift](pages/mod-9-coset-lift.md)] - the mechanism companion: three-adic row/column divisibility gap, the six-step proof of exact `2/9` at `w = 4`, and the coset-lift criterion for column uniformity.
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - `F(6,4) = 1729`, the page this one generalizes.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] and [[castle-counting-function](pages/castle-counting-function.md)] - the closed form and the `A / F / odd` notation.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - period equals lcm of eigenvalue orders; the mod-9 periods here extend its tables.

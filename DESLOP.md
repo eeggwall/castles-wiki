@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 146 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
-| Spot fixes only | 9 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 39 |
-| Words still to read | about 129,000 |
+| Fully read and cleaned | 149 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Spot fixes only | 8 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
+| Not started | 37 |
+| Words still to read | about 117,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 74 fully read)
+### Concepts (85 pages, 75 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
@@ -153,7 +153,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] binary-string-bijection (1.8)
 - [x] ramanujan-castles (1.7)
 - [x] castle-snippets-cryptography (1.7)
-- [ ] mod-9-coset-lift (1.6)
+- [x] mod-9-coset-lift (1.6)
 - [x] q-catalan-numbers (1.6)
 - [x] oeis-cross-referencing (1.6)
 - [x] castle-compression (1.5)
@@ -194,7 +194,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-snippets-strips (0.0)
 - [x] acronyms (0.0)
 
-### Analyses (64 pages, 39 fully read)
+### Analyses (64 pages, 41 fully read)
 
 - [x] castle-cryptography (5.1)
 - [x] isospectral-castles (4.9)
@@ -230,7 +230,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] tree-castle-by-area (1.5)
 - [x] castle-steganography (1.5)
 - [ ] motzkin-castles (1.5)
-- [~] mod-9-equidistribution (1.4)
+- [x] mod-9-equidistribution (1.4)
 - [~] signed-klarner-decomposition (1.4)
 - [x] fractional-block-count (1.4)
 - [x] reachable-field-census (1.4)
@@ -240,7 +240,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] bronze-castle-hunt (1.3)
 - [x] castle-ring-invariant-factors (1.2)
 - [x] tower-parity-sectors (1.1)
-- [ ] viennot-heap-tower (1.1)
+- [x] viennot-heap-tower (1.1)
 - [x] closed-form-hunting (1.1)
 - [x] generating-function-gallery (1.1)
 - [x] convex-castle-binomial-identity (1.0)
