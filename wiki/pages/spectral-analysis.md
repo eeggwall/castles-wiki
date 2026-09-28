@@ -130,10 +130,10 @@ Castle graphs are bipartite, so this is the bipartite-Ramanujan condition `λ_2 
 
 **Structural candidates worth checking first** ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 5 and 7 types with regular local structure):
 
-- **Boxcastle** — the full `w × h` rectangle graph. Its adjacency spectrum is known explicitly: `2·cos(iπ/(w+1)) + 2·cos(jπ/(h+1))` for `1 ≤ i ≤ w, 1 ≤ j ≤ h`. so `λ_2` is explicit; Ramanujan status needs `ρ(T)` for its universal covering tree, with `2√3` only the necessary-condition ceiling.
+- **Boxcastle** — the full `w × h` rectangle graph. Its adjacency spectrum is known explicitly: `2·cos(iπ/(w+1)) + 2·cos(jπ/(h+1))` for `1 ≤ i ≤ w, 1 ≤ j ≤ h`. **Settled** ([[ramanujan-castles](pages/ramanujan-castles.md)]): the width-2 family fails first, at 28 cells - the `2×14` rectangle `(14,14)` is the smallest non-Ramanujan castle overall (`λ_2 = 2.82709 > ρ(T) = 2.81393`) - then width-3 at 33 cells, width-4 at 40; the `w = h` diagonal fails at `4×4` but is Ramanujan again at `6×6` and `7×7` before failing permanently.
 - **Hook** — small, spectrum computable by hand or trivially by SymPy.
 - **Ferrers / staircase** — the standard partition-shape polyominoes with partial classical spectral results in the polyomino literature.
-- **Crenellated** — alternating heights `{a, h}`; highly regular local structure, a natural Ramanujan candidate.
+- **Crenellated** — alternating heights `{a, h}`; highly regular local structure, a natural Ramanujan candidate. **Settled to the checked range** ([[ramanujan-castles](pages/ramanujan-castles.md)]): every crenellated castle checked (widths 3-13, heights 2-5) is Ramanujan, with `λ_2/ρ(T)` bounded around `0.95` - a candidate infinite Ramanujan family among irregular castles, not yet proved for all sizes.
 
 **Wiki tie:** [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] Axis 9 states the Ramanujan-castle predicate; this section supplies the *method* (universal-cover spectral radius, Ihara zeta, adjacency-operator spectral analysis) whose output the Axis-9 predicate tests.
 
@@ -199,5 +199,6 @@ Each of these becomes its own Analysis page or Concept page when its content lan
 - [[castle-compression](pages/castle-compression.md)] — sparse-spectrum castles are compressible in the transform domain; the compressed-sensing hook in the open threads is the DFT face of the compressibility axis.
 - [[levy-flights](pages/levy-flights.md)] — the fractional Laplacian `L^α = U diag(λ^α) U^T` on the castle graph, its Lévy-flight walk, and the local return probability as a non-spectral separator of the 11-cell Laplacian-isospectral tree pair.
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] — the from-scratch pedagogy tutorial for Method 1 (adjacency spectrum) that this hub organizes.
+- [[ramanujan-castles](pages/ramanujan-castles.md)] — computes `ρ(T)` and settles the boxcastle and crenellated Ramanujan questions §5 raises; finds the smallest non-Ramanujan castle overall.
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar walk-through of method 4 and the isospectral pairs.
 - [[sandpile-group](pages/sandpile-group.md)] - the sandpile group introduced from the Laplacian and the boundary matrix.

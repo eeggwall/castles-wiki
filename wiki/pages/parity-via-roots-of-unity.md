@@ -112,6 +112,7 @@ One requested case does *not* fall out of this machinery: **"blocks is a power o
 - [[block-count-constraints](pages/block-count-constraints.md)] — the full trichotomy (residue / sparse / semigroup), of which this page is the residue case.
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] — the `R^* = ∏ Z/(p^{d_i}−1)` invariant-factor decomposition is where the m-th roots of unity naturally act as characters; the sum-idempotents this page uses are the invariant-factor projectors.
 - [[idempotent-decomposition](pages/idempotent-decomposition.md)] - ring idempotents `e² = e` in `F_p[x]/(char_k)`; this page's character-sum projectors are the group-algebra version of the same idea.
+- [[one-bit-seminar](pages/one-bit-seminar.md)] - the classroom version of the `m = 2` case: the `(A±S)/2` projector as "one bit."
 
 
 ## Footnotes

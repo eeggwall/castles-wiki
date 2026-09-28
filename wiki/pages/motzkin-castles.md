@@ -162,6 +162,7 @@ By mirror symmetry the same numbers count castles whose columns never *rise* by 
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - the q-Motzkin direction.
 - [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the status-tagged record of every sequence on this page.
 - [[castle-notation](pages/castle-notation.md)] - the symbol conventions; the Motzkin-path castle, the Motzkin strip (castle heights `1, …, h`), `M_n`, `B(x, y)` and `s` are recorded there.
+- [[prime-castles](pages/prime-castles.md)] - the same castle bivariate generating function manipulated by the same width-variable substitution.
 
 ## Footnotes
 

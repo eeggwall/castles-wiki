@@ -80,6 +80,7 @@ The `bounded_castles_by_area(h, A_max)` snippet on [[castle-snippets-strips](pag
 - [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - the composition ↔ castle correspondence this result rests on, in its convex (stack) form.
 - [[unique-tournament](pages/unique-tournament.md)] - the graph-theoretic side of the `h = 4` tree row `A000570` in the table above.
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - the by-area enumeration behind `bounded_castles_by_area` is Knuth's Algorithm M with an area filter.
+- [[area-growth-census](pages/area-growth-census.md)] - extends this page's n-nacci ladder (the ceiling constant at each height) to a full census of every castle-strip rule through height 5.
 
 ## Footnotes
 

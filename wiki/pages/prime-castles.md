@@ -117,6 +117,7 @@ for n in range(1, 17):
 - [[convex-castle](pages/convex-castle.md)]: the convex castles.
 - [[castle-foata-transform](pages/castle-foata-transform.md)]: peaks, which count the nontrivial prime factors.
 - [[metallic-means](pages/metallic-means.md)], [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)]: the golden ratio as the growth constant of the prime count.
+- [[motzkin-castles](pages/motzkin-castles.md)]: the same castle bivariate generating function manipulated by the same width-variable substitution.
 
 ## Footnotes
 

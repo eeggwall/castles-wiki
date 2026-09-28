@@ -33,7 +33,7 @@ The relevant thread: the **q-analog `M_n(q)`** refines the Motzkin numbers and a
 
 ## Appearances in Sources
 
-- [[motzkin-numbers](pages/motzkin-numbers.md)] (charlesreid1.com topic page) — definition, values, recurrence, GF, and the q-analog / steep-Dyck-words remark.
+- `raw/motzkin-numbers.wiki` (charlesreid1.com topic page) — definition, values, recurrence, GF, and the q-analog / steep-Dyck-words remark.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — the paper where q-Motzkin numbers meet steep polyominoes.
 
 ## Related Concepts
@@ -49,7 +49,7 @@ The relevant thread: the **q-analog `M_n(q)`** refines the Motzkin numbers and a
 
 ## Footnotes
 
-[^1]: [[motzkin-numbers](pages/motzkin-numbers.md)] §"Motzkin Numbers" L3 — "The Motzkin number M_n counts the ways to draw non-intersecting chords between n points on a circle, and the Motzkin paths: lattice paths from (0,0) to (n,0) using up, horizontal, and down steps that never drop below the x axis."
-[^2]: [[motzkin-numbers](pages/motzkin-numbers.md)] §"First values" L8 — "1, 1, 2, 4, 9, 21, 51, 127, 323, 835, ..."; re-verified from the recurrence during ingest.
-[^3]: [[motzkin-numbers](pages/motzkin-numbers.md)] §"Recurrence"/"Generating function" L18-24 — "M_n = M_{n-1} + sum_{k=0}^{n-2} M_k M_{n-2-k}" and "M(x) = (1 - x - sqrt(1 - 2x - 3x^2)) / (2x^2)."
-[^4]: [[motzkin-numbers](pages/motzkin-numbers.md)] §"Motzkin Numbers" L27 — "The q-analog M_n(q) refines the Motzkin numbers and appears in the q-grammar count of steep Dyck Words."
+[^1]: raw/motzkin-numbers.wiki §"Motzkin Numbers" L3 — "The Motzkin number M_n counts the ways to draw non-intersecting chords between n points on a circle, and the Motzkin paths: lattice paths from (0,0) to (n,0) using up, horizontal, and down steps that never drop below the x axis."
+[^2]: raw/motzkin-numbers.wiki §"First values" L8 — "1, 1, 2, 4, 9, 21, 51, 127, 323, 835, ..."; re-verified from the recurrence during ingest.
+[^3]: raw/motzkin-numbers.wiki §"Recurrence"/"Generating function" L18-24 — "M_n = M_{n-1} + sum_{k=0}^{n-2} M_k M_{n-2-k}" and "M(x) = (1 - x - sqrt(1 - 2x - 3x^2)) / (2x^2)."
+[^4]: raw/motzkin-numbers.wiki §"Motzkin Numbers" L27 — "The q-analog M_n(q) refines the Motzkin numbers and appears in the q-grammar count of steep Dyck Words."

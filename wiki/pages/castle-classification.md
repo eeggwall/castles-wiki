@@ -67,9 +67,10 @@ Each scope's page carries its own detailed open list; the largest open items acr
 5. **Bronze-spectrum castles** (spectrum) - absent among 4.87 million castles on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]; open beyond the scanned size.
 6. **Sparse-spectrum, low / high-pass, Ihara-Ramanujan** (spectrum) - the three sketched types on [[castle-classification-spectrum](pages/castle-classification-spectrum.md)].
 7. **Alternative realizations of the bronze / copper / nickel width growth castles** (growth) - does any higher rung admit a second, structurally distinct rule the way silver does?
-8. **The bare plastic number `ψ` as an area growth constant** (growth) - the one open slot in the cubic-Pisot family ([[plastic-number](pages/plastic-number.md)]).
-9. **Vertical and block growth axes** (growth) - no member known for either.
-10. **Compressibility** as a classifier in its own right ([[castle-compression](pages/castle-compression.md)]).
+8. **Vertical and block growth axes** (growth) - no member known for either.
+9. **Compressibility** as a classifier in its own right ([[castle-compression](pages/castle-compression.md)]).
+
+*(Resolved: the bare plastic number `ψ` as an area growth constant, formerly the one open slot in the cubic-Pisot family, is now realized - [[area-growth-census](pages/area-growth-census.md)].)*
 
 ## Related Concepts
 
@@ -87,6 +88,7 @@ Each scope's page carries its own detailed open list; the largest open items acr
 - [[spectral-analysis](pages/spectral-analysis.md)] - the methods hub paired with the spectral predicates.
 - [[castle-snippets](pages/castle-snippets.md)] - tested Python one-liners for the shape predicates and the castle-graph primitives.
 - [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - each restriction axis defined here is a sub-subset of `V(w,h)` with its own single-column-change Gray-tour question, open per-axis.
+- [[area-growth-census](pages/area-growth-census.md)] - resolves the formerly-open bare plastic number `ψ` growth-type slot (item 8 above).
 
 ## Footnotes
 

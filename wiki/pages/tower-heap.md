@@ -49,6 +49,9 @@ with `N(w,k)` the [[narayana-numbers](pages/narayana-numbers.md)]. The `k`-th te
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] — the heap-bijection explanation of the staircase `H(qx)/H(x)` form, and the bar-graph (castle) equation in the same linearizable class.[^4]
 - [[castle-foata-transform](pages/castle-foata-transform.md)] — blocks as maximal positive runs; the `c_1 + Σ max(0, c_i − c_{i−1})` block-count formula is the identity Foata builds on.
 - [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] — the tower block-count marginal whose `H(B) ~ (1/2) log_2 w` scaling this page's Narayana structure explains.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] — the same column-height tower's signed transfer matrix, block-diagonalized by last-column parity; the signed twin of this page's unsigned block-count reading.
+- [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] — teaches `T(k,L) = (k+1)^L` and the `(T±P)/2` projector for the same tower object this page refines by block count.
+- [[signed-tower-count](pages/signed-tower-count.md)] — `P(k,L)`, the signed count of the same tower; this page's Narayana block-count GF is its unsigned counterpart.
 
 ## Footnotes
 

@@ -237,6 +237,7 @@ Open:
 - [[castle-graph](pages/castle-graph.md)] - the polyomino graph of the digit castle.
 - [[castle-snippets](pages/castle-snippets.md)] - `all_castles`, `blocks`, `castle_graph`.
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - `Phi_6(p)` and the round-three torus, at `p = 12`.
+- [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - the `char_k` irreducibility thread this page's eigenvalue/palindromic-polynomial material sits alongside.
 
 ## Footnotes
 

@@ -32,11 +32,11 @@ Both identities were re-verified by direct enumeration during ingest (`w = 1..7`
 
 A038505 ("sum of every 4th entry starting at C(n,2)") and A038503 ("...starting at C(n,0)") are relatively isolated entries whose existing comments are algebraic (trace/subtrace over generating function (GF)(2), matrix `M^n`, the Shevelev hyperbolic analog) — none geometric.[^4] The castle comment is therefore a genuinely new interpretation, and the one clearly missing cross-reference is **A000225** (the total). The draft adds a Comment and a Formula (`a(n) = F(n−1,2)` / `a(n) = odd(n−1,2)+1`) to each, plus `Cf. A000225`, and links the signed vein via `A146559(n) = A038503(n) − A038505(n)` (see [[signed-tower-count](pages/signed-tower-count.md)]).[^5]
 
-Per [[oeis-cross-referencing](pages/oeis-cross-referencing.md)], the submission text started as a draft only (human authorship required); it lived in `raw/oeis-pe502/oeis-xref-draft.md`, was reworded and signed, and was submitted on 2026-09-18 (next section). This is the lead ("tier 1") interlink.
+Per [[oeis-cross-referencing](pages/oeis-cross-referencing.md)], the submission text started as a draft only (human authorship required); it lived in `raw/oeis-pe502/oeis-xref-draft.md`, was reworded and signed, and was submitted on 2026-09-26 (next section). This is the lead ("tier 1") interlink.
 
-## Submitted to OEIS (2026-09-18)
+## Submitted to OEIS (2026-09-26)
 
-The draft was submitted to both entries on 2026-09-18 (attributed "Chaz Reid, Sep 18 2026"). Two changes from the `raw/oeis-pe502/oeis-xref-draft.md` draft are worth recording: the A038503 comment adopts a cleaner **"height at most 2"** phrasing (removing the wiki's `−1` offset), and the FORMULA set is the **A000225-decomposition** form rather than the direct `F(w,2)`/`odd(w,2)` form.
+The draft was submitted to both entries on 2026-09-26 (attributed on OEIS as "Chaz Reid, Sep 18 2026" - the draft-signing date). Two changes from the `raw/oeis-pe502/oeis-xref-draft.md` draft are worth recording: the A038503 comment adopts a cleaner **"height at most 2"** phrasing (removing the wiki's `−1` offset), and the FORMULA set is the **A000225-decomposition** form rather than the direct `F(w,2)`/`odd(w,2)` form.
 
 **A038503 — odd count.** The draft framed A038503 as "*1 more than* the number of height-2 castles with an odd block count" (the extra 1 = the all-height-1 castle). The submitted comment folds that 1 in directly by allowing height 1:
 
@@ -66,7 +66,7 @@ The two A000225 formulas are equivalent to `A038503(n) + A038505(n) = 2^(n−1)`
 - Proof: `blocks = 1 + r`, `#{width-w strings with r runs} = C(w+1, 2r)`, parity of `r` ↔ residue of `2r` mod 4.[^2]
 - A new **geometric** reading of two isolated order-4 hyperbolic sequences; the only missing xref is A000225.[^4]
 - `A146559 = A038503 − A038505` ties the signed count into the same family.[^5]
-- **Submitted 2026-09-18** (Chaz Reid): the castle comment now lives in both entries — A038503 stated as "height ≤ 2, odd blocks" (no `−1`) — with the decomposition formulas `a(n) = A000225(n−1) − A038505(n) + 1` and `a(n) = A038505(n) + A146559(n)` on A038503, and `a(n) = A000225(n−1) − A038503(n) + 1` on A038505.
+- **Submitted 2026-09-26** (Chaz Reid): the castle comment now lives in both entries — A038503 stated as "height ≤ 2, odd blocks" (no `−1`) — with the decomposition formulas `a(n) = A000225(n−1) − A038505(n) + 1` and `a(n) = A038505(n) + A146559(n)` on A038503, and `a(n) = A000225(n−1) − A038503(n) + 1` on A038505.
 
 ## Entities & Concepts
 

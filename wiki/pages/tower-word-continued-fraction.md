@@ -65,6 +65,7 @@ The open end is the tower word's *own* continued fraction. A004149 is a generali
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] — an area-graded continued fraction for castles. Their bar-graph equation (3.11) is the castle GF by width, blocks and area, and iterating it gives a continued fraction in the q-shifted width variable (eq. 3.12).[^8]
 - [[generating-function-gallery](pages/generating-function-gallery.md)] / [[closed-form-hunting](pages/closed-form-hunting.md)] — the rational GFs and characteristic polynomials whose (palindromic) roots are the periodic-continued-fraction side of the same story.
 - [[pell-numbers](pages/pell-numbers.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] — the integer-sequence and castle-strip realizations of the growth constant `1 + √2`.
+- [[metallic-means](pages/metallic-means.md)] — `1 + √2` is the silver rung of this family.
 - [[aocp-combinatorics](pages/aocp-combinatorics.md)] — the inversion statistic and q-factorial, the classical statistic Flajolet's continued fractions carry as q-weights on Motzkin paths.
 - [[castle-compression](pages/castle-compression.md)] — bounded height collapses the continued fraction to a rational GF, i.e. a regular language: the "rule-generated" tier of the compressibility axis.
 

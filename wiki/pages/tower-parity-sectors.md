@@ -272,6 +272,7 @@ So for height-`≤4` towers the odd-last-column signed count is `−2^L · (0, 1
 - [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the sectors as the two components of `Spec Z[x]/(char_k)`, meeting only at `(2, x)`; the `k = 4` minor sector `H_2` gives `Z[ω]`.
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the seminar that starts from this page's even-sector surprise and ends at the Hardin identity.
 - [[castle-notation](pages/castle-notation.md)] - tower height `k` versus castle height `h = k + 1`, and the argument orders of `P(k, L)` and `F(w, h)`.
+- [[tower-heap](pages/tower-heap.md)] - the unsigned twin: the same column-height tower's block count as a Narayana polynomial, rather than the signed transfer matrix this page block-diagonalizes.
 
 
 ## Footnotes

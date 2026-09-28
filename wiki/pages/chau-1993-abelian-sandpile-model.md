@@ -48,6 +48,7 @@ In the text, [2, 3] support the exact count of critical states and the two-point
 - [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - the model and results the paper builds on.
 - [[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)] - the companion paper on equivalent toppling rules (its ref. [8]).
 - [[sandpile-group](pages/sandpile-group.md)] / [[castle-avalanches](pages/castle-avalanches.md)] - the castle sandpile pages; the reference table above lists the sources that would close their remaining gaps (the spanning-tree correspondence and the identity element).
+- [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] - now on the wiki, closing the "not yet" gap in ref. [4] above (Ruelle and Sen 1992, the direct predecessor of this 1995 paper's algebraic treatment).
 
 ## Footnotes
 

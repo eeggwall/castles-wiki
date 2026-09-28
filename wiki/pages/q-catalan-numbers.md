@@ -26,7 +26,7 @@ Delest and Viennot also state the next step as open. Their convex-polyomino peri
 
 ## Appearances in Sources
 
-- [[q-catalan-numbers](pages/q-catalan-numbers.md)] (charlesreid1.com topic page) — the three q-Catalan families and their statistics.
+- `raw/q-catalan-numbers.wiki` (charlesreid1.com topic page) — the three q-Catalan families and their statistics.
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - β turns parallelogram area into Σ peak heights; the q-analog of the convex count is posed as open.
 
 ## Related Concepts
@@ -41,7 +41,7 @@ Delest and Viennot also state the next step as open. Their convex-polyomino peri
 
 ## Footnotes
 
-[^1]: [[q-catalan-numbers](pages/q-catalan-numbers.md)] §"q-Catalan Numbers" L5 — "polynomial q-analogs of the ordinary Catalan Numbers: each C_n(q) reduces to C_n at q = 1. Different authors track different statistics, so there is more than one family."
-[^2]: [[q-catalan-numbers](pages/q-catalan-numbers.md)] §"q-Catalan Numbers" L7-9 — "Carlitz q-Catalan numbers count inversions of Dyck Words and Catalan permutations ... MacMahon, Krattenthaler, Gessel ... enumerate Dyck words by parameters of the down set ... Polya, Gessel ... count parallelogram polyominoes by area."
+[^1]: raw/q-catalan-numbers.wiki §"q-Catalan Numbers" L5 — "polynomial q-analogs of the ordinary Catalan Numbers: each C_n(q) reduces to C_n at q = 1. Different authors track different statistics, so there is more than one family."
+[^2]: raw/q-catalan-numbers.wiki §"q-Catalan Numbers" L7-9 — "Carlitz q-Catalan numbers count inversions of Dyck Words and Catalan permutations ... MacMahon, Krattenthaler, Gessel ... enumerate Dyck words by parameters of the down set ... Polya, Gessel ... count parallelogram polyominoes by area."
 [^3]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] p.183 Prop 4.1 - "The map β defined above is a bijection from Dyck words of length 2n onto parallelogram polyominoes of perimeter 2n+2. The area of P is the sum of the height of the peaks."
 [^4]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] p.204 §12(8) - "A major problem would be to introduce the area of the polyomino in our computation. This has been done for stack polyominoes [42] and parallelogram polyominoes [30, 12, 18] ... The problem is to make a q-analog of what we have done."

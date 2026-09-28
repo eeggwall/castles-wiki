@@ -72,6 +72,7 @@ The mining pass left five results about the `P(k,·)` rows:
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `F(w,3) = (3^w − 2^w − P(2,w) + P(1,w))/2`, the first castle row in which `P(2,·)` enters a public count.
 - [[convex-core](pages/convex-core.md)] - `P(m-1, L)` is also the signed count of the `L` free columns hanging below a plateau at level `m` of a convex core, so `P(h-2,w) - P(h-1,w) = (-1)^h` times a sum over convex castles of products of `P`.
 - [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - Stop 5 of the seminar uses the A009545 / A146559 correction as the cautionary example; P(1, L) = A009545(L+3)/2 is the halved relative.
+- [[tower-heap](pages/tower-heap.md)] - the unsigned twin: the same tower's block count as a Narayana polynomial, rather than the signed count `P(k,L)`.
 
 
 ## Footnotes

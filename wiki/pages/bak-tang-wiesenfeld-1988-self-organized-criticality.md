@@ -61,7 +61,7 @@ The paper proposes a common mechanism behind two widespread phenomena: 1/f ("fli
 
 ## Relation to Other Wiki Pages
 
-The wiki cited this paper's short letter (1987) on [[castle-avalanches](pages/castle-avalanches.md)] without a source page. This page supplies the model, the protocols, and the exponents, translated into the wiki's notation. Later work made the model exact: Dhar's matrix theory ([[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)]), where only local heights matter, and the literature mapped on [[chau-1993-abelian-sandpile-model](pages/chau-1993-abelian-sandpile-model.md)]. No contradiction with existing pages. The size exponent `τ ≈ 1.0` here and `τ ≈ 1.22` in Dhar's introduction are different estimates of the same quantity from different system sizes.
+The wiki cited this paper's short letter (1987) on [[castle-avalanches](pages/castle-avalanches.md)] without a source page. This page supplies the model, the protocols, and the exponents, translated into the wiki's notation. Later work made the model exact: Dhar's matrix theory ([[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)]), where only local heights matter, the literature mapped on [[chau-1993-abelian-sandpile-model](pages/chau-1993-abelian-sandpile-model.md)], and the group-theoretic algebra worked out on [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)]. No contradiction with existing pages. The size exponent `τ ≈ 1.0` here and `τ ≈ 1.22` in Dhar's introduction are different estimates of the same quantity from different system sizes.
 
 ## Footnotes
 

@@ -43,7 +43,7 @@ The main theorem is that an SOC system is completely deterministic iff, after re
 
 ## Relation to Other Wiki Pages
 
-The paper adds a classification (deterministic steady states) and an equivalence relation (row operations) to the sandpile theory the wiki sources to Dhar. Its height convention (stable heights `≤ 0`) differs from Dhar's and the wiki's by a shift, recorded on [[castle-notation](pages/castle-notation.md)]. Nothing on the wiki conflicts with it. The castle consequence, that only trivial castle groups are deterministic, is new and is recorded on [[sandpile-group](pages/sandpile-group.md)].
+The paper adds a classification (deterministic steady states) and an equivalence relation (row operations) to the sandpile theory the wiki sources to Dhar. Its height convention (stable heights `≤ 0`) differs from Dhar's and the wiki's by a shift, recorded on [[castle-notation](pages/castle-notation.md)]. Nothing on the wiki conflicts with it. The castle consequence, that only trivial castle groups are deterministic, is new and is recorded on [[sandpile-group](pages/sandpile-group.md)]. [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] builds on the same Dhar toppling-matrix/group formalism this paper's row-operation equivalence targets.
 
 ## Footnotes
 

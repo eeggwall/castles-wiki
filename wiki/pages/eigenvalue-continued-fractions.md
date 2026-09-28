@@ -151,6 +151,7 @@ This is the real-number counterpart of the [[mod-p-observatory](pages/mod-p-obse
 - [[spectral-analysis](pages/spectral-analysis.md)] — sibling thread at the *operator* level; this page is at the *sequence* level (`P(k,L)` recurrence characteristic polynomials).
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - why the L-direction `char_k` factors for even `k` and where the cubic `2ψ²` comes from.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the computational follow-through of this page: every metallic rung's convergents matched to OEIS, the `(x+1)^L (x−1)^{L−2}` factorization that collapses the k-direction, the plastic-number eigenvalue `2ψ²` with its periodic Jacobi–Perron expansion, and the mod-p twin made quantitative.
+- [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - proves the odd-`k` irreducibility this page's Step 5 uses, for `k = 2^m − 1`.
 
 ## Footnotes
 

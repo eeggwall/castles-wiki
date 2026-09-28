@@ -28,7 +28,7 @@ The main axis of growth constants is the [[metallic-means](pages/metallic-means.
 Not every algebraic growth constant is a metallic mean. The wiki has two other families:
 
 - **n-nacci constants**, roots of `x^h = x^{h − 1} + ⋯ + 1`: tribonacci at `h = 3`, tetranacci at `h = 4`, pentanacci, and so on to `2` in the limit.
-- **cubic-Pisot constants**, roots of term-skipping cubics: supergolden (`x³ − x² − 1`), plastic-squared `ψ²` (`x³ − 2x² + x − 1`), and the still-unrealized plastic number `ψ` (`x³ − x − 1`).
+- **cubic-Pisot constants**, roots of term-skipping cubics: supergolden (`x³ − x² − 1`), plastic-squared `ψ²` (`x³ − 2x² + x − 1`), and the plastic number `ψ` itself (`x³ − x − 1`), realized as a castle-strip area growth constant ([[area-growth-census](pages/area-growth-census.md)]).
 
 Together the metallic ladder and these two families cover every algebraic growth constant on the wiki so far. Transcendental growth constants do occur - weakly-unimodal-composition area growth is one - and they fall outside the classification (no named slot).
 
@@ -100,11 +100,11 @@ Only the `h = 2` rung is metallic; every `h ≥ 3` rung is a genuine degree-`h` 
 |---|---|---|---|
 | **supergolden** | `≈ 1.4656` | `x³ − x² − 1` | `h = 2` tree castles by area = Narayana's cows A000930 |
 | **plastic-squared** `ψ²` | `≈ 1.7549` | `x³ − 2x² + x − 1` | `h → ∞` tree castles by area = A005251 ([[plastic-number](pages/plastic-number.md)]) |
-| **plastic** `ψ` | `≈ 1.3247` | `x³ − x − 1` | **not yet realized** as a plain count - the open watch-note on [[plastic-number](pages/plastic-number.md)] |
+| **plastic** `ψ` | `≈ 1.3247` | `x³ − x − 1` | the smallest castle-strip area growth constant, height 2, rule "height 1 may not follow height 1" ([[area-growth-census](pages/area-growth-census.md)]) |
 
 Between the cubic-Pisot rows sits the `h = 4` tree row, A000570 (unique tournaments, [[unique-tournament](pages/unique-tournament.md)]), growing at `α ≈ 1.6851`, the dominant root of `x⁵ − x⁴ − x² − x − 1` - a quintic, non-metallic constant filling the slot between `φ` (`h = 3`) and `ψ²` (`h → ∞`).
 
-The plastic number `ψ` itself (`x³ = x + 1`) also enters as the `k = 6` signed-tower eigenvalue `ρ_6 = 2ψ²`, but that is a *spectral* appearance in the counting recurrence, not a growth-castle count. The bare-`ψ` growth castle (a Padovan/Perrin-rate count) is the one open slot in the cubic-Pisot family.
+The plastic number `ψ` itself (`x³ = x + 1`) also enters as the `k = 6` signed-tower eigenvalue `ρ_6 = 2ψ²`, a *spectral* appearance in the counting recurrence distinct from its growth-castle realization above.
 
 **A transcendental boundary.** [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] (A001523) has an area growth constant that is *not even algebraic* (transcendental, from the partition-function saddle-point analysis). Weakly-unimodal castles by area are a growth castle for no named constant - the outer boundary of the area axis.
 
@@ -133,9 +133,10 @@ Cross-growth theorems - relating types under different axes - are the frontier: 
 ## Open threads
 
 1. **Alternative realizations of the bronze / copper / nickel width growth castles.** Silver has three realizations; every higher rung has only `M_h = J − D`. Does any higher rung admit a second, structurally distinct castle-strip rule?
-2. **The bare plastic number `ψ`** as an area growth constant - the one open slot in the cubic-Pisot family ([[plastic-number](pages/plastic-number.md)]).
-3. **Vertical and block growth axes** - no member known for either; the natural vertical candidate is a quasi-polynomial.
-4. **Cross-growth-axis theorems** - the frontier: relating growth types under different axes on the same class.
+2. **Vertical and block growth axes** - no member known for either; the natural vertical candidate is a quasi-polynomial.
+3. **Cross-growth-axis theorems** - the frontier: relating growth types under different axes on the same class.
+
+*(Resolved by [[area-growth-census](pages/area-growth-census.md)]: the bare plastic number `ψ` is realized as a castle-strip area growth constant - the smallest one, in fact, at height 2 - closing what was the one open slot in the cubic-Pisot family.)*
 
 ## Related Concepts
 
@@ -146,6 +147,7 @@ Cross-growth theorems - relating types under different axes - are the frontier: 
 - [[castle-strip](pages/castle-strip.md)] - the construction-rule object (a skyline read left to right under a neighbor rule) whose transfer matrix supplies width growth constants.
 - [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] - the n-nacci area growth family.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] / [[plastic-number](pages/plastic-number.md)] - the cubic-Pisot area growth constants and the plastic number's spectral appearance.
+- [[area-growth-census](pages/area-growth-census.md)] - realizes the bare plastic number `ψ` as a castle-strip area growth constant.
 - [[unique-tournament](pages/unique-tournament.md)] - the A000570 growth constant `α ≈ 1.685` in the non-metallic slot.
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the pedagogy page explaining what "eigenvalue" means at each scope.
 - [[castle-snippets-strips](pages/castle-snippets-strips.md)] - the growth-constant probes.

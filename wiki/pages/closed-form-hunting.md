@@ -80,6 +80,7 @@ There is **no single-polynomial closed form** for `P(k,L)` as a function of `k` 
 - [[berlekamp-massey](pages/berlekamp-massey.md)] — the tool that recovers the `(1+x)^L` and palindromic polynomials.
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the `(x+1)^L (x−1)^{L−2}` factorization, the quasi-polynomial table `A_L, B_L`, and its OEIS hits.
 - [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] — `Σ_k (−1)^k C(n,k) = 0`, the alternating sum whose degenerate case `P(k,1) = (1 + (−1)^k)/2` opens the hunt.
+- [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] — the irreducibility side of the same `char_k` family this page's closed forms factor.
 
 ## Footnotes
 
