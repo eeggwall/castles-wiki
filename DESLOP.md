@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 142 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
-| Spot fixes only | 10 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 42 |
-| Words still to read | about 142,000 |
+| Fully read and cleaned | 146 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Spot fixes only | 9 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
+| Not started | 39 |
+| Words still to read | about 129,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -194,7 +194,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-snippets-strips (0.0)
 - [x] acronyms (0.0)
 
-### Analyses (64 pages, 38 fully read)
+### Analyses (64 pages, 39 fully read)
 
 - [x] castle-cryptography (5.1)
 - [x] isospectral-castles (4.9)
@@ -250,7 +250,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] area-growth-census (0.9)
 - [ ] half-sum-castles (0.8)
 - [x] castle-conditional-entropy (0.8)
-- [~] convex-polyomino-by-area (0.7)
+- [x] convex-polyomino-by-area (0.7)
 - [ ] castle-avalanches (0.6)
 - [x] hardin-word-identity (0.6)
 - [ ] prime-convex-castles (0.5)
@@ -261,7 +261,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] convex-castle-cap-factor (0.0)
 - [~] castle-q-bessel-closed-form (0.0)
 
-### Sources (44 pages, 29 fully read)
+### Sources (44 pages, 32 fully read)
 
 - [x] oeis-mining-pe502 (25.6)
 - [x] oeis-height2-hyperbolic-castles (5.9)
@@ -276,7 +276,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] tower-narayana-polynomial (2.5)
 - [x] pe502-pell-castle-strip (2.3)
 - [ ] algebraic-languages-and-polyominoes-enumeration (2.3)
-- [ ] bousquet-melou-fedou-1995-convex-polyominoes (2.2)
+- [x] bousquet-melou-fedou-1995-convex-polyominoes (2.2)
 - [x] counting-horizontally-convex-polyominoes (2.1)
 - [ ] deutsch-elizalde-2016-bargraphs-cornerless-motzkin (2.0)
 - [x] polyominoes (2.0)
@@ -299,8 +299,8 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [~] bak-tang-wiesenfeld-1988-self-organized-criticality (0.8)
 - [x] project-euler-502-solution (0.7)
 - [x] tetali-1998-unique-tournaments (0.5)
-- [ ] bender-1974-convex-n-ominoes (0.5)
-- [ ] klarner-rivest-1974-convex-n-ominoes (0.5)
+- [x] bender-1974-convex-n-ominoes (0.5)
+- [x] klarner-rivest-1974-convex-n-ominoes (0.5)
 - [x] project-euler-502-representations (0.0)
 - [x] project-euler-502-implementation-notes (0.0)
 - [x] project-euler-502-brute-force (0.0)
