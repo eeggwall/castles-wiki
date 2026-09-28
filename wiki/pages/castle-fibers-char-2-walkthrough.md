@@ -1,18 +1,18 @@
 ---
 title: Castle fibers seminar - char_2 across the primes
 category: Concepts
-summary: A seminar following one castle recurrence, P(2, L) = 1, 1, 3, 9, 19, 33, 59, 121, …, with characteristic polynomial char_2 = (x − 2)(x² − x + 2), followed through its fibers. p = 5 is a plain two-point fiber (period 24); p = 101 is the same shape, with the idempotent 76x² + 25x + 51 isolating the eigenvalue 2 (period 3400); p = 11 has three points because the quadratic splits exactly when p ≡ 1, 2, 4 (mod 7); p = 7 is fat, with a nilpotent, 6 ideals against 4 idempotents, and period 21 = 3 × 7; p = 2 is where everything meets, with x not a unit. Over Q the fibers assemble into P(2, L) = 2^L − U_L, the two parity sectors, split by the idempotent (x² − x + 2)/4, and over Z that idempotent and the inverse of x both need 1/2 because the sectors meet at (2, x); the norm relation α·ᾱ = 2 is the prime 2 splitting in Q(√−7). One pinned board summarizes all six primes.
+summary: A seminar following one castle recurrence, P(2, L) = 1, 1, 3, 9, 19, 33, 59, 121, …, with characteristic polynomial char_2 = (x − 2)(x² − x + 2), followed through its fibers. p = 5 is a plain two-point fiber (period 24); p = 101 is the same shape, with the idempotent 76x² + 25x + 51 isolating the eigenvalue 2 (period 3400); p = 11 has three points because the quadratic splits exactly when p ≡ 1, 2, 4 (mod 7); p = 7 is fat, with a nilpotent, 6 ideals against 4 idempotents, and period 21 = 3 × 7; p = 2 is where everything meets, with x not a unit. Over Q the fibers assemble into P(2, L) = 2^L − U_L, the two parity sectors, split by the idempotent (x² − x + 2)/4, and over Z that idempotent and the inverse of x both need 1/2 because the sectors meet at (2, x); the norm relation α·ᾱ = 2 is the prime 2 splitting in Q(√−7). One table summarizes all six primes.
 tags: [concept, castle, seminar, pedagogy, teaching, ring, spectrum, finite-field, chinese-remainder-theorem, idempotent, nilradical, frobenius, quadratic-reciprocity, signed-tower-count, parity-sector]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory, oeis-mining-pe502]
 created: 2026-09-26
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Castle fibers seminar - `char_2` across the primes
 
 **Thesis.** One castle recurrence lives in one integer ring, and every mod-`p` experiment on the wiki is a look at one fiber of that ring. This seminar follows one example through six primes and then back to `Q` and `Z`.
 
-**Format.** About 60 minutes at one blackboard, seven stops. Each stop is one prime (or `Q`, or `Z`), one computation, and one idea. Everything quoted is pinned under the board in the Snippet section and on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)]. The theory pages behind it are [[castle-ring-spectrum](pages/castle-ring-spectrum.md)], [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] and [[idempotent-decomposition](pages/idempotent-decomposition.md)].
+**Structure.** Stop 0 sets up the object; Stops 1-7 each take one prime (or `Q`, or `Z`), one computation and one idea. The values quoted are reproduced in the Snippet section and on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)]. The theory pages behind it are [[castle-ring-spectrum](pages/castle-ring-spectrum.md)], [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] and [[idempotent-decomposition](pages/idempotent-decomposition.md)].
 
 ## Stop 0 - the object
 
@@ -64,7 +64,7 @@ x² − x + 2 splits mod p   ⇔   p ≡ 1, 2, 4 (mod 7)          (checked for e
 
 So `11 ≡ 4` splits, while `3, 5, 101` (`≡ 3, 5, 3`) do not.[^4] It is the `char_2` analogue of the `char_1` rule "`p ≡ 1 (mod 4)`" on [[finite-fields](pages/finite-fields.md)].
 
-*Idea:* the shape of every fiber is decided by one number-theoretic rule. The observatory's factor signatures are not random ([[mod-p-observatory](pages/mod-p-observatory.md)]).
+*Idea:* for odd `p ≠ 7` the shape of the fiber is decided by `p mod 7`, through quadratic reciprocity ([[mod-p-observatory](pages/mod-p-observatory.md)]).
 
 ## Stop 4 - `p = 7`: a fat fiber
 
@@ -75,13 +75,13 @@ So `11 ≡ 4` splits, while `3, 5, 101` (`≡ 3, 5, 3`) do not.[^4] It is the `c
 - **Frobenius** `a ↦ a^7`, a linear map on the fiber, loses rank: rank 2 instead of 3. Its fixed space still has dimension 2, one per point.
 - The period is **`21 = 3 × 7`**. Throw away the nilpotents and the reduced fiber `F_7[x]/((x − 2)(x + 3))` has period 3; the nilradical contributes exactly the extra factor 7 ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §3).[^5]
 
-*Idea:* repeated factors mean nilpotents, and nilpotents mean an extra factor of `p` in the period. The book's local-ring exercise `R/M^n` (13.26) is the reason `F_7[x]/((x + 3)²)` behaves like one fat point.
+*Idea:* repeated factors mean nilpotents, and nilpotents mean an extra factor of `p` in the period. The book's local-ring exercise `R/M^n` (13.26) makes `F_7[x]/((x + 3)²)` a local ring, one fat point.
 
 ## Stop 5 - `p = 2`: where everything meets
 
 `char_2 ≡ x²(x + 1) (mod 2)`. Two points, `(2, x)` and `(2, x + 1)`, and the first is fat. Here even `x` fails to be a unit: it lies in the fat point. Every castle count agrees mod 2, since `P(2, L) ≡ T(2, L) = 3^L ≡ 1` (signs disappear mod 2), so the sequence mod 2 is `1, 1, 1, …`.[^6]
 
-*Idea:* 2 is the one prime that divides `char_2(0) = 4` (the product of the eigenvalues); Stop 7 shows why the integer ring's failures all occur there.
+*Idea:* 2 is the one prime dividing the product of the eigenvalues, `4` (`char_2(0) = −4`); Stop 7 shows that the sector idempotent and the inverse of `x` fail to lift there.
 
 ## Stop 6 - over `Q`: the two sectors
 
@@ -106,15 +106,15 @@ and **Stop 2's `e_1` is this `e` reduced mod 101**, with `1/4 ≡ 76`. Every odd
 Now the integer ring `A = Z[x]/(char_2)` itself.
 
 - **The sectors meet at `(2, x)`.** Mod 2 the sector factors become `x − 2 ≡ x` and `x² − x + 2 ≡ x(x + 1)`, which share the point `(2, x)`. Their resultant is `4 = 2²`: they can only meet over 2.[^8]
-- **So `A` has no idempotents besides 0 and 1.** A splitting of `A` would split its spectrum in two, but the two sectors are glued at `(2, x)`. The rational `e = (x² − x + 2)/4` needs the `1/4`. The same happens to `x`: `x·(x² − 3x + 4) = 4` in `A`, so `x^{−1} = (x² − 3x + 4)/4` exists in every odd fiber but not in `A`. Everything that goes wrong between `A` and its fibers goes wrong at 2, like `5` being idempotent mod 10 but not in `Z` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §5).
+- **So `A` has no idempotents besides 0 and 1.** A splitting of `A` would split its spectrum in two, but the two sectors are glued at `(2, x)`. The rational `e = (x² − x + 2)/4` needs the `1/4`. The same happens to `x`: `x·(x² − 3x + 4) = 4` in `A`, so `x^{−1} = (x² − 3x + 4)/4` exists in every odd fiber but not in `A`. Both the sector idempotent and the inverse of `x` need `1/2`, the way `5` is idempotent mod 10 but not in `Z` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §5).
 - **The only fat fibers are over 2 and 7**, the primes dividing `disc(char_2) = −112`.
 - **2 splits in `Q(√−7)`.** Mod 2 the quadratic `x² − x + 2 ≡ x(x + 1)` has two roots, so the prime 2 splits into `α` and `ᾱ` in the ring of integers `Z[(1 + √−7)/2]`, with `α·ᾱ = 2`. This is the same norm relation that explains the `d = 3` linear-complexity deficits of the castle cryptosystem ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] §5), now read as the prime 2 splitting.[^9]
 
-*Idea:* one integer ring, one spectrum. The observatory's rows are its fibers, the sectors are its components, and the prime 2 is where they meet.
+*Idea:* the observatory's rows are the fibers of one integer ring, the sectors are its components, and the components meet over the prime 2.
 
-## The board
+## Summary table
 
-Everything above on one table, `char_2` across six primes:
+`char_2` across six primes:
 
 | `p` | `char_2 mod p` (degree, multiplicity) | points | fat? | Frobenius (rank, fixed dim) | ideals / idempotents | period of `P(2, ·) mod p` |
 |---|---|---|---|---|---|---|
@@ -125,11 +125,11 @@ Everything above on one table, `char_2` across six primes:
 | 11 | (1,1), (1,1), (1,1) | 3 | no | (3, 3) | 8 / 8 | 10 |
 | 101 | (1,1), (2,1) | 2 | no | (3, 2) | 4 / 4 | 3400 |
 
-Reading down the columns is the seminar's summary. For odd `p ≠ 7` the number of points is decided by `p mod 7`. Fat rows are exactly the primes dividing `−112`. Frobenius rank drops exactly on fat rows, and its fixed dimension always equals the number of points. Ideals equal idempotents exactly on non-fat rows.
+For odd `p ≠ 7` the number of points is decided by `p mod 7`. Fat rows are exactly the primes dividing `−112`. Frobenius rank drops exactly on fat rows, and its fixed dimension always equals the number of points. Ideals equal idempotents exactly on non-fat rows.
 
 ## Snippet
 
-The board is one call, built from the snippets on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] (`char_k`, `x_order`, `frobenius_profile`, `fiber_ideal_count`):
+The table is one call, built from the snippets on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] (`char_k`, `x_order`, `frobenius_profile`, `fiber_ideal_count`):
 
 ```python
 def fiber_board(k, primes):
@@ -152,10 +152,10 @@ def fiber_board(k, primes):
 (101, [(1, 1), (2, 1)], (3, 2), (4, 4), 3400)
 ```
 
-## Exercises for the room
+## Exercises
 
 1. Predict the board row for `p = 29` before computing it. (`29 ≡ 1 (mod 7)`: three points, not fat, Frobenius `(3, 3)`, 8 ideals and 8 idempotents; the period divides `28`.)
-2. Run `fiber_board(4, [3, 5, 107])` and find the fat rows. (`disc(char_4) = −2¹⁶·3·107`.)
+2. Run `fiber_board(4, [3, 5, 107])` and find the fat rows. (`disc(char_4) = 2¹⁶·3·107`.)
 3. Write down the three idempotents of the `p = 11` fiber as Lagrange polynomials through `2, −4, 5`, and check that the rational `e` of Stop 6 reduces to the one at `2`, and `1 − e` to the sum of the other two.
 4. Explain why every fiber of `char_2`, including `p = 2`, has at least two points, so no choice of prime lets the cryptosystem of [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] avoid a CRT split of `char_2`. Then explain, using Stop 7, why the idempotents of the `p = 2` fiber cannot be reductions of Stop 6's `e`.
 

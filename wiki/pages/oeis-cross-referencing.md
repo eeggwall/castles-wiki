@@ -41,7 +41,7 @@ OEIS requires **human authorship** — a tool may run the verification scripts, 
 - [[signed-tower-count](pages/signed-tower-count.md)] — `P(1,L) = A146559(L+1)`, the offset example above.
 - [[oeis-index](pages/oeis-index.md)] — the wiki's script-generated OEIS directory: every A-number cited across the wiki, grouped by role (castle interpretation, metallic ladder, plastic, supporting), with the citing pages and mention counts.
 - [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] — the hand-curated catalogue: every castle-counting sequence with its novelty status (known / interlink / novel-candidate / unchecked) and the submission priority list.
-- [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the classroom version of this method: one sequence end to end, a trap, and a non-match.
+- [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the seminar version of this method: one sequence end to end, a trap, and a non-match.
 
 
 ## Footnotes

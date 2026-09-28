@@ -1,20 +1,20 @@
 ---
 title: Hardin identity seminar - towers, words, and one change of basis
 category: Concepts
-summary: A seminar on the Hardin word identity. Start from a surprise - split the signed tower count P(6, L) = 1, 1, 7, 49, 231, 833, … by the parity of the last column, and the even half 1, 4, 16, 56, 192, … is exactly divisible by 2^L, leaving 1, 2, 4, 7, 12, 21, 37, 65 (A005251, binary strings with no isolated 1). Then explain it in six stops - towers as a 7×7 sign matrix, the hidden symmetry "reflect heights, flip odd signs" that splits it into two sectors, a basis in which the even sector matrix is exactly twice an integer matrix (the 2^L), a three-state "pending letter" automaton for the words, and a 0/1 change of basis S with det −1 that conjugates one matrix into the other and proves the identity in one line. The same argument at k = 4m + 2 gives Hardin's A202882, A203094, A203184 and proves his empirical recurrences (m ≤ 8). A closing stop connects A005251 to tree castles by area and, at height 4, to Tetali's unique tournaments. Every value is pinned by one runnable snippet block.
+summary: A seminar on the Hardin word identity. Split the signed tower count P(6, L) = 1, 1, 7, 49, 231, 833, … by the parity of the last column, and the even half 1, 4, 16, 56, 192, … is exactly divisible by 2^L, leaving 1, 2, 4, 7, 12, 21, 37, 65 (A005251, binary strings with no isolated 1). Six stops explain it - towers as a 7×7 sign matrix, the symmetry "reflect heights, flip odd signs" that splits it into two sectors, a basis in which the even sector matrix is exactly twice an integer matrix (the 2^L), a three-state "pending letter" automaton for the words, and a 0/1 change of basis S with det −1 that conjugates one matrix into the other and proves the identity in one line. The same argument at k = 4m + 2 gives Hardin's A202882, A203094, A203184 and proves his empirical recurrences (m ≤ 8). A closing stop connects A005251 to tree castles by area and, at height 4, to Tetali's unique tournaments. Every value is pinned by one runnable snippet block.
 tags: [concept, castle, seminar, pedagogy, teaching, signed-tower-count, transfer-matrix, symmetry, bijection, hardin, words, automaton, oeis, a005251, plastic-number]
 sources: [oeis-mining-pe502, tetali-1998-unique-tournaments]
 created: 2026-09-26
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Hardin identity seminar - towers, words, and one change of basis
 
-**Thesis.** A signed count of towers and a count of binary words turn out to be the same sequence up to an exact factor `2^L`. The reason is not a bijection between the objects but a single change of basis between two small transfer matrices. It can be found by looking for a symmetry and proved by checking three matrix equations.
+**Thesis.** A signed count of towers and a count of binary words turn out to be the same sequence up to an exact factor `2^L`. The reason is a single change of basis between two small transfer matrices (no bijection between the objects is known). It is found through a symmetry and proved by checking three matrix equations.
 
-**Format.** About 60 minutes at one blackboard, seven stops, worked at `k = 6` (`m = 1`) where every matrix is `3 × 3`. The general case appears only at Stop 6. Every value quoted is pinned by the Snippet block at the end. The research pages behind it are [[tower-parity-sectors](pages/tower-parity-sectors.md)] (the symmetry and the sectors) and [[hardin-word-identity](pages/hardin-word-identity.md)] (the proof for all `m ≤ 8`).
+**Structure.** Stops 0-7, worked at `k = 6` (`m = 1`) where every matrix is `3 × 3`; the general case appears only at Stop 6. Every value quoted is reproduced by the Snippet block at the end. The research pages behind it are [[tower-parity-sectors](pages/tower-parity-sectors.md)] (the symmetry and the sectors) and [[hardin-word-identity](pages/hardin-word-identity.md)] (the proof for all `m ≤ 8`).
 
-## Stop 0 - the surprise
+## Stop 0 - the observation
 
 A **tower** of height `≤ k` on a base of length `L` is a row of column heights `c_1, …, c_L ∈ {0, …, k}`, sitting on a castle's bottom row, so together they form a castle of height `≤ k + 1` ([[castle-notation](pages/castle-notation.md)]). Its **blocks** are counted by the total downward step, with the ground at height 0 on both sides, and the **signed tower count** is `P(k, L) = Σ (−1)^{blocks}` ([[signed-tower-count](pages/signed-tower-count.md)], [[castle-sign](pages/castle-sign.md)]). At `k = 6`:
 
@@ -35,7 +35,7 @@ The even half is divisible by `2^L`, exactly, for every `L`, and the quotient is
 1, 2, 4, 7, 12, 21, 37, 65, …        =  A005251: binary strings of length L + 1 with no isolated 1
 ```
 
-(`000, 011, 110, 111` are the four of length 3.)[^1] Nothing about towers mentions binary strings or powers of 2. The seminar explains both.
+(`000, 011, 110, 111` are the four of length 3.)[^1] The stops below explain both the factor `2^L` and the binary strings.
 
 ## Stop 1 - towers as a matrix
 
@@ -47,15 +47,15 @@ s(a, b)  =  1  if a ≤ b,      (−1)^{a − b}  if a > b.
 
 These signs form a `(k+1) × (k+1)` matrix `M_k`, and `P(k, L) = e_0ᵀ M_kᴸ v`, with `e_0` "start at height 0" and `v_b = (−1)^b` "drop back to the ground at the end". The whole count is one matrix power ([[tower-parity-sectors](pages/tower-parity-sectors.md)] Part 1).
 
-*Idea:* local rules make transfer matrices, and transfer matrices make C-finite sequences.
+*Idea:* a nearest-neighbor rule on column heights gives a transfer matrix, and a transfer-matrix count is C-finite.
 
-## Stop 2 - the hidden symmetry
+## Stop 2 - the symmetry `JD`
 
-Try two natural moves on heights: `J` reflects them (`c ↦ k − c`), and `D` flips the sign of every odd height. Neither commutes with `M_k`, but their **product does**: `JD · M_k = M_k · JD`. Reflecting heights turns descents into ascents, and flipping odd signs turns the signs back. One line of parity bookkeeping checks it entrywise ([[tower-parity-sectors](pages/tower-parity-sectors.md)] Part 1).
+Consider two maps on heights: `J` reflects them (`c ↦ k − c`), and `D` flips the sign of every odd height. Neither commutes with `M_k`, but their **product does**: `JD · M_k = M_k · JD`. Reflecting heights turns descents into ascents, and flipping odd signs turns the signs back. One line of parity bookkeeping checks it entrywise ([[tower-parity-sectors](pages/tower-parity-sectors.md)] Part 1).
 
 For even `k`, `JD` squares to the identity, so it splits the state space into its `+1` and `−1` eigenspaces, and `M_k` preserves each. That is the **even/odd last-column split** of Stop 0, and it is why each half is its own C-finite sequence with its own factor of the characteristic polynomial.
 
-*Idea:* when a split looks numerical, look for a symmetry that commutes with the transfer matrix.
+*Idea:* the even/odd split is the eigenspace split of the involution `JD`, which commutes with `M_k`.
 
 ## Stop 3 - where the `2^L` comes from
 
@@ -67,9 +67,9 @@ R/2  =  [ 1   0  1 ]
         [ 1  −1  1 ]
 ```
 
-The `2^L` is an exact rescaling of the sector matrix, not an asymptotic. This is the step that needs `k ≡ 2 (mod 4)`: then `k/2` is odd, so no height is fixed by the reflection and every `f_c` has two terms ([[hardin-word-identity](pages/hardin-word-identity.md)], "The two transfer matrices").[^2]
+The `2^L` is an exact rescaling of the sector matrix. This is the step that needs `k ≡ 2 (mod 4)`: then `k/2` is odd, so the middle height `k/2`, which the reflection fixes, lies in the odd sector, and every `f_c` of the even sector has two terms ([[hardin-word-identity](pages/hardin-word-identity.md)], "The two transfer matrices").[^2]
 
-*Idea:* choose the basis the symmetry suggests, and hidden structure (here a factor of 2 per step) shows up as divisibility of the matrix entries.
+*Idea:* in the basis adapted to the symmetry, the factor 2 per step appears as divisibility of the matrix entries by 2.
 
 ## Stop 4 - the words, as a machine
 
@@ -81,7 +81,7 @@ W  =  [ 1  0  1 ]        from (0,+): read 0 → (0,+);  read 1 → (1,−)
       [ 0  1  0 ]        from (1,−): read 0 → forbidden;  read 1 → (1,+)
 ```
 
-Trace two words on the board. `011` goes `(0,+) → (0,+) → (1,−) → (1,+)` and ends satisfied, so it is **accepted**. `010` goes `(0,+) → (0,+) → (1,−)`, and then the pending `1` sees a `0`, which is **forbidden**. A word is valid exactly when every pending `1` is followed by a `1` before the end, and the count is `W_1(L+1) = start · W^{L+1} · end`. For general `m` the alphabet is `{0, …, m}`, "not isolated" becomes "every nonzero letter is `≤` a neighbor", and the machine has `2m + 1` states ([[hardin-word-identity](pages/hardin-word-identity.md)], "Word side").
+Trace two words. `011` goes `(0,+) → (0,+) → (1,−) → (1,+)` and ends satisfied, so it is **accepted**. `010` goes `(0,+) → (0,+) → (1,−)`, and then the pending `1` sees a `0`, which is **forbidden**. A word is valid exactly when every pending `1` is followed by a `1` before the end, and the count is `W_1(L+1) = start · W^{L+1} · end`. For general `m` the alphabet is `{0, …, m}`, "not isolated" becomes "every nonzero letter is `≤` a neighbor", and the machine has `2m + 1` states ([[hardin-word-identity](pages/hardin-word-identity.md)], "Word side").
 
 *Idea:* a local constraint on words becomes a finite automaton once a pending flag is added to the state.
 
@@ -123,15 +123,15 @@ R. H. Hardin recorded recurrences for A202882, A203094 and A203184 on the OEIS a
 
 ## Stop 7 - where else A005251 lives
 
-The word sequence of Stop 0 turns up well beyond towers:
+The word sequence of Stop 0 also counts:
 
-- **Tree castles by area.** A tree castle has no filled `2 × 2` square, so no two adjacent columns are both `≥ 2`. By area, with unlimited height, these are compositions with no two adjacent parts `≥ 2`, counted by `A005251(n+2)` ([[tree-castle-by-area](pages/tree-castle-by-area.md)]). The classic "cut the gaps" encoding sends such a composition to a binary string with no factor `010`, term for term ([[a005251-bijection](pages/a005251-bijection.md)]). One bit-shift turns that into Hardin's no-isolated-1 strings.
-- **Tournaments.** At height 4 instead of unlimited height, tree castles by area match the tournaments determined by their score sequences (A000570). The structural reason is Tetali's theorem that such tournaments are built from four basic ones on 1, 3, 4 and 5 vertices ([[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)]).[^6]
-- **The plastic number.** All of these grow like `ψ²`, the square of the plastic number, because the characteristic polynomial of the `m = 1` machine is the minimal polynomial of `ψ²` ([[plastic-number](pages/plastic-number.md)]).
+- **Tree castles by area.** A tree castle has no filled `2 × 2` square, so no two adjacent columns are both `≥ 2`. By area, with unlimited height, these are compositions with no two adjacent parts `≥ 2`, counted by `A005251(n+2)` ([[tree-castle-by-area](pages/tree-castle-by-area.md)]). The classic "cut the gaps" encoding sends such a composition to a binary string with no factor `010` ([[a005251-bijection](pages/a005251-bijection.md)]). Strings avoiding `010` of length `N` and Hardin's no-isolated-1 strings of length `N + 1` both number `A005251(N + 3)`.
+- **Tournaments.** At height 4 instead of unlimited height, tree castles by area match the tournaments determined by their score sequences (A000570). The link is Tetali's theorem that such tournaments are built from four basic ones on 1, 3, 4 and 5 vertices ([[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)]).[^6]
+- **The plastic number.** The word counts and the unlimited-height tree castles grow like `ψ²`, the square of the plastic number, because the characteristic polynomial of the `m = 1` machine is the minimal polynomial of `ψ²` ([[plastic-number](pages/plastic-number.md)]).
 
-*Idea:* A005251 connects signed towers, words, compositions and tournaments.
+*Idea:* A005251 counts the even-sector signed towers divided by `2^L`, the words, and the tree castles by area; at height 4 the tree castles meet the tournaments of A000570.
 
-## The board
+## Summary table
 
 | step | tower side | word side |
 |---|---|---|
@@ -228,9 +228,9 @@ def S_pattern(m):                          # the 0/1 change of basis, sector coo
 [[1, 2, 4, 7, 12, 21, 37], [1, 3, 9, 22, 51, 121, 292], [1, 4, 16, 50, 144, 422, 1268], [1, 5, 25, 95, 325, 1121, 3985]]
 ```
 
-`sector_half` derives `R/2` from `M_k` itself rather than typing in the closed form, so the `3 × 3` matrix of Stop 3 is a computation, not an assumption.
+`sector_half` derives `R/2` from `M_k` itself, so the `3 × 3` matrix of Stop 3 is computed.
 
-## Exercises for the room
+## Exercises
 
 1. Run the automaton `W` by hand on `0110` and `0100`. Which is accepted, and at which letter does the other fail?
 2. Check `P(6, L) = P_even + P_odd` for `L ≤ 7` from the two rows of Stop 0.
@@ -242,7 +242,7 @@ def S_pattern(m):                          # the 0/1 change of basis, sector coo
 - the general-`m` proof (a finite entrywise check of the three equations);
 - a sign-reversing involution that realizes the `2^L` object by object;
 - the two sector-assignment conjectures of [[tower-parity-sectors](pages/tower-parity-sectors.md)];
-- the `h ≥ 8` tree-castle-by-area sequences, which have no OEIS match yet (`h = 5, 6, 7` are A079816, A189593, A189600; [[tree-castle-by-area](pages/tree-castle-by-area.md)]).
+- the `h = 8` tree-castle-by-area sequence, which has no OEIS match (searched 2026-09-26; `h = 5, 6, 7` are A079816, A189593, A189600; [[tree-castle-by-area](pages/tree-castle-by-area.md)]).
 
 ## Appearances in Sources
 
@@ -251,7 +251,7 @@ def S_pattern(m):                          # the 0/1 change of basis, sector coo
 
 ## Related Concepts
 
-- [[hardin-word-identity](pages/hardin-word-identity.md)] - the full proof and the combinatorial reading of `S`; this page is its classroom version.
+- [[hardin-word-identity](pages/hardin-word-identity.md)] - the full proof and the combinatorial reading of `S`; this page is its seminar version.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the symmetry `JD`, the sectors, and the closed-form factors `H_d`.
 - [[a005251-bijection](pages/a005251-bijection.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] - Stop 7's compositions and strings.
 - [[signed-tower-count](pages/signed-tower-count.md)] / [[castle-sign](pages/castle-sign.md)] - the signed count and the block sign.

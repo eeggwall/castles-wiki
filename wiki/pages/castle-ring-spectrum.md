@@ -1,11 +1,11 @@
 ---
 title: The castle ring's spectrum - Spec Z[x]/(char_k) over Spec Z
 category: Analyses
-summary: Read Z[x]/(char_k) as a family of rings over the primes. The fiber over p is F_p[x]/(char_k mod p), whose points are the distinct irreducible factors - exactly the mod-p observatory's factor signatures. The fiber over Q has one point for odd k and two for even k (the parity sectors, the irreducible components). The two sector components meet at exactly one point, (2, x), because the sector factors reduce mod 2 to x^(k/2) and x^(k/2)(x+1) - the geometric reading of their resultant 2^(k(k+2)/4). Fibers at discriminant primes carry nilpotents, and the nilradical accounts for exactly the extra p in the periods - per = (reduced period) · p^⌈log_p m⌉ at all 7 discriminant-zero primes tested. Small cases are classical rings - Z[i] for k = 1 (the castle prime (2, x) is the Gaussian prime (1 + i)) and Z[ω] for the k = 4 minor sector (mod 2 it is the field F_4). A fiber is semisimple exactly when it is not fat. Because Spec is connected, Z[x]/(char_k) has only the idempotents 0 and 1 - no fiber splitting lifts to the integers - and the sector idempotent needs exactly a power of 2 in its denominator, 2^(v_2(k!)+1) for every even k ≤ 40. Frobenius a ↦ a^p, a linear map on each fiber, has full rank exactly on non-fat fibers and a fixed space whose dimension is the number of points (Berlekamp). Nilpotents and units do not lift either (x is inverted only with 1/2^k), so every obstruction between the integer ring and its fibers is at 2; the k = 4 minor sector's ring Z[√−3] is not maximal.
+summary: Read Z[x]/(char_k) as a family of rings over the primes. The fiber over p is F_p[x]/(char_k mod p), whose points are the distinct irreducible factors - exactly the mod-p observatory's factor signatures. The fiber over Q has one point for odd k and two for even k (the parity sectors, the irreducible components). For every even k ≤ 30 checked, the two sector components meet at exactly one point, (2, x), because the sector factors reduce mod 2 to x^(k/2) and x^(k/2)(x+1) - the geometric reading of their resultant 2^(k(k+2)/4). Fibers at discriminant primes carry nilpotents, and x's component in 1 + N (N the nilradical) supplies the extra factor in the period - per = (reduced period) · p^⌈log_p m⌉ at all 7 discriminant-zero primes tested. Small cases are classical rings - Z[i] for k = 1 (the castle prime (2, x) is the Gaussian prime (1 + i)) and Z[ω] for the k = 4 minor sector (mod 2 it is the field F_4). A fiber is semisimple exactly when it is not fat. Because Spec is connected (even k ≤ 30, and odd k with char_k irreducible), Z[x]/(char_k) has only the idempotents 0 and 1 - no fiber splitting lifts to the integers - and the sector idempotent needs exactly a power of 2 in its denominator, 2^(v_2(k!)+1) for every even k ≤ 40. Frobenius a ↦ a^p, a linear map on each fiber, has full rank exactly on non-fat fibers and a fixed space whose dimension is the number of points (Berlekamp). The sector idempotent and the inverse of x need only 1/2 (x is inverted with 1/2^k); the other fiber idempotents do not lift even with 1/2 inverted, and the nilpotents sit at the primes dividing the discriminant; the k = 4 minor sector's ring Z[√−3] is not maximal.
 tags: [analysis, castle, ring, spectrum, prime-ideal, nilradical, local-ring, finite-field, parity-sector, resultant, period, gaussian-integers, eisenstein-integers, sympy, verification]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory, oeis-mining-pe502]
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # The castle ring's spectrum - `Spec Z[x]/(char_k)` over `Spec Z`
@@ -43,7 +43,7 @@ k = 4:   f ≡ x²        g ≡ x² (x + 1)
 k = 2d:  f ≡ x^d       g ≡ x^d (x + 1)          (checked every even k ≤ 30)
 ```
 
-So **the two parity sectors of `Spec A_k` meet at exactly one point, `(2, x)`**, and nowhere else. The fiber over 2 has two points, `(2, x)` (on both components) and `(2, x + 1)` (on the `g`-component only). For odd `k` the fiber over 2 is the single point `(2, x)`, since `char_k ≡ x^{k+1}` (mod 2) ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] footnote 5).
+So, for every even `k ≤ 30` checked, **the two parity sectors of `Spec A_k` meet at exactly one point, `(2, x)`**, and nowhere else. The fiber over 2 has two points, `(2, x)` (on both components) and `(2, x + 1)` (on the `g`-component only). For odd `k` the fiber over 2 is the single point `(2, x)`, since `char_k ≡ x^{k+1}` (mod 2) ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] footnote 5).
 
 ## 3. Fat fibers: the nilradical carries the extra `p`
 
@@ -86,24 +86,24 @@ fiber F_p[x]/(char_k mod p) is semisimple   ⇔   char_k mod p is squarefree   �
 
 The integers themselves show how this can fail. Mod 10, `5² = 25 ≡ 5`, so `5` is an idempotent of `Z/10 = Z/2 × Z/5`, the CRT splitting. But no integer except `0` and `1` satisfies `e² = e`, so `5` does not lift from `Z/10` to `Z`. `Z/10` falls apart into two pieces; `Z` does not. The book's exercise 12.19 is the same phenomenon one step more subtle: in `R = {m/n : gcd(n, 6) = 1}`, the quotient `R/6R ≅ Z/2 × Z/3` has the idempotent `3`, but `R` has only `0` and `1`.[^16]
 
-**`A_k` has only the idempotents `0` and `1`.** For odd `k`, `A_k` is an integral domain (`char_k` irreducible), and a domain has no other idempotents. For even `k`, an idempotent `e ∉ {0, 1}` of `A_k` would split `Spec A_k` into two disjoint pieces (exercise 17.19), but §2 showed the two components meet at `(2, x)`, so `Spec A_k` is connected. So none of the fiber idempotents lift. The splittings of [[idempotent-decomposition](pages/idempotent-decomposition.md)] exist only after reducing mod `p`, exactly like `5` in `Z/10`.
+**`A_k` has only the idempotents `0` and `1`.** For odd `k` with `char_k` irreducible (proved for `k = 2^m − 1`, checked to `k = 31`), `A_k` is an integral domain, and a domain has no other idempotents. For even `k`, an idempotent `e ∉ {0, 1}` of `A_k` would split `Spec A_k` into two disjoint pieces (exercise 17.19), but §2 showed the two components meet at `(2, x)`, so `Spec A_k` is connected. So none of the fiber idempotents lift. The splittings of [[idempotent-decomposition](pages/idempotent-decomposition.md)] exist only after reducing mod `p`, exactly like `5` in `Z/10`.
 
-**Allowing division by 2 is exactly enough.** The sector split does exist over `Q`: the element that is `1` on one sector and `0` on the other is an honest idempotent of `Q[x]/(char_k)`. Its coefficients are fractions whose denominators are pure powers of 2, and the power is `2^{v_2(k!) + 1}` for every even `k ≤ 40` (`v_2(k!)` = the number of factors of 2 in `k!`):[^17]
+**Allowing division by 2 is exactly enough.** The sector split does exist over `Q`: the element that is `1` on one sector and `0` on the other is an idempotent of `Q[x]/(char_k)`. Its coefficients are fractions whose denominators are pure powers of 2, and the power is `2^{v_2(k!) + 1}` for every even `k ≤ 40` (`v_2(k!)` = the number of factors of 2 in `k!`):[^17]
 
 ```
 k = 2:    e = (x² − x + 2)/4                          denominator 2^2
 k = 4, 6, 8, 10, 12, …:                               denominators 2^4, 2^5, 2^8, 2^9, 2^11, …
 ```
 
-So the idempotent needs "divide by 2" and nothing else. It lives in `A_k[1/2]`, polynomials whose coefficients may have powers of 2 in the denominator. Mod any odd `p`, dividing by 2 is allowed (2 is invertible mod `p`), so the idempotent reduces to an honest idempotent of every odd fiber. At `p = 101` it is `(x² − x + 2)·4^{−1} = 76x² + 25x + 51`, the idempotent computed on [[idempotent-decomposition](pages/idempotent-decomposition.md)]. At `p = 2` the division is impossible, which is the meeting point `(2, x)` seen algebraically. The denominator reaches `2^k` exactly when `k` is a power of 2, since `v_2(k!) = k − (number of 1s in the binary expansion of k)`.
+So the idempotent needs "divide by 2" and nothing else. It lives in `A_k[1/2]`, polynomials whose coefficients may have powers of 2 in the denominator. Mod any odd `p`, dividing by 2 is allowed (2 is invertible mod `p`), so the idempotent reduces to an idempotent of every odd fiber. At `p = 101` it is `(x² − x + 2)·4^{−1} = 76x² + 25x + 51`, the idempotent computed on [[idempotent-decomposition](pages/idempotent-decomposition.md)]. At `p = 2` the division is impossible, which is the meeting point `(2, x)` seen algebraically. The denominator reaches `2^k` exactly when `k` is a power of 2, since `v_2(k!) = k − (number of 1s in the binary expansion of k)`.
 
 **Nilpotents and units do not lift either.** A surjective ring map carries idempotents, nilpotents and units to idempotents, nilpotents and units, but none of the three converses hold. The book's counterexamples all come from `Z → Z_n`: `3` is idempotent in `Z_6`, `2` is nilpotent in `Z_4`, `2` is a unit in `Z_5`, and none of them are in `Z` (exercise 4.10).[^18] Reduction `A_k → F_p[x]/(char_k)` fails all three:
 
-- *idempotents*: the fiber idempotents need `1/2` (above);
+- *idempotents*: the parity-sector idempotent needs exactly `1/2` (above); the other fiber idempotents do not lift even with `1/2` inverted (for `k = 1`, `Z[1/2][x]/(char_1) = Z[1/2, i]` is a domain);
 - *nilpotents*: a fat fiber has nonzero nilpotents, but `A_k` has none, because `char_k` is squarefree over `Q`;
 - *units*: from `char_k(x) = 0`, `x · h(x) = −char_k(0) = ±2^k` for an integer polynomial `h`, so `x` is a unit in every fiber over an odd prime but not in `A_k`, where `x^{−1} = ±h(x)/2^k` needs `1/2^k`.[^19]
 
-In plain terms: everything that goes wrong between the integer ring and its fibers goes wrong at the prime 2.
+The sector idempotent and the unit `x` fail only at the prime 2. The nilpotents sit at the primes dividing `disc(char_k)` (for example 7 at `k = 2`), and the non-sector idempotents fail with `1/2` inverted too.
 
 ## 6. Frobenius counts the points
 
@@ -137,10 +137,10 @@ Frobenius also explains why every root of one irreducible factor gives the same 
 **Settled.**
 - The fiber of `Spec Z[x]/(char_k)` over each prime is the observatory's factor signature, and the CRT and idempotent structure is that fiber's decomposition into points.
 - For even `k ≤ 30` the two parity-sector components meet only over 2, and there only at the single point `(2, x)`.
-- The period inflation at discriminant primes is the nilradical: `per = (reduced period) · p^⌈log_p m⌉` in all 7 tested cases.
+- The period inflation at discriminant primes comes from the nilradical: `per = (reduced period) · p^⌈log_p m⌉` in all 7 tested cases.
 - A fiber is semisimple exactly when it is not fat, and then its ideals and idempotents agree (`2^r` each); fat fibers have `∏ (m_i + 1)` ideals.
 - Frobenius on a fiber has rank `Σ d_i ⌈m_i/p⌉` (full exactly when the fiber is not fat) and a fixed space of dimension `r`, the number of points (12 fibers checked; the fixed-space statement is Berlekamp's theorem).
-- `A_k` has only the idempotents `0, 1`, so no fiber splitting lifts to the integers; the sector idempotent needs exactly the denominator 2 (conjecturally `2^{v_2(k!) + 1}`).
+- `A_k` has only the idempotents `0, 1` (even `k ≤ 30` via the resultant; odd `k` where `char_k` is irreducible), so no fiber splitting lifts to the integers; the sector idempotent has a pure power of 2 as denominator (`2^{v_2(k!) + 1}` for every even `k ≤ 40`).
 
 **Open.**
 - Prove that the rational sector idempotent has denominator exactly `2^{v_2(k!) + 1}` (verified every even `k ≤ 40`).

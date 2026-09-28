@@ -5,7 +5,7 @@ summary: The wiki's symbol conventions in one place, including the sandpile symb
 tags: [concept, castle, notation, reference, signed-tower-count, castle-sign, pedagogy]
 sources: [project-euler-502-solution, project-euler-502-representations]
 created: 2026-09-26
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Castle notation - castles, towers, and the parity term
@@ -28,7 +28,7 @@ tower height  k  =  h − 1        (castle height h)          base length  L  = 
 | symbol | meaning | arguments |
 |---|---|---|
 | `F(w, h)` | castles of width `w`, height exactly `h`, with an **even** number of blocks (the Project Euler 502 count) | width, height |
-| `odd(w, h)` | the same with an odd number of blocks | width, height |
+| `odd(w, h)` | the same with an odd number of blocks, `A − F`; written as a word, since `G` is reserved for generating functions | width, height |
 | `A(w, h)` | all castles of width `w`, height exactly `h`: `h^w − (h−1)^w` | width, height |
 | `T(k, L)` | all towers of height `≤ k` on a base of length `L`: `(k + 1)^L` | tower height, base length |
 | `P(k, L)` | the **signed** tower count `Σ (−1)^{blocks}` over the same towers: the parity ingredient | tower height, base length |
@@ -53,7 +53,7 @@ F(w, h)  =  [ A(w, h) + S(w, h) ] / 2
 F(w, 2)  =  [ 2^w − 1 − P(1, w) + 1 ] / 2  =  ( 2^w − P(1, w) ) / 2
 ```
 
-and at `w = 2`, `P(1, 2) = −2` gives `F(2, 2) = (4 + 2)/2 = 3`, the three castles `(1,2), (2,1), (2,2)`.[^2] This is why `P(1, ·)` is interesting: it is the parity ingredient for castles of height up to 2 (towers are binary strings, and each run of 1s is one block on the second row), not "castles of height 1".
+and at `w = 2`, `P(1, 2) = −2` gives `F(2, 2) = (4 + 2)/2 = 3`, the three castles `(1,2), (2,1), (2,2)`.[^2] So `P(1, ·)` is the parity ingredient for castles of height up to 2 (towers are binary strings, and each run of 1s is one block on the second row), not for castles of height 1.
 
 ## Trivial and first cases
 
@@ -177,7 +177,7 @@ These are local notations on specific pages and are unrelated to the tower count
 | `M_n`, `M(x)`, `M(x, y)`, `M_k`, `M_k(t)`, `M(q)` | Motzkin numbers and GF; Deutsch-Elizalde's cornerless-path GF; the signed and block-weighted transfer matrices (see the table above); the q-Bessel denominator of the signed count by area (Area gradings above). The Project Euler modulus `M` has its own row | [[motzkin-numbers](pages/motzkin-numbers.md)], [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)], [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
 | `F(u)`, `G(u)`, `H(u)`, `K(u)` | Prodinger's automaton-layer GFs in the final-height variable `u`; `F(u)` is not `F(w, h)` and `K(u)` is not `K(ρ)` | [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] |
 | `K(q, z)`, `K(G)`, `K`, `K(w)` | the convex castle GF; the sandpile group `K(G)` (written `K`, or `K_sink`, `K_tide` by model, on the sandpile pages); a central-binomial sum; `K(ρ)` is the KMS matrix of the table above | [[prime-convex-castles](pages/prime-convex-castles.md)], [[sandpile-group](pages/sandpile-group.md)], [[half-sum-castles](pages/half-sum-castles.md)] |
-| `τ` | the tribonacci constant on [[castle-perimeter](pages/castle-perimeter.md)] (`τ²` = growth of castles by semi-perimeter); the avalanche size exponent on the sandpile pages; on the Prodinger page, the peak weight, with `σ` the valley weight (the paper's prose states the reverse; its formulas use `τ` for `UD`) | [[castle-perimeter](pages/castle-perimeter.md)], [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)], [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] |
+| `τ` | the tribonacci constant on [[castle-perimeter](pages/castle-perimeter.md)] (`τ²` = growth of castles by semi-perimeter); the avalanche size exponent on the sandpile pages; on the Prodinger page, the weight of the peak `UD`, with `σ` the weight of the valley `DU` | [[castle-perimeter](pages/castle-perimeter.md)], [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)], [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] |
 | `ρ` | usually a spectral radius or growth constant (`ρ_k` on [[tower-parity-sectors](pages/tower-parity-sectors.md)]); on the KMS page, the matrix parameter `√t` | [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
 | `A(w, h)` vs `A_path` | all castles of width `w`, height `h` (the core table) vs the path adjacency matrix | [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
 | `E_k` vs `E_∂` vs `E(q, z)` | the tower GF of height `≤ k` in `x` vs `diag(1, 0, …, 0, 1)` vs the signed castle GF by area and width (Area gradings above) | [[castle-counting-formula](pages/castle-counting-formula.md)], [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
