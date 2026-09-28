@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 177 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Fully read and cleaned | 179 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
 | Spot fixes only | 3 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 14 |
-| Words still to read | about 53,000 |
+| Not started | 12 |
+| Words still to read | about 41,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 81 fully read)
+### Concepts (85 pages, 82 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
@@ -130,7 +130,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] hardin-identity-seminar (3.2)
 - [x] castle-polyomino (3.2)
 - [x] oeis-mining-seminar (3.2)
-- [ ] sandpile-group (3.0)
+- [x] sandpile-group (3.0)
 - [x] castle-native-gray-tour (3.0)
 - [x] block-count-constraints (3.0)
 - [x] column-convex-polyomino (3.0)
@@ -194,13 +194,13 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-snippets-strips (0.0)
 - [x] acronyms (0.0)
 
-### Analyses (64 pages, 59 fully read)
+### Analyses (64 pages, 60 fully read)
 
 - [x] castle-cryptography (5.1)
 - [x] isospectral-castles (4.9)
 - [x] castle-cryptography-number-theory (4.4)
 - [x] castle-cryptography-ring (4.0)
-- [ ] sandpile-census (3.8)
+- [x] sandpile-census (3.8)
 - [x] castle-cryptography-round-two (3.6)
 - [x] pell-castle-strip (3.4)
 - [x] castle-graph-spectral-radius (3.3)

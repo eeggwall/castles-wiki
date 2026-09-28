@@ -1,11 +1,11 @@
 ---
 title: Sandpile census - every castle to 16 cells, in the sink and tide models
 category: Analyses
-summary: The sandpile group of every castle with at most 16 cells (33,150 castles, mirror images removed) in both models of sandpile-group - the sink model (one sink cell) and the tide model (the bottom row as the sink) - computed from the 2×2-block matrices and checked against the cospectral census of isospectral-castles. The 2×2 blocks' boundary cycles are an integer basis of the cycle lattice in every case tested (938 castles). In both models the trivial group occurs exactly on the 6,963 tree castles. Sink model - the commonest groups are Z/4 (one isolated block), Z/15 (two adjacent blocks), Z/56 and Z/209 (paths of three and four blocks); the group separates none of the 105 adjacency- and 17 Laplacian-cospectral groups, because cospectral castles always share their graph of blocks; the census refutes the "cyclic sandcastles" conjecture as stated, proves that every path-shaped cluster gives a cyclic group, and finds 921 castles with a non-path cluster and a cyclic group. Tide model - each sink group splits by how many blocks sit on the ground (Z/15 becomes Z/8 lying down or Z/11 standing up; Z/56 becomes Z/21, Z/29 or Z/41 as three, two or one of its blocks touch the ground), 2,254 of the 6,443 graphs realized by several skylines get different tide groups on different skylines, and the group is far more often cyclic (30,617 castles against 29,439): (3,3,3) is Z/95 under the tide but Z/8 × Z/24 in the sink model, while (4,4,4) goes the other way (Z/2415 against Z/13 × Z/91). The cyclic and distinct-group counts per cell count are OEIS novel candidates in both models.
+summary: The sandpile group of every castle with at most 16 cells (33,150 castles, mirror images removed) in both models of sandpile-group - the sink model (one sink cell) and the tide model (the bottom row as the sink) - computed from the 2×2-block matrices and checked against the cospectral census of isospectral-castles. The 2×2 blocks' boundary cycles are an integer basis of the cycle lattice in every case tested (938 castles). In both models the trivial group occurs exactly on the 6,963 tree castles. Sink model - the commonest groups are Z/4 (one isolated block), Z/15 (two adjacent blocks), Z/56 and Z/209 (paths of three and four blocks); the group separates none of the 105 adjacency- and 17 Laplacian-cospectral groups, because in the census cospectral castles always share their graph of blocks (whether cospectral castles with different block graphs exist is open); every path-shaped cluster gives a cyclic group, cluster shape alone does not decide cyclicity (two single blocks give Z/4 × Z/4), and 921 castles have a non-path cluster and a cyclic group. Tide model - each sink group splits by how many blocks sit on the ground (Z/15 becomes Z/8 lying down or Z/11 standing up; Z/56 becomes Z/21, Z/29 or Z/41 as three, two or one of its blocks touch the ground), 2,254 of the 6,443 graphs realized by several skylines get different tide groups on different skylines, and the group is cyclic slightly more often (30,617 castles against 29,439): (3,3,3) is Z/95 under the tide but Z/8 × Z/24 in the sink model, while (4,4,4) goes the other way (Z/2415 against Z/13 × Z/91). The cyclic and distinct-group counts per cell count are OEIS novel candidates in both models.
 tags: [analysis, castle, sandpile, critical-group, census, isospectral, laplacian, adjacency, smith-normal-form, cyclic-group, tree-castle, block-graph, sink-model, tide-model, numpy, sympy, verification]
 sources: [project-euler-502-castle-factoring, rossin-2000-group-of-a-sandpile, dhar-ruelle-sen-verma-1995-algebraic-aspects, dhar-1990-self-organized-critical-sandpile, chau-cheng-1991-deterministic-soc-sandpile]
 created: 2026-09-26
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Sandpile census - every castle to 16 cells, in the sink and tide models
@@ -17,10 +17,10 @@ This page answers questions about the sandpile group of a castle in both models 
 1. Show that the `2 × 2` blocks give an integer basis of the castle's cycles.
 2. Compute `K_sink` and `K_tide` for every castle up to 16 cells.
 3. Find which isospectral pairs of [[isospectral-castles](pages/isospectral-castles.md)] the sink group separates, and the smallest pair with the same Laplacian spectrum but different sink groups.
-4. Find what the tide group sees that the sink group does not.
+4. Find what the tide group distinguishes that the sink group does not.
 5. Say which castles have a cyclic group, in each model.
 
-Short answers: (1) yes, in every case tested; (2) done, 33,150 castles in each model; (3) none, and there is no such pair up to 16 cells, for a structural reason; (4) how high each block sits, so it tells apart castles with the same graph; (5) paths of blocks are cyclic in both models, and the tide model is cyclic far more often.
+Short answers: (1) yes, in every case tested; (2) done, 33,150 castles in each model; (3) none, and there is no such pair up to 16 cells, because the cospectral castles found all share their block graph; (4) how high each block sits, so it tells apart castles with the same graph; (5) paths of blocks are cyclic in both models, and the tide model is cyclic slightly more often.
 
 ## Method
 
@@ -89,6 +89,8 @@ The tide group also records which blocks sit on the ground, so each sink group s
 | `Z/21` | 1,564 | three blocks in a row on the ground | `Z/56` | `(2, 2, 2, 2)` |
 | `Z/29` | 1,173 | three blocks in an L, two on the ground | `Z/56` | `(2, 3, 3)` |
 | `Z/24` | 1,043 | a pair on the ground plus an isolated block (`Z/8 × Z/3`) | `Z/60` | `(2, 2, 1, 2, 2, 2)` |
+| `Z/33` | 719 | a stacked pair plus an isolated block (`Z/11 × Z/3`) | `Z/60` | `(2, 2, 1, 3, 3)` |
+| `Z/55` | 595 | four blocks in a row on the ground | `Z/209` | `(2, 2, 2, 2, 2)` |
 | `Z/41` | 591 | three blocks stacked, one on the ground | `Z/56` | `(4, 4)` |
 
 A path of three blocks is `Z/56` in the sink model however it bends. Under the tide its order counts how many of its blocks touch the ground: 21 for three, 29 for two, 41 for one. The row of blocks lying down gives the even Fibonacci numbers `3, 8, 21, 55, 144` (A001906) and the column standing up gives `3, 11, 41, 153, 571` (A001835). The largest tide group to 16 cells is again `(4, 4, 4, 4)`'s, now cyclic, `Z/31529`. At most three cyclic factors occur, first at `(2, 2, 1, 2, 2, 1, 2, 2)` with `Z/3 × Z/3 × Z/3`.
@@ -102,17 +104,17 @@ A path of three blocks is `Z/56` in the sink model however it bends. Under the t
 | same adjacency spectrum | 105 | **0** |
 | same Laplacian spectrum | 17 (11 of them all trees) | **0** |
 
-The reason is visible in the data. In **every** one of the 122 cospectral groups, the castles have the **same graph of 2×2 blocks**. By [[sandpile-group](pages/sandpile-group.md)], the sink group is determined by that graph alone (it is `Z^r` modulo `4I − (block adjacency)`). So on these castles the sink group cannot see anything the spectrum does not.[^6] The 11-cell Laplacian pair of [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] is two trees, both trivial, and the 10-cell adjacency pair has two adjacent blocks in both castles, both `Z/15`.
+The reason is visible in the data. In **every** one of the 122 cospectral groups, the castles have the **same graph of 2×2 blocks**. By [[sandpile-group](pages/sandpile-group.md)], the sink group is determined by that graph alone (it is `Z^r` modulo `4I − (block adjacency)`). So on these castles the sink group distinguishes nothing the spectrum does not.[^6] The 11-cell Laplacian pair of [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] is two trees, both trivial, and the 10-cell adjacency pair has two adjacent blocks in both castles, both `Z/15`.
 
 There is therefore no pair of castles with the same Laplacian spectrum and different sink groups up to 16 cells. Finding one would need two cospectral castles with different block graphs. None occur this small, and whether any exist at all is open.
 
-**The tide group sees the skyline, not just the graph.** Up to 16 cells, 6,443 castle graphs (as far as colour refinement can tell) are realized by more than one skyline, and on 2,254 of them different skylines have different tide groups; the sink group never differs, since it depends only on the graph. The first example is the silver rectangle `(2, 2, 2)` (`Z/8`) against the tall pair `(3, 3)` (`Z/11`), the same `3 × 2` grid lying down and standing up.[^5]
+**The tide group depends on the skyline as well as the graph.** Up to 16 cells, 6,443 castle graphs (as far as colour refinement can tell) are realized by more than one skyline, and on 2,254 of them different skylines have different tide groups; the sink group never differs, since it depends only on the graph. The first example is the silver rectangle `(2, 2, 2)` (`Z/8`) against the tall pair `(3, 3)` (`Z/11`), the same `3 × 2` grid lying down and standing up.[^5]
 
-For the same reason the tide group can split a cospectral group without hearing anything the spectrum misses. The 10-cell pair's own skylines `(1,1,1,2,3,2)` and `(1,1,2,2,3,1)` both have `K_tide = Z/8`, but `(1, 3, 5, 1)`, another skyline of the second graph, has `Z/11`. Counting a cospectral group as separated when two castles of different graphs have different tide groups, 23 of the 105 adjacency groups and none of the 17 Laplacian groups are separated to 16 cells.[^6] The question the tide model answers is about skylines: its group is a product over the castle's runs of raised columns, and it records how each run's blocks stand on the ground.
+For the same reason the tide group can split a cospectral group by skyline. The 10-cell pair's own skylines `(1,1,1,2,3,2)` and `(1,1,2,2,3,1)` both have `K_tide = Z/8`, but `(1, 3, 5, 1)`, another skyline of the second graph, has `Z/11`. Counting a cospectral group as separated when two castles of different graphs have different tide groups, 23 of the 105 adjacency groups and none of the 17 Laplacian groups are separated to 16 cells.[^6] The question the tide model answers is about skylines: its group is a product over the castle's runs of raised columns, and it records how each run's blocks stand on the ground.
 
 ## 4. Cyclic sandcastles, in both models
 
-**Sink model.** A natural guess is that `K_sink` is cyclic exactly when every cluster of blocks is a 2-wide ladder. The census refutes it. `(2, 2, 1, 2, 2)` has two 2-wide ladder clusters (single blocks) and group `Z/4 × Z/4`, which is not cyclic. Read with "ladder" as a horizontal row of blocks, it fails on 9,547 castles, starting with `(3, 3)`, a vertical 2-wide ladder with cyclic group `Z/15`.[^7]
+**Sink model.** Cluster shape alone does not decide cyclicity. `(2, 2, 1, 2, 2)` has two 2-wide ladder clusters (single blocks) and group `Z/4 × Z/4`, which is not cyclic. Taking "ladder" to mean a horizontal row of blocks, the condition "every cluster is a ladder" disagrees with cyclicity on 9,547 castles, starting with `(3, 3)`, a vertical 2-wide ladder with cyclic group `Z/15`.[^7]
 
 What is true, in both models:
 
@@ -127,7 +129,7 @@ Where the models differ is the non-path clusters:
 | castles with one non-path cluster and a non-cyclic group | 837, smallest `(3, 3, 3)`, `Z/8 × Z/24` | 144, smallest `(2, 4, 4, 2)`, `Z/3 × Z/93` (12 cells) |
 | cyclic in this model only | 168 castles, smallest `(2, 4, 4, 2)` (`Z/776` sink) | 1,346 castles, smallest `(3, 3, 3)` (`Z/95` tide) |
 
-The ground's 3s break the symmetry that splits the sink group of the `2 × 2` square of blocks: `(3, 3, 3)` is `Z/8 × Z/24` in the sink model and `Z/95` under the tide. The effect also runs the other way. `(4, 4, 4)` is cyclic in the sink model (`Z/2415`) and splits under the tide (`Z/13 × Z/91`).[^7]
+`(3, 3, 3)` is `Z/8 × Z/24` in the sink model and `Z/95` under the tide, and `(4, 4, 4)` goes the other way: `Z/2415` in the sink model, `Z/13 × Z/91` under the tide.[^7]
 
 **Cyclic is not deterministic.** A cyclic group does not mean every grain acts the same. Chau and Cheng's *completely deterministic* sandpiles, where all grains coincide, have cyclic groups, but a castle sandpile is deterministic only when its group is trivial, in both models, because every cell next to the sink has a single sink edge ([[sandpile-group](pages/sandpile-group.md)], [[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)]).
 
@@ -136,14 +138,14 @@ The ground's 3s break the symmetry that splits the sink group of the `2 × 2` sq
 **Settled (to 16 cells).**
 - The block loops are an integer basis of the cycle lattice in every case tested.
 - The census of both groups, with the tree castles (6,963, mirror images removed; [[tree-castle-by-area](pages/tree-castle-by-area.md)] counts them with mirrors kept) as the trivial ones in both models.
-- Sink model: the group separates no cospectral pair, because cospectral castles always share their block graph.
+- Sink model: the group separates no cospectral pair, because the cospectral castles in the census all share their block graph.
 - Tide model: each sink group splits by how many blocks touch the ground, and the tide group differs between skylines of the same graph on 2,254 of 6,443 graphs.
-- Both models: path-shaped clusters give cyclic groups (proof above). The 2-wide-ladder guess for cyclicity is false in the sink model.
+- Both models: path-shaped clusters give cyclic groups (proof above). Cluster shape alone does not decide cyclicity in the sink model.
 
 **Open.**
 - Sink model: do two cospectral castles with different block graphs exist at any size? That is the only way the sink group could separate a cospectral pair. The spectrum already hears the number of blocks ([[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] Stop 2); the question is whether it hears how they touch.
 - Sink model: which non-path clusters give cyclic groups? `(2, 3, 3, 3)` is cyclic and `(3, 3, 3)` is not.
-- Tide model: which non-path clusters give cyclic groups under the tide? `(3, 3, 3)` is cyclic and `(4, 4, 4)` is not; the ground's 3s make cyclic groups much commoner, and a rule for when they do is open.
+- Tide model: which non-path clusters give cyclic groups under the tide? `(3, 3, 3)` is cyclic and `(4, 4, 4)` is not; among castles with a non-path cluster, cyclic groups are commoner under the tide (1,660 against 921), and a rule is open.
 - Sink model: which widths make the height-3 castle `(3, …, 3)` non-cyclic? Every multiple of 3 does (proved by Dhar, Ruelle, Sen and Verma), and so do 7, 10 and 14 to width 16; the rest of the pattern, `d_2 = gcd(F(2w), A004254(w))`, is open.
 - Tide model: a closed form for the tide order of a run from how its blocks stand on the ground, generalizing the ladders (A001906 lying down, A001835 standing up).
 
