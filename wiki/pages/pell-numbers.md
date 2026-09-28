@@ -40,7 +40,7 @@ The Pell numbers appear in two roles:
 
 ### 1. As the count sequence of the [[pell-castle-strip](pages/pell-castle-strip.md)]
 
-The rational function `1/(1 − 2x − x²)`, Pell's own generating function `x/(1 − 2x − x²)` divided by `x`, has coefficients `1, 2, 5, 12, 29, 70, 169, …`: the coefficient of `x^n` is `P_{n+1}`.[^3] Read symbolically it is a two-atom tiling scheme (a width-1 atom of weight 2 and a width-2 atom of weight 1), and it has an exact castle realization: the **1-smooth strip of height at most 3, anchored at the base** — skylines over `{1, 2, 3}` with `|c_{i+1} − c_i| ≤ 1` and first column at height 1 — whose width generating function is exactly `1/(1 − 2x − x²)` (the coefficient of `x^{w−1}` counts width `w`), so the number of such strips of width `w` is `P_w`. Freeing the first column gives the companion Pell numbers (A001333) instead.[^8]
+The rational function `1/(1 − 2x − x²)`, Pell's own generating function `x/(1 − 2x − x²)` divided by `x`, has coefficients `1, 2, 5, 12, 29, 70, 169, …`: the coefficient of `x^n` is `P_{n+1}`.[^3] Read symbolically it is a two-atom tiling scheme (a width-1 atom of weight 2 and a width-2 atom of weight 1), and it has an exact castle realization: the **1-smooth strip of height at most 3, anchored at the base** — skylines over `{1, 2, 3}` with `|c_{i+1} − c_i| ≤ 1` and first column at height 1 — whose width generating function is exactly `1/(1 − 2x − x²)` (the coefficient of `x^{w−1}` counts width `w`), so the number of such strips of width `w` is `P_w`. Freeing the first column gives the Pell-Lucas numbers (A001333) instead.[^8]
 
 ### 2. As the concrete integer realization of `1 + √2`
 
@@ -65,7 +65,7 @@ The **Binet-style formula** follows from the characteristic roots `1 ± √2`:[^
 P_n = ((1 + √2)^n − (1 − √2)^n) / (2√2).
 ```
 
-The **companion Pell** (or *Pell-Lucas half*) sequence is OEIS A001333 = `1, 1, 3, 7, 17, 41, 99, 239, 577, …`, defined by the same recurrence but with `Q_0 = 1, Q_1 = 1`, and satisfies `Q_n = ((1+√2)^n + (1−√2)^n)/2` — the numerators of the continued-fraction convergents of `√2 = [1; 2, 2, 2, …]`.[^5] The anchored Pell castle strip counts are Pell proper; the free strip counts are companion Pell.
+The **Pell-Lucas numbers** (OEIS A001333, half the companion Pell numbers A002203) are `1, 1, 3, 7, 17, 41, 99, 239, 577, …`, defined by the same recurrence but with `Q_0 = 1, Q_1 = 1`, and satisfies `Q_n = ((1+√2)^n + (1−√2)^n)/2` — the numerators of the continued-fraction convergents of `√2 = [1; 2, 2, 2, …]`.[^5] The anchored Pell castle strip counts are Pell proper; the free strip counts are Pell-Lucas numbers.
 
 ## Appearances in Sources
 
@@ -86,6 +86,6 @@ The **companion Pell** (or *Pell-Lucas half*) sequence is OEIS A001333 = `1, 1, 
 [^2]: The characteristic polynomial `x² − 2x − 1` has roots `1 ± √2`; the Binet form `P_n = ((1+√2)^n − (1−√2)^n)/(2√2)` was re-derived and verified numerically for `n = 0..12` during ingest.
 [^3]: [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] §"The castle reading" L23-L28 — the two-atom composition scheme for `1/(1 − 2x − x²)`.
 [^4]: [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] §"Step 5 — The castle's eigenvalues" and footnote 4 — the convergents `5/2, 12/5, 29/12, 70/29, 169/70 → √2 + 1` are exactly the Pell ratios `P_{n+1}/P_n` for `n = 2..6`, verified during that page's ingest.
-[^5]: OEIS A001333 = `1, 1, 3, 7, 17, 41, 99, 239, 577, 1393, …`, the companion Pell / Pell-Lucas half. Its Binet form `Q_n = ((1+√2)^n + (1−√2)^n)/2` was verified numerically for `n = 0..10` during ingest. A001333 numerators pair with A000129 denominators to give the continued-fraction convergents of `√2 = [1; 2, 2, 2, …]`.
+[^5]: OEIS A001333 = `1, 1, 3, 7, 17, 41, 99, 239, 577, 1393, …`, OEIS's Pell-Lucas numbers, half the companion Pell numbers A002203. Its Binet form `Q_n = ((1+√2)^n + (1−√2)^n)/2` was verified numerically for `n = 0..10` during ingest. A001333 numerators pair with A000129 denominators to give the continued-fraction convergents of `√2 = [1; 2, 2, 2, …]`.
 [^7]: [[metallic-means](pages/metallic-means.md)] §"The naming caveat" — Wikipedia "Silver ratio" and OEIS A001333 (whose comment describes it in Pell / silver-mean context) both use "silver ratio" for `1 + √2`; this is also the usage in de Spinadel's original paper (`δ_S`). Competing "silver ratio = √2" appears in paper-size / A-series / architecture literature; when meant, it is usually specified. Wiki standard: `δ_2 = 1 + √2`.
 [^8]: Verified by execution (Python 3, SymPy), 2026-09-19, recorded on [[pell-castle-strip](pages/pell-castle-strip.md)] footnote 4: for the 1-smooth matrix `M = [[1,1,0],[1,1,1],[0,1,1]]` on heights `{1,2,3}`, `e_1ᵀ(I − xM)^{−1}𝟙 = 1/(1 − 2x − x²)`, with enumerated counts `1, 2, 5, 12, 29, 70, 169, 408` (first column 1) and `3, 7, 17, 41, 99, 239, 577, 1393` (free first column).

@@ -60,7 +60,7 @@ A class whose width-graded count sequence grows at `φ = (1 + √5) / 2`, equiva
 
 A class whose width-graded count sequence grows at `1 + √2 ≈ 2.4142`. Known members:
 
-- **The anchored 1-smooth height-3 strip** ([[pell-castle-strip](pages/pell-castle-strip.md)]) - skylines over `{1, 2, 3}` with `|c_{i+1} − c_i| ≤ 1` and first column at height 1. Count sequence: Pell numbers `P_w` at width `w` (OEIS A000129), generating function `1 / (1 − 2x − x²)` with width `w` at `x^{w−1}`, the `p_1 = 2, p_2 = 1` denominator; with a free first column the count is companion Pell (A001333).
+- **The anchored 1-smooth height-3 strip** ([[pell-castle-strip](pages/pell-castle-strip.md)]) - skylines over `{1, 2, 3}` with `|c_{i+1} − c_i| ≤ 1` and first column at height 1. Count sequence: Pell numbers `P_w` at width `w` (OEIS A000129), generating function `1 / (1 − 2x − x²)` with width `w` at `x^{w−1}`, the `p_1 = 2, p_2 = 1` denominator; with a free first column the count is the Pell-Lucas numbers (A001333).
 - **The ceiling-exception rule `J − D`** at height 3 ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) - the same growth constant, a different construction.
 
 The **tower word** ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]) also grows at `1 + √2`, but on a different axis: A004149 counts tower words by word length (width plus twice the block count), with an algebraic GF whose singularity is at `√2 − 1`. By width at bounded height the tower count is `(k + 1)^L`, an integer growth constant.

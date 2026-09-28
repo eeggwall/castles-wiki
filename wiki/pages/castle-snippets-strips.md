@@ -38,7 +38,7 @@ Wiki tie: [[castle-classification](pages/castle-classification.md)] Axis 8 — t
 
 ### `pell_strip_count(w)` → the Pell castle strip
 
-The silver counterpart ([[pell-castle-strip](pages/pell-castle-strip.md)]): 1-smooth skylines over heights `{1, 2, 3}` (adjacent heights differ by at most 1) whose first column has height 1. Their counts are the Pell numbers `P_w` (width generating function `x/(1 − 2x − x²)`); dropping the anchor gives companion Pell (A001333).
+The silver counterpart ([[pell-castle-strip](pages/pell-castle-strip.md)]): 1-smooth skylines over heights `{1, 2, 3}` (adjacent heights differ by at most 1) whose first column has height 1. Their counts are the Pell numbers `P_w` (width generating function `x/(1 − 2x − x²)`); dropping the anchor gives Pell-Lucas numbers (A001333).
 
 ```python
 from itertools import product
@@ -52,11 +52,11 @@ def pell_strip_count(w, anchored=True):
 ```
 >>> [pell_strip_count(w) for w in range(1, 9)]                  # Pell P_w, A000129
 [1, 2, 5, 12, 29, 70, 169, 408]
->>> [pell_strip_count(w, anchored=False) for w in range(1, 9)]  # companion Pell, A001333
+>>> [pell_strip_count(w, anchored=False) for w in range(1, 9)]  # Pell-Lucas, A001333
 [3, 7, 17, 41, 99, 239, 577, 1393]
 ```
 
-Meaning: the boundary condition selects the sequence - anchoring the first column at the base gives Pell proper, a free first column gives companion Pell; both grow at `1 + √2`.
+Meaning: the boundary condition selects the sequence - anchoring the first column at the base gives Pell proper, a free first column gives the Pell-Lucas numbers; both grow at `1 + √2`.
 
 
 ## Axis 8: growth-constant probes

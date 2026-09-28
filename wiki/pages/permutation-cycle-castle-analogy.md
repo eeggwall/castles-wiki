@@ -46,7 +46,7 @@ The `(n−1)!` proof is the degenerate case: one cycle, no factoring, trivial si
 
 ## Where the analogy becomes literal
 
-A **rainbow castle** ([[castle-classification-shape](pages/castle-classification-shape.md)]: `w = h`, heights a permutation of `{1..h}`) has a skyline that *is* a permutation, so the three moves above apply to it verbatim, and the classification's **even-peak** type turns the "block count ≠ peak count" caveat into a predicate.
+A **rainbow castle** ([[castle-classification-shape](pages/castle-classification-shape.md)]: `w = h`, heights a permutation of `{1..h}`) has a skyline that *is* a permutation, so the three moves above apply to it verbatim, and the classification's **even-peak** type counts local maxima, a different statistic from the excursion peaks here (`(2,3,2,3,2)` has one excursion and two local maxima).
 
 ## The (1 ± sgn)/2 move, generalized, and the F(4,2) = 10 hand-check
 
@@ -69,7 +69,7 @@ Peeling `A_n` from `S_n` is the `m = 2` character sum; [[parity-via-roots-of-uni
 - [[permutation-inversions](pages/permutation-inversions.md)] — the other classical permutation statistic (inversions), whose q-factorial generating function underlies the q-analog thread.
 - [[aocp-multisets](pages/aocp-multisets.md)] — Knuth's two-line arrays and unique cycle factorization, the Vol. 3 multiset form of this analogy's permutation side (which comes from Vol. 1 §1.3.3).
 - [[aocp-combinatorics](pages/aocp-combinatorics.md)] — Knuth's Vol. 3 inversions and the q-factorial `∏(1−z^k)/(1−z)^n`, the source behind the inversion statistic mentioned above.
-- [[castle-classification-shape](pages/castle-classification-shape.md)] — rainbow castles (skyline = permutation) and the even-peak type (the block ≠ peak caveat as a predicate).
+- [[castle-classification-shape](pages/castle-classification-shape.md)] — rainbow castles (skyline = permutation) and the even-peak type (local maxima, a different peak statistic).
 - [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[castle-counting-function](pages/castle-counting-function.md)] / [[castle-snippets](pages/castle-snippets.md)] — the sign move generalized and taught; `F(4,2) = 10` as checkpoint and as code.
 - [[block-count-constraints](pages/block-count-constraints.md)] — why the one-run description of `F(4,2)` does not survive to `w = 5`.
 

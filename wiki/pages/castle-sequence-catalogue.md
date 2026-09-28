@@ -123,7 +123,7 @@ Skylines over `{1, 2, 3}` with adjacent heights differing by at most 1 ([[pell-c
 | object | first terms (`w = 1…`) | growth | status |
 |---|---|---|---|
 | 1-smooth, first column at height 1 | `1, 2, 5, 12, 29, 70, 169, 408` | `1+√2` | **interlink** → [A000129](https://oeis.org/A000129) Pell (`= P_w`; width GF `x/(1−2x−x²)`) |
-| 1-smooth, free first column | `3, 7, 17, 41, 99, 239, 577, 1393` | `1+√2` | **interlink** → [A001333](https://oeis.org/A001333) companion Pell |
+| 1-smooth, free first column | `3, 7, 17, 41, 99, 239, 577, 1393` | `1+√2` | **interlink** → [A001333](https://oeis.org/A001333) Pell-Lucas |
 | 1-smooth, both end columns at height 1 | `1, 1, 2, 4, 9, 21, 50, 120` | `1+√2` | **interlink** → [A171842](https://oeis.org/A171842) (`=a(w−1)`, "Motzkin n-paths of height <= 2"; searched 2026-09-26, 16 terms, see [[motzkin-castles](pages/motzkin-castles.md)]) |
 
 *(Verified by enumeration and by `e_1ᵀ(I − xM)^{−1}𝟙` on the 3×3 transfer matrix, 2026-09-19.)*

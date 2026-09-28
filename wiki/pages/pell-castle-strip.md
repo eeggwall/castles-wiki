@@ -71,7 +71,7 @@ so the growth constant is `1 + √2`. The count depends on the boundary conditio
 | strips of width `w`, 1-smooth on `{1,2,3}` | `w = 1, 2, 3, …` | width generating function | sequence |
 |---|---|---|---|
 | **first column at height 1** (anchored at the base) | `1, 2, 5, 12, 29, 70, 169, 408` | `1/(1 − 2x − x²)` | **Pell `P_w`**, A000129 |
-| any first column | `3, 7, 17, 41, 99, 239, 577, 1393` | `(3 + x)/(1 − 2x − x²)` | companion Pell, A001333 |
+| any first column | `3, 7, 17, 41, 99, 239, 577, 1393` | `(3 + x)/(1 − 2x − x²)` | Pell-Lucas, A001333 |
 | first and last column at height 1 | `1, 1, 2, 4, 9, 21, 50, 120` | `(1 − 2x)/((1 − x)(1 − 2x − x²))` | unchecked against Online Encyclopedia of Integer Sequences (OEIS) |
 
 The anchored row is the **Pell castle strip**: `e_1ᵀ (I − xM)^{−1} 𝟙 = 1/(1 − 2x − x²)` exactly. The `(1 − x)` factor of `det(I − xM)` cancels whenever the last column is free, because the eigenvalue-1 eigenvector `(−1, 0, 1)` is orthogonal to `𝟙`; pinning the last column at height 1 as well keeps it. So the two atoms of Act II count castles: `a_{w−1} = P_w` is the number of skylines of width `w` that start at height 1, never jump by more than one row, and never exceed height 3. Starting the walk at height 1 selects Pell proper rather than the companion sequence. Restricting to castles of height *exactly* 3 subtracts the height-≤2 anchored strips (`2^{w−1}` of them) and gives `P_w − 2^{w−1} = 0, 0, 1, 4, 13, 38, 105, 280, …`.
@@ -90,7 +90,7 @@ are **Pell numbers, OEIS [A000129](https://oeis.org/A000129) shifted** (`a_n = P
 
 `1 + √2` appears elsewhere on the wiki. On [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] it is one of two **norm-`−1` reduced quadratic surds** with purely periodic continued fraction: `1 + √2 = [2; 2, 2, 2, …]`. On [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] it is the **tower-word growth constant** - the singularity of the algebraic generating function for tower words counted by total steps sits at `√2 − 1`, growth rate `1/(√2 − 1) = √2 + 1`.
 
-Silver appears in three castle constructions: the tower word (algebraic generating function, A004149), the 1-smooth height-3 strip (rational, Pell or companion Pell by boundary), and the ceiling-exception rule `J − D` at height 3 ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)], companion Pell `3, 7, 17, 41, …` as a free strip). The Pell numbers relate to `1 + √2` as the Fibonacci numbers relate to `φ` (Binet form, [[aocp-generating-functions](pages/aocp-generating-functions.md)]); on the castle side, Fibonacci counts the height-2 tree castles ([[castle-graph](pages/castle-graph.md)]) and Pell counts the anchored 1-smooth height-3 strip.
+Silver appears in three castle constructions: the tower word (algebraic generating function, A004149), the 1-smooth height-3 strip (rational, Pell or Pell-Lucas by boundary), and the ceiling-exception rule `J − D` at height 3 ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)], Pell-Lucas `3, 7, 17, 41, …` as a free strip). The Pell numbers relate to `1 + √2` as the Fibonacci numbers relate to `φ` (Binet form, [[aocp-generating-functions](pages/aocp-generating-functions.md)]); on the castle side, Fibonacci counts the height-2 tree castles ([[castle-graph](pages/castle-graph.md)]) and Pell counts the anchored 1-smooth height-3 strip.
 
 ## Seminar outline
 
