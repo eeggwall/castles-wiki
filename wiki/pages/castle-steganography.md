@@ -43,7 +43,7 @@ Setting the parity needs a single-cell edit that changes the block count by exac
 - **Raise a strict local maximum by one** (`c_{i-1} < c_i > c_{i+1}`): the rise into column `i` grows by one, the rise out of it stays zero. Block count `+1`.
 - **Lower a strict local minimum by one** (`c_{i-1} > c_i < c_{i+1}`): the rise into `i` stays zero, the rise into `i+1` grows by one. Block count `+1`.
 
-Either edit flips the parity with certainty and moves one cell; the constraints are only that a raised maximum stays below `h` and a lowered minimum stays at least 1. Compare the 44% flip rate of a *random* single-column edit measured on [[song-as-castle](pages/song-as-castle.md)] - the channel works because the edit is chosen, not random.
+Either edit flips the parity with certainty and moves one cell; the constraints are only that a raised maximum stays below `h` and a lowered minimum stays at least 1. Compare the 43% flip rate of a *random* single-column edit measured on [[song-as-castle](pages/song-as-castle.md)] - the channel works because the edit is chosen, not random.
 
 Embedding the 336 bits as the parities of rows 0..335:
 
@@ -71,13 +71,13 @@ Capacity is one bit per castle: 512 bits = 85 base64 characters per 512x512 imag
 
 ## Where this sits
 
-Used this way, the even-block bit is a covert channel of capacity one bit per castle, written with one cell; it is the block-parity channel referred to in the "The Wire, but castles" seed on [[song-as-castle](pages/song-as-castle.md)]. Open: against a warden that counts blocks, is there a second-order statistic (parity of adjacent rows, block count distribution) that channel B disturbs? That is open.
+Used this way, the even-block bit is a covert channel of capacity one bit per castle, written with one cell; it is the block-parity bit of [[song-as-castle](pages/song-as-castle.md)] used as a channel. Open: against a warden that counts blocks, is there a second-order statistic (parity of adjacent rows, block count distribution) that channel B disturbs? That is open.
 
 ## Related Concepts
 
 - [[image-as-castle](pages/image-as-castle.md)] - the cover: an image as 512 row castles.
 - [[castle-phone-line](pages/castle-phone-line.md)] - both channels sent down a simulated phone line as pitch-stepping tones; block parity does not survive, a spaced-out height bit does.
-- [[song-as-castle](pages/song-as-castle.md)] - the rank/unrank bijection, the 44% random-flip figure, and "The Wire, but castles" seed.
+- [[song-as-castle](pages/song-as-castle.md)] - the rank/unrank bijection and the 43% random-flip figure.
 - [[castle-entropy](pages/castle-entropy.md)] - the parity clause is one bit; channel B is that bit as capacity.
 - [[castle-sign](pages/castle-sign.md)] - the block count formula the flip lemma is read off.
 - [[castle-compression](pages/castle-compression.md)] - why lossless codecs preserve both channels and lossy ones destroy them.

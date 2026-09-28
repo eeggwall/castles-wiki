@@ -333,7 +333,7 @@ In the recurrent tuples the positions are the non-sink cells in the order `castl
 - [[castle-avalanches](pages/castle-avalanches.md)] - dropping sand at random in both models: exact mean avalanche sizes and tails.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through both models.
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the 10-cell isospectral pair worked by hand; both castles have `K_sink = Z/15`.
-- [[ramanujan-castles](pages/ramanujan-castles.md)] - the 2-wide ladder again: the 14-rung ladder `(14, 14)` is the smallest non-Ramanujan castle.
+- [[ramanujan-castles](pages/ramanujan-castles.md)] - the 2-wide ladder again: the 14-rung ladder `(14, 14)` is the smallest non-Ramanujan rectangle.
 - [[viennot-heap-tower](pages/viennot-heap-tower.md)] - the tide ladder orders `3, 8, 21, 55, …` (A001906) are the Cartier-Foata reciprocal `1/(1 − 3x + x²)` of the interval-piece heap there.
 
 ## Appearances in Sources

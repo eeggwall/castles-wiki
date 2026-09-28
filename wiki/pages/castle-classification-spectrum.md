@@ -73,7 +73,7 @@ The search is exhaustive to 16 cells, with 50 adjacency groups already at 16. Is
 
 A castle is a **Ramanujan castle** iff every non-trivial eigenvalue of its adjacency matrix is bounded by `rho(T)`, the spectral radius of the universal covering tree - Greenberg's extension of the standard Ramanujan condition to irregular graphs. Bipartite castles reduce this to `lam_2 <= rho(T)`.
 
-The full write-up - definition, the edge-cavity method for computing `rho(T)`, verification against known graphs, worked small examples, and the census identifying **the smallest non-Ramanujan castle as the `2 x 14` rectangle `(14, 14)` at 28 cells** - is on [[ramanujan-castles](pages/ramanujan-castles.md)].
+The full write-up - definition, the edge-cavity method for computing `rho(T)`, verification against known graphs, worked small examples, and the census to 22 cells, whose **smallest non-Ramanujan castles have 15 cells** (the smallest failing rectangle is `2 x 14`, `(14, 14)`, at 28 cells) - is on [[ramanujan-castles](pages/ramanujan-castles.md)].
 
 Two shape-agnostic facts stay useful here:
 
@@ -91,7 +91,7 @@ These predicates have no computed members yet.
 
 ## Open threads
 
-1. **Ramanujan census beyond 22 cells.** [[ramanujan-castles](pages/ramanujan-castles.md)] finds every castle of area at most 22 Ramanujan and the `2 × 14` rectangle the smallest that is not; which families fail next is open.
+1. **Ramanujan census beyond 22 cells.** [[ramanujan-castles](pages/ramanujan-castles.md)] finds every castle with at most 14 cells Ramanujan and the first failures at 15 cells; the pattern of failures beyond 22 cells is open.
 2. **Bronze-spectrum castles.** Absent among 4.87 million castles on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]; open beyond the scanned size.
 3. **Sparse-spectrum, low/high-pass, Ihara-Ramanujan.** The three types above; each needs its method on [[spectral-analysis](pages/spectral-analysis.md)] computed before it has members.
 4. **Non-adjacency operators.** The Laplacian-cospectral census to 16 cells is on [[isospectral-castles](pages/isospectral-castles.md)] (17 groups), with the sandpile invariants of the same castles on [[sandpile-census](pages/sandpile-census.md)]; an Ihara census at small size would give the tree/golden/silver/`φ²` list its non-adjacency companions.

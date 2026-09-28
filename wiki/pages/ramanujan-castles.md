@@ -204,7 +204,7 @@ In this range the ratio grows with `h` at every width, so each width fails from 
 
 ## Crenellated castles
 
-The **crenellated** type ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 7) alternates heights `(h, 1, h, 1, ...)`. No two adjacent columns both have height at least 2, so every crenellated castle is a tree castle and is Ramanujan for the reason above (`rho(T) = lam_1`):
+The **crenellated** type ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 7) alternates two heights `{a, h}`. With `a = 1`, `(h, 1, h, 1, ...)`, no two adjacent columns both have height at least 2, so these castles are tree castles and Ramanujan for the reason above (`rho(T) = lam_1`); with `a ≥ 2` they have cycles, and the census covers them to 22 cells:
 
 | skyline | `lam_1` | `lam_2` | `rho(T)` | ratio |
 |---|---|---|---|---|
@@ -219,7 +219,7 @@ For every graph `G` there is an operator `B` on directed edges - the **non-backt
 
 1. **Rectangles as `h` grows.** Every `2 x h` rectangle with `14 <= h <= 16` fails, and every `3 x h` with `11 <= h <= 16`. Do *all* rectangles beyond some size fail, or does some family with both sides large stay Ramanujan? The 8x8 boxcastle is the first square boxcastle to fail.
 2. **Asymptotic proportion.** As the cell count grows, what fraction of castles are Ramanujan? For random `d`-regular graphs, most are Ramanujan-close (Friedman 2003). In the census the non-Ramanujan fraction of non-tree castles grows from `3/6,559` at 15 cells to `6,836/964,055` at 22 cells, and the smallest failures have cycle rank 4 (two `2 x 3` blocks joined by a path).
-3. **Explicit Ramanujan families among non-tree castles.** Are there infinite families of non-tree castles all of which are Ramanujan, a construction analogous to Lubotzky-Phillips-Sarnak and Margulis for castle graphs? (The crenellated castles are trees, so they do not count.)
+3. **Explicit Ramanujan families among non-tree castles.** Are there infinite families of non-tree castles all of which are Ramanujan, a construction analogous to Lubotzky-Phillips-Sarnak and Margulis for castle graphs? (The crenellated castles with `a = 1` are trees, so they do not count.)
 4. **Saturating families.** For a family with a fixed universal cover, Greenberg's inequality says `lam_2` cannot stay much below `rho(T)`; whether some concrete castle family has `lam_2 - rho(T) -> 0` is open. The `2 x h` family overshoots: `lam_2 -> 3` while `rho(T)` stays below `2*sqrt(2)`.
 
 ## Reproduce
