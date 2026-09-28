@@ -16,7 +16,7 @@ updated: 2026-09-27
 
 ## Stop 0 - a castle is a graph
 
-A castle is a skyline of column heights `(c_1, …, c_w)`, each at least 1 ([[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)]). Make it a graph: one vertex per filled cell, one edge per pair of cells that share a side ([[castle-graph](pages/castle-graph.md)]). Two matrices then carry "notes":
+A castle is a skyline of column heights `(c_1, …, c_w)`, each at least 1 ([[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)]). Make it a graph: one vertex per filled cell, one edge per pair of cells that share a side ([[castle-graph](pages/castle-graph.md)]). Two matrices are attached to it:
 
 - the **adjacency matrix** `A`, with `A[u, v] = 1` for neighboring cells;
 - the **Laplacian** `L = D − A`, where `D` holds each cell's number of neighbors (its degree).
@@ -27,13 +27,13 @@ Their eigenvalues are the castle's spectrum. **Hearing the shape** means that tw
 
 ## Stop 1 - three castles, heard by hand
 
-| castle | graph | characteristic polynomial of `A` | loudest note (spectral radius) |
+| castle | graph | characteristic polynomial of `A` | spectral radius |
 |---|---|---|---|
 | `(1, 1, 1, 1)` | path on 4 cells | `(x² − x − 1)(x² + x − 1)` | `φ = (1 + √5)/2`, golden |
 | `(2, 2)` | 4-cycle | `x²(x − 2)(x + 2)` | `2` |
 | `(2, 2, 2)` | `3 × 2` grid | `(x − 1)(x + 1)(x² − 2x − 1)(x² + 2x − 1)` | `1 + √2`, silver |
 
-The golden and silver ratios show up as the loudest notes of the smallest paths and rectangles ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]). Multiplied out, each polynomial has only even powers of `x` (`x⁴ − 3x² + 1`, `x⁴ − 4x²`, `x⁶ − 7x⁴ + 7x² − 1`), so every eigenvalue `λ` comes with `−λ`. That symmetry is the first thing you can hear.[^1]
+The golden and silver ratios are the spectral radii of the smallest paths and rectangles ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]). Multiplied out, each polynomial has only even powers of `x` (`x⁴ − 3x² + 1`, `x⁴ − 4x²`, `x⁶ − 7x⁴ + 7x² − 1`), so every eigenvalue `λ` comes with `−λ`; Stop 2 shows this holds for every castle.[^1]
 
 *Idea:* compute small cases completely before asking general questions.
 
@@ -99,8 +99,8 @@ So the spectrum is a castle **invariant**, not a **classifier**. In the wiki's c
 
 Two classical reasons cover every pair above ([[isospectral-castles](pages/isospectral-castles.md)], "Why cospectral pairs exist"):
 
-- **Schwenk (1973): almost every tree has a cospectral mate.** The fraction of trees on `n` vertices with a non-isomorphic cospectral partner tends to 1. So the 11-cell Laplacian pair being two trees is the generic case, not bad luck.
-- **Sunada (1985): covers and almost-conjugate subgroups.** Two quotients of one space by "almost conjugate" subgroups have the same spectrum. Gordon, Webb and Wolpert used this in 1992 to answer Kac with two planar drums. A Sunada-style explanation of the 10-cell pair would be a small graph covering both `A` and `B` with matching walk counts. **Nobody has written one down.**
+- **Schwenk (1973): almost every tree has a cospectral mate.** The fraction of trees on `n` vertices with a non-isomorphic cospectral partner tends to 1. So the 11-cell Laplacian pair being two trees is the generic case.
+- **Sunada (1985): covers and almost-conjugate subgroups.** Two quotients of one space by "almost conjugate" subgroups have the same spectrum. Gordon, Webb and Wolpert used this in 1992 to answer Kac with two planar drums. A Sunada-style explanation of the 10-cell pair would be a small graph covering both `A` and `B` with matching walk counts. None is known.
 
 *Idea:* an isospectral pair is a coincidence until a construction explains it. Schwenk explains the trees, and Sunada is the candidate for the pairs with cycles.
 
@@ -249,7 +249,7 @@ False
 - [[sandpile-identity](pages/sandpile-identity.md)] - one grain on the apex of the 10-cell pair's identity: 57 topplings against 1.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series, and audio as castles.
 - [[castle-avalanches](pages/castle-avalanches.md)] - random dropping on castles; the mean is Laplacian data, the tail is set by the `2 × 2` blocks.
 
 ## Footnotes

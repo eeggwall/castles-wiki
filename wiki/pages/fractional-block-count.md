@@ -47,7 +47,7 @@ w_k(alpha) = -alpha (1 - alpha)(2 - alpha) ... (k - 1 - alpha) / k!  <  0     (k
 sum_{k >= 1} |w_k(alpha)| = 1,            |w_k(alpha)| ~ alpha / (Gamma(1 - alpha) k^{1 + alpha}).
 ```
 
-So the fractional difference is `Delta^alpha c_i = c_i - (weighted average of c_{i-1}, c_{i-2}, ...)` where the weights form a probability distribution with a **power-law tail**, and `B_alpha` is the total amount by which each column exceeds the power-law-weighted memory of everything to its left. That is the nonlocality fractional calculus is known for, in castle form: the ordinary block count asks "is this column higher than the one before?", the fractional block count asks "is this column higher than the long-memory average of all the ones before?". At `alpha = 1/2` the partial sums of `|w_k|` reach `0.727` at `k = 4`, `0.860` at `16`, `0.930` at `64`, and `0.982` at `1024`: the memory is long, and a width-6 castle sees only about three quarters of the total weight.[^exec]
+So the fractional difference is `Delta^alpha c_i = c_i - (weighted average of c_{i-1}, c_{i-2}, ...)` where the weights form a probability distribution with a **power-law tail**, and `B_alpha` is the total amount by which each column exceeds the power-law-weighted memory of everything to its left. The ordinary block count asks "is this column higher than the one before?", the fractional block count asks "is this column higher than the long-memory average of all the ones before?". At `alpha = 1/2` the partial sums of `|w_k|` reach `0.727` at `k = 4`, `0.860` at `16`, `0.930` at `64`, and `0.982` at `1024`: the memory is long, and a width-6 castle sees only about three quarters of the total weight.[^exec]
 
 **Small `alpha`.** Since `(-1)^k C(alpha, k) = -alpha / k + O(alpha^2)` for `k >= 1`, the first-order expansion is
 
@@ -55,7 +55,7 @@ So the fractional difference is `Delta^alpha c_i = c_i - (weighted average of c_
 B_alpha(C)  =  area(C)  -  alpha * sum_{j = 1}^{w} c_j H_{w - j}  +  O(alpha^2),
 ```
 
-with `H_n = 1 + 1/2 + ... + 1/n` the harmonic numbers (`H_0 = 0`). The slope at `alpha = 0` weights each column by the harmonic number of how many columns lie to its right: a cell of height in column 1 is worth `H_{w-1}` of slope, a cell in the last column nothing. Finite differences confirm the formula to four decimals on `(1, 2, 2, 1)` (slope `-6.8333`), `(3, 1, 2, 3, 1)` (`-14.0833`), and `(1, 1, 1, 4)` (`-4.3333`).[^exec] This is the first sign that `B_alpha` knows *where* a castle's mass sits, which neither endpoint does.
+with `H_n = 1 + 1/2 + ... + 1/n` the harmonic numbers (`H_0 = 0`). The slope at `alpha = 0` weights each column by the harmonic number of how many columns lie to its right: a cell of height in column 1 is worth `H_{w-1}` of slope, a cell in the last column nothing. Finite differences confirm the formula to four decimals on `(1, 2, 2, 1)` (slope `-6.8333`), `(3, 1, 2, 3, 1)` (`-14.0833`), and `(1, 1, 1, 4)` (`-4.3333`).[^exec] So `B_alpha` depends on where a castle's mass sits, which neither endpoint does.
 
 ## Worked example: the ten `(4, 2)` castles
 
@@ -98,7 +98,7 @@ The pair `(area, blocks)` separates a few percent of a cell; a single fractional
 
 **Tail blindness for `alpha` near 1.** The collisions that survive at irrational `alpha` are structural. In `(5, 4)` there are 126 pairs of castles with `B_alpha` identical for every `alpha` in `[0.5, 1)`, and 555 such pairs in `(6, 4)`. Every one inspected has the same form: the two castles share a prefix through their last column with a positive residual and differ only in the descending tail after it, for example `(1, 1, 1, 4, 1)` and `(1, 1, 1, 4, 2)`, or `(1, 1, 4, 1, 1)` and `(1, 1, 4, 2, 1)`.[^exec] The mechanism is inherited from the endpoint: the block count is the total *ascent*, so it never sees how a castle comes down, and `B_alpha` for `alpha` close to 1 keeps that blindness wherever the trailing residuals stay negative. The blindness lifts as `alpha` falls toward 0, where the area sees every cell (`B_{0.1}` differs by exactly `1.000` on the first pair above). No pair of distinct castles was found with `B_alpha` equal on all of `(0, 1)`: 49 orders tested, in `(6, 3)`, `(7, 3)`, and `(5, 4)`, zero pairs.[^exec]
 
-**Position awareness.** Area and block count are both unchanged by reversing the skyline. `B_alpha` is not: in `(5, 3)` the castles with `B_{1/2}(c) = B_{1/2}(reverse c)` are exactly the 19 palindromes; in `(6, 3)` 25 castles pass against 19 palindromes; in `(5, 4)` 41 against 37.[^exec] This is a consequence of the left-to-right memory and is the first single-number castle statistic on the wiki that knows which end of the castle is which.
+**Position awareness.** Area and block count are both unchanged by reversing the skyline. `B_alpha` is not: in `(5, 3)` the castles with `B_{1/2}(c) = B_{1/2}(reverse c)` are exactly the 19 palindromes; in `(6, 3)` 25 castles pass against 19 palindromes; in `(5, 4)` 41 against 37.[^exec] This is a consequence of the left-to-right memory.
 
 ## The shape of `B_alpha` as a function of `alpha`
 
@@ -153,7 +153,7 @@ At `alpha = 0` this is `hw`, the area; at `alpha = 1` it is `h`, the block count
 B_{1/2}(box_{w,h})  =  h sum_{i=0}^{w-1} C(2i, i) / 4^i  =  h 2w C(2w, w) / 4^w  ~  2h sqrt(w / pi),
 ```
 
-whose numerators `1, 3, 15, 35, 315, 693, 3003, ...` are A001803, the numerators of `(1 - x)^{-3/2}`.[^exec] The half-order block count of a box is `(2 / sqrt(pi)) sqrt(area * blocks)` in the limit: the geometric mean of the two integer statistics, scaled by `2 / sqrt(pi) = 1.128`. This is the [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] crossed from the block-count side, through `Gamma(1/2) = sqrt(pi)`, and it is the same mechanism fractional partial sums of counts obey (Gamma at half-integer orders). Values at `h = 3`:
+whose numerators `1, 3, 15, 35, 315, 693, 3003, ...` are A001803, the numerators of `(1 - x)^{-3/2}`.[^exec] The half-order block count of a box is `(2 / sqrt(pi)) sqrt(area * blocks)` in the limit: the geometric mean of the two integer statistics, scaled by `2 / sqrt(pi) = 1.128`. The constant `sqrt(pi)` enters through `Gamma(1/2)` (see [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)]). Values at `h = 3`:
 
 | `w` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
 |---|---|---|---|---|---|---|---|---|
@@ -184,7 +184,7 @@ The castle sign is `(-1)^{blocks} = e^{i pi B_1}` ([[castle-sign](pages/castle-s
 P_alpha(w, h)  =  sum_C  e^{i pi B_alpha(C)}.
 ```
 
-At `alpha = 1`, `P_1 = sum (-1)^{blocks}` is the signed count that drives the PE 502 formula. At `alpha = 0`, `P_0 = sum (-1)^{area}` is the *area*-parity signed count, and it is always `+-1`: summing `(-1)^{c}` over `c in {1, ..., h}` gives `-1` for odd `h` and `0` for even `h`, so `P_0(w, h) = (-1)^{w + h + 1}` for every cell. Area parity is balanced to within one castle in every cell, and a hypothetical "even-area" version of PE 502 would have the trivial answer `(A +- 1) / 2`. The block-parity clause is hard precisely because it sits at the other end of the interpolation. In between:[^exec]
+At `alpha = 1`, `P_1 = sum (-1)^{blocks}` is the signed count that drives the PE 502 formula. At `alpha = 0`, `P_0 = sum (-1)^{area}` is the *area*-parity signed count, and it is always `+-1`: summing `(-1)^{c}` over `c in {1, ..., h}` gives `-1` for odd `h` and `0` for even `h`, so `P_0(w, h) = (-1)^{w + h + 1}` for every cell. Area parity is balanced to within one castle in every cell, and a hypothetical "even-area" version of PE 502 would have the trivial answer `(A +- 1) / 2`. In between:[^exec]
 
 | cell | `A` | `P_0` | `|P_alpha|` at `alpha = 0.1, 0.25, 0.5, 0.75, 0.9` | `P_1` |
 |---|---|---|---|---|
@@ -193,11 +193,11 @@ At `alpha = 1`, `P_1 = sum (-1)^{blocks}` is the signed count that drives the PE
 | `(5, 4)` | 781 | +1 | `0.33, 1.11, 6.35, 47.1, 98.0` | +97 |
 | `(6, 4)` | 3367 | -1 | `0.19, 0.99, 10.5, 104.2, 157.0` | +91 |
 
-The phase sum is **not** a monotone dephasing between the two integer ends. It stays near zero out to `alpha = 0.25`, then grows, and in every cell it **exceeds** `|P_1|` somewhere in `(0.5, 1)`: `49` against `15` in `(8, 2)`, `157` against `91` in `(6, 4)`. The fractional phases partially align at three-quarter order in a way the integer signs do not. There is no `alpha`-deformation of the projector `(A +- P) / 2` here yet, because `e^{i pi B_alpha}` is not `+-1` and does not split the cell into two classes; the candidate is to read `P_alpha` as a characteristic function and ask what distribution on the circle it is the transform of.
+The phase sum is **not** a monotone dephasing between the two integer ends. It stays near zero out to `alpha = 0.25`, then grows, and in every cell it **exceeds** `|P_1|` somewhere in `(0.5, 1)`: `49` against `15` in `(8, 2)`, `157` against `91` in `(6, 4)`. There is no `alpha`-deformation of the projector `(A +- P) / 2` here yet, because `e^{i pi B_alpha}` is not `+-1` and does not split the cell into two classes; the candidate is to read `P_alpha` as a characteristic function and ask what distribution on the circle it is the transform of.
 
 ## The compression reading
 
-Drop the positive part and take the full residual cost `sum_i |Delta^alpha c_i|`. For `0 < alpha < 1` this is the L1 size of the skyline after **fractional differencing** by `(1 - B)^alpha`, `B` the backshift, which is the operation that defines the ARFIMA family of long-memory time series: a process is fractionally integrated of order `d` when `(1 - B)^d` turns it into white noise.[^5] The order `alpha` that minimizes the residual cost is therefore an estimate of the skyline's integration order, and on synthetic width-64 skylines (heights centred before differencing) it lands where it should:[^exec]
+Drop the positive part and take the full residual cost `sum_i |Delta^alpha c_i|`. For `0 < alpha < 1` this is the L1 size of the skyline after **fractional differencing** by `(1 - B)^alpha`, `B` the backshift, which is the operation that defines the ARFIMA family of long-memory time series: a process is fractionally integrated of order `d` when `(1 - B)^d` turns it into white noise.[^5] The order `alpha` that minimizes the residual cost is therefore an estimate of the skyline's integration order, and on synthetic width-64 skylines (heights centred before differencing):[^exec]
 
 | skyline | argmin of `sum |Delta^alpha c|` |
 |---|---|
@@ -206,7 +206,7 @@ Drop the positive part and take the full residual cost `sum_i |Delta^alpha c_i|`
 | ramp `1, 2, ..., 64` | `2.00` |
 | fractionally integrated Gaussian noise, `d = 0.3` | `0.48` |
 
-The three integer cases are exact; the fractional case is recovered as "between 0 and 1" with the upward bias one expects from an L1 argmin on 64 samples. In the language of [[castle-compression](pages/castle-compression.md)], the skyline tier codes the heights (`alpha = 0`) and the run-length tier codes the first difference (`alpha = 1`); the fractional order is the continuous knob between them, and the best `alpha` for a skyline is a one-number description of how much memory it has. This is where a Hurst-exponent reading picks up, on the real skylines of [[image-as-castle](pages/image-as-castle.md)] and [[song-as-castle](pages/song-as-castle.md)].
+The three integer cases are exact; the fractional case is recovered as "between 0 and 1" with the upward bias one expects from an L1 argmin on 64 samples. In the language of [[castle-compression](pages/castle-compression.md)], the skyline tier codes the heights (`alpha = 0`) and the run-length tier codes the first difference (`alpha = 1`); the fractional order is the continuous knob between them, and the best `alpha` for a skyline is a one-number description of how much memory it has. The same estimate has not been run on the real skylines of [[image-as-castle](pages/image-as-castle.md)] and [[song-as-castle](pages/song-as-castle.md)].
 
 ## What this page settles and what it opens
 

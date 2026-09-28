@@ -10,7 +10,7 @@ updated: 2026-09-27
 
 # Sandcastles seminar - one silver castle, grain by grain, in the sink and tide models
 
-**Thesis.** Pour sand on a castle, one grain at a time, and a rich mathematical object appears: a finite group, a clock, an identity pile, and avalanches of every size. All of it is controlled by the castle's `2 × 2` blocks and by where the sand leaves. There are two natural places for it to leave, one sink cell or the whole ground, and they give two different theories of the same castle. This seminar follows a single castle through the whole story in both, side by side.
+**Thesis.** Adding sand to a castle one grain at a time gives a finite group, a clock, an identity pile, and avalanches. All of it is controlled by the castle's `2 × 2` blocks and by where the sand leaves. There are two natural places for it to leave, one sink cell or the whole ground, and they give two different theories of the same castle. This seminar follows a single castle through the whole story in both, side by side.
 
 **Format.** About 60 minutes, seven stops. Every value quoted is pinned by the Snippet block at the end. The research pages behind the stops are [[sandpile-group](pages/sandpile-group.md)], [[sandpile-census](pages/sandpile-census.md)], [[sandcastle-clock](pages/sandcastle-clock.md)], [[sandpile-identity](pages/sandpile-identity.md)] and [[castle-avalanches](pages/castle-avalanches.md)], each of which treats both models.
 
@@ -32,7 +32,7 @@ The two models ([[sandpile-group](pages/sandpile-group.md)], Part 1):
 | what the castle becomes | the castle graph | the castle with its bottom row merged into one vertex |
 | what this castle looks like to the sand | one connected castle | three separate runs of raised columns, `(3, 2)`, `(2, 2)` and `(2, 3)`, each standing on the ground |
 
-*Idea:* one well-chosen castle can carry the whole theory, and where the sand leaves decides which theory.
+*Idea:* where the sand leaves determines the graph, and so every invariant below.
 
 ## Stop 1 - the game
 
@@ -80,7 +80,7 @@ topple (1,1)     0......0   20.11.12   ~~~~~~~~     <- another          settled
 
 The same grain, **4 topplings**, and the wave never leaves the left run. Two grains are lost again, but now straight into the ground below the cells that toppled.[^1]
 
-*Idea:* local rules, global effects, and the global effects depend on where the sand can leave.
+*Idea:* the same grain causes 16 topplings in the sink model and 4 in the tide model.
 
 ## Stop 2 - the sand forms a group
 
@@ -119,7 +119,7 @@ Start at the **identity** pile (Stop 5) and drop one grain on the left tower's t
 
 In the sink model the clock spectrum is a graph invariant, and unlike the group it separates many cospectral castles (62 of the 105 adjacency-cospectral groups to 16 cells). Under the tide every raised cell of this castle ticks 3: each separate block is a `Z/3`, and a grain anywhere on a tower is the same as a grain on the block below it.[^3]
 
-*Idea:* an element of a finite group has an order, and an order is a clock.
+*Idea:* the clock period is the order of a group element.
 
 ## Stop 5 - the identity
 
@@ -132,7 +132,7 @@ sink model (sink S)              tide model (ground ~)
 S2122121                         ~~~~~~~~
 ```
 
-Both have empty tower tops. A grain on a tower top can always topple down into the block below, so in the group it is the same as a grain on that block. Tree branches are transparent: the towers add shape but no sand. Under the tide the identity is almost trivially regular, and in the sink model it is irregular. One grain dropped on the apex of either identity topples once and settles.[^4]
+Both have empty tower tops. A grain on a tower top can always topple down into the block below, so in the group it is the same as a grain on that block. The towers carry no sand in either identity. Under the tide the identity is almost trivially regular, and in the sink model it is irregular. One grain dropped on the apex of either identity topples once and settles.[^4]
 
 ## Stop 6 - avalanches, and where the sand leaves
 
@@ -145,7 +145,7 @@ Now drop grains at **random** cells, starting from the identity. By Dhar's theor
 
 The castle is only 3 high, so under the tide sand reaches the ground almost at once, and nothing ever avalanches far. In the sink model every grain must cross the castle to escape, as in Stop 1, and the mean rises twentyfold. The tide mean, 1.667, is just below this castle's column-by-column prediction of 1.75. The prediction is exact only when every run of adjacent columns rising above the base has constant height, and here the outer runs `(3, 2)` and `(2, 3)` do not. On [[castle-avalanches](pages/castle-avalanches.md)] the tide mean never exceeds the prediction on any castle up to 12 cells; for larger castles, this one included, the inequality is conjectured. No such prediction is known in the sink model, where the mean depends on width as well as height and the `2 × 2` blocks lower it by giving sand more routes to the sink.[^5]
 
-*Idea:* the same castle can be calm or explosive depending on one modelling choice, where the sand leaves.
+*Idea:* the mean avalanche differs by a factor of about 19 between the two models.
 
 ## The board
 
@@ -158,7 +158,7 @@ The castle is only 3 high, so under the tide sand reaches the ground almost at o
 | 5 | identity | tower tops empty, irregular | tower tops empty, regular |
 | 6 | mean avalanche, largest | 32.133, 149 | 1.667, 4 |
 
-The silver rectangle `(2, 2, 2)` shares this castle's spectral radius but not its sand. Its two blocks touch and give `Z/15` (sink) and `Z/8` (tide), its clocks tick 15 and 8, and it has no towers. Same "silver" loudest note, different sandcastle in either model.
+The silver rectangle `(2, 2, 2)` shares this castle's spectral radius but not its sand. Its two blocks touch and give `Z/15` (sink) and `Z/8` (tide), its clocks tick 15 and 8, and it has no towers. Same spectral radius, different sandpile invariants in both models.
 
 ## Snippet
 
@@ -319,7 +319,7 @@ def random_drops(b, drops, seed=2):        # from the identity; returns the topp
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the silver castles.
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[one-bit-seminar](pages/one-bit-seminar.md)] / [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the other seminar pages.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series, and audio as castles.
 
 ## Footnotes
 

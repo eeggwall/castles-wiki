@@ -1,7 +1,7 @@
 ---
 title: Castle entropy
 category: Concepts
-summary: How much information a castle carries, in two senses that agree — uniform entropy log₂ F(w,h) ≈ w·log₂ h − 1 (the even-parity constraint is worth exactly one bit), and entropy rate log₂ ρ (every growth constant the wiki has catalogued — metallic, plastic, tribonacci — is a topological entropy in disguise).
+summary: How much information a castle carries, in two senses that agree — uniform entropy log₂ F(w,h) ≈ w·log₂ h − 1 (the even-parity constraint is worth exactly one bit), and entropy rate log₂ ρ (the log₂ of each growth constant on the wiki — metallic, plastic, tribonacci — is the topological entropy of its family).
 tags: [concept, castle, entropy, information-theory, counting, growth-constant, metallic-means, parity, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-18
@@ -17,7 +17,7 @@ How much information does a castle carry? Two precise senses, and they agree in 
 - **Uniform entropy.** If every valid castle of width `w` and exact height `h` is equally likely, one castle is worth `H(w,h) = log₂ F(w,h)` bits, where `F(w,h)` is the even-block count Project Euler 502 (PE 502) asks for ([[castle-counting-function](pages/castle-counting-function.md)], [[castle-counting-formula](pages/castle-counting-formula.md)]).
 - **Entropy rate.** A castle *family* defined by a rule is a shift whose transfer matrix has Perron root `ρ` (its growth constant); the entropy rate is `log₂ ρ`.
 
-The two coincide: fix `h` and grow `w`, and `(1/w)·log₂ F(w,h) → log₂ h`, which is exactly `log₂ ρ` for the unconstrained height-bounded family (`ρ = h`). The punchline: **every growth constant the wiki has catalogued is a topological entropy in disguise.**
+The two coincide: fix `h` and grow `w`, and `(1/w)·log₂ F(w,h) → log₂ h`, which is exactly `log₂ ρ` for the unconstrained height-bounded family (`ρ = h`). Consequently the log₂ of every growth constant on the wiki is the topological entropy of its family.
 
 ## Uniform entropy: the parity is exactly one bit
 
@@ -68,7 +68,7 @@ The metallic ladder ([[metallic-means](pages/metallic-means.md)]), the plastic n
 
 ## Why the two senses are one
 
-Uniform entropy and entropy rate are the same limit approached from two sides. Uniform entropy is a *finite* count's log (`log₂ F(w,h)`) that becomes a rate when divided by `w`; entropy rate is a *per-column* limit from the start. They meet because the transfer-matrix growth constant is the eigenvalue `ρ` that governs both the word count `~ ρ^w` and the per-column branching. The even-parity `−1` is a boundary correction — finite in size, so it vanishes in the rate — exactly as the signed sum `P` is subdominant to `A`.
+Uniform entropy and entropy rate are the same limit approached from two sides. Uniform entropy is a *finite* count's log (`log₂ F(w,h)`) that becomes a rate when divided by `w`; entropy rate is a *per-column* limit from the start. They meet because the transfer-matrix growth constant is the eigenvalue `ρ` that governs both the word count `~ ρ^w` and the per-column branching. The even-parity `−1` is a boundary correction — finite in size, so it vanishes in the rate — as the signed sum `S` is subdominant to `A`.
 
 ## Related Concepts
 

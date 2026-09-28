@@ -12,9 +12,9 @@ updated: 2026-09-23
 
 ## The framing
 
-Every strip rule on [[castle-strip](pages/castle-strip.md)] is Markov: `A(a, b)` tests one adjacent pair, so the transfer matrix `M` is `h x h` and the state space is exactly the height. The whole [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] / [[reachable-field-census](pages/reachable-field-census.md)] machinery is one adjacent-pair away from the columns it counts.
+Every strip rule on [[castle-strip](pages/castle-strip.md)] is Markov: `A(a, b)` tests one adjacent pair, so the transfer matrix `M` is `h x h` and the state space is exactly the height. The same holds for every rule in [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] and [[reachable-field-census](pages/reachable-field-census.md)].
 
-Fractional calculus opens a wider question: what if the rule reads *every* prior column, with weights decaying as a power of the distance? The natural candidate is the **Grunwald-Letnikov fractional-difference kernel**, `(-1)^k C(alpha, k)`, which decays like `k^{-alpha - 1}` for large `k` ([[fractional-block-count](pages/fractional-block-count.md)]). The fractional analog of the "1-smooth" rule `|c_n - c_{n-1}| <= 1` (Motzkin, alpha = 1) is then the **fractional 1-smooth rule**
+Fractional calculus suggests a generalization: what if the rule reads *every* prior column, with weights decaying as a power of the distance? The natural candidate is the **Grunwald-Letnikov fractional-difference kernel**, `(-1)^k C(alpha, k)`, which decays like `k^{-alpha - 1}` for large `k` ([[fractional-block-count](pages/fractional-block-count.md)]). The fractional analog of the "1-smooth" rule `|c_n - c_{n-1}| <= 1` (Motzkin, alpha = 1) is then the **fractional 1-smooth rule**
 
 ```
 |sum_{k=0}^{infty}  (-1)^k C(alpha, k) c_{n-k}|  <=  1        for all  n.
@@ -66,7 +66,7 @@ At integer `alpha`, `C(alpha, k) = 0` for `k > alpha`, so the fractional operato
 
 ## What it does at alpha in (0, 1), h = 2
 
-Here is the phenomenon. `rho(alpha, K)` for `h = 2` at several `alpha` and `K` up to 16, with the leftmost few `K` where the rule is too tight and only the constant strip survives (`rho = 1`) elided:
+`rho(alpha, K)` for `h = 2` at several `alpha` and `K` up to 16, with the leftmost few `K` where the rule is too tight and only the constant strip survives (`rho = 1`) elided:
 
 | alpha \ K | 5 | 6 | 7 | 8 | 9 | 10 | 12 | 14 | 16 |
 |---|---|---|---|---|---|---|---|---|---|
@@ -102,7 +102,7 @@ for K in range(11, 17):
     print(K, gap, gap / prev_gap if K > 11 else None)
 ```
 
-The K -> infinity limit for `alpha in (0, 1)` at `h = 2` is at most `2` (bounded above by unrestricted growth) and appears to reach `2` in the limit. Since `2` is the trivial integer growth of the height-2 strip with no constraint, **the fractional 1-smooth rule adds no new numbers at `h = 2`**: every finite-`K` value lands in the census, and the limit is the census's smallest integer. The interesting arithmetic is in the ratchet, not the limit.
+The K -> infinity limit for `alpha in (0, 1)` at `h = 2` is at most `2` (bounded above by unrestricted growth) and appears to reach `2` in the limit. Since `2` is the trivial integer growth of the height-2 strip with no constraint, **the fractional 1-smooth rule adds no new numbers at `h = 2`**: every finite-`K` value lands in the census, and the limit is the census's smallest integer.
 
 ## The h = 3 collapse
 
@@ -119,7 +119,7 @@ This is the fractional analog of the [[reachable-field-census](pages/reachable-f
 
 ## Non-integer alpha > 1: collapse to growth 1
 
-At `alpha = 1.25, 1.5`, the growth constant is `1` at every `K` tested (h = 2, 3). The reason is that `C(alpha, k)` for `1 < alpha < 2` has `C(alpha, 2) = alpha(alpha - 1)/2 > 0`, and the sum has three sizable coefficients `+1, -alpha, C(alpha, 2)` with alternating sign contributions. For any non-constant binary sequence the truncated sum quickly exceeds 1 in magnitude, so only constants survive - and the growth of constants is 1. This is the strip analog of the failure of ARFIMA-like models to admit rich integer-height sequences for `d in (1, 2)`: the second-order fractional difference is a very tight constraint on integer sequences. At integer `alpha = 2` the constraint reads `|c_n - 2 c_{n-1} + c_{n-2}| <= 1`, which admits the Fibonacci-like sequences and gives `phi`; between `1` and `2` the non-integer coefficients rule everything but constants out. So the growth-constant function `rho(alpha)` in `alpha` is **not** continuous at integer `alpha` in the truncated setup - it jumps from `2` at `alpha = 1` to `1` on a neighborhood of `alpha = 1.25`, back up to a positive value at `alpha = 2`. The continuous-in-`alpha` object of [[fractional-recurrences](pages/fractional-recurrences.md)] lives on the recurrence side (`nabla^alpha a_n = a_{n-1}`), not on the integer-height rule side.
+At `alpha = 1.25, 1.5`, the growth constant is `1` at every `K` tested (h = 2, 3). The reason is that `C(alpha, k)` for `1 < alpha < 2` has `C(alpha, 2) = alpha(alpha - 1)/2 > 0`, and the sum has three sizable coefficients `+1, -alpha, C(alpha, 2)` with alternating sign contributions. For any non-constant binary sequence the truncated sum quickly exceeds 1 in magnitude, so only constants survive - and the growth of constants is 1. At integer `alpha = 2` the constraint reads `|c_n - 2 c_{n-1} + c_{n-2}| <= 1`, which admits the Fibonacci-like sequences and gives `phi`; between `1` and `2` the non-integer coefficients rule everything but constants out. So the growth-constant function `rho(alpha)` in `alpha` is **not** continuous at integer `alpha` in the truncated setup - at `h = 2` it jumps from `2` at `alpha = 1` to `1` at `alpha = 1.25` and `1.5`, then to `phi` at `alpha = 2`. The continuous-in-`alpha` object of [[fractional-recurrences](pages/fractional-recurrences.md)] lives on the recurrence side (`nabla^alpha a_n = a_{n-1}`), not on the integer-height rule side.
 
 ## The NTT / Toeplitz question
 
@@ -127,13 +127,13 @@ A tempting proposal is to use the length-1024 NTT over `F_65537` of [[song-as-ca
 
 The strip count `strips(w) = 1^T M(alpha, K)^{w-1} 1` is a **transfer-matrix power**, not a length-`w` convolution of the kernel with anything. The Toeplitz structure of the *rule* enters the *construction* of `M` - one convolution of length `K` per window - but there are `h^{K-1}` windows and each convolution costs `K`, so construction is `O(h^{K-1} K)`, dominated by the matrix size, not the kernel evaluation. NTT over `F_65537` accelerates each convolution to `O(K log K)`, buying a `log K` factor at best, and only on construction, not counting.
 
-The NTT *does* apply in one adjacent problem: **per-skyline evaluation of `(GL_alpha c)_n` at every `n`** for a fixed width-`w` skyline is a length-`w` convolution of `c` with the kernel, and F_65537 makes it exact for `w <= 1024`. This is the right primitive for verifying the fractional 1-smooth rule on a specific candidate sequence (e.g. the [[fractional-block-count](pages/fractional-block-count.md)] 5460-castle catalogue at rational `alpha`), but it does not accelerate the transfer-matrix count. The item's suggestion belongs on the block-count / evaluation side, not here.
+The NTT *does* apply in one adjacent problem: **per-skyline evaluation of `(GL_alpha c)_n` at every `n`** for a fixed width-`w` skyline is a length-`w` convolution of `c` with the kernel, and F_65537 makes it exact for `w <= 1024`. This is the right primitive for verifying the fractional 1-smooth rule on a specific candidate sequence (e.g. the [[fractional-block-count](pages/fractional-block-count.md)] 5460-castle catalogue at rational `alpha`), but it does not accelerate the transfer-matrix count. The NTT belongs on the block-count / evaluation side.
 
 The correct fast-evaluation gadget for the count is: represent the transfer graph as an edge list (each of `h^{K-1}` states with at most `h` out-edges) and use Krylov iteration for the Perron root - the same setup as any large-sparse 0/1 matrix. No number-theoretic transform buys anything beyond that.
 
 ## Verdict: is the limit a new number?
 
-The question: is the K -> infinity growth constant a new number, or does it land in the [[reachable-field-census](pages/reachable-field-census.md)] after all? Two answers, both with the same negative sign.
+The question: is the K -> infinity growth constant a new number, or does it land in the [[reachable-field-census](pages/reachable-field-census.md)] after all? Two answers; neither gives a new number.
 
 **At every finite K, rho(alpha, K) is inside the census.** Each `M(alpha, K)` is a 0/1 matrix, so its Perron root is an algebraic integer that is the growth constant of *some* 0/1 castle-strip rule (namely `M(alpha, K)` itself, read as a rule on the `h^{K-1}`-state expanded height alphabet). The census asks "which algebraic numbers are Perron roots of 0/1 transfer matrices at *some* height," and every `rho(alpha, K)` trivially answers "yes, at expanded height `h^{K-1}`." So the ratchet visits census members exclusively, and the interesting question is *which* census members appear at which `(alpha, K)` - a non-trivial pattern the table above sketches.
 

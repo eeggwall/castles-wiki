@@ -10,7 +10,7 @@ updated: 2026-09-27
 
 # q-thread seminar - castles by area
 
-**Thesis.** Count castles by the number of cells instead of by width and height, and the castle joins the classical polyomino literature. Area alone gives nothing new: every composition is a castle. Area together with the block sign carries all the structure. The sign is a character of a free monoid of prime castles. That gives a q-shift equation, and the equation solves in the same q-Bessel series that count parallelogram polyominoes, the Pólya q-Catalan family. The q-Motzkin family is the one meeting still open.
+**Thesis.** Count castles by the number of cells instead of by width and height, and the castle joins the classical polyomino literature. Area alone gives nothing new: every composition is a castle. The structure comes from area together with the block sign. The sign is a character of a free monoid of prime castles. That gives a q-shift equation, and the equation solves in the same q-Bessel series that count parallelogram polyominoes, the Pólya q-Catalan family. The q-Motzkin family is the one meeting still open.
 
 **Format.** About 75 minutes, eight stops, one castle carried through: `(2, 1, 3, 3, 1, 1, 2)`, area 13, width 7, 5 blocks. The research pages behind it are [[castle-by-area](pages/castle-by-area.md)], [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)], [[prime-castles](pages/prime-castles.md)], [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)], [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] and [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]. Every new computation is pinned by the Snippet block at the end. Values quoted from a research page link to it. Notation follows [[castle-notation](pages/castle-notation.md)]: `q` marks area, `z` or `u` width, and `x` blocks.
 
@@ -20,7 +20,7 @@ A castle is read column by column as its heights `(c_1, ..., c_w)`, each at leas
 
 Read that way, area carries no information on its own. The graded tower grammar on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] telescopes to `1/(1 - u/(1 - q))` at unit block weight, which is every height vector counted once. Area gets interesting only jointly with blocks, and blocks are the vertical half-perimeter ([[castle-perimeter](pages/castle-perimeter.md)]). The PE 502 question, "even number of blocks", is therefore the natural second statistic to put next to area.
 
-*Idea:* a grading that makes the count trivial is the right place to put a second statistic.
+*Idea:* area alone is trivial on castles, so it is paired with blocks.
 
 ## Stop 1 - the ladder
 
@@ -39,7 +39,7 @@ Every convex-polyomino family has a classical count by area, and the castle sits
 
 Two rules move the count between rungs. Free the bottoms of a stack to their own anti-unimodal profile and it becomes a convex polyomino: the growth jumps from subexponential to `2.309^n`. Keep the base flat but free the tops from unimodality, as a castle does, and the growth is `2^n`.
 
-*Idea:* a new family is best understood by where it sits on a ladder of known families, and what one rule moves it between rungs.
+*Idea:* place a new family among known ones and identify the rule that separates it from its neighbours.
 
 ## Stop 2 - convex and valley: the same cells, different areas
 
@@ -120,15 +120,15 @@ q_1 = -0.8202719776...         q_0/q_1 = 0.7508
 
 The first zero is the `ρ` of Stop 4, found a second way. The second zero is real, so the relative error of `C(-ρ)^n` is `O(0.7508^n)`.[^3]
 
-*Idea:* a Möbius q-shift equation linearizes, and the linear pieces are usually series someone has already named.
+*Idea:* a Möbius q-shift equation linearizes; here the linear pieces are the Bousquet-Mélou–Fédou q-Bessel series.
 
 ## Stop 6 - why a q-series, and the q-Motzkin door
 
 Unsigned, castles by area are rational (`2^{n-1}`), and so are column-convex polyominoes (A001169). Add a column, recording the height of the new first column, and both obey the Bousquet-Mélou add-a-column equation ([[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)], [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)]). A castle keeps 1 of Temperley's `k + l - 1` ways to place a column next to the last one, an area kernel of rank 1 against A001169's rank 2. The block weight `y^{max(0, l - k)}` has **no finite rank**, and that is why the signed count is a q-series rather than a rational function.
 
-The third classical q-family is **q-Motzkin**. Barcucci, Del Lungo, Fédou and Pinzani give three q-Motzkin analogues. The first counts steep parallelogram polyominoes by width, perimeter and area, again as a quotient of two q-Bessel functions.[^6] On the castle side, a castle is a cornerless Motzkin path ([[motzkin-castles](pages/motzkin-castles.md)], [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]). Restoring the corners with Prodinger's weights ([[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)]) walks from castles to all Motzkin paths. Doing that walk with area tracked would join the castle q-Bessel form to a q-Motzkin number directly. That join is not done, and it is where the arc stops.
+The third classical q-family is **q-Motzkin**. Barcucci, Del Lungo, Fédou and Pinzani give three q-Motzkin analogues. The first counts steep parallelogram polyominoes by width, perimeter and area, again as a quotient of two q-Bessel functions.[^6] On the castle side, a castle is a cornerless Motzkin path ([[motzkin-castles](pages/motzkin-castles.md)], [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]). Restoring the corners with Prodinger's weights ([[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)]) walks from castles to all Motzkin paths. Doing that walk with area tracked would join the castle q-Bessel form to a q-Motzkin number directly. That join has not been done.
 
-*Idea:* rank is the invariant that tells rational from q-series. The q-Motzkin meeting is a matter of adding one weight to an equation already on the board.
+*Idea:* the rank of the kernel separates rational generating functions from q-series.
 
 ## Stop 7 - fix the height
 
@@ -294,7 +294,7 @@ The open problems that bear on this seminar:
 - [[fractional-block-count](pages/fractional-block-count.md)] - a statistic that interpolates between area and block count.
 - [[castle-notation](pages/castle-notation.md)] - the area-layer symbols `E(q, z)`, `N(q)`, `M(q)`, `Π`, `J_0`, `J_1`.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] / [[one-bit-seminar](pages/one-bit-seminar.md)] / [[sandcastle-seminar](pages/sandcastle-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the other seminar pages.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series, and audio as castles.
 
 ## Footnotes
 

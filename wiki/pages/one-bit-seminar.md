@@ -10,7 +10,7 @@ updated: 2026-09-27
 
 # One bit seminar - the parity clause as information
 
-**Thesis.** Project Euler 502 counts castles with an even number of blocks. That clause is worth **exactly one bit**. In aggregate it halves the count up to an exponentially small correction. For a single castle it is a sign that one well-chosen cell can flip, which makes it easy to write a message into and easy to destroy. In the growth rate, where every castle family's growth constant is an entropy, the bit disappears.
+**Thesis.** Project Euler 502 counts castles with an even number of blocks. That clause is worth **exactly one bit**. In aggregate it halves the count up to an exponentially small correction. For a single castle it is a sign that one well-chosen cell can flip, which makes it easy to write a message into and easy to destroy. In the growth rate (the entropy per column) the bit disappears.
 
 **Format.** About 60 minutes at one blackboard, seven stops. Every value quoted is pinned by the Snippet block at the end. The research pages behind it are [[castle-entropy](pages/castle-entropy.md)], [[castle-sign](pages/castle-sign.md)], [[castle-compression](pages/castle-compression.md)], [[castle-steganography](pages/castle-steganography.md)] and [[castle-phone-line](pages/castle-phone-line.md)]. Notation follows [[castle-notation](pages/castle-notation.md)].
 
@@ -84,7 +84,7 @@ Lowering is the same move in reverse. So almost every castle is **one chosen cel
 
 The last column of the table says a **random** one-cell nudge flips the parity about half the time. So under noise the parity is the first thing to go. [[castle-phone-line](pages/castle-phone-line.md)] plays castles as tones through a simulated telephone line. The block parity sits at a coin flip until the line is almost perfect: 83% correct even when 99.9% of heights arrive exact. Meanwhile the height histogram and the slow trend of the skyline survive every setting. [[song-as-castle](pages/song-as-castle.md)] measured a 44% flip rate for random single-column edits, in the same range.
 
-*Idea:* one bit that depends on every column is the least robust statistic a castle has. Robustness runs opposite to how much of the object a statistic depends on.
+*Idea:* a single bit that every column's error can flip is the least robust statistic measured here.
 
 ## Stop 5 - the bit is easy to write
 
@@ -94,7 +94,7 @@ The same fact makes the bit a channel. Hide a message one bit per castle by sett
 
 ## Stop 6 - in the growth rate, the bit disappears
 
-Divide by `w`. The entropy per column of a castle family is `log₂ ρ`, where `ρ` is its growth constant ([[castle-entropy](pages/castle-entropy.md)]). The parity's one bit, spread over `w` columns, contributes `1/w → 0`. So every growth constant the wiki has catalogued is an **entropy rate**:
+Divide by `w`. The entropy per column of a castle family is `log₂ ρ`, where `ρ` is its growth constant ([[castle-entropy](pages/castle-entropy.md)]). The parity's one bit, spread over `w` columns, contributes `1/w → 0`. So `log₂` of each growth constant is the **entropy rate** of its family:
 
 | family | growth constant `ρ` | bits per column |
 |---|---|---|
@@ -103,9 +103,9 @@ Divide by `w`. The entropy per column of a castle family is `log₂ ρ`, where `
 | silver rule | `1 + √2 = 2.414` | 1.272 |
 | plastic rule | `ψ = 1.325` | 0.406 |
 
-Conditioning refines the picture. Knowing a castle's block count `B` already tells you its parity, so the parity bit is redundant with `B`, but not with its area `N`. That is one reason area is the better single summary of a castle ([[castle-conditional-entropy](pages/castle-conditional-entropy.md)]).
+Conditioning refines the picture. Knowing a castle's block count `B` already tells you its parity, so the parity bit is redundant with `B`, but not with its area `N` ([[castle-conditional-entropy](pages/castle-conditional-entropy.md)]).
 
-*Idea:* a boundary constraint is visible in finite counts and invisible in rates. Rates measure the rule, and boundary terms measure the question asked about it.
+*Idea:* a boundary constraint is visible in finite counts and invisible in rates.
 
 ## The board
 
@@ -206,7 +206,7 @@ True
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the other seminar pages.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series, and audio as castles.
 - [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] - the `m = 2` projector taught here generalized to `m`-th roots of unity.
 
 

@@ -10,7 +10,7 @@ updated: 2026-09-26
 
 # The Hardy-Ramanujan castle (1729)
 
-1729 is the taxicab number: the smallest integer that is a sum of two positive cubes in two ways, `1^3 + 12^3 = 9^3 + 10^3`. Hardy told the story - he arrived at Ramanujan's bedside in Putney in taxi number 1729 and remarked that it seemed a dull number; Ramanujan answered that it was "the smallest number expressible as the sum of two cubes in two different ways."[^1] This page asks what 1729 has to do with castles, and finds more than expected. The headline: **`F(6,4) = 1729`**. The Project Euler 502 count of even-block castles of width 6 and height exactly 4 is the Hardy-Ramanujan number, and it is the only place the number appears in the `A`, `F`, or odd tables for `w, h <= 40`. The deeper thread runs through the sum of three cubes `9^3 + 10^3 + (-12)^3 = 1` into Ramanujan's family of near-misses to Fermat, which turns out to be a linear recurrence whose growth constant sits on the wiki's metallic ladder.
+1729 is the taxicab number: the smallest integer that is a sum of two positive cubes in two ways, `1^3 + 12^3 = 9^3 + 10^3`. Hardy told the story - he arrived at Ramanujan's bedside in Putney in taxi number 1729 and remarked that it seemed a dull number; Ramanujan answered that it was "the smallest number expressible as the sum of two cubes in two different ways."[^1] This page collects the connections between 1729 and castles. The main one: **`F(6,4) = 1729`**. The Project Euler 502 count of even-block castles of width 6 and height exactly 4 is the Hardy-Ramanujan number, and it is the only place the number appears in the `A`, `F`, or odd tables for `w, h <= 40`. A second thread runs through the sum of three cubes `9^3 + 10^3 + (-12)^3 = 1` into Ramanujan's family of near-misses to Fermat, which turns out to be a linear recurrence whose growth constant sits on the wiki's metallic ladder.
 
 Not to be confused with [[ramanujan-castles](pages/ramanujan-castles.md)], which is about the spectral Ramanujan property (expander-like adjacency spectra) of individual castle graphs. The two pages meet once, in the section on 1729 as a castle: the digit castle `(1, 7, 2, 9)` is Ramanujan in that sense too.
 
@@ -29,7 +29,7 @@ Every number below was computed while writing and re-run for the final tables; t
 | palindromic bases | `1001` in base 12, `1 22 1` in base 32, `1 12 1` in base 36 | [^1] [^exec] |
 | Ono, Trebat-Leder | Ramanujan's notes on `a^3 + b^3 = c^3 + d^3` around 1729 contain a K3 surface of Picard number 18 giving infinitely many cubic twists of rank at least 2 | [^5] |
 
-The cubic root is `1729^(1/3) = [12; 432, 12, 648, 9, ...]`, whose huge second partial quotient is the whole content of Feynman's party trick (`1729.03^(1/3) = 12.0000694...` by linearizing at `12^3 = 1728`).[^exec]
+The cubic root is `1729^(1/3) = [12; 432, 12, 648, 9, ...]`. The large second partial quotient reflects `1729 = 12^3 + 1`: linearizing at `12^3` gives `1729^(1/3) ≈ 12 + 1/432`.[^exec]
 
 ## 1729 is a castle count: the `(6, 4)` cell
 
@@ -72,9 +72,9 @@ The phrase "sum of three cubes" fits 1729 once the cubes are allowed signs. Rear
 9^3 + 10^3 + (-12)^3 = 1.
 ```
 
-This is the entry `(9, 10, -12)` in the table of primitive solutions to `x^3 + y^3 + z^3 = 1` in the sum-of-three-cubes problem - the problem whose recent celebrities are `33` (Booker 2019) and `42` (Booker and Sutherland 2019, 1.3 million core-hours).[^7] Cubes are `0, +-1 (mod 9)`, so no integer `= 4, 5 (mod 9)` is a sum of three cubes; `1729 = 1 (mod 9)` and `1 = 1 (mod 9)` both pass. The representations of 1729 itself as a sum of three integer cubes with all `|x|, |y|, |z| <= 300` are just four: `(0, 1, 12)`, `(0, 9, 10)`, `(-7, -5, 13)`, `(-215, 98, 208)`; the two with a zero are the taxicab pair, and `13^3 - 7^3 - 5^3 = 2197 - 343 - 125 = 1729` is the one non-trivial small one.[^exec]
+This is the entry `(9, 10, -12)` in the table of primitive solutions to `x^3 + y^3 + z^3 = 1` in the sum-of-three-cubes problem, in which `33` (Booker 2019) and `42` (Booker and Sutherland 2019) were resolved recently.[^7] Cubes are `0, +-1 (mod 9)`, so no integer `= 4, 5 (mod 9)` is a sum of three cubes; `1729 = 1 (mod 9)` and `1 = 1 (mod 9)` both pass. The representations of 1729 itself as a sum of three integer cubes with all `|x|, |y|, |z| <= 300` are just four: `(0, 1, 12)`, `(0, 9, 10)`, `(-7, -5, 13)`, `(-215, 98, 208)`; the two with a zero are the taxicab pair, and `13^3 - 7^3 - 5^3 = 2197 - 343 - 125 = 1729` is the one non-trivial small one.[^exec]
 
-For `k = 1` there is a polynomial family, Mahler's `(9t^4)^3 + (3t - 9t^4)^3 + (1 - 9t^3)^3 = 1` (verified symbolically; `t = 1` gives `9^3 + (-6)^3 + (-8)^3 = 1`).[^7] Ramanujan's family for the same equation is of a completely different kind, and that is where the castle connection lives.
+For `k = 1` there is a polynomial family, Mahler's `(9t^4)^3 + (3t - 9t^4)^3 + (1 - 9t^3)^3 = 1` (verified symbolically; `t = 1` gives `9^3 + (-6)^3 + (-8)^3 = 1`).[^7] Ramanujan's family for the same equation is of a different kind, and it is the one with a castle connection.
 
 ## Ramanujan's near-miss family is a linear recurrence
 
@@ -105,9 +105,9 @@ A linear recurrence runs backwards as well as forwards, and running it backwards
 
 Row `n = -1` is `(-9)^3 + 12^3 = 10^3 - 1`, i.e. `9^3 + 10^3 = 12^3 + 1 = 1729`. Row `n = -2` is `791^3 + 812^3 = 1010^3 + 1`, and `n = 1` is `135^3 + 138^3 = 172^3 - 1`. The Hardy-Ramanujan number is the `n = -1` term of Ramanujan's own recurrence, one step behind the trivial `1^3 + 2^3 = 2^3 + 1`. Every row was checked exactly in integer arithmetic.
 
-**Berlekamp-Massey recovers it.** Feeding the first twelve `c_n` to the wiki's [[berlekamp-massey](pages/berlekamp-massey.md)] over `Q` returns linear complexity 3 and connection polynomial `1 - 82x - 82x^2 + x^3`, the denominator exactly.[^exec] This is the same instrument [[recurrence-discovery](pages/recurrence-discovery.md)] points at the castle counts `P(k, L)`; here it rediscovers Ramanujan's denominator from ten numbers.
+**Berlekamp-Massey recovers it.** Feeding the first twelve `c_n` to the wiki's [[berlekamp-massey](pages/berlekamp-massey.md)] over `Q` returns linear complexity 3 and connection polynomial `1 - 82x - 82x^2 + x^3`, the denominator exactly.[^exec] This is the same instrument [[recurrence-discovery](pages/recurrence-discovery.md)] points at the castle counts `P(k, L)`; here it recovers Ramanujan's denominator from twelve terms.
 
-**The denominator factors, and the factors mean something.**
+**The denominator factors.**
 
 ```
 1 - 82x - 82x^2 + x^3  =  (1 + x)(1 - 83x + x^2)
@@ -146,8 +146,6 @@ ratio of consecutive terms -> 9.1098;  ratio at width step 2 -> 82.9880
 
 So the width-`2n` counts of the height-10 ceiling-exception castle strip and Ramanujan's `a_n, b_n, c_n` share the characteristic factor `x^2 - 83x + 1` and the growth constant `delta_9^2`. The parallel goes one step further: both denominators carry a `(x + 1)` factor next to the metallic quadratic. In the castle strip the `(x + 1)^{h-2}` block is the "spurious" part of the spectrum that the count sequence barely sees; in Ramanujan's identity the single `(x + 1)` is load-bearing, it is the `(-1)^n` that makes the miss alternate between `+1` and `-1`. This is the [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] reading of a Diophantine identity: the sequence of near-miss triples is a C-finite object with algebraic-unit eigenvalues, exactly the class every castle count lives in, and it sits on the ladder at rung 9 squared, one decimation (width step 2) above the strip. Copper's `F_{3n+5}` trisection on the realizability page is the same phenomenon at rung 1.
 
-Two coincidences worth naming as coincidences, so nobody builds on them: the taxicab cubes are `9^3 + 10^3` and the rung is metal 9 at height 10; and the width-2 count of the height-10 strip is `10^2 - 9 = 91 = 7 * 13 = 1729/19`, the same 91 that divides everything in the `(6, 4)` cell. Neither has a mechanism behind it that this page can see.
-
 ## 1729 as a castle
 
 A castle is a column-height vector with every height at least 1 and some height equal to `h` ([[castle-representations](pages/castle-representations.md)]). Reading the digits of 1729 in base `b` as column heights gives a candidate castle for each base; a zero digit disqualifies it (no empty column). Across bases 2 to 20, only bases 9, 10, 11, 14, 15, 16, 17, 18, and 20 give valid castles - the famous base-12 palindrome `1001` fails on its zeros.[^exec]
@@ -178,7 +176,7 @@ The base-10 castle `(1, 7, 2, 9)` is the Hardy-Ramanujan castle proper: width 4,
 ####        row 1      column heights (1, 7, 2, 9): 14 blocks, area 19
 ```
 
-Its castle graph ([[castle-graph](pages/castle-graph.md)]) has 19 cells and 20 edges, cycle rank 2 (two filled `2 x 2` squares, at rows 1-2 across columns 2-3 and 3-4). Adjacency spectrum: `lam_1 = 2.5982`, `lam_2 = 1.8981`; the universal-cover spectral radius by the edge-cavity method of [[ramanujan-castles](pages/ramanujan-castles.md)] is `rho(T) = 2.5756`, so `lam_2 <= rho(T)` and the digit castle is **Ramanujan** in the spectral sense as well.[^exec] (Every castle with at most 22 cells is, per that page's census, so this was never in doubt; the number is recorded for the record.) Its characteristic polynomial is `x (x^18 - 20x^16 + 160x^14 - 670x^12 + 1600x^10 - 2215x^8 + 1723x^6 - 691x^4 + 119x^2 - 5)`, irreducible over `Q` apart from the factor `x`.
+Its castle graph ([[castle-graph](pages/castle-graph.md)]) has 19 cells and 20 edges, cycle rank 2 (two filled `2 x 2` squares, at rows 1-2 across columns 2-3 and 3-4). Adjacency spectrum: `lam_1 = 2.5982`, `lam_2 = 1.8981`; the universal-cover spectral radius by the edge-cavity method of [[ramanujan-castles](pages/ramanujan-castles.md)] is `rho(T) = 2.5756`, so `lam_2 <= rho(T)` and the digit castle is **Ramanujan** in the spectral sense as well.[^exec] (Every castle with at most 22 cells is Ramanujan, per that page's census.) Its characteristic polynomial is `x (x^18 - 20x^16 + 160x^14 - 670x^12 + 1600x^10 - 2215x^8 + 1723x^6 - 691x^4 + 119x^2 - 5)`, irreducible over `Q` apart from the factor `x`.
 
 Two more readings of 1729 as a single castle:
 
@@ -197,7 +195,7 @@ Two more readings of 1729 as a single castle:
 
 The `8400` at `(h, p) = (4, 7)` is the observatory's `1200 x 7` from the double root of `char_2` mod 7, so `F(w, 4) mod 1729` inherits it: period `25200 = 8400 * 3`. The transient of 3 is measured on the full DP state vector, which carries the "has some column reached `h` yet" flag; the count sequence itself may settle sooner.
 
-The factorization `1729 = 12^3 + 1 = Phi_2(12) Phi_6(12) = 13 * 133`, with `133 = 7 * 19`, is `x^3 + 1 = (x + 1)(x^2 - x + 1)` at `x = 12`. The polynomial `Phi_6(p) = p^2 - p + 1` is the order of the cyclotomic subgroup the round-three castle torus item on [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] wants to be prime-heavy; at `p = 12` it is `7 * 19`.
+The factorization `1729 = 12^3 + 1 = Phi_2(12) Phi_6(12) = 13 * 133`, with `133 = 7 * 19`, is `x^3 + 1 = (x + 1)(x^2 - x + 1)` at `x = 12`. The polynomial `Phi_6(p) = p^2 - p + 1` is the order of the torus subgroup of [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)], where `p` is chosen so that it has a large prime factor; at `p = 12` it is `7 * 19`.
 
 ## What this page settles and what it opens
 

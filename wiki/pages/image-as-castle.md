@@ -51,7 +51,7 @@ skyline (8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 9, 8, 9, 9, 8
 ################################
 ```
 
-Head and shoulders, then the ground. This reading is lossy (it keeps one number per column) and it is the one that makes "castle" literal: any skyline photograph, any city or mountain silhouette, is a castle in exactly the PE 502 sense, and its rank under the bijection of [[song-as-castle](pages/song-as-castle.md)] is a number.
+This reading is lossy (it keeps one number per column). Any silhouette read this way is a skyline, and so has a rank under the bijection of [[song-as-castle](pages/song-as-castle.md)].
 
 ## Compression: the same ladder as audio
 

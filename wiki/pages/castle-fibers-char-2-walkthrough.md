@@ -10,7 +10,7 @@ updated: 2026-09-27
 
 # Castle fibers seminar - `char_2` across the primes
 
-**Thesis.** One castle recurrence lives in one integer ring, and every mod-`p` experiment on the wiki is a look at one fiber of that ring. Follow a single example through six primes and then back to `Q` and `Z`, and the separate facts of the "Castle fibers" arc become one picture.
+**Thesis.** One castle recurrence lives in one integer ring, and every mod-`p` experiment on the wiki is a look at one fiber of that ring. This seminar follows one example through six primes and then back to `Q` and `Z`.
 
 **Format.** About 60 minutes at one blackboard, seven stops. Each stop is one prime (or `Q`, or `Z`), one computation, and one idea. Everything quoted is pinned under the board in the Snippet section and on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)]. The theory pages behind it are [[castle-ring-spectrum](pages/castle-ring-spectrum.md)], [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] and [[idempotent-decomposition](pages/idempotent-decomposition.md)].
 
@@ -81,7 +81,7 @@ So `11 ≡ 4` splits, while `3, 5, 101` (`≡ 3, 5, 3`) do not.[^4] It is the `c
 
 `char_2 ≡ x²(x + 1) (mod 2)`. Two points, `(2, x)` and `(2, x + 1)`, and the first is fat. Here even `x` fails to be a unit: it lies in the fat point. Every castle count agrees mod 2, since `P(2, L) ≡ T(2, L) = 3^L ≡ 1` (signs disappear mod 2), so the sequence mod 2 is `1, 1, 1, …`.[^6]
 
-*Idea:* 2 is the one prime that divides `char_2(0) = 4` (the product of the eigenvalues), and the next two stops show everything difficult happens here.
+*Idea:* 2 is the one prime that divides `char_2(0) = 4` (the product of the eigenvalues); Stop 7 shows why the integer ring's failures all occur there.
 
 ## Stop 6 - over `Q`: the two sectors
 
@@ -180,7 +180,7 @@ def fiber_board(k, primes):
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series, and audio as castles.
 
 
 ## Footnotes

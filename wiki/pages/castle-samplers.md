@@ -113,13 +113,13 @@ Both bijections were checked exhaustively, Sattolo for `n = 2, …, 8` and Fishe
 
 **The Foata step.** Write each cycle with its largest element first, order the cycles by those leaders, and erase the parentheses. This is a bijection on permutations, and the number of cycles becomes the number of left-to-right maxima (checked on all of `S_n`, `n ≤ 8`).[^exec] On the castle side, the castle Foata transform sends the peaks of a skyline (the maximal positive runs of the tower `c_i − 1`) to its records, the columns where the tower leaves the base ([[castle-foata-transform](pages/castle-foata-transform.md)]); peaks and records agreed on every tuple with `w ≤ 7`, `h ≤ 4`.[^foata][^exec]
 
-**Why it is a sampler worth having.** The permutation side has exact laws. The cycle count of a uniform permutation has mean `H_n` and variance `H_n − H_n^{(2)}`, where `H_n = Σ 1/i` and `H_n^{(2)} = Σ 1/i²`; both were checked exactly on `S_n` for `n ≤ 8`. So `variance − ln n → γ − π²/6 = −1.06772`, and at `n = 10^6` the left side is `−1.067717`.[^exec] Euler's `γ` and the Basel constant are already in the calibration run. The castle side is different in kind: the peak count is a sum of nearly independent local indicators, so it grows linearly in the width, not logarithmically. Over the cube `{1..h}^w` its mean is exactly
+**Why it is a sampler worth having.** The permutation side has exact laws. The cycle count of a uniform permutation has mean `H_n` and variance `H_n − H_n^{(2)}`, where `H_n = Σ 1/i` and `H_n^{(2)} = Σ 1/i²`; both were checked exactly on `S_n` for `n ≤ 8`. So `variance − ln n → γ − π²/6 = −1.06772`, and at `n = 10^6` the left side is `−1.067717`.[^exec] The castle side is different in kind: the peak count is a sum of nearly independent local indicators, so it grows linearly in the width, not logarithmically. Over the cube `{1..h}^w` its mean is exactly
 
 ```
 E[peaks] = (h − 1)/h + (w − 1)(h − 1)/h²
 ```
 
-(checked at `(5, 3)` and `(6, 4)`), and transfer-matrix draws from `V(200, 4)` gave 0.1905 peaks per column against the cube value `(0.75 + 199 · 3/16)/200 = 0.1903`.[^exec] The cycle and peak counts correspond one to one as statistics, but their scaling laws differ. That difference is the first thing a limit law along the analogy has to explain.
+(checked at `(5, 3)` and `(6, 4)`), and transfer-matrix draws from `V(200, 4)` gave 0.1905 peaks per column against the cube value `(0.75 + 199 · 3/16)/200 = 0.1903`.[^exec] The cycle and peak counts correspond one to one as statistics, but their scaling laws differ.
 
 ## 4. The Gray walk: exhaustive ground truth
 
@@ -129,7 +129,7 @@ This is not random, but it plays the role of a sampler with zero variance: filte
 
 ## 5. Rank/unrank
 
-The completion table of the transfer-matrix sampler also ranks. Order `V(w, h)` lexicographically. To unrank `n`, walk the columns and, at each one, skip past the blocks of castles that start with a smaller column value, whose sizes are the completion counts. Rank is the same walk run backwards. This gives a bijection `V(w, h) ↔ {0, …, F − 1}` in `O(wh)` per query. It was checked to be a bijection, and to list `V` in sorted order, on `(5, 3)`, `(6, 3)` and `(6, 4)`.[^exec] The proper-castle version (all `A(w, h)` castles, by the first full-height column) is the one on [[song-as-castle](pages/song-as-castle.md)] and [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)]. Incidentally, the `(6, 4)` cell used in the rank checks is the one with `F(6, 4) = 1729`.
+The completion table of the transfer-matrix sampler also ranks. Order `V(w, h)` lexicographically. To unrank `n`, walk the columns and, at each one, skip past the blocks of castles that start with a smaller column value, whose sizes are the completion counts. Rank is the same walk run backwards. This gives a bijection `V(w, h) ↔ {0, …, F − 1}` in `O(wh)` per query. It was checked to be a bijection, and to list `V` in sorted order, on `(5, 3)`, `(6, 3)` and `(6, 4)`.[^exec] The proper-castle version (all `A(w, h)` castles, by the first full-height column) is the one on [[song-as-castle](pages/song-as-castle.md)] and [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)].
 
 The transfer-matrix sampler is unranking a uniform random integer, done lazily one column at a time. Rank/unrank adds one thing: control over which integers are fed in. Evenly spaced ranks give a stratified sample of the lexicographic order, a low-discrepancy sequence of ranks gives a quasi-Monte Carlo sample, and a single rank names a single castle reproducibly. A chi-square test on `(6, 3)` passed (`p = 0.67`), and across 60 independent runs of 40,000 draws on `(8, 4)` the z-scores of the mean block count had mean 0.11 and standard deviation 1.00, as they should.[^exec]
 

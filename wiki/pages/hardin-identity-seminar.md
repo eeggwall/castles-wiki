@@ -81,9 +81,9 @@ W  =  [ 1  0  1 ]        from (0,+): read 0 → (0,+);  read 1 → (1,−)
       [ 0  1  0 ]        from (1,−): read 0 → forbidden;  read 1 → (1,+)
 ```
 
-Trace two words on the board. `011` goes `(0,+) → (0,+) → (1,−) → (1,+)` and ends satisfied, so it is **accepted**. `010` goes `(0,+) → (0,+) → (1,−)`, and then the pending `1` sees a `0`, which is **forbidden**. A word is valid exactly when every pending letter pays its debt before the end, and the count is `W_1(L+1) = start · W^{L+1} · end`. For general `m` the alphabet is `{0, …, m}`, "not isolated" becomes "every nonzero letter is `≤` a neighbor", and the machine has `2m + 1` states ([[hardin-word-identity](pages/hardin-word-identity.md)], "Word side").
+Trace two words on the board. `011` goes `(0,+) → (0,+) → (1,−) → (1,+)` and ends satisfied, so it is **accepted**. `010` goes `(0,+) → (0,+) → (1,−)`, and then the pending `1` sees a `0`, which is **forbidden**. A word is valid exactly when every pending `1` is followed by a `1` before the end, and the count is `W_1(L+1) = start · W^{L+1} · end`. For general `m` the alphabet is `{0, …, m}`, "not isolated" becomes "every nonzero letter is `≤` a neighbor", and the machine has `2m + 1` states ([[hardin-word-identity](pages/hardin-word-identity.md)], "Word side").
 
-*Idea:* a local constraint on words becomes a finite automaton once you add a flag for unfinished business.
+*Idea:* a local constraint on words becomes a finite automaton once a pending flag is added to the state.
 
 ## Stop 5 - one change of basis proves it
 
@@ -119,7 +119,7 @@ Replace `k = 6` by `k = 4m + 2` and binary strings by words over `{0, …, m}`. 
 
 R. H. Hardin recorded recurrences for A202882, A203094 and A203184 on the OEIS as *empirical*. They are the characteristic polynomials of these automata, so the conjugacy proves them.[^5] For general `m` the three equations reduce to a finite entrywise check that has not been written out, so the identity is a theorem for `m ≤ 8`.
 
-*Idea:* one small example, done carefully, is the whole family.
+*Idea:* the `k = 6` computation generalizes unchanged.
 
 ## Stop 7 - where else A005251 lives
 
@@ -129,7 +129,7 @@ The word sequence of Stop 0 turns up well beyond towers:
 - **Tournaments.** At height 4 instead of unlimited height, tree castles by area match the tournaments determined by their score sequences (A000570). The structural reason is Tetali's theorem that such tournaments are built from four basic ones on 1, 3, 4 and 5 vertices ([[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)]).[^6]
 - **The plastic number.** All of these grow like `ψ²`, the square of the plastic number, because the characteristic polynomial of the `m = 1` machine is the minimal polynomial of `ψ²` ([[plastic-number](pages/plastic-number.md)]).
 
-*Idea:* a sequence that matches in two places is a thread to pull; this one runs from signed towers to words to compositions to tournaments.
+*Idea:* A005251 connects signed towers, words, compositions and tournaments.
 
 ## The board
 
@@ -262,7 +262,7 @@ def S_pattern(m):                          # the 0/1 change of basis, sector coo
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series, and audio as castles.
 
 
 ## Footnotes

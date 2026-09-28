@@ -12,19 +12,19 @@ updated: 2026-09-27
 
 ## The two ideas
 
-The whole castle count — all the way to the closed form for `F(w,h)` — reduces to **two ideas**, each worth understanding on its own:
+The whole castle count — all the way to the closed form for `F(w,h)` — reduces to **two ideas**:
 
 1. **Towers are independent.** A tower is nothing but its column heights, and every height is chosen independently — sibling sub-blocks never interact. This one fact turns the unsigned count into the trivial product `T(k,L) = (k+1)^L`.
 
 2. **Parity is a sign.** Weight each block by −1; the signed count `P` then separates towers by block parity through the `(T ± P)/2` projector — exactly how a permutation's sign separates even from odd permutations.
 
-Everything else is assembly. Learn these two, and the formula is the last five minutes.
+The rest of the derivation assembles these two.
 
 ## Idea 1 — Towers: T(k,L) = (k+1)^L
 
 A **castle** is a full-width bottom block with a **tower** stacked on it. A tower of height ≤ *k* above a length-*L* block is fully described by its **column heights** `c_1…c_L`, where `c_i ∈ {0,…,k}` is how many blocks sit above the base in column *i* (the [[castle-representations](pages/castle-representations.md)] integer-tuple form). The `U`/`R`/`D` word is recovered invertibly from the heights, so heights and towers are the same object.[^1]
 
-**The aha — independence.** Here is the fact the whole problem hangs on: the `c_i` are **independent**. No-overhang and the same-row gap rule are automatic consequences of reading a tower as a stack of maximal runs, so there is no constraint coupling one column's height to the next. Two sibling sub-blocks in the same row generate towers that never interact — "the single fact that makes the problem tractable, and it took years to see."[^2] Consequently:
+**Independence.** The `c_i` are **independent**. No-overhang and the same-row gap rule are automatic consequences of reading a tower as a stack of maximal runs, so there is no constraint coupling one column's height to the next. Two sibling sub-blocks in the same row generate towers that never interact.[^2] Consequently:
 
 ```
 T(k,L) = (k+1)^L      — L columns, each independently choosing one of k+1 heights.
@@ -60,7 +60,7 @@ with `T = T(k,L)` the unsigned total. The signed tower has a generating function
 P_k = 1 + x·P_k − (P_{k−1} − 1)(1 + x·P_k)      (P_0 = 1/(1−x))
 ```
 
-which is the recursion behind `P` (its `num_k/den_k` form and C-finite recurrences are on [[castle-counting-formula](pages/castle-counting-formula.md)] and [[signed-tower-count](pages/signed-tower-count.md)]). The point for the master class is *why* `P` is the right object: it is the sign homomorphism, and the `(T ± P)/2` identity is the whole parity trick.
+which is the recursion behind `P` (its `num_k/den_k` form and C-finite recurrences are on [[castle-counting-formula](pages/castle-counting-formula.md)] and [[signed-tower-count](pages/signed-tower-count.md)]). `P` is the sum of the sign homomorphism, and the `(T ± P)/2` identity is the parity projection.
 
 ## The even and odd approaches
 
@@ -73,7 +73,7 @@ odd-block castles   = [ h^w − (h−1)^w + P(h−1,w) − P(h−2,w) ] / 2     
 
 The two differ only in the sign of the `P` terms, and they sum to the unsigned total `h^w − (h−1)^w` — the `P` terms cancel, which is the "almost the entire difficulty" observation: drop the parity clause and the answer is just `h^w − (h−1)^w`.[^9] The `h^w − (h−1)^w` subtracts off towers of height ≤ *h*−2, forcing height *exactly* *h*; the `−P(h−1,w) + P(h−2,w)` does the same subtraction at the signed level.
 
-The master-class takeaway is that the technique is **symmetric**: the same sign machinery hands you the even count *and* the odd count for the price of one. Project Euler 502 (PE 502) asks for the even half; the odd half is free.
+The same computation gives the even and the odd count. Project Euler 502 (PE 502) asks for the even one.
 
 ## Worked example: F(4,2) = 10
 
@@ -112,7 +112,7 @@ Towers of height ≤ 1 above a length-4 block are column heights `c ∈ {0,1}⁴
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series, and audio as castles.
 - [[tower-heap](pages/tower-heap.md)] - the block-count refinement of Idea 1's `T(k,L) = (k+1)^L`, as a Narayana polynomial.
 
 

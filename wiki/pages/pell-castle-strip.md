@@ -10,11 +10,11 @@ updated: 2026-09-19
 
 # The Pell castle strip - from an Analytic Combinatorics (AC) exercise to the silver ratio in castle space
 
-## The pedagogy is the point
+## Overview
 
-An Analytic Combinatorics (AC) chapter closes with an exercise that looks like nothing: **given the generating function `D(x) = 1/(1 − 2x − x²)`, produce the recurrence and its base cases**. It is a five-line calculation. But it is also the doorway to a seminar on Project Euler (PE) 502 castles: the rational function is a two-atom tiling scheme, its coefficients are the Pell numbers, its growth constant is the silver ratio the wiki already tracks, and there is a castle sub-family - the 1-smooth strip of height at most 3, anchored at the base - whose width generating function is exactly this `D(x)`. Ninety minutes of blackboard from one line of a textbook.
+An Analytic Combinatorics (AC) chapter closes with an exercise that looks like nothing: **given the generating function `D(x) = 1/(1 − 2x − x²)`, produce the recurrence and its base cases**. It is a five-line calculation, and it leads to Project Euler (PE) 502 castles: the rational function is a two-atom tiling scheme, its coefficients are the Pell numbers, its growth constant is the silver ratio the wiki already tracks, and there is a castle sub-family - the 1-smooth strip of height at most 3, anchored at the base - whose width generating function is exactly this `D(x)`.
 
-This page is that seminar in written form. It runs a slightly larger loop than the underlying working note [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] to make each step teachable: the "where does the base case come from" resolution, the two-atom composition scheme, the transfer matrix that realizes it, the silver-ratio thread. The point is not the answer (a rational function and a Pell recurrence). The point is that **a textbook end-of-chapter question about extracting a recurrence spirals into polyomino theory** if you ask what its atoms are counting.
+This page is a seminar built on that exercise. It extends the working note [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)]: where the base cases come from, the two-atom composition scheme, the transfer matrix that realizes it, and the silver ratio.
 
 ## Act I - Coefficient matching, and where the "base cases" hide
 
@@ -42,7 +42,7 @@ The **"base cases" have no independent existence**. Written uniformly with the "
 a_n − 2·a_{n−1} − a_{n−2}  =  [n = 0],       a_{−1} = a_{−2} = 0.
 ```
 
-At `n = 0`, this reads `a_0 − 2·0 − 0 = 1`, so `a_0 = 1`. At `n = 1`, it reads `a_1 − 2·a_0 − 0 = 0`, so `a_1 = 2`. **Base cases are the recurrence evaluated at the boundary.** The "special-case argument" a student expects at the start never appears because it was never needed.
+At `n = 0`, this reads `a_0 − 2·0 − 0 = 1`, so `a_0 = 1`. At `n = 1`, it reads `a_1 − 2·a_0 − 0 = 0`, so `a_1 = 2`. **Base cases are the recurrence evaluated at the boundary.**
 
 **Why this matters for the wiki.** The [[castle-counting-formula](pages/castle-counting-formula.md)] carries recurrences whose base cases *look* argued for, but under the same coefficient-matching lens they are the recurrence evaluated at `k = 0` or `L = 0` with zeros substituted. The technique is the shortcut, and it is recorded on [[generating-functions](pages/generating-functions.md)] as the general GF-to-recurrence method.
 
@@ -70,11 +70,11 @@ so the growth constant is `1 + √2`. The count depends on the boundary conditio
 
 | strips of width `w`, 1-smooth on `{1,2,3}` | `w = 1, 2, 3, …` | width generating function | sequence |
 |---|---|---|---|
-| **first column at height 1** (anchored at the base) | `1, 2, 5, 12, 29, 70, 169, 408` | `1/(1 − 2x − x²)` | **Pell `P_{w+1}`**, A000129 |
+| **first column at height 1** (anchored at the base) | `1, 2, 5, 12, 29, 70, 169, 408` | `1/(1 − 2x − x²)` | **Pell `P_w`**, A000129 |
 | any first column | `3, 7, 17, 41, 99, 239, 577, 1393` | `(3 + x)/(1 − 2x − x²)` | companion Pell, A001333 |
 | first and last column at height 1 | `1, 1, 2, 4, 9, 21, 50, 120` | `(1 − 2x)/((1 − x)(1 − 2x − x²))` | unchecked against Online Encyclopedia of Integer Sequences (OEIS) |
 
-The anchored row is the **Pell castle strip**: `e_1ᵀ (I − xM)^{−1} 𝟙 = 1/(1 − 2x − x²)` exactly, the `(1 − x)` factor of the free strip's denominator cancelling against the numerator when the walk starts at height 1. So the two atoms of Act II count castles: `a_w` is the number of skylines of width `w` that start on the base, never jump by more than one row, and never exceed height 3. Anchoring at the base is natural for a castle (the skyline begins where the bottom block begins), and it is what selects Pell proper rather than the companion sequence. Restricting to castles of height *exactly* 3 subtracts the height-≤2 anchored strips (`2^{w−1}` of them) and gives `P_{w+1} − 2^{w−1} = 0, 0, 1, 4, 13, 38, 105, 280, …`.
+The anchored row is the **Pell castle strip**: `e_1ᵀ (I − xM)^{−1} 𝟙 = 1/(1 − 2x − x²)` exactly, the `(1 − x)` factor of the free strip's denominator cancelling against the numerator when the walk starts at height 1. So the two atoms of Act II count castles: `a_w` is the number of skylines of width `w` that start on the base, never jump by more than one row, and never exceed height 3. Anchoring at the base is natural for a castle (the skyline begins where the bottom block begins), and it is what selects Pell proper rather than the companion sequence. Restricting to castles of height *exactly* 3 subtracts the height-≤2 anchored strips (`2^{w−1}` of them) and gives `P_w − 2^{w−1} = 0, 0, 1, 4, 13, 38, 105, 280, …`.
 
 The smallest 0/1 transfer matrix with `det(I − xM) = 1 − 2x − x²` is `3×3`: over `2×2` 0/1 matrices the determinant takes only the six values `1`, `1 − x`, `1 − 2x`, `1 − x²`, `(1 − x)²`, `1 − x − x²`.[^4] The Pell strip is a height-3 object.
 
@@ -88,7 +88,7 @@ a_n  =  1, 2, 5, 12, 29, 70, 169, 408, 985, 2378, 5741, 13860, …
 
 are **Pell numbers, OEIS [A000129](https://oeis.org/A000129) shifted** (`a_n = P_{n+1}`).[^3] See [[pell-numbers](pages/pell-numbers.md)] for the linear-recurrence definition and its Binet form. The dominant characteristic root of `x² − 2x − 1` is `1 + √2 ≈ 2.4142`, so `a_n ~ C · (1 + √2)^n` - the growth rate is the **silver ratio**.
 
-`1 + √2` is not a fresh entrant; the wiki already tracks it prominently. On [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] it is one of two **norm-`−1` reduced quadratic surds** with purely periodic continued fraction: `1 + √2 = [2; 2, 2, 2, …]`. On [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] it is the **tower-word growth constant** - the singularity of the algebraic generating function for tower words counted by total steps sits at `√2 − 1`, growth rate `1/(√2 − 1) = √2 + 1`.
+`1 + √2` appears elsewhere on the wiki. On [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] it is one of two **norm-`−1` reduced quadratic surds** with purely periodic continued fraction: `1 + √2 = [2; 2, 2, 2, …]`. On [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] it is the **tower-word growth constant** - the singularity of the algebraic generating function for tower words counted by total steps sits at `√2 − 1`, growth rate `1/(√2 − 1) = √2 + 1`.
 
 So silver has three castle faces: the tower word (algebraic generating function, A004149), the 1-smooth height-3 strip (rational, Pell or companion Pell by boundary), and the ceiling-exception rule `J − D` at height 3 ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)], companion Pell `3, 7, 17, 41, …` as a free strip). Pell is what the surd `1 + √2` looks like as an integer sequence, in exactly the way Fibonacci is what `φ` looks like ([[aocp-generating-functions](pages/aocp-generating-functions.md)]); on the castle side, Fibonacci counts the height-2 tree castles ([[castle-graph](pages/castle-graph.md)]) and Pell counts the anchored 1-smooth height-3 strip.
 
@@ -98,13 +98,12 @@ Suggested outline for a talk:
 
 1. **Cold open:** put `D(x) = 1/(1 − 2x − x²)` on the board and ask the audience for its recurrence. Solicit "base case" answers, then run coefficient matching to show the base cases *are* the recurrence.
 2. **Act II: what is it counting?** Introduce the two-atom composition scheme. Explain the pattern `1/(1 − ∑ (weight)·x^(width))` = strip tilings under a general SEQ. This is the [[symbolic-method](pages/symbolic-method.md)] in miniature.
-3. **Act III: find the castle.** Write the 1-smooth `3×3` matrix, compute `e_1ᵀ (I − xM)^{−1} 𝟙`, and watch `D(x)` appear with the `(1 − x)` cancelled. Compare the three boundary conditions. This is where the audience realizes the exercise was never abstract.
+3. **Act III: find the castle.** Write the 1-smooth `3×3` matrix, compute `e_1ᵀ (I − xM)^{−1} 𝟙`, and watch `D(x)` appear with the `(1 − x)` cancelled. Compare the three boundary conditions.
 4. **Act IV: pull the growth rate.** Compute a few Pell numbers, take ratios, identify `1 + √2`. Sketch the continued-fraction expansion `[2; 2, 2, …]`. Mention Fibonacci / `φ` as the parallel case.
-5. **Close:** the audience walked in expecting a five-line homework and leaves with coefficient extraction, the symbolic method, a transfer matrix, and a growth constant that is a unit of `Q(√2)`. **The exercise was the seminar.**
+5. **Close:** recap coefficient extraction, the symbolic method, the transfer matrix, and the growth constant `1 + √2`, a unit of `Q(√2)`.
 
-## The general pedagogy claim
-
-A rational generating function's denominator is a factored inventory of atoms. Whether those atoms are the **structural rules** of a given combinatorial object is a theorem, and its proof is a bijection or a transfer matrix whose determinant reproduces the denominator. In a well-designed exercise the denominator is small and the atoms are legible; if you are lucky, a transfer matrix at another scale reproduces it exactly. The Pell castle strip is that lucky case: `1 − 2x − x²` is short, its two atoms are legible, and the anchored 1-smooth strip is the object at the other scale. This is what turns AC textbook exercises into seminars - reading the atoms, then finding the matrix.
+## Atoms and transfer matrices
+A rational generating function's denominator lists atoms. Showing that those atoms are the structural rules of a given combinatorial object takes a bijection or a transfer matrix whose determinant reproduces the denominator. Here `1 − 2x − x²` has two atoms, and the anchored 1-smooth strip is a transfer matrix that reproduces it.
 
 ## Appearances in Sources
 

@@ -10,7 +10,7 @@ updated: 2026-09-26
 
 # Castle steganography - hiding a base64 string in a castle
 
-The question: given an arbitrary base64 string, hide it in a castle so that the castle still looks like a castle and the string comes back exactly. Two channels, both executed on 2026-09-19 with the standard 512x512 cameraman image ([[image-as-castle](pages/image-as-castle.md)]) read as 512 row castles of width 512.[^exec] Neither channel is new as steganography - both are least-significant-bit ideas; the castle content is in what the constraints cost and what the parity clause turns out to be worth.
+The question: given an arbitrary base64 string, hide it in a castle so that the castle still looks like a castle and the string comes back exactly. Two channels, both executed on 2026-09-19 with the standard 512x512 cameraman image ([[image-as-castle](pages/image-as-castle.md)]) read as 512 row castles of width 512.[^exec] Neither channel is new as steganography - both are least-significant-bit ideas; what is castle-specific is the cost of keeping the constraints and the capacity of the parity clause.
 
 ## The payload
 
@@ -71,7 +71,7 @@ Capacity is one bit per castle: 512 bits = 85 base64 characters per 512x512 imag
 
 ## Where this sits
 
-What is the even-block bit? Here it is a covert channel of capacity exactly one bit per castle, written with one cell. The "The Wire, but castles" seed on [[song-as-castle](pages/song-as-castle.md)] gets its steganography from this page: a wiretap that reads skylines sees a picture, the receiver counting blocks sees a message. The next step is the obvious one - a warden that counts blocks: is there a second-order statistic (parity of adjacent rows, block count distribution) that channel B disturbs? That is open.
+Used this way, the even-block bit is a covert channel of capacity one bit per castle, written with one cell; it is the block-parity channel referred to in the "The Wire, but castles" seed on [[song-as-castle](pages/song-as-castle.md)]. Open: against a warden that counts blocks, is there a second-order statistic (parity of adjacent rows, block count distribution) that channel B disturbs? That is open.
 
 ## Related Concepts
 

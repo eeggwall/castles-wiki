@@ -10,7 +10,7 @@ updated: 2026-09-27
 
 # OEIS mining seminar - one castle sequence, end to end
 
-**Thesis.** A counting problem becomes connected to the rest of mathematics one sequence at a time. Compute a sequence, look it up in the On-Line Encyclopedia of Integer Sequences (OEIS), and either **interlink** (an existing entry gains a new meaning) or **generate** (a new entry is proposed). The method is simple, and the discipline is where the value lies: exact offsets, rejecting coincidences, proving every match, and leaving the final text to a human.
+**Thesis.** A counting problem becomes connected to the rest of mathematics one sequence at a time. Compute a sequence, look it up in the On-Line Encyclopedia of Integer Sequences (OEIS), and either **interlink** (an existing entry gains a new meaning) or **generate** (a new entry is proposed). The method is simple; what matters is the discipline: exact offsets, rejecting coincidences, proving every match, and leaving the final text to a human.
 
 **Format.** About 60 minutes at one blackboard, seven stops: one sequence that matches, one trap, one sequence that does not match, and the submission. Every value quoted is pinned by the Snippet block at the end. The method page is [[oeis-cross-referencing](pages/oeis-cross-referencing.md)], and the full first pass is [[oeis-mining-pe502](pages/oeis-mining-pe502.md)].
 
@@ -209,7 +209,7 @@ The `h ≥ 8` tree-castle-by-area rows (no OEIS match yet; `h = 5, 6, 7` matched
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through the whole sandpile story.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series and Beethoven's Ninth at every scale.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series, and audio as castles.
 
 
 ## Footnotes
