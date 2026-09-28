@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 58 (song-as-castle and the 20 pages linking to it; batches 1-3, the 28 oldest pages) |
-| Spot fixes only | 19 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 117 |
-| Words still to read | about 325,000 |
+| Fully read and cleaned | 67 (song-as-castle and the 20 pages linking to it; batches 1-3, the 28 oldest pages) |
+| Spot fixes only | 18 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
+| Not started | 109 |
+| Words still to read | about 318,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 33 fully read)
+### Concepts (85 pages, 39 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
@@ -118,9 +118,9 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] castle-graph (4.7)
 - [ ] finite-fields (4.6)
 - [ ] sandpile-identity (4.5)
-- [ ] signed-tower-count (4.2)
+- [x] signed-tower-count (4.2)
 - [~] eigenvalue-continued-fractions (4.1)
-- [ ] weakly-unimodal-composition (4.0)
+- [x] weakly-unimodal-composition (4.0)
 - [x] castle-fibers-char-2-walkthrough (3.8)
 - [ ] castle-eigenvalues-by-example (3.7)
 - [x] spectral-analysis (3.5)
@@ -154,7 +154,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] ramanujan-castles (1.7)
 - [ ] castle-snippets-cryptography (1.7)
 - [ ] mod-9-coset-lift (1.6)
-- [~] q-catalan-numbers (1.6)
+- [x] q-catalan-numbers (1.6)
 - [x] oeis-cross-referencing (1.6)
 - [x] castle-compression (1.5)
 - [ ] metallic-means (1.4)
@@ -167,7 +167,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] sums-of-three-cubes (1.1)
 - [ ] castle-classification-shape (1.1)
 - [ ] signed-tower-k-direction (1.1)
-- [ ] tower-heap (1.1)
+- [x] tower-heap (1.1)
 - [x] castle-counting-formula (1.0)
 - [ ] castle-move-graph-zdd (0.9)
 - [ ] algebraic-transcendental-wall (0.8)
@@ -184,13 +184,13 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] symbolic-method (0.0)
 - [ ] simple-tournament (0.0)
 - [x] permutation-cycle-castle-analogy (0.0)
-- [ ] motzkin-numbers (0.0)
+- [x] motzkin-numbers (0.0)
 - [x] monotone-streak-factorization (0.0)
 - [x] horizontally-convex-polyomino (0.0)
 - [ ] forcibly-simple-score-vector (0.0)
 - [x] convex-castle (0.0)
 - [ ] chinese-remainder-theorem (0.0)
-- [ ] catalan-numbers (0.0)
+- [x] catalan-numbers (0.0)
 - [ ] castle-snippets-strips (0.0)
 - [ ] acronyms (0.0)
 
@@ -261,9 +261,9 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] convex-castle-cap-factor (0.0)
 - [~] castle-q-bessel-closed-form (0.0)
 
-### Sources (44 pages, 13 fully read)
+### Sources (44 pages, 16 fully read)
 
-- [ ] oeis-mining-pe502 (25.6)
+- [x] oeis-mining-pe502 (25.6)
 - [x] oeis-height2-hyperbolic-castles (5.9)
 - [x] new-sequence-fw3 (4.3)
 - [ ] aocp-generating-permutations-tuples (3.4)
@@ -273,13 +273,13 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] aocp-generating-functions (3.1)
 - [ ] prodinger-2025-cornerless-motzkin-bargraphs (2.9)
 - [ ] aocp-permutations (2.8)
-- [ ] tower-narayana-polynomial (2.5)
+- [x] tower-narayana-polynomial (2.5)
 - [~] pe502-pell-castle-strip (2.3)
 - [ ] algebraic-languages-and-polyominoes-enumeration (2.3)
 - [ ] bousquet-melou-fedou-1995-convex-polyominoes (2.2)
 - [x] counting-horizontally-convex-polyominoes (2.1)
 - [ ] deutsch-elizalde-2016-bargraphs-cornerless-motzkin (2.0)
-- [ ] polyominoes (2.0)
+- [x] polyominoes (2.0)
 - [ ] bender-1974-partitions-of-multisets (1.7)
 - [ ] calugareanu-hamburg-exercises-basic-ring-theory (1.6)
 - [ ] aocp-combinatorics (1.5)

@@ -5,7 +5,7 @@ summary: The tower (heap-of-pieces) block-count GF is Narayana_w(x)/(1−x)^w; w
 tags: [oeis, tower, narayana, heap-of-pieces, generating-functions, cross-reference, source]
 sources: [tower-narayana-polynomial]
 created: 2026-09-13
-updated: 2026-09-22
+updated: 2026-09-28
 ---
 
 # Tower block-count = Narayana polynomial
@@ -16,14 +16,14 @@ updated: 2026-09-22
 
 ## Summary
 
-This is the **Catalan/Narayana connection** the parent plan hoped for — and it lives in the [[tower-heap](pages/tower-heap.md)] block-count, not in the convex-castle count (which is binomial, see [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]). A tower of width *w* is a Viennot heap of unit-height segments (column heights `c_1..c_w ≥ 0`, blocks = maximal runs). Counting towers by number of blocks, verified for `w = 1..7` against brute force:[^1]
+This is the castle's **Catalan/Narayana connection**, and it lives in the [[tower-heap](pages/tower-heap.md)] block-count, not in the convex-castle count (which is binomial, see [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]). A tower of width *w* is a Viennot heap of unit-height segments (column heights `c_1..c_w ≥ 0`, blocks = maximal runs). Counting towers by number of blocks, verified for `w = 1..7` against brute force:[^1]
 
 ```
 T(w,b) = Σ_{k=1..w} N(w,k) · C(b + w − k, w − 1),
    GF by b:  Narayana_w(x) / (1 − x)^w,   Narayana_w(x) = Σ_k N(w,k) x^{k−1}
 ```
 
-with `N(w,k) = (1/w)C(w,k)C(w,k−1)` the [[narayana-numbers](pages/narayana-numbers.md)] (A001263). The **Narayana polynomial** is exactly the numerator of the tower block-count generating function.
+with `N(w,k) = (1/w)C(w,k)C(w,k−1)` the [[narayana-numbers](pages/narayana-numbers.md)] (A001263). The **Narayana polynomial** is the numerator of the tower block-count generating function.
 
 The width rows land on existing OEIS entries:[^2]
 
@@ -36,7 +36,7 @@ The width rows land on existing OEIS entries:[^2]
 | 6 | 1, 21, 161, 721, 2331, 6083, … | **new** |
 | 7 | 1, 28, 280, 1582, 6244, 19348, … | **new** |
 
-**Offset note:** **A063490 is offset 1** (`a(n) = T(4, n−1)`) — the only width-row entry with a shift; A005408/A005891/A160747 are offset 0. Per the phase-2 plan, **A005408 is skipped by default** (densest entry, weakest of the set), and the submission order is A160747 → A005891 → A063490 → A001263.
+**Offset note:** **A063490 is offset 1** (`a(n) = T(4, n−1)`) — the only width-row entry with a shift; A005408/A005891/A160747 are offset 0.
 
 ## Cross-reference actions
 
@@ -44,14 +44,14 @@ The width rows land on existing OEIS entries:[^2]
 - **A001263** (Narayana) — add a Formula: the tower block-count GF has the Narayana polynomial as numerator, `T(w,b) = Σ_k N(w,k) C(b+w−k, w−1)`. Stated as a generating-function identity, **not** a peaks bijection — a direct peaks refinement was tested and does not factor this way.[^3]
 - **Generation:** the `w ≥ 6` tower rows are new sequences (new rows of the Narayana-polynomial triangle).[^2]
 
-Per [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] these are draft cross-references (human authorship required), kept in `raw/oeis-pe502/xrefs/`. This is the "tier 2" submission bundle.
+Per [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] these are draft cross-references (human authorship required), kept in `raw/oeis-pe502/xrefs/`.
 
 ## Key Takeaways
 
 - Tower block-count GF `= Narayana_w(x)/(1−x)^w`; `T(w,b) = Σ_k N(w,k) C(b+w−k, w−1)`, verified `w=1..7`.[^1]
 - Width rows: A005408, A005891, A063490, A160747 (w=2..5); new for w≥6.[^2]
-- **This — not the convex count — is where Catalan/Narayana enters the castle world**, via the heap-of-pieces tower.[^1]
-- The A001263 link is a generating-function identity, explicitly not a peaks bijection.[^3] The refinement that does factor it is by **descents**: towers with `k-1` descents number `N(w,k) C(b+w-k, w-1)` (brute-force verified `w, b ≤ 7`, second Delest-Viennot pass; see [[narayana-numbers](pages/narayana-numbers.md)]).
+- **Catalan/Narayana enters the castle world through the heap-of-pieces tower**, not the convex count.[^1]
+- The A001263 link is a generating-function identity, explicitly not a peaks bijection.[^3] The refinement that does factor it is by **descents**: towers with `k-1` descents number `N(w,k) C(b+w-k, w-1)` (brute-force verified `w, b ≤ 7`; see [[narayana-numbers](pages/narayana-numbers.md)]).
 - Re-indexed by semi-perimeter `s = w + blocks` (a castle's semi-perimeter, [[castle-perimeter](pages/castle-perimeter.md)]), castles by `(s, w)` are the bargraph triangle A271942, and by `s` alone A082582.
 
 ## Entities & Concepts
@@ -62,9 +62,9 @@ Per [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] these are draft 
 
 ## Relation to Other Wiki Pages
 
-Resolves the "where is Catalan?" question the wiki has carried since [[project-euler-502-representations](pages/project-euler-502-representations.md)]: the Dyck-shape analogy of the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] does connect to Narayana/Catalan — through the tower block-count, giving four existing OEIS entries a heap interpretation and opening the Viennot heap-theory thread.
+The Dyck-shape analogy of the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] (from [[project-euler-502-representations](pages/project-euler-502-representations.md)]) connects to Narayana/Catalan through the tower block count, which gives four existing OEIS entries a heap interpretation; the heap-theory reading is on [[viennot-heap-tower](pages/viennot-heap-tower.md)].
 
-The Narayana-polynomial GF `Narayana_w(x) / (1 - x)^w` for the block-count distribution is the analytical origin of the marginal entropy `H(B)` used on [[castle-conditional-entropy](pages/castle-conditional-entropy.md)]: taking its `w -> infty` limit gives a distribution with mean and variance both linear in `w`, so `H(B) ~ (1/2) log_2 w + const`, matching the brute-force conditional-entropy table on castles.
+[[castle-conditional-entropy](pages/castle-conditional-entropy.md)] uses the generating function `Narayana_w(x) / (1 - x)^w` as an approximate model for the block-count marginal `H(B)` of castles.
 
 ## Footnotes
 

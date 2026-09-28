@@ -5,24 +5,24 @@ summary: A composition of n that weakly ascends then weakly descends (OEIS A0015
 tags: [concept, composition, unimodal, oeis, castle, area]
 sources: [oeis-mining-pe502, castle-by-area]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Weakly unimodal composition
 
 ## Description
 
-A **weakly unimodal composition** of *n* is an ordered sequence of positive parts summing to *n* that is weakly increasing up to a maximum and then weakly decreasing — a "stack." These are counted by Online Encyclopedia of Integer Sequences (OEIS) **A001523** (`1, 1, 2, 4, 8, 15, 27, 47, 79, …` with `A001523(0)=1`), described there as "number of stacks, or planar partitions of *n*; also the number of weakly unimodal compositions of *n*."
+A **weakly unimodal composition** of *n* is an ordered sequence of positive parts summing to *n* that is weakly increasing up to a maximum and then weakly decreasing — a "stack." These are counted by Online Encyclopedia of Integer Sequences (OEIS) **A001523** (`1, 1, 2, 4, 8, 15, 27, 47, 79, …` with `A001523(0)=1`), named there "Number of stacks, or planar partitions of n; also number of weakly unimodal compositions of n."
 
 ## The castle-by-area identity
 
-Reading a [[castle-polyomino](pages/castle-polyomino.md)] by its **area** (total cells `= ∑ c_i`) rather than by (w,h), a [[convex-castle](pages/convex-castle.md)] of area *n* is *literally* a weakly unimodal composition of *n*: convex ⟺ unimodal column-height profile, and the parts are the column heights summing to the area.[^1] Hence — verified for `n = 1..18` — the count of convex castles by area is[^2]
+Reading a [[castle-polyomino](pages/castle-polyomino.md)] by its **area** (total cells `= ∑ c_i`) rather than by (w,h), a [[convex-castle](pages/convex-castle.md)] of area *n* is a weakly unimodal composition of *n*: convex ⟺ unimodal column-height profile, and the parts are the column heights summing to the area.[^1] Hence — verified for `n = 1..18` — the count of convex castles by area is[^2]
 
 ```
 conv(n) = A001523(n)      (n ≥ 1;  A001523(0) = 1 is the empty stack)
 ```
 
-with terms `1, 2, 4, 8, 15, 27, 47, 79, 130, 209, 330, 512, 784, 1183, 1765, 2604, 3804, 5504`. This is a definition-level match, not a coincidence — a real synonym for a dense, well-studied entry (so a low-value but legitimate cross-reference). The more quotable result is the **parity refinement** `cev(n) + cod(n) = A001523(n)` (CEV and COD, the convex-even and convex-odd castles by area), a parity split of a foundational sequence that is itself new (see [[castle-by-area](pages/castle-by-area.md)]).[^3]
+with terms `1, 2, 4, 8, 15, 27, 47, 79, 130, 209, 330, 512, 784, 1183, 1765, 2604, 3804, 5504`. This is a definition-level match, a synonym for a dense, well-studied entry and so a low-value cross-reference. The **parity refinement** `cev(n) + cod(n) = A001523(n)` (CEV and COD, the convex-even and convex-odd castles by area) is a new split of A001523 (see [[castle-by-area](pages/castle-by-area.md)]).[^3]
 
 The mirror notion — **valley** compositions (weakly decreasing then increasing, i.e. negation-unimodal) — is OEIS **A332578**, matched by valley-shaped castles by area; and the complement (non-stack compositions) is **A115981 = A011782 − A001523**, matched by non-convex castles. All three sit in the same dense-composition cluster (see [[castle-by-area](pages/castle-by-area.md)]).
 

@@ -5,7 +5,7 @@ summary: Polynomial q-analogs of the Catalan numbers (C_n(q) → C_n at q=1) —
 tags: [concept, q-catalan, q-analog, catalan, dyck-words, polyomino]
 sources: [q-catalan-numbers, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-13
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # q-Catalan numbers
@@ -20,7 +20,7 @@ The **q-Catalan numbers** are polynomial q-analogs of the [[catalan-numbers](pag
 
 ## Connection to the castle
 
-The third family is the direct castle thread: **parallelogram polyominoes by area** are exactly the objects of [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] (steep parallelogram polyominoes, whose area/perimeter generating function is a ratio of q-Bessel functions), and the [[polyominoes](pages/polyominoes.md)] page notes Ferrers polyominoes' area generating functions relate to q-Bessel and q-Catalan numbers. The castle is counted by *area* to great effect (convex ↔ A001523 on [[castle-by-area](pages/castle-by-area.md)]); grading by area and blocks together is where the castle meets the q-Catalan world. On [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] the castle GF by width, blocks and area is `Π/(1 - x - Π)`, with `Π` the parallelogram GF by width, height and area, so castles meet this Pólya/Gessel family with width and height kept separate. The inversion-counting Carlitz family also rhymes with the inversion statistic on steep Dyck words.
+The third family is the direct castle thread: **parallelogram polyominoes by area** contain the steep parallelogram polyominoes of [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], whose area/perimeter generating function is a ratio of q-Bessel functions, and the [[polyominoes](pages/polyominoes.md)] page notes Ferrers polyominoes' area generating functions relate to q-Bessel and q-Catalan numbers. The castle is also counted by *area* (convex ↔ A001523 on [[castle-by-area](pages/castle-by-area.md)]); grading by area and blocks together is where the castle meets the q-Catalan world. On [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] the castle GF by width, blocks and area is `Π/(1 - x - Π)`, with `Π` the parallelogram GF by width, height and area, so castles meet this Pólya/Gessel family with width and height kept separate. The Carlitz family counts inversions, the statistic that q-grades steep Dyck words into q-Motzkin.
 
 Delest and Viennot also state the next step as open. Their convex-polyomino perimeter count (A005436) had no area variable, and "the problem is to make a q-analog of what we have done". In 1984 the area was known only for stacks and parallelograms.[^4]
 

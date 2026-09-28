@@ -5,7 +5,7 @@ summary: C_n = binomial(2n,n)/(n+1) (1,1,2,5,14,42,…) — the counting sequenc
 tags: [concept, catalan, dyck, narayana, generating-functions, combinatorics, symbolic-method]
 sources: [catalan-numbers, analytic-combinatorics-ch1-ogfs]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Catalan numbers
@@ -14,7 +14,7 @@ updated: 2026-09-19
 
 ## Description
 
-The **Catalan numbers** `C_n` are one of the most ubiquitous sequences in enumerative combinatorics:[^1]
+The **Catalan numbers** `C_n` count many objects in enumerative combinatorics:[^1]
 
 ```
 C_n = binomial(2n, n) / (n+1) = binomial(2n, n) − binomial(2n, n+1)
@@ -25,16 +25,16 @@ C_n = binomial(2n, n) / (n+1) = binomial(2n, n) − binomial(2n, n+1)
 
 Canonical objects counted by `C_n` include Dyck words / balanced parentheses of length 2n, monotone lattice paths staying weakly below the diagonal, triangulations of a convex (n+2)-gon, full binary trees with n+1 leaves, non-crossing partitions, and 123-avoiding permutations.[^3] The common thread is a **non-crossing / ballot constraint** — a path or matching that must stay on one side of a boundary.
 
-**Canonical symbolic-method derivation.** The Catalan generating function falls out of a one-line recursive specification for general plane (rooted) trees ([[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] §I.2 pp. 33-35): a plane tree is a node with a possibly-empty sequence of subtrees, so `G = Z × SEQ(G)`, which the [[symbolic-method](pages/symbolic-method.md)] translates directly to `G(z) = z/(1 − G(z))`; solving the quadratic `G − G² − z = 0` gives `G(z) = ½(1 − √(1−4z)) = z + z² + 2z³ + 5z⁴ + 14z⁵ + 42z⁶ + …`, so `G_n = C_{n−1}`.[^4] "Catalan tree" is used synonymously with "general (rooted, unlabelled) plane tree." The same specification underlies triangulations (`T = ε + T × ∇ × T`) and, generalizing the alphabet, the castle's [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the castle grammar is a first-return specification in exactly this style, with a third letter.
+**Canonical symbolic-method derivation.** The Catalan generating function falls out of a one-line recursive specification for general plane (rooted) trees ([[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] §I.2 pp. 33-35): a plane tree is a node with a possibly-empty sequence of subtrees, so `G = Z × SEQ(G)`, which the [[symbolic-method](pages/symbolic-method.md)] translates directly to `G(z) = z/(1 − G(z))`; solving the quadratic `G − G² − z = 0` gives `G(z) = ½(1 − √(1−4z)) = z + z² + 2z³ + 5z⁴ + 14z⁵ + 42z⁶ + …`, so `G_n = C_{n−1}`.[^4] "Catalan tree" is used synonymously with "general (rooted, unlabelled) plane tree." The same specification underlies triangulations (`T = ε + T × ∇ × T`) and, generalizing the alphabet, the castle's [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the castle grammar is a first-return specification in this style, with a third letter.
 
 ## Relevance to the castle
 
 Catalan numbers are the reference point for two castle threads:
 
 - **They are refined by the [[narayana-numbers](pages/narayana-numbers.md)]:** `∑_k N(n,k) = C_n` (verified). The castle's [[tower-heap](pages/tower-heap.md)] block-count generating function has the *Narayana polynomial* as numerator, so the Catalan/Narayana structure enters the castle world through the tower — see [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)].
-- **They are q-deformed by the [[q-catalan-numbers](pages/q-catalan-numbers.md)]** (which reduce to `C_n` at `q=1`), one family of which counts parallelogram polyominoes by area — the q-graded direction the castle points toward.
+- **They are q-deformed by the [[q-catalan-numbers](pages/q-catalan-numbers.md)]** (which reduce to `C_n` at `q=1`), one family of which counts parallelogram polyominoes by area; castles graded by area and blocks meet that family on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)].
 
-**Why the castle is *not* Catalan.** The ballot/non-crossing constraint is exactly what the castle lacks. A convex castle's ascending front and descending back are chosen *independently*, so its count is **binomial**, not Catalan — the point made precisely on [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]. Catalan appears in the castle world only where a genuine non-crossing coupling exists (via Narayana, in the tower), never in the natural `(w,h)` counts.
+**Why the convex castle is binomial.** A convex castle's ascending front and descending back are chosen *independently*, with no ballot constraint coupling them, so its count is **binomial** ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]). The OEIS mining found no Catalan numbers in the natural `(w,h)` counts; Catalan structure enters through Narayana, in the tower.
 
 ## Appearances in Sources
 

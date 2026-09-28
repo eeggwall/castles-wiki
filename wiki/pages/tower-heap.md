@@ -5,16 +5,16 @@ summary: A tower is a castle without the full-base / max-height / parity rules �
 tags: [concept, tower, heap-of-pieces, viennot, narayana, castle]
 sources: [oeis-mining-pe502, tower-narayana-polynomial, project-euler-502-representations]
 created: 2026-09-13
-updated: 2026-09-23
+updated: 2026-09-28
 ---
 
 # Tower (heap of pieces)
 
 ## Description
 
-A **tower** is the castle's underlying object with the boundary rules stripped away: column heights `c_1, …, c_w ≥ 0` (no mandatory full-width bottom block, no exact-max-height constraint, no parity filter), with blocks the maximal horizontal runs, `#blocks = c_1 + ∑_{i≥2} max(0, c_i − c_{i−1})`.[^1] It is precisely **Viennot's "heap of pieces"**: unit-height segments stacked on *w* columns, each resting on the floor or the segment directly below, segments in the same row separated by a gap.[^2]
+A **tower** is the castle's underlying object with the boundary rules stripped away: column heights `c_1, …, c_w ≥ 0` (no mandatory full-width bottom block, no exact-max-height constraint, no parity filter), with blocks the maximal horizontal runs, `#blocks = c_1 + ∑_{i≥2} max(0, c_i − c_{i−1})`.[^1] It is **Viennot's "heap of pieces"**: unit-height segments stacked on *w* columns, each resting on the floor or the segment directly below, segments in the same row separated by a gap.[^2]
 
-Towers are the scaffolding of the castle solution — the [[castle-counting-formula](pages/castle-counting-formula.md)] counts towers above the bottom block, and the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is a grammar over tower words. This page treats the tower as an object in its own right, because that is where the Online Encyclopedia of Integer Sequences (OEIS) mining found its richest external connection.
+Towers are the scaffolding of the castle solution — the [[castle-counting-formula](pages/castle-counting-formula.md)] counts towers above the bottom block, and the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is a grammar over tower words. This page treats the tower as an object in its own right, because the Online Encyclopedia of Integer Sequences (OEIS) mining found its Narayana connection there.
 
 ## Heap presentation and cell count
 
@@ -31,12 +31,12 @@ T(w,b) = Σ_{k=1..w} N(w,k) · C(b + w − k, w − 1),
 
 with `N(w,k)` the [[narayana-numbers](pages/narayana-numbers.md)]. The `k`-th term counts the towers with exactly `k-1` descents in their height sequence (brute-force verified `w, b ≤ 7`). The block count itself is a boundary statistic: for a castle, semi-perimeter = width + blocks ([[castle-perimeter](pages/castle-perimeter.md)]). The width rows are `A005408` (w=2, odd numbers), `A005891` (w=3, centered pentagonal), `A063490` (w=4), `A160747` (w=5), and new for `w ≥ 6` - the full [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] finding.[^3]
 
-**A thread being walked.** The heap-of-pieces framing connects castles to Viennot's heap theory and to the transfer-matrix / commutation-monoid machinery of statistical mechanics, a direction into the broader combinatorics literature well beyond Project Euler 502 (PE 502). The setup is written out in [[viennot-heap-tower](pages/viennot-heap-tower.md)]: the tower as a heap over the trace monoid `N^w`, Cartier-Foata inversion recovering `1/(1-x)^w` for the cell count, and the transfer-matrix reading that produces `Narayana_w(x)/(1-x)^w` for the block count. That page also identifies where the naive heap-of-block-pieces recipe (intervals in `[1,w]`, dependency `=` shared column) fails to reproduce the tower count and what a heap-theoretic proof of the Narayana numerator would have to supply - the open half of the thread.
+**Heap theory.** The heap-of-pieces framing connects castles to Viennot's heap theory and to the transfer-matrix / commutation-monoid machinery of statistical mechanics. The setup is written out in [[viennot-heap-tower](pages/viennot-heap-tower.md)]: the tower as a heap over the trace monoid `N^w`, Cartier-Foata inversion recovering `1/(1-x)^w` for the cell count, and the transfer-matrix reading that produces `Narayana_w(x)/(1-x)^w` for the block count. That page also identifies where the naive heap-of-block-pieces recipe (intervals in `[1,w]`, dependency `=` shared column) fails to reproduce the tower count and what a heap-theoretic proof of the Narayana numerator would have to supply; that proof is open.
 
 ## Appearances in Sources
 
 - [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] — the tower block-count = Narayana-polynomial finding.
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — locates the Catalan/Narayana thread in the tower (veins 6/7).
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — locates the Catalan/Narayana thread in the tower (vein 7).
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] — the castle-as-`U (tower) D` reading the tower comes from.
 
 ## Related Concepts
@@ -48,7 +48,7 @@ with `N(w,k)` the [[narayana-numbers](pages/narayana-numbers.md)]. The `k`-th te
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — the same tower object counted by step, matched to A004149 via a Motzkin J-fraction with a no-UD / no-DU run constraint.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] — the heap-bijection explanation of the staircase `H(qx)/H(x)` form, and the bar-graph (castle) equation in the same linearizable class.[^4]
 - [[castle-foata-transform](pages/castle-foata-transform.md)] — blocks as maximal positive runs; the `c_1 + Σ max(0, c_i − c_{i−1})` block-count formula is the identity Foata builds on.
-- [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] — the tower block-count marginal whose `H(B) ~ (1/2) log_2 w` scaling this page's Narayana structure explains.
+- [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] — uses the Narayana block-count generating function as an approximate model for the castle block-count marginal `H(B)`.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] — the same column-height tower's signed transfer matrix, block-diagonalized by last-column parity; the signed twin of this page's unsigned block-count reading.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] — teaches `T(k,L) = (k+1)^L` and the `(T±P)/2` projector for the same tower object this page refines by block count.
 - [[signed-tower-count](pages/signed-tower-count.md)] — `P(k,L)`, the signed count of the same tower; this page's Narayana block-count GF is its unsigned counterpart.
