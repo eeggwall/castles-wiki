@@ -5,7 +5,7 @@ summary: "Adding a column to a castle and recording its first-column height s gi
 tags: [analysis, castle, polyomino, column-convex, add-a-column, temperley, functional-equation, q-shift, area, blocks, ferrers, stack-polyomino, parallelogram-polyomino, transfer-matrix, oeis, parity, novel-candidate]
 sources: [column-convex-polygon-enumeration, counting-horizontally-convex-polyominoes]
 created: 2026-09-23
-updated: 2026-09-23
+updated: 2026-09-28
 ---
 
 # Castles in the add-a-column framework
@@ -31,7 +31,7 @@ X(s) = x e(s) + x f(s) X(1) + x g(s) X(sq),
 e(s) = syq/(1 - syq),    f(s) = sq/(1 - sq),    g(s) = -sq(1 - y) / ((1 - sq)(1 - syq))
 ```
 
-This is the shape of the paper's Lemma 2.3, "X(s) = xe(s) + xf(s)X(1) + xg(s)X(sq)", with no `X'(1)` term.[^3] The paper says the derivative term "only occurs when construction C is used", which is not needed for directed polygons.[^4] Castles are directed (every cell can be reached from the bottom-left cell by north and east steps), and the castle equation above indeed has no derivative term.
+This is the shape of the paper's Lemma 2.3, "X(s) = xe(s) + xf(s)X(1) + xg(s)X(sq)", with no `X'(1)` term.[^3] The paper says the derivative term "only occurs when construction C is used", which is not needed for directed polygons.[^4] Castles are directed (every cell can be reached from the bottom-left cell by north and east steps), and the castle equation above has no derivative term.
 
 At `y = 1`, `g = 0` and the equation reads `X(1) = x q/(1 - q) (1 + X(1))`. At `x = 1` that gives `X(1) = q/(1 - 2q)`, the `2^(n-1)` compositions of [[castle-by-area](pages/castle-by-area.md)].
 
@@ -46,9 +46,9 @@ E(1) = sum_{n≥0} (-1)^n (1 - y)^n y x^(n+1) q^C(n+2,2) / ((q)_n (yq)_(n+1))
 1 - F(1) = 1 - sum_{n≥0} (-1)^n (1 - y)^n x^(n+1) q^C(n+2,2) / ((q)_(n+1) (yq)_n)
 ```
 
-Rename the variables of [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] to match (its `u` is width, here `x`, and its `x` is blocks, here `y`). Then `1 - F(1)` equals that page's `M` term by term, and `E(1)` equals its `N - M`. So `X(1) = (N - M)/M = N/M - 1`, which is its castle generating function (GF). The tower-grammar route there and the add-a-column route here give the same series, and the step from the linear equation to the closed form is exactly Lemma 2.3. At `x = 1, y = -1` the denominator `1 - F(1)` vanishes at `q_0 = -0.6158281351848...`, which is the signed pole of [[castle-row-raising-equation](pages/castle-row-raising-equation.md)].
+Rename the variables of [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] to match (its `u` is width, here `x`, and its `x` is blocks, here `y`). Then `1 - F(1)` equals that page's `M` term by term, and `E(1)` equals its `N - M`. So `X(1) = (N - M)/M = N/M - 1`, which is its castle generating function (GF). The tower-grammar route there and the add-a-column route here give the same series, and the step from the linear equation to the closed form is Lemma 2.3. At `x = 1, y = -1` the denominator `1 - F(1)` vanishes at `q_0 = -0.6158281351848...`, which is the signed pole of [[castle-row-raising-equation](pages/castle-row-raising-equation.md)].
 
-The paper's parallelogram equation (Lemma 3.1) has the same shape, `P(s) = xstyq/(1 - styq) + xsyq/((1 - sq)(1 - syq)) (P(1) - P(sq))`.[^5] The two equations differ only in which placements they allow and which of them add height. That is why the same `J_0`-type denominators appear in both.
+The paper's parallelogram equation (Lemma 3.1) has the same shape, `P(s) = xstyq/(1 - styq) + xsyq/((1 - sq)(1 - syq)) (P(1) - P(sq))`.[^5] The two equations differ in which placements they allow and which of them add height, and both solve to `J_0`-type denominators.
 
 ## Castles against A001169
 

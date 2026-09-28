@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 168 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
-| Spot fixes only | 4 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 22 |
-| Words still to read | about 74,000 |
+| Fully read and cleaned | 173 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Spot fixes only | 3 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
+| Not started | 18 |
+| Words still to read | about 63,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -194,7 +194,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-snippets-strips (0.0)
 - [x] acronyms (0.0)
 
-### Analyses (64 pages, 53 fully read)
+### Analyses (64 pages, 58 fully read)
 
 - [x] castle-cryptography (5.1)
 - [x] isospectral-castles (4.9)
@@ -225,7 +225,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] proper-castle-projection (1.8)
 - [x] a005251-bijection (1.7)
 - [ ] castle-ring-spectrum (1.6)
-- [ ] column-convex-ladder-by-area (1.6)
+- [x] column-convex-ladder-by-area (1.6)
 - [x] fractional-width-and-height (1.6)
 - [x] tree-castle-by-area (1.5)
 - [x] castle-steganography (1.5)
@@ -236,8 +236,8 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] reachable-field-census (1.4)
 - [x] castle-sequence-catalogue (1.3)
 - [x] bounded-height-castles-nacci (1.3)
-- [ ] castle-add-a-column-equation (1.3)
-- [ ] bronze-castle-hunt (1.3)
+- [x] castle-add-a-column-equation (1.3)
+- [x] bronze-castle-hunt (1.3)
 - [x] castle-ring-invariant-factors (1.2)
 - [x] tower-parity-sectors (1.1)
 - [x] viennot-heap-tower (1.1)
@@ -245,7 +245,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] generating-function-gallery (1.1)
 - [x] convex-castle-binomial-identity (1.0)
 - [x] recurrence-discovery (1.0)
-- [ ] quadratic-min-height (1.0)
+- [x] quadratic-min-height (1.0)
 - [~] castle-sign-kms-matrix (1.0)
 - [x] area-growth-census (0.9)
 - [x] half-sum-castles (0.8)
@@ -256,7 +256,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] prime-convex-castles (0.5)
 - [x] sum-of-three-cubes-castles (0.5)
 - [x] castle-row-raising-equation (0.5)
-- [~] castle-cryptography-round-three (0.4)
+- [x] castle-cryptography-round-three (0.4)
 - [x] odd-castles-and-block-tables (0.0)
 - [x] convex-castle-cap-factor (0.0)
 - [x] castle-q-bessel-closed-form (0.0)

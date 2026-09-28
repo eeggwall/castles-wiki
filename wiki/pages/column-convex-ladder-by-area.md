@@ -5,14 +5,14 @@ summary: "Bousquet-Mélou's 1996 closed forms for stacks, parallelograms, direct
 tags: [analysis, polyomino, column-convex, directed-column-convex, area, perimeter, parity, sign, q-series, castle, stack-polyomino, parallelogram-polyomino, directed-convex, oeis, asymptotics, novel-candidate, verification]
 sources: [column-convex-polygon-enumeration]
 created: 2026-09-23
-updated: 2026-09-23
+updated: 2026-09-28
 ---
 
 # The column-convex ladder by area
 
 [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] gives closed forms for six column-convex families, graded by left height `s`, right height `t`, width `x`, vertical half-perimeter `y` and area `q`.[^1] This page sets `s = t = x = 1` and reads the area series at `y = 1` and at `y = -1`. At `y = 1` it locates the castles on the ladder. At `y = -1` it carries the Project Euler 502 parity clause up the ladder, because on a castle the vertical half-perimeter is the block count ([[castle-perimeter](pages/castle-perimeter.md)]). On a row-convex shape it is the height ([[convex-polyomino](pages/convex-polyomino.md)]).
 
-[[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] already holds the convex rungs, from Bousquet-Mélou and Fédou 1995 and a column sweep. What is new here is the directed column-convex rung, which is the family directly above the castles, and a signed row for it and for the column-convex rung. The convex Theorem 4.4 needs the derivative `E'(1)` and was not evaluated; its rung comes from the 1995 series on that page.
+[[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] already holds the convex rungs, from Bousquet-Mélou and Fédou 1995 and a column sweep. This page adds the directed column-convex rung, the family directly above the castles, and signed rows for it and for the column-convex rung. The convex Theorem 4.4 needs the derivative `E'(1)` and was not evaluated; its rung comes from the 1995 series on that page.
 
 Every number below is own computation, from the paper's formulas and checked against an independent enumerator (footnote 2).
 

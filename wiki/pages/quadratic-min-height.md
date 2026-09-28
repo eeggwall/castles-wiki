@@ -5,7 +5,7 @@ summary: For each quadratic growth constant - the larger root of x^2 - p1 x - p2
 tags: [analysis, castle, castle-strip, transfer-matrix, perron-frobenius, growth-constant, quadratic-field, metallic-means, min-height, equitable-partition, census, exhaustive-search, conjecture, implementation, verification]
 sources: [oeis-mining-pe502]
 created: 2026-09-25
-updated: 2026-09-25
+updated: 2026-09-28
 ---
 
 # Minimum height for a quadratic growth constant
@@ -97,7 +97,7 @@ Checked against the table for every non-square `p2` up to 20.
 
 The rank-one construction is a special case of **evenly connected groups**. With two groups of sizes `a` and `b`, where each height in the first group has `α` successors in the first and `β` in the second, and each in the second has `γ` in the first and `δ` in the second, the growth constant is the larger root of `x^2 - (α + δ) x + (α δ - β γ)`. So `p1 = α + δ` and `p2 = β γ - α δ`, at height `a + b`, subject to `α, γ <= a` and `β, δ <= b`. That is a small search, and it gives an upper bound for every pair.
 
-- **Two groups** are optimal for 47 of the 53 exactly known pairs. All six misses - `(0,5)`, `(1,5)`, `(3,5)`, `(0,7)`, `(1,7)`, `(4,7)` - have `p2 = 5` or `7`. A prime `p2` forces `β γ` into a lopsided product, so one group has to be large.
+- **Two groups** are optimal for 47 of the 53 exactly known pairs. All six misses - `(0,5)`, `(1,5)`, `(3,5)`, `(0,7)`, `(1,7)`, `(4,7)` - have `p2 = 5` or `7`. In each, `β γ = p2 + α δ` has no factorization balanced enough to fit both groups into the height.
 - **Three groups** (the same construction with a 3 x 3 table of counts, whose characteristic polynomial is a cubic `(x - t)(x^2 - p1 x - p2)` with `ρ` the largest root) match **all 53** exact values, and never claim a height below what the exhaustive search found. The `(0, 5)` table above is three groups when read by columns (sizes 1, 1, 3), and the `(3, 5)` and `(4, 7)` optima are staircase tables: rows of 1s of lengths `5, 5, 5, 3, 2` and `6, 6, 6, 6, 4, 3`.
 
 **Conjecture: every pair reaches its minimum height with a rule whose heights split into at most three evenly connected groups.** If it holds, min height is a finite search over small tables of counts. Its predicted values through height 9 (`*` = three groups beat the best two-group split):

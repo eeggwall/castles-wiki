@@ -93,7 +93,7 @@ Even with an irreducible `Q` and nonlinear output, the castle DLP lives in `F_{p
 | 2 | **Red team** | two working attacks (CRT/Pohlig–Hellman split; Berlekamp–Massey LFSR recovery) | [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[berlekamp-massey](pages/berlekamp-massey.md)] |
 | 3 | **Blue team** | irreducible-`Q` fix, nonlinear-output fix, and the remaining ceiling | [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)], odd-`k` char polys |
 | 2nd lap | **Build / red / blue again** | ElGamal + Schnorr signature; Alice's key recovered (0.07 s); both fixes broken; key sizes (`Φ_d(p)` prime, linear complexity, `L_q[1/3]`); the four-question method | [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] |
-| 3rd lap | **Build / red / blue, the torus** | prime-order XTR/CEILIDH-style subgroup via trace compression on `char_5`; subfield-collapse attack closed; Pollard rho and index calculus (ExtNFS) are the real ceiling; key sizes retuned (~530-560 bit `p` for 128-bit security) | [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] |
+| 3rd lap | **Build / red / blue, the torus** | prime-order XTR/CEILIDH-style subgroup via trace compression on `char_5`; subfield-collapse attack closed; Pollard rho and index calculus (ExtNFS) set the ceiling; key sizes retuned (~530-560 bit `p` for 128-bit security) | [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] |
 
 Everything runs in a plain Python REPL; no libraries beyond `sympy` for the factoring demos. The pinned programs live on [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)].
 

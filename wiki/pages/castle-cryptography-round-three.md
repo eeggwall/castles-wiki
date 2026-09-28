@@ -1,26 +1,26 @@
 ---
 title: Castle cryptography, round three - the castle torus
 category: Analyses
-summary: The third lap of the build / red-team / blue-team loop, taking round two's own prescription - build on char_5 (degree 6) with p chosen so p^2 - p + 1 carries a large prime - and red-teaming it against the published attack literature for fields of size p^6. BUILD, executed at a toy size (p = 171271) and at full 128-bit size (512-bit p, 1024-bit prime q = p^2 - p + 1, 3072-bit field). char_5 is irreducible mod p for about 1 prime in 6 (94 of 600 near 10^6). The generator is the castle's own shift x raised to (p^6 - 1)/q, so the group is the prime-order "torus" subgroup XTR and CEILIDH use. Keys compress 3 to 1 by sending only the trace to the subfield with p^2 elements, and the receiver finishes the key exchange from that trace by a Kitamasa jump on the 3-term recurrence t_{n+3} = c t_{n+2} - c^p t_{n+1} + t_n, a castle-style recurrence inside the castle field. RED TEAM - the subfield collapse that broke round two finds nothing (a torus element pushed down to either smaller subfield is always 1), Pohlig-Hellman has nothing to split (q is prime), Pollard rho breaks the toy in 127,402 steps (sqrt q = 171,270) and faces about 2^512 at full size, and index calculus is the real ceiling. The 2016 extended tower number field sieve applies because 6 is composite, cutting the cost constant from 1.923 (round two's estimate) to 1.747 (or 1.71 with several number fields), so a 128-bit system needs p of about 530 to 560 bits on the heuristic formula rather than 424, and a 512-bit p sits just under 2^128 (2^126). A p of special form, such as a castle count, drops the constant to 1.526 and costs about 16 more bits. BLUE TEAM verdict - round three is an instance of XTR, secure at the right size and no better than XTR, which the literature rates no longer competitive with elliptic curves.
+summary: The third lap of the build / red-team / blue-team loop, taking round two's own prescription - build on char_5 (degree 6) with p chosen so p^2 - p + 1 carries a large prime - and red-teaming it against the published attack literature for fields of size p^6. BUILD, executed at a toy size (p = 171271) and at full 128-bit size (512-bit p, 1024-bit prime q = p^2 - p + 1, 3072-bit field). char_5 is irreducible mod p for about 1 prime in 6 (94 of 600 near 10^6). The generator is the castle's own shift x raised to (p^6 - 1)/q, so the group is the prime-order "torus" subgroup XTR and CEILIDH use. Keys compress 3 to 1 by sending only the trace to the subfield with p^2 elements, and the receiver finishes the key exchange from that trace by a Kitamasa jump on the 3-term recurrence t_{n+3} = c t_{n+2} - c^p t_{n+1} + t_n, a castle-style recurrence inside the castle field. RED TEAM - the subfield collapse that broke round two finds nothing (a torus element pushed down to either smaller subfield is always 1), Pohlig-Hellman has nothing to split (q is prime), Pollard rho breaks the toy in 127,402 steps (sqrt q = 171,270) and faces about 2^512 at full size, and index calculus sets the security level. The 2016 extended tower number field sieve applies because 6 is composite, cutting the cost constant from 1.923 (round two's estimate) to 1.747 (or 1.71 with several number fields), so a 128-bit system needs p of about 530 to 560 bits on the heuristic formula rather than 424, and a 512-bit p sits just under 2^128 (2^126). A p of special form, such as a castle count, drops the constant to 1.526 and costs about 16 more bits. BLUE TEAM verdict - round three is an instance of XTR, secure at the right size and no better than XTR, which the literature rates no longer competitive with elliptic curves.
 tags: [analysis, seminar, cryptography, cryptanalysis, red-team, blue-team, torus, xtr, ceilidh, trace, compression, kitamasa, pollard-rho, pohlig-hellman, index-calculus, number-field-sieve, extnfs, key-size, finite-field, cyclotomic, castle]
 sources: [oeis-mining-pe502]
 created: 2026-09-24
-updated: 2026-09-24
+updated: 2026-09-28
 ---
 
 # Castle cryptography, round three - the castle torus
 
 ## What this round does
 
-[[castle-cryptography](pages/castle-cryptography.md)] built a public-key system out of a castle and broke it. [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] broke the fixes and ended with a prescription for the third build: use the degree-6 castle polynomial `char_5`, choose the prime `p` so that `p^2 - p + 1` has a large prime factor, and then attack the result with the real published attacks on fields of size `p^6`. This page does exactly that, at a toy size small enough to break and at full size for 128-bit security (the attacker needs about `2^128` operations).[^exec]
+[[castle-cryptography](pages/castle-cryptography.md)] built a public-key system out of a castle and broke it. [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] broke the fixes and ended with a prescription for the third build: use the degree-6 castle polynomial `char_5`, choose the prime `p` so that `p^2 - p + 1` has a large prime factor, and then attack the result with the real published attacks on fields of size `p^6`. This page does that, at a toy size small enough to break and at full size for 128-bit security (the attacker needs about `2^128` operations).[^exec]
 
-The short answer: the system works, the attacks that broke rounds one and two find nothing, and the security is set by one attack family - index calculus - whose best published version has improved since the number round two used. The castle contributes the field and a nice recurrence, and nothing else, good or bad.
+The system works, the attacks that broke rounds one and two find nothing, and the security level is set by one attack family, index calculus, whose best published constant has improved since the value round two used. The castle supplies the field and a recurrence and moves the security in neither direction.
 
 ## Terms used on this page
 
 - **`char_5`** - the characteristic polynomial of the castle recurrence for height-5 towers, `x^6 - 6x^5 + 18x^4 - 32x^3 + 48x^2 - 32x + 32` ([[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)]). When it has no factors mod `p`, arithmetic on castle states mod `char_5` is arithmetic in the finite field with `p^6` elements, `F_{p^6}` ([[finite-fields](pages/finite-fields.md)]).
 - **Discrete logarithm** - given `g` and `g^a`, find `a`. Key exchange (Diffie-Hellman) is safe exactly as long as this is hard.
-- **Torus** - the subgroup of `F_{p^6}` of size `p^2 - p + 1`. Its elements are the ones that carry no information into any smaller field inside `F_{p^6}`. Cryptographers call it the torus `T_6`; the XTR and CEILIDH systems work in it.
+- **Torus** - the subgroup of `F_{p^6}` of size `p^2 - p + 1`. Its elements are those whose norms to the subfields `F_{p^2}` and `F_{p^3}` are both 1. Cryptographers call it the torus `T_6`; the XTR and CEILIDH systems work in it.
 - **Trace** - a way to squeeze an element `h` of `F_{p^6}` down to the subfield with `p^2` elements: `Tr(h) = h + h^{p^2} + h^{p^4}`. It needs 2 numbers mod `p` instead of 6.
 - **Pollard rho, Pohlig-Hellman** - the generic discrete-log attacks: rho costs about the square root of the group size; Pohlig-Hellman breaks the problem into pieces along the prime factors of the group size, so it gains nothing when that size is prime.
 - **Index calculus / number field sieve** - the attack family that uses the structure of finite fields specifically. Its cost is written `L_Q[1/3, c] = exp(c (ln Q)^{1/3} (ln ln Q)^{2/3})` for a field of size `Q`; the constant `c` is what research papers lower.
@@ -69,13 +69,13 @@ with coefficients in the subfield with `p^2` elements - a castle-style recurrenc
 
 ### The subfield collapse finds nothing
 
-Round two's sharpest attack pushed the key down into a smaller field inside the big one, where the discrete log was easy. Here the smaller fields are `F_{p^2}` and `F_{p^3}`, and pushing down means raising to `p^4 + p^2 + 1` or to `p^3 + 1`. Both of those numbers are multiples of `p^2 - p + 1`, so every torus element lands on 1: checked at both sizes. There is nothing to project. This is the reason the torus exists.
+Round two's sharpest attack pushed the key down into a smaller field inside the big one, where the discrete log was easy. Here the smaller fields are `F_{p^2}` and `F_{p^3}`, and pushing down means raising to `p^4 + p^2 + 1` or to `p^3 + 1`. Both of those numbers are multiples of `p^2 - p + 1`, so every torus element lands on 1: checked at both sizes. There is nothing to project; this is the defining property of the torus.
 
 ### Generic attacks: nothing to split, square root to pay
 
 `q` is prime, so Pohlig-Hellman has nothing to split - the step that recovered Alice's key in round two in 0.07 s. Pollard rho on the toy recovered the private key `a = 4696630792` in 127,402 steps against `sqrt q = 171,270`, in 1.3 s. At full size the same attack faces `sqrt q ≈ 2^512` steps, far beyond 128-bit security.
 
-### Index calculus: the real ceiling, and it moved
+### Index calculus
 
 Index calculus works on the field `F_{p^6}` directly, and its best version for fields like this one improved in 2016. The **extended tower number field sieve** of Kim and Barbulescu lowers the cost for fields `F_{p^n}` of medium-size `p` with composite `n`, "from `L_Q(1/3, (96/9)^{1/3})` to `L_Q(1/3, (48/9)^{1/3})`", or to 1.71 with several number fields, and "can be used when n=6 and n=12".[^kb] Kim and Jeong extend the same constants to every composite `n`, and show that when "p is of special form" the constant falls to `(32/9)^{1/3}`.[^kj]
 
@@ -91,7 +91,7 @@ Degree 6 is composite, so all of this applies to the castle torus. Heuristic cos
 
 Three readings:
 
-- **Composite degree cuts both ways.** Degree 6 is what makes the torus and the 3-to-1 compression possible, and it is also what lets the tower sieve in. On the heuristic formula a 128-bit castle torus needs `p` of about 530 to 560 bits, not round two's 424, and the published 512-bit size sits right at the edge (`2^126`). The published sizes are rounded recommendations built on more careful cost models than this formula,[^stam-table] so the fair reading is "512 bits is the minimum, with no margin", not "512 bits is broken".
+- **Composite degree.** Degree 6 is what makes the torus and the 3-to-1 compression possible, and it is also what lets the tower sieve in. On the heuristic formula a 128-bit castle torus needs `p` of about 530 to 560 bits, not round two's 424, and the published 512-bit size sits right at the edge (`2^126`). The published sizes are rounded recommendations built on more careful cost models than this formula,[^stam-table] so 512 bits is the minimum, with no margin.
 - **Do not take `p` from castle numbers.** A `p` with special structure - a castle count, a value of a castle polynomial, anything with a short description - opens the special-form sieve and costs about 16 more bits at the same size. `p` must be random.
 - **The castle's small coefficients do not help the attacker.** `char_5` has small integer coefficients, but the sieve chooses its own polynomials for the field; every description of `F_{p^6}` is the same field to it. Only the form of `p` matters.
 
@@ -103,19 +103,19 @@ Granger and Vercauteren gave an index calculus attack on tori (CRYPTO 2005); per
 
 Round three sets every parameter the earlier rounds identified: prime group order (Pohlig-Hellman gone), torus subgroup (subfield collapse gone), `sqrt q ≈ 2^512` (rho gone), and a 512-bit random `p` (index calculus at the edge of `2^128`). What is left is **XTR**: the castle supplies a convenient irreducible degree-6 polynomial and a recurrence reading of trace exponentiation, and nothing that makes the system harder or easier to break than XTR itself. And the literature's verdict on XTR is that after the move to 128-bit security and the improvements in finite-field discrete logs it is "no longer competitive with elliptic curves".[^stam-abs]
 
-So the castle cryptosystem, done correctly, is a known system, and the remaining gap to modern practice is the gap between finite fields and elliptic curves, not anything about castles.
+So the castle cryptosystem, done correctly, is XTR, and what separates it from current practice is the gap between finite fields and elliptic curves.
 
 ## Related Concepts
 
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the second lap, whose Fix 4 and Fix 6 prescribe this build and whose `L_q[1/3]` table this page updates.
 - [[castle-cryptography](pages/castle-cryptography.md)] - the first lap and the three-seminar structure.
-- [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - `char_5` and why the odd-`k` castle polynomials are irreducible over the rationals.
+- [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - `char_5`, and the irreducibility of the odd-`k` castle polynomials over the rationals (checked to `k = 31`, proved for `k = 2^m − 1`).
 - [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `F_p[x]/(Q)` and the castle Diffie-Hellman baseline.
 - [[kitamasa](pages/kitamasa.md)] - the jump behind both the torus generator and the compressed key exchange.
 - [[finite-fields](pages/finite-fields.md)] - `F_{p^6}`, its subfields, and the cyclotomic factorization of `p^6 - 1`.
 - [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - how often `char_5` stays irreducible mod `p`.
-- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - security as the largest prime-power invariant factor, here a single prime `q`.
-- [[sandpile-group](pages/sandpile-group.md)] - another castle group read off a Smith normal form, the same largest-invariant-factor yardstick used here.
+- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - security set by the largest prime dividing the group order, here the prime `q` itself.
+- [[sandpile-group](pages/sandpile-group.md)] - another finite abelian group attached to a castle, read off a Smith normal form.
 
 ## Appearances in Sources
 

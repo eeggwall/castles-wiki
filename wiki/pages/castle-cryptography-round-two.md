@@ -200,7 +200,7 @@ Even with Fixes 4 and 5 in place, discrete logs in `F_{p^d}` face the subexponen
 | 6 | `≈ 2¹⁸⁰` | `2²⁴` | `≈ 2⁴⁰` |
 | 7 | `≈ 2²¹⁰` | `2³⁴` | `≈ 2⁴³` |
 
-and the field size at which `L_q[1/3]` reaches `2¹²⁸` is about `q ≈ 2²⁵⁴⁰` — `p ≈ 2¹²⁷²` at `d = 2`, `2⁶³⁶` at `d = 4`, `2⁴²⁴` at `d = 6` (the same ballpark as the 3072-bit finite-field recommendation for 128-bit security). This is the ceiling of round one: no *structural* choice makes the castle DLP safe, only a `p` hundreds of bits wide, at which point it is ordinary finite-field cryptography.
+and the field size at which `L_q[1/3]` reaches `2¹²⁸` is about `q ≈ 2²⁵⁴⁰` — `p ≈ 2¹²⁶⁹` at `d = 2`, `2⁶³⁴` at `d = 4`, `2⁴²³` at `d = 6` (the same ballpark as the 3072-bit finite-field recommendation for 128-bit security). This is the ceiling of round one: no *structural* choice makes the castle DLP safe, only a `p` hundreds of bits wide, at which point it is ordinary finite-field cryptography.
 
 ---
 
