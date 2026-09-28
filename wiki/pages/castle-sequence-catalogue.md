@@ -5,7 +5,7 @@ summary: Hand-curated catalogue of every castle-counting sequence, by the castle
 tags: [analysis, oeis, castle, sequence, catalogue, novelty, submission-candidate, interlink]
 sources: [oeis-mining-pe502]
 created: 2026-09-17
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Castle sequence catalogue
@@ -32,7 +32,7 @@ The status is the discipline: *novel-candidate* means someone actually searched 
 
 From [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]: OEIS requires human authorship, so the wiki accumulates *verified matches* and drafts submission text elsewhere (`raw/oeis-pe502/`). One submission has been filed — the height-2 castle interlink (A038503/A038505), on 2026-09-18. **Interlink** candidates (a known OEIS sequence gaining a castle interpretation) in rough priority order:
 
-1. **A038505 and A038503** — **submitted 2026-09-18.** The height-2 hyperbolic interlink (`F(w,2) = A038505(w+1)`, `odd(w,2) = A038503(w+1) − 1`) is now in both entries: A038503 states it directly as "height ≤ 2, odd blocks" (no `−1`), and the decomposition formulas `a(n) = A000225(n−1) − A038505(n) + 1` and `a(n) = A038505(n) + A146559(n)` were added. See [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)].
+1. **A038505 and A038503** — **OEIS draft edits** (entered 2026-09-18, proposed 2026-09-26), awaiting editor approval. The height-2 hyperbolic interlink (`F(w,2) = A038505(w+1)`, `odd(w,2) = A038503(w+1) − 1`) is proposed on both entries: A038503 states it directly as "height ≤ 2, odd blocks" (no `−1`), with the decomposition formulas `a(n) = A000225(n−1) − A038505(n) + 1` and `a(n) = A038505(n) + A146559(n)`. See [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)].
 2. **A146559**: the `a(n) = P(1, n − 1)` comment is still unsubmitted, but the derived `A146559 = A038503 − A038505` identity is now in OEIS — as `a(n) = A038503(n) − A038505(n)` on A146559 itself and as `a(n) = A038505(n) + A146559(n)` on A038503 (both 2026-09-18, [[signed-tower-count](pages/signed-tower-count.md)]).
 3. **A005251, A202882, A203094, A203184**: the Hardin word identity gives each an interpretation as `2^{−L}` times an even-last-column signed tower count and proves their empirical recurrences ([[hardin-word-identity](pages/hardin-word-identity.md)]); the `g=2` minimum-tower-spacing castles ([[tower-spacing-castles](pages/tower-spacing-castles.md)]) give each a second, unsigned geometric interpretation. For **A005251** specifically, an explicit bijection ([[a005251-bijection](pages/a005251-bijection.md)]) unifies four castle readings (tree-castle / Hardin / tower-spacing / signed-tower) into one — the strongest form of this candidate; see the multi-interpretation hub below.
 4. **A000073, A000078, A001591** (and A000045 by area): the n-nacci numbers as *bounded-height castles by area* ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]) — clean compositions-into-`{1..h}` interpretation, high-value for the tribonacci/tetranacci/pentanacci entries.

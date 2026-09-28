@@ -5,14 +5,14 @@ summary: Closed forms of P(k,L) in k for small L — P(k,2) = (−1)^k(k+1) (pro
 tags: [analysis, castle, closed-form, c-finite, verification]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502]
 created: 2026-09-14
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Closed-form hunting for P(k,L)
 
 ## Overview
 
-`P(k,L)` — the [[castle-sign](pages/castle-sign.md)] signed tower count — has a **closed form in `k`** for the smallest widths `L`, and this page hunts for how far that goes. The result: the pattern extends through `L = 1, 2, 3`, then **stops** — for `L ≥ 4` the order of `P(·,L)` jumps to `2L−2` and no polynomial-in-`k` form exists. This page is the closed-form sibling of [[recurrence-discovery](pages/recurrence-discovery.md)] (which tabulates the orders); the computation — the column-height dynamic program (DP) for `P(k,L)` plus Berlekamp–Massey for the minimal recurrence — is that page's program, and everything below is verified by execution.
+`P(k,L)` — the [[castle-sign](pages/castle-sign.md)] signed tower count — has a **closed form in `k`** for the smallest widths `L`, and this page hunts for how far that goes. The result: the pattern extends through `L = 1, 2, 3`, then **stops** — for `L ≥ 4` the order of `P(·,L)` jumps to `2L−2` and `P(k,L)` is no longer `(−1)^k` times a single polynomial. This page is the closed-form sibling of [[recurrence-discovery](pages/recurrence-discovery.md)] (which tabulates the orders); the computation — the column-height dynamic program (DP) for `P(k,L)` plus Berlekamp–Massey for the minimal recurrence — is that page's program, and everything below is verified by execution.
 
 ## The small-L closed forms
 
@@ -24,7 +24,7 @@ In the *k*-direction (fixed `L`, vary the height), `P(k,L)` collapses for `L ≤
 | 2 | `(−1)^k (k+1)` | `(1 + x)²` |
 | 3 | `(−1)^k (k+1)²` | `(1 + x)³` |
 
-`P(k,1) = ∑_{c=0}^{k} (−1)^c = (1 + (−1)^k)/2` is the alternating sum of `1`s. `P(k,2)` and `P(k,3)` are the two forms the hunt set out from — except that the usual statement of `P(k,2)` as `(−1)^{k(k+1)}` is wrong: `k(k+1)` is always even, so that expression is identically `1`. The correct form is `(−1)^k(k+1)`, proved next.
+`P(k,1) = ∑_{c=0}^{k} (−1)^c = (1 + (−1)^k)/2` is the alternating sum of `1`s. `P(k,2) = (−1)^k(k+1)` is proved next.
 
 ## The P(k,2) = (−1)^k(k+1) proof
 
@@ -46,7 +46,7 @@ using `∑_{m=0}^{k} (−1)^m = (1+(−1)^k)/2` and `∑_{m=0}^{k} m(−1)^m = (
 
 ## The single-polynomial form stops at L = 3
 
-The `(1+x)^L` characteristic polynomial — which would give `P(k,L) = (−1)^k(k+1)^{L−1}` — holds only for `L = 2, 3` (`L = 1` is the degenerate parity form). At `L = 4` it breaks: the minimal recurrence has order **6, not 4**, so there is no `(1+x)⁴ = (−1)^k(k+1)³` closed form. The order then grows as `2L−2` for every `L ≥ 4`, and the characteristic polynomial factors over the integers as `(x+1)^L (x−1)^{L−2}` for every `L` up to 12 tested - palindromic for even `L`, anti-palindromic for odd `L` (the reciprocal-symmetry signature of the transfer matrix):
+The `(1+x)^L` characteristic polynomial — which would give `P(k,L) = (−1)^k(k+1)^{L−1}` — holds only for `L = 2, 3` (`L = 1` is the degenerate parity form). At `L = 4` it breaks: the minimal recurrence has order **6, not 4**, so there is no `(1+x)⁴ = (−1)^k(k+1)³` closed form. The order then grows as `2L−2` for every `L ≥ 4`, and the characteristic polynomial factors over the integers as `(x+1)^L (x−1)^{L−2}` for every `L` up to 12 tested - palindromic for even `L` and anti-palindromic for odd `L`, as the factorization forces:
 
 ```
 L=4: [1, 2, −1, −4, −1, 2, 1]     = (x+1)⁴(x−1)²
@@ -79,8 +79,8 @@ There is **no single-polynomial closed form** for `P(k,L)` as a function of `k` 
 - [[castle-sign](pages/castle-sign.md)] — the definition of `P` as the signed tower count.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] — the tool that recovers the `(1+x)^L` and palindromic polynomials.
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the `(x+1)^L (x−1)^{L−2}` factorization, the quasi-polynomial table `A_L, B_L`, and its OEIS hits.
-- [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] — `Σ_k (−1)^k C(n,k) = 0`, the alternating sum whose degenerate case `P(k,1) = (1 + (−1)^k)/2` opens the hunt.
-- [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] — the irreducibility side of the same `char_k` family this page's closed forms factor.
+- [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] — alternating sums such as `Σ_k (−1)^k C(n,k) = 0`; `P(k,1) = Σ_{c=0}^{k} (−1)^c` is the simplest.
+- [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] — irreducibility of the L-direction characteristic polynomials `char_k`, the other direction from this page's.
 
 ## Footnotes
 

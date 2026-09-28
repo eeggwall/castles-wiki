@@ -5,14 +5,14 @@ summary: F(w,h) mod p is eventually periodic in each direction, the period being
 tags: [analysis, castle, modular-arithmetic, periodicity, automaticity, sympy]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502]
 created: 2026-09-14
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # Mod-p observatory for F(w,h)
 
 ## Overview
 
-`F(w,h) = [h^w − (h−1)^w − P(h−1,w) + P(h−2,w)]/2` is a sum of periodic and C-finite terms.[^1] **Modulo a prime p, every C-finite sequence is eventually periodic** — its rational generating function over `F_p` is algebraic, hence (Christol) p-automatic. So "automaticity" here is not an extra condition: it *is* periodicity, and the observatory catalogues the periods and their origin.
+`F(w,h) = [h^w − (h−1)^w − P(h−1,w) + P(h−2,w)]/2` is a sum of periodic and C-finite terms.[^1] **Modulo a prime p, every C-finite sequence is eventually periodic** — its rational generating function over `F_p` is algebraic, hence (Christol) p-automatic, and an eventually periodic sequence is automatic in every base. The observatory catalogues the periods and their origin.
 
 ## The mechanism: period = lcm of eigenvalue orders
 
@@ -43,15 +43,15 @@ In the height direction (fixed `w`), `F(w,h)` is `2p`-periodic for small `w` —
 | 5 | 2 | 10 | 10 | 10 |
 | 7 | 2 | 14 | 14 | 14 |
 
-(`p=3, w=4` is `6p = 18`, not `2p`, because the k-direction characteristic polynomial has a repeated root mod 3 — the same doubling that appears below.)
+(`p = 3, w = 4` has period `18 = 2p²`, not `2p`.)
 
-The repeated root is exact, not a mod-3 accident: the k-direction characteristic polynomial of `P(·,L)` is `(x+1)^L (x−1)^{L−2}` over `Z` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), so the only eigenvalues are `±1` (orders 1 and 2) and the whole period comes from the multiplicities. `P(k,L) mod p` has period `2·p^{⌈log_p L⌉}` in `k`: `2p` while `L ≤ p`, jumping to `2p²` once `L > p` - `18 = 2·3²` at `L = 4, p = 3`, `50 = 2·5²` at `L = 6, p = 5`, `98 = 2·7²` at `L = 8, p = 7` (verified for `L ≤ 11`, `p ∈ {3, 5, 7, 11}`). The `18` in the table is the `L = w = 4 > 3` case.
+The k-direction characteristic polynomial of `P(·,L)` is `(x+1)^L (x−1)^{L−2}` over `Z` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), so the only eigenvalues are `±1` (orders 1 and 2) and the rest of the period comes from the multiplicities. `P(k,L) mod p` has period `2·p^{⌈log_p L⌉}` in `k`: `2p` while `L ≤ p`, jumping to `2p²` once `L > p` - `18 = 2·3²` at `L = 4, p = 3`, `50 = 2·5²` at `L = 6, p = 5`, `98 = 2·7²` at `L = 8, p = 7` (verified for `L ≤ 11`, `p ∈ {3, 5, 7, 11}`). The `18` in the table is the `L = w = 4 > 3` case.
 
 ## The finite-field connection
 
 *A from-scratch, pedagogical build-up of this picture — F_5, F_49, and the general F_{p^d} — is on [[finite-fields](pages/finite-fields.md)].*
 
-Why does "period = lcm of eigenvalue orders" hold? It is the standard finite-field picture of a linear recurrence. Over ℚ, `P(k,L) = Σ c_i λ_i^L` is *aperiodic* — the eigenvalues `λ_i` have infinite order. Reducing mod p is what tames it:
+Why does "period = lcm of eigenvalue orders" hold? It is the standard finite-field picture of a linear recurrence. Over ℚ, `P(k,L) = Σ c_i λ_i^L` is *aperiodic* — the eigenvalues `λ_i` have infinite order. Reducing mod p makes it periodic:
 
 1. `char_k` factors over `F_p` into irreducibles; an irreducible factor `g` of degree `d` has its `d` roots in the finite field `F_{p^d}` (the unique degree-`d` extension).
 2. Every nonzero `λ ∈ F_{p^d}` lies in the **cyclic** group `F_{p^d}^*` of order `p^d − 1`, so `λ^{p^d − 1} = 1` (Lagrange) and `λ^L` is periodic in `L` with period `ord(λ) | p^d − 1`.
@@ -64,11 +64,11 @@ Why does "period = lcm of eigenvalue orders" hold? It is the standard finite-fie
 
 A repeated root `g^m` adds a polynomial part `n^{m−1}λ^n` to the solution, and `n^{m−1} mod p` has period `p^{⌈log_p m⌉}` — which is why a double root multiplies the period by `p` (`char_2 mod 7`'s `(x+3)²`, hence `8400 = 1200 × 7`).
 
-This is also the finite-field reason **automaticity is automatic** here: a finite multiplicative group gives finite orders, hence periodicity, hence (Christol) p-automaticity.
+This is also why the sequences are p-automatic: a finite multiplicative group gives finite orders, hence periodicity.
 
 ## char_k mod p: splitting and repeated roots
 
-The characteristic polynomials reduce with clean structure:
+The characteristic polynomials mod 3, 5 and 7:
 
 | k | char_k mod 3 | char_k mod 5 | char_k mod 7 |
 |---|---|---|---|
@@ -77,7 +77,7 @@ The characteristic polynomials reduce with clean structure:
 | 3 | `x⁴−x³−x²+x−1` | `(x−1)²(x²−2x−2)` | `x⁴+3x³+x²−x+1` |
 | 4 | `(x−1)²(x³−x−1)` | `(x+1)(x²−2x−1)(x²+x+1)` | `(x−3)(x+1)(x+2)(x²+2x−2)` |
 
-Two clean facts:
+Two facts:
 
 1. **Splitting is quadratic reciprocity.** `char_1 = x²−2x+2` has discriminant `−4`, so it splits over `F_p` iff `−1` is a square mod p, i.e. `p ≡ 1 (mod 4)` — the eigenvalues `1±i` live in `F_p` exactly when `i = √(−1)` does. It splits for `p = 5`, stays irreducible for `p = 3, 7`.
 2. **Repeated roots at discriminant-zero primes.** `char_2 = (x−2)(x²−x+2)`, whose quadratic has discriminant `−7`, has a double root mod 7 (since `−7 ≡ 0`): `(x+3)²`. These repeated roots push a period up by a factor of p — e.g. `F(w,4) mod 7` has period `8400 = 1200 × 7`, the `7` coming from `char_2`'s double root.
@@ -90,7 +90,7 @@ Two clean facts:
 | p=5 | 4 | 24 | 120 | 12 | 124 | 372 |
 | p=7 | 24 | 21 | 400 | 48 | 58824 | 16 |
 
-For irreducible `char_k` of degree `k+1` the roots live in `F_{p^{k+1}}`, so `per(char_k)` divides `p^{k+1}−1` — the periods grow like a power of p in the height (this is why the `10^9+7` observatory can never print a full period, only the eigenvalue orders).
+For irreducible `char_k` of degree `k+1` the roots live in `F_{p^{k+1}}`, so `per(char_k)` divides `p^{k+1}−1` — the periods grow like a power of p in the height, so at `p = 10^9+7` only the eigenvalue orders can be computed, not the full periods.
 
 ## Verification (SymPy)
 
@@ -171,11 +171,11 @@ for h in range(2, 6):
 - [[recurrence-discovery](pages/recurrence-discovery.md)] — the orders `k+1` (L) and `2L−2` (k) that bound `per(char_k)`.
 - [[signed-tower-count](pages/signed-tower-count.md)] — `char_k` over ℚ and the `(−1)^{k−1}2^k` constant term that guarantees pure periodicity.
 - [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] — the mod-`10^9+7` path whose C-finiteness (not its period) is what's exploited.
-- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the real-number twin of this page: continued-fraction periods of the eigenvalues, the norm-`−1` signature (`δ^{p+1} = −1` at inert primes) read on both sides, and the `2·p^{⌈log_p L⌉}` k-direction period.
+- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the real-number counterpart of this page: continued-fraction periods of the eigenvalues, the norm-`−1` signature (`δ^{p+1} = −1` at inert primes) read on both sides, and the `2·p^{⌈log_p L⌉}` k-direction period.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] — `F(w,3)`, whose char poly contains `x² − x + 2` (discriminant `−7`): its period mod 7 inherits the `(x+3)²` double root above.
 
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - a composite-modulus example: `F(., h) mod 1729 = 7 * 13 * 19` has periods `72, 2520, 25200` for `h = 2, 3, 4`, the lcm of the three prime periods, with the `8400 = 1200 x 7` double-root period of `char_2 mod 7` carried through.
-- [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] - the mod-9 census of the `F` table row by row, column by column, and aggregated over `A(w, h) <= N`; the deficit against `2/9 = 22.22%` is a finite-N artifact, and columns `w in {3^{k-1} + 1, 3^{k-1} + 3, 3^{k-1} + 8}` per bracket hit the equidistribution value to the digit.
+- [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] - the mod-9 census of the `F` table row by row, column by column, and aggregated over `A(w, h) <= N`; the deficit against `2/9 = 22.22%` is a finite-N artifact, and columns `w in {3^{k-1} + 1, 3^{k-1} + 3, 3^{k-1} + 8}` per bracket have exactly the equidistribution rate.
 - [[mod-9-coset-lift](pages/mod-9-coset-lift.md)] - the three-adic mechanism underneath: this page's "multiplicity `m` inflates the period by `p^{ceil(log_p m)}`" rule is what gives column periods `v_3 >= 2` and forces row periods to `v_3 = 1`; joint-state cycle proof that `(x +- 1)^3` never divides `char_k mod 3`.
 - [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - the extension beyond `p = 7`: discriminants of `char_k` list the "special" primes (`7, 5, 3 * 107, 53, 3 * 23 * 643, 5449, ...`); Chebotarev-style splitting patterns at `p in {11..97}`; the `10^9 + 7` case (irreducibility of `char_1`, three linear roots at `k = 6`, per(char_k) full-period ceiling `~ 10^{18..63}` beyond enumeration).
 

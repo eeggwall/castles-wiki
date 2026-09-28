@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 67 (song-as-castle and the 20 pages linking to it; batches 1-3, the 28 oldest pages) |
-| Spot fixes only | 18 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 109 |
-| Words still to read | about 318,000 |
+| Fully read and cleaned | 75 (song-as-castle and the 20 pages linking to it; batches 1-5 and 7, oldest first) |
+| Spot fixes only | 19 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
+| Not started | 100 |
+| Words still to read | about 306,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 39 fully read)
+### Concepts (85 pages, 42 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
@@ -116,7 +116,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] sandcastle-clock (4.9)
 - [ ] castle-classification (4.8)
 - [ ] castle-graph (4.7)
-- [ ] finite-fields (4.6)
+- [x] finite-fields (4.6)
 - [ ] sandpile-identity (4.5)
 - [x] signed-tower-count (4.2)
 - [~] eigenvalue-continued-fractions (4.1)
@@ -132,9 +132,9 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] oeis-mining-seminar (3.2)
 - [ ] sandpile-group (3.0)
 - [ ] castle-native-gray-tour (3.0)
-- [ ] block-count-constraints (3.0)
+- [x] block-count-constraints (3.0)
 - [x] column-convex-polyomino (3.0)
-- [ ] parity-via-roots-of-unity (3.0)
+- [x] parity-via-roots-of-unity (3.0)
 - [x] castle-counting-function (2.8)
 - [ ] multiset-partitions (2.7)
 - [x] one-bit-seminar (2.7)
@@ -194,7 +194,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] castle-snippets-strips (0.0)
 - [ ] acronyms (0.0)
 
-### Analyses (64 pages, 11 fully read)
+### Analyses (64 pages, 15 fully read)
 
 - [x] castle-cryptography (5.1)
 - [ ] isospectral-castles (4.9)
@@ -205,7 +205,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] pell-castle-strip (3.4)
 - [ ] castle-graph-spectral-radius (3.3)
 - [ ] castles-as-upgraded-cycle-count (3.2)
-- [ ] mod-p-observatory (3.0)
+- [x] mod-p-observatory (3.0)
 - [ ] levy-flights (2.9)
 - [~] fractional-recurrences (2.8)
 - [~] castle-eigenvalue-oeis-crosswalk (2.8)
@@ -234,17 +234,17 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [~] signed-klarner-decomposition (1.4)
 - [x] fractional-block-count (1.4)
 - [ ] reachable-field-census (1.4)
-- [ ] castle-sequence-catalogue (1.3)
+- [~] castle-sequence-catalogue (1.3)
 - [ ] bounded-height-castles-nacci (1.3)
 - [ ] castle-add-a-column-equation (1.3)
 - [ ] bronze-castle-hunt (1.3)
 - [ ] castle-ring-invariant-factors (1.2)
 - [ ] tower-parity-sectors (1.1)
 - [ ] viennot-heap-tower (1.1)
-- [ ] closed-form-hunting (1.1)
-- [ ] generating-function-gallery (1.1)
+- [x] closed-form-hunting (1.1)
+- [x] generating-function-gallery (1.1)
 - [x] convex-castle-binomial-identity (1.0)
-- [ ] recurrence-discovery (1.0)
+- [x] recurrence-discovery (1.0)
 - [ ] quadratic-min-height (1.0)
 - [~] castle-sign-kms-matrix (1.0)
 - [ ] area-growth-census (0.9)
@@ -261,7 +261,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] convex-castle-cap-factor (0.0)
 - [~] castle-q-bessel-closed-form (0.0)
 
-### Sources (44 pages, 16 fully read)
+### Sources (44 pages, 17 fully read)
 
 - [x] oeis-mining-pe502 (25.6)
 - [x] oeis-height2-hyperbolic-castles (5.9)
@@ -306,7 +306,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] project-euler-502-brute-force (0.0)
 - [x] project-euler-502 (0.0)
 - [ ] dhar-1990-self-organized-critical-sandpile (0.0)
-- [ ] aocp-multinomial-coefficients (0.0)
+- [x] aocp-multinomial-coefficients (0.0)
 
 ### Top level (1 page, 1 fully read)
 

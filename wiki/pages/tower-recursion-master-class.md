@@ -5,7 +5,7 @@ summary: The two ideas that solve the castle count — towers are independent (T
 tags: [concept, castle, towers, parity, sign, pedagogy, dyck, teaching]
 sources: [project-euler-502-solution, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations]
 created: 2026-09-14
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Tower recursion master class
@@ -60,7 +60,7 @@ with `T = T(k,L)` the unsigned total. The signed tower has a generating function
 P_k = 1 + x·P_k − (P_{k−1} − 1)(1 + x·P_k)      (P_0 = 1/(1−x))
 ```
 
-which is the recursion behind `P` (its `num_k/den_k` form and C-finite recurrences are on [[castle-counting-formula](pages/castle-counting-formula.md)] and [[signed-tower-count](pages/signed-tower-count.md)]). `P` is the sum of the sign homomorphism, and the `(T ± P)/2` identity is the parity projection.
+which is the recursion behind `P` (its `num_k/den_k` form and C-finite recurrences are on [[castle-counting-formula](pages/castle-counting-formula.md)] and [[signed-tower-count](pages/signed-tower-count.md)]). `P` is the sum of the sign over towers, and the `(T ± P)/2` identity is the parity projection.
 
 ## The even and odd approaches
 
@@ -101,8 +101,8 @@ Towers of height ≤ 1 above a length-4 block are column heights `c ∈ {0,1}⁴
 - [[binary-string-bijection](pages/binary-string-bijection.md)] — the bijection that makes Idea 1 rigorous.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the grammar the two generating functions are read off.
 - [[signed-tower-count](pages/signed-tower-count.md)] — the C-finite `P(k,L)` family.
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)] — the deep-analysis sibling: the sign homomorphism becomes a block diagonalization of the recursion into `(+1)` / `(−1)` sectors.
-- [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — the analytical explanation of `T(k,L) = (k+1)^L`: it is the collapse of the Motzkin J-fraction under the no-UD / no-DU run constraint.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] — a symmetry of the signed transfer matrix that block-diagonalizes the recursion into `(+1)` / `(−1)` sectors.
+- [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — `T(k,L) = (k+1)^L` read off the Motzkin J-fraction under the no-UD / no-DU run constraint.
 - [[castle-foata-transform](pages/castle-foata-transform.md)] — the permutation-analogy version of the "peak / tower atom" idea: peaks are maximal positive runs, records are their leftmost positive columns.
 - [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the companion seminar on the algebra side: one castle recurrence read through its fibers mod each prime.
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the seminar on the signed tower count's even sector.

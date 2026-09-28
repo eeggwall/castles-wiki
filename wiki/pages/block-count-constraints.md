@@ -5,7 +5,7 @@ summary: Three ways to select castles by block count — residue classes (roots 
 tags: [concept, castle, generating-functions, roots-of-unity, coin-problem, pedagogy]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-14
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Block-count constraints: a trichotomy
@@ -18,7 +18,7 @@ Every "count the castles whose block count satisfies …" is an extraction from 
 G_{k,L}(z) = Σ_{towers of height ≤ k, length L} z^{blocks}.
 ```
 
-The block count of a tower is its number of runs (sub-blocks), so for height ≤ 1 (binary strings) this is `G_{1,L}(z) = Σ_r C(L+1, 2r) z^r`. Set `z = 1` and you get the unsigned count `T`; set `z = −1` and you get the signed count `P`.[^1] The three methods below are three ways to *extract a subset* from `G`, and the right method is decided entirely by the **shape of the set S** of allowed block counts:
+For height ≤ 1 (binary strings) the block count is the number of runs, so `G_{1,L}(z) = Σ_r C(L+1, 2r) z^r`. Set `z = 1` and you get the unsigned count `T`; set `z = −1` and you get the signed count `P`.[^1] The three methods below are three ways to *extract a subset* from `G`, and the right method is decided entirely by the **shape of the set S** of allowed block counts:
 
 | shape of S | tool | example |
 |---|---|---|
@@ -40,7 +40,7 @@ Call it the **residue / sparse / semigroup trichotomy.**
 
 **Simple case (reduces).** `m = 2`, `ω = −1`: `# { even } = ½(G(1) + G(−1)) = (T+P)/2` and `# { odd } = (T−P)/2` — the two evaluations are the unsigned and signed counts themselves.
 
-**Less simple.** `m = 4`, `ω = i`: `# { not divisible by 4 } = T − ¼(G(1)+G(i)+G(−1)+G(−i)) = (3T − P − 2·Re(G(i)))/4` — one genuinely new value, the real part `Re(G(i))`, beyond `T` and `P`.
+**Less simple.** `m = 4`, `ω = i`: `# { not divisible by 4 } = T − ¼(G(1)+G(i)+G(−1)+G(−i)) = (3T − P − 2·Re(G(i)))/4` — one new value, the real part `Re(G(i))`, beyond `T` and `P`.
 
 ## 2. Sparse constraints — lacunary series
 
@@ -54,7 +54,7 @@ Call it the **residue / sparse / semigroup trichotomy.**
 
 **Simple case (reduces).** `S = {1}` (exactly one block): `# = [z^1]G`. For height ≤ 1 that is `C(L+1, 2) = (L+1)L/2` towers.
 
-**Less simple.** `S = {1, 2, 4, 8, …}` (powers of 2): `# = Σ_k [z^{2^k}] G`, i.e. dot `G` against `z + z² + z⁴ + z⁸ + ⋯`. There is no roots-of-unity shortcut — this is the honest generating-function answer, and the lacunary series is what makes it hard. (Concretely: height ≤ 1, length 4, runs are `{0,1,2}` with counts `1, 10, 5`, so "blocks a power of 2" = runs `{1,2}` = 15 towers.)
+**Less simple.** `S = {1, 2, 4, 8, …}` (powers of 2): `# = Σ_k [z^{2^k}] G`, i.e. dot `G` against `z + z² + z⁴ + z⁸ + ⋯`. There is no roots-of-unity shortcut; the lacunary series is the generating-function answer. (Concretely: height ≤ 1, length 4, runs are `{0,1,2}` with counts `1, 10, 5`, so "blocks a power of 2" = runs `{1,2}` = 15 towers.)
 
 ## 3. Semigroup constraints — coin-change series
 
@@ -78,7 +78,7 @@ Then the count is the **Hadamard product** — the constant term of `G` against 
 
 ## Worked against the wiki's own sequences
 
-The trichotomy is not only a taxonomy - each branch already has a named sequence on the wiki.
+Each branch has a named sequence on the wiki.
 
 **Residue, `m = 2`, height ≤ 1.** With `G_{1,L}(z) = Σ_r C(L+1, 2r) z^r`, the signed count is `G_{1,L}(−1) = Σ_r (−1)^r C(L+1, 2r) = Re((1+i)^{L+1})`, which is `P(1,L) = A146559(L+1)` on [[signed-tower-count](pages/signed-tower-count.md)] - the character sum at `ω = −1` *is* the real part of a Gaussian-integer power. The two residue classes themselves are
 
@@ -89,11 +89,11 @@ The trichotomy is not only a taxonomy - each branch already has a named sequence
 
 so "sum every 4th binomial coefficient" - the defining description of the [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] and the height-2 interlink on [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] - is the `m = 2` residue extraction on the height-1 tower's `G` read literally (a residue class of `r` in `C(L+1, 2r)` is a residue class of `2r` modulo `2m`). In general, `blocks ≡ r (mod m)` for height-1 towers is a sum of every `2m`-th binomial coefficient; the `m = 4` example above is an every-8th sum, and the exponential generating function (EGF) form of the same index-side filter (`1/(1−x⁴)`, `(e^x + e^{−x})/2`) is worked on [[generating-functions-topic](pages/generating-functions-topic.md)].
 
-**Residue, `m = 2`, in general.** `F(w,h) = (A + P)/2` on [[castle-counting-formula](pages/castle-counting-formula.md)] is the `m = 2` case at every height; [[project-euler-502-observations](pages/project-euler-502-observations.md)] is where the source names it "a symmetry trick that recurs in many combinatorial-enumeration problems," and [[castle-entropy](pages/castle-entropy.md)] prices the extraction at exactly one bit.
+**Residue, `m = 2`, in general.** The castle count `F(w,h)` on [[castle-counting-formula](pages/castle-counting-formula.md)] is the `m = 2` case at every height; [[project-euler-502-observations](pages/project-euler-502-observations.md)] is where the source names it "a symmetry trick that recurs in many combinatorial-enumeration problems," and [[castle-entropy](pages/castle-entropy.md)] prices the extraction at one bit.
 
 **Semigroup, ordered vs. unordered.** The coin-change series `∏ 1/(1 − z^d)` counts *unordered* representations (Flajolet's `MSET` on [[symbolic-method](pages/symbolic-method.md)]); its `SEQ` sibling `1/(1 − Σ_d z^d)` counts *ordered* ones, i.e. compositions with parts in `D`. The wiki already has one of those: compositions with parts in `{1, 3, 4, 5}` are `A000570`, the unique tournaments of [[unique-tournament](pages/unique-tournament.md)] and the `h = 4` tree-castle row of [[tree-castle-by-area](pages/tree-castle-by-area.md)]. Both series have the same support (the semigroup `⟨D⟩`), so the indicator `[b ∈ ⟨D⟩]` can be read off either one.
 
-**Semigroups as objects.** Counting the semigroups themselves by genus (the number of gaps - `12` for `⟨5,7⟩` above) gives `A007323 = 1, 1, 2, 4, 7, 12, 23, 39, 67, 118, 204, …`, whose growth is the golden ratio: Bras-Amorós conjectured a Fibonacci-like `n_g ≥ n_{g−1} + n_{g−2}`, and Zhai (2013) proved `n_g ∼ S·φ^g`.[^2] That puts the coin branch of the trichotomy in touch with the [[metallic-means](pages/metallic-means.md)] ladder the residue branch never reaches.
+**Semigroups as objects.** Counting the semigroups themselves by genus (the number of gaps - `12` for `⟨5,7⟩` above) gives `A007323 = 1, 1, 2, 4, 7, 12, 23, 39, 67, 118, 204, …`, whose growth is the golden ratio: Bras-Amorós conjectured a Fibonacci-like `n_g ≥ n_{g−1} + n_{g−2}`, and Zhai (2013) proved `n_g ∼ S·φ^g`.[^2] So the semigroup branch meets the golden ratio of the [[metallic-means](pages/metallic-means.md)] ladder.
 
 ## The boundary, restated
 
@@ -103,7 +103,7 @@ Look at the **shape of S** and pick the tool:
 - **thin, no period** → lacunary series (coefficient extraction);
 - **additively closed (coin denominations)** → coin-change series (constant term).
 
-A coin semigroup *degenerates* to a residue class exactly when `gcd(D)` is itself one of the denominations (so the semigroup is a single arithmetic progression) — that is when a "coin problem" quietly turns back into a character sum. Otherwise it genuinely needs the generating function.
+A coin semigroup *degenerates* to a residue class exactly when `gcd(D)` is itself one of the denominations (so the semigroup is a single arithmetic progression) — and the coin problem is then a character sum. Otherwise it needs the generating function.
 
 ## Appearances in Sources
 

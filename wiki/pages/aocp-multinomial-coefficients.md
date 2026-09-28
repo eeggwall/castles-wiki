@@ -5,10 +5,10 @@ summary: The multinomial coefficient n!/(k_1!…k_m!) — the multinomial theore
 tags: [knuth, taocp, multinomial, binomial, multiset, lattice-path, source]
 sources: [aocp-multinomial-coefficients]
 created: 2026-09-14
-updated: 2026-09-22
+updated: 2026-09-28
 ---
 
-# The Art of Computer Programming (AOCP) Multinomial Coefficients (Knuth The Art of Computer Programming (TAOCP) Vol. 1)
+# AOCP Multinomial Coefficients (Knuth, *The Art of Computer Programming*, Vol. 1)
 
 **Source:** https://charlesreid1.com/wiki/AOCP/Multinomial_Coefficients (notes on Knuth, *The Art of Computer Programming*, Vol. 1, §1.2.6)
 **Date ingested:** 2026-09-14
@@ -28,7 +28,7 @@ It counts exactly the permutations of a multiset with those multiplicities — t
 (x_1 + … + x_m)^n = ∑_{k_1+…+k_m = n} C(n; k_1,…,k_m) x_1^{k_1} … x_m^{k_m}
 ```
 
-The key structural fact is that a multinomial **telescopes into a product of binomials** — the intermediate factorials cancel:[^3]
+A multinomial **telescopes into a product of binomials** — the intermediate factorials cancel:[^3]
 
 ```
 C(k_1+…+k_m; k_1,…,k_m) = C(k_1+k_2, k_1) · C(k_1+k_2+k_3, k_1+k_2) · … · C(k_1+…+k_m, k_1+…+k_{m−1})
@@ -40,14 +40,14 @@ C(k_1+…+k_m; k_1,…,k_m) = C(k_1+k_2, k_1) · C(k_1+k_2+k_3, k_1+k_2) · … 
 
 Two concrete connections, both on the enumeration side:
 
-- **The higher-dimensional lattice-path count is this telescoping.** [[lattice-paths](pages/lattice-paths.md)] counts *d*-dimensional shortest paths by the multinomial `C(N; N_1,…,N_d)`, computed as the telescoping product of binomials — exactly the identity above. Its worked 4-D example `C(15; 3,4,5,3) = 12,612,600 = C(14,4)·C(10,4)·…` *is* this factorization (verified). The multinomial is thus the general form of the stars-and-bars binomial count the castle's [[convex-castle](pages/convex-castle.md)] enumeration also uses.
+- **The higher-dimensional lattice-path count is this telescoping.** [[lattice-paths](pages/lattice-paths.md)] counts *d*-dimensional shortest paths by the multinomial `C(N; N_1,…,N_d)`, computed as the telescoping product of binomials, the identity above: its 4-D example is `C(15; 3,4,5,3) = C(7,3)·C(12,7)·C(15,12) = 12,612,600`, and its 3-D example is `C(14,4)·C(10,4) = 210,210` (both verified). The multinomial is thus the general form of the stars-and-bars binomial count the castle's [[convex-castle](pages/convex-castle.md)] enumeration also uses.
 - **Two-line-array counts are binomial products.** The multiset-permutation counts on [[aocp-multisets](pages/aocp-multisets.md)] (e.g. `C(A,A−k−m) C(B,m) C(C,k) …`) are multinomials factored into binomial products by the same telescoping — the counting template behind the castle's own placement/insertion arguments.
 
 ## Three more castle appearances
 
-- **The U/R/D string is a three-letter multiset permutation.** A castle's step string over `{U, R, D}` with prescribed letter counts is exactly a permutation of the multiset `{#U·U, #R·R, #D·D}`, so the *unconstrained* count is a trinomial coefficient. Words of length `n` over three letters with `#U − #D = k` are the coefficients of `(1 + x + x²)^n` - the trinomial triangle A027907 - and the height-0 diagonal is the central trinomial A002426 (1, 1, 3, 7, 19, 51, 141, …).[^4] The castle grammar's ballot and run constraints ([[urd-step-strings](pages/urd-step-strings.md)], [[tower-word-language](pages/tower-word-language.md)]) cut these down to Motzkin-type counts ([[motzkin-numbers](pages/motzkin-numbers.md)]) - the multinomial is the ceiling the grammar prunes from.
+- **The U/R/D string is a three-letter multiset permutation.** A castle's step string over `{U, R, D}` with prescribed letter counts is exactly a permutation of the multiset `{#U·U, #R·R, #D·D}`, so the *unconstrained* count is a trinomial coefficient. Words of length `n` over three letters with `#U − #D = k` are the coefficients of `(1 + x + x²)^n` - the trinomial triangle A027907 - and the height-0 diagonal is the central trinomial A002426 (1, 1, 3, 7, 19, 51, 141, …).[^4] The castle grammar's ballot and run constraints ([[urd-step-strings](pages/urd-step-strings.md)], [[tower-word-language](pages/tower-word-language.md)]) cut these down to Motzkin-type counts ([[motzkin-numbers](pages/motzkin-numbers.md)]); the multinomial is the unconstrained count.
 - **The q-multinomial is the q-thread's multiset case.** MacMahon's theorem: permutations of a multiset counted by inversions give the *Gaussian* multinomial coefficient, and it telescopes into Gaussian binomials exactly as the identity above telescopes into ordinary ones. This is the multiset form of the q-factorial on [[aocp-combinatorics](pages/aocp-combinatorics.md)] and [[permutation-inversions](pages/permutation-inversions.md)], and it is what an inversion-graded count of U/R/D strings would be built from.
-- **The convex-castle proof is a two-part telescope.** The up/down decomposition at the peak on [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] writes the count as a product of two binomials and then re-sums it with Vandermonde; the multinomial-into-binomials factorization is the general pattern that product instantiates.
+- **The convex-castle proof.** The up/down decomposition at the peak on [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] writes the count as a product of two binomials and then re-sums it with Vandermonde; the multinomial-into-binomials factorization is the general pattern that product instantiates.
 
 **Online Encyclopedia of Integer Sequences (OEIS).** The multinomial coefficients themselves are tabulated as A036038 (rows indexed by the partitions of `n`).[^4]
 
@@ -71,7 +71,7 @@ Two concrete connections, both on the enumeration side:
 
 The multinomial counts orderings of a fixed multiset; its unordered counterpart, splitting the multiset into blocks, is [[multiset-partitions](pages/multiset-partitions.md)].
 
-The third corner of the AOCP binomial/multiset/multinomial triangle. Its lasting content for the castle is the telescoping factorization — the general mechanism behind the higher-dimensional lattice-path count and the two-line-array binomial products, both kin to the castle's stars-and-bars convex enumeration.
+The third of the AOCP binomial / multiset / multinomial pages. The castle side uses its telescoping factorization: the higher-dimensional lattice-path count and the two-line-array binomial products both rest on it, as does the stars-and-bars convex enumeration.
 
 ## Footnotes
 
