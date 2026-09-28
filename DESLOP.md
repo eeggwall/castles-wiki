@@ -7,11 +7,11 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 31 (song-as-castle and the 20 pages linking to it; batch 1, the ten oldest pages) |
+| Fully read and cleaned | 40 (song-as-castle and the 20 pages linking to it; batches 1-2, the 19 oldest pages) |
 | Spot fixes only | 20 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 143 |
-| Words still to read | about 332,000 |
-| Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki); `acc4300` (IDEAS) |
+| Not started | 134 |
+| Words still to read | about 348,000 |
+| Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
 
@@ -106,13 +106,13 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 19 fully read)
+### Concepts (85 pages, 25 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [ ] hyperbolic-sequence-family (6.2)
 - [ ] narayana-numbers (5.7)
 - [x] sandcastle-seminar (5.5)
-- [ ] berlekamp-massey (5.5)
+- [x] berlekamp-massey (5.5)
 - [ ] sandcastle-clock (4.9)
 - [ ] castle-classification (4.8)
 - [ ] castle-graph (4.7)
@@ -145,11 +145,11 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-samplers (2.4)
 - [ ] idempotent-decomposition (2.3)
 - [~] castle-by-area (2.3)
-- [ ] urd-step-strings (2.1)
+- [x] urd-step-strings (2.1)
 - [ ] kitamasa (2.1)
 - [ ] castle-classification-spectrum (1.9)
 - [ ] stack-polyomino-gf (1.9)
-- [ ] castle-sign (1.9)
+- [x] castle-sign (1.9)
 - [ ] binary-string-bijection (1.8)
 - [ ] ramanujan-castles (1.7)
 - [ ] castle-snippets-cryptography (1.7)
@@ -177,15 +177,15 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] parallelogram-polyomino-dyck-bijection (0.6)
 - [ ] tower-word-continued-fraction (0.6)
 - [ ] convex-polyomino (0.6)
-- [ ] castle-foata-transform (0.6)
+- [x] castle-foata-transform (0.6)
 - [ ] q-differential-system (0.6)
 - [ ] castle-snippets-number-theory (0.5)
 - [ ] unique-tournament (0.0)
 - [ ] symbolic-method (0.0)
 - [ ] simple-tournament (0.0)
-- [ ] permutation-cycle-castle-analogy (0.0)
+- [x] permutation-cycle-castle-analogy (0.0)
 - [ ] motzkin-numbers (0.0)
-- [ ] monotone-streak-factorization (0.0)
+- [x] monotone-streak-factorization (0.0)
 - [ ] horizontally-convex-polyomino (0.0)
 - [ ] forcibly-simple-score-vector (0.0)
 - [x] convex-castle (0.0)
@@ -261,7 +261,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] convex-castle-cap-factor (0.0)
 - [~] castle-q-bessel-closed-form (0.0)
 
-### Sources (44 pages, 2 fully read)
+### Sources (44 pages, 5 fully read)
 
 - [ ] oeis-mining-pe502 (25.6)
 - [ ] oeis-height2-hyperbolic-castles (5.9)
@@ -294,14 +294,14 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] column-convex-polygon-enumeration (0.9)
 - [ ] prellberg-brak-1995-cluster-models (0.9)
 - [ ] aocp-binomial-coefficients (0.9)
-- [ ] project-euler-502-castle-factoring (0.9)
-- [ ] project-euler-502-observations (0.8)
+- [x] project-euler-502-castle-factoring (0.9)
+- [x] project-euler-502-observations (0.8)
 - [~] bak-tang-wiesenfeld-1988-self-organized-criticality (0.8)
 - [ ] project-euler-502-solution (0.7)
 - [ ] tetali-1998-unique-tournaments (0.5)
 - [ ] bender-1974-convex-n-ominoes (0.5)
 - [ ] klarner-rivest-1974-convex-n-ominoes (0.5)
-- [ ] project-euler-502-representations (0.0)
+- [x] project-euler-502-representations (0.0)
 - [ ] project-euler-502-implementation-notes (0.0)
 - [ ] project-euler-502-brute-force (0.0)
 - [x] project-euler-502 (0.0)

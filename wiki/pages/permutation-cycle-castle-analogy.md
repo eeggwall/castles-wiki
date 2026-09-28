@@ -1,11 +1,11 @@
 ---
 title: Permutation-cycle / castle-peak analogy
 category: Concepts
-summary: The correspondence permutation cycles ↔ castle peaks/excursions — a genuine factorization (Dyck first-return with an extra letter), the spine of the castle-factoring reading. The elementary anchor is (n−1)!, upgraded step-by-step into the castle triad — see [[castles-as-upgraded-cycle-count]].
+summary: The correspondence permutation cycles ↔ castle peaks/excursions — a factorization (the Dyck first-return with an extra letter), the spine of the castle-factoring reading. The elementary anchor is (n−1)!, upgraded step-by-step into the castle triad — see [[castles-as-upgraded-cycle-count]].
 tags: [concept, castle, permutations, cycles, factorization, dyck]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-13
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Permutation-cycle / castle-peak analogy
@@ -16,7 +16,7 @@ The central organizing idea of the castle-factoring reading is a single analogy:
 
 > **permutation cycles : castle peaks/excursions**
 
-Knuth factors a permutation into disjoint cycles by following the map `i ↦ σ(i)` from an unvisited element until the loop closes; the cycles are disjoint because the map is a bijection.[^1] The [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] factors a castle's tower word the same way: each `U V D` **peak** leaves the base, lives entirely above one sub-block, and returns to the base, and disjoint peaks are separated by `R` gaps — exactly as disjoint cycles are separated by parentheses.[^2] This is presented as a genuine factorization, not a metaphor: it is the Dyck first-return decomposition with one extra letter (`R`).[^2]
+Knuth factors a permutation into disjoint cycles by following the map `i ↦ σ(i)` from an unvisited element until the loop closes; the cycles are disjoint because the map is a bijection.[^1] The [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] factors a castle's tower word the same way: each `U V D` **peak** leaves the base, lives entirely above one sub-block, and returns to the base, and disjoint peaks are separated by `R` gaps, as disjoint cycles are separated by parentheses.[^2] The source presents this as a factorization, not a metaphor: it is the Dyck first-return decomposition with one extra letter (`R`).[^2]
 
 ## The correspondence
 
@@ -34,7 +34,7 @@ The analogy's source side is Knuth's **canonical cycle form** (The Art of Comput
 
 ## The (n−1)! anchor
 
-The three constructions have a joint elementary anchor: the classical `(n−1)!` count of labelled cycles on `n` items, whose two proofs — **quotient by the free `Z/n` rotation action** (`n!/n = (n−1)!`) and **fix the cycle to start at element `1`** (the remaining `n−1` order freely) — are instances of a **bigger machine** (Foata, sign, cycle-follow) that reappears intact on the castle side.[^5] Each move of the classical proof has a direct castle counterpart:
+The three constructions have a joint elementary anchor: the classical `(n−1)!` count of labelled cycles on `n` items, whose two proofs — **quotient by the free `Z/n` rotation action** (`n!/n = (n−1)!`) and **fix the cycle to start at element `1`** (the remaining `n−1` order freely) — are, in the source's reading, instances of one toolkit (Foata, sign, cycle-follow) that reappears on the castle side.[^5] Each move of the classical proof has a direct castle counterpart:
 
 | (n−1)! proof move | Castle counterpart |
 |---|---|
@@ -42,11 +42,11 @@ The three constructions have a joint elementary anchor: the classical `(n−1)!`
 | canonical form starting from element `1` (or Foata's largest-first flattening) | [[castle-foata-transform](pages/castle-foata-transform.md)] — peaks are maximal positive runs, records are their leftmost positive columns |
 | cycle-follow `i ↦ σ(i)` (an `O(n)` loop) | [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — first-difference scan into up/flat/down streaks (an `O(L)` loop) |
 
-The `(n−1)!` proof is the degenerate case: one cycle, no factoring, trivial sign. The castle machinery is the same three moves at industrial scale — stacked, width-weighted, sign-selected cycles.[^6] The seminar-ready form of this synthesis is [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)].
+The `(n−1)!` proof is the degenerate case: one cycle, no factoring, trivial sign. The castle machinery applies the same three moves to stacked, width-weighted, sign-selected cycles.[^6] The seminar form of this synthesis is [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)].
 
 ## Where the analogy becomes literal
 
-A **rainbow castle** ([[castle-classification-shape](pages/castle-classification-shape.md)]: `w = h`, heights a permutation of `{1..h}`) has a skyline that *is* a permutation, so the three moves above apply to it verbatim, and the classification's **even-peak** type is precisely the "block count ≠ peak count" caveat turned into a predicate the wiki has not yet investigated.
+A **rainbow castle** ([[castle-classification-shape](pages/castle-classification-shape.md)]: `w = h`, heights a permutation of `{1..h}`) has a skyline that *is* a permutation, so the three moves above apply to it verbatim, and the classification's **even-peak** type turns the "block count ≠ peak count" caveat into a predicate.
 
 ## The (1 ± sgn)/2 move, generalized, and the F(4,2) = 10 hand-check
 

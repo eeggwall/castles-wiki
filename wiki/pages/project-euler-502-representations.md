@@ -5,7 +5,7 @@ summary: The representations subpage — three castle encodings, the convex-cast
 tags: [project-euler, castle, representations, dyck, generating-functions, source, subpage]
 sources: [project-euler-502-representations]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Project Euler 502 (PE 502): Representations
@@ -16,11 +16,11 @@ updated: 2026-09-19
 
 ## Summary
 
-This subpage is the mathematical core of the Project Euler 502 solution. It first sets up three ways to encode a [[castle-polyomino](pages/castle-polyomino.md)] — binary strings, integer tuples, and U/R/D step strings — and translates the castle rules into constraints on each encoding.[^1] It then develops the U/R/D encoding into a taxonomy (rectangular → [[convex-castle](pages/convex-castle.md)] → variations) and, crucially, recasts the castle rules as a **[[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]** over tower words. That grammar yields a generating function and, from it, the closed-form **[[castle-counting-formula](pages/castle-counting-formula.md)]** for `F(w,h)` — replacing enumeration with a direct count.[^2]
+This subpage derives the Project Euler 502 closed form. It first sets up three ways to encode a [[castle-polyomino](pages/castle-polyomino.md)] — binary strings, integer tuples, and U/R/D step strings — and translates the castle rules into constraints on each encoding.[^1] It then develops the U/R/D encoding into a taxonomy (rectangular → [[convex-castle](pages/convex-castle.md)] → variations) and recasts the castle rules as a **[[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]** over tower words. That grammar yields a generating function and, from it, the closed-form **[[castle-counting-formula](pages/castle-counting-formula.md)]** for `F(w,h)` — replacing enumeration with a direct count.[^2]
 
-The three encodings are collected on [[castle-representations](pages/castle-representations.md)]. The step-based U/R/D form (detailed on [[urd-step-strings](pages/urd-step-strings.md)]) is the one that led to the breakthrough, in part because of one convenient property: each `D` move completes a block, so the even-block rule reduces to "an even number of Ds."[^3] The binary-string and integer-tuple encodings did not lead to the solution, but they carry structure used elsewhere in the solution (the binary encoding, for instance, supplies the bijection that a length-*L* block admits 2^L sub-configurations).[^4]
+The three encodings are collected on [[castle-representations](pages/castle-representations.md)]. The step-based U/R/D form (detailed on [[urd-step-strings](pages/urd-step-strings.md)]) is the one that led to the breakthroughs; each `D` move completes a block, so the even-block rule reduces to "an even number of Ds."[^3] The binary-string and integer-tuple encodings did not lead to the solution, but they carry structure used elsewhere in the solution (the binary encoding, for instance, supplies the bijection that a length-*L* block admits 2^L sub-configurations).[^4]
 
-A candid section, "Which representation was actually used?", notes that the winning solution does not enumerate any of these representations directly: the binary encoding serves only as a bijection proof, and U/R/D is the mental model that revealed sub-block independence, not what the code manipulates.[^4] The concrete derivation on this page produces a formula that reproduces the problem's known checkpoints exactly — verified by running the source's own Python: `F(4,2)=10`, `F(13,10)=3729050610636`, `F(10,13)=37959702514`.[^5]
+The section "Which representation was actually used?" notes that the winning solution does not enumerate any of these representations directly: the binary encoding serves only as a bijection proof, and U/R/D is the mental model that revealed sub-block independence, not what the code manipulates.[^4] The concrete derivation on this page produces a formula that reproduces the problem's known checkpoints exactly — verified by running the source's own Python: `F(4,2)=10`, `F(13,10)=3729050610636`, `F(10,13)=37959702514`.[^5]
 
 ## Key Takeaways
 
@@ -37,14 +37,14 @@ A candid section, "Which representation was actually used?", notes that the winn
 - [[convex-castle](pages/convex-castle.md)] — the front/middle/back castle class and its count.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the tower-word grammar recasting the castle rules.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the closed form for `F(w,h)`, with the signed/unsigned tower generating functions.
-- [[castle-polyomino](pages/castle-polyomino.md)], [[castle-counting-function](pages/castle-counting-function.md)], [[generating-functions](pages/generating-functions.md)] — updated by this source.
+- [[castle-polyomino](pages/castle-polyomino.md)], [[castle-counting-function](pages/castle-counting-function.md)], [[generating-functions](pages/generating-functions.md)] — the object, the count and the method this source develops.
 
-Also linked from the source and since ingested: [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/lattice-paths.md)] (Project Euler 15), [[project-euler-502-solution](pages/project-euler-502-solution.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)]. Still not ingested: Dyck Words/Examples.
+Also linked from the source: [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/lattice-paths.md)] (Project Euler 15), [[project-euler-502-solution](pages/project-euler-502-solution.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)].
 - Sibling subpages of the [[project-euler-502](pages/project-euler-502.md)] hub: [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)], [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)], [[project-euler-502-observations](pages/project-euler-502-observations.md)], [[project-euler-502-solution](pages/project-euler-502-solution.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)], [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)].
 
 ## Relation to Other Wiki Pages
 
-This page supplies the derivation that the hub [[project-euler-502](pages/project-euler-502.md)] and the [[castle-counting-function](pages/castle-counting-function.md)] pointed to. It gives [[generating-functions](pages/generating-functions.md)] its concrete instance for the castle problem and connects castles to Dyck paths and lattice paths (pages still queued). The Solution and Implementation Notes subpages (queued) describe what the code actually computes; this page establishes *why* the formula is correct.
+This page supplies the derivation that the hub [[project-euler-502](pages/project-euler-502.md)] and the [[castle-counting-function](pages/castle-counting-function.md)] pointed to. It gives [[generating-functions](pages/generating-functions.md)] its concrete instance for the castle problem and connects castles to Dyck paths and lattice paths. The Solution and Implementation Notes subpages describe what the code actually computes; this page establishes *why* the formula is correct.
 
 ## Footnotes
 

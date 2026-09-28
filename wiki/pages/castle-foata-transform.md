@@ -5,14 +5,14 @@ summary: The castle analogue of Foata's canonical-cycle flattening — peaks are
 tags: [concept, castle, foata, permutations, records, bijection]
 sources: [project-euler-502-castle-factoring, permutation-cycle-castle-analogy]
 created: 2026-09-13
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # Castle Foata transform
 
 ## What Foata refers to
 
-**Foata's fundamental transformation** is a classical bijection on permutations, also known as Knuth's *canonical-cycle flattening*.[^1] Take a permutation written in **canonical cycle form** — every cycle written with its smallest element first, the cycles ordered by their first elements — and erase the parentheses. Read as a one-line permutation, the result is a different permutation, and the two are related by a single clean statistic: **the number of cycles of the original equals the number of left-to-right records of the flattened permutation**.[^1] (In Knuth's decreasing-first-element convention the cycle leaders become left-to-right *minima*; in Foata's increasing convention they become left-to-right *maxima* — the same correspondence, order reversed.[^1])
+**Foata's fundamental transformation** is a classical bijection on permutations, also known as Knuth's *canonical-cycle flattening*.[^1] Take a permutation written in **canonical cycle form** — in Knuth's convention every cycle written with its smallest element first, the cycles in decreasing order of their first elements — and erase the parentheses. Read as a one-line permutation, the result is a different permutation, and the two are related by one statistic: **the number of cycles of the original equals the number of left-to-right records of the flattened permutation**.[^1] (In Knuth's convention the cycle leaders become left-to-right *minima*; in Foata's, with each cycle written largest element first and the cycles in increasing order of their first elements, they become left-to-right *maxima*.[^1])
 
 Example: the canonical cycle form `(1 4)(0 2 3)` flattens to the one-line permutation `1 4 0 2 3`, whose left-to-right minima `1` and `0` are one per cycle.[^1]
 
@@ -20,9 +20,9 @@ A castle is not a permutation, but its skyline factors into cycle-like atoms —
 
 ## The Knuth connection
 
-The flattening is Knuth's, from *The Art of Computer Programming* Vol. 1, §1.3.3 ("An Unusual Correspondence"), and it is the source side of the castle's central analogy.[^2] Knuth factors a permutation into disjoint cycles by following the map `i ↦ σ(i)` from an unvisited element until the loop closes; the cycles are disjoint because `σ` is a bijection.[^3] Presenting those cycles canonically — smallest element first, decreasing first-element order, singletons written explicitly — and then erasing the parentheses is precisely Foata's transformation.[^2]
+The flattening is Knuth's, from *The Art of Computer Programming* Vol. 1, §1.3.3 ("An Unusual Correspondence"), and it is the source side of the castle's central analogy.[^2] Knuth factors a permutation into disjoint cycles by following the map `i ↦ σ(i)` from an unvisited element until the loop closes; the cycles are disjoint because `σ` is a bijection.[^3] Presenting those cycles canonically — smallest element first, decreasing first-element order, singletons written explicitly — and then erasing the parentheses is Foata's transformation.[^2]
 
-On the castle side, the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] factors a tower word the same way: each `U V D` **peak** is a self-contained excursion above one sub-block, and disjoint peaks are separated by `R` gaps exactly as disjoint cycles are separated by parentheses.[^4] So the permutation's *cycles* become the castle's *peaks*, and the flattening that turns cycles into records becomes a flattening that turns peaks into records — the castle Foata transform below. The full correspondence table lives on [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)].
+On the castle side, the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] factors a tower word the same way: each `U V D` **peak** is a self-contained excursion above one sub-block, and disjoint peaks are separated by `R` gaps as disjoint cycles are separated by parentheses.[^4] So the permutation's *cycles* become the castle's *peaks*, and the flattening that turns cycles into records becomes a flattening that turns peaks into records — the castle Foata transform below. The full correspondence table lives on [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)].
 
 ## The castle Foata transform
 
@@ -41,7 +41,7 @@ The transform is a concrete bijection in four steps.[^5]
    ```
    — the columns where the skyline leaves the base, i.e. its left-to-right ascents.[^5]
 
-Hence **#peaks = #records**: the number of cycle-like atoms equals the number of new excursions from the base, exactly as permutation cycles correspond to left-to-right records.[^5][^6]
+Hence **#peaks = #records**: the number of cycle-like atoms equals the number of new excursions from the base, as permutation cycles correspond to left-to-right records.[^5][^6]
 
 ## Worked example 1: a single block
 
@@ -55,7 +55,7 @@ Reading the skyline above the base column by column — up to height 1 (`U`), ri
 
 Flattened, `c` has a single maximal positive run `{1, 2}` (columns 1–2, both `≥ 1`). That run is the one peak. Its first column, 1, is the unique record: `c_1 = 1 > 0` and `i = 1`.
 
-So **one peak ↔ one record** — the castle Foata theorem in its simplest form.
+So **one peak ↔ one record**.
 
 ## Worked example 2: two independent towers
 
@@ -71,11 +71,11 @@ Flattened, `c` has two maximal positive runs: `{1, 2}` and `{4, 5}` — the two 
 
 **two peaks ↔ two records.**
 
-These two peaks are genuinely independent towers — each a self-contained excursion that leaves the base, stacks two blocks, and returns. Note that there are **two peaks but four blocks**: a peak can hold several stacked blocks, so peaks and blocks are different statistics, and the transform counts *peaks* (= records), the statistic the cycle count maps onto.[^8]
+These two peaks are independent towers — each a self-contained excursion that leaves the base, stacks two blocks, and returns. Note that there are **two peaks but four blocks**: a peak can hold several stacked blocks, so peaks and blocks are different statistics, and the transform counts *peaks* (= records), the statistic the cycle count maps onto.[^8]
 
 ## The F(4,2) = 10 miniature
 
-For height exactly 2 the tower above the base is a single row of blocks, encoded by a length-4 binary string whose runs of 1s are the tower blocks; even total castle blocks means an odd number of tower blocks, which at width 4 means exactly one run (three runs need width at least 5; the general count is `Σ_s C(w+1, 4s+2) = A038505(w+1)`). The 10 valid castles have tower column heights `1000 0100 0010 0001 1100 0110 0011 1110 0111 1111`, and each has exactly one maximal positive run — hence exactly one peak and one record — the transform in miniature across the whole case.[^9]
+For height exactly 2 the tower above the base is a single row of blocks, encoded by a length-4 binary string whose runs of 1s are the tower blocks; even total castle blocks means an odd number of tower blocks, which at width 4 means exactly one run (three runs need width at least 5; the general count is `Σ_s C(w+1, 4s+2) = A038505(w+1)`). The 10 valid castles have tower column heights `1000 0100 0010 0001 1100 0110 0011 1110 0111 1111`, and each has exactly one maximal positive run — hence exactly one peak and one record.[^9]
 
 ## Appearances in Sources
 

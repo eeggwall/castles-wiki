@@ -5,7 +5,7 @@ summary: The up/right/down step-string encoding of a castle — the representati
 tags: [concept, castle, representations, urd, dyck, lattice-paths]
 sources: [project-euler-502-representations]
 created: 2026-09-13
-updated: 2026-09-20
+updated: 2026-09-28
 ---
 
 # U/R/D step strings
@@ -20,7 +20,7 @@ Its defining convenience: **each `D` move completes a block**, so the even-block
 
 The encoding organizes castles into three tiers of increasing generality.[^3]
 
-- **Rectangular castles** — all `U`s, then all `R`s, then all `D`s. A 4×8 rectangular castle is `UUUURRRRRRRRDDD`.[^3]
+- **Rectangular castles** — all `U`s, then all `R`s, then all `D`s. A 4×8 rectangular castle is `UUUURRRRRRRRDDDD`.[^3]
 - **[[convex-castle](pages/convex-castle.md)]** — split into *front* (interspersed `U`/`R`, no `D`, climbing to max height), *middle* (≥1 `R` steps at max height), and *back* (interspersed `D`/`R`, no `U`, descending to base); begins with `U`, ends with `D`.[^4]
 - **Variations on convex castles** — all remaining castles. Found by locating runs of three or more `R`s and inserting `D`/`U` pairs into the slots between `R` pairs, subject to three rules: insert `D` before `U` (inserting `U` first would duplicate a castle already covered by another convex castle), insert in pairs (net height change zero), and never place a `D` and `U` adjacent.[^5]
 
@@ -53,7 +53,7 @@ This taxonomy and procedure are the enumeration reading of castles; the *countin
 
 [^1]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Steps-Based Approach" L76 — "The representation that led to the most breakthroughs in progressing with PE 502 was the same representation used to solve the Lattice Paths problem in Project Euler/15 ... a string of letters like RRRDDD. We can do the same thing here to represent castles."
 [^2]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Steps-Based Approach" L137 — "each D move completes a new block, so checking if there are an even number of blocks is as easy as checking if the number of Ds is even."
-[^3]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Steps-Based Approach" L80-82 — "Let's start with the simplest castles: rectangular castles. These castles consist of Us, then Rs, then Ds ... The 4 x 8 rectangular castle would be: UUUURRRRRRRRDDD".
+[^3]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Steps-Based Approach" L80-83 [synthesis] — "Let's start with the simplest castles: rectangular castles. These castles consist of Us, then Rs, then Ds"; the 4 × 8 example is four `U`s, eight `R`s and four `D`s.
 [^4]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Steps-Based Approach" L86-91 — the front ("interspersed U and R steps, until the castle reaches its maximum height. No D steps"), middle ("any R steps taken at the maximum height. There must be at least one R step"), back ("interspersed D and R steps ... No U steps"), and "must begin with a U and end with a D".
 [^5]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Steps-Based Approach" L103-107 — "we look for runs of RRRs of length 3 or more ... we MUST insert Ds first; if we insert Us first, we will construct a duplicate castle ... We must also insert Ds and Us in pairs, so as to keep the total height change 0. Last, we cannot insert Ds and Us next to one another."
 [^6]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Procedure" L145-149 — "Start with a bare minimum string of U/R/D ... Insert the number of remaining Rs ... (This is the number of CONVEX CASTLES.) ... Insert pairs of U/D or D/U, separated by at least one R."

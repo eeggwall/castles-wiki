@@ -5,18 +5,16 @@ summary: The algorithm that recovers the shortest linear recurrence generating a
 tags: [concept, algorithm, linear-recurrence, berlekamp-massey, method]
 sources: [project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Berlekamp–Massey
 
 ## Description
 
-**Berlekamp–Massey** is the algorithm that, given the leading terms of a sequence, recovers the shortest linear recurrence that generates it. In the castle work it is highlighted as a key tool: it "turns 'I have a sequence, I don't know the recurrence' into a solved problem."[^1] That is exactly the situation the counting problem lands in — the signed tower count `P(k,L)` is known to satisfy *some* linear recurrence in the relevant direction, and Berlekamp–Massey pins down that recurrence from computed terms so the sequence can be extrapolated cheaply. A notable practical point: Berlekamp–Massey *discovers* the recurrence empirically, so no proof of the recurrence is needed to use it - the transfer-matrix argument only justifies that one exists.[^3]
+**Berlekamp–Massey** is the algorithm that, given the leading terms of a sequence, recovers the shortest linear recurrence that generates it. In the castle work it is highlighted as a key tool: it "turns 'I have a sequence, I don't know the recurrence' into a solved problem."[^1] The signed tower count `P(k,L)` is in that situation: it is known to satisfy *some* linear recurrence in the relevant direction, and Berlekamp–Massey pins down that recurrence from computed terms so the sequence can be extrapolated cheaply. Berlekamp–Massey *discovers* the recurrence empirically, so no proof of the recurrence is needed to use it - the transfer-matrix argument only justifies that one exists.[^3]
 
 Once the recurrence is known, [[kitamasa](pages/kitamasa.md)] advances the sequence to a very large index. In the castle problem this is the *k*-direction path of the [[castle-count-algorithms](pages/castle-count-algorithms.md)] (used when `h > 15000`); the sample-count formula `N = 4(w+2)+20`, the pinned order (`2L−2` for `L ≥ 4`), and the recovered recurrences and characteristic polynomials are on [[recurrence-discovery](pages/recurrence-discovery.md)], and the `computePviaKBoth` code walk (including the `poly2 · x mod charPoly` one-pass index-shift that saves a second Kitamasa call) is on [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] §"k-direction BM path".
-
-This page is a stub keyed to the castle problem's use of the method; the general algorithm and the deeper literature connections will be built out as those threads are traced.
 
 ## Appearances in Sources
 
