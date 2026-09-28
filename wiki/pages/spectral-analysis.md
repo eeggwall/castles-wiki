@@ -18,13 +18,13 @@ The pairing with classification is deliberate. Where [[castle-classification](pa
 
 The five methods, at a glance:
 
-| # | Spectrum | Operator | Object graded | Classifies | Effort |
-|---|---|---|---|---|---|
-| 1 | Transfer-matrix eigenvalues `λ_i(h)` | Signed transfer matrix `T` on skyline states | Family / class of castle rules | Asymptotic growth type ([[metallic-means](pages/metallic-means.md)], Axis 8) | Days |
-| 2 | Lindstrom-Gessel-Viennot (LGV) kernel eigenvalues | Non-crossing-path kernel `N(w; i, j)` | Random castle ensemble | Correlation universality class (determinantal / sine-kernel) | Weeks |
-| 3 | Skyline discrete Fourier transform (DFT) `ĉ_k` | Discrete Fourier operator on the height sequence | Individual castle | Shape by frequency profile (sparse-spectrum, crenellated → two-atom) | Days |
-| 4 | Combinatorial Laplacian `μ_i` | `L = D − A` on the castle polyomino graph | Individual castle | Connectivity, bottleneck, **isospectral pairs** | Weeks |
-| 5 | Ihara zeta / adjacency spectrum | Non-backtracking / edge-adjacency operator | Individual castle | Expander / **Ramanujan castle** property | Months |
+| # | Spectrum | Operator | Object graded | Classifies |
+|---|---|---|---|---|
+| 1 | Transfer-matrix eigenvalues `λ_i(h)` | Signed transfer matrix `T` on skyline states | Family / class of castle rules | Asymptotic growth type ([[metallic-means](pages/metallic-means.md)], Axis 8) |
+| 2 | Lindstrom-Gessel-Viennot (LGV) kernel eigenvalues | Non-crossing-path kernel `N(w; i, j)` | Random castle ensemble | Correlation universality class (determinantal / sine-kernel) |
+| 3 | Skyline discrete Fourier transform (DFT) `ĉ_k` | Discrete Fourier operator on the height sequence | Individual castle | Shape by frequency profile (sparse-spectrum, crenellated → two-atom) |
+| 4 | Combinatorial Laplacian `μ_i` | `L = D − A` on the castle polyomino graph | Individual castle | Connectivity, bottleneck, **isospectral pairs** |
+| 5 | Ihara zeta / adjacency spectrum | Non-backtracking / edge-adjacency operator | Individual castle | Expander / **Ramanujan castle** property |
 
 ## 1. Transfer-matrix spectrum — the growth engine
 
@@ -48,16 +48,16 @@ so the growth constant of `F(·, h)` is the integer `h` for every `h`, and the s
 
 ## 2. LGV kernel spectrum — determinantal correlation universality
 
-The **Lindström-Gessel-Viennot (LGV) kernel** `N(w; i, j)` counts non-crossing lattice paths between fixed endpoints via a determinant of a single-path matrix. For castle sub-families expressible as non-crossing path ensembles — parallelogram polyominoes, staircase polyominoes, and the LGV/nomography framing (a working note pending ingest into the wiki) — the count is `det N`, and `N` is the kernel of a **determinantal point process** whose eigenvalues lie in `[0, 1]` and admit an interpretation as probabilities that particular row-configurations appear.
+The **Lindström-Gessel-Viennot (LGV) kernel** `N(w; i, j)` counts non-crossing lattice paths between fixed endpoints via a determinant of a single-path matrix. For castle sub-families expressible as non-crossing path ensembles — parallelogram polyominoes and staircase polyominoes — the count is `det N`, and `N` is the kernel of a **determinantal point process** whose eigenvalues lie in `[0, 1]` and admit an interpretation as probabilities that particular row-configurations appear.
 
 The determinantal-process framing is what makes castles amenable to **random matrix universality** analysis. Two classification questions attach:
 
 - **Is the castle ensemble a genuine determinantal process?** Equivalently: is `N` a projection kernel (all eigenvalues 0 or 1)? If yes, castles inherit the entire toolkit of DPP theory: correlation functions as minors, gap probabilities as Fredholm determinants, exact enumerative bounds. If no, the process has an eigenvalue-weighted mixture structure and the analysis is harder.
 - **What is the bulk limit?** The prediction from adjacent literature (random Young tableaux, Aztec diamonds, Gaussian Unitary Ensemble (GUE)) is a **sine kernel** at the bulk in the large-`w, h` limit, giving peak-position spacing statistics `sin(π(x − y))/(π(x − y))`. If the prediction holds, castles are in the same universality class as the classical determinantal ensembles.
 
-**The nomography link.** The LGV framework applies to castles through a non-crossing-path bijection that the working note `pe502-nomography.md` (in `/Users/creid/tmp/`, pending wiki ingest) develops. Once ingested that thread will become the fully-linked home of the LGV/determinantal analysis; this section will grow when it lands.
+**Castles themselves.** A castle is a single-path object, so LGV applies to castles only through a bijection to non-crossing path families, and none is known. The exact LGV sampler for parallelogram polyominoes is on [[castle-samplers](pages/castle-samplers.md)] §8.
 
-**Wiki ties (pending):** the yet-to-be-ingested nomography note; downstream connections to [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] (parallelogram polyominoes are the canonical LGV castle family), [[polyominoes](pages/polyominoes.md)] (Ferrers / staircase families as non-crossing-path ensembles), and [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 3 (path-like types) as a supply of concrete LGV-amenable castle classes.
+**Wiki ties:** [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] (parallelogram polyominoes are the canonical LGV castle family), [[polyominoes](pages/polyominoes.md)] (Ferrers / staircase families as non-crossing-path ensembles), and [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 3 (path-like types) as a supply of concrete LGV-amenable castle classes.
 
 ## 3. Skyline DFT — individual-castle signatures
 
@@ -77,7 +77,7 @@ Three natural regimes:
 
 **Skyline energy as an ordering.** The Parseval identity `∑ |ĉ_k|² = w · ∑ c_j²` splits `∑ c_j²` across `w` frequency channels. Ordering castles by *which* channels carry the energy gives a continuous refinement of the discrete Axis 7 value-pattern types.
 
-**Wiki ties:** [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 7 (crenellated = two-atom DFT support) and [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] Axis 9 (sparse-spectrum as an individual-castle predicate; low/high-pass as soft variants); [[castle-representations](pages/castle-representations.md)] (the column-height sequence being transformed); [[castle-snippets](pages/castle-snippets.md)] (a `numpy.fft.fft(c)` one-liner is the natural extension there — not yet added).
+**Wiki ties:** [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 7 (crenellated = two-atom DFT support) and [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] Axis 9 (sparse-spectrum as an individual-castle predicate; low/high-pass as soft variants); [[castle-representations](pages/castle-representations.md)] (the column-height sequence being transformed).
 
 The reverse direction - sound to castle, lossless - is [[song-as-castle](pages/song-as-castle.md)]: a 16-bit waveform is an `h = 65536` skyline, so its DFT is the audio spectrum, a 2600 Hz tone at 8 kHz is an exactly periodic width-40 castle with a two-atom DFT, and the number-theoretic transform mod 65537 is this same transform over a finite field with no rounding.
 
@@ -100,7 +100,7 @@ with `D` the diagonal degree matrix and `A` the adjacency matrix. The Laplacian 
 
 Two castles with the **same Laplacian spectrum but non-isomorphic shape** are **isospectral**. This is Kac's classical "hear the shape of a drum" question specialized to the castle setting: given the spectrum of `L(G_C)`, can we recover `C` up to isomorphism? For polyominoes generally the answer is **no** — Sunada-type constructions produce isospectral non-isomorphic pairs — and castles are no exception: the smallest isospectral castle pairs have 10 cells (adjacency) and 11 cells (Laplacian), settled below.
 
-**Sketched approach.** Enumerate all castles up to size `n ≤ 20` (or up to `w, h ≤ 6` or so) using the [[castle-snippets](pages/castle-snippets.md)] enumeration primitives. For each castle: (i) build the polyomino graph as a `NetworkX` graph or a sparse adjacency matrix; (ii) compute `L`; (iii) compute the sorted spectrum as a tuple of rounded floats (or symbolic characteristic polynomial for exactness); (iv) hash. Search for collisions across non-isomorphic castles. Report the smallest pair. Both computational and clean-statement outcomes — either an explicit pair is exhibited (and drawn), or an exhaustive search up to size `n_0` shows no pair exists up to `n_0`.
+**Search.** The exhaustive search through 16 cells (exact characteristic polynomials, isomorphism by networkx) is on [[isospectral-castles](pages/isospectral-castles.md)]; results below.
 
 **Wiki ties:** [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] Axis 9 (isospectral pair as an Axis-9 predicate; the pair predicate rather than a single-castle predicate); [[castle-snippets](pages/castle-snippets.md)] (enumeration primitives feeding the search).
 
@@ -177,12 +177,11 @@ A spectral method plus a predicate on its output defines a castle type. The Rama
 - **`λ_1(h)`** - settled: `λ_1(h) = h`, signed corrections `ρ_{h−1}`, no metallic means ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], [[tower-parity-sectors](pages/tower-parity-sectors.md)]).
 - **Golden- and silver-spectrum castles** - the first Axis 9 census: adjacency spectral radius `φ` for the six 4-cell paths, `1 + √2` for the `3×2` rectangle and three non-rectangular castles up to `w = 7`; copper and above impossible (max degree 4), bronze open ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]).
 - **Isospectral hunt** - settled: smallest pairs at 10 cells (adjacency), 11 (Laplacian), 16 (both), on [[isospectral-castles](pages/isospectral-castles.md)].
-- **Nomography ingest** — the working note in `/Users/creid/tmp/pe502-nomography.md` develops the LGV / non-crossing-path framing for castles; ingesting it will populate §2 above with concrete kernel formulas and cross-links.
+- **LGV for castles** — a bijection from castles (or pairs of castles) to non-crossing path families, which would make §2 apply to castles themselves.
 - **q-Gibbs critical-`β`** — whether the area-weighted transfer matrix has a non-analytic Perron root as `h → ∞` (the construction ↔ spectrum table's last row).
 - **Ihara-zeta computations** for small castles — closed-form `ζ_{G_C}(u)` for boxcastles, hooks, staircases.
 - **Sparse-spectrum classification** — which sparse DFT-supports correspond to valid castles? Compressed-sensing / turnpike-reconstruction hooks.
 
-Each of these becomes its own Analysis page or Concept page when its content lands.
 
 ## Related Concepts
 
