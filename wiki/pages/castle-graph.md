@@ -1,11 +1,11 @@
 ---
 title: The castle graph - bridge to graph theory
 category: Concepts
-summary: Every castle carries a graph - filled cells as vertices, orthogonal neighbors as edges - and this graph is what turns the castle into an object graph theory knows how to talk about. Basic invariants (|V| = area, cycle rank = number of 2×2 filled blocks, bipartite, planar, subgraph of Z^2, max degree 4) are read straight off the skyline. Named castle types from graph properties: **tree castle** (no 2×2 filled block), golden-, silver-, φ²-spectrum, isospectral pairs, Ramanujan. Tree-castle counts by width and height are Fibonacci at h = 2, Jacobsthal at h = 3, and the k-Fibonacci family A006130, A006131, … above; the growth constant is (1 + √(4h − 3))/2.
+summary: Every castle carries a graph - filled cells as vertices, orthogonal neighbors as edges. Basic invariants (|V| = area, cycle rank = number of 2×2 filled blocks, bipartite, planar, subgraph of Z^2, max degree 4) are read straight off the skyline. Named castle types from graph properties: **tree castle** (no 2×2 filled block), golden-, silver-, φ²-spectrum, isospectral pairs, Ramanujan. Tree-castle counts by width and height are Fibonacci at h = 2, Jacobsthal at h = 3, and the k-Fibonacci family A006130, A006131, … above; the growth constant is (1 + √(4h − 3))/2.
 tags: [concept, castle, graph, polyomino, spectral, adjacency, laplacian, tree, bipartite, planar, cycle-rank, fibonacci, jacobsthal, oeis, bridge, pedagogy]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-17
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # The castle graph - bridge to graph theory
@@ -29,7 +29,7 @@ That is the whole definition. Six examples from around the wiki:
 
 ## Basic invariants, read off the skyline
 
-Every invariant of `G_c` a graph theorist wants is a small formula in `c`.[^1]
+The basic invariants of `G_c` are small formulas in `c`.[^1]
 
 | invariant | formula |
 |---|---|
@@ -43,13 +43,13 @@ Every invariant of `G_c` a graph theorist wants is a small formula in `c`.[^1]
 | bipartite? | always (color `(i, j)` by parity of `i + j`) |
 | planar? | always (drawn on `Z²` with no crossings) |
 
-The cycle-rank identity is the crux. `G_c` is a planar graph whose bounded faces in the grid embedding are exactly the fully-filled unit squares; each such square contributes one independent cycle, and the total is `|E| − |V| + 1` by Euler. Verified for every castle with `w ≤ 4, h ≤ 4`.[^1] The block loops are more than a count: they are an integer basis of the cycle lattice on all 938 castles tested ([[sandpile-census](pages/sandpile-census.md)] §1), which is why the sandpile group can be read off the blocks ([[sandpile-group](pages/sandpile-group.md)] Part 3).
+**Cycle rank.** `G_c` is a planar graph whose bounded faces in the grid embedding are exactly the fully-filled unit squares; each such square contributes one independent cycle, and the total is `|E| − |V| + 1` by Euler. Verified for every castle with `w ≤ 4, h ≤ 4`.[^1] The block loops are also an integer basis of the cycle lattice on all 938 castles tested ([[sandpile-census](pages/sandpile-census.md)] §1), which is why the sandpile group can be read off the blocks ([[sandpile-group](pages/sandpile-group.md)] Part 3).
 
 **A castle graph is a tree iff it has no 2×2 filled block**, equivalently, no two horizontally adjacent columns both have height at least 2.
 
 ## Named castle types from graph properties
 
-The castle graph turns each Axis 9 predicate on [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] into a graph property. Types this wiki now tracks:
+The castle graph turns each Axis 9 predicate on [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] into a graph property:
 
 | type | graph condition | wiki page |
 |---|---|---|
@@ -60,7 +60,7 @@ The castle graph turns each Axis 9 predicate on [[castle-classification-spectrum
 | **Isospectral pair** | two non-isomorphic castles with equal adjacency or Laplacian spectrum | [[isospectral-castles](pages/isospectral-castles.md)] |
 | **Ramanujan castle** | every eigenvalue other than `±λ_1` has modulus `≤ ρ(T)`, the spectral radius of the castle graph's universal covering tree (Greenberg's definition for irregular graphs); trivially true for tree castles | [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] Axis 9 |
 
-Sparse-spectrum, low-pass / high-pass, and Ihara-Ramanujan are sketched on Axis 9; they will land as populated types when their spectral method (skyline discrete Fourier transform (DFT), Ihara zeta) is worked out.
+Sparse-spectrum, low-pass / high-pass and Ihara-Ramanujan types are defined on Axis 9 without members; populating them needs the skyline discrete Fourier transform (DFT) and the Ihara zeta.
 
 ## Tree castles
 
@@ -74,7 +74,7 @@ A **tree castle** is a castle whose graph is a tree: connected, `|V| = |E| + 1`,
 
 Non-examples: `(2, 2)`, `(3, 3)`, `(1, 2, 3, 1, 2, 3)` all contain `2×2` blocks and are therefore not trees.
 
-A tree castle has exactly one spanning tree, so its sandpile group is trivial in both the sink and the tide model: sand washes straight out, and the identity is the fullest stable pile. Up to 16 cells there are 6,963 tree castles, mirror images removed ([[sandpile-census](pages/sandpile-census.md)], [[sandpile-identity](pages/sandpile-identity.md)]).
+A tree castle has exactly one spanning tree, so its sandpile group is trivial in both the sink and the tide model, and the identity is the fullest stable pile. Up to 16 cells there are 6,963 tree castles, mirror images removed ([[sandpile-census](pages/sandpile-census.md)], [[sandpile-identity](pages/sandpile-identity.md)]).
 
 ### Counting tree castles: Fibonacci, Jacobsthal, and the k-Fibonacci family
 
@@ -98,30 +98,28 @@ Characteristic polynomial `x² − x − (h − 1)`, growth constant
 | 4 | `1, 4, 7, 19, 40, 97, 217, 508, 1159, 2683` | `(1 + √13)/2 = 2.303` | **A006130** (`T_4(w) = a(w+1)`) | `a(n) = a(n−1) + 3 a(n−2)` |
 | 5 | `1, 5, 9, 29, 65, 181, 441, 1165, 2929, 7589` | `(1 + √17)/2 = 2.562` | **A006131** | `a(n) = a(n−1) + 4 a(n−2)` |
 
-All OEIS numbers verified offset-exact.[^2] Two things worth pinning to the wiki:
+All OEIS numbers verified offset-exact.[^2]
 
-- **The `h = 2` slice is Fibonacci**, so tree castles of bounded height 2 are a new castle interpretation of `A000045`. It sits next to the prime-castle formula `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] as another point where Fibonacci enters the castle count, and it plants the tree-castle family on rung 1 of the [[metallic-means](pages/metallic-means.md)] ladder ([[castle-classification](pages/castle-classification.md)] Axis 8: tree castles of height 2 are a **golden width growth castle**).
-- **The `h = 3` slice is Jacobsthal**, a genuine new interpretation of `A001045`. Higher rungs go to `A006130, A006131, A006131 + 1, …`, the "`k`-Fibonacci" family with `a(n) = a(n−1) + k · a(n−2)`. None of these growth constants for `h ≥ 3` is a metallic mean, so tree castles trace out a distinct algebraic family from the metallic one, indexed by `h`.
+- **The `h = 2` slice is Fibonacci**, so tree castles of bounded height 2 are a castle interpretation of `A000045`. It sits next to the prime-castle formula `2^{n−1} − F_{n−1}` on [[castle-by-area](pages/castle-by-area.md)] as another point where Fibonacci enters the castle count, and it puts the tree-castle family on rung 1 of the [[metallic-means](pages/metallic-means.md)] ladder ([[castle-classification](pages/castle-classification.md)] Axis 8: tree castles of height 2 are a **golden width growth castle**).
+- **The `h = 3` slice is Jacobsthal**, a castle interpretation of `A001045`. Heights 4 and 5 give `A006130` and `A006131`, and every height `h` gives a member of the "`k`-Fibonacci" family `a(n) = a(n−1) + k · a(n−2)` with `k = h − 1`. None of these growth constants for `h ≥ 3` is a metallic mean, so tree castles trace out a distinct algebraic family from the metallic one, indexed by `h`.
 
 The area-graded (q-analogue) count is worked out on [[tree-castle-by-area](pages/tree-castle-by-area.md)]: the bivariate generating function (GF) is `T_h(x, q) = (1 + P_h(q) x)/(1 − q x − q P_h(q) x²)`, summing over widths gives one C-finite sequence per height, and each hits a named OEIS sequence - `h = 2` is Narayana's cows A000930 (supergolden growth), `h = 3` is A006498 (golden growth via factorization), `h = 4` is A000570 (tournaments), `h → ∞` is A005251 (plastic squared, a second castle interpretation).
 
 ## Bipartiteness, planarity, treewidth: what the castle graph inherits
 
 - **Bipartite.** Color `(i, j)` by the parity of `i + j`. Adjacent cells differ in exactly one coordinate by 1, so they get opposite colors. Consequence: the adjacency spectrum is symmetric about 0. Every eigenvalue `λ` is paired with `−λ`, which is visible in every exact characteristic polynomial on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] (e.g. `(x² − x − 1)(x² + x − 1)` for `P_4`).
-- **Planar and subgraph of `Z²`.** Every castle graph embeds in the square lattice with unit edges. So the castle graph carries all the theorems the grid does: 4-color, Euler's formula (used above), and the whole planar-separator toolkit.
-- **Bounded pathwidth.** Column-by-column dynamic program (DP) is exactly a path decomposition of width `≤ h`, which is why every castle-counting recurrence on this wiki has state size `O(h)` in `L`. Pathwidth is bounded by `min(w, h)`, so castles are graph-theoretically "narrow" and every polynomial-time-on-bounded-treewidth algorithm applies without translation.
+- **Planar and subgraph of `Z²`.** Every castle graph embeds in the square lattice with unit edges, so planar-graph results apply: Euler's formula (used above) and planar separators.
+- **Bounded pathwidth.** A castle graph is a subgraph of the `w × h` grid, so its pathwidth is at most `min(w, h)`, and bounded-treewidth algorithms run in polynomial time on castles with `min(w, h)` fixed.
 
-## Bridge to graph theory - what this concept unlocks
-
-Each of these is a bridge that the castle graph turns from analogy into computation.
+## Graph theory on castles
 
 - **Spectral graph theory.** Adjacency, Laplacian, normalized Laplacian, signless Laplacian, and Ihara zeta all live on `G_c`. See [[spectral-analysis](pages/spectral-analysis.md)] for the methods and [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] / [[isospectral-castles](pages/isospectral-castles.md)] for two settled applications.
-- **Extremal graph theory.** The maximum spectral radius of a castle graph with `n` cells is a Turán-type problem; the min-cut / max-flow structure of the base row makes castles a natural family to test conjectures on.
-- **Algebraic graph theory.** Because `G_c` is bipartite and planar, it fits inside classical setups (Kasteleyn, dimer models) where combinatorial identities live. Planarity also gives the critical group through the planar dual, whose vertices are the `2 × 2` blocks ([[sandpile-group](pages/sandpile-group.md)]); the dual-graph theorem is Cori and Rossin's, reached on the wiki through [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)].
+- **Extremal graph theory.** The maximum spectral radius of a castle graph with `n` cells is a Turán-type problem.
+- **Algebraic graph theory.** Because `G_c` is bipartite and planar, Kasteleyn's method counts its perfect matchings (dimer coverings). Planarity also gives the critical group through the planar dual, whose vertices are the `2 × 2` blocks ([[sandpile-group](pages/sandpile-group.md)]); the dual-graph theorem is Cori and Rossin's, reached on the wiki through [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)].
 - **Random graphs.** Random castles under any of the wiki's ensembles ([[spectral-analysis](pages/spectral-analysis.md)] method 2, Lindstrom-Gessel-Viennot (LGV) kernel) become a random-graph model whose spectra can be sampled.
 - **Sunada theory** (see [[isospectral-castles](pages/isospectral-castles.md)]) for common covers and the "hear the shape" question.
 
-The [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], [[isospectral-castles](pages/isospectral-castles.md)], [[ramanujan-castles](pages/ramanujan-castles.md)], the sandpile pages from [[sandpile-group](pages/sandpile-group.md)] on, and the tree-castle counting story above are the wiki's touchpoints of the bridge; every future Axis 9 result is a new one.
+The [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], [[isospectral-castles](pages/isospectral-castles.md)], [[ramanujan-castles](pages/ramanujan-castles.md)], the sandpile pages from [[sandpile-group](pages/sandpile-group.md)] on, and the tree-castle count above are the pages that use the castle graph.
 
 ## Snippet index
 

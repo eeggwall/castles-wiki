@@ -1,11 +1,11 @@
 ---
 title: Tree castle by area - Narayana's cows, A006498, tournaments, and plastic
 category: Analyses
-summary: The area-graded generating function for tree castles is (1 + P_h(q))/(1 - q - q·P_h(q)) with P_h(q) = q² + q³ + … + q^h. Fixing h and summing over widths gives one C-finite sequence per height: h = 2 is **Narayana's cows** A000930 (supergolden growth), h = 3 is **A006498** (golden growth via a cyclotomic factorization), h = 4 is **A000570** (tournaments determined by their score vectors), h = 5, 6, 7 are **A079816**, **A189593** and **A189600** (strongly restricted permutations; every height counts compositions of A + 1 into {1, 3, …, h + 1}), and h → ∞ is **A005251** (plastic squared ψ²). The h = 4 match is a real bijection - a three-way identification tree castle ↔ composition of A + 1 with parts in {1, 3, 4, 5} ↔ score-uniquely-determined tournament on A + 1 nodes via strongly-connected-component decomposition - equivalent to the graph-theoretic claim that strongly connected score-uniquely-determined tournaments exist only for sizes 1, 3, 4, 5 (verified for n ≤ 6). The structural theorem is Tetali's classification of unique tournaments (J. Combin. Theory Ser. B, 1998): the four basic unique tournaments are those on 1, 3, 4, 5 vertices with score vectors (0), (1,1,1), (1,1,2,2), (2,2,2,2,2). Combined with the tree-castle transfer matrix this proves Schoenfield's empirical recurrence for A000570. Directly re-verified in this wiki through n = 8 (Python at n ≤ 7 in 2 min 25 s; Java at n = 8 in 35 min 38 s: 6,880 iso classes, 31 score-uniquely-determined, all 31 non-strongly-connected).
+summary: The area-graded generating function for tree castles is (1 + P_h(q))/(1 - q - q·P_h(q)) with P_h(q) = q² + q³ + … + q^h. Fixing h and summing over widths gives one C-finite sequence per height: h = 2 is **Narayana's cows** A000930 (supergolden growth), h = 3 is **A006498** (golden growth via a cyclotomic factorization), h = 4 is **A000570** (tournaments determined by their score vectors), h = 5, 6, 7 are **A079816**, **A189593** and **A189600** (strongly restricted permutations; every height counts compositions of A + 1 into {1, 3, …, h + 1}), and h → ∞ is **A005251** (plastic squared ψ²). The h = 4 match is a bijection - a three-way identification tree castle ↔ composition of A + 1 with parts in {1, 3, 4, 5} ↔ score-uniquely-determined tournament on A + 1 nodes via strongly-connected-component decomposition - equivalent to the graph-theoretic claim that strongly connected score-uniquely-determined tournaments exist only for sizes 1, 3, 4, 5 (verified for n ≤ 6). The structural theorem is Tetali's classification of unique tournaments (J. Combin. Theory Ser. B, 1998): the four basic unique tournaments are those on 1, 3, 4, 5 vertices with score vectors (0), (1,1,1), (1,1,2,2), (2,2,2,2,2). Combined with the tree-castle transfer matrix this gives the A000570 recurrence and generating function. Re-verified by enumeration through n = 8 (6,880 isomorphism classes, 31 score-uniquely-determined, all 31 non-strongly-connected).
 tags: [analysis, castle, tree-castle, area, generating-function, q-analogue, oeis, narayana-cows, plastic-number, supergolden, fibonacci, sympy, verification]
 sources: [project-euler-502-castle-factoring, tetali-1998-unique-tournaments]
 created: 2026-09-17
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Tree castle by area
@@ -35,18 +35,18 @@ Reading `T_2(w, q)` by tall-column count `t = area − w`:
 | w \ t | 0 | 1 | 2 | 3 | 4 | 5 | row sum |
 |---|---|---|---|---|---|---|---|
 | 0 | 1 | | | | | | 1 |
-| 1 | 1 | | | | | | 1 |
+| 1 | 1 | 1 | | | | | 2 |
 | 2 | 1 | 2 | | | | | 3 |
-| 3 | 1 | 3 | | | | | 4 |
+| 3 | 1 | 3 | 1 | | | | 5 |
 | 4 | 1 | 4 | 3 | | | | 8 |
-| 5 | 1 | 5 | 6 | | | | 12 |
+| 5 | 1 | 5 | 6 | 1 | | | 13 |
 | 6 | 1 | 6 | 10 | 4 | | | 21 |
-| 7 | 1 | 7 | 15 | 10 | | | 33 |
+| 7 | 1 | 7 | 15 | 10 | 1 | | 34 |
 | 8 | 1 | 8 | 21 | 20 | 5 | | 55 |
-| 9 | 1 | 9 | 28 | 35 | 15 | | 88 |
+| 9 | 1 | 9 | 28 | 35 | 15 | 1 | 89 |
 | 10 | 1 | 10 | 36 | 56 | 35 | 6 | 144 |
 
-The entries are `C(w − t + 1, t)`: the classic Fibonacci-partitions triangle (row sums are Fibonacci again in the `q = 1` slice, though the row-length parity differs).[^2] Verified for `w ≤ 11`.
+The entries are `C(w − t + 1, t)`, the Fibonacci-partitions triangle; the row sums are the width counts `T_2(w) = F_{w+2}`.[^2] Verified for `w ≤ 11`.
 
 ## Area-graded count at fixed h: one sequence per height
 
@@ -56,7 +56,7 @@ Sum `T_h(w, q)` over all widths - that is, evaluate the two-variable generating 
 S_h(q)  =  T_h(1, q)  =  (1 + P_h(q)) / (1 − q − q · P_h(q)).
 ```
 
-The coefficient of `q^A` in `S_h(q)` is the number of tree castles of area exactly `A` (any width, `c_i ∈ {1, …, h}`). Every one hits a named Online Encyclopedia of Integer Sequences (OEIS) sequence:[^3]
+The coefficient of `q^A` in `S_h(q)` is the number of tree castles of area exactly `A` (any width, `c_i ∈ {1, …, h}`). Heights 2 to 7 and unlimited height match named Online Encyclopedia of Integer Sequences (OEIS) sequences:[^3]
 
 | `h` | `S_h(q)` denominator (up to reversal) | tree castles by area, `A = 1..14` | OEIS | growth constant |
 |---|---|---|---|---|
@@ -75,9 +75,9 @@ All matches are offset-exact against OEIS data (tree castles of area `A` at heig
 
 **Three of these are new castle interpretations of well-known OEIS sequences.**
 
-- **A000930 - Narayana's cows** is the growth of a hypothetical cow population where each cow gives birth once at age 3 and then dies. Very old (Bhāskara / Fibonacci's cousin from Indian combinatorics). The wiki now gives it a *castle* reading: tree castles of height at most 2 by total area. This is a genuinely new interpretation and a submission candidate.
-- **A006498** already carries a Fibonacci-squared identity (`a(2n) = F(n+1)²`), which is exactly why the denominator here factors as `(1 + q²)(1 − q − q²)`: the `1 − q − q²` sector is Fibonacci, the `1 + q²` sector is a period-4 cyclotomic. Tree castles of height at most 3 by area is the new castle-native reading.
-- **A000570** tournaments determined by their score vectors is a real bijection, not a coincidence, and it factors through a **composition intermediate**:
+- **A000930 - Narayana's cows** is named for Narayana Pandita, whose *Ganita Kaumudi* (1356) posed it as a herd in which every cow gives birth to one calf a year from the age of three on. Tree castles of height at most 2 by total area are a castle reading of it and a submission candidate.
+- **A006498** carries a Fibonacci-squared identity (`a(2n) = F(n+1)²`), matching the factorization of the denominator here as `(1 + q²)(1 − q − q²)`: the `1 − q − q²` sector is Fibonacci, the `1 + q²` sector is a period-4 cyclotomic. Tree castles of height at most 3 by area is the new castle-native reading.
+- **A000570** (tournaments determined by their score vectors) comes with a bijection that factors through **compositions**:
 
   ```
   tree castle of area A (h ≤ 4)   ↔   composition of A + 1 with parts in {1, 3, 4, 5}   ↔   SUD tournament on A + 1 nodes
@@ -107,23 +107,23 @@ Tree castles by area with unlimited height is a *second* castle interpretation o
 #{tree castles with area A, unlimited height}  =  A005251(A + 2).
 ```
 
-Both sit at the same plastic growth constant, both satisfy `a(n) = 2 a(n−1) − a(n−2) + a(n−3)`, and both have three initial terms all equal to `1`. Are they related by a bijection? **Yes — the [[a005251-bijection](pages/a005251-bijection.md)] gives an explicit one, no Sunada cover needed.** The composition `(c_1, …, c_w)` of `A` with no two adjacent parts `≥ 2` maps to the length-`(A−1)` binary string `0^{c_1−1} 1 0^{c_2−1} 1 ⋯ 1 0^{c_w−1}` (the classic gap-string encoding); a part `≥ 2` is a nonempty `0`-block, so two adjacent parts `≥ 2` straddle a boundary `1` as the factor `010`, and "no two adjacent parts `≥ 2`" translates exactly to "no factor `010`" — the Hardin constraint. Verified onto the avoid-`010` set for `A ≤ 11`. (The Hardin *sign*-reversing involution — explaining the `2^L` and the sign cancellation — is a separate, still-open statement.)
+Both sit at the same plastic growth constant, both satisfy `a(n) = 2 a(n−1) − a(n−2) + a(n−3)`, and both have three initial terms all equal to `1`. The [[a005251-bijection](pages/a005251-bijection.md)] relates them explicitly. The composition `(c_1, …, c_w)` of `A` with no two adjacent parts `≥ 2` maps to the length-`(A−1)` binary string `0^{c_1−1} 1 0^{c_2−1} 1 ⋯ 1 0^{c_w−1}` (the classic gap-string encoding); a part `≥ 2` is a nonempty `0`-block, so two adjacent parts `≥ 2` straddle a boundary `1` as the factor `010`, and "no two adjacent parts `≥ 2`" translates to "no factor `010`"; binary strings avoiding `010` are also counted by A005251. Verified onto the avoid-`010` set for `A ≤ 11`. A sign-reversing involution explaining the `2^L` and the sign cancellation in the Hardin identity is open.
 
-## Growth constants: the h = 3 golden ratio is not an accident
+## Growth constants
 
-The area-graded growth constants scan through unfamiliar territory:
+The area-graded growth constants:
 
 | `h` | growth constant | field |
 |---|---|---|
 | 2 | supergolden `≈ 1.4656` | `Q(ρ)`, `ρ³ = ρ² + 1` |
 | 3 | golden `φ ≈ 1.6180` | `Q(√5)` |
 | 4 | `≈ 1.6851` | degree-5 extension |
-| 5 | `≈ 1.7141` | degree-6 extension |
+| 5 | `≈ 1.7178` | degree-6 extension |
 | ∞ | plastic-squared `ψ² ≈ 1.7549` | `Q(ψ)` |
 
-The **h = 3 slot lands on the golden ratio** because `1 − q − q³ − q⁴ = (1 + q²)(1 − q − q²)`, and the golden factor `1 − q − q²` dominates. This is a nontrivial cancellation - the tree-castle-of-height-3 by-area count is *not* a Fibonacci sequence, but its dominant term is Fibonacci and the correction from the `(1 + q²)` factor is a length-4 cyclic pattern. Explicitly, `A006498(2n) = F(n+1)²` and `A006498(2n−1) = F(n+1) F(n)`, an identity that predates any castle interpretation.
+The **h = 3 slot lands on the golden ratio** because `1 − q − q³ − q⁴ = (1 + q²)(1 − q − q²)`, and the golden factor `1 − q − q²` dominates. The count is not itself Fibonacci: the golden factor gives its growth and the `(1 + q²)` factor adds a period-4 correction. Explicitly, `A006498(2n) = F(n+1)²` and `A006498(2n−1) = F(n+1) F(n)`, an identity that predates any castle interpretation.
 
-**None of the growth constants for finite `h` is a metallic mean**, extending the pattern from [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]: metallic means appear as transfer-matrix spectral radii of 2-state castle classes and as adjacency spectral radii of individual castle graphs, but not as growth constants of area-graded tree castles or of the full castle count. The area-graded tree-castle family is instead a new algebraic family, indexed by `h` and converging to `ψ²`.
+**Apart from the golden ratio at `h = 3`, none of these growth constants is a metallic mean.** The area-graded tree-castle family is an algebraic family indexed by `h` and converging to `ψ²`.
 
 ## Snippets
 
@@ -209,7 +209,7 @@ The count-is-1 claim for sizes 1, 3, 4, 5 is directly verifiable, and each size 
 | 6 | 35 | 0 | *none* |
 | 7 | 353 | 0 | *none* |
 
-The size-1 through size-5 rows exhibit the odd-size regular tournaments (sizes 1, 3, 5) plus the unique strongly connected tournament on 4. **The size-6 row was the first nontrivial verification**: 35 strongly connected tournaments on 6 nodes, zero with a unique score realizer.[^5] **The size-7 row extends the verification**: 456 tournaments on 7 nodes up to isomorphism, 22 valid score sequences, 18 of them score-uniquely-determined, and all 18 non-strongly-connected (2 min 25 s in Python via score-sequence enumeration).[^6]
+The size-1 through size-5 rows exhibit the odd-size regular tournaments (sizes 1, 3, 5) plus the unique strongly connected tournament on 4. At size 6 there are 35 strongly connected tournaments, none with a unique score realizer.[^5] At size 7 there are 456 tournaments up to isomorphism, 22 valid score sequences, 18 of them score-uniquely-determined, and all 18 non-strongly-connected.[^6]
 
 ### What the bijection means
 
@@ -222,18 +222,17 @@ Combined with the tree-castle transfer matrix this gives:
 A000570(n)  =  #{compositions of n with parts in {1, 3, 4, 5}}  =  #{tree castles of area n − 1 with column heights in {1, 2, 3, 4}}.
 ```
 
-This is the tree-castle-side re-proof of the A000570 recurrence and GF. Historically, Tetali proved the recurrence in 1998 as a corollary of his classification; OEIS records the same recurrence as "empirical" from Schoenfield 2006 and the GF as "empirical" from Dale 2011 because those additions were user-contributions to the OEIS FORMULA field, not references to Tetali's paper (which is listed under LINKS as the sequence's original author reference). The tree-castle transfer matrix gives a third, independent derivation of the same GF from a polyomino-native starting point.
+Tetali's classification gives the A000570 recurrence; the OEIS entry lists the recurrence (Jon E. Schoenfield, 2006) and the GF (Harvey P. Dale, 2011) as formulas and links Tetali's paper. The tree-castle transfer matrix derives the same GF from the castle side.
 
 Related observations:
 - The Steven Finch comment on A000570 - "multus bitstrings of length n with no runs of 5 ones" - is the same composition object re-encoded as a bitstring. Finch's own paper "Cantor-solus and Cantor-multus distributions" (arXiv:2003.09458) defines a *multus* bitstring as one with no isolated 1 bit; the additional "no runs of 5 ones" bounds 1-runs to length ≤ 4. Maximal 1-runs of length `k − 1 ∈ {1, 2, 3, 4}` become size-`k` composition parts in `{2, 3, 4, 5}`; the size-2 part is absorbed into the tree-castle bijection's leading-tall correction (the numerator `1 + q² + q³ + q⁴`).
 - Direct enumeration corroborates the theorem through `n = 8`: the size-6 row exhausts 35 strongly connected tournaments and finds zero score-uniquely-determined; the size-7 row exhausts 353 strongly connected tournaments (via 22 valid score sequences and 456 iso classes); the size-8 row exhausts all 6,880 iso classes on 8 vertices, 167 valid score sequences, 31 score-uniquely-determined - all 31 non-strongly-connected (Java, 35 min 38 s). The 6,880 and 31 counts match OEIS A000568(8) and A000570(8) exactly.[^8]
-- The three-way object connects castle combinatorics, integer composition theory, and tournament theory through one classification theorem plus one transfer matrix - and closes an OEIS problem left as "empirical" for two decades.
 
 ### Prior work: Khovanova's radar-tracking bijection (2007)
 
-Khovanova reached the same three-way object from a different starting point: radar-tracking rules on binary strings.[^7] She showed that the same 4-block decomposition (built from basic strings `0`, `001`, `0011`, `00101` of lengths 1, 3, 4, 5) bijects unique tournaments to a class of binary strings she calls "initial-loss non-tracking strings" - length-`(A + 2)` strings that arise as failed detection sequences under the radar rule "3 out of 5 with loss 2." The bijection is Tetali's tournament-composition theorem in bit-string clothing.
+Khovanova reached A000570 from radar tracking.[^9] Under the rule "3 out of 5 with loss 2", the "initial-loss non-tracking" binary strings are exactly the concatenations of the basic strings `0`, `001`, `0011`, `00101` (lengths 1, 3, 4, 5), and she matches these to Tetali's four basic unique tournaments, one character per vertex, so a unique tournament on `A + 1` nodes corresponds to such a string of length `A + 1`. Her bijection is Tetali's decomposition stated on binary strings.
 
-Our tree-castle bijection is a *third* presentation of the same object: tree castle ↔ composition of `{1, 3, 4, 5}` parts ↔ Khovanova's binary string ↔ unique tournament (Tetali). All four count `A000570`.
+The tree-castle bijection is a third presentation of the same object: tree castle ↔ composition of `{1, 3, 4, 5}` parts ↔ Khovanova's binary string ↔ unique tournament (Tetali). All four count `A000570`.
 
 ## Snippets for the bijection
 
@@ -273,10 +272,9 @@ Both filed on [[castle-snippets](pages/castle-snippets.md)].
 - A005251 now has two independent castle interpretations, both plastic-squared, meeting at the same 3-term recurrence.
 
 **Open.**
-- A bijection between the two A005251 interpretations: `(L + 1)`-bit strings avoiding `010` versus tree castles of area `L + 2` with unlimited height. Both meet at `ψ²`; the missing structure is an explicit map.
-- Whether the A000570 (tournaments) match reflects a real bijection or is a coincidence of small recurrence data. Determining tournaments *by score vectors* has a graph-theoretic character that could plausibly hook into the castle graph.
+- A sign-reversing involution for the Hardin identity; the two unsigned A005251 readings are linked by [[a005251-bijection](pages/a005251-bijection.md)].
 - The `h ≥ 8` sequences are candidates for OEIS submission (`h = 8` has no match, searched 2026-09-26); `h = 5, 6, 7` are interlinks, and the composition identity proves A189593's listed-as-empirical recurrence.
-- Full q-analogue statistics: the joint distribution `T_h(w, q)` gives a two-variable object whose specializations `T_h(w, 1)` are k-Fibonacci ([[castle-graph](pages/castle-graph.md)]) and `S_h(q)` are the Narayana / plastic sequences above. Cross-slice identities are the natural next question.
+- Full q-analogue statistics: the joint distribution `T_h(w, q)` gives a two-variable object whose specializations `T_h(w, 1)` are k-Fibonacci ([[castle-graph](pages/castle-graph.md)]) and `S_h(q)` are the Narayana / plastic sequences above. Cross-slice identities are open.
 
 ## Appearances in Sources
 
@@ -289,13 +287,13 @@ Both filed on [[castle-snippets](pages/castle-snippets.md)].
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the third A005251/`ψ²` castle node: minimum-tower-spacing `(h=2, g=2)` castles, linked to this page's `h = ∞` composition reading by the [[a005251-bijection](pages/a005251-bijection.md)].
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[hardin-word-identity](pages/hardin-word-identity.md)] - where A005251 first appeared, as the plastic component of `P(6, L)`.
 - [[metallic-means](pages/metallic-means.md)] - the family the area-graded tree-castle growth constants sit *near* but do not belong to.
-- [[oeis-index](pages/oeis-index.md)] - the directory that now lists A000930, A006498, A000570.
+- [[oeis-index](pages/oeis-index.md)] - the directory that lists A000930, A006498, A000570.
 - [[castle-by-area](pages/castle-by-area.md)] - the wiki's other area-graded families (convex, valley, non-convex).
 - [[unique-tournament](pages/unique-tournament.md)] / [[simple-tournament](pages/simple-tournament.md)] / [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] - the graph-theoretic concepts on the tournament side of the three-way bijection, and their role in Tetali's classification.
-- [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] - the primary source, ingested into the wiki as a raw file with the theorem quoted in footnote 7.
+- [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] - the primary source; its Theorem 1 is quoted in footnote 7.
 - [[castle-snippets](pages/castle-snippets.md)] - `tree_area_gf`, `tree_area_by_area`.
 - [[aocp-combinatorics](pages/aocp-combinatorics.md)] - the bivariate `T_h(x, q)` is an area-graded (q-)count; Knuth's inversion GF `∏(1−z^k)/(1−z)^n` is the permutation-side prototype of that grading.
-- [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] - A001169's `5a(n-1) − 7a(n-2) + 4a(n-3)` is a recurrence signature to compare with these low-order tree-castle rows; the open thread of whether castle recurrences relate to horizontally-convex polyominoes lands here.
+- [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)] - A001169's `5a(n-1) − 7a(n-2) + 4a(n-3)`, for comparison with these low-order tree-castle recurrences.
 - [[sandpile-group](pages/sandpile-group.md)] / [[sandpile-census](pages/sandpile-census.md)] - tree castles are exactly the castles with a trivial sandpile group, in both the sink and the tide model. The census counts them with mirror images removed (2,964 at 16 cells); this page counts every castle (5,842 at 16 cells).
 
 ## Footnotes
@@ -310,7 +308,9 @@ Both filed on [[castle-snippets](pages/castle-snippets.md)].
 
 [^5]: Verified by execution (55 s at `n = 6`): direct enumeration of all `2^{n(n-1)/2}` labeled tournaments on `n ≤ 6` nodes, canonicalization by `permutations`, score-sequence grouping, and Kosaraju reachability for strong connectivity. Table of `(size, # SC iso classes, # SC-SUD iso classes)`: `(1, 1, 1), (2, 0, 0), (3, 1, 1), (4, 1, 1), (5, 6, 1), (6, 35, 0)`. The single SC-SUD representative at each size 1-5 has the score sequence listed in the table.
 
-[^3]: OEIS entries fetched by id on 2026-09-17 and matched offset-exact against the direct enumeration of tree castles by area: https://oeis.org/A000930 (offset 0, data `1, 1, 1, 2, 3, 4, 6, 9, 13, 19, 28, 41, 60, 88, 129, 189`) - tree-castles-h≤2(A) = A000930(A + 1) for A ≥ 1; https://oeis.org/A006498 (offset 0, data `1, 1, 1, 2, 4, 6, 9, 15, 25, 40, 64, 104, 169, 273, 441, 714, 1156`) - h≤3(A) = A006498(A + 1); https://oeis.org/A000570 (offset 1, data `1, 1, 2, 4, 7, 11, 18, 31, 53, 89, 149, 251, 424, 715, 1204`) - h≤4(A) = A000570(A + 1); https://oeis.org/A005251 (offset 0, data `0, 1, 1, 1, 2, 4, 7, 12, 21, 37, 65, 114, 200, 351, 616, 1081, 1897`) - unlimited-h(A) = A005251(A + 2). OEIS searches on the `h = 5, 6, 7` sequences returned no matches to `1, 2, 4, 7, 12, 20, 34, 59, 102, 175` etc. Heights 5-8 searched by terms on 2026-09-26: https://oeis.org/A079816 (offset 0, g.f. `1/(1 − x − x³ − x⁴ − x⁵ − x⁶)`, all 37 listed terms match), https://oeis.org/A189593 and https://oeis.org/A189600 (offset 1, all 36 listed terms match the composition counts); `h = 8` (`1, 2, 4, 7, 12, 21, 37, 65, 113, 197, 345, 604, 1056, 1846`) no match.
+[^3]: OEIS entries fetched by id on 2026-09-17 and matched offset-exact against the direct enumeration of tree castles by area: https://oeis.org/A000930 (offset 0, data `1, 1, 1, 2, 3, 4, 6, 9, 13, 19, 28, 41, 60, 88, 129, 189`) - tree-castles-h≤2(A) = A000930(A + 1) for A ≥ 1; https://oeis.org/A006498 (offset 0, data `1, 1, 1, 2, 4, 6, 9, 15, 25, 40, 64, 104, 169, 273, 441, 714, 1156`) - h≤3(A) = A006498(A + 1); https://oeis.org/A000570 (offset 1, data `1, 1, 2, 4, 7, 11, 18, 31, 53, 89, 149, 251, 424, 715, 1204`) - h≤4(A) = A000570(A + 1); https://oeis.org/A005251 (offset 0, data `0, 1, 1, 1, 2, 4, 7, 12, 21, 37, 65, 114, 200, 351, 616, 1081, 1897`) - unlimited-h(A) = A005251(A + 2). Heights 5-8 searched by terms on 2026-09-26: https://oeis.org/A079816 (offset 0, g.f. `1/(1 − x − x³ − x⁴ − x⁵ − x⁶)`, all 37 listed terms match), https://oeis.org/A189593 and https://oeis.org/A189600 (offset 1, all 36 listed terms match the composition counts); `h = 8` (`1, 2, 4, 7, 12, 21, 37, 65, 113, 197, 345, 604, 1056, 1846`) no match.
+
+[^9]: https://arxiv.org/abs/0712.1621 (read 2026-09-28) - Tanya Khovanova, "Unique Tournaments and Radar Tracking" (2007), §5: "Any initial-loss non-tracking binary string is a concatenation of strings of 4 basic types: 0, 001, 0011, 00101" and "we established a one-to-one correspondence between unique tournaments and initial-loss non-tracking binary strings."
 
 [^8]: Verified by execution (35 min 38 s at `n = 8`): Java implementation (`bin/java/TournamentEnum.java`) enumerating all 2^28 orientations per Landau-valid score sequence, filtering to matching out-degree tuples, canonicalizing within score-buckets, and grouping by score. Enumerated 6,880 iso classes total, matching A000568(8); 31 score-uniquely-determined, matching A000570(8); 0 strongly connected among the 31 score-uniquely-determined, verifying Tetali 1998 at `n = 8` directly.
 

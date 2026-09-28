@@ -5,7 +5,7 @@ summary: Proof that for k = 4m+2 the signed count of height-≤k towers with eve
 tags: [analysis, castle, signed-tower-count, transfer-matrix, bijection, hardin, oeis, words, sympy, verification, proof]
 sources: [oeis-mining-pe502, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # The Hardin word identity
@@ -67,7 +67,7 @@ def sector_even(k, Lmax):                 # the even-last-column sector: P_even(
 [True, True, True, True, True, True, True, True]
 ```
 
-`1, 4, 16, 56, … = 2^L · A005251(L+3)` term for term — the whole identity, in numbers, before any change of basis appears.[^4]
+`1, 4, 16, 56, … = 2^L · A005251(L+3)` term for term.[^4]
 
 ## The two transfer matrices
 
@@ -94,7 +94,7 @@ Since `e_0 = f_0/2 + (odd-sector part)` and `f_dᵀ v⁺ = 2·[d even]`, the sec
 P_even(k, L)  =  2^L · e_0ᵀ (R/2)ᴸ 𝟙_even,        𝟙_even = ([d even])_{d=0..2m}.
 ```
 
-The factor `2^L` is now visible as an exact rescaling of the sector matrix, not an asymptotic.
+The factor `2^L` is an exact rescaling of the sector matrix.
 
 **Word side.** Read a word left to right, remembering the last letter and whether it is still *pending* - a nonzero letter that is larger than its left neighbor, and therefore needs its right neighbor to be at least as large. States: `(0, +)` and `(a, ±)` for `a = 1..m` (`+` satisfied, `−` pending), `2m + 1` in all. From `(a, flag)` read `b`: forbidden if `flag = −` and `b < a`; the new state is `(0, +)` if `b = 0`, `(b, +)` if `0 < b ≤ a`, `(b, −)` if `b > a`. Start in `(0, +)` (a virtual left neighbor `0`), end in any satisfied state:
 
@@ -119,7 +119,7 @@ Matrix([[1, 0, 1, 0, 1], [1, 1, 0, 0, 1], [0, 1, 0, 0, 1], [1, 1, 0, 1, 0], [0, 
 True
 ```
 
-The "pending" flag, read on one word (`m = 1`, states `(0,+)`, `(1,+)`, `(1,−)`): **`011` is accepted** — start `(0,+)` → read `0` → `(0,+)` → read `1` (bigger than the left neighbor `0`, so it *owes* its right neighbor) → `(1,−)` pending → read `1` (≥ `1`) → `(1,+)` satisfied, and the word ends in a `+` state. **`010` is rejected** — start `(0,+)` → `(0,+)` → `(1,−)` pending → read `0`, but a pending `1` needs a right neighbor `≥ 1`, so `0` is forbidden. A pending letter is one that has not yet proved it isn't a strict local maximum; the word is valid iff every letter pays that debt before the word ends.
+The "pending" flag, read on one word (`m = 1`, states `(0,+)`, `(1,+)`, `(1,−)`): **`011` is accepted** — start `(0,+)` → read `0` → `(0,+)` → read `1` (bigger than the left neighbor `0`, so it needs a right neighbor `≥ 1`) → `(1,−)` pending → read `1` (≥ `1`) → `(1,+)` satisfied, and the word ends in a `+` state. **`010` is rejected** — start `(0,+)` → `(0,+)` → `(1,−)` pending → read `0`, but a pending `1` needs a right neighbor `≥ 1`, so `0` is forbidden. A letter is pending while it could still be a strict local maximum; the word is valid iff no letter is pending at the end.
 
 So `W_m(L+1) = (start·W) Wᴸ end`. Both sides of the identity are `(row vector)·(matrix)ᴸ·(column vector)` on `2m+1` states.
 
@@ -148,7 +148,7 @@ Matrix([[1, 0, 1], [0, 0, 1], [0, 1, 0]])
 (-1, True)
 ```
 
-`(R/2)S = SW` is visible entry by entry in `3×3`, and `det S = −1` (unimodular) makes `S` an honest change of basis. The `m = 2` case is the `5×5` matrix below.
+`(R/2)S = SW` is visible entry by entry in `3×3`, and `det S = −1` (unimodular) makes `S` a change of basis over the integers. The `m = 2` case is the `5×5` matrix below.
 
 ```
 >>> S_pattern(2)
@@ -189,12 +189,12 @@ The three equations were verified symbolically for every `m ≤ 8`. All three ma
 e_0ᵀ (R/2)ᴸ  =  (start · W^{L+1}) · S⁻¹.
 ```
 
-Reading the columns of `S⁻¹` (differences of consecutive cumulative sets), the **sector coordinate `2a` after `L` columns equals the number of words of length `L+1` ending in the satisfied state `(a, +)` minus the number ending pending in `(a, −)`**, and coordinate `2a − 1` is the number ending pending in `(a, −)` minus the number ending pending in `(a+1, −)`. Each sector coordinate is itself a signed tower count (over towers whose last column is `c` or `k − c`, with the `(−1)^c` weight, divided by `2^L`), so the identity holds state by state: the signed height-pair statistics of towers are the difference statistics of pending letters in words. A genuinely bijective (sign-reversing-involution) proof would turn this equality of state vectors into a matching of objects; the transfer-matrix proof does not need it.
+Reading the columns of `S⁻¹` (differences of consecutive cumulative sets), the **sector coordinate `2a` after `L` columns equals the number of words of length `L+1` ending in the satisfied state `(a, +)` minus the number ending pending in `(a, −)`**, and coordinate `2a − 1` is the number ending pending in `(a, −)` minus the number ending pending in `(a+1, −)`. Each sector coordinate is itself a signed tower count (over towers whose last column is `c` or `k − c`, with the `(−1)^c` weight, divided by `2^L`), so the identity holds state by state: the signed height-pair statistics of towers are the difference statistics of pending letters in words. A bijective (sign-reversing involution) proof would turn this equality of state vectors into a matching of objects; none is known, and the transfer-matrix proof does not need one.
 
 ## Consequences for Online Encyclopedia of Integer Sequences (OEIS)
 
 - The word automaton has characteristic polynomial `H_{2m+1}(μ) = Σ_i (−1)^i C(⌊(2m+1+i)/2⌋, i) μ^{2m+1−i}` for every `m ≤ 8` (symbolic), so the recurrences Hardin recorded as "Empirical" on **A202882** (`m = 2`), **A203094** (`m = 3`) and **A203184** (`m = 4`) are the characteristic-polynomial recurrences of a 5-, 7-, 9-state automaton, hence proved. The odd-index `H` satisfy `H_{2m+1} = (1 + 2μ²) H_{2m−1} − μ⁴ H_{2m−3}`, and `det(μI − W_m)` satisfies the same recurrence for `m ≤ 8`, which is the route to a general proof by cofactor expansion.[^2]
-- Each of these sequences now has a second interpretation: `2^{−L}` times the even-last-column signed tower count at tower height `4m + 2`, or in Hardin's indexing, `a(n) = P_even(4m+2, n−1) / 2^{n−1}`. Submission of the interpretation and the proved recurrences is a human act ([[oeis-cross-referencing](pages/oeis-cross-referencing.md)]).
+- Each of these sequences has a second interpretation: `2^{−L}` times the even-last-column signed tower count at tower height `4m + 2`, or in Hardin's indexing, `a(n) = P_even(4m+2, n−1) / 2^{n−1}`. Submission of the interpretation and the proved recurrences is a human act ([[oeis-cross-referencing](pages/oeis-cross-referencing.md)]).
 
 ## Snippet index
 
@@ -219,7 +219,7 @@ Reading the columns of `S⁻¹` (differences of consecutive cumulative sets), th
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and its column-by-column factorization.
 - [[tower-word-language](pages/tower-word-language.md)] - the wiki's other word-automaton object; the pending-flag construction here is the same technique.
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the `g = 2` tower-spacing castles give the Hardin sequences (A202882 / A203094 / A203184) a plain *unsigned* geometric interpretation ("towers ≥ 2 apart" = "no isolated peak"), a third route alongside the signed identity here.
-- [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the classroom version: the `m = 1` case in seven stops, with runnable `sector_half` and `S_pattern`.
+- [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the seminar version: the `m = 1` case in seven stops, with runnable `sector_half` and `S_pattern`.
 - [[castle-notation](pages/castle-notation.md)] - tower height `k` (here `4m + 2`) versus castle height `k + 1`.
 
 

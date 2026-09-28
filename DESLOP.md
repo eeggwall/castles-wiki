@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 85 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Fully read and cleaned | 89 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
 | Spot fixes only | 19 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 90 |
-| Words still to read | about 295,000 |
+| Not started | 86 |
+| Words still to read | about 282,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 43 fully read)
+### Concepts (85 pages, 44 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
@@ -115,7 +115,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] berlekamp-massey (5.5)
 - [ ] sandcastle-clock (4.9)
 - [ ] castle-classification (4.8)
-- [ ] castle-graph (4.7)
+- [x] castle-graph (4.7)
 - [x] finite-fields (4.6)
 - [ ] sandpile-identity (4.5)
 - [x] signed-tower-count (4.2)
@@ -194,10 +194,10 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] castle-snippets-strips (0.0)
 - [ ] acronyms (0.0)
 
-### Analyses (64 pages, 15 fully read)
+### Analyses (64 pages, 18 fully read)
 
 - [x] castle-cryptography (5.1)
-- [ ] isospectral-castles (4.9)
+- [x] isospectral-castles (4.9)
 - [ ] castle-cryptography-number-theory (4.4)
 - [~] castle-cryptography-ring (4.0)
 - [ ] sandpile-census (3.8)
@@ -227,7 +227,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] castle-ring-spectrum (1.6)
 - [ ] column-convex-ladder-by-area (1.6)
 - [ ] fractional-width-and-height (1.6)
-- [ ] tree-castle-by-area (1.5)
+- [x] tree-castle-by-area (1.5)
 - [x] castle-steganography (1.5)
 - [ ] motzkin-castles (1.5)
 - [~] mod-9-equidistribution (1.4)
@@ -252,7 +252,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] castle-conditional-entropy (0.8)
 - [~] convex-polyomino-by-area (0.7)
 - [ ] castle-avalanches (0.6)
-- [ ] hardin-word-identity (0.6)
+- [x] hardin-word-identity (0.6)
 - [ ] prime-convex-castles (0.5)
 - [ ] sum-of-three-cubes-castles (0.5)
 - [~] castle-row-raising-equation (0.5)

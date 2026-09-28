@@ -5,20 +5,20 @@ summary: The castle version of Kac's "Can one hear the shape of a drum?" - does 
 tags: [analysis, castle, spectral, isospectral, adjacency, laplacian, axis-9, kac, sunada, schwenk, trace-formula, tree, numpy, sympy, networkx, verification, pedagogy]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-26
+updated: 2026-09-28
 ---
 
 # Isospectral castles - hearing the shape of a castle
 
 ## Kac's question, in the castle setting
 
-Mark Kac, "Can one hear the shape of a drum?" (American Mathematical Monthly, 1966), asked whether the vibration frequencies of a membrane determine its shape up to congruence. The frequencies are the eigenvalues of the Laplacian on the membrane, so the question is: does the spectrum of the Laplacian determine the domain? For 26 years the answer was unknown. Gordon, Webb, and Wolpert answered *no* in 1992 by exhibiting two L-shaped polygons with identical Laplacian spectra and non-congruent shapes. Some things you *can* hear: the area of the drum, the length of its boundary, the number of holes (Weyl asymptotics; Kac's own heat-trace computation). Shape itself is not among them.
+Mark Kac, "Can one hear the shape of a drum?" (American Mathematical Monthly, 1966), asked whether the vibration frequencies of a membrane determine its shape up to congruence. The frequencies are the eigenvalues of the Laplacian on the membrane, so the question is: does the spectrum of the Laplacian determine the domain? For 26 years the answer was unknown. Gordon, Webb, and Wolpert answered *no* in 1992 with two non-congruent polygons, each made of seven copies of one triangle, with identical Laplacian spectra. Some things you *can* hear: the area of the drum, the length of its boundary, the number of holes (Weyl asymptotics; Kac's own heat-trace computation).
 
-The castle version replaces the membrane with the castle's polyomino graph of [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] Axis 9 - filled cells as vertices, orthogonal neighbors as edges - and the Laplacian on a function space with the combinatorial Laplacian `L = D − A` on `R^n`, where `D` is the diagonal degree matrix and `A` is the adjacency matrix. Two castles are **isospectral** when these two matrices share their eigenvalue multiset; the castle version of Kac's question is whether the spectrum determines the castle up to graph isomorphism. Schwenk (1973) already proved that almost every tree has a non-isomorphic cospectral mate, so the answer is *no* in the strongest possible way for graphs; the interesting number is how small a counterexample can be. This page runs the exhaustive search and finds it, for the adjacency operator and for the combinatorial Laplacian, over every castle with at most 16 cells.
+The castle version replaces the membrane with the castle's polyomino graph of [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] Axis 9 - filled cells as vertices, orthogonal neighbors as edges - and the Laplacian on a function space with the combinatorial Laplacian `L = D − A` on `R^n`, where `D` is the diagonal degree matrix and `A` is the adjacency matrix. Two castles are **isospectral** when these two matrices share their eigenvalue multiset; the castle version of Kac's question is whether the spectrum determines the castle up to graph isomorphism. Schwenk (1973) proved that almost every tree has a non-isomorphic cospectral mate, so for graphs the answer is *no*; the question here is how small a counterexample can be. This page runs the exhaustive search and finds it, for the adjacency operator and for the combinatorial Laplacian, over every castle with at most 16 cells.
 
 ## Method
 
-A castle with `n` cells is a composition of `n` (column heights `≥ 1`), so "every castle with at most 16 cells" is `2^16 − 1 = 65,535` skylines regardless of width and height - cheap. For each cell count: enumerate compositions, drop mirror images, compute the spectrum with NumPy, group by the rounded spectrum, split each group into isomorphism classes with `networkx.is_isomorphic`, and confirm every surviving group with the **exact integer characteristic polynomial** (SymPy) so that no floating-point coincidence is counted.[^1]
+A castle with `n` cells is a composition of `n` (column heights `≥ 1`), so "every castle with at most 16 cells" is `2^16 − 1 = 65,535` skylines regardless of width and height. For each cell count: enumerate compositions, drop mirror images, compute the spectrum with NumPy, group by the rounded spectrum, split each group into isomorphism classes with `networkx.is_isomorphic`, and confirm every surviving group with the **exact integer characteristic polynomial** (SymPy) so that no floating-point coincidence is counted.[^1]
 
 ```python
 def compositions(n):
@@ -89,7 +89,7 @@ Common Laplacian characteristic polynomial `x¹¹ − 20x¹⁰ + 169x⁹ − 788
 - The number of spanning trees is any cofactor of `L`; for a tree this is 1, and both castles are trees.
 - The smallest nonzero eigenvalue (the *algebraic connectivity*, Fiedler's number) measures how well-connected the graph is; both castles have the same value.
 
-What the spectrum does *not* see is the local branching pattern. `A` has two degree-3 vertices, each adjacent to a single leaf. `B` has one degree-3 vertex adjacent to a leaf and one adjacent to a two-cell path. That difference is invisible to `L`'s eigenvalues. Schwenk's 1973 theorem says this is generic among trees: almost every tree has a Laplacian-cospectral mate, so the failure of Kac's question for graphs is not exotic. The castle setting reaches it at 11 cells.
+What the spectrum does *not* see is the local branching pattern. `A` has two degree-3 vertices, each adjacent to a single leaf. `B` has one degree-3 vertex adjacent to a leaf and one adjacent to a two-cell path. That difference is invisible to `L`'s eigenvalues. This is generic among trees: Schwenk (1973) proved that almost every tree has an adjacency-cospectral mate, and McKay (1977) that the mates can also have cospectral line graphs, which for a tree means the same Laplacian spectrum.[^3] The castle setting reaches a Laplacian pair at 11 cells.
 
 **Six skylines, one graph.** The `A` class has six skylines because the same underlying graph is realized by six different castle shapes: `(1,1,1,2,1,1,2,1,1)`, `(1,1,1,2,1,1,3,1)`, `(1,1,2,1,1,2,1,2)`, `(1,1,2,1,1,4,1)`, `(1,3,1,1,2,1,2)`, `(1,3,1,1,4,1)`. Trees with a horizontal spine and two pendant paths, drawn as castles with the pendants distributed differently over the columns. Class `B` has only one skyline in this size.
 
@@ -99,15 +99,15 @@ The first castles that agree in *both* the adjacency and the Laplacian spectrum 
 
 ### Why cospectral pairs exist: Sunada, Schwenk, and the trace formula
 
-Two structural reasons account for every isospectral pair on this page.
+Two known mechanisms produce cospectral pairs, and the trace formula turns either into a check.
 
-**Sunada-style construction (Toshikazu Sunada, 1985).** A general recipe for producing pairs of Riemannian manifolds, and later graphs, with identical Laplacian spectra but not isometric. Take a group `G` acting freely on a space `X`, and two subgroups `H_1, H_2` of `G` that are *almost conjugate*: every conjugacy class of `G` meets `H_1` and `H_2` in the same number of elements, though `H_1` and `H_2` are themselves not conjugate. Then the quotients `X/H_1` and `X/H_2` are isospectral but not isometric. Gordon, Webb, and Wolpert used it in 1992 to build the first isospectral planar drums (two L-shaped polygons with the same spectrum and different shapes), settling Kac's question. The graph version, mostly due to Robert Brooks and Hyman Bass, produces isospectral graphs from a covering of a base graph by two almost-conjugate subgroups. A Sunada-type explanation of the 10-cell adjacency pair on this page would be a common cover: a small graph that both `(1,1,1,2,3,2)` and `(1,1,2,2,3,1)` project onto with matching closed-walk counts. That has not been written down; it is the natural next step and open.
+**Sunada-style construction (Toshikazu Sunada, 1985).** A general recipe for producing pairs of Riemannian manifolds, and later graphs, with identical Laplacian spectra but not isometric. Take a group `G` acting freely on a space `X`, and two subgroups `H_1, H_2` of `G` that are *almost conjugate*: every conjugacy class of `G` meets `H_1` and `H_2` in the same number of elements, though `H_1` and `H_2` are themselves not conjugate. Then the quotients `X/H_1` and `X/H_2` are isospectral but not isometric. Gordon, Webb, and Wolpert used an extension of it in 1992 to build the first isospectral planar drums, settling Kac's question. The graph version produces isospectral graphs from a covering of a base graph by two almost-conjugate subgroups. A Sunada-type explanation of the 10-cell adjacency pair on this page would be a common cover: a small graph that both `(1,1,1,2,3,2)` and `(1,1,2,2,3,1)` project onto with matching closed-walk counts. No such cover is known.
 
 **The trace formula, and why closed walks are the invariant.** The trace of `Aᴸ` counts closed walks of length `L` in the graph, so a shared adjacency spectrum is the same thing as matching closed-walk counts at every length. Two castles are adjacency-cospectral iff they have the same number of closed walks of each length. For the Laplacian, `L = D − A`, the trace of `Lᴸ` mixes walk counts with degree information; Laplacian-cospectral castles have the same walk counts weighted by the degree sequence at each visited vertex.
 
-**Schwenk's theorem (1973).** *Almost every tree has a non-isomorphic cospectral mate.* Precisely, the fraction of trees on `n` vertices that have a cospectral mate tends to 1 as `n → ∞`. So finding a Laplacian-cospectral pair *among trees* is not the exotic case, it is the generic case. This is why the smallest castle Laplacian-isospectral pair turns out to be trees: the same phenomenon that makes tree cospectrality easy makes it easy in the castle setting too.
+**Schwenk's theorem (1973).** *Almost every tree has a non-isomorphic cospectral mate.* Precisely, the fraction of trees on `n` vertices that have an adjacency-cospectral mate tends to 1 as `n → ∞`; McKay's extension covers the Laplacian of trees.[^3] Cospectral pairs among trees are therefore the generic case, and the smallest castle Laplacian-isospectral pair is a pair of trees.
 
-The three ingredients divide the pairs on this page cleanly. Sunada explains the *existence* of adjacency-cospectral pairs with cycles (the 10-cell pair, and the 50 adjacency groups at 16 cells). Schwenk explains the tree pairs (the 11-cell Laplacian pair, and the growing collection at 12+). The trace formula is the tool that turns either of these into an executable check.
+The tree pairs on this page (the 11-cell Laplacian pair and more from 12 cells on) are instances of the Schwenk-McKay phenomenon. For the pairs with cycles (the 10-cell pair, and the 50 adjacency groups at 16 cells) no Sunada cover has been found, so their mechanism is open.
 
 ### Silver-spectrum castles are not isospectral to each other
 
@@ -115,10 +115,10 @@ The spectral-radius census on [[castle-graph-spectral-radius](pages/castle-graph
 
 ## What this settles and what it opens
 
-- The seminar number: **10 cells** (adjacency), **11 cells** (Laplacian), **16 cells** (both). Each with a two-line drawing.
-- Isospectral pairs are common from 12 cells on (50 adjacency groups at 16 cells), so "spectrum determines the castle" fails badly. The spectrum is an Axis 9 *invariant*, not a *classifier*.
-- The 11-cell Laplacian pair is the smallest castle instance of Schwenk's theorem; the 10-cell adjacency pair is the smallest castle instance of Sunada's phenomenon and is a candidate for an explicit common cover.
-- Sand hears more than the spectrum. To 16 cells the sink-model sandpile group separates none of the 122 cospectral groups, because cospectral castles share their block graph ([[sandpile-census](pages/sandpile-census.md)]); the clock spectrum separates 62 of the 105 adjacency groups and 5 of the 17 Laplacian ones ([[sandcastle-clock](pages/sandcastle-clock.md)]); and the avalanche profile separates all of them ([[sandpile-identity](pages/sandpile-identity.md)]).
+- The smallest sizes: **10 cells** (adjacency), **11 cells** (Laplacian), **16 cells** (both).
+- Isospectral pairs are common from 12 cells on (50 adjacency groups at 16 cells), so the spectrum does not determine the castle: it is an Axis 9 invariant only.
+- The 11-cell Laplacian pair is the smallest castle instance of the Schwenk-McKay phenomenon; the 10-cell adjacency pair is the smallest cospectral castle pair with cycles and a candidate for an explicit common cover.
+- Sandpile invariants separate more than the spectrum. To 16 cells the sink-model sandpile group separates none of the 122 cospectral groups, because in the census cospectral castles always share their block graph ([[sandpile-census](pages/sandpile-census.md)]); the clock spectrum separates 62 of the 105 adjacency groups and 5 of the 17 Laplacian ones ([[sandcastle-clock](pages/sandcastle-clock.md)]); and the avalanche profile separates all of them ([[sandpile-identity](pages/sandpile-identity.md)]).
 - Open: the growth rate of the number of isospectral groups with `n`; whether the Ihara zeta or the skyline discrete Fourier transform (DFT) separates the pairs found here; a Sunada-type construction (common cover, almost-conjugate subgroups) explaining the 10-cell adjacency pair; and whether Schwenk's asymptotic density theorem has a quantitative castle analogue.
 
 ## Appearances in Sources
@@ -137,7 +137,7 @@ The spectral-radius census on [[castle-graph-spectral-radius](pages/castle-graph
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - the 65,535-skyline sweep is Knuth's Algorithm M (mixed-radix enumeration of `{1..h}^w`) with a cell-count filter.
 - [[castle-compression](pages/castle-compression.md)] - a spectrum is a lossy code for a castle; the isospectral pairs found here are its collisions, and their sizes (10 / 11 / 16 cells) are where spectral compression first loses information.
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the from-scratch pedagogy that works out the 10-cell adjacency-isospectral pair by hand as its "two shapes, same spectrum" section.
-- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the classroom version: what the spectrum hears, and the 10- and 11-cell pairs reproduced by one runnable search.
+- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar version: what the spectrum hears, and the 10- and 11-cell pairs reproduced by one runnable search.
 - [[sandpile-group](pages/sandpile-group.md)] - the sandpile group of each castle in the sink and tide models; both small cospectral pairs have equal groups in both (Z/15 and Z/8, and trivial).
 - [[sandpile-census](pages/sandpile-census.md)] - the sandpile group of every castle in this page's census; the sink group separates none of the cospectral groups, because each shares its block graph.
 - [[sandcastle-clock](pages/sandcastle-clock.md)] - the clock spectrum separates 62 of this page's 105 adjacency-cospectral groups and 5 of its 17 Laplacian ones.
@@ -147,5 +147,7 @@ The spectral-radius census on [[castle-graph-spectral-radius](pages/castle-graph
 ## Footnotes
 
 [^1]: Verified by execution (NumPy, SymPy 1.14, networkx 3.4.2): all compositions of `n ≤ 16` with mirror dedupe (`c[::-1] < c` skipped), spectra rounded to 7 decimals for grouping, isomorphism classes by `networkx.is_isomorphic`, and exact `Matrix.charpoly` over the integers equal across classes for every group counted. Total 11 s. The per-`n` counts and the smallest groups' skylines and polynomials are as printed by the run.
+
+[^3]: https://users.cecs.anu.edu.au/~bdm/papers/SpectralTrees.pdf (read 2026-09-28) - B. D. McKay, "On the spectral characterisation of trees", *Ars Combinatoria* 3 (1977) 219-232, §1: "A.J. Schwenk [11] has proved that 'hardly any' tree is thus characterised ... we may also require the trees to have cospectral linegraphs"; for a bipartite graph the Laplacian `D − A` is similar to `D + A = BBᵀ`, whose nonzero spectrum is that of `A(L(G)) + 2I`.
 
 [^2]: From the spectral-radius scan on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] (4,868,525 mirror-deduped castles): the 36 castles with spectral radius within `10⁻⁸` of `1 + √2`, grouped by cell count and rounded spectrum; every group with two or more skylines consisted of isomorphic graphs.
