@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 75 (song-as-castle and the 20 pages linking to it; batches 1-5 and 7, oldest first) |
+| Fully read and cleaned | 85 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
 | Spot fixes only | 19 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 100 |
-| Words still to read | about 306,000 |
+| Not started | 90 |
+| Words still to read | about 295,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,7 +106,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 42 fully read)
+### Concepts (85 pages, 43 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
@@ -125,7 +125,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] castle-eigenvalues-by-example (3.7)
 - [x] spectral-analysis (3.5)
 - [~] castle-gray-code (3.4)
-- [ ] permutation-inversions (3.3)
+- [x] permutation-inversions (3.3)
 - [x] tower-recursion-master-class (3.3)
 - [x] hardin-identity-seminar (3.2)
 - [x] castle-polyomino (3.2)
@@ -261,18 +261,18 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [ ] convex-castle-cap-factor (0.0)
 - [~] castle-q-bessel-closed-form (0.0)
 
-### Sources (44 pages, 17 fully read)
+### Sources (44 pages, 26 fully read)
 
 - [x] oeis-mining-pe502 (25.6)
 - [x] oeis-height2-hyperbolic-castles (5.9)
 - [x] new-sequence-fw3 (4.3)
-- [ ] aocp-generating-permutations-tuples (3.4)
+- [x] aocp-generating-permutations-tuples (3.4)
 - [x] steep-polyominoes-q-motzkin-bessel (3.4)
-- [ ] lattice-paths (3.2)
+- [x] lattice-paths (3.2)
 - [ ] dhar-ruelle-sen-verma-1995-algebraic-aspects (3.2)
-- [ ] aocp-generating-functions (3.1)
+- [x] aocp-generating-functions (3.1)
 - [ ] prodinger-2025-cornerless-motzkin-bargraphs (2.9)
-- [ ] aocp-permutations (2.8)
+- [x] aocp-permutations (2.8)
 - [x] tower-narayana-polynomial (2.5)
 - [~] pe502-pell-castle-strip (2.3)
 - [ ] algebraic-languages-and-polyominoes-enumeration (2.3)
@@ -282,18 +282,18 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] polyominoes (2.0)
 - [ ] bender-1974-partitions-of-multisets (1.7)
 - [ ] calugareanu-hamburg-exercises-basic-ring-theory (1.6)
-- [ ] aocp-combinatorics (1.5)
+- [x] aocp-combinatorics (1.5)
 - [ ] rossin-2000-group-of-a-sandpile (1.3)
 - [~] chau-cheng-1991-deterministic-soc-sandpile (1.1)
-- [ ] dyck-words (1.1)
+- [x] dyck-words (1.1)
 - [x] project-euler-502-problem-setup (1.1)
 - [ ] analytic-combinatorics-ch1-ogfs (1.1)
-- [ ] generating-functions-topic (0.9)
+- [x] generating-functions-topic (0.9)
 - [ ] chau-1993-abelian-sandpile-model (0.9)
-- [ ] aocp-multisets (0.9)
+- [x] aocp-multisets (0.9)
 - [x] column-convex-polygon-enumeration (0.9)
 - [ ] prellberg-brak-1995-cluster-models (0.9)
-- [ ] aocp-binomial-coefficients (0.9)
+- [x] aocp-binomial-coefficients (0.9)
 - [x] project-euler-502-castle-factoring (0.9)
 - [x] project-euler-502-observations (0.8)
 - [~] bak-tang-wiesenfeld-1988-self-organized-criticality (0.8)

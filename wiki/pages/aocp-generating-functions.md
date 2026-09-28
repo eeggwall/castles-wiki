@@ -5,7 +5,7 @@ summary: Knuth's generating-function toolkit — the Fibonacci method (guess ser
 tags: [knuth, taocp, generating-functions, c-finite, rational, partial-fractions, source]
 sources: [aocp-generating-functions]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # The Art of Computer Programming (AOCP) Generating Functions (Knuth The Art of Computer Programming (TAOCP) Vol. 1)
@@ -16,9 +16,9 @@ updated: 2026-09-19
 
 ## Summary
 
-The dedicated source treatment of the method the whole castle solution runs on (complementing the concept page [[generating-functions](pages/generating-functions.md)]). Its through-line is Knuth's **Fibonacci example**, "extremely important": posit the series `G(z) = ∑ F_n z^n`, multiply by `z` and `z²`, and the recurrence collapses the sum to a **rational function** `G(z) = z/(1 − z − z²)`; the roots of the denominator (here `φ, φ̂`) give, via **partial fractions**, the closed form `F_n = (φ^n − φ̂^n)/√5`.[^1] Verified during ingest (the GF's coefficients reproduce `0,1,1,2,3,5,8,13,21`).
+Knuth's treatment of generating functions (complementing the concept page [[generating-functions](pages/generating-functions.md)]). Its main worked example is the **Fibonacci example**: posit the series `G(z) = ∑ F_n z^n`, multiply by `z` and `z²`, and the recurrence collapses the sum to a **rational function** `G(z) = z/(1 − z − z²)`; the roots of the denominator (here `φ, φ̂`) give, via **partial fractions**, the closed form `F_n = (φ^n − φ̂^n)/√5`.[^1] Verified during ingest (the GF's coefficients reproduce `0,1,1,2,3,5,8,13,21`).
 
-Generalized, this is stated as the key structural fact — **a linear recurrence yields a rational generating function**:[^2]
+Generalized: **a linear recurrence yields a rational generating function**:[^2]
 
 ```
 a_n = c_1 a_{n−1} + … + c_m a_{n−m}   ⟹   G(z) = polynomial / (1 − c_1 z − … − c_m z^m)
@@ -34,35 +34,35 @@ A worked exercise finds the GF of `⟨2^n + 3^n⟩ = 2,5,13,35,…` as `1/(1−2
 
 ## Relevance to the castle
 
-This is not background — it is the exact toolkit of the castle solution, item for item:
+The castle solution uses these tools:
 
-- **Linear recurrence ⇒ rational GF** is precisely the castle's [[castle-counting-formula](pages/castle-counting-formula.md)]: the signed tower count is `P_k = num_k/den_k`, a rational function whose denominator is the characteristic polynomial of an order-`(k+1)` linear recurrence ([[signed-tower-count](pages/signed-tower-count.md)]). The C-finiteness that [[kitamasa](pages/kitamasa.md)] and [[berlekamp-massey](pages/berlekamp-massey.md)] exploit is exactly this "recurrence ⇔ rational GF" equivalence.
-- **The Fibonacci partial-fractions → roots → closed form** procedure is the same one that turns `P(1,L)`'s recurrence (roots `1±i`) into `Re((1+i)^{L+1})` (see [[signed-tower-count](pages/signed-tower-count.md)]) — a direct structural echo of `F_n = (φ^n − φ̂^n)/√5`.
-- **The negative binomial `1/(1−z)^{n+1} = ∑ C(n+k,n) z^k`** is the castle's tower generating function: the unsigned count is `E_k = 1/(1−(k+1)x)` giving `(k+1)^L`, and the [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] block-count GF is a Narayana polynomial over `(1−x)^w`.
-- **The `⟨2^n+3^n⟩` exercise** is literally the castle's any-parity count `A(w,h) = h^w − (h−1)^w` (the difference-of-powers family `A000225`, `A001047`, …) — same "sum of two `1/(1−az)` geometric GFs" structure.
+- **Linear recurrence ⇒ rational GF** is the castle's [[castle-counting-formula](pages/castle-counting-formula.md)]: the signed tower count is `P_k = num_k/den_k`, a rational function whose denominator is the characteristic polynomial of an order-`(k+1)` linear recurrence ([[signed-tower-count](pages/signed-tower-count.md)]). The C-finiteness that [[kitamasa](pages/kitamasa.md)] and [[berlekamp-massey](pages/berlekamp-massey.md)] exploit is this "recurrence ⇔ rational GF" equivalence.
+- **The Fibonacci partial-fractions → roots → closed form** procedure that gives `F_n = (φ^n − φ̂^n)/√5` also turns `P(1,L)`'s recurrence (roots `1±i`) into `Re((1+i)^{L+1})` (see [[signed-tower-count](pages/signed-tower-count.md)]).
+- **The negative binomial `1/(1−z)^{n+1} = ∑ C(n+k,n) z^k`** is the denominator shape of the [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] block-count GF, a Narayana polynomial over `(1−x)^w`, and gives the [[convex-castle](pages/convex-castle.md)] count `C(2h+w−3, w−1) = [z^{w−1}](1−z)^{−(2h−1)}`. The unsigned tower GF `E_k = 1/(1−(k+1)x)` is geometric.
+- **The `⟨2^n+3^n⟩` exercise** has the structure of the castle's any-parity count `A(w,h) = h^w − (h−1)^w` (the difference-of-powers family `A000225`, `A001047`, …): a combination of two geometric GFs `1/(1−az)`.
 
 ## Key Takeaways
 
 - **Fibonacci method:** posit the series, use the recurrence to get a rational GF, partial-fraction by the denominator roots, read off the closed form (`F_n = (φ^n−φ̂^n)/√5`).[^1]
-- **Linear recurrence ⇒ `G(z) = poly / (1 − ∑ c_k z^k)`** — the castle's `P_k = num_k/den_k` is exactly this.[^2]
+- **Linear recurrence ⇒ `G(z) = poly / (1 − ∑ c_k z^k)`** — the castle's `P_k = num_k/den_k` is an instance.[^2]
 - Operation algebra: add / shift / convolve (multiply) / partial-sum (`/(1−z)`) / exponential generating function (EGF) for binomial convolutions / differentiate-integrate.[^3]
-- Negative binomial `1/(1−z)^{n+1} = ∑ C(n+k,n) z^k` — the tower / Narayana-denominator structure; `⟨2^n+3^n⟩ → 1/(1−2z)+1/(1−3z)` is the castle's any-parity count.[^4][^5]
+- Negative binomial `1/(1−z)^{n+1} = ∑ C(n+k,n) z^k` — the Narayana-denominator and convex-castle structure; `⟨2^n+3^n⟩ → 1/(1−2z)+1/(1−3z)` has the shape of the castle's any-parity count.[^4][^5]
 
 ## Entities & Concepts
 
 - [[generating-functions](pages/generating-functions.md)] — the concept page this source grounds.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] / [[signed-tower-count](pages/signed-tower-count.md)] — the castle's rational GFs and partial-fraction closed forms.
 - [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] — the negative-binomial / `(1−x)^w` denominator in action.
-- [[new-sequence-fw3](pages/new-sequence-fw3.md)] — `F(w,3)`, whose complement `F(w,3) + odd(w,3) = 3^n − 2^n = A001047` is this page's difference-of-powers family.
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] — `F(w,3)`, with `F(w,3) + odd(w,3) = 3^w − 2^w = A001047`, this page's difference-of-powers family.
 - [[kitamasa](pages/kitamasa.md)] / [[berlekamp-massey](pages/berlekamp-massey.md)] — tools that exploit the recurrence ⇔ rational-GF equivalence.
 
-Linked from the source but not yet ingested: Analytic Combinatorics, Applied Combinatorics.
+Linked from the source: Analytic Combinatorics ([[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)], Chapter I).
 - [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] — the sibling Knuth page: the negative binomial `1/(1−z)^{n+1}` via negating the upper index, and the `2^n` / alternating-sum identities.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] — the empirical confirmation of "linear recurrence ⇒ rational GF" run in both directions on the castle's `P(k,L)` array.
 
 ## Relation to Other Wiki Pages
 
-The methodological bedrock: every rational generating function and closed form in the castle solution is an instance of the techniques here. It makes concrete why the castle's counts are C-finite (linear recurrence ⇔ rational GF), why partial fractions produce the `Re((1+i)^{L+1})`-style closed forms, and why the tower and any-parity counts wear negative-binomial / difference-of-geometric shapes.
+The rational generating functions and closed forms of the castle solution use the techniques here. The page shows why the castle's counts are C-finite (linear recurrence ⇔ rational GF), why partial fractions produce the `Re((1+i)^{L+1})`-style closed forms, why the Narayana block-count GF has a negative-binomial denominator, and why the any-parity count is a difference of geometric series.
 
 ## Footnotes
 

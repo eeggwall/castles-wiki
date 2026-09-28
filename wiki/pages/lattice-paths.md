@@ -5,7 +5,7 @@ summary: Shortest lattice paths as multiset permutations of a step string — C(
 tags: [lattice-paths, project-euler, stars-and-bars, binomial, multiset, urd, symbolic-method, source]
 sources: [lattice-paths]
 created: 2026-09-13
-updated: 2026-09-19
+updated: 2026-09-28
 ---
 
 # Lattice paths (Project Euler 15)
@@ -26,18 +26,18 @@ paths(W,H) = H multichoose (W+1) = binomial(W+H, H)
 
 Worked values (verified during ingest): `binomial(4+2,2) = 15`, `binomial(8+8,8) = 12870`, and the 20×20 grid `binomial(40,20) = 137,846,528,820` (the source obscures the low digits, as it is the PE 15 answer).[^3]
 
-The page then **generalizes to higher dimensions**: a path through a `d`-dimensional lattice is a multiset permutation of a step string with `N_i` steps in each direction, counted by the multinomial `binomial(N; N_1,…,N_d) = N! / (N_1!···N_d!)` (e.g. a 3×4×5×3 4-D lattice gives `binomial(15; 3,4,5,3) = 12,612,600`), with the perfect-cube special case reducing to `(3n)!/(n!)³`.[^4] That multinomial is computed as a **telescoping product of binomials** (see [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)]): `C(15;3,4,5,3) = C(14,4)·C(10,4)·…`.
+The page then **generalizes to higher dimensions**: a path through a `d`-dimensional lattice is a multiset permutation of a step string with `N_i` steps in each direction, counted by the multinomial `binomial(N; N_1,…,N_d) = N! / (N_1!···N_d!)` (e.g. a 3×4×5×3 4-D lattice gives `binomial(15; 3,4,5,3) = 12,612,600`), with the perfect-cube special case reducing to `(3n)!/(n!)³`.[^4] That multinomial is computed as a **telescoping product of binomials** (see [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)]); the source's 3-D example, a 4×4×6 lattice, gives `C(14; 4,4,6) = C(14,4)·C(10,4) = 210,210`.
 
 ## Relevance to the castle
 
 Two direct connections:
 
 - **The U/R/D encoding comes from here.** The castle's step-string representation ([[urd-step-strings](pages/urd-step-strings.md)]) is the same device — "the same representation used to solve the Lattice Paths problem in Project Euler 15" — extended from two step types (R, D) to three (U, R, D) with the additional castle constraints.[^1]
-- **Stars-and-bars is the castle's convex count.** The very argument that counts lattice paths — distributing moves into gaps via stars-and-bars — is what counts [[convex-castle](pages/convex-castle.md)]s: `CCC = C(2H+W−3, W−1)` comes from inserting the remaining `R`s into the bare-minimum string's slots. Both are *binomial* for the same reason (independent placements, no ballot constraint) — see [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)].
+- **Stars-and-bars also counts convex castles.** The argument that counts lattice paths — distributing moves into gaps via stars-and-bars — also counts [[convex-castle](pages/convex-castle.md)]s: `CCC = C(2H+W−3, W−1)` comes from inserting the remaining `R`s into the bare-minimum string's slots. Both are *binomial* for the same reason (independent placements, no ballot constraint) — see [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)].
 
 Unlike Dyck paths (which impose the never-go-negative *ballot* constraint and are counted by Catalan numbers), an unconstrained lattice path is just a multiset permutation and is counted by a plain binomial — the same binomial-vs-Catalan distinction that runs through the castle.
 
-**Under the [[symbolic-method](pages/symbolic-method.md)].** A shortest lattice path over the 2-letter alphabet `{R, D}` is a word in `SEQ(R + D)` — the compositions/words machinery of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] §I.3-I.4. Marking `R` and `D` with separate size variables `x, y` gives the bivariate ordinary generating function (OGF) `1/(1 − x − y)`, and `[x^W y^H]` extracts the `binomial(W+H, H)` count — the same stars-and-bars result derived from the specification rather than from balls-and-bars combinatorics. Lattice paths with more constraints (bounded run length, non-negativity, staying inside a strip) are analyzed at length in Analytic Combinatorics (AC) Chapter V (`Applications of Rational and Meromorphic Asymptotics`), §V.4 "Nested sequences, lattice paths, and continued fractions" — the natural next-chapter home for the wiki's [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] thread when we ingest Part B.
+**Under the [[symbolic-method](pages/symbolic-method.md)].** A shortest lattice path over the 2-letter alphabet `{R, D}` is a word in `SEQ(R + D)` — the compositions/words machinery of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] §I.3-I.4. Marking `R` and `D` with separate size variables `x, y` gives the bivariate ordinary generating function (OGF) `1/(1 − x − y)`, and `[x^W y^H]` extracts the `binomial(W+H, H)` count — the same stars-and-bars result derived from the specification rather than from balls-and-bars combinatorics. Lattice paths with more constraints (bounded run length, non-negativity, staying inside a strip) are analyzed at length in Analytic Combinatorics (AC) Chapter V (`Applications of Rational and Meromorphic Asymptotics`), §V.4 "Nested sequences, lattice paths, and continued fractions", which treats the continued fractions used on [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)].
 
 ## Key Takeaways
 
@@ -53,11 +53,11 @@ Unlike Dyck paths (which impose the never-go-negative *ballot* constraint and ar
 - [[dyck-words](pages/dyck-words.md)] — the ballot-constrained cousin (Catalan, not binomial).
 - [[symbolic-method](pages/symbolic-method.md)] / [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] — the framework: shortest lattice paths as `SEQ(R+D)`; constrained lattice paths as AC Chapter V.4.
 
-Related (ingested): [[aocp-multisets](pages/aocp-multisets.md)] — the multiset-permutation machinery; [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] — the multinomial that counts the higher-D paths. Linked from the source but not yet ingested: Project Euler/172.
+Related: [[aocp-multisets](pages/aocp-multisets.md)] — the multiset-permutation machinery; [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] — the multinomial that counts the higher-D paths.
 
 ## Relation to Other Wiki Pages
 
-The origin of the U/R/D encoding and a clean statement of the stars-and-bars / binomial mechanism that recurs in the castle's convex count. Together with [[dyck-words](pages/dyck-words.md)] it frames the binomial-vs-Catalan divide: unconstrained lattice paths are binomial, ballot-constrained Dyck paths are Catalan, and the castle sits on the binomial side (except in the tower block-count, where Narayana appears).
+The origin of the U/R/D encoding and a statement of the stars-and-bars / binomial mechanism that recurs in the castle's convex count. Together with [[dyck-words](pages/dyck-words.md)] it frames the binomial-vs-Catalan divide: unconstrained lattice paths are binomial, ballot-constrained Dyck paths are Catalan, and the castle sits on the binomial side (except in the tower block-count, where Narayana appears).
 
 ## Footnotes
 

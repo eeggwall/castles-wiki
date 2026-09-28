@@ -5,7 +5,7 @@ summary: Knuth's combinatorial-generation algorithms — mixed-radix add-one tup
 tags: [knuth, taocp, generation, mixed-radix, gray-code, brute-force, source]
 sources: [aocp-generating-permutations-tuples]
 created: 2026-09-13
-updated: 2026-09-20
+updated: 2026-09-28
 ---
 
 # The Art of Computer Programming (AOCP) Generating Permutations & Tuples (Knuth The Art of Computer Programming (TAOCP) Vol. 4)
@@ -26,20 +26,20 @@ Algorithms for **generating** (exhaustively listing) all tuples, in two ordering
 
 The connection is concrete and lives in the brute-force enumerator:
 
-- **The castle brute-force is Algorithm M with uniform radix.** A castle of width *w*, height *h* is a column-height tuple `c ∈ {1..h}^w` — exactly a mixed-radix space with all `m_j = h`. The reference enumerator ([[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]) does `product(range(1,h+1), repeat=w)`, which *is* the "add one in radix `[h,h,…,h]` and visit" of Algorithm M (verified: the space has size `h^w`). So the brute enumerator that grounds the whole verified solution is a direct instance of this algorithm.
-- **The `2^n` binary-string count** is the [[binary-string-bijection](pages/binary-string-bijection.md)]: generating all length-*w* binary strings by counting `0…0` to `1…1` is precisely enumerating the configurations of one length-*w* block.
-- **Gray-code ordering** is a lens on the castle's local structure: successive one-coordinate changes are the smallest moves in the mixed-radix space, and the castle's block-count / `is_unimodal` deltas under such a single-column change connect to the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] view.
+- **The castle brute-force is Algorithm M with uniform radix.** A castle of width *w*, height *h* is a column-height tuple `c ∈ {1..h}^w` — exactly a mixed-radix space with all `m_j = h`. The reference enumerator ([[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]) does `product(range(1,h+1), repeat=w)`, which *is* the "add one in radix `[h,h,…,h]` and visit" of Algorithm M (verified: the space has size `h^w`).
+- **The `2^n` binary-string count** is the [[binary-string-bijection](pages/binary-string-bijection.md)]: generating all length-*w* binary strings by counting `0…0` to `1…1` enumerates the configurations of one length-*w* block.
+- **Gray-code ordering** walks the space by the smallest moves, one coordinate at a time, and the castle's block-count / `is_unimodal` deltas under such a single-column change connect to the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] view.
 
-**A seminar / research thread — Knuth's generation algorithms in castle space.** Systematically translating Vol. 4's combinatorial-generation algorithms into the castle's mixed-radix `{1..h}^w` space is a self-contained, accessible research direction (and a good seminar): Algorithm M is already the castle brute-force; the **castle Gray code** ([[castle-gray-code](pages/castle-gray-code.md)]) orders castles so each step changes one column height by one, gives a proved `Δ blocks ∈ {−1, 0, +1}` bump lemma, and reads off an O(1) update for [[castle-sign](pages/castle-sign.md)] and `P` — a loopless enumerator and a combinatorial handle on the even/odd split. Restricting the generation to *valid* castles (max height exactly *h*, and the even-block filter) is the interesting twist Knuth's generic algorithms do not handle out of the box.
+**Knuth's generation algorithms in castle space.** Algorithm M is the castle brute force. The **castle Gray code** ([[castle-gray-code](pages/castle-gray-code.md)]) orders the space `{1..h}^w` so each step changes one column height by one, with a proved `Δ blocks ∈ {−1, 0, +1}` bump lemma and an O(1) update for [[castle-sign](pages/castle-sign.md)] and `P`: a loopless enumerator with the castle filters applied at emit. Knuth's generic algorithms do not restrict the generation to *valid* castles (max height exactly *h*, and the even-block filter); whether a Gray tour of the valid castles alone exists is open ([[castle-native-gray-tour](pages/castle-native-gray-tour.md)]).
 
 ## Where Algorithm M already runs on the wiki
 
-Every exhaustive census on the wiki is Algorithm M with a post-filter. The primitive is `all_castles(w, h)` on [[castle-snippets](pages/castle-snippets.md)] - `product(range(1, h+1), repeat=w)` filtered by `max(c) == h` - and the same loop drives the big sweeps: the 65,534 skylines of [[isospectral-castles](pages/isospectral-castles.md)], the 4.87 million castles of [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], and the parity-sector, n-nacci, and proper-castle tables on [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)], and [[proper-castle-projection](pages/proper-castle-projection.md)]. The post-filter is cheap: of the `h^w` tuples visited, `h^w − (h−1)^w` are proper castles ([[castle-counting-function](pages/castle-counting-function.md)]), a fraction tending to `1` as `w` grows; the even-block half of those is `F(w,h)`, which [[castle-entropy](pages/castle-entropy.md)] prices at exactly one bit of the `w·log₂ h` the odometer spends.
+The wiki's exhaustive censuses over `{1..h}^w` are Algorithm M with a post-filter. The primitive is `all_castles(w, h)` on [[castle-snippets](pages/castle-snippets.md)] - `product(range(1, h+1), repeat=w)` filtered by `max(c) == h` - and the same loop drives the big sweeps: the 65,534 skylines of [[isospectral-castles](pages/isospectral-castles.md)], the 4.87 million castles of [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], and the parity-sector, n-nacci, and proper-castle tables on [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)], and [[proper-castle-projection](pages/proper-castle-projection.md)]. The post-filter is cheap: of the `h^w` tuples visited, `h^w − (h−1)^w` are proper castles ([[castle-counting-function](pages/castle-counting-function.md)]), a fraction tending to `1` as `w` grows; the even-block half of those is `F(w,h)`, which [[castle-entropy](pages/castle-entropy.md)] prices at one bit of the `w·log₂ h` the odometer spends.
 
-Two facts make the castle Gray code concrete rather than speculative:
+Two facts about the castle Gray code:
 
 - **A one-column move changes the block count by 0 or ±1.** With `#blocks = c_1 + Σ_{i≥2} max(0, c_i − c_{i−1})` (the column-height formula on [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]), raising `c_i` by one can only raise the term `max(0, c_i − c_{i−1})` and only lower the term `max(0, c_{i+1} − c_i)`, each by at most `1`, so the net change is in `{−1, 0, +1}` (checked exhaustively for `(w,h) = (5,4)` and `(6,3)`). Along a Gray walk the [[castle-sign](pages/castle-sign.md)] `(−1)^{blocks}` therefore flips exactly when the block count moves, an `O(1)` update, and the signed count `P` accumulates incrementally.
-- **The odometer and the automaton are the two ways to walk `{1..h}^w`.** Algorithm M enumerates tuples one at a time; the [[castle-strip](pages/castle-strip.md)] transfer matrix walks the same space column by column and counts all `h^w` (or a rule-restricted subset) at once. A Gray code is the odometer given a locality property the automaton has for free.
+- **The odometer and the automaton.** Algorithm M enumerates tuples one at a time; the [[castle-strip](pages/castle-strip.md)] transfer matrix walks the same space column by column and counts all `h^w` (or a rule-restricted subset) at once.
 
 Gray order is also a delta encoding - consecutive castles differ in one symbol - which is where it meets the encoding ladder of [[castle-compression](pages/castle-compression.md)].
 
@@ -50,7 +50,7 @@ Gray order is also a delta encoding - consecutive castles differ in one symbol -
 - **Algorithm M** — mixed-radix add-one generation of all tuples `0 ≤ a_j < m_j`; nested `for` loops for small *n*.[^1][^2]
 - **Algorithm G** — reflected Gray code `Γ_{n+1} = 0Γ_n, 1Γ_n^R`, one bit changing per step, flip position given by the ruler function.[^3][^4]
 - The castle **brute-force enumerator is Algorithm M with all radices `= h`** (`{1..h}^w`, size `h^w`) — verified.
-- Enumerating length-*w* binary strings (the `2^n` case) is exactly the block-configuration count of the [[binary-string-bijection](pages/binary-string-bijection.md)].
+- Enumerating length-*w* binary strings (the `2^n` case) is the block-configuration count of the [[binary-string-bijection](pages/binary-string-bijection.md)].
 
 ## Entities & Concepts
 
@@ -58,18 +58,17 @@ Gray order is also a delta encoding - consecutive castles differ in one symbol -
 - [[binary-string-bijection](pages/binary-string-bijection.md)] — the `2^n` binary-string enumeration.
 - [[castle-by-area](pages/castle-by-area.md)] — the by-area enumeration, another exhaustive tuple listing.
 - [[castle-gray-code](pages/castle-gray-code.md)] — the castle-space walk of Algorithm G, with the block-count ±1 lemma and the O(1) sign / `P` update.
-- [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the single-coordinate-change lens Gray code suggests.
+- [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the up/flat/down streaks that a single-column change edits.
 - [[castle-snippets](pages/castle-snippets.md)] - `all_castles(w, h)`, the wiki's Algorithm M in `itertools` form.
 - [[isospectral-castles](pages/isospectral-castles.md)] / [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] / [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[proper-castle-projection](pages/proper-castle-projection.md)] - the censuses that run on it.
 - [[castle-counting-function](pages/castle-counting-function.md)] / [[castle-entropy](pages/castle-entropy.md)] - how many of the `h^w` visited tuples survive the filters, and what that costs in bits.
 - [[castle-strip](pages/castle-strip.md)] - the automaton alternative to the odometer.
 - [[castle-compression](pages/castle-compression.md)] - Gray order as a one-symbol delta encoding.
 
-Linked from the source but not yet ingested: (none new for this wiki).
 
 ## Relation to Other Wiki Pages
 
-An algorithmic-methods reference: it names the exhaustive-generation procedure behind the castle's brute-force cross-check (Algorithm M = mixed-radix enumeration of `{1..h}^w`) and connects the `2^n` binary case to the block bijection. Gray-code order is recorded as a possible lens on single-column moves, not a used technique.
+An algorithmic-methods reference: it names the exhaustive-generation procedure behind the castle's brute-force cross-check (Algorithm M = mixed-radix enumeration of `{1..h}^w`) and connects the `2^n` binary case to the block bijection. Gray-code order in castle space is developed on [[castle-gray-code](pages/castle-gray-code.md)].
 
 ## Footnotes
 
