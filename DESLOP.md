@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 179 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Fully read and cleaned | 182 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
 | Spot fixes only | 3 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 12 |
-| Words still to read | about 41,000 |
+| Not started | 9 |
+| Words still to read | about 30,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -106,18 +106,18 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 82 fully read)
+### Concepts (85 pages, 84 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
 - [x] narayana-numbers (5.7)
 - [x] sandcastle-seminar (5.5)
 - [x] berlekamp-massey (5.5)
-- [ ] sandcastle-clock (4.9)
+- [x] sandcastle-clock (4.9)
 - [x] castle-classification (4.8)
 - [x] castle-graph (4.7)
 - [x] finite-fields (4.6)
-- [ ] sandpile-identity (4.5)
+- [x] sandpile-identity (4.5)
 - [x] signed-tower-count (4.2)
 - [x] eigenvalue-continued-fractions (4.1)
 - [x] weakly-unimodal-composition (4.0)
@@ -194,7 +194,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-snippets-strips (0.0)
 - [x] acronyms (0.0)
 
-### Analyses (64 pages, 60 fully read)
+### Analyses (64 pages, 61 fully read)
 
 - [x] castle-cryptography (5.1)
 - [x] isospectral-castles (4.9)
@@ -251,7 +251,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] half-sum-castles (0.8)
 - [x] castle-conditional-entropy (0.8)
 - [x] convex-polyomino-by-area (0.7)
-- [ ] castle-avalanches (0.6)
+- [x] castle-avalanches (0.6)
 - [x] hardin-word-identity (0.6)
 - [x] prime-convex-castles (0.5)
 - [x] sum-of-three-cubes-castles (0.5)

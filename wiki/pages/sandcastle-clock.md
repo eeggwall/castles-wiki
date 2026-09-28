@@ -1,11 +1,11 @@
 ---
 title: The sandcastle clock - dropping sand until the castle repeats, in the sink and tide models
 category: Concepts
-summary: Start a castle's sandpile at its identity configuration and drop one grain on the apex every tick; the pile returns to the identity after a whole number of ticks, the clock period. The period is the order of "one grain at the apex" in the castle's sandpile group, the least common denominator of a column of the inverse reduced Laplacian, and simulation agrees with that on every test castle. The clock runs in both models of sandpile-group. In the sink model (one sink cell, bottom-left) tree branches are transparent, so tree castles never tick, and the period depends on where the sink and the apex are (on the silver rectangle it can be 1, 3, 5 or 15, and a castle and its mirror image differ in 1,018 of 1,953 cases to 12 cells); the graph invariant is the clock spectrum over every (sink, grain) pair, which separates 62 of the 105 adjacency-cospectral groups (the 10-cell pair ticks 15 against 5) and 5 of the 17 Laplacian-cospectral groups. In the tide model (the whole bottom row as the sink) there is no sink to choose, the clock depends only on the castle's runs of raised columns, and a spike standing on the ground is a branch of the sink, so 6,611 castles with a nontrivial tide group still never tick. The tide removes the mirror dependence up to one tie-break: a castle and its mirror image have different tide periods in 204 of 1,953 cases to 12 cells, every one of them a castle with two or more tallest columns. Cospectral separation is the natural test for the sink clock, a graph invariant; the tide clock sees the skyline, and every cospectral group contains castles of different widths, so any tide count over the cells above the ground separates them all for that trivial reason. The fixed-apex tide clock, which counts no cells, separates 49 of the 105 adjacency-cospectral groups and none of the 17 Laplacian ones.
+summary: Start a castle's sandpile at its identity configuration and drop one grain on the apex every tick; the pile returns to the identity after a whole number of ticks, the clock period. The period is the order of "one grain at the apex" in the castle's sandpile group, the least common denominator of a column of the inverse reduced Laplacian, and simulation agrees with that on every test castle. The clock runs in both models of sandpile-group. In the sink model (one sink cell, bottom-left) tree branches are transparent, so tree castles never tick, and the period depends on where the sink and the apex are (on the silver rectangle it can be 1, 3, 5 or 15, and a castle and its mirror image differ in 1,018 of 1,953 cases to 12 cells); the graph invariant is the clock spectrum over every (sink, grain) pair, which separates 62 of the 105 adjacency-cospectral groups (the 10-cell pair ticks 15 against 5) and 5 of the 17 Laplacian-cospectral groups. In the tide model (the whole bottom row as the sink) there is no sink to choose, the clock depends only on the castle's runs of raised columns, and a spike standing on the ground is a branch of the sink, so 6,611 castles with a nontrivial tide group still never tick. The tide removes the mirror dependence up to one tie-break: a castle and its mirror image have different tide periods in 204 of 1,953 cases to 12 cells, every one of them a castle with two or more tallest columns. Cospectral separation tests the sink clock, a graph invariant; the tide clock sees the skyline, and every cospectral group contains castles of different widths, so any tide count over the cells above the ground separates them all for that trivial reason. The fixed-apex tide clock, which counts no cells, separates 49 of the 105 adjacency-cospectral groups and none of the 17 Laplacian ones.
 tags: [concept, castle, sandpile, critical-group, clock, period, identity-element, isospectral, laplacian, tree-castle, census, sink-model, tide-model, mirror-symmetry, sympy, verification, pedagogy]
 sources: [project-euler-502-castle-factoring, rossin-2000-group-of-a-sandpile, dhar-ruelle-sen-verma-1995-algebraic-aspects, dhar-1990-self-organized-critical-sandpile]
 created: 2026-09-26
-updated: 2026-09-27
+updated: 2026-09-28
 ---
 
 # The sandcastle clock - dropping sand until the castle repeats, in the sink and tide models
@@ -20,10 +20,10 @@ The pile keeps changing, but there are only finitely many recurrent configuratio
 |---|---|---|
 | 4-cycle `(2, 2)` | 4 | 3 |
 | silver rectangle `(2, 2, 2)` | 15 | 8 |
-| tall pair `(3, 3)` | 15 | 11 |
+| tall pair `(3, 3)` | 3 | 11 |
 | any tree castle | 1 | 1 |
 
-On a tree castle the grain just washes out and nothing changes, in either model.
+On a tree castle the sandpile group is trivial, so the pile never leaves the identity, in either model.
 
 ## Why it repeats, and when
 
@@ -40,9 +40,9 @@ where `L̃` is the Laplacian with the sink's rows and columns deleted: one row a
 
 Put a grain on a leaf, a cell with one neighbour. It can topple straight to that neighbour. So in the sandpile group, **a grain on a leaf is the same as a grain on its neighbour**, and by repeating the argument a grain anywhere on a tree branch is the same as a grain where the branch joins the rest of the castle. With the bottom-left sink cell, on `(2, 2, 3)` the spike's top cell and the cell it sits on both have order 5. On `(2, 2, 1, 1, 1)` every cell of the tail behaves like the cell where the tail starts (order 4).[^5]
 
-This is the clock's version of "the 2×2 blocks hold the sand". A castle's clock only notices where the sink and the apex attach to its skeleton of `2 × 2` blocks. Tree castles have no skeleton, so their clock never ticks.
+So the period depends only on where the sink and the apex attach to the castle's skeleton of `2 × 2` blocks. Tree castles have no skeleton, so their clock never ticks.
 
-**Under the tide the ground is part of the tree.** A spike standing on the ground, a column whose neighbours are all height 1, is a branch that hangs from the sink itself. A grain anywhere on it is the same as a grain in the ground, so it washes out. So when the apex sits on such a spike the tide clock never ticks, however much sand the rest of the castle holds: `(3, 1, 2, 2)` has `K_tide = Z/3` and tide period 1.
+**Under the tide the ground is part of the tree.** A spike standing on the ground, a column whose neighbours are all height 1, is a branch that hangs from the sink itself. A grain anywhere on it is the same as a grain in the ground, the zero of `K_tide`. So when the apex sits on such a spike the tide clock never ticks: `(3, 1, 2, 2)` has `K_tide = Z/3` and tide period 1.
 
 ## The sink clock depends on where the sink and the apex are
 
@@ -56,7 +56,7 @@ In the tide model the sink is the ground, so the only choice left is the apex. T
 
 - **The tide clock depends only on the runs.** Under the tide a castle falls apart into its runs of raised columns ([[sandpile-group](pages/sandpile-group.md)], Part 3), and `K_tide` is the product of the runs' groups. So the tide period is the order of the apex grain in the group of the apex's own run, and where the runs sit along the base does not matter.
 - **The mirror dependence is down to one tie-break.** The ground is symmetric, so mirroring a castle mirrors its tide model exactly. Up to 12 cells, a castle and its mirror image have different tide periods in **204** of the 1,953 cases, against 1,018 in the sink model, and **every one of the 204** has two or more tallest columns. With a unique tallest column the apex is the same cell in both, and the tide clock is mirror-proof. The first examples are `(2, 1, 2, 2)`, whose leftmost apex tops a lone spike (period 1) while its mirror `(2, 2, 1, 2)` starts in the block run (period 3), and `(1, 2, 1, 2, 2)` (1 against 3).[^8]
-- **The tide clock spectrum.** Recording the period of one grain at every cell above the ground gives the **tide clock spectrum**, with no sink and no apex to choose. It is mirror-invariant by the same symmetry. It is a property of the castle's shape, not of its graph: `(2, 2, 2)` and `(3, 3)` have the same graph but tide spectra `{4: 1, 8: 2}` and `{11: 4}`.
+- **The tide clock spectrum.** Recording the period of one grain at every cell above the ground gives the **tide clock spectrum**, with no sink and no apex to choose. It is mirror-invariant by the same symmetry. It depends on the castle's shape and not only on its graph: `(2, 2, 2)` and `(3, 3)` have the same graph but tide spectra `{4: 1, 8: 2}` and `{11: 4}`.
 
 ## What the census shows
 
@@ -72,11 +72,11 @@ Over all 33,150 castles with at most 16 cells (mirror images removed), with the 
 | … period 1 anyway (nontrivial group) | 3,769 | 6,611 |
 | most common periods | 4, 1, 2, 15, 5, 3, 209, 56 | 1, 3, 11, 8, 21, 29, 4, 41 |
 
-In the sink model, period 1 with a nontrivial group happens when the sink cell and the apex hang off the same part of the block skeleton, as the transparency rule predicts. Under the tide it happens almost twice as often, because every spike standing on the ground is part of the sink's tree. The tide grain also generates its whole group more often (13,159 against 8,839), which fits tide groups being cyclic more often ([[sandpile-census](pages/sandpile-census.md)]); whether that is the whole reason has not been checked.
+In the sink model, period 1 with a nontrivial group happens when the sink cell and the apex hang off the same part of the block skeleton, as the transparency rule predicts. Under the tide it happens almost twice as often (6,611 against 3,769), consistent with every spike standing on the ground being part of the sink's tree. The tide grain also generates its whole group more often (13,159 against 8,839), which fits tide groups being cyclic more often ([[sandpile-census](pages/sandpile-census.md)]); whether that is the whole reason has not been checked.
 
-## Hearing cospectral castles
+## Separating cospectral castles
 
-**The sink clock hears what the spectrum and the sink group cannot.** [[sandpile-census](pages/sandpile-census.md)] found that `K_sink` separates none of the cospectral groups of [[isospectral-castles](pages/isospectral-castles.md)]. The sink clock does:[^11]
+**The sink clock separates castles that the spectrum and the sink group do not.** [[sandpile-census](pages/sandpile-census.md)] found that `K_sink` separates none of the cospectral groups of [[isospectral-castles](pages/isospectral-castles.md)]. The sink clock does:[^11]
 
 | cospectral groups (to 16 cells) | number | separated by the sink clock (fixed sink cell and apex) | separated by the sink clock spectrum |
 |---|---|---|---|
@@ -88,9 +88,9 @@ In the sink model, period 1 with a nontrivial group happens when the sink cell a
 
 So, reading the period through the sink clock spectrum, the smallest castles whose period is not determined by their spectrum have 10 cells for the adjacency spectrum and 13 cells for the Laplacian spectrum.
 
-**The tide clock is a shape invariant, so this is not its natural test.** Cospectral separation measures what a graph invariant hears beyond the spectrum. The tide clock sees the skyline itself, and every one of the 105 adjacency and 17 Laplacian cospectral groups contains castles of different widths, that is, with different numbers of ground cells. So the tide clock spectrum, which records one period per cell above the ground, separates all of them for that trivial reason, and that says nothing about sand. The fixed-apex tide period counts no cells, and it separates **49** of the 105 adjacency groups and **none** of the 17 Laplacian ones (11 of those are trees, which never tick in either model).[^12] The 10-cell pair is one it hears: both castles have `K_tide = Z/8`, but their tide clocks tick **4** and **8**, and their tide clock spectra are `{4: 2, 8: 2}` against `{4: 1, 8: 3}`.
+**The tide clock is a shape invariant.** Cospectral separation measures what a graph invariant distinguishes beyond the spectrum. The tide clock sees the skyline itself, and every one of the 105 adjacency and 17 Laplacian cospectral groups contains castles of different widths, that is, with different numbers of ground cells. So the tide clock spectrum, which records one period per cell above the ground, separates all of them for that trivial reason. The fixed-apex tide period counts no cells, and it separates **49** of the 105 adjacency groups and **none** of the 17 Laplacian ones (11 of those are trees, which never tick in either model).[^12] The 10-cell pair is one it separates: both castles have `K_tide = Z/8`, but their tide clocks tick **4** and **8**, and their tide clock spectra are `{4: 2, 8: 2}` against `{4: 1, 8: 3}`.
 
-The natural question for a tide invariant is the reverse one: which different castles does it confuse? Every tide statistic depends only on the multiset of runs of raised columns, so castles with the same runs, placed anywhere along the base, always share their tide clock.
+For a tide invariant the reverse question is which different castles it confuses. Every tide statistic depends only on the multiset of runs of raised columns, so castles with the same runs, placed anywhere along the base, always share their tide clock.
 
 ## What this settles and what it opens
 
@@ -101,7 +101,7 @@ The natural question for a tide invariant is the reverse one: which different ca
 
 **Open.**
 - **Sink model.** Which cospectral castles does the sink clock spectrum still fail to separate (43 adjacency and 12 Laplacian groups to 16 cells)? A finer sandpile invariant that separates them all to 16 cells is the sink avalanche profile on [[sandpile-identity](pages/sandpile-identity.md)].
-- **Tide model.** Which different multisets of runs share a tide clock spectrum, and how far does the tide clock spectrum go toward recovering the runs? And a canonical tie-break: a tide clock built from every tallest column at once (the multiset of their periods, or one grain on each) would be mirror-proof by construction; what does it hear?
+- **Tide model.** Which different multisets of runs share a tide clock spectrum, and how far does the tide clock spectrum go toward recovering the runs? And a canonical tie-break: a tide clock built from every tallest column at once (the multiset of their periods, or one grain on each) would be mirror-proof by construction; which castles does it separate?
 
 ## Snippet
 
