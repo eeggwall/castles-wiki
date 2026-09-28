@@ -7,10 +7,10 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 | Slice | Value |
 |---|---|
 | Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 165 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
+| Fully read and cleaned | 168 (song-as-castle and the 20 pages linking to it; batches 1-7, the 64 oldest pages) |
 | Spot fixes only | 4 (one phrase each: "arc" vocabulary, "in disguise", backlink text) |
-| Not started | 25 |
-| Words still to read | about 84,000 |
+| Not started | 22 |
+| Words still to read | about 74,000 |
 | Commits so far | `908bada`, `69807cf`, `71fe27f`, `762a938`, `0a3e953` (wiki), `d33b48e`, `a7c53c3`; `acc4300` (IDEAS) |
 
 ## What the first pass found
@@ -194,7 +194,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] castle-snippets-strips (0.0)
 - [x] acronyms (0.0)
 
-### Analyses (64 pages, 50 fully read)
+### Analyses (64 pages, 53 fully read)
 
 - [x] castle-cryptography (5.1)
 - [x] isospectral-castles (4.9)
@@ -247,8 +247,8 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] recurrence-discovery (1.0)
 - [ ] quadratic-min-height (1.0)
 - [~] castle-sign-kms-matrix (1.0)
-- [ ] area-growth-census (0.9)
-- [ ] half-sum-castles (0.8)
+- [x] area-growth-census (0.9)
+- [x] half-sum-castles (0.8)
 - [x] castle-conditional-entropy (0.8)
 - [x] convex-polyomino-by-area (0.7)
 - [ ] castle-avalanches (0.6)
@@ -257,7 +257,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] sum-of-three-cubes-castles (0.5)
 - [x] castle-row-raising-equation (0.5)
 - [~] castle-cryptography-round-three (0.4)
-- [ ] odd-castles-and-block-tables (0.0)
+- [x] odd-castles-and-block-tables (0.0)
 - [x] convex-castle-cap-factor (0.0)
 - [x] castle-q-bessel-closed-form (0.0)
 

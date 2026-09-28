@@ -1,11 +1,11 @@
 ---
 title: Castle strips counted by area - the growth-constant census
 category: Analyses
-summary: Count castle strips (a 0/1 rule saying which column heights may follow which) by total area instead of width, and ask which growth constants appear and at what smallest height. The area generating function has denominator det(I - A diag(x, ..., x^h)), which expands over principal minors of the 0/1 rule, so an exhaustive census of every rule up to height 4 (66,066 rules) is cheap. Heights 1 to 4 give 1, 3, 64 and 6,226 new growth constants, of degree up to the triangle number T = h(h+1)/2 (2,611 of the 6,226 at height 4 have the full degree 10). The smallest constant at each height is proved to be the root of z^T - z - 1 (1.3247, 1.1347, 1.0758 at heights 2, 3, 4): unrolling each column into one state per cell turns area counting into width counting on a T-state 0/1 table, any such table growing faster than 1 contains a cycle plus an ear and so grows at least at the root of x^n - x - 1, and the rule 1 -> 2 -> ... -> h -> 1 plus h -> 2 attains it; the largest is the h-nacci constant of all compositions with parts at most h. The census meets two classical lists. All ten of the ten smallest Pisot numbers (Dufresnoy-Pisot) appear by height 4 - plastic and supergolden at 2, five more at 3, three at 4. Among Salem numbers it finds every one of degree 4 and 6 below the height-4 ceiling 1.9276 (2 of degree 4, 7 of degree 6, checked against a complete search), the smallest Salem number of degree at most 8 (1.280638), and five of the six known Salem numbers below 1.3 of degree at most 10 - all but Lehmer's number 1.17628, the smallest known Salem number. The height-5 census (33.5 million rules, 4,712,674 distinct denominators, 4,134,787 distinct growth constants) settles it: Lehmer's number first appears at height 5, with denominator Lehmer's polynomial times three cyclotomic factors at the full degree 15, and all 11 known small Salem numbers of degree at most 14 appear by height 5. The larger of two lower bounds (the degree bound and the all-compositions ceiling) is the exact minimum height for 96.8% of all constants, for every member of the two Pisot families converging to the golden ratio, and for all Salem numbers below 1.448 except one - Lehmer's number, the smallest constant of any kind that needs more height than its degree.
+summary: Count castle strips (a 0/1 rule saying which column heights may follow which) by total area instead of width, and ask which growth constants appear and at what smallest height. The area generating function has denominator det(I - A diag(x, ..., x^h)), which expands over principal minors of the 0/1 rule, so an exhaustive census of every rule up to height 4 (66,066 rules) is cheap. Heights 1 to 4 give 1, 3, 64 and 6,226 new growth constants, of degree up to the triangle number T = h(h+1)/2 (2,611 of the 6,226 at height 4 have the full degree 10). The smallest constant at each height is proved to be the root of z^T - z - 1 (1.3247, 1.1347, 1.0758 at heights 2, 3, 4): unrolling each column into one state per cell turns area counting into width counting on a T-state 0/1 table, any such table growing faster than 1 contains a cycle plus an ear and so grows at least at the root of x^n - x - 1, and the rule 1 -> 2 -> ... -> h -> 1 plus h -> 2 attains it; the largest is the h-nacci constant of all compositions with parts at most h. The census meets two classical lists. All ten of the ten smallest Pisot numbers (Dufresnoy-Pisot) appear by height 4 - plastic and supergolden at 2, five more at 3, three at 4. Among Salem numbers it finds every one of degree 4 and 6 below the height-4 ceiling 1.9276 (2 of degree 4, 7 of degree 6, checked against a complete search), the smallest Salem number of degree at most 8 (1.280638), and five of the six known Salem numbers below 1.3 of degree at most 10 - all but Lehmer's number 1.17628, the smallest known Salem number. At height 5 (33.5 million rules, 4,712,674 distinct denominators, 4,134,787 distinct growth constants) Lehmer's number first appears, with denominator Lehmer's polynomial times three cyclotomic factors at the full degree 15, and all 11 known small Salem numbers of degree at most 14 appear by height 5. The larger of two lower bounds (the degree bound and the all-compositions ceiling) is the exact minimum height for 96.8% of all constants, for every member of the two Pisot families converging to the golden ratio, and for all Salem numbers below 1.448 except one - Lehmer's number, the smallest constant of any kind that needs more height than its degree.
 tags: [analysis, castle, castle-strip, area, generating-function, transfer-matrix, growth-constant, perron-number, pisot-number, salem-number, lehmer, mahler-measure, plastic-number, supergolden, n-nacci, census, exhaustive-search, min-height, implementation, verification]
 sources: [oeis-mining-pe502]
 created: 2026-09-25
-updated: 2026-09-25
+updated: 2026-09-28
 ---
 
 # Castle strips counted by area - the growth-constant census
@@ -19,9 +19,9 @@ The number of strips of area `n` grows like `ρ^n`, and `ρ` is the rule's **are
 ## Terms used on this page
 
 - **Minimal polynomial, conjugates** - a growth constant `ρ` is a root of an integer polynomial; the lowest-degree monic one is its minimal polynomial, and that polynomial's other roots are the conjugates of `ρ`. The golden ratio `1.618` has minimal polynomial `x^2 - x - 1` and one conjugate, `-0.618`.
-- **Perron number** - a real algebraic integer above 1 whose conjugates are all strictly smaller in size. Every growth constant above 1 of a 0/1 rule is the largest eigenvalue of a nonnegative integer matrix (see the unrolling under What comes next), so its conjugates are at most as large; Pisot and Salem numbers are the special cases where they are pinned inside or on the unit circle.
+- **Perron number** - a real algebraic integer above 1 whose conjugates are all strictly smaller in size. Every growth constant above 1 of a 0/1 rule is the largest eigenvalue of a nonnegative integer matrix (see the unrolling in the smallest-constant proof below), so its conjugates are at most as large; Pisot and Salem numbers are the special cases where they are pinned inside or on the unit circle.
 - **Pisot number** - an algebraic integer above 1 whose conjugates all lie strictly inside the unit circle.[^pisot] Their powers come exponentially close to whole numbers, because the power sums of all the roots are integers and the conjugates' powers vanish; Pisot proved that this near-integer property essentially characterizes them. The set of Pisot numbers is closed (Salem), its smallest member is the **plastic number** `1.3247`, root of `x^3 - x - 1` (Siegel), its smallest limit point is the golden ratio, and Dufresnoy and Pisot found every Pisot number below the golden ratio.[^pisot] The [[plastic-number](pages/plastic-number.md)] page has the castle side of the plastic number.
-- **Salem number** - an algebraic integer above 1 whose conjugates all have size at most 1, with at least one of size exactly 1.[^salem] The minimal polynomial is then palindromic (it reads the same backwards), `1/ρ` is also a root, and every other root lies on the unit circle; the degree is even and at least 4. Salem numbers sit on the border between "powers approach integers" and "powers spread out", which is why they matter in Diophantine approximation and harmonic analysis, and every Pisot number is a limit of Salem numbers.[^pisot][^salem]
+- **Salem number** - an algebraic integer above 1 whose conjugates all have size at most 1, with at least one of size exactly 1.[^salem] The minimal polynomial is then palindromic (it reads the same backwards), `1/ρ` is also a root, and every other root lies on the unit circle; the degree is even and at least 4. Every Pisot number is a limit of Salem numbers.[^pisot][^salem]
 - **Lehmer's number** - `1.17628...`, the largest root of `x^10 + x^9 - x^7 - x^6 - x^5 - x^4 - x^3 + x + 1`, the smallest Salem number known.[^salem] **Lehmer's conjecture** (open since 1933) says nothing smaller exists, in a stronger form: every integer polynomial whose roots are not all roots of unity has **Mahler measure** (the product of the sizes of its roots outside the unit circle) at least some fixed constant above 1, believed to be exactly `1.17628`. By Lind's work the answer decides whether a class of dynamical systems, automorphisms of compact groups, can have arbitrarily small positive entropy.[^lehmer]
 
 ## The generating function, and why the census is cheap
@@ -62,9 +62,9 @@ rule   growth                       denominator          reading
 10
 ```
 
-The largest constant at each height is the h-nacci constant (tribonacci `1.839287` first at height 3, tetranacci `1.927562` first at height 4). Tribonacci cannot appear at height 2, because `1 - x - x^2 - x^3` would need a 2 in the rule table.
+The largest constant at each height is the h-nacci constant (tribonacci `1.839287` first at height 3, tetranacci `1.927562` first at height 4). Tribonacci cannot appear at height 2, because it exceeds the height-2 ceiling, the golden ratio.
 
-The count explodes with height: most constants at height 4 have the full degree 10. That growth is what makes a height-5 census (degree up to 15, 33.5 million rules) a separate decision.
+The number of constants grows fast with height: 2,611 of the 6,226 new constants at height 4 (42%) have the full degree 10. The height-5 census (degree up to 15, 33.5 million rules) follows below.
 
 ## The smallest constant at each height
 
@@ -92,7 +92,7 @@ So every 0/1 table on `n` states with growth above 1 grows at least at the root 
 
 **3. The bound is attained.** Take the rule `1 -> 2 -> ... -> h -> 1` together with one extra step `h -> 2`. Its only cycles are the full cycle (area `T`) and `2 -> ... -> h -> 2` (area `T - 1`), which share heights, so its denominator is `1 - x^(T-1) - x^T` and its growth is the root of `z^T - z - 1`. Checked exactly for every height from 2 to 8.[^exec] The census's own minimizers are the same shape with the heights visited in another order: at height 4, `1 -> 3`, `2 -> 1 or 3`, `3 -> 4`, `4 -> 2`, with cycles `1 3 4 2` (area 10) and `3 4 2` (area 9).
 
-At `n = 3` states the bound in step 2 is the plastic number itself, which is why height 2 (three cells in all) bottoms out there. Step 2 is proved here directly rather than cited.
+At `n = 3` states the bound in step 2 is the plastic number itself, which is why the height-2 minimum (three cells in all) is the plastic number. Step 2 is proved here directly rather than cited.
 
 ## The census meets the classical lists
 
@@ -128,7 +128,7 @@ Wikipedia lists the ten smallest Pisot numbers, from Dufresnoy and Pisot's deter
 | 23 | 1.280638 | 8 | 4 |
 | 41 | 1.293485 | 10 | 4 |
 
-The one it misses is the first entry, Lehmer's number. Its degree fits the height-4 bound exactly, and it lies well inside the range of height-4 constants (which go down to `1.0758`), yet no height-4 rule grows at it. So Lehmer's number first appears at height 5 or later, or castle rules never produce it.
+The one it misses is the first entry, Lehmer's number. Its degree fits the height-4 bound exactly, and it lies well inside the range of height-4 constants (which go down to `1.0758`), yet no height-4 rule grows at it. So Lehmer's number needs height 5 or more; the height-5 census below finds it.
 
 ## The census at height 5
 
@@ -183,7 +183,7 @@ Of the 23 Salem numbers of degree 8 below 2 (a complete search, as for degrees 4
 - `1.994004`, root of `x^8 - 2x^7 + x^6 - 2x^5 + x^4 - 2x^3 + x^2 - 2x + 1`, lies above the all-compositions constant of every height through 7 (`1.991964` at height 7) and below that of height 8 (`1.996031`), so no rule below height 8 can reach it.
 - `1.955302`, root of `x^8 - 2x^7 - x^5 + 3x^4 - x^3 - 2x + 1`, lies below the height-5 ceiling `1.965948` and has degree 8, so both lower bounds allow height 5, yet no height-5 rule produces it. Its minimum height is at least 6: a second Salem number, after Lehmer's, that needs more height than either bound requires.
 
-### A min-height law, and Lehmer's number as its first exception
+### Two lower bounds on the minimum height
 
 Every growth constant `ρ` has two lower bounds on its minimum height, both proved above:
 
@@ -200,13 +200,13 @@ The larger of the two can never be beaten. Through height 5 it is almost always 
 
 The two infinite families of Pisot numbers converging to the golden ratio from below, `x^n(x^2 - x - 1) + 1` and `x^n(x^2 - x - 1) + (x^2 - 1)`,[^pisot] meet the bound exactly for every member through degree 15. Each member first appears at the first height whose degree bound allows it: degree 3 at height 2, degrees 4 to 6 at height 3, 7 to 10 at height 4, 11 to 15 at height 5.
 
-**Lehmer's number is the smallest constant of any kind that misses the bound** - degree 10 allows height 4, and it needs 5. Every other Salem exception is at least `1.448423`, and every Pisot exception at least `1.561752` (the eighth-smallest Pisot number, degree 6, first at height 4 against a bound of 3). So among all the constants castle rules reach through height 5, the smallest known Salem number is where castles first have to go higher than the degree requires.
+**Lehmer's number is the smallest constant of any kind that misses the bound** - degree 10 allows height 4, and it needs 5. Every other Salem exception is at least `1.448423`, and every Pisot exception at least `1.561752` (the eighth-smallest Pisot number, degree 6, first at height 4 against a bound of 3).
 
 ## What comes next
 
 - **Why Lehmer's number needs the extra room.** A structural reason that no height-4 rule carries Lehmer's polynomial, and whether every exception to the min-height law comes from cyclotomic padding the same way.
 - **The exceptions list.** Whether the 64 Pisot and 44 Salem exceptions share a shape, and whether the smallest-constant rule is unique up to relabeling.
-- **Height 6.** About `6.9 x 10^10` rules, degree up to 21: whether the min-height law keeps holding at 96-97%.
+- **Height 6.** About `6.9 x 10^10` rules, degree up to 21: whether the larger lower bound stays exact for 96-97% of constants.
 
 ## Related Concepts
 

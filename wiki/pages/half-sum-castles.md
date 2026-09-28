@@ -1,18 +1,18 @@
 ---
 title: Half-sum castles
 category: Analyses
-summary: The order-1/2 fractional partial sum of the castle count, H_h(w) = sum_k C(2k,k)/4^k F(w-k,h), has generating function G_h(x)/sqrt(1-x), algebraic of degree 2 and never rational, so no finite strip rule counts it. Because F grows like h^w/2, the pole at 1/h dominates the branch point at 1, and H_h(w)/F(w,h) -> sqrt(h/(h-1)), an algebraic constant. sqrt(pi) enters only in the branch remainder, which is G_h(1)/sqrt(pi w) with G_h(1) = 0, 1/2, 1/30, 1/20 for h = 2..5; G_h(1) is minus the sum of the castle count continued to negative widths, and at h = 2 it vanishes because the numerator carries a factor (1-x), leaving 1/(2 sqrt(pi) w^{3/2}). Shifting the half-sum onto the dominant pole, weights C(2k,k)(h/4)^k, gives h^w sqrt(w/pi) exactly in the leading term; at h = 4 the weights are the integers C(2k,k), and pi = lim w 16^w / K(w)^2 with K(w) = sum_k C(2k,k) F(w-k,4) = 1, 9, 51, 241, 1069, ... The integer half-sums count castles followed by a balanced tail (at h = 4, a height-4 skyline with as many 1s as 4s), a product and not a castle-intrinsic object; the one family where the half-sum is intrinsic is the nondecreasing castles, where half a sum in the width is half a row in the height, C(w+h-2, w-1) -> C(w+h-3/2, w-1). No half-sum row has an OEIS match.
+summary: The order-1/2 fractional partial sum of the castle count, H_h(w) = sum_k C(2k,k)/4^k F(w-k,h), has generating function G_h(x)/sqrt(1-x), algebraic of degree 2 and never rational, so no finite strip rule counts it. Because F grows like h^w/2, the pole at 1/h dominates the branch point at 1, and H_h(w)/F(w,h) -> sqrt(h/(h-1)), an algebraic constant. sqrt(pi) enters only in the branch remainder, which is G_h(1)/sqrt(pi w) with G_h(1) = 0, 1/2, 1/30, 1/20 for h = 2..5; G_h(1) is minus the sum of the castle count continued to negative widths, and at h = 2 it vanishes because the numerator carries a factor (1-x), leaving 1/(2 sqrt(pi) w^{3/2}). Shifting the half-sum onto the dominant pole, weights C(2k,k)(h/4)^k, gives h^w sqrt(w/pi) exactly in the leading term; at h = 4 the weights are the integers C(2k,k), and pi = lim w 16^w / K(w)^2 with K(w) = sum_k C(2k,k) F(w-k,4) = 1, 9, 51, 241, 1069, ... The integer half-sums count castles followed by a balanced tail (at h = 4, a height-4 skyline with as many 1s as 4s), a product of a castle and a tail; the one family where the half-sum is intrinsic is the nondecreasing castles, where half a sum in the width is half a row in the height, C(w+h-2, w-1) -> C(w+h-3/2, w-1). No half-sum row has an OEIS match.
 tags: [analysis, castle, fractional-calculus, half-sum, cesaro, riemann-liouville, generating-function, algebraic, singularity-analysis, pi, wallis, central-binomial, context-free, nondecreasing, computation, oeis, novel-candidate]
 sources: [project-euler-502-brute-force, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-23
-updated: 2026-09-23
+updated: 2026-09-28
 ---
 
 # Half-sum castles
 
 The partial sum of a count sequence is multiplication of its generating function by `(1 - x)^{-1}`; the Riemann-Liouville fractional sum of order `alpha` is multiplication by `(1 - x)^{-alpha}`, the Cesaro mean of order `alpha`. This page applies the order-`1/2` sum to the castle count `F(w, h)` in the width. Its companion [[fractional-block-count](pages/fractional-block-count.md)] runs the same operator with the opposite sign on a single skyline, and [[fractional-width-and-height](pages/fractional-width-and-height.md)] runs it in the height direction as the half-column of the nondecreasing rule.
 
-Every number below was computed while writing; the method is in the execution footnote.[^exec]
+The method is in the execution footnote.[^exec]
 
 ## Definition and the tables
 
@@ -55,13 +55,13 @@ None of the four `K_h` rows, the `4^w H_h` rows, or the dyadic numerators of `H_
 
 The weight `C(2k, k) / 4^k` is `~ 1 / sqrt(pi k)`, and the half-sum of the constant sequence `1` is `(2w + 1) C(2w, w) / 4^w ~ 2 sqrt(w / pi)` (numerators A001803), the Wallis case. The half-sum of a sequence of radius 1 therefore carries `sqrt(pi)` in its leading constant. Castle rows grow exponentially, and that changes the order of the terms.
 
-**The pole wins.** `G_h` has a simple pole at `x = 1/h` with `F(w, h) ~ h^w / 2` (the residue constant is `1/2` at every `h = 2..5`), and every other pole also lies inside the unit disk. Multiplying a simple pole at `r` by `(1 - x)^{-1/2}` scales it by `(1 - r)^{-1/2}`, so
+**The dominant pole.** `G_h` has a simple pole at `x = 1/h` with `F(w, h) ~ h^w / 2` (the residue constant is `1/2` at every `h = 2..5`), and every other pole also lies inside the unit disk. Multiplying a simple pole at `r` by `(1 - x)^{-1/2}` scales it by `(1 - r)^{-1/2}`, so
 
 ```
 H_h(w)  =  sum_i  c_i lambda_i^w (1 - 1/lambda_i)^{-1/2}  +  R_h(w),          H_h(w) / F(w, h)  ->  sqrt(h / (h - 1)),
 ```
 
-where `F(w, h) = sum_i c_i lambda_i^w` is the exponential-polynomial form of the row. The leading ratio is `sqrt 2, sqrt(3/2), sqrt(4/3), sqrt(5/4)` for `h = 2..5`, which matches to 12 digits at `w = 100`.[^exec] Half-summing an exponentially growing castle row only scales it by an algebraic constant.
+where `F(w, h) = sum_i c_i lambda_i^w` is the exponential-polynomial form of the row. The leading ratio is `sqrt 2, sqrt(3/2), sqrt(4/3), sqrt(5/4)` for `h = 2..5`, which matches to 12 digits at `w = 100`.[^exec] To leading order, half-summing an exponentially growing castle row scales it by an algebraic constant.
 
 **`sqrt(pi)` is in the remainder.** The branch point at `x = 1` contributes `G_h(x) (1 - x)^{-1/2} = G_h(1) (1 - x)^{-1/2} - G_h'(1) (1 - x)^{1/2} + ...`, so
 
@@ -76,9 +76,9 @@ R_h(w)  =  G_h(1) / sqrt(pi w)  +  O(w^{-3/2}).
 | 4 | 1/30 | 0.03473 | 0.03409 |
 | 5 | 1/20 | 0.04866 | 0.04931 |
 
-At `h = 2` the numerator of `G_2` is divisible by `1 - x`, so the `w^{-1/2}` term vanishes. The next term is `G_2'(1) / (2 sqrt(pi) w^{3/2})` with `G_2'(1) = 1`, and `2 sqrt(pi) w^{3/2} R_2(w)` reads `0.923, 0.960, 0.980` at `w = 50, 100, 200`.[^exec] `R_h(w)` is the difference between a rational number and an algebraic one, so it gives `pi` only in the limit, and only after the algebraic exponential part has been subtracted. The half-sum leaves [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] intact: it is another limit route.
+At `h = 2` the numerator of `G_2` is divisible by `1 - x`, so the `w^{-1/2}` term vanishes. The next term is `G_2'(1) / (2 sqrt(pi) w^{3/2})` with `G_2'(1) = 1`, and `2 sqrt(pi) w^{3/2} R_2(w)` reads `0.923, 0.960, 0.980` at `w = 50, 100, 200`.[^exec] `R_h(w)` is the difference between a rational number and an algebraic one, so it gives `pi` only in the limit, and only after the algebraic exponential part has been subtracted. So `pi` enters only through a limit, as on [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)].
 
-## The coefficient of `sqrt(pi)` is the negative-width count
+## The coefficient of `sqrt(pi)` as a negative-width sum
 
 The recurrence of each row runs backwards, which defines `F(w, h)` at negative integer widths. That is the same continuation [[fractional-width-and-height](pages/fractional-width-and-height.md)] uses at real `w`. For `h = 2..5` the two-sided sequence agrees with `F` at every `w >= 0` (no exceptional initial terms), and `F(-1, h) = -1 / (2h(h - 1))`:
 
@@ -95,7 +95,7 @@ For a single exponential, `sum_{w >= 0} lambda^w x^w + sum_{w < 0} lambda^w x^w 
 G_h(1)  =  - sum_{w <= -1} F(w, h),
 ```
 
-which the truncated sums confirm: `0`, `-0.5`, `-0.03333`, `-0.04999` against `G_h(1) = 0, 1/2, 1/30, 1/20`.[^exec] The coefficient of `1/sqrt(pi w)` in the half-sum is minus the total count of castles of negative width.
+which the truncated sums confirm: `0`, `-0.5`, `-0.03333`, `-0.04999` against `G_h(1) = 0, 1/2, 1/30, 1/20`.[^exec] The coefficient of `1/sqrt(pi w)` in the half-sum is minus the sum of the row continued to negative widths.
 
 ## The matched half-sum: `pi` in the leading term
 
@@ -122,7 +122,7 @@ The error is `O(1/w)` (about `1.85 pi / w`), from the next terms of the expansio
 
 `G_h(x) / sqrt(1 - x)` is algebraic of degree 2 over `Q(x)` and not rational. So no finite-state strip rule, and no regular language of castle words, has the half-sum as its count. The dyadic `H_h` is not a count at all. The integer versions are N-algebraic: `1 / sqrt(1 - 4x) = 1 / (1 - 2x C(x))` with `C` the Catalan series, so `G_h(x) / sqrt(1 - 4x)` counts a regular castle word followed by a word of an unambiguous context-free language. The algebraicity sits entirely in the tail, as in Delest and Viennot's convex polyominoes.[^2]
 
-At `h = 4` the tail has a castle reading. `C(2k, k) = [y^0] (y + 2 + 1/y)^k` is the number of width-`k` skylines over heights `{1, 2, 3, 4}` with as many columns of height 4 as of height 1. So `K_4(w)` counts width-`w` height-4 skylines cut at a marked column into an even-block castle prefix that reaches height 4 and a balanced suffix. This is a product: nothing inside the castle has changed. No castle-intrinsic object with count `K_h` was found.
+At `h = 4` the tail has a castle reading. `C(2k, k) = [y^0] (y + 2 + 1/y)^k` is the number of width-`k` skylines over heights `{1, 2, 3, 4}` with as many columns of height 4 as of height 1. So `K_4(w)` counts width-`w` height-4 skylines cut at a marked column into an even-block castle prefix that reaches height 4 and a balanced suffix. This is a product of a castle and a tail; no castle-intrinsic object with count `K_h` is known.
 
 **The nondecreasing castles are the exception.** A nondecreasing castle of width `w` and height `h` has `c_w = h`, so its block count is `h`, and there are `C(w + h - 2, w - 1)` of them, generating function `x / (1 - x)^h`. The half-sum raises the exponent by `1/2`:
 
@@ -134,7 +134,7 @@ verified exactly for `h <= 6`, `w <= 19`.[^exec] The right side is the same bino
 
 ## What this settles, and what it leaves
 
-- Settled: the half-sum of every castle row `h = 2..5` in closed generating-function form, with the leading constant `sqrt(h / (h - 1))`, the `sqrt(pi)` coefficient `G_h(1)`, its reading as minus the negative-width count, and the integer limit formula for `pi` at `h = 4`.
+- Settled: the half-sum of every castle row `h = 2..5` in closed generating-function form, with the leading constant `sqrt(h / (h - 1))`, the `sqrt(pi)` coefficient `G_h(1)`, its reading as minus the negative-width sum, and the integer limit formula for `pi` at `h = 4`.
 - Settled: the half-sum is never a regular-language count; the integer half-sums are context-free as castle-times-balanced-tail products.
 - Open: a castle-intrinsic object with count `K_4(w)`, or a proof that the cut is forced (for instance, a bijection from skylines with a balanced suffix to some rule-changed castle family of [[castle-classification](pages/castle-classification.md)]).
 - Open: a formula for `G_h(1)`. The values for `h = 2..8` are `0, 1/2, 1/30, 1/20, 41/1740, 103/6090, 421/35490`, with no visible pattern; only `h = 2` has the factor `1 - x`, so only there does the negative-width count sum to zero.
