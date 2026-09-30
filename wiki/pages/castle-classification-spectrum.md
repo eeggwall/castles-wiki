@@ -1,11 +1,11 @@
 ---
 title: Castle classification - spectral types
 category: Concepts
-summary: A classification of individual castles by the spectrum of a graph derived from them. Tree castles, golden- and silver-spectrum castles, Smith's-theorem completeness of golden-spectrum at four cells, isospectral pairs, and the Ramanujan castle via Greenberg's universal-cover definition.
-tags: [concept, castle, classification, taxonomy, spectral, adjacency-matrix, laplacian, ramanujan, smith-theorem, dynkin, tree-castle, isospectral, single-castle-predicate]
+summary: A classification of individual castles by the spectrum of a graph derived from them. Tree castles, golden- and silver-spectrum castles, Smith's-theorem completeness of golden-spectrum at four cells, isospectral pairs, and the Ramanujan castle via Greenberg's universal-cover definition. Sparse-spectrum castles (skyline DFT) are classified exactly - supports are bin 0 plus unions of divisor classes; crenellated castles at even width.
+tags: [concept, castle, classification, taxonomy, spectral, adjacency-matrix, laplacian, ramanujan, smith-theorem, dynkin, tree-castle, isospectral, single-castle-predicate, dft, sparse-spectrum]
 sources: [castle-classification, oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-09-28
+updated: 2026-09-29
 ---
 
 # Castle classification - spectral types
@@ -81,11 +81,21 @@ Two shape-agnostic facts stay useful here:
 - **The regular-graph definition does not apply.** Castle graphs beyond four cells are never regular, so there is no `d` for the classical `|lam| <= 2*sqrt(d - 1)` condition; the universal-cover form is used instead.
 
 
+## Sparse-spectrum castles
+
+A **sparse-spectrum castle** has its skyline discrete Fourier transform (DFT) `ĉ_k` supported on a small set `S` of bins: `ĉ_k = 0` for `k ∉ S`. Heights are whole numbers, so the possible supports are exactly `{0}` together with a union of the classes `D_d = {k : gcd(k, w) = d}`, `d` a proper divisor of `w` ([[spectral-analysis](pages/spectral-analysis.md)] §3). The members, sparsest first:
+
+- **Rectangles** - support `{0}`.
+- **Crenellated castles** ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 7) at even width - support `{0, w/2}`, heights alternating between two values. At odd width an alternating skyline has every bin nonzero.
+- **One class** - a support that is bin 0 plus one class `D_{w/q}` has exactly `φ(q)` bins besides bin 0, where `φ(q)` counts the numbers from 1 to `q` sharing no factor with `q`. Two such bins happen only for `q = 3, 4, 6`.
+- **Prime width** - every non-rectangular castle has all `w` bins nonzero, so none is sparse.
+
+Which supports survive the proper-castle even-block clause is open.
+
 ## Defined types without members
 
 These predicates have no computed members yet.
 
-- **Sparse-spectrum castle** - a predicate on the skyline discrete Fourier transform (DFT) `ĉ_k`: the individual castle has `supp(ĉ) ⊆ S` for some fixed small set `S`. The Axis-7 **crenellated** type on [[castle-classification-shape](pages/castle-classification-shape.md)] is exactly the two-atom DFT-support case (energy at `k = w/2`). The general sparse-spectrum classification (which sparse-support sequences are valid castles) connects to compressed sensing and turnpike reconstruction.
 - **Low-pass / high-pass castle** - a soft version of sparse-spectrum: the castle's DFT energy is concentrated in low-`k` modes (smooth mountain-shaped skyline) or high-`k` modes (jagged crenellation). A soft classifier by spectral concentration.
 - **Ihara-Ramanujan castle** - the Ramanujan condition on the non-backtracking operator rather than the adjacency operator. The Ihara zeta is the graph analogue of the Selberg zeta of a hyperbolic surface.
 
@@ -93,7 +103,7 @@ These predicates have no computed members yet.
 
 1. **Ramanujan census beyond 22 cells.** [[ramanujan-castles](pages/ramanujan-castles.md)] finds every castle with at most 14 cells Ramanujan and the first failures at 15 cells; the pattern of failures beyond 22 cells is open.
 2. **Bronze-spectrum castles.** Absent among 4.87 million castles on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]; open beyond the scanned size.
-3. **Sparse-spectrum, low/high-pass, Ihara-Ramanujan.** The three types above; each needs its method on [[spectral-analysis](pages/spectral-analysis.md)] computed before it has members.
+3. **Low/high-pass, Ihara-Ramanujan.** The two types without members above; each needs its method on [[spectral-analysis](pages/spectral-analysis.md)] computed before it has members. Sparse-spectrum castles are classified for skylines; open under the even-block clause.
 4. **Non-adjacency operators.** The Laplacian-cospectral census to 16 cells is on [[isospectral-castles](pages/isospectral-castles.md)] (17 groups), with the sandpile invariants of the same castles on [[sandpile-census](pages/sandpile-census.md)]; an Ihara census at small size would give the tree/golden/silver/`φ²` list its non-adjacency companions.
 
 ## Related Concepts

@@ -5,7 +5,7 @@ summary: The castle version of Kac's "Can one hear the shape of a drum?" - does 
 tags: [analysis, castle, spectral, isospectral, adjacency, laplacian, axis-9, kac, sunada, schwenk, trace-formula, tree, numpy, sympy, networkx, verification, pedagogy]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-28
+updated: 2026-09-29
 ---
 
 # Isospectral castles - hearing the shape of a castle
@@ -119,7 +119,8 @@ The spectral-radius census on [[castle-graph-spectral-radius](pages/castle-graph
 - Isospectral pairs are common from 12 cells on (50 adjacency groups at 16 cells), so the spectrum does not determine the castle: it is an Axis 9 invariant only.
 - The 11-cell Laplacian pair is the smallest castle instance of the Schwenk-McKay phenomenon; the 10-cell adjacency pair is the smallest cospectral castle pair with cycles and a candidate for an explicit common cover.
 - Sandpile invariants separate more than the spectrum. To 16 cells the sink-model sandpile group separates none of the 122 cospectral groups, because in the census cospectral castles always share their block graph ([[sandpile-census](pages/sandpile-census.md)]); the clock spectrum separates 62 of the 105 adjacency groups and 5 of the 17 Laplacian ones ([[sandcastle-clock](pages/sandcastle-clock.md)]); and the avalanche profile separates all of them ([[sandpile-identity](pages/sandpile-identity.md)]).
-- Open: the growth rate of the number of isospectral groups with `n`; whether the Ihara zeta or the skyline discrete Fourier transform (DFT) separates the pairs found here; a Sunada-type construction (common cover, almost-conjugate subgroups) explaining the 10-cell adjacency pair; and whether Schwenk's asymptotic density theorem has a quantitative castle analogue.
+- The skyline discrete Fourier transform (DFT) separates every pair here, since it can be inverted. Its magnitude spectrum is blind to cyclic shifts of the columns and misses exactly those: to 16 cells, 44 adjacency and 4 Laplacian cospectral pairs are cyclic shifts of each other (or of the mirror image), the smallest being the second 10-cell group, `(1,2,1,1,3,2)` and `(1,1,2,1,2,3)` ([[spectral-analysis](pages/spectral-analysis.md)] §3).
+- Open: the growth rate of the number of isospectral groups with `n`; whether the Ihara zeta separates the pairs found here; a Sunada-type construction (common cover, almost-conjugate subgroups) explaining the 10-cell adjacency pair; and whether Schwenk's asymptotic density theorem has a quantitative castle analogue.
 
 ## Appearances in Sources
 
