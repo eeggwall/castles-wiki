@@ -1,11 +1,11 @@
 ---
 title: Spectral analysis of castles
 category: Concepts
-summary: The centerpiece hub for spectral methods applied to castles as 2D polyominoes. Five different spectra sit on a castle, each classifying different things — transfer-matrix (growth), LGV kernel (correlation universality), skyline DFT (the skyline's own spectrum - the eigenbasis of the column difference; whole-number skylines have DFT supports that are exactly unions of divisor classes; homometric castles from 11 cells), combinatorial Laplacian (connectivity / isospectral pairs), Ihara zeta (Ramanujan / expander). Toolkit-side companion to the spectral predicates on castle-classification-spectrum.
+summary: The centerpiece hub for spectral methods applied to castles as 2D polyominoes. Five different spectra sit on a castle, each classifying different things — transfer-matrix (growth), LGV kernel (correlation universality), skyline DFT (the skyline's own spectrum - the eigenbasis of the column difference; whole-number skylines have DFT supports that are exactly unions of divisor classes; homometric castles from 11 cells; worked example on the 1729 castle, whose bins are the divisibility tests for 9, 11 and 101), combinatorial Laplacian (connectivity / isospectral pairs), Ihara zeta (Ramanujan / expander). Toolkit-side companion to the spectral predicates on castle-classification-spectrum.
 tags: [concept, castle, spectral, transfer-matrix, laplacian, dft, dct, galois, ramanujan-sum, homometric, ihara-zeta, ramanujan, isospectral, determinantal]
 sources: [spectral-analysis]
 created: 2026-09-16
-updated: 2026-09-29
+updated: 2026-09-30
 ---
 
 # Spectral analysis of castles
@@ -166,6 +166,49 @@ The smallest pair the magnitude spectrum misses is the second of the two 10-cell
                 ######                        ######
 ```
 
+### Worked example: the 1729 castle
+
+The base-10 digit castle of 1729, `(1, 7, 2, 9)`, is the Hardy-Ramanujan castle of [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)]: width 4, height 9, area 19. Every reading in this section shows up on it.[^hr]
+
+```
+   #
+   #
+ # #
+ # #
+ # #
+ # #
+ # #
+ ###
+####      (1, 7, 2, 9)
+```
+
+**The four bins.** At width 4, `ω = i`, so `e^{−2πi jk/4} = (−i)^{jk}`:
+
+```
+ĉ_0  =   1 +  7 +  2 + 9     =  19
+ĉ_1  =  −i −  7 + 2i + 9     =  2 + i
+ĉ_2  =  −1 +  7 −  2 + 9     =  13
+ĉ_3  =  conjugate of ĉ_1     =  2 − i
+```
+
+Parseval checks: `19² + 5 + 13² + 5 = 540 = 4 · (1 + 49 + 4 + 81)`.
+
+**Nearly crenellated.** Remove the mean height `19/4` and 94.4% of the remaining energy sits in bin 2, the wave that alternates column by column; bins 1 and 3 share the other 5.6%. The support is every bin, the classes `D_4 = {0}`, `D_2 = {2}` and `D_1 = {1, 3}`, with bins 1 and 3 arriving as a pair as the support rule requires. The non-wrapping DCT-II spreads the same energy 66% on its mode 3, 34% on mode 1 and under 1% on mode 2. The difference is the wrap: the DFT puts column 4 (height 9) next to column 1 (height 1) and reads one more alternation.
+
+**The bins are divisibility tests.** Read the columns as the digits of `N = 1729`. The digit polynomial `Q(y) = y³ + 7y² + 2y + 9` has `Q(10) = N` and `ĉ_k = Q(ω^k)`. And `10⁴ − 1 = 9 · 11 · 101` factors into the cyclotomic values `Φ_1(10) = 9`, `Φ_2(10) = 11`, `Φ_4(10) = 101`, one per class:
+
+| class | bins | value | the test it is | 1729 mod |
+|---|---|---|---|---|
+| `D_4` | `ĉ_0` | 19, the digit sum | casting out nines | `9`: `19 ≡ 1` |
+| `D_2` | `ĉ_2` | 13, the alternating digit sum | the test for 11 | `11`: `13 ≡ 2` |
+| `D_1` | `ĉ_1, ĉ_3` | `2 ± i`, from `Q mod (y² + 1) = y + 2` | the test for 101 (alternate two-digit blocks: `29 − 17`) | `101`: `10 + 2 = 12` |
+
+In general the bins of the class of order `q` determine `N mod Φ_q(10)`, and when they all vanish, `Φ_q(10)` divides `N`. At four digits, bin 2 is zero exactly when the alternating digit sum is, the classical test for 11. (This general form is this page's own reasoning, checked on 1729 and on the vanishing case for every digit castle of 2 to 6 digits.)[^hr] That the two real bins, 19 and 13, are both prime factors of `1729 = 7 · 13 · 19` is a coincidence of this number.
+
+**What the magnitudes pin down.** The magnitude spectrum is `(19, √5, 13, √5)` and the autocorrelation `a_t = (135, 48, 130, 48)`. No width-4 castle outside the cyclic shifts and mirror images of `(1, 7, 2, 9)` shares them, and the mean flip is unavailable because `2 · 19 / 4` is not whole.
+
+**The graph side.** 19 cells, 20 edges, and two `2 × 2` blocks sharing an edge, so 15 spanning trees and sandpile group `Z/15`, the same as the 10-cell cospectral pair ([[sandpile-group](pages/sandpile-group.md)]). Adjacency spectral radius `2.5982`, and Ramanujan ([[ramanujan-castles](pages/ramanujan-castles.md)]). The Fiedler value (the smallest nonzero Laplacian eigenvalue, the bottleneck measure) is `0.046`: two tall towers hang off a four-cell base. Among all 19-cell castles, none with a different graph shares its adjacency or its Laplacian spectrum, so the graph spectrum hears the graph. It does not hear the castle: 29 skylines, mirror images removed, draw that same graph, `(1, 3, 10, 1, 4)` among them, and the DFT tells all 29 apart.[^hr]
+
 **Wiki ties:** [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 7 (crenellated = support `{0, w/2}` at even width) and [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] Axis 9 (sparse-spectrum as an individual-castle predicate; low/high-pass as soft variants); [[castle-representations](pages/castle-representations.md)] (the column-height sequence being transformed); [[castle-graph](pages/castle-graph.md)] (horizontal edges from column differences).
 
 The reverse direction - sound to castle, lossless - is [[song-as-castle](pages/song-as-castle.md)]: a 16-bit waveform is an `h = 65536` skyline, so its DFT is the audio spectrum, and the number-theoretic transform mod 65537 is this same transform over a finite field with no rounding.
@@ -300,3 +343,5 @@ A spectral method plus a predicate on its output defines a castle type. The Rama
 [^ramanujan]: https://en.wikipedia.org/wiki/Ramanujan%27s_sum §Formulas for c_q(n), Kluyver - "This shows that cq(n) is always an integer."
 
 [^bg]: https://arxiv.org/pdf/0808.0094.pdf (Grimm and Baake, "Homometric point sets and inverse problems") abstract and §1 - "two point sets are called homometric when they share the same autocorrelation"; the excerpt also states "The polyominoes P1, P2 and their joint covariogram are displayed". Known from a search-result excerpt of the paper; the paper itself has not been read.
+
+[^hr]: Verified by execution (2026-09-30), Python 3 with NumPy, SymPy and networkx. Bins computed with the column index running `j = 1..w`, as in the definition above; energy shares with the mean removed; orthonormal DCT-II. The width-4 homometric search covered heights 1 to 19 (any match needs `∑ c_j² = 135`, so heights at most 11). Digit-polynomial remainders by SymPy. The vanishing check covered every digit castle of 2 to 6 digits with digits 1 to 9: whenever the bins of the class of order `q` all vanish, `Φ_q(10)` divides `N`, with 0 exceptions (at 4 digits, 489 castles with bin 2 zero and 81 with bins 1 and 3 zero). Every composition of 19 (mirror images removed) was compared with `(1, 7, 2, 9)` by adjacency and Laplacian eigenvalues at 6 decimals; all 28 matches are isomorphic to it by networkx. Spanning trees by the matrix-tree theorem.
