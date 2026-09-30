@@ -53,7 +53,7 @@ Full details on [[castle-graph](pages/castle-graph.md)] and [[tree-castle-by-are
 
 **No castle of any size is golden-spectrum outside the list above.** By **Smith's theorem**, a connected graph with largest eigenvalue below 2 is one of the simply-laced Dynkin diagrams `A_n = P_n`, `D_n`, `E_6`, `E_7`, `E_8`.[^1] All five families occur as castle graphs: `A_n` as any path-shaped castle, `D_n` as `(1, 2, 1, 1, …, 1)` (a degree-3 cell at the base of a one-cell tower next to the left end), `E_6, E_7, E_8` as `(1, 1, 2, 1, 1)`, `(1, 1, 2, 1, 1, 1)`, `(1, 1, 2, 1, 1, 1, 1)`. Their spectral radii are `2 cos(π / (n + 1))`, `2 cos(π / (2n − 2))`, `2 cos(π / 12)`, `2 cos(π / 18)`, `2 cos(π / 30)`, and `φ = 2 cos(π / 5)` is hit only by `A_4 = P_4`. Verified by enumeration to 9 cells: 171 castles (102 up to mirror image) have spectral radius below 2, every radius among them is a Dynkin value, and exactly the six `P_4` castles have radius `φ`.
 
-**Copper and higher metallic means are impossible for castle graphs.** Copper is `2 + √5 = 4.236` and every higher metallic mean exceeds 4. A castle graph has maximum degree 4 (each cell has at most 4 orthogonal neighbours), so its spectral radius is at most 4. Bronze `3.303` is open - absent up to the scanned size but not ruled out by any obstruction.
+**Copper and higher metallic means are impossible for castle graphs.** They exceed 4, the maximum degree of a castle graph. Bronze `3.303` remains open ([[bronze-castle-hunt](pages/bronze-castle-hunt.md)]).
 
 The metallic means reach individual castles only through their polyomino graphs. **Project Euler 502's own signed transfer matrix never has a metallic eigenvalue** ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]): its eigenvalues are twice the roots of an integer polynomial with leading coefficient 2, so never metallic. The class-level growth constants on [[castle-classification-growth](pages/castle-classification-growth.md)] and the single-castle adjacency spectral radii here come from different operators; `φ` appears in both.
 
@@ -102,7 +102,7 @@ These predicates have no computed members yet.
 ## Open threads
 
 1. **Ramanujan census beyond 22 cells.** [[ramanujan-castles](pages/ramanujan-castles.md)] finds every castle with at most 14 cells Ramanujan and the first failures at 15 cells; the pattern of failures beyond 22 cells is open.
-2. **Bronze-spectrum castles.** Absent among 4.87 million castles on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]; open beyond the scanned size.
+2. **Bronze-spectrum castles.** No example in twelve searched boxes totaling about `7.1 × 10^11` skylines (with overlaps); existence remains open ([[bronze-castle-hunt](pages/bronze-castle-hunt.md)]).
 3. **Low/high-pass, Ihara-Ramanujan.** The two types without members above; each needs its method on [[spectral-analysis](pages/spectral-analysis.md)] computed before it has members. Sparse-spectrum castles are classified for skylines; open under the even-block clause.
 4. **Non-adjacency operators.** The Laplacian-cospectral census to 16 cells is on [[isospectral-castles](pages/isospectral-castles.md)] (17 groups), with the sandpile invariants of the same castles on [[sandpile-census](pages/sandpile-census.md)]; an Ihara census at small size would give the tree/golden/silver/`φ²` list its non-adjacency companions.
 

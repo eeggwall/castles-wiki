@@ -5,7 +5,7 @@ summary: How much information a castle carries, in two senses that agree — uni
 tags: [concept, castle, entropy, information-theory, counting, growth-constant, metallic-means, parity, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-18
-updated: 2026-09-26
+updated: 2026-09-29
 ---
 
 # Castle entropy
@@ -42,7 +42,7 @@ Read it as: each column is one of `h` heights (`log₂ h` bits each, independent
  12  3    261615      17.997       18.020       −0.02
 ```
 
-The residual is `log₂(1 + S/A)` — the subdominant sign — and it decays as `w` grows. The parity bit is exact in the limit, not merely approximate. (The `h = 3` row's `261615` is the twelfth term of [[new-sequence-fw3](pages/new-sequence-fw3.md)]; at `(w,h) = (13,10)`, `log₂ F ≈ 41.8` against `42.2`, the scale figure of [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)].)
+The residual from `w·log₂ h − 1` is `log₂(A/h^w) + log₂(1 + S/A)`: exact height and parity each contribute a correction that vanishes as `w` grows.
 
 ## Entropy rate: log₂ of the growth constant
 
