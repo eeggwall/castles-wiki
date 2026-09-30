@@ -5,7 +5,7 @@ summary: The 42 shape-based castle types as skyline predicates on individual cas
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook]
 sources: [castle-classification]
 created: 2026-09-19
-updated: 2026-09-28
+updated: 2026-09-29
 ---
 
 # Castle classification - shape types
@@ -146,7 +146,7 @@ Types 19, 20, 22, 23, 25, 28, 29, 34:
 |---|---|---|
 | **Equal-block** | all maximal horizontal blocks have the same length | *open* - heavy structure |
 | **Two-level** | exactly two distinct height values | at `h = 2` this is every castle except the all-2 rectangle (`2^w − 2`); the height-2 tree castles ([[castle-graph](pages/castle-graph.md)]) are a Fibonacci-counted sub-family |
-| **Crenellated** | heights alternate `{a, h}` (battlements) | *open* - very restricted two-level; the two-atom skyline-DFT case on [[spectral-analysis](pages/spectral-analysis.md)] |
+| **Crenellated** | heights alternate `{a, h}` (battlements) | *open* - very restricted two-level; at even width, the two-atom skyline-DFT case (support `{0, w/2}`) on [[spectral-analysis](pages/spectral-analysis.md)] |
 | **Moated** | `c_1 = c_w = 1`, all interior `≥ 2` | *open* |
 | **Fence-post** | `c_i = 1` for all even `i` | *open* |
 | **Linear** | `c_i = a + (i−1)d` (arithmetic progression) | elementary: `2⌊(h−1)/(w−1)⌋ + 1` castles for `w ≥ 2` |

@@ -1,11 +1,11 @@
 ---
 title: Hear the shape of a castle - seminar
 category: Concepts
-summary: A seminar on Kac's drum question asked of castles, organized as a list of what a spectrum can and cannot hear. A castle becomes a graph (cells, orthogonal neighbors); its adjacency and Laplacian eigenvalues are the "notes". Worked by hand on the golden path, the 4-cycle and the silver 3×2 rectangle, the spectrum hears the area, the number of edges and hence the number of 2×2 blocks, bipartiteness, and (Laplacian) connectivity and the number of spanning trees. It fails first at 10 cells - (1,1,1,2,3,2) and (1,1,2,2,3,1) share every adjacency eigenvalue, trace and spanning-tree count (15) but have different degree sequences, and the Laplacian hears the difference. The Laplacian fails first at 11 cells, on two trees with identical degree sequences, separated only by per-cell closed-walk counts at length 3. Both operators fail together at 16 cells. Schwenk and McKay (trees) and Sunada (covers) are the known mechanisms; a Sunada cover for the 10-cell pair, Ihara zeta and the skyline DFT are open. One runnable block reproduces both smallest pairs by exhaustive search.
+summary: A seminar on Kac's drum question asked of castles, organized as a list of what a spectrum can and cannot hear. A castle becomes a graph (cells, orthogonal neighbors); its adjacency and Laplacian eigenvalues are the "notes". Worked by hand on the golden path, the 4-cycle and the silver 3×2 rectangle, the spectrum hears the area, the number of edges and hence the number of 2×2 blocks, bipartiteness, and (Laplacian) connectivity and the number of spanning trees. It fails first at 10 cells - (1,1,1,2,3,2) and (1,1,2,2,3,1) share every adjacency eigenvalue, trace and spanning-tree count (15) but have different degree sequences, and the Laplacian hears the difference. The Laplacian fails first at 11 cells, on two trees with identical degree sequences, separated only by per-cell closed-walk counts at length 3. Both operators fail together at 16 cells. Schwenk and McKay (trees) and Sunada (covers) are the known mechanisms; a Sunada cover for the 10-cell pair and the Ihara zeta are open, and the skyline DFT separates the pair. One runnable block reproduces both smallest pairs by exhaustive search.
 tags: [concept, castle, seminar, pedagogy, teaching, spectral, isospectral, adjacency, laplacian, kac, schwenk, sunada, trace-formula, matrix-tree-theorem, tree-castle, golden-ratio, silver-ratio]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-26
-updated: 2026-09-28
+updated: 2026-09-29
 ---
 
 # Hear the shape of a castle - seminar
@@ -114,7 +114,7 @@ Ways to separate what the eigenvalues cannot:
 
 - **Sandpiles**, with one sink cell (the sink model, a graph invariant). The sink sandpile group depends only on the block graph, which in the census cospectral castles always share, but the sink clock spectrum ticks 15 against 5 on the 10-cell pair and separates 62 of 105 adjacency and 5 of 17 Laplacian groups to 16 cells ([[sandcastle-clock](pages/sandcastle-clock.md)]), and the avalanche profile separates all of them ([[sandpile-identity](pages/sandpile-identity.md)]).
 
-Whether Ihara or the DFT separates the 10-cell pair is open.
+The skyline DFT separates the 10-cell pair: the full transform can be inverted, and even the magnitudes differ on the two classes' width-6 skylines. Whether Ihara separates it is open.
 
 ## Summary table
 
@@ -223,7 +223,7 @@ False
 ## What is still open
 
 - a Sunada-type construction for the 10-cell adjacency pair;
-- whether the Ihara zeta function or the skyline DFT separates the cospectral pairs;
+- whether the Ihara zeta function separates the cospectral pairs;
 - the bronze spectral-radius hunt ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]: no castle among 4.87 million has spectral radius `(3 + √13)/2`);
 - the LGV kernel spectrum ([[spectral-analysis](pages/spectral-analysis.md)] §2).
 
