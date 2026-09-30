@@ -4,15 +4,15 @@ Working list of project and seminar ideas for Project Euler 502 (Castles). This 
 
 Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, within each Division. A done item is one line: title link + one-sentence result; detail lives on the page and in git history. Any open follow-up is its own `[ ]` item, never a "Still open:" tail. Plain hyphens in new text, no em-dashes.
 
-## Where we are (2026-09-27)
+## Where we are (2026-09-29)
 
 | Slice | Value |
 |---|---|
 | Pages | 194 (44 Sources / 85 Concepts / 64 Analyses / 1 Reference / 0 Maintenance) |
-| Divisions (open + done) | R 4+9, E 15+14, N 16+30, E/N 1+0, Z 6+7, Q 7+9, S 24+11, T 7+0, F 12+6, X 8+7, C 3+3, Telephone Company 5+3, Facilities 6+0 |
-| Items | 114 open, 99 done, 213 total (top-level items only) |
+| Divisions (open + done) | R 4+9, E 15+14, N 16+30, E/N 1+0, Z 6+7, Q 7+9, S 24+11, T 6+1, F 12+6, X 8+7, C 3+3, Telephone Company 5+3, Facilities 6+0, AI 0+0 |
+| Items | 113 open, 100 done, 213 total (top-level items only) |
 | Seminar arcs | 17 (11 delivered, 5 in progress, 1 planned) |
-| Dates | wiki 2026-09-13, IDEAS 2026-09-27, last reorganize 2026-09-27 |
+| Dates | wiki 2026-09-13, IDEAS 2026-09-29, last reorganize 2026-09-27 |
 
 ## Prize Problems
 
@@ -466,3 +466,5 @@ Applied, physical-world tooling: turning real objects into castles.
 - [ ] **Mountains as castles** - mountain ranges and ridgelines as castles: national-park skylines and city mountainscapes (the Wasatch Front behind Salt Lake City, for example) sampled from elevation profiles into column heights; compare their block statistics and roughness with city skylines, and ask whether a ridgeline's castle has a stable fractal dimension as the sampling gets finer. BTW suggest that a landscape raised by slow tectonics reaches a self-similar critical state with slides on all scales ([bak-tang-wiesenfeld-1988-self-organized-criticality](wiki/pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)); test whether ridgeline castles show power-law statistics (drops, plateau lengths) that a random skyline does not.
 - [ ] **Ballparks as castles** - start at home plate with the ground as the base row and read each ray out of home plate as a castle: the field is a long flat run, the outfield wall is a sudden column, and the stands behind it continue the skyline. A ray that stops at the wall is exactly the **hook** of [castle-classification-shape](wiki/pages/castle-classification-shape.md) (`c_1 = h`, every other column 1): it carries only two numbers, distance and wall height, like a ruler. The stands, tiers and porches behind the wall are what make each ray an interesting castle, and they need real 3D park geometry (outfield fence distances and heights, stand heights and tiers; for example the park data in baseball simulation databases such as OOTP's, or public park-dimension data, subject to their terms). A castle cannot overhang (every block rests on the one below), so an upper deck that hangs over the seats beneath is recorded only by its upper outline; how much each park loses to that rule is itself a statistic. One park is then a fan of castles, one per angle - the two foul lines, left-center, center, right-center, plus signature features (Fenway Park's Green Monster, the pool beyond the right-center wall at Chase Field, formerly Bank One Ballpark). Comparing the 30 MLB parks, two at a time or all at once, is an R Division representation question: how to encode a fan of castles as one object and put two parks side by side.
 - [ ] **BTW's shoebox on a castle mold** - [bak-tang-wiesenfeld-1988-self-organized-criticality](wiki/pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md) ends with a home experiment: wet sand piled steeply in the corner of a shoebox produces slides of all sizes as it dries; run it in a castle-shaped mold (a skyline template as the back wall, the floor as the tide), photograph the slides, and compare their size statistics with the simulated tide avalanches of [castle-avalanches](wiki/pages/castle-avalanches.md).
+
+### AI Division (machine learning - trained models that read castles)
