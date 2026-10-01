@@ -5,7 +5,7 @@ summary: The wiki's symbol conventions in one place, including the sandpile symb
 tags: [concept, castle, notation, reference, signed-tower-count, castle-sign, pedagogy]
 sources: [project-euler-502-solution, project-euler-502-representations]
 created: 2026-09-26
-updated: 2026-09-28
+updated: 2026-10-01
 ---
 
 # Castle notation - castles, towers, and the parity term
@@ -152,6 +152,19 @@ The random-castle pages ([[castle-samplers](pages/castle-samplers.md)]) keep the
 | `H_n`, `H_n^{(2)}` | harmonic numbers `Σ 1/i` and `Σ 1/i²` | [[castle-samplers](pages/castle-samplers.md)], [[fractional-block-count](pages/fractional-block-count.md)] |
 | `p` | the entry probability of a Bernoulli random rule | [[castle-samplers](pages/castle-samplers.md)] |
 
+## Signal symbols
+
+The pages that read a skyline as a sampled signal ([[spectral-analysis](pages/spectral-analysis.md)] §3, [[tone-castle-catalogue](pages/tone-castle-catalogue.md)]) add these.
+
+| symbol | meaning | where |
+|---|---|---|
+| `ĉ_k`, bin `k` | the skyline DFT `Σ_j c_j e^{−2πijk/w}` and its index, the bin (not the tower height `k`) | [[spectral-analysis](pages/spectral-analysis.md)], [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] |
+| `D_d` | the divisor class `{k : gcd(k, w) = d}` of bins; skyline DFT supports are unions of them | [[spectral-analysis](pages/spectral-analysis.md)], [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] |
+| `x_j` | the unquantized sampled signal at sample `j = 0, 1, …`; column `j + 1` holds sample `j` | [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] |
+| `w` | for a tone castle, the exact period `8000 / gcd(8000, f_1, f_2)` in samples, which is the castle width | [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] |
+| `rise(c)` | the cyclic rise: `Σ max(0, c_{i+1} − c_i)` around the cycle, including the step from `c_w` to `c_1`; `r` repeats of a castle with `c_1 = h` have `c_w + r · rise(c)` blocks | [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] |
+| `N` | Goertzel block length in samples | [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] |
+
 ## Other meanings of P, T, and other shared letters on the wiki
 
 These are local notations on specific pages and are unrelated to the tower counts, or reuse a letter from the tables above:
@@ -184,7 +197,10 @@ These are local notations on specific pages and are unrelated to the tower count
 | `Δ` | Dhar's toppling matrix on the sandpile pages (`Δ = L̃` for a castle); Deutsch-Elizalde's bijection from cornerless Motzkin paths to bargraphs; elsewhere a difference or a discriminant | [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)], [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
 | `V` | the valid-castle set `V(w, h)` (Sampling symbols above); in a tower word `U V D`, the sub-tower between a peak's `U` and `D` | [[castle-samplers](pages/castle-samplers.md)], [[castle-foata-transform](pages/castle-foata-transform.md)] |
 | `H_n` vs `H_d(μ)` | harmonic numbers vs the rescaled factor polynomials of `char_k` | [[castle-samplers](pages/castle-samplers.md)], [[tower-parity-sectors](pages/tower-parity-sectors.md)] |
-| `N_i(state)` vs `N(q)` | the samplers' completion table vs the q-Bessel numerator (Area gradings above) | [[castle-samplers](pages/castle-samplers.md)], [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] |
+| `N_i(state)` vs `N(q)` vs `N` | the samplers' completion table vs the q-Bessel numerator (Area gradings above) vs the Goertzel block length (Signal symbols above) | [[castle-samplers](pages/castle-samplers.md)], [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)], [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] |
+| `k` | tower height `k = h − 1` (the core tables); a DFT bin on the signal pages (Signal symbols above) | [[spectral-analysis](pages/spectral-analysis.md)], [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] |
+| `D_d` vs `D` | a divisor class of DFT bins vs the degree matrix in `L = D − A` | [[spectral-analysis](pages/spectral-analysis.md)], [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] |
+| `r` | repeat count of a periodic castle; the Ramanujan sum `r_q(j)` on [[spectral-analysis](pages/spectral-analysis.md)] | [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] |
 
 ## Related Concepts
 
