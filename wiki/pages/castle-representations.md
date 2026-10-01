@@ -5,7 +5,7 @@ summary: Three ways to encode a castle — binary strings, integer tuples, and U
 tags: [concept, castle, representations, encoding, combinatorics]
 sources: [project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-solution]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-01
 ---
 
 # Castle representations
@@ -68,6 +68,10 @@ The castle-factoring work sketches three additional encodings, each a re-view of
 - **Cycle-forest form.** Stack-match each `U` with the `D` that closes it; each matched pair is a block, and a block nested directly inside another is its child, giving a rooted forest of blocks (roots on the base). It is the castle analogue of a permutation as parenthesized cycles — but it is only the *vertical nesting skeleton*: it discards the `R` steps and so does not recover the tower word. A bare parenthesization is a two-letter Dyck word (`U` open, `D` close) and cannot record horizontal moves; the tower needs the third letter `R`. This is why the model uses the three-letter [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] rather than a bare Dyck word.[^11]
 - **Signed column-difference sequence.** The run-length encoding of the first-difference sequence `d` into up-streaks, flat runs, and down-streaks — the signed form of the castle, with the down-streaks as the sign-carrying atoms and the flat runs recording gap and sub-block widths. This is the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)].[^12]
 - **BDD / ZDD.** The valid-castle set `V(w, h)` as a Binary Decision Diagram or zero-suppressed BDD: a directed-acyclic-graph representation of size `O(h · w · log h)` obtained by lifting the [[castle-strip](pages/castle-strip.md)] transfer matrix to a DFA on state `(last-column height, blocks-mod-2, is-h-reached)` and encoding each column in `⌈log_2 h⌉` Boolean variables. It represents the whole family `V(w, h)` rather than single castles, and ZDD operations support counting, uniform random sampling, rank / unrank, and intersection with other castle-family ZDDs; see [[castle-bdd-zdd](pages/castle-bdd-zdd.md)].
+
+## The skyline as a sampled signal
+
+The integer-tuple encoding is also a sampled signal: column `i` is a sample, its height a quantized amplitude, and `h` the number of quantization levels. Read that way, a 16-bit audio waveform is a castle at `h = 65536` ([[song-as-castle](pages/song-as-castle.md)]), a grayscale image row is a castle at `h = 256` ([[image-as-castle](pages/image-as-castle.md)]), and a telephone tone sampled at 8 kHz is a periodic castle whose width is its period ([[tone-castle-catalogue](pages/tone-castle-catalogue.md)]). The signal-processing tools then act on the skyline directly: its discrete Fourier transform is the spectrum of [[spectral-analysis](pages/spectral-analysis.md)] §3, and a played-back castle can be sent over a telephone line ([[castle-phone-line](pages/castle-phone-line.md)]).
 
 ## Appearances in Sources
 

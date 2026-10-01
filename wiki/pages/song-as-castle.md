@@ -5,7 +5,7 @@ summary: How to encode a song as a castle, with every number executed. Rung 0, t
 tags: [analysis, castle, encoding, compression, audio, pcm, lpc, flac, mp3, aac, opus, finite-field, ntt, berlekamp-massey, entropy, youtube, beethoven, cd, red-book, phreaking, dtmf, seminar, pedagogy]
 sources: [project-euler-502-representations, project-euler-502-solution]
 created: 2026-09-19
-updated: 2026-09-28
+updated: 2026-10-01
 ---
 
 # A song as a castle
@@ -202,6 +202,8 @@ Its skyline DFT has **two atoms**, bins 13 and 27 = 40 - 13, carrying over 99% o
 
 **Detection is one DFT bin.** The Goertzel algorithm evaluates the DFT at a single bin, so a tone detector is a linear functional on the skyline.
 
+**The full catalogue.** [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] builds the castle for every DTMF key, every MF code and the call-progress tones. All 15 MF codes are width-80 castles; DTMF keys have periods of 2000 to 8000 samples, longer than a DTMF burst, so a sent DTMF key is only approximately periodic. With integer heights the four atoms carry over 99.99% of the energy but the exact support fills whole divisor classes, and a burst of `r` whole periods has a block parity that alternates with `r`.
+
 **In-band signaling and block parity.** In-band signaling puts control (tones) and content (voice) on the same channel. The PE 502 parity clause is likewise a control bit computed from the same skyline that carries the data, and by the 43% flip rate above, most single-column edits change the data without changing that bit.
 
 ---
@@ -293,6 +295,7 @@ Length 15, blocks = 7. The mean block count over all `(15, 5)` castles is about 
 - [[isospectral-castles](pages/isospectral-castles.md)] - where the "hear the shape" direction loses information; the lossless direction here does not.
 - [[image-as-castle](pages/image-as-castle.md)] - the same map for JPG and PNG: an image as a stack of row castles or one two-dimensional castle.
 - [[castle-steganography](pages/castle-steganography.md)] - hiding a base64 string in castles; block parity as a covert channel.
+- [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] - every DTMF, MF and call-progress signal as a castle, extending the telephone section above.
 - [[castle-entropy](pages/castle-entropy.md)] - the `log_2 A(w,h)` budget and the `-1` bit even-block price used throughout Rung 0/1; the "castle-entropy asymptotic -1" this page invokes.
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[one-bit-seminar](pages/one-bit-seminar.md)] / [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] / [[sandcastle-seminar](pages/sandcastle-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] - the other seminar pages.
 

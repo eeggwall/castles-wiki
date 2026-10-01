@@ -5,7 +5,7 @@ summary: The cameraman image's 512 row castles, each played as a tone whose pitc
 tags: [analysis, castle, steganography, audio, telephone, modem, frequency-shift-keying, error-profile, image, implementation, seminar]
 sources: [project-euler-502-representations]
 created: 2026-09-24
-updated: 2026-09-28
+updated: 2026-10-01
 ---
 
 # What survives a phone line - castles sent as pitch-stepping tones
@@ -130,6 +130,7 @@ The exact heights survive only on a slow, quiet line, the averaged statistics (h
 - [[castle-compression](pages/castle-compression.md)] - lossless and lossy recoding, the other damage models the hiding schemes were tested against.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the skyline's Fourier modes, whose slowest members survive the line.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - Stop 4 of the one-bit seminar, the parity as the most fragile statistic.
+- [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] - the network's own signalling tones (DTMF, MF, call progress) on the same 8 kHz channel, as periodic castles.
 
 
 ## Appearances in Sources

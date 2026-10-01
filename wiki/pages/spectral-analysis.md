@@ -5,7 +5,7 @@ summary: The centerpiece hub for spectral methods applied to castles as 2D polyo
 tags: [concept, castle, spectral, transfer-matrix, laplacian, dft, dct, galois, ramanujan-sum, homometric, ihara-zeta, ramanujan, isospectral, determinantal]
 sources: [spectral-analysis]
 created: 2026-09-16
-updated: 2026-09-29
+updated: 2026-10-01
 ---
 
 # Spectral analysis of castles
@@ -120,7 +120,7 @@ Checked on all 408,573 skylines with `w ≤ 9, h ≤ 4` and `w = 10, h ≤ 3`: e
 - **Crenellated castles.** Support inside `{0, w/2}` means period 2: the heights alternate between two values. That needs `w` even, since `D_{w/2} = {w/2}` is one bin only then. At odd width an alternating skyline leaks into every bin: `(1,3,1,3,1)` has all 5 bins nonzero, `(1,3,1,3,1,3)` only `{0, 3}`.
 - **Prime width.** The classes are `{0}` and everything else, so every non-rectangular skyline of prime width has all `w` bins nonzero.
 - **Fewest bins.** A pattern repeating every `q` columns needs `φ(q)` bins besides bin 0. A nonconstant skyline has at least `p − 1` of them, `p` the smallest prime dividing `w`. Exactly two besides bin 0 needs `q ∈ {3, 4, 6}`.
-- **Tones are sparse only approximately.** On [[song-as-castle](pages/song-as-castle.md)], the 2600 Hz tone at 8 kHz is a width-40 castle whose energy, mean removed, sits over 99% in bins 13 and 27. With whole-number heights it cannot be exactly those two: `gcd(13, 40) = 1`, so bin 13 shares its class with all 16 bins coprime to 40.
+- **Tones are sparse only approximately.** On [[song-as-castle](pages/song-as-castle.md)], the 2600 Hz tone at 8 kHz is a width-40 castle whose energy, mean removed, sits over 99% in bins 13 and 27. With whole-number heights it cannot be exactly those two: `gcd(13, 40) = 1`, so bin 13 shares its class with all 16 bins coprime to 40. Across the 35 telephone signals of [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] (DTMF, MF, call progress, 2600 Hz) quantized to `h = 256`, the atoms carry 99.997-99.999% of the mean-removed energy, and 30 of the 35 castles have all `w` bins nonzero.
 
 The proper-castle clause of Project Euler 502 (an even number of blocks, [[castle-sign](pages/castle-sign.md)]) is not handled by this argument. Which supports survive it is open.
 
@@ -291,6 +291,7 @@ A spectral method plus a predicate on its output defines a castle type. The Rama
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] — the from-scratch pedagogy tutorial for Method 1 (adjacency spectrum) that this hub organizes.
 - [[ramanujan-castles](pages/ramanujan-castles.md)] — computes `ρ(T)`, settles the boxcastle question §5 raises, and finds the smallest non-Ramanujan castles (15 cells).
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar walk-through of method 4 and the isospectral pairs.
+- [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] - §3 applied to telephone tones: exact periods, divisor-class supports, and the Goertzel detector as one DFT bin.
 - [[sandpile-group](pages/sandpile-group.md)] - the sandpile group introduced from the Laplacian and the boundary matrix.
 
 ## Footnotes
