@@ -22,12 +22,20 @@ Pitch rather than loudness because a phone line damages loudness (it compresses 
 
 ## Terms used on this page
 
-- **Voice band** - telephone lines carry only pitches from about 300 Hz to 3400 Hz. Anything outside is cut off. All tones here sit inside it.
+- **Voice band** - telephone lines carry only pitches from about 300 Hz to 3400 Hz. Anything outside is cut off. All tones here sit inside it. This is the line's **bandwidth**; see the next section for how it differs from the sampling rate.
 - **The phone system's loudness encoding** - digital phone lines store each sound sample as 8 bits on a logarithmic loudness scale (standard name: mu-law, from the ITU telephone standard G.711). Quiet sounds keep detail and loud sounds are coarse. It adds a small rounding distortion to every sample.
 - **Hiss level, in decibels (dB)** - how much weaker the background noise is than the tone. 30 dB means the hiss carries 1000 times less power than the tone; 20 dB means 100 times less. "No hiss" below means only the loudness encoding and the band cutoff, with no added noise.
 - **Samples per column** - the phone line carries 8000 sound samples per second. Holding each column's pitch for 32 samples means 4 ms per column, 250 columns per second, and 2 seconds for one row castle. Fewer samples per column is faster and harder to read.
 - **Height error** - received height minus sent height, per column.
 - **Bit error rate** - the fraction of hidden bits that come out wrong.
+
+## Bandwidth and sampling rate
+
+A digital telephone line is described by two different numbers. Its **bandwidth** is the range of frequencies it passes: the voice band, about 300 to 3400 Hz. Its **sampling rate** is how many samples per second the digital link takes: 8000, each stored as 8 bits, which gives the 64 kbit/s of the G.711 standard.[^g711] The 8000 is a count of samples per second, not a frequency the line carries.
+
+The Nyquist limit relates the two. A signal sampled 8000 times per second can represent frequencies only up to half that rate, 4000 Hz. A tone at `f` above 4000 Hz is sampled as a tone at `8000 − f` below it, since `cos(2π(8000 − f)j/8000 + φ) = cos(2πfj/8000 − φ)` at every sample `j`, so it would arrive as the wrong pitch (aliasing). The voice band therefore stops below 4000 Hz, and the 600 Hz between 3400 and 4000 Hz leaves room for the filter in front of the sampler to cut off.
+
+On this page the sampling rate sets the time grid: samples per column, and so columns per second. The bandwidth limits the pitches: the 600 to 3000 Hz pitch range sits inside the voice band, and so below the 4000 Hz Nyquist limit.
 
 ## The setup
 
@@ -130,7 +138,7 @@ The exact heights survive only on a slow, quiet line, the averaged statistics (h
 - [[castle-compression](pages/castle-compression.md)] - lossless and lossy recoding, the other damage models the hiding schemes were tested against.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the skyline's Fourier modes, whose slowest members survive the line.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - Stop 4 of the one-bit seminar, the parity as the most fragile statistic.
-- [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] - the network's own signalling tones (DTMF, MF, call progress) on the same 8 kHz channel, as periodic castles.
+- [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] - the network's own signalling tones (DTMF, MF, call progress) on the same voice-band channel sampled 8000 times per second, as periodic castles.
 
 
 ## Appearances in Sources
@@ -140,3 +148,4 @@ The exact heights survive only on a slow, quiet line, the averaged statistics (h
 ## Footnotes
 
 [^exec]: Verified by execution (2026-09-24): Python 3 with numpy, scipy and scikit-image under `uv`; the cover is `skimage.data.camera()`. Tone at 8000 samples per second and half full-scale amplitude; 8-bit mu-law encoding at mu = 255; Gaussian hiss scaled to the tone's power; 8th-order Butterworth band-pass 300-3400 Hz applied forward and backward (no delay); pitch read from the phase step of the Hilbert analytic signal. Statistics table over rows 0, 4, ..., 508; hiding-scheme table over rows 100, 104, ..., 352; end-to-end table over 20 hiss draws. All quoted numbers are the script's printed output.
+[^g711]: https://en.wikipedia.org/wiki/G.711 (lead) and §"Features" - "G.711 passes audio signals in the frequency band of 300–3400 Hz and samples them at the rate of 8000 Hz"; "64 kbit/s bit rate (8 kHz sampling frequency × 8 bits per sample)".
