@@ -112,6 +112,10 @@ def check_missing_frontmatter(pages):
     out = []
     for slug, page in pages.items():
         missing = missing_fields(page["fm"])
+        # Lint reports use `sources: []`: the field is required, but an empty
+        # source list is valid for a report derived from existing wiki pages.
+        if slug.startswith("lint-") and page["fm"] is not None and "sources" in page["fm"]:
+            missing = [field for field in missing if field != "sources"]
         if missing:
             out.append({"page": slug, "missing": missing})
     return out

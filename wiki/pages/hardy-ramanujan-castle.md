@@ -1,11 +1,11 @@
 ---
 title: The Hardy-Ramanujan castle (1729)
 category: Analyses
-summary: 1729, the taxicab number 1^3+12^3 = 9^3+10^3, is a castle count - F(6,4) = 1729 exactly, the only cell with w,h <= 40 where the Hardy-Ramanujan number appears, and A(6,4) = 16^3 - 9^3 is a difference of cubes in the same cell. The sum-of-three-cubes reading 9^3 + 10^3 + (-12)^3 = 1 opens onto Ramanujan's near-miss family x^3+y^3 = z^3 +- 1, which is a C-finite sequence with denominator (1+x)(1-83x+x^2): Berlekamp-Massey recovers it from the terms, and its growth constant (83+9 sqrt 85)/2 is the SQUARE of the ninth metallic mean delta_9 = (9+sqrt 85)/2 - the Perron root of the height-10 ceiling-exception castle strip. Also on the page - 1729 read as a castle (the base-10 digit castle (1,7,2,9) is a valid even-block castle of area 19 and is Ramanujan in the spectral sense), the first four Carmichael numbers 561, 1105, 1729, 2465 all as castle counts, and F(w,h) mod 1729 with periods 72, 2520, 25200 at h = 2, 3, 4.
-tags: [analysis, castle, 1729, taxicab, hardy-ramanujan, sum-of-cubes, near-miss, c-finite, berlekamp-massey, metallic-mean, carmichael, mod-p, worked-example, computation]
+summary: 1729, the taxicab number 1^3+12^3 = 9^3+10^3, is a castle count - F(6,4) = 1729 exactly, the only cell with w,h <= 40 where the Hardy-Ramanujan number appears, and A(6,4) = 16^3 - 9^3 is a difference of cubes in the same cell. The sum-of-three-cubes reading 9^3 + 10^3 + (-12)^3 = 1 opens onto Ramanujan's near-miss family x^3+y^3 = z^3 +- 1, which is a C-finite sequence with denominator (1+x)(1-83x+x^2): Berlekamp-Massey recovers it from the terms, and its growth constant (83+9 sqrt 85)/2 is the SQUARE of the ninth metallic mean delta_9 = (9+sqrt 85)/2 - the Perron root of the height-10 ceiling-exception castle strip. Also on the page - 1729 read as a castle (the base-10 digit castle (1,7,2,9) is a valid even-block castle of area 19, is Ramanujan in the spectral sense, and its skyline DFT bins 19, 13, 2+-i are its divisibility tests for 9, 11 and 101), the first four Carmichael numbers 561, 1105, 1729, 2465 all as castle counts, and F(w,h) mod 1729 with periods 72, 2520, 25200 at h = 2, 3, 4.
+tags: [analysis, castle, 1729, taxicab, hardy-ramanujan, dft, divisibility-test, sum-of-cubes, near-miss, c-finite, berlekamp-massey, metallic-mean, carmichael, mod-p, worked-example, computation]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-19
-updated: 2026-09-28
+updated: 2026-09-30
 ---
 
 # The Hardy-Ramanujan castle (1729)
@@ -176,7 +176,15 @@ The base-10 castle `(1, 7, 2, 9)` is the Hardy-Ramanujan castle proper: width 4,
 ####        row 1      column heights (1, 7, 2, 9): 14 blocks, area 19
 ```
 
-Its castle graph ([[castle-graph](pages/castle-graph.md)]) has 19 cells and 20 edges, cycle rank 2 (two filled `2 x 2` squares, at rows 1-2 across columns 2-3 and 3-4). Adjacency spectrum: `lam_1 = 2.5982`, `lam_2 = 1.8981`; the universal-cover spectral radius by the edge-cavity method of [[ramanujan-castles](pages/ramanujan-castles.md)] is `rho(T) = 2.5756`, so `lam_2 <= rho(T)` and the digit castle is **Ramanujan** in the spectral sense as well.[^exec] (Every castle with at most 22 cells is Ramanujan, per that page's census.) Its characteristic polynomial is `x (x^18 - 20x^16 + 160x^14 - 670x^12 + 1600x^10 - 2215x^8 + 1723x^6 - 691x^4 + 119x^2 - 5)`, irreducible over `Q` apart from the factor `x`.
+Its castle graph ([[castle-graph](pages/castle-graph.md)]) has 19 cells and 20 edges, cycle rank 2 (two filled `2 x 2` squares, at rows 1-2 across columns 2-3 and 3-4). Adjacency spectrum: `lam_1 = 2.5982`, `lam_2 = 1.8981`; the universal-cover spectral radius by the edge-cavity method of [[ramanujan-castles](pages/ramanujan-castles.md)] is `rho(T) = 2.5756`, so `lam_2 <= rho(T)` and the digit castle is **Ramanujan** in the spectral sense as well.[^exec] At 19 cells this is not automatic: that page's census to 22 cells finds every castle with at most 14 cells Ramanujan and the first failures at 15. Its characteristic polynomial is `x (x^18 - 20x^16 + 160x^14 - 670x^12 + 1600x^10 - 2215x^8 + 1723x^6 - 691x^4 + 119x^2 - 5)`, irreducible over `Q` apart from the factor `x`.
+
+**Its skyline spectrum.** The skyline discrete Fourier transform (DFT) of `(1, 7, 2, 9)`, the Fourier transform of the column heights themselves, has four bins, `(19, 2 + i, 13, 2 - i)`. They are the divisibility tests of 1729, one bin class for each factor of `10^4 - 1 = 9 * 11 * 101`:
+
+- bin 0 is the digit sum 19: casting out nines, `1729 = 1 (mod 9)`;
+- bin 2 is the alternating digit sum 13: `1729 = 2 (mod 11)`;
+- bins 1 and 3, `2 +- i`, are the test for 101 (alternate two-digit blocks, `29 - 17 = 12`): `1729 = 12 (mod 101)`.
+
+With the mean height removed, 94% of the energy is in bin 2, the column-by-column alternation, so the castle is nearly crenellated. Its graph spectrum determines its graph among all 19-cell castles, but 29 skylines (mirror images removed) draw that same graph, and the DFT tells them apart.[^dft] The full worked example is on [[spectral-analysis](pages/spectral-analysis.md)] §3.
 
 Two more readings of 1729 as a single castle:
 
@@ -204,7 +212,7 @@ Settled:
 - `F(6,4) = 1729`, unique in `w, h <= 40`; `A(6,4) = 16^3 - 9^3`; the `(6,4)` cell is `91 * (37, 19, 18, 1)`.
 - The first four Carmichael numbers are castle counts: `odd(3,34), A(4,7), F(6,4), A(4,9)`.
 - Ramanujan's near-miss family is C-finite of order 3, Berlekamp-Massey recovers it, and its growth constant is `delta_9^2`, the square of the ninth metallic mean, realized on the castle side by the height-10 ceiling-exception strip at width step 2.
-- The base-10 digit castle `(1, 7, 2, 9)` is a valid even-block castle of area 19 and is spectrally Ramanujan.
+- The base-10 digit castle `(1, 7, 2, 9)` is a valid even-block castle of area 19 and is spectrally Ramanujan, and its skyline DFT bins `19, 13, 2 +- i` are its divisibility tests for 9, 11 and 101.
 - `F(., h) mod 1729` has periods `72, 2520, 25200` for `h = 2, 3, 4`.
 
 Open:
@@ -233,6 +241,7 @@ Open:
 - [[song-as-castle](pages/song-as-castle.md)] - the rank/unrank bijection used for "castle number 1729".
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the period-is-lcm-of-orders mechanism behind the mod-1729 table.
 - [[castle-graph](pages/castle-graph.md)] - the polyomino graph of the digit castle.
+- [[spectral-analysis](pages/spectral-analysis.md)] - the skyline DFT, with the digit castle `(1, 7, 2, 9)` as its worked example.
 - [[castle-snippets](pages/castle-snippets.md)] - `all_castles`, `blocks`, `castle_graph`.
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - `Phi_6(p)` and the round-three torus, at `p = 12`.
 - [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - the `char_k` irreducibility thread this page's eigenvalue/palindromic-polynomial material sits alongside.
@@ -249,3 +258,5 @@ Open:
 [^8]: https://mathworld.wolfram.com/RamanujansSumIdentity.html (2026-09-19) - the three generating functions with denominator `1 - 82x - 82x^2 + x^3`, the identity `a_n^3 + b_n^3 = c_n^3 + (-1)^n`, Hirschhorn's closed forms with `alpha, beta = (83 +- 9 sqrt 85)/2` and denominators 85, and "the first seven cases n=0 to 6 is sufficient to prove the result" (Hirschhorn 1996); references M. D. Hirschhorn, "An Amazing Identity of Ramanujan", Math. Mag. 68 (1995) 199-201, and "A Proof in the Spirit of Zeilberger of an Amazing Identity of Ramanujan", Math. Mag. 69 (1996) 267-269. https://oeis.org/A051028 (2026-09-19) - "Ramanujan's a-series: expansion of (1+53x+9x^2)/(1-82x-82x^2+x^3)", g.f. "(1+53*x+9*x^2)/((1+x)*(1-83*x+x^2))", recurrence signature `(82, 82, -1)`, comment (Emeric Deutsch, 2006) "The 'amazing' identity of Ramanujan is a(n)^3 + b(n)^3 = c(n)^3 + (-1)^n" with `b, c` = A051029, A051030; further references K.-W. Chen, Fib. Q. 50 (2012) 227-230; J. H. Han and M. D. Hirschhorn, Math. Mag. 79 (2006) 302-304; J. Mc Laughlin, Fib. Q. 48 (2010) 34-38.
 [^9]: https://oeis.org/A005917 (2026-09-19) - "Rhombic dodecahedral numbers: a(n) = n^4 - (n - 1)^4", data `1, 15, 65, 175, 369, 671, 1105, 1695, 2465, 3439, 4641, 6095`; formula "a(n) = (2*n - 1)*(2*n^2 - 2*n + 1)".
 [^exec]: Verified by execution (2026-09-19): two Python 3 scripts (SymPy 1.14, NumPy 1.26, NetworkX 3.4). Script 1: factorization, Carmichael check over all `a` coprime to 1729, Korselt, base expansions, sums of three cubes for 1729 (`|x|,|y|,|z| <= 300`) and for 1 (`<= 100`), Mahler's identity by symbolic expansion, the three Ramanujan series from their generating functions with the identity checked for `n = 0..5` and the recurrence run backwards to `n = -4`, denominator factorization and partial fractions, Berlekamp-Massey over `Q` on `c_0..c_11`, Lucas sequences and continued fractions of `delta_9`, `delta_9^2`, `1729^(1/3)`, and the height-10 matrix `M_10 = J - D` with `charpoly(M_10)`, `charpoly(M_10^2)`, and free strip counts. Script 2: the parity transfer DP for `F(w, h)` (checked against `F(4,2) = 10` and brute force at `(6,4)`), the `w, h <= 40` sweep for 1729 and for the taxicab / near-miss / Carmichael lists, `P(2,6)` and `P(3,6)` as signed sums over `{0..k}^6`, the `D(w,h) = 2F - A` table, digit castles in bases 2-20, `unrank` from song-as-castle, the even-block codebook endpoints at `(6,4)`, the castle graph of `(1,7,2,9)` with adjacency spectrum, characteristic polynomial, and `rho_cover` from ramanujan-castles, and the mod `7, 13, 19, 1729` periods by first repeated DP state. All quoted numbers are the scripts' printed output.
+
+[^dft]: Verified by execution (2026-09-30), Python 3 with NumPy, SymPy and networkx: the four bins with column index `j = 1..4`, the residues of 1729 mod 9, 11 and 101 against the digit polynomial `y^3 + 7y^2 + 2y + 9` reduced mod `y - 1`, `y + 1` and `y^2 + 1`, the energy share with the mean removed, and every composition of 19 (mirror images removed) compared with `(1, 7, 2, 9)` by adjacency and Laplacian eigenvalues, where all 28 matches are isomorphic to it by networkx.

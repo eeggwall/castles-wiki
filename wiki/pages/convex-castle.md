@@ -5,7 +5,7 @@ summary: A castle with a unimodal (up-then-down) skyline — equivalently column
 tags: [concept, castle, convex, unimodal, column-convex, row-convex, combinatorics, stars-and-bars]
 sources: [project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-mining-pe502, algebraic-languages-and-polyominoes-enumeration, bender-1974-convex-n-ominoes]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-09-29
 ---
 
 # Convex castle
@@ -51,7 +51,7 @@ where `C(m,k) = m!/(k!(m−k)!)` is the binomial coefficient. For example, at *h
 
 This is A001519, a third grading of the same class after `(w,h)` (binomial) and area (A001523). With the parity clause, the signed convex count by semi-perimeter is periodic with period 6 (`-t²(1-t)/(1-t+t²)`), and the even-block convex castles are `(A001519 + period-6)/2`, i.e. `0, 1, 3, 7, 17, 44, 116, 305, …` (no OEIS match, searched 2026-09-22; [[castle-perimeter](pages/castle-perimeter.md)]). The stack is also one of the three pieces of every convex polyomino in their trisection; see [[stack-polyomino-gf](pages/stack-polyomino-gf.md)].
 
-**Every castle over its convex core.** The Solution subpage records that enumerating all castles as `D`/`U`-pair insertions into convex castles "never resolved into a formula", and the winning solution instead counts via the [[binary-string-bijection](pages/binary-string-bijection.md)] and independence.[^6] The per-column form of the same idea does close: every castle has a unique minimal convex majorant `min(prefix max, suffix max)`, the castles sharing it lower the non-anchor columns of its plateaus, and the fiber is `prod m^(l-1)` over plateaus unsigned and `(-1)^h prod P(m-1, l-1)` signed, so `F(w,h)` is a sum over convex castles of products of signed tower counts ([[convex-core](pages/convex-core.md)]). Convex castles sit at the intersection of two convexity classes, column-convex ([[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)]) and horizontally convex ([[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)]).
+**Every castle over its convex core.** A castle's unique minimal convex majorant is `min(prefix max, suffix max)`. On a plateau of height `m` and length `l`, there are `l−1` free columns, except at the top, where there are `max(l−2,0)`. Each plateau contributes `m^free` to the fiber count and `P(m−1,free)` to its signed sum, with an overall factor `(-1)^h` ([[convex-core](pages/convex-core.md)]). Summing `(unsigned+signed)/2` over the cores gives `F(w,h)`. The source's `D`/`U` insertion approach did not yield a formula.[^6]
 
 ## Appearances in Sources
 

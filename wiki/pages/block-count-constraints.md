@@ -5,7 +5,7 @@ summary: Three ways to select castles by block count — residue classes (roots 
 tags: [concept, castle, generating-functions, roots-of-unity, coin-problem, pedagogy]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-14
-updated: 2026-09-28
+updated: 2026-09-29
 ---
 
 # Block-count constraints: a trichotomy
@@ -24,7 +24,7 @@ For height ≤ 1 (binary strings) the block count is the number of runs, so `G_{
 |---|---|---|
 | **residue class** (or finite union, mod m) | roots of unity | even; divisible by 7; ≡ 3 mod 4 |
 | **sparse set** (thin, no period) | lacunary series | powers of 2; squares |
-| **numerical semigroup** (coin denominations) | coin-change series + constant term | `{5,7}`; `{5,10,25}` |
+| **additive monoid** (coin denominations) | Booleanized coin-change series | `{5,7}`; `{5,10,25}` |
 
 Call it the **residue / sparse / semigroup trichotomy.**
 
@@ -58,23 +58,24 @@ Call it the **residue / sparse / semigroup trichotomy.**
 
 ## 3. Semigroup constraints — coin-change series
 
-**General construction.** "Blocks is a nonnegative combination of denominations `D`" means `blocks ∈ ⟨D⟩`, a numerical semigroup. Its indicator is a coefficient of the **coin-change** generating function
+**General construction.** A nonnegative combination of denominations `D` lies in the additive monoid `⟨D⟩` (a numerical semigroup when `gcd(D)=1`). The coin-change series counts representations; its Boolean support indicates membership:
 
 ```
-C(z) = ∏_{d ∈ D} 1/(1 − z^d),      so      [b ∈ ⟨D⟩] = [z^b] C(z)  (a count ≥ 1 iff representable).
+C_D(z) = ∏_{d ∈ D} 1/(1 − z^d)
+I_D(z) = Σ_{b≥0} min(1, [z^b]C_D(z)) z^b,      so [z^b]I_D(z) = [b ∈ ⟨D⟩].
 ```
 
-Then the count is the **Hadamard product** — the constant term of `G` against `C`:
+Count castles by taking the constant term against `I_D`:
 
 ```
-# { blocks ∈ ⟨D⟩ } = Σ_b [z^b]G · [z^b]C = [z^0] G(z) · C(1/z).
+# { blocks ∈ ⟨D⟩ } = Σ_b [z^b]G · [z^b]I_D = [z^0] G(z) · I_D(1/z).
 ```
 
-**Why it trims.** `[z^b]C` is the number of ways to make change for `b`, which is positive exactly on the semigroup — so `[z^0] G·C(1/z)` sums only the block counts that are representable.
+**Why it trims.** `[z^b]C_D` can exceed one; `[z^b]I_D` is one for every representable `b`, regardless of how many representations it has.
 
-**Simple case (reduces).** `D = {5}`: `C(z) = 1/(1−z⁵)`, so `[b ∈ ⟨5⟩] = [5 | b]`. The semigroup `5ℤ` *is* the residue class `0 mod 5`, and the coin method collapses back to `(1/5) Σ_j G(ω^j)`. This is precisely why "divisible by 5, 10, 25, 50, or 100" is a residue condition, not a coin problem — all those denominations share the divisor 5.
+**Residue case.** For `D={5}`, `C_D=I_D=1/(1−z⁵)`; membership is divisibility by 5, so the roots-of-unity filter applies. The same holds for `{5,10,25,50,100}`.
 
-**Less simple.** `D = {5, 7}`: `C(z) = 1/((1−z⁵)(1−z⁷))`, and `⟨5,7⟩ = {0, 5, 7, 10, 12, 14, 15, …}`. Its Frobenius number (the largest un-makeable amount) is **23**, by Sylvester's formula `ab − a − b` for two coprime denominations. Where 23 comes from: `n = 5x + 7y` is representable exactly when a multiple of 5 with the right residue mod 7 sits at or below `n`; the values `5x mod 7` for `x = 0…6` are `0, 5, 3, 1, 6, 4, 2`, so the largest such first-multiple is `5·6 = 30`, and the largest non-representable number below it is `30 − 7 = 23` (everything ≥ 24 is representable; there are `(5−1)(7−1)/2 = 12` non-representable numbers in all). This is *not* a finite union of residue classes, so the constant term `[z^0] G(z)/((1−z⁻⁵)(1−z⁻⁷))` is the only handle. (Concretely: height ≤ 1, length 10, runs are `{0,1,2,3,4,5}` with counts `C(11, 2r)`, and `⟨5,7⟩ ∩ {0..5} = {0,5}`, so the count is `C(11,0) + C(11,10) = 1 + 11 = 12`.)
+**Two denominations.** For `D={5,7}`, `[z^35]C_D=2` (seven 5s or five 7s), but `[z^35]I_D=1`. The largest gap is 23. Height-1 towers of length 10 can have at most 5 blocks; only 0 and 5 lie in `⟨5,7⟩`, giving `C(11,0)+C(11,10)=12` towers.
 
 ## Worked against the wiki's own sequences
 
@@ -101,9 +102,9 @@ Look at the **shape of S** and pick the tool:
 
 - **periodic / residue** → roots of unity (a finite character sum);
 - **thin, no period** → lacunary series (coefficient extraction);
-- **additively closed (coin denominations)** → coin-change series (constant term).
+- **additively closed (coin denominations)** → Boolean support of the coin-change series.
 
-A coin semigroup *degenerates* to a residue class exactly when `gcd(D)` is itself one of the denominations (so the semigroup is a single arithmetic progression) — and the coin problem is then a character sum. Otherwise it needs the generating function.
+If `gcd(D)` is a denomination, `⟨D⟩` is its nonnegative multiples and a roots-of-unity filter suffices. Otherwise, count from the Boolean support, not from the number of coin representations.
 
 ## Appearances in Sources
 
