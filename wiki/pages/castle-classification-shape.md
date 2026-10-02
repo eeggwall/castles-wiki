@@ -1,8 +1,8 @@
 ---
 title: Castle classification - shape types
 category: Concepts
-summary: The 42 shape-based castle types as skyline predicates on individual castles, plus the wiki-named ridge type. Seven axes: convexity/modality, rate of change, path-like, symmetry, extremum, parity/area, value patterns. Each type gets its wiki home and count status.
-tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle]
+summary: The 42 shape-based castle types as skyline predicates on individual castles, plus the wiki-named ridge, hoodoo, and monadnock types. Seven axes: convexity/modality, rate of change, path-like, symmetry, extremum, parity/area, value patterns. Each type gets its wiki home and count status.
+tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle, hoodoo-castle, monadnock-castle, distinct-parts]
 sources: [castle-classification]
 created: 2026-09-19
 updated: 2026-10-02
@@ -34,7 +34,7 @@ The proposed types cluster into seven structural axes, some of which the wiki ha
 
 ### Axis 1: Convexity / modality
 
-Types 1-6 and 30-31 restrict the shape of the skyline's local extrema:
+Types 1-6 and 30-31 restrict the shape of the skyline's local extrema, and the wiki-named hoodoo and monadnock types restrict how the steps change along each side of a unimodal skyline:
 
 | Type | Predicate | Wiki tie |
 |---|---|---|
@@ -45,9 +45,34 @@ Types 1-6 and 30-31 restrict the shape of the skyline's local extrema:
 | **k-modal** | at most `k` local maxima | *open* - unimodal is `k=1`; parameterized family |
 | **Anti-unimodal (V-shaped)** | weakly decrease then weakly increase | the "valley" family; on [[castle-by-area](pages/castle-by-area.md)] as valley castles, area-OEIS A332578; the [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] valley bijection is an open thread |
 | **Convex-skyline** | `c_{i−1} − 2c_i + c_{i+1} ≥ 0` (discrete convex) | *open* - a stronger sub-family of anti-unimodal |
-| **Concave-skyline** | `c_{i−1} − 2c_i + c_{i+1} ≤ 0` (discrete concave) | *open* - a stronger sub-family of unimodal |
+| **Concave-skyline** | `c_{i−1} − 2c_i + c_{i+1} ≤ 0` (discrete concave) | *open* - a stronger sub-family of unimodal; the monadnock type is its strict sub-family with both sides present |
+| **Hoodoo** (wiki-named, not one of the 35) | unimodal; rising steps strictly increase, falling drops strictly decrease | counted at every `(w, h)` by distinct-part partitions; see **Hoodoo and monadnock castles** below |
+| **Monadnock** (wiki-named, not one of the 35) | unimodal; rising steps strictly decrease, falling drops strictly increase | equinumerous with hoodoo castles in every `(w, h)` cell, by step reversal; see below |
 
-**Where the wiki already has counts:** unimodal and (by symmetry) reverse Ferrers, via the [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]; anti-unimodal (valley) by area on [[castle-by-area](pages/castle-by-area.md)]. **Open:** an explicit convex ⟺ valley bijection (the two classes are equinumerous in every `(w, h)` cell).
+**Where the wiki already has counts:** unimodal and (by symmetry) reverse Ferrers, via the [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]; anti-unimodal (valley) by area on [[castle-by-area](pages/castle-by-area.md)]; hoodoo and monadnock by `(w, h)` (below). **Open:** an explicit convex ⟺ valley bijection (the two classes are equinumerous in every `(w, h)` cell).
+
+**Hoodoo and monadnock castles.** Both are castles of exact height `h ≥ 2` with three parts, read left to right: a **rising side** of at least one column below `h`, a **summit** of one or more columns of height `h`, and a **falling side** of at least one column below `h`. A side's steps are the height changes `c_{i+1} − c_i` from its first column up to the summit (rising side) or from the summit down to its last column (falling side). The step onto the summit and the step off it belong to their sides, every step on a side is nonzero, and the only zero steps are inside the summit.
+
+- **Hoodoo castle.** The rising steps strictly increase and the falling drops strictly decrease in size: the skyline climbs faster and faster, then falls steeply and levels off. Each side is discrete-convex, with one concave bend at the summit. Example, `h = 35`, `w = 10`: `(2, 3, 6, 16, 35, 35, 25, 18, 14, 12)`, with rising steps `1, 3, 10, 19` and drops `10, 7, 4, 2`.
+- **Monadnock castle.** The rising steps strictly decrease and the falling drops strictly increase: the skyline climbs fast and slows into the summit, then falls slowly and steepens. The whole skyline is discrete-concave. Example, `h = 35`, `w = 10`: `(2, 21, 31, 34, 35, 35, 33, 29, 22, 12)`, with rising steps `19, 10, 3, 1` and drops `2, 4, 7, 10`.
+- **Not the convex-skyline type.** Convex-skyline (`c_{i−1} − 2c_i + c_{i+1} ≥ 0` everywhere) forces a valley; a hoodoo is convex on each side but not at the summit. The monadnock type is the strict, two-sided part of concave-skyline: dropping strictness (equal consecutive steps allowed) gives concave-skyline castles with both sides present.
+- **Sides are distinct-part partitions.** The steps of one side are distinct positive integers, and their sum is `h` minus the side's outer column, a number from `1` to `h − 1`. Read as a set, a side is a partition into distinct parts of an integer in `1, …, h − 1`, and conversely each such partition gives exactly one hoodoo side (steps in increasing order) and one monadnock side (decreasing order). A side with three steps needs a rise of at least `1 + 2 + 3 = 6`, so the number of columns on one side is at most the largest integer whose triangular number is at most `h − 1`: 1 at `h = 2, 3`, 2 at `h = 4, …, 6`, 3 at `h = 7, …, 10`.
+- **Step-reversal bijection.** Reversing the order of the steps on each side (rotating each side 180° inside its own bounding box) turns a hoodoo into a monadnock with the same `w`, `h`, end columns, side lengths, and summit length. The two examples above are such a pair. The hoodoo always has the smaller area (166 against 254 in the example): its sides lie below the chord between their ends, the monadnock's above it.
+- **Count.** The two sides are chosen independently and the summit takes the remaining width, so the count at width `w` is the number of ordered pairs of distinct-part partitions (sums in `1, …, h − 1`) whose numbers of parts add to at most `w − 1`. Hoodoo castles, and equally monadnock castles, by width `w = 3, 4, 5, …` (checked by brute force, with the bijection, for `h ≤ 7`):
+
+```
+h = 2:   1,   1,   1, …
+h = 3:   4,   4,   4, …
+h = 4:   9,  15,  16,  16, …
+h = 5:  16,  32,  36,  36, …
+h = 6:  25,  65,  81,  81, …
+h = 7:  36, 108, 156, 168, 169, 169, …
+```
+
+At `w = 3` the count is `(h − 1)²` (one free column on each side). Once `w` exceeds twice the longest possible side, every pair of sides fits and the count stops changing: it is the square of the number of distinct-part partitions of `1, …, h − 1`, that is, of the sum of OEIS A000009[^8] over `1, …, h − 1`. By `h = 2, 3, …, 15`: `1, 4, 16, 36, 81, 169, 324, 576, 1024, 1764, 2916, 4761, 7569, 11881`.
+
+- **Growth.** By width at fixed `h` the count is eventually constant, so neither family has a width growth constant above 1 and neither sits on the metallic ladder of [[castle-classification-growth](pages/castle-classification-growth.md)]. By height, the count grows at the subexponential rate of the distinct-part partition numbers.
+- **Parity.** Both families are unimodal, so every member has exactly `h` blocks; the PE 502 even-block clause keeps all of them when `h` is even and none when `h` is odd.
 
 **Convexity fixes the block count.** A convex castle of height `h` has exactly `h` blocks, one per row, and convex castles are exactly the minimum-block castles.[^4] So on this axis the Project Euler 502 (PE 502) parity clause is decided by `h`: every convex castle has the block parity of `h`, and the even-block projector of [[castle-sign](pages/castle-sign.md)] keeps all of them (`h` even) or none (`h` odd).
 
@@ -200,3 +225,4 @@ In rough order of tractability:
 [^5]: https://oeis.org/A080936 - "Triangle read by rows: T(n,k) is the number of Dyck paths of semilength n and height k (1 <= k <= n)"; data begins 1; 1, 1; 1, 3, 1; 1, 7, 5, 1; 1, 15, 18, 7, 1.
 [^6]: https://oeis.org/A080934 - "Square array read by antidiagonals of number of Catalan paths (nonnegative, starting and ending at 0, step +-1) of 2n steps with all values less than k"; the bounded-height Dyck counts whose GF is a ratio of consecutive Chebyshev-type polynomials.
 [^7]: https://oeis.org/A097862 - "Triangle read by rows: T(n,k) is the number of Motzkin paths of length n and height k (n>=0, k>=0)"; data begins 1; 1; 1, 1; 1, 3; 1, 7, 1; 1, 15, 5; 1, 31, 18, 1.
+[^8]: https://oeis.org/A000009 - "Expansion of Product_{m >= 1} (1 + x^m); number of partitions of n into distinct parts; number of partitions of n into odd parts"; data begins 1, 1, 1, 2, 2, 3, 4, 5, 6, 8, 10, 12, 15, 18.

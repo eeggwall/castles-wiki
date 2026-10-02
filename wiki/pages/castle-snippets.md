@@ -142,6 +142,32 @@ def is_strictly_unimodal(c):
     i = c.index(max(c))
     return (all(c[j] < c[j+1] for j in range(i))
         and all(c[j] > c[j+1] for j in range(i, len(c)-1)))
+
+def summit_sides(c):
+    """Rising steps and falling drops around the height-h summit run, or None
+    unless c is unimodal with at least one column on each side of the summit."""
+    h = max(c)
+    i = c.index(h)
+    j = len(c) - 1 - c[::-1].index(h)
+    if i == 0 or j == len(c) - 1 or any(x != h for x in c[i:j+1]):
+        return None
+    up = [c[t+1] - c[t] for t in range(i)]
+    down = [c[t] - c[t+1] for t in range(j, len(c) - 1)]
+    if min(up) <= 0 or min(down) <= 0:
+        return None
+    return up, down
+
+def is_hoodoo(c):
+    """Rising steps strictly increase, drops strictly decrease."""
+    s = summit_sides(c)
+    return s is not None and (all(a < b for a, b in zip(s[0], s[0][1:]))
+                              and all(a > b for a, b in zip(s[1], s[1][1:])))
+
+def is_monadnock(c):
+    """Rising steps strictly decrease, drops strictly increase."""
+    s = summit_sides(c)
+    return s is not None and (all(a > b for a, b in zip(s[0], s[0][1:]))
+                              and all(a < b for a, b in zip(s[1], s[1][1:])))
 ```
 
 ```
@@ -159,9 +185,15 @@ True
 True
 >>> is_staircase([3,3,2,1])
 False
+>>> is_hoodoo((2, 3, 6, 16, 35, 35, 25, 18, 14, 12))
+True
+>>> is_monadnock((2, 21, 31, 34, 35, 35, 33, 29, 22, 12))
+True
+>>> is_hoodoo((1, 2, 3, 2)), is_monadnock((1, 2, 3, 2))    # equal steps 1, 1
+(False, False)
 ```
 
-Wiki ties: [[convex-castle](pages/convex-castle.md)] (unimodal), [[polyominoes](pages/polyominoes.md)] (Ferrers/staircase in the taxonomy), [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 1.
+Wiki ties: [[convex-castle](pages/convex-castle.md)] (unimodal), [[polyominoes](pages/polyominoes.md)] (Ferrers/staircase in the taxonomy), [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 1 (hoodoo and monadnock castles; brute-force counts `9, 15, 16` at `h = 4`, `w = 3, 4, 5`, for both).
 
 ### Axis 2: Rate of change
 

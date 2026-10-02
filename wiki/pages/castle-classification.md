@@ -26,7 +26,7 @@ Every castle is automatically **column-convex** (each column is one contiguous v
 
 | Scope | Object classified | Invariant | Named types | Page |
 |---|---|---|---|---|
-| **Shape** | one castle | skyline predicate on `(c_1, …, c_w)` | unimodal, Ferrers, staircase, palindromic, Dyck-path, Motzkin-path, rainbow, hook, crenellated, m-smooth, m-disparate, ridge, … (42 types on 7 axes, plus the wiki-named ridge type) | [[castle-classification-shape](pages/castle-classification-shape.md)] |
+| **Shape** | one castle | skyline predicate on `(c_1, …, c_w)` | unimodal, Ferrers, staircase, palindromic, Dyck-path, Motzkin-path, rainbow, hook, crenellated, m-smooth, m-disparate, ridge, hoodoo, monadnock, … (42 types on 7 axes, plus the wiki-named ridge, hoodoo, and monadnock types) | [[castle-classification-shape](pages/castle-classification-shape.md)] |
 | **Spectrum** | one castle | spectrum of a graph derived from it ([[castle-graph](pages/castle-graph.md)]) | tree, golden-spectrum, silver-spectrum, `φ²`-spectrum, isospectral (pair predicate), Ramanujan | [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] |
 | **Growth** | a whole class of castles under a construction rule | growth constant of the class's count sequence along a stated size axis | golden / silver / bronze / copper / nickel `<axis>` growth castle, tribonacci / tetranacci / supergolden / plastic-squared `<axis>` growth castle | [[castle-classification-growth](pages/castle-classification-growth.md)] |
 
