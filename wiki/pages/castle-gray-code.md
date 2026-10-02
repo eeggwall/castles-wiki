@@ -1,11 +1,11 @@
 ---
 title: Castle Gray code
 category: Concepts
-summary: Knuth's reflected Gray code on the mixed-radix space `{1..h}^w`, worked at `(w,h)=(3,2)` for `h=2` and via Ives' Algorithm H for general `h`; one-column-per-step tour, `#blocks` moves by at most `1` per step, sign `s(c)` and signed sum `S` update in O(1), giving a loopless enumerator over the cube with the castle filters at emit; three-way split of `{1..h}^w` into improper, proper-odd, proper-even.
+summary: Knuth's reflected Gray code on the mixed-radix space `{1..h}^w`, worked at `(w,h)=(3,2)` for `h=2` and via the loopless Gray algorithm (Knuth's §7.2.1.1 Algorithm H) for general `h`; one-column-per-step tour, `#blocks` moves by at most `1` per step, sign `s(c)` and signed sum `S` update in O(1), giving a loopless enumerator over the cube with the castle filters at emit; three-way split of `{1..h}^w` into improper, proper-odd, proper-even.
 tags: [concept, castle, gray-code, generation, algorithm, mixed-radix, loopless, taocp]
 sources: [aocp-generating-permutations-tuples, project-euler-502-brute-force]
 created: 2026-09-20
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Castle Gray code
@@ -63,7 +63,7 @@ The proper count is `7`, the even-block count is `F(3,2) = 6`, the signed sum ov
 
 ## Algorithm G: the Gray tour
 
-The **reflected Gray code** is a specific sequence of tuples in `{1..h}^w` where consecutive tuples differ in a single position by `±1`; it is one member of a wider *Gray-code family* (reflected, monotone, balanced, Beckett, transposition, and so on), all of which share the one-move property but are built by different rules and land in a different order. Several algorithms produce the *reflected* Gray sequence: the closed-form `g(k) = k xor (k >> 1)` (`h = 2` only), iteration via the ruler function `ρ(k) = ν_2(k+1)` (`h = 2`, O(1) amortised, OEIS A007814), the recursive definition `Γ_{n+1} = 0 Γ_n, 1 Γ_n^R` (any `h`, not loopless), and **Ives' Algorithm H** (any `h`, worst-case O(1) per successor via a pointer array; TAOCP §7.2.1.1). The `h = 2` walk below reads directly off the closed form; the next subsection promotes to Ives for general `h`.[^4]
+The **reflected Gray code** is a specific sequence of tuples in `{1..h}^w` where consecutive tuples differ in a single position by `±1`; it is one member of a wider *Gray-code family* (reflected, monotone, balanced, Beckett, transposition, and so on), all of which share the one-move property but are built by different rules and land in a different order. Several algorithms produce the *reflected* Gray sequence: the closed-form `g(k) = k xor (k >> 1)` (`h = 2` only), iteration via the ruler function `ρ(k) = ν_2(k+1)` (`h = 2`, O(1) amortised, OEIS A007814), the recursive definition `Γ_{n+1} = 0 Γ_n, 1 Γ_n^R` (any `h`, not loopless), and the **loopless Gray algorithm** (any `h`, worst-case O(1) per successor via a pointer array; Knuth's Algorithm H in TAOCP §7.2.1.1). The `h = 2` walk below reads directly off the closed form; the next subsection moves to the loopless Gray algorithm for general `h`.[^4]
 
 For `(w,h)=(3,2)` the tour, read as `(c_1, c_2, c_3)` with `c_1` the most significant position (so bit string `b_1 b_2 b_3` maps to `c = (b_1+1, b_2+1, b_3+1)`):
 
@@ -84,14 +84,14 @@ Every `Δ blocks ∈ {−1, 0, +1}`. This is the property the rest of the page u
 
 *Proof.* With `c_0 := 0`, `blocks(c) = ∑_{i=1}^{w} max(0, c_i − c_{i−1})`. Raising `c_i` by `1` raises `c_i − c_{i−1}` and lowers `c_{i+1} − c_i` (when `i < w`) by `1` each and leaves every other term alone. The term at `i` gains `[c_i ≥ c_{i−1}]` and the term at `i+1` loses `[c_{i+1} > c_i]`, so `Δ blocks = [c_i ≥ c_{i−1}] − [c_{i+1} > c_i] ∈ {−1, 0, +1}` (with `c_{w+1} := 0`). Lowering `c_i` is the reverse move. ∎[^5]
 
-The proof used only the single-column `±1` step property, not the `h = 2` closed form. Any algorithm that produces the reflected Gray sequence - Algorithm G, or Ives' Algorithm H below - inherits the lemma verbatim.
+The proof used only the single-column `±1` step property, not the `h = 2` closed form. Any algorithm that produces the reflected Gray sequence - Algorithm G, or the loopless Gray algorithm below - inherits the lemma verbatim.
 
-## Ives' Algorithm H: general `h`
+## The loopless Gray algorithm: general `h`
 
-For `h = 2` the `ρ(k)` snippet gives the next position to flip in one line. For general `h` the same reflected Gray sequence is produced by a **pointer-array successor** - Ives' Algorithm H, TAOCP §7.2.1.1 Algorithm H - with worst-case O(1) per step:[^7]
+For `h = 2` the `ρ(k)` snippet gives the next position to flip in one line. For general `h` the same reflected Gray sequence is produced by a **pointer-array successor** - the loopless Gray algorithm, Knuth's Algorithm H in TAOCP §7.2.1.1 - with worst-case O(1) per step:[^7]
 
 ```python
-def ives(w, h):
+def loopless_gray(w, h):
     c, d, f = [1]*w, [+1]*w, list(range(w+1))
     while True:
         yield tuple(c)
@@ -131,7 +131,7 @@ s *= (-1)**db      # db = Δ blocks ∈ {-1, 0, +1}
 if proper:  S += s # accumulate only over max(c) == h
 ```
 
-`db` is computed by looking at the two neighbours of the changed column, so the update is worst-case O(1) per step and the whole tour runs in `O(h^w)` visits with `O(1)` work each. This is the sense in which the Gray tour is a **loopless enumerator** of the cube: for `h = 2` the position to flip is the ruler function `ρ(k) = ν_2(k+1)` (OEIS A007814); for general `h`, **Algorithm H** above gives a worst-case O(1) successor.[^6] The odometer, by contrast, spends `Θ(w)` on the occasional long carry.
+`db` is computed by looking at the two neighbours of the changed column, so the update is worst-case O(1) per step and the whole tour runs in `O(h^w)` visits with `O(1)` work each. This is the sense in which the Gray tour is a **loopless enumerator** of the cube: for `h = 2` the position to flip is the ruler function `ρ(k) = ν_2(k+1)` (OEIS A007814); for general `h`, the **loopless Gray algorithm** above gives a worst-case O(1) successor.[^6] The odometer, by contrast, spends `Θ(w)` on the occasional long carry.
 
 There is a companion incremental object already on the wiki: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]'s `p_signed(k, L)`, a column-height dynamic program that maintains a `Θ(k)`-vector indexed by the last column height and updates it in `O(k^2)` per new column, computing `P(k, L)` in `O(k^2 L)` total. The tour and `p_signed` are two incremental computations: the tour walks the tuples one at a time, the DP folds them column by column. The tour gives every individual `(c, blocks(c))`; the DP gives just the totals `P(k, L)`.
 
@@ -182,8 +182,8 @@ Not covered: Heap's algorithm and Steinhaus-Johnson-Trotter are permutation Gray
 
 [^1]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Algorithm M"/"Algorithm G" - Algorithm M is the mixed-radix add-one enumerator of all tuples `(a_1,…,a_n)` with `0 ≤ a_j < m_j`; Algorithm G is the reflected Gray code `Γ_{n+1} = 0 Γ_n, 1 Γ_n^R`, one digit changing per step, flip position given by the ruler function `ρ(k)`.
 [^2]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Column-height encoding" - "column heights `c_1, …, c_w ∈ {1, …, h}` with `max c = h`"; the two filters this page enforces.
-[^3]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Column-height encoding" - "`#blocks = c_1 + ∑_{i=2}^{w} max(0, c_i − c_{i−1})`"; re-verified during that ingest against the run-based definition for all skylines `w, h ≤ 6`. The `(3,2)` tables and the `(2,3)` Ives walk in this page were re-checked against the same formula on 2026-09-20, and the lemma was re-checked exhaustively for `w ≤ 6`, `h ≤ 4` on 2026-09-28, together with the exact delta `[c_i ≥ c_{i−1}] − [c_{i+1} > c_i]`.
+[^3]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Column-height encoding" - "`#blocks = c_1 + ∑_{i=2}^{w} max(0, c_i − c_{i−1})`"; re-verified during that ingest against the run-based definition for all skylines `w, h ≤ 6`. The `(3,2)` tables and the `(2,3)` loopless Gray walk in this page were re-checked against the same formula on 2026-09-20, and the lemma was re-checked exhaustively for `w ≤ 6`, `h ≤ 4` on 2026-09-28, together with the exact delta `[c_i ≥ c_{i−1}] − [c_{i+1} > c_i]`.
 [^4]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Recurrence Relation"/"Algorithm G" - "`Γ_{n+1} = 0 Γ_n, 1 Γ_n^R` … exactly one bit changes each step … `j = ρ(k)`"; the `h > 2` mixed-radix generalisation is the same reflection with direction chosen by the parity of the digits above position `j`.
 [^5]: The one-column block delta claim also appears in [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Where Algorithm M already runs on the wiki" as a sketch ("`Δ ∈ {−1, 0, +1}`, checked exhaustively for `(w,h) = (5,4)` and `(6,3)`"); the proof above from the column-height formula makes the exhaustive check a corollary. Re-verified along the `(3,2)` Gray tour column of this page on 2026-09-20.
-[^6]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Recurrence Relation"/"Algorithm G" - "`j = ρ(k)` (`ρ` is the ruler function)"; the ruler sequence is OEIS A007814, `0, 1, 0, 2, 0, 1, 0, 3, …`, and gives the flip position in O(1) per step for `h = 2`. For general `h` the loopless successor is Ives' Algorithm H (footnote 7).
-[^7]: Knuth, TAOCP Vol. 4A §7.2.1.1 "Algorithm H (Loopless reflected mixed-radix Gray code)": maintain focus pointers `f_0 … f_n` and directions `o_1 … o_n`; at each step read `j ← f_0`, terminate if `j = n`, else `f_0 ← 0`, bump `a_j ← a_j + o_j`, and if `a_j` reaches an endpoint flip `o_j` and splice `f_j ← f_{j+1}, f_{j+1} ← j + 1`. The Python adaptation on this page (radices shifted to `[1..h]`, endpoints `1` and `h`) and the `(w, h) = (2, 3)` walk were re-verified by hand on 2026-09-20 against the one-position-per-step property (nine consecutive pairs, each differing in one coordinate by `±1`) and completeness (all `h^w = 9` tuples of `{1..3}^2` visited exactly once).
+[^6]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Recurrence Relation"/"Algorithm G" - "`j = ρ(k)` (`ρ` is the ruler function)"; the ruler sequence is OEIS A007814, `0, 1, 0, 2, 0, 1, 0, 3, …`, and gives the flip position in O(1) per step for `h = 2`. For general `h` the loopless successor is the loopless Gray algorithm (footnote 7).
+[^7]: Knuth, TAOCP Vol. 4A §7.2.1.1 p.300, "Algorithm H (Loopless reflected mixed-radix Gray generation)", introduced as generalizing Algorithms M and L: maintain focus pointers `f_0 … f_n` and directions `o_1 … o_n`; at each step read `j ← f_0`, terminate if `j = n`, else `f_0 ← 0`, bump `a_j ← a_j + o_j`, and if `a_j` reaches an endpoint flip `o_j` and splice `f_j ← f_{j+1}, f_{j+1} ← j + 1`. The Python adaptation on this page (radices shifted to `[1..h]`, endpoints `1` and `h`) and the `(w, h) = (2, 3)` walk were re-verified by hand on 2026-09-20 against the one-position-per-step property (nine consecutive pairs, each differing in one coordinate by `±1`) and completeness (all `h^w = 9` tuples of `{1..3}^2` visited exactly once).

@@ -5,7 +5,7 @@ summary: Whether a Gray tour exists on the valid-castle subset V(w, h) = {c : ma
 tags: [concept, castle, gray-code, ruskey, hamiltonian-path, generation, algorithm, open-problem]
 sources: [aocp-generating-permutations-tuples, project-euler-502-brute-force]
 created: 2026-09-20
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Castle-native Gray tour
@@ -14,7 +14,7 @@ updated: 2026-09-28
 
 ## Scope
 
-No castle-native Gray code on `V(w, h)` is known, and this page gives no successor rule. [[castle-gray-code](pages/castle-gray-code.md)] uses Knuth's Algorithm G (`h = 2`) and Ives' Algorithm H (general `h`) on the full cube `{1..h}^w`. For a restricted family such as `V(w, h)` there is no universal procedure: Ruskey's *Combinatorial Generation* is a set of techniques (recursive splits, boundary concatenation, exchange lemmas, loopless pointer implementations) applied family by family.[^1] This page works the question at `(3, 2)` and `(3, 3)`.
+No castle-native Gray code on `V(w, h)` is known, and this page gives no successor rule. [[castle-gray-code](pages/castle-gray-code.md)] uses Knuth's Algorithm G (`h = 2`) and the loopless Gray algorithm (general `h`; Knuth's §7.2.1.1 Algorithm H) on the full cube `{1..h}^w`. For a restricted family such as `V(w, h)` there is no universal procedure: Ruskey's *Combinatorial Generation* is a set of techniques (recursive splits, boundary concatenation, exchange lemmas, loopless pointer implementations) applied family by family.[^1] This page works the question at `(3, 2)` and `(3, 3)`.
 
 ## The object
 

@@ -5,7 +5,7 @@ summary: Hamilton paths in the castle move graph G(w, h) on the valid castles V(
 tags: [concept, castle, zdd, simpath, hamiltonian-path, move-graph, generation, open-problem]
 sources: [castle-native-gray-tour, castle-bdd-zdd, project-euler-502-brute-force]
 created: 2026-09-20
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Castle move-graph ZDD
@@ -74,7 +74,7 @@ Applied to `G(w, h)`:
 - **Existence.** For larger `(w, h)`, a SimPath build gives the Hamilton-path ZDD, or shows it is empty, when the frontier stays small enough to fit.
 - **Counts.** The Hamilton-path count under a move set `M` is a linear-time count over that ZDD, which would replace the `≥` entries above with exact numbers.
 - **Comparison across move sets.** With ZDDs for `G(w, h)` under `M1 ∪ M6` and `M1 ∪ M6 ∪ Mnon`, the synthesis operations (`∧, ∨, ⊕`, p. 251) separate the Hamilton paths that use only M1 ∪ M6 edges from those that need an Mnon edge.
-- **Loopless successor.** A Hamilton-path ZDD lists its paths in the ZDD's order; whether a castle-native tour admits a loopless (Ives-style) successor is a separate question.
+- **Loopless successor.** A Hamilton-path ZDD lists its paths in the ZDD's order; whether a castle-native tour admits a loopless successor like the loopless Gray algorithm of [[castle-gray-code](pages/castle-gray-code.md)] is a separate question.
 
 ## Not covered here
 
