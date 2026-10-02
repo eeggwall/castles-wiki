@@ -5,7 +5,7 @@ summary: Reference of short, tested Python snippets for enumerating castles, che
 tags: [concept, castle, python, snippets, computational, classification, reference]
 sources: [project-euler-502-brute-force]
 created: 2026-09-16
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Castle snippets
@@ -24,7 +24,7 @@ The purpose is not derivations or full implementations (see [[castle-counting-fo
 
 The strips-and-growth, number-theory, and cryptography topics each have their own snippet page; this page keeps the enumeration primitives and Axis 1-7 classification predicates.
 
-- [[castle-snippets-strips](pages/castle-snippets-strips.md)] - Axis-8 growth-constant probes, the ceiling-exception ladder, the plateau-free strip census, tower-spacing, tree-castle-by-area, the A005251 bijection, and Hardin's word automaton.
+- [[castle-snippets-strips](pages/castle-snippets-strips.md)] - Axis-8 growth-constant probes, the ridge-castle ladder (`R_h = J − D`), the plateau-free strip census, tower-spacing, tree-castle-by-area, the A005251 bijection, and Hardin's word automaton.
 - [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - the signed tower count `p_signed`, continued-fraction convergents, mod-`p` orders / Pisano-type periods, `P_table`, quasi-polynomial splits, sector transfer matrices, and the `H(d)` factor.
 - [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)] - `castle_dh` / `castle_dlp` / `bm_modp` / `castle_schnorr`: the build-and-attack cryptography seminar snippets.
 

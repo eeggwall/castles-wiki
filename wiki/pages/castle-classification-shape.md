@@ -1,11 +1,11 @@
 ---
 title: Castle classification - shape types
 category: Concepts
-summary: The 42 shape-based castle types as skyline predicates on individual castles. Seven axes: convexity/modality, rate of change, path-like, symmetry, extremum, parity/area, value patterns. Each type gets its wiki home and count status.
-tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook]
+summary: The 42 shape-based castle types as skyline predicates on individual castles, plus the wiki-named ridge type. Seven axes: convexity/modality, rate of change, path-like, symmetry, extremum, parity/area, value patterns. Each type gets its wiki home and count status.
+tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle]
 sources: [castle-classification]
 created: 2026-09-19
-updated: 2026-09-29
+updated: 2026-10-02
 ---
 
 # Castle classification - shape types
@@ -53,16 +53,26 @@ Types 1-6 and 30-31 restrict the shape of the skyline's local extrema:
 
 ### Axis 2: Rate of change (Lipschitz)
 
-Types 7, 8, 9 and the base m-disparate:
+Types 7, 8, 9, the base m-disparate, and the wiki-named ridge type:
 
 | Type | Predicate | Wiki tie |
 |---|---|---|
-| **Plateau-free** | `c_i ≠ c_{i+1}` for all `i` | elementary: `h(h−1)^{w−1}` skylines of height `≤ h`, so `h(h−1)^{w−1} − (h−1)(h−2)^{w−1}` castles, growth `h − 1`; the plateau-free-except-ceiling variant realizes the whole metallic ladder ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) |
+| **Plateau-free** | `c_i ≠ c_{i+1}` for all `i` | elementary: `h(h−1)^{w−1}` skylines of height `≤ h`, so `h(h−1)^{w−1} − (h−1)(h−2)^{w−1}` castles, growth `h − 1`; its ridge variant (next row) realizes the whole metallic ladder |
+| **Ridge** (wiki-named, not one of the 35) | `c_i ≠ c_{i+1}` unless `c_i = c_{i+1} = h` | counted: `𝟙ᵀR_h^{w−1}𝟙 − (h−1)(h−2)^{w−1}` castles with `R_h = J − D`, growth the metallic mean `δ_{h−1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]); see **Ridge castles** below |
 | **m-smooth (Lipschitz)** | `|c_{i+1} − c_i| ≤ m` | at `m = 1` this is the **Motzkin-path** predicate without its endpoint condition (Axis 3); the 1-smooth strip over heights `≤ 3` is the silver realization on [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] and, anchored at height 1, the [[pell-castle-strip](pages/pell-castle-strip.md)] |
 | **Zigzag** | differences alternate in sign | *open* - a strong plateau-free variant |
 | **m-disparate** | `|c_{i+1} − c_i| ≥ m` | *open* - the "no small step" restriction |
 
 **Where the wiki already has counts:** 1-smooth strips at bounded height, by transfer matrix ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]: Pell-Lucas A001333 over heights `≤ 3`, Pell A000129 when anchored at height 1). A 1-smooth castle is not a Motzkin path unless its skyline also starts and ends at height 1, so 1-smooth counts are strip counts, not Motzkin numbers. The tower word A004149 ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]) is a different object: Motzkin paths with no `UD` or `DU` factor, counted by word length, which as skylines are unrestricted towers. **Open:** the full m-smooth family for `m ≥ 2`, and m-disparate for any `m`. **A distinct horizontal-gap axis is counted:** [[tower-spacing-castles](pages/tower-spacing-castles.md)] requires every valley between raised regions to be `≥ g` columns wide - a same-row spacing rule rather than a same-column-difference rule - counted by a column-sweep transfer matrix, with growth constants through `ψ²` (h=2, g=2) and `φ` (h=2, g=3) and a non-metallic zoo for `h ≥ 3`.
+
+**Ridge castles.** A **ridge castle** is a castle of exact height `h` in which neighbouring columns differ in height unless both reach the ceiling `h`. Flat runs occur only at the ceiling; below it the skyline steps up or down at every column, and all heights `1, …, h` may occur. To build one, pick `c_1`, then give each next column any height other than the current one, or `h` again when the current one is `h`; keep the skylines in which some column reaches `h`. Example, `h = 4`, `w = 12`: `(3, 1, 3, 4, 4, 1, 4, 4, 1, 4, 2, 1)`.
+
+- **Transfer matrix.** `R_h = J − D`, with `J` the `h × h` all-ones matrix and `D = diag(1, …, 1, 0)`: entry `(a, b)` is 1 when `a ≠ b` or `a = b = h`. Its characteristic polynomial is `(x + 1)^{h−2}(x² − (h − 1)x − 1)`.
+- **Count.** `𝟙ᵀR_h^{w−1}𝟙 − (h−1)(h−2)^{w−1}` ridge castles of width `w` and exact height `h`; the subtracted term is the plateau-free skylines that never reach `h`. By width `w = 1, …, 7`: `h = 2`: `1, 3, 5, 8, 13, 21, 34`; `h = 3`: `1, 5, 15, 39, 97, 237, 575`; `h = 4`: `1, 7, 31, 118, 421, 1453, 4924` (checked by brute force).
+- **Growth.** Like `δ_{h−1}^w`: golden at `h = 2`, silver at `h = 3`, bronze at `h = 4`, copper at `h = 5`, nickel at `h = 6`. Each rung is a `<metal>` width growth castle of [[castle-classification-growth](pages/castle-classification-growth.md)] Axis 8, and for bronze and above the ridge rule is the only known realization ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
+- **Fibonacci castles.** At `h = 2` the rule forbids two adjacent columns of height 1. Exchanging the heights 1 and 2 turns a ridge castle into a skyline with no two adjacent 2s: a **Fibonacci castle** (exact height 2, no two adjacent height-2 columns; the tree castles of [[castle-graph](pages/castle-graph.md)] at exact height 2), or the all-1 row, which comes from the all-2 castle. So for `w ≥ 2` there are `F_{w+2}` ridge castles of exact height 2 and `F_{w+2} − 1` Fibonacci castles.
+- **Not crenellated.** The crenellated type of Axis 7 is the strict period-2 skyline `(a, h, a, h, …)`; ridge castles may use every height and may repeat `h`.
+- **Code.** `ridge_R`, `ridge_count` (free-height strip counts) and `proper_even` (even-block ridge castles) on [[castle-snippets-strips](pages/castle-snippets-strips.md)].
 
 ### Axis 3: Path-like restrictions
 
@@ -146,7 +156,7 @@ Types 19, 20, 22, 23, 25, 28, 29, 34:
 |---|---|---|
 | **Equal-block** | all maximal horizontal blocks have the same length | *open* - heavy structure |
 | **Two-level** | exactly two distinct height values | at `h = 2` this is every castle except the all-2 rectangle (`2^w − 2`); the height-2 tree castles ([[castle-graph](pages/castle-graph.md)]) are a Fibonacci-counted sub-family |
-| **Crenellated** | heights alternate `{a, h}` (battlements) | *open* - very restricted two-level; at even width, the two-atom skyline-DFT case (support `{0, w/2}`) on [[spectral-analysis](pages/spectral-analysis.md)] |
+| **Crenellated** | `c_i ∈ {a, h}` with `c_i ≠ c_{i+1}`: period 2, `(a, h, a, h, …)` (battlements); not the ridge castles of Axis 2 | *open* - very restricted two-level; at even width, the two-atom skyline-DFT case (support `{0, w/2}`) on [[spectral-analysis](pages/spectral-analysis.md)] |
 | **Moated** | `c_1 = c_w = 1`, all interior `≥ 2` | *open* |
 | **Fence-post** | `c_i = 1` for all even `i` | *open* |
 | **Linear** | `c_i = a + (i−1)d` (arithmetic progression) | elementary: `2⌊(h−1)/(w−1)⌋ + 1` castles for `w ≥ 2` |

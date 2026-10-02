@@ -1,11 +1,11 @@
 ---
 title: Fractional width and fractional height
 category: Analyses
-summary: F(w,h) is C-finite in the width and a quasi-polynomial in the height, so both arguments interpolate to real values, and the two directions behave differently. In the width, every eigenvalue of the signed tower recurrence char_k for k <= 8 is either a positive real or one of a complex-conjugate pair (no negative real root), so on the principal branch F(w,h) is a real function of real w for every h <= 9: F(w,2) = (2^{w+1} - 2^{(w+3)/2} cos(pi(w+1)/4))/4, and F(2.5,3) = 0.689, F(3.5,4) = 60.707. In the height, P(k,L) = (-1)^k A_L(k) + B_L(k) and (-1)^k is +-i at half-integers, so F(w, m + 1/2) = (A - B_w(h-1) + B_w(h-2))/2 + i (-1)^m (A_w(h-1) + A_w(h-2))/2 is complex: F(4, 2.5) = 16.75 + 6i, with the alternating part of the parity clause as the imaginary part. The half-column problem R^2 = M has OEIS answers: rules that are squares of 0/1 rules are 8, 88, 3245 at heights 2, 3, 4 (A226321); rules with all eigenvalues real and nonnegative are 13, 261, 15418 (A086510); rules with all eigenvalues positive are 3, 25, 543 (A003024, DAGs, so I + nilpotent); among those, the rules whose principal half-column has nonnegative weights are 3, 19, 219, exactly the partial orders on the heights (A001035) for h <= 4. The nondecreasing rule is the chain poset and its half-column is the (1-x)^{-1/2} Toeplitz matrix with entries C(2k,k)/4^k. The free strip J has the half-column J/sqrt(h); every metallic strip on the wiki (the 1-smooth tridiagonal, the ceiling-exception J-D at heights 3 and 4) has a simple negative eigenvalue and therefore no real square root.
+summary: F(w,h) is C-finite in the width and a quasi-polynomial in the height, so both arguments interpolate to real values, and the two directions behave differently. In the width, every eigenvalue of the signed tower recurrence char_k for k <= 8 is either a positive real or one of a complex-conjugate pair (no negative real root), so on the principal branch F(w,h) is a real function of real w for every h <= 9: F(w,2) = (2^{w+1} - 2^{(w+3)/2} cos(pi(w+1)/4))/4, and F(2.5,3) = 0.689, F(3.5,4) = 60.707. In the height, P(k,L) = (-1)^k A_L(k) + B_L(k) and (-1)^k is +-i at half-integers, so F(w, m + 1/2) = (A - B_w(h-1) + B_w(h-2))/2 + i (-1)^m (A_w(h-1) + A_w(h-2))/2 is complex: F(4, 2.5) = 16.75 + 6i, with the alternating part of the parity clause as the imaginary part. The half-column problem R^2 = M has OEIS answers: rules that are squares of 0/1 rules are 8, 88, 3245 at heights 2, 3, 4 (A226321); rules with all eigenvalues real and nonnegative are 13, 261, 15418 (A086510); rules with all eigenvalues positive are 3, 25, 543 (A003024, DAGs, so I + nilpotent); among those, the rules whose principal half-column has nonnegative weights are 3, 19, 219, exactly the partial orders on the heights (A001035) for h <= 4. The nondecreasing rule is the chain poset and its half-column is the (1-x)^{-1/2} Toeplitz matrix with entries C(2k,k)/4^k. The free strip J has the half-column J/sqrt(h); every metallic strip on the wiki (the 1-smooth tridiagonal, the ridge rule J - D at heights 3 and 4) has a simple negative eigenvalue and therefore no real square root.
 tags: [analysis, castle, fractional-calculus, interpolation, matrix-power, branch-cut, quasi-polynomial, c-finite, eigenvalues, transfer-matrix, square-root, embedding, metallic-means, computation, verification]
 sources: [project-euler-502-solution]
 created: 2026-09-19
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Fractional width and fractional height
@@ -125,12 +125,12 @@ The eigenvalue columns are exact (SymPy real-root counts on the characteristic p
 | free strip, `h = 3` | `J` (all ones) | `3, 0, 0` | **yes**: `J / sqrt(3)` |
 | no equal neighbours, `h = 3` | `J - I` | `2, -1, -1` | a real root exists (two `1 x 1` blocks for `-1`); no nonnegative one found |
 | 1-smooth (Motzkin), `h = 3` | tridiagonal | `1 + sqrt 2, 1, 1 - sqrt 2` | **none**: simple negative eigenvalue |
-| ceiling exception, `h = 3` (silver) | `J - D` | `1 + sqrt 2, -0.4142, -1` | **none**: simple negative eigenvalues |
-| ceiling exception, `h = 4` (bronze) | `J - D` | `3.3028, -0.3028, -1, -1` | **none**: simple negative eigenvalue |
+| ridge, `h = 3` (silver) | `J - D` | `1 + sqrt 2, -0.4142, -1` | **none**: simple negative eigenvalues |
+| ridge, `h = 4` (bronze) | `J - D` | `3.3028, -0.3028, -1, -1` | **none**: simple negative eigenvalue |
 
-A real matrix has a real square root only if every Jordan block belonging to a negative eigenvalue occurs an even number of times (Higham 1987), so a **simple negative eigenvalue rules out any real square root**, nonnegative or not.[^6] The 1-smooth strip and the ceiling-exception strips all have one. The free strip is the opposite extreme: `J^2 = h J`, so `J^{1/2} = J / sqrt(h)`, a rule in which every height may follow every height with weight `1 / sqrt(h)`, and the count `1^T (J / sqrt h)^{2(w-1)} 1 = h^w` is preserved exactly (checked at `h = 3, w = 3`: `27`).[^exec]
+A real matrix has a real square root only if every Jordan block belonging to a negative eigenvalue occurs an even number of times (Higham 1987), so a **simple negative eigenvalue rules out any real square root**, nonnegative or not.[^6] The 1-smooth strip and the ridge strips all have one. The free strip is the opposite extreme: `J^2 = h J`, so `J^{1/2} = J / sqrt(h)`, a rule in which every height may follow every height with weight `1 / sqrt(h)`, and the count `1^T (J / sqrt h)^{2(w-1)} 1 = h^w` is preserved exactly (checked at `h = 3, w = 3`: `27`).[^exec]
 
-This is a statement about the metallic ladder of [[metallic-means](pages/metallic-means.md)] and [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]: the realizing rule `J - D` has characteristic polynomial `(x + 1)^{h - 2} (x^2 - (h - 1) x - 1)`, whose quadratic factor always has one negative root `-1 / delta_{h-1}`, simple. **So no ceiling-exception rule is two steps of a finer real rule.** (Whether some *other* rule with the same growth constant has a half-column is open; silver has three known realizations.) In both directions the obstruction is a negative eigenvalue.
+This is a statement about the metallic ladder of [[metallic-means](pages/metallic-means.md)] and [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]: the realizing rule, the ridge rule `J - D` (adjacent columns differ in height unless both equal `h`), has characteristic polynomial `(x + 1)^{h - 2} (x^2 - (h - 1) x - 1)`, whose quadratic factor always has one negative root `-1 / delta_{h-1}`, simple. **So no ridge rule is two steps of a finer real rule.** (Whether some *other* rule with the same growth constant has a half-column is open; silver has three known realizations.) In both directions the obstruction is a negative eigenvalue.
 
 ## What this page settles and what it opens
 
@@ -140,7 +140,7 @@ Settled:
 - `F(w, m + 1/2)` is complex with real part `(A - B_w(h-1) + B_w(h-2)) / 2` and imaginary part `(-1)^m (A_w(h-1) + A_w(h-2)) / 2`; `F(4, 2.5) = 16.75 + 6 i`.
 - The asymmetry is the sign of the eigenvalues: no negative reals in the width, exactly `-1` in the height.
 - The half-column counts are A226321 (squares of 0/1 rules), A086510 (all eigenvalues real and nonnegative), A003024 (positive spectrum, `I + N` with `N` a DAG), and A001035 (nonnegative principal half-column among the positive-spectrum rules, labeled posets); the poset identification is exact through height 4.
-- The nondecreasing rule's half-column is the `(1 - x)^{-1/2}` Toeplitz matrix; `J^{1/2} = J / sqrt h`; the 1-smooth and ceiling-exception strips have simple negative eigenvalues and no real square root.
+- The nondecreasing rule's half-column is the `(1 - x)^{-1/2}` Toeplitz matrix; `J^{1/2} = J / sqrt h`; the 1-smooth and ridge strips have simple negative eigenvalues and no real square root.
 
 Open:
 
@@ -166,7 +166,7 @@ Open:
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the period-8 oscillation of `F(w, 2)` in the width.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - why `char_k` factors for even `k` and not for odd.
 - [[castle-strip](pages/castle-strip.md)] - the 0/1 rule matrices whose square roots are the half-columns.
-- [[metallic-means](pages/metallic-means.md)] and [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ceiling-exception rule `J - D` and its `(x + 1)^{h-2} (x^2 - (h-1) x - 1)`.
+- [[metallic-means](pages/metallic-means.md)] and [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge rule `J - D` and its `(x + 1)^{h-2} (x^2 - (h-1) x - 1)`.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the 1-smooth strip whose tridiagonal matrix has no real square root.
 - [[kitamasa](pages/kitamasa.md)] and [[mod-p-observatory](pages/mod-p-observatory.md)] - where the fractional power `x^{w/2} mod char` becomes root extraction in the finite ring.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the skyline DFT, third operator with a spectral fractional power.

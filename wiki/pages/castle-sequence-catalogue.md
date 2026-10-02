@@ -5,7 +5,7 @@ summary: Hand-curated catalogue of every castle-counting sequence, by the castle
 tags: [analysis, oeis, castle, sequence, catalogue, novelty, submission-candidate, interlink]
 sources: [oeis-mining-pe502]
 created: 2026-09-17
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Castle sequence catalogue
@@ -150,17 +150,18 @@ The Motzkin family in castle counts ([[motzkin-castles](pages/motzkin-castles.md
 
 *(All castles by semi-perimeter, A082582, are cornerless Motzkin paths graded by `#flats + #ups` and are equinumerous with skew Motzkin paths; that row stays under "Castles by semi-perimeter" below. Its first five terms `1, 2, 5, 13, 35` coincide with A005773 before `97 ≠ 96`.)*
 
-### Proper-castle (max=h + even-block) metallic ladder
+### Ridge castles: the metallic ladder (free strip, max=h, even-block)
 
-The `J − D` metallic-strip counts, and their projection to proper Project Euler 502 (PE 502) castles ([[proper-castle-projection](pages/proper-castle-projection.md)]).
+The ridge rule: adjacent columns differ in height unless both equal the ceiling `h`, transfer matrix `R_h = J − D` ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2). Free-strip counts (heights in `1..h`, `max = h` not imposed), ridge castles of exact height `h`, and their even-block part, the proper Project Euler 502 (PE 502) count ([[proper-castle-projection](pages/proper-castle-projection.md)]).
 
 | object | first terms | growth | status |
 |---|---|---|---|
-| silver free strip (`h=3`) | `3, 7, 17, 41, 99, 239, 577` | `1+√2` | **interlink** → [A001333](https://oeis.org/A001333) Pell–Lucas (companion, not primary Pell) |
-| bronze free strip (`h=4`) | `4, 13, 43, 142, 469, 1549` | `(3+√13)/2` | **interlink** → [A003688](https://oeis.org/A003688) |
-| copper free strip (`h=5`) | `5, 21, 89, 377, 1597, 6765` | `φ³` | **interlink** → [A015448](https://oeis.org/A015448) (`=F_{3n+5}` trisection) |
-| bronze **even-block** proper | `1, 7, 25, 70, 209, 697, 2390` | `(3+√13)/2` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
-| copper **even-block** proper | `0, 0, 10, 104, 604, 2836, 12630` | `φ³` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
+| silver free ridge strip (`h=3`) | `3, 7, 17, 41, 99, 239, 577` | `1+√2` | **interlink** → [A001333](https://oeis.org/A001333) Pell–Lucas (companion, not primary Pell) |
+| bronze free ridge strip (`h=4`) | `4, 13, 43, 142, 469, 1549` | `(3+√13)/2` | **interlink** → [A003688](https://oeis.org/A003688) |
+| copper free ridge strip (`h=5`) | `5, 21, 89, 377, 1597, 6765` | `φ³` | **interlink** → [A015448](https://oeis.org/A015448) (`=F_{3n+5}` trisection) |
+| bronze ridge castles (`h=4`, max=h) | `1, 7, 31, 118, 421, 1453, 4924` | `(3+√13)/2` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
+| bronze **even-block** ridge castles | `1, 7, 25, 70, 209, 697, 2390` | `(3+√13)/2` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
+| copper **even-block** ridge castles | `0, 0, 10, 104, 604, 2836, 12630` | `φ³` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
 
 ### Signed tower count P(k,·) rows
 

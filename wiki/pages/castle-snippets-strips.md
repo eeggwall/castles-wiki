@@ -5,7 +5,7 @@ summary: Snippets for castle strips, Axis-8 growth-constant probes, tree-castle-
 tags: [concept, castle, python, snippets, strip, growth-constant, metallic-mean, tree-castle, hardin]
 sources: [project-euler-502-brute-force]
 created: 2026-09-19
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Castle snippets - strips and growth
@@ -110,41 +110,41 @@ A gap of ~0.222 is *not* a metallic-mean hit: the tribonacci constant `≈ 1.839
 
 ## Named strip rules
 
-### `ceiling_exception_ladder(h)` → the whole metallic ladder from one rule
+### `ridge_R(h)`, `ridge_count(h, L_max)` → ridge castles: the whole metallic ladder from one rule
 
-The **plateau-free-except-ceiling** castle-strip rule — adjacent columns differ in height unless both equal the max `h` — realizes every metallic mean: at height `h` its transfer matrix is `M_h = J − D` (all-ones minus `diag(1,…,1,0)`), char poly `(x+1)^{h−2}(x² − (h−1)x − 1)`, Perron root the `(h−1)`-th metallic mean `δ_{h−1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). So bronze is `h = 4`, copper `h = 5`, and copper's count is the Fibonacci trisection `F_{3n+5}`. Requires SymPy.
+The **ridge rule** — adjacent columns differ in height unless both equal the max `h` — realizes every metallic mean; its castles of exact height `h` are the **ridge castles**. At height `h` its transfer matrix is `R_h = J − D` (all-ones minus `diag(1,…,1,0)`), char poly `(x+1)^{h−2}(x² − (h−1)x − 1)`, Perron root the `(h−1)`-th metallic mean `δ_{h−1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). So bronze is `h = 4`, copper `h = 5`, and copper's count is the Fibonacci trisection `F_{3n+5}`. Requires SymPy.
 
 ```python
-def ceiling_exception_M(h):
-    # M[a][b] = 1 iff a != b, or a == b == h  (heights 1..h, 0-indexed here)
+def ridge_R(h):
+    # R[a][b] = 1 iff a != b, or a == b == h  (heights 1..h, 0-indexed here)
     return sp.Matrix(h, h, lambda i, j: 1 if (i != j or i == h-1) else 0)
 
-def ceiling_exception_count(h, L_max):
-    M = ceiling_exception_M(h); ones = sp.ones(h, 1)
-    return [int((ones.T * M**L * ones)[0]) for L in range(L_max+1)]
+def ridge_count(h, L_max):
+    R = ridge_R(h); ones = sp.ones(h, 1)
+    return [int((ones.T * R**L * ones)[0]) for L in range(L_max+1)]
 ```
 
 ```
->>> sp.factor(ceiling_exception_M(4).charpoly(sp.Symbol('x')).as_expr())   # bronze
+>>> sp.factor(ridge_R(4).charpoly(sp.Symbol('x')).as_expr())   # bronze
 (x + 1)**2*(x**2 - 3*x - 1)
->>> ceiling_exception_count(4, 6)                        # bronze (3+sqrt13)/2, Q(sqrt13)
+>>> ridge_count(4, 6)                        # bronze (3+sqrt13)/2, Q(sqrt13)
 [4, 13, 43, 142, 469, 1549, 5116]
->>> ceiling_exception_count(5, 8)                        # copper 2+sqrt5 = phi^3: F_{3n+5}
+>>> ridge_count(5, 8)                        # copper 2+sqrt5 = phi^3: F_{3n+5}
 [5, 21, 89, 377, 1597, 6765, 28657, 121393, 514229]
->>> [sp.factor(ceiling_exception_M(h).charpoly(sp.Symbol('x')).as_expr()) for h in range(2,7)]
+>>> [sp.factor(ridge_R(h).charpoly(sp.Symbol('x')).as_expr()) for h in range(2,7)]
 [x**2 - x - 1, (x + 1)*(x**2 - 2*x - 1), (x + 1)**2*(x**2 - 3*x - 1), (x + 1)**3*(x**2 - 4*x - 1), (x + 1)**4*(x**2 - 5*x - 1)]
 ```
 
 Meaning: one rule, one parameter `h`, sweeps golden → silver → bronze → copper → nickel → … as `h = 2, 3, 4, 5, 6, …` (metal `a = h−1`). The `(x+1)^{h−2}` factor is the subdominant eigenvalue `−1`; the metallic quadratic `x² − (h−1)x − 1` carries the growth. The copper (`h = 5`) row is every third Fibonacci number, `F_{3n+5}`, with growth `δ_4 = φ³`.
 
 
-### `proper_even(h, Wmax)` → the proper-castle projection of the ladder
+### `proper_even(h, Wmax)` → even-block ridge castles (the proper-castle projection of the ladder)
 
-The `ceiling_exception_count` above is a *free-height strip* count (`𝟙ᵀM^L𝟙`); a **proper** PE-502 castle imposes `max_i c_i = h` and the even-block parity `(A±P)/2` ([[castle-sign](pages/castle-sign.md)]). This projects both on at once: subtract the `max < h` strips (which satisfy *plateau-free*, `J − I`, since the ceiling exception is unreachable) and fold in the signed count `P = Σ (−1)^{blocks}` via the signed matrix `S[a][b] = (−1)^{max(0, b−a)} M[a][b]`. The metallic growth survives (the signed matrix is spectrally subdominant), and the sequences have no OEIS match; see [[proper-castle-projection](pages/proper-castle-projection.md)]. Requires SymPy.
+The `ridge_count` above is a *free-height strip* count (`𝟙ᵀR_h^L𝟙`); a **proper** PE-502 castle imposes `max_i c_i = h` and the even-block parity `(A±P)/2` ([[castle-sign](pages/castle-sign.md)]). This projects both on at once: subtract the `max < h` strips (which satisfy *plateau-free*, `J − I`, since the ceiling exception is unreachable) and fold in the signed count `P = Σ (−1)^{blocks}` via the signed matrix `S[a][b] = (−1)^{max(0, b−a)} R_h[a][b]`. The metallic growth survives (the signed matrix is spectrally subdominant), and the sequences have no OEIS match; see [[proper-castle-projection](pages/proper-castle-projection.md)]. Requires SymPy.
 
 ```python
 def proper_even(h, Wmax):
-    """Even-block proper castles (max=h) under the J-D plateau-free-except-ceiling rule.
+    """Even-block ridge castles: proper castles (max=h) under the ridge rule R_h = J - D.
     Metal a = h-1. Returns counts by width w = 1..Wmax. Requires SymPy."""
     def free(mat):
         n = mat.shape[0]
@@ -156,7 +156,7 @@ def proper_even(h, Wmax):
             u.append(int((ones.T*Mu*ones)[0])); s.append(int((v.T*Ms*ones)[0]))
             Mu, Ms = Mu*mat, Ms*S
         return u, s
-    JD  = sp.Matrix(h, h, lambda i, j: 1 if (i != j or i == h-1) else 0)   # J - D
+    JD  = sp.Matrix(h, h, lambda i, j: 1 if (i != j or i == h-1) else 0)   # R_h = J - D
     PF  = sp.Matrix(h-1, h-1, lambda i, j: 1 if i != j else 0)             # J - I (max < h strip)
     uJ, sJ = free(JD); uP, sP = free(PF)
     return [(uJ[w]-uP[w] + sJ[w]-sP[w]) // 2 for w in range(Wmax)]
@@ -253,7 +253,7 @@ def strip_field_census(h):
 >>> # the deg-3 roots at h=3 include x^3-x-1 (plastic), x^3-x^2-x-1 (tribonacci), supergolden, plastic^2
 ```
 
-Meaning: the reachable quadratic fields grow `{5} → {2,3,5} → {2,3,5,13,17,21}` as `h = 2,3,4`; the metallic fields `Q(√(a²+4))` appear as the height grows (bronze `Q(√13)` at `h = 4`, via `J − D`), copper falls in `Q(√5)`, and the plastic number `x³−x−1` is already a Perron root at `h = 3` ([[reachable-field-census](pages/reachable-field-census.md)]).
+Meaning: the reachable quadratic fields grow `{5} → {2,3,5} → {2,3,5,13,17,21}` as `h = 2,3,4`; the metallic fields `Q(√(a²+4))` appear as the height grows (bronze `Q(√13)` at `h = 4`, via the ridge rule `R_h = J − D`), copper falls in `Q(√5)`, and the plastic number `x³−x−1` is already a Perron root at `h = 3` ([[reachable-field-census](pages/reachable-field-census.md)]).
 
 
 ### `sh_canonical(M)` → S_h orbit representative (spectrum-preserving dedup)

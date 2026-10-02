@@ -5,7 +5,7 @@ summary: The wiki's symbol conventions in one place, including the sandpile symb
 tags: [concept, castle, notation, reference, signed-tower-count, castle-sign, pedagogy]
 sources: [project-euler-502-solution, project-euler-502-representations]
 created: 2026-09-26
-updated: 2026-10-01
+updated: 2026-10-02
 ---
 
 # Castle notation - castles, towers, and the parity term
@@ -117,10 +117,13 @@ The block weight, the semi-perimeter, and the Motzkin-path readings add a second
 | `M_n`, `M(x)` | Motzkin numbers and their GF | [[motzkin-numbers](pages/motzkin-numbers.md)], [[motzkin-castles](pages/motzkin-castles.md)] |
 | Motzkin-path castle | castle type: 1-smooth (`\|c_{i+1} − c_i\| ≤ 1`) with `c_1 = c_w = 1`; `M_{w−1}` of them over all heights | [[castle-classification-shape](pages/castle-classification-shape.md)], [[motzkin-castles](pages/motzkin-castles.md)] |
 | Motzkin strip of height `h` | 1-smooth skylines on **castle** heights `1, …, h` (`h` states); its transfer matrix is `I + A_path` | [[motzkin-castles](pages/motzkin-castles.md)] |
+| ridge castle | castle type: exact height `h`, `c_i ≠ c_{i+1}` unless `c_i = c_{i+1} = h`, so flat runs occur only at the ceiling. `𝟙ᵀR_h^{w−1}𝟙 − (h−1)(h−2)^{w−1}` of them, growing like `δ_{h−1}^w` (golden, silver, bronze, … at `h = 2, 3, 4, …`). At `h = 2`, exchanging heights 1 and 2 maps them onto the Fibonacci castles plus the all-1 row | [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2, [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] |
+| `R_h` | the ridge rule's transfer matrix on **castle** heights `1, …, h`: `R_h = J − D` with `J` all-ones and `D = diag(1, …, 1, 0)`, entry 1 when `a ≠ b` or `a = b = h`; characteristic polynomial `(x + 1)^{h−2}(x² − (h−1)x − 1)`, Perron root `δ_{h−1}`. Not `M_h`, which would collide with the tower matrices `M_k` | [[metallic-strip-realizability](pages/metallic-strip-realizability.md)], [[proper-castle-projection](pages/proper-castle-projection.md)] |
+| Fibonacci castle | castle type: exact height 2, no two adjacent height-2 columns (the tree castles at exact height 2); `F_{w+2} − 1` of them | [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2, [[castle-graph](pages/castle-graph.md)] |
 | cornerless Motzkin path | the tower word (castle lowered by one row) read with `U = +1`, `R = 0`, `D = −1`; Deutsch-Elizalde's `Δ` adds back the outer `U…D` | [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)], [[tower-word-language](pages/tower-word-language.md)] |
 | peak `UD`, valley `DU` | in a tower word, a zero-width block and two touching blocks: the two castle rules | [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)], [[tower-word-language](pages/tower-word-language.md)] |
 
-**Height bookkeeping for matrices.** A tower-height matrix (`M_k(t)`, `K(ρ)`, `M_k`) has size `k + 1` = the castle height bound `h`. A castle-height strip (the Motzkin strip, the Pell strip of [[pell-castle-strip](pages/pell-castle-strip.md)]) has `h` states, heights `1, …, h`. Both have `h` states; they differ in whether the states are labelled from 0 or from 1.
+**Height bookkeeping for matrices.** A tower-height matrix (`M_k(t)`, `K(ρ)`, `M_k`) has size `k + 1` = the castle height bound `h`. A castle-height strip (the Motzkin strip, the Pell strip of [[pell-castle-strip](pages/pell-castle-strip.md)], the ridge strip `R_h`) has `h` states, heights `1, …, h`. Both have `h` states; they differ in whether the states are labelled from 0 or from 1.
 
 **Parity words.** "Even-block" always means the PE 502 parity. `F(w, h)` is reserved for height **exactly** `h`; a count over all heights (for example the even-block Motzkin-path castles) is described in words, not written `F`.
 
@@ -200,6 +203,7 @@ These are local notations on specific pages and are unrelated to the tower count
 | `N_i(state)` vs `N(q)` vs `N` | the samplers' completion table vs the q-Bessel numerator (Area gradings above) vs the Goertzel block length (Signal symbols above) | [[castle-samplers](pages/castle-samplers.md)], [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)], [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] |
 | `k` | tower height `k = h − 1` (the core tables); a DFT bin on the signal pages (Signal symbols above) | [[spectral-analysis](pages/spectral-analysis.md)], [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] |
 | `D_d` vs `D` | a divisor class of DFT bins vs the degree matrix in `L = D − A` | [[spectral-analysis](pages/spectral-analysis.md)], [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] |
+| `R_h` vs `R` | the ridge transfer matrix (table above) vs the step letter `R` (right) of tower words, the half-column rule `R` with `R² = M` on [[fractional-width-and-height](pages/fractional-width-and-height.md)] (which writes the ridge matrix as `J − D`), and the sector matrix `R` on [[hardin-word-identity](pages/hardin-word-identity.md)] | [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] |
 | `r` | repeat count of a periodic castle; the Ramanujan sum `r_q(j)` on [[spectral-analysis](pages/spectral-analysis.md)] | [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] |
 
 ## Related Concepts

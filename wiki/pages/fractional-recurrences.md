@@ -5,14 +5,14 @@ summary: The metallic ladder δ_a = (a + √(a²+4))/2 sits on a continuous curv
 tags: [analysis, castle, fractional-calculus, atici-eloe, nabla, mittag-leffler, metallic-mean, golden-ratio, transcendental, algebraic, baker-theorem, gelfond-schneider, plastic-number, supergolden, reachable-field, characteristic-equation]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-21
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Fractional recurrences: the rung between rungs
 
 ## The framing
 
-The metallic mean `δ_a = (a + √(a²+4))/2` is a continuous function of `a`, and the integer values `a = 1, 2, 3, …` are realized as growth constants of 0/1 castle-strip transfer matrices ([[metallic-means](pages/metallic-means.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). The [[reachable-field-census](pages/reachable-field-census.md)] widens the target from the ladder to every real quadratic Perron root. This page places these algebraic values on one continuous curve of growth constants.
+The metallic mean `δ_a = (a + √(a²+4))/2` is a continuous function of `a`, and the integer values `a = 1, 2, 3, …` are realized as growth constants of 0/1 castle-strip transfer matrices, by the ridge castles at height `a + 1` ([[metallic-means](pages/metallic-means.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). The [[reachable-field-census](pages/reachable-field-census.md)] widens the target from the ladder to every real quadratic Perron root. This page places these algebraic values on one continuous curve of growth constants.
 
 Discrete fractional calculus (Atici and Eloe, 2007-2009) supplies such a curve. The **nabla fractional difference** operator `∇^α` (Grunwald-Letnikov style) takes the integer-order difference `∇a_n = a_n - a_{n-1}` and interpolates it continuously in `α`, so a linear recurrence has a real-order version. The equation
 
@@ -217,7 +217,7 @@ a series of discrete Mittag-Leffler type with positive coefficients for `α > 0`
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - rational α gives algebraic growth, and algebraic irrational α gives transcendental growth by Gelfond-Schneider rather than through a Stirling or Catalan limit.
 - [[plastic-number](pages/plastic-number.md)] - `ψ² = 1.7549` at α = 2/3 and `ψ³ = 2.3247` at α = 3/2, cleanly parameterized as fractional-Fibonacci growths.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the supergolden `1.4656` (α = 1/3) appears here as a fractional-Fibonacci growth.
-- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the discrete side: `M_h = J - D` realizes `δ_{h-1}` at integer `h`; here the same rung is a specific transcendental `α`, so integer-strip realizability and rational-α realizability are two different regularity properties on the ladder.
+- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the discrete side: the ridge rule `R_h = J - D` realizes `δ_{h-1}` at integer `h`; here the same rung is a specific transcendental `α`, so integer-strip realizability and rational-α realizability are two different regularity properties on the ladder.
 - [[fractional-block-count](pages/fractional-block-count.md)] and [[fractional-width-and-height](pages/fractional-width-and-height.md)] - the two earlier fractional-order studies, which run the same `∇^α` operator on skylines rather than on the recurrence.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - `α = 1/2` gives `g = φ`, whose continued fraction is `[1; 1, 1, …]`.
 - [[pell-numbers](pages/pell-numbers.md)] - silver `1 + √2` at `α = 1` in the Fibonacci-Pell interpolation.

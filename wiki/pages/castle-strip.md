@@ -5,7 +5,7 @@ summary: A castle strip is a castle read left-to-right as a sequence of columns,
 tags: [concept, castle, transfer-matrix, strip, height, perron-root, growth-constant, generating-function, pedagogy, bridge]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # The castle strip - bridge to transfer matrices
@@ -102,16 +102,16 @@ Because several pages use compressed phrasings, here is the plain-language key:
 | "denominator `det(I − xM)`" | the strip's generating-function denominator (C-finite recurrence) |
 | "`p₁, p₂`" (in `1 − p₁x − p₂x²`) | coefficients of a quadratic strip denominator (not widths, not states) ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) |
 | "minimum height for a growth constant" | smallest `h` (= smallest matrix / fewest distinct heights) whose 0/1 rule matrix has that Perron root |
-| "`J − D` rule / ceiling exception" | a specific rule matrix (all-ones minus near-identity) realizing the metallic means ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) |
+| "ridge rule", "`R_h = J − D`" | adjacent heights differ unless both equal `h`: all-ones minus the identity with its last diagonal entry zeroed; realizes the metallic means; its castles of exact height `h` are the ridge castles ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2, [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) |
 
 ## Reproduce
 
-The one-line strip counter and growth-constant / field probes are on [[castle-snippets-strips](pages/castle-snippets-strips.md)] (`strip_field_census`, `ceiling_exception_ladder`, `sh_canonical`). The minimal counter is just `numpy`: build `M` from your rule, then `ones @ numpy.linalg.matrix_power(M, w-1) @ ones` for the width-`w` count, or `max(numpy.linalg.eigvals(M).real)` for the growth constant.
+The one-line strip counter and growth-constant / field probes are on [[castle-snippets-strips](pages/castle-snippets-strips.md)] (`strip_field_census`, `ridge_R` / `ridge_count`, `sh_canonical`). The minimal counter is just `numpy`: build `M` from your rule, then `ones @ numpy.linalg.matrix_power(M, w-1) @ ones` for the width-`w` count, or `max(numpy.linalg.eigvals(M).real)` for the growth constant.
 
 ## Related Concepts
 
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the worked seminar: the anchored 1-smooth height-3 strip is `1/(1 − 2x − x²)`, growth `1 + √2` (silver).
-- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - which growth constants `λ` are strip Perron roots; the `p₁/p₂` two-knob reduction and the `J − D` metallic realizer.
+- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - which growth constants `λ` are strip Perron roots; the `p₁/p₂` two-knob reduction and the ridge rule `R_h = J − D`, the metallic realizer.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the exhaustive census of strip Perron roots by number field; the reachability law.
 - [[metallic-means](pages/metallic-means.md)] - the ladder of growth constants `δ_a` these strips realize.
 - [[castle-graph](pages/castle-graph.md)] - the sibling bridge: individual-castle cell-adjacency and its spectrum (Axis 9), as opposed to the strip's class-level height-adjacency.

@@ -5,7 +5,7 @@ summary: For each quadratic growth constant - the larger root of x^2 - p1 x - p2
 tags: [analysis, castle, castle-strip, transfer-matrix, perron-frobenius, growth-constant, quadratic-field, metallic-means, min-height, equitable-partition, census, exhaustive-search, conjecture, implementation, verification]
 sources: [oeis-mining-pe502]
 created: 2026-09-25
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Minimum height for a quadratic growth constant
@@ -72,7 +72,7 @@ In the census this is exact whenever the conjugate is smaller than about 1 in si
 
 ### 2. The metallic line: min height `(p1, 1) = p1 + 1`
 
-The metallic mean `δ_a` sits strictly between `a` and `a + 1`, so bound 1 gives height at least `a + 1`, and the plateau-free-except-ceiling rule `J - D` realizes `δ_a` at exactly height `a + 1` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). So **min height `(a, 1) = a + 1` for every `a`.** In particular nickel, `(5+√29)/2 = 5.19`, first appears at height 6; the census confirms it there and not before.
+The metallic mean `δ_a` sits strictly between `a` and `a + 1`, so bound 1 gives height at least `a + 1`, and the ridge rule `R_h = J - D` (adjacent columns differ in height unless both equal `h`) realizes `δ_a` at exactly height `a + 1` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). So **min height `(a, 1) = a + 1` for every `a`.** In particular nickel, `(5+√29)/2 = 5.19`, first appears at height 6; the census confirms it there and not before.
 
 ### 3. The square-root line: min height `(0, p2) = ceil(2 sqrt p2)`
 
@@ -126,7 +126,7 @@ Through height 6 these are proved minima; beyond 6 they are upper bounds that th
 
 - [[area-growth-census](pages/area-growth-census.md)] - the same rules counted by area instead of width: growth constants in `(1, 2)`, cubics already at height 2, and the Pisot and Salem numbers that appear.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the reachability law this page sharpens, and the census grid through height 5 it extends to 6.
-- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the `J - D` rule that makes the metallic line exact.
+- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge rule `R_h = J - D` that makes the metallic line exact.
 - [[metallic-means](pages/metallic-means.md)] - the `p2 = 1` line.
 - [[castle-strip](pages/castle-strip.md)] - castle strips and their 0/1 transfer tables.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth constants as a classification axis.

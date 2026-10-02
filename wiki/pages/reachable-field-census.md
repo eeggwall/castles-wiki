@@ -5,7 +5,7 @@ summary: An exhaustive census (h ≤ 5) of which algebraic numbers are Perron ro
 tags: [analysis, castle, growth-constant, transfer-matrix, perron-root, number-field, metallic-mean, plastic-number, census, pisot, quadratic-field, sympy, verification]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Reachable-field census of castle-strip growth constants
@@ -56,9 +56,9 @@ def strip_field(M):
 ```
 >>> strip_field([[1,1],[1,0]])                              # golden, h=2: no two adjacent height-2 columns
 (1.6180340, 'Q(sqrt(5))')
->>> strip_field([[0,1,1],[1,0,1],[1,1,1]])                  # silver, h=3: J - D
+>>> strip_field([[0,1,1],[1,0,1],[1,1,1]])                  # silver, h=3: ridge R_3 = J - D
 (2.4142136, 'Q(sqrt(2))')
->>> strip_field([[0,1,1,1],[1,0,1,1],[1,1,0,1],[1,1,1,1]])  # bronze, h=4: J - D
+>>> strip_field([[0,1,1,1],[1,0,1,1],[1,1,0,1],[1,1,1,1]])  # bronze, h=4: ridge R_4 = J - D
 (3.3027756, 'Q(sqrt(13))')
 >>> strip_field([[0,0,1],[1,0,0],[1,1,0]])                  # plastic, h=3: near-companion of x^3 = x + 1
 (1.3247180, 'deg 3 (x**3 - x - 1)')
@@ -94,7 +94,7 @@ The census confirms each of these fields is reached: `Q(√5)` (golden) at h=2, 
 
 ### The metallic surd's minimum height is exactly `a + 1`
 
-The `M_h = J − D` "plateau-free-except-ceiling" rule realizes `δ_{h−1}` at height `h` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]), so `δ_a` is always reachable by height `h = a + 1`. The bound is **exact for every `a`**: a 0/1 matrix of size `h` has Perron root at most `h`, with equality only for the all-ones matrix, and `a < δ_a < a + 1`, so no height below `a + 1` can reach `δ_a`.[^3] So `J − D` realizes every metallic mean at the minimum height ([[quadratic-min-height](pages/quadratic-min-height.md)] has the proof and the full min-height table).
+The ridge rule `R_h = J − D` (adjacent columns differ in height unless both equal `h`; the ridge castles of [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2) realizes `δ_{h−1}` at height `h` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]), so `δ_a` is always reachable by height `h = a + 1`. The bound is **exact for every `a`**: a 0/1 matrix of size `h` has Perron root at most `h`, with equality only for the all-ones matrix, and `a < δ_a < a + 1`, so no height below `a + 1` can reach `δ_a`.[^3] So the ridge rule realizes every metallic mean at the minimum height ([[quadratic-min-height](pages/quadratic-min-height.md)] has the proof and the full min-height table).
 
 Within a single field the surds are also height-stratified. `Q(√5)` fills in as `h` grows: `φ` at h=2; `φ²` at h=3; `2φ = 3.236` at h=4; and **`φ³` (copper) only at h=5**. Which elements of `Q(√5)` are Perron roots depends on the height.[^4]
 
@@ -132,7 +132,7 @@ The census's finite lists (`{5}`, `{2,3,5}`, `{2,3,5,13,17,21}`, `{2,3,5,6,7,13,
 
 2. **The metallic means are exactly the `p₂ = 1` slice.** `x² − p₁x − 1` is the metallic mean `δ_{p₁}`; its discriminant `p₁² + 4` is the metallic form. So the metallic ladder is the **line `p₂ = 1`** through the `(p₁, p₂)` lattice: the roots of norm `−1`, with continued fraction `[a; a, a, …]` ([[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]). Roots with `p₂ ≠ 1` are non-metallic.
 
-3. **The obstruction is `0/1` realizability, not the field.** Every pair with `p₁ ≥ 0, p₂ ≥ 1` is realizable at *some* height: the edge graph of the multigraph with adjacency matrix `[[p₁, p₂], [1, 0]]` is a `0/1` transfer matrix (one state per edge) with the same nonzero spectrum, a standard symbolic-dynamics recoding. The **minimum** height grows with both `p₁` and `p₂` and has no known closed form (the h ≤ 4 grid: `(1,1)` at h=2; `(0,2), (2,1), (2,2), (3,−1)` at h=3; `(0,3), (1,3), (1,4), (2,4), (3,1), (3,2), (3,3), (4,−2), (4,−1)` at h=4; the metallic line is realized by `J − D` at `h = p₁ + 1`). The census's per-height lists are level sets of this min-height function ([[quadratic-min-height](pages/quadratic-min-height.md)]).[^9]
+3. **The obstruction is `0/1` realizability, not the field.** Every pair with `p₁ ≥ 0, p₂ ≥ 1` is realizable at *some* height: the edge graph of the multigraph with adjacency matrix `[[p₁, p₂], [1, 0]]` is a `0/1` transfer matrix (one state per edge) with the same nonzero spectrum, a standard symbolic-dynamics recoding. The **minimum** height grows with both `p₁` and `p₂` and has no known closed form (the h ≤ 4 grid: `(1,1)` at h=2; `(0,2), (2,1), (2,2), (3,−1)` at h=3; `(0,3), (1,3), (1,4), (2,4), (3,1), (3,2), (3,3), (4,−2), (4,−1)` at h=4; the metallic line is realized by the ridge rule `R_h = J − D` at `h = p₁ + 1`). The census's per-height lists are level sets of this min-height function ([[quadratic-min-height](pages/quadratic-min-height.md)]).[^9]
 
 `Q(√11)` is reachable too, at a greater height: a `d ≡ 3 (mod 4)` field needs a discriminant `p₁² + 4p₂` that is a multiple such as `4·11`, which forces a larger `(p₁, p₂)` than the `d ≡ 1 (mod 4)` fields `Q(√13)`, `Q(√17)`, `Q(√21)` need.
 
@@ -153,11 +153,11 @@ The census's finite lists (`{5}`, `{2,3,5}`, `{2,3,5,13,17,21}`, `{2,3,5,6,7,13,
 
 An **`S_h`-canonical-form deduper** (quotient the `2^{h²}` matrices by simultaneous row and column permutation `P M Pᵀ`, which preserves the spectrum, keeping the lexicographically minimal representative of each orbit) reproduces the field lists `{5}`, `{2,3,5}`, `{2,3,5,13,17,21}` for h ≤ 4, compressing 65 536 matrices to 3 044 orbits at h=4.[^10] At h=6 it still leaves `≈ 9.5 × 10⁷` orbits (h=7: `≈ 10¹¹`). [[quadratic-min-height](pages/quadratic-min-height.md)] instead enumerates the 1.28 billion row-sorted `6 × 6` tables and finds every quadratic Perron root through height 6.
 
-The new fields at `h ≥ 6` need dense matrices: a sparse sweep (`≤ 6` of 36 ones, `S_6`-deduped) reaches only `{2, 3, 5}`, while nickel's `J − D` realizer has 31 of 36 ones.[^11] Targeted constructions: nickel `Q(√29)` by `J − D` at h=6 (`(x+1)⁴(x²−5x−1)`); `δ_6 = 3 + √10` by `J − D` at h=7. The field `Q(√10)` itself first appears at h=6, through `(p₁, p₂) = (4, 6)` (`2 + √10`) and `(2, 9)` (`1 + √10`) in the exhaustive height-6 census.[^12]
+The new fields at `h ≥ 6` need dense matrices: a sparse sweep (`≤ 6` of 36 ones, `S_6`-deduped) reaches only `{2, 3, 5}`, while nickel's ridge realizer `R_6 = J − D` has 31 of 36 ones.[^11] Targeted constructions: nickel `Q(√29)` by the ridge rule `R_6` at h=6 (`(x+1)⁴(x²−5x−1)`); `δ_6 = 3 + √10` by `R_7` at h=7. The field `Q(√10)` itself first appears at h=6, through `(p₁, p₂) = (4, 6)` (`2 + √10`) and `(2, 9)` (`1 + √10`) in the exhaustive height-6 census.[^12]
 
 ## Reproduce
 
-The one-rule step (`strip_field`, above), the `strip_field_census` two-phase sweep (numeric Perron bucketing + exact SymPy field ID), the `sh_canonical` `S_h`-canonical-form dedup (validated against the exhaustive census), and the `ceiling_exception_M` `M = J − D` metallic realizer are on [[castle-snippets](pages/castle-snippets.md)]. h ≤ 4 runs exhaustively in seconds; h=5 in a few minutes with chunked vectorized `numpy.linalg.eigvals`; h ≥ 6 is characterized by the reachability law plus targeted construction rather than exhaustion.
+The one-rule step (`strip_field`, above), the `strip_field_census` two-phase sweep (numeric Perron bucketing + exact SymPy field ID), the `sh_canonical` `S_h`-canonical-form dedup (validated against the exhaustive census), and the `ridge_R` `R_h = J − D` metallic realizer are on [[castle-snippets](pages/castle-snippets.md)]. h ≤ 4 runs exhaustively in seconds; h=5 in a few minutes with chunked vectorized `numpy.linalg.eigvals`; h ≥ 6 is characterized by the reachability law plus targeted construction rather than exhaustion.
 
 ## Appearances in Sources
 
@@ -166,7 +166,7 @@ The one-rule step (`strip_field`, above), the `strip_field_census` two-phase swe
 ## Related Concepts
 
 - [[quadratic-min-height](pages/quadratic-min-height.md)] - the minimum height for each `(p₁, p₂)`: exact through height 6, proved on the metallic and square-root lines, and the three-group conjecture.
-- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the companion page: the `J − D` rule that realizes each metallic mean, confirmed here for h ≤ 5.
+- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the companion page: the ridge rule `R_h = J − D` that realizes each metallic mean, confirmed here for h ≤ 5.
 - [[metallic-means](pages/metallic-means.md)] - the ladder `δ_a`; this census places every rung's field and the copper collapse into `Q(√5)`.
 - [[plastic-number](pages/plastic-number.md)] - the plastic number is a strip Perron root at h=3.
 - [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] - where tribonacci, supergolden and plastic² arise by area; they are also strip Perron roots.
@@ -181,7 +181,7 @@ The one-rule step (`strip_field`, above), the `strip_field_census` two-phase swe
 
 [^2]: The squarefree-part computation is `d = ∏ p^{e mod 2}` over `factorint(a²+4)`. `a²+4` for `a = 1..6` is `5, 8, 13, 20, 29, 40`, squarefree parts `5, 2, 13, 5, 29, 10`. `a = 4` (copper) gives `20 = 2²·5 → 5`, so copper `∈ Q(√5)`; `δ₄ = 2 + √5 = φ³` (verified exactly, [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] footnote). The census independently finds `4.23607 = φ³` in the `Q(√5)` bucket at h=5.
 
-[^3]: Census first-appearance heights: golden `1.6180` at h=2, silver `2.4142` at h=3, bronze `3.3028` at h=4, copper `4.2361` at h=5 — each `= a+1`, matching the `J − D` realization. The `Q(√29)` bucket at h=5 (120 matrices) is `(3+√29)/2 = 4.19258`, the root of `x² − 3x − 5`; nickel `(5+√29)/2 = 5.19258` first appears at h=6, confirmed by the exhaustive height-6 census on [[quadratic-min-height](pages/quadratic-min-height.md)].
+[^3]: Census first-appearance heights: golden `1.6180` at h=2, silver `2.4142` at h=3, bronze `3.3028` at h=4, copper `4.2361` at h=5 — each `= a+1`, matching the ridge realization `R_h = J − D`. The `Q(√29)` bucket at h=5 (120 matrices) is `(3+√29)/2 = 4.19258`, the root of `x² − 3x − 5`; nickel `(5+√29)/2 = 5.19258` first appears at h=6, confirmed by the exhaustive height-6 census on [[quadratic-min-height](pages/quadratic-min-height.md)].
 
 [^4]: Restricting the h≤4 Perron roots to `Q(√5)` (those `v` with `v² − pv ∈ ℤ` for some integer `p` and squarefree discriminant `5`): h=2 gives `{φ}`, h=3 gives `{φ, φ²}`, h=4 gives `{φ, φ², 2φ}`; `φ³ = 4.23607` first appears at h=5. Verified by execution.
 
@@ -193,10 +193,10 @@ The one-rule step (`strip_field`, above), the `strip_field_census` two-phase swe
 
 [^8]: `p₁² + 4p₂ ≡ p₁² (mod 4) ∈ {0, 1}`, so the discriminant is always `≡ 0 or 1 (mod 4)` — a quadratic discriminant — and conversely every such value `≥ 5` is `p₁² + 4p₂` for some `p₁ ≥ 0, p₂ ≥ 1`. The squarefree part hits every squarefree `d ≥ 2` (using non-fundamental multiples where needed): e.g. `Q(√11)` via `(p₁,p₂) = (6,2)`, disc `44 = 4·11`, growth `3 + √11 ≈ 6.317` — verified in SymPy; absent from the h ≤ 5 census only because it needs a taller strip. So no real quadratic field is excluded.
 
-[^9]: Realizability: the nonnegative-integer companion `[[p₁, p₂], [1, 0]]` recodes to a `0/1` matrix by passing to its edge graph (states are the `p₁ + p₂ + 1` edges of the multigraph, a standard symbolic-dynamics recoding that keeps the nonzero spectrum), so every `(p₁ ≥ 0, p₂ ≥ 1)` is realized at some finite `h`. Min-heights at h ≤ 4 (exhaustive): `(1,1)`→2; `(0,2),(2,1),(2,2),(3,−1)`→3; `(0,3),(1,3),(1,4),(2,4),(3,1),(3,2),(3,3),(4,−2),(4,−1)`→4. The `p₂ = 1` (metallic) line is realized by `M_h = J − D` at `h = p₁ + 1` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). No closed form fits the full grid.
+[^9]: Realizability: the nonnegative-integer companion `[[p₁, p₂], [1, 0]]` recodes to a `0/1` matrix by passing to its edge graph (states are the `p₁ + p₂ + 1` edges of the multigraph, a standard symbolic-dynamics recoding that keeps the nonzero spectrum), so every `(p₁ ≥ 0, p₂ ≥ 1)` is realized at some finite `h`. Min-heights at h ≤ 4 (exhaustive): `(1,1)`→2; `(0,2),(2,1),(2,2),(3,−1)`→3; `(0,3),(1,3),(1,4),(2,4),(3,1),(3,2),(3,3),(4,−2),(4,−1)`→4. The `p₂ = 1` (metallic) line is realized by the ridge rule `R_h = J − D` at `h = p₁ + 1` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). No closed form fits the full grid.
 
 [^10]: The `S_h` deduper canonicalizes each matrix as the lexicographically-minimal flattening of `P M Pᵀ` over all `h!` permutations `P` (simultaneous row+column relabeling, which conjugates the matrix and preserves its spectrum), collapsing each orbit to one representative. Validated by execution: canonical-representative census reproduces the full field lists at h=2 (`{5}`, 10 orbits from 16 matrices), h=3 (`{2,3,5}`, 104 orbits from 512), h=4 (`{2,3,5,13,17,21}`, 3044 orbits from 65 536) — the quadratic fields match the exhaustive sweep exactly. Orbit compression ≈ `h!` (24× at h=4, observed 21.5×).
 
-[^11]: Sparse `S_6`-deduped census over 6×6 matrices with `≤ 6` of 36 ones: reaches quadratic fields `{2, 3, 5}` only. High-discriminant surds require dense matrices — the `J − D` realizer of nickel (`Q(√29)`) uses 31 ones — so sparse enumeration cannot reach the new h=6 fields. (Verified by execution: batched numeric Perron over all `C(36,K)` combinations for `K ≤ 6`, exact quadratic ID of the distinct roots.)
+[^11]: Sparse `S_6`-deduped census over 6×6 matrices with `≤ 6` of 36 ones: reaches quadratic fields `{2, 3, 5}` only. High-discriminant surds require dense matrices — the ridge realizer `R_6 = J − D` of nickel (`Q(√29)`) uses 31 ones — so sparse enumeration cannot reach the new h=6 fields. (Verified by execution: batched numeric Perron over all `C(36,K)` combinations for `K ≤ 6`, exact quadratic ID of the distinct roots.)
 
-[^12]: Targeted h=6 / h=7 constructions (SymPy): `J − D` at h=6 gives `(x+1)⁴(x²−5x−1)`, Perron `(5+√29)/2` = nickel ∈ `Q(√29)`, 31 ones; `J − D` at h=7 gives `(x+1)⁵(x²−6x−1)`, Perron `3+√10` = `δ₆` ∈ `Q(√10)`. The `a=6` field `Q(√10)` (disc 40) first appears at h=6: the exhaustive height-6 census on [[quadratic-min-height](pages/quadratic-min-height.md)] realizes `(p₁, p₂) = (4, 6)` and `(2, 9)` at height 6, while `(6, 1)` and `(0, 10)` need height 7.
+[^12]: Targeted h=6 / h=7 constructions (SymPy): `R_6 = J − D` gives `(x+1)⁴(x²−5x−1)`, Perron `(5+√29)/2` = nickel ∈ `Q(√29)`, 31 ones; `R_7 = J − D` gives `(x+1)⁵(x²−6x−1)`, Perron `3+√10` = `δ₆` ∈ `Q(√10)`. The `a=6` field `Q(√10)` (disc 40) first appears at h=6: the exhaustive height-6 census on [[quadratic-min-height](pages/quadratic-min-height.md)] realizes `(p₁, p₂) = (4, 6)` and `(2, 9)` at height 6, while `(6, 1)` and `(0, 10)` need height 7.

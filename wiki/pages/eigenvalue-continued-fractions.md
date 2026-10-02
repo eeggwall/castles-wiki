@@ -5,7 +5,7 @@ summary: Continued fractions of castle eigenvalues, taught from "what is a conti
 tags: [concept, castle, continued-fraction, eigenvalue, characteristic-polynomial, palindromic, lagrange, galois, quadratic, fibonacci, mod-p, pedagogy]
 sources: [project-euler-502-representations, oeis-mining-pe502]
 created: 2026-09-15
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Eigenvalue continued fractions
@@ -118,7 +118,7 @@ Both are the fundamental units of their quadratic fields (`φ` of `Q(√5)`, `�
 |---|---|---|---|---|
 | 1 | `(1+√5)/2 ≈ 1.618` | Golden | Fibonacci A000045 | `2^{n−1} − F_{n−1}` in prime-castle count ([[castle-by-area](pages/castle-by-area.md)]) |
 | 2 | `1+√2 ≈ 2.414` | Silver | Pell A000129 ([[pell-numbers](pages/pell-numbers.md)]) | tower-word growth constant; the anchored 1-smooth strip of [[pell-castle-strip](pages/pell-castle-strip.md)] |
-| 3, 4, 5, … | Bronze, Copper, Nickel, … | | | the plateau-free-except-ceiling strips at heights 4, 5, 6, … ([[castle-classification-growth](pages/castle-classification-growth.md)]) |
+| 3, 4, 5, … | Bronze, Copper, Nickel, … | | | the ridge castles (ridge rule `R_h = J − D`) at heights 4, 5, 6, … ([[castle-classification-growth](pages/castle-classification-growth.md)]) |
 
 Every castle class whose count sequence has growth constant `δ_a` for some `a ≥ 1` is a **`<metal>` `<axis>` growth castle** (Axis 8 of [[castle-classification-growth](pages/castle-classification-growth.md)]) — a meta-classification on castle *classes* (not on individual castles) whose naming convention `<metal>` ∈ {golden, silver, bronze, copper, …} and `<axis>` ∈ {width, vertical, area, block} is developed there.
 

@@ -5,7 +5,7 @@ summary: A seminar-shaped analysis. Start with an Analytic Combinatorics end-of-
 tags: [analysis, castle, pell, generating-functions, coefficient-matching, seminar, pedagogy, silver-ratio, transfer-matrix]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-15
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # The Pell castle strip - from an Analytic Combinatorics (AC) exercise to the silver ratio in castle space
@@ -90,7 +90,7 @@ are **Pell numbers, OEIS [A000129](https://oeis.org/A000129) shifted** (`a_n = P
 
 `1 + √2` appears elsewhere on the wiki. On [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] it is one of two **norm-`−1` reduced quadratic surds** with purely periodic continued fraction: `1 + √2 = [2; 2, 2, 2, …]`. On [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] it is the **tower-word growth constant** - the singularity of the algebraic generating function for tower words counted by total steps sits at `√2 − 1`, growth rate `1/(√2 − 1) = √2 + 1`.
 
-Silver appears in three castle constructions: the tower word (algebraic generating function, A004149), the 1-smooth height-3 strip (rational, Pell or Pell-Lucas by boundary), and the ceiling-exception rule `J − D` at height 3 ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)], Pell-Lucas `3, 7, 17, 41, …` as a free strip). The Pell numbers relate to `1 + √2` as the Fibonacci numbers relate to `φ` (Binet form, [[aocp-generating-functions](pages/aocp-generating-functions.md)]); on the castle side, Fibonacci counts the height-2 tree castles ([[castle-graph](pages/castle-graph.md)]) and Pell counts the anchored 1-smooth height-3 strip.
+Silver appears in three castle constructions: the tower word (algebraic generating function, A004149), the 1-smooth height-3 strip (rational, Pell or Pell-Lucas by boundary), and the ridge castles at height 3, ridge rule `R_3 = J − D` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)], Pell-Lucas `3, 7, 17, 41, …` as a free strip). The Pell numbers relate to `1 + √2` as the Fibonacci numbers relate to `φ` (Binet form, [[aocp-generating-functions](pages/aocp-generating-functions.md)]); on the castle side, Fibonacci counts the height-2 tree castles ([[castle-graph](pages/castle-graph.md)]) and Pell counts the anchored 1-smooth height-3 strip.
 
 ## Seminar outline
 
@@ -111,7 +111,7 @@ Read as `SEQ(2Z + Z²)`, the denominator `1 − 2x − x²` lists two atoms. The
 ## Related Concepts
 
 - [[castle-strip](pages/castle-strip.md)] - the from-scratch bridge: what a castle strip is, and how a neighbor rule becomes a transfer matrix whose states are the column heights. Read it first if the transfer-matrix language in Act III is unfamiliar.
-- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the 1-smooth height-3 matrix and its `(1 − x)(1 − 2x − x²)` denominator, and the `J − D` rule that realizes the whole metallic ladder.
+- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the 1-smooth height-3 matrix and its `(1 − x)(1 − 2x − x²)` denominator, and the ridge rule `R_h = J − D` that realizes the whole metallic ladder.
 - [[pell-numbers](pages/pell-numbers.md)] - the integer sequence and its silver-ratio growth.
 - [[generating-functions](pages/generating-functions.md)] - the coefficient-matching technique and the symbolic-method context.
 - [[symbolic-method](pages/symbolic-method.md)] - the `SEQ` construction the two-atom scheme is an instance of.
