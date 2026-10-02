@@ -5,7 +5,7 @@ summary: Configurations of non-overlapping, non-adjacent sub-blocks in a length-
 tags: [concept, castle, bijection, binary-strings, combinatorics]
 sources: [project-euler-502-solution]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-01
 ---
 
 # Binary-string bijection
@@ -18,6 +18,21 @@ Two consequences follow immediately:[^1]
 
 1. The number of configurations in a length-*L* block is `2^L`.
 2. A binary string with *r* maximal runs of 1s corresponds to a configuration with *r* sub-blocks.
+
+## Worked example: the 1729 castle (4 × 9)
+
+Read the decimal digits of 1729 as column heights: `(1, 7, 2, 9)` gives a castle of width 4 and height 9 ([[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)]). Write `1` for a filled cell and `0` for an empty cell, with columns read left to right and rows numbered from the bottom:
+
+| Row(s) | Four columns | New blocks |
+|---|---|---|
+| 1 (base) | `1111` | one, spanning all four columns |
+| 2 | `0111` | one, spanning columns 2–4 |
+| 3–7 | `0101` | two per row, in columns 2 and 4 |
+| 8–9 | `0001` | one per row, in column 4 |
+
+Start with the mandatory length-4 base. The row immediately above it is `0111`: its single maximal run, `111`, makes **one** length-3 sub-block, not three separate blocks. There are `2^4 = 16` possible strings for this row, hence 16 possible configurations above a length-4 base (including `0000`, which adds no blocks). Above the length-3 block in row 2, consider only its columns 2–4: row 3 reads `101`. Its two runs of `1` make **two** separate length-1 sub-blocks, with the `0` between them supplying the required gap. Conversely, marking those two sub-blocks with 1s and the gap with 0 recovers `101` uniquely. Each later row is encoded relative to the block directly below it in the same way; `0101` in the full-width view shows the two continuing columns.
+
+Counting the runs row by row gives `1` base block + `1` in row 2 + `5 × 2` in rows 3–7 + `2 × 1` in rows 8–9 = **14 blocks**. This is why the digit castle for 1729 is an even-block castle; 1729 here labels its column heights, rather than the number of configurations of the base.
 
 This is the binary encoding of [[castle-representations](pages/castle-representations.md)], stated as an exact bijection with the run/sub-block correspondence. It is the base layer of the induction that proves the [[castle-counting-formula](pages/castle-counting-formula.md)]'s `T(k,L) = (k+1)^L`: a tower of height ≤ *k* above a length-*L* block is a length-*L* binary string (which columns are covered by a sub-block in the row directly above) together with, for each maximal run of length *l*, an independent tower of height ≤ *k*−1 above that sub-block.[^2] Because sibling sub-blocks never interact (the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] crux), the count factors over runs:
 
