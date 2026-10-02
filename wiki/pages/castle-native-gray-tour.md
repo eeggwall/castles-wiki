@@ -3,7 +3,7 @@ title: Castle-native Gray tour
 category: Concepts
 summary: Whether a Gray tour exists on the valid-castle subset V(w, h) = {c : max c = h, blocks(c) even}, worked at small sizes; no castle-native Gray code is known. At (3, 2) the proper filter alone admits a Hamilton path under M1 (single-column pm-1); the even filter alone coincides with V at h = 2; V itself has no M1 Hamilton path (two pendant castles) but has one under M1 union M6 (adding adjacent transpositions). At (3, 3), V is three castles that no local move set tried connects. No general pattern is visible at these sizes; castle-move-graph-zdd extends the sweep.
 tags: [concept, castle, gray-code, ruskey, hamiltonian-path, generation, algorithm, open-problem]
-sources: [aocp-generating-permutations-tuples, project-euler-502-brute-force]
+sources: [aocp-generating-permutations-tuples, project-euler-502-brute-force, aocp-generating-partitions]
 created: 2026-09-20
 updated: 2026-10-02
 ---
@@ -176,6 +176,7 @@ At `(3, 3)` no local move set tried gives such a tour.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] - the streak view relates single-coordinate bumps to the local block structure, useful for characterising M1 edges intrinsically.
 - [[castle-foata-transform](pages/castle-foata-transform.md)] - the records / peaks decomposition is a natural axis for a Ruskey-style recursion on `V`.
 - [[castle-compression](pages/castle-compression.md)] - delta encodings, which a castle-native tour would support.
+- [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] - a restricted family where single-column moves on a side are Knuth's "move one dot" partition transitions; whether its cells admit a tour is open.
 - [[castle-samplers](pages/castle-samplers.md)] - the same fragmentation seen by Markov chains: `V(w, h)` has 191 components under single-column `±1` moves at `(8, 4)`, so chains run on the cube and filter at emit.
 
 ## Footnotes

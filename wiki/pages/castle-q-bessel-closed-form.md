@@ -3,9 +3,9 @@ title: Castles by width, blocks and area - a sequence of parallelograms over q-B
 category: Analyses
 summary: "Grading the tower-word first-return grammar by area turns it into the q-shift equation E(u) = A/(1 - uA), A(u) = 1 - x + x E(uq), a Möbius recursion that linearizes to closed q-series. With u marking width, x blocks and q area, castles are Π/(1 - x - Π), where Π = y J_1/J_0 is the Bousquet-Mélou-Fédou parallelogram-polyomino GF (the Pólya q-Catalan family with width and height split) evaluated at width (1 - x)u and height x. Checked as an exact polynomial identity through area 12-13 against two independent enumerations. At x = -1, u = 1 the denominator is an explicit series M(q) analytic in the unit disk, so the signed castle count is meromorphic there; its zero q_0 = -0.6158281351848... reproduces the row-raising constants rho and C to 30 digits, and the next zero q_1 = -0.8202720 gives the correction O(0.7508^n). By descents, the zero-descent and all-descent cells are q-binomials, but the middle cells do not factor as q-Narayana times q-binomial."
 tags: [analysis, castle, area, blocks, perimeter, q-analog, q-series, q-bessel, q-catalan, parallelogram-polyomino, grammar, functional-equation, q-shift, parity, sign, asymptotics, narayana, descents, q-binomial, novel-candidate]
-sources: [bousquet-melou-fedou-1995-convex-polyominoes, prellberg-brak-1995-cluster-models, column-convex-polygon-enumeration, project-euler-502-representations]
+sources: [bousquet-melou-fedou-1995-convex-polyominoes, prellberg-brak-1995-cluster-models, column-convex-polygon-enumeration, project-euler-502-representations, aocp-generating-partitions]
 created: 2026-09-23
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Castles by width, blocks and area
@@ -97,7 +97,7 @@ q_1  = -0.82027198,   then  0.64813 ± 0.51516 i  (|q| = 0.82793),  -0.41543 ± 
 
 At `q = 1`, towers of width `w` with `b` blocks and `k - 1` descents number `N(w,k) C(b+w-k, w-1)` ([[narayana-numbers](pages/narayana-numbers.md)]). With area:
 
-- **`k = 1`** (weakly increasing, `c_w = b`): `q^b [b+w-1, w-1]_q`, a partition in a box.
+- **`k = 1`** (weakly increasing, `c_w = b`): `q^b [b+w-1, w-1]_q`, a partition in a box (Cauchy's Theorem C, [[aocp-generating-partitions](pages/aocp-generating-partitions.md)]).
 - **`k = w`** (strictly decreasing, `c_1 = b`): `q^(b + C(w-1,2)) [b, w-1]_q`, distinct parts.
 - **`1 < k < w`**: the cell polynomial divided by `[b+w-k, w-1]_q` is not a polynomial from `b = 2` on (`w = 3, 4`, `b ≤ 6`), so there is no `q`-Narayana × `q`-binomial factorization by area.
 
@@ -154,6 +154,7 @@ print(castles(-1)[1:])                              # even - odd by area
 - [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)]: the parallelogram rung and its `J_0` growth constant.
 - [[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)]: the same `N/M` from the add-a-column equation by Bousquet-Mélou's Lemma 2.3, with `E(1) = N - M` and `1 - F(1) = M` term by term.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - the castles-by-area seminar, which uses this page as one of its stops.
+- [[aocp-generating-partitions](pages/aocp-generating-partitions.md)]: Knuth's source for the partition-in-a-box Gaussian binomial (Theorem C).
 
 ## Footnotes
 

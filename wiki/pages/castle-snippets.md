@@ -193,7 +193,7 @@ True
 (False, False)
 ```
 
-Wiki ties: [[convex-castle](pages/convex-castle.md)] (unimodal), [[polyominoes](pages/polyominoes.md)] (Ferrers/staircase in the taxonomy), [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 1 (hoodoo and monadnock castles; brute-force counts `9, 15, 16` at `h = 4`, `w = 3, 4, 5`, for both).
+Wiki ties: [[convex-castle](pages/convex-castle.md)] (unimodal), [[polyominoes](pages/polyominoes.md)] (Ferrers/staircase in the taxonomy), [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 1 (hoodoo and monadnock castles; brute-force counts `9, 15, 16` at `h = 4`, `w = 3, 4, 5`, for both), [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] (a generator that needs no filtering, checked against these two predicates).
 
 ### Axis 2: Rate of change
 

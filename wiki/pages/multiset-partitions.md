@@ -3,9 +3,9 @@ title: Multiset partitions
 category: Concepts
 summary: Splitting a multiset into unordered blocks - Bender's four counting functions c, v, c*, v* (repeated blocks allowed or not, repeated elements within a block allowed or not), the inclusion-exclusion sandwich that computes them, and their OEIS totals when every element appears twice or three times.
 tags: [concept, multiset, set-partition, stirling, bell-number, inclusion-exclusion]
-sources: [bender-1974-partitions-of-multisets]
+sources: [bender-1974-partitions-of-multisets, aocp-generating-partitions]
 created: 2026-09-22
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Multiset partitions
@@ -49,6 +49,8 @@ The `(0,n)` row matches a recomputation of Bender's eq. (11) for `n <= 5`. The `
 - [[symbolic-method](pages/symbolic-method.md)] - the `MSET` construction, a different operation under the same word.
 - [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] - the multinomial counting orderings of a fixed multiset.
 - [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - Ferrers diagrams by area, the one-element case of `v*`.
+- [[aocp-generating-partitions](pages/aocp-generating-partitions.md)] - Knuth's generators for integer partitions; the Hindenburg algorithm with the staircase shift lists the partitions into `k` distinct parts counted by `c*(·, k)` here.
+- [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] - castle types whose sides are partitions into distinct parts.
 
 ## Footnotes
 

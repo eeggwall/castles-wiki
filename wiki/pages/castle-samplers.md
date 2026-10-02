@@ -3,7 +3,7 @@ title: Castle samplers
 category: Concepts
 summary: Ten ways to draw random castles and the objects around them, each implemented and checked by execution - rejection, the transfer-matrix sampler (exact, O(wh) per draw, the workhorse), Sattolo-Foata (the permutation side of the cycle analogy, with exactly known laws), the Gray walk (exhaustive ground truth), rank/unrank, heat-bath MCMC on the cube, coupling from the past (monotone for block weight t <= 1, monotone after flipping odd columns for t > 1), Wilson's spanning-tree sampler plus the LGV sequential sampler for non-crossing path pairs, Wang-Landau for the block profile, and random-rule ensembles. The valid set V(w, h) is badly disconnected under single-column +-1 moves (191 components at (8, 4)), so the Markov-chain samplers run on the full cube and filter at emit.
 tags: [concept, castle, sampling, monte-carlo, transfer-matrix, rejection-sampling, rank-unrank, gray-code, mcmc, coupling-from-the-past, wilson-algorithm, spanning-tree, lgv, wang-landau, random-matrix, sattolo, foata, verification]
-sources: [project-euler-502-brute-force, project-euler-502-castle-factoring, aocp-generating-permutations-tuples]
+sources: [project-euler-502-brute-force, project-euler-502-castle-factoring, aocp-generating-permutations-tuples, aocp-generating-partitions]
 created: 2026-09-27
 updated: 2026-10-02
 ---
@@ -259,6 +259,7 @@ Everything is within 1.4 standard errors of the exact value except Wang-Landau, 
 - [[castle-entropy](pages/castle-entropy.md)] - the one-bit parity clause behind `F/A → 1/2`.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - why transcendental constants need limits, and so samplers.
 - [[castle-notation](pages/castle-notation.md)] - the block weight `t`, area weight `q`, and the symbols introduced here.
+- [[aocp-generating-partitions](pages/aocp-generating-partitions.md)] / [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] - the Nijenhuis-Wilf uniform random-partition generator (Knuth's exercise 47), the starting point for an open uniform sampler of hoodoo and monadnock castles.
 
 ## Footnotes
 

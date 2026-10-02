@@ -5,7 +5,7 @@ summary: A castle with a unimodal (up-then-down) skyline — equivalently column
 tags: [concept, castle, convex, unimodal, column-convex, row-convex, combinatorics, stars-and-bars]
 sources: [project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-mining-pe502, algebraic-languages-and-polyominoes-enumeration, bender-1974-convex-n-ominoes]
 created: 2026-09-13
-updated: 2026-09-29
+updated: 2026-10-02
 ---
 
 # Convex castle
@@ -77,6 +77,7 @@ This is A001519, a third grading of the same class after `(w,h)` (binomial) and 
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] — the AC-native OGF for the unimodal-skyline A001523 sub-family, built directly by the symbolic method.
 - [[convex-polyomino](pages/convex-polyomino.md)] - the general row- and column-convex class; a convex castle is its stack sub-family (both bottom corners of the bounding box), and on any row-convex shape blocks = height. [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] places the convex castle on the full area ladder.
 - [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] - Bender's trapezoids (nested rows over a full bottom row) are exactly convex castles. Every convex polyomino is two of them, one upright and one inverted, glued to the ends of a parallelogram.
+- [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] - two strict sub-families (hoodoo and monadnock castles) whose sides are partitions into distinct parts; for fixed `w` they make up a fixed fraction of the convex castles as `h` grows.
 
 ## Footnotes
 

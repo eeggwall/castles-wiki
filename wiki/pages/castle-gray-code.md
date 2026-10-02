@@ -3,7 +3,7 @@ title: Castle Gray code
 category: Concepts
 summary: Knuth's reflected Gray code on the mixed-radix space `{1..h}^w`, worked at `(w,h)=(3,2)` for `h=2` and via the loopless Gray algorithm (Knuth's §7.2.1.1 Algorithm H) for general `h`; one-column-per-step tour, `#blocks` moves by at most `1` per step, sign `s(c)` and signed sum `S` update in O(1), giving a loopless enumerator over the cube with the castle filters at emit; three-way split of `{1..h}^w` into improper, proper-odd, proper-even.
 tags: [concept, castle, gray-code, generation, algorithm, mixed-radix, loopless, taocp]
-sources: [aocp-generating-permutations-tuples, project-euler-502-brute-force]
+sources: [aocp-generating-permutations-tuples, project-euler-502-brute-force, aocp-generating-partitions]
 created: 2026-09-20
 updated: 2026-10-02
 ---
@@ -177,6 +177,7 @@ Not covered: Heap's algorithm and Steinhaus-Johnson-Trotter are permutation Gray
 - [[castle-entropy](pages/castle-entropy.md)] - the even-block filter costs about one bit of the `w log_2 h` bits the odometer walks.
 - [[block-count-constraints](pages/block-count-constraints.md)] - the running `S = Σ s(c)` sign updates are the residue-class `m = 2` extraction of the block-count trichotomy, run at Gray-tour cost.
 - [[castle-samplers](pages/castle-samplers.md)] - the Gray walk used as exhaustive ground truth for the random castle samplers.
+- [[aocp-generating-partitions](pages/aocp-generating-partitions.md)] - a different "Algorithm H" (§7.2.1.4, the Hindenburg algorithm for partitions into `m` parts), and Savage's Gray code for partitions.
 
 ## Footnotes
 

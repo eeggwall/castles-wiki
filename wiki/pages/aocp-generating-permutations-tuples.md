@@ -5,7 +5,7 @@ summary: Knuth's combinatorial-generation algorithms — mixed-radix add-one tup
 tags: [knuth, taocp, generation, mixed-radix, gray-code, brute-force, source]
 sources: [aocp-generating-permutations-tuples]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # AOCP Generating Permutations & Tuples (Knuth, *The Art of Computer Programming*, Vol. 4)
@@ -64,6 +64,7 @@ Gray order is also a delta encoding - consecutive castles differ in one symbol -
 - [[castle-counting-function](pages/castle-counting-function.md)] / [[castle-entropy](pages/castle-entropy.md)] - how many of the `h^w` visited tuples survive the filters, and what that costs in bits.
 - [[castle-strip](pages/castle-strip.md)] - the automaton alternative to the odometer.
 - [[castle-compression](pages/castle-compression.md)] - Gray order as a one-symbol delta encoding.
+- [[aocp-generating-partitions](pages/aocp-generating-partitions.md)] - the partitions section of the same volume (§7.2.1.4), whose Hindenburg algorithm generates hoodoo and monadnock castle sides directly.
 
 
 ## Relation to Other Wiki Pages

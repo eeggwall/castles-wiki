@@ -3,9 +3,9 @@ title: Permutation inversions (and the q-factorial)
 category: Concepts
 summary: The inversion statistic on permutations, whose generating function ∏(1−z^k)/(1−z)^n is the q-factorial — the prototype of the inversion-graded generating functions that q-Catalan and q-Motzkin numbers are.
 tags: [concept, inversions, permutations, q-factorial, q-analog, generating-functions]
-sources: [aocp-combinatorics]
+sources: [aocp-combinatorics, aocp-generating-partitions]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Permutation inversions (and the q-factorial)
@@ -45,6 +45,7 @@ The q-factorial `∏(1−z^k)/(1−z)^n` is the prototype of the inversion-grade
 - [[generating-functions](pages/generating-functions.md)] — the method.
 - [[aocp-permutations](pages/aocp-permutations.md)] — the permutation/factorial basics (the same permutations, built by insertion rather than encoded by inversion counts).
 - [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] / [[aocp-multisets](pages/aocp-multisets.md)] — MacMahon's q-multinomial: permutations of a multiset counted by inversions, the multiset form of the q-factorial.
+- [[aocp-generating-partitions](pages/aocp-generating-partitions.md)] — Knuth's rim representation: a partition of `n` is a permutation of the multiset `{n·0, n·1}` with exactly `n` inversions, the boundary of its Ferrers diagram read as a 0/1 string.
 
 ## Footnotes
 

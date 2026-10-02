@@ -3,7 +3,7 @@ title: Castle classification - shape types
 category: Concepts
 summary: The 42 shape-based castle types as skyline predicates on individual castles, plus the wiki-named ridge, hoodoo, and monadnock types. Seven axes: convexity/modality, rate of change, path-like, symmetry, extremum, parity/area, value patterns. Each type gets its wiki home and count status.
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle, hoodoo-castle, monadnock-castle, distinct-parts]
-sources: [castle-classification]
+sources: [castle-classification, aocp-generating-partitions]
 created: 2026-09-19
 updated: 2026-10-02
 ---
@@ -20,7 +20,7 @@ The base types are all standard polyomino / composition families. Each correspon
 |---|---|---|---|
 | **Column-convex** | (automatic for castles) | [[column-convex-polyomino](pages/column-convex-polyomino.md)] | matches all castles; `A(w,h) = h^w − (h−1)^w` |
 | **Unimodal** | `c_1 ≤ … ≤ c_p ≥ … ≥ c_w` | [[convex-castle](pages/convex-castle.md)] | `C(2h+w−3, w−1)` via [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] |
-| **Ferrers** | `c_1 ≥ c_2 ≥ … ≥ c_w` (weakly decreasing) | [[polyominoes](pages/polyominoes.md)], [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] | classical; by area = partition GF; q-Catalan / q-Bessel refinement |
+| **Ferrers** | `c_1 ≥ c_2 ≥ … ≥ c_w` (weakly decreasing) | [[polyominoes](pages/polyominoes.md)], [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] | classical; by area = partition GF; q-Catalan / q-Bessel refinement; in a fixed `(w, h)` cell, `C(w + h − 2, w − 1)` castles, by area `q^{h+w−1} [w + h − 2, w − 1]_q` (lower the last `w − 1` columns by one: a partition in a `(w − 1) × (h − 1)` box, Cauchy's Theorem C in [[aocp-generating-partitions](pages/aocp-generating-partitions.md)]; checked for `w ≤ 6`, `h ≤ 5`) |
 | **Staircase** | Ferrers with all `c_i` distinct | [[polyominoes](pages/polyominoes.md)] | classical (distinct-parts partitions) |
 | **Parallelogram** | anti-diagonal sections connected | [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] | classical (Bousquet-Mélou) |
 | **Directed** | every cell reachable from `(1,1)` by east/north | [[polyominoes](pages/polyominoes.md)] | classical (directed polyominoes) |
@@ -51,7 +51,7 @@ Types 1-6 and 30-31 restrict the shape of the skyline's local extrema, and the w
 
 **Where the wiki already has counts:** unimodal and (by symmetry) reverse Ferrers, via the [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]; anti-unimodal (valley) by area on [[castle-by-area](pages/castle-by-area.md)]; hoodoo and monadnock by `(w, h)` (below). **Open:** an explicit convex ⟺ valley bijection (the two classes are equinumerous in every `(w, h)` cell).
 
-**Hoodoo and monadnock castles.** Both are castles of exact height `h ≥ 2` with three parts, read left to right: a **rising side** of at least one column below `h`, a **summit** of one or more columns of height `h`, and a **falling side** of at least one column below `h`. A side's steps are the height changes `c_{i+1} − c_i` from its first column up to the summit (rising side) or from the summit down to its last column (falling side). The step onto the summit and the step off it belong to their sides, every step on a side is nonzero, and the only zero steps are inside the summit.
+**Hoodoo and monadnock castles.** Generation by the Hindenburg algorithm, the side counts, and growth on all three axes are on [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)]. Both are castles of exact height `h ≥ 2` with three parts, read left to right: a **rising side** of at least one column below `h`, a **summit** of one or more columns of height `h`, and a **falling side** of at least one column below `h`. A side's steps are the height changes `c_{i+1} − c_i` from its first column up to the summit (rising side) or from the summit down to its last column (falling side). The step onto the summit and the step off it belong to their sides, every step on a side is nonzero, and the only zero steps are inside the summit.
 
 - **Hoodoo castle.** The rising steps strictly increase and the falling drops strictly decrease in size: the skyline climbs faster and faster, then falls steeply and levels off. Each side is discrete-convex, with one concave bend at the summit. Example, `h = 35`, `w = 10`: `(2, 3, 6, 16, 35, 35, 25, 18, 14, 12)`, with rising steps `1, 3, 10, 19` and drops `10, 7, 4, 2`.
 - **Monadnock castle.** The rising steps strictly decrease and the falling drops strictly increase: the skyline climbs fast and slows into the summit, then falls slowly and steepens. The whole skyline is discrete-concave. Example, `h = 35`, `w = 10`: `(2, 21, 31, 34, 35, 35, 33, 29, 22, 12)`, with rising steps `19, 10, 3, 1` and drops `2, 4, 7, 10`.
@@ -212,6 +212,7 @@ In rough order of tractability:
 - [[castle-sign](pages/castle-sign.md)] / [[castle-foata-transform](pages/castle-foata-transform.md)] - the parity / peak-count / record statistics several types predicate on.
 - [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] - the framework the rainbow type maps onto directly.
 - [[castle-snippets](pages/castle-snippets.md)] - short tested Python snippets for the predicates on this page.
+- [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] - the hoodoo and monadnock types in full: sides as partitions into distinct parts, the Hindenburg-algorithm generator, counts and growth.
 - [[aocp-permutations](pages/aocp-permutations.md)] / [[aocp-combinatorics](pages/aocp-combinatorics.md)] - the rainbow type's count `h!` and its Mahonian inversion grading.
 - [[castle-compression](pages/castle-compression.md)] - the description-length axis that cross-cuts these shape axes.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - a second castle route to Axis 2's Hardin family (A005251, A202882, A203094, A203184): the even sector for `k ≡ 2 (mod 4)` is `2^L` times a Hardin word count, complementing the tower-spacing route.
