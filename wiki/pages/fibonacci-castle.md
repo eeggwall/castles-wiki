@@ -1,7 +1,7 @@
 ---
 title: Fibonacci castle
 category: Concepts
-summary: A Fibonacci castle is a castle of exact height 2 with no two adjacent height-2 columns (equivalently no 2×2 square; the tree castles of exact height 2). There are F_{w+2} − 1 of width w, from the transfer matrix [[1,1],[1,0]], growing like (φ²/√5)φ^w, so they are a golden width growth castle carrying log₂φ ≈ 0.694 bits per column (the golden mean shift). Counting them two ways gives Σ F_j = F_{w+2} − 1 and F_{a+b} = F_a F_{b+1} + F_{a−1} F_b, and weighting the columns by F_{w+1}, …, F_2 ranks them by Zeckendorf representation, a bijection onto 1, …, F_{w+2} − 1 in lexicographic order. A Fibonacci castle with m height-2 columns has m + 1 blocks, so the even-block count is (F_{w+2} − P_F(w))/2 with a parity term P_F of period 6 (1, 0, −1, −1, 0, 1), against a parity term of size 2^{w/2} for all castles of exact height 2. Neighbours - ridge castles of exact height 2 (swap 1 and 2, F_{w+2}), castles of exact height 2 by area (F_{n+1} − 1, a bijection onto Fibonacci castles of width n − 1), and prime castles.
+summary: A Fibonacci castle is a castle of exact height 2 with no two adjacent height-2 columns (equivalently no 2×2 square; the tree castles of exact height 2), and the count is what makes it Fibonacci - there are F_{w+2} − 1 of width w, of which (F_{w+2} − P_F(w))/2 have an even number of blocks, with P_F a parity term of period 6. The count comes from the transfer matrix [[1,1],[1,0]], growing like (φ²/√5)φ^w, so they are a golden width growth castle carrying log₂φ ≈ 0.694 bits per column (the golden mean shift). Counting them two ways gives Σ F_j = F_{w+2} − 1 and F_{a+b} = F_a F_{b+1} + F_{a−1} F_b, and weighting the columns by F_{w+1}, …, F_2 ranks them by Zeckendorf representation, a bijection onto 1, …, F_{w+2} − 1 in lexicographic order. A Fibonacci castle with m height-2 columns has m + 1 blocks, so the even-block count is (F_{w+2} − P_F(w))/2 with a parity term P_F of period 6 (1, 0, −1, −1, 0, 1), against a parity term of size 2^{w/2} for all castles of exact height 2. Neighbours - ridge castles of exact height 2 (swap 1 and 2, F_{w+2}), castles of exact height 2 by area (F_{n+1} − 1, a bijection onto Fibonacci castles of width n − 1), and prime castles.
 tags: [concept, castle, castle-type, fibonacci, golden-ratio, transfer-matrix, zeckendorf, parity, blocks, golden-mean-shift, entropy, tree-castle, ridge-castle]
 sources: [prellberg-brak-1995-cluster-models, deutsch-elizalde-2017-bargraphs-dyck-paths]
 created: 2026-10-03
@@ -14,7 +14,14 @@ updated: 2026-10-03
 
 A castle is a skyline `(c_1, …, c_w)` of columns standing on a full bottom row, built from blocks (maximal horizontal runs of cells in one row), with maximum height exactly `h`; PE 502 counts those with an even number of blocks.[^pe] A castle is a bar-graph polygon, a column-convex polygon with a horizontal lower boundary ([[castle-polyomino](pages/castle-polyomino.md)]),[^pb] and read by its column heights it is a composition.[^bar]
 
-A **Fibonacci castle** is a castle of exact height 2 in which no two adjacent columns both have height 2.
+A **Fibonacci castle** is a castle of exact height 2 in which no two adjacent columns both have height 2. What makes the family Fibonacci is its count:
+
+```
+#{Fibonacci castles of width w}                       =  F_{w+2} − 1,
+#{Fibonacci castles of width w with an even number of blocks}  =  (F_{w+2} − P_F(w)) / 2,
+```
+
+with `P_F(w)` the parity term of period 6 below, `1, 0, −1, −1, 0, 1, …`. Both are derived in the sections that follow.
 
 - **Equivalent forms.** No 2×2 square of cells, so a Fibonacci castle is a tree castle of exact height 2 ([[castle-graph](pages/castle-graph.md)]). Its second row is a set of isolated cells.
 - **Construction rule.** Choose a nonempty set of column positions in `{1, …, w}` with no two adjacent, and raise exactly those columns to height 2.
@@ -122,7 +129,6 @@ the `−1` again removing the all-zero row. Their difference `1 − P_F(w)` take
 
 - **Ridge castles of exact height 2.** The ridge rule ([[ridge-castle](pages/ridge-castle.md)]) forbids two adjacent columns of height 1 at `h = 2` ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2, [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). Exchanging heights 1 and 2 maps them onto the Fibonacci castles plus the all-1 row, so there are `F_{w+2}` of them for `w ≥ 2`. The exchange does not preserve blocks: `(2, 2)` has two and `(1, 1)` one. At exact height `h` the ridge castles grow like the metallic mean `δ_{h−1}`; Fibonacci castles have no such extension, since the tree castles of exact height `h ≥ 3` grow at the non-metallic `(1 + √(4h − 3))/2` ([[castle-graph](pages/castle-graph.md)]).
 - **Castles of exact height 2 by area.** A castle of exact height 2 with `n` cells is a composition of `n` into 1s and 2s with at least one 2, a tiling of a strip of `n` cells by squares and dominoes that uses a domino. There are `F_{n+1} − 1` of them (Benjamin and Quinn's `f_n = F_{n+1}`, minus the all-square tiling), and `C(n − m, m)` have `m` columns of height 2 and width `n − m`.[^bq] Mark each of the `n − 1` internal cell boundaries with 1 if it lies inside a domino and 0 otherwise: two dominoes never cover adjacent boundaries, so this is a bijection onto the Fibonacci castles of width `n − 1`, preserving the number of height-2 columns but not blocks (a castle of exact height 2 has one block plus one per maximal run of height-2 columns). See [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] and [[n-nacci-disambiguation](pages/n-nacci-disambiguation.md)].[^exec]
-- **Fibonacci castles by area** grow at the supergolden constant `≈ 1.4656`, not at `φ` ([[tree-castle-by-area](pages/tree-castle-by-area.md)]).
 - **Prime castles**, the castles with no height-1 column, number `F_{n−1}` by area with the height unrestricted ([[prime-castles](pages/prime-castles.md)]).
 
 ## Computation
