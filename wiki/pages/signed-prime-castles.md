@@ -1,14 +1,14 @@
 ---
-title: Signed Klarner decomposition - the block sign as a character of the prime-castle monoid
+title: Signed prime castles - the block sign as a character of the prime-castle monoid
 category: Analyses
 summary: "On the free gluing monoid of prime castles, blocks - 1 is additive, so the sign (-1)^(blocks-1) is a character. It factors through the abelianization and is constant on the castles built from one multiset of primes. The signed identity A_s = P_s/(1 - P_s), with P_s the signed primes, reproduces the even - odd parity split of castles by area (with width it becomes the recursion on castle-row-raising-equation). A multiset of primes with multiplicities m_i gives k!/prod m_i! castles, and the number of multisets by area, 1, 2, 3, 5, 9, 15, 26, 45, 78, 134, ..., is the Euler transform of the prime counts (no OEIS match). Area, width, blocks, height-1 columns, peaks and base-leaving records are characters. Left-to-right maxima, height and B_alpha for 0 < alpha < 1 are not."
 tags: [analysis, castle, area, prime-castle, monoid, character, parity, block-count, sign, multinomial, peaks, records, fractional, q-series, oeis, novel-candidate]
 sources: [oeis-mining-pe502]
 created: 2026-09-22
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
-# Signed Klarner decomposition
+# Signed prime castles
 
 [[prime-castles](pages/prime-castles.md)] builds the free monoid `M` of castles glued at a shared height-1 column. Its primes are `(1, X, 1)` with `X` free of height-1 columns, and every castle `C` enters `M` padded as `(1, C, 1)`. This page adds the sign. PE 502's parity clause is a statement about `(-1)^blocks` ([[block-count-constraints](pages/block-count-constraints.md)]), and in `M` that sign is multiplicative.
 

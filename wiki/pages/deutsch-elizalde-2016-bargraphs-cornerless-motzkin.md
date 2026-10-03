@@ -5,7 +5,7 @@ summary: Deutsch and Elizalde map bargraphs bijectively to cornerless Motzkin pa
 tags: [paper, source, bargraph, motzkin, cornerless, lattice-paths, generating-functions, bijection, statistics, rna-secondary-structure, palindromic, continued-fraction, oeis]
 sources: [deutsch-elizalde-2016-bargraphs-cornerless-motzkin]
 created: 2026-09-26
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Statistics on bargraphs viewed as cornerless Motzkin paths (Deutsch-Elizalde, 2016)
@@ -43,6 +43,7 @@ The rest of the paper is a toolkit. Whenever a statistic behaves well under `Δ`
 - [[castle-polyomino](pages/castle-polyomino.md)] - castles as bargraph polyominoes.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - reference [11] of the paper; the bar-graph functional equation and its continued fraction.
 - [[motzkin-numbers](pages/motzkin-numbers.md)] - the parent family.
+- [[deutsch-elizalde-2017-bargraphs-dyck-paths](pages/deutsch-elizalde-2017-bargraphs-dyck-paths.md)] - the same authors' later bijection to Dyck paths, which cites this paper as its reference [7]; its elevation step `φ(uPd) = UBD` is the same row-raising.
 
 ## Relation to Other Wiki Pages
 

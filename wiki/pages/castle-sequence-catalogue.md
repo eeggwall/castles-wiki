@@ -212,7 +212,7 @@ Castles glued at a shared height-1 column form a free monoid whose primes are th
 | non-convex prime castles `F_{n-1} - U` | `1, 2, 6, 13, 28, 54, 106, 194` (from `n = 8`) | | **novel-candidate** (no match, 2026-09-22) |
 | `U` by width | rows `1; 1; 1,1; 1,2; 1,3,1; 1,4,3; 1,5,5,1` | convex castles of area `n-w`, width `w` | **novel-candidate** (no match, 2026-09-22) |
 | convex castles, first column not 1 | `1, 2, 4, 7, 12, 20, 32, 51, 79` | `Δ A001523` | **interlink** → [A342528](https://oeis.org/A342528) (verified through area 120; neither entry cites the other) |
-| castles per multiset of primes | `1, 2, 3, 5, 9, 15, 26, 45, 78` (from `n = 1`) | Euler transform of the prime counts | **novel-candidate** (no match, 2026-09-22), [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)] |
+| castles per multiset of primes | `1, 2, 3, 5, 9, 15, 26, 45, 78` (from `n = 1`) | Euler transform of the prime counts | **novel-candidate** (no match, 2026-09-22), [[signed-prime-castles](pages/signed-prime-castles.md)] |
 | prime parity splits (all and convex) | see the two pages | | **novel-candidate** (no match, 2026-09-22) |
 | signed castles by area `even - odd` | `-1, 0, 0, 2, 0, 2, -4, 2, -12, 10, -20, 38` (from `n = 1`, 300 terms computed) | row-raising recursion; `~ C(-rho)^n` | **novel-candidate** (no match, 2026-09-22), [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] |
 | signed growth constant `rho` and prefactor `C` | `1.62382967400459...`, `0.09850917497311...` | pole at `q E(q,q) = 1`, the first zero of `M(q)` on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] | **novel-candidate** decimal expansions (no match, 2026-09-22) |

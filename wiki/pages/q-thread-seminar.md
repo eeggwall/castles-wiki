@@ -5,14 +5,14 @@ summary: A seminar on castles graded by area, one castle (2,1,3,3,1,1,2) carried
 tags: [concept, castle, seminar, pedagogy, teaching, area, q-analog, q-catalan, q-motzkin, q-bessel, prime-castles, signed-count, polyomino, composition]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes, steep-polyominoes-q-motzkin-bessel]
 created: 2026-09-27
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # q-thread seminar - castles by area
 
 **Thesis.** Count castles by the number of cells instead of by width and height, and the castle joins the classical polyomino literature. Area alone gives nothing new: every composition is a castle. The structure comes from area together with the block sign. The sign is a character of a free monoid of prime castles. That gives a q-shift equation, and the equation solves in the same q-Bessel series that count parallelogram polyominoes, the Pólya q-Catalan family. The link to the q-Motzkin family is open.
 
-**Structure.** Eight stops (0 to 7), one castle carried through: `(2, 1, 3, 3, 1, 1, 2)`, area 13, width 7, 5 blocks. The research pages behind it are [[castle-by-area](pages/castle-by-area.md)], [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)], [[prime-castles](pages/prime-castles.md)], [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)], [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] and [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]. Every new computation is pinned by the Snippet block at the end. Values quoted from a research page link to it. Notation follows [[castle-notation](pages/castle-notation.md)]: `q` marks area, `z` or `u` width, and `x` blocks.
+**Structure.** Eight stops (0 to 7), one castle carried through: `(2, 1, 3, 3, 1, 1, 2)`, area 13, width 7, 5 blocks. The research pages behind it are [[castle-by-area](pages/castle-by-area.md)], [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)], [[prime-castles](pages/prime-castles.md)], [[signed-prime-castles](pages/signed-prime-castles.md)], [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] and [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]. Every new computation is pinned by the Snippet block at the end. Values quoted from a research page link to it. Notation follows [[castle-notation](pages/castle-notation.md)]: `q` marks area, `z` or `u` width, and `x` blocks.
 
 ## Stop 0 - area as the second variable
 
@@ -81,7 +81,7 @@ glued by merging the last column of one piece with the first column of the next.
 
 ## Stop 4 - the sign is a character
 
-Under gluing, `blocks - 1` is additive: the running castle has `5 - 1 = 4 = 1 + 2 + 0 + 1`. So the sign `(-1)^{blocks - 1}` is a **character** of the monoid, a homomorphism to `{±1}` ([[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)]). A character passes through the sequence construction. With `E(q, z)` the signed castle GF by area and width, empty castle included, the free monoid gives
+Under gluing, `blocks - 1` is additive: the running castle has `5 - 1 = 4 = 1 + 2 + 0 + 1`. So the sign `(-1)^{blocks - 1}` is a **character** of the monoid, a homomorphism to `{±1}` ([[signed-prime-castles](pages/signed-prime-castles.md)]). A character passes through the sequence construction. With `E(q, z)` the signed castle GF by area and width, empty castle included, the free monoid gives
 
 ```
 1 + qz (2 - E(z))  =  1 / (1 - qz E(qz))
@@ -285,7 +285,7 @@ True
 ## Related Concepts
 
 - [[castle-by-area](pages/castle-by-area.md)] / [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] / [[column-convex-ladder-by-area](pages/column-convex-ladder-by-area.md)] - the counts and the ladder of Stops 0-2.
-- [[prime-castles](pages/prime-castles.md)] / [[prime-convex-castles](pages/prime-convex-castles.md)] / [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)] / [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] - the monoid, the character and the recursion of Stops 3-4.
+- [[prime-castles](pages/prime-castles.md)] / [[prime-convex-castles](pages/prime-convex-castles.md)] / [[signed-prime-castles](pages/signed-prime-castles.md)] / [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] - the monoid, the character and the recursion of Stops 3-4.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] / [[q-catalan-numbers](pages/q-catalan-numbers.md)] / [[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)] - the closed form, the q-Catalan families and the rank argument of Stops 5-6.
 - [[motzkin-castles](pages/motzkin-castles.md)] - cornerless Motzkin paths, whose corner weights are the route to the q-Motzkin link of Stop 6.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] / [[area-growth-census](pages/area-growth-census.md)] - bounded height by area, Stop 7.

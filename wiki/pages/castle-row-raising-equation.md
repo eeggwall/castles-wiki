@@ -5,7 +5,7 @@ summary: "A prime castle is a castle raised one row, so the free gluing monoid o
 tags: [analysis, castle, area, width, prime-castle, monoid, functional-equation, q-shift, q-series, parity, sign, peaks, asymptotics, residue, oeis, interlink, novel-candidate]
 sources: [oeis-mining-pe502]
 created: 2026-09-22
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # The castle row-raising equation
@@ -24,7 +24,7 @@ freeness:  M = 1/(1 - P)
            1 + qz B(z)  =  1 / (1 - qz B(qz))
 ```
 
-Unsigned, the equation holds for the known `B = 1 + qz/(1 - q - qz)` (compositions by parts) and adds nothing. It carries information once a character of `M` weights the primes: [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)] shows that any statistic additive over prime factors is one, and the block sign is such a statistic.
+Unsigned, the equation holds for the known `B = 1 + qz/(1 - q - qz)` (compositions by parts) and adds nothing. It carries information once a character of `M` weights the primes: [[signed-prime-castles](pages/signed-prime-castles.md)] shows that any statistic additive over prime factors is one, and the block sign is such a statistic.
 
 ## The signed equation
 
@@ -34,7 +34,7 @@ Let `E(q, z) = sum (-1)^blocks(C) q^area(C) z^width(C)`, including the empty cas
 1 + qz (2 - E(z))  =  1 / (1 - qz E(qz))
 ```
 
-The `2` is the empty castle, which is counted `+1` inside `E` but enters `M` as `(1, 1)` with sign `+1` instead of `-1`. This is the same identity as `1/(1 - P_s)` on [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)], now with width.
+The `2` is the empty castle, which is counted `+1` inside `E` but enters `M` as `(1, 1)` with sign `+1` instead of `-1`. This is the same identity as `1/(1 - P_s)` on [[signed-prime-castles](pages/signed-prime-castles.md)], now with width.
 
 **It is a recursion.** The right side at area `n + 1` involves `E(qz)` only through areas `≤ n - 1`, because `qz` and the shift each add area. So reading off `[q^(n+1)]` gives `-z E_n(z)` from lower terms, one area at a time, with no enumeration. The computation below reaches area 300 in about 15 seconds. An independent column DP (block count = total ascent, one pass per area) gives the same `even(n) - odd(n)` at every `n ≤ 300`, and brute-force enumeration gives the same width polynomials through area 12. At `n ≤ 12` the values agree with the `even`/`odd` table on [[castle-by-area](pages/castle-by-area.md)].[^1]
 
@@ -120,7 +120,7 @@ print(t[1:17], t[300] / t[299])                 # even - odd; ratio -> -rho
 ## Relation to other pages
 
 - [[prime-castles](pages/prime-castles.md)]: the monoid, and the primes as raised castles.
-- [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)]: the sign and the peaks as characters, which is what lets them pass through the equation.
+- [[signed-prime-castles](pages/signed-prime-castles.md)]: the sign and the peaks as characters, which is what lets them pass through the equation.
 - [[prime-convex-castles](pages/prime-convex-castles.md)]: `U = K(q, q)`, the convex case.
 - [[castle-by-area](pages/castle-by-area.md)]: the `even`/`odd` split extended here from area 18 to area 300.
 - [[castle-perimeter](pages/castle-perimeter.md)]: the semi-perimeter version, where the sign halves the exponent.

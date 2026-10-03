@@ -5,7 +5,7 @@ summary: Re-indexing castles by total cells n instead of (w,h) — convex↔A001
 tags: [concept, castle, area, composition, oeis, unimodal, valley]
 sources: [oeis-mining-pe502, castle-by-area]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Castles by area
@@ -57,7 +57,7 @@ By (w,h) the concave counts add nothing new: `valley(w,h) = convex(w,h) = C(2h+w
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - their bar-graph equation (3.11) is the castle GF by width, blocks and area. At unit width and block weights it gives the `2^(n-1)` here, and at block weight `-1` it gives `even(n) - odd(n)` (own computation through area 7, 2026-09-23).
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - the add-a-column method behind the column-convex rung (growth 3.20...) above the castle's `2^(n-1)`. Castles are its directed column-convex polygons with every column bottom on row 1.
 - [[column-convex-ladder-by-area](pages/column-convex-ladder-by-area.md)] - castles by area between stacks and the directed column-convex `F_(2n-1)`, with the block sign read as the vertical-perimeter sign on every rung.
-- [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)] - the block sign is a character of that monoid, and `1/(1 - P_s)` over the signed primes reproduces `odd(n) - even(n)` term by term.
+- [[signed-prime-castles](pages/signed-prime-castles.md)] - the block sign is a character of that monoid, and `1/(1 - P_s)` over the signed primes reproduces `odd(n) - even(n)` term by term.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - the castles-by-area seminar, which uses this page as one of its stops.
 
 ## Footnotes

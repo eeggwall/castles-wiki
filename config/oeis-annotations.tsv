@@ -175,6 +175,7 @@ A228457	count	Number of arrays of maxima of three adjacent elements of some leng
 A228458	count	Number of arrays of maxima of three adjacent elements of some length n+2 0..5 array.	minimum-tower-spacing `(h=6, g=3)` castles (maxima = minima by complement)
 A228461	supporting	Two-dimensional array read by antidiagonals: T(n,k) = number of arrays of maxima of three adjacent elements of some length n+2 0..k array.	the `g=3` column of the minimum-tower-spacing `(h,g)` table
 A253943	count	a(n) = 3*binomial(n+1,6).	height-3 castles of width n-2 with 4 blocks
+A271940	count	Triangle read by rows: T(n,k) is the number of bargraphs of semiperimeter n having k peaks (n >= 2, k >= 1).	castles (bargraphs) by semi-perimeter and peaks; the anti-diagonals n - k = m sum to the Catalan number C_m (Deutsch-Elizalde 2017)
 A271942	count	Triangle read by rows: T(n,k) is the number of bargraphs of semiperimeter n having width k (n>=2, k>=1).	castles by (semi-perimeter, width): tower Narayana T(w, s-w-1) re-indexed
 A273342	supporting	Triangle read by rows: T(n,k) is the number of bargraphs of semiperimeter n having length of first column k (n>=2, k>=1).	bargraphs by semi-perimeter and first-column height; first of the Deutsch-Elizalde statistic sequences A273342-A276068
 A273905	count	Number of symmetric bargraphs having semiperimeter n (n>=2).	palindromic castles by semi-perimeter (symmetric bargraphs, Deutsch-Elizalde §4.1)

@@ -5,7 +5,7 @@ summary: Bender's eleven-page Discrete Math. paper - four partition numbers c, v
 tags: [source, paper, bender, multiset, set-partition, stirling, bell-number, inclusion-exclusion, egf, asymptotics, de-bruijn, cycle-index, comtet, oeis]
 sources: [bender-1974-partitions-of-multisets]
 created: 2026-09-22
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Partitions of Multisets (Bender, 1974)
@@ -55,7 +55,7 @@ Knuth's pages treat permutations of a multiset and the multinomial ([[aocp-multi
 
 **A homonym to keep apart.** Bender's "blocks" are the parts of a partition. On castle pages, a block is a height-1, integer-length rectangle ([[project-euler-502](pages/project-euler-502.md)]), and the block count is the statistic filtered on [[block-count-constraints](pages/block-count-constraints.md)]. The two uses are unrelated.
 
-**Own reasoning, not in the paper:** castles glued at height-1 columns form a free monoid on the prime castles ([[prime-castles](pages/prime-castles.md)]), so the number of castles built from a given multiset of primes is a multinomial over orderings, which is Knuth's side ([[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)]). Bender's numbers would enter only for a question about unordered groupings of a castle's primes.
+**Own reasoning, not in the paper:** castles glued at height-1 columns form a free monoid on the prime castles ([[prime-castles](pages/prime-castles.md)]), so the number of castles built from a given multiset of primes is a multinomial over orderings, which is Knuth's side ([[signed-prime-castles](pages/signed-prime-castles.md)]). Bender's numbers would enter only for a question about unordered groupings of a castle's primes.
 
 ## Footnotes
 

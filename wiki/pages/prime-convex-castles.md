@@ -5,7 +5,7 @@ summary: "A prime convex castle is a convex castle with no height-1 column, a un
 tags: [analysis, castle, area, composition, prime-castle, convex-castle, unimodal, stack-polyomino, fibonacci, asymptotics, parity, q-series, oeis, interlink, novel-candidate]
 sources: [oeis-mining-pe502]
 created: 2026-09-22
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Prime convex castles
@@ -134,7 +134,7 @@ print([a[n] - a[n - 1] for n in range(2, 20)])   # A342528 from offset 1
 - [[castle-by-area](pages/castle-by-area.md)]: A001523 and the `cev`/`cod` split whose second differences are computed here.
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)], [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)]: the stack GF that `U` restricts.
 - [[convex-castle](pages/convex-castle.md)]: the convex castles counted by area and width in description 3.
-- [[signed-klarner-decomposition](pages/signed-klarner-decomposition.md)]: the sign as a character, of which the convex parity here is the case with one letter.
+- [[signed-prime-castles](pages/signed-prime-castles.md)]: the sign as a character, of which the convex parity here is the case with one letter.
 - [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]: statuses for the sequences on this page.
 
 ## Footnotes
