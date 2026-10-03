@@ -3,9 +3,9 @@ title: Castle (polyomino)
 category: Concepts
 summary: The central object of study. A castle is a skyline (c_1, …, c_w) with 1 ≤ c_i ≤ h and max c_i = h; blocks are the maximal runs of each row so the block count is the total descent; the any-parity count is A(w, h) = h^w − (h−1)^w.
 tags: [concept, castle, polyomino, bargraph, column-convex, skyline, combinatorics]
-sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-solution, project-euler-502-brute-force]
+sources: [project-euler-502, prellberg-brak-1995-cluster-models, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-solution, project-euler-502-brute-force]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-03
 ---
 
 # Castle (polyomino)
@@ -24,7 +24,7 @@ The `i`-th column of the castle is the vertical stack of unit cells at heights `
 - **bottom-aligned** - row 1 is a full-width strip `c_i ≥ 1`;
 - **exactly `h` tall** - at least one column reaches the ceiling.
 
-In the polyomino literature the object *"column-convex polyomino with a full contiguous bottom row"* is called a **bargraph** (or a **skyline polyomino**), so a castle is a bargraph of width `w`, height at most `h`, that touches the ceiling `h` in at least one column. That places castles inside a well-studied family, next to Ferrers, staircase, stack, and parallelogram polyominoes ([[polyominoes](pages/polyominoes.md)], [[column-convex-polyomino](pages/column-convex-polyomino.md)]).
+In the polyomino literature a column-convex polygon with a horizontal lower boundary is called a **bar-graph polygon** or **bargraph** (also a **skyline polyomino**),[^pb] so a castle is a bargraph of width `w`, height at most `h`, that touches the ceiling `h` in at least one column. That places castles inside a well-studied family, next to Ferrers, staircase, stack, and parallelogram polyominoes ([[polyominoes](pages/polyominoes.md)], [[column-convex-polyomino](pages/column-convex-polyomino.md)]).
 
 ## Blocks and the any-parity count
 
@@ -97,3 +97,4 @@ A castle can be encoded exactly in several ways - column-wise binary strings, th
 [^3]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"The 'even number of blocks' clause is almost the entire difficulty" L17 - "Without it, the answer is just `h^w − (h−1)^w`: all castles of height at most `h` minus those of height at most `h − 1`."
 [^4]: [[project-euler-502](pages/project-euler-502.md)] §"Project 502: Castle Polyominoes" L20 - "The castle is made from an even number of blocks."
 [^5]: [[project-euler-502](pages/project-euler-502.md)] §"Project 502: Castle Polyominoes" L13-19 [synthesis] - the placement rules: no sticking out or overhanging open space, grid-snapped, ≥1 unit gap between same-row neighbors, bottom row a block of length `w`, maximum height exactly `h`.
+[^pb]: [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] §3.1 "Bar-Graph Polygons" L399-402 - "Our next example will be bar-graph polygons, that is, column-convex polygons with a horizontal lower boundary."
