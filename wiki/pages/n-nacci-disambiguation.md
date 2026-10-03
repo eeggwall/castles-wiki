@@ -5,7 +5,7 @@ summary: Every place the wiki meets the Fibonacci, tribonacci, tetranacci and hi
 tags: [concept, disambiguation, fibonacci, tribonacci, tetranacci, pentanacci, n-nacci, growth-constant, composition, index]
 sources: [algebraic-languages-and-polyominoes-enumeration, dhar-ruelle-sen-verma-1995-algebraic-aspects, aocp-generating-functions, analytic-combinatorics-ch1-ogfs]
 created: 2026-10-02
-updated: 2026-10-02
+updated: 2026-10-03
 ---
 
 # n-nacci disambiguation
@@ -39,7 +39,7 @@ With no height restriction the count is `2^{A−1}` and the growth is `2` ([[cas
 
 These counts all come from the transfer matrix `[[1,1],[1,0]]` on heights `{1, 2}`, the first entry of [[reachable-field-census](pages/reachable-field-census.md)]. They are linked by explicit maps.
 
-- **Fibonacci castles.** Exact height 2, no two adjacent height-2 columns. There are `F_{w+2} − 1` of width `w`, growing like `φ`. Defined on [[castle-classification-shape](pages/castle-classification-shape.md)] (Axis 2) and [[castle-notation](pages/castle-notation.md)]. They are the tree castles of exact height 2 ([[castle-graph](pages/castle-graph.md)], [[castle-classification-spectrum](pages/castle-classification-spectrum.md)]), and [[castle-classification-growth](pages/castle-classification-growth.md)] files them as a golden width growth class. [[tree-castle-by-area](pages/tree-castle-by-area.md)] splits them by the number of height-2 columns `t` into the triangle `C(w − t + 1, t)`, with the all-1 row as `t = 0`.
+- **Fibonacci castles.** Exact height 2, no two adjacent height-2 columns. There are `F_{w+2} − 1` of width `w`, growing like `φ`. Their page is [[fibonacci-castle](pages/fibonacci-castle.md)]; also on [[castle-classification-shape](pages/castle-classification-shape.md)] (Axis 2) and [[castle-notation](pages/castle-notation.md)]. They are the tree castles of exact height 2 ([[castle-graph](pages/castle-graph.md)], [[castle-classification-spectrum](pages/castle-classification-spectrum.md)]), and [[castle-classification-growth](pages/castle-classification-growth.md)] files them as a golden width growth class. [[tree-castle-by-area](pages/tree-castle-by-area.md)] splits them by the number of height-2 columns `t` into the triangle `C(w − t + 1, t)`, with the all-1 row as `t = 0`.
 - **Ridge castles of exact height 2.** Exchanging heights 1 and 2 maps them onto the Fibonacci castles plus the all-1 row, so there are `F_{w+2}` of them for `w ≥ 2` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)], [[castle-classification-shape](pages/castle-classification-shape.md)]).
 - **Trivial heaps on the path `P_w`.** Independent sets of `P_w` are the sets of height-2 columns in a Fibonacci castle (plus the empty set), `F_{w+2}` in all ([[viennot-heap-tower](pages/viennot-heap-tower.md)]).
 - **All castles of exact height 2 by area.** `F_{A+1} − 1`, the `h = 2` row of the spine table ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)], [[castle-snippets-strips](pages/castle-snippets-strips.md)]). The same numbers as the Fibonacci castles, shifted by one: append a height-1 column to a Fibonacci castle of width `w`, read each height-2 column together with the height-1 column after it as a part 2, and each remaining height-1 column as a part 1. This is a bijection from Fibonacci castles of width `w` onto the castles of exact height 2 and area `w + 1`. Example: `(1, 2, 1, 1, 2)` becomes `(1, 2, 1, 2)`.[^exec]

@@ -5,7 +5,7 @@ summary: A class-level classification. A castle class - an infinite family defin
 tags: [concept, castle, classification, taxonomy, growth-constant, metallic-means, ridge-castle, non-metallic, meta-classification, n-nacci, cubic-pisot, plastic-number, class-predicate]
 sources: [castle-classification, oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-10-02
+updated: 2026-10-03
 ---
 
 # Castle classification - growth types
@@ -54,7 +54,7 @@ The width axis grades a class by `w` at a fixed exact height. Every rung of the 
 
 A class whose width-graded count sequence grows at `φ = (1 + √5) / 2`, equivalently whose width GF has dominant singularity at `1 / φ = φ − 1`. Known member:
 
-- **The Fibonacci castles** ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2, [[castle-graph](pages/castle-graph.md)]) - the tree castles of exact height 2: no two adjacent height-2 columns, so every upper block has width 1, and at least one height-2 column. Count `F_{w + 2} − 1`, generating function `x / ((1 − x)(1 − x − x²))`, with the `p_1 = 1, p_2 = 1` denominator `1 − x − x²` carrying the growth.
+- **The Fibonacci castles** ([[fibonacci-castle](pages/fibonacci-castle.md)], [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2, [[castle-graph](pages/castle-graph.md)]) - the tree castles of exact height 2: no two adjacent height-2 columns, so every upper block has width 1, and at least one height-2 column. Count `F_{w + 2} − 1`, generating function `x / ((1 − x)(1 − x − x²))`, with the `p_1 = 1, p_2 = 1` denominator `1 − x − x²` carrying the growth.
 - **The ridge castles of exact height 2** ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2) - no two adjacent columns of height 1. Exchanging the heights 1 and 2 maps them onto the Fibonacci castles plus the all-1 row, so there are `F_{w + 2}` of them for `w ≥ 2`. This is the `h = 2` rung of the ridge rule below.
 
 ### Silver - `δ_2 = 1 + √2`
