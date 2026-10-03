@@ -5,7 +5,7 @@ summary: Which metallic means a castle-strip rule produces (Axis 8). A castle-st
 tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, bronze, copper, silver, fibonacci-decimation, axis-8, realizability, sympy, verification]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-10-02
+updated: 2026-10-03
 ---
 
 # Which metallic means are castle-strip growth constants
@@ -57,7 +57,7 @@ transfer matrix R_4 = J − D              allowed height-adjacency rule (height
 [1 1 1 1]
 ```
 
-Its characteristic polynomial is `(x + 1)²(x² − 3x − 1)`, so the Perron root is bronze `(3 + √13)/2` exactly; the width count is `4, 13, 43, 142, 469, 1549, …` (growth ratio `→ 3.30278`).[^5] This is the **ridge rule**, a **plateau-free variant** (Axis 2 of [[castle-classification-shape](pages/castle-classification-shape.md)]) with a single ceiling exception. A **ridge castle** is a castle of exact height `h` that obeys it: flat runs occur only at the ceiling, and below the ceiling the skyline steps up or down at every column. The ridge castles of height 4 are a **bronze width growth castle**.
+Its characteristic polynomial is `(x + 1)²(x² − 3x − 1)`, so the Perron root is bronze `(3 + √13)/2` exactly; the width count is `4, 13, 43, 142, 469, 1549, …` (growth ratio `→ 3.30278`).[^5] This is the **ridge rule**, a **plateau-free variant** (Axis 2 of [[castle-classification-shape](pages/castle-classification-shape.md)]) with a single ceiling exception. A **ridge castle** ([[ridge-castle](pages/ridge-castle.md)]) is a castle of exact height `h` that obeys it: flat runs occur only at the ceiling, and below the ceiling the skyline steps up or down at every column. The ridge castles of height 4 are a **bronze width growth castle**.
 
 ## Finding 3: one named rule realizes the whole metallic ladder
 

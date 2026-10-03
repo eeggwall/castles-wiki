@@ -5,7 +5,7 @@ summary: How much information a castle carries, in two senses that agree — uni
 tags: [concept, castle, entropy, information-theory, counting, growth-constant, metallic-means, parity, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-18
-updated: 2026-10-02
+updated: 2026-10-03
 ---
 
 # Castle entropy
@@ -59,7 +59,7 @@ This is the topological entropy of the constrained system, and it is the same nu
 | height-bounded skyline, no other rule | `h` | `log₂ h` |
 | golden (`x² = x + 1`) | φ = 1.6180 | 0.694 bits/column |
 | silver (`x² = 2x + 1`) | 1+√2 = 2.4142 | 1.272 |
-| bronze (ridge castles, `h = 4`) | (3+√13)/2 = 3.3028 | 1.724 |
+| bronze (ridge castles, `h = 4`; [[ridge-castle](pages/ridge-castle.md)]) | (3+√13)/2 = 3.3028 | 1.724 |
 | copper (`δ₄ = φ³`; ridge castles, `h = 5`) | 2+√5 = 4.2361 | 2.083 |
 | plastic (`x³ = x + 1`) | ψ = 1.3247 | 0.406 |
 | tribonacci (`x³ = x² + x + 1`) | t = 1.8393 | 0.879 |

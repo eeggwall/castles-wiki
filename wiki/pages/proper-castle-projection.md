@@ -5,7 +5,7 @@ summary: The metallic-strip-realizability counts are free-height strip counts (�
 tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, parity, even-block, proper-castle, bronze, copper, silver, new-sequence, oeis, sympy, verification]
 sources: [pe502-pell-castle-strip, project-euler-502-castle-factoring]
 created: 2026-09-18
-updated: 2026-10-02
+updated: 2026-10-03
 ---
 
 # Do metallic growth constants survive the proper-castle projection
@@ -73,7 +73,7 @@ the extra `(x − (h−2))` coming from the `J−I` plateau-free subtraction; th
 
 ## Finding 3 — the free counts are companion metallic sequences, not primary
 
-Even *before* the projection, the free strip count `𝟙ᵀR_h^L𝟙` is not the "primary" metallic sequence `x_n = a·x_{n−1} + x_{n−2}`, `x_0 = 0, x_1 = 1` (Pell A000129, A006190, A001076, A052918 — the sequences tabulated on [[metallic-means](pages/metallic-means.md)]). The all-ones boundary picks a different linear combination of `δ_{h−1}^w` and its conjugate, plus `(−1)^w` corrections from the `(x+1)^{h−2}` factor:[^7]
+Even *before* the projection, the free strip count `𝟙ᵀR_h^L𝟙` is not the "primary" metallic sequence `x_n = a·x_{n−1} + x_{n−2}`, `x_0 = 0, x_1 = 1` (Pell A000129, A006190, A001076, A052918 — the sequences tabulated on [[metallic-means](pages/metallic-means.md)]). The all-ones vector lies in the plane spanned by `𝟙` and `e_h`, which `R_h` preserves and on which it acts with characteristic polynomial `x² − (h−1)x − 1`, so the eigenvalue `−1` does not contribute: the free count obeys the metallic recurrence exactly and equals `x_{L+2} + x_{L+1}` for `𝟙ᵀR_h^L𝟙`, a different linear combination of `δ_{h−1}^w` and its conjugate from the primary sequence ([[ridge-castle](pages/ridge-castle.md)]):[^7]
 
 | rung | free strip count | OEIS | primary metallic sequence |
 |---|---|---|---|

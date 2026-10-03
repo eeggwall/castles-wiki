@@ -5,7 +5,7 @@ summary: An exhaustive census (h ≤ 5) of which algebraic numbers are Perron ro
 tags: [analysis, castle, growth-constant, transfer-matrix, perron-root, number-field, metallic-mean, plastic-number, census, pisot, quadratic-field, sympy, verification]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-10-02
+updated: 2026-10-03
 ---
 
 # Reachable-field census of castle-strip growth constants
@@ -94,7 +94,7 @@ The census confirms each of these fields is reached: `Q(√5)` (golden) at h=2, 
 
 ### The metallic surd's minimum height is exactly `a + 1`
 
-The ridge rule `R_h = J − D` (adjacent columns differ in height unless both equal `h`; the ridge castles of [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2) realizes `δ_{h−1}` at height `h` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]), so `δ_a` is always reachable by height `h = a + 1`. The bound is **exact for every `a`**: a 0/1 matrix of size `h` has Perron root at most `h`, with equality only for the all-ones matrix, and `a < δ_a < a + 1`, so no height below `a + 1` can reach `δ_a`.[^3] So the ridge rule realizes every metallic mean at the minimum height ([[quadratic-min-height](pages/quadratic-min-height.md)] has the proof and the full min-height table).
+The ridge rule `R_h = J − D` (adjacent columns differ in height unless both equal `h`; the ridge castles, [[ridge-castle](pages/ridge-castle.md)], of [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2) realizes `δ_{h−1}` at height `h` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]), so `δ_a` is always reachable by height `h = a + 1`. The bound is **exact for every `a`**: a 0/1 matrix of size `h` has Perron root at most `h`, with equality only for the all-ones matrix, and `a < δ_a < a + 1`, so no height below `a + 1` can reach `δ_a`.[^3] So the ridge rule realizes every metallic mean at the minimum height ([[quadratic-min-height](pages/quadratic-min-height.md)] has the proof and the full min-height table).
 
 Within a single field the surds are also height-stratified. `Q(√5)` fills in as `h` grows: `φ` at h=2; `φ²` at h=3; `2φ = 3.236` at h=4; and **`φ³` (copper) only at h=5**. Which elements of `Q(√5)` are Perron roots depends on the height.[^4]
 
