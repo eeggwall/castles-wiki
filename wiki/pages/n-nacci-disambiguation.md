@@ -49,7 +49,7 @@ These counts all come from the transfer matrix `[[1,1],[1,0]]` on heights `{1, 2
 
 ### 2. Castles with no height-1 column (a different composition class)
 
-- **Prime castles.** Castles with no height-1 column are the primes of the gluing monoid, `F_{n−1}` of area `n`, and the composite castles number `2^{n−1} − F_{n−1}` ([[prime-castles](pages/prime-castles.md)], [[castle-by-area](pages/castle-by-area.md)]). These are compositions into parts `≥ 2`, a different class from section 1 with the same numbers after a shift.
+- **Prime castles.** Castles with no height-1 column are the primes of the gluing monoid, `F_{n−1}` of area `n`, and the composite castles number `2^{n−1} − F_{n−1}` ([[prime-castles](pages/prime-castles.md)], [[castle-by-area](pages/castle-by-area.md)]). These are compositions into parts `≥ 2`, a different class from section 1 with the same numbers after a shift. The growth `φ` needs the height unrestricted: at exact height `h` the growth is the largest root of `x^h = x^{h−2} + ⋯ + x + 1`, the plastic number at `h = 3` and supergolden at `h = 4`, increasing to `φ`.
 - **One-peak castles.** A one-peak castle is a prime castle with runs of height-1 columns on both sides, so its count by area is A001924, the Fibonacci numbers summed twice ([[castle-row-raising-equation](pages/castle-row-raising-equation.md)]).
 - **Prime convex castles.** By area they agree with `F_{n−1}` through `n = 7` and fall below from `n = 8`, where `(3, 2, 3)` is the first non-unimodal prime castle. The gap to `F_{n−1}` is a novel-candidate ([[prime-convex-castles](pages/prime-convex-castles.md)]).
 

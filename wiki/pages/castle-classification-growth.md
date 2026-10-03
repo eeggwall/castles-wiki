@@ -80,7 +80,7 @@ Whether each rung has *other* natural realizations besides the ridge rule `R_h =
 
 The area axis grades by total cells `∑ c_i`. This is the axis with the richest inventory, mostly non-metallic.
 
-**Golden area growth castle.** The prime castles by area, `F_{n − 1}` of them ([[prime-castles](pages/prime-castles.md)]), grow at `φ`. All castles of height `≤ 2` by area are the Fibonacci sequence A000045 ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]) - the `h = 2` rung of the n-nacci family below.
+**Golden area growth castle.** The prime castles by area with the height unrestricted, `F_{n − 1}` of them ([[prime-castles](pages/prime-castles.md)]), grow at `φ`. At a fixed exact height they grow more slowly: plastic at height 3, supergolden at height 4, increasing towards `φ`. All castles of height `≤ 2` by area are the Fibonacci sequence A000045 ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]) - the `h = 2` rung of the n-nacci family below.
 
 **The n-nacci area growth family.** All castles of height `≤ h`, graded by area, grow at the `h`-step Fibonacci constant with GF `1 / (1 − x − ⋯ − x^h)`:
 
@@ -98,9 +98,9 @@ Only the `h = 2` rung is metallic; every `h ≥ 3` rung is a non-metallic **`n`-
 
 | constant | growth | minimal polynomial | castle realization |
 |---|---|---|---|
-| **supergolden** | `≈ 1.4656` | `x³ − x² − 1` | `h = 2` tree castles by area = Narayana's cows A000930 |
+| **supergolden** | `≈ 1.4656` | `x³ − x² − 1` | `h = 2` tree castles by area = Narayana's cows A000930; prime castles of exact height 4 by area ([[prime-castles](pages/prime-castles.md)]) |
 | **plastic-squared** `ψ²` | `≈ 1.7549` | `x³ − 2x² + x − 1` | `h → ∞` tree castles by area = A005251 ([[plastic-number](pages/plastic-number.md)]) |
-| **plastic** `ψ` | `≈ 1.3247` | `x³ − x − 1` | the smallest castle-strip area growth constant, height 2, rule "height 1 may not follow height 1" ([[area-growth-census](pages/area-growth-census.md)]) |
+| **plastic** `ψ` | `≈ 1.3247` | `x³ − x − 1` | the smallest castle-strip area growth constant, height 2, rule "height 1 may not follow height 1" ([[area-growth-census](pages/area-growth-census.md)]); prime castles of exact height 3 by area ([[prime-castles](pages/prime-castles.md)]) |
 
 The `h = 4` tree row, A000570 (unique tournaments, [[unique-tournament](pages/unique-tournament.md)]), grows at `α ≈ 1.6851`, the dominant root of `x⁵ − x⁴ − x² − x − 1`, a quintic non-metallic constant between `φ` (`h = 3`) and `ψ²` (`h → ∞`).
 

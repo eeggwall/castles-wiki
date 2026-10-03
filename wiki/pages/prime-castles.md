@@ -1,7 +1,7 @@
 ---
 title: Prime castles - the free gluing monoid by area
 category: Analyses
-summary: "Gluing castles at a shared height-1 column makes a free monoid, and its primes, in Gessel and Li's sense (the unique generating set of a free monoid), are the castles with no height-1 column, F_{n-1} of them by area. The factorization is the prime factorization of Dyck paths carried over by the Deutsch-Elizalde bijection, which sends prime Dyck paths of height at least 2 to exactly these castles. The composite castles, those with a height-1 column, are 2^{n-1} - F_{n-1}. The castle GF is 1/(1 - P) with P = q(1-q)/(1-q-q^2), and P is itself the castle GF raised one row. A castle has 1 + (number of height-1 columns) prime factors (A105422, A045623), and its peak count is the number of nontrivial factors. A convex castle has at most one nontrivial prime (counted on prime-convex-castles). Block parity is decided by the primes, and the prime parity splits are novel-candidates."
+summary: "Gluing castles at a shared height-1 column makes a free monoid, and its primes, in Gessel and Li's sense (the unique generating set of a free monoid), are the castles with no height-1 column, F_{n-1} of them by area, growing like φ when the height is unrestricted; at exact height h the growth is the root of x^h = x^(h-2) + ... + 1 (plastic at h = 3, supergolden at h = 4), increasing to φ. The factorization is the prime factorization of Dyck paths carried over by the Deutsch-Elizalde bijection, which sends prime Dyck paths of height at least 2 to exactly these castles. The composite castles, those with a height-1 column, are 2^{n-1} - F_{n-1}. The castle GF is 1/(1 - P) with P = q(1-q)/(1-q-q^2), and P is itself the castle GF raised one row. A castle has 1 + (number of height-1 columns) prime factors (A105422, A045623), and its peak count is the number of nontrivial factors. A convex castle has at most one nontrivial prime (counted on prime-convex-castles). Block parity is decided by the primes, and the prime parity splits are novel-candidates."
 tags: [analysis, castle, area, composition, prime-castle, monoid, factorization, fibonacci, convex-castle, parity, q-series, oeis, novel-candidate]
 sources: [oeis-mining-pe502, deutsch-elizalde-2017-bargraphs-dyck-paths]
 created: 2026-09-22
@@ -34,7 +34,7 @@ The block identity holds because the two bottom rows merge into one block, and n
 
 **"Prime" is the free-monoid term.** In a free monoid the elements that every element factors into, uniquely, are called its primes; they are also exactly its irreducible elements. Gessel and Li use the word this way for monoids of compositions under concatenation, and "compositions of `n` into parts greater than 1, `F_{n-1}` of them" is one of the identities they derive from it.[^gl] It has nothing to do with prime numbers. So:
 
-- **The prime castles are the castles with no height-1 column**, plus the empty castle, whose padded form `(1, 1)` is the one trivial prime. By area they are the compositions of `n` into parts `≥ 2`, which number `F_{n-1}`: `0, 1, 1, 2, 3, 5, 8, 13, 21, ...` for `n = 1, 2, 3, ...`. Their growth constant is the golden ratio, the golden area growth castle on [[metallic-means](pages/metallic-means.md)].
+- **The prime castles are the castles with no height-1 column**, plus the empty castle, whose padded form `(1, 1)` is the one trivial prime. By area they are the compositions of `n` into parts `≥ 2`, which number `F_{n-1}`: `0, 1, 1, 2, 3, 5, 8, 13, 21, ...` for `n = 1, 2, 3, ...`. With the height unrestricted (a prime castle of area `n` can be up to `n` tall) their growth constant is the golden ratio, the golden area growth castle on [[metallic-means](pages/metallic-means.md)]. At any fixed exact height the growth is smaller; see "Prime castles of exact height `h`" below.
 - **The composite castles are the castles with at least one height-1 column**, `2^{n-1} - F_{n-1}`: `1, 1, 3, 6, 13, 27, 56, ...`.
 - A castle with `k` height-1 columns has `k + 1` prime factors. For example `(2, 1, 3, 3, 1, 1, 2)` has three height-1 columns and four prime factors, and its padded form is `(1,2,1) ∘ (1,3,3,1) ∘ (1,1) ∘ (1,2,1)`.
 
@@ -53,6 +53,28 @@ P(q) = q (1 + q^2/(1 - q - q^2)) = q (1 - q)/(1 - q - q^2)
 On the right, `1` is the identity `(1)`, `q` is the empty castle `(1, 1)`, and `q · q/(1 - 2q)` is the padded castles, the `2^{n-1}` of [[castle-by-area](pages/castle-by-area.md)] shifted by one. Without the identity this is the sequence construction `M - 1 = P/(1 - P)` of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)], and it is the identity Gessel and Li write down for any free monoid with an additive weight: the generating function of the monoid is `1/(1 - Σ_p x^{weight(p)})`, summed over its primes.[^gl]
 
 **The primes are castles raised one row.** A nonempty `X` with no height-1 column is a castle with a full row slid under it, so `P = q (1 + A(q, q))`, with `A(q, z)` the castle GF by area and width. With width tracked, the factorization becomes a `z → qz` functional equation. That equation is trivial unsigned, but signed or weighted by peaks it has content. It is on [[castle-row-raising-equation](pages/castle-row-raising-equation.md)].
+
+## Prime castles of exact height `h`
+
+A prime castle of exact height `h` is a composition with every part in `{2, …, h}` and at least one part equal to `h`. Its count by area is the number of compositions into parts `{2, …, h}` minus the number into parts `{2, …, h − 1}`, and it grows like the largest root of
+
+```
+x^h = x^(h-2) + x^(h-3) + ... + x + 1,      equivalently   x^-2 + x^-3 + ... + x^-h = 1.
+```
+
+As `h → ∞` the left side of the second form tends to `1/(x(x − 1))`, so the equation tends to `x² = x + 1`: the constants increase towards `φ` and stay below it at every fixed height. At exact height 2 the only prime castles are the 2-high rectangles `(2, …, 2)`, one for each even area.[^exact]
+
+| `h` | prime castles of exact height `h` by area, `n = 2..15` | growth | polynomial |
+|---|---|---|---|
+| 3 | `0, 1, 0, 2, 1, 3, 3, 5, 6, 9, 11, 16, 20, 28` | `1.3247`, the plastic number `ψ` | `x³ − x − 1` |
+| 4 | `0, 0, 1, 0, 2, 2, 4, 6, 10, 15, 24, 36, 56, 84` | `1.4656`, supergolden | `(x + 1)(x³ − x² − 1)` |
+| 5 | `0, 0, 0, 1, 0, 2, 2, 5, 7, 13, 21, 35, 57, 93` | `1.5342` | `x⁵ − x³ − x² − x − 1` |
+| 6 | `0, 0, 0, 0, 1, 0, 2, 2, 5, 8, 14, 24, 41, 69` | `1.5702` | `(x + 1)(x⁵ − x⁴ − x² − 1)` |
+| 7 | `0, 0, 0, 0, 0, 1, 0, 2, 2, 5, 8, 15, 25, 44` | `1.5900` | `x⁷ − x⁵ − x⁴ − x³ − x² − x − 1` |
+| 8 | `0, 0, 0, 0, 0, 0, 1, 0, 2, 2, 5, 8, 15, 26` | `1.6014` | `(x + 1)(x⁷ − x⁶ − x⁴ − x² − 1)` |
+| unrestricted | `F_{n-1}` | `φ = 1.6180` | `x² − x − 1` |
+
+So prime castles of exact height 3 are a plastic area growth class, and those of exact height 4 a supergolden one ([[castle-classification-growth](pages/castle-classification-growth.md)], [[plastic-number](pages/plastic-number.md)]).
 
 ## The same factorization on Dyck paths
 
@@ -140,3 +162,4 @@ for n in range(1, 17):
 [^gl]: https://cs.uwaterloo.ca/journals/JIS/VOL16/Gessel/gessel6.pdf §2 "Free monoids" p.3 - "if M is a free monoid, then there exists a subset P of M such that every element of M has a unique factorization as a product of elements of P. We call P the set of primes of M."; "If L is a free monoid, then the factorization is always unique and the irreducible elements are the primes of L"; and the identity `Σ_{m∈M} x^{ω(m)} = (1 − Σ_{p∈P} x^{ω(p)})^{−1}` (their (3)) for a weight function `ω`. The list of Fibonacci identities in their §1 includes "F_{n−1} is the number of compositions of n into parts greater than 1".
 [^de]: [[deutsch-elizalde-2017-bargraphs-dyck-paths](pages/deutsch-elizalde-2017-bargraphs-dyck-paths.md)] §3 L167, L236-245 - "(g) ret(P ) = #H1 (B) + 1 (unless P and B have height 1, in which case ret(P ) = #H1 (B))"; Prop. 3.5 "(i) φ(uP d) = U BD", "(ii) φ(P P ′ ) = B ◦ 1 ◦ B′ if height(P ) ≥ 2 and height(P ′ ) ≥ 2, B ◦ B′ otherwise", with `U BD` the bargraph "whose height sequence is obtained by adding one to each entry of the height sequence of B".
 [^de-exec]: Own reasoning from Prop. 3.5 and Thm. 3.2(g), verified by execution (Python 3, 2026-10-02): `φ` implemented from its definition and applied to every Dyck path of semilength `≤ 11` is injective; every one-return path of semilength `≥ 2` goes to a castle with no height-1 column and every castle in the image with no height-1 column comes from a one-return path; returns `=` height-1 columns `+ 1` for every path of height `≥ 2`; and semilength `=` semiperimeter `−` peaks (their Thm. 3.2(a), [[deutsch-elizalde-2017-bargraphs-dyck-paths](pages/deutsch-elizalde-2017-bargraphs-dyck-paths.md)] §3 L155).
+[^exact]: Verified by execution (Python 3, SymPy, 2026-10-02): for `h = 3..8` the count from the two composition recurrences matches a brute-force count of compositions of `n ≤ 16` with largest part exactly `h` and no part 1; the polynomials were factored with SymPy and their largest real roots computed numerically; the successive ratios of the counts at `n = 200` agree with those roots (to five decimals for `h = 3, 4`, and approaching from above for larger `h`).
