@@ -57,7 +57,7 @@ The OEIS sequences in the tree column count tree castles with every column at mo
 Fibonacci and tribonacci are the `h = 2` and `h = 3` members of this one family.
 
 - **Fibonacci (`h = 2`).** Castles of exact height 2 by area number `F_{A+1} − 1`: compositions into `{1, 2}` with at least one 2. This is a different Fibonacci appearance from the prime-castle count `F_{n−1}` ([[prime-castles](pages/prime-castles.md)], compositions into parts `≥ 2`) and from the Fibonacci castles by width ([[castle-graph](pages/castle-graph.md)]). It has the same numbers as the Fibonacci castles of width `A − 1` (by appending a height-1 column and reading each height-2 column with the column after it as a part 2; [[n-nacci-disambiguation](pages/n-nacci-disambiguation.md)]).
-- **Tribonacci (`h = 3`).** Castles of exact height 3 by area number `A000073(A+2) − F_{A+1}` and grow like `τ`. With the supergolden constant (`x³ = x² + 1`, the tree castles of exact height 2 counted by number of cells) and the plastic number (`x³ = x + 1`, as `ψ²` and `2ψ²` on [[plastic-number](pages/plastic-number.md)]), the castle realizes three cubic constants by area.
+- **Tribonacci (`h = 3`).** Castles of exact height 3 by area number `A000073(A+2) − F_{A+1}` and grow like `τ`. With the supergolden constant (`x³ = x² + 1`, the q-Fibonacci castles by number of cells, [[q-fibonacci-castle](pages/q-fibonacci-castle.md)]) and the plastic number (`x³ = x + 1`, as `ψ²` and `2ψ²` on [[plastic-number](pages/plastic-number.md)]), the castle realizes three cubic constants by area.
 
 ## Relation to the metallic-means classification
 

@@ -5,7 +5,7 @@ summary: The area-graded generating function for tree castles is (1 + P_h(q))/(1
 tags: [analysis, castle, tree-castle, area, generating-function, q-analogue, oeis, narayana-cows, plastic-number, supergolden, fibonacci, sympy, verification]
 sources: [project-euler-502-castle-factoring, tetali-1998-unique-tournaments]
 created: 2026-09-17
-updated: 2026-09-28
+updated: 2026-10-03
 ---
 
 # Tree castle by area
@@ -282,6 +282,7 @@ Both filed on [[castle-snippets](pages/castle-snippets.md)].
 
 ## Related Concepts
 
+- [[q-fibonacci-castle](pages/q-fibonacci-castle.md)] - the exact-height-2 case: the Fibonacci castles counted with `q` marking area, `q^w (f_w(q) − 1)`; not Carlitz's q-Fibonacci numbers.
 - [[castle-graph](pages/castle-graph.md)] - the tree castle concept and its width-graded counts (Fibonacci, Jacobsthal, k-Fibonacci).
 - [[plastic-number](pages/plastic-number.md)] - `ψ²` growth of the `h = ∞` case.
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the third A005251/`ψ²` castle node: minimum-tower-spacing `(h=2, g=2)` castles, linked to this page's `h = ∞` composition reading by the [[a005251-bijection](pages/a005251-bijection.md)].

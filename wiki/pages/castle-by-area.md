@@ -5,7 +5,7 @@ summary: Re-indexing castles by total cells n instead of (w,h) — convex↔A001
 tags: [concept, castle, area, composition, oeis, unimodal, valley]
 sources: [oeis-mining-pe502, castle-by-area]
 created: 2026-09-13
-updated: 2026-10-02
+updated: 2026-10-03
 ---
 
 # Castles by area
@@ -39,6 +39,7 @@ By (w,h) the concave counts add nothing new: `valley(w,h) = convex(w,h) = C(2h+w
 
 ## Related Concepts
 
+- [[q-fibonacci-castle](pages/q-fibonacci-castle.md)] - the Fibonacci castles counted by area: `1, 2, 3, 5, 8, 12, 18, …` with `n` cells, supergolden growth.
 - [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] — A001523, the convex-by-area match.
 - [[area-growth-census](pages/area-growth-census.md)] - castle strips under every 0/1 adjacency rule, counted by area: which growth constants appear up to height 4, including the ten smallest Pisot numbers and small Salem numbers.
 - [[convex-castle](pages/convex-castle.md)] — convex/valley castles and their binomial (w,h) count.

@@ -98,7 +98,7 @@ Only the `h = 2` rung is metallic; every `h ≥ 3` rung is a non-metallic **`n`-
 
 | constant | growth | minimal polynomial | castle realization |
 |---|---|---|---|
-| **supergolden** | `≈ 1.4656` | `x³ − x² − 1` | tree castles of exact height 2 (no two adjacent height-2 columns) counted by number of cells, one less than Narayana's cows A000930; prime castles of exact height 4 by area ([[prime-castles](pages/prime-castles.md)]) |
+| **supergolden** | `≈ 1.4656` | `x³ − x² − 1` | the q-Fibonacci castles ([[q-fibonacci-castle](pages/q-fibonacci-castle.md)]) by number of cells, one less than Narayana's cows A000930; prime castles of exact height 4 by area ([[prime-castles](pages/prime-castles.md)]) |
 | **plastic-squared** `ψ²` | `≈ 1.7549` | `x³ − 2x² + x − 1` | tree castles by area with the height unrestricted, A005251 ([[plastic-number](pages/plastic-number.md)]) |
 | **plastic** `ψ` | `≈ 1.3247` | `x³ − x − 1` | the smallest castle-strip area growth constant, height 2, rule "height 1 may not follow height 1" ([[area-growth-census](pages/area-growth-census.md)]); prime castles of exact height 3 by area ([[prime-castles](pages/prime-castles.md)]) |
 
