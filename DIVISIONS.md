@@ -70,7 +70,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 ### Q - q-Analogues
 
 - Area as a grading: castle-by-area, tree-castle-by-area, bounded-height rows by area.
-- Prime castles and the Klarner `A = P/(1-P)` decomposition; the signed version, where `blocks - 1` is a monoid homomorphism and the sign a character of the free monoid on primes.
+- Prime castles (free-monoid primes in Gessel and Li's sense) and the `P/(1-P)` identity, with the Deutsch-Elizalde transport of Dyck-path primes; the signed version, where `blocks - 1` is a monoid homomorphism and the sign a character of the free monoid on primes.
 - The q-polyomino zoo: Bousquet-Melou add-a-column GFs read off at the area variable; A001169 and A001523 as landmarks.
 - Classical q-families: Carlitz q-Catalan, Barcucci q-Motzkin and q-Bessel, weakly unimodal compositions, steep polyominoes.
 - Bistatistics: area with block count, peaks, records; hunting q-binomial and Narayana-q coefficients.
