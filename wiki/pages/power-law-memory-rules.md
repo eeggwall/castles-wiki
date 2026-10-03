@@ -5,7 +5,7 @@ summary: Every strip rule on [castle-strip](pages/castle-strip.md) is Markov by 
 tags: [analysis, castle, fractional-calculus, grunwald-letnikov, transfer-matrix, non-markov, power-law-memory, perron-root, plastic-number, supergolden, golden-ratio, reachable-field, truncation, convergence, ntt, algebraic]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-22
-updated: 2026-09-23
+updated: 2026-10-02
 ---
 
 # Power-law memory rules: the non-Markov castle strip
@@ -174,7 +174,7 @@ The question: is the K -> infinity growth constant a new number, or does it land
 - [[song-as-castle](pages/song-as-castle.md)] §"Finite fields" - the F_65537 NTT proposed for this count; this page argues that it is the right tool for per-skyline evaluation but not for the transfer-matrix count.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - the exact/asymptotic partition; every `rho(alpha, K)` on this page is on the exact / algebraic side, and the K -> infinity limit at `T = 1` stays algebraic (in fact integer) rather than crossing to the transcendental complement.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the `alpha = 1, h = 3` case: growth `1 + sqrt 2`, reproduced by this page's table.
-- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] - the Fibonacci-nacci growth constants at fixed heights; the `alpha = 2, h = 2` case here recovers phi and slots into the nacci ladder.
+- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - the Fibonacci-nacci growth constants at fixed heights; the `alpha = 2, h = 2` case here recovers phi and slots into the nacci ladder.
 - [[levy-flights](pages/levy-flights.md)] - the fractional sibling: Riascos-Mateos `L^α` on the castle-graph Laplacian, the same fractional-calculus wall approached from the spectral side rather than the strip-rule side.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the canonical treatment of the metallic means as norm-`(-1)` purely-periodic continued fractions; the Perron roots this page ratchets through are the same objects.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the algebraic universe the new-number question runs against; this page argues `K -> infinity` at `h = 2` stays on integer `2` rather than reaching a new transcendental.

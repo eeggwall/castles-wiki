@@ -5,7 +5,7 @@ summary: "Records for the odd count and the block-count tables. The odd count od
 tags: [analysis, castle, oeis, sequence, odd-count, parity, area, block-count, peaks, joint-distribution, c-finite, binomial, interlink, novel-candidate, verification]
 sources: [oeis-mining-pe502]
 created: 2026-09-26
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # The odd castles and the block-count tables
@@ -105,7 +105,7 @@ Here `N_4(q) = 1 + 2q^2 + 2q^3 + 6q^4 + 4q^5 + 7q^6 + 4q^7 + 4q^8 + 2q^9 + q^10`
 
 ### Area, blocks and peaks
 
-Peaks refine the columns. Every castle with `p` peaks has at least `p + 1` blocks. Equality `b = p + 1` means every peak is a single block, which is exactly height at most 2, so that diagonal is the Fibonacci row of [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]. The next cells, in castles of area `n`:[^exec][^oeis]
+Peaks refine the columns. Every castle with `p` peaks has at least `p + 1` blocks. Equality `b = p + 1` means every peak is a single block, which is exactly height at most 2, so that diagonal is the Fibonacci row of [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]. The next cells, in castles of area `n`:[^exec][^oeis]
 
 | blocks, peaks | first terms | identification | status |
 |---|---|---|---|

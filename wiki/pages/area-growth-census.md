@@ -5,7 +5,7 @@ summary: Count castle strips (a 0/1 rule saying which column heights may follow 
 tags: [analysis, castle, castle-strip, area, generating-function, transfer-matrix, growth-constant, perron-number, pisot-number, salem-number, lehmer, mahler-measure, plastic-number, supergolden, n-nacci, census, exhaustive-search, min-height, implementation, verification]
 sources: [oeis-mining-pe502]
 created: 2026-09-25
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Castle strips counted by area - the growth-constant census
@@ -36,7 +36,7 @@ The second form is the expansion of `det(I - M)` over principal minors, with the
 
 Two bounds hold for every rule at height `h`:
 
-- A height-`h` rule counts a subset of the compositions (ordered sums) of the area into parts at most `h`, so its growth constant is at most the **h-nacci constant** of those compositions ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]): `1.618` (golden) at `h = 2`, `1.839` (tribonacci) at 3, `1.928` (tetranacci) at 4, always below 2. The all-ones rule attains it.
+- A height-`h` rule counts a subset of the compositions (ordered sums) of the area into parts at most `h`, so its growth constant is at most the **h-nacci constant** of those compositions ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]): `1.618` (golden) at `h = 2`, `1.839` (tribonacci) at 3, `1.928` (tetranacci) at 4, always below 2. The all-ones rule attains it.
 - The minimal polynomial has degree at most `T = h(h+1)/2`.
 
 ## The census through height 4
@@ -212,7 +212,7 @@ The two infinite families of Pisot numbers converging to the golden ratio from b
 
 - [[quadratic-min-height](pages/quadratic-min-height.md)] - the same rules counted by width, where growth constants are the rule table's largest eigenvalue.
 - [[castle-by-area](pages/castle-by-area.md)] - castles graded by area.
-- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] - the h-nacci constants, the ceiling at each height.
+- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - the h-nacci constants, the ceiling at each height.
 - [[plastic-number](pages/plastic-number.md)] - the smallest Pisot number, here the area constant of the height-2 rule "1 may not follow 1".
 - [[reachable-field-census](pages/reachable-field-census.md)] - the width-graded census of which number fields castle strips reach.
 - [[castle-strip](pages/castle-strip.md)] - castle strips and their 0/1 rule tables.

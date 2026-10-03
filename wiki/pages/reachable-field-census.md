@@ -112,7 +112,7 @@ Nine cubic minimal polynomials already appear at `h = 3`:[^6]
 | `x³ − x² − 1` | `1.4656` | supergolden ([[tree-castle-by-area](pages/tree-castle-by-area.md)]) | 6 |
 | `x³ − 2x² + x − 1` | `1.7549` | plastic-squared `ψ²` | 6 |
 | `x³ − x² − 2x + 1` | `1.8019` | `2cos(π/7)`, in `Q(ζ₇)⁺` | 6 |
-| `x³ − x² − x − 1` | `1.8393` | **tribonacci** ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]) | 12 |
+| `x³ − x² − x − 1` | `1.8393` | **tribonacci** ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]) | 12 |
 | `x³ − x² − 2x − 1` | `2.1479` | | 6 |
 | `x³ − 2x² − 1` | `2.2056` | | 6 |
 | `x³ − 2x² − x + 1` | `2.2470` | `1 + 2cos(2π/7)`, in `Q(ζ₇)⁺` | 12 |
@@ -169,7 +169,7 @@ The one-rule step (`strip_field`, above), the `strip_field_census` two-phase swe
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the companion page: the ridge rule `R_h = J − D` that realizes each metallic mean, confirmed here for h ≤ 5.
 - [[metallic-means](pages/metallic-means.md)] - the ladder `δ_a`; this census places every rung's field and the copper collapse into `Q(√5)`.
 - [[plastic-number](pages/plastic-number.md)] - the plastic number is a strip Perron root at h=3.
-- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] - where tribonacci, supergolden and plastic² arise by area; they are also strip Perron roots.
+- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] - where tribonacci, supergolden and plastic² arise by area; they are also strip Perron roots.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - Axis 8, the growth-type meta-classification these Perron roots populate.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the metallic means as the norm-`−1` quadratics with period-1 continued fractions `[a; a, a, …]`.
 - [[fractional-recurrences](pages/fractional-recurrences.md)] - a continuous family of growth constants, in a different direction from this census. The fractional-Fibonacci growth curve `g(α) = 1/r*(α)`, `(1-r*)^α = r*`, threads three of this page's cubic Perron roots at rational `α` (supergolden at `1/3`, plastic-squared at `2/3`, plastic-cubed at `3/2`) and passes through every real `> 1` monotonically. At algebraic irrational `α` the growth is transcendental (Gelfond-Schneider), so those values lie **outside the reachable-field census**: no 0/1 castle-strip transfer matrix realizes them.

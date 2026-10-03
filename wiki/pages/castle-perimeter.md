@@ -5,7 +5,7 @@ summary: A castle's semi-perimeter is `w + #blocks`, so the block count is Deles
 tags: [analysis, castle, perimeter, blocks, parity, bargraph, generating-function, algebraic, tribonacci, fibonacci, delest-viennot, oeis, novel-candidate]
 sources: [algebraic-languages-and-polyominoes-enumeration, project-euler-502-brute-force, tower-narayana-polynomial]
 created: 2026-09-22
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Castle perimeter - blocks are the vertical half-perimeter
@@ -86,7 +86,7 @@ The signed convex count is periodic because `1 - t + t²` has its roots at primi
 - [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)]: skew Motzkin paths returning to the axis are also A082582 (length `n` ↔ semi-perimeter `n + 1`), with an explicit GF refined by peaks and valleys; no castle-to-skew-path bijection is known.
 - [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)]: the two cubics `t³ + t² + 3t − 1` (unsigned, `τ²`) and `t³ + 3t² − t + 1` (signed, `τ`) are one norm form `(1 − t)² − s²(1 + t)²` at `s² = t` and `s² = −t`: the Deutsch-Elizalde discriminant factors over `Q(√y)` into Cayley-transform factors, and the sign is `√y → i√y`.
 - [[castle-sign](pages/castle-sign.md)]: the `(-1)^blocks` weight is `(-1)^{s-w}`.
-- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]: tribonacci appears there in the area grading at height `≤ 3`. Here `τ²` is the unrestricted perimeter growth. Whether the two appearances are related is open.
+- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]: tribonacci appears there in the area grading at height `≤ 3`. Here `τ²` is the unrestricted perimeter growth. Whether the two appearances are related is open.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)]: the bar-graph GF by (horizontal, vertical, area) satisfies eq. 3.11, `B = B(qx) y + {1 + B(qx)} qx {y + B(x)}`, quadratic in `B`. The Airy-universality result there (`γ_u = -1/2, γ_t = -1/3, φ = 2/3`) are the perimeter-area tricritical exponents for the (width, blocks, area) statistics graded here.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]: the trivariate castle GF `Π/(1 - x - Π)` gives the perimeter-area GF at `s = w + b`, with blocks = vertical half-perimeter.
 

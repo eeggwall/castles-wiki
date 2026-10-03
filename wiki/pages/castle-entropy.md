@@ -64,7 +64,7 @@ This is the topological entropy of the constrained system, and it is the same nu
 | plastic (`x³ = x + 1`) | ψ = 1.3247 | 0.406 |
 | tribonacci (`x³ = x² + x + 1`) | t = 1.8393 | 0.879 |
 
-The metallic ladder ([[metallic-means](pages/metallic-means.md)]), the plastic number ([[plastic-number](pages/plastic-number.md)]), and tribonacci ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]) are a ladder of entropies. A family of entropy rate `log₂ ρ` has `2^{w·log₂ ρ}` castles of width `w`; the growth constant *is* the base-2 measure of branching per column.
+The metallic ladder ([[metallic-means](pages/metallic-means.md)]), the plastic number ([[plastic-number](pages/plastic-number.md)]), and tribonacci ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]) are a ladder of entropies. A family of entropy rate `log₂ ρ` has `2^{w·log₂ ρ}` castles of width `w`; the growth constant *is* the base-2 measure of branching per column.
 
 ## Why the two senses are one
 
@@ -76,7 +76,7 @@ Uniform entropy and entropy rate are the same limit approached from two sides. U
 - [[castle-counting-formula](pages/castle-counting-formula.md)] / [[castle-counting-function](pages/castle-counting-function.md)] — the exact `F(w,h)` whose log is the uniform entropy.
 - [[castle-sign](pages/castle-sign.md)] — the `(A±S)/2` projector; the origin of the one-bit parity cost.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] — `λ₁(h) = h`, the Perron root behind `log₂ h`.
-- [[metallic-means](pages/metallic-means.md)], [[plastic-number](pages/plastic-number.md)], [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] — growth constants re-read as entropy rates.
+- [[metallic-means](pages/metallic-means.md)], [[plastic-number](pages/plastic-number.md)], [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] — growth constants re-read as entropy rates.
 - [[reachable-field-census](pages/reachable-field-census.md)], [[tower-spacing-castles](pages/tower-spacing-castles.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] — the rule families whose Perron roots are the rungs of the entropy ladder.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] — the finite-field counterpart: growth/entropy over ℂ vs period/order mod p.
 - [[castle-compression](pages/castle-compression.md)] — the dual view: entropy measures the information content, compression measures how cheaply it is written.

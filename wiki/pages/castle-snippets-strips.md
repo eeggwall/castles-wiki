@@ -105,7 +105,7 @@ Meaning: Pell → `a=2` (silver, `1+√2 ≈ 2.4142`). Fibonacci → `a=1` (gold
 (1, 1.618033988749895, 0.22173173479658925)
 ```
 
-A gap of ~0.222 is *not* a metallic-mean hit: the tribonacci constant `≈ 1.83929` (root of `x³ = x² + x + 1`) is a *cubic*, so `nearest_metallic` returning golden `φ` is a false positive. The sequence counts all castles of height `≤ 3` by area ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)], `bounded_castles_by_area(3, ·)` below), and its growth is cubic. `nearest_metallic` gives the closest metal regardless; only trust it when the residual is small.
+A gap of ~0.222 is *not* a metallic-mean hit: the tribonacci constant `≈ 1.83929` (root of `x³ = x² + x + 1`) is a *cubic*, so `nearest_metallic` returning golden `φ` is a false positive. The sequence counts all castles of height `≤ 3` by area ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)], `bounded_castles_by_area(3, ·)` below), and its growth is cubic. `nearest_metallic` gives the closest metal regardless; only trust it when the residual is small.
 
 
 ## Named strip rules
@@ -435,7 +435,7 @@ Meaning: the h=∞ (unlimited height) case is A005251(A+2), the same plastic-squ
 
 ### `bounded_castles_by_area(h, A_max)` → the n-nacci-by-height family
 
-**All** castles (not just tree castles) with column heights in `{1, …, h}`, graded by area `A`. A castle bounded by height `h` is exactly a composition of `A` into parts `{1, …, h}`, so the count is the **`h`-step Fibonacci** (n-nacci) number, GF `1 / (1 − x − x² − ⋯ − x^h)`. Growth marches up the n-nacci constants: `h = 2` **Fibonacci** (φ), `h = 3` **tribonacci** (`t ≈ 1.8393`), … → `2` as `h → ∞` ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]). Distinct from `tree_area_by_area` above, whose 2×2-block ban gives term-*skipping* denominators instead.
+**All** castles (not just tree castles) with column heights in `{1, …, h}`, graded by area `A`. A castle bounded by height `h` is exactly a composition of `A` into parts `{1, …, h}`, so the count is the **`h`-step Fibonacci** (n-nacci) number, GF `1 / (1 − x − x² − ⋯ − x^h)`. Growth marches up the n-nacci constants: `h = 2` **Fibonacci** (φ), `h = 3` **tribonacci** (`t ≈ 1.8393`), … → `2` as `h → ∞` ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]). Distinct from `tree_area_by_area` above, whose 2×2-block ban gives term-*skipping* denominators instead.
 
 ```python
 def bounded_castles_by_area(h, A_max):
@@ -596,6 +596,6 @@ Meaning: for `m = 1` the valid words are binary strings with no isolated `1` (th
 - [[proper-castle-projection](pages/proper-castle-projection.md)] - the `proper_even` projection.
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the horizontal-gap variation whose transfer matrix is `tower_spacing_matrix`.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the `tree_area_gf`, `tree_area_by_area`, and `castle_to_composition` snippets.
-- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] - the n-nacci area-growth family from `bounded_castles_by_area`.
+- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - the n-nacci area-growth family from `bounded_castles_by_area`.
 - [[a005251-bijection](pages/a005251-bijection.md)] / [[hardin-word-identity](pages/hardin-word-identity.md)] - the `encode`/`decode` bijection and the `word_matrix` automaton.
 - [[plastic-number](pages/plastic-number.md)] - the plastic-squared sequence via `A005251` and the four-reading hub.

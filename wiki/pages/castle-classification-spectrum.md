@@ -5,7 +5,7 @@ summary: A classification of individual castles by the spectrum of a graph deriv
 tags: [concept, castle, classification, taxonomy, spectral, adjacency-matrix, laplacian, ramanujan, smith-theorem, dynkin, tree-castle, isospectral, single-castle-predicate, dft, sparse-spectrum]
 sources: [castle-classification, oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-10-01
+updated: 2026-10-02
 ---
 
 # Castle classification - spectral types
@@ -35,7 +35,7 @@ The irregularity forces the Ramanujan definition to use Greenberg's universal-co
 - `h = 3`: `T_3(w) = J_{w + 2}` (**Jacobsthal**, A001045).
 - `h ≥ 4`: A006130, A006131, and so on.
 
-Tree castles of height 2 are a **golden width growth castle** in the class-level terminology of [[castle-classification-growth](pages/castle-classification-growth.md)]. Counted by *area* ([[tree-castle-by-area](pages/tree-castle-by-area.md)]) tree castles grow at supergolden at `h = 2` (Narayana's cows A000930), golden at `h = 3` (A006498), and plastic-squared `ψ²` as `h → ∞` (A005251). The unrestricted counterpart, all castles of height `≤ h` by area, is the **n-nacci** family ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]); the tree constraint removes the `q²` term from the denominators.
+Tree castles of height 2 are a **golden width growth castle** in the class-level terminology of [[castle-classification-growth](pages/castle-classification-growth.md)]. Counted by *area* ([[tree-castle-by-area](pages/tree-castle-by-area.md)]) tree castles grow at supergolden at `h = 2` (Narayana's cows A000930), golden at `h = 3` (A006498), and plastic-squared `ψ²` as `h → ∞` (A005251). The unrestricted counterpart, all castles of height `≤ h` by area, is the **n-nacci** family ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]); the tree constraint removes the `q²` term from the denominators.
 
 Tree castles are also exactly the castles with a trivial sandpile group, in both the sink and the tide model ([[sandpile-census](pages/sandpile-census.md)]).
 

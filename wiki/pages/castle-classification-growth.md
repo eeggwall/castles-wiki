@@ -80,7 +80,7 @@ Whether each rung has *other* natural realizations besides the ridge rule `R_h =
 
 The area axis grades by total cells `∑ c_i`. This is the axis with the richest inventory, mostly non-metallic.
 
-**Golden area growth castle.** The prime castles by area with the height unrestricted, `F_{n − 1}` of them ([[prime-castles](pages/prime-castles.md)]), grow at `φ`. At a fixed exact height they grow more slowly: plastic at height 3, supergolden at height 4, increasing towards `φ`. All castles of exact height 2 by area number `F_{A+1} − 1` and grow at `φ` ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]) - the `h = 2` rung of the n-nacci family below.
+**Golden area growth castle.** The prime castles by area with the height unrestricted, `F_{n − 1}` of them ([[prime-castles](pages/prime-castles.md)]), grow at `φ`. At a fixed exact height they grow more slowly: plastic at height 3, supergolden at height 4, increasing towards `φ`. All castles of exact height 2 by area number `F_{A+1} − 1` and grow at `φ` ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]) - the `h = 2` rung of the n-nacci family below.
 
 **The n-nacci area growth family.** All castles of exact height `h`, graded by area, are the compositions with largest part exactly `h`, with GF `1 / (1 − x − ⋯ − x^h) − 1 / (1 − x − ⋯ − x^{h−1})`, and grow at the `h`-nacci constant:
 
@@ -143,7 +143,7 @@ Relating the growth types of one class under different axes is open.
 - [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - single-castle spectral predicates (Axis 9).
 - [[metallic-means](pages/metallic-means.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] / [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the metallic ladder side.
 - [[castle-strip](pages/castle-strip.md)] - the construction-rule object (a skyline read left to right under a neighbor rule) whose transfer matrix supplies width growth constants.
-- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] - the n-nacci area growth family.
+- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - the n-nacci area growth family.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] / [[plastic-number](pages/plastic-number.md)] - the cubic-Pisot area growth constants and the plastic number's spectral appearance.
 - [[area-growth-census](pages/area-growth-census.md)] - realizes the bare plastic number `ψ` as a castle-strip area growth constant.
 - [[unique-tournament](pages/unique-tournament.md)] - the A000570 growth constant `α ≈ 1.685` in the non-metallic slot.
@@ -154,4 +154,4 @@ Relating the growth types of one class under different axes is open.
 
 *(Except where footnoted, the identities above are cross-referenced and their derivations live on the linked pages.)*
 
-[^exact]: Verified by execution (Python 3, 2026-10-02): the anchored 1-smooth skylines over `{1, 2, 3}` reaching height 3 were enumerated for `w ≤ 10` and equal `P_w − 2^{w−1}`; with a free first column they equal `A001333(w + 1) − 2^w` (`1, 3, 9, 25, 67, 175, 449, 1137, 2851, 7095`); tree castles of exact height 4 by area, by a transfer recurrence to area 400, have successive ratio `1.685137`. The other exact-height area counts are verified on [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)].
+[^exact]: Verified by execution (Python 3, 2026-10-02): the anchored 1-smooth skylines over `{1, 2, 3}` reaching height 3 were enumerated for `w ≤ 10` and equal `P_w − 2^{w−1}`; with a free first column they equal `A001333(w + 1) − 2^w` (`1, 3, 9, 25, 67, 175, 449, 1137, 2851, 7095`); tree castles of exact height 4 by area, by a transfer recurrence to area 400, have successive ratio `1.685137`. The other exact-height area counts are verified on [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)].

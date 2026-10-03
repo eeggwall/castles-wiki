@@ -96,7 +96,7 @@ Only golden (`h = 2`) has its free count equal to its primary metallic sequence.
 - [[metallic-means](pages/metallic-means.md)] — the ladder whose *primary* sequences (A000129, A006190, A001076, …) the projected counts fail to reproduce.
 - [[castle-snippets-strips](pages/castle-snippets-strips.md)] — the `proper_even` snippet computing these counts.
 - [[reachable-field-census](pages/reachable-field-census.md)] — the sibling census (which *fields* the strips reach), to which this is the *sequences* complement.
-- [[castle-by-area](pages/castle-by-area.md)] / [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] — castle counts by area, with and without a height bound.
+- [[castle-by-area](pages/castle-by-area.md)] / [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] — castle counts by area, with and without a height bound.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] — Axis 8, the `<metal> <axis> growth castle` meta-classification these projected metallic-ladder rows populate.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] — the anchored 1-smooth height-3 strip, where Pell A000129 does appear (`P_w` strips of width `w`); the free 1-smooth strip and the free ridge strip at `h = 3` here both give A001333.
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] — the exact even-block counts are checked by Algorithm M enumeration of `{1..h}^w` with the two proper-castle filters.

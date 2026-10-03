@@ -5,7 +5,7 @@ summary: A tournament (complete oriented graph) whose score vector is realized b
 tags: [concept, tournament, unique, score-sequence, oeis, a000570, tetali, classification]
 sources: [tetali-1998-unique-tournaments]
 created: 2026-09-17
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Unique tournament
@@ -83,7 +83,7 @@ Four OEIS sequences frame `u_n` from the outside; the first three were read from
 ## Neighbours on the castle side
 
 - **The composition is the ordered coin problem.** `1/(1 − x − x³ − x⁴ − x⁵)` is the `SEQ` version of the coin-change series over `{1, 3, 4, 5}`; [[block-count-constraints](pages/block-count-constraints.md)] draws the `SEQ` / `MSET` distinction (compositions versus numerical semigroups) that this identity sits on.
-- **Same family, other rows.** [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] tables `A000570` beside tetranacci `A000078` at `h = 4` - tree castles against all castles of that height by area - and [[a005251-bijection](pages/a005251-bijection.md)] is the `h → ∞` row of the tree-castle family encoded as binary strings, the same "composition as a binary string" trick Khovanova's basic strings `0, 001, 0011, 00101` use here. The growth constant `α ≈ 1.685` sits between the `h = 3` row's `φ ≈ 1.618` and the `h → ∞` row's `ψ² ≈ 1.755`.
+- **Same family, other rows.** [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] tables `A000570` beside tetranacci `A000078` at `h = 4` - tree castles against all castles of that height by area - and [[a005251-bijection](pages/a005251-bijection.md)] is the `h → ∞` row of the tree-castle family encoded as binary strings, the same "composition as a binary string" trick Khovanova's basic strings `0, 001, 0011, 00101` use here. The growth constant `α ≈ 1.685` sits between the `h = 3` row's `φ ≈ 1.618` and the `h → ∞` row's `ψ² ≈ 1.755`.
 - **Code.** `castle_to_composition` / `composition_to_castle` and `is_strongly_connected` on [[castle-snippets-strips](pages/castle-snippets-strips.md)] are the two arrows of the bijection in executable form.
 
 ## Appearances in Sources
@@ -100,7 +100,7 @@ Four OEIS sequences frame `u_n` from the outside; the first three were read from
 - [[hardin-word-identity](pages/hardin-word-identity.md)] - A005251, the unbounded-part version of the same composition family (parts `{1, 3, 4, 5, …}`), realized through signed tower counts.
 - [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] / [[simple-tournament](pages/simple-tournament.md)] - the Muller-Nešetřil-Pelant machinery, with the regular- and strong-tournament OEIS counts that confirm each filtering step.
 - [[block-count-constraints](pages/block-count-constraints.md)] - compositions with parts in `D` as the `SEQ` sibling of the coin-change series.
-- [[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)] / [[a005251-bijection](pages/a005251-bijection.md)] - the neighbouring rows of the tree-castle-by-area family.
+- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] / [[a005251-bijection](pages/a005251-bijection.md)] - the neighbouring rows of the tree-castle-by-area family.
 - [[castle-snippets](pages/castle-snippets.md)] - the bijection and the strongly connected component (SCC) test as code.
 
 ## Footnotes

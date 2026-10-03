@@ -5,7 +5,7 @@ summary: A linear q-differential system relates a vector of series at x to the s
 tags: [concept, q-analog, q-differential-system, q-bessel, variation-of-parameters, generating-function, polyomino, convex, functional-equation]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes]
 created: 2026-09-22
-updated: 2026-09-28
+updated: 2026-10-02
 ---
 
 # Linear q-differential systems and their q = 1 shadow
@@ -45,7 +45,7 @@ At the inhomogeneous step the `q = 1` template ran out: "we could no longer 'cop
 
 Own reasoning, not from the source:
 
-- **Fixed height is the finite case.** A castle of bounded height has a finite transfer matrix and a rational generating function ([[bounded-height-castles-nacci](pages/bounded-height-castles-nacci.md)]). Letting height be unbounded while marking area is what turns the column recurrence into a q-shift equation like the ones above. On the area ladder, Ferrers diagrams and stacks still solve as sums of q-products. The parallelogram rung, `y J_1/J_0`, is the first whose solution is a ratio of q-series.
+- **Fixed height is the finite case.** A castle of bounded height has a finite transfer matrix and a rational generating function ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]). Letting height be unbounded while marking area is what turns the column recurrence into a q-shift equation like the ones above. On the area ladder, Ferrers diagrams and stacks still solve as sums of q-products. The parallelogram rung, `y J_1/J_0`, is the first whose solution is a ratio of q-series.
 - **The scalar step is the adding-a-slice step.** `g_n = h_n/(1 - yq^n)` is the same geometric-series resolution that the "adding a slice" construction on [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] performs when one column height is iterated. What the method adds is the solution matrix `W`, which tracks several interacting boundary phases at once.
 
 ## Appearances in Sources
