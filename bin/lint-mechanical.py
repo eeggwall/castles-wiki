@@ -8,7 +8,8 @@ Two modes:
 
 Full mode emits a JSON object {"findings": {...}, "clusters": [...]} for wiki-lint to fold
 into its report. Staged mode runs the per-file/resolvable checks against the staged blobs and
-exits non-zero if any fire, so the pre-commit hook blocks the commit. Stdlib only.
+exits non-zero if any fire, so the pre-commit hook blocks the commit. Citation-hygiene checks
+(cited_not_read) run in full mode only: they are lint findings, not commit blockers. Stdlib only.
 """
 import json
 import re
@@ -29,6 +30,11 @@ LINK_RE = re.compile(r"\[\[([^\]|]+?)(?:\|[^\]]*)?\](?:\(pages/[^)]*\.md\))?\]")
 STALE_MARKERS = ("current", "latest", "recent", "state-of-the-art")
 YEAR_RE = re.compile(r"\b(19|20)\d{2}\b")
 STALE_AGE_DAYS = 90
+FOOTNOTE_DEF_RE = re.compile(r"^\[\^([^\]]+)\]:")
+# A citation admitting its source was not read ("(not read)", "cited, not read", "paper not
+# read"), in a footnote or in prose. Cite only sources actually read: find a read source or
+# drop the attribution. "not read off/from" is the verb sense ("not read off the shape").
+NOT_READ_RE = re.compile(r"\bnot read\b(?!\s+(?:off|from)\b)", re.I)
 DEFAULT_CLUSTER_CAP = 25
 
 
@@ -182,6 +188,28 @@ def check_missing_concept(pages):
     return [{"slug": s, "count": n} for s, n in sorted(counts.items()) if n >= 3]
 
 
+def check_cited_not_read(pages):
+    """Lines that cite a source while saying it was not read, footnote or prose.
+
+    Each hit carries the file line number and `footnote` (its id) or `"body"`. An indented
+    line under a footnote definition is a continuation of that footnote.
+    """
+    out = []
+    for slug in pages:
+        footnote = None
+        lines = (PAGES_DIR / f"{slug}.md").read_text(encoding="utf-8").splitlines()
+        for n, line in enumerate(lines, 1):
+            m = FOOTNOTE_DEF_RE.match(line)
+            if m:
+                footnote = m.group(1)
+            elif not (footnote and line[:1] in (" ", "\t") and line.strip()):
+                footnote = None
+            if NOT_READ_RE.search(line):
+                out.append({"page": slug, "line": n,
+                            "where": f"[^{footnote}]" if footnote else "body"})
+    return out
+
+
 def build_clusters(pages, cap):
     """Group pages by shared tag into contradiction-sweep clusters.
 
@@ -219,6 +247,7 @@ def run_full(today=None, cluster_cap=None):
         "slug_collisions": check_slug_collisions(pages),
         "stale_date": check_stale_date(pages, today),
         "missing_concept": check_missing_concept(pages),
+        "cited_not_read": check_cited_not_read(pages),
     }
     return {"findings": findings, "clusters": build_clusters(pages, cluster_cap)}
 
