@@ -235,7 +235,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] fractional-block-count (1.4)
 - [x] reachable-field-census (1.4)
 - [x] castle-sequence-catalogue (1.3)
-- [x] bounded-height-castles-nacci (1.3)
+- [x] exact-height-castle-by-area (1.3)
 - [x] castle-add-a-column-equation (1.3)
 - [x] bronze-castle-hunt (1.3)
 - [x] castle-ring-invariant-factors (1.2)
