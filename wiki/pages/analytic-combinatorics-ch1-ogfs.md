@@ -14,7 +14,7 @@ updated: 2026-09-28
 **Date ingested:** 2026-09-15
 **Type:** book chapter (Part A: Symbolic Methods, Chapter I: `Combinatorial Structures and Ordinary Generating Functions`)
 
-> **Scope.** Only Chapter I is summarized here. Part A's remaining chapters (II: labelled structures / EGFs, book pp. 95-150; III: multivariate GFs / MGFs, pp. 151-220) and Parts B (Complex Asymptotics), C (Random Structures), D (Appendices) are not read here; cite the book directly by chapter and page for those.
+> **Scope.** Only Chapter I is summarized here. Part A's remaining chapters (II: labelled structures / EGFs, book pp. 95-150; III: multivariate GFs / MGFs, pp. 151-220) and Parts B (Complex Asymptotics), C (Random Structures), D (Appendices) are not ingested here; cite the book directly by chapter and page for those.
 
 ## Summary
 
