@@ -5,7 +5,7 @@ summary: The four "sum of every 4th binomial" sequences A038503/A038504/A038505/
 tags: [concept, oeis, binomial, hyperbolic, castle, height-2]
 sources: [oeis-mining-pe502, oeis-height2-hyperbolic-castles]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-04
 ---
 
 # Order-4 hyperbolic sequence family
@@ -33,7 +33,7 @@ total    = A000225(w) = 2^w − 1
 
 A height-2 castle is fixed by which columns reach height 2 (a length-*w* binary string, ≥1 one); if those columns form *r* runs, the block count is `1 + r`, and there are `C(w+1, 2r)` strings with *r* runs. Even blocks ⟺ *r* odd ⟺ `2r ≡ 2 (mod 4)`, which is exactly A038505; odd blocks ⟺ *r* even (excluding `r=0`), which is A038503 minus one.[^2] So the height-2 castle **decomposes the Mersenne number `2^w−1` by block-count parity** into two of the four hyperbolic sequences. The signed count `A146559 = Re((1+i)^n)` is their difference: `A146559(n) = A038503(n) − A038505(n)` (see [[signed-tower-count](pages/signed-tower-count.md)]).[^3]
 
-These identities were drafted on OEIS on 2026-09-18 and proposed for review on 2026-09-26 ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]); as of 2026-09-28 the A038503 and A038505 edits await editor approval. The proposed A038503 comment states it directly as "height ≤ 2, odd blocks" (the height-1 castle folded in, no `−1`), with the decomposition formulas `a(n) = A000225(n−1) − A038505(n) + 1` and `a(n) = A038505(n) + A146559(n)`, plus `a(n) = A000225(n−1) − A038503(n) + 1` on A038505. A146559 carries the approved converse `a(n) = A038503(n) − A038505(n)`.
+These identities are now in the OEIS entries: drafted 2026-09-18, proposed 2026-09-26, and approved (A038503 and A038505 revised Oct 03 2026; [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]). The A038503 comment counts castles of height at most 2 with an odd number of blocks (the height-1 castle included, so no `−1`), with the decomposition formulas `a(n) = A000225(n−1) − A038505(n) + 1` and `a(n) = A038505(n) + A146559(n)`; A038505 carries the even-block comment and `a(n) = A000225(n−1) − A038503(n) + 1`; A146559 carries the converse `a(n) = A038503(n) − A038505(n)`.
 
 ## Appearances in Sources
 

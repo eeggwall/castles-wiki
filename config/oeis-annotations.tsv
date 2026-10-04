@@ -96,9 +96,9 @@ A027907	supporting	Triangle of trinomial coefficients T(n,k) (n >= 0, 0 <= k <= 
 A033887	metallic	a(n) = Fibonacci(3*n + 1).	F(3n+1): copper-delta convergent numerators
 A034839	supporting	Triangular array formed by taking every other term of each row of Pascal's triangle.	Pascal every-other row (binomial identity)
 A036038	supporting	Triangle T(n,k) read by rows: multinomial coefficients for the partitions of n listed in Abramowitz-Stegun order, 1 <= k <= A000041(n).	multiset-permutation counts (Knuth Vol. 1 / Vol. 3)
-A038503	count	Sum of every 4th entry of row n in Pascal's triangle, starting at "n choose 0".	odd(w,2) + 1: odd-block height-2 castles
+A038503	count	Sum of every 4th entry of row n in Pascal's triangle, starting at "n choose 0".	odd(w,2) + 1: odd-block height-2 castles (castle comment on OEIS, Oct 2026)
 A038504	supporting	Sum of every 4th entry of row n in Pascal's triangle, starting at "n choose 1".	sum of every 4th binomial (hyperbolic family, k=1 residue)
-A038505	count	Sum of every 4th entry of row n in Pascal's triangle, starting at binomial(n,2).	F(w,2): even-block height-2 castles
+A038505	count	Sum of every 4th entry of row n in Pascal's triangle, starting at binomial(n,2).	F(w,2): even-block height-2 castles (castle comment on OEIS, Oct 2026)
 A041010	metallic	Numerators of continued fraction convergents to sqrt(8).	numerators of CF convergents to √8
 A041011	metallic	Denominators of continued fraction convergents to sqrt(8).	denominators of CF convergents to √8
 A041018	metallic	Numerators of continued fraction convergents to sqrt(13).	numerators of CF convergents to √13
@@ -146,7 +146,7 @@ A107920	supporting	Lucas and Lehmer numbers with parameters (1 +- sqrt(-7))/2.	L
 A112742	count	a(n) = n^2*(n^2 - 1)/3.	A_5(k): alternating part of P(k,5) quasi-polynomial
 A115981	count	The number of compositions of n which cannot be viewed as stacks.	non-convex castles by area
 A132393	supporting	Triangle of unsigned Stirling numbers of the first kind (see A048994), read by rows, T(n,k) for 0 <= k <= n.	[n,1] = (n−1)!, the cycle-count anchor of the castle triad
-A146559	count	Expansion of (1-x)/(1 - 2*x + 2*x^2).	P(1,L): signed tower count at k=1, Re((1+i)^{L+1})
+A146559	count	Expansion of (1-x)/(1 - 2*x + 2*x^2).	P(1,L): signed tower count at k=1, Re((1+i)^{L+1}); = A038503 − A038505 (on OEIS)
 A156638	supporting	Numbers that are congruent to 4 or 5 mod 9.	the excluded residues; F(w,2) lands here iff w = 9 (mod 12), F(3,h) iff h = 4, 6 (mod 18), A(3m,h) never
 A160747	count	Expansion of (1 + 10*x + 20*x^2 + 10*x^3 + x^4)/(1-x)^5.	tower Narayana coefficient row
 A165434	supporting	Number of tri-coverings of a set.	Bender's v((0,0,n)): every element three times, repeated blocks allowed, no repeated element in a block

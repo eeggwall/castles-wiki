@@ -5,7 +5,7 @@ summary: Hand-curated catalogue of every castle-counting sequence, by the castle
 tags: [analysis, oeis, castle, sequence, catalogue, novelty, submission-candidate, interlink]
 sources: [oeis-mining-pe502]
 created: 2026-09-17
-updated: 2026-10-02
+updated: 2026-10-04
 ---
 
 # Castle sequence catalogue
@@ -30,10 +30,10 @@ The status is the discipline: *novel-candidate* means someone actually searched 
 
 ## Submission status
 
-From [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]: OEIS requires human authorship, so the wiki accumulates *verified matches* and drafts submission text elsewhere (`raw/oeis-pe502/`). The height-2 castle interlink (A038503/A038505) is filed as OEIS draft edits. **Interlink** candidates (a known OEIS sequence gaining a castle interpretation) in rough priority order:
+From [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]: OEIS requires human authorship, so the wiki accumulates *verified matches* and drafts submission text elsewhere (`raw/oeis-pe502/`). The height-2 castle interlink (A038503/A038505/A146559) is approved and in the OEIS entries. **Interlink** candidates (a known OEIS sequence gaining a castle interpretation) in rough priority order:
 
-1. **A038505 and A038503** — **OEIS draft edits** (entered 2026-09-18, proposed 2026-09-26), awaiting editor approval. The height-2 hyperbolic interlink (`F(w,2) = A038505(w+1)`, `odd(w,2) = A038503(w+1) − 1`) is proposed on both entries: A038503 states it directly as "height ≤ 2, odd blocks" (no `−1`), with the decomposition formulas `a(n) = A000225(n−1) − A038505(n) + 1` and `a(n) = A038505(n) + A146559(n)`. See [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)].
-2. **A146559**: the `a(n) = P(1, n − 1)` comment is not submitted. The identity `a(n) = A038503(n) − A038505(n)` is approved on A146559 (signed Sep 26 2026); the equivalent `a(n) = A038505(n) + A146559(n)` on A038503 is part of the pending draft edit ([[signed-tower-count](pages/signed-tower-count.md)]).
+1. **A038505 and A038503** — **on OEIS** (entered 2026-09-18, proposed 2026-09-26, approved; revised Oct 03 2026). The height-2 hyperbolic interlink (`F(w,2) = A038505(w+1)`, `odd(w,2) = A038503(w+1) − 1`) is a comment on both entries: the A038503 comment counts height at most 2 with odd blocks (no `−1`), with the decomposition formulas `a(n) = A000225(n−1) − A038505(n) + 1` and `a(n) = A038505(n) + A146559(n)`. See [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)].
+2. **A146559**: the `a(n) = P(1, n − 1)` comment is not submitted. The identity `a(n) = A038503(n) − A038505(n)` is approved on A146559 and the equivalent `a(n) = A038505(n) + A146559(n)` on A038503 (both signed Sep 26 2026; [[signed-tower-count](pages/signed-tower-count.md)]).
 3. **A005251, A202882, A203094, A203184**: the Hardin word identity gives each an interpretation as `2^{−L}` times an even-last-column signed tower count and proves their empirical recurrences ([[hardin-word-identity](pages/hardin-word-identity.md)]); the `g=2` minimum-tower-spacing castles ([[tower-spacing-castles](pages/tower-spacing-castles.md)]) give each a second, unsigned geometric interpretation. For **A005251** specifically, an explicit bijection ([[a005251-bijection](pages/a005251-bijection.md)]) relates four castle readings (tree-castle / Hardin / tower-spacing / signed-tower); see the multi-interpretation hub below.
 4. **A000073, A000078, A001591** (and A000045 by area): the n-nacci numbers as *bounded-height castles by area* ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]), through compositions into `{1..h}`.
 5. **A217878 / A217879 / A217880 / A217881, A217949 / A217950 / A217951 / A217952, A228457 / A228458, and the tables A217883 / A217954 / A228461**: the whole tower-spacing family ([[tower-spacing-castles](pages/tower-spacing-castles.md)]) is Hardin's "minimum of `g` adjacent elements" arrays, with a proof (running minimum, morphological closing); one comment per entry, plus the `h=2` row **A005252 / A005253 / A005689 / A098574** joining A005251 as height-2 castles with towers `>= g` apart and the closed form `Sum_k C(w+g-(g-1)k, 2k)`. The six unfiled cells `h in {5,6}`, `g in {4,5,6}` are new sequences (below).

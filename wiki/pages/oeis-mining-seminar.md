@@ -1,11 +1,11 @@
 ---
 title: OEIS mining seminar - one castle sequence, end to end
 category: Concepts
-summary: A seminar on OEIS mining as a research method - the whole method run on castle sequences. Enumerate castles by brute force; slice the table into rows; look a row up in the On-Line Encyclopedia of Integer Sequences (OEIS) and dodge the short false positive (1, 3, 6, 10 is also the triangular numbers, until 16); align the offset exactly, F(w,2) = A038505(w+1) and odd(w,2) = A038503(w+1) − 1; prove it with a runs-counting argument; avoid a trap (P(1,L) and A009545 agree at the first term, but A009545 is a shifted, halved relative, P(1,L) = A009545(L+3)/2, and the exact match is A146559(L+1)); handle a non-match (F(w,3) = 0, 0, 3, 21, 89, 307, … has no entry, so Berlekamp-Massey finds its order-6 recurrence and it becomes a new-sequence candidate); and finish with the human step, since OEIS text must be written and signed by a person (the height-2 comments were submitted 2026-09-18). One runnable block pins every value.
+summary: A seminar on OEIS mining as a research method - the whole method run on castle sequences. Enumerate castles by brute force; slice the table into rows; look a row up in the On-Line Encyclopedia of Integer Sequences (OEIS) and dodge the short false positive (1, 3, 6, 10 is also the triangular numbers, until 16); align the offset exactly, F(w,2) = A038505(w+1) and odd(w,2) = A038503(w+1) − 1; prove it with a runs-counting argument; avoid a trap (P(1,L) and A009545 agree at the first term, but A009545 is a shifted, halved relative, P(1,L) = A009545(L+3)/2, and the exact match is A146559(L+1)); handle a non-match (F(w,3) = 0, 0, 3, 21, 89, 307, … has no entry, so Berlekamp-Massey finds its order-6 recurrence and it becomes a new-sequence candidate); and finish with the human step, since OEIS text must be written and signed by a person (the height-2 comments, submitted 2026-09-18, are now in the OEIS entries). One runnable block pins every value.
 tags: [concept, castle, seminar, pedagogy, teaching, oeis, interlinking, generation, offsets, false-positive, berlekamp-massey, hyperbolic-sequence, a038505, a038503, a146559, a009545]
 sources: [oeis-mining-pe502, oeis-height2-hyperbolic-castles, new-sequence-fw3]
 created: 2026-09-26
-updated: 2026-09-28
+updated: 2026-10-04
 ---
 
 # OEIS mining seminar - one castle sequence, end to end
@@ -107,7 +107,7 @@ Every factor has a meaning. `3^w` and `2^w` come from the all-parity counts, `x�
 
 OEIS text must be **written and signed by a person**. A tool may verify terms, check offsets and format data, but may not author the prose.[^8] New contributors are also throttled to a few open drafts, so submissions are ordered, isolated interlinks first. The wiki keeps verified identities on its pages and draft text in `raw/oeis-pe502/`, to be rewritten by a person.
 
-The height-2 interlink went through this: drafted, rewritten and signed by a person, and submitted to A038503 and A038505 on 2026-09-18 as draft edits, which await editor approval, with the A038503 comment rephrased as "height at most 2" so the `− 1` disappears ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)], "Proposed to OEIS"). The status of every castle sequence (known, interlink, novel candidate, unchecked) is tracked on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)], and every A-number the wiki cites is listed on [[oeis-index](pages/oeis-index.md)].
+The height-2 interlink went through this: drafted, rewritten and signed by a person, and submitted to A038503 and A038505 on 2026-09-18 as draft edits, with the A038503 comment rephrased as "height at most 2" so the `− 1` disappears; the editors approved them, and both entries show the comments as of their Oct 03 2026 revisions ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)], "On OEIS"). The status of every castle sequence (known, interlink, novel candidate, unchecked) is tracked on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)], and every A-number the wiki cites is listed on [[oeis-index](pages/oeis-index.md)].
 
 *Idea:* the machine finds and checks. The person writes and signs, and the wiki keeps the verified mathematics separate from the prose.
 
@@ -115,7 +115,7 @@ The height-2 interlink went through this: drafted, rewritten and signed by a per
 
 | sequence | terms | lookup | outcome |
 |---|---|---|---|
-| `F(w, 2)` | `1, 3, 6, 10, 16, 28, …` | A000217 agrees for 4 terms (false), A038505 | **interlink**, offset `w + 1`, proved by counting runs, submitted 2026-09-18 |
+| `F(w, 2)` | `1, 3, 6, 10, 16, 28, …` | A000217 agrees for 4 terms (false), A038505 | **interlink**, offset `w + 1`, proved by counting runs, on OEIS (approved Oct 2026) |
 | `odd(w, 2)` | `0, 0, 1, 5, 15, 35, …` | A038503 | **interlink**, `A038503(w+1) − 1` |
 | `P(1, L)` | `1, 0, −2, −4, −4, 0, …` | A009545 (agrees only at `L = 0`), A146559 | **interlink** A146559(L+1); A009545 is the odd-last-column part, and `A009545(L+3)/2` a relative |
 | `F(w, 3)` | `0, 0, 3, 21, 89, 307, …` | none (2026-09-19) | **generation candidate**, order-6 recurrence, closed form |

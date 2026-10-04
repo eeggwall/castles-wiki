@@ -5,7 +5,7 @@ summary: The Project Euler 502 hub page — defines the castle object, the count
 tags: [project-euler, castle, polyomino, source, hub]
 sources: [project-euler-502]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-04
 ---
 
 # Project Euler 502: Castle Polyominoes
@@ -42,6 +42,8 @@ Related topics: [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/latt
 ## Relation to Other Wiki Pages
 
 This page defines the two foundational concepts ([[castle-polyomino](pages/castle-polyomino.md)] and [[castle-counting-function](pages/castle-counting-function.md)]) that the seven PE 502 subpages elaborate: [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)], [[project-euler-502-representations](pages/project-euler-502-representations.md)], [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)], [[project-euler-502-observations](pages/project-euler-502-observations.md)], [[project-euler-502-solution](pages/project-euler-502-solution.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] and [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)].
+
+The problem's castle is cited in the OEIS. At height 2 the counts split by block parity into two "sum of every 4th binomial" sequences: `F(w,2) = A038505(w+1)` (even blocks) and `odd(w,2) = A038503(w+1) − 1` (odd blocks), with total `2^w − 1 = A000225(w)`, and their difference `A038503 − A038505` is A146559, the signed tower count at `k = 1`. Both entries carry a castle comment naming Project Euler Problem 502, and A038505 links to the problem ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)], [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)], [[signed-tower-count](pages/signed-tower-count.md)]). Other castle counts and their OEIS status are on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].
 
 ## Footnotes
 
