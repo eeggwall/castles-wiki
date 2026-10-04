@@ -14,7 +14,7 @@ updated: 2026-10-04
 
 An Analytic Combinatorics (AC) chapter ends with an exercise: **given the generating function `D(x) = 1/(1 − 2x − x²)`, produce the recurrence and its base cases**. It is a five-line calculation, and it leads to Project Euler (PE) 502 castles: the rational function is a two-atom tiling scheme, its coefficients are the Pell numbers, its growth constant is the silver ratio the wiki already tracks, and there is a castle sub-family - the 1-smooth strip of height at most 3, anchored at the base - whose width generating function is exactly this `D(x)`.
 
-This page is a seminar built on that exercise. It extends the working note [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)]: where the base cases come from, the two-atom composition scheme, the transfer matrix that realizes it, and the silver ratio.
+The strip need not reach height 3; the strips that do are the Pell castles, a castle type of exact height 3 ([[pell-castle](pages/pell-castle.md)]). This page is a seminar built on that exercise. It extends the working note [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)]: where the base cases come from, the two-atom composition scheme, the transfer matrix that realizes it, and the silver ratio.
 
 ## Act I - Coefficient matching, and where the "base cases" hide
 
@@ -74,7 +74,7 @@ so the growth constant is `1 + √2`. The count depends on the boundary conditio
 | any first column | `3, 7, 17, 41, 99, 239, 577, 1393` | `(3 + x)/(1 − 2x − x²)` | Pell-Lucas, A001333 |
 | first and last column at height 1 | `1, 1, 2, 4, 9, 21, 50, 120` | `(1 − 2x)/((1 − x)(1 − 2x − x²))` | Online Encyclopedia of Integer Sequences (OEIS) **A171842**`(w − 1)`, "Motzkin n-paths of height <= 2" (16 terms, searched 2026-09-26; [[motzkin-castles](pages/motzkin-castles.md)], [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]) |
 
-The anchored row is the **Pell castle strip**: `e_1ᵀ (I − xM)^{−1} 𝟙 = 1/(1 − 2x − x²)` exactly. The `(1 − x)` factor of `det(I − xM)` cancels whenever the last column is free, because the eigenvalue-1 eigenvector `(−1, 0, 1)` is orthogonal to `𝟙`; pinning the last column at height 1 as well keeps it. So the two atoms of Act II count castles: `a_{w−1} = P_w` is the number of skylines of width `w` that start at height 1, never jump by more than one row, and never exceed height 3. Starting the walk at height 1 selects Pell proper rather than the companion sequence. Restricting to castles of height *exactly* 3 subtracts the `2^{w−1}` anchored strips that do not reach height 3 and gives `P_w − 2^{w−1} = 0, 0, 1, 4, 13, 38, 105, 280, …`.
+The anchored row is the **Pell castle strip**: `e_1ᵀ (I − xM)^{−1} 𝟙 = 1/(1 − 2x − x²)` exactly. The `(1 − x)` factor of `det(I − xM)` cancels whenever the last column is free, because the eigenvalue-1 eigenvector `(−1, 0, 1)` is orthogonal to `𝟙`; pinning the last column at height 1 as well keeps it. So the two atoms of Act II count castles: `a_{w−1} = P_w` is the number of skylines of width `w` that start at height 1, never jump by more than one row, and never exceed height 3. Starting the walk at height 1 selects Pell proper rather than the companion sequence. Restricting to castles of height *exactly* 3 subtracts the `2^{w−1}` anchored strips that do not reach height 3 and gives `P_w − 2^{w−1} = 0, 0, 1, 4, 13, 38, 105, 280, …`. These are the **Pell castles** ([[pell-castle](pages/pell-castle.md)]): the Pell castle strip is the superset, and requiring it to reach its ceiling 3 turns it into a castle family of exact height 3, counted by `A094706(w − 2)`.
 
 The smallest 0/1 transfer matrix with `det(I − xM) = 1 − 2x − x²` is `3×3`: over `2×2` 0/1 matrices the determinant takes only the six values `1`, `1 − x`, `1 − 2x`, `1 − x²`, `(1 − x)²`, `1 − x − x²`.[^4] The Pell strip is a height-3 object.
 
@@ -109,6 +109,8 @@ Read as `SEQ(2Z + Z²)`, the denominator `1 − 2x − x²` lists two atoms. The
 - [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the working note this seminar is built on: the coefficient-matching mechanic and the two-atom reading.
 
 ## Related Concepts
+
+- [[pell-castle](pages/pell-castle.md)] - the Pell castles: the anchored 1-smooth strips that reach height 3, `P_w − 2^{w−1}` of them, the castle type the strip leads to.
 
 - [[castle-strip](pages/castle-strip.md)] - the from-scratch bridge: what a castle strip is, and how a neighbor rule becomes a transfer matrix whose states are the column heights. Read it first if the transfer-matrix language in Act III is unfamiliar.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the 1-smooth height-3 matrix and its `(1 − x)(1 − 2x − x²)` denominator, and the ridge rule `R_h = J − D` that realizes the whole metallic ladder.

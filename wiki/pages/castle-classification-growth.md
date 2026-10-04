@@ -5,7 +5,7 @@ summary: A class-level classification. A castle class - an infinite family defin
 tags: [concept, castle, classification, taxonomy, growth-constant, metallic-means, ridge-castle, non-metallic, meta-classification, n-nacci, cubic-pisot, plastic-number, class-predicate]
 sources: [castle-classification, oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-10-03
+updated: 2026-10-04
 ---
 
 # Castle classification - growth types
@@ -17,7 +17,7 @@ The shape types on [[castle-classification-shape](pages/castle-classification-sh
 Two consequences make this a **meta-classification**:
 
 - **The invariant is not read from a single castle.** "Silver width growth castle" is not a property that a single castle either has or does not have; it is a property of the family. A single castle in a silver-width-growth class is still just a castle, and could sit in a completely different class with a different growth constant.
-- **Two very different-looking classes can share a type.** The anchored 1-smooth castles of exact height 3 ([[pell-castle-strip](pages/pell-castle-strip.md)]) and the ridge castles of exact height 3 (ridge rule `R_3 = J − D`, [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) are different rules, but both are silver width growth castles.
+- **Two very different-looking classes can share a type.** The Pell castles (anchored 1-smooth castles of exact height 3, [[pell-castle](pages/pell-castle.md)]) and the ridge castles of exact height 3 (ridge rule `R_3 = J − D`, [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) are different rules, but both are silver width growth castles.
 
 The rest of this page names the growth types, states the wiki's naming convention, catalogues the known members on each axis, and lists cross-axis statements.
 
@@ -61,7 +61,7 @@ A class whose width-graded count sequence grows at `φ = (1 + √5) / 2`, equiva
 
 A class whose width-graded count sequence grows at `1 + √2 ≈ 2.4142`. Known members:
 
-- **The anchored 1-smooth castles of exact height 3** ([[pell-castle-strip](pages/pell-castle-strip.md)]) - first column at height 1, neighbouring columns differing by at most 1, some column at height 3. Count `P_w − 2^{w−1}` (`0, 0, 1, 4, 13, 38, 105, 280, …`), where the Pell numbers `P_w` (OEIS A000129, denominator `1 − 2x − x²`, the `p_1 = 2, p_2 = 1` case) count the same rule on the Pell castle strip without the requirement to reach height 3, and `2^{w−1}` removes the skylines that stay at heights 1 and 2. With a free first column the count is `A001333(w + 1) − 2^w` (`1, 3, 9, 25, 67, 175, …`, from the Pell-Lucas numbers A001333). Both grow like `1 + √2`.[^exact]
+- **The Pell castles** ([[pell-castle](pages/pell-castle.md)], from the Pell castle strip of [[pell-castle-strip](pages/pell-castle-strip.md)]) - first column at height 1, neighbouring columns differing by at most 1, some column at height 3. Count `P_w − 2^{w−1}` (`0, 0, 1, 4, 13, 38, 105, 280, …`, A094706`(w − 2)`), where the Pell numbers `P_w` (OEIS A000129, denominator `1 − 2x − x²`, the `p_1 = 2, p_2 = 1` case) count the same rule on the Pell castle strip without the requirement to reach height 3, and `2^{w−1}` removes the skylines that stay at heights 1 and 2. With a free first column the count is `A001333(w + 1) − 2^w` (`1, 3, 9, 25, 67, 175, …`, from the Pell-Lucas numbers A001333), which is `A106514(w − 1)`. Both grow like `1 + √2`.[^exact]
 - **The ridge castles of exact height 3** (ridge rule `R_3 = J − D`, [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2, [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) - the same growth constant, a different construction. Ridge castles of exact height 3: `1, 5, 15, 39, 97, 237, 575, …`.
 
 The **tower word** ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]) also grows at `1 + √2`, but on a different axis: A004149 counts tower words by word length (width plus twice the block count), with an algebraic GF whose singularity is at `√2 − 1`. By width, all castles of exact height `h` number `h^w − (h − 1)^w`, an integer growth constant `h`.

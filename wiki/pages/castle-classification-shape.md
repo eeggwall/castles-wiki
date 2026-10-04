@@ -84,7 +84,7 @@ Types 7, 8, 9, the base m-disparate, and the wiki-named ridge type:
 |---|---|---|
 | **Plateau-free** | `c_i ≠ c_{i+1}` for all `i` | elementary: `h(h−1)^{w−1}` skylines of height `≤ h`, so `h(h−1)^{w−1} − (h−1)(h−2)^{w−1}` castles, growth `h − 1`; its ridge variant (next row) realizes the whole metallic ladder |
 | **Ridge** (wiki-named, not one of the 35) | `c_i ≠ c_{i+1}` unless `c_i = c_{i+1} = h` | counted: `𝟙ᵀR_h^{w−1}𝟙 − (h−1)(h−2)^{w−1}` castles with `R_h = J − D`, growth the metallic mean `δ_{h−1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]); see **Ridge castles** below |
-| **m-smooth (Lipschitz)** | `|c_{i+1} − c_i| ≤ m` | at `m = 1` this is the **Motzkin-path** predicate without its endpoint condition (Axis 3); the 1-smooth strip over heights `≤ 3` is the silver realization on [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] and, anchored at height 1, the [[pell-castle-strip](pages/pell-castle-strip.md)] |
+| **m-smooth (Lipschitz)** | `|c_{i+1} − c_i| ≤ m` | at `m = 1` this is the **Motzkin-path** predicate without its endpoint condition (Axis 3); the 1-smooth strip over heights `≤ 3` is the silver realization on [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] and, anchored at height 1, the [[pell-castle-strip](pages/pell-castle-strip.md)], whose strips that reach height 3 are the Pell castles ([[pell-castle](pages/pell-castle.md)]) |
 | **Zigzag** | differences alternate in sign | *open* - a strong plateau-free variant |
 | **m-disparate** | `|c_{i+1} − c_i| ≥ m` | *open* - the "no small step" restriction |
 

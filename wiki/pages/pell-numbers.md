@@ -5,7 +5,7 @@ summary: P_n = 2·P_{n−1} + P_{n−2} with P_0=0, P_1=1 — the integer sequen
 tags: [concept, pell, integer-sequence, silver-ratio, quadratic-irrational, continued-fraction, oeis]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-15
-updated: 2026-09-28
+updated: 2026-10-04
 ---
 
 # Pell numbers
@@ -72,6 +72,8 @@ The **Pell-Lucas numbers** (OEIS A001333, half the companion Pell numbers A00220
 - [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] — introduces the two-atom reading of `1/(1 − 2x − x²)`; the sequence identity was verified against OEIS A000129 during ingest.
 
 ## Related Concepts
+
+- [[pell-castle](pages/pell-castle.md)] - the Pell castles, `P_w − 2^{w−1}`: the Pell strips that reach height 3.
 
 - [[pell-castle-strip](pages/pell-castle-strip.md)] — the Analysis page that runs from the Analytic Combinatorics (AC) end-of-chapter exercise to the castle interpretation.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] — where `1 + √2 = [2; 2, 2, …]` is developed as one of the castle's two norm-`−1` quadratics.
