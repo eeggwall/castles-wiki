@@ -5,7 +5,7 @@ summary: "Grading the tower-word first-return grammar by area turns it into the 
 tags: [analysis, castle, area, blocks, perimeter, q-analog, q-series, q-bessel, q-catalan, parallelogram-polyomino, grammar, functional-equation, q-shift, parity, sign, asymptotics, narayana, descents, q-binomial, novel-candidate]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes, prellberg-brak-1995-cluster-models, column-convex-polygon-enumeration, project-euler-502-representations, aocp-generating-partitions]
 created: 2026-09-23
-updated: 2026-10-02
+updated: 2026-10-04
 ---
 
 # Castles by width, blocks and area
@@ -91,7 +91,7 @@ C    = -N(q_0) / (q_0 M'(q_0)) = 0.0985091749731156224089366266361
 q_1  = -0.82027198,   then  0.64813 ± 0.51516 i  (|q| = 0.82793),  -0.41543 ± 0.71641 i  (0.82815),  0.00215 ± 0.83183 i  (0.83183)
 ```
 
-`q_0` and `C` agree with the row-raising values to all 30 digits. The second zero is real, so `even(n) - odd(n) = C (1/q_0)^n (1 + O((q_0/q_1)^n))` with `q_0/q_1 = 0.7508`. At `n = 300` that is `0.75^300 ≈ 3 × 10^(-38)`, consistent with the `1.7 × 10^(-37)` spread of consecutive ratios seen there. In parallelogram terms, the pole is where `Π(width 2, height -1; q) = 2`: parallelograms weighted `2^w (-1)^h q^area` sum to 2. The digits of `q_1` were not searched in OEIS.[^5]
+`q_0` and `C` agree with the row-raising values to all 30 digits. The second zero is real, so `even(n) - odd(n) = C (1/q_0)^n (1 + O((q_0/q_1)^n))` with `q_0/q_1 = 0.7508`. At `n = 300` that is `0.75^300 ≈ 3 × 10^(-38)`, consistent with the `1.7 × 10^(-37)` spread of consecutive ratios seen there. In parallelogram terms, the pole is where `Π(width 2, height -1; q) = 2`: parallelograms weighted `2^w (-1)^h q^area` sum to 2. The digits of `q_1`, `8, 2, 0, 2, 7, 1, 9, 8`, are not in OEIS (searched 2026-10-04).[^5]
 
 ## By descents: q-binomials at the ends only
 

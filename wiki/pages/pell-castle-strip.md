@@ -72,7 +72,7 @@ so the growth constant is `1 + √2`. The count depends on the boundary conditio
 |---|---|---|---|
 | **first column at height 1** (anchored at the base) | `1, 2, 5, 12, 29, 70, 169, 408` | `1/(1 − 2x − x²)` | **Pell `P_w`**, A000129 |
 | any first column | `3, 7, 17, 41, 99, 239, 577, 1393` | `(3 + x)/(1 − 2x − x²)` | Pell-Lucas, A001333 |
-| first and last column at height 1 | `1, 1, 2, 4, 9, 21, 50, 120` | `(1 − 2x)/((1 − x)(1 − 2x − x²))` | unchecked against Online Encyclopedia of Integer Sequences (OEIS) |
+| first and last column at height 1 | `1, 1, 2, 4, 9, 21, 50, 120` | `(1 − 2x)/((1 − x)(1 − 2x − x²))` | Online Encyclopedia of Integer Sequences (OEIS) **A171842**`(w − 1)`, "Motzkin n-paths of height <= 2" (16 terms, searched 2026-09-26; [[motzkin-castles](pages/motzkin-castles.md)], [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]) |
 
 The anchored row is the **Pell castle strip**: `e_1ᵀ (I − xM)^{−1} 𝟙 = 1/(1 − 2x − x²)` exactly. The `(1 − x)` factor of `det(I − xM)` cancels whenever the last column is free, because the eigenvalue-1 eigenvector `(−1, 0, 1)` is orthogonal to `𝟙`; pinning the last column at height 1 as well keeps it. So the two atoms of Act II count castles: `a_{w−1} = P_w` is the number of skylines of width `w` that start at height 1, never jump by more than one row, and never exceed height 3. Starting the walk at height 1 selects Pell proper rather than the companion sequence. Restricting to castles of height *exactly* 3 subtracts the `2^{w−1}` anchored strips that do not reach height 3 and gives `P_w − 2^{w−1} = 0, 0, 1, 4, 13, 38, 105, 280, …`.
 

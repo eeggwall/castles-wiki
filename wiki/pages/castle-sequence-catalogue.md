@@ -180,10 +180,10 @@ The signed tower count `P(k,L) = Σ (−1)^blocks` in the `L`-direction at fixed
 
 ### Strip Perron-root sequences (reachable-field census)
 
-Width-graded counts of the 0/1 transfer-matrix strips ([[reachable-field-census](pages/reachable-field-census.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). The plastic strip (`x³−x−1`) and the non-metallic quadratic strips (`Q(√17)`, `Q(√21)`, …) generate count sequences that are mostly **unchecked** against OEIS.
+Width-graded counts of the 0/1 transfer-matrix strips ([[reachable-field-census](pages/reachable-field-census.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). The plastic strip (`x³−x−1`) and the non-metallic quadratic strips (`Q(√17)`, `Q(√21)`, …) generate count sequences; their status as of 2026-10-04 is below.
 
-- Plastic strip (height-3, rule `1→3, 2→1, 3→{1,2}`), the Padovan/Perrin-rate count — **unchecked**.
-- The non-metallic quadratic strips `Q(√17)`, `Q(√21)`, `Q(√6)`, `Q(√7)`, `Q(√33)` — **unchecked**.
+- Plastic strip (height-3, rule `1→3, 2→1, 3→{1,2}`), `3, 4, 5, 7, 9, 12, 16, 21, 28, …` — **known** → [A000931](https://oeis.org/A000931) Padovan (`= A000931(w+9)`, checked `w ≤ 40`, 2026-10-04); the maximal Fibonacci castles of width `w + 3`.
+- The non-metallic quadratic strips `Q(√17)`, `Q(√21)`, `Q(√6)`, `Q(√7)`, `Q(√33)` — **unchecked**, and not yet a sequence: each field is reached by several strip matrices, so one realizing matrix per field must be chosen before its count can be searched.
 
 ### Castles by semi-perimeter
 
@@ -216,7 +216,7 @@ Castles glued at a shared height-1 column form a free monoid whose primes are th
 | prime parity splits (all and convex) | see the two pages | | **novel-candidate** (no match, 2026-09-22) |
 | signed castles by area `even - odd` | `-1, 0, 0, 2, 0, 2, -4, 2, -12, 10, -20, 38` (from `n = 1`, 300 terms computed) | row-raising recursion; `~ C(-rho)^n` | **novel-candidate** (no match, 2026-09-22), [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] |
 | signed growth constant `rho` and prefactor `C` | `1.62382967400459...`, `0.09850917497311...` | pole at `q E(q,q) = 1`, the first zero of `M(q)` on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] | **novel-candidate** decimal expansions (no match, 2026-09-22) |
-| second signed singularity `q_1` | `-0.82027198` | second zero of `M(q)`; correction `O(0.7508^n)` | **novel-candidate** (not searched), [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] |
+| second signed singularity `q_1` | `-0.82027198` | second zero of `M(q)`; correction `O(0.7508^n)` | **novel-candidate** (digits `8, 2, 0, 2, 7, 1, 9, 8` not in OEIS, searched 2026-10-04), [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] |
 | castles by area and peaks | rows `1; 1,1; 1,3; 1,7; 1,14,1; 1,26,5` | `(1-q-q^2+tq^2)/(1-2q+q^3-tq^3)` | **novel-candidate** (no match, 2026-09-22) |
 | one-peak castles | `1, 3, 7, 14, 26, 46, 79, 133` | `q^2/((1-q)^2(1-q-q^2))` | **interlink** → [A001924](https://oeis.org/A001924) (no composition reading on the entry) |
 
@@ -299,20 +299,23 @@ Fibonacci castles cut out by a rule on the tower, counted as castles of width `w
 | balanced castles | `1, 2, 4, 7, 12, 18, 27, 38, 52, 68, 89, 112` | `A005598(w)/2`, `~ w³/(2π²)` | **interlink** → [A049703](https://oeis.org/A049703) (`= A049703(w)`; the entry is defined only as `A005598(n)/2`, no combinatorial reading; brute force `w ≤ 15`, 2026-10-04) |
 | maximal castles (no column can be raised) | `1, 2, 2, 3, 4, 5, 7, 9, 12, 16, 21, 28` | `x(1+x)^2/(1-x^2-x^3)` | **known** → [A000931](https://oeis.org/A000931) (`= A000931(w+6)`; the entry lists maximal independent vertex sets of the path graph) |
 | spaced castles (height-2 columns ≥ 3 apart) | `1, 2, 3, 5, 8, 12, 18, 27, 40, 59` | `A000930(w+2) - 1` | **known** → [A077868](https://oeis.org/A077868) (`= A077868(w-1)`); the bijection with Fibonacci castles of `w + 1` cells is on the page |
-| `(1, 3)`-RLL castles (MFM constraint) | `1, 2, 4, 7, 10, 15, 22, 32, 47, 69` | `x(1+x+x^2+x^3)^2/(1-x^2-x^3-x^4)` | **unchecked** |
-| `(1, 7)`, `(2, 7)`, `(2, 10)`-RLL castles | see the page | gap generating function | **unchecked** |
+| `(1, 3)`-RLL castles (MFM constraint) | `1, 2, 4, 7, 10, 15, 22, 32, 47, 69` | `x(1+x)(1+x^2)^2/(1-x-x^3)` (reduced from `x(1+x+x^2+x^3)^2/(1-x^2-x^3-x^4)`) | **known** → [A003410](https://oeis.org/A003410) (`= A003410(w)` for `w ≥ 4`, `A003410(w) − 1` below: the entry counts the binary words with no `11` and no `0000`, the towers); **interlink** → [A226136](https://oeis.org/A226136), which equals `A003410(n)` for `n = 4..35` and lists the castle g.f. only as a conjecture (2026-10-04) |
+| `(1, 7)`-RLL castles | `1, 2, 4, 7, 12, 20, 33, 54, 86, 138, 221` | gap generating function | **novel-candidate** (no match, 2026-10-04) |
+| `(2, 7)`-RLL castles | `1, 2, 3, 5, 8, 12, 18, 27, 38, 54, 78` | gap generating function | **novel-candidate** (no match, 2026-10-04) |
+| `(2, 10)`-RLL castles | `1, 2, 3, 5, 8, 12, 18, 27, 40, 59, 87, 126, 183` | gap generating function | **novel-candidate** (no match, 2026-10-04) |
 
 ### Other generation candidates
 
-Further candidates with their current status; several are **unchecked**.
+Further candidates with their current status (all searched by 2026-10-04).
 
 - `F(w, 3)`: even-block castles of height exactly 3, `0, 0, 3, 21, 89, 307, 977, 3031, …` ([[new-sequence-fw3](pages/new-sequence-fw3.md)]) — **novel-candidate** (no OEIS match, searched 2026-09-19).
-- `F(w, 4…6)`: the taller rows ([[new-sequence-fw3](pages/new-sequence-fw3.md)]) — **unchecked**.
-- Fixed-width columns ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)]): `F(3, 2m) = 10m^2 - 5m + 1 = 5·Hex(m) + 1`, `6, 31, 76, 141, 226, 331, 456, 601, 766, 951, …` — **novel-candidate** (no OEIS match by terms or formula, searched 2026-09-20; it is A080860 at negative index). `odd(3, 2n+1) = 10n^2 + 5n + 1`, `1, 16, 51, 106, 181, 276, …` — **interlink** → [A080860](https://oeis.org/A080860) (exact, offset 0). `F(3, 2m+1) = odd(3, 2m) = C(2m+1, 2)` and `C(2m, 2)` — **known**, triangular numbers A000217. The interleaved columns `F(3,h)` (`6, 3, 31, 10, 76, 21, …`), `odd(3,h)`, and `F(4,h)` (`10, 21, 117, 122, 448, 367, 1131, 820, …`) — **novel-candidate** (searched 2026-09-20, no match); `F(4,h)` is the quasi-polynomial `(4h-3)(4h^2-3h+2)/6` at even `h`, `(h-1)(8h^2-4h+3)/6` at odd `h`.
-- `|P(k, L)|` in the *k*-direction at fixed `L ≥ 5` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]) — **unchecked**. *(The L-direction rows `P(k,·)`, `k = 2..6`, are in the "Signed tower count P(k,·) rows" section above.)*
+- `F(w, 4…6)`: the taller rows ([[new-sequence-fw3](pages/new-sequence-fw3.md)]): `F(w,4) = 1, 7, 31, 117, 439, 1729, 7063, 29201, …`, `F(w,5) = 0, 0, 10, 122, 906, 5478, 30274, …`, `F(w,6) = 1, 11, 76, 448, 2630, 16126, 101654, …` — **novel-candidate** (no match, 2026-10-04), rows of the `F(w,h)` array.
+- `odd(w, 3) = 1, 5, 16, 44, 122, 358, 1082, 3274, …` and `odd(w, 4) = 0, 0, 6, 58, 342, 1638, 7134, …`, the odd-block rows — **novel-candidate** (no match, 2026-10-04).
+- Fixed-width columns ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)]): `F(3, 2m) = 10m^2 - 5m + 1 = 5·Hex(m) + 1`, `6, 31, 76, 141, 226, 331, 456, 601, 766, 951, …` — **novel-candidate** (no OEIS match by terms or formula, searched 2026-09-20; it is A080860 at negative index). `odd(3, 2n+1) = 10n^2 + 5n + 1`, `1, 16, 51, 106, 181, 276, …` — **interlink** → [A080860](https://oeis.org/A080860) (exact, offset 0). `F(3, 2m+1) = odd(3, 2m) = C(2m+1, 2) = m(2m+1)` — **known**, [A014105](https://oeis.org/A014105) (second hexagonal numbers, every other triangular number); `C(2m, 2)` — **known**, the other half of the triangular numbers A000217. The interleaved columns `F(3,h)` (`6, 3, 31, 10, 76, 21, …`), `odd(3,h)`, and `F(4,h)` (`10, 21, 117, 122, 448, 367, 1131, 820, …`) — **novel-candidate** (searched 2026-09-20, no match); `F(4,h)` is the quasi-polynomial `(4h-3)(4h^2-3h+2)/6` at even `h`, `(h-1)(8h^2-4h+3)/6` at odd `h`.
+- `|P(k, L)|` in the *k*-direction at fixed `L ≥ 5` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]): `|P(k,5)| = 1, 0, 33, 64, 225, 384, 833, 1280, 2241, …`, `|P(k,6)| = 1, 8, 59, 32, 541, 680, 2583, 3520, …` from `k = 0` — **novel-candidate** (signed and unsigned, no match, 2026-10-04). *(The L-direction rows `P(k,·)`, `k = 2..6`, are in the "Signed tower count P(k,·) rows" section above.)*
 - Parity-refined area sequences (even/odd, convex, valley, non-convex, `strict_valley`) ([[castle-by-area](pages/castle-by-area.md)]) — **novel-candidate**, searched 2026-09-26; terms in the section above.
-- Higher tower rows `w ≥ 6` in the Narayana table ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]) — **unchecked**.
-- Jacobi-Perron convergent denominators of `2ψ²` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]) — **unchecked**.
+- Higher tower rows `w ≥ 6` in the Narayana table ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]): `w = 6`: `1, 21, 161, 721, 2331, 6083, …`; `w = 7`: `1, 28, 280, 1582, 6244, 19348, …` — **novel-candidate** (no match, 2026-10-04).
+- Jacobi-Perron convergent denominators of `2ψ²` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]): `1, 1, 2, 4, 47, 53, 104, 204, 2409, 2717, 5330, …` — **novel-candidate** (no match, 2026-10-04).
 
 ## Appearances in Sources
 

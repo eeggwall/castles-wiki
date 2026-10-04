@@ -5,7 +5,7 @@ summary: The tower (heap-of-pieces) block-count GF is Narayana_w(x)/(1−x)^w; w
 tags: [oeis, tower, narayana, heap-of-pieces, generating-functions, cross-reference, source]
 sources: [tower-narayana-polynomial]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-04
 ---
 
 # Tower block-count = Narayana polynomial
@@ -33,8 +33,8 @@ The width rows land on existing OEIS entries:[^2]
 | 3 | 1, 6, 16, 31, 51, 76, … | **A005891** (centered pentagonal) |
 | 4 | 1, 10, 40, 105, 219, 396, … | **A063490** |
 | 5 | 1, 15, 85, 295, 771, 1681, … | **A160747** |
-| 6 | 1, 21, 161, 721, 2331, 6083, … | **new** |
-| 7 | 1, 28, 280, 1582, 6244, 19348, … | **new** |
+| 6 | 1, 21, 161, 721, 2331, 6083, … | **new** (no OEIS match, searched 2026-10-04) |
+| 7 | 1, 28, 280, 1582, 6244, 19348, … | **new** (no OEIS match, searched 2026-10-04) |
 
 **Offset note:** **A063490 is offset 1** (`a(n) = T(4, n−1)`) — the only width-row entry with a shift; A005408/A005891/A160747 are offset 0.
 

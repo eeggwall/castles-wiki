@@ -5,7 +5,7 @@ summary: An exhaustive census (h ≤ 5) of which algebraic numbers are Perron ro
 tags: [analysis, castle, growth-constant, transfer-matrix, perron-root, number-field, metallic-mean, plastic-number, census, pisot, quadratic-field, sympy, verification]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-10-03
+updated: 2026-10-04
 ---
 
 # Reachable-field census of castle-strip growth constants
@@ -118,7 +118,7 @@ Nine cubic minimal polynomials already appear at `h = 3`:[^6]
 | `x³ − 2x² − x + 1` | `2.2470` | `1 + 2cos(2π/7)`, in `Q(ζ₇)⁺` | 12 |
 | `x³ − 3x² + 2x − 1` | `2.3247` | (Pisot; `ψ + 1`) | 6 |
 
-The plastic number `ψ ≈ 1.3247` is a castle-strip Perron root at height 3, realized by 6 matrices, the sparsest with just 4 ones (a near-companion of `x³ = x + 1`);[^5] a strip whose transfer matrix is that companion is the "Padovan/Perrin growth castle" of [[plastic-number](pages/plastic-number.md)].
+The plastic number `ψ ≈ 1.3247` is a castle-strip Perron root at height 3, realized by 6 matrices, the sparsest with just 4 ones (a near-companion of `x³ = x + 1`);[^5] a strip whose transfer matrix is that companion is the "Padovan/Perrin growth castle" of [[plastic-number](pages/plastic-number.md)]. The sparsest one, rule `1 → 3`, `2 → 1`, `3 → {1, 2}`, has `3, 4, 5, 7, 9, 12, 16, 21, 28, …` strips of width `w`, the Padovan numbers `A000931(w + 9)` (checked `w ≤ 40`, 2026-10-04), the same numbers as the maximal Fibonacci castles of width `w + 3` ([[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)]).
 
 At `h = 4` there are **184 distinct positive Perron values**: 4 integers, 14 quadratic minimal polynomials (in 6 fields), **56 cubic** (including `x³ − 2`, the cube root of 2 at `1.2599`) and **110 quartic**. At `h = 5` there are 5,978: 5 integers, 29 quadratic (10 fields), 253 cubic, 1,355 quartic and 4,336 quintic.[^6]
 

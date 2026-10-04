@@ -5,7 +5,7 @@ summary: Every castle eigenvalue's "convergents" run against OEIS. The metallic 
 tags: [analysis, castle, continued-fraction, convergents, oeis, eigenvalue, quasi-polynomial, plastic-number, jacobi-perron, pisano, mod-p, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-28
+updated: 2026-10-04
 ---
 
 # Castle eigenvalues meet OEIS: the convergent crosswalk
@@ -293,7 +293,7 @@ def jpa_convergents(digs):
 ```
 >>> A = jpa_convergents(pre + per*10)
 >>> [int(v[0]) for v in A[:16]]
-[1, 0, 0, 1, 1, 2, 4, 47, 53, 104, 204, 2409, 2717, 5330, 10456, 123471]
+[1, 0, 0, 1, 1, 2, 4, 47, 53, 104, 204, 2409, 2717, 5330, 10456, 123471]      # not in OEIS (searched 2026-10-04)
 >>> sp.N(A[30][1]/A[30][0], 22), sp.N(A[30][2]/A[30][0], 22)
 (3.509755332493385518781, 12.31838249396575515334)      # rho_6 = 3.509755332493385520099..., rho_6^2 = 12.31838249396575514404...
 ```
