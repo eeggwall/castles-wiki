@@ -5,6 +5,13 @@ text below is a checked, correct starting point, not final prose. Verify the exa
 field syntax against the [Style Sheet](https://oeis.org/wiki/Style_Sheet) before pasting.
 Execution notes (field map, signature format, scope): see SUBMISSION-NOTES.md.
 
+**Plan (2026-10-04):** this entry is **row 3 of a new array entry** for `F(w,h)` (even-block
+castles of width `w` and exact height `h`, read by antidiagonals), which is submitted first and
+carries the general formula and the table; this row then says "Row 3 of A______", and the
+fixed-width column `F(3,h)` gets its own entry. See TODO.md, OEIS stage 2. Searched
+2026-10-04: the `F(w,h)` array is not on OEIS in either antidiagonal order; the all-parity
+array `h^w - (h-1)^w` is A047969 (A343237 transposed).
+
 The sequence (index `n` = width `w`, so `a(n) = F(n,3)`):
 
 ```
@@ -113,6 +120,8 @@ def a_brute(n):
 - `A038505` (the h=2 analogue: `F(w,2) = A038505(w+1)`).
 - `A038503` (`odd(w,2) = A038503(w+1) - 1`).
 - `A000225` (total height-2 castles, `2^w - 1`).
+- The array entry (to be allocated) for `F(w,h)`: "Row 3 of A______".
+- `A047969` (the all-parity array `h^w - (h-1)^w`, of which `A001047` is a row).
 - `A001047` (`3^n - 2^n`, total height-3 castles of any parity).
 - `A146559` (`Re((1+i)^n)`), `A009545` (`Im((1+i)^n)`).
 - The odd-block companion `odd(n,3)` and the taller analogues `F(n,4)`, `F(n,5)`,

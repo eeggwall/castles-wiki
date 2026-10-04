@@ -48,8 +48,20 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
    `wiki/pages/tower-narayana-polynomial.md`). The A063490 draft notes an offset shift.
 3. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
    (`raw/oeis-pe502/xrefs/*-castle.md`).
-4. [ ] **New sequence `F(w,3)`** (`raw/oeis-pe502/new-sequence-F3.md`;
-   `wiki/pages/new-sequence-fw3.md`). Re-searched oeis.org 2026-09-19: still no match.
+4. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
+   two-parameter family into one array entry, with notable rows and columns as their own
+   entries, cf. A217883 "Column 2 is A202882(n+1)"). In order:
+   1. [ ] **Array `F(w,h)`**: even-block castles of width `w` and exact height `h`, square
+      array read by antidiagonals (keyword `tabl`), with the general formula
+      `F(w,h) = ½[h^w − (h−1)^w + P(h−2,w) − P(h−1,w)]`, the PE 502 link, the table in the
+      Example section, and Cf. the all-parity array A047969 (`h^w − (h−1)^w`; A343237 is its
+      transpose) and row 2 = A038505(w+1). Not on OEIS in either antidiagonal order (searched
+      2026-10-04). **Draft not written.**
+   2. [ ] **Row `h = 3`, `F(w,3)`** (`raw/oeis-pe502/new-sequence-F3.md`, crossrefs updated to
+      point at the array; `wiki/pages/new-sequence-fw3.md`). No match (re-searched 2026-10-04).
+   3. [ ] **Column `w = 3`, `F(3,h)`** = `0, 6, 3, 31, 10, 76, 21, 141, 36, 226, …`: `C(h,2)` at
+      odd `h`, `5·C(h,2) + 1` at even `h` (`wiki/pages/sum-of-three-cubes-castles.md`). No match
+      (searched 2026-10-04). **Draft not written.**
 
 ### 3. Needs a draft (verified, worth submitting)
 
@@ -71,8 +83,10 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
   all castles of exact height `h`).
 - [ ] **New-sequence siblings** of `F(w,3)`: `F(w,4)`, `F(w,5)`, `odd(w,h≥3)`, parity-refined
   area sequences (`cev+cod = A001523`), `strict_valley`, tower rows `w≥6`, and the `P(k,·)`
-  families for `k≥2`. Also the fixed-width columns from `wiki/pages/sum-of-three-cubes-castles.md`:
-  new sequence `F(3,2m) = 10m^2-5m+1` (`6, 31, 76, 141, …`, no match 2026-09-20) and the
+  families for `k≥2`, and further rows (`h = 4, 5`) and columns (`w = 4`: `0, 10, 21, 117,
+  122, 448, …`, no match 2026-10-04) of the `F(w,h)` array, each only if it brings its own
+  formula. Also from `wiki/pages/sum-of-three-cubes-castles.md`: `F(3,2m) = 10m^2-5m+1`
+  (`6, 31, 76, 141, …`, no match 2026-09-20; the even half of the `F(3,h)` column) and the
   interlink `odd(3,2n+1) = A080860(n)`.
 - [ ] **Tower-spacing table** (`wiki/pages/tower-spacing-castles.md`): the six unfiled cells
   `(h,g)` for `h in {5,6}`, `g in {4,5,6}` as new sequences (Hardin's "0..(h-1) arrays, each
@@ -84,6 +98,9 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
 
 Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with the reason).
 
+- [ ] **A014105** (second hexagonal numbers `n(2n+1)`): the odd half of the `F(3,h)` column,
+  `F(3, 2m+1) = A014105(m)` (verified `m ≤ 11`, 2026-10-04); likely better stated once on the
+  `F(3,h)` column entry than as a comment on this dense entry.
 - [ ] **`(d, k)`-RLL Fibonacci castle counts** for `(1,3)`, `(1,7)`, `(2,7)`, `(2,10)`
   (`1, 2, 4, 7, 10, 15, 22, 32, …` for `(1,3)`; the rest on
   `wiki/pages/fibonacci-castles-sub-families.md`): search OEIS; interlink if matched, new
