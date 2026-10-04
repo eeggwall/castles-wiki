@@ -136,6 +136,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 - Expanders and zeta: Ramanujan castles as the spectrally-expander-like shapes, `zeta_C(u)` over prime closed walks on the castle graph; arithmetic combinatorics.
 - Voice-channel survival: which castle statistics (LSB of height, block parity, histogram bins, low DFT modes) live through FM demodulation on a band-limited voice channel.
 - Information theory of skylines: uniform entropy `~ w log_2 h - 1`, growth constants as topological entropies, and the compressibility axis.
+- Constrained coding: run-length-limited sequences as castle towers, Shannon capacity of a constraint, and recording and telephone line codes.
 - Real signals as castles: URL ids, ID3 labels, and 16-bit waveforms as `h = 65536` castles; Berlekamp-Massey and the NTT over `F_65537` as the finite-field layer; Beethoven's Ninth as the crown-jewel exemplar.
 
 ### Facilities
