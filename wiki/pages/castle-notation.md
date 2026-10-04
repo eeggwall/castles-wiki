@@ -1,11 +1,11 @@
 ---
 title: Castle notation - castles, towers, and the parity term
 category: Concepts
-summary: The wiki's symbol conventions in one place, including the sandpile symbols (the reduced Laplacian L̃, Dhar's Δ, K(G), L̃⁻¹, a_v, avalanche statistics) the block-weighted and Motzkin-path layer (block weight t, M_k(t), the KMS matrix K(ρ), semi-perimeter s, B(x, y), Motzkin-path castles), and the area-grading layer (q, z, E(q, z), the q-Bessel N(q)/M(q), J_0, J_1, Π). Castle quantities are written width first, F(w, h); tower quantities are written tower height first, T(k, L) and P(k, L), where a tower sits on the castle's bottom row, so tower height k = castle height h − 1. T is the unsigned tower count (k+1)^L, P the signed ("parity") tower count Σ(−1)^blocks, and the parity term of F is S(w, h) = P(h−2, w) − P(h−1, w), so F(w, h) = [h^w − (h−1)^w − P(h−1, w) + P(h−2, w)]/2. P(0, L) = 1 is the trivial case; P(1, ·) is the parity ingredient for castles of height up to 2. Also lists the other things the letters P and T mean on the wiki, so the collisions are visible.
+summary: The wiki's symbol conventions in one place, including the sandpile symbols (the reduced Laplacian L̃, Dhar's Δ, K(G), L̃⁻¹, a_v, avalanche statistics) the block-weighted and Motzkin-path layer (block weight t, M_k(t), the KMS matrix K(ρ), semi-perimeter s, B(x, y), Motzkin-path castles), and the area-grading layer (q, z, E(q, z), the q-Bessel N(q)/M(q), J_0, J_1, Π). Castle quantities are written width first, F(w, h); tower quantities are written tower height first, T(k, L) and P(k, L), where a tower sits on the castle's bottom row, so tower height k = castle height h − 1. T is the unsigned tower count (k+1)^L, P the signed ("parity") tower count Σ(−1)^blocks, and the parity term of F is S(w, h) = P(h−2, w) − P(h−1, w), so F(w, h) = [h^w − (h−1)^w − P(h−1, w) + P(h−2, w)]/2. P(0, L) = 1 is the trivial case; P(1, ·) is a parity ingredient of F(w, 2) and F(w, 3). Also lists the other things the letters P and T mean on the wiki, so the collisions are visible.
 tags: [concept, castle, notation, reference, signed-tower-count, castle-sign, pedagogy]
 sources: [project-euler-502-solution, project-euler-502-representations, aocp-generating-partitions]
 created: 2026-09-26
-updated: 2026-10-03
+updated: 2026-10-04
 ---
 
 # Castle notation - castles, towers, and the parity term
@@ -53,15 +53,15 @@ F(w, h)  =  [ A(w, h) + S(w, h) ] / 2
 F(w, 2)  =  [ 2^w − 1 − P(1, w) + 1 ] / 2  =  ( 2^w − P(1, w) ) / 2
 ```
 
-and at `w = 2`, `P(1, 2) = −2` gives `F(2, 2) = (4 + 2)/2 = 3`, the three castles `(1,2), (2,1), (2,2)`.[^2] So `P(1, ·)` is the parity ingredient for castles of height up to 2 (towers are binary strings, and each run of 1s is one block on the second row), not for castles of height 1.
+and at `w = 2`, `P(1, 2) = −2` gives `F(2, 2) = (4 + 2)/2 = 3`, the three castles `(1,2), (2,1), (2,2)`.[^2] So `P(1, ·)` enters `F(w, 2)` as `P(h−1, w)` and `F(w, 3)` as `P(h−2, w)` (towers are binary strings, and each run of 1s is one block on the second row).
 
 ## Trivial and first cases
 
 | tower height `k` | castle heights it serves | `P(k, L)` |
 |---|---|---|
-| 0 | the bottom row alone (castle height 1) | `1` for every `L` |
-| 1 | castles of height `≤ 2` | `1, 0, −2, −4, −4, 0, 8, 16, …` = `Re((1+i)^{L+1})` |
-| 2 | castles of height `≤ 3` | `1, 1, 3, 9, 19, 33, 59, 121, …` |
+| 0 | `h = 2` (as `P(h−2, w)`) | `1` for every `L` |
+| 1 | `h = 2` (as `P(h−1, w)`), `h = 3` (as `P(h−2, w)`) | `1, 0, −2, −4, −4, 0, 8, 16, …` = `Re((1+i)^{L+1})` |
+| 2 | `h = 3`, `h = 4` | `1, 1, 3, 9, 19, 33, 59, 121, …` |
 
 ## Reading conventions
 

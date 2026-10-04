@@ -73,7 +73,7 @@ That is the whole proof.[^4] A match with a proof is a new **interpretation** of
 
 ## Stop 5 - the trap
 
-The signed tower count `P(1, L)` (towers of height `≤ 1` above the bottom row, so castles of height `≤ 2`, weighted by `(−1)^{blocks}`; [[castle-notation](pages/castle-notation.md)]) is `1, 0, −2, −4, −4, 0, 8, 16, …`. The tempting match is **A009545**, `Im((1+i)^n)`: at `L = 0` both give 1, so a first-term check passes. The offset-exact comparison fails from `L = 1` on ([[signed-tower-count](pages/signed-tower-count.md)]):
+The signed tower count `P(1, L)` (towers with column heights in `{0, 1}` on the bottom row, weighted by `(−1)^{blocks}`; the parity ingredient of `F(w, 2)` and `F(w, 3)`; [[castle-notation](pages/castle-notation.md)]) is `1, 0, −2, −4, −4, 0, 8, 16, …`. The tempting match is **A009545**, `Im((1+i)^n)`: at `L = 0` both give 1, so a first-term check passes. The offset-exact comparison fails from `L = 1` on ([[signed-tower-count](pages/signed-tower-count.md)]):
 
 ```
 P(1, L)            =  1, 0, −2, −4, −4,  0,  8, 16, …        =  Re((1+i)^(L+1))  =  A146559(L+1)
@@ -107,7 +107,7 @@ Every factor has a meaning. `3^w` and `2^w` come from the all-parity counts, `x�
 
 OEIS text must be **written and signed by a person**. A tool may verify terms, check offsets and format data, but may not author the prose.[^8] New contributors are also throttled to a few open drafts, so submissions are ordered, isolated interlinks first. The wiki keeps verified identities on its pages and draft text in `raw/oeis-pe502/`, to be rewritten by a person.
 
-The height-2 interlink went through this: drafted, rewritten and signed by a person, and submitted to A038503 and A038505 on 2026-09-18 as draft edits, with the A038503 comment rephrased as "height at most 2" so the `− 1` disappears; the editors approved them, and both entries show the comments as of their Oct 03 2026 revisions ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)], "On OEIS"). The status of every castle sequence (known, interlink, novel candidate, unchecked) is tracked on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)], and every A-number the wiki cites is listed on [[oeis-index](pages/oeis-index.md)].
+The height-2 interlink went through this: drafted, rewritten and signed by a person, and submitted to A038503 and A038505 on 2026-09-18 as draft edits, and the editors approved them (both entries show the comments as of their Oct 03 2026 revisions). The A038503 comment was reworded to "height at most 2" before submission, which counts the `r = 0` term as a castle; the exact-height statement is `A038503(w+1) − 1 = odd(w, 2)`, and a correction was submitted on 2026-10-04 ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)], "On OEIS"). The status of every castle sequence (known, interlink, novel candidate, unchecked) is tracked on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)], and every A-number the wiki cites is listed on [[oeis-index](pages/oeis-index.md)].
 
 *Idea:* the machine finds and checks. The person writes and signs, and the wiki keeps the verified mathematics separate from the prose.
 

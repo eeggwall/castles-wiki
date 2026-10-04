@@ -5,7 +5,7 @@ summary: A local research workspace mining the castle object against the OEIS �
 tags: [oeis, castle, research, mining, cross-reference, source]
 sources: [oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-04
 ---
 
 # Online Encyclopedia of Integer Sequences (OEIS) mining of Project Euler 502 (PE 502) castles (first pass)
@@ -26,7 +26,7 @@ The work is organized into **veins**, each a thread from the castle out to a fam
 - **Vein 2 - any-parity = difference of powers.** `h^w − (h−1)^w` gives `A000225` (h=2), `A001047` (h=3), `A005061/A005060/A005062` - trivial interpretations, immediate from the tower decomposition.
 - **Vein 3 - the even count `F(w,h)`.** Height 2 matches: `F(w,2) = A038505(w+1)`, `odd(w,2) = A038503(w+1) − 1`, into the order-4 [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]; see [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]. Heights h ≥ 3 are new C-finite sequences (rows), and columns are quasi-polynomials annihilated by `(x²−1)^w`.
 - **Vein 4 - convex castles are binomial, not Catalan.** `convex(w,h) = C(2h+w−3, w−1)`, proved via [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]; convex ⟺ unimodal ⟺ exactly `h` blocks.
-- **Vein 7 - the tower block-count is a Narayana polynomial.** For height-≤1 towers (castles of height ≤ 2) `count = C(w+1, 2b) = A034839`; the height-2 castle inherits this binomial family; the full block-count distribution for `h ≥ 2` is a new 2D table whose minimum-block column is the convex count `C(2h+w−3, w−1)`. The Catalan/Narayana structure appears in the tower block count and not in the convex count: see [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)].
+- **Vein 7 - the tower block-count is a Narayana polynomial.** For towers with column heights in `{0, 1}` `count = C(w+1, 2b) = A034839`; the height-2 castle inherits this binomial family; the full block-count distribution for `h ≥ 2` is a new 2D table whose minimum-block column is the convex count `C(2h+w−3, w−1)`. The Catalan/Narayana structure appears in the tower block count and not in the convex count: see [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)].
 - **Vein 8 - the odd-count complement.** `odd(w,2) = A038503(w+1) − 1` (see Vein 3); the odd-height rows for `h ≥ 3` are new C-finite sequences (`odd(w,3)` order 5, `odd(w,4)` order 9, `odd(w,5)` order 11), no OEIS match.
 - **Veins 9/9b - castles by area.** Re-indexing by total cells: convex ↔ `A001523`, all ↔ `2^{n−1}`, valley ↔ `A332578`, non-convex ↔ `A115981`; plus new parity-refined and strict-valley sequences. See [[castle-by-area](pages/castle-by-area.md)].
 
