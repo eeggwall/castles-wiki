@@ -22,13 +22,18 @@ See `wiki/pages/oeis-cross-referencing.md`.
 - [x] **Tier 1 (submit first):** A038505 / A038503 / A146559 — the height-2 hyperbolic
   interlink (`raw/oeis-pe502/oeis-xref-draft.md`;
   `wiki/pages/oeis-height2-hyperbolic-castles.md`). **Approved and live** (checked
-  2026-10-04: A038503 #93 and A038505 #136, Oct 03 2026; A146559 #152, Sep 28 2026):
+  2026-10-04: A038503 #93, Oct 03 2026; A038505 #140, Oct 04 2026; A146559 #152, Sep 28 2026):
   castle comments, the A000225 decomposition formulas, `A146559 = A038503 − A038505`,
   `Cf. A000225` on both, the PE 502 link on A038505. Wiki pages updated to match.
   - [x] Typo in the live A038505 comment: "(Project Euler, **Project** 502: Counting
-    Castles)" → "Problem 502". Correction submitted 2026-10-04.
-  - [ ] A146559 castle comment `a(n) = P(1, n−1)` (signed tower count at `k = 1`), not yet
-    submitted. Checked draft (Comment only): `raw/oeis-pe502/xrefs/A146559-signed.md`
+    Castles)" → "Problem 502". Approved and live (A038505 #140, Oct 04 2026).
+  - [~] **A038503 exact-height correction** (submitted 2026-10-04, awaiting approval). The
+    live comment says "height at most 2", which counts the `r = 0` term `C(n,0)` as a castle. Replace with the exact-height
+    statement `a(n) − 1` = odd-block castles of width `n−1` and height 2, same definition
+    sentence as A038505: `raw/oeis-pe502/xrefs/A038503-exact-height.md`.
+  - [~] A146559 castle comment `a(n) = P(1, n−1)` (signed tower count at `k = 1`), submitted
+    2026-10-04, awaiting approval. Checked draft (Comment only, exact height: `a(n) − 1` =
+    odd − even castles of height 2): `raw/oeis-pe502/xrefs/A146559-signed.md`
     (`wiki/pages/castle-sequence-catalogue.md`, `wiki/pages/signed-tower-count.md`).
   - [ ] Companion A009545 (`Im((1+i)^n)`, e.g.f. `sin(x)exp(x)`): castle comment from the
     `k = 1` parity split, `A009545(w) = −P_odd(1,w)` = (even-block − odd-block castles of

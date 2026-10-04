@@ -7,6 +7,7 @@ Execution notes (field map, signature format, scope): see SUBMISSION-NOTES.md.
 
 **Changes made at submission (2026-09-18):**
 - A038503 comment reworded to "height at most 2" (folds the all-height-1 castle in directly; drops the draft's "1 more than … height 2" framing).
+  **Wrong (2026-10-04):** "height at most 2" is not a castle family at exact height; it counts the r = 0 term C(n,0) as a castle. The draft's exact-height framing below is the correct one; correction drafted in `xrefs/A038503-exact-height.md`.
 - FORMULA uses the A000225 decomposition, not the direct F(w,2)/odd(w,2) form:
   - A038503: `a(n) = A000225(n-1) - A038505(n) + 1 for n >= 1` and `a(n) = A038505(n) + A146559(n)`.
   - A038505: `a(n) = A000225(n-1) - A038503(n) + 1 for n >= 1`.
