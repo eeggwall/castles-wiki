@@ -84,6 +84,13 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
   (towers balanced, i.e. finite Sturmian); the entry is defined only as `A005598(n)/2`, with
   no combinatorial reading. Brute-force verified `w ≤ 15`, 2026-10-04
   (`wiki/pages/fibonacci-castles-sub-families.md`).
+- [ ] **A094706** (Convolution of Pell(n) and 2^n; the entry has no comments): the Pell
+  castles (exact height 3, first column 1, neighbouring columns differing by at most 1) of
+  width `w` number `A094706(w − 2) = P_w − 2^{w−1}`, proved by the g.f.
+  `x³/((1−2x−x²)(1−2x))` (`wiki/pages/pell-castle.md`).
+- [ ] **A106514**: the 1-smooth castles of exact height 3 (free first column) of width `w`
+  number `A106514(w − 1)`, g.f. `x(1−x)/((1−2x)(1−2x−x²))`, proved; the entry has only
+  convolution and eigensequence comments (`wiki/pages/pell-castle.md`).
 - [ ] **Difference-of-powers fillers** (formerly tier 3) A000225, A001047, … (`h^w − (h−1)^w`
   all castles of exact height `h`).
 - [ ] **New-sequence siblings** of `F(w,3)`: `F(w,4)`, `F(w,5)`, `odd(w,h≥3)`, parity-refined
@@ -93,7 +100,9 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
   the odd-block rows `odd(w,3)`, `odd(w,4)`; the column `F(4,h)` (`0, 10, 21, 117, 122, 448,
   …`). Also no match 2026-10-04 and new-sequence candidates outside the array: `|P(k,5)|`,
   `|P(k,6)|` (the `k`-direction rows), the tower rows `w = 6, 7`, the `(1,7)`, `(2,7)`,
-  `(2,10)`-RLL Fibonacci castle counts, and the Jacobi-Perron denominators of `2ψ²`
+  `(2,10)`-RLL Fibonacci castle counts, the Jacobi-Perron denominators of `2ψ²`, and the
+  Pell castle rows (even-block, odd-block, signed; and the both-ends-at-height-1 variant,
+  `0, 0, 0, 0, 1, 5, 18, 56, …`)
   (`wiki/pages/castle-sequence-catalogue.md`, "Other generation candidates"). Also from `wiki/pages/sum-of-three-cubes-castles.md`: `F(3,2m) = 10m^2-5m+1`
   (`6, 31, 76, 141, …`, no match 2026-09-20; the even half of the `F(3,h)` column) and the
   interlink `odd(3,2n+1) = A080860(n)`.
@@ -116,6 +125,11 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   its width counts, then search.
 
 **Skipped (assessed, with reason):**
+
+- A000129 / A001333 / A171842 (the Pell castle strip under its three boundary conditions):
+  dense entries, and a strip need not reach its ceiling, so it is not a castle family; the
+  castle readings go on A094706 and A106514 (the strips at exact height 3). A171842 already
+  has the equivalent "Motzkin n-paths of height <= 2" reading.
 
 - The plastic strip (rule `1→3, 2→1, 3→{1,2}`): its count is `A000931(w + 9)`, Padovan, which
   the entry already covers with word and automaton readings (Finch's `(1,2)`-RLL words,
