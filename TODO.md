@@ -43,12 +43,17 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
    text on the live entry (#193, Jul 27 2026). Comment only; width `n`, no `− 1`:
    `raw/oeis-pe502/xrefs/A009545-signed.md` (`wiki/pages/signed-tower-count.md`,
    `wiki/pages/tower-parity-sectors.md`).
-2. [ ] **Tower/heap = Narayana-polynomial interpretation** (formerly tier 2) on A005891 /
+2. [ ] **A226136 → A003410**: Barker's conjectured g.f. on A226136 is A003410's g.f. minus
+   `1 + x + x^2 + x^3`, so the conjecture is equivalent to `A226136(n) = A003410(n)` for
+   `n >= 4` (all 35 listed terms agree); add that formula line and `Cf. A003410`. Optional
+   second edit: the castle reading on A003410 (for `n >= 4`, the `(1,3)`-RLL Fibonacci castles).
+   `raw/oeis-pe502/xrefs/A226136-A003410.md` (`wiki/pages/fibonacci-castles-sub-families.md`).
+3. [ ] **Tower/heap = Narayana-polynomial interpretation** (formerly tier 2) on A005891 /
    A063490 / A160747, and the numerator formula on A001263 (`raw/oeis-pe502/xrefs/*-tower.md`;
    `wiki/pages/tower-narayana-polynomial.md`). The A063490 draft notes an offset shift.
-3. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
+4. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
    (`raw/oeis-pe502/xrefs/*-castle.md`).
-4. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
+5. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
    two-parameter family into one array entry, with notable rows and columns as their own
    entries, cf. A217883 "Column 2 is A202882(n+1)"). In order:
    1. [ ] **Array `F(w,h)`**: even-block castles of width `w` and exact height `h`, square
@@ -83,9 +88,13 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
   all castles of exact height `h`).
 - [ ] **New-sequence siblings** of `F(w,3)`: `F(w,4)`, `F(w,5)`, `odd(w,h≥3)`, parity-refined
   area sequences (`cev+cod = A001523`), `strict_valley`, tower rows `w≥6`, and the `P(k,·)`
-  families for `k≥2`, and further rows (`h = 4, 5`) and columns (`w = 4`: `0, 10, 21, 117,
-  122, 448, …`, no match 2026-10-04) of the `F(w,h)` array, each only if it brings its own
-  formula. Also from `wiki/pages/sum-of-three-cubes-castles.md`: `F(3,2m) = 10m^2-5m+1`
+  families for `k≥2`, and further rows and columns of the `F(w,h)` array, each only if it
+  brings its own formula. Searched 2026-10-04, no match: rows `F(w,4)`, `F(w,5)`, `F(w,6)`;
+  the odd-block rows `odd(w,3)`, `odd(w,4)`; the column `F(4,h)` (`0, 10, 21, 117, 122, 448,
+  …`). Also no match 2026-10-04 and new-sequence candidates outside the array: `|P(k,5)|`,
+  `|P(k,6)|` (the `k`-direction rows), the tower rows `w = 6, 7`, the `(1,7)`, `(2,7)`,
+  `(2,10)`-RLL Fibonacci castle counts, and the Jacobi-Perron denominators of `2ψ²`
+  (`wiki/pages/castle-sequence-catalogue.md`, "Other generation candidates"). Also from `wiki/pages/sum-of-three-cubes-castles.md`: `F(3,2m) = 10m^2-5m+1`
   (`6, 31, 76, 141, …`, no match 2026-09-20; the even half of the `F(3,h)` column) and the
   interlink `odd(3,2n+1) = A080860(n)`.
 - [ ] **Tower-spacing table** (`wiki/pages/tower-spacing-castles.md`): the six unfiled cells
@@ -101,12 +110,18 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
 - [ ] **A014105** (second hexagonal numbers `n(2n+1)`): the odd half of the `F(3,h)` column,
   `F(3, 2m+1) = A014105(m)` (verified `m ≤ 11`, 2026-10-04); likely better stated once on the
   `F(3,h)` column entry than as a comment on this dense entry.
-- [ ] **`(d, k)`-RLL Fibonacci castle counts** for `(1,3)`, `(1,7)`, `(2,7)`, `(2,10)`
-  (`1, 2, 4, 7, 10, 15, 22, 32, …` for `(1,3)`; the rest on
-  `wiki/pages/fibonacci-castles-sub-families.md`): search OEIS; interlink if matched, new
-  sequence if not.
+- [ ] **Quadratic-field strips** `Q(√17)`, `Q(√21)`, `Q(√6)`, `Q(√7)`, `Q(√33)`
+  (`wiki/pages/reachable-field-census.md`): not yet sequences. Each field is reached by
+  several strip matrices; choose one realizing matrix per field (e.g. the sparsest), compute
+  its width counts, then search.
 
 **Skipped (assessed, with reason):**
+
+- The plastic strip (rule `1→3, 2→1, 3→{1,2}`): its count is `A000931(w + 9)`, Padovan, which
+  the entry already covers with word and automaton readings (Finch's `(1,2)`-RLL words,
+  Deutsch's compositions into 2s and 3s). Draft written anyway, recommending skip:
+  `raw/oeis-pe502/xrefs/A000931-plastic-strip.md`.
+- The signed convex castles (period 6) and the digits of `q_1` (no match): nothing to submit.
 
 - A000931 (maximal Fibonacci castles, `A000931(w + 6)`): the entry already counts the maximal
   independent sets of the path graph, which is the same statement.
