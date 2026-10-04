@@ -38,7 +38,9 @@ See `wiki/pages/oeis-cross-referencing.md`.
   - [ ] Companion A009545 (`Im((1+i)^n)`, e.g.f. `sin(x)exp(x)`): castle comment from the
     `k = 1` parity split, `A009545(w) = −P_odd(1,w)` = (even-block − odd-block castles of
     width `w`, exact height 2, last column at height 2); verified `w = 0..14` on 2026-10-04,
-    no castle text on the live entry (#193, Jul 27 2026). Draft not yet written
+    no castle text on the live entry (#193, Jul 27 2026). Checked draft (Comment only; width
+    `n`, no `− 1`, lower priority, after the A038503/A146559 edits clear):
+    `raw/oeis-pe502/xrefs/A009545-signed.md`
     (`wiki/pages/signed-tower-count.md`, `wiki/pages/tower-parity-sectors.md`).
 - [ ] **Tier 2:** tower/heap = Narayana-polynomial interpretation on A005408 / A005891 /
   A063490 / A160747, and the numerator formula on A001263
