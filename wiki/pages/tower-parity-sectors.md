@@ -5,7 +5,7 @@ summary: The signed transfer matrix commutes with "reflect heights, flip signs",
 tags: [analysis, castle, signed-tower-count, transfer-matrix, symmetry, factorization, plastic-number, quasi-polynomial, oeis, hardin, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-09-28
+updated: 2026-10-04
 ---
 
 # Tower parity sectors - why `char_k` factors, and where the plastic number comes from
@@ -82,7 +82,7 @@ P_even(1, L) =  Re((1+i)^L) = A146559(L):   1, 1, 0, −2, −4, −4, 0, 8, 16,
 P_odd(1, L)  = −Im((1+i)^L) = −A009545(L):  0, −1, −2, −2, 0, 4, 8, 8, 0, −16, …
 ```
 
-so **A009545 is also a castle count**: minus the signed number of height-`≤1` towers (castles of height `≤ 2`) whose last column has height 1. The two sequences that [[signed-tower-count](pages/signed-tower-count.md)] distinguishes are the even- and odd-last-column parts of the same count.[^5]
+so **A009545 is also a castle count**: among castles of width `L` and height 2 whose last column reaches height 2, `A009545(L)` is the number with an even number of blocks minus the number with an odd number. The two sequences that [[signed-tower-count](pages/signed-tower-count.md)] distinguishes are the even- and odd-last-column parts of the same count.[^5]
 
 ## Part 2 - The factors in closed form
 

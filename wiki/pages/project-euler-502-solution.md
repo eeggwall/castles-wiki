@@ -5,7 +5,7 @@ summary: The full mathematical solution — the binary-string bijection, the ind
 tags: [project-euler, castle, solution, generating-functions, algorithms, source, subpage]
 sources: [project-euler-502-solution]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-04
 ---
 
 # Project Euler 502 (PE 502): Solution
@@ -30,7 +30,7 @@ Operationally, the solution routes each target through one of two paths (see [[c
 
 - **Notation:** `A(w,h)` = all castles (any parity) of exact height *h*; `F(w,h)` = the even-block restriction of `A`.[^1] (The odd-block count is left unnamed for now; it is `A − F`.)
 - **[[binary-string-bijection](pages/binary-string-bijection.md)]:** length-*L* block configs ↔ length-*L* binary strings (maximal runs of 1s); `2^L` configs; *r* runs ↔ *r* sub-blocks.[^2]
-- **`T(k,L) = (k+1)^L`**, proved by induction on *k* via the bijection plus sibling independence; corollary `T(h−1,w) = h^w` (e.g. `2^4 = 16` for the height-≤2, w=4 case).[^3]
+- **`T(k,L) = (k+1)^L`**, proved by induction on *k* via the bijection plus sibling independence; corollary `T(h−1,w) = h^w` (e.g. `T(1, 4) = 2^4 = 16` towers with column heights 0 or 1 on a width-4 bottom row).[^3]
 - **`F(w,h) = [h^w − (h−1)^w − P(h−1,w) + P(h−2,w)]/2`**, with `F(4,2)=10` worked from `P(0,4)=1`, `P(1,4)=−4`.[^4][^6]
 - **`P(k,L)` recursion** with two directions (linear recurrence in *L* of order ~*k*; in *k* of order ~2*L*); `P(1,L) = Re((1+i)^{L+1})`; small cases `P(k,2)=(−1)^k(k+1)`, `P(k,3)=(−1)^k(k+1)²` (all verified during ingest).[^5][^6][^10]
 - **Two computational paths with explicit regime thresholds** route the three PE 502 targets (see [[castle-count-algorithms](pages/castle-count-algorithms.md)]): `F(10000,10000)`→direct extractor, `F(10^12,100)`→Kitamasa, `F(100,10^12)`→*k*-direction Berlekamp–Massey.[^7]

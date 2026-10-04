@@ -5,7 +5,7 @@ summary: A seminar-shaped analysis. Start with an Analytic Combinatorics end-of-
 tags: [analysis, castle, pell, generating-functions, coefficient-matching, seminar, pedagogy, silver-ratio, transfer-matrix]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-15
-updated: 2026-10-02
+updated: 2026-10-04
 ---
 
 # The Pell castle strip - from an Analytic Combinatorics (AC) exercise to the silver ratio in castle space
@@ -74,7 +74,7 @@ so the growth constant is `1 + √2`. The count depends on the boundary conditio
 | any first column | `3, 7, 17, 41, 99, 239, 577, 1393` | `(3 + x)/(1 − 2x − x²)` | Pell-Lucas, A001333 |
 | first and last column at height 1 | `1, 1, 2, 4, 9, 21, 50, 120` | `(1 − 2x)/((1 − x)(1 − 2x − x²))` | unchecked against Online Encyclopedia of Integer Sequences (OEIS) |
 
-The anchored row is the **Pell castle strip**: `e_1ᵀ (I − xM)^{−1} 𝟙 = 1/(1 − 2x − x²)` exactly. The `(1 − x)` factor of `det(I − xM)` cancels whenever the last column is free, because the eigenvalue-1 eigenvector `(−1, 0, 1)` is orthogonal to `𝟙`; pinning the last column at height 1 as well keeps it. So the two atoms of Act II count castles: `a_{w−1} = P_w` is the number of skylines of width `w` that start at height 1, never jump by more than one row, and never exceed height 3. Starting the walk at height 1 selects Pell proper rather than the companion sequence. Restricting to castles of height *exactly* 3 subtracts the height-≤2 anchored strips (`2^{w−1}` of them) and gives `P_w − 2^{w−1} = 0, 0, 1, 4, 13, 38, 105, 280, …`.
+The anchored row is the **Pell castle strip**: `e_1ᵀ (I − xM)^{−1} 𝟙 = 1/(1 − 2x − x²)` exactly. The `(1 − x)` factor of `det(I − xM)` cancels whenever the last column is free, because the eigenvalue-1 eigenvector `(−1, 0, 1)` is orthogonal to `𝟙`; pinning the last column at height 1 as well keeps it. So the two atoms of Act II count castles: `a_{w−1} = P_w` is the number of skylines of width `w` that start at height 1, never jump by more than one row, and never exceed height 3. Starting the walk at height 1 selects Pell proper rather than the companion sequence. Restricting to castles of height *exactly* 3 subtracts the `2^{w−1}` anchored strips that do not reach height 3 and gives `P_w − 2^{w−1} = 0, 0, 1, 4, 13, 38, 105, 280, …`.
 
 The smallest 0/1 transfer matrix with `det(I − xM) = 1 − 2x − x²` is `3×3`: over `2×2` 0/1 matrices the determinant takes only the six values `1`, `1 − x`, `1 − 2x`, `1 − x²`, `(1 − x)²`, `1 − x − x²`.[^4] The Pell strip is a height-3 object.
 

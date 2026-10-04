@@ -3,7 +3,8 @@ A000005	supporting	d(n) (also called tau(n) or sigma_0(n)), the number of diviso
 A000009	supporting	Expansion of Product_{m >= 1} (1 + x^m); number of partitions of n into distinct parts; number of partitions of n into odd parts.	multiset partitions c* of one element repeated n times (distinct-part partitions)
 A000032	metallic	Lucas numbers beginning at 2: L(n) = L(n-1) + L(n-2), L(0) = 2, L(1) = 1.	Lucas numbers (companion of Fibonacci)
 A000041	supporting	a(n) is the number of partitions of n (the partition numbers).	Ferrers diagrams by area
-A000045	count	Fibonacci numbers: F(n) = F(n-1) + F(n-2) with F(0) = 0 and F(1) = 1.	tree castles of height 2 (T_2(w) = F_{w+2}); Fibonacci in prime-castle count
+A000045	count	Fibonacci numbers: F(n) = F(n-1) + F(n-2) with F(0) = 0 and F(1) = 1.	prime castles of area n number F_{n-1}; tree castles of height 2 of width w number F_{w+2} - 1 (see A000071)
+A000071	count	a(n) = Fibonacci(n) - 1.	tree castles of height 2 (Fibonacci castles) of width w: the term A000071(w+2) = F_{w+2} - 1
 A000073	count	Tribonacci numbers: a(n) = a(n-1) + a(n-2) + a(n-3) for n >= 3 with a(0) = a(1) = 0 and a(2) = 1.	bounded-height castles by area, height ≤ 3: tribonacci, `=A000073(A+2)`
 A000078	count	Tetranacci numbers: a(n) = a(n-1) + a(n-2) + a(n-3) + a(n-4) for n >= 4 with a(0) = a(1) = a(2) = 0 and a(3) = 1.	bounded-height castles by area, height ≤ 4: tetranacci, `=A000078(A+3)`
 A000079	supporting	Powers of 2: a(n) = 2^n.	powers of 2 (P_even(2,L) = 2^L)
@@ -19,7 +20,7 @@ A000570	count	Number of tournaments on n nodes determined by their score vectors
 A000571	supporting	Number of different score sequences that are possible in an n-team round-robin tournament.	upper bound on unique tournaments u_n ≤ A000571(n), equality through n = 4
 A000700	supporting	Expansion of Product_{k>=0} (1 + x^(2k+1)); number of partitions of n into distinct odd parts; number of self-conjugate partitions; number of symmetric Ferrers graphs with n nodes.	height-signed Ferrers diagrams by area, `(-1)^n A000700(n)`
 A000749	supporting	a(n) = 4*a(n-1) - 6*a(n-2) + 4*a(n-3), n > 3, with a(0)=a(1)=a(2)=0, a(3)=1.	sum of every 4th binomial (hyperbolic family, k=3 residue)
-A000930	count	Narayana's cows sequence: a(0) = a(1) = a(2) = 1; thereafter a(n) = a(n-1) + a(n-3).	tree castles of height 2 by area: T_(h=2)(A) = A000930(A+1)
+A000930	count	Narayana's cows sequence: a(0) = a(1) = a(2) = 1; thereafter a(n) = a(n-1) + a(n-3).	tree castles of height 2 with n cells number A000930(n+1) - 1 (see A077868)
 A000931	plastic	Padovan sequence (or Padovan numbers): a(n) = a(n-2) + a(n-3) with a(0) = 1, a(1) = a(2) = 0.	Padovan (plastic Fibonacci): a(n) = a(n-2) + a(n-3); also palindromic tree castles of n cells = A000931(n+6)
 A001006	count	Motzkin numbers: number of ways of drawing any number of nonintersecting chords joining n (labeled) points on a circle.	Motzkin-path castles (1-smooth, end columns at height 1), `=M_{w-1}`
 A001035	supporting	Number of partially ordered sets ("posets") with n labeled elements (or labeled acyclic transitive digraphs).	strip rules whose half-column has nonnegative weights: 3, 19, 219 at heights 2, 3, 4; the rule is a poset on the heights (fractional-width-and-height)
@@ -82,7 +83,7 @@ A007440	supporting	Reversion of g.f. for Fibonacci numbers 1, 1, 2, 3, 5, ....	r
 A007814	supporting	Exponent of highest power of 2 dividing n, a.k.a. the binary carry sequence, the ruler sequence, or the 2-adic valuation of n.	Knuth's ruler function ρ(k), the bit to flip in Gray-code generation
 A008277	supporting	Triangle of Stirling numbers of the second kind, S2(n,k), n >= 1, 1 <= k <= n.	Knuth's binomial-coefficient toolkit (powers ↔ falling factorials)
 A008302	supporting	Triangle of Mahonian numbers T(n,k): coefficients in expansion of Product_{i=0..n-1} (1 + x + ... + x^i), where k ranges from 0 to A000217(n-1). Also enumerates permutations by their major index.	rainbow castles (w = h, skyline a permutation) graded by skyline inversions
-A009545	count	Expansion of e.g.f. sin(x)*exp(x).	-P_odd(1,L): signed count of towers of height <= 1 (castles of height <= 2) with odd last column
+A009545	count	Expansion of e.g.f. sin(x)*exp(x).	-P_odd(1,L): even-block minus odd-block castles of width L and height 2 whose last column reaches height 2
 A010892	supporting	Inverse of 6th cyclotomic polynomial. A period 6 sequence.	period-6 cyclotomic (P_odd(4,L)/2^L)
 A011782	count	Coefficients of expansion of (1-x)/(1-2*x) in powers of x.	all castles by area (unrestricted compositions): 2^(n-1)
 A014448	metallic	Even Lucas numbers: a(n) = L(3*n).	even Lucas: trace for copper (a=4)
@@ -127,6 +128,7 @@ A063490	count	a(n) = (2*n - 1)*(7*n^2 - 7*n + 6)/6.	tower Narayana coefficient r
 A063496	count	a(n) = (2*n - 1)*(8*n^2 - 8*n + 3)/3.	P(2m,4) bisection: C_3 lattice crystal-ball sequence
 A067675	supporting	Number of fixed convex polyominoes with n cells.	convex polyominoes by area; the convex castle with a floating base
 A067676	supporting	Number of fixed directed convex polyominoes with n cells.	directed convex polyominoes by area
+A077868	count	Expansion of 1/((1-x)*(1-x-x^3)).	tree castles of height 2 with n cells: the term A077868(n-2), n >= 2
 A079816	count	Number of permutations satisfying -k <= p(i)-i <= r and p(i)-i not in I, i=1..n, with k=1, r=5, I={1}.	tree castles of height <= 5 by area: A079816(A+1), compositions of A+1 into {1,3,4,5,6}
 A080860	count	a(n) = 10*n^2 + 5*n + 1.	odd(3, 2n+1) = 5 C(2n+1, 2) + 1 exactly; its negative-index half 10m^2 - 5m + 1 is F(3, 2m) = 6, 31, 76, 141, ..., not in OEIS (novel candidate)
 A082582	count	Expansion of (1 + x^2 - sqrt( 1 - 4*x + 2*x^2 + x^4)) / (2*x) in powers of x.	castles (bargraphs) by semi-perimeter w + #blocks; growth tribonacci squared

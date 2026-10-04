@@ -1,11 +1,11 @@
 ---
 title: Tree castle by area - Narayana's cows, A006498, tournaments, and plastic
 category: Analyses
-summary: The area-graded generating function for tree castles is (1 + P_h(q))/(1 - q - q·P_h(q)) with P_h(q) = q² + q³ + … + q^h. Fixing h and summing over widths gives one C-finite sequence per height: h = 2 is **Narayana's cows** A000930 (supergolden growth), h = 3 is **A006498** (golden growth via a cyclotomic factorization), h = 4 is **A000570** (tournaments determined by their score vectors), h = 5, 6, 7 are **A079816**, **A189593** and **A189600** (strongly restricted permutations; every height counts compositions of A + 1 into {1, 3, …, h + 1}), and h → ∞ is **A005251** (plastic squared ψ²). The h = 4 match is a bijection - a three-way identification tree castle ↔ composition of A + 1 with parts in {1, 3, 4, 5} ↔ score-uniquely-determined tournament on A + 1 nodes via strongly-connected-component decomposition - equivalent to the graph-theoretic claim that strongly connected score-uniquely-determined tournaments exist only for sizes 1, 3, 4, 5 (verified for n ≤ 6). The structural theorem is Tetali's classification of unique tournaments (J. Combin. Theory Ser. B, 1998): the four basic unique tournaments are those on 1, 3, 4, 5 vertices with score vectors (0), (1,1,1), (1,1,2,2), (2,2,2,2,2). Combined with the tree-castle transfer matrix this gives the A000570 recurrence and generating function. Re-verified by enumeration through n = 8 (6,880 isomorphism classes, 31 score-uniquely-determined, all 31 non-strongly-connected).
+summary: The area-graded generating function for tree castles is (1 + P_h(q))/(1 - q - q·P_h(q)) with P_h(q) = q² + q³ + … + q^h. Fixing h and summing over widths gives one C-finite sequence per height: at h = 2 the tree castles of height 2 are **A077868**, one less than **Narayana's cows** A000930 (supergolden growth), h = 3 is **A006498** (golden growth via a cyclotomic factorization), h = 4 is **A000570** (tournaments determined by their score vectors), h = 5, 6, 7 are **A079816**, **A189593** and **A189600** (strongly restricted permutations; for h ≥ 3 the count at area A is the number of compositions of A + 1 into {1, 3, …, h + 1}, and at h = 2 the compositions of A + 1 into {1, 3} that use a 3), and h → ∞ is **A005251** (plastic squared ψ²). The h = 4 match is a bijection - a three-way identification tree castle ↔ composition of A + 1 with parts in {1, 3, 4, 5} ↔ score-uniquely-determined tournament on A + 1 nodes via strongly-connected-component decomposition - equivalent to the graph-theoretic claim that strongly connected score-uniquely-determined tournaments exist only for sizes 1, 3, 4, 5 (verified for n ≤ 6). The structural theorem is Tetali's classification of unique tournaments (J. Combin. Theory Ser. B, 1998): the four basic unique tournaments are those on 1, 3, 4, 5 vertices with score vectors (0), (1,1,1), (1,1,2,2), (2,2,2,2,2). Combined with the tree-castle transfer matrix this gives the A000570 recurrence and generating function. Re-verified by enumeration through n = 8 (6,880 isomorphism classes, 31 score-uniquely-determined, all 31 non-strongly-connected).
 tags: [analysis, castle, tree-castle, area, generating-function, q-analogue, oeis, narayana-cows, plastic-number, supergolden, fibonacci, sympy, verification]
 sources: [project-euler-502-castle-factoring, tetali-1998-unique-tournaments]
 created: 2026-09-17
-updated: 2026-10-03
+updated: 2026-10-04
 ---
 
 # Tree castle by area
@@ -28,25 +28,24 @@ T_h(w, q)  =  q · T_h(w − 1, q)  +  q · P_h(q) · T_h(w − 2, q),        T_
 
 At `q = 1` this is the width recurrence `T_h(w + 2) = T_h(w + 1) + (h − 1) T_h(w)` from [[castle-graph](pages/castle-graph.md)], and the tree-castle-by-width story recovers Fibonacci at h = 2, Jacobsthal at h = 3, and the k-Fibonacci family above.
 
-## The bivariate triangle at h = 2
+## The bivariate triangle at height 2
 
-Reading `T_2(w, q)` by tall-column count `t = area − w`:
+The tree castles of height 2, by width `w` and tall-column count `t = area − w` (the number of columns at height 2, `t ≥ 1`):
 
-| w \ t | 0 | 1 | 2 | 3 | 4 | 5 | row sum |
-|---|---|---|---|---|---|---|---|
-| 0 | 1 | | | | | | 1 |
-| 1 | 1 | 1 | | | | | 2 |
-| 2 | 1 | 2 | | | | | 3 |
-| 3 | 1 | 3 | 1 | | | | 5 |
-| 4 | 1 | 4 | 3 | | | | 8 |
-| 5 | 1 | 5 | 6 | 1 | | | 13 |
-| 6 | 1 | 6 | 10 | 4 | | | 21 |
-| 7 | 1 | 7 | 15 | 10 | 1 | | 34 |
-| 8 | 1 | 8 | 21 | 20 | 5 | | 55 |
-| 9 | 1 | 9 | 28 | 35 | 15 | 1 | 89 |
-| 10 | 1 | 10 | 36 | 56 | 35 | 6 | 144 |
+| w \ t | 1 | 2 | 3 | 4 | 5 | row sum |
+|---|---|---|---|---|---|---|
+| 1 | 1 | | | | | 1 |
+| 2 | 2 | | | | | 2 |
+| 3 | 3 | 1 | | | | 4 |
+| 4 | 4 | 3 | | | | 7 |
+| 5 | 5 | 6 | 1 | | | 12 |
+| 6 | 6 | 10 | 4 | | | 20 |
+| 7 | 7 | 15 | 10 | 1 | | 33 |
+| 8 | 8 | 21 | 20 | 5 | | 54 |
+| 9 | 9 | 28 | 35 | 15 | 1 | 88 |
+| 10 | 10 | 36 | 56 | 35 | 6 | 143 |
 
-The entries are `C(w − t + 1, t)`, the Fibonacci-partitions triangle; the row sums are the width counts `T_2(w) = F_{w+2}`.[^2] Verified for `w ≤ 11`.
+The entries are `C(w − t + 1, t)` (zero when `w − t + 1 < t`), the Fibonacci-partitions triangle; the row sums are the width counts `F_{w+2} − 1`, the term `A000071(w+2)` ([[fibonacci-castle](pages/fibonacci-castle.md)]).[^2] Verified for `w ≤ 11`.
 
 ## Area-graded count at fixed h: one sequence per height
 
@@ -60,7 +59,7 @@ The coefficient of `q^A` in `S_h(q)` is the number of tree castles of area exact
 
 | `h` | `S_h(q)` denominator (up to reversal) | tree castles by area, `A = 1..14` | OEIS | growth constant |
 |---|---|---|---|---|
-| 2 | `1 − q − q³` | `1, 2, 3, 4, 6, 9, 13, 19, 28, 41, 60, 88, 129, 189` | **A000930** Narayana's cows (`a(n) = a(n−1) + a(n−3)`) | supergolden `≈ 1.4656` (root of `x³ = x² + 1`) |
+| 2 | `(1 − q)(1 − q − q³)` | `0, 1, 2, 3, 5, 8, 12, 18, 27, 40, 59, 87, 128, 188` | **A077868** (`a(n) = a(n−1) + a(n−3) + 1`; one less than Narayana's cows A000930) | supergolden `≈ 1.4656` (root of `x³ = x² + 1`) |
 | 3 | `1 − q − q³ − q⁴ = (1 + q²)(1 − q − q²)` | `1, 2, 4, 6, 9, 15, 25, 40, 64, 104, 169, 273, 441, 714` | **A006498** (`a(n) = a(n−1) + a(n−3) + a(n−4)`) | **golden `φ`** (the second factor is Fibonacci) |
 | 4 | `1 − q − q³ − q⁴ − q⁵` | `1, 2, 4, 7, 11, 18, 31, 53, 89, 149, 251, 424, 715, 1204` | **A000570** (tournaments on `n` nodes determined by their score vectors) | root of `x⁵ − x⁴ − x² − x − 1 ≈ 1.6851` |
 | 5 | `1 − q − q³ − q⁴ − q⁵ − q⁶` | `1, 2, 4, 7, 12, 20, 34, 59, 102, 175, 300, 515, 885, 1521` | **A079816** (compositions into `{1, 3, 4, 5, 6}`; Lehmer's strongly restricted permutations) | root of `x⁶ − x⁵ − x³ − x² − x − 1` |
@@ -69,13 +68,13 @@ The coefficient of `q^A` in `S_h(q)` is the number of tree castles of area exact
 | 8 | `1 − q − q³ − … − q⁹` | `1, 2, 4, 7, 12, 21, 37, 65, 113, 197, 345, 604, 1056, 1846` | none (searched 2026-09-26) | |
 | ∞ | `1 − 2q + q² − q³` | `1, 2, 4, 7, 12, 21, 37, 65, 114, 200, 351, 616, 1081, 1897` | **A005251** (`a(n) = 2a(n−1) − a(n−2) + a(n−3)`) | **plastic squared `ψ²`** (`≈ 1.7549`) |
 
-All matches are offset-exact against OEIS data (tree castles of area `A` at height `h = 2, 3` equal `A000930(A + 1)` and `A006498(A + 1)`; at `h = 4`, `A000570(A + 1)`; at `h = 5, 6, 7`, `A079816(A + 1)`, `A189593(A + 1)` and `A189600(A + 1)`; unlimited height, `A005251(A + 2)`).[^3]
+In the `h = 2` row the castles have height 2 (some column reaches height 2); their generating function is `q²/((1 − q)(1 − q − q³))`. All matches are offset-exact against OEIS data (tree castles of height 2 with area `A` equal `A077868(A − 2)` for `A ≥ 2`; at `h = 3`, `A006498(A + 1)`; at `h = 4`, `A000570(A + 1)`; at `h = 5, 6, 7`, `A079816(A + 1)`, `A189593(A + 1)` and `A189600(A + 1)`; unlimited height, `A005251(A + 2)`).[^3]
 
-**Every fixed height is a composition count.** With `C_h(q) = 1/(1 − q − q³ − q⁴ − … − q^{h+1})`, the generating function of compositions into parts `{1, 3, 4, …, h + 1}`, the identity `S_h(q) = (C_h(q) − 1)/q` is two lines of algebra, since `q · P_h(q) = q³ + … + q^{h+1}`. So tree castles of height at most `h` and area `A` are exactly the compositions of `A + 1` into parts `{1, 3, …, h + 1}`, which is the `h = 4` map below at every height. The permutation readings follow from a standard decomposition (own reasoning, not taken from the entries): a permutation whose only upward displacement is `+1` splits into consecutive cycles `i → i + 1 → … → j → i`, and forbidding displacement `−1` removes the 2-cycles, so displacements in `{−h, …, −2, 0, 1}` give blocks of length `1, 3, …, h + 1`. That proves the recurrence A189593 lists as empirical.
+**Every fixed height is a composition count.** With `C_h(q) = 1/(1 − q − q³ − q⁴ − … − q^{h+1})`, the generating function of compositions into parts `{1, 3, 4, …, h + 1}`, the identity `S_h(q) = (C_h(q) − 1)/q` is two lines of algebra, since `q · P_h(q) = q³ + … + q^{h+1}`. So for `h ≥ 3`, tree castles of height at most `h` and area `A` are exactly the compositions of `A + 1` into parts `{1, 3, …, h + 1}`, which is the `h = 4` map below at every height; the tree castles of height 2 and area `A` are the compositions of `A + 1` into parts `{1, 3}` that use a 3. The permutation readings follow from a standard decomposition (own reasoning, not taken from the entries): a permutation whose only upward displacement is `+1` splits into consecutive cycles `i → i + 1 → … → j → i`, and forbidding displacement `−1` removes the 2-cycles, so displacements in `{−h, …, −2, 0, 1}` give blocks of length `1, 3, …, h + 1`. That proves the recurrence A189593 lists as empirical.
 
 **Three of these are new castle interpretations of well-known OEIS sequences.**
 
-- **A000930 - Narayana's cows** is named for Narayana Pandita, whose *Ganita Kaumudi* (1356) posed it as a herd in which every cow gives birth to one calf a year from the age of three on. Tree castles of height at most 2 by total area are a castle reading of it and a submission candidate.
+- **A077868**, "Expansion of 1/((1-x)*(1-x-x^3))", is one less than **Narayana's cows** A000930, named for Narayana Pandita, whose *Ganita Kaumudi* (1356) posed it as a herd in which every cow gives birth to one calf a year from the age of three on. The tree castles of height 2 with area `A` number `A000930(A + 1) − 1`, the term `A077868(A − 2)` for `A ≥ 2` (verified for `A = 2..14` by brute force, 2026-10-04), so the castle reading belongs on A077868.
 - **A006498** carries a Fibonacci-squared identity (`a(2n) = F(n+1)²`), matching the factorization of the denominator here as `(1 + q²)(1 − q − q²)`: the `1 − q − q²` sector is Fibonacci, the `1 + q²` sector is a period-4 cyclotomic. Tree castles of height at most 3 by area is the new castle-native reading.
 - **A000570** (tournaments determined by their score vectors) comes with a bijection that factors through **compositions**:
 
@@ -268,7 +267,7 @@ Both filed on [[castle-snippets](pages/castle-snippets.md)].
 
 **Settled.**
 - Explicit bivariate GF `T_h(x, q) = (1 + P_h(q) x)/(1 − q x − q P_h(q) x²)` for tree castles by width and area.
-- New OEIS castle interpretations at every height tested: A000930 Narayana's cows (`h = 2`), A006498 (`h = 3`), A000570 tournaments (`h = 4`), A079816 (`h = 5`), A189593 (`h = 6`), A189600 (`h = 7`), and a second reading of A005251 (`h → ∞`), all through compositions of `A + 1` into `{1, 3, …, h + 1}`.
+- New OEIS castle interpretations at every height tested: A077868 (`h = 2`, tree castles of height 2, one less than Narayana's cows A000930), A006498 (`h = 3`), A000570 tournaments (`h = 4`), A079816 (`h = 5`), A189593 (`h = 6`), A189600 (`h = 7`), and a second reading of A005251 (`h → ∞`), all through compositions of `A + 1` into `{1, 3, …, h + 1}` (at `h = 2`, those that use a 3).
 - A005251 now has two independent castle interpretations, both plastic-squared, meeting at the same 3-term recurrence.
 
 **Open.**
@@ -301,7 +300,7 @@ Both filed on [[castle-snippets](pages/castle-snippets.md)].
 
 [^1]: Verified by execution (SymPy 1.14): for `h ∈ {2, 3, 4, 5}`, `T_h(w, q)` computed from the closed-form GF matches the brute-force sum `Σ q^{sum(c)}` over all tree castles of width `w = 0..6` with `c_i ∈ {1..h}`. The q-recurrence `T_h(w, q) = q T_h(w − 1, q) + q P_h(q) T_h(w − 2, q)` verified for `h ∈ {2, 3, 4, 5}`, `w ≤ 7`.
 
-[^2]: `T_2(w, q)` expanded and its coefficient of `q^{w + t}` compared to `C(w − t + 1, t)` for `w = 0..11`. All match.
+[^2]: `T_2(w, q)` expanded and its coefficient of `q^{w + t}` compared to `C(w − t + 1, t)` for `w = 0..11`. All match. Re-verified 2026-10-04 by brute force over the tree castles of height 2 (`t ≥ 1`) for `w = 1..10`, with row sums `F_{w+2} − 1` = https://oeis.org/A000071 (offset 1, data `0, 0, 1, 2, 4, 7, 12, 20, 33, 54, 88, 143`), the term `A000071(w+2)`.
 
 [^4]: Verified by execution: the map `castle_to_composition` applied to every tree castle with `A ≤ 6` (`h ≤ 4`) produces a composition of `A + 1` with parts in `{1, 3, 4, 5}`, and the inverse `composition_to_castle` recovers the castle. The image set equals the full set of compositions of `A + 1` with parts in `{1, 3, 4, 5}` at each `A` up to 6.
 
@@ -309,7 +308,7 @@ Both filed on [[castle-snippets](pages/castle-snippets.md)].
 
 [^5]: Verified by execution (55 s at `n = 6`): direct enumeration of all `2^{n(n-1)/2}` labeled tournaments on `n ≤ 6` nodes, canonicalization by `permutations`, score-sequence grouping, and Kosaraju reachability for strong connectivity. Table of `(size, # SC iso classes, # SC-SUD iso classes)`: `(1, 1, 1), (2, 0, 0), (3, 1, 1), (4, 1, 1), (5, 6, 1), (6, 35, 0)`. The single SC-SUD representative at each size 1-5 has the score sequence listed in the table.
 
-[^3]: OEIS entries fetched by id on 2026-09-17 and matched offset-exact against the direct enumeration of tree castles by area: https://oeis.org/A000930 (offset 0, data `1, 1, 1, 2, 3, 4, 6, 9, 13, 19, 28, 41, 60, 88, 129, 189`) - tree-castles-h≤2(A) = A000930(A + 1) for A ≥ 1; https://oeis.org/A006498 (offset 0, data `1, 1, 1, 2, 4, 6, 9, 15, 25, 40, 64, 104, 169, 273, 441, 714, 1156`) - h≤3(A) = A006498(A + 1); https://oeis.org/A000570 (offset 1, data `1, 1, 2, 4, 7, 11, 18, 31, 53, 89, 149, 251, 424, 715, 1204`) - h≤4(A) = A000570(A + 1); https://oeis.org/A005251 (offset 0, data `0, 1, 1, 1, 2, 4, 7, 12, 21, 37, 65, 114, 200, 351, 616, 1081, 1897`) - unlimited-h(A) = A005251(A + 2). Heights 5-8 searched by terms on 2026-09-26: https://oeis.org/A079816 (offset 0, g.f. `1/(1 − x − x³ − x⁴ − x⁵ − x⁶)`, all 37 listed terms match), https://oeis.org/A189593 and https://oeis.org/A189600 (offset 1, all 36 listed terms match the composition counts); `h = 8` (`1, 2, 4, 7, 12, 21, 37, 65, 113, 197, 345, 604, 1056, 1846`) no match.
+[^3]: OEIS entries fetched by id on 2026-09-17 and matched offset-exact against the direct enumeration of tree castles by area: https://oeis.org/A000930 (offset 0, data `1, 1, 1, 2, 3, 4, 6, 9, 13, 19, 28, 41, 60, 88, 129, 189`) - tree castles of height 2 with area A number A000930(A + 1) − 1 for A ≥ 1, the term A077868(A − 2) for A ≥ 2 (https://oeis.org/A077868, offset 0, data `1, 2, 3, 5, 8, 12, 18, 27, 40, 59, 87, 128, 188`, fetched and brute-force checked for A = 2..14 on 2026-10-04); https://oeis.org/A006498 (offset 0, data `1, 1, 1, 2, 4, 6, 9, 15, 25, 40, 64, 104, 169, 273, 441, 714, 1156`) - h≤3(A) = A006498(A + 1); https://oeis.org/A000570 (offset 1, data `1, 1, 2, 4, 7, 11, 18, 31, 53, 89, 149, 251, 424, 715, 1204`) - h≤4(A) = A000570(A + 1); https://oeis.org/A005251 (offset 0, data `0, 1, 1, 1, 2, 4, 7, 12, 21, 37, 65, 114, 200, 351, 616, 1081, 1897`) - unlimited-h(A) = A005251(A + 2). Heights 5-8 searched by terms on 2026-09-26: https://oeis.org/A079816 (offset 0, g.f. `1/(1 − x − x³ − x⁴ − x⁵ − x⁶)`, all 37 listed terms match), https://oeis.org/A189593 and https://oeis.org/A189600 (offset 1, all 36 listed terms match the composition counts); `h = 8` (`1, 2, 4, 7, 12, 21, 37, 65, 113, 197, 345, 604, 1056, 1846`) no match.
 
 [^9]: https://arxiv.org/abs/0712.1621 (read 2026-09-28) - Tanya Khovanova, "Unique Tournaments and Radar Tracking" (2007), §5: "Any initial-loss non-tracking binary string is a concatenation of strings of 4 basic types: 0, 001, 0011, 00101" and "we established a one-to-one correspondence between unique tournaments and initial-loss non-tracking binary strings."
 

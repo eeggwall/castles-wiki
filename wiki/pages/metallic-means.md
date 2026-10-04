@@ -5,7 +5,7 @@ summary: The family of quadratic irrationals `δ_a = (a + √(a²+4))/2` for a =
 tags: [concept, metallic-mean, golden-ratio, silver-ratio, pell, fibonacci, continued-fraction, quadratic-irrational, norm-minus-one]
 sources: [pe502-pell-castle-strip, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-15
-updated: 2026-10-03
+updated: 2026-10-04
 ---
 
 # Metallic means
@@ -95,7 +95,7 @@ A metallic mean generates more than a field. It generates a *ring*, `Z[δ_a] = Z
 The rungs with castle realizations:
 
 1. **Silver width growth castle** — count sequence graded by width `w` grows at `1+√2`. Two known members: the **1-smooth height-3 strip** (`|c_{i+1} − c_i| ≤ 1`), whose denominator factors as `(1 − x)(1 − 2x − x²)` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) and which, anchored at height 1, is the [[pell-castle-strip](pages/pell-castle-strip.md)] with generating function exactly `1/(1 − 2x − x²)` and Pell-number counts (`p_1 = 2, p_2 = 1`), and the ridge castles at height 3, ridge rule `R_3 = J − D` (item 3 below). The tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)], algebraic GF, A004149) also grows at `1 + √2`, by word length rather than width.
-2. **Golden width growth castle** — count sequence graded by `w` grows at `φ`. Known member: the height-2 tree castles ([[castle-graph](pages/castle-graph.md)]) — `{0,1}`-skyline above the base with no two adjacent raised columns, Fibonacci `F_{w+2}`, the `p_1 = 1, p_2 = 1` denominator. The prime castles, `F_{n−1}` of them by area with the height unrestricted ([[prime-castles](pages/prime-castles.md)]), are a **golden area growth castle** (a different axis); at a fixed exact height they grow more slowly (plastic at height 3, supergolden at height 4).
+2. **Golden width growth castle** — count sequence graded by `w` grows at `φ`. Known member: the height-2 tree castles ([[castle-graph](pages/castle-graph.md)]) — `{0,1}`-skyline above the base with no two adjacent raised columns and at least one, `F_{w+2} − 1` of them (Fibonacci, the `p_1 = 1, p_2 = 1` denominator). The prime castles, `F_{n−1}` of them by area with the height unrestricted ([[prime-castles](pages/prime-castles.md)]), are a **golden area growth castle** (a different axis); at a fixed exact height they grow more slowly (plastic at height 3, supergolden at height 4).
 
 3. **Bronze, copper, nickel, … width growth castles** — all realized, by **one named rule**: the **ridge rule** ([[ridge-castle](pages/ridge-castle.md)]) (adjacent columns differ in height unless both equal the max `h`; its castles of exact height `h` are the **ridge castles**, [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2), transfer matrix `R_h = J − D`, char poly `(x+1)^{h−2}(x² − (h−1)x − 1)`, Perron root `δ_{h−1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). So metal `a` sits at height `h = a + 1`: **bronze** at `h = 4`, **copper** at `h = 5`, nickel at `h = 6`, and so on up the whole ladder. Copper (`h = 5`) is `δ_4 = 2 + √5 = φ³`, and its free ridge-strip count is `F_{3n+5}` (`n = 0, 1, 2, …` for width `n + 1`), a **Fibonacci trisection**.
 

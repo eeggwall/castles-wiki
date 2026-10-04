@@ -5,7 +5,7 @@ summary: Hub for the exact appearances of the Motzkin family in castles. Every c
 tags: [analysis, castle, motzkin, lattice-paths, cornerless, bargraph, parity, sign, gaussian-integers, transfer-matrix, chebyshev, metallic, semi-perimeter, oeis, hub]
 sources: [motzkin-numbers, project-euler-502-representations, project-euler-502-brute-force, deutsch-elizalde-2016-bargraphs-cornerless-motzkin, prodinger-2025-cornerless-motzkin-bargraphs]
 created: 2026-09-26
-updated: 2026-09-28
+updated: 2026-10-04
 ---
 
 # Motzkin castles - where the Motzkin numbers meet the castle
@@ -71,7 +71,7 @@ unsigned (t = 1):   1 + 2cos(πj/(h+1))       real, Perron root → 3
 signed  (t = -1):   1 + 2i·cos(πj/(h+1))     all on the line Re = 1
 ```
 
-(checked numerically for `h = 2..6`). At `h = 2` the signed eigenvalues are `1 ± i`. Every castle of height `≤ 2` is automatically 1-smooth, so this is the signed height-2 count, and it matches the `1 ± i` of the signed tower count `P(1, L) = Re((1+i)^{L+1})` on [[signed-tower-count](pages/signed-tower-count.md)] (castle sign = `-`(tower sign), because the base block adds one). So the `1 ± i` of `P(1, L)` is the `h = 2` case of this pattern. The general signed tower count `P(k, L)` has the same description: with a weight `t` per block, the unrestricted height-`k` transfer matrix is diagonally similar to the Kac-Murdock-Szegő matrix `ρ^|a−b|` with `ρ = √t`, whose tridiagonal part is this strip, and the sign is `ρ = i` ([[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)]).
+(checked numerically for `h = 2..6`). At `h = 2` the signed eigenvalues are `1 ± i`. Every castle of height 2 is automatically 1-smooth, so this is the signed height-2 count, and it matches the `1 ± i` of the signed tower count `P(1, L) = Re((1+i)^{L+1})` on [[signed-tower-count](pages/signed-tower-count.md)] (castle sign = `-`(tower sign), because the base block adds one). So the `1 ± i` of `P(1, L)` is the `h = 2` case of this pattern. The general signed tower count `P(k, L)` has the same description: with a weight `t` per block, the unrestricted height-`k` transfer matrix is diagonally similar to the Kac-Murdock-Szegő matrix `ρ^|a−b|` with `ρ = √t`, whose tridiagonal part is this strip, and the sign is `ρ = i` ([[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)]).
 
 ## 4. Bounded height: the Motzkin strip ladder
 

@@ -5,7 +5,7 @@ summary: Snippets for castle strips, Axis-8 growth-constant probes, tree-castle-
 tags: [concept, castle, python, snippets, strip, growth-constant, metallic-mean, tree-castle, hardin]
 sources: [project-euler-502-brute-force]
 created: 2026-09-19
-updated: 2026-10-02
+updated: 2026-10-04
 ---
 
 # Castle snippets - strips and growth
@@ -34,7 +34,7 @@ True
 False
 ```
 
-Wiki tie: [[castle-classification](pages/castle-classification.md)] Axis 8 — the height-2 tree castles are a golden width growth castle; their count sequence is Fibonacci `F_{w+2}` (see also `is_tree_castle` below).
+Wiki tie: [[castle-classification](pages/castle-classification.md)] Axis 8 — the height-2 tree castles are a golden width growth castle; of width `w` they number `F_{w+2} − 1`, the term `A000071(w+2)` (see also `is_tree_castle` below).
 
 ### `pell_strip_count(w)` → the Pell castle strip
 
@@ -422,12 +422,12 @@ def tree_area_by_area(h, A_max):
 ```
 
 ```
->>> tree_area_by_area(2, 15)                       # Narayana's cows A000930(A+1)
-[1, 1, 2, 3, 4, 6, 9, 13, 19, 28, 41, 60, 88, 129, 189, 277]
+>>> [a - 1 for a in tree_area_by_area(2, 15)][1:]  # tree castles of height 2, area A = 1..15: A077868(A-2)
+[0, 1, 2, 3, 5, 8, 12, 18, 27, 40, 59, 87, 128, 188, 276]
 >>> tree_area_by_area(3, 15)                       # A006498(A+1), golden growth via cyclotomic factor
 [1, 1, 2, 4, 6, 9, 15, 25, 40, 64, 104, 169, 273, 441, 714, 1156]
->>> [int(coef) for coef in [c.subs(sp.Symbol('q'), 1) for c in tree_area_gf(2, 8)]]  # Fibonacci: T_h(w, 1) at h=2
-[1, 2, 3, 5, 8, 13, 21, 34, 55]
+>>> [int(c.subs(q, 1)) - 1 for c in tree_area_gf(2, 8)]  # tree castles of height 2, width w = 0..8: F_{w+2} - 1
+[0, 1, 2, 4, 7, 12, 20, 33, 54]
 ```
 
 Meaning: the h=∞ (unlimited height) case is A005251(A+2), the same plastic-squared sequence that appears in the Hardin identity for `P_even(6, L)` - two independent castle interpretations of A005251 meeting at the same recurrence.
@@ -447,8 +447,8 @@ def bounded_castles_by_area(h, A_max):
 ```
 
 ```
->>> bounded_castles_by_area(2, 12)                 # Fibonacci A000045(A+1)
-[1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233]
+>>> [a - 1 for a in bounded_castles_by_area(2, 12)]  # castles of height 2, A = 1..12: F_{A+1} - 1 = A000071(A+1)
+[0, 1, 2, 4, 7, 12, 20, 33, 54, 88, 143, 232]
 >>> bounded_castles_by_area(3, 12)                 # tribonacci A000073(A+2)
 [1, 2, 4, 7, 13, 24, 44, 81, 149, 274, 504, 927]
 >>> bounded_castles_by_area(4, 12)                 # tetranacci A000078
@@ -470,7 +470,7 @@ Brute-force cross-check against the actual castle model (`sum(c)` over height-bo
 True
 ```
 
-Meaning: this is the "sum of the previous `h`" companion to the tree-castle family. `h = 2` here is **A000045** (Fibonacci) - a *different, denser* sequence than the `h = 2` tree-castle row `tree_area_by_area(2, ·)` = A000930 (Narayana's cows), because dropping the tree (no-2×2-block) constraint restores the `(…,2,2,…)` adjacencies. `h = 3` is the tribonacci sequence **A000073**.
+Meaning: this is the "sum of the previous `h`" companion to the tree-castle family. The castles of height 2 by area number `F_{A+1} − 1` (**A000071**), a *different, denser* sequence than the tree castles of height 2 by area, A077868, because dropping the tree (no-2×2-block) constraint restores the `(…,2,2,…)` adjacencies. `h = 3` is the tribonacci sequence **A000073**.
 
 
 ## A005251 and the Hardin word automaton

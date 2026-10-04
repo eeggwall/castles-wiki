@@ -5,7 +5,7 @@ summary: Every castle carries a graph - filled cells as vertices, orthogonal nei
 tags: [concept, castle, graph, polyomino, spectral, adjacency, laplacian, tree, bipartite, planar, cycle-rank, fibonacci, jacobsthal, oeis, bridge, pedagogy]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-17
-updated: 2026-10-03
+updated: 2026-10-04
 ---
 
 # The castle graph - bridge to graph theory
@@ -93,17 +93,17 @@ Characteristic polynomial `x² − x − (h − 1)`, growth constant
 | `h` | `T_h(w)`, `w = 0..9` | growth `ρ(h)` | Online Encyclopedia of Integer Sequences (OEIS) | recurrence |
 |---|---|---|---|---|
 | 1 | `1, 1, 1, 1, 1, 1, 1, 1, 1, 1` | `1` | (constant) | trivial |
-| 2 | `1, 2, 3, 5, 8, 13, 21, 34, 55, 89` | **`φ`** (golden, `δ_1`) | **A000045** (Fibonacci, `T_2(w) = F_{w+2}`) | `a(n) = a(n−1) + a(n−2)` |
+| 2 | `0, 1, 2, 4, 7, 12, 20, 33, 54, 88` | **`φ`** (golden, `δ_1`) | **A000071** (`F_{w+2} − 1`, the term `A000071(w+2)`) | `a(n) = a(n−1) + a(n−2) + 1` |
 | 3 | `1, 3, 5, 11, 21, 43, 85, 171, 341, 683` | `2` (integer) | **A001045** (Jacobsthal, `T_3(w) = J_{w+2}`) | `a(n) = a(n−1) + 2 a(n−2)` |
 | 4 | `1, 4, 7, 19, 40, 97, 217, 508, 1159, 2683` | `(1 + √13)/2 = 2.303` | **A006130** (`T_4(w) = a(w+1)`) | `a(n) = a(n−1) + 3 a(n−2)` |
 | 5 | `1, 5, 9, 29, 65, 181, 441, 1165, 2929, 7589` | `(1 + √17)/2 = 2.562` | **A006131** | `a(n) = a(n−1) + 4 a(n−2)` |
 
-All OEIS numbers verified offset-exact.[^2]
+The `h = 2` row counts the tree castles of height 2 (some column reaches height 2), the Fibonacci castles; the rows `h ≥ 3` are `T_h(w)`. All OEIS numbers verified offset-exact.[^2]
 
-- **The `h = 2` slice is Fibonacci** (at exact height 2 these are the Fibonacci castles, [[fibonacci-castle](pages/fibonacci-castle.md)]), so tree castles of bounded height 2 are a castle interpretation of `A000045`. It sits next to the prime-castle count `F_{n−1}` on [[prime-castles](pages/prime-castles.md)] as another point where Fibonacci enters the castle count, and it puts the tree-castle family on rung 1 of the [[metallic-means](pages/metallic-means.md)] ladder ([[castle-classification](pages/castle-classification.md)] Axis 8: tree castles of height 2 are a **golden width growth castle**).
+- **The `h = 2` row is Fibonacci minus one.** The tree castles of height 2 are the Fibonacci castles ([[fibonacci-castle](pages/fibonacci-castle.md)]), `F_{w+2} − 1` of width `w`, a castle interpretation of `A000071`. It sits next to the prime-castle count `F_{n−1}` on [[prime-castles](pages/prime-castles.md)] as another point where Fibonacci enters the castle count, and it puts the tree-castle family on rung 1 of the [[metallic-means](pages/metallic-means.md)] ladder ([[castle-classification](pages/castle-classification.md)] Axis 8: tree castles of height 2 are a **golden width growth castle**).
 - **The `h = 3` slice is Jacobsthal**, a castle interpretation of `A001045`. Heights 4 and 5 give `A006130` and `A006131`, and every height `h` gives a member of the "`k`-Fibonacci" family `a(n) = a(n−1) + k · a(n−2)` with `k = h − 1`. None of these growth constants for `h ≥ 3` is a metallic mean, so tree castles trace out a distinct algebraic family from the metallic one, indexed by `h`.
 
-The area-graded (q-analogue) count is worked out on [[tree-castle-by-area](pages/tree-castle-by-area.md)]: the bivariate generating function (GF) is `T_h(x, q) = (1 + P_h(q) x)/(1 − q x − q P_h(q) x²)`, summing over widths gives one C-finite sequence per height, and each hits a named OEIS sequence - `h = 2` is Narayana's cows A000930 (supergolden growth), `h = 3` is A006498 (golden growth via factorization), `h = 4` is A000570 (tournaments), `h → ∞` is A005251 (plastic squared, a second castle interpretation).
+The area-graded (q-analogue) count is worked out on [[tree-castle-by-area](pages/tree-castle-by-area.md)]: the bivariate generating function (GF) is `T_h(x, q) = (1 + P_h(q) x)/(1 − q x − q P_h(q) x²)`, summing over widths gives one C-finite sequence per height, and each hits a named OEIS sequence - at `h = 2` the tree castles of height 2 with area `A` number `A000930(A + 1) − 1` (Narayana's cows minus one), the term `A077868(A − 2)` (supergolden growth), `h = 3` is A006498 (golden growth via factorization), `h = 4` is A000570 (tournaments), `h → ∞` is A005251 (plastic squared, a second castle interpretation).
 
 ## Bipartiteness, planarity, treewidth: what the castle graph inherits
 
@@ -173,4 +173,4 @@ def cycle_rank(c):
 
 [^1]: Verified by execution (Python 3.11, NumPy, SymPy 1.14): for every castle skyline with `w ≤ 4` and `h ≤ 4` (`max c = h`), `|E| − |V| + 1` equals `Σ_{i<w} max(0, min(c_i, c_{i+1}) − 1)` (the count of 2×2 filled blocks). Basic invariants recomputed against direct enumeration.
 
-[^2]: Verified against OEIS (fetched 2026-09-17): tree-castle counts `T_h(w)` for `w = 0..11` compared to https://oeis.org/A000045 (Fibonacci) at `h = 2`, https://oeis.org/A001045 (Jacobsthal) at `h = 3`, https://oeis.org/A006130 (`a(n) = a(n-1) + 3 a(n-2)`) at `h = 4`, https://oeis.org/A006131 (`a(n) = a(n-1) + 4 a(n-2)`) at `h = 5`. All offset-exact. Growth constants `(1 + √(4h − 3))/2` verified numerically as `ρ(h) = 1, φ, 2, 2.303, 2.562, 2.791` for `h = 1..6`.
+[^2]: Verified against OEIS (fetched 2026-09-17): tree-castle counts `T_h(w)` for `w = 0..11` compared to https://oeis.org/A001045 (Jacobsthal) at `h = 3`, https://oeis.org/A006130 (`a(n) = a(n-1) + 3 a(n-2)`) at `h = 4`, https://oeis.org/A006131 (`a(n) = a(n-1) + 4 a(n-2)`) at `h = 5`. All offset-exact. The `h = 2` row, the tree castles of height 2, verified 2026-10-04 by brute force for `w = 0..10` against https://oeis.org/A000071 (offset 1, data `0, 0, 1, 2, 4, 7, 12, 20, 33, 54, 88, 143`), the term `A000071(w+2)`. Growth constants `(1 + √(4h − 3))/2` verified numerically as `ρ(h) = 1, φ, 2, 2.303, 2.562, 2.791` for `h = 1..6`.

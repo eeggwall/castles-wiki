@@ -35,7 +35,7 @@ From [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]: OEIS requires 
 1. **A038505 and A038503** — **on OEIS** (entered 2026-09-18, proposed 2026-09-26, approved; revised Oct 03 2026). The height-2 hyperbolic interlink (`F(w,2) = A038505(w+1)`, `odd(w,2) = A038503(w+1) − 1`) is a comment on both entries: the A038503 comment is worded "height at most 2" (it counts the `r = 0` term `C(n, 0)` as a castle) and a correction to the exact-height statement `a(n) − 1 = odd(n−1, 2)` was submitted 2026-10-04; the entry carries the decomposition formulas `a(n) = A000225(n−1) − A038505(n) + 1` and `a(n) = A038505(n) + A146559(n)`. See [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)].
 2. **A146559**: the castle comment (`a(n) − 1` = odd-block minus even-block castles of width `n−1` and height 2, i.e. `a(n) = P(1, n − 1)`) was submitted 2026-10-04 and awaits approval. The identity `a(n) = A038503(n) − A038505(n)` is approved on A146559 and the equivalent `a(n) = A038505(n) + A146559(n)` on A038503 (both signed Sep 26 2026; [[signed-tower-count](pages/signed-tower-count.md)]).
 3. **A005251, A202882, A203094, A203184**: the Hardin word identity gives each an interpretation as `2^{−L}` times an even-last-column signed tower count and proves their empirical recurrences ([[hardin-word-identity](pages/hardin-word-identity.md)]); the `g=2` minimum-tower-spacing castles ([[tower-spacing-castles](pages/tower-spacing-castles.md)]) give each a second, unsigned geometric interpretation. For **A005251** specifically, an explicit bijection ([[a005251-bijection](pages/a005251-bijection.md)]) relates four castle readings (tree-castle / Hardin / tower-spacing / signed-tower); see the multi-interpretation hub below.
-4. **A000073, A000078, A001591** (and A000045 by area): the n-nacci numbers as *bounded-height castles by area* ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]), through compositions into `{1..h}`.
+4. **A000073, A000078, A001591** (and A000071 for castles of height 2 by area): the n-nacci numbers as *bounded-height castles by area* ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]), through compositions into `{1..h}`.
 5. **A217878 / A217879 / A217880 / A217881, A217949 / A217950 / A217951 / A217952, A228457 / A228458, and the tables A217883 / A217954 / A228461**: the whole tower-spacing family ([[tower-spacing-castles](pages/tower-spacing-castles.md)]) is Hardin's "minimum of `g` adjacent elements" arrays, with a proof (running minimum, morphological closing); one comment per entry, plus the `h=2` row **A005252 / A005253 / A005689 / A098574** joining A005251 as height-2 castles with towers `>= g` apart and the closed form `Sum_k C(w+g-(g-1)k, 2k)`. The six unfiled cells `h in {5,6}`, `g in {4,5,6}` are new sequences (below).
 6. **A001045**: tree castles of height at most 3, by width, are the Jacobsthal numbers ([[castle-graph](pages/castle-graph.md)]).
 7. **A006130, A006131**: tree castles of height 4 and 5 land in the k-Fibonacci family ([[castle-graph](pages/castle-graph.md)]).
@@ -71,11 +71,11 @@ Some sequences count *several distinct castle objects*, linked by explicit bijec
 
 ### Bounded-height castles by area — the n-nacci family
 
-All castles of height `≤ h` graded by total area `A` ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]); count = `h`-step Fibonacci, GF `1/(1 − x − ⋯ − x^h)`.
+All castles of height `≤ h` graded by total area `A` ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]); count = `h`-step Fibonacci, GF `1/(1 − x − ⋯ − x^h)`. The height-2 row counts castles of height 2: `F_{A+1} − 1`.
 
 | object | first terms (`A = 1…`) | growth | status |
 |---|---|---|---|
-| height `≤ 2` by area | `1, 2, 3, 5, 8, 13, 21, 34` | `φ` | **interlink** → [A000045](https://oeis.org/A000045) Fibonacci (new: `=F_{A+1}` as a castle-by-area count) |
+| height 2 by area | `0, 1, 2, 4, 7, 12, 20, 33` | `φ` | **interlink** → [A000071](https://oeis.org/A000071) (`= A000071(A+1) = F_{A+1} − 1`; brute force `A = 1..14`, 2026-10-04) |
 | height `≤ 3` by area | `1, 2, 4, 7, 13, 24, 44, 81` | tribonacci `1.8393` | **interlink** → [A000073](https://oeis.org/A000073) (`=A000073(A+2)`) |
 | height `≤ 4` by area | `1, 2, 4, 8, 15, 29, 56, 108` | tetranacci | **interlink** → [A000078](https://oeis.org/A000078) (`=A000078(A+3)`) |
 | height `≤ 5` by area | `1, 2, 4, 8, 16, 31, 61, 120` | pentanacci | **interlink** → [A001591](https://oeis.org/A001591) (`=A001591(A+4)`) |
@@ -261,11 +261,11 @@ The order-`1/2` fractional partial sum of `F(w, h)` in the width ([[half-sum-cas
 
 ### Tree castles by area at fixed height
 
-Tree castles (no `2 × 2` block) of height at most `h`, counted by area ([[tree-castle-by-area](pages/tree-castle-by-area.md)]). At every height the count at area `A` is the number of compositions of `A + 1` into parts `{1, 3, 4, …, h + 1}`. Terms from `A = 1`. The unlimited-height row is A005251, in the multi-interpretation hub above.
+Tree castles (no `2 × 2` block) of height at most `h` for `h ≥ 3`, and of height 2 in the first row, counted by area `A` ([[tree-castle-by-area](pages/tree-castle-by-area.md)]). For `h ≥ 3` the count at area `A` is the number of compositions of `A + 1` into parts `{1, 3, 4, …, h + 1}`; at height 2 it is the compositions of `A + 1` into `{1, 3}` that use a 3. Terms from `A = 1`. The unlimited-height row is A005251, in the multi-interpretation hub above.
 
 | object | first terms | GF / formula | status |
 |---|---|---|---|
-| `h <= 2` | `1, 2, 3, 4, 6, 9, 13, 19, 28, 41` | parts `{1, 3}` | **interlink** → [A000930](https://oeis.org/A000930) Narayana's cows (`= A000930(A+1)`) |
+| height 2 | `0, 1, 2, 3, 5, 8, 12, 18, 27, 40` | parts `{1, 3}`, using a 3; `A000930(A+1) − 1` | **interlink** → [A077868](https://oeis.org/A077868) (`= A077868(A−2)`, `A ≥ 2`; brute force `A = 2..14`, 2026-10-04) |
 | `h <= 3` | `1, 2, 4, 6, 9, 15, 25, 40, 64, 104` | parts `{1, 3, 4}` | **interlink** → [A006498](https://oeis.org/A006498) (`= A006498(A+1)`) |
 | `h <= 4` | `1, 2, 4, 7, 11, 18, 31, 53, 89, 149` | parts `{1, 3, 4, 5}` | **interlink** → [A000570](https://oeis.org/A000570) tournaments determined by their score vectors (`= A000570(A+1)`) |
 | `h <= 5` | `1, 2, 4, 7, 12, 20, 34, 59, 102, 175` | parts `{1, 3, …, 6}` | **interlink** → [A079816](https://oeis.org/A079816) (`= A079816(A+1)`, all 37 listed terms, 2026-09-26) |

@@ -5,7 +5,7 @@ summary: Reference of short, tested Python snippets for enumerating castles, che
 tags: [concept, castle, python, snippets, computational, classification, reference]
 sources: [project-euler-502-brute-force]
 created: 2026-09-16
-updated: 2026-10-02
+updated: 2026-10-04
 ---
 
 # Castle snippets
@@ -340,11 +340,11 @@ def cycle_rank(c):
 [(1, 1, 2), (1, 2, 1), (2, 1, 1), (2, 1, 2)]
 >>> is_tree_castle((2, 2)), cycle_rank((2, 2)), cycle_rank((3, 3)), cycle_rank((1, 2, 3, 1, 2, 3))
 (False, 1, 2, 2)
->>> [sum(1 for c in product(range(1, 3), repeat=w) if is_tree_castle(c)) for w in range(1, 9)]
-[2, 3, 5, 8, 13, 21, 34, 55]
+>>> [sum(1 for c in all_castles(w, 2) if is_tree_castle(c)) for w in range(1, 9)]
+[1, 2, 4, 7, 12, 20, 33, 54]
 ```
 
-Meaning: the last line is `F_{w+2}` for `w = 1..8`. Tree castles of height at most 2 are counted by Fibonacci (offset 2); Jacobsthal A001045 counts height at most 3; the k-Fibonacci family A006130, A006131 counts higher `h`. All catalogued on [[castle-graph](pages/castle-graph.md)].
+Meaning: the last line is `F_{w+2} − 1` for `w = 1..8`, the tree castles of height 2 ([[fibonacci-castle](pages/fibonacci-castle.md)]); Jacobsthal A001045 counts height at most 3; the k-Fibonacci family A006130, A006131 counts higher `h`. All catalogued on [[castle-graph](pages/castle-graph.md)].
 
 
 ### `castle_graph_radius(c)` → float

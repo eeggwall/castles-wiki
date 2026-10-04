@@ -5,7 +5,7 @@ summary: A classification of individual castles by the spectrum of a graph deriv
 tags: [concept, castle, classification, taxonomy, spectral, adjacency-matrix, laplacian, ramanujan, smith-theorem, dynkin, tree-castle, isospectral, single-castle-predicate, dft, sparse-spectrum]
 sources: [castle-classification, oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-10-02
+updated: 2026-10-04
 ---
 
 # Castle classification - spectral types
@@ -31,7 +31,7 @@ The irregularity forces the Ramanujan definition to use Greenberg's universal-co
 
 **Counts.** By width, the transfer matrix `T_h(w + 2) = T_h(w + 1) + (h − 1) T_h(w)` gives growth constant `(1 + √(4h − 3)) / 2`, and the count is a named OEIS sequence at each height:
 
-- `h = 2`: `T_2(w) = F_{w + 2}` (**Fibonacci**, A000045).
+- `h = 2`: the tree castles of height 2 (the Fibonacci castles) number `F_{w + 2} − 1` (**Fibonacci minus one**, the term A000071(w + 2)).
 - `h = 3`: `T_3(w) = J_{w + 2}` (**Jacobsthal**, A001045).
 - `h ≥ 4`: A006130, A006131, and so on.
 
