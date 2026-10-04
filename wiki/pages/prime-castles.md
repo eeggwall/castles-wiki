@@ -5,7 +5,7 @@ summary: "Gluing castles at a shared height-1 column makes a free monoid, and it
 tags: [analysis, castle, area, composition, prime-castle, monoid, factorization, fibonacci, convex-castle, parity, q-series, oeis, novel-candidate]
 sources: [oeis-mining-pe502, deutsch-elizalde-2017-bargraphs-dyck-paths]
 created: 2026-09-22
-updated: 2026-10-02
+updated: 2026-10-04
 ---
 
 # Prime castles
@@ -34,7 +34,7 @@ The block identity holds because the two bottom rows merge into one block, and n
 
 **"Prime" is the free-monoid term.** In a free monoid the elements that every element factors into, uniquely, are called its primes; they are also exactly its irreducible elements. Gessel and Li use the word this way for monoids of compositions under concatenation, and "compositions of `n` into parts greater than 1, `F_{n-1}` of them" is one of the identities they derive from it.[^gl] It has nothing to do with prime numbers. So:
 
-- **The prime castles are the castles with no height-1 column**, plus the empty castle, whose padded form `(1, 1)` is the one trivial prime. By area they are the compositions of `n` into parts `≥ 2`, which number `F_{n-1}`: `0, 1, 1, 2, 3, 5, 8, 13, 21, ...` for `n = 1, 2, 3, ...`. With the height unrestricted (a prime castle of area `n` can be up to `n` tall) their growth constant is the golden ratio, the golden area growth castle on [[metallic-means](pages/metallic-means.md)]. At any fixed exact height the growth is smaller; see "Prime castles of exact height `h`" below.
+- **The prime castles are the castles with no height-1 column**, plus the empty castle, whose padded form `(1, 1)` is the one trivial prime. By area they are the compositions of `n` into parts `≥ 2`, which number `F_{n-1}`: `0, 1, 1, 2, 3, 5, 8, 13, 21, ...` for `n = 1, 2, 3, ...`. With the height unrestricted (a prime castle of area `n` can be up to `n` tall) their growth constant is the golden ratio, the golden area growth castle on [[metallic-means](pages/metallic-means.md)]: `F_{n-1} ~ φ^n/(φ√5)`, while all castles with `n` cells number `2^{n-1}`, so forbidding height-1 columns lowers the growth from 2 to `φ`.[^growth] At any fixed exact height the growth is smaller; see "Prime castles of exact height `h`" below.
 - **The composite castles are the castles with at least one height-1 column**, `2^{n-1} - F_{n-1}`: `1, 1, 3, 6, 13, 27, 56, ...`.
 - A castle with `k` height-1 columns has `k + 1` prime factors. For example `(2, 1, 3, 3, 1, 1, 2)` has three height-1 columns and four prime factors, and its padded form is `(1,2,1) ∘ (1,3,3,1) ∘ (1,1) ∘ (1,2,1)`.
 
@@ -163,3 +163,4 @@ for n in range(1, 17):
 [^de]: [[deutsch-elizalde-2017-bargraphs-dyck-paths](pages/deutsch-elizalde-2017-bargraphs-dyck-paths.md)] §3 L167, L236-245 - "(g) ret(P ) = #H1 (B) + 1 (unless P and B have height 1, in which case ret(P ) = #H1 (B))"; Prop. 3.5 "(i) φ(uP d) = U BD", "(ii) φ(P P ′ ) = B ◦ 1 ◦ B′ if height(P ) ≥ 2 and height(P ′ ) ≥ 2, B ◦ B′ otherwise", with `U BD` the bargraph "whose height sequence is obtained by adding one to each entry of the height sequence of B".
 [^de-exec]: Own reasoning from Prop. 3.5 and Thm. 3.2(g), verified by execution (Python 3, 2026-10-02): `φ` implemented from its definition and applied to every Dyck path of semilength `≤ 11` is injective; every one-return path of semilength `≥ 2` goes to a castle with no height-1 column and every castle in the image with no height-1 column comes from a one-return path; returns `=` height-1 columns `+ 1` for every path of height `≥ 2`; and semilength `=` semiperimeter `−` peaks (their Thm. 3.2(a), [[deutsch-elizalde-2017-bargraphs-dyck-paths](pages/deutsch-elizalde-2017-bargraphs-dyck-paths.md)] §3 L155).
 [^exact]: Verified by execution (Python 3, SymPy, 2026-10-02): for `h = 3..8` the count from the two composition recurrences matches a brute-force count of compositions of `n ≤ 16` with largest part exactly `h` and no part 1; the polynomials were factored with SymPy and their largest real roots computed numerically; the successive ratios of the counts at `n = 200` agree with those roots (to five decimals for `h = 3, 4`, and approaching from above for larger `h`).
+[^growth]: Verified by execution (Python 3, 2026-10-04): `F_59/φ^60 = 0.27639320` against `1/(φ√5) = 0.27639320`; the compositions of `n` number `2^{n-1}`, the composite count `2^{n-1} - F_{n-1}` above.

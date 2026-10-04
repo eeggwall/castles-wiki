@@ -5,7 +5,7 @@ summary: A ridge castle is a castle of exact height h in which neighbouring colu
 tags: [concept, castle, castle-type, ridge-castle, metallic-mean, transfer-matrix, growth-constant, golden, silver, bronze, copper, nickel, fibonacci, parity, blocks]
 sources: [project-euler-502]
 created: 2026-10-03
-updated: 2026-10-03
+updated: 2026-10-04
 ---
 
 # Ridge castle
@@ -94,7 +94,7 @@ The count grows like a constant times `δ_{h−1}^w`, since `δ_{h−1} > h − 
 
 ## Height 2: the Fibonacci castles
 
-At `h = 2` the rule forbids two neighbouring columns of height 1. Exchanging the heights 1 and 2 turns a ridge castle into a skyline with no two neighbouring height-2 columns: a [[fibonacci-castle](pages/fibonacci-castle.md)], or the all-1 row, which comes from the all-2 castle. So for `w ≥ 2` there are `F_{w+2}` ridge castles of exact height 2, one more than the `F_{w+2} − 1` Fibonacci castles. The exchange does not preserve blocks: `(2, 2)` has two blocks and `(1, 1)` one. Above height 2 the two families separate: the tree castles that extend the Fibonacci castles grow at the non-metallic `(1 + √(4h − 3))/2` ([[castle-graph](pages/castle-graph.md)]).
+At `h = 2` the rule forbids two neighbouring columns of height 1. Exchanging the heights 1 and 2 turns a ridge castle into a skyline with no two neighbouring height-2 columns: a [[fibonacci-castle](pages/fibonacci-castle.md)], or the all-1 row, which comes from the all-2 castle. So for `w ≥ 2` there are `F_{w+2}` ridge castles of exact height 2, one more than the `F_{w+2} − 1` Fibonacci castles. At `w = 1` both families are the single castle `(2)`. The exchange does not preserve blocks: `(2, 2)` has two blocks and `(1, 1)` one. Above height 2 the two families separate: the tree castles that extend the Fibonacci castles grow at the non-metallic `(1 + √(4h − 3))/2` ([[castle-graph](pages/castle-graph.md)]).
 
 ## Blocks and the even-block count
 

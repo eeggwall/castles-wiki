@@ -5,7 +5,7 @@ summary: All castles (not just tree castles) of exact height h, graded by total 
 tags: [analysis, castle, area, generating-function, oeis, fibonacci, tribonacci, tetranacci, n-nacci, composition, growth-constant]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-17
-updated: 2026-10-03
+updated: 2026-10-04
 ---
 
 # Castles of exact height `h` by area
@@ -56,7 +56,7 @@ The OEIS sequences in the tree column count tree castles with every column at mo
 
 Fibonacci and tribonacci are the `h = 2` and `h = 3` members of this one family.
 
-- **Fibonacci (`h = 2`).** Castles of exact height 2 by area number `F_{A+1} − 1`: compositions into `{1, 2}` with at least one 2. This is a different Fibonacci appearance from the prime-castle count `F_{n−1}` ([[prime-castles](pages/prime-castles.md)], compositions into parts `≥ 2`) and from the Fibonacci castles by width ([[castle-graph](pages/castle-graph.md)]). It has the same numbers as the Fibonacci castles of width `A − 1` (by appending a height-1 column and reading each height-2 column with the column after it as a part 2; [[n-nacci-disambiguation](pages/n-nacci-disambiguation.md)]).
+- **Fibonacci (`h = 2`).** Castles of exact height 2 by area number `F_{A+1} − 1`: compositions into `{1, 2}` with at least one 2. They grow like `(φ/√5)·φ^A ≈ 0.7236·φ^A`, so they are golden by area although by width they number `2^w − 1`.[^growth] This is a different Fibonacci appearance from the prime-castle count `F_{n−1}` ([[prime-castles](pages/prime-castles.md)], compositions into parts `≥ 2`) and from the Fibonacci castles by width ([[castle-graph](pages/castle-graph.md)]). It has the same numbers as the Fibonacci castles of width `A − 1` (by appending a height-1 column and reading each height-2 column with the column after it as a part 2; [[n-nacci-disambiguation](pages/n-nacci-disambiguation.md)]).
 - **Tribonacci (`h = 3`).** Castles of exact height 3 by area number `A000073(A+2) − F_{A+1}` and grow like `τ`. With the supergolden constant (`x³ = x² + 1`, the q-Fibonacci castles by number of cells, [[q-fibonacci-castle](pages/q-fibonacci-castle.md)]) and the plastic number (`x³ = x + 1`, as `ψ²` and `2ψ²` on [[plastic-number](pages/plastic-number.md)]), the castle realizes three cubic constants by area.
 
 ## Relation to the metallic-means classification
@@ -89,3 +89,4 @@ The `bounded_castles_by_area(h, A_max)` snippet on [[castle-snippets-strips](pag
 [^1]: Verified by execution (Python 3, 2026-10-02): brute-force enumeration of compositions with largest part exactly `h` agrees with the difference of the two composition recurrences for `h = 2..5` and `A ≤ 14`; the tree-castle counts at exact height `h = 2, 3, 4` by area were enumerated directly for `A ≤ 16` and by a two-state transfer recurrence to `A = 400`, where the successive ratios are `1.465571`, `1.618034`, `1.685137`; at each `h` the all-castle and tree counts agree through area `h + 1` and differ from area `h + 2`. The GF `1/(1 − x − ⋯ − x^h)` is the standard OGF for compositions into parts `{1, …, h}` (sequence (SEQ) of `{x, x², …, x^h}`; [[symbolic-method](pages/symbolic-method.md)] SEQ construction). An earlier check (2026-09-17) compared the composition counts with parts at most `h` to skylines `c ∈ {1, …, h}^w` for `h = 2..5` and `A ≤ 14`.
 
 [^2]: OEIS (fetched 2026-09-17): https://oeis.org/A000073 - tribonacci, "a(n) = a(n-1) + a(n-2) + a(n-3)", GF `x²/(1 − x − x² − x³)`, data `0, 0, 1, 1, 2, 4, 7, 13, 24, 44, 81, 149, 274`, comment "number of compositions of n-2 with no part greater than 3"; tribonacci constant `1.839286755…`, the real root of `x³ − x² − x − 1`. https://oeis.org/A000078 - tetranacci, GF `x³/(1 − x − x² − x³ − x⁴)`, "number of compositions of n-3 with no part greater than 4". Offsets `A000073(A+2)`, `A000078(A+3)`, `A001591(A+4)` follow from the numerator power `x^{h−1}` in each GF. A000045 (Fibonacci) and A011782 (`2^{n−1}`) are standard.
+[^growth]: Verified by execution (Python 3, 2026-10-04): `(F_61 − 1)/φ^60 = 0.72360680` against `φ/√5 = 0.72360680`.
