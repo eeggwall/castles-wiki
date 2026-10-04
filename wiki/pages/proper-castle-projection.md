@@ -5,7 +5,7 @@ summary: The metallic-strip-realizability counts are free-height strip counts (�
 tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, parity, even-block, proper-castle, bronze, copper, silver, new-sequence, oeis, sympy, verification]
 sources: [pe502-pell-castle-strip, project-euler-502-castle-factoring]
 created: 2026-09-18
-updated: 2026-10-03
+updated: 2026-10-04
 ---
 
 # Do metallic growth constants survive the proper-castle projection
@@ -98,7 +98,7 @@ Only golden (`h = 2`) has its free count equal to its primary metallic sequence.
 - [[reachable-field-census](pages/reachable-field-census.md)] — the sibling census (which *fields* the strips reach), to which this is the *sequences* complement.
 - [[castle-by-area](pages/castle-by-area.md)] / [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] — castle counts by area, with and without a height bound.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] — Axis 8, the `<metal> <axis> growth castle` meta-classification these projected metallic-ladder rows populate.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] — the anchored 1-smooth height-3 strip, where Pell A000129 does appear (`P_w` strips of width `w`); the free 1-smooth strip and the free ridge strip at `h = 3` here both give A001333.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] — the anchored 1-smooth height-3 strip, where Pell A000129 does appear (`P⋆_w` strips of width `w`); the free 1-smooth strip and the free ridge strip at `h = 3` here both give A001333.
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] — the exact even-block counts are checked by Algorithm M enumeration of `{1..h}^w` with the two proper-castle filters.
 
 ## Footnotes

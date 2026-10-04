@@ -5,7 +5,7 @@ summary: Continued fractions of castle eigenvalues, taught from "what is a conti
 tags: [concept, castle, continued-fraction, eigenvalue, characteristic-polynomial, palindromic, lagrange, galois, quadratic, fibonacci, mod-p, pedagogy]
 sources: [project-euler-502-representations, oeis-mining-pe502]
 created: 2026-09-15
-updated: 2026-10-02
+updated: 2026-10-04
 ---
 
 # Eigenvalue continued fractions
@@ -108,7 +108,7 @@ By the factorizations, **every k-direction eigenvalue is `+1` or `−1`.** The p
 **Two real quadratic constants.** The real quadratic constants on the castle side, `φ` and `√2 + 1`, come from other counts; both are norm-−1 reduced surds of period one:[^4]
 
 - `φ = (1+√5)/2 = [1; 1, 1, …]`, root of `x² − x − 1` — Fibonacci's growth rate (`F_n = (φ^n − φ̂^n)/√5`, [[aocp-generating-functions](pages/aocp-generating-functions.md)]) and the `2^{n−1} − F_{n−1}` of prime-castle counting ([[castle-by-area](pages/castle-by-area.md)]).
-- `√2 + 1 = [2; 2, 2, …]`, root of `x² − 2x − 1` — the tower-word growth constant from [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]. The integer sequence that realizes this surd via its Binet form is the [[pell-numbers](pages/pell-numbers.md)] (`P_n = 2P_{n−1} + P_{n−2}`, OEIS A000129), whose convergents `P_{n+1}/P_n = 2, 5/2, 12/5, 29/12, 70/29, 169/70, …` are the continued-fraction truncations of `1 + √2`; the anchored 1-smooth height-3 strip on [[pell-castle-strip](pages/pell-castle-strip.md)] is a castle-strip realization with exactly these counts.
+- `√2 + 1 = [2; 2, 2, …]`, root of `x² − 2x − 1` — the tower-word growth constant from [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]. The integer sequence that realizes this surd via its Binet form is the [[pell-numbers](pages/pell-numbers.md)] (`P⋆_n = 2P⋆_{n−1} + P⋆_{n−2}`, OEIS A000129), whose convergents `P⋆_{n+1}/P⋆_n = 2, 5/2, 12/5, 29/12, 70/29, 169/70, …` are the continued-fraction truncations of `1 + √2`; the anchored 1-smooth height-3 strip on [[pell-castle-strip](pages/pell-castle-strip.md)] is a castle-strip realization with exactly these counts.
 
 Both are the fundamental units of their quadratic fields (`φ` of `Q(√5)`, `√2+1` of `Q(√2)`).
 

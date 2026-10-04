@@ -5,7 +5,7 @@ summary: Which metallic means a castle-strip rule produces (Axis 8). A castle-st
 tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, bronze, copper, silver, fibonacci-decimation, axis-8, realizability, sympy, verification]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-10-03
+updated: 2026-10-04
 ---
 
 # Which metallic means are castle-strip growth constants
@@ -36,7 +36,7 @@ Two findings follow.
 
 The **1-smooth height-3 strip** (`|c_{i+1} − c_i| ≤ 1`, the step set of a Motzkin path) has denominator that factors as `(1 − x)(1 − 2x − x²)` - the silver factor `1 − 2x − x²` exactly, times a spurious `(1 − x)`.[^3] So its growth constant is `1 + √2`: it is a **silver width growth castle**, distinct from the tower word.
 
-This is a castle realization of silver alongside the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)], algebraic, A004149), and it is where the Pell numbers themselves live. The `(1 − x)` factor cancels from the width generating function because the eigenvalue-1 eigenvector `(1, 0, −1)` is orthogonal to the all-ones end vector, so the counts have denominator `1 − 2x − x²`: anchored at height 1 the strip is the [[pell-castle-strip](pages/pell-castle-strip.md)], with `P_w` strips of width `w`, and the free strip gives the Pell-Lucas numbers A001333. It lives at **height 3**, not height 2, and reaches silver by a rate-of-change rule (Axis 2, [[castle-classification-shape](pages/castle-classification-shape.md)]) rather than a per-column-state count. The 1-smooth family is the Motzkin-path connection ([[motzkin-numbers](pages/motzkin-numbers.md)], [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]), and its growth constant is silver.
+This is a castle realization of silver alongside the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)], algebraic, A004149), and it is where the Pell numbers themselves live. The `(1 − x)` factor cancels from the width generating function because the eigenvalue-1 eigenvector `(1, 0, −1)` is orthogonal to the all-ones end vector, so the counts have denominator `1 − 2x − x²`: anchored at height 1 the strip is the [[pell-castle-strip](pages/pell-castle-strip.md)], with `P⋆_w` strips of width `w`, and the free strip gives the Pell-Lucas numbers A001333. It lives at **height 3**, not height 2, and reaches silver by a rate-of-change rule (Axis 2, [[castle-classification-shape](pages/castle-classification-shape.md)]) rather than a per-column-state count. The 1-smooth family is the Motzkin-path connection ([[motzkin-numbers](pages/motzkin-numbers.md)], [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]), and its growth constant is silver.
 
 ## Finding 2: bronze needs four states, not three
 

@@ -63,7 +63,7 @@ def convergents(digits):
 [(2, 1), (5, 2), (12, 5), (29, 12), (70, 29), (169, 70), (408, 169)]
 ```
 
-**What it teaches.** When every digit is the same `a`, the convergent recurrence *is* the metallic recurrence `x_n = a·x_{n−1} + x_{n−2}`, so numerator and denominator are the same sequence: `q_n = x_{n+1}`, `p_n = x_{n+2}`. That is why Fibonacci convergents to `φ` are `F_{n+2}/F_{n+1}` and Pell convergents to `1+√2` are `P_{n+2}/P_{n+1}` - **one** OEIS entry per rung, not two. In matrix form `[[p_n, p_{n−1}], [q_n, q_{n−1}]] = M^{n+1}` with `M = [[a, 1], [1, 0]]`, `det M = −1`; the trace of `M^{n+1}` is `p_n + q_{n−1} = y_{n+1}`, the companion sequence. Verified:
+**What it teaches.** When every digit is the same `a`, the convergent recurrence *is* the metallic recurrence `x_n = a·x_{n−1} + x_{n−2}`, so numerator and denominator are the same sequence: `q_n = x_{n+1}`, `p_n = x_{n+2}`. That is why Fibonacci convergents to `φ` are `F_{n+2}/F_{n+1}` and Pell convergents to `1+√2` are `P⋆_{n+2}/P⋆_{n+1}` - **one** OEIS entry per rung, not two. In matrix form `[[p_n, p_{n−1}], [q_n, q_{n−1}]] = M^{n+1}` with `M = [[a, 1], [1, 0]]`, `det M = −1`; the trace of `M^{n+1}` is `p_n + q_{n−1} = y_{n+1}`, the companion sequence. Verified:
 
 ```
 >>> [p - q for p, q in convergents([2]*8)]            # convergent numerators of sqrt(2) = [1; 2, 2, ...]

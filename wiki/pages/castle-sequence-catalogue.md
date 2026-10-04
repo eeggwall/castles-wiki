@@ -122,10 +122,10 @@ Skylines over `{1, 2, 3}` with adjacent heights differing by at most 1 ([[pell-c
 
 | object | first terms (`w = 1…`) | growth | status |
 |---|---|---|---|
-| 1-smooth, first column at height 1 | `1, 2, 5, 12, 29, 70, 169, 408` | `1+√2` | **interlink** → [A000129](https://oeis.org/A000129) Pell (`= P_w`; width GF `x/(1−2x−x²)`) |
+| 1-smooth, first column at height 1 | `1, 2, 5, 12, 29, 70, 169, 408` | `1+√2` | **interlink** → [A000129](https://oeis.org/A000129) Pell (`= P⋆_w`; width GF `x/(1−2x−x²)`) |
 | 1-smooth, free first column | `3, 7, 17, 41, 99, 239, 577, 1393` | `1+√2` | **interlink** → [A001333](https://oeis.org/A001333) Pell-Lucas |
 | 1-smooth, both end columns at height 1 | `1, 1, 2, 4, 9, 21, 50, 120` | `1+√2` | **interlink** → [A171842](https://oeis.org/A171842) (`=a(w−1)`, "Motzkin n-paths of height <= 2"; searched 2026-09-26, 16 terms, see [[motzkin-castles](pages/motzkin-castles.md)]) |
-| **Pell castles**: 1-smooth, first column at height 1, exact height 3 | `0, 0, 1, 4, 13, 38, 105, 280, 729` | `1+√2` | **interlink** → [A094706](https://oeis.org/A094706) (`= A094706(w−2) = P_w − 2^{w−1}`, g.f. `x³/((1−2x−x²)(1−2x))`, proved; the entry has no castle reading), [[pell-castle](pages/pell-castle.md)] |
+| **Pell castles**: 1-smooth, first column at height 1, exact height 3 | `0, 0, 1, 4, 13, 38, 105, 280, 729` | `1+√2` | **interlink** → [A094706](https://oeis.org/A094706) (`= A094706(w−2) = P⋆_w − 2^{w−1}`, g.f. `x³/((1−2x−x²)(1−2x))`, proved; the entry has no castle reading), [[pell-castle](pages/pell-castle.md)] |
 | 1-smooth, free first column, exact height 3 | `1, 3, 9, 25, 67, 175, 449, 1137` | `1+√2` | **interlink** → [A106514](https://oeis.org/A106514) (`= A106514(w−1)`, g.f. `x(1−x)/((1−2x)(1−2x−x²))`, proved, 2026-10-04) |
 | 1-smooth, both end columns at height 1, exact height 3 | `0, 0, 0, 0, 1, 5, 18, 56, 161, 441` | `1+√2` | **novel-candidate** (g.f. `x⁵/((1−x)(1−2x)(1−2x−x²))`, the Pell castles' partial sums shifted by 2; no match 2026-10-04) |
 | even-block / odd-block Pell castles | `0, 0, 0, 0, 2, 13, 51, 154, …` / `0, 0, 1, 4, 11, 25, 54, 126, …` | `1+√2` | **novel-candidate** (order-8 recurrence; no match 2026-10-04), [[pell-castle](pages/pell-castle.md)] |

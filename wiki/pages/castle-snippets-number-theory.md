@@ -5,7 +5,7 @@ summary: Snippets for the signed tower count, continued-fraction convergents, mo
 tags: [concept, castle, python, snippets, signed-tower-count, continued-fraction, mod-p, quasi-polynomial, plastic-number]
 sources: [project-euler-502-brute-force, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-19
-updated: 2026-09-28
+updated: 2026-10-04
 ---
 
 # Castle snippets - number theory
@@ -539,7 +539,7 @@ def metallic_ring(a):
 [(1, (5, 1)), (2, (8, 1)), (3, (13, 1)), (4, (5, 2)), (8, (17, 2)), (11, (5, 5)), (14, (8, 5))]
 ```
 
-Meaning: golden, silver, bronze generate full rings of integers; copper (`a = 4`, `= φ³`) generates `Z[√5]`, index 2 in `Z[φ]`; `a = 11` (`= φ⁵`) and `a = 14` (`= (1 + √2)³`) have index 5, the Fibonacci and Pell numbers `F_5` and `Pell(3)`; `a = 8` has index 2 without being a power of a smaller rung.
+Meaning: golden, silver, bronze generate full rings of integers; copper (`a = 4`, `= φ³`) generates `Z[√5]`, index 2 in `Z[φ]`; `a = 11` (`= φ⁵`) and `a = 14` (`= (1 + √2)³`) have index 5, the Fibonacci and Pell numbers `F_5` and `P⋆_3`; `a = 8` has index 2 without being a power of a smaller rung.
 
 ### `x_inverse(k)` → `(h, c)` with `x · h(x) = c = ±2^k` in `Z[x]/(char_k)`
 

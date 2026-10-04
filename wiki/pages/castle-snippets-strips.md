@@ -38,7 +38,7 @@ Wiki tie: [[castle-classification](pages/castle-classification.md)] Axis 8 — t
 
 ### `pell_strip_count(w)` → the Pell castle strip
 
-The silver counterpart ([[pell-castle-strip](pages/pell-castle-strip.md)]): 1-smooth skylines over heights `{1, 2, 3}` (adjacent heights differ by at most 1) whose first column has height 1. Their counts are the Pell numbers `P_w` (width generating function `x/(1 − 2x − x²)`); dropping the anchor gives Pell-Lucas numbers (A001333).
+The silver counterpart ([[pell-castle-strip](pages/pell-castle-strip.md)]): 1-smooth skylines over heights `{1, 2, 3}` (adjacent heights differ by at most 1) whose first column has height 1. Their counts are the Pell numbers `P⋆_w` (width generating function `x/(1 − 2x − x²)`); dropping the anchor gives Pell-Lucas numbers (A001333).
 
 ```python
 from itertools import product

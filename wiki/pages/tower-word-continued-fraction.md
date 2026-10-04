@@ -5,7 +5,7 @@ summary: The tower word is a peakless-valleyless Motzkin path — OEIS A004149 b
 tags: [concept, castle, tower-word, continued-fraction, flajolet, motzkin, algebraic, oeis, generating-functions]
 sources: [project-euler-502-representations]
 created: 2026-09-14
-updated: 2026-09-28
+updated: 2026-10-04
 ---
 
 # Continued fractions of the tower word
@@ -27,7 +27,7 @@ The simplest continued fraction of a number, `1 + 1/(1 + 1/(1 + …))`, is the *
 
 Mark each step `U, R, D` by `z` (total length), so a tower word of width `L` and `b` blocks is worth `z^{L + 2b}`. Each length then has finitely many tower words, and the count is **Online Encyclopedia of Integer Sequences (OEIS) A004149**, "generalized Catalan numbers", whose entry states the object verbatim: *"Number of Motzkin paths of length n−1 (n≥1) with no peaks and no valleys, i.e., no UD's and no DU's, where U=(1,1) and D=(1,−1)."* (Emeric Deutsch, 2004).[^4] So **tower words of length `n` number A004149(`n+1`)**: `1, 1, 1, 2, 4, 8, 16, 33, 69, 146, 312, 673, 1463, 3202, 7050, …`, recomputed here two independent ways (direct enumeration and iterating the grammar) with the same result.[^4]
 
-The generating function is **algebraic, not rational** — the bounded-height language is regular, but the unbounded-height tower word is context-free (see [[tower-word-language](pages/tower-word-language.md)]). The Pell numbers (`P_n = 2P_{n−1} + P_{n−2}`, OEIS A000129, [[pell-numbers](pages/pell-numbers.md)]) also grow like `(1 + √2)^n`, the silver-ratio counterpart of Fibonacci/`φ`, and a castle strip counted by them is on [[pell-castle-strip](pages/pell-castle-strip.md)]. Reading the tower grammar with each step marked by `z` gives the fixed-point equation
+The generating function is **algebraic, not rational** — the bounded-height language is regular, but the unbounded-height tower word is context-free (see [[tower-word-language](pages/tower-word-language.md)]). The Pell numbers (`P⋆_n = 2P⋆_{n−1} + P⋆_{n−2}`, OEIS A000129, [[pell-numbers](pages/pell-numbers.md)]) also grow like `(1 + √2)^n`, the silver-ratio counterpart of Fibonacci/`φ`, and a castle strip counted by them is on [[pell-castle-strip](pages/pell-castle-strip.md)]. Reading the tower grammar with each step marked by `z` gives the fixed-point equation
 
 ```
 E(z) = (1 + z²(E − 1)) / (1 − z − z³(E − 1))   ⟹   z³E² − (1 − z − z² + z³)E + (1 − z²) = 0,
