@@ -5,7 +5,7 @@ summary: The 42 shape-based castle types as skyline predicates on individual cas
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle, hoodoo-castle, monadnock-castle, distinct-parts]
 sources: [castle-classification, aocp-generating-partitions]
 created: 2026-09-19
-updated: 2026-10-03
+updated: 2026-10-04
 ---
 
 # Castle classification - shape types
@@ -95,7 +95,7 @@ Types 7, 8, 9, the base m-disparate, and the wiki-named ridge type:
 - **Transfer matrix.** `R_h = J − D`, with `J` the `h × h` all-ones matrix and `D = diag(1, …, 1, 0)`: entry `(a, b)` is 1 when `a ≠ b` or `a = b = h`. Its characteristic polynomial is `(x + 1)^{h−2}(x² − (h − 1)x − 1)`.
 - **Count.** `𝟙ᵀR_h^{w−1}𝟙 − (h−1)(h−2)^{w−1}` ridge castles of width `w` and exact height `h`; the subtracted term is the plateau-free skylines that never reach `h`. By width `w = 1, …, 7`: `h = 2`: `1, 3, 5, 8, 13, 21, 34`; `h = 3`: `1, 5, 15, 39, 97, 237, 575`; `h = 4`: `1, 7, 31, 118, 421, 1453, 4924` (checked by brute force).
 - **Growth.** Like `δ_{h−1}^w`: golden at `h = 2`, silver at `h = 3`, bronze at `h = 4`, copper at `h = 5`, nickel at `h = 6`. Each rung is a `<metal>` width growth castle of [[castle-classification-growth](pages/castle-classification-growth.md)] Axis 8, and for bronze and above the ridge rule is the only known realization ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
-- **Fibonacci castles.** At `h = 2` the rule forbids two adjacent columns of height 1. Exchanging the heights 1 and 2 turns a ridge castle into a skyline with no two adjacent 2s: a **Fibonacci castle** ([[fibonacci-castle](pages/fibonacci-castle.md)]; exact height 2, no two adjacent height-2 columns; the tree castles of [[castle-graph](pages/castle-graph.md)] at exact height 2), or the all-1 row, which comes from the all-2 castle. So for `w ≥ 2` there are `F_{w+2}` ridge castles of exact height 2 and `F_{w+2} − 1` Fibonacci castles. Counted with `q` marking area, the Fibonacci castles are the q-Fibonacci castles ([[q-fibonacci-castle](pages/q-fibonacci-castle.md)]).
+- **Fibonacci castles.** At `h = 2` the rule forbids two adjacent columns of height 1. Exchanging the heights 1 and 2 turns a ridge castle into a skyline with no two adjacent 2s: a **Fibonacci castle** ([[fibonacci-castle](pages/fibonacci-castle.md)]; exact height 2, no two adjacent height-2 columns; the tree castles of [[castle-graph](pages/castle-graph.md)] at exact height 2), or the all-1 row, which comes from the all-2 castle. So for `w ≥ 2` there are `F_{w+2}` ridge castles of exact height 2 and `F_{w+2} − 1` Fibonacci castles. Counted with `q` marking area, the Fibonacci castles are the q-Fibonacci castles ([[q-fibonacci-castle](pages/q-fibonacci-castle.md)]). Rules on the tower cut out sub-families, among them the Fibonacci-word castles (tower a factor of the Fibonacci word, `w + 1` from `w = 3`) the balanced castles (`A005598(w)/2`), and the gap-length families, maximal castles (Padovan), spaced castles (Narayana's cows) and `(d, k)`-RLL castles: [[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)].
 - **Not crenellated.** The crenellated type of Axis 7 is the strict period-2 skyline `(a, h, a, h, …)`; ridge castles may use every height and may repeat `h`.
 - **Code.** `ridge_R`, `ridge_count` (free-height strip counts) and `proper_even` (even-block ridge castles) on [[castle-snippets-strips](pages/castle-snippets-strips.md)].
 

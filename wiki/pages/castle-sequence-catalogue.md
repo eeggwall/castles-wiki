@@ -289,6 +289,19 @@ The sandpile groups of every castle to 16 cells in both models, `K_sink` (one si
 | `|K_tide|` of the 2-wide ladder lying down `(2, …, 2)` by width | `1, 3, 8, 21, 55, 144` | `a(n) = 3a(n−1) − a(n−2)`, cyclic | **interlink** → [A001906](https://oeis.org/A001906) `F(2n)` (`= A001906(w)`; every block on the ground) |
 | `|K_tide|` of the 2-wide ladder standing up `(h, h)` by height | `1, 3, 11, 41, 153, 571` | `a(n) = 4a(n−1) − a(n−2)`, cyclic | **interlink** → [A001835](https://oeis.org/A001835) (`= A001835(h)`; one block on the ground) |
 
+### Fibonacci castle sub-families
+
+Fibonacci castles cut out by a rule on the tower, counted as castles of width `w` and exact height 2, terms from `w = 1` ([[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)]).
+
+| object | first terms | GF / formula | status |
+|---|---|---|---|
+| Fibonacci-word castles (tower a factor of the Fibonacci word) | `1, 2, 4, 5, 6, 7, 8, 9` | `w + 1` for `w ≥ 3` (Sturmian complexity) | **known** (linear; no entry needed) |
+| balanced castles | `1, 2, 4, 7, 12, 18, 27, 38, 52, 68, 89, 112` | `A005598(w)/2`, `~ w³/(2π²)` | **interlink** → [A049703](https://oeis.org/A049703) (`= A049703(w)`; the entry is defined only as `A005598(n)/2`, no combinatorial reading; brute force `w ≤ 15`, 2026-10-04) |
+| maximal castles (no column can be raised) | `1, 2, 2, 3, 4, 5, 7, 9, 12, 16, 21, 28` | `x(1+x)^2/(1-x^2-x^3)` | **known** → [A000931](https://oeis.org/A000931) (`= A000931(w+6)`; the entry lists maximal independent vertex sets of the path graph) |
+| spaced castles (height-2 columns ≥ 3 apart) | `1, 2, 3, 5, 8, 12, 18, 27, 40, 59` | `A000930(w+2) - 1` | **known** → [A077868](https://oeis.org/A077868) (`= A077868(w-1)`); the bijection with Fibonacci castles of `w + 1` cells is on the page |
+| `(1, 3)`-RLL castles (MFM constraint) | `1, 2, 4, 7, 10, 15, 22, 32, 47, 69` | `x(1+x+x^2+x^3)^2/(1-x^2-x^3-x^4)` | **unchecked** |
+| `(1, 7)`, `(2, 7)`, `(2, 10)`-RLL castles | see the page | gap generating function | **unchecked** |
+
 ### Other generation candidates
 
 Further candidates with their current status; several are **unchecked**.

@@ -30,7 +30,7 @@ with `F_1 = F_2 = 1` the Fibonacci numbers (A000045) and `P_F(w)` the parity ter
 
 **Fibonacci towers.** Remove the bottom row, as for every castle ([[castle-counting-formula](pages/castle-counting-formula.md)]). What is left of a Fibonacci castle is its tower, the second row `(c_1 − 1, …, c_w − 1)`, a string of 0s and 1s with a 1 at each height-2 column. A **Fibonacci tower** is a string of 0s and 1s with no two adjacent 1s; the empty string is the one Fibonacci tower of length 0. Every Fibonacci tower of length `w` except the all-zero string is the tower of exactly one Fibonacci castle. The all-zero string would give the flat row `(1, …, 1)`, which has no column at height 2.
 
-**The Fibonacci word.** The infinite Fibonacci word, the limit of the substitution `0 → 01`, `1 → 0` started from `0`, is `0, 1, 0, 0, 1, 0, 1, 0, 0, 1, …` (A003849).[^a003849] It has no two adjacent 1s, so each of its prefixes is a Fibonacci tower; the prefix of length 56 is the tower of a Fibonacci castle of width 56. Its height-2 columns, counted from 1, are at `⌊kφ²⌋ = 2, 5, 7, 10, 13, …`, the upper Wythoff sequence (A001950).[^a001950] That castle has 21 height-2 columns and therefore 22 blocks, an even number.[^exec]
+**The Fibonacci word.** The infinite Fibonacci word, the limit of the substitution `0 → 01`, `1 → 0` started from `0`, is `0, 1, 0, 0, 1, 0, 1, 0, 0, 1, …` (A003849).[^a003849] It has no two adjacent 1s, so each of its prefixes is a Fibonacci tower; the prefix of length 56 is the tower of a Fibonacci castle of width 56. Its height-2 columns, counted from 1, are at `⌊kφ²⌋ = 2, 5, 7, 10, 13, …`, the upper Wythoff sequence (A001950).[^a001950] That castle has 21 height-2 columns and therefore 22 blocks, an even number.[^exec] It is a Fibonacci-word castle, and so a balanced castle ([[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)]).
 
 ## Counting Fibonacci castles
 
@@ -194,6 +194,7 @@ print(tower.count("1") + 1)          # 22 blocks
 
 ## Related Concepts
 
+- [[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)] - sub-families cut out by rules on the Fibonacci tower: Fibonacci-word and balanced castles (the Sturmian chain), and the gap-length families, maximal (Padovan), spaced (Narayana's cows) and `(d, k)`-RLL castles.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - the shape catalogue, where the Fibonacci castle sits beside the ridge castles (Axis 2).
 - [[castle-notation](pages/castle-notation.md)] - the Fibonacci castle entry and `P_F`.
 - [[castle-graph](pages/castle-graph.md)], [[tree-castle-by-area](pages/tree-castle-by-area.md)] - tree castles, of which Fibonacci castles are the exact-height-2 case.
