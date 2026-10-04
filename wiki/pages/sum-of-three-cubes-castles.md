@@ -5,7 +5,7 @@ summary: Which castle counts are sums of three cubes. Signed cubes - under Heath
 tags: [analysis, castle, sum-of-cubes, mod-9, periodicity, kitamasa, closed-form, height-2, perfect-numbers, taxicab, booker-sutherland, worked-example, computation]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502]
 created: 2026-09-20
-updated: 2026-09-28
+updated: 2026-10-04
 ---
 
 # Sum of three cubes castles
@@ -88,7 +88,7 @@ odd(3,h) = 5 C(h,2) + 1    (h odd)        C(h,2)           (h even)
 A(3,h)   = 6 C(h,2) + 1 = 3h^2 - 3h + 1 = h^3 - (h-1)^3
 ```
 
-So the width-3 even counts at odd height are the **triangular numbers** `1, 3, 10, 21, 36, 55, ...` (A000217), and at even height `6, 31, 76, 141, 226, 331, ...`, which is `F(3, 2m) = 10m^2 - 5m + 1 = 5 Hex(m) + 1` with `Hex(m) = m(2m-1)` the hexagonal numbers. The odd column's other half, `odd(3, 2n+1) = 10n^2 + 5n + 1 = 1, 16, 51, 106, 181, 276, ...`, is OEIS A080860 exactly; `F(3, 2m)` is the same quadratic at negative index, `A080860(-m)`, and is not in OEIS as a sequence (searched 2026-09-20 by terms and by formula), a novel candidate for the [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].[^3] Triangular numbers are `0, 1, 3, 6 (mod 9)` and never `4, 5`, so every triangular castle count passes the residue test; `5 C(h,2) + 1` is `4 (mod 9)` iff `C(h,2) = 6 (mod 9)` iff `h = 4, 6 (mod 9)`, and is never `5`. Therefore
+So the width-3 even counts at odd height are the triangular numbers of even index, `F(3, 2m+1) = C(2m+1, 2) = m(2m+1) = 0, 3, 10, 21, 36, 55, ...`, the second hexagonal numbers A014105 (every other term of the triangular numbers A000217), and at even height `6, 31, 76, 141, 226, 331, ...`, which is `F(3, 2m) = 10m^2 - 5m + 1 = 5 Hex(m) + 1` with `Hex(m) = m(2m-1)` the hexagonal numbers. The odd column's other half, `odd(3, 2n+1) = 10n^2 + 5n + 1 = 1, 16, 51, 106, 181, 276, ...`, is OEIS A080860 exactly; `F(3, 2m)` is the same quadratic at negative index, `A080860(-m)`, and is not in OEIS as a sequence (searched 2026-09-20 by terms and by formula), a novel candidate for the [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].[^3] Triangular numbers are `0, 1, 3, 6 (mod 9)` and never `4, 5`, so every triangular castle count passes the residue test; `5 C(h,2) + 1` is `4 (mod 9)` iff `C(h,2) = 6 (mod 9)` iff `h = 4, 6 (mod 9)`, and is never `5`. Therefore
 
 - `F(3,h)` is excluded iff `h = 4, 6 (mod 18)` (`F(3,4) = 31`, `F(3,6) = 76`, `F(3,22) = 1156`, `F(3,24) = 1381`, ...),
 - `odd(3,h)` is excluded iff `h = 13, 15 (mod 18)`,

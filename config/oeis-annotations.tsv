@@ -90,6 +90,7 @@ A008302	supporting	Triangle of Mahonian numbers T(n,k): coefficients in expansio
 A009545	count	Expansion of e.g.f. sin(x)*exp(x).	-P_odd(1,L): even-block minus odd-block castles of width L and height 2 whose last column reaches height 2
 A010892	supporting	Inverse of 6th cyclotomic polynomial. A period 6 sequence.	period-6 cyclotomic (P_odd(4,L)/2^L)
 A011782	count	Coefficients of expansion of (1-x)/(1-2*x) in powers of x.	all castles by area (unrestricted compositions): 2^(n-1)
+A014105	count	Second hexagonal numbers: a(n) = n*(2*n + 1).	even-block castles of width 3 and odd height: F(3, 2m+1) = A014105(m)
 A014448	metallic	Even Lucas numbers: a(n) = L(3*n).	even Lucas: trace for copper (a=4)
 A014493	metallic	Odd triangular numbers.	odd triangular numbers (row of A352116)
 A015448	metallic	a(0) = 1, a(1) = 1, and a(n) = 4*a(n-1) + a(n-2) for n >= 2.	copper free strip (`h=5`), `=F_{3n+5}` trisection, growth `φ³`
