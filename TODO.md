@@ -21,7 +21,20 @@ See `wiki/pages/oeis-cross-referencing.md`.
 
 - [x] **Tier 1 (submit first):** A038505 / A038503 / A146559 — the height-2 hyperbolic
   interlink (`raw/oeis-pe502/oeis-xref-draft.md`;
-  `wiki/pages/oeis-height2-hyperbolic-castles.md`). Add the `Cf. A000225` link.
+  `wiki/pages/oeis-height2-hyperbolic-castles.md`). **Approved and live** (checked
+  2026-10-04: A038503 #93 and A038505 #136, Oct 03 2026; A146559 #152, Sep 28 2026):
+  castle comments, the A000225 decomposition formulas, `A146559 = A038503 − A038505`,
+  `Cf. A000225` on both, the PE 502 link on A038505. Wiki pages updated to match.
+  - [x] Typo in the live A038505 comment: "(Project Euler, **Project** 502: Counting
+    Castles)" → "Problem 502". Correction submitted 2026-10-04.
+  - [ ] A146559 castle comment `a(n) = P(1, n−1)` (signed tower count at `k = 1`), not yet
+    submitted. Checked draft (Comment only): `raw/oeis-pe502/xrefs/A146559-signed.md`
+    (`wiki/pages/castle-sequence-catalogue.md`, `wiki/pages/signed-tower-count.md`).
+  - [ ] Companion A009545 (`Im((1+i)^n)`, e.g.f. `sin(x)exp(x)`): castle comment from the
+    `k = 1` parity split, `A009545(w) = −P_odd(1,w)` = (even-block − odd-block castles of
+    width `w`, exact height 2, last column at height 2); verified `w = 0..14` on 2026-10-04,
+    no castle text on the live entry (#193, Jul 27 2026). Draft not yet written
+    (`wiki/pages/signed-tower-count.md`, `wiki/pages/tower-parity-sectors.md`).
 - [ ] **Tier 2:** tower/heap = Narayana-polynomial interpretation on A005408 / A005891 /
   A063490 / A160747, and the numerator formula on A001263
   (`raw/oeis-pe502/xrefs/*-tower.md`; `wiki/pages/tower-narayana-polynomial.md`).
