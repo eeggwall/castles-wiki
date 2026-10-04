@@ -42,7 +42,7 @@ skyline" phrasing.
 
 ## Flags
 
-1. Rewrite in own words; sign `- _Firstname Lastname_, Mon D YYYY`.
+1. Rewrite in own words; sign `- _Firstname Lastname_, Mon DD YYYY`.
 2. Small comment on a dense entry.  The parity refinements
    (`nc_even`, `nc_odd`) are separate new submissions -- do NOT propose them here.
 3. Verify A115981 does not already carry a PE 502 / castle phrasing.

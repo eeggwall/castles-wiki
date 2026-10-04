@@ -5,7 +5,7 @@ Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md
 Checked against the live entry 2026-10-04 (A146559 revision #152, Sep 28 2026).
 Rewritten 2026-10-04 to state every castle count at exact height 2.
 
-**SUBMITTED for review 2026-10-04** as "Chaz Reid" (Comment only). Final text, reworded and
+**SUBMITTED for review 2026-10-04** as "Chaz Reid" (Comment only; resubmitted the same day with the date written `Oct 04 2026`). Final text, reworded and
 signed by a person; the draft below is kept as the pre-submission record:
 
 > Among the castle polyominoes of width n-1 and height 2, a(n) - 1 is the number with an
@@ -13,7 +13,7 @@ signed by a person; the draft below is kept as the pre-submission record:
 > Problem 502: Counting Castles), for n >= 2. Here a castle is a stack of unit blocks on a
 > grid, whose bottom row is a single block of length n-1, whose higher blocks have height 1
 > and rest on the blocks below without overhang, whose maximum height is 2, and in which
-> neighboring blocks of the same row are separated by a gap. - _Chaz Reid_, Oct 4 2026
+> neighboring blocks of the same row are separated by a gap. - _Chaz Reid_, Oct 04 2026
 
 ## Identity (verified)
 
@@ -97,7 +97,7 @@ are not in OEIS (searched 2026-09-18) and are on the new-sequence list.
 
 ## Flags
 
-1. Rewrite in own words and sign `- _Chaz Reid_, Mon D YYYY` with the actual submission
+1. Rewrite in own words and sign `- _Chaz Reid_, Mon DD YYYY` with the actual submission
    date (see ../SUBMISSION-NOTES.md §3).
 2. Every castle count in the comment is at exact height 2 ("height 2", "maximum height
    is 2"). Do not write "height at most 2".

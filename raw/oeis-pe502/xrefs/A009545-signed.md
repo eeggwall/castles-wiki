@@ -102,7 +102,7 @@ A038503 / A038505 families.
 
 ## Flags
 
-1. Rewrite in own words and sign `- _Chaz Reid_, Mon D YYYY` with the actual submission
+1. Rewrite in own words and sign `- _Chaz Reid_, Mon DD YYYY` with the actual submission
    date (see ../SUBMISSION-NOTES.md §3).
 2. Every castle in the comment is at exact height 2 ("height 2", "maximum height is 2").
    Do not write "height at most 2".

@@ -42,7 +42,7 @@ and does not warrant a separate formula.
 
 ## Flags
 
-1. Rewrite in own words; sign `- _Firstname Lastname_, Mon D YYYY` (replace placeholder
+1. Rewrite in own words; sign `- _Firstname Lastname_, Mon DD YYYY` (replace placeholder
    `_Charles Reid_, Sep 05 2026`).
 2. This is a small addition on a dense entry.  Do NOT propose the parity-refinement
    sequences (even / odd castles by area, and their convex versions) on this entry —

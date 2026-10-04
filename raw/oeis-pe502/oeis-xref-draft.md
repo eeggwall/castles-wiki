@@ -155,7 +155,7 @@ existing list, unchanged):
 
 1. **Own wording + attribution.** OEIS requires human authorship. Rework the
    sentences into your own words. Sign each comment/formula line
-   ` - _Firstname Lastname_, Mon D YYYY` — replace the placeholder
+   ` - _Firstname Lastname_, Mon DD YYYY` — replace the placeholder
    `_Charles Reid_, Sep 05 2026` with the actual OEIS account name and the actual
    submission date.  Do not submit the text verbatim as AI output.
 

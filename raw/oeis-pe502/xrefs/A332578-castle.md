@@ -39,7 +39,7 @@ mostly for the Project Euler cross-reference.
 
 ## Flags
 
-1. Rewrite in own words; sign `- _Firstname Lastname_, Mon D YYYY`.
+1. Rewrite in own words; sign `- _Firstname Lastname_, Mon DD YYYY`.
 2. This is a small addition on a dense entry.  Do NOT propose the strict-valley
    sequence or the parity refinements on this entry — those are separate new
    submissions (see `../vein9b-concave.md`).

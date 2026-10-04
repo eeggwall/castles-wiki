@@ -30,8 +30,10 @@ sequence).  Unless the draft explicitly says otherwise:
 ## 3. Signature / attribution (required on every added line)
 
 - Every comment/formula line you add MUST be signed by a human author, OEIS style:
-      `- _Firstname Lastname_, Mon D YYYY`      (no leading zero on the day)
+      `- _Firstname Lastname_, Mon DD YYYY`      (two-digit day: `Oct 04 2026`, not `Oct 4 2026`)
   Example from OEIS: `- _N. J. A. Sloane_, Jul 15 2000`.
+  The day always has two digits: `Sep 08 2026`, `Oct 04 2026`. An edit signed `Oct 4 2026`
+  had to be resubmitted (A146559, 2026-10-04).
 - In the drafts, the literal `_Charles Reid_, Sep 05 2026` is a PLACEHOLDER.  Replace it
   with the actual OEIS account name and the actual submission date.  Do not paste it
   verbatim without checking the account name and date.

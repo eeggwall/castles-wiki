@@ -32,7 +32,7 @@ See `wiki/pages/oeis-cross-referencing.md`.
     statement `a(n) − 1` = odd-block castles of width `n−1` and height 2, same definition
     sentence as A038505: `raw/oeis-pe502/xrefs/A038503-exact-height.md`.
   - [~] A146559 castle comment `a(n) = P(1, n−1)` (signed tower count at `k = 1`), submitted
-    2026-10-04, awaiting approval. Checked draft (Comment only, exact height: `a(n) − 1` =
+    2026-10-04 (resubmitted with the date as `Oct 04 2026`), awaiting approval. Checked draft (Comment only, exact height: `a(n) − 1` =
     odd − even castles of height 2): `raw/oeis-pe502/xrefs/A146559-signed.md`
     (`wiki/pages/castle-sequence-catalogue.md`, `wiki/pages/signed-tower-count.md`).
   - [ ] Companion A009545 (`Im((1+i)^n)`, e.g.f. `sin(x)exp(x)`): castle comment from the
@@ -42,6 +42,11 @@ See `wiki/pages/oeis-cross-referencing.md`.
     `n`, no `− 1`, lower priority, after the A038503/A146559 edits clear):
     `raw/oeis-pe502/xrefs/A009545-signed.md`
     (`wiki/pages/signed-tower-count.md`, `wiki/pages/tower-parity-sectors.md`).
+    OEIS allows 3 open edits; submit once the A038503 and A146559 edits clear.
+  - [ ] **A077868 and A000071** (planned for the week of 2026-10-05): castle comments for the
+    tree castles of height 2 — by area `A` (cells), the term `A077868(A − 2)`; by width `w`,
+    `F_{w+2} − 1`, the term `A000071(w+2)`. Brute-force verified 2026-10-04
+    (`wiki/pages/tree-castle-by-area.md`, `wiki/pages/castle-graph.md`). Drafts not written.
 - [ ] **Tier 2:** tower/heap = Narayana-polynomial interpretation on A005408 / A005891 /
   A063490 / A160747, and the numerator formula on A001263
   (`raw/oeis-pe502/xrefs/*-tower.md`; `wiki/pages/tower-narayana-polynomial.md`).

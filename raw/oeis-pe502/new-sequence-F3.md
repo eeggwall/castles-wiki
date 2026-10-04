@@ -121,7 +121,7 @@ def a_brute(n):
 ## Flags for Charles before submitting
 
 1. Rewrite the Name and Comment in your own words and sign
-   `- _Firstname Lastname_, Mon D YYYY` (replace the placeholder `_Charles Reid_,
+   `- _Firstname Lastname_, Mon DD YYYY` (replace the placeholder `_Charles Reid_,
    Sep 05 2026` with the actual account name and date; OEIS forbids AI-authored text).
 2. OEIS Style Sheet: use `Sum_{i=2..n}`, `binomial(n,k)`, plain ASCII — never TeX/`\sum`/
    `\binom`, no Mathematica.
