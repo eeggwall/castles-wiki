@@ -113,7 +113,7 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 - Thesis: sweep the brute enumerator, look up every sequence, and treat matches as new castle interpretations to submit.
 - Status: delivered. Seminar page: [oeis-mining-seminar](wiki/pages/oeis-mining-seminar.md).
 - Spine: [oeis-mining-seminar](wiki/pages/oeis-mining-seminar.md) (the seminar itself), then [oeis-cross-referencing](wiki/pages/oeis-cross-referencing.md), [oeis-mining-pe502](wiki/pages/oeis-mining-pe502.md), [oeis-index](wiki/pages/oeis-index.md), [oeis-height2-hyperbolic-castles](wiki/pages/oeis-height2-hyperbolic-castles.md), [castle-eigenvalue-oeis-crosswalk](wiki/pages/castle-eigenvalue-oeis-crosswalk.md), [new-sequence-fw3](wiki/pages/new-sequence-fw3.md), [odd-castles-and-block-tables](wiki/pages/odd-castles-and-block-tables.md).
-- Open items feeding it: from N, the `h>=5` tree-castle-by-area rows. The six unfiled tower-spacing cells on [tower-spacing-castles](wiki/pages/tower-spacing-castles.md) are submission material. Submissions themselves are human action and stay in `TODO.md`.
+- Open items feeding it: from N, the `h>=5` tree-castle-by-area rows. The six unfiled tower-spacing cells on [tower-spacing-castles](wiki/pages/tower-spacing-castles.md) are submission material. Submissions themselves are human action and stay in `OEIS.md`.
 
 ### Arc 8. One bit: the parity clause as information
 - Thesis: the even-block clause is exactly one bit, and the entropy view re-reads every growth constant as a topological entropy.
@@ -299,7 +299,7 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 
 ### Q Division (q-numbers - castles by area)
 
-- [ ] **Convex to valley bijection** - convex and valley castles are equinumerous in every `(w,h)` cell (both `C(2h+w-3, w-1)`) under a peak/valley mirror; write up the explicit bijection. Imported from TODO.
+- [ ] **Convex to valley bijection** - convex and valley castles are equinumerous in every `(w,h)` cell (both `C(2h+w-3, w-1)`) under a peak/valley mirror; write up the explicit bijection. Imported from OEIS.
 - [ ] **`h=3` bounded-height tree-vs-all bijection** - a bijection between bounded-height `h=3` tree castles by area and bounded-height `h=3` all castles by area.
 - [ ] **Descents Narayana bijection** - prove that towers of width `w` with `b` blocks and `k-1` descents number `N(w,k) C(b+w-k, w-1)` (verified `w, b ≤ 7` on [narayana-numbers](wiki/pages/narayana-numbers.md)), ideally by a bijection to (width-`k` parallelogram polyomino of semi-perimeter `w+1`, weak composition) through [parallelogram-polyomino-dyck-bijection](wiki/pages/parallelogram-polyomino-dyck-bijection.md).
 - [ ] **Convex / unimodal exact enumeration with parity** - the U/R/D route was attempted and failed; the area-graded split is done on [castle-by-area](wiki/pages/castle-by-area.md), the exact `(w,h)` enumeration remains open.

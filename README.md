@@ -37,7 +37,7 @@ written as a thread to follow; each ingested source is an entry point into a nei
 domain. See [`wiki/overview.md`](wiki/overview.md) for the current synthesis,
 [`IDEAS.md`](IDEAS.md) for the seminar program and the open and done research items by
 Department, [`DEPARTMENTS.md`](DEPARTMENTS.md) for what each Department covers and how they
-cross, and [`TODO.md`](TODO.md) for OEIS submissions and pending housekeeping.
+cross, and [`OEIS.md`](OEIS.md) for OEIS submissions and pending housekeeping.
 
 ## Quick start (fresh clone → asking questions)
 
@@ -153,7 +153,7 @@ files, and notes — they matter when you're ingesting MediaWiki pages or PDFs.
 SCHEMA.md          conventions + how the wiki tools locate this wiki (do not move/delete)
 IDEAS.md           project and seminar ideas: the seminar arcs, then open and done items by Department
 DEPARTMENTS.md     the nine Departments (R E N Z Q S T F X): descriptors, conceptual coverage, crossovers
-TODO.md            OEIS submissions (human action), ingestion queue, housekeeping
+OEIS.md            OEIS submissions (human action), ingestion queue, housekeeping
 config/            link-style rules (markdown: [[slug](pages/slug.md)]) + oeis-annotations.tsv
 bin/               stdlib helper scripts + the pre-commit hook (see Quick start)
 raw/               immutable source documents (wikitext, notes, cached refs) — never edited

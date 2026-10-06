@@ -1,4 +1,4 @@
-# Castles wiki — open threads & TODO
+# Castles wiki — OEIS open threads & TODO
 
 A running tracker of pending human actions (OEIS submissions, ingestion queue,
 housekeeping) for the PE 502 castles wiki. This is a **hand-maintained** file (not a
