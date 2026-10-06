@@ -5,7 +5,7 @@ summary: C_n = binomial(2n,n)/(n+1) (1,1,2,5,14,42,…) — the counting sequenc
 tags: [concept, catalan, dyck, narayana, generating-functions, combinatorics, symbolic-method]
 sources: [catalan-numbers, analytic-combinatorics-ch1-ogfs]
 created: 2026-09-13
-updated: 2026-10-02
+updated: 2026-10-06
 ---
 
 # Catalan numbers
@@ -45,6 +45,7 @@ Catalan numbers are the reference point for two castle threads:
 
 - [[narayana-numbers](pages/narayana-numbers.md)] — the refinement `∑_k N(n,k) = C_n`; where Catalan enters the castle (the tower).
 - [[q-catalan-numbers](pages/q-catalan-numbers.md)] — the q-deformation; the area-graded castle thread.
+- [[marin-2024-polyominoes-in-rectangle](pages/marin-2024-polyominoes-in-rectangle.md)] — `C_m` counts the non-crossing ways to join a row's `m` runs into components, the factor that sizes the row automaton for polyominoes in a rectangle.
 - [[deutsch-elizalde-2017-bargraphs-dyck-paths](pages/deutsch-elizalde-2017-bargraphs-dyck-paths.md)] — castles with semiperimeter minus peaks equal to `m` number `C_m`, through a bijection with Dyck paths.
 - [[motzkin-numbers](pages/motzkin-numbers.md)] — the up/flat/down cousin.
 - [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] — why the castle count is binomial, not Catalan.

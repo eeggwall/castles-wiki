@@ -5,7 +5,7 @@ summary: The charlesreid1.com polyomino taxonomy — Ferrers, staircase, bar-cha
 tags: [polyomino, taxonomy, column-convex, ferrers, catalan, q-analog, stack-polyomino, source]
 sources: [polyominoes, bousquet-melou-fedou-1995-convex-polyominoes, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-06
 ---
 
 # Polyominoes
@@ -54,6 +54,7 @@ Two of the named families lead to other pages: **Ferrers** and **staircase** pol
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)], [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] — the papers on these families; the last gives the convex growth constant `2.309138...`.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] — bar-chart (bar-graph) polygons by width, perimeter and area; with `y` on vertical steps their equation (3.11) is the castle GF by blocks.
 - [[castle-strip](pages/castle-strip.md)] — a castle read column by column under a neighbor rule; the transfer-matrix form of gluing columns side by side.
+- [[inscribed-polyomino](pages/inscribed-polyomino.md)] / [[marin-2024-polyominoes-in-rectangle](pages/marin-2024-polyominoes-in-rectangle.md)] — all fixed polyominoes with bounding box `w × h`, counted by a row automaton; the castles are its bargraphs.
 
 Related topics: [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/lattice-paths.md)].
 

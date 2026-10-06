@@ -101,6 +101,9 @@ A023431	count	Generalized Catalan Numbers x^3*A(x)^2 + (x-1)*A(x) + 1 =0.	Motzki
 A023432	supporting	Number of Dyck n-paths with ascents and descents of length equal to 1 (mod 3).	strictly alternating bargraphs by semi-perimeter correspond to Motzkin paths with no UD, UU, DD (Deutsch-Elizalde §4.2)
 A027907	supporting	Triangle of trinomial coefficients T(n,k) (n >= 0, 0 <= k <= 2*n), read by rows: n-th row is obtained by expanding (1 + x + x^2)^n.	unconstrained U/R/D words by final height, the ceiling the castle grammar prunes
 A033887	metallic	a(n) = Fibonacci(3*n + 1).	F(3n+1): copper-delta convergent numerators
+A034182	supporting	Number of not-necessarily-symmetric n X 2 crossword puzzle grids.	polyominoes with bounding box 2 × n (`I(2, n) = Q_{n+1} − 2`)
+A034184	supporting	Not necessarily symmetric n X 3 crossword puzzle grids.	polyominoes with bounding box 3 × n
+A034187	supporting	Not necessarily symmetric n X 4 crossword puzzle grids.	polyominoes with bounding box 4 × n
 A034839	supporting	Triangular array formed by taking every other term of each row of Pascal's triangle.	Pascal every-other row (binomial identity)
 A036038	supporting	Triangle T(n,k) read by rows: multinomial coefficients for the partitions of n listed in Abramowitz-Stegun order, 1 <= k <= A000041(n).	multiset-permutation counts (Knuth Vol. 1 / Vol. 3)
 A038503	count	Sum of every 4th entry of row n in Pascal's triangle, starting at "n choose 0".	odd(w,2) + 1: odd-block height-2 castles (castle comment on OEIS, Oct 2026)
@@ -135,6 +138,7 @@ A063490	count	a(n) = (2*n - 1)*(7*n^2 - 7*n + 6)/6.	tower Narayana coefficient r
 A063496	count	a(n) = (2*n - 1)*(8*n^2 - 8*n + 3)/3.	P(2m,4) bisection: C_3 lattice crystal-ball sequence
 A067675	supporting	Number of fixed convex polyominoes with n cells.	convex polyominoes by area; the convex castle with a floating base
 A067676	supporting	Number of fixed directed convex polyominoes with n cells.	directed convex polyominoes by area
+A069010	supporting	Number of runs of 1's in the binary representation of n.	runs in a row, the Catalan index in Marin's state count
 A077868	count	Expansion of 1/((1-x)*(1-x-x^3)).	tree castles of height 2 with n cells: the term A077868(n-2), n >= 2; spaced Fibonacci castles of width w: A077868(w-1)
 A079816	count	Number of permutations satisfying -k <= p(i)-i <= r and p(i)-i not in I, i=1..n, with k=1, r=5, I={1}.	tree castles of height <= 5 by area: A079816(A+1), compositions of A+1 into {1,3,4,5,6}
 A080860	count	a(n) = 10*n^2 + 5*n + 1.	odd(3, 2n+1) = 5 C(2n+1, 2) + 1 exactly; its negative-index half 10m^2 - 5m + 1 is F(3, 2m) = 6, 31, 76, 141, ..., not in OEIS (novel candidate)
@@ -157,6 +161,7 @@ A107920	supporting	Lucas and Lehmer numbers with parameters (1 +- sqrt(-7))/2.	L
 A112742	count	a(n) = n^2*(n^2 - 1)/3.	A_5(k): alternating part of P(k,5) quasi-polynomial
 A115981	count	The number of compositions of n which cannot be viewed as stacks.	non-convex castles by area
 A132393	supporting	Triangle of unsigned Stirling numbers of the first kind (see A048994), read by rows, T(n,k) for 0 <= k <= n.	[n,1] = (n−1)!, the cycle-count anchor of the castle triad
+A140662	supporting	Number of possible column states for self-avoiding polygons in a slit of width n.	state count of a polygon automaton, cited beside Marin's
 A146559	count	Expansion of (1-x)/(1 - 2*x + 2*x^2).	P(1,L): signed tower count at k=1, Re((1+i)^{L+1}); = A038503 − A038505 (on OEIS)
 A156638	supporting	Numbers that are congruent to 4 or 5 mod 9.	the excluded residues; F(w,2) lands here iff w = 9 (mod 12), F(3,h) iff h = 4, 6 (mod 18), A(3m,h) never
 A160747	count	Expansion of (1 + 10*x + 20*x^2 + 10*x^3 + x^4)/(1-x)^5.	tower Narayana coefficient row
@@ -193,6 +198,7 @@ A273342	supporting	Triangle read by rows: T(n,k) is the number of bargraphs of s
 A273905	count	Number of symmetric bargraphs having semiperimeter n (n>=2).	palindromic castles by semi-perimeter (symmetric bargraphs, Deutsch-Elizalde §4.1)
 A276068	supporting	Sum of the lengths of the first descents in all bargraphs having semiperimeter n (n>=2). A descent is a maximal sequence of consecutive down steps.	total first-descent length over bargraphs of each semi-perimeter; last of the Deutsch-Elizalde statistic range A273342-A276068
 A276994	supporting	Decimal expansion of the Klarner-Rivest polyomino constant.	growth constant 2.30913... of parallelogram, directed convex and convex polyominoes by area
+A292357	supporting	Array read by antidiagonals: T(m,n) is the number of fixed polyominoes that have a width of m and height of n.	`I(w, h)`, the inscribed polyominoes; castles are its bargraphs
 A308435	supporting	Peak- and valleyless Motzkin meanders.	cornerless Motzkin meanders by length: tower-word prefixes, a castle interrupted mid-build (Prodinger 2025)
 A319591	supporting	Number of nonnegative integer matrices with n columns and any number of nonzero distinct rows with every column summing to 3 up to permutation of rows.	Bender's c*((0,0,n)): every element three times, no repeated blocks
 A322487	supporting	Number of (3*n) X n matrices with nonnegative integer entries and each column sum being 3 up to permutation of rows.	Bender's v*((0,0,n)): all partitions of a multiset with every element three times
@@ -206,3 +212,4 @@ A342528	count	Number of compositions with alternating parts weakly decreasing (o
 A343386	count	Number of odd Motzkin n-paths, i.e., Motzkin n-paths with an odd number of up steps.	even-block Motzkin-path castles, F on the Motzkin strip (odd Motzkin paths), `=a(w-1)`
 A343773	count	Excess of the number of even Motzkin n-paths (A107587) over the odd ones (A343386).	signed Motzkin-path castles Σ(-1)^blocks `= -a(w-1)`; Gaussian growth |1±2i| = √5
 A352116	count	Partial sums of the odd triangular numbers (A014493).	|P(k,4)|: partial sums of odd triangular numbers
+A378947	supporting	Number of row states in an automaton for the enumeration of the number of fixed polyominoes with bounding box of width n.	states of Marin's row automaton; the castle strip needs h

@@ -5,7 +5,7 @@ summary: M_n counts non-crossing chords on n points and Motzkin (up/flat/down) l
 tags: [concept, motzkin, lattice-paths, q-analog, generating-functions]
 sources: [motzkin-numbers, steep-polyominoes-q-motzkin-bessel]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-06
 ---
 
 # Motzkin numbers
@@ -45,6 +45,7 @@ The relevant thread: the **q-analog `M_n(q)`** refines the Motzkin numbers and a
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the castle's three-letter grammar, the same arity as Motzkin paths.
 - [[tower-word-language](pages/tower-word-language.md)] — the tower words, a Motzkin-path language with the same U/R/D step set.
 - [[dyck-words](pages/dyck-words.md)] — steep Dyck words of length 2n are counted by the (n−1)th Motzkin number.
+- [[marin-2024-polyominoes-in-rectangle](pages/marin-2024-polyominoes-in-rectangle.md)] — the row automaton for polyominoes with bounding box of width `w` has `M_{w+1} + 2M_w + M_{w−1} − 3` states (A378947).
 - [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] — the central trinomial coefficients A002426 count unconstrained `U/R/D` words returning to height 0; Motzkin numbers are the ballot-restricted version.
 
 ## Footnotes

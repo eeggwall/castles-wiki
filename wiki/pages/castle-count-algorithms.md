@@ -5,7 +5,7 @@ summary: The two computational paths for F(w,h) — a rational-function path for
 tags: [analysis, castle, algorithms, generating-functions, kitamasa, berlekamp-massey]
 sources: [project-euler-502-solution, project-euler-502-implementation-notes]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-06
 ---
 
 # Castle-count algorithms
@@ -71,6 +71,7 @@ For small *w, h* the same recurrence runs over integers with no modular reductio
 - [[castle-counting-function](pages/castle-counting-function.md)] — the target values `F(10^12,100)`, `F(10000,10000)`, `F(100,10^12)`.
 - [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the canonical form underlying the recurrences.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] — the `num_k/den_k` catalogue behind the rational-function path.
+- [[marin-2024-polyominoes-in-rectangle](pages/marin-2024-polyominoes-in-rectangle.md)] — the same split for polyominoes with bounding box `w × h`: recurrences at widths 3 and 4 found from data, then proved to exist for every width by a row automaton.
 
 ## Footnotes
 

@@ -5,7 +5,7 @@ summary: A polyomino that is both column-convex and row-convex - equivalently a 
 tags: [concept, polyomino, convex, column-convex, row-convex, ferrers, stack-polyomino, parallelogram-polyomino, directed-convex, q-analog]
 sources: [column-convex-polygon-enumeration, counting-horizontally-convex-polyominoes, analytic-combinatorics-ch1-ogfs, bousquet-melou-fedou-1995-convex-polyominoes, klarner-rivest-1974-convex-n-ominoes, bender-1974-convex-n-ominoes, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-22
-updated: 2026-09-28
+updated: 2026-10-06
 ---
 
 # Convex polyomino
@@ -64,6 +64,7 @@ The trapezoid series converges out to radius 1 and the parallelogram series only
 - [[convex-castle](pages/convex-castle.md)], [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - the stack row of the table under its castle name and its symbolic-method generating function.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - Bousquet-Mélou's add-a-column method, which recovers the convex-polyomino generating functions.
 - [[polyominoes](pages/polyominoes.md)] - the wider taxonomy.
+- [[inscribed-polyomino](pages/inscribed-polyomino.md)] - all polyominoes with bounding box exactly `w × h` (A292357), the ambient count for the convex ones at fixed width and height.
 - [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - the trisection and the growth constant `2.309138...`.
 - [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] - the trapezoid + parallelogram + trapezoid split, the growth constant, and the typical 45-degree rod shape.
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - the perimeter count and the word coding of the three pieces.

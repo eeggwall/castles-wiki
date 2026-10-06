@@ -5,7 +5,7 @@ summary: The wiki's symbol conventions in one place, including the sandpile symb
 tags: [concept, castle, notation, reference, signed-tower-count, castle-sign, pedagogy]
 sources: [project-euler-502-solution, project-euler-502-representations, aocp-generating-partitions]
 created: 2026-09-26
-updated: 2026-10-04
+updated: 2026-10-06
 ---
 
 # Castle notation - castles, towers, and the parity term
@@ -225,6 +225,7 @@ These are local notations on specific pages and are unrelated to the tower count
 | Algorithm H | three different algorithms in TAOCP Vol. 4A, since Knuth's letters restart in each section: §7.2.1.1 (the loopless Gray algorithm), §7.2.1.4 (the Hindenburg algorithm), §7.2.1.5 (restricted growth strings for set partitions, not used on the wiki). The wiki uses the two names, never bare "Algorithm H" | [[castle-gray-code](pages/castle-gray-code.md)], [[aocp-generating-partitions](pages/aocp-generating-partitions.md)] |
 | `p`, `p(n)`, `pd(n)` | the entry probability of a Bernoulli random rule (Sampling symbols above) vs the partition numbers and distinct-part partition numbers; Knuth's `q(n)` for distinct parts is written `pd(n)` because `q` marks area | [[aocp-generating-partitions](pages/aocp-generating-partitions.md)] |
 | `N` | also `h − 1`, the largest rise of one side, on [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] | [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] |
+| `I(w, h)`, `G_w(x)`, `𝒜_w` | the number of polyominoes inscribed in a `w × h` rectangle (bounding box exactly `w × h`, A292357, symmetric in `w, h`); its generating function `Σ_h I(w, h) x^h` in the height at fixed width; Marin's row automaton, script because `A(w, h)` is the castle count. Marin writes the width `b` and the automaton `A_b`; both are translated. `I(w, h)` is not the inversion count `I_n(k)`, and `G_w` is not its GF `G_n(z)` ([[permutation-inversions](pages/permutation-inversions.md)]) | [[inscribed-polyomino](pages/inscribed-polyomino.md)], [[marin-2024-polyominoes-in-rectangle](pages/marin-2024-polyominoes-in-rectangle.md)] |
 
 ## Related Concepts
 

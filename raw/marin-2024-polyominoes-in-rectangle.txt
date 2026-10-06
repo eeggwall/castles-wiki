@@ -1,0 +1,217 @@
+                 Counting Polyominoes in a Rectangle b × h
+
+                                                Louis Marin
+                                               UQAM LACIM
+                                              Montreal, Canada
+                                       marin.louis@courrier.uqam.ca
+
+
+
+
+1    Introduction
+The problem of enumerating polyominoes is known to be a difficult problem since their introduction by
+Golomb [2] and so far, only exhaustive generation computer programs are providing numerical answers.
+Nevertheless, restricted classes of these objects have been successfully enumerated [1, 4].
+     We focus on the problem of counting polyominoes inscribed in a rectangle of size b×h. By inscribed,
+we mean a polyomino that is included in a rectangle of size b × h and that has at least one cell touching
+each side of the rectangle. If we fix b and increase h, the number of inscribed polyominoes satisfies
+a linear recurrence. The sequences for b = 2, 3, 4 are registered on the Online Encyclopedia of Integer
+Sequences (OEIS) (A034182 [3], A034184 [3] and A034187 [3], respectively). The values for 5 ≤ b ≤ 12
+and h = 24 − b are also available (A292357 [3]).
+     The recurrence for b = 2 is known (A034182 [3]) and can be proved using simple combinatorial
+argument.
+                                               2 x3 + 3 x2 − 2 x + 1
+                                        G2 =
+                                              (x − 1) (x2 + 2 x − 1)
+Where Gb is the generating function for the number of polyominoes in a rectangle of size b × h. Recur-
+rences for b = 3, 4 have been discovered empirically but, to the best of our knowledge, no proof seems
+to be available.
+    In this extended abstract, we show how we obtained the formulas for b = 3, 4, 5, 6 and we design a
+method for obtaining the formulas for any b. To do so, we adapt methods described in previous works
+by Zeilberger [4] and by Bousquet-Mélou and Brak [1] in order to build an automaton Ab recognizing
+exactly the polyominoes inscribed in a rectangle of fixed width b and any height h.
+
+
+2    Building Ab
+A polyomino P is a set of edge-connected cells in the square lattice. If P is inscribed in a rectangle of size
+b × h, it can equivalently be described as a stack of h rows of b cells, where each cell is either selected or
+not and the selected cells are edge-connected.
+    Each possible configuration in a row can be encoded by a unique word u ∈ {0, 1}b , |u|1 > 0, a 0
+represents an empty cell, a 1 represents a selected cell, and |u|1 denotes the number of 1’s occurring in
+the word u. A stack of height h of such words encodes a unique polyomino [1]. In the next paragraphs,
+we use the expressions stack of words and stack of rows interchangeably.
+    We wish to build an automaton Ab having the property that, given a stack of words, Ab accepts the
+stack if and only if it encodes a valid polyomino. Without loss of generality, we can assume that the
+
+                                                                          © L. Marin
+S. Brlek and L. Ferrari (Eds.): GASCom 2024
+                                                                          This work is licensed under the
+EPTCS 403, 2024, pp. 145–149, doi:10.4204/EPTCS.403.30
+                                                                          Creative Commons Attribution License.
+146                                                              Counting Polyominoes in a Rectangle b × h
+
+
+automaton Ab operates by reading the stack of words from top to bottom. In order to accept only valid
+stacks, Ab needs to keep track of the connexity with each of its states. If we extend the alphabet of the
+words u to {0, 1, ..., ⌈b/2⌉}, we can label each cell of the row with a 0 if the cell is empty and with the
+value i ∈ {1, ..., ⌈b/2⌉} if the cell belongs to the ith connected component of the polyomino, where the
+connected components are labeled with increasing values from left to right.
+    We also want each state to encode whether the stack read so far has yet touched the left side or the
+right side of the rectangle. For this purpose, we introduce two boolean variables l and r that have value
+T if the leftmost (resp. rightmost) column has at least one selected cell, and F otherwise.
+    From these conventions, we have that each state is of the form:
+
+                     (w, l, r) with w = w1 · · · wb ∈ {0, 1, ..., ⌈b/2⌉}b ,   l, r ∈ {T, F}.
+
+However, not every triplet of this form can suitably represent a valid polyomino row-configuration. We
+introduce the following additional conditions such that only the necessary triplets are kept:
+Empty row: If w = 0b , then l = F and r = F. This row is forbidden in a polyomino but it is convenient
+     to use this encoding as an initial state.
+Inscription: If w1 ̸= 0, then l = T, and if wb ̸= 0, then r = T. This means that P is adjacent to the left
+      (resp. right) side of the bounding rectangle.
+Separation: If wi ̸= 0, then wi−1 , wi+1 ∈ {0, wi }. In other words, if the ith cell of the current row is
+     in P, each of its adjacent cells wi−1 and wi+1 is either empty or belongs to the same connected
+     component, in virtue of the edge-connectedness requirement.
+Non-crossing: Let i, j, k, l ∈ {1, 2, ..., ⌈b/2⌉} with i < k < j < l. Then the conditions wi = w j and
+     wk = wl imply wi = wk = w j = wl . This condition comes from the fact that two distinct connected
+     components cannot have crossed earlier in P.
+    We denote by Tb the set of triplets (w, l, r) that meet those conditions.
+    Now, we still have the possibility that two distinct words in Tb represent the same row-configuration
+in P. For example the words 10201 and 20102 both represent the state where the first cell is connected
+above to the fifth cell, the third is in P but disconnected from the first and fifth cells while the second and
+fourth cells are empty.
+    To ensure injectivity, we introduce an equivalence relation. Let w = w1 w2 ...wb ∈ Ab be a word on the
+alphabet A. For a ∈ A, we denote by Posa (w) the set of all indices i such that wi = a. Then w and w′ are
+called equivalent, and we write w ≡ w′, if the following two conditions are verified:
+  (i) Pos0 (w) = Pos0 (w′)
+ (ii) There exists σ ∈ S⌈b/2⌉ such that Posi (w) = Posσ (i) (w′), for i ∈ {1, 2, ..., ⌈b/2⌉}.
+where S⌈b/2⌉ is the symmetric group on ⌈b/2⌉ elements. For each equivalence class of ≡, we choose as
+representative the minimum element with respect to the lexicographic order, denoted by [w].
+    We are now ready to define our automaton. More formally, let Ab = (Σb , Qb , q0,b , Fb , δb ), where
+(1) Σb = {u ∈ {0, 1}b : |u|1 > 0} is the set of possible words in a stack;
+(2) Qb = {([w], l, r) : [w] ∈ Tb / ≡} is the set of states;
+(3) q0,b = (0b , F, F) is the initial state;
+(4) Fb = {([w], l, r) ∈ Tb : w ∈ {0, 1}b , l = r = T} is the set of accepting states and
+(5) δb : Qb × Σb ⇀ Qb is the transition function described in the next paragraphs.
+L. Marin                                                                                                       147
+
+
+    Observe that a state ([w], l, r) ∈ Qb is also element of Fb (i.e. is an accepting state) if and only if it
+has a single connected component (i.e. w ∈ {0, 1}b ) and is inscribed in the rectangle (i.e. l = r = T).
+The transition function δb is defined only on the pairs (([w], l, r), u), with ([w], l, r) ∈ Qb , u ∈ Σb , such
+that, for all a ∈ {1, 2, . . . , ⌈b/2⌉}, |Posa (w)| > 0 implies Posa (w) ∩ Pos1 (u) ̸= /0. This ensures that, in the
+polyomino P, no connected component is “lost”. Since u represents the configuration of the next row of
+the polyomino, Pos0 (u) = Pos0 ([w′ ]), and
+
+                                         δb (([w], l, r), u) = ([w′ ], l ′ , r′ ),
+
+where w′ is obtained by adding a row subject to the following constraints:
+
+Vertical connexity: From left to right, we read u and write a new word x.
+      If ui = 0 then xi = 0. If ui = 1 and wi ̸= 0, then xi = wi . If ui = 1 and wi = 0, then xi = N + 1
+      where N = max{w1 , w2 , ..., wb , x1 , x2 , ..., xi−1 }. This step keeps the connexity between the cells in
+      the next row and the cells in the current row that are directly above them. For the cells in the next
+      row with no cells directly above them in the current row, we create new connected components for
+      each of them. Observe that x does not meet the separation condition.
+Horizontal connexity: From x, we create w′ .
+      We first obtain every factor of x that is between 0’s together with the largest prefix of x that
+      has no 0’s and the largest suffix of x that has no 0’s. We call these factors the horizontally
+      connected components of the new row. We say that two horizontally connected components c
+      and c′ are directly linked if they share a letter and indirectly linked if there exists a set E =
+      {ei | ei is a horizontally connected component} such that c = e0 , c′ = ek and ei is directly linked
+      to ei+1 for all 0 ≤ i ≤ n − 1 (i.e. there exists a chain of directly linked connected components that
+      links c to c′ ). The components c and c′ are said to be linked if they are either directly linked or
+      indirectly linked.
+      The second step in the construction of w′ consists in collecting every linked horizontally connected
+      components into different sets. In other words, we take the transitive closure of the “is linked to”
+      relation. Each set receives a letter in {1, 2, ..., ⌈b/2⌉}. The letters {1, 2, ..., ⌈b/2⌉} are assigned
+      incrementally in increasing order to the set that contains the left-most horizontally connected com-
+      ponent among the sets that have not yet been assigned a letter.
+      Finally, we obtain w′ from x by looking at every horizontally connected component c in x and
+      replacing each letter of c by the letter assigned to the set to which c belongs.
+Adjacency: The values l ′ and r′ are obtained by the computations l ′ = l ∨ u1 and r′ = r ∨ ub .
+
+Example 1. Let
+                                w = 10203020104           and u = 10111011101.
+The first step yields the word x = 10253026104. The horizontally connected components are 1, 253,
+261 and 4. The linked horizontally connected components are then joined together, forming the sets
+{1, 253, 261} and {4}. The letters are associated with each set in order with the mapping
+
+                                         1 → {1, 253, 261}, 2 → {4}.
+
+Finally, w′ is obtained by replacing each letter in every horizontally connected components by the as-
+signed letter, yielding w′ = 10111011102.
+148                                                             Counting Polyominoes in a Rectangle b × h
+
+
+    Observe that every step in the construction of Ab is automatic and δb is unambiguous. Ab is thus
+deterministic.
+Theorem 1. The set of stacks of size h of words recognized by Ab is in bijection with the set of polyomi-
+noes inscribed in a rectangle of size b × h.
+      As an example, Figure 1 shows a stack of length 9 recognized by A5 and the associated polyomino.
+
+                                                    01111                                  (00000,F,F)
+                                                    00001                                  (01111,F,T)
+                                                                                           (00001,F,T)
+                                                    10101
+                                                                                           (10203,T,T)
+                                                    10101                                  (10203,T,T)
+                                                    11101                                  (11102,T,T)
+                                                    01001                                  (01002,T,T)
+                                                    11111                                  (11111,T,T)
+                                                    10101                                  (10101,T,T)
+                                                    11101                                  (11101,T,T)
+      (a) Polyomino in a 5 × 9 rectangle   (b) Stack recognized by A5               (c) States visited by A5
+
+               Figure 1: Example of a word recognized by A5 and the associated polyomino
+
+
+
+3      Generating the automaton Ab .
+We can manually compute the automata A2 , A3 and, with a bit of courage, A4 , A5 and A6 . Using the
+Maple software, we were able to compute the generating functions for values of b up to 6. However, for
+b ≥ 7, we need to turn to computers with more power, as the number of states grows rapidly. Thankfully,
+every step in the building of Ab can be automatized easily.
+    With these methods, we computed the generating functions Gb for b = 3, 4, 5, 6. We also could
+compute G′b for b = 3, 4 where G′b is the generating function for the number of polyominoes of area n
+inscribed in a rectangle of size b × h. The rational expression of those generating functions are of too
+large degree to include in this paper. Indeed, G3 is of degree 9, G4 is of degree 20, G5 is of degree 49
+and G6 is of degree 112.
+    The case b = 7 was generated but the calculations to produce the generating function still need to be
+done. We are still working on the implementation to obtain the automata for greater values of b. The
+challenge comes from the fact that the systems grow exponentially in the number of states. Indeed, the
+number of states of Ab can be computed from the formula
+                                                  2b −1
+                                                                                       b−1 K
+                          # of states of Ab = 1 + ∑ C f (k) · 2Jk≡0     mod 2K
+                                                                                 · 2Jk<2       ,               (1)
+                                                   k=1
+
+where Cm is the mth Catalan number, f (k) is the number of runs of 1’s in the binary expansion of k
+(A069010 [3]) and JpK is the indicator function taking value 1 if p is true and 0 otherwise. Surprisingly,
+the sequence of the number of states of Ab for increasing b is not registered on OEIS. However, the
+sequence A140662 [3], also counting states in an automaton recognizing polyominoes, has been reported.
+Avenues for immediate improvement include using a higher efficiency programming language and using
+a more suitable data type to store the states of the automaton.
+L. Marin                                                                                                   149
+
+
+   b                           0   1    2   3     4    5     6      7      8         9      10       11
+   number of states in Ab      1   2    6   16    40   99    247    625    1605      4178   11006    29292
+
+                            Figure 2: Number of states in Ab for b = 0, . . . , 11
+
+
+References
+[1] Mireille Bousquet-Mélou & Richard Brak (2009): Exactly solved models of polyominoes and polygons. In:
+    Polygons, Polyominoes and Polycubes, Lecture Notes in Physics, Springer Berlin / Heidelberg, pp. 43–78,
+    doi:10.1007/978-1-4020-9927-4. Available at https://hal.science/hal-00342024.
+[2] Solomon W. Golomb (1994): Polyominoes: Puzzles, Patterns, Problems, and Packings - Revised and Ex-
+    panded Second Edition, ned - new edition edition. 111, Princeton University Press, doi:10.2307/j.ctv10vm1sc.
+    Available at http://www.jstor.org/stable/j.ctv10vm1sc.
+[3] OEIS Foundation Inc. (2024): The On-Line Encyclopedia of Integer Sequences. Published electronically at
+    http://oeis.org.
+[4] Doron Zeilberger (2000): Symbol-crunching with the transfer-matrix method in order to count skinny phys-
+    ical creatures. Integers 0. Available at https://sites.math.rutgers.edu/~zeilberg/mamarim/
+    mamarimPDF/animals.pdf.
+

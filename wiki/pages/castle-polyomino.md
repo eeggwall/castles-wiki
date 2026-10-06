@@ -5,7 +5,7 @@ summary: The central object of study. A castle is a skyline (c_1, …, c_w) with
 tags: [concept, castle, polyomino, bargraph, column-convex, skyline, combinatorics]
 sources: [project-euler-502, prellberg-brak-1995-cluster-models, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-solution, project-euler-502-brute-force]
 created: 2026-09-13
-updated: 2026-10-03
+updated: 2026-10-06
 ---
 
 # Castle (polyomino)
@@ -24,7 +24,7 @@ The `i`-th column of the castle is the vertical stack of unit cells at heights `
 - **bottom-aligned** - row 1 is a full-width strip `c_i ≥ 1`;
 - **exactly `h` tall** - at least one column reaches the ceiling.
 
-In the polyomino literature a column-convex polygon with a horizontal lower boundary is called a **bar-graph polygon** or **bargraph** (also a **skyline polyomino**),[^pb] so a castle is a bargraph of width `w`, height at most `h`, that touches the ceiling `h` in at least one column. That places castles inside a well-studied family, next to Ferrers, staircase, stack, and parallelogram polyominoes ([[polyominoes](pages/polyominoes.md)], [[column-convex-polyomino](pages/column-convex-polyomino.md)]).
+In the polyomino literature a column-convex polygon with a horizontal lower boundary is called a **bar-graph polygon** or **bargraph** (also a **skyline polyomino**),[^pb] so a castle is a bargraph of width `w`, height at most `h`, that touches the ceiling `h` in at least one column. That places castles inside a well-studied family, next to Ferrers, staircase, stack, and parallelogram polyominoes ([[polyominoes](pages/polyominoes.md)], [[column-convex-polyomino](pages/column-convex-polyomino.md)]). The full bottom row meets the left, right and bottom sides of the `w × h` rectangle and a column of height `h` meets the top, so a castle is also **inscribed** in its rectangle: the castles are the bargraphs among the polyominoes with bounding box exactly `w × h` ([[inscribed-polyomino](pages/inscribed-polyomino.md)]).
 
 ## Blocks and the any-parity count
 
@@ -83,6 +83,7 @@ A castle can be encoded exactly in several ways - column-wise binary strings, th
 - [[castle-strip](pages/castle-strip.md)] - a castle read left to right, one column at a time, under a neighbor rule; the transfer-matrix bridge.
 - [[convex-castle](pages/convex-castle.md)] - the unimodal sub-family (skyline rises then falls); the polyomino literature's "stack" family.
 - [[castle-perimeter](pages/castle-perimeter.md)] - as a bargraph a castle has semi-perimeter `w + #blocks`, so the block count and the even-block clause are perimeter statistics; castles by semi-perimeter are A082582.
+- [[inscribed-polyomino](pages/inscribed-polyomino.md)] - the polyominoes with bounding box exactly `w × h` (A292357); `A(w, h) ≤ I(w, h)`, and their row automaton needs A378947(h) states where the castle strip needs `h`.
 - [[column-convex-polyomino](pages/column-convex-polyomino.md)] / [[polyominoes](pages/polyominoes.md)] - the ambient family; a castle is a bargraph (column-convex polyomino with a full contiguous bottom row).
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - the bargraph functional equation (3.11), which is the castle GF with `x` = width, `y` = blocks, `q` = area, and the Airy scaling class bargraphs share with staircase and column-convex polygons.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - the add-a-column method for column-convex classes. A castle is a directed column-convex polygon with every column bottom on row 1, a specialisation of the class its Theorem 3.6 solves.
