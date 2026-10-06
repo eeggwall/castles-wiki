@@ -82,7 +82,7 @@ P_even(1, L) =  Re((1+i)^L) = A146559(L):   1, 1, 0, −2, −4, −4, 0, 8, 16,
 P_odd(1, L)  = −Im((1+i)^L) = −A009545(L):  0, −1, −2, −2, 0, 4, 8, 8, 0, −16, …
 ```
 
-so **A009545 is also a castle count**: among castles of width `L` and height 2 whose last column reaches height 2, `A009545(L)` is the number with an even number of blocks minus the number with an odd number. This reading was submitted to A009545 as a comment on 2026-10-06 and awaits approval. The two sequences that [[signed-tower-count](pages/signed-tower-count.md)] distinguishes are the even- and odd-last-column parts of the same count.[^5]
+so **A009545 is also a castle count**: among castles of width `L` and height 2 whose last column reaches height 2, `A009545(L)` is the number with an even number of blocks minus the number with an odd number. The two sequences that [[signed-tower-count](pages/signed-tower-count.md)] distinguishes are the even- and odd-last-column parts of the same count.[^5]
 
 ## Part 2 - The factors in closed form
 
