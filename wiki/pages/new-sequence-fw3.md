@@ -5,7 +5,7 @@ summary: New-sequence candidate - even-block castles of height exactly 3; an ord
 tags: [oeis, castle, new-sequence, c-finite, height-3, source]
 sources: [new-sequence-fw3]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-06
 ---
 
 # New sequence candidate: F(w,3)
@@ -44,7 +44,7 @@ The characteristic polynomial `(x−3)(x−2)(x²−x+2)(x²−2x+2)` is assembl
 
 ## Draft status
 
-`new-sequence-F3.md` is a **checked, correct starting point** (name, definition, 50 terms, recurrence, GF, Python program, crossrefs), but per [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] the prose must be reworded and signed by a human before submission (OEIS forbids AI-authored text), and new contributors are throttled; the A038505/A038503 interlink ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]) went first. The full draft lives in `raw/oeis-pe502/new-sequence-F3.md`.
+`new-sequence-F3.md` is a **checked, correct starting point** (name, definition, 50 terms, recurrence, GF, Python program, crossrefs), but per [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] the prose must be reworded and signed by a human before submission (OEIS forbids AI-authored text). The full draft lives in `raw/oeis-pe502/new-sequence-F3.md`.
 
 ## Key Takeaways
 
