@@ -25,35 +25,28 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
 
 ### 1. In review (max 3)
 
-- [~] **A038503 exact-height correction** (submitted 2026-10-04). The live comment says
-  "height at most 2", which counts the `r = 0` term `C(n,0)` as a castle. Replaced with the
-  exact-height statement `a(n) − 1` = odd-block castles of width `n−1` and height 2, same
-  definition sentence as A038505: `raw/oeis-pe502/xrefs/A038503-exact-height.md`.
 - [~] **A146559 castle comment** `a(n) = P(1, n−1)` (signed tower count at `k = 1`),
   submitted 2026-10-04 (resubmitted with the date as `Oct 04 2026`). Comment only, exact
   height: `a(n) − 1` = odd − even castles of height 2: `raw/oeis-pe502/xrefs/A146559-signed.md`
   (`wiki/pages/castle-sequence-catalogue.md`, `wiki/pages/signed-tower-count.md`).
-- (third slot held open: A009545 goes in once the two above clear)
+- [~] **A009545 castle comment** (submitted 2026-10-06). Comment only, width `n`, no `− 1`:
+  `a(n)` = even-block − odd-block castles of width `n` and height 2 whose last column reaches
+  height 2, for `n >= 1`, with the PE 502 citation; the optional runs sentence was dropped for
+  length: `raw/oeis-pe502/xrefs/A009545-signed.md` (`wiki/pages/signed-tower-count.md`,
+  `wiki/pages/tower-parity-sectors.md`).
+- [~] **A226136 → A003410** (submitted 2026-10-06). Formula line "Conjecture: a(n) =
+  A003410(n) for n >= 4", equivalent to Barker's conjectured g.f. (A003410's g.f. minus
+  `1 + x + x^2 + x^3`), and `Cf. A003410`: `raw/oeis-pe502/xrefs/A226136-A003410.md`
+  (`wiki/pages/fibonacci-castles-sub-families.md`).
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-1. [ ] **A009545** (`Im((1+i)^n)`, e.g.f. `sin(x)exp(x)`): castle comment from the `k = 1`
-   parity split, `A009545(w) = −P_odd(1,w)` = (even-block − odd-block castles of width `w`,
-   exact height 2, last column at height 2); verified `w = 0..14` on 2026-10-04, no castle
-   text on the live entry (#193, Jul 27 2026). Comment only; width `n`, no `− 1`:
-   `raw/oeis-pe502/xrefs/A009545-signed.md` (`wiki/pages/signed-tower-count.md`,
-   `wiki/pages/tower-parity-sectors.md`).
-2. [ ] **A226136 → A003410**: Barker's conjectured g.f. on A226136 is A003410's g.f. minus
-   `1 + x + x^2 + x^3`, so the conjecture is equivalent to `A226136(n) = A003410(n)` for
-   `n >= 4` (all 35 listed terms agree); add that formula line and `Cf. A003410`. Optional
-   second edit: the castle reading on A003410 (for `n >= 4`, the `(1,3)`-RLL Fibonacci castles).
-   `raw/oeis-pe502/xrefs/A226136-A003410.md` (`wiki/pages/fibonacci-castles-sub-families.md`).
-3. [ ] **Tower/heap = Narayana-polynomial interpretation** (formerly tier 2) on A005891 /
+1. [ ] **Tower/heap = Narayana-polynomial interpretation** (formerly tier 2) on A005891 /
    A063490 / A160747, and the numerator formula on A001263 (`raw/oeis-pe502/xrefs/*-tower.md`;
    `wiki/pages/tower-narayana-polynomial.md`). The A063490 draft notes an offset shift.
-4. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
+2. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
    (`raw/oeis-pe502/xrefs/*-castle.md`).
-5. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
+3. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
    two-parameter family into one array entry, with notable rows and columns as their own
    entries, cf. A217883 "Column 2 is A202882(n+1)"). In order:
    1. [ ] **Array `F(w,h)`**: even-block castles of width `w` and exact height `h`, square
@@ -67,6 +60,11 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
    3. [ ] **Column `w = 3`, `F(3,h)`** = `0, 6, 3, 31, 10, 76, 21, 141, 36, 226, …`: `C(h,2)` at
       odd `h`, `5·C(h,2) + 1` at even `h` (`wiki/pages/sum-of-three-cubes-castles.md`). No match
       (searched 2026-10-04). **Draft not written.**
+4. [ ] **A003410 castle comment** (optional edit 2 of the A226136 draft, lower priority): for
+   `n >= 4`, `a(n)` = castles of width `n` and height 2 with no two adjacent columns at height
+   2 and every run of height-1 columns of length at most 3 (the `(1,3)`-RLL Fibonacci
+   castles): `raw/oeis-pe502/xrefs/A226136-A003410.md` §"Edit 2"
+   (`wiki/pages/fibonacci-castles-sub-families.md`).
 
 ### 3. Needs a draft (verified, worth submitting)
 
@@ -154,6 +152,10 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   A146559 #152, Sep 28 2026): castle comments, the A000225 decomposition formulas,
   `A146559 = A038503 − A038505`, `Cf. A000225` on both, the PE 502 link on A038505.
 - [x] A038505 typo fix, "Project 502" → "Problem 502" (A038505 #140, Oct 04 2026).
+- [x] **A038503 exact-height correction** (submitted 2026-10-04, approved; confirmed
+  2026-10-06). The "height at most 2" comment, which counted the `r = 0` term `C(n,0)` as a
+  castle, is replaced by `a(n) − 1` = odd-block castles of width `n−1` and height 2:
+  `raw/oeis-pe502/xrefs/A038503-exact-height.md`.
 
 ## Ingestion queue (wiki pages not yet ingested)
 
