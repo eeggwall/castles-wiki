@@ -18,11 +18,10 @@ This page is the mechanical half of the wiki's sequence directory and is regener
 
 ## Counts by role
 
-- **Castle count interpretations** (98) - Sequences the wiki claims as counts of a castle-native object. These are the interlinking targets: candidates for an OEIS comment or formula that reads the sequence as a castle count.
-- **Continued fractions and the metallic ladder** (25) - The [[metallic-means](pages/metallic-means.md)] `δ_a` family, its companion and trace sequences, and the OEIS convergent tables for `√(a²+4)`.
+- **Castle count interpretations** (100) - Sequences the wiki claims as counts of a castle-native object. These are the interlinking targets: candidates for an OEIS comment or formula that reads the sequence as a castle count.
+- **Continued fractions and the metallic ladder** (26) - The [[metallic-means](pages/metallic-means.md)] `δ_a` family, its companion and trace sequences, and the OEIS convergent tables for `√(a²+4)`.
 - **Plastic-number neighborhood** (3) - The sequences behind [[plastic-number](pages/plastic-number.md)] ψ.
 - **Supporting sequences** (88) - Cross-references, ambient polyomino and tournament counts, and OEIS entries that appear as neighbors or components of a castle result.
-- **Not yet annotated** (3) - cited on the wiki but without a row in `config/oeis-annotations.tsv`.
 
 ## Directory
 
@@ -85,6 +84,8 @@ This page is the mechanical half of the wiki's sequence directory and is regener
 | [A077868](https://oeis.org/A077868) | Expansion of 1/((1-x)*(1-x-x^3)). | tree castles of height 2 with n cells: the term A077868(n-2), n >= 2; spaced Fibonacci castles of width w: A077868(w-1) | [[tree-castle-by-area](pages/tree-castle-by-area.md)] (8), [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] (6), [[castle-snippets-strips](pages/castle-snippets-strips.md)] (2), [[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)] (2), [[castle-by-area](pages/castle-by-area.md)] (1), [[castle-graph](pages/castle-graph.md)] (1), [[castle-notation](pages/castle-notation.md)] (1) |
 | [A079816](https://oeis.org/A079816) | Number of permutations satisfying -k <= p(i)-i <= r and p(i)-i not in I, i=1..n, with k=1, r=5, I={1}. | tree castles of height <= 5 by area: A079816(A+1), compositions of A+1 into {1,3,4,5,6} | [[tree-castle-by-area](pages/tree-castle-by-area.md)] (4), [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] (3), [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] (1), [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] (1) |
 | [A080860](https://oeis.org/A080860) | a(n) = 10*n^2 + 5*n + 1. | odd(3, 2n+1) = 5 C(2n+1, 2) + 1 exactly; its negative-index half 10m^2 - 5m + 1 is F(3, 2m) = 6, 31, 76, 141, ..., not in OEIS (novel candidate) | [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] (3), [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)] (3) |
+| [A080934](https://oeis.org/A080934) | Square array read by antidiagonals of number of Catalan paths (nonnegative, starting and ending at 0, step +-1) of 2n steps with all values less than or equal to k. | Dyck-path castles of height at most h by width: T((w-1)/2, h-1) | [[castle-classification-shape](pages/castle-classification-shape.md)] (2) |
+| [A080936](https://oeis.org/A080936) | Triangle read by rows: T(n,k) is the number of Dyck paths of semilength n and height k (1 <= k <= n). | Dyck-path castles by (w, h): T((w-1)/2, h-1) | [[castle-classification-shape](pages/castle-classification-shape.md)] (5) |
 | [A082582](https://oeis.org/A082582) | Expansion of (1 + x^2 - sqrt( 1 - 4*x + 2*x^2 + x^4)) / (2*x) in powers of x. | castles (bargraphs) by semi-perimeter w + #blocks; growth tribonacci squared | [[motzkin-castles](pages/motzkin-castles.md)] (9), [[castle-perimeter](pages/castle-perimeter.md)] (6), [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] (6), [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] (5), [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] (4), [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] (1), [[castle-polyomino](pages/castle-polyomino.md)] (1), [[deutsch-elizalde-2017-bargraphs-dyck-paths](pages/deutsch-elizalde-2017-bargraphs-dyck-paths.md)] (1), [[n-nacci-disambiguation](pages/n-nacci-disambiguation.md)] (1), [[prime-castles](pages/prime-castles.md)] (1), [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] (1) |
 | [A094286](https://oeis.org/A094286) | Number of (s(0), s(1), ..., s(n)) such that 0 < s(i) < 6 and \|s(i) - s(i-1)\| <= 1 for i = 1,2,...,n, s(0) = 1, s(n) = 1. | Motzkin-path castles of height ≤ 5, `=a(w-1)`, growth 1+√3 | [[motzkin-castles](pages/motzkin-castles.md)] (3), [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] (2) |
 | [A094706](https://oeis.org/A094706) | Convolution of Pell(n) and 2^n. | Pell castles (exact height 3, first column 1, 1-smooth) of width w: A094706(w-2) = P⋆_w - 2^(w-1) | [[pell-castle](pages/pell-castle.md)] (7), [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] (3), [[castle-classification-growth](pages/castle-classification-growth.md)] (1), [[castle-notation](pages/castle-notation.md)] (1), [[pell-castle-strip](pages/pell-castle-strip.md)] (1) |
@@ -145,6 +146,7 @@ This page is the mechanical half of the wiki's sequence directory and is regener
 | [A014448](https://oeis.org/A014448) | Even Lucas numbers: a(n) = L(3*n). | even Lucas: trace for copper (a=4) | [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] (2), [[metallic-means](pages/metallic-means.md)] (1) |
 | [A014493](https://oeis.org/A014493) | Odd triangular numbers. | odd triangular numbers (row of A352116) | [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] (4), [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] (2), [[castle-snippets](pages/castle-snippets.md)] (1) |
 | [A015448](https://oeis.org/A015448) | a(0) = 1, a(1) = 1, and a(n) = 4*a(n-1) + a(n-2) for n >= 2. | copper free strip (`h=5`), `=F_{3n+5}` trisection, growth `φ³` | [[proper-castle-projection](pages/proper-castle-projection.md)] (4), [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] (2), [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] (1), [[n-nacci-disambiguation](pages/n-nacci-disambiguation.md)] (1) |
+| [A015449](https://oeis.org/A015449) | Expansion of (1-4*x)/(1-5*x-x^2). | nickel free strip (`h=6`), `6, 31, 161, 836, 4341, …`, growth `(5+√29)/2` | [[proper-castle-projection](pages/proper-castle-projection.md)] (2) |
 | [A033887](https://oeis.org/A033887) | a(n) = Fibonacci(3*n + 1). | F(3n+1): copper-delta convergent numerators | [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] (2) |
 | [A041010](https://oeis.org/A041010) | Numerators of continued fraction convergents to sqrt(8). | numerators of CF convergents to √8 | [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] (2) |
 | [A041011](https://oeis.org/A041011) | Denominators of continued fraction convergents to sqrt(8). | denominators of CF convergents to √8 | [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] (2) |
@@ -259,16 +261,6 @@ This page is the mechanical half of the wiki's sequence directory and is regener
 | [A325668](https://oeis.org/A325668) | First term of n-th difference sequence of (floor(k*r)), r = sqrt(5), k >= 0. | false positive rejected by the first OEIS mining pass (a "sqrt(5) difference" sequence agreeing on a few terms of a castle distribution) | [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] (1) |
 | [A325842](https://oeis.org/A325842) | First term of n-th difference sequence of (round(k*sqrt(5))), k >= 0. | false positive rejected by the first OEIS mining pass (a "sqrt(5) difference" sequence agreeing on a few terms of a castle distribution) | [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] (1) |
 | [A378947](https://oeis.org/A378947) | Number of row states in an automaton for the enumeration of the number of fixed polyominoes with bounding box of width n. | states of Marin's row automaton; the castle strip needs h | [[inscribed-polyomino](pages/inscribed-polyomino.md)] (4), [[marin-2024-polyominoes-in-rectangle](pages/marin-2024-polyominoes-in-rectangle.md)] (4), [[castle-polyomino](pages/castle-polyomino.md)] (1), [[castle-strip](pages/castle-strip.md)] (1), [[motzkin-numbers](pages/motzkin-numbers.md)] (1) |
-
-### Not yet annotated
-
-Add a row to `config/oeis-annotations.tsv` (group, OEIS name, castle role) to move an entry into its group above.
-
-| A-number | Pages |
-|---|---|
-| [A015449](https://oeis.org/A015449) | [[proper-castle-projection](pages/proper-castle-projection.md)] (2) |
-| [A080934](https://oeis.org/A080934) | [[castle-classification-shape](pages/castle-classification-shape.md)] (2) |
-| [A080936](https://oeis.org/A080936) | [[castle-classification-shape](pages/castle-classification-shape.md)] (5) |
 
 ## Related Concepts
 

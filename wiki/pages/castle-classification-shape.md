@@ -5,7 +5,7 @@ summary: The 42 shape-based castle types as skyline predicates on individual cas
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle, hoodoo-castle, monadnock-castle, distinct-parts]
 sources: [castle-classification, aocp-generating-partitions]
 created: 2026-09-19
-updated: 2026-10-04
+updated: 2026-10-06
 ---
 
 # Castle classification - shape types
@@ -224,6 +224,6 @@ In rough order of tractability:
 [^3]: raw/castle-types.wiki §"Proposed additional types" L21-L57 - the 35 proposed types, numbered 1-35: convex/row-convex, reverse Ferrers, strictly unimodal, bimodal, k-modal, anti-unimodal (V-shaped), plateau-free, m-smooth (Lipschitz), zigzag, alternating parity, palindromic, centrally symmetric, Dyck-path (`c_1 = c_w = 1`, all `c_i ≥ 1`, `|c_{i+1} − c_i| = 1`), Motzkin-path ("like a Dyck-path castle but allowing flat steps: `|c_{i+1} − c_i| ≤ 1`"), flat-top, single-summit, even-area, even-peak, equal-block, two-level, self-conjugate, crenellated, moated, rainbow, hook (`c_1 = h` and `c_i = 1` for `i ≥ 2`), twin-peak, single-valley, fence-post, linear, convex-skyline (second differences ≥ 0), concave-skyline (≤ 0), triangular-area, prime-top, integer-mean, boxcastle.
 [^4]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §1 L25-33 - "#blocks >= max(c) = h, with equality iff the profile is unimodal ... a convex castle of height h has exactly h blocks, and convex castles are exactly the minimum-block castles".
 [^5]: https://oeis.org/A080936 - "Triangle read by rows: T(n,k) is the number of Dyck paths of semilength n and height k (1 <= k <= n)"; data begins 1; 1, 1; 1, 3, 1; 1, 7, 5, 1; 1, 15, 18, 7, 1.
-[^6]: https://oeis.org/A080934 - "Square array read by antidiagonals of number of Catalan paths (nonnegative, starting and ending at 0, step +-1) of 2n steps with all values less than k"; the bounded-height Dyck counts whose GF is a ratio of consecutive Chebyshev-type polynomials.
+[^6]: https://oeis.org/A080934 - "Square array read by antidiagonals of number of Catalan paths (nonnegative, starting and ending at 0, step +-1) of 2n steps with all values less than or equal to k"; the bounded-height Dyck counts whose GF is a ratio of consecutive Chebyshev-type polynomials.
 [^7]: https://oeis.org/A097862 - "Triangle read by rows: T(n,k) is the number of Motzkin paths of length n and height k (n>=0, k>=0)"; data begins 1; 1; 1, 1; 1, 3; 1, 7, 1; 1, 15, 5; 1, 31, 18, 1.
 [^8]: https://oeis.org/A000009 - "Expansion of Product_{m >= 1} (1 + x^m); number of partitions of n into distinct parts; number of partitions of n into odd parts"; data begins 1, 1, 1, 2, 2, 3, 4, 5, 6, 8, 10, 12, 15, 18.
