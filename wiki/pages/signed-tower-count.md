@@ -5,7 +5,7 @@ summary: P(k,L) = Σ (−1)^blocks over towers of height ≤ k above a length-L 
 tags: [concept, castle, signed-count, c-finite, oeis, generating-functions]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-13
-updated: 2026-10-05
+updated: 2026-10-06
 ---
 
 # Signed tower count P(k,L)
@@ -48,7 +48,7 @@ Both components are castle counts. Splitting `P(1,L)` by the parity of the last 
 
 The mining pass left five results about the `P(k,·)` rows:
 
-- **`A146559` and the height-2 pair.** `a(n) = P(1,n−1)`, the real part of `(1+i)^n` read as a signed castle count, and the formula `A146559(n) = A038503(n) − A038505(n)` tying the signed vein to the height-2 [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)].[^3] A146559 carries `a(n) = A038503(n) − A038505(n)` and A038503 carries the equivalent `a(n) = A038505(n) + A146559(n)`, both approved (signed Sep 26 2026; [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]); the castle comment itself (`a(n) − 1` = odd-block minus even-block castles of height 2) was submitted 2026-10-04 and awaits approval ([[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]).
+- **`A146559` and the height-2 pair.** `a(n) = P(1,n−1)`, the real part of `(1+i)^n` read as a signed castle count, and the formula `A146559(n) = A038503(n) − A038505(n)` tying the signed vein to the height-2 [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)].[^3] A146559 carries `a(n) = A038503(n) − A038505(n)` and A038503 carries the equivalent `a(n) = A038505(n) + A146559(n)`, both approved (signed Sep 26 2026; [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]); the castle comment itself (`a(n) − 1` = odd-block minus even-block castles of height 2) was submitted 2026-10-04 and awaits approval, and the A009545 castle comment (even-block minus odd-block castles of width `n` and height 2 whose last column reaches height 2) was submitted 2026-10-06 and awaits approval ([[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]).
 - **`P(2..6, ·)` have no OEIS match.** The `k ≥ 2` rows generalize A146559 and have no OEIS match, in signed or absolute-value form, searched 2026-09-18 ([[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]).[^4]
 - **The even-`k` rows are positive** (checked `k ≤ 12`, `L < 40`). `P(2,·): 1,1,3,9,19,33,59,…` (order 3), `P(4,·): 1,1,5,25,85,225,541,…` (order 5), `P(6,·): 1,1,7,49,231,833,2583,…` (order 7, char poly factoring with dominant root `2ψ²` — the plastic connection).
 - **The odd-`k` rows change sign in runs**, because their dominant eigenvalues are a complex pair: `P(3,·): 1,0,−4,−16,−40,−64,−32,192,…` and `P(5,·): 1,0,−6,−36,−140,…`. Their characteristic polynomials are irreducible over `Q` in every case checked, which is proved only for `k = 2^m − 1` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]).

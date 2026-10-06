@@ -5,7 +5,7 @@ summary: The lead OEIS interlink of the mining pass - height-2 castles by block 
 tags: [oeis, castle, height-2, hyperbolic, binomial, cross-reference, source]
 sources: [oeis-height2-hyperbolic-castles]
 created: 2026-09-13
-updated: 2026-10-04
+updated: 2026-10-06
 ---
 
 # Height-2 castles = A038505 / A038503 (hyperbolic family)
@@ -36,13 +36,15 @@ Per [[oeis-cross-referencing](pages/oeis-cross-referencing.md)], the submission 
 
 ## On OEIS
 
-The edits were drafted on both entries on 2026-09-18, proposed for review on 2026-09-26, and approved; all three entries show them as of 2026-10-04 (A038503 revision #93, Oct 03 2026, and A038505 revision #140, Oct 04 2026; A146559 revision #152, Sep 28 2026).[^6][^7][^8] Two changes from the `raw/oeis-pe502/oeis-xref-draft.md` draft: the A038503 comment was reworded to "height at most 2" (wrong, see below), and the FORMULA lines use the **A000225 decomposition** rather than the direct `F(w,2)`/`odd(w,2)` form.
+The edits were drafted on both entries on 2026-09-18, proposed for review on 2026-09-26, and approved; all three entries show them as of 2026-10-04 (A038503 revision #93, Oct 03 2026, and A038505 revision #140, Oct 04 2026; A146559 revision #152, Sep 28 2026).[^6][^7][^8] Two changes from the `raw/oeis-pe502/oeis-xref-draft.md` draft: the A038503 comment was reworded to "height at most 2" (wrong, since corrected; see below), and the FORMULA lines use the **A000225 decomposition** rather than the direct `F(w,2)`/`odd(w,2)` form.
 
-**A038503 — odd count.** The draft stated it at exact height: `a(n)` is 1 more than the number of castles of height 2 with an odd number of blocks. The approved comment says "height at most 2" instead:[^6]
+**A038503 — odd count.** The draft stated it at exact height: `a(n)` is 1 more than the number of castles of height 2 with an odd number of blocks. The first approved comment said "height at most 2" instead:[^6]
 
 > a(n) is the number of castle polyominoes of width n-1 and height at most 2 with an odd number of blocks (Project Euler, Problem 502: Counting Castles), for n >= 2. Here a castle is a stack of unit blocks on a grid, whose bottom row is a single block of length n-1, whose higher blocks have height 1 and rest on the blocks below without overhang, whose height is at most 2, and in which two neighboring blocks of the same row are separated by a gap. If the columns that reach height 2 form r runs, the number of blocks is 1 + r, so an odd number of blocks means r is even. - _Chaz Reid_, Sep 18 2026
 
-**This wording does not match the castle definition.** A castle of height 2 has at least one column that reaches height 2, and "height at most 2" is not a castle family of exact height: it counts the `r = 0` term `C(n, 0) = 1`, where no column reaches height 2, as if it were a castle. The statement at exact height is `A038503(n) − 1 = odd(n−1, 2)`, the number of castles of width `n−1` and height 2 with an odd number of blocks. A correction to the exact-height wording ("a(n) - 1 is the number of castle polyominoes of width n-1 and height 2 with an odd number of blocks", with A038505's "maximum height is 2" definition and `r >= 1` runs) was submitted on 2026-10-04 and awaits approval (draft: `raw/oeis-pe502/xrefs/A038503-exact-height.md`).
+**This wording does not match the castle definition.** A castle of height 2 has at least one column that reaches height 2, and "height at most 2" is not a castle family of exact height: it counts the `r = 0` term `C(n, 0) = 1`, where no column reaches height 2, as if it were a castle. The statement at exact height is `A038503(n) − 1 = odd(n−1, 2)`, the number of castles of width `n−1` and height 2 with an odd number of blocks. A correction to the exact-height wording was submitted on 2026-10-04 (draft: `raw/oeis-pe502/xrefs/A038503-exact-height.md`) and approved; the live comment now reads:[^9]
+
+> a(n)-1 is the number of castle polyominoes of width n-1 and height 2 with an odd number of blocks (Project Euler, Problem 502: Counting Castles), for n >= 2. Here a castle is a stack of unit blocks on a grid, whose bottom row is a single block of length n-1, whose higher blocks have height 1 and rest on the blocks below without overhang, whose height is 2, and in which two neighboring blocks of the same row are separated by a gap. If the columns that reach height 2 form r >= 1 runs, the number of blocks is 1 + r, so an odd number of blocks means r is even. - _Chaz Reid_, Sep 18 2026
 
 **A038505 — even count.** This comment is stated at exact height ("height 2", "maximum height is 2"), and it is the model for the A038503 correction:[^7]
 
@@ -71,7 +73,7 @@ The two A000225 formulas are equivalent to `A038503(n) + A038505(n) = 2^(n−1)`
 - Proof: `blocks = 1 + r`, `#{width-w strings with r runs} = C(w+1, 2r)`, parity of `r` ↔ residue of `2r` mod 4.[^2]
 - A new **geometric** reading of two isolated order-4 hyperbolic sequences; the only missing xref is A000225.[^4]
 - `A146559 = A038503 − A038505` ties the signed count into the same family.[^5]
-- **On OEIS since the Oct 03 2026 revisions** (Chaz Reid): the castle comment on A038503 (worded "height at most 2"; exact-height correction submitted 2026-10-04) and A038505, the decomposition formulas `a(n) = A000225(n−1) − A038505(n) + 1` and `a(n) = A038505(n) + A146559(n)` on A038503 and `a(n) = A000225(n−1) − A038503(n) + 1` on A038505, `a(n) = A038503(n) − A038505(n)` on A146559, `Cf. A000225` on both, and the Project Euler 502 link on A038505.[^6][^7][^8]
+- **On OEIS since the Oct 03 2026 revisions** (Chaz Reid): the castle comment on A038503 (first worded "height at most 2"; the exact-height correction, `a(n) − 1` = odd-block castles of width `n−1` and height 2, is approved) and A038505, the decomposition formulas `a(n) = A000225(n−1) − A038505(n) + 1` and `a(n) = A038505(n) + A146559(n)` on A038503 and `a(n) = A000225(n−1) − A038503(n) + 1` on A038505, `a(n) = A038503(n) − A038505(n)` on A146559, `Cf. A000225` on both, and the Project Euler 502 link on A038505.[^6][^7][^8]
 
 ## Entities & Concepts
 
@@ -99,3 +101,4 @@ The concrete, verified realization of the [[oeis-mining-pe502](pages/oeis-mining
 [^6]: OEIS [A038503](https://oeis.org/A038503), revision #93 (Oct 03 2026), read 2026-10-04 — the %C castle comment ("height at most 2 with an odd number of blocks", signed _Chaz Reid_, Sep 18 2026), the %F lines "a(n) = A000225(n-1) - A038505(n) + 1 for n >= 1" and "a(n) = A038505(n) + A146559(n)" (signed Sep 26 2026), and the Cf. line, which now begins with A000225 and ends with A146559.
 [^7]: OEIS [A038505](https://oeis.org/A038505), revision #140 (Oct 04 2026), read 2026-10-04 — the %C castle comment ("height 2 with an even number of blocks (Project Euler, Problem 502: Counting Castles)", signed _Chaz Reid_, Sep 26 2026), the %H link "Project Euler, Problem 502: Counting Castles" to projecteuler.net/problem=502, the %F line "a(n) = A000225(n-1) - A038503(n) + 1 for n >= 1", and the Cf. line, which now begins with A000225.
 [^8]: OEIS [A146559](https://oeis.org/A146559), revision #152 (Sep 28 2026), read 2026-10-04 — the %F line "a(n) = A038503(n) - A038505(n). - _Chaz Reid_, Sep 26 2026".
+[^9]: https://oeis.org/search?q=id:A038503&fmt=text (2026-10-06) — %C "a(n)-1 is the number of castle polyominoes of width n-1 and height 2 with an odd number of blocks (Project Euler, Problem 502: Counting Castles), for n >= 2. ... whose height is 2, ... If the columns that reach height 2 form r >= 1 runs, the number of blocks is 1 + r, so an odd number of blocks means r is even. - _Chaz Reid_, Sep 18 2026"; the comment keeps its original signature date.
