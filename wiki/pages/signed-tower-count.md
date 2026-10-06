@@ -5,7 +5,7 @@ summary: P(k,L) = Σ (−1)^blocks over towers of height ≤ k above a length-L 
 tags: [concept, castle, signed-count, c-finite, oeis, generating-functions]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-13
-updated: 2026-10-04
+updated: 2026-10-05
 ---
 
 # Signed tower count P(k,L)
@@ -37,6 +37,10 @@ P(1,L) = Re((1+i)^{L+1}) = A146559(L+1)      (A146559: GF (1−x)/(1−2x+2x²))
 ```
 
 with values `P(1,L) = 1, 0, −2, −4, −4, 0, 8, 16, 16, 0, −32, …` from `L = 0` (re-verified during ingest). Its companion **A009545 is the imaginary part `Im((1+i)^n)`**, and `P(1,L) = A009545(L+3)/2` is a shifted, halved copy, which is why [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] checks matches against OEIS data with offsets.[^2]
+
+**At height 2, odd minus even is not constant.** At height 2, the number of castles of width `w` with an odd number of blocks minus the number with an even number is `P(1,w) − 1 = A146559(w+1) − 1`. The `−1` removes the all-zero string, which has no column at height 2. Each castle of height 2 has a fixed sign `(−1)^{blocks}`, but no pairing of the height-2 castles cancels these signs down to a constant. The castles of height 2 and width 2 show this. There are three, with top rows ■□, □■ and ■■. Each has 2 blocks (the bottom block and one block in row 2), so all three are even, and odd minus even is `−3 = A146559(3) − 1`.[^5]
+
+For castles of height 2 and any width `L`, the sign sum is `P(1,L)`: the sum of `(−1)^r` over the binary strings of length `L`, where the 1s mark the columns at height 2 and `r` is the number of runs of 1s (the number of blocks in row 2). For this height-2 sum, read a string left to right and track two signed counts: strings ending in 0 and strings ending in 1. Appending a 0 to either kind gives a string ending in 0. Appending a 1 continues a run after a 1, or starts a new run after a 0, which flips the sign. At height 2, one column therefore multiplies the pair by the matrix `[[1,1],[−1,1]]`, whose eigenvalues are `1 ± i`, and this gives `P(1,L) = Re((1+i)^{L+1})`.[^6] It is the real-part half of the A146559 comment `(1+i)^n = a(n) + A009545(n)·i`.[^7] Since `1 + i = √2·e^{iπ/4}`, `P(1,L) = 2^{(L+1)/2} cos((L+1)π/4)`. At height 2, each unit of width turns the angle by 45°, so the signs of `P(1,L)` repeat with period 8 (`+, 0, −, −, −, 0, +, +` from `L = 0`). The modulus of `P(1,L)` grows by `√2` per unit of width, a factor of 2 every two units; exactly, `(1+i)^4 = −4` gives `P(1,L+4) = −4·P(1,L)`. For `w ≥ 1` the value `P(1,w)` is never 2, so at height 2 odd minus even is never 1. At height 2 it is −1 when `w ≡ 1 (mod 4)`, where `P(1,w) = 0`.
 
 Both components are castle counts. Splitting `P(1,L)` by the parity of the last column height gives `P_even(1,L) = Re((1+i)^L) = A146559(L)` and `P_odd(1,L) = −Im((1+i)^L) = −A009545(L)`: A009545(w) is the number of castles of width `w` and height 2 whose last column reaches height 2 with an even number of blocks, minus those with an odd number. The split is the `k = 1` case of the sector decomposition on [[tower-parity-sectors](pages/tower-parity-sectors.md)], which for even `k` is what factors `char_k`.
 
@@ -81,3 +85,6 @@ The mining pass left five results about the `P(k,·)` rows:
 [^2]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L19-29 — "A009545 is the imaginary part of (1+i)^n ... P(1,L) = Re((1+i)^{L+1}) = A146559(L+1) ... P(1,L) = 0,-2,-4,-4,0,8,16,16,..."; re-verified during ingest.
 [^3]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `crosslink-avenues.md` §"Tier 1 / 3. A146559" L25-32 — "a(n) = P(1, n−1) ... a(n) = A038503(n) − A038505(n) (verified: Re((1+i)^n) = Σ_{j≡0} − Σ_{j≡2} binomial)."
 [^4]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `crosslink-avenues.md` §"Generation material" L104-105 — "P(k,L) signed towers, k ≥ 2 — new C-finite family (P(2,·): 1,3,9,19,33,59,… order 3; P(4,·): 1,5,25,85,225,541,… order 5), generalizing A146559."
+[^5]: raw/oeis-pe502/xrefs/A146559-signed.md §"Identity (verified)" [synthesis] L23-28,L36-41 — `a(n) − 1 = odd(n−1, 2) − F(n−1, 2)` for `n ≥ 2` at height 2 only, verified by brute force over castles of height 2 for `w = 1..14`, with `−3` at `n = 3`; the castles of height 2 and width 2 were listed by hand and re-enumerated for `w = 1..12` on 2026-10-05.
+[^6]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Recursion for P(k, L)" L94,L103,L108 — the `k = 1` (height-2) case `P(1, L)` only: "Split the strings by their last bit ... Appending a 0 never changes the run count; appending a 1 starts a new run exactly when the previous bit is 0." / "The matrix \begin{pmatrix}1 & 1 \\ -1 & 1\end{pmatrix} has eigenvalues 1 + i and 1 - i." / "P(1, L) = \operatorname{Re}((1+i)^{L+1})"
+[^7]: https://oeis.org/A146559 (2026-10-05) — "(1+i)^n = a(n) + A009545(n)*i where i = sqrt(-1)" (Philippe Deléham, Feb 2013).
