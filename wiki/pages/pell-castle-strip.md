@@ -5,7 +5,7 @@ summary: A seminar-shaped analysis. Start with an Analytic Combinatorics end-of-
 tags: [analysis, castle, pell, generating-functions, coefficient-matching, seminar, pedagogy, silver-ratio, transfer-matrix]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-15
-updated: 2026-10-04
+updated: 2026-10-06
 ---
 
 # The Pell castle strip - from an Analytic Combinatorics (AC) exercise to the silver ratio in castle space
@@ -111,6 +111,7 @@ Read as `SEQ(2Z + Z²)`, the denominator `1 − 2x − x²` lists two atoms. The
 ## Related Concepts
 
 - [[pell-castle](pages/pell-castle.md)] - the Pell castles: the anchored 1-smooth strips that reach height 3, `P⋆_w − 2^{w−1}` of them, the castle type the strip leads to.
+- [[1-smooth-castles](pages/1-smooth-castles.md)] - the anchored 1-smooth strip with ceiling `h` for every `h`; the two-atom reading of Act II belongs to `h = 3`.
 
 - [[castle-strip](pages/castle-strip.md)] - the from-scratch bridge: what a castle strip is, and how a neighbor rule becomes a transfer matrix whose states are the column heights. Read it first if the transfer-matrix language in Act III is unfamiliar.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the 1-smooth height-3 matrix and its `(1 − x)(1 − 2x − x²)` denominator, and the ridge rule `R_h = J − D` that realizes the whole metallic ladder.

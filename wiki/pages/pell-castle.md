@@ -1,11 +1,11 @@
 ---
 title: Pell castle
 category: Concepts
-summary: A Pell castle is a castle of exact height 3 whose first column has height 1 and whose neighbouring columns differ in height by at most 1. These are the anchored 1-smooth strips of the Pell castle strip that reach their ceiling, so they number P⋆_w − 2^{w−1} = 0, 0, 1, 4, 13, 38, 105, 280, … (the Pell number minus the 2^{w−1} anchored strips that stay at heights 1 and 2), with generating function x³/((1 − 2x − x²)(1 − 2x)), which is A094706(w − 2) (Convolution of Pell(n) and 2^n); they grow like the silver ratio 1 + √2, a silver width growth castle. Split by PE 502's block parity, the even-block and odd-block Pell castles (0, 0, 0, 0, 2, 13, 51, 154, … and 0, 0, 1, 4, 11, 25, 54, 126, …) satisfy an order-8 recurrence, their difference an order-5 one with denominator (1 − x)(1 − 2x + 2x²)(1 − 2x + 3x²); none of the three is in OEIS.
+summary: A Pell castle is a castle of exact height 3 whose first column has height 1 and whose neighbouring columns differ in height by at most 1. These are the anchored 1-smooth strips of the Pell castle strip that reach their ceiling, so they number P⋆_w − 2^{w−1} = 0, 0, 1, 4, 13, 38, 105, 280, … (the Pell number minus the 2^{w−1} anchored strips that stay at heights 1 and 2), with generating function x³/((1 − 2x − x²)(1 − 2x)), which is A094706(w − 2) (Convolution of Pell(n) and 2^n); they grow like the silver ratio 1 + √2, a silver width growth castle. They are the h = 3 case of the anchored 1-smooth castles of exact height h ([[1-smooth-castles]]), which A283595 counts in column 2. Split by PE 502's block parity, the even-block and odd-block Pell castles (0, 0, 0, 0, 2, 13, 51, 154, … and 0, 0, 1, 4, 11, 25, 54, 126, …) satisfy an order-8 recurrence, their difference an order-5 one with denominator (1 − x)(1 − 2x + 2x²)(1 − 2x + 3x²); none of the three is in OEIS.
 tags: [concept, castle, castle-type, pell, silver-ratio, transfer-matrix, 1-smooth, exact-height, parity, oeis]
 sources: [pe502-pell-castle-strip]
 created: 2026-10-04
-updated: 2026-10-04
+updated: 2026-10-06
 ---
 
 # Pell castle
@@ -47,11 +47,11 @@ The `− 2^{w−1}` is the exact-height condition, in the same way as the `− 1
 #{Pell castles of width w}  =  A094706(w − 2)      (w ≥ 2).
 ```
 
-A094706 has no castle reading.[^a094706][^exec]
+A094706 has no castle reading.[^a094706][^exec] The same numbers are column 2 of the triangle A283595, Motzkin prefixes of length `w − 1` and height 2: lowering every column by 1 turns a Pell castle into such a prefix.[^a283595]
 
 **Growth.** The dominant root of `(1 − 2x − x²)(1 − 2x)` is `1/(1 + √2)`, so the Pell castles grow like the silver ratio `1 + √2 ≈ 2.4142`: they are a silver width growth castle ([[castle-classification-growth](pages/castle-classification-growth.md)], [[metallic-means](pages/metallic-means.md)]). The subtracted `2^{w−1}` grows more slowly, so the Pell castles are a fraction of the Pell strips that tends to 1.
 
-**The other boundary conditions.** Dropping `c_1 = 1` gives the 1-smooth castles of exact height 3, `A001333(w + 1) − 2^w = 1, 3, 9, 25, 67, 175, 449, …` from the Pell-Lucas numbers A001333 ([[castle-classification-growth](pages/castle-classification-growth.md)]); their generating function is `x(1 − x)/((1 − 2x)(1 − 2x − x²))`, so they number exactly `A106514(w − 1)`, "Expansion of (1-x)/((1-2*x)*(1-2*x-x^2))".[^a106514] Requiring both end columns at height 1 gives `0, 0, 0, 0, 1, 5, 18, 56, 161, 441, …`, generating function `x⁵/((1 − x)(1 − 2x)(1 − 2x − x²))`: the partial sums of the Pell castles, shifted by 2, since the generating function is `x²/(1 − x)` times the Pell castles'. That row has no OEIS match (searched 2026-10-04). All three grow like `1 + √2`.[^exec]
+**The other boundary conditions.** Dropping `c_1 = 1` gives the 1-smooth castles of exact height 3, `A001333(w + 1) − 2^w = 1, 3, 9, 25, 67, 175, 449, …` from the Pell-Lucas numbers A001333 ([[castle-classification-growth](pages/castle-classification-growth.md)]); their generating function is `x(1 − x)/((1 − 2x)(1 − 2x − x²))`, so they number exactly `A106514(w − 1)`, "Expansion of (1-x)/((1-2*x)*(1-2*x-x^2))".[^a106514] Requiring both end columns at height 1 gives `0, 0, 0, 0, 1, 5, 18, 56, 161, 441, …`, generating function `x⁵/((1 − x)(1 − 2x)(1 − 2x − x²))`: the partial sums of the Pell castles, shifted by 2, since the generating function is `x²/(1 − x)` times the Pell castles'. That row is column 2 of the triangle A097862 (Motzkin paths of length `w − 1` and height 2) and is not in the OEIS as a sequence of its own (searched 2026-10-04).[^a097862] All three grow like `1 + √2`.[^exec]
 
 ## Blocks and parity
 
@@ -70,6 +70,10 @@ The first even-block Pell castles have width 5: `(1, 2, 1, 2, 3)` and `(1, 2, 3,
 ```
 
 and the signed count, even minus odd, one of order 5 with denominator `(1 − x)(1 − 2x + 2x²)(1 − 2x + 3x²)` (found by Berlekamp-Massey on 40 terms, [[berlekamp-massey](pages/berlekamp-massey.md)]). The roots of `1 − 2x + 2x²` are `1/(1 ± i)` and those of `1 − 2x + 3x²` are `1/(1 ± i√2)`, so the signed count grows like `√3 < 1 + √2` and each parity class is half the Pell castles up to a smaller term, the shape of the castle counting formula ([[castle-counting-formula](pages/castle-counting-formula.md)]). The even-block, odd-block and signed rows have no OEIS match (searched 2026-10-04); they are novel candidates on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].[^exec]
+
+## Other ceilings
+
+The same rule with ceiling `h` instead of 3 is followed on [[1-smooth-castles](pages/1-smooth-castles.md)], for `h = 2` to 12. The subtraction becomes `strips(w, h) − strips(w, h − 1)`, the anchored strips with ceiling `h` minus those with ceiling `h − 1`, and the generating function `x³/((1 − 2x − x²)(1 − 2x))` is the `h = 3` case of `x^h/(η_h(x)·η_{h−1}(x))`, where `η_h` is the reduced denominator of the strip generating function. At `h = 4` the strips are counted by the odd-indexed Fibonacci numbers and the castles grow like `φ²`; the Pell numbers and the silver ratio belong to `h = 3`.
 
 ## Computation
 
@@ -100,6 +104,7 @@ print([e for e, o in c])    # 0, 0, 0, 0, 2, 13, 51, 154, 400, 969, 2331, 5742, 
 
 ## Related Concepts
 
+- [[1-smooth-castles](pages/1-smooth-castles.md)] - the anchored 1-smooth castles of exact height `h` for every `h`, with the Pell castles as `h = 3`.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the Pell castle strip, the superset without the ceiling requirement, and the seminar from the Analytic Combinatorics exercise.
 - [[pell-numbers](pages/pell-numbers.md)] - `P⋆_w`, A000129.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - silver width growth castles, where the Pell castles sit beside the ridge castles of exact height 3.
@@ -111,5 +116,7 @@ print([e for e, o in c])    # 0, 0, 0, 0, 2, 13, 51, 154, 400, 969, 2331, 5742, 
 ## Footnotes
 
 [^a094706]: https://oeis.org/A094706 (fetched 2026-10-04) - "Convolution of Pell(n) and 2^n."; "G.f.: x/((1-2*x-x^2)*(1-2*x))."; data `0, 1, 4, 13, 38, 105, 280, 729, 1866, 4717, 11812, 29365, …`, offset 0.
+[^a283595]: https://oeis.org/A283595 (fetched 2026-10-06) - "Triangle read by rows: T(n,k) is the number of Motzkin prefixes (i.e., left factors of Motzkin paths) of length n and height k."; data `1, 1, 1, 1, 3, 1, 1, 7, 4, 1, 1, 15, 13, 5, 1, 1, 31, 38, 19, 6, 1, 1, 63, 105, 64, 26, 7, 1, 1, 127, 280, 202, 97, 34, 8, 1, …`, offset 0; column 2 reads `1, 4, 13, 38, 105, 280` from row 2.
+[^a097862]: https://oeis.org/A097862 (fetched 2026-10-06) - "Triangle read by rows: T(n,k) is the number of Motzkin paths of length n and height k (n>=0, k>=0)."; data `1, 1, 1, 1, 1, 3, 1, 7, 1, 1, 15, 5, 1, 31, 18, 1, 1, 63, 56, 7, 1, 127, 161, 33, 1, 1, 255, 441, 129, 9, …`, offset 0; column 2 reads `1, 5, 18, 56, 161, 441` from row 4.
 [^a106514]: https://oeis.org/A106514 (fetched 2026-10-04) - "Expansion of (1-x)/((1-2*x)*(1-2*x-x^2))."; comment "Convolution of A000079 and A001333."; data `1, 3, 9, 25, 67, 175, 449, 1137, 2851, …`, offset 0.
 [^exec]: Verified by execution (Python 3, SymPy, 2026-10-04), block above and a brute-force enumeration: the generating functions of the three boundary conditions at exact height 3 from the transfer matrix `[[1,1,0],[1,1,1],[0,1,1]]` (free, anchored, both ends) minus those of the strips on `{1, 2}`, matching brute force for `w ≤ 12`; for `w ≤ 14` the Pell castles enumerated from the definition number `P⋆_w − 2^{w−1}` and match the dynamic program, and their parity split is as tabulated; `P⋆_w − 2^{w−1} = A094706(w − 2)` for `w ≤ 16` (and for all `w` by the generating-function identity); Berlekamp-Massey on 40 terms of the even, odd and signed rows gives the denominators stated.

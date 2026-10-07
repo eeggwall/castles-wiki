@@ -125,13 +125,30 @@ Skylines over `{1, 2, 3}` with adjacent heights differing by at most 1 ([[pell-c
 | 1-smooth, first column at height 1 | `1, 2, 5, 12, 29, 70, 169, 408` | `1+√2` | **interlink** → [A000129](https://oeis.org/A000129) Pell (`= P⋆_w`; width GF `x/(1−2x−x²)`) |
 | 1-smooth, free first column | `3, 7, 17, 41, 99, 239, 577, 1393` | `1+√2` | **interlink** → [A001333](https://oeis.org/A001333) Pell-Lucas |
 | 1-smooth, both end columns at height 1 | `1, 1, 2, 4, 9, 21, 50, 120` | `1+√2` | **interlink** → [A171842](https://oeis.org/A171842) (`=a(w−1)`, "Motzkin n-paths of height <= 2"; searched 2026-09-26, 16 terms, see [[motzkin-castles](pages/motzkin-castles.md)]) |
-| **Pell castles**: 1-smooth, first column at height 1, exact height 3 | `0, 0, 1, 4, 13, 38, 105, 280, 729` | `1+√2` | **interlink** → [A094706](https://oeis.org/A094706) (`= A094706(w−2) = P⋆_w − 2^{w−1}`, g.f. `x³/((1−2x−x²)(1−2x))`, proved; the entry has no castle reading), [[pell-castle](pages/pell-castle.md)] |
+| **Pell castles**: 1-smooth, first column at height 1, exact height 3 | `0, 0, 1, 4, 13, 38, 105, 280, 729` | `1+√2` | **interlink** → [A094706](https://oeis.org/A094706) (`= A094706(w−2) = P⋆_w − 2^{w−1}`, g.f. `x³/((1−2x−x²)(1−2x))`, proved; the entry has no castle reading) and column 2 of [A283595](https://oeis.org/A283595) (Motzkin prefixes by height), [[pell-castle](pages/pell-castle.md)] |
 | 1-smooth, free first column, exact height 3 | `1, 3, 9, 25, 67, 175, 449, 1137` | `1+√2` | **interlink** → [A106514](https://oeis.org/A106514) (`= A106514(w−1)`, g.f. `x(1−x)/((1−2x)(1−2x−x²))`, proved, 2026-10-04) |
-| 1-smooth, both end columns at height 1, exact height 3 | `0, 0, 0, 0, 1, 5, 18, 56, 161, 441` | `1+√2` | **novel-candidate** (g.f. `x⁵/((1−x)(1−2x)(1−2x−x²))`, the Pell castles' partial sums shifted by 2; no match 2026-10-04) |
+| 1-smooth, both end columns at height 1, exact height 3 | `0, 0, 0, 0, 1, 5, 18, 56, 161, 441` | `1+√2` | **interlink** → column 2 of [A097862](https://oeis.org/A097862) (Motzkin paths by height, row `w − 1`; g.f. `x⁵/((1−x)(1−2x)(1−2x−x²))`, the Pell castles' partial sums shifted by 2; not a standalone sequence, searched 2026-10-04) |
 | even-block / odd-block Pell castles | `0, 0, 0, 0, 2, 13, 51, 154, …` / `0, 0, 1, 4, 11, 25, 54, 126, …` | `1+√2` | **novel-candidate** (order-8 recurrence; no match 2026-10-04), [[pell-castle](pages/pell-castle.md)] |
 | signed Pell castles (even − odd) | `0, 0, −1, −4, −9, −12, −3, 28, 71, 72, …` | `√3` | **novel-candidate** (denominator `(1−x)(1−2x+2x²)(1−2x+3x²)`; no match 2026-10-04) |
 
 *(Verified by enumeration and by `e_1ᵀ(I − xM)^{−1}𝟙` on the 3×3 transfer matrix, 2026-09-19; the exact-height-3 rows by enumeration and SymPy, 2026-10-04.)*
+
+### 1-smooth castles of exact height h
+
+The 1-smooth rule with ceiling `h` ([[1-smooth-castles](pages/1-smooth-castles.md)]), extending the Pell rows above to `h = 2…12`. `strips(w, h)` counts anchored skylines on `{1, …, h}`, `smooth(w, h)` anchored castles of exact height `h`, with g.f. `x^h/(η_h η_{h−1})`. Rows verified by transfer matrix and enumeration, 2026-10-06.
+
+| object | first terms | growth | status |
+|---|---|---|---|
+| anchored 1-smooth castles, exact height `h` (`smooth(w, h)`) | `h = 4`: `0, 0, 0, 1, 5, 19, 64, 202, 612`; one row per `h` on the concept page | `1 + 2cos(π/(h+1))` | **interlink** → column `h − 1` of [A283595](https://oeis.org/A283595) (Motzkin prefixes by height, row `w − 1`; no g.f. in the entry). As standalone sequences the rows `h = 4…9` have no match (2026-10-06) |
+| anchored strips, `h = 4` | `1, 2, 5, 13, 34, 89, 233` | `φ²` | **interlink** → [A001519](https://oeis.org/A001519) (`=a(w) = F_{2w−1}`) |
+| anchored strips, `h = 5` | `1, 2, 5, 13, 35, 95, 259, 707` | `1+√3` | **interlink** → [A057960](https://oeis.org/A057960) (`=a(w−1)`, corridor of width 5) |
+| anchored strips, `h = 6` | `1, 2, 5, 13, 35, 96, 266, 741` | `1+2cos(π/7)` | **interlink** → [A085810](https://oeis.org/A085810) (`=a(w)`, corridor of height 5) |
+| anchored strips, `h = 7, 8, 9` | `h = 7`: `1, 2, 5, 13, 35, 96, 267, 749, 2113, 5982` | `1+2cos(π/(h+1))` | **novel-candidate** (no match, 2026-10-06; agree with [A005773](https://oeis.org/A005773) for `w ≤ h`) |
+| even-block / odd-block, `h = 4` | `1, 5, 16, 42, 106, 287, 843, 2535` / `0, 0, 3, 22, 96, 325, 960, 2670` (from `w = 4`) | `φ²` | **novel-candidate** (order 11; no match 2026-10-06) |
+| even-block / odd-block / signed, `h = 5…12` | on the concept page | `1 + 2cos(π/(h+1))` | **unchecked** |
+| both ends at height 1, exact height `h` | `h = 4`: `1, 7, 33, 129, 453, 1485` from `w = 7` | `1 + 2cos(π/(h+1))` | **interlink** → column `h − 1` of [A097862](https://oeis.org/A097862) (g.f. `x^{2h−1}/(χ_h χ_{h−1})`) |
+| free first column, exact height `4` | `1, 3, 9, 27, 79, 227, 643, 1801, 4999` | `φ²` | **novel-candidate** (no match 2026-10-06) |
+| free first column, exact height `h = 5…12` | on the concept page | `1 + 2cos(π/(h+1))` | **unchecked** |
 
 ### Motzkin castles
 

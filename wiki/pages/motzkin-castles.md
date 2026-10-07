@@ -5,7 +5,7 @@ summary: Hub for the exact appearances of the Motzkin family in castles. Every c
 tags: [analysis, castle, motzkin, lattice-paths, cornerless, bargraph, parity, sign, gaussian-integers, transfer-matrix, chebyshev, metallic, semi-perimeter, oeis, hub]
 sources: [motzkin-numbers, project-euler-502-representations, project-euler-502-brute-force, deutsch-elizalde-2016-bargraphs-cornerless-motzkin, prodinger-2025-cornerless-motzkin-bargraphs]
 created: 2026-09-26
-updated: 2026-10-04
+updated: 2026-10-06
 ---
 
 # Motzkin castles - where the Motzkin numbers meet the castle
@@ -152,6 +152,7 @@ By mirror symmetry the same numbers count castles whose columns never *rise* by 
 ## Related Concepts
 
 - [[motzkin-numbers](pages/motzkin-numbers.md)] - the family itself.
+- [[1-smooth-castles](pages/1-smooth-castles.md)] - the same strip anchored at height 1 only, by exact height `h`: Motzkin prefixes by height (A283595), g.f. `x^h/(η_h η_{h−1})`.
 - [[tower-word-language](pages/tower-word-language.md)] / [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] - the tower word as a Motzkin language, by length A004149.
 - [[castle-perimeter](pages/castle-perimeter.md)] - semi-perimeter = width + blocks, A082582, and the signed perimeter count.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - the Motzkin-path and Dyck-path castle types and their fixed-height triangles.
