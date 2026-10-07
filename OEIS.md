@@ -59,108 +59,108 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
       point at the array; `wiki/pages/new-sequence-fw3.md`). No match (re-searched 2026-10-04).
    3. [ ] **Column `w = 3`, `F(3,h)`** = `0, 6, 3, 31, 10, 76, 21, 141, 36, 226, …`: `C(h,2)` at
       odd `h`, `5·C(h,2) + 1` at even `h` (`wiki/pages/sum-of-three-cubes-castles.md`). No match
-      (searched 2026-10-04). **Draft not written.**
+      (searched 2026-10-04). **Draft not written.** The halves and the odd-block column, for
+      the draft: the odd half is `F(3, 2m+1) = A014105(m)` (second hexagonal numbers); the
+      even half is `F(3,2m) = 10m^2 − 5m + 1` (`6, 31, 76, 141, …`, no match 2026-09-20); and
+      `odd(3, 2n+1) = A080860(n)` (`10n^2 + 5n + 1`), an interlink.
 4. [ ] **A003410 castle comment** (optional edit 2 of the A226136 draft, lower priority): for
    `n >= 4`, `a(n)` = castles of width `n` and height 2 with no two adjacent columns at height
    2 and every run of height-1 columns of length at most 3 (the `(1,3)`-RLL Fibonacci
    castles): `raw/oeis-pe502/xrefs/A226136-A003410.md` §"Edit 2"
    (`wiki/pages/fibonacci-castles-sub-families.md`).
 
-### 3. Needs a draft (verified, worth submitting)
+### 3. Needs a draft (verified, worth submitting; in submission order)
 
-- [ ] **A077868** (planned for the week of 2026-10-05): two castle readings and the bijection
-  between them. Spaced Fibonacci castles (height-2 columns at least 3 apart) of width `w`
-  number `A077868(w − 1)`; tree castles of height 2 with area `A` (cells) number
-  `A077868(A − 2)`; the domino-boundary map matches the Fibonacci castles with `w + 1`
-  cells to the spaced castles of width `w`. Brute-force verified 2026-10-04
-  (`wiki/pages/fibonacci-castles-sub-families.md`, `wiki/pages/tree-castle-by-area.md`).
-- [ ] **A000071** (planned for the week of 2026-10-05): the Fibonacci castles of width `w`
-  number `F_{w+2} − 1`, the term `A000071(w+2)`; castles of height 2 with area `A` number
-  `F_{A+1} − 1`, the term `A000071(A+1)`. Brute-force verified 2026-10-04
-  (`wiki/pages/fibonacci-castle.md`, `wiki/pages/castle-graph.md`).
-- [ ] **A049703**: balanced Fibonacci castles of width `w` number `A005598(w)/2 = A049703(w)`
-  (towers balanced, i.e. finite Sturmian); the entry is defined only as `A005598(n)/2`, with
-  no combinatorial reading. Brute-force verified `w ≤ 15`, 2026-10-04
-  (`wiki/pages/fibonacci-castles-sub-families.md`).
-- [ ] **A094706** (Convolution of Pell(n) and 2^n; the entry has no comments): the Pell
-  castles (exact height 3, first column 1, neighbouring columns differing by at most 1) of
-  width `w` number `A094706(w − 2) = P⋆_w − 2^{w−1}` (`P⋆_w` the Pell numbers), proved by
-  the g.f. `x³/((1−2x−x²)(1−2x))` (`wiki/pages/pell-castle.md`). Add the formula
-  `a(n) = A283595(n+1, 2)` (column 2 of the Motzkin-prefix triangle: lowering a Pell castle
-  by one row gives a Motzkin prefix of height 2) and `Cf. A283595`; pairs with the A283595
-  item below (`wiki/pages/1-smooth-castles.md`).
-- [ ] **A283595** (Motzkin prefixes of length `n` and height `k`; the entry has no formula
-  section): castle comment, `T(n,k)` = castles of width `n+1` and exact height `k+1` whose
-  first column is at height 1 and whose neighbouring columns differ by at most 1 (column 2
-  is the Pell castles, A094706). Formula line: the g.f. of column `k` is
-  `z^k/(R_k(z) R_{k+1}(z))` with `R_{2j} = P_j − z P_{j−1}` and
-  `R_{2j+1} = P_{j+1} − z^2 P_{j−1}`, where `P_k` are the polynomials of A097862
-  (`P_{−1} = 0`; the entry's own notation, not the Pell numbers). Proved on the wiki (only odd
-  eigenvalue indices survive; the numerator is a single power of `z`), and checked against the
-  entry's rows 0-8 and as an identity for `k ≤ 11` (2026-10-06). **Before drafting:** read
-  Finch, arXiv:1802.04615 (linked from the entry) to see whether the column g.f. is already
-  there, and cite it if so (`wiki/pages/1-smooth-castles.md` §3.2-3.3, §3.5).
-- [ ] **A106514**: the 1-smooth castles of exact height 3 (free first column) of width `w`
-  number `A106514(w − 1)`, g.f. `x(1−x)/((1−2x)(1−2x−x²))`, proved; the entry has
-  only convolution and eigensequence comments (`wiki/pages/pell-castle.md`).
-- [ ] **Difference-of-powers fillers** (formerly tier 3) A000225, A001047, …
-  (`h^w − (h−1)^w` all castles of exact height `h`).
-- [ ] **New-sequence siblings** of `F(w,3)`: `F(w,4)`, `F(w,5)`, `odd(w,h≥3)`, parity-refined
-  area sequences (`cev+cod = A001523`), `strict_valley`, tower rows `w≥6`, and the `P(k,·)`
-  families for `k≥2`, and further rows and columns of the `F(w,h)` array, each only if it
-  brings its own formula. Searched 2026-10-04, no match: rows `F(w,4)`, `F(w,5)`, `F(w,6)`;
-  the odd-block rows `odd(w,3)`, `odd(w,4)`; the column `F(4,h)` (`0, 10, 21, 117, 122, 448,
-  …`). Also no match 2026-10-04 and new-sequence candidates outside the array: `|P(k,5)|`,
-  `|P(k,6)|` (the `k`-direction rows), the tower rows `w = 6, 7`, the `(1,7)`, `(2,7)`,
-  `(2,10)`-RLL Fibonacci castle counts, the Jacobi-Perron denominators of `2ψ²`, and the
-  Pell castle rows (even-block, odd-block, signed)
-  (`wiki/pages/castle-sequence-catalogue.md`, "Other generation candidates"). The
-  both-ends-at-height-1 Pell row `0, 0, 0, 0, 1, 5, 18, 56, …` is column 2 of A097862 (not
-  a standalone entry): file it only as a column entry with its own formula,
-  `x⁵/((1−x)(1−2x)(1−2x−x²))`; its value at width `w` is `S(w − 4)`, where `S` is the running
-  sum of A094706. Also from `wiki/pages/sum-of-three-cubes-castles.md`:
-  `F(3,2m) = 10m^2-5m+1` (`6, 31, 76, 141, …`, no match 2026-09-20; the even half of the
-  `F(3,h)` column) and the interlink `odd(3,2n+1) = A080860(n)`.
-- [ ] **Tower-spacing table** (`wiki/pages/tower-spacing-castles.md`): the six unfiled cells
-  `(h,g)` for `h in {5,6}`, `g in {4,5,6}` as new sequences (Hardin's "0..(h-1) arrays, each
-  element the minimum of `g` adjacent elements", never filed at these parameters; no match
-  2026-09-20), and one comment each on the nineteen matched cells and the tables
-  A217883 / A217954 / A228461 giving the castle reading and the running-minimum proof.
+1. [ ] **A283595** (Motzkin prefixes of length `n` and height `k`; the entry has no formula
+   section): castle comment, `T(n,k)` = castles of width `n+1` and exact height `k+1` whose
+   first column is at height 1 and whose neighbouring columns differ by at most 1 (column 2
+   is the Pell castles, A094706). Formula line: the g.f. of column `k` is
+   `z^k/(R_k(z) R_{k+1}(z))` with `R_{2j} = P_j − z P_{j−1}` and
+   `R_{2j+1} = P_{j+1} − z^2 P_{j−1}`, where `P_k` are the polynomials of A097862
+   (`P_{−1} = 0`; the entry's own notation, not the Pell numbers). Proved on the wiki (only odd
+   eigenvalue indices survive; the numerator is a single power of `z`), and checked against the
+   entry's rows 0-8 and as an identity for `k ≤ 11` (2026-10-06). **Before drafting:** read
+   Finch, arXiv:1802.04615 (linked from the entry) to see whether the column g.f. is already
+   there, and cite it if so (`wiki/pages/1-smooth-castles.md` §3.2-3.3, §3.5).
+2. [ ] **A094706** (Convolution of Pell(n) and 2^n; the entry has no comments): the Pell
+   castles (exact height 3, first column 1, neighbouring columns differing by at most 1) of
+   width `w` number `A094706(w − 2) = P⋆_w − 2^{w−1}` (`P⋆_w` the Pell numbers), proved by
+   the g.f. `x³/((1−2x−x²)(1−2x))` (`wiki/pages/pell-castle.md`). Add the formula
+   `a(n) = A283595(n+1, 2)` (column 2 of the Motzkin-prefix triangle: lowering a Pell castle
+   by one row gives a Motzkin prefix of height 2) and `Cf. A283595`; pairs with the A283595
+   item above (`wiki/pages/1-smooth-castles.md`).
+3. [ ] **A077868**: two castle readings and the bijection between them. Spaced Fibonacci
+   castles (height-2 columns at least 3 apart) of width `w` number `A077868(w − 1)`; tree
+   castles of height 2 with area `A` (cells) number `A077868(A − 2)`; the domino-boundary map
+   matches the Fibonacci castles with `w + 1` cells to the spaced castles of width `w`.
+   Brute-force verified 2026-10-04
+   (`wiki/pages/fibonacci-castles-sub-families.md`, `wiki/pages/tree-castle-by-area.md`).
+4. [ ] **A000071**: the Fibonacci castles of width `w` number `F_{w+2} − 1`, the term
+   `A000071(w+2)`; castles of height 2 with area `A` number `F_{A+1} − 1`, the term
+   `A000071(A+1)`. Brute-force verified 2026-10-04
+   (`wiki/pages/fibonacci-castle.md`, `wiki/pages/castle-graph.md`).
+5. [ ] **A049703**: balanced Fibonacci castles of width `w` number `A005598(w)/2 = A049703(w)`
+   (towers balanced, i.e. finite Sturmian); the entry is defined only as `A005598(n)/2`, with
+   no combinatorial reading. Brute-force verified `w ≤ 15`, 2026-10-04
+   (`wiki/pages/fibonacci-castles-sub-families.md`).
+6. [ ] **A106514**: the 1-smooth castles of exact height 3 (free first column) of width `w`
+   number `A106514(w − 1)`, g.f. `x(1−x)/((1−2x)(1−2x−x²))`, proved; the entry has
+   only convolution and eigensequence comments (`wiki/pages/pell-castle.md`).
+7. [ ] **A047969 castle comment** (replaces per-row comments on the dense rows A000225,
+   A001047, …): the nexus-number array `a(n,k) = (n+1)^(k+1) − n^(k+1)` counts the castles
+   of width `k+1` and exact height `n+1`, `h^w − (h−1)^w` with `h = n+1`, `w = k+1`. The
+   stage-2 `F(w,h)` array item already gives `Cf. A047969`.
+8. [ ] **Tower-spacing new sequences** (`wiki/pages/tower-spacing-castles.md`): the six
+   unfiled cells `(h,g)` for `h in {5,6}`, `g in {4,5,6}` (Hardin's "0..(h-1) arrays, each
+   element the minimum of `g` adjacent elements", never filed at these parameters; no match
+   2026-09-20).
+9. [ ] **Tower-spacing table comments**: one comment each on the tables A217883 / A217954 /
+   A228461 giving the castle reading and the running-minimum proof. The nineteen matched
+   cells are covered by the tables, so no per-cell comments
+   (`wiki/pages/tower-spacing-castles.md`).
 
 ### 4. Candidates (found on the wiki, not yet assessed)
 
 Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with the reason).
 
-- [ ] **A097862 castle comment** (Motzkin paths by length and height): `T(n,k)` = castles of
-  width `n+1` and exact height `k+1`, neighbouring columns differing by at most 1, both end
-  columns at height 1. The entry already states the column g.f. `z^(2k)/[P_k*P_{k+1}]`, whose
-  `P_k` are the 1-smooth determinants, and the castle reading is the Motzkin path raised one
-  row, so the comment adds little; lean skip (`wiki/pages/1-smooth-castles.md`, "Other
-  boundary conditions").
-- [ ] **New sequences from the 1-smooth and m-smooth pages** (each brings its own g.f.):
-  - column 3 of A283595, the 1-smooth castles of exact height 4 with first column at
-    height 1: `1, 5, 19, 64, 202, 612, …` from width 4, `= F_{2w−1} − P⋆_w`, g.f.
-    `x⁴/((1−3x+x²)(1−2x−x²))`; no standalone match 2026-10-06. If A283595 gets its
-    column g.f., a column entry may be redundant;
-  - the PE 502 parity split of A283595 as two triangles (even-block, odd-block); no match
-    2026-10-06; messy recurrences (order 11 at height 4);
-  - the free-first-column 1-smooth castles of exact height 4: `1, 3, 9, 27, 79, 227, 643, …`;
-    no match 2026-10-06;
-  - the m-smooth diagonal castles `h = m + 2`, g.f.
-    `m x³/((1−(m+1)x−m x²)(1−(m+1)x))` (`m = 1` gives `A094706(w − 2)`): the `m = 2` row
-    `2, 12, 58, 252, 1034, …` from width 3 has no match (2026-10-06); `m = 3, 4` not
-    searched;
-  - the 2-smooth triangle by `(w, h)` (`1; 1, 1, 1; 1, 3, 5, 2, 1; 1, 7, 19, 12, 8, 3, 1; …`);
-    no match 2026-10-06
-  (`wiki/pages/1-smooth-castles.md`, `wiki/pages/m-smooth-castles.md`,
-  `wiki/pages/castle-sequence-catalogue.md`).
+- [ ] **New-sequence candidates**, each only if it brings its own formula
+  (`wiki/pages/castle-sequence-catalogue.md`, "Other generation candidates"):
+  - **The `F(w,h)` array:** rows `F(w,4)`, `F(w,5)`, `F(w,6)`; the odd-block rows
+    `odd(w,3)`, `odd(w,4)` and `odd(w,h≥3)` generally; the column `F(4,h)` (`0, 10, 21,
+    117, 122, 448, …`); further rows and columns. Searched rows and columns: no match
+    2026-10-04. The `w = 3` column facts are under stage 2.
+  - **Area:** the parity-refined area sequences (`cev+cod = A001523`), `strict_valley`.
+  - **Towers and signed counts:** tower rows `w ≥ 6` (`w = 6, 7`: no match 2026-10-04); the
+    `P(k,·)` families for `k ≥ 2`; `|P(k,5)|`, `|P(k,6)|`, the `k`-direction rows (no match
+    2026-10-04).
+  - **Fibonacci sub-families:** the `(1,7)`, `(2,7)`, `(2,10)`-RLL Fibonacci castle counts;
+    the Jacobi-Perron denominators of `2ψ²` (no match 2026-10-04).
+  - **Pell, 1-smooth and m-smooth** (`wiki/pages/1-smooth-castles.md`,
+    `wiki/pages/m-smooth-castles.md`):
+    - the Pell castle rows (even-block, odd-block, signed; no match 2026-10-04), which are
+      column 2 of the A283595 parity triangles below;
+    - the both-ends-at-height-1 Pell row `0, 0, 0, 0, 1, 5, 18, 56, …`, column 2 of A097862
+      (not a standalone entry): only as a column entry with its own formula,
+      `x⁵/((1−x)(1−2x)(1−2x−x²))`; its value at width `w` is `S(w − 4)`, where `S` is the
+      running sum of A094706;
+    - column 3 of A283595, the 1-smooth castles of exact height 4 with first column at
+      height 1: `1, 5, 19, 64, 202, 612, …` from width 4, `= F_{2w−1} − P⋆_w`, g.f.
+      `x⁴/((1−3x+x²)(1−2x−x²))`; no standalone match 2026-10-06. If A283595 gets its
+      column g.f., a column entry may be redundant;
+    - the PE 502 parity split of A283595 as two triangles (even-block, odd-block); no match
+      2026-10-06; messy recurrences (order 11 at height 4);
+    - the free-first-column 1-smooth castles of exact height 4: `1, 3, 9, 27, 79, 227, 643, …`;
+      no match 2026-10-06;
+    - the m-smooth diagonal castles `h = m + 2`, g.f.
+      `m x³/((1−(m+1)x−m x²)(1−(m+1)x))` (`m = 1` gives `A094706(w − 2)`): the `m = 2` row
+      `2, 12, 58, 252, 1034, …` from width 3 has no match (2026-10-06); `m = 3, 4` not
+      searched;
+    - the 2-smooth triangle by `(w, h)` (`1; 1, 1, 1; 1, 3, 5, 2, 1; 1, 7, 19, 12, 8, 3, 1;
+      …`); no match 2026-10-06.
 - [ ] **A014105** (second hexagonal numbers `n(2n+1)`): the odd half of the `F(3,h)` column,
-  `F(3, 2m+1) = A014105(m)` (verified `m ≤ 11`, 2026-10-04); likely better stated once on the
-  `F(3,h)` column entry than as a comment on this dense entry.
-- [ ] **Quadratic-field strips** `Q(√17)`, `Q(√21)`, `Q(√6)`, `Q(√7)`, `Q(√33)`
-  (`wiki/pages/reachable-field-census.md`): not yet sequences. Each field is reached by
-  several strip matrices; choose one realizing matrix per field (e.g. the sparsest), compute
-  its width counts, then search.
+  `F(3, 2m+1) = A014105(m)` (verified `m ≤ 11`, 2026-10-04), now also stated under the
+  stage-2 `w = 3` column item. Open question: a separate comment on this dense entry, or
+  only the column entry.
 
 **Skipped (assessed, with reason):**
 
@@ -173,6 +173,11 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   strips, not castle families, for the same reason; A057960 and A085810 already carry the
   equivalent corridor-path reading, and A001519 is dense. The castle readings go on A283595
   and the diagonal castle rows.
+- A097862 castle comment (both end columns at height 1, neighbouring columns differing by at
+  most 1): the entry already states the column g.f. `z^(2k)/[P_k*P_{k+1}]`, whose `P_k` are
+  the 1-smooth determinants, and the castle reading is the Motzkin path raised one row.
+- A000225 / A001047 / … (`h^w − (h−1)^w`, all castles of exact height `h`, one row per `h`):
+  dense entries; the castle reading goes once on the array A047969 (stage 3).
 - The plastic strip (rule `1→3, 2→1, 3→{1,2}`): its count is `A000931(w + 9)`, Padovan,
   which the entry already covers with word and automaton readings (Finch's `(1,2)`-RLL
   words, Deutsch's compositions into 2s and 3s). Draft written anyway, recommending skip:
