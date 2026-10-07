@@ -1,5 +1,27 @@
 {
+  "extraKnownMarketplaces": {
+    "wiki-skills-eeggwall": {
+      "source": {
+        "source": "settings",
+        "name": "wiki-skills-eeggwall",
+        "owner": {
+          "name": "eeggwall"
+        },
+        "plugins": [
+          {
+            "name": "wiki-skills",
+            "source": {
+              "source": "url",
+              "url": "https://git.charlesreid1.com/eeggwall/wiki-skills.git",
+              "ref": "main"
+            }
+          }
+        ]
+      }
+    }
+  },
   "enabledPlugins": {
-    "wiki-skills@wiki-skills": true
+    "wiki-skills@wiki-skills": false,
+    "wiki-skills@wiki-skills-eeggwall": true
   }
 }
