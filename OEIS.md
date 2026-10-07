@@ -79,9 +79,11 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
    `R_{2j+1} = P_{j+1} − z^2 P_{j−1}`, where `P_k` are the polynomials of A097862
    (`P_{−1} = 0`; the entry's own notation, not the Pell numbers). Proved on the wiki (only odd
    eigenvalue indices survive; the numerator is a single power of `z`), and checked against the
-   entry's rows 0-8 and as an identity for `k ≤ 11` (2026-10-06). **Before drafting:** read
-   Finch, arXiv:1802.04615 (linked from the entry) to see whether the column g.f. is already
-   there, and cite it if so (`wiki/pages/1-smooth-castles.md` §3.2-3.3, §3.5).
+   entry's rows 0-8 and as an identity for `k ≤ 11` (2026-10-06). Finch, arXiv:1802.04615
+   (linked from the entry), checked 2026-10-07: it works with ±1 walks and only refers to
+   A283595 for the Motzkin-prefix counts, so there is no column g.f. to cite. Present the
+   formula without a novelty claim; bounded-height path g.f.s are classical
+   (`wiki/pages/1-smooth-castles.md` §3.2-3.3, §3.5).
 2. [ ] **A094706** (Convolution of Pell(n) and 2^n; the entry has no comments): the Pell
    castles (exact height 3, first column 1, neighbouring columns differing by at most 1) of
    width `w` number `A094706(w − 2) = P⋆_w − 2^{w−1}` (`P⋆_w` the Pell numbers), proved by
