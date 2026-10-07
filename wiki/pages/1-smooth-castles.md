@@ -266,6 +266,7 @@ The definition, the subtraction `strips(w, h) − strips(w, h − 1)`, the trans
 
 - [[1-smooth-pell-castles-by-area](pages/1-smooth-pell-castles-by-area.md)] - the Pell castles at exact height 3 counted by cells rather than columns, with joint width/area bookkeeping and area growth.
 - [[pell-castle](pages/pell-castle.md)] - the `h = 3` case, where this page starts.
+- [[kernel-method](pages/kernel-method.md)] - the same strips through the two roots of the kernel `1 − x(u^{−1} + 1 + u)` ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the `h = 3` strip and the two-atom reading of `1/(1 − 2x − x²)`.
 - [[motzkin-castles](pages/motzkin-castles.md)] - the same matrix with both end columns pinned (§4, the growth ladder) and the signed eigenvalues `1 + 2i·cos θ_k` (§3); anchored at height 1 with no ceiling, the Motzkin prefixes A005773 (§5).
 - [[castle-strip](pages/castle-strip.md)] - how a neighbour rule becomes a transfer matrix on column heights.

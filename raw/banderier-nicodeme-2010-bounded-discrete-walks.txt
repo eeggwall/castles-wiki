@@ -1,0 +1,806 @@
+AofA’10                                                                          DMTCS proc. AM, 2010, 35–48
+
+
+
+
+Bounded discrete walks
+C. Banderier1 and P. Nicodème2
+1
+    LIPN, CNRS-UMR 7030, Université Paris-Nord, 93430 Villetaneuse, France.
+http://www-lipn.univ-paris13.fr/∼banderier/
+2
+    LIX, CNRS-UMR 7161, École polytechnique, 91128 Palaiseau, France & AMIB project, INRIA Saclay.
+http://www.lix.polytechnique.fr/Labo/Pierre.Nicodeme/
+
+
+
+This article tackles the enumeration and asymptotics of directed lattice paths (that are isomorphic to unidimensional
+paths) of bounded height (walks below one wall, or between two walls, for any finite set of jumps). Thus, for any lat-
+tice paths, we give the generating functions of bridges (“discrete” Brownian bridges) and reflected bridges (“discrete”
+reflected Brownian bridges) of a given height. It is a new success of the “kernel method” that the generating functions
+of such walks have some nice expressions as symmetric functions in terms of the roots of the kernel. These formulae
+also lead to fast algorithms for computing the n-th Taylor coefficients of the corresponding generating functions.
+For a large class of walks, we give the discrete distribution of the height of bridges, and show the convergence to a
+Rayleigh limit law. For the family of walks consisting of a −1 jump and many positive jumps, we give more precise
+bounds for the speed of convergence. We end our article with a heuristic application to bioinformatics that has a high
+speed-up relative to previous work.
+
+Keywords: Random walks, analytic combinatorics, Brownian bridge, Rayleigh distribution, genes ranking statistics
+
+
+
+
+1       Introduction
+A lattice path is the drawing in Z2 of a sum of vectors from Z2 (where the vectors belongs to a finite
+fixed set, and where the origin of the path is usually taken as being the point (0,0) from Z2 ). If all vectors
+are in N × Z, the path is called directed (the path is going “to the right”). In this article, we consider
+the case for which all vectors are in {1} × Z; despite its natural representation as a drawing in Z2 , such
+a path is essentially a unidimensional object. If all vectors are in {1} × (N ∪ {−1}), the path is called
+a “simple lattice path” or a “Łukasiewicz path” because there exists a bijection with simple families of
+trees. Unidimensional lattice paths pop up naturally in numerous fields (probability theory, combinatorics,
+algebra, economics, biology, analysis of algorithms, language theory, . . . ).
+   For lattice paths (or their probabilistic equivalent, random walks) which are space and time homoge-
+neous, it was proven [4] that symbolic and analytic combinatorics [17] are quite powerful tools to study
+unidimensional lattice paths from an enumerative and asymptotic point of view. The authors of these
+articles developed a generating function approach to get exact enumeration of lattice paths (via the kernel
+method), and then used singularity analysis to study some basic parameters (like number of returns to
+zero, final altitude) according to some constraints (drift/reflecting conditions). For random walks there
+1365–8050 c 2010 Discrete Mathematics and Theoretical Computer Science (DMTCS), Nancy, France
+36                                                                          C. Banderier and P. Nicodème
+
+are numerous works using an approach with a flavour of “generating function” and “analysis of singular-
+ity”, either with probabilistic or combinatorial methods, e.g. for interaction of random walks, for random
+walks on groups or for stationary distributions of 2-dimensional models in queueing theory.
+   In our simpler model of unidimensional lattice paths, for simple parameters which are in one sense
+“exactly solvable”, one can expect more than for the above difficult problems: not only can one get
+here critical exponents, but also we get fast computation schemes, for exact enumeration and for full
+asymptotics (to any order). It is then natural to ask what can be obtained for less trivial parameters, like
+the area under the walks or the height of the walk. The area was investigated in another article [6], and
+we concentrate here on the height. The height has already been investigated in combinatorics, mainly for
+Dyck paths (walks having just +1 or −1 jumps) which have a nice relationship with continued fractions
+and Chebyshev polynomials.
+   In our approach, one of the key tricks to solve the model for any set of jumps is the so-called “kernel
+method”, which is a way of solving a functional equation of the type K(z, u)F (z, u) = A(z, u) +
+B(z, u)G(z) where F and G are the unknowns one wishes to determine. The kernel method consists in
+getting additional equations by plugging the roots u(z) of the “kernel” K(z, u) in the initial equation,
+which in general is enough to solve the system. The kernel method shares the spirit of the “quadratic
+method” of Tutte and Brown (for enumeration of maps). In combinatorics, only the simplest case of the
+kernel method (namely, when there is only one root) was used for 30 years, see Knuth [22] for sorting
+with stacks, Chung et al. [11] for a pebbling game, or [25] for generation of binary trees. During the same
+time period, and independently, difficult 2-dimensional generalisations of this method were well studied in
+queueing theory; the classification of the different cases for the nearest neighbour walks in N2 was already
+quite a challenge, see the book [15] or [24]. This last decade, there has been a revival in combinatorics
+for functional equations, and the full power of the kernel method was better put into evidence, both for
+enumeration and for asymptotics. Solving equations is not the only miracle that the kernel method offers,
+it also gives compact formulae [9, 1, 3], offers some nice interactions with computer algebra (see the
+recent solution of Gessel’s conjecture [20, 7]), and gives access to asymptotics [4, 2, 26]. Our article thus
+adds a new stone to the “kernel method” edifice, and gives more results on enumeration and asymptotics
+for the height of directed lattice paths, while other approaches (like e.g. transfer matrices or probability
+theory) would be either of much higher complexity, or would not give access to exact enumeration or to
+higher order asymptotics.
+
+
+2    Preliminaries and previous results
+As stated previously, we consider in this article directed walks with jumps in {1} × J where J is any finite
+                                                   P∞at time n is the sum of n increments taken in J. Our
+subset of Z. In this context, the altitude of the walk
+main tool is the generating function F (z, u) = k=0 Fk (z)uk , where Fk (z) is the generating function
+the n-th coefficient of which is the number of walks of length n ending at altitude k. To each walk, we
+                                                                                   Pd
+associate a Laurent polynomial which encodes all the possible jumps P (u) := i=−c pi ui (where c is
+the size of the largest backward jump and d is the size of the largest upward jump, and where the pi ’s are
+some “weights”, “multiplicities”, or “probabilities”).
+   Figure 1 shows four drawings (for four different constraints) of lattice paths with jumps in J =
+{−2, −1, 0, 1, 2, 4}; the associated Laurent polynomial is therefore P (u) = p−2 u−2 + p−1 u−1 + p0 +
+p1 u + p2 u2 + p4 u4 .
+Bounded discrete walks                                                                                                  37
+
+                                            ending anywhere                               ending at 0
+
+
+
+
+           unconstrained
+              (on Z)                                                                     bridge (B)
+                                            walk/path (W)                                      c
+                                                       1                                      X   u0i (z)
+                                          W (z) =                                    B(z) = z
+                                                  1 − zP (1)                                  i=1
+                                                                                                  ui (z)
+                                             Wn = P (1)n                               Bn ∼ β0 P√(τπn
+                                                                                                    )   n
+
+
+
+
+             constrained                    meander (M)
+              (on Z≥0 )                       1      Yc                                excursion (E)
+                                                                                                   c
+                                  M (z) =                (1 − ui (z))                    (−1)c−1 Y
+                                          1 − zP (1) i=1                         E(z) =              ui (z)
+                                                        n                                 p−c z i=1
+                                       Mn ∼ µ0 P√(1)
+                                                  πn
+                                                     (zero drift)                                       n
+                                             P (τ ) n                                   En ∼ ε0 P√(τ )
+                                    M n ∼ µ−
+                                           0
+                                             √
+                                               πn3
+                                                    (negative drift)                              πn3
+                                                            n
+                                               −P (τ )
+                              Mn ∼ µ+      n
+                                    0 P (1) + µ0
+                                                 √
+                                                   πn3
+                                                       (positive drift)
+
+
+Fig. 1: The four types of paths: walks, bridges, meanders, and excursions and the corresponding generating functions.
+The ui ’s are such that 1 − zP (ui (z)) = 0; the constants ε0 , β0 , and the µ0 ’s are algebraic numbers which are made
+explicit in [4]. In the rest of this article, we want to consider walks of bounded height (i.e., between one or two walls).
+
+
+
+2.1     Some asymptotics results for walks
+
+In [4], Banderier and Flajolet showed that the kernel method was the key to get enumeration and asymp-
+totics of directed lattice paths. The proofs rely on the following properties:
+Property 1. There are c distinct roots u1 , . . . , uc of the “kernel” 1 − zP (u) = 0 which behave like z 1/c
+at z = 0 (we call them “small roots”). The remaining d roots v1 , . . . , vd behave like z −1/d at z = 0 (we
+call them “large roots”).
+Property 2. A nice trick (the “kernel method”) allows to write all the generating functions counting walks
+as functions of the ui ’s (and/or of the vj ’s).
+Property 3. There is a unique positive real number τ such that P 0 (τ ) = 0, and the radius of convergence
+of the generating functions is ρ := 1/P (τ ).
+Property 4. There is a dominant small root u1 (z) and a dominant large root v1 (z) such that for 0 < |z| <
+ρ, one has |ui (z)| < u1 (|z|) < v1 (|z|) < |vj (z)| for all non dominant roots ui (z) and vj (z).
+Property 5. The asymptotics are coming from the dominant roots u1 and v1 , which are singular at ρ, the
+product of the other roots is analytical at ρ and therefore, these other roots only affect the multiplicative
+constant. (Some easy modifications have to be made here if the walk is “periodic”).
+38                                                                                            C. Banderier and P. Nicodème
+
+Property 6. The roots u1 and v1 share a square root behaviour at z = ρ:
+                             X                                        X
+                u1 (z) ∼ τ +     (−1)i ai (ρ − z)i/2     v1 (z) ∼ τ +   ai (ρ − z)i/2 .                                           (1)
+                                      i≥1                                                  i≥1
+
+Property 7. The drift δ := P 0 (1) of the walk plays a rôle for the asymptotics of meanders (δ > 0 when
+τ > 1; δ = 0 when τ = 1; δ < 0 when τ < 1).
+
+2.2      Walks on Z ending at altitude k
+In the next section, we will use a part of Theorem 1 in [4]:
+                                                                        1
+Theorem 1 The generating function(i) Wk (z) = [uk ]                            of paths starting at 0 having no bound-
+                                                                    1 − zP (u)
+ing constraints and ending at altitude k is
+                    c                                                                 d
+                    X    u0j (z)                                                      X    vj0 (z)
+      Wk (z) = z                         (for k < c)       and      Wk (z) = −z                            (for k > −d),          (2)
+                       u (z)k+1
+                    j=1 j
+                                                                                         v (z)k+1
+                                                                                      j=1 j
+
+where u1 , . . . , uc are the small roots and v1 , . . . , vd are the large roots.
+
+3      Generating functions of bounded walks
+This section is dedicated to finding the explicit generating functions of numerous variants of bounded
+lattice paths: below one wall, between two walls.
+Theorem 2 Walks of bounded height (i.e. in the strip [−∞, +h] ) The bivariate generating function of
+walks starting at 0, and remaining below the wall y = h is algebraic:
+                                             Pd  h+1 Q                  u−vj
+                                          1 − i=1 vui          1≤j≤d,j6=i vi −vj
+                          [−∞,h]
+                        F        (z, u) =                                        .               (3)
+                                                      1 − zP (u)
+
+Proof: Using a step by step decomposition of the walks gives the following functional equation:
+
+                   F [−∞,h] (z, u) = 1 + zP (u)F [−∞,h] (z, u) − z{u>h }P (u)F [−∞,h] (z, u) .
+
+This theorem is then a consequence of the kernel method applied to
+                                                                       d−1
+                                                                                                 [−∞,h]
+                                                                       X
+                        (1 − zP (u))F [−∞,h] (z, u) = 1 − z                  rh−k (u)uh−k Fh−k            (z)
+                                                                       k=0
+
+                                                                          d
+                                                                          X
+                                              where rh−k (u) :=                 p i ui .
+                                                                        i=k+1
+
+(i) Throughout this article, we use the notation [uk ]F (z, u) for the coefficient of uk in F (z, u), and {uk }F (z, u) stands for the
+
+  monomial in uk of F (z, u). We will write Fk (z) for [uk ]F (z, u), and, for any interval [a, b], F [a,b] will correspond to a
+  generating function of walks restricted to this interval.
+Bounded discrete walks                                                                                                  39
+
+This functional equation follows from the fact that a walk is either an empty walk, either it makes a new
+jump (i.e., we multiply by zP (u) and, since the walk is constrained to remain under altitude h, we remove
+all jumps which sent us above the border h; these are monomials in uh+1 , . . . , uh+d ); plugging the d large
+roots vi in this equation (this is a legitimate operation as the vi behaves like z −1/d and as F [−∞,h] is a
+Laurent power series in 1/u) leads to a linear system of d equations with d unknowns. Solving it with the
+Cramer formula provides expressions involving Vandermonde-like determinants
+                                                d−1
+                                                Y     d
+                                                      Y
+                                         Vi =               (vr (z) − vs (z))           ,                               (4)
+                                                r=1 s=r+1                       vi =u
+
+or more precisely, quotients of the type Vi /V0 = Q(u)/Q(vi ) where
+                                                   Y                      d−1
+                                                                          X
+                                       Q(u) =            (u − vj (z)) =         qi (z)ui .                              (5)
+                                                 2≤j≤d                    i=0
+
+Further simplifications lead to Theorem 2.                                                                              2
+Theorem 3 The generating function of walks of bounded height ending at altitude k is
+                                       d−1                     d
+                                       X                      X   (−1)m+d−1 ed−1−m (v1 , . . . , vi−1 , vi+1 , . . . , vd )
+[uk ]F [−∞,h] (z, u) = Wk (z)−               Wk−h−1−m (z)
+                                                                    vih+1
+                                                                                   Qd
+                                       m=0                    i=1                    j=1,j6=i (vi − vj )
+
+where the ei ’s are elementary symmetric functions defined by Equation 7 and the functions Wk (z) are
+defined in Theorem 1.
+Proof: Extracting the coefficient of uk in Equation (3) of Theorem 2 gives
+                                                                                              
+                                                               d     h+1 d                
+                                                  1           X     u    Y          u − vj 
+                 [uk ]F [−∞,h] (z, u) = [uk ]            1 −
+                                              1 − zP (u)      i=1
+                                                                   vi               vi − vj
+                                                                       j=1,j6=i
+                                                                        d
+                                             d
+                                                                                              !
+                                                      h+1 d−1      m
+                                                                       Q
+                                                                [u   ]             (u − v   )
+                                                    
+                                     1      X     1       X             j=1,j6 = i        j
+            = Wk (z) − [uk−h−1 ]                              um Qd                             .                       (6)
+                                 1 − zP (u) i=1   vi      m=0         j=1,j6=i (vi − vj )
+
+For any set of variables X , let Xm := {subsets of size m of X }; we then introduce the elementary sym-
+metric function em :                                 X Y
+                                        em (X ) :=            x.
+                                                              X∈Xm x∈X
+
+E.g., e0 = 1, e2 (v1 , v3 , v4 ) = v1 v3 + v1 v4 + v3 v4 , e3 (v1 , v3 , v4 ) = v1 v3 v4 , etc. We thus have
+                           d
+                           Y
+                 [um ]              (u − vj ) = (−1)m+d−1 ed−1−m (v1 , . . . , vi−1 , vi+1 , . . . , vd ) .             (7)
+                         j=1,j6=i
+
+Using these ei ’s and inverting the two sums in Equation (6) leads to the theorem. (Note that using Theo-
+rem 1 allows to express all the functions Wk (z) in terms of the roots.)                               2
+40                                                                                                C. Banderier and P. Nicodème
+
+Theorem 4 Walks in a strip [−h2 , +h]. The bivariate generating function of walks starting at 0, and
+remaining between the walls y = −h2 and y = h is rational:
+
+                                                        −h2 +k [−h2 ,h]                         [−h ,h]
+                                       Pc−1                                  Pd−1
+         [−h2 ,h]
+                               1−z      k=0 r−h2 +k (u)u      F−h2 +k (z) − z k=0 rh−k (u)uh−k Fh−k2 (z)
+     F              (z, u) =
+                                                                       1 − zP (u)
+
+with
+                                 [−h ,h]          1 sλ0k                      [−h ,h]                1 sλ00k
+                               F−h22+k (z) =                   and          Fh−k2           (z) =
+                                                 pd z sλ                                            pd z sλ
+  where the sλ ’s are defined in Equations (9,10,11,12) and where the rj ’s are defined in Equation (8).
+
+Proof: The polynomials rk just encode the forbidden jumps when we are close to the walls:
+                        d
+                        X                                                                   c
+                                                                                            X
+  rh−k (u) :=                  pj uj    for 0 ≤ k ≤ d − 1 and r−h2 +k (u) :=                     p−j u−j       for 0 ≤ k ≤ c − 1.
+                       j=k+1                                                            j=k+1
+                                                                                                                                (8)
+We have therefore the following functional equation:
+
+         F [−h2 ,h] (z, u) = 1 + zP (u)F [−h2 ,h] (z, u)
+                                        d−1                                        c−1
+                                                             [−h ,h]                                               [−h ,h]
+                                        X                                          X
+                                  −z          rh−k (u)uh−k Fh−k2       (z) − z              r−h2 +k (u)u−h2 +k F−h22+k (z) .
+                                        k=0                                        k=0
+
+Substituting u by the roots ui ’s and vi ’s in this equation (this is legitimate since F is here a Laurent
+polynomial in u, and not a Laurent series) leads to a system with c + d unknowns; the Cramer formula
+gives the solutions of the system in terms of more complicated Vandermonde-like determinants, for which
+we need here to introduce a few new notations. Let Sc+d be the group of permutations of c + d elements,
+and let |σ| be the signature of any permutation σ. For any integer partition λ = (λ1 , . . . , λc+d ) with c + d
+(possibly empty) parts, let the antisymmetric associated Schur function be (we note vi = ui+c ):
+
+                                                           X                c+d
+                                                                            Y
+                                                 sλ :=            (−1)|σ|         uλi i .                                       (9)
+                                                         σ∈Sc+d             i=1
+
+
+In the Vandermonde-like determinants, after suitable multiplications to get polynomials instead of Laurent
+polynomials, the exponents of the ui ’s are:
+
+                                λ := (0, 1, . . . , c − 1, h + h2 + c + 1, . . . , h + h2 + c + d),                            (10)
+
+
+                       λ0k := (0, 1, . . . , c − 1, h2 + c, h + h2 + c + 1, . . . , h + h2 + c + d)\{k},                       (11)
+
+
+
+         λ00k := (1, . . . , c − 1, h2 + c, h + h2 + c + 1, . . . , h + h2 + c + d)\{h + h2 + c + d − k}.                      (12)
+Bounded discrete walks                                                                                                             41
+                                                                                                                [−h ,h]     [−h ,h]
+A simplification of the Cramer formula then leads to the expressions for the F−h22+k ’s and Fh−k2 ’s
+given in the Theorem.                                                                             2
+   Using Theorem 4, one can obtain the generating function of walks ending at altitude k (and therefore
+the generating function of bridges between 2 walls). Theorem 4 can be specified to the case h2 = 0.
+This gives a formula for bounded excursions, already studied with this approach in [1]. Further links with
+Schur functions, the Jacobi–Trudi identity, and the platypus algorithm(ii) were investigated in [8].
+   In the full version of this article, we will use our formula to answer the following question (which
+comes from bioinformatics): what is the distribution of the maximum of the absolute value of some
+random discrete bridges? This case can be seen as a discrete equivalent of “reflected Brownian bridges”
+(or absolute value of the Brownian), continuous objects for which results exist [14]. In the discrete case,
+this corresponds to another specialisation of Theorem 4 above, via the case h2 = h.
+
+4      Asymptotic limit laws
+Due to numerous works making the link between discrete random walks and Brownian motion vari-
+ants [13, 19, 18], and in particular the Komlós–Major–Tusnády strong embedding result [23] (see Chat-
+terjee [10] for a modern approach), it is expected that the limit law for the height of bridges satisfies a
+Rayleigh distribution. Although we do not investigate the case here, the limit law for the height of discrete
+excursions should satisfy a Theta distribution (note that the height of excursions is related to the height of
+some trees [12, 16]).
+   From a probabilistic point of view, our work on bridges brings new results on the speed of convergence
+(exact error terms). From an analytic point of view, it also describes the exact nature of the corresponding
+singularities.
+
+4.1      Convergence to the Rayleigh law
+Definition 1 The Rayleigh distribution of parameter α is defined as a distribution which has support
+                                                   x2
+[0, +∞] with a density given by Rα (x) = αx exp(− 2α 2 ). Accordingly, its cumulative distribution function
+   Rx                         x2
+is 0 Rα (t)dt = 1 − exp(− 2α2 ).
+                                                                                         √
+                                                                                        τ P 00 (τ )
+Theorem 5 The height of discrete bridges satisfies a Rayleigh limit law of parameter 2√ρ :
+
+                                                    √                             2
+                                                                                                     
+                                                                        − P 002ρx                  1
+                                 Pr       max Bk > x n             =e          (τ )τ 2   +O       √         .
+                                       0≤k≤n                                                        n
+
+This shows that whatever the drift is, we still get a Rayleigh limit law. This result is also coherent with the
+symmetry induced by “reversing the time”, i.e., P (u) ↔ P (1/u).
+The proof follows the same lines as the proof of Theorem 6 hereafter; indeed, to any set of jumps, one can
+associate a probabilistic model with drift 0 which can be done by Cramér’s method of shifting the mean:
+(ii) The Platypus algorithm presented in [4] allows to get the minimal polynomial of our algebraic generating functions, and therefore,
+                                                                                                               √
+  going to the associated differential equation, it allows to compute the number of walks of length n with O( n) operations. In
+  the case of two boundaries, we are in the rational case; using a variant of binary exponentiation when taking powers of matrices
+  leads to a complexity O((h + h2 )$ log n), where $ ≈ 2.38 is an improvement of Strassen’s constant for matrix multiplication.
+  This can be improved using D-finiteness of our generating functions, and then recurrences of order less than h + h2 .
+42                                                                                                                C. Banderier and P. Nicodème
+
+define P̃ (u) := P (ux)/P (x) for a x such that P̃ 0 (1) = 0. An elementary computation shows that x is
+then exactly τ , the unique real positive saddle point of P (u). We therefore consider hereafter the case of
+drift 0 without loss of generality.
+   We prove in the next theorem that under the usual normalisation, the height of the discrete bridge (built
+upon jumps with expectation zero, corresponding to walks without drift) converges asymptotically weakly√
+to the height of the standard Brownian motion. We also prove that the speed of convergence is O(1/ n)
+and provide an algorithm computing asymptotically the distribution function of the height of a discrete
+bridge at any order in the case of Łukasiewicz walks (one downward jump −1).
+
+Theorem 6 Considering a discrete bridge (Bk )k=0,...,n with zero drift (i.e. P 0 (1) = 0) and variance σ 2
+(i.e. P 00 (1) = σ 2 ), we have the following properties:
+
+     1. For x ∈]0, +∞[, we have a Rayleigh limit law of parameter 1/2:
+
+                                                                                    √
+                                                                                                                            
+                                                                                                  −2x2                     1
+                                      lim Pr           max Bk > x × σ n                      =e          × 1+O            √          .     (13)
+                                     n→∞               0≤k≤n                                                                n
+
+                                                                        √
+     2. The density of the height of the bridge is concentrated around σ n:
+
+                                                  √                  √
+                                                                               
+                                                       1
+                                          lim Pr σ n × ε < max Bk < σ n(1 + ηn ) = 1,                                                      (14)
+                                         n→∞          n   0≤k≤n
+
+                                                √
+          for any ε > 0 and any sequence ηn = o( n) tending to infinity with n.
+
+
+Proof (sketch): We consider the non-periodic case (the proof for the periodic case follows the
+                                                                                            √ same lines)
+for which we compute the probability that a bridge goes beyond an upper barrier at level xσ n for a fixed
+x ∈]0, +∞[. Using the product Q defined in Equation 5, Theorem 2 can be rewritten as:
+
+                                                                               Pd         h+1
+                                                                                          u          Q(u)
+                                                           [>h]                    i=1    vi         Q(vi )
+                                                       F            (z, u) =                                  .
+                                                                                        1 − zP (u)
+     
+         u
+              h       
+                           u
+                                h       
+                                             v1
+                                                  h       
+                                                               u
+                                                                    h       |v1 (z)|
+As       vj        =       v1        ×       vj        =       v1        × O(Ah ) where A := max max
+                                                                                      and A < 1 by the
+                                                                 2≤j≤d |z|≤ρ |vj (z)|
+domination property (see Section 2), the main contribution comes from the summand for i = 1:
+                                                                                       h+1
+                                                                   1               u           Q(u)
+                                     F [>h] (z, u) =                                                  × (1 + O(Ah ))
+                                                               1 − zP (u)          v1          Q(v1 )
+                                                                          d−1
+                                                                   1      X        uh+1 ui
+                                                       =              h+1
+                                                                              qi            × (1 + O(Ah )) .
+                                                               Q(v1 )v1   i=0
+                                                                                 1 − zP (u)
+
+                                                                               qi ui . Taking the coefficient [u0 ] of F [>h] in order to get
+                                                                          P
+The last line just uses the rewriting Q(u) =
+Bounded discrete walks                                                                                      43
+
+bridges and using the functions Wk (z) introduced in Theorem 1 for walks ending at altitude k leads to
+                                                     d−1
+                                             1       X
+                  [u0 ]F [>h] (z, u) =                   qi W−h−1−i (z) × (1 + O(Ah ))
+                                         Q(v1 )v1h+1 i=0
+                                                   d−1       c         0
+                                           1       X        X
+                                                                 h uk
+                                     =                 qi z     uk    −i
+                                                                         × (1 + O(Ah ))
+                                       Q(v1 )v1h+1 i=0      k=1
+                                                                    u k
+
+                                             h     d−1      c       h 0
+                                          zu1      X      X      uk      uk
+                                     =         h+1
+                                                       qi                 −i
+                                                                             × (1 + O(Ah )) .
+                                       Q(v1 )v1    i=0
+                                                                 u 1     uk
+                                                          k=1
+
+                               |uj (z)|
+Using now B := max max                  < 1, the main contribution comes from the summand for k = 1:
+                   2≤j≤c |z|≤ρ |u1 (z)|
+
+                                                 d−1
+                                        zuh1     X
+              [u0 ]F [>h] (z, u) =                   qi u01 ui1 × (1 + O(Ah )) × (1 + O(B h )) .
+                                     Q(v1 )v1h+1 i=0
+
+Using the product Q defined in Equation 5, we have for C := max(A, B) < 1:
+                                                          h
+                                                                   u01 (z)Q(u1 (z))
+                                             
+                                                 u1 (z)
+                    [u0 ]F [>h] (z, u) = z                     ×                    × (1 + O(C h )) .      (15)
+                                                 v1 (z)            v1 (z)Q(v1 (z))
+
+Singularity analysis. In our zero drift
+                                   √
+                                        probabilistic setup, Property 6 from Section 2 can be rewritten
+                                 √   2
+using ρ = τ = 1, P (1) = 1, a1 =    00
+                                         ; this leads to
+                                          P (1)
+
+                       h                √                     !h
+                                                    √
+              
+                  u1                         2
+                            =   1 − 2p                  1−z         × (1 + O(1 − z))h       for z ∼ 1− .   (16)
+                  v1                     P 00 (1)
+
+Due to the organisation in cycles of the roots (in conjugated tuples of branches at their singularities), the
+sum and product of the vi ’s (i > 1) is regular at 1, and therefore so are all the qi ’s, thus one has:
+                                                      √
+                          Q(u1 (z))      Q(1) + O( 1 − z)                 √
+                                      =               √        = 1 + O( 1 − z) .                        (17)
+                          Q(v1 (z))      Q(1) + O( 1 − z)
+                                                                         [>h]                √
+Asymptotic expansions. We compute now asymptotically b>h              n
+                                                              n = [z ]F0      (z) when h = xσ n. The
+                [>h]
+singularity of F0 (z) is z = 1, as seen in Equation (15) and (16). We compute b>h
+                                                                                n by a Cauchy integral,
+
+                                                               I     [>h]
+                                                         1       F0 (z)
+                                             b>h
+                                              n =                       dz,                                (18)
+                                                        2iπ    Γ  z n+1
+where Γ is a Hankel contour winding around the point z = 1. Note that there exists a suitable contour
+Γ on which the domination property of the roots hold, and as we deal with an algebraic function, it has
+therefore isolated singularities.
+44                                                                                        C. Banderier and P. Nicodème
+
+  We follow here the proof from [5] for the limit distribution of semi-large powers and apply also the Big-
+Oh transfer theorem (see also Theorem VI.3 and IX.16 of [17]). Using the change of variable z = 1 − nt ,
+we get                                                   √
+                                             1 et e−2x 2t
+                           √
+                                     I                                       
+                      >xσ n       1                                        1
+                     bn       =             √        √       × 1+O √              dt,                  (19)
+                                 2iπ Γ0 σ n            t                     n
+                                                                                                           √
+where Γ0 is a Hankel contour winding clockwise from −∞ around the origin. Expanding e−2x 2t , making
+the substitution t ; −t, integrating term-wise, and using the Hankel contour representation(iii) for the
+Gamma function,
+                                                                Z (0)
+                          1                      1
+                            sin(πs)Γ(1 − s) = −                         (−t)s e−t dt,   for all s ∈ C,             (20)
+                          π                     2iπ               +∞
+
+we obtain after simplification as n tends to infinity (since an unbounded weighted walk of length n is a
+                                  1
+bridge with probability b<∞
+                         n    = σ√  n
+                                      (1 + O( √1n )), see Theorem 3 from [4]):
+                   √              √
+            βn>xσ n = bn>xσ n /b<∞
+                                 n                                                                                 (21)
+                              ∞          j
+                                           √ j Z (0)                                  
+                          1  X
+                                      j 2 ( 2x)                                      1
+                    =−           (−1)                e(−t) (−t)(j−1)/2 dt × 1 + O √                                (22)
+                         2iπ j=0           j!   +∞                                    n
+                       ∞          √
+                                 ( 2x)2k
+                                                                                
+                      X                               1              2             1
+                    =     (−1)k            × 1+O √           = e−2x × 1 + O √            ,                         (23)
+                                    k!                 n                            n
+                            k=0
+               √                                                                                 √
+          >xσ n
+where βn           (i.e. the probability that a bridge of length n goes upon the barrier y = xσ n) thus
+follows a Rayleigh limit law for x ∈]0, +∞[. This concludes the first part of our proof.
+   The proof of the concentration property follows the same lines as the proof for x ∈]0, ∞[ with different
+error terms.
+   This concludes our proof in the case of non-periodic walks.
+   In the case of walks with period d, there are d singularities on the circle of convergence at positions
+ω j where ω is the primitive d-th root of 1. For unconditioned walks, this corresponds to d saddle-points
+on the circle |z| = 1. In the case of upper-bounded walks, we use a star-shape Cauchy contour that is
+deformed up to d Hankel contours, the jth contour coming from ω j × (+∞) winding around the point  √
+                                                                                                        ωj
+                         j                                                                     >xσ n
+and coming back to ω × (+∞). In both cases, there is a multiplicative factor d occurring in bn         and
+in b<∞
+    n   ; this factor  cancels when taking  the ratio of the two quantities.                             2
+
+4.2      Łukasiewicz bridges
+When considering the case of Łukasiewicz walks (i.e. c = 1, see the Section 1), we obtain more precise
+asymptotics for the convergence to the Rayleigh law. Indeed, starting from Equation 5, one has:
+
+                                     1 ∂ u(1 − zP (u))              1          u1 (z)
+                  Q(u1 (z)) =                                   =     2 0                      .                   (24)
+                                    pd z ∂u u − v1 (z) u=u1 (z)   pd z u1 (z)(u1 (z) − v1 (z))
+(iii) See a proof of this representation in Flajolet-Sedgewick [17], p. 745.
+Bounded discrete walks                                                                                            45
+
+The value of Q(v1 ) follows by interchanging the rôles of u1 and v1 . Equation (15) thus becomes
+                                                                h
+                                                                         −v10 (z)u1 (z)
+                                                   
+                      0        [>h]                    u1 (z)
+                    [u ]F             (z, u) = z                     ×                  × (1 + O(Ah )) .        (25)
+                                                       v1 (z)               v1 (z)2
+
+By following the same steps as in Section 4.1 but at a higher asymptotic order, we find, with a1 =
+p
+  2/P ”(1), that
+
+                                                      ρx2 a2
+                                            √
+                                                                 
+                                                                 1
+                                        βn>x n = exp − 2 1 + O √                                                (26)
+                                                       τ          n
+                                                                         τ
+in which we recognise the Rayleigh distribution of parameter σ = a1 √      2ρ
+                                                                              . In the probabilistic setting
+(with zero drift), we give in the next formula more precise error terms:
+      √
+   >xσ n                               √
+  βn              (−(2/3)xξ/ζ 3/2 − 6x/ ζ)   1                       10 ξ 2   2 θ    16   8 ξ    4
+            = 1 +           √              +                (−2 −           +      −    −      )x
+ exp(−2x2 )                    n             n                       9 ζ3     3 ζ2   3ζ   3 ζ2
+                                                                                                                 !
+                          24    5 ξ2       θ    20 ξ    2   5   3   7 ξ     5 ξ2    1 θ    5 ξ3     1 θ 2 − 3ζ 2
+                          +(  +      + 3 −    +      )x   −   −   −      −        +      +        −
+                          ζ     3 ζ3       ζ2   3 ζ2        ζ   8   6 ζ2   24 ζ 3   8 ζ2   24 ζ 3   8     ζ2
+                         
+                      1
+                +O          ,                                                                                    (27)
+                     n3/2
+
+
+where ζ = σ 2 = P 00 (1), ξ = P 000 (1) and θ = P 0000 (1). The algolib Maple package (more precisely, the
+gdev and equivalent functions developed by Bruno Salvy, see algo.inria.fr/librairies) can
+naturally push the expansion to higher orders.
+
+5    Bioinformatics application
+A set of G genes is expressed in a given tissue; this provides a ranking of level of expression of these
+genes. Considering now the same ranking and a subset of specific interest of g genes, the question is how
+to characterise if the ranks of these g genes form an unexpected pattern. If these g genes have a high level
+of expression, they will mostly appear at the top of the ranking; on the contrary, if they have a low level of
+expression, they will mostly appear at the bottom of the ranking. Both cases are assumed to correspond
+to biological disorders. The aim is to provide a statistical estimator for exceptional behaviours. Keller et
+al. [21] proposed the following non-parametric approach. While scanning from left to right the ranking
+of the G genes, build a random walk (Bi )0≤i≤G such that its jump at time i is
+                           
+                               G−g        if the gene at rank i belongs to g,
+                               −g         if the gene at rank i belongs to G − g.
+
+By construction, we have B0 = BG = 0 and these walks are therefore bridges. The tail probability
+(commonly referred to as p-value in applied mathematics) that Keller et al. choose as statistical indicator is
+p-value = Pr(max1≤i≤G Bi > h), for any chosen h. They provide a dynamic programming algorithm
+computing this indicator in complexity O(G × g). We consider in this extended abstract the case of
+over-expressed genes which corresponds to the maximum of the bridges. If (G − g)/g is entire, we
+                                                               ud        d 1               G−g
+are in a particular case of Łukasiewicz walk where P (u) = d+1      + d+1    u and d =      g . This gives
+46                                                                                 C. Banderier and P. Nicodème
+
+P 00 (1) = d, P 000 (1) = d(d − 4), . . . ; substituting these values in Equation (27) leads to an efficient
+formula (which has a constant time complexity in n, h, and d).
+
+   Heuristics. We expect that using Equation (27) with a fractional d = (G − g)/g will give a good
+approximation of the probability that the height of a walk (+(G − g), −g) goes upon a given value,
+although we cannot prove this yet.
+
+   Simulations. In order to get enough precision, we apply here Equation (27), with d = 3 and d = 19. We
+plot the obtained distributions in Figure 2. The simulations are done by drawing random non-conditional
+walks of length n and then by reversing jumps at uniformly chosen random positions until we obtain
+bridges. We deal here with periodic walks with 2 jumps (+d and −c); for such walks, bridges have length
+n = 0 mod (c+d) and each reversing leads to a walk ending nearer and nearer    √ from 0, while still ending
+in the same half-plane. This explains why√   our algorithm takes on average O(  n) iterations since a walk
+of length n ends typically at altitude O( n).
+        Pr(max1≤j≤n Bj ≥ h)                                       Pr(max1≤j≤n Bj ≥ h)
+
+
+
+
+                           d = 3, c = 1                                        d = 3, c = 1
+
+                                  n = 400                                              n = 400
+
+
+                                   √h                                                  √h
+                                    ncd                                                 ncd
+
+
+
+
+        Pr(max1≤j≤n Bj ≥ h)                                       Pr(max1≤j≤n Bj ≥ h)
+
+
+
+
+                           d = 19, c = 1                                       d = 19, c = 1
+
+
+                                  n = 400                                              n = 400
+
+
+                                   √h                                                  √h
+                                    ncd                                                 ncd
+
+
+
+
+Fig. 2: Plots of the Rayleigh distribution (upper continuous curves), simulations (dots) and asymptotics expansions
+obtained by Equation (27) (lower continuous curve) for the distribution of the height h of the maximum value of the
+walk. In these examples, we performed 107 iterations for the simulations. The plots on the right are zooms for smaller
+p-values. These plots show a perfect concordance of the simulations with the discrete asymptotics we obtained, and
+a clear discrepancy with the Rayleigh distribution, perfectly coherent with our expansion terms.
+Bounded discrete walks                                                                                  47
+
+6     Perspectives and conclusion
+We provided in this article the generating functions for several cases of bounded lattice paths. We
+proved that the height of discrete bridges converges weakly to the Rayleigh distribution. In the case
+of Łukasiewicz bridges, we are able to compute at any order the asymptotic expansion of the discrete
+distribution of this height. Applying this method to a statistical estimator originating from bioinformat-
+ics provides excellent agreements with the corresponding simulations. The generating functions we gave
+for walks between one or two walls gives access to the asymptotics of the height of meanders (the drift
+then plays a rôle). It is also possible to apply the same proofs to directed walks in dimension 2. From
+a computer algebra point of view, it is also interesting to note that most of the formulas we got are in-
+volving symmetric functions, which can be handled in an efficient way with some variants of the platypus
+algorithm [4]. The full version of this article will also consider convergence of moments of the height
+in our different models. Note that asymptotics for bridges between two barriers also have applications in
+bioinformatics.
+    Acknowledgements. We thank the referees for their comments.
+
+References
+ [1] BANDERIER , C. Combinatoire analytique des chemins et des cartes. Ph.D. thesis, Université
+     Paris VI, 2001.
+
+ [2] BANDERIER , C. Limit laws for basic parameters of lattice paths with unbounded jumps. In Chauvin,
+     Brigitte (ed.) et al., Mathematics and computer science II. Birkhäuser. Trends in Mathematics., 2002,
+     pp. 33–47.
+
+ [3] BANDERIER , C., B OUSQUET-M ÉLOU , M., D ENISE , A., F LAJOLET, P., AND G ARDY, D. Gener-
+     ating functions for generating trees. Discrete Math. 246, 1-3 (2002), 29–55.
+
+ [4] BANDERIER , C., AND F LAJOLET, P. Basic analytic combinatorics of directed lattice paths. Theo-
+     retical Computer Science 281, Issue 1-2 (2002), 37–80. (Special volume dedicated to M. Nivat).
+
+ [5] BANDERIER , C., F LAJOLET, P., S CHAEFFER , G., AND S ORIA , M. Random maps, coalescing
+     saddles, singularity analysis, and Airy phenomena. Random Struct. Algorithms 19, 3-4 (2001), 194–
+     246.
+
+ [6] BANDERIER , C., AND G ITTENBERGER , B. Analytic combinatorics of lattice paths: Enumeration
+     and asymptotics for the average area. Discrete Mathematics and Theoretical Computer Science AG
+     (2006), 345–355. (Proceedings of the 4th Colloquium of Mathematics and Computer Science).
+
+ [7] B OSTAN , A., AND K AUERS , M. The complete generating function for Gessel walks is algebraic.
+     Proceedings of the American Mathematical Society 138, 9 (2010), 3063–3079. (With an appendix
+     by M. van Hoeij).
+
+ [8] B OUSQUET-M ÉLOU , M. Discrete Excursions. Sémin. Lothar. Comb. 57 (2008).
+
+ [9] B OUSQUET-M ÉLOU , M., AND P ETKOV ŠEK , M. Linear recurrences with constant coefficients: The
+     multivariate case. Discrete Math. 225, 1-3 (2000), 51–75.
+48                                                                       C. Banderier and P. Nicodème
+
+[10] C HATTERJEE , S. A new approach to strong embeddings. Probab. Theory and Related Fields (2010).
+     To Appear.
+[11] C HUNG , F., G RAHAM , R., M ORRISON , J., AND O DLYZKO , A. Pebbling a chessboard. Am. Math.
+     Mon. 102, 2 (1995), 113–123.
+[12] DE B RUIJN , N. G., K NUTH , D. E., AND R ICE , S. O. The average height of planted plane trees. In
+     Graph theory and computing. Academic Press, New York, 1972, pp. 15–22.
+[13] D ONSKER , M. D. An invariance principle for certain probability limit theorems. Mem. Am. Math.
+     Soc. 6 (1951), 1–12. (Four papers on probability).
+[14] D URRETT, R. Probability: Theory and Examples. Statistics/Probability Series. Wadsworth &
+     Brooks/Cole, 1991. 453 pages.
+[15] FAYOLLE , G., I ASNOGORODSKI , R., AND M ALYSHEV, V. Random walks in the quarter-plane.
+     Algebraic methods, boundary value problems and applications. Applications of Mathematics. 40.
+     Berlin: Springer. xvi, 160 p. , 1999.
+[16] F LAJOLET, P., AND O DLYZKO , A. M. The average height of binary trees and other simple trees.
+     Journal of Computer and System Sciences 25, 2 (1982), 171–213.
+[17] F LAJOLET, P., AND S EDGEWICK , R. Analytic combinatorics. Cambridge University Press, 2009.
+     810 pages. http://algo.inria.fr/flajolet/Publications/books.html.
+[18] I GLEHART, D. L. Random walks with negative drift conditioned to stay positive. J. Appl. Probability
+     11 (1974), 742–751.
+[19] K AIGH , W. D. An invariance principle for random walk conditioned by a late return to zero. Ann.
+     Probability 4, 1 (1976), 115–121.
+[20] K AUERS , M., KOUTSCHAN , C., AND Z EILBERGER , D. Proof of Ira Gessel’s Lattice Path Conjec-
+     ture. Proceedings of the National Academy of Sciences 106(28) (2009), 11502–11505.
+[21] K ELLER , A., BACKES , C., AND L ENHOF, H. P. Computation of significance scores of unweighted
+     gene set enrichment analyses. BMC Bioinformatics 290, 8 (2007).
+[22] K NUTH , D. E. The Art of Computer Programming, third ed., vol. 1. Addison-Wesley, 1997.
+[23] KOML ÓS , J., M AJOR , P., AND T USN ÁDY, G. An approximation of partial sums of independant
+     RV’s and the sample DF. I. Wahrscheinlichkeittheorie und Verw. Gebiete, 32 (1976), 111–131.
+[24] K URKOVA , I. A., AND S UHOV, Y. M. Malyshev’s theory and JS-queues. Asymptotics of stationary
+     probabilities. Ann. Appl. Probab. 13, 4 (2003), 1313–1354.
+[25] PANHOLZER , A., AND P RODINGER , H. Towards a more precise analysis of an algorithm to generate
+     binary trees: A tutorial. The Computer Journal 41 (1998), 201–204.
+[26] RUBEY, M. Transcendence of generating functions of walks on the slit plane. In Drmota (ed.) et
+     al., Mathematics and computer science III. Birkhäuser. Trends in Mathematics., 2004, pp. 49–58.
+

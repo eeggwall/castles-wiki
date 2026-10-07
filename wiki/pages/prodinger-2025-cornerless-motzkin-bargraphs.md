@@ -5,7 +5,7 @@ summary: Prodinger counts Motzkin paths and prefixes (meanders) by length z, fin
 tags: [paper, source, motzkin, cornerless, peakless, valleyless, meander, prefix, skew-motzkin, kernel-method, automaton, bargraph, generating-functions, oeis]
 sources: [prodinger-2025-cornerless-motzkin-bargraphs]
 created: 2026-09-27
-updated: 2026-09-28
+updated: 2026-10-07
 ---
 
 # Cornerless, peakless, valleyless Motzkin paths (regular and skew) and applications to bargraphs (Prodinger, 2025)
@@ -52,6 +52,7 @@ The paper prints special cases and names their OEIS entries.[^8]
 - [[tower-word-language](pages/tower-word-language.md)] / [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] - the cornerless returning paths, A004149.
 - [[castle-perimeter](pages/castle-perimeter.md)] - A082582, now also the skew Motzkin count.
 - [[castle-strip](pages/castle-strip.md)] - the transfer-matrix picture the automaton generalizes.
+- [[kernel-method](pages/kernel-method.md)] - the method this paper applies on its automaton.
 - [[motzkin-numbers](pages/motzkin-numbers.md)] - the both-weights-1 specialization.
 
 ## Relation to Other Wiki Pages

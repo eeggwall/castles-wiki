@@ -5,7 +5,7 @@ summary: A castle strip is a castle read left-to-right as a sequence of columns,
 tags: [concept, castle, transfer-matrix, strip, height, perron-root, growth-constant, generating-function, pedagogy, bridge]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-10-06
+updated: 2026-10-07
 ---
 
 # The castle strip - bridge to transfer matrices
@@ -110,6 +110,7 @@ The one-line strip counter and growth-constant / field probes are on [[castle-sn
 
 ## Related Concepts
 
+- [[kernel-method](pages/kernel-method.md)] - the same strips counted through the roots of the kernel `1 − x·steps(u)` instead of a transfer matrix ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the worked seminar: the anchored 1-smooth height-3 strip is `1/(1 − 2x − x²)`, growth `1 + √2` (silver).
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - which growth constants `λ` are strip Perron roots; the `p₁/p₂` two-knob reduction and the ridge rule `R_h = J − D`, the metallic realizer.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the exhaustive census of strip Perron roots by number field; the reachability law.

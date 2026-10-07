@@ -3,9 +3,9 @@ title: m-smooth castles
 category: Concepts
 summary: An m-smooth castle is a castle whose neighbouring columns differ in height by at most m. Starting from the 1-smooth castles, the anchored m-smooth castles of exact height h (first column at height 1) are counted for m = 2, 3, 4 and h up to 12. The count is strips_m(w, h) − strips_m(w, h − 1); the reflection j ↔ h + 1 − j keeps the strip denominator at degree ≤ ⌈h/2⌉ and the exact-height recurrence at order ≤ h for every m. The first castle has width w_min = ⌈(h − 1)/m⌉ + 1, and there are C(slack + w_min − 2, w_min − 2) of them, slack = (w_min − 1)m − (h − 1). The growth constant lies between 2m + 1 − m(m+1)/h and 2m + 1. At h ≤ m + 1 the rule is vacuous: the free count is h^w − (h − 1)^w and its even-block part is the PE 502 count F(w, h). On the diagonal h = m + 2 the Pell structure survives: strips x/(1 − (m+1)x − mx²) (Pell, A007482, A015530, A015537 for m = 1…4), castles m·x³/((1 − (m+1)x − mx²)(1 − (m+1)x)), growth the root of x² − (m+1)x − m. An addendum lists what does not extend from m = 1: the x^h numerator, the explicit eigenvalues and Chebyshev identities, the Motzkin-triangle readings, and the irregular parity orders.
 tags: [concept, castle, castle-type, m-smooth, 1-smooth, pell, transfer-matrix, exact-height, parity, generating-functions, oeis]
-sources: [pe502-pell-castle-strip]
+sources: [pe502-pell-castle-strip, banderier-nicodeme-2010-bounded-discrete-walks]
 created: 2026-10-06
-updated: 2026-10-06
+updated: 2026-10-07
 ---
 
 # m-smooth castles
@@ -116,7 +116,7 @@ Write `ρ_{h,m}` for the largest eigenvalue of the band matrix, the growth const
 
 - **Bounds.** For `h ≥ m + 1`, `2m + 1 − m(m+1)/h ≤ ρ_{h,m} ≤ 2m + 1`. The upper bound is the largest row sum. The lower bound is the Rayleigh quotient of `𝟙`: the band has `(2m + 1)h − m(m + 1)` ones. So `ρ_{h,m} → 2m + 1` as `h → ∞`, and `ρ_{h,m} = h` for `h ≤ m + 1`.
 - **Asymptotics.** As at `m = 1`, the subtracted `strips_m(w, h − 1)` grows at `ρ_{h−1,m} < ρ_{h,m}`, so `smooth_m(w, h)` grows like `ρ_{h,m}^w` and the fraction of anchored strips that reach their ceiling tends to 1.
-- **No closed form.** For `m ≥ 2` the eigenvalues have no formula like `1 + 2cos(πk/(h+1))`; the growth constants in the tables are computed one at a time, and from `h = m + 3` on they are cubic or higher in every case computed.[^exec]
+- **No closed-form eigenvalues.** For `m ≥ 2` the eigenvalues have no formula like `1 + 2cos(πk/(h+1))`; the growth constants in the tables are computed one at a time, and from `h = m + 3` on they are cubic or higher in every case computed.[^exec] The generating functions themselves do have a closed form, in the `2m` roots `u` of `1 − x(u^{−m} + ⋯ + u^m)`, by the [[kernel-method](pages/kernel-method.md)] between two walls ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
 
 ### 3.6 The diagonal h = m + 2: the Pell structure survives
 
@@ -258,13 +258,14 @@ The definition, the subtraction `strips_m(w, h) − strips_m(w, h − 1)`, the r
 
 - **The monomial numerator.** At `m = 1` the exact-height generating function is `x^h` over the denominators. For `m ≥ 2` the numerator starts at `x^{w_min}` with `w_min < h` and is in general a polynomial of several terms, even when `slack = 0` (`x³(1 + x)` at `m = 2`, `h = 5`).
 - **Exact degrees.** At `m = 1` the strip denominator has degree exactly `⌈h/2⌉` and the exact-height denominator exactly `h`. For `m ≥ 2` these are only upper bounds (3.2).
-- **Explicit eigenvalues and Chebyshev identities.** The cosine formula `1 + 2cos(πk/(h+1))`, the three-term determinant recurrence, and the formulas for `η_h` in terms of the determinants all use the tridiagonal structure. The band matrices for `m ≥ 2` have none of them, and their growth constants are cubic or higher for `h ≥ m + 3` in every case computed.
+- **Explicit eigenvalues and Chebyshev identities.** The cosine formula `1 + 2cos(πk/(h+1))`, the three-term determinant recurrence, and the formulas for `η_h` in terms of the determinants all use the tridiagonal structure. The band matrices for `m ≥ 2` have none of them, and their growth constants are cubic or higher for `h ≥ m + 3` in every case computed. In their place, the [[kernel-method](pages/kernel-method.md)] writes the strips through the `2m` roots of the kernel `1 − x(u^{−m} + ⋯ + u^m)` ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
 - **The Motzkin readings.** At `m = 1` the castle counts are columns of the Motzkin triangles A283595 and A097862. The `m = 2` triangle has no OEIS match (3.7).
 - **Irregular parity orders.** The repeats at `h = 5` and `h = 9` in the `m = 1` signed orders do not occur for `m = 2, 3, 4`, where the order is `2h − 1` for every `h ≤ 12` (3.8).
 
 ## Related Concepts
 
 - [[1-smooth-castles](pages/1-smooth-castles.md)] - the case `m = 1`, where this page starts.
+- [[kernel-method](pages/kernel-method.md)] - the strips of this page between two walls, in closed form in the `2m` kernel roots ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
 - [[pell-castle](pages/pell-castle.md)] - `m = 1`, `h = 3`, the first point of the diagonal `h = m + 2`.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the two-atom reading of `1/(1 − 2x − x²)`, which the diagonal `h = m + 2` carries to every `m`.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - Axis 2, the m-smooth type.

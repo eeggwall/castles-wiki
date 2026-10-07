@@ -3,9 +3,9 @@ title: Motzkin castles - where the Motzkin numbers meet the castle
 category: Analyses
 summary: Hub for the exact appearances of the Motzkin family in castles. Every castle is a cornerless Motzkin path (Deutsch-Elizalde's bargraph bijection, read on the tower word). The Motzkin-path castles (1-smooth, end columns at height 1) number M_{w-1}, and PE 502's even-block clause splits them into odd/even Motzkin paths (A343386 / A107587), signed excess A343773. The sign sets the up-step weight to -1, moving the growth constant from 3 to the Gaussian integers 1 ± 2i and the bounded-height spectrum from 1 + 2cos to 1 + 2i·cos. Bounded height gives the ladder 2, 1+√2, φ², 1+√3, … → 3 (A171842 at h ≤ 3). Motzkin prefixes (A005773), semi-perimeter relatives (A082582, A023431, A004148), and a bijection from castles that never drop by more than one to valleyless Motzkin meanders (Prodinger's not-in-OEIS sequence 1, 2, 5, 12, 29, 71, …).
 tags: [analysis, castle, motzkin, lattice-paths, cornerless, bargraph, parity, sign, gaussian-integers, transfer-matrix, chebyshev, metallic, semi-perimeter, oeis, hub]
-sources: [motzkin-numbers, project-euler-502-representations, project-euler-502-brute-force, deutsch-elizalde-2016-bargraphs-cornerless-motzkin, prodinger-2025-cornerless-motzkin-bargraphs]
+sources: [motzkin-numbers, project-euler-502-representations, project-euler-502-brute-force, deutsch-elizalde-2016-bargraphs-cornerless-motzkin, prodinger-2025-cornerless-motzkin-bargraphs, banderier-nicodeme-2010-bounded-discrete-walks]
 created: 2026-09-26
-updated: 2026-10-06
+updated: 2026-10-07
 ---
 
 # Motzkin castles - where the Motzkin numbers meet the castle
@@ -152,6 +152,7 @@ By mirror symmetry the same numbers count castles whose columns never *rise* by 
 ## Related Concepts
 
 - [[motzkin-numbers](pages/motzkin-numbers.md)] - the family itself.
+- [[kernel-method](pages/kernel-method.md)] - the bounded-height strips of §4 and the no-ceiling counts of §5 for any step set; at `m = 1` the meander and excursion formulas give A005773 and the Motzkin numbers ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
 - [[1-smooth-castles](pages/1-smooth-castles.md)] - the same strip anchored at height 1 only, by exact height `h`: Motzkin prefixes by height (A283595), g.f. `x^h/(η_h η_{h−1})`.
 - [[tower-word-language](pages/tower-word-language.md)] / [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] - the tower word as a Motzkin language, by length A004149.
 - [[castle-perimeter](pages/castle-perimeter.md)] - semi-perimeter = width + blocks, A082582, and the signed perimeter count.
