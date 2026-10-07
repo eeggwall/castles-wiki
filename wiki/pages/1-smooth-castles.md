@@ -111,6 +111,20 @@ At `h = 3` the dropped factor is `k = 2`, `λ_2 = 1`: the `(1 − x)` that cance
 | 5 | `(1 − x)(1 − 2x − 2x²)` | 11 | `(1 − 2x − x²)(1 − 4x + 2x² + 4x³ − 2x⁴)` |
 | 6 | `1 − 4x + 3x² + x³` | 12 | `1 − 7x + 15x² − 6x³ − 11x⁴ + 6x⁵ + x⁶` |
 
+**Without trigonometry.** Each `η_h` is a combination of two determinants:
+
+```
+η_{2m}(x)  =  χ_m(x) − x·χ_{m−1}(x),        η_{2m+1}(x)  =  χ_{m+1}(x) − x²·χ_{m−1}(x)        (χ_{−1} = 0).
+```
+
+With `χ_h(x) = x^h U_h((1 − x)/(2x))`, where `U_h` are the Chebyshev polynomials of the second kind, these come from the factorizations of `U_{2m+1}` and `U_{2m}`:
+
+```
+χ_{2m+1}  =  χ_m · (χ_{m+1} − x²χ_{m−1}),        χ_{2m}  =  (χ_m − xχ_{m−1}) · (χ_m + xχ_{m−1}).
+```
+
+At `h = 2m + 1` the even-`k` angles `θ_{2j} = πj/(m+1)` are the angles of `χ_m`, so `χ_m` is the factor that cancels. At `h = 2m` the factor `χ_m − xχ_{m−1}` is the one whose zeros sit at the odd angles `θ = (2j − 1)π/(2m + 1)`. For example, `η_4 = χ_2 − xχ_1 = (1 − 2x) − x(1 − x) = 1 − 3x + x²`.[^exec]
+
 ### 3.3 The exact-height generating function
 
 **Proposition.** For every `h ≥ 1`,
@@ -269,4 +283,4 @@ The definition, the subtraction `strips(w, h) − strips(w, h − 1)`, the trans
 [^a085810]: https://oeis.org/A085810 (fetched 2026-10-06) - "Number of three-choice paths along a corridor of height 5, starting from the lower side."; "G.f.: (1-2*x)/(1-4*x+3*x^2+x^3)."; data `1, 2, 5, 13, 35, 96, 266, 741, 2070, 5791, 16213, 45409, 127206, 356384, …`, offset 1.
 [^a283595]: https://oeis.org/A283595 (fetched 2026-10-06) - "Triangle read by rows: T(n,k) is the number of Motzkin prefixes (i.e., left factors of Motzkin paths) of length n and height k."; data `1, 1, 1, 1, 3, 1, 1, 7, 4, 1, 1, 15, 13, 5, 1, 1, 31, 38, 19, 6, 1, …`, offset 0; the entry has no formula section.
 [^a097862]: https://oeis.org/A097862 (fetched 2026-10-06) - "Triangle read by rows: T(n,k) is the number of Motzkin paths of length n and height k (n>=0, k>=0)."; "The g.f. for column k is z^(2k)/[P_k*P_{k+1}], where the polynomials P_k are defined by P_0=1, P_1=1-z, P_k=(1-z)P_{k-1}-z^2*P_{k-2}."; data `1, 1, 1, 1, 1, 3, 1, 7, 1, 1, 15, 5, 1, 31, 18, 1, …`, offset 0, row `n` has `1 + ⌊n/2⌋` terms.
-[^exec]: Verified by execution (Python 3, SymPy, 2026-10-06) for `h = 1, …, 12`: the strip, exact-height, signed, free and pinned generating functions from the transfer matrix `I + A_path` (rises weighted `−1` for the signed count); the cofactor formula and the cosine sums against them; `Σ_w smooth(w, h) x^w = x^h/(η_h η_{h−1})` and the pinned formula `x^{2h−1}/(χ_h χ_{h−1})` as identities; the even/odd split against brute-force enumeration for `w ≤ 13`; `smooth(h + 1, h) = h + 1` with all `h` blocks; the free count `3^{w−1}` for `w ≤ h`; the anchored rows against A283595 rows 0-8, the pinned rows against A097862 rows 0-11, the strip rows against A001519, A057960, A085810 (14 terms) and A005773 for `w ≤ h`; the minimal polynomial degree of `1 + 2cos(π/(h+1))` against half of Euler's totient of `2h + 2`; the signed growth rates and reduced-denominator degrees as tabulated; the first 25 coefficients of `a_h` nonnegative. OEIS searches (2026-10-06) with no match: the strip rows at `h = 7, 8, 9`; the `smooth` rows at `h = 4, …, 9` as standalone sequences (they are columns of A283595); the `h = 4` even-block and odd-block rows; the `h = 4` free row.
+[^exec]: Verified by execution (Python 3, SymPy, 2026-10-06) for `h = 1, …, 12`: the strip, exact-height, signed, free and pinned generating functions from the transfer matrix `I + A_path` (rises weighted `−1` for the signed count); the cofactor formula and the cosine sums against them; `Σ_w smooth(w, h) x^w = x^h/(η_h η_{h−1})` and the pinned formula `x^{2h−1}/(χ_h χ_{h−1})` as identities; the even/odd split against brute-force enumeration for `w ≤ 13`; `smooth(h + 1, h) = h + 1` with all `h` blocks; the free count `3^{w−1}` for `w ≤ h`; the anchored rows against A283595 rows 0-8, the pinned rows against A097862 rows 0-11, the strip rows against A001519, A057960, A085810 (14 terms) and A005773 for `w ≤ h`; the minimal polynomial degree of `1 + 2cos(π/(h+1))` against half of Euler's totient of `2h + 2`; the signed growth rates and reduced-denominator degrees as tabulated; the first 25 coefficients of `a_h` nonnegative; the two `η_h` formulas in terms of `χ` as polynomial identities for `h ≤ 12`, and the two factorizations of `χ_{2m+1}` and `χ_{2m}` for `m ≤ 15`. OEIS searches (2026-10-06) with no match: the strip rows at `h = 7, 8, 9`; the `smooth` rows at `h = 4, …, 9` as standalone sequences (they are columns of A283595); the `h = 4` even-block and odd-block rows; the `h = 4` free row.
