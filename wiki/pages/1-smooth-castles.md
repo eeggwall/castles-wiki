@@ -12,7 +12,7 @@ updated: 2026-10-06
 
 ## Definition
 
-A castle is a skyline `(c_1, …, c_w)` of columns standing on a full bottom row, with maximum height exactly `h` ([[castle-polyomino](pages/castle-polyomino.md)]). A **1-smooth castle** is a castle whose neighbouring columns differ in height by at most 1 (the m-smooth type at `m = 1`, [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2). An **anchored** 1-smooth castle also has its first column at height 1:
+A castle is a skyline `(c_1, …, c_w)` of columns standing on a full bottom row, with maximum height exactly `h` ([[castle-polyomino](pages/castle-polyomino.md)]). A **1-smooth castle** is a castle whose neighbouring columns differ in height by at most 1 (the m-smooth type at `m = 1`, [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2; general `m` on [[m-smooth-castles](pages/m-smooth-castles.md)]). An **anchored** 1-smooth castle also has its first column at height 1:
 
 ```
 c_1 = 1,      |c_{i+1} − c_i| ≤ 1  (1 ≤ i < w),      max_i c_i = h.
@@ -259,7 +259,7 @@ The definition, the subtraction `strips(w, h) − strips(w, h − 1)`, the trans
 - **Named integer sequences.** The strip rows are Pell at `h = 3` and odd-indexed Fibonacci at `h = 4`. At `h = 5` and `6` they are corridor-path entries with no castle reading (A057960, A085810), and at `h = 7, 8, 9` they have no OEIS match. The castle rows exist in the OEIS only as columns of A283595, and at `h = 3` as A094706.
 - **Quadratic growth constants.** `1 + 2cos(π/(h+1))` has degree equal to half of Euler's totient of `2h + 2`, which is at most 2 only for `h ≤ 5`. From `h = 6` on the growth constants are cubic, quartic, quintic and sextic (table 3.5).
 - **Metallic labels.** Among `h ≥ 2`, only `h = 3` grows at a metallic mean, a root of `x² − ax − 1` ([[metallic-means](pages/metallic-means.md)]). `φ²` (`h = 4`, root of `x² − 3x + 1`) and `1 + √3` (`h = 5`, root of `x² − 2x − 2`) are quadratic but not metallic. So "silver width growth castle" ([[castle-classification-growth](pages/castle-classification-growth.md)]) has no metallic counterpart at other heights. Silver at `h = 3` comes from the 1-smooth rule. The ridge rule reaches the metallic means at every height ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
-- **The two-atom reading.** The Analytic Combinatorics exercise of [[pell-castle-strip](pages/pell-castle-strip.md)] reads `1/(1 − 2x − x²)` as sequences of a width-1 atom of weight 2 and a width-2 atom of weight 1. That reading needs a denominator `1 − (2x + x²)` and belongs to `h = 3`. Writing `Σ_w strips(w, h) x^{w−1} = 1/(1 − a_h(x))`, the series `a_h` is `2x + x²` at `h = 3` and `2x + x²/(1 − x)` at `h = 4`. Its first 25 coefficients are nonnegative for every `h ≤ 12`, but its terms have no known combinatorial reading as atoms.
+- **The two-atom reading.** The Analytic Combinatorics exercise of [[pell-castle-strip](pages/pell-castle-strip.md)] reads `1/(1 − 2x − x²)` as sequences of a width-1 atom of weight 2 and a width-2 atom of weight 1. That reading needs a denominator `1 − (2x + x²)` and belongs to `h = 3`. Writing `Σ_w strips(w, h) x^{w−1} = 1/(1 − a_h(x))`, the series `a_h` is `2x + x²` at `h = 3` and `2x + x²/(1 − x)` at `h = 4`. Its first 25 coefficients are nonnegative for every `h ≤ 12`, but its terms have no known combinatorial reading as atoms. In the other direction, the m-smooth castles keep the two-atom reading on the diagonal `h = m + 2`, with atoms of weight `m + 1` and `m` ([[m-smooth-castles](pages/m-smooth-castles.md)] §3.6).
 - **A uniform parity recurrence.** At `h = 3` the parity rows have order 8 and the signed row order 5. For `h = 2, …, 12` the signed orders are `3, 5, 7, 7, 9, 11, 13, 13, 15, 17, 19`, with repeats at `h = 5` and `h = 9`. Unlike the order `h` of the unsigned count (3.3), these orders follow no single formula in `h`, and each height is computed separately.
 
 ## Related Concepts
@@ -268,6 +268,7 @@ The definition, the subtraction `strips(w, h) − strips(w, h − 1)`, the trans
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the `h = 3` strip and the two-atom reading of `1/(1 − 2x − x²)`.
 - [[motzkin-castles](pages/motzkin-castles.md)] - the same matrix with both end columns pinned (§4, the growth ladder) and the signed eigenvalues `1 + 2i·cos θ_k` (§3); anchored at height 1 with no ceiling, the Motzkin prefixes A005773 (§5).
 - [[castle-strip](pages/castle-strip.md)] - how a neighbour rule becomes a transfer matrix on column heights.
+- [[m-smooth-castles](pages/m-smooth-castles.md)] - neighbouring columns differing by at most `m`, starting from this page.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - Axis 2, the m-smooth type at `m = 1`.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types; the Pell castles are its silver example.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge rule, which reaches the metallic means at every height.

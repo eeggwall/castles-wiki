@@ -150,6 +150,19 @@ The 1-smooth rule with ceiling `h` ([[1-smooth-castles](pages/1-smooth-castles.m
 | free first column, exact height `4` | `1, 3, 9, 27, 79, 227, 643, 1801, 4999` | `φ²` | **novel-candidate** (no match 2026-10-06) |
 | free first column, exact height `h = 5…12` | on the concept page | `1 + 2cos(π/(h+1))` | **unchecked** |
 
+### m-smooth castles of exact height h
+
+Neighbouring columns differing by at most `m`, first column at height 1 ([[m-smooth-castles](pages/m-smooth-castles.md)]), extending the 1-smooth rows above to `m = 2, 3, 4`. At `h ≤ m + 1` every castle qualifies, so those rows are `h^{w−1} − (h−1)^{w−1}` (free: `h^w − (h−1)^w`, even-block part `F(w, h)`). Rows verified by dynamic program, enumeration and Berlekamp-Massey, 2026-10-06.
+
+| object | first terms | growth | status |
+|---|---|---|---|
+| anchored strips on the diagonal `h = m + 2`, `m = 2` | `1, 3, 11, 39, 139, 495, 1763` | `(3+√17)/2` | **interlink** → [A007482](https://oeis.org/A007482) (`=a(w−1)`, g.f. `1/(1−3x−2x²)`) |
+| anchored strips, `h = m + 2`, `m = 3` | `1, 4, 19, 88, 409, 1900` | `2+√7` | **interlink** → [A015530](https://oeis.org/A015530) (`=a(w)`, "Expansion of x/(1 - 4*x - 3*x^2)") |
+| anchored strips, `h = m + 2`, `m = 4` | `1, 5, 29, 165, 941, 5365` | `(5+√41)/2` | **interlink** → [A015537](https://oeis.org/A015537) (`=a(w)`, "Expansion of x/(1 - 5*x - 4*x^2)") |
+| anchored m-smooth castles, `m = 2`, exact height 4 | `0, 0, 2, 12, 58, 252, 1034, 4092, 15802` | `(3+√17)/2` | **novel-candidate** (g.f. `2x³/((1−3x−2x²)(1−3x))`; no match 2026-10-06) |
+| anchored m-smooth castles, `m = 2`, triangle by `(w, h)` | `1; 1, 1, 1; 1, 3, 5, 2, 1; 1, 7, 19, 12, 8, 3, 1; …` | - | **novel-candidate** (no match 2026-10-06) |
+| anchored m-smooth castles, exact height `h ≥ m + 2`, other rows; their parity splits; free and pinned rows | on the concept page | `ρ_{h,m}` | **unchecked** |
+
 ### Motzkin castles
 
 The Motzkin family in castle counts ([[motzkin-castles](pages/motzkin-castles.md)]). A **Motzkin-path castle** is 1-smooth (`|c_{i+1} − c_i| ≤ 1`) with both end columns at height 1; its skyline minus one is a Motzkin path of length `w − 1`, and its block count is `1 + #up-steps`, so the PE 502 parity clause splits the Motzkin numbers into odd/even Motzkin paths. All rows aligned against OEIS data on 2026-09-26 (16 terms by width, 21 by semi-perimeter).

@@ -112,6 +112,7 @@ Read as `SEQ(2Z + Z²)`, the denominator `1 − 2x − x²` lists two atoms. The
 
 - [[pell-castle](pages/pell-castle.md)] - the Pell castles: the anchored 1-smooth strips that reach height 3, `P⋆_w − 2^{w−1}` of them, the castle type the strip leads to.
 - [[1-smooth-castles](pages/1-smooth-castles.md)] - the anchored 1-smooth strip with ceiling `h` for every `h`; the two-atom reading of Act II belongs to `h = 3`.
+- [[m-smooth-castles](pages/m-smooth-castles.md)] - step bound `m`: at ceiling `h = m + 2` the strip is `1/(1 − (m+1)x − m·x²)`, the two-atom reading with atoms of weight `m + 1` and `m`.
 
 - [[castle-strip](pages/castle-strip.md)] - the from-scratch bridge: what a castle strip is, and how a neighbor rule becomes a transfer matrix whose states are the column heights. Read it first if the transfer-matrix language in Act III is unfamiliar.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the 1-smooth height-3 matrix and its `(1 − x)(1 − 2x − x²)` denominator, and the ridge rule `R_h = J − D` that realizes the whole metallic ladder.
