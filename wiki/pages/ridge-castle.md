@@ -5,7 +5,7 @@ summary: A ridge castle is a castle of exact height h in which neighbouring colu
 tags: [concept, castle, castle-type, ridge-castle, metallic-mean, transfer-matrix, growth-constant, golden, silver, bronze, copper, nickel, fibonacci, parity, blocks]
 sources: [project-euler-502]
 created: 2026-10-03
-updated: 2026-10-04
+updated: 2026-10-07
 ---
 
 # Ridge castle
@@ -143,6 +143,7 @@ print([ridge(4, w) for w in range(1, 6)])   # [(1, 1), (7, 7), (31, 25), (118, 7
 - [[metallic-means](pages/metallic-means.md)] - the ladder `δ_a`.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - the width growth classes the ridge castles populate.
 - [[fibonacci-castle](pages/fibonacci-castle.md)] - the height-2 case, after exchanging heights 1 and 2.
+- [[1-smooth-pell-castles-by-area](pages/1-smooth-pell-castles-by-area.md)] - its height-2 comparison separates smooth, Fibonacci and ridge neighbour rules, and explains why exchanging heights does not preserve area.
 - [[reachable-field-census](pages/reachable-field-census.md)], [[quadratic-min-height](pages/quadratic-min-height.md)] - the minimum height of each metallic mean over all strip rules.
 - [[castle-strip](pages/castle-strip.md)] - the transfer-matrix object behind width growth constants.
 - [[castle-notation](pages/castle-notation.md)] - the ridge castle entry and `R_h`.

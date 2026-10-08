@@ -5,7 +5,7 @@ summary: A 1-smooth castle is a castle whose neighbouring columns differ in heig
 tags: [concept, castle, castle-type, 1-smooth, pell, transfer-matrix, chebyshev, exact-height, parity, motzkin, generating-functions, oeis]
 sources: [pe502-pell-castle-strip]
 created: 2026-10-06
-updated: 2026-10-06
+updated: 2026-10-07
 ---
 
 # 1-smooth castles
@@ -264,6 +264,7 @@ The definition, the subtraction `strips(w, h) − strips(w, h − 1)`, the trans
 
 ## Related Concepts
 
+- [[1-smooth-pell-castles-by-area](pages/1-smooth-pell-castles-by-area.md)] - the Pell castles at exact height 3 counted by cells rather than columns, with joint width/area bookkeeping and area growth.
 - [[pell-castle](pages/pell-castle.md)] - the `h = 3` case, where this page starts.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the `h = 3` strip and the two-atom reading of `1/(1 − 2x − x²)`.
 - [[motzkin-castles](pages/motzkin-castles.md)] - the same matrix with both end columns pinned (§4, the growth ladder) and the signed eigenvalues `1 + 2i·cos θ_k` (§3); anchored at height 1 with no ceiling, the Motzkin prefixes A005773 (§5).

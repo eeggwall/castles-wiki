@@ -5,7 +5,7 @@ summary: A Fibonacci castle is a castle of exact height 2 with no two adjacent h
 tags: [concept, castle, castle-type, fibonacci, golden-ratio, transfer-matrix, q-matrix, fibonacci-tower, fibonacci-word, wythoff, zeckendorf, parity, blocks, golden-mean-shift, entropy, run-length-limited, constrained-coding, telephone, tree-castle, ridge-castle]
 sources: [prellberg-brak-1995-cluster-models, deutsch-elizalde-2017-bargraphs-dyck-paths]
 created: 2026-10-03
-updated: 2026-10-04
+updated: 2026-10-07
 ---
 
 # Fibonacci castle
@@ -151,6 +151,8 @@ The ridge rule, neighbouring columns differ in height unless both reach the ceil
 **Prime castles**, the castles with no height-1 column, are golden by area: [[prime-castles](pages/prime-castles.md)].
 
 **q-Fibonacci castles** ([[q-fibonacci-castle](pages/q-fibonacci-castle.md)]) are the Fibonacci castles counted with `q` marking area. Not Carlitz's q-Fibonacci numbers.
+
+**Height-2 smooth castles and the Pell area count.** Every height-2 castle is 1-smooth, but only those with no adjacent height-2 columns are Fibonacci castles. [[1-smooth-pell-castles-by-area](pages/1-smooth-pell-castles-by-area.md)] uses the unrestricted smooth height-2 strips to remove the skylines that never reach 3; its height-2 comparison explains the golden area factor and the shift from `F_{n+1} - 1` to `F_n - 1` when the first column is fixed at height 1.
 
 ## Computation
 
