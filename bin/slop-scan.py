@@ -268,8 +268,8 @@ if __name__ == "__main__":
     mode = sys.argv[1] if len(sys.argv) > 1 else ""
     if mode == "--regress":
         if "--staged" in sys.argv:
-            sys.exit(regress(staged_pages(), "uv run bin/slop-scan.py --regress --staged"))
-        sys.exit(regress(pages(), "uv run bin/slop-scan.py --regress"))
+            sys.exit(regress(staged_pages(), "python3 bin/slop-scan.py --regress --staged"))
+        sys.exit(regress(pages(), "python3 bin/slop-scan.py --regress"))
     if mode == "--rank":
         sys.exit(rank())
     print(__doc__, file=sys.stderr)

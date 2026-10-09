@@ -6,7 +6,7 @@
 # (slop-scan.py --regress, see DESLOP.md). All four are deterministic, no LLM.
 # Override: git commit --no-verify.
 ROOT="$(git rev-parse --show-toplevel)"
-uv run "$ROOT/bin/check-contradictions.py" || exit 1
-uv run "$ROOT/bin/lint-mechanical.py" --staged || exit 1
-uv run "$ROOT/bin/generate-oeis-index.py" --check || exit 1
-uv run "$ROOT/bin/slop-scan.py" --regress --staged >/dev/null || exit 1
+python3 "$ROOT/bin/check-contradictions.py" || exit 1
+python3 "$ROOT/bin/lint-mechanical.py" --staged || exit 1
+python3 "$ROOT/bin/generate-oeis-index.py" --check || exit 1
+python3 "$ROOT/bin/slop-scan.py" --regress --staged >/dev/null || exit 1

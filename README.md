@@ -41,8 +41,8 @@ cross, and [`OEIS.md`](OEIS.md) for OEIS submissions and pending housekeeping.
 
 ## Quick start (fresh clone → asking questions)
 
-You need [Claude Code](https://claude.ai/code) and, for the wiki's helper scripts,
-[`uv`](https://docs.astral.sh/uv/) (it also supplies Python 3 if you don't have it). Then:
+You need [Claude Code](https://claude.ai/code) and, for the wiki's helper scripts, Python 3
+(`python3`). Then:
 
 ### 1. Install the `wiki-skills` plugin
 
@@ -66,7 +66,7 @@ git config core.hooksPath bin/hooks
 ```
 
 The hook runs `bin/check-contradictions.py`, `bin/lint-mechanical.py --staged`, and
-`bin/generate-oeis-index.py --check` via `uv run` before every commit. (Override an intentional commit with `git commit --no-verify`.)
+`bin/generate-oeis-index.py --check` with `python3` before every commit. (Override an intentional commit with `git commit --no-verify`.)
 
 ### 3. Wire up the MCP servers
 
