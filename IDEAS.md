@@ -4,15 +4,15 @@ Working list of project and seminar ideas for Project Euler 502 (Castles). This 
 
 Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, within each Division. A done item is one line: title link + one-sentence result; detail lives on the page and in git history. Any open follow-up is its own `[ ]` item, never a "Still open:" tail. Plain hyphens in new text, no em-dashes.
 
-## Where we are (2026-09-29)
+## Where we are (2026-10-09)
 
 | Slice | Value |
 |---|---|
-| Pages | 194 (44 Sources / 85 Concepts / 64 Analyses / 1 Reference / 0 Maintenance) |
-| Divisions (open + done) | R 4+9, E 15+14, N 16+30, E/N 1+0, Z 6+7, Q 7+9, S 24+11, T 6+1, F 12+6, X 8+7, C 3+3, Telephone Company 5+3, Facilities 6+0, AI 0+0 |
-| Items | 113 open, 100 done, 213 total (top-level items only) |
+| Pages | 213 (49 Sources / 96 Concepts / 67 Analyses / 1 Reference / 0 Maintenance) |
+| Divisions (open + done) | R 4+9, E 15+12, N 17+23, E/N 1+0, Z 6+7, Q 7+9, S 23+11, T 6+1, F 12+6, X 8+7, C 3+3, M 0+10, Telephone Company 4+4, Facilities 6+0, AI 0+0 |
+| Items | 112 open, 102 done, 214 total (top-level items only) |
 | Seminar arcs | 17 (11 delivered, 5 in progress, 1 planned) |
-| Dates | wiki 2026-09-13, IDEAS 2026-09-29, last reorganize 2026-09-27 |
+| Dates | wiki 2026-09-13, IDEAS 2026-10-09, last reorganize 2026-09-27 |
 
 ## Prize Problems
 
