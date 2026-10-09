@@ -1,0 +1,1144 @@
+Trailing the Dovetail Shuffle to its Lair
+Author(s): Dave Bayer and Persi Diaconis
+Source: The Annals of Applied Probability, Vol. 2, No. 2 (May, 1992), pp. 294-313
+Published by: Institute of Mathematical Statistics
+Stable URL: http://www.jstor.org/stable/2959752 .
+Accessed: 29/10/2014 16:38
+
+Your use of the JSTOR archive indicates your acceptance of the Terms & Conditions of Use, available at .
+http://www.jstor.org/page/info/about/policies/terms.jsp
+
+.
+JSTOR is a not-for-profit service that helps scholars, researchers, and students discover, use, and build upon a wide range of
+content in a trusted digital archive. We use information technology and tools to increase productivity and facilitate new forms
+of scholarship. For more information about JSTOR, please contact support@jstor.org.
+
+.
+
+
+
+
+                Institute of Mathematical Statistics is collaborating with JSTOR to digitize, preserve and extend access to The
+                Annals of Applied Probability.
+
+
+
+
+http://www.jstor.org
+
+
+
+
+                             This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                             All use subject to JSTOR Terms and Conditions
+The Annals of Applied Probability
+1992, Vol. 2, No. 2, 294-313
+
+
+               TRAILING THE DOVETAIL SHUFFLE TO ITS LAIR
+
+                               BY DAVEBAYER1ANDPERSIDIACONIS2
+                         Columbia University and Harvard University
+                 We analyze the most commonlyused method for shuffling cards. The
+             main result is a simple expression for the chance of any arrangementafter
+             any number of shuffles. This is used to give sharp bounds on the approach
+             to randomness: 3 10g2 n + 0 shuffles are necessary and sufficientto mix up
+             n cards.
+                 Key ingredients are the analysis of a card trick and the determinationof
+             the idempotents of a natural commutative subalgebra in the symmetric
+             group algebra.
+
+
+   1. Introduction.      The dovetail, or riffle shuffle is the most commonly
+used method of shuffling cards. Roughly, a deck of cards is cut about in half
+and then the two halves are riffled together. Figure 1 gives an example of a
+riffle shuffle for a deck of 13 cards.
+   A mathematically precise model of shuffling was introduced by Gilbert and
+Shannon [see Gilbert (1955)] and independently by Reeds (1981). A deck of n
+cards is cut into two portions according to a binomial distribution; thus, the
+chance that k cards are cut off is ()/2n    for 0 < k < n. The two packets are
+then riffled together in such a way that cards drop from the left or right heaps
+with probability proportional to the number of cards in each heap. Thus, if
+there are A and B cards remaining in the left and right heaps, then the
+chance that the next card will drop from the left heap is A/(A + B). Such
+shuffles are easily described backwards:Each card has an equal and indepen-
+dent chance of being pulled back into the left or right heap. An inverse riffle
+shuffle is illustrated in Figure 2.
+  Experiments reported in Diaconis (1988) show that the Gilbert-Shannon-
+Reeds (GSR) model is a good description of the way real people shuffle real
+cards. It is natural to ask how many times a deck must be shuffled to mix it
+up. In Section 3 we prove:
+
+   THEOREM1. If n cards are shuffled m times, then the chance that the deck
+is in arrangement v is (2 +n - r)/2mn, where r is the number of rising
+sequences       in Tr.
+
+  Rising sequences are defined and illustrated in Section 2 through the
+analysis of a card trick. Section 3 develops several equivalent interpretations of
+
+
+  ReceivedJanuary 1990; revised May 1991.
+   'Partially supportedby the Alfred P. Sloan Foundation, by ONR contract N00014-87-K0214
+and by NSF Grant DMS-90-06116.
+  2Partially supportedby NSF Grant DMS-89-05874.
+  AMS 1980 subjectclassifications. 20B30, 60B15, 60C05, 60F99.
+  Key words and phrases. Card shuffling, symmetricgroup algebra,total variation distance.
+                                                         294
+
+
+
+
+                        This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                        All use subject to JSTOR Terms and Conditions
+                      TRAILINGTHE DOVETAILSHUFFLE TO ITS LAIR                                               295
+
+
+     a         A 2           3       4 X            6       7 1            9 10                 1   K
+
+            A       23                    56                    78                  1                   K
+     b                                                         ;ffi
+
+
+
+
+                A 7           2      8       9      3 10 4                         J      6
+     d
+FIG. 1. A riffle shuffle. (a) We begin with an ordered deck. (b) The deck is divided into two
+packets of similar size. (c) The two packets are riffled together. (d) The two packets can still be
+identified in the shuffled deck as two distinct "rising sequences" of face values.
+
+
+the GSR distribution for riffle shuffles, including a geometric description as
+the motion of n points dropped at random into the unit interval under the
+baker's transformation x -> 2x (mod 1). This leads to a proof of Theorem 1.
+   Section 3 also relates shuffling to some developments in algebra.A permuta-
+tion 7 has a descent at i if r(i) > w(i + 1). A permutation 7 has r rising
+sequences if and only if 7r1 has r - 1 descents. Let
+                                         Ak=               E              Tr
+                                                   ir has k descents
+
+
+
+
+          cl A234                                                                  1J       J       K
+
+      b         Afi1[1 3                     l        6               8
+
+
+      c       A 3m                  89m                                   45                    1
+
+
+      d         A      3       6      X        91 X1 2X 4T 5T 7 101 K4X
+
+FIG.2. An inverse riffle shuffle. (a) Webegin with a sorted deck. (b) Each card is movedone way
+or the other uniformlyat random, to "pull apart" a riffle shuffle and retrievetwo packets. (c) The
+two packets are placed in sequence. (d) The two packets can still be identified in the shuffled deck;
+they are separated by a "descent" in the face values. This shuffle is inverse to the shuffle
+diagrammed in Figure 1.
+
+
+
+
+                    This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                    All use subject to JSTOR Terms and Conditions
+296                                  D. BAYER AND P. DIACONIS
+
+                                                    TABLE 1
+                        Total variation distance for m shuffles of 52 cards
+
+       m       1          2          3          4            5           6          7       8         9       10
+    - UII 1.000
+ IIQm                  1.000      1.000      1.000      0.924          0.614       0.334   0.167     0.085   0.043
+
+
+
+be defined as a formal linear combination in the group algebra. Following work
+by Solomon (1976), Gessel (1988) has shown that the Ak generate a commuta-
+tive algebra. Theorem 1 gives a novel proof for an explicit expression of the
+primitive idempotents of this algebra, showing that it is generated by a formal
+sum correspondingto a GSR shuffle. This is related to recent work by Garsia
+and Reutenauer (1989) on free lie algebras, by Gerstenhaber-Schack (1987),
+Loday (1989) and Hanlon (1990) on Hodge decompositions of Hochschild
+homology.
+   In Section 4 we derive approximations to the total variation distance
+between the distribution after m shuffles and the uniform distribution. Here,
+if Sn is the symmetric group, U the uniform probability[so U(r) = 1/n!] and
+Qmthe Gilbert-Shannon-Reeds probability after m shuffles, then the total
+variation distance is defined as
+                      IlQm- UII= max IQn(A) - U(A)I,
+                                                AcSn
+
+where, for example, U(A) = E veAU(7). Table 1 gives the total variation
+distance for 52 cards.
+   Table 1 shows that the total variation distance stays essentially at its
+maximum of 1 up to 5 shuffles, when it begins to decrease sharply by factors of
+2 each time. This is an example of the cutoff phenomena described by Aldous
+and Diaconis (1986). Our analysis permits a sharp quantification of this:
+
+      THEOREM2.      If n cards are shuffled m times with m =                               2 10g2    n + 0, then
+for large n,
+
+                      IIQM- Ull = 1 - 2F(                        28)         + 0
+
+with
+                                                             x         t2 /2d
+                                                         l
+
+
+
+
+   Thus, the variation distance tends to 1 with 0 small and to 0 with 0 large.
+   A partial version of Theorem 2 has been proved by very different arguments
+in Aldous (1983). Thorp (1973) gives further references to the analysis of
+shuffling.
+
+  2. A card trick. Rising sequences, the basic invariant of riffle shuffling,
+were discovered by magicians Williams and Jordan at the beginning of this
+
+
+
+
+                   This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                   All use subject to JSTOR Terms and Conditions
+                  TRAILINGTHE DOVETAILSHUFFLETO ITS LAIR                                      297
+
+century. A rising sequence is a maximal subset of an arrangement of cards,
+consisting of successive face values displayedin order. Rising sequences do not
+intersect, so each arrangement of a deck of cards is uniquely the union of its
+rising sequences. For example, the arrangement A, 5, 2, 3, 6, 7, 4 consists of the
+two rising sequences A, 2, 3, 4, and 5, 6, 7, interleaved together.
+   Suppose that a deck consists of n cards, arranged 1, 2, ... , n. If a riffle
+shuffle divides the deck into packets of k and n - k cards, then riffling
+together these packets interleaves cards 1, 2, . .., k with cards k + 1, . .. , n.
+This creates two rising sequences: Cards 1, 2, . . ., k remain in relative order
+within the deck, as do cards k + 1, k + 2,. ., n. Successive shuffles tend to
+double the number of rising sequences (until the capacity of the deck is
+approached), so shuffling a 52 card deck three times usually creates eight
+rising sequences. From these eight rising sequences, one can reconstruct
+exactly how the deck was shuffled.
+   This analysis of shuffling is the basis for a terrific card trick called "Premo"
+by Jordan. The performer removes a deck of cards from its case, hands it to a
+spectator and turns away from the spectators: "Give the deck a cut and a riffle
+shuffle. Give it another cut and another shuffle. Give it a final cut. I'm sure
+you'll agree that no living human could know the name of the top card.
+Remove this card, note its value, and insert it into the pack. Give the pack a
+further cut, a final shuffle, and a final cut."
+   Now the performer takes back the pack, spreads it in a wide arc on the
+table, and, after staring intensely, names the selected card.
+   To explain, consider what happens instead if the deck is never cut and the
+card is moved after the final shuffle. After three shuffles, the deck will usually
+have eight rising sequences, each consisting of an average of six and-a-half
+cards. Moving a card from the top to the middle of the deck usually creates a
+ninth rising sequence consisting of only the moved card, which is easily
+spotted.
+   What effect do cuts have on this analysis? Cuts respect the cyclic order of a
+deck, where card 1 follows card n. If we imagine the deck to be arranged in a
+loop, then cutting the deck rotates the loop. Thus, by allowing a spectator to
+cut the deck as often as desired, the performer merely gives up knowing where
+the loop starts. A riffle shuffle doubles this loop onto itself, analogous to the
+way that squaring doubles the unit circle in the complex plane onto itself. A
+search for successive face values in cyclic order winds once through an
+unshuffled deck and twice through a once shuffled deck. Depending on where
+the deck is taken to begin, this winding sequence could break up into two or
+three rising sequences.
+   If we view both the positions and face values of cards as having a cyclic
+order, then we can graph arrangements of cards on a torus, viewed as the
+product of two cycles. An unshuffled deck embeds as a (1, 1)-cycle and a once
+shuffled deck embeds as a (2, 1)-cycle. One sees that rising sequences are an
+artifact of where the torus is cut to make a square.
+   Define the winding number of a deck to be the number of laps required to
+cycle through the deck by successive face values. A deck begins with winding
+
+
+
+
+                This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                All use subject to JSTOR Terms and Conditions
+298                                     D. BAYER AND P. DIACONIS
+
+
+number 1; each of the first few shuffles of a deck doubles its winding number.
+Moving a card usually increases the winding number by 1. We can identify the
+moved card by associating a count with each card, giving the total number of
+cards between its predecessor and successor, as we follow the winding se-
+quence through the deck: Let a(i) give the position of card i, and let d(i, j) be
+the least positive integer so d(i, j) = o(j) - o-(i) (mod n). Then we associate
+with each card i the count d(i - 1, i) + d(i, i + 1) - 1. Ideally, the moved
+card will sit on its own lap of the winding sequence and its count will be the
+only count greater than n.
+   The trick as describedis not sure-fire. To investigate, we performedvarious
+Monte Carlo experiments. As expected, the trick is most successful when the
+card is moved after the final shuffle. We programmeda computer to shuffle the
+cards m times according to the GSR distribution, cut the deck uniformly at
+random, move the top card to a binomially distributed position and then cut
+the deck again. From here, the computer made and scored its guesses as to
+which card was moved, using the strategy describedabove: Given k guesses, it
+chose the k cards with highest counts, breaking ties at random (see Table 2).
+   With three shuffles, the trick succeeded in 84%of 1,000,000 trials. With two
+guesses allowed, the success rate went up to 94%. This is a reasonable rate to
+aspire to in practice; if the performer suspects two cards, a leading question
+like "your card was a red card" will resolve the ambiguity. Table 2 gives
+results for m shuffles, 2 < m < 12, and k guesses at the card, k =
+1, 2, 3,13,26.
+   In studying these numbers, we were most struck by the results for many
+shuffles. Already at four shuffles, this trick is terrible magic, but even at eight
+shuffles, it can still make a great bet: Betting even money on being able to pick
+the moved card with 26 guesses, one enjoys nearly a 10%advantage. This is
+startling, considering that people rarely shuffle eight times in practice.
+   Observe also that the advantage halves after each shuffle, in the limit.
+Trying to explain this effect lead us to the results in the remainder of this
+paper.
+   We conclude this section with a brief history of the magical use of riffle
+shuffles. The earliest clear application of rising sequences that we know of is
+due to C. 0. Williams, a respected inventor of magic who worked at the turn of
+
+                                                      TABLE 2
+Probability of success in Jordan's card trick with 52 cards shuffled m times, and 1, 2, 3, 13 or 26
+               guesses allowed. Each entry is based on 1,000,000 Monte Carlo trials.
+                                All entries are given in thousandths
+
+  m       2       3           4        5         6         7        8         9        10           11   12     Xc
+
+
+   1     997     839        288       088       042      028       023       021      020       020      019   019
+   2    1000     943        471       168       083      057       047       042      040       039      039   038
+   3    1000     965        590       238       123      085       070       063      061       059      058   058
+  13    1000     998        884       617       427      334       290       270      260       254      252   250
+  26    1000     999        975       835       688      596       548       524      513       505      503   500
+
+
+
+
+                      This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                      All use subject to JSTOR Terms and Conditions
+                  TRAILING THE DOVETAIL SHUFFLE TO ITS LAIR                                          299
+
+
+the century. Williams allowed a prearrangeddeck to be shuffled once. The deck
+also had its backs aligned all in the same direction. When shuffled, one half
+was turned end for end so the two rising sequences could be clearly identified
+and a "card reading" was performed. See Williams (1912).
+   A much more sophisticated set of applications was invented by the Ameri-
+can Jordan, who was an inventor of magic, designer of radios, professional
+contest winner and chicken farmer. The first mention of his work appears in
+Jordan (1916). This contains a description of a trick called "long distance
+mindreading." In effect, "you mail an ordinary pack of cards to anyone,
+requesting them to shuffle and select a card. He shuffles again and returns
+only half the pack to you, not intimating whether or not it contains his card.
+By return mail you name the card he selected."
+   Further information on the mathematics of shuffling can be found in
+Gardner(1966, 1977).
+
+  3. Shuffles and their generalizations.         The Gilbert-Shannon-Reeds
+model for shuffling has alternate descriptions, and a natural generalization to
+shuffles that begin with the deck being cut into a packets, with a ? 2; the
+various packets are then riffled together.
+
+  GEOMETRICDESCRIPTION. The geometric model begins by placing n points
+uniformly and independently in the unit interval. The points are labeled in the
+order x1 < x2 < ... < xn. For positive integral a, the map x -- ax (mod 1)
+maps [0, 1] onto itself and preserves measure. This map rearranges the points
+xi and so gives a measure on the symmetric group which will be called an
+a-shuffle.
+   A 2-shuffle is like an ordinary riffle shuffle: Points in [0, 2] and [1, 1] are
+stretched out and interlaced.
+
+  MAXIMUMENTROPYDESCRIPTION. All possible ways of cutting a deck into a
+packets and then interleaving the packets are equally likely. Empty packets are
+allowed.
+
+  INVERSE DESCRIPTION.All possible ways of pulling a shuffled deck back
+apart into a packets are equally likely. Empty packets are allowed.
+  The following generates an inverse a-shuffle with the correct probability:A
+deck of n cards is held face down. Successive cards are turned face up and
+dealt into one of a piles uniformly and independently. After all cards have
+been distributed, the piles are assembled from left to right and the deck is
+turned face down.
+  An example of an inverse 2-shuffle was illustrated in Figure 2.
+
+   SEQUENTIALDESCRIPTION. Choose integers                           ilj, J2.*,      ja   according to the
+multinomial distribution
+
+                            P(   jl        ia)    ='l
+                                                        (      .. ja)+
+
+
+
+
+                This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                All use subject to JSTOR Terms and Conditions
+300                                      D. BAYERAND P. DIACONIS
+
+Thus, 0 ? ji < n,       lji = n and the ji have the same distribution as the
+number of balls in each box i if n balls are droppedat random into a boxes.
+   Given ji, cut off the top j1 cards, the next j2 cards and so on, producing a
+or fewer packets. Shuffle the first two packets using the GSR shuffle described
+in Section 1. Then shuffle this combined packet with packet 3, and so forth.
+This is equivalent to riffling all a packets together at once, where if there are
+Ai cards remaining in each heap, the chance that the next card will drop from
+heap i is Ai/(A1 + -..                +Aa).
+   Shuffles of this type are performed by casinos to mix several decks. For
+example, 104 cards are sometimes mixed by cutting into four piles, shuffling
+packets 1 and 2 together, then packets 3 and 4 together and finally 1 and 2
+into 3 and 4. This is equivalent to a 4-shuffle.
+
+   LEMMA 1. The four descriptions generate the same permutation distribu-
+tion. Moreover, in each model an a-shuffle followed by a b-shuffle is equivalent
+to an ab-shuffle.
+
+  PROOF. Each description results in a multinomial number of cards in each
+packet. This holds by decree for the sequential description and is clear for the
+inverse description. For the geometric description, the packet sizes are deter-
+mined by how many points are chosen in each interval [(i - 1)/a, (i/a)],
+which is also multinomial. For the maximum entropy description, the number
+of possible interleavings starting from a given cut is multinomial; they are in
+1: 1 correspondencewith the ways of dividing a deck into a subsets with the
+correspondingpacket sizes.
+   Given the packet sizes, the maximum entropy description asserts that all
+possible interleavings are equally likely. This also clearly holds for the inverse
+description. For the sequential description, observe that when the first two
+piles of size j1, i2 are shuffled, the chance of any specific sequence of left-right
+drops is
+                                       ...                       ...
+               j(J1         -    1)          1 *j2(J2   -   1)         1   =j   + j2
+
+                      (jl       + j2)( Jl + j2 -        1) * * * 1
+
+When these cards are shuffled into the third packet of size j3, all (il +j2 +i3)
+positions for its cards are equally likely. This continues to hold for each
+successive packet.
+   No state information is retained between shuffles in these three models, so
+the product rule for a sequence of shuffles holds in each model once it is
+established for one. This easily follows from the inverse description: Lexico-
+graphically combining the pile assignments from an inverse a-shuffle and an
+inverse b-shuffle yields uniform and independent pile assignments for an
+inverse ab-shuffle.
+   For the geometric description, the lemma follows from the independence of
+base a digits of points picked uniformly in [0, 1]: Choosing n points in [0, 1],
+
+
+
+
+                This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                All use subject to JSTOR Terms and Conditions
+                        TRAILINGTHE DOVETAILSHUFFLE TO ITS LAIR                                  301
+
+labeling them with their leading digits and applying the map x -- ax (mod 1),
+is the same as choosing n points in [0, 1] and labeling them arbitrarily with
+integers from 0, ... , a - 1}. Thus, all interleavings are equally likely for a
+given set of packet sizes. Moreover, the sets of n points which yield a given
+shuffle map to sets of n points distributed uniformly in [0, 1]. Thus, successive
+shuffles can reuse the points xi without first having to reposition them at
+random in [0, 1], so the product rule follows from the identity
+                           b( ax (mod 1)) (mod 1) = abx (mod 1).                                  D
+
+
+   The main result of this section gives an explicit description of a-shuffles. To
+state it, we need to specify how we are associating shuffles with permutations.
+If a shuffle transforms an arrangement 1, 2, 3, 4, 5 of cards into the arrange-
+ment 2,3,4,5, 1, then we associate this shuffle with the permutation
+                                             {1 2          3     4     58
+                                       7r        2 3       4     5     1
+
+
+  THEOREM3.             The probability that an a-shuffle will result in the permutation
+v is
+         {a + n - rl
+          ~t   n
+                    '      J
+                                where r is the number of rising sequences in Tr.
+
+
+   PROOF. Using the maximum entropy description, this probabilityis deter-
+mined by the number of ways of cutting an ordered deck into a packets, so v
+is a possible interleaving. Because each packet stays in order as the cards are
+riffled together, each rising sequence in the shuffled deck is a union of packets.
+Thus, we want to count the number of ways of refining r rising sequences into
+a packets.
+   We emulate the classical stars and bars argument, counting arrangements
+of cuts on the ordered deck before shuffling:At least one cut must fall between
+each successive pair of rising sequences of n, but the remaining cuts can be
+located arbitrarily. Thus, the n cards form dividers creating n + 1 bins, into
+which the a - r spare cuts are allocated. There are a + - r ) ways of doing
+this. There are an possible a-shuffles in all, giving the stated probability. Ol
+
+   One could keep track of the packet structure of a shuffle by coloring the
+packets before they are riffled together. Then the above enumeration counts
+colorings of 7r which look like they came from a shuffle. This interpretation of
+the proof of Theorem 3 is illustrated in Figures 3 and 4.
+   We first proved this theorem via the geometric description of a-shuffles,
+viewing them as baker's transformations on the n-cube. With Laurie Beckett's
+help, we were able to isolate from this proof the purely combinatorial argu-
+ment given above.
+
+
+
+
+                   This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                   All use subject to JSTOR Terms and Conditions
+302                                   D. BAYERAND P. DIACONIS
+
+
+
+
+             A                                                                       2
+
+
+
+
+FIG. 3. Six 3-colorings of the arrangement A, 4,2, 3,5. Dye the packets of a 3-shuffle a sequence
+of distinct colors, before the packets are riffl7edtogether. Because the relative order of the cards in
+each packet is preserved by shuffling, such colorings refine the decomposition of the deck into
+rising sequences. Each 3-coloring with this property arises from a 3-shuffle, so the probability of
+any arrangement is determined by the number of ways it can be so colored.
+
+
+
+  Summing the formula of Theorem 3 over all permutations Trgives 1. There
+are An,, permutations with r rising sequences, where the An,, are the
+Eulerian numbers. Thus, multiplying this sum by an gives
+
+                                      L
+                                    an=
+                                      An,Jr                        n        L)
+                                             r=1
+which is Worpitzky's identity. Conversely, a proof of Theorem 3 can be
+inferred from the proof of Theorem 4.5.14 in Stanley (1986), by considering
+the trivial poset consisting only of incomparable elements. Stanley's result is
+an extension of Worpitzky's identity to partially ordered sets, which may have
+interesting shuffling interpretations.
+
+
+
+
+FIG. 4. Counting the possible 3-coloringsof A, 4, 2, 3, 5. Use two pencils to mark where the deck
+A) 2, 3, 4, 5 is going to be cut into packets for 3-shuffling and dye the cards accordingly. The
+arrangement A, 4, 2, 3, 5 consists of the two rising sequences A, 2, 3 and 4, 5. Cuts which can
+produce this arrangementare enumeratedb placing one pencil betweenthe two rising sequences
+and placing the otherpencil arbitrarily.
+
+
+
+
+                    This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                    All use subject to JSTOR Terms and Conditions
+                          TRAILING THE DOVETAIL SHUFFLE TO ITS LAIR                                     303
+
+    COROLLARY     1. If a deck of cards is given a sequence of m shuffles of types
+a,, a2, ... , am,  then the chance that the deck is in arrangement 7T is given by
+                                                    n+a- r
+
+                                                          anX
+
+
+where a = a,, a2           ...     ak   and r is the number of rising sequences in -r.
+
+  PROOF. Combine Lemma 1 with Theorem 3. C1
+
+   Theorem 1 of the Introduction follows immediately as a corollary.
+   Theorem 3 generalizes earlier work of Shannon, who showed that if n cards
+are 2-shuffled m times, with m < log2 n, then all arrangements with 2m
+rising sequences have the same probability.The corollary is used in Section 4
+to give exact results and asymptotics for total variation convergence to the
+uniform measure.
+   The next corollary shows that the number of rising sequences forms a
+Markov chain. As motivation, note that a function of a Markov chain is not
+usually Markov. Heller (1965) gives a complicated necessary and sufficient
+condition and Rogers and Pitman (1981) give a sufficient condition which is
+easy to check in the present case.
+
+   COROLLARY2. Let a Markov chain on the symmetric group begin at the
+identity and proceed by successive independent a-shuffles chosen from the
+Gilbert-Shannon-Reeds measure. Then R(nr), the number of rising sequences,
+forms a Markov chain.
+
+  PROOF. From Theorem 3, the conditional law of rr given R(-nr)is uniform.
+Rogers and Pitman [(1981), Lemma 1] show that this, coupled with a complete-
+ness condition on the induced family of distributions for the process of rising
+sequences, is sufficient. In the present setting, completeness amounts to
+showing
+
+     E       (m       n -r)f(r).              E (a         +n         r)g(r)          form=0,1,2,....
+
+implies f = g. The left side is the polynomial
+
+                      -[(x         + n - 1)(x + n - 2) ... xf(1)
+
+                             +(x + n-2)(x               + n-3)         ... (x-1)          f(2)
+ e       u        d   x          a ++x(xE-l1)      at           .
+                                                                (xi-g(ni-s1))            f(n)],
+
+evaluated at x =am. Evaluating at x = i gives f(i). r[1
+
+
+
+
+                       This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                       All use subject to JSTOR Terms and Conditions
+304                                 D. BAYER AND P. DIACONIS
+
+
+   In unpublished work, Gessel has derived formulas for the transition matrix
+of the induced chain. Of course, the first row of the matrix is given by
+Theorem 3. The other rows are not as simple to write out.
+   The final corollary connects shuffling to results in algebra. To describe
+things, defirLethe group algebra L(Sn) as the set of all functions from Sn into
+the rational numbers Q. Elements of L may be thought of as formal linear
+combinations of permutations with rational coefficients.Multiplicationis given
+by formally multiplying the linear expressions using the multiplication on S,.
+This is the same as convolving together the associated functions. In L(Sn) let
+
+                            Ai =           E           w,        i=1,2,...,n.
+                                      R ()=        i
+
+
+
+   COROLLARY  3. Let v be the subalgebra of L(Sn) generated by A1,..., An.
+Then v is a commutative, semisimple algebra of dimension n. A basis of
+primitive idempotents is given by en(l) = Er1u1(n - r,... 1 - r)Ar, with o
+the Ith elementarysymmetricfunction.
+
+  PROOF. Using the theorem, an a-shuffle can be represented in                                  v   as
+
+                                               1        n    a +      -    )Ar
+                                                       r=1
+
+Now B 2 is a positive linear combination of A1 = Id, A2 and A2. Theorem 3
+gives B 2 = B4 E X. Thus A2 is in X. Next, B2B3 is a positive linear
+combination of A2A3, A2, A2, A3 and A1. It follows that A2A3 E v and,
+from B2B3 = B3B2 = B6, A2A3 = A3A2. From here A2 and then AiA3 =
+A3Ai are in S. Continuing inductively proves that v is a commutative
+algebra.
+   To complete the proof, consider successive powers of B2:
+
+             B2      B2m =           1 (n+E                      n        r)A
+                                           r=1
+
+                                   in-1l                     n
+
+                                      n! Eo 2m 1l(                   n - r,* * , 1 - r)Ar .
+
+From this it follows that the linear map                             - V given by multiplying by B2
+has distinct eigenvalues           1, 1/2, 1/22,...,1/2n-l.                      It is thus diagonalizable
+with the e(l) as eigenvectors.
+  Left multiplication on itself gives a faithful representation of v as a
+commutative matrix algebra which we have shown contains an element B2
+with distinct eigenvalues. It follows that the set of matrices that commute with
+B2 is all polynomials in B2. Thus B2 generates v (since elements of v
+commute with B2). Thus, the e(l) simultaneously diagonalize v which is
+therefore semisimple. U
+
+
+
+
+                  This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                  All use subject to JSTOR Terms and Conditions
+                     TRAILING THE DOVETAIL SHUFFLE TO ITS LAIR                                   305
+
+
+  The algebra v has appearedin various areas of mathematics. We describe
+some of these briefly.
+
+   HOCHSCHILD  COHOMOLOGY.     The homomorphism sgn(-) extends to an auto-
+morphism of L(Sn) by linearity: E a,7r - E - ) a,7. The image of v under
+sgn figures prominently in the work of Barr (1968), Gerstenhaber and Schack
+(1987), Loday (1989) and Hanlon (1990). These authors are concerned with
+Hodge-type decompositions of a complex made by tensoring commutative
+algebras with boundary maps typified by a, X a2 X a3 - aja2 X a3 - a, ?
+a2a3.  If sn = sgn(A2), they show that 9sn = Sn-ld and split the usual
+Hochschild cohomologyusing this action. They show that the indempotents of
+the algebra v give a basis for all such decompositions. Fix an idempotent
+en(j) and consider en(j)L(Sn) as a representation of Sn. Hanlon (1990)
+determines the dimensions and other properties of these representations.
+
+        GROUPS. Solomon (1976) has introduced related algebras for gen-
+  COXETER
+eral Coxeter groups. Specializing to the symmetric group Sn, say that a
+permutation   7i   has a descent at i if 7n(i) > r(i + 1). This agrees with the
+definition we have been using for arrangements of decks of cards. Permuta-
+tions can have descents at positions 1, 2,. . ., n - 1. Observe that v has r - 1
+descents if and only if w-1 has r rising sequences: the ith entry of v gives the
+position of the letter i in r-1 and is a descent whenever i + 1 begins a new
+rising sequence of 7--1. Thus, the algebra v studied in Corollary 3 could, up
+to isomorphism, have been defined in terms of descents. More generally, let
+D(7) be the descent set of 7T. Define
+                                            As=          E        7T
+                                                      D(r)   =S
+
+Solomon showed that As forms a noncommutative algebra with a natural
+geometric interpretation.
+   The word AM11has a natural shuffle interpretation: remove a card at
+random and put it back on top. This generates a probabilityon Sn represented
+as (l/n)(id + AM11) in the group algebra.Aldous and Diaconis (1986) show that
+it takes n log n + cn iterations to get close to uniform. Diaconis and Pitman
+(1991) give arguments entirely analogous to the ones in the present paper, for
+a generalization of these shuffles.
+   Descents and rising sequences can be defined for any Coexter group. For
+example, the hyperoctahedral group Bn of symmetries of an n-dimensional
+cube can be represented as the group of all n by n signed permutation
+matrices. If we write these matrices as signed permutations and order the
+letters so - n < * * - 1 < 1 <                ...    < n, then descents and rising sequences
+can be defined as usual. There is a card shuffling interpretation to the descent
+algebra: If a packet of k cards is cut off, flipped over and riffled face up into the
+remaining n - k cards according to the GSR distribution, then the resulting
+distribution can be represented as a linear combination of the identity and
+group elements with one rising sequence. Section 5 develops this further.
+
+
+
+
+                   This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                   All use subject to JSTOR Terms and Conditions
+306                                             D. BAYERAND P. DIACONIS
+
+  4. The approach to uniformity.                                       This section analyzes the approachto
+uniformity. We derive approximations when n is large after m shuffles, with
+m = 321g2 n + 0. For notational convenience, write m = log2(n3/2c), so c = 20
+satisfies 0 < c < oo.The arguments use the asymptotics of Eulerian numbers.
+Asymptotics and exact results are comparedat the end of this section.
+  We first develop a local limit theorem. This gives a tractable approximation
+for the probabilitythat m shuffles will result in a given permutation.
+
+  PROPOSITION1.                 Let Qm(r) = (2m +n - r)/2mn                                      be the probability of a per-
+mutation with r rising sequences after m shuffles from the GSR distribution.
+Let r = n/2 + h, -n/2 + 1 < h < n/2. Let m = log2(n3/2c)     with 0 < c < oo
+fixed. Then
+
+                    Qmn(r) ~,exp                          ~I-h            + -+ 0
+                               ()        n!           (c(               h+ 2 +   (n)
+(4.1)                                                                           1        h       2                 1
+
+                                                             24C2       -       1(h)2                +    n4=}
+  PROOF.
+
+                              Q2m          1              + n-nr                    2m + 1-r
+                          Q()            n!1              2m                .                2
+                                                1
+                                                      nki=1                         (n/2)-h                   -i
+                                         n!    cn /2  (          lo (
+The logarithmic terms can be upper and lower bounded using
+            X2           X3                                                         X2           X3
+        x - -       +-         -x4        < log(1 + x) <x                   -        -+                   -            -<x   < 1.
+                2         3                                        -                2                3'                2
+Standard summation formulas give
+
+                          1   n_     1     n                            -h + 1/2
+
+
+                    22n3                 : --       (-2)          =         24c+-(cn)+?(n)'
+
+
+                3c3n9/2                         -   h -     i=         OC(3h)
+                          Cnu-10n                         2!3          \n
+
+
+                     c4 6       E    (2         -h -i)            = ?c(
+
+  The probabilities Qm(r) are monotone decreasingin r for fixed m. The next
+proposition determines when they cross the point 1/n!. This is crucial for
+
+
+
+
+                         This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                         All use subject to JSTOR Terms and Conditions
+                   TRAILING THE DOVETAIL SHUFFLE TO ITS LAIR                                   307
+
+
+analyzing total variation, because it determines the set on which the total
+variation is achieved.
+
+   PROPOSITION2. With notation as in Proposition 1, let h* be an integer such
+that Qm(n/2 + h) ? 1/n! < h < h*. Then, for any fixed c, as n -> oo,
+
+                                  - F              111
+(4.2)                    h*=                +             + B +Oc
+                                   24c           12n
+
+where -1 < B < 1.
+
+   PROOF. Qm(n/2 + h) 2 1/n! if and only if the exponent in (4.1) is non-
+negative. Setting the exponent equal to 0 and collecting terms gives
+(4.2). n
+
+   The next result is the main theorem of this section, combiningthe estimates
+above to give the asymptotics of the total variation. The argument uses
+standard results about sums of independent variables; see Feller (1971) for
+background.
+
+   THEOREM  4. Let Qmbe the Gilbert-Shannon-Reeds       distribution on the
+symmetric group Sn. Let U be the uniform distribution. For m = log2(n3/2c),
+with 0 < c < o fixed, as n tends to oo,
+
+
+                    IlQm- Ull = 1 - 2F(jP                        ) +OC(           /4)
+
+
+with ?(x) = flx.e-t2/2       dt/ 62i.
+
+   PROOF. With notation as in Propositions 1 and 2 above, IIQm- Ull equals
+
+
+(4.3)                           E(
+                               /2<h<h*               (2        + h)          n
+
+where Rnh is the number of permutations with n/2 + h rising sequences.
+This uses the fact that the number of rising sequences is a sufficient statistic
+for both Qmand U as explained in Section 3 and that total variation between
+two probabilities equals the total variation between the induced laws of any
+sufficient statistic [see, e.g., Diaconis and Zabell (1982), Lemma 6.1].
+  A permutation has r rising sequences if and only if 1r- 1 has r - 1 descents;
+see Section 3 for further discussion. The number of permutations with j
+descents is called the Eulerian number an ; see Tanny (1973), Stanley (1977)
+and other papers in the latter volume. Tanny and Stanley show that ani/n!
+equals the chance that the sum of n random variables uniform on [0, 1] is
+
+
+
+
+                 This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                 All use subject to JSTOR Terms and Conditions
+308                                         D. BAYERAND P. DIACONIS
+
+between j and j + 1. Thus a nj/n! and Rnh/n! obey the central limit
+theorem as in Tanny (1973). In particular if xn = h/ vn/12, the local limit
+theorem gives
+
+                      Rfh-e12x                                   (
+(4.4)                                           1+0                    ~     uniformly in h.
+                      Rnh
+                           n
+                                      e (1/2) n                       1))
+                                      2w~rn~/12                      Fn
+
+The usual form of the central limit theorem for the distribution function of
+anj/n! and Rnh/n! gives
+
+                  1        h*                          -1                     1
+                  In!Rhn2                  h= (            j    J(1 +        ,-
+                                                                                         uniformly.
+
+
+   The sum (4.3) can be brokeninto two zones.RecallfromProposition2 that
+h*= -     /24c + 0(1):
+
+                                                    -1lO 3/4A
+                                 zone 1:      {        -             ? h < h*} =Il
+
+
+                                                  (n        - 10n33/4
+                                 zone2:             -2 <?h<        J=I2.
+
+
+As will be shown,only zone 1 contributes.
+  From(4.4) and Proposition1, E I,R nhQm(n/2                                      + h) equals
+
+
+        e/1             lexp          --           h       ___) -           +?(-)4I(1+oI              4I)
+
+
+          ee      1/24C2                                       2))           + o(
+
+
+
+
+              =       ____+gC)(1 +
+                            214)).          O(
+                           11
+                 00h+ h) ? Qm(1)
+  In zone 2, Qm(n/2               ? eV/f/2c/n!.0/nl/4   2
+                                                The standard large devia-
+tions boundas in Feller[(1971),Chapter16]appliedto the sum of n uniforms
+                   RD             h         ex[0 1                                0Tn~
+shows
+
+
+   C in
+tiombns    uin complert17es
+       boundas    l        proof the
+                         Catr
+                       tnlh4
+                           pof  ofnclfom
+                                 6ppidt
+                                  _
+
+
+
+
+                        This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                        All use subject to JSTOR Terms and Conditions
+                             TRAILING THE DOVETAIL SHUFFLE TO ITS LAIR                                                     309
+
+                                                            TABLE 3
+       Total variationdistance for m shufflesof 25, 32, 52, 78, 104, 208 or 312 distinct cards
+
+  m          1           2            3         4             5            6        7           8             9           10
+
+  25       1.000       1.000        0.999    0.775          0.437     0.231       0.114       0.056         0.028       0.014
+  32       1.000       1.000        1.000    0.929          0.597     0.322       0.164       0.084         0.042       0.021
+  52       1.000       1.000        1.000    1.000          0.924     0.614       0.334       0.167         0.085       0.043
+  78       1.000       1.000        1.000    1.000          1.000     0.893       0.571       0.307         0.153       0.078
+ 104       1.000       1.000        1.000    1.000          1.000     0.988       0.772       0.454         0.237       0.119
+ 208       1.000       1.000        1.000    1.000          1.000     1.000       1.000       0.914         0.603       0.329
+ 312       1.000       1.000        1.000    1.000          1.000     1.000       1.000       0.999         0.883       0.565
+
+
+
+
+  Theorem 2 of the Introduction follows immediately as a corollary.
+
+  REMARK1.             The function 1 - 2CF(-1/4cV3) has the following asymptotic
+behavior:
+                               -- 1             1
+            1-     2                                 as c                  00,
+                             4cVF            2c 67-r
+                             / -1                   _4c__                  1(-1     1     2
+                             4cF/)                    2        e       [2        4cFJ           as c              0.
+Note that m = log2(n3/2c) has c inside the logarithm, so c = 2' where j is the
+number of shuffles beyond 321g2 n that have been performed. It follows that
+the variation distance tends to 0 exponentially in j for j positive. It tends to 1
+doubly exponentially in j for j negative.
+
+       2.
+  REMARK       The asymptotics show that about 3 1og2 n shuffles are needed
+to mix  up cards. Table 3 gives exact computations of variation distance for a
+           n
+number of popular deck sizes. Each deck size shows the cutoff phenomenon.
+Variation distance decreases by a factor of 2 after each shuffle following the
+cutoff. For comparison, Table 4 gives 2 10g2 n for these deck sizes.
+
+   REMARK   3. The appearance of the normal distribution in the asymptotics
+for total variation is not an accident; see Diaconis, Graham and Morrison
+(1990). With m shuffles, the number of rising sequences is normally dis-
+tributed as it is under the uniform distribution. Variation distance equals the
+distance between the two limiting normal distributions.
+
+
+                                                            TABLE 4
+                       Shuffles needed to mix 25, 32, 52, 78, 104, 208 or 312 cards
+
+       n                25             32            52              78            104               208                312
+   3 10g2 n            6.97           7.50          8.55            9.43          10.05             11.55              12.43
+
+
+
+
+                        This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                        All use subject to JSTOR Terms and Conditions
+310                                    D. BAYER AND P. DIACONIS
+
+
+  5. Three developments.
+
+   5.1. A different distance. The total variation distance, while standard in
+probability theory, can be difficult to explain to nonspecialists. The following
+alternative distance has proved useful and is of interest on its own.
+   Considerthe following problem:A deck of cards is face down on the table. A
+guesser tries to guess at the cards one at a time. After each guess, the current
+top card is turned over to reveal its value and then discarded. If the guesser
+believes that the deck is well mixed, the optimal strategy is to guess any card
+first (chance 1/52 of being correct) and thereafter guess a card known to be in
+the deck. The expected number of correct guesses is
+                                       1         1
+                                     -5+ -    +++1=4.54.
+                                     52    51
+With n cards, the number correct is asymptotically normal with mean log n
+and variance log n.
+   Suppose that the deck has been riffle shuffled k times, where k is unknown.
+The starting assignment is assumed known. We do not know the optimal
+strategy. A conjectural optimal strategy was used to produce Table 5.
+   The table shows the result of a Monte Carlo experiment. Each cell is based
+on 100,000 trials. A cell shows the average number of correct guesses. The first
+row shows results for k shuffles alone. The second row shows results for k
+shuffles followed by a binomial (52, 2) cut.
+   With or without a cut, after five shuffles, the strategy gives two extra cards
+correct on average. After six shuffles, this goes down to about one, then it
+decreases by a factor of roughly two.
+   The strategy used is simple to describe and conjectured to be optimal for
+each k. If the deck has not been cut, guess the original top card as the first
+guess. As successive guesses are made and successive cards are revealed, check
+these cards off on a list of the deck in its original order. In general, such a list
+will have checked off cards and possible cards. Take a longest block of
+consecutive possible cards and guess the topmost card.
+   If the deck has been cut, the first card guessed is random and thereafter the
+above strategy is used starting with the first revealed card cycled to the top of
+the list. Both strategies are based on ideas of Michael McGrath.
+
+      5.2. Analysis of shuffles with a random cut.                         Michael McGrath has derived
+a simple closed form expression for the chance that a deck of n cards is in final
+
+
+                                              TABLE 5
+                     Number of cards guessed correctly after k shuffles of 52 cards
+
+   k           1            2           3           4          5         6          7          8      9     10
+ No cut      31.17        19.69       12.92       8.80       6.56      5.51       5.01       4.76   4.65   4.60
+ Cut         29.45        19.09       12.69       8.70       6.50      5.46       4.97       4.73   4.63   4.57
+
+
+
+
+                      This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                      All use subject to JSTOR Terms and Conditions
+                 TRAILINGTHE DOVETAILSHUFFLETO ITS LAIR                                      311
+
+arrangement 7nafter k shuffles followed by a uniformly distributed cut. This
+chance is
+
+                 aQ        2)(k +      nrl)
+                                         +-r)(2k b                    + n-r2)
+
+                                                n2kn
+
+where r1 is the number of rising sequences in w when 1 is cut to top, r2 is the
+number of rising sequences in w7when 1 is cut to bottom, a(v) is the distance
+from n to 1 counted forward and cyclically, b(7G)is n - a(7r). For example,
+with n = 6, v = 5, 2, 3, 1, 6,4 has chance
+
+                         5(2k     +n      -3)        +12       +n      -4)
+
+                                                n 2kn
+
+   5.3. Face up, face down shuffling. As explained at the end of Section 3,
+similar analysis can be undertaken for some other groups. For the hyperocta-
+hedral group, the shuffling operation has a simple interpretation: Cut the deck
+into two parts accordingto a binomial distribution. Turn the original top part
+face up and shuffle the two parts together by the Gilbert-Shannon-Reeds
+model. This basic shuffle is repeated k times. One is interested in the order of
+the cards becoming random as well as their face up, face down pattern
+becoming random. There are 2nn! possibilities. The set of all such signed
+permutations forms a group usually denoted Bn. This is isomorphic to the
+group of symmetries of an n-dimensional cube.
+   Robert Beals has shown an elegant way in which analyses of such face up,
+face down shuffles reduces to the analysis of the Gilbert-Shannon-Reeds
+measure.
+
+   THEOREM5. Let Q denote the analog of the Gilbert-Shannon-Reeds        mea-
+sure on the group Bn, with U the associated uniform distribution. Let Q and U
+denote the GSR and uniform distribution on Sn. Then for k = 1, 2, 3,. ..
+
+                            IIQk- UIIB           =    IIQkl - UIISn.
+
+  At the heart of Beal's argument is the following combinatorial fact: After
+two GSR shuffles of a deck of n cards, imagine straightening the cards out by
+removing the face up cards, keeping them in the same relative order, and
+placing them face down on top. The resulting random permutation has a GSR
+distribution.
+   A practical application arises in shuffling cards with oriented backs. There,
+one wants the arrangement of faces as well as the up-down pattern of the
+backs to be random. These orientations are significant for Tarot cards.
+   An analog of the algebraicresults in Section 3 has been developedfor Bn by
+Bergeron (1990) and Bergeron and Bergeron (1990, 1991).
+
+
+
+
+               This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                               All use subject to JSTOR Terms and Conditions
+312                                    D. BAYER AND P. DIACONIS
+
+
+   Acknowledgments.       Jim Pitman, Jim Reeds, David Aldous and Sophie
+Yancopoulos have spent hours discussing shuffling with us. Bob Beals, David
+Gay, Michael McGrathand Dan Rockmoreall contributed results in Section 5.
+The geometric model of Section 3 was developed in conversations with Izzy
+Katznelson. Ira Gessel, Phil Hanlon and RichardStanley have providedcrucial
+links to combinatoricaltheory and commutative algebra.Laurie Beckett helped
+us simplify the proof of Theorem 1.
+
+   Note added in proof. Diaconis, McGrath and Pitman (1991) have found
+closed form expressions for a variety of events after an a shuffle. For example,
+the expected number of fixed points is 1 + 1/a + 1/a2 + . .. + 1/an-l. The
+chance that m- has n1 fixed points, n2 transpositions ... in its cycle decomposi-
+tion is
+                   1 f     (fi(a) + ni1)                   with f (a)             E  (d)a i/d
+                          __                                                     ~~~~~~~~~~~~dli
+where ,u is the Mobius function of elementary number theory.
+  These results show that the approach to randomness has a rather delicate
+structure.The presentpapershowsthat it takes 3 1og2 n shufflesto mix up n
+cards. The new results show that functions of m- that only depend on cycles
+have approximately the right distribution after c(n) steps, where c(n) / so
+arbitrarily slowly. Preliminary computations indicate that functions which
+depend on large cycles (such as the length of the longest cycle) have the right
+distribution after 1 shuffle.
+   It is also worth noting that the algebraic results of Corollary3 in Section 3
+yield the eigenvalues of the basic Markov chain. The eigenvalues are
+1, 1/2, 1/4, .. ., 1/2n-1, with 1/2i having multiplicity the number of permu-
+tations in Sn with n - i cycles. This follows from Corollary3: The expression
+for B' only involves m through these powers of 2. From results in Hanlon
+(1990), the multiplicity of an eigenvalue equals the coefficientof the identity in
+the associated idempotent. Using the explicit expression for the idempotents
+completes the proof.
+
+                                               REFERENCES
+ALDOUS, D. (1983). Random walk on finite groups and rapidly mixing Markovchains. Se'minaire
+             de Probabilites XVII. Lecture Notes in Math. 986 243-297. Springer, New York.
+ALDOUS,     D. and DIACONIS, P. (1986). Shuffling cards and stopping times. Amer. Math. Monthly
+         93 333-348.
+BARR,M. (1968). Harrison homology,Hochschildhomologyand triples. J. Algebra 8 314-323.
+BERGERON, N. (1990). A decompositionof the descent algebra of the hyperoctahedralgroup II.
+             J. Algebra. To appear.
+BERGERON,F. and BERGERON,N. (1990). A decompositionof the descent algebraof the hyperocta-
+             hedral group I. J. Algebra. To appear.
+BERGERON, F. and BERGERON, N. (1991). Orthogonal idempotents in the descent algebra of Bn.
+             J. Pure Appl. Algebra. To appear.
+DIACONIS,    P. (1988). Group Representations in Probability and Statistics. IMS, Hayward, Calif.
+
+
+
+
+                      This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                      All use subject to JSTOR Terms and Conditions
+                     TRAILINGTHE DOVETAILSHUFFLETO ITS LAIR                                            313
+
+DIAcONIS,P., GRAHAM,     R. and MORRISON,   J. (1990). Asymptotic analysis of a random walk on a
+           hypercube with many dimensions. Random Structures and Algorithms 1 51-72.
+DIACONIS,  P., McGRATH,M. and PITMAN,J. (1991). Cycles and descents of random permutations.
+           Technical report, Dept. Statistics, Stanford Univ.
+DIACONIS, P. and PITMAN, J. (1991). Analysis of top in at random shuffles. Technical report, Dept.
+           Statistics, Stanford Univ.
+DIACONIS,  P. and ZABELL,S. (1982). Updating subjective probability. J. Amer. Statist. Assoc. 77
+           822-830.
+FELLER,W. (1971). An Introduction to Probability and Its Applications 2, 2nd ed. Wiley, New
+           York.
+GARDNER,   M. (1966). Martin Gardner's New Mathematical Diversions from Scientific American.
+           Simon and Schuster, New York.
+GARDNER,  M. (1977). Mathematical Magic Show. Knopf, New York.
+GARsIA,A. and REUTENAUR,       C. (1989). A decomposition of Solomon's descent algebra. Adv. in
+           Math. 77 189-262.
+GERSTENHABER, M. and SCHACK, S. (1987). A Hodge-type decomposition for commutative algebra
+           cohomology. J. Pure Appl. Algebra 48 229-247.
+GESSEL, I. (1988). Unpublished lecture notes. Dept. Mathematics, Brandeis Univ.
+GILBERT, E. (1955). Theory of shuffling. Technical memorandum, Bell Laboratories.
+HANLON, P. (1990). The action of Sn on the components of the Hodge decompositions of
+           Hochschild homology. Michigan Math. J. 37 105-124.
+HELLER,A. (1965). On stochastic processes derived from Markov chains. Ann. Math. Statist. 36
+            1286-1291.
+JORDAN,C. T. (1916). Long distance mind reading. The Sphinx 15 57.
+JORDAN,C. T. (1919). Thirty Card Mysteries. Published by the author, Pengrove, Calif.
+LODAY,J. (1989). Operations sur l'homologie cyclique des algebres commutatives. Invent. Math.
+           96 205-230.
+REEDS,J. (1981). Unpublished manuscript.
+ROGERS,L. and PITMAN,J. (1981). Markov functions. Ann. Probab. 9 573-582.
+SOLOMON,   L. (1976). A Mackey formula in the group ring of a Coxeter group. J. Algebra 41
+           255-264.
+STANLEY, R. (1977). Eulerian partitions of a unit hypercube. In Higher Combinatorics (M. Aigner,
+           ed.). Reidel, Dordrecht.
+STANLEY,R. (1986). Enumerative Combinatorics, Vol. 1. Wadsworth and Brooks/Cole Advanced
+           Books & Software, Monterey, California.
+TANNY,S. (1973). A probabilistic interpretation of the Eulerian numbers. Duke Math. J. 40
+           717-722. [Correction (1974) 41 689.]
+THORP,E. 0. (1973). Nonrandom shuffling with applications to the game of Faro. J. Amer.
+           Statist. Assoc. 68 812-847.
+WILLIAMS, C. 0. (1912). A card reading. The Magician Monthly 8 67.
+
+DEPARTMENTOF MATHEMATICS                                                  DEPARTMENT OF MATHEMATICS
+COLUMBIAUNIVERSITY                                                        HARVARD UNIVERSITY
+NEW YORK, NEW YORK 10027                                                  CAMBRIDGE, MASSACHUSETTS   02138
+
+
+
+
+                   This content downloaded from 128.32.135.128 on Wed, 29 Oct 2014 16:38:48 PM
+                                   All use subject to JSTOR Terms and Conditions
+
