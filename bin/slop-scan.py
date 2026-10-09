@@ -184,6 +184,11 @@ RETIRED = [
     "what makes the family fibonacci is its count",
     "has a natural form at every exact height",
     "the two sub-families here grow polynomially",
+    "with no castle reading",
+    "follow no single formula in",
+    "what the castle rules save",
+    "makes concrete why the castle strip",
+    "the general form of the wiki's strip transfer matrices",
 ]
 RETIRED_RE = [
     (r"\barcs?\b", "planning-file 'arc' vocabulary"),
