@@ -5,7 +5,7 @@ summary: Flat alphabetical reference of abbreviations used on the castles wiki. 
 tags: [reference, acronyms, abbreviations]
 sources: [project-euler-502]
 created: 2026-09-19
-updated: 2026-09-28
+updated: 2026-10-09
 ---
 
 # Acronyms and abbreviations
@@ -21,6 +21,7 @@ A flat alphabetical reference of abbreviations used on the castles wiki. Each is
 - **BSGS** - baby-step giant-step (discrete logarithm search).
 - **BTW** - Bak-Tang-Wiesenfeld (sandpile model of self-organized criticality, 1987).
 - **CCC** - convex castle count, `C(2h + w - 3, w - 1)`.
+- **CEILIDH** - torus-based public-key cryptosystem on `T_6` (Rubin-Silverberg, 2003).
 - **CEV** - convex-even castles by area: convex castles of area `n` with an even block count. Paired with COD; `cev(n) + cod(n) = A001523(n)`. Written `cev(n)` in formulas.
 - **CF** - continued fraction.
 - **CLT** - Central Limit Theorem.
@@ -51,7 +52,9 @@ A flat alphabetical reference of abbreviations used on the castles wiki. Each is
 - **JPA** - Jacobi-Perron algorithm (multidimensional continued fraction).
 - **KMS** - Kac-Murdock-Szegő (matrix): the symmetric Toeplitz matrix `ρ^|a-b|`.
 - **LFSR** - linear feedback shift register.
+- **LUC** - public-key cryptosystem based on Lucas sequences (Smith-Skinner, 1995).
 - **LGV** - Lindstrom-Gessel-Viennot (non-intersecting lattice path lemma / kernel).
+- **MNT** - Miyaji-Nakabayashi-Takano (elliptic curves; "New explicit conditions of elliptic curve traces for FR-reduction", 2001).
 - **MSET** - multiset (symbolic-method construction).
 - **OEIS** - Online Encyclopedia of Integer Sequences.
 - **OGF** - ordinary generating function.

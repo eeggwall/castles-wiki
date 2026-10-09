@@ -5,7 +5,7 @@ summary: The second lap of the build / red-team / blue-team loop on the castle c
 tags: [analysis, seminar, cryptography, cryptanalysis, red-team, blue-team, pohlig-hellman, baby-step-giant-step, berlekamp-massey, linear-complexity, elgamal, schnorr, signature, finite-field, cyclotomic, index-calculus, key-size, castle]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
-updated: 2026-09-28
+updated: 2026-10-09
 ---
 
 # Castle cryptography, round two
@@ -221,6 +221,7 @@ The two laps give a procedure for judging a novel cryptosystem:
 ## Appearances in Sources
 
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k,·)` families whose characteristic polynomials serve as the moduli and registers.
+- [[granger-vercauteren-2005-dlp-algebraic-tori](pages/granger-vercauteren-2005-dlp-algebraic-tori.md)] - the order-`Φ_n(p)` torus as the part of `F_{p^n}^×` no proper subfield reaches (Fix 4's design), and the index calculus on tori that leaves it unaffected over a prime field.
 
 ## Related Concepts
 

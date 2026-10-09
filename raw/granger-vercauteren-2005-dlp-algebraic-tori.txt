@@ -1,0 +1,943 @@
+         On the Discrete Logarithm Problem on
+                    Algebraic Tori ?
+
+                          R. Granger1 and F. Vercauteren2
+               1
+                University of Bristol, Department of Computer Science,
+                    Merchant Venturers Building, Woodland Road,
+                          Bristol, BS8 1UB, United Kingdom
+                               granger@cs.bris.ac.uk
+                        2
+                          Department of Electrical Engineering
+                                  University of Leuven
+              Kasteelpark Arenberg 10, B-3001 Leuven-Heverlee, Belgium
+                    frederik.vercauteren@esat.kuleuven.ac.be
+
+
+
+        Abstract. Using a recent idea of Gaudry and exploiting rational repre-
+        sentations of algebraic tori, we present an index calculus type algorithm
+        for solving the discrete logarithm problem that works directly in these
+        groups. Using a prototype implementation, we obtain practical upper
+        bounds for the difficulty of solving the DLP in the tori T2 (Fpm ) and
+        T6 (Fpm ) for various p and m. Our results do not affect the security of
+        the cryptosystems LUC, XTR, or CEILIDH over prime fields. However,
+        the practical efficiency of our method against other methods needs fur-
+        ther examining, for certain choices of p and m in regions of cryptographic
+        interest.
+
+
+1     Introduction
+The first instantiation of public key cryptography, the Diffie-Hellman key agree-
+ment protocol [5], was based on the assumption that discrete logarithms in finite
+fields are hard to compute. Since then, the discrete logarithm problem (DLP)
+has been used in a variety of cryptographic protocols, such as the signature and
+encryption schemes due to ElGamal [6] and its variants. During the 1980’s, these
+schemes were formulated in the full multiplicative group of a finite field F p . To
+speed-up exponentiation and obtain shorter signatures, Schnorr [24] proposed
+to work in a small prime order subgroup of the multiplicative group F×     p of a
+prime finite field. Most modern DLP-based cryptosystems, such as the Digital
+Signature Algorithm (DSA) [9], follow Schnorr’s idea.
+    Lenstra [15] showed that by working in a prime order subgroup G of F×       pm ,
+for extensions that admit an optimal normal basis, one can obtain a further
+?
+    The work described in this paper has been supported in part by the European Com-
+    mission through the IST Programme under Contract IST-2002-507932 ECRYPT.
+    The information in this document reflects only the authors’ views, is provided as is
+    and no guarantee or warranty is given that the information is fit for any particular
+    purpose. The user thereof uses the information at its sole risk and liability.
+speed-up. Furthermore, Lenstra proved that when |G| | Φm (p) with Φm (x) the
+m-th cyclotomic polynomial and |G| > m, the minimal surrounding field of G
+truly is Fpm and not a proper subfield. Lacking any knowledge to the contrary,
+the security of this cryptosystem has been based on two assumptions: firstly,
+the group G should be large enough such that square root algorithms [18] are
+infeasible and secondly, the minimal finite field in which G embeds should be
+large enough to thwart index calculus type attacks [18]. In these attacks one
+does not make any use of the particular form of the minimal surrounding finite
+field, i.e., Fpn , but only its size and the size of the subgroup of cryptographic
+interest.
+     More recent proposals, such as LUC [25], XTR [16] and CEILIDH [22], im-
+prove upon Schnorr’s and Lenstra’s idea, the latter two working in a subgroup
+G ⊂ F×                               2
+         q 6 with |G| | Φ6 (q) = q − q + 1, where q is a prime power. Brouwer,
+Pellikaan and Verheul [2] were the first to give a cryptographic application of
+effectively representing elements in G using only two Fq -elements, instead of six,
+effectively reducing the communication cost by a factor of three.
+     Rubin and Silverberg [22] showed how to interpret and generalise the above
+cryptosystems using the algebraic torus Tn (Fq ) which is isomorphic to the sub-
+group Gq,n ⊂ F×    q n of order Φn (q). For “rational” tori, elements of Tn (Fq ) can be
+compactly represented by ϕ(n) elements of Fq , obtaining a compression factor
+of n/ϕ(n) over the field representation.
+     In this paper we develop an index calculus algorithm that works directly on
+rational tori Tn (Fq ) and consequently show that the hardness of the DLP can
+depend on the form of the minimal surrounding finite field. The algorithm is
+based on the purely algebraic index calculus approach by Gaudry [10] and ex-
+ploits the compact representation of elements of rational tori. The very existence
+of such an algorithm shows that the lower communication cost offered by these
+tori, may also be exploited by the cryptanalyst.
+     In practice, the DLP in T2 and T6 are most important, since they determine
+the security of the cryptosystems LUC [25], XTR [16], CEILIDH [22], and MNT
+curves [19]. We stress that when defined over prime fields Fp , the security of these
+cryptosystems is not affected by our algorithm. Over extension fields however,
+this is not always the case. In this paper, we provide a detailed description of our
+algorithm for T2 (Fqm ) and T6 (Fqm ). Note that this includes precisely the systems
+presented in [17], and also those described in [28, 27] via the inclusion of T n (Fp ) in
+T2 (Fpn/2 ) and T6 (Fpn/6 ) when n is divisible by two or six, respectively, which for
+efficiency reasons is always the case. Our method is fully exponential for fixed m
+and increasing q. From a complexity theoretic point of view, it is noteworthy that
+for certain very specific combinations of q and m, for example when m! ≈ q, the
+algorithms run in expected time Lqm (1/2, c), which is comparable to the index
+calculus algorithm by Adleman and DeMarrais [1]. However, our focus will be
+on parameter ranges of practical cryptographic interest rather than asymptotic
+results.
+     A complexity analysis and prototype implementation of these algorithms,
+show that they are faster than Pollard-Rho in the full torus T2 (Fqm ) for m ≥ 5
+and in the full torus T6 (Fqm ) for m ≥ 3. However, in cryptographic applications
+one would work in a prime order subgroup of Tn (Fqm ) of order around 2160 ; in
+this case, our algorithm is only faster than Pollard-Rho for larger m.
+    From a practical perspective, our experiments show that in the cryptographic
+range, the algorithm for T6 (Fqm ) outperforms the corresponding algorithm for
+T2 (Fq3m ) and that it is most efficient when m = 4 or m = 5. Furthermore, for
+m = 5, both algorithms in practice outperform Pollard-Rho in a subgroup of
+T6 (Fq5 ) of order 2160 , for q 30 up to and including the 960-bit scheme based in
+T30 (Fp ) proposed in [27]. Compared to Pollard ρ our method seems to achieve in
+practice a 1000 fold speedup; its practical comparison with Adleman-DeMarrais
+is yet to be explored. Our experiments show that it is currently feasible to solve
+the DLP in T30 (Fp ) with dlog2 pe = 20, where we assume that a computation of
+around 245 seconds is feasible.
+    The remainder of this paper is organised as follows. In Section 2 we briefly
+review algebraic tori and the notion of rationality. In Section 3 we present the
+philosophy of our algorithm and explain how it is related to classical index
+calculus algorithms. In Sections 4 and 5 we give a detailed description of the
+algorithm for T2 (Fqm ) and T6 (Fqm ) respectively. Finally, we conclude and give
+pointers for further research in Section 6.
+
+
+2     Discrete Logs in Extension Fields and Algebraic Tori
+
+Extension fields possess a richer algebraic structure than prime fields, in particu-
+lar those with highly composite extension degrees. This has led some researchers
+to suspect that such fields may be cryptographically weak. For instance, in
+1984 Odlyzko stated that fields with a composite extension degree ‘may be very
+weak’ [21]. The main result of this paper shows that these concerns may indeed
+be valid. A naive attempt to exploit the available subfield structure of extension
+fields in solving discrete logarithms, naturally leads one to consider the DLP on
+algebraic tori, as we show below.
+
+
+2.1   A simple reduction of the DLP
+
+Let k = Fq and let K = Fqn be an extension of k of degree n > 1. Assume that
+g ∈ K is a generator of K × and let h = g s with 0 ≤ s < q n − 1 be an element
+we wish to find the discrete logarithm of with respect to g.
+    Then by applying to g and h the norm maps NK/kd with respect to each
+intermediate subfield kd of K, and solving the resulting discrete logarithms
+in these subfields, a simple argument shows that one can determine s mod
+lcm{Φd (q)}d|n,d6=n , where Φd (q) is the d-th cyclotomic polynomial evaluated at q.
+Modulo a cryptographically negligible factor, the remaining modular informa-
+tion required to determine the full discrete logarithm comes from the order Φ n (q)
+subgroup of K × . As observed by Rubin and Silverberg [22], this subgroup is pre-
+cisely the algebraic torus Tn (Fq ).
+2.2   The algebraic torus
+
+In their CRYPTO 2003 paper [22], Rubin and Silverberg introduced the notion
+of torus-based cryptography. Their central idea was to interpret the subgroups
+of K × as algebraic tori, and by exploiting birational maps from these groups to
+affine space, they obtained an efficient compression mechanism for elements of
+extension fields. Along with the existing public key cryptosystems XTR [16] and
+LUC [25], their method provides a reduction in bandwidth requirements for finite
+field discrete logarithm based protocols, which is becoming increasingly relevant
+as key-size recommendations become larger in order to maintain security levels.
+
+Definition 1. Let k = Fq and let K = Fqn be an extension of k of degree n > 1.
+We define the algebraic torus Tn (Fq ) as
+
+        Tn (Fq ) = {α ∈ K | NK/kd (α) = 1 for all subfields k ⊆ kd ( K}.
+
+Strictly speaking, Tn (Fq ) refers only to the Fq -rational points on the affine alge-
+braic variety Tn , rather than the torus itself (see [22] for the exact construction).
+    Note that since Tn (Fq ) is simply a subgroup of F×      q n , the group operation
+can be realised as ordinary multiplication in the field Fqn . The dimension of the
+variety Tn is φ(n) = deg(Φn (x)), with φ(·) the Euler totient function.
+    Let Gq,n denote the subgroup of F×    q n of order Φn (q). The following lemma
+from [22] provides some useful properties of Tn .
+Lemma 1.
+
+1. Tn (Fq ) ∼
+            = Gq,n and hence #Tn (Fq ) = Φn (q).
+2. If h ∈ Tn (Fq ) is an element of prime order not dividing n, then h does not
+   lie in a proper subfield of Fqn /Fq .
+
+    It follows that Tn (Fq ) may be regarded as the ‘primitive’ subgroup of F× qn ,
+since by Lemma 1 it does not embed into a proper subfield. Hence in practice, one
+always uses a subgroup of Tn (Fq ) in cryptographic applications, since otherwise
+a given DLP embeds into a proper subfield of Fqn (see also [15]). In fact, using
+the decomposition                        Y
+                                xn − 1 =    Φd (x)
+                                           d|n
+
+in Z[x], the group F×
+Q                   q n can be seen to be almost the same as the direct product
+  d|n Tn (Fq ). Hence finding an efficient algorithm to solve the DLP on algebraic
+tori enables one to solve DLPs in extension fields, as well as vice versa.
+
+
+2.3   Rationality of tori over Fq
+
+In order to compress elements of the variety Tn , we make use of rationality,
+for particular values of n. The rationality of Tn means there exists a birational
+map from Tn to φ(n)-dimensional affine space Aφ(n) . This allows one to represent
+nearly all elements of Tn (Fq ) with just φ(n) elements of Fq , providing an effective
+compression factor of n/φ(n) over the embedding of Tn (Fq ) into Fqn . Since Tn has
+dimension φ(n), this compression factor is optimal. Tn is known to be rational
+when n is either a prime power, or is a product of two prime powers, and is
+conjectured to be rational for all n [22].
+   Formally, rationality can be defined as follows.
+Definition 2. Let Tn be an algebraic torus over Fq of dimension d = φ(n), then
+Tn is said to be rational if there is a birational map ρ : Tn → Aφ(n) defined over
+Fq .
+This means that there are subsets W ⊂ Tn and U ⊂ Aφ(n) , and rational func-
+tions ρ1 , . . . , ρφ(n) ∈ Fq (x1 , . . . , xn ) and ψ1 , . . . , ψn ∈ Fq (y1 , . . . , yφ(n) ) such that
+ρ = (ρ1 , . . . , ρφ(n) ) : W → U and ψ = (ψ1 , . . . , ψn ) : U → W are inverse isomor-
+phisms. Furthermore, the differences T \ W and Aφ(n) \ U should be algebraic
+varieties of dimension ≤ (d − 1), which implies that W (resp. U ) is ‘almost the
+whole’ of T (resp. Aφ(n) ).
+    The public key cryptosystem CEILIDH [22] is based on the algebraic torus T 6 ,
+which achieves a compression factor of three over the extension field representa-
+tion. Rationality whilst useful, is not essential, since Van Dijk and Woodruff [28]
+showed that one can obtain key-agreement, signature and encryption schemes
+with bandwidth compressed by this factor asymptotically with the number of
+keys/signatures/messages, without relying on the conjecture stated above. In-
+deed, their result applies to any torus Tn , which helps explain the recent and
+increasing interest in torus-based cryptography.
+
+
+3     Algorithm Philosophy
+The algorithm as presented in Sections 4 and 5 is based on an idea first proposed
+by Gaudry [10], in reference to the DLP on general abelian varieties. While
+Gaudry’s method is in principle an index calculus algorithm, the ingredients are
+very algebraic: for instance one need not rely on unique factorisation to obtain
+a notion of ‘smoothness’, as in finite field discrete logarithm algorithms.
+    As an introduction, in this section we consider Gaudry’s idea in the context
+of computing discrete logarithms in F×  q m , and show how it is related to classical
+index calculus.
+
+3.1    Classical method
+Let Fqm = Fq [t]/(f (t)) for some monic irreducible degree m polynomial and let
+the basis be {1, t, . . . , tm−1 }. Let g be a generator of F× q m and let h ∈ hgi be
+an element we are to compute the logarithm of w.r.t. g. Suppose also, for this
+example, that we are able to deal with a factor base of size q.
+   Classically, one would first reduce the problem to considering only monic
+polynomials, i.e., one considers the quotient F×         ×
+                                                   q m /Fq , and defines a factor base
+
+                                      F = {t + a : a ∈ Fq }.
+Then for random j, k ∈ Z/((q m − 1)/(q − 1))Z one computes r = g j hk and tests
+whether r/lc(r) decomposes over F, with lc(r) the leading coefficient of r. This
+occurs with probability approximately 1/(m − 1)! for large q since the set of all
+products of m − 1 elements of F generates roughly q m−1 /(m − 1)! elements of
+F×     ×
+ q m /Fq .
+    Computing more than q such relations allows one to compute logg h mod
+(q m − 1)/(q − 1) as usual with a linear algebra elimination (and one applies the
+norm NFqm /Fq to g and h and solves the corresponding DLP in F×     q to recover
+the remaining modular information).
+
+3.2   Gaudry’s method
+Two essential points taken for granted in the above description are that there
+exist efficient procedures to compute:
+ – whether a given r decomposes over F; this happens precisely when r ∈ F q [t]
+   splits over Fq or equivalently when gcd(tq − t, r/lc(r)) = r/lc(r),
+ – the actual decomposition of r, i.e., to compute the roots of r ∈ Fq [t] in Fq .
+   One may equivalently consider the following problem: determine whether the
+system of equations obtained by equating powers of t in the equality
+           m−1
+           Y
+                  (t + ai ) = r/lc(r) = r0 + r1 t + · · · + rm−2 tm−2 + tm−1 ,    (1)
+           i=1
+
+has a solution (a1 , . . . , am−1 ) ∈ Fm−1
+                                       q   and if so, to compute one such solution. Of
+course, in this trivial example the roots ai can be read off from the factorisation
+of r/lc(r). However, one obtains a non-trivial example if the group operation
+on the left is more sophisticated than polynomial multiplication, such as elliptic
+curve point addition, which was Gaudry’s original motivation for developing the
+algorithm. In this case the decomposition of a group element over the factor base
+can become more sophisticated, but the principle remains the same.
+    The central benefit of this perspective is that it can be applied in the absence
+of unique factorisation, since with a suitable choice of factor base, or more accu-
+rately a decomposition base, one can simply induce relations algebraically. For
+example, approaching the above problem from this slightly different perspective
+gives an algorithm for working directly in F×      q m , which is perhaps more natural
+                                 ×     ×
+than the stated quotient, Fqm /Fq . Define a decomposition base
+
+                                 F = {1 + at : a ∈ Fq },
+
+and again associate to the equality
+           m
+           Y
+                 (1 + ai t) ≡ r ≡ r0 + r1 t + · · · + rm−1 tm−1   (mod f (t)),    (2)
+           i=1
+
+the algebraic system obtained by equating powers of t.
+    Note that in (2) one must multiply m elements of F in order to obtain
+a probability of 1/m! for obtaining a relation, rather than the m − 1 elements
+(and probability 1/(m−1)!) of (1). The reason these probabilities differ is simply
+that the algebraic groups F×      ×         ×
+                            q m /Fq and Fq m over Fq are m − 1 and m-dimensional
+respectively.
+    Ignoring for the moment that F essentially consists of degree one polynomi-
+als, and assuming that we want to solve this system without factoring r/lc(r), we
+are faced with finding a solution to a non-linear system, which would ordinarily
+require a Gröbner basis computation to solve. However writing out the left hand
+side in the polynomial basis {1, . . . , tm−1 } gives
+      m
+      Y
+            (1 + ai t) = 1 + σ 1 t + · · · + σ m tm
+      i=1
+                      ≡ 1 + σ 1 t + · · · + σ m−1 tm−1 + σ m (tm − f (t))   (mod f (t)),
+with σ i the i-th elementary symmetric polynomial in the ai . Equating powers
+of t then gives a linear system of equations in the σ i for i = 1, . . . , m. Given
+a solution (σ1 , . . . , σm ) to this system of equations, r will decompose over F
+precisely when the polynomial
+                     p(x) := xm − σ1 xm−1 + σ2 xm−2 − · · · + (−1)m σm
+splits over Fq . Thus exploiting the symmetry in the construction of the algebraic
+system makes solving it much simpler. Although in this contrived example, solv-
+ing the system directly and solving it using its symmetry are essentially the
+same, in general the latter makes infeasible computations feasible.
+    Following from this example, a simple observation is that for an algebraic
+group over Fq whose representation is m-dimensional, then using a decompo-
+sition base F of q elements, one must multiply m elements of F to obtain a
+constant probability of decomposition 1/m!. Therefore, we conclude that the
+more efficient the representation of the group is, the higher the probability of
+obtaining a relation, and thus the corresponding index calculus algorithm will
+be more efficient.
+    In the following two sections, we apply this idea to rational representations
+of algebraic tori, and show that the above probability of 1/m! can be reduced
+significantly to 1/(m/2)! when m is divisible by 2 and to 1/(m/3)! when m is
+divisible by 6.
+
+4     An Index Calculus Algorithm for T2 (Fqm ) ⊂ F×
+                                                   q 2m
+
+For q any odd prime power, we describe an algorithm to compute discrete loga-
+rithms in T2 (Fqm ).
+
+4.1    Setup
+With regard to the extension Fq2m /Fqm , by Lemma 1 we know that
+                                #T2 (Fqm ) = Φ2 (q m ) = q m + 1,
+and hence we presume the DLP we consider is in the subgroup of this order.
+By applying the reduction of the DLP via norms as in Section 2, it is clear that
+the hard part actually is T2m (Fq ) ( T2 (Fqm ). Since in this section we use the
+properties of T2 rather than T2m , we only consider T2 (Fqm ), or more accurately
+(ResFqm /Fq T2 )(Fq ), where here Res denotes the Weil restriction of scalars (see
+also [22]).
+    Let Fqm ∼= Fq [t]/(f (t)) with f (t) ∈ Fq [t] an irreducible monic polynonmial
+of degree m and take the polynomial basis {1, t, . . . , tm−1 }. Assuming that q is
+an odd prime power, we let Fq2m = Fqm [γ]/(γ 2 − δ) with basis {1, γ}, for some
+non-square δ ∈ Fqm \ Fq . Then using Definition 1, we see that
+
+                T2 (Fqm ) = {(x, y) ∈ Fqm × Fqm : x2 − δy 2 = 1}.
+
+This representation uses two elements of Fqm to represent each point. The torus
+T2 is one-dimensional, rational, and has the following equivalent affine represen-
+tation:                          ½                 ¾
+                                   z−γ
+                     T2 (Fqm ) =         : z ∈ Fqm ∪ {O},                      (3)
+                                   z+γ
+where O is the point at infinity.
+    Here a point g = g0 + g1 γ ∈ T2 (Fqm ) in the Fq2m representation has a
+corresponding representation as given above by the rational function z = −(1 +
+g0 )/g1 if g1 6= 0, whilst the elements −1 and 1 map to z = 0 and z = O
+respectively. The representation (3) thus gives a compression factor of two for
+the elements of Fq2m that lie in T2 (Fqm ). Furthermore since T2 (Fqm ) has q m + 1
+elements, this compression is optimal (since for this example, including the point
+at infinity, we really have a map from T2 (Fqm ) → P1 (Fqm )).
+
+4.2   Decomposition base
+As with any index calculus algorithm, we need to define a factor base, or in the
+case of Gaudry’s algorithm, a decomposition base. Let
+                           ½               ¾
+                             a−γ
+                      F=           : a ∈ Fq ⊂ T2 (Fqm ),
+                             a+γ
+which contains q elements, since the map, given above, is a birational isomor-
+phism from T2 to A1 . Note that if δ ∈ Fq , then F would lie in the subvariety
+T2 (Fq ) and would not aid in our attack, which is why we ensured that δ ∈ Fqm \Fq
+during the setup.
+
+4.3   Relation finding
+Writing the group operation additively, let P be a generator, and let Q ∈ hP i
+be a point we wish to find the discrete logarithm of with respect to P . For a
+given R = [j]P + [k]Q, we test whether it decomposes as a sum of m points in
+the decomposition base:
+                             P1 + · · · + Pm = R,                          (4)
+with P1 , . . . , Pm ∈ F. From the representation we have chosen for T2 we may
+equivalently write this as
+                               m µ         ¶
+                              Y    ai − γ      r−γ
+                                             =      ,
+                              i=1
+                                   a i + γ     r+γ
+where the ai are unknown elements in Fq , and r ∈ Fqm is the affine representation
+of R. Note that the left hand side is symmetric in the ai . Upon expanding the
+product for both the numerator and denominator, we obtain two polynomials of
+degree m in γ whose coefficients are just plus or minus the elementary symmetric
+polynomials σi (a1 , . . . , am ) of the ai :
+                     σm − σm−1 γ + · · · + (−1)m γ m   r−γ
+                                               m
+                                                     =     .
+                       σm + σm−1 γ + · · · + γ         r+γ
+Therefore, when we reduce modulo the defining polynomial of γ, we obtain an
+equation of the form
+                    b0 (σ1 , . . . , σm ) − b1 (σ1 , . . . , σm )γ   r−γ
+                                                                   =     ,
+                    b0 (σ1 , . . . , σm ) + b1 (σ1 , . . . , σm )γ   r+γ
+where b0 , b1 are linear in the σi and have coefficients in Fqm . More explicitly,
+since γ 2 = δ ∈ Fqm , these polynomials are given by
+                   bm/2c                                 b(m−1)/2c
+                   X                                         X
+            b0 =           σm−2k δ k     and      b1 =                σm−2k−1 δ k ,
+                   k=0                                       k=0
+
+where we define σ0 = 1.
+   In order to obtain a simple set of algebraic equations amongst the σi , we first
+reduce the left hand side to the affine representation (3) and obtain the equation
+                       b0 (σ1 , . . . , σm ) − b1 (σ1 , . . . , σm )r = 0.
+Since the unknowns σi are elements of Fq , we express the above equation on the
+polynomial basis of Fqm to obtain m linear equations over Fq in the m unknowns
+σi ∈ Fq . This gives an m × m matrix M over Fq such that
+ – the (m − 2k)-th column contains the coefficients of δ k ,
+ – the (m − 2k − 1)-th column contains the coefficients of −rδ k .
+Furthermore, let V be the m × 1 vector containing the coefficients of rδ (m−1)/2
+when m is odd or −δ m/2 when m is even, then Σ = (σ1 , . . . , σm )T is a solution
+of the linear system of equations
+                                         MΣ = V .
+If there is a solution Σ, to see whether this corresponds to a solution of (4) we
+test whether the polynomial
+               p(x) := xm − σ1 xm−1 + σ2 xm−2 − · · · + (−1)m σm
+splits over Fq by computing g(x) := gcd(xq − x, p(x)). If g(x) = p(x), then the
+roots a1 , . . . , am will be the affine representation of the elements of the factor
+base which sum to R and we have found a relation.
+4.4   Complexity analysis and experiments
+The number of elements of T2 (Fqm ) generated by all sums of m points in F is
+roughly q m /m!, assuming no repeated summands and that most points admit a
+unique factorisation over the factor base. Hence the probability of obtaining a
+relation is approximately 1/m!. Therefore in order to obtain q relations we must
+perform roughly m!q such decompositions. Each decomposition consists of the
+following steps:
+ – computing the matrix M and vector V takes O(m3 ) operations in Fq , using
+   a naive multiplication routine,
+ – solving for Σ also requires O(m3 ) operations in Fq ,
+ – computing the polynomial g(x) requires O(m2 log q) operations in Fq ,
+ – if the polynomial p(x) splits over Fq , then we have to find the roots a1 , . . . , am
+   which requires O(m2 log m(log q + log m)) operations in Fq .
+Note that the last step only has to be executed O(q) times. The overall com-
+plexity to find O(q) relations is therefore
+
+                            O(m! · q · (m3 + m2 log q)) .
+
+operations in Fq .
+    Since in each row of the final relations matrix there will be O(m) non-zero
+elements, we conclude that finding a kernel vector using sparse matrix tech-
+niques [13] requires O(mq 2 ) operations in Z/(q m + 1)Z or about O(m3 q 2 ) oper-
+ations in Fq . This proves the following theorem.
+Theorem 1. The expected running time of the T2 -algorithm to compute DLOGs
+in T2 (Fqm ) is
+                   O(m! · q · (m3 + m2 log q) + m3 q 2 )
+operations in Fq .
+   Note that when m > 1 and the q 2 term dominates, by reducing the size of the
+decomposition base, the complexity may be reduced to O(q 2−2/m ) for q → ∞
+using the results of Thériault [26], and a refinement reported independently by
+Gaudry and Thomé [11] and Nagao [20].
+   The expected running time of the T2 -algorithm is minimal when the relation
+stage and the linear algebra stage take comparable time, i.e. when m! · q · (m3 +
+m2 log q) ≃ m3 q 2 or m! ≃ q. The complexity of the algorithm then becomes
+O(m3 q 2 ), which can be rewritten as
+
+                   O(m3 q 2 ) = O exp(3 log m + 2 log q)
+                                  ¡                      ¢
+
+                              = O exp(2(log q)1/2 (log q)1/2 )
+                                  ¡                            ¢
+
+                              = O exp(2(m log m)1/2 (log q)1/2 )
+                                  ¡                              ¢
+                                  ¡            ¢
+                              = O Lqm (1/2, c)
+with c ∈ R>0 . Note that for the second and third equality we have used that
+m! ≃ q, and thus by taking logarithms log q ≃ m log m.
+     To assess the practicality of the T2 algorithm, we ran several experiments
+using a simple Magma implementation, the results of which are given in Ta-
+ble 1. This table should be read as follows: the size of the torus cardinality,
+i.e., log2 (q m ), is constant across each row; for a given q m , the table contains for
+m = 1, . . . , 15, the log2 of the expected running times in seconds for the entire
+algorithm, i.e. both relation collection stage and linear algebra. For instance, for
+qm ∼ = 2300 and m = 15, the total time would be approximately 251 seconds on one
+AMD 1700+ using our Magma implementation. For the fields where the torus
+is less than 160 bits in size, we use the full torus otherwise we use a subgroup of
+160 bits to estimate the Pollard ρ costs.
+     Note that Table 1 does not take into account memory constraints imposed
+by the linear algebra step; since the number of relations is approximately q, we
+conclude that the algorithm is currently only practical for q ≤ 223 . Assuming
+that 245 seconds, which is about 1.1 × 106 years, is feasible and assuming it is
+possible to find a kernel vector of a sparse matrix of dimension 223 , Table 1
+contains, in bold, the combinations of q and m which can be handled using our
+Magma implementation.
+
+
+Table 1. log2 of expected running times (s) of the T2 -algorithm and Pollard-Rho in a
+subgroup of size 2160
+
+                                                           m
+log2 |Fq2m | log2 |T2 (Fqm )| ρ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+    200            100        34 88 40 52 36 26 20 16 17 18 21 23 26 31 33 37
+    300            150        59 138 66 87 62 48 38 31 26 25 26 28 31 34 37 40
+    400            200        65 188 92 121 88 68 55 46 39 34 32 33 35 38 41 44
+    500            250        66 238 117 155 114 89 73 61 52 45 40 38 40 42 44 47
+    600            300        66 289 142 189 139 110 90 76 65 57 51 45 44 46 48 51
+    700            350        66 339 168 223 165 130 107 91 78 69 61 55 50 50 52 54
+    800            400        66 389 193 256 190 150 124 105 91 80 71 64 58 56 55 58
+    900            450        68 439 219 290 215 171 141 120 104 92 82 74 67 62 61 62
+   1000            500        69 489 244 324 241 191 158 134 117 103 92 83 76 69 66 67
+
+
+
+
+4.5   Comparison with other methods
+
+In this section we compare the T2 -algorithm with the Pollard-Rho and index
+calculus algorithms.
+
+
+Pollard-Rho in the full torus Using the Pohlig-Hellman reduction, the over-
+all running time is determined by executing the Pollard-Rho algorithm in the
+subgroup of T2 (q m ) of largest prime order l. Since #T2 (q m ) = q m + 1, we have
+to analyse the size of the largest prime factor l. Note that the factorisation of
+xm + 1 over Z[x] is given by
+                             Q
+                   x2m − 1     d|2m Φd (x)
+                                                         Y
+               m
+              x +1= m      = Q             =                     Φd (x) ,
+                    x −1       d|m Φd (x)             d|2m,d-m
+
+
+which implies that the maximum size of the prime l is O(q φ(2m) ), since the
+degree of Φ2m (x) is φ(2m). The overall worst case complexity of this method is
+therefore O(q φ(2m)/2 ) operations in Fq2m or O(m2 · q φ(2m)/2 ) operations in Fq .
+   From a complexity theoretic point of view, we therefore conclude that for
+m! ≤ q, our algorithm is as fast as Pollard-Rho whenever m ≥ 5, since then
+φ(2m)/2 > 2. As a consequence, we note that the T2 algorithm does not lead to
+an improvement over existing attacks on LUC [25], XTR [16] or CEILIDH [22]
+over Fp . Furthermore, also the security of MNT curves [19] defined over Fp ,
+where p is a large prime remains unaffected.
+
+Pollard-Rho in a subgroup of prime order ≃ 2160 In cryptographic appli-
+cations however, one would work in a subgroup of T2 (Fqm ) of prime order l with
+l ≃ 2160 . To this end, we measured the average time taken for one multiplication
+for the various fields in Magma, and multiplied this time by the expected 2 80
+operations required by the Pollard-Rho algorithm. The results can be found in
+the third column of Table 1. The column for m = 15 is especially interesting
+since this determines the security of the T30 cryptosystem introduced in [27]. In
+this case, the T2 is always faster than Pollard-Rho, and the matrices occurring
+in the linear algebra step would be feasible up to 700-bit fields.
+
+Adleman/Demarrais in F×         q 2m The alternative approach would be to embed
+T2 (Fqm ) into F×
+                q 2m and to apply  a subexponential algorithm, which for all m and q
+can attain a complexity of Lq2m (1/2, c) as shown by Adleman and Demarrais [1].
+Clearly, using the T2 algorithm this is only possible for certain combinations of
+m and q, e.g. for q ≃ m!, which is also indicated by Table 1. Of course, when
+q = pn for p a prime, then we can choose a different m̄ with m̄|n · m such that
+m̄! ≃ pnm/m̄ . We do not know how the Adleman-DeMarrais algorithms performs.
+
+Remark 1. The linearity of the decomposition method in fact holds for any torus
+Tpr . However the savings are optimal for T2r , since pr /φ(pr ) is maximal in this
+case. When one considers Tn for which n is divisible by more than one distinct
+prime factor, the rational parametrisation becomes non-linear, and hence so does
+the corresponding decomposition, as we see in the following section.
+
+
+5   An Index Calculus Algorithm for T6 (Fqm ) ⊂ F×
+                                                 q 6m
+
+In this section we detail our algorithm to compute discrete logarithms in T 6 (Fqm ).
+The main difference with the T2 -algorithm is the non-linearity of the equations
+involved in the decomposition step.
+5.1   Setup
+
+Again, let Fqm ∼  = Fq [t]/(f (t)), with f (t) an irreducible polynomial of degree
+m and where we use the polynomial basis {1, t, t2 , . . . , tm−1 }. Since T6 is two-
+dimensional and rational, it is an easy exercise to construct a birational map
+from T6 to A2 for a given representation of Fq6m . For the following exposition
+we make use of the the CEILIDH field representation and maps, as described
+in [22].
+    Let q m ≡ 2 or 5 mod 9, and for (r, q) = 1 let ζr denote a primitive r-th root
+of unity in Fqm . Define x = ζ3 and let y = ζ9 + ζ9−1 , then clearly x2 + x + 1 = 0
+and y 3 − 3y + 1 = 0. Let Fq3m = Fqm (y) and Fq6m = Fq3m (x), then the bases
+we use are {1, y, y 2 − 2} for the degree three extension and {1, x} for the degree
+two extension.
+    Let V (f ) be the zero set of f (α1 , α2 ) = 1 − α12 − α22 + α1 α2 in A2 (Fqm ), then
+we have the following inverse birational maps:
+                             ∼
+ – ψ : A2 (Fqm ) \ V (f ) −−→ T6 (Fqm ) \ {1, x2 }, defined by
+
+                            1 + α1 y + α2 (y 2 − 2) + (1 − α12 − α22 + α1 α2 )x
+            ψ(α1 , α2 ) =                                                        ,   (5)
+                            1 + α1 y + α2 (y 2 − 2) + (1 − α12 − α22 + α1 α2 )x2
+                                 ∼
+ – ρ : T6 (Fqm ) \ {1, x2 } −−→ A2 (Fqm ) \ V (f ), which is defined as follows: for
+   β = β1 + β2 x, with β1 , β2 ∈ Fq3m , let (1 + β1 )/β2 = u1 + u2 y + u3 (y 2 − 2),
+   then ρ(β) = (u2 /u1 , u3 /u1 ).
+
+
+5.2   Decomposition base
+
+In this case the decomposition base consists of ψ(at, 0), where a runs through
+all elements of Fq and t generates the polynomial basis, i.e.
+
+                                1 + (at)y + (1 − (at)2 )x
+                            ½                                         ¾
+                    F=                                     : a ∈ Fp
+                                1 + (at)y + (1 − (at)2 )x2
+
+which clearly contains q elements, for much the same reason as given in Section
+4. The reason for considering ψ(at, 0) instead of ψ(a, 0) is that the minimal
+polynomials of x and y are defined over Fq . Note that this implies that ψ(a, 0) ∈
+T6 (Fq ) for a ∈ Fq and so does not generate a fixed proportion of T6 (Fqm ), as is
+needed.
+
+
+5.3   Relation finding
+
+Since (ResFqm /Fq T6 )(Fq ) is 2m-dimensional, we need to solve
+
+                                     P1 + · · · + P2m = R ,                          (6)
+with P1 , . . . , P2m ∈ F. Assuming that R is expressed in its canonical form, i.e.
+R = ψ(r1 , r2 ), we get
+
+  2m µ
+       1 + (ai t)y + (1 − (ai t)2 )x
+  Y                                  ¶
+
+  i=1
+        1 + (ai t)y + (1 − (ai t)2 )x2
+                                   1 + r1 y + r2 (y 2 − 2) + (1 − r12 − r22 + r1 r2 )x
+                               =                                                        .
+                                   1 + r1 y + r2 (y 2 − 2) + (1 − r12 − r22 + r1 r2 )x2
+After expanding the product of the numerators and denominators, the left hand
+side becomes the fairly general expression
+
+               b0 + b1 y + b2 (y 2 − 2) + c0 + c1 y + c2 (y 2 − 2) x
+                                         ¡                         ¢
+                                                                           (7)
+              b0 + b1 y + b2 (y 2 − 2) + (c0 + c1 y + c2 (y 2 − 2)) x2
+with bi , ci polynomials over Fqm of degree 4m in a1 , . . . , a2m . In general, these
+polynomials are rather huge and thus difficult to work with.
+Example 1. For m = 5, the number of terms in the bi (resp. ci ) is given by
+B = [35956, 30988, 25073] (resp. C = [35946, 31034, 24944]) for finite fields of
+large characteristic.
+     However, note that these polynomials are by construction symmetric in the
+a1 , . . . , a2m so we can rewrite the bi and ci in terms of the 2m elementary sym-
+metric polynomials σj (a1 , . . . , a2m ) for j = 1, . . . , 2m. This has quite a dra-
+matic effect on the complexity of these polynomials, i.e., the degree is now only
+quadratic and the number of terms is much lower, since the¡ maximum            number
+of terms in a quadratic polynomial in 2m variables is 4m + 2m
+                                                                       ¢
+                                                                     2   + 1.
+Example 2. For m = 5, when we rewrite the equations using the symmetric
+functions σi , the number of terms of the polynomials bi and ci reduces to B =
+[16, 19, 18] and C = [20, 16, 16].
+Note that the polynomials bi and ci only have to be computed once and can be
+reused for each random point R.
+    To generate the system of non-linear equations, we use the embedding of
+T6 (Fqm ) into T2 (Fq3m ) and consider the Weil restriction of the following equality:
+
+                  b0 + b1 y + b2 (y 2 − 2)   1 + r1 y + r2 (y 2 − 2)
+                                           =                         .
+                                    2
+                  c0 + c1 y + c2 (y − 2)      1 − r12 − r22 + r1 r2
+The above equation leads to 3 non-linear equations over Fqm or equivalently,
+to 3m non-linear equations over Fq in the 2m unknowns σ1 , . . . , σ2m . Note that
+amongst the 3m equations, there will be at least m dependent equations, caused
+by the fact that we only considered the embedding in T2 and not strictly in T6 .
+    The efficiency with which one can find the solutions of this system of non-
+linear equations depends on many factors such as the multiplicities of the zeros
+or the number of solutions at infinity. For each random R, the resulting system
+of equations has the same structure, since only the value of some coefficients
+changes, but for finite fields of large enough characteristic, not the degrees nor the
+numbers of terms. To determine the properties of these systems of equations we
+computed the Gröbner basis w.r.t. the lexicographic ordering using the Magma
+implementation of the F4-algorithm [7] and concluded the following:
+ – The ideal generated by the system non-linear equations is zero-dimensional,
+   which implies that there is only a finite number of candidates for the σi .
+ – After homogenizing the system of equations, we concluded that there is only
+   a finite number of solutions at infinity. This property is quite important,
+   since we can then use an algorithm by Lazard [14] with proven complexity.
+ – The Gröbner basis w.r.t. the lexicographic ordering satisfies the so called
+   Shape Lemma, i.e. the basis has the following structure:
+          σ1 − g1 (σ2m ), σ2 − g2 (σ2m ), . . . , σ2m−1 − g2m−1 (σ2m ), g2m (σ2m ) ,
+   where gi (σ2m ) is a univariate polynomial in σ2m for each i. By reducing
+   modulo g2m we can assume that deg(gi ) < deg(g2m ) and by Bezout’s theo-
+   rem we have deg(g2m ) ≤ 22m , since the non-linear equations are quadratic.
+   However, our experiments show that in all cases we have deg(g2m ) = 3m .
+ – The polynomial g2m (σ2m ) is squarefree, which implies that the ideal is in
+   fact a radical ideal.
+    To test if a random point decomposes over the factor base, we first find the
+roots of g2m (σ2m ) in Fq , and then substitute these in the gi to find the values
+of the σi for i = 1, . . . , 2m − 1. For each such 2m-tuple, we then test if the
+polynomial
+              p(x) := x2m − σ1 x2m−1 + σ2 x2m−2 − · · · + (−1)2m σ2m
+splits completely over Fq . If it does, then the roots ai for i = 1, . . . , 2m lead to
+a possible relation of the form (6).
+
+5.4     Complexity analysis and experiments
+The probability of obtaining a relation is now 1/(2m)! and since the factor base
+again consists of q elements, we need to perform (2m)!q decompositions. Each
+decomposition consists of the following steps:
+ – Since the polynomials bi and ci only need to be computed once, generating
+   the system of non-linear equations requires O(1) multiplications of multi-
+   variate polynomials with O(m2 ) terms with an Fqm -element. Using a naive
+   multiplication routine, the overall time to generate one such system is there-
+   fore O(m4 ) operations in Fq .
+ – Computing
+       ¡ ¢ω the Gröbner basis using the F5-algorithm algorithm [8] requires
+   O( 4m2m ) operations in Fq , with ω the complexity of matrix multiplication,
+   i.e. ω = 3 using a naive algorithm. Using the fact that
+                        µ ¶ r
+                          2n ∼ π
+                               =      (2n)−1/2 22n ∈ O(22n )
+                           n        2
+      we obtain a complexity of O(212m ) operations in Fq .
+ – Since deg(g2m ) = 3m , computing gcd(g2m (z), z q − z) requires O(32m log q)
+   operations in Fq . On average, the polynomial will have one root in Fq , so
+   finding the actual roots takes negligible time.
+ – Testing if the polynomial p(x) has roots in Fq requires O(m2 log q) operations
+   in Fq . Since this only happens with probability 1/(2m)!, when it does split,
+   finding the actual roots is negligible.
+The overall time complexity to generate sufficient relations therefore amounts to
+
+                       O (2m)! · q · (212m + 32m log q)
+                         ¡                               ¢
+
+operations in Fq .
+    Finding an element in the kernel of a matrix of dimension q with 2m non-
+zero elements per row requires O(mq 2 ) operations in Z/(Φ6 (q m )Z), which finally
+justifies the following complexity estimate:
+Run Time Heuristic 1 The expected running time of the T6 -algorithm to com-
+pute DLOGs in T6 (Fqm ) is
+
+                     O((2m)! · q · (212m + 32m log q) + m3 q 2 )
+
+operations in Fq .
+     Again, the results of [26, 11, 20] imply that the complexity can be reduced to
+O(q 2−1/m ) as q → ∞, since in this case the dimension is 2m.
+     The expected running time of the T6 -algorithm is minimal precisely when the
+relation collection stage takes about the same time as the linear algebra stage,
+i.e. when (2m)! · 212m ≃ q. Note that for such q and m, the term 32m log q is
+negligible compared to 212m . The overall running time then again becomes
+
+              O(m3 q 2 ) = O exp(3 log m + 2 log q)
+                              ¡                      ¢
+
+                         = O exp(2(log q)1/2 (log q)1/2 )
+                              ¡                           ¢
+
+                         = O exp(2(2m log 2m + 12m)1/2 (log q)1/2 )
+                              ¡                                      ¢
+                              ¡            ¢
+                         = O Lqm (1/2, c)
+
+with c ∈ R>0 . Note that for the second and third equality we have used log q ≃
+2m log m + 12m log 2.
+    The practicality of the T6 -algorithm clearly depends on the efficiency of the
+Gröbner basis computation. Note that for small m, the complexity of the Gröbner
+basis computation is greatly overestimated by the O(212m ) operations in Fq .
+    Due to the use of the symmetric polynomials, the input polynomials are only
+quadratic instead of degree 4m. As one can see from Table 2, this makes the
+algorithm quite practical. The table should be interpreted as for Table 1, i.e.,
+the torus size is constant across each row and for a given size q m , the table
+contains for m = 1, . . . , 5, the log2 of the expected running times in seconds
+for the entire algorithm. Taking into account the memory restrictions on the
+matrix, i.e., the dimension should be limited by 223 , the timings given in bold
+are feasible with the current Magma implementation.
+Table 2. log2 of expected running times (s) of the T6 -algorithm and Pollard-Rho in a
+subgroup of size 2160
+
+                                                            m
+                   log2 |Fp6m | log2 |T6 (Fpm )| ρ 1 2 3 4 5
+                       200             67        18 25 18 14 20 29
+                       300            100        34 42 36 21 24 32
+                       400            134        52 59 54 32 29 36
+                       500            167        66 75 71 44 33 39
+                       600            200        66 93 88 55 40 42
+                       700            234        66 109 105 67 48 46
+                       800            267        66 127 122 78 57 51
+                       900            300        68 144 139 90 65 56
+                      1000            334        69 161 156 101 74 60
+
+
+
+
+Remark 2. Note that the column for m = 5 provides an upper bound for the
+hardness of the DLP in T30 (Fq ), since this can be embedded in T6 (Fq5 ). This
+group was recently proposed [27] and also in [15] for cryptographic use where
+keys of length 960 bits were recommended, i.e., with q of length 32 bits. The
+above table shows that even with a Magma implementation it would be feasible
+to compute discrete logarithms in T30 (Fp ) with p a prime of around 20 bits.
+The embedding in T2 (Fp15 ) is about 210 times less efficient as can be seen from
+the column for m = 15 in Table 1. In light of this attack, the security offered
+by the DLP in finite fields of the form Fq30 should be completely reassessed.
+Note that by simply comparing the complexities given in Theorem 1 and the
+above run time heuristic, it is a priori not clear that the T6 -algorithm is in fact
+faster than the corresponding T2 -algorithm. This phenomenon is caused by the
+overestimating the complexity of the Gröbner basis computation.
+
+
+5.5   Comparison with other methods
+
+In this section we compare the T6 -algorithm with the Pollard-Rho and index
+calculus algorithms.
+
+
+Pollard-Rho in the full torus Since the size of T6 (Fqm ) is given by Φ6 (q m ) ≃
+q 2m , we conclude that the Pollard-Rho algorithm takes, in the worst case, O(q m )
+operations in T6 (Fqm ) or O(m2 q m ) operations in Fq . If we assume that q is
+large enough such that the term q 2 determines the overall running time, i.e.,
+(2m)!212m ≤ q, then the T6 -algorithm will be at least as fast as Pollard-Rho
+whenever m ≥ 3. Again we note that the T6 algorithm does not lead to an
+improvement over the existing attacks on LUC [25], XTR [16], CEILIDH [22]
+or MNT curves [19] as long as these systems are defined over Fp . However, the
+security of XTR over extension fields, as proposed in [17] or of the recent proposal
+that works in T30 (Fp ) [27], needs to be reassessed as shown below.
+Pollard-Rho in a subgroup of prime order ≃ 2160 As for the T2 -algorithm,
+the third column of Table 2 contains the expected running time of the Pollard-
+Rho algorithm in a subgroup of T6 (Fqm ) of prime order l with l ≃ 2160 . In
+this case, the column for m = 5 gives an upper bound of the security of the
+T30 cryptosystem introduced in [27]. As is clear from Table 2, for m = 5, our
+algorithm is always faster than Pollard-Rho, and the matrices occurring in the
+linear algebra step would be feasible up to 700-bit fields.
+
+
+Adleman/Demarrais in F×                                                     ×
+                                 q 6m Using the embedding of T6 (Fq ) into Fq 6m one
+                                                                   m
+
+can apply the subexponential algorithm of Adleman-Demarrais [1] which runs,
+for all m and q, in time Lq6m (1/2, c). Using the T6 algorithm, it is possible to
+obtain a complexity of Lqm (1/2, c0 ), but only when m and q grow according to
+a specific relation such as (2m)!212m ≃ q. Again, when q = pn with p a prime,
+we could choose a different m̄ with m̄|n · m such that (2m̄)!212m̄ ≃ pmn/m̄ .
+    However, as was the case for the T2 -algorithm, the importance of Table 2 is
+that it contains the first practical upper bounds for the hardness of the DLP in
+extension fields F×q 6m , since there are no numerical experiments available based
+on the existing subexponential algorithms.
+
+
+6   Conclusion and Future Work
+
+In this paper we have presented an index calculus algorithm, following ideas
+of Gaudry, to compute discrete logarithms on rational algebraic tori. Our algo-
+rithm works directly in the torus and depends fundamentally on the compression
+mechanisms previously used in a constructive context for systems such as LUC,
+XTR and CEILIDH.
+    We have also provided upper bounds for the difficulty of solving discrete
+logarithms on the tori T2 (Fqm ) and T6 (Fqm ) for various q and m in the crypto-
+graphic range. These upper bounds indicate that if the techniques in this paper
+can be made fully practical and optimized, then they may weaken the security
+of practical systems based on T30 .
+    In the near future we wish to investigate the approach by Diem [4], who
+allows a larger decomposition base when necessary. The disadvantage of this
+approach is that it destroys the symmetric nature of the polynomials defining the
+decomposition of a random element over the factor base, which makes Gröbner
+basis techniques virtually impossible.
+    It is clear that the Magma implementations described in this paper are not
+optimised and many possible improvements exist. Two factors mainly determine
+the running time of the algorithm: first of all, the probability that a random
+element decomposes over the factor base and secondly, the time it takes to solve
+a system of non-linear equations over a finite field. The first factor could be
+influenced by designing some form of sieving, if at all possible, whereas the
+second factor could be improved by exploiting the fact that many very similar
+Gröbner bases have to be computed.
+   In addition the method needs to be compared in practice to the method of
+Adleman and DeMarrais.
+
+Acknowledgements
+The authors would like to thank Daniel Lazard for his invaluable comments
+regarding the details of the complexity of the Gröbner basis computation in
+the T6 -algorithm, and anonymous referees for constructive comments on earlier
+versions of this paper.
+
+References
+ 1. L. M. Adleman and J. DeMarrais. A subexponential algorithm for discrete loga-
+    rithms over all finite fields. Math. Comp., 61 (203), 1–15, 1993.
+ 2. A. E. Brouwer, R. Pellikaan and E. R. Verheul. Doing more with fewer bits. In
+    Advances in Cryptology (ASIACRYPT 1999), Springer LNCS 1716, 321–332, 1999.
+ 3. B. Buchberger. A theoretical basis for the reduction of polynomials to canonical
+    forms. ACM SIGSAM Bull., 10 (3), 19–29, 1976.
+ 4. C. Diem. On the discrete logarithm problem in elliptic curves over non-prime fields.
+    Preprint 2004. Available from the author.
+ 5. W. Diffie and M. E. Hellman. New directions in cryptography. IEEE Trans. Inform.
+    Theory 22 (6), 644–654, 1976.
+ 6. T. ElGamal. A public key cryptosystem and a signature scheme based on discrete
+    logarithms. In Advances in Cryptology (CRYPTO 1984), Springer LNCS 196,
+    10–18, 1985.
+ 7. J.-C. Faugère. A new efficient algorithm for computing Gröbner bases (F 4 ), J. Pure
+    Appl. Algebra 139 (1-3), 61-88, 1999.
+ 8. J.-C. Faugère. A new efficient algorithm for computing Gröbner bases without
+    reduction to zero (F5 ), In Proceedings of the 2002 International Symposium on
+    Symbolic and Algebraic Computation, 75–83, 2002.
+ 9. FIPS 186-2, Digital signature standard. Federal Information Processing Standards
+    Publication 186-2, February 2000.
+10. P. Gaudry. Index calculus for abelian varieties and the elliptic curve discrete log-
+    arithm problem. Cryptology ePrint Archive, Report 2004/073. Available from
+    http://eprint.iacr.org/2004/073.
+11. P. Gaudry and E. Thomé. A double large prime variation for small genus hyperel-
+    liptic index calculus. Cryptology ePrint Archive, Report 2004/153. Available from
+    http://eprint.iacr.org/2004/153.
+12. R. Granger, D. Page and M. Stam. A comparison of CEILIDH and XTR. In
+    Algorithmic Number Theory Symposium (ANTS-VI), Springer LNCS 3076, 235–
+    249, 2004.
+13. B. A. LaMacchia and A. M. Odlyzko. Solving large sparse linear systems over
+    finite fields. In Advances in Cryptology (CRYPTO 1990), Springer LNCS 537,
+    109–133, 1991.
+14. D. Lazard. Résolution des systèmes d’équations algébriques, Theoret. Com-
+    put. Sci., 15 (1), 77–110, 1981.
+15. A. K. Lenstra. Using cyclotomic polynomials to construct efficient discrete loga-
+    rithm cryptosystems over finite fields. In Proceedings of ACISP97, Springer LNCS
+    1270, 127–138, 1997.
+16. A. K. Lenstra and E. Verheul. The XTR public key system. In Advances in
+    Cryptology (CRYPTO 2000), Springer LNCS 1880, 1–19, 2000.
+17. S. Lim, S. Kim, I. Yie, J. Kim and H. Lee. XTR extended to GF(p6m ). In Selected
+    Areas in Cryptography (SAC 2001), Springer LNCS 2259, 301–312, 2001.
+18. A. J. Menezes, P. van Oorschot and S. A. Vanstone. The Handbook of Applied
+    Cryptography, CRC press, 1996.
+19. A. Miyaji, M. Nakabayashi and S. Takano. New explicit conditions of elliptic curve
+    traces for FR-reduction. IEICE Trans. Fundamentals E84-A (5), 1234–1243, 2001.
+20. K. Nagao. Improvement of Thériault algorithm of index calculus for Jacobian of
+    hyperelliptic curves of small genus. Cryptology ePrint Archive, Report 2004/161.
+    Available from http://eprint.iacr.org/2004/161.
+21. A. M. Odlyzko. Discrete logarithms in finite fields and their cryptographic signif-
+    icance. In Advances in Cryptology (EUROCRYPT 1984), Springer LNCS 209,
+    224–314, 1985.
+22. K. Rubin and A. Silverberg. Torus-based cryptography. In Advances in Cryptology
+    (CRYPTO 2003), Springer LNCS 2729, 349–365, 2003.
+23. K. Rubin and A. Silverberg. Using primitive subgroups to do more with fewer
+    bits. In Algebraic Number Theory Symposium (ANTS-VI), Springer LNCS 3076,
+    18–41, 2004.
+24. C. P. Schnorr. Efficient signature generation by smart cards. J. Cryptology, 4,
+    161–174, 1991.
+25. P. Smith and C. Skinner. A public-key cryptosystem and a digital signature sys-
+    tem based on the Lucas function analogue to discrete logarithms. In Advances in
+    Cryptology (ASIACRYPT 1995), Springer LNCS 917, 357–364, 1995.
+26. N. Thériault. Index calculus attack for hyperelliptic curves of small genus. In
+    Advances in Cryptology (ASIACRYPT 2003), Springer LNCS 2894, 75–92, 2003.
+27. M. van Dijk, R. Granger, D. Page, K. Rubin, A. Silverberg, M. Stam and
+    D. Woodruff. Practical cryptography in high dimensional tori. In Advances in
+    Cryptology (EUROCRYPT 2005), Springer LNCS 3494, 234–250, 2005.
+28. M. van Dijk and D. P. Woodruff. Asymptotically optimal communication for torus-
+    based cryptography. In Advances in Cryptology (CRYPTO 2004), Springer LNCS
+    3152, 157–178, 2004.
+

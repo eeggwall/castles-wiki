@@ -3,9 +3,9 @@ title: Castle cryptography, round three - the castle torus
 category: Analyses
 summary: The third lap of the build / red-team / blue-team loop, taking round two's own prescription - build on char_5 (degree 6) with p chosen so p^2 - p + 1 carries a large prime - and red-teaming it against the published attack literature for fields of size p^6. BUILD, executed at a toy size (p = 171271) and at full 128-bit size (512-bit p, 1024-bit prime q = p^2 - p + 1, 3072-bit field). char_5 is irreducible mod p for about 1 prime in 6 (94 of 600 near 10^6). The generator is the castle's own shift x raised to (p^6 - 1)/q, so the group is the prime-order "torus" subgroup XTR and CEILIDH use. Keys compress 3 to 1 by sending only the trace to the subfield with p^2 elements, and the receiver finishes the key exchange from that trace by a Kitamasa jump on the 3-term recurrence t_{n+3} = c t_{n+2} - c^p t_{n+1} + t_n, a castle-style recurrence inside the castle field. RED TEAM - the subfield collapse that broke round two finds nothing (a torus element pushed down to either smaller subfield is always 1), Pohlig-Hellman has nothing to split (q is prime), Pollard rho breaks the toy in 127,402 steps (sqrt q = 171,270) and faces about 2^512 at full size, and index calculus sets the security level. The 2016 extended tower number field sieve applies because 6 is composite, cutting the cost constant from 1.923 (round two's estimate) to 1.747 (or 1.71 with several number fields), so a 128-bit system needs p of about 530 to 560 bits on the heuristic formula rather than 424, and a 512-bit p sits just under 2^128 (2^126). A p of special form, such as a castle count, drops the constant to 1.526 and costs about 16 more bits. BLUE TEAM verdict - round three is an instance of XTR, secure at the right size and no better than XTR, which the literature rates no longer competitive with elliptic curves.
 tags: [analysis, seminar, cryptography, cryptanalysis, red-team, blue-team, torus, xtr, ceilidh, trace, compression, kitamasa, pollard-rho, pohlig-hellman, index-calculus, number-field-sieve, extnfs, key-size, finite-field, cyclotomic, castle]
-sources: [oeis-mining-pe502]
+sources: [oeis-mining-pe502, granger-vercauteren-2005-dlp-algebraic-tori]
 created: 2026-09-24
-updated: 2026-09-28
+updated: 2026-10-09
 ---
 
 # Castle cryptography, round three - the castle torus
@@ -20,7 +20,7 @@ The system works, the attacks that broke rounds one and two find nothing, and th
 
 - **`char_5`** - the characteristic polynomial of the castle recurrence for height-5 towers, `x^6 - 6x^5 + 18x^4 - 32x^3 + 48x^2 - 32x + 32` ([[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)]). When it has no factors mod `p`, arithmetic on castle states mod `char_5` is arithmetic in the finite field with `p^6` elements, `F_{p^6}` ([[finite-fields](pages/finite-fields.md)]).
 - **Discrete logarithm** - given `g` and `g^a`, find `a`. Key exchange (Diffie-Hellman) is safe exactly as long as this is hard.
-- **Torus** - the subgroup of `F_{p^6}` of size `p^2 - p + 1`. Its elements are those whose norms to the subfields `F_{p^2}` and `F_{p^3}` are both 1. Cryptographers call it the torus `T_6`; the XTR and CEILIDH systems work in it.
+- **Torus** - the subgroup of `F_{p^6}` of size `p^2 - p + 1`. Its elements are those whose norms to the subfields `F_{p^2}` and `F_{p^3}` are both 1. Cryptographers call it the torus `T_6`; the XTR and CEILIDH systems work in it.[^gv-torus]
 - **Trace** - a way to squeeze an element `h` of `F_{p^6}` down to the subfield with `p^2` elements: `Tr(h) = h + h^{p^2} + h^{p^4}`. It needs 2 numbers mod `p` instead of 6.
 - **Pollard rho, Pohlig-Hellman** - the generic discrete-log attacks: rho costs about the square root of the group size; Pohlig-Hellman breaks the problem into pieces along the prime factors of the group size, so it gains nothing when that size is prime.
 - **Index calculus / number field sieve** - the attack family that uses the structure of finite fields specifically. Its cost is written `L_Q[1/3, c] = exp(c (ln Q)^{1/3} (ln ln Q)^{2/3})` for a field of size `Q`; the constant `c` is what research papers lower.
@@ -69,7 +69,7 @@ with coefficients in the subfield with `p^2` elements - a castle-style recurrenc
 
 ### The subfield collapse finds nothing
 
-Round two's sharpest attack pushed the key down into a smaller field inside the big one, where the discrete log was easy. Here the smaller fields are `F_{p^2}` and `F_{p^3}`, and pushing down means raising to `p^4 + p^2 + 1` or to `p^3 + 1`. Both of those numbers are multiples of `p^2 - p + 1`, so every torus element lands on 1: checked at both sizes. There is nothing to project; this is the defining property of the torus.
+Round two's sharpest attack pushed the key down into a smaller field inside the big one, where the discrete log was easy. Here the smaller fields are `F_{p^2}` and `F_{p^3}`, and pushing down means raising to `p^4 + p^2 + 1` or to `p^3 + 1`. Both of those numbers are multiples of `p^2 - p + 1`, so every torus element lands on 1: checked at both sizes. There is nothing to project; this is the defining property of the torus. Norms to the subfields determine a discrete log only modulo the subfield orders, and what remains lives in the torus.[^gv-reduction]
 
 ### Generic attacks: nothing to split, square root to pay
 
@@ -97,7 +97,7 @@ Three readings:
 
 ### Attacks that do not apply
 
-Granger and Vercauteren gave an index calculus attack on tori (CRYPTO 2005); per Stam's survey it matters for tori built over fields that are themselves extensions, such as `T_30`, and "for T6(q) having non-prime q seems to offer no discernible benefit over prime T6".[^stam-gv] The castle torus is built over the prime field `F_p`, so this attack does not apply. (Granger-Vercauteren is cited here through Stam; the paper itself was not read.)
+Granger and Vercauteren's index calculus works directly in the tori `T_2(F_{q^m})` and `T_6(F_{q^m})` ([[granger-vercauteren-2005-dlp-algebraic-tori](pages/granger-vercauteren-2005-dlp-algebraic-tori.md)]). It matters for tori over fields that are themselves extensions: `T_30(F_p)` embeds in `T_6(F_{p^5})`, and they call for the security of fields `F_{q^30}` to be "completely reassessed". Over prime fields they state that LUC, XTR and CEILIDH are not affected.[^gv] The castle torus is `T_6(F_p)`, their case `m = 1`, where their `T_6` algorithm is slower than Pollard rho in every row of their running-time table (fields up to 1000 bits).[^gv-table] Stam's later survey agrees: "for T6(q) having non-prime q seems to offer no discernible benefit over prime T6".[^stam-gv] So this attack does not apply.
 
 ## Blue team verdict
 
@@ -120,6 +120,7 @@ So the castle cryptosystem, done correctly, is XTR, and what separates it from c
 ## Appearances in Sources
 
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k,·)` castle families whose characteristic polynomials, `char_5` among them, serve as the field moduli.
+- [[granger-vercauteren-2005-dlp-algebraic-tori](pages/granger-vercauteren-2005-dlp-algebraic-tori.md)] - the torus definition, the subfield-norm reduction, and the index calculus on tori that leaves `T_6` over a prime field unaffected.
 
 ## Footnotes
 
@@ -133,6 +134,14 @@ So the castle cryptosystem, done correctly, is XTR, and what separates it from c
 
 [^stam-table]: https://eprint.iacr.org/2021/1659 (Stam, "XTR and Tori", chapter in *Computational Cryptography*, Cambridge University Press; PDF read 2026-09-24) p.15 Table 1 [synthesis] - compact representations in bits: the `T_6` row gives 1024 bits at 128-bit security under the 2020 NIST recommendation (5120 at 256-bit), i.e. `lg p = 512`; p.14 [synthesis] - the 2020 columns follow NIST SP 800-57 and match ECRYPT.
 
-[^stam-gv]: https://eprint.iacr.org/2021/1659 (Stam) p.14 - "for T30 the Granger–Vercauteren attack ([GV05] ...) and later developments need to be taken into account", and "for T6(q) having non-prime q seems to offer no discernible benefit over prime T6 or T2"; p.17 reference [GV05]: Granger and Vercauteren, "On the discrete logarithm problem on algebraic tori", CRYPTO 2005, LNCS 3621, pp. 66-85 (cited via Stam, not read).
+[^stam-gv]: https://eprint.iacr.org/2021/1659 (Stam) p.14 - "for T30 the Granger–Vercauteren attack ([GV05] ...) and later developments need to be taken into account", and "for T6(q) having non-prime q seems to offer no discernible benefit over prime T6 or T2"; p.17 reference [GV05]: Granger and Vercauteren, "On the discrete logarithm problem on algebraic tori", CRYPTO 2005, LNCS 3621, pp. 66-85.
+
+[^gv-torus]: [[granger-vercauteren-2005-dlp-algebraic-tori](pages/granger-vercauteren-2005-dlp-algebraic-tori.md)] §2.2 p.69 L152-155, L164-166 - "Tn(Fq) = {α ∈ K | NK/kd(α) = 1 for all subfields k ⊆ kd ⊊ K}"; "#Tn(Fq) = Φn(q)"; §1 p.67 L59-62 - XTR and CEILIDH work "in a subgroup G ⊂ F×q6 with |G| | Φ6(q) = q² − q + 1".
+
+[^gv-reduction]: [[granger-vercauteren-2005-dlp-algebraic-tori](pages/granger-vercauteren-2005-dlp-algebraic-tori.md)] §2.1 p.68 L133-140 - the subfield norms determine `s mod lcm{Φd(q)}d|n,d≠n`, and "the remaining modular information required to determine the full discrete logarithm comes from the order Φn(q) subgroup of K×", the torus `T_n(F_q)`.
+
+[^gv]: [[granger-vercauteren-2005-dlp-algebraic-tori](pages/granger-vercauteren-2005-dlp-algebraic-tori.md)] §1 p.67 L78-81 - "We stress that when defined over prime fields Fp, the security of these cryptosystems is not affected by our algorithm. Over extension fields however, this is not always the case"; Remark 2 p.82 L784-792 - "the column for m = 5 provides an upper bound for the hardness of the DLP in T30(Fq), since this can be embedded in T6(Fq5)", "the security offered by the DLP in finite fields of the form Fq30 should be completely reassessed."
+
+[^gv-table]: [[granger-vercauteren-2005-dlp-algebraic-tori](pages/granger-vercauteren-2005-dlp-algebraic-tori.md)] §5.4 p.82 Table 2 L766-779 [synthesis] - log₂ expected running times against Pollard rho in a subgroup of size `2^160`, for `F_{p^{6m}}` of 200 to 1000 bits; at `m = 1` the `T_6` algorithm takes 25, 42, 59, 75, 93, 109, 127, 144, 161 against Pollard rho's 18, 34, 52, 66, 66, 66, 66, 68, 69.
 
 [^stam-abs]: https://eprint.iacr.org/2021/1659 (Stam) p.1 abstract - "Subsequent developments, such as the move to 128-bit security and improvements in finite field DLP" leave XTR and related schemes "no longer competitive with elliptic curves".
