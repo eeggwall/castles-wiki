@@ -29,3 +29,6 @@ wiki/index.md
 /*.out
 scratch-*
 attic/
+
+# Python bytecode caches from running the bin/ helpers.
+__pycache__/
