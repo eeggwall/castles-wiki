@@ -28,7 +28,7 @@ Every castle is automatically **column-convex** (each column is one contiguous v
 |---|---|---|---|---|
 | **Shape** | one castle | skyline predicate on `(c_1, …, c_w)` | unimodal, Ferrers, staircase, palindromic, Dyck-path, Motzkin-path, rainbow, hook, crenellated, m-smooth, m-disparate, ridge, hoodoo, monadnock, … (42 types on 7 axes, plus the wiki-named ridge, hoodoo, and monadnock types) | [[castle-classification-shape](pages/castle-classification-shape.md)] |
 | **Spectrum** | one castle | spectrum of a graph derived from it ([[castle-graph](pages/castle-graph.md)]) | tree, golden-spectrum, silver-spectrum, `φ²`-spectrum, isospectral (pair predicate), Ramanujan | [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] |
-| **Growth** | a whole class of castles under a construction rule | growth constant of the class's count sequence along a stated size axis | golden / silver / bronze / copper / nickel `<axis>` growth castle, tribonacci / tetranacci / supergolden / plastic-squared `<axis>` growth castle | [[castle-classification-growth](pages/castle-classification-growth.md)] |
+| **Growth** | a whole class of castles under a construction rule | growth constant of the class's count sequence along a stated size axis | golden / silver / bronze / `σ_4^1` / `σ_5^1` `<axis>` growth castle, tribonacci / tetranacci / supergolden / plastic-squared `<axis>` growth castle | [[castle-classification-growth](pages/castle-classification-growth.md)] |
 
 A fourth invariant, **compressibility** - the length of the shortest description that produces the castle - is not classified by shape, spectrum, or growth. It sits on its own page [[castle-compression](pages/castle-compression.md)], with three tiers (parametric, rule-generated, generic) that cross-cut all three scopes above.
 
@@ -64,7 +64,7 @@ Each scope's page carries its own detailed open list; the largest open items acr
 4. **Ramanujan castles** (spectrum) - the universal-cover definition is stated on [[castle-classification-spectrum](pages/castle-classification-spectrum.md)]; the census on [[ramanujan-castles](pages/ramanujan-castles.md)] finds every castle with at most 14 cells Ramanujan and the first failures at 15 cells; the smallest failing rectangle is `2 × 14`.
 5. **Bronze-spectrum castles** (spectrum) - no example in twelve searched boxes totaling about `7.1 × 10^11` skylines (with overlaps); existence remains open ([[bronze-castle-hunt](pages/bronze-castle-hunt.md)]).
 6. **Sparse-spectrum, low / high-pass, Ihara-Ramanujan** (spectrum) - the three sketched types on [[castle-classification-spectrum](pages/castle-classification-spectrum.md)].
-7. **Alternative realizations of the bronze / copper / nickel width growth castles** (growth) - the ridge castles (`R_h = J − D`) are the named realization, and 192 binary `4 × 4` matrices have Perron root bronze ([[ridge-castle](pages/ridge-castle.md)]); does any higher rung admit a second, structurally distinct named rule the way silver does?
+7. **Alternative realizations of the bronze / `σ_4^1` / `σ_5^1` width growth castles** (growth) - the ridge castles (`R_h = J − D`) are the named realization, and 192 binary `4 × 4` matrices have Perron root bronze ([[ridge-castle](pages/ridge-castle.md)]); does any higher rung admit a second, structurally distinct named rule the way silver does?
 8. **Vertical and block growth axes** (growth) - no member known for either.
 9. **Compressibility** as a classifier in its own right ([[castle-compression](pages/castle-compression.md)]).
 

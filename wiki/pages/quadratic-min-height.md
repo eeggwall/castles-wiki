@@ -1,11 +1,11 @@
 ---
 title: Minimum height for a quadratic growth constant
 category: Analyses
-summary: For each quadratic growth constant - the larger root of x^2 - p1 x - p2 - the smallest height h at which some 0/1 castle-strip rule (which column heights may follow which) grows at exactly that rate. Exact answer for every pair with minimum height up to 6, from an exhaustive census of all 0/1 rule tables up to 6 x 6 (2^36 tables at height 6, cut to 1.28 billion by sorting rows; 758,878 distinct characteristic polynomials), which finds 53 pairs. Three results proved - (1) height > growth, so h >= floor(growth) + 1, exact whenever the second root is small; (2) the metallic line: min height (p1, 1) = p1 + 1 for every p1, so nickel first appears at height 6; (3) the square-root line: min height (0, p2) = ceil(2 sqrt p2), by a Perron-Frobenius period-2 argument for the lower bound and a rank-one two-group construction for the upper. One conjecture - every pair reaches its minimum height with a rule whose heights split into at most three evenly connected groups. Two groups are optimal for 47 of the 53 pairs (all six misses have p2 = 5 or 7, a prime forcing a lopsided split); three groups match all 53 and never undercut the exhaustive search. The conjecture turns min height into a finite search; its predicted table through height 9 is given. Open - a proof, or a height-7 counterexample; a closed form for p1 > 0, where ceil(2 sqrt p2) is no longer a lower bound ((2, 13) is built at height 7).
+summary: For each quadratic growth constant - the larger root of x^2 - p1 x - p2 - the smallest height h at which some 0/1 castle-strip rule (which column heights may follow which) grows at exactly that rate. Exact answer for every pair with minimum height up to 6, from an exhaustive census of all 0/1 rule tables up to 6 x 6 (2^36 tables at height 6, cut to 1.28 billion by sorting rows; 758,878 distinct characteristic polynomials), which finds 53 pairs. Three results proved - (1) height > growth, so h >= floor(growth) + 1, exact whenever the second root is small; (2) the metallic line: min height (p1, 1) = p1 + 1 for every p1, so δ_5 first appears at height 6; (3) the square-root line: min height (0, p2) = ceil(2 sqrt p2), by a Perron-Frobenius period-2 argument for the lower bound and a rank-one two-group construction for the upper. One conjecture - every pair reaches its minimum height with a rule whose heights split into at most three evenly connected groups. Two groups are optimal for 47 of the 53 pairs (all six misses have p2 = 5 or 7, a prime forcing a lopsided split); three groups match all 53 and never undercut the exhaustive search. The conjecture turns min height into a finite search; its predicted table through height 9 is given. Open - a proof, or a height-7 counterexample; a closed form for p1 > 0, where ceil(2 sqrt p2) is no longer a lower bound ((2, 13) is built at height 7).
 tags: [analysis, castle, castle-strip, transfer-matrix, perron-frobenius, growth-constant, quadratic-field, metallic-means, min-height, equitable-partition, census, exhaustive-search, conjecture, implementation, verification]
 sources: [oeis-mining-pe502]
 created: 2026-09-25
-updated: 2026-10-02
+updated: 2026-10-09
 ---
 
 # Minimum height for a quadratic growth constant
@@ -20,7 +20,7 @@ When `ρ` is a quadratic number, it is the larger root of
 x^2 - p1 x - p2          ρ = (p1 + sqrt(p1^2 + 4 p2)) / 2
 ```
 
-which is the recurrence `a(L) = p1 a(L-1) + p2 a(L-2)`: build a row by adding one column in `p1` ways or two columns in `p2` ways, like tiling with squares in `p1` colours and dominoes in `p2` colours. Golden is `(1, 1)`, the metallic means are the `p2 = 1` line ([[metallic-means](pages/metallic-means.md)]), and [[reachable-field-census](pages/reachable-field-census.md)] showed that every pair is the growth constant of some 0/1 rule at some height.
+which is the recurrence `a(L) = p1 a(L-1) + p2 a(L-2)`: build a row by adding one column in `p1` ways or two columns in `p2` ways, like tiling with squares in `p1` colours and dominoes in `p2` colours. Golden is `(1, 1)`; for `p1, p2 >= 1` the root is de Spinadel's metallic mean `σ_{p1}^{p2}`, and the `δ_a` are the `p2 = 1` line ([[metallic-means](pages/metallic-means.md)]), and [[reachable-field-census](pages/reachable-field-census.md)] showed that every pair is the growth constant of some 0/1 rule at some height.
 
 This page asks: **what is the smallest height `h` that can do it?** Three lines of the answer are proved here, the rest is computed exactly up to height 6, and one conjecture covers everything computed so far.
 
@@ -70,9 +70,9 @@ min height  >=  floor(ρ) + 1
 
 In the census this is exact whenever the conjugate is smaller than about 1 in size (the whole lower-left of the grid), and it falls behind as `p2` grows: `(1, 3)` has `ρ = 2.30` and bound 3 but needs height 4.
 
-### 2. The metallic line: min height `(p1, 1) = p1 + 1`
+### 2. The `δ_a` line: min height `(p1, 1) = p1 + 1`
 
-The metallic mean `δ_a` sits strictly between `a` and `a + 1`, so bound 1 gives height at least `a + 1`, and the ridge rule `R_h = J - D` (adjacent columns differ in height unless both equal `h`) realizes `δ_a` at exactly height `a + 1` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). So **min height `(a, 1) = a + 1` for every `a`.** In particular nickel, `(5+√29)/2 = 5.19`, first appears at height 6; the census confirms it there and not before.
+`δ_a` sits strictly between `a` and `a + 1`, so bound 1 gives height at least `a + 1`, and the ridge rule `R_h = J - D` (adjacent columns differ in height unless both equal `h`) realizes `δ_a` at exactly height `a + 1` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). So **min height `(a, 1) = a + 1` for every `a`.** In particular `δ_5 = (5+√29)/2 = 5.19` first appears at height 6; the census confirms it there and not before.
 
 ### 3. The square-root line: min height `(0, p2) = ceil(2 sqrt p2)`
 
@@ -126,8 +126,8 @@ Through height 6 these are proved minima; beyond 6 they are upper bounds that th
 
 - [[area-growth-census](pages/area-growth-census.md)] - the same rules counted by area instead of width: growth constants in `(1, 2)`, cubics already at height 2, and the Pisot and Salem numbers that appear.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the reachability law this page sharpens, and the census grid through height 5 it extends to 6.
-- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge rule `R_h = J - D` that makes the metallic line exact.
-- [[metallic-means](pages/metallic-means.md)] - the `p2 = 1` line.
+- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge rule `R_h = J - D` that makes the `δ_a` line exact.
+- [[metallic-means](pages/metallic-means.md)] - de Spinadel's `σ_p^q`, the quadrant `p1, p2 >= 1`; the `δ_a` are its `p2 = 1` line.
 - [[castle-strip](pages/castle-strip.md)] - castle strips and their 0/1 transfer tables.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth constants as a classification axis.
 

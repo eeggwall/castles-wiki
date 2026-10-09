@@ -5,7 +5,7 @@ summary: A castle sub-family from a horizontal-gap variation of PE 502's rule 3:
 tags: [analysis, castle, gap-rule, tower-spacing, transfer-matrix, growth-constant, plastic-number, golden-ratio, generating-function, rule-3, sympy, verification, oeis, min-filter, unimodal]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-09-28
+updated: 2026-10-09
 ---
 
 # Minimum-tower-spacing castles
@@ -69,7 +69,7 @@ For general height `h` and spacing `g`, the transfer-matrix Perron root gives:[^
 - **`g = 1`** (not shown) is the trivial rule — every skyline is allowed, growth `= h`, count `h^w` ([[castle-strip](pages/castle-strip.md)]).
 - **`g -> infinity`** is the unimodal castles: when no internal gap is allowed at all, every superlevel set is an interval, which is exactly weak unimodality of the skyline ([[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)]). The `(h, g)` count agrees with the unimodal count through width `g + 1` and first exceeds it at width `g + 2`, where a valley of exactly `g` columns first fits (verified `h <= 4`, `g = 12`, `w <= 8`; at `h = 2` the unimodal count is `1 + C(w+1, 2)`, A000124).[^8]
 - **Minimal recurrence order is `(h−1)g + 1`** in every cell `h, g <= 6` (Berlekamp-Massey on 90 exact terms, recurrence checked on all of them). This confirms the orders Hardin lists as "Empirical" on A217878 (7) and A217949 (10) and supplies the orders for the six unfiled cells below.[^8]
-- **For `g ≥ 2, h ≥ 3` every growth constant is non-metallic** — none is a metallic mean `(a + √(a²+4))/2`. For instance `(h=3, g=2)` grows at `2.40219`, the largest root of the irreducible quintic `x⁵ − 3x⁴ + 3x³ − 4x² + x − 1`, close to silver `1 + √2 = 2.41421` but of degree 5.[^6]
+- **For `g ≥ 2, h ≥ 3` every growth constant is non-metallic** - none is a metallic mean `σ_p^q` ([[metallic-means](pages/metallic-means.md)]). For instance `(h=3, g=2)` grows at `2.40219`, the largest root of the irreducible quintic `x⁵ − 3x⁴ + 3x³ − 4x² + x − 1`, close to silver `1 + √2 = 2.41421` but of degree 5.[^6]
 
 So minimum-tower-spacing castles are a **two-parameter family of C-finite castle counts**, indexed by `(h, g)`, whose growth constants pass through `φ`, `ψ²` and the supergolden ratio at small parameters and are non-metallic numbers of higher degree as `h, g` grow. The state count grows quickly (`(h=5, g=4)` needs 625 states), so the family is best explored by the transfer matrix rather than brute force.
 
@@ -154,7 +154,7 @@ The column-by-column transfer matrix (`build(h, g)`) and the growth/denominator 
 
 [^5]: Growth constants are the numeric Perron roots (largest real eigenvalue) of `build(h, g)`, `h = 2..5`, `g = 2..5` (NumPy `eigvals`). `g = 1` gives the all-ones-per-column matrix, Perron root `h`. The state count is bounded by the number of legal per-row state tuples; `(h=5, g=4)` has 625 states.
 
-[^6]: The `(h=3, g=2)` count `3, 9, 22, 51, 121, 292, 704, 1691, 4059, 9749, 23422` has minimal linear recurrence of order 5 with denominator `1 − 3x + 3x² − 4x³ + x⁴ − x⁵` (irreducible over `ℚ`), whose reversal `x⁵ − 3x⁴ + 3x³ − 4x² + x − 1` has dominant root `2.402209`. `1 + √2 = 2.414214` is close but the polynomial is degree 5, not `x² − 2x − 1`, so the constant is non-metallic. Checked that no metallic mean `(a + √(a²+4))/2` matches any `(h≥3, g≥2)` growth constant to `10⁻⁵`.
+[^6]: The `(h=3, g=2)` count `3, 9, 22, 51, 121, 292, 704, 1691, 4059, 9749, 23422` has minimal linear recurrence of order 5 with denominator `1 − 3x + 3x² − 4x³ + x⁴ − x⁵` (irreducible over `ℚ`), whose reversal `x⁵ − 3x⁴ + 3x³ − 4x² + x − 1` has dominant root `2.402209`. `1 + √2 = 2.414214` is close but the polynomial is degree 5, not `x² − 2x − 1`, so the constant is non-metallic. Checked that no metallic mean `(a + √(a²+4))/2` matches any `(h≥3, g≥2)` growth constant to `10⁻⁵`, and (2026-10-09) that no `σ_p^q` does for `3 ≤ h ≤ 5`, `2 ≤ g ≤ 5` except `(5, 5)`: `ρ² − pρ` is never a positive integer for an integer `p ≥ 1`.
 
 [^7]: Verified against OEIS (fetched 2026-09-18): the `g=2` tower-spacing counts match the Hardin word sequences term for term — `(h=3,g=2) = 3,9,22,51,121,292,704,1691,4059` = A202882 (whose data is `1,3,9,22,51,…`, so `= A202882(w+1)`); `(h=4,g=2) = 4,16,50,144,422,1268,3823` = A203094; `(h=5,g=2) = 5,25,95,325,1121,3985,14288` = A203184. And `(h=3,g=3) = 3,9,22,46,91,183,383,819,1749` = A217878 exactly. `g=2` forbids a width-1 internal gap in each row, a column strictly lower than both neighbors; A202882/A203094/A203184 count `0..m` arrays with no nonzero strict local maximum ([[hardin-word-identity](pages/hardin-word-identity.md)]), and the min-filter theorem of this page gives the correspondence.
 

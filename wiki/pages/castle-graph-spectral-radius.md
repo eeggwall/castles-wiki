@@ -1,11 +1,11 @@
 ---
 title: Metallic means in castle spectra
 category: Analyses
-summary: Where the metallic means do and do not appear as eigenvalues. The count F(w,h) grows like h^w/2, so its transfer-matrix growth constant is h; the signed transfer matrix's eigenvalues are twice the roots of an integer polynomial with leading coefficient 2, so no metallic mean is ever among them (ρ_1 = √2, ρ_2 = 2, ρ_4 = 2.796, ρ_6 = 2ψ², …). Metallic means are the spectral radii of class transfer matrices (Axis 8) and of individual castle graphs: φ for the six 4-cell path castles, 1+√2 for 36 castles up to mirror image in a scan to width 10 (the 3×2 rectangle in both orientations and 34 non-rectangular ones), φ² for three castles up to width 7; copper and beyond are impossible (max degree 4); bronze absent among 4.87 million castles; one castle lands within 10⁻⁸ of 2ψ² without equalling it.
+summary: Where the metallic means do and do not appear as eigenvalues. The count F(w,h) grows like h^w/2, so its transfer-matrix growth constant is h; the signed transfer matrix's eigenvalues are twice the roots of an integer polynomial with leading coefficient 2, so no δ_a is ever among them (ρ_1 = √2, ρ_2 = 2, ρ_4 = 2.796, ρ_6 = 2ψ², …). Metallic means are the spectral radii of class transfer matrices (Axis 8) and of individual castle graphs: φ for the six 4-cell path castles, 1+√2 for 36 castles up to mirror image in a scan to width 10 (the 3×2 rectangle in both orientations and 34 non-rectangular ones), φ² for three castles up to width 7; δ_4 and beyond are impossible (max degree 4); bronze absent among 4.87 million castles; one castle lands within 10⁻⁸ of 2ψ² without equalling it.
 tags: [analysis, castle, spectral, adjacency, transfer-matrix, metallic-means, golden-ratio, silver-ratio, axis-9, isospectral, numpy, sympy, verification]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-16
-updated: 2026-09-28
+updated: 2026-10-09
 ---
 
 # Metallic means in castle spectra
@@ -14,7 +14,7 @@ updated: 2026-09-28
 
 Do the metallic means `δ_a = (a + √(a²+4))/2` of [[metallic-means](pages/metallic-means.md)] have anything to do with the spectra catalogued on [[spectral-analysis](pages/spectral-analysis.md)]? Three different spectra are in play - the transfer matrix of the count, the transfer matrices of castle *classes*, and the adjacency matrix of an individual castle's polyomino graph - and the answer differs for each. Every value below was computed by the snippets shown.
 
-## 1. The count's transfer matrix: growth constant `h`, never metallic
+## 1. The count's transfer matrix: growth constant `h`, never a `δ_a`
 
 `F(w,h) = [h^w − (h−1)^w − P(h−1,w) + P(h−2,w)]/2`,[^1] and the signed terms grow like `ρ_{h−1}^w` with `ρ_k < k+1` ([[generating-function-gallery](pages/generating-function-gallery.md)]), so
 
@@ -34,17 +34,17 @@ The other spectrum is the **signed** transfer matrix `M_k` (`k = h − 1`), whos
 | `h` | `k` | `ρ_k` | value | metallic? |
 |---|---|---|---|---|
 | 2 | 1 | `|1 ± i|` | `√2 = 1.414` | no |
-| 3 | 2 | `2` | `2` | no |
+| 3 | 2 | `2` | `2` | `σ_1^2` |
 | 4 | 3 | complex pair | `2.193` | no |
 | 5 | 4 | root of `λ³ − 3λ² + 2λ − 4` | `2.796` | no |
 | 6 | 5 | complex pair | `2.892` | no |
 | 7 | 6 | `2ψ²` ([[plastic-number](pages/plastic-number.md)]) | `3.510` | no |
 
-and **no metallic mean is an eigenvalue of any `M_k`** - checked numerically for `k ≤ 20`, and true in general: every eigenvalue is `2μ` with `μ` a root of `g_k(μ) = char_k(2μ)/2^k`, an integer polynomial with leading coefficient 2 ([[tower-parity-sectors](pages/tower-parity-sectors.md)]). A metallic mean `δ_a` has `δ_a/2` with minimal polynomial `4x² − 2ax − 1`, and by Gauss's lemma that polynomial would have to divide `g_k` in `Z[x]`, so 4 would divide the leading coefficient 2.[^4] For `k ≡ 2 (mod 4)` the dominant eigenvalue is **twice a unit**, a root of the monic factor `H_{k/2}` (`ψ²` at `k = 6`).
+and **no `δ_a` is an eigenvalue of any `M_k`** - checked numerically for `k ≤ 20`, and true in general: every eigenvalue is `2μ` with `μ` a root of `g_k(μ) = char_k(2μ)/2^k`, an integer polynomial with leading coefficient 2 ([[tower-parity-sectors](pages/tower-parity-sectors.md)]). A metallic mean `δ_a` has `δ_a/2` with minimal polynomial `4x² − 2ax − 1`, and by Gauss's lemma that polynomial would have to divide `g_k` in `Z[x]`, so 4 would divide the leading coefficient 2.[^4] For `k ≡ 2 (mod 4)` the dominant eigenvalue is **twice a unit**, a root of the monic factor `H_{k/2}` (`ψ²` at `k = 6`).
 
 ## 2. Class transfer matrices (Axis 8)
 
-A metallic mean *is* a spectral radius - of the 2-state matrix `[[a, 1], [1, 0]]`, the convergent matrix of `[a; a, a, …]` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]). The [[pell-castle-strip](pages/pell-castle-strip.md)] (`1 − 2x − x²`, spectral radius `1 + √2`; its 0/1 transfer matrix is the `3×3` 1-smooth matrix on heights `{1,2,3}`) and the height-2 tree castles (`1 − x − x²`, `φ`; `2×2` matrix `[[1,1],[1,0]]`) are castle *classes* with their own transfer matrices, and "silver width growth castle" on [[castle-classification](pages/castle-classification.md)] Axis 8 means exactly "the class's transfer matrix has spectral radius `1 + √2`." The metallic means are not eigenvalues of Project Euler 502 (PE 502)'s own count (section 1).
+A `δ_a` *is* a spectral radius - of the 2-state matrix `[[a, 1], [1, 0]]`, as `σ_p^q` is of `[[p, q], [1, 0]]`, the convergent matrix of `[a; a, a, …]` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]). The [[pell-castle-strip](pages/pell-castle-strip.md)] (`1 − 2x − x²`, spectral radius `1 + √2`; its 0/1 transfer matrix is the `3×3` 1-smooth matrix on heights `{1,2,3}`) and the height-2 tree castles (`1 − x − x²`, `φ`; `2×2` matrix `[[1,1],[1,0]]`) are castle *classes* with their own transfer matrices, and "silver width growth castle" on [[castle-classification](pages/castle-classification.md)] Axis 8 means exactly "the class's transfer matrix has spectral radius `1 + √2`." The `δ_a` are not eigenvalues of Project Euler 502 (PE 502)'s own count (section 1).
 
 ## 3. Adjacency spectra of individual castles: golden and silver castles exist
 
@@ -110,7 +110,7 @@ Exact characteristic polynomials confirm the floating-point matches:[^3]
 
 They are not products, yet `x² − 2x − 1` divides their characteristic polynomials, and `(2,1,6,2,1,3)` carries `φ` and `1 + √2` in the same spectrum. The double staircase `(1,2,3,1,2,3)` and its mirror are 12-cell castles with the same spectral radius as the 6-cell rectangle.
 
-**What cannot happen, and the big scan.** A castle graph is a subgraph of the square grid, so its maximum degree is at most 4 and its spectral radius is strictly below 4 for every finite castle. Copper `2 + √5 = 4.236`, nickel, and every higher metallic mean are therefore **never** the spectral radius of a castle graph. Bronze `(3 + √13)/2 = 3.303` is below the bound, so it was hunted at scale: **4,868,525 castles** (mirror-deduped; all `w ≤ 8, h ≤ 7`, plus `w = 9, h ≤ 5` and `w = 10, h ≤ 4`), prefiltered by the edge bound `ρ ≤ max_{uv} √(d_u d_v)` (a radius above 3.3 needs an edge whose endpoint degrees multiply to at least 11), then `eigvalsh`. **No bronze castle.** The same scan found 36 silver castles up to mirror image (6 to 20 cells, both orientations of the 3×2 rectangle among them; e.g. `(1,1,2,1,4,2,1,1)`, `(3,2,1,2,2,1,2,3)` (the castle of [[sandcastle-seminar](pages/sandcastle-seminar.md)]), `(1,2,4,1,3,1,2,6)`) and exactly one castle whose radius lies within `10⁻⁸` of `2ψ² = 3.510`:
+**What cannot happen, and the big scan.** A castle graph is a subgraph of the square grid, so its maximum degree is at most 4 and its spectral radius is strictly below 4 for every finite castle. `δ_4 = 2 + √5 = 4.236`, `δ_5` and every higher `δ_a` are therefore **never** the spectral radius of a castle graph. Bronze `(3 + √13)/2 = 3.303` is below the bound, so it was hunted at scale: **4,868,525 castles** (mirror-deduped; all `w ≤ 8, h ≤ 7`, plus `w = 9, h ≤ 5` and `w = 10, h ≤ 4`), prefiltered by the edge bound `ρ ≤ max_{uv} √(d_u d_v)` (a radius above 3.3 needs an edge whose endpoint degrees multiply to at least 11), then `eigvalsh`. **No bronze castle.** The same scan found 36 silver castles up to mirror image (6 to 20 cells, both orientations of the 3×2 rectangle among them; e.g. `(1,1,2,1,4,2,1,1)`, `(3,2,1,2,2,1,2,3)` (the castle of [[sandcastle-seminar](pages/sandcastle-seminar.md)]), `(1,2,4,1,3,1,2,6)`) and exactly one castle whose radius lies within `10⁻⁸` of `2ψ² = 3.510`:
 
 ```
 (1,1,2,7,7,5,7,7)      radius 3.50975532447636…      2ψ² = 3.50975533249338…      difference −8.0·10⁻⁹

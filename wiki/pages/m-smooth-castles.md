@@ -138,7 +138,7 @@ the second because `strips_m(w, m + 1) = (m + 1)^{w−1}` (3.3). The growth cons
 - **At `m = 1`** these are the Pell strip and the Pell castles ([[pell-castle](pages/pell-castle.md)]).
 - **The strip rows** are Pell A000129(`w`) at `m = 1`, A007482(`w − 1`) at `m = 2`, A015530(`w`) at `m = 3` and A015537(`w`) at `m = 4`, the last two named "Expansion of x/(1 - 4*x - 3*x^2)" and "Expansion of x/(1 - 5*x - 4*x^2)".[^a007482][^a015530][^a015537]
 - **The two-atom reading of [[pell-castle-strip](pages/pell-castle-strip.md)].** `1/(1 − (m+1)x − m·x²)` counts sequences of a width-1 atom of weight `m + 1` and a width-2 atom of weight `m`.
-- **Not metallic past `m = 1`.** The growth constant is a metallic mean only at `m = 1`, where `x² − 2x − 1` gives silver ([[metallic-means](pages/metallic-means.md)]).
+- **A metallic mean at every `m`.** The growth constant is the root of `x² − (m+1)x − m`, de Spinadel's `σ_{m+1}^m` ([[metallic-means](pages/metallic-means.md)]). It is on the `q = 1` row only at `m = 1`, where `x² − 2x − 1` gives silver.
 
 ### 3.7 Tables
 

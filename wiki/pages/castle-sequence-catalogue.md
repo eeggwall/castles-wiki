@@ -46,7 +46,7 @@ From [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]: OEIS requires 
 
 **Order after the height-2 interlink.** The **tower = Narayana** rows (the tower / Narayana entry above) in the order **A160747 → A005891 → A063490 → A001263**, leaving out **A005408** (the densest entry) and minding that **A063490 is offset 1** (the only width-row shift). Then the difference-of-powers castle counts `A(w,h) = h^w − (h−1)^w`, one comment each on **A000225 / A001047 / A005061 / A005060 / A005062**, and the area synonyms (convex / non-convex / valley by area, above), each cross-referencing **A038505 / A038503 / A146559**. New sequences ([[new-sequence-fw3](pages/new-sequence-fw3.md)] `F(w,3)` and siblings) come after.
 
-**Novel-candidate** submissions (no OEIS match): the **signed tower count `P(k,·)` rows for `k = 2..6`** ([[signed-tower-count](pages/signed-tower-count.md)]), a C-finite family with a Pell/Chebyshev closed-form denominator, whose even-`k` rows (`P(2,·)`, `P(4,·)`, `P(6,·)`) are positive; the even-block proper-castle bronze `1,7,25,70,209,697,…` and copper `0,0,10,104,604,…` rows ([[proper-castle-projection](pages/proper-castle-projection.md)]); and the parity-refined area sequences ([[castle-by-area](pages/castle-by-area.md)]). See the sections below for the full status-tagged listing.
+**Novel-candidate** submissions (no OEIS match): the **signed tower count `P(k,·)` rows for `k = 2..6`** ([[signed-tower-count](pages/signed-tower-count.md)]), a C-finite family with a Pell/Chebyshev closed-form denominator, whose even-`k` rows (`P(2,·)`, `P(4,·)`, `P(6,·)`) are positive; the even-block proper-castle bronze (`1,7,25,70,209,697,…`) and `δ_4` (`0,0,10,104,604,…`) rows ([[proper-castle-projection](pages/proper-castle-projection.md)]); and the parity-refined area sequences ([[castle-by-area](pages/castle-by-area.md)]). See the sections below for the full status-tagged listing.
 
 **`F(w,3)`** ([[new-sequence-fw3](pages/new-sequence-fw3.md)]) is novel-candidate: an oeis.org search for `3, 21, 89, 307, 977, 3031` on 2026-09-19 returned no sequence. Its draft submission is in `raw/oeis-pe502/`.
 
@@ -185,7 +185,7 @@ The Motzkin family in castle counts ([[motzkin-castles](pages/motzkin-castles.md
 
 *(All castles by semi-perimeter, A082582, are cornerless Motzkin paths graded by `#flats + #ups` and are equinumerous with skew Motzkin paths; that row stays under "Castles by semi-perimeter" below. Its first five terms `1, 2, 5, 13, 35` coincide with A005773 before `97 ≠ 96`.)*
 
-### Ridge castles: the metallic ladder (free strip, max=h, even-block)
+### Ridge castles: the `δ_a` ladder (free strip, max=h, even-block)
 
 The ridge rule: adjacent columns differ in height unless both equal the ceiling `h`, transfer matrix `R_h = J − D` ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2). Free-strip counts (heights in `1..h`, `max = h` not imposed), ridge castles of exact height `h`, and their even-block part, the proper Project Euler 502 (PE 502) count ([[proper-castle-projection](pages/proper-castle-projection.md)]).
 
@@ -193,10 +193,10 @@ The ridge rule: adjacent columns differ in height unless both equal the ceiling 
 |---|---|---|---|
 | silver free ridge strip (`h=3`) | `3, 7, 17, 41, 99, 239, 577` | `1+√2` | **interlink** → [A001333](https://oeis.org/A001333) Pell–Lucas (companion, not primary Pell) |
 | bronze free ridge strip (`h=4`) | `4, 13, 43, 142, 469, 1549` | `(3+√13)/2` | **interlink** → [A003688](https://oeis.org/A003688) |
-| copper free ridge strip (`h=5`) | `5, 21, 89, 377, 1597, 6765` | `φ³` | **interlink** → [A015448](https://oeis.org/A015448) (`=F_{3n+5}` trisection) |
+| `δ_4` free ridge strip (`h=5`) | `5, 21, 89, 377, 1597, 6765` | `φ³` | **interlink** → [A015448](https://oeis.org/A015448) (`=F_{3n+5}` trisection) |
 | bronze ridge castles (`h=4`, max=h) | `1, 7, 31, 118, 421, 1453, 4924` | `(3+√13)/2` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
 | bronze **even-block** ridge castles | `1, 7, 25, 70, 209, 697, 2390` | `(3+√13)/2` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
-| copper **even-block** ridge castles | `0, 0, 10, 104, 604, 2836, 12630` | `φ³` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
+| `δ_4` **even-block** ridge castles | `0, 0, 10, 104, 604, 2836, 12630` | `φ³` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
 
 ### Signed tower count P(k,·) rows
 
@@ -215,10 +215,10 @@ The signed tower count `P(k,L) = Σ (−1)^blocks` in the `L`-direction at fixed
 
 ### Strip Perron-root sequences (reachable-field census)
 
-Width-graded counts of the 0/1 transfer-matrix strips ([[reachable-field-census](pages/reachable-field-census.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). The plastic strip (`x³−x−1`) and the non-metallic quadratic strips (`Q(√17)`, `Q(√21)`, …) generate count sequences; their status as of 2026-10-04 is below.
+Width-graded counts of the 0/1 transfer-matrix strips ([[reachable-field-census](pages/reachable-field-census.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). The plastic strip (`x³−x−1`) and the quadratic strips off the `p₂ = 1` line (`Q(√17)`, `Q(√21)`, …) generate count sequences; their status as of 2026-10-04 is below.
 
 - Plastic strip (height-3, rule `1→3, 2→1, 3→{1,2}`), `3, 4, 5, 7, 9, 12, 16, 21, 28, …` — **known** → [A000931](https://oeis.org/A000931) Padovan (`= A000931(w+9)`, checked `w ≤ 40`, 2026-10-04); the maximal Fibonacci castles of width `w + 3`.
-- The non-metallic quadratic strips `Q(√17)`, `Q(√21)`, `Q(√6)`, `Q(√7)`, `Q(√33)` — **unchecked**; each field is reached by several strip matrices, so a field has no single count sequence to search.
+- The quadratic strips off the `p₂ = 1` line, `Q(√17)`, `Q(√21)`, `Q(√6)`, `Q(√7)`, `Q(√33)` — **unchecked**; each field is reached by several strip matrices, so a field has no single count sequence to search.
 
 ### Castles by semi-perimeter
 

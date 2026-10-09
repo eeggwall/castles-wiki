@@ -101,7 +101,7 @@ Characteristic polynomial `x² − x − (h − 1)`, growth constant
 The `h = 2` row counts the tree castles of height 2 (some column reaches height 2), the Fibonacci castles; the rows `h ≥ 3` are `T_h(w)`. All OEIS numbers verified offset-exact.[^2]
 
 - **The `h = 2` row is Fibonacci minus one.** The tree castles of height 2 are the Fibonacci castles ([[fibonacci-castle](pages/fibonacci-castle.md)]), `F_{w+2} − 1` of width `w`, a castle interpretation of `A000071`. It puts the tree-castle family on rung 1 of the [[metallic-means](pages/metallic-means.md)] ladder ([[castle-classification](pages/castle-classification.md)] Axis 8: tree castles of height 2 are a **golden width growth castle**).
-- **The `h = 3` slice is Jacobsthal**, a castle interpretation of `A001045`. Heights 4 and 5 give `A006130` and `A006131`, and every height `h` gives a member of the "`k`-Fibonacci" family `a(n) = a(n−1) + k · a(n−2)` with `k = h − 1`. None of these growth constants for `h ≥ 3` is a metallic mean, so tree castles trace out a distinct algebraic family from the metallic one, indexed by `h`.
+- **The `h = 3` slice is Jacobsthal**, a castle interpretation of `A001045`. Heights 4 and 5 give `A006130` and `A006131`, and every height `h` gives a member of the "`k`-Fibonacci" family `a(n) = a(n−1) + k · a(n−2)` with `k = h − 1`. The growth constant at height `h` is the root of `x² − x − (h − 1)`, de Spinadel's metallic mean `σ_1^{h−1}` ([[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)]): golden at `h = 2`, copper `2` at `h = 3`, nickel `(1 + √13)/2` at `h = 4`. Tree castles trace out the `p = 1` column of the metallic family, where the ridge castles trace out the `q = 1` row ([[metallic-means](pages/metallic-means.md)]).
 
 The area-graded (q-analogue) count is worked out on [[tree-castle-by-area](pages/tree-castle-by-area.md)]: the bivariate generating function (GF) is `T_h(x, q) = (1 + P_h(q) x)/(1 − q x − q P_h(q) x²)`, summing over widths gives one C-finite sequence per height, and each hits a named OEIS sequence - at `h = 2` the tree castles of height 2 with area `A` number `A000930(A + 1) − 1` (Narayana's cows minus one), the term `A077868(A − 2)` (supergolden growth), `h = 3` is A006498 (golden growth via factorization), `h = 4` is A000570 (tournaments), `h → ∞` is A005251 (plastic squared, a second castle interpretation).
 
@@ -158,8 +158,8 @@ def cycle_rank(c):
 - [[castle-polyomino](pages/castle-polyomino.md)] - the underlying object, dropping the graph reading.
 - [[castle-representations](pages/castle-representations.md)] - other encodings; the castle graph is a further encoding, into `Z²`-subgraphs.
 - [[castle-by-area](pages/castle-by-area.md)] - `|V|` is area; the graph reading dualizes area-graded questions into vertex-graded ones.
-- [[castle-classification-growth](pages/castle-classification-growth.md)] Axis 8 - the tree-castle golden growth constant sits on rung 1 of the metallic ladder for height 2.
-- [[metallic-means](pages/metallic-means.md)] - the tree-castle `h = 2` growth `φ` lands here.
+- [[castle-classification-growth](pages/castle-classification-growth.md)] Axis 8 - tree castles are the golden, copper and nickel width growth castles at heights 2, 3 and 4.
+- [[metallic-means](pages/metallic-means.md)] - the tree-castle growth `σ_1^{h−1}`: golden, copper and nickel at `h = 2, 3, 4`.
 - [[castle-snippets](pages/castle-snippets.md)] - `castle_graph`, `is_tree_castle`, `cycle_rank`.
 - [[unique-tournament](pages/unique-tournament.md)] - the wiki's other graph-theoretic object (complete oriented graphs, where castle graphs are sparse bipartite grids); the two meet at `A000570`, the `h = 4` tree-castle count by area.
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the from-scratch pedagogy that computes by hand the small golden / silver / `φ²`-spectrum castles this page's Named-castle-types table tabulates.

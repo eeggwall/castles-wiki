@@ -5,7 +5,7 @@ summary: Read Z[x]/(char_k) as a family of rings over the primes. The fiber over
 tags: [analysis, castle, ring, spectrum, prime-ideal, nilradical, local-ring, finite-field, parity-sector, resultant, period, gaussian-integers, eisenstein-integers, sympy, verification]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory, oeis-mining-pe502]
 created: 2026-09-26
-updated: 2026-09-28
+updated: 2026-10-09
 ---
 
 # The castle ring's spectrum - `Spec Z[x]/(char_k)` over `Spec Z`
@@ -167,7 +167,7 @@ Frobenius also explains why every root of one irreducible factor gives the same 
 - [[finite-fields](pages/finite-fields.md)] - residue fields `F_{p^d}` of the points.
 - [[mod-9-coset-lift](pages/mod-9-coset-lift.md)] - the fibers over 3: fat exactly for `k ≡ 4, 6 (mod 12)`, never with a cube.
 - [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - `reduced_period`, `sectors_mod2`.
-- [[metallic-means](pages/metallic-means.md)] - the same "which ring, not just which field" question for the metallic rungs: copper `φ³` generates `Z[√5]`, index 2 in `Z[φ]`.
+- [[metallic-means](pages/metallic-means.md)] - the same "which ring, not just which field" question for the metallic rungs: `δ_4 = φ³` generates `Z[√5]`, index 2 in `Z[φ]`.
 - [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the seminar walk-through: `char_2` across `p = 5, 101, 11, 7, 2`, then over `Q` and `Z`, with every section of this page appearing as one stop.
 
 

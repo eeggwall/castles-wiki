@@ -1,7 +1,7 @@
 ---
 title: n-nacci disambiguation - Fibonacci, tribonacci, tetranacci, … on the wiki
 category: Concepts
-summary: Every place the wiki meets the Fibonacci, tribonacci, tetranacci and higher n-nacci numbers or their growth constants, grouped by the mechanism that produces them, with a note on which appearances share a mechanism and which are unrelated. Fibonacci - the Fibonacci castles (F_{w+2} − 1 at width w) and, with q marking area, the q-Fibonacci castles (not Carlitz's q-Fibonacci numbers), all castles of exact height 2 by area (F_{A+1} − 1, the same numbers through a width-to-area bijection), prime castles (F_{n−1}), the bisections A001519 and A001906 (stacks by perimeter, sandpile ladders, growth φ²), the copper trisection (φ³), φ inside larger counts, Fibonacci as a worked example, and lookalikes (k-Fibonacci, fractional Fibonacci, Narayana's cows). Tribonacci - all castles of exact height 3 by area, τ as the height-3 area ceiling, τ as a width growth constant through a forced-descent rule that extends the Fibonacci castle rule, and the unrelated τ² of castles by perimeter. Tetranacci and higher - exact height h by area, growth tending to 2.
+summary: Every place the wiki meets the Fibonacci, tribonacci, tetranacci and higher n-nacci numbers or their growth constants, grouped by the mechanism that produces them, with a note on which appearances share a mechanism and which are unrelated. Fibonacci - the Fibonacci castles (F_{w+2} − 1 at width w) and, with q marking area, the q-Fibonacci castles (not Carlitz's q-Fibonacci numbers), all castles of exact height 2 by area (F_{A+1} − 1, the same numbers through a width-to-area bijection), prime castles (F_{n−1}), the bisections A001519 and A001906 (stacks by perimeter, sandpile ladders, growth φ²), the δ_4 trisection (φ³), φ inside larger counts, Fibonacci as a worked example, and lookalikes (k-Fibonacci, fractional Fibonacci, Narayana's cows). Tribonacci - all castles of exact height 3 by area, τ as the height-3 area ceiling, τ as a width growth constant through a forced-descent rule that extends the Fibonacci castle rule, and the unrelated τ² of castles by perimeter. Tetranacci and higher - exact height h by area, growth tending to 2.
 tags: [concept, disambiguation, fibonacci, tribonacci, tetranacci, pentanacci, n-nacci, growth-constant, composition, index]
 sources: [algebraic-languages-and-polyominoes-enumeration, dhar-ruelle-sen-verma-1995-algebraic-aspects, aocp-generating-functions, analytic-combinatorics-ch1-ogfs]
 created: 2026-10-02
@@ -61,12 +61,12 @@ The odd-index and even-index halves of the Fibonacci sequence, each growing like
 - **Sandpile ladders, A001906.** The tide group of the castle `(2, 2, …, 2)` of width `w` has order `F_{2w}` ([[sandpile-group](pages/sandpile-group.md)]). The same numbers are the even-Fibonacci mode of the `L × 2` strip in Dhar, Ruelle, Sen and Verma, and they enter the sink group of the height-3 castle ([[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)], [[sandpile-census](pages/sandpile-census.md)]). A001906 also appears in a failed heap-of-intervals model of the tower ([[viennot-heap-tower](pages/viennot-heap-tower.md)]).
 - **Motzkin castles at height 4.** The height-4 rung of the bounded-height Motzkin ladder grows like `φ²`, because `1 + 2cos(π/5) = φ²`, and its count has the Fibonacci closed form A005207 ([[motzkin-castles](pages/motzkin-castles.md)]).
 
-### 4. Trisection: copper, growth `φ³`
+### 4. Trisection: `δ_4`, growth `φ³`
 
-All from `δ_4 = 2 + √5 = φ³`, so copper lies in `Q(√5)`.
+All from `δ_4 = 2 + √5 = φ³`, which lies in `Q(√5)`.
 
 - The height-5 ridge transfer matrix gives `𝟙ᵀR_5^{w−1}𝟙 = F_{3w+2}` (`5, 21, 89, 377, …`, A015448) ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)], [[proper-castle-projection](pages/proper-castle-projection.md)], [[reachable-field-census](pages/reachable-field-census.md)]).
-- Copper's metallic sequence is `F_{3n}/2` (A001076) ([[metallic-means](pages/metallic-means.md)], [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]).
+- The `δ_4` metallic sequence is `F_{3n}/2` (A001076) ([[metallic-means](pages/metallic-means.md)], [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]).
 - More generally, odd powers of a metallic mean are metallic means, so `δ_11 = φ⁵`. The index of `Z[δ_11]` in `Z[φ]` is `F_5 = 5` ([[metallic-means](pages/metallic-means.md)], [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)]).
 
 ### 5. `φ` or Fibonacci inside a larger count
@@ -94,7 +94,7 @@ No castle count here. Fibonacci is the example used to teach a method, or a recu
 ### 7. Neighbouring recurrences with other growth constants
 
 - **k-Fibonacci tree castles.** Tree castles of exact height `h ≥ 3` by width satisfy `a(n) = a(n−1) + (h−1)a(n−2)` (Jacobsthal at `h = 3`, then A006130, A006131), growing like `(1 + √(4h − 3))/2` ([[castle-graph](pages/castle-graph.md)]). This is one way to extend Fibonacci castles to higher `h`. It leads to quadratic constants, not to the n-nacci ones.
-- **Ridge castles at `h ≥ 3`.** The other extension by width, through the metallic ladder: silver, bronze, copper, … ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
+- **Ridge castles at `h ≥ 3`.** The other extension by width, through the metallic ladder: silver, bronze, `δ_4`, … ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
 - **Fractional Fibonacci.** `∇^α a_n = a_{n−1}` is golden only at `α = 1/2`, and the Fibonacci-Pell interpolation is golden only at `α = 0` ([[fractional-recurrences](pages/fractional-recurrences.md)]).
 - **Padovan and Perrin.** The impulse-response and trace sequences of the plastic number, as Fibonacci and Lucas are for `φ`, with the lag recurrence `a(n) = a(n−2) + a(n−3)` ([[plastic-number](pages/plastic-number.md)]).
 - **Narayana's cows.** `a(n) = a(n−1) + a(n−3)` (A000930), one more than the number of q-Fibonacci castles with `n − 1` cells (section 1).

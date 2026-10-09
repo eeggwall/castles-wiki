@@ -5,7 +5,7 @@ summary: Continued fractions of castle eigenvalues, taught from "what is a conti
 tags: [concept, castle, continued-fraction, eigenvalue, characteristic-polynomial, palindromic, lagrange, galois, quadratic, fibonacci, mod-p, pedagogy]
 sources: [project-euler-502-representations, oeis-mining-pe502]
 created: 2026-09-15
-updated: 2026-10-04
+updated: 2026-10-09
 ---
 
 # Eigenvalue continued fractions
@@ -112,15 +112,15 @@ By the factorizations, **every k-direction eigenvalue is `+1` or `−1`.** The p
 
 Both are the fundamental units of their quadratic fields (`φ` of `Q(√5)`, `√2+1` of `Q(√2)`).
 
-**The metallic means.** `φ` and `√2 + 1` are the first two members of the [[metallic-means](pages/metallic-means.md)] family `δ_a = (a + √(a²+4))/2` for `a = 1, 2, 3, …`, each the positive root of `x² − a·x − 1 = 0` and each a norm-`−1` reduced surd with purely periodic continued fraction `[a; a, a, …]` — the same argument, one parameter substituted. The name is standard (de Spinadel 1997); on the wiki:
+**The metallic means.** `φ` and `√2 + 1` are the first two members of the [[metallic-means](pages/metallic-means.md)] family: de Spinadel's `σ_p^q`, roots of `x² − p·x − q`, whose `q = 1` members are `δ_a = (a + √(a²+4))/2` for `a = 1, 2, 3, …`, each the positive root of `x² − a·x − 1 = 0` and each a norm-`−1` reduced surd with purely periodic continued fraction `[a; a, a, …]` — the same argument, one parameter substituted. The name is de Spinadel's ([[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)]); on the wiki:
 
 | `a` | `δ_a = [a; a, a, …]` | Name | Integer sequence | Castle appearance |
 |---|---|---|---|---|
 | 1 | `(1+√5)/2 ≈ 1.618` | Golden | Fibonacci A000045 | `2^{n−1} − F_{n−1}` in prime-castle count ([[castle-by-area](pages/castle-by-area.md)]) |
 | 2 | `1+√2 ≈ 2.414` | Silver | Pell A000129 ([[pell-numbers](pages/pell-numbers.md)]) | tower-word growth constant; the anchored 1-smooth strip of [[pell-castle-strip](pages/pell-castle-strip.md)] |
-| 3, 4, 5, … | Bronze, Copper, Nickel, … | | | the ridge castles (ridge rule `R_h = J − D`) at heights 4, 5, 6, … ([[castle-classification-growth](pages/castle-classification-growth.md)]) |
+| 3, 4, 5, … | Bronze (`a = 3`); no name for `a ≥ 4` | | | the ridge castles (ridge rule `R_h = J − D`) at heights 4, 5, 6, … ([[castle-classification-growth](pages/castle-classification-growth.md)]) |
 
-Every castle class whose count sequence has growth constant `δ_a` for some `a ≥ 1` is a **`<metal>` `<axis>` growth castle** (Axis 8 of [[castle-classification-growth](pages/castle-classification-growth.md)]) — a meta-classification on castle *classes* (not on individual castles) whose naming convention `<metal>` ∈ {golden, silver, bronze, copper, …} and `<axis>` ∈ {width, vertical, area, block} is developed there.
+Every castle class whose count sequence has growth constant `δ_a` for some `a ≥ 1` is a **`<member>` `<axis>` growth castle** (Axis 8 of [[castle-classification-growth](pages/castle-classification-growth.md)]) — a meta-classification on castle *classes* (not on individual castles) whose naming convention `<member>` ∈ {golden, silver, bronze, `σ_4^1`, …} and `<axis>` ∈ {width, vertical, area, block} is developed there.
 
 **Higher degree.** The k-direction roots are `±1`: rational numbers have *terminating* continued fractions, so there is nothing there to approximate. The castle's higher-degree eigenvalues are the **L-direction** roots of `char_k` on [[generating-function-gallery](pages/generating-function-gallery.md)]: `char_k` has degree `k+1` and root product `2^k`, so it is not self-reciprocal and its roots are not units. A real root of degree 3 or more (the dominant root of `char_4` is already a cubic) has a non-periodic simple continued fraction by Lagrange, and the replacement for "period" is the multidimensional Jacobi–Perron expansion. The [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] runs that program: the `k = 6` dominant eigenvalue is `2ψ²` for `ψ` the plastic number (real root of `x³ = x + 1`), and its Jacobi–Perron expansion *is* periodic (preperiod 5, period 4) - a cubic analogue of `[2; 2, 2, …]`.
 
@@ -143,7 +143,7 @@ This page is the real-number counterpart of the [[mod-p-observatory](pages/mod-p
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the Fibonacci/`φ` method, the golden ratio's algebraic home.
 - [[pell-numbers](pages/pell-numbers.md)] — the integer sequence realizing `1 + √2 = [2;2,2,…]`, the Pell/silver-ratio companion to Fibonacci/`φ`.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] — the castle strip (1-smooth, height ≤ 3, anchored at the base) whose width counts are the Pell numbers.
-- [[metallic-means](pages/metallic-means.md)] — the family `δ_a = (a + √(a²+4))/2` (a = 1, 2, 3, …) whose first two members (`φ`, `1+√2`) this page treats; the axis of the Axis-8 "`<metal>` `<axis>` growth castle" meta-classification on [[castle-classification-growth](pages/castle-classification-growth.md)].
+- [[metallic-means](pages/metallic-means.md)] - de Spinadel's family `σ_p^q`, whose `q = 1` members `δ_a = (a + √(a²+4))/2` (a = 1, 2, 3, …) start with the two (`φ`, `1+√2`) this page treats; the axis of the Axis-8 "`<member>` `<axis>` growth castle" meta-classification on [[castle-classification-growth](pages/castle-classification-growth.md)].
 - [[castle-by-area](pages/castle-by-area.md)] — `2^{n−1} − F_{n−1}`, where Fibonacci/`φ` enters the castle count.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] — the algebraic/transcendental split the named constants inhabit.
 - [[recurrence-discovery](pages/recurrence-discovery.md)] — the orders (`k+1` in L, `2L−2` in k) the two polynomial families realize.

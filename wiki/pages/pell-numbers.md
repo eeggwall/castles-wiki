@@ -5,7 +5,7 @@ summary: P⋆_n = 2·P⋆_{n−1} + P⋆_{n−2} with P⋆_0=0, P⋆_1=1 — the
 tags: [concept, pell, integer-sequence, silver-ratio, quadratic-irrational, continued-fraction, oeis]
 sources: [pe502-pell-castle-strip, barry-2005-catalan-transform]
 created: 2026-09-15
-updated: 2026-10-08
+updated: 2026-10-09
 ---
 
 # Pell numbers
@@ -90,7 +90,7 @@ and on the castle side they are the anchored strips of width `n + 1` ending at h
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the Fibonacci companion (`φ`, `[1;1,1,…]`) — the same story with `a = 1`.
 - [[prime-castles](pages/prime-castles.md)] — the Fibonacci counterpart: `F_{n−1}` prime castles by area (and `2^{n−1} − F_{n−1}` composite ones).
 - [[inscribed-polyomino](pages/inscribed-polyomino.md)] — the polyominoes with bounding box `2 × h` number `Q_{h+1} − 2` (A034182), Pell-Lucas minus 2.
-- [[metallic-means](pages/metallic-means.md)] — the family `δ_a = (a + √(a²+4))/2` (`a = 1, 2, 3, …`) — Fibonacci/Pell/Bronze/Copper/… — that Pell sits at `a = 2` of.
+- [[metallic-means](pages/metallic-means.md)] — the family `δ_a = (a + √(a²+4))/2` (`a = 1, 2, 3, …`) — Fibonacci/Pell/Bronze/`δ_4`/… — that Pell sits at `a = 2` of.
 
 ## Footnotes
 

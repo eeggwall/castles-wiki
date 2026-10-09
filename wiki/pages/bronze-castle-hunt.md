@@ -1,11 +1,11 @@
 ---
 title: The bronze castle hunt - is (3 + sqrt 13)/2 ever a castle's spectral radius?
 category: Analyses
-summary: Searches for a castle whose graph (cells as dots, touching cells joined) has largest eigenvalue exactly the bronze ratio (3 + sqrt 13)/2 = 3.3028, the third metallic mean after golden and silver. An exact pruning rule - factor bronze times the identity minus the adjacency matrix one cell at a time and count negative pivots, which equals the number of eigenvalues above bronze - covers every skyline in twelve boxes from 22 wide x 3 tall to 5 wide x 32 tall, about 7.1 x 10^11 skylines counting box overlaps, about 1.5 x 10^5 times the earlier 4.87-million scan. No bronze castle: 55 distinct floating-point near-misses, the closest 2.3 x 10^-12 away, all ruled out by a nonzero integer determinant of A^2 - 3A - I. Two proofs close off the obvious constructions: no rectangle has bronze as any eigenvalue (averaging over the number field's symmetries leaves only 2.618 and 0.382), and no castle splits into two evenly connected groups whose neighbour counts give bronze (every such split needs a cell with 5 neighbours or a finite grid patch where every cell has 3), which is exactly how the 3 x 2 rectangle gets silver. Among all 28,251 castles up to 6 x 6, bronze is not even a lower eigenvalue. Near-misses are cheap because a dangling tower moves the radius by about 10^-11; an exact hit needs sqrt 13 in the characteristic polynomial, and nothing seen produces it.
+summary: Searches for a castle whose graph (cells as dots, touching cells joined) has largest eigenvalue exactly the bronze ratio (3 + sqrt 13)/2 = 3.3028, the third `δ_a` after golden and silver. An exact pruning rule - factor bronze times the identity minus the adjacency matrix one cell at a time and count negative pivots, which equals the number of eigenvalues above bronze - covers every skyline in twelve boxes from 22 wide x 3 tall to 5 wide x 32 tall, about 7.1 x 10^11 skylines counting box overlaps, about 1.5 x 10^5 times the earlier 4.87-million scan. No bronze castle: 55 distinct floating-point near-misses, the closest 2.3 x 10^-12 away, all ruled out by a nonzero integer determinant of A^2 - 3A - I. Two proofs close off the obvious constructions: no rectangle has bronze as any eigenvalue (averaging over the number field's symmetries leaves only 2.618 and 0.382), and no castle splits into two evenly connected groups whose neighbour counts give bronze (every such split needs a cell with 5 neighbours or a finite grid patch where every cell has 3), which is exactly how the 3 x 2 rectangle gets silver. Among all 28,251 castles up to 6 x 6, bronze is not even a lower eigenvalue. Near-misses are cheap because a dangling tower moves the radius by about 10^-11; an exact hit needs sqrt 13 in the characteristic polynomial, and nothing seen produces it.
 tags: [analysis, castle, spectral, adjacency, spectral-radius, metallic-means, bronze-ratio, search, pruning, inertia, galois, equitable-partition, near-miss, implementation, verification]
 sources: [project-euler-502-representations]
 created: 2026-09-24
-updated: 2026-09-28
+updated: 2026-10-09
 ---
 
 # The bronze castle hunt - is (3 + sqrt 13)/2 ever a castle's spectral radius?
@@ -14,7 +14,7 @@ updated: 2026-09-28
 
 Draw a castle's cells as dots and join two dots with a line when their cells share an edge. That drawing is the castle's **graph**, and its **adjacency matrix** `A` has a 1 wherever two cells touch. The largest eigenvalue of `A` is the graph's **spectral radius**: a single number that grows as the shape gets more tightly connected. For any castle it is at least 0 and strictly below 4, since no cell has more than 4 neighbours.
 
-The **metallic means** are the numbers `(a + sqrt(a^2 + 4))/2` for `a = 1, 2, 3, ...`: golden `1.618`, silver `2.414`, bronze `(3 + sqrt 13)/2 = 3.3028`, then copper `4.236` and beyond ([[metallic-means](pages/metallic-means.md)]). [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] found castles whose spectral radius is exactly golden (the six 4-cell paths) and exactly silver (36 castles, starting with the 3 x 2 rectangle), and showed copper and beyond are impossible because they exceed 4. Bronze sits below 4, and none of 4.87 million castles had it.
+The `q = 1` **metallic means** `δ_a` are the numbers `(a + sqrt(a^2 + 4))/2` for `a = 1, 2, 3, ...`: golden `1.618`, silver `2.414`, bronze `(3 + sqrt 13)/2 = 3.3028`, then `δ_4 = 4.236` and beyond ([[metallic-means](pages/metallic-means.md)]). [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] found castles whose spectral radius is exactly golden (the six 4-cell paths) and exactly silver (36 castles, starting with the 3 x 2 rectangle), and showed `δ_4` and beyond are impossible because they exceed 4. Bronze sits below 4, and none of 4.87 million castles had it.
 
 This page asks: **does any castle have spectral radius exactly bronze?** The answer found here: none in any box searched, which covers about `1.5 x 10^5` times as many shapes as the 4.87-million scan, plus two proofs that rule out the two natural ways one could be built. The question stays open.
 
@@ -143,7 +143,7 @@ A bigger search will keep producing closer misses; settling the question needs a
 
 ## Related Concepts
 
-- [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the golden and silver castles, the 4.87-million-castle scan, and why copper and beyond are impossible.
+- [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the golden and silver castles, the 4.87-million-castle scan, and why `δ_4` and beyond are impossible.
 - [[metallic-means](pages/metallic-means.md)] - the golden, silver, bronze ladder.
 - [[castle-graph](pages/castle-graph.md)] - the castle's cells as a graph.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the spectra attached to a castle.

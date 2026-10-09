@@ -5,7 +5,7 @@ summary: 1729, the taxicab number 1^3+12^3 = 9^3+10^3, is a castle count - F(6,4
 tags: [analysis, castle, 1729, taxicab, hardy-ramanujan, dft, divisibility-test, sum-of-cubes, near-miss, c-finite, berlekamp-massey, metallic-mean, carmichael, mod-p, worked-example, computation]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-19
-updated: 2026-10-02
+updated: 2026-10-09
 ---
 
 # The Hardy-Ramanujan castle (1729)
@@ -144,7 +144,7 @@ free strip counts 1^T R_10^{n-1} 1, n = 1..8:   10, 91, 829, 7552, 68797, 626725
 ratio of consecutive terms -> 9.1098;  ratio at width step 2 -> 82.9880
 ```
 
-So the width-`2n` counts of the height-10 ridge strip and Ramanujan's `a_n, b_n, c_n` share the characteristic factor `x^2 - 83x + 1` and the growth constant `delta_9^2`. The parallel goes one step further: both denominators carry a `(x + 1)` factor next to the metallic quadratic. In the castle strip the `(x + 1)^{h-2}` block is the "spurious" part of the spectrum that the count sequence barely sees; in Ramanujan's identity the single `(x + 1)` is load-bearing, it is the `(-1)^n` that makes the miss alternate between `+1` and `-1`. This is the [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] reading of a Diophantine identity: the sequence of near-miss triples is a C-finite object with algebraic-unit eigenvalues, exactly the class every castle count lives in, and it sits on the ladder at rung 9 squared, one decimation (width step 2) above the strip. Copper's `F_{3n+5}` trisection on the realizability page is the same phenomenon at rung 1.
+So the width-`2n` counts of the height-10 ridge strip and Ramanujan's `a_n, b_n, c_n` share the characteristic factor `x^2 - 83x + 1` and the growth constant `delta_9^2`. The parallel goes one step further: both denominators carry a `(x + 1)` factor next to the metallic quadratic. In the castle strip the `(x + 1)^{h-2}` block is the "spurious" part of the spectrum that the count sequence barely sees; in Ramanujan's identity the single `(x + 1)` is load-bearing, it is the `(-1)^n` that makes the miss alternate between `+1` and `-1`. This is the [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] reading of a Diophantine identity: the sequence of near-miss triples is a C-finite object with algebraic-unit eigenvalues, exactly the class every castle count lives in, and it sits on the ladder at rung 9 squared, one decimation (width step 2) above the strip. The `F_{3n+5}` trisection of `δ_4` on the realizability page is the same phenomenon at rung 1.
 
 ## 1729 as a castle
 
