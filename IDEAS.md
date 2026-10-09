@@ -12,7 +12,7 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 | Divisions (open + done) | R 4+9, E 15+12, N 17+23, E/N 1+0, Z 6+7, Q 7+9, S 23+11, T 6+1, F 12+6, X 8+7, C 3+3, M 0+10, Telephone Company 4+4, Facilities 6+0, AI 0+0 |
 | Items | 112 open, 102 done, 214 total (top-level items only) |
 | Seminar arcs | 17 (11 delivered, 5 in progress, 1 planned) |
-| Dates | wiki 2026-09-13, IDEAS 2026-10-09, last reorganize 2026-09-27 |
+| Dates | wiki created 2026-09-13, IDEAS 2026-10-09, last reorganize 2026-09-27 |
 
 ## Prize Problems
 
