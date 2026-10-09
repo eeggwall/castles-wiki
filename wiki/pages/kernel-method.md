@@ -5,7 +5,7 @@ summary: The kernel method solves a functional equation K(x, u)·G(x, u) = A(x, 
 tags: [concept, kernel-method, lattice-paths, generating-functions, m-smooth, transfer-matrix, technique]
 sources: [banderier-nicodeme-2010-bounded-discrete-walks]
 created: 2026-10-07
-updated: 2026-10-07
+updated: 2026-10-09
 ---
 
 # Kernel method
@@ -25,7 +25,7 @@ and `1 − x·steps(u)` is the **kernel**. Substituting for `u` a root `u(x)` of
 
 ## For castles
 
-Castle strips are walks: a skyline read left to right is a sequence of altitudes, and a neighbour rule is a step set ([[castle-strip](pages/castle-strip.md)]). The anchored m-smooth strip is the walk with jumps `−m, …, m` between floor 0 and ceiling `h − 1`. The wiki counts it with an `h × h` band matrix ([[m-smooth-castles](pages/m-smooth-castles.md)]); the kernel method counts it with the `2m` roots of `u^m − x(1 + u + ⋯ + u^{2m})`, whatever `h` is. The two agree for `m ≤ 3`, `h ≤ 8` ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)], "The castle reading"). With the floor kept and the ceiling removed, the method gives the anchored and the pinned castles with no height bound from the `m` small roots: at `m = 1`, A005773 and the Motzkin numbers ([[motzkin-castles](pages/motzkin-castles.md)]).
+Castle strips are walks: a skyline read left to right is a sequence of altitudes, and a neighbour rule is a step set ([[castle-strip](pages/castle-strip.md)]). The anchored m-smooth strip is the walk with jumps `−m, …, m` between floor 0 and ceiling `h − 1`. The wiki counts it with an `h × h` band matrix ([[m-smooth-castles](pages/m-smooth-castles.md)]); the kernel method counts it with the `2m` roots of `u^m − x(1 + u + ⋯ + u^{2m})`, which do not depend on `h`. The two agree for `m ≤ 3`, `h ≤ 8` ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)], "The castle reading"). With the floor kept and the ceiling removed, the method gives the anchored and the pinned castles with no height bound from the `m` small roots: at `m = 1`, A005773 and the Motzkin numbers ([[motzkin-castles](pages/motzkin-castles.md)]).
 
 The method also counts Motzkin paths and prefixes refined by their `UD` and `DU` factors on [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)], where the states are heights in three layers by the type of the last step.
 

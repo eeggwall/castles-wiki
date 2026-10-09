@@ -1,11 +1,11 @@
 ---
 title: "Banderier & Nicodème (2010) - Bounded discrete walks"
 category: Sources
-summary: Banderier and Nicodème extend the kernel method to directed walks of bounded height with any finite set of jumps. Below one wall the generating function is algebraic and is written with the large roots of the kernel 1 − x·steps(u); between two walls it is rational and is written with all the roots, as quotients of alternants (antisymmetric Schur functions). With the jumps −m, …, m and walls at 0 and h − 1 this is exactly the anchored m-smooth castle strip, so the paper gives strips_m(w, h) in closed form in the kernel roots, where the band matrix has no explicit eigenvalues for m ≥ 2. Checked here against the transfer matrix for m ≤ 3, h ≤ 8; the printed two-wall closed form gives cumulative sums of the wall generating functions, and the no-ceiling meander and excursion formulas reproduce the anchored and pinned m-smooth counts (A005773 and the Motzkin numbers at m = 1).
+summary: Banderier and Nicodème extend the kernel method to directed walks of bounded height with any finite set of jumps. Below one wall the generating function is algebraic and is written with the large roots of the kernel 1 − x·steps(u); between two walls it is rational and is written with all the roots, as quotients of alternants (antisymmetric Schur functions). With the jumps −m, …, m and walls at 0 and h − 1 this is exactly the anchored m-smooth castle strip, so the paper gives strips_m(w, h) in closed form in the kernel roots, where for m ≥ 2 the band-matrix eigenvalues are computed numerically. Checked here against the transfer matrix for m ≤ 3, h ≤ 8; the printed two-wall closed form gives cumulative sums of the wall generating functions, and the no-ceiling meander and excursion formulas reproduce the anchored and pinned m-smooth counts (A005773 and the Motzkin numbers at m = 1).
 tags: [source, paper, lattice-paths, kernel-method, generating-functions, m-smooth, 1-smooth, transfer-matrix, motzkin]
 sources: [banderier-nicodeme-2010-bounded-discrete-walks]
 created: 2026-10-07
-updated: 2026-10-07
+updated: 2026-10-09
 ---
 
 # Banderier & Nicodème (2010) - Bounded discrete walks
@@ -50,7 +50,7 @@ An anchored m-smooth castle of width `w` and its column heights `c_1 = 1, c_2, �
 Σ_w strips_m(w, h) x^w  =  x · strip^{[0, h−1]}(x, 1),
 ```
 
-and the paper's two-wall theorem expresses the m-smooth strip, and so `smooth_m(w, h) = strips_m(w, h) − strips_m(w, h − 1)`, through the `2m` roots of `1 − x(u^{−m} + ⋯ + u^m)`. The band matrix has no explicit eigenvalues for `m ≥ 2` ([[m-smooth-castles](pages/m-smooth-castles.md)] §3.5), but the kernel roots are defined by a single polynomial equation of degree `2m` in `u`. Checks, by execution:[^9]
+and the paper's two-wall theorem expresses the m-smooth strip, and so `smooth_m(w, h) = strips_m(w, h) − strips_m(w, h − 1)`, through the `2m` roots of `1 − x(u^{−m} + ⋯ + u^m)`. For `m ≥ 2` the band-matrix eigenvalues are computed numerically ([[m-smooth-castles](pages/m-smooth-castles.md)] §3.5); the kernel roots are defined by a single polynomial equation of degree `2m` in `u`. Checks, by execution:[^9]
 
 - **Two walls.** Substituting all `2m` kernel roots into the paper's functional equation and solving for the `2m` wall functions reproduces the transfer-matrix generating function `e_1ᵀ(I − x·band)^{−1}𝟙` for `m = 1, 2, 3` and `h ≤ 8`. At `m = 1` this is the strip of [[1-smooth-castles](pages/1-smooth-castles.md)].
 - **The printed alternant formula.** With `h_low = 0`, the printed quotient labelled as the floor function at altitude `k` equals `(−1)^{m−1−k}·(strip_0 + ⋯ + strip_k)`, a cumulative sum rather than `strip_k` itself; the ceiling quotients behave the same way from the top once the exponent 0 is kept in the exponent vector. The individual wall functions follow by differences (checked for `m ≤ 3`).
@@ -61,7 +61,7 @@ and the paper's two-wall theorem expresses the m-smooth strip, and so `smooth_m(
 - **The kernel method handles any step set.** Below one wall it needs the `m₊` large roots; between two walls it needs all roots, and the answer is rational.[^5][^7]
 - **m-smooth strips in closed form.** With jumps `−m, …, m` and walls `0` and `h − 1`, the two-wall theorem is the m-smooth castle strip: an expression in the `2m` roots of a degree-`2m` polynomial, against a band matrix of size `h` (verified, `m ≤ 3`).[^9]
 - **The no-ceiling limits.** Meanders and excursions are the anchored and the pinned m-smooth castles with no height bound.[^4][^9]
-- **Read the closed form with care.** The printed alternant quotients give cumulative sums of the wall functions (verified).[^9]
+- **The printed alternant quotients are cumulative.** They give cumulative sums of the wall functions (verified).[^9]
 
 ## Entities & Concepts
 
@@ -73,7 +73,7 @@ and the paper's two-wall theorem expresses the m-smooth strip, and so `smooth_m(
 
 ## Relation to Other Wiki Pages
 
-The wiki counts castle strips with transfer matrices on column heights ([[castle-strip](pages/castle-strip.md)]). For the 1-smooth rule the eigenvalues are explicit and give the Chebyshev formulas of [[1-smooth-castles](pages/1-smooth-castles.md)]; for the m-smooth rule with `m ≥ 2` they are not, and [[m-smooth-castles](pages/m-smooth-castles.md)] computes its generating functions from counts. This paper supplies the closed form for those strips in terms of the kernel roots. The kernel method also appears on [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)], applied to Motzkin paths on a three-layer automaton.
+The wiki counts castle strips with transfer matrices on column heights ([[castle-strip](pages/castle-strip.md)]). For the 1-smooth rule the eigenvalues are explicit and give the Chebyshev formulas of [[1-smooth-castles](pages/1-smooth-castles.md)]; for the m-smooth rule with `m ≥ 2` they are computed numerically, and [[m-smooth-castles](pages/m-smooth-castles.md)] computes its generating functions from counts. This paper supplies the closed form for those strips in terms of the kernel roots. The kernel method also appears on [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)], applied to Motzkin paths on a three-layer automaton.
 
 ## Footnotes
 

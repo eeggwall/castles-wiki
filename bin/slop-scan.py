@@ -195,6 +195,12 @@ RETIRED = [
     "not a procedure for adding one cell",
     "different units of size",
     "will supply a subtraction",
+    "read the closed form with care",
+    "has no explicit eigenvalues for",
+    "is the model for a bijective proof",
+    "summarized for reference",
+    "the flat steps are free",
+    "the other way the wiki counts",
 ]
 RETIRED_RE = [
     (r"\barcs?\b", "planning-file 'arc' vocabulary"),

@@ -5,7 +5,7 @@ summary: The binomial transform sends a sequence a_k to b_n = Σ_k C(n, k) a_k, 
 tags: [concept, binomial-transform, riordan-array, transfer-matrix, 1-smooth, motzkin, pell, generating-functions, technique]
 sources: [barry-2005-catalan-transform]
 created: 2026-10-08
-updated: 2026-10-08
+updated: 2026-10-09
 ---
 
 # Binomial transform
@@ -36,7 +36,7 @@ For the 1-smooth rule `N = A` is the adjacency matrix of a path, so a skeleton i
 | `c_1 = c_w = 2`, ceiling 3 | `2^k` | A001333(`w − 1`), Pell-Lucas ([[pell-castle-strip](pages/pell-castle-strip.md)]) |
 | no floor, no ceiling (walks on the integers) | `C(2k, k)` | central trinomials A002426 |
 
-On heights `{1, 2, 3}` a skeleton step away from height 2 has two choices and a step back has one, which gives the `2^k`. The anchored strips (`c_1 = 1`) ending at height 2 have odd skeletons with a forced first step, and number `Σ_k C(w − 1, 2k + 1) 2^k = P⋆_{w−1}`, Barry's Pell sum ([[pell-numbers](pages/pell-numbers.md)]). The ceiling enters only through the skeleton; the flat steps are free.
+On heights `{1, 2, 3}` a skeleton step away from height 2 has two choices and a step back has one, which gives the `2^k`. The anchored strips (`c_1 = 1`) ending at height 2 have odd skeletons with a forced first step, and number `Σ_k C(w − 1, 2k + 1) 2^k = P⋆_{w−1}`, Barry's Pell sum ([[pell-numbers](pages/pell-numbers.md)]).
 
 ## Appearances in Sources
 
@@ -48,7 +48,7 @@ On heights `{1, 2, 3}` a skeleton step away from height 2 has two choices and a 
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the height-3 strip, where Barry's Pell and Pell-Lucas sums are the strips by last column.
 - [[motzkin-castles](pages/motzkin-castles.md)] - `M_{w−1} = Σ_k C(w − 1, 2k) C_k`.
 - [[castle-strip](pages/castle-strip.md)] - the transfer-matrix picture.
-- [[kernel-method](pages/kernel-method.md)] - the other way the wiki counts the same strips in closed form.
+- [[kernel-method](pages/kernel-method.md)] - a closed form for the same strips in the kernel roots.
 - [[generating-functions](pages/generating-functions.md)] - the wider method.
 
 ## Footnotes

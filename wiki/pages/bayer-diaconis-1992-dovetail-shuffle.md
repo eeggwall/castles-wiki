@@ -1,11 +1,11 @@
 ---
 title: "Bayer & Diaconis (1992) - Trailing the dovetail shuffle to its lair"
 category: Sources
-summary: Bayer and Diaconis show that an a-shuffle of n cards (cut into a packets, riffle them together) gives a permutation with r rising sequences with probability C(a + n − r, n)/a^n. The proof is stars and bars - r − 1 cuts are forced between the rising sequences and the a − r spare cuts go into n + 1 bins - and summing over permutations is Worpitzky's identity a^n = Σ_r Eul(n, r) C(a + n − r, n). The castle use is the tower block-count identity T(w, b) = Σ_k N(w, k) C(b + w − k, w − 1), refined by descents, which has the same shape: under a = b + 1, n = w − 1, r = k the two binomials coincide, so the Bayer-Diaconis proof is the model for a bijective proof of the Narayana numerator. The paper's mixing results ((3/2) log₂ n riffle shuffles, cutoff, total variation through a sufficient statistic) are summarized for reference.
+summary: Bayer and Diaconis show that an a-shuffle of n cards (cut into a packets, riffle them together) gives a permutation with r rising sequences with probability C(a + n − r, n)/a^n. The proof is stars and bars - r − 1 cuts are forced between the rising sequences and the a − r spare cuts go into n + 1 bins - and summing over permutations is Worpitzky's identity a^n = Σ_r Eul(n, r) C(a + n − r, n). The castle use is the tower block-count identity T(w, b) = Σ_k N(w, k) C(b + w − k, w − 1), refined by descents, which has the same shape: under a = b + 1, n = w − 1, r = k the two binomials coincide, which suggests a stars-and-bars bijective proof of the Narayana numerator; none is constructed. The paper's mixing results ((3/2) log₂ n riffle shuffles, cutoff, total variation through a sufficient statistic) are also summarized.
 tags: [source, paper, permutations, descents, eulerian-numbers, worpitzky, stars-and-bars, tower, narayana, markov-chain, mixing]
 sources: [bayer-diaconis-1992-dovetail-shuffle]
 created: 2026-10-08
-updated: 2026-10-08
+updated: 2026-10-09
 ---
 
 # Bayer & Diaconis (1992) - Trailing the dovetail shuffle to its lair
@@ -44,7 +44,7 @@ which is Worpitzky's identity.[^9] As a generating function in `a` it reads `Σ_
 
 **Consequences.** Theorem 3 extends earlier work of Shannon on equal probabilities for permutations with the same number of rising sequences.[^11] The number of rising sequences, observed along repeated a-shuffles, is itself a Markov chain (Corollary 2), because given that number the permutation is uniform.[^12] In the group algebra of the symmetric group, the sums `A_r` of all permutations with `r` rising sequences span a commutative semisimple algebra of dimension `n`; multiplication by the 2-shuffle element has eigenvalues `1, 1/2, …, 1/2^{n−1}` (Corollary 3), and the paper links this algebra to Solomon's descent algebra and to Hodge decompositions of Hochschild homology.[^13]
 
-**How many shuffles.** The total variation distance from uniform stays near 1 and then falls by a factor of about 2 per shuffle, the cutoff phenomenon; for 52 cards it is `0.924, 0.614, 0.334, 0.167` after 5, 6, 7, 8 riffle shuffles.[^14] Theorem 4 places the cutoff at `(3/2) log₂ n` riffle shuffles, with an explicit profile in the normal distribution function.[^15] The proof uses two facts: the number of rising sequences is a sufficient statistic for both the shuffle distribution and the uniform one, so total variation can be computed on that one statistic; and the Eulerian numbers obey a central limit theorem, `Eul(n, ·)/n!` being the law of the integer part of a sum of `n` independent uniforms on `[0, 1]` (Tanny).[^16]
+**How many shuffles.** The total variation distance from uniform stays near 1 and then falls by a factor of about 2 per shuffle, the cutoff phenomenon; for 52 cards it is `0.924, 0.614, 0.334, 0.167` after 5, 6, 7, 8 riffle shuffles.[^14] Theorem 4 places the cutoff at `(3/2) log₂ n` riffle shuffles, with an explicit profile in the normal distribution function.[^15] The proof uses two facts: the number of rising sequences is a sufficient statistic for both the shuffle distribution and the uniform one, so total variation can be computed on that one statistic; and the Eulerian numbers obey a central limit theorem, `Eul(n, ·)/n!` being the law of the integer part of a sum of `n` independent uniforms on `[0, 1]` (Tanny and Stanley).[^16]
 
 **Other developments.** Section 5 treats a guessing-game distance, the effect of a random cut, and face-up/face-down shuffles on the signed permutations, where Beals reduces the analysis to the ordinary model.[^17]
 
@@ -56,7 +56,7 @@ A **tower** of width `w` is a column-height vector `c_1, …, c_w ≥ 0` with `b
 T(w, b)  =  Σ_{k=1..w} N(w, k) · C(b + w − k, w − 1),      Σ_b T(w, b) x^b  =  Narayana_w(x) / (1 − x)^w,
 ```
 
-with `N(w, k)` the Narayana numbers, and the `k`-th term counts the towers with `k − 1` descents ([[narayana-numbers](pages/narayana-numbers.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]). Both identities are a descent-indexed polynomial over a power of `(1 − x)`, and the binomials match exactly (own reasoning, checked by execution):[^18]
+with `N(w, k)` the Narayana numbers, and the `k`-th term counts the towers with `k − 1` descents ([[narayana-numbers](pages/narayana-numbers.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]). Both identities are a descent-indexed polynomial over a power of `(1 − x)`, and the binomials match (own reasoning, checked by execution):[^18]
 
 | Bayer-Diaconis | tower |
 |---|---|
@@ -67,13 +67,13 @@ with `N(w, k)` the Narayana numbers, and the `k`-th term counts the towers with 
 | `C(a + n − r, n)` | `C(b + w − k, w − 1)` |
 | `Eul(n, r)` permutations | `N(w, k)` towers |
 
-The stars-and-bars factor is the same, but the objects differ: `r` runs over `1, …, n = w − 1` while `k` runs over `1, …, w`, so the dictionary does not send towers to permutations. What it gives is the model for a bijective proof of the Narayana numerator, which [[narayana-numbers](pages/narayana-numbers.md)] and [[viennot-heap-tower](pages/viennot-heap-tower.md)] record as unproved: a tower with `k − 1` descents would be built from a forced part, counted by `N(w, k)`, and `b − k + 1` spare blocks placed in `w` bins, as Theorem 3 builds a cut of the deck from `r − 1` forced cuts and `a − r` spare ones.
+The stars-and-bars factor is the same, but the objects differ: `r` runs over `1, …, n = w − 1` while `k` runs over `1, …, w`, so the dictionary does not send towers to permutations. It suggests the shape of a bijective proof of the Narayana numerator, which [[narayana-numbers](pages/narayana-numbers.md)] and [[viennot-heap-tower](pages/viennot-heap-tower.md)] record as unproved: a tower with `k − 1` descents would be built from a forced part, counted by `N(w, k)`, and `b − k + 1` spare blocks placed in `w` bins, as Theorem 3 builds a cut of the deck from `r − 1` forced cuts and `a − r` spare ones.
 
 ## Key Takeaways
 
 - **Theorem 3.** An a-shuffle gives a permutation with `r` rising sequences with probability `C(a + n − r, n)/a^n`, by stars and bars over the cuts.[^6][^7]
 - **Worpitzky's identity** is Theorem 3 summed over permutations.[^9]
-- **The castle use.** The tower block-count identity has the same descent-indexed stars-and-bars shape, with matching binomials under `a = b + 1`, `n = w − 1`, `r = k`; Theorem 3's proof is the model for a bijective proof of the Narayana numerator (own reasoning).[^18]
+- **The castle use.** The tower block-count identity has the same descent-indexed stars-and-bars shape, with matching binomials under `a = b + 1`, `n = w − 1`, `r = k`; a bijective proof of the Narayana numerator along the lines of Theorem 3's proof is open (own reasoning).[^18]
 - **Mixing.** About `(3/2) log₂ n` riffle shuffles mix `n` cards, with a sharp cutoff; total variation reduces to one sufficient statistic.[^15][^16]
 
 ## Entities & Concepts
