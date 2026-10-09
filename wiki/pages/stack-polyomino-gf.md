@@ -69,7 +69,7 @@ The book's own note (p. 46) points from Example I.8 forward to Example IX.14 p. 
 - [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] — Example I.8 pp. 45-46, "The Durfee square of partitions and stack polyominoes."
 - [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] p.33 - Wright's stacks, `s(3) = 4`, injected into parallelograms (`s(n) <= p(n)`); every convex polyomino is two stacks glued to the ends of a parallelogram, which is why stacks cost only a polynomial factor in the convex count.
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - Lemma 3.2: stacks by perimeter are Fibonacci words; stacks are the two outer pieces of every convex polyomino's trisection.
-- [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] - the same series as Bender's trapezoid generating function (3), the end pieces of his convex-polyomino decomposition.
+- [[bender-1974-convex-n-ominoes](pages/bender-1974-convex-n-ominoes.md)] - the same series as Bender's trapezoid generating function (3), the end pieces of Bender's convex-polyomino decomposition.
 
 ## Related Concepts
 

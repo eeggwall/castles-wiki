@@ -229,7 +229,7 @@ Related observations:
 
 ### Prior work: Khovanova's radar-tracking bijection (2007)
 
-Khovanova reached A000570 from radar tracking.[^9] Under the rule "3 out of 5 with loss 2", the "initial-loss non-tracking" binary strings are exactly the concatenations of the basic strings `0`, `001`, `0011`, `00101` (lengths 1, 3, 4, 5), and she matches these to Tetali's four basic unique tournaments, one character per vertex, so a unique tournament on `A + 1` nodes corresponds to such a string of length `A + 1`. Her bijection is Tetali's decomposition stated on binary strings.
+Khovanova reached A000570 from radar tracking.[^9] Under the rule "3 out of 5 with loss 2", the "initial-loss non-tracking" binary strings are exactly the concatenations of the basic strings `0`, `001`, `0011`, `00101` (lengths 1, 3, 4, 5), and Khovanova matches these to Tetali's four basic unique tournaments, one character per vertex, so a unique tournament on `A + 1` nodes corresponds to such a string of length `A + 1`. The bijection is Tetali's decomposition stated on binary strings.
 
 The tree-castle bijection is a third presentation of the same object: tree castle ↔ composition of `{1, 3, 4, 5}` parts ↔ Khovanova's binary string ↔ unique tournament (Tetali). All four count `A000570`.
 

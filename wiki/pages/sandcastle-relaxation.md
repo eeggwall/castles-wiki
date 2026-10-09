@@ -112,7 +112,7 @@ The repeats are **mirror unfolding**. A character of `K` is a phase vector `φ` 
 
 ## Relation to Dhar's scaling
 
-Dhar states that for the undirected `d`-dimensional lattice the slowest relaxation time grows like the linear size to the power `d`, much longer than an avalanche lasts.[^1] His lattice loses sand through its whole boundary. Castles lose it through one corner or the bottom row, and in the range computed `t_rel` still grows about like the cell count: `ℓ²` for squares, and linearly in height at fixed width under the tide.
+Dhar states that for the undirected `d`-dimensional lattice the slowest relaxation time grows like the linear size to the power `d`, much longer than an avalanche lasts.[^1] Dhar's lattice loses sand through its whole boundary. Castles lose it through one corner or the bottom row, and in the range computed `t_rel` still grows about like the cell count: `ℓ²` for squares, and linearly in height at fixed width under the tide.
 
 The relaxation time measures only the slowest mode. It is not the number of grains needed to come close to the steady state: for the riffle shuffle the slowest eigenvalue is `1/2` at every deck size, while about `(3/2) log₂ n` shuffles are needed to mix `n` cards ([[bayer-diaconis-1992-dovetail-shuffle](pages/bayer-diaconis-1992-dovetail-shuffle.md)]).[^10]
 

@@ -63,7 +63,7 @@ The castle reading comes from what the receiver does with the compressed key. Th
 t_{n+3} = c t_{n+2} - c^p t_{n+1} + t_n,       t_0 = 3,  t_1 = c,  t_2 = c^2 - 2 c^p
 ```
 
-with coefficients in the subfield with `p^2` elements - a castle-style recurrence living inside the castle field. Bob computes `t_b = Tr(g^{ab})` from Alice's trace `c = Tr(g^a)` and his own `b` alone by a Kitamasa jump: reduce `X^b` modulo the cubic, then combine the three remainder coefficients with `t_0, t_1, t_2`. Alice does the same from Bob's trace. Both agree with the trace of the full shared secret at both sizes. XTR's own exponentiation ladder is a faster special-purpose version of the same jump.[^xtr]
+with coefficients in the subfield with `p^2` elements - a castle-style recurrence living inside the castle field. Bob computes `t_b = Tr(g^{ab})` from Alice's trace `c = Tr(g^a)` and Bob's own `b` alone by a Kitamasa jump: reduce `X^b` modulo the cubic, then combine the three remainder coefficients with `t_0, t_1, t_2`. Alice does the same from Bob's trace. Both agree with the trace of the full shared secret at both sizes. XTR's own exponentiation ladder is a faster special-purpose version of the same jump.[^xtr]
 
 ## Red team, round three
 

@@ -1,7 +1,7 @@
 ---
 title: The convex-castle cap factor - convex prefactors as residues at 1/mu
 category: Analyses
-summary: "The three area prefactors of the convex ladder are one parallelogram residue times powers of one cap factor: parallelogram p = 0.29745350581112195108, directed convex p·κ = 0.65895554185211895992, convex 2p·κ² = 2.91959850971360705538, with κ = 2.21532282853826847652 the expected weight of convex castles (stacks) hung under the base of a large random parallelogram. The directed-convex constant has no OEIS asymptotic; none of p, κ, K, pκ is an OEIS decimal expansion. Bender's 1974 formula (11), with K = 1.07524214134071812420 computed from his own sum, gives A067675's 2.919598509713607055. The base length of a large random parallelogram has mean 2.0603013 and variance 1.7054124."
+summary: "The three area prefactors of the convex ladder are one parallelogram residue times powers of one cap factor: parallelogram p = 0.29745350581112195108, directed convex p·κ = 0.65895554185211895992, convex 2p·κ² = 2.91959850971360705538, with κ = 2.21532282853826847652 the expected weight of convex castles (stacks) hung under the base of a large random parallelogram. The directed-convex constant has no OEIS asymptotic; none of p, κ, K, pκ is an OEIS decimal expansion. Bender's 1974 formula (11), with K = 1.07524214134071812420 computed from Bender's own sum, gives A067675's 2.919598509713607055. The base length of a large random parallelogram has mean 2.0603013 and variance 1.7054124."
 tags: [analysis, polyomino, convex, directed-convex, parallelogram-polyomino, stack-polyomino, convex-castle, asymptotics, residue, prefactor, q-series, bender, verification, oeis, novel-candidate]
 sources: [bender-1974-convex-n-ominoes, bousquet-melou-fedou-1995-convex-polyominoes, klarner-rivest-1974-convex-n-ominoes]
 created: 2026-09-22
@@ -46,11 +46,11 @@ f = 2/(r P_2') × C(y^0, S(r, y) P_1(r, 1, 1, 1/y)) × C(y^0, S(r, y) P_2(r, 1, 
   = 2K^2 / (r P_1(r) P_2'(r))                                              (11)
 ```
 
-Here `C(y^0, ·)` takes the constant term, and `S(r, y) = T(r, y) y/(1-y)^2 + 1/(1-y)`. `T(x, y)` is his trapezoid series (3) with `y` marking the base. Bender turns the first cap into `K` by residues at `y = r^k`, and a 180-degree rotation turns the second into `K/P_1(r)`.[^7] Both factors, computed directly as Laurent constant terms, agree with these closed forms to 40 digits. So the convex prefactor is `2 · p · κ^2` with `κ = K/P_1(r)`, and the directed-convex residue equals `p · κ` to 27 digits.
+Here `C(y^0, ·)` takes the constant term, and `S(r, y) = T(r, y) y/(1-y)^2 + 1/(1-y)`. `T(x, y)` is Bender's trapezoid series (3) with `y` marking the base. Bender turns the first cap into `K` by residues at `y = r^k`, and a 180-degree rotation turns the second into `K/P_1(r)`.[^7] Both factors, computed directly as Laurent constant terms, agree with these closed forms to 40 digits. So the convex prefactor is `2 · p · κ^2` with `κ = K/P_1(r)`, and the directed-convex residue equals `p · κ` to 27 digits.
 
 ## Bender's formula (11)
 
-Computing Bender's sum for `K` (p.224) gives `K = 1.07524214134071812420`; the sum alternates, with partial sums `1.415, 1.040, 1.0766, 1.07522, 1.075242, ...`. With this `K` his eq. (11) gives `2.919598509713607055`, the A067675 value.[^6]
+Computing Bender's sum for `K` (p.224) gives `K = 1.07524214134071812420`; the sum alternates, with partial sums `1.415, 1.040, 1.0766, 1.07522, 1.075242, ...`. With this `K` Bender's eq. (11) gives `2.919598509713607055`, the A067675 value.[^6]
 
 **The base of a random parallelogram.** The limiting distribution of the base length (the bottom row) is `pi_b = [y^b] P_1(r, 1, 1, y) / P_1(r)`, which is positive and sums to 1. Its mean is `2.0603013436`, as Bender gives,[^8] and its variance is `1.7054123579`. Exact counts agree: summing Klarner-Rivest's `min{m, n}` transfer over row sequences ([[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)]) gives mean `2.06030134` and variance `1.70541236` at areas 60 and 90.
 

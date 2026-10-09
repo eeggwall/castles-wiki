@@ -36,7 +36,7 @@ The `(0,n)` row matches a recomputation of Bender's eq. (11) for `n <= 5`. The `
 
 **Not to be confused with** Knuth's multiset *permutations* (ordered words with repeated letters, counted by the multinomial) or with Flajolet's `MSET` construction (building unordered multisets of objects, `exp(sum_k B(z^k)/k)`). Both are covered elsewhere on the wiki.
 
-**One repeated element gives integer partitions** (own reasoning). For the multiset `{a^n}`, a single element repeated `n` times, every block has the form `a^j`. So `v*(·, k)` counts partitions of `n` into `k` parts and `c*(·, k)` counts partitions into `k` distinct parts, with totals `p(n)` (A000041) and A000009. `c` and `v` are trivial there, since no block may repeat `a`. Checked by enumeration for `n <= 12`. The Ferrers rung of [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] is therefore Bender's `v*` at one element, and his four-way split generalizes the unrestricted/distinct pair of integer partitions to several elements.
+**One repeated element gives integer partitions** (own reasoning). For the multiset `{a^n}`, a single element repeated `n` times, every block has the form `a^j`. So `v*(·, k)` counts partitions of `n` into `k` parts and `c*(·, k)` counts partitions into `k` distinct parts, with totals `p(n)` (A000041) and A000009. `c` and `v` are trivial there, since no block may repeat `a`. Checked by enumeration for `n <= 12`. The Ferrers rung of [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] is therefore Bender's `v*` at one element, and Bender's four-way split generalizes the unrestricted/distinct pair of integer partitions to several elements.
 
 ## Appearances in Sources
 

@@ -1,7 +1,7 @@
 ---
 title: "The Family of Metallic Means (de Spinadel, 1999)"
 category: Sources
-summary: Vera W. de Spinadel introduces the Metallic Means Family, the positive roots σ_p^q of x² − px − q = 0 for natural p and q, each the limit of ratios of a generalized secondary Fibonacci sequence G(n+1) = pG(n) + qG(n−1). With q = 1 she names the golden (p = 1), silver (p = 2, σ_Ag = 1 + √2) and bronze (p = 3, σ_Br = (3 + √13)/2) means; σ_4^1 = 2 + √5 = φ³ is noted, not named, and σ_p^1 = [p̄] for every p. With p = 1 she names the copper mean σ_Cu = 2 (q = 2) and the nickel mean σ_Ni = (1 + √13)/2 (q = 3). So her copper and nickel are the q = 2 and q = 3 members, where the wiki uses copper and nickel for δ_4 = 2 + √5 and δ_5. The wiki's metallic means δ_a are her q = 1 subfamily. Summarized: §§1-3 and the quadratic-Pisot remark of §7; not the design, architecture and sculpture sections.
+summary: Vera W. de Spinadel introduces the Metallic Means Family, the positive roots σ_p^q of x² − px − q = 0 for natural p and q, each the limit of ratios of a generalized secondary Fibonacci sequence G(n+1) = pG(n) + qG(n−1). With q = 1 the paper names the golden (p = 1), silver (p = 2, σ_Ag = 1 + √2) and bronze (p = 3, σ_Br = (3 + √13)/2) means; σ_4^1 = 2 + √5 = φ³ is noted, not named, and σ_p^1 = [p̄] for every p. With p = 1 it names the copper mean σ_Cu = 2 (q = 2) and the nickel mean σ_Ni = (1 + √13)/2 (q = 3). So de Spinadel's copper and nickel are the q = 2 and q = 3 members, where the wiki uses copper and nickel for δ_4 = 2 + √5 and δ_5. The wiki's metallic means δ_a are the paper's q = 1 subfamily. Summarized: §§1-3 and the quadratic-Pisot remark of §7; not the design, architecture and sculpture sections.
 tags: [paper, source, metallic-mean, golden-ratio, silver-ratio, bronze-ratio, continued-fraction, quadratic-irrational, generalized-fibonacci, pisot-number, naming]
 sources: [de-spinadel-1999-family-of-metallic-means]
 created: 2026-10-09
@@ -33,7 +33,7 @@ updated: 2026-10-09
 | 4 | `σ_4^1` (no name) | `2 + √5 = φ³` | `[4̄]` |
 | 5-10 | `σ_5^1, …, σ_10^1` (no names) | `(p + √(p² + 4))/2` | `[p̄]` |
 
-She calls `σ_4^1 = φ³` "a striking result related to the continued fraction expansion of uneven powers of the Golden Mean". All `q = 1` members have purely periodic expansions `[p̄]`, and the golden mean converges most slowly of them.[^4]
+The paper calls `σ_4^1 = φ³` "a striking result related to the continued fraction expansion of uneven powers of the Golden Mean". All `q = 1` members have purely periodic expansions `[p̄]`, and the golden mean converges most slowly of them.[^4]
 
 **`p = 1`: the copper and nickel means.** For `x² − x − q = 0`, `q = 1` gives the golden mean again:[^5]
 
@@ -51,16 +51,16 @@ De Spinadel's Bridges 2003 paper names the same members: the silver mean `[2]`, 
 
 ## The castle reading
 
-The wiki's metallic means `δ_a = (a + √(a² + 4))/2` ([[metallic-means](pages/metallic-means.md)]) are de Spinadel's `q = 1` members `σ_a^1`. Golden, silver and bronze are her names for `a = 1, 2, 3`, and her `σ_4^1 = 2 + √5 = φ³` is the wiki's `a = 4` coincidence.
+The wiki's metallic means `δ_a = (a + √(a² + 4))/2` ([[metallic-means](pages/metallic-means.md)]) are de Spinadel's `q = 1` members `σ_a^1`. Golden, silver and bronze are de Spinadel's names for `a = 1, 2, 3`, and the paper's `σ_4^1 = 2 + √5 = φ³` is the wiki's `a = 4` coincidence.
 
-- **Copper and nickel.** De Spinadel's copper mean is `σ_1^2 = 2` and her nickel mean is `σ_1^3 = (1 + √13)/2`. Neither is a `δ_a`, and she gives `σ_4^1` and `σ_5^1` no names. The wiki calls `δ_4` copper and `δ_5` nickel, following the Wikipedia article's prose. That article's table names only golden, silver and bronze.[^wiki]
+- **Copper and nickel.** De Spinadel's copper mean is `σ_1^2 = 2` and the nickel mean is `σ_1^3 = (1 + √13)/2`. Neither is a `δ_a`, and the paper gives `σ_4^1` and `σ_5^1` no names. The wiki calls `δ_4` copper and `δ_5` nickel, following the Wikipedia article's prose. That article's table names only golden, silver and bronze.[^wiki]
 - **The wider family on castle strips.** A castle-strip denominator `1 − p_1 x − p_2 x²` has growth `(p_1 + √(p_1² + 4 p_2))/2`, which is `σ_{p_1}^{p_2}`. [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] calls a strip metallic only when `p_2 = 1`, the wiki's `δ_a`. In de Spinadel's family, the no-adjacent-ceiling height-3 rule there, with denominator `1 − 2x − 2x²` and growth `1 + √3`, is the member `σ_2^2`.
 - **Pisot.** §7 states that the `q = 1` members, the wiki's `δ_a`, are quadratic Pisot numbers.[^8]
 
 ## Key Takeaways
 
 - De Spinadel's Metallic Means Family is all `σ_p^q`, the roots of `x² − px − q`. The wiki's `δ_a` is its `q = 1` part.
-- Her golden, silver and bronze are the wiki's. Her copper (`2`) and nickel (`(1 + √13)/2`) are not the wiki's copper (`2 + √5`) and nickel (`(5 + √29)/2`).
+- De Spinadel's golden, silver and bronze are the wiki's. Their copper (`2`) and nickel (`(1 + √13)/2`) are not the wiki's copper (`2 + √5`) and nickel (`(5 + √29)/2`).
 - `σ_4^1 = 2 + √5 = φ³` and `σ_p^1 = [p̄]` are in the paper.
 
 ## Entities & Concepts

@@ -34,7 +34,7 @@ For the cameraman: **171,687 blocks, odd**, area 34,094,639 cells. In the langua
 
 ## The silhouette: a picture of a shape is a castle
 
-Threshold at the median, and for each column take the topmost dark pixel (the cameraman and his tripod are dark against a bright sky). The result is a width-512 skyline with heights from 290 to 448 - a PE 502 castle read off a photograph. Downsampled to 32 columns:
+Threshold at the median, and for each column take the topmost dark pixel (the photographer and the tripod are dark against a bright sky). The result is a width-512 skyline with heights from 290 to 448 - a PE 502 castle read off a photograph. Downsampled to 32 columns:
 
 ```
 skyline (8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 9, 8, 9, 9, 8, 7, 7, 7, 7, 7, 8, 7, 8, 8, 8)
