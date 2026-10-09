@@ -206,6 +206,13 @@ RETIRED = [
     "loses sand through all four sides",
     "is the combinatorial reading of the",
     "both pell sums are one strip",
+    "two castles cut from the same ring of columns",
+    "coincidence of this number",
+    "every reading in this section shows up on it",
+    "another point where fibonacci enters the castle count",
+    "rather than the number of configurations of the base",
+    "no pairing of the height-2 castles cancels",
+    "must be chosen before its count can be searched",
 ]
 RETIRED_RE = [
     (r"\barcs?\b", "planning-file 'arc' vocabulary"),

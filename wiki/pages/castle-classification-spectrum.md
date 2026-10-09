@@ -5,7 +5,7 @@ summary: A classification of individual castles by the spectrum of a graph deriv
 tags: [concept, castle, classification, taxonomy, spectral, adjacency-matrix, laplacian, ramanujan, smith-theorem, dynkin, tree-castle, isospectral, single-castle-predicate, dft, sparse-spectrum]
 sources: [castle-classification, oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-10-04
+updated: 2026-10-09
 ---
 
 # Castle classification - spectral types
@@ -90,7 +90,7 @@ A **sparse-spectrum castle** has its skyline discrete Fourier transform (DFT) `�
 - **One class** - a support that is bin 0 plus one class `D_{w/q}` has exactly `φ(q)` bins besides bin 0, where `φ(q)` counts the numbers from 1 to `q` sharing no factor with `q`. Two such bins happen only for `q = 3, 4, 6`.
 - **Prime width** - every non-rectangular castle has all `w` bins nonzero, so none is sparse.
 
-Quantized tones are the standard approximately sparse case. The telephone tone castles of [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] put 99.997-99.999% of their mean-removed energy in four bins, yet 30 of the 35 have every bin nonzero, so none is a member.
+Quantized tones are the standard approximately sparse case. The telephone tone castles of [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] put 99.997-99.999% of their mean-removed energy in the bins of their tones (two bins for one tone, four for a tone pair), yet 30 of the 35 have every bin nonzero, so none is a member.
 
 Which supports survive the proper-castle even-block clause is open.
 

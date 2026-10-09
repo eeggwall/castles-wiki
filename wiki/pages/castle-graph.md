@@ -5,7 +5,7 @@ summary: Every castle carries a graph - filled cells as vertices, orthogonal nei
 tags: [concept, castle, graph, polyomino, spectral, adjacency, laplacian, tree, bipartite, planar, cycle-rank, fibonacci, jacobsthal, oeis, bridge, pedagogy]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-17
-updated: 2026-10-04
+updated: 2026-10-09
 ---
 
 # The castle graph - bridge to graph theory
@@ -100,7 +100,7 @@ Characteristic polynomial `x² − x − (h − 1)`, growth constant
 
 The `h = 2` row counts the tree castles of height 2 (some column reaches height 2), the Fibonacci castles; the rows `h ≥ 3` are `T_h(w)`. All OEIS numbers verified offset-exact.[^2]
 
-- **The `h = 2` row is Fibonacci minus one.** The tree castles of height 2 are the Fibonacci castles ([[fibonacci-castle](pages/fibonacci-castle.md)]), `F_{w+2} − 1` of width `w`, a castle interpretation of `A000071`. It sits next to the prime-castle count `F_{n−1}` on [[prime-castles](pages/prime-castles.md)] as another point where Fibonacci enters the castle count, and it puts the tree-castle family on rung 1 of the [[metallic-means](pages/metallic-means.md)] ladder ([[castle-classification](pages/castle-classification.md)] Axis 8: tree castles of height 2 are a **golden width growth castle**).
+- **The `h = 2` row is Fibonacci minus one.** The tree castles of height 2 are the Fibonacci castles ([[fibonacci-castle](pages/fibonacci-castle.md)]), `F_{w+2} − 1` of width `w`, a castle interpretation of `A000071`. It puts the tree-castle family on rung 1 of the [[metallic-means](pages/metallic-means.md)] ladder ([[castle-classification](pages/castle-classification.md)] Axis 8: tree castles of height 2 are a **golden width growth castle**).
 - **The `h = 3` slice is Jacobsthal**, a castle interpretation of `A001045`. Heights 4 and 5 give `A006130` and `A006131`, and every height `h` gives a member of the "`k`-Fibonacci" family `a(n) = a(n−1) + k · a(n−2)` with `k = h − 1`. None of these growth constants for `h ≥ 3` is a metallic mean, so tree castles trace out a distinct algebraic family from the metallic one, indexed by `h`.
 
 The area-graded (q-analogue) count is worked out on [[tree-castle-by-area](pages/tree-castle-by-area.md)]: the bivariate generating function (GF) is `T_h(x, q) = (1 + P_h(q) x)/(1 − q x − q P_h(q) x²)`, summing over widths gives one C-finite sequence per height, and each hits a named OEIS sequence - at `h = 2` the tree castles of height 2 with area `A` number `A000930(A + 1) − 1` (Narayana's cows minus one), the term `A077868(A − 2)` (supergolden growth), `h = 3` is A006498 (golden growth via factorization), `h = 4` is A000570 (tournaments), `h → ∞` is A005251 (plastic squared, a second castle interpretation).

@@ -5,7 +5,7 @@ summary: Hand-curated catalogue of every castle-counting sequence, by the castle
 tags: [analysis, oeis, castle, sequence, catalogue, novelty, submission-candidate, interlink]
 sources: [oeis-mining-pe502]
 created: 2026-09-17
-updated: 2026-10-06
+updated: 2026-10-09
 ---
 
 # Castle sequence catalogue
@@ -218,7 +218,7 @@ The signed tower count `P(k,L) = Σ (−1)^blocks` in the `L`-direction at fixed
 Width-graded counts of the 0/1 transfer-matrix strips ([[reachable-field-census](pages/reachable-field-census.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). The plastic strip (`x³−x−1`) and the non-metallic quadratic strips (`Q(√17)`, `Q(√21)`, …) generate count sequences; their status as of 2026-10-04 is below.
 
 - Plastic strip (height-3, rule `1→3, 2→1, 3→{1,2}`), `3, 4, 5, 7, 9, 12, 16, 21, 28, …` — **known** → [A000931](https://oeis.org/A000931) Padovan (`= A000931(w+9)`, checked `w ≤ 40`, 2026-10-04); the maximal Fibonacci castles of width `w + 3`.
-- The non-metallic quadratic strips `Q(√17)`, `Q(√21)`, `Q(√6)`, `Q(√7)`, `Q(√33)` — **unchecked**, and not yet a sequence: each field is reached by several strip matrices, so one realizing matrix per field must be chosen before its count can be searched.
+- The non-metallic quadratic strips `Q(√17)`, `Q(√21)`, `Q(√6)`, `Q(√7)`, `Q(√33)` — **unchecked**; each field is reached by several strip matrices, so a field has no single count sequence to search.
 
 ### Castles by semi-perimeter
 

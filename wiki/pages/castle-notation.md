@@ -5,7 +5,7 @@ summary: The wiki's symbol conventions in one place, including the sandpile symb
 tags: [concept, castle, notation, reference, signed-tower-count, castle-sign, pedagogy]
 sources: [project-euler-502-solution, project-euler-502-representations, aocp-generating-partitions]
 created: 2026-09-26
-updated: 2026-10-08
+updated: 2026-10-09
 ---
 
 # Castle notation - castles, towers, and the parity term
@@ -121,7 +121,7 @@ The block weight, the semi-perimeter, and the Motzkin-path readings add a second
 | `M_n`, `M(x)` | Motzkin numbers and their GF | [[motzkin-numbers](pages/motzkin-numbers.md)], [[motzkin-castles](pages/motzkin-castles.md)] |
 | Motzkin-path castle | castle type: 1-smooth (`\|c_{i+1} − c_i\| ≤ 1`) with `c_1 = c_w = 1`; `M_{w−1}` of them over all heights | [[castle-classification-shape](pages/castle-classification-shape.md)], [[motzkin-castles](pages/motzkin-castles.md)] |
 | Motzkin strip of height `h` | 1-smooth skylines on **castle** heights `1, …, h` (`h` states); its transfer matrix is `I + A_path` | [[motzkin-castles](pages/motzkin-castles.md)] |
-| ridge castle | castle type: exact height `h`, `c_i ≠ c_{i+1}` unless `c_i = c_{i+1} = h`, so flat runs occur only at the ceiling. `𝟙ᵀR_h^{w−1}𝟙 − (h−1)(h−2)^{w−1}` of them, growing like `δ_{h−1}^w` (golden, silver, bronze, … at `h = 2, 3, 4, …`). At `h = 2`, exchanging heights 1 and 2 maps them onto the Fibonacci castles plus the all-1 row | [[ridge-castle](pages/ridge-castle.md)], [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2, [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] |
+| ridge castle | castle type: exact height `h`, `c_i ≠ c_{i+1}` unless `c_i = c_{i+1} = h`, so flat runs occur only at the ceiling. `𝟙ᵀR_h^{w−1}𝟙 − (h−1)(h−2)^{w−1}` of them, growing like `δ_{h−1}^w` (golden, silver, bronze, … at `h = 2, 3, 4, …`). At `h = 2` and `w ≥ 2`, exchanging heights 1 and 2 maps them onto the Fibonacci castles plus the all-1 row | [[ridge-castle](pages/ridge-castle.md)], [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2, [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] |
 | `R_h` | the ridge rule's transfer matrix on **castle** heights `1, …, h`: `R_h = J − D` with `J` all-ones and `D = diag(1, …, 1, 0)`, entry 1 when `a ≠ b` or `a = b = h`; characteristic polynomial `(x + 1)^{h−2}(x² − (h−1)x − 1)`, Perron root `δ_{h−1}`. Not `M_h`, which would collide with the tower matrices `M_k` | [[metallic-strip-realizability](pages/metallic-strip-realizability.md)], [[proper-castle-projection](pages/proper-castle-projection.md)] |
 | Fibonacci castle | castle type: exact height 2, no two adjacent height-2 columns (the tree castles at exact height 2); `F_{w+2} − 1` of them | [[fibonacci-castle](pages/fibonacci-castle.md)], [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2, [[castle-graph](pages/castle-graph.md)] |
 | Pell castle | castle type: exact height 3, first column at height 1, neighbouring columns differing by at most 1 (`c_1 = 1`, `\|c_{i+1} − c_i\| ≤ 1`, `max c_i = 3`); the Pell castle strip's strips that reach their ceiling. Example `(1, 2, 3, 2)`; `(1, 2, 2, 1)` is not (never reaches 3). `P⋆_w − 2^{w−1} = A094706(w − 2)` of width `w`, silver growth; the `h = 3` case of the anchored 1-smooth castles | [[pell-castle](pages/pell-castle.md)], [[pell-castle-strip](pages/pell-castle-strip.md)], [[1-smooth-castles](pages/1-smooth-castles.md)] |

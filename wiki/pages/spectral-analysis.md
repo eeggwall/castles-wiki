@@ -5,7 +5,7 @@ summary: The centerpiece hub for spectral methods applied to castles as 2D polyo
 tags: [concept, castle, spectral, transfer-matrix, laplacian, dft, dct, galois, ramanujan-sum, homometric, ihara-zeta, ramanujan, isospectral, determinantal]
 sources: [spectral-analysis]
 created: 2026-09-16
-updated: 2026-10-01
+updated: 2026-10-09
 ---
 
 # Spectral analysis of castles
@@ -119,7 +119,7 @@ Checked on all 408,573 skylines with `w ≤ 9, h ≤ 4` and `w = 10, h ≤ 3`: e
 
 - **Crenellated castles.** Support inside `{0, w/2}` means period 2: the heights alternate between two values. That needs `w` even, since `D_{w/2} = {w/2}` is one bin only then. At odd width an alternating skyline leaks into every bin: `(1,3,1,3,1)` has all 5 bins nonzero, `(1,3,1,3,1,3)` only `{0, 3}`.
 - **Prime width.** The classes are `{0}` and everything else, so every non-rectangular skyline of prime width has all `w` bins nonzero.
-- **Fewest bins.** A pattern repeating every `q` columns needs `φ(q)` bins besides bin 0. A nonconstant skyline has at least `p − 1` of them, `p` the smallest prime dividing `w`. Exactly two besides bin 0 needs `q ∈ {3, 4, 6}`.
+- **Fewest bins.** The class `D_{w/q}` of the waves of exact period `q` has `φ(q)` bins. A nonconstant skyline has at least `p − 1` bins besides bin 0, `p` the smallest prime dividing `w`. Exactly two besides bin 0 needs the class of a period `q ∈ {3, 4, 6}`.
 - **Tones are sparse only approximately.** On [[song-as-castle](pages/song-as-castle.md)], the 2600 Hz tone at 8 kHz is a width-40 castle whose energy, mean removed, sits over 99% in bins 13 and 27. With whole-number heights it cannot be exactly those two: `gcd(13, 40) = 1`, so bin 13 shares its class with all 16 bins coprime to 40. Across the 35 telephone signals of [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] (DTMF, MF, call progress, 2600 Hz) quantized to `h = 256`, the atoms carry 99.997-99.999% of the mean-removed energy, and 30 of the 35 castles have all `w` bins nonzero.
 
 The proper-castle clause of Project Euler 502 (an even number of blocks, [[castle-sign](pages/castle-sign.md)]) is not handled by this argument. Which supports survive it is open.
@@ -132,7 +132,7 @@ The proper-castle clause of Project Euler 502 (an even number of blocks, [[castl
 
 **Skyline energy as an ordering.** Ordering castles by *which* channels carry the energy gives a continuous refinement of the discrete Axis 7 value-pattern types.
 
-### Homometric castles - what the magnitude spectrum cannot hear
+### Homometric castles
 
 Two skylines of the same width are **homometric** when they have the same magnitude spectrum. That is the same as having the same cyclic autocorrelation `a_t = ∑_j c_j c_{j+t}` (indices mod `w`), because `|ĉ_k|²` is the DFT of `a_t`. The word is the crystallographers' term for point sets with the same autocorrelation.[^bg]
 
@@ -155,8 +155,8 @@ The same question in two dimensions, for the set of cells instead of the height 
 ### The DFT against the graph spectra
 
 - **The full transform separates everything.** It is invertible, so it tells apart any two distinct skylines, including every isospectral pair on [[isospectral-castles](pages/isospectral-castles.md)].
-- **The magnitude spectrum fails exactly through the cyclic shift.** Up to 16 cells, mirror images removed, 44 adjacency-cospectral non-isomorphic pairs share their magnitude spectrum: 1 at 10 cells, 6 at 12, 9 at 14, 6 at 15, 22 at 16. So do 4 Laplacian-cospectral pairs, all at 16 cells. In every one, the second castle is a cyclic shift of the first or of its mirror image: two castles cut from the same ring of columns at different seams. No mean flip and no genuine homometric pair appears.[^dft]
-- **Each hears what the other cannot.** The DFT hears the width and the column order; the graph spectrum does not tell `(2)` from `(1,1)`. The graph spectra hear the `2 × 2` blocks, which separate the 11-cell homometric pair.
+- **The magnitude spectrum fails exactly through the cyclic shift.** Up to 16 cells, mirror images removed, 44 adjacency-cospectral non-isomorphic pairs share their magnitude spectrum: 1 at 10 cells, 6 at 12, 9 at 14, 6 at 15, 22 at 16. So do 4 Laplacian-cospectral pairs, all at 16 cells. In every one, the second castle is a cyclic shift of the first or of its mirror image. No mean flip and no genuine homometric pair appears.[^dft]
+- **Each separates pairs the other does not.** The DFT detects the width and the column order; the graph spectrum does not tell `(2)` from `(1,1)`. The graph spectra detect the `2 × 2` blocks, which separate the 11-cell homometric pair.
 
 The smallest pair the magnitude spectrum misses is the second of the two 10-cell adjacency groups, with characteristic polynomial `x¹⁰ − 10x⁸ + 30x⁶ − 28x⁴ + 7x²`. The second castle is the mirror image of the first, shifted two columns:
 
@@ -168,7 +168,7 @@ The smallest pair the magnitude spectrum misses is the second of the two 10-cell
 
 ### Worked example: the 1729 castle
 
-The base-10 digit castle of 1729, `(1, 7, 2, 9)`, is the Hardy-Ramanujan castle of [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)]: width 4, height 9, area 19. Every reading in this section shows up on it.[^hr]
+The base-10 digit castle of 1729, `(1, 7, 2, 9)`, is the Hardy-Ramanujan castle of [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)]: width 4, height 9, area 19.[^hr]
 
 ```
    #
@@ -203,11 +203,11 @@ Parseval checks: `19² + 5 + 13² + 5 = 540 = 4 · (1 + 49 + 4 + 81)`.
 | `D_2` | `ĉ_2` | 13, the alternating digit sum | the test for 11 | `11`: `13 ≡ 2` |
 | `D_1` | `ĉ_1, ĉ_3` | `2 ± i`, from `Q mod (y² + 1) = y + 2` | the test for 101 (alternate two-digit blocks: `29 − 17`) | `101`: `10 + 2 = 12` |
 
-In general the bins of the class of order `q` determine `N mod Φ_q(10)`, and when they all vanish, `Φ_q(10)` divides `N`. At four digits, bin 2 is zero exactly when the alternating digit sum is, the classical test for 11. (This general form is this page's own reasoning, checked on 1729 and on the vanishing case for every digit castle of 2 to 6 digits.)[^hr] That the two real bins, 19 and 13, are both prime factors of `1729 = 7 · 13 · 19` is a coincidence of this number.
+In general the bins of the class of order `q` determine `N mod Φ_q(10)`, and when they all vanish, `Φ_q(10)` divides `N`. At four digits, bin 2 is zero exactly when the alternating digit sum is, the classical test for 11. (This general form is this page's own reasoning, checked on 1729 and on the vanishing case for every digit castle of 2 to 6 digits.)[^hr]
 
 **What the magnitudes pin down.** The magnitude spectrum is `(19, √5, 13, √5)` and the autocorrelation `a_t = (135, 48, 130, 48)`. No width-4 castle outside the cyclic shifts and mirror images of `(1, 7, 2, 9)` shares them, and the mean flip is unavailable because `2 · 19 / 4` is not whole.
 
-**The graph side.** 19 cells, 20 edges, and two `2 × 2` blocks sharing an edge, so 15 spanning trees and sandpile group `Z/15`, the same as the 10-cell cospectral pair ([[sandpile-group](pages/sandpile-group.md)]). Adjacency spectral radius `2.5982`, and Ramanujan ([[ramanujan-castles](pages/ramanujan-castles.md)]). The Fiedler value (the smallest nonzero Laplacian eigenvalue, the bottleneck measure) is `0.046`: two tall towers hang off a four-cell base. Among all 19-cell castles, none with a different graph shares its adjacency or its Laplacian spectrum, so the graph spectrum hears the graph. It does not hear the castle: 29 skylines, mirror images removed, draw that same graph, `(1, 3, 10, 1, 4)` among them, and the DFT tells all 29 apart.[^hr]
+**The graph side.** 19 cells, 20 edges, and two `2 × 2` blocks sharing an edge, so 15 spanning trees and sandpile group `Z/15` ([[sandpile-group](pages/sandpile-group.md)]), the same as the 10-cell adjacency-cospectral pair `(1,1,1,2,3,2)`, `(1,1,2,2,3,1)` of [[isospectral-castles](pages/isospectral-castles.md)]. Adjacency spectral radius `2.5982`, and Ramanujan ([[ramanujan-castles](pages/ramanujan-castles.md)]). The Fiedler value (the smallest nonzero Laplacian eigenvalue, the bottleneck measure) is `0.046`: two tall towers hang off a four-cell base. Among all 19-cell castles, none with a different graph shares its adjacency or its Laplacian spectrum, so the graph spectrum determines the graph. It does not determine the castle: 29 skylines, mirror images removed, draw that same graph, `(1, 3, 10, 1, 4)` among them, and the DFT tells all 29 apart.[^hr]
 
 **Wiki ties:** [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 7 (crenellated = support `{0, w/2}` at even width) and [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] Axis 9 (sparse-spectrum as an individual-castle predicate; low/high-pass as soft variants); [[castle-representations](pages/castle-representations.md)] (the column-height sequence being transformed); [[castle-graph](pages/castle-graph.md)] (horizontal edges from column differences).
 

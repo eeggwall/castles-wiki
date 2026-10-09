@@ -5,7 +5,7 @@ summary: P(k,L) = Σ (−1)^blocks over towers of height ≤ k above a length-L 
 tags: [concept, castle, signed-count, c-finite, oeis, generating-functions]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-13
-updated: 2026-10-06
+updated: 2026-10-09
 ---
 
 # Signed tower count P(k,L)
@@ -38,7 +38,7 @@ P(1,L) = Re((1+i)^{L+1}) = A146559(L+1)      (A146559: GF (1−x)/(1−2x+2x²))
 
 with values `P(1,L) = 1, 0, −2, −4, −4, 0, 8, 16, 16, 0, −32, …` from `L = 0` (re-verified during ingest). Its companion **A009545 is the imaginary part `Im((1+i)^n)`**, and `P(1,L) = A009545(L+3)/2` is a shifted, halved copy, which is why [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] checks matches against OEIS data with offsets.[^2]
 
-**At height 2, odd minus even is not constant.** At height 2, the number of castles of width `w` with an odd number of blocks minus the number with an even number is `P(1,w) − 1 = A146559(w+1) − 1`. The `−1` removes the all-zero string, which has no column at height 2. Each castle of height 2 has a fixed sign `(−1)^{blocks}`, but no pairing of the height-2 castles cancels these signs down to a constant. The castles of height 2 and width 2 show this. There are three, with top rows ■□, □■ and ■■. Each has 2 blocks (the bottom block and one block in row 2), so all three are even, and odd minus even is `−3 = A146559(3) − 1`.[^5]
+**At height 2, odd minus even is not constant.** At height 2, the number of castles of width `w` with an odd number of blocks minus the number with an even number is `P(1,w) − 1 = A146559(w+1) − 1`. The `−1` removes the all-zero string, which has no column at height 2. The castles of height 2 and width 2 show this. There are three, with top rows ■□, □■ and ■■. Each has 2 blocks (the bottom block and one block in row 2), so all three are even, and odd minus even is `−3 = A146559(3) − 1`.[^5]
 
 For castles of height 2 and any width `L`, the sign sum is `P(1,L)`: the sum of `(−1)^r` over the binary strings of length `L`, where the 1s mark the columns at height 2 and `r` is the number of runs of 1s (the number of blocks in row 2). For this height-2 sum, read a string left to right and track two signed counts: strings ending in 0 and strings ending in 1. Appending a 0 to either kind gives a string ending in 0. Appending a 1 continues a run after a 1, or starts a new run after a 0, which flips the sign. At height 2, one column therefore multiplies the pair by the matrix `[[1,1],[−1,1]]`, whose eigenvalues are `1 ± i`, and this gives `P(1,L) = Re((1+i)^{L+1})`.[^6] It is the real-part half of the A146559 comment `(1+i)^n = a(n) + A009545(n)·i`.[^7] Since `1 + i = √2·e^{iπ/4}`, `P(1,L) = 2^{(L+1)/2} cos((L+1)π/4)`. At height 2, each unit of width turns the angle by 45°, so the signs of `P(1,L)` repeat with period 8 (`+, 0, −, −, −, 0, +, +` from `L = 0`). The modulus of `P(1,L)` grows by `√2` per unit of width, a factor of 2 every two units; exactly, `(1+i)^4 = −4` gives `P(1,L+4) = −4·P(1,L)`. For `w ≥ 1` the value `P(1,w)` is never 2, so at height 2 odd minus even is never 1. At height 2 it is −1 when `w ≡ 1 (mod 4)`, where `P(1,w) = 0`.
 

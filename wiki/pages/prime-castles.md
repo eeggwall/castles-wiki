@@ -5,7 +5,7 @@ summary: "Gluing castles at a shared height-1 column makes a free monoid, and it
 tags: [analysis, castle, area, composition, prime-castle, monoid, factorization, fibonacci, convex-castle, parity, q-series, oeis, novel-candidate]
 sources: [oeis-mining-pe502, deutsch-elizalde-2017-bargraphs-dyck-paths]
 created: 2026-09-22
-updated: 2026-10-04
+updated: 2026-10-09
 ---
 
 # Prime castles
@@ -69,9 +69,9 @@ As `h → ∞` the left side of the second form tends to `1/(x(x − 1))`, so th
 | 3 | `0, 1, 0, 2, 1, 3, 3, 5, 6, 9, 11, 16, 20, 28` | `1.3247`, the plastic number `ψ` | `x³ − x − 1` |
 | 4 | `0, 0, 1, 0, 2, 2, 4, 6, 10, 15, 24, 36, 56, 84` | `1.4656`, supergolden | `(x + 1)(x³ − x² − 1)` |
 | 5 | `0, 0, 0, 1, 0, 2, 2, 5, 7, 13, 21, 35, 57, 93` | `1.5342` | `x⁵ − x³ − x² − x − 1` |
-| 6 | `0, 0, 0, 0, 1, 0, 2, 2, 5, 8, 14, 24, 41, 69` | `1.5702` | `(x + 1)(x⁵ − x⁴ − x² − 1)` |
+| 6 | `0, 0, 0, 0, 1, 0, 2, 2, 5, 8, 14, 24, 41, 69` | `1.5701` | `(x + 1)(x⁵ − x⁴ − x² − 1)` |
 | 7 | `0, 0, 0, 0, 0, 1, 0, 2, 2, 5, 8, 15, 25, 44` | `1.5900` | `x⁷ − x⁵ − x⁴ − x³ − x² − x − 1` |
-| 8 | `0, 0, 0, 0, 0, 0, 1, 0, 2, 2, 5, 8, 15, 26` | `1.6014` | `(x + 1)(x⁷ − x⁶ − x⁴ − x² − 1)` |
+| 8 | `0, 0, 0, 0, 0, 0, 1, 0, 2, 2, 5, 8, 15, 26` | `1.6013` | `(x + 1)(x⁷ − x⁶ − x⁴ − x² − 1)` |
 | unrestricted | `F_{n-1}` | `φ = 1.6180` | `x² − x − 1` |
 
 So prime castles of exact height 3 are a plastic area growth class, and those of exact height 4 a supergolden one ([[castle-classification-growth](pages/castle-classification-growth.md)], [[plastic-number](pages/plastic-number.md)]).
