@@ -6,13 +6,12 @@ Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planni
 
 | Slice | Value |
 |---|---|
-| Pages | 217 (97 Concepts / 67 Analyses / 52 Sources / overview) |
-| Fully read and cleaned | 217, every page (the first-pass 21, then 34 batches oldest-first; batches 35-42 for the 21 pages added since, batch 43 for text added to finished pages) |
+| Pages | 215 (97 Concepts / 67 Analyses / 50 Sources / overview) |
+| Fully read and cleaned | 215, every page (the first-pass 21, then 34 batches oldest-first; batches 35-42 for the 21 pages added since, batch 43 for text added to finished pages) |
 | Spot fixes only | 0 |
 | Not started | 0 |
 | Words still to read | 0 |
 | Commits | first pass `908bada`..`0a3e953`; then one commit per batch, `git log --oneline --grep 'deslop batch'`; tooling `a7c53c3` |
-| Rereading rule | a page added or substantially edited after its batch is reread by the same procedure (new pages in age order; edits by `git diff <last batch commit>`) |
 
 ## What the first pass found
 
@@ -277,7 +276,7 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] tone-castle-catalogue (1.2, batches 35-42)
 - [x] sandcastle-relaxation (0.4, batches 35-42)
 
-### Sources (52 pages, 52 fully read)
+### Sources (50 pages, 50 fully read)
 
 - [x] oeis-mining-pe502 (25.6)
 - [x] oeis-height2-hyperbolic-castles (5.9)
@@ -329,8 +328,6 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] deutsch-elizalde-2017-bargraphs-dyck-paths (0.0, batches 35-42)
 - [x] bayer-diaconis-1992-dovetail-shuffle (0.0, batches 35-42)
 - [x] barry-2005-catalan-transform (0.0, batches 35-42)
-- [x] verger-gaugry-2024-salem-minoration (written clean at ingest, 2026-10-09)
-- [x] granger-vercauteren-2005-dlp-algebraic-tori (written clean at ingest, 2026-10-09)
 
 ### Top level (1 page, 1 fully read)
 
