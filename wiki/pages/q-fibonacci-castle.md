@@ -5,7 +5,7 @@ summary: The q-Fibonacci castles are the Fibonacci castles counted with a second
 tags: [concept, castle, castle-type, fibonacci, q-analogue, area, generating-function, parity, supergolden, plastic-number, narayana-cows, carlitz]
 sources: [project-euler-502]
 created: 2026-10-03
-updated: 2026-10-03
+updated: 2026-10-09
 ---
 
 # q-Fibonacci castle
@@ -18,7 +18,7 @@ A [[fibonacci-castle](pages/fibonacci-castle.md)] is a castle of exact height 2 
 Q_w(q)  =  Σ over Fibonacci castles c of width w  of  q^{area(c)}.
 ```
 
-At `q = 1` this is the Fibonacci castle count `F_{w+2} − 1`; the variable `q` refines it by area. The `q` plays the role it has on the area side of the wiki generally, as in the q-Catalan numbers of Pólya and Gessel, which count parallelogram polyominoes by area ([[q-catalan-numbers](pages/q-catalan-numbers.md)]).[^qcat]
+At `q = 1` this is the Fibonacci castle count `F_{w+2} − 1`. Here `q` marks area as in the q-Catalan numbers of Pólya and Gessel, which count parallelogram polyominoes by area ([[q-catalan-numbers](pages/q-catalan-numbers.md)]).[^qcat]
 
 **Example.** The Fibonacci castles of width 3 are `(1,1,2)`, `(1,2,1)`, `(2,1,1)` with 4 cells and `(2,1,2)` with 5, so `Q_3(q) = 3q⁴ + q⁵`.
 
@@ -61,7 +61,7 @@ count  =  1, 2, 3, 5, 8, 12, 18, 27, 40, 59, 87, 128, 188, …   (n = 2, 3, 4, �
        =  A000930(n + 1) − 1,
 ```
 
-one less than Narayana's cows. The growth constant is the supergolden constant `≈ 1.4656`, the real root of `x³ = x² + 1` ([[tree-castle-by-area](pages/tree-castle-by-area.md)], [[castle-classification-growth](pages/castle-classification-growth.md)]). Counted by cells instead of by width, the growth drops from `φ` to supergolden, because a wide castle with few height-2 columns now costs one cell per column.[^exec]
+one less than Narayana's cows. The growth constant is the supergolden constant `≈ 1.4656`, the real root of `x³ = x² + 1` ([[tree-castle-by-area](pages/tree-castle-by-area.md)], [[castle-classification-growth](pages/castle-classification-growth.md)]). Counted by width instead, the growth is `φ`.[^exec]
 
 **Even and odd by number of cells.** The even-block q-Fibonacci castles with `n` cells number
 
@@ -70,7 +70,7 @@ one less than Narayana's cows. The growth constant is the supergolden constant `
 even  =  1, 2, 3, 4, 5, 6, 8, 12, 19, 30, 46, 68, 98, 140, …   (n = 2, 3, …).
 ```
 
-The difference even − odd has generating function `1/(1 − q) − (1 − q²)/(1 − q + q³)`, which gives `1, 2, 3, 3, 2, 0, −2, −3, −2, 1, 5, 8, …` from `n = 2`. The roots of `1 − q + q³` are `−ψ`, with `ψ ≈ 1.3247` the plastic number ([[plastic-number](pages/plastic-number.md)]), and a complex pair of modulus `ψ^{−1/2}`, so the difference changes sign and stays within a constant times `ψ^{n/2}`, far below the supergolden growth of the total.[^exec]
+The difference even − odd has generating function `1/(1 − q) − (1 − q²)/(1 − q + q³)`, which gives `1, 2, 3, 3, 2, 0, −2, −3, −2, 1, 5, 8, …` from `n = 2`. The roots of `1 − q + q³` are `−ψ`, with `ψ ≈ 1.3247` the plastic number ([[plastic-number](pages/plastic-number.md)]), and a complex pair of modulus `ψ^{−1/2}`, so the difference changes sign and stays within a constant times `ψ^{n/2}`, against the supergolden growth of the total.[^exec]
 
 ## Carlitz's q-Fibonacci polynomials: a different statistic
 

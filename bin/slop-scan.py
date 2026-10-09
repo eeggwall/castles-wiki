@@ -176,6 +176,10 @@ RETIRED = [
     "in practice the rounding error fills every class",
     "a new catalan reading of castles",
     "the wiki's second vol. 4a source",
+    "the step-reversal bijection costs nothing",
+    "sylvester's gaps as curvature",
+    "plays the role it has on the area side of the wiki",
+    "now costs one cell per column",
 ]
 RETIRED_RE = [
     (r"\barcs?\b", "planning-file 'arc' vocabulary"),

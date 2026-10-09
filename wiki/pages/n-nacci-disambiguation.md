@@ -5,7 +5,7 @@ summary: Every place the wiki meets the Fibonacci, tribonacci, tetranacci and hi
 tags: [concept, disambiguation, fibonacci, tribonacci, tetranacci, pentanacci, n-nacci, growth-constant, composition, index]
 sources: [algebraic-languages-and-polyominoes-enumeration, dhar-ruelle-sen-verma-1995-algebraic-aspects, aocp-generating-functions, analytic-combinatorics-ch1-ogfs]
 created: 2026-10-02
-updated: 2026-10-03
+updated: 2026-10-09
 ---
 
 # n-nacci disambiguation
@@ -45,7 +45,7 @@ These counts all come from the transfer matrix `[[1,1],[1,0]]` on heights `{1, 2
 - **All castles of exact height 2 by area.** `F_{A+1} − 1`, the `h = 2` row of the spine table ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)], [[castle-snippets-strips](pages/castle-snippets-strips.md)]). The same numbers as the Fibonacci castles, shifted by one: append a height-1 column to a Fibonacci castle of width `w`, read each height-2 column together with the height-1 column after it as a part 2, and each remaining height-1 column as a part 1. This is a bijection from Fibonacci castles of width `w` onto the castles of exact height 2 and area `w + 1`. Example: `(1, 2, 1, 1, 2)` becomes `(1, 2, 1, 2)`.[^exec]
 - **Single-block peaks.** In the (blocks, peaks) table by area on [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)], the diagonal "blocks = peaks + 1" (every peak a single block) has the count `F_{A+1}` by area, the exact-height-2 castles together with the all-1 row.
 
-**Area is a separate refinement: q-Fibonacci castles.** The Fibonacci castles are the castles whose count at width `w` is `F_{w+2} − 1`. Counting the same castles with a second variable `q` for area gives the **q-Fibonacci castles** ([[q-fibonacci-castle](pages/q-fibonacci-castle.md)]), whose polynomial at width `w` is `q^w (f_w(q) − 1)`, `f_w(q) = Σ_m C(w − m + 1, m) q^m`. Collected by number of cells, the q-Fibonacci castles number `1, 2, 3, 5, 8, 12, 18, 27, 40, 59, 87, …` from 2 cells on, one less than Narayana's cows (A000930), growing like the supergolden constant `1.4656…`.[^exec] Separately, the Fibonacci numbers by area come from a larger family: all castles of exact height 2 have `F_{A+1} − 1` members with `A` cells. The name "q-Fibonacci castle" is not Carlitz's q-Fibonacci numbers; see section 8.
+**Area is a separate refinement: q-Fibonacci castles.** Counting the Fibonacci castles with a second variable `q` for area gives the **q-Fibonacci castles** ([[q-fibonacci-castle](pages/q-fibonacci-castle.md)]), whose polynomial at width `w` is `q^w (f_w(q) − 1)`, `f_w(q) = Σ_m C(w − m + 1, m) q^m`. Collected by number of cells, the q-Fibonacci castles number `1, 2, 3, 5, 8, 12, 18, 27, 40, 59, 87, …` from 2 cells on, one less than Narayana's cows (A000930), growing like the supergolden constant `1.4656…`.[^exec] Separately, the Fibonacci numbers by area come from a larger family: all castles of exact height 2 have `F_{A+1} − 1` members with `A` cells. The name "q-Fibonacci castle" is not Carlitz's q-Fibonacci numbers; see section 8.
 
 ### 2. Castles with no height-1 column (a different composition class)
 
@@ -96,12 +96,12 @@ No castle count here. Fibonacci is the example used to teach a method, or a recu
 - **k-Fibonacci tree castles.** Tree castles of exact height `h ≥ 3` by width satisfy `a(n) = a(n−1) + (h−1)a(n−2)` (Jacobsthal at `h = 3`, then A006130, A006131), growing like `(1 + √(4h − 3))/2` ([[castle-graph](pages/castle-graph.md)]). This is one way to extend Fibonacci castles to higher `h`. It leads to quadratic constants, not to the n-nacci ones.
 - **Ridge castles at `h ≥ 3`.** The other extension by width, through the metallic ladder: silver, bronze, copper, … ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
 - **Fractional Fibonacci.** `∇^α a_n = a_{n−1}` is golden only at `α = 1/2`, and the Fibonacci-Pell interpolation is golden only at `α = 0` ([[fractional-recurrences](pages/fractional-recurrences.md)]).
-- **Padovan and Perrin.** The "Fibonacci and Lucas" of the plastic number, with the lag recurrence `a(n) = a(n−2) + a(n−3)` ([[plastic-number](pages/plastic-number.md)]).
+- **Padovan and Perrin.** The impulse-response and trace sequences of the plastic number, as Fibonacci and Lucas are for `φ`, with the lag recurrence `a(n) = a(n−2) + a(n−3)` ([[plastic-number](pages/plastic-number.md)]).
 - **Narayana's cows.** `a(n) = a(n−1) + a(n−3)` (A000930), one more than the number of q-Fibonacci castles with `n − 1` cells (section 1).
 
 ### 8. q-Fibonacci castles and Carlitz's q-Fibonacci numbers: two different things
 
-Two objects carry the name q-Fibonacci and must not be confused. Both are polynomials in `q` that give Fibonacci numbers at `q = 1`, and both can be read on the second rows of Fibonacci castles (0/1 strings of length `w` with no two adjacent 1s), but `q` counts different things:
+Two objects carry the name q-Fibonacci. Both are polynomials in `q` that give Fibonacci numbers at `q = 1`, and both can be read on the second rows of Fibonacci castles (0/1 strings of length `w` with no two adjacent 1s), but `q` counts different things:
 
 | | what `q` counts | polynomial (second rows of length `w`) | at `w = 3` | where |
 |---|---|---|---|---|

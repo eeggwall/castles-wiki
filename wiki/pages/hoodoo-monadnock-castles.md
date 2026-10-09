@@ -5,7 +5,7 @@ summary: "Two unimodal castle types of exact height h whose sides change step si
 tags: [concept, castle, classification, unimodal, distinct-parts, partitions, hindenburg-algorithm, generation, growth-constant, hoodoo-castle, monadnock-castle, implementation, verification]
 sources: [aocp-generating-partitions]
 created: 2026-10-02
-updated: 2026-10-02
+updated: 2026-10-09
 ---
 
 # Hoodoo and monadnock castles
@@ -33,13 +33,13 @@ Both are unimodal, so each has exactly `h` blocks and the Project Euler 502 (PE 
 
 The steps of one side are distinct positive integers, and their sum, the side's rise, is `h` minus the side's outer column, a number from `1` to `h − 1`. Read as a set, a side is a partition into distinct parts of an integer in `1, …, N`. Each such partition gives exactly one hoodoo side, with the steps in increasing order, and exactly one monadnock side, in decreasing order. The same holds for falling sides, with the orders swapped.
 
-So a hoodoo or monadnock castle of width `w` is an ordered pair of distinct-part partitions, each of sum at most `N`, with `a` and `b` parts, `a + b ≤ w − 1`, plus a summit of `w − a − b ≥ 1` columns. Reversing the steps of both sides maps the hoodoo castles onto the monadnock castles with the same `w`, `h`, end columns, side lengths and summit length. The hoodoo of each pair has the smaller area, because its sides lie below the chord between their ends and the monadnock's lie above it.
+So a hoodoo or monadnock castle of width `w` is an ordered pair of distinct-part partitions, each of sum at most `N`, with `a` and `b` parts, `a + b ≤ w − 1`, plus a summit of `w − a − b ≥ 1` columns. Reversing the steps of both sides maps the hoodoo castles onto the monadnock castles with the same `w`, `h`, end columns, side lengths and summit length. When some side has two or more steps, the hoodoo of the pair has the smaller area, because its sides lie below the chord between their ends and the monadnock's lie above it; when both sides are single steps the two castles coincide.
 
 ## Generating them: the Hindenburg algorithm
 
 Knuth's §7.2.1.4 Algorithm H, here the **Hindenburg algorithm** after the 1779 dissertation Knuth takes it from, visits the partitions of `n` into exactly `m` parts in colex order.[^1] Partitions into `m` distinct parts are partitions into `m` parts with the staircase `(m − 1, m − 2, …, 0)` added: the number of partitions of `n` into `m` distinct parts is `part(n − m(m − 1)/2, m)`.[^2] So one call of the Hindenburg algorithm per rise lists every side with `m` steps. Adding a fixed vector keeps colex order, and Theorem H bounds the algorithm's accumulated work by `3·part(n, m) + m`, so the sides come out in colex order at constant amortized cost.[^3]
 
-The algorithm outputs parts largest first. Read that way, a side is a monadnock rising side or a hoodoo falling side; reversed, it is a hoodoo rising side or a monadnock falling side. The generator below builds each hoodoo castle and its monadnock partner from the same pair of partitions, so the step-reversal bijection costs nothing:
+The algorithm outputs parts largest first. Read that way, a side is a monadnock rising side or a hoodoo falling side; reversed, it is a hoodoo rising side or a monadnock falling side. The generator below builds each hoodoo castle and its monadnock partner from the same pair of partitions:
 
 ```python
 def partitions_into(n, m):
@@ -98,13 +98,13 @@ side(h, m) = Σ_{n=1}^{N} part(n − m(m−1)/2, m),
 and Knuth's recurrence `part(n, m) = part(n − 1, m − 1) + part(n − m, m)` and generating function `z^m / ((1 − z)(1 − z²)…(1 − z^m))` compute it.[^4] A side with `m` steps needs a rise of at least `1 + 2 + … + m`, so `m` is at most the largest integer whose triangular number is at most `N`. The first values:[^exec]
 
 ```
- h | side(h,1) side(h,2) side(h,3) side(h,4) | all sides | (all sides)^2
- 4 |     3         1         .         .     |      4    |      16
- 7 |     6         6         1         .     |     13    |     169
-10 |     9        16         7         .     |     32    |    1024
-11 |    10        20        11         1     |     42    |    1764
-13 |    12        30        23         4     |     69    |    4761
-16 |    15        49        53        18     |    135    |   18225
+ h | side(h,1) side(h,2) side(h,3) side(h,4) side(h,5) | all sides | (all sides)^2
+ 4 |     3         1         .         .         .     |      4    |      16
+ 7 |     6         6         1         .         .     |     13    |     169
+10 |     9        16         7         .         .     |     32    |    1024
+11 |    10        20        11         1         .     |     42    |    1764
+13 |    12        30        23         4         .     |     69    |    4761
+16 |    15        49        53        18         1     |    136    |   18496
 ```
 
 `side(h, 1) = h − 1`, and `side(h, 2) = ⌊(h − 2)²/4⌋` (checked for `h ≤ 16`). The castle count at width `w` is a sum over the two side lengths:
@@ -142,9 +142,9 @@ The exact count divided by this estimate is `1.33, 1.16, 1.08, 1.04` at `N = 10,
 
 ## Open threads
 
-1. **Sylvester's gaps as curvature.** Knuth's exercise 14 refines distinct-part partitions by the number of "gaps", adjacent parts differing by more than 1.[^7] On a hoodoo or monadnock side, consecutive steps differing by exactly 1 is the smallest possible bend (second difference ±1), so the gap count is the number of places where a side bends more than the minimum. Counting hoodoo castles by total gap count is not done.
+1. **Sylvester's gaps.** Knuth's exercise 14 refines distinct-part partitions by the number of "gaps", adjacent parts differing by more than 1.[^7] On a hoodoo or monadnock side, consecutive steps differing by exactly 1 is the smallest possible bend (second difference ±1), so the gap count is the number of places where a side bends more than the minimum. Counting hoodoo castles by total gap count is not done.
 2. **Gray codes on sides.** Raising an interior column of a side by 1 adds 1 to the step before it and takes 1 from the step after it, which is the "move one dot" transition of Knuth's partition Gray codes (Savage's construction), restricted to adjacent parts.[^8] Whether the sides at fixed `(h, m)`, or whole hoodoo cells, admit such a tour is open; it is a restricted case of the question on [[castle-native-gray-tour](pages/castle-native-gray-tour.md)].
-3. **Uniform sampling.** The Nijenhuis-Wilf algorithm draws a uniform random partition of `n` from a table of `p(0), …, p(n)`.[^9] A uniform hoodoo castle of a given `(w, h)` needs the analogue for pairs of distinct-part partitions with a joint bound on the number of parts; [[castle-samplers](pages/castle-samplers.md)] has no such sampler yet.
+3. **Uniform sampling.** The Nijenhuis-Wilf algorithm draws a uniform random partition of `n` from a table of `p(0), …, p(n)`.[^9] A uniform hoodoo castle of a given `(w, h)` needs the analogue for pairs of distinct-part partitions with a joint bound on the number of parts; [[castle-samplers](pages/castle-samplers.md)] has no such sampler.
 4. **By area.** Hoodoo and monadnock castles are equinumerous in each `(w, h)` cell but not by area. Their area distributions, and the area gap within each bijection pair, are not computed.
 
 ## Appearances in Sources
