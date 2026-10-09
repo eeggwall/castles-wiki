@@ -5,7 +5,7 @@ summary: Dhar's "Abelian model" generalizes the Bak-Tang-Wiesenfeld sandpile to 
 tags: [paper, source, sandpile, abelian-sandpile, self-organized-criticality, bak-tang-wiesenfeld, toppling-matrix, recurrent-configuration, determinant, green-function, entropy, burning-test, relaxation, laplacian]
 sources: [dhar-1990-self-organized-critical-sandpile]
 created: 2026-09-27
-updated: 2026-09-28
+updated: 2026-10-08
 ---
 
 # Self-organized critical state of sandpile automaton models (Dhar, 1990)
@@ -50,6 +50,7 @@ On the Bethe lattice (details deferred to later work), the probability that an a
 - [[castle-avalanches](pages/castle-avalanches.md)] - Bak-Tang-Wiesenfeld sand on castles; the mean avalanche is Dhar's `G = Δ⁻¹`.
 - [[sandcastle-clock](pages/sandcastle-clock.md)] - the period as the order of one grain, from `φ = 2πΔ⁻¹n`.
 - [[sandpile-census](pages/sandpile-census.md)] - `|K| = det L̃` for every castle to 16 cells; its logarithm is the SOC entropy.
+- [[sandcastle-relaxation](pages/sandcastle-relaxation.md)] - the relaxation spectrum of `W = Σ p_v a_v` on castles, computed exactly as character sums over `K`.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the taught walk-through that uses these results.
 - [[castle-graph](pages/castle-graph.md)] - the graph whose reduced Laplacian is `Δ`.
 
