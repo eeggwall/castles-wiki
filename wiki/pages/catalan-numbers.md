@@ -3,9 +3,9 @@ title: Catalan numbers
 category: Concepts
 summary: C_n = binomial(2n,n)/(n+1) (1,1,2,5,14,42,…) — the counting sequence of Dyck paths, triangulations, non-crossing structures; refined by the Narayana numbers and q-deformed by the q-Catalan numbers. Canonical symbolic-method example: `G = Z × SEQ(G)` → `G(z) = (1−√(1−4z))/2`.
 tags: [concept, catalan, dyck, narayana, generating-functions, combinatorics, symbolic-method]
-sources: [catalan-numbers, analytic-combinatorics-ch1-ogfs]
+sources: [catalan-numbers, analytic-combinatorics-ch1-ogfs, barry-2005-catalan-transform]
 created: 2026-09-13
-updated: 2026-10-06
+updated: 2026-10-08
 ---
 
 # Catalan numbers
@@ -39,6 +39,7 @@ Catalan numbers are the reference point for two castle threads:
 ## Appearances in Sources
 
 - Wikipedia, *Catalan number* (cached to `raw/catalan-numbers-wikipedia.md`) — the standard definitions, closed forms, recurrences, generating function, and canonical interpretations.
+- [[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)] - the Catalan transform `A(x) → A(x c(x))`, a Riordan array whose row sums are `C_n`, and the generalized Ballot transform, whose entries are the ballot numbers `(2k+1)/(n+k+1)·C(2n, n+k)` (A039599); also `M_n = Σ_k C(n, 2k) C_k`.
 - [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] — §I.2 pp. 33-35 gives the canonical symbolic-method derivation `G = Z × SEQ(G)` → `G(z) = (1−√(1−4z))/2`; Figure I.2 p.20 recounts the prehistory (Euler, Segner, Lamé, Catalan).
 
 ## Related Concepts
@@ -48,6 +49,7 @@ Catalan numbers are the reference point for two castle threads:
 - [[marin-2024-polyominoes-in-rectangle](pages/marin-2024-polyominoes-in-rectangle.md)] — `C_m` counts the non-crossing ways to join a row's `m` runs into components, the factor that sizes the row automaton for polyominoes in a rectangle.
 - [[deutsch-elizalde-2017-bargraphs-dyck-paths](pages/deutsch-elizalde-2017-bargraphs-dyck-paths.md)] — castles with semiperimeter minus peaks equal to `m` number `C_m`, through a bijection with Dyck paths.
 - [[motzkin-numbers](pages/motzkin-numbers.md)] — the up/flat/down cousin.
+- [[binomial-transform](pages/binomial-transform.md)] - inserting flat steps into Dyck paths turns `C_k` into `M_n`; on castles, the Motzkin-path castles.
 - [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] — why the castle count is binomial, not Catalan.
 - [[symbolic-method](pages/symbolic-method.md)] — the framework that gives the tree-spec → Catalan-ordinary generating function (OGF) derivation in one line.
 

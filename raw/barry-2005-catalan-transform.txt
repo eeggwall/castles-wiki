@@ -1,0 +1,1504 @@
+                         1
+                                2         Journal of Integer Sequences, Vol. 8 (2005),
+                                    3
+                   47               6
+                                          Article 05.4.4
+                        23 11
+
+
+
+
+         A Catalan Transform and Related
+       Transformations on Integer Sequences
+
+                                                   Paul Barry
+                                                School of Science
+                                        Waterford Institute of Technology
+                                                     Ireland
+                                                 pbarry@wit.ie
+
+                                          Abstract
+         We introduce and study an invertible transformation on integer sequences related
+     to the Catalan numbers. Transformation pairs are identified among classical sequences.
+     A closely related transformation which we call the generalized Ballot transform is also
+     studied, along with associated transformations. Results concerning the Fibonacci,
+     Jacobsthal and Pell numbers are derived. Finally, we derive results about combined
+     transformations.
+
+
+1    Introduction
+In this note, we report on a transformation of integer sequences that might reasonably be
+called the Catalan transformation. It is easy to describe both by formula (in relation to the
+general term of a sequence) and in terms of its action on the ordinary generating function
+of a sequence. It and its inverse can also be described succinctly in terms of the Riordan
+group.
+    Many classical “core” sequences can be paired through this transformation. It is also
+linked to several other known transformations, most notably the binomial transformation.
+    Unless otherwise stated, the integer sequences we shall study will be indexed by N, the
+nonnegative integers. Thus the Catalan numbers, with general term C(n), are described by
+                                                   µ ¶
+                                               1    2n
+                                     C(n) =
+                                             n+1 n
+with ordinary generating function given by
+                                                               √
+                                                          1−    1 − 4x
+                                                 c(x) =                .
+                                                               2x
+
+                                                           1
+In the following, all sequences an will have offset 0, that is, they begin a0 , a1 , a2 , . . .. We use
+the notation 1n to denote the all 10 s sequence 1, 1, 1, . . . with ordinary generating function
+1/(1 − x) and 0n to denote the sequence              ¡ 0 ¢1, 0, 0, 0, . . . with ordinary generating function 1.
+                                  n
+This is A000007. We have 0 = δn,0 = n as an integer sequence. This notation allows us
+to regard . . . (−2)n , (−1)n , 0n , 1n , 2n , . . . as a sequence of successive binomial transforms (see
+next section).
+    In order to characterize the effect of the so-called Catalan transformation, we shall look
+at its effect on some common sequences, including the Fibonacci and Jacobsthal numbers.
+The Fibonacci numbers [18] are amongst the most studied of mathematical objects. They
+are easy to define, and are known to have a rich set of properties. Closely associated to the
+Fibonacci numbers are the Jacobsthal numbers [19]. In a sense that will be made exact below,
+they represent the next element after the Fibonacci numbers in a one-parameter family of
+linear recurrences. These and many of the integer sequences that will be encountered in this
+note are to be found in The On-Line Encylopedia of Integer Sequences [9], [10]. Sequences
+in this database will be referred to by their Annnnnn number. For instance, the Catalan
+numbers are A000108.
+    The Fibonacci numbers F (n) A000045 are the solutions of the recurrence
+
+                                   an = an−1 + an−2 , a0 = 0, a1 = 1
+
+with
+                                      n   0 1 2 3 4 5 6 ...
+                                    F (n) 0 1 1 2 3 5 8 . . .
+    The Jacobsthal numbers J(n) A001045 are the solutions of the recurrence
+
+                                  an = an−1 + 2an−2 , a0 = 0, a1 = 1
+
+with
+                                    n   0 1 2 3 4 5 6 ...
+                                   J(n) 0 1 1 3 5 11 21 . . .
+                                          2n (−1)n
+                                           J(n) =
+                                             −       .
+                                           3      3
+When we change the initial conditions to a0 = 1, a1 = 0, we get a sequence which we will
+denote by J1 (n) A078008, given by
+
+                                     n    0 1 2 3 4 5 6 ...
+                                   J1 (n) 1 0 2 2 6 10 22 . . .
+
+    We see that
+                                           2n = 2J(n) + J1 (n).
+The Jacobsthal numbers are the case k = 2 for the one-parameter family of recurrences
+
+                                  an = an−1 + kan−2 , a0 = 0, a1 = 1
+
+
+
+                                                       2
+where the Fibonacci numbers correspond to the case k = 1. The Pell numbers P ell(n)
+A000129 are the solutions of the recurrence
+
+                               an = 2an−1 + an−2 , a0 = 0, a1 = 1
+
+with
+                                n     0 1 2 3 4 5 6 ...
+                             P ell(n) 0 1 2 5 12 29 70 . . .
+The Pell numbers correspond to the case k = 2 of the one-parameter family of recurrences
+
+                               an = kan−1 + an−2 , a0 = 0, a1 = 1
+
+where again the Fibonacci numbers correspond to the case k = 1.
+
+
+2      Transformations and the Riordan Group
+We shall introduce transformations that operate on integer sequences. An example of such a
+transformation that is widely used in the study of integer sequences is the so-called binomial
+transform [16], which associates to the sequence with general term an the sequence with
+general term bn where
+                                             n µ ¶
+                                            X    n
+                                      bn =           ak .
+                                            k=0
+                                                 k
+If we consider the sequence to be the vector (a0 , a1 , . . .) then we obtain the binomial transform
+of the sequence by multiplying
+                             ¡ i ¢this (infinite) vector with the lower-triangle matrix Bin whose
+(i, j)-th element is equal to j :
+                                                                    
+                                     1      0 0 0 0         0    ...
+                                    1      1 0 0 0         0    ... 
+                                                                    
+                                    1      2 1 0 0         0    ... 
+                                                                    
+                             Bin =  1      3 3 1 0         0    ... 
+                                   
+                                                                     
+                                    1      4 6 4 1         0    ... 
+                                                                    
+                                    1      5 10 10 5       1    ... 
+                                     ..     .. .. .. ..     ..
+                                                                    
+                                                                 ...
+                                      .      . .   . .       .
+
+Note that we index matrices starting at (0, 0). This transformation is invertible, with
+                                          n µ ¶
+                                         X   n
+                                    an =       (−1)n−k bk .
+                                         k=0
+                                             k
+
+
+
+
+                                                 3
+We note that Bin corresponds to Pascal’s triangle. Its row sums are 2n , while its diagonal
+sums are the Fibonacci numbers F (n + 1). The inverse matrix Bin−1 has form
+                                                                   
+                                  1   0     0     0    0 0 ...
+                              −1 1         0     0    0 0 ... 
+                                                                   
+                              1 −2 1             0    0   0  . . . 
+                                                                   
+                     Bin−1 =  −1 3 −3 1               0 0 ... 
+                             
+                                                                    
+                              1 −4 6 −4 1 0 . . . 
+                                                                   
+                              −1 5 −10 10 −5 1 . . . 
+                                  ..   ..    ..   ..    .. .. . .
+                                                                   
+                                   .    .     .    .     . .      .
+
+    If A(x) is the ordinary generating function of the sequence an , then the generating func-
+tion of the transformed sequence bn is (1/(1 − x))A(x/(1 − x)).
+    The Riordan group is a set of infinite lower-triangular matrices, where each matrix is
+defined by a pair of generating functions g(x) = 1+g1 x+g2 x2 +. . . and f (x) = f1 x+f2 x2 +. . .
+where f1 6= 0 [8]. The associated matrix is the matrix whose k-th column is generated by
+g(x)f (x)k (the first column being indexed by 0). The matrix corresponding to the pair g, f
+is denoted by (g, f ) or R(g, f ). The group law is then given by
+
+                                  (g, f ) ∗ (h, l) = (g(h ◦ f ), l ◦ f ).
+
+ The identity for this law is I = (1, x) and the inverse of (g, f ) is (g, f ) −1 = (1/(g ◦ f¯), f¯)
+ where f¯ is the compositional inverse of f .
+     If M is the matrix (g, f ), and a = {an } is an integer sequence with ordinary generating
+ function A (x), then the sequence Ma has ordinary generating function g(x)A(f (x)).
+                                                                       1    x
+     For example,the Binomial matrix Bin is the element ( 1−x            , 1−x ) of the Riordan group,
+                                        1   x
+ while its inverse is the element ( 1+x , 1+x ). It can be shown more generally [11] that the matrix
+                       ¡ n+ak ¢
+with general term m+bk          is the element (xm /(1 − x)m+1 , xb−a /(1 − x)b ) of the Riordan group.
+¡This
+  2n+ak
+       result
+        ¢      will be used in a later section, along with characterizations of terms of the form
+   n+bk
+          [11]. As an example, we cite the result that the lower triangular matrix with general
+        ¡ 2n ¢     ¡ 2n ¢                                                     √
+term n−k = n+k             is given by the Riordan array ( √1−4x  1
+                                                                     , 1−2x−2x 1−4x ) = ( √1−4x
+                                                                                            1
+                                                                                                , xc(x)2 )
+                  √
+where c(x) = 1− 2x1−4x is the generating function of the Catalan numbers.
+                                                    1                                 1
+   A lower-triangular matrix that is related to ( √1−4x , xc(x)2 ) is the matrix ( √1−4x , x2 c(x)2 ).
+This is no longer a proper Riordan array: it is a stretched Riordan array, as described in [1].
+                                                                    1
+The row sums of this array are then the diagonal sums of ( √1−4x        , xc(x)2 ), and hence have
+            Pbn/2c ¡2(n−k)¢
+expression k=0         n
+                            .
+
+
+3     The Catalan transform
+We initially define the Catalan transformation by its action on ordinary generating functions.
+For this, we let A(x) be the generating function of a sequence. The Catalan transform of
+that sequence is defined to be the sequence whose generating function is A(xc(x)). The
+Catalan transform thus corresponds to the element of the Riordan group given by (1, xc(x)).
+
+                                                    4
+                                          1
+This has bivariate generating function 1−xyc(x) . That this transformation is invertible is
+demonstrated by
+
+Proposition 1. The inverse of the Catalan transformation is given by
+
+                                     A(x) → A(x(1 − x)).
+
+Proof. We prove a more general result. Consider the Riordan matrix (1, x(1 − kx)). Let
+(g ∗ , f¯) denote its Riordan inverse. We then have
+
+                                 (g ∗ , f¯)(1, x(1 − kx)) = (1, x).
+
+Hence
+
+                           f¯(1 − k f¯) = x ⇒ k f¯2 − f¯ + x = 0
+                                                         √
+                                                    1 −    1 − 4kx
+                                            ⇒ f¯ =                 .
+                                                          2k
+Since g = 1, g ∗ = 1/(g ◦ f¯) = 1 also, and thus
+                                                                √
+                                              −1           1−    1 − 4kx
+                             (1, x(1 − kx))        = (1,                 ).
+                                                                 2k
+Setting k = 1, we obtain
+                                  (1, x(1 − x))−1 = (1, xc(x))
+Taking inverses, we obtain
+                                  (1, xc(x))−1 = (1, x(1 − x))
+as required.
+                                                                                    1
+We note that in the sequel, the following identities will be useful: c(x(1 − x)) = 1−x and
+          1
+c(x) = 1−xc(x) .
+   In terms of the Riordan group, the Catalan transform and its inverse are thus given
+by the elements (1, xc(x)) and (1, x(1 − x)). The lower-triangular matrix representing the
+Catalan transformation has the form
+                                                               
+                                      1 0 0 0 0 0 ...
+                                    0 1 0 0 0 0 ... 
+                                                               
+                                    0 1 1 0 0 0 ... 
+                                                               
+                                    0 2 2 1 0 0 ... 
+                           Cat =                               
+                                    0 5 5 3 1 0 ... 
+                                                               
+                                    0 14 14 9 4 1 . . . 
+                                      .. ..   .. .. .. .. . .
+                                                               
+                                       . .     . . . .        .
+
+Where convenient, we shall denote this transformation by Cat. We note the the row sums
+                                                             1      1
+of this matrix have generating function given by (1, xc(x)) 1−x = 1−xc(x) = c(x). That is, the
+matrix Cat has the Catalan numbers as row sums.
+
+                                                    5
+   The inverse Catalan transformation Cat−1 has the form
+                                                                                  
+                                  1    0   0    0    0 0                       ...
+                                 0    1   0    0    0  0                      ... 
+                                                                                  
+                                 0 −1     1    0    0 0                       ... 
+                                                                                  
+                           −1    0    0  −2    1    0  0                      ... 
+                      Cat =                                                       
+                                 0    0   1 −3      1 0                       ... 
+                                                                                  
+                                 0    0   0    3 −4 1                         ... 
+                                   ..  ..  ..   ..   .. ..
+                                                                                  
+                                                                               ...
+                                    .   .   .    .    . .
+                                                           ¡ k ¢
+The general term of the matrix (1, x(1 − x)) is given by n−k     (−1)n−k . This can be shown
+by observing that the ¡k−th   ¢ column of (1, x(1 − x)) has generating function (x(1 − x)) k .
+       n            k       k      n−k
+But [x ](x(1 − x)) = n−k (−1) . We note also that the bivariate generating function of
+                      1
+(1, x(1 − x)) is 1−xy(1−x) .
+    We now characterize the general term of the matrix for the Catalan transform.
+
+Proposition 2. The general term T (n, k) of the Riordan matrix (1, c(x)) is given by
+                                           k µ ¶µ     ¶
+                                           X  k   j/2
+                              T (n, k) =                            (−1)n+j 22n−k .
+                                           j=0
+                                                    j           n
+
+Proof. We seek [xn ](xc(x))k . To this end, we develop the term (xc(x))k as follows:
+                                               µ        √           ¶k
+                        k       k          k       1−    1 − 4x
+                       x c(x)       = x
+                                                        2x
+                                         1        √
+                                    =      k
+                                             (1 − 1 − 4x)k
+                                         2
+                                               k µ ¶
+                                         1 X k             √
+                                    =      k
+                                                        (−   1 − 4x)j
+                                         2 j=0 j
+                                                  µ ¶
+                                         1 X k
+                                    =                   (−1)j (1 − 4x)j/2
+                                         2k j       j
+                                         1 X k
+                                                  µ ¶          X µj/2¶
+                                    =      k
+                                                        (−1) j
+                                                                           (−4x)i
+                                         2 j        j           i
+                                                                      i
+                                         1 X k
+                                                  µ   ¶        X j/2¶
+                                                                   µ
+                                    =                   (−1) j
+                                                                           (−4)i xi
+                                         2k j       j           i
+                                                                      i
+                                              µ
+                                         X k X j/2¶      µ     ¶
+                                    =                             (−1)i+j 22i−k xi
+                                          j
+                                                j     i
+                                                            i
+                       Pk     ¡k¢¡j/2¢
+Thus [xn ](xc(x))k =    j=0    j    n
+                                         (−1)n+j 22n−k .
+
+
+
+                                                            6
+   The above proposition shows that the Catalan transform of a sequence an has general
+term bn given by
+                               n X k µ ¶µ j ¶
+                              X       k   2 (−1)n+j 22n−k a .
+                         bn =                              k
+                              k=0 j=0
+                                      j   n
+The following proposition gives alternative versions for this expression.
+Proposition 3. Given a sequence an , its Catalan transform bn is given by
+                                     n          µ        ¶
+                                    X       k     2n − k
+                           bn =                            ak
+                                    k=0
+                                         2n − k    n − k
+                                     n     µ           ¶
+                                    X    k 2n − k − 1
+                               =                         ak
+                                    k=0
+                                         n    n  −  k
+or                           n X n                      µ        ¶µ ¶
+                            X         2k + 1        k−j     2n     k
+                       bn =                    (−1)                   aj .
+                            j=0 k=0
+                                    n +  k + 1            n −  k   j
+The inverse transformation is given by
+                                            bn/2c µ    ¶
+                                             X   n−k
+                                an       =                (−1)k bn−k
+                                           k=0
+                                                   k
+                                            n µ        ¶
+                                           X      k
+                                         =               (−1)n−k bk .
+                                           k=0
+                                                n −  k
+
+Proof. Using [12] (3.164) we have
+                                         k µ ¶µ j ¶
+                       2n−k          n
+                                         X  k
+        T (n, k) = 2          (−1)                2   (−1)j
+                                 j=0
+                                      j    n
+                                 ½             µµ            ¶ µ            ¶¶¾
+                      2n−k     n       n k−2n     2n − k − 1     2n − k − 1
+                  = 2      (−1) (−1) 2                        −
+                                                    n−1              n
+                    µ             ¶ µ              ¶
+                       2n − k − 1       2n − k − 1
+                  =                 −
+                         n−1                 n
+                       µ           ¶      µ           ¶
+                    k 2n − k − 1         k 2n − k − 1
+                  =                   =                 .
+                    n       n−1         n      n−k
+But
+                       µ          ¶                       µ     ¶
+                     k 2n − k − 1     k 2n − k − (n − k) 2n − k
+                                    =
+                     n   n−k          n      2n − k         n−k
+                                                        µ     ¶
+                                      k 2n − k − n + k 2n − k
+                                    =
+                                      n     2n − k        n−k
+                                             µ        ¶
+                                         k     2n − k
+                                    =
+                                      2n − k n − k
+
+                                                      7
+    This proves the first two assertions of the proposition. The last assertion follows from the
+expression for the general term of the matrix (1, x(1 − x)) obtained above. The equivalence
+of this and the accompanying expression is easily obtained. The remaining assertion will be
+a consequence of results in Section 5.
+
+
+    Using the last proposition, and [9], it is possible to draw up the following representative
+list of Catalan pairs, that is, sequences and their Catalan transforms.
+
+
+
+
+                                               8
+                                      Table 1. Catalan pairs
+           an                             bn                     an                 bn
+           0n                             0 n
+                                                               A000007            A000007
+           1n                           C(n)
+                                         ¡2n¢                    1n               A000108
+           2n                              n ¢
+                                        ¡ 2n                   A000079            A000984
+         2n − 1                                                A000225            A001791
+          Pk−1 ¡n¢                     ¡n−1
+                                          2n
+     2n − j=0
+                                              ¢
+                j                        n−k
+                                                               various            various
+           n                     3nC(n)/(n + 2)                A001477            A000245
+         n¡+¢1                       C(n ¢ + 1)                A000027         A000108(n + 1)
+                n
+                                   ¡ 2n
+             2 ¢
+                                  5 n−2 /(n + 3)           A000217(n − 1)         A000344
+           ¡n+1                    ¡2n+1¢
+             2 ¢
+                                 4 n−1 /(n + 3)                A000217            A002057
+           ¡n+2                    ¡2n+2¢
+                2
+                                 3 n /(n + 3)              A000217(n + 1)         A000245
+        0n − (−1)n               Fine’s sequence                  -               A000957
+      (1 + (−1)n )/2             Fine’s sequence           A000035(n + 1)      A000957(n + 1)
+          2 − 0n                   (2 − 0n )C(n)               A040000            A068875
+                                           xc(x)
+           F (n)                    G.f. x+√1−4x               A000045               -
+                                              1
+         F (n + 1)                  G.f. x+√1−4x           A000045(n + 1)         A081696
+                               Pb(n−1)/2c    ¡2n−2j−2¢
+            J(n)                  j=0                          A001045            A014300
+                               Pbn/2c ¡2n−2j−1n−1      n
+                                                                               A026641(n) + 0n
+                                                 ¢
+         J(n + 1)                                  +0      A001045(n + 1)
+                               Pnj=0 ¡n+k−1n−1¢      n−k
+           J1 (n) √             k=0      k
+                                                (−1)           A078008            A072547
+           πn
+    2 sin( 3 + π3 )/ 3                    1 n
+                                                               A010892               1n
+      (−1)n F(n + 1)                   (−1)   n              n
+                                                         (−1) A000045(n + 1)       (−1)n
+   n
+ 2 2 (cos( πn
+            4
+              ) + sin( πn
+                        4
+                          ))              2n                   A009545            A000079
+
+We note that the result above concerning Fine’s sequence A000957 is implicit in the work
+[2]. We deduce immediately that the generating function for Fine’s sequence can be written
+as
+                         x                2x                  x
+                               2
+                                 =          √        =                .
+                   1 − (xc(x))     1 + 2x + 1 − 4x      1 + x − xc(x)
+See also [7].
+
+
+4     Transforms of a Jacobsthal family
+From the above, we see that the Jacobsthal numbers J(n) transform to give the sequence
+with general term
+                                b(n−1)/2c µ             ¶
+                                   X        2n − 2j − 2
+                                          j=0
+                                                      n−1
+
+and generating function
+                                                xc(x)
+                                                               .
+                                       (1 + xc(x))(1 − 2xc(x))
+
+
+                                                  9
+This prompts us to characterize the family of sequences with general term
+                                 b(n−1)/2c µ            ¶
+                                    X        2n − 2j − 2 j
+                                                         k
+                                    j=0
+                                                n − 1
+
+where the transform of the Jacobsthal numbers corresponds to the case k = 1. Re-casting
+the ordinary generating function of the Jacobsthal numbers as
+                                       x              x(1 − x)
+                                                =
+                                (1 + x)(1 − 2x)   (1 − x2 )(1 − 2x)
+we see that the Jacobsthal numbers are the case k = 1 of the one-parameter family of
+sequences with generating functions
+                                              x(1 − x)
+                                                             .
+                                          (1 − kx2 )(1 − 2x)
+For instance, the sequence for k = 0 has g.f. x(1−x)1−2x
+                                                          which is 0, 1, 1, 2, 4, 8, 16, . . .. For k = 2,
+we obtain 0, 1, 1, 4, 6, 16, . . ., or A007179. The general term for these sequences is given by
+                          √              √        √            √
+                         ( k)n−1 (1 − k) (− k)n−1 (1 + k)                 2n
+                                       √      +            √        +
+                              2(2 − k)               2(2 + k)           4−k
+for k 6= 4. They are solutions of the family of recurrences
+                                    an = 2an−1 + kan−2 − 2kan−3
+where a0 = 0, a1 = 1 and a2 = 1.
+Proposition 4. The Catalan transform of the generalized Jacobsthal sequence with ordinary
+generating function
+                                          x(1 − x)
+                                     (1 − kx2 )(1 − 2x)
+has ordinary generating function given by
+                                             x
+                                  √
+                                    1 − 4x(1 − k(xc(x))2 )
+and general term
+                                      b(n−1)/2c µ              ¶
+                                        X           2n − 2j − 2 j
+                                                                 k .
+                                        j=0
+                                                       n−1
+                                                  x(1−x)              xc(x)(1−xc(x))
+Proof. By definition, the Catalan transform of (1−kx 2 )(1−2x) is (1−kx2 c(x)2 )(1−2xc(x)) . But c(x)(1−
+                               √
+xc(x)) = 1 and 1 − 2xc(x) = 1 − 4x. Hence we obtain the first assertion.
+   We now recognize that
+                                              µ                        ¶
+                               1                    1          2     2       1
+                   √                       = √              , x c(x)               .
+                                         2
+                     1 − 4x(1 − k(xc(x)) )        1 − 4x                  1 − kx
+
+But this is bn/2c
+           P       ¡2n−2j ¢ j
+              j=0     n
+                           k . The second assertion follows from this.
+
+                                                      10
+For example, the transform of the sequence 0, 1, 1, 2, 4, 8, . . . can be recognized as 2n−2
+                                                                                        ¡     ¢
+                                                                                          n−1
+                                                                                                =
+Pb(n−1)/2c ¡2n−2j−2¢ j
+  j=0         n−1
+                    0.
+   As noted in A014300, the Catalan transform of the Jacobsthal numbers corresponds to
+                                                                                  1
+the convolution of the central binomial numbers (with generating function √1−4x      ) and Fine’s
+                                                     x
+sequence A000957 (with generating function 1−(xc(x))2 ). The above proposition shows that
+the Catalan transform of the generalized Jacobsthal numbers corresponds to a convolution of
+the central binomial numbers and the “generalized” Fine numbers with generating function
+    x
+1−k(xc(x))2
+            .
+   Using the inverse Catalan transform, we can express the general term of this Jacobsthal
+family as
+                     bn/2c µ             b(n−i−1)/2c µ
+                      X n − i¶              X                           ¶
+                                                       2n − 2i − 2j − 2 j
+                                       i
+                                  (−1)                                    k .
+                      k=0
+                             i               j=0
+                                                          n −  i −  1
+
+This provides us with a closed form for the case k = 4 in particular.
+   We now wish to find an expression for the transform of J1 (n). To this end, we note that
+                        bn/2c µ                      b(n−1)/2c µ
+                                                                                 1 + (−1)n
+                                              ¶                              ¶
+                        X         2n − 2j − 1     n
+                                                        X        2n − 2j − 1
+           J(n + 1) →                           +0 =                           +           .
+                        j=0
+                                     n−1                j=0
+                                                                    n − 1            2
+
+Then J1 (n) = J(n + 1) − J(n) is transformed to
+    n−1)                                   n−1
+b       cµ                            b 2 cµ             ¶ b(n−1)/2c
+    X2
+           2n − 2j − 1
+                       ¶
+                           1 + (−1)n X       2n − 2j − 2      X µ2n − 2j − 2¶ 1 + (−1)n
+                         +          −                     =                  +          .
+    j=0
+              n−1              2       j=0
+                                                n−1           j=0
+                                                                     n−2          2
+
+The first term of the last expression deserves comment. Working with generating functions,
+it is easy to show that under the Catalan transform, we have
+
+                                                 πn      √      πn     1 + (−1)n
+                   (−1)n F (n + 1)/2 + cos(         )/2 + 3 sin( )/6 →           .
+                                                  3              3         2
+           Pb(n−1)/2c ¡2n−2j−2¢
+Hence        j=0        n−2
+                                   is the Catalan transform of
+                                                          πn      √      πn
+                      J1 (n) − (−1)n F (n + 1)/2 − cos(      )/2 − 3 sin( )/6.
+                                                           3              3
+
+5          The Generalized Ballot Transform
+In this section, we introduce and study a transformation that we will link to the general-
+ized ballot numbers studied in [6]. For this, we define a new transformation Bal as the
+composition of the Catalan transform and the Binomial transform:
+
+                                            Bal = Cat ◦ Bin.
+
+The Riordan matrix formulation of this transformation is thus given by
+
+                                                     11
+                            Bal = Cat ◦ Bin
+                                         µ                  ¶
+                                                   1     x
+                                  = (1, c(x))         ,
+                                                1−x 1−x
+                                    µ                      ¶
+                                           1         xc(x)
+                                  =              ,
+                                      1 − xc(x) 1 − xc(x)
+                                  = (c(x), c(x) − 1) = (c(x), xc(x)2 ).
+
+In similar fashion, we can find the Riordan description of the inverse of this transformation
+by
+
+                             Bal−1 = Bin−1 ◦ Cat−1
+                                         1      x −1
+                                   = (      ,       ) (1, c(x))−1
+                                       1−x 1−x
+                                         1      x
+                                   = (      ,       )(1, x(1 − x))
+                                       1+x 1+x
+                                         1        x           x
+                                   = (      .1,       (1 −       ))
+                                       1+x 1+x              1+x
+                                         1        x
+                                   = (      ,          ).
+                                       1 + x (1 + x)2
+
+The general¡ term       of Bal−1¡ is easily  derived from the last expression: it is [xn ](xk (1 +
+   −2k+1      n+k          n−k      n+k     n−k
+                  ¢                     ¢
+x)       ) = n−k (−1)            = 2k (−1) . Alternatively we can find the general term in the
+matrix product of Bin , or nk (−1)n−k , with Cat−1 , or n−k
+                            −1
+                                                              ¡ k ¢
+                                                                    (−1)n−k to get the equivalent
+                                    ¡ ¢
+            Pk+n n k
+                                 (−1)n−k .
+                    ¡   ¢¡     ¢
+expression j=0        j    j−k
+    We now examine the general term of the transformation Bal = (c(x), c(x) − 1) =
+(c(x), xc(x)2 ). An initial result is given by
+
+Proposition 5. The general term T (n, k) of the Riordan matrix (c(x), c(x) − 1) is given by
+                              j+1 µ ¶µ
+                            k X            ¶µ                   ¶
+                            X      k   j+1                  i/2
+               T (n, k) =                                         (−1)k+n+i+1 22n+j+1
+                            j=0 i=0
+                                          j      i        n+j+1
+
+and
+                                          2k+1
+                                          Xµ             ¶µ         ¶
+                                      n         2k + 1         j/2
+                   T (n, k) = 2.4                                    (−1)n+k+j+1 .
+                                          j=0
+                                                   j          n+k+1
+
+Proof. The first assertion follows by observing that the k−th column of (c(x), c(x) − 1)
+has generating function c(x)(c(x) − 1)k . We are thus looking for [xn ]c(x)(c(x) − 1)k . Ex-
+panding and substituting for c(x) yields the result. The second assertion follows by taking
+[xn ]c(x)(xc(x)2 )k .
+   We now show that this transformation has in fact a much easier formulation, correspond-
+ing to the generalized Ballot numbers of [6]. We recall that the generalized Ballot numbers
+
+                                                     12
+or generalized Catalan numbers [6] are defined by
+                                        µ       ¶
+                                            2n    2k + 1
+                             B(n, k) =                   .
+                                           n+k n+k+1
+
+B(n, k) can be written as
+                              µ   ¶                µ      ¶ µ            ¶
+                              2n      2k + 1          2n           2n
+                  B(n, k) =                      =           −
+                             n+k n+k+1               n−k         n−k−1
+                                    ¡ 2n ¢
+where the matrix with general term n−k     is the element
+     µ                     √      ¶ µ                           ¶ µ                    ¶
+           1      1 − 2x − 1 − 4x              1       c(x) − 1         1            2
+       √        ,                    = √            ,x           = √         , xc(x)
+         1 − 4x           2x                 1 − 4x       x           1 − 4x
+                                                           1−x     x
+of the Riordan group [11]. The inverse of this matrix is ( 1+x , (1+x) 2 ) with general term
+         2n   n+k
+(−1)n−k n+k
+            ¡     ¢
+               2k
+                    .
+Proposition 6. The general term of the Riordan matrix (c(x), c(x) − 1) is given by
+                                      µ      ¶
+                                         2n     2k + 1
+                            B(n, k) =                   .
+                                        n+k n+k+1
+Proof. We provide two proofs - one indirect, the other direct. The first, indirect proof is
+instructive as it uses properties
+                         ¡ 2n ¢ ¡of 2n
+                                    Riordan
+                                       ¢    arrays.
+    We have B(n, k) = n−k − n−k−1 . Hence the generating function of the k−th column
+of the matrix with general term B(n, k) is given by
+                               1                     1
+                         √          (c(x) − 1)k − √       (c(x) − 1)k+1
+                             1 − 4x                1 − 4x
+Then
+        1                      1                                      1       c(x) − 1
+  √          (c(x) − 1)k − √        (c(x) − 1)k+1 = (c(x) − 1)k ( √         −√         )
+      1 − 4x                 1 − 4x                                 1 − 4x      1 − 4x
+                                                                      1
+                                                  = (c(x) − 1)k ( √        (1 − (c(x) − 1)))
+                                                                    1 − 4x
+                                                                  −c(x) + 2
+                                                  = (c(x) − 1)k ( √         )
+                                                                     1 − 4x
+                                                  = (c(x) − 1)k c(x)
+
+But this is the generating function of the k−th column of (c(x), c(x) − 1).
+   The  second,
+     P2k+1   ¡2k+1direct
+                   ¢¡ j/2proof
+                           ¢ follows  from the last proposition. We first seek to express the
+                                j
+term j=0        j    n+k+1
+                            (−1) in simpler terms. Using [12] (3.164), this is equivalent to
+
+½                         µµ                          ¶ µ                          ¶¶¾
+      n+k+1 2k+1−2(n+k+1)    2n + 2k + 2 − 2k − 1 − 1     2n + 2k + 2 − 2k − 1 − 1
+ (−1)      2                                           −
+                                      n+k                        n+k+1
+
+                                               13
+                      ©¡ 2n ¢ ¡ 2n ¢ª
+or (−1)n+k+1 2.41 n     n+k
+                            −  n+k+1
+                                      . Hence
+                                                    2k+1
+                                                    Xµ         ¶µ           ¶
+                                                        2k + 1       j/2
+                  B(n, k) =           n
+                                    2.4 (−1)n+k+1
+                                                                              (−1)j
+                                                  j=0
+                                                           j      n + k + 1
+                                    ½µ       ¶ µ             ¶¾
+                                         2n           2n
+                                =             −
+                                        n+k       n+k+1
+                                    ½µ       ¶ µ             ¶¾
+                                         2n           2n
+                                =             −
+                                        n−k       n−k−1
+                                    µ      ¶
+                                       2n     2k + 1
+                                =                     .
+                                      n+k n+k+1
+
+
+The numbers B(n, k) have many combinatorial uses. For instance,
+
+                                     B(n, k) = D(n + k + 1, 2k + 1)
+
+where D(n, k) is the number of Dyck paths of semi-length n having height of the first peak
+equal to k [7]. B(n, k) also counts the number of paths from (0, −2k) to (n − k, n − k) with
+permissible steps (0, 1) and (1, 0) that don’t cross the diagonal y = x [6].
+
+                                                           k
+                                                              ¡2n+k¢     k
+                                                                           ¡2n+k¢
+We recall that the classical ballot numbers are given by 2n+k    n
+                                                                     = 2n+k n+k
+                                                                                  [5].
+
+We now define the generalized Ballot transform to be the transformation corresponding
+to the Riordan array Bal = Cat ◦ Bin = (c(x), c(x) − 1) = (c(x), xc(x) 2 ). By the above, the
+generalized Ballot transform of the sequence an is the sequence bn where
+                                     n µ      ¶
+                                    X     2n      2k + 1
+                              bn =                        ak .
+                                    k=0
+                                         n+k n+k+1
+
+In terms of generating functions, the generalized Ballot transform maps the sequence with
+ordinary generating function g(x) to the sequence with generating function c(x)g(c(x) −
+1) =c(x)g(xc(x)2 ) where c(x) is the generating function of the Catalan numbers. We then
+have
+Proposition 7. Given a sequence an , its inverse generalized Ballot transform is given by
+                                    n          µ      ¶
+                                            n−k n + k
+                                 X
+                            bn =       (−1)             ak .
+                                  k=0
+                                                  2k
+
+                                                                    1       x
+If an has generating function g(x) then bn has generating function 1+x g( (1+x) 2 ).
+
+
+
+Proof. We have seen that Bal−1 = Bin−1 ◦ Cat−1 = ( 1+x    1     x
+                                                            , (1+x) 2 ). The second statement
+
+follows from this. We have also seen that the general term of Bal−1 is (−1)n−k n+k
+                                                                                 ¡ ¢
+                                                                                   2k
+                                                                                      . Hence
+the transform of the sequence an is as asserted.
+
+                                                    14
+We can now characterize the Catalan transformation as
+
+                                   Cat = Bal ◦ Bin−1 .
+
+Since the general term of Bin−1 is (−1)n−k nk we immediately obtain the expression
+                                          ¡ ¢
+
+Pn      Pn     2k+1      k−j 2n
+                             ¡       ¢¡k¢
+  j=0     k=0 n+k+1 (−1)     n−k       j
+                                            for the general term of Cat.
+
+The following table identifies some Ballot transform pairings [9].
+
+                       Table 2. Generalized Ballot transform pairs
+                  an               bn           an                 bn
+                       n             n             n
+                 (−1)              0          (−1)              A000007
+                   0n             C(n)
+                                  ¡2n¢       A000007            A000108
+                   1n               n
+                                                1n              A000984
+                     n              1
+                   2             1−3xc(x)
+                                             A000079            A007854
+                                            xc(x)
+                      n                                 A001477        A000346(n − 1) + 0n /2
+                                       P1−4c(x)
+                                         n  ¡2n¢
+                   n+1                      k=0 k       A000027              A032443
+                                              n
+                  2n + 1                     4 ¢
+                                           ¡2n+1        A005408              A000302
+              (1 + (−1)n )/2                  n ¢
+                                           ¡2n+1        A059841              A088218
+                   2 − 0n                   n+1
+                                                        A040000              A001700
+                (2n + 0n )/2 √                -         A011782              A090317
+        cos( 2πn
+               3
+                 ) + sin( 2πn
+                           3
+                              )/ 3           1n         A057078                 1n
+                 πn          πn
+           cos( 2 ) +  √sin(  2
+                                 )           2n            -                 A000079
+               πn               πn
+         cos( 3 ) + 3 sin( 3 )               3n         A057079              A000244
+                    F (n)                    −          A000045              A026674
+                 F (n + 1)                   −       A000045(n + 1)          A026726
+
+In terms of the Riordan group, the above implies that the generalized Ballot transform and its
+                                                             1       x
+inverse are given by the elements (c(x), x(c(x)−1)/x) and ( 1+x  , (1+x) 2 ). The lower-triangular
+
+matrix representing the Ballot transformation thus has the form
+                                                                  
+                                      1 0 0 0 0 0 ...
+                                    1 1 0 0 0 0 ... 
+                                                                  
+                                    2 3 1 0 0 0 ... 
+                                                                  
+                            Bal =  5 9 5 1 0 0 . . . 
+                                                                  
+                                    14 28 20 7 1 0 . . . 
+                                                                  
+                                    42 90 75 35 9 1 . . . 
+                                      ..   ..  ..  .. .. .. . .
+                                                                  
+                                       .    .   .   . . .       .
+
+
+
+
+                                                      15
+while the inverse Ballot transformation is represented by the matrix
+                                                                      
+                                    1      0     0   0    0 0 ...
+                                 −1       1     0   0    0 0 ... 
+                                                                      
+                                 1 −3           1   0    0 0 ... 
+                                                                      
+                           −1    −1       6   −5    1    0   0  . . .
+                      Bal = 
+                                                                       
+                                                                       
+                                 1 −10         15 −7     1 0 ... 
+                                                                      
+                                 −1     15   −35   28   −9   1  . . . 
+                                    ..     ..    ..   ..   .. .. . .
+                                                                      
+                                     .      .     .    .    . .      .
+
+The first matrix is A039599, while the absolute value of the second matrix is A085478.
+
+
+6    The Signed Generalized Ballot transform
+For completeness, we consider a transformation that may be described as the signed gener-
+alized Ballot transform. As a member of the Riordan group, this is the element (c(−x), 1 −
+c(−x)) = (c(−x), xc(−x)2 ). For a given sequence an , it yields the sequence with general
+term                            n           µ        ¶
+                               X
+                                        n−k     2n       2k + 1
+                          bn =     (−1)                           ak .
+                               k=0
+                                              n +  k   n +  k + 1
+Looking at generating functions, we get the mapping
+
+                     A(x) → c(−x)A(1 − c(−x)) = c(−x)A(xc(−x)2 ).
+
+The inverse of this map is given by
+                                              X µn + k ¶
+                                       bn =                      ak
+                                              k=0
+                                                         2k
+
+or, in terms of generating functions
+                                                         µ              ¶
+                                        1                       x
+                                A(x) →     A                                .
+                                       1−x                   (1 − x)2
+
+Example mappings under this transform are 0n → (−1)n C(n), 1n → 0n , F (2n + 1) → 1n .
+   We can characterize the effect of its inverse on the power sequences n → k n as follows:
+the image of k n under the inverse signed generalized Ballot transform is the solution to the
+recurrence
+                                  an = (k + 2)an−1 − an−2
+with a0 = 1, a1 = F (2k + 1).
+     The matrices that represent this inverse pair of transformations are, respectively, the
+alternating sign versions of A039599 and A085478.
+     The latter matrix has a growing literature in which it is known as the DFF triangle [3],
+                                                                 1      x
+[4], [14]. As an element of the Riordan group, it is given by ( 1−x , (1−x) 2 ).
+
+
+
+                                                    16
+   It has a “companion” matrix with general element
+                              µ         ¶             µ    ¶
+                                n+k+1         n+k+1 n+k
+                       bn,k =             =
+                                 2k + 1        2k + 1   2k
+
+called the DFFz triangle. This is the element
+                                   µ                   ¶
+                                         1       x
+                                             ,
+                                     (1 − x)2 (1 − x)2
+
+of the Riordan group with inverse
+                      µ                      ¶
+                        1 − c(−x)
+                                  , 1 − c(−x) = (c(−x)2 , xc(−x)2 ).
+                            x
+
+Another number triangle that is related to the above [14] has general term
+                                               µ      ¶
+                                           2n n + k
+                                  an,k =                .
+                                         n+k      2k
+
+Taking a0,0 = 1, we obtain the matrix
+                                                           
+                                1 0 0 0 0 0             ...
+                               2 1 0 0 0 0             ... 
+                                                           
+                               2 4 1 0 0 0             ... 
+                                                           
+                               2 9 6 1 0 0             ... 
+                                                           
+                               2 16 20 8 1 0           ... 
+                                                           
+                               2 25 50 35 10 1         ... 
+                                .. .. .. .. .. ..
+                                                           
+                                                        ...
+                                 . .   .  .  . .
+
+which is the element ( 1+x , x ) of the Riordan group [11]. Its inverse is the matrix
+                       1−x (1−x)2
+                                                                    
+                             1    0   0   0  0             0     ...
+                         −2      1   0   0  0             0     ... 
+                                                                    
+                        
+                            6 −4     1   0  0             0     ... 
+                                                                     
+                         −20    15  −6   1  0             0     ... 
+                                                                    
+                        
+                           70  −56  28  −8  1             0     ... 
+                                                                     
+                         −252 210 −120 45 −10             1     ... 
+                             ..   ..  ..  .. ..            ..
+                                                                    
+                                                                 ...
+                              .    .   .   .  .             .
+                            ¡ 2n ¢
+with general element (−1)n−k n−k   which is the element
+                              µ                      √       ¶
+                                      1      1 + 2x − 1 + 4x
+                                  √        ,
+                                    1 + 4x          2x
+                                           √
+of the Riordan group. We note that 1+2x−
+                                       2x2
+                                           1+4x
+                                                is the generating function of (−1)n C(n).
+
+                                               17
+    Applying Bin2 to this matrix yields the matrix
+                                                                
+                                  1 0 0 0 0 0                ...
+                                0 1 0 0 0 0                 ... 
+                                                                
+                                2 0 1 0 0 0                 ... 
+                                                                
+                                0 3 0 1 0 0                 ... 
+                                                                
+                                6 0 4 0 1 0                 ... 
+                                                                
+                                0 10 0 5 0 1                ... 
+                                  .. .. .. .. .. ..
+                                                                
+                                                             ...
+                                   . . . . . .
+                         1           2
+which is the element ( √1−4x 2 , xc(x )) of the Riordan group.
+
+
+
+
+7     An Associated Transformation
+We briefly examine a transformation associated to the Ballot transformation. Unlike other
+transformations in this study, this is not invertible. However, it transforms some “core”
+sequences to other “core” sequences, and hence deserves study. An example of this transfor-
+mation is given by
+                                         bn/2c µ
+                                          X n¶
+                                   Mn =             C(k)
+                                          k=0
+                                                 2k
+where Mn is the nth Motzkin number A001006. In general, if an is the general term of a
+sequence with generating function A(x) then we define its transform to be
+                                             bn/2c µ      ¶
+                                             X         n
+                                      bn =                  ak
+                                             k=0
+                                                       2k
+
+which has generating function
+                                        1      x2
+                                           A(        ).
+                                      1 − x (1 − x)2
+The opening assertion concerning the Motzkin numbers follows from the fact that
+                                                    √
+                                   x2        1 − x − 1 − 2x − 3x2
+                              µ          ¶
+                        1
+                            c              =
+                      1−x       (1 − x)2             2x2
+
+which is the generating function of the Motzkin numbers.
+   The effect of this transform on the power sequences n → k n is easy to describe. We have
+                                   1           1−x
+                                       →                    .
+                                1 − kx   1 − 2x − (k − 1)x2
+
+In other words, the sequences n → k n are mapped to the solutions of the one parameter
+family of recurrences
+                               an = 2an−1 + (k − 1)an−2
+
+                                               18
+satisfying a0 = 1, a1 = 1.
+    For instance,
+                 bn/2c µ
+                                                                 √          √
+                              ¶
+                 X         n k
+                                2 = 1, 1, 3, 7, 17, . . . = ((1 + 2)n + (1 − 2)n )/2
+                 k=0
+                           2k
+
+which is the sequence A001333. Related to this is the following formula for the Pell numbers
+A000129
+                               bn/2c µ       ¶
+                                X        n
+                                               2k = P ell(n).
+                                k=0
+                                      2k + 1
+
+Under this mapping, the central binomial numbers 2n
+                                                    ¡ ¢
+                                                     n
+                                                         are mapped to the central trinomial
+numbers A002426 since
+                         1        1         1                   1
+                   √          →      p                  =√              .
+                       1 − 4x   1 − x 1 − 4x2 /(1 − x)2    1 − 2x − 3x2
+
+This is an interesting result, as the central trinomial numbers are also the inverse binomial
+transform of the central binomial numbers :
+                          1        1        1                 1
+                    √          →      p               =√              .
+                        1 − 4x   1 + x 1 − 4x/(1 + x)    1 − 2x − 3x2
+                                                                                    1     x 2
+This transformation can be represented by the “generalized” Riordan array ( 1−x       , (1−x) 2 ). As
+
+such, it possesses two interesting factorizations. Firstly, we have
+
+                            x2
+                µ                  ¶ µ                ¶
+                     1                     1       x
+                        ,        2
+                                     =         ,         (1, x2 ) = Bin ◦ (1, x2 ).
+                  1 − x (1 − x)          1−x 1−x
+
+Thus the effect of this transform is to “aerate” a sequence with interpolated zeros and then
+follow this with a binomial transform. This is obvious from the following identity
+                               bn/2c µ             n µ ¶
+                                                      n 1 + (−1)k
+                                            ¶
+                                X        n        X
+                                             ak =                 ak/2
+                                k=0
+                                         2k       k=0
+                                                      k     2
+
+where we use the usual convention that ak/2 is to be interpreted as 0 when k is odd, that is
+when k/2 is not an integer. Secondly, we have
+
+                      x2                              x2
+          µ                 ¶ µ                               ¶µ              ¶
+              1                       1−x                           1     x
+                 ,            =                ,                       ,        .
+            1 − x (1 − x)2       1 − 2x + 2x2 1 − 2x + 2x2        1−x 1−x
+
+As pointed out in [1], this transformation possesses a left inverse. Using the methods of     √ [1]
+or otherwise, it is easy to see that the stretched Riordan array (1, x2 ) has left inverse (1, x).
+
+
+
+
+                                                   19
+Hence the first factorization yields
+                                               ¶∼1
+                                  x2
+                     µ
+                           1
+                              ,                        = (Bin ◦ (1, x2 ))∼1
+                         1 − x (1 − x)2
+                                                            √
+                                                       = (1, x) ◦ Bin−1
+                                                            √
+                                                                µ               ¶
+                                                                     1       x
+                                                       = (1, x)           ,
+                                                                   1+x 1+x
+                                                            µ             √    ¶
+                                                                1           x
+                                                       = =       √ ,        √
+                                                              1+ x 1+ x
+
+where we have used (.)∼1 to denote left-inverse.
+    It is instructive to represent these transformations by their general terms. We look at
+(1, x2 ) first. We have
+                                                            ∞ µ ¶                     µ            ¶
+                      n     2 k         n     2k       n
+                                                            X  0           2k+j             0
+                    [x ](x ) = [x ]x               = [x ]              x          =
+                                                            j=0
+                                                                  j                       n − 2k
+
+Hence
+                                 bn/2c µ       ¶       n X n µ ¶µ         ¶
+                                  X         n         X       n      0
+                          bn =                   ak =                       aj .
+                                  k=0
+                                            2k        k=0 j=0
+                                                              j   j −  2k
+
+We now wish to express bn in terms of an . We have
+                                                            ∞ µ ¶
+                           √
+                                                                                      µ      ¶
+                      n           k      2n    k       2n
+                                                            X  0           k+j          0
+                    [x ]( x) = [t ]t = [t ]                            t          =            .
+                                                            j=0
+                                                                   j                  2n − k
+
+Hence
+                                        2n X
+                                           k µ                  ¶µ ¶
+                                        X              0          k
+                               an =                                  (−1)k−j bj .
+                                        k=0 j=0
+                                                     2n − k       j
+
+We√can use the methods of [1] to further elucidate the relationship between (1, x 2 ) and
+(1, x). Letting b(x) be the generating function  P∞ of the   image of the sequence an under
+     2                         2                          k
+(1, x ), we see that b(x) = a(x ) where a(x) = k=0 ak x . We wish to find the general term
+an in terms of the bn . We have a(x) = [b(t)|x = t2 ] and so
+                                                              √
+                             an = [xn ]a(x) = [xn ](b(t)|t = x)
+                                 = [w2n ](b(t)|t = w)
+                                     1 2n−1 0              1
+                                 =     [t    ](b (t))2n =    2n.b2n
+                                    2n                    2n
+                                 = b2n .
+
+Table 3 displays a list of sequences and their transforms under this transformation. Note
+that by the above, we can recover the original sequence an by taking every second element
+of the inverse binomial transform of the transformed sequence bn .
+
+                                                           20
+                                 Table 3. Transform pairs
+                        an                    bn                 an      bn
+                        0n                   1  n
+                                                               A000007   1n
+                        1n             (2√n + 0n )/2 √ n
+                                                                 1n    A011782
+                                            n
+                                     (1+ 2) +(1− 2) )
+                        2n                     2
+                                                               A000079 A001333
+                                                   1       0
+                                                 (   ) − (   )
+                        n           n2n−3 − n 4 n              A001477    -
+                                               (1−x)3
+                       n+1             G.f. (1−2x)2            A000027 A045891
+                                    n
+                      2n + 1       2 (n + 2)/2, n > 1 A005408 A087447
+                            n
+                                       Pbn/4c ¡ n ¢
+                  (1 + (−1)
+                       ¡2n¢   )/2          k=0       4k
+                                                               A059841 A038503
+                                                  1
+                         n
+                                      G.f. 1−2x−3x2
+                                           √                   A000984 A002426
+                       C(n)               Motzkin              A000108 A001006
+
+8    Combining transformations
+We finish this note by briefly looking at the effect of combining transformations. For this, we
+will take the Fibonacci numbers as an example. We look at two combinations: the Catalan
+transform followed by the binomial transform, and the Catalan transform followed by the
+inverse binomial transform. For the former, we have
+                          µ               ¶               µ                     ¶
+                                1     x                      1      x      x
+            Bin ◦ Cat =            ,        (1, xc(x)) =         ,      c(     ) .
+                             1−x 1−x                        1−x 1−x 1−x
+while for the latter we have
+                           µ         ¶              µ                ¶
+                −1            1   x                    1   x    x
+           Bin ◦ Cat =          ,      (1, xc(x)) =      ,   c(   ).
+                             1+x 1+x                  1+x 1+x 1+x
+Applying the first combined transformation to the Fibonacci numbers yields the sequence
+0, 1, 4, 15, 59, 243, . . . with generating function
+                                            √           √
+                                           ( 5x − 1 − x − 1)
+                                               √           p
+                                     2((x − 1) 5x − 1 − x x − 1))
+or                                   √
+                                       1 − 6x + 5x2 − (1 − 5x + 4x2 )
+                                                                      .
+                                          2(1 − x)(1 − 6x + 4x2 )
+Applying the second combined transformation (Catalan transform followed by the inverse
+binomial transform) to the Fibonacci numbers we obtain the sequence 0, 1, 0, 3, 3, 13, 26, . . .
+with generating function
+                                          √
+                                 (1 + 2x) 1 − 2x − 3x2 − (1 − x − 2x2 )
+                                                                        .
+                                          2(1 + x)(1 − 2x − 4x2 )
+It is instructive to reverse these transformations. Denoting the first by Bin ◦ Cat we wish
+to look at (Bin ◦ Cat)−1 = Cat−1 ◦ Bin−1 . As elements of the Riordan group, we obtain
+                                µ            ¶ µ                          ¶
+                                   1      x             1       x(1 − x)
+                  (1, x(1 − x))        ,       =              ,             .
+                                  1+x 1+x           1 + x − x2 1 + x − x2
+
+                                              21
+Applying the inverse transformation to the family of functions k n with generating functions
+  1
+1−kx
+     , for instance, we obtain
+
+                         1       1                   1
+                            2   kx(1−x)
+                                        =                          .
+                       1+x−x 1−       2
+                                          1 − (k − 1)x + (k − 1)x2
+                                        1+x−x
+
+In other words, the transformation (Bin ◦ Cat)−1 takes a power k n and maps it to the
+solution of the recurrence
+                             an = (k − 1)an−1 − (k − 1)an−2
+with initial conditions a0 = 1, a1 = k − 1. In particular, it takes the constant sequence 1n
+to 0n .
+    The Jacobsthal numbers J(n), for instance, are transformed into the sequence with or-
+                                 x(1−x)
+dinary generating function 1+x−3x  2 +4x3 −2x4 with general term
+
+
+                n µ      ¶X k µ ¶
+               X      k         k
+        bn   =                     (−1)n−j J(j)
+               k=0
+                    n − k j=0 j
+                                       √ n
+                √                        3 √          n+1       n
+                                                                  √       n+1
+                                                                              o
+             = 2 3 sin(πn/3 + π/3)/9 −       ( 3 − 1)     − (−1) ( 3 + 1)       .
+                                       18
+   We now look at (Bin−1 ◦ Cat)−1 = Cat−1 ◦ Bin. As elements of the Riordan group, we
+obtain                                     µ                       ¶
+                               1    x            1       x(1 − x)
+               (1, x(1 − x))(    ,    )=               ,             .
+                              1−x 1−x        1 − x + x2 1 − x + x2
+Applying this inverse transformation to the family of functions k n with generating functions
+  1
+1−kx
+     , for instance, we obtain
+
+                           1           1                    1
+                                               =                          .
+                       1 − x + x2 1 − kx(1−x)2   1 − (k + 1)x + (k + 1)x2
+                                        1−x+x
+
+
+Thus the transformation (Bin−1 ◦ Cat)−1 takes a power k n and maps it to the solution of
+the recurrence
+                            an = (k + 1)an−1 − (k + 1)an−2
+with initial conditions a0 = 1, a1 = k + 1. In particular, it takes the constant sequence 1n to
+  n
+2 2 (cos( πn
+           4
+             ) + sin( πn
+                       4
+                         )) (the inverse Catalan transform of 2n ).
+     As a final example, we apply the combined transformation Cat−1 ◦ Bin to the Fibonacci
+numbers. We obtain the sequence
+
+             0, 1, 2, 2, 0, −5, −13, −21, −21, 0, 55, 144, 233, 233, 0, −610, −1597, . . .
+
+whose elements would appear to be Fibonacci numbers. This sequence has generating func-
+tion
+                                      x(1 − x)
+                                                       .
+                               1 − 3x + 4x2 − 2x3 + x4
+
+                                                  22
+In closed form, the general term of the sequence is
+                   s      √                       s     √
+                 n   2 2 5         πn π       1 n 2 2 5         2πn 2π
+               φ       +      sin(    + )−( )         −    sin(    +   )
+                     5    25        5   5     φ     5   25       5   5
+             √
+where φ = 1+2 5 .
+
+
+9    Acknowledgements
+The author would like to acknowledge with gratitude the constructive remarks of an anony-
+mous referee, whose careful reading of the original manuscript led to a number of valuable
+suggestions that have improved this version.
+
+
+References
+[1] C. Corsani, D. Merlini, R. Sprugnoli, Left-inversion of combinatorial sums, Discrete Math.
+    180 (1998), 107–122.
+[2] E. Deutsch and L. Shapiro, A survey of the Fine numbers, Discrete Math. 241 (2001),
+    241–265.
+[3] G. Ferri, M. Faccio and A. D’Amico, A new numerical triangle showing links with Fi-
+    bonacci numbers, Fibonacci Quart. 29 (1991), 316–320.
+[4] G. Ferri, M. Faccio and A. D’Amico, Fibonacci numbers and ladder network impedance,
+    Fibonacci Quart. 30 (1992), 62–67.
+[5] P. Hilton and J. Pedersen, Catalan numbers, their generalizations, and their uses, Math.
+    Intelligencer 13 (2) (1991), 64–75.
+[6] S. Ng, Some identities and formulas involving generalized Catalan number, 2004. Preprint
+    available at http://saturn.cs.unp.ac.za/∼siuahn/default.htm.
+[7] P. Peart and W.-J. Woan, Dyck paths with no peaks at height k, J. Integer Sequences,
+    4 (2001), Article 01.1.3.
+[8] L. W. Shapiro, S. Getu, W.-J. Woan and L. C. Woodson, The Riordan group, Discr.
+    Appl. Math. 34 (1991), 229–239.
+[9] N. J. A. Sloane, The On-Line Encyclopedia of Integer Sequences, 2005. Published elec-
+    tronically at http://www.research.att.com/∼njas/sequences/.
+[10] N. J. A. Sloane, The On-Line Encyclopedia of Integer Sequences, Notices Amer. Math.
+    Soc. 50 (2003), 912–915.
+[11] R. Sprugnoli, Riordan arrays and combinatorial sums, Discrete Math. 132 (1994), 267–
+    290.
+
+                                             23
+[12] R.    Sprugnoli,    Combinatorial   Identities,             2004.      Available     at
+    http://www.dsi.unifi.it/∼resp/GouldHW.pdf/.
+
+[13] Y. Sun, The statistic ‘number of udu’s’ in Dyck paths, Discrete Math. 287 (2004),
+    177–186.
+
+[14] Y. Sun, Numerical triangles and several classical sequences, 2004. Preprint available at
+    http://cfc.nankai.edu.cn/publications/04-accepted/Sun-04A2/Triangle.pdf.
+
+[15] W. Trzaska, Modified numerical triangle and the Fibonacci sequence, Fibonacci Quart.
+    29 (1991), 316–320.
+
+[16] E. W. Weisstein, http://mathworld.wolfram.com/BinomialTransform.html/.
+
+[17] E. W. Weisstein, http://mathworld.wolfram.com/CatalanNumber.html/.
+
+[18] E. W. Weisstein, http://mathworld.wolfram.com/FibonacciNumber.html/.
+
+[19] E. W. Weisstein, http://mathworld.wolfram.com/JacobsthalNumber.html/.
+
+
+
+2000 Mathematics Subject Classification: Primary 11B83; Secondary 05A15, 11B37, 11B65.
+Keywords: Integer transforms, Catalan numbers, Fibonacci numbers, Jacobsthal numbers.
+
+Concerned with sequences A000007, A000027,A000035, A000045, A000079, A000108, A000129,
+A000217, A000225, A000245, A000344, A000957, A000984, A001006, A001045, A001333,
+A001477, A001791, A002057, A002426, A005408, A007179, A009545, A010892, A011782,
+A014300, A026641, A026674, A026726, A038503, A039599, A040000, A045891, A059841,
+A068875, A072547, A078008, A081696, A085478, and A087447.
+
+
+Received December 21 2004; revised version received September 20 2005. Published in
+Journal of Integer Sequences, September 20 2005.
+
+Return to Journal of Integer Sequences home page.
+
+
+
+
+                                             24
+

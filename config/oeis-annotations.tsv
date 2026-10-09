@@ -14,6 +14,7 @@ A000129	count	Pell numbers: a(0) = 0, a(1) = 1; for n > 1, a(n) = 2*a(n-1) + a(n
 A000142	supporting	Factorial numbers: n! = 1*2*3*4*...*n (order of symmetric group S_n, number of permutations of n letters).	rainbow castles: exactly h! at width h
 A000217	supporting	Triangular numbers: a(n) = binomial(n+1,2) = n*(n+1)/2 = 0 + 1 + 2 + ... + n.	height-2 castles whose second row is a single run; F(4,2) = C(5,2) = 10
 A000225	count	a(n) = 2^n - 1. (Sometimes called Mersenne numbers, although that name is usually reserved for A001348.)	total height-2 castles (Mersenne): F(w,2) + odd(w,2) = 2^w - 1
+A000302	supporting	Powers of 4: a(n) = 4^n.	Barry Ballot-transform pair: 2n+1 → 4^n
 A000447	count	a(n) = 1^2 + 3^2 + 5^2 + 7^2 + ... + (2*n-1)^2 = n*(4*n^2 - 1)/3.	|P(2m+1,4)| bisection: 4·A000447 = A199833
 A000568	supporting	Number of outcomes of unlabeled n-team round-robin tournaments.	ambient count for unique tournaments; A000568(8) = 6880 is the isomorphism-class count the tree-castle bijection was checked against
 A000570	count	Number of tournaments on n nodes determined by their score vectors.	tree castles of height 4 by area: T_(h=4)(A) = A000570(A+1); Tetali's classification of the four basic unique tournaments (sizes 1, 3, 4, 5) is proved in [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] (JCTB 72:157-159, 1998), ingested to `raw/`
@@ -22,6 +23,8 @@ A000700	supporting	Expansion of Product_{k>=0} (1 + x^(2k+1)); number of partiti
 A000749	supporting	a(n) = 4*a(n-1) - 6*a(n-2) + 4*a(n-3), n > 3, with a(0)=a(1)=a(2)=0, a(3)=1.	sum of every 4th binomial (hyperbolic family, k=3 residue)
 A000930	count	Narayana's cows sequence: a(0) = a(1) = a(2) = 1; thereafter a(n) = a(n-1) + a(n-3).	tree castles of height 2 with n cells number A000930(n+1) - 1 (see A077868); spaced Fibonacci castles of width w number A000930(w+2) - 1
 A000931	plastic	Padovan sequence (or Padovan numbers): a(n) = a(n-2) + a(n-3) with a(0) = 1, a(1) = a(2) = 0.	Padovan (plastic Fibonacci): a(n) = a(n-2) + a(n-3); also palindromic tree castles of n cells = A000931(n+6); maximal Fibonacci castles of width w: A000931(w+6); plastic strip (rule 1->3, 2->1, 3->{1,2}) of width w: A000931(w+9)
+A000957	supporting	Fine's sequence (or Fine numbers): number of relations of valence >= 1 on an n-set; also number of ordered rooted trees with n nodes having root of even degree.	Fine numbers: Catalan transform of 0^n − (−1)^n (Barry Table 1)
+A000984	supporting	Central binomial coefficients: binomial(2*n,n) = (2*n)!/(n!)^2.	central binomials: Catalan transform of 2^n and Ballot transform of 1^n; aerated binomial transform to the central trinomials
 A001006	count	Motzkin numbers: number of ways of drawing any number of nonintersecting chords joining n (labeled) points on a circle.	Motzkin-path castles (1-smooth, end columns at height 1), `=M_{w-1}`
 A001035	supporting	Number of partially ordered sets ("posets") with n labeled elements (or labeled acyclic transitive digraphs).	strip rules whose half-column has nonnegative weights: 3, 19, 219 at heights 2, 3, 4; the rule is a poset on the heights (fractional-width-and-height)
 A001045	count	Jacobsthal sequence (or Jacobsthal numbers): a(n) = a(n-1) + 2*a(n-2), with a(0) = 0, a(1) = 1; also a(n) = nearest integer to 2^n/3.	tree castles of height 3: T_3(w) = J_{w+2} (Jacobsthal)
@@ -93,6 +96,7 @@ A009545	count	Expansion of e.g.f. sin(x)*exp(x).	-P_odd(1,L): even-block minus o
 A010892	supporting	Inverse of 6th cyclotomic polynomial. A period 6 sequence.	period-6 cyclotomic (P_odd(4,L)/2^L)
 A011782	count	Coefficients of expansion of (1-x)/(1-2*x) in powers of x.	all castles by area (unrestricted compositions): 2^(n-1)
 A014105	count	Second hexagonal numbers: a(n) = n*(2*n + 1).	even-block castles of width 3 and odd height: F(3, 2m+1) = A014105(m)
+A014300	supporting	Number of nodes of odd outdegree in all ordered rooted (planar) trees with n edges.	Catalan transform of the Jacobsthal numbers (Barry Table 1)
 A014448	metallic	Even Lucas numbers: a(n) = L(3*n).	even Lucas: trace for copper (a=4)
 A014493	metallic	Odd triangular numbers.	odd triangular numbers (row of A352116)
 A015448	metallic	a(0) = 1, a(1) = 1, and a(n) = 4*a(n-1) + a(n-2) for n >= 2.	copper free strip (`h=5`), `=F_{3n+5}` trisection, growth `φ³`
@@ -103,6 +107,7 @@ A020554	supporting	Number of multigraphs on n labeled edges (without loops).	Ben
 A020555	supporting	Number of multigraphs on n labeled edges (with loops). Also number of genetically distinct states amongst n individuals.	Bender's v*((0,n)): all partitions of a multiset with every element twice
 A023431	count	Generalized Catalan Numbers x^3*A(x)^2 + (x-1)*A(x) + 1 =0.	Motzkin-path castles by semi-perimeter, `=a(s-2)`
 A023432	supporting	Number of Dyck n-paths with ascents and descents of length equal to 1 (mod 3).	strictly alternating bargraphs by semi-perimeter correspond to Motzkin paths with no UD, UU, DD (Deutsch-Elizalde §4.2)
+A026674	supporting	a(n) = T(2n-1,n-1) = T(2n,n+1), T given by A026725.	Ballot transform of the Fibonacci numbers (Barry Table 2)
 A027907	supporting	Triangle of trinomial coefficients T(n,k) (n >= 0, 0 <= k <= 2*n), read by rows: n-th row is obtained by expanding (1 + x + x^2)^n.	unconstrained U/R/D words by final height, the ceiling the castle grammar prunes
 A033887	metallic	a(n) = Fibonacci(3*n + 1).	F(3n+1): copper-delta convergent numerators
 A034182	supporting	Number of not-necessarily-symmetric n X 2 crossword puzzle grids.	polyominoes with bounding box 2 × n (`I(2, n) = Q_{n+1} − 2`)
@@ -113,6 +118,7 @@ A036038	supporting	Triangle T(n,k) read by rows: multinomial coefficients for th
 A038503	count	Sum of every 4th entry of row n in Pascal's triangle, starting at "n choose 0".	odd(w,2) + 1: odd-block height-2 castles (castle comment on OEIS, Oct 2026)
 A038504	supporting	Sum of every 4th entry of row n in Pascal's triangle, starting at "n choose 1".	sum of every 4th binomial (hyperbolic family, k=1 residue)
 A038505	count	Sum of every 4th entry of row n in Pascal's triangle, starting at binomial(n,2).	F(w,2): even-block height-2 castles (castle comment on OEIS, Oct 2026)
+A039599	supporting	Triangle formed from even-numbered columns of triangle of expansions of powers of x in terms of Chebyshev polynomials U_n(x).	matrix of the generalized Ballot transform Cat ∘ Bin: ballot numbers (2k+1)/(n+k+1)·C(2n, n+k)
 A041010	metallic	Numerators of continued fraction convergents to sqrt(8).	numerators of CF convergents to √8
 A041011	metallic	Denominators of continued fraction convergents to sqrt(8).	denominators of CF convergents to √8
 A041018	metallic	Numerators of continued fraction convergents to sqrt(13).	numerators of CF convergents to √13
@@ -150,6 +156,7 @@ A080860	count	a(n) = 10*n^2 + 5*n + 1.	odd(3, 2n+1) = 5 C(2n+1, 2) + 1 exactly; 
 A080934	count	Square array read by antidiagonals of number of Catalan paths (nonnegative, starting and ending at 0, step +-1) of 2n steps with all values less than or equal to k.	Dyck-path castles of height at most h by width: T((w-1)/2, h-1)
 A080936	count	Triangle read by rows: T(n,k) is the number of Dyck paths of semilength n and height k (1 <= k <= n).	Dyck-path castles by (w, h): T((w-1)/2, h-1)
 A082582	count	Expansion of (1 + x^2 - sqrt( 1 - 4*x + 2*x^2 + x^4)) / (2*x) in powers of x.	castles (bargraphs) by semi-perimeter w + #blocks; growth tribonacci squared
+A085478	supporting	Triangle read by rows: T(n, k) = binomial(n + k, 2*k).	|inverse generalized Ballot transform| = C(n+k, 2k), the DFF triangle
 A085810	count	Number of three-choice paths along a corridor of height 5, starting from the lower side.	anchored 1-smooth strips with ceiling 6 (first column 1, heights 1..6), `=a(w)`
 A086510	supporting	Number of n X n real (0,1)-matrices with all eigenvalues >= 0.	strip rules with a real principal square root: 13, 261, 15418 at heights 2, 3, 4 (fractional-width-and-height)
 A087130	metallic	a(n) = 5*a(n-1)+a(n-2) for n>1, a(0)=2, a(1)=5.	trace for nickel (a=5)

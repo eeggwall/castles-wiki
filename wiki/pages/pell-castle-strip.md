@@ -3,9 +3,9 @@ title: "The Pell castle strip - from an AC exercise to the silver ratio in castl
 category: Analyses
 summary: A seminar-shaped analysis. Start with an Analytic Combinatorics end-of-chapter exercise - "extract the recurrence from D(x) = 1/(1−2x−x²)" - read it as a two-atom tiling scheme, and find the castle strip whose width generating function is exactly D(x) - 1-smooth skylines of height at most 3 anchored at the base, counted by the Pell numbers, with silver-ratio growth.
 tags: [analysis, castle, pell, generating-functions, coefficient-matching, seminar, pedagogy, silver-ratio, transfer-matrix]
-sources: [pe502-pell-castle-strip]
+sources: [pe502-pell-castle-strip, barry-2005-catalan-transform]
 created: 2026-09-15
-updated: 2026-10-06
+updated: 2026-10-08
 ---
 
 # The Pell castle strip - from an Analytic Combinatorics (AC) exercise to the silver ratio in castle space
@@ -76,6 +76,16 @@ so the growth constant is `1 + √2`. The count depends on the boundary conditio
 
 The anchored row is the **Pell castle strip**: `e_1ᵀ (I − xM)^{−1} 𝟙 = 1/(1 − 2x − x²)` exactly. The `(1 − x)` factor of `det(I − xM)` cancels whenever the last column is free, because the eigenvalue-1 eigenvector `(−1, 0, 1)` is orthogonal to `𝟙`; pinning the last column at height 1 as well keeps it. So the two atoms of Act II count castles: `a_{w−1} = P⋆_w` is the number of skylines of width `w` that start at height 1, never jump by more than one row, and never exceed height 3. Starting the walk at height 1 selects Pell proper rather than the companion sequence. Restricting to castles of height *exactly* 3 subtracts the `2^{w−1}` anchored strips that do not reach height 3 and gives `P⋆_w − 2^{w−1} = 0, 0, 1, 4, 13, 38, 105, 280, …`. These are the **Pell castles** ([[pell-castle](pages/pell-castle.md)]): the Pell castle strip is the superset, and requiring it to reach its ceiling 3 turns it into a castle family of exact height 3, counted by `A094706(w − 2)`.
 
+**By last column.** Writing `M = I + A`, a strip is a set of column boundaries where the height changes and a flat-free skeleton walk of `±1` steps ([[binomial-transform](pages/binomial-transform.md)]). On `{1, 2, 3}` a skeleton step away from height 2 has two choices and a step back to 2 has one. So the anchored strips split by their last column into Paul Barry's two Pell sums ([[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)]):[^barry]
+
+```
+last column at 2:        Σ_k C(w − 1, 2k + 1)·2^k  =  P⋆_{w−1}
+last column at 1 or 3:   Σ_k C(w − 1, 2k)·2^k      =  A001333(w − 1)
+all anchored strips:     P⋆_{w−1} + A001333(w − 1)  =  P⋆_w
+```
+
+The strips with both end columns at height 2 also number `A001333(w − 1)`, and adding a height-2 column at each end is a bijection from the free strips of width `w` to these strips of width `w + 2`, which is why the free row above is `A001333(w + 1)`.
+
 The smallest 0/1 transfer matrix with `det(I − xM) = 1 − 2x − x²` is `3×3`: over `2×2` 0/1 matrices the determinant takes only the six values `1`, `1 − x`, `1 − 2x`, `1 − x²`, `(1 − x)²`, `1 − x − x²`.[^4] The Pell strip is a height-3 object.
 
 ## Act IV - The Pell fingerprint
@@ -107,6 +117,7 @@ Read as `SEQ(2Z + Z²)`, the denominator `1 − 2x − x²` lists two atoms. The
 ## Appearances in Sources
 
 - [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the working note this seminar is built on: the coefficient-matching mechanic and the two-atom reading.
+- [[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)] - the sums `Σ C(n, 2k + 1) 2^k = P⋆_n` and `Σ C(n, 2k) 2^k = A001333(n)`, read here as the anchored strip by last column.
 
 ## Related Concepts
 
@@ -117,6 +128,7 @@ Read as `SEQ(2Z + Z²)`, the denominator `1 − 2x − x²` lists two atoms. The
 - [[castle-strip](pages/castle-strip.md)] - the from-scratch bridge: what a castle strip is, and how a neighbor rule becomes a transfer matrix whose states are the column heights. Read it first if the transfer-matrix language in Act III is unfamiliar.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the 1-smooth height-3 matrix and its `(1 − x)(1 − 2x − x²)` denominator, and the ridge rule `R_h = J − D` that realizes the whole metallic ladder.
 - [[pell-numbers](pages/pell-numbers.md)] - the integer sequence and its silver-ratio growth.
+- [[binomial-transform](pages/binomial-transform.md)] - the strip as a binomial transform of its skeleton; Barry's Pell and Pell-Lucas sums as the strips by last column ([[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)]).
 - [[generating-functions](pages/generating-functions.md)] - the coefficient-matching technique and the symbolic-method context.
 - [[symbolic-method](pages/symbolic-method.md)] - the `SEQ` construction the two-atom scheme is an instance of.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] - the wiki's rational recurrences, whose initial terms coefficient matching produces the same way.
@@ -133,3 +145,4 @@ Read as `SEQ(2Z + Z²)`, the denominator `1 − 2x − x²` lists two atoms. The
 [^2]: [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] §"The castle reading" L23-L28 - the two-atom composition scheme and its "peel off the last atom" recurrence. Under the SEQ construction (see [[symbolic-method](pages/symbolic-method.md)] Theorem I.1), `SEQ(2·Z + Z²)` has ordinary generating function (OGF) `1/(1 − 2z − z²)`.
 [^3]: The sequence `1, 2, 5, 12, 29, 70, 169, 408, 985, 2378, 5741, 13860` (produced by the recurrence with `a_0 = 1, a_1 = 2`) was numerically matched against OEIS A000129 = `0, 1, 2, 5, 12, 29, 70, 169, …` during ingest, confirming `a_n = P⋆_{n+1}`. The growth ratio `a_{n+1}/a_n → 2.41421… = 1 + √2` verified for `n = 5..11`.
 [^4]: Verified by execution (Python 3, SymPy), 2026-09-19. With `M = [[1,1,0],[1,1,1],[0,1,1]]` (1-smooth on heights `{1,2,3}`), `e_1ᵀ (I − xM)^{−1} 𝟙 = 1/(1 − 2x − x²)`, `𝟙ᵀ (I − xM)^{−1} 𝟙 = (3 + x)/(1 − 2x − x²)`, `e_1ᵀ (I − xM)^{−1} e_1 = (1 − 2x)/((1 − x)(1 − 2x − x²))`, and `det(xI − M) = (x − 1)(x² − 2x − 1)`. Brute-force enumeration of 1-smooth skylines over `{1,2,3}` for `w = 1..8` gives `1, 2, 5, 12, 29, 70, 169, 408` (first column 1), `3, 7, 17, 41, 99, 239, 577, 1393` (any first column), and `1, 1, 2, 4, 9, 21, 50, 120` (both end columns 1); the anchored count restricted to `max c = 3` is `0, 0, 1, 4, 13, 38, 105, 280 = P⋆_w − 2^{w−1}`. `det(I − xM)` over all sixteen `2×2` 0/1 matrices takes exactly the six values `1, 1 − x, 1 − 2x, 1 − x², (1 − x)², 1 − x − x²`. The free-strip denominator `(1 − x)(1 − 2x − x²)` is footnote 3 of [[metallic-strip-realizability](pages/metallic-strip-realizability.md)].
+[^barry]: [[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)] §7 L1142-L1157 [synthesis] - "Σ C(n, 2k) 2^k = 1, 1, 3, 7, 17, . . . = ((1 + √2)^n + (1 − √2)^n)/2 which is the sequence A001333" and "the following formula for the Pell numbers A000129, Σ C(n, 2k + 1) 2^k = Pell(n)". The castle reading was verified by execution (2026-10-08): strips on `{1, 2, 3}` from 1 to 2, from 1 to `{1, 3}`, from 2 to 2, all anchored, and free, against `P⋆_{w−1}`, `A001333(w − 1)`, `A001333(w − 1)`, `P⋆_w` and the width-`(w + 2)` strips from 2 to 2, for `w ≤ 13`.

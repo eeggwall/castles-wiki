@@ -3,9 +3,9 @@ title: Motzkin castles - where the Motzkin numbers meet the castle
 category: Analyses
 summary: Hub for the exact appearances of the Motzkin family in castles. Every castle is a cornerless Motzkin path (Deutsch-Elizalde's bargraph bijection, read on the tower word). The Motzkin-path castles (1-smooth, end columns at height 1) number M_{w-1}, and PE 502's even-block clause splits them into odd/even Motzkin paths (A343386 / A107587), signed excess A343773. The sign sets the up-step weight to -1, moving the growth constant from 3 to the Gaussian integers 1 ± 2i and the bounded-height spectrum from 1 + 2cos to 1 + 2i·cos. Bounded height gives the ladder 2, 1+√2, φ², 1+√3, … → 3 (A171842 at h ≤ 3). Motzkin prefixes (A005773), semi-perimeter relatives (A082582, A023431, A004148), and a bijection from castles that never drop by more than one to valleyless Motzkin meanders (Prodinger's not-in-OEIS sequence 1, 2, 5, 12, 29, 71, …).
 tags: [analysis, castle, motzkin, lattice-paths, cornerless, bargraph, parity, sign, gaussian-integers, transfer-matrix, chebyshev, metallic, semi-perimeter, oeis, hub]
-sources: [motzkin-numbers, project-euler-502-representations, project-euler-502-brute-force, deutsch-elizalde-2016-bargraphs-cornerless-motzkin, prodinger-2025-cornerless-motzkin-bargraphs, banderier-nicodeme-2010-bounded-discrete-walks]
+sources: [motzkin-numbers, project-euler-502-representations, project-euler-502-brute-force, deutsch-elizalde-2016-bargraphs-cornerless-motzkin, prodinger-2025-cornerless-motzkin-bargraphs, banderier-nicodeme-2010-bounded-discrete-walks, barry-2005-catalan-transform]
 created: 2026-09-26
-updated: 2026-10-07
+updated: 2026-10-08
 ---
 
 # Motzkin castles - where the Motzkin numbers meet the castle
@@ -41,7 +41,7 @@ The bijection relates two gradings on the wiki. Counted by **path length**, corn
 
 ## 2. The Motzkin-path castle and the parity split
 
-Add the **1-smooth** rule `|c_{i+1} - c_i| ≤ 1` and pin both end columns to height 1. Then the skyline minus one is a Motzkin path of length `w - 1`, so these castles number `M_{w-1}` (A001006, offset `w - 1`). This type is already on [[castle-classification-shape](pages/castle-classification-shape.md)] (Axis 3), with the fixed-height refinement A097862.
+Add the **1-smooth** rule `|c_{i+1} - c_i| ≤ 1` and pin both end columns to height 1. Then the skyline minus one is a Motzkin path of length `w - 1`, so these castles number `M_{w-1}` (A001006, offset `w - 1`). This type is already on [[castle-classification-shape](pages/castle-classification-shape.md)] (Axis 3), with the fixed-height refinement A097862. Choosing the `2k` column boundaries where the height changes and then a Dyck path through them gives `M_{w−1} = Σ_k C(w − 1, 2k) C_k`, Barry's aerated [[binomial-transform](pages/binomial-transform.md)] of the Catalan numbers; a height bound only changes the Dyck paths, so the rows of §4 are the same transform of bounded Dyck path counts.[^barry]
 
 **The PE 502 parity clause splits `M_{w-1}`.** On a Motzkin-path castle every rise is a single up step, so `#blocks = 1 + #U`. Even-block castles, the parity PE 502 keeps, are therefore the **odd** Motzkin paths (an odd number of up steps), and odd-block castles are the **even** Motzkin paths:
 
@@ -148,10 +148,12 @@ By mirror symmetry the same numbers count castles whose columns never *rise* by 
 - [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] - corner-weighted Motzkin meanders and skew paths; the valleyless-meander count of §7.
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the tower word and its no-`UD`/no-`DU` rule, which is what makes it cornerless.
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the skyline block-count formula.
+- [[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)] - `M_n = Σ_k C(n, 2k) C_k`, the aerated binomial transform of the Catalan numbers.
 
 ## Related Concepts
 
 - [[motzkin-numbers](pages/motzkin-numbers.md)] - the family itself.
+- [[binomial-transform](pages/binomial-transform.md)] - `M_{w−1} = Σ C(w − 1, 2k) C_k`: flat steps chosen freely around a Dyck skeleton ([[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)]).
 - [[kernel-method](pages/kernel-method.md)] - the bounded-height strips of §4 and the no-ceiling counts of §5 for any step set; at `m = 1` the meander and excursion formulas give A005773 and the Motzkin numbers ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
 - [[1-smooth-castles](pages/1-smooth-castles.md)] - the same strip anchored at height 1 only, by exact height `h`: Motzkin prefixes by height (A283595), g.f. `x^h/(η_h η_{h−1})`.
 - [[tower-word-language](pages/tower-word-language.md)] / [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] - the tower word as a Motzkin language, by length A004149.
@@ -183,3 +185,4 @@ By mirror symmetry the same numbers count castles whose columns never *rise* by 
 [^13]: [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] p.6 §3.2 L254-271 [synthesis] - the no-double-rise GF "agrees with the generating function for RNA secondary structure numbers" with exponents shifted by one, and a bijection "between bargraphs of semiperimeter n + 1 with no double rises and secondary structures on n vertices"; double rises and double falls are equidistributed "By symmetry" (L239-240).
 [^14]: [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] p.11 §3 L443-454 [synthesis] - the returning skew series "1 + z + (τ + 1)z^2 + (3 + 2τ)z^3 + (τ^2σ + 7 + 5τ)z^4 + · · ·", which at both weights 1 is "sequence A082582".
 [^15]: [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] p.8 §2 L321-322 - "we obtain a sequence that is not in [10]", "1 + 2z + 5z^2 + 12z^3 + 29z^4 + 71z^5 + 175z^6 + 434z^7 + 1082z^8 + 2709z^9 + 6807z^10 + · · ·"; in the paper's formulas the zeroed weight for this row marks `DU`, so the paths are valleyless ([[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)]).
+[^barry]: [[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)] §7 L1105-L1110, L1174-L1186 [synthesis] - "Mn = Σ_{k=0}^{⌊n/2⌋} C(n, 2k) C(k) where Mn is the nth Motzkin number A001006"; the transform is `Bin ◦ (1, x²)`, "'aerate' a sequence with interpolated zeros and then follow this with a binomial transform". The bounded-height version (Dyck paths of height `≤ h − 1` as skeletons) was verified by execution for `h ≤ 8`, `w ≤ 14` (2026-10-08).

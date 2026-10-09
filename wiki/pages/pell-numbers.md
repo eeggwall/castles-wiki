@@ -3,9 +3,9 @@ title: Pell numbers
 category: Concepts
 summary: P⋆_n = 2·P⋆_{n−1} + P⋆_{n−2} with P⋆_0=0, P⋆_1=1 — the integer sequence 0, 1, 2, 5, 12, 29, 70, 169, … (OEIS A000129) whose growth constant is the silver ratio 1 + √2. In the castle wiki, they count the 1-smooth height-3 castle strip anchored at the base ([[pell-castle-strip]]).
 tags: [concept, pell, integer-sequence, silver-ratio, quadratic-irrational, continued-fraction, oeis]
-sources: [pe502-pell-castle-strip]
+sources: [pe502-pell-castle-strip, barry-2005-catalan-transform]
 created: 2026-09-15
-updated: 2026-10-06
+updated: 2026-10-08
 ---
 
 # Pell numbers
@@ -67,9 +67,18 @@ P⋆_n = ((1 + √2)^n − (1 − √2)^n) / (2√2).
 
 The **Pell-Lucas numbers** (OEIS A001333, half the companion Pell numbers A002203) are `1, 1, 3, 7, 17, 41, 99, 239, 577, …`, defined by the same recurrence but with `Q_0 = 1, Q_1 = 1`, and satisfies `Q_n = ((1+√2)^n + (1−√2)^n)/2` — the numerators of the continued-fraction convergents of `√2 = [1; 2, 2, 2, …]`.[^5] The anchored Pell castle strip counts are Pell proper; the free strip counts are Pell-Lucas numbers.
 
+Both have binomial sums,[^barry]
+
+```
+P⋆_n  =  Σ_k C(n, 2k + 1)·2^k,          Q_n  =  Σ_k C(n, 2k)·2^k,
+```
+
+and on the castle side they are the anchored strips of width `n + 1` ending at height 2 and at height 1 or 3 ([[pell-castle-strip](pages/pell-castle-strip.md)] Act III, [[binomial-transform](pages/binomial-transform.md)]).
+
 ## Appearances in Sources
 
 - [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] — introduces the two-atom reading of `1/(1 − 2x − x²)`; the sequence identity was verified against OEIS A000129 during ingest.
+- [[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)] - the binomial sums for `P⋆_n` and the Pell-Lucas numbers, from the aerated binomial transform of `2^k`.
 
 ## Related Concepts
 
@@ -92,3 +101,4 @@ The **Pell-Lucas numbers** (OEIS A001333, half the companion Pell numbers A00220
 [^5]: OEIS A001333 = `1, 1, 3, 7, 17, 41, 99, 239, 577, 1393, …`, OEIS's Pell-Lucas numbers, half the companion Pell numbers A002203. Its Binet form `Q_n = ((1+√2)^n + (1−√2)^n)/2` was verified numerically for `n = 0..10` during ingest. A001333 numerators pair with A000129 denominators to give the continued-fraction convergents of `√2 = [1; 2, 2, 2, …]`.
 [^7]: [[metallic-means](pages/metallic-means.md)] §"The naming caveat" — Wikipedia "Silver ratio" and OEIS A001333 (whose comment describes it in Pell / silver-mean context) both use "silver ratio" for `1 + √2`; this is also the usage in de Spinadel's original paper (`δ_S`). Competing "silver ratio = √2" appears in paper-size / A-series / architecture literature; when meant, it is usually specified. Wiki standard: `δ_2 = 1 + √2`.
 [^8]: Verified by execution (Python 3, SymPy), 2026-09-19, recorded on [[pell-castle-strip](pages/pell-castle-strip.md)] footnote 4: for the 1-smooth matrix `M = [[1,1,0],[1,1,1],[0,1,1]]` on heights `{1,2,3}`, `e_1ᵀ(I − xM)^{−1}𝟙 = 1/(1 − 2x − x²)`, with enumerated counts `1, 2, 5, 12, 29, 70, 169, 408` (first column 1) and `3, 7, 17, 41, 99, 239, 577, 1393` (free first column).
+[^barry]: [[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)] §7 L1142-L1157 - "Σ C(n, 2k) 2^k = 1, 1, 3, 7, 17, . . . = ((1 + √2)^n + (1 − √2)^n)/2 which is the sequence A001333. Related to this is the following formula for the Pell numbers A000129 ... Σ C(n, 2k + 1) 2^k = Pell(n)." Both re-verified for `n < 14` (2026-10-08).

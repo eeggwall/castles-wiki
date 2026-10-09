@@ -3,9 +3,9 @@ title: Motzkin numbers
 category: Concepts
 summary: M_n counts non-crossing chords on n points and Motzkin (up/flat/down) lattice paths; 1,1,2,4,9,21,…; its q-analog appears in the q-grammar count of steep Dyck words — a castle thread.
 tags: [concept, motzkin, lattice-paths, q-analog, generating-functions]
-sources: [motzkin-numbers, steep-polyominoes-q-motzkin-bessel]
+sources: [motzkin-numbers, steep-polyominoes-q-motzkin-bessel, barry-2005-catalan-transform]
 created: 2026-09-13
-updated: 2026-10-06
+updated: 2026-10-08
 ---
 
 # Motzkin numbers
@@ -25,7 +25,7 @@ M_0 = M_1 = 1,   M_n = M_{n−1} + Σ_{k=0}^{n−2} M_k M_{n−2−k},
    generating function  M(x) = (1 − x − √(1 − 2x − 3x²)) / (2x²)
 ```
 
-Motzkin paths use *three* step types (up/flat/down), the same arity as the castle's U/R/D words.
+Motzkin paths use *three* step types (up/flat/down), the same arity as the castle's U/R/D words. Deleting the flat steps leaves a Dyck path, so `M_n = Σ_k C(n, 2k) C_k`: choose the `2k` positions of the up and down steps, then a Dyck path on them. Barry reads this as the Catalan numbers spread onto the even places and then binomially transformed ([[binomial-transform](pages/binomial-transform.md)]).[^5]
 
 ## Connection to the castle
 
@@ -35,9 +35,11 @@ The relevant thread: the **q-analog `M_n(q)`** refines the Motzkin numbers and a
 
 - `raw/motzkin-numbers.wiki` (charlesreid1.com topic page) — definition, values, recurrence, GF, and the q-analog / steep-Dyck-words remark.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — the paper where q-Motzkin numbers meet steep polyominoes.
+- [[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)] - `M_n = Σ_k C(n, 2k) C_k`, and the same transform from the central binomials to the central trinomials A002426.
 
 ## Related Concepts
 
+- [[binomial-transform](pages/binomial-transform.md)] - the transform `Σ C(n, 2k) a_k` that takes Catalan to Motzkin, read on castle strips.
 - [[motzkin-castles](pages/motzkin-castles.md)] - the hub for exact Motzkin appearances in castles: castles as cornerless Motzkin paths, the parity split of `M_{w-1}` (A343386 / A107587), the Gaussian `1 ± 2i` sign, and the bounded-height ladder.
 - [[q-catalan-numbers](pages/q-catalan-numbers.md)] — the sister q-analog family; both reduce at q=1.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - the castle grammar graded by area: a q-Bessel ratio over the parallelogram series.
@@ -54,3 +56,4 @@ The relevant thread: the **q-analog `M_n(q)`** refines the Motzkin numbers and a
 [^2]: raw/motzkin-numbers.wiki §"First values" L8 — "1, 1, 2, 4, 9, 21, 51, 127, 323, 835, ..."; re-verified from the recurrence during ingest.
 [^3]: raw/motzkin-numbers.wiki §"Recurrence"/"Generating function" L18-24 — "M_n = M_{n-1} + sum_{k=0}^{n-2} M_k M_{n-2-k}" and "M(x) = (1 - x - sqrt(1 - 2x - 3x^2)) / (2x^2)."
 [^4]: raw/motzkin-numbers.wiki §"Motzkin Numbers" L27 — "The q-analog M_n(q) refines the Motzkin numbers and appears in the q-grammar count of steep Dyck Words."
+[^5]: [[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)] §7 L1105-L1130, L1174-L1186 [synthesis] - "Mn = Σ_{k=0}^{⌊n/2⌋} C(n, 2k) C(k) where Mn is the nth Motzkin number A001006", from `(1/(1 − x)) c(x²/(1 − x)²) = (1 − x − √(1 − 2x − 3x²))/(2x²)`; the transform is `Bin ◦ (1, x²)`. Re-verified for `n < 14` (2026-10-08).
