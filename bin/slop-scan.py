@@ -183,6 +183,7 @@ RETIRED = [
     "the count is what makes it fibonacci",
     "what makes the family fibonacci is its count",
     "has a natural form at every exact height",
+    "the two sub-families here grow polynomially",
 ]
 RETIRED_RE = [
     (r"\barcs?\b", "planning-file 'arc' vocabulary"),

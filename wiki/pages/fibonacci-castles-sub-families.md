@@ -5,7 +5,7 @@ summary: Sub-families of the Fibonacci castles cut out by a rule on the Fibonacc
 tags: [concept, castle, castle-type, fibonacci, fibonacci-tower, fibonacci-word, sturmian, balanced-word, totient, sub-family, maximal-independent-set, padovan, plastic-number, narayana-cows, supergolden, run-length-limited, capacity, oeis]
 sources: [project-euler-502]
 created: 2026-10-04
-updated: 2026-10-06
+updated: 2026-10-09
 ---
 
 # Fibonacci castle sub-families
@@ -160,7 +160,7 @@ print([castles(n, lambda a: a <= 3, lambda g: 1 <= g <= 3) for n in range(1, 11)
 - [[fibonacci-castle](pages/fibonacci-castle.md)] - the parent family, its Fibonacci towers, and the 56-column castle from the Fibonacci word.
 - [[castle-notation](pages/castle-notation.md)] - Fibonacci tower, balanced tower.
 - [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - A049703 as an interlink candidate.
-- [[castle-entropy](pages/castle-entropy.md)] - the parent family's `log₂ φ` bits per column; the two sub-families here grow polynomially, so they carry no positive entropy.
+- [[castle-entropy](pages/castle-entropy.md)] - the parent family's `log₂ φ` bits per column; the Fibonacci-word and balanced castles grow polynomially, so they carry no positive entropy.
 
 ## Footnotes
 
