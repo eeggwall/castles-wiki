@@ -5,7 +5,7 @@ summary: Which metallic means a castle-strip rule produces (Axis 8). A castle-st
 tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, bronze, copper, silver, fibonacci-decimation, axis-8, realizability, sympy, verification]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-10-04
+updated: 2026-10-09
 ---
 
 # Which metallic means are castle-strip growth constants
@@ -118,6 +118,7 @@ So the metallic ladder is realizable, but `δ_a` is not "the `a`-states-per-colu
 
 ## Appearances in Sources
 
+- [[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)] - de Spinadel's Metallic Means Family `σ_p^q` (roots of `x² − px − q`) contains every strip growth `(p₁ + √(p₁² + 4p₂))/2`; this page's metallic means are its `q = 1` members, and the no-adjacent-ceiling growth `1 + √3` is `σ_2^2`.
 - [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the `1 − p₁x − p₂x²` two-knob parameterization this page stress-tests.
 
 ## Related Concepts
