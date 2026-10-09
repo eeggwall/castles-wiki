@@ -1,11 +1,11 @@
 ---
 title: m-smooth castles
 category: Concepts
-summary: An m-smooth castle is a castle whose neighbouring columns differ in height by at most m. Starting from the 1-smooth castles, the anchored m-smooth castles of exact height h (first column at height 1) are counted for m = 2, 3, 4 and h up to 12. The count is strips_m(w, h) − strips_m(w, h − 1); the reflection j ↔ h + 1 − j keeps the strip denominator at degree ≤ ⌈h/2⌉ and the exact-height recurrence at order ≤ h for every m. The first castle has width w_min = ⌈(h − 1)/m⌉ + 1, and there are C(slack + w_min − 2, w_min − 2) of them, slack = (w_min − 1)m − (h − 1). The growth constant lies between 2m + 1 − m(m+1)/h and 2m + 1. At h ≤ m + 1 the rule is vacuous: the free count is h^w − (h − 1)^w and its even-block part is the PE 502 count F(w, h). On the diagonal h = m + 2 the Pell structure survives: strips x/(1 − (m+1)x − mx²) (Pell, A007482, A015530, A015537 for m = 1…4), castles m·x³/((1 − (m+1)x − mx²)(1 − (m+1)x)), growth the root of x² − (m+1)x − m. An addendum lists what does not extend from m = 1: the x^h numerator, the explicit eigenvalues and Chebyshev identities, the Motzkin-triangle readings, and the irregular parity orders.
+summary: An m-smooth castle is a castle whose neighbouring columns differ in height by at most m. Starting from the 1-smooth castles, the anchored m-smooth castles of exact height h (first column at height 1) are counted for m = 2, 3, 4 and h up to 12. The count is strips_m(w, h) − strips_m(w, h − 1); the reflection j ↔ h + 1 − j keeps the strip denominator at degree ≤ ⌈h/2⌉ and the exact-height recurrence at order ≤ h for every m. The first castle has width w_min = ⌈(h − 1)/m⌉ + 1, and there are C(slack + w_min − 2, w_min − 2) of them, slack = (w_min − 1)m − (h − 1). The growth constant lies between 2m + 1 − m(m+1)/h and 2m + 1. At h ≤ m + 1 the rule is vacuous: the free count is h^w − (h − 1)^w and its even-block part is the PE 502 count F(w, h). On the diagonal h = m + 2: strips x/(1 − (m+1)x − mx²) (Pell, A007482, A015530, A015537 for m = 1…4), castles m·x³/((1 − (m+1)x − mx²)(1 − (m+1)x)), growth the root of x² − (m+1)x − m. An addendum lists what does not extend from m = 1: the x^h numerator, the explicit eigenvalues and Chebyshev identities, the Motzkin-triangle readings, and the irregular parity orders.
 tags: [concept, castle, castle-type, m-smooth, 1-smooth, pell, transfer-matrix, exact-height, parity, generating-functions, oeis]
 sources: [pe502-pell-castle-strip, banderier-nicodeme-2010-bounded-discrete-walks]
 created: 2026-10-06
-updated: 2026-10-07
+updated: 2026-10-09
 ---
 
 # m-smooth castles
@@ -35,7 +35,7 @@ The 1-smooth castles are the case `m = 1` ([[1-smooth-castles](pages/1-smooth-ca
 smooth_m(w, h)  =  strips_m(w, h) − strips_m(w, h − 1).
 ```
 
-## 1. The starting point: 1-smooth castles (m = 1)
+## 1. 1-smooth castles (m = 1)
 
 At `m = 1` ([[1-smooth-castles](pages/1-smooth-castles.md)]):
 
@@ -47,11 +47,11 @@ At `m = 1` ([[1-smooth-castles](pages/1-smooth-castles.md)]):
 - **Parity.** The signed recurrence orders are irregular (`3, 5, 7, 7, 9, …`).
 - **Pell.** At `h = 3`, the Pell castles: strips `x/(1 − 2x − x²)`, castles `x³/((1 − 2x − x²)(1 − 2x))`, growth `1 + √2`.
 
-Sections 2 and 3 carry each item to `m ≥ 2`; the addendum lists what does not carry over.
+Sections 2 and 3 extend these to `m ≥ 2`; the addendum lists what does not extend.
 
 ## 2. m = 2
 
-The first step past `m = 1`, at the ceiling `h = 4`:[^exec]
+`m = 1` and `m = 2` at the ceiling `h = 4`:[^exec]
 
 | | `m = 1`, `h = 4` | `m = 2`, `h = 4` |
 |---|---|---|
@@ -77,7 +77,7 @@ For every `m` the band matrix commutes with the flip `j ↔ h + 1 − j`. So its
 - the reduced denominator of `Σ_w strips_m(w, h) x^w` has degree at most `⌈h/2⌉`;
 - the reduced denominator of `Σ_w smooth_m(w, h) x^w` divides the product of the denominators at `h` and `h − 1`, so it has degree at most `⌈h/2⌉ + ⌈(h−1)/2⌉ = h`, and `smooth_m(·, h)` satisfies a linear recurrence of order at most `h`.
 
-At `m = 1` both bounds are attained. At `m ≥ 2` the degrees can be smaller: zero eigenvalues contribute no factor, and the exact-height degree drops below `h` for `m = 2`, `h = 8, …, 11`, for `m = 3`, `h = 9, …, 12`, and for `m = 4`, `h = 12` (tables of 3.7).[^exec]
+At `m = 1` both bounds are attained. At `m ≥ 2` the degrees can be smaller, since zero eigenvalues contribute no factor. For `h ≥ m + 2` the exact-height degree is below `h` for `m = 2` at `h = 4` and `h = 8, …, 11`, for `m = 3` at `h = 5, 6` and `h = 9, …, 12`, and for `m = 4` at `h = 6, 7, 8` and `h = 12` (tables of 3.7).[^exec]
 
 ### 3.3 Small ceilings: the rule is vacuous, and F(w, h) appears
 
@@ -116,9 +116,9 @@ Write `ρ_{h,m}` for the largest eigenvalue of the band matrix, the growth const
 
 - **Bounds.** For `h ≥ m + 1`, `2m + 1 − m(m+1)/h ≤ ρ_{h,m} ≤ 2m + 1`. The upper bound is the largest row sum. The lower bound is the Rayleigh quotient of `𝟙`: the band has `(2m + 1)h − m(m + 1)` ones. So `ρ_{h,m} → 2m + 1` as `h → ∞`, and `ρ_{h,m} = h` for `h ≤ m + 1`.
 - **Asymptotics.** As at `m = 1`, the subtracted `strips_m(w, h − 1)` grows at `ρ_{h−1,m} < ρ_{h,m}`, so `smooth_m(w, h)` grows like `ρ_{h,m}^w` and the fraction of anchored strips that reach their ceiling tends to 1.
-- **No closed-form eigenvalues.** For `m ≥ 2` the eigenvalues have no formula like `1 + 2cos(πk/(h+1))`; the growth constants in the tables are computed one at a time, and from `h = m + 3` on they are cubic or higher in every case computed.[^exec] The generating functions themselves do have a closed form, in the `2m` roots `u` of `1 − x(u^{−m} + ⋯ + u^m)`, by the [[kernel-method](pages/kernel-method.md)] between two walls ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
+- **Eigenvalues.** The cosine formula `1 + 2cos(πk/(h+1))` uses the tridiagonal structure of `m = 1`. For `m ≥ 2` the growth constants in the tables are computed numerically, and from `h = m + 3` on they are cubic or higher in every case computed.[^exec] The generating functions themselves do have a closed form, in the `2m` roots `u` of `1 − x(u^{−m} + ⋯ + u^m)`, by the [[kernel-method](pages/kernel-method.md)] between two walls ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
 
-### 3.6 The diagonal h = m + 2: the Pell structure survives
+### 3.6 The diagonal h = m + 2
 
 At `h = m + 2` the band matrix is all ones except the two corners `(1, h)` and `(h, 1)`, so every middle row is all ones. On vectors of the form `(a, b, …, b, a)` it acts as
 
@@ -137,7 +137,7 @@ the second because `strips_m(w, m + 1) = (m + 1)^{w−1}` (3.3). The growth cons
 
 - **At `m = 1`** these are the Pell strip and the Pell castles ([[pell-castle](pages/pell-castle.md)]).
 - **The strip rows** are Pell A000129(`w`) at `m = 1`, A007482(`w − 1`) at `m = 2`, A015530(`w`) at `m = 3` and A015537(`w`) at `m = 4`, the last two named "Expansion of x/(1 - 4*x - 3*x^2)" and "Expansion of x/(1 - 5*x - 4*x^2)".[^a007482][^a015530][^a015537]
-- **The two-atom reading of [[pell-castle-strip](pages/pell-castle-strip.md)] carries over.** `1/(1 − (m+1)x − m·x²)` counts sequences of a width-1 atom of weight `m + 1` and a width-2 atom of weight `m`.
+- **The two-atom reading of [[pell-castle-strip](pages/pell-castle-strip.md)].** `1/(1 − (m+1)x − m·x²)` counts sequences of a width-1 atom of weight `m + 1` and a width-2 atom of weight `m`.
 - **Not metallic past `m = 1`.** The growth constant is a metallic mean only at `m = 1`, where `x² − 2x − 1` gives silver ([[metallic-means](pages/metallic-means.md)]).
 
 ### 3.7 Tables
@@ -258,7 +258,7 @@ The definition, the subtraction `strips_m(w, h) − strips_m(w, h − 1)`, the r
 
 - **The monomial numerator.** At `m = 1` the exact-height generating function is `x^h` over the denominators. For `m ≥ 2` the numerator starts at `x^{w_min}` with `w_min < h` and is in general a polynomial of several terms, even when `slack = 0` (`x³(1 + x)` at `m = 2`, `h = 5`).
 - **Exact degrees.** At `m = 1` the strip denominator has degree exactly `⌈h/2⌉` and the exact-height denominator exactly `h`. For `m ≥ 2` these are only upper bounds (3.2).
-- **Explicit eigenvalues and Chebyshev identities.** The cosine formula `1 + 2cos(πk/(h+1))`, the three-term determinant recurrence, and the formulas for `η_h` in terms of the determinants all use the tridiagonal structure. The band matrices for `m ≥ 2` have none of them, and their growth constants are cubic or higher for `h ≥ m + 3` in every case computed. In their place, the [[kernel-method](pages/kernel-method.md)] writes the strips through the `2m` roots of the kernel `1 − x(u^{−m} + ⋯ + u^m)` ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
+- **Explicit eigenvalues and Chebyshev identities.** The cosine formula `1 + 2cos(πk/(h+1))`, the three-term determinant recurrence, and the formulas for `η_h` in terms of the determinants all use the tridiagonal structure. The band matrices for `m ≥ 2` are not tridiagonal, and their growth constants are cubic or higher for `h ≥ m + 3` in every case computed. In their place, the [[kernel-method](pages/kernel-method.md)] writes the strips through the `2m` roots of the kernel `1 − x(u^{−m} + ⋯ + u^m)` ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
 - **The Motzkin readings.** At `m = 1` the castle counts are columns of the Motzkin triangles A283595 and A097862. The `m = 2` triangle has no OEIS match (3.7).
 - **Irregular parity orders.** The repeats at `h = 5` and `h = 9` in the `m = 1` signed orders do not occur for `m = 2, 3, 4`, where the order is `2h − 1` for every `h ≤ 12` (3.8).
 

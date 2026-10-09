@@ -189,6 +189,12 @@ RETIRED = [
     "what the castle rules save",
     "makes concrete why the castle strip",
     "the general form of the wiki's strip transfer matrices",
+    "carry each item to",
+    "the pell structure survives",
+    "does not by itself identify the named fibonacci family",
+    "not a procedure for adding one cell",
+    "different units of size",
+    "will supply a subtraction",
 ]
 RETIRED_RE = [
     (r"\barcs?\b", "planning-file 'arc' vocabulary"),

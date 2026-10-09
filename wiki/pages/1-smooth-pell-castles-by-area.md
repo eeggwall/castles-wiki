@@ -5,7 +5,7 @@ summary: Count 1-smooth Pell castles, anchored at height 1 and reaching exact he
 tags: [analysis, castle, 1-smooth, pell, fixed-height, area, generating-function, transfer-matrix, pedagogy]
 sources: [pe502-pell-castle-strip]
 created: 2026-10-07
-updated: 2026-10-07
+updated: 2026-10-09
 ---
 
 # 1-smooth Pell castles by area
@@ -18,11 +18,11 @@ A 1-smooth castle has neighbouring column heights differing by at most 1. This p
 c_1 = 1,      |c_{i+1} - c_i| <= 1,      max_i c_i = 3.
 ```
 
-The main family stays at **exact height 3**. Only the width and area vary. Both block parities are included; there is no even-block restriction here. The family and its width counts are on [[pell-castle](pages/pell-castle.md)].[^definition] Section 5.5 briefly compares the height-2 family that enters the subtraction; it does not change which castles the Pell count includes.
+The main family stays at **exact height 3**. Only the width and area vary. Both block parities are included; there is no even-block restriction here. The family and its width counts are on [[pell-castle](pages/pell-castle.md)].[^definition] Section 5.5 compares the height-2 family that enters the subtraction.
 
 For example, `(1, 2, 3, 2)` qualifies, while `(1, 2, 2, 1)` never reaches height 3 and `(1, 3, 2)` has a forbidden jump.
 
-**Exact height is not just a ceiling.** A strip with ceiling 3 may stay entirely at heights 1 and 2. A castle of exact height 3 must visit height 3 at least once. That distinction will supply a subtraction when we derive the generating function.
+**Exact height and ceiling.** A strip with ceiling 3 may stay entirely at heights 1 and 2. A castle of exact height 3 must visit height 3 at least once. Section 5.3 subtracts the strips that do not.
 
 ## 2. One castle, two measurements
 
@@ -35,8 +35,6 @@ For `(1, 2, 3, 2)`, the width is 4 and the area is 8. Those measurements group c
 
 - Counting by width puts it with every other width-4 castle, whatever their areas.
 - Counting by area puts it with every other area-8 castle, whatever their widths.
-
-Changing the grading does not change the castle rules. It changes which measurement is held equal when castles are counted together.
 
 ## 3. Record both measurements with two variables
 
@@ -58,7 +56,7 @@ Add one contribution for every Pell castle. Define
 C_3(z, q) = sum over Pell castles of z^width q^area.
 ```
 
-Thus the coefficient of `z^w q^n` is the number of Pell castles with **both** width `w` and area `n`. The subscript 3 records the fixed exact height; it is not another variable being summed over.
+Thus the coefficient of `z^w q^n` is the number of Pell castles with **both** width `w` and area `n`. The subscript 3 is the fixed exact height.
 
 For Pell castles, grouping the first terms by width gives:[^examples]
 
@@ -69,7 +67,7 @@ C_3(z, q) = z^3 q^6
            + terms of width 6 and above.
 ```
 
-The coefficient 2 in `2z^4 q^8` means there are two Pell castles of width 4 and area 8. The two variables do not stand for two different castle families; they record two statistics of the same objects.
+The coefficient 2 in `2z^4 q^8` means there are two Pell castles of width 4 and area 8.
 
 ## 4. Forget one measurement by setting its variable to 1
 
@@ -110,7 +108,7 @@ C_3(1, q) = q^6 + q^7 + 3q^8 + 6q^9 + 11q^10 + 22q^11
 
 The coefficient of `q^n` counts every Pell castle of area `n`.[^specializations]
 
-**Setting a variable to 1 means forgetting that measurement, not requiring the measurement itself to equal 1.** Both specializations still count only castles of exact height 3.
+Both specializations count only castles of exact height 3.
 
 Both operations produce finite coefficient sums: at a fixed width there are only finitely many allowed skylines, and at a fixed area the width is at most the area because every column contains at least one cell.
 
@@ -153,8 +151,6 @@ D_3(z, q) = 1 - z(q + q^2 + q^3) + z^2 q^4 + z^3 q^6,
 S_3(z, q) = zq(1 - zq^3) / D_3(z, q).
 ```
 
-The denominator comes from solving the counting equations. Its individual terms need not be interpreted as individual castles; the coefficients of the expanded rational function are the counts.
-
 ### 5.3 Subtract the strips that never reach 3
 
 A ceiling-3 strip that never reaches 3 is a strip on heights 1 and 2. Its first column is 1, and each later column can independently be 1 or 2. Therefore
@@ -173,7 +169,7 @@ C_3(z, q) = S_3(z, q) - S_2(z, q)
           = z^3 q^6 (1 - zq) / (D_2(z, q) D_3(z, q)).
 ```
 
-This fraction is the compact form of the coefficient sum in Section 3. Its first term is `z^3 q^6`, the staircase `(1, 2, 3)`. Expanding it reproduces the width and area counts above.
+Its first term is `z^3 q^6`, the staircase `(1, 2, 3)`, and its expansion is the series of Section 3.
 
 ### 5.4 Specialize the fraction
 
@@ -203,9 +199,7 @@ The numerator's `1 - q` cancels, leaving the area function[^specializations]
 C_3(1, q) = q^6 / ((1 - q - q^2)(1 - q^2 - 2q^3 - q^4 - q^5)).
 ```
 
-The two cancellations occur in different variables and leave different denominators.
-
-### 5.5 Height-2 tie-in: Fibonacci counts, but a different castle rule
+### 5.5 Height 2 and the Fibonacci castles
 
 On heights `{1, 2}`, every pair of columns differs by at most 1. Thus **every height-2 castle is 1-smooth**: both adjacent 1s and adjacent 2s are allowed. To keep the same boundary condition as the Pell family, start at height 1 and require a visit to height 2. The joint generating function is
 
@@ -232,9 +226,9 @@ The named Fibonacci and ridge castles use stricter neighbour rules:[^height-two-
 | [[fibonacci-castle](pages/fibonacci-castle.md)] | allowed | forbidden |
 | [[ridge-castle](pages/ridge-castle.md)] | forbidden | allowed |
 
-For example, `(1, 2, 2)` is 1-smooth but not a Fibonacci castle; `(1, 1, 2)` is 1-smooth but not a ridge castle. A Fibonacci **count** does not by itself identify the named Fibonacci **family**.
+For example, `(1, 2, 2)` is 1-smooth but not a Fibonacci castle; `(1, 1, 2)` is 1-smooth but not a ridge castle.
 
-The Fibonacci page's "Counting by area" section already discusses **all** castles of exact height 2, with a free first column: their area-n count is `F_{n+1} - 1`. Our anchor accounts for the one-index shift to `F_n - 1`: removing the initial 1 is a bijection to a free-first-column height-2 castle with one fewer cell.[^height-two-area] The area refinement of the stricter, named Fibonacci family is instead [[q-fibonacci-castle](pages/q-fibonacci-castle.md)]. Exchanging heights 1 and 2 exchanges the Fibonacci and ridge neighbour rules, but changes area from `n` to `3w - n` at width `w`, so it is not an area-preserving identification.[^height-two-rules]
+[[fibonacci-castle](pages/fibonacci-castle.md)] counts all castles of exact height 2 by area, with a free first column: their area-n count is `F_{n+1} - 1`. The anchor shifts this to `F_n - 1`: removing the initial 1 is a bijection to a free-first-column height-2 castle with one fewer cell.[^height-two-area] The area refinement of the stricter, named Fibonacci family is [[q-fibonacci-castle](pages/q-fibonacci-castle.md)]. Exchanging heights 1 and 2 exchanges the Fibonacci and ridge neighbour rules, but changes area from `n` to `3w - n` at width `w`, so it is not an area-preserving identification.[^height-two-rules]
 
 ## 6. What growth by area means
 
@@ -244,7 +238,7 @@ Let `a_n` be the number of Pell castles with **exactly n cells**, including ever
 a_n ~ K alpha_3^n,       a_{n+1} / a_n -> alpha_3,
 ```
 
-for a positive constant `K`. This is a statement about numbers of castles, not a procedure for adding one cell to a particular castle.
+for a positive constant `K`.
 
 The growth constant is the reciprocal of the dominant pole of the area generating function. To see the reciprocal, if `a_n` behaves like `K alpha_3^n`, then `sum_n a_n q^n` behaves near its convergence boundary like the geometric sum `K sum_n (alpha_3 q)^n`. The boundary occurs at `alpha_3 q = 1`, or `q = 1/alpha_3`.
 
@@ -270,7 +264,7 @@ Compare the two ways of measuring this same Pell family:
 | by width | number of columns `w` | a constant times `(1 + sqrt(2))^w`, base `2.414214...` |
 | by area | number of cells `n` | a constant times `alpha_3^n`, base `1.666302...` |
 
-A new column contains 1, 2 or 3 cells. One extra column and one extra cell are different units of size, so the two growth constants need not agree. There is also no single conversion factor: castles of a given width can have different areas, and castles of a given area can have different widths.
+A column contains 1, 2 or 3 cells, so castles of a given width can have different areas, and castles of a given area can have different widths.
 
 ## Reproduce the Pell counts
 
