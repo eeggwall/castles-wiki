@@ -5,7 +5,7 @@ summary: The area-graded generating function for tree castles is (1 + P_h(q))/(1
 tags: [analysis, castle, tree-castle, area, generating-function, q-analogue, oeis, narayana-cows, plastic-number, supergolden, fibonacci, sympy, verification]
 sources: [project-euler-502-castle-factoring, tetali-1998-unique-tournaments]
 created: 2026-09-17
-updated: 2026-10-04
+updated: 2026-10-09
 ---
 
 # Tree castle by area
@@ -23,7 +23,7 @@ where `T_h(w, q)` is the area-weighted generating polynomial for tree castles of
 The `T_h(w, q)` themselves obey a Fibonacci-shaped q-recurrence in `w`:
 
 ```
-T_h(w, q)  =  q · T_h(w − 1, q)  +  q · P_h(q) · T_h(w − 2, q),        T_h(0, q) = 1,  T_h(1, q) = 1 + P_h(q).
+T_h(w, q)  =  q · T_h(w − 1, q)  +  q · P_h(q) · T_h(w − 2, q),        T_h(0, q) = 1,  T_h(1, q) = q + P_h(q).
 ```
 
 At `q = 1` this is the width recurrence `T_h(w + 2) = T_h(w + 1) + (h − 1) T_h(w)` from [[castle-graph](pages/castle-graph.md)], and the tree-castle-by-width story recovers Fibonacci at h = 2, Jacobsthal at h = 3, and the k-Fibonacci family above.
@@ -52,7 +52,7 @@ The entries are `C(w − t + 1, t)` (zero when `w − t + 1 < t`), the Fibonacci
 Sum `T_h(w, q)` over all widths - that is, evaluate the two-variable generating function at `x = 1` as a formal power series in `q`:
 
 ```
-S_h(q)  =  T_h(1, q)  =  (1 + P_h(q)) / (1 − q − q · P_h(q)).
+S_h(q)  =  T_h(x, q)|_{x=1}  =  (1 + P_h(q)) / (1 − q − q · P_h(q)).
 ```
 
 The coefficient of `q^A` in `S_h(q)` is the number of tree castles of area exactly `A` (any width, `c_i ∈ {1, …, h}`). Heights 2 to 7 and unlimited height match named Online Encyclopedia of Integer Sequences (OEIS) sequences:[^3]
@@ -139,7 +139,7 @@ def tree_area_gf(h, W):
     return [sp.expand(T.coeff(x, w)) for w in range(W+1)]
 
 def tree_area_by_area(h, A_max):
-    """Coefficient of q^A in S_h(q) = T_h(1, q): number of tree castles of area A, any width."""
+    """Coefficient of q^A in S_h(q) = T_h(x=1, q): number of tree castles of area A, any width."""
     Ph = P_h(h)
     S = sp.series((1 + Ph) / (1 - q - q*Ph), q, 0, A_max+1).removeO()
     return [int(S.coeff(q, A)) for A in range(A_max+1)]

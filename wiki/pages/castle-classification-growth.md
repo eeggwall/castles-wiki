@@ -5,7 +5,7 @@ summary: A class-level classification. A castle class - an infinite family defin
 tags: [concept, castle, classification, taxonomy, growth-constant, metallic-means, ridge-castle, non-metallic, meta-classification, n-nacci, cubic-pisot, plastic-number, class-predicate]
 sources: [castle-classification, oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-10-04
+updated: 2026-10-09
 ---
 
 # Castle classification - growth types
@@ -132,7 +132,7 @@ Relating the growth types of one class under different axes is open.
 
 ## Open threads
 
-1. **Alternative realizations of the bronze / copper / nickel width growth castles.** Silver has several realizations; every higher rung has only the ridge rule `R_h = J − D`. Does any higher rung admit a second, structurally distinct castle-strip rule?
+1. **Alternative realizations of the bronze / copper / nickel width growth castles.** Silver has several named realizations; at bronze and above the named one is the ridge rule `R_h = J − D`, and 192 binary `4 × 4` matrices have Perron root bronze ([[ridge-castle](pages/ridge-castle.md)]). Does any higher rung admit a second, structurally distinct named castle-strip rule?
 2. **Block growth axis** - no member known.
 3. **Cross-axis statements** - relating growth types under different axes on the same class.
 

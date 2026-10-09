@@ -5,7 +5,7 @@ summary: Hub for the castle-type taxonomy. Three scopes with different classifyi
 tags: [concept, castle, classification, taxonomy, hub, scope, shape, spectral, growth]
 sources: [castle-classification]
 created: 2026-09-15
-updated: 2026-10-02
+updated: 2026-10-09
 ---
 
 # Castle classification
@@ -64,7 +64,7 @@ Each scope's page carries its own detailed open list; the largest open items acr
 4. **Ramanujan castles** (spectrum) - the universal-cover definition is stated on [[castle-classification-spectrum](pages/castle-classification-spectrum.md)]; the census on [[ramanujan-castles](pages/ramanujan-castles.md)] finds every castle with at most 14 cells Ramanujan and the first failures at 15 cells; the smallest failing rectangle is `2 × 14`.
 5. **Bronze-spectrum castles** (spectrum) - no example in twelve searched boxes totaling about `7.1 × 10^11` skylines (with overlaps); existence remains open ([[bronze-castle-hunt](pages/bronze-castle-hunt.md)]).
 6. **Sparse-spectrum, low / high-pass, Ihara-Ramanujan** (spectrum) - the three sketched types on [[castle-classification-spectrum](pages/castle-classification-spectrum.md)].
-7. **Alternative realizations of the bronze / copper / nickel width growth castles** (growth) - the ridge castles (`R_h = J − D`) are the only known realization; does any higher rung admit a second, structurally distinct rule the way silver does?
+7. **Alternative realizations of the bronze / copper / nickel width growth castles** (growth) - the ridge castles (`R_h = J − D`) are the named realization, and 192 binary `4 × 4` matrices have Perron root bronze ([[ridge-castle](pages/ridge-castle.md)]); does any higher rung admit a second, structurally distinct named rule the way silver does?
 8. **Vertical and block growth axes** (growth) - no member known for either.
 9. **Compressibility** as a classifier in its own right ([[castle-compression](pages/castle-compression.md)]).
 

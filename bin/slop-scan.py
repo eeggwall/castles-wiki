@@ -213,6 +213,7 @@ RETIRED = [
     "rather than the number of configurations of the base",
     "no pairing of the height-2 castles cancels",
     "must be chosen before its count can be searched",
+    "the only known realization",
 ]
 RETIRED_RE = [
     (r"\barcs?\b", "planning-file 'arc' vocabulary"),
