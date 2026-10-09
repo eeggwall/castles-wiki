@@ -5,7 +5,7 @@ summary: Deutsch and Elizalde map Dyck paths to bargraphs by reading the heights
 tags: [paper, source, bargraph, dyck-path, bijection, catalan, peaks, semiperimeter, prime-castle, free-monoid, oeis]
 sources: [deutsch-elizalde-2017-bargraphs-dyck-paths]
 created: 2026-10-02
-updated: 2026-10-02
+updated: 2026-10-09
 ---
 
 # A bijection between bargraphs and Dyck paths (Deutsch-Elizalde, 2017)
@@ -27,7 +27,7 @@ Section 3 also tracks returns, height, initial and final runs, and sums of peak 
 
 - **Dyck-path primes become the wiki's prime castles.** Dyck paths form a free monoid under concatenation, and its primes in the sense of Gessel and Li are the paths `uPd` that return to the axis only at the end. A path's returns are its prime factors. By Prop. 3.5(i), a prime `uPd` with `P` nonempty maps to a bargraph raised one row, which has no height-1 column. By Thm. 3.2(g), a path of height at least 2 with `r` prime factors maps to a castle with `r − 1` height-1 columns. So `φ` sends the prime Dyck paths of height at least 2 onto the castles with no height-1 column, and the factor count of a path equals the factor count of its castle on [[prime-castles](pages/prime-castles.md)] (height-1 columns plus one). Own reasoning from Prop. 3.5 and Thm. 3.2(g), checked on every Dyck path of semilength up to 11.[^8]
 - **The castle's area is not carried.** Since `φ` sends semilength to `sp − pk`, it matches the factorizations but not the area grading the prime-castle counts use.[^5]
-- **A new Catalan reading of castles.** Castles with semiperimeter minus peaks equal to `m` number `C_m`: `1, 2, 5, 14, 42, 132` for `m = 1..6` (checked by brute force over castles).[^8] The table of castles by semiperimeter and peaks is OEIS A271940.[^9]
+- **A Catalan count of castles.** Castles with semiperimeter minus peaks equal to `m` number `C_m`: `1, 2, 5, 14, 42, 132` for `m = 1..6` (checked by brute force over castles).[^8] The table of castles by semiperimeter and peaks is OEIS A271940.[^9]
 - **The one-peak column is the convex castles.** A castle with exactly one peak in the paper's sense is unimodal, so the first column of the paper's Table 2, `1, 2, 5, 13, 34, 89, 233, 610, …` for `sp = 2..9`, is the convex castles by semiperimeter, A001519 on [[convex-castle](pages/convex-castle.md)] and [[castle-perimeter](pages/castle-perimeter.md)]. Own reading, checked by brute force.[^8]
 - **"Peak" collides.** Here a peak is `U H^ℓ D`, a local-maximum plateau. On [[castle-foata-transform](pages/castle-foata-transform.md)] a peak is a maximal run of columns of height at least 2. The castle `(2, 3, 2)` has one of each, but `(3, 2, 3)` has two bargraph peaks and one Foata peak. Recorded on [[castle-notation](pages/castle-notation.md)].
 

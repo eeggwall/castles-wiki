@@ -5,7 +5,7 @@ summary: "Knuth's section on integer partitions - Algorithm P (all partitions, r
 tags: [knuth, taocp, source, partitions, distinct-parts, generation, hindenburg-algorithm, euler, hardy-ramanujan, gaussian-binomial, gray-code, hoodoo-castle, monadnock-castle]
 sources: [aocp-generating-partitions]
 created: 2026-10-02
-updated: 2026-10-02
+updated: 2026-10-09
 ---
 
 # AOCP Generating All Partitions (Knuth, *The Art of Computer Programming*, Vol. 4A §7.2.1.4)
@@ -56,7 +56,7 @@ The exercises carry most of the distinct-part material. Exercise 34 is the stair
 
 ## Relation to Other Wiki Pages
 
-This is the wiki's second Vol. 4A source, after the tuple and Gray-code notes of [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] (§7.2.1.1-7.2.1.2). Those sections walk the whole cube `{1..h}^w`; this one generates a restricted class directly. For the castle the restricted class is the set of sides of [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)], so those two families are enumerated with no filtering at all.
+The tuple and Gray-code sections of Vol. 4A (§7.2.1.1-7.2.1.2, [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)]) walk the whole cube `{1..h}^w`; this one generates a restricted class directly. For the castle the restricted class is the set of sides of [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)], so those two families are enumerated with no filtering.
 
 Theorem C is the classical source of the Gaussian binomials already used on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] (towers with no descent by area) and gives the Ferrers row of [[castle-classification-shape](pages/castle-classification-shape.md)] its `(w, h)`-cell count by area. The rim representation joins the inversion grading of [[aocp-combinatorics](pages/aocp-combinatorics.md)] and [[permutation-inversions](pages/permutation-inversions.md)].
 

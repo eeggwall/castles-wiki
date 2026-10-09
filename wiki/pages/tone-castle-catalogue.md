@@ -5,7 +5,7 @@ summary: Every DTMF key, every R1 MF signal, the Bell precise-tone-plan call-pro
 tags: [analysis, castle, audio, telephone, dtmf, mf-signaling, goertzel, dft, periodicity, sparse-spectrum, divisor-classes, block-parity, quantization, signal-processing]
 sources: [project-euler-502-representations]
 created: 2026-10-01
-updated: 2026-10-01
+updated: 2026-10-09
 ---
 
 # Tone-castle catalogue - telephone signalling tones as exactly periodic castles
@@ -42,7 +42,7 @@ k_i  =  f_i · w / 8000                       the DFT bin of tone i (a whole num
 
 The tone completes `k_i` cycles in `w` samples. Before quantization the DFT of one period is supported on `{0, k_1, k_2, w − k_1, w − k_2}`: bin 0 is the castle's area, the others are the four **atoms**.
 
-Integer frequencies make every signal exactly periodic with period at most 8000 samples (one second). The catalogue's question is whether that period fits inside the signal as it is actually sent: a tone burst shorter than one period is, as a castle, only approximately periodic.
+Integer frequencies make every signal exactly periodic with period at most 8000 samples (one second). A tone burst shorter than one period is, as a castle, only approximately periodic.
 
 ## Single tones
 
@@ -147,7 +147,7 @@ Each DTMF key sends one row tone from {697, 770, 852, 941} Hz and one column ton
 | 6 | 260 | 0.0250 | 11 | # | 119 | 0.0296 | 13 |
 | B | 343 | 0.0149 | 12 | D | 289 | 0.0079 | 6 |
 
-Key C comes closest to repeating inside a burst (shift 338, heights within 4 of 256); key 5 is furthest (best shift 395, heights off by up to 22).[^exec]
+Key C comes closest to repeating inside a burst (shift 338, heights off by at most 4 at `h = 256`); key 5 is furthest (best shift 395, heights off by up to 22).[^exec]
 
 ## Call-progress tones and the 2600 Hz tone
 
@@ -178,7 +178,7 @@ As sent, the MF signals, the call-progress tones and the 2600 Hz tone are castle
 
 Before quantization each castle's mean-removed energy sits entirely in its atoms. After quantization the atoms carry between 99.997% and 99.999% of it, for every signal in the catalogue. That matches the rounding error: rounding adds about `1/12` of power per column, against `2 · 63.75² / 2 = 4064` for two tones of amplitude `255/4`, a fraction `2.05 · 10⁻⁵`.[^exec]
 
-The exact support is a different matter. Heights are whole numbers, so by [[spectral-analysis](pages/spectral-analysis.md)] §3 the support is bin 0 plus a union of the classes `D_d = {k : gcd(k, w) = d}`, and it contains the full class of every atom. MF KP's atoms 11 and 17 are coprime to 80, so all 32 bins of `D_1` are nonzero; DTMF key 1's atoms are coprime to 8000, so all 3200 bins of `D_1` are. In practice the rounding error fills every class:
+Heights are whole numbers, so by [[spectral-analysis](pages/spectral-analysis.md)] §3 the support is bin 0 plus a union of the classes `D_d = {k : gcd(k, w) = d}`, and it contains the full class of every atom. MF KP's atoms 11 and 17 are coprime to 80, so all 32 bins of `D_1` are nonzero; DTMF key 1's atoms are coprime to 8000, so all 3200 bins of `D_1` are. The rounding error fills the other classes as well, with five exceptions:
 
 - **30 of the 35 castles have all `w` bins nonzero.**
 - Five lose whole classes: DTMF A (`D_2`, `D_4`: 5600 of 8000 bins), DTMF 7 (`D_1600`, the four bins `1600, 3200, 4800, 6400`: 7996 bins), DTMF * (`D_2`, `D_10`: 6080 bins), MF 11/ST3 (`D_2`, `D_4`: 56 of 80 bins) and MF KP2 (`D_2`: 64 bins).

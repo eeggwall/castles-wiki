@@ -171,6 +171,11 @@ RETIRED = [
     "q-analog hinge",
     "methodological bedrock",
     "the natural next-chapter home",
+    "the catalogue's question is",
+    "the exact support is a different matter",
+    "in practice the rounding error fills every class",
+    "a new catalan reading of castles",
+    "the wiki's second vol. 4a source",
 ]
 RETIRED_RE = [
     (r"\barcs?\b", "planning-file 'arc' vocabulary"),
