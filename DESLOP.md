@@ -2,16 +2,17 @@
 
 Plan and tracker for stripping pseudo-poetic prose, unprovable asides and planning residue out of `wiki/`. Hand-maintained, outside `wiki/pages/`, never linked from the wiki. Conventions: `[ ]` not started, `[~]` spot fixes only (still needs a full read), `[x]` fully read and cleaned. Plain hyphens, no em-dashes.
 
-## Where we are (2026-09-28, pass complete)
+## Where we are (2026-10-09, pass complete)
 
 | Slice | Value |
 |---|---|
-| Pages | 194 (85 Concepts / 64 Analyses / 44 Sources / overview) |
-| Fully read and cleaned | 194, every page (the first-pass 21, then 34 batches oldest-first) |
+| Pages | 215 (97 Concepts / 67 Analyses / 50 Sources / overview) |
+| Fully read and cleaned | 215, every page (the first-pass 21, then 34 batches oldest-first; batches 35-42 for the 21 pages added since, batch 43 for text added to finished pages) |
 | Spot fixes only | 0 |
 | Not started | 0 |
 | Words still to read | 0 |
 | Commits | first pass `908bada`..`0a3e953`; then one commit per batch, `git log --oneline --grep 'deslop batch'`; tooling `a7c53c3` |
+| Rereading rule | a page added or substantially edited after its batch is reread by the same procedure (new pages in age order; edits by `git diff <last batch commit>`) |
 
 ## What the first pass found
 
@@ -106,7 +107,7 @@ After each batch, update "Where we are".
 
 Scan score in parentheses: retired-pattern density per 1000 words, higher first. Scores include hits on defined terms ("veins", "hear"), so oeis-mining-pe502 and the Kac pages are inflated.
 
-### Concepts (85 pages, 85 fully read)
+### Concepts (97 pages, 97 fully read)
 
 - [x] hear-the-shape-seminar (9.9)
 - [x] hyperbolic-sequence-family (6.2)
@@ -193,8 +194,20 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] catalan-numbers (0.0)
 - [x] castle-snippets-strips (0.0)
 - [x] acronyms (0.0)
+- [x] hoodoo-monadnock-castles (3.0, batches 35-42)
+- [x] fibonacci-castle (1.5, batches 35-42)
+- [x] m-smooth-castles (1.5, batches 35-42)
+- [x] q-fibonacci-castle (1.2, batches 35-42)
+- [x] 1-smooth-castles (1.0, batches 35-42)
+- [x] fibonacci-castles-sub-families (1.0, batches 35-42)
+- [x] n-nacci-disambiguation (0.8, batches 35-42)
+- [x] ridge-castle (0.0, batches 35-42)
+- [x] pell-castle (0.0, batches 35-42)
+- [x] kernel-method (0.0, batches 35-42)
+- [x] inscribed-polyomino (0.0, batches 35-42)
+- [x] binomial-transform (0.0, batches 35-42)
 
-### Analyses (64 pages, 64 fully read)
+### Analyses (67 pages, 67 fully read)
 
 - [x] castle-cryptography (5.1)
 - [x] isospectral-castles (4.9)
@@ -260,8 +273,11 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] odd-castles-and-block-tables (0.0)
 - [x] convex-castle-cap-factor (0.0)
 - [x] castle-q-bessel-closed-form (0.0)
+- [x] 1-smooth-pell-castles-by-area (2.8, batches 35-42)
+- [x] tone-castle-catalogue (1.2, batches 35-42)
+- [x] sandcastle-relaxation (0.4, batches 35-42)
 
-### Sources (44 pages, 44 fully read)
+### Sources (50 pages, 50 fully read)
 
 - [x] oeis-mining-pe502 (25.6)
 - [x] oeis-height2-hyperbolic-castles (5.9)
@@ -307,6 +323,12 @@ Scan score in parentheses: retired-pattern density per 1000 words, higher first.
 - [x] project-euler-502 (0.0)
 - [x] dhar-1990-self-organized-critical-sandpile (0.0)
 - [x] aocp-multinomial-coefficients (0.0)
+- [x] marin-2024-polyominoes-in-rectangle (1.4, batches 35-42)
+- [x] aocp-generating-partitions (0.9, batches 35-42)
+- [x] banderier-nicodeme-2010-bounded-discrete-walks (0.8, batches 35-42)
+- [x] deutsch-elizalde-2017-bargraphs-dyck-paths (0.0, batches 35-42)
+- [x] bayer-diaconis-1992-dovetail-shuffle (0.0, batches 35-42)
+- [x] barry-2005-catalan-transform (0.0, batches 35-42)
 
 ### Top level (1 page, 1 fully read)
 
