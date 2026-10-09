@@ -201,6 +201,11 @@ RETIRED = [
     "summarized for reference",
     "the flat steps are free",
     "the other way the wiki counts",
+    "the slowest character is not local",
+    "one might expect the slowest mode",
+    "loses sand through all four sides",
+    "is the combinatorial reading of the",
+    "both pell sums are one strip",
 ]
 RETIRED_RE = [
     (r"\barcs?\b", "planning-file 'arc' vocabulary"),
