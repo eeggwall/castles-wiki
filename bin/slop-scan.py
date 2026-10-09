@@ -180,6 +180,9 @@ RETIRED = [
     "sylvester's gaps as curvature",
     "plays the role it has on the area side of the wiki",
     "now costs one cell per column",
+    "the count is what makes it fibonacci",
+    "what makes the family fibonacci is its count",
+    "has a natural form at every exact height",
 ]
 RETIRED_RE = [
     (r"\barcs?\b", "planning-file 'arc' vocabulary"),

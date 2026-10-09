@@ -1,11 +1,11 @@
 ---
 title: Ridge castle
 category: Concepts
-summary: A ridge castle is a castle of exact height h in which neighbouring columns differ in height unless both reach the ceiling h, so flat runs occur only at the ceiling. Its transfer matrix R_h = J − D has characteristic polynomial (x + 1)^{h−2}(x² − (h−1)x − 1), and the all-ones vector stays in the plane where R_h acts by the metallic recurrence, so the ridge castles of width w number x_{w+1} + x_w − (h−1)(h−2)^{w−1}, with x the metallic sequence x_n = (h−1)x_{n−1} + x_{n−2}. They grow like the metallic mean δ_{h−1} - golden at h = 2 (where swapping heights 1 and 2 gives the Fibonacci castles plus the flat row), silver at 3, bronze at 4, copper at 5 (where the strip count is the Fibonacci trisection F_{3w+2}), nickel at 6 - and are the only known realization of bronze and above, which need at least 4 height-states. The even-block counts keep the metallic growth because the signed transfer matrix is spectrally smaller, and have no OEIS match for h ≥ 3.
+summary: A ridge castle is a castle of exact height h in which neighbouring columns differ in height unless both reach the ceiling h, so flat runs occur only at the ceiling. Its transfer matrix R_h = J − D has characteristic polynomial (x + 1)^{h−2}(x² − (h−1)x − 1), and the all-ones vector stays in the plane where R_h acts by the metallic recurrence, so the ridge castles of width w number x_{w+1} + x_w − (h−1)(h−2)^{w−1}, with x the metallic sequence x_n = (h−1)x_{n−1} + x_{n−2}. They grow like the metallic mean δ_{h−1} - golden at h = 2 (where swapping heights 1 and 2 gives the Fibonacci castles plus the flat row), silver at 3, bronze at 4, copper at 5 (where the strip count is the Fibonacci trisection F_{3w+2}), nickel at 6. Bronze needs at least 4 height-states. The even-block counts keep the metallic growth because the signed transfer matrix has a smaller spectral radius, and have no OEIS match for h ≥ 3.
 tags: [concept, castle, castle-type, ridge-castle, metallic-mean, transfer-matrix, growth-constant, golden, silver, bronze, copper, nickel, fibonacci, parity, blocks]
 sources: [project-euler-502]
 created: 2026-10-03
-updated: 2026-10-07
+updated: 2026-10-09
 ---
 
 # Ridge castle
@@ -86,8 +86,8 @@ The count grows like a constant times `δ_{h−1}^w`, since `δ_{h−1} > h − 
 | 5 | `2 + √5 = φ³ ≈ 4.2361` | copper | `x² − 4x − 1` |
 | 6 | `(5 + √29)/2 ≈ 5.1926` | nickel | `x² − 5x − 1` |
 
-- **Why the rule reaches the ladder.** A strip denominator `1 − p_1 x − p_2 x²` grows at a metallic mean exactly when `p_2 = 1`, and widening the height alphabet usually pushes `p_2` above 1. The ceiling exception keeps `p_2 = 1` while `p_1 = h − 1` grows ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
-- **Bronze and above.** No 0/1 transfer matrix on 3 states has bronze as an eigenvalue; 192 of the 65,536 binary `4 × 4` matrices do.[^exec] So bronze needs at least four height-states, and for bronze, copper, nickel and higher the ridge castles are the only known realization. Silver and golden have others (the Pell castle strip, [[pell-castle-strip](pages/pell-castle-strip.md)]; the Fibonacci castles).
+- **Why the rule reaches the ladder.** A strip denominator `1 − p_1 x − p_2 x²` grows at a metallic mean exactly when `p_2 = 1`; of the five natural height-3 rules on [[metallic-strip-realizability](pages/metallic-strip-realizability.md)], only the 1-smooth rule reduces to `p_2 = 1`. The ceiling exception keeps `p_2 = 1` while `p_1 = h − 1` grows.
+- **Bronze and above.** No 0/1 transfer matrix on 3 states has bronze as an eigenvalue; 192 of the 65,536 binary `4 × 4` matrices do, `R_4` among them.[^exec] So bronze needs at least four height-states. Silver and golden also come from other named rules (the Pell castle strip, [[pell-castle-strip](pages/pell-castle-strip.md)]; the Fibonacci castles).
 - **Minimum height.** Over all 0/1 strip rules, each metallic mean `δ_a` first appears at height `a + 1` ([[reachable-field-census](pages/reachable-field-census.md)], [[quadratic-min-height](pages/quadratic-min-height.md)]), the height at which the ridge rule reaches it.
 - **Copper.** `δ_4 = 2 + √5 = φ³` lies in `Q(√5)`, and the strip count at `h = 5` is `x_{w+1} + x_w = F_{3w+2}` (`5, 21, 89, 377, …`), every third Fibonacci number ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
 - **Entropy.** The rate is `log₂ δ_{h−1}` bits per column ([[castle-entropy](pages/castle-entropy.md)]).
