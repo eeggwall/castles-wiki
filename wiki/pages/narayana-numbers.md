@@ -5,7 +5,7 @@ summary: N(n,k) = (1/n)C(n,k)C(n,k−1) (OEIS A001263); the Narayana polynomial 
 tags: [concept, narayana, catalan, oeis, tower, generating-functions]
 sources: [oeis-mining-pe502, tower-narayana-polynomial, algebraic-languages-and-polyominoes-enumeration, bayer-diaconis-1992-dovetail-shuffle]
 created: 2026-09-13
-updated: 2026-10-08
+updated: 2026-10-09
 ---
 
 # Narayana numbers
@@ -34,6 +34,7 @@ A proposed cross-reference on A001263 records `T(w,b) = Σ_k N(w,k) C(b+w−k, w
 - [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] — the full finding and the A001263 cross-reference draft.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — identifies this as the Catalan/Narayana thread (tower, not convex).
 - [[bayer-diaconis-1992-dovetail-shuffle](pages/bayer-diaconis-1992-dovetail-shuffle.md)] - Worpitzky's identity proved by stars and bars over the cuts of a shuffle, the model for the descent refinement.
+- [[baril-florez-ramirez-2026-generalized-narayana-arrays](pages/baril-florez-ramirez-2026-generalized-narayana-arrays.md)] - `N(n, k)` as Dyck paths with `k` peaks, refined by the heights of the peaks (type-1 and type-2 Narayana arrays).
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - Remark 4.4: parallelogram polyominoes by width are Narayana, by a 2 × 2 Gessel-Viennot determinant, and β carries this to Dyck words by peaks.
 
 ## Related Concepts

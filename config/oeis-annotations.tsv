@@ -170,6 +170,7 @@ A097862	count	Triangle read by rows: T(n,k) is the number of Motzkin paths of le
 A098574	count	a(n) = Sum_{k=0..floor(n/7)} C(n-5*k,2*k).	minimum-tower-spacing `(h=2, g=6)` castles, `a(w+6)`
 A100237	metallic	Secondary diagonal of triangle A100235 divided by row number: a(n) = A100235(n+1,n)/(n+1) for n >= 0.	nickel delta-1 CF numerators: (1-x)/(1-5x-x²)
 A105422	supporting	Triangle read by rows: T(n,k) is the number of compositions of n having exactly k parts equal to 1.	prime-factor counts of castles by area (k+1 factors for k height-1 columns)
+A105633	supporting	Row sums of triangle A105632.	Dyck paths avoiding UUDU = Dyck paths with no peak at a height divisible by 3 (Baril-Florez-Ramirez); not a castle count
 A106514	count	Expansion of (1-x)/((1-2*x)*(1-2*x-x^2)).	1-smooth castles of exact height 3 of width w: A106514(w-1)
 A107587	count	Number of Motzkin n-paths with an even number of up steps.	odd-block Motzkin-path castles (even Motzkin paths), `=a(w-1)`
 A107920	supporting	Lucas and Lehmer numbers with parameters (1 +- sqrt(-7))/2.	Lucas-Lehmer with (1±√-7)/2 (P_odd(2,L) at k=2)

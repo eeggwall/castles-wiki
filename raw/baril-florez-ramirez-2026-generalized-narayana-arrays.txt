@@ -1,0 +1,1888 @@
+AUSTRALASIAN JOURNAL OF COMBINATORICS
+Volume 94(3) (2026), Pages 333–365
+
+
+
+
+      Generalized Narayana arrays, restricted Dyck
+              paths, and related bijections
+                                 Jean-Luc Baril
+                          LIB, Université Bourgogne Europe
+                       B.P. 47 870, 21078, Dijon Cedex, France
+                               barjl@u-bourgogne.fr
+
+
+                               Rigoberto Flórez
+                         Department of Mathematical Sciences
+                         The Citadel, Charleston, SC, U.S.A.
+                               rflorez1@citadel.edu
+
+
+                                 José L. Ramı́rez
+                             Departamento de Matemáticas
+                  Universidad Nacional de Colombia, Bogotá, Colombia
+                               jlramirezr@unal.edu.co
+
+                                        Abstract
+       We study two types of generalizations of the Narayana array. Type 1
+       counts the number of Dyck paths of semilength n with k peaks (or val-
+       leys) whose heights belong to a given set S, whereas Type 2 counts Dyck
+       paths of semilength n with exactly k peaks (or valleys), all of which have
+       heights in S. We focus on the following sets: S = {m}, S = {m, m + 1},
+       the non-negative even heights, the positive odd heights, and more gen-
+       erally heights congruent to a ﬁxed residue modulo a. For each case, we
+       provide a bivariate generating function f (x, y) that characterizes the cor-
+       responding Narayana array, establish combinatorial connections through
+       bijections with other combinatorial structures, and obtain asymptotic ap-
+       proximations for the expected number of peaks or valleys of height in S
+       in Dyck paths of a given semilength.
+
+
+1    Introduction
+
+A Dyck path is a lattice path in the ﬁrst quadrant of the xy-plane that starts at the
+origin, ends on the x-axis, and consists of an equal number of up-steps U = (1, 1)
+
+ISSN: 2202-3518                   ©The author(s). Released under the CC BY 4.0 International License
+              J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365      334
+
+
+and down-steps D = (1, −1). The length of a Dyck path is deﬁned as the total
+number of steps. For a Dyck path P , we write |P | to denote its semilength, that is,
+half of its length. The empty Dyck path (a Dyck path of semilength 0) is denoted
+by ǫ. We denote by D the set of all Dyck paths and by Dn the set of all Dyck
+paths of semilength n, for n ≥ 0. It is well-known that the number    of Dyck paths of
+                                                               1  2n
+semilength n is given by the n-th Catalan number, cn = n+1 n (cf. [19]).
+    A peak in a Dyck path is a subpath of the form U D, while a valley is a subpath
+of the form DU . The height of a peak (respectively valley) is the y-coordinate of its
+highest point (respectively lowest point). Given i ≥ 0 and a Dyck path P , we denote
+by peai (P ) (respectively vali (P )) the number of peaks (respectively valleys) in P at
+height i.
+    In this paper, we study two generalizations of the Narayana array to count Dyck
+paths of semilength n whose peaks (or valleys) have heights in a ﬁxed set S. We
+also consider the related problem of counting Dyck paths with exactly k peaks (or
+valleys), all of which have heights in the set S. In particular, we examine special cases
+where S is the set of non-negative even numbers, the set of positive odd numbers,
+S = {m}, S = {m, m + 1}, and S = {m ∈ N : m ≡ b (mod a)}. For each of these
+counting problems, we use a bivariate generating function f (x, y) that characterizes
+the Narayana array. These generating functions give rise to two types of arrays,
+which we refer to as generalized Narayana arrays. Additionally, we present several
+bijective correspondences between these classes of Dyck paths and other families of
+paths, permutations, compositions or trees.
+    We derive the asymptotic behavior of the expected number of peaks (or valleys)
+at heights in S among all Dyck paths of semilength n by computing ∂y (f (x, y))|y=1
+and applying classical methods (cf. [12]). We also extend the previous deﬁnitions of
+peai (P ) and vali (P ) to deﬁne peaS (P ) (respectively valS (P )) when i belongs to a
+given set S.
+    Finally, we include an appendix that presents a computational approach to derive
+these generating functions, based on recent work by Zeilberger [7, 10] and Bu [6] on
+restricted Dyck and Motzkin paths. Eu, Liu, and Yeh [11] studied the sequence
+(PS (n, 0))n , which counts the number of Dyck paths whose peak heights avoid S.
+
+
+2    Some basic deﬁnitions, notation, and background
+
+In this section, we introduce some basic deﬁnitions, notation, and background nec-
+essary for understanding the generalizations of the Narayana array and the related
+combinatorial problems studied in this paper.
+    Throughout the paper, we will often consider the ﬁrst return decomposition of
+a nonempty Dyck path R, that is, the unique decomposition R = U P DQ, where
+P and Q are (possibly empty) Dyck paths. From this decomposition, we deduce
+the functional equation C(x) = 1 + xC(x)2 for the generating function C(x) =
+                      J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365   335
+
+               n
+P
+    n≥0 cn x       , which implies that
+                                                        √
+                                                   1−     1 − 4x
+                                          C(x) =                 .
+                                                         2x
+For further information on Catalan numbers, see A000108 in the On-line Encyclope-
+dia of Integer Sequences [18]. Various works on the enumeration and generation of
+Dyck paths with respect to their semilength and other combinatorial statistics can
+be found in [1, 3, 9, 13, 14, 15, 17].
+   Let N (n, k) denote the number of Dyck paths of semilength n with exactly k
+peaks. The array (N (n, k))n,k≥0 , known as the Narayana triangle (see [16] and
+A001263 in [18]), is given by the formula
+                                             
+                                1 n−1       n
+                    N (n, k) =                    ,    n, k ≥ 1,
+                                k k−1     k−1
+with the initial conditions N (0, 0) = 1 and N (n, 0) = 0 for n ≥ 1.
+   Its generating function is
+                                           p
+        X                     1 + x − xy −   1 − 2x + x2 − 2xy − 2x2 y + x2 y 2
+             N (n, k)xn y k =                                                   .
+       n,k≥0
+                                                     2x
+
+    Let S be a subset of the non-negative integers. Deﬁne PS (n, k) as the number of
+Dyck paths of semilength n with exactly k peaks whose heights belong to S. Note
+that the paths may also contain additional peaks whose heights are not in S. The
+         (1)
+array PS := (PS (n, k))n,k≥0 is called Narayana array of type 1. Clearly, whenever
+S = N, the sequence PN (n, k) coincides with the Narayana number N (n, k).
+    Dually, let VS (n, k) denote the number of Dyck paths of semilength n with ex-
+                                                                                (1)
+actly k valleys whose heights are contained in S. The corresponding array, VS :=
+(VS (n, k))n,k≥0 , is called the dual Narayana array of type 1.
+    Another variation of the Narayana array imposes the restriction that the heights
+of all peaks or valleys must be contained in a given set. Speciﬁcally, let P S (n, k)
+denote the number of Dyck paths of semilength n with exactly k peaks, where every
+                                       (2)
+peak has height in S. The array PS := (P S (n, k))n,k≥0 is called the Narayana array
+of type 2.
+    Similarly, let V S (n, k) denote the number of Dyck paths of semilength n with ex-
+                                                                  (2)
+actly k valleys, where every valley has height in S. The array VS := (V S (n, k))n,k≥0
+is called the dual Narayana array of type 2.
+    The notation is summarized in Table 1.
+
+
+3     Narayana Arrays of Type 1. The Peak Statistic
+
+In this section, we use generating functions to count Dyck paths with peaks at
+heights belonging to a given set S. We begin by analyzing the special case in which
+                J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365      336
+
+                                                                 (1)
+   PS (n, k)    number of Dyck paths of semilength n           PS      Narayana array of
+                with exactly k peaks of heights in S                   type 1
+                                                                 (1)
+   VS (n, k)    number of Dyck paths of semilength n           VS      Dual Narayana ar-
+                with exactly k valleys of heights in S                 ray of type 1
+                                                                 (2)
+   P S (n, k)   number of Dyck paths of semilength n           PS      Narayana array of
+                with exactly k peaks, each having a                    type 2
+                height in S
+                                                                 (2)
+   V S (n, k)   number of Dyck paths of semilength n           VS      Dual Narayana ar-
+                with exactly k valleys, each having a                  ray of type 2
+                height in S
+
+
+                               Table 1: Narayana sequences.
+
+S = {m, m + 1}, where the corresponding generating function can be expressed as
+a ﬁnite continued fraction. In particular, we describe a bijection that maps Dyck
+paths to Dyck paths with no peaks at heights 2 and 3. In the second part of the
+section, we examine the cases where S consists of the positive even heights or the
+positive odd heights, showing that the resulting matrices are related to the number
+of permutations avoiding the pattern 132. Additionally, we consider sets S deﬁned
+by arithmetic progressions. Finally, we present corollaries describing the asymptotic
+behavior of Dyck paths based on the distribution of peak heights.
+    Let N and Z+ denote the set of non-negative integers and positive integers, re-
+spectively. Given S ⊂ N, we deﬁne the sets S− := {s − 1 : s ∈ S} ∩ Z+ and
+S−∗ := {s − 1 : s ∈ S} ∩ N. Moreover, we deﬁne [n] := {1, 2, . . . , n}. We introduce
+the following bivariate generating function:
+                                        X
+                            ∆S (x, y) =      PS (n, k)xn y k ,
+                                            n,k≥0
+
+
+where PS (n, k) is the number of all Dyck paths of semilength n with k peaks whose
+heights are contained in S.
+
+3.1   The statistics of peaks at heights in a given set
+
+In this section, we count the number of Dyck paths with peaks at heights in set S.
+
+Theorem 3.1. The number of Dyck paths with peaks at heights in S ⊆ Z+ is counted
+by the generating function ∆S (x, y), which satisﬁes the following equation:
+                   (
+                     1 + xy∆S (x, y) + x(∆S− (x, y) − 1)∆S (x, y), if 1 ∈ S;
+       ∆S (x, y) =
+                     1 + x∆S− (x, y)∆S (x, y),                      otherwise.
+
+Moreover, ∆∅ (x, y) = C(x), where C(x) is the generating function of the Catalan
+numbers.
+             J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365   337
+
+
+Proof. Let R be a non-empty Dyck path, and let R = U P DQ be its ﬁrst return
+decomposition, where P and Q are possibly empty Dyck paths. If 1 ∈ S, then we
+distinguish two separate cases: either R = U DQ or R = U P DQ, where P and Q
+are Dyck paths, with P being non-empty.
+    For the ﬁrst case, R has one more peak at height 1 ∈ S than Q, then the
+contribution is xy∆S (x, y). In the second case, R has a + b peaks at heights in S,
+where a (respectively b) is the number of peaks in P (respectively Q) at heights in
+S− (respectively S). Considering these two cases, we obtain the functional equation:
+              ∆S (x, y) = 1 + xy∆S (x, y) + x(∆S− (x, y) − 1)∆S (x, y).
+
+    If 1 6∈ S, then the decomposition R = U P DQ where P and Q are Dyck paths
+leads to the functional equation
+                        ∆S (x, y) = 1 + x∆S− (x, y)∆S (x, y).
+Notice that if S = ∅ in this last equation, we recover the functional equation for
+Dyck paths:
+                            ∆S (x, y) = 1 + x∆S (x, y)2 ,
+which implies that ∆∅ (x, y) = C(x), where C(x) is the generating function for the
+Catalan numbers.
+
+    In [9], Deutsch proved that the number of Dyck paths with no peaks at height 1
+is counted by the Fine numbers A000957, while the number of Dyck paths with no
+peaks at height 2 are counted by the Catalan numbers. These two sequences are the
+                                 (1)     (1)
+ﬁrst column of the two arrays P{1} and P{2} .
+
+3.1.1   The statistics of peaks at heights in S = {m, m + 1}
+
+In this section, we study the special case in which S = {m, m + 1}. We also prove
+that Dyck paths with no peaks in S = {2, 3} are counted by a shift of the Catalan
+sequence.
+    The proof of the following result is straightforward using Theorem 3.1.
+Corollary 3.2. For m ≥ 1, the number of Dyck paths with peaks at heights in
+{m, m + 1} is counted by the generating function ∆{m,m+1} (x, y), given by the con-
+tinued fraction
+                                                                     
+                                          1                          
+   ∆{m,m+1} (x, y) =
+                                                                     
+                                                                     
+                                                                     
+                                            x
+                                                                     
+                                                                     
+                     1−
+                                                                     
+                                                                     
+                                                                     
+                                               x                         m times,
+                        1−                     ..                    
+                                                .
+                                                                     
+                                                                     
+                                                                     
+                                                                     
+                                                                     
+                                                  x
+                                                                     
+                                                                     
+                                                                     
+                            1−
+                                                        x
+                                1 − xy + x −
+                                              1 − xy − x(C(x) − 1)
+                 J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365                      338
+
+
+where C(x) is the generating function for the Catalan numbers.
+
+   The following example illustrates this.
+Example 3.3. By setting m = 2 in Corollary 3.2 so that S = {2, 3}, we obtain the
+generating function ∆{2,3} (x, y):
+                                                                               √
+2 + 3x − 2(1 + 4x + 3x2 + x3 )y + 6x(1 + x)2 y 2 − 6x2 (1 + x)y 3 + 2x3 y 4 − x 1 − 4x
+                                                                                       .
+            2(1 − (1 + 3x)y + x(3 + 4x + x2 )y 2 − x2 (3 + 2x)y 3 + x3 y 4 )
+From this generating function, we can obtain the ﬁrst few rows of the Narayana array
+of type 1 associated with the set S = {2, 3}:
+                                         1     0     0    0      0    0   0
+                                                                            
+                                       1      0     0    0      0    0   0
+                                                                            
+                                       1      1     0    0      0    0   0
+                                                                            
+                                       1      3     1    0      0    0   0
+                                                                            
+                               (1)
+                              P{2,3} =  2     5    6     1      0    0   0 .
+                                       
+                                       5     11    15   10      1    0   0
+                                                                            
+                                       14    29    38   35     15    1   0
+                                                                            
+                                       42    84   107   104    70   21   1
+                                                                            
+                                         ..               ..              ..
+                                          .                .               .
+
+                        (1)
+   For example, P{2,3} (4, 2) = 6, which corresponds to the boxed entry in the array
+ (1)
+P{2,3} above. The six Dyck paths corresponding to this value are illustrated in Figure
+1. The red points denote the peaks of height 2 or 3.
+
+
+
+
+         Figure 1: Dyck paths of semilength 4 with 2 peaks of heights 2 or 3.
+
+                                (1)
+    The ﬁrst column of P{2,3} , consisting of Dyck paths with no peaks in S = {2, 3},
+is a shifted version of the Catalan sequence A000108.
+
+   Let us deﬁne a recursively map χ from the set of all Dyck paths to the set of all
+Dyck paths with no peaks at heights 2 or 3:
+                                                χ(ǫ) = U DU D,
+                                        χ(U DP ) = U Dχ(P ),
+           a1       a2           ak−1
+ χ(P1 (U D) P2 (U D) · · · (U D)      Pk (U D)ak ) = U U P1 f (a1 )P2 f (a2 ) · · · f (ak−1 )Pk DD(U D)ak ,
+
+ where k ≥ 1, Pi = U Qi D with Qi 6= ǫ for 1 ≤ i ≤ k, and ai ≥ 0 for 1 ≤ i ≤ k, and
+f (0) = ǫ, f (1) = DU , f (a) = DD(U D)a−2 U U for a ≥ 2.
+               J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365   339
+
+
+Example 3.4. If
+   R = U U DU DDU DU U DDU U DDU DU DU U DDU DU DU U DDU U DU DD,
+then we have
+χ(R) = U U U U DU DDDU U U DDU U DDDDU U U U DDDDU U U U DDU U DU DDDD.
+Figure 2 illustrates the Dyck paths corresponding to this example.
+
+
+                                            ↓χ
+
+
+
+
+                         Figure 2: Example of the bijection χ.
+
+    By induction on the semilength, the image by χ of a Dyck path of semilength n
+is a Dyck path of semilength n + 2 with no peaks at height 2 or 3, and by simple
+observation χ is injective. Furthermore, the generating function corresponding to
+                       (1)
+the ﬁrst column of P{2,3} satisﬁes ∆{2,3} (x, 0) = 1 + x + x2 C(x), which implies the
+bijectivity of χ between Dyck paths of semilength n and Dyck paths of semilength
+n + 2 with no peaks at height 2 or 3, thus oﬀering an alternative combinatorial
+interpretation of the Catalan numbers.
+    By calculating ∂y (∆(x, y))|y=1 , and applying classical methods (see [12]), we de-
+duce the following result.
+Corollary 3.5. An asymptotic estimate for the expected number of peaks at heights
+in {2, 3} among all Dyck paths of semilength n is 5.
+
+3.1.2   The statistics of peaks at either even or odd heights
+
+In this section, we present generating functions that count the number of Dyck paths
+with peaks at even heights and at odd heights, respectively. We use E to denote the
+set of all non-negative even integers and O to denote the set of all positive odd
+integers.
+Corollary 3.6. The number of Dyck paths with peaks at even heights is counted by
+the generating function ∆E (x, y), which satisﬁes the following equation:
+                                     p
+                       1 + x − xy − 1 − 2x(1 + y) + x2 (−3 + 2y + y 2 )
+           ∆E (x, y) =                                                    .
+                                               2x
+Similarly, the number of Dyck paths with peaks at odd heights is counted by the
+generating function ∆O (x, y), which satisﬁes the following equation:
+                                     p
+                       1 + x − xy − 1 − 2x(1 + y) + x2 (−3 + 2y + y 2 )
+           ∆O (x, y) =                                                    .
+                                        2x(1 + x(1 − y))
+               J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365                 340
+
+
+   The proof of this corollary follows by solving the system of equations derived
+from Theorem 3.1.
+           (
+             ∆E (x, y) = 1 + x∆O (x, y)∆E (x, y),
+             ∆O (x, y) = 1 + x(∆E (x, y) − 1)∆O (x, y) + xy∆O (x, y).
+
+    Note that the quadratic equations in ∆E (x, y) and ∆O (x, y) has two algebraic
+solutions. We keep the branch that is analytic at x = 0 and has non-negative
+coeﬃcients, while the other one does not satisfy these conditions and is thus excluded.
+    From Corollary 3.6, we obtain the ﬁrst few rows of the Narayana arrays of type
+1 associated with the two sets of even and odd integers:
+                                                                                                
+       1      0       0   0   0   0   0                   1     0      0     0     0    0   0   0
+     1       0       0   0   0   0   0                0      1      0     0     0    0   0   0
+                                                                                                
+     1       1       0   0   0   0   0                1      0      1     0     0    0   0   0
+                                                                                                
+     2       2       1   0   0   0   0                1      3      0     1     0    0   0   0
+                                                                                                
+PE =  4      6       3   1   0   0   0           PO =  3     4      6     0     1    0   0   0
+ (1)                                                (1)
+                                             and                                                   .
+                                                       
+                                         
+     9      16      12   4   1   0   0                6     15     10    10     0    1   0   0
+                                                                                                
+     21     45      40   20 5    1   0                15    36     45    20    15    0   1   0
+                                                                                                
+     51     126    135   80 30   6   1                36    105   126   105    35   21   0   1
+       ..                  ..         ..                  ..                 ..                 ..
+                                                                                                
+        .                   .          .                   .                  .                  .
+
+                   (1)
+    The array PE coincides with Table 2 given by Baril and Kirgizov in [2], where
+the entry of row n and column k counts the number of permutations of length n
+avoiding the pattern 132 and having k pure descents. A fundamental notion in
+the study of permutation patterns is that a permutation π = π1 π2 · · · πn avoids the
+pattern 132 if there does not exist i1 < i2 < i3 such that πi1 < πi3 < πi2 . A pure
+descent in a permutation π is an occurrence πi > πi+1 where there is no j < i
+such that πi+1 < πj < πi . From [2], we can directly deduce that Dyck paths of a
+given semilength with no peak at even heights are counted by Motzkin numbers (see
+A001006).
+    We now deﬁne a recursive map φ from the set of Dyck paths to the set of 132-
+avoiding permutations as follows: φ(ǫ) = ǫ, φ(U DP ) = φ(P ) n with n = 1 + |P |,
+and
+
+            φ(U U Q1 D · · · U Qk DDP ) =
+               (φ(Q1 ) + n2 + · · · + nk + m + k)(n1 + · · · + nk + m + k + 1)
+               (φ(Q2 ) + n3 + · · · + nk + m + k − 1)(n2 + · · · + nk + m + k)
+               ···
+               (φ(Qk−1 ) + nk + m + 2)(nk−1 + nk + m + 3)
+               (φ(Qk ) + m + 1)(nk + m + 2)
+               φ(P )(m + 1),
+
+where Q1 , Q2 , . . . , Qk , P are some Dyck paths with ni = |Qi | for 1 ≤ i ≤ k, and
+m = |P |. Here, for a nonnegative integer a and a permutation π, the notation π + a
+denotes the sequence obtained from π by adding a to each of its entries.
+              J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365       341
+
+
+    By induction on the semilength, we establish that the image of a Dyck path
+under φ is a permutation avoiding the pattern 132, Furthermore, it follows (again
+by induction) that φ is injective. Since the number of permutations avoiding 132
+of a given length are counted by the Catalan numbers, which also enumerate Dyck
+paths, we deduce that φ is a bijection. Moreover, an induction on the semilength
+shows that the number of peaks at even heights in a Dyck path R equals the number
+of pure descents in the permutation φ(R). This claim is immediate for R = U DP .
+For R = U U Q1 D · · · U Qk DDP , peaE (R) is the number of empty paths Qi plus
+
+                 peaE (Q1 ) + peaE (Q2 ) + · · · + peaE (Qk ) + peaE (P ).
+
+By the induction hypothesis, this sum also counts the number of empty paths Qi
+plus the number of pure descents in all Qi and P . Since an empty path Qi generates
+a pure descent of the form (ni−1 + · · · + nk + m + k + 1)a, where a is the ﬁrst value
+of (φ(Qi ) + ni+1 + · · · + nk + m + k − 1), it follows that peaE (R) matches the number
+of pure descents in φ(R), completing the induction.
+
+Example 3.7. If R = U U D U U DU DD U D D U U DD, then we obtain φ(R) =
+8 567 4 21 3, and peaE (R) = 3, which is also the number of pure descents in φ(R)
+(namely, 85, 42, and 21), see Figure 3.
+
+                                                        φ
+                                                      −→       φ(R) = 8 567 4 21 3
+
+
+
+                        Figure 3: Example of the bijection φ.
+
+
+   Moreover, the bijection φ maps the number peaO (R) of peaks at odd heights
+in a Dyck path R of semilength n, to the number of adjacencies in the extended
+permutation 0 φ(R)(n + 1), where an adjacency is an occurrence of two consecutive
+entries in the form a(a + 1). In the above example, we have peaO (R) = 2 and the
+permutation 0 φ(R) 9 has two adjacencies 56 and 67.
+
+Corollary 3.8. An asymptotic estimate for the expected number of peaks at even
+heights (respectively odd heights) among all Dyck paths of semilength n is n/4 (re-
+spectively n/4).
+
+3.1.3   The statistics of peaks at heights in arithmetical progressions
+
+In this section, we generalize the above result to sets deﬁned by an arithmetic pro-
+gression. As before, we provide generating functions that enumerate Dyck paths
+whose peaks occur at heights within these sets.
+    Let a and b be integers, with 0 ≤ b < a. We deﬁne Aa,b = {m ∈ N : m ≡
+b (mod a)} as the set of residue classes modulo a.
+               J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365                             342
+
+
+Corollary 3.9. The number of Dyck paths with peaks at A3,0 , A3,1 , and A3,2 is
+counted by generating functions satisfying the following equations:
+                                     p
+                1 − x2 − xy + x2 y − (1 − x)((1 − x)(1 + x(1 − y))2 − 4x(1 − xy))
+ ∆A3,0 (x, y) =                                                                   ,
+                                              2(1 − x)x
+                 1−x
+ ∆A3,1 (x, y) =        ∆A (x, y),
+                1 − xy 3,0
+                   1                                  
+ ∆A3,2 (x, y) =         (1 − x)∆A3,0 (x, y) + x(1 − y) .
+                1 − xy
+   The proof of this corollary follows by solving the system of equations derived
+from Theorem 3.1.
+       
+       
+          ∆Aa,0 (x, y) = 1 + x∆Aa,a−1 (x, y)∆Aa,0 (x, y),
+       
+        ∆Aa,1 (x, y) = 1 + x(∆Aa,0 (x, y) − 1)∆Aa,1 (x, y) + xy∆Aa,1 (x, y),
+       
+                        ..
+       
+       
+                        .
+       
+         ∆Aa,a−1 (x, y) = 1 + x∆Aa,a−2 (x, y)∆Aa,a−1 (x, y).
+       
+
+Example 3.10. From Corollary 3.9, we obtain the ﬁrst few rows of the corresponding
+                                      (1)
+Narayana arrays. The ﬁrst column of PA3,0 corresponds to the sequence A105633,
+where the n-th term is the number of Dyck paths of semilength n that avoid the
+pattern U U DU .
+                                                                                                     
+               1     0     0     0   0   0                  1        0      0     0     0    0   0   0
+             1      0     0     0   0   0               0         1      0     0     0    0   0   0
+                                                                                                     
+             2      0     0     0   0   0               1         0      1     0     0    0   0   0
+                                                                                                     
+             4      1     0     0   0   0               2         2      0     1     0    0   0   0
+                                                                                                     
+    PA3,0 =  9      4     1     0   0   0       PA3,1 =  5        5      3     0     1    0   0   0
+     (1)                                           (1)
+                                            ,                                                          ,
+                                                         
+             22     14    5     1   0   0               13        15     9     4     0    1   0   0
+                                                                                                     
+             57     47   21     6   1   0               35        46    31     14    5    0   1   0
+                                                                                                     
+            154    155   83    29   7   1               97       143   108     54    20   6   0   1
+               ..          ..            ..                 ..                     ..                ..
+                                                                                                     
+                .           .             .                  .                      .                 .
+                                                                            
+                                    1        0       0   0     0     0    0
+                                  1         0       0   0     0     0    0
+                                                                            
+                                  1         1       0   0     0     0    0
+                                                                            
+                                  2         2       1   0     0     0    0
+                                                                            
+                          PA3,2 =  5        5       3   1     0     0    0
+                           (1)
+                                                                             .
+                                  
+                                  13        15      9   4     1     0    0
+                                                                            
+                                  35        46     31   14    5     1    0
+                                                                            
+                                  97       143    108   54    20    6    1
+                                    ..                    ..              ..
+                                                                            
+                                     .                     .               .
+
+   We now deﬁne a recursive map µ from the set of Dyck paths avoiding U U DU to
+the set of Dyck paths with no peaks at heights congruent to 0 modulo 3, as follows:
+                                       µ(ǫ) = ǫ,
+                                   µ(U DP ) = U Dµ(P ),
+                                µ(U U DDP ) = U U DDµ(P ),
+       µ(U k+2 DDQ1 DQ2 D · · · Qk DP ) = U U f (Q1 )f (Q2 ) · · · f (Qk )DDµ(P ),
+              J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365   343
+
+
+where k ≥ 1, Q1 , . . . , Qk , P are Dyck paths avoiding U U DU , f (ǫ) = DU , and
+f (P ) = U µ(P )D when P 6= ǫ.
+    By a simple induction on the semilength, we can show that µ(R) is a Dyck path
+with no peaks at heights congruent to 0 modulo 3 whenever R avoids U U DU and
+that µ is injective. Since both classes of Dyck paths have the same cardinality, it
+follows that µ is a bijection. The following example illustrates this.
+Example 3.11. If R = U DU U U DDU DU U U DDU DDDU U DD, then we obtain
+
+                 µ(R) = U DU U U U DU U U U DDDDDDDU U DD,
+
+and µ(R) has no peaks at heights congruent to 0 modulo 3. See, for example, Figure
+4.
+
+
+
+
+                                            ↓µ
+
+
+
+
+                        Figure 4: Example of the bijection µ.
+
+                                 (1)         (1)
+   By observing the arrays PA3,2 and PA3,1 , we believe that there is a bijection µ′
+on Dyck paths that maps the number of peaks at heights congruent to 2 modulo
+3 to the number of peaks at heights congruent to 1 modulo 3 except for the path
+U (U D)n−1 D, whose image will be (U D)n . Below, we describe such a bijection µ′ :
+
+
+               µ′ (U (U D)n−1 D) = (U D)n ,
+               µ′ (U U P DQDR) = U U RDP DQ if P 6= ǫ,
+          µ′ (U (U D)k DU QDR) = (U D)k U U RDDQ if k ≥ 1,
+         µ′ (U (U D)k U P DQDR) = (U D)k U U RDP DQ if k ≥ 1 and P 6= ǫ,
+                   µ′ (U DU QDR) = U U RDDQ,
+
+where P, Q, R are some Dyck paths. The ﬁve cases in the deﬁnition are distinct and
+form a partition of the set of Dyck paths. Consequently, the map µ′ is injective, and
+by a cardinality argument, it is also bijective. Moreover, µ′ preserves the relevant
+statistics as expected, except for the special Dyck path U (U D)n−1 D).
+              J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365   344
+
+
+Example 3.12. Illustrating the above argument, there are ﬁve Dyck paths of semi-
+length 4 with exactly one peak at height congruent to 2 modulo 3, namely
+    U DU DU U DD, U DU U DDU D, U U DDU DU D, U U DU U DDD, U U U DDU DD,
+and their images under µ′ are U U U U DDDD, U U U DDDU D, U DU U U DDD,
+U DU U DU DD and U U DU DDU D, respectively.
+                                      (2)
+   Moreover, the ﬁrst column of PA3,2 corresponds to the sequence A082582, where
+the n-th term represents the number of Dyck paths of semilength n that avoid the
+pattern U U DD. We deﬁne the map µ′′ recursively from Dyck paths avoiding U U DD
+to Dyck paths with no peak at height congruent to 2 modulo 3 as follows:
+                           µ′′ (ǫ) = ǫ
+                   µ′′ (U P DQ) = U µ′ (µ′′ (P ))Dµ′′ (Q), if P 6= U D.
+Due to this recursive deﬁnition and the fact that µ′ is a bijection between the set of
+Dyck paths avoiding peaks at height congruent to 2 modulo 3 and the set of Dyck
+paths avoiding peaks at height congruent to 1 modulo 3 (for Dyck paths of semilength
+at most 2), we can easily verify that µ′′ is a bijection mapping a Dyck path avoiding
+U U DD to the set of Dyck paths avoiding peaks at height congruent to 2 modulo 3.
+Example 3.13. Illustrating the above argument, we have
+         µ′′ (U DU U DU DD) = U Dµ′′ (U U DU DD) = U DU µ′ (µ′′ (U DU D))D
+                            = U DU µ′ (U DU D)D = U DU U U DDD.
+Corollary 3.14. An asymptotic estimate for the expected number of peaks of heights
+congruent to i modulo 3 (0 ≤ i ≤ 2) among all Dyck paths of semilength n is given
+by n/6 (for each i = 0, 1, 2).
+
+
+4     Narayana Arrays of Type 1. The Valley Statistic
+
+In this section, we use generating functions that count Dyck paths with k valleys
+belonging to a given set S. We ﬁrst focus on the case S = {m, m + 1}, and exhibit a
+simple bijection that relates valleys at heights m and m + 1 to peaks at heights m + 2
+and m + 3. For other choices of S, such as the set of positive even integers or the
+set of positive odd integers, we construct several bijections. For example, we provide
+a bijection on Dyck paths that transforms the number of peaks of even height into
+the number of valleys of even height, and another bijection that relates the number
+of valleys at odd heights to the number of occurrences of the pattern U U U . We also
+obtain some results when S is an arithmetical progression. Finally, we describe the
+asymptotic behavior of the corresponding counting sequences.
+    We introduce the bivariate generating function
+                                          X
+                             ∇S (x, y) =      VS (n, k)xn y k ,
+                                            n,k≥0
+               J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365   345
+
+
+where VS (n, k) is the number of all Dyck paths of semilength n with k valleys whose
+heights are contained in S.
+    Using arguments similar to those in Theorem 3.1, we derive the generating func-
+tion with respect to the semilength and the number of valleys in S; therefore, we
+omit the proof.
+
+Theorem 4.1. The number of Dyck paths with valleys at heights in S ⊆ N is counted
+by the generating function ∇S (x, y), which satisﬁes the following equation:
+                   (
+                     1 + x∇S−∗ (x, y)∇S (x, y),                       if 0 6∈ S;
+       ∇S (x, y) =
+                     1 + x∇S−∗ (x, y) + xy∇S−∗ (x, y)(∇S (x, y) − 1), otherwise.
+
+Moreover, ∇∅ (x, y) = C(x), where C(x) is the generating function of the Catalan
+numbers.
+
+4.0.1   The statistics of valleys at heights in S = {m, m + 1}
+
+In this section, we study the special case in which S = {m, m + 1} and m ≥ 0.
+    The proof of the following corollary is a straightforward application of Theo-
+rem 4.1 and Theorem 3.1; therefore, we omit the proof.
+
+Corollary 4.2. The number of Dyck paths with valleys at heights in {m, m + 1}
+is counted by the generating function ∇{m,m+1} (x, y), which satisﬁes the following
+equation:
+                        ∇{m,m+1} (x, y) = ∆{m+2,m+3} (x, y),
+where m ≥ 0.
+
+   There exists a simple bijection on Dyck paths that maps the number of valleys at
+heights in {m, m + 1}, m ≥ 0, to the number of peaks at heights in {m + 2, m + 3}.
+The transformation is as follows: reading a Dyck path R from left to right, if we ﬁnd
+a peak U D at height in {m + 2, m + 3}, we replace it with DU , creating a valley
+at height in {m, m + 1}. Conversely, if we ﬁnd a valley at height in {m, m + 1},
+we replace it with U D, creating a peak at height in {m + 2, m + 3}. The following
+example illustrates this.
+
+Example 4.3. Setting m = 1 and taking
+
+                      R = U U DU U DDDU DU U DU U DDU DD,
+
+we obtain the transformed path
+
+                         U U U DDU DDU DU U U DDU U DDD.
+
+Moreover, in the case m = 1, that is S = {1, 2}, we obtain the generating function
+
+                                ∇{1,2} (x, y) = ∆{3,4} (x, y).
+              J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365                           346
+
+
+The ﬁrst few rows of the associated Narayana array of type 1 are
+                                      1       0       0    0     0      0   0
+                                                                              
+                                    1        0       0    0     0      0   0
+                                                                              
+                                    2        0       0    0     0      0   0
+                                                                              
+                                    4        1       0    0     0      0   0
+                                                                              
+                                    8        5      1     0     0      0   0
+                           (1)
+                          V{1,2} =  17                                          .
+                                                                              
+                                             16      8    1     0      0   0 
+                                    38       48     33   12     1      0   0 
+                                   
+                                    90      140    119   62     17     1   0
+                                                                              
+                                   227      407    404   260   108    23   1
+                                                                              
+                                      ..                   ..               ..
+                                       .                    .                .
+                    (1)
+   For example, V{1,2} (4, 2) = 1, which corresponds to the boxed entry in the array
+ (1)
+V{1,2} above. The Dyck path corresponding to this value is U U DU DU DD. This
+array is not listed in the OEIS.
+Corollary 4.4. An asymptotic estimate for the expected number of valleys at heights
+in {0, 1} among all Dyck paths of semilength n is 5.
+
+4.0.2   The statistics of valleys at either even or odd heights
+
+In this section, we provide generating functions that count Dyck paths according
+to the number of valleys at even heights and the number of valleys at odd heights,
+respectively.
+Corollary 4.5. We have
+                                p
+                    1 + x − xy − x2 y 2 + 2 x2 y − 3 x2 − 2 xy − 2 x + 1
+        ∇E (x, y) =                                                        and
+                                p           2x
+                    1 − x + xy − x2 y 2 + 2 x2 y − 3 x2 − 2 xy − 2 x + 1
+        ∇O (x, y) =                                                      .
+                                   2x (x + y − xy)
+   The proof of this corollary follows by solving the system of equations derived
+from Theorem 4.1.
+           (
+             ∇O (x, y) = 1 + x∇O (x, y)∇E (x, y),
+             ∇E (x, y) = 1 + x∇O (x, y) + xy(∇E (x, y) − 1)∇O (x, y).
+    From Corollary 3.6, we obtain the ﬁrst few rows of the Narayana arrays of type
+     (1)    (1)
+1, VE and VO , associated with the two sets of even and odd integers:
+                                                                                                       
+         1     0      0     0     0    0   0                      1      0       0    0    0   0   0   0
+       1      0      0     0     0    0   0                   1       0       0    0    0   0   0   0
+                                                                                                       
+       1      1      0     0     0    0   0                   2       0       0    0    0   0   0   0
+                                                                                                       
+       2      2      1     0     0    0   0                   4       1       0    0    0   0   0   0
+                                                                                                       
+  VE =  4     6      3     1     0    0   0             VO =  9       4       1    0    0   0   0   0
+   (1)                                                     (1)
+                                                   and                                                    .
+                                                              
+                                              
+       9      16    12     4     1    0   0                   21     15       5    1    0   0   0   0
+                                                                                                       
+       21     45    40     20    5    1   0                   51     50      24    6    1   0   0   0
+                                                                                                       
+       51    126   135     80    30   6   1                  127     161     98   35    7   1   0   0
+         ..                  ..            ..                     ..                  ..               ..
+                                                                                                       
+          .                   .             .                      .                   .                .
+              J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365        347
+
+                  (1)      (1)
+    Notice that VE = PE , and this equality can be veriﬁed by constructing the
+following bijection on Dyck paths. Deﬁne the map χ recursively to transform Dyck
+paths as follows:
+
+                       χ(ǫ) = ǫ,
+                    χ(U D) = U D,
+                   χ(U DP ) = U U χ(P ), if P 6= ǫ
+  χ(U U Q1 D · · · U Qk DD) = U f (U Q1 D)f (U Q2 D) · · · f (U Qk D)D
+ χ(U U Q1 D · · · U Qk DDP ) = U f (U Q1 D)f (U Q2 D) · · · f (U Qk D)U χ(P ), if P 6= ǫ,
+
+where P (for P 6= ǫ) is obtained from P by replacing the ﬁrst step U with D, and
+the function f is deﬁned by f (U D) = DU and f (U P D) = U χ(P )D when P 6= ǫ.
+    Using induction on the semilength, we can easily prove that χ is a bijection on
+Dyck paths that transforms the number of peaks of even height into the number of
+valleys of even height. More explicitly, χ(R) is obtained from R by the following
+process: reading R from left to right, if we ﬁnd a peak U D of even height, we replace
+it with DU (creating a valley of even height); similarly, if we ﬁnd a valley DU of
+even height, we replace it with U D (creating a peak of even height). The following
+example illustrates this.
+Example 4.6. If R = U U D U U DU DD U D D U U DD, then we have
+
+                        χ(R) = U DU U U U DDDDU U DDU D.
+
+The number of peaks of even height in R is three, which is also the number of valleys
+of even height in χ(R); see Figure 5.
+
+                                            χ
+                                           −→
+
+
+
+                        Figure 5: Example of the bijection χ.
+
+                                 (1)
+    In addition, the array VO coincides with the array A092107, where the entry
+V (n, k) represents the number of Dyck paths of semilength n containing exactly k
+occurrences of the subpath U U U .
+    Consider the map ψ deﬁned recursively, which transforms Dyck paths as follows:
+
+                             ψ(ǫ) = ǫ,
+                         ψ(U DP ) = U Dψ(P ),
+       ψ(U U Q1 D · · · U Qk DDP ) = U k+1 Dψ(Q1 )Dψ(Q2 )D · · · ψ(Qk )Dψ(P ),
+
+where k ≥ 1, and P , Q1 ,. . . , Qk are possibly empty Dyck paths.
+              J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365       348
+
+
+    We can easily verify by induction that ψ is a bijection on Dyck paths. Moreover,
+ψ maps the number of valleys of odd height to the number of occurrences of U U U .
+This claim can be proved by induction on the semilength. Let dr(R) denote the
+number of occurrences of U U U in R. The statement is clear for the ﬁrst two cases
+in the deﬁnition of ψ. For the third case, we have
+
+  dr(ψ(U U Q1 D · · · U Qk DDP ) = dr(U k+1 Dψ(Q1 )Dψ(Q2 )D · · · ψ(Qk )Dψ(P ))
+                                 = k − 1 + dr(ψ(Q1 )) + · · · + dr(ψ(Qk ) + drψ(P )),
+
+which, by the induction hypothesis, equals k − 1 plus the number of valleys of odd
+height in Q1 , Q2 , . . . , Qk , P . This quantity precisely matches the number of valleys
+of odd height in U U Q1 D · · · U Qk DDP , completing the induction. The following
+example illustrates this.
+Example 4.7. If R = U U D U U DU DD U D D U U DD, then we have
+
+                        ψ(R) = U U U U DDU DU DDDU U DD,
+
+and the number of valleys of odd heights in R is two, which is also the number of
+occurrences of U U U in ψ(R); see Figure 6.
+
+                                             ψ
+                                            −→
+
+
+
+                        Figure 6: Example of the bijection ψ.
+
+Corollary 4.8. An asymptotic estimate for the expected number of valleys of even
+height (respectively odd height) in all Dyck paths of semilength n is given by n/4
+(respectively n/4).
+
+4.0.3   The statistics of valleys at heights in arithmetical progressions
+
+In this section, we generalize the above result to sets deﬁned by an arithmetic pro-
+gression. Let a and b be integers, with 0 ≤ b < a. We deﬁne Aa,b = {m ∈ N : m ≡
+b (mod a)} as the set of residue classes modulo a.
+    The following system of equations is obtained from Theorem 4.1.
+       
+       
+          ∇Aa,0 (x, y) = 1 + x∇Aa,a−1 (x, y) + xy∇Aa,a−1 (x, y)(∇Aa,0 (x, y) − 1),
+       
+        ∇Aa,1 (x, y) = 1 + x∇Aa,0 (x, y)∇Aa,1 (x, y),
+       
+                        ..
+       
+       
+                        .
+       
+         ∇Aa,a−1 (x, y) = 1 + x∇Aa,a−2 (x, y)∇Aa,a−1 (x, y).
+       
+
+   The proof of the corollary follows from solving this system of equations for a = 3.
+               J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365                                   349
+
+
+Corollary 4.9. The number of Dyck paths with peaks at A3,0 , A3,1 , and A3,2 is
+counted by generating functions satisfying the following equations:
+                                         (x − 1) W + xy − x
+                          ∇A3,0 (x, y) =                     ,
+                                               xy − 1
+                          ∇A3,1 (x, y) = W ,
+                                         (x − 1) W + xy − x − y + 1
+                          ∇A3,2 (x, y) =                            ,
+                                                 2xy − x − y
+where W is equal to
+                         p
+ 1 − xy − x2 (y + 1) −    x4 y 2 − 2x4 y − 2x3 y 2 + x4 − 2x3 y + x2 y 2 + 6x2 y + 2x2 − 2xy − 4x + 1
+                                                                                                      .
+                                              2x (1 − x)
+
+   From Corollary 4.9, we obtain the ﬁrst few rows of the corresponding Narayana
+arrays:
+                                                                                                           
+                1     0       0        0     0     0   0                    1          0     0     0   0   0
+              1      0       0        0     0     0   0                 1           0     0     0   0   0
+                                                                                                           
+              1      1       0        0     0     0   0                 2           0     0     0   0   0
+                                                                                                           
+              2      2       1        0     0     0   0                 4           1     0     0   0   0
+                                                                                                           
+      VA3,0 =  5     5       3        1     0     0   0        VA3,1 =  9           4     1     0   0   0
+       (1)                                                        (1)
+                                                          ,                                                  ,
+                                                                        
+              13    15       9        4     1     0   0                 22          14    5     1   0   0
+                                                                                                           
+              35    46       31      14     5     1   0                 57          47   21     6   1   0
+                                                                                                           
+              97    143     108      54    20     6   1                154         155   83    29   7   1
+                ..                     ..              ..                   ..               ..            ..
+                                                                                                           
+                 .                      .               .                    .                .             .
+                                                                                   
+                                          1             0        0    0    0     0
+                                        1              0        0    0    0     0
+                                                                                   
+                                        2              0        0    0    0     0
+                                                                                   
+                                        5              0        0    0    0     0
+                                                                                   
+                                        13             1        0    0    0     0
+                                (1)
+                               VA3,2 =  35                                           .
+                                                                                   
+                                                       6        1    0    0     0 
+                                        97            27        7    1    0     0 
+                                       
+                                       275            109      36    8    1     0
+                                                                                   
+                                       794            415     165    46   9     1
+                                          ..                     ..              ..
+                                                                                   
+                                           .                      .               .
+                                (1)              (1)            (1)        (1)
+    Notice that we have VA3,0 = PA3,2 and VA3,1 = PA3,0 . We now deﬁne a bijection
+between Dyck paths with k peaks of height congruent to 2 mod 3 (respectively, 0 mod
+3) and Dyck paths with k valleys of height congruent to 0 mod 3 (respectively, 1 mod
+3). Given a Dyck path R from the ﬁrst set, we construct its image by reading R
+from left to right and performing the following local transformations: if a peak U D
+occurs at a height congruent to 2 mod 3 (respectively, 0 mod 3), it is replaced with
+a valley DU ; if a valley DU occurs at a height congruent to 0 mod 3 (respectively,
+1 mod 3), it is replaced with a peak U D. The following example illustrates this.
+Example 4.10. If R = U U D U U DU DD U D D U U DD, then its image is
+
+                             R′ = U DU U U DU DDDU U DDU D.
+                J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365       350
+
+
+
+                                              −→
+
+
+Figure 7: Example of the previous bijection that send a Dyck path with 3 peaks of
+height congruent to 2 mod 3 to a Dyck path with 3 valleys of height congruent to 0
+mod 3.
+
+The number of peaks of height congruent to 2 mod 3 in R is three, which equals the
+number of valleys of height congruent to 0 mod 3 in R′ . See Figure 7.
+                  (1)
+      The array VA3,2 does not appear in the OEIS. However, its ﬁrst column is a shift of
+                        (1)
+the ﬁrst column of VA3,0 . The bijection is given as follows: a Dyck path of semilength
+n with no valleys at heights congruent to 0 mod 3 is of the form U P D, where P is a
+Dyck path with no valleys at heights congruent to 2 mod 3.
+Corollary 4.11. An asymptotic estimate for the expected number of valleys of heights
+congruent to i modulo 3 (0 ≤ i ≤ 2) among all Dyck paths of semilength n is given
+by n/6 (for each i = 0, 1, 2).
+
+
+5      Generalized Narayana Arrays of Type 2: The Peak Statis-
+       tic
+
+In Section 3, we enumerated Dyck paths with peaks at heights belonging to a given
+set S. In this section, we reﬁne the count by considering Dyck paths with exactly k
+peaks at heights in S. We begin by analyzing the special case S = {m}, providing
+bijections with compositions whose parts are of size at most ℓ. We then study the
+case S = {m, m + 1}, expressing the corresponding generating function as a ﬁnite
+continued fraction. In this case, we observe that the row sums of the associated
+Narayana arrays are related to a generalization of the Pell numbers.
+    For other choices of S, such as the set of positive even integers or the set of positive
+odd integers, we establish connections with Motzkin paths. We also examine cases
+where S is an arithmetic progression, and we provide bijections with Dyck paths
+whose peaks occur at heights congruent to i (mod 3), for i = 0, 1, 2.
+
+5.1     The statistics of peaks at heights in a given set
+
+In this section, we count the number of Dyck paths with peaks at heights in set S.
+    Recall that P S (n, k) denotes the number of Dyck paths of semilength n with
+exactly k peaks, where the height of each peak is contained in S. We introduce the
+bivariate generating function
+                                        X
+                            ∧S (x, y) =    P S (n, k)xn y k .
+                                            n,k≥0
+              J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365         351
+
+
+   From the ﬁrst return decomposition we obtain the following theorem.
+Theorem 5.1. The number of Dyck paths with exactly k peaks whose heights lie in
+a subset S ⊆ Z+ is counted by the generating function ∧S (x, y), which satisﬁes the
+following functional equation:
+                    (
+                      1 + x(∧S− (x, y) − 1)∧S (x, y),                if 1 6∈ S;
+        ∧S (x, y) =
+                      1 + x(∧S− (x, y) − 1)∧S (x, y) + xy ∧S (x, y), otherwise.
+
+Moreover, ∧∅ (x, y) = 1.
+
+Proof. Let R be a non-empty Dyck path, and write its ﬁrst return decomposition as
+R = U P DQ, where P and Q are (possibly empty) Dyck paths.
+   Suppose 1 ∈ S. We distinguish two cases:
+
+   • Case 1. If R = U DQ, then R \ Q = U D has exactly one peak at height 1 ∈ S,
+     and Q contributes the remaining structure. Thus, the contribution of R to the
+     generating function is xy ∧S (x, y).
+   • Case 2. If R = U P DQ with P non-empty, then the number of peaks of
+     R at heights in S is a + b, where a (respectively, b) denotes the number of
+     peaks in P (respectively, Q) at heights in S− (respectively, S), with S− =
+     {h − 1 : h ∈ S}. Thus, the contribution of R to the generating function is
+     x(∧S− (x, y) − 1)∧S (x, y).
+
+   Combining both cases, we obtain the following functional equation:
+              ∧S (x, y) = 1 + xy ∧S (x, y) + x(∧S− (x, y) − 1)∧S (x, y).
+    If instead 1 ∈
+                 / S, then the decomposition R = U P DQ with P non-empty leads
+to the functional equation:
+                      ∧S (x, y) = 1 + x(∧S− (x, y) − 1)∆S (x, y).
+   Finally, observe that if S = ∅, then ∧∅ = 1, since the empty path is the unique
+Dyck path with no peaks.
+
+5.1.1   The statistics of peaks at heights in S = {m}
+             (2)         (2)
+The arrays P{2} and P{3} correspond to the sequences A030528 and A078803, re-
+                                                                                  (2)
+spectively. More generally, the Narayana array of type 2, denoted P{ℓ} , ℓ ≥ 1, is
+associated with integer compositions. A composition of a positive integer n is a
+sequence of positive integers, called parts, whose sum is n.
+    We deﬁne a map ω from the set of Dyck paths enumerated by P {ℓ} (n, k) to the
+set of integer compositions of n − ℓ into k − 1 parts, where each part is at most ℓ.
+Speciﬁcally, any Dyck path P counted by P {ℓ} (n, k) can be written as
+                               P = U s1 D r 1 U s2 D r 2 · · · U sk D r k ,
+              J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365          352
+
+
+where s1 + s2 + · · · + sk = n = r1 + r2 + · · · + rk , s1 = ℓ = rk , and 1 ≤ si , ri ≤ ℓ
+for all i. We deﬁne the function ω(P ) = s2 + · · · + sk which is to be understood as
+the (k − 1)-tuple of parts, not as the numerical sum. It is clear that ω(P ) yields
+a composition of n − ℓ into k − 1 parts, each contained in [ℓ], and it establishes a
+bijection.
+
+Example 5.2. For the Dyck paths of semilength 6 with all peaks of height 3, we
+have the following correspondence:
+
+  ω(U U U DDDU U U DDD) = 3,                ω(U U U DDU U DU DDD) = 2 + 1,
+  ω(U U U DU DDU U DDD) = 1 + 2,            ω(U U U DU DU DU DDD) = 1 + 1 + 1.
+
+5.1.2   The statistics of peaks at heights in S = {m, m + 1}
+
+In this section, we study the special case where the Dyck paths have exactly k peaks,
+each of whose heights lies in S = {m, m + 1}, which corresponds to a generating
+function represented by a ﬁnite continued fraction. When S = {2, 3}, the associated
+generating function yields the Narayana numbers of type 2.
+    The proof of the following result is a direct consequence of Theorem 5.1.
+
+Corollary 5.3. The number of Dyck paths with exactly k peaks, each of whose heights
+lies in {m, m + 1}, is counted by the generating function ∧{m,m+1} (x, y), given by the
+continued fraction
+
+                                                 1
+                                                                               
+    ∧{m,m+1} (x, y) =                                                          
+                                                                               
+                                                      x
+                                                                               
+                                                                               
+                        1+x−
+                                                                               
+                                                                               
+                                                                               
+                                                          x                        m times
+                                1+x−                      ..                   
+                                                           .
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                               x
+                                                                               
+                                          1+x−
+                                                                       x
+                                                     1 − xy + x −          ,
+                                                                    1 − xy
+
+which implies that
+                                                      xm
+                 ∧{m,m+1} (x, 1) = 1 +                                  .
+                                          1 − 2x − x2 − x3 − · · · − xm
+Example 5.4. If we set m = 2, that is S = {2, 3}, then Corollary 5.3 provides
+
+                                      x2 y 2 − x2 y − 2xy + 1
+                 ∧{2,3} (x, y) = 3 2                                  .
+                                x y − x3 y + x2 y 2 − 2x2 y − 2xy + 1
+From this generating function we can obtain the ﬁrst few rows of the Narayana array
+                J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365         353
+
+
+of type 2 associated with the set S = {2, 3}:
+                                                                   
+                                      1   0   0     0    0    0   0
+                                     0   0   0     0    0    0   0
+                                                                   
+                                     0   1   0     0    0    0   0
+                                                                   
+                             (2)     0   1   1     0    0    0   0
+                            P{2,3} =                               .
+                                     0
+                                         0   4     1    0    0   0
+                                     0   0   3     8    1    0   0
+                                                                   
+                                     0   0   1    14   13    1   0
+                                      0   0   0    12   38   19   1
+
+   For example, P {2,3} (4, 2) = 4, which corresponds to the boxed entry in the array
+ (2)
+P{2,3} above. The 4 Dyck paths corresponding to this value are illustrated in Figure
+1. This array does not appear in the OEIS, but its row sums correspond to the Pell
+sequence A000129.
+                                                                                    (2)
+   More generally, we can prove that the row sums of the Narayana array P{m,m+1}
+correspond to the m-generalized Pell numbers studied by Bravo et al. in [5]. More-
+over, these sequences also count generalized bicolored compositions of n − m with
+parts in the set [m]; that is, compositions of n into parts from the set {1, 2, . . . , m}
+in which the part 1 may appear in two distinct colors. These two colors of the part
+1 are denoted by the subscripts 11 and 12 .
+Open Problem 5.1. It would be interesting to identify a statistic on bicolored
+compositions that corresponds to the number of peaks in Dyck paths whose peaks
+all lie at heights in {m, m + 1}.
+Corollary 5.5. An asymptotic estimate for the expected number of peaks at heights
+in {2, 3} among all Dyck paths of semilength n having peaks at heights 2 or 3 is
+                                         √
+                                     4− 2
+                                            n.
+                                        4
+
+5.1.3   The statistics of peaks at either even or odd heights
+
+We now use again the notation introduced in Section 3.1.3. Speciﬁcally, we let E
+denote the set of all non-negative even integers, and O denote the set of all positive
+odd integers.
+Corollary 5.6. We have
+                                              p
+                1 + x(2−y) + x2 (1−y) −        (1+x)(1+x−xy)(1−2x+x2 −xy−x2 y)
+  ∧E (x, y) =                                                                  ,
+                                                2x(1 + x)
+                   1+x
+  ∧O (x, y) =                ∧E (x, y).
+                1 + x(1 − y)
+   The proof of this corollary follows by solving the system of equations derived
+from Theorem 5.1:
+           (
+             ∧E (x, y) = 1 + x(∧O (x, y) − 1)∧E (x, y),
+             ∧O (x, y) = 1 + x(∧E (x, y) − 1)∧O (x, y) + xy ∧O (x, y).
+                J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365                      354
+
+
+   From Corollary 5.6, we obtain the ﬁrst few rows of the Narayana arrays of type
+2 associated with the two sets of even and odd integers:
+                                                                                               
+             1     0   0 0      0   0   0                    1     0   0    0   0     0    0   0
+           0      0   0 0      0   0   0                  0     1   0    0   0     0    0   0
+                                                                                               
+           0      1   0 0      0   0   0                  0     0   1    0   0     0    0   0
+                                                                                               
+           0      0   1 0      0   0   0                  0     1   0    1   0     0    0   0
+                                                                                               
+     P E = 0      1   1 1      0   0   0             PO = 0     0   3    0   1     0    0   0
+       (2)                                              (2)
+                                                 and                                              .
+                                                           
+                                           
+           0      0   3 2      1   0   0                  0     1   1    6   0     1    0   0
+                                                                                               
+           0      1   3 7      3   1   0                  0     0   6    4   10    0    1   0
+                                                                                               
+           0      0   6 12    13   4   1                  0     1   3   21   10    15   0   1
+             ..           ..            ..                    ..                 ..            ..
+                                                                                               
+              .            .             .                     .                  .             .
+                                               (2)
+   We observe that the row sums of PE correspond to the Riordan numbers A005043.
+The Riordan numbers have several combinatorial interpretations; see, for example
+[4]. One such interpretation is the number of Motzkin paths that avoid horizontal
+steps at ground level. Recall that a Motzkin path is a path in the ﬁrst quadrant of the
+xy-plane having up-steps U = (1, 1), down-steps D = (1, −1), and horizontal steps
+H = (1, 0). These paths start at the origin, end on the x-axis, and never pass below
+                                (2)
+it. We prove that the array PE provides a reﬁnement of the Riordan numbers.
+    We deﬁne L(n, k) to be the set of all Motzkin paths of length n that avoid
+horizontal steps at a ground level and contain exactly k − 1 valleys of the form DU
+along with horizontal steps. For example, the Motzkin path P = U U HDU DHD
+has one valley and two horizontal steps. Therefore, P ∈ L(8, 3).
+    Let WE (n, k) denote the set of Dyck path of semilength n with exactly k peaks,
+all of which have even height. For the bijection that follows, we use the construction
+provided by Callan in [18, A001006]. Since P ∈ WE (n, k) can be viewed as a word
+of length 2n, it can be divided into consecutive subwords of length 2.
+    Deﬁne the function φ : WE (n, k) → L(n, k), which maps a Dyck path P ∈
+WE (n, k), partitioned as described above, to a path Q ∈ L(n, k) by assigning U U →
+U , DD → D, and DU → H.
+    For a path P ∈ WE (n, k), we note the following facts: any subpath Dr U t of P
+between peak vertices has an even length. Therefore, r and t must have the same
+parity. Under φ, such a subpath is mapped to Dk H i U j , where i = 1 if r is odd, and
+i = 0 if r is even, with k, j ≥ 0. Consequently, every valley in P is mapped under φ
+to either H or DU . Moreover, the absence of peaks with odd heights in P implies
+that φ does not map subpaths of P to horizontal steps at ground level in Q. For
+example,
+       φ(U U U U DDDU U U DDU U DDDDU U DD) = U U DHU DU DDU D,
+see Figure 8.
+                            (2)
+    Moreover, the array PO is a reﬁnement of the Motzkin numbers. There is a
+bijection between Dyck paths of semilength n with k peaks, all of which have odd
+height, and Motzkin paths having exactly k occurrences of either H or DU .
+    Given such a Dyck path, we construct the corresponding Motzkin path as follows:
+ﬁrst, delete the initial U and the ﬁnal D from the Dyck path. Then, partition the
+                  J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365                                   355
+
+
+                                                                             φ
+                                                                           −→
+
+
+
+                               Figure 8: Example of the bijection φ.
+
+remaining Dyck word into consecutive subwords of length 2, and apply the transfor-
+mation U U 7→ U , DD 7→ D, and DU 7→ H.
+Corollary 5.7. An asymptotic estimate for the expected number of peaks at even
+heights (respectively, at odd heights) among all Dyck paths of semilength n whose
+peaks are at even heights (respectively, at odd) is given by 4n/9 in both cases.
+
+5.1.4     The statistics of peaks at heights in arithmetic progression
+
+We now recall the notation introduced in Section 3.1.3. Speciﬁcally, let a and b be
+integers with 0 ≤ b < a, and deﬁne Aa,b = {m ∈ N : m ≡ b (mod a)} as the set of
+non-negative integers congruent to b modulo a.
+    From Theorem 5.1, we obtain the following system of equations:
+
+             ∧Aa,0 (x, y) = 1 + x(∧Aa,a−1 (x, y) − 1)∧Aa,0 (x, y),
+         
+         
+         
+             ∧Aa,1 (x, y) = 1 + x(∧Aa,0 (x, y) − 1)∧Aa,1 (x, y) + xy ∧Aa,1 (x, y),
+         
+         
+         
+         
+         
+             ∧Aa,2 (x, y) = 1 + x(∧Aa,1 (x, y) − 1)∧Aa,2 (x, y),
+         
+                         ..
+         
+         
+         
+                          .
+           ∧Aa,a−1 (x, y) = 1 + x(∧Aa,a−2 (x, y) − 1)∧Aa,a−1 (x, y).
+         
+
+
+   The proof of the following corollary is obtained by solving the above system of
+equations for the case a = 3.
+Corollary 5.8. We have
+                                                         1
+                                 ∧A3,0 (x, y) =                  ,
+                                                1 + x − xR(x, y)
+                                                −1 + (x + 1)R(x, y)
+                                 ∧A3,1 (x, y) =                     ,
+                                                      xR(x, y)
+                                 ∧A3,2 (x, y) = R(x, y),
+with R(x, y) equal to
+                                             p
+x3 y − x3 + 3 x2 y − 2 x2 + xy − 2 x − 1 +     (x2 + x + 1) (x4 y 2 − 2 x4 y + x3 y 2 + x4 + x2 y 2 − x3 − 2 xy − x + 1)
+                                                                                                                         .
+                                             2x (x2 y − x2 + xy − x − 1)
+
+   From the generating functions in Corollary 5.8, we obtain the ﬁrst few rows of the
+                                                                   (2)
+corresponding Narayana arrays. We observe that the row sums of PA3,0 (respectively,
+               J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365                   356
+
+ (2)    (2)
+PA3,1 , PA3,2 ) generate the sequence A166300 (respectively, A004148, A004148).
+                                           
+                  1     0   0   0    0   0
+                                         0                                                   
+                 0                                        1       0   0   0 0     0   0   0
+                        0   0   0    0   0
+                                         0               0
+                 
+                 0
+                                                                  1   0   0 0     0   0   0
+                        0   0   0    0   0
+                                         0               
+                                                          0
+                                                                                              
+                 
+                 0
+                                                                  0   1   0 0     0   0   0
+                        1   0   0    0   0
+                                         0               
+                                                          0
+                                                                                              
+                 
+                 0
+                                                                  0   0   1 0     0   0   0
+                        0   1   0    0   0
+                                         0                                                  
+                                                  PA3,1 = 0       1   0   0 1     0   0   0
+          (2)                                      (2)
+         PA3,0 = 0                           ,                                               ,
+                                                        
+                        0   1   1    0   0
+                                         0               0
+                 
+                 0
+                                                                  0   3   0 0     1   0   0
+                        1   1   2    1   0
+                                         0               
+                                                          0
+                                                                                              
+                 
+                 0
+                                                                  0   1   6 0     0   1   0
+                        0   3   3    3   1
+                                         0               
+                                                          0
+                                                                                              
+                 
+                 0
+                                                                  1   1   4 10    0   0   1
+                        0   3   8    6   4
+                                         1               
+                                                            ..                ..           ..
+                                                                                              
+                   ..           ..       ..
+                                           
+                                                             .                 .            .
+                    .            .        .
+                                                                     
+                                           1 0    0   0    0   0   0
+                                        0 0      0   0    0   0   0
+                                                                     
+                                        0 1      0   0    0   0   0
+                                                                     
+                                        0 0      1   0    0   0   0
+                                                                     
+                                PA3,2 = 0 0      1   1    0   0   0
+                                 (2)
+                                                                      .
+                                        
+                                        0 1      0   2    1   0   0
+                                                                     
+                                        0 0      3   1    3   1   0
+                                                                     
+                                        0 0      3   6    3   4   1
+                                           ..         ..           ..
+                                                                     
+                                            .          .            .
+
+   Let us deﬁne recursively three bijections f0 , f1 , and f2 from the sets An , Bn−1 ,
+and Cn−1 , respectively, where:
+
+   • An denotes the set of Dyck paths of semilength n with all peaks at height
+     congruent to 0 mod 3,
+   • Bn−1 denotes the set of Dyck paths of semilength n − 1 with all peaks at height
+     congruent to 1 mod 3,
+   • Cn−1 denotes the set of Dyck paths of semilength n − 1 with all peaks at height
+     congruent to 2 mod 3.
+
+These bijections map to peakless Motzkin paths of length n (for f0 ) and of length
+n − 1 (for f1 and f2 ):
+                       f0 (ǫ) = ǫ
+               f0 (U P DQ) = U f2 (P )Df0 (Q)
+                   f1 (U D) = ǫ
+                 f1 (U DQ) = Hf1 (Q)                                          if Q 6= ǫ
+                 f1 (U P D) = f0 (P )                                         if P 6= ǫ
+               f1 (U P DQ) = f0 (P )Hf1 (Q)                                if P, Q 6= ǫ
+                 f2 (U P D) = Hf1 (P )
+               f2 (U P DQ) = U f1 (Q)Df2 (P )                                if Q 6= ǫ.
+
+
+The following example illustrates this.
+              J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365    357
+
+
+Example 5.9. If R = U U U DU DDU U DDU U U DDD ∈ A9 , then we have
+         f0 (R) = U f2 (U U DU DDU U DD)Df0 (U U U DDD)
+                = U U f2 (U U DD)Df1 (U DU D)DU HD = U U HDHDU HD.
+Open Problem 5.2. We were unable to ﬁnd bijections that map the number of
+peaks to a speciﬁc statistic on peakless Motzkin paths. Therefore, we leave it as an
+open question.
+Corollary 5.10. An asymptotic estimate for the expected number of peaks of heights
+congruent to i mod 3 (0 ≤ i ≤ 2), in all Dyck paths of semilength n with peaks at
+heights i mod 3 is given by, for each i = 0, 1, 2, the following expression:
+                                                 
+                                              2
+                                   4n 1 − √ .
+                                                5
+
+6   Generalized Narayana Arrays of Type 2:
+    The Valley Statistic
+
+In Section 4, we enumerated Dyck paths with a given number of valleys at heights
+belonging to a given set S. In this section, we reﬁne the count by considering Dyck
+paths with exactly k valleys, and where every valley has height in S. We begin
+with the case S = {m, m + 1}, and we observe that the associated Narayana array
+corresponds to a shifted version of the Pascal triangle. For other choices of S, such
+as the set of positive even integers or the set of positive odd integers, we establish
+connections with Motzkin paths containing a ﬁxed number of peaks and horizontal
+steps. As in previous sections, we also examine the case where S is an arithmetic
+progression, and we note that the row sum of the corresponding Narayana array is
+related to the set of peakless Motzkin paths. Finally, for the case S = [ℓ], we ﬁnd
+an interesting bijection with a full binary tree that avoids a speciﬁc subtree in which
+every right child is also a left child.
+    We introduce the generating function
+                                         X
+                             ∨S (x, y) =      V S (n, k)xn y k ,
+                                          n,k≥0
+
+where V S (n, k) denotes the number of Dyck paths of semilength n with exactly k
+valleys.
+    Applying the same reasoning as in Theorem 5.1, we obtain the bivariate gener-
+ating function for the dual Narayana array of type 2.
+Theorem 6.1. Let S ⊆ N. The generating functions ∨S (x, y) satisﬁes
+                 (
+                   1 + x∨S−∗ (x, y),                                 if 0 6∈ S;
+     ∨S (x, y) =
+                   1 + x∨S−∗ (x, y) + xy ∨S−∗ (x, y)(∨S (x, y) − 1), otherwise.
+
+Moreover, ∨∅ (x, y) = 1−x
+                       1
+                          .
+                 J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365                 358
+
+
+6.0.1   The statistics of valleys at heights in S = {m} and S = {m, m + 1}
+
+Whenever S = {m}, with m ≥ 0, we obtain
+                                                                         1 − x − xy + xm+2 y
+   ∨{m} (x, y) = 1 + x + x2 + · · · + xm−1 + xm ∨{0} (x, y) =                                .
+                                                                         (1 − x)(1 − x − xy)
+                              (2)
+Additionally, the array V{m} is a shift of the well-known Pascal triangle.
+   Whenever S = {m, m + 1}, with m ≥ 0, we obtain
+               ∨{m,m+1} (x, y) = 1 + x + x2 + · · · + xm−1 + xm ∨{0,1} (x, y)
+                                      1 − xm
+                                    =         + xm (1 + x∨{0} (x, y))
+                                       1−x
+                                      1 − x − xy + xm+3 y
+                                    =                     .
+                                      (1 − x)(1 − x − xy)
+               (2)
+The array V{m,m+1} is also a shift of the Pascal triangle.
+   An asymptotic estimate for the expected number of valleys at heights in m (re-
+spectively, {m, m + 1}), in all Dyck paths of semilength n having all valleys at height
+m (respectively, {m, m + 1}) is given by n/2.
+
+6.0.2   The statistics of valleys at either even or odd heights
+
+In this part, we examine the two cases S = E and S = O, corresponding to the sets
+of even and odd non-negative integers, respectively. From Theorem 6.1 we derive
+the following generating functions:
+Corollary 6.2. We have
+                                              p
+               1 − xy − x2 (1 − y) −              (1 + x)(1 + x − xy)(1 − 2x − xy + x2 (1 − y))
+ ∨E (x, y) =                                                                                    ,
+                                                            2x
+ ∨O (x, y) = 1 + x∨E (x, y).
+    From the generating functions we obtain the ﬁrst few rows of the Narayana arrays
+of type 2 associated with the set of even and odd positive integers:
+                                                                                           
+              1       0    0   0         0    0   0              1    0 0     0    0   0   0
+             1       0    0   0         0    0   0           1     0 0     0    0   0   0
+                                                                                           
+             1       1    0   0         0    0   0           1     0 0     0    0   0   0
+                                                                                           
+             1       2    1   0         0    0   0           1     1 0     0    0   0   0
+                                                                                           
+        VE = 1       4    3   1         0    0   0      VO = 1     2 1     0    0   0   0
+         (2)                                               (2)
+                                                     ,                                       .
+                                                              
+             1       6    9   4         1    0   0           1     4 3     1    0   0   0
+                                                                                           
+             1       9    19 16         5    1   0           1     6 9     4    1   0   0
+                                                                                           
+             1       12   38 44        25    6   1           1     9 19   16    5   1   0
+               ..              ..                 ..             ..           ..           ..
+                                                                                           
+                .               .                  .              .            .            .
+
+                                        (2)                                                        (2)
+    Note that the row sum of VE is equal to the Motzkin numbers A001006, and VO
+               (2)                                                 (2)
+is a shift of VE . Therefore, the dual Narayana array of type two VE is a reﬁnement
+                J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365   359
+
+
+of the Motkzin numbers. In fact, we deﬁne M(n, k) as the set of all Motzkin paths of
+length n that contain exactly k peaks U D along with horizontal steps. Let JE (n, k)
+denote the set of Dyck paths of semilength n with exactly k valleys, all of which
+have even heights. Deﬁne the function φ : JE (n, k) → M(n, k + 1), which maps a
+Dyck path P ∈ JE (n, k), partitioned into consecutive subwords of length 2, to a path
+Q ∈ M(n, k + 1) by assigning U U 7→ U , DD 7→ D, and U D 7→ H.
+    For a path P ∈ JE (n, k), we note the following facts: any subpath U r Dt of P
+between valley vertices has an even length. Therefore, r and t must have the same
+parity. Under φ, such a subpath is mapped to Dk H i U j , where i = 1 if r is odd and
+i = 0 if r is even, with k, j ≥ 0. Consequently, every valley in P is mapped under φ
+to either H or DU . The following example illustrates this.
+
+Example 6.3. We have
+
+        φ(U U U U DDDDU U U DU DDDU U U DDD) = U U DDU HHDU HD,
+
+see Figure 9.
+
+                                                             φ
+                                                            −→
+
+
+
+                          Figure 9: Example of the bijection φ.
+
+
+   It is worth noting that M(n, k) also represents all Motzkin paths of length n with
+exactly k weak valleys (that is, with steps of the form: DU , HU , DH, HH). See
+the sequence A110470.
+
+Corollary 6.4. An asymptotic estimate for the expected number of valleys at even
+heights (respectively, odd heights) in all Dyck paths of semilength n with all valleys
+at even heights (respectively, odd heights) is given by 4n/9 for both cases.
+
+6.0.3   The statistics of valleys at heights in S = {m ∈ N : m ≡ b (mod 3)}
+
+In this section, we generalize the previous results to sets deﬁned by arithmetic pro-
+gressions. As before, we provide generating functions that enumerate Dyck paths
+with exactly k valleys, each of whose heights lies within these sets.
+    We now recall the notation introduced before. Speciﬁcally, let a and b be integers
+with 0 ≤ b < a, and deﬁne Aa,b = {m ∈ N : m ≡ b (mod a)} as the set of
+non-negative integers congruent to b modulo a. From Theorem 6.1, we obtain the
+following system of equations:
+                 J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365                                            360
+
+
+
+             ∨Aa,0 (x, y) = 1 + x∨Aa,a−1 (x, y) + xy ∨Aa,a−1 (x, y)(∨Aa,0 (x, y) − 1),
+       
+       
+       
+             ∨Aa,1 (x, y) = 1 + x∨Aa,0 (x, y),
+       
+       
+       
+       
+       
+             ∨Aa,2 (x, y) = 1 + x∨Aa,1 (x, y),
+       
+                         ..
+       
+       
+       
+                          .
+           ∨Aa,a−1 (x, y) = 1 + x∨Aa,a−2 (x, y).
+       
+
+   The proof of the following corollary is obtained by solving the above system of
+equations for the case a = 3.
+Corollary 6.5. We have
+                                        ∨A3,0 (x, y) = R(x, y),
+                                        ∨A3,1 (x, y) = 1 + xR(x, y),
+                                        ∨A3,2 (x, y) = 1 + x + x2 R(x, y),
+with R(x, y) equal to
+                                  p
+ 1 + x3 y − x3 − x2 y − xy −       (x2 + x + 1) (x4 y 2 − 2 x4 y + x3 y 2 + x4 + x2 y 2 − x3 − 2 xy − x + 1)
+                                                                                                             .
+                                                    2x3 y
+
+   From these generating functions in Corollary 6.5, we obtain the ﬁrst few rows of
+the corresponding Narayana arrays:
+                                                                                                                     
+              1 0       0          0      0    0    0    0                  1          0      0    0    0    0   0   0
+            1 0        0          0      0    0    0    0               1           0      0    0    0    0   0   0
+                                                                                                                     
+            1 1        0          0      0    0    0    0               1           0      0    0    0    0   0   0
+                                                                                                                     
+            1 2        1          0      0    0    0    0               1           1      0    0    0    0   0   0
+                                                                                                                     
+            1 3        3          1      0    0    0    0               1           2      1    0    0    0   0   0
+     (2)                                                           (2)
+    VA3,0 = 1 5                                             ,    VA3,1 = 1                                              ,
+                                                                                                                     
+                       6          4      1    0    0    0                          3      3    1    0    0   0   0 
+            1 7       13         10      5    1    0    0              1           5      6    4    1    0   0   0 
+                                                                         
+            1 9       24         26     15    6    1    0               1           7     13   10    5    1   0   0
+                                                                                                                     
+            1 12      39         59     45   21    7    1               1           9     24   26   15    6   1   0
+              ..                   ..               ..                      ..                          ..           ..
+                                                                                                                     
+               .                    .                .                       .                           .            .
+                                                                                         
+                                             1       0 0          0   0    0       0   0
+                                           1        0 0          0   0    0       0   0
+                                                                                         
+                                           1        0 0          0   0    0       0   0
+                                                                                         
+                                           1        0 0          0   0    0       0   0
+                                                                                         
+                                           1        1 0          0   0    0       0   0
+                                    (2)
+                                   VA3,2 = 1                                               .
+                                                                                         
+                                                    2 1          0   0    0       0   0 
+                                           1        3 3          1   0    0       0   0 
+                                           
+                                           1        5 6          4   1    0       0   0
+                                                                                         
+                                           1        7 13        10   5    1       0   0
+                                             ..                       ..               ..
+                                                                                         
+                                              .                        .                .
+                            (2)               (2)                                          (2)
+   The two arrays VA3,1 and VA3,2 are quite similar to VA3,0 up to a shift. The row
+                      (2)
+sum of the array VA3,0 corresponds to the sequence A004148, where the general term
+counts the number of peakless Motzkin paths.
+               J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365        361
+
+
+    Below, we present a bijection between the set of Dyck paths of semilength n with
+all valleys at heights congruent to 0 modulo 3, and the set of peakless Motzkin paths
+of length n + 1:
+
+                                          f (ǫ) = H
+                                     f (U DQ) = Hf (Q)
+                          f (U U U P DDDQ) = U f (P )Df (Q).
+
+By a simple observation, the bijection maps the number of valleys to the number of
+occurrences of DU , DH, DU and HH.
+
+Corollary 6.6. An asymptotic estimate for the expected number of valleys at heights
+i mod 3 (0 ≤ i ≤ 2) in all Dyck paths of semilength n is given by (for each i = 0, 1, 2)
+
+                                       0.2912966357n.
+
+6.0.4   The statistics of valleys having at height in S = {1, 2, 3, . . . , ℓ}
+                                 (2)      (2)        (2)
+The row sums of the arrays V{1,2,3} , V{1,2,3,4} , V{1,2,3,4,5} corresponds to the sequences
+A007051, A080937, A024175, respectively. More generally, we deﬁne a recursive
+bijection ν from Dyck paths with k valleys of heights in {1, 2, . . . , ℓ}, for ℓ ≥ 1, to
+full binary trees that avoid a speciﬁc non-consecutive pattern cℓ .
+    A full binary tree is a rooted, ordered tree in which each node has either zero or
+two children. Let T denote the set of all nonempty full binary trees. Given P ∈ T ,
+we say that a full binary tree T contains P as a (non-contiguous) tree pattern if P
+can be obtained from T through a ﬁnite sequence of edge contractions. Conversely,
+we say that T avoids P if it does not contain P in this sense. For further details on
+the notion of pattern avoidance, we refer the reader to [8].
+    We denote by cℓ the unique full binary tree with ℓ + 1 ≥ 1 leaves such that every
+right child is a leaf. For example, c3 is depicted in the following ﬁgure:
+
+
+
+
+    Let T (cℓ ) denote the set of trees in T that avoid the pattern cℓ . Note that any
+tree T ∈ T (cℓ ) is necessarily either a single leaf T = •, or a tree with a left child in
+T (cℓ ) and a right child in T (cℓ ). This recursive structure implies that the generating
+function for the number of trees with n leaves in T (cℓ+1 ) satisﬁes the same functional
+equation as the generating function for the number of Dyck paths of semilength n
+in J[ℓ] \{ǫ}, where J[ℓ] denotes the set of Dyck paths in which all valleys occur at
+heights contained in [ℓ].
+    Let P be a Dyck path in J[ℓ] \{ǫ}. Then P is of one of the following forms:
+
+  (i) P = U D, or
+               J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365       362
+
+
+ (ii) P = U U P1 DU P2 D · · · U Pr DD where r ≥ 1 and U Pi D, 1 ≤ i ≤ r, are Dyck
+      paths in J[ℓ−1] .
+
+   We deﬁne the map ν : J[ℓ] \ {ǫ} → T (cℓ+1 ) recursively as follows. Set ν(U D) = •,
+the full binary tree consisting of a single node. For a path of the form
+
+                            P = U U P1 D U P2 D · · · U Pr DD,
+
+deﬁne ν(P ) to be the full binary tree whose left child is ν(U P1 D) and whose right
+child is               (
+                          ν(U U P2 D · · · U Pr DD), if r ≥ 2,
+                          •,                         if r = 1.
+
+    The map ν sends the semilength of a Dyck path to the number of leaves in the
+corresponding full binary tree. Moreover, ν maps the number of valleys of a given
+height h ≥ 1 to the number of h-nodes whose right child is neither empty nor a leaf.
+Here, an h-node in a tree is a node such that the path from the root to that node
+contains exactly h left children. It follows that ν maps the set J[ℓ] \ {ǫ} into T (cℓ+1 ).
+A cardinality argument (see [8]) implies that ν is a bijection. The following example
+illustrates this.
+
+Example 6.7. For a path in J[3] \{ǫ} we have
+
+
+
+                   ν(U U U U DU DDDU DU DDD) =
+
+Note that this tree avoids c4 . In Figure 10, we show how the mapping ν operates.
+
+
+7    Appendix. A computational approach
+
+This paper is accompanied by a Mathematica package that implements Theorem
+3.1, providing a computational framework to derive the bivariate generating function
+DS (x, y). Our approach follows the methodology developed by Bu and Zeilberger in
+[7, 10].
+    We explain the methodology with the set S = {2, 3}. First, from Theorem 3.1
+we obtain the following system of equations
+
+           D{2,3} (x, y) = 1 + xD{1,2} (x, y)D{2,3} (x, y)
+           D{1,2} (x, y) = 1 + x(D{1} (x, y) − 1)D{1,2} (x, y) + xyD{1,2} (x, y)       (1)
+            D{1} (x, y) = 1 + x(C(x) − 1)D{1} (x, y) + xyD{1} (x, y).
+
+From the ﬁrst two equations, we can eliminate the variable D{1,2} (x, y). In this case,
+we obtain the equation:
+
+ 1 − D{2,3} (x, y) +x− D{1} (x, y)x+D{1} (x, y)D{2,3} (x, y)−xy+D{2,3} (x, y)xy = 0. (2)
+                 J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365        363
+
+                                       P
+                                                      P2   P3
+
+
+
+
+                          P1                                       P1   P2
+
+
+
+
+                P1   P2                                                      P1
+
+
+
+
+                                P1
+
+
+
+
+                               Figure 10: Example of the bijection ν.
+
+Next, by combining the last equations of (1) and (2), we eliminate the variable
+D{1} (x, y). This yields the following polynomial equation:
+
+     −1 + D{2,3} (x, y) − x + C(x) − C(x)D{2,3} (x, y)x − x2 + C(x)x2 + 2xy
+        − 2D{2,3} (x, y)xy + 2x2 y − C(x)x2 y
+        − D{2,3} (x, y)x2 y + C(x)D{2,3} (x, y)x2 y − x2 y 2 + D{2,3} (x, y)x2 y 2 = 0.
+
+    Solving this equation yields the desired generating function D{2,3} (x, y). For any
+given ﬁnite set S ⊂ Z+ , our implementation computes a polynomial
+
+                                      P (x, y, C(x), DS (x, y)).
+
+This procedure is implemented in Mathematica via the function PolDS[S]. For ex-
+ample, for the set S = {2, 3}, we obtain:
+
+     In[1]:=   PolDS[{2, 3}]
+
+    Out[1]=    -1 - x + C(x) x - x2 + C(x) x2 + 2 x y + 2 x2 y - C(x) x2 y -
+               x2 y2 + DS - C(x) x DS -2 x y DS - x2 y DS + C(x) x2 y DS + x2 y2 DS
+
+   To express the solution in terms of the generating function of the Catalan num-
+bers, we use the command PolDSCat[S]. For our example, this gives:
+
+     In[2]:=   PolDSCat[{2, 3}]
+                J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365     364
+
+              1 + x - C(x) x + x2 - C(x) x2 - 2 x y - 2 x2 y + C(x) x2 y + x2 y2
+   Out[2]=
+                     1 - C(x) x - 2 x y - x2 y + C(x) x2 y + x2 y2
+
+For the explicit generating function, we use the command
+GeneratingFunctionDS[S, x, y]. For instance:
+
+    In[3]:=   GeneratingFunctionDS[{2, 3}, x, y]//Factor
+                     √          √                    √
+              -1 -    1-4x - x - 1-4x x - 2x2 + 3xy + 1-4x xy + 4x2 y - 2x2 y2
+   Out[3]=                  √              √
+                       -1 - 1-4x + 3xy + 1-4x xy + 2 x2 y - 2x2 y2
+                                                                                (1)
+   Finally, to compute the ﬁrst n rows and columns of the array NS , we use the
+command NarayanaMatrixT1[S, n]. For our example, this gives:
+
+    In[4]:=   NarayanaMatrixT1[{2, 3}, 8]
+
+              1 0    0   0   0 0 0
+              1 0    0   0   0 0 0
+              1 1    0   0   0 0 0
+   Out[4]=    1 3    1   0   0 0 0
+              2 5    6   1   0 0 0
+              5 11 15 10 1 0 0
+              14 29 38 35 15 1 0
+              42 84 107 104 70 21 1
+
+
+Acknowledgments
+
+We thank the referees for the careful reading of the manuscript and for the valuable
+comments that have signiﬁcantly improved the presentation of the paper. The ﬁrst
+author was partially supported by ANR PiCs (ANR-22-CE48-0002). The second
+author was partially supported by the Citadel Foundation, Charleston, SC. The
+last author was partially supported by Universidad Nacional de Colombia, Project
+No. 64041.
+
+
+References
+
+ [1] E. Barcucci, A. Bernini and R. Pinzani, Exhaustive generation of some lattice
+     paths and their preﬁxes, Theoret. Comput. Sci. 478 (2021), 47–52.
+ [2] J.-L. Baril and S. Kirgizov, Pure descent statistic on permutations, Discrete
+     Math. 340 (2017), 2550–2558.
+ [3] J.-L. Baril and A. Petrossian, Equivalence classes of Dyck paths modulo some
+     statistics, Discrete Math. 338 (2015), 655–660.
+ [4] F. R. Bernhart, Catalan, Motzkin, and Riordan numbers, Discrete Math. 204
+     (1999), 73–112.
+              J.-L. BARIL ET AL. / AUSTRALAS. J. COMBIN. 94 (3) (2026), 333–365   365
+
+
+ [5] J. J. Bravo, J. L. Herrera and J. L. Ramı́rez, Combinatorial interpretation of
+     generalized Pell numbers, J. Integer Seq. 23 (2020), Article 20.2.1.
+
+ [6] A. J. Bu, Automated counting of restricted Motzkin paths, Enumer. Comb.
+     Appl. 1 (2021), Art. #S2R12.
+
+ [7] A. J. Bu and D. Zeilberger, Using symbolic computation to explore generalized
+     Dyck paths and their areas, Palest. J. Math. 13 (2024), 1–13.
+
+ [8] M. Dairyko, L. Pudwell, S. Tyner and C. Wynn, Non-contiguous pattern avoid-
+     ance in binary trees, Electron. J. Combin. 19 (2012), # P22.
+
+ [9] E. Deutsch, Dyck path enumeration, Discrete Math. 204 (1999), 167–202.
+
+[10] S. B. Ekhad and D. Zeilberger, Automatic counting of restricted Dyck paths
+     via (numeric and symbolic) dynamic programming, Preprint, arXiv:2006.01961,
+     (2020).
+
+[11] S.-P. Eu, S.-C. Liux, and Y.-N. Yeh, i Dyck paths with peaks avoiding or re-
+     stricted to a given set, Stud. Appl. Math. 111 (2003), 453–465.
+
+[12] P. Flajolet and R. Sedgewick, “Analytic Combinatorics”, Cambridge University
+     Press, Cambridge, 2009.
+
+[13] R. Flórez and J. L. Ramı́rez, Enumerating symmetric and asymmetric peaks in
+     Dyck paths, Discrete Math. 343 (2020), 112118.
+
+[14] T. Mansour, Statistics on Dyck paths, J. Integer Sequences 9 (2006), Art. 06.1.5.
+
+[15] D. Merlini, R. Sprugnoli and M. C. Verri, Some statistics on Dyck paths, J.
+     Statis. Plann. Inference 101 (2002), 211–227.
+
+[16] T. K. Petersen, “Eulerian Numbers”, Birkhäuser Advanced Texts Basler
+     Lehrbücher, 2015.
+
+[17] A. Sapounakis, I. Tasoulas and P. Tsikouras, Counting strings in Dyck paths,
+     Discrete Math. 307 (2007), 2909–2924.
+
+[18] N. J. A. Sloane, The On-Line Encyclopedia of Integer Sequences,
+     http://oeis.org/.
+
+[19] R. Stanley, “Catalan Numbers”, Cambridge University Press, 2015.
+
+
+
+
+                     (Received 30 Apr 2025; revised 11 Dec 2025)
+
