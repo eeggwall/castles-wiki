@@ -1,0 +1,1505 @@
+                                              A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS
+
+                                                                              JEAN-LOUIS VERGER-GAUGRY
+
+
+
+
+arXiv:2401.05843v1 [math.NT] 11 Jan 2024
+                                                                                                                                             −1
+                                                  A BSTRACT. The set of Salem numbers is proved to be bounded from below by θ31                 =
+                                                  1.08544 . . . where θn , n ≥ 2, is the unique root in (0, 1) of the trinomial −1 + x + xn .
+                                                                                                             −1 −1
+                                                  Lehmer’s number 1.176280 . . . belongs to the interval (θ12   , θ11 ). We conjecture that there
+                                                                            −1 −1
+                                                  is no Salem number in (θ31 , θ12 ) = (1.08544 . . ., 1.17295 . . .). For proving the Main Theo-
+                                                  rem, the algebraic and analytic properties of the dynamical zeta function of the Rényi-Parry
+                                                  numeration system are used, with real bases running over the set of real reciprocal algebraic
+                                                  integers, and variable tending to 1.
+
+
+                                              Keywords: Lehmer conjecture, minoration, Salem number, numeration system, asymp-
+                                           totic expansion, dynamical zeta function, β -transformation, Parry Upper function, Perron
+                                           number, Pisot number, Parry number.
+
+                                             2020 Mathematics Subject Classification: 11K16, 11M41, 11R06, 11R09, 30B10,
+                                           30B40, 37C30, 37N99, 03D45.
+
+                                                              - Dedicated to the 75th birthday of Christiane Frougny -
+
+
+
+
+                                                                                          C ONTENTS
+                                             1. Introduction                                                                                         2
+                                             2. Dynamical zeta function of the Rényi-Parry numeration dynamical system                              5
+                                             3. Dynamics of the small Salem numbers known                                                            9
+                                             4. Proof of the Main Theorem 1.1                                                                       11
+                                             4.1. A non-real lenticular pole of ζβ (z) in a small angular sector                                    11
+                                             4.2. Rewriting trails                                                                                  19
+                                             4.3. Kala-Vavra Theorem and Galois identification                                                      23
+                                             References                                                                                             25
+
+
+
+
+                                                                                                1
+                 A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                            2
+
+                                       1. I NTRODUCTION
+   A Salem number is an algebraic integer β > 1 such that its Galois conjugates β (i) sat-
+isfy: |β (i) | ≤ 1 for all i = 1, 2, . . ., m − 1, with m = deg(β ) ≥ 4, β (0) = β and at least one
+conjugate β (i) , i 6= 0, on the unit circle [13] [15] [16]. All the Galois conjugates of a Salem
+number β lie on the unit circle, by pairs of complex conjugates, except 1/β which lies
+in the open interval (0, 1). Salem numbers are of even degree ≥ 4. The minimal poly-
+nomial Pβ (X ) ∈ Z[X ] of β is reciprocal. Recall that an integer reciprocal P(X ) ∈ Z[X ]
+is reciprocal if it is equal to its reciprocal polynomial P∗ (X ), where P∗ (X ) is defined by
+P∗ (X ) := X deg(P) P(1/X ). Let us denote by T the set of Salem numbers.
+   Q. A long-standing basic question [16] [68] [99] [100] is about the existence of a non-
+trivial minorant of the set T. More precisely, does there exist a constant c > 0 such that:
+β ∈ T =⇒ β ≥ 1 + c? This question asks the more general question of the topology of T
+and of its adherence T: in this context, is 1 a limit point of T or not?
+    Salem numbers appear in many domains of mathematics, not only in numeration systems
+or number theory. For studying the localization of Salem numbers in (1, +∞), the set T has
+been compared with the set S of Pisot numbers by the “Construction of Salem”, introduced
+in [92], and also using association equations, and the theory of interlacing roots. Let us
+recall the definitions. A Perron number is either 1 or a real algebraic integer θ > 1 such
+that the Galois conjugates θ (i) , i 6= 0, of θ (0) := θ satisfy: |θ (i) | < θ . Denote by P the set
+of Perron numbers. A Pisot number is a Perron number > 1 for which |θ (i) | < 1 for all
+i 6= 0. The set of Pisot numbers admits the minorant Θ = 1.3247 . . ., unique root > 1 of
+X 3 − X − 1 by a result of Siegel [97].
+    Salem (1944) [92] (Samet [94]) proved that every Salem number is the quotient of two
+Pisot numbers. Apart from this direct result, few relations are known between Salem num-
+bers and Pisot numbers. The set of Pisot numbers is better known than the set of Salem
+numbers.
+    To study Salem numbers association equations between Pisot numbers and Salem num-
+bers have been introduced by Boyd ([20] Theorem 4.1), Bertin and Pathiaux-Delefosse
+([14], [15] pp 37-46, [16] chapter 6). Association equations are generically written
+                                                              ∗
+(1.1)                      (X 2 + 1)PSalem = X PPisot (X ) + PPisot (X ),
+to investigate the links between infinite collections of Pisot numbers and a given Salem
+number, of respective minimal polynomials PPisot and PSalem .
+   The theory of interlacing of roots on the unit circle is a powerful tool for studying classes
+of polynomials having special geometry of zeroes of modulus one [57] [59] [60] [61] [62],
+in particular Salem polynomials [68] [69] [70]. In [14] [15] Bertin and Boyd obtained two
+interlacing theorems, namely Theorem A and Theorem B, turned out to be fruitful with their
+limit-interlacing versions. McKee and Smyth in [70] obtained new interlacing theorems.
+Theorem 5.3 in [70] shows that all Pisot numbers are produced by a suitable interlacing
+condition, supporting the second Conjecture of Boyd, i.e. (1.4). Similarly Theorem 7.3 in
+[70], using Boyd’s association Theorems, shows that all Salem numbers are produced by
+interlacing and that a classification of Salem numbers can be made.
+   In [44] is reconsidered the interest of the interlacing Theorems of [14], as potential tools
+for the study of families of algebraic integers in neighbourhoods of Salem numbers, as
+                 A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                     3
+
+analogues of those of McKee and Smyth. Focusing on Theorem A of [14] association
+equations are obtained between Salem polynomials (and/or cyclotomic polynomials) and
+expansive polynomials, generically
+                                                             ∗
+(1.2)                  (z − 1)PSalem(z) = zPexpansive (z) − Pexpansive (z),
+which allow to deduce rational n-dimensional representations of the neighbourhoods of a
+Salem number of degree n, using the formalism of Stieltjès continued fractions. These
+representations are tools to study the limit points of sequences of algebraic numbers in
+the neighbourhood of a given Salem number, the existence of Salem numbers in small
+neighbourhoods of Salem numbers.
+   In the same direction association equations between Salem numbers and (generalized)
+Garsia numbers are obtained by Hare and Panju [45] using the theory of interlacing on the
+unit circle.
+   As a counterpart, in number fields, Salem numbers are linked to units: they are given
+by closed formulas from Stark units in Chinburg [27] [28], exceptional units in Silverman
+[98]. From [28] they are related to relative regulators of number fields [29] [31] [43].
+   In some domains negative Salem numbers naturally occur. A negative Salem number
+is by definition the opposite of a Salem number, a negative Pisot number is by definition
+the opposite of a Pisot number. Negative Salem numbers occur, e.g. for graphs or integer
+symmetric matrices in [68] [69] [70], and in other domains, like Alexander polynomials of
+links of the variable “−x”, e.g. in a Theorem of Hironaka [50].
+   The topology of the set T is certainly related to the set S of Pisot numbers by the two
+Conjectures of Boyd:
+(1.3)                          Conjecture :         S ∪ T is closed
+and that the first derived set of S ∪ T satisfies
+(1.4)                           Conjecture :        S = (S ∪ T)(1)
+Only a part of them is proved. Indeed, Salem [93] proved that the set S of Pisot numbers
+is closed, and S ⊂ T. Its successive derived sets S(i) , were extensively studied by Dufres-
+noy and Pisot [34], and their students (Amara [3], . . . ), by means of compact families of
+meromorphic functions, following ideas of Schur. This analytic approach is reported ex-
+tensively in the book [16]. Conjecture (1.4), if true, would imply that all Salem numbers
+< Θ = 1.3247 . . ., would be isolated. The smallest Salem number known is Lehmer’s num-
+ber
+(1.5)                                  τ := 1.17628 . . .,
+discovered by Lehmer in 1933 [63], with minimal polynomial (named “Lehmer’s polyno-
+mial”):
+(1.6)                   X 10 + X 9 − X 7 − X 6 − X 5 − X 4 − X 3 + X + 1.
+Lehmer’s number was proved to be isolated in [99]. In [63] Lehmer discovered other small
+Salem numbers. There are now part of the list of Mossinghoff which contains the smallest
+Mahler measures of algebraic integers [74] known. For degrees up to 180, the list of Moss-
+inghoff [75] (2001), with contributions of Boyd, Flammang, Grandcolas, Lisonek, Poulet,
+Rhin and Sac-Epée, Smyth, gives primitive, irreducible, noncyclotomic integer polynomi-
+als of degree at most 180 and of Mahler measure less than 1.3 [76]; this list is complete for
+                A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                          4
+
+degrees less than 40, and, for Salem numbers, contains the list of the 47 known smallest
+Salem numbers, all of degree ≤ 44.
+
+
+   The present note is a contribution of the domain of numeration systems to these stud-
+ies, with techniques of numeration in variable base. It is the proof that the Conjecture of
+Lehmer, restricted to Salem numbers, is true, i.e. it is a positive answer to the question
+Q.. For every n ≥ 5, let θn be the unique root of the trinomial −1 + x + xn in (0, 1); its
+inverse θn−1 > 1 is a Perron number. The sequence (θn−1 )n≥5 is strictly decreasing, and sat-
+isfies: limn→∞ θn−1 = 1. We report the reader to [110] for details on the family of trinomials
+(−1 + x + xn )n≥5 . In this note we prove the following result.
+
+Theorem 1.1 (ex-Lehmer conjecture for Salem numbers). The set T is bounded from be-
+low:
+                                                    −1
+                        β ∈T         =⇒        β > θ31 = 1.08544 . . .
+
+                                                           −1 −1
+   Lehmer’s number 1.17628 . . . belongs to the interval (θ12 , θ11 ) (cf Table 1). This in-
+terval does not contain any other known Salem number. If there is another one, its degree
+should be greater than 180. After many attempts (by Denis Dutykh and the author), and a
+compilation of the literature [111] on small Salem numbers, to find Salem numbers smaller
+than Lehmer’s number, we formulate:
+
+Conjecture 1. There is no Salem number in the interval
+                            −1 −1
+                          (θ31 , θ12 ) = (1.08544 . . ., 1.17295 . . .).
+
+   The proof of Theorem 1.1 (in Section 4) uses the analytic function which is the dy-
+namical zeta function, ζβ (z), of the β -transformation, for β > 1 running over the set of
+reciprocal algebraic integers. In Section 2 the basic properties of the function ζβ (z) and
+                                                                                        −1
+the Rényi-Parry numeration dynamical system are recalled. Indeed, if 1 < β < θ31          , this
+function systematically admits a lenticular pole which is non-real, of modulus < 1, in an
+angular sector of the open unit disk containing 1; in Subsection 4.1 the existence of such a
+pole is proved. In Subsection 4.2 rewriting trails, in the numeration system in base β , are
+developped to allow to pass from β -representations of 1 from ζβ (z) to β -representations of
+1 deduced the minimal polynomial Pβ of β . Applying Kala-Vavra’s Theorem in Subsection
+4.3 implies the identification of this lenticular pole as a Galois conjugate of 1/β , then of β .
+But the contradiction appears if we assume in particular that β is a Salem number which
+       −1
+is < θ31  , since a Salem number β never admits a non-real conjugate in the open unit disk.
+The only conjugate of β in the open unit disk is real and is 1/β .
+   Section 3 gathers the Rényi β -expansions dβ (1) of unity of the small Salem numbers
+known, those which can found in Lehmer’s paper [63] or those from the list of Mossinghoff
+[75]. Inthere it is shown how to compute readily ζβ (z) from dβ (1) for such Salem numbers
+β in the interval (τ = 1.176280 . . ., Θ = θ5−1 = 1.32 . . .). This provides examples of Salem
+numbers close to, and slightly greater than, Lehmer’s number τ while the proof of Theorem
+1.1 in Section 4 is concerned with hypothetical Salem numbers < τ .
+                     A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                              5
+
+ 2. DYNAMICAL ZETA FUNCTION OF THE R ÉNYI -PARRY NUMERATION DYNAMICAL
+                                                           SYSTEM
+
+  Let β be a real number, 1 < β < 2. Denote A := {0, 1}. We refer the reader to Lothaire
+[66], Chap. 7 written by Christiane Frougny. Let us fix the notations. A representation in
+base β (or β -representation) of a real number x > 0 is an infinite word (xi )i≥1 of A N such
+that
+                                        x = ∑ xi β −i .
+                                                           i≥1
+
+A particular β -representation, called the β -expansion, or the greedy β -expansion, and de-
+noted by dβ (x), of x can be computed either by the greedy algorithm, or equivalently by
+the β -transformation
+                             Tβ : x 7→ β x ( mod 1) = {β x}.
+The dynamical system ([0, 1], Tβ ) is called the Rényi-Parry numeration system in base β
+[77] [82], the iterates of Tβ providing the successive digits xi of dβ (x) [65]. Denoting
+Tβ0 := Id, Tβ1 := Tβ , Tβi := Tβ (Tβi−1 ) for all i ≥ 1, we have:
+
+                       dβ (x) = (xi )i≥1               if and only if     xi = ⌊β Tβi−1 (x)⌋
+
+and we write the β -expansion of x as
+                                                                        x1 x2  x3
+(2.1)               x = ·x1 x2 x3 . . .          instead of        x=     + 2 + 3 +....
+                                                                        β β    β
+The digits xi depend upon β . In particular, the β -expansion of 1 is by definition denoted by
+                                                                                          +∞
+(2.2)        dβ (1) = 0.t1t2t3 . . .           and uniquely corresponds to            1 = ∑ ti β −i ,
+                                                                                          i=1
+
+where
+(2.3)        t1 = ⌊β ⌋,t2 = ⌊β {β }⌋ = ⌊β Tβ (1)⌋,t3 = ⌊β {β {β }}⌋ = ⌊β Tβ2 (1)⌋, . . .
+
+Denote by <lex the lexicographical ordering relation on {0, 1}N . The β -expansion of 1
+plays an important part in the following, by the fact that the map β → dβ (1) preserves the
+ordering as follows.
+Proposition 2.1. Let α , β ∈ (1, 2) with α 6= β . If the Rényi α -expansion of 1 is
+                                                                        t1′   t′   t′
+                      dα (1) = 0.t1′ t2′ t3′ . . . ,       i.e. 1 =         + 22 + 33 + . . .
+                                                                        α α       α
+and the Rényi β -expansion of 1 is
+                                                                        t1 t2  t3
+                      dβ (1) = 0.t1t2t3 . . . ,            i.e. 1 =       + 2 + 3 + ...,
+                                                                        β β    β
+then α < β if and only if (t1′ ,t2′ ,t3′ , . . .) <lex (t1 ,t2,t3 , . . .).
+Proof. Lemma 3 in Parry [77].                                                                           
+                     A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                                            6
+
+   Since the sequence (θn−1 )n≥2 is (strictly) decreasing and tends to 1 if n tends to infinity
+[110], it induces the partitioning
+                                √         ∞ 
+                            1+ 5        [
+                                                −1
+                                                           [  −1
+(2.4)                   1,           =        θn+1 , θn−1       θ2 .
+                               2         n=2
+                                         √
+Definition 2.2. Let β ∈ (1, 1+2 5 ] be a real number. The integer n ≥ 3 such that θn−1 ≤ β <
+ −1
+θn−1 is called the dynamical degree of β , and is denoted by dyg(β ). By convention we put:
+        √
+dyg( 1+2 5 ) = 2.
+                                                                           √
+                                                                         1+ 5
+  The function β → n = dyg(β ) is locally constant on the interval (1, 2 ], takes all
+values in N \ {0, 1}, and satisfies: limβ >1,β →1 dyg(β ) = +∞. We have:
+                 β tends to 1  if and only if      n = dyg(β ) tends to + ∞.
+                                 √
+Definition 2.3. Let β ∈ (1, (1 + 5)/2] be a real number, and dβ (1) = 0.t1t2t3 . . . its Rényi
+β -expansion of 1. The power series fβ (z) := −1 + ∑i≥1 ti zi of the complex variable z is
+called the Parry Upper function at β .
+  From (ti )i≥1 ∈ A N is built (ci )i≥1 ∈ A N , defined by
+                        
+                          t1 t2 t3 . . .              if dβ (1) = 0.t1t2 . . . is infinite,
+      c1 c2 c3 . . . :=                             ω
+                          (t1t2 . . .tq−1 (tq − 1))   if dβ (1) is finite, = 0.t1t2 . . .tq,
+where ( )ω means that the word within ( ) is indefinitely repeated. The sequence (ci )i≥1 is
+the unique element of A N which allows to obtain all the admissible β -expansions of all
+the elements of [0, 1).
+Definition 2.4 (Conditions of Parry). A sequence (yi )i≥0 of elements of A (finite or not)
+is said admissible if
+(2.5)        σ j (y0 , y1 , y2 , . . .) := (y j , y j+1 , y j+2 , . . .) <lex (c1 , c2 , c3 , . . .) for all j ≥ 0.
+  The operator σ on A N is the one-sided shift.
+Definition 2.5. A sequence (ai )i≥0 ∈ A N satisfying (2.6) is said to be Lyndon (or self-
+admissible):
+(2.6)       σ n (a0 , a1 , a2 , . . .) = (an , an+1 , an+2 , . . .) <lex (a0 , a1 , a2 , . . .)   for all n ≥ 1.
+  The terminology comes from the introduction of such words by Lyndon in [67], in hon-
+our of his work.
+                                                                        √
+                                                                   −1
+Theorem 2.6. Let n ≥ 2. A real number β ∈ (1, 1+2 5 ] belongs to [θn+1 , θn−1 ) if and only
+if the Rényi β -expansion of unity is of the form
+(2.7)                                  dβ (1) = 0.10n−1 10n1 10n2 10n3 . . . ,
+with nk ≥ n − 1 for all k ≥ 1.
+Proof. Since dθ −1 (1) = 0.10n−1 1 and dθn−1 (1) = 0.10n−2 1, Proposition 2.1 implies that the
+                     n+1
+condition is sufficient. It is also necessary: dβ (1) begins as 0.10n−1 1 for all β such that
+                  A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                              7
+
+ −1
+θn+1 ≤ β < θn−1 . For such β s we write dβ (1) = 0.10n−1 1u with digits in the alphabet
+Aβ = {0, 1} common to all β s, that is
+                                      u = 1h0 0n1 1h1 0n2 1h2 . . .
+and h0 , n1 , h1 , n2 , h2 , . . . integers ≥ 0. The self-admissibility lexicographic condition (2.6)
+applied to the sequence (1, 0n−1 , 11+h0 , 0n1 , 1h1 , 0n2 , 1h3 , . . .), which characterizes uniquely
+the base of numeration β , readily implies h0 = 0 and hk = 1 and nk ≥ n−1 for all k ≥ 1. 
+Definition 2.7. A power series ∑+∞            j
+                                     j=0 a j z , with a j ∈ {0, 1} for all j ≥ 0, z the complex
+variable, is said to be Lyndon (or self-admissible) if its coefficient vector (ai )i≥0 is Lyndon.
+   In Fredholm theory, the Parry Upper function at β is the generalized Fredholm determi-
+nant (up to the sign) of the transfer operator of the β -transformation (cf Ruelle [83] [84]
+[85] [86] [87] [88] [89] [90] [91] and more recently Baladi [6] [7] [8], Baladi and Keller
+[9], Hofbauer [51], Hofbauer and Keller [52], Milnor and Thurston [71], Parry and Pollicott
+[78], Pollicott [79] [80], Takahashi [103] [104]).
+   For n ≥ 2, denote: Gn (X ) := −1 + X + X n .
+                                      √
+Proposition 2.8. For 1 < β < (1 + 5)/2 any real number, with dβ (1) = 0.t1t2t3 . . ., the
+Parry Upper function fβ (z) is such that fβ (1/β ) = 0. It is such that fβ (z) + 1 has coeffi-
+cients in the alphabet {0, 1} and its coefficient vector is Lyndon. It takes the form
+(2.8)               fβ (z) = Gdyg(β ) (z) + zm1 + zm2 + . . . + zmq + zmq+1 + . . .
+with m1 − dyg(β ) ≥ dyg(β ) − 1, mq+1 − mq ≥ dyg(β ) − 1 for q ≥ 1. Conversely, given a
+power series
+(2.9)                   −1 + z + zn + zm1 + zm2 + . . . + zmq + zmq+1 + . . .
+with n ≥ 3, √
+            m1 − n ≥ n − 1, mq+1 − mq ≥ n − 1 for q ≥ 1, then there exists an unique
+β ∈ (1, (1 + 5)/2) for which n = dyg(β ) with fβ (z) equal to (2.9).
+                                √
+  Moreover, if β , 1 < β < (1 + 5)/2, is a reciprocal algebraic integer, in particular a
+Salem number, the power series (2.8) is never a polynomial.
+Proof. The expression of fβ (z) readily comes from Theorem 2.6. Let us prove the last
+claim. Assume that β is a reciprocal algebraic integer and that fβ (z) is a polynomial.
+The polynomial fβ (z) would vanish at the two real zeroes β and 1/β . But the sequence
+−1t1 t2 t3 . . . has only one sign change. By Descartes’s rule we obtain a contradiction. 
+Definition 2.9. A real number β > 1 is said to be a simple Parry number if dβ (1) is finite
+(i.e. if it ends in infinitely many zeroes). It is a Parry number if it is simple or if dβ (1) is
+eventually periodic, with a preperiod of length ≥ 0 and a nonzero period.
+   Parry [77] proved that the set of simple Parry numbers is dense in (1, +∞). Salem num-
+bers are never simple Parry numbers.
+   In number theory, inequalities are often associated to collections of half-spaces in eu-
+clidean or adelic Geometry of Numbers (e.g. Minkowski’s Theorem, etc). The conditions
+of Parry (at β ) are of totally different nature since they refer to a reasonable control, order-
+preserving, of the gappiness (lacunarity) of the coefficient vectors of the power series which
+are the Parry Upper functions, when β is close to 1.
+                A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                          8
+
+Theorem 2.10. Let β ∈ (1, θ2−1 ). Then, the Artin-Mazur dynamical zeta function ζβ (z)
+defined by
+                                  ∞ #{x ∈ [0, 1] | T n (x) = x} 
+                                                     β
+(2.10)            ζβ (z) := exp ∑                               zn ,
+                                  n=1            n
+counting the number of periodic points of period dividing n, has a sense, is nonzero and
+meromorphic in {z : |z| < 1}, and such that 1/ζβ (z) is holomorphic in {z : |z| < 1},
+Proof. Theorem 2 in [9], assuming that the set of intervals ([0, a1), [a1, 1]) forming the par-
+tition of [0, 1] is generating; In [87] [90] Ruelle shows that this assumption is not necessary,
+showing how to remove this obstruction.                                                       
+   Theorem 2.10 has been stated in Baladi and Keller [9] under more general assumptions.
+Theorem 2.10 had been previously conjectured by Hofbauer and Keller [52] for piecewise
+monotone maps, for the case where the function g occuring in the transfer operators is
+piecewise constant. (cf also Mori [72] [73]). The case g = 1 in the transfer operators was
+studied by Milnor and Thurston [71], Hofbauer [51].
+   The relations between the poles of the dynamical zeta function ζβ (z) and the zeroes of
+the Parry Upper function fβ (z) come from Theorem 2.10 and from the following theorem.
+
+Theorem 2.11. Let β ∈ (1, θ2−1 ). Then the Parry Upper function fβ (z) satisfies
+                                          1
+(2.11)        (i)          fβ (z) = −              if β is not a simple Parry number,
+                                        ζβ (z)
+and
+                                         1 − zN
+(2.12)              (ii)   fβ (z) = −                if β is a simple Parry number
+                                         ζβ (z)
+where N, which depends upon β , is the minimal positive integer such that TβN (1) = 0. It
+is holomorphic in the open unit disk {z : |z| < 1}. It has no zero in {z : |z| ≤ 1/β } except
+z = 1/β which is a simple zero.
+Proof. Theorem 2.3 and Appendix A in Flatto, Lagarias and Poonen [41]; Theorem 1.2 in
+Flatto and Lagarias [40], I; Theorem 3.2 in Lagarias [55]. From Takahashi [102], Ito and
+Takahashi [53], these authors deduce
+                                                       1 − zN
+(2.13)                           ζβ (z) =                              
+                                             (1 − β z) ∑∞    T
+                                                         n=0 β
+                                                               n (1) zn
+
+
+where “zN ” has to be replaced by “0” if β is not a simple Parry number. Since β Tβn (1) =
+⌊β Tβn (1)⌋ + {β Tβn (1)} = tn+1 + Tβn+1 (1) by (2.3), for n ≥ 1, expanding the power series of
+the denominator (2.13) readily gives:
+                                                               ∞            
+                                 2                                    n    n
+(2.14)            −1 + t1 z + t2z + . . . = fβ (z) = −(1 − β z) ∑ Tβ (1) z .
+                                                                      n=0
+The zeroes of smallest modulus are characterized in Lemma 5.2, Lemma 5.3 and Lemma
+5.4 in [41].                                                                     
+                 A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                          9
+
+   Let β ∈ (1, θ2−1 ). Since the power series fβ (z) has coefficients in the finite set A ∪{−1},
+its radius of convergence is ≥ 1 by Hadamard’s formula, and it obeys the Carlson-Polya
+dichotomy (Bell and Chen [11], Bell, Miles and Ward [12], Carlson [26], Pólya [81], Szegő
+[101]). Applying the Carlson-Polya dichotomy gives the following equivalence.
+Theorem 2.12. Let β ∈ (1, θ2−1 ). The real number β is a Parry number if and only if the
+Parry Upper function fβ (z) is a rational function, equivalently if and only if ζβ (z) is a
+rational function.
+   Moreover, the set of nonParry numbers in (1, ∞) is not empty. If β is not a Parry number,
+then the unit circle {z : |z| = 1} is the natural boundary of fβ (z), equivalently of ζβ (z).
+Proof. [110]. The set of nonParry numbers β in (1, ∞) is not empty as a consequence
+of Fekete-Szegő’s Theorem [39] since the radius of convergence of fβ (z) is equal to 1 in
+any case, and that its domain of definition always contains the open unit disk which has a
+transfinite diameter equal to 1. Since the set of Parry numbers β in (1, ∞) is nonempty, the
+dichotomy between the set of Parry numbers and the set of nonParry numbers, both non
+empty, in (1, ∞) has a sense.                                                             
+  Recall that the set of simple Parry numbers is dense [77] in (1, +∞) and that the set
+of Parry numbers which are not simple is infinite since it contains intinitely many Pisot
+numbers by Schmidt [95], Bertrand-Mathis [17].
+
+                3. DYNAMICS OF THE SMALL S ALEM NUMBERS KNOWN
+  The set P of Perron numbers is dense in [1, +∞). It contains the subset PP of the Parry
+numbers by a result of Lind [64] (Blanchard [18], Boyle [25], Denker, Grillenberger and
+Sigmund [32], Frougny in [66] chap.7). The set P \ PP is not empty (Akiyama [2], and as a
+consequence of Fekete-Szegő’s Theorem [39]); it would contain all Salem numbers of large
+degrees, by Thurston [107] p. 11. Parry ([77], Theorem 5) proved that the subcollection of
+simple Parry numbers is dense in [1, ∞).
+   In the opposite direction a Conjecture of K. Schmidt [95] asserts that Salem numbers are
+all Parry numbers. For Salem numbers β of degree ≥ 6, Boyd [23] established a simple
+probabilistic model, based on the frequencies of digits occurring in the Rényi β -expansions
+of unity, to conjecture that, more realistically, Salem numbers are dispatched into the two
+sets of Parry numbers and nonParry numbers, each of them with densities > 0. This model,
+coherent with Thurston’s one ([107], p. 11), is in contradiction with the conjecture of K.
+Schmidt.
+   This dichotomy of Salem numbers was verified by Hichri [47] [48] [49] for Salem num-
+bers of degree 8. Hichri further developped the heuristic approach of Boyd for Salem
+numbers of degree 8. The Salem numbers of degree ≤ 8 are all greater than 1.280638 . . .
+from [75]. Salem numbers of degree 4 are Parry numbers [21] [22]. Boyd’s model covers
+the set of Salem numbers smaller than Lehmer’s number, if any.
+   The small Salem numbers found by Lehmer in [63], reported in Table 2, either given by
+their minimal polynomial or equivalently by their β -expansion, are Parry numbers whose
+Rényi β -expansion of unity has a preperiod length equal to 1. Table 1 gives the subcollec-
+tion of those Salem numbers β which are Parry numbers, of degree ≤ 44, within the inter-
+                                                                                             −1
+vals of extremities the Perron numbers θn−1 , n = 5, 6, . . ., 12. In each interval (θn−1 , θn−1 )
+                A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                                10
+
+the Salem numbers β have the same dynamical degree dyg(β ), while a certain disparity
+of the degrees deg(β ) occurs. The remaining Salem numbers in [75] are very probably
+nonParry numbers though proofs are not available yet; they are not included in Table 1.
+                                                                               −1
+Apart from them, the other Salem numbers which exist in the intervals (θn−1 , θn−1 ), n ≥ 6,
+if any, should be of degrees > 180.
+
+    dyg deg            β           Pβ ,P                           dβ (1)
+
+     5     3    θ5−1 = 1.324717      5                0.103 1    smallest Pisot number - Siegel
+
+     6     18       1.29567      22                          0.1(04 109 106 )ω
+     6     10       1.293485     12                            0.1(04 106 )ω
+     6     24       1.291741    24 irr.                     0.1(04 1011 106 )ω
+     6     26       1.286730     30                         0.1(04 1017 106 )ω
+     6     34       1.285409     38                         0.1(04 1025 106 )ω
+     6     30       1.285235     45                         0.1(04 1032 106 )ω
+     6     44       1.285199     66                         0.1(04 1054 106 )ω
+     6      6   θ6−1 = 1.285199 6 irr.                     4
+                                                       0.10 1             Perron number
+
+     7     26      1.285196         44                0.1(05 105 105 105 105 105 107 )ω
+     7     26      1.281691          ..        0.1(05 105 109 105 1017 107 106 106 107 1012 )ω
+     7      8      1.280638         20                       0.1(05 105 107 )ω
+     7     10      1.261230         14                          0.1(05 107 )ω
+     7     24      1.260103         28                       0.1(05 1013 107 )ω
+     7     18      1.256221         36                       0.1(05 1021 107 )ω
+                 −1
+     7      7   θ7 = 1.255422      7 irr.                0.105 1            Perron number
+
+     8     18      1.252775        120      0.1(06 106 1010 1016 1012 107 1012 016 1010 106 108 )ω
+     8     12      1.240726         48                   0.1(06 1011 107 1011 108 )ω
+     8     20      1.232613         41                       0.1(06 1024 108 )ω
+                 −1
+     8      8   θ8 = 1.232054      8 irr.               0.106 1            Perron number
+
+     9     10      1.216391         18                         0.1(07 109 )ω
+                 −1
+     9      9   θ9 = 1.213149      9 irr.              0.107 1            Perron number
+
+     10    14      1.200026     20                             0.1(08 1010 )ω
+                 −1
+     10    10   θ10 = 1.197491 10 irr.                 0.108 1            Perron number
+
+                 −1
+     11    9    θ11 = 1.184276      11                 0.109 1              Perron number
+
+     12    10      1.176280        75       Lehmer’s number : 0.1(010 1018 1012 1018 1012 )ω
+                 −1
+     12    12   θ12 = 1.172950    12 irr.           0.1010 1           Perron number
+
+   Table 1. Smallest Salem numbers β < 1.3 of degree ≤ 44, which are Parry numbers,
+computed from the “list of Mossinghoff” [75] of irreducible monic integer polynomials of
+  degree ≤ 180. In Column 1 is reported the dynamical degree of β . Column 4 gives the
+degree dP of the Parry polynomial Pβ ,P of β ; Pβ ,P is reducible except if “irr.” is mentioned.
+                   A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                           11
+
+                            −1
+  The Salem numbers β , θ12     < β < θ5−1 , in Table 1, of degree ≤ 44, are Parry numbers.
+The Parry polynomial Pβ ,P (X ) of a Salem number β is determined by the equation
+           −Pβ∗,P (z)
+fβ (z) =                    if dβ (1) = 0.t1t2 . . .tm (tm+1tm+2 . . .tm+p+1 )ω has period length p+1 ≥ 1.
+           1 − z p+1
+
+      deg(β )           β         minimal polynomial of β dβ (1)
+
+           4    1.722 . . .   X4 − X3 − X2 − X + 1       0.1(100)ω
+           6    1.401 . . .  X 6 − X 4 − X 3 − X 2 + 1 0.1(02104 )ω
+           8   1.2806 . . .  X 8 − X 5 − X 4 − X 3 + 1 0.1(05105 107 )ω
+           10 1.17628 . . . X 10 + X 9 − X 7 − X 6 − X 5 0.1(0101018 1012 1018 1012 )ω
+                                −X 4 − X 3 + X + 1
+    Table 2. The small Salem numbers, with their minimal polynomial, discovered by
+                                     Lehmer in [63].
+
+   Using the “Construction of Salem”, Hare and Tweedle [46] obtain convergent families
+of Salem numbers, all Parry numbers, having as limit points the limit points of the set S of
+Pisot numbers in the interval (1, 2) (characterized by Amara [3]). These families of Salem
+numbers which are Parry numbers do not contain Salem numbers smaller than Lehmer’s
+number.
+   The relations between the digits (ti ) in the Rényi β -expansion of unity dβ (1) of a Salem
+number β and the coefficient vector of its minimal polynomial are obscure in general.
+However we have the following general result on the gappiness, which is never “extreme”.
+Theorem 3.1. Let β > 1 be a Salem number. We assume that dβ (1) is gappy in the sense
+that there exist two infinite sequences {mn }n≥1 and {sn }n≥0 such that
+                1 = s0 ≤ m1 < s1 ≤ m2 < s2 ≤ . . . ≤ mn < sn ≤ mn+1 < sn+1 ≤ . . .
+with (sn − mn ) ≥ 2, tmn 6= 0, tsn 6= 0 and ti = 0 if mn < i < sn for all n ≥ 1. Then
+                                                  sn
+(3.1)                                     lim sup     =1
+                                           n→+∞ mn
+
+Proof. There are two cases: (i) β is a Parry number: we readily obtain the result. (ii) β is
+not a Parry number: then M(β ) = β , where M denotes the Mahler measure of an algebraic
+number. Then we apply Theorem 1.1 in [108], and deduce the result. Another way is to
+obtain (ii) as a consequence of Theorem 2 in [1].                                         
+
+                             4. P ROOF OF THE M AIN T HEOREM 1.1
+   For proving Theorem 1.1, we assume the existence of a Salem number β in an interval
+         −1
+(θn−1 , θn−1 ), n ≥ 32, and arrive at a contradiction.
+4.1. A non-real lenticular pole of ζβ (z) in a small angular sector. This Salem number
+             −1
+β ∈ (θn−1 , θn−1 ), n ≥ 32, would admit a Rényi β -expansion of unity dβ (1) which is infinite,
+by Proposition 2.8:
+                              dβ (1) = 0.10n−2 10n1 10n2 10n3 . . . ,
+                 A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                         12
+
+with nk ≥ n − 2 for all k ≥ 1. The gappiness is controlled by the integer n − 2, in the
+sense that any string of zeroes has length ≥ n − 2, and is never asymptotically important
+by Theorem 3.1. Then the Parry Upper function fβ (z) at β takes the following form and is
+characterized by the sequence of exponents (mq )q≥0 :
+(4.1)          fβ (z) = −1 + z + zn + zm1 + zm2 + zm3 + . . . = Gn (z) + ∑ zmq ,
+                                                                               q≥1
+where m0 := n, with the fundamental minimal gappiness condition:
+(4.2)                        mq+1 − mq ≥ n − 1            for all q ≥ 0.
+
+    Inside the open unit disk, the zeroes of fβ (z) are exactly the poles of ζβ (z), with the
+same multiplicities, by Theorem 2.11. For convenience, we will deal with the zeroes of
+ fβ (z) instead of the poles of ζβ (z), in the sequel. The terminology “lenticular poles”, in the
+title of this section, comes from the fact that the first zero (cf the definition below) naturally
+belongs to a lenticulus of zeroes, as shown in Figure 2, and the existence of lenticuli is the
+case in general [112].
+
+   The method which will be used to detect a non-real zero of fβ (z) in the open unit disk
+is the method of Rouché applied to (4.1) and to the first zero of Gn (z), in which ∑q≥1 zmq
+is a perturbation of Gn (z) = −1 + z + zn . Let us first recall the notations of the zeroes of
+the trinomials Gn and their geometry, from the factorization of Gn (X ) := −1 + X + X n by
+Selmer [96] (cf [110] Section 2).
+
+
+4.1.1. Roots of Gn and the asymptotic expansion of the first root. Let n ≥ 2. Summing in
+pairs over complex conjugated imaginary roots, the indexation of the roots and the factor-
+ization of Gn (X ) are taken as follows:
+                                         ⌊n⌋
+                                                              !
+                                             6
+(4.3)              Gn (X ) = (X − θn )     ∏ (X − z j,n)(X − z j,n) × qn (X ),
+                                           j=1
+
+where θn is the only (real) root of Gn (X ) in the interval (0, 1), where
+                                                     
+                 
+                 
+                          n−2
+                           2
+                 
+                    ∏ (X − z j,n )(X − z j,n ) × (X − z n ,n ) if n is even, with
+                 
+                 
+                 
+                                                                2
+                  j=1+⌊ 6n ⌋
+     qn (X ) =                                                         z 2n ,n real < −1,
+                 
+                 
+                 
+                 
+                       n−1
+                 
+                 
+                        2
+
+                  ∏n
+                 
+                             (X − z j,n )(X − z j,n )                 if n is odd,
+                     j=1+⌊ 6 ⌋
+
+where the index j = 1, 2, . . . is such that z j,n is a (nonreal) complex zero of Gn (X ), except
+if n is even and j = n/2, such that the argument arg(z j,n ) of z j,n is ≈ 2π j/n and that the
+family of arguments (arg(z j,n ))1≤ j<⌊n/2⌋ forms a strictly increasing sequence with j:
+                      0 < arg(z1,n ) < arg(z2,n ) < . . . < arg(z⌊ 2n ⌋,n ) ≤ π .
+For n ≥ 2 all the roots of Gn (X ) are simple, and the roots of G∗n (X ) = 1 + X n−1 − X n , as
+inverses of the roots of Gn (X ), are classified in the reversed order.
+                A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                         13
+
+Proposition 4.1. Let n ≥ 2. If n 6≡ 5 (mod 6), then Gn (X ) is irreducible over Q. If
+n ≡ 5 (mod 6), then the polynomial Gn (X ) admits X 2 − X + 1 as irreducible factor in
+its factorization and Gn (X )/(X 2 − X + 1) is irreducible.
+Proof. Selmer [96].                                                                           
+Proposition 4.2. For all n ≥ 2, all zeros z j,n and θn of the polynomials Gn (X ) have a
+modulus in the interval
+                                  h    2 Log n       2 Log 2 i
+(4.4)                               1−         , 1+            ,
+                                          n             n
+   (ii) the trinomial Gn (X ) admits a unique real root θn in the interval (0, 1). The sequence
+(θn )n≥2 is strictly increasing, limn→+∞ θn = 1, with θ2 = 1+2√5 = 0.618 . . .,
+   (iii) the root θn is the unique root of smallest modulus among all the roots of Gn (X ); if
+n ≥ 6, the roots of modulus < 1 of Gn (z) in the closed upper half-plane have the following
+properties:
+   (iii-1) θn < |z1,n |,
+   (iii-2) for any pair of successive indices j, j + 1 in {1, 2, . . ., ⌊n/6⌋},
+                                        |z j,n| < |z j+1,n |.
+Proof. (i)(ii) Selmer [96], pp 291–292; (iii-1) Flatto, Lagarias and Poonen [41], (iii-2)
+Verger-Gaugry [110].                                                                   
+Proposition 4.3. Let n ≥ 2. Then (i) the number pn of roots of Gn (X ) which lie inside the
+open sector S = {z | | arg(z)| < π /3} is equal to
+                                                n
+(4.5)                                    1 + 2⌊ ⌋,
+                                                6
+   (ii) the correlation between the geometry of the roots of Gn (X ) which lie inside the unit
+disk and the upper half-plane and their indexation is given by:
+                                     n                1
+(4.6)             j ∈ {1, 2, . . ., ⌊ ⌋} ⇐⇒ ℜ(z j,n) > ⇐⇒ |z j,n | < 1.
+                                     6                2
+Proof. Proposition 3.7 in [110].                                                              
+   The roots z j,n of Gn are given in [110] by their (Poincaré) asymptotic expansions [109],
+as a function of n and j. They are generically written: Re(z j,n ) = D(Re(z j,n))+tl(Re(z j,n )),
+Im(z j,n) = D(Im(z j,n)) + tl(Im(z j,n )), θn = D(θn ) + tl(θn ), where ”D” and ”tl” stands for
+“development” (or “limited expansion”, or “lowest order terms”) and ”tl” for “tail” (or
+“remainder”, or “terminant”).
+   They are given at a sufficiently high order which allows to make sufficiently precise their
+positioning inside the unit disk and to deduce the asymptotic expansions of the Mahler mea-
+sures M(Gn). The terminology order comes from the general theory (Borel [19], Copson
+[30], Dingle [33], Erdélyi [38]). Here we do not need to compute the Mahler measures.
+   We are only concerned with the first root z1,n of Gn around which a small Rouché circle
+(centered at z1,n ) will be set up to deduce the existence of a zero of fβ (z) inside it, as soon
+as n ≥ 32.
+                A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                               14
+
+Proposition 4.4. Let n ≥ 2. The root θn can be expressed as: θn = D(θn ) + tl(θn ) with
+D(θn ) = 1−
+                                                                               
+         Log n           n − Log n                            Log n 
+(4.7)           1−                          Log Log n − nLog 1 −         − Logn
+          n          n Log n + n − Log n                           n
+and
+                                                                     2 !
+                                      1               Log Log n
+(4.8)                        tl(θn ) = O                                     ,
+                                      n                 Log n
+
+with the constant 1/2 involved in O ( ).
+Proof. [110] Proposition 3.1.                                                                       
+Lemma 4.5. Given the limited expansion D(θn ) of θn as in (4.7), denote
+                                                                    n
+                                λn := 1 − (1 − D(θn ))                   .
+                                                                   Log n
+Then λn = D(λn ) + tl(λn ), with
+                                                  !                                            
+                      Log Log n          1                                 Log Log n
+(4.9)        D(λn ) =                     1
+                                                      ,        tl(λn ) = O
+                        Log n        1 + Log n
+                                                                               n
+
+with the constant 1 in the Big O.
+Proof. [110] Lemma 3.2.                                                                             
+
+   The asymptotic expansions of those roots z j,n of Gn (z) which lie close to the real axis and
+{z = 1} are (divergent) sums of functions of a couple of two variables which is: (n, j/Log n)
+in the angular sector 2π Log n/n > arg z > 0. It is the case for j = 1.
+Proposition 4.6. Let n ≥ 18. The first root z1,n of Gn is given by:
+                                                      2
+                                          2π 2    1               
+                      D(Re(z1,n )) = θn +                 1 + 2λ n ,
+                                           n     Log n
+                                                                    
+                                2π Log n      1           1
+                  D(Im(z1,n)) =                     1−        (1 + λn ) ,
+                                    n      Log n        Log n
+  with
+                                                         2                        2 !
+                                    1            1                      Log Log n
+                  tl(Re(z1,n )) =                              O                            ,
+                                  nLog n        Log n                    Log n
+                                                                    !
+                                     1            1          Log Log n 2
+                   tl(Im(z1,n )) =                       O                ,
+                                   nLog n        Log n         Log n
+
+Proof. [110].                                                                                       
+                 A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                         15
+
+                                                −1
+4.1.2. Existence. The Salem number β ∈ (θn−1 , θn−1 ), n ≥ 32, is uniquely characterized in
+(4.1) by the sequence of exponents (mq )q≥0 in
+(4.10)         fβ (z) = −1 + z + zn + zm1 + zm2 + zm3 + . . . = Gn (z) + ∑ zmq ,
+                                                                          q≥1
+with m0 := n and the distanciation condition: mq+1 − mq ≥ n − 1 for all q ≥ 0. Since we
+do not know exactly the sequence (mq ), the problem is to make a direct test of the Rouché
+condition using the inequality
+
+(4.11)              fβ (z) − Gn(z) =    ∑ zmq < |Gn(z)|          for z ∈ C1,n ,
+                                        q≥1
+                                        t
+for some circle C j,n := {z : |z −z j,n| = 1,n
+                                           n } of center z1,n and radius t1,n /n > 0 small enough.
+To overcome this difficulty, we proceed by considering the general inequality:
+                                                         |z|2(n−1)+1
+             fβ (z) − Gn (z) =   ∑ zmq ≤ ∑ |zmq | ≤       1 − |z|n−1
+                                                                     ,          |z| < 1.
+                                 q≥1          q≥1
+Then we test the Rouché condition by the following inequality:
+                     |z|2(n−1)+1       |z|2n−1
+(4.12)                            =              < |Gn (z)| for z ∈ C1,n ,
+                      1 − |z|n−1     1 − |z|n−1
+instead of (4.11), too complicated to handle.
+   The problem of the choice of the radius t1,n /n is a true problem. The circle C1,n should
+not intersect the unit circle z = 1, nor the real axis, and should not contain the second root
+z2,n of Gn . On one hand, a too small radius would lead to make impossible the application
+of the Rouché condition. On the other hand, taking larger values of t1,n /n would readily
+lead to a bad or impossible localization of the zero of fβ (z). Indeed, we do not know a
+priori whether the unit circle is a natural boundary or not for fβ (z); locating zeroes close to
+a natural boundary is a difficult problem in general.
+   The radius of C1,n is chosen to be
+                                      t1,n π |z1,n |
+                                          =
+                                       n    n amax
+where amax is determined by the following easy lemma.
+Lemma 4.7. The function
+                                                             
+                                           1 − exp πa exp −aπ
+                           a → h(1, a) :=                    
+                                          exp πa + 1 − exp πa
+defined on [1, +∞) reaches its maximum h(1, amax ) := 0.171784 . . . at amax = 5.8743 . . .
+(Figure 1).
+                      A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                              16
+
+                                         hH1,aL
+                                       0.175
+                                        0.15
+                                       0.125
+                                         0.1
+                                       0.075
+                                        0.05
+                                       0.025
+                                                                                 a
+                                                  50     100     150       200
+
+
+
+                        F IGURE 1. Curve of the Rouché condition a → h(1, a).
+
+                                                                    1,n          π |z   |
+Theorem 4.8. Let n ≥ 32. Denote by C1,n := {z | |z − z1,n | = n amax    } the circle centered at
+                                          n
+the first root z1,n of Gn (z) = −1 + z + z . Then the condition of Rouché
+                                   |z|2n−1
+(4.13)                                      < |−1 + z + zn | ,     for all z ∈ C1,n ,
+                                 1 − |z|n−1
+holds true.
+Proof. Let a ≥ 1 and n ≥ 18. Denote by ϕ := arg(z1,n) the argument of the first root
+z1,n (in Im(z) > 0). Since −1 + z1,n + zn1,n = 0, we have |z1,n |n = | − 1 + z1,n |. Let us
+                      π |z
+                         iψ  |           π i(ψ −ϕ )
+write z = z1,n + n 1,na e = z1,n (1 + a n e         ) the generic element belonging to C1,n , with
+ψ ∈ [0, 2π ]. Let X := cos(ψ − ϕ ). Let us show that if the inequality (4.13) of Rouché
+holds true for X = +1, then it holds true for all X ∈ [−1, +1], that is for every argument
+ψ ∈ [0, 2π ], i.e. for every z ∈ C1,n . We have
+                     π i(ψ −ϕ ) n        π X             π2                 1
+                                                                                  
+                                                                    2
+               1+ e               = exp         × 1 − 2 (2X − 1) + O( 2 )
+                    an                     a               2a n                n
+and
+                                                                       √                            !
+                  π          n                                 π       1 − X2      πX        1
+      arg        1 + ei(ψ −ϕ )      = sgn(sin(ψ − ϕ )) ×                          [1 −    ] + O( 2 ) .
+                    an                                                      a          an       n
+Moreover,
+                        π i(ψ −ϕ )      π      p               πX      1
+                   1+      e       = 1 + (X ± i 1 − X 2) = 1 +    + O( 2 ).
+                        an              an                     an     n
+with                                                       √
+                        π i(ψ −ϕ )                        π 1 − X2        1
+              arg(1 + e            ) = sgn(sin(ψ − ϕ )) ×           + O( 2 ).
+                        an                                   an           n
+For all n ≥ 18, from Proposition 4.6, we have
+                                                                     
+                                  Log n − Log Log n 1       Log Log n
+(4.14)              |z1,n | = 1 −                  + O                  .
+                                          n           n      Log n
+from which we deduce the following equality, up to O( 1n ) - terms,
+                                       π
+                            |z1,n | 1 + ei(ψ −ϕ ) = |z1,n |.
+                                       an
+                  A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                        17
+
+Then the left-hand side term of (4.13) is
+                                                                       2n
+               |z|2n−1               | − 1 + z1,n |2 1 + aπn ei(ψ −ϕ )
+                       =
+             1 − |z|n−1 |z1,n | 1 + aπn ei(ψ −ϕ ) − | − 1 + z1,n | 1 + aπn ei(ψ −ϕ ) n
+                                                                              
+                                                      π2
+                                 | − 1 + z1,n 1 − a n (2X − 1) exp 2πaX
+                                           |2                 2
+(4.15)         =                                                                 
+                                                                   π2
+                   |z1,n | 1 + aπn ei(ψ −ϕ ) − | − 1 + z1,n | 1 − 2a n (2X 2 − 1) exp( π X )
+                                                                                        a
+                    
+up to 1n O Log Log n
+             Log n     -terms (in the terminant). The right-hand side term of (4.13) is
+                                                 π                        π        n
+           |−1 + z + zn | = −1 + z1,n 1 + ei(ψ −ϕ ) + zn1,n 1 + ei(ψ −ϕ )
+                                                 na                         na
+                      √                                                            
+                    π 1 − X2             πX                         π2        2
+= −1 + z1,n (1 ± i                )(1 +       ) + (1 − z1,n) 1 − 2 (2X − 1)
+                          an             an                       2a n
+
+                         πX      π √1 − X 2      π X     1
+(4.16)             × exp     exp ± i           [1 −    ] + O( 2 )
+                          a             a           an       n
+Let us consider (4.15) and (4.16) at the first order for the asymptotic expansions, i.e. up to
+O(1/n) - terms instead of up to O( 1n (Log Log n/Log n)) - terms or O(1/n2) - terms. (4.15)
+becomes:
+                                  | − 1 + z1,n |2 exp( 2πaX )
+                                  |z1,n | − | − 1 + z1,n| exp( πaX )
+and (4.16) is equal to:
+
+                                              πX     π √1 − X 2 
+                       | − 1 + z1,n | 1 − exp     exp ± i
+                                               a           a
+
+and is independent of the sign of sin(ψ − ϕ ). Then the inequality (4.13) is equivalent to
+
+            | − 1 + z1,n |2 exp( 2πaX )                              πX     π √1 − X 2 
+(4.17)                                      < | − 1 + z1,n | 1 − exp     exp ± i           ,
+         |z1,n | − | − 1 + z1,n| exp( πaX )                           a           a
+and (4.17) to
+                                                   √ 2              
+                                          πX
+                | − 1 + z1,n |    1 − exp  a   exp  i π 1−X
+                                                        a    exp −πa X
+(4.18)                         <                           √        = κ (X , a).
+                    |z1,n |      exp πaX + 1 − exp πaX exp i π 1−X
+                                                                    2
+                                                                a
+
+The right-hand side function κ (X , a) is a function of (X , a), on [−1, +1] × [1, +∞). which
+is strictly decreasing for any fixed a, and reaches its minimum at X = 1; this minimum is
+always strictly positive. Consequently the inequality of Rouché (4.13) will be satisfied on
+C1,n once it is satisfied at X = 1, as claimed.
+                  A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                            18
+
+   Hence, up to O(1/n)-terms, the Rouché condition (4.18), for any fixed a, will be satisfied
+(i.e. for any X ∈ [−1, +1]) by the set of integers n = n(a) for which z1,n satisfies:
+                                                                    
+                     | − 1 + z1,n |               1 − exp πa exp −aπ
+(4.19)                              < κ (1, a) =                     ,
+                         |z1,n |                 exp πa + 1 − exp πa
+equivalently, from Proposition 4.6,
+                                 Log n − Log Log n     κ (1, a)
+(4.20)                                             <              .
+                                         n           1 + κ (1, a)
+In order to obtain the largest possible range of values of n, the value of a ≥ 1 has to be
+chosen such that a → κ (1, a) is maximal in (4.20). From Lemma 4.7 we take a = amax .
+   The slow decrease of the functions of the variable n involved in the terminants when
+n tends to infinity, as a factor of uncertainty on (4.20), has to be taken into account in
+(4.20). It amounts to check numerically whether (4.13) is satisfied for the small values
+18 ≤ n ≤ 100 for a = amax , or not. Indeed, for the large enough values of n, the inequality
+(4.20) is satisfied since limn→∞ Log n−Log
+                                       n
+                                           Log n
+                                                 = 0. On the computer, the critical threshold
+of n = 32 is easily calculated, with (Log 32 − Log Log 32)/32 = 0.0694628 . . .. Then
+           Log n − Log Log n     κ (1, amax)
+                             <                  = 0.146447 . . .                 for all n ≥ 32.
+                   n           1 + κ (1, amax )
+Let us note that the last inequality also holds for some values of n less than 32.                 
+Corollary 4.9. Let β > 1 be a Salem number such that dyg(β ) ≥ 32 (if any). Then the
+Parry Upper function fβ (z) admits a simple nonreal zero of modulus < 1 in the open disk
+                  π |z
+                     1,n |
+{z : |z − z1,n| < n amax }.
+
+Proof. The polynomial Gn (z) has simple roots. Since (4.13) is satisfied, the Theorem of
+Rouché states that fβ (z) and Gn (z) = −1 + z + zn have the same number of roots, counted
+                                                              π |z
+                                                            1,n      |
+with multiplicities, in the open disk {z : |z − z1,n | < n amax }. We deduce the existence of an
+unique simple zero of fβ (z) inside this disk.                                                
+
+                                                                                      −1
+   Let us denote by ω1,n this zero of fβ (z). To summarize, for n ≥ 32, θn−1 < β < θn−1  ,
+taking the complex-conjugates, we have the 2 tri-uplets (represented schematically in Fig.
+2):
+                                 {z1,n , θn , z1,n }, {ω1,n , β −1 , ω1,n }
+which are very close in a narrow symmetrical angular sector containing {z = 1} and satisfy:
+
+                               fβ (1/β ) = fβ (ω1,n ) = fβ (ω1,n ) = 0
+
+and
+                              fθn−1 (θn ) = fθn−1 (z1,n ) = fθn−1 (z1,n ) = 0.
+
+In the sequel we prove that ω1,n is a conjugate of β −1 , then of β .
+                  A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                              19
+
+                                                1                                 1
+
+
+
+                                             0.5                                0.5
+
+
+
+
+                                 -1   -0.5          0.5   1        -1   -0.5          0.5   1
+
+
+
+                                             -0.5                              -0.5
+
+
+
+
+                            a)                 -1
+                                                              b)                 -1
+
+
+
+
+        F IGURE 2. In a) and b) the zeroes of Gn and fβ , resp., are represented by black
+        bullets, with lenticularity appearing (symmetrically with respect to R) in the angu-
+        lar sector | arg z| < π /18, about the unit circle in C. In a) the first zero z1,n of Gn
+        (here n = 37) is the first one in this sector having positive imaginary part. In b) the
+        zero ω1,n is obtained by a very slight deformation of z1,n according to Theorem 4.8.
+        The other roots of fβ can be found in a narrow annular neighbourhood of |z| = 1.
+
+4.2. Rewriting trails. Let us assume that fβ (ω1,n ) = 0 with the property that the min-
+imal polynomial Pβ of β satisfies Pβ (ω1,n ) 6= 0, and show the contradiction. Denote
+ν := |Pβ (ω1,n )| > 0. Let us consider the s-th polynomial section Ss (z) = −1 + ∑sj=1 t j z j
+of fβ (z), where the integer s, taken large enough, will be fixed below. The vector coeffi-
+cient (t j ) is as in (4.10).
+    The s-th polynomial section Ss (z) admits a unique real zero in (0, 1). Indeed Ss (0) =
+−1, Ss (1) > 1, and the derivative of the restriction of Ss (z) to [0, 1] is positive on [0, 1].
+The polynomial Ss∗ (z), reciprocal polynomial of Ss (z), admits a unique real zero, say γs , >
+1. We have: deg(Ss ) ≤ s and lims→∞ γs−1 = β −1 . The real number γs is a nonreciprocal
+algebraic integer which is such that 1 < γs < β : indeed, y → Ss (y) is strictly increasing on
+(0, 1) and Ss (β −1 ) = −1 + ∑sj=1 t j β − j = fβ (β −1 ) − ∑∞j=s+1 t j β − j = − ∑∞j=s+1 t j β − j < 0,
+so that β −1 < γs−1 . There exists an integer, say Wν , such that: s ≥ Wν =⇒ |Pβ (γs−1 )| <
+min{1, ν /2}. In the following we take s ≥ Wν .
+    Before going further, let us recall the general factorization of a Parry Upper function
+ fα (z) for α any simple Parry number.
+Theorem 4.10. Let α be a simple Parry number, with dyg(α ) ≥ 3. Let fα denote its Parry
+Upper function with factorization in Z[x]:
+                 fα (x) = A(x)B(x)C(x) = −1 + x + xn + xm1 + xm2 + . . . + xms ,
+where s ≥ 1, m1 − n ≥ n − 1, m j+1 − m j ≥ n − 1 for 1 ≤ j < s, where
+     • A is the cyclotomic component,
+     • B the reciprocal noncyclotomic component,
+     • C the nonreciprocal part.
+Then C is irreducible. Moreover C has no root of modulus 1.
+Proof. [35] [37].                                                                                    
+   Then, inside the circle C1,n the polynomial section Ss (z) has a unique zero (same proof
+as for Theorem 4.8); let us denote it by rs . We have: lims→∞ rs = ω1,n and rs is equal to the
+conjugate σs (γs−1 ) of γs−1 for some σs which is the conjugation relative to the irreducible
+nonreciprocal (never trivial) part C of Ss by Proposition 4.10. We have: C(γs−1 ) = C(rs) =
+                 A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                         20
+
+0. Denote by sc = deg(C) the degree of the component C. The irreducible polynomials
+Pβ (X ) and C(X ) are coprime: indeed the first one is reciprocal while the second one is
+nonreciprocal. The integer sc is a function of s. Denote
+                    d := deg(Pβ )         and        H :=      max {|a j |} ≥ 1
+                                                            j=1,...,d−1
+
+the (naı̈ve) height of Pβ (X ) = 1 + ∑d−1      j   d
+                                      j=1 a j X + X .
+
+  Let us now define the notion of rewriting trail and justify its use. On one side, the Salem
+number β is entirely determined by its minimal polynomial Pβ (X ), from Commutative
+Algebra. On the other side, β is completely determined by the Parry Upper function fβ (z)
+coming from the dynamical system. A priori, the two analytic functions z → Pβ (z) and
+z → fβ (z) have very different coefficient vectors, the second one never being a polynomial,
+by Proposition 2.8. But the “object” β is the same in both cases.
+  These two functions give rise to two distinct β -representations, from the equations:
+
+                Pβ (1/β ) = Pβ (β ) = 0                by the minimal polynomial
+and
+             fβ (1/β ) = 0        by the numeration dynamical system and ζβ (z).
+To prove that ω1,n is a conjugate of β −1 , to pass from the first β -representation to the second
+β -representation is needed. We cannot proceed directly, and a sequence of intermediate β -
+representations is required.
+   In this subsection, below, we substitute β by γs and fβ (z) by Ss (z), and construct step by
+step the intermediate γs -representations. These intermediate γs -representations constitute a
+rewriting trail. There is no unicity. Then, in the next subsection, the limit when s tends to
+infinity is taken to conclude.
+   Let us construct the rewriting trail from “Ss ” to “Pβ ”, at γs−1 [36]. The starting point
+is the identity 1 = 1, to which we add 0 = Sγs (γs−1 ) in the (rhs) right hand side. Then we
+define the rewriting trail from the Rényi γs−1 -expansion of 1
+                                                                          −(s−1)
+(4.21)          1 = 1 + Sγs (γs−1 ) = t1 γs−1 + t2 γs−2 + . . . + ts−1 γs          + ts γs−s
+(with t1 = 1,t2 = t3 = . . . = tn−1 = 0,tn = 1, etc) to
+                                                     −(d−1)
+(4.22)          −a1 γs−1 − a2 γs−2 + . . . − ad−1 γs          − γs−d = 1 − Pβ (γs−1 ),
+by “restoring” the digits of 1 − Pβ (X ) one after the other, from the left.
+   We obtain a sequence (A′q (X ))q≥1 of rewriting polynomials involved in this rewriting
+trail; for q ≥ 1, A′q ∈ Z[X ], deg(A′q ) ≤ q and A′q (0) = 1.
+   At the first step we add 0 = −(−a1 − t1 )γs−1 Sγ∗s (γs−1 ); and we obtain
+                                             1 = −a1 γs−1
+                 +(−(−a1 − t1 )t1 + t2 )γs−2 + (−(−a1 − t1)t2 + t3 )γs−3 + . . .
+so that the height of the polynomial
+                   (−(−a1 − t1 )t1 + t2 )X 2 + (−(−a1 − t1 )t2 + t3 )X 3 + . . .
+                 A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                           21
+
+is ≤ H + 2. At the second step we add 0 = −(−a2 − (−(−a1 − t1 )t1 + t2))γs−2 Sγ∗s (γs−1 ).
+Then we obtain
+                                 1 = −a1 γs−1 − a2 γs−2
+           −[(−a2 − (−(−a1 − t1)t1 + t2 ))t1 + (−(−a1 − t1 )t2 + t3 )]γs−3 + . . .
+where the height of the polynomial
+             −[(−a2 − (−(−a1 − t1 )t1 + t2 ))t1 + (−(−a1 − t1 )t2 + t3 )]X 3 + . . .
+is ≤ H + (H + 2) + (H + 2) = 3H + 4. Iterating this process d times we obtain
+                              1 = −a1 γs−1 − a2 γs−2 − . . . − ad γs−d
+                              + polynomial remainder in γs−1 .
+Denote by V (γs−1 ) this polynomial remainder in γs−1 , for some V (X ) ∈ Z[X ], and X spe-
+cializing in γs−1 . If we denote the upper bound of the height of the polynomial remainder
+V (X ), at step q, by λq H + vq , we readily deduce: vq = 2q , and λq+1 = 2λq + 1, q ≥ 1, with
+λ1 = 1; then λq = 2q − 1.
+   To summarize, the first rewriting polynomials of the sequence (A′q (X ))q≥1 involved in
+this rewriting trail are
+                                   A′1 (X ) = −1 − (−a1 − t1 )X ,
+             A′2 (X ) = −1 − (−a1 − t1 )X − (−a2 − (−(−a1 − t1 )t1 + t2 ))X 2, etc.
+
+   For q ≥ deg(Pβ ), all the coefficients of Pβ are “restored”; denote by (hq, j ) j=0,1,...,s−1 the
+s-tuple of integers produced by this rewriting trail, at step q. It is such that
+                                                                s−1          
+(4.23)              A′q (γs−1 )Sγ∗s (γs−1 ) = −P(γs−1 ) + γs−q−1 ∑ hq, j γs− j .
+                                                                 j=0
+Then take q = d. The (lhs) left-and side of (4.23) is equal to 0. Thus
+                            s−1                                  s−1
+           P(γs−1 ) = γs−d−1 ∑ hd, j γs− j      =⇒        P(γs ) = ∑ hd, j γs− j−1 .
+                                j=0                                      j=0
+The height of the polynomial
+                               s−1
+(4.24)              W (X ) := ∑ hd, j X j+1       is       ≤ (2d − 1)H + 2d ,
+                               j=0
+and is independent of s ≥ Wv .
+
+   For any s ≥ Wν , let us observe that −Pβ (γs−1 ) is > 0, and that the sequence (γs−1 )s is
+decreasing. Indeed, the polynomial function x → Pβ (x) is positive on (0, β −1), vanishes at
+β −1 , and changes its sign for x > β −1 , so that Pβ (γs−1 ) < 0. We have: lims→∞ Pβ (γs−1 ) =
+Pβ (β −1 ) = 0.
+   Let us use the γs -transformation and the greedy (Rényi) γs -expansion of −Pβ (γs−1 ): there
+exists an unique sequence of integers (b  ti )i≥1 6≡ (0) in the alphabet {0, 1} such that
+                                                tb1 tb2    tb3
+(4.25)                         −Pβ (γs−1 ) = + 2 + 3 + . . . .
+                                                γs γs γs
+                  A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                                               22
+
+The integers tbi are given by the γs -transformation Tγs : [0, 1] → [0, 1], x → {γs x}. Explicitely,
+the digits are
+   tb1 = ⌊γs (−Pβ (γs−1 ))⌋,
+   tb2 = ⌊γs {γs (−Pβ (γs−1 ))}⌋,
+   tb3 = ⌊γs {γs {γs (−Pβ (γs−1 ))}}⌋, . . . , and depend upon γs .
+Since lims→∞ Pβ (γs−1 ) = Pβ (β −1 ) = 0 there exists an increasing sequence (us )s≥Wν of pos-
+itive integers, satisfying tb1 = tb2 = . . . = td us −1 = 0, tb
+                                                              us = 1, such that the identity between
+        −1
+−Pβ (γs ) and its greedy expansion holds, as:
+                                                tubs  tuds +1 tuds +2
+(4.26)                        −Pβ (γs−1 ) =       us + us +1 + us +2 + . . . .
+                                                γs    γs      γs
+The sequence (us ) is defined by the bounds
+(4.27)                          β us (Pβ (γs−1 )) ≥ γsus (Pβ (γs−1 )) ≥ 1
+and
+                                                                 1
+                                       γsus (Pβ (γs−1 )) ≤             .
+                                                              1 − γs−1
+Therefore, in (4.26),
+
+
+(4.28)                  b
+                        ti ∈ {0, 1},    i ≥ 1,          and           lim us = +∞.
+                                                                    s→+∞
+
+   Now the lhs of (4.26) belongs to Q(γs ). For conjugating (4.26) by σs , if the image by σs
+of the lhs of (4.26) belongs to Q(rs ), there are three cases for the conjugation of the rhs of
+(4.26):
+     (i) the rhs of (4.26) is finite (ends in infinitely many zeroes),
+ (ii-1) the rhs of (4.26) is eventually periodic (infinite and ultimately periodic),
+ (ii-2) the rhs of (4.26) is infinite and not eventually periodic.
+                         tc     td               t[
+                                               us +N
+   Case (i): say that γuuss + uuss+1
+                                  +1 + . . . + us +N is the rhs of (4.26). Then its image by σs is
+                          s     γs               γs
+                    us +1                   us +N
+tbus rsus + td
+             us +1 rs     + . . . + t[
+                                     us +N rs     and we have the equality
+                                                              !
+                                         sc −1                           sc −1
+                      Pβ (rs ) = σs − ∑ h′′j γs− j−d−2             = − ∑ h′′j rsj+d+2
+                                          j=0                             j=0
+                                                  !
+                 tbus  td
+                        us +1          t[
+                                        us +N                               us +1                   us +N
+         = σs      us + us +1 + . . . + us +N         = tbus rsus + td
+                                                                     us +1 rs     + . . . + t[
+                                                                                             us +N rs     .
+                 γs    γs              γs
+Conjugation by σs is done term by term.
+
+   Case (ii-1): the rhs of (4.26) is eventually periodic. Let us write it
+                                                                                                              !
+                                  ∞                                                             tu\
+     tbus td
+           us +1        t[
+                         us +N                    tu\
+                                                    s +N+1            tu\
+                                                                        s +N+2                    s +N+q
+   = us + u +1 + . . . + us +N + ∑                              +                  +...+                          .
+    γs    γs s          γs       i=0             γsus +N+iq+1       γsus +N+iq+2              γsus +N+iq+q
+                  A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                                    23
+
+The period is not equal to zero. The period length is q. We have: |rs| = |σs (γs−1 )| < 1.
+Then it is equal to
+                                                                                !
+                     b          [         ∞         \                 t \
+                    tu          tu +N             tus +N+1              u +N+q
+                = uss + . . . + uss +N + ∑ γs−iq    u   +N+1
+                                                             + . . . + uss +N+q
+                    γs         γs        i=0      γs  s
+                                                                      γs
+                                                                                !
+                   tbus        t[u +N        1     t \
+                                                     us +N+1           t \
+                                                                         u +N+q
+               = us + . . . + uss +N +         −q    us +N+1
+                                                             + . . . + uss +N+q
+                   γs          γs        1 − γs   γs                   γs
+and its image by σs is
+                                     us +N     1                us +N+1                     us +N+q
+                                                                                                    
+       = tbus rsus + . . . + t[
+                              us +N rs     +       q tu\
+                                                       s +N+1 rs        + . . . + tu\
+                                                                                    s +N+q rs
+                                             1 − rs
+                                            ∞                                                        
+                           [        us +N                 us +N+iq+1                     us +N+iq+q
+     = tubs rsus + . . . + tus +N r s     + ∑ tu\s +N+1 rs           + . . . + tu\
+                                                                                 s +N+q rs             .
+                                          i=0
+The series can be conjugated term by term by σs ; in this case we have the identity
+                                             
+                            tbus  td
+                                   us +1                             us +1
+              Pβ (rs) = σs us + u +1 + . . . + = tbus rsus + td
+                                                              us +1 rs     +....
+                            γs   γs s
+
+
+   Case (ii-2): if the rhs of (4.26) is not eventually periodic its conjugation by σs cannot be
+done term by term. This difficulty is overcome by enlarging the alphabet A = {0, 1} to a
+bigger alphabet B and by replacing the Rényi expansion by a (γs, B)-eventually periodic
+representation of −Pβ (γs−1 ). This method of enlargement of the alphabet [36] is made
+possible as a consequence of the Theorem of Kala-Vavra recalled in the next subsection.
+It has to be noted that Theorem 4.10 implies that we are in the domain of applicability of
+Kala-Vavra’s Theorem, because γs has no conjugates on the unit circle. It is the key point.
+4.3. Kala-Vavra Theorem and Galois identification. Let us recall the definitions. The
+(δ , B)-representations for a given δ ∈ C, |δ | > 1 and a given alphabet B ⊂ C finite, are
+expressions of the form ∑k≥−L ak δ −k , ak ∈ B, for some integer L. We denote
+         PerB (δ ) := {x ∈ C : x has an eventually periodic(δ , B)−representation}.
+Theorem 4.11 (Kala - Vavra [54], [5]). Let δ ∈ C be an algebraic number of degree d,
+|δ | > 1, and ad xd − ad−1 xd−1 − . . . − a1 x − a0 ∈ Z[x], a0 ad 6= 0, be its minimal polynomial.
+Suppose that |δ ′ | 6= 1 for any conjugate δ ′ of δ , Then there exists a finite alphabet B ⊂ Z
+such that
+                                         Q(δ ) = PerB (δ ).
+   Let us apply Theorem 4.11 to δ = γs . By Proposition 5 in [35] γs has no conjugate
+of modulus 1. Therefore there exists a finite alphabet B ⊂ Z such that the lhs of (4.26)
+be identified with a (γs , B)- representation which is eventually periodic, for some integer
+us ∈ Z:
+                                         tub  tud +1   tud+2
+(4.29)                     −Pβ (γs−1 ) = uss + us +1 + us +2 + . . . .
+                                        γs    γs s    γs s
+Being eventually periodic, the representation (4.29) can now be conjugated term by term
+by σs , since |σs(γs−1 )| < 1, as in case (ii-1). In (4.29) the digits tbi belong to a symmetrical
+                 A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                                      24
+
+alphabet B = {−m, . . . , 0, . . ., m}; the integer m is provided by the rewriting trail, given by
+the rewriting trail and (4.24): we have m = ⌈2((2d − 1)H + 2d )/3⌉.
+
+  Indeed, by Theorem 4.11 there exist a preperiod R(X ) ∈ B[X ], a period T (X ) ∈ B[X ]
+such that
+                                                            ∞
+            b (γs−1 ) := −Pβ (γs) = R(γs−1 ) + γs− deg R−1 ∑         1
+            W                                                    j(deg T +1)
+                                                                             T (γs−1 ),
+                                                           j=0 γs
+both polynomials R and T depending upon s. Since the relation
+                Sγs (γs−1 ) = −1 + t1 γs−1 + t2 γs−2 + . . . + ts−1 γs−s+1 + ts γ −s = 0
+holds, we may assume deg R ≤ s − 1, deg T ≤ s − 1. Then, for X specialized at γs−1 , we
+have the identity
+
+(4.30)                           Wb (X ) = R(X ) + X L T (X )
+                                                        1 − Xr
+for some positive integers L, r. The height of (1 − X r )W  b (X ) is ≤ 2((2d − 1)H + 2d ) and,
+with B assumed = {−m, . . . , 0, . . ., +m}, the height of (1 − X r )R(X ) + X LT (X ) is less than
+3m. Therefore m is ≤ 2((2d − 1)H + 2d )/3. We can take
+                                  m = ⌈2((2d − 1)H + 2d )/3⌉.
+The alphabet B = {−m, . . . , m} only depends upon the degree d and the height H of the
+polynomial Pβ , and does not depend upon s.
+
+ We now assume 0 6= |Pβ (γs )| ≪ 1. The (γs , B)-eventually periodic representation of
+−Pβ (γs ) starts as
+                           b      d        d
+              b (γs−1 ) = tuus + tus +1 + tus +2 + . . . ,
+  −Pβ (γs ) = W                                                   with |tbj | ≤ m, j = us , us + 1, . . .
+                          γs s γsus +1 γsus +2
+with tubs 6= 0. The exponent us appearing in the first term is defined in [42]; by Theorem
+4, Remarks 5 to 7, in [42], there exists a positive real number κγs ,B > 0 such that us is the
+minimal integer such that
+                                                 κγ ,s B
+                                      γsus −1 ≥          .
+                                                |P(γs)|
+Since lims→∞ γs = β > 1 and that the alphabet B does not depend upon s, from Theorem
+4, Remarks 5 to 7, in [42], we can replace κγ ,s B by a constant κ > 0, independent of s (cf
+also [36]). Thus
+                                        lim us = +∞.
+                                           s→∞
+  The sequence (us ) is here defined by the bounds
+(4.31)                     β us −1 (Pβ (γs−1 )) ≥ γsus −1 (Pβ (γs−1 )) ≥ κ
+and
+                                                         m
+                                     γsus (Pβ (γs−1 )) ≤       .
+                                                      1 − γs−1
+To the collection (γs )s≥Wν is associated the collection (σs : γs → rs)s≥Wν of Q-automorphisms
+of C. Now, for any s ≥ Wν , let us conjugate the eventually periodic representation of
+                  A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                                 25
+
+−Pβ (γs−1 ) by σs , term by term. For the cases (i) and (ii-1) we consider (4.26), and in the
+case (ii-2) we consider (4.29).
+                             1,n   π |z   |
+Lemma 4.12. Denote clent = amax  . Then
+                                                                       clent
+                               s ≥ Wν            =⇒       |rs| < 1 −         .
+                                                                         n
+Proof. The inequality readily comes from the proof of Theorem 4.8 since the condition of
+Rouché holds true.                                                                   
+  Using Lemma 4.12 we deduce:
+Case (i) and (ii-1): with the minimal alphabet {−1, 0, +1},
+                                                    1        n        clent us
+(4.32)                      Pβ (rs ) ≤ |rs |us            ≤      (1 −      ) ,
+                                                 1 − |rs | clent        n
+Case (ii-2): with the alphabet B = {−m, . . ., +m},
+                                               m       nm        clent us
+(4.33)                   Pβ (rs ) ≤ |rs |us          ≤      (1 −      ) .
+                                            1 − |rs | clent        n
+In both cases, lims→∞ us = +∞. The rhs of (4.32), resp. of (4.33), tends to 0 if s tends to
+infinity. We have: lims→∞ Pβ (rs ) = 0. But ω1,n = lims→∞ rs and z → Pβ (z) is continuous.
+Therefore there exists s0 ≥ Wν such that s ≥ s0 =⇒ Pβ (rs) < ν /2. Contradiction.
+
+  The only limit possibility is Pβ (ω1,n ) = 0. To summarize,
+
+                             fβ (ω1,n ) = 0         =⇒        Pβ (ω1,n ) = 0.
+
+                                              R EFERENCES
+ [1] B. A DAMCZEWSKI and Y. B UGEAUD, Dynamics for β -Shifts and Diophantine Approximation Ergod.
+     Th & Dynam. Sys. 27 (2007), 1–17.
+ [2] S. A KIYAMA, A Family of Non-Sofic Beta Expansions, Ergod. Th. Dynam. Sys. 36 (2) (2016), 343–354.
+ [3] M. A MARA, Ensembles Fermés de Nombres Algébriques, Ann. Sci. École Norm. Sup. 83 (1966), 215–
+     270.
+ [4] M. A RTIN and B. M AZUR, On Periodic Points, Ann. Math. 81 (1965), 82–99.
+ [5] S. BAKER , Z. M AS ÁKOV Á , E. P ELANTOV Á and T. V ÁVRA, On Periodic Representations in non-Pisot
+     Bases, Monatsh. Math. 184 (2017), 1–19.
+ [6] V. BALADI, Dynamical Zeta Functions, Real and Complex Dynamical Systems, NATO ASI Series, eds.
+     B. Branner and P. Hjorth, vol. C-464, Kluwer Academic Publishers, Dordrecht (1995), 1–26.
+ [7] V. BALADI, Dynamical Zeta Functions and Generalized Fredholm Determinants, XIth International
+     Congress of Mathematical Physics (Paris, 1994), Int. Press, Cambridge, MA, (1995), 249–260.
+ [8] V. BALADI, Periodic Orbits and Dynamical Spectra, Ergod. Th. & Dynam. Sys. 18 (1998), 255–292.
+ [9] V. BALADI and G. K ELLER, Zeta Functions and Transfer Operators for Piecewise Monotone Trans-
+     formations, Comm. Math. Phys. 127 (1990), 459–479.
+[10] V. BALADI and D. RUELLE, An Extension of the Theorem of Milnor and Thurston on the Zeta Functions
+     of Interval Maps, Ergod. Th. Dynam. Sys. 14 (1994), 621–632.
+[11] J. B ELL and S. C HEN, Power Series with Coefficients from a Finite Set, preprint (2016).
+[12] J. B ELL , R. M ILES and T. WARD, Towards a Pólya-Carlson Dichotomy for Algebraic Dynamics,
+     Indag. Math. (N.S.) 25 (2014), 652–668.
+                  A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                                26
+
+[13] M.J. B ERTIN, Quelques Résultats Nouveaux sur les Nombres de Pisot et de Salem, in Number Theory
+     in Progress, An Intern. Conf. on Number Theory, org. Stefan Banach Int. Math. Research Center in
+     honor of the 60th birthday of Andrzej Schinzel, Zakopane, Poland, 1997, eds. K. Gyory, H. Iwaniec, J.
+     Urnanowicz, W. de Gruyter, Berlin (1999), Vol. I, 1–10.
+[14] M.J. B ERTIN AND D. B OYD, A characterization of two related classes of Salem numbers, J. Number
+     Theory 50 (1995), 309–317.
+[15] M.J. B ERTIN et M. PATHIAUX -D ELEFOSSE, Conjecture de Lehmer et Petits Nombres de Salem,
+     Queen’s Papers in Pure and Applied Mathematics, No 81, Ed. A.J. Coleman and P. Ribenboim,
+     Kingston, Ontario, Canada (1989).
+[16] M.J. B ERTIN , A. D ECOMPS -G UILLOUX , M. G RANDET-H UGOT, M. PATHIAUX -D ELEFOSSE and
+     J.P. S CHREIBER, Pisot and Salem Numbers, Birkhaüser (1992).
+[17] A. B ERTRAND -M ATHIS, Nombres de Perron et Questions de Rationalité, Astérisque n0 198–200
+     (1992), 67–76.
+[18] F. B LANCHARD, β -Expansions and Symbolic Dynamics, Theoret. Comput. Sci. 65 (1989), 131–141.
+[19] E. B OREL, Leçons sur les Séries Divergentes, Gauthier-Villars, 2e édition, Paris, (1928).
+[20] D.W. B OYD, Small Salem Numbers, Duke Math. J. 44 (1977), 315–328.
+[21] D.W. B OYD, Salem Numbers of Degree Four Have Periodic Expansions, Number Theory, Walter de
+     Gruyter (1989), 57–64.
+[22] D.W. B OYD, On the Beta Expansion for Salem Numbers of Degree 6, Math. Comp. 65 (1996), 861–875,
+     S29–S31.
+[23] D.W. B OYD, On Beta Expansion for Pisot Numbers, Math. Comp. 65 (1996), 841–860.
+[24] D.W. B OYD and M.J. M OSSINGHOFF, Small Limit Points of Mahler’s Measure, Exp. Math. 14 (2005),
+     403–414.
+[25] M. B OYLE, Pisot, Salem and Perron Numbers in Ergodic Theory and Topological Dynamics, notes,
+     Nov. 1982.
+[26] F. C ARLSON, Über Potenzreihen mit endlich vielen verschiedenen Koeffizienten, Math. Ann. 79 (1918),
+     237–245.
+[27] T. C HINBURG, On the Arithmetic of Two Constructions of Salem Numbers, J. Reine Angew. Math. 348
+     (1984), 166–179.
+[28] T. C HINBURG, Salem Numbers and L-functions, J. Number Theory 18 (1984), 213–214.
+[29] C. C HRISTOPOULOS and J. M C K EE, Galois Theory of Salem Polynomials, Math. Proc. Cambridge
+     Phil. Soc. 148 (2010), 47–54.
+[30] E.T. C OPSON, Asymptotic Expansions, Cambridge Tracts in Math. 55 (1965).
+[31] A. C OSTA and E. F RIEDMAN, Ratios of Regulators in Totally Real Extensions of Number Fields, J.
+     Number Theory 37 (1991), 288–297.
+[32] M. D ENKER , C. G RILLENBERGER and K. S IGMUND, Ergodic Theory on Compact Spaces, Lecture
+     Notes in Math. 527, Springer, Berlin, (1976).
+[33] R.B. D INGLE, Asymptotic Expansions: their Derivation and Interpretation, Academic Press (1973).
+[34] J. D UFRESNOY and C. P ISOT, Sur les éléments d’accumulation d’un ensemble fermé d’entiers
+     algébriques, Bull. Sci. Math. (2) 79 (1955), 54–64.
+[35] D. D UTYKH and J.-L. V ERGER -G AUGRY, On the Reducibility and the Lenticular Sets of Zeroes of
+     Almost Newman Lacunary Polynomials, Arnold Math. J. 4 (2018), 315–344.
+[36] D. D UTYKH and J.-L. V ERGER -G AUGRY, Alphabets, Rewriting Trails, Periodic Representations in
+     Algebraic Bases, Res. Number Theory, 7: 64 (2021).
+[37] D. D UTYKH and J.-L. V ERGER -G AUGRY, On a class of lacunary almost Newman polynomials modulo
+     p and density theorems, Unif. Distr. Theory 17 (2022), no 1, 29–54.
+[38] A. E RD ÉLYI, Asymptotic Expansions, Dover Publications, New York (1956).
+[39] M. F EKETE and G. S ZEG Ő, On Algebraic Equations with Integral Coefficients whose Roots Belong to
+     a Given Point Set, Math. Z. 63 (1955), 158–172.
+[40] L. F LATTO and J.C. L AGARIAS, The Lap-Counting Function for Linear mod One Transformations
+     I: Explicit Formulas and Renormalizability, Ergod. Th. & Dynam. Sys. 16 (1996), 451–491; II: the
+     Markov Chain for Generalized Lap Numbers, ibid 17 (1997), 123–146; III: the Period of a Markov
+     Chain, ibid 17 (1997), 369–403.
+                  A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                              27
+
+[41] L. F LATTO , J.C. L AGARIAS , and B. P OONEN, The Zeta Function of the beta Transformation, Ergod.
+     Th. Dynam. Sys. 14 (1994), 237–266.
+[42] C. F ROUGNY, E. P ELANTOV Á and M. S VOBODOV Á, Parallel Addition in Non-standard Numeration
+     Systems, Theor. Comput. Sci. 412 (2011), 5714–5727.
+[43] E. G HATE and E. H IRONAKA, The Arithmetic and Geometry of Salem numbers, Bull. Amer. Math. Soc.
+     38 (2001), 293–314.
+[44] C. G UICHARD and J.-L. V ERGER -G AUGRY, On Salem Numbers, Expansive Polynomials and Stieltjes
+     Continued Fractions, J. Théorie Nombres Bordeaux 27 (2015), 769–804.
+[45] K. H ARE and M. PANJU, Some Comments on Garsia Numbers, Math. Comp. 82 (282) (2013), 1197–
+     1221.
+[46] K. H ARE and D. T WEEDLE, Beta-expansions for Infinite Families of Pisot and Salem Numbers, J.
+     Number Theory 128 (2008), 2756–2765.
+[47] H. H ICHRI, On the beta-expansion of Salem Numbers of Degree 8, LMS J. Comput. Math. 17 (2014),
+     289–301.
+[48] H. H ICHRI, Beta expansion for Some Particular Sequences of Salem Numbers, Int. J. Number Theory
+     10 (2014), 2135–2149.
+[49] H. H ICHRI, Beta Expansion of Salem Numbers Approaching Pisot Numbers with the Finiteness Prop-
+     erty, Acta Arith. 168 (2015), 107–119.
+[50] E. H IRONAKA, The Lehmer Polynomial and Pretzel Links, Canad. Math. Bull. 44 (2001), 440–451;
+     Erratum, ibid, 45 (2002), 231.
+[51] F. H OFBAUER, β -Shifts Have Unique Maximal Measure, Monatsh. Math. 85 (1978), 189–198.
+[52] F. H OFBAUER and G. K ELLER, Ergodic Properties of Invariant Measures for Piecewise Monotonic
+     Transformations Math. Z. 180 (1982), 119–140.
+[53] S. I TO and Y. TAKAHASHI, Markov Subshifts and Realization of β -expansions, J. Math. Soc. Japan 26
+     (1974), 33–55.
+[54] V. K ALA and T. V ÁVRA, Periodic Representations in Algebraic Bases, Monatsh. Math. 188 (2019),
+     109–119.
+[55] J. L AGARIAS, Number Theory Zeta Functions and Dynamical Zeta Functions, Contemp. Math. 237
+     (1999), 45–86.
+[56] P. L AKATOS, On the Coxeter Polynomials of Wild Stars, Linear Algebra Appl. 293 (1999), 159–170.
+[57] P. L AKATOS, Salem Numbers, PV Numbers and Spectral Radii of Coxeter Transformations, C.R. Math.
+     Acad. Sci. Soc. R. Can. 23 (2001), 71–77.
+[58] P. L AKATOS, On Zeros of Reciprocal Polynomials, C.R. Math. Rep. Acad. Sci. Canada 24 (2002),
+     91–96.
+[59] P. L AKATOS, A New Construction of Salem Polynomials, C.R. Math. Acad. Sci. Soc. R. Can. 25 (2003),
+     47–54.
+[60] P. L AKATOS, Salem Numbers Defined by Coxeter Transformations, Linear Algebra Appl. 432 (2010),
+     144–154.
+[61] P. L AKATOS and L. L OSONCZI, Self-Inversive Polynomials Whose Zeros are on the Unit Circle, Publ.
+     Math. Debrecen 65 (2004), 409–420.
+[62] P. L AKATOS and L. L OSONCZI, Polynomials With All Zeros on the Unit Circle, Acta Math. Hung. 125
+     (2009), 341–356.
+[63] D.H. L EHMER, Factorization of Certain Cyclotomic Functions, Ann. Math. 34 (1933), 461–479.
+[64] D.A. L IND, The Entropies of Topological Markov Shifts and a Related Class of Algebraic Integers,
+     Ergod. Th. Dynam. Sys. 4 (1984), 283–300.
+[65] T.Y. L I and J. YORKE, Ergodic Transformations from an Interval to Itself, Trans. Amer. Math. Soc.
+     235 (1978), 183–192.
+[66] M. L OTHAIRE, Algebraic Combinatorics on Words, in Encylopedia of Mathematics and its Applica-
+     tions, Vol. 90, Cambridge University Press, Cambridge (2002).
+[67] R.C. LYNDON, On Burnside’s Problem, Trans. Amer. Math. Soc. 77 (1954), 202–215.
+[68] J.F. M C K EE and C. S MYTH, Salem Numbers, Pisot Numbers, Mahler Measures and Graphs, Exp.
+     Math. 14 (2005), 211–229.
+                  A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                                  28
+
+[69] J.F. M C K EE and C. S MYTH, Integer Symmetric Matrices of Small Spectral Radius and Small Mahler
+     Measure, Int. Math. Res. Not. (IMRN) 1 (2012), 102–136.
+[70] J.F. M C K EE and C. S MYTH, Salem Numbers and Pisot Numbers via Interlacing, Canad. J. Math. 64
+     (2012), 345–367.
+[71] J. M ILNOR and T HURSTON, On Iterated Maps of the Interval, In: Dynamical systems, (College Park,
+     MD, 1986–87), Lecture Notes in Math. 1342, Springer, Berlin, (1988), 465–563.
+[72] M. M ORI, Fredholm Determinant for Piecewise Linear Transformations, Osaka J. Math. 27 (1990),
+     81–116.
+[73] M. M ORI, Fredholm Determinant for Piecewise Monotonic Transformations, Osaka J. Math. 29 (1992),
+     497–529.
+[74] M.J. Mossinghoff, Polynomials with Small Mahler Measure, Math. Comp. 67 (1998), 1697–1705, S11-
+     S14.
+[75] M.J. M OSSINGHOFF, Known Polynomials with Small Mahler Measure Through Degree 180,
+     http://www.cecm.sfu.caz/.mjm/Lehmer,
+                                     ~               (1996) ; implemented (2001): P. Lisonek; and (2003):
+     G. Rhin and J.-M. Sac-Épée; complete through degree 40.
+[76] M.J. M OSSINGHOFF , G. R HIN and Q. W U, Minimal Mahler Measures, Exp. Math. 17 (2008), 451–
+     458.
+[77] W( ILLIAM ) PARRY, On the β -expansions of Real Numbers, Acta Math. Acad. Sci. Hungar. 11 (1960),
+     401–416.
+[78] W. PARRY and M. P OLLICOTT, Zeta functions and Periodic Orbit Structure of Hyperbolic Dynamics,
+     Astérisque 187–188, Societe Mathématique de France, Paris (1990).
+[79] M. P OLLICOTT, Meromorphic Extension of Generalized Zeta Function, Invent. Math. 85 (1986), 147–
+     164.
+[80] M. P OLLICOTT, Periodic Orbits and Zeta Functions, Handbook of Dynamical Systems, Vol. 1A, North-
+     Holland, Amsterdam (2002), 409–452.
+[81] G. P ÓLYA, Über Gewisse Notwendige Determinantenkriterien für die Fortsetzbarkeit einer Potenzreihe,
+     Math. Ann. 99 (1928), 687–706.
+[82] A. R ÉNYI, Representations for Real Numbers and their Ergodic Properties, Acta Math. Acad. Sci.
+     Hungar. 8 (1957), 477–493.
+[83] D. RUELLE, Statistical Mechanics of a One- Dimensional Lattice Gas, Comm. Math. Phys. 9 (1968),
+     267–278.
+[84] D. RUELLE, Zeta-Functions for Expanding Maps and Anosov Flows, Invent. Math. 34 (1976), 231–242.
+[85] D. RUELLE, A Measure Associated with Axiom A Attractors, Amer. J. Math. 98 (1976), 619–654.
+[86] D. RUELLE, Thermodynamic Formalism, Addison Wesley, Reading, MA, (1978).
+[87] D. RUELLE, An Extension of the Theory of Fredholm Determinants, Publ. Math. I.H.E.S. 72 (1990),
+     175–193.
+[88] D. RUELLE, Analytic Completion for Dynamical Zeta Functions, Helv. Phys. Acta 66 (1993), 181–191.
+[89] D. RUELLE, Dynamical Zeta Functions for Piecewise Monotone Maps of the Interval, CRM Monograph
+     Series 4, Amer. Math. Soc. (1994).
+[90] D. RUELLE, Dynamical Zeta Functions for Maps of the Interval, Bull. Amer. Math. Soc. 30 (1994),
+     212–214.
+[91] D. RUELLE, Dynamical Zeta Functions and Tranfer Operators, Notices Amer. Math. Soc. 49 (2002),
+     887–895.
+[92] R. S ALEM, A Remarkable Class of Algebraic Integers. Proof of a Conjecture of Vijayaraghavan, Duke
+     Math. J. 11 (1944), 103–108.
+[93] R. S ALEM, Power series with integral coefficients, Duke Math. J. 12 (1945), 153–172.
+[94] P.A. S AMET, Algebraic Integers with two Conjugates Outside the Unit Circle, I, Proc. Cambridge
+     Philos. Soc. 49 (1953), 421–436; II, ibid 50 (1954), 346.
+[95] K. S CHMIDT, On Periodic Expansions of Pisot Numbers and Salem Numbers, Bull. London Math. Soc.
+     12 (1980), 269–278.
+[96] E.S. S ELMER, On the Irreducibility of Certain Trinomials, Math. Scand. 4 (1956), 287–302.
+[97] C.L. S IEGEL, Algebraic Integers whose Conjugates Lie in the Unit Circle, Duke Math. J. 11 (1944),
+     597–602.
+                  A NON-TRIVIAL MINORATION FOR THE SET OF SALEM NUMBERS                                 29
+
+[98] J.H. S ILVERMAN, Small Salem Numbers, Exceptional Units, and Lehmer’s Conjecture, Rocky Moun-
+     tain J. Math. 26 (1996), 1099–1114.
+[99] C. S MYTH, On the Product of the Conjugates Outside the Unit Circle of an Algebraic Integer, Bull.
+     Lond. Math. Soc. 3 (1971), 169–175.
+[100] C. S MYTH, The Mahler Measure of Algebraic Numbers: A Survey, in Number Theory and Polynomi-
+     als, London Math. Soc. Lecture Note Ser. 352, Cambridge Univ. Press, Cambridge (2008), 322–349.
+[101] G. S ZEG Ő, Über Potenzreihen mit Endlich Vielen Verschiedenen Koeffizienten, Sitzungs-berichte der
+     preussischen Akademie der Wissenschaften Berlin (1922), 88–91.
+[102] Y. TAKAHASHI, Isomorphisms of β -Automorphisms to Markov Automorphisms, Osaka J. Math. 10
+     (1973), 175–184.
+[103] Y. TAKAHASHI, Fredholm Determinant of Unimodal Linear Maps, Sci. Papers College Gen. Educ.
+     Univ. Tokyo 31 (1981), 61–87.
+[104] Y. TAKAHASHI, An Ergodic-Theoretical Approach to the Chaotic Behaviour of Dynamical Systems,
+     Publ. RIMS, Kyoto Univ. 19 (1983), 1265–1282.
+[105] Y. TAKAHASHI, Shift with Orbit Basis and Realization of One Dimensional Maps, Osaka J. Math. 20
+     (1983), 599–629. Corrigendum: ibid 22 (1985), 637.
+[106] W.P. T HURSTON, Groups, Tilings and Finite State Automata: Summer 1989 AMS Colloquium Lec-
+     tures, Research Report GCG, Geometry Computing Group, 1989.
+[107] W.P. T HURSTON, Entropy in Dimension One, in Frontiers in Complex Dynamics, volume 51 of Prince-
+     ton Math. Series, Princeton Univ. Press, Princeton, NJ, (2014), pp. 339–384.
+[108] J.-L. V ERGER -G AUGRY, On Gaps in Rényi β -Expansions of Unity for β > 1 an Algebraic Number,
+     Ann. Institut Fourier (Grenoble) 56 (2006), 2565–2579.
+[109] J.-L. V ERGER -G AUGRY, The method of asymptotic expansions of Poincaré and Mahler measures
+     of univariate polynomials in the Conjecture of Lehmer (2015), Banff International Research Station
+     (BIRS) for Mathematical Innovation and Discovery: The Geometry, Algebra and Analysis of Algebraic
+     Numbers (15w5054), https://hal.archives-ouvertes.fr/hal-03168451v1
+[110] J.-L. V ERGER -G AUGRY, On the Conjecture of Lehmer, Limit Mahler Measure of Trinomials and
+     Asymptotic Expansions, Uniform Distribution Theory J. 11 (2016), 79–139.
+[111] J.-L. V ERGER -G AUGRY, A Panorama on the Minoration of the Mahler Measure : from Lehmer’s
+     Problem to Topology and Geometry, (2023), 89 pages, submitted. https://hal.archives-ouvertes.fr/hal-
+     03148129v1
+[112] J.-L. V ERGER -G AUGRY, A proof of the Conjecture of Lehmer, submitted (2023).
+     http://arxiv.org/abs/1911.10590 (29 Oct 2021).
+
+   U NIV. G RENOBLE A LPES , U NIV. S AVOIE M ONT B LANC , LAMA, CNRS UMR 5127, F - 73000
+C HAMB ÉRY, F RANCE
+   Email address: verger-gaugry.jean-louis@unsechat-math.fr
+
