@@ -5,7 +5,7 @@ summary: s(C) = (-1)^blocks, the castle sign - the analogue of the permutation s
 tags: [concept, castle, sign, permutations, parity, generating-functions]
 sources: [project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-brute-force, permutation-cycle-castle-analogy]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-10
 ---
 
 # Castle sign
@@ -42,14 +42,14 @@ The signed tower count `P(k,L)` plays the role of the signed sum `∑_σ sgn(σ)
 F(w,h) = [ h^w − (h−1)^w − P(h−1,w) + P(h−2,w) ] / 2
 ```
 
-**A general technique.** The Observations subpage frames this as "parity via signs": even-block-count `= (A + P)/2`, with `A` the unsigned total (this page's `T`) and `P` the `(−1)^{blocks}`-signed count — "a symmetry trick that recurs in many combinatorial-enumeration problems."[^5]
+**A general technique.** The Observations subpage frames this as "parity via signs": even-block-count `= (A + S)/2`, with `A` the unsigned castle total and `S` the `(−1)^{blocks}`-signed castle count (the source writes `P`; on towers the same projector is the `(T ± P)/2` above) — "a symmetry trick that recurs in many combinatorial-enumeration problems."[^5]
 
 **The permutation-side identity.** In the symmetric group `S_n`, `(1 ± sgn(σ))/2` is the projector onto `A_n` (even permutations) or its complement, so `|A_n| = ½(n! + ∑_σ sgn(σ)) = n!/2` for `n ≥ 2` (the signed sum vanishes). The castle `(T ± P)/2` is the direct upgrade of this identity — same projector shape, with the castle sign in place of the permutation sign.[^7] This is the first of three upgrades on [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] (the other two being the [[castle-foata-transform](pages/castle-foata-transform.md)] and the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)]), which reads Project Euler 502 (PE 502) as the elementary `(n−1)!` cycle-count toolkit upgraded step-by-step.
 
 ## Appearances in Sources
 
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — defines `s(C) = (−1)^blocks`, gives the descent formula for the block count, and shows the `(T±P)/2` even/odd split.
-- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — frames the `(A+P)/2` parity-sign identity as a general recurring symmetry trick.
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — frames the `(A+S)/2` parity-sign identity as a general recurring symmetry trick.
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] — gives the ascent-side block-count formula and the `p_signed` dynamic program (DP) that verifies the sign directly.
 - [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] — identifies `(T ± P)/2` as the castle upgrade of the `(1 ± sgn)/2` projector that peels `A_n` from `S_n`.
 

@@ -5,7 +5,7 @@ summary: The (T±P)/2 even/odd trick, generalized — replace the sign (−1)^bl
 tags: [concept, castle, parity, roots-of-unity, character, pedagogy]
 sources: [project-euler-502-castle-factoring, project-euler-502-representations]
 created: 2026-09-14
-updated: 2026-09-28
+updated: 2026-10-10
 ---
 
 # Generalizing the parity sign (roots of unity)
@@ -48,7 +48,7 @@ The projector has a second, older face, usually met in **exponential** generatin
 (A(x) + A(−x))/2 = Σ_{n even} a_n x^n/n!,      (A(x) − A(−x))/2 = Σ_{n odd} a_n x^n/n!.
 ```
 
-This is the castle's `(T ± P)/2` with the character carried by the index variable instead of by `blocks`. The canonical instance is `A(x) = e^x` (the all-ones sequence): `(e^x + e^{−x})/2 = Σ_{n even} x^n/n!`, which the [[generating-functions-topic](pages/generating-functions-topic.md)] page uses to count even-0 ternary strings as `(3^n+1)/2` — the "classical form of the `(A±P)/2` trick."
+This is the castle's `(T ± P)/2` with the character carried by the index variable instead of by `blocks`. The canonical instance is `A(x) = e^x` (the all-ones sequence): `(e^x + e^{−x})/2 = Σ_{n even} x^n/n!`, which the [[generating-functions-topic](pages/generating-functions-topic.md)] page uses to count even-0 ternary strings as `(3^n+1)/2` — the "classical form of the `(A±S)/2` trick."
 
 So the EGF parity projector and the castle sign are **one character sum, `½(χ₀ + χ₁)` over the cyclic group of order 2**, differing only in *which variable carries the character*:
 

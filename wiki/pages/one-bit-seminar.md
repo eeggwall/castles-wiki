@@ -5,7 +5,7 @@ summary: A seminar on Project Euler 502's even-block clause read as information,
 tags: [concept, castle, seminar, pedagogy, teaching, entropy, information, parity, castle-sign, steganography, compression, topological-entropy]
 sources: [project-euler-502-observations, project-euler-502-castle-factoring]
 created: 2026-09-26
-updated: 2026-09-28
+updated: 2026-10-10
 ---
 
 # One bit seminar - the parity clause as information
@@ -193,7 +193,7 @@ True
 
 ## Appearances in Sources
 
-- [[project-euler-502-observations](pages/project-euler-502-observations.md)] - "parity via signs", the `(A + P)/2` trick.
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] - "parity via signs", the `(A + S)/2` trick.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle sign as the analogue of the permutation sign.
 
 ## Related Concepts

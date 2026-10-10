@@ -5,7 +5,7 @@ summary: A generating-function reference — OGF operations, recurrence→ration
 tags: [generating-functions, ogf, egf, recurrence, parity, partial-fractions, source]
 sources: [generating-functions-topic]
 created: 2026-09-14
-updated: 2026-09-28
+updated: 2026-10-10
 ---
 
 # Generating Functions (Sedgewick–Flajolet / Trotter)
@@ -22,7 +22,7 @@ Several of its worked examples are general forms of operations the castle soluti
 
 - **Recurrence ⇒ rational GF, difference of powers.** `a_n = 5a_{n−1} − 6a_{n−2} → z/(1−5z+6z²) → 3^n − 2^n`[^3] — the shape of the castle's any-parity count `A(w,h) = h^w − (h−1)^w` (the difference-of-powers family, [[castle-counting-function](pages/castle-counting-function.md)]).
 - **Imaginary roots.** `a_n = … → 1/(1+z²) → ½(iⁿ + (−i)ⁿ) = 1,0,−1,0,…`[^4] — the same mechanism as the castle's `P(1,L) = Re((1+i)^{L+1})` (roots `±i`/`1±i`); see [[signed-tower-count](pages/signed-tower-count.md)].
-- **EGF parity projector.** Counting length-*n* ternary strings with an **even number of 0s** uses `E_0 = (e^x + e^{−x})/2` to cancel the odd terms, giving `(e^{3x}+e^x)/2` and the count `(3^n + 1)/2`.[^5] This is the EGF form of the **`(A ± P)/2` even/odd trick** the castle uses for even-block counting (see [[castle-sign](pages/castle-sign.md)]).
+- **EGF parity projector.** Counting length-*n* ternary strings with an **even number of 0s** uses `E_0 = (e^x + e^{−x})/2` to cancel the odd terms, giving `(e^{3x}+e^x)/2` and the count `(3^n + 1)/2`.[^5] This is the EGF form of the **`(A ± S)/2` even/odd trick** the castle uses for even-block counting (see [[castle-sign](pages/castle-sign.md)]).
 - **"Every 4th term" via partial fractions.** `1/(1−x^4) = ∑ x^{4k}`, extracted by the `1 + (−1)^k + (iᵏ+(−i)ᵏ)` residues[^6] — the same residue-filtering that makes the height-2 castle counts "sum every 4th binomial" (the [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]).
 - **Triangular via `z/(1−z)³`.** The marbles example lands on `∑ C(n+1,2) x^n = 1,3,6,10,…`[^7] — the same binomial the convex height-2 castle count `C(w+1,2)` is ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]).
 
@@ -34,14 +34,14 @@ The page's closing section: the `P(k,L)` recursion of [[project-euler-502-soluti
 
 - ordinary generating function (OGF) toolkit: add, differentiate/integrate, partial-sum `(1/(1−z))G`, convolution; the ladder `1/(1−z)^{m+1} = ∑ C(k+m,m) z^k`.[^1]
 - **Recurrence ⇒ rational GF** worked both ways, including the **imaginary-roots** case `1/(1+z²) → ½(iⁿ+(−i)ⁿ)` — the `Re((1+i)^{L+1})` mechanism.[^4]
-- **EGF parity projector** `(e^x+e^{−x})/2` counts even-0 ternary strings as `(3^n+1)/2` — the classical `(A±P)/2` even/odd trick.[^5]
+- **EGF parity projector** `(e^x+e^{−x})/2` counts even-0 ternary strings as `(3^n+1)/2` — the classical `(A±S)/2` even/odd trick.[^5]
 - Explicit **Application: PE 502** — `P(k,L)` → rational GF → Kitamasa.[^8]
 
 ## Entities & Concepts
 
 - [[generating-functions](pages/generating-functions.md)] — the concept page; this and [[aocp-generating-functions](pages/aocp-generating-functions.md)] are its two source treatments.
 - [[signed-tower-count](pages/signed-tower-count.md)] — the imaginary-roots `Re((1+i)^{L+1})` closed form in action.
-- [[castle-sign](pages/castle-sign.md)] — the `(A±P)/2` parity projector, here as the EGF even-0s trick.
+- [[castle-sign](pages/castle-sign.md)] — the `(A±S)/2` parity projector, here as the EGF even-0s trick.
 - [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] — the `(T±P)/2` trick generalized to block count mod m; this page's EGF projector is its index-side `m=2` counterpart.
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] — "sum every 4th binomial" via the `1/(1−x^4)` residue mechanism.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] / [[kitamasa](pages/kitamasa.md)] — the `P_k = num_k/den_k` → linear-recurrence extraction the PE 502 section names.

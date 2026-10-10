@@ -5,7 +5,7 @@ summary: B_alpha(C) = sum_i max(0, Delta^alpha c_i), with Delta^alpha the Grunwa
 tags: [analysis, castle, fractional-calculus, grunwald-letnikov, block-count, area, statistic, memory, power-law, arfima, compression, parity, computation, verification]
 sources: [project-euler-502-castle-factoring, project-euler-502-brute-force, project-euler-502-observations]
 created: 2026-09-19
-updated: 2026-09-19
+updated: 2026-10-10
 ---
 
 # Fractional block count
@@ -178,22 +178,22 @@ For non-integer `alpha` the exponents are no longer integers and `Z` is a finite
 
 ## The fractional sign
 
-The castle sign is `(-1)^{blocks} = e^{i pi B_1}` ([[castle-sign](pages/castle-sign.md)]), and the even-block count is enforced by `(A + P) / 2` with `P` the signed sum.[^4] The natural deformation is the **fractional sign** `e^{i pi B_alpha(C)}`, a point on the unit circle rather than `+-1`, and its sum over a cell
+The castle sign is `(-1)^{blocks} = e^{i pi B_1}` ([[castle-sign](pages/castle-sign.md)]), and the even-block count is enforced by `(A + S) / 2` with `S` the signed sum.[^4] The natural deformation is the **fractional sign** `e^{i pi B_alpha(C)}`, a point on the unit circle rather than `+-1`, and its sum over a cell
 
 ```
-P_alpha(w, h)  =  sum_C  e^{i pi B_alpha(C)}.
+S_alpha(w, h)  =  sum_C  e^{i pi B_alpha(C)}.
 ```
 
-At `alpha = 1`, `P_1 = sum (-1)^{blocks}` is the signed count that drives the PE 502 formula. At `alpha = 0`, `P_0 = sum (-1)^{area}` is the *area*-parity signed count, and it is always `+-1`: summing `(-1)^{c}` over `c in {1, ..., h}` gives `-1` for odd `h` and `0` for even `h`, so `P_0(w, h) = (-1)^{w + h + 1}` for every cell. Area parity is balanced to within one castle in every cell, and a hypothetical "even-area" version of PE 502 would have the trivial answer `(A +- 1) / 2`. In between:[^exec]
+At `alpha = 1`, `S_1 = sum (-1)^{blocks}` is the signed count `S(w, h)` that drives the PE 502 formula. At `alpha = 0`, `S_0 = sum (-1)^{area}` is the *area*-parity signed count, and it is always `+-1`: summing `(-1)^{c}` over `c in {1, ..., h}` gives `-1` for odd `h` and `0` for even `h`, so `S_0(w, h) = (-1)^{w + h + 1}` for every cell. Area parity is balanced to within one castle in every cell, and a hypothetical "even-area" version of PE 502 would have the trivial answer `(A +- 1) / 2`. In between:[^exec]
 
-| cell | `A` | `P_0` | `|P_alpha|` at `alpha = 0.1, 0.25, 0.5, 0.75, 0.9` | `P_1` |
+| cell | `A` | `S_0` | `|S_alpha|` at `alpha = 0.1, 0.25, 0.5, 0.75, 0.9` | `S_1` |
 |---|---|---|---|---|
 | `(8, 2)` | 255 | -1 | `1.00, 1.01, 35.5, 49.2, 24.4` | -15 |
 | `(6, 3)` | 665 | +1 | `0.19, 0.31, 8.57, 29.8, 41.0` | -51 |
 | `(5, 4)` | 781 | +1 | `0.33, 1.11, 6.35, 47.1, 98.0` | +97 |
 | `(6, 4)` | 3367 | -1 | `0.19, 0.99, 10.5, 104.2, 157.0` | +91 |
 
-The phase sum is **not** a monotone dephasing between the two integer ends. It stays near zero out to `alpha = 0.25`, then grows, and in every cell it **exceeds** `|P_1|` somewhere in `(0.5, 1)`: `49` against `15` in `(8, 2)`, `157` against `91` in `(6, 4)`. There is no `alpha`-deformation of the projector `(A +- P) / 2` here yet, because `e^{i pi B_alpha}` is not `+-1` and does not split the cell into two classes; the candidate is to read `P_alpha` as a characteristic function and ask what distribution on the circle it is the transform of.
+The phase sum is **not** a monotone dephasing between the two integer ends. It stays near zero out to `alpha = 0.25`, then grows, and in every cell it **exceeds** `|S_1|` somewhere in `(0.5, 1)`: `49` against `15` in `(8, 2)`, `157` against `91` in `(6, 4)`. There is no `alpha`-deformation of the projector `(A +- S) / 2` here yet, because `e^{i pi B_alpha}` is not `+-1` and does not split the cell into two classes; the candidate is to read `S_alpha` as a characteristic function and ask what distribution on the circle it is the transform of.
 
 ## The compression reading
 
@@ -217,7 +217,7 @@ Settled:
 - `B_alpha` is not monotone in `alpha` (829 of 5460 castles), is bounded above by area, and can undershoot the block count.
 - The structural collisions are tail-blind pairs, inherited from the block count being the total ascent; no pair coincides on all of `(0, 1)`.
 - `B_alpha` is position-aware; only palindromes (essentially) match their reversal.
-- `P_0 = (-1)^{w+h+1}` in every cell; `|P_alpha|` exceeds `|P_1|` in the interior.
+- `S_0 = (-1)^{w+h+1}` in every cell; `|S_alpha|` exceeds `|S_1|` in the interior.
 - The L1 residual argmin recovers the integration order of synthetic skylines.
 - The fractional difference is multiplication of the skyline GF by `(1 - x)^alpha`, invertible by `(1 - x)^{-alpha}`; for nondecreasing castles `B_alpha = [x^w] (1 - x)^{alpha-1} C(x)` and `B_alpha` is monotone (791 castles).
 - `B_alpha(box_{w,h}) = h C(w - alpha, w - 1)`; at `alpha = 1/2` it is `h 2w C(2w,w) / 4^w ~ 2h sqrt(w/pi)`, so `sqrt(pi)` enters the block count.
@@ -228,14 +228,14 @@ Open:
 - **The exact collision law.** Is every pair with `B_alpha` equal on an interval a tail-blind pair, and for which `alpha` does a given pair separate?
 - **The best order.** Which `alpha` maximizes the number of distinct values in a cell, and does it converge as the cell grows?
 - **Structure of `Z(q, alpha)`.** A recursion, a product form, or a proof that neither exists off the integers.
-- **A fractional projector.** What `P_alpha` is the characteristic function of, and whether any `alpha` in `(0, 1)` gives a two-class split of a cell that is not the block parity.
+- **A fractional projector.** What `S_alpha` is the characteristic function of, and whether any `alpha` in `(0, 1)` gives a two-class split of a cell that is not the block parity.
 - **Two-sided memory.** The left-to-right convention is a choice; the symmetric statistic `(B_alpha(c) + B_alpha(reverse c)) / 2` restores reversal invariance at the cost of the position information, and the Riesz-type two-sided fractional difference is the third option.
 
 ## Appearances in Sources
 
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the block count as the total descent of the column-height sequence, and the castle sign `(-1)^{blocks}`.
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the block count as maximal horizontal runs and as the total ascent `max(0, b - a)` per column step.
-- [[project-euler-502-observations](pages/project-euler-502-observations.md)] - `(A + P) / 2` with `P` the `(-1)^{blocks}`-signed count.
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] - `(A + S) / 2` with `S` the `(-1)^{blocks}`-signed count (the source writes `P`).
 
 ## Related Concepts
 
@@ -259,4 +259,4 @@ Open:
 [^3]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Sign" L104-107 - "In the column-height form, the block count is the total descent: blocks = sum_{i=0}^{L} max(0, c_i - c_{i+1}), c_0 = c_{L+1} = 0"; L98-101 - "Weight each block by -1 and define s(C) = (-1)^{blocks(C)}".
 [^4]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] L13 - "Even-block-count is enforced by (A + P)/2, where A is the unsigned total and P is the signed count with (-1)^{blocks}. A symmetry trick that recurs in many combinatorial-enumeration problems."
 [^5]: https://en.wikipedia.org/wiki/Autoregressive_fractionally_integrated_moving_average (2026-09-19) [synthesis] - ARFIMA generalizes ARIMA by allowing the differencing order `d` to be a non-integer; the fractional differencing operator `(1 - B)^d` is defined by the binomial series `sum_k C(d, k) (-B)^k`, and processes with `0 < d < 1/2` exhibit long memory with power-law autocorrelation decay (Granger and Joyeux 1980, Hosking 1981).
-[^exec]: Verified by execution (2026-09-19): two Python 3 scripts, standard library only. Script 1: `gl_weights`, `frac_diff` (left ground column, `c_j = 0` for `j <= 0`), `B` (positive part), `Babs` (full L1), `blocks` (total ascent), `castles(w, h)`; endpoint identities `B_0 = area`, `B_1 = blocks` asserted on all 5460 castles with `w <= 6`, `h <= 4`; partial sums of `|w_k(1/2)|` to `n = 4, 16, 64, 1024`; the `(4, 2)` table; the harmonic-slope check by finite difference at `alpha = 10^{-4}`; the distinct-value census with collisions at `alpha = 1/2` re-tested at `sqrt(2) - 1`, `0.3141592`, `0.7071`; means and variances on `alpha in {0, 0.25, 0.5, 0.75, 1}`; the `Z(q, 1/2)` exponent spectrum of `(6, 3)`; `P_alpha` on a seven-point grid; the raw L1 argmin on four width-64 skylines. Script 2: monotonicity on a 201-point grid (violators, largest single step, largest total rise, `B_alpha <= area` and `B_alpha >= blocks` tests); dyadic check `B_{1/2} * 2^{2w-2} in Z` for `w <= 6, h = 3` and the exact weights via `fractions.Fraction`; pairs equal on all 49 orders `k/50` in `(0, 1)` (zero found) and pairs equal on the 50 orders `0.5 + k/100` in `[0.5, 1)` with their last positive-residual column and common prefix; reversal test; centred L1 argmin on a grid to `alpha = 2.5`, including an ARFIMA `d = 0.3` skyline generated by `(1 - B)^{-0.3}` on Gaussian noise. Script 3 (SymPy 1.14, NumPy 1.26): series of `(1 - x)^{1/2}` against the GL weights with `fractions`; the box identity `h sum_{i<w} C(2i,i)/4^i = h 2w C(2w,w)/4^w` for `w <= 8` and the general `h C(w - alpha, w - 1)` at `alpha = 1/4, 1/2, 3/4`; the nondecreasing theorem on all 791 nondecreasing castles with `w <= 7`, `h <= 5` (`itertools.combinations_with_replacement`) at 41 orders, checking residual nonnegativity, the coefficient formula via `(1 - x)^{alpha - 1}` and the ascent form via `(1 - x)^{alpha - 2}`, and monotonicity; the ramp value at `w = 6`; the roundtrip `(1 - x)^{-alpha} (1 - x)^{alpha}`; the box asymptotic ratio at `w = 200` by `math.lgamma`; OEIS lookups of the numerator and denominator sequences by the search API. All quoted numbers are the scripts' printed output.
+[^exec]: Verified by execution (2026-09-19): two Python 3 scripts, standard library only. Script 1: `gl_weights`, `frac_diff` (left ground column, `c_j = 0` for `j <= 0`), `B` (positive part), `Babs` (full L1), `blocks` (total ascent), `castles(w, h)`; endpoint identities `B_0 = area`, `B_1 = blocks` asserted on all 5460 castles with `w <= 6`, `h <= 4`; partial sums of `|w_k(1/2)|` to `n = 4, 16, 64, 1024`; the `(4, 2)` table; the harmonic-slope check by finite difference at `alpha = 10^{-4}`; the distinct-value census with collisions at `alpha = 1/2` re-tested at `sqrt(2) - 1`, `0.3141592`, `0.7071`; means and variances on `alpha in {0, 0.25, 0.5, 0.75, 1}`; the `Z(q, 1/2)` exponent spectrum of `(6, 3)`; `S_alpha` on a seven-point grid; the raw L1 argmin on four width-64 skylines. Script 2: monotonicity on a 201-point grid (violators, largest single step, largest total rise, `B_alpha <= area` and `B_alpha >= blocks` tests); dyadic check `B_{1/2} * 2^{2w-2} in Z` for `w <= 6, h = 3` and the exact weights via `fractions.Fraction`; pairs equal on all 49 orders `k/50` in `(0, 1)` (zero found) and pairs equal on the 50 orders `0.5 + k/100` in `[0.5, 1)` with their last positive-residual column and common prefix; reversal test; centred L1 argmin on a grid to `alpha = 2.5`, including an ARFIMA `d = 0.3` skyline generated by `(1 - B)^{-0.3}` on Gaussian noise. Script 3 (SymPy 1.14, NumPy 1.26): series of `(1 - x)^{1/2}` against the GL weights with `fractions`; the box identity `h sum_{i<w} C(2i,i)/4^i = h 2w C(2w,w)/4^w` for `w <= 8` and the general `h C(w - alpha, w - 1)` at `alpha = 1/4, 1/2, 3/4`; the nondecreasing theorem on all 791 nondecreasing castles with `w <= 7`, `h <= 5` (`itertools.combinations_with_replacement`) at 41 orders, checking residual nonnegativity, the coefficient formula via `(1 - x)^{alpha - 1}` and the ascent form via `(1 - x)^{alpha - 2}`, and monotonicity; the ramp value at `w = 6`; the roundtrip `(1 - x)^{-alpha} (1 - x)^{alpha}`; the box asymptotic ratio at `w = 200` by `math.lgamma`; OEIS lookups of the numerator and denominator sequences by the search API. All quoted numbers are the scripts' printed output.

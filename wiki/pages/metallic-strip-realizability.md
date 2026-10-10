@@ -5,7 +5,7 @@ summary: Which metallic means a castle-strip rule produces (Axis 8). A castle-st
 tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, bronze, copper, silver, fibonacci-decimation, axis-8, realizability, sympy, verification]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-10-04
+updated: 2026-10-10
 ---
 
 # Which metallic means are castle-strip growth constants
@@ -114,7 +114,7 @@ So the metallic ladder is realizable, but `δ_a` is not "the `a`-states-per-colu
 - **Uniqueness / other natural rules per rung.** Is the ridge rule `R_h = J − D` the *only* natural predicate hitting `δ_{h−1}`, or (as with silver's three realizations) are there others? A census of named Axis-1–7 predicates by their Perron root would answer this.
 - **The minimum height for a field.** Every real quadratic field `Q(√d)` is reachable by some strip rule ([[reachable-field-census](pages/reachable-field-census.md)]; the metallic ones `Q(√(a²+4))` via the ridge rule `R_h = J − D`); a closed form for the minimum height realizing a given field is open.
 
-**Proper castles.** The ridge castles are the ridge strips with `max = h`. The metallic growth `δ_{h−1}` survives `max = h` and the `(A ± P)/2` projection: the signed transfer matrix `S_h` has spectral radius below `δ_{h−1}`, and the exact sequences have no Online Encyclopedia of Integer Sequences (OEIS) match for `h ≥ 3` ([[proper-castle-projection](pages/proper-castle-projection.md)]). The free counts are the companion metallic sequences (silver A001333, bronze A003688, copper A015448), not the primary ones (A000129, A006190, A001076).
+**Proper castles.** The ridge castles are the ridge strips with `max = h`. The metallic growth `δ_{h−1}` survives `max = h` and the `(A ± S)/2` projection: the signed transfer matrix `S_h` has spectral radius below `δ_{h−1}`, and the exact sequences have no Online Encyclopedia of Integer Sequences (OEIS) match for `h ≥ 3` ([[proper-castle-projection](pages/proper-castle-projection.md)]). The free counts are the companion metallic sequences (silver A001333, bronze A003688, copper A015448), not the primary ones (A000129, A006190, A001076).
 
 ## Appearances in Sources
 

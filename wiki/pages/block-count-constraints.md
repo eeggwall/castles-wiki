@@ -5,7 +5,7 @@ summary: Three ways to select castles by block count — residue classes (roots 
 tags: [concept, castle, generating-functions, roots-of-unity, coin-problem, pedagogy]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-14
-updated: 2026-09-29
+updated: 2026-10-10
 ---
 
 # Block-count constraints: a trichotomy
@@ -109,7 +109,7 @@ If `gcd(D)` is a denomination, `⟨D⟩` is its nonnegative multiples and a root
 ## Appearances in Sources
 
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — the sign and the signed count `P = G(−1)` that the residue method's `m=2` case uses.
-- [[project-euler-502-observations](pages/project-euler-502-observations.md)] - names `(A + P)/2` as a general symmetry trick; the `m = 2` case in the source's own words.
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] - names `(A + S)/2` (`P` in the source) as a general symmetry trick; the `m = 2` case in the source's own words.
 
 ## Related Concepts
 
@@ -120,7 +120,7 @@ If `gcd(D)` is a denomination, `⟨D⟩` is its nonnegative multiples and a root
 - [[signed-tower-count](pages/signed-tower-count.md)] - `G_{1,L}(−1) = P(1,L) = A146559(L+1)`.
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] / [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] - the `m = 2` residue classes of height-1 towers, `A038503` / `A038505`.
 - [[generating-functions-topic](pages/generating-functions-topic.md)] - the index-side twin: `1/(1−x⁴)` and the EGF parity projector.
-- [[castle-counting-formula](pages/castle-counting-formula.md)] / [[castle-entropy](pages/castle-entropy.md)] - `(A + P)/2` at every height, and its one-bit price.
+- [[castle-counting-formula](pages/castle-counting-formula.md)] / [[castle-entropy](pages/castle-entropy.md)] - `(A + S)/2` at every height, and its one-bit price.
 - [[symbolic-method](pages/symbolic-method.md)] - `MSET` (coin change, unordered) versus `SEQ` (compositions, ordered) over the same part set.
 - [[unique-tournament](pages/unique-tournament.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the `SEQ` case in the wiki: compositions with parts in `{1, 3, 4, 5}` = `A000570`.
 - [[metallic-means](pages/metallic-means.md)] - numerical semigroups by genus (`A007323`) grow at the golden ratio.

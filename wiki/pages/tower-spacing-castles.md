@@ -5,7 +5,7 @@ summary: A castle sub-family from a horizontal-gap variation of PE 502's rule 3:
 tags: [analysis, castle, gap-rule, tower-spacing, transfer-matrix, growth-constant, plastic-number, golden-ratio, generating-function, rule-3, sympy, verification, oeis, min-filter, unimodal]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-09-28
+updated: 2026-10-10
 ---
 
 # Minimum-tower-spacing castles
@@ -119,7 +119,7 @@ These six are **novel-candidate** on [[castle-sequence-catalogue](pages/castle-s
 ## Open threads
 
 - **The reachable-field question, gap-flavored:** which algebraic numbers arise as tower-spacing growth constants, as `(h, g)` range? This is the horizontal-gap analogue of the [[reachable-field-census](pages/reachable-field-census.md)] (which censused height-adjacency strips). The `h = 2` row gives the constants of `1 − 2x + x² − x^{g+1}`; the full 2D reachable set is open.
-- **Parity projection:** the counts here are raw (no even-block clause); imposing PE 502's `(A ± P)/2` parity ([[castle-sign](pages/castle-sign.md)]) gives the even-block tower-spacing counts, whose growth is unchanged but whose sequences differ (cf. [[proper-castle-projection](pages/proper-castle-projection.md)]).
+- **Parity projection:** the counts here are raw (no even-block clause); imposing PE 502's `(A ± S)/2` parity ([[castle-sign](pages/castle-sign.md)]) gives the even-block tower-spacing counts, whose growth is unchanged but whose sequences differ (cf. [[proper-castle-projection](pages/proper-castle-projection.md)]).
 - **The "no-touching" / "no-adjacency" variants** among the gap rules — vertical or diagonal spacing rules — are further knobs the same transfer-matrix method reaches.
 
 ## Reproduce

@@ -1,11 +1,11 @@
 ---
 title: Fibonacci castle
 category: Concepts
-summary: A Fibonacci castle is a castle of exact height 2 with no two adjacent height-2 columns (equivalently no 2×2 square; the tree castles of exact height 2). Its tower is a Fibonacci tower, a 0/1 string with no two adjacent 1s, and the count is what makes it Fibonacci - there are F_{w+2} − 1 of width w, of which (F_{w+2} − P_F(w))/2 have an even number of blocks, with P_F a parity term of period 6. Every prefix of the infinite Fibonacci word (A003849) is a Fibonacci tower; the castle from its first 56 letters has its height-2 columns at the upper Wythoff numbers ⌊kφ²⌋ (A001950). The count comes from the transfer matrix Q = [[1,1],[1,0]], the Fibonacci Q-matrix, whose entries count Fibonacci towers by first and last letter; growth (φ²/√5)φ^w, a golden width growth castle carrying log₂φ ≈ 0.694 bits per column (the golden mean shift). The towers are exactly the (1, ∞)-run-length-limited sequences other than the all-zero one, so the output of every recording code with at least one 0 between consecutive 1s (MFM, the CD's (2, 10) code) is a Fibonacci tower, and log₂φ is the Shannon capacity that bounds such an encoder's rate; telephone T-carrier line codes bound only the runs of 0s. Counting them two ways gives Σ F_j = F_{w+2} − 1 and F_{a+b} = F_a F_{b+1} + F_{a−1} F_b, and weighting the columns by F_{w+1}, …, F_2 ranks them by Zeckendorf representation, a bijection onto 1, …, F_{w+2} − 1 in lexicographic order. A Fibonacci castle with m height-2 columns has m + 1 blocks, so the even-block count is (F_{w+2} − P_F(w))/2 with a parity term P_F of period 6 (1, 0, −1, −1, 0, 1), against a parity term of size 2^{w/2} for all castles of exact height 2. By area, the castles of exact height 2 with n cells (F_{n+1} − 1) are in bijection with the Fibonacci castles of width n − 1. Ridge castles, metallic growth and prime castles are on their own pages.
+summary: A Fibonacci castle is a castle of exact height 2 with no two adjacent height-2 columns (equivalently no 2×2 square; the tree castles of exact height 2). Its tower is a Fibonacci tower, a 0/1 string with no two adjacent 1s, and the count is what makes it Fibonacci - there are F_{w+2} − 1 of width w, of which (F_{w+2} − P_F(w))/2 have an even number of blocks, with P_F(w) the signed count of Fibonacci towers, of period 6. Every prefix of the infinite Fibonacci word (A003849) is a Fibonacci tower; the castle from its first 56 letters has its height-2 columns at the upper Wythoff numbers ⌊kφ²⌋ (A001950). The count comes from the transfer matrix Q = [[1,1],[1,0]], the Fibonacci Q-matrix, whose entries count Fibonacci towers by first and last letter; growth (φ²/√5)φ^w, a golden width growth castle carrying log₂φ ≈ 0.694 bits per column (the golden mean shift). The towers are exactly the (1, ∞)-run-length-limited sequences other than the all-zero one, so the output of every recording code with at least one 0 between consecutive 1s (MFM, the CD's (2, 10) code) is a Fibonacci tower, and log₂φ is the Shannon capacity that bounds such an encoder's rate; telephone T-carrier line codes bound only the runs of 0s. Counting them two ways gives Σ F_j = F_{w+2} − 1 and F_{a+b} = F_a F_{b+1} + F_{a−1} F_b, and weighting the columns by F_{w+1}, …, F_2 ranks them by Zeckendorf representation, a bijection onto 1, …, F_{w+2} − 1 in lexicographic order. A Fibonacci castle with m height-2 columns has m + 1 blocks, so the even-block count is (F_{w+2} − P_F(w))/2 with the signed count P_F of period 6 (1, 0, −1, −1, 0, 1), against a parity term S(w, 2) of size 2^{w/2} for all castles of exact height 2. By area, the castles of exact height 2 with n cells (F_{n+1} − 1) are in bijection with the Fibonacci castles of width n − 1. Ridge castles, metallic growth and prime castles are on their own pages.
 tags: [concept, castle, castle-type, fibonacci, golden-ratio, transfer-matrix, q-matrix, fibonacci-tower, fibonacci-word, wythoff, zeckendorf, parity, blocks, golden-mean-shift, entropy, run-length-limited, constrained-coding, telephone, tree-castle, ridge-castle]
 sources: [prellberg-brak-1995-cluster-models, deutsch-elizalde-2017-bargraphs-dyck-paths]
 created: 2026-10-03
-updated: 2026-10-07
+updated: 2026-10-10
 ---
 
 # Fibonacci castle
@@ -21,7 +21,7 @@ A **Fibonacci castle** is a castle of exact height 2 in which no two adjacent co
 #{Fibonacci castles of width w with an even number of blocks}  =  (F_{w+2} − P_F(w)) / 2,
 ```
 
-with `F_1 = F_2 = 1` the Fibonacci numbers (A000045) and `P_F(w)` the parity term of period 6 below, `1, 0, −1, −1, 0, 1, …`. Both are derived in the sections that follow.
+with `F_1 = F_2 = 1` the Fibonacci numbers (A000045) and `P_F(w)` the signed count of Fibonacci towers, of period 6 (below), `1, 0, −1, −1, 0, 1, …`. Both are derived in the sections that follow.
 
 - **Equivalent forms.** No 2×2 square of cells, so a Fibonacci castle is a tree castle of exact height 2 ([[castle-graph](pages/castle-graph.md)]). Its second row is a set of isolated cells.
 - **Construction rule.** Choose a nonempty set of column positions in `{1, …, w}` with no two adjacent, and raise exactly those columns to height 2.
@@ -136,7 +136,7 @@ the `−1` again removing the all-zero tower. Their difference `1 − P_F(w)` ta
 | odd-block Fibonacci castles | 0 | 0 | 1 | 3 | 6 | 10 | 16 | 26 | 43 | 71 | 116 | 188 |
 | `F(w, 2)`, all castles of exact height 2 | 1 | 3 | 6 | 10 | 16 | 28 | 56 | 120 | 256 | 528 | 1056 | 2080 |
 
-**Against all castles of exact height 2.** Both counts are half the total plus a parity term. For all castles of exact height 2 the parity term is `1 − Re((1 + i)^{w+1})` ([[signed-tower-count](pages/signed-tower-count.md)]), so `F(w, 2) = (2^w − Re((1 + i)^{w+1}))/2`, with `F(4, 2) = 10` as in the problem statement;[^pe-f42] that parity term grows like `2^{w/2}`. For Fibonacci castles it stays between −1 and 1.[^exec]
+**Against all castles of exact height 2.** Both counts are (total + parity term)/2. For all castles of exact height 2 the parity term is `S(w, 2) = 1 − Re((1 + i)^{w+1})` ([[signed-tower-count](pages/signed-tower-count.md)]), so `F(w, 2) = (2^w − Re((1 + i)^{w+1}))/2`, with `F(4, 2) = 10` as in the problem statement;[^pe-f42] that parity term grows like `2^{w/2}`. For Fibonacci castles it is `1 − P_F(w)`, which stays in `{0, 1, 2}`.[^exec]
 
 **In Zeckendorf terms.** By the ranking, the number of height-2 columns of a Fibonacci castle is the number of terms in the Zeckendorf representation of its rank. So among `1, 2, …, F_{w+2} − 1`, the integers with an odd number of Zeckendorf terms outnumber those with an even number by `1 − P_F(w)`.[^exec]
 
@@ -204,7 +204,7 @@ print(tower.count("1") + 1)          # 22 blocks
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge rule and its metallic ladder.
 - [[n-nacci-disambiguation](pages/n-nacci-disambiguation.md)] - every Fibonacci appearance on the wiki, with this family in Fibonacci section 1.
 - [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - castles of exact height 2 by area, the area-side twin.
-- [[signed-tower-count](pages/signed-tower-count.md)] - the parity term for all castles, `Re((1 + i)^{w+1})`.
+- [[signed-tower-count](pages/signed-tower-count.md)] - the signed tower count `P(1, w) = Re((1 + i)^{w+1})` behind the parity term `S(w, 2)`.
 - [[castle-entropy](pages/castle-entropy.md)] - `log₂ φ` among the entropy rates of castle families.
 - [[kitamasa](pages/kitamasa.md)], [[aocp-generating-functions](pages/aocp-generating-functions.md)] - the Fibonacci recurrence and its generating function as worked examples.
 

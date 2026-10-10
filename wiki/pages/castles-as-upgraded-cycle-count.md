@@ -5,7 +5,7 @@ summary: PE 502 as the same toolkit that proves (n−1)! for cycles, upgraded st
 tags: [analysis, castle, permutations, cycles, seminar, factorization, sign]
 sources: [permutation-cycle-castle-analogy]
 created: 2026-09-15
-updated: 2026-09-28
+updated: 2026-10-10
 ---
 
 # Castles as an upgrade of the (n−1)! cycle count
@@ -74,7 +74,7 @@ The same three moves (the sign, Foata flattening, cycle-following) run on both s
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the closed form the three upgrades combine to yield.
 - [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the factorization on the castle side.
 - [[aocp-multisets](pages/aocp-multisets.md)] — Knuth's Vol. 3 two-line arrays, the multiset form of the cycle factorization; the canonical cycle form (Vol. 1 §1.3.3) is cited on [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)]. [[aocp-permutations](pages/aocp-permutations.md)] — the `n!` counts behind the anchor.
-- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — the source that names `(A + P)/2` "a symmetry trick that recurs in many combinatorial-enumeration problems"; the `(1 ± sgn)/2` anchor above is its elementary case.
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — the source that names `(A + S)/2` (its `P` is the wiki's `S`) "a symmetry trick that recurs in many combinatorial-enumeration problems"; the `(1 ± sgn)/2` anchor above is its elementary case.
 
 ## Footnotes
 

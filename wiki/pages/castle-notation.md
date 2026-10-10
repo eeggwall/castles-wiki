@@ -5,7 +5,7 @@ summary: The wiki's symbol conventions in one place, including the sandpile symb
 tags: [concept, castle, notation, reference, signed-tower-count, castle-sign, pedagogy]
 sources: [project-euler-502-solution, project-euler-502-representations, aocp-generating-partitions]
 created: 2026-09-26
-updated: 2026-10-08
+updated: 2026-10-10
 ---
 
 # Castle notation - castles, towers, and the parity term
@@ -206,17 +206,18 @@ These are local notations on specific pages and are unrelated to the tower count
 | symbol | meaning | where |
 |---|---|---|
 | `P_j(k, L)` | block count weighted by `ω^{j·blocks}` (a roots-of-unity generalization; `P_1` at `m = 2` is `P`) | [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] |
-| `P_0`, `P_α` | area-parity sums `Σ (−1)^{area}` and their fractional versions | [[fractional-block-count](pages/fractional-block-count.md)] |
 | `P_h(q)` | the polynomial `q² + q³ + … + q^h` in the tree-castle generating function | [[tree-castle-by-area](pages/tree-castle-by-area.md)], [[castle-graph](pages/castle-graph.md)] |
 | `P_h` | the path graph on `h` vertices | [[ramanujan-castles](pages/ramanujan-castles.md)] |
-| `P⋆_n` | the **Pell numbers** (A000129, `P⋆_0 = 0`, `P⋆_1 = 1`, `P⋆_n = 2P⋆_{n−1} + P⋆_{n−2}`). The star distinguishes them from the signed tower count / parity term `P` (`P(k, L)`, `P_F`, `P_even`, …), which keeps the bare letter because parity recurs across the wiki and the PE502 reports; a Pell number is always starred, never `P_n` or `Pell(n)` | [[pell-numbers](pages/pell-numbers.md)], [[pell-castle](pages/pell-castle.md)], [[metallic-means](pages/metallic-means.md)] |
+| `P⋆_n` | the **Pell numbers** (A000129, `P⋆_0 = 0`, `P⋆_1 = 1`, `P⋆_n = 2P⋆_{n−1} + P⋆_{n−2}`). The star distinguishes them from the signed tower counts `P` (`P(k, L)`, `P_F`, `P_even`, …), which keeps the bare letter because parity recurs across the wiki and the PE502 reports; a Pell number is always starred, never `P_n` or `Pell(n)` | [[pell-numbers](pages/pell-numbers.md)], [[pell-castle](pages/pell-castle.md)], [[metallic-means](pages/metallic-means.md)] |
 | `P_1`, `P_2` | Bender's auxiliary series | [[convex-castle-cap-factor](pages/convex-castle-cap-factor.md)] |
 | `P_F(w)` | the signed count of Fibonacci towers of length `w` (0/1 strings, no two adjacent 1s), `Σ_m (−1)^m C(w − m + 1, m)`; period 6, `1, 0, −1, −1, 0, 1` | [[fibonacci-castle](pages/fibonacci-castle.md)] |
 | `T(w, b)`, `N(w, k)` | towers of width `w` with `b` blocks (width first, not the tower count `T(k, L)`), and the Narayana numbers in `T(w, b) = Σ_k N(w, k) C(b + w − k, w − 1)`; `N(w, k)` is not `N(q)` or `N_i(state)` | [[narayana-numbers](pages/narayana-numbers.md)], [[tower-heap](pages/tower-heap.md)] |
 | `n`, `a`, `r`, `Eul(n, r)` | the shuffle symbols: number of cards, packets of an a-shuffle, rising sequences of a permutation, and the Eulerian numbers (permutations of `n` with `r` rising sequences), written `Eul` because `A(w, h)` is the castle count; `a` is not the sandpile operator `a_v` | [[bayer-diaconis-1992-dovetail-shuffle](pages/bayer-diaconis-1992-dovetail-shuffle.md)] |
 | `T_h(w)`, `T_h(w, q)`, `T_2(w)`, `T_3(w)` | **tree-castle** counts (castles with no `2 × 2` block), not tower counts | [[tree-castle-by-area](pages/tree-castle-by-area.md)], [[castle-graph](pages/castle-graph.md)] |
 | `M` | the Project Euler modulus `10⁹ + 7` | [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] |
-| `S(w, h)` | the parity term of `F` (this page), also used on [[castle-entropy](pages/castle-entropy.md)] | - |
+| `S(w, h)` | the parity term of `F` (this page), also used on [[castle-entropy](pages/castle-entropy.md)]. Any castle-level signed sum `Σ (−1)^{blocks}` is an `S`, and the castle projector is `(A ± S)/2`; `P` is only for signed sums over towers, `(T ± P)/2` | - |
+| `S_0(w, h)`, `S_α(w, h)` | the area-parity sum `Σ (−1)^{area}` over a cell and the fractional sign sums `Σ e^{iπB_α}`, with `S_1 = S(w, h)` | [[fractional-block-count](pages/fractional-block-count.md)] |
+| `S_h` | the signed ridge transfer matrix `S_h[a][b] = (−1)^{max(0, b−a)} R_h[a][b]`, whose products give the ridge castles' `S` | [[proper-castle-projection](pages/proper-castle-projection.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] |
 | `S` | Dhar's entropy `S = ln det Δ` of the sandpile steady state; the wiki writes `ln det L̃` instead, keeping `S(w, h)` for the parity term | [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
 | `G` | a graph (as in `K(G)`), or Dhar's expected-toppling matrix `G = Δ⁻¹` (written `L̃⁻¹` on the wiki); never a castle count, and elsewhere reserved for generating functions | [[sandpile-group](pages/sandpile-group.md)], [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
 | `A`, `D` | the adjacency and degree matrices in `L = D − A`; `A(w, h)` with arguments is the castle count, `D` is also used for diagonal sign matrices on [[tower-parity-sectors](pages/tower-parity-sectors.md)] | [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] |

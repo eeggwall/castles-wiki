@@ -1,11 +1,11 @@
 ---
 title: Do metallic growth constants survive the proper-castle projection
 category: Analyses
-summary: The metallic-strip-realizability counts are free-height strip counts (𝟙ᵀR_h^L𝟙); imposing the two proper PE-502 clauses — max_i c_i = h and the even-block parity (A±P)/2 — leaves the metallic growth constant δ_{h−1} invariant, but the exact sequences are new. The signed transfer matrix S_h (entries (−1)^max(0,b−a)·R_h[a][b]) has spectral radius strictly below δ_{h−1} (1.000 / 1.575 / 1.768 / 2.242 / 2.413 for h = 2..6 vs δ = 1.618 / 2.414 / 3.303 / 4.236 / 5.193), so the parity projector (A±P)/2 preserves the leading term. The even-block ridge castle counts (proper castles under the ridge rule R_h = J − D) by width are a new family with no OEIS match for h ≥ 3: bronze (h=4) 1, 7, 25, 70, 209, 697, 2390, 8169, …; copper (h=5) 0, 0, 10, 104, 604, 2836, 12630, 55668, …. Even the free counts are not the primary metallic sequences — silver → A001333 (Pell-Lucas) not A000129, bronze → A003688 not A006190, copper → A015448 (the Fibonacci trisection F_{3n+5}) not A001076, nickel → A015449 not A052918 — so neither the free nor the projected counts reproduce Pell / A006190 / A001076 / A052918.
+summary: The metallic-strip-realizability counts are free-height strip counts (𝟙ᵀR_h^L𝟙); imposing the two proper PE-502 clauses — max_i c_i = h and the even-block parity (A±S)/2 — leaves the metallic growth constant δ_{h−1} invariant, but the exact sequences are new. The signed transfer matrix S_h (entries (−1)^max(0,b−a)·R_h[a][b]) has spectral radius strictly below δ_{h−1} (1.000 / 1.575 / 1.768 / 2.242 / 2.413 for h = 2..6 vs δ = 1.618 / 2.414 / 3.303 / 4.236 / 5.193), so the parity projector (A±S)/2 preserves the leading term. The even-block ridge castle counts (proper castles under the ridge rule R_h = J − D) by width are a new family with no OEIS match for h ≥ 3: bronze (h=4) 1, 7, 25, 70, 209, 697, 2390, 8169, …; copper (h=5) 0, 0, 10, 104, 604, 2836, 12630, 55668, …. Even the free counts are not the primary metallic sequences — silver → A001333 (Pell-Lucas) not A000129, bronze → A003688 not A006190, copper → A015448 (the Fibonacci trisection F_{3n+5}) not A001076, nickel → A015449 not A052918 — so neither the free nor the projected counts reproduce Pell / A006190 / A001076 / A052918.
 tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, parity, even-block, proper-castle, bronze, copper, silver, new-sequence, oeis, sympy, verification]
 sources: [pe502-pell-castle-strip, project-euler-502-castle-factoring]
 created: 2026-09-18
-updated: 2026-10-04
+updated: 2026-10-10
 ---
 
 # Do metallic growth constants survive the proper-castle projection
@@ -15,7 +15,7 @@ updated: 2026-10-04
 [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] realizes the whole metallic ladder from one rule — the **ridge rule** (`R_h = J − D`: adjacent columns differ in height unless both equal `h`; char poly `(x+1)^{h−2}(x² − (h−1)x − 1)`, Perron root `δ_{h−1}`) — but its counts are *free-height strip* counts `𝟙ᵀR_h^L𝟙`: a row of columns with heights in `{1, …, h}`, no ground boundary, no `max = h`, no block parity. A **proper PE-502 castle** imposes two extra clauses:[^1]
 
 1. **`max_i c_i = h`** — the castle actually reaches the ceiling (height exactly `h`, not `≤ h`).
-2. **the even-block parity** — `even = (A + P)/2` where `A` is the unsigned count and `P = Σ (−1)^{blocks(c)}` the [[castle-sign](pages/castle-sign.md)] signed count.
+2. **the even-block parity** — `even = (A + S)/2` where `A` is the unsigned count and `S = Σ (−1)^{blocks(c)}` the [[castle-sign](pages/castle-sign.md)] signed count.
 
 Growth constants should be invariant under these lower-order corrections, but the *exact* sequences — and their Online Encyclopedia of Integer Sequences (OEIS) identities — can change. This page works out the projected counts for the ridge ladder (bronze / copper / …) and asks whether the metallic OEIS sequences (Pell A000129, A006190, A001076, …) or new ones appear.
 
@@ -49,7 +49,7 @@ Then `even(w) = (u_proper(w) + s_proper(w))/2`, `odd(w) = (u_proper(w) − s_pro
 | 5 | 2.242 | 4.236 |
 | 6 | 2.413 | 5.193 |
 
-Since `ρ(S_h) < δ_{h−1}`, the signed count `P` is `o(A)`, and `(A ± P)/2` keeps the leading term `~ C·δ_{h−1}^w`. Numerically the even-count tail ratios converge to the metal: `h=3 → 2.41426`, `h=4 → 3.30279`, `h=5 → 4.23657`, `h=6 → 5.1958` (→ nickel `5.1926`).[^4] **The metallic growth constant survives both projections**, as the lower-order-correction reading predicts.
+Since `ρ(S_h) < δ_{h−1}`, the signed count `S` is `o(A)`, and `(A ± S)/2` keeps the leading term `~ C·δ_{h−1}^w`. Numerically the even-count tail ratios converge to the metal: `h=3 → 2.41426`, `h=4 → 3.30279`, `h=5 → 4.23657`, `h=6 → 5.1958` (→ nickel `5.1926`).[^4] **The metallic growth constant survives both projections**, as the lower-order-correction reading predicts.
 
 ## Finding 2 — the projected sequences are new
 
@@ -69,7 +69,7 @@ None of these (nor their unsigned / odd / signed companions) matches OEIS on 12 
 char(unsigned proper)  =  (x+1)^{h−2} · (x² − (h−1)x − 1) · (x − (h−2)),
 ```
 
-the extra `(x − (h−2))` coming from the `J−I` plateau-free subtraction; the parity projection then mixes in `S_h`'s degree-`h` characteristic polynomial, so the even sequence is `(A + P)/2` over two C-finite sequences with *different* denominators — generally a new, higher-order recurrence.
+the extra `(x − (h−2))` coming from the `J−I` plateau-free subtraction; the parity projection then mixes in `S_h`'s degree-`h` characteristic polynomial, so the even sequence is `(A + S)/2` over two C-finite sequences with *different* denominators — generally a new, higher-order recurrence.
 
 ## Finding 3 — the free counts are companion metallic sequences, not primary
 
@@ -87,12 +87,12 @@ Only golden (`h = 2`) has its free count equal to its primary metallic sequence.
 
 ## Answer
 
-**Growth constants survive; the metallic sequences do not.** The ridge ladder's metallic growth `δ_{h−1}` is unchanged by `max = h` and `(A ± P)/2`, because the signed matrix `S_h` is spectrally subdominant (Finding 1). But the *exact* sequences have no OEIS match (Finding 2), and the primary metallic entries Pell A000129 / A006190 / A001076 / A052918 appear in neither the free nor the projected counts; only golden's Fibonacci survives (Finding 3). The even-block ridge castle rows above are OEIS **submission candidates**; bijections to known objects are open.
+**Growth constants survive; the metallic sequences do not.** The ridge ladder's metallic growth `δ_{h−1}` is unchanged by `max = h` and `(A ± S)/2`, because the signed matrix `S_h` is spectrally subdominant (Finding 1). But the *exact* sequences have no OEIS match (Finding 2), and the primary metallic entries Pell A000129 / A006190 / A001076 / A052918 appear in neither the free nor the projected counts; only golden's Fibonacci survives (Finding 3). The even-block ridge castle rows above are OEIS **submission candidates**; bijections to known objects are open.
 
 ## Related Concepts
 
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] — the free-height strip counts this page projects onto proper castles; the ridge rule `R_h = J − D`.
-- [[castle-sign](pages/castle-sign.md)] — the sign `s(C) = (−1)^{blocks}` and the `(A ± P)/2` parity projector applied here.
+- [[castle-sign](pages/castle-sign.md)] — the sign `s(C) = (−1)^{blocks}` and the `(A ± S)/2` parity projector applied here.
 - [[metallic-means](pages/metallic-means.md)] — the ladder whose *primary* sequences (A000129, A006190, A001076, …) the projected counts fail to reproduce.
 - [[castle-snippets-strips](pages/castle-snippets-strips.md)] — the `proper_even` snippet computing these counts.
 - [[reachable-field-census](pages/reachable-field-census.md)] — the sibling census (which *fields* the strips reach), to which this is the *sequences* complement.
@@ -105,7 +105,7 @@ Only golden (`h = 2`) has its free count equal to its primary metallic sequence.
 
 [^1]: [[project-euler-502](pages/project-euler-502.md)] §"Project 502: Castle Polyominoes" L19-20 — "The maximum achieved height of the entire castle is exactly h." and "The castle is made from an even number of blocks."
 
-[^2]: The sign convention matches [[castle-sign](pages/castle-sign.md)]: `blocks(c)` is the total ascent from `c_0 = 0`, `s(C) = (−1)^{blocks}`, the start vector carries the `(−1)^{c_1}` factor, and `(A + P)/2 = even` (verified by direct `blocks(c) % 2 == 0` brute force for `h ≤ 6`, `w ≤ 6`, 2026-09-28).
+[^2]: The sign convention matches [[castle-sign](pages/castle-sign.md)]: `blocks(c)` is the total ascent from `c_0 = 0`, `s(C) = (−1)^{blocks}`, the start vector carries the `(−1)^{c_1}` factor, and `(A + S)/2 = even` (verified by direct `blocks(c) % 2 == 0` brute force for `h ≤ 6`, `w ≤ 6`, 2026-09-28).
 
 [^3]: `S_h` is the signed transfer matrix; `ρ(S_h)` is its spectral radius. SymPy `charpoly` gives `char(S_2) = x²−x+1` (primitive 6th roots of unity — the golden signed count is period-6), `char(S_3) = x³−x²+x−3`, `char(S_4) = x⁴−x³+2x²−x+7`, `char(S_5) = x⁵−x⁴+2x³−6x²−3x−17`, `char(S_6) = x⁶−x⁵+3x⁴−2x³+19x²+19x+41`.
 

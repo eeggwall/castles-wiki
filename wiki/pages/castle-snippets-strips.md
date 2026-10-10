@@ -5,7 +5,7 @@ summary: Snippets for castle strips, Axis-8 growth-constant probes, tree-castle-
 tags: [concept, castle, python, snippets, strip, growth-constant, metallic-mean, tree-castle, hardin]
 sources: [project-euler-502-brute-force]
 created: 2026-09-19
-updated: 2026-10-04
+updated: 2026-10-10
 ---
 
 # Castle snippets - strips and growth
@@ -140,7 +140,7 @@ Meaning: one rule, one parameter `h`, sweeps golden → silver → bronze → co
 
 ### `proper_even(h, Wmax)` → even-block ridge castles (the proper-castle projection of the ladder)
 
-The `ridge_count` above is a *free-height strip* count (`𝟙ᵀR_h^L𝟙`); a **proper** PE-502 castle imposes `max_i c_i = h` and the even-block parity `(A±P)/2` ([[castle-sign](pages/castle-sign.md)]). This projects both on at once: subtract the `max < h` strips (which satisfy *plateau-free*, `J − I`, since the ceiling exception is unreachable) and fold in the signed count `P = Σ (−1)^{blocks}` via the signed matrix `S[a][b] = (−1)^{max(0, b−a)} R_h[a][b]`. The metallic growth survives (the signed matrix is spectrally subdominant), and the sequences have no OEIS match; see [[proper-castle-projection](pages/proper-castle-projection.md)]. Requires SymPy.
+The `ridge_count` above is a *free-height strip* count (`𝟙ᵀR_h^L𝟙`); a **proper** PE-502 castle imposes `max_i c_i = h` and the even-block parity `(A±S)/2` ([[castle-sign](pages/castle-sign.md)]). This projects both on at once: subtract the `max < h` strips (which satisfy *plateau-free*, `J − I`, since the ceiling exception is unreachable) and fold in the signed count `P = Σ (−1)^{blocks}` via the signed matrix `S[a][b] = (−1)^{max(0, b−a)} R_h[a][b]`. The metallic growth survives (the signed matrix is spectrally subdominant), and the sequences have no OEIS match; see [[proper-castle-projection](pages/proper-castle-projection.md)]. Requires SymPy.
 
 ```python
 def proper_even(h, Wmax):

@@ -5,7 +5,7 @@ summary: Hub for the castle-type taxonomy. Three scopes with different classifyi
 tags: [concept, castle, classification, taxonomy, hub, scope, shape, spectral, growth]
 sources: [castle-classification]
 created: 2026-09-15
-updated: 2026-10-02
+updated: 2026-10-10
 ---
 
 # Castle classification
@@ -48,7 +48,7 @@ The scopes interact: a shape predicate defines a class, and the class has a grow
 
 Question (2) is where the shape and growth pages meet: answering it for a shape type places that type's class on the growth axis.
 
-**Parity.** Project Euler 502 (PE 502) requires an even number of blocks. Each type is defined without reference to that clause, and the even-block projector `(A ± P) / 2` ([[castle-sign](pages/castle-sign.md)]) is applied on top when needed.[^1] The clause is not independent of typing: a convex (unimodal) castle of height `h` has exactly `h` blocks, one per row, so every convex castle has the block parity of `h` and the projector keeps all of them or none.[^2]
+**Parity.** Project Euler 502 (PE 502) requires an even number of blocks. Each type is defined without reference to that clause, and the even-block projector `(A ± S) / 2` ([[castle-sign](pages/castle-sign.md)]) is applied on top when needed.[^1] The clause is not independent of typing: a convex (unimodal) castle of height `h` has exactly `h` blocks, one per row, so every convex castle has the block parity of `h` and the projector keeps all of them or none.[^2]
 
 ## Upstream source
 
