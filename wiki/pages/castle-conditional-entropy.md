@@ -5,7 +5,7 @@ summary: Refining the uniform-entropy `log_2 F(w,h)` view by conditioning on the
 tags: [analysis, castle, entropy, information-theory, conditional-entropy, block-count, area, statistic, verification]
 sources: [project-euler-502-brute-force, project-euler-502-observations]
 created: 2026-09-21
-updated: 2026-09-28
+updated: 2026-10-10
 ---
 
 # Conditional entropy given block count and area
@@ -149,7 +149,7 @@ At `(w, h)` in the table the residual is `log_2 F(w, h) - log_2 w - c(h)` up to 
 
 ## Appearances in Sources
 
-- [[project-euler-502-observations](pages/project-euler-502-observations.md)] - the source's "the even-block clause is almost the entire difficulty," priced on [[castle-entropy](pages/castle-entropy.md)] at one bit; here that bit falls on `B` (at `(10, 2)` it lowers `H(B)` by 1.14 bits and `H(N)` by 0.06).
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] - notes that without the even-block clause the count is `A(w, h)`; [[castle-entropy](pages/castle-entropy.md)] prices the clause at one bit, and here that bit falls on `B` (at `(10, 2)` it lowers `H(B)` by 1.14 bits and `H(N)` by 0.06).
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - `blocks_of`, `all_castles`, and the `F(w, h)` enumeration that ground the entire table.
 
 ## Footnotes

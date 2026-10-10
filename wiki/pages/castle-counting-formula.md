@@ -30,7 +30,7 @@ where `1` is the empty tower, `x·E_k` a gap column then the rest, `(E_{k−1} �
 E_k = 1 / (1 − (k+1)x)      ⟹      T(k,L) = (k+1)^L
 ```
 
-**Proof 2: product form over column heights.** The castle-factoring reading gives the same `(k+1)^L` without solving a generating-function recurrence: reading a tower as its column heights `c_1…c_L` (the integer-tuple [[castle-representations](pages/castle-representations.md)]), each `c_i` ranges *independently* over `{0,…,k}`, and the tower word is recovered invertibly from the heights — so `T(k,L) = (k+1)^L` is immediate as a product form.[^10] That independence of the columns is the crux the Observations subpage names — sibling towers never interact — captured structurally on [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]; it "took years to see."[^13]
+**Proof 2: product form over column heights.** The castle-factoring reading gives the same `(k+1)^L` without solving a generating-function recurrence: reading a tower as its column heights `c_1…c_L` (the integer-tuple [[castle-representations](pages/castle-representations.md)]), each `c_i` ranges *independently* over `{0,…,k}`, and the tower word is recovered invertibly from the heights — so `T(k,L) = (k+1)^L` is immediate as a product form.[^10] In the U/R/D grammar the same fact is the independence of sibling blocks in a row ([[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]).[^13]
 
 **Proof 3: induction on *k*.** The Solution subpage proves the same closed form by induction on *k*: the [[binary-string-bijection](pages/binary-string-bijection.md)] plus sibling independence makes the count factor over runs, `T(k,L) = ∑_b ∏_{runs} T(k−1,l) = ∑_b k^{ones(b)} = (1+k)^L`.[^16]
 
@@ -94,13 +94,13 @@ matching the values on [[castle-counting-function](pages/castle-counting-functio
 
 The two integer values factor as (confirmed by factoring during ingest): `F(13,10) = 3729050610636 = 2²·3·13·1163·20553887` and `F(10,13) = 37959702514 = 2·102859·184523`.[^14]
 
-**The parity clause.** The signed count `P` is in the formula only to enforce the even-block rule. Without that rule the count is the unsigned baseline `h^w − (h−1)^w` (all castles of height ≤ *h* minus those of height ≤ *h*−1); the source calls the clause "almost the entire difficulty."[^15]
+**The parity clause.** The signed count `P` is in the formula only to enforce the even-block rule. Without that rule the count is the unsigned baseline `h^w − (h−1)^w` (all castles of height ≤ *h* minus those of height ≤ *h*−1).[^15] All the computation in `F` is in the `P` terms.
 
 ## Appearances in Sources
 
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] — derives the unsigned count `(k+1)^L`, the signed count `P_k`, and the closed form for `F(w,h)`, with verifying Python.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — gives the product-form proof of `(k+1)^L`, the sign-homomorphism reading of `P`, and the Kitamasa/Berlekamp–Massey evaluation.
-- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — names the column independence as the crux, the `h^w−(h−1)^w` unconstrained baseline, and the verified factorizations.
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — notes sibling independence, the any-parity count `h^w − (h−1)^w`, and the factorizations of `F(13,10)` and `F(10,13)`.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] — proves `T(k,L)=(k+1)^L` by induction via the binary-string bijection, and specifies the algorithms that evaluate `P` at large parameters.
 - [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] — the `/2` as a modular inverse (assumes `p ≠ 2`) and the code that runs the recurrences.
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] — the `p_signed` DP (a third route to `P`) and the direct-enumeration cross-check of the whole formula.
@@ -117,7 +117,7 @@ The two integer values factor as (confirmed by factoring during ingest): `F(13,1
 - [[convex-castle](pages/convex-castle.md)] — the enumeration-side backbone, complementary to this counting-side formula.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] — the two-idea pedagogical version of this derivation.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] / [[pell-numbers](pages/pell-numbers.md)] — a coefficient-matching companion to the recurrences above.
-- [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] — the pre-solution framing whose `F(13,10)` scale argument this closed form answers; [[project-euler-502-observations](pages/project-euler-502-observations.md)] — the source's own statement of the crux and of `(A + S)/2` (the source writes `P`) as a recurring symmetry trick.
+- [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] — the pre-solution framing whose `F(13,10)` scale argument this closed form answers; [[project-euler-502-observations](pages/project-euler-502-observations.md)] — short notes restating sibling independence and `F = (A + S)/2`.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] — the `h = 3` row `F(w,3) = (3^w − 2^w − P(2,w) + P(1,w))/2` as a standalone order-6 sequence.
 - [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the seminar-shape derivation of this formula as the `(n−1)!` cycle-count toolkit upgraded three times, ending on the same `F(4,2) = 10` hand-check the Verification here uses.
 - [[castle-notation](pages/castle-notation.md)] - the notation reference: castle quantities width first, tower quantities `T(k, L)`, `P(k, L)` height first, `k = h − 1`.
@@ -137,7 +137,7 @@ The two integer values factor as (confirmed by factoring during ingest): `F(13,1
 [^10]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"A column-height factorization" L72-89 — "each c_i ranges independently over {0, …, k}, and the tower word is recovered by [the invertible procedure] ... T(k,L) = (k+1)^L ... each of the L columns independently chooses one of k+1 heights. This is the product-form proof."
 [^11]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Monotone streak factorization and fast algorithms" L185, §"The sign of a castle" L119-121 — "P(k,L) = ∑_{c ∈ {0,…,k}^L} (-1)^{descent(c)}" and "(T + P)/2 = even-block ... (T - P)/2 = odd-block ... exactly the (1 ± sgn)/2 trick ... the castle analogue of the sign homomorphism."
 [^12]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Monotone streak factorization and fast algorithms" L192 — "evaluated in O(k^2 log L) by Kitamasa in the L direction, or in the k direction by Berlekamp-Massey, which is how [Solution] computes F(10^12, 100) and F(100, 10^12)."
-[^13]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Sub-block independence" L5 — "Two sibling blocks in the same row generate towers that never interact ... This is the single fact that makes the problem tractable, and it took years to see."
+[^13]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Sub-block independence" L5 — "Two sibling blocks in the same row generate towers that never interact (the parent-row gap is automatic)."
 [^14]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Useful factorizations" L25-31 — "F(13,10) = 3729050610636 = 2^2 × 3 × 1163 × 13 × 20553887" and "F(10,13) = 37959702514 = 2 × 102859 × 184523"; both re-factored during ingest and confirmed.
 [^15]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"The \"even number of blocks\" clause is almost the entire difficulty" L17 — "Without it, the answer is just h^w - (h-1)^w: all castles of height at most h minus those of height at most h-1."
 [^16]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"T(k, L) = (k+1)^L" L23-37 — "Proof by induction on k ... a length-L binary string ... plus, for each maximal run of length l, an independent tower of height ≤ k-1 ... T(k, L) = ∑_b ∏_{runs} T(k-1, l) = ∑_b k^{ones(b)} = (1 + k)^L. Corollary ... T(h-1, w) = h^w."

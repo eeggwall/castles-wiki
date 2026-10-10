@@ -5,7 +5,7 @@ summary: F(w,h), Project Euler 502's count of castles with an even number of blo
 tags: [concept, castle, counting-function, project-euler]
 sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-10-06
+updated: 2026-10-10
 ---
 
 # Castle counting function F(w,h)
@@ -58,7 +58,7 @@ The three arguments are a very wide/short grid, a large square grid, and a narro
 - [[castle-counting-formula](pages/castle-counting-formula.md)] — the closed-form derivation of `F(w,h)`.
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] — how the large-parameter values are actually computed.
 - [[generating-functions](pages/generating-functions.md)] — the intended method for computing `F(w,h)` at large parameters.
-- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — the source's own statement that without the even clause the count is just `h^w − (h−1)^w`, and that the clause is "almost the entire difficulty."
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — notes that without the even-block clause the count is `A(w, h) = h^w − (h−1)^w`.
 - [[block-count-constraints](pages/block-count-constraints.md)] — the "even-block PE 502 specialization" is one point in the residue / sparse / semigroup trichotomy over block-count generating functions.
 
 ## Footnotes

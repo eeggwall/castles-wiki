@@ -5,7 +5,7 @@ summary: The tower-word grammar E_k → empty | R E_k | U V D (empty | R E_k) th
 tags: [concept, castle, dyck, grammar, generating-functions]
 sources: [project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-10
 ---
 
 # Generalized Dyck grammar for castles
@@ -47,9 +47,9 @@ The grammar is the object that the [[castle-counting-formula](pages/castle-count
 
 **Peaks as factors.** Read as a factorization, each `U V D` peak leaves the base, stays above one sub-block, and returns, with `R` gaps as separators. In the [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] a peak plays the role of a disjoint permutation cycle and the first-return split plays the role of the cycle-following loop.
 
-## The crux: independence, and the role of R
+## Sibling independence and the role of R
 
-The single fact that makes the whole problem tractable is that **two sibling blocks in the same row generate towers that never interact** — the separating gap between them is automatic — and it "took years to see."[^10] The grammar makes this a structural consequence rather than an extra rule: each `R` is spent exactly once, as a gap or as part of a sub-block, so a child block always sits strictly inside its parent's span and siblings cannot interfere.[^11] That independence lets the columns be chosen freely and yields the product form `T(k,L) = (k+1)^L` on [[castle-counting-formula](pages/castle-counting-formula.md)].[^12]
+**Two sibling blocks in the same row carry towers that never interact**: the two blocks are separated by a gap, and what sits on one does not constrain what sits on the other.[^10] The grammar makes this a structural consequence rather than an extra rule: each `R` is spent exactly once, as a gap or as part of a sub-block, so a child block always sits strictly inside its parent's span and siblings cannot interfere.[^11] Sibling independence is what lets the grammar count a tower block by block; in column heights it is the statement that the columns are chosen freely, which gives `T(k,L) = (k+1)^L` on [[castle-counting-formula](pages/castle-counting-formula.md)].[^12]
 
 The independence comes from the third letter. A **plain Dyck word** (`U` matched to `D`) records nesting and the order of siblings, but it has no letter for width or for the gap between siblings. The three-letter grammar adds `R`, the horizontal step. `R` admits the **empty tower** `R^L` (a pure horizontal run, no blocks) and places sibling sub-blocks side by side with gaps between them; each `R` is spent once per column, which is what makes siblings independent. The cycle-forest encoding makes the same point from the other side: it discards the `R` steps and so cannot recover the tower (see [[castle-representations](pages/castle-representations.md)]).
 
@@ -57,7 +57,7 @@ The independence comes from the third letter. A **plain Dyck word** (`U` matched
 
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] — states the tower-word reading, the grammar, and its identification as a generalized Dyck first-return split.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — reads the grammar as a factorization: peaks as cycle-like atoms separated by `R` gaps.
-- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — names sibling-tower independence as the crux that makes the problem tractable.
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — notes that sibling blocks in a row carry independent towers.
 - [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] - the same first-return split in the bargraph literature: cornerless Motzkin paths decompose as `HA | UA′D | UA′DHA` with `A′` nonempty, which is this grammar with the height bound removed.
 
 ## Related Concepts
@@ -82,6 +82,6 @@ The independence comes from the third letter. A **plain Dyck word** (`U` matched
 [^7]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The grammar" L276 — "V is one row lower ... and V is nonempty. Nonempty V is what keeps the sub-block width positive (no UD). The empty | R E_k tail is what keeps two peaks from touching (no DU), the same-row gap rule."
 [^8]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The grammar" L278 — "This is the Dyck first-return split U w_1 D w_2 with one extra letter. The only change is that U and D are vertical here, so the interior V is a whole tower rather than a single matched step."
 [^9]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The grammar" L240-256 [synthesis] — the worked tower words URDRURD → full castle UURDRURDD and UURDD → full castle UUURDDD, "with the outer U...D pair ... being the baseline block."
-[^10]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Sub-block independence" L5 — "Two sibling blocks in the same row generate towers that never interact (the parent-row gap is automatic). This is the single fact that makes the problem tractable, and it took years to see."
+[^10]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Sub-block independence" L5 — "Two sibling blocks in the same row generate towers that never interact (the parent-row gap is automatic)."
 [^11]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The tower word" L232 — "No-overhang needs no separate rule. Each R is spent once, as a gap or as part of a sub-block, so a child block always sits inside its parent's span."
 [^12]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"A column-height factorization" L85-89 — "T(k,L) = (k+1)^L ... each of the L columns independently chooses one of k+1 heights"; and §"Cycle-forest form" L212 — "the tower with no blocks is R^L, a simple horizontal run ... the tower needs the third letter R," the empty-tower role of R this section draws on.

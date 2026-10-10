@@ -43,7 +43,7 @@ Weight every castle by its sign `(−1)^{blocks}` and add up. Let `S(w, h)` be t
 F  =  (A + S)/2            (even)             odd  =  (A − S)/2
 ```
 
-This is the projector `(1 ± sign)/2`, the same one that splits permutations into even and odd, where `|A_n| = n!/2` because the signed sum vanishes ([[castle-sign](pages/castle-sign.md)]).[^2] For castles the signed sum is not zero, but it is exponentially smaller than `A`:
+This is the projector `(1 ± sign)/2`, the same one that splits permutations into even and odd, where the even permutations of `n` number `n!/2` because the signed sum vanishes ([[castle-sign](pages/castle-sign.md)]).[^2] For castles the signed sum is not zero, but it is exponentially smaller than `A`:
 
 ```
 S/A  =  −5.9·10⁻²  (w = 8, h = 2),    −7.8·10⁻³  (w = 12, h = 3),    −9.0·10⁻⁸  (w = 40, h = 3)
@@ -213,6 +213,6 @@ True
 ## Footnotes
 
 [^1]: Verified by execution (Python 3.10, 2026-09-26): `F(w, h) = (A + S)/2` with `S = P(h−2, w) − P(h−1, w)` from the signed-tower dynamic program; the table values and `S/A` ratios are pinned in the Snippet, and `log₂ F(13, 10) = 41.762 = log₂ A(13, 10) − 1` to three decimals against `13·log₂ 10 − 1 = 42.185`. The `w = 8, 12` rows match [[castle-entropy](pages/castle-entropy.md)].
-[^2]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Parity via signs" L13 - "Even-block-count is enforced by (A + P)/2, where A is the unsigned total and P is the signed count with (-1)^{blocks}. A symmetry trick that recurs in many combinatorial-enumeration problems."; [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L116-123 - "(T + P)/2 = even-block castles, (T - P)/2 = odd-block castles ... exactly the (1 ± sgn)/2 trick".
+[^2]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Parity via signs" L13 - the even-block count as half the sum of the unsigned and the `(−1)^{blocks}`-signed counts.; [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L116-123 - "(T + P)/2 = even-block castles, (T - P)/2 = odd-block castles ... exactly the (1 ± sgn)/2 trick".
 [^3]: Verified by execution (Python 3.10, 2026-09-26): `delta_raise(c, i)` equals the change in `blocks` for every sequence in `{0..4}^5` and every column `i`, as pinned; `blocks` is the ascent form `c_1 + Σ max(0, c_i − c_{i−1})` of [[castle-sign](pages/castle-sign.md)].
 [^4]: Verified by execution (Python 3.10, 2026-09-26): exhaustive over all castles of the listed `(w, h)` and all one-cell `±1` edits that keep heights in `1..h` and some column at `h`; `flip_stats` pinned in the Snippet. The exceptional castles found include `(1, 2, 2, 1)` at `h = 2`, `(1, 2, 3, 3, 2, 1)` and `(3, 3, 1, 1, 3, 3)` at `h = 3`.

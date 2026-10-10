@@ -90,7 +90,7 @@ Each branch has a named sequence on the wiki.
 
 so "sum every 4th binomial coefficient" - the defining description of the [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] and the height-2 interlink on [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] - is the `m = 2` residue extraction on the height-1 tower's `G` read literally (a residue class of `r` in `C(L+1, 2r)` is a residue class of `2r` modulo `2m`). In general, `blocks ≡ r (mod m)` for height-1 towers is a sum of every `2m`-th binomial coefficient; the `m = 4` example above is an every-8th sum, and the exponential generating function (EGF) form of the same index-side filter (`1/(1−x⁴)`, `(e^x + e^{−x})/2`) is worked on [[generating-functions-topic](pages/generating-functions-topic.md)].
 
-**Residue, `m = 2`, in general.** The castle count `F(w,h)` on [[castle-counting-formula](pages/castle-counting-formula.md)] is the `m = 2` case at every height; [[project-euler-502-observations](pages/project-euler-502-observations.md)] is where the source names it "a symmetry trick that recurs in many combinatorial-enumeration problems," and [[castle-entropy](pages/castle-entropy.md)] prices the extraction at one bit.
+**Residue, `m = 2`, in general.** The castle count `F(w,h)` on [[castle-counting-formula](pages/castle-counting-formula.md)] is the `m = 2` case at every height, and [[castle-entropy](pages/castle-entropy.md)] prices the extraction at one bit.
 
 **Semigroup, ordered vs. unordered.** The coin-change series `∏ 1/(1 − z^d)` counts *unordered* representations (Flajolet's `MSET` on [[symbolic-method](pages/symbolic-method.md)]); its `SEQ` sibling `1/(1 − Σ_d z^d)` counts *ordered* ones, i.e. compositions with parts in `D`. The wiki already has one of those: compositions with parts in `{1, 3, 4, 5}` are `A000570`, the unique tournaments of [[unique-tournament](pages/unique-tournament.md)] and the `h = 4` tree-castle row of [[tree-castle-by-area](pages/tree-castle-by-area.md)]. Both series have the same support (the semigroup `⟨D⟩`), so the indicator `[b ∈ ⟨D⟩]` can be read off either one.
 
@@ -109,7 +109,7 @@ If `gcd(D)` is a denomination, `⟨D⟩` is its nonnegative multiples and a root
 ## Appearances in Sources
 
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — the sign and the signed count `P = G(−1)` that the residue method's `m=2` case uses.
-- [[project-euler-502-observations](pages/project-euler-502-observations.md)] - names `(A + S)/2` (`P` in the source) as a general symmetry trick; the `m = 2` case in the source's own words.
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] - states `F = (A + S)/2`, the `m = 2` case.
 
 ## Related Concepts
 

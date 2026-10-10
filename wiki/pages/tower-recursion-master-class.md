@@ -5,7 +5,7 @@ summary: The two ideas that solve the castle count — towers are independent (T
 tags: [concept, castle, towers, parity, sign, pedagogy, dyck, teaching]
 sources: [project-euler-502-solution, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations]
 created: 2026-09-14
-updated: 2026-09-28
+updated: 2026-10-10
 ---
 
 # Tower recursion master class
@@ -71,7 +71,7 @@ F(w,h)              = [ h^w − (h−1)^w − P(h−1,w) + P(h−2,w) ] / 2     
 odd-block castles   = [ h^w − (h−1)^w + P(h−1,w) − P(h−2,w) ] / 2      (odd blocks)
 ```
 
-The two differ only in the sign of the `P` terms, and they sum to the unsigned total `h^w − (h−1)^w` — the `P` terms cancel, which is the "almost the entire difficulty" observation: drop the parity clause and the answer is just `h^w − (h−1)^w`.[^9] The `h^w − (h−1)^w` subtracts off towers of height ≤ *h*−2, forcing height *exactly* *h*; the `−P(h−1,w) + P(h−2,w)` does the same subtraction at the signed level.
+The two differ only in the sign of the `P` terms, and they sum to the unsigned total `h^w − (h−1)^w` — the `P` terms cancel. Without the parity clause the answer is `h^w − (h−1)^w`, so all the work in `F` is in the `P` terms.[^9] The `h^w − (h−1)^w` subtracts off towers of height ≤ *h*−2, forcing height *exactly* *h*; the `−P(h−1,w) + P(h−2,w)` does the same subtraction at the signed level.
 
 The same computation gives the even and the odd count. Project Euler 502 (PE 502) asks for the even one.
 
@@ -91,7 +91,7 @@ Towers of height ≤ 1 above a length-4 block are column heights `c ∈ {0,1}⁴
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] — the binary-string bijection and the `T(k,L)=(k+1)^L` induction.
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] — the unsigned/signed generating functions and the `F(w,h)` formula.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — the column-height product form and the sign-homomorphism reading of `P`.
-- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — the sibling-independence crux and the "parity is almost the whole difficulty" point.
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — notes sibling independence and the any-parity count `h^w − (h−1)^w`.
 
 ## Related Concepts
 
@@ -119,7 +119,7 @@ Towers of height ≤ 1 above a length-4 block are column heights `c ∈ {0,1}⁴
 ## Footnotes
 
 [^1]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"A column-height factorization" L72-89 — "each c_i ranges independently over {0, …, k}, and the tower word is recovered by [the invertible procedure] ... T(k,L) = (k+1)^L."
-[^2]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Sub-block independence" L5 — "Two sibling blocks in the same row generate towers that never interact ... This is the single fact that makes the problem tractable, and it took years to see."
+[^2]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Sub-block independence" L5 — "Two sibling blocks in the same row generate towers that never interact (the parent-row gap is automatic)."
 [^3]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The binary-string bijection" L14-19 — "Configurations within a block of length L ... biject with binary strings of length L: map each string to the configuration whose sub-blocks are its maximal runs of 1s ... 2^L ... r maximal runs of 1s ... r sub-blocks."
 [^4]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"T(k, L) = (k+1)^L" L23-37 — "a length-L binary string ... plus, for each maximal run of length l, an independent tower of height ≤ k-1 ... T(k, L) = ∑_b ∏_{runs} T(k-1, l) = ∑_b k^{ones(b)} = (1 + k)^L. Corollary ... T(h-1, w) = h^w."
 [^5]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L92-101 — "sgn(σ) = (-1)^{n - c} ... Each block is an excursion atom (a U ... D pair), and each D move completes one block. Weight each block by -1 and define s(C) = (-1)^{blocks(C)}."
