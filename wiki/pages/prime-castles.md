@@ -1,11 +1,11 @@
 ---
 title: Prime castles - the free gluing monoid by area
 category: Analyses
-summary: "Gluing castles at a shared height-1 column makes a free monoid, and its primes, in Gessel and Li's sense (the unique generating set of a free monoid), are the castles with no height-1 column, F_{n-1} of them by area, growing like φ when the height is unrestricted; at exact height h the growth is the root of x^h = x^(h-2) + ... + 1 (plastic at h = 3, supergolden at h = 4), increasing to φ. The factorization is the prime factorization of Dyck paths carried over by the Deutsch-Elizalde bijection, which sends prime Dyck paths of height at least 2 to exactly these castles. The composite castles, those with a height-1 column, are 2^{n-1} - F_{n-1}. The castle GF is 1/(1 - P) with P = q(1-q)/(1-q-q^2), and P is itself the castle GF raised one row. A castle has 1 + (number of height-1 columns) prime factors (A105422, A045623), and its peak count is the number of nontrivial factors. A convex castle has at most one nontrivial prime (counted on prime-convex-castles). Block parity is decided by the primes, and the prime parity splits are novel-candidates."
+summary: "Gluing castles at a shared height-1 column makes a free monoid, and its primes, in Gessel and Li's sense (the unique generating set of a free monoid), are the castles with no height-1 column, F_{n-1} of them by area, growing like φ when the height is unrestricted; at exact height h the growth is the root of x^h = x^(h-2) + ... + 1 (plastic at h = 3, supergolden at h = 4), increasing to φ. The factorization is the prime factorization of Dyck paths carried over by the Deutsch-Elizalde bijection, which sends prime Dyck paths of height at least 2 to exactly these castles. The composite castles, those with a height-1 column, are 2^{n-1} - F_{n-1}. The castle GF is 1/(1 - π) with π(q) = q(1-q)/(1-q-q^2) the prime GF, and π is itself the castle GF raised one row. A castle has 1 + (number of height-1 columns) prime factors (A105422, A045623), and its peak count is the number of nontrivial factors. A convex castle has at most one nontrivial prime (counted on prime-convex-castles). Block parity is decided by the primes, and the prime parity splits are novel-candidates."
 tags: [analysis, castle, area, composition, prime-castle, monoid, factorization, fibonacci, convex-castle, parity, q-series, oeis, novel-candidate]
 sources: [oeis-mining-pe502, deutsch-elizalde-2017-bargraphs-dyck-paths]
 created: 2026-09-22
-updated: 2026-10-04
+updated: 2026-10-10
 ---
 
 # Prime castles
@@ -14,7 +14,7 @@ updated: 2026-10-04
 
 ## The gluing monoid
 
-Let `M` be the castles that begin and end with a height-1 column. Glue two of them by laying them side by side and merging the last column of the left one with the first column of the right one:
+Let `𝓜` be the castles that begin and end with a height-1 column. Glue two of them by laying them side by side and merging the last column of the left one with the first column of the right one:
 
 ```
 (1, 2, 1) ∘ (1, 3, 3, 1)  =  (1, 2, 1, 3, 3, 1)
@@ -28,9 +28,9 @@ width(x ∘ y)  = width(x)  + width(y)  - 1
 blocks(x ∘ y) = blocks(x) + blocks(y) - 1
 ```
 
-The block identity holds because the two bottom rows merge into one block, and nothing above the bottom row can touch across a height-1 column. Every castle `C` lives in `M` after padding, `C ↦ (1, C, 1)`, which adds two cells and no blocks. The padding is a bijection from castles, together with the empty castle `() ↦ (1, 1)`, onto `M` without its identity.[^1]
+The block identity holds because the two bottom rows merge into one block, and nothing above the bottom row can touch across a height-1 column. Every castle `C` lives in `𝓜` after padding, `C ↦ (1, C, 1)`, which adds two cells and no blocks. The padding is a bijection from castles, together with the empty castle `() ↦ (1, 1)`, onto `𝓜` without its identity.[^1]
 
-**`M` is free.** Cut a padded castle at every interior height-1 column. The pieces are `(1, X, 1)` with `X` a castle having no height-1 column (possibly empty), and gluing them back gives the castle again. No other factorization exists, since every interior height-1 column must be a seam: a seam is a height-1 column, and a prime has none inside it.
+**`𝓜` is free.** Cut a padded castle at every interior height-1 column. The pieces are `(1, X, 1)` with `X` a castle having no height-1 column (possibly empty), and gluing them back gives the castle again. No other factorization exists, since every interior height-1 column must be a seam: a seam is a height-1 column, and a prime has none inside it.
 
 **"Prime" is the free-monoid term.** In a free monoid the elements that every element factors into, uniquely, are called its primes; they are also exactly its irreducible elements. Gessel and Li use the word this way for monoids of compositions under concatenation, and "compositions of `n` into parts greater than 1, `F_{n-1}` of them" is one of the identities they derive from it.[^gl] It has nothing to do with prime numbers. So:
 
@@ -40,19 +40,19 @@ The block identity holds because the two bottom rows merge into one block, and n
 
 All three statements, and the three identities above, were checked on every castle through area 16.[^1]
 
-## The `P/(1-P)` identity
+## The `π/(1 - π)` identity
 
-Grade `M` by reduced area, `area - 1`, so that gluing adds. A prime `(1, X, 1)` has reduced area `1 + area(X)`, and `X` ranges over the compositions with parts `≥ 2`, including the empty one:
+Grade `𝓜` by reduced area, `area - 1`, so that gluing adds. A prime `(1, X, 1)` has reduced area `1 + area(X)`, and `X` ranges over the compositions with parts `≥ 2`, including the empty one. The prime GF is `π(q) = Σ_j π_j q^j`, with `π_j` the number of primes of reduced area `j`:
 
 ```
-P(q) = q (1 + q^2/(1 - q - q^2)) = q (1 - q)/(1 - q - q^2)
+π(q) = q (1 + q^2/(1 - q - q^2)) = q (1 - q)/(1 - q - q^2)
 
-1/(1 - P) = (1 - q - q^2)/(1 - 2q) = 1 + q + q · q/(1 - 2q)
+1/(1 - π) = (1 - q - q^2)/(1 - 2q) = 1 + q + q · q/(1 - 2q)
 ```
 
-On the right, `1` is the identity `(1)`, `q` is the empty castle `(1, 1)`, and `q · q/(1 - 2q)` is the padded castles, the `2^{n-1}` of [[castle-by-area](pages/castle-by-area.md)] shifted by one. Without the identity this is the sequence construction `M - 1 = P/(1 - P)` of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)], and it is the identity Gessel and Li write down for any free monoid with an additive weight: the generating function of the monoid is `1/(1 - Σ_p x^{weight(p)})`, summed over its primes.[^gl]
+On the right, `1` is the identity `(1)`, `q` is the empty castle `(1, 1)`, and `q · q/(1 - 2q)` is the padded castles, the `2^{n-1}` of [[castle-by-area](pages/castle-by-area.md)] shifted by one. Without the identity this is the sequence construction `𝓜(q) - 1 = π/(1 - π)` of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)], and it is the identity Gessel and Li write down for any free monoid with an additive weight: the generating function of the monoid is `1/(1 - Σ_p x^{weight(p)})`, summed over its primes.[^gl]
 
-**The primes are castles raised one row.** A nonempty `X` with no height-1 column is a castle with a full row slid under it, so `P = q (1 + A(q, q))`, with `A(q, z)` the castle GF by area and width. With width tracked, the factorization becomes a `z → qz` functional equation. That equation is trivial unsigned, but signed or weighted by peaks it has content. It is on [[castle-row-raising-equation](pages/castle-row-raising-equation.md)].
+**The primes are castles raised one row.** A nonempty `X` with no height-1 column is a castle with a full row slid under it, so `π = q B(q, q)`, with `B(q, z)` the castle GF by area and width, empty castle included. With width tracked, the factorization becomes a `z → qz` functional equation. That equation is trivial unsigned, but signed or weighted by peaks it has content. It is on [[castle-row-raising-equation](pages/castle-row-raising-equation.md)].
 
 ## Prime castles of exact height `h`
 
@@ -146,7 +146,7 @@ for n in range(1, 17):
 - [[castle-row-raising-equation](pages/castle-row-raising-equation.md)]: the functional equation the raised primes give, signed and by peaks.
 - [[deutsch-elizalde-2017-bargraphs-dyck-paths](pages/deutsch-elizalde-2017-bargraphs-dyck-paths.md)]: the bijection that carries the prime factorization of Dyck paths to this one.
 - [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]: the raising map is its least-column-height bijection at `h = 1`, so by semi-perimeter the primes are all castles shifted by one (`0, 1, 2, 5, 13, 35, 97, …`, A082582(`s − 1`)), with the sign flipped.
-- [[signed-prime-castles](pages/signed-prime-castles.md)]: the sign as a character of this monoid, the signed `P_s/(1 - P_s)` identity, and counts per multiset of primes.
+- [[signed-prime-castles](pages/signed-prime-castles.md)]: the sign as a character of this monoid, the signed identity `1/(1 - π_χ)`, and counts per multiset of primes.
 - [[prime-convex-castles](pages/prime-convex-castles.md)]: the one nontrivial prime of a convex castle, counted.
 - [[convex-castle](pages/convex-castle.md)]: the convex castles.
 - [[castle-foata-transform](pages/castle-foata-transform.md)]: peaks, which count the nontrivial prime factors.

@@ -5,36 +5,36 @@ summary: "A prime castle is a castle raised one row, so the free gluing monoid o
 tags: [analysis, castle, area, width, prime-castle, monoid, functional-equation, q-shift, q-series, parity, sign, peaks, asymptotics, residue, oeis, interlink, novel-candidate]
 sources: [oeis-mining-pe502]
 created: 2026-09-22
-updated: 2026-10-02
+updated: 2026-10-10
 ---
 
 # The castle row-raising equation
 
-[[prime-castles](pages/prime-castles.md)] glues castles at a shared height-1 column. The result is a free monoid `M`: its elements are the padded castles `(1, C, 1)`, and its primes are `(1, X, 1)` with `X` a castle having no height-1 column. Such an `X` is a castle `Y` with a full row slid under it: `X = (y_1 + 1, ..., y_w + 1)`. So the primes are the castles again, raised one row, and freeness turns that into a functional equation. This page writes the equation with width tracked, which turns it into a `z → qz` recursion, and reads off the three specializations: unsigned, signed, and by peaks.
+[[prime-castles](pages/prime-castles.md)] glues castles at a shared height-1 column. The result is a free monoid `𝓜`: its elements are the padded castles `(1, C, 1)`, and its primes are `(1, X, 1)` with `X` a castle having no height-1 column. Such an `X` is a castle `Y` with a full row slid under it: `X = (y_1 + 1, ..., y_w + 1)`. So the primes are the castles again, raised one row, and freeness turns that into a functional equation. This page writes the equation with width tracked, which turns it into a `z → qz` recursion, and reads off the three specializations: unsigned, signed, and by peaks.
 
 ## The equation
 
-Grade `M` by reduced area `area - 1` (variable `q`) and reduced width `width - 1` (variable `z`), both additive under gluing. Raising `Y` one row keeps its width and adds `width(Y)` to its area, so it is the substitution `z → qz`. With `B(q, z)` the castle GF by area and width, including the empty castle:
+Grade `𝓜` by reduced area `area - 1` (variable `q`) and reduced width `width - 1` (variable `z`), both additive under gluing. Raising `Y` one row keeps its width and adds `width(Y)` to its area, so it is the substitution `z → qz`. With `B(q, z)` the castle GF by area and width, including the empty castle:
 
 ```
-primes:    P = qz · B(q, qz)               ((1,1) is the empty castle raised, weight qz)
-padded:    M = 1 + qz · B(q, z)            (the identity (1), then (1, C, 1) for every castle C)
-freeness:  M = 1/(1 - P)
+primes:    π = qz · B(q, qz)               ((1,1) is the empty castle raised, weight qz)
+padded:    𝓜 = 1 + qz · B(q, z)            (the identity (1), then (1, C, 1) for every castle C)
+freeness:  𝓜 = 1/(1 - π)
 
            1 + qz B(z)  =  1 / (1 - qz B(qz))
 ```
 
-Unsigned, the equation holds for the known `B = 1 + qz/(1 - q - qz)` (compositions by parts) and adds nothing. It carries information once a character of `M` weights the primes: [[signed-prime-castles](pages/signed-prime-castles.md)] shows that any statistic additive over prime factors is one, and the block sign is such a statistic.
+Unsigned, the equation holds for the known `B = 1 + qz/(1 - q - qz)` (compositions by parts) and adds nothing. It carries information once a character of `𝓜` weights the primes: [[signed-prime-castles](pages/signed-prime-castles.md)] shows that any statistic additive over prime factors is one, and the block sign is such a statistic.
 
 ## The signed equation
 
-Let `E(q, z) = sum (-1)^blocks(C) q^area(C) z^width(C)`, including the empty castle with weight `+1`. Raising adds one block. In `M` the sign character is `(-1)^(blocks - 1)`, so a prime `(1, X, 1)` with `X` raised from `Y` carries `(-1)^blocks(Y)`, while a padded `(1, C, 1)` carries `-(-1)^blocks(C)`. The trivial prime `(1, 1)` carries `+1` either way. That gives
+Let `E(q, z) = sum (-1)^blocks(C) q^area(C) z^width(C)`, including the empty castle with weight `+1`. Raising adds one block. In `𝓜` the sign character is `χ = (-1)^(blocks - 1) = -(-1)^blocks` ([[signed-prime-castles](pages/signed-prime-castles.md)]), so a prime `(1, X, 1)` with `X` raised from `Y` carries `(-1)^blocks(Y)`, while a padded `(1, C, 1)` carries `-(-1)^blocks(C)`. The trivial prime `(1, 1)` carries `+1` either way. That gives
 
 ```
 1 + qz (2 - E(z))  =  1 / (1 - qz E(qz))
 ```
 
-The `2` is the empty castle, which is counted `+1` inside `E` but enters `M` as `(1, 1)` with sign `+1` instead of `-1`. This is the same identity as `1/(1 - P_s)` on [[signed-prime-castles](pages/signed-prime-castles.md)], now with width.
+The `2` is the empty castle, which is counted `+1` inside `E` but enters `𝓜` as `(1, 1)` with sign `+1` instead of `-1`. This is the same identity as `1/(1 - π_χ)` on [[signed-prime-castles](pages/signed-prime-castles.md)], now with width.
 
 **It is a recursion.** The right side at area `n + 1` involves `E(qz)` only through areas `≤ n - 1`, because `qz` and the shift each add area. So reading off `[q^(n+1)]` gives `-z E_n(z)` from lower terms, one area at a time, with no enumeration. The computation below reaches area 300 in about 15 seconds. An independent column DP (block count = total ascent, one pass per area) gives the same `even(n) - odd(n)` at every `n ≤ 300`, and brute-force enumeration gives the same width polynomials through area 12. At `n ≤ 12` the values agree with the `even`/`odd` table on [[castle-by-area](pages/castle-by-area.md)].[^1]
 
@@ -114,7 +114,7 @@ print(t[1:17], t[300] / t[299])                 # even - odd; ratio -> -rho
 
 ## Open
 
-- Solve the linearized signed equation for `H` as a q-series in `z`. At `z = 1` a pole of `E(q, 1)` is a zero of `H`; whether the first zero of `H(q, 1)` is `q_0`, and whether `H` is the `M` of [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] up to a factor, is open. Either would give a second derivation of the closed form, from the prime-castle monoid instead of the tower grammar.
+- Solve the linearized signed equation for `H` as a q-series in `z`. At `z = 1` a pole of `E(q, 1)` is a zero of `H`; whether the first zero of `H(q, 1)` is `q_0`, and whether `H` is the `M(q)` of [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] up to a factor, is open. Either would give a second derivation of the closed form, from the prime-castle monoid instead of the tower grammar.
 - The signed prime convex series: the convex case of the signed equation, which would give `cev - cod` on [[castle-by-area](pages/castle-by-area.md)] in closed form.
 
 ## Relation to other pages
