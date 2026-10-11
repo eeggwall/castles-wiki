@@ -1,7 +1,7 @@
 ---
 title: Growth constants by semi-perimeter
 category: Analyses
-summary: Count castle strips (a 0/1 rule saying which column heights may follow which) by semi-perimeter s = width + blocks and ask which growth constants appear and at what smallest height. The denominator is det(I − M(x)) with a step from height a to height b weighted x^(1 + max(0, b − a)). Exact census through height 4 - 2, 34 and 2,106 new constants at heights 2, 3, 4. On this page a constant's name means growth by semi-perimeter, never by width, area or spectrum: supergolden and ψ² semi-perimeter growth first appear at height 2, golden, plastic and tribonacci at 3, silver at 5 (601 of the 2^25 rules, confirmed exactly), and bronze cannot appear below height 22 - all castles of height at most 21 grow more slowly than bronze by semi-perimeter - so it is open. Castles using only two heights d apart grow by semi-perimeter at the root of (y − 1)² y^d = 1: ψ² at d = 1, golden at 2, supergolden at 4, plastic at 8, never silver or bronze. A natural silver semi-perimeter family is height 5 with no 1 next to a 2 and no 4 next to a 5.
+summary: Count castle strips (a 0/1 rule saying which column heights may follow which) by semi-perimeter s = width + blocks and ask which growth constants appear and at what smallest height. The denominator is det(I − M(x)) with a step from height a to height b weighted x^(1 + max(0, b − a)). Exact census through height 4 - 2, 34 and 2,106 new constants at heights 2, 3, 4. On this page a constant's name means growth by semi-perimeter, never by width, area or spectrum: supergolden and ψ² semi-perimeter growth first appear at height 2, golden, plastic and tribonacci at 3, silver at 5 (601 of the 2^25 rules, confirmed exactly), and bronze cannot appear below height 22 - the number of castles of height at most 21 with semi-perimeter s grows more slowly than bronze^s - so it is open. Throughout, a growth constant g means the number of castles with semi-perimeter s grows like g^s. Castles using only two heights d apart number about y^s at semi-perimeter s, with y the root of (y − 1)² y^d = 1: ψ² at d = 1, golden at 2, supergolden at 4, plastic at 8, never silver or bronze. A natural silver semi-perimeter family is height 5 with no 1 next to a 2 and no 4 next to a 5.
 tags: [analysis, castle, castle-strip, semi-perimeter, perimeter, generating-function, transfer-matrix, growth-constant, census, exhaustive-search, min-height, metallic-means, plastic-number, supergolden, golden-ratio, silver-ratio, bronze, oeis, sympy, verification]
 sources: [project-euler-502]
 created: 2026-10-11
@@ -17,7 +17,7 @@ A castle's **semi-perimeter** is half the length of its outline, `s = w + #block
 ## Terms used on this page
 
 - **Semi-perimeter** `s`. Reading left to right with `c_0 = 0`, the block count grows by `max(0, c_i − c_{i−1})` at each column, so a column of height `b` after one of height `a` adds `1 + max(0, b − a)` to `s`.
-- **Growth constant** - the number `g` with the count growing like `g^s`; it is `1/x*`, where `x*` is the smallest positive root of the denominator below.
+- **Growth constant** - for a family of castles, the number `g` such that the number of castles in the family with semi-perimeter `s` grows like `g^s` as `s` grows (the exponential growth rate of that count). It is `1/x*`, where `x*` is the smallest positive root of the denominator below. **On this page "grows at `g`", "growth" and "ceiling" always mean this count by semi-perimeter**; the same family counted by width or by area has a different growth constant.
 - **Height of a rule** - the number `h` of column heights `1..h` it uses.
 - **Constant names on this page.** Golden, silver, bronze, plastic, supergolden, tribonacci and `ψ²` name a growth constant **by semi-perimeter** throughout. "Silver first appears at height 5" means the smallest height with a rule whose count by semi-perimeter grows at `1 + √2`. It says nothing about silver by width, by area or by adjacency spectrum, which are different questions with different answers ([[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)]): silver by width already appears at height 3, and silver by area is impossible. The "spectral radius of `M(x)`" used in the computations is a step in finding the semi-perimeter growth, not the adjacency spectrum of a castle.
 
@@ -29,7 +29,7 @@ Weight the step from height `a` to height `b` by `x^(1 + max(0, b − a))`. The 
 det( I − M(x) ),     M[a][b] = (1 if b may follow a, else 0) · x^(1 + max(0, b − a)).
 ```
 
-Requiring the castle to reach height `h` subtracts the strips that stay below it, which never grow faster; the census below lists the growth of the full rule, and for every family named on this page the castles that reach height `h` were counted directly and grow at the same rate.[^exec]
+Requiring the castle to reach height `h` subtracts the strips that stay below it, whose count by semi-perimeter never grows faster; the census below lists the growth of the full rule, and for every family named on this page the castles that reach height `h` were counted directly and grow at the same rate.[^exec]
 
 ## The census through height 4
 
@@ -46,13 +46,13 @@ Height 2 gives only supergolden (`z³ − z² − 1`, the rule "no two adjacent 
 
 ## The ceiling at each height
 
-A rule at height `h` counts a subset of the castles of height at most `h`, so its growth is at most that of all castles of exact height `h`. That ceiling rises with `h` towards `τ² ≈ 3.383`:[^exec]
+A rule at height `h` counts a subset of the castles of height at most `h`, so its growth constant by semi-perimeter is at most that of all castles of exact height `h`. That ceiling (the growth constant by semi-perimeter of all castles of exact height `h`) rises with `h` towards `τ² ≈ 3.383`:[^exec]
 
 | `h` | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 15 | 20 | 21 | 22 |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| all castles of height `h` | `1.7549` | `2.2056` | `2.4947` | `2.6902` | `2.8281` | `3.0046` | `3.1087` | `3.2374` | `3.2930` | `3.3002` | `3.3066` |
+| growth constant by semi-perimeter, all castles of height `h` | `1.7549` | `2.2056` | `2.4947` | `2.6902` | `2.8281` | `3.0046` | `3.1087` | `3.2374` | `3.2930` | `3.3002` | `3.3066` |
 
-**No family of castles of height at most 21 grows at bronze `(3 + √13)/2 = 3.3028` by semi-perimeter.** (By width bronze needs only height 4, the ridge castles; this bound is about semi-perimeter alone.) Every such family is a subset of the castles of height at most 21, whose growth is `3.3002`. At `x = 1/bronze` the spectral radius of `M(x)` for all castles of height 21 is `0.99866 < 1`, and for height 22 it is `1.00200 > 1`, both computed to 50 digits. Bronze is therefore possible only from height 22, where an exhaustive census is out of reach; whether it occurs is open. Silver `2.4142` is below the height-4 ceiling.
+**No family of castles of height at most 21 grows at bronze `(3 + √13)/2 = 3.3028` by semi-perimeter.** (By width bronze needs only height 4, the ridge castles; this bound is about semi-perimeter alone.) Every such family is a subset of the castles of height at most 21, and the number of those with semi-perimeter `s` grows like `3.3002^s`. At `x = 1/bronze` the spectral radius of `M(x)` for all castles of height 21 is `0.99866 < 1`, and for height 22 it is `1.00200 > 1`, both computed to 50 digits. Bronze is therefore possible only from height 22, where an exhaustive census is out of reach; whether it occurs is open. Silver `2.4142` is below the height-4 ceiling.
 
 ## The named constants and their first heights by semi-perimeter
 
@@ -70,7 +70,7 @@ The rule counts at heights 3 and 5 are from an exhaustive scan of all rules at t
 
 ## Two-height castles
 
-Castles whose columns take only two heights `a < b`, in any order, have a two-state rule; with `d = b − a` the denominator is `(1 − x)² − x^{d+2}`, so the growth `y` is the root above 1 of
+Castles whose columns take only two heights `a < b`, in any order, have a two-state rule; with `d = b − a` the denominator is `(1 − x)² − x^{d+2}`, so the number of them with semi-perimeter `s` grows like `y^s`, where `y` is the root above 1 of
 
 ```
 (y − 1)² · y^d = 1.
@@ -78,7 +78,7 @@ Castles whose columns take only two heights `a < b`, in any order, have a two-st
 
 It depends only on the gap `d`, and it falls as `d` grows:
 
-| gap `d` | equation | growth |
+| gap `d` | equation | growth constant by semi-perimeter |
 |---|---|---|
 | 1 | `y³ − 2y² + y − 1 = 0` | `ψ² = 1.7549` |
 | 2 | `y² − y − 1 = 0` | golden |
@@ -93,7 +93,7 @@ Silver semi-perimeter growth first appears at height 5: of the `2^25` rules, 601
 
 - **exact height 5; no column of height 1 next to one of height 2, and no column of height 4 next to one of height 5.** Example: `(3, 5, 3, 1, 4)`, semi-perimeter `5 + 3 + 2 + 3 = 13`.
 
-Its denominator is `(1 − x)² (1 + x²)(1 − 2x − x²)(1 − x + x² + x³)`, up to sign, and its castles of exact height 5 number `1, 7, 26, 74, 196, 525, 1421, 3809, 10040, 26102, 67250` at `s = 6, …, 16` (no OEIS match, searched 2026-10-11). The ratios approach silver slowly (`2.426` near `s = 56`), because the castles of this rule that stay below height 5 grow at `2.3138`, close to silver.
+Its denominator is `(1 − x)² (1 + x²)(1 − 2x − x²)(1 − x + x² + x³)`, up to sign, and its castles of exact height 5 number `1, 7, 26, 74, 196, 525, 1421, 3809, 10040, 26102, 67250` at `s = 6, …, 16` (no OEIS match, searched 2026-10-11). The ratios of consecutive counts approach silver slowly (`2.426` near `s = 56`), because the castles of this rule that stay below height 5 have growth constant `2.3138` by semi-perimeter, close to silver.
 
 ## Open threads
 
