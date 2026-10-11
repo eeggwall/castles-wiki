@@ -1,0 +1,14 @@
+# python3 bin/python/bronze_groups.py  (2026-10-10, Python 3.10, numpy, python-sat; 8 cores)
+golden True
+silver True
+phi^2 True
+k=2: 0 tables, 0 fit the grid at R=3, 0 fit as castles
+k=3: 0 tables, 0 fit the grid at R=3, 0 fit as castles
+k=4: 36 tables, 0 fit the grid at R=3, 0 fit as castles
+k=5: 390 tables, 6 fit the grid at R=3, 0 fit as castles
+  finite shapes up to 12 x 12: False
+
+real	12m8.192s
+user	24m9.890s
+sys	0m20.495s
+
