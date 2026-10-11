@@ -5,7 +5,7 @@ summary: Sub-families of the Fibonacci castles cut out by a rule on the Fibonacc
 tags: [concept, castle, castle-type, fibonacci, fibonacci-tower, fibonacci-word, sturmian, balanced-word, totient, sub-family, maximal-independent-set, padovan, plastic-number, narayana-cows, supergolden, run-length-limited, capacity, oeis]
 sources: [project-euler-502]
 created: 2026-10-04
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # Fibonacci castle sub-families
@@ -77,7 +77,7 @@ A **maximal castle** is a Fibonacci castle in which no further column can be rai
 #{maximal castles of width w}  =  A000931(w + 6)  =  1, 2, 2, 3, 4, 5, 7, 9, 12, 16, 21, 28, …,
 ```
 
-the Padovan numbers, which A000931 lists as the number of maximal independent vertex sets of the path graph;[^a000931] the generating function is `x(1 + x)²/(1 − x² − x³)`. They grow like the plastic number `ψ ≈ 1.3247`, the real root of `x³ = x + 1` ([[plastic-number](pages/plastic-number.md)]).[^exec] The 56-column castle from the Fibonacci word is not maximal: it ends in two height-1 columns, and the last of them could be raised.
+the Padovan numbers, which A000931 lists as the number of maximal independent vertex sets of the path graph;[^a000931] the generating function is `x(1 + x)²/(1 − x² − x³)`. They grow like the plastic number `ψ ≈ 1.3247`, the real root of `x³ = x + 1` ([[plastic-number](pages/plastic-number.md)]).[^exec] Three other plastic families map bijectively onto them, and the palindromic tree castles share their generating function ([[padovan-families](pages/padovan-families.md)]). The 56-column castle from the Fibonacci word is not maximal: it ends in two height-1 columns, and the last of them could be raised.
 
 ### Spaced castles
 

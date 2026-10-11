@@ -1,0 +1,12 @@
+# python3 bin/python/padovan_families.py  (2026-10-11, Python 3.10, SymPy)
+maximal (width)                GF matches counts n = 1..18: True
+palindromic tree (area)        GF matches counts n = 1..18: True
+ridge, exact height 2 (area)   GF matches counts n = 1..18: True
+rule from 1 (width)            GF matches counts n = 1..18: True
+(1, 2)-RLL (width)             GF matches counts n = 1..18: True
+ridge area A -> maximal width A-1, A = 2..20: True
+rule width w -> maximal width w-2, w = 3..20: True
+(1,2)-RLL width w -> maximal width w+2, w = 3..18: True
+tree-castle denominator at y = x^2: (x**3 - x**2 + 1)*(x**3 + x**2 - 1)
+prime castles of exact height 3, area A = P(A+3) - [A even], A = 1..20: True
+examples: (2, 1, 1, 2, 1, 2, 1) (1, 2, 1, 2, 1, 1, 2, 1) (2, 1, 1, 2, 1, 2, 1)

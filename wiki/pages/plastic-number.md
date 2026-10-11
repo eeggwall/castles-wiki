@@ -5,7 +5,7 @@ summary: ψ = 1.3247…, the real root of x³ = x + 1 - the cubic sibling of the
 tags: [concept, plastic-number, pisot, padovan, perrin, cubic, jacobi-perron, eigenvalue, castle, oeis, strip-perron-root]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-16
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # Plastic number
@@ -88,6 +88,7 @@ A plain (unsigned) castle statistic whose count grows at the bare `ψ` is a **Pa
 
 - [[reachable-field-census](pages/reachable-field-census.md)] - where the bare `ψ` was found as a height-3 castle-strip Perron root (`x³ − x − 1`).
 - [[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)] - plastic beside golden, silver and bronze on every axis; no graph has spectral radius `ψ`.
+- [[padovan-families](pages/padovan-families.md)] - the castle families counted by Padovan numbers: one core of blocks of size 2 and 3, and bijections between them.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k,·)` family whose `k = 6` row carries the plastic eigenvalue.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the `num_k/den_k` recurrence that generates `char_k`.
 
