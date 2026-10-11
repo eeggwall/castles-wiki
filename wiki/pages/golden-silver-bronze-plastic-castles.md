@@ -91,7 +91,7 @@ The ridge castles of exact height 2 are golden by width and plastic by area. The
 
 The denominators, with `x` marking semi-perimeter, are `(1 − x − x²)(1 − x + x²)` for the `{1, 3}` castles, `(1 − x² − x³)(1 − x + x²)` for the plastic rule, and `1 − 2x + x² − x³` (reversed, `x³ − 2x² + x − 1`, the minimal polynomial of `ψ²`) for all castles of exact height 2.[^exec] The `{1, 3}` count is the OEIS's count of possible crossword rows, "1, 3, 6, 10, 16, 26, 43, …".[^a130578]
 
-An exhaustive check of all rules through height 4 (65,536 tables at height 4) finds golden at height 3 (26 rules) and plastic at height 3 (10 rules), and no silver or bronze.[^census] The full census is on [[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)]: silver first appears at height 5, in 601 rules; castles with every column one of two heights 8 apart grow at plastic; and no family of castles of height at most 21 reaches bronze, because all castles of height 21 grow at only `3.3002` by semi-perimeter.
+An exhaustive check of all rules through height 4 (65,536 tables at height 4) finds golden at height 3 (26 rules) and plastic at height 3 (10 rules), and no silver or bronze.[^census] The full census is on [[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)]: silver semi-perimeter growth first appears at height 5, in 601 rules; castles with every column one of two heights 8 apart grow at plastic by semi-perimeter; and no family of castles of height at most 21 has bronze semi-perimeter growth, because all castles of height 21 grow at only `3.3002` by semi-perimeter.
 
 ## Adjacency spectrum
 
@@ -131,7 +131,7 @@ Banning `11` and banning `22` give the same growth by width, since exchanging th
 
 ## Open threads
 
-1. **Bronze by semi-perimeter.** Impossible below height 22 and open from there ([[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)]).
+1. **Bronze by semi-perimeter.** Impossible below height 22 and open from there (by width, bronze is the ridge castles of height 4) ([[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)]).
 2. **Bronze by spectrum.** Open ([[bronze-castle-hunt](pages/bronze-castle-hunt.md)]).
 3. **A bijection for the palindromic tree castles.** The Padovan families share one core, blocks of size 2 and 3, and three of them map bijectively onto the maximal castles ([[padovan-families](pages/padovan-families.md)]); the palindromic tree castles have the maximal castles' generating function but no explicit map yet.
 

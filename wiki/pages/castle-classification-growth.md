@@ -129,12 +129,12 @@ The semi-perimeter axis grades by `s = w + #blocks`; all castles together grow a
 
 - **Golden** - castles of exact height 3 with every column 1 or 3. Example `(3, 1, 1, 3)`, `s = 9`. Count `A130578(s − 1)`.
 - **Plastic** - castles of exact height 9 with every column 1 or 9 (two heights 8 apart). Example `(1, 9, 1)`, `s = 12`. Also the rule `1 → 2`, `2 → {2, 3}`, `3 → 1` at exact height 3.
-- **Silver** - castles of exact height 5 with no column of height 1 next to one of height 2 and no 4 next to a 5. Example `(3, 5, 3, 1, 4)`, `s = 13`. Silver first appears at height 5.
+- **Silver** - castles of exact height 5 with no column of height 1 next to one of height 2 and no 4 next to a 5. Example `(3, 5, 3, 1, 4)`, `s = 13`. Silver semi-perimeter growth first appears at height 5.
 - **Plastic-squared `ψ²`** - all castles of exact height 2. Example `(1, 2, 1)`, `s = 5`. Count `A077855(s − 3)`.
 - **Supergolden** - the Fibonacci castles and the ridge castles of exact height 2, both with denominator `1 − x − x³`.
 - **Convex castles** grow at `φ²` (A001519, [[castle-perimeter](pages/castle-perimeter.md)]).
 
-Bronze is impossible for every family of castles of height at most 21, whose growth by semi-perimeter is at most `3.3002`, and open from height 22. The census of constants and first heights is on [[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)].
+Bronze semi-perimeter growth is impossible for every family of castles of height at most 21, whose growth by semi-perimeter is at most `3.3002`, and open from height 22. The census of constants and first heights is on [[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)].
 
 ## Cross-scope statements
 
@@ -156,7 +156,7 @@ Relating the growth types of one class under different axes is open.
 
 1. **Alternative realizations of the bronze, `δ_4`, `δ_5`, … width growth castles.** Silver has several realizations; every higher rung has only the ridge rule `R_h = J − D`. Does any higher rung admit a second, structurally distinct castle-strip rule?
 2. **Block growth axis** - no member known.
-3. **Bronze semi-perimeter growth castles** - impossible below height 22, open from there.
+3. **Bronze semi-perimeter growth castles** - impossible below height 22, open from there (bronze width growth castles exist at height 4).
 4. **Cross-axis statements** - relating growth types under different axes on the same class.
 
 ## Related Concepts
