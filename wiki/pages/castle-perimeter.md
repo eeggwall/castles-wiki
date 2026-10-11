@@ -5,7 +5,7 @@ summary: A castle's semi-perimeter is `w + #blocks`, so the block count is Deles
 tags: [analysis, castle, perimeter, blocks, parity, bargraph, generating-function, algebraic, tribonacci, fibonacci, delest-viennot, oeis, novel-candidate]
 sources: [algebraic-languages-and-polyominoes-enumeration, project-euler-502-brute-force, tower-narayana-polynomial]
 created: 2026-09-22
-updated: 2026-10-02
+updated: 2026-10-11
 ---
 
 # Castle perimeter - blocks are the vertical half-perimeter
@@ -77,6 +77,8 @@ A convex castle has exactly `h` blocks, so `s = w + h` and the grading is the an
 The signed convex count is periodic because `1 - t + t²` has its roots at primitive sixth roots of unity. The even-`h` sequence has no OEIS match (searched 2026-09-22, with and without the leading 0). So `even = (A001519 + period-6)/2` gives the parity split of convex castles by perimeter exactly. All three series were checked against the DP through `s = 30`.
 
 ## Relation to other pages
+
+- [[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)]: castle strips under a rule, counted by semi-perimeter - which growth constants occur at each height, silver first at height 5, and bronze impossible below height 22.
 
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)]: the perimeter grading and the grammar-to-algebraic-GF method. `B(t)` is algebraic (context-free) and becomes rational at bounded height, as [[tower-word-language](pages/tower-word-language.md)] explains.
 - [[convex-castle](pages/convex-castle.md)], [[stack-polyomino-gf](pages/stack-polyomino-gf.md)]: convex castles = stacks, with the parity split by perimeter.

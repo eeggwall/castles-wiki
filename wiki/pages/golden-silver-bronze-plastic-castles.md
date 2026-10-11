@@ -38,7 +38,7 @@ The first three are the metallic means ([[metallic-means](pages/metallic-means.m
 |---|---|---|---|---|
 | width | Fibonacci castles; ridge castles, `h = 2` | Pell castles; ridge castles, `h = 3` | ridge castles, `h = 4` | maximal castles; **`(1, 2)`-RLL castles; the rule `1 → 2 → 3 → {1, 2}`, `h = 3`** |
 | area | all castles of exact height 2; prime castles | **impossible** | **impossible** | **ridge castles, `h = 2`**; palindromic tree castles; prime castles of exact height 3 |
-| semi-perimeter | castles with every column 1 or 3 | none through height 4 | none through height 4 | a height-3 rule (10 of 512) |
+| semi-perimeter | castles with every column 1 or 3 | **a height-5 rule (601 of `2^25`)** | **impossible below height 22**; open | **every column 1 or 9**; a height-3 rule |
 | adjacency spectrum | the six 4-cell paths | 36 castles up to mirror image | open | **impossible** |
 | signed transfer matrix of Project Euler 502 (PE 502) | never | never | never | `2ψ²` at tower height `k = 6` |
 
@@ -86,10 +86,12 @@ The ridge castles of exact height 2 are golden by width and plastic by area. The
 | **golden** | **castles of exact height 3 with every column 1 or 3** | `(3, 1, 1, 3)`, `s = 4 + 3 + 2 = 9` | `A130578(s − 1)` |
 | **plastic** | **the rule `1 → 2`, `2 → {2, 3}`, `3 → 1`, exact height 3** | `(1, 2, 2, 3, 1, 2)`, `s = 10` | growth `ψ` |
 | `ψ²` | all castles of exact height 2 | `(1, 2, 1)`, `s = 5` | `A077855(s − 3)` |
+| **silver** | **exact height 5, no 1 next to a 2, no 4 next to a 5** | `(3, 5, 3, 1, 4)`, `s = 13` | growth `1 + √2` |
+| **plastic** | **exact height 9, every column 1 or 9** | `(1, 9, 1)`, `s = 12` | growth `ψ` |
 
 The denominators, with `x` marking semi-perimeter, are `(1 − x − x²)(1 − x + x²)` for the `{1, 3}` castles, `(1 − x² − x³)(1 − x + x²)` for the plastic rule, and `1 − 2x + x² − x³` (reversed, `x³ − 2x² + x − 1`, the minimal polynomial of `ψ²`) for all castles of exact height 2.[^exec] The `{1, 3}` count is the OEIS's count of possible crossword rows, "1, 3, 6, 10, 16, 26, 43, …".[^a130578]
 
-An exhaustive check of all rules through height 4 (65,536 tables at height 4) finds golden at height 3 (26 rules) and plastic at height 3 (10 rules), and **no rule through height 4 with silver or bronze semi-perimeter growth**.[^census] Neither is ruled out: all castles of exact height 4 already grow at `2.49` by semi-perimeter, and all castles together at `τ² = 3.38` ([[castle-perimeter](pages/castle-perimeter.md)]).
+An exhaustive check of all rules through height 4 (65,536 tables at height 4) finds golden at height 3 (26 rules) and plastic at height 3 (10 rules), and no silver or bronze.[^census] The full census is on [[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)]: silver first appears at height 5, in 601 rules; castles with every column one of two heights 8 apart grow at plastic; and no family of castles of height at most 21 reaches bronze, because all castles of height 21 grow at only `3.3002` by semi-perimeter.
 
 ## Adjacency spectrum
 
@@ -129,10 +131,9 @@ Banning `11` and banning `22` give the same growth by width, since exchanging th
 
 ## Open threads
 
-1. **Silver and bronze by semi-perimeter.** None through height 4; both are below the all-castle growth `τ²`, so a rule at a larger height may reach them.
+1. **Bronze by semi-perimeter.** Impossible below height 22 and open from there ([[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)]).
 2. **Bronze by spectrum.** Open ([[bronze-castle-hunt](pages/bronze-castle-hunt.md)]).
-3. **A natural plastic semi-perimeter rule.** The ten height-3 rules found by the check have no reading as a named castle type yet.
-4. **A bijection for the palindromic tree castles.** The Padovan families share one core, blocks of size 2 and 3, and three of them map bijectively onto the maximal castles ([[padovan-families](pages/padovan-families.md)]); the palindromic tree castles have the maximal castles' generating function but no explicit map yet.
+3. **A bijection for the palindromic tree castles.** The Padovan families share one core, blocks of size 2 and 3, and three of them map bijectively onto the maximal castles ([[padovan-families](pages/padovan-families.md)]); the palindromic tree castles have the maximal castles' generating function but no explicit map yet.
 
 ## Related Concepts
 
@@ -144,6 +145,7 @@ Banning `11` and banning `22` give the same growth by width, since exchanging th
 - [[ridge-castle](pages/ridge-castle.md)] - the ridge rule, golden by width at height 2.
 - [[area-growth-census](pages/area-growth-census.md)] - the area census and the smallest-growth lemma.
 - [[castle-perimeter](pages/castle-perimeter.md)] - the semi-perimeter grading.
+- [[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)] - every growth constant by semi-perimeter through height 4, silver at height 5, the bronze bound.
 
 ## Footnotes
 
