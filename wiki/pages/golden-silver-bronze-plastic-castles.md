@@ -97,7 +97,7 @@ An exhaustive check of all rules through height 4 (65,536 tables at height 4) fi
 |---|---|---|
 | golden | the six 4-cell castles `(4)`, `(1, 3)`, `(3, 1)`, `(1, 1, 2)`, `(2, 1, 1)`, `(1, 1, 1, 1)`, all the path `P_4` | complete (Smith's theorem) |
 | silver | the `3 × 2` rectangle, `(1, 2, 3, 1, 2, 3)` and others; 36 up to mirror image to width 10 | known members |
-| bronze | none in about `7.1 × 10^11` skylines searched | open ([[bronze-castle-hunt](pages/bronze-castle-hunt.md)]) |
+| bronze | none in about `7.1 × 10^11` skylines searched; no split into five or fewer evenly connected groups can give it | open ([[bronze-castle-hunt](pages/bronze-castle-hunt.md)]) |
 | **plastic** | none | **impossible** |
 
 **No castle, and no graph at all, has spectral radius `ψ`.** A graph's adjacency matrix is a symmetric integer matrix, so all its eigenvalues are real. If `ψ` were one, its minimal polynomial `x³ − x − 1` would divide the characteristic polynomial, and the two complex roots `−0.662 ± 0.562i` would be eigenvalues too. The same argument excludes every cubic constant on the wiki: `ψ²`, supergolden and tribonacci all have complex conjugates (the discriminants of `x³ − x − 1`, `x³ − 2x² + x − 1` and `x³ − x² − 1` are `−23`, `−23` and `−31`).[^exec] The metallic means have real conjugates, so the argument does not touch them; `δ_4` and above are excluded instead by the maximum degree 4 of a castle graph ([[castle-classification-spectrum](pages/castle-classification-spectrum.md)]).

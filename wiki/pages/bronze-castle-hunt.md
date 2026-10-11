@@ -1,7 +1,7 @@
 ---
 title: The bronze castle hunt - is (3 + sqrt 13)/2 ever a castle's spectral radius?
 category: Analyses
-summary: Searches for a castle whose graph (cells as dots, touching cells joined) has largest eigenvalue exactly the bronze ratio (3 + sqrt 13)/2 = 3.3028, the third metallic mean after golden and silver. An exact pruning rule - factor bronze times the identity minus the adjacency matrix one cell at a time and count negative pivots, which equals the number of eigenvalues above bronze - covers every skyline in twelve boxes from 22 wide x 3 tall to 5 wide x 32 tall, about 7.1 x 10^11 skylines counting box overlaps, about 1.5 x 10^5 times the earlier 4.87-million scan. No bronze castle: 55 distinct floating-point near-misses, the closest 2.3 x 10^-12 away, all ruled out by a nonzero integer determinant of A^2 - 3A - I. Two proofs close off the obvious constructions: no rectangle has bronze as any eigenvalue (averaging over the number field's symmetries leaves only 2.618 and 0.382), and no castle splits into two evenly connected groups whose neighbour counts give bronze (every such split needs a cell with 5 neighbours or a finite grid patch where every cell has 3), which is exactly how the 3 x 2 rectangle gets silver. Among all 28,251 castles up to 6 x 6, bronze is not even a lower eigenvalue. Near-misses are cheap because a dangling tower moves the radius by about 10^-11; an exact hit needs sqrt 13 in the characteristic polynomial, and nothing seen produces it.
+summary: Searches for a castle whose graph (cells as dots, touching cells joined) has largest eigenvalue exactly the bronze ratio (3 + sqrt 13)/2 = 3.3028, the third metallic mean after golden and silver. An exact pruning rule - factor bronze times the identity minus the adjacency matrix one cell at a time and count negative pivots, which equals the number of eigenvalues above bronze - covers every skyline in twelve boxes from 22 wide x 3 tall to 5 wide x 32 tall, about 7.1 x 10^11 skylines counting box overlaps, about 1.5 x 10^5 times the earlier 4.87-million scan. No bronze castle: 55 distinct floating-point near-misses, the closest 2.3 x 10^-12 away, all ruled out by a nonzero integer determinant of A^2 - 3A - I. Two proofs close off the obvious constructions: no rectangle has bronze as any eigenvalue (averaging over the number field's symmetries leaves only 2.618 and 0.382), and no castle splits into two evenly connected groups whose neighbour counts give bronze (every such split needs a cell with 5 neighbours or a finite grid patch where every cell has 3), which is exactly how the 3 x 2 rectangle gets silver. An exhaustive search, finished by a SAT solver, extends this to every split into three, four or five groups. Among all 28,251 castles up to 6 x 6, bronze is not even a lower eigenvalue. Near-misses are cheap because a dangling tower moves the radius by about 10^-11; an exact hit needs sqrt 13 in the characteristic polynomial, and nothing seen produces it.
 tags: [analysis, castle, spectral, adjacency, spectral-radius, metallic-means, bronze-ratio, search, pruning, inertia, galois, equitable-partition, near-miss, implementation, verification]
 sources: [project-euler-502-representations]
 created: 2026-09-24
@@ -125,13 +125,36 @@ When every cell in a group has the same neighbour counts like this (an **equitab
 
 A cell on a square grid has at most 4 neighbours. And any finite set of cells has a lowest-leftmost cell, with nothing to its left or below, so at most 2 neighbours in that set. Every row of the table is ruled out. A bronze castle, if one exists, has no equitable partition into two groups.
 
+### Three, four and five evenly connected groups
+
+The two-group argument extends to more groups. Split a castle's cells into `k` groups so that every cell of group `i` has the same number `q_ij` of neighbours in group `j`. The table `Q = (q_ij)` then has the castle's spectral radius as its own largest eigenvalue, so a bronze castle with such a split gives a table with largest eigenvalue bronze. Three facts about cells on a square grid restrict the table:
+
+- **Degree.** A cell has at most 4 neighbours, so every row of `Q` sums to at most 4.
+- **Corners.** Any finite set of cells has a lowest-leftmost cell, with nothing to its left or below it, so at most 2 neighbours inside the set. Applied to the union of any choice of groups, this says the groups can be listed in an order in which a cell of each group has at most 2 neighbours among its own group and the groups after it: take the group holding the lowest-leftmost cell of the whole castle, remove it, and repeat.
+- **Local fit.** Around any cell, the groups of the nearby cells have to match `Q` at every cell whose four neighbours are all nearby.
+
+The tables also have to come from a connected castle (no block of groups is cut off from the rest) and from real group sizes (`q_ij > 0` exactly when `q_ji > 0`, with `n_i q_ij = n_j q_ji` for positive group sizes `n_i`). An exhaustive search over all such tables, followed by the local-fit test:
+
+| groups | tables with largest eigenvalue bronze passing degree and corners | of those, passing the local fit |
+|---|---|---|
+| 2 | 0 | - |
+| 3 | 0 | - |
+| 4 | 36 | 0 |
+| 5 | 390 | 6 as grid shapes, 0 as castles |
+
+The local-fit test asks a SAT solver whether a 7 x 7 patch of grid, centred on a cell of a given group, can be labelled with groups and empty squares so that every cell of the inner 5 x 5 has exactly the neighbour counts its row of `Q` prescribes. Every one of the 36 four-group tables, and 384 of the 390 five-group tables, has a group with no such patch. A castle with that split would supply the patch, so none of these comes from a castle, or from any finite or infinite set of grid cells. The other six five-group tables fit as plain grid shapes (patches up to 11 x 11) but not as castles: adding the castle condition (every column rises from one base row, with no gaps) leaves a group with no valid 7 x 7 patch in each of them. None of the six is realized by any finite set of cells in a box up to 12 x 12. As a check, the golden, silver and `phi^2` tables above pass the test for every group, with and without the castle condition.[^groups]
+
+One of the 36 shows how the local fit fails. Take `Q` with rows `(0,1,0,0)`, `(1,0,2,0)`, `(0,3,0,1)`, `(0,0,3,1)`: a group-4 cell has three neighbours in group 3 and one in group 4, and a group-3 cell has three in group 2 and one in group 4. Put a group-4 cell `X` at the origin and its group-4 neighbour `Y` to its right. The cell `U` above `X` is in group 3, so its other three neighbours are in group 2, including the cell above `Y`. But that cell is also a neighbour of `Y`, whose other three neighbours are in group 3. One cell cannot be in both groups.
+
+So a bronze castle, if one exists, has no split into five or fewer evenly connected groups.
+
 ## Where this leaves the question
 
 Settled here:
 
 - no bronze castle in any of the twelve boxes above
 - no rectangle has bronze as any eigenvalue
-- no two-group even split gives bronze
+- no split into five or fewer evenly connected groups gives bronze
 - bronze is not an eigenvalue of any castle up to 6 x 6
 
 Still open:
@@ -139,7 +162,7 @@ Still open:
 - whether any castle at all has spectral radius exactly bronze
 - the sharper question behind it: whether any castle has `sqrt 13` anywhere in its spectrum
 
-A bigger search will keep producing closer misses; settling the question needs a reason why `x^2 - 3x - 1` never divides a castle's characteristic polynomial, or a construction with three or more even groups that forces it.
+A bigger search will keep producing closer misses; settling the question needs a reason why `x^2 - 3x - 1` never divides a castle's characteristic polynomial, or a construction with six or more even groups that forces it.
 
 ## Related Concepts
 
@@ -156,3 +179,4 @@ A bigger search will keep producing closer misses; settling the question needs a
 ## Footnotes
 
 [^exec]: Verified by execution (2026-09-24). Search: a C program compiled with `clang -O3`, factoring `bronze * I - A` one cell at a time in column-major, bottom-up order; it stops a branch when a pivot is below `10^-11` and records every pivot within `10^-8` of zero. The smallest recorded pivot in size was `3.7 x 10^-10`, so no branch was stopped for being close to zero, only for being negative. It was validated first on silver (14 castles up to 7 x 6, all pivots below `2 x 10^-13` in size), golden, and `phi^2`. Twelve boxes ran in parallel, from 0.7 s (5 x 32) to 1586 s (16 x 5). The 64 recorded candidates (55 distinct, since boxes overlap) were checked with NumPy `eigvalsh` and an exact SymPy fraction-free (Bareiss) determinant of `A^2 - 3A - I`: all nonzero. The census of bronze as any eigenvalue covered all 28,251 mirror-deduplicated skylines with `w, h <= 6` at tolerance `10^-8`. The rectangle average used SymPy `mobius` and `totient` for all orders below 2000, and a numerical check of every rectangle eigenvalue up to 300 x 300 (closest to bronze: `2.0 x 10^-8`, at 238 x 252). All quoted numbers are the programs' printed output.
+[^groups]: Verified by execution (Python 3, NumPy, python-sat with CaDiCaL 1.5.3, 2026-10-10). Tables: every `k x k` table of non-negative integers, `k = 2..5`, listed in peeling order (row `i` sums to at most 2 over columns `i..k` and to at most 4 in all; this order exists exactly when every union of groups has a group whose cells have at most 2 neighbours in the union), batched through `numpy.linalg.eigvals`, keeping largest eigenvalue modulus within `10^-8` of `(3 + sqrt 13)/2`, then irreducible and with consistent group sizes. Counts kept: `k = 2` none, `k = 3` none (24 bronze tables before the corner condition, counting relabellings, all failing it), `k = 4` 36 of 1,808,625, `k = 5` 390 of 1,093,062,600. Local fit: a `(2R + 1) x (2R + 1)` window, one label per cell (empty or a group), centre fixed to group `g`, and for every inner cell (both coordinates below `R` in size) each forbidden assignment of its four neighbours ruled out by a clause; castle condition: a base row variable, every cell below the base empty, and a non-empty cell with an empty cell below only on the base row. `R = 3`: all 36 four-group and 384 five-group tables have a failing group; the other six fit for every group at `R = 3, 4, 5` without the castle condition and fail with it at `R = 3`, `4` and `5`. Finite search: an `N x N` box, all cells outside empty, every cell constrained, every group present: no solution for the six at `N = 6, 8, 10, 12`. Controls: `[[0,1],[1,1]]` (golden), `[[1,1],[2,1]]` (silver), `[[1,1],[1,2]]` (`phi^2`) fit for every group at `R = 4`, with and without the castle condition.
