@@ -125,6 +125,14 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
 
 Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with the reason).
 
+- [ ] **Castles that never drop by two, by semi-perimeter** (moved from IDEAS.md): `1, 2, 5, 12, 29, 71, 175, 434, 1082, 2709, 6807, 17157, …`
+  (columns never more than one lower than the column before, any ends) is absent from OEIS (searched 2026-09-27) and has two
+  readings joined by a verified bijection: valleyless Motzkin meanders of length `s − 2`, which Prodinger prints as "not in" OEIS
+  (`wiki/pages/motzkin-castles.md` §6-7). Draft package in `raw/oeis-pe502/`: terms to 30+, GF from the kernel solution, both
+  readings, A004148 (the returning sub-count) as cross-reference. Strongest novel candidate of the Motzkin thread.
+- [ ] **Tree castles by area, `h ≥ 8`** (moved from IDEAS.md): `wiki/pages/tree-castle-by-area.md` identifies `h = 5, 6, 7` as
+  interlinks; `h = 8` has no match (searched 2026-09-26) and is a new-sequence candidate with the GF
+  `(1 + P_h(q))/(1 − q − q·P_h(q))`, `P_h(q) = q² + ⋯ + q^h`.
 - [ ] **New-sequence candidates**, each only if it brings its own formula
   (`wiki/pages/castle-sequence-catalogue.md`, "Other generation candidates"):
   - **The `F(w,h)` array:** rows `F(w,4)`, `F(w,5)`, `F(w,6)`; the odd-block rows
