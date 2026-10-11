@@ -163,6 +163,15 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   `F(3, 2m+1) = A014105(m)` (verified `m ≤ 11`, 2026-10-04), now also stated under the
   stage-2 `w = 3` column item. Open question: a separate comment on this dense entry, or
   only the column entry.
+- [ ] **A004148** (generalized Catalan numbers; peakless Motzkin paths, RNA secondary
+  structures): castle comment, the castles that drop by at most 1 and end at height 1, by
+  semi-perimeter `s`, number `A004148(s − 1)` (`1, 1, 2, 4, 8, 17, 37, 82, 185, 423, 978`
+  from `s = 2`; matched over 21 terms, 2026-09-26). Their mirror images are the bargraphs
+  with no double rise, which Deutsch and Elizalde map bijectively to RNA secondary
+  structures. Open question: whether the entry already carries the Deutsch-Elizalde
+  bargraph reading, which would make the castle comment a restatement
+  (`wiki/pages/motzkin-castles.md`,
+  `wiki/pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md`).
 
 **Skipped (assessed, with reason):**
 
