@@ -5,7 +5,7 @@ summary: Hand-curated catalogue of every castle-counting sequence, by the castle
 tags: [analysis, oeis, castle, sequence, catalogue, novelty, submission-candidate, interlink]
 sources: [oeis-mining-pe502]
 created: 2026-09-17
-updated: 2026-10-06
+updated: 2026-10-10
 ---
 
 # Castle sequence catalogue
@@ -46,7 +46,7 @@ From [[oeis-cross-referencing](pages/oeis-cross-referencing.md)]: OEIS requires 
 
 **Order after the height-2 interlink.** The **tower = Narayana** rows (the tower / Narayana entry above) in the order **A160747 → A005891 → A063490 → A001263**, leaving out **A005408** (the densest entry) and minding that **A063490 is offset 1** (the only width-row shift). Then the difference-of-powers castle counts `A(w,h) = h^w − (h−1)^w`, one comment each on **A000225 / A001047 / A005061 / A005060 / A005062**, and the area synonyms (convex / non-convex / valley by area, above), each cross-referencing **A038505 / A038503 / A146559**. New sequences ([[new-sequence-fw3](pages/new-sequence-fw3.md)] `F(w,3)` and siblings) come after.
 
-**Novel-candidate** submissions (no OEIS match): the **signed tower count `P(k,·)` rows for `k = 2..6`** ([[signed-tower-count](pages/signed-tower-count.md)]), a C-finite family with a Pell/Chebyshev closed-form denominator, whose even-`k` rows (`P(2,·)`, `P(4,·)`, `P(6,·)`) are positive; the even-block proper-castle bronze `1,7,25,70,209,697,…` and copper `0,0,10,104,604,…` rows ([[proper-castle-projection](pages/proper-castle-projection.md)]); and the parity-refined area sequences ([[castle-by-area](pages/castle-by-area.md)]). See the sections below for the full status-tagged listing.
+**Novel-candidate** submissions (no OEIS match): the **signed tower count `P(k,·)` rows for `k = 2..6`** ([[signed-tower-count](pages/signed-tower-count.md)]), a C-finite family with a Pell/Chebyshev closed-form denominator, whose even-`k` rows (`P(2,·)`, `P(4,·)`, `P(6,·)`) are positive; the even-block proper-castle bronze `1,7,25,70,209,697,…` and `δ_4` `0,0,10,104,604,…` rows ([[proper-castle-projection](pages/proper-castle-projection.md)]); and the parity-refined area sequences ([[castle-by-area](pages/castle-by-area.md)]). See the sections below for the full status-tagged listing.
 
 **`F(w,3)`** ([[new-sequence-fw3](pages/new-sequence-fw3.md)]) is novel-candidate: an oeis.org search for `3, 21, 89, 307, 977, 3031` on 2026-09-19 returned no sequence. Its draft submission is in `raw/oeis-pe502/`.
 
@@ -193,10 +193,10 @@ The ridge rule: adjacent columns differ in height unless both equal the ceiling 
 |---|---|---|---|
 | silver free ridge strip (`h=3`) | `3, 7, 17, 41, 99, 239, 577` | `1+√2` | **interlink** → [A001333](https://oeis.org/A001333) Pell–Lucas (companion, not primary Pell) |
 | bronze free ridge strip (`h=4`) | `4, 13, 43, 142, 469, 1549` | `(3+√13)/2` | **interlink** → [A003688](https://oeis.org/A003688) |
-| copper free ridge strip (`h=5`) | `5, 21, 89, 377, 1597, 6765` | `φ³` | **interlink** → [A015448](https://oeis.org/A015448) (`=F_{3n+5}` trisection) |
+| `δ_4` free ridge strip (`h=5`) | `5, 21, 89, 377, 1597, 6765` | `φ³` | **interlink** → [A015448](https://oeis.org/A015448) (`=F_{3n+5}` trisection) |
 | bronze ridge castles (`h=4`, max=h) | `1, 7, 31, 118, 421, 1453, 4924` | `(3+√13)/2` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
 | bronze **even-block** ridge castles | `1, 7, 25, 70, 209, 697, 2390` | `(3+√13)/2` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
-| copper **even-block** ridge castles | `0, 0, 10, 104, 604, 2836, 12630` | `φ³` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
+| `δ_4` **even-block** ridge castles | `0, 0, 10, 104, 604, 2836, 12630` | `φ³` | **novel-candidate** (no OEIS match, searched 2026-09-18) |
 
 ### Signed tower count P(k,·) rows
 

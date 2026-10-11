@@ -1,8 +1,8 @@
 ---
 title: Which metallic means are castle-strip growth constants
 category: Analyses
-summary: Which metallic means a castle-strip rule produces (Axis 8). A castle-strip growth constant is the Perron root of a 0/1 transfer matrix over h height-states, and metallicity of δ_a demands the strip denominator 1 − p₁x − p₂x² have p₂ = 1, which the naive "h states per column" coupling breaks. One named predicate — the ridge rule (adjacent columns differ in height unless both equal the max h; its castles of exact height h are the ridge castles) — has transfer matrix R_h = J − D with char poly (x+1)^{h−2}(x² − (h−1)x − 1), so it realizes the WHOLE metallic ladder, metal a = h−1: golden (h=2), silver (h=3), bronze (h=4), copper (h=5), nickel (h=6), …. Bronze is thus a real named-predicate castle (also provably unreachable on ≤ 3 states, needing 4). Copper (h=5) = δ₄ = φ³, so its count is the Fibonacci trisection F_{3n+5}. The 1-smooth height-3 strip, (x−1)(x²+2x−1), is silver's rational realization and, anchored at height 1, the Pell castle strip itself.
-tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, bronze, copper, silver, fibonacci-decimation, axis-8, realizability, sympy, verification]
+summary: Which metallic means a castle-strip rule produces (Axis 8). A castle-strip growth constant is the Perron root of a 0/1 transfer matrix over h height-states, and metallicity of δ_a demands the strip denominator 1 − p₁x − p₂x² have p₂ = 1, which the naive "h states per column" coupling breaks. One named predicate — the ridge rule (adjacent columns differ in height unless both equal the max h; its castles of exact height h are the ridge castles) — has transfer matrix R_h = J − D with char poly (x+1)^{h−2}(x² − (h−1)x − 1), so it realizes the WHOLE metallic ladder, rung a = h−1: golden (h=2), silver (h=3), bronze (h=4), δ₄ (h=5), δ₅ (h=6), …. Bronze is thus a real named-predicate castle (also provably unreachable on ≤ 3 states, needing 4). The h=5 rung is δ₄ = φ³, so its count is the Fibonacci trisection F_{3n+5}. The 1-smooth height-3 strip, (x−1)(x²+2x−1), is silver's rational realization and, anchored at height 1, the Pell castle strip itself.
+tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, bronze, silver, fibonacci-decimation, axis-8, realizability, sympy, verification]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
 updated: 2026-10-10
@@ -80,22 +80,22 @@ So **one rule sweeps the entire ladder, metal `a = h − 1`**:
 | 2 | `φ ≈ 1.6180` | golden (`a = 1`) | `x² − x − 1` |
 | 3 | `1 + √2 ≈ 2.4142` | silver (`a = 2`) | `x² − 2x − 1` |
 | **4** | `(3+√13)/2 ≈ 3.3028` | **bronze** (`a = 3`) | `x² − 3x − 1` |
-| **5** | `2 + √5 ≈ 4.2361` | **copper** (`a = 4`) | `x² − 4x − 1` |
-| 6 | `(5+√29)/2 ≈ 5.1926` | nickel (`a = 5`) | `x² − 5x − 1` |
+| **5** | `2 + √5 ≈ 4.2361` | **`δ₄`** (`a = 4`) | `x² − 4x − 1` |
+| 6 | `(5+√29)/2 ≈ 5.1926` | `δ₅` (`a = 5`) | `x² − 5x − 1` |
 | `h` | `δ_{h−1}` | `(h−1)`-th metal | `x² − (h−1)x − 1` |
 
 **Why this rule decouples `p₁` and `p₂`.** Up to the spurious `(x + 1)^{h−2}`, the denominator is `1 − (h−1)x − x²`: `p₁ = h − 1` grows with the height while `p₂` stays `1`. At `h = 2` the rule is the height-2 tree-castle rule (no two adjacent height-2 columns, the Fibonacci castles) with the two heights swapped, so for `w ≥ 2` there are `F_{w+2}` ridge castles of exact height 2, one more than the `F_{w+2} − 1` Fibonacci castles; at `h = 3` it is a different rule from the 1-smooth strip, with the same silver growth.
 
-### Copper and the Fibonacci decimation (`δ₄ = φ³`)
+### δ₄ and the Fibonacci decimation (`δ₄ = φ³`)
 
-The copper rung (`h = 5`) is special because `δ₄ = 2 + √5 = φ³` (since `φ² = φ + 1 ⟹ φ³ = 2φ + 1 = 2 + √5`; verified exactly).[^8] So copper lives in `Q(√5)`, and the copper ridge strip's count is every third Fibonacci number:
+The `h = 5` rung is special because `δ₄ = 2 + √5 = φ³` (since `φ² = φ + 1 ⟹ φ³ = 2φ + 1 = 2 + √5`; verified exactly).[^8] So `δ₄` lives in `Q(√5)`, and the `h = 5` ridge strip's count is every third Fibonacci number:
 
 ```
-copper (h = 5) width count:  5, 21, 89, 377, 1597, 6765, 28657, 121393, 514229, …
+δ₄ (h = 5) width count:  5, 21, 89, 377, 1597, 6765, 28657, 121393, 514229, …
                           =  F_5, F_8, F_11, F_14, …  =  F_{3n+5}.
 ```
 
-The counts satisfy `a(n) = 4a(n−1) + a(n−2)`, as `F_{3n+5}` does (`F_{m+6} = 4F_{m+3} + F_m`), and start `5, 21`, so the count is the Fibonacci trisection `F_{3n+5}`. The companion metallic integer sequence for `a = 4` is `A001076 = F_{3n}/2` ([[metallic-means](pages/metallic-means.md)] copper row); the strip realizes the un-halved trisection directly. Bronze (`h = 4`), by contrast, sits in `Q(√13)` — no such decimation, because only `a = 4` has the `φ³` coincidence ([[metallic-means](pages/metallic-means.md)]).
+The counts satisfy `a(n) = 4a(n−1) + a(n−2)`, as `F_{3n+5}` does (`F_{m+6} = 4F_{m+3} + F_m`), and start `5, 21`, so the count is the Fibonacci trisection `F_{3n+5}`. The companion metallic integer sequence for `a = 4` is `A001076 = F_{3n}/2` ([[metallic-means](pages/metallic-means.md)] `a = 4` row); the strip realizes the un-halved trisection directly. Bronze (`h = 4`), by contrast, sits in `Q(√13)` — no such decimation, because only `a = 4` has the `φ³` coincidence ([[metallic-means](pages/metallic-means.md)]).
 
 ## Why the coupling happens, and what it means for the ladder
 
@@ -114,7 +114,7 @@ So the metallic ladder is realizable, but `δ_a` is not "the `a`-states-per-colu
 - **Uniqueness / other natural rules per rung.** Is the ridge rule `R_h = J − D` the *only* natural predicate hitting `δ_{h−1}`, or (as with silver's three realizations) are there others? A census of named Axis-1–7 predicates by their Perron root would answer this.
 - **The minimum height for a field.** Every real quadratic field `Q(√d)` is reachable by some strip rule ([[reachable-field-census](pages/reachable-field-census.md)]; the metallic ones `Q(√(a²+4))` via the ridge rule `R_h = J − D`); a closed form for the minimum height realizing a given field is open.
 
-**Proper castles.** The ridge castles are the ridge strips with `max = h`. The metallic growth `δ_{h−1}` survives `max = h` and the `(A ± S)/2` projection: the signed transfer matrix `S_h` has spectral radius below `δ_{h−1}`, and the exact sequences have no Online Encyclopedia of Integer Sequences (OEIS) match for `h ≥ 3` ([[proper-castle-projection](pages/proper-castle-projection.md)]). The free counts are the companion metallic sequences (silver A001333, bronze A003688, copper A015448), not the primary ones (A000129, A006190, A001076).
+**Proper castles.** The ridge castles are the ridge strips with `max = h`. The metallic growth `δ_{h−1}` survives `max = h` and the `(A ± S)/2` projection: the signed transfer matrix `S_h` has spectral radius below `δ_{h−1}`, and the exact sequences have no Online Encyclopedia of Integer Sequences (OEIS) match for `h ≥ 3` ([[proper-castle-projection](pages/proper-castle-projection.md)]). The free counts are the companion metallic sequences (silver A001333, bronze A003688, `δ₄` A015448), not the primary ones (A000129, A006190, A001076).
 
 ## Appearances in Sources
 
@@ -127,7 +127,7 @@ So the metallic ladder is realizable, but `δ_a` is not "the `a`-states-per-colu
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - Axis 8, the growth-type meta-classification these are members of; [[castle-classification-shape](pages/castle-classification-shape.md)] - Axes 1-7 (the rules tested here: 1-smooth, plateau-free and its ridge variant are all Axis 2).
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] / [[motzkin-numbers](pages/motzkin-numbers.md)] - the 1-smooth / Motzkin family whose growth constant this page pins to silver.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - why metallic means have periodic continued fractions and sit in the specific fields `Q(√(a²+4))`.
-- [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the sibling census on the *adjacency* spectra of individual castle graphs (where metallic means also appear, and copper+ are impossible for a different reason: max degree 4).
+- [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the sibling census on the *adjacency* spectra of individual castle graphs (where metallic means also appear, and `δ₄` and above are impossible for a different reason: max degree 4).
 
 ## Footnotes
 

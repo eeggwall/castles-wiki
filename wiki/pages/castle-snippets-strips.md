@@ -112,7 +112,7 @@ A gap of ~0.222 is *not* a metallic-mean hit: the tribonacci constant `≈ 1.839
 
 ### `ridge_R(h)`, `ridge_count(h, L_max)` → ridge castles: the whole metallic ladder from one rule
 
-The **ridge rule** — adjacent columns differ in height unless both equal the max `h` — realizes every metallic mean; its castles of exact height `h` are the **ridge castles**. At height `h` its transfer matrix is `R_h = J − D` (all-ones minus `diag(1,…,1,0)`), char poly `(x+1)^{h−2}(x² − (h−1)x − 1)`, Perron root the `(h−1)`-th metallic mean `δ_{h−1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). So bronze is `h = 4`, copper `h = 5`, and copper's count is the Fibonacci trisection `F_{3n+5}`. Requires SymPy.
+The **ridge rule** — adjacent columns differ in height unless both equal the max `h` — realizes every metallic mean; its castles of exact height `h` are the **ridge castles**. At height `h` its transfer matrix is `R_h = J − D` (all-ones minus `diag(1,…,1,0)`), char poly `(x+1)^{h−2}(x² − (h−1)x − 1)`, Perron root the `(h−1)`-th metallic mean `δ_{h−1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). So bronze is `h = 4`, `δ_4` is `h = 5`, and the `h = 5` count is the Fibonacci trisection `F_{3n+5}`. Requires SymPy.
 
 ```python
 def ridge_R(h):
@@ -129,13 +129,13 @@ def ridge_count(h, L_max):
 (x + 1)**2*(x**2 - 3*x - 1)
 >>> ridge_count(4, 6)                        # bronze (3+sqrt13)/2, Q(sqrt13)
 [4, 13, 43, 142, 469, 1549, 5116]
->>> ridge_count(5, 8)                        # copper 2+sqrt5 = phi^3: F_{3n+5}
+>>> ridge_count(5, 8)                        # delta_4 = 2+sqrt5 = phi^3: F_{3n+5}
 [5, 21, 89, 377, 1597, 6765, 28657, 121393, 514229]
 >>> [sp.factor(ridge_R(h).charpoly(sp.Symbol('x')).as_expr()) for h in range(2,7)]
 [x**2 - x - 1, (x + 1)*(x**2 - 2*x - 1), (x + 1)**2*(x**2 - 3*x - 1), (x + 1)**3*(x**2 - 4*x - 1), (x + 1)**4*(x**2 - 5*x - 1)]
 ```
 
-Meaning: one rule, one parameter `h`, sweeps golden → silver → bronze → copper → nickel → … as `h = 2, 3, 4, 5, 6, …` (metal `a = h−1`). The `(x+1)^{h−2}` factor is the subdominant eigenvalue `−1`; the metallic quadratic `x² − (h−1)x − 1` carries the growth. The copper (`h = 5`) row is every third Fibonacci number, `F_{3n+5}`, with growth `δ_4 = φ³`.
+Meaning: one rule, one parameter `h`, sweeps golden → silver → bronze → `δ_4` → `δ_5` → … as `h = 2, 3, 4, 5, 6, …` (rung `a = h−1`). The `(x+1)^{h−2}` factor is the subdominant eigenvalue `−1`; the metallic quadratic `x² − (h−1)x − 1` carries the growth. The `h = 5` row is every third Fibonacci number, `F_{3n+5}`, with growth `δ_4 = φ³`.
 
 
 ### `proper_even(h, Wmax)` → even-block ridge castles (the proper-castle projection of the ladder)
@@ -165,11 +165,11 @@ def proper_even(h, Wmax):
 ```
 >>> proper_even(4, 8)   # bronze (a=3): new sequence, growth -> 3.30278
 [1, 7, 25, 70, 209, 697, 2390, 8169]
->>> proper_even(5, 8)   # copper (a=4): growth -> 4.23607 = phi^3
+>>> proper_even(5, 8)   # delta_4 (a=4): growth -> 4.23607 = phi^3
 [0, 0, 10, 104, 604, 2836, 12630, 55668]
 ```
 
-Meaning: the even-block proper-castle rows have no Online Encyclopedia of Integer Sequences (OEIS) match for `h ≥ 3`; the growth is still the metal `δ_{h−1}` (the signed matrix's spectral radius `1.000/1.575/1.768/2.242/2.413` for `h = 2..6` sits below `δ = 1.618/2.414/3.303/4.236/5.193`). Drop the `// 2` and the signed half to get the unsigned `max=h` count.
+Meaning: the even-block proper-castle rows have no Online Encyclopedia of Integer Sequences (OEIS) match for `h ≥ 3`; the growth is still the rung `δ_{h−1}` (the signed matrix's spectral radius `1.000/1.575/1.768/2.242/2.413` for `h = 2..6` sits below `δ = 1.618/2.414/3.303/4.236/5.193`). Drop the `// 2` and the signed half to get the unsigned `max=h` count.
 
 
 ### `strip_field(M)` → the Perron root and number field of one rule
@@ -253,7 +253,7 @@ def strip_field_census(h):
 >>> # the deg-3 roots at h=3 include x^3-x-1 (plastic), x^3-x^2-x-1 (tribonacci), supergolden, plastic^2
 ```
 
-Meaning: the reachable quadratic fields grow `{5} → {2,3,5} → {2,3,5,13,17,21}` as `h = 2,3,4`; the metallic fields `Q(√(a²+4))` appear as the height grows (bronze `Q(√13)` at `h = 4`, via the ridge rule `R_h = J − D`), copper falls in `Q(√5)`, and the plastic number `x³−x−1` is already a Perron root at `h = 3` ([[reachable-field-census](pages/reachable-field-census.md)]).
+Meaning: the reachable quadratic fields grow `{5} → {2,3,5} → {2,3,5,13,17,21}` as `h = 2,3,4`; the metallic fields `Q(√(a²+4))` appear as the height grows (bronze `Q(√13)` at `h = 4`, via the ridge rule `R_h = J − D`), `δ_4` falls in `Q(√5)`, and the plastic number `x³−x−1` is already a Perron root at `h = 3` ([[reachable-field-census](pages/reachable-field-census.md)]).
 
 
 ### `sh_canonical(M)` → S_h orbit representative (spectrum-preserving dedup)

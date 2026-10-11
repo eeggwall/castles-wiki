@@ -5,7 +5,7 @@ summary: The centerpiece hub for spectral methods applied to castles as 2D polyo
 tags: [concept, castle, spectral, transfer-matrix, laplacian, dft, dct, galois, ramanujan-sum, homometric, ihara-zeta, ramanujan, isospectral, determinantal]
 sources: [spectral-analysis]
 created: 2026-09-16
-updated: 2026-10-01
+updated: 2026-10-10
 ---
 
 # Spectral analysis of castles
@@ -307,7 +307,7 @@ A spectral method plus a predicate on its output defines a castle type. The Rama
 ## Open threads
 
 - **`λ_1(h)`** - settled: `λ_1(h) = h`, signed corrections `ρ_{h−1}`, no metallic means ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], [[tower-parity-sectors](pages/tower-parity-sectors.md)]).
-- **Golden- and silver-spectrum castles** - the first Axis 9 census: adjacency spectral radius `φ` for the six 4-cell paths, `1 + √2` for the `3×2` rectangle and three non-rectangular castles up to `w = 7`; copper and above impossible (max degree 4), bronze open ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]).
+- **Golden- and silver-spectrum castles** - the first Axis 9 census: adjacency spectral radius `φ` for the six 4-cell paths, `1 + √2` for the `3×2` rectangle and three non-rectangular castles up to `w = 7`; `δ_4` and above impossible (max degree 4), bronze open ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]).
 - **Isospectral hunt** - settled: smallest pairs at 10 cells (adjacency), 11 (Laplacian), 16 (both), on [[isospectral-castles](pages/isospectral-castles.md)].
 - **LGV for castles** — a bijection from castles (or pairs of castles) to non-crossing path families, which would make §2 apply to castles themselves.
 - **q-Gibbs critical-`β`** — whether the area-weighted transfer matrix has a non-analytic Perron root as `h → ∞` (the construction ↔ spectrum table's last row).

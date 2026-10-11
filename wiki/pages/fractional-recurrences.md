@@ -1,11 +1,11 @@
 ---
 title: Fractional recurrences: the rung between rungs
 category: Analyses
-summary: The metallic ladder δ_a = (a + √(a²+4))/2 sits on a continuous curve of growth constants. The Atici-Eloe nabla recurrence ∇^α a_n = a_{n-1} has characteristic equation (1-r)^α = r; its growth constant g(α) = 1/r(α) is a continuous, strictly increasing bijection from [0,∞) to [1,∞). Rational α = p/q gives an algebraic growth constant of degree ≤ max(p,q); algebraic irrational α gives a transcendental growth constant (Gelfond-Schneider), and an algebraic growth constant forces α to be rational or transcendental, so g(α) is transcendental for all but countably many α. The metallic ladder meets this curve at one rational point: golden at α = 1/2, exactly. Silver, bronze, copper, nickel each meet it at a transcendental α_a, because δ_a - 1 has norm -a in Q(√(a²+4)) and so is a unit only at a = 1. Small rational α give three of the wiki's cubic Perron roots: α = 1/3 is supergolden, α = 2/3 is plastic squared, α = 3/2 is ψ³ = ψ+1. The curve takes every value ≥ 1, so it passes through every algebraic Perron root of the reachable-field census and also through transcendental values that no castle strip realizes.
+summary: The metallic ladder δ_a = (a + √(a²+4))/2 sits on a continuous curve of growth constants. The Atici-Eloe nabla recurrence ∇^α a_n = a_{n-1} has characteristic equation (1-r)^α = r; its growth constant g(α) = 1/r(α) is a continuous, strictly increasing bijection from [0,∞) to [1,∞). Rational α = p/q gives an algebraic growth constant of degree ≤ max(p,q); algebraic irrational α gives a transcendental growth constant (Gelfond-Schneider), and an algebraic growth constant forces α to be rational or transcendental, so g(α) is transcendental for all but countably many α. The metallic ladder meets this curve at one rational point: golden at α = 1/2, exactly. Silver, bronze, δ_4, δ_5 each meet it at a transcendental α_a, because δ_a - 1 has norm -a in Q(√(a²+4)) and so is a unit only at a = 1. Small rational α give three of the wiki's cubic Perron roots: α = 1/3 is supergolden, α = 2/3 is plastic squared, α = 3/2 is ψ³ = ψ+1. The curve takes every value ≥ 1, so it passes through every algebraic Perron root of the reachable-field census and also through transcendental values that no castle strip realizes.
 tags: [analysis, castle, fractional-calculus, atici-eloe, nabla, mittag-leffler, metallic-mean, golden-ratio, transcendental, algebraic, baker-theorem, gelfond-schneider, plastic-number, supergolden, reachable-field, characteristic-equation]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-21
-updated: 2026-10-02
+updated: 2026-10-10
 ---
 
 # Fractional recurrences: the rung between rungs
@@ -120,8 +120,8 @@ Numerical values through the first six rungs, computed from `δ_a = (a + √(a²
 | 1 | golden | `1.6180…` | **`1/2`** (exact) | rational |
 | 2 | silver | `2.4142…` | `1.6480…` | transcendental |
 | 3 | bronze | `3.3028…` | `3.3128…` | transcendental |
-| 4 | copper | `4.2361…` | `5.3612…` | transcendental |
-| 5 | nickel | `5.1926…` | `7.7004…` | transcendental |
+| 4 | `δ_4` | `4.2361…` | `5.3612…` | transcendental |
+| 5 | `δ_5` | `5.1926…` | `7.7004…` | transcendental |
 | 6 | (unnamed) | `6.1623…` | `10.2697…` | transcendental |
 
 Golden is the **only** metallic mean hit at a rational `α`.
@@ -174,7 +174,7 @@ The same monotone-continuous-bijection analysis applies: `g_2(α) := 1/r*(α)` i
 
 Two clean rational-`α` points sit on this curve without any tricks: **golden at `α = 0`** and **silver at `α = 1`**, both by construction. The question is again which further metallic-ladder rungs land at rational `α`.
 
-Bronze `(3 + √13)/2`: the growth relation `r + r² = 4 - √13` (verified by expanding `(√13 - 3)/2 · ((√13 - 3)/2 + 1) = ((√13 - 3)(√13 - 1))/4 = (16 - 4√13)/4 = 4 - √13`) and `1 - r = (5 - √13)/2` give the equation `((5 - √13)/2)^α = 4 - √13`. Norms in `Q(√13)`: `N((5 - √13)/2) = (25 - 13)/4 = 3`, and `N(4 - √13) = 16 - 13 = 3`. Rational `α = m/n` would require `3^m = 3^n`, i.e. `m = n`, and then the equation reduces to `(5 - √13)/2 = 4 - √13`, contradicting `√13 = 3`. So bronze is hit at a **transcendental** `α ≈ 2.58` on this curve too.[^10] The same norm mechanism excludes copper, nickel, and every higher metallic mean.
+Bronze `(3 + √13)/2`: the growth relation `r + r² = 4 - √13` (verified by expanding `(√13 - 3)/2 · ((√13 - 3)/2 + 1) = ((√13 - 3)(√13 - 1))/4 = (16 - 4√13)/4 = 4 - √13`) and `1 - r = (5 - √13)/2` give the equation `((5 - √13)/2)^α = 4 - √13`. Norms in `Q(√13)`: `N((5 - √13)/2) = (25 - 13)/4 = 3`, and `N(4 - √13) = 16 - 13 = 3`. Rational `α = m/n` would require `3^m = 3^n`, i.e. `m = n`, and then the equation reduces to `(5 - √13)/2 = 4 - √13`, contradicting `√13 = 3`. So bronze is hit at a **transcendental** `α ≈ 2.58` on this curve too.[^10] The same norm mechanism excludes `δ_4`, `δ_5`, and every higher metallic mean.
 
 So the Fibonacci-Pell interpolation family has **exactly two rational-`α` metallic hits** (golden at `α = 0`, silver at `α = 1`), and every higher rung crosses the curve at a transcendental order. The `α = 1/2` point of this family is a root of the irreducible quartic `r⁴ + 2r³ + r² + r - 1` (from squaring both sides), not on the metallic ladder.
 

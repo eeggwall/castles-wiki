@@ -5,7 +5,7 @@ summary: An exercise book with full solutions (17 chapters, mostly general and o
 tags: [book, source, ring-theory, exercises, chinese-remainder-theorem, idempotent, eisenstein, finite-field, gaussian-integers, quotient-ring]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-26
-updated: 2026-09-28
+updated: 2026-10-10
 ---
 
 # Exercises in Basic Ring Theory (Călugăreanu, Hamburg 1998)
@@ -81,7 +81,7 @@ Chapter 4 (Ring Homomorphisms, exercises pp. 19-21, solutions pp. 107-110) is ab
 - **4.4, the integer CRT map.** `Z → Z_3 × Z_5`, `x ↦ (x mod 3, x mod 5)`, is surjective with kernel `15Z`, and the same holds for any coprime `m, n`.[^27] It is the model for every CRT split on [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)].
 - **4.8-4.9, ring maps between the `Z_n`.** Every ring map `Z_n → Z_m` is multiplication by an idempotent `a` of `Z_m` with `n·a = 0`; in particular the ring endomorphisms of `Z_n` are the maps `x ↦ e·x`, one per idempotent `e`.[^28] `Z/10` has four (`e = 0, 1, 5, 6`), the idempotents of the `Z/10` lifting example on [[idempotent-decomposition](pages/idempotent-decomposition.md)].
 - **4.10, what a surjective map preserves.** Images of idempotents, nilpotents, central elements and units are again idempotents, nilpotents, central and units, but no converse holds: `3` is idempotent in `Z_6` but not in `Z`, `2` is nilpotent in `Z_4` but not in `Z`, and every integer prime to 5 other than `±1` is a unit in `Z_5` but not in `Z`.[^29] Reduction `Z[x]/(char_k) → F_p[x]/(char_k)` fails all three converses ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §5, own reasoning): the parity-sector idempotents need exactly `1/2`, and the other fiber idempotents do not lift even with `1/2` inverted (at `k = 1`, `Z[1/2][x]/(char_1) = Z[1/2, i]` is a domain); fiber nilpotents, which occur at the discriminant primes, never lift because `Z[x]/(char_k)` is reduced; and `x` is a unit in every odd fiber but needs `1/2^k` to be inverted in `Z[x]/(char_k)`.
-- **4.11, telling rings apart by the equations they solve.** An isomorphism preserves solutions of `x² = 1 + 1`, so `Z[√2] ≇ Z[√3]`.[^30] On castles, the three quadratic rings `Z[i]`, `Z[(1 + √−7)/2]`, `Z[√−3]` of `char_1`, `char_2`, `char_4` are pairwise non-isomorphic, and `Z[√−3]` is not the full ring of integers ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §4). On the metallic ladder, golden and copper share the field `Q(√5)` but generate different rings, and several rungs are odd powers of smaller ones ([[metallic-means](pages/metallic-means.md)]).
+- **4.11, telling rings apart by the equations they solve.** An isomorphism preserves solutions of `x² = 1 + 1`, so `Z[√2] ≇ Z[√3]`.[^30] On castles, the three quadratic rings `Z[i]`, `Z[(1 + √−7)/2]`, `Z[√−3]` of `char_1`, `char_2`, `char_4` are pairwise non-isomorphic, and `Z[√−3]` is not the full ring of integers ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §4). On the metallic ladder, golden `δ_1` and `δ_4` share the field `Q(√5)` but generate different rings, and several rungs are odd powers of smaller ones ([[metallic-means](pages/metallic-means.md)]).
 
 The rest (4.1-4.3, 4.6-4.7, 4.12-4.15: unital maps, maps out of `Q`, preimages of ideals) is not used here.
 
@@ -94,7 +94,7 @@ The rest (4.1-4.3, 4.6-4.7, 4.12-4.15: unital maps, maps out of `Q`, preimages o
 - Chapter 13 gives the geometric picture: `Spec Z[x]/(char_k)` over `Spec Z` has the mod-`p` factorizations as fibers, the even-`k` parity sectors as its two components meeting only at `(2, x)`, and nilradicals at discriminant primes that carry exactly the extra `p` in the periods ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)]).[^14][^15]
 - Chapter 12: a castle fiber is semisimple exactly when it is not fat, and `Z[x]/(char_k)` has no idempotents besides `0, 1`, so its mod-`p` splittings do not lift to the integers; the sector idempotent lives in `Z[1/2][x]/(char_k)` with denominator `2^{v_2(k!) + 1}` (checked `k ≤ 40`).[^18][^22]
 - Chapter 5: Frobenius `a ↦ a^p` is linear on each castle fiber; its rank is full exactly when the fiber is not fat, and its fixed space has dimension equal to the number of points (Berlekamp), so a fiber's shape can be read off without factoring `char_k`.[^23][^24]
-- Chapter 4: reduction mod `p` preserves idempotents, nilpotents and units, but nontrivial fiber idempotents and nilpotents do not lift back to `Z[x]/(char_k)`, and `x` is inverted only after inverting 2; the ring a quadratic eigenvalue or metallic rung generates can be a proper suborder of its field's integers (`Z[√−3]` for `char_4`, `Z[√5]` for copper).[^29][^30]
+- Chapter 4: reduction mod `p` preserves idempotents, nilpotents and units, but nontrivial fiber idempotents and nilpotents do not lift back to `Z[x]/(char_k)`, and `x` is inverted only after inverting 2; the ring a quadratic eigenvalue or metallic rung generates can be a proper suborder of its field's integers (`Z[√−3]` for `char_4`, `Z[√5]` for `δ_4`).[^29][^30]
 - `Z[x]/(char_1)` is the Gaussian integers, so the book's `Z[i]` exercises (17.18, and 4.5, 4.11, 15.2 elsewhere) are statements about the ring of `P(1, ·)`.[^6]
 
 ## Entities & Concepts

@@ -1,8 +1,8 @@
 ---
 title: Do metallic growth constants survive the proper-castle projection
 category: Analyses
-summary: The metallic-strip-realizability counts are free-height strip counts (𝟙ᵀR_h^L𝟙); imposing the two proper PE-502 clauses — max_i c_i = h and the even-block parity (A±S)/2 — leaves the metallic growth constant δ_{h−1} invariant, but the exact sequences are new. The signed transfer matrix S_h (entries (−1)^max(0,b−a)·R_h[a][b]) has spectral radius strictly below δ_{h−1} (1.000 / 1.575 / 1.768 / 2.242 / 2.413 for h = 2..6 vs δ = 1.618 / 2.414 / 3.303 / 4.236 / 5.193), so the parity projector (A±S)/2 preserves the leading term. The even-block ridge castle counts (proper castles under the ridge rule R_h = J − D) by width are a new family with no OEIS match for h ≥ 3: bronze (h=4) 1, 7, 25, 70, 209, 697, 2390, 8169, …; copper (h=5) 0, 0, 10, 104, 604, 2836, 12630, 55668, …. Even the free counts are not the primary metallic sequences — silver → A001333 (Pell-Lucas) not A000129, bronze → A003688 not A006190, copper → A015448 (the Fibonacci trisection F_{3n+5}) not A001076, nickel → A015449 not A052918 — so neither the free nor the projected counts reproduce Pell / A006190 / A001076 / A052918.
-tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, parity, even-block, proper-castle, bronze, copper, silver, new-sequence, oeis, sympy, verification]
+summary: The metallic-strip-realizability counts are free-height strip counts (𝟙ᵀR_h^L𝟙); imposing the two proper PE-502 clauses — max_i c_i = h and the even-block parity (A±S)/2 — leaves the metallic growth constant δ_{h−1} invariant, but the exact sequences are new. The signed transfer matrix S_h (entries (−1)^max(0,b−a)·R_h[a][b]) has spectral radius strictly below δ_{h−1} (1.000 / 1.575 / 1.768 / 2.242 / 2.413 for h = 2..6 vs δ = 1.618 / 2.414 / 3.303 / 4.236 / 5.193), so the parity projector (A±S)/2 preserves the leading term. The even-block ridge castle counts (proper castles under the ridge rule R_h = J − D) by width are a new family with no OEIS match for h ≥ 3: bronze (h=4) 1, 7, 25, 70, 209, 697, 2390, 8169, …; δ_4 (h=5) 0, 0, 10, 104, 604, 2836, 12630, 55668, …. Even the free counts are not the primary metallic sequences — silver → A001333 (Pell-Lucas) not A000129, bronze → A003688 not A006190, δ_4 → A015448 (the Fibonacci trisection F_{3n+5}) not A001076, δ_5 → A015449 not A052918 — so neither the free nor the projected counts reproduce Pell / A006190 / A001076 / A052918.
+tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, parity, even-block, proper-castle, bronze, silver, new-sequence, oeis, sympy, verification]
 sources: [pe502-pell-castle-strip, project-euler-502-castle-factoring]
 created: 2026-09-18
 updated: 2026-10-10
@@ -17,7 +17,7 @@ updated: 2026-10-10
 1. **`max_i c_i = h`** — the castle actually reaches the ceiling (height exactly `h`, not `≤ h`).
 2. **the even-block parity** — `even = (A + S)/2` where `A` is the unsigned count and `S = Σ (−1)^{blocks(c)}` the [[castle-sign](pages/castle-sign.md)] signed count.
 
-Growth constants should be invariant under these lower-order corrections, but the *exact* sequences — and their Online Encyclopedia of Integer Sequences (OEIS) identities — can change. This page works out the projected counts for the ridge ladder (bronze / copper / …) and asks whether the metallic OEIS sequences (Pell A000129, A006190, A001076, …) or new ones appear.
+Growth constants should be invariant under these lower-order corrections, but the *exact* sequences — and their Online Encyclopedia of Integer Sequences (OEIS) identities — can change. This page works out the projected counts for the ridge ladder (bronze, `δ_4`, …) and asks whether the metallic OEIS sequences (Pell A000129, A006190, A001076, …) or new ones appear.
 
 ## The two projections, precisely
 
@@ -49,7 +49,7 @@ Then `even(w) = (u_proper(w) + s_proper(w))/2`, `odd(w) = (u_proper(w) − s_pro
 | 5 | 2.242 | 4.236 |
 | 6 | 2.413 | 5.193 |
 
-Since `ρ(S_h) < δ_{h−1}`, the signed count `S` is `o(A)`, and `(A ± S)/2` keeps the leading term `~ C·δ_{h−1}^w`. Numerically the even-count tail ratios converge to the metal: `h=3 → 2.41426`, `h=4 → 3.30279`, `h=5 → 4.23657`, `h=6 → 5.1958` (→ nickel `5.1926`).[^4] **The metallic growth constant survives both projections**, as the lower-order-correction reading predicts.
+Since `ρ(S_h) < δ_{h−1}`, the signed count `S` is `o(A)`, and `(A ± S)/2` keeps the leading term `~ C·δ_{h−1}^w`. Numerically the even-count tail ratios converge to the rung: `h=3 → 2.41426`, `h=4 → 3.30279`, `h=5 → 4.23657`, `h=6 → 5.1958` (→ `δ_5 = 5.1926`).[^4] **The metallic growth constant survives both projections**, as the lower-order-correction reading predicts.
 
 ## Finding 2 — the projected sequences are new
 
@@ -60,8 +60,8 @@ The even-block ridge castle counts by width, for each rung:[^5]
 | golden `h=2` | 1, 3, 4, 4, 5, 9, 17, 29, 46, 72, 115, 187 | *(short / degenerate)* |
 | silver `h=3` | 0, 0, 3, 16, 44, 104, 265, 674, 1640, 3972, 9687, 23512 | none |
 | bronze `h=4` | 1, 7, 25, 70, 209, 697, 2390, 8169, 27565, 91762, 303541, 1002841 | none |
-| copper `h=5` | 0, 0, 10, 104, 604, 2836, 12630, 55668, 242744, 1047448, 4489986, 19175568 | none |
-| nickel `h=6` | 1, 11, 66, 320, 1601, 8661, 47807, 261401, 1411224, 7537448, 39939391, 210495659 | none |
+| `δ_4` `h=5` | 0, 0, 10, 104, 604, 2836, 12630, 55668, 242744, 1047448, 4489986, 19175568 | none |
+| `δ_5` `h=6` | 1, 11, 66, 320, 1601, 8661, 47807, 261401, 1411224, 7537448, 39939391, 210495659 | none |
 
 None of these (nor their unsigned / odd / signed companions) matches OEIS on 12 terms; the unsigned `max=h` counts (all ridge castles of exact height `h`) are likewise new for `h ≥ 3` (e.g. bronze `1, 7, 31, 118, 421, 1453, 4924, 16513, …`).[^6] The `max=h` projection alone changes the characteristic polynomial by one factor:
 
@@ -80,10 +80,10 @@ Even *before* the projection, the free strip count `𝟙ᵀR_h^L𝟙` is not the
 | golden `h=2` | 2, 3, 5, 8, 13, 21, 34, 55 | **A000045** (Fibonacci) | A000045 (Fibonacci) |
 | silver `h=3` | 3, 7, 17, 41, 99, 239, 577 | **A001333** (Pell–Lucas) | A000129 (Pell) |
 | bronze `h=4` | 4, 13, 43, 142, 469, 1549, 5116 | **A003688** | A006190 |
-| copper `h=5` | 5, 21, 89, 377, 1597, 6765, 28657 | **A015448** (= `F_{3n+5}` trisection) | A001076 (= `F_{3n}/2`) |
-| nickel `h=6` | 6, 31, 161, 836, 4341, 22541, 117046 | **A015449** | A052918 |
+| `δ_4` `h=5` | 5, 21, 89, 377, 1597, 6765, 28657 | **A015448** (= `F_{3n+5}` trisection) | A001076 (= `F_{3n}/2`) |
+| `δ_5` `h=6` | 6, 31, 161, 836, 4341, 22541, 117046 | **A015449** | A052918 |
 
-Only golden (`h = 2`) has its free count equal to its primary metallic sequence. For copper, `δ_4 = φ³` and the free count is `A015448 = F_{3n+5}`, the unhalved Fibonacci trisection, while [[metallic-means](pages/metallic-means.md)] lists the halved trisection `A001076 = F_{3n}/2` as copper's sequence. The copper even count (`0, 0, 10, 104, 604, …`) has no OEIS match.
+Only golden (`h = 2`) has its free count equal to its primary metallic sequence. For `δ_4 = φ³` the free count is `A015448 = F_{3n+5}`, the unhalved Fibonacci trisection, while [[metallic-means](pages/metallic-means.md)] lists the halved trisection `A001076 = F_{3n}/2` as the `a = 4` sequence. The `h = 5` even count (`0, 0, 10, 104, 604, …`) has no OEIS match.
 
 ## Answer
 
@@ -113,6 +113,6 @@ Only golden (`h = 2`) has its free count equal to its primary metallic sequence.
 
 [^5]: Transfer-matrix values, cross-checked term-for-term against brute-force enumeration of all skylines `{1..h}^w` (filter `max = h`, ridge adjacency `R_h = J − D`, `blocks % 2 == 0`) for `h ≤ 6`, `w ≤ 12` — exact match throughout.
 
-[^6]: OEIS search (2026-09-18, `oeis.org` JSON search on 12 terms) returns no match for any projected row at `h ≥ 3`; the unsigned bronze row `1, 7, 31, 118, 421, 1453, …` and copper row `1, 9, 53, 269, 1273, 5793, …` are also unmatched. Sanity checks: Pell `1,2,5,12,29,70,169,408` → A000129; copper free `5,21,89,377,1597,6765` → A015448.
+[^6]: OEIS search (2026-09-18, `oeis.org` JSON search on 12 terms) returns no match for any projected row at `h ≥ 3`; the unsigned bronze row `1, 7, 31, 118, 421, 1453, …` and `δ_4` row `1, 9, 53, 269, 1273, 5793, …` are also unmatched. Sanity checks: Pell `1,2,5,12,29,70,169,408` → A000129; `δ_4` free `5,21,89,377,1597,6765` → A015448.
 
-[^7]: Free strip counts are `𝟙ᵀ R_h^{L} 𝟙` (with `L = w−1`); OEIS identifications offset-exact: silver `3,7,17,41,99,239,577` = A001333 (Pell–Lucas), bronze `4,13,43,142,469,1549,5116` = A003688 (`a(n) = 3a(n−1) + a(n−2)`, `a(1)=1, a(2)=4`), copper `5,21,89,377,…` = A015448 (`a(n) = 4a(n−1) + a(n−2)`), matching the `F_{3n+5}` trisection exactly ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)] Finding 3); nickel `6,31,161,836,…` = A015449 (expansion of `(1 − 4x)/(1 − 5x − x²)`, checked 2026-09-28).
+[^7]: Free strip counts are `𝟙ᵀ R_h^{L} 𝟙` (with `L = w−1`); OEIS identifications offset-exact: silver `3,7,17,41,99,239,577` = A001333 (Pell–Lucas), bronze `4,13,43,142,469,1549,5116` = A003688 (`a(n) = 3a(n−1) + a(n−2)`, `a(1)=1, a(2)=4`), `δ_4` `5,21,89,377,…` = A015448 (`a(n) = 4a(n−1) + a(n−2)`), matching the `F_{3n+5}` trisection exactly ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)] Finding 3); `δ_5` `6,31,161,836,…` = A015449 (expansion of `(1 − 4x)/(1 − 5x − x²)`, checked 2026-09-28).

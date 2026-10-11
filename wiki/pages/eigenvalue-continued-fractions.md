@@ -5,7 +5,7 @@ summary: Continued fractions of castle eigenvalues, taught from "what is a conti
 tags: [concept, castle, continued-fraction, eigenvalue, characteristic-polynomial, palindromic, lagrange, galois, quadratic, fibonacci, mod-p, pedagogy]
 sources: [project-euler-502-representations, oeis-mining-pe502]
 created: 2026-09-15
-updated: 2026-10-04
+updated: 2026-10-10
 ---
 
 # Eigenvalue continued fractions
@@ -118,9 +118,9 @@ Both are the fundamental units of their quadratic fields (`φ` of `Q(√5)`, `�
 |---|---|---|---|---|
 | 1 | `(1+√5)/2 ≈ 1.618` | Golden | Fibonacci A000045 | `2^{n−1} − F_{n−1}` in prime-castle count ([[castle-by-area](pages/castle-by-area.md)]) |
 | 2 | `1+√2 ≈ 2.414` | Silver | Pell A000129 ([[pell-numbers](pages/pell-numbers.md)]) | tower-word growth constant; the anchored 1-smooth strip of [[pell-castle-strip](pages/pell-castle-strip.md)] |
-| 3, 4, 5, … | Bronze, Copper, Nickel, … | | | the ridge castles (ridge rule `R_h = J − D`) at heights 4, 5, 6, … ([[castle-classification-growth](pages/castle-classification-growth.md)]) |
+| 3, 4, 5, … | Bronze, then none (`δ_4`, `δ_5`, …) | | | the ridge castles (ridge rule `R_h = J − D`) at heights 4, 5, 6, … ([[castle-classification-growth](pages/castle-classification-growth.md)]) |
 
-Every castle class whose count sequence has growth constant `δ_a` for some `a ≥ 1` is a **`<metal>` `<axis>` growth castle** (Axis 8 of [[castle-classification-growth](pages/castle-classification-growth.md)]) — a meta-classification on castle *classes* (not on individual castles) whose naming convention `<metal>` ∈ {golden, silver, bronze, copper, …} and `<axis>` ∈ {width, vertical, area, block} is developed there.
+Every castle class whose count sequence has growth constant `δ_a` for some `a ≥ 1` is a **`<metal>` `<axis>` growth castle** (Axis 8 of [[castle-classification-growth](pages/castle-classification-growth.md)]) — a meta-classification on castle *classes* (not on individual castles) whose naming convention `<metal>` ∈ {golden, silver, bronze}, then `δ_4`, `δ_5`, … by symbol, and `<axis>` ∈ {width, vertical, area, block} is developed there.
 
 **Higher degree.** The k-direction roots are `±1`: rational numbers have *terminating* continued fractions, so there is nothing there to approximate. The castle's higher-degree eigenvalues are the **L-direction** roots of `char_k` on [[generating-function-gallery](pages/generating-function-gallery.md)]: `char_k` has degree `k+1` and root product `2^k`, so it is not self-reciprocal and its roots are not units. A real root of degree 3 or more (the dominant root of `char_4` is already a cubic) has a non-periodic simple continued fraction by Lagrange, and the replacement for "period" is the multidimensional Jacobi–Perron expansion. The [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] runs that program: the `k = 6` dominant eigenvalue is `2ψ²` for `ψ` the plastic number (real root of `x³ = x + 1`), and its Jacobi–Perron expansion *is* periodic (preperiod 5, period 4) - a cubic analogue of `[2; 2, 2, …]`.
 

@@ -1,11 +1,11 @@
 ---
 title: Castle classification - growth types
 category: Concepts
-summary: A class-level classification. A castle class - an infinite family defined by a construction rule - has a growth type, the growth constant of its count sequence along a stated size axis. Metallic slot (golden / silver / bronze / copper / nickel / …) for quadratic growth; non-metallic slot (tribonacci / tetranacci / supergolden / plastic-squared / …) for higher-degree algebraic growth.
+summary: A class-level classification. A castle class - an infinite family defined by a construction rule - has a growth type, the growth constant of its count sequence along a stated size axis. Metallic slot (golden / silver / bronze, then δ_4 / δ_5 / … by symbol) for quadratic growth; non-metallic slot (tribonacci / tetranacci / supergolden / plastic-squared / …) for higher-degree algebraic growth.
 tags: [concept, castle, classification, taxonomy, growth-constant, metallic-means, ridge-castle, non-metallic, meta-classification, n-nacci, cubic-pisot, plastic-number, class-predicate]
 sources: [castle-classification, oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-10-04
+updated: 2026-10-10
 ---
 
 # Castle classification - growth types
@@ -23,7 +23,7 @@ The rest of this page names the growth types, states the wiki's naming conventio
 
 ## The metallic and non-metallic slots
 
-The main axis of growth constants is the [[metallic-means](pages/metallic-means.md)] family `δ_a = (a + √(a² + 4)) / 2` for `a = 1, 2, 3, …` - golden (`φ`), silver (`1 + √2`), bronze (`(3 + √13) / 2`), copper (`2 + √5 = φ³`), nickel (`(5 + √29) / 2`), and so on. A castle-strip family whose width generating function has denominator `1 − p_1 · x − p_2 · x²` grows at `(p_1 + √(p_1² + 4 p_2)) / 2`, which is a metallic mean iff `p_2 = 1` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
+The main axis of growth constants is the [[metallic-means](pages/metallic-means.md)] family `δ_a = (a + √(a² + 4)) / 2` for `a = 1, 2, 3, …` - golden (`φ`), silver (`1 + √2`), bronze (`(3 + √13) / 2`), then `δ_4 = 2 + √5 = φ³`, `δ_5 = (5 + √29) / 2`, and so on. A castle-strip family whose width generating function has denominator `1 − p_1 · x − p_2 · x²` grows at `(p_1 + √(p_1² + 4 p_2)) / 2`, which is a metallic mean iff `p_2 = 1` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
 
 Not every algebraic growth constant is a metallic mean. The wiki has two other families:
 
@@ -36,7 +36,7 @@ These are the named slots. Other algebraic growth constants on the wiki have no 
 
 A castle class is a **"`<constant>` `<axis>` growth castle"** iff its count sequence, graded by the chosen size axis, grows at rate `<constant>`. Three components:
 
-- **`<constant>`.** When the growth constant is a metallic mean, use the metal: **golden** (`a = 1`, growth `φ`), **silver** (`a = 2`, growth `1 + √2`), **bronze** (`a = 3`), **copper** (`a = 4` = `φ³`), **nickel** (`a = 5`), and so on. When it is not a metallic mean, use the constant's own name: **tribonacci**, **tetranacci**, **pentanacci**, **supergolden**, **plastic-squared**, **plastic**.
+- **`<constant>`.** When the growth constant is a metallic mean, use the metal: **golden** (`a = 1`, growth `φ`), **silver** (`a = 2`, growth `1 + √2`), **bronze** (`a = 3`); from `a = 4` on there is no metal name, so use the symbol: **`δ_4`** (`= φ³`), **`δ_5`**, and so on. When it is not a metallic mean, use the constant's own name: **tribonacci**, **tetranacci**, **pentanacci**, **supergolden**, **plastic-squared**, **plastic**.
 - **`<axis>`.** The size parameter being graded:
   - **width** - the sequence is graded by width `w` (exact height `h` fixed).
   - **vertical** - by height `h` (width `w` fixed or bounded).
@@ -66,13 +66,13 @@ A class whose width-graded count sequence grows at `1 + √2 ≈ 2.4142`. Known 
 
 The **tower word** ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]) also grows at `1 + √2`, but on a different axis: A004149 counts tower words by word length (width plus twice the block count), with an algebraic GF whose singularity is at `√2 − 1`. By width, all castles of exact height `h` number `h^w − (h − 1)^w`, an integer growth constant `h`.
 
-### Bronze, copper, nickel, and higher - realized by ridge castles
+### Bronze, δ_4, δ_5, and higher - realized by ridge castles
 
 All higher rungs are realized by a single named predicate ([[ridge-castle](pages/ridge-castle.md)]): the **ridge rule** (adjacent columns differ in height unless both equal the max `h`; its castles of exact height `h` are the **ridge castles**, [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2), transfer matrix `R_h = J − D`, characteristic polynomial `(x + 1)^{h − 2} (x² − (h − 1) x − 1)`, Perron root the `(h − 1)`-th metallic mean `δ_{h − 1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). Metal `a` sits at height `h = a + 1`:
 
 - **Bronze** (`δ_3 = (3 + √13) / 2 ≈ 3.303`) - ridge castles of exact height 4, `1, 7, 31, 118, 421, …`, growth in `Q(√13)`. (Three states per column do not give bronze - it is unreachable on ≤ 3 states, where natural rules land on non-metallic values such as `1 + √3`; the ridge rule's ceiling exception pins `p_2 = 1`.)
-- **Copper** (`δ_4 = 2 + √5 = φ³`) - ridge castles of exact height 5; because `δ_4 = φ³ ∈ Q(√5)`, the transfer matrix gives `𝟙ᵀR_5^{w−1}𝟙 = F_{3w + 2}`, the **Fibonacci trisection**.
-- **Nickel and beyond** (`δ_5, δ_6, …`) - ridge castles of exact heights 6, 7, ….
+- **`δ_4`** (`= 2 + √5 = φ³`) - ridge castles of exact height 5; because `δ_4 = φ³ ∈ Q(√5)`, the transfer matrix gives `𝟙ᵀR_5^{w−1}𝟙 = F_{3w + 2}`, the **Fibonacci trisection**.
+- **`δ_5` and beyond** (`δ_5, δ_6, …`) - ridge castles of exact heights 6, 7, ….
 
 Whether each rung has *other* natural realizations besides the ridge rule `R_h = J − D` (silver has several) is open.
 
@@ -132,7 +132,7 @@ Relating the growth types of one class under different axes is open.
 
 ## Open threads
 
-1. **Alternative realizations of the bronze / copper / nickel width growth castles.** Silver has several realizations; every higher rung has only the ridge rule `R_h = J − D`. Does any higher rung admit a second, structurally distinct castle-strip rule?
+1. **Alternative realizations of the bronze, `δ_4`, `δ_5`, … width growth castles.** Silver has several realizations; every higher rung has only the ridge rule `R_h = J − D`. Does any higher rung admit a second, structurally distinct castle-strip rule?
 2. **Block growth axis** - no member known.
 3. **Cross-axis statements** - relating growth types under different axes on the same class.
 

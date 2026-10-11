@@ -5,7 +5,7 @@ summary: A classification of individual castles by the spectrum of a graph deriv
 tags: [concept, castle, classification, taxonomy, spectral, adjacency-matrix, laplacian, ramanujan, smith-theorem, dynkin, tree-castle, isospectral, single-castle-predicate, dft, sparse-spectrum]
 sources: [castle-classification, oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-10-04
+updated: 2026-10-10
 ---
 
 # Castle classification - spectral types
@@ -53,7 +53,7 @@ Full details on [[castle-graph](pages/castle-graph.md)] and [[tree-castle-by-are
 
 **No castle of any size is golden-spectrum outside the list above.** By **Smith's theorem**, a connected graph with largest eigenvalue below 2 is one of the simply-laced Dynkin diagrams `A_n = P_n`, `D_n`, `E_6`, `E_7`, `E_8`.[^1] All five families occur as castle graphs: `A_n` as any path-shaped castle, `D_n` as `(1, 2, 1, 1, …, 1)` (a degree-3 cell at the base of a one-cell tower next to the left end), `E_6, E_7, E_8` as `(1, 1, 2, 1, 1)`, `(1, 1, 2, 1, 1, 1)`, `(1, 1, 2, 1, 1, 1, 1)`. Their spectral radii are `2 cos(π / (n + 1))`, `2 cos(π / (2n − 2))`, `2 cos(π / 12)`, `2 cos(π / 18)`, `2 cos(π / 30)`, and `φ = 2 cos(π / 5)` is hit only by `A_4 = P_4`. Verified by enumeration to 9 cells: 171 castles (102 up to mirror image) have spectral radius below 2, every radius among them is a Dynkin value, and exactly the six `P_4` castles have radius `φ`.
 
-**Copper and higher metallic means are impossible for castle graphs.** They exceed 4, the maximum degree of a castle graph. Bronze `3.303` remains open ([[bronze-castle-hunt](pages/bronze-castle-hunt.md)]).
+**`δ_4` and higher metallic means are impossible for castle graphs.** They exceed 4, the maximum degree of a castle graph. Bronze `3.303` remains open ([[bronze-castle-hunt](pages/bronze-castle-hunt.md)]).
 
 The metallic means reach individual castles only through their polyomino graphs. **Project Euler 502's own signed transfer matrix never has a metallic eigenvalue** ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]): its eigenvalues are twice the roots of an integer polynomial with leading coefficient 2, so never metallic. The class-level growth constants on [[castle-classification-growth](pages/castle-classification-growth.md)] and the single-castle adjacency spectral radii here come from different operators; `φ` appears in both.
 

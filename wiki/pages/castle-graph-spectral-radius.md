@@ -1,11 +1,11 @@
 ---
 title: Metallic means in castle spectra
 category: Analyses
-summary: Where the metallic means do and do not appear as eigenvalues. The count F(w,h) grows like h^w/2, so its transfer-matrix growth constant is h; the signed transfer matrix's eigenvalues are twice the roots of an integer polynomial with leading coefficient 2, so no metallic mean is ever among them (ρ_1 = √2, ρ_2 = 2, ρ_4 = 2.796, ρ_6 = 2ψ², …). Metallic means are the spectral radii of class transfer matrices (Axis 8) and of individual castle graphs: φ for the six 4-cell path castles, 1+√2 for 36 castles up to mirror image in a scan to width 10 (the 3×2 rectangle in both orientations and 34 non-rectangular ones), φ² for three castles up to width 7; copper and beyond are impossible (max degree 4); bronze absent among 4.87 million castles; one castle lands within 10⁻⁸ of 2ψ² without equalling it.
+summary: Where the metallic means do and do not appear as eigenvalues. The count F(w,h) grows like h^w/2, so its transfer-matrix growth constant is h; the signed transfer matrix's eigenvalues are twice the roots of an integer polynomial with leading coefficient 2, so no metallic mean is ever among them (ρ_1 = √2, ρ_2 = 2, ρ_4 = 2.796, ρ_6 = 2ψ², …). Metallic means are the spectral radii of class transfer matrices (Axis 8) and of individual castle graphs: φ for the six 4-cell path castles, 1+√2 for 36 castles up to mirror image in a scan to width 10 (the 3×2 rectangle in both orientations and 34 non-rectangular ones), φ² for three castles up to width 7; δ_4 and beyond are impossible (max degree 4); bronze absent among 4.87 million castles; one castle lands within 10⁻⁸ of 2ψ² without equalling it.
 tags: [analysis, castle, spectral, adjacency, transfer-matrix, metallic-means, golden-ratio, silver-ratio, axis-9, isospectral, numpy, sympy, verification]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-16
-updated: 2026-09-28
+updated: 2026-10-10
 ---
 
 # Metallic means in castle spectra
@@ -110,7 +110,7 @@ Exact characteristic polynomials confirm the floating-point matches:[^3]
 
 They are not products, yet `x² − 2x − 1` divides their characteristic polynomials, and `(2,1,6,2,1,3)` carries `φ` and `1 + √2` in the same spectrum. The double staircase `(1,2,3,1,2,3)` and its mirror are 12-cell castles with the same spectral radius as the 6-cell rectangle.
 
-**What cannot happen, and the big scan.** A castle graph is a subgraph of the square grid, so its maximum degree is at most 4 and its spectral radius is strictly below 4 for every finite castle. Copper `2 + √5 = 4.236`, nickel, and every higher metallic mean are therefore **never** the spectral radius of a castle graph. Bronze `(3 + √13)/2 = 3.303` is below the bound, so it was hunted at scale: **4,868,525 castles** (mirror-deduped; all `w ≤ 8, h ≤ 7`, plus `w = 9, h ≤ 5` and `w = 10, h ≤ 4`), prefiltered by the edge bound `ρ ≤ max_{uv} √(d_u d_v)` (a radius above 3.3 needs an edge whose endpoint degrees multiply to at least 11), then `eigvalsh`. **No bronze castle.** The same scan found 36 silver castles up to mirror image (6 to 20 cells, both orientations of the 3×2 rectangle among them; e.g. `(1,1,2,1,4,2,1,1)`, `(3,2,1,2,2,1,2,3)` (the castle of [[sandcastle-seminar](pages/sandcastle-seminar.md)]), `(1,2,4,1,3,1,2,6)`) and exactly one castle whose radius lies within `10⁻⁸` of `2ψ² = 3.510`:
+**What cannot happen, and the big scan.** A castle graph is a subgraph of the square grid, so its maximum degree is at most 4 and its spectral radius is strictly below 4 for every finite castle. `δ_4 = 2 + √5 = 4.236`, `δ_5`, and every higher metallic mean are therefore **never** the spectral radius of a castle graph. Bronze `(3 + √13)/2 = 3.303` is below the bound, so it was hunted at scale: **4,868,525 castles** (mirror-deduped; all `w ≤ 8, h ≤ 7`, plus `w = 9, h ≤ 5` and `w = 10, h ≤ 4`), prefiltered by the edge bound `ρ ≤ max_{uv} √(d_u d_v)` (a radius above 3.3 needs an edge whose endpoint degrees multiply to at least 11), then `eigvalsh`. **No bronze castle.** The same scan found 36 silver castles up to mirror image (6 to 20 cells, both orientations of the 3×2 rectangle among them; e.g. `(1,1,2,1,4,2,1,1)`, `(3,2,1,2,2,1,2,3)` (the castle of [[sandcastle-seminar](pages/sandcastle-seminar.md)]), `(1,2,4,1,3,1,2,6)`) and exactly one castle whose radius lies within `10⁻⁸` of `2ψ² = 3.510`:
 
 ```
 (1,1,2,7,7,5,7,7)      radius 3.50975532447636…      2ψ² = 3.50975533249338…      difference −8.0·10⁻⁹

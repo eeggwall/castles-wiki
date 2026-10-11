@@ -5,7 +5,7 @@ summary: Every castle eigenvalue's "convergents" run against OEIS. The metallic 
 tags: [analysis, castle, continued-fraction, convergents, oeis, eigenvalue, quasi-polynomial, plastic-number, jacobi-perron, pisano, mod-p, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-10-04
+updated: 2026-10-10
 ---
 
 # Castle eigenvalues meet OEIS: the convergent crosswalk
@@ -88,7 +88,7 @@ Every OEIS number below was checked offset-exact against the stored OEIS data on
 
 Three observations from the table:
 
-- **Same field, different number, different period.** `δ_3 = (3+√13)/2` has period 1, but `√13` in the same field `Q(√13)` has period 5. The continued-fraction period belongs to the *number*: `δ_3` has period 1 and `√13` period 5 in the same field. (`√(a²+4) = 2δ_a − a`, and doubling lengthens the period; the exception is `√5 = [2; 4̄]`, because `√5 = δ_4 − 2 = φ³ − 2`, the copper coincidence of [[metallic-means](pages/metallic-means.md)], which is why the copper sequence A001076 is also "denominators of continued fraction convergents to `√5`".)
+- **Same field, different number, different period.** `δ_3 = (3+√13)/2` has period 1, but `√13` in the same field `Q(√13)` has period 5. The continued-fraction period belongs to the *number*: `δ_3` has period 1 and `√13` period 5 in the same field. (`√(a²+4) = 2δ_a − a`, and doubling lengthens the period; the exception is `√5 = [2; 4̄]`, because `√5 = δ_4 − 2 = φ³ − 2`, the `δ_4 = φ³` coincidence of [[metallic-means](pages/metallic-means.md)], which is why the `a = 4` sequence A001076 is also "denominators of continued fraction convergents to `√5`".)
 - **`√(a²+4)` CFs were generated with SymPy** (`sp.continued_fraction_periodic(0, 1, a*a + 4)` returns `[a₀, [period]]`): `[2, [4]]`, `[2, [1, 4]]`, `[3, [1, 1, 1, 1, 6]]`, `[4, [2, 8]]`, `[5, [2, 1, 1, 2, 10]]`.
 - **Trace versus half-trace.** The trace sequence for `a = 2` (`2, 2, 6, 14, 34, …`) is A002203; A001333 (`1, 1, 3, 7, 17, …`) is its half, and is the sequence that shows up as convergent numerators of `√2`.
 
