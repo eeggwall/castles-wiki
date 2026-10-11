@@ -1,11 +1,11 @@
 ---
 title: Minimum height for a quadratic growth constant
 category: Analyses
-summary: For each quadratic growth constant - the larger root of x^2 - p1 x - p2 - the smallest height h at which some 0/1 castle-strip rule (which column heights may follow which) grows at exactly that rate. Exact answer for every pair with minimum height up to 6, from an exhaustive census of all 0/1 rule tables up to 6 x 6 (2^36 tables at height 6, cut to 1.28 billion by sorting rows; 758,878 distinct characteristic polynomials), which finds 53 pairs. Three results proved - (1) height > growth, so h >= floor(growth) + 1, exact whenever the second root is small; (2) the metallic line: min height (p1, 1) = p1 + 1 for every p1, so nickel first appears at height 6; (3) the square-root line: min height (0, p2) = ceil(2 sqrt p2), by a Perron-Frobenius period-2 argument for the lower bound and a rank-one two-group construction for the upper. One conjecture - every pair reaches its minimum height with a rule whose heights split into at most three evenly connected groups. Two groups are optimal for 47 of the 53 pairs (all six misses have p2 = 5 or 7, a prime forcing a lopsided split); three groups match all 53 and never undercut the exhaustive search. The conjecture turns min height into a finite search; its predicted table through height 9 is given. Open - a proof, or a height-7 counterexample; a closed form for p1 > 0, where ceil(2 sqrt p2) is no longer a lower bound ((2, 13) is built at height 7).
+summary: For each quadratic growth constant - the larger root of x^2 - p1 x - p2 - the smallest height h at which some 0/1 castle-strip rule (which column heights may follow which) grows at exactly that rate. Exact answer for every pair with minimum height up to 6, from an exhaustive census of all 0/1 rule tables up to 6 x 6 (2^36 tables at height 6, cut to 1.28 billion by sorting rows; 758,878 distinct characteristic polynomials), which finds 53 pairs. Four results proved - (1) height > growth, so h >= floor(growth) + 1, exact whenever the second root is small; (2) the metallic line: min height (p1, 1) = p1 + 1 for every p1, so nickel first appears at height 6; (3) the square-root line: min height (0, p2) = ceil(2 sqrt p2), by a Perron-Frobenius period-2 argument for the lower bound and a rank-one two-group construction for the upper; (4) the triangle: min height (p1, p2) = p1 + 1 whenever 1 <= p2 <= p1, by a two-group construction - row p1 holds exactly p1 such pairs, all with growth between p1 and p1 + 1, and (p1, p1 + 1) is the whole number p1 + 1. One conjecture - every pair reaches its minimum height with a rule whose heights split into at most three evenly connected groups. Two groups are optimal for 47 of the 53 pairs (all six misses have p2 = 5 or 7, a prime forcing a lopsided split); three groups match all 53 and never undercut the exhaustive search. The conjecture turns min height into a finite search; its predicted table through height 9 is given. Open - a proof, or a height-7 counterexample; a closed form for p1 > 0, where ceil(2 sqrt p2) is no longer a lower bound ((2, 13) is built at height 7).
 tags: [analysis, castle, castle-strip, transfer-matrix, perron-frobenius, growth-constant, quadratic-field, metallic-means, min-height, equitable-partition, census, exhaustive-search, conjecture, implementation, verification]
 sources: [oeis-mining-pe502]
 created: 2026-09-25
-updated: 2026-10-02
+updated: 2026-10-10
 ---
 
 # Minimum height for a quadratic growth constant
@@ -22,7 +22,7 @@ x^2 - p1 x - p2          ρ = (p1 + sqrt(p1^2 + 4 p2)) / 2
 
 which is the recurrence `a(L) = p1 a(L-1) + p2 a(L-2)`: build a row by adding one column in `p1` ways or two columns in `p2` ways, like tiling with squares in `p1` colours and dominoes in `p2` colours. Golden is `(1, 1)`, the metallic means are the `p2 = 1` line ([[metallic-means](pages/metallic-means.md)]), and [[reachable-field-census](pages/reachable-field-census.md)] showed that every pair is the growth constant of some 0/1 rule at some height.
 
-This page asks: **what is the smallest height `h` that can do it?** Three lines of the answer are proved here, the rest is computed exactly up to height 6, and one conjecture covers everything computed so far.
+This page asks: **what is the smallest height `h` that can do it?** Three lines and one triangle of the answer are proved here, the rest is computed exactly up to height 6, and one conjecture covers everything computed so far.
 
 ## Terms used on this page
 
@@ -58,7 +58,7 @@ p1\p2   -7  -6  -5  -4  -3  -2  -1 |  1   2   3   4   5   6   7   8   9
 
 Blank cells with a lower bound of 6 or less were not realized by height 6; their min height is at least 7.
 
-## Three proved results
+## Four proved results
 
 ### 1. The general lower bound: height > growth
 
@@ -93,6 +93,25 @@ Here `ρ = sqrt p2` and the conjugate is `-sqrt p2`, the same size.
 
 Checked against the table for every non-square `p2` up to 20.
 
+### 4. The triangle `1 <= p2 <= p1`: min height `p1 + 1`
+
+Fix a row `p1 = n >= 1`. For `1 <= p2 <= n` the growth constant `ρ` lies strictly between `n` and `n + 1`: `ρ > n` because `p2 > 0`, and `ρ < n + 1` exactly when `n^2 + 4 p2 < (n + 2)^2`, that is `p2 < n + 1`. The discriminant is never a square in this range, since it lies strictly between `n^2` and `(n + 2)^2` and equals `(n + 1)^2` only if `4 p2 = 2n + 1`, which is odd. At `p2 = n + 1` the quadratic factors as `(x - (n + 1))(x + 1)`, so `ρ` is the whole number `n + 1`, and for larger `p2` it passes `n + 1`. So each row `n` starts with exactly `n` irrational pairs `(n, 1), …, (n, n)` with `floor(ρ) = n`, followed by a square-discriminant cell.
+
+*Lower bound.* Result 1, since `ρ > n`.
+
+*Construction.* Use heights `1..n+1`. Heights `1..n` may each be followed by any of `1..n` and by `n + 1`; height `n + 1` may be followed by `p2` of the heights `1..n` and not by itself. The groups `{1, …, n}` and `{n + 1}` are evenly connected, with table of counts `[[n, 1], [p2, 0]]` and characteristic polynomial `x^2 - n x - p2`. The full table's characteristic polynomial is `x^(n-1) (x^2 - n x - p2)`.
+
+```
+(3, 2) at height 4:
+   1111        1, 2, 3 may be followed by anything
+   1111
+   1111
+   1100        4 may be followed by 1 or 2 only
+   characteristic polynomial  x^2 (x^2 - 3x - 2)
+```
+
+**So min height `(p1, p2) = p1 + 1` for every `1 <= p2 <= p1`.** The `p2 = 1` cell is result 2 again, by a different table from the ridge rule. In the census grid this is the whole left triangle of rows 1 to 5, and the conjectured grid below repeats it for rows 6 and 7.[^tri]
+
 ## The three-group conjecture
 
 The rank-one construction is a special case of **evenly connected groups**. With two groups of sizes `a` and `b`, where each height in the first group has `α` successors in the first and `β` in the second, and each in the second has `γ` in the first and `δ` in the second, the growth constant is the larger root of `x^2 - (α + δ) x + (α δ - β γ)`. So `p1 = α + δ` and `p2 = β γ - α δ`, at height `a + b`, subject to `α, γ <= a` and `β, δ <= b`. That is a small search, and it gives an upper bound for every pair.
@@ -119,7 +138,7 @@ Through height 6 these are proved minima; beyond 6 they are upper bounds that th
 ## What is still open
 
 - **A proof of the three-group conjecture, or a counterexample at height 7.** Exhaustive height 7 is about `10^12` tables even after sorting rows, so a test needs a targeted search on the pairs the conjecture puts at 8 or 9.
-- **A closed form for `p1 > 0`.** Result 3 does not extend directly: `ceil(2 sqrt p2)` is not a lower bound once `p1 > 0`, since `(2, 13)` is built at height 7 where `ceil(2 sqrt 13) = 8`.
+- **A closed form for `p1 > 0` outside the triangle `p2 <= p1`.** Result 3 does not extend directly: `ceil(2 sqrt p2)` is not a lower bound once `p1 > 0`, since `(2, 13)` is built at height 7 where `ceil(2 sqrt 13) = 8`.
 - **Min height of a field.** [[reachable-field-census](pages/reachable-field-census.md)] asks when a number field first appears; that is the minimum of this page's min height over all pairs with that field, which the table above answers for every field it covers.
 
 ## Related Concepts
@@ -138,3 +157,4 @@ Through height 6 these are proved minima; beyond 6 they are upper bounds that th
 ## Footnotes
 
 [^exec]: Verified by execution (2026-09-25). Census: a C program enumerating every 0/1 matrix of size 2 to 5, and every 6 x 6 matrix with row sums in nonincreasing order (1,277,642,344 matrices, 18 s on 14 processes), computing the characteristic polynomial exactly in 64-bit integers by the Faddeev-LeVerrier recursion and keeping the distinct ones. For each polynomial, the largest real root `ρ` was found numerically; every candidate `x^2 - p1 x - p2` with `p1 = round((ρ^2 - p2)/ρ)`, `-60 <= p2 <= 60`, non-square discriminant and larger root `ρ` was confirmed by exact polynomial division. Every height-5 pair reappeared in the height-6 run. Two- and three-group constructions: exhaustive over group sizes summing to at most 9 and all count tables with entries bounded by the group sizes, with the three-group cubic split into an integer root times the quadratic and `ρ` required to be the largest root. All quoted numbers are the programs' printed output.
+[^tri]: Verified by execution (Python 3, SymPy, 2026-10-10): for every `1 <= n <= 12` and `1 <= p2 <= n`, the `(n + 1) x (n + 1)` table above (rows `1..n` all ones, last row `p2` ones then zeros) has characteristic polynomial exactly `x^(n-1) (x^2 - n x - p2)`, its larger root lies in `(n, n + 1)`, and `n^2 + 4 p2` is not a square. The census grid's entries `(n, p2)` for `n <= 5`, `p2 <= n` all read `n + 1`.
