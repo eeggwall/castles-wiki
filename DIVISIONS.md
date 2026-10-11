@@ -18,7 +18,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 - **F - Fractional:** non-integer orders, power-law memory, interpolated statistics, and dense operators where the integer castle has sparse ones.
 - **X - Ciphers:** keystreams, hidden payloads, commitments, and what survives an adversary.
 - **C - Chinese Remainder Theorem:** applying the Chinese Remainder Theorem.
-- **M - Metallurgy:** investigating occurrences of golden, silver, bronze, copper, and nickel ratios; golden, silver, plastic ratios; metallic by count, by width, by area, by spectrum; Fibonacci castles
+- **M - Metallurgy:** investigating occurrences of golden, silver and bronze means and the higher rungs `δ_4`, `δ_5`, …; golden, silver, plastic ratios; metallic by count, by width, by area, by spectrum; Fibonacci castles
 - **The Telephone Company:** phone signals, audio codecs, tone catalogues, expander-graph and Ihara-zeta reads of the castle graph, information-theoretic entropy of skylines, and the isospectral seminar.
 - **Facilities:** applied, physical-world tooling: real objects turned into castles (keys, city skylines, mountain ridgelines, ballparks).
 
@@ -132,7 +132,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 
 - Fibonacci castles: Fibonacci towers, the Fibonacci Q-matrix as transfer matrix, the Fibonacci word, and Zeckendorf ranking.
 - Ridge castles: the ridge rule, its transfer matrix, and its growth constants up the metallic ladder.
-- The metallic rungs: golden through nickel as continued fractions, their convergents in OEIS, and which rungs a castle-strip rule can realize.
+- The metallic rungs: golden through `δ_5` as continued fractions, their convergents in OEIS, and which rungs a castle-strip rule can realize.
 
 ### The Telephone Company
 
