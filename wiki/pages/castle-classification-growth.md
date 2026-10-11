@@ -5,7 +5,7 @@ summary: A class-level classification. A castle class - an infinite family defin
 tags: [concept, castle, classification, taxonomy, growth-constant, metallic-means, ridge-castle, non-metallic, meta-classification, n-nacci, cubic-pisot, plastic-number, class-predicate]
 sources: [castle-classification, oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-10-10
+updated: 2026-10-11
 ---
 
 # Castle classification - growth types
@@ -28,7 +28,7 @@ The main axis of growth constants is the [[metallic-means](pages/metallic-means.
 Not every algebraic growth constant is a metallic mean. The wiki has two other families:
 
 - **n-nacci constants**, roots of `x^h = x^{h − 1} + ⋯ + 1`: tribonacci at `h = 3`, tetranacci at `h = 4`, pentanacci, and so on to `2` in the limit.
-- **cubic-Pisot constants**, roots of term-skipping cubics: supergolden (`x³ − x² − 1`), plastic-squared `ψ²` (`x³ − 2x² + x − 1`), and the plastic number `ψ` itself (`x³ − x − 1`), realized as a castle-strip area growth constant ([[area-growth-census](pages/area-growth-census.md)]).
+- **cubic-Pisot constants**, roots of term-skipping cubics: supergolden (`x³ − x² − 1`),[^crilly] plastic-squared `ψ²` (`x³ − 2x² + x − 1`), and the plastic number `ψ` itself (`x³ − x − 1`), realized as a castle-strip area growth constant ([[area-growth-census](pages/area-growth-census.md)]).
 
 These are the named slots. Other algebraic growth constants on the wiki have no family name: the degree-5 constant `α ≈ 1.6851` of the `h = 4` tree castles by area, the thousands of constants of [[area-growth-census](pages/area-growth-census.md)], and the non-metallic width constants below.
 
@@ -178,3 +178,4 @@ Relating the growth types of one class under different axes is open.
 *(Except where footnoted, the identities above are cross-referenced and their derivations live on the linked pages.)*
 
 [^exact]: Verified by execution (Python 3, 2026-10-02): the anchored 1-smooth skylines over `{1, 2, 3}` reaching height 3 were enumerated for `w ≤ 10` and equal `P⋆_w − 2^{w−1}`; with a free first column they equal `A001333(w + 1) − 2^w` (`1, 3, 9, 25, 67, 175, 449, 1137, 2851, 7095`); tree castles of exact height 4 by area, by a transfer recurrence to area 400, have successive ratio `1.685137`. The other exact-height area counts are verified on [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)].
+[^crilly]: https://www.jstor.org/stable/3620208 (T. Crilly, "A supergolden rectangle", *The Mathematical Gazette* 78 (1994) 320-325) p.322 - "x must satisfy the cubic equation x³ − x² − 1 = 0", from a rectangle cut into a square and two smaller rectangles all similar to it; p.323 - "in the case of the supergolden ratio ψ we have the cubic x³ = x² + 1". Crilly's symbol `ψ` is the wiki's symbol for the plastic number, so the wiki writes this constant only by name. His printed value `1.465567…` is off in the fifth decimal; the root is `1.4655712…`.
