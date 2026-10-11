@@ -55,6 +55,8 @@ Full details on [[castle-graph](pages/castle-graph.md)] and [[tree-castle-by-are
 
 **`δ_4` and higher metallic means are impossible for castle graphs.** They exceed 4, the maximum degree of a castle graph. Bronze `3.303` remains open ([[bronze-castle-hunt](pages/bronze-castle-hunt.md)]).
 
+**The plastic number and the wiki's other cubic constants are impossible for any graph.** An adjacency matrix is symmetric, so all its eigenvalues are real; if `ψ` (the real root of `x³ = x + 1`) were one, its minimal polynomial would divide the characteristic polynomial and its two complex conjugates would be eigenvalues too. The same holds for `ψ²`, supergolden and tribonacci, each a cubic with one real root. So there are no plastic-spectrum castles; the comparison of all four constants across the axes is on [[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)].
+
 The metallic means reach individual castles only through their polyomino graphs. **Project Euler 502's own signed transfer matrix never has a metallic eigenvalue** ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]): its eigenvalues are twice the roots of an integer polynomial with leading coefficient 2, so never metallic. The class-level growth constants on [[castle-classification-growth](pages/castle-classification-growth.md)] and the single-castle adjacency spectral radii here come from different operators; `φ` appears in both.
 
 ## Isospectral castles

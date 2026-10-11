@@ -5,7 +5,7 @@ summary: Sub-families of the Fibonacci castles cut out by a rule on the Fibonacc
 tags: [concept, castle, castle-type, fibonacci, fibonacci-tower, fibonacci-word, sturmian, balanced-word, totient, sub-family, maximal-independent-set, padovan, plastic-number, narayana-cows, supergolden, run-length-limited, capacity, oeis]
 sources: [project-euler-502]
 created: 2026-10-04
-updated: 2026-10-06
+updated: 2026-10-10
 ---
 
 # Fibonacci castle sub-families
@@ -97,6 +97,7 @@ A **`(d, k)`-RLL castle** is a Fibonacci castle whose tower is `(d, k)`-run-leng
 
 | `(d, k)` | where the constraint is used | castles, `w = 1..10` | growth | capacity `log₂` (Marcus-Roth-Siegel Table 3.1) |
 |---|---|---|---|---|
+| `(1, 2)` | - | 1, 2, 4, 5, 7, 9, 12, 16, 21, 28 | `1.3247` (plastic) | `.4057` (from the growth equation) |
 | `(1, 3)` | flexible disk drives (MFM) | 1, 2, 4, 7, 10, 15, 22, 32, 47, 69 | `1.4656` (supergolden) | `.5515` |
 | `(1, 7)` | magnetic tape | 1, 2, 4, 7, 12, 20, 33, 54, 86, 138 | `1.6013` | `.6793` |
 | `(2, 7)` | magnetic tape | 1, 2, 3, 5, 8, 12, 18, 27, 38, 54 | `1.4313` | `.5174` |
@@ -104,7 +105,7 @@ A **`(d, k)`-RLL castle** is a Fibonacci castle whose tower is `(d, k)`-run-leng
 | `(2, ∞)` | the spaced castles | 1, 2, 3, 5, 8, 12, 18, 27, 40, 59 | `1.4656` (supergolden) | `.5515` |
 | `(1, ∞)` | all Fibonacci castles | 1, 2, 4, 7, 12, 20, 33, 54, 88, 143 | `φ ≈ 1.6180` | `.6942` |
 
-The capacity of a constraint is `log₂` of the growth of its sequences, and the castle counts grow at the same rate.[^mrs-table][^exec] The uses are those listed on [[fibonacci-castle](pages/fibonacci-castle.md)]. Of these counts, only the `(1, 3)` row is in the OEIS (below); `(1, 7)`, `(2, 7)` and `(2, 10)` have no match (searched 2026-10-04).
+The capacity of a constraint is `log₂` of the growth of its sequences, and the castle counts grow at the same rate.[^mrs-table][^exec] The uses are those listed on [[fibonacci-castle](pages/fibonacci-castle.md)]. Of these counts, the `(1, 3)` row is in the OEIS (below), and the `(1, 2)` row is the Padovan numbers `A000931(w + 8)` from `w = 3` on, the maximal castles above with end runs up to 2 ([[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)]); `(1, 7)`, `(2, 7)` and `(2, 10)` have no match (searched 2026-10-04). At `(1, 2)` the growth equation is `z⁴ − z³ − z² + 1 = (z − 1)(z³ − z − 1)`, so the growth is the plastic number (own factorization; the capacity `log₂ ψ = .4057` is computed from the equation, not read from Table 3.1).
 
 **`(1, 3)` and `(2, ∞)` have the same growth.** Marcus, Roth and Siegel give the growth of `(d, k)`-RLL as the largest positive root of `z^{k+2} − z^{k+1} − z^{k−d+1} + 1 = 0`.[^mrs-table] At `(1, 3)` this is `z⁵ − z⁴ − z³ + 1 = (z − 1)(z + 1)(z³ − z² − 1)`, whose largest root is the supergolden ratio, the growth of the spaced castles: the MFM constraint and the spacing rule have equal capacity, `.5515` in the table (own factorization, checked by SymPy).[^exec]
 

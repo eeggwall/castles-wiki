@@ -42,13 +42,14 @@ A castle class is a **"`<constant>` `<axis>` growth castle"** iff its count sequ
   - **vertical** - by height `h` (width `w` fixed or bounded).
   - **area** - by total area `∑ c_i`.
   - **block** - by block count.
+  - **semi-perimeter** - by `s = w + #blocks`, half the perimeter ([[castle-perimeter](pages/castle-perimeter.md)]).
 - **"growth castle"** - the noun, marking this as a class-level type.
 
 **The axis is always stated explicitly.** A silver width growth castle and a silver vertical growth castle are different claims; there is no default axis. No shorthand like "silver castle" - the wiki uses the full form to keep the class-level meta-types unambiguous.
 
 ## Width growth castles
 
-The width axis grades a class by `w` at a fixed exact height. Every rung of the metallic ladder is realized. Non-metallic width constants also occur - the tree castles of exact height `h` grow at `(1 + √(4h − 3))/2`, non-metallic for `h ≥ 3` ([[castle-graph](pages/castle-graph.md)]), and the plateau-free rule at `h − 1` - but the named non-metallic constants of this page are on the area axis.
+The width axis grades a class by `w` at a fixed exact height. Every rung of the metallic ladder is realized. Non-metallic width constants also occur - the tree castles of exact height `h` grow at `(1 + √(4h − 3))/2`, non-metallic for `h ≥ 3` ([[castle-graph](pages/castle-graph.md)]), the plateau-free rule at `h − 1`, and the plastic number below.
 
 ### Golden - `δ_1 = φ`
 
@@ -76,9 +77,17 @@ All higher rungs are realized by a single named predicate ([[ridge-castle](pages
 
 Whether each rung has *other* natural realizations besides the ridge rule `R_h = J − D` (silver has several) is open.
 
+### Plastic - `ψ`
+
+A class whose width-graded count grows at the plastic number `ψ ≈ 1.3247`, the real root of `x³ = x + 1` ([[plastic-number](pages/plastic-number.md)]). Known members, each counted by the Padovan numbers A000931 ([[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)]):
+
+- **The maximal castles** ([[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)]) - exact height 2, height-2 columns separated by one or two height-1 columns, at most one height-1 column at each end. Example `(2, 1, 1, 2, 1)`. Count `A000931(w + 6)`.
+- **The `(1, 2)`-RLL castles** - the same with up to two height-1 columns at each end. Example `(1, 1, 2, 1, 2)`. Count `A000931(w + 8)` for `w ≥ 3`.
+- **The rule `1 → 2 → 3 → {1, 2}`** - exact height 3, each column one higher than the last except after a 3, which drops to 1 or 2. Example `(1, 2, 3, 2, 3, 1)`. With first column 1, count `A000931(w + 4)` for `w ≥ 3`. Its characteristic polynomial is `x³ − x − 1`, and `ψ` is the smallest width growth constant above 1 at height 3 ([[area-growth-census](pages/area-growth-census.md)]), as `φ` is at height 2.
+
 ## Area growth castles
 
-The area axis grades by total cells `∑ c_i`. This is the axis with the richest inventory, mostly non-metallic.
+The area axis grades by total cells `∑ c_i`. This is the axis with the richest inventory, mostly non-metallic. There are `2^{n−1}` castles of area `n` (the compositions of `n`), so every class grows at most 2 by area, and **silver and bronze area growth castles do not exist**.
 
 **Golden area growth castle.** The prime castles by area with the height unrestricted, `F_{n − 1}` of them ([[prime-castles](pages/prime-castles.md)]), grow at `φ`. At a fixed exact height they grow more slowly: plastic at height 3, supergolden at height 4, increasing towards `φ`. All castles of exact height 2 by area number `F_{A+1} − 1` and grow at `φ` ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]) - the `h = 2` rung of the n-nacci family below.
 
@@ -100,7 +109,7 @@ Only the `h = 2` rung is metallic; every `h ≥ 3` rung is a non-metallic **`n`-
 |---|---|---|---|
 | **supergolden** | `≈ 1.4656` | `x³ − x² − 1` | the q-Fibonacci castles ([[q-fibonacci-castle](pages/q-fibonacci-castle.md)]) by number of cells, one less than Narayana's cows A000930; prime castles of exact height 4 by area ([[prime-castles](pages/prime-castles.md)]) |
 | **plastic-squared** `ψ²` | `≈ 1.7549` | `x³ − 2x² + x − 1` | tree castles by area with the height unrestricted, A005251 ([[plastic-number](pages/plastic-number.md)]) |
-| **plastic** `ψ` | `≈ 1.3247` | `x³ − x − 1` | the smallest castle-strip area growth constant, height 2, rule "height 1 may not follow height 1" ([[area-growth-census](pages/area-growth-census.md)]); prime castles of exact height 3 by area ([[prime-castles](pages/prime-castles.md)]) |
+| **plastic** `ψ` | `≈ 1.3247` | `x³ − x − 1` | the smallest castle-strip area growth constant, height 2, rule "height 1 may not follow height 1" ([[area-growth-census](pages/area-growth-census.md)]): the ridge castles of exact height 2, `A000931(A + 5)` of area `A` ([[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)]), example `(2, 1, 2, 2, 1)`; prime castles of exact height 3 by area ([[prime-castles](pages/prime-castles.md)]) |
 
 Tree castles of exact height 4 by area grow at `α ≈ 1.6851`, the dominant root of `x⁵ − x⁴ − x² − x − 1` (the sequence A000570, unique tournaments, [[unique-tournament](pages/unique-tournament.md)], counts them together with the lower heights), a quintic non-metallic constant between `φ` (exact height 3) and `ψ²` (height unrestricted).[^exact]
 
@@ -113,6 +122,18 @@ The plastic number also enters the counting recurrence: the `k = 6` signed-tower
 The **vertical growth axis** grades by height (`h` varying, `w` fixed). At fixed width there are `h^w − (h − 1)^w` castles of exact height `h`, a polynomial in `h`, so every class's count grows polynomially in `h` and the vertical growth constant is always `1`. For example, the k-direction signed count `P(k, L)` at fixed `L` has characteristic polynomial `(x + 1)^L (x − 1)^{L − 2}` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), a quasi-polynomial in `k`, and the count `F(w, h)` in `h` is annihilated by `(x² − 1)^w`.
 
 The **block growth axis** grades by block count. [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] gives the block-count GF structure; its growth-constant analysis is open.
+
+## Semi-perimeter growth castles
+
+The semi-perimeter axis grades by `s = w + #blocks`; all castles together grow at `τ² ≈ 3.383` (`τ` the tribonacci constant, [[castle-perimeter](pages/castle-perimeter.md)]). Known members ([[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)]):
+
+- **Golden** - castles of exact height 3 with every column 1 or 3. Example `(3, 1, 1, 3)`, `s = 9`. Count `A130578(s − 1)`.
+- **Plastic** - the rule `1 → 2`, `2 → {2, 3}`, `3 → 1` at exact height 3. Example `(1, 2, 2, 3, 1, 2)`, `s = 10`.
+- **Plastic-squared `ψ²`** - all castles of exact height 2. Example `(1, 2, 1)`, `s = 5`. Count `A077855(s − 3)`.
+- **Supergolden** - the Fibonacci castles and the ridge castles of exact height 2, both with denominator `1 − x − x³`.
+- **Convex castles** grow at `φ²` (A001519, [[castle-perimeter](pages/castle-perimeter.md)]).
+
+No rule through height 4 has silver or bronze semi-perimeter growth; both are open.
 
 ## Cross-scope statements
 
@@ -134,11 +155,13 @@ Relating the growth types of one class under different axes is open.
 
 1. **Alternative realizations of the bronze, `δ_4`, `δ_5`, … width growth castles.** Silver has several realizations; every higher rung has only the ridge rule `R_h = J − D`. Does any higher rung admit a second, structurally distinct castle-strip rule?
 2. **Block growth axis** - no member known.
-3. **Cross-axis statements** - relating growth types under different axes on the same class.
+3. **Silver and bronze semi-perimeter growth castles** - none through height 4.
+4. **Cross-axis statements** - relating growth types under different axes on the same class.
 
 ## Related Concepts
 
 - [[castle-classification](pages/castle-classification.md)] - the hub, with a map of the three scopes.
+- [[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)] - golden, silver, bronze and plastic side by side on every axis.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - single-castle shape predicates (Axes 1-7).
 - [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - single-castle spectral predicates (Axis 9).
 - [[metallic-means](pages/metallic-means.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] / [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the metallic ladder side.

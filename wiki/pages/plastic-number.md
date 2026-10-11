@@ -5,7 +5,7 @@ summary: ψ = 1.3247…, the real root of x³ = x + 1 - the cubic sibling of the
 tags: [concept, plastic-number, pisot, padovan, perrin, cubic, jacobi-perron, eigenvalue, castle, oeis, strip-perron-root]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-16
-updated: 2026-09-28
+updated: 2026-10-10
 ---
 
 # Plastic number
@@ -77,6 +77,8 @@ Besides `ψ²` and `2ψ²`, the **bare plastic number `ψ ≈ 1.3247`** appears 
 | `2ψ²` | `3.5098` | `k = 6` signed-tower dominant eigenvalue `ρ_6` (this page); a `10⁻⁸` adjacency near-miss on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], not exact |
 | `ψ²` | `1.7549` | growth constant of **A005251**, with *three* castle readings — the [[hardin-word-identity](pages/hardin-word-identity.md)], the `h → ∞` [[tree-castle-by-area](pages/tree-castle-by-area.md)], and the `(h=2, g=2)` [[tower-spacing-castles](pages/tower-spacing-castles.md)] (height-2 castles with towers ≥ 2 apart), related by an explicit bijection ([[a005251-bijection](pages/a005251-bijection.md)]): the tree-castle compositions and the avoid-`010` strings of the OEIS reading are the same object under the gap-string map, and Hardin's no-isolated-1 strings are one bit-shift away |
 | **`ψ`** | **`1.3247`** | **a castle-strip Perron root at height 3** — [[reachable-field-census](pages/reachable-field-census.md)] |
+| `ψ` | `1.3247` | width growth of the maximal castles, the `(1, 2)`-RLL castles and the height-3 rule `1 → 2 → 3 → {1, 2}`; area growth of the ridge castles of exact height 2; all counted by Padovan numbers ([[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)]) |
+| `ψ²` | `1.7549` | semi-perimeter growth of all castles of exact height 2, `A077855(s − 3)` ([[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)]) |
 
 A plain (unsigned) castle statistic whose count grows at the bare `ψ` is a **Padovan / Perrin growth castle** — one graded so its count satisfies the *lag*-recurrence `a(n) = a(n−2) + a(n−3)` (Padovan A000931, Perrin A001608), the term-skipping cousin of Fibonacci's `a(n) = a(n−1) + a(n−2)`. This is a different object from `ψ²`, whose recurrence `a(n) = 2a(n−1) − a(n−2) + a(n−3)` (A005251) uses the immediately-preceding term.
 
@@ -85,6 +87,7 @@ A plain (unsigned) castle statistic whose count grows at the bare `ψ` is a **Pa
 ## Appearances in Sources
 
 - [[reachable-field-census](pages/reachable-field-census.md)] - where the bare `ψ` was found as a height-3 castle-strip Perron root (`x³ − x − 1`).
+- [[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)] - plastic beside golden, silver and bronze on every axis; no graph has spectral radius `ψ`.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k,·)` family whose `k = 6` row carries the plastic eigenvalue.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the `num_k/den_k` recurrence that generates `char_k`.
 

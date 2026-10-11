@@ -115,6 +115,7 @@ The rest is standard number theory, verified by direct calculation. The definiti
 ## Related Concepts
 
 - [[pell-numbers](pages/pell-numbers.md)] — the `a=2` integer sequence; the silver-mean member.
+- [[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)] — golden, silver and bronze beside the plastic number on every castle axis: all are width growth constants, only golden is an area one, and only the metallic means can be spectral radii of graphs.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] — the anchored 1-smooth height-3 strip realizing `δ_2 = 1+√2` with Pell-number counts.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] — which metallic means are actually castle-strip Perron roots: the `p_1`/`p_2` coupling obstruction, silver's third realization, and bronze needing four states.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] — the two members `φ` and `1+√2` already treated as the castle's norm-`−1` reduced quadratics; this page names the ladder they sit on.
