@@ -9,7 +9,7 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 | Slice | Value |
 |---|---|
 | Pages | 213 (49 Sources / 96 Concepts / 67 Analyses / 1 Reference / 0 Maintenance) |
-| Divisions (open + done) | R 4+9, E 15+12, N 17+23, E/N 1+0, Z 6+7, Q 7+9, S 23+11, T 6+1, F 12+6, X 8+7, C 3+3, M 0+10, Telephone Company 4+4, Facilities 6+0, AI 0+0 |
+| Divisions (open + done) | R 4+9, E 15+12, N 17+23, E/N 1+0, Z 6+7, Q 7+9, S 23+11, T 6+1, F 12+6, X 8+7, C 3+3, M 0+10, B 0+0, Telephone Company 4+4, Facilities 6+0, AI 0+0 |
 | Items | 112 open, 102 done, 214 total (top-level items only) |
 | Seminar arcs | 17 (11 delivered, 5 in progress, 1 planned) |
 | Dates | wiki created 2026-09-13, IDEAS 2026-10-09, last reorganize 2026-09-27 |
@@ -445,6 +445,10 @@ Specialization in applying the Chinese Remainder Theorem.
 - [x] **[Plastic number](wiki/pages/plastic-number.md)** - `psi`, real root of `x^3 = x + 1`; smallest Pisot; enters the castle as `rho_6 = 2 psi^2` with `H_3` the minimal polynomial of `psi^2`.
 - [x] **[Which ring each metallic rung generates](wiki/pages/metallic-means.md)** - `Z[delta_a]` is the order of discriminant `a^2 + 4`, maximal exactly when the conductor is 1; copper `phi^3` generates `Z[sqrt 5]` (index `F_3 = 2` in `Z[phi]`), and `delta_a` fails to be a fundamental unit exactly when it is an odd power of a smaller rung (`a = 4, 11, 14, 29, 36, 76, 82` for `a <= 100`).
 - [x] **[Metallic means in castle spectra](wiki/pages/castle-graph-spectral-radius.md)** - `lambda_1(h) = h` for the count; the signed transfer matrix's eigenvalues are twice algebraic units and never metallic; golden and silver appear as adjacency spectral radii of individual castles.
+
+### B Division (bioinformatics - castles in computational biology)
+
+No items yet.
 
 ### The Telephone Company
 
