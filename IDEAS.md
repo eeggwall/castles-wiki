@@ -9,8 +9,8 @@ Conventions: `[ ]` open, `[x]` has a page. Open items first, done items last, wi
 | Slice | Value |
 |---|---|
 | Pages | 213 (49 Sources / 96 Concepts / 67 Analyses / 1 Reference / 0 Maintenance) |
-| Divisions (open + done) | R 4+9, E 15+12, N 17+23, E/N 1+0, Z 6+7, Q 7+9, S 23+11, T 6+1, F 12+6, X 8+7, C 3+3, M 0+10, B 0+0, Telephone Company 4+4, Facilities 6+0, AI 0+0 |
-| Items | 112 open, 102 done, 214 total (top-level items only) |
+| Divisions (open + done) | R 4+9, E 15+12, N 17+23, E/N 1+0, Z 6+7, Q 7+9, S 23+11, T 6+1, F 12+6, X 8+7, C 3+3, M 0+10, B 0+1, Telephone Company 4+4, Facilities 6+0, AI 0+0 |
+| Items | 112 open, 103 done, 215 total (top-level items only) |
 | Seminar arcs | 17 (11 delivered, 5 in progress, 1 planned) |
 | Dates | wiki created 2026-09-13, IDEAS 2026-10-09, last reorganize 2026-09-27 |
 
@@ -448,7 +448,7 @@ Specialization in applying the Chinese Remainder Theorem.
 
 ### B Division (bioinformatics - castles in computational biology)
 
-No items yet.
+- [x] **[RNA secondary structures as castles](wiki/pages/motzkin-castles.md)** - the castles that drop by at most 1 and end at height 1, counted by semi-perimeter `s` (half the boundary length), are A004148(`s - 1`) (`1, 1, 2, 4, 8, 17, 37, 82, 185, 423, 978`, matched over 21 terms), the RNA secondary structure numbers: their mirror images are the bargraphs with no double rise, which Deutsch and Elizalde map bijectively to secondary structures ([deutsch-elizalde-2016-bargraphs-cornerless-motzkin](wiki/pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)), and the castle reading is an OEIS interlink, a new interpretation of a known entry ([castle-sequence-catalogue](wiki/pages/castle-sequence-catalogue.md)).
 
 ### The Telephone Company
 
