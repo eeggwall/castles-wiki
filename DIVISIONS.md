@@ -19,6 +19,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 - **X - Ciphers:** keystreams, hidden payloads, commitments, and what survives an adversary.
 - **C - Chinese Remainder Theorem:** applying the Chinese Remainder Theorem.
 - **M - Metallurgy:** investigating occurrences of golden, silver and bronze means and the higher rungs `δ_4`, `δ_5`, …; golden, silver, plastic ratios; metallic by count, by width, by area, by spectrum; Fibonacci castles
+- **B - Bioinformatics:** biological sequences, molecular folding, structure counts, and the combinatorics computational biology shares with castles.
 - **The Telephone Company:** phone signals, audio codecs, tone catalogues, expander-graph and Ihara-zeta reads of the castle graph, information-theoretic entropy of skylines, and the isospectral seminar.
 - **Facilities:** applied, physical-world tooling: real objects turned into castles (keys, city skylines, mountain ridgelines, ballparks).
 
@@ -133,6 +134,10 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 - Fibonacci castles: Fibonacci towers, the Fibonacci Q-matrix as transfer matrix, the Fibonacci word, and Zeckendorf ranking.
 - Ridge castles: the ridge rule, its transfer matrix, and its growth constants up the metallic ladder.
 - The metallic rungs: golden through `δ_5` as continued fractions, their convergents in OEIS, and which rungs a castle-strip rule can realize.
+
+### B - Bioinformatics
+
+- RNA secondary structures: Deutsch and Elizalde's bijection from no-double-rise bargraphs of semiperimeter `n + 1` to secondary structures on `n` vertices; its mirror, the castles that drop by at most 1 and end at height 1, counted by semiperimeter as A004148, the RNA sequence.
 
 ### The Telephone Company
 
