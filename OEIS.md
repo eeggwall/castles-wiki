@@ -25,10 +25,6 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
 
 ### 1. In review (max 3)
 
-- [~] **A146559 castle comment** `a(n) = P(1, n−1)` (signed tower count at `k = 1`),
-  submitted 2026-10-04 (resubmitted with the date as `Oct 04 2026`). Comment only, exact
-  height: `a(n) − 1` = odd − even castles of height 2: `raw/oeis-pe502/xrefs/A146559-signed.md`
-  (`wiki/pages/castle-sequence-catalogue.md`, `wiki/pages/signed-tower-count.md`).
 - [~] **A009545 castle comment** (submitted 2026-10-06). Comment only, width `n`, no `− 1`:
   `a(n)` = even-block − odd-block castles of width `n` and height 2 whose last column reaches
   height 2, for `n >= 1`, with the PE 502 citation; the optional runs sentence was dropped for
@@ -38,6 +34,16 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
   A003410(n) for n >= 4", equivalent to Barker's conjectured g.f. (A003410's g.f. minus
   `1 + x + x^2 + x^3`), and `Cf. A003410`: `raw/oeis-pe502/xrefs/A226136-A003410.md`
   (`wiki/pages/fibonacci-castles-sub-families.md`).
+  Major edit on the same draft 2026-10-11 (#20–#24, proposed): link to the proof PDF
+  `a226136.pdf` "Proof of Barker's Conjecture for A226136", with the formula line
+  "Conjectures confirmed (see Reid link)"; b-file `n = 1..1000` (terms 1..35 from
+  Kimberling); the Kimberling–Moses Fibonacci Quarterly 52 (2014) link (Example 4.2); the
+  linear-recurrence index entry, signature `(1,0,1)`; `a(n) = 1 + Sum_{k=0..n-2} A226275(k)`;
+  a Python program; `Cf. A226274, A226275`. A discussion note asks the editors to delete the
+  stray upload `a226136.txt`.
+- [~] **A226275 recurrence** (submitted 2026-10-11, #20–#21). Link to the A226136 proof
+  (Theorem 1(b)), with "Above formula proven in Reid link", `a(n) = a(n-1) + a(n-3)` for
+  `n >= 6`, `a(n) = A226136(n+2) − A226136(n+1)`, and a Python program.
 
 ### 2. Ready to submit (drafted and checked, in order)
 
@@ -214,6 +220,10 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   2026-10-06). The "height at most 2" comment, which counted the `r = 0` term `C(n,0)` as a
   castle, is replaced by `a(n) − 1` = odd-block castles of width `n−1` and height 2:
   `raw/oeis-pe502/xrefs/A038503-exact-height.md`.
+- [x] **A146559 castle comment** `a(n) = P(1, n−1)` (signed tower count at `k = 1`),
+  submitted 2026-10-04, approved (A146559 #167, Oct 11 2026). Comment only, exact height:
+  `a(n) − 1` = odd − even castles of height 2: `raw/oeis-pe502/xrefs/A146559-signed.md`
+  (`wiki/pages/castle-sequence-catalogue.md`, `wiki/pages/signed-tower-count.md`).
 
 ## Ingestion queue (wiki pages not yet ingested)
 
