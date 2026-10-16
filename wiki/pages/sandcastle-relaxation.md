@@ -5,7 +5,7 @@ summary: Dhar's transition matrix W (one grain on a uniformly random cell outsid
 tags: [analysis, castle, sandpile, relaxation, spectral-gap, markov-chain, character, dhar, sink-model, tide-model, rectangle, laplacian, smith-normal-form, numpy, verification]
 sources: [dhar-1990-self-organized-critical-sandpile, bayer-diaconis-1992-dovetail-shuffle]
 created: 2026-10-08
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
 # Relaxation time of a sandcastle - Dhar's spectrum in the sink and tide models
@@ -57,7 +57,7 @@ The slowest castle at each cell count:
 | 10 | `(2, 3, 5)` | 0.7793 | 4.01 | `(3, 3, 4)` | 0.9150 | 11.26 |
 | 11 | `(2, 3, 3, 3)` | 0.8032 | 4.56 | `(3, 4, 4)` | 0.9268 | 13.16 |
 | 12 | `(2, 3, 3, 4)` | 0.8210 | 5.07 | `(4, 4, 4)` | 0.9363 | 15.19 |
-| 13 | `(2, 3, 4, 4)` | 0.8362 | 5.59 | `(4, 4, 5)` | 0.9426 | 16.93 |
+| 13 | `(2, 3, 4, 4)` | 0.8361 | 5.59 | `(4, 4, 5)` | 0.9426 | 16.93 |
 | 14 | `(2, 4, 4, 4)` | 0.8490 | 6.11 | `(4, 5, 5)` | 0.9479 | 18.69 |
 | 15 | `(2, 4, 4, 5)` | 0.8598 | 6.62 | `(5, 5, 5)` | 0.9523 | 20.46 |
 | 16 | `(2, 4, 4, 6)` | 0.8691 | 7.13 | `(5, 5, 6)` | 0.9560 | 22.21 |
@@ -89,26 +89,9 @@ So the tide's slowest mode does not scale like the mean avalanche `h(2h − 1)/6
 
 **Tide model, by width.** At fixed height the relaxation time is not monotone in width. At height 3 it is 4.67, 9.64, 6.34, 8.57, 9.64 for widths 2 to 6, and 9.64 again at width 9. At height 2 it dips and recovers in the same pattern (3.40 at widths 3 and 6), then grows steadily from width 9: 3.42, 3.65, 3.90, …, 5.95 at width 18, with increments that are themselves growing.[^7]
 
-The repeats are **mirror unfolding**. A character of `K` is a phase vector `φ` with `L̃ φ` integral. Glue a castle `c` to its mirror image `c^R`, giving the castle `c c^R`, and give each cell of the mirrored half the phase of its mirror cell. At the seam each cell gains one neighbour with its own phase, which adds `φ_v − φ_v = 0` to its row of `L̃ φ`, so the glued vector is a character of `c c^R`. It takes each value on twice as many cells, so its `λ` is unchanged. Under the tide the ground is mirror-invariant, so the gluing never moves the sink, and `λ*(c c^R) ≥ λ*(c)`. Gluing `k` alternately mirrored copies works the same way at every seam, and a rectangle is its own mirror image, so a rectangle of width `kw` relaxes at least as slowly as the rectangle of width `w` and the same height, for every `k ≥ 1`. A slowest mode of `(3, 3, 3)` is itself mirror-symmetric (phases `13/19, 12/19, 13/19` on the top row and `14/19, 10/19, 14/19` below), and a slowest mode of `(3, 3, 3, 3, 3, 3)` is that pattern twice.[^8] In the sink model the mirror half would carry a second copy of the corner, which is not a sink, and the argument fails.
+The repeats are **mirror unfolding**. A character of `K` is a phase vector `φ` with `L̃ φ` integral. Glue a castle `c` to its mirror image `c^R`, giving the castle `c c^R`, and give each cell of the mirrored half the phase of its mirror cell. At the seam each cell gains one neighbor with its own phase, which adds `φ_v − φ_v = 0` to its row of `L̃ φ`, so the glued vector is a character of `c c^R`. It takes each value on twice as many cells, so its `λ` is unchanged. Under the tide the ground is mirror-invariant, so the gluing never moves the sink, and `λ*(c c^R) ≥ λ*(c)`. Gluing `k` alternately mirrored copies works the same way at every seam, and a rectangle is its own mirror image, so a rectangle of width `kw` relaxes at least as slowly as the rectangle of width `w` and the same height, for every `k ≥ 1`. A slowest mode of `(3, 3, 3)` is itself mirror-symmetric (phases `13/19, 12/19, 13/19` on the top row and `14/19, 10/19, 14/19` below), and a slowest mode of `(3, 3, 3, 3, 3, 3)` is that pattern twice.[^8] In the sink model the mirror half would carry a second copy of the corner, which is not a sink, and the argument fails.
 
 **Sink model.** Rectangles are symmetric under turning on their side (the corner sink is fixed by the reflection in the diagonal), and `t_rel` is close to proportional to the cell count. For the `2 × w` rectangles each extra column adds 0.969 grains, and `t_rel/n_live` climbs 0.391, 0.422, …, 0.467 from `w = 3` to `13`; the squares give 0.303, 0.402, 0.447 at sides 2, 3, 4.[^9] The larger rectangles have groups too big to enumerate; the pair characters give lower bounds that continue the same trend, `t_rel ≥ 45.4` at width 12 and height 8 (`0.48` per cell), but these are not exact.
-
-## What this settles and what it opens
-
-**Settled.**
-- Dhar's relaxation spectrum is a character sum over `K`, computed exactly for all 33,150 castles to 16 cells in both models.
-- No castle sandpile to 16 cells is periodic; tree castles relax in one grain, and so do the castles with a nontrivial group and `λ* = 0` (one in the sink model, 220 in the tide model).
-- From 6 cells on, the slowest tide castle relaxes 2.3 to 3.1 times more slowly than the slowest sink castle at the same cell count; its slowest castles are three tall columns of nearly equal height, the sink model's start with a 2-column on the sink.
-- Under the tide, rectangles of width 2 and 3 grow linearly in height, not like `h(2h − 1)/6`.
-- Mirror unfolding: `λ*(c c^R) ≥ λ*(c)` under the tide, which explains the equal times at widths 3, 6, 9.
-- `λ* = (h − 1)/(h + 1)` for the sink castles `(2, h)` and `(h, 2)`.
-
-**Open.**
-- Closed forms for the tide increments 2.769 (width 2) and 5.240 (width 3), and the increment for general width.
-- How the tide time grows in width at fixed height once unfolding stops dominating (height 2 is still accelerating at width 18), and whether it reaches a `w²` regime.
-- Whether `t_rel/n_live` has a limit for sink rectangles (about 0.47 to 0.48 in the range computed).
-- A proof that no castle sandpile is periodic.
-- A way to find the slowest character without enumerating `K`, since single cells and pairs are not enough.
 
 ## Relation to Dhar's scaling
 
@@ -210,7 +193,7 @@ t_rel = lambda lam: 0.0 if lam == 0 else -1 / log(lam)
 [^1]: [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] p.1616 L269-295 [synthesis] - `P_t(C)` is the probability that the stable configuration after the `t`-th particle is `C`, with master equation `P_{t+1}(C) = Σ_{C'} W(C, C') P_t(C')` (eq. 22) and `W = Σ p_i a_i` (eq. 23); "The next largest eigenvalue determines the relaxation time of the slowest decaying fluctuations in the SOC state", which for the undirected `d`-dimensional model "varies as L^d", much larger than the avalanche duration (exponent read from the page image).
 [^2]: [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] pp.1614-1615 L102-177 [synthesis] - `a_j = exp(iφ_j)` with `Σ_j Δ_ij φ_j = 2πn_i`, solved by `φ_i = 2π Σ_j [Δ⁻¹]_ij n_j` (eqs. 10-12), and the number of such representations is `Det Δ` (eq. 13); p.1616 L285-289, the operators are simultaneously diagonalizable, so the eigenvalues of `W` are determined by these.
 [^3]: Verified by execution (Python 3, NumPy, 2026-10-08): for 60 random castles to 10 cells and `(2, 2)`, `(3, 3)`, `(2, 2, 2)`, `(3, 3, 3)`, `(2, 3, 3, 2)`, `(2, 2, 1, 2, 2)`, in both models, the recurrent configurations were found by adding grains from the fullest stable pile, `W` was built with weight `1/n_live` per grain, and its second-largest eigenvalue modulus matched `λ*` from the character sum within `3.9 × 10⁻¹⁵`; the number of characters equalled the number of recurrent configurations in every case, and the Smith forms gave `Z/15`, `Z/8`, `Z/8 × Z/24`, `Z/95` for `(2, 2, 2)` sink and tide and `(3, 3, 3)` sink and tide, as on [[sandpile-census](pages/sandpile-census.md)].
-[^4]: Verified by execution (2026-10-08, about 76 s): every castle to 16 cells (compositions, mirror images removed, 33,150), both models, all characters enumerated; 6,963 trivial groups in each model and `λ* < 1 − 10⁻¹²` for every other castle; the table rows, the per-cell rankings (`t_rel/n_live` with `n_live` = cells − 1 in the sink model, cells − width in the tide model) and the mirror-image comparison over the castles to 12 cells. The castles with a nontrivial group and `λ* < 10⁻⁹` (1 sink, 220 tide) were checked exactly (2026-10-09): the classes of the `e_v` take every value of `K` equally often, so `λ* = 0`; the tide ones coincide with the castles of the stated shape.
+[^4]: Verified by execution (2026-10-08; rerun 2026-10-16): every castle to 16 cells (compositions, mirror images removed, 33,150; each mirror class is represented by the lexicographically smaller of its two skylines, which matters in the sink model), both models, all characters enumerated; 6,963 trivial groups in each model and `λ* < 1 − 10⁻¹²` for every other castle; the table rows, the per-cell rankings (`t_rel/n_live` with `n_live` = cells − 1 in the sink model, cells − width in the tide model) and the mirror-image comparison over the castles to 12 cells. The castles with a nontrivial group and `λ* < 10⁻⁹` (1 sink, 220 tide) were checked exactly (2026-10-09): the classes of the `e_v` take every value of `K` equally often, so `λ* = 0`; the tide ones coincide with the castles of the stated shape.
 [^5]: Verified by execution (2026-10-08): `λ*` of `(2, h)` and `(h, 2)` in the sink model equals `(h − 1)/(h + 1)` within `10⁻¹²` for `h = 2, …, 30`, with `|K| = 4` throughout.
 [^6]: Verified by execution (2026-10-08): over the census to 16 cells, the maximum of `|λ|` over the characters `φ = L̃⁻¹ e_u` falls short of `λ*` on 14,078 sink and 7,194 tide castles; over the castles to 12 cells with nontrivial group (1,372 per model), adding `φ = L̃⁻¹ (e_u ± e_v)` leaves 3 sink misses and 0 tide misses; on the tide rectangles of height 3 and widths 7, 8, 9 the pair bound is below the exact `λ*`.
 [^7]: Verified by execution (2026-10-08): exact `λ*` by full character enumeration for tide rectangles of width 2, `h ≤ 14`, width 3, `h ≤ 8`, and height 2, `w ≤ 18`, and for the height-3 values quoted, all with `|K| ≤ 3 × 10⁷`; increments are successive differences of `t_rel`.
