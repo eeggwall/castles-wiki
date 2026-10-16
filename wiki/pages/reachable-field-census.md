@@ -1,34 +1,32 @@
 ---
 title: Reachable-field census of castle-strip growth constants
 category: Analyses
-summary: An exhaustive census (h ≤ 5) of which algebraic numbers are Perron roots of 0/1 castle-strip transfer matrices, bucketed by number field. Every real quadratic field Q(√d) is reachable, already through the larger root of x² − p₁x − p₂ with p₁ ≥ 0, p₂ ≥ 1 (field = squarefree part of p₁² + 4p₂); quadratic Perron roots with negative p₂ also occur (φ², from x² − 3x + 1, at h = 3). The roots with p₁, p₂ ≥ 1 are de Spinadel's metallic means σ_{p₁}^{p₂}; the q = 1 members δ_a are the p₂ = 1 line, every δ_a first appears at exactly height a + 1, and δ₄ = φ³ lies in Q(√5) (disc 20 = 4·5). The per-height field lists are initial segments; the minimum height of each (p₁, p₂) is on quadratic-min-height. Nine cubics already appear at h = 3, among them the plastic number x³ − x − 1, supergolden, plastic-squared, tribonacci and two Q(ζ₇)⁺ cubics. At h = 4 the 184 distinct positive Perron values are 4 integer, 14 quadratic (6 fields), 56 cubic and 110 quartic.
+summary: An exhaustive census, for h ≤ 5, of the Perron roots of the 2^{h²} 0/1 transfer matrices of castle strips on the heights 1..h, sorted by number field. Every real quadratic field Q(√d) is reached at some height, through the larger root of x² − p₁x − p₂ with p₁ ≥ 0, p₂ ≥ 1, whose field is set by the squarefree part of p₁² + 4p₂; Perron roots with p₂ < 0 also occur (φ², from x² − 3x + 1, at h = 3). The roots with p₁, p₂ ≥ 1 are de Spinadel's metallic means σ_{p₁}^{p₂}, and the δ_a are the line p₂ = 1: every δ_a first appears at height a + 1, and δ_4 = φ³ lies in Q(√5). The fields reached by heights 2, 3, 4, 5 are {5}, {2, 3, 5}, {2, 3, 5, 13, 17, 21}, {2, 3, 5, 6, 7, 13, 17, 21, 29, 33}. Nine cubic Perron roots appear at h = 3, among them the plastic number, the supergolden constant, ψ², the tribonacci constant and two cubics of Q(ζ₇)⁺. At h = 4 the 184 distinct positive Perron roots are 4 integers, 14 quadratic (6 fields), 56 cubic and 110 quartic; at h = 5 the 5,978 are 5, 29 (10 fields), 253, 1,355 and 4,336 of degrees 1 to 5.
 tags: [analysis, castle, growth-constant, transfer-matrix, perron-root, number-field, metallic-mean, plastic-number, census, pisot, quadratic-field, sympy, verification]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
 # Reachable-field census of castle-strip growth constants
 
 ## The question and the method
 
-The question: which algebraic numbers can be the growth rate of a castle strip, and which number fields do they live in? Four definitions first.
+Which algebraic numbers are the growth rates of castle strips, and which number fields do they lie in?
 
-**A castle-strip** is a row of columns of heights `1..h`, plus a nearest-neighbor rule: which adjacent heights may touch. The rule *is* a `0/1` **transfer matrix** `M`, with `M[a][b] = 1` meaning "a column of height `a` may be followed by one of height `b`" (the plain construction is on [[castle-strip](pages/castle-strip.md)]).
+**Castle strips.** A strip on the heights `1, …, h` is a skyline whose column heights lie in `{1, …, h}`, under a rule saying which height may follow which. Strips need not reach height `h`, so they are not castles; the strips that reach `h` are the castles of height `h` of the rule's family ([[castle-strip](pages/castle-strip.md)]). The rule is a 0/1 **transfer matrix** `M`, with `M[a][b] = 1` when a column of height `a` may be followed by one of height `b`.
 
-**The growth rate.** The number of strips of width `L` grows like `ρ^L`, where `ρ` is the largest eigenvalue of `M` — its **Perron root**, the "growth constant" of [[metallic-means](pages/metallic-means.md)].
+**The growth rate.** The number of strips of width `w` is `N(w) = 𝟙ᵀ M^{w−1} 𝟙`, the sum of the entries of `M^{w−1}`, and by Gelfand's formula `N(w)^{1/w} → ρ(M)`, the largest eigenvalue of `M`, its **Perron root**.
 
-**The number field.** `ρ` is an **algebraic number**: it satisfies `M`'s characteristic polynomial, an integer polynomial. The lowest-degree such polynomial is its **minimal polynomial**, and the smallest field containing `ρ` is its **number field** `Q(ρ)`. A quadratic `ρ` has `Q(ρ) = Q(√d)` for a squarefree integer `d`, and `d` is the field's name.
+**The number field.** `ρ` is a root of the characteristic polynomial of `M`, an integer polynomial, so it is an algebraic integer. Its **minimal polynomial** is the irreducible factor of the characteristic polynomial that has `ρ` as a root, and its **number field** is `Q(ρ)`. A quadratic `ρ` has `Q(ρ) = Q(√d)` for a squarefree integer `d`, and the field is named by `d`.
 
-**One example, `h = 2`.** The rule "no two adjacent height-2 columns" is `M = [[1,1],[1,0]]`, with characteristic polynomial `x² − x − 1`, Perron root the golden ratio `φ`, field `Q(√5)`, and Fibonacci as its strip count — the first entry of the census.
+*Example, `h = 2`.* The rule "no two adjacent height-2 columns" is `M = [[1, 1], [1, 0]]`, with characteristic polynomial `x² − x − 1`, Perron root the golden ratio `φ`, field `Q(√5)`, and `N(w) = F_{w+2}` strips of width `w`.
 
-The census sweeps **all `2^{h²}` binary `M`** for `h = 2, 3, 4, 5`, collects the distinct Perron roots, and buckets them by number field. Three results structure the page: the **quadratic reachability law** (every real quadratic field is reachable), the **`δ₄` case** (`δ₄ = φ³` adds no new field), and the **cubics at `h = 3`** (the plastic number among them).[^1]
-
-The computation is two-phase: a fast numeric sweep collects the distinct Perron values and one example matrix each; then SymPy exactly factors each example's characteristic polynomial, picks the irreducible factor carrying the Perron root, and labels the field (`deg 1` rational, `deg 2` → `Q(√d)` by squarefree discriminant, `deg ≥ 3` cubic/quartic). Exact throughout — numeric values only *select* the factor; the field label is exact.[^1]
+The census runs over all `2^{h²}` 0/1 matrices for `h = 2, 3, 4, 5`. For each matrix it computes the characteristic polynomial exactly; for each distinct polynomial it factors over the integers, takes the irreducible factor whose largest real root is the Perron root, and reads the field from that factor: degree 1 is rational, degree 2 gives `Q(√d)` with `d` the squarefree part of the discriminant, degree 3 or more gives a cubic, quartic or quintic field. The factorization and the field are exact; floating point only selects the factor carrying the Perron root.[^1]
 
 ## In one function
 
-The step behind the census (given a rule, read off its growth constant and field) is a short function:
+The step behind the census, from a rule to its Perron root and field, is a short function:
 
 ```python
 import sympy as sp
@@ -60,143 +58,134 @@ def strip_field(M):
 (2.4142136, 'Q(sqrt(2))')
 >>> strip_field([[0,1,1,1],[1,0,1,1],[1,1,0,1],[1,1,1,1]])  # bronze, h=4: ridge R_4 = J - D
 (3.3027756, 'Q(sqrt(13))')
->>> strip_field([[0,0,1],[1,0,0],[1,1,0]])                  # plastic, h=3: near-companion of x^3 = x + 1
+>>> strip_field([[0,0,1],[1,0,0],[1,1,0]])                  # plastic, h=3: the companion of x^3 - x - 1, relabeled
 (1.3247180, 'deg 3 (x**3 - x - 1)')
 ```
 
-The fields of golden, silver and bronze are `Q(√5)`, `Q(√2)`, `Q(√13)`; the last line is the plastic number as a degree-3 growth constant. The exhaustive sweep runs this step over all `2^{h²}` matrices; `strip_field_census` on [[castle-snippets](pages/castle-snippets.md)] is this function looped and bucketed.
+The census loops this step over all `2^{h²}` matrices and sorts the results; `strip_field_census` on [[castle-snippets-strips](pages/castle-snippets-strips.md)] is that loop.
 
-## The quadratic fields — the clean result
+## The quadratic fields
 
-Bucketing every quadratic Perron root by its field `Q(√d)`:
+Sorting every quadratic Perron root by its field `Q(√d)`:
 
-| `h` | reachable `d` (new at this height in **bold**) | new `δ_a` | new field off the `p₂ = 1` line |
+| `h` | `d` reached by height `h` (new at `h` in **bold**) | new `δ_a` | new fields off the line `p₂ = 1` |
 |---|---|---|---|
-| 2 | **5** | golden `φ` (`Q(√5)`) | — |
-| 3 | **2**, **3**, 5 | silver `1+√2` (`Q(√2)`) | `Q(√3)` |
-| 4 | 2, 3, 5, **13**, **17**, **21** | bronze `(3+√13)/2` (`Q(√13)`) | `Q(√17)`, `Q(√21)` |
-| 5 | 2, 3, 5, **6**, **7**, 13, 17, 21, **29**, **33** | `δ_4 = 2+√5` (`Q(√5)`, not new) | `Q(√6)`, `Q(√7)`, `Q(√29)` (via `(3+√29)/2`), `Q(√33)` |
+| 2 | **5** | golden `φ` (`Q(√5)`) | - |
+| 3 | **2**, **3**, 5 | silver `1 + √2` (`Q(√2)`) | `Q(√3)` |
+| 4 | 2, 3, 5, **13**, **17**, **21** | bronze `(3 + √13)/2` (`Q(√13)`) | `Q(√17)`, `Q(√21)` |
+| 5 | 2, 3, 5, **6**, **7**, 13, 17, 21, **29**, **33** | `δ_4 = 2 + √5` (`Q(√5)`, not new) | `Q(√6)`, `Q(√7)`, `Q(√29)` (through `(3 + √29)/2`), `Q(√33)` |
 
-### Every `δ_a` field is reached; `δ_4` adds none
+### The fields of the δ_a; δ_4 adds none
 
-The `a`-th metallic mean `δ_a = (a + √(a²+4))/2` lives in `Q(√(a²+4))`, whose field depends only on the **squarefree part** of `a²+4`:
+The metallic mean `δ_a = (a + √(a² + 4))/2` lies in `Q(√(a² + 4))`, whose field depends only on the squarefree part of `a² + 4`:[^2]
 
-| metal `a` | `a²+4` | squarefree part | field |
+| `a` | `a² + 4` | squarefree part | field |
 |---|---|---|---|
-| golden 1 | 5 | 5 | `Q(√5)` |
-| silver 2 | 8 = 4·2 | 2 | `Q(√2)` |
-| bronze 3 | 13 | 13 | `Q(√13)` |
-| **4** | **20 = 4·5** | **5** | **`Q(√5)`** - *not new* |
+| 1 (golden) | 5 | 5 | `Q(√5)` |
+| 2 (silver) | 8 = 4·2 | 2 | `Q(√2)` |
+| 3 (bronze) | 13 | 13 | `Q(√13)` |
+| 4 | 20 = 4·5 | 5 | `Q(√5)`, not new |
 | 5 | 29 | 29 | `Q(√29)` |
 | 6 | 40 = 4·10 | 10 | `Q(√10)` |
 
-The census confirms each of these fields is reached: `Q(√5)` (golden) at h=2, `Q(√2)` (silver) at h=3, `Q(√13)` (bronze) at h=4, and the field of `δ_5`, `Q(√29)`, at h=5 through `σ_3^5 = (3+√29)/2 = 4.1926` - `δ_5` itself, `5.1926`, needs h=6. **`δ_4` introduces no new field**, because `20 = 4·5` gives `Q(√5)`. Every `δ_a` is a unit of norm `−1`, and the units of `Z[φ]` are `±φ^n`, so `δ₄ = 2 + √5 = φ³`; the `δ_4` strip counts the Fibonacci trisection `F_{3n+5}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)] Finding 3).[^2]
+The census reaches each of these fields: `Q(√5)` at `h = 2`, `Q(√2)` at `h = 3`, `Q(√13)` at `h = 4`, and the field of `δ_5`, `Q(√29)`, at `h = 5` through `σ_3^5 = (3 + √29)/2 = 4.1926`, the root of `x² − 3x − 5`; `δ_5 = 5.1926` itself first appears at `h = 6`. `δ_4` adds no field, since `20 = 4·5`. Every `δ_a` is a unit of norm `−1`, the units of `Z[φ]` are `±φ^n`, and `δ_4 = 2 + √5 = 1 + 2φ` lies in `Z[φ]`, so `δ_4 = φ³`. The ridge strips of height 5, whose growth constant is `δ_4`, number `F_{3w+2}` at width `w` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)], [[ridge-castle](pages/ridge-castle.md)]).[^3]
 
-### The minimum height of `δ_a` is exactly `a + 1`
+### The minimum height of δ_a is a + 1
 
-The ridge rule `R_h = J − D` (adjacent columns differ in height unless both equal `h`; the ridge castles, [[ridge-castle](pages/ridge-castle.md)], of [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2) realizes `δ_{h−1}` at height `h` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]), so `δ_a` is always reachable by height `h = a + 1`. The bound is **exact for every `a`**: a 0/1 matrix of size `h` has Perron root at most `h`, with equality only for the all-ones matrix, and `a < δ_a < a + 1`, so no height below `a + 1` can reach `δ_a`.[^3] So the ridge rule realizes every metallic mean at the minimum height ([[quadratic-min-height](pages/quadratic-min-height.md)] has the proof and the full min-height table).
+The ridge rule `R_h = J − D`, with `J` the all-ones matrix and `D = diag(1, …, 1, 0)`, lets neighboring columns have equal height only at the ceiling `h`; its Perron root is `δ_{h−1}` ([[ridge-castle](pages/ridge-castle.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). So `δ_a` is reached by height `a + 1`. No smaller height reaches it: a 0/1 matrix of size `h` has Perron root at most its largest row sum, which is at most `h`, and `a < δ_a < a + 1`, so `δ_a` needs `h ≥ a + 1`. [[quadratic-min-height](pages/quadratic-min-height.md)] has the minimum height of every quadratic Perron root through height 6.[^3]
 
-Within a single field the surds are also height-stratified. `Q(√5)` fills in as `h` grows: `φ` at h=2; `φ²` at h=3; `2φ = 3.236` at h=4; and **`φ³ = δ_4` only at h=5**. Which elements of `Q(√5)` are Perron roots depends on the height.[^4]
+The elements of `Q(√5)` that are Perron roots also depend on the height. The census finds `φ` at `h = 2`; `φ² = (3 + √5)/2` at `h = 3`; `2φ = 1 + √5` at `h = 4`; and `√5`, `(5 + √5)/2` and `φ³ = δ_4` at `h = 5`.[^4]
 
-### The quadratic fields off the `p₂ = 1` line
+### The quadratic fields off the line p₂ = 1
 
-Alongside the metallic fields sit `Q(√3)` (h=3), `Q(√17)`, `Q(√21)` (h=4), `Q(√6)`, `Q(√7)`, `Q(√33)` (h=5), reached through roots with `p₂ ≠ 1`. Those with `p₁, p₂ ≥ 1` are de Spinadel's metallic means `σ_{p₁}^{p₂}` ([[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)]), for example `σ_2^2 = 1 + √3` in `Q(√3)`; those with `p₁ = 0` or `p₂ < 0` are outside the family. `Q(√17)` does contain a `δ_a`, `δ_8 = 4 + √17` (since `8² + 4 = 4·17`), which is not reached by h = 5; the other five contain no `δ_a`, because `a² + 4 ≡ 0` has no solution mod 3 or mod 7. The `δ_a` are the `p₂ = 1` subfamily (norm `−1`, continued fraction `[a; a, a, …]`).
+Besides the fields of the `δ_a`, the census reaches `Q(√3)` at `h = 3`, `Q(√17)` and `Q(√21)` at `h = 4`, and `Q(√6)`, `Q(√7)` and `Q(√33)` at `h = 5`, through roots of `x² − p₁x − p₂` with `p₂ ≠ 1`. Those with `p₁, p₂ ≥ 1` are de Spinadel's metallic means `σ_{p₁}^{p₂}` ([[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)]), such as `σ_2^2 = 1 + √3` in `Q(√3)`; those with `p₁ = 0` (`√p₂`) or `p₂ < 0` (such as `φ²`) are outside the family. `Q(√17)` contains `δ_8 = 4 + √17`, since `8² + 4 = 4·17`, which no height up to 5 reaches. The other five fields contain no `δ_a`: `a² + 4 ≡ 0` has no solution mod 3, since 2 is not a square mod 3, and none mod 7, since 3 is not a square mod 7, so neither 3 nor 7 divides the squarefree part of any `a² + 4`.
 
-## Cubics at `h = 3`, including the plastic number
+## Cubics at h = 3, including the plastic number
 
-Nine cubic minimal polynomials already appear at `h = 3`:[^6]
+Nine cubic minimal polynomials occur at `h = 3`:[^5]
 
-| minimal polynomial | Perron root | identity | # matrices (h=3) |
+| minimal polynomial | Perron root | | matrices (`h = 3`) |
 |---|---|---|---|
-| `x³ − x − 1` | `1.3247` | **plastic number `ψ`** ([[plastic-number](pages/plastic-number.md)]) | 6 |
-| `x³ − x² − 1` | `1.4656` | supergolden ([[tree-castle-by-area](pages/tree-castle-by-area.md)]) | 6 |
-| `x³ − 2x² + x − 1` | `1.7549` | plastic-squared `ψ²` | 6 |
+| `x³ − x − 1` | `1.3247` | the plastic number `ψ` ([[plastic-number](pages/plastic-number.md)]) | 6 |
+| `x³ − x² − 1` | `1.4656` | the supergolden constant ([[tree-castle-by-area](pages/tree-castle-by-area.md)]) | 6 |
+| `x³ − 2x² + x − 1` | `1.7549` | `ψ²` | 6 |
 | `x³ − x² − 2x + 1` | `1.8019` | `2cos(π/7)`, in `Q(ζ₇)⁺` | 6 |
-| `x³ − x² − x − 1` | `1.8393` | **tribonacci** ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]) | 12 |
+| `x³ − x² − x − 1` | `1.8393` | the tribonacci constant ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]) | 12 |
 | `x³ − x² − 2x − 1` | `2.1479` | | 6 |
 | `x³ − 2x² − 1` | `2.2056` | | 6 |
 | `x³ − 2x² − x + 1` | `2.2470` | `1 + 2cos(2π/7)`, in `Q(ζ₇)⁺` | 12 |
-| `x³ − 3x² + 2x − 1` | `2.3247` | (Pisot; `ψ + 1`) | 6 |
+| `x³ − 3x² + 2x − 1` | `2.3247` | `ψ + 1 = ψ³`, a Pisot number | 6 |
 
-The plastic number `ψ ≈ 1.3247` is a castle-strip Perron root at height 3, realized by 6 matrices, the sparsest with just 4 ones (a near-companion of `x³ = x + 1`);[^5] a strip whose transfer matrix is that companion is the "Padovan/Perrin growth castle" of [[plastic-number](pages/plastic-number.md)]. The sparsest one, rule `1 → 3`, `2 → 1`, `3 → {1, 2}`, has `3, 4, 5, 7, 9, 12, 16, 21, 28, …` strips of width `w`, the Padovan numbers `A000931(w + 9)` (checked `w ≤ 40`, 2026-10-04), the same numbers as the maximal Fibonacci castles of width `w + 3` ([[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)]).
+The plastic number is the Perron root of 6 matrices at `h = 3`. The sparsest has 4 ones, the rule `1 → 3`, `2 → 1`, `3 → {1, 2}`, which is the companion matrix of `x³ − x − 1` with the heights relabeled (as `2 → 1 → 3 → {2, 1}`), so the strips of this rule are plastic by width ([[plastic-number](pages/plastic-number.md)]). It has `3, 4, 5, 7, 9, 12, 16, 21, 28, …` strips of width `w`, the Padovan numbers `A000931(w + 9)`, the same numbers as the maximal Fibonacci castles of width `w + 3` ([[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)]).[^5]
 
-At `h = 4` there are **184 distinct positive Perron values**: 4 integers, 14 quadratic minimal polynomials (in 6 fields), **56 cubic** (including `x³ − 2`, the cube root of 2 at `1.2599`) and **110 quartic**. At `h = 5` there are 5,978: 5 integers, 29 quadratic (10 fields), 253 cubic, 1,355 quartic and 4,336 quintic.[^6]
+At `h = 4` there are 184 distinct positive Perron roots: 4 integers, 14 quadratic (in 6 fields), 56 cubic (among them `2^{1/3} = 1.2599`, the root of `x³ − 2`) and 110 quartic. At `h = 5` there are 5,978: 5 integers, 29 quadratic (in 10 fields), 253 cubic, 1,355 quartic and 4,336 quintic.[^6]
 
-## The reachability law for quadratic fields
+## Every real quadratic field is reached
 
-The census's finite lists (`{5}`, `{2,3,5}`, `{2,3,5,13,17,21}`, `{2,3,5,6,7,13,17,21,29,33}` at h = 2..5) are **initial segments of the set of all real quadratic fields**. Write a quadratic Perron root's minimal polynomial as `x² − p₁x − p₂`.[^7]
+Write the minimal polynomial of a quadratic Perron root as `x² − p₁x − p₂`. The Perron root is the larger root, and its field is `Q(√d)` with `d` the squarefree part of the discriminant `p₁² + 4p₂`. `p₂` can be negative: `φ²`, the root of `x² − 3x + 1`, is a Perron root at `h = 3`, and `(p₁, p₂) = (4, −2)` and `(4, −1)` occur at `h = 4`.[^7]
 
-**Each quadratic Perron root is the larger root of its minimal polynomial `x² − p₁x − p₂`**, and its field is `Q(√d)` with `d = ` squarefree part of the discriminant `p₁² + 4p₂`. `p₂` can be negative: `φ²`, the root of `x² − 3x + 1`, is a Perron root at h = 3, and `(4, −2)`, `(4, −1)` appear at h = 4. Three consequences:
+1. **Every real quadratic field occurs as the field of some pair.** For `p₁ = 0` the discriminant is `4p₂`, whose squarefree part is that of `p₂`, so the pairs `(0, d)` give every squarefree `d ≥ 2`. Over all `p₁ ≥ 0, p₂ ≥ 1` the discriminant `p₁² + 4p₂ ≡ p₁² (mod 4)` takes every value `≥ 4` that is `≡ 0` or `1 (mod 4)`.[^8]
+2. **The metallic means are the quadrant `p₁, p₂ ≥ 1`, and the `δ_a` are its line `p₂ = 1`.** The larger root of `x² − p₁x − p₂` with `p₁, p₂ ≥ 1` is `σ_{p₁}^{p₂}`, and `p₂ = 1` gives `δ_{p₁}`: the roots of norm `−1`, with continued fraction `[a; a, a, …]` ([[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]).
+3. **Every pair with `p₁ ≥ 0, p₂ ≥ 1` is the Perron root of a 0/1 matrix.** The multigraph with adjacency matrix `[[p₁, p₂], [1, 0]]` has `p₁ + p₂ + 1` edges; the 0/1 matrix with one state per edge, and a 1 from edge `e` to edge `f` when `f` starts where `e` ends, has the same nonzero eigenvalues, a standard recoding of symbolic dynamics. So every real quadratic field is the field of a castle-strip Perron root at some height. The minimum height of a pair is computed exactly through height 6, and proved on the line `p₂ = 1` and on the line `p₁ = 0`, on [[quadratic-min-height](pages/quadratic-min-height.md)]; the per-height field lists of this page are its level sets.[^9]
 
-1. **No real quadratic field is excluded.** As `(p₁, p₂)` range over `p₁ ≥ 0, p₂ ≥ 1`, the discriminant `p₁² + 4p₂` takes every value `≡ 0 or 1 (mod 4)` — exactly the integers that *are* quadratic discriminants — and its squarefree part takes **every** squarefree `d ≥ 2`. For example `Q(√11)` (absent from the h ≤ 5 list) is reached by `(p₁, p₂) = (6, 2)` (disc `44 = 4·11`, growth `3 + √11`), just at a height taller than 5. So the h ≤ 5 lists are "reachable *by that height*," not the whole reachable set — which is **all real quadratic fields**.[^8]
+`Q(√11)` is not reached by height 5. The smallest discriminant with squarefree part 11 is 44, since `11 ≡ 3 (mod 4)` is not a discriminant, and its pairs are `(0, 11)`, `(2, 10)`, `(4, 7)` and `(6, 2)`; `(4, 7)` has minimum height 6 ([[quadratic-min-height](pages/quadratic-min-height.md)]), so `Q(√11)` first appears at height 6, with the Perron root `2 + √11`.
 
-2. **The metallic means are the quadrant `p₁, p₂ ≥ 1`, and the `δ_a` are its `p₂ = 1` line.** The larger root of `x² − p₁x − p₂` with `p₁, p₂ ≥ 1` is de Spinadel's `σ_{p₁}^{p₂}`; `x² − p₁x − 1` gives `δ_{p₁}`, with discriminant `p₁² + 4`. So the `δ_a` are the **line `p₂ = 1`** through the `(p₁, p₂)` lattice: the roots of norm `−1`, with continued fraction `[a; a, a, …]` ([[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]). Roots with `p₁ = 0` (`√p₂`) or `p₂ < 0` (such as `φ²`) are outside the family.
+## Results
 
-3. **The obstruction is `0/1` realizability, not the field.** Every pair with `p₁ ≥ 0, p₂ ≥ 1` is realizable at *some* height: the edge graph of the multigraph with adjacency matrix `[[p₁, p₂], [1, 0]]` is a `0/1` transfer matrix (one state per edge) with the same nonzero spectrum, a standard symbolic-dynamics recoding. The **minimum** height grows with both `p₁` and `p₂` and has no known closed form (the h ≤ 4 grid: `(1,1)` at h=2; `(0,2), (2,1), (2,2), (3,−1)` at h=3; `(0,3), (1,3), (1,4), (2,4), (3,1), (3,2), (3,3), (4,−2), (4,−1)` at h=4; the `p₂ = 1` line is realized by the ridge rule `R_h = J − D` at `h = p₁ + 1`). The census's per-height lists are level sets of this min-height function ([[quadratic-min-height](pages/quadratic-min-height.md)]).[^9]
+- Every real quadratic field is the field of a castle-strip Perron root, through `x² − p₁x − p₂` with `p₂ ≥ 1`. The roots with `p₁, p₂ ≥ 1` are the metallic means `σ_{p₁}^{p₂}`, and the `δ_a` are the line `p₂ = 1`.
+- Every `δ_a` first appears at height `a + 1`; `δ_4 = φ³` lies in `Q(√5)`.
+- The plastic number is a castle-strip Perron root at `h = 3`.
+- Nine cubic Perron roots appear at `h = 3`: the plastic number, the supergolden constant, `ψ²`, the tribonacci constant, `ψ³`, two cubics of `Q(ζ₇)⁺` and two others. The supergolden constant, `ψ²` and the tribonacci constant are also growth constants by area.
 
-`Q(√11)` is reachable too, at a greater height: a `d ≡ 3 (mod 4)` field needs a discriminant `p₁² + 4p₂` that is a multiple such as `4·11`, which forces a larger `(p₁, p₂)` than the `d ≡ 1 (mod 4)` fields `Q(√13)`, `Q(√17)`, `Q(√21)` need.
+## Heights 6 and above
 
-## Summary and open questions
+The spectrum of a matrix is unchanged by relabeling the heights, `M → PMPᵀ` for a permutation matrix `P`, so the census could keep one matrix per orbit. Keeping the lexicographically smallest member of each orbit reproduces the field lists `{5}`, `{2, 3, 5}` and `{2, 3, 5, 13, 17, 21}` for `h ≤ 4`, with 3,044 orbits among the 65,536 matrices at `h = 4`.[^10] At `h = 6` there are at least `2^{36}/720 ≈ 9.5 × 10⁷` orbits, and at `h = 7` at least `2^{49}/5040 ≈ 1.1 × 10^{11}`. [[quadratic-min-height](pages/quadratic-min-height.md)] instead enumerates the 1.28 billion `6 × 6` matrices with rows sorted by number of ones and finds every quadratic Perron root through height 6.
 
-**Results:**
-- Every real quadratic field is a castle-strip Perron field (via `x² − p₁x − p₂` with `p₂ ≥ 1`); the roots with `p₁, p₂ ≥ 1` are the metallic means `σ_{p₁}^{p₂}`, and the `δ_a` are the `p₂ = 1` line. The per-height census lists are initial segments.
-- Every metallic mean `δ_a` first appears at exactly height `a+1`; `δ_4` lies in `Q(√5)` as `φ³`.
-- The plastic number is a castle-strip growth constant at h=3.
-- Nine cubics appear at h=3, among them plastic, supergolden, plastic², tribonacci and two `Q(ζ₇)⁺` cubics; supergolden, plastic² and tribonacci also arise by area.
-
-**Open:**
-- **A closed form for the minimum height** realizing a given `(p₁, p₂)`. [[quadratic-min-height](pages/quadratic-min-height.md)] computes it exactly through height 6, proves it on the `δ_a` line `p₂ = 1` (`p₁ + 1`) and the square-root line (`⌈2√p₂⌉`), and conjectures that at most three evenly connected groups of heights always reach it.
-- **Which cubics are Pisot / Salem**, and whether the Pisot cubics reachable as strip Perron roots are exactly a nameable set.
-- **A closed-form min-height for a given field.** The reachability law says every field appears; the height at which it *first* appears is the open quantity (tied to the min-height of its cheapest `(p₁, p₂)`).
-
-## `h ≥ 6`
-
-An **`S_h`-canonical-form deduper** (quotient the `2^{h²}` matrices by simultaneous row and column permutation `P M Pᵀ`, which preserves the spectrum, keeping the lexicographically minimal representative of each orbit) reproduces the field lists `{5}`, `{2,3,5}`, `{2,3,5,13,17,21}` for h ≤ 4, compressing 65 536 matrices to 3 044 orbits at h=4.[^10] At h=6 it still leaves `≈ 9.5 × 10⁷` orbits (h=7: `≈ 10¹¹`). [[quadratic-min-height](pages/quadratic-min-height.md)] instead enumerates the 1.28 billion row-sorted `6 × 6` tables and finds every quadratic Perron root through height 6.
-
-The new fields at `h ≥ 6` need dense matrices: a sparse sweep (`≤ 6` of 36 ones, `S_6`-deduped) reaches only `{2, 3, 5}`, while the ridge realizer `R_6 = J − D` of `δ_5` has 31 of 36 ones.[^11] Targeted constructions: `δ_5 ∈ Q(√29)` by the ridge rule `R_6` at h=6 (`(x+1)⁴(x²−5x−1)`); `δ_6 = 3 + √10` by `R_7` at h=7. The field `Q(√10)` itself first appears at h=6, through `(p₁, p₂) = (4, 6)` (`2 + √10`) and `(2, 9)` (`1 + √10`) in the exhaustive height-6 census.[^12]
+The new fields at `h = 6` need dense matrices: the matrices with at most 6 ones among their 36 entries reach only the fields `{2, 3, 5}`, while the ridge matrix `R_6 = J − D`, whose Perron root is `δ_5`, has 31 ones.[^11] The ridge matrices give `δ_5 ∈ Q(√29)` at `h = 6`, with characteristic polynomial `(x + 1)⁴(x² − 5x − 1)`, and `δ_6 = 3 + √10` at `h = 7`. The field `Q(√10)` first appears at `h = 6`, through `(p₁, p₂) = (4, 6)` (`2 + √10`) and `(2, 9)` (`1 + √10`), while `(6, 1)` and `(0, 10)` need height 7.[^12]
 
 ## Reproduce
 
-The one-rule step (`strip_field`, above), the `strip_field_census` two-phase sweep (numeric Perron bucketing + exact SymPy field ID), the `sh_canonical` `S_h`-canonical-form dedup (validated against the exhaustive census), and the `ridge_R` `R_h = J − D` realizer of the `δ_a` are on [[castle-snippets](pages/castle-snippets.md)]. h ≤ 4 runs exhaustively in seconds; h=5 in a few minutes with chunked vectorized `numpy.linalg.eigvals`; h ≥ 6 is characterized by the reachability law plus targeted construction rather than exhaustion.
+`strip_field` (the field of one rule's Perron root), `strip_field_census` (the sweep, with the Perron roots sorted numerically and the fields identified exactly), `sh_canonical` (one matrix per relabeling orbit, checked against the full census) and `ridge_R` (the ridge matrix `R_h = J − D`) are on [[castle-snippets-strips](pages/castle-snippets-strips.md)].
 
 ## Appearances in Sources
 
-- [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the strip transfer-matrix model this census sweeps.
+- [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the transfer-matrix model of strips that the census sweeps.
 
 ## Related Concepts
 
-- [[quadratic-min-height](pages/quadratic-min-height.md)] - the minimum height for each `(p₁, p₂)`: exact through height 6, proved on the `p₂ = 1` and square-root lines, and the three-group conjecture.
-- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the companion page: the ridge rule `R_h = J − D` that realizes each `δ_a`, confirmed here for h ≤ 5.
-- [[metallic-means](pages/metallic-means.md)] - the ladder `δ_a`; this census places every rung's field and the collapse of `δ_4` into `Q(√5)`.
-- [[plastic-number](pages/plastic-number.md)] - the plastic number is a strip Perron root at h=3.
-- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] - where tribonacci, supergolden and plastic² arise by area; they are also strip Perron roots.
-- [[castle-classification-growth](pages/castle-classification-growth.md)] - Axis 8, the growth-type meta-classification these Perron roots populate.
-- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the `δ_a` as the norm-`−1` quadratics with period-1 continued fractions `[a; a, a, …]`.
-- [[fractional-recurrences](pages/fractional-recurrences.md)] - a continuous family of growth constants, in a different direction from this census. The fractional-Fibonacci growth curve `g(α) = 1/r*(α)`, `(1-r*)^α = r*`, threads three of this page's cubic Perron roots at rational `α` (supergolden at `1/3`, plastic-squared at `2/3`, plastic-cubed at `3/2`) and passes through every real `> 1` monotonically. At algebraic irrational `α` the growth is transcendental (Gelfond-Schneider), so those values lie **outside the reachable-field census**: no 0/1 castle-strip transfer matrix realizes them.
-- [[power-law-memory-rules](pages/power-law-memory-rules.md)] - at `h = 2` the `K → ∞` limit stays at the integer `2`, and the K-truncated Perron roots ratchet through this census's plastic / supergolden / golden / plastic-squared rungs.
+- [[quadratic-min-height](pages/quadratic-min-height.md)] - the minimum height of each quadratic Perron root `(p₁, p₂)`: exact through height 6, proved on the lines `p₂ = 1` and `p₁ = 0`.
+- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge rule `R_h = J − D`, whose Perron root is `δ_{h−1}`.
+- [[ridge-castle](pages/ridge-castle.md)] - the ridge castles, with the ridge strip counts `A001333(w + 1)`, `A003688(w + 1)`, `A015448(w + 1)` at heights 3, 4, 5.
+- [[metallic-means](pages/metallic-means.md)] - de Spinadel's family `σ_p^q`, with `δ_a = σ_a^1`; this census places the field of each `δ_a`.
+- [[plastic-number](pages/plastic-number.md)] - the plastic number and `ψ²`, Perron roots of 0/1 strip matrices at `h = 3`.
+- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] and [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tribonacci constant, the supergolden constant and `ψ²` as growth constants by area.
+- [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types of castle families, "X by width" and by the other axes.
+- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the `δ_a` as the norm `−1` quadratics with continued fraction `[a; a, a, …]`.
+- [[fractional-recurrences](pages/fractional-recurrences.md)] - the growth constant `g(α)` of `∇^α a_n = a_{n−1}`, a continuous increasing curve that passes through three of this page's cubics at rational `α` (the supergolden constant at `1/3`, `ψ²` at `2/3`, `ψ³` at `3/2`). At an algebraic irrational `α`, `g(α)` is transcendental by the Gelfond-Schneider theorem, so no 0/1 matrix has it as its Perron root.
+- [[power-law-memory-rules](pages/power-law-memory-rules.md)] - at `h = 2` the Perron roots `ρ(α, K)` of the truncated fractional rules include the plastic number, the supergolden constant and `ψ²`, three of the cubics at `h = 3` here; they are nondecreasing in `K` and at most 2.
 
 ## Footnotes
 
-[^1]: Method verified by execution. Phase 1: for each `h`, all `2^{h²}` binary matrices are built (vectorized in chunks) and their eigenvalues batch-computed via `numpy.linalg.eigvals`; the Perron root is the maximum real eigenvalue (`|Im| < 10⁻⁹`, value `> 10⁻⁹`), and matrices are bucketed by the rounded root with one example kept. Phase 2: each distinct example's characteristic polynomial is factored with SymPy `factor_list`; the irreducible factor whose maximum real root matches the Perron value is selected, and its degree/discriminant give the field. Runs: h=2 (16 matrices), h=3 (512), h=4 (65 536) exhaustive; h=5 (33 554 432) by chunked sweep.
+[^1]: Method verified by execution (Python 3.11 with NumPy and SymPy, 2026-10-16): for each `h ≤ 5`, all `2^{h²}` binary matrices, characteristic polynomials computed exactly in 64-bit integers by the Faddeev-LeVerrier recursion and deduplicated; each distinct polynomial factored with SymPy `factor_list`, the irreducible factor carrying the largest real root selected numerically, and its degree and discriminant giving the field.
 
-[^2]: The squarefree-part computation is `d = ∏ p^{e mod 2}` over `factorint(a²+4)`. `a²+4` for `a = 1..6` is `5, 8, 13, 20, 29, 40`, squarefree parts `5, 2, 13, 5, 29, 10`. `a = 4` gives `20 = 2²·5 → 5`, so `δ₄ ∈ Q(√5)`; `δ₄ = 2 + √5 = φ³` (verified exactly, [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] footnote). The census independently finds `4.23607 = φ³` in the `Q(√5)` bucket at h=5.
+[^2]: The squarefree part is `d = ∏ p^{e mod 2}` over the factorization of `a² + 4`; `a² + 4` for `a = 1, …, 6` is `5, 8, 13, 20, 29, 40`, with squarefree parts `5, 2, 13, 5, 29, 10`.
 
-[^3]: Census first-appearance heights: golden `1.6180` at h=2, silver `2.4142` at h=3, bronze `3.3028` at h=4, `δ_4 = 4.2361` at h=5 — each `= a+1`, matching the ridge realization `R_h = J − D`. The `Q(√29)` bucket at h=5 (120 matrices) is `(3+√29)/2 = 4.19258`, the root of `x² − 3x − 5`; `δ_5 = (5+√29)/2 = 5.19258` first appears at h=6, confirmed by the exhaustive height-6 census on [[quadratic-min-height](pages/quadratic-min-height.md)].
+[^3]: Verified by execution (2026-10-16): the first heights of golden, silver, bronze and `δ_4` in the census are 2, 3, 4 and 5; the `Q(√29)` root at `h = 5` is `(3 + √29)/2 = 4.19258`, the root of `x² − 3x − 5`; the ridge matrices `R_3, …, R_7` have characteristic polynomials `(x + 1)^{h−2}(x² − (h − 1)x − 1)`; the ridge strips of height 5 number `𝟙ᵀR_5^{w−1}𝟙 = F_{3w+2}` for `w ≤ 7`. `δ_5` first appears at `h = 6` by the height-6 census on [[quadratic-min-height](pages/quadratic-min-height.md)].
 
-[^4]: Restricting the h≤4 Perron roots to `Q(√5)` (those `v` with `v² − pv ∈ ℤ` for some integer `p` and squarefree discriminant `5`): h=2 gives `{φ}`, h=3 gives `{φ, φ²}`, h=4 gives `{φ, φ², 2φ}`; `φ³ = 4.23607` first appears at h=5. Verified by execution.
+[^4]: Verified by execution (2026-10-16): the Perron roots in `Q(√5)` are `{φ}` at `h = 2`, `{φ, φ²}` at `h = 3`, `{φ, φ², 1 + √5}` at `h = 4`, and at `h = 5` these together with `√5`, `(5 + √5)/2` and `φ³ = 4.23607`.
 
-[^5]: Exhaustive over the 512 binary `3×3` matrices: exactly 6 have characteristic polynomial with irreducible factor `x³ − x − 1` (Perron root `1.324718`, the plastic number). The sparsest has 4 ones, e.g. `[[0,0,1],[1,0,0],[1,1,0]]` (rule: height 1→3, 2→1, 3→{1,2}), a near-companion matrix of `x³ = x + 1`; SymPy `factor(charpoly) = x³ − x − 1`.
+[^5]: Verified by execution over the 512 binary `3 × 3` matrices (2026-10-16): the nine cubic minimal polynomials and their matrix counts as in the table; SymPy factors the characteristic polynomial of `[[0,0,1],[1,0,0],[1,1,0]]` as `x³ − x − 1`; its strip counts `𝟙ᵀM^{w−1}𝟙` equal `A000931(w + 9)` for `w ≤ 40`.
 
-[^6]: Exact recount (2026-09-28): integer characteristic polynomials of all `2^{h²}` matrices by Newton's identities, one SymPy factorization per distinct polynomial, Perron root = largest real root over the irreducible factors. h=3: 32 distinct characteristic polynomials, 25 nilpotent matrices, 17 distinct positive Perron values (3 integer, 5 quadratic in `d = 2, 3, 5`, 9 cubic). h=4: 333 characteristic polynomials, 543 nilpotent matrices, 184 distinct positive Perron values (4 integer, 14 quadratic in `d = 2, 3, 5, 13, 17, 21`, 56 cubic, 110 quartic). h=5: 8,927 characteristic polynomials, 29,281 nilpotent matrices, 5,978 distinct positive Perron values (5 integer, 29 quadratic in `d = 2,3,5,6,7,13,17,21,29,33`, 253 cubic, 1,355 quartic, 4,336 quintic). The nilpotent counts are the acyclic-digraph counts 25, 543, 29,281.
+[^6]: Verified by execution (2026-10-16): `h = 3`: 32 distinct characteristic polynomials, 25 nilpotent matrices, 17 distinct positive Perron roots (3 integer, 5 quadratic in `d = 2, 3, 5`, 9 cubic). `h = 4`: 333 characteristic polynomials, 543 nilpotent matrices, 184 Perron roots (4 integer, 14 quadratic in `d = 2, 3, 5, 13, 17, 21`, 56 cubic, 110 quartic). `h = 5`: 8,927 characteristic polynomials, 29,281 nilpotent matrices, 5,978 Perron roots (5 integer, 29 quadratic in `d = 2, 3, 5, 6, 7, 13, 17, 21, 29, 33`, 253 cubic, 1,355 quartic, 4,336 quintic). The nilpotent counts are the numbers of acyclic directed graphs, 25, 543, 29,281.
 
-[^7]: The 14 quadratic Perron minimal polynomials at h ≤ 4 (exact recount, 2026-09-28), by discriminant `Δ = p₁² + 4p₂`: `Δ = 5`: `x² − x − 1`, `x² − 3x + 1`; `Δ = 20`: `x² − 2x − 4`; `Δ = 8`: `x² − 2`, `x² − 2x − 1`, `x² − 4x + 2`; `Δ = 12`: `x² − 3`, `x² − 2x − 2`, `x² − 4x + 1`; `Δ = 13`: `x² − x − 3`, `x² − 3x − 1`; `Δ = 17`: `x² − x − 4`, `x² − 3x − 2`; `Δ = 21`: `x² − 3x − 3`.
+[^7]: The 14 quadratic Perron minimal polynomials at `h ≤ 4` (2026-10-16), by discriminant `p₁² + 4p₂`: 5: `x² − x − 1`, `x² − 3x + 1`; 20: `x² − 2x − 4`; 8: `x² − 2`, `x² − 2x − 1`, `x² − 4x + 2`; 12: `x² − 3`, `x² − 2x − 2`, `x² − 4x + 1`; 13: `x² − x − 3`, `x² − 3x − 1`; 17: `x² − x − 4`, `x² − 3x − 2`; 21: `x² − 3x − 3`.
 
-[^8]: `p₁² + 4p₂ ≡ p₁² (mod 4) ∈ {0, 1}`, so the discriminant is always `≡ 0 or 1 (mod 4)` — a quadratic discriminant — and conversely every such value `≥ 5` is `p₁² + 4p₂` for some `p₁ ≥ 0, p₂ ≥ 1`. The squarefree part hits every squarefree `d ≥ 2` (using non-fundamental multiples where needed): e.g. `Q(√11)` via `(p₁,p₂) = (6,2)`, disc `44 = 4·11`, growth `3 + √11 ≈ 6.317` — verified in SymPy; absent from the h ≤ 5 census only because it needs a taller strip. So no real quadratic field is excluded.
+[^8]: `p₁² + 4p₂ ≡ p₁² (mod 4)`, which is 0 or 1. Every multiple of 4 that is at least 4 is `4p₂` with `p₁ = 0`, and every value `≡ 1 (mod 4)` that is at least 5 is `1 + 4p₂` with `p₁ = 1`.
 
-[^9]: Realizability: the nonnegative-integer companion `[[p₁, p₂], [1, 0]]` recodes to a `0/1` matrix by passing to its edge graph (states are the `p₁ + p₂ + 1` edges of the multigraph, a standard symbolic-dynamics recoding that keeps the nonzero spectrum), so every `(p₁ ≥ 0, p₂ ≥ 1)` is realized at some finite `h`. Min-heights at h ≤ 4 (exhaustive): `(1,1)`→2; `(0,2),(2,1),(2,2),(3,−1)`→3; `(0,3),(1,3),(1,4),(2,4),(3,1),(3,2),(3,3),(4,−2),(4,−1)`→4. The `p₂ = 1` (metallic) line is realized by the ridge rule `R_h = J − D` at `h = p₁ + 1` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). No closed form fits the full grid.
+[^9]: Verified by execution (2026-10-16): the edge-graph matrices of `[[p₁, p₂], [1, 0]]` for `(2, 3)`, `(0, 5)`, `(6, 2)` and `(1, 4)` have characteristic polynomials `x⁴(x − 3)(x + 1)`, `x⁴(x² − 5)`, `x⁷(x² − 6x − 2)` and `x⁴(x² − x − 4)`. The pairs reached first at `h = 3` are `(0, 2), (2, 1), (2, 2), (3, −1)`, and at `h = 4` they are `(0, 3), (1, 3), (1, 4), (2, 4), (3, 1), (3, 2), (3, 3), (4, −2), (4, −1)`.
 
-[^10]: The `S_h` deduper canonicalizes each matrix as the lexicographically-minimal flattening of `P M Pᵀ` over all `h!` permutations `P` (simultaneous row+column relabeling, which conjugates the matrix and preserves its spectrum), collapsing each orbit to one representative. Validated by execution: canonical-representative census reproduces the full field lists at h=2 (`{5}`, 10 orbits from 16 matrices), h=3 (`{2,3,5}`, 104 orbits from 512), h=4 (`{2,3,5,13,17,21}`, 3044 orbits from 65 536) — the quadratic fields match the exhaustive sweep exactly. Orbit compression ≈ `h!` (24× at h=4, observed 21.5×).
+[^10]: The orbit representative is the lexicographically smallest flattening of `PMPᵀ` over all `h!` permutations. Verified by execution (2026-10-16): 10 orbits from 16 matrices at `h = 2`, 104 from 512 at `h = 3`, 3,044 from 65,536 at `h = 4`; the orbit representatives give the same quadratic fields as the full sweep (code on [[castle-snippets-strips](pages/castle-snippets-strips.md)]).
 
-[^11]: Sparse `S_6`-deduped census over 6×6 matrices with `≤ 6` of 36 ones: reaches quadratic fields `{2, 3, 5}` only. High-discriminant surds require dense matrices — the ridge realizer `R_6 = J − D` of `δ_5` (`Q(√29)`) uses 31 ones — so sparse enumeration cannot reach the new h=6 fields. (Verified by execution: batched numeric Perron over all `C(36,K)` combinations for `K ≤ 6`, exact quadratic ID of the distinct roots.)
+[^11]: Verified by execution (2026-10-16): the characteristic polynomials of all 2,391,496 matrices of size 6 with at most 6 ones among their 36 entries, 95 distinct, whose quadratic Perron roots lie in the fields `d = 2, 3, 5`.
 
-[^12]: Targeted h=6 / h=7 constructions (SymPy): `R_6 = J − D` gives `(x+1)⁴(x²−5x−1)`, Perron `(5+√29)/2` = `δ_5` ∈ `Q(√29)`, 31 ones; `R_7 = J − D` gives `(x+1)⁵(x²−6x−1)`, Perron `3+√10` = `δ₆` ∈ `Q(√10)`. The `a=6` field `Q(√10)` (disc 40) first appears at h=6: the exhaustive height-6 census on [[quadratic-min-height](pages/quadratic-min-height.md)] realizes `(p₁, p₂) = (4, 6)` and `(2, 9)` at height 6, while `(6, 1)` and `(0, 10)` need height 7.
+[^12]: Verified by execution (SymPy, 2026-10-16): `R_6 = J − D` has characteristic polynomial `(x + 1)⁴(x² − 5x − 1)` and 31 ones; `R_7 = J − D` has `(x + 1)⁵(x² − 6x − 1)`, Perron root `3 + √10 = δ_6`. The height-6 realizations of `(4, 6)` and `(2, 9)`, and the heights 7 of `(6, 1)` and `(0, 10)`, are from [[quadratic-min-height](pages/quadratic-min-height.md)].
