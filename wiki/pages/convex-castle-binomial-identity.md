@@ -1,74 +1,78 @@
 ---
 title: "Convex castle count is binomial (Vandermonde)"
 category: Analyses
-summary: Why convex(w,h) = C(2h+w−3, w−1) — an up/down decomposition at the peak plus a generalized Vandermonde convolution; binomial, not Catalan, because the two halves are independent.
+summary: A proof that the convex castles of width w and height h number A_convex(w, h) = C(2h+w−3, w−1). Splitting the skyline at its first column of height h gives a weakly increasing front and a weakly decreasing back, chosen independently, so the count is a convolution of two binomial sequences, which the generalized Vandermonde convolution sums.
 tags: [analysis, castle, convex, binomial, vandermonde, catalan]
 sources: [oeis-mining-pe502, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-13
-updated: 2026-10-04
+updated: 2026-10-16
 ---
 
 # Convex castle count is binomial (Vandermonde)
 
-## Overview
+A [[convex-castle](pages/convex-castle.md)] is a castle with a unimodal skyline, `c_1 ≤ ⋯ ≤ c_p ≥ ⋯ ≥ c_w`, and `A_convex(w, h)` is the number of convex castles of width `w` and height `h`. This page proves
 
-This is the *reason* the [[convex-castle](pages/convex-castle.md)] count is a binomial coefficient, `C(2h+w−3, w−1)`, and why no Catalan/Narayana number appears in the natural (w,h) parameterization. A convex castle's ascending front and descending back are chosen **independently** (there is no ballot / non-crossing condition to couple them), and a product of two monotone-piece counts is a binomial. Everything below was verified numerically (up/down decomposition and the Vandermonde identity checked against brute force for `w,h ≤ 7`; the binomial and the "exactly h blocks" facts re-verified for `w,h ≤ 5` during ingest).[^1]
+**Theorem.** `A_convex(w, h) = C(2h + w − 3, w − 1)`.
 
-## Convex ⟺ unimodal ⟺ exactly *h* blocks
+[[convex-castle](pages/convex-castle.md)] (section *Count*) proves the Theorem by placing letters `R` in the slots of a step word. The proof here splits the skyline into two monotone pieces. At `h = 1` the only castle is the flat row and `C(w − 1, w − 1) = 1`, so take `h ≥ 2`.
 
-A castle is convex (row- and column-convex) exactly when its height profile `c_1..c_w` is **unimodal** (non-decreasing then non-increasing): the columns reaching level *r* form an interval for every *r* iff the profile is unimodal. For any profile, `#blocks = c_1 + ∑_{i≥2} max(0, c_i − c_{i−1})`, and the positive rises telescope to the running maximum, so[^2]
+## The front and the back
 
-```
-#blocks ≥ max(c) = h,   with equality iff the profile is unimodal.
-```
+Let `p` be the first column of height `h`. A unimodal skyline splits at `p` into[^1]
 
-Hence a convex castle of height *h* has **exactly *h* blocks**, and convex castles are precisely the *minimum-block* castles of height *h*. (So the even-parity convex count is `C(2h+w−3, w−1)` when *h* is even and `0` when *h* is odd.) In boundary terms this is the classical convexity-perimeter fact. A castle's semi-perimeter is `w + #blocks`, so `#blocks ≥ h` says the perimeter is at least the bounding-box perimeter `2(w+h)`, with equality iff the castle is convex ([[castle-perimeter](pages/castle-perimeter.md)]).
+- a **front** `c_1 ≤ ⋯ ≤ c_{p−1}`, a weakly increasing sequence of length `p − 1` with values in `{1, …, h − 1}`, and
+- a **back** `c_{p+1} ≥ ⋯ ≥ c_w` after `c_p = h`, a weakly decreasing sequence of length `w − p` with values in `{1, …, h}`.
 
-## The up/down decomposition + Vandermonde
-
-Fix `p` = the leftmost column of height *h*. A unimodal profile splits at `p` into two independent monotone pieces: an ascending **front** (`c_1 ≤ … ≤ c_{p−1} ≤ h−1`, values in `{1..h−1}`) and a descending **back** (`h = c_p ≥ … ≥ c_w`, values in `{1..h}`). Counting each as a monotone sequence and summing over `p`:[^3]
+Any front goes with any back. A weakly increasing, or weakly decreasing, sequence of length `j` with values in a set of `v` numbers is a multiset of size `j` from `v` numbers, so there are `C(v − 1 + j, j)` of them. The front has `v = h − 1` and the back `v = h`, so
 
 ```
-convex(w,h) = Σ_{p=1}^{w} C((h−2)+(p−1), p−1) · C((h−1)+(w−p), w−p)
+A_convex(w, h)  =  Σ_{p=1}^{w}  C((h−2) + (p−1), p−1) · C((h−1) + (w−p), w−p).        (1)
 ```
 
-(the off-by-one — `h−2` for the front, `h−1` for the back — is because the peak belongs to the back). With `a = p−1`, `n = w−1`, this is the **generalized Vandermonde convolution** `Σ_k C(r+k,k)C(s+n−k,n−k) = C(r+s+n+1, n)` at `r = h−2`, `s = h−1`, giving[^4]
+The front's values stop at `h − 1` because `p` is the first column of height `h`, and the back's go up to `h`.
+
+*Example: `w = 4`, `h = 2`.* Every front is all 1s, and the back is a weakly decreasing sequence in `{1, 2}` of length `4 − p`, which can be chosen in `5 − p` ways. Equation (1) gives `4 + 3 + 2 + 1 = 10 = C(5, 3)`.[^1] These ten castles are the skylines in `{1, 2}^4` whose height-2 columns form one interval, the ten castles of the example `A^e(4, 2) = 10` on [[castle-counting-formula](pages/castle-counting-formula.md)]: at width 4, a castle of height 2 with an even number of blocks has one block in row 2.
+
+## The Vandermonde convolution
+
+**Lemma (generalized Vandermonde convolution).** For integers `r, s, n ≥ 0`,
 
 ```
-convex(w,h) = C((h−2)+(h−1)+(w−1)+1, w−1) = C(2h + w − 3, w − 1).   ∎
+Σ_{a=0}^{n}  C(r + a, a) · C(s + n − a, n − a)  =  C(r + s + n + 1, n).                  (2)
 ```
 
-For example `convex(w,2) = C(w+1, 2)` (triangular), `convex(w,3) = C(w+3,4)` — diagonals of Pascal's triangle.
+*Proof.* `Σ_a C(r + a, a) x^a = (1 − x)^{−(r+1)}`, so the left side of Equation (2) is the coefficient of `x^n` in `(1 − x)^{−(r+1)} (1 − x)^{−(s+1)} = (1 − x)^{−(r+s+2)}`, which is `C(r + s + 1 + n, n)`.[^2]
 
-## Why binomial and not Catalan
+*Proof of the Theorem.* Substitute `a = p − 1` and `n = w − 1` in Equation (1). It is the left side of Equation (2) with `r = h − 2` and `s = h − 1`, so[^2]
 
-The two halves combine by an ordinary product (then a Vandermonde sum) because they are **independent**. Catalan/Narayana counts arise when a **non-crossing or ballot constraint couples the halves** (as a Dyck path's up and down segments must jointly stay above the diagonal). The castle's Rule 3 (same-row gap) imposes no such coupling - in the run decomposition it is automatic - so no Catalan count appears in the (w,h) parameterization.[^5] (The Catalan/Narayana thread does appear elsewhere - in the [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] block-count.) The coupled counterpart is the parallelogram polyomino. Its two boundary paths share both endpoints and must not cross, and it is Catalan by perimeter ([[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)]).
+```
+A_convex(w, h)  =  C((h−2) + (h−1) + (w−1) + 1, w−1)  =  C(2h + w − 3, w − 1).
+```
 
-Other castle counts are binomial too: the height-2 block distribution `C(w+1, 2r)` (feeding the [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]), the binary-string tower (column heights in `{0, 1}`) distribution `C(w+1, 2b) = A034839`, and the any-parity `h^w − (h−1)^w` differences are all binomial.[^6]
+At `h = 2` the Theorem gives `C(w + 1, 2)`, the triangular numbers `A000217(w)`, and at `h = 3` it gives `C(w + 3, 4)`.
 
-## The anti-diagonal sums are Fibonacci
+The front and the back are chosen independently, so the count is a convolution of two binomial sequences, and Equation (2) makes it a single binomial coefficient.[^3] By contrast, the parallelogram polyominoes, whose upper and lower boundary paths share both endpoints and do not cross, are counted by the Catalan numbers by perimeter ([[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)]).
 
-Summing the binomial along `w + h = n + 2` (fixed perimeter `2n+4`) gives `F_{2n}` with `F_0 = F_1 = 1` (A001519: 2, 5, 13, 34, 89, ...; checked for `n = 1..14` during ingest). This is Delest-Viennot's count of stack polyominoes by perimeter. They obtain it from a rational grammar of "Fibonacci words" rather than from the binomial.[^7] The Vandermonde argument gives the binomial in every `(w,h)` cell; the Fibonacci-word argument counts the anti-diagonal sums directly, as the specialization `x = y = t` of `Σ_{w,h} C(2h+w-3, w-1) x^w y^h`.
+Summed along `w + h = n + 2`, the Theorem gives the Fibonacci number `F_{2n+1}`, Delest and Viennot's count of stack polyominoes of perimeter `2n + 4` ([[convex-castle](pages/convex-castle.md)], section *Other gradings*).[^4]
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — vein 4; the binomial-vs-Catalan fork resolved.
-- [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - the same class by perimeter (Fibonacci), and parallelogram polyominoes as the coupled-boundary Catalan counterpart.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the split at the first column of height `h`, Equation (1), the Vandermonde convolution with its proof, and the example at `w = 4`, `h = 2`.
+- [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - stack polyominoes counted by perimeter, and parallelogram polyominoes coded by Dyck words.
 
 ## Related Concepts
 
-- [[convex-castle](pages/convex-castle.md)] — the object counted here.
-- [[castle-perimeter](pages/castle-perimeter.md)] - blocks = semi-perimeter minus width; the anti-diagonal (perimeter) parity split of this binomial.
-- [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] — where Catalan/Narayana *does* live.
-- [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] — convex castles by area (A001523).
-- [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] — Vandermonde's convolution (the identity that closes this sum) and the binomial toolkit.
+- [[convex-castle](pages/convex-castle.md)] - convex castles, their block count, the stars-and-bars proof of the Theorem, and their counts by area and by perimeter.
+- [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] - Vandermonde's convolution `Σ_k C(r, k) C(s, n−k) = C(r + s, n)`, Knuth's equation (21), and the other binomial identities.
+- [[castle-perimeter](pages/castle-perimeter.md)] - the semi-perimeter `w + blocks`, and the convex castles counted by semi-perimeter with the block sign.
+- [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - the convex castles counted by area, `A001523`.
+- [[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)] - the bijection from Dyck words onto parallelogram polyominoes.
+- [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] - towers counted by blocks through Narayana polynomials.
+- [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - castles of height 2 counted by block parity, through the binomial coefficients `C(w + 1, 2r)`.
 
 ## Footnotes
 
-[^1]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` L9-13 — "verified numerically ... the up/down decomposition and the Vandermonde identity were each checked against brute force for w,h <= 7"; binomial and blocks==h re-verified for w,h ≤ 5 during ingest.
-[^2]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §1 L14-33 — "#blocks >= max(c) = h, with equality iff the profile is unimodal ... a convex castle of height h has exactly h blocks, and convex castles are exactly the minimum-block castles."
-[^3]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §2 L35-62 — the front/back decomposition and "convex(w,h) = sum_{p=1}^{w} C((h-2)+(p-1), p-1) · C((h-1)+(w-p), w-p)."
-[^4]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §3 L64-80 — "the generalized Vandermonde convolution sum_k C(r+k,k)·C(s+n-k,n-k) = C(r+s+n+1, n), with r = h-2, s = h-1, n = w-1 ... convex(w,h) = C(2h + w - 3, w - 1)."
-[^5]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §4 L82-96 — "The two halves are independent ... A binomial is exactly what a product of two monotone-piece counts gives. Catalan / Narayana counts arise when a non-crossing or ballot constraint couples the two halves ... The castle's Rule 3 ... imposes no such coupling."
-[^6]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §5 L98-116 — the height-2 distribution C(w+1,2r), the height-≤1 distribution C(w+1,2b) = A034839, and the h^w−(h−1)^w family, all binomial.
-[^7]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] p.181 Lemma 3.2 [synthesis] - stacks by perimeter 2n+4 are counted by F_{2n} with GF (1-t^2)/((1-t-t^2)(1+t-t^2)); the anti-diagonal identity is own reasoning, verified numerically n = 1..14.
+[^1]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §2 L37-62 - "Fix p = the leftmost column of height h (the first peak). A unimodal profile splits at p into two independent pieces", "convex(w,h) = sum_{p=1}^{w} C((h-2) + (p-1), p-1) · C((h-1) + (w-p), w-p)", and "Worked example, w = 4, h = 2: ... p=1,2,3,4 give 4,3,2,1 backs, total 4+3+2+1 = 10 = C(5,3) = C(2h+w-3, w-1)".
+[^2]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §3 L66-80 - "sum_{k=0}^{n} C(r+k, k) · C(s+n-k, n-k) = C(r+s+n+1, n), with r = h-2, s = h-1, n = w-1. (Proof: sum_k C(r+k,k) x^k = (1-x)^{-(r+1)}, so the product of the two generating functions is (1-x)^{-(r+s+2)}, whose coefficient of x^n is C(r+s+n+1, n).)", "convex(w,h) = C((h-2)+(h-1)+(w-1)+1, w-1) = C(2h + w - 3, w - 1)". The Theorem was checked against enumeration of all skylines for `w ≤ 7`, `h ≤ 6` with `h^w ≤ 300000` (Python 3.11, 2026-10-16).
+[^3]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §4 L84-86 - "The two halves are **independent**: the front is any non-decreasing sequence, the back any non-increasing sequence, and they are combined by an ordinary product (then summed by Vandermonde)."
+[^4]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] p.181 Lemma 3.2 - "The number of stack polyominoes with perimeter 2n+4 is the Fibonacci number F_{2n}", with `F_0 = F_1 = 1`, which is `F_{2n+1}` with `F_1 = F_2 = 1`; the sums over `w + h = n + 2` were checked for `n ≤ 14` (Python 3.11, 2026-10-16).
