@@ -1,62 +1,82 @@
 ---
-title: Minimum-tower-spacing castles
+title: Minimum tower spacing - skylines and castles
 category: Analyses
-summary: A castle sub-family from a horizontal-gap variation of PE 502's rule 3: require every valley between raised regions to be at least g columns wide, equivalently every row's internal empty-runs have length ≥ g. This is a tower-spacing rule (towers poking above a valley must be ≥ g apart), distinct from the height-adjacency strip rules of metallic-strip-realizability. A column-by-column transfer matrix (states track, per row, how long since the last filled cell, capped at g) counts them exactly. At height 2 the family is "height-2 towers spaced ≥ g apart", with denominator 1 − 2x + x² − x^{g+1}: irreducible for even g (g=2 is plastic-squared ψ²), and for odd g = 2k−1 the product (1 − x − x^k)(1 − x + x^k), with growth the reciprocal of the positive root of x^k + x − 1 (g=3 is golden φ, g=5 supergolden). Growth constants decrease toward 1 as g grows. For g ≥ 2, h ≥ 3 the growth constants are a non-metallic two-parameter algebraic family; e.g. (h=3, g=2) grows at 2.4022 (root of an irreducible quintic), not silver. The g=2 column is the Hardin word sequences (A202882 / A203094 / A203184): tower-spacing-2 forbids a width-1 valley, an interior strict local minimum, which the complement x → h−1−x turns into Hardin's "no strict local maximum", giving those sequences a geometric castle interpretation. The whole table is one family: a skyline is a tower-spacing-g castle iff its 0-based height array is the width-g running minimum of some array, so the (h,g) count is Hardin's "0..(h-1) arrays, each element the minimum of g adjacent elements" (equivalently "arrays of maxima of g adjacent elements"). Every cell with h,g <= 6 is identified: the h=2 row is A005251 / A005252 / A005253 / A005689 / A098574 with closed form Sum_k C(w+g-(g-1)k, 2k); h=3 and h=4 are Hardin's tables A217883 and A217954; g=3 is A228461; the six cells h in {5,6}, g in {4,5,6} are in no OEIS entry. The minimal recurrence order is (h-1)g+1 in every cell, and the g -> infinity limit is the unimodal castles.
+summary: A skyline has tower spacing at least g when, in every row, each run of empty cells with filled cells on both sides has length at least g. spacing_g(w, h) counts such skylines of width w on {1, …, h}, which need not reach h; the castles of height h among them number spacing_g(w, h) − spacing_g(w, h − 1). A skyline has tower spacing at least g exactly when its 0-based heights are the window-g running minimum of a longer array, so spacing_g(·, h) is Hardin's count of minimum-filter outputs (A217883, A217954, A228461 and their columns), and at g = 2 it is W_{h−1}(w + 1), Hardin's words with no strict local maximum. At h = 2, spacing_g(w, 2) = Σ_k C(w + g − (g−1)k, 2k), with denominator (1 − x)² − x^{g+1}, growth ψ² at g = 2, φ at g = 3 and the supergolden ratio at g = 5. For 2 ≤ h, g ≤ 6 the minimal recurrence has order (h − 1)g + 1 (proved by computation), and for h ≥ 3 no growth constant is a metallic mean.
 tags: [analysis, castle, gap-rule, tower-spacing, transfer-matrix, growth-constant, plastic-number, golden-ratio, generating-function, rule-3, sympy, verification, oeis, min-filter, unimodal]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
-# Minimum-tower-spacing castles
+# Minimum tower spacing - skylines and castles
 
-## The rule variation
+## The rule
 
-Project Euler 502 (PE 502)'s **rule 3** says that within any row, two neighboring filled blocks must be separated by at least one empty cell ([[castle-polyomino](pages/castle-polyomino.md)]). The **minimum-tower-spacing** variation strengthens the "at least one" to **at least `g`**: in every row, each *internal* run of empty cells (a run with filled cells on both sides) must have length `≥ g`.
+Project Euler 502's rule 3 asks for at least one unit of empty space between neighboring blocks in a row ([[castle-polyomino](pages/castle-polyomino.md)]). Raise "one" to `g`: a skyline `c = (c_1, …, c_w)` has **tower spacing at least `g`** when, for every row `r`, each run of empty cells in row `r` that has filled cells on both sides has length at least `g`. Row `r` is filled at the columns with `c_i ≥ r`, so the rule says that two columns reaching row `r` with only lower columns between them are at least `g + 1` columns apart. Row 1 is full in every skyline, so the rule constrains rows `2, …, h`. At `g = 1` every skyline qualifies.[^1]
 
-Geometrically this is a **tower-spacing rule**. In a castle skyline `c = (c_1, …, c_w)`, row `r` is filled exactly at the columns `i` with `c_i ≥ r`; two "towers" that both reach row `r`, separated by a valley of columns shorter than `r`, produce a filled-empty-filled pattern `1…10…01…1` in that row. The rule says the valley — the `0`-run — must be at least `g` wide. So towers poking above a common level must stand at least `g` columns apart.[^1]
+`spacing_g(w, h)` is the number of skylines of width `w` with entries in `{1, …, h}` and tower spacing at least `g`. These skylines need not reach height `h`, so they are not castles of height `h`; the castles of height `h` among them number
 
-The bottom row of a castle is always solid (bottom-aligned, `c_i ≥ 1`), so it has no internal gaps and the rule never constrains it. The rule bites only on rows `2, …, h`, i.e. only where there is a valley between raised sections — exactly the shapes like `(2, 1, 2)` (row 2 = `101`, a width-1 valley) that `g = 2` forbids.
+```
+A_spacing(g)(w, h)  =  spacing_g(w, h) − spacing_g(w, h − 1).
+```
 
-**This is a horizontal-gap variation, distinct from the height-adjacency strips of [[metallic-strip-realizability](pages/metallic-strip-realizability.md)].** There the transfer matrix's states are the *column heights* and the rule restricts which heights may be *neighbors*; here the rule restricts the *horizontal spacing* of towers across a valley. Different knob, same transfer-matrix / growth-constant methodology ([[castle-strip](pages/castle-strip.md)]).
+*Example: `h = 2`, `g = 2`, `w = 3`.* Of the eight skylines in `{1, 2}^3`, only `(2, 1, 2)` has a run of empty cells of length 1 between filled cells in row 2, so `spacing_2(3, 2) = 7`. Removing the flat row `(1, 1, 1)` leaves the six castles of height 2.
+
+The rule bounds the horizontal distance between raised columns, unlike the rules of [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] and [[castle-strip](pages/castle-strip.md)], which restrict the heights of neighboring columns.
 
 ## The transfer matrix
 
-Sweep the castle **column by column**. A column is a single height value `c_i ∈ {1, …, h}` (rows `1..c_i` filled). The state must record, **for each constrained row `r = 2, …, h`**, how the gap constraint stands:
+Read the skyline one column at a time. For each row `r = 2, …, h` the state records one of: no filled cell yet in the row, or a run of at least `g` empty cells since the last filled one (a filled cell may follow); the last column filled the row; or `k` empty cells since the last filled one, `1 ≤ k < g` (a filled cell may not follow). A column of height `c` fills the rows `r ≤ c`; it is forbidden when it fills a row in a state of the third kind. For `2 ≤ h, g ≤ 6` the reachable states number `C(h + g − 1, g)`, from 3 at `(2, 2)` to 462 at `(6, 6)`, so `spacing_g(·, h)` satisfies a linear recurrence of at most that order. The counts agree with enumeration of all skylines for `(h, g)` in `{(2, 2), (2, 3), (3, 2), (3, 3), (3, 4), (4, 2), (4, 3)}` and `w ≤ 7`.[^2] The snippet `tower_spacing_matrix(h, g)` on [[castle-snippets-strips](pages/castle-snippets-strips.md)] builds the matrix.
 
-- `pre` — no filled cell seen yet in this row (a leading run of empties; unconstrained);
-- `fill` — the previous column filled this row;
-- `g1, …, g_{g−1}` — currently `k` consecutive empty cells since the last fill, with `k < g` (an internal gap still too short to allow a refill).
+## Height 2
 
-Once an empty run reaches length `g` it is "safe" — a later fill is legal — so it collapses back to the `pre` state. The transition for a new column of height `c_i`: row `r` is filled iff `c_i ≥ r`; a fill is **forbidden** (kills the transition) precisely when the row is in a `g_k` state with `k < g` (that would close a gap shorter than `g`). This gives an exact `s × s` nonnegative-integer transfer matrix `M`, where `s` is the number of legal per-row-state tuples, and the width-`w` count is `𝟙ᵀ M^w` summed over states.[^2]
+At `h = 2` a skyline is a binary string, `1` for a column of height 2, whose internal runs of `0`s have length at least `g`. With `k` runs of `1`s, the `k − 1` internal runs of `0`s have length at least `g` and the two end runs at least 0; removing `g − 1` from each internal run leaves the strings of length `w − (k − 1)(g − 1)` with `k` runs of `1`s, `C(w − (k − 1)(g − 1) + 1, 2k)` of them. So
 
-The construction was verified against brute-force enumeration for `(h, g) ∈ {(2,2), (3,2), (3,3), (4,2)}`, matching term for term through width 7.[^2]
+```
+spacing_g(w, 2)  =  Σ_{k ≥ 0} C(w + g − (g − 1)k, 2k).                         (1)
+```
 
-## Height 2: towers spaced `≥ g` apart
+Summing the decomposition `0* (1⁺ 0^{≥g})^{k−1} 1⁺ 0*` over `k` gives the generating function
 
-At `h = 2` only row 2 is constrained, so the object is clean: **place height-2 towers along a width-`w` base so that consecutive towers are separated by at least `g` empty (height-1) columns.** The counts and their growth constants split by the parity of `g`:[^3]
+```
+Σ_{w ≥ 0} spacing_g(w, 2) x^w  =  (1 + x² + x³ + ⋯ + x^g) / ((1 − x)² − x^{g+1}).   (2)
+```
 
-| `g` | denominator `det(I − xM)` | growth | identity | OEIS (width `w`) |
-|---|---|---|---|---|
-| 2 | `1 − 2x + x² − x³` | `1.75488` | **plastic-squared `ψ²`** ([[plastic-number](pages/plastic-number.md)]) | A005251`(w+3)` |
-| 3 | `1 − 2x + x² − x⁴ = (1 − x − x²)(1 − x + x²)` | `1.61803` | **golden `φ`** (`1 − x − x²` factor) | A005252`(w+3)` |
-| 4 | `1 − 2x + x² − x⁵` | `1.52895` | reversed irreducible quintic | A005253`(w+3)` |
-| 5 | `(1 − x − x³)(1 − x + x³)` | `1.46557` | **supergolden** (`1 − x − x³` factor) | A005689`(w+6)` |
-| 6 | `1 − 2x + x² − x⁷` | `1.41780` | reversed irreducible septic | A098574`(w+6)` |
-| 7 | `(1 − x − x⁴)(1 − x + x⁴)` | `1.38028` | root of `y⁴ = y³ + 1` (`1 − x − x⁴` factor) | not in OEIS by terms |
+Its coefficients are positive, so the growth constant is `1/x_g` for the root `x_g` of `(1 − x)² = x^{g+1}` in `(0, 1)`. As `g` grows, `x^{g+1}` decreases on `(0, 1)`, so `x_g` increases toward 1, and the growth constant decreases toward 1.
 
-The whole row has one closed form, `count(w) = Sum_{k >= 0} C(w + g − (g−1)k, 2k)` (verified `g <= 7`, `w <= 16`); the OEIS entries carry it as Paul Barry's binomial sums, each with its own shift. Each entry also counts binary words of length `w + g − 1` whose runs of ones all have length `>= g`, so the height-2 tower-spacing castle of width `w` and the all-runs-long word of length `w + g − 1` are equinumerous for every `g` (verified `g <= 6`, `w <= 8`).[^8]
+For odd `g = 2j − 1`, the denominator is a difference of squares, `(1 − x − x^j)(1 − x + x^j)`, and the growth constant is the positive root of `y^j = y^{j−1} + 1`, from the first factor. For even `g ≤ 40` the denominator is irreducible (computed).[^3]
 
-Every `g` has denominator `1 − 2x + x² − x^{g+1} = (1 − x)² − x^{g+1}`:
+| `g` | denominator | growth | `spacing_g(w, 2)` |
+|---|---|---|---|
+| 2 | `1 − 2x + x² − x³` | `1.75488 = ψ²` | `A005251(w + 3)` |
+| 3 | `(1 − x − x²)(1 − x + x²)` | `1.61803 = φ` | `A005252(w + 3)` |
+| 4 | `1 − 2x + x² − x⁵` | `1.52895` | `A005253(w + 3)` |
+| 5 | `(1 − x − x³)(1 − x + x³)` | `1.46557`, the supergolden ratio, `y³ = y² + 1` | `A005689(w + 6)` |
+| 6 | `1 − 2x + x² − x⁷` | `1.41780` | `A098574(w + 6)` |
+| 7 | `(1 − x − x⁴)(1 − x + x⁴)` | `1.38028`, `y⁴ = y³ + 1` | |
 
-- **Even `g`:** the denominator is irreducible (every even `g` computed); at `g = 2` it is the plastic-squared denominator `1 − 2x + x² − x³` (reverse of `x³ − 2x² + x − 1`, the minimal polynomial of `ψ²`), so height-2 castles with towers `≥ 2` apart satisfy the **A005251** recurrence `a(n) = 2a(n−1) − a(n−2) + a(n−3)`, a third castle appearance of A005251 after the Hardin word count and the `h → ∞` tree castles by area ([[tree-castle-by-area](pages/tree-castle-by-area.md)], linked by [[a005251-bijection](pages/a005251-bijection.md)]).[^4]
-- **Odd `g = 2k − 1`:** the denominator is a difference of squares, `(1 − x − x^k)(1 − x + x^k)`, and the growth constant is the reciprocal of the positive root of `x^k + x − 1`, that is the dominant root of `y^k = y^{k−1} + 1`. At `k = 1` (`g = 1`, the trivial rule) this degenerates; at `k = 2` (`g = 3`) it is the **golden ratio** `φ`; at `k = 3` (`g = 5`) it is the **supergolden ratio** `≈ 1.4656` (`y³ = y² + 1`); and so on.[^3]
+`ψ` is the plastic number, and `x³ − 2x² + x − 1`, the reversal of the `g = 2` denominator, is the minimal polynomial of `ψ²` ([[plastic-number](pages/plastic-number.md)]). The OEIS entries of the table carry Equation (1) as binomial sums, and `A005253` counts "binary words of length n in which the ones occur only in blocks of length at least 4".[^4] In general `spacing_g(w, 2)` is the number of binary words of length `w + g − 1` whose runs of `1`s all have length at least `g` (section *Minimum filters*).
 
-The growth constant **decreases monotonically toward `1`** as `g → ∞`: forcing towers ever farther apart makes valid configurations ever sparser, so the count grows ever more slowly.
+## The minimum-filter description
 
-## The full family
+**Theorem.** A skyline `c` of width `w` on `{1, …, h}` has tower spacing at least `g` exactly when the array `b = c − 1`, with entries in `{0, …, h − 1}`, is the window-`g` running minimum of an array `a` of length `w + g − 1` over `{0, …, h − 1}`: `b_i = min(a_i, …, a_{i+g−1})` for `i = 1, …, w`.
 
-For general height `h` and spacing `g`, the transfer-matrix Perron root gives:[^5]
+*Proof.* Thresholding commutes with the minimum, so for each level `r` the set `{i : b_i ≥ r}` is the erosion of `{i : a_i ≥ r}` by a window of length `g`. If `b_i ≥ r` and `b_j ≥ r` with `0 < j − i ≤ g`, the two windows overlap or abut, so `a ≥ r` on `[i, j + g − 1]` and `b_m ≥ r` for `i < m < j`; so every internal run of the complement has length at least `g`. Conversely, given `b` with every internal run at least `g` at every level, let `a` be the window-`g` running maximum of `b`, with indices clipped to `1, …, w`. The running minimum of `a` is the morphological closing of `b`, level by level, and closing by a window of length `g` changes a set only by filling internal runs of length less than `g`; `b` has none, so the closing returns `b`. ∎
+
+Write `ε` for the window-`g` running minimum from arrays of length `w + g − 1` to arrays of length `w`, and `δ` for the clipped running maximum back. They are adjoint: `εa ≥ b` exactly when `a ≥ δb`, entrywise. So `εδε = ε` and `δεδ = δ`, and `ε` maps the image of `δ` one-to-one onto the image of `ε`, with inverse `δ`. The image of `ε` is the set of skylines with tower spacing at least `g`, by the Theorem. The image of `δ` is the set of arrays fixed by the opening `δε`: those in which every entry lies in a window of `g` consecutive entries that are all at least as large. Hence `spacing_g(w, h)` counts both:
+
+- the distinct outputs of a window-`g` minimum filter on `{0, …, h − 1}^{w+g−1}`, which Hardin counts on the OEIS as the arrays "with each element the minimum of k adjacent elements" of a longer random array, and, by the complement `x → h − 1 − x`, the outputs of a maximum filter, counted on the OEIS as the "arrays of maxima of three adjacent elements" at `g = 3` ([[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]);
+- the arrays of length `w + g − 1` fixed by the opening. At `h = 2` these are the binary words whose runs of `1`s have length at least `g`. At `g = 2` they are the words in which every nonzero entry is at most one of its neighbors, with a virtual `0` beyond each end, the words counted by `W_{h−1}` on [[hardin-word-identity](pages/hardin-word-identity.md)]:
+
+```
+spacing_2(w, h)  =  W_{h−1}(w + 1).                                             (3)
+```
+
+With the Hardin word identity, `spacing_2(L, m + 1) = P_even(4m + 2, L) / 2^L`: the skylines of height at most `m + 1` with tower spacing at least 2 are counted by the even sector of the signed tower count at tower height `4m + 2`.[^5]
+
+## The table
+
+Growth constants, the largest roots of the minimal recurrences:[^6]
 
 | `h \ g` | 2 | 3 | 4 | 5 | 6 |
 |---|---|---|---|---|---|
@@ -66,46 +86,25 @@ For general height `h` and spacing `g`, the transfer-matrix Perron root gives:[^
 | 5 | 3.5589 | 2.9392 | 2.5888 | 2.3608 | 2.1991 |
 | 6 | 4.0967 | 3.3154 | 2.8839 | 2.6069 | 2.4123 |
 
-- **`g = 1`** (not shown) is the trivial rule — every skyline is allowed, growth `= h`, count `h^w` ([[castle-strip](pages/castle-strip.md)]).
-- **`g -> infinity`** is the unimodal castles: when no internal gap is allowed at all, every superlevel set is an interval, which is exactly weak unimodality of the skyline ([[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)]). The `(h, g)` count agrees with the unimodal count through width `g + 1` and first exceeds it at width `g + 2`, where a valley of exactly `g` columns first fits (verified `h <= 4`, `g = 12`, `w <= 8`; at `h = 2` the unimodal count is `1 + C(w+1, 2)`, A000124).[^8]
-- **Minimal recurrence order is `(h−1)g + 1`** in every cell `h, g <= 6` (Berlekamp-Massey on 90 exact terms, recurrence checked on all of them). This confirms the orders Hardin lists as "Empirical" on A217878 (7) and A217949 (10) and supplies the orders for the six unfiled cells below.[^8]
-- **For `g ≥ 2, h ≥ 3` every growth constant is non-metallic** - none is a metallic mean `σ_p^q` ([[metallic-means](pages/metallic-means.md)]). For instance `(h=3, g=2)` grows at `2.40219`, the largest root of the irreducible quintic `x⁵ − 3x⁴ + 3x³ − 4x² + x − 1`, close to silver `1 + √2 = 2.41421` but of degree 5.[^6]
+- **Minimal recurrence order.** In every cell with `2 ≤ h, g ≤ 6`, the shortest linear recurrence of `spacing_g(·, h)` has order `(h − 1)g + 1`. Berlekamp-Massey finds it from 100 terms, and since the sequence satisfies a recurrence of order at most the number of states `C(h + g − 1, g)`, checking the found recurrence on (states + order + 5) terms proves it holds for every `w`. At `(3, 3)` and `(4, 3)` these are the recurrences that A217878 and A217949 list as "Empirical", coefficient for coefficient, so those hold.
+- **No metallic growth for `h ≥ 3`.** For `3 ≤ h ≤ 6` and `2 ≤ g ≤ 6`, the minimal polynomial of the growth constant has degree at least 4, while every metallic mean `σ_p^q` has degree at most 2 ([[metallic-means](pages/metallic-means.md)]). At `(3, 2)` the growth `2.40221` is the largest root of `x⁵ − 3x⁴ + 3x³ − 4x² + x − 1`, the polynomial `H_5` of [[hardin-word-identity](pages/hardin-word-identity.md)], just below the silver mean `2.41421`. At `h = 2` the growth constant is the golden mean `φ = σ_1^1` at `g = 3`; at `g = 2` and `g = 5` it is the cubic `ψ²` or the supergolden ratio.
+- **The limit `g → ∞`.** For `w ≤ g + 1` an internal run of length at least `g` does not fit between two filled cells, so the rule forbids every internal run and the skylines are the unimodal ones ([[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)]); at `w = g + 2` the skyline `(2, 1, …, 1, 2)` is allowed and not unimodal. So `spacing_g(w, h)` equals the number of unimodal skylines exactly for `w ≤ g + 1` (checked for `h ≤ 4`, `g ≤ 5`; at `h = 2` the unimodal count is `1 + C(w + 1, 2)`, `A000124`).
 
-So minimum-tower-spacing castles are a **two-parameter family of C-finite castle counts**, indexed by `(h, g)`, whose growth constants pass through `φ`, `ψ²` and the supergolden ratio at small parameters and are non-metallic numbers of higher degree as `h, g` grow. The state count grows quickly (`(h=5, g=4)` needs 625 states), so the family is best explored by the transfer matrix rather than brute force.
+## OEIS
 
-## The `g = 2` column is the Hardin word family
-
-The `g = 2` sequences are the **Hardin word sequences**:[^7]
-
-| `(h, g=2)` | first terms | Online Encyclopedia of Integer Sequences (OEIS) |
-|---|---|---|
-| `h = 3` | `3, 9, 22, 51, 121, 292, 704, …` | **A202882** (offset by one) |
-| `h = 4` | `4, 16, 50, 144, 422, 1268, 3823, …` | **A203094** |
-| `h = 5` | `5, 25, 95, 325, 1121, 3985, 14288, …` | **A203184** |
-
-Spacing `g = 2` forbids a **width-1 valley** in every row: a column strictly lower than both of its neighbors, an interior **strict local minimum**. Under the complement `x → h − 1 − x` that is Hardin's condition on `0..(h−1)` arrays, "every nonzero element `≤` some neighbor," i.e. **no strict local maximum** ([[hardin-word-identity](pages/hardin-word-identity.md)]), except that Hardin's words have one more letter (the counts agree at `A202882(w+1)` etc.); the min-filter theorem below gives the exact correspondence. The [[hardin-word-identity](pages/hardin-word-identity.md)] reaches the same sequences as `2^{−L}` times a *signed* even-last-column tower count; the tower-spacing family reaches them as an *unsigned* geometric castle count.
-
-## The whole table is a min-filter family
-
-The `g = 2` identity generalizes to every `g`, and the mechanism is the running minimum.
-
-**Theorem.** A skyline `c` of width `w` and height `<= h` is a tower-spacing-`g` castle iff the 0-based array `b = c − 1` (values in `0..h−1`) is the width-`g` running minimum of some array `a` of length `w + g − 1` over `0..h−1`, that is, `b_i = min(a_i, …, a_{i+g−1})` for `i = 1..w`. Hence the `(h, g)` count at width `w` is the number of distinct outputs of a window-`g` minimum filter over all `h^{w+g−1}` inputs, which is Hardin's "number of `n`-element `0..(h−1)` arrays with each element the minimum of `g` adjacent elements of a random `0..(h−1)` array of `n+g−1` elements", and, by the complement `x -> h−1−x`, Hardin's "arrays of maxima of `g` adjacent elements".[^8]
-
-*Proof.* Thresholding commutes with the minimum, so for each level `r` the superlevel set `S_r(b) = {i : b_i >= r}` is the erosion of `S_r(a)` by a window of length `g`. Forward: if `b_i >= r` and `b_j >= r` with `0 < j − i <= g`, the two length-`g` windows overlap or abut, so `a >= r` on all of `[i, j+g−1]`, and every `b_m` with `i < m < j` is `>= r` as well; an internal gap in `S_r(b)` therefore has length `>= g`, which is the tower-spacing rule. Backward: given `b` with every internal gap `>= g`, let `a` be the width-`g` running maximum of `b` (its dilation, indices clipped to `1..w`). The running minimum of `a` is the morphological closing of `b`, level by level, and closing by a window of length `g` changes a set only by filling internal gaps shorter than `g`; `b` has none, so the closing returns `b`. The base row is never constrained because `S_0` is the whole line. ∎
-
-So the table is Hardin's three-parameter family (width, alphabet, window) read as castles. The cells with `h, g <= 6` (OEIS fetched 2026-09-20, every match aligned on 24 terms after the stated shift; `count(w) = A(w)` where no shift is written):
+The cells with `2 ≤ h, g ≤ 6`, with `spacing_g(w, h) = a(w)` where no shift is written:[^7]
 
 | `h \ g` | 2 | 3 | 4 | 5 | 6 |
 |---|---|---|---|---|---|
 | 2 | A005251`(w+3)` | A005252`(w+3)` | A005253`(w+3)` | A005689`(w+6)` | A098574`(w+6)` |
 | 3 | A202882`(w+1)` | A217878 | A217879 | A217880 | A217881 |
 | 4 | A203094`(w+1)` | A217949 | A217950 | A217951 | A217952 |
-| 5 | A203184`(w+1)` | A228457 | none | none | none |
-| 6 | A203050`(w+1)` | A228458 | none | none | none |
+| 5 | A203184`(w+1)` | A228457 | - | - | - |
+| 6 | A203050`(w+1)` | A228458 | - | - | - |
 
-Hardin filed three of the table's lines as OEIS tables: the `h = 3` row is **A217883** (`0..2` arrays, minimum of `k` adjacent), the `h = 4` row is **A217954** (`0..3` arrays), and the `g = 3` column is **A228461** (maxima of three adjacent, alphabet `0..k`). The `g = 2` column is Hardin's no-strict-local-maximum family (previous section), which by the theorem is the same thing as the minimum of two adjacent elements. The corner `h >= 5, g >= 4` was never filed. Its six cells, with growth constants and minimal recurrence orders:[^8]
+Hardin's two-dimensional tables are the rows `h = 3` (A217883, "0..2 arrays with each element the minimum of k adjacent elements") and `h = 4` (A217954) and the column `g = 3` (A228461, "arrays of maxima of three adjacent elements"). The column `g = 2` is Hardin's words with no strict local maximum (Equation (3)). [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of the cells marked `-`, whose first terms are:
 
-| cell | first terms (`w = 1..10`) | growth | order |
+| cell | `spacing_g(w, h)` for `w = 1, …, 10` | growth | order |
 |---|---|---|---|
 | `(5, 4)` | `5, 25, 95, 295, 791, 1927, 4496, 10606, 26290, 68711` | `2.58882` | 17 |
 | `(5, 5)` | `5, 25, 95, 295, 791, 1897, 4196, 8848, 18502, 39962` | `2.36081` | 21 |
@@ -114,48 +113,29 @@ Hardin filed three of the table's lines as OEIS tables: the `h = 3` row is **A21
 | `(6, 5)` | `6, 36, 161, 581, 1792, 4900, 12229, 28681, 65485, 151801` | `2.60694` | 26 |
 | `(6, 6)` | `6, 36, 161, 581, 1792, 4900, 12174, 28021, 60887, 127777` | `2.41234` | 31 |
 
-These six are **novel-candidate** on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]; the other nineteen cells are **interlink** (a Hardin array count gaining a castle reading; the minimum-filter definition of A217883 / A217954 and the maximum-filter definition of A228461 coincide by the complement `x -> h−1−x`). The min-filter reading also says what the family is for the [[castle-classification](pages/castle-classification.md)] axes: a tower-spacing-`g` castle is one that survives morphological closing by a `g`-window, the skyline analogue of an image with no gap narrower than `g` pixels ([[image-as-castle](pages/image-as-castle.md)]).
-
-## Open threads
-
-- **The reachable-field question, gap-flavored:** which algebraic numbers arise as tower-spacing growth constants, as `(h, g)` range? This is the horizontal-gap analogue of the [[reachable-field-census](pages/reachable-field-census.md)] (which censused height-adjacency strips). The `h = 2` row gives the constants of `1 − 2x + x² − x^{g+1}`; the full 2D reachable set is open.
-- **Parity projection:** the counts here are raw (no even-block clause); imposing PE 502's `(A ± P)/2` parity ([[castle-sign](pages/castle-sign.md)]) gives the even-block tower-spacing counts, whose growth is unchanged but whose sequences differ (cf. [[proper-castle-projection](pages/proper-castle-projection.md)]).
-- **The "no-touching" / "no-adjacency" variants** among the gap rules — vertical or diagonal spacing rules — are further knobs the same transfer-matrix method reaches.
-
-## Reproduce
-
-The column-by-column transfer matrix (`build(h, g)`) and the growth/denominator extraction are short NumPy/SymPy; the construction and its brute-force check are pinned on [[castle-snippets](pages/castle-snippets.md)].
-
 ## Appearances in Sources
 
-- [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the strip-tiling note this gap-rule family grew out of.
+- [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the note that reads rule 3's gap as an atom of width 2 in the Pell generating function; the rule of this page raises the gap to `g`.
 
 ## Related Concepts
 
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the novelty status of every `(h, g)` cell (nineteen interlinks, six novel-candidates).
-- [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - the `g -> infinity` limit of the family.
-- [[castle-strip](pages/castle-strip.md)] - the transfer-matrix bridge; this page is a horizontal-gap cousin of the height-adjacency strips defined there.
-- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] / [[reachable-field-census](pages/reachable-field-census.md)] - the height-adjacency rule family and its reachable growth constants; the tower-spacing family is the parallel horizontal-gap axis.
-- [[plastic-number](pages/plastic-number.md)] - `ψ²` appears as the `(h=2, g=2)` growth constant (A005251 recurrence), a third castle route to the plastic-squared sequence.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] - the sibling strip family (a height-adjacency rule rather than a horizontal-gap rule) with silver growth.
-- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the other two A005251 castle interpretations the `(h=2, g=2)` count joins.
-- [[castle-classification-shape](pages/castle-classification-shape.md)] - the m-disparate / m-smooth (Axis 2) neighborhood this variation extends into the horizontal-gap direction.
-- [[castle-sign](pages/castle-sign.md)] / [[proper-castle-projection](pages/proper-castle-projection.md)] - the even-block parity projection that turns these raw counts into proper PE 502 castle counts.
+- [[hardin-word-identity](pages/hardin-word-identity.md)] - the words `W_m` of Equation (3), and `P_even(4m + 2, L) = 2^L W_m(L + 1)`.
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the OEIS status of every cell.
+- [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - the unimodal skylines, the limit `g → ∞`.
+- [[castle-strip](pages/castle-strip.md)] and [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - skylines counted under rules on the heights of neighboring columns, and the growth constants those rules reach.
+- [[reachable-field-census](pages/reachable-field-census.md)] - the growth constants reachable by rules on neighboring heights.
+- [[plastic-number](pages/plastic-number.md)] - `ψ²`, the growth at `(h, g) = (2, 2)`.
+- [[tree-castle-by-area](pages/tree-castle-by-area.md)] and [[a005251-bijection](pages/a005251-bijection.md)] - the other castle readings of A005251.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] - the 1-smooth strips on `{1, 2, 3}`, silver by width.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the shape types, among them the m-smooth and m-disparate rules on neighboring heights.
+- [[castle-snippets-strips](pages/castle-snippets-strips.md)] - the snippet `tower_spacing_matrix(h, g)`.
 
 ## Footnotes
 
-[^1]: The rule, stated on the skyline: for every level `r ∈ {2, …, h}`, the indicator string `s_r = (𝟙[c_i ≥ r])_{i=1..w}`, after stripping leading and trailing zeros, contains no run of zeros shorter than `g`. Equivalently, consecutive columns that reach height `≥ r` are either adjacent-in-the-same-block or separated by `≥ g` columns below `r`. `g = 1` recovers PE 502's rule 3 as applied to towers; the base row `r = 1` is always solid and unconstrained.
-
-[^2]: Verified by execution. The transfer matrix `M` is built over per-row state tuples for rows `2..h` (states `pre`, `fill`, `g1..g_{g−1}`; a fill from a `g_k` state with `k < g` is illegal; an empty from `fill`/`g_k` advances the gap counter, collapsing to `pre` at length `g`). Width-`w` counts `𝟙ᵀ M^w` match brute-force enumeration over all `h^w` skylines with the gap predicate for `(h,g) = (2,2), (3,2), (3,3), (4,2)` through `w = 7`: e.g. `(3,2)` gives `3, 9, 22, 51, 121, 292, 704` both ways.
-
-[^3]: Denominators computed as `det(I − xM)` and factored in SymPy for `g = 2..7` at `h = 2` (re-checked 2026-09-28 by Berlekamp-Massey on 60 terms): `1 − 2x + x² − x^{g+1}` for every `g`, irreducible for `g = 2, 4, 6`; for odd `g = 2k−1` it is `(1 − x − x^k)(1 − x + x^k)`, growth = reciprocal of the positive root of `x^k + x − 1` (`g=3`: golden `φ = 1.61803`; `g=5`: supergolden `1.46557`; `g=7`: `1.38028`). Growth constants `1.75488, 1.61803, 1.52895, 1.46557, 1.41780, 1.38028` for `g = 2..7`, monotone decreasing toward 1.
-
-[^4]: `1 − 2x + x² − x³` is the reverse of `x³ − 2x² + x − 1`, the minimal polynomial of `ψ²` ([[plastic-number](pages/plastic-number.md)]); the growth `1.754878` matches `ψ² = 1.7548776662…`. The `(h=2,g=2)` sequence `2, 4, 7, 12, 21, 37, 65, 114, 200, 351` satisfies `a(n) = 2a(n−1) − a(n−2) + a(n−3)` (verified), the A005251 recurrence, with its own initial conditions.
-
-[^5]: Growth constants are the numeric Perron roots (largest real eigenvalue) of `build(h, g)`, `h = 2..5`, `g = 2..5` (NumPy `eigvals`). `g = 1` gives the all-ones-per-column matrix, Perron root `h`. The state count is bounded by the number of legal per-row state tuples; `(h=5, g=4)` has 625 states.
-
-[^6]: The `(h=3, g=2)` count `3, 9, 22, 51, 121, 292, 704, 1691, 4059, 9749, 23422` has minimal linear recurrence of order 5 with denominator `1 − 3x + 3x² − 4x³ + x⁴ − x⁵` (irreducible over `ℚ`), whose reversal `x⁵ − 3x⁴ + 3x³ − 4x² + x − 1` has dominant root `2.402209`. `1 + √2 = 2.414214` is close but the polynomial is degree 5, not `x² − 2x − 1`, so the constant is non-metallic. Checked that no metallic mean `(a + √(a²+4))/2` matches any `(h≥3, g≥2)` growth constant to `10⁻⁵`, and (2026-10-09) that no `σ_p^q` does for `3 ≤ h ≤ 5`, `2 ≤ g ≤ 5` except `(5, 5)`: `ρ² − pρ` is never a positive integer for an integer `p ≥ 1`.
-
-[^7]: Verified against OEIS (fetched 2026-09-18): the `g=2` tower-spacing counts match the Hardin word sequences term for term — `(h=3,g=2) = 3,9,22,51,121,292,704,1691,4059` = A202882 (whose data is `1,3,9,22,51,…`, so `= A202882(w+1)`); `(h=4,g=2) = 4,16,50,144,422,1268,3823` = A203094; `(h=5,g=2) = 5,25,95,325,1121,3985,14288` = A203184. And `(h=3,g=3) = 3,9,22,46,91,183,383,819,1749` = A217878 exactly. `g=2` forbids a width-1 internal gap in each row, a column strictly lower than both neighbors; A202882/A203094/A203184 count `0..m` arrays with no nonzero strict local maximum ([[hardin-word-identity](pages/hardin-word-identity.md)]), and the min-filter theorem of this page gives the correspondence.
-
-[^8]: Verified by execution, 2026-09-20. Counts for `h = 2..6`, `g = 2..6` from an exact-integer column-sweep dynamic program over the per-row states of footnote 2 (90 terms per cell), cross-checked against brute force over all `h^w` skylines for `(h,g) in {(2,2),(2,3),(2,4),(2,5),(3,2),(3,3),(3,4),(3,5),(4,2),(4,3)}` through `w = 6` or `7`, and against a direct count of distinct window-`g` minimum-filter outputs over all `h^{w+g−1}` inputs for the same cells at the widths where that enumeration is feasible (for example `(3,3)`: `3, 9, 22, 46, 91` both ways; `(4,2)`: `4, 16, 50, 144, 422, 1268` both ways). OEIS lookups by the first 12 terms, then the full `data` field of each hit aligned against 24 computed terms with the offset read from the entry: `h = 2` matches A005251, A005252, A005253 at `a(w+3)` and A005689, A098574 at `a(w+6)` (A005689 has offset 6, `a(7) = 2`); `h = 3`, `g = 3..6` match A217878, A217879, A217880, A217881 at `a(w)` (offset 1); `h = 4` matches A217949, A217950, A217951, A217952 at `a(w)`; `(5,3)` is A228457 and `(6,3)` is A228458 at `a(w)`; `(6,2)` is A203050`(w+1)` (all 22 data terms). The searches for `(5,4)`, `(5,5)`, `(5,6)`, `(6,4)`, `(6,5)`, `(6,6)` returned no sequence. Closed form for `h = 2`: `Sum_{k>=0} C(w+g−(g−1)k, 2k)` equals the count for `g = 2..7`, `w = 1..16`; the same numbers count binary words of length `w+g−1` with every run of ones of length `>= g` for `g = 2..6`, `w = 1..8`. Unimodal limit: the `g = 12` counts equal the weakly unimodal word counts for `h = 2, 3, 4`, `w <= 8` (`2, 4, 7, 11, 16, 22, 29, 37` / `3, 9, 22, 46, 86, 148, 239, 367` / `4, 16, 50, 130, 296, 610, 1163, 2083`). Recurrences: Berlekamp-Massey over the rationals on the 90 terms gives an integer recurrence of order exactly `(h−1)g + 1` in all 25 cells, satisfied by every computed term; the `h = 2` denominators are `1 − 2x + x² − x^{g+1}`; growth constants are the largest real root of the reversed recurrence polynomial and agree with the term ratio at `w = 90` to five decimals (`(5,6)` and `(6,6)` to four).
+[^1]: The rule on the skyline: for every level `r ∈ {2, …, h}`, the indicator string `(𝟙[c_i ≥ r])_{i=1..w}`, with its leading and trailing zeros removed, contains no run of zeros shorter than `g`. At `g = 1` this holds for every skyline.
+[^2]: Verified by execution (Python 3.11, 2026-10-16): the column-by-column dynamic program over the per-row states against enumeration of all `h^w` skylines for the listed cells and `w ≤ 7`, for example `spacing_2(w, 3) = 3, 9, 22, 51, 121, 292, 704`; the reachable state counts for `2 ≤ h, g ≤ 6`.
+[^3]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): Equation (1) against the dynamic program for `2 ≤ g ≤ 7`, `w ≤ 16`; the factorization `(1 − x)² − x^{2j} = (1 − x − x^j)(1 − x + x^j)` for `j ≤ 9`, with the root of smallest modulus in the first factor for `j ≤ 5`; irreducibility of `(1 − x)² − x^{g+1}` for even `g ≤ 40`; the growth constants for `g ≤ 7`.
+[^4]: https://oeis.org/A005252, https://oeis.org/A005253, https://oeis.org/A005689, https://oeis.org/A098574 (read 2026-10-16) - "a(n) = Sum_{k=0..floor(n/4)} binomial(n-2k,2k)", "Number of binary words of length n in which the ones occur only in blocks of length at least 4", "Number of Twopins positions", "a(n) = Sum_{k=0..floor(n/7)} C(n-5*k,2*k)"; the data fields agree with `spacing_g(w, 2)` at the stated shifts for 35 to 39 terms.
+[^5]: Verified by execution (Python 3.11, 2026-10-16): Equation (3) against brute-force counts of Hardin's words for `2 ≤ h ≤ 5`, `w ≤ 6`; the binary words of length `w + g − 1` with every run of `1`s at least `g` against Equation (1) for `2 ≤ g ≤ 6`, `w ≤ 8`.
+[^6]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `spacing_g(w, h)` for `2 ≤ h, g ≤ 6` and `w ≤ 100` by the dynamic program; Berlekamp-Massey over the rationals gives order `(h − 1)g + 1` in every cell, and the recurrence holds on `C(h + g − 1, g) + (h − 1)g + 6` terms (up to 498 at `(6, 6)`); the growth constant as the largest root of the recurrence polynomial and the degree of its irreducible factor (2 at `(2, 3)`, 3 at `(2, 2)` and `(2, 5)`, at least 4 for `h ≥ 3`); the recurrences of A217878 (`3, −3, 1, 3, −1, 1, 1`) and A217949 (`4, −6, 4, 5, −4, 6, 4, 0, 2, 1`) equal the computed ones; the unimodal comparison for `h ≤ 4`, `g ≤ 5`.
+[^7]: https://oeis.org (read 2026-10-16) - the data fields of A202882, A203094, A203184, A203050, A217878 to A217881, A217949 to A217952, A228457 and A228458 agree with `spacing_g(w, h)` at the stated shifts for every listed term (22 to 33 terms); A217883 and A217954 are "T(n,k) = number of n-element 0..2 [0..3] arrays with each element the minimum of k adjacent elements of a random 0..2 [0..3] array of n+k-1 elements", and A228461 is "T(n,k) = number of arrays of maxima of three adjacent elements of some length n+2 0..k array".
