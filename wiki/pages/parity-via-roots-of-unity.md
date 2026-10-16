@@ -1,121 +1,126 @@
 ---
 title: Generalizing the parity sign (roots of unity)
 category: Concepts
-summary: The (T±P)/2 even/odd trick, generalized — replace the sign (−1)^blocks with an m-th root of unity ω^blocks and count castles by block count modulo m via character sums; the same character, applied to the index instead of a statistic, is the EGF parity projector (e^x ± e^{−x})/2.
+summary: Counting towers or castles by block count modulo m. With ω = e^{2πi/m} and P_j(k, L) = Σ ω^{j·blocks} over the towers of height at most k on a base of length L, the towers with blocks ≡ r (mod m) number (1/m) Σ_j ω^{−jr} P_j(k, L), and the castles of width w and height h with blocks ≡ r number (1/m) Σ_j ω^{−j(r−1)} [P_j(h−1, w) − P_j(h−2, w)]; m = 2 gives (T ± P)/2 and (A ± S)/2. P_j has the generating-function recurrence of P with the block weight ω^j, and P_j(1, L) = Σ_r C(L+1, 2r) ω^{jr}. The substitution x → −x selects even indices instead of even block counts.
 tags: [concept, castle, parity, roots-of-unity, character, pedagogy]
-sources: [project-euler-502-castle-factoring, project-euler-502-representations]
+sources: [project-euler-502-solution, project-euler-502-representations]
 created: 2026-09-14
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Generalizing the parity sign (roots of unity)
 
-## The question
+The [[castle-sign](pages/castle-sign.md)] counts the even-block towers and castles with the sign `(−1)^{blocks}`. Replacing `−1` by an `m`-th root of unity counts them by block count modulo `m`: the condition "blocks divisible by 3", "blocks ≡ 3 (mod 4)" or "blocks not divisible by 4" is decided by `m` weighted sums over the towers.
 
-The [[castle-sign](pages/castle-sign.md)] trick counts *even*-block castles by weighting each block with the sign `(−1)^blocks` and projecting `(T ± P)/2`. That sign is the **character of order 2**. This page asks: what if "even" were "divisible by 7", or "≡ 3 mod 4", or "not divisible by 4"? The answer is the same trick with a different character — an *m*-th root of unity in place of `−1`.
+## The case m = 2
 
-## Review: the order-2 character
-
-Weight a tower by `(−1)^blocks`; the signed total is `P = Σ (−1)^blocks`. Because `(1 + (−1)^{b})/2 = 1` for even `b` and `0` for odd `b`, the projector `(1 ± (−1)^blocks)/2` isolates each parity class:[^1]
+Over the towers of height at most `k` on a base of length `L`, `T(k, L)` counts them and `P(k, L)` adds up `(−1)^{blocks}`. Since `(1 + (−1)^b)/2` is 1 for even `b` and 0 for odd `b`,[^1]
 
 ```
-(T + P)/2 = even-block towers      (T − P)/2 = odd-block towers
+even-block towers  =  ( T(k, L) + P(k, L) ) / 2,        odd-block towers  =  ( T(k, L) − P(k, L) ) / 2.
 ```
 
-The two ingredients are a **character** `χ_0 = 1` (the trivial one, giving the unsigned total `T`) and `χ_1 = (−1)^blocks` (giving `P`), combined by **character orthogonality** `½ Σ_{j} χ_j(b) χ_j(r)⁻¹ = [b ≡ r mod 2]`.
+A castle has one block more than its towers, so over the castles of width `w` and height `h` the split is `A^e = (A + S)/2` and `A^o = (A − S)/2`, with `S(w, h) = P(h−2, w) − P(h−1, w)` ([[castle-counting-formula](pages/castle-counting-formula.md)], Equation (7)).
 
-## The generalization: m-th roots of unity
+## Roots of unity
 
-To constrain `blocks ≡ r (mod m)`, take `ω = e^{2πi/m}` and weight each block by `ω`, so a tower with `b` blocks carries `ω^b`. The character-weighted counts are
-
-```
-P_j(k,L) = Σ_{towers} ω^{j·blocks},       j = 0, 1, …, m−1
-```
-
-(`P_0` is the unsigned `T`; for `m = 2`, `P_1` is the signed `P`.) Character orthogonality over the cyclic group of order *m* — `(1/m) Σ_j ω^{j(b−r)} = 1` when `b ≡ r (mod m)` and `0` otherwise — then gives the master formula:
+A **character** of the cyclic group `Z/m` is a homomorphism to the complex numbers of modulus 1; the characters are `b ↦ ω^{jb}` for `j = 0, 1, …, m − 1`, with `ω = e^{2πi/m}`. They satisfy the orthogonality relation
 
 ```
-# { towers with blocks ≡ r (mod m) } = (1/m) Σ_{j=0}^{m−1} ω^{−jr} P_j.
+(1/m) Σ_{j=0}^{m−1} ω^{j(b−r)}  =  1  if  b ≡ r (mod m),   0  otherwise,
 ```
 
-For `m = 2` this is exactly `(T ± P)/2`. So the parity idea *is* a root-of-unity formula — the `m = 2` case of a general construction.
-
-## The exponential generating function (EGF) twin — the same character on the index
-
-The projector has a second, older face, usually met in **exponential** generating functions. For any EGF `A(x) = Σ a_n x^n/n!`, the substitution `x → −x` applies the *same* order-2 character `(−1)^n` to the **index** rather than to a statistic:
+because for `b − r` not divisible by `m` the sum is a geometric series of `m` terms with ratio `ω^{b−r} ≠ 1` and sum 0. Weighting each block by `ω^j` gives
 
 ```
-(A(x) + A(−x))/2 = Σ_{n even} a_n x^n/n!,      (A(x) − A(−x))/2 = Σ_{n odd} a_n x^n/n!.
+P_j(k, L)  =  Σ ω^{j·blocks(c)}  over the towers c of height at most k on a base of length L,        j = 0, 1, …, m − 1.      (1)
 ```
 
-This is the castle's `(T ± P)/2` with the character carried by the index variable instead of by `blocks`. The canonical instance is `A(x) = e^x` (the all-ones sequence): `(e^x + e^{−x})/2 = Σ_{n even} x^n/n!`, which the [[generating-functions-topic](pages/generating-functions-topic.md)] page uses to count even-0 ternary strings as `(3^n+1)/2` — the "classical form of the `(A±P)/2` trick."
+`P_0 = T`, and at `m = 2`, `P_1 = P` ([[castle-notation](pages/castle-notation.md)]). Summing the orthogonality relation over the towers gives
 
-So the EGF parity projector and the castle sign are **one character sum, `½(χ₀ + χ₁)` over the cyclic group of order 2**, differing only in *which variable carries the character*:
+```
+# { towers with blocks ≡ r (mod m) }  =  (1/m) Σ_{j=0}^{m−1} ω^{−jr} P_j(k, L).        (2)
+```
 
-| face | variable carrying `(−1)` | projector |
-|---|---|---|
-| EGF (index parity) | the index `n`, via `x → −x` | `(A(x) ± A(−x))/2` |
-| ordinary generating function (OGF) (castle sign) | the statistic `blocks`, via the weight `(−1)^blocks` | `(T ± P)/2` |
+For castles, a castle with skyline `c` has `blocks(c) ≡ r` exactly when its towers have `blocks ≡ r − 1`, and the castles of height `h` are those of height at most `h` minus those of height at most `h − 1`. So the castles of width `w` and height `h` with `blocks ≡ r (mod m)` number
 
-The castle count needs *block* parity, not *width* parity, so the EGF's `x → −x` (which filters by index — in the castle's OGF, the width) is the wrong axis. The castle routes the character through the block statistic as the **sign in the weight** `s(C) = (−1)^blocks`, the OGF counterpart of the EGF's substitution in the index. The duality holds at every `m`: the generalization `ω^{blocks}` above extends the *statistic* side, while `(1/m) Σ_j A(ω^j x)` extends the *index* side (substituting the main variable rather than a statistic).
+```
+(1/m) Σ_{j=0}^{m−1} ω^{−j(r−1)} [ P_j(h−1, w) − P_j(h−2, w) ].        (3)
+```
+
+At `m = 2` and `r = 0`, the term `j = 0` is `A(w, h)` and the term `j = 1` is `S(w, h)`, so Equation (3) is `A^e = (A + S)/2`.[^2]
 
 ## Computing P_j
 
-`P_j` is no harder to compute than `P`. Each block is one `D` step, so a peak `U V D` multiplies its interior tower's weight by one extra `ω^j`. The tower grammar therefore gives the same recurrence with the peak weight `ω^j` instead of `−1`:[^2]
+Write `P_{j,k}(x) = Σ_L P_j(k, L) x^L`, and `t = ω^j` for the weight of one block. In the tower grammar `E_k → empty | R E_k | U V D (empty | R E_k)`, the production `U V D` is one block, so it multiplies the weight of the towers `V` by `t` ([[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]). The reading of Equation (2) of [[castle-counting-formula](pages/castle-counting-formula.md)] then gives `P_{j,k} = 1 + x·P_{j,k} + t(P_{j,k−1} − 1)(1 + x·P_{j,k})`, so[^3]
 
 ```
-P_{j,k} = (1 − ω^j + ω^j·P_{j,k−1}) / (1 − x(1 − ω^j) − ω^j·x·P_{j,k−1}),      P_{j,0} = 1/(1−x)
+P_{j,k}(x)  =  (1 − t + t·P_{j,k−1}(x)) / (1 − x(1 − t) − t·x·P_{j,k−1}(x)),        P_{j,0}(x)  =  1/(1 − x).        (4)
 ```
 
-(`j = 0` is the unsigned `E_k = E_{k−1}/(1 − xE_{k−1})`; `m = 2, j = 1` is the signed `P_k = (2−P_{k−1})/(1−2x+xP_{k−1})`.)
+At `t = 1` this is `E_k(x) = E_{k−1}(x)/(1 − x·E_{k−1}(x))`, and at `t = −1` it is `P_k(x) = (2 − P_{k−1}(x))/(1 − 2x + x·P_{k−1}(x))`.
 
-**The k = 1 case.** A tower of height ≤ 1 is a binary string, and its block count is its number of maximal runs. There are `C(L+1, 2r)` strings with `r` runs, so
-
-```
-P_j(1,L) = Σ_r C(L+1, 2r) ω^{jr} = ½ [ (1 + √ω^j)^{L+1} + (1 − √ω^j)^{L+1} ].
-```
-
-For `m = 2, j = 1` this is `½[(1+i)^{L+1} + (1−i)^{L+1}] = Re((1+i)^{L+1})` — the familiar closed form, now seen as the order-2 member of a family.
-
-## Applying it
-
-- **Divisible by q** (`r = 0`): `# = (1/q) Σ_j P_j`.
-- **Congruent to r mod q**: `# = (1/q) Σ_j ω^{−jr} P_j`.
-- **Not divisible by q**: `total − (divisible by q)` — a difference of two character sums.
-
-**Example — "not divisible by 4".** Take `m = 4`, `ω = i`. Then `P_1 = Σ i^{blocks}`, `P_2 = Σ (−1)^{blocks} = P` (the signed count), `P_3 = conj(P_1)`, and the "not divisible by 4" count is
+*The case `k = 1`.* Towers of height at most 1 are binary strings, and their blocks are the runs of 1s. The strings of length `L` with `r` runs number `C(L+1, 2r)`, one for each choice of the `2r` run ends among the `L + 1` gaps between and around the columns. With `s` either square root of `ω^j`,
 
 ```
-T − ¼ (T + P_1 + P_2 + P_3) = (3T − P − 2·Re(P_1)) / 4.
+P_j(1, L)  =  Σ_r C(L+1, 2r) ω^{jr}  =  [ (1 + s)^{L+1} + (1 − s)^{L+1} ] / 2.
 ```
 
-So "not divisible by 4" needs one value beyond `T` and `P`: `Re(P_1)`.
+At `m = 2` and `j = 1`, `s = i` and this is `Re((1+i)^{L+1}) = P(1, L)` ([[signed-tower-count](pages/signed-tower-count.md)]).
 
-**Example — "divisible by 3" (k = 1, L = 4).** Height-≤1, length-4 towers are the 16 binary strings, with run counts `r = 0, 1, 2` of multiplicities `C(5,0), C(5,2), C(5,4) = 1, 10, 5`. Only `r = 0` is divisible by 3, so the answer is 1. The character formula agrees: `P_0 = 16`, `P_1 = 1 + 10ω + 5ω²`, `P_2 = 1 + 10ω² + 5ω`, and `(P_0+P_1+P_2)/3 = (18 + 15(ω+ω²))/3 = 1` (since `ω + ω² = −1`).
+## Examples
 
-## The boundary: "power of 2"
+- **Divisible by `m`** (`r = 0`): `(1/m) Σ_j P_j`. **Congruent to `r`**: Equation (2). **Not divisible by `m`**: `T` minus the count divisible by `m`.
+- **Not divisible by 4.** At `m = 4`, `ω = i`, so `P_2 = P` and `P_3` is the complex conjugate of `P_1`, and the towers with block count not divisible by 4 number
 
-One requested case does *not* fall out of this machinery: **"blocks is a power of 2"** is not a congruence condition. A root-of-unity character only sees the residue of `blocks mod m`, so it cannot tell `2` from `6` from `10` (all `≡ 2 mod 4`). "Power of 2" needs an indicator that depends on the *value*, not the residue — a different tool, such as a lacunary generating function `Σ_k z^{2^k}` or a base-2 digit condition ([[block-count-constraints](pages/block-count-constraints.md)]). **Characters count by residue.**
+  ```
+  T − (T + P_1 + P_2 + P_3)/4  =  (3T − P − 2 Re P_1)/4.
+  ```
+
+  At `k = 1`, `L = 4`, all strings but `0000` have 1 or 2 blocks, and the formula gives 15.
+- **Divisible by 3, at `k = 1`, `L = 4`.** The 16 binary strings have 0, 1 or 2 runs, in `C(5, 0) = 1`, `C(5, 2) = 10` and `C(5, 4) = 5` strings, so one string, `0000`, has a block count divisible by 3. With `ω = e^{2πi/3}`, `P_0 = 16`, `P_1 = 1 + 10ω + 5ω²` and `P_2 = 1 + 10ω² + 5ω`, so `(P_0 + P_1 + P_2)/3 = (18 + 15(ω + ω²))/3 = 1`, since `ω + ω² = −1`.
+
+These values agree with enumeration, and Equation (3) agrees with enumeration of all castles for `m ≤ 5`, `h ≤ 4` and `w ≤ 5` (`w ≤ 4` at `h = 4`).[^4]
+
+## Conditions that are not congruences
+
+A sum of characters of `Z/m` depends only on `blocks mod m`, so it can only count a union of residue classes modulo `m`. "The block count is a power of 2" is not such a union for any `m`: for `2^a > m`, the numbers `2^a` and `2^a + m` lie in the same class, and `2^a < 2^a + m < 2^{a+1}`, so `2^a + m` is not a power of 2. Such sets are counted by a dot product with their indicator series instead ([[block-count-constraints](pages/block-count-constraints.md)]).
+
+## Even indices
+
+The substitution `x → −x` applies `(−1)^n` to the index `n` of a power series `A(x) = Σ_n a_n x^n`, ordinary or exponential:
+
+```
+( A(x) + A(−x) )/2  =  Σ_{n even} a_n x^n,        ( A(x) − A(−x) )/2  =  Σ_{n odd} a_n x^n,
+```
+
+and `(1/m) Σ_j A(ω^j x)` keeps the indices divisible by `m`. In the generating function `Σ_L P(k, L) x^L` the index is the base length `L`, so `x → −x` selects even widths, not even block counts; the block weight `t = −1` of Equation (4) selects by blocks. [[generating-functions-topic](pages/generating-functions-topic.md)] counts the ternary strings with an even number of 0s with `(e^x + e^{−x})/2`, the exponential generating function of the 0s, whose index is the number of 0s.
+
+| selects by | how | `m = 2` |
+|---|---|---|
+| the index `n` | `A(x) → (1/m) Σ_j A(ω^j x)` | `(A(x) + A(−x))/2` |
+| the block count | a weight `ω^j` per block, Equation (2) | `(T + P)/2` for towers, `(A + S)/2` for castles |
 
 ## Appearances in Sources
 
-- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — the sign `s(C) = (−1)^{blocks}` and the `(T±P)/2` projector.
-- [[project-euler-502-representations](pages/project-euler-502-representations.md)] — the unsigned/signed generating functions whose peak weight `ω^j` generalizes.
+- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the split of towers into `(T + P)/2` even-block and `(T − P)/2` odd-block ones.
+- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the grammar derivation of `P_k(x)`, with the factor `−1` on the block production that `ω^j` replaces.
 
 ## Related Concepts
 
-- [[castle-sign](pages/castle-sign.md)] — the `m = 2` case this page generalizes.
-- [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] — the tower recursion whose "sign" step is replaced by `ω^j`.
-- [[signed-tower-count](pages/signed-tower-count.md)] — the `P(k,L)` family (`P_1` in the `m=2` case).
-- [[generating-functions-topic](pages/generating-functions-topic.md)] — the EGF parity projector `(e^x ± e^{−x})/2`, the same character applied to the index.
-- [[mod-p-observatory](pages/mod-p-observatory.md)] — the mod-p periods, a different (additive) use of modular structure.
-- [[block-count-constraints](pages/block-count-constraints.md)] — the full trichotomy (residue / sparse / semigroup), of which this page is the residue case.
-- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] — the unit group `R^* = ∏ Z/(p^{d_i}−1)` of the castle ring, a finite abelian group with its own characters.
-- [[idempotent-decomposition](pages/idempotent-decomposition.md)] - ring idempotents `e² = e` in `F_p[x]/(char_k)`; this page's character-sum projectors are the group-algebra version of the same idea.
-- [[one-bit-seminar](pages/one-bit-seminar.md)] - the `m = 2` case read as information: the `(A±S)/2` projector as "one bit."
-
+- [[castle-sign](pages/castle-sign.md)] - the case `m = 2`, for towers and for castles.
+- [[signed-tower-count](pages/signed-tower-count.md)] - the row values, recurrences and closed forms of `P(k, L) = P_1(k, L)` at `m = 2`.
+- [[castle-notation](pages/castle-notation.md)] - the symbols `T`, `P`, `P_j`, `A`, `S`.
+- [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] - the transfer matrix with a weight `t` per block, diagonally similar to the Kac-Murdock-Szegő matrix `(ρ^{|a−b|})` with `ρ = √t`; `t = ω^j` gives `P_j`.
+- [[block-count-constraints](pages/block-count-constraints.md)] - block counts in residue classes, in sets given by a lacunary series, and in numerical semigroups.
+- [[generating-functions-topic](pages/generating-functions-topic.md)] - the exponential generating function `(e^x + e^{−x})/2` of the even numbers of 0s.
+- [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - a seminar on the tower count and the sign.
+- [[one-bit-seminar](pages/one-bit-seminar.md)] - the case `m = 2` as one bit of information.
+- [[idempotent-decomposition](pages/idempotent-decomposition.md)] - idempotents of the ring `F_p[x]/(char_k)`, which project the recurrence of `P(k, ·)` onto one eigenvalue sector.
 
 ## Footnotes
 
-[^1]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L116-123 — "(T + P)/2 = even-block castles, (T - P)/2 = odd-block castles ... exactly the (1 ± sgn)/2 trick."
-[^2]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L316-329 — "The even-block rule is the hard constraint, and it enters as a sign. Weight each block, that is each D, by -1 ... one minus sign on the peak ... P_k = 1 + x P_k - (P_{k-1} - 1)(1 + x P_k)" — the peak weight `−1` that `ω^j` replaces.
+[^1]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The main formula" L55 - "Then (T + P)/2 counts towers with even block count and (T - P)/2 counts odd."
+[^2]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The main formula" L57 - "The bottom block contributes 1 block, so \"castle has even total blocks\" is the same as \"tower above the bottom has odd block count\"."
+[^3]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L316-327 - "Weight each block, that is each D, by -1 ... with one minus sign on the peak", "P_k = 1 + x P_k - (P_{k-1} - 1)(1 + x P_k)"; the weight `−1` is replaced by `t = ω^j`.
+[^4]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): Equation (4) against the sums of Equation (1) over all towers for `m = 3, 4`, `k ≤ 3`, `L ≤ 5`; the `k = 1` closed form for `m = 3, 4, 5`, `L ≤ 6`; both examples; Equation (3) against enumeration of all castles for `m = 2, …, 5`, `2 ≤ h ≤ 4`, `w ≤ 5` (`w ≤ 4` at `h = 4`), every `r`.
