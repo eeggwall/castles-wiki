@@ -1,11 +1,11 @@
 ---
 title: Lattice paths (Project Euler 15)
 category: Sources
-summary: Shortest lattice paths as multiset permutations of a step string — C(W+H,H) by stars-and-bars — and higher-dimensional multinomial generalizations; the origin of the castle's U/R/D encoding. Under the [[symbolic-method]], a shortest lattice path is `SEQ(R + D)` restricted to fixed letter counts.
+summary: The topic page on Project Euler 15 counts the shortest paths through a W × H lattice by writing a path as a string of W right steps and H down steps and counting the distinct permutations of that multiset, binomial(W+H, H) by stars and bars. It extends the count to higher dimensions as a multinomial coefficient, (3n)!/(n!)³ for a cube. The castle's U/R/D step strings reuse this string encoding.
 tags: [lattice-paths, project-euler, stars-and-bars, binomial, multiset, urd, symbolic-method, source]
 sources: [lattice-paths]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Lattice paths (Project Euler 15)
@@ -16,52 +16,51 @@ updated: 2026-09-28
 
 ## Summary
 
-Project Euler 15 asks for the number of shortest (monotone) paths across a *W*×*H* grid. The key move is to encode a path as a **string of steps** — e.g. `DDRR` for a 2×2 path — so that counting paths becomes counting *unique permutations* of that multiset of steps.[^1] This is the source of the **U/R/D step-string encoding** that the castle problem reuses (see [[urd-step-strings](pages/urd-step-strings.md)]).
+Project Euler 15 asks for the number of shortest paths through a `20 × 20` lattice, from one corner to the opposite one. The source writes a path as a string of steps, `D` for one step down and `R` for one step right: in a lattice of `2 × 2` squares, `DDRR` is the path that goes down two steps and then right two. Counting paths is then counting the distinct permutations of the multiset of letters.[^1]
 
-Because the string has *H* down moves and *W* right moves, its distinct permutations are a **stars-and-bars** count — distribute the *H* down moves among the `W+1` gaps around the *W* right moves — giving the multichoose / binomial[^2]
+A path through a lattice of width `W` and height `H` has `W` letters `R` and `H` letters `D`. The `W` letters `R` make `W + 1` gaps, before, between and after them, and a path places its `H` letters `D` in these gaps, any number in each. By stars and bars the number of placements is[^2]
 
 ```
-paths(W,H) = H multichoose (W+1) = binomial(W+H, H)
+paths(W, H)  =  C(H + (W + 1) − 1, H)  =  C(W + H, H).
 ```
 
-Worked values (verified during ingest): `binomial(4+2,2) = 15`, `binomial(8+8,8) = 12870`, and the 20×20 grid `binomial(40,20) = 137,846,528,820` (the source obscures the low digits, as it is the PE 15 answer).[^3]
+At `W = H = 2` the six paths are `DDRR`, `DRDR`, `DRRD`, `RDDR`, `RDRD` and `RRDD`, and `C(4, 2) = 6`.[^3] The source gives `C(4 + 2, 2) = 15` for a `4 × 2` lattice, `C(8 + 8, 8) = 12 870` for `8 × 8`, and the value of `C(40, 20)` for `20 × 20` with its last three digits hidden, since it is the answer to Problem 15.[^4]
 
-The page then **generalizes to higher dimensions**: a path through a `d`-dimensional lattice is a multiset permutation of a step string with `N_i` steps in each direction, counted by the multinomial `binomial(N; N_1,…,N_d) = N! / (N_1!···N_d!)` (e.g. a 3×4×5×3 4-D lattice gives `binomial(15; 3,4,5,3) = 12,612,600`), with the perfect-cube special case reducing to `(3n)!/(n!)³`.[^4] That multinomial is computed as a **telescoping product of binomials** (see [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)]); the source's 3-D example, a 4×4×6 lattice, gives `C(14; 4,4,6) = C(14,4)·C(10,4) = 210,210`.
+**Higher dimensions.** A shortest path through a `d`-dimensional lattice with `N_i` steps in direction `i` is a permutation of a multiset with `N_i` copies of letter `i`, and their number is the multinomial coefficient `N!/(N_1! ⋯ N_d!)` with `N = N_1 + ⋯ + N_d`. The source computes it as a product of binomial coefficients, choosing the places of one letter at a time.[^5] For the `4 × 4 × 6` lattice, with letters `U`, `R` and `B`,
+
+```
+C(14; 4, 4, 6)  =  C(14, 4) · C(10, 4)  =  1001 · 210  =  210 210.
+```
+
+For a cube of side `n` the count is `(3n)!/(n!)³`, which is 90 at `n = 2`, the permutations of `UURRBB`. The source's four-dimensional example, a `3 × 4 × 5 × 3` lattice, gives `15!/(3! 4! 5! 3!) = 12 612 600`.[^6]
 
 ## Relevance to the castle
 
-Two direct connections:
+The castle's step strings reuse this encoding. The Representations subpage of Project Euler 502 writes a castle as a string in `U`, `R` and `D`, "the same representation used to solve the Lattice Paths problem in Project Euler 15" ([[urd-step-strings](pages/urd-step-strings.md)], [[project-euler-502-representations](pages/project-euler-502-representations.md)]).[^7] The convex castles are counted by the same stars-and-bars argument: their `w − 1` letters `R` beyond the bare-minimum string `U^h R D^h` go into `2h − 1` slots, which gives `C(2h + w − 3, w − 1)` ([[convex-castle](pages/convex-castle.md)], [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]).
 
-- **The U/R/D encoding comes from here.** The castle's step-string representation ([[urd-step-strings](pages/urd-step-strings.md)]) is the same device — "the same representation used to solve the Lattice Paths problem in Project Euler 15" — extended from two step types (R, D) to three (U, R, D) with the additional castle constraints.[^1]
-- **Stars-and-bars also counts convex castles.** The argument that counts lattice paths — distributing moves into gaps via stars-and-bars — also counts [[convex-castle](pages/convex-castle.md)]s: `CCC = C(2H+W−3, W−1)` comes from inserting the remaining `R`s into the bare-minimum string's slots. Both are *binomial* for the same reason (independent placements, no ballot constraint) — see [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)].
-
-Unlike Dyck paths (which impose the never-go-negative *ballot* constraint and are counted by Catalan numbers), an unconstrained lattice path is just a multiset permutation and is counted by a plain binomial — the same binomial-vs-Catalan distinction that runs through the castle.
-
-**Under the [[symbolic-method](pages/symbolic-method.md)].** A shortest lattice path over the 2-letter alphabet `{R, D}` is a word in `SEQ(R + D)` — the compositions/words machinery of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] §I.3-I.4. Marking `R` and `D` with separate size variables `x, y` gives the bivariate ordinary generating function (OGF) `1/(1 − x − y)`, and `[x^W y^H]` extracts the `binomial(W+H, H)` count — the same stars-and-bars result derived from the specification rather than from balls-and-bars combinatorics. Lattice paths with more constraints (bounded run length, non-negativity, staying inside a strip) are analyzed at length in Analytic Combinatorics (AC) Chapter V (`Applications of Rational and Meromorphic Asymptotics`), §V.4 "Nested sequences, lattice paths, and continued fractions", which treats the continued fractions used on [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)].
+In the symbolic method, which the source does not use, the paths are the words in `SEQ(R + D)` with `W` letters `R` and `H` letters `D`; marking `R` by `x` and `D` by `y`, their number is the coefficient `[x^W y^H] 1/(1 − x − y) = C(W + H, H)` ([[symbolic-method](pages/symbolic-method.md)], [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)]).
 
 ## Key Takeaways
 
-- Encode a shortest path as a step string; counting paths = counting multiset permutations.[^1]
-- `paths(W,H) = binomial(W+H, H)` by stars-and-bars; e.g. 20×20 → `binomial(40,20)` (verified).[^2][^3]
-- Higher dimensions: multinomial `binomial(N; N_1,…,N_d)`; perfect cube → `(3n)!/(n!)³`.[^4]
-- This is the origin of the castle's [[urd-step-strings](pages/urd-step-strings.md)] encoding and shares the stars-and-bars mechanism with the [[convex-castle](pages/convex-castle.md)] count.[^1]
+- A shortest lattice path is a permutation of a multiset of steps, so `paths(W, H) = C(W + H, H)` by stars and bars.[^2]
+- In `d` dimensions the count is the multinomial coefficient `N!/(N_1! ⋯ N_d!)`, `(3n)!/(n!)³` for a cube.[^5][^6]
+- The castle's U/R/D step strings come from this encoding, and the convex castles are counted by the same stars-and-bars argument.[^7]
 
 ## Entities & Concepts
 
-- [[urd-step-strings](pages/urd-step-strings.md)] — the castle's step-string encoding, taken from this problem.
-- [[convex-castle](pages/convex-castle.md)] / [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] — the stars-and-bars binomial count shared with lattice paths.
-- [[dyck-words](pages/dyck-words.md)] — the ballot-constrained cousin (Catalan, not binomial).
-- [[symbolic-method](pages/symbolic-method.md)] / [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] — the framework: shortest lattice paths as `SEQ(R+D)`; constrained lattice paths as AC Chapter V.4.
-
-Related: [[aocp-multisets](pages/aocp-multisets.md)] — the multiset-permutation machinery; [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] — the multinomial that counts the higher-D paths.
-
-## Relation to Other Wiki Pages
-
-The origin of the U/R/D encoding and a statement of the stars-and-bars / binomial mechanism that recurs in the castle's convex count. Together with [[dyck-words](pages/dyck-words.md)] it frames the binomial-vs-Catalan divide: unconstrained lattice paths are binomial, ballot-constrained Dyck paths are Catalan, and the castle sits on the binomial side (except in the tower block-count, where Narayana appears).
+- [[urd-step-strings](pages/urd-step-strings.md)] - the castle's step-string encoding.
+- [[convex-castle](pages/convex-castle.md)] and [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the convex castles, counted by stars and bars.
+- [[dyck-words](pages/dyck-words.md)] - the lattice paths that never go below the diagonal, counted by the Catalan numbers.
+- [[aocp-multisets](pages/aocp-multisets.md)] - permutations of multisets.
+- [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] - the multinomial coefficient as a product of binomial coefficients.
+- [[symbolic-method](pages/symbolic-method.md)] and [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] - words as sequences of letters.
 
 ## Footnotes
 
-[^1]: [[lattice-paths](pages/lattice-paths.md)] §"Formulating the Problem"/"Multiset Approach" L11-41 — "We can represent the particular path we take using a string ... DDRR ... How many unique permutations of the above string are there? ... This is what's often called a stars-and-bars problem in combinatorics."
-[^2]: [[lattice-paths](pages/lattice-paths.md)] §"Number of Paths Thru Lattices of Arbitrary Size" L94-113 — "on a lattice of width W and height H, we have W right moves that form W+1 partitions, in which we are placing H items ... (H) multichoose (W+1) = binomial(W+1+H-1, H) = binomial(W+H, H)."
-[^3]: [[lattice-paths](pages/lattice-paths.md)] §"Number of Paths..." L118-132 — "binomial(4+2, 2) = 15 ... binomial(8+8, 8) = 12,870 ... binomial(20+20, 20) = 137,846,528,XXX"; binomial(6,2)=15, binomial(16,8)=12870, binomial(40,20)=137,846,528,820 re-verified during ingest.
-[^4]: [[lattice-paths](pages/lattice-paths.md)] §"Generalizing to ... Higher-Dimensional Lattices"/"Special Case"/"4 Dimensional Lattice Example" L135-210 — the multinomial "binomial(N; N_1, N_2, ..., N_k) = N!/(N_1!...N_k!)", the perfect-cube "(3n)!/(n!)^3", and "binomial(15; 3,4,5,3) = 12,612,600."
+[^1]: [[lattice-paths](pages/lattice-paths.md)] §"Formulating the Problem" L11-17 - "We can represent the particular path we take using a string, so the following would represent the path that travels down two squares then right two squares: DDRR", "How many ''unique'' permutations of the above string are there?"
+[^2]: [[lattice-paths](pages/lattice-paths.md)] §"Number of Paths Thru Lattices of Arbitrary Size" L96-113 - "on a lattice of width W and height H, we have W right moves that form W+1 partitions, in which we are placing H items", "(H) multichoose (W+1) = \binom{W+1+H-1}{H} = \binom{W+H}{H}".
+[^3]: [[lattice-paths](pages/lattice-paths.md)] §"Multiset Approach for Two Variables" L58-68 [synthesis] - the six placements of two `*` among the `R`s of `RR` for the `2 × 2` lattice.
+[^4]: [[lattice-paths](pages/lattice-paths.md)] §"Number of Paths Thru Lattices of Arbitrary Size" L116-133 - "\binom{4+2}{2} = \binom{4+2}{4} = 15", "\binom{8+8}{8} = 12,870", "\binom{20+20}{20} = 137,846,528,\mbox{XXX}". Recomputed (Python 3.11, 2026-10-16).
+[^5]: [[lattice-paths](pages/lattice-paths.md)] §"Generalizing to 3-Dimensional and Higher-Dimensional Lattices" L159-203 [synthesis] - the string `UUUURRRRBBBBBB` for the `4 × 4 × 6` lattice, counted by placing the `U`s, "\binom{14}{10} = 1001", then the `R`s among the rest, "\binom{10}{4} = 210", giving "P = \binom{14}{4} \cdot \binom{10}{4} = 210,210".
+[^6]: [[lattice-paths](pages/lattice-paths.md)] §"Special Case: Perfect Cube Lattice" L207-211 and §"4 Dimensional Lattice Example" L215-216 - "\dfrac{(3n)!}{(n!)^3}" and "P = 12,612,600 = binomial(15; 3,4,5,3)". Both recomputed (Python 3.11, 2026-10-16).
+[^7]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Steps-Based Approach" L78 - "The representation that led to the most breakthroughs in progressing with PE 502 was the same representation used to solve the Lattice Paths problem in Project Euler/15."
