@@ -110,7 +110,7 @@ On the 21 values `L = 0, …, 20`, each order is `k + 1`, the degree of `den_k`;
 
 On the 51 values `k = 0, …, 50`, the shortest recurrence has order `2L − 2` for `4 ≤ L ≤ 12` (computed), against the source's "at most about 2w".[^1] Every order in the table is at most 25, half the number of terms, so it is the shortest recurrence of the 51 values. The orders 2, 2, 3 for `L ≤ 3` do not follow `2L − 2`; the section *Closed forms for L ≤ 3* gives these rows.
 
-For `4 ≤ L ≤ 12` the characteristic polynomial is `(x + 1)^L (x − 1)^{L−2}`, computed by Berlekamp-Massey on `k ≤ 80` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]). So every root is `±1` and the order is `L + (L − 2)` for these `L`. That every root is `±1` holds at every `L`: `P(k, L)` is a polynomial in `k` of degree at most `L` on each class of `k` modulo 2 ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)], section *The residue test*), so the order is at most `2L + 2`.
+For `4 ≤ L ≤ 12` the characteristic polynomial is `(x + 1)^L (x − 1)^{L−2}`, computed by Berlekamp-Massey on `k ≤ 80` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]). So every root is `±1` and the order is `L + (L − 2)` for these `L`. That every root is `±1` holds at every `L`: `P(k, L)` is a polynomial in `k` of degree at most `L` on each class of `k` modulo 2 ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)], section *The residue test*), so the order is at most `2L + 1` (the Lemma of [[mod-9-coset-lift](pages/mod-9-coset-lift.md)]).
 
 ### Closed forms for L ≤ 3
 

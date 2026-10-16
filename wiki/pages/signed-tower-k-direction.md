@@ -33,7 +33,7 @@ For `L ≤ 12` every eigenvalue is `+1` or `−1`, so `P(k, L)` is a **quasi-pol
 P(k, L)  =  (−1)^k · A_L(k)  +  B_L(k)                                        (1)
 ```
 
-with polynomials `A_L` and `B_L`. For `4 ≤ L ≤ 12`, `A_L` has degree `L − 1` and `B_L` degree `L − 3`, the multiplicities of `−1` and `+1` less one. For every `L`, `P(k, L)` is a polynomial in `k` of degree at most `L` on each class of `k` modulo 2 ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)], section *The residue test*), so the eigenvalues are `±1` at every `L` and the characteristic polynomial divides `(x + 1)^{L+1} (x − 1)^{L+1}`; the exact multiplicities `L` and `L − 2` are computed for `4 ≤ L ≤ 12` only.
+with polynomials `A_L` and `B_L`. For `4 ≤ L ≤ 12`, `A_L` has degree `L − 1` and `B_L` degree `L − 3`, the multiplicities of `−1` and `+1` less one. For every `L`, `P(k, L)` is a polynomial in `k` of degree at most `L` on each class of `k` modulo 2 ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)], section *The residue test*), so the eigenvalues are `±1` at every `L` and the characteristic polynomial divides `(x − 1)^{L+1} (x + 1)^L` (the Lemma of [[mod-9-coset-lift](pages/mod-9-coset-lift.md)]); the exact multiplicities `L` and `L − 2` are computed for `4 ≤ L ≤ 12` only.
 
 The even-block castle counts inherit the shape. In `A^e(w, h) = [h^w − (h−1)^w − P(h−1, w) + P(h−2, w)]/2`, the first two terms are a polynomial in `h` of degree `w − 1`, which `(x − 1)^w` annihilates. So for `w ≤ 12` the column `A^e(w, ·)` is annihilated by `(x + 1)^w (x − 1)^w = (x² − 1)^w`, the polynomial that the OEIS-mining notes observed for the columns.[^4]
 
