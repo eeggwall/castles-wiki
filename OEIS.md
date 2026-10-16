@@ -25,11 +25,6 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
 
 ### 1. In review (max 3)
 
-- [~] **A009545 castle comment** (submitted 2026-10-06). Comment only, width `n`, no `− 1`:
-  `a(n)` = even-block − odd-block castles of width `n` and height 2 whose last column reaches
-  height 2, for `n >= 1`, with the PE 502 citation; the optional runs sentence was dropped for
-  length: `raw/oeis-pe502/xrefs/A009545-signed.md` (`wiki/pages/signed-tower-count.md`,
-  `wiki/pages/tower-parity-sectors.md`).
 - [~] **A226136 → A003410** (submitted 2026-10-06). Formula line "Conjecture: a(n) =
   A003410(n) for n >= 4", equivalent to Barker's conjectured g.f. (A003410's g.f. minus
   `1 + x + x^2 + x^3`), and `Cf. A003410`: `raw/oeis-pe502/xrefs/A226136-A003410.md`
@@ -41,9 +36,10 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
   linear-recurrence index entry, signature `(1,0,1)`; `a(n) = 1 + Sum_{k=0..n-2} A226275(k)`;
   a Python program; `Cf. A226274, A226275`. A discussion note asks the editors to delete the
   stray upload `a226136.txt`.
-- [~] **A226275 recurrence** (submitted 2026-10-11, #20–#21). Link to the A226136 proof
-  (Theorem 1(b)), with "Above formula proven in Reid link", `a(n) = a(n-1) + a(n-3)` for
-  `n >= 6`, `a(n) = A226136(n+2) − A226136(n+1)`, and a Python program.
+  Still in review (checked 2026-10-16): Jason Yuen edited it on 2026-10-13 (#25–#28),
+  extending DATA from 35 to 42 terms, grouping the three Oct 11 formula lines in one
+  "From _Chaz Reid_, Oct 11 2026: (Start) … (End)" block, and adding keyword `easy`; it is back
+  in proposed. The proof PDF already resolves, and the approved A226275 entry links to it.
 
 ### 2. Ready to submit (drafted and checked, in order)
 
@@ -233,6 +229,15 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   submitted 2026-10-04, approved (A146559 #167, Oct 11 2026). Comment only, exact height:
   `a(n) − 1` = odd − even castles of height 2: `raw/oeis-pe502/xrefs/A146559-signed.md`
   (`wiki/pages/castle-sequence-catalogue.md`, `wiki/pages/signed-tower-count.md`).
+- [x] **A009545 castle comment** (submitted 2026-10-06, approved: A009545 #203, Oct 14 2026).
+  Comment only, width `n`, no `− 1`: `a(n)` = even-block − odd-block castles of width `n` and
+  height 2 whose last column reaches height 2, for `n >= 1`, then a sentence defining the
+  castle, and the PE 502 link: `raw/oeis-pe502/xrefs/A009545-signed.md`
+  (`wiki/pages/signed-tower-count.md`, `wiki/pages/tower-parity-sectors.md`).
+- [x] **A226275 recurrence** (submitted 2026-10-11, approved: A226275 #26, Oct 15 2026). Link
+  to the A226136 proof (Theorem 1(b)); one "From _Chaz Reid_, Oct 11 2026" block with "Above
+  formula proven in Reid link", `a(n) = a(n-1) + a(n-3)` for `n >= 6` and
+  `a(n) = A226136(n+2) − A226136(n+1)`; a Python program.
 
 ## Ingestion queue (wiki pages not yet ingested)
 
