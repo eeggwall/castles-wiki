@@ -1,90 +1,85 @@
 ---
 title: Finite fields for the castle count
 category: Concepts
-summary: Why reducing char_k mod p turns aperiodic eigenvalues into periodic ones — F_{p^d} and its cyclic multiplicative group, built up from F_5 to F_49 to the general rule.
+summary: Why the castle and tower counts are periodic modulo a prime p. Over the rationals P(1, L) = Re((1+i)^{L+1}) never repeats, since |1 + i| = √2; modulo p the roots of char_k lie in finite fields F_{p^d}, whose nonzero elements form a cyclic group of order p^d − 1, so every root has finite order and the sequence is periodic. Worked from F_5 (period 4) and F_49 (period 24) to the general rule, with the effect of repeated roots (A^e(·, 4) mod 7 has period 8400 = 7 · 1200) and the Frobenius map.
 tags: [concept, finite-field, modular-arithmetic, periodicity, pedagogy]
 sources: [oeis-mining-pe502, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-14
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Finite fields for the castle count
 
-## The core idea
+Over the rationals, the signed tower count is a sum of powers of the roots of its characteristic polynomial, `P(k, L) = Σ_i p_i(L) λ_i^L` ([[signed-tower-count](pages/signed-tower-count.md)]). Modulo a prime `p`, the roots become elements of a **finite field** `F_{p^d}`, a field with `p^d` elements. Its nonzero elements form a cyclic group of order `p^d − 1` under multiplication, so every root has finite order, and the sequence `P(k, ·) mod p` is periodic. This page works this out for `P(1, ·)` at `p = 5` and `p = 7` and then states the general rule; [[mod-p-observatory](pages/mod-p-observatory.md)] tabulates the periods.
 
-The signed tower count is, over ℚ, a sum of eigenvalue powers `P(k,L) = Σ c_i λ_i^L` — and **aperiodic**, because a complex eigenvalue like `1+i` has infinite order: no positive power of `1+i` ever equals 1. Reduce mod p, and the eigenvalues stop being complex numbers and become elements of a **finite field** `F_{p^d}`, whose nonzero elements form a cyclic group of order `p^d − 1`. In a finite group, every element has finite order — so `λ^L` is now *periodic*, and so is the whole sequence. This page builds that up from the smallest case.
+## Over the rationals
 
-## Step 1 — Over ℚ: aperiodic
-
-`P(1,L) = Re((1+i)^{L+1})` has characteristic polynomial `char_1 = x² − 2x + 2`, with eigenvalues `1 ± i`.[^1] Its values wander and never repeat:
+`P(1, L) = Re((1+i)^{L+1})` has characteristic polynomial `char_1(λ) = λ² − 2λ + 2`, with roots `1 ± i`:[^1]
 
 ```
-P(1,L) = 1, 0, −2, −4, −4, 0, 8, 16, …     (aperiodic over ℚ)
+P(1, L)  =  1, 0, −2, −4, −4, 0, 8, 16, …
 ```
 
-The eigenvalue `1+i` has `|1+i| = √2 ≠ 1`, so its powers spiral out to infinity: no period.
+Since `|1 ± i| = √2 > 1`, the values grow in absolute value along every period of 4 (`P(1, L + 4) = −4 P(1, L)`), and the sequence never repeats.
 
-## Step 2 — Mod 5: the eigenvalue becomes a root of unity
+## Modulo 5: the roots lie in F_5
 
-Reduce mod 5. Does `i = √(−1)` exist in `F_5`? We need `i² = −1 ≡ 4`, and `2² = 4` — so **yes**: `i = ±2`, and the eigenvalues `1±i` become `1±2 = 3, 4`, plain elements of `F_5`.
-
-Now the key fact: the nonzero elements `F_5^* = {1, 2, 3, 4}` form a **cyclic group of order 4** under multiplication, so `3⁴ = 1` and `4² = 1`. The eigenvalue powers `3^L` (period 4) and `4^L` (period 2) combine to give
+`−1 ≡ 4 = 2² (mod 5)`, so `i = ±2` in `F_5`, and the roots `1 ± i` are `3` and `4`. The nonzero elements `{1, 2, 3, 4}` of `F_5` form a cyclic group of order 4; `3` has order 4 and `4` has order 2. So `P(1, L) mod 5` has period `lcm(4, 2) = 4`:[^6]
 
 ```
-P(1,L) mod 5 = 1, 0, 3, 1, 1, 0, 3, 1, …    (period 4 = lcm(4, 2))
+P(1, L) mod 5  =  1, 0, 3, 1, 1, 0, 3, 1, …
 ```
 
-## Step 3 — Mod 7: adjoining a square root
+## Modulo 7: the roots lie in F_49
 
-Mod 7, `−1 ≡ 6` is **not** a square (the squares are `{1, 2, 4}`), so `i ∉ F_7`. We adjoin it — exactly as one adjoins `√(−1)` to ℝ to build ℂ — giving the field `F_7[i] = F_{7²} = F_49`, with `7² = 49` elements. The eigenvalues `1±i` live there, and `F_49^*` is a cyclic group of order `49 − 1 = 48`, so each eigenvalue has order dividing 48 (in fact 24):
+Modulo 7 the squares are `{1, 2, 4}`, and `−1 ≡ 6` is not among them, so `char_1` does not factor over `F_7`. The roots lie in `F_7[x]/(x² + 1) = F_49`, a field of 49 elements, whose nonzero elements form a cyclic group of order 48. In it, `(1 + i)^2 = 2i`, `(1 + i)^4 = −4 = 3`, and `3` has order 6 in `F_7`, so `1 + i` has order 24, and[^6]
 
 ```
-P(1,L) mod 7  has period 24.
+P(1, L) mod 7  has period 24.
 ```
 
-**The degree of the extension is the degree of the irreducible factor.** A quadratic that splits puts its roots in `F_p` (order dividing `p−1`); a quadratic that doesn't split puts them in `F_{p²}` (order dividing `p²−1`).
+## The general rule
 
-## Step 4 — The general rule: F_{p^d}
+Reduce `char_k` modulo `p` and factor it into irreducible polynomials over `F_p`. An irreducible factor of degree `d` has its `d` roots in `F_{p^d}`, whose nonzero elements form a cyclic group of order `p^d − 1`; by Lagrange's theorem, the order of every element divides the order of the group. So:
 
-Reduce `char_k` mod p and factor it into irreducibles. An irreducible factor `g` of degree `d` has its `d` roots in the unique field `F_{p^d}` with `p^d` elements. Its nonzero elements `F_{p^d}^*` form a cyclic group of order `p^d − 1`, so by Lagrange every element's order divides the group order:
+1. each simple root `λ` has an order dividing `p^d − 1`, and `λ^L` is periodic in `L` with period `ord(λ)`;
+2. the sequence has period the **lcm** of the periods of its terms.
 
-1. each eigenvalue has finite order dividing `p^d − 1`;
-2. `λ^L` is periodic with period `ord(λ)`;
-3. the sequence's period is the **lcm** of these orders.
+For `char_1`, the discriminant is `−4`, so for odd `p` it factors over `F_p` exactly when `−1` is a square modulo `p`, which by Euler's criterion is when `p ≡ 1 (mod 4)`. So it factors modulo 5 and is irreducible modulo 3 and 7.
 
-This is the mechanism behind the [[mod-p-observatory](pages/mod-p-observatory.md)]: `period = lcm of eigenvalue orders`, each order dividing some `p^d − 1`.
+**Repeated roots.** A root of multiplicity `m` contributes the terms `C(L, j) λ^L` for `j < m`, and for `m ≤ p` the binomial coefficients `C(L, j)` are periodic modulo `p` with period `p`. So a double root multiplies the period it contributes by `p`. Modulo 7, `char_2 = (λ − 2)(λ + 3)²`, with roots of order 3, so `P(2, ·) mod 7` has period `3 · 7 = 21`, and `A^e(·, 4) mod 7` has period `8400 = 7 · 1200`.[^6]
 
-## Step 5 — Consequences
+**Primitive roots.** A root that generates the cyclic group `F_{p^d}^*` has the full order `p^d − 1`. If `char_{h−1}` stays irreducible of degree `h` modulo `p`, the period of `A^e(·, h) mod p` can be as large as `p^h − 1`, far too long to observe at `p = 10^9 + 7`; it is computed as an order, not by listing terms.
 
-Consequences for the mod-p periods:
+## The Frobenius map
 
-- **Splitting = the degree `d`.** A factor that splits has `d = 1` (roots in `F_p`, orders dividing `p−1`); one that stays quadratic has `d = 2` (roots in `F_{p²}`, orders dividing `p²−1`); and so on. For `char_1 = x²−2x+2` the decision is quadratic reciprocity: it splits iff `−1` is a square mod p, i.e. **`p ≡ 1 (mod 4)`** — so it splits mod 5 but stays irreducible mod 3 and 7.
+In characteristic `p` the map `a ↦ a^p` preserves sums as well as products, `(a + b)^p = a^p + b^p`, and on a field it is injective.[^2] It permutes the roots of each irreducible factor (`λ ↦ λ^p`), and `λ^p` has the same order as `λ`, since `p` is prime to the order; so all roots of one irreducible factor have the same order.
 
-- **Repeated roots add a factor p.** A repeated factor `g^m` contributes a solution term `n^{m−1}λ^n`; the polynomial part `n^{m−1}` is periodic mod p with period `p`, so a double root multiplies the period by p (`char_2 mod 7` has `(x+3)²`, hence `F(w,4) mod 7` has period `8400 = 1200 × 7`).
+At every `p ≡ 3 (mod 4)` the roots of `char_1` lie in `F_p[x]/(x² + 1)`, as for `F_49` in the section *Modulo 7*. At `p = 3` this is the field of 9 elements `F_3[i] = Z[i]/(3)`.[^3] Since `char_1(x) = (x − 1)² + 1`, the ring `Z[x]/(char_1)` is `Z[i]` with `x ↦ 1 + i`, and `Z[i]/(3)` is its reduction modulo 3.
 
-- **Primitive roots give the maximal period.** If a root is a *generator* of `F_{p^d}^*` (a primitive element), its order is the full `p^d − 1`. For an irreducible `char_k` of degree `k+1` that is `p^{k+1} − 1` — so the period of `F(w,h) mod p` can reach about `p^h`, which at `p = 10^9+7` is far too long to list; only the orders can be computed.
+When `char_k mod p` has several distinct irreducible factors, the ring `F_p[x]/(char_k)` is the product of the corresponding fields (and of local rings for repeated factors), by the [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]; the period is the lcm of the periods of the factors.
 
-The **Frobenius** map `a ↦ a^p`: in characteristic `p` it preserves sums as well as products, `(a + b)^p = a^p + b^p`, and on a field it is injective.[^2] It permutes the roots of each irreducible factor (`λ ↦ λ^p`), which is why all roots of one factor have the same order. And the smallest fields with a square root of `−1` adjoined, like Step 3's `F_49 = F_7[i]`, are built the same way at every `p ≡ 3 (mod 4)`: at `p = 3` it is the 9-element field `F_3[i] = Z[i]/(3)`, which is the fiber of `Z[x]/(char_1)` over 3.[^3]
-
-Two ring-theory facts sit under this picture. First, when `char_k mod p` has several distinct irreducible factors, `F_p[x]/(char_k)` is the *product* of the corresponding fields and local rings, by the [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]; that is why the period is an `lcm`. Second, over a finite field every function `F_q → F_q` is a polynomial (Lagrange interpolation through all `q` points), so any residue pattern read off as a function of a field element has a polynomial formula of degree `< q`.[^4] The formula is unique only modulo `x^q − x`: `x^5 + x^3 + x` and `x^5 + 2x` are different polynomials over `F_3` but the same function, since `x^3 − x` vanishes on all of `F_3`.[^5] That is why Kitamasa computes `x^n mod char_k` as a *polynomial*: even though `a^p = a` for every `a ∈ F_p`, the Frobenius image `x^p` equals `x` in `F_p[x]/(char_k)` only when `char_k` divides `x^p − x`, i.e. when `char_k mod p` splits into distinct linear factors.
+**Polynomials and functions.** Over `F_q` every function `F_q → F_q` is a polynomial of degree less than `q`, by Lagrange interpolation, and two polynomials give the same function exactly when they differ by a multiple of `x^q − x`: over `F_3`, `x^5 + x^3 + x` and `x^5 + 2x` are different polynomials and the same function.[^4][^5] So although `a^p = a` for every `a ∈ F_p`, in the ring `F_p[x]/(char_k)` the element `x^p` equals `x` only when `char_k mod p` divides `x^p − x`, that is, when it splits into distinct linear factors over `F_p`; then the period divides `p − 1`. Kitamasa's method computes `x^n mod char_k` in this ring ([[kitamasa](pages/kitamasa.md)]).
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — the `char_k` family and `P(1,L) = Re((1+i)^{L+1})`.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the characteristic polynomials `char_k` and `P(1, L) = Re((1+i)^{L+1})`.
+- [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - the Frobenius map, the field of 9 elements, polynomial functions over a finite field.
 
 ## Related Concepts
 
-- [[mod-p-observatory](pages/mod-p-observatory.md)] — the periods this field structure produces.
-- [[generating-function-gallery](pages/generating-function-gallery.md)] — the `char_k` polynomials whose roots reduce mod p.
-- [[signed-tower-count](pages/signed-tower-count.md)] — `P(1,L) = Re((1+i)^{L+1})` over ℚ.
+- [[mod-p-observatory](pages/mod-p-observatory.md)] - the periods of the castle and tower counts modulo small primes, and the pigeonhole proof that they are periodic.
+- [[signed-tower-count](pages/signed-tower-count.md)] - `P(1, L) = Re((1+i)^{L+1})` and the polynomials `char_k`.
+- [[generating-function-gallery](pages/generating-function-gallery.md)] - the rational functions `num_k/den_k` whose denominators give `char_k`.
 - [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the product decomposition over the distinct irreducible factors.
-- [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - Frobenius in characteristic 2 (`(α + β)^{2^m} = α^{2^m} + β^{2^m}`) proves `char_k` irreducible over `Q` for `k = 2^m − 1`.
-- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the fibers `F_p[x]/(char_k)` as points over each prime; §6 reads their shape off the Frobenius matrix.
+- [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - the Frobenius map in characteristic 2, `(α + β)^{2^m} = α^{2^m} + β^{2^m}`, in the proof that `char_k` is irreducible over the rationals for `k = 2^m − 1`.
+- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the rings `F_p[x]/(char_k)` over each prime, and their structure read from the Frobenius matrix.
 
 ## Footnotes
 
-[^1]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L19-37 [synthesis] — "P(1,L) = Re((1+i)^{L+1}) = A146559(L+1)" and the `char_k` family ("P(1): x^2 - 2x + 2 ...").
+[^1]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" [synthesis] L19-37 - "P(1,L) = Re((1+i)^{L+1}) = A146559(L+1)" and the `char_k` family ("P(1): x^2 - 2x + 2 ...").
 [^2]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 5.14 p.25; solution p.113 [synthesis] - `x ↦ x^{p^n}` is an injective ring homomorphism of a field of characteristic `p`.
 [^3]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 5.11 p.24; solution p.112 [synthesis] - `Z_3 × Z_3` with Gaussian multiplication `(a, b)(c, d) = (ac − bd, ad + bc)` is a field of 9 elements.
 [^4]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.13 p.75; solution p.191 [synthesis] - over a finite field `K`, `P(X) = Σ_{a ∈ K} f(a) ∏_{b ≠ a} (X − b)/(a − b)` agrees with `f` everywhere, so every map `K → K` is polynomial.
 [^5]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 14.10 p.60; solution p.170 [synthesis] - `f = X⁵ + X³ + X`, `g = X⁵ + 2X` over `Z_3` agree at `0, 1, 2`.
+[^6]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `P(1, L) mod 5` with period 4, `mod 7` with period 24 and `mod 3` with period 8; the order 24 of `1 + i` in `F_49`; `char_2 ≡ (λ − 2)(λ + 3)² (mod 7)`; the periods 21 of `P(2, ·) mod 7`, 400 of `P(3, ·) mod 7`, and 8400 of `A^e(·, 4) mod 7`, from 60,000 terms.
