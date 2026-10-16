@@ -1,78 +1,101 @@
 ---
 title: The convex core of a castle
 category: Analyses
-summary: Every castle has a unique minimal convex (unimodal) majorant, its convex core, given in one line by min(prefix max, suffix max). The castles sharing a core are exactly those that lower the non-anchor columns of its plateaus; the anchors are the first column of a rising plateau, the last column of a falling plateau, and both ends of the top plateau. The material lowered below a plateau at level m is an upside-down tower of height at most m-1, so the fiber over a core is a product of tower counts, prod T(m-1, free) = prod m^free unsigned and (-1)^h prod P(m-1, free) signed, with free = l-1 (l-2 on the top plateau). Summed over the C(2h+w-3, w-1) cores these give h^w - (h-1)^w and P(h-2,w) - P(h-1,w), so F(w,h) is a sum over convex cores of products of signed tower counts. The inside direction fails - the maximal convex minorant is not unique, (2,1,2) has two - and the source's D/U-pair insertion never closed because the freedom is per column. Verified for every cell 2 <= w <= 6, 2 <= h <= 5.
+summary: Every castle has a unique smallest convex (unimodal) skyline above it, its convex core, given by core(c)_i = min(max(c_1..c_i), max(c_i..c_w)). The castles over a core u are the castles that agree with u on its anchors (the first column of each rising plateau, the last column of each falling plateau, both ends of the top plateau) and lie below u elsewhere. The free columns of a plateau at level m are towers of height at most m − 1 hanging from it, so the castles over u number prod T(m − 1, free) = prod m^free and their signed sum is (−1)^h prod P(m − 1, free). Summed over the C(2h + w − 3, w − 1) cores these give A(w, h) = h^w − (h−1)^w and S(w, h) = P(h−2, w) − P(h−1, w), so A^e(w, h) is a sum over convex cores of products of tower counts. Below a castle there need not be a unique largest unimodal skyline: (2, 1, 2) has two maximal ones.
 tags: [analysis, castle, convex, unimodal, tower, signed-tower-count, parity, verification, hull]
 sources: [project-euler-502-representations, project-euler-502-solution, oeis-mining-pe502]
 created: 2026-09-20
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # The convex core of a castle
 
-## The source's taxonomy
+The Representations subpage of the Project Euler 502 solution sorts castles into rectangular castles, convex castles, and "variations on convex castles", obtained by inserting `D` and `U` steps into the runs of `R` in a convex castle's step word under rules meant to avoid duplicates.[^1] The Solution subpage records that the enumeration of these variations "never resolved into a formula".[^2] This page gives the per-column description of the castles over a convex castle: every castle lies under a unique smallest convex castle, its convex core, and the castles over a given core form a product of tower sets, one factor per plateau of the core, counted by the tower counts `T(k, L)` and `P(k, L)` ([[castle-counting-formula](pages/castle-counting-formula.md)], [[signed-tower-count](pages/signed-tower-count.md)]).
 
-The Representations subpage of the Project Euler 502 (PE 502) solution organizes castles as rectangular, then convex, then "variations on convex castles": a convex castle's U/R/D word has runs of `R`s, and inserting `D`/`U` pairs into the slots of a run produces the non-convex castles.[^1] The Solution subpage records that enumerating these variations "never resolved into a formula".[^2] Two questions were left open on [[convex-castle](pages/convex-castle.md)]: is the convex castle behind a given castle unique, and if so what is the set of castles it generates?
+## The core
 
-Every castle has a unique smallest [[convex-castle](pages/convex-castle.md)] above it, its **convex core**, and the set of castles over a core is a product of the tower counts `T(k,L)` and `P(k,L)` of [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] and [[signed-tower-count](pages/signed-tower-count.md)], one factor per plateau. The variation enumeration did not close because it counted insertions; the freedom is per column.[^4]
+Write a castle of width `w` and height `h` as its skyline `c = (c_1, …, c_w)` ([[castle-polyomino](pages/castle-polyomino.md)]). Let `L_i = max(c_1, …, c_i)` be the running maximum from the left and `R_i = max(c_i, …, c_w)` the running maximum from the right.
 
-## The core in one line
-
-Write the castle as its skyline `c = (c_1, ..., c_w)` with `1 <= c_i <= h` and `max c = h`. Let `L_i = max(c_1, ..., c_i)` be the running maximum from the left and `R_i = max(c_i, ..., c_w)` the running maximum from the right. The convex core is
+**Proposition 1.** The skyline
 
 ```
-core(c)_i = min(L_i, R_i)
+core(c)_i  =  min(L_i, R_i)                                                     (1)
 ```
 
-`L` is nondecreasing and `R` is nonincreasing, so their pointwise minimum follows `L` up to the first column of height `h` and `R` after the last one: it is unimodal. It dominates `c` because both `L_i` and `R_i` do. And it is the smallest unimodal skyline dominating `c`: if `v >= c` is unimodal with peak at `p`, then for `i <= p` the value `v_i` is at least every `v_j` with `j <= i`, hence at least `L_i`, and for `i >= p` it is at least `R_i`; so `v_i >= min(L_i, R_i)` at every `i`. The core is the pointwise minimum of the set of unimodal majorants, so it is the unique minimal one. A castle is its own core iff it is unimodal, so the cores of the `(w,h)` cell are exactly the `C(2h+w-3, w-1)` convex castles of [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)].[^4]
+is unimodal, lies above `c`, and lies below every unimodal skyline that lies above `c`. So it is the unique smallest unimodal skyline above `c`, the **convex core** of `c`.
 
-Cutting the core out of a castle removes exactly the valleys. The columns where `c_i < core(c)_i` are the columns that are not a left record and not a right record, and on each maximal run of them the core is constant.
+*Proof.* `L` is nondecreasing and `R` is nonincreasing, so `min(L, R)` follows `L` up to the first column of height `h` and `R` after the last one, and is unimodal. Both `L_i ≥ c_i` and `R_i ≥ c_i`. If `v ≥ c` is unimodal with its maximum at column `p`, then for `i ≤ p` the value `v_i` is at least every `v_j` with `j ≤ i`, hence at least `L_i`, and for `i ≥ p` it is at least `R_i`; so `v_i ≥ min(L_i, R_i)` at every `i`.
 
-## The fiber over a core
+A castle is its own core exactly when it is unimodal, so the cores of the castles of width `w` and height `h` are the convex castles, `C(2h + w − 3, w − 1)` of them ([[convex-castle](pages/convex-castle.md)], [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]). The columns with `c_i < core(c)_i` are the columns that are neither a weak left-to-right maximum (`c_i = L_i`) nor a weak right-to-left maximum (`c_i = R_i`), and on each maximal run of such columns both `L` and `R`, and so the core, are constant.
 
-Fix a convex core `u`. Which castles `c` have `core(c) = u`? Split `u` into its maximal plateaus, runs of equal height. Since `u` is unimodal every plateau is rising (a later plateau is higher), falling (an earlier plateau is higher), or the top plateau at level `h`. Then `core(c) = u` iff `c <= u` pointwise and `c` agrees with `u` on the **anchors**:
-
-- the first column of every rising plateau (so `L` reaches the new level there),
-- the last column of every falling plateau (so `R` does),
-- both end columns of the top plateau (one column if the top plateau has length 1).
-
-Every other column of a plateau at level `m` is **free**: it may take any height in `{1, ..., m}` without changing `L` or `R`, because a non-record column never enters a running maximum. So a plateau of length `l` at level `m` contributes `free = l - 1` free columns, or `l - 2` on the top plateau (`0` if the top has length 1), and the fiber over `u` has size
+*Example.* The castle `(2, 1, 3, 1, 1, 2)` has `L = (2, 2, 3, 3, 3, 3)`, `R = (3, 3, 3, 2, 2, 2)` and core `(2, 2, 3, 2, 2, 2)`:
 
 ```
-|fiber(u)| = prod over plateaus of m^free
+castle                    core
+.  .  #  .  .  .          .  .  #  .  .  .
+#  .  #  .  .  #          #  #  #  #  #  #
+#  #  #  #  #  #          #  #  #  #  #  #
 ```
 
-Worked cell `(4,2)`: the 15 castles sit over 10 cores. The rectangle `(2,2,2,2)` has two free interior columns and carries 4 castles, `(2,2,2,2)`, `(2,1,2,2)`, `(2,2,1,2)`, `(2,1,1,2)`. The cores `(1,2,2,2)` and `(2,2,2,1)` carry 2 each. The other seven cores carry only themselves, so `4 + 2 + 2 + 7 = 15 = 2^4 - 1`.[^4] The largest fiber in every cell is the rectangle's, `h^(w-2)`.
+## The castles over a core
+
+Fix a convex castle `u` of height `h` and split it into its **plateaus**, the maximal runs of equal height. Since `u` is unimodal, every plateau is rising (the next plateau is higher), falling (the previous plateau is higher), or the top plateau, at height `h`. The **anchors** of `u` are
+
+- the first column of every rising plateau,
+- the last column of every falling plateau,
+- both end columns of the top plateau (one column if it has length 1).
+
+**Proposition 2.** `core(c) = u` exactly when `c ≤ u` pointwise and `c` agrees with `u` on the anchors. So a plateau of length `l` at height `m` has `free = l − 1` free columns, or `free = max(l − 2, 0)` on the top plateau, each taking any height in `{1, …, m}`, and the castles over `u` number
+
+```
+|{c : core(c) = u}|  =  Π_{plateaus}  m^{free}                                  (2)
+```
+
+*Proof.* Suppose `core(c) = u`. Then `c ≤ u` by Proposition 1. At the first column `i` of a rising plateau at height `m`, `u_i = m` exceeds `u_{i−1}`, and `R_i ≥ h > m`, so `L_i = m > L_{i−1}` and `c_i = m`; symmetrically `c` equals `u` at the last column of each falling plateau and at both ends of the top plateau. Conversely, if `c ≤ u` and `c` agrees with `u` on the anchors, then `c` has the same running maxima `L` and `R` as `u`, since `u` takes each value of `L` and `R` first at an anchor and `c` is at most `u` everywhere else; so `core(c) = core(u) = u`.
+
+In the example, the core `(2, 2, 3, 2, 2, 2)` has a rising plateau `(2, 2)` with one free column, the top plateau `(3)` with none, and a falling plateau `(2, 2, 2)` with two, so `2^1 · 2^2 = 8` castles lie over it: the skylines `(2, x, 3, y, z, 2)` with `x, y, z ∈ {1, 2}`.
+
+In the cell of width 4 and height 2, the 15 castles lie over 10 cores. The rectangle `(2, 2, 2, 2)` carries 4 castles, `(2, 2, 2, 2)`, `(2, 1, 2, 2)`, `(2, 2, 1, 2)` and `(2, 1, 1, 2)`; the cores `(1, 2, 2, 2)` and `(2, 2, 2, 1)` carry 2 each; the other seven carry only themselves, and `4 + 2 + 2 + 7 = 15 = 2^4 − 1`.
+
+**The rectangle has the largest fiber.** For `w ≥ 3` the rectangle `(h, …, h)` is the only core with `h^{w−2}` castles over it, and every other core has fewer. At `w = 2` every core carries one castle. A core other than the rectangle has a plateau below `h`, which carries an anchor. If the top plateau has length at least 2, the core has at least three anchors and at most `w − 3` free columns; if the top plateau has length 1, every free column lies below height `h`. Either way Equation (2) is at most `h^{w−3}` or `(h − 1)^{w−2}`, less than `h^{w−2}`.
 
 ## The fiber is a product of tower counts
 
-The free columns of a plateau at level `m` are an upside-down tower. Set `y_i = m - c_i` on the `free` columns: `y_i` ranges over `{0, ..., m-1}`, exactly a tower of height at most `m - 1` above a block of length `free`, hanging from the plateau instead of standing on the base. So `m^free = (k+1)^L = T(m-1, free)`, the unsigned tower count with `k = m - 1`, `L = free`.
+The free columns of a plateau at height `m` are towers hanging from it: setting `y_i = m − c_i` on the `free` columns gives column heights in `{0, …, m − 1}`, towers of height at most `m − 1` on a base of length `free`. So `m^{free} = T(m − 1, free)`, and Equation (2) is a product of tower counts.
 
-The block count follows the same reflection. A castle has `h + (extra)` blocks where `(extra)` is the total ascent of its skyline beyond the ascents of its core ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] gives `blocks = h` iff unimodal).[^3] On a plateau at level `m` the free columns sit between two columns of height at least `m`, so the extra ascent they add equals the total ascent of the closed walk `m, c_{i}, ..., c_{i+free-1}, m`, which equals its total descent, which is the block count of the reflected tower `y`. Hence the block-parity sign of a castle factors over the plateaus of its core, and
-
-```
-sum over c in fiber(u) of (-1)^blocks(c)  =  (-1)^h  prod over plateaus of P(m-1, free)
-```
-
-with `P(k, L)` the signed tower count. The `(4,2)` rectangle checks: its four castles have `2, 3, 3, 3` blocks, so the signed sum is `1 - 3 = -2 = (-1)^2 P(1, 2)`.[^4]
-
-Summing over cores recovers both halves of the [[castle-counting-formula](pages/castle-counting-formula.md)]:
+**Proposition 3.** For a castle `c` over the core `u`,
 
 ```
-sum over convex u of  prod T(m-1, free)          =  h^w - (h-1)^w
-(-1)^h  sum over convex u of  prod P(m-1, free)  =  P(h-2, w) - P(h-1, w)
-F(w,h) = (1/2) sum over convex u of [ prod T(m-1, free) + (-1)^h prod P(m-1, free) ]
+blocks(c)  =  h  +  Σ_{plateaus}  blocks(y),                                    (3)
 ```
 
-The first identity says the `h^w - (h-1)^w` skylines are partitioned by their cores. The second is the parity clause read plateau by plateau. Both hold in every cell `2 <= w <= 6`, `2 <= h <= 5`, and the plateau signed sum `P(m-1, free)` was also checked directly against the tower definition for `m <= 5`, `free <= 5`.[^4] So the even-block clause refines each fiber through the same `P(k,L)` family: towers hanging from a plateau are counted, with sign, like towers standing on the base.
+with `y` the hanging towers of each plateau, so
 
-## The inside direction fails
+```
+Σ_{c : core(c) = u}  (−1)^{blocks(c)}  =  (−1)^h  Π_{plateaus}  P(m − 1, free).   (4)
+```
 
-If "convex skeleton" is read as the largest convex castle *inside* a given castle, there is no unique answer. `(2,1,2)` has two maximal unimodal minorants, `(2,1,1)` and `(1,1,2)`, and neither dominates the other. Non-uniqueness is the common case: in the `(6,4)` cell 2,905 of the 3,367 castles have more than one maximal convex minorant, and in `(6,5)` 10,242 of 11,529.[^4]
+*Proof.* The block count is the total ascent of the skyline from height 0 ([[castle-sign](pages/castle-sign.md)]), and a unimodal skyline of height `h` has total ascent `h`. The free columns `x_1, …, x_n` of a plateau at height `m` lie between columns of height at least `m`, so they add the total ascent of the closed walk `(m, x_1, …, x_n, m)` to the total ascent of the core. A closed walk has equal total ascent and total descent, and the total descent of `(m, x_1, …, x_n, m)` is the total ascent of `y = (m − x_1, …, m − x_n)` from 0, which is `blocks(y)`. The plateaus contribute independently, which gives Equation (4).
 
-## Why the insertion enumeration did not close
+Equation (3) at a convex castle gives `blocks = h`, the minimum-block characterization of convex castles.[^3] In the width-4, height-2 example, the four castles over the rectangle have `2, 3, 3, 3` blocks, and the signed sum `1 − 3 = −2` is `(−1)^2 P(1, 2)`.
 
-The source inserts one `D`/`U` pair at a time into a run of `R`s, with the rules "insert `D` first", "in pairs", "never adjacent".[^1] Each insertion lowers a stretch of a plateau by one. On the wiki's reading of the source (own reasoning), a valley of depth two, two valleys side by side, or a bump inside a valley is reached by several insertion sequences, and the rules above remove only some of the duplicates. The per-column description has no duplicates: a free column is chosen once, from `{1, ..., m}`, independently of every other free column. The product formula above replaces that case analysis, and its parity refinement is `P(k,L)`.
+Summing Equations (2) and (4) over the cores:
+
+```
+Σ_{convex u}  Π T(m − 1, free)            =  h^w − (h−1)^w  =  A(w, h)
+(−1)^h  Σ_{convex u}  Π P(m − 1, free)    =  P(h−2, w) − P(h−1, w)  =  S(w, h)
+A^e(w, h)  =  (1/2) Σ_{convex u} [ Π T(m − 1, free) + (−1)^h Π P(m − 1, free) ]   (5)
+```
+
+The first line says that the castles of width `w` and height `h` are partitioned by their cores, and the second is the signed count of the [[castle-counting-formula](pages/castle-counting-formula.md)] read plateau by plateau. At width 6 and height 4 the two sums are 3367 and 91, so `A^e(6, 4) = 1729`; at width 5 and height 3 they are 211 and −33, so `A^e(5, 3) = 89`. All of Equations (2) to (5) agree with enumeration for `2 ≤ w ≤ 6`, `2 ≤ h ≤ 5`.[^4]
+
+## No unique largest unimodal skyline below
+
+Below a castle there is no unique largest unimodal skyline. `(2, 1, 2)` has two maximal unimodal skylines below it, `(2, 1, 1)` and `(1, 1, 2)`, and neither lies below the other. It is the only castle of width 3 and height 2 with more than one; at width 6 and height 4, 2,905 of the 3,367 castles have more than one, and at width 6 and height 5, 10,242 of the 11,529.[^4]
+
+## The source's insertion rules
+
+The source inserts one `D`/`U` pair at a time into a run of `R` steps, with the rules that `D` comes first, that the steps come in pairs, and that a `D` and a `U` are never adjacent.[^1] Each insertion lowers a stretch of a plateau of the convex castle by one row. Proposition 2 replaces these insertions by a choice, for each free column independently, of a height in `{1, …, m}`, which counts every castle over the core exactly once.
 
 ## Reproduce
 
@@ -90,37 +113,32 @@ def fiber(u, P):                     # P(k, L): signed tower count, P(k, 0) = 1
         m, l = u[i], j - i + 1
         free = max(l - 2, 0) if m == h else l - 1
         T *= m ** free; S *= P(m - 1, free); i = j + 1
-    return T, S                      # |fiber|, and sum of (-1)^blocks over it
+    return T, S                      # Equation (2), and Equation (4)
 ```
 
-Brute force over `{1..h}^w` with `max = h`, grouped by `core`, reproduces both outputs cell by cell.
+Enumerating `{1, …, h}^w` with maximum `h` and grouping by `core` reproduces both outputs for every core.[^4]
 
 ## Appearances in Sources
 
-- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the rectangular / convex / variations taxonomy and the `D`/`U`-pair insertion rules this page replaces with a per-column description.
-- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - records the variation enumeration as the route that never resolved into a formula.
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - `blocks >= h` with equality iff unimodal, the fact that makes the parity refinement a tower count.
+- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the rectangular, convex and variation classes and the `D`/`U` insertion rules.
+- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the enumeration of variations as an approach that did not give a formula.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - `blocks ≥ h` with equality exactly for unimodal skylines.
 
 ## Related Concepts
 
-- [[convex-castle](pages/convex-castle.md)] - the cores; every convex castle is its own core and the cores of a cell are exactly the convex castles.
-- [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the number of cores, `C(2h+w-3, w-1)`, and the minimum-block characterization.
-- [[urd-step-strings](pages/urd-step-strings.md)] - the encoding whose variation taxonomy this page completes.
-- [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - `T(k,L) = (k+1)^L`; the fiber's unsigned factors are these counts for the inverted towers.
-- [[signed-tower-count](pages/signed-tower-count.md)] - `P(k,L)`; the fiber's signed factors, so `P` counts towers hanging from a plateau as well as towers standing on the base.
-- [[castle-counting-formula](pages/castle-counting-formula.md)] - both terms of `F(w,h)` as sums over cores.
-- [[castle-sign](pages/castle-sign.md)] - the sign `(-1)^blocks`, which factors over the plateaus of the core.
-- [[castle-representations](pages/castle-representations.md)] - the cycle-forest form is the same vertical nesting read recursively; the core is its first level.
-- [[castle-classification-shape](pages/castle-classification-shape.md)] - the unimodal type, here the fixed points of `core`.
-- [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - the cores by area, A001523.
-- [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the other closing operator on skylines (window-`g` running minimum); the core is the running-maximum closing from both ends.
+- [[convex-castle](pages/convex-castle.md)] - the convex castles, which are the cores, and a summary of this page's fiber count.
+- [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the number of cores, `C(2h + w − 3, w − 1)`.
+- [[castle-counting-formula](pages/castle-counting-formula.md)] - the tower count `T(k, L) = (k+1)^L` and the formula for `A^e(w, h)` that Equation (5) refines.
+- [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, L)`, the factors of Equation (4).
+- [[castle-sign](pages/castle-sign.md)] - the block count as total ascent and total descent.
+- [[urd-step-strings](pages/urd-step-strings.md)] - the step words in which the source states its insertion rules.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the unimodal type, the castles with `core(c) = c`.
+- [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - the convex castles by area, A001523.
+- [[tower-spacing-castles](pages/tower-spacing-castles.md)] - skylines described by a running minimum over a window of `g` columns, another construction from running extrema.
 
 ## Footnotes
 
-[^1]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Steps-Based Approach" L109,L117 - "we can classify all remaining castles as variations on convex castles. To construct variations on castles, we look for runs of RRRs of length 3 or more. Each pair of Rs creates a slot for additional U or D moves ... we MUST insert Ds first; if we insert Us first, we will construct a duplicate castle variation that would be covered by another convex castle. We must also insert Ds and Us in pairs, so as to keep the total height change 0. Last, we cannot insert Ds and Us next to one another."
-
+[^1]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Steps-Based Approach" L109, L117 - "we can classify all remaining castles as variations on convex castles. To construct variations on castles, we look for runs of RRRs of length 3 or more. Each pair of Rs creates a slot for additional U or D moves", "we MUST insert Ds first; if we insert Us first, we will construct a duplicate castle variation that would be covered by another convex castle. We must also insert Ds and Us in pairs, so as to keep the total height change 0. Last, we cannot insert Ds and Us next to one another."
 [^2]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"What was tried and did not work" L190 - "U/R/D convex-castle enumeration. Conceptually clean, but the case analysis to enumerate variations of a convex castle never resolved into a formula."
-
-[^3]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §1 L25-33 - "#blocks >= max(c) = h, with equality iff the profile is unimodal. Hence a convex castle of height h has exactly h blocks, and convex castles are exactly the minimum-block castles of height h."
-
-[^4]: Verified by execution, 2026-09-20. For every cell `2 <= w <= 6`, `2 <= h <= 5` (largest cell `(6,5)`, 11,529 castles): `min(L, R)` is unimodal, dominates the castle, and is pointwise below every unimodal majorant found by brute force; the number of castles over each core equals `prod m^free`; the signed sum over each fiber equals `(-1)^h prod P(m-1, free)`; and the two sums over cores equal `h^w - (h-1)^w` and `P(h-2,w) - P(h-1,w)` (for example `(6,4)`: 3367 and 91, so `F = 1729`; `(5,3)`: 211 and -33, so `F = 89`). The plateau signed sum, `sum over x in {1..m}^n of (-1)^(total ascent of (m, x, m))`, equals `P(m-1, n)` by direct enumeration for `m <= 5`, `n <= 5`. Maximal unimodal minorants counted by brute force over all unimodal skylines below the castle: `(3,2)` has 1 castle of 7 with more than one (`(2,1,2)`), `(6,4)` has 2,905 of 3,367, `(6,5)` has 10,242 of 11,529.
+[^3]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §1 L25-28 - "#blocks >= max(c) = h, with equality iff the profile is unimodal. Hence a convex castle of height h has exactly h blocks, and convex castles are exactly the minimum-block castles of height h."
+[^4]: Verified by execution (Python 3.11, 2026-10-16): for every `2 ≤ w ≤ 6` and `2 ≤ h ≤ 5`, `core(c)` is unimodal for every castle, the cores are exactly the `C(2h + w − 3, w − 1)` convex castles, and Equations (2) and (4) hold for every core, with `P` summed over all towers; the two sums over cores at `(6, 4)` (3367, 91) and `(5, 3)` (211, −33); the rectangle as the unique largest fiber for `3 ≤ w ≤ 6`, `2 ≤ h ≤ 5` with `h^w ≤ 20000`, and all fibers equal to 1 at `w = 2`; the castles over `(2, 2, 3, 2, 2, 2)` (8); maximal unimodal minorants by brute force over all unimodal skylines below each castle, `(3, 2)`: 1 of 7, `(6, 4)`: 2,905 of 3,367, `(6, 5)`: 10,242 of 11,529.
