@@ -5,7 +5,7 @@ summary: Vera W. de Spinadel introduces the Metallic Means Family, the positive 
 tags: [paper, source, metallic-mean, golden-ratio, silver-ratio, bronze-ratio, continued-fraction, quadratic-irrational, generalized-fibonacci, pisot-number, naming]
 sources: [de-spinadel-1999-family-of-metallic-means]
 created: 2026-10-09
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
 # The Family of Metallic Means (de Spinadel, 1999)
@@ -39,11 +39,11 @@ The paper calls `σ_4^1 = φ³` "a striking result related to the continued frac
 
 | `q` | member | value | continued fraction |
 |---|---|---|---|
-| 2 | Copper Mean `σ_Cu` | `2` | `[2, 0̄]` |
+| 2 | Copper Mean `σ_Cu` | `2` | `[2, 0̄]` (as a continued fraction, `2 = [2]`) |
 | 3 | Nickel Mean `σ_Ni` | `(1 + √13)/2` | `[2, 3̄]` |
 | 4-12 | `σ_1^4, …, σ_1^12` | `(1 + √(1 + 4q))/2` | `[2, 1̄,1̄,3̄]`, …, `σ_1^6 = 3`, …, `σ_1^12 = 4` |
 
-The integer members `σ_1^q = 2, 3, 4, …` occur at `q = 2, 6, 12, 20, 30, …`. The non-integer expansions are palindromic apart from the last term of the period, which is `2m − 1`.[^6]
+An overline marks the period. The integer members `σ_1^q = 2, 3, 4, …` occur at `q = 2, 6, 12, 20, 30, …`. For the other members, write `m` for the first term of the expansion, the integer part of `σ_1^q`; the period is palindromic apart from its last term, which is `2m − 1` (checked for `q < 40`).[^6][^exec]
 
 **Additive and Pisot properties.** The members of the family are the only positive quadratic irrationals whose generalized secondary Fibonacci sequences are also geometric progressions.[^7] The `q = 1` members, with purely periodic expansions, are quadratic Pisot numbers.[^8]
 
@@ -51,27 +51,22 @@ De Spinadel's Bridges 2003 paper names the same members: the silver mean `[2]`, 
 
 ## The castle reading
 
-The wiki's metallic means ([[metallic-means](pages/metallic-means.md)]) are this family `σ_p^q`, with `δ_a = σ_a^1` for the `q = 1` members. Golden, silver and bronze are de Spinadel's names for `a = 1, 2, 3`, and the paper's `σ_4^1 = 2 + √5 = φ³` is the wiki's `a = 4` coincidence.
+The wiki's metallic means ([[metallic-means](pages/metallic-means.md)]) are this family `σ_p^q`, with `δ_a = σ_a^1` for the `q = 1` members. Golden, silver and bronze are de Spinadel's names for `a = 1, 2, 3`, and the paper's `σ_4^1 = 2 + √5 = φ³` is the case `n = 3` of `δ_{L_n} = φ^n` for odd `n`, with `L_n` the Lucas numbers, which [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] proves: `δ_a` is a power of `φ` exactly for `a = 1, 4, 11, 29, …`.
 
-- **Copper and nickel.** De Spinadel's copper mean is `σ_1^2 = 2` and the nickel mean is `σ_1^3 = (1 + √13)/2`. Neither is a `δ_a`, and the paper gives `σ_4^1` and `σ_5^1` no names, so the wiki writes them `δ_4` and `δ_5`. Tree castles with heights at most `h` satisfy `T(w) = T(w − 1) + (h − 1)·T(w − 2)` and grow at `σ_1^{h−1}`: golden at `h = 2`, copper at `h = 3`, nickel at `h = 4` ([[metallic-means](pages/metallic-means.md)]).
-- **The wider family on castle strips.** A castle-strip denominator `1 − p_1 x − p_2 x²` has growth `(p_1 + √(p_1² + 4 p_2))/2`, which is `σ_{p_1}^{p_2}`. [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] calls a strip metallic only when `p_2 = 1`, the wiki's `δ_a`. In de Spinadel's family, the no-adjacent-ceiling height-3 rule there, with denominator `1 − 2x − 2x²` and growth `1 + √3`, is the member `σ_2^2`.
+- **Copper and nickel.** De Spinadel's copper mean is `σ_1^2 = 2` and the nickel mean is `σ_1^3 = (1 + √13)/2`. Neither is a `δ_a`, and the paper gives `σ_4^1` and `σ_5^1` no names, so the wiki writes them `δ_4` and `δ_5`. The tree skylines of height at most `h` satisfy `T_h(w) = T_h(w − 1) + (h − 1)·T_h(w − 2)`, whose growth is the root `σ_1^{h−1}` of `x² − x − (h − 1)`, and the tree castles of height `h`, the differences `T_h − T_{h−1}`, grow at the same rate: golden by width at `h = 2`, copper at `h = 3`, nickel at `h = 4` ([[castle-graph](pages/castle-graph.md)], [[metallic-means](pages/metallic-means.md)]).
+- **The wider family on castle strips.** A strip whose width generating function has denominator `1 − p_1 x − p_2 x²`, with `p_1, p_2 ≥ 1`, grows at `(p_1 + √(p_1² + 4 p_2))/2 = σ_{p_1}^{p_2}`, on the `q = 1` row exactly when `p_2 = 1` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). The rule on the heights `{1, 2, 3}` with no two neighboring columns of height 3 has denominator `1 − 2x − 2x²` and grows at `σ_2^2 = 1 + √3`.
 - **Pisot.** §7 states that the `q = 1` members, the wiki's `δ_a`, are quadratic Pisot numbers.[^8]
-
-## Key Takeaways
-
-- De Spinadel's Metallic Means Family is all `σ_p^q`, the roots of `x² − px − q`, and the wiki uses all of it; `δ_a` is the `q = 1` part.
-- Copper is `2` and nickel is `(1 + √13)/2`; `δ_4 = 2 + √5` and `δ_5 = (5 + √29)/2` have no names. Tree castles realize the `p = 1` members `σ_1^{h−1}`.
-- `σ_4^1 = 2 + √5 = φ³` and `σ_p^1 = [p̄]` are in the paper.
 
 ## Entities & Concepts
 
-- The metallic means `δ_a`, their continued fractions and the `a = 4` coincidence - [[metallic-means](pages/metallic-means.md)].
-- Which metallic means castle strips realize - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)], [[ridge-castle](pages/ridge-castle.md)].
-- Continued fractions of quadratic irrationals - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)].
+- [[metallic-means](pages/metallic-means.md)] - the metallic means `σ_p^q` and `δ_a`, their continued fractions, and the named members.
+- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)], [[ridge-castle](pages/ridge-castle.md)] - the growth constants `σ_{p_1}^{p_2}` of castle strips, the ridge strips growing at `δ_{h−1}`, and the powers of `φ` among the `δ_a`.
+- [[castle-graph](pages/castle-graph.md)] - the tree skylines and tree castles, which grow at `σ_1^{h−1}`.
+- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the continued fractions of quadratic irrationals, and Galois's criterion for pure periodicity.
 
 ## Relation to Other Wiki Pages
 
-[[metallic-means](pages/metallic-means.md)] takes its definition, its five names, the integer members and `σ_4^1 = φ³` from this paper. The growth classes of [[castle-classification-growth](pages/castle-classification-growth.md)] Axis 8 are named by its members.
+[[metallic-means](pages/metallic-means.md)] takes its definition, its five names, the integer members and `σ_4^1 = φ³` from this paper. [[castle-classification-growth](pages/castle-classification-growth.md)] names growth types by its members, in the form "golden by width".
 
 ## Footnotes
 
@@ -85,4 +80,4 @@ The wiki's metallic means ([[metallic-means](pages/metallic-means.md)]) are this
 [^7]: [[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)] §4 L249 - "The members of the MMF are the only positive quadratic irrational numbers that originate GSFS (with additive properties), which are, simultaneously, geometric progressions."
 [^8]: [[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)] §7 L353-355 - "the metallic means which expansion in continued fractions is purely periodic are quadratic Pisot numbers because they are the positive solution of quadratic equations of the form" `⟦x² − px − 1 = 0⟧` "p natural number."
 [^bridges]: https://archive.bridgesmathart.org/2003/bridges2003-415.pdf (de Spinadel, "Number Theory and Art", Bridges 2003; PDF read 2026-10-09) p.415 abstract - "The Metallic Means Family (MMF), was introduced by the author [1]"; p.420 - "σ_Ag = [2,2,...] = [2̄] = 1+√2, the Bronze Mean σ_Br = (3+√13)/2 = [3̄]", "Other relatives are the Copper Mean σ_Cu = 2 = [2, 0̄], the Nickel Mean σ_Ni = (1+√13)/2 = [2, 3̄]".
-[^exec]: Verified by execution (2026-10-09, SymPy `continued_fraction_periodic`): `(p + √(p² + 4))/2 = [p̄]` for `p = 1..10`, and `(1 + √(1 + 4q))/2` for `q = 1..12` gives `[1̄]`, `2`, `[2, 3̄]`, `[2, 1̄,1̄,3̄]`, `[2, 1̄,3̄]`, `3`, `[3, 5̄]`, `[3, 2̄,1̄,2̄,5̄]`, `[3, 1̄,1̄,5̄]`, `[3, 1̄,2̄,2̄,1̄,5̄]`, `[3, 1̄,5̄]`, `4`, matching the transcribed expansions; `1 + √3` is the positive root of `x² − 2x − 2`.
+[^exec]: Verified by execution (2026-10-09, SymPy `continued_fraction_periodic`): `(p + √(p² + 4))/2 = [p̄]` for `p = 1..10`, and `(1 + √(1 + 4q))/2` for `q = 1..12` gives `[1̄]`, `2`, `[2, 3̄]`, `[2, 1̄,1̄,3̄]`, `[2, 1̄,3̄]`, `3`, `[3, 5̄]`, `[3, 2̄,1̄,2̄,5̄]`, `[3, 1̄,1̄,5̄]`, `[3, 1̄,2̄,2̄,1̄,5̄]`, `[3, 1̄,5̄]`, `4`, matching the transcribed expansions; `1 + √3` is the positive root of `x² − 2x − 2`; on 2026-10-16 (Python 3.11, SymPy), for every non-integer `σ_1^q` with `q < 40` the period is palindromic apart from its last term, which is `2m − 1` with `m` the first term, and `δ_a` is a power of `φ` for `a < 40` exactly at `a = 1, 4, 11, 29`.
