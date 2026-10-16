@@ -1,79 +1,72 @@
 ---
 title: Forcibly simple score vector
 category: Concepts
-summary: A score vector S is forcibly simple if every tournament realizing S is simple (Muller-Nešetřil-Pelant, 1975). There are exactly five: (0), (0, 1), (1, 1, 1), (2, 2, 2, 2, 2), and (3, 3, 3, 3, 3, 3, 3). Tetali's classification of unique tournaments filters this list to the four strong-and-unique cases, dropping (0, 1) (not strong) and (3, 3, 3, 3, 3, 3, 3) (has three non-isomorphic strong realizers, so not unique).
+summary: A score vector is forcibly simple if every tournament with that score vector is simple (Tetali's Definition 2). By Theorem 3 of Muller, Nešetřil and Pelant (1975), as Tetali paraphrases it, there are exactly five, (0), (0, 1), (1, 1, 1), (2, 2, 2, 2, 2) and (3, 3, 3, 3, 3, 3, 3); an enumeration of all tournaments on at most 8 vertices finds exactly these. Tetali's classification of unique tournaments keeps three of them, dropping (0, 1), which is not strong, and (3, 3, 3, 3, 3, 3, 3), which has three non-isomorphic realizers, and adds (1, 1, 2, 2) separately.
 tags: [concept, tournament, forcibly-simple, score-vector, muller-nesetril-pelant, classification, tetali]
 sources: [tetali-1998-unique-tournaments]
 created: 2026-09-17
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Forcibly simple score vector
 
 ## Definition
 
-A score vector `S` is **forcibly simple** (FS) if every tournament realizing `S` is a [[simple-tournament](pages/simple-tournament.md)].[^1] The term is Muller-Nešetřil-Pelant's (1975), quoted here from Tetali's Definition 2.
+A score vector `S` is **forcibly simple** if every tournament with score vector `S` is a [[simple-tournament](pages/simple-tournament.md)].[^1] This is Tetali's Definition 2; Tetali paraphrases the theorems of Muller, Nešetřil and Pelant "to suit our terminology".[^2]
 
-## The classification
+*Example.* `(1, 1, 1)` is forcibly simple: its only realizer is the 3-cycle, which is simple. `(1, 1, 2, 2)` is not: its only realizer, the strong tournament on 4 vertices, has the uniform set `{1, 2}` of the example on [[simple-tournament](pages/simple-tournament.md)].
 
-Muller-Nešetřil-Pelant proved:[^2]
+## The five forcibly simple score vectors
 
-**Theorem (Muller-Nešetřil-Pelant 1975).** A score vector `S` is forcibly simple if and only if `S ∈ {(0), (0, 1), (1, 1, 1), (2, 2, 2, 2, 2), (3, 3, 3, 3, 3, 3, 3)}`.
+**Theorem (Muller, Nešetřil and Pelant, as Tetali's Theorem 3).** A score vector is forcibly simple exactly when it is one of[^3]
 
-Five score vectors, on 1, 2, 3, 5, 7 vertices respectively. Three of them are odd regular tournaments (`(1, 1, 1)` = `R_3`, `(2, 2, 2, 2, 2)` = `R_5`, `(3, 3, 3, 3, 3, 3, 3)` = a regular score on 7 vertices with 3 non-isomorphic realizers), one is the one-vertex tournament (`(0)`), and one is the transitive tournament on 2 vertices (`(0, 1)`).
+```
+(0),   (0, 1),   (1, 1, 1),   (2, 2, 2, 2, 2),   (3, 3, 3, 3, 3, 3, 3).
+```
+
+They lie on 1, 2, 3, 5 and 7 vertices. `(1, 1, 1)`, `(2, 2, 2, 2, 2)` and `(3, 3, 3, 3, 3, 3, 3)` are the regular score vectors on 3, 5 and 7 vertices, `(0)` belongs to the one-vertex tournament, and `(0, 1)` to the tournament on two vertices, which is simple because it has no set `M` with `2 ≤ |M| < 2`. An enumeration of all tournaments on at most 8 vertices, testing every realizer of every score vector for simplicity, finds exactly these five for `n ≤ 8`.[^4]
 
 ## Role in Tetali's classification
 
-Tetali's Theorem 1 filters this list to the strong-and-unique cases:[^3]
+For `n ≠ 4`, a strong unique tournament has a forcibly simple score vector ([[simple-tournament](pages/simple-tournament.md)], section *Role in Tetali's proof*). Tetali's Theorem 1 then keeps three of the five:[^5]
 
-- `(0)`: unique, strongly connected trivially, retained → 1-vertex basic.
-- `(0, 1)`: unique but **not strong** (the transitive tournament on 2 vertices has a source and a sink) → dropped.
-- `(1, 1, 1)`: unique, strong → 3-vertex basic.
-- `(2, 2, 2, 2, 2)`: unique, strong → 5-vertex basic.
-- `(3, 3, 3, 3, 3, 3, 3)`: forcibly simple **but not unique** - Tetali notes explicitly that this score vector has three non-isomorphic strong realizers → dropped.
+- `(0)`, `(1, 1, 1)` and `(2, 2, 2, 2, 2)` each have one realizer, which is strong: the basic tournaments on 1, 3 and 5 vertices.
+- `(0, 1)` has one realizer, which is not strong: one vertex beats the other, and no edge leads back.
+- `(3, 3, 3, 3, 3, 3, 3)` has three non-isomorphic realizers, all strong, so it is not unique. It is the only forcibly simple score vector on more than five vertices, so no strong tournament on six or more vertices is unique.
 
-The `n = 4` case (`(1, 1, 2, 2)`) is *not* on the FS list because the strong tournament on 4 vertices is not simple; Tetali adds it back by direct inspection.[^4]
+`(1, 1, 2, 2)` is not forcibly simple, and Tetali adds it as the fourth basic tournament, on 4 vertices, by inspection.[^6]
 
-This is how Tetali reduces the classification of unique tournaments to the five-element list above.
+## Regular tournaments
 
-## Why the size-7 regular tournament is not unique
+A regular tournament on `n = 2r + 1` vertices, every score equal to `r`, is strong: a set `X` with no edge leading out of it has scores summing to `C(|X|, 2)`, so `|X| · r = |X|(|X| − 1)/2`, and `|X| = n`. The regular tournaments up to isomorphism number `A096368`, `1, 1, 1, 3, 15, 1223, …` on `1, 3, 5, 7, 9, 11` vertices:[^7]
 
-The regular tournament on 7 vertices has three non-isomorphic strong realizers, all with score `(3, 3, 3, 3, 3, 3, 3)`. Tetali cites this as the "note" observation that the strong-and-unique series stops at size 5: `(3, 3, 3, 3, 3, 3, 3)` is the only remaining candidate above size 5, and it fails uniqueness.[^3]
-
-## Cross-check against the Online Encyclopedia of Integer Sequences (OEIS): regular tournaments
-
-Three of the five FS score vectors are regular, and the OEIS count of unlabeled regular tournaments on `2n+1` nodes is `A096368 = 1, 1, 1, 3, 15, 1223, …` for `1, 3, 5, 7, 9, 11` nodes.[^5] Read against Tetali's filter:
-
-| nodes | regular score | `A096368` | Tetali |
+| vertices | regular score vector | regular tournaments, `A096368` | in Tetali's proof |
 |---|---|---|---|
-| 3 | `(1, 1, 1)` | 1 | unique, strong → basic |
-| 5 | `(2, 2, 2, 2, 2)` | 1 | unique, strong → basic |
-| 7 | `(3, 3, 3, 3, 3, 3, 3)` | 3 | three realizers → not unique |
+| 3 | `(1, 1, 1)` | 1 | unique and strong, a basic tournament |
+| 5 | `(2, 2, 2, 2, 2)` | 1 | unique and strong, a basic tournament |
+| 7 | `(3, 3, 3, 3, 3, 3, 3)` | 3 | three realizers, not unique |
 
-The "three non-isomorphic strong realizers" Tetali checks by hand is `A096368(3) = 3` (a regular tournament on `≥ 3` nodes is automatically strong). For comparison with all score vectors (`A000571 = 1, 1, 2, 4, 9, 22, 59, …` on `1, 2, 3, 4, 5, 6, 7` nodes), the FS vectors are `1` of `1`, `1` of `1`, `1` of `2`, `1` of `9` and `1` of `59` at `n = 1, 2, 3, 5, 7`.[^5] The wiki's own brute force on [[tree-castle-by-area](pages/tree-castle-by-area.md)] re-derived the same picture through `n = 8` (zero strong unique tournaments at sizes 6 and 7, all 31 unique tournaments at `n = 8` non-strong), using the `is_strongly_connected` snippet on [[castle-snippets-strips](pages/castle-snippets-strips.md)].
+The three realizers that Tetali checks by hand are `A096368(3) = 3`, and the enumeration finds the same three.[^4] Among all score vectors, `A000571 = 1, 1, 2, 4, 9, 22, 59` on `1, …, 7` vertices, the forcibly simple ones are `1` of `1`, `1` of `1`, `1` of `2`, `1` of `9` and `1` of `59` at `n = 1, 2, 3, 5, 7`.
 
-On the castle side the five FS sizes `1, 2, 3, 5, 7` are *not* the composition parts: the parts are Tetali's basic sizes `{1, 3, 4, 5}`, with `4` the strong-but-not-simple exception added by inspection. That part set is what makes the `h = 4` tree-castle row of [[tree-castle-by-area](pages/tree-castle-by-area.md)] equal `A000570` ([[oeis-index](pages/oeis-index.md)]).
+The sizes of the basic tournaments, `{1, 3, 4, 5}`, are the parts of the compositions that count the unique tournaments ([[unique-tournament](pages/unique-tournament.md)]), and of the compositions that the tree skylines of height at most 4 and area `n − 1` correspond to ([[tree-castle-by-area](pages/tree-castle-by-area.md)]); they are not the sizes `1, 2, 3, 5, 7` of the forcibly simple score vectors.
 
 ## Appearances in Sources
 
-- [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] - Definition 2 (p.158 L68-69), Theorem 3 quotation (p.158 L75-82), and the filtering argument in the proof of Theorem 1 (p.159 L94-107).
+- [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] - Definition 2, Theorem 3 of Muller et al. as Tetali paraphrases it, and the filtering of the five score vectors in the proof of Theorem 1.
 
 ## Related Concepts
 
-- [[simple-tournament](pages/simple-tournament.md)] - the underlying property; FS is the score-level version.
-- [[unique-tournament](pages/unique-tournament.md)] - the four basic strong-and-unique tournaments come from filtering the five FS score vectors.
-- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the castle side of the part set `{1, 3, 4, 5}`, and the wiki's brute-force re-verification through `n = 8`.
-- [[castle-snippets](pages/castle-snippets.md)] - `is_strongly_connected(T)`, the strongly connected component (SCC) test used in that verification.
-- [[oeis-index](pages/oeis-index.md)] - `A000570` directory entry.
+- [[simple-tournament](pages/simple-tournament.md)] - simple tournaments, of which this is the score-vector version, and the strong tournament on 4 vertices that is not simple.
+- [[unique-tournament](pages/unique-tournament.md)] - the four basic strong unique tournaments and the count by compositions into `{1, 3, 4, 5}`.
+- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree skylines of height at most 4, equinumerous with the unique tournaments.
+- [[castle-snippets-strips](pages/castle-snippets-strips.md)] - `is_strongly_connected(T)`, a strong-connectivity test for tournament matrices.
 
 ## Footnotes
 
-[^1]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.158 L68-69 — "Definition 2. We call a score vector `S` forcibly simple (FS) if every tournament with the score vector `S` is simple."
-
-[^2]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.158 L75-82 — "Theorem 3 (Muller et al.). The following two statements are equivalent: (1) `S` is forcibly simple; (2) `S ∈ {(0), (0, 1), (1, 1, 1), (2, 2, 2, 2, 2), (3, 3, 3, 3, 3, 3, 3)}`."
-
-[^3]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.159 L94-103 [synthesis] — the filtering of the five FS score vectors down to the four basic strong-and-unique tournaments.
-
-[^4]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.159 L104-107 — "The only case not covered by the above is the unique strong tournament on four vertices with the score vector (1, 1, 2, 2)."
-
-[^5]: https://oeis.org/A096368 (2026-09-19) — "Number of unlabeled regular tournaments with 2n+1 nodes" 1, 1, 1, 3, 15, 1223, 1495297, …; https://oeis.org/A000571 (2026-09-19) — "Number of different score sequences that are possible in an n-team round-robin tournament" 1, 1, 1, 2, 4, 9, 22, 59, 167, 490, … (offset 0).
+[^1]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.158 L68-69 - "Definition 2. We call a score vector S forcibly simple (FS) if every tournament with the score vector S is simple."
+[^2]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.158 L70-71, p.159 L132-133 - "Muller et al. [4] prove, inter alia, the following interesting theorems. We paraphrase the theorems to suit our terminology", and reference 4: "V. Muller, J. Nešetřil, and J. Pelant, Either tournaments or algebras?, Discrete Math. 11 (1975), 37-66."
+[^3]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.158 L75-82 - "Theorem 3. (Muller et al.). The following two statements are equivalent: (1) S is forcibly simple; (2) S ∈ {(0), (0, 1), (1, 1, 1), (2, 2, 2, 2, 2), (3, 3, 3, 3, 3, 3, 3)}."
+[^4]: Verified by execution (Python 3.11, 2026-10-16): all tournaments on `n ≤ 8` vertices up to isomorphism, every class tested for simplicity over all sets `M` with `2 ≤ |M| < n`; the score vectors all of whose realizers are simple are exactly the five of Theorem 3; `(3, 3, 3, 3, 3, 3, 3)` has three realizers, all strong; the regular tournaments on 3, 5 and 7 vertices number 1, 1 and 3, all strong.
+[^5]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.159 L96-103 - "a score vector which corresponds to a tournament that is both strong and unique (except for n=4) must come from the list of five score vectors in statement (2) of Theorem 3. The score vector (0, 1) corresponds to a unique tournament which is not strong; it is easy to check that there are three nonisomorphic strong tournaments which have the score vector (3, 3, 3, 3, 3, 3, 3). (Note that this among other things gives us that there are no strong tournaments on six or more vertices which belong to Unique.)"
+[^6]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.159 L104-107 - "The only case not covered by the above is the unique strong tournament on four vertices with the score vector (1, 1, 2, 2). Thus the only strong tournaments which are in Unique are the four tournaments shown in Fig. 1."
+[^7]: https://oeis.org/A096368 and https://oeis.org/A000571 (read 2026-10-16) - "Number of unlabeled regular tournaments with 2n+1 nodes" `1, 1, 1, 3, 15, 1223, 1495297, …` (offset 0); "Number of different score sequences that are possible in an n-team round-robin tournament" `1, 1, 1, 2, 4, 9, 22, 59, 167, …` (offset 0).
