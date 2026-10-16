@@ -1,26 +1,26 @@
 ---
 title: Castle cryptography - the number theory, for engineers
 category: Analyses
-summary: A from-scratch, engineer-facing explainer for the three terms the castle cryptosystem uses — characteristic polynomial, irreducible (= prime, for polynomials), and the discrete logarithm problem (DLP) — grounded in the running castle_dh code rather than lemmas. Char poly = the recurrence's tap polynomial (same as an LFSR feedback polynomial); it is the modulus Q of the ring F_p[x]/(Q). Irreducible is the polynomial version of prime: a reducible Q lets the DLP split into cheap sub-problems by CRT/Pohlig-Hellman, while an irreducible Q (at a prime p where it stays irreducible) gives the full-size discrete log in one field F_{p^d} (less degenerate). Caveats: irreducible ≠ secure (the group order p^d − 1 still factors algebraically into cyclotomic values, so Pohlig-Hellman on the group order applies, and finite fields have subexponential index-calculus attacks), and Berlekamp-Massey breaks any linear output regardless of Q. Companion to the castle-cryptography seminar series.
+summary: The three terms the castle cryptosystem uses, explained from the castle_dh code. The characteristic polynomial records the recurrence of P(k, ·) (the feedback polynomial of a linear feedback shift register) and is the modulus Q of the ring F_p[x]/(Q). An irreducible polynomial is the polynomial analogue of a prime: a reducible Q splits the discrete logarithm problem (DLP) into smaller ones by the Chinese Remainder Theorem, while a Q irreducible mod p makes the ring one field F_{p^d}. An irreducible Q is not enough for security: p^d − 1 = ∏ Φ_e(p) factors for every p, so Pohlig-Hellman still applies, finite fields have subexponential index-calculus attacks, and Berlekamp-Massey recovers any linear output whatever Q is.
 tags: [analysis, cryptography, number-theory, characteristic-polynomial, irreducible-polynomial, discrete-logarithm, finite-field, pedagogy, engineer, castle]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
-# Castle cryptography — the number theory, for engineers
+# Castle cryptography - the number theory, for engineers
 
 The [[castle-cryptography](pages/castle-cryptography.md)] seminar series uses three number-theory terms. This page explains them from scratch, using the running `castle_dh` code.
 
-## "char poly" — the characteristic polynomial
+## The characteristic polynomial
 
-In `castle_dh`, the modulus was `Q = [-4, 4, -3, 1]`, i.e. `Q(x) = x³ − 3x² + 4x − 4`. That is the **characteristic polynomial** of the castle. It comes from the castle's count sequence `P(2,L) = 1, 1, 3, 9, 19, 33, 59, …`, which obeys a **linear recurrence**:
+In `castle_dh`, the modulus was `Q = [-4, 4, -3, 1]`, i.e. `Q(x) = x³ − 3x² + 4x − 4`. That is the **characteristic polynomial** `char_2` of the signed tower count `P(2, L) = 1, 1, 3, 9, 19, 33, 59, …` ([[signed-tower-count](pages/signed-tower-count.md)]), which satisfies a **linear recurrence**:
 
 ```
 P(2,L)  =  3·P(2,L−1)  −  4·P(2,L−2)  +  4·P(2,L−3).
 ```
 
-The char poly just encodes those recurrence coefficients as a polynomial: `x³ − 3x² + 4x − 4`. In **LFSR** terms it is the feedback (tap) polynomial. With the initial terms it regenerates the whole sequence, and (via [[kitamasa](pages/kitamasa.md)]) jumps far ahead fast.
+The characteristic polynomial records the coefficients of the recurrence. For a linear feedback shift register (LFSR), a register whose next value is a fixed linear combination of the previous ones, it is the feedback polynomial. With the initial terms it determines the whole sequence, and [[kitamasa](pages/kitamasa.md)]'s method computes a far term from it in `O(d² log L)` operations.
 
 Three coefficients and three seeds regenerate the sequence:
 
@@ -35,22 +35,22 @@ def p2(L):               # char_2 = x^3 - 3x^2 + 4x - 4  =>  P(L) = 3P(L-1) - 4P
 [1, 1, 3, 9, 19, 33, 59, 121]
 ```
 
-That `[1, 1, 3, 9, 19, 33, 59, 121]` is `P(2, L)`. The coefficients `(3, −4, 4)` are the polynomial `x³ − 3x² + 4x − 4`; with the seeds `(1, 1, 3)` they determine the sequence.[^2]
+That is `P(2, L)` for `L = 0, …, 7`. The coefficients `(3, −4, 4)` give the polynomial `x³ − 3x² + 4x − 4`, and with the initial values `(1, 1, 3)` they determine the sequence.[^2]
 
-In the cryptosystem, `Q` is the **modulus**: all arithmetic happens "mod `Q`", meaning whenever a polynomial reaches degree 3 you apply the rewrite `x³ → 3x² − 4x + 4` to fold it back below degree 3. That rewrite *is* the recurrence, applied to polynomials instead of to numbers. The ring is `F_p[x]/(Q)` — polynomials of degree < 3, coefficients mod `p`.
+In the cryptosystem, `Q` is the **modulus**: arithmetic is mod `Q`, so whenever a product reaches degree 3, `x³` is replaced by `3x² − 4x + 4`, which brings it back below degree 3. The replacement is the recurrence, applied to polynomials instead of numbers. The ring is `F_p[x]/(Q)`: polynomials of degree less than 3 with coefficients mod `p`.
 
-## "irreducible" — "prime" for polynomials
+## Irreducible polynomials, the analogue of primes
 
 **Irreducible is the polynomial analogue of prime.**
 
 - A **prime integer** doesn't factor into smaller integers > 1: `7` is prime, `12 = 3·4` is not.
 - An **irreducible polynomial** doesn't factor into smaller-degree polynomials over the given field: `x² + 1` is irreducible over the reals, `x² − 1 = (x−1)(x+1)` is not.
 
-For the castle char polys, the split is by parity of `k`:[^1]
+For the castle characteristic polynomials the split goes by the parity of `k`: `char_k` is irreducible over the rationals for odd `k ≤ 31` and has exactly two irreducible factors for even `k ≤ 40` (computed; [[signed-tower-count](pages/signed-tower-count.md)], [[tower-parity-sectors](pages/tower-parity-sectors.md)]). The first six:[^1]
 
 | | char poly | factors? |
 |---|---|---|
-| **even `k`** (used in the toy) | `char_2 = x³−3x²+4x−4 = (x−2)(x²−x+2)` | **reducible** (composite) |
+| **even `k`** (`char_2` is used in `castle_dh`) | `char_2 = x³−3x²+4x−4 = (x−2)(x²−x+2)` | **reducible** (composite) |
 | | `char_4 = (x²−2x+4)(x³−3x²+2x−4)` | reducible |
 | | `char_6 = (x³−4x²+4x−8)(x⁴−3x³+8x²−4x+8)` | reducible |
 | **odd `k`** | `char_1 = x²−2x+2` | **irreducible** (prime) |
@@ -73,31 +73,29 @@ sp.factor(x**4 - 4*x**3 + 8*x**2 - 8*x + 8)  # char_3 : irreducible
 x**4 - 4*x**3 + 8*x**2 - 8*x + 8
 ```
 
-`factor` returns `char_3` unchanged: it has no factor over `ℚ`.[^3] For `char_1` and `char_3` there is also a one-line *proof*: substitute `x = 2y`, divide by `2^k`, reverse the coefficients, and the result (`y⁴ − 2y³ + 4y² − 4y + 2` for `char_3`) is Eisenstein at 2. That works for exactly `k = 1, 3, 7, 15, …` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]); `char_5` is only SymPy-verified.
+`factor` returns `char_3` unchanged: it has no factor over `ℚ`.[^3] For `char_1` and `char_3` there is also a proof: substitute `x = 2y`, divide by `2^k`, reverse the coefficients, and the result (`y⁴ − 2y³ + 4y² − 4y + 2` for `char_3`) is Eisenstein at 2. That works for exactly `k = 1, 3, 7, 15, …` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]); the irreducibility of `char_5` is computed.
 
-"Irreducible" depends on *which field* you work over. The table is irreducibility over the rationals `ℚ`. Mod a specific prime `p`, an over-`ℚ`-irreducible poly can still split (the quadratic-reciprocity story, [[finite-fields](pages/finite-fields.md)]): `char_3` splits into four linear factors mod 101 and stays irreducible mod `10⁹ + 7`. A factorization over `ℚ` holds mod every `p`, which is why the even-`k` toy splits at every prime.
+Irreducibility depends on the field. The table is over the rationals `ℚ`. Mod a prime `p`, a polynomial irreducible over `ℚ` can still split ([[finite-fields](pages/finite-fields.md)]): `char_3` splits into four linear factors mod 101 and stays irreducible mod `10⁹ + 7`.[^4] For the quadratic `char_1`, with discriminant `−4`, the question is whether `−1` is a square mod `p`, which Euler's criterion answers: it is irreducible exactly when `p ≡ 3 (mod 4)`. A factorization over the integers holds mod every `p`, so `char_2` splits mod every prime.
 
-## "discrete logarithm problem (DLP)" — the discrete logarithm problem
+## The discrete logarithm problem (DLP)
 
-The system's security rests on this problem: **easy one way, hard the other.**
+The security of `castle_dh` rests on the gap between two directions:
 
-In `castle_dh`:
+- **Forward:** given a secret exponent `a`, compute the public key `A = x^a mod Q`. That is `powmod`: for `a = 10¹²`, 39 squarings and 12 multiplications ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 6).
+- **Backward:** given `A` and `Q`, recover `a`. That is the **discrete logarithm**: which power of `x` gives `A`? Generic attacks, which use only the group operation, cost about the square root of the largest prime factor of the order of `x`.
 
-- **Easy (forward):** given a secret exponent `a`, compute the public key `A = x^a mod Q`. That's `powmod`: about 40 squarings (53 ring multiplications in all) for `a = 10¹²`.
-- **Hard (backward):** given `A` and `Q`, recover `a`. That's the **discrete logarithm** — "which power of `x` gives `A`?" In a well-chosen group no fast general method is known; generic attacks cost about the square root of the group order.
+Classic Diffie-Hellman has the same two directions, with numbers mod a prime in place of polynomials mod `Q`. "Discrete" refers to the finite group, and "logarithm" means the exponent.
 
-Same shape as classic Diffie–Hellman (forward `g^a mod p` easy, backward "find `a`" hard). The only difference: instead of multiplying **numbers mod a prime**, you multiply **polynomials mod `Q`**. "Discrete" means you're in a finite set (a finite group), so "logarithm" means "which exponent," not the calculus log.
+## Reducible and irreducible `Q`
 
-## Why irreducible `Q` gives a "less-degenerate DLP"
+This is why Fix 1 of [[castle-cryptography](pages/castle-cryptography.md)] replaces an even-`k` `Q` by an odd-`k` one.
 
-This is why Seminar 3's first fix swaps an even-`k` `Q` for an odd-`k` one.
+**Reducible `Q` (even `k`): the DLP splits.** Because `char_2 = (x−2)(x²−x+2)`, the ring `F_p[x]/(Q)` splits by the **Chinese Remainder Theorem** ([[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]) into one ring per factor:
 
-**Reducible `Q` (even-`k`, the toy): the DLP splits.** Because `char_2 = (x−2)(x²−x+2)`, the ring `F_p[x]/(Q)` breaks apart by the **Chinese Remainder Theorem** ([[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]) (the same CRT you'd use to speed up Rivest-Shamir-Adleman (RSA)) into one ring per factor:
+- the factor `x − 2` has degree 1, and its piece is `F_p`, an ordinary discrete logarithm mod `p`;
+- the factor `x² − x + 2` has degree 2, and its piece is `F_{p²}` when the factor is irreducible mod `p`.
 
-- the `(x−2)` factor is **degree 1** → lives in `F_p` → an ordinary discrete log mod `p`;
-- the `(x²−x+2)` factor is **degree 2** → lives in `F_{p²}`.
-
-The attacker solves the two *small* discrete logs separately and recombines them (**Pohlig–Hellman**) — never facing the full degree-3 problem. Concretely, with a small `p = 101`:
+The attacker solves the two smaller discrete logarithms separately and combines them by the CRT. At `p = 101`:
 
 ```
 reducible char_2:   pieces of group order (p−1) = 100  and  (p²−1) = 10200
@@ -106,22 +104,21 @@ an irreducible quartic:   one group of order  p⁴−1 = 104,060,400
 
 (`char_3` itself splits into four linear factors mod 101, so at this `p` it would not give the quartic field; at `p = 10⁹ + 7` it does.)
 
-**Irreducible `Q` (odd-`k`): one big piece, no split.** When `Q` stays irreducible mod `p`, `F_p[x]/(Q)` is the single field `F_{p^d}`, and the DLP is the full-size discrete log in `F_{p^d}^*`, order `p^d − 1`. There is no CRT shortcut *through the ring*; the attacker faces the whole group.
+**Irreducible `Q` (odd `k`): no split of the ring.** When `Q` stays irreducible mod `p`, `F_p[x]/(Q)` is the field `F_{p^d}`, and the DLP is the discrete logarithm in `F_{p^d}^*`, of order `p^d − 1`. The ring gives no CRT split.
 
-Whole, but not unstructured. The group order `p^d − 1` factors **algebraically** - `p² − 1 = (p−1)(p+1)`, `p⁴ − 1 = (p−1)(p+1)(p²+1)`, in general `∏_{e|d} Φ_e(p)` - for *every* `p`, whatever `Q` is. So Pohlig–Hellman still runs, now on the factors of the group order instead of the factors of the modulus, and its cost is the square root of the largest prime dividing `p^d − 1`. At `p = 10⁹+7` that prime is `500000003 ≈ 2²⁹`, and [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] recovers the private key from an irreducible `char_1` in 0.04 s and from `char_3` in 0.18 s. **Irreducible closes the ring's split; the group's split is closed only by choosing `p` so that `Φ_d(p)` has a large prime factor.**
+The order of the group still factors, for every `p` and whatever `Q` is: `p² − 1 = (p − 1)(p + 1)`, `p⁴ − 1 = (p − 1)(p + 1)(p² + 1)`, and in general `p^d − 1 = ∏_{e | d} Φ_e(p)` with `Φ_e` the `e`-th cyclotomic polynomial. So Pohlig-Hellman runs on the prime factors of the order instead of the factors of the modulus, and its cost is about the square root of the largest prime dividing the order of `x`. At `p = 10⁹ + 7` that prime is `500000003 ≈ 2^28.9` for both `char_1` and `char_3`, and Attack 4 of [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] recovers the private key in both cases. An irreducible `Q` removes the split of the ring; the split of the group is removed only by choosing `p` so that `Φ_d(p)` has a large prime factor.
 
-With a reducible `Q` the discrete log is only as hard as its largest piece; with `Q` irreducible mod `p` there is one piece, the whole group.
 
-| | reducible `Q` (even-`k`, toy) | irreducible `Q` (odd-`k`) |
+| | reducible `Q` (even `k`) | irreducible `Q` (odd `k`, irreducible mod `p`) |
 |---|---|---|
-| `Q` factors? | yes, `(x−2)(x²−x+2)` | no — "prime" |
-| ring `F_p[x]/(Q)` | **splits** into small pieces (CRT) | one big field `F_{p^d}` |
-| attacker's job | several *small* DLPs, recombine | one *full-size* DLP |
+| `Q` factors? | yes, `(x−2)(x²−x+2)` | no |
+| ring `F_p[x]/(Q)` | splits by the CRT | one field `F_{p^d}` |
+| discrete logarithm | one per factor, combined by the CRT | one in `F_{p^d}^*`, split by Pohlig-Hellman along `p^d − 1` |
 
 ## Two caveats
 
-1. **Irreducible ≠ secure.** Discrete logs in `F_{p^d}` have a **subexponential** attack (**index calculus**, cost `L_q[1/3]` in the field size `q = p^d`), so the field must be large, about 3072 bits for 128-bit security by the standard recommendation, whatever `d` is; deployed systems use such prime fields or elliptic curves. So irreducible `Q` is *less degenerate*, not *strong* - and even before index calculus, the algebraic factorization of `p^d − 1` above means the generic attack cost is set by the largest prime factor of `Φ_d(p)`, not by `p^d`. Sizing that number is the round-two blue-team job ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]).
-2. **Berlekamp–Massey doesn't care about `Q`.** It reconstructs *any* linear recurrence from its output ([[berlekamp-massey](pages/berlekamp-massey.md)]), irreducible or not. If a scheme ever leaks a stream of count terms, the castle is recovered in one line regardless of `Q`, so the fix for leaked output is *nonlinear* output ([[castle-cryptography](pages/castle-cryptography.md)] Seminar 3, Fix 2); no choice of modulus helps.
+1. **An irreducible `Q` is not enough.** Discrete logarithms in `F_{p^d}` have a subexponential attack, index calculus, of cost `L_q[1/3]` in the field size `q = p^d`, so the field must have about 3072 bits for 128-bit security ([[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)]). Before index calculus, the factorization of `p^d − 1` already sets the generic cost by the largest prime factor of `Φ_d(p)`, not by `p^d`; round two sizes it ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], Fix 4).
+2. **Berlekamp-Massey recovers `Q` whatever it is.** It finds the shortest linear recurrence of a sequence from twice as many terms as its order ([[berlekamp-massey](pages/berlekamp-massey.md)]), irreducible or not. If a scheme publishes `2d` consecutive terms of `P(k, ·) mod p`, `Q` is recovered, so the fix for published output is a nonlinear filter (Fix 2 of [[castle-cryptography](pages/castle-cryptography.md)]), which round two's Attack 5 also breaks at small sizes.
 
 ## Appearances in Sources
 
@@ -130,23 +127,24 @@ With a reducible `Q` the discrete log is only as hard as its largest piece; with
 ## Related Concepts
 
 - [[castle-cryptography](pages/castle-cryptography.md)] - the build / red-team / blue-team seminar series this page supports.
-- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the Seminar 1 (ring) seminar this page is the lighter appendix to.
+- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - Seminar 1 in full: the ring `F_p[x]/(Q)`, the CRT split and the element orders.
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the second lap, where the irreducible-`Q` fix is shown necessary but not sufficient (group-order Pohlig–Hellman) and the keys are sized.
 - [[finite-fields](pages/finite-fields.md)] - `F_{p^d}`, cyclic groups, and why over-`ℚ`-irreducible polys can still split mod `p`.
 - [[kitamasa](pages/kitamasa.md)] - `x^a mod Q` by binary exponentiation, the easy forward direction.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - recovers the char poly from the output; the linearity attack no modulus choice fixes.
 - [[signed-tower-count](pages/signed-tower-count.md)] / [[generating-function-gallery](pages/generating-function-gallery.md)] - where the `char_k` characteristic polynomials come from, and the even/odd factorization pattern.
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - why even-`k` `char_k` factors (the reducibility the toy's first attack uses).
-- [[new-sequence-fw3](pages/new-sequence-fw3.md)] - the height-3 castle count `F(w,3)` carries the reducible `char_2` as a factor, so its recurrence order drops from 7 to 6 by the same `(x−2)` factor that splits the DLP.
-- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - "reducible splits the DLP" and "irreducible leaves the group-order factorization intact" are two rows of the same table: the invariant-factor decomposition of `R^*`, whose largest prime factor sets the security level (Pohlig-Hellman reduces each prime-power part to discrete logs of prime order).
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - why `char_k` factors for even `k`, the factorization that Attack 1 of [[castle-cryptography](pages/castle-cryptography.md)] uses.
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `A^e(w, 3)`, whose characteristic polynomial contains `char_2`; its recurrence has order 6, not 7, because the root 2 of the factor `x − 2` is also the root of the term `2^w`.
+- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the unit group `R^*` as a product of cyclic groups for reducible and irreducible `Q` alike, and Pohlig-Hellman as the reduction to prime-order parts.
 - [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - the Eisenstein proof behind the odd-`k` rows for `k = 2^m − 1`.
 - [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the ring-level CRT that splits a reducible `Q`.
 
 
 ## Footnotes
 
-[^1]: Verified by execution (SymPy `Poly.is_irreducible` over `ℚ`, 2026-09-18): `char_1, char_3, char_5` (odd `k`) are irreducible; `char_2 = (x−2)(x²−x+2)`, `char_4 = (x²−2x+4)(x³−3x²+2x−4)`, `char_6 = (x³−4x²+4x−8)(x⁴−3x³+8x²−4x+8)` (even `k`) factor. The even-`k` factorization is the tower-parity-sector structure ([[tower-parity-sectors](pages/tower-parity-sectors.md)]); the `x³−4x²+4x−8` factor of `char_6` is the plastic-number factor (`2ψ²`, [[plastic-number](pages/plastic-number.md)]).
+[^1]: Verified by execution (SymPy, 2026-10-16): `char_1, char_3, char_5` (odd `k`) are irreducible over `ℚ`; `char_2 = (x−2)(x²−x+2)`, `char_4 = (x²−2x+4)(x³−3x²+2x−4)`, `char_6 = (x³−4x²+4x−8)(x⁴−3x³+8x²−4x+8)` (even `k`) factor. The even-`k` factorization is the tower-parity-sector structure ([[tower-parity-sectors](pages/tower-parity-sectors.md)]); the `x³−4x²+4x−8` factor of `char_6` is the plastic-number factor (`2ψ²`, [[plastic-number](pages/plastic-number.md)]).
 
-[^2]: Verified by execution (2026-09-18): `[p2(L) for L in range(8)] = [1, 1, 3, 9, 19, 33, 59, 121]` — the recurrence `P(L) = 3P(L−1) − 4P(L−2) + 4P(L−3)` with seeds `(1, 1, 3)` reproduces `P(2, ·)` exactly.
+[^2]: Verified by execution (Python 3.11, 2026-10-16): `[p2(L) for L in range(8)] = [1, 1, 3, 9, 19, 33, 59, 121]` — the recurrence `P(L) = 3P(L−1) − 4P(L−2) + 4P(L−3)` with seeds `(1, 1, 3)` reproduces `P(2, ·)` exactly.
 
-[^3]: Verified by execution (SymPy, 2026-09-18): `sp.factor(x**3 − 3*x**2 + 4*x − 4) = (x − 2)*(x**2 − x + 2)` (composite) and `sp.factor(x**4 − 4*x**3 + 8*x**2 − 8*x + 8)` returns the polynomial unchanged (irreducible).
+[^3]: Verified by execution (SymPy, 2026-10-16): `sp.factor(x**3 − 3*x**2 + 4*x − 4) = (x − 2)*(x**2 − x + 2)` (composite) and `sp.factor(x**4 − 4*x**3 + 8*x**2 − 8*x + 8)` returns the polynomial unchanged (irreducible).
+[^4]: Verified by execution (SymPy, 2026-10-16): `char_3 mod 101 = (x + 21)(x + 24)(x − 26)(x − 23)`, and `char_3` is irreducible mod `10⁹ + 7`; `10⁹ + 7 ≡ 3 (mod 4)`.
