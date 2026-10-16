@@ -15,10 +15,8 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
 
 ## OEIS submissions (human action — drafts in `raw/oeis-pe502/`)
 
-OEIS requires human authorship; the drafts are checked starting points to reword and
-sign, not to submit verbatim. OEIS allows **3 open edits at a time**, and each takes a
-while to review, so the queue runs as a pipeline: when a review slot opens, submit the top
-item of "Ready to submit". Keep stages 2-4 stocked while waiting. Signatures use a
+OEIS allows **3 open edits at a time**, and each takes a while to review, so the queue runs
+as a pipeline: when a review slot opens, submit the top item of "Ready to submit". Keep stages 2-4 stocked while waiting. Signatures use a
 two-digit day (`Oct 04 2026`). See `wiki/pages/oeis-cross-referencing.md`; the
 mathematical status of each sequence (known / interlink / novel-candidate / unchecked)
 lives on `wiki/pages/castle-sequence-catalogue.md`.
