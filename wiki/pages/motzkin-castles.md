@@ -117,7 +117,7 @@ Drop the end condition from the "drops of at most 1" family: the castles in whic
 s = 2, 3, 4, …:   1, 2, 5, 12, 29, 71, 175, 434, 1082, 2709, 6807, 17157, 43359, 109830, …
 ```
 
-which is the sequence Prodinger prints for Motzkin meanders (any final height) at the weights `u = 1, σ = 0, τ = 1`, and reports as not in the OEIS.[^15] Prodinger labels this row "peakless" and the next one, A091964, "valleyless"; the labels are exchanged, since the meanders with no valley `DU` number `1, 2, 5, 12, 29, …` and those with no peak `UD` number `1, 2, 4, 9, 21, …`, A091964, "Number of left factors of peakless Motzkin paths".[^exec] The agreement with the castles holds to 24 terms, and it comes from a bijection. Write a castle `c_1, …, c_w` in this family as the word
+which is the sequence Prodinger prints for Motzkin meanders (any final height) at the weights `u = 1, σ = 0, τ = 1`, and reports as not in the OEIS.[^15] Prodinger labels this row "peakless" and the next one, A091964, "valleyless"; the labels are exchanged here and throughout the paper's section 2, whose text assigns `σ` to `UD` while its recursions and series attach `τ` to `UD` ([[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)]), since the meanders with no valley `DU` number `1, 2, 5, 12, 29, …` and those with no peak `UD` number `1, 2, 4, 9, 21, …`, A091964, "Number of left factors of peakless Motzkin paths".[^exec] The agreement with the castles holds to 24 terms, and it comes from a bijection. Write a castle `c_1, …, c_w` in this family as the word
 
 ```
 U^(c_1 - 1),  then for each column i ≥ 2:   D           if c_i = c_{i-1} - 1,
