@@ -1,145 +1,207 @@
 ---
 title: Castle counting formula
 category: Concepts
-summary: The wiki's core derivation. F(w,h) = [h^w − (h−1)^w − P(h−1,w) + P(h−2,w)]/2 from the unsigned tower count (k+1)^L (proved three independent ways) and the signed count P_k; verified on all checkpoints.
+summary: For h ≥ 2, the number of castles of width w and height h with an even number of blocks is A^e(w, h) = [h^w − (h−1)^w − P(h−1, w) + P(h−2, w)]/2, the Project Euler 502 count F(w, h). It is assembled from the tower count T(k, L) = (k+1)^L and the signed tower count P(k, L), whose generating function in L is rational with a denominator of degree k + 1.
 tags: [concept, castle, generating-functions, closed-form, dyck, proof]
-sources: [project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes, project-euler-502-brute-force]
+sources: [project-euler-502, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes, project-euler-502-brute-force]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Castle counting formula
 
-## Overview
-
-This is the closed-form derivation of the [[castle-counting-function](pages/castle-counting-function.md)] `F(w,h)`, read off the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] for castles. It replaces enumeration with a direct count and reproduces the problem's known checkpoints exactly. It has two ingredients — an **unsigned** tower count and a **signed** tower count that encodes the even-block rule — combined into the formula for `F(w,h)`. The unsigned count is proved three independent ways below; the signed count is reached by three independent routes.
-
-## Unsigned count: T(k,L) = (k+1)^L
-
-Three independent proofs give the same count: a generating-function recurrence read off the grammar, a product form over column heights, and an induction on *k* through the binary-string bijection. Each is short enough to give in full.
-
-**Proof 1: generating-function recurrence.** Mark each `R` step by a variable *x*, so a tower of *L* columns is worth `x^L`. Writing `E_k(x)` for the generating function of towers of height at most *k*, the grammar `E_k → empty | R E_k | U V D (empty | R E_k)` reads off term-by-term as:[^1]
+**Theorem.** For `h ≥ 2`, the number of castles of width `w` and height `h` with an even number of blocks is
 
 ```
-E_k = 1 + x·E_k + (E_{k−1} − 1)(1 + x·E_k)
+A^e(w, h)  =  [ h^w − (h−1)^w − P(h−1, w) + P(h−2, w) ] / 2                  (1)
 ```
 
-where `1` is the empty tower, `x·E_k` a gap column then the rest, `(E_{k−1} − 1)` the nonempty interior tower `V`, and `(1 + x·E_k)` the "stop, or gap and continue" tail; the vertical `U`/`D` add no *x*.[^1] Collecting terms gives `E_k = E_{k−1} / (1 − x·E_{k−1})`, with base case `E_0 = 1/(1−x)` (a height-0 skyline is any number of empty columns). Unwinding the recurrence:[^2]
+where `P(k, L)` is the signed tower count: the sum of `(−1)^{blocks}` over the towers of height at most `k` on a base of length `L`, defined in the section *Castles and towers*. `A^e(w, h)` is the count that Project Euler 502 asks for; the problem statement writes it `F(w, h)`.[^1] Equation (1) has two ingredients: the tower count `T(k, L) = (k+1)^L`, proved in the section *Tower count*, and the signed tower count `P(k, L)`, whose generating function is derived in the section *Signed tower count*. The section *The main formula* assembles them into Equation (1).
+
+## Castles and towers
+
+A castle of width `w` and height `h` is a skyline `c = (c_1, …, c_w)` of column heights with `1 ≤ c_i ≤ h` and some `c_i = h` ([[castle-polyomino](pages/castle-polyomino.md)]). The blocks in row `r` are the maximal runs of consecutive columns with `c_i ≥ r`. With these blocks every such skyline satisfies the Project Euler rules (no overhangs, a full-width bottom row, at least one unit of space between neighboring blocks in a row), and the gap rule forces the blocks of each row to be its maximal runs. So a castle is determined by its skyline, and its block count is[^2]
 
 ```
-E_k = 1 / (1 − (k+1)x)      ⟹      T(k,L) = (k+1)^L
+blocks(c)  =  Σ_{i=1}^{w} max(0, c_i − c_{i−1}),        c_0 = 0.
 ```
 
-**Proof 2: product form over column heights.** The castle-factoring reading gives the same `(k+1)^L` without solving a generating-function recurrence: reading a tower as its column heights `c_1…c_L` (the integer-tuple [[castle-representations](pages/castle-representations.md)]), each `c_i` ranges *independently* over `{0,…,k}`, and the tower word is recovered invertibly from the heights — so `T(k,L) = (k+1)^L` is immediate as a product form.[^10] That independence of the columns is the crux the Observations subpage names — sibling towers never interact — captured structurally on [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]; it "took years to see."[^13]
+*Example.* The castles of width 3 and height 2 are the seven skylines in `{1, 2}^3` other than `(1, 1, 1)`. Six of them have two blocks: the bottom row and one block in row 2. The skyline `(2, 1, 2)` has three blocks, since its row 2 holds two.
 
-**Proof 3: induction on *k*.** The Solution subpage proves the same closed form by induction on *k*: the [[binary-string-bijection](pages/binary-string-bijection.md)] plus sibling independence makes the count factor over runs, `T(k,L) = ∑_b ∏_{runs} T(k−1,l) = ∑_b k^{ones(b)} = (1+k)^L`.[^16]
+The counts of castles of width `w` and height `h` are:
 
-All three land on the same statement: the number of towers of height at most *k* above a length-*L* block is `(k+1)^L`, with corollary `T(h−1,w) = h^w`.[^16]
+- `A(w, h)`, all of them. The skylines in `{1, …, h}^w` number `h^w`, and those that do not reach `h` number `(h−1)^w`, so `A(w, h) = h^w − (h−1)^w`.[^3]
+- `A^e(w, h)` and `A^o(w, h)`, those with an even and with an odd number of blocks, so `A = A^e + A^o`. In the example, `A^e(3, 2) = 6` and `A^o(3, 2) = 1`.
+- `S(w, h) = A^e(w, h) − A^o(w, h)`, the signed count: the sum of `(−1)^{blocks(c)}` over the same castles. Then `A^e = (A + S)/2` and `A^o = (A − S)/2`.
 
-## Signed count: the even-block rule as a sign
+Removing the bottom row of a castle leaves towers. Towers on a base of length `L` are given by their column heights `c = (c_1, …, c_L)` above the base, and towers may have height 0. `blocks(c)` is defined by the same formula. A castle with skyline `c` leaves the towers with column heights `c_i − 1`, which have one block fewer: the castle `(2, 1, 2)` leaves the towers `(1, 0, 1)`, with two blocks.
 
-The even-block rule is the hard constraint, and it enters as a **sign**: weight each block — that is, each `D` — by −1. Since a peak `U V D` adds one block on top of `V`, it flips the sign of everything inside it. With `P_k` the signed tower generating function, the grammar picks up a single minus on the peak production, giving:[^3]
+`T(k, L)` counts the towers of height at most `k` on a base of length `L`, and `P(k, L)` adds up `(−1)^{blocks(c)}` over the same towers. Both are indexed tower height first, and a castle of height `h` stands on towers of height at most `k = h − 1` ([[castle-notation](pages/castle-notation.md)]). The only tower of height 0 is empty, so `T(0, L) = P(0, L) = 1`.[^4]
+
+## Tower count
+
+**Lemma.** `T(k, L) = (k+1)^L`.
+
+The sources give three proofs.
+
+*Column heights.* The blocks of row `r` are the maximal runs of columns with `c_i ≥ r`, so towers are determined by their column heights, and every tuple in `{0, …, k}^L` is the column heights of towers. Each of the `L` columns chooses one of `k + 1` heights independently.[^5]
+
+*Grammar.* The [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] writes towers as words in the letters `U` (up one row), `R` (one column) and `D` (down one row). The towers of height at most `k` are generated by
 
 ```
-P_k = 1 + x·P_k − (P_{k−1} − 1)(1 + x·P_k)
+E_k  →  empty  |  R E_k  |  U V D ( empty | R E_k )
 ```
 
-which solves to the rational recurrence (with `P_0 = 1/(1−x)`):[^4]
+where `U V D` is a block carrying the towers `V` of height at most `k − 1`. `V` is nonempty, so the block has positive width, and the tail `empty | R E_k` puts a gap column between neighboring blocks.[^6] Let `x` mark each `R`, so towers on a base of length `L` have weight `x^L`, and let `E_k(x) = Σ_L T(k, L) x^L`. The grammar gives[^7]
 
 ```
-P_k = (2 − P_{k−1}) / (1 − 2x + x·P_{k−1})
+E_k(x)  =  1 + x·E_k(x) + (E_{k−1}(x) − 1)(1 + x·E_k(x))                      (2)
 ```
 
-Writing `P_k = num_k / den_k`, this is a polynomial update:[^5]
+term by term: `1` is the empty tower, `x·E_k(x)` a gap column followed by the rest, `E_{k−1}(x) − 1` the nonempty tower `V`, and `1 + x·E_k(x)` what follows the block. The letters `U` and `D` carry no `x`. Solving Equation (2) for `E_k(x)` gives
 
 ```
-num_k = 2·den_{k−1} − num_{k−1}
-den_k = den_{k−1}·(1 − 2x) + x·num_{k−1}
+E_k(x)  =  E_{k−1}(x) / (1 − x·E_{k−1}(x)),        E_0(x)  =  1/(1 − x).
 ```
 
-For fixed *k*, `P_k` is rational with denominator of degree *k*+1, so `P(k,L)` obeys an order-(*k*+1) linear recurrence in *L*. Two small cases:[^6]
+If `E_{k−1}(x) = 1/(1 − kx)`, then `E_k(x) = 1/(1 − kx − x)`, so by induction on `k`, `E_k(x) = 1/(1 − (k+1)x)`, whose coefficient of `x^L` is `(k+1)^L`.[^8]
 
-- *k*=1: `P(1,L) = 2P(1,L−1) − 2P(1,L−2)`, closed form `P(1,L) = Re((1+i)^{L+1})` — the Online Encyclopedia of Integer Sequences (OEIS) sequence `A146559(L+1)` (see [[signed-tower-count](pages/signed-tower-count.md)]).
-- *k*=2: `P(2,L) = 3P(2,L−1) − 4P(2,L−2) + 4P(2,L−3)`.
+*Binary strings.* The columns that carry a block in the first row above the base form a binary string `b` of length `L`. Each maximal run of 1s in `b`, of length `l`, is one block carrying its own towers of height at most `k − 1` on a base of length `l` ([[binary-string-bijection](pages/binary-string-bijection.md)]). Towers on different blocks are independent, so by induction on `k`, with `ones(b)` the number of 1s in `b`,[^9]
 
-The full C-finite `P(k,·)` family (order `k+1`, characteristic polynomials with constant term `(−1)^{k−1}2^k`) is catalogued on [[signed-tower-count](pages/signed-tower-count.md)].
+```
+T(k, L)  =  Σ_{b ∈ {0,1}^L}  Π_{runs of 1s in b, of length l}  T(k−1, l)
+         =  Σ_{b ∈ {0,1}^L}  k^{ones(b)}
+         =  (k+1)^L.
+```
 
-**`P` as a sign sum.** `P(k,L) = ∑_{c ∈ {0,…,k}^L} (−1)^{descent(c)}` is the [[castle-sign](pages/castle-sign.md)] `s(C) = (−1)^{blocks}` summed over all towers — the castle analogue of the permutation sign homomorphism. The `(T ± P)/2` combination is the `(1 ± sgn)/2` even/odd class projector, which isolates the even-block castles.[^11]
+## Signed tower count
 
-**A third route to `P`.** Besides the generating-function recurrence (above) and the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)], `P(k,L)` can be computed by a direct `O(k²L)` dynamic program over the last column height: carry a length-`(k+1)` state indexed by the previous column's height, and on appending a column of height `b` after `a` multiply by `(−1)^{max(0, b−a)}` (the new runs each contribute `−1`). This is the [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] `p_signed`, used as exact-integer ground truth for the formula.[^18]
+Weight each block by `−1`. In the grammar, `U V D` is one block carrying the towers `V`, so it contributes `−1` times the weight of `V`. With `P_k(x) = Σ_L P(k, L) x^L`, the reading of Equation (2) gives[^10]
 
-**Evaluating at trillion scale.** For the large-parameter cases the recurrence in *L* is run with fast linear-recurrence methods: **Kitamasa** gives `O(k² log L)` in the *L* direction, and **Berlekamp–Massey** works in the *k* direction — the route the Solution subpage uses for `F(10^12, 100)` and `F(100, 10^12)`.[^12]
+```
+P_k(x)  =  1 + x·P_k(x) − (P_{k−1}(x) − 1)(1 + x·P_k(x))                      (3)
+```
+
+and solving for `P_k(x)`,[^11]
+
+```
+P_k(x)  =  (2 − P_{k−1}(x)) / (1 − 2x + x·P_{k−1}(x)),        P_0(x)  =  1/(1 − x).      (4)
+```
+
+Write `P_k(x) = num_k(x) / den_k(x)` with `num_0 = 1` and `den_0 = 1 − x`. Then Equation (4) is the polynomial update[^11]
+
+```
+num_k  =  2·den_{k−1} − num_{k−1}
+den_k  =  (1 − 2x)·den_{k−1} + x·num_{k−1}                                    (5)
+```
+
+**Proposition.** For `k ≥ 0`, `den_k(0) = 1`, `num_k` has degree `k`, and `den_k` has degree `k + 1` with leading coefficient `(−1)^{k+1} 2^k`. Writing `den_k(x) = 1 + d_1 x + ⋯ + d_{k+1} x^{k+1}`,
+
+```
+P(k, L)  =  −d_1 P(k, L−1) − d_2 P(k, L−2) − ⋯ − d_{k+1} P(k, L−k−1),        L ≥ k + 1.      (6)
+```
+
+*Proof.* The case `k = 0` holds, and induction on `k` gives the rest. In Equation (5), `2·den_{k−1}` has degree `k` while `num_{k−1}` has degree `k − 1`, so `num_k` has degree `k`; `(1 − 2x)·den_{k−1}` has degree `k + 1` and leading coefficient `−2` times that of `den_{k−1}`, while `x·num_{k−1}` has degree `k`; and at `x = 0`, Equation (5) gives `den_k(0) = den_{k−1}(0)`. Equation (6) is the coefficient of `x^L` in `den_k(x)·P_k(x) = num_k(x)`, which is 0 for `L > k`.
+
+For `k ≤ 40`, `num_k` and `den_k` have no common factor (computed), so Equation (6) is the shortest linear recurrence of `P(k, ·)`.[^12] The first two cases:[^13]
+
+- `k = 1`: `den_1 = 1 − 2x + 2x²`, so `P(1, L) = 2P(1, L−1) − 2P(1, L−2)`. The characteristic polynomial `char_1(λ) = λ² − 2λ + 2` has roots `1 ± i`, and matching `P(1, 0) = 1`, `P(1, 1) = 0` gives `P(1, L) = Re((1+i)^{L+1})`: `1, 0, −2, −4, −4, 0, 8, 16, …` for `L = 0, 1, 2, …`. This is `A146559(L+1)`, the real part of `(1+i)^n`.[^14]
+- `k = 2`: `den_2 = 1 − 3x + 4x² − 4x³`, so `P(2, L) = 3P(2, L−1) − 4P(2, L−2) + 4P(2, L−3)`: `1, 1, 3, 9, 19, 33, 59, 121, …`.
+
+[[signed-tower-count](pages/signed-tower-count.md)] treats the family `P(k, ·)` for all `k`.
+
+*Dynamic program.* By definition, `P(k, L) = Σ (−1)^{blocks(c)}` over `c ∈ {0, …, k}^L`. A column of height `b` after a column of height `a` adds `max(0, b − a)` blocks, so a dynamic program over the height of the last column computes `P(k, L)` with a vector of length `k + 1`, in `O(k²)` operations per column and `O(k²L)` in all.[^15] It does not use Equations (3) to (5), and the section *Verification* uses it as an independent check.
+
+At the Project Euler parameters, `P(h−1, w)` and `P(h−2, w)` come from Equation (5) by Kitamasa's method ([[kitamasa](pages/kitamasa.md)]) in the `L` direction when `h ≤ 15000`, and from a recurrence in `k` found by the Berlekamp-Massey algorithm ([[berlekamp-massey](pages/berlekamp-massey.md)]) when `h > 15000`. [[castle-count-algorithms](pages/castle-count-algorithms.md)] routes each of the three targets.[^16]
 
 ## The main formula
 
-A full castle is `U (tower) D`, so its block count is the tower's block count plus one (the bottom block); **even total blocks means an odd number of blocks in the tower.**[^7] Since `T(h−1,w) = h^w` counts towers of height ≤ *h*−1 of any parity and `P(h−1,w)` is the signed version, `(T − P)/2` counts towers of *odd* block count. That expression `(h^w − P(h−1,w))/2` still includes every height from 0 to *h*−1, so subtracting the height ≤ *h*−2 case forces height exactly *h*:[^8]
+Removing the bottom row is a bijection from the castles of width `w` and height at most `h` onto the towers of height at most `h − 1` on a base of length `w`. The bottom row is one block, so a castle has an even number of blocks exactly when its towers have an odd number. Among the towers of height at most `k` on a base of length `L`, the even-block ones number `(T(k, L) + P(k, L))/2` and the odd-block ones `(T(k, L) − P(k, L))/2`. So the even-block castles of width `w` and height at most `h` number[^17]
 
 ```
-F(w,h) = [ h^w − (h−1)^w − P(h−1,w) + P(h−2,w) ] / 2
+[ T(h−1, w) − P(h−1, w) ] / 2  =  [ h^w − P(h−1, w) ] / 2.
 ```
 
-The division by 2 is exact over the integers, but when computing modulo `p` it is a multiply by the modular inverse of 2 — so the modular evaluation assumes `p ≠ 2` (fine for `p = 10^9+7`).[^17]
+The castles of height `h` are those of height at most `h` minus those of height at most `h − 1`. Subtracting the same expression at `h − 1` gives Equation (1). In terms of the castle counts, `A(w, h) = h^w − (h−1)^w` and
+
+```
+S(w, h)  =  P(h−2, w) − P(h−1, w),                                           (7)
+```
+
+so Equation (1) is `A^e = (A + S)/2`, and `A^o = (A − S)/2`.
+
+Equation (1) needs `h ≥ 2`, since it uses `P(h−2, w)`. The only castle of height 1 is the flat row `(1, …, 1)`, with one block, so `A^e(w, 1) = 0`.
+
+*Example: `w = 4`, `h = 2`.* `P(0, 4) = 1`, and `P(1, 4) = Re((1+i)^5) = −4`, so Equation (1) gives[^18]
+
+```
+A^e(4, 2)  =  (2^4 − 1^4 − P(1, 4) + P(0, 4)) / 2  =  (16 − 1 + 4 + 1) / 2  =  10.
+```
+
+The ten castles are the skylines of width 4 and height 2 whose row 2 is a single run:[^19]
+
+```
+(2,1,1,1)  (1,2,1,1)  (1,1,2,1)  (1,1,1,2)  (2,2,1,1)
+(1,2,2,1)  (1,1,2,2)  (2,2,2,1)  (1,2,2,2)  (2,2,2,2)
+```
+
+Modulo a prime `p`, the division by 2 in Equation (1) is multiplication by the inverse of 2, so `p` must be odd. The Project Euler modulus is `p = 10^9 + 7`.[^20]
 
 ## Verification
 
-The source gives Python that builds `P(k,L)` as the coefficient of `x^L` in `num_k/den_k` (via the polynomial recurrence above) and evaluates `F(w,h)`.[^9] Re-running it during ingest reproduces all three problem checkpoints exactly:
+| `(w, h)` | `A^e(w, h)` |
+|---|---|
+| `(4, 2)` | 10 |
+| `(13, 10)` | 3 729 050 610 636 |
+| `(10, 13)` | 37 959 702 514 |
+| `(100, 100)` | 841 913 936 (mod `10^9 + 7`) |
 
-```
-F(4,2)   = 10
-F(13,10) = 3729050610636
-F(10,13) = 37959702514
-```
-
-matching the values on [[castle-counting-function](pages/castle-counting-function.md)].[^9]
-
-The two integer values factor as (confirmed by factoring during ingest): `F(13,10) = 3729050610636 = 2²·3·13·1163·20553887` and `F(10,13) = 37959702514 = 2·102859·184523`.[^14]
-
-**The parity clause.** The signed count `P` is in the formula only to enforce the even-block rule. Without that rule the count is the unsigned baseline `h^w − (h−1)^w` (all castles of height ≤ *h* minus those of height ≤ *h*−1); the source calls the clause "almost the entire difficulty."[^15]
+These are the four values in the problem statement.[^1] Equation (1) reproduces every entry, with `P(k, L)` computed from the update (5) and, independently, from the column-height dynamic program. Equations (1) and (7) agree with brute-force enumeration for `2 ≤ h ≤ 4`, `w ≤ 7` and for `h = 5`, `w ≤ 6`.[^12]
 
 ## Appearances in Sources
 
-- [[project-euler-502-representations](pages/project-euler-502-representations.md)] — derives the unsigned count `(k+1)^L`, the signed count `P_k`, and the closed form for `F(w,h)`, with verifying Python.
-- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — gives the product-form proof of `(k+1)^L`, the sign-homomorphism reading of `P`, and the Kitamasa/Berlekamp–Massey evaluation.
-- [[project-euler-502-observations](pages/project-euler-502-observations.md)] — names the column independence as the crux, the `h^w−(h−1)^w` unconstrained baseline, and the verified factorizations.
-- [[project-euler-502-solution](pages/project-euler-502-solution.md)] — proves `T(k,L)=(k+1)^L` by induction via the binary-string bijection, and specifies the algorithms that evaluate `P` at large parameters.
-- [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] — the `/2` as a modular inverse (assumes `p ≠ 2`) and the code that runs the recurrences.
-- [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] — the `p_signed` DP (a third route to `P`) and the direct-enumeration cross-check of the whole formula.
+- [[project-euler-502](pages/project-euler-502.md)] - the problem statement: the castle rules, the count `F(w, h)`, and the four values of the table in the section *Verification*.
+- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the grammar derivations of Equations (2) to (5), Equation (1), and Python that evaluates it.
+- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the symbols `T` and `P`, the induction proof of `T(k, L) = (k+1)^L`, and the evaluation paths for the three targets.
+- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the column-height proof of `T(k, L) = (k+1)^L`, and the ten castles of the example.
+- [[project-euler-502-observations](pages/project-euler-502-observations.md)] - the count `A(w, h) = h^w − (h−1)^w`.
+- [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] - the requirement `p ≠ 2` for the modular division by 2.
+- [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the block-count formula and the column-height dynamic program for `P(k, L)`.
 
 ## Related Concepts
 
-- [[castle-counting-function](pages/castle-counting-function.md)] — the function `F(w,h)` this formula computes.
-- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the grammar the generating functions are read off.
-- [[binary-string-bijection](pages/binary-string-bijection.md)] — the base of the Solution's induction proof of `T(k,L)`.
-- [[generating-functions](pages/generating-functions.md)] — the method embodied here.
-- [[castle-sign](pages/castle-sign.md)] — the sign-homomorphism meaning of the signed count `P`.
-- [[castle-count-algorithms](pages/castle-count-algorithms.md)] — how `P(h−1,w)` and `P(h−2,w)` are evaluated at scale.
-- [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the canonical form the fast evaluation sums over.
-- [[convex-castle](pages/convex-castle.md)] — the enumeration-side backbone, complementary to this counting-side formula.
-- [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] — the two-idea pedagogical version of this derivation.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[pell-numbers](pages/pell-numbers.md)] — a coefficient-matching companion to the recurrences above.
-- [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] — the pre-solution framing whose `F(13,10)` scale argument this closed form answers; [[project-euler-502-observations](pages/project-euler-502-observations.md)] — the source's own statement of the crux and of `(A + P)/2` as a recurring symmetry trick.
-- [[new-sequence-fw3](pages/new-sequence-fw3.md)] — the `h = 3` row `F(w,3) = (3^w − 2^w − P(2,w) + P(1,w))/2` as a standalone order-6 sequence.
-- [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the seminar-shape derivation of this formula as the `(n−1)!` cycle-count toolkit upgraded three times, ending on the same `F(4,2) = 10` hand-check the Verification here uses.
-- [[castle-notation](pages/castle-notation.md)] - the notation reference: castle quantities width first, tower quantities `T(k, L)`, `P(k, L)` height first, `k = h − 1`.
-
+- [[castle-counting-function](pages/castle-counting-function.md)] - the counts `A`, `A^e` and `A^o`, the four checkpoint values, and the Project Euler target.
+- [[castle-polyomino](pages/castle-polyomino.md)] - the castle definition.
+- [[castle-notation](pages/castle-notation.md)] - the symbols `A`, `A^e`, `A^o`, `S`, `T` and `P`, and the tower height `k = h − 1`.
+- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the tower grammar behind Equations (2) and (3).
+- [[binary-string-bijection](pages/binary-string-bijection.md)] - the first-row binary strings of the induction proof.
+- [[signed-tower-count](pages/signed-tower-count.md)] - the family `P(k, ·)`: recurrences, characteristic polynomials and closed forms.
+- [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the split of towers into `(T + P)/2` even-block and `(T − P)/2` odd-block ones.
+- [[generating-functions](pages/generating-functions.md)] - rational generating functions and the linear recurrences of their coefficients, as in Equations (4) to (6).
+- [[castle-count-algorithms](pages/castle-count-algorithms.md)] - the evaluation of `P(h−1, w)` and `P(h−2, w)` at the Project Euler targets.
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] - the row `h = 3` of Equation (1) as a sequence in `w`.
+- [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - a seminar that derives Equation (1) from the tower count and the sign.
+- [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] - a seminar that derives Equation (1) from the proof that there are `(n−1)!` cycles on `n` labeled points.
 
 ## Footnotes
 
-[^1]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Unsigned count" L286-292 — "Let x mark one R step ... E_k = 1 + x E_k + (E_{k-1} - 1)(1 + x E_k)" with the term-by-term reading (empty, gap, nonempty interior V, tail; vertical U/D add no x).
-[^2]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Unsigned count" L297-309 — "E_k = E_{k-1}/(1 - x E_{k-1})", base "E_0 ... 1/(1-x)", unwinding to "E_k = 1/(1-(k+1)x)" and "T(k,L) = (k+1)^L", "the closed form already on Project Euler/502/Solution."
-[^3]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L316-329 — "The even-block rule is the hard constraint, and it enters as a sign. Weight each block, that is each D, by -1 ... one minus sign on the peak ... P_k = 1 + x P_k - (P_{k-1} - 1)(1 + x P_k)".
-[^4]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L333 — "P_k = (2 - P_{k-1})/(1 - 2x + x P_{k-1}), P_0 = 1/(1-x)".
-[^5]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L338-339 — "num_k = 2 den_{k-1} - num_{k-1}, den_k = den_{k-1}(1-2x) + x num_{k-1}".
-[^6]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L343-345 — "k=1: P(1,L) = 2P(1,L-1) - 2P(1,L-2), closed form P(1,L) = Re((1+i)^{L+1}); k=2: P(2,L) = 3P(2,L-1) - 4P(2,L-2) + 4P(2,L-3)".
-[^7]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The main formula" L350 — "The full castle is U (tower) D, so its block count is the tower's block count plus one for the bottom block. Even total blocks means an odd number of blocks in the tower."
-[^8]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The main formula" L352-367 — "h^w = T(h-1,w) counts towers ... any parity. P(h-1,w) is the signed version, so (T - P)/2 counts towers with an odd block count ... subtract the height ≤ h-2 case to force height exactly h", giving "F(w,h) = (h^w - (h-1)^w - P(h-1,w) + P(h-2,w))/2".
-[^9]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The main formula" L372-411 — the Python building P(k,L) from the num/den recurrence and F(w,h) from the formula, printing "F(4,2) = 10 / F(13,10) = 3729050610636 / F(10,13) = 37959702514"; re-run during ingest, all three reproduce exactly.
-[^10]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"A column-height factorization" L72-89 — "each c_i ranges independently over {0, …, k}, and the tower word is recovered by [the invertible procedure] ... T(k,L) = (k+1)^L ... each of the L columns independently chooses one of k+1 heights. This is the product-form proof."
-[^11]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Monotone streak factorization and fast algorithms" L185, §"The sign of a castle" L119-121 — "P(k,L) = ∑_{c ∈ {0,…,k}^L} (-1)^{descent(c)}" and "(T + P)/2 = even-block ... (T - P)/2 = odd-block ... exactly the (1 ± sgn)/2 trick ... the castle analogue of the sign homomorphism."
-[^12]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Monotone streak factorization and fast algorithms" L192 — "evaluated in O(k^2 log L) by Kitamasa in the L direction, or in the k direction by Berlekamp-Massey, which is how [Solution] computes F(10^12, 100) and F(100, 10^12)."
-[^13]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Sub-block independence" L5 — "Two sibling blocks in the same row generate towers that never interact ... This is the single fact that makes the problem tractable, and it took years to see."
-[^14]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Useful factorizations" L25-31 — "F(13,10) = 3729050610636 = 2^2 × 3 × 1163 × 13 × 20553887" and "F(10,13) = 37959702514 = 2 × 102859 × 184523"; both re-factored during ingest and confirmed.
-[^15]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"The \"even number of blocks\" clause is almost the entire difficulty" L17 — "Without it, the answer is just h^w - (h-1)^w: all castles of height at most h minus those of height at most h-1."
-[^16]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"T(k, L) = (k+1)^L" L23-37 — "Proof by induction on k ... a length-L binary string ... plus, for each maximal run of length l, an independent tower of height ≤ k-1 ... T(k, L) = ∑_b ∏_{runs} T(k-1, l) = ∑_b k^{ones(b)} = (1 + k)^L. Corollary ... T(h-1, w) = h^w."
-[^17]: [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] §"Numerics" L63 — "solveMod accepts any prime p, but division by 2 assumes p ≠ 2."
-[^18]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"p_signed" L31-47 — "A new column of height b after a column of height a starts max(0, b − a) new runs, each contributing a factor of −1 ... State is a length-(k+1) vector indexed by the last column height. The transition is O(k^2), so O(k^2 L) total."; DP re-run against brute during ingest, exact."
+[^1]: [[project-euler-502](pages/project-euler-502.md)] §"Project 502: Castle Polyominoes" L26-30 - "Let F(w,h) represent the number of valid castles, given grid parameters w and h. For example, F(4,2) = 10, F(13,10) = 3729050610636, F(10,13) = 37959702514, and F(100,100) mod 1,000,000,007 = 841913936".
+[^2]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Column-height encoding" L18-27 - "A block is a maximal horizontal run of columns at a given level", "#blocks = ... = c_1 + Σ_{i=2}^{w} max(0, c_i − c_{i−1})", and "Rule 3 (gap between neighbouring blocks in the same row) is automatic in the run decomposition".
+[^3]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"The \"even number of blocks\" clause is almost the entire difficulty" L17 - "Without it, the answer is just h^w - (h-1)^w: all castles of height at most h minus those of height at most h-1."
+[^4]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Notation" L7-8, §"T(k, L) = (k+1)^L" L25, §"Recursion for P(k, L)" L79 - "T(k, L) - number of towers of height at most k stacked above (not counting) a single block of length L. P(k, L) - the signed version of T: sum over the same towers of (-1)^{blocks in tower}"; "T(0, L) = 1 (only the empty tower)"; "P(0, L) = 1 (empty tower, 0 blocks, (-1)^0 = 1)".
+[^5]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"A column-height factorization" L72-88 - "each c_i ranges independently over {0, …, k}, and the tower word is recovered by ... it is invertible. Hence T(k,L) = (k+1)^L each of the L columns independently chooses one of k+1 heights. This is the product-form proof".
+[^6]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The grammar" L265-276 - "E_k -> empty | R E_k | U V D ( empty | R E_k )", "Nonempty V is what keeps the sub-block width positive (no UD). The empty | R E_k tail is what keeps two peaks from touching (no DU), the same-row gap rule."
+[^7]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Unsigned count" L282-292 - "Let x mark one R step, so a tower of L columns is worth x^L ... E_k = 1 + x E_k + (E_{k-1} - 1)(1 + x E_k)", with the term-by-term reading.
+[^8]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Unsigned count" L294-310 - "E_k = E_{k-1}/(1 - x E_{k-1})", "The base case E_0 ... 1/(1-x)", "E_k = 1/(1 - (k+1)x)", "T(k,L) = (k+1)^L".
+[^9]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"T(k, L) = (k+1)^L" L23-35 - "Proof by induction on k ... a length-L binary string ... plus, for each maximal run of length l, an independent tower of height ≤ k-1 above that sub-block", "T(k, L) = ∑_b ∏_{runs} T(k-1, l) = ∑_b k^{ones(b)} = (1 + k)^L".
+[^10]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L316-327 - "Weight each block, that is each D, by -1 ... with one minus sign on the peak", "P_k = 1 + x P_k - (P_{k-1} - 1)(1 + x P_k)".
+[^11]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L333-340 - "P_k = (2 - P_{k-1})/(1 - 2x + x P_{k-1}), P_0 = 1/(1-x)" and "num_k = 2 den_{k-1} - num_{k-1}, den_k = den_{k-1}(1-2x) + x num_{k-1}".
+[^12]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `T(k, L) = (k+1)^L` for `k ≤ 3`, `L ≤ 5`, and `P(k, L)` from Equation (5) equal to the brute-force sum for `k ≤ 3`, `L ≤ 6`; Equations (1) and (7) against enumeration of all skylines for `2 ≤ h ≤ 4`, `w ≤ 7` and `h = 5`, `w ≤ 6`; the four table entries from Equation (1), with `P` from Equation (5) and from the column-height dynamic program; the degree and leading coefficient of `den_k` for `k ≤ 8`, and `gcd(num_k, den_k) = 1` for `k ≤ 40`; the lists of castles of width 3 and of width 4 at height 2.
+[^13]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L343-346 - "P_k is rational with denominator of degree k+1", "k=1: P(1,L) = 2P(1,L-1) - 2P(1,L-2), closed form P(1,L) = Re((1+i)^{L+1})", "k=2: P(2,L) = 3P(2,L-1) - 4P(2,L-2) + 4P(2,L-3)".
+[^14]: https://oeis.org/A146559 (read 2026-10-16) - "Expansion of (1-x)/(1 - 2*x + 2*x^2)", "(1+i)^n = a(n) + A009545(n)*i".
+[^15]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"p_signed" L31-47 - "A new column of height b after a column of height a starts max(0, b - a) new runs, each contributing a factor of -1", "State is a length-(k+1) vector indexed by the last column height. The transition is O(k^2), so O(k^2 L) total."
+[^16]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The rational-function path (h ≤ 15000)" [synthesis] L149-153, §"The k-direction Berlekamp-Massey path (h > 15000)" L157-163 - `F(10^12, 100)` takes the rational-function path with Kitamasa, `F(10000, 10000)` the rational-function path with direct extraction, and `F(100, 10^12)` the Berlekamp-Massey path in `k`.
+[^17]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The main formula" L55-67 - "(T + P)/2 counts towers with even block count and (T - P)/2 counts odd", "\"castle has even total blocks\" is the same as \"tower above the bottom has odd block count\"", "(T(h-1, w) - P(h-1, w))/2 = (h^w - P(h-1, w))/2", and the subtraction of the height ≤ h−1 version.
+[^18]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Verification" L173-177 - "P(0, 4) = 1 (the empty tower) and P(1, 4) = -4 ... F(4, 2) = (2^4 - 1^4 - P(1, 4) + P(0, 4))/2 = (16 - 1 - (-4) + 1)/2 = 20/2 = 10".
+[^19]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The castle version" L159-165 - "Even total blocks means the tower has an odd number of blocks, so exactly one run. The 10 valid castles have tower column heights 1000 0100 0010 0001 1100 0110 0011 1110 0111 1111 (full castle heights are these plus one, for the bottom block)."
+[^20]: [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] §"Numerics" L63 - "solveMod accepts any prime p, but division by 2 assumes p ≠ 2."
