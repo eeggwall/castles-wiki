@@ -1,94 +1,89 @@
 ---
 title: Castle Gray code
 category: Concepts
-summary: Knuth's reflected Gray code on the mixed-radix space `{1..h}^w`, worked at `(w,h)=(3,2)` for `h=2` and via the loopless Gray algorithm (Knuth's §7.2.1.1 Algorithm H) for general `h`; one-column-per-step tour, `#blocks` moves by at most `1` per step, sign `s(c)` and signed sum `S` update in O(1), giving a loopless enumerator over the cube with the castle filters at emit; three-way split of `{1..h}^w` into improper, proper-odd, proper-even.
+summary: The reflected Gray code on the cube {1..h}^w, which changes one column by ±1 per step, applied to castles: worked at (w, h) = (3, 2) for h = 2 and by the loopless Gray algorithm (Algorithm H of TAOCP §7.2.1.1) for every h. A one-column step changes the block count by at most 1, so the sign (−1)^blocks and the signed count S update in O(1) per step, and the tour lists the even-block castles of width w and height h, the A^e(w, h) of the cube's three parts (improper tuples, odd-block castles, even-block castles), at O(1) cost per tuple of the cube.
 tags: [concept, castle, gray-code, generation, algorithm, mixed-radix, loopless, taocp]
-sources: [aocp-generating-permutations-tuples, project-euler-502-brute-force, aocp-generating-partitions]
+sources: [aocp-generating-permutations-tuples, project-euler-502-brute-force]
 created: 2026-09-20
-updated: 2026-10-02
+updated: 2026-10-16
 ---
 
 # Castle Gray code
 
-The castle sits inside the mixed-radix space `{1..h}^w`, which is exactly the space [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] enumerates in two orderings: the **odometer** (Algorithm M, one carry per step) and the **reflected Gray code** (Algorithm G, one digit changing by one per step).[^1] This page walks the Gray order on castles, proves that the block count moves by at most one per step, and reads off an O(1) update for the [[castle-sign](pages/castle-sign.md)] `s(c)=(-1)^{blocks(c)}` and its signed sum `S`. The result is a loopless enumerator of the cube that emits the proper (`max c = h`) and even-block (`s(c)=+1`) castles as it passes them. The closing section lists the related generation pages and what is open.
+The castles of width `w` and height `h` lie in the cube `{1..h}^w`, which [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] lists in two orders: the **odometer** of Algorithm M, which adds one with carries, and the **reflected Gray code**, which changes one coordinate per step and which the source gives for binary tuples as Algorithm G.[^1] This page walks the Gray order on castles, proves that the block count moves by at most one per step, and reads off an `O(1)` update of the sign `(−1)^{blocks(c)}` of [[castle-sign](pages/castle-sign.md)] and of the signed count `S`. The result lists the cube in `O(1)` time per tuple and keeps the even-block castles as it passes them.
 
 ## Representation and filters
 
-A castle of width `w` and height `h` is a tuple `c = (c_1, …, c_w) ∈ {1..h}^w`, filtered by:[^2]
-
-- **Proper height** - `max c = h`, i.e. at least one column reaches the top.
-- **Even blocks** - `s(c) = +1`, i.e. `blocks(c)` is even.
-
-The block count reads directly off the column heights (no path required):[^3]
+A tuple `c = (c_1, …, c_w) ∈ {1..h}^w` is a castle of height `h` when `max c = h`, and an even-block castle when also `blocks(c)` is even, where[^2]
 
 ```
-blocks(c) = c_1 + ∑_{i≥2} max(0, c_i − c_{i−1})
+blocks(c)  =  c_1 + Σ_{i≥2} max(0, c_i − c_{i−1}).
 ```
 
-so the sign `s(c) = (−1)^{blocks(c)}` is a function of `c` alone. The unsigned proper count is `A(w,h) = h^w − (h−1)^w`; the even-block count is `F(w,h) = (A + S)/2` with `S = ∑_C s(C)` over proper castles (see [[castle-counting-formula](pages/castle-counting-formula.md)], where `S = −P(h−1, w) + P(h−2, w)`, and [[castle-sign](pages/castle-sign.md)]).
+There are `A(w, h) = h^w − (h−1)^w` castles of width `w` and height `h`, and `A^e(w, h) = (A + S)/2` of them have an even number of blocks, where `S(w, h)` is the sum of `(−1)^{blocks(c)}` over the castles; `S(w, h) = P(h−2, w) − P(h−1, w)` ([[castle-counting-formula](pages/castle-counting-formula.md)], Equations (1) and (7)).
 
-## The three-way split of `{1..h}^w`
+## The three parts of `{1..h}^w`
 
 The cube splits into three disjoint parts:
 
-- **Improper tuples** - `max c < h`, i.e. castles that are too short to reach the top row; `(h-1)^w` of them.
-- **Proper odd-block tuples** - `max c = h` and `s(c) = −1`; `(A − S)/2` of them.
-- **Proper even-block tuples** - `max c = h` and `s(c) = +1`; `F(w, h) = (A + S)/2` of them. These are the valid castles.
+- **improper tuples**, `max c < h`, which do not reach height `h`: `(h−1)^w` of them;
+- **odd-block castles**, `max c = h` and `blocks(c)` odd: `A^o(w, h) = (A − S)/2`;
+- **even-block castles**, `max c = h` and `blocks(c)` even: `A^e(w, h) = (A + S)/2`.
 
-Knuth's Gray tour walks all `h^w` tuples of the cube. This page uses it as a **generic Gray code applied to castles**: the two filters are O(1) predicates checked at each visit, so the tour visits every improper and odd-block tuple along the way and emits only valid castles. A **castle-native Gray tour**, one that visits only valid castles, is a different combinatorial question, open under **Other generation algorithms in castle space** at the end.
+The Gray tour visits all `h^w` tuples, tests the two conditions in `O(1)` at each visit, and keeps the even-block castles. A tour that visits only the even-block castles is a different question, treated on [[castle-native-gray-tour](pages/castle-native-gray-tour.md)].
 
 ## Algorithm M: the odometer
 
-The [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] enumerator is Algorithm M with all radices `= h`, and its Python form is a one-liner (from [[castle-snippets](pages/castle-snippets.md)]):
+The brute-force enumerator of [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] is Algorithm M with every radix equal to `h`:
 
 ```python
 from itertools import product
 all_castles = [c for c in product(range(1, h+1), repeat=w) if max(c) == h]
 ```
 
-At `(w,h)=(3,2)` this visits `2^3 = 8` tuples, `2^3 − 1^3 = 7` of them proper. Odometer order (least significant position first, `c_3` cycling fastest):
+At `(w, h) = (3, 2)` it visits the `2^3 = 8` tuples, `2^3 − 1^3 = 7` of them castles, with `c_3` changing fastest:
 
-| step | `c` (odometer) | proper? | `blocks` | `s(c)` |
-|-----:|:---------------|:-------:|:--------:|:------:|
-| 0 | (1,1,1) | no      | 1 | −1 |
-| 1 | (1,1,2) | yes     | 2 | +1 |
-| 2 | (1,2,1) | yes     | 2 | +1 |
-| 3 | (1,2,2) | yes     | 2 | +1 |
-| 4 | (2,1,1) | yes     | 2 | +1 |
-| 5 | (2,1,2) | yes     | 3 | −1 |
-| 6 | (2,2,1) | yes     | 2 | +1 |
-| 7 | (2,2,2) | yes     | 2 | +1 |
+| step | `c` | castle? | `blocks` | `(−1)^{blocks}` |
+|-----:|:----|:-------:|:--------:|:------:|
+| 0 | (1,1,1) | no  | 1 | −1 |
+| 1 | (1,1,2) | yes | 2 | +1 |
+| 2 | (1,2,1) | yes | 2 | +1 |
+| 3 | (1,2,2) | yes | 2 | +1 |
+| 4 | (2,1,1) | yes | 2 | +1 |
+| 5 | (2,1,2) | yes | 3 | −1 |
+| 6 | (2,2,1) | yes | 2 | +1 |
+| 7 | (2,2,2) | yes | 2 | +1 |
 
-The proper count is `7`, the even-block count is `F(3,2) = 6`, the signed sum over proper castles is `S = 5 = 6 − 1`. At `(3, 2)` every odometer step happens to move `blocks` by at most one, but a carry changes several columns at once, and in general `blocks` jumps: at `(w, h) = (3, 3)` the step `(2,1,3) → (2,2,1)` takes it from `4` to `2`, and at `(4, 4)` the step `(1,2,1,4) → (1,2,2,1)` from `5` to `2`. The Gray tour removes these jumps.
+So `A(3, 2) = 7`, `A^e(3, 2) = 6` and `S(3, 2) = 6 − 1 = 5`. At `(3, 2)` every odometer step happens to change the block count by at most one, but a carry changes several columns at once, and the block count can jump: at `(3, 3)` the step `(2,1,3) → (2,2,1)` takes it from 4 to 2, and at `(4, 4)` the step `(1,2,1,4) → (1,2,2,1)` from 5 to 2.[^3]
 
 ## Algorithm G: the Gray tour
 
-The **reflected Gray code** is a specific sequence of tuples in `{1..h}^w` where consecutive tuples differ in a single position by `±1`; it is one member of a wider *Gray-code family* (reflected, monotone, balanced, Beckett, transposition, and so on), all of which share the one-move property but are built by different rules and land in a different order. Several algorithms produce the *reflected* Gray sequence: the closed-form `g(k) = k xor (k >> 1)` (`h = 2` only), iteration via the ruler function `ρ(k) = ν_2(k+1)` (`h = 2`, O(1) amortised, OEIS A007814), the recursive definition `Γ_{n+1} = 0 Γ_n, 1 Γ_n^R` (any `h`, not loopless), and the **loopless Gray algorithm** (any `h`, worst-case O(1) per successor via a pointer array; Knuth's Algorithm H in TAOCP §7.2.1.1). The `h = 2` walk below reads directly off the closed form; the next subsection moves to the loopless Gray algorithm for general `h`.[^4]
+In the **reflected Gray code**, consecutive tuples of `{1..h}^w` differ in one position by `±1`. For `h = 2` it is given by the closed form `g(k) = k xor (k >> 1)`, or step by step: the step after the `k`-th tuple, `k = 1, 2, …`, changes position `ρ(k) = ν_2(k)` counted from the fastest position, where `ν_2(k)` is the exponent of 2 in `k` (OEIS A007814: 0, 1, 0, 2, 0, 1, 0, 3, …). For every `h` the loopless Gray algorithm of the section *The loopless Gray algorithm: general h* produces it in worst-case `O(1)` time per step.[^4]
 
-For `(w,h)=(3,2)` the tour, read as `(c_1, c_2, c_3)` with `c_1` the most significant position (so bit string `b_1 b_2 b_3` maps to `c = (b_1+1, b_2+1, b_3+1)`):
+At `(w, h) = (3, 2)`, with `c_3` the fastest position, so that the bit string `b_1 b_2 b_3` is the tuple `(b_1 + 1, b_2 + 1, b_3 + 1)`:
 
-| step | `c` (Gray)  | changed | Δ `blocks` | `blocks` | `s(c)` |
-|-----:|:------------|:--------|:----------:|:--------:|:------:|
-| 0 | (1,1,1)      | -       | -    | 1 | −1 |
-| 1 | (1,1,2)      | `c_3` +1 | +1  | 2 | +1 |
-| 2 | (1,2,2)      | `c_2` +1 |  0  | 2 | +1 |
-| 3 | (1,2,1)      | `c_3` −1 |  0  | 2 | +1 |
-| 4 | (2,2,1)      | `c_1` +1 |  0  | 2 | +1 |
-| 5 | (2,2,2)      | `c_3` +1 |  0  | 2 | +1 |
-| 6 | (2,1,2)      | `c_2` −1 | +1  | 3 | −1 |
-| 7 | (2,1,1)      | `c_3` −1 | −1  | 2 | +1 |
+| step | `c` | changed | Δ `blocks` | `blocks` | `(−1)^{blocks}` |
+|-----:|:----|:--------|:----------:|:--------:|:------:|
+| 0 | (1,1,1) | -        | -  | 1 | −1 |
+| 1 | (1,1,2) | `c_3` +1 | +1 | 2 | +1 |
+| 2 | (1,2,2) | `c_2` +1 |  0 | 2 | +1 |
+| 3 | (1,2,1) | `c_3` −1 |  0 | 2 | +1 |
+| 4 | (2,2,1) | `c_1` +1 |  0 | 2 | +1 |
+| 5 | (2,2,2) | `c_3` +1 |  0 | 2 | +1 |
+| 6 | (2,1,2) | `c_2` −1 | +1 | 3 | −1 |
+| 7 | (2,1,1) | `c_3` −1 | −1 | 2 | +1 |
 
-Every `Δ blocks ∈ {−1, 0, +1}`. This is the property the rest of the page uses:
+Every change of the block count is in `{−1, 0, +1}`:
 
-**Lemma (single-column block delta).** Bumping `c_i` by `±1` changes `blocks(c)` by `0` or `±1`.
+**Lemma (single-column block change).** Changing one column `c_i` by `±1` changes `blocks(c)` by `−1`, `0` or `+1`.
 
-*Proof.* With `c_0 := 0`, `blocks(c) = ∑_{i=1}^{w} max(0, c_i − c_{i−1})`. Raising `c_i` by `1` raises `c_i − c_{i−1}` and lowers `c_{i+1} − c_i` (when `i < w`) by `1` each and leaves every other term alone. The term at `i` gains `[c_i ≥ c_{i−1}]` and the term at `i+1` loses `[c_{i+1} > c_i]`, so `Δ blocks = [c_i ≥ c_{i−1}] − [c_{i+1} > c_i] ∈ {−1, 0, +1}` (with `c_{w+1} := 0`). Lowering `c_i` is the reverse move. ∎[^5]
+*Proof.* With `c_0 = c_{w+1} = 0`, `blocks(c) = Σ_{i=1}^{w} max(0, c_i − c_{i−1})`. Raising `c_i` by 1 raises `c_i − c_{i−1}` by 1 and lowers `c_{i+1} − c_i` by 1, and leaves every other difference alone. The term `max(0, c_i − c_{i−1})` gains `[c_i ≥ c_{i−1}]` and the term `max(0, c_{i+1} − c_i)` loses `[c_{i+1} > c_i]`, so the block count changes by `[c_i ≥ c_{i−1}] − [c_{i+1} > c_i] ∈ {−1, 0, +1}`. Lowering `c_i` by 1 is the reverse move. ∎[^3]
 
-The proof used only the single-column `±1` step property, not the `h = 2` closed form. Any algorithm that produces the reflected Gray sequence - Algorithm G, or the loopless Gray algorithm below - inherits the lemma verbatim.
+The proof uses only that one column changes by `±1`, so it holds along every reflected Gray order, binary or not.
 
 ## The loopless Gray algorithm: general `h`
 
-For `h = 2` the `ρ(k)` snippet gives the next position to flip in one line. For general `h` the same reflected Gray sequence is produced by a **pointer-array successor** - the loopless Gray algorithm, Knuth's Algorithm H in TAOCP §7.2.1.1 - with worst-case O(1) per step:[^7]
+For every `h` the reflected Gray code is produced in worst-case `O(1)` time per step by focus pointers, as in Algorithm H of TAOCP §7.2.1.1, "Loopless reflected mixed-radix Gray generation". The Python version below shifts the digits to `1..h`; it changes the fastest position `c_1` first.[^5]
 
 ```python
 def loopless_gray(w, h):
@@ -104,87 +99,78 @@ def loopless_gray(w, h):
             f[j], f[j+1] = f[j+1], j+1
 ```
 
-`f[0..w]` is a **focus pointer**: `f[0]` names the position to bump next, and the reflect step splices an exhausted position out of the focus chain so the successor stays O(1) even when the current position is at an endpoint. `d[j] ∈ {+1, −1}` is the current direction at position `j`.
+`f[0]` names the position to change next, `d[j] ∈ {+1, −1}` is the direction of position `j`, and when position `j` reaches an end of `{1, …, h}` its direction flips and it is spliced out of the chain of focus pointers, so the next step is again found in `O(1)`.
 
-Walk at `(w, h) = (2, 3)`, nine tuples, `c_1` on the left:
+The walk at `(w, h) = (2, 3)`, nine tuples:
 
-| step | `c` | bumped | direction | reflect? |
-|-----:|:----|:------:|:---------:|:---------|
-| 0 | (1,1) | -    | -   | -                          |
-| 1 | (2,1) | `c_1` | +1 | no                         |
-| 2 | (3,1) | `c_1` | +1 | yes (`c_1` at top)         |
-| 3 | (3,2) | `c_2` | +1 | no                         |
-| 4 | (2,2) | `c_1` | −1 | no                         |
-| 5 | (1,2) | `c_1` | −1 | yes (`c_1` at bottom)      |
-| 6 | (1,3) | `c_2` | +1 | yes (`c_2` at top)         |
-| 7 | (2,3) | `c_1` | +1 | no                         |
-| 8 | (3,3) | `c_1` | +1 | yes (`c_1` at top)         |
+| step | `c` | changed | direction | end reached? |
+|-----:|:----|:-------:|:---------:|:---------|
+| 0 | (1,1) | -     | -  | -                     |
+| 1 | (2,1) | `c_1` | +1 | no                    |
+| 2 | (3,1) | `c_1` | +1 | yes (`c_1` at the top)    |
+| 3 | (3,2) | `c_2` | +1 | no                    |
+| 4 | (2,2) | `c_1` | −1 | no                    |
+| 5 | (1,2) | `c_1` | −1 | yes (`c_1` at the bottom) |
+| 6 | (1,3) | `c_2` | +1 | yes (`c_2` at the top)    |
+| 7 | (2,3) | `c_1` | +1 | no                    |
+| 8 | (3,3) | `c_1` | +1 | yes (`c_1` at the top)    |
 
-Every consecutive pair differs in one position by `±1`, and the nine tuples exhaust `{1..3}^2`. At the next step `f[0] = 2 = w` and the algorithm terminates. Under the ±1 lemma above, the block-count delta at every step is in `{−1, 0, +1}` and the incremental sign / `S` update below applies verbatim.
+Consecutive tuples differ in one position by `±1`, and the nine tuples are all of `{1..3}^2`. At the next step `f[0] = 2 = w`, and the generator stops.[^3]
 
 ## Incremental sign and `S`
 
-The lemma turns [[castle-sign](pages/castle-sign.md)] and its signed sum `S` into O(1) updates along the tour. Maintain a running `s ∈ {+1, −1}` and a running `S`; on each Gray step:
+By the Lemma, the sign and the signed count update in `O(1)` along the tour. Keep a running sign `s` and a running sum `S`; at each step
 
 ```python
-s *= (-1)**db      # db = Δ blocks ∈ {-1, 0, +1}
-if proper:  S += s # accumulate only over max(c) == h
+s *= (-1)**db      # db = change of blocks, in {-1, 0, +1}
+if proper:  S += s # sum only over tuples with max(c) == h
 ```
 
-`db` is computed by looking at the two neighbours of the changed column, so the update is worst-case O(1) per step and the whole tour runs in `O(h^w)` visits with `O(1)` work each. This is the sense in which the Gray tour is a **loopless enumerator** of the cube: for `h = 2` the position to flip is the ruler function `ρ(k) = ν_2(k+1)` (OEIS A007814); for general `h`, the **loopless Gray algorithm** above gives a worst-case O(1) successor.[^6] The odometer, by contrast, spends `Θ(w)` on the occasional long carry.
+where `db = [c_i ≥ c_{i−1}] − [c_{i+1} > c_i]` for a raise of `c_i` (and its negative, read before the move, for a lowering) uses only the two neighbors of the changed column. So the tour runs in `O(h^w)` visits with `O(1)` work each. The odometer instead spends `Θ(w)` on a long carry.
 
-There is a companion incremental object already on the wiki: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]'s `p_signed(k, L)`, a column-height dynamic program that maintains a `Θ(k)`-vector indexed by the last column height and updates it in `O(k^2)` per new column, computing `P(k, L)` in `O(k^2 L)` total. The tour and `p_signed` are two incremental computations: the tour walks the tuples one at a time, the DP folds them column by column. The tour gives every individual `(c, blocks(c))`; the DP gives just the totals `P(k, L)`.
+[[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]'s `p_signed(k, L)` computes the totals `P(k, L)` by a dynamic program over the height of the last column, in `O(k²)` operations per column; the tour gives `blocks(c)` for every tuple, and the dynamic program gives only the sums.
 
-## Filtering: proper castles and even-block castles
+## Filtering
 
-Two O(1) predicates layer onto the tour:
+Two `O(1)` tests run along the tour:
 
-- **Proper (`max c = h`)** - maintain a count `m_h` of positions where `c_i = h`; a `±1` bump only ever changes `m_h` by `±1`, and `proper ⇔ m_h ≥ 1`.
-- **Even-block (`s(c) = +1`)** - the running sign is already maintained.
+- **height `h` reached**: keep the number `m_h` of positions with `c_i = h`; a `±1` change moves `m_h` by at most 1, and `max c = h` exactly when `m_h ≥ 1`;
+- **even block count**: the running sign `s = +1`.
 
-Both filters compose with the tour: the emit condition becomes `m_h ≥ 1 and s == +1`, still O(1) per step. Densities: the proper fraction tends to `1` as `w` grows (`1 − ((h−1)/h)^w`), and inside the proper set the even-block fraction is `F/A = (1 + S/A)/2`, which tends to `1/2` because `S` is exponentially smaller than `A` ([[castle-entropy](pages/castle-entropy.md)]). So for fixed `h` and large `w` about half the visited tuples are emitted.
+The fraction of the cube that are castles of height `h` is `1 − ((h−1)/h)^w`, which tends to 1 as `w` grows, and among them the fraction with an even number of blocks is `A^e/A = (1 + S/A)/2`. `S/A` tends to 0 as `w` grows, since the spectral radius of the signed transfer matrix `M̃_{h−1}` is less than `h` ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]), so for fixed `h` and large `w` the tour keeps about half of the tuples it visits.
 
-Visiting only the proper even-block castles, without passing through the rest of the cube, is a Ruskey-style Gray-code question for a restricted set, open (see **Other generation algorithms in castle space** below).
+## Other generation methods for castles
 
-## Other generation algorithms in castle space
+- [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - Algorithms M and G as Knuth's notes state them.
+- [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - `brute(w, h)`, Algorithm M with the castle and parity filters, and the dynamic program `p_signed`.
+- [[castle-snippets](pages/castle-snippets.md)] - `all_castles(w, h)` in two lines.
+- [[castle-count-algorithms](pages/castle-count-algorithms.md)] - the transfer-matrix and Kitamasa computations, which count castles without listing them.
+- [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] and [[castle-move-graph-zdd](pages/castle-move-graph-zdd.md)] - whether the even-block castles alone admit a Gray tour: at `(3, 2)` the castles of height 2 alone have a bump tour, the even-block ones need swaps as well, and at `(3, 3)` the three even-block castles are joined by no bump or swap.
 
-Existing pages:
-
-- [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - Algorithm M and Algorithm G as Knuth states them, plus the observation that the castle brute-force is Algorithm M with uniform radix.
-- [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - `brute(w,h)` (Algorithm M with the proper-and-parity filter) and `p_signed` (column-height DP for `P`).
-- [[castle-snippets](pages/castle-snippets.md)] - `all_castles(w, h)` as the two-line itertools form.
-- [[castle-count-algorithms](pages/castle-count-algorithms.md)] - transfer-matrix and Kitamasa, the *count-only* counterparts to Algorithm M (they never materialise an individual castle).
-
-Castle-native counterpart (open, no algorithm known):
-
-- [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - whether a Gray tour exists on `V(w, h) = { c : max c = h, blocks(c) even }` directly. Small cases: `V_proper(3, 2)` alone admits a Hamilton path under M1; `V(3, 2)` needs the enlarged M1 ∪ M6 (single-column `±1` plus adjacent transposition); `V(3, 3)` is three castles that no local move set tried connects. The obstruction at `h = 2` is pendant castles, at `h = 3` sparseness; no general pattern is visible at these sizes. [[castle-move-graph-zdd](pages/castle-move-graph-zdd.md)] extends the sweep.
-
-Not covered: Heap's algorithm and Steinhaus-Johnson-Trotter are permutation Gray codes, which apply to castle skylines only through the [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] and [[castle-foata-transform](pages/castle-foata-transform.md)] - a different object (permutations of a fixed multiset), not the full `{1..h}^w`.
+Heap's algorithm and the Steinhaus-Johnson-Trotter algorithm list permutations, which reach castles through the correspondence of [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] and [[castle-foata-transform](pages/castle-foata-transform.md)], not through the cube `{1..h}^w`.
 
 ## Entities & Concepts
 
-- [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - Algorithms M and G, and the ruler function `ρ(k)`.
-- [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the column-height block-count formula and the `p_signed` DP.
-- [[castle-sign](pages/castle-sign.md)] - `s(c) = (−1)^{blocks(c)}` and the `(T ± P)/2` projector.
-- [[castle-counting-formula](pages/castle-counting-formula.md)] - `F(w,h) = (A + S)/2` with `A = h^w − (h−1)^w`.
-- [[castle-snippets](pages/castle-snippets.md)] - `all_castles`, `blocks`, and the classification predicates in one place.
-- [[castle-count-algorithms](pages/castle-count-algorithms.md)] - transfer-matrix and Kitamasa, the count-only counterparts.
+- [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - Algorithms M and G and the ruler function `ρ(k)`.
+- [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the block-count formula and the dynamic program `p_signed`.
+- [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the split of a set into even-block and odd-block members.
+- [[castle-counting-formula](pages/castle-counting-formula.md)] - `A^e(w, h) = (A + S)/2` with `A = h^w − (h−1)^w`.
+- [[castle-snippets](pages/castle-snippets.md)] - `all_castles`, `blocks`, and the shape predicates.
+- [[castle-count-algorithms](pages/castle-count-algorithms.md)] - the computations that count castles without listing them.
 
 ## Related Concepts
 
-- [[castle-representations](pages/castle-representations.md)] - column-height tuple, binary, U/R/D step-string; the tour lives on the tuple.
-- [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] - the up/flat/down streaks of a skyline, which a single-column bump edits locally.
-- [[castle-entropy](pages/castle-entropy.md)] - the even-block filter costs about one bit of the `w log_2 h` bits the odometer walks.
-- [[block-count-constraints](pages/block-count-constraints.md)] - the running `S = Σ s(c)` sign updates are the residue-class `m = 2` extraction of the block-count trichotomy, run at Gray-tour cost.
-- [[castle-samplers](pages/castle-samplers.md)] - the Gray walk used as exhaustive ground truth for the random castle samplers.
-- [[aocp-generating-partitions](pages/aocp-generating-partitions.md)] - a different "Algorithm H" (§7.2.1.4, the Hindenburg algorithm for partitions into `m` parts), and Savage's Gray code for partitions.
+- [[castle-representations](pages/castle-representations.md)] - the column-height tuple on which the tour runs, beside the binary and step-string encodings.
+- [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] - the up-streaks, flat runs and down-streaks of a skyline; a single-column change edits at most the streaks at that column.
+- [[castle-entropy](pages/castle-entropy.md)] - the information content of the even-block condition, `log₂ A^e = log₂ A − 1 + log₂(1 + S/A)`.
+- [[block-count-constraints](pages/block-count-constraints.md)] - selecting castles by block count modulo `m`; the running `S` is the case `m = 2`.
+- [[castle-samplers](pages/castle-samplers.md)] - the Gray walk as exhaustive ground truth for the random castle samplers.
+- [[aocp-generating-partitions](pages/aocp-generating-partitions.md)] - a different Algorithm H, the Hindenburg algorithm of §7.2.1.4 for partitions into `m` parts.
 
 ## Footnotes
 
-[^1]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Algorithm M"/"Algorithm G" - Algorithm M is the mixed-radix add-one enumerator of all tuples `(a_1,…,a_n)` with `0 ≤ a_j < m_j`; Algorithm G is the reflected Gray code `Γ_{n+1} = 0 Γ_n, 1 Γ_n^R`, one digit changing per step, flip position given by the ruler function `ρ(k)`.
-[^2]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Column-height encoding" - "column heights `c_1, …, c_w ∈ {1, …, h}` with `max c = h`"; the two filters this page enforces.
-[^3]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Column-height encoding" - "`#blocks = c_1 + ∑_{i=2}^{w} max(0, c_i − c_{i−1})`"; re-verified during that ingest against the run-based definition for all skylines `w, h ≤ 6`. The `(3,2)` tables and the `(2,3)` loopless Gray walk in this page were re-checked against the same formula on 2026-09-20, and the lemma was re-checked exhaustively for `w ≤ 6`, `h ≤ 4` on 2026-09-28, together with the exact delta `[c_i ≥ c_{i−1}] − [c_{i+1} > c_i]`.
-[^4]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Recurrence Relation"/"Algorithm G" - "`Γ_{n+1} = 0 Γ_n, 1 Γ_n^R` … exactly one bit changes each step … `j = ρ(k)`"; the `h > 2` mixed-radix generalisation is the same reflection with direction chosen by the parity of the digits above position `j`.
-[^5]: The one-column block delta claim also appears in [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Where Algorithm M already runs on the wiki" as a sketch ("`Δ ∈ {−1, 0, +1}`, checked exhaustively for `(w,h) = (5,4)` and `(6,3)`"); the proof above from the column-height formula makes the exhaustive check a corollary. Re-verified along the `(3,2)` Gray tour column of this page on 2026-09-20.
-[^6]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Recurrence Relation"/"Algorithm G" - "`j = ρ(k)` (`ρ` is the ruler function)"; the ruler sequence is OEIS A007814, `0, 1, 0, 2, 0, 1, 0, 3, …`, and gives the flip position in O(1) per step for `h = 2`. For general `h` the loopless successor is the loopless Gray algorithm (footnote 7).
-[^7]: Knuth, TAOCP Vol. 4A §7.2.1.1 p.300, "Algorithm H (Loopless reflected mixed-radix Gray generation)", introduced as generalizing Algorithms M and L: maintain focus pointers `f_0 … f_n` and directions `o_1 … o_n`; at each step read `j ← f_0`, terminate if `j = n`, else `f_0 ← 0`, bump `a_j ← a_j + o_j`, and if `a_j` reaches an endpoint flip `o_j` and splice `f_j ← f_{j+1}, f_{j+1} ← j + 1`. The Python adaptation on this page (radices shifted to `[1..h]`, endpoints `1` and `h`) and the `(w, h) = (2, 3)` walk were re-verified by hand on 2026-09-20 against the one-position-per-step property (nine consecutive pairs, each differing in one coordinate by `±1`) and completeness (all `h^w = 9` tuples of `{1..3}^2` visited exactly once).
+[^1]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Algorithm M" L35-39, §"Algorithm G" L143, L168-169 - "Algorithm M = mixed radix generation algorithm", "This algorithm visits all n-tuples by repeatedly adding 1 to the mixed-radix number until overflow occurs", "Algorithm G = gray binary generation algorithm", "after kth time performing this step, j = rho(k) (rho is the ruler function)". The notes treat only the binary Gray code.
+[^2]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Column-height encoding" L18-24 - "column heights c_1, …, c_w ∈ {1, …, h} with max c = h", "#blocks = ∑_{r=1}^{h} #{runs of columns with c_i ≥ r} = c_1 + ∑_{i=2}^{w} max(0, c_i − c_{i−1})".
+[^3]: Verified by execution (Python 3.11, 2026-10-16): both `(3, 2)` tables; the odometer jumps `4 → 2` at `(3, 3)` and `5 → 2` at `(4, 4)`; the Lemma, with the exact change `[c_i ≥ c_{i−1}] − [c_{i+1} > c_i]`, on every raise of every tuple for `w ≤ 6`, `h ≤ 4`; the `(2, 3)` walk; and, for `w ≤ 6`, `h ≤ 4`, that `loopless_gray` visits each tuple of `{1..h}^w` once with one position changing by `±1` per step.
+[^4]: https://oeis.org/A007814 (read 2026-10-16) - "Exponent of highest power of 2 dividing n", `0, 1, 0, 2, 0, 1, 0, 3, …` from `n = 1`. In the `(3, 2)` table the steps 1 to 7 change the positions `c_3, c_2, c_3, c_1, c_3, c_2, c_3`, that is `ρ(k) = 0, 1, 0, 2, 0, 1, 0` counted from `c_3`.
+[^5]: Knuth, *The Art of Computer Programming* Vol. 4A §7.2.1.1, Algorithm H, "Loopless reflected mixed-radix Gray generation" (quoted from a copy that is not in the repository and was not re-read): focus pointers `f_0, …, f_n` and directions `o_1, …, o_n`; at each step `j ← f_0`, stop if `j = n`, else `f_0 ← 0`, `a_j ← a_j + o_j`, and if `a_j` reaches an end, flip `o_j` and set `f_j ← f_{j+1}`, `f_{j+1} ← j + 1`. The Python version is checked by running it (footnote 3).
