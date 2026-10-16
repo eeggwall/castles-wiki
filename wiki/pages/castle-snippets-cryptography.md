@@ -1,20 +1,20 @@
 ---
 title: Castle snippets - cryptography
 category: Concepts
-summary: The castle_dh / castle_dlp / bm_modp / castle_schnorr snippets: build and red-team the castle cryptosystem, plus the linearization attack. Sibling of the core castle-snippets hub.
+summary: Four tested Python snippets for the castle cryptosystem in R = F_p[x]/(char_k mod p) at p = 10^9 + 7. castle_dh is Diffie-Hellman with public parameters (p, Q), a private exponent and public key x^a mod Q; castle_dlp recovers the private key 373309869 by splitting Q, Pohlig-Hellman and baby-step giant-step, for char_2, char_1 and char_3; bm_modp is Berlekamp-Massey over F_p and measures the linear complexity 10 of s_n s_{n+1} on a 4-stage register; castle_schnorr is ElGamal and a Schnorr-style signature in the subgroup of order 340715873 of F_{p^4}.
 tags: [concept, castle, python, snippets, cryptography, diffie-hellman, discrete-log, berlekamp-massey, schnorr, elgamal]
 sources: [oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Castle snippets - cryptography
 
-A sibling page to [[castle-snippets](pages/castle-snippets.md)]: the build-and-attack snippets of the three-seminar cryptography series ([[castle-cryptography](pages/castle-cryptography.md)] / [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] / [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]). Same conventions as the hub page - every output pinned, every snippet executed during ingest.
+The snippets of the cryptography series ([[castle-cryptography](pages/castle-cryptography.md)], [[castle-cryptography-ring](pages/castle-cryptography-ring.md)], [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]), in the format of [[castle-snippets](pages/castle-snippets.md)]: each snippet with the output it prints.[^1]
 
 ### `castle_dh` → a working castle Diffie–Hellman
 
-Public-key exchange in the ring `F_p[x]/(Q)`, where `Q` is a castle characteristic polynomial ([[castle-cryptography](pages/castle-cryptography.md)]). The "public castle" is `Q`; a private key is a secret exponent; the one-way map `x^a mod Q` is [[kitamasa](pages/kitamasa.md)] exponentiation. Stdlib only.
+Key exchange in the ring `F_p[x]/(Q)`, with `Q = char_k mod p` ([[castle-cryptography](pages/castle-cryptography.md)]). The public parameters are `(p, Q)`, a private key is an exponent `a`, and the public key is `x^a mod Q`, computed by the exponentiation of [[kitamasa](pages/kitamasa.md)]. Standard library only.
 
 ```python
 def one(Q): return [1] + [0]*(len(Q)-2)          # multiplicative identity in F_p[x]/(Q)
@@ -49,7 +49,7 @@ def castle_dh(Q, p, a, b):                     # returns (Alice_pub, Bob_pub, sh
 
 ```
 >>> p = 10**9 + 7
->>> Q = [-4 % p, 4, -3 % p, 1]                 # char_2 = x^3 - 3x^2 + 4x - 4 (the public castle)
+>>> Q = [-4 % p, 4, -3 % p, 1]                 # char_2 = x^3 - 3x^2 + 4x - 4, the public modulus
 >>> A, B, s = castle_dh(Q, p, 373309869, 566180101)
 >>> s == powmod(A, 566180101, Q, p)            # both parties get the same shared secret
 True
@@ -57,12 +57,12 @@ True
 [395423824, 86931747, 647893869]
 ```
 
-Meaning: a running asymmetric cryptosystem built from the castle's own Kitamasa primitive — the "public castle" is `Q`, the private key is the exponent, and the shared secret is `x^{ab} mod Q`. It is a *teaching* system, not a secure one: `Q` factors (`(x−2)(x²−x+2)`) so the discrete log splits, and Berlekamp–Massey reconstructs `Q` from the count sequence; both attacks are on [[castle-cryptography](pages/castle-cryptography.md)] ([[berlekamp-massey](pages/berlekamp-massey.md)]).
+Meaning: both parties obtain the shared secret `x^{ab} mod Q`. The system is not secure at this size: `Q = (x − 2)(x² − x + 2)` factors, so the discrete logarithm splits (Attack 1), and Berlekamp-Massey recovers `Q` from `2 deg Q` terms of the sequence (Attack 2), both on [[castle-cryptography](pages/castle-cryptography.md)] ([[berlekamp-massey](pages/berlekamp-massey.md)]).
 
 
 ### `castle_dlp(A, Q, p)` → recover the private key from a castle public key
 
-The red team's tool ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]): factor `Q mod p`, reduce `A` modulo each factor, solve each piece's discrete log by Pohlig–Hellman over the factored element order with baby-step giant-step on each prime, and Chinese Remainder Theorem (CRT) the pieces. Uses `mulmod` / `powmod` / `one` / `gen` from `castle_dh`. Requires SymPy.
+Attack 3 of [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]: factor `Q mod p`, reduce `A` modulo each factor, solve the discrete logarithm of each piece by Pohlig-Hellman over the factored order of `x`, with baby-step giant-step for each prime, and combine the pieces by the Chinese Remainder Theorem (CRT). Uses `mulmod`, `powmod`, `one` and `gen` from `castle_dh`. Requires SymPy.
 
 ```python
 from math import isqrt
@@ -109,27 +109,27 @@ def castle_dlp(A, Q, p):                       # recover a from A = x^a mod Q: s
 ```
 
 ```
->>> p = 10**9 + 7; Q2 = [-4 % p, 4, -3 % p, 1]              # char_2, the castle_dh public castle
+>>> p = 10**9 + 7; Q2 = [-4 % p, 4, -3 % p, 1]              # char_2, the castle_dh modulus
 >>> A = powmod(gen(Q2), 373309869, Q2, p); A                 # Alice's public key from castle_dh
 [704821174, 848698009, 235195321]
 >>> castle_dlp(A, Q2, p)   # Alice's private key, and the modulus it is known mod
-[373309869, 500000007000000024] # 0.07s
+[373309869, 500000007000000024]
 >>> Q1 = [2, -2 % p, 1]                                      # char_1, irreducible mod p: still falls
 >>> castle_dlp(powmod(gen(Q1), 373309869, Q1, p), Q1, p)
-[373309869, 4000000024] # 0.04s
+[373309869, 4000000024]
 >>> sp.factorint(p**2 - 1)                                   # the group order factors even though Q does not
 {2: 4, 3: 2, 7: 1, 109: 2, 167: 1, 500000003: 1}
 >>> Q3 = [8, -8 % p, 8, -4 % p, 1]                           # char_3, degree 4, irreducible mod p
 >>> castle_dlp(powmod(gen(Q3), 373309869, Q3, p), Q3, p)
-[373309869, 800000016000000107200000240] # 0.18s
+[373309869, 800000016000000107200000240]
 ```
 
-Meaning: the private key falls in a fraction of a second whether or not `Q` factors, because `p^d − 1 = ∏_{e|d} Φ_e(p)` factors algebraically and its largest prime here is `500000003 ≈ 2²⁹`. "Irreducible" removed the CRT split of the ring, not of the group ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], Attack 4).
+Meaning: the private key is recovered whether or not `Q` factors, because `p^d − 1 = ∏_{e | d} Φ_e(p)` factors for every `p` and its largest prime factor here is `500000003 ≈ 2^28.9`. An irreducible `Q` removes the CRT split of the ring, not the factorization of the order of the group ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], Attack 4).
 
 
 ### `bm_modp(s, p)` → Berlekamp–Massey over `F_p`, and the linearization attack
 
-Linear complexity of a sequence mod `p` ([[berlekamp-massey](pages/berlekamp-massey.md)]), used to measure how much a nonlinear filter on a castle register raises the linear complexity ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], Attack 5). Stdlib only.
+The linear complexity of a sequence mod `p`, the order of its shortest linear recurrence ([[berlekamp-massey](pages/berlekamp-massey.md)]), used to measure how much a polynomial filter on a castle register raises it ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], Attack 5). Standard library only.
 
 ```python
 def bm_modp(s, p):                             # -> (connection poly low->high, C[0] = 1; linear complexity L)
@@ -154,7 +154,7 @@ def lfsr(Q, init, n, p):                       # run the castle recurrence with 
 >>> s = lfsr(Q3, [1, 0, -4 % p, -16 % p], 300, p)  # P(3, L) mod p: a 4-stage castle register
 >>> bm_modp(s, p)[1]
 4
->>> z = [s[i]*s[i+1] % p for i in range(299)]      # 'nonlinear output': product of adjacent terms
+>>> z = [s[i]*s[i+1] % p for i in range(299)]      # filtered output: product of adjacent terms
 >>> C, L = bm_modp(z, p); L                        # = C(5, 2): products of pairs of roots
 10
 >>> all(sum(C[i]*z[n-i] for i in range(L+1)) % p == 0 for n in range(L, len(z)))   # the recovered recurrence predicts every later term
@@ -166,12 +166,12 @@ True
 20
 ```
 
-Meaning: a degree-`e` polynomial filter on a `d`-stage linear register is itself linear of complexity `≤ C(d+e−1, e)` (the characteristic roots are the degree-`e` monomials in the roots of `Q`), so Berlekamp–Massey still recovers it from `2L` terms. Nonlinearity raises `L` by a computable amount.
+Meaning: a product of `e` terms of a `d`-stage linear register satisfies a linear recurrence of order at most `C(d + e − 1, e)`, whose characteristic roots are among the products of `e` roots of `Q`, so Berlekamp-Massey recovers it from `2L` terms.
 
 
 ### `castle_schnorr` → ElGamal and a Schnorr-style signature on the `x^a` map
 
-The round-two build ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]): encryption and signatures from the same `powmod` as `castle_dh`, in a prime-order subgroup of `F_p[x]/(char_3) ≅ F_{p⁴}`. The subgroup prime `q = 340715873` divides `p² + 1`, so `⟨g⟩` lives in the degree-4 part of the field (on `char_1` the analogous subgroup collapses to scalars: `x^8 = 16`).
+The build of round two ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]): encryption and signatures from the same `powmod` as `castle_dh`, in a subgroup of prime order of `F_p[x]/(char_3) ≅ F_{p⁴}`. The prime `q = 340715873` divides `p² + 1` and not `p² − 1`, so `⟨g⟩` lies in no proper subfield (on `char_1` the subgroup of order `(p − 1)/2` lies in `F_p`, since `x⁸ = 16`).
 
 ```python
 import hashlib, random
@@ -196,11 +196,11 @@ def verify(pub, msg, e, s): return H(mulmod(powmod(g, s, Q, p), powmod(pub, (q -
 [1, 1, 3, 9]
 >>> e, sg = sign(a, b'castle 502'); (e, sg), verify(pub, b'castle 502', e, sg), verify(pub, b'castle 503', e, sg)
 (129461214, 65798226) True False
->>> bsgs(g, pub, q, Q, p) == a   # red team: q is 29 bits, so ~18,000 baby steps
-True # 0.07s
+>>> bsgs(g, pub, q, Q, p) == a   # Attack 4: q has 29 bits, a table of 18,459 baby steps
+True
 ```
 
-Meaning: key exchange, encryption and signatures all come from one exponentiation, and the same `bsgs` the red team wrote for `castle_dlp` recovers the signing key in a fraction of a second, because a 29-bit subgroup needs a table of about `√q ≈ 18,000` entries. The construction runs; its parameters are far too small.
+Meaning: key exchange, encryption and signatures all come from one exponentiation, and the `bsgs` of `castle_dlp` recovers the signing key with a table of `⌈√q⌉ = 18,459` entries. The construction works; its parameters are far too small.
 
 
 ## Appearances in Sources
@@ -215,3 +215,7 @@ Meaning: key exchange, encryption and signatures all come from one exponentiatio
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - the recovery attack `bm_modp` runs.
 - [[signed-tower-count](pages/signed-tower-count.md)] - the `P(k, ·)` sequence the LFSR attack reconstructs.
 - [[finite-fields](pages/finite-fields.md)] - the field structure of `F_p[x] / (Q)`.
+
+## Footnotes
+
+[^1]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): every code block on the page run as printed, in order; each output shown is the printed output, including `castle_dlp` for `char_2`, `char_1` and `char_3`, `bm_modp` (4, 10, 20, and both checks `True`), and `castle_schnorr` with `random.seed(502)`.
