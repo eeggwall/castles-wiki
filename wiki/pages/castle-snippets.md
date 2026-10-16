@@ -359,7 +359,7 @@ def castle_graph_radius(c):
 [(2, 2, 2)]
 ```
 
-The spectral radius of the castle `(1, 1, 1, 1)` is the golden ratio `φ`, and that of `(2, 2, 2)` and of `(1, 2, 3, 1, 2, 3)` is the silver ratio `1 + √2`. `castles_where` with a test on `castle_graph_radius` counts the castles of a given spectral radius.
+The spectral radius of the castle `(1, 1, 1, 1)` is the golden ratio `φ`, so it is golden by spectrum, and that of `(2, 2, 2)` and of `(1, 2, 3, 1, 2, 3)` is the silver ratio `1 + √2`, so they are silver by spectrum ([[castle-classification-spectrum](pages/castle-classification-spectrum.md)]). `castles_where` with a test on `castle_graph_radius` counts the castles of a given spectral radius.
 
 ### `metallic_in_spectrum(c, a)` → bool
 
