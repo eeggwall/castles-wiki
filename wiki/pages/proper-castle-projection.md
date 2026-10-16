@@ -1,47 +1,48 @@
 ---
-title: Do metallic growth constants survive the proper-castle projection
+title: From ridge strips to even-block ridge castles
 category: Analyses
-summary: The metallic-strip-realizability counts are free-height strip counts (𝟙ᵀR_h^L𝟙); imposing the two proper PE-502 clauses (max_i c_i = h and the even-block parity (A±P)/2) leaves the metallic growth constant δ_{h−1} invariant, but the exact sequences are new. The signed transfer matrix S_h (entries (−1)^max(0,b−a)·R_h[a][b]) has spectral radius strictly below δ_{h−1} (1.000 / 1.575 / 1.768 / 2.242 / 2.413 for h = 2..6 vs δ = 1.618 / 2.414 / 3.303 / 4.236 / 5.193), so the parity projector (A±P)/2 preserves the leading term. The even-block ridge castle counts (proper castles under the ridge rule R_h = J − D) by width are a new family with no OEIS match for h ≥ 3: bronze (h=4) 1, 7, 25, 70, 209, 697, 2390, 8169, …; δ_4 (h = 5) 0, 0, 10, 104, 604, 2836, 12630, 55668, …. Even the free counts are not the primary metallic sequences: silver → A001333 (Pell-Lucas) not A000129, bronze → A003688 not A006190, δ_4 → A015448 (the Fibonacci trisection F_{3n+5}) not A001076, δ_5 → A015449 not A052918, so neither the free nor the projected counts reproduce Pell / A006190 / A001076 / A052918.
-tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, parity, even-block, proper-castle, bronze, silver, new-sequence, oeis, sympy, verification]
-sources: [pe502-pell-castle-strip, project-euler-502-castle-factoring]
+summary: The ridge strips of metallic-strip-realizability need not reach their ceiling h and carry no parity. Restricting to the ridge castles of height h and then to their even-block part keeps the growth constant δ_{h−1}, because the signed transfer matrix R̃_h has spectral radius below δ_{h−1} (1.000, 1.575, 1.768, 2.242, 2.413 against 1.618, 2.414, 3.303, 4.236, 5.193 for h = 2..6), so A^e_ridge = (A_ridge + S_ridge)/2 is half of A_ridge up to a smaller term. The even-block counts satisfy linear recurrences of order 4, 8, 10, 12, 14 for h = 2..6 (computed). The ridge strip counts are A001333(w+1), A003688(w+1), A015448(w+1), A015449(w+1) for h = 3..6, not the primary metallic sequences A000129, A006190, A001076, A052918; only h = 2 gives the Fibonacci numbers.
+tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, parity, even-block, bronze, silver, oeis, sympy, verification]
+sources: [project-euler-502]
 created: 2026-09-18
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
-# Do metallic growth constants survive the proper-castle projection
+# From ridge strips to even-block ridge castles
 
 ## The question
 
-[[metallic-strip-realizability](pages/metallic-strip-realizability.md)] realizes the whole metallic ladder from one rule — the **ridge rule** (`R_h = J − D`: adjacent columns differ in height unless both equal `h`; char poly `(x+1)^{h−2}(x² − (h−1)x − 1)`, Perron root `δ_{h−1}`) — but its counts are *free-height strip* counts `𝟙ᵀR_h^L𝟙`: a row of columns with heights in `{1, …, h}`, no ground boundary, no `max = h`, no block parity. A **proper PE-502 castle** imposes two extra clauses:[^1]
+The ridge rule says that neighboring columns differ in height unless both have height `h`; its transfer matrix on the heights `1, …, h` is `R_h = J − D`, with `J` the all-ones matrix and `D = diag(1, …, 1, 0)`, characteristic polynomial `(x + 1)^{h−2}(x² − (h − 1)x − 1)` and Perron root `δ_{h−1}` ([[ridge-castle](pages/ridge-castle.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] counts ridge strips, `𝟙ᵀ R_h^{w−1} 𝟙` of width `w`. A strip need not reach height `h`, so a ridge strip is not a castle of height `h`, and it carries no block parity. The Project Euler castles of height `h` add two conditions: some column has height `h`, and the castle has an even number of blocks.[^1] This page asks whether the growth constant `δ_{h−1}` and the metallic sequences survive the two conditions.
 
-1. **`max_i c_i = h`** — the castle actually reaches the ceiling (height exactly `h`, not `≤ h`).
-2. **the even-block parity** — `even = (A + P)/2` where `A` is the unsigned count and `P = Σ (−1)^{blocks(c)}` the [[castle-sign](pages/castle-sign.md)] signed count.
+*Example.* At `h = 3` and `w = 3` there are 17 ridge strips. Two of them, the skylines `(1, 2, 1)` and `(2, 1, 2)`, do not reach height 3, so they are not castles of height 3; the other 15 are the ridge castles of width 3 and height 3. Three of these have an even number of blocks: `(2, 1, 3)`, `(3, 1, 2)` and `(3, 2, 3)`, with 4 blocks each.
 
-Growth constants should be invariant under these lower-order corrections, but the *exact* sequences, and their Online Encyclopedia of Integer Sequences (OEIS) identities, can change. This page works out the projected counts for the ridge ladder (bronze / `δ_4` / …) and asks whether the metallic OEIS sequences (Pell A000129, A006190, A001076, …) or new ones appear.
+## The two restrictions
 
-## The two projections, precisely
-
-A proper castle under the ridge rule is a **ridge castle** ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2); an even-block ridge castle is a skyline `c = (c_1, …, c_w) ∈ {1,…,h}^w` with (i) `c_i ≠ c_{i+1}` unless both equal `h`, (ii) `max c = h`, (iii) `blocks(c)` even, where `blocks(c) = c_1 + Σ_{i≥2} max(0, c_i − c_{i−1})` is the total ascent from the implicit ground `c_0 = 0` ([[castle-sign](pages/castle-sign.md)], [[castle-snippets](pages/castle-snippets.md)]).
-
-**Projection 1 — `max = h`.** Subtract the strips that never reach height `h`. A ridge strip avoiding `h` satisfies "differ unless both `= h`", and since `h` is unreachable that is just *plateau-free* (`c_i ≠ c_{i+1}`), transfer matrix `J_{h−1} − I_{h−1}` — **not** the ridge matrix `R_{h−1}` (whose ceiling exception would wrongly re-admit `(h−1, h−1)`). So
+**Reaching height `h`.** A ridge strip that never reaches `h` has all heights in `{1, …, h − 1}`, where the ridge rule says that neighboring columns always differ. These plateau-free skylines number `(h − 1)(h − 2)^{w−1}`, so the ridge castles of height `h` number ([[ridge-castle](pages/ridge-castle.md)], Equation (3))
 
 ```
-u_proper(w)  =  𝟙ᵀ R_h^{w−1} 𝟙  −  𝟙ᵀ (J_{h−1} − I_{h−1})^{w−1} 𝟙 .
+A_ridge(w, h)  =  𝟙ᵀ R_h^{w−1} 𝟙  −  (h − 1)(h − 2)^{w−1}.
 ```
 
-**Projection 2 — parity.** The sign factorizes over the skyline: `(−1)^{blocks} = (−1)^{c_1} · Π (−1)^{max(0, c_i − c_{i−1})}`. So the signed count is `vᵀ S_h^{w−1} 𝟙` with start vector `v[a] = (−1)^a` and signed transfer matrix[^2]
+**Parity.** The block count is the total rise `c_1 + Σ_{i≥2} max(0, c_i − c_{i−1})` ([[castle-sign](pages/castle-sign.md)]), so the sign `(−1)^{blocks}` factors over the steps. With the signed transfer matrix and start vector
 
 ```
-S_h[a][b]  =  (−1)^{max(0, b−a)} · R_h[a][b].
+R̃_h[a][b]  =  (−1)^{max(0, b − a)} · R_h[a][b],        v_a  =  (−1)^a,
 ```
 
-Then `even(w) = (u_proper(w) + s_proper(w))/2`, `odd(w) = (u_proper(w) − s_proper(w))/2`, with `s_proper` the same subtraction applied to the signed counts.
+the signed count of the ridge castles of height `h` is
 
-## Finding 1 — growth is invariant
+```
+S_ridge(w, h)  =  vᵀ R̃_h^{w−1} 𝟙  −  (the same signed sum over the plateau-free skylines on {1, …, h − 1}),
+```
 
-`char(R_h) = (x+1)^{h−2}(x² − (h−1)x − 1)` has Perron root `δ_{h−1}`. The signed matrix `S_h` is spectrally *subdominant* at every height:[^3]
+and the even-block and odd-block ridge castles number `A^e_ridge = (A_ridge + S_ridge)/2` and `A^o_ridge = (A_ridge − S_ridge)/2`.[^2]
 
-| `h` | spectral radius `ρ(S_h)` | `δ_{h−1}` |
+## The growth constant survives
+
+The spectral radius of `R̃_h` is below `δ_{h−1}` for `h ≤ 6` (computed):[^3]
+
+| `h` | `ρ(R̃_h)` | `δ_{h−1}` |
 |---|---|---|
 | 2 | 1.000 | 1.618 |
 | 3 | 1.575 | 2.414 |
@@ -49,70 +50,52 @@ Then `even(w) = (u_proper(w) + s_proper(w))/2`, `odd(w) = (u_proper(w) − s_pro
 | 5 | 2.242 | 4.236 |
 | 6 | 2.413 | 5.193 |
 
-Since `ρ(S_h) < δ_{h−1}`, the signed count `P` is `o(A)`, and `(A ± P)/2` keeps the leading term `~ C·δ_{h−1}^w`. Numerically the even-count tail ratios converge to the metal: `h=3 → 2.41426`, `h=4 → 3.30279`, `h=5 → 4.23657`, `h=6 → 5.1958` (→ `δ_5 = 5.1926`).[^4] **The metallic growth constant survives both projections**, as the lower-order-correction reading predicts.
+The subtracted plateau-free terms grow at most like `(h − 2)^w < δ_{h−1}^w`. So `S_ridge(w, h)` is `o(A_ridge(w, h))`, and `A^e_ridge(w, h)` is `A_ridge(w, h)/2` up to a smaller term: the even-block ridge castles of height `h` are `δ_{h−1}` by width, like the ridge strips. At `w = 40` the ratios `A^e_ridge(40, h)/A^e_ridge(39, h)` are `2.41421`, `3.30278`, `4.23607`, `5.19263` for `h = 3, 4, 5, 6`.[^4]
 
-## Finding 2 — the projected sequences are new
+## The counts
 
-The even-block ridge castle counts by width, for each rung:[^5]
+The even-block ridge castles of height `h`, by width:[^5]
 
-| rung | `even(w)`, `w = 1..12` | OEIS |
-|---|---|---|
-| golden `h=2` | 1, 3, 4, 4, 5, 9, 17, 29, 46, 72, 115, 187 | *(short / degenerate)* |
-| silver `h=3` | 0, 0, 3, 16, 44, 104, 265, 674, 1640, 3972, 9687, 23512 | none |
-| bronze `h=4` | 1, 7, 25, 70, 209, 697, 2390, 8169, 27565, 91762, 303541, 1002841 | none |
-| `δ_4` `h=5` | 0, 0, 10, 104, 604, 2836, 12630, 55668, 242744, 1047448, 4489986, 19175568 | none |
-| `δ_5` `h=6` | 1, 11, 66, 320, 1601, 8661, 47807, 261401, 1411224, 7537448, 39939391, 210495659 | none |
+| `h` | `A^e_ridge(w, h)`, `w = 1, …, 12` |
+|---|---|
+| 2 | 1, 3, 4, 4, 5, 9, 17, 29, 46, 72, 115, 187 |
+| 3 | 0, 0, 3, 16, 44, 104, 265, 674, 1640, 3972, 9687, 23512 |
+| 4 | 1, 7, 25, 70, 209, 697, 2390, 8169, 27565, 91762, 303541, 1002841 |
+| 5 | 0, 0, 10, 104, 604, 2836, 12630, 55668, 242744, 1047448, 4489986, 19175568 |
+| 6 | 1, 11, 66, 320, 1601, 8661, 47807, 261401, 1411224, 7537448, 39939391, 210495659 |
 
-None of these (nor their unsigned / odd / signed companions) matches OEIS on 12 terms; the unsigned `max=h` counts (all ridge castles of exact height `h`) are likewise new for `h ≥ 3` (e.g. bronze `1, 7, 31, 118, 421, 1453, 4924, 16513, …`).[^6] The `max=h` projection alone changes the characteristic polynomial by one factor:
+For `h ≥ 3`, `A_ridge(·, h)` satisfies the recurrence of order 3 with characteristic polynomial `(x² − (h − 1)x − 1)(x − (h − 2))` ([[ridge-castle](pages/ridge-castle.md)]); at `h = 4` it is `1, 7, 31, 118, 421, 1453, 4924, 16513, …`. The even-block counts `A^e_ridge(·, h)` satisfy linear recurrences of order 4, 8, 10, 12, 14 for `h = 2, …, 6` (Berlekamp-Massey on 60 terms, computed). Each characteristic polynomial contains the factors `x² − (h − 1)x − 1` and `char(R̃_h)`; at `h = 3` it is `(x − 1)(x² + 1)(x² − 2x − 1)(x³ − x² + x − 3)`.[^5] [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of these rows.
 
-```
-char(unsigned proper)  =  (x+1)^{h−2} · (x² − (h−1)x − 1) · (x − (h−2)),
-```
+## The ridge strips give the companion sequences
 
-the extra `(x − (h−2))` coming from the `J−I` plateau-free subtraction; the parity projection then mixes in `S_h`'s degree-`h` characteristic polynomial, so the even sequence is `(A + P)/2` over two C-finite sequences with *different* denominators — generally a new, higher-order recurrence.
+The ridge strip count `𝟙ᵀ R_h^{w−1} 𝟙` is not the primary metallic sequence `x_n = (h − 1)x_{n−1} + x_{n−2}`, `x_0 = 0`, `x_1 = 1`, of [[metallic-means](pages/metallic-means.md)]. `R_h` preserves the plane spanned by `𝟙` and `e_h` and acts on it with characteristic polynomial `x² − (h − 1)x − 1`, so the eigenvalue `−1` does not contribute and the ridge strips of width `w` number `x_{w+1} + x_w` ([[ridge-castle](pages/ridge-castle.md)]):[^6]
 
-## Finding 3 — the free counts are companion metallic sequences, not primary
-
-Even *before* the projection, the free strip count `𝟙ᵀR_h^L𝟙` is not the "primary" metallic sequence `x_n = a·x_{n−1} + x_{n−2}`, `x_0 = 0, x_1 = 1` (Pell A000129, A006190, A001076, A052918 — the sequences tabulated on [[metallic-means](pages/metallic-means.md)]). The all-ones vector lies in the plane spanned by `𝟙` and `e_h`, which `R_h` preserves and on which it acts with characteristic polynomial `x² − (h−1)x − 1`, so the eigenvalue `−1` does not contribute: the free count obeys the metallic recurrence exactly and equals `x_{L+2} + x_{L+1}` for `𝟙ᵀR_h^L𝟙`, a different linear combination of `δ_{h−1}^w` and its conjugate from the primary sequence ([[ridge-castle](pages/ridge-castle.md)]):[^7]
-
-| rung | free strip count | OEIS | primary metallic sequence |
+| `h` | ridge strips, `w = 1, 2, …` | OEIS | primary metallic sequence |
 |---|---|---|---|
-| golden `h=2` | 2, 3, 5, 8, 13, 21, 34, 55 | **A000045** (Fibonacci) | A000045 (Fibonacci) |
-| silver `h=3` | 3, 7, 17, 41, 99, 239, 577 | **A001333** (Pell–Lucas) | A000129 (Pell) |
-| bronze `h=4` | 4, 13, 43, 142, 469, 1549, 5116 | **A003688** | A006190 |
-| `δ_4` `h=5` | 5, 21, 89, 377, 1597, 6765, 28657 | **A015448** (= `F_{3n+5}` trisection) | A001076 (= `F_{3n}/2`) |
-| `δ_5` `h=6` | 6, 31, 161, 836, 4341, 22541, 117046 | **A015449** | A052918 |
+| 2 | 2, 3, 5, 8, 13, 21, 34 | `F_{w+2}`, A000045 | A000045, Fibonacci |
+| 3 | 3, 7, 17, 41, 99, 239, 577 | `A001333(w + 1)`, Pell-Lucas | A000129, Pell |
+| 4 | 4, 13, 43, 142, 469, 1549, 5116 | `A003688(w + 1)` | A006190 |
+| 5 | 5, 21, 89, 377, 1597, 6765, 28657 | `A015448(w + 1) = F_{3w+2}` | A001076, `F_{3n}/2` |
+| 6 | 6, 31, 161, 836, 4341, 22541, 117046 | `A015449(w + 1)` | A052918 |
 
-Only golden (`h = 2`) has its free count equal to its primary metallic sequence. For `δ_4 = φ³` the free count is `A015448 = F_{3n+5}`, the unhalved Fibonacci trisection, while [[metallic-means](pages/metallic-means.md)] lists the halved trisection `A001076 = F_{3n}/2` as the `δ_4` sequence. The `δ_4` even count (`0, 0, 10, 104, 604, …`) has no OEIS match.
-
-## Answer
-
-**Growth constants survive; the metallic sequences do not.** The ridge ladder's metallic growth `δ_{h−1}` is unchanged by `max = h` and `(A ± P)/2`, because the signed matrix `S_h` is spectrally subdominant (Finding 1). But the *exact* sequences have no OEIS match (Finding 2), and the primary metallic entries Pell A000129 / A006190 / A001076 / A052918 appear in neither the free nor the projected counts; only golden's Fibonacci survives (Finding 3). The even-block ridge castle rows above are OEIS **submission candidates**; bijections to known objects are open.
+Only at `h = 2` is the strip count a shift of the primary sequence. Neither the ridge strips nor the ridge castles of height `h ≥ 3` give A000129, A006190, A001076 or A052918; the Pell numbers `P⋆_w` appear instead as the anchored 1-smooth strips on `{1, 2, 3}` ([[pell-castle-strip](pages/pell-castle-strip.md)]).
 
 ## Related Concepts
 
-- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] — the free-height strip counts this page projects onto proper castles; the ridge rule `R_h = J − D`.
-- [[castle-sign](pages/castle-sign.md)] — the sign `s(C) = (−1)^{blocks}` and the `(A ± P)/2` parity projector applied here.
-- [[metallic-means](pages/metallic-means.md)] — the ladder whose *primary* sequences (A000129, A006190, A001076, …) the projected counts fail to reproduce.
-- [[castle-snippets-strips](pages/castle-snippets-strips.md)] — the `proper_even` snippet computing these counts.
-- [[reachable-field-census](pages/reachable-field-census.md)] — the sibling census (which *fields* the strips reach), to which this is the *sequences* complement.
-- [[castle-by-area](pages/castle-by-area.md)] / [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] — castle counts by area, with and without a height bound.
-- [[castle-classification-growth](pages/castle-classification-growth.md)] — Axis 8, the `<metal> <axis> growth castle` meta-classification these projected metallic-ladder rows populate.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] — the anchored 1-smooth height-3 strip, where Pell A000129 does appear (`P⋆_w` strips of width `w`); the free 1-smooth strip and the free ridge strip at `h = 3` here both give A001333.
-- [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] — the exact even-block counts are checked by Algorithm M enumeration of `{1..h}^w` with the two proper-castle filters.
+- [[ridge-castle](pages/ridge-castle.md)] - the ridge rule, `A_ridge(w, h)`, `R̃_h` and the even-block table.
+- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge strips as the realization of every metallic mean `δ_a`, at height `a + 1`.
+- [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the split `A^e = (A + S)/2`.
+- [[metallic-means](pages/metallic-means.md)] - the primary metallic sequences A000129, A006190, A001076, A052918.
+- [[castle-snippets-strips](pages/castle-snippets-strips.md)] - the `proper_even` snippet, which computes `A^e_ridge(w, h)`.
+- [[reachable-field-census](pages/reachable-field-census.md)] - the fields reached by the growth constants of strip rules.
+- [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types by width, by height and by area.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] - the anchored 1-smooth strips on `{1, 2, 3}`, counted by the Pell numbers; its free strips and the ridge strips of height 3 are both `A001333(w + 1)`.
 
 ## Footnotes
 
-[^1]: [[project-euler-502](pages/project-euler-502.md)] §"Project 502: Castle Polyominoes" L19-20 — "The maximum achieved height of the entire castle is exactly h." and "The castle is made from an even number of blocks."
-
-[^2]: The sign convention matches [[castle-sign](pages/castle-sign.md)]: `blocks(c)` is the total ascent from `c_0 = 0`, `s(C) = (−1)^{blocks}`, the start vector carries the `(−1)^{c_1}` factor, and `(A + P)/2 = even` (verified by direct `blocks(c) % 2 == 0` brute force for `h ≤ 6`, `w ≤ 6`, 2026-09-28).
-
-[^3]: `S_h` is the signed transfer matrix; `ρ(S_h)` is its spectral radius. SymPy `charpoly` gives `char(S_2) = x²−x+1` (primitive 6th roots of unity — the golden signed count is period-6), `char(S_3) = x³−x²+x−3`, `char(S_4) = x⁴−x³+2x²−x+7`, `char(S_5) = x⁵−x⁴+2x³−6x²−3x−17`, `char(S_6) = x⁶−x⁵+3x⁴−2x³+19x²+19x+41`.
-
-[^4]: Even-count tail ratios (24 terms) converge to `δ_{h−1}` from above; the subdominant correction decays like `(ρ(S_h)/δ_{h−1})^w`.
-
-[^5]: Transfer-matrix values, cross-checked term-for-term against brute-force enumeration of all skylines `{1..h}^w` (filter `max = h`, ridge adjacency `R_h = J − D`, `blocks % 2 == 0`) for `h ≤ 6`, `w ≤ 12` — exact match throughout.
-
-[^6]: OEIS search (2026-09-18, `oeis.org` JSON search on 12 terms) returns no match for any projected row at `h ≥ 3`; the unsigned bronze row `1, 7, 31, 118, 421, 1453, …` and `δ_4` row `1, 9, 53, 269, 1273, 5793, …` are also unmatched. Sanity checks: Pell `1,2,5,12,29,70,169,408` → A000129; `δ_4` free `5,21,89,377,1597,6765` → A015448.
-
-[^7]: Free strip counts are `𝟙ᵀ R_h^{L} 𝟙` (with `L = w−1`); OEIS identifications offset-exact: silver `3,7,17,41,99,239,577` = A001333 (Pell–Lucas), bronze `4,13,43,142,469,1549,5116` = A003688 (`a(n) = 3a(n−1) + a(n−2)`, `a(1)=1, a(2)=4`), `δ_4` `5,21,89,377,…` = A015448 (`a(n) = 4a(n−1) + a(n−2)`), matching the `F_{3n+5}` trisection exactly ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)] Finding 3); `δ_5` `6,31,161,836,…` = A015449 (expansion of `(1 − 4x)/(1 − 5x − x²)`, checked 2026-09-28).
+[^1]: [[project-euler-502](pages/project-euler-502.md)] §"Project 502: Castle Polyominoes" L19-20 - "The maximum achieved height of the entire castle is exactly h." and "The castle is made from an even number of blocks."
+[^2]: The sign convention is that of [[castle-sign](pages/castle-sign.md)]: `blocks(c)` is the total rise from `c_0 = 0`, and the start vector carries the factor `(−1)^{c_1}`.
+[^3]: Characteristic polynomials of the signed matrices (SymPy): `char(R̃_2) = x² − x + 1`, whose roots are primitive sixth roots of unity; `char(R̃_3) = x³ − x² + x − 3`; `char(R̃_4) = x⁴ − x³ + 2x² − x + 7`; `char(R̃_5) = x⁵ − x⁴ + 2x³ − 6x² − 3x − 17`; `char(R̃_6) = x⁶ − x⁵ + 3x⁴ − 2x³ + 19x² + 19x + 41`.
+[^4]: Verified by execution (Python 3.11, 2026-10-16): the even-block counts by a dynamic program over (last height, whether `h` has been reached, block parity) for `w ≤ 40`, and their successive ratios.
+[^5]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the table by the dynamic program for `w ≤ 12` and `2 ≤ h ≤ 6`, and against enumeration of all skylines in `{1, …, h}^w` (filter: the ridge rule, some column of height `h`, an even block count) for `h ≤ 4`, `w ≤ 7`; the characteristic polynomials of `R_h` and `R̃_h` and their spectral radii; the recurrences of `A_ridge` and `A^e_ridge` by Berlekamp-Massey on 60 terms (orders 3 and 4, 8, 10, 12, 14), with the factored characteristic polynomials.
+[^6]: https://oeis.org/A001333, https://oeis.org/A003688, https://oeis.org/A015448, https://oeis.org/A015449 (read 2026-10-16) - A001333 "Pell-Lucas numbers: numerators of continued fraction convergents to sqrt(2)" (1, 1, 3, 7, 17, …); A003688 "a(n) = 3*a(n-1) + a(n-2), with a(1)=1 and a(2)=4" (1, 4, 13, 43, …); A015448 "a(0) = 1, a(1) = 1, and a(n) = 4*a(n-1) + a(n-2) for n >= 2" (1, 1, 5, 21, 89, …); A015449 "Expansion of (1-4*x)/(1-5*x-x^2)" (1, 1, 6, 31, 161, …). The strip counts recomputed from `𝟙ᵀ R_h^{w−1} 𝟙` for `w ≤ 7`.
