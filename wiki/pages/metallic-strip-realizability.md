@@ -1,149 +1,126 @@
 ---
 title: Which metallic means are castle-strip growth constants
 category: Analyses
-summary: Which metallic means a castle-strip rule produces (Axis 8). A castle-strip growth constant is the Perron root of a 0/1 transfer matrix over h height-states; a quadratic strip denominator 1 − p₁x − p₂x² with p₁, p₂ ≥ 1 grows at de Spinadel's metallic mean σ_{p₁}^{p₂}, and on the q = 1 row δ_a = σ_a^1 only when p₂ = 1, which the naive "h states per column" coupling breaks. On three heights the natural rules give 3 = σ_1^6, copper 2 = σ_1^2, σ_2^2 = 1 + √3 and silver. One named predicate, the ridge rule (adjacent columns differ in height unless both equal the max h; its castles of exact height h are the ridge castles), has transfer matrix R_h = J − D with char poly (x+1)^{h−2}(x² − (h−1)x − 1), so it realizes the whole q = 1 row, δ_{h−1} at height h: golden (h=2), silver (h=3), bronze (h=4), δ_4 (h=5), δ_5 (h=6), …. Bronze is thus a real named-predicate castle (also provably unreachable on ≤ 3 states, needing 4). At h = 5 the growth is δ₄ = φ³, so the count is the Fibonacci trisection F_{3n+5}. The 1-smooth height-3 strip, (x−1)(x²+2x−1), is silver's rational realization and, anchored at height 1, the Pell castle strip itself.
-tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, bronze, silver, fibonacci-decimation, axis-8, realizability, sympy, verification]
-sources: [pe502-pell-castle-strip]
+summary: The growth constant of a castle strip is the spectral radius of its 0/1 transfer matrix M on the heights 1, …, h, and its width generating function has a denominator dividing det(I − xM). A quadratic denominator 1 − p₁x − p₂x² with p₁, p₂ ≥ 1 grows at de Spinadel's metallic mean σ_{p₁}^{p₂}, which is on the q = 1 row δ_a = σ_a^1 exactly when p₂ = 1. The five natural rules on three heights grow at 3, copper 2, σ_2^2 = 1 + √3, silver (the 1-smooth rule, denominator (1 − x)(1 − 2x − x²)) and 1. A 0/1 matrix on h heights has spectral radius at most h, so δ_a needs at least a + 1 heights; the ridge rule R_h = J − D, with characteristic polynomial (x + 1)^{h−2}(x² − (h−1)x − 1), reaches δ_{h−1} at height h, so bronze first appears at height 4. At height 5 the ridge strips are the Fibonacci numbers F_{3w+2}, since δ_4 = φ³.
+tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, bronze, silver, fibonacci-decimation, realizability, sympy, verification]
+sources: [pe502-pell-castle-strip, de-spinadel-1999-family-of-metallic-means]
 created: 2026-09-18
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
 # Which metallic means are castle-strip growth constants
 
 ## The question
 
-[[castle-classification](pages/castle-classification.md)] Axis 8 names a class a **"`<member>` width growth castle"** when its width-graded count grows at a metallic mean, de Spinadel's `σ_p^q = (p + √(p² + 4q))/2` ([[metallic-means](pages/metallic-means.md)], [[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)]). This page is mostly about the `q = 1` row `δ_a = σ_a^1 = (a + √(a² + 4))/2`. Golden (`a = 1`) and silver (`a = 2`) have members (the height-2 tree castles; the anchored 1-smooth strip of [[pell-castle-strip](pages/pell-castle-strip.md)]). The question is **which metallic means arise as growth constants of an actual castle-strip rule, and how?**
+A **castle strip** on the heights `1, …, h` is a skyline in `{1, …, h}^w` under a rule that says which column height may follow which ([[castle-strip](pages/castle-strip.md)]). A strip need not reach `h`, so it is not a castle of height `h`. The rule is a 0/1 **transfer matrix** `M`, with rows and columns indexed by the heights and `M[a][b] = 1` when a column of height `a` may be followed by one of height `b`. The strips of width `w` number `𝟙ᵀ M^{w−1} 𝟙`, with `𝟙` the all-ones vector. Their width generating function `𝟙ᵀ (I − xM)^{−1} 𝟙` is rational, and by Cramer's rule its denominator divides `det(I − xM)`. The sum of the entries of `M^n` is a matrix norm, so by Gelfand's formula `𝟙ᵀ M^n 𝟙` grows like `ρ(M)^n`, where `ρ(M)` is the spectral radius, the Perron root of `M`.
 
-A **castle-strip rule** is a nearest-neighbor restriction on a row of columns with heights in `{1, …, h}`: an allowed-adjacency predicate `A(a, b)` on consecutive column heights ([[castle-strip](pages/castle-strip.md)] develops this from scratch — the `h × h` 0/1 **transfer matrix** `M[a][b] = [A(a, b)]` has rows and columns indexed by the heights themselves, so "height-state" means "column height"). Its count-by-width sequence has growth constant equal to the **Perron root** (dominant eigenvalue) of `M`, and its width generating function is `1 / det(I − xM)` up to the boundary term. So the question becomes: **which `δ_a` are Perron roots of 0/1 transfer matrices, and via which rules?**[^1]
+The metallic means are de Spinadel's family `σ_p^q = (p + √(p² + 4q))/2`, the positive roots of `x² − px − q` for natural `p` and `q` ([[metallic-means](pages/metallic-means.md)], [[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)]). Their `q = 1` row is `δ_a = σ_a^1 = (a + √(a² + 4))/2`: golden at `a = 1`, silver at `a = 2`, bronze at `a = 3`. This page asks which metallic means are growth constants of strips, and at which height.
 
-## The two-knob parameterization and its trap
+## Quadratic denominators
 
-Write a quadratic strip denominator as `1 − p₁·x − p₂·x²`, as the [[pell-castle-strip](pages/pell-castle-strip.md)] exercise does, giving growth `(p₁ + √(p₁² + 4p₂))/2`. Here `p₁` and `p₂` are the **denominator's polynomial coefficients** — `p₁` is the coefficient on `x¹` and `p₂` the coefficient on `x²`; they are *not* widths (the strip has a single width, graded by the GF variable `x`). Read combinatorially, `p_k` is the weight (number of choices) of a tiling atom spanning `k` columns. For `p₁, p₂ ≥ 1` this is the metallic mean `σ_{p₁}^{p₂}`, and it is on the `q = 1` row **iff `p₂ = 1`**: only then does `p₁² + 4p₂ = p₁² + 4` match the discriminant `a² + 4` of `δ_a` with `a = p₁`. The Pell denominator is `p₁ = 2, p₂ = 1` (silver); the Fibonacci denominator of the height-2 tree castles is `p₁ = 1, p₂ = 1` (golden). No `2×2` 0/1 matrix has `det(I − xM) = 1 − 2x − x²` ([[pell-castle-strip](pages/pell-castle-strip.md)]), so `p₁` is not a count of states.
+A strip whose width generating function has the quadratic denominator `1 − p₁x − p₂x²`, with `p₁, p₂ ≥ 1`, grows at the larger root of `x² − p₁x − p₂`, the metallic mean `σ_{p₁}^{p₂}`. It is on the `q = 1` row exactly when `p₂ = 1`, and then it is `δ_{p₁}`. The Pell denominator `1 − 2x − x²` of [[pell-castle-strip](pages/pell-castle-strip.md)] has `p₁ = 2`, `p₂ = 1`, silver. Read as a tiling scheme, `p₁` is the number of kinds of atom of width 1 and `p₂` the number of kinds of atom of width 2; neither is a number of heights. No 0/1 rule on two heights has the denominator `1 − 2x − x²` ([[pell-castle-strip](pages/pell-castle-strip.md)]).
 
-The **trap** is to read `p₁` as "number of per-column states" and expect `p₁ = 3` (height-3 columns) to give bronze. It does not, because **`p₁` and `p₂` are coupled in natural height-`h` rules**: widening the height alphabet also widens the gap/return structure, pushing `p₂` off `1`. Measured on concrete height-3 rules (each a 3×3 transfer matrix, denominator `det(I − xM)`):[^2]
+On three heights, the five natural rules give:[^1]
 
-| height-3 rule | `A(a, b)` | denominator `det(I − xM)` | growth | metallic mean |
+| rule on the heights `1, 2, 3` | `b` may follow `a` when | `det(I − xM)` | growth `ρ(M)` | metallic mean |
 |---|---|---|---|---|
-| all pairs | always | `1 − 3x` | `3` | `σ_1^6 = σ_2^3` (integer) |
-| plateau-free | `a ≠ b` | `1 − 3x² − 2x³` | `2` | copper `σ_1^2` |
-| no adjacent ceiling | not `a = b = 3` | `1 − 2x − 2x²` | `(1+√3)` ≈ `2.732` | `σ_2^2` (`p₂ = 2`, off the `q = 1` row) |
-| **1-smooth** | `|a − b| ≤ 1` | `1 − 3x + x² + x³ = (1−x)(1 − 2x − x²)` | **`1 + √2`** ≈ `2.414` | **silver `σ_2^1`** |
-| decreasing-forbidden | `a ≤ b` | `(1 − x)³` | `1` | none (`1` is not a member) |
+| all pairs | always | `1 − 3x` | `3` | `σ_1^6 = σ_2^3` |
+| plateau-free | `a ≠ b` | `(1 − 2x)(1 + x)²` | `2` | copper `σ_1^2` |
+| no two ceiling columns | not `a = b = 3` | `1 − 2x − 2x²` | `1 + √3 ≈ 2.732` | `σ_2^2` |
+| 1-smooth | `|a − b| ≤ 1` | `(1 − x)(1 − 2x − x²)` | `1 + √2 ≈ 2.414` | silver `σ_2^1` |
+| weakly increasing | `a ≤ b` | `(1 − x)³` | `1` | none |
 
-Two findings follow.
+Only the 1-smooth rule has a quadratic factor with `p₂ = 1`.
 
-## Finding 1: silver has a second, independent castle realization
+## The 1-smooth rule on three heights: silver
 
-The **1-smooth height-3 strip** (`|c_{i+1} − c_i| ≤ 1`, the step set of a Motzkin path) has denominator that factors as `(1 − x)(1 − 2x − x²)` - the silver factor `1 − 2x − x²` exactly, times a spurious `(1 − x)`.[^3] So its growth constant is `1 + √2`: it is a **silver width growth castle**, distinct from the tower word.
+The 1-smooth rule `|c_{i+1} − c_i| ≤ 1` on three heights has `det(I − xM) = (1 − x)(1 − 2x − x²)`,[^2] so it grows at silver, `1 + √2`. `M` is symmetric, its eigenvector for the eigenvalue 1 is `(1, 0, −1)`, and this vector is orthogonal to `𝟙`, so the factor `1 − x` cancels from the generating function of the strips with a free last column. With the first column at height 1 these are the Pell castle strips, `P⋆_w` of width `w` ([[pell-castle-strip](pages/pell-castle-strip.md)]); with both end columns free they number the Pell-Lucas numbers `A001333(w + 1)`. The strips that reach height 3 are the Pell castles ([[pell-castle](pages/pell-castle.md)]).
 
-This is a castle realization of silver alongside the tower word ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)], algebraic, A004149), and it is where the Pell numbers themselves live. The `(1 − x)` factor cancels from the width generating function because the eigenvalue-1 eigenvector `(1, 0, −1)` is orthogonal to the all-ones end vector, so the counts have denominator `1 − 2x − x²`: anchored at height 1 the strip is the [[pell-castle-strip](pages/pell-castle-strip.md)], with `P⋆_w` strips of width `w`, and the free strip gives the Pell-Lucas numbers A001333. It lives at **height 3**, not height 2, and reaches silver by a rate-of-change rule (Axis 2, [[castle-classification-shape](pages/castle-classification-shape.md)]) rather than a per-column-state count. The 1-smooth family is the Motzkin-path connection ([[motzkin-numbers](pages/motzkin-numbers.md)], [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]), and its growth constant is silver.
+Silver is also the growth of the tower words counted by length, which are silver by length ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]).
 
-## Finding 2: bronze needs four states, not three
+## The minimum height of `δ_a`
 
-None of the five natural height-3 rules produces bronze `(3 + √13)/2 ≈ 3.303`. It is a **state-count obstruction**:
+The spectral radius of a nonnegative matrix is at most its largest row sum, and a 0/1 matrix on `h` heights has row sums at most `h`. Since `δ_a > a`, a strip rule that grows at `δ_a` needs at least `a + 1` heights ([[quadratic-min-height](pages/quadratic-min-height.md)]). In particular bronze, `δ_3 = (3 + √13)/2 ≈ 3.303`, is not an eigenvalue of any 0/1 matrix of size at most 3. Of the `2^{16} = 65536` 0/1 matrices of size 4, exactly 192 have bronze as an eigenvalue, and each has 13 entries equal to 1.[^3]
 
-> **No 0/1 transfer matrix on `≤ 3` states has `(3 + √13)/2` as a Perron root.** Exhaustive search over all `2^9 = 512` binary `3×3` matrices finds zero whose spectrum contains the bronze value; over all `2^{16} = 65536` binary `4×4` matrices, **192** do.[^4]
+## The ridge rule reaches every `δ_a`
 
-So bronze needs **at least four height-states**. A named rule realizes it, and the same rule realizes the whole ladder (Finding 3). The bronze instance:
-
-```
-ridge rule ("plateau-free except at the ceiling"), h = 4:
-adjacent columns must differ in height, UNLESS both are at the maximum height h.
-
-transfer matrix R_4 = J − D              allowed height-adjacency rule (heights 1..4)
-[0 1 1 1]                                1↛1, 2↛2, 3↛3  (no equal-height neighbors below the top)
-[1 0 1 1]                                4→4 allowed     (two ceiling columns may abut)
-[1 1 0 1]
-[1 1 1 1]
-```
-
-Its characteristic polynomial is `(x + 1)²(x² − 3x − 1)`, so the Perron root is bronze `(3 + √13)/2` exactly; the width count is `4, 13, 43, 142, 469, 1549, …` (growth ratio `→ 3.30278`).[^5] This is the **ridge rule**, a **plateau-free variant** (Axis 2 of [[castle-classification-shape](pages/castle-classification-shape.md)]) with a single ceiling exception. A **ridge castle** ([[ridge-castle](pages/ridge-castle.md)]) is a castle of exact height `h` that obeys it: flat runs occur only at the ceiling, and below the ceiling the skyline steps up or down at every column. The ridge castles of height 4 are a **bronze width growth castle**.
-
-## Finding 3: one named rule realizes the whole metallic ladder
-
-At height `h` the ridge rule has transfer matrix `R_h = J − D`, where `J` is the `h × h` all-ones matrix and `D = diag(1, …, 1, 0)` (identity with the last diagonal entry zeroed — the single ceiling exception). Its characteristic polynomial is, for every `h ≥ 2`,[^7]
+The **ridge rule** at height `h` lets a column of height `b` follow one of height `a` when `a ≠ b` or `a = b = h`: neighboring columns differ in height unless both are at the ceiling ([[ridge-castle](pages/ridge-castle.md)]). Its transfer matrix is
 
 ```
-char(R_h)  =  (x + 1)^{h−2} · (x² − (h−1)x − 1),
+R_h  =  J − D,          J the h × h all-ones matrix,   D = diag(1, …, 1, 0),
 ```
 
-verified symbolically for `h = 2, …, 6`. The `(x + 1)^{h−2}` factor is spurious (eigenvalue `−1`, subdominant); the dominant root is the metallic mean
+and its characteristic polynomial is[^4]
 
 ```
-δ_{h−1}  =  ((h−1) + √((h−1)² + 4)) / 2.
+det(xI − R_h)  =  (x + 1)^{h−2} · (x² − (h − 1)x − 1).
 ```
 
-So **one rule sweeps the entire `q = 1` row, `δ_a` at `a = h − 1`**:
+[[ridge-castle](pages/ridge-castle.md)] proves it: the plane spanned by `𝟙` and the last unit vector `e_h` is invariant, and `R_h` acts on it by `[[h − 1, 1], [1, 0]]`, while every vector with coordinate sum 0 and last coordinate 0 has eigenvalue `−1`. So `ρ(R_h) = δ_{h−1}`, and the ridge rule reaches `δ_a` at height `a + 1`, the least height possible. At height 4:
 
-| `h` | growth (Perron root) | member | `x² − (h−1)x − 1` |
+```
+R_4  =  [0 1 1 1]          det(xI − R_4)  =  (x + 1)²(x² − 3x − 1),
+        [1 0 1 1]
+        [1 1 0 1]          ridge strips of width w = 1, 2, 3, …:  4, 13, 43, 142, 469, 1549, 5116, …
+        [1 1 1 1]
+```
+
+with ratio tending to bronze.[^5]
+
+| `h` | growth `δ_{h−1}` | metallic mean | `x² − (h − 1)x − 1` |
 |---|---|---|---|
-| 2 | `φ ≈ 1.6180` | golden (`a = 1`) | `x² − x − 1` |
-| 3 | `1 + √2 ≈ 2.4142` | silver (`a = 2`) | `x² − 2x − 1` |
-| **4** | `(3+√13)/2 ≈ 3.3028` | **bronze** (`a = 3`) | `x² − 3x − 1` |
-| **5** | `2 + √5 ≈ 4.2361` | `δ_4` | `x² − 4x − 1` |
-| 6 | `(5+√29)/2 ≈ 5.1926` | `δ_5` | `x² − 5x − 1` |
-| `h` | `δ_{h−1}` | `δ_{h−1}` | `x² − (h−1)x − 1` |
+| 2 | `φ ≈ 1.6180` | golden `δ_1` | `x² − x − 1` |
+| 3 | `1 + √2 ≈ 2.4142` | silver `δ_2` | `x² − 2x − 1` |
+| 4 | `(3 + √13)/2 ≈ 3.3028` | bronze `δ_3` | `x² − 3x − 1` |
+| 5 | `2 + √5 ≈ 4.2361` | `δ_4` | `x² − 4x − 1` |
+| 6 | `(5 + √29)/2 ≈ 5.1926` | `δ_5` | `x² − 5x − 1` |
 
-**Why this rule decouples `p₁` and `p₂`.** Up to the spurious `(x + 1)^{h−2}`, the denominator is `1 − (h−1)x − x²`: `p₁ = h − 1` grows with the height while `p₂` stays `1`. At `h = 2` the rule is the height-2 tree-castle rule (no two adjacent height-2 columns, the Fibonacci castles) with the two heights swapped, so for `w ≥ 2` there are `F_{w+2}` ridge castles of exact height 2, one more than the `F_{w+2} − 1` Fibonacci castles; at `h = 3` it is a different rule from the 1-smooth strip, with the same silver growth.
+Up to the factor `(1 + x)^{h−2}`, `det(I − xR_h)` is `1 − (h − 1)x − x²`, with `p₁ = h − 1` and `p₂ = 1`. At `h = 2` the ridge rule is the Fibonacci rule (no two neighboring columns of height 2) with the heights 1 and 2 exchanged ([[fibonacci-castle](pages/fibonacci-castle.md)]). At `h = 3` it is a different rule from the 1-smooth rule, with the same growth.
 
-### `δ₄` and the Fibonacci decimation (`δ₄ = φ³`)
+The ridge castles of height `h`, the ridge strips that reach `h`, are `δ_{h−1}` by width, and so are their even-block members: the signed transfer matrix `R̃_h` has spectral radius below `δ_{h−1}` for `h ≤ 6` ([[ridge-castle](pages/ridge-castle.md)], [[proper-castle-projection](pages/proper-castle-projection.md)]). With `x_n` the metallic sequence of order `h − 1` (`x_0 = 0`, `x_1 = 1`), the ridge strips number `x_{w+1} + x_w`: `A001333(w + 1)` at `h = 3`, `A003688(w + 1)` at `h = 4`, `A015448(w + 1)` at `h = 5`, while `x_n` itself is `A000129`, `A006190`, `A001076`.[^6]
 
-The `h = 5` rung is special because `δ₄ = 2 + √5 = φ³` (since `φ² = φ + 1 ⟹ φ³ = 2φ + 1 = 2 + √5`; verified exactly).[^8] So `δ₄` lives in `Q(√5)`, and the `h = 5` ridge strip's count is every third Fibonacci number:
+### Height 5: every third Fibonacci number
+
+`δ_4 = 2 + √5 = φ³`, since `φ³ = φ² + φ = 2φ + 1`.[^7] The metallic sequence of order 4 is `x_n = F_{3n}/2` (`A001076`), and `F_{3w+3} + F_{3w} = 2F_{3w+2}`, so the ridge strips of height 5 number
 
 ```
-h = 5 ridge width count:  5, 21, 89, 377, 1597, 6765, 28657, 121393, 514229, …
-                          =  F_5, F_8, F_11, F_14, …  =  F_{3n+5}.
+x_{w+1} + x_w  =  F_{3w+2}:   5, 21, 89, 377, 1597, 6765, 28657, …   (w = 1, 2, 3, …).
 ```
 
-The counts satisfy `a(n) = 4a(n−1) + a(n−2)`, as `F_{3n+5}` does (`F_{m+6} = 4F_{m+3} + F_m`), and start `5, 21`, so the count is the Fibonacci trisection `F_{3n+5}`. The companion metallic integer sequence for `a = 4` is `A001076 = F_{3n}/2` ([[metallic-means](pages/metallic-means.md)] `a = 4` row); the strip realizes the un-halved trisection directly. Bronze (`h = 4`), by contrast, sits in `Q(√13)` — no such decimation, because only `a = 4` has the `φ³` coincidence ([[metallic-means](pages/metallic-means.md)]).
+More generally `δ_a` is a power of `φ` exactly when `a` is a Lucas number `L_n` with `n` odd: `L_n² − 5F_n² = −4` for odd `n`, so `δ_{L_n} = (L_n + F_n√5)/2 = φ^n`. The cases are `a = 1, 4, 11, 29, 76, …`; bronze, in `Q(√13)`, is not among them.[^7]
 
-## Why the coupling happens, and what it means for the ladder
+## Other members of the family
 
-The structural reason `p₂` drifts from `1`: in a nearest-neighbor strip, `p₂` counts **length-2 return loops** in the transfer graph (paths `a → b → a` weighted into the `x²` coefficient of `det(I − xM)`), and widening the height alphabet multiplies the available return loops. Pinning `p₂ = 1` requires a rule with **exactly one** such return structure while still admitting `p₁` forward states - a decoupling that the symmetric "count the columns" rules do not provide, but that the ridge rule `R_h = J − D` provides at every height (Finding 3).
+Rules off the `q = 1` row give other metallic means:
 
-Other natural rules produce members off the `q = 1` row, among others:
+- `σ_2^2 = 1 + √3`, in `Q(√3)`: the rule on three heights with no two neighboring ceiling columns, `p₂ = 2`;
+- the integer `h − 1 = σ_1^{(h−1)(h−2)}`: the plateau-free rule `J − I` on `h ≥ 3` heights, copper `2` at `h = 3`.
 
-- `1 + √3 = σ_2^2` (`Q(√3)`) - the no-adjacent-ceiling height-3 rule (`p₂ = 2`);
-- integers `h − 1 = σ_1^{(h−1)(h−2)}` (`h ≥ 3`) - the plateau-free height-`h` rule, copper at `h = 3`;
-- and the hypothetical denominator `1 − h·x − (h−1)·x²` (no 0/1 rule is claimed for it), growth `(h + √(h² + 4(h−1)))/2`, the member `σ_h^{h−1}`, which is `σ_3^2 = (3 + √17)/2 ∈ Q(√17)` at `h = 3` and `σ_4^3 = (4 + √28)/2 = 2 + √7 ∈ Q(√7)` at `h = 4`, both off the `q = 1` row.[^6]
-
-So the `q = 1` row is realizable, but `δ_a` is not "the `a`-states-per-column strip": the ridge rule `R_h = J − D` reaches it at height `h = a + 1` (Finding 3). Golden and silver also appear at small heights through other rules (the height-2 tree castles; the 1-smooth strip, which anchored at height 1 is the Pell strip).
-
-## Open
-
-- **Uniqueness / other natural rules per rung.** Is the ridge rule `R_h = J − D` the *only* natural predicate hitting `δ_{h−1}`, or (as with silver's three realizations) are there others? A census of named Axis-1–7 predicates by their Perron root would answer this.
-- **The minimum height for a field.** Every real quadratic field `Q(√d)` is reachable by some strip rule ([[reachable-field-census](pages/reachable-field-census.md)]; the metallic ones `Q(√(a²+4))` via the ridge rule `R_h = J − D`); a closed form for the minimum height realizing a given field is open.
-
-**Proper castles.** The ridge castles are the ridge strips with `max = h`. The metallic growth `δ_{h−1}` survives `max = h` and the `(A ± P)/2` projection: the signed transfer matrix `S_h` has spectral radius below `δ_{h−1}`, and the exact sequences have no Online Encyclopedia of Integer Sequences (OEIS) match for `h ≥ 3` ([[proper-castle-projection](pages/proper-castle-projection.md)]). The free counts are the companion metallic sequences (silver A001333, bronze A003688, `δ_4` A015448), not the primary ones (A000129, A006190, A001076).
+[[reachable-field-census](pages/reachable-field-census.md)] lists which real quadratic fields arise from strip rules on at most five heights, and [[quadratic-min-height](pages/quadratic-min-height.md)] the least height of each quadratic growth constant.
 
 ## Appearances in Sources
 
-- [[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)] - de Spinadel's Metallic Means Family `σ_p^q` (roots of `x² − px − q`) contains every strip growth `(p₁ + √(p₁² + 4p₂))/2`; this page's metallic means are its `q = 1` members, and the no-adjacent-ceiling growth `1 + √3` is `σ_2^2`.
-- [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the `1 − p₁x − p₂x²` two-knob parameterization this page stress-tests.
+- [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the denominator `1 − 2x − x²` read as a tiling by an atom of width 1 in two kinds and an atom of width 2 in one kind.
+- [[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)] - the Metallic Means Family `σ_p^q`, the roots of `x² − px − q`, which contains every growth constant `(p₁ + √(p₁² + 4p₂))/2` of a quadratic denominator.
 
 ## Related Concepts
 
-- [[metallic-means](pages/metallic-means.md)] - de Spinadel's family `σ_p^q`; the `q = 1` row `δ_a` whose realizability this page settles is the `p₂ = 1` case.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] - the silver `p₁ = 2, p₂ = 1` denominator, realized by the anchored 1-smooth height-3 strip of Finding 1.
-- [[castle-classification-growth](pages/castle-classification-growth.md)] - Axis 8, the growth-type meta-classification these are members of; [[castle-classification-shape](pages/castle-classification-shape.md)] - Axes 1-7 (the rules tested here: 1-smooth, plateau-free and its ridge variant are all Axis 2).
-- [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] / [[motzkin-numbers](pages/motzkin-numbers.md)] - the 1-smooth / Motzkin family whose growth constant this page pins to silver.
-- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - why metallic means have periodic continued fractions and sit in the specific fields `Q(√(a²+4))`.
-- [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the sibling census on the *adjacency* spectra of individual castle graphs (where metallic means also appear, and `δ_4` and above are impossible for a different reason: max degree 4).
+- [[ridge-castle](pages/ridge-castle.md)] - the ridge castles of height `h`, their counts and their even-block counts.
+- [[metallic-means](pages/metallic-means.md)] - de Spinadel's family and its named members.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] - the silver denominator `1 − 2x − x²` and the anchored 1-smooth strips on three heights.
+- [[castle-strip](pages/castle-strip.md)] - strips, transfer matrices and growth by width.
+- [[castle-classification-growth](pages/castle-classification-growth.md)] - the growth types "X by width".
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the plateau-free, 1-smooth and ridge types among the rate-of-change types.
+- [[quadratic-min-height](pages/quadratic-min-height.md)], [[reachable-field-census](pages/reachable-field-census.md)] - the least height of each quadratic growth constant, and the fields that strip rules reach.
+- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the purely periodic continued fractions of the `δ_a` and their fields `Q(√(a² + 4))`.
+- [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the metallic means as spectral radii of castle graphs, where the maximum degree 4 rules out `δ_4` and above.
 
 ## Footnotes
 
-[^1]: The width generating function of a nearest-neighbor strip with transfer matrix `M` and all-ones start/end vectors is `𝟙ᵀ(I − xM)⁻¹𝟙`, whose denominator is `det(I − xM)`; the growth constant is `1/ρ` where `ρ` is the smallest-modulus root of `det(I − xM)`, equivalently the Perron (dominant) eigenvalue of `M`. Standard transfer-matrix / analytic-combinatorics fact ([[symbolic-method](pages/symbolic-method.md)], rational sequence (SEQ) case).
-
-[^2]: Verified by execution (SymPy): for each rule, `M[i][j] = [A(i+1, j+1)]` over heights `{1,2,3}`, `denom = expand(det(eye(3) − x·M))`, dominant growth `= max |1/root|`. Denominators as tabulated; `no adjacent ceiling` gives `1 − 2x − 2x²` (growth `(2 + √12)/2 = 1 + √3 ≈ 2.732`), `1-smooth` gives `1 − 3x + x² + x³`.
-
-[^3]: `factor(x³ + x² − 3x + 1) = (x − 1)(x² + 2x − 1)` (SymPy); the reversal of `x² + 2x − 1` is `1 − 2x − x²`, the silver denominator, so `det(I − xM) = (1 − x)(1 − 2x − x²)` and the dominant root is the silver ratio `1 + √2`. The `(1 − x)` factor contributes the subdominant eigenvalue `1` and does not affect growth.
-
-[^4]: Exhaustive search (NumPy `eigvals`): over all `512` binary `3×3` matrices, none has an eigenvalue within `10⁻⁹` of `(3 + √13)/2 = 3.302775…`; over all `65536` binary `4×4` matrices, `192` do. So `3` states are provably insufficient and `4` suffice.
-
-[^5]: The ridge rule at `h = 4` is `A(a, b) = [a ≠ b or a = b = 4]`, transfer matrix `R_4 = [[0,1,1,1],[1,0,1,1],[1,1,0,1],[1,1,1,1]]`; SymPy `factor(R_4.charpoly()) = (x + 1)²(x² − 3x − 1)`, so `x² − 3x − 1` divides it exactly and the Perron root is `(3 + √13)/2`. Width counts `𝟙ᵀR_4^L𝟙 = 4, 13, 43, 142, 469, 1549, 5116, …` with ratio `→ 3.30278`. (A separate exhaustive scan confirms the *minimum-density* bronze matrix has 13 ones, e.g. `[[0,0,0,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]]` with `charpoly = x²(x² − 3x − 1)`; the ridge rule `R_4 = J − D` above uses 13 ones too and is the interpretable one.)
-
-[^6]: The `p₂ = h − 1` gap-scaling model gives denominator `1 − h·x − (h−1)x²`, growth `(h + √(h² + 4(h−1)))/2`: at `h = 3`, `(3 + √17)/2 ≈ 3.5616 ∈ Q(√17)`; at `h = 4`, `(4 + √28)/2 = 2 + √7 ≈ 4.6458 ∈ Q(√7)`. Neither discriminant (`17`, `28`) has the form `a² + 4`, so neither is a `δ_a`; they are the roots of `x² − 3x − 2` and `x² − 4x − 3`, the members `σ_3^2` and `σ_4^3`. Verified numerically (SymPy).
-
-[^7]: The ridge rule at height `h` has transfer matrix `R_h = J − D` where `J` is the `h × h` all-ones matrix and `D = diag(1, …, 1, 0)`. SymPy `factor(R_h.charpoly(x))` returns `(x + 1)^{h−2}·(x² − (h−1)x − 1)` for `h = 2, 3, 4, 5, 6` (exact symbolic match against the closed form; the `expand(...) == 0` difference check passes each time). The dominant root of `x² − (h−1)x − 1` is `δ_{h−1} = ((h−1) + √((h−1)²+4))/2`, the `(h−1)`-th metallic mean. Growth ratios `1.6180, 2.4142, 3.3028, 4.2361, 5.1926` for `h = 2..6` confirmed against the metallic values.
-
-[^8]: `φ³ = 2 + √5` exactly: `φ² = φ + 1 ⟹ φ³ = φ² + φ = 2φ + 1 = 2 + √5` (SymPy `simplify(φ³ − (2+√5)) = 0`). So `δ₄ = 2 + √5 = φ³ ∈ Q(√5)`. The `h = 5` ridge strip width counts are `5, 21, 89, 377, 1597, 6765, 28657, 121393, 514229` = `F_{3n+5}` (verified index-exact against the Fibonacci sequence `F_5 = 5, F_8 = 21, F_11 = 89, …`), the trisection of Fibonacci — the concrete Fibonacci decimation forced by growth `= φ³`. The metallic companion `A001076 = 0, 1, 4, 17, 72, … = F_{3n}/2` is the halved trisection ([[metallic-means](pages/metallic-means.md)]).
+[^1]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): for each rule, `M[i][j] = 1` when height `j + 1` may follow height `i + 1`, `det(I − xM)` factored, and `ρ(M)` the largest eigenvalue modulus. The table's denominators and growths are the output.
+[^2]: SymPy `factor(det(I − xM))` for the 1-smooth rule on three heights gives `(x − 1)(x² + 2x − 1) = (1 − x)(1 − 2x − x²)`; `M(1, 0, −1)ᵀ = (1, 0, −1)ᵀ` checked.
+[^3]: Verified by execution (Python 3.11 with NumPy, 2026-10-16): over all `2^9` 0/1 matrices of size 3, none has an eigenvalue within `10^{−9}` of `(3 + √13)/2`; over all `2^{16}` of size 4, exactly 192 do, each with 13 entries equal to 1; `[[0,0,0,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]]` has characteristic polynomial `x²(x² − 3x − 1)`.
+[^4]: Verified by execution (SymPy, 2026-10-16): `det(xI − R_h) − (x + 1)^{h−2}(x² − (h−1)x − 1)` expands to 0 for `h = 2, …, 6`.
+[^5]: Verified by execution (SymPy, 2026-10-16): `factor(det(xI − R_4)) = (x + 1)²(x² − 3x − 1)`, and `𝟙ᵀ R_4^{w−1} 𝟙 = 4, 13, 43, 142, 469, 1549, 5116` for `w = 1, …, 7`.
+[^6]: https://oeis.org/A001333, https://oeis.org/A003688, https://oeis.org/A015448, https://oeis.org/A000129, https://oeis.org/A006190, https://oeis.org/A001076 (read 2026-10-16) - A001333 "Pell-Lucas numbers: numerators of continued fraction convergents to sqrt(2)"; A003688 "a(n) = 3*a(n-1) + a(n-2), with a(1)=1 and a(2)=4"; A015448 "a(0) = 1, a(1) = 1, and a(n) = 4*a(n-1) + a(n-2) for n >= 2"; A000129 "Pell numbers"; A006190 "a(n) = 3*a(n-1) + a(n-2), with a(0)=0, a(1)=1"; A001076 "Denominators of continued fraction convergents to sqrt(5)".
+[^7]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `φ³ − (2 + √5)` simplifies to 0; the ridge strips of height 5 equal `F_{3w+2}` for `w ≤ 12`; `|(L_n + √(L_n² + 4))/2 − φ^n| < 10^{−6}` for odd `n ≤ 11`, and the `a ≤ 200` with `a² + 4` equal to 5 times a square are `1, 4, 11, 29, 76, 199`.
