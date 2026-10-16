@@ -1,26 +1,26 @@
 ---
 title: A song as a castle
 category: Analyses
-summary: How to encode a song as a castle, with every number executed. Rung 0, the URL - a YouTube 11-character video id is a 66-bit integer, and an exact rank/unrank bijection (decompose by the first full-height column) turns it into a w=12, h=64 castle, a w=17, h=16 castle, or a w=67, h=2 castle; the "some column reaches h" rule costs log2(h^w/A(w,h)) bits (0.586 at (17,16), 2.538 at (12,64)) and the even-block restriction costs 1.000 bit more, but block parity is a weak checksum. Rung 1, the metadata - a track's ID3-style label (title, artist, duration, sample rate, codec) is a few hundred bytes, about a w~200 castle at h=256 after zlib; entropy is relative to the decoder. Rung 2, the audio - a castle with h=65536 is a peak-normalized 16-bit PCM waveform, one sample per column, and the castle rules are mastering rules (height exactly h = 0 dBFS positive peak, bottom row = the -32768 floor, block count = total upward variation). Rick Astley's "Never Gonna Give You Up" (3:33 = 213 s) is a w=9,393,300 castle at h=65536 per channel; the codec ladder WAV / FLAC / MP3 / AAC / Opus is castle-compression's tier ladder run on a waveform. Finite fields - 16-bit samples are elements of F_65537 (a Fermat prime); Berlekamp-Massey tests for exact linear-recurrence structure, and the length-1024 NTT mod 65537 with root 3^64 is the skyline DFT with no rounding. Telephone tones - the 2600 Hz tone at telephone rate is an exactly periodic w=40 castle with a two-atom DFT, the MF KP tone is a w=80 four-atom castle, and Goertzel is one DFT bin. Finale - Beethoven's Ninth Symphony at the Red Book CD length (74 min, 783.2 MB) and the 78-min high-density variant, from the opening A and E (a two-tone sparse-spectrum castle) to the "Ode to Joy" phrase (a length-15 diatonic castle at h=5) to the whole symphony as one castle with w = 391.6 million (74 min) or 412.8 million (78 min).
-tags: [analysis, castle, encoding, compression, audio, pcm, lpc, flac, mp3, aac, opus, finite-field, ntt, berlekamp-massey, entropy, youtube, beethoven, cd, red-book, phreaking, dtmf, seminar, pedagogy]
+summary: How to encode a song as a castle, with every number computed. Rung 0, the URL - a YouTube video id is 11 base64url characters, a 66-bit integer, and a rank/unrank bijection (decomposing by the first column of height h) turns it into a castle of width 12 and height 64, width 17 and height 16, or width 67 and height 2; the condition that some column reaches h costs log2(h^w/A(w,h)) bits (0.586 at (17, 16), 2.538 at (12, 64)), and the even-block condition about one bit more, but block parity is a weak checksum (an edit of one column flips it with probability 0.427 at (17, 16)). Rung 1, the metadata - a 13-field JSON label is 233 bytes after zlib, a castle of width 234 at h = 256; a 128-bit fingerprint is width 17. Rung 2, the audio - a castle of height 65536 is a peak-normalized 16-bit PCM waveform, one sample per column; Never Gonna Give You Up (213 s) is a castle of width 9,393,300 per channel, and the codecs WAV, FLAC, MP3, AAC, Opus are castle-compression's tiers on a waveform. Finite fields - 16-bit samples are elements of F_65537; Berlekamp-Massey tests for exact linear recurrences, and the length-1024 NTT mod 65537 with root 3^64 is an exact skyline DFT. Telephone tones - the 2600 Hz tone at 8000 samples per second is a periodic castle of width 40 with a two-atom DFT, the MF KP tone a width-80 castle with four atoms. Finale - Beethoven's Ninth Symphony, about 65 minutes, from the opening open fifth (a two-tone castle) to the Ode to Joy phrase (a castle of width 15 and height 5) to the whole work as one castle of width about 344 million.
+tags: [analysis, castle, encoding, compression, audio, pcm, lpc, flac, mp3, aac, opus, finite-field, ntt, berlekamp-massey, entropy, youtube, beethoven, cd, dtmf, seminar, pedagogy]
 sources: [project-euler-502-representations, project-euler-502-solution]
 created: 2026-09-19
-updated: 2026-10-01
+updated: 2026-10-16
 ---
 
 # A song as a castle
 
-A castle with `h = 65536` is a peak-normalized 16-bit waveform, one sample per column. The page encodes a song at three sizes (the URL and the metadata are small castles, the audio a large one), compares how compactly the audio castle can be written, and reads its column heights as elements of a finite field. The finale applies the page to one work, Beethoven's Ninth Symphony, at Compact Disc length.
+A castle with `h = 65536` is a peak-normalized 16-bit waveform, one sample per column. The page encodes a song at three sizes (the URL and the metadata are small castles, the audio a large one), compares how compactly the audio castle can be written, and reads its column heights as elements of a finite field. The finale applies the page to one work, Beethoven's Ninth Symphony.
 
-The "hear the shape of a castle" direction ([[spectral-analysis](pages/spectral-analysis.md)]) starts from a castle and takes a spectrum, a lossy invariant ([[isospectral-castles](pages/isospectral-castles.md)]). Here the map goes from sound to a castle and is a **bijection**: the skyline is the waveform, and the skyline DFT of [[spectral-analysis](pages/spectral-analysis.md)] §3 is the audio spectrum.
+The "hear the shape of a castle" direction ([[spectral-analysis](pages/spectral-analysis.md)]) starts from a castle and takes a spectrum, a lossy invariant ([[isospectral-castles](pages/isospectral-castles.md)]). Here the map goes from sound to a castle and is a **bijection** between peak-normalized 16-bit waveforms and castles of height 65536: the skyline is the waveform, and the skyline DFT of [[spectral-analysis](pages/spectral-analysis.md)] §3 is the audio spectrum.
 
-The encodings used are the skyline (integer tuple) of [[castle-representations](pages/castle-representations.md)], the exact codebook size `A(w,h) = h^w - (h-1)^w` of [[castle-counting-function](pages/castle-counting-function.md)], and the tier ladder of [[castle-compression](pages/castle-compression.md)]. Every number below follows from those formulas plus one running example - Rick Astley's "Never Gonna Give You Up" for the rungs, Beethoven's Ninth for the finale.
+The encodings used are the skyline (integer tuple) of [[castle-representations](pages/castle-representations.md)], the exact codebook size `A(w,h) = h^w - (h-1)^w` of [[castle-counting-function](pages/castle-counting-function.md)], and the tier ladder of [[castle-compression](pages/castle-compression.md)]. Every number on the page follows from those formulas plus one running example - Rick Astley's "Never Gonna Give You Up" for the rungs, Beethoven's Ninth for the finale.
 
 ---
 
 ## Rung 0 - the URL
 
-A YouTube video URL is `https://www.youtube.com/watch?v=<id>` where `<id>` is 11 base64url characters (`A-Z`, `a-z`, `0-9`, `-`, `_`). Since `64^11 = 2^66`, the payload is **66 bits**. The canonical example on this page is `dQw4w9WgXcQ` - Rick Astley, "Never Gonna Give You Up", 3:33.[^rickroll] As a base-64 integer that id is `0x1d430e30f56817710` = 33,736,714,463,647,725,328. The question is: which `(w, h)` castle holds 66 bits?
+A YouTube video URL is `https://www.youtube.com/watch?v=<id>` where `<id>` is 11 base64url characters (`A-Z`, `a-z`, `0-9`, `-`, `_`). Since `64^11 = 2^66`, the payload is **66 bits**. The canonical example on this page is `dQw4w9WgXcQ` - Rick Astley, "Never Gonna Give You Up", 3:33.[^rickroll] As a base-64 integer that id is `0x1d430e30f56817710` = 33,736,714,463,647,725,328. The table gives the castles that hold 66 bits.
 
 The codebook is the set of all castles at `(w, h)`, of size `A(w,h) = h^w - (h-1)^w`; it holds `log2 A` bits. The rule "some column reaches `h`" costs
 
@@ -93,25 +93,33 @@ blocks: 54    area: 119
 
 At `(12, 64)` the same id is the skyline `(64, 30, 17, 49, 57, 49, 62, 23, 33, 24, 29, 17)` - a full-height first column (the decomposition put the touch at `j = 1`), then eleven base-64 columns.
 
-### The even-block codebook: exactly one bit, and a weak checksum
+### The even-block codebook and a weak checksum
 
-PE 502 counts only even-block castles, `F(w,h)`. Enumerative coding still works: a DP over `(column, last height, touched h yet, block parity)` counts completions and unranks directly into the even-block codebook. At `(w,h)` sizes of this order the difference `log2 A - log2 F` is one bit to six decimal places - [[castle-entropy](pages/castle-entropy.md)]'s asymptotic `-1` is already exact for a URL-sized castle. The bit is not an error-detecting code. A true parity bit detects every single-symbol error. Block parity does not: replacing one random column by a different random height flips the block parity only about 43% of the time on random `(17, 16)` castles. The block count is the total upward variation `c_1 + sum max(0, c_i - c_{i-1})`, and a single-column edit changes two adjacent rises whose parities cancel more often than not. The bit of [[castle-sign](pages/castle-sign.md)] records a statistic of the shape.
+Project Euler 502 counts the even-block castles, `A^e(w, h)`. A dynamic program over (column, last height, whether `h` has been reached, block parity) counts completions and unranks into the even-block codebook. The parity costs `log2 A − log2 A^e` bits: `0.9999997` at `(17, 16)`, `0.999994` at `(12, 64)`, and `1.000000` to nine decimals at `(67, 2)`, which matches `log2 A^e = log2 A − 1 + log2(1 + S/A)` on [[castle-entropy](pages/castle-entropy.md)].
+
+Block parity is not an error-detecting code. A parity bit detects every single-symbol error; block parity does not. Changing column `i` from height `a` to height `b` between neighbors `l` and `r` changes the block count by
+
+```
+Δ  =  max(0, b − l) − max(0, a − l)  +  max(0, r − b) − max(0, r − a)
+```
+
+(with `l = 0` at the first column and no `r` term at the last), and the parity flips exactly when `Δ` is odd. Over a uniform castle of width 17 and height 16, a uniform column and a uniform new height different from the old one, the parity flips with probability `0.4272`; restricted to edits after which some column still has height 16, `0.4236` (exact computation).[^song] The bit of [[castle-sign](pages/castle-sign.md)] is a statistic of the shape, and most single-column edits leave it unchanged.
 
 ---
 
 ## Rung 1 - the metadata
 
-Between the URL and the audio there is a *label* for the track. In the general audio ecosystem this is an ID3 v2 tag frame on an MP3, a Vorbis comment block on a FLAC or Ogg, or the equivalent Xiph / MP4 metadata atom - a short block of UTF-8 key/value pairs. A minimal but recognizable frame carries title, artist, album, year, duration in milliseconds, sample rate, channel count, codec name, and bitrate. Written naively it runs a few hundred bytes; zlib-compressed, about two hundred:
+Between the URL and the audio there is a *label* for the track: an ID3v2 tag on an MP3, a Vorbis comment block on a FLAC or Ogg file, or an MP4 metadata atom, each a short block of key/value pairs. The table sizes a JSON label for "Never Gonna Give You Up" with 13 fields (title, artist, album, year, duration in milliseconds, sample rate, channels, bits per sample, codec, bitrate, genre, track number, a cover-art URL), and the same label with the four numeric fields only. A byte string of `n` bytes, read as an integer, fits a castle of height 256 and width `n + 1` by the rank/unrank bijection, since `A(n, 256) < 256^n ≤ A(n + 1, 256)` for these `n`:[^song]
 
-| object | pretty | minified | zlib -9 | castle `h=256` (zlib bytes as columns) |
+| object | indented JSON | minified | zlib -9 | castle at `h = 256` |
 |---|---|---|---|---|
-| generous ID3-equivalent JSON (13 fields, cover-art URL) | ~500 B | ~380 B | ~200 B | `w ~ 200` |
-| the same, numbers only (duration, rate, channels, bitrate) | ~80 B | ~60 B | ~40 B | `w ~ 40` |
-| a 128-bit hash of the audio (fingerprint) | 16 B | 16 B | 16 B | `w = 17, h = 256` |
+| 13-field label | 366 B | 313 B | 233 B | `w = 234` |
+| the 4 numeric fields | 92 B | 75 B | 74 B | `w = 75` |
+| a 128-bit hash of the audio (fingerprint) | 16 B | 16 B | 16 B | `w = 17` |
 
 **A fingerprint is a `(17, 256)` castle.** A 128-bit acoustic hash needs `w = 17` at `h = 256`, since `A(16,256) < 2^128 <= A(17,256)`. The 66-bit URL needs `w = 9` at the same height.
 
-**Entropy is relative to the decoder.** The metadata block is ~200 bytes compressed, but every byte of it is a deterministic function of the audio *given a catalog*. To a decoder with that oracle (a music library, a fingerprint service), the label is worth exactly the URL-sized castle; to a decoder without it, ~200 columns. This is [[castle-compression](pages/castle-compression.md)]'s Tier 0 / Tier 2 split with the "program" being a lookup: parametric relative to the catalog, generic relative to the bytes.
+**The size depends on the decoder.** A decoder that holds a catalog of tracks (a music library, a fingerprint service) recovers the label from the URL, a castle of width 12 at height 64; a decoder without one needs the 233 bytes. In the terms of [[castle-compression](pages/castle-compression.md)], the label is parametric given the catalog and generic otherwise.
 
 ---
 
@@ -130,7 +138,7 @@ and scale the signal so its positive peak lands on `h`. Now every castle rule is
 | castle rule | waveform reading |
 |---|---|
 | column heights in `{1, ..., h}` | 16-bit quantization |
-| **height exactly `h`** (some column reaches `h`) | **peak-normalized**: the positive peak hits 0 dBFS |
+| **height `h`** (some column reaches `h`) | **peak-normalized**: the positive peak is at 0 dBFS |
 | full-width bottom row (every `c_i >= 1`) | no sample below `-32768` - always true; the floor is the negative rail |
 | block count `= c_1 + sum max(0, c_i - c_{i-1})` | **total upward variation** of the waveform |
 | even number of blocks (PE 502) | total rise is even - one parity bit on the shape |
@@ -142,11 +150,11 @@ and scale the signal so its positive peak lands on `h`. Now every castle rule is
 w = 9,393,300      h = 65536      raw skyline bits = w * 16 = 150,292,800
 ```
 
-The full stereo file, two skylines, is `w = 18,786,600` or `bytes = 37,573,200` (~37.6 MB) as raw PCM. The castle is far from convex, unimodal or symmetric ([[castle-classification-shape](pages/castle-classification-shape.md)]).
+The stereo file, two skylines, is `w = 18,786,600` samples, or `37,573,200` bytes (37.6 MB) of raw PCM.
 
 ### Compression is the tier ladder
 
-The **raster** of this castle - the `w x h` bit grid - would be `9,393,300 x 65536 = 616 Gbit`. The skyline is `150 Mbit`. That is the `w(h - log2 h)` gap of [[castle-compression](pages/castle-compression.md)]. Below the skyline, the general audio codec ladder, sized directly from bitrate on a 213-second track:
+The **raster** of this castle, the `w x h` bit grid, would be `9,393,300 x 65536 = 615,599,308,800` bits, about 616 Gbit. The skyline is `150 Mbit`. That is the `w(h - log2 h)` gap of [[castle-compression](pages/castle-compression.md)]. Below the skyline, the audio codecs, sized from their bitrates on a 213-second track (the FLAC row is a typical ratio for pop music, not a measurement):
 
 | codec | bytes for 213 s stereo | of WAV | castle at `h = 256` | tier |
 |---|---|---|---|---|
@@ -158,19 +166,19 @@ The **raster** of this castle - the `w x h` bit grid - would be `9,393,300 x 655
 | Opus 96 kbps | 2,556,000 | 6.8% | `w = 2,556,000` | lossy - spectral |
 | Opus 64 kbps | 1,704,000 | 4.5% | `w = 1,704,000` | lossy - spectral |
 
-**Tier 1 is linear prediction.** FLAC's core is the wiki's "rule-generated skyline": per block of a few thousand samples, fit a linear recurrence `c_i ~ sum a_k c_{i-k}` of order up to 32, quantize the taps, and entropy-code the integer residual with a Rice code.[^flac] That is the least-squares, real-valued cousin of what [[berlekamp-massey](pages/berlekamp-massey.md)] does exactly over a field: find the shortest linear rule that explains the skyline. The same coder gives different ratios on different material: the ratio measures how well a low-order linear rule predicts the skyline.
+**Tier 1 is linear prediction.** For each block of a few thousand samples, FLAC fits an approximate linear recurrence `c_i ≈ Σ a_k c_{i−k}` of order up to 32, quantizes the coefficients, and codes the integer residual with a Rice code.[^flac] [[berlekamp-massey](pages/berlekamp-massey.md)] finds the shortest exact linear recurrence over a field; linear prediction fits an approximate one by least squares, and its compression ratio depends on how well a low-order recurrence predicts the material.
 
-**Lossy is spectral.** MP3, AAC, Vorbis, and Opus discard the residual altogether and keep quantized MDCT coefficients - the skyline DFT of [[spectral-analysis](pages/spectral-analysis.md)] §3, windowed, with the small bins zeroed by a hearing model. Their output is a bitstream, so as a castle it is again `h = 256`, `w =` bytes; the waveform castle is gone and only a *spectral* description survives.
+**Lossy codecs are spectral.** MP3, AAC, Vorbis and Opus keep quantized coefficients of a windowed modified discrete cosine transform, a relative of the skyline DFT of [[spectral-analysis](pages/spectral-analysis.md)] §3, with the quantization set by a model of hearing. Their output is a bitstream, a castle of height 256 with one column per byte, and the waveform is not recovered exactly.
 
 ---
 
 ## Finite fields on the waveform
 
-`65537 = 2^16 + 1` is prime (the largest known Fermat prime), so 16-bit samples are, as they stand, elements of `F_65537` - no reduction, no wasted symbols, one spare element. Three things follow.
+`65537 = 2^16 + 1` is prime, the largest known Fermat prime, so the column heights `1, …, 65536` are elements of `F_65537`, all but `0`.
 
-1. **Berlekamp-Massey as a Tier-1 detector.** Run [[berlekamp-massey](pages/berlekamp-massey.md)] over `F_65537` on 400 consecutive waveform columns from any real recording: linear complexity lands near **200**, the value `N/2` typical of a random length-400 sequence (the maximum is `N`). A recorded waveform satisfies no exact linear recurrence - it is Tier 2 in the exact sense even though LPC compresses it 10x in the approximate sense. Run the same test on a 5-tap LFSR skyline of the same length and BM returns complexity **5**. This is the "detector for rule-generated castles" that [[castle-compression](pages/castle-compression.md)] asks for, answered for exact linear rules; LPC measures least-squares linear structure, which BM does not see.
-2. **The NTT is the skyline DFT with no rounding.** `3` generates `F_65537^*`, so `omega = 3^64` is a primitive 1024th root of unity and the number-theoretic transform of a 1024-column block is exact: forward then inverse recovers all 1024 samples bit for bit. [[spectral-analysis](pages/spectral-analysis.md)] §3 and [[finite-fields](pages/finite-fields.md)] are the same transform over two different fields; over `F_p` it is a bijection with no floating point, over `C` it has the frequency reading.
-3. **Encryption is a change of ring.** The [[castle-cryptography](pages/castle-cryptography.md)] series works in `F_p[x]/(Q)` with `Q` a castle's characteristic polynomial. A waveform castle is a very long vector over `F_65537`; multiplying it, block by block, by a fixed element of such a ring is a linear cipher whose key lives in a ring of degree `k+1`; that ring and the attacks on it are on [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)].
+1. **Berlekamp-Massey detects exact linear rules.** Over `F_65537`, [[berlekamp-massey](pages/berlekamp-massey.md)] gives linear complexity 200 on 400 uniform random symbols, 200 on 400 samples of a quantized two-tone signal (440 Hz plus 329.628 Hz at 44.1 kHz), and 5 on 400 terms of a sequence generated by a linear recurrence of order 5.[^song] The quantized tone satisfies no exact linear recurrence of low order, although linear prediction compresses such signals; Berlekamp-Massey sees exact recurrences only.
+2. **The NTT is an exact skyline DFT.** `3` generates the multiplicative group `F_65537^*`, of order `2^16`, so `ω = 3^64` has order 1024, and the number-theoretic transform of a block of 1024 columns, `Σ_j c_j ω^{jk}`, is computed exactly: the inverse transform recovers all 1024 samples.[^song] It is the DFT of [[spectral-analysis](pages/spectral-analysis.md)] §3 over `F_65537` instead of the complex numbers ([[finite-fields](pages/finite-fields.md)]); over the complex numbers its bins have the frequency reading.
+3. **Encryption by a ring element.** The [[castle-cryptography](pages/castle-cryptography.md)] pages work in `F_p[x]/(Q)` with `Q` the characteristic polynomial of a castle count. Multiplying a waveform, block by block, by a fixed element of such a ring is a linear cipher; that ring and the attacks on it are on [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)].
 
 The compact disc's error correction (CIRC) is a pair of Reed-Solomon codes over `GF(2^8)`, so a CD already stores a song as a stream of `h = 256` field symbols with parity.[^circ]
 
@@ -180,7 +188,7 @@ The compact disc's error correction (CIRC) is a pair of Reed-Solomon codes over 
 
 Telephone tones and their detection are castle operations.
 
-**Tones are Tier-0 castles.** At the telephone sampling rate of 8000 Hz, a 2600 Hz tone has exact period `8000 / gcd(8000, 2600) = 40` samples (13 cycles), so it is a **width-40 castle repeated** - period plus repeat count, the parametric tier. Quantized to `h = 9`:
+**Tones are Tier-0 castles.** At the telephone sampling rate of 8000 samples per second, a 2600 Hz tone has period `8000 / gcd(8000, 2600) = 40` samples (13 cycles), so it is a **castle of width 40, repeated**: a period and a repeat count, the parametric tier. Quantized to `h = 9` as `c_j = 5 + round(4 sin(2π · 13j/40))`, `j = 0, …, 39`:
 
 ```
 (5, 9, 2, 4, 9, 2, 4, 9, 3, 3, 9, 3, 3, 9, 4, 2, 9, 4, 2, 9, 5, 1, 8, 6, 1, 8, 6, 1, 7, 7, 1, 7, 7, 1, 6, 8, 1, 6, 8, 1)
@@ -196,60 +204,58 @@ Telephone tones and their detection are castle operations.
 ########################################
 ```
 
-Its skyline DFT has **two atoms**, bins 13 and 27 = 40 - 13, carrying over 99% of the energy once the mean is removed - the [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] sparse-spectrum predicate, with the crenellated castle of [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 7 as the special case of a tone at the Nyquist frequency. 2600 Hz is the tone a long-distance trunk read as "line idle".[^bluebox]
+Its skyline DFT has **two atoms**: bins 13 and 27 = 40 − 13 carry 99.2% of the energy once the mean is removed.[^song] A tone at the Nyquist frequency, 4000 Hz, has period 2, which gives the crenellated castles of [[castle-classification-shape](pages/castle-classification-shape.md)]; the sparse-spectrum castles of [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] are defined from the exact DFT support.
 
-**Blue-box digits are four-atom castles.** The trunk's own MF signaling used pairs from {700, 900, 1100, 1300, 1500, 1700} Hz; KP (key pulse, "start of number") is 1100 + 1700.[^mf] Both have period 80 samples at 8 kHz, so KP is a width-80 castle; before quantization its DFT support is exactly `{11, 17, 63, 69}`. Every MF digit is a castle with a four-atom spectrum.
+**MF digits are four-atom castles.** Multi-frequency signaling uses pairs from {700, 900, 1100, 1300, 1500, 1700} Hz; KP (key pulse, the start of a number) is 1100 + 1700 Hz.[^mf] All 15 pairs have period 80 samples at 8000 samples per second, so KP is a castle of width 80; before quantization its DFT support is `{11, 17, 63, 69}`.[^song]
 
 **Detection is one DFT bin.** The Goertzel algorithm evaluates the DFT at a single bin, so a tone detector is a linear functional on the skyline.
 
-**The full catalogue.** [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] builds the castle for every DTMF key, every MF code and the call-progress tones. All 15 MF codes are width-80 castles; DTMF keys have periods of 2000 to 8000 samples, longer than a DTMF burst, so a sent DTMF key is only approximately periodic. With integer heights the four atoms carry over 99.99% of the energy but the exact support fills whole divisor classes, and a burst of `r` whole periods has a block parity that alternates with `r`.
-
-**In-band signaling and block parity.** In-band signaling puts control (tones) and content (voice) on the same channel. The PE 502 parity clause is likewise a control bit computed from the same skyline that carries the data, and by the 43% flip rate above, most single-column edits change the data without changing that bit.
+**The catalogue.** [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] builds the castle for every DTMF key, every MF code and the call-progress tones. The DTMF keys have periods of 2000, 4000 or 8000 samples, longer than a DTMF burst, so a sent DTMF key is not a whole number of periods.[^song]
 
 ---
 
 ## Beethoven's Ninth - the whole page in one work
 
-**CD length.** The Red Book Compact Disc specification fixed a 12 cm disc with about 74 minutes of playing time; later high-density variants reach 78 or 80 minutes by reducing the track pitch.[^cd-history] The castle below is sized at those capacities; the movement timings further down are approximate and sum to about 65 minutes.
+**Length.** The castle below is sized for a performance of about 65 minutes, the sum of the approximate movement timings in the table at the end of this section; performances differ by several minutes.
 
-**Rung 0 - the URL of a Ninth video.** Any full YouTube upload of the symphony is an 11-character base-64 castle - `w = 12, h = 64` after the touch rule, exactly the shape "Never Gonna Give You Up" landed on above.
+**Rung 0 - the URL of a Ninth video.** The id of any YouTube upload of the symphony is 11 base64url characters, a castle of width 12 and height 64, as for "Never Gonna Give You Up" in Rung 0.
 
-**Rung 1 - the metadata.** An ID3-equivalent label for a movement of the Ninth carries roughly: `composer = "Ludwig van Beethoven"` (20 B), `work = "Symphony No. 9 in D minor, Op. 125"` (34 B), `movement = "IV. Presto - Allegro assai (Ode to Joy)"` (~40 B), `performer` / `conductor` / `year` (~50 B), plus `duration_ms` and `sample_rate` (~30 B). A generous frame is `~500 B` before compression, a few hundred after - a `w ~ 200` castle at `h = 256`. An acoustic fingerprint is 16 bytes, `w = 17` at `h = 256`. The score in a symbolic format such as MusicXML or MIDI is larger than the label and orders of magnitude smaller than the audio.
+**Rung 1 - the metadata.** A label for a movement of the Ninth carries fields such as `composer = "Ludwig van Beethoven"` (20 B), `work = "Symphony No. 9 in D minor, Op. 125"` (34 B) and `movement = "IV. Presto - Allegro assai (Ode to Joy)"` (39 B), with the performers, the year and the numeric fields of the Rung 1 table; it is a castle of a few hundred columns at `h = 256`. An acoustic fingerprint is 16 bytes, width 17 at `h = 256`.
 
-**Rung 2 - the whole symphony as one castle.** The exact CD-DA payload of a 74-min disc is
+**Rung 2 - the whole symphony as one castle.** At CD rate, 65 minutes of stereo audio is
 
 ```
-74 min x 60 s x 44,100 samples/s x 2 channels x 2 bytes = 783,216,000 bytes  (783.2 MB)
-samples per channel: 195,804,000            total samples: 391,608,000
+65 min x 60 s x 44,100 samples/s x 2 channels x 2 bytes = 687,960,000 bytes  (688.0 MB)
+samples per channel: 171,990,000            total samples: 343,980,000
 ```
 
-so the two-channel castle at `h = 65536` has `w = 391,608,000`, and its raw skyline is `6.27 Gbit` (the audio payload of the disc). The 78-minute high-density variant is `78 min x 176,400 B/s = 825,552,000 bytes (825.6 MB)`, `w = 412,776,000` at `h = 65536`. Peak normalization satisfies the touch rule by construction. The block count is the total upward variation of the waveform, and PE 502's parity clause keeps one bit of it.
+so the two-channel castle at `h = 65536` has `w = 343,980,000`, and its raw skyline is `5,503,680,000` bits (5.5 Gbit). Peak normalization puts a column at height `h`. The block count is the total upward variation of the waveform, and the parity clause of Project Euler 502 keeps one bit of it.
 
-**Compression tier ladder, applied.** The FLAC figure is a typical ratio for classical material, not a measurement:
+**The tiers, applied.** The sizes of 65 minutes of stereo audio; the FLAC figure is a typical ratio for classical material, not a measurement:
 
-| form | 74 min (Red Book, 1980) | 78 min (high-density variant) | of WAV |
-|---|---|---|---|
-| WAV / CD-DA payload | 783,216,000 B (783.2 MB) | 825,552,000 B (825.6 MB) | 100% |
-| FLAC (classical, ~50%) | ~390 MB | ~413 MB | ~50% |
-| MP3 320 kbps | 177,600,000 B (177.6 MB) | 187,200,000 B (187.2 MB) | 22.7% |
-| MP3 128 kbps | 71,040,000 B (71.0 MB) | 74,880,000 B (74.9 MB) | 9.1% |
-| AAC 96 kbps | 53,280,000 B (53.3 MB) | 56,160,000 B (56.2 MB) | 6.8% |
-| Opus 64 kbps | 35,520,000 B (35.5 MB) | 37,440,000 B (37.4 MB) | 4.5% |
-| YouTube video URL | 11 characters (66 bits) | 11 characters (66 bits) | ~10^-8 |
-| an acoustic fingerprint of the work | 16 B | 16 B | ~10^-8 |
+| form | 65 min | of WAV |
+|---|---|---|
+| WAV, 16-bit stereo | 687,960,000 B (688.0 MB) | 100% |
+| FLAC (classical, ~50%) | ~344 MB | ~50% |
+| MP3 320 kbps | 156,000,000 B (156.0 MB) | 22.7% |
+| MP3 128 kbps | 62,400,000 B (62.4 MB) | 9.1% |
+| AAC 96 kbps | 46,800,000 B (46.8 MB) | 6.8% |
+| Opus 64 kbps | 31,200,000 B (31.2 MB) | 4.5% |
+| YouTube video URL | 11 characters (66 bits) | 1.2 × 10^-8 |
+| an acoustic fingerprint of the recording | 16 B | 2.3 × 10^-8 |
 
 The last two rows identify the recording; they do not encode it.
 
-**The opening as a two-tone castle.** The Ninth begins *pianissimo* with an open fifth, A and E, in the second violins and cellos. At standard tuning, A = 440 Hz and the E below it is 329.628 Hz. At 44.1 kHz the two component periods are
+**The opening as a two-tone castle.** The Ninth begins with the open fifth A–E. Take the fifth A3–E4 in equal temperament with A4 = 440 Hz, so A3 = 220 Hz and E4 = 329.628 Hz. At 44.1 kHz the two periods are
 
 ```
-A: 44100 / 440     = 100.227 samples
-E: 44100 / 329.628 = 133.787 samples
+A3: 44100 / 220     = 200.455 samples
+E4: 44100 / 329.628 = 133.787 samples
 ```
 
-These two pitches are a fourth apart, ratio `2^(5/12)` in equal temperament (the fifth A3-E4 has ratio `2^(7/12)`); either ratio is irrational, so the two-tone skyline has no exact period. Its DFT is concentrated at two bins (and their mirrors), plus the harmonics of the string tone: the [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] sparse-spectrum predicate, as for the 2600 Hz tone above. Because neither period is a whole number of samples, a finite window leaks energy into neighbouring bins, so the two atoms are only approximate.
+The ratio of the frequencies is `2^(7/12)`, irrational, so the two-tone skyline has no exact period. Its DFT is concentrated near two bins and their mirrors, with further peaks at the harmonics of the instruments. Neither period is a whole number of samples, so a finite window spreads energy into neighboring bins, and the two atoms are approximate, unlike those of the 2600 Hz tone.
 
-**The "Ode to Joy" phrase as a diatonic castle.** The first sung phrase of *Freude, schöner Götterfunken* is stepwise, in D major, and covers scale degrees 1-5. Written as a castle over `h = 5` with each note occupying one column and the height equal to its scale degree, the phrase `(3, 3, 4, 5, 5, 4, 3, 2, 1, 1, 2, 3, 3, 2, 2)` is:
+**The "Ode to Joy" phrase as a diatonic castle.** The phrase "Freude, schöner Götterfunken, Tochter aus Elysium" is stepwise, in D major, and covers the scale degrees 1 to 5. Written with one column per note and the height equal to the scale degree, it is the castle `(3, 3, 4, 5, 5, 4, 3, 2, 1, 1, 2, 3, 3, 2, 2)` of width 15 and height 5:
 
 ```
 scale degree
@@ -258,57 +264,55 @@ scale degree
 3      #######....##..
 2      ########..#####
 1      ###############
-       Freu-de,  schö-ner Göt-ter- fun-ken
+       Freu-de schö-ner Göt-ter-fun-ken Toch-ter aus E-ly-si-um
 ```
 
-Length 15, blocks = 7. The mean block count over all `(15, 5)` castles is about 14.3.
+It has 7 blocks; the mean block count over all castles of width 15 and height 5 is 14.31.[^song]
 
-**Berlekamp-Massey on the phrase.** Read those 15 note-heights as elements of `F_65537`. [[berlekamp-massey](pages/berlekamp-massey.md)] returns linear complexity 8 = `ceil(15/2)`, the generic value for a length-15 sequence: the shortest linear recurrence that generates the phrase has order 8, as for a random sequence of that length. A 5-tap LFSR returns complexity 5 in a length-30 window.
+**Berlekamp-Massey on the phrase.** Over `F_65537`, [[berlekamp-massey](pages/berlekamp-massey.md)] gives the 15 heights linear complexity 8 = `⌈15/2⌉`, the value expected for 15 random symbols; 30 terms of a recurrence of order 5 give complexity 5.[^song]
 
-**NTT on 1024 samples.** Take any 1024 consecutive samples from the opening, read them as elements of `F_65537`, and run the NTT with `omega = 3^64`. Forward then inverse recovers the samples bit for bit. Over `C`, the DFT of the same block has bin width `44100 / 1024 = 43.1 Hz`, so A lies near bin 10.2 and E near bin 7.7, with further peaks at the harmonics.
+**The transform of 1024 samples.** The NTT with `ω = 3^64` on 1024 consecutive samples of the opening is exact, as in the section on finite fields. Over the complex numbers, the DFT of the same block has bins `44100 / 1024 = 43.07 Hz` wide, so A3 lies at bin 5.11 and E4 at bin 7.65.
 
 **Every tool from the page, one row per movement:**
 
 | movement | ~duration | rung/tool it exemplifies best |
 |---|---|---|
 | I. Allegro ma non troppo | ~15 min | the opening two-tone castle - sparse spectrum |
-| II. Molto vivace (Scherzo) | ~11 min | tutti peak that pins the touch row - the rung-2 mastering rule |
+| II. Molto vivace (Scherzo) | ~11 min | the loudest passage sets the column of height `h`, the peak normalization of Rung 2 |
 | III. Adagio molto e cantabile | ~15 min | linear prediction (Tier 1) |
-| IV. Presto / Ode to Joy | ~24 min | the diatonic castle above, Berlekamp-Massey complexity 8 of 15 |
-| whole work | 74 min at CD length | `w = 391,608,000`, `h = 65536`, block-parity 1 bit |
+| IV. Presto / Ode to Joy | ~24 min | the diatonic castle, Berlekamp-Massey complexity 8 of 15 |
+| whole work | ~65 min | `w = 343,980,000`, `h = 65536`, block parity one bit |
 
 ---
 
 ## Related Concepts
 
-- [[castle-representations](pages/castle-representations.md)] - the skyline is the encoding used throughout; the cycle-forest form is the org chart.
-- [[castle-counting-function](pages/castle-counting-function.md)] - `A(w,h) = h^w - (h-1)^w`, the codebook size and the rank/unrank decomposition.
-- [[castle-compression](pages/castle-compression.md)] - the tier ladder that the audio codecs instantiate; the rule-detector question answered for linear rules.
-- [[castle-entropy](pages/castle-entropy.md)] - the one-bit parity cost, exact here to six decimals.
+- [[castle-representations](pages/castle-representations.md)] - the skyline encoding used throughout.
+- [[castle-counting-function](pages/castle-counting-function.md)] - `A(w, h) = h^w − (h−1)^w`, the size of the codebook.
+- [[castle-compression](pages/castle-compression.md)] - the tiers of description that the audio codecs fall into.
+- [[castle-entropy](pages/castle-entropy.md)] - `log2 A(w, h)` and the parity cost `log2 A − log2 A^e = 1 − log2(1 + S/A)`.
 - [[castle-sign](pages/castle-sign.md)] - the block count as total upward variation.
-- [[berlekamp-massey](pages/berlekamp-massey.md)] - exact linear complexity over `F_65537`; the finite-field cousin of LPC.
-- [[finite-fields](pages/finite-fields.md)] - `F_p` and roots of unity; the NTT lives here.
-- [[spectral-analysis](pages/spectral-analysis.md)] - the skyline DFT, read as an audio spectrum; the "hear the shape" direction this page reverses.
-- [[castle-classification-spectrum](pages/castle-classification-spectrum.md)], [[castle-classification-shape](pages/castle-classification-shape.md)] - sparse-spectrum and crenellated castles; the tones and the Ninth's opening chord.
-- [[castle-cryptography](pages/castle-cryptography.md)], [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the ring the toy network encrypts with, and what breaks it.
+- [[berlekamp-massey](pages/berlekamp-massey.md)] - the shortest exact linear recurrence of a sequence over a field.
+- [[finite-fields](pages/finite-fields.md)] - finite fields and the orders of their elements, as for `ω = 3^64` in `F_65537`.
+- [[spectral-analysis](pages/spectral-analysis.md)] - the skyline DFT and the spectra of castle graphs.
+- [[castle-classification-spectrum](pages/castle-classification-spectrum.md)], [[castle-classification-shape](pages/castle-classification-shape.md)] - sparse-spectrum and crenellated castles.
+- [[castle-cryptography](pages/castle-cryptography.md)], [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the rings `F_p[x]/(Q)` used for encryption, and the attacks on them.
 - [[castle-snippets](pages/castle-snippets.md)] - `all_castles` and `blocks`, used to verify the bijections.
-- [[isospectral-castles](pages/isospectral-castles.md)] - where the "hear the shape" direction loses information; the lossless direction here does not.
+- [[isospectral-castles](pages/isospectral-castles.md)] - non-isomorphic castle graphs with the same spectrum.
 - [[image-as-castle](pages/image-as-castle.md)] - the same map for JPG and PNG: an image as a stack of row castles or one two-dimensional castle.
 - [[castle-steganography](pages/castle-steganography.md)] - hiding a base64 string in castles; block parity as a covert channel.
-- [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] - every DTMF, MF and call-progress signal as a castle, extending the telephone section above.
-- [[castle-entropy](pages/castle-entropy.md)] - the `log_2 A(w,h)` budget and the `-1` bit even-block price used throughout Rung 0/1; the "castle-entropy asymptotic -1" this page invokes.
+- [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] - every DTMF, MF and call-progress signal as a castle.
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[one-bit-seminar](pages/one-bit-seminar.md)] / [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] / [[sandcastle-seminar](pages/sandcastle-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] - the other seminar pages.
 
 ## Appearances in Sources
 
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the integer-tuple (skyline) encoding and the block count as a sum of differences, the two facts every rung uses.
-- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the count `A(w,h)` whose decomposition by first full-height column is the ranking scheme.
+- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the count `A(w, h)`.
 
 ## Footnotes
 
 [^rickroll]: https://www.youtube.com/watch?v=dQw4w9WgXcQ - "Rick Astley - Never Gonna Give You Up (Official Music Video)", 3 min 33 s runtime. YouTube video ids are 11 characters from the base64url alphabet `A-Z a-z 0-9 - _`, so the id namespace has size `64^11 = 2^66` and every id is a 66-bit integer.
 [^flac]: https://xiph.org/flac/format.html §"Overview" and §"Subframe" [synthesis] - a FLAC stream is blocks of typically 4096 samples; each subframe is coded as constant, verbatim, fixed predictor, or LPC of order 1-32 with quantized coefficients, followed by the prediction residual encoded with Rice codes in partitions.
 [^circ]: https://en.wikipedia.org/wiki/Cross-interleaved_Reed%E2%80%93Solomon_coding §"Overview" [synthesis] - CIRC, the CD's error-correction scheme, is two concatenated Reed-Solomon codes over GF(2^8), (32,28) and (28,24), with interleaving between them.
-[^bluebox]: https://en.wikipedia.org/wiki/Blue_box §"Discovery and early use", §"Blue boxing" - "The basic protocol for finding a free line worked by playing a 2600 Hz tone into the line whenever it was not being used".
 [^mf]: https://en.wikipedia.org/wiki/Multi-frequency_signaling §"Multi-frequency signals" and the tone table transcluded from https://en.wikipedia.org/wiki/Template:Multi-frequency_signaling_tones [synthesis] - "electronic signals that consist of a combination of two audible frequencies, usually selected from a set of six frequencies"; the table's columns are 700, 900, 1100, 1300, 1500, 1700 Hz, the KP row is marked at 1100 and 1700 Hz, the ST row at 1500 and 1700 Hz; "In R1 MF signaling this address information normally is a KP tone, the numeric digits of the destination number, and an ST tone to indicate the end of the address."
-[^cd-history]: https://en.wikipedia.org/wiki/Compact_disc §"History" [synthesis] - the Red Book Compact Disc specification adopted a 12 cm disc with roughly 74 minutes of playing time; later Red Book variants extended nominal playing time to about 80 minutes by decreasing track pitch.
+[^song]: Verified by execution (Python 3.11 with NumPy, 2026-10-16): the id `dQw4w9WgXcQ` as the integer `0x1d430e30f56817710`; the table of smallest widths and the skylines at `(17, 16)` (54 blocks, area 119) and `(12, 64)`, with `rank(unrank(n)) = n`, and the bijection checked on all castles of width 4 and height 3; `log2 A − log2 A^e` at `(17, 16)`, `(12, 64)`, `(67, 2)`; the flip probabilities at `(17, 16)` by exact summation over the neighbors of the edited column; the JSON labels (sizes from `json.dumps` and `zlib.compress(..., 9)`) and `A(n, 256) < 256^n ≤ A(n + 1, 256)`; 3 a generator of `F_65537^*`, `3^64` of order 1024, and the round trip of the length-1024 NTT on random samples; Berlekamp-Massey over `F_65537` on 400 random symbols, the quantized two-tone signal and an order-5 recurrence, and on the phrase; the 2600 Hz skyline and its 99.2% energy share; the KP support; the DTMF and MF periods; the phrase's 7 blocks and the mean 14.31; the 65-minute sizes.
