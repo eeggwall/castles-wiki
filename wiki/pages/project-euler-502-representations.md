@@ -1,11 +1,11 @@
 ---
 title: "PE 502: Representations"
 category: Sources
-summary: The representations subpage — three castle encodings, the convex-castle taxonomy, and the generalized Dyck grammar that yields the closed-form F(w,h).
+summary: The Representations subpage encodes a castle as a binary string, an integer tuple of column heights, or a word in the steps U, R, D, in which each D ends one block. It counts the convex castles of width w and height h as C(2h + w − 3, w − 1), writes the tower words with the grammar E_k → empty | R E_k | U V D (empty | R E_k), and reads off E_k(x) = 1/(1 − (k+1)x), the signed generating function P_k(x), and the closed form of A^e(w, h), the count it writes F(w, h).
 tags: [project-euler, castle, representations, dyck, generating-functions, source, subpage]
 sources: [project-euler-502-representations]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Project Euler 502 (PE 502): Representations
@@ -16,43 +16,67 @@ updated: 2026-09-28
 
 ## Summary
 
-This subpage derives the Project Euler 502 closed form. It first sets up three ways to encode a [[castle-polyomino](pages/castle-polyomino.md)] — binary strings, integer tuples, and U/R/D step strings — and translates the castle rules into constraints on each encoding.[^1] It then develops the U/R/D encoding into a taxonomy (rectangular → [[convex-castle](pages/convex-castle.md)] → variations) and recasts the castle rules as a **[[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]** over tower words. That grammar yields a generating function and, from it, the closed-form **[[castle-counting-formula](pages/castle-counting-formula.md)]** for `F(w,h)` — replacing enumeration with a direct count.[^2]
-
-The three encodings are collected on [[castle-representations](pages/castle-representations.md)]. The step-based U/R/D form (detailed on [[urd-step-strings](pages/urd-step-strings.md)]) is the one that led to the breakthroughs; each `D` move completes a block, so the even-block rule reduces to "an even number of Ds."[^3] The binary-string and integer-tuple encodings did not lead to the solution, but they carry structure used elsewhere in the solution (the binary encoding, for instance, supplies the bijection that a length-*L* block admits 2^L sub-configurations).[^4]
-
-The section "Which representation was actually used?" notes that the winning solution does not enumerate any of these representations directly: the binary encoding serves only as a bijection proof, and U/R/D is the mental model that revealed sub-block independence, not what the code manipulates.[^4] The concrete derivation on this page produces a formula that reproduces the problem's known checkpoints exactly — verified by running the source's own Python: `F(4,2)=10`, `F(13,10)=3729050610636`, `F(10,13)=37959702514`.[^5]
+This subpage encodes a [[castle-polyomino](pages/castle-polyomino.md)] in three ways and states the castle rules as constraints on each encoding.[^1] It then develops the step encoding in two directions: an enumeration of castles that starts from the convex ones, and the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] of tower words, from which it derives the [[castle-counting-formula](pages/castle-counting-formula.md)].[^2] The source writes `F(w, h)` for the even-block count, which the wiki writes `A^e(w, h)`, and calls a castle of height `h` one of "height exactly `h`".
 
 ## Key Takeaways
 
-- **Three encodings**, each translating the castle rules into constraints (see [[castle-representations](pages/castle-representations.md)]): binary strings (column-wise bits), integer tuples (per-column heights), and U/R/D step strings.[^1]
-- In the **U/R/D encoding** (see [[urd-step-strings](pages/urd-step-strings.md)]), each `D` completes a block, so the even-block rule becomes "even number of Ds"; castles are organized as rectangular, [[convex-castle](pages/convex-castle.md)], and variations on convex castles.[^3]
-- The number of **convex castles** on a *w*×*h* grid is `CCC = C(2H+W−3, W−1)` by a stars-and-bars argument (e.g. 210 for w=5, h=4).[^6]
-- The **[[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]** `E_k → empty | R E_k | U V D (empty | R E_k)` encodes the castle rules; its unsigned generating function gives `T(k,L) = (k+1)^L` towers of height ≤ *k* above a length-*L* block.[^7]
-- The **even-block rule enters as a sign** (weight each `D` by −1), giving a signed generating function `P_k` and the closed form `F(w,h) = [h^w − (h−1)^w − P(h−1,w) + P(h−2,w)] / 2` — the [[castle-counting-formula](pages/castle-counting-formula.md)], verified against all three checkpoints.[^8]
+- **Binary strings and integer tuples.** Column `i` of height `c_i` is written as `c_i` ones followed by `h − c_i` zeros, and the integer tuple is `(c_1, …, c_w)`. The source's example is the sample castle of the problem statement, of width 8 and height 5:[^3]
+
+  ```
+  binary string   11000 11100 11111 11000 11100 10000 11111 11110
+  integer tuple   2 3 5 2 3 1 5 4
+  ```
+
+  With a 0 added at each end, the negative differences of consecutive entries sum to `−10`, so the castle has 10 blocks: the block count is the total descent of the skyline. Every castle has `c_i ≥ 1` and some `c_i = h`.[^3]
+- **Step strings.** A castle is a word in `U` (up one row), `R` (right one column) and `D` (down one row), with `w` letters `R`. Each `D` ends one block, so the castle has an even number of blocks exactly when its word has an even number of `D`s.[^4] The source sorts castles into rectangular castles `U^h R^w D^h`, convex castles, and variations of convex castles ([[urd-step-strings](pages/urd-step-strings.md)]).
+- **Convex castles.** A convex castle's word is a front of `U` and `R` steps up to height `h`, a middle of at least one `R` at height `h`, and a back of `D` and `R` steps. Starting from the bare-minimum string `U^h R D^h`, the other `w − 1` letters `R` go into the `h − 1` slots between consecutive `U`s, the `h − 1` slots between consecutive `D`s, and the middle, so by stars and bars there are[^5]
+
+  ```
+  C(2(h−1) + w − 1, w − 1)  =  C(2h + w − 3, w − 1)
+  ```
+
+  convex castles of width `w` and height `h`; at `w = 5`, `h = 4` this is `C(10, 4) = 210`. The count agrees with enumeration of unimodal skylines for `h ≤ 5`, `w ≤ 6`.[^6] At odd `h` the source changes the bare-minimum string to keep the block count even ([[project-euler-502-observations](pages/project-euler-502-observations.md)]).
+- **What the solution uses.** The source says that the solution enumerates none of these encodings: the binary strings serve only to prove that a block of length `L` carries `2^L` configurations in the row above it, and the step words are the model in which the independence of towers on different blocks was found.[^7]
+- **The tower grammar.** Removing the outer `U … D`, the bottom row, from a castle's word leaves the word of its towers. Towers of height at most `k` are generated by
+
+  ```
+  E_k  →  empty  |  R E_k  |  U V D ( empty | R E_k )
+  ```
+
+  where `U V D` is a block carrying towers `V` of height at most `k − 1`. `V` is nonempty, which excludes the factor `UD`, a block of width 0, and the tail `empty | R E_k` excludes `DU`, two touching blocks.[^8] Marking each `R` by `x`, the generating function `E_k(x) = Σ_L T(k, L) x^L` satisfies `E_k(x) = 1 + x·E_k(x) + (E_{k−1}(x) − 1)(1 + x·E_k(x))`, so `E_k(x) = 1/(1 − (k+1)x)` and `T(k, L) = (k+1)^L`.[^9]
+- **The signed count and the closed form.** Weighting each block by `−1` changes the sign of the term of `U V D`, and the signed generating function `P_k(x) = Σ_L P(k, L) x^L` satisfies `P_k(x) = (2 − P_{k−1}(x))/(1 − 2x + x·P_{k−1}(x))` with `P_0(x) = 1/(1 − x)`. With `P_k(x) = num_k(x)/den_k(x)`, `den_k` has degree `k + 1`, so `P(k, ·)` satisfies a linear recurrence of order `k + 1` in `L`. The castle has one block more than its towers, so its block count is even when theirs is odd, and[^10]
+
+  ```
+  A^e(w, h)  =  [ h^w − (h−1)^w − P(h−1, w) + P(h−2, w) ] / 2.
+  ```
+
+  The source's Python evaluates this from the update of `num_k` and `den_k` and prints the three checkpoint values `A^e(4, 2) = 10`, `A^e(13, 10) = 3 729 050 610 636` and `A^e(10, 13) = 37 959 702 514` ([[castle-counting-function](pages/castle-counting-function.md)]).[^10]
 
 ## Entities & Concepts
 
-- [[castle-representations](pages/castle-representations.md)] — the three castle encodings collected: binary strings, integer tuples, U/R/D step strings.
-- [[urd-step-strings](pages/urd-step-strings.md)] — the U/R/D step-string encoding and its castle taxonomy.
-- [[convex-castle](pages/convex-castle.md)] — the front/middle/back castle class and its count.
-- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the tower-word grammar recasting the castle rules.
-- [[castle-counting-formula](pages/castle-counting-formula.md)] — the closed form for `F(w,h)`, with the signed/unsigned tower generating functions.
-- [[castle-polyomino](pages/castle-polyomino.md)], [[castle-counting-function](pages/castle-counting-function.md)], [[generating-functions](pages/generating-functions.md)] — the object, the count and the method this source develops.
+- [[castle-representations](pages/castle-representations.md)] - the three encodings: binary strings, integer tuples and step strings.
+- [[urd-step-strings](pages/urd-step-strings.md)] - the step-string encoding, the bare-minimum string, and the rectangular, convex and varied castles.
+- [[convex-castle](pages/convex-castle.md)] - castles with a unimodal skyline, counted by `C(2h + w − 3, w − 1)`.
+- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the grammar of tower words.
+- [[castle-counting-formula](pages/castle-counting-formula.md)] - the derivations of `E_k(x)`, `P_k(x)` and `A^e(w, h)`, with proofs and checks.
+- [[castle-counting-function](pages/castle-counting-function.md)] - the counts `A`, `A^e`, `A^o` and the checkpoint values.
+- [[generating-functions](pages/generating-functions.md)] - rational generating functions and the linear recurrences of their coefficients.
 
 Also linked from the source: [[dyck-words](pages/dyck-words.md)], [[lattice-paths](pages/lattice-paths.md)] (Project Euler 15), [[project-euler-502-solution](pages/project-euler-502-solution.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)].
-- Sibling subpages of the [[project-euler-502](pages/project-euler-502.md)] hub: [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)], [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)], [[project-euler-502-observations](pages/project-euler-502-observations.md)], [[project-euler-502-solution](pages/project-euler-502-solution.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)], [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)].
 
 ## Relation to Other Wiki Pages
 
-This page supplies the derivation that the hub [[project-euler-502](pages/project-euler-502.md)] and the [[castle-counting-function](pages/castle-counting-function.md)] pointed to. It gives [[generating-functions](pages/generating-functions.md)] its concrete instance for the castle problem and connects castles to Dyck paths and lattice paths. The Solution and Implementation Notes subpages describe what the code actually computes; this page establishes *why* the formula is correct.
+This subpage is the source of the grammar derivation on [[castle-counting-formula](pages/castle-counting-formula.md)], Equations (1) to (5) there. [[project-euler-502-solution](pages/project-euler-502-solution.md)] proves `T(k, L) = (k+1)^L` by induction instead, and [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] describes the code that evaluates the formula.
 
 ## Footnotes
 
-[^1]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Representing Castles" L1-10 [synthesis] — introduces the three encodings (binary strings, integer tuples, step-based strings) and the goal of translating castle rules into rules for constructing representations.
-[^2]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Generalized Dyck Grammar for Castles" L215-217 — "The castle rules re-cast as a grammar over these strings, and the grammar yields the recurrence and the generating function that count castles. This is the route that replaces enumeration with a count."
-[^3]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Steps-Based Approach" L137 — "each D move completes a new block, so checking if there are an even number of blocks is as easy as checking if the number of Ds is even."
-[^4]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Which representation was actually used?" L213 — "The winning solution does not enumerate any of these directly. The binary-string encoding is used only as the bijection proof that a length-L block admits 2^L sub-configurations ... The U/R/D form is the mental model that unlocked the sub-block independence; it is not what the code manipulates."
-[^5]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The main formula" L406-411 — the source's Python prints "F(4,2) = 10 / F(13,10) = 3729050610636 / F(10,13) = 37959702514"; re-run during ingest, all three reproduce exactly.
-[^6]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Step 2 Enumerating Convex Castles" L194,L206 — "CCC = C(2(H-1)+W-1, W-1) = C(2H+W-3, W-1)" and the worked example "C(2*4 + 5 - 3, 5-1) = C(10, 4) = 210".
-[^7]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Unsigned count" L303-309 — "E_k = 1/(1-(k+1)x)" so "T(k,L) = (k+1)^L", read off the grammar E_k → empty | R E_k | U V D (empty | R E_k).
-[^8]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The main formula" L367 — "F(w,h) = (h^w - (h-1)^w - P(h-1,w) + P(h-2,w))/2", with the even-block rule entering as the −1 weight per D in the signed count P_k (§"Signed count" L316-333).
+[^1]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Representing Castles" L3-10 [synthesis] - the three encodings (binary strings, integer tuples, step-based strings), and the aim to "translate the rules for castles into rules for constructing representations".
+[^2]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Generalized Dyck Grammar for Castles" L217 - "The castle rules re-cast as a grammar over these strings, and the grammar yields the recurrence and the generating function that count castles. This is the route that replaces enumeration with a count."
+[^3]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Binary String Representation" L20-59 and §"Integer Tuples" L68-74 [synthesis] - the example string "11000 11100 11111 11000 11100 10000 11111 11110", the counts "2 3 5 2 3 1 5 4", the differences "+2 +1 +2 -3 +1 -2 +4 -1 -4" whose negative entries give "10", and the conditions that some entry equals `H` and all entries are `> 0`.
+[^4]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Steps-Based Approach" L137 - "each D move completes a new block, so checking if there are an even number of blocks is as easy as checking if the number of Ds is even."
+[^5]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Steps-Based Approach" L86-91, §"Step 2 Enumerating Convex Castles" L169-209 [synthesis] - the front, middle and back of a convex castle; the `W − 1` letters `R` placed in `2(H − 1) + 1` slots; "CCC = C(2(H-1)+W-1, W-1) = C(2H+W-3, W-1)" and "C(10, 4) = 210".
+[^6]: Verified by execution (Python 3.11, 2026-10-16): the number of unimodal skylines in `{1, …, h}^w` that reach `h` equals `C(2h + w − 3, w − 1)` for `1 ≤ h ≤ 5`, `w ≤ 6`; the block count of `(2, 3, 5, 2, 3, 1, 5, 4)` is 10.
+[^7]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Which representation was actually used?" L213 - "The winning solution does not enumerate any of these directly. The binary-string encoding is used only as the bijection proof that a length-L block admits 2^L sub-configurations ... The U/R/D form is the mental model that unlocked the sub-block independence; it is not what the code manipulates."
+[^8]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The tower word" L221-230, §"The grammar" L262-276 - "A castle is U (tower) D. The bottom block is the outer U...D pair", "E_k -> empty | R E_k | U V D ( empty | R E_k )", "Nonempty V is what keeps the sub-block width positive (no UD). The empty | R E_k tail is what keeps two peaks from touching (no DU)".
+[^9]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Unsigned count" L282-310 - "Let x mark one R step ... E_k = 1 + x E_k + (E_{k-1} - 1)(1 + x E_k)", "E_k = 1/(1 - (k+1)x)", "T(k,L) = (k+1)^L".
+[^10]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L316-346, §"The main formula" L350-411 [synthesis] - the minus sign on the peak, "P_k = (2 - P_{k-1})/(1 - 2x + x P_{k-1}), P_0 = 1/(1-x)", the denominator of degree `k + 1`, "Even total blocks means an odd number of blocks in the tower", "F(w,h) = (h^w - (h-1)^w - P(h-1,w) + P(h-2,w))/2", and the Python output "F(4,2) = 10 / F(13,10) = 3729050610636 / F(10,13) = 37959702514". The three values recomputed from the formula (Python 3.11, 2026-10-16).
