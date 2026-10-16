@@ -1,6 +1,7 @@
 # Towers of width w by blocks vs. (w+1)-core partitions by corners (Cho-Huh-Nam-Sohn, arXiv:2205.15554,
-# Thm 3.3 and Prop 3.4), the Narayana-numerator formula, A160747, A063490 and A271942.
-# Drafts: raw/oeis-pe502/xrefs/A160747-tower.md, A063490-tower.md.  Needs sympy; A271942 b-file path as argv[1] (optional).
+# Thm 3.3 and Prop 3.4), the Narayana-numerator formula, A160747, A063490, A005891,
+# A005408, A271942, and the A001263 castle formula for every width from Deutsch-Elizalde's equation.
+# Drafts: raw/oeis-pe502/xrefs/A160747-tower.md, A063490-, A005891-, A005408-, A001263-tower.md.  Needs sympy; A271942 b-file path as argv[1] (optional).
 import sys
 from itertools import product
 from math import comb
@@ -42,6 +43,11 @@ ENTRIES = {  # name: (t, data from the entry, closed form in the number of corne
                     54055, 59944, 66246, 72975, 80145, 87770, 95864, 104441, 113515, 123100, 133210,
                     143859, 155061],
                 (2 * (m + 1) - 1) * (7 * (m + 1)**2 - 7 * (m + 1) + 6) / 6),                  # the name, n = m + 1
+    'A005891': (4, [1, 6, 16, 31, 51, 76, 106, 141, 181, 226, 276, 331, 391, 456, 526, 601, 681, 766, 856,
+                    951, 1051, 1156, 1266, 1381, 1501, 1626, 1756, 1891, 2031, 2176, 2326, 2481, 2641,
+                    2806, 2976, 3151, 3331, 3516, 3706, 3901, 4101, 4306, 4516, 4731, 4951, 5176, 5406],
+                (5 * m**2 + 5 * m + 2) / 2),                                                  # the name, n = m
+    'A005408': (3, list(range(1, 132, 2)), 2 * m + 1),                                        # n = m
 }
 Nm = lambda i: sp.binomial(m, i) * sp.binomial(m, i - 1) / m
 for name, (t, data, closed) in ENTRIES.items():
@@ -95,3 +101,18 @@ if len(sys.argv) > 1:
     for name, (t, data, _) in ENTRIES.items():
         assert all(T[(t + j, t - 1)] == data[j] for j in range(len(data))), name
         print(f"{name}: term j == A271942({t} + j, {t - 1}) for all {len(data)} terms")
+
+# 5. A001263: castles of width w by blocks have g.f. Sum_k N(w,k) y^k / (1-y)^w for every w.
+#    Deutsch-Elizalde: the castle (bargraph) g.f. B(x, y), x width, y blocks, solves x B^2 - (1-x-y-xy) B + xy = 0.
+#    Dyck paths by semilength u and peaks t: C = 1 + u C (C - 1 + t), with C - 1 = Sum_w u^w Sum_k N(w,k) t^k.
+#    With u = x/(1-y), t = y and F = C - 1 the Dyck equation is (1-y) F = x (F+1)(F+y), the same quadratic.
+x, y, F = sp.symbols('x y F')
+assert sp.expand(x * F**2 - (1 - x - y - x * y) * F + x * y - (x * (F + 1) * (F + y) - (1 - y) * F)) == 0
+W = 8
+B = sp.Integer(0)
+for _ in range(W + 1):  # power-series solution in x of (1-y) B = x (B^2 + (1+y) B + y), truncated at x^W
+    B = sp.series(sp.expand(x * (B**2 + (1 + y) * B + y) / (1 - y)), x, 0, W + 1).removeO()
+for w in range(1, W + 1):
+    assert sp.simplify(B.coeff(x, w) - sum(N(w, k) * y**k for k in range(1, w + 1)) / (1 - y)**w) == 0, w
+print(f"A001263: Deutsch-Elizalde equation == Dyck-by-peaks equation at u = x/(1-y); "
+      f"[x^w] B = Sum_k N(w,k) y^k/(1-y)^w for w <= {W}")

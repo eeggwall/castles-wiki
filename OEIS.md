@@ -58,11 +58,12 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
 ### 2. Ready to submit (drafted and checked, in order)
 
 1. [ ] **Castles by blocks = t-cores by corners, Narayana numerator** (formerly tier 2), in
-   the A160747 form (castle wording, PE 502 link, Cho et al.): A005891 next (width 3,
-   4-cores; draft still in the old tower form) (`raw/oeis-pe502/xrefs/*-tower.md`;
-   `wiki/pages/tower-narayana-polynomial.md`). The A001263 numerator formula
-   `Sum_k N(w,k) C(b+w-k, w-1)` waits for a proof at general `w`: Cho et al. prove the
-   block-indexed sum `Sum_i N(b,i) C(w+1+2b-2i, 2b)`, not this width-indexed one.
+   the A160747 form (castle wording, PE 502 link, Cho et al.), drafts in castle form
+   (`raw/oeis-pe502/xrefs/*-tower.md`; `wiki/pages/tower-narayana-polynomial.md`):
+   1. [ ] A005891 (width 3, 4-cores).
+   2. [ ] A001263: castles of width `n` with `m` blocks number
+      `Sum_k T(n,k) C(m+n-k-1, n-1)`, for every `n`, proved: `x -> x/(1-y)` in the g.f. of
+      A001263 gives Deutsch-Elizalde's bargraph equation (2) (arXiv:1609.00088).
 2. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
    (`raw/oeis-pe502/xrefs/*-castle.md`).
 3. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
@@ -227,8 +228,8 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   zeros between successive ones" comment; A077868 is the better home.
 - A003849 / A001950 / A003622 (the 56-column castle from the Fibonacci word): a single castle,
   not a sequence interpretation.
-- A005408 (towers of width 2): its draft recommends skipping by default (dense entry, marginal
-  reading); `raw/oeis-pe502/xrefs/A005408-tower.md`.
+- A005408 (castles of width 2, 3-cores): dense core entry, marginal reading; the draft is in
+  castle form in case it is wanted: `raw/oeis-pe502/xrefs/A005408-tower.md`.
 
 ### Done (live on OEIS)
 
