@@ -1,91 +1,88 @@
 ---
 title: The algebraic/transcendental wall
 category: Concepts
-summary: The castle's width-and-height counts (T, P, F) are C-finite, so their canonical closed forms carry only algebraic constants — √2, √5, φ, i, the plastic number — while e and π enter only through limits (Stirling, Catalan, natural-log growth) or inside algebraic values such as cos(π/4).
+summary: At each fixed height, the castle counts A(·, h), A^e(·, h), A^o(·, h) and the tower counts T(k, ·), P(k, ·) satisfy linear recurrences with integer coefficients in the width, so their closed forms are finite sums Σ p_i(w) r_i^w with algebraic bases r_i, such as φ, √2, 1 ± i and the plastic number. The transcendental numbers e and π occur in these closed forms only inside algebraic values such as cos(π/4) = √2/2; otherwise they occur in limits, as in Stirling's formula, the Catalan asymptotic, and the growth exp(2π√(n/3)) of the convex castles by area, which are therefore not C-finite.
 tags: [concept, castle, algebraic, transcendental, c-finite, golden-ratio, sqrt2, e, pi, asymptotics, pedagogy]
-sources: [project-euler-502-representations, aocp-permutations, aocp-generating-functions, generating-functions-topic]
+sources: [project-euler-502-representations, aocp-permutations, aocp-generating-functions]
 created: 2026-09-15
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # The algebraic/transcendental wall
 
-## Summary
+An **algebraic number** is a root of a nonzero polynomial with rational coefficients. The algebraic numbers form a field, and every root of a polynomial with algebraic coefficients is again algebraic. A complex number that is not algebraic is **transcendental**; `e` and `π` are transcendental. This page sorts the constants that occur in the castle counts by this distinction: the exact counts by width carry only algebraic constants, and `e` and `π` enter through asymptotic statements.
 
-Every exact count of castles by width and height, `T(k,L)`, `P(k,L)` and `F(w,h)`, is **C-finite**: it satisfies a linear recurrence, so its generating function is rational and its canonical closed form is a finite sum of polynomial×exponential terms whose bases are **algebraic** numbers. The transcendental constants `e` and `π` are not needed in these formulas. Where they appear in an equivalent form, as in `Re((1+i)^{L+1}) = 2^{(L+1)/2} cos((L+1)π/4)` or a root of unity `e^{2πi/m}`, they sit inside an algebraic value; otherwise they enter through **limits** (Stirling's formula, Catalan asymptotics, natural-log growth). Some counts by area are not C-finite (the convex castles, A001523, and the signed count by area, a q-series on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]) and fall outside this page.
+## C-finite counts have algebraic closed forms
 
-## The two sides
-
-**Algebraic side — reachable in finitely many steps.** The algebraic numbers are everything obtainable from the rationals by `+ − × ÷` and by taking roots of polynomials. They form a field and are *algebraically closed*: the roots of any polynomial with algebraic coefficients are again algebraic.[^2] So any finite closed form built from rationals, arithmetic, and root-taking stays on this side.
-
-**Transcendental side — reachable only in a limit.** `e` and `π` lie past that line: Hermite (1873) proved `e` transcendental, Lindemann (1882) proved `π` transcendental.[^2] No finite expression of rationals under the algebraic operations can reach them.
-
-## Why the wall holds: C-finite ⟹ algebraic closed forms
-
-The link to the castle is the **Binet formula**. A C-finite sequence `(a_n)` has a rational generating function `N(x)/D(x)`, and its `n`-th term expands as
+A sequence `(a_n)` is **C-finite** when it satisfies a linear recurrence with constant coefficients, `a_n = c_1 a_{n−1} + ⋯ + c_d a_{n−d}`. With rational coefficients, its generating function is a rational function `N(x)/D(x)`, and for `n` beyond the degree of `N` minus the degree of `D`,
 
 ```
-a_n = Σ_i  p_i(n) · r_i^n,
+a_n  =  Σ_i  p_i(n) · r_i^n,                                                   (1)
 ```
 
-where the `r_i` are the roots of the characteristic polynomial — algebraic — and the `p_i` are polynomials with algebraic coefficients. Fibonacci is the simplest example: `x² = x + 1` has roots `φ, φ̂`, and `F_n = (φ^n − φ̂^n)/√5` has this form.[^1] The constants entering the *canonical* closed form of a C-finite sequence are therefore always algebraic. Since the castle's counts — `T(k,L) = (k+1)^L`, `P(k,L)`, and `F(w,h)` — are all C-finite ([[signed-tower-count](pages/signed-tower-count.md)], [[castle-counting-formula](pages/castle-counting-formula.md)]), their closed forms live entirely on the algebraic side.
-
-## The castle's residents on each side
-
-**Exact (algebraic).** The constants that appear exactly are characteristic roots. The named quadratic ones:[^4]
-
-- `φ = (1+√5)/2` — Fibonacci's growth rate (`F_n = (φ^n − φ̂^n)/√5`) and the `F_{n−1}` prime castles of [[prime-castles](pages/prime-castles.md)].
-- `√2` — `|1+i| = √2` in `P(1,L) = Re((1+i)^{L+1})`, and the tower-word growth constant `√2 + 1`.
-- `√5` — the Fibonacci denominator.
-- `i` — the `1±i` eigenvalues of `P(1,·)`.
-
-The higher-degree eigenvalues (the `ρ_k` of [[generating-function-gallery](pages/generating-function-gallery.md)]) are algebraic too, of degree at most `k+1`: the dominant root of `char_4` is a cubic, and `ρ_6 = 2ψ²` is cubic, for `ψ` the plastic number ([[plastic-number](pages/plastic-number.md)]).
-
-**Asymptotic.** `e` and `π` appear in these limits as `n → ∞`:[^3]
-
-- Stirling `n! ≈ √(2πn)(n/e)^n` ([[aocp-permutations](pages/aocp-permutations.md)]).
-- Catalan `C_n ~ 4^n/(n^{3/2}√π)` ([[catalan-numbers](pages/catalan-numbers.md)]) and the central binomial `C(2n,n) ~ 4^n/√(πn)`.
-- The natural log in `ρ_k ~ k/log k` ([[generating-function-gallery](pages/generating-function-gallery.md)]).
-
-One caveat: the `e` in the exponential generating function `e^x` is formal bookkeeping, `e^x = Σ x^n/n!`, which only equals the number `e` on evaluating `x = 1`. The EGF parity projector `(e^x ± e^{−x})/2` ([[generating-functions-topic](pages/generating-functions-topic.md)]) is the classical EGF form of the castle's `(T±P)/2` even/odd split, and its `e` is a formal symbol. Among the limits above, the number `e` enters through Stirling's `(n/e)^n` and the natural log.
-
-## How the transcendental constants enter
-
-In the exact formulas `e` and `π` are not needed; they enter through **limits**. The standard illustration is `n!`. The factorial is an integer — trivially algebraic — yet its asymptotic
+where the `r_i` are the distinct roots of the characteristic polynomial `λ^d − c_1 λ^{d−1} − ⋯ − c_d`, which are algebraic, and each `p_i` is a polynomial whose coefficients lie in the field generated by the roots, so they are algebraic too. Fibonacci is the smallest example: the partial fractions of its generating function give[^1]
 
 ```
-n! ≈ √(2πn) · (n/e)^n      (relative error → 0)
+F_n  =  (φ^n − φ̂^n) / √5,        φ = (1 + √5)/2,  φ̂ = (1 − √5)/2.
 ```
 
-carries both `e` and `π`.[^3] The equality holds only in the limit `n → ∞`; for every finite `n` the two sides differ. The transcendental constants enter because Stirling's formula is an asymptotic statement, not an identity. The same holds for the Catalan and central-binomial asymptotics (`π`) and the natural-log growth rate `k/log k` (`e`): each is a limit statement over a family whose exact terms are integers.
+The castle and tower counts are C-finite in the width at each fixed height. For fixed `k`, `P(k, ·)` satisfies a linear recurrence of order `k + 1` ([[castle-counting-formula](pages/castle-counting-formula.md)], Equation (6)) and `T(k, L) = (k + 1)^L`, so `A(w, h) = h^w − (h−1)^w`, `A^e(w, h)` and `A^o(w, h)` are C-finite in `w` for each `h`. By Equation (1), their closed forms carry only algebraic constants.
+
+A closed form may be written with `π` and still be algebraic. For example,[^2]
+
+```
+P(1, L)  =  Re((1+i)^{L+1})  =  2^{(L+1)/2} cos((L+1)π/4),
+```
+
+and `cos((L+1)π/4)` is one of `0, ±1, ±√2/2`. The same holds for a root of unity `e^{2πi/m}`, which is a root of `x^m − 1`.
+
+In the other direction, at fixed base length `L`, `T(k, L) = (k + 1)^L` is a polynomial in `k`, and `P(·, L)` satisfies a linear recurrence in `k` whose characteristic polynomial is `(λ + 1)^L (λ − 1)^{L−2}` for `4 ≤ L ≤ 12` (computed), with the roots `±1` only ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]).
+
+## The algebraic constants that occur
+
+- `φ = (1 + √5)/2` and `√5`: Binet's formula for the Fibonacci numbers. The prime castles of area `n`, those with no column of height 1, number `F_{n−1}`, so they are golden by area ([[prime-castles](pages/prime-castles.md)]).
+- `1 ± i` and `√2 = |1 + i|`: the roots of `char_1(λ) = λ² − 2λ + 2`, the characteristic polynomial of `P(1, ·)` ([[signed-tower-count](pages/signed-tower-count.md)]).
+- The roots of `char_k` for larger `k`, algebraic of degree at most `k + 1`: the largest root of `char_4` is a root of the cubic factor `λ³ − 3λ² + 2λ − 4`, and the largest root of `char_6` is `2ψ²`, a root of `λ³ − 4λ² + 4λ − 8`, where `ψ` is the plastic number, the real root of `ψ³ = ψ + 1` ([[signed-tower-count](pages/signed-tower-count.md)], [[plastic-number](pages/plastic-number.md)]).
+- `δ_2 = 1 + √2`: the growth constant of tower words counted by length, whose generating function is algebraic and not rational ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]).
+
+## Where e and π occur
+
+`e` and `π` occur in asymptotic statements, which hold in the limit `n → ∞` and not at any finite `n`.
+
+- **Stirling's formula.** `n! ≈ √(2πn) (n/e)^n`, with relative error about `1/(12n)`; at `n = 8` it gives `39902` against `8! = 40320`.[^3]
+- **Catalan numbers and central binomial coefficients.** `C_n ~ 4^n / (n^{3/2} √π)`.[^4] Stirling's formula applied to `C(2n, n) = (2n)!/(n!)²` gives
+
+  ```
+  C(2n, n)  ~  √(4πn) (2n/e)^{2n} / (2πn (n/e)^{2n})  =  4^n / √(πn).
+  ```
+
+- **Convex castles by area.** The convex castles of area `n`, the weakly unimodal compositions of `n`, number `A001523(n) ~ exp(2π√(n/3)) / (8 · 3^{3/4} n^{5/4})` (Auluck 1951, as cited on the OEIS entry).[^5] This sequence is not C-finite. In Equation (1), `limsup |a_n|^{1/n}` is the largest modulus of an `r_i` with `p_i ≠ 0`; so if `a_n^{1/n} → 1`, every such `r_i` has modulus at most 1 and `a_n` grows at most like a polynomial in `n`, while `exp(2π√(n/3))` grows faster than every polynomial ([[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)]).
+
+The signed count of castles by area is a quotient of q-series ([[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]), and Equation (1) does not apply to it.
 
 ## Appearances in Sources
 
-- [[aocp-permutations](pages/aocp-permutations.md)] — Stirling `n! ≈ √(2πn)(n/e)^n` and its castle-scale role.
-- [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the Fibonacci Binet formula `F_n = (φ^n − φ̂^n)/√5`.
-- [[catalan-numbers](pages/catalan-numbers.md)] — `C_n ~ 4^n/(n^{3/2}√π)`.
-- [[generating-function-gallery](pages/generating-function-gallery.md)] — `ρ_k ~ k/log k`.
+- [[aocp-generating-functions](pages/aocp-generating-functions.md)] - the partial-fraction derivation of `F_n = (φ^n − φ̂^n)/√5`.
+- [[aocp-permutations](pages/aocp-permutations.md)] - Stirling's formula and its relative error.
+- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - `P(1, L) = Re((1+i)^{L+1})`.
 
 ## Related Concepts
 
-- [[signed-tower-count](pages/signed-tower-count.md)] / [[castle-counting-formula](pages/castle-counting-formula.md)] — the C-finite families whose closed forms the wall bounds.
-- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] — the algebraic quadratics `φ`, `√2+1`, `i` and their continued fractions.
-- [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — the `√2+1` growth constant.
-- [[tower-word-language](pages/tower-word-language.md)] — the regular→rational, context-free→algebraic hierarchy the wall extends one rung further.
-- [[castle-by-area](pages/castle-by-area.md)] — `2^{n−1} − F_{n−1}`, where `φ` enters the exact count.
-- [[fractional-recurrences](pages/fractional-recurrences.md)] — the fractional-Fibonacci recurrence `∇^α a_n = a_{n-1}` has an algebraic growth constant `g(α)` for rational `α`; by Gelfond-Schneider on `α = log r / log(1-r)`, an algebraic `g(α)` forces `α` rational or transcendental, so every algebraic irrational `α` (and all `α` outside a countable set) gives a transcendental growth constant with no limit involved.
-- [[kitamasa](pages/kitamasa.md)] — the reduced polynomial `R` with `R(λ) = λ^n` on the eigenvalues, which are algebraic.
-- [[generating-function-gallery](pages/generating-function-gallery.md)] — derives the `ρ_k ~ k / log k` asymptotic.
-- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] — the k-direction eigenvalues are only `±1`, which are rational.
-- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] — the bar-graph GF at fixed perimeter and area is a q-Bessel function, and the tricritical asymptotic scaling function is the logarithmic derivative of Airy, `Ai'/Ai`. The exact q-series is not holonomic, and the scaling function is a transcendental special function obtained in a limit.
-- [[castle-samplers](pages/castle-samplers.md)] - samplers for random castles, used in limit-law experiments.
+- [[castle-counting-formula](pages/castle-counting-formula.md)] - the recurrence of order `k + 1` for `P(k, ·)` (Equation (6)) and the formula for `A^e(w, h)`.
+- [[signed-tower-count](pages/signed-tower-count.md)] - the characteristic polynomials `char_k`, their factors and largest roots.
+- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the recurrences of `P(·, L)` in `k`, with the roots `±1`.
+- [[generating-function-gallery](pages/generating-function-gallery.md)] - the rational functions `num_k/den_k` and the roots of `char_k`.
+- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the continued fractions of `φ`, `1 + √2` and the roots of `char_k`.
+- [[tower-word-language](pages/tower-word-language.md)] - tower words of bounded height form a regular language with a rational generating function; without a height bound the generating function is algebraic and not rational.
+- [[prime-castles](pages/prime-castles.md)] - the `F_{n−1}` prime castles and the `2^{n−1} − F_{n−1}` composite castles of area `n`.
+- [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - the convex castles by area, `A001523`.
+- [[fractional-recurrences](pages/fractional-recurrences.md)] - the growth constants `g(α)` of the Atici-Eloe recurrence `∇^α a_n = a_{n−1}`: algebraic for rational `α`, and transcendental for algebraic irrational `α` by the Gelfond-Schneider theorem, which says that `log a / log b` is rational or transcendental for algebraic `a, b ≠ 0, 1`.
+- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - the bar-graph generating function as a quotient of q-series, and the scaling function near the tricritical point, the logarithmic derivative of the Airy function, obtained in a limit.
 
 ## Footnotes
 
-[^1]: [[aocp-generating-functions](pages/aocp-generating-functions.md)] §"Knuth's Fibonacci example" — the recurrence → rational GF → partial-fractions → `F_n = (φ^n − φ̂^n)/√5` procedure; the Binet form `a_n = Σ p_i(n) r_i^n` is the same partial-fraction expansion at degree `d`.
-
-[^2]: The algebraicity of the algebraic numbers (a field, algebraically closed) and the transcendence of `e` (Hermite 1873) and `π` (Lindemann 1882) are classical: no finite expression built from rationals by the algebraic operations can equal a transcendental.
-
-[^3]: [[aocp-permutations](pages/aocp-permutations.md)] §"Factorial Identities" — `n! ≈ √(2πn)(n/e)^n` (re-verified); [[catalan-numbers](pages/catalan-numbers.md)] — `C_n ~ 4^n/(n^{3/2}√π)`; [[generating-function-gallery](pages/generating-function-gallery.md)] — `ρ_k ~ k/log k`.
-
-[^4]: The quadratic constants: `P(1,L) = Re((1+i)^{L+1})` with `|1+i| = √2` ([[signed-tower-count](pages/signed-tower-count.md)]); the tower-word growth constant `√2+1` from the discriminant `z² + 2z − 1` ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]); `φ`, `√5`, `i` as on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)].
+[^1]: [[aocp-generating-functions](pages/aocp-generating-functions.md)] §"Utilizing the Fibonacci Generating Function" L59-85 - "G(z) = \dfrac{1}{\sqrt{5}} \left( \dfrac{1}{1 - \phi z} - \dfrac{1}{1 - \hat{\phi} z} \right)" and "F_n = \dfrac{1}{\sqrt{5}} \left( \phi^n - \hat{\phi}^n \right)".
+[^2]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L345 - "closed form P(1,L) = Re((1+i)^{L+1})".
+[^3]: [[aocp-permutations](pages/aocp-permutations.md)] §"Factorial Identities" L86-98 - "use Stirling's formula: n! \approx \sqrt{2 \pi n} \left(\frac{n}{e} \right)^n", "8! \approx 4 \sqrt{\pi} \left( \frac{8}{e} \right)^8 \approx 39902", "Relative error of Stirling's formula is approximately \dfrac{1}{12n}".
+[^4]: raw/catalan-numbers-wikipedia.md §"Asymptotics" L20-21 - "C_n ~ 4^n / (n^(3/2) * sqrt(pi)) as n -> infinity."
+[^5]: https://oeis.org/A001523 (read 2026-10-16) - "a(n) ~ exp(2*Pi*sqrt(n/3)) / (8 * 3^(3/4) * n^(5/4)) [Auluck, 1951]".
