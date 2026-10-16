@@ -1,11 +1,11 @@
 ---
 title: "AOCP Combinatorics (Knuth TAOCP Vol. 3)"
 category: Sources
-summary: Knuth's sorting-combinatorics notes — permutations, inversions and inversion tables, and the inversion generating function G_n(z) = ∏(1−z^k)/(1−z)^n (the q-factorial).
+summary: Notes on the combinatorics that opens Knuth's Vol. 3 - inversions, the inversion table b_1 … b_n with 0 ≤ b_j ≤ n − j (which determines the permutation, Hall 1956), the counts I_n(k) of permutations with k inversions with I_n(k) = I_n(k−1) + I_{n−1}(k) for 1 ≤ k < n, the generating function G_n(z) = Π_{k=1}^{n} (1 + z + ⋯ + z^{k−1}), and the inversion count of a random permutation as a sum of independent uniform variables. On the castle side, the rainbow castles of height h by inversions of the skyline are the Mahonian numbers A008302.
 tags: [knuth, taocp, combinatorics, inversions, permutations, generating-functions, q-factorial, source]
 sources: [aocp-combinatorics]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # AOCP Combinatorics (Knuth, *The Art of Computer Programming*, Vol. 3)
@@ -16,63 +16,59 @@ updated: 2026-09-28
 
 ## Summary
 
-Knuth introduces sorting via the combinatorics of permutations, and the central statistic is the **inversion** — for a permutation `a_1…a_n` of `{1..n}`, a pair `(a_i, a_j)` with `i<j` and `a_i > a_j` (an "out-of-sorts" pair).[^1] A permutation is equivalently encoded by its **inversion table** `b_1…b_n`, where `b_j` counts the elements left of `j` that exceed it, with `0 ≤ b_j ≤ n−j`; Hall (1956) showed inversion tables **uniquely determine permutations**, so they are an alternative representation — and the general technique is to *turn counting problems into inversion-table problems*.[^2] (A sample statistic: the number of `j` with `b_j = n−j` averages to the harmonic number `H_n`.)[^3]
+The notes follow Knuth's start of Vol. 3, which approaches sorting through the combinatorics of permutations. For a permutation `a_1 a_2 … a_n` of `{1, …, n}`, a pair `(a_i, a_j)` with `i < j` and `a_i > a_j` is an **inversion**, an out-of-order pair.[^1]
 
-The core result is the **inversion generating function**. Writing `I_n(k)` for the number of permutations of *n* with exactly *k* inversions and `G_n(z) = Σ_k I_n(k) z^k`, the source records the recurrence `I_n(k) = I_n(k−1) + I_{n−1}(k)` for `k < n`, and Knuth's step `G_n(z) = (1 + z + … + z^{n−1}) G_{n−1}(z)` gives a product:[^4]
+**Inversion tables.** The inversion table `b_1 b_2 … b_n` of the permutation has `b_j` equal to the number of elements to the left of `j` that are greater than `j`, so `0 ≤ b_j ≤ n − j`. The notes' example is[^2]
 
 ```
-G_n(z) = (1 + z + … + z^{n−1}) · G_{n−1}(z)
-       = ∏_{k=1}^{n} (1 + z + … + z^{k−1})
-       = (1−z^n)(1−z^{n−1})···(1−z) / (1−z)^n
+permutation       5 9 1 8 2 6 4 7 3
+inversion table   2 3 6 4 0 2 2 1 0
 ```
 
-This product is the **q-factorial** `[n]_z!`, verified during ingest to reproduce the inversion counts, to sum to `n!` at `z=1`, and to be symmetric `I_n(k) = I_n(binomial(n,2) − k)`.[^5] Dividing by `n!` gives the probability GF `g_n(z) = ∏ h_k(z)` with `h_k(z) = (1+z+…+z^{k−1})/k` the uniform distribution on `{0,…,k−1}`, so the inversion count of a random permutation is a **sum of independent uniforms**, and its mean and variance add across the factors.[^6]
+The notes credit Hall (1956) with the fact that the inversion table determines the permutation, so counting problems on permutations become counting problems on tables with independent entries. Under the uniform distribution the entries `b_j` are independent and uniform on `{0, …, n − j}`, so the number of `j` with `b_j = n − j` has mean `1/n + 1/(n − 1) + ⋯ + 1 = H_n`, the harmonic number.[^3] These `j` are the elements greater than every element to their right; the notes describe them as the elements larger than their successor, which is a different statistic.[^7]
 
-## Relevance to the castle
+**The inversion generating function.** Write `I_n(k)` for the number of permutations of `n` elements with exactly `k` inversions and `G_n(z) = Σ_k I_n(k) z^k`. The notes record the symmetry `I_n(C(n, 2) − k) = I_n(k)`, the recurrence `I_n(k) = I_n(k − 1) + I_{n−1}(k)` for `1 ≤ k < n`, and Knuth's step `G_n(z) = (1 + z + ⋯ + z^{n−1}) G_{n−1}(z)`, which gives[^4]
 
-Inversions connect the castle's Dyck-word pages to q-analog counting:
+```
+G_n(z)  =  Π_{k=1}^{n} (1 + z + ⋯ + z^{k−1})  =  (1 − z^n)(1 − z^{n−1}) ⋯ (1 − z) / (1 − z)^n.
+```
 
-- **Inversions are the q-statistic.** Carlitz q-Catalan numbers count Dyck words *by inversions*, and the q-Motzkin numbers count *steep* Dyck words by inversions (see [[dyck-words](pages/dyck-words.md)], [[q-catalan-numbers](pages/q-catalan-numbers.md)], [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)]). Knuth's `G_n(z) = ∏(1−z^k)/(1−z)^n` is the permutation prototype of that inversion-graded generating function — the [[permutation-inversions](pages/permutation-inversions.md)] concept.
-- **q-refinement.** The castle's `P(k,L)` recurrences are C-finite in *ordinary* generating functions; the inversion machinery shows the shape a *q*-refinement takes, and the area-graded castle count on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] is a q-series.
-- **Inversion tables ↔ column-height tuples.** The "encode the object by an integer tuple with bounded entries, then count via a product because the choices are independent" move is the castle's [[binary-string-bijection](pages/binary-string-bijection.md)] / column-height independence (`T(k,L) = (k+1)^L`), applied to permutations.
+The product is the q-factorial of [[permutation-inversions](pages/permutation-inversions.md)]; at `z = 1` it gives `n!`. The recurrence fails for `k ≥ n` (first at `n = 3`, `k = 3`), where the general form `I_n(k) = I_n(k − 1) + I_{n−1}(k) − I_{n−1}(k − n)` applies.[^7]
 
-## Castle statistics that are Mahonian
+**Probability.** Dividing by `n!`, `g_n(z) = G_n(z)/n! = h_1(z) h_2(z) ⋯ h_n(z)`, where `h_k(z) = (1 + z + ⋯ + z^{k−1})/k` is the generating function of a uniform integer in `{0, …, k − 1}`. So the inversion count of a uniform random permutation is a sum of independent uniform variables, and its mean and variance are the sums of theirs.[^5] [[permutation-inversions](pages/permutation-inversions.md)] evaluates them: mean `n(n − 1)/4`, variance `n(n − 1)(2n + 5)/72`.
 
-The inversion machinery lands on the castle most directly through one classification type. A **rainbow castle** ([[castle-classification-shape](pages/castle-classification-shape.md)]) has `w = h` and heights that are a permutation of `{1, …, h}` - the skyline *is* a permutation, so its inversion count is a castle statistic, and the `h!` rainbow castles of width `h` graded by skyline inversions are Knuth's `I_h(k)`, the Mahonian numbers A008302 (rows `1; 1, 1; 1, 2, 2, 1; 1, 3, 5, 6, 5, 3, 1; …`).[^7] The block count of the same castle, `#blocks = c_1 + Σ max(0, c_i − c_{i−1})` (the column-height formula on [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]), is a sum of ascent sizes, so rainbow castles carry the inversion grading and a block-count grading at once. The ascent and descent structure of the skyline is the up/flat/down streaks of [[monotone-streak-factorization](pages/monotone-streak-factorization.md)].
+## Castle readings
 
-Area is a second grading on [[castle-by-area](pages/castle-by-area.md)] and in the bivariate GF `T_h(x, q)` on [[tree-castle-by-area](pages/tree-castle-by-area.md)], and Flajolet's combinatorial continued fractions on [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] are the standard tool for q-statistics on Motzkin paths, which include the tower words. The multiset form of the q-factorial (MacMahon's q-multinomial) is noted on [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)].
+These readings are the wiki's; the notes do not mention castles.
 
-## Key Takeaways
-
-- **Inversion** = out-of-order pair; **inversion table** `b_j` (elements left of *j* exceeding it), `0 ≤ b_j ≤ n−j`, uniquely determines the permutation (Hall 1956).[^1][^2]
-- **Inversion generating function** `G_n(z) = ∏_{k=1}^n (1+…+z^{k−1}) = ∏(1−z^k)/(1−z)^n` — the **q-factorial** — with `I_n(k)=I_n(k−1)+I_{n−1}(k)` for `k < n`; verified (matches brute counts, sums to `n!`, symmetric).[^4][^5]
-- `g_n(z) = G_n/n! = ∏ h_k(z)` makes the inversion count a sum of independent uniforms (mean/variance add).[^6]
-- Inversions are the statistic that q-grades Dyck words → q-Catalan / q-Motzkin.
+- **Rainbow castles are Mahonian.** A rainbow castle ([[castle-classification-shape](pages/castle-classification-shape.md)]) has width `w = h` and column heights forming a permutation of `{1, …, h}`, so the inversions of its skyline are the inversions of a permutation. The `h!` rainbow castles of height `h`, counted by skyline inversions, are `I_h(k)`, the Mahonian numbers `A008302`: `1; 1, 1; 1, 2, 2, 1; 1, 3, 5, 6, 5, 3, 1; …`.[^6] Their block count `c_1 + Σ max(0, c_i − c_{i−1})` is the total ascent of the skyline ([[castle-sign](pages/castle-sign.md)]), a second grading of the same castles, and the ascents and descents of the skyline are the streaks of [[monotone-streak-factorization](pages/monotone-streak-factorization.md)].
+- **Product sets.** The inversion tables of permutations of `n` elements are the product set `{0, …, n − 1} × {0, …, n − 2} × ⋯ × {0}`, which is why there are `n!` of them. The towers of height at most `k` on a base of length `L` are the product set `{0, …, k}^L` of their column heights, which is why there are `(k + 1)^L` ([[castle-counting-formula](pages/castle-counting-formula.md)], the Lemma in the section *Tower count*).
+- **Inversions of words.** Dyck words counted by inversions give the Carlitz q-Catalan numbers, and steep Dyck words counted by inversions give q-analogs of the Motzkin numbers ([[dyck-words](pages/dyck-words.md)], [[q-catalan-numbers](pages/q-catalan-numbers.md)], [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)]). Permutations of a multiset by inversions give the q-multinomial coefficient ([[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)]).
+- **Other q-gradings of castles.** Castles are counted by area on [[castle-by-area](pages/castle-by-area.md)] and tree skylines by area on [[tree-castle-by-area](pages/tree-castle-by-area.md)]; [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] counts tower words, which are Motzkin paths, by continued fractions with weights on the steps.
 
 ## Entities & Concepts
 
-- [[permutation-inversions](pages/permutation-inversions.md)] — the inversion statistic and its q-factorial generating function.
-- [[dyck-words](pages/dyck-words.md)], [[q-catalan-numbers](pages/q-catalan-numbers.md)], [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — where inversions become the q-statistic.
-- [[binary-string-bijection](pages/binary-string-bijection.md)] — the castle's own bounded-integer-tuple encoding, analogous to inversion tables.
-- [[aocp-permutations](pages/aocp-permutations.md)] — the permutation/factorial basics (TAOCP Vol. 1) beneath this Vol. 3 material.
-- [[generating-functions](pages/generating-functions.md)] — the method.
-- [[castle-classification-shape](pages/castle-classification-shape.md)] - rainbow castles, whose skylines are permutations; inversions become a castle statistic.
-- [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] / [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] - the block-count formula and the streak factorization, the Eulerian side.
-- [[castle-by-area](pages/castle-by-area.md)] / [[tree-castle-by-area](pages/tree-castle-by-area.md)] / [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] - where a q-grading already exists on the wiki.
-- [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] - the q-multinomial, the multiset form of the q-factorial.
+- [[permutation-inversions](pages/permutation-inversions.md)] - inversions, the q-factorial `G_n(z)`, and the mean and variance of the inversion count.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the rainbow castles, whose skylines are permutations.
+- [[castle-counting-formula](pages/castle-counting-formula.md)] - the towers as the product set `{0, …, k}^L`.
+- [[castle-sign](pages/castle-sign.md)], [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] - the block count as total ascent, and the streaks of a skyline.
+- [[dyck-words](pages/dyck-words.md)], [[q-catalan-numbers](pages/q-catalan-numbers.md)], [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - Dyck words and steep Dyck words counted by inversions.
+- [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] - permutations of a multiset by inversions.
+- [[aocp-permutations](pages/aocp-permutations.md)] - the permutation and factorial basics of Vol. 1.
+- [[castle-by-area](pages/castle-by-area.md)], [[tree-castle-by-area](pages/tree-castle-by-area.md)], [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] - castles, tree skylines and tower words counted with a second variable.
 
-Linked from the source: [[aocp-multisets](pages/aocp-multisets.md)] and Analytic Combinatorics ([[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)], Chapter I).
+Linked from the source: [[aocp-multisets](pages/aocp-multisets.md)] and Analytic Combinatorics ([[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)]).
 
 ## Relation to Other Wiki Pages
 
-This page supplies the **inversion / q-factorial** machinery behind the wiki's q-analog pages: the permutation-level prototype of the inversion-graded generating functions that the q-Catalan and q-Motzkin numbers are.
+[[permutation-inversions](pages/permutation-inversions.md)] is the concept page for the inversion statistic and its generating function; [[aocp-permutations](pages/aocp-permutations.md)] derives the factor `1 + z + ⋯ + z^{n−1}` of `G_n(z)` from the insertion of the largest element.
 
 ## Footnotes
 
-[^1]: [[aocp-combinatorics](pages/aocp-combinatorics.md)] §"Permutations and Inversions" L9-16 — "Let a_1 a_2 ... a_n be a permutation of the integers {1..n}. If i < j and a_i > a_j, then (a_i, a_j) is an inversion. Inversions are out-of-sorts pairs."
-[^2]: [[aocp-combinatorics](pages/aocp-combinatorics.md)] §"Permutations and Inversions" L21-38 — "b_j is the number of elements to the left of j that are greater than j ... 0 ≤ b_1 ≤ n-1, 0 ≤ b_2 ≤ n-2, ... Hall (1956) showed that inversion tables uniquely determine permutations ... Transformation technique: turn counting problems into inversion table problems."
-[^3]: [[aocp-combinatorics](pages/aocp-combinatorics.md)] §"Permutations and Inversions" L48-58 — "the number of j such that b_j = n-j ... P(b_1 = n-1) = 1/n ... 1/n + 1/(n-1) + ... + 1 = H_n. These are the harmonic numbers."
-[^4]: [[aocp-combinatorics](pages/aocp-combinatorics.md)] §"Counting Inversions with Generating Functions" L74-96 — "G_n(z) = Σ_{k≥0} I_n(k) z^k ... I_n(k) = I_n(k-1) + I_{n-1}(k) ... G_n(z) = (1 + z + ... + z^{n-1}) G_{n-1}(z) ... = (1-z^n)(...)(1-z^2)(1-z) / (1-z)^n."
-[^5]: [[aocp-combinatorics](pages/aocp-combinatorics.md)] §"Counting Inversions with Generating Functions" L69, L96 [synthesis] — the symmetry of `I_n` and the product form; the GF, the symmetry `I_n(k) = I_n(C(n,2) − k)`, and row-sum = n! re-verified by brute enumeration for n=1..6 during ingest.
-[^6]: [[aocp-combinatorics](pages/aocp-combinatorics.md)] §"Knuth Goes To Outer Space" L104-134 — "G_n(z)/n! = g_n(z) ... h_k(z) = (1+z+...+z^{k-1})/k ... the uniform distribution of a random non-negative integer less than k ... g_n(z) = h_1(z) h_2(z) ... h_n(z) ... E(g_n) = Σ E(h_k), Var(g_n) = Σ Var(h_k)."
-[^7]: https://oeis.org/A008302 (2026-09-19) — "Triangle of Mahonian numbers T(n,k): coefficients in expansion of Product_{i=0..n-1} (1 + x + ... + x^i), where k ranges from 0 to A000217(n-1). Also enumerates permutations by their major index" 1; 1, 1; 1, 2, 2, 1; 1, 3, 5, 6, 5, 3, 1; 1, 4, 9, 15, 20, 22, 20, 15, 9, 4, 1; …
+[^1]: [[aocp-combinatorics](pages/aocp-combinatorics.md)] §"Permutations and Inversions" L11-15 - "Let a_1 a_2 a_3 … a_n be a permutation of the integers {1 … n}. If i < j and a_i > a_j, then (a_i, a_j) is an inversion. Inversions are out-of-sorts pairs."
+[^2]: [[aocp-combinatorics](pages/aocp-combinatorics.md)] §"Permutations and Inversions" L21-32 - "b_j is the number of elements to the left of j that are greater than j", the example "5 9 1 8 2 6 4 7 3 / 2 3 6 4 0 2 2 1 0", and "0 ≤ b_1 ≤ n-1, 0 ≤ b_2 ≤ n-2, …, 0 ≤ b_{n-1} ≤ 1".
+[^3]: [[aocp-combinatorics](pages/aocp-combinatorics.md)] §"Permutations and Inversions" L34-59 - "Hall (1956) showed that inversion tables uniquely determine permutations", "Transformation technique: turn counting problems into inversion table problems", "count number of elements larger than their successor. (This is the number of j such that b_j = n-j)", "P(b_1 = n-1) = 1/n", "1/n + 1/(n-1) + … + 1 = H_n. These are the harmonic numbers."
+[^4]: [[aocp-combinatorics](pages/aocp-combinatorics.md)] §"Counting Inversions with Generating Functions" L69-96 - the symmetry "I_n(C(n, 2) - k) = I_n(k)" (garbled in the notes), "G_n(z) = I_n(0) + I_n(1)z + I_n(2) z^2 + … = Σ_{k≥0} I_n(k) z^k", "I_n(k) = I_n(k-1) + I_{n-1}(k) for k < n", "G_n(z) = (1 + z + … + z^{n-1}) G_{n-1}(z)", and the product "(1 - z^n)(…)(1 - z^2)(1 - z)/(1 - z)^n".
+[^5]: [[aocp-combinatorics](pages/aocp-combinatorics.md)] §"Knuth Goes To Outer Space" L103-131 - "G_n(z)/n! = g_n(z)", "h_k(z) = (1+z+z^2+…+z^{k-1})/k. This is the generating function for the uniform distribution of a random non-negative integer that is less than k", "g_n(z) = h_1(z) h_2(z) … h_n(z)", "E(g_n) = E(h_1) + E(h_2) + … + E(h_n)", "Var(g_n) = Var(h_1) + … + Var(h_n)".
+[^6]: https://oeis.org/A008302 (2026-09-19) - "Triangle of Mahonian numbers T(n,k): coefficients in expansion of Product_{i=0..n-1} (1 + x + ... + x^i), where k ranges from 0 to A000217(n-1)", rows "1; 1, 1; 1, 2, 2, 1; 1, 3, 5, 6, 5, 3, 1".
+[^7]: Verified by execution (Python 3.11, 2026-10-16): the inversion table of `5 9 1 8 2 6 4 7 3`; `I_n(k) = I_n(k − 1) + I_{n−1}(k)` for `1 ≤ k < n`, `n ≤ 6`, failing first at `(n, k) = (3, 3)`; the `j` with `b_j = n − j` are exactly the elements greater than every element to their right, for every permutation with `n ≤ 6`, and their mean count is `H_n`; the row sums `n!` and the symmetry of `I_n`.
