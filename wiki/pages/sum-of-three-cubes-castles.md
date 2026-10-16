@@ -1,29 +1,29 @@
 ---
 title: Sum of three cubes castles
 category: Analyses
-summary: Which castle counts are sums of three cubes. Signed cubes - under Heath-Brown the answer is the residue test F(w,h) mod 9 not in {4,5}, and F mod 9 is periodic in both directions (periods 24, 24, 240, 3120, 2184, 2184, 2184, 10920, 21840, 21840, 11514360 in w for h = 2..12; 2*3^(1+ceil(log_3 w)) in h), so the question is decided cell by cell - about 22% of F(w,h) with w >= 4 are provably not sums of three cubes, and the three PE 502 targets F(10^12,100), F(10000,10000), F(100,10^12) are 6, 7, 6 mod 9, all admissible. Three cells close in closed form - the height-2 row F(w,2) = 2^(w-1) + eps 2^floor((w-1)/2) is a cube at w = 1 (mod 12), twice a cube at w = 5, four times a cube (hence excluded) at w = 9; the width-3 column is triangular numbers (never excluded) interleaved with 5*C(h,2)+1 (excluded iff h = 4, 6 mod 18); A(3m,h) = (h^m)^3 - ((h-1)^m)^3 always. F(5,5) = 906 was first solved in 2019. Positive cubes - 56 of the 552 even counts with w >= 4 below 10^8 are sums of three positive cubes against 55.7 expected at the measured density 0.101; the tower reading is F(w,h) = T(a,3) + T(b,3) + T(c,3). Even perfect numbers appear too - 2^(p-1)(2^p - 1) = F(2p, 2) for p = 3 (mod 4) and = odd(3, 2^p) always.
+summary: Which castle counts are sums of three cubes. With signed cubes, under Heath-Brown's conjecture a count is a sum of three cubes exactly when it is not 4 or 5 modulo 9, and A^e(w, h) mod 9 is periodic in the width (periods 24, 24, 240, 3120, 2184, 2184, 2184, 10920, 21840, 21840, 11514360 for h = 2..12, all proved minimal) and in the height (period 2 * 3^(1 + ceil(log_3 w)) for 2 <= w <= 10 and w = 100, computed), since P(k, w) is a polynomial of degree at most w in k on each parity class. In each row h >= 4 about 2/9 of the residues are 4 or 5 (20.5% of the A^e(w, h) with w >= 4 and A <= 10^9), and the three Project Euler targets A^e(10^12, 100), A^e(10000, 10000), A^e(100, 10^12) are 6, 7, 6 mod 9. Closed forms settle three families - A^e(w, 2) = 2^(w-1) + eps 2^floor((w-1)/2) is a cube at w = 1 (mod 12), twice a cube at w = 5 and four times a cube, hence excluded, at w = 9 (mod 12); the width-3 column is triangular numbers interleaved with 5 C(h, 2) + 1, excluded iff h = 4, 6 (mod 18); A(3m, h) is a difference of two cubes. With positive cubes, 56 of the 552 even-block counts with w >= 4 below 10^8 are sums of three positive cubes against 55.7 expected. Even perfect numbers are A^o(3, 2^p), and A^e(2p, 2) for p = 3 (mod 4).
 tags: [analysis, castle, sum-of-cubes, mod-9, periodicity, kitamasa, closed-form, height-2, perfect-numbers, taxicab, booker-sutherland, worked-example, computation]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502]
 created: 2026-09-20
-updated: 2026-10-04
+updated: 2026-10-16
 ---
 
 # Sum of three cubes castles
 
-[[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] found that `F(6,4) = 1729 = 1^3 + 12^3 = 9^3 + 10^3`: the even-block castle count of the `(6,4)` cell is the taxicab number, a sum of two cubes twice over, hence a sum of three cubes with a zero, and `9^3 + 10^3 + (-12)^3 = 1` besides. This page asks the general question: **which castle counts are sums of three cubes?** The wiki has a closed form for every count ([[castle-counting-formula](pages/castle-counting-formula.md)]), and the [[sums-of-three-cubes](pages/sums-of-three-cubes.md)] problem has exactly one known obstruction, `n = 4, 5 (mod 9)`, conjecturally the only one (Heath-Brown). So the question splits into an unconditional half (which castle counts are *provably not* sums of three cubes, a residue computation) and a conditional half (everything else, conjecturally *is*, and for small counts the explicit representation can be exhibited). A third, finite question: which castle counts are sums of three *positive* cubes, where the tower count `T(k,3) = (k+1)^3` gives every such identity a castle-side reading.
+[[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] has `A^e(6, 4) = 1729 = 1^3 + 12^3 = 9^3 + 10^3`: the number of even-block castles of width 6 and height 4 is a sum of two cubes in two ways, hence a sum of three cubes with a zero cube, and `9^3 + 10^3 + (−12)^3 = 1` besides. This page asks which castle counts are sums of three cubes. Every count has a closed form ([[castle-counting-formula](pages/castle-counting-formula.md)]), and the [[sums-of-three-cubes](pages/sums-of-three-cubes.md)] problem has one known obstruction, `n ≡ 4, 5 (mod 9)`, conjectured by Heath-Brown to be the only one. So the question has three parts: which castle counts are not sums of three cubes, a computation of residues; which admissible counts have an explicit representation; and which counts are sums of three positive cubes, where the tower count `T(k, 3) = (k+1)^3` turns each identity into a statement about towers.
 
-Notation follows [[castle-counting-function](pages/castle-counting-function.md)]: `A(w,h) = h^w - (h-1)^w` counts all castles of width `w` and height exactly `h`, `F(w,h)` the even-block ones, `odd = A - F`. The degenerate cells `w <= 2` are excluded from every census below unless named, because every width-2 castle of height `h` has exactly `h` blocks, so `F(2,h) = 2h - 1` for even `h` and `0` for odd `h` hits every `n = 3 (mod 4)` trivially. Every number on the page comes from the scripts described in the execution footnote.[^exec]
+The counts are those of [[castle-notation](pages/castle-notation.md)]: `A(w, h) = h^w − (h−1)^w` castles of width `w` and height `h`, of which `A^e(w, h)` have an even and `A^o(w, h)` an odd number of blocks. `A^e(w, h)` is the count the Project Euler problem writes `F(w, h)`. The censuses on this page leave out the cells with `w ≤ 2` unless they name them: a castle `(a, b)` of width 2 has `max(a, b)` blocks, so every castle of width 2 and height `h` has `h` blocks, `A^e(2, h) = 2h − 1` for even `h` and `0` for odd `h`, and the values `2h − 1` with `h` even are all `n ≡ 3 (mod 4)` with `n ≥ 3`.[^exec]
 
 ## The residue test
 
-Under Heath-Brown's conjecture, `F(w,h)` is a sum of three cubes iff `F(w,h) mod 9` is not `4` or `5`.[^1] Two structural facts make this a finite computation for every row and every column:
+Under Heath-Brown's conjecture, `A^e(w, h)` is a sum of three cubes exactly when `A^e(w, h) mod 9` is not `4` or `5`.[^1] The residues are periodic in both directions.
 
-- **Width direction.** For fixed `h`, `F(., h)` is the sum of `h^w`, `(h-1)^w`, and two C-finite sequences `P(h-1, w)`, `P(h-2, w)`, so `F(., h) mod 9` is eventually periodic (the state space modulo any integer is finite; [[mod-p-observatory](pages/mod-p-observatory.md)] works out the periods modulo primes).
-- **Height direction.** For fixed `w`, `P(k, w)` is a quasi-polynomial in `k` with characteristic polynomial `(x+1)^w (x-1)^{w-2}` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), so `F(w, .) mod 9` is periodic in `h` as well.
+- **Width.** For fixed `h`, `A^e(·, h)` is a combination of `h^w`, `(h−1)^w`, `P(h−1, w)` and `P(h−2, w)`, so it satisfies a linear recurrence with integer coefficients ([[castle-counting-formula](pages/castle-counting-formula.md)], Equation (6)). Modulo 9 its state takes finitely many values, so the residues are eventually periodic ([[mod-p-observatory](pages/mod-p-observatory.md)] treats the periods modulo a prime).
+- **Height.** For fixed `w`, `P(k, w)` is a polynomial in `k` of degree at most `w` on each class of `k` modulo 2. Write the towers `c ∈ {0, …, k}^w` by the distinct values `0 = v_0 < v_1 < ⋯ < v_m` of `(0, c_1, …, c_w)`, with `m ≤ w`. The sign `(−1)^{blocks(c)}` depends only on which positions take which value and on the parities of the `v_j`, since `blocks(c)` is the total ascent. For fixed positions and parities, the gaps `v_j − v_{j−1} ≥ 1` have prescribed parities, and the number of choices with `v_m ≤ k` is `C(⌊(k − R)/2⌋ + m, m)` for a constant `R ≤ 2m`, a polynomial of degree `m` in `k` on each parity class. So `A^e(w, ·) mod 9` is periodic in `h`. On [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] the exact characteristic polynomial `(x+1)^w (x−1)^{w−2}` is computed for `4 ≤ w ≤ 12`.
 
-Computed by running the parity-refined transfer DP modulo 9 and detecting the first repeated state vector (width direction), and by running the `k`-direction recurrence modulo 9 (height direction):[^exec]
+The periods in the width, each checked to be a period and to be minimal:[^exec]
 
-| `h` | period of `F(., h) mod 9` in `w` | residues `4, 5` per period | excluded fraction | first excluded `w` |
+| `h` | period of `A^e(·, h) mod 9` in `w` | residues `4, 5` per period | excluded fraction | first excluded `w` |
 |---|---|---|---|---|
 | 2 | 24 | 2 | 0.083 | 9, 21 |
 | 3 | 24 | 3 | 0.125 | 7, 21, 24 |
@@ -37,9 +37,11 @@ Computed by running the parity-refined transfer DP modulo 9 and detecting the fi
 | 11 | 21840 | 4748 | 0.217 | 10, 11, 15, 18 |
 | 12 | 11514360 | 2557075 | 0.222 | 2, 12, 27, 34 |
 
-The transient is at most 2 in every row (the "has some column reached `h`" flag settles by `w = 3`). Against the mod-3 periods `8, 8, 80, 3120` of the observatory at `h = 2..5`, the mod-9 periods are three times as long at `h = 2, 3, 4` and identical at `h = 5`. From `h = 4` on the excluded fraction is near `2/9 = 0.222`, the equidistribution value; `h = 2` and `h = 3` sit lower (explained in closed form below), and `h = 7` has `439/2184 = 0.201` over its full period.
+Every row is periodic from `w = 2`, and the rows `h = 2, 5, 8, 9, 10, 11` from `w = 1`. Modulo 3 the periods at `h = 2, 3, 4, 5` are `8, 8, 80, 3120`, so the mod-9 periods are three times as long at `h = 2, 3, 4` and equal at `h = 5`. From `h = 4` on the excluded fraction is near `2/9 = 0.222`; `h = 2` and `h = 3` are lower, for the reasons in the section *Three families with closed forms*, and `h = 7` has `439/2184 = 0.201` over its full period.
 
-| `w` | period of `F(w, .) mod 9` in `h` | excluded fraction |
+The periods in the height:[^exec]
+
+| `w` | period of `A^e(w, ·) mod 9` in `h` | excluded fraction |
 |---|---|---|
 | 1 | 2 | 0 |
 | 2 | 18 | `2/18` |
@@ -52,67 +54,69 @@ The transient is at most 2 in every row (the "has some column reached `h`" flag 
 | 9 | 54 | `15/54` |
 | 10 | 162 | `36/162` |
 
-The height-direction periods fit `2 * 3^{1 + ceil(log_3 w)}` for `w >= 2`: `18` for `w = 2, 3`, `54` for `w = 4..9`, `162` for `w = 10..27`, and `1458` at `w = 100`. This is the observatory's `2 p^{ceil(log_p L)}` law for `P(k, L) mod p` with one extra factor of 3 for the second power of the prime; `P(k, w) mod 9` itself was checked to have exactly these periods in `k` for `w <= 10` and `w = 100`.[^exec]
+For `2 ≤ w ≤ 10` the period is `2 · 3^{1 + ⌈log_3 w⌉}`, and at `w = 100` it is `1458 = 2 · 3^6`, the same formula; `P(k, 100) mod 9` also has period 1458 in `k`. The formula is the mod-p rule `2 p^{⌈log_p L⌉}` for the period of `P(k, L) mod p` on [[mod-p-observatory](pages/mod-p-observatory.md)], with one more factor of 3 for the modulus `3^2`.[^exec]
 
-**Over all cells with `A(w,h) <= 10^9`** (19,132 cells, `3 <= w <= 30`): the `F` table has 18,256 entries at `w = 3` of which 2,029 (11.1%) are excluded, and 875 entries at `w >= 4` of which 179 (20.5%) are excluded; the `A` table is *never* excluded at `w = 3` (a theorem, next section) and excluded 225 of 875 times (25.7%) at `w >= 4`; the odd table runs 11.1% and 21.0%. Across all three tables there are 57,349 distinct castle counts below `10^9`, of which 4,643 (8.1%) are provably not sums of three cubes and the remaining 52,706 conjecturally are, out of 777,777,777 admissible integers in range: castle counts are a sparse set (about `sqrt N` of them below `N`, dominated by the width-3 quadratics).[^exec]
+**Over all cells with `A(w, h) ≤ 10^9`** (19,131 cells, `3 ≤ w ≤ 29`, `h ≥ 2`): `A^e` has 18,256 entries at `w = 3`, of which 2,029 (11.1%) are excluded, and 875 at `w ≥ 4`, of which 179 (20.5%) are excluded. `A` is never excluded at `w = 3`, a fact proved in the next section, and is excluded 225 times of 875 (25.7%) at `w ≥ 4`; `A^o` is excluded 2,028 times at `w = 3` (11.1%) and 184 times at `w ≥ 4` (21.0%). The three tables have 57,347 distinct positive values up to `10^9`, of which 4,643 (8.1%) are excluded; the integers from 1 to `10^9` that pass the residue test number 777,777,778. Most of the castle counts come from the width-3 column, about 18,000 values in each table.[^exec]
 
-## Three cells that close in closed form
+## Three families with closed forms
 
-**The `A` table at widths divisible by 3.** `A(3m, h) = h^{3m} - (h-1)^{3m} = (h^m)^3 - ((h-1)^m)^3` is a difference of two cubes for every `h`, hence a sum of three cubes with `z = 0`, unconditionally. `A(6,4) = 16^3 - 9^3` on the Hardy-Ramanujan page is the `m = 2` instance. Modulo 9 this says `A(3m, h)` is a difference of two elements of `{0, +-1}`, never `+-4`, which is why the `A` column at `w = 3` has zero exclusions in the census. Nothing similar holds for `F` or odd, whose `(6,4)` entries are `(16^3 - 9^3 +- (4^3 + 3^3)) / 2` (the plus sign for `F`), a signed sum of four cubes halved.
+**`A` at widths divisible by 3.** `A(3m, h) = h^{3m} − (h−1)^{3m} = (h^m)^3 − ((h−1)^m)^3` is a difference of two cubes, hence a sum of three cubes with a zero cube, for every `h`. `A(6, 4) = 16^3 − 9^3` on [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] is the case `m = 2`. Modulo 9 a difference of two cubes is in `{0, ±1, ±2}`, never `±4`, so `A(3, h)` is never excluded. Nothing of the kind holds for `A^e` and `A^o`: at `(6, 4)` they are `(16^3 − 9^3 ± (4^3 + 3^3))/2`, the plus sign for `A^e`, since `S(6, 4) = P(2, 6) − P(3, 6) = 59 + 32 = 91`.
 
-**The height-2 row.** `F(w,2)` is the hyperbolic sequence A038505 ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]) with the cosine closed form of [[fractional-width-and-height](pages/fractional-width-and-height.md)]; reading the cosine off `w mod 8` gives an integer form, verified for `w <= 48`:[^exec]
+**The row of height 2.** By Equation (1) of [[castle-counting-formula](pages/castle-counting-formula.md)] and `P(1, L) = Re((1+i)^{L+1})` ([[signed-tower-count](pages/signed-tower-count.md)]), `A^e(w, 2) = 2^{w−1} − Re((1+i)^{w+1})/2`. Since `(1+i)^{w+1} = 2^{(w+1)/2} e^{i(w+1)π/4}`, its real part is `0` for `w ≡ 1 (mod 4)`, `−2^{⌊(w−1)/2⌋+1}` for `w ≡ 2, 3, 4 (mod 8)` and `+2^{⌊(w−1)/2⌋+1}` for `w ≡ 6, 7, 0 (mod 8)`, so
 
 ```
-F(w,2) = 2^{w-1} + eps_w * 2^{floor((w-1)/2)},      eps_w = 0   for w = 1 (mod 4)
-                                                     eps_w = +1  for w = 2, 3, 4 (mod 8)
-                                                     eps_w = -1  for w = 6, 7, 0 (mod 8)
+A^e(w, 2)  =  2^{w−1} + ε_w · 2^{⌊(w−1)/2⌋},      ε_w = 0   for w ≡ 1 (mod 4)
+                                                  ε_w = +1  for w ≡ 2, 3, 4 (mod 8)
+                                                  ε_w = −1  for w ≡ 6, 7, 0 (mod 8)
 ```
 
-So for `w = 1 (mod 4)` the even-block count is exactly the power of two `2^{w-1}`, and a power of two is a cube, twice a cube, or four times a cube according to its exponent mod 3:
+For `w ≡ 1 (mod 4)` the count is the power of two `2^{w−1}`, which is a cube, twice a cube or four times a cube according to `w − 1` modulo 3:
 
-| `w mod 12` | `F(w,2)` | cube reading | mod 9 | sum of three cubes? |
+| `w mod 12` | `A^e(w, 2)` | cube reading | mod 9 | sum of three cubes |
 |---|---|---|---|---|
-| 1 | `2^{w-1} = (16^{(w-1)/12})^3` | **a cube**: `F(13,2) = 16^3`, `F(25,2) = 256^3`, `F(37,2) = 4096^3` | 1 | yes, `c^3 + 0 + 0` |
-| 5 | `2^{w-1} = 2 (2^{(w-2)/3})^3` | **twice a cube**: `F(5,2) = 2 * 2^3`, `F(17,2) = 2 * 32^3`, `F(29,2) = 2 * 512^3` | 7 | yes, `c^3 + c^3 + 0` |
-| 9 | `2^{w-1} = 4 (2^{(w-3)/3})^3` | **four times a cube**: `F(9,2) = 4 * 4^3`, `F(21,2) = 4 * 64^3`, `F(33,2) = 4 * 1024^3` | 4 | **no** |
+| 1 | `2^{w−1} = (16^{(w−1)/12})^3` | a cube: `A^e(13, 2) = 16^3`, `A^e(25, 2) = 256^3`, `A^e(37, 2) = 4096^3` | 1 | yes, `c^3 + 0^3 + 0^3` |
+| 5 | `2^{w−1} = 2 (2^{(w−2)/3})^3` | twice a cube: `A^e(5, 2) = 2 · 2^3`, `A^e(17, 2) = 2 · 32^3`, `A^e(29, 2) = 2 · 512^3` | 7 | yes, `c^3 + c^3 + 0^3` |
+| 9 | `2^{w−1} = 4 (2^{(w−3)/3})^3` | four times a cube: `A^e(9, 2) = 4 · 4^3`, `A^e(21, 2) = 4 · 64^3`, `A^e(33, 2) = 4 · 1024^3` | 4 | no |
 
-Four times a cube not divisible by 3 is `+-4 (mod 9)`, so the `w = 9 (mod 12)` entries are the *only* excluded ones in the whole height-2 row: the period-24 census above (excluded at `w = 9, 21`) is this table. The row's exclusion rate is therefore exactly `1/12`, half the equidistribution value. Two more residues carry a two-cube reading: at `w = 19 (mod 24)`, `F(w,2) = 2^{w-1} + 2^{(w-1)/2} = (2^{(w-1)/3})^3 + (2^{(w-1)/6})^3` (`F(19,2) = 262656 = 64^3 + 8^3`, `F(43,2) = 16384^3 + 128^3`), and at `w = 7 (mod 24)` the same with a minus (`F(7,2) = 56 = 4^3 - 2^3`, `F(31,2) = 1024^3 - 32^3`). The cube case is an instance of the bijection question on the Hardy-Ramanujan page: `F(13,2) = 4096 = T(15, 3)`, the 4096 even castles of width 13 and height 2 against the 4096 length-3 towers of height at most 15, and both sides are already `2^{12}` binary objects ([[binary-string-bijection](pages/binary-string-bijection.md)]).
+Four times a cube prime to 3 is `±4 (mod 9)`. Over the period 24 of the row the excluded widths are `w = 9, 21`, so the classes `w ≡ 9 (mod 12)` are the only excluded entries of the row, and its excluded fraction is `1/12`. Two more classes are sums of two cubes: at `w ≡ 19 (mod 24)`, `A^e(w, 2) = 2^{w−1} + 2^{(w−1)/2} = (2^{(w−1)/3})^3 + (2^{(w−1)/6})^3`, as `A^e(19, 2) = 262656 = 64^3 + 8^3` and `A^e(43, 2) = 16384^3 + 128^3`; at `w ≡ 7 (mod 24)` the same with a minus sign, as `A^e(7, 2) = 56 = 4^3 − 2^3` and `A^e(31, 2) = 1024^3 − 32^3`. The cube `A^e(13, 2) = 4096` equals `T(15, 3) = 16^3`, the number of towers of height at most 15 on a base of length 3.[^exec]
 
-**Perfect numbers.** Put `w = 2p` with `p = 3 (mod 4)`, so `w = 6 (mod 8)` and `F(2p, 2) = 2^{2p-1} - 2^{p-1} = 2^{p-1}(2^p - 1)`. When `2^p - 1` is a Mersenne prime this is an even perfect number: `28 = F(6,2)`, `8128 = F(14,2)`, `137438691328 = F(38,2)`, `2^{126}(2^{127} - 1) = F(254, 2)`; verified exactly for `p = 3, 7, 11, 19, 23, 31` (the formula needs `p = 3 (mod 4)`, not primality). For `p = 1 (mod 4)` the sign flips and `F(2p, 2) = 2^{p-1}(2^p + 1)`: `F(10,2) = 528`, not `496`. Independently, every even perfect number is triangular, `2^{p-1}(2^p - 1) = C(2^p, 2)`, and the width-3 column below shows `odd(3, h) = C(h, 2)` for even `h`, so `6 = odd(3,4)`, `28 = odd(3,8)`, `496 = odd(3,32)`, `8128 = odd(3,128)`: every even perfect number is the odd-block count of the `(3, 2^p)` cell, and those with `p = 3 (mod 4)` are an even-block count as well. `8128 = 4^3 + 4^3 + 20^3` is also a sum of three positive cubes.[^exec]
+**Perfect numbers.** For `w = 2p` with `p ≡ 3 (mod 4)`, `w ≡ 6 (mod 8)` and `A^e(2p, 2) = 2^{2p−1} − 2^{p−1} = 2^{p−1}(2^p − 1)`. When `2^p − 1` is a Mersenne prime this is an even perfect number: `28 = A^e(6, 2)`, `8128 = A^e(14, 2)`, `137438691328 = A^e(38, 2)`, `2^{126}(2^{127} − 1) = A^e(254, 2)`. The identity needs `p ≡ 3 (mod 4)`, not primality; for `p ≡ 1 (mod 4)` the sign flips and `A^e(2p, 2) = 2^{p−1}(2^p + 1)`, as `A^e(10, 2) = 528`. Every even perfect number `2^{p−1}(2^p − 1)` is also the triangular number `C(2^p, 2)`, and `A^o(3, h) = C(h, 2)` for even `h` (the paragraph **The width-3 column** of this section), so `6 = A^o(3, 4)`, `28 = A^o(3, 8)`, `496 = A^o(3, 32)`, `8128 = A^o(3, 128)`: every even perfect number is the odd-block count of the cell `(3, 2^p)`. `8128 = 4^3 + 4^3 + 20^3` is also a sum of three positive cubes.[^exec]
 
-**The width-3 column.** Interpolating the exact values gives a quasi-polynomial in `h` of period 2, verified for `h <= 30`:[^exec]
+**The width-3 column.** The Solution subpage gives `P(k, 3) = (−1)^k (k+1)^2` ([[signed-tower-count](pages/signed-tower-count.md)]; checked for `k < 60`). With `A(3, h) = 3h^2 − 3h + 1`, Equation (1) of [[castle-counting-formula](pages/castle-counting-formula.md)] gives
 
 ```
-F(3,h)   = C(h,2)          (h odd)        5 C(h,2) + 1     (h even)
-odd(3,h) = 5 C(h,2) + 1    (h odd)        C(h,2)           (h even)
-A(3,h)   = 6 C(h,2) + 1 = 3h^2 - 3h + 1 = h^3 - (h-1)^3
+A^e(3, h)  =  C(h, 2)          (h odd)          5 C(h, 2) + 1     (h even)
+A^o(3, h)  =  5 C(h, 2) + 1    (h odd)          C(h, 2)           (h even)
+A(3, h)    =  6 C(h, 2) + 1  =  h^3 − (h−1)^3
 ```
 
-So the width-3 even counts at odd height are the triangular numbers of even index, `F(3, 2m+1) = C(2m+1, 2) = m(2m+1) = 0, 3, 10, 21, 36, 55, ...`, the second hexagonal numbers A014105 (every other term of the triangular numbers A000217), and at even height `6, 31, 76, 141, 226, 331, ...`, which is `F(3, 2m) = 10m^2 - 5m + 1 = 5 Hex(m) + 1` with `Hex(m) = m(2m-1)` the hexagonal numbers. The odd column's other half, `odd(3, 2n+1) = 10n^2 + 5n + 1 = 1, 16, 51, 106, 181, 276, ...`, is OEIS A080860 exactly; `F(3, 2m)` is the same quadratic at negative index, `A080860(-m)`, and is not in OEIS as a sequence (searched 2026-09-20 by terms and by formula), a novel candidate for the [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].[^3] Triangular numbers are `0, 1, 3, 6 (mod 9)` and never `4, 5`, so every triangular castle count passes the residue test; `5 C(h,2) + 1` is `4 (mod 9)` iff `C(h,2) = 6 (mod 9)` iff `h = 4, 6 (mod 9)`, and is never `5`. Therefore
+checked against the dynamic program for `h ≤ 200`.[^exec] At odd height the even-block counts are `A^e(3, 2m+1) = m(2m+1) = 0, 3, 10, 21, 36, 55, …`, the second hexagonal numbers A014105, every other triangular number of A000217. At even height they are `A^e(3, 2m) = 10m^2 − 5m + 1 = 5 m(2m − 1) + 1 = 6, 31, 76, 141, 226, 331, …`, five times a hexagonal number of A000384 plus one. The other half of the odd column, `A^o(3, 2n+1) = 10n^2 + 5n + 1 = 1, 16, 51, 106, 181, 276, …`, is A080860, and `A^e(3, 2m)` is the same quadratic at `n = −m`.[^2] [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of these columns.
 
-- `F(3,h)` is excluded iff `h = 4, 6 (mod 18)` (`F(3,4) = 31`, `F(3,6) = 76`, `F(3,22) = 1156`, `F(3,24) = 1381`, ...),
-- `odd(3,h)` is excluded iff `h = 13, 15 (mod 18)`,
-- `A(3,h)` is never excluded,
+Triangular numbers are `0, 1, 3, 6 (mod 9)`, never `4` or `5`. And `5 C(h, 2) + 1 ≡ 4 (mod 9)` exactly when `C(h, 2) ≡ 6 (mod 9)`, that is `h ≡ 4, 6 (mod 9)`, while `5 C(h, 2) + 1 ≡ 5` would need `C(h, 2) ≡ 8`, which never happens. Therefore
 
-exactly `1/9` of each of the `F` and odd columns, the `2/18` in the height-direction table. The width-2 row is the same kind of statement one level down: `F(2,h) = 2h - 1` (even `h`) is excluded iff `h = 12, 16 (mod 18)`.
+- `A^e(3, h)` is excluded exactly when `h ≡ 4, 6 (mod 18)`: `A^e(3, 4) = 31`, `A^e(3, 6) = 76`, `A^e(3, 22) = 1156`, `A^e(3, 24) = 1381`, …;
+- `A^o(3, h)` is excluded exactly when `h ≡ 13, 15 (mod 18)`;
+- `A(3, h)` is never excluded,
 
-## The three Project Euler 502 targets
+which is `1/9` of each of the columns `A^e(3, ·)` and `A^o(3, ·)`, the entry `2/18` of the table of periods in the height. The width-2 cell behaves the same way: `A^e(2, h) = 2h − 1` (even `h`) is excluded exactly when `h ≡ 12, 16 (mod 18)`.
 
-PE 502 asks for `F(10^12, 100) + F(10000, 10000) + F(100, 10^12)` modulo `10^9 + 7` ([[project-euler-502](pages/project-euler-502.md)]). Modulo 9 the three are within reach of the same machinery the solution uses, run over `Z/9` instead of `F_p`:[^exec]
+## The three Project Euler targets
 
-| target | `mod 9` | method | independent check |
-|---|---|---|---|
-| `F(10^12, 100)` | **6** | [[kitamasa](pages/kitamasa.md)] on `x^w mod char_99` over `Z/9` (degree 100) | 400-state parity transfer matrix raised to `10^12 - 1` over `Z/9`: 6 |
-| `F(10000, 10000)` | **7** | Kitamasa on `char_9999` over `Z/9` (degree 10000, 12 s) | method reproduces `F(4,2), F(13,10), F(10,13), F(100,100) mod 9 = 1, 3, 7, 8` against exact values |
-| `F(100, 10^12)` | **6** | `k`-direction recurrence for `P(k, 100)`, order 198, Kitamasa to `k = 10^12 - 1, 10^12 - 2` | `P(k,100) mod 9` has period 1458 in `k`; reducing `10^12` mod 1458 gives the same residues |
+The problem asks for `A^e(10^12, 100) + A^e(10000, 10000) + A^e(100, 10^12)` modulo `10^9 + 7` ([[project-euler-502](pages/project-euler-502.md)]). Modulo 9:[^exec]
 
-None of the three is `4` or `5`, so all three targets pass the residue test and are, under Heath-Brown, sums of three cubes; so is `F(100,100) = 8 (mod 9)`. The sum of the three residues is `1 (mod 9)`, a fact about the PE 502 answer that the problem's modulus `10^9 + 7` does not reveal. The `Z/9` Kitamasa is the [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] computation with a composite modulus; nothing in the reduction needs a field, only that `char_k` is monic, which its reversed denominator `den_k` (constant term 1) guarantees.
+| target | `mod 9` | computation |
+|---|---|---|
+| `A^e(10^12, 100)` | 6 | powers of the signed transfer matrices on the tower heights `0, …, 99` and `0, …, 98` over `Z/9` |
+| `A^e(10000, 10000)` | 7 | the column-height dynamic program for `P(9999, 10^4)` and `P(9998, 10^4)` over `Z/9` |
+| `A^e(100, 10^12)` | 6 | the parity polynomials of `P(·, 100)`, of degree at most 100, interpolated from `P(k, 100)` for `k ≤ 201` and evaluated exactly at `k = 10^12 − 1` and `10^12 − 2` |
 
-## Every even-block count below 1000
+The same computations give `A^e(4, 2), A^e(13, 10), A^e(10, 13), A^e(100, 100) ≡ 1, 3, 7, 8 (mod 9)`, the residues of the exact values. None of the three targets is `4` or `5`, so all three pass the residue test and, under Heath-Brown's conjecture, are sums of three cubes. Their sum is `≡ 1 (mod 9)`; the problem's answer, the sum modulo `10^9 + 7`, does not determine this residue. Kitamasa's method also works over `Z/9` ([[kitamasa](pages/kitamasa.md)], [[castle-cryptography-ring](pages/castle-cryptography-ring.md)]): the reduction of `x^L` needs only a monic characteristic polynomial, and `char_k` is monic because `den_k(0) = 1`.
 
-The `F` table has 50 entries below 1000 with `w >= 3`, `h >= 2`. For each, the residue and an explicit representation with `max(|x|,|y|,|z|) <= 1000` where one exists:[^exec]
+## The even-block counts below 1000
 
-| `F` | cell | mod 9 | three cubes | positive |
+`A^e` has fifty entries below 1000 with `w ≥ 3` and `h ≥ 2`, forty-six distinct values. For each, the residue and a representation with `max(|x|, |y|, |z|) ≤ 1000` where one exists:[^exec]
+
+| `A^e` | cell | mod 9 | three cubes | positive |
 |---|---|---|---|---|
 | 3 | `(3, 3)` | 3 | `1^3 + 1^3 + 1^3` | yes |
 | 6 | `(3, 2)` | 6 | `(-1)^3 + (-1)^3 + 2^3` |  |
@@ -137,14 +141,14 @@ The `F` table has 50 entries below 1000 with `w >= 3`, `h >= 2`. For each, the r
 | 210 | `(3, 21)` | 3 | `(-2)^3 + (-5)^3 + 7^3` |  |
 | 226 | `(3, 10)` | 1 | `2^3 + (-5)^3 + 7^3` |  |
 | 253 | `(3, 23)` | 1 | `4^3 + 4^3 + 5^3` | yes |
-| 256 | `(9, 2)` | 4 | **no** (`4 * 4^3`) |  |
+| 256 | `(9, 2)` | 4 | **no** (`4 · 4^3`) |  |
 | 300 | `(3, 25)` | 3 | `34^3 + 55^3 + (-59)^3` |  |
 | 307 | `(6, 3)` | 1 | `(-5)^3 + 6^3 + 6^3`; also `3^3 + 4^3 + 6^3` | yes |
 | 331 | `(3, 12)` | 7 | `0^3 + (-10)^3 + 11^3` |  |
 | 351 | `(3, 27)` | 0 | `0^3 + 2^3 + 7^3` |  |
-| 367 | `(4, 7)` | 7 | none with `max <= 50000` |  |
+| 367 | `(4, 7)` | 7 | none with `max ≤ 50000` |  |
 | 406 | `(3, 29)` | 1 | `(-1)^3 + 4^3 + 7^3` |  |
-| 439 | `(5, 4)` | 7 | none with `max <= 50000` |  |
+| 439 | `(5, 4)` | 7 | none with `max ≤ 50000` |  |
 | 448 | `(4, 6)` | 7 | `0^3 + (-4)^3 + 8^3` |  |
 | 456 | `(3, 14)` | 6 | `2^3 + (-4)^3 + 8^3` |  |
 | 465 | `(3, 31)` | 6 | `11^3 + 11^3 + (-13)^3` |  |
@@ -155,99 +159,89 @@ The `F` table has 50 entries below 1000 with `w >= 3`, `h >= 2`. For each, the r
 | 741 | `(3, 39)` | 3 | `(-5)^3 + (-11)^3 + 13^3` |  |
 | 766 | `(3, 18)` | 1 | `(-3)^3 + 4^3 + 9^3` |  |
 | 820 | `(3, 41)`, `(4, 9)` | 1 | `(-5)^3 + 6^3 + 9^3`; also `3^3 + 4^3 + 9^3` | yes |
-| 903 | `(3, 43)` | 3 | none with `max <= 50000` |  |
+| 903 | `(3, 43)` | 3 | none with `max ≤ 50000` |  |
 | **906** | **`(5, 5)`** | 6 | `(-74924259395610397)^3 + 72054089679353378^3 + 35961979615356503^3` |  |
 | 951 | `(3, 20)` | 6 | `(-10)^3 + (-25)^3 + 26^3` |  |
 | 977 | `(7, 3)` | 5 | **no** |  |
 | 990 | `(3, 45)` | 0 | `(-5)^3 + (-6)^3 + 11^3` |  |
 
-Five of the fifty are excluded (`31, 76, 122, 256, 977`), one in ten. Three are where the closed forms say: `31 = F(3,4)` and `76 = F(3,6)` at `h = 4, 6`, `256 = F(9,2) = 4 * 4^3`; `122 = F(4,5)` and `977 = F(7,3)` come from the residue table. Forty-one have a representation with all three cubes below `1000^3`. The remaining four: `367`, `439`, `903` have no representation with `max(|x|,|y|,|z|) <= 50000` (searched with `|x| <= |y| <= |z|`), yet all three are solved in the literature, since every `n < 1000` off the excluded classes is solved except `114, 390, 627, 633, 732, 921, 975`.[^1] And `906 = F(5,5)`: the even-block castles of the `5 x 5` cell are counted by a number first solved in 2019, in a representation with 17-digit cubes that Booker presented.[^1] The triple was re-multiplied exactly for this page.
+Five of the fifty entries are excluded (`31, 76, 122, 256, 977`). Three of them are in the families of the previous section: `31 = A^e(3, 4)` and `76 = A^e(3, 6)` at `h = 4, 6`, and `256 = A^e(9, 2) = 4 · 4^3`; `122 = A^e(4, 5)` and `977 = A^e(7, 3)` come from the table of periods in the width. Forty-one entries have a representation with `max(|x|, |y|, |z|) ≤ 1000`. Of the other four, `367`, `439` and `903` have no representation with `max(|x|, |y|, |z|) ≤ 50000`; all three are solved in the literature, since every `n < 1000` not `4` or `5` modulo 9 has a known representation except `114, 390, 627, 633, 732, 921, 975`.[^1] And `906 = A^e(5, 5)` was among the open cases below 1000 in 2009; the representation in the table is the one Booker presented in 2019.[^1]
 
-**The seven unsolved numbers are not nondegenerate castle counts.** None of `114, 390, 627, 633, 732, 921, 975` appears in the `A`, `F`, or odd table for `w >= 3`, `h >= 2` (the scan covers every cell with `A <= 20000`, hence every count below 1000). In the degenerate width-2 cell, `627 = F(2, 314)` and `975 = F(2, 488)`, `633 = odd(2, 317)` and `921 = odd(2, 461)`, while the three even ones `114, 390, 732` are not castle counts at any width (`A(1,h) = 1` and `A(2,h) = 2h - 1` are odd).[^exec]
+**The seven unsolved numbers.** None of `114, 390, 627, 633, 732, 921, 975` is a value of `A`, `A^e` or `A^o` with `w ≥ 3` and `h ≥ 2`; the scan covers every cell with `A ≤ 20000`, and so every count below 1000. In the cells of width 2, `627 = A^e(2, 314)`, `975 = A^e(2, 488)`, `633 = A^o(2, 317)` and `921 = A^o(2, 461)`. The even numbers `114, 390, 732` are castle counts at no width, since `A(1, h) = 1` and `A(2, h) = 2h − 1` are odd and the cells of width 1 and 2 have `A^e` and `A^o` equal to `0` or `A`.[^exec]
 
-Between 1000 and 20000 the `F` table has 141 entries at `w >= 3`; 11 are excluded mod 9 and 130 admissible. Of the admissible, 105 have a representation with cubes below `1000^3`, five more were found below `15000^3` (`F(3,61) = 1830 = (-8993)^3 + 9076^3 + (-2729)^3`, `F(3,89) = 3916 = (-9719)^3 + 9867^3 + (-3492)^3`, `F(4,12) = 4065 = (-1591)^3 + 1490^3 + 896^3`, `F(3,50) = 6126 = (-6592)^3 + 6677^3 + (-2239)^3`, `F(3,56) = 7701 = (-5755)^3 + 5651^3 + 2165^3`), and twenty (`1131, 1626, 2481, 2630, 2775, 3741, 5050, 6555, 8445, 9321, 9591, 9870, 11391, 11490, 12246, 12561, 14196, 15801, 16653, 17391`) have none below `15000^3`. About one admissible count in six below 20000 has no representation with cubes below `15000^3`.[^exec]
+**From 1000 to 20000.** `A^e` has 141 entries with `w ≥ 3` in this range. Eleven are excluded modulo 9, and of the 130 admissible ones, 105 have a representation with `max(|x|, |y|, |z|) ≤ 1000`. Five more have one with `max ≤ 15000`: `A^e(3, 61) = 1830 = (−8993)^3 + 9076^3 + (−2729)^3`, `A^e(3, 89) = 3916 = (−9719)^3 + 9867^3 + (−3492)^3`, `A^e(4, 12) = 4065 = (−1591)^3 + 1490^3 + 896^3`, `A^e(3, 50) = 6126 = (−6592)^3 + 6677^3 + (−2239)^3` and `A^e(3, 56) = 7701 = (−5755)^3 + 5651^3 + 2165^3`. The remaining twenty, `1131, 1626, 2481, 2630, 2775, 3741, 5050, 6555, 8445, 9321, 9591, 9870, 11391, 11490, 12246, 12561, 14196, 15801, 16653, 17391`, have none with `max ≤ 15000`.[^exec]
 
 ## Sums of three positive cubes
 
-The positive version is finite, so it can be settled outright. Sums of three positive cubes have measured density `0.101` below `10^8` ([[sums-of-three-cubes](pages/sums-of-three-cubes.md)]). Testing every castle count:[^exec]
+With positive cubes each search is finite. The sums of three positive cubes have density `0.10098` below `10^8` ([[sums-of-three-cubes](pages/sums-of-three-cubes.md)]). Every castle count up to `10^8` with `h ≥ 2`, tested:[^exec]
 
-| table, cells | entries `<= 10^8` | sums of three positive cubes | expected at `0.101` |
+| table, cells | entries `≤ 10^8` | sums of three positive cubes | expected at `0.10098` |
 |---|---|---|---|
-| `F`, `w >= 4` | 552 | **56** | 55.7 |
-| `F`, `w = 3` | 10232 | 1387 (13.6%) | 1033 |
-| `A`, `w >= 4` | 446 | 69 | 45.0 |
-| odd, `w >= 4` | 555 | 58 | 56.0 |
+| `A^e`, `w ≥ 4` | 552 | 56 | 55.7 |
+| `A^e`, `w = 3` | 10232 | 1387 (13.6%) | 1033.3 |
+| `A`, `w ≥ 4` | 446 | 69 | 45.0 |
+| `A^o`, `w ≥ 4` | 555 | 58 | 56.0 |
 
-The even-block table at `w >= 4` matches the background rate (56 against 55.7). The width-3 column runs high: its entries are small (two quadratics in `h`), and small numbers are denser in cube sums (the density is `0.126` below `1000`). The `A` table runs high at `w >= 4` too (69 against 45.0), 44 of the hits at `w = 4` and 6 at `w = 6`.
+The even-block counts with `w ≥ 4` are sums of three positive cubes at the background rate. The width-3 column is higher; its entries are small, two quadratics in `h`, and the density of sums of three positive cubes is `0.126` below 1000. `A` is also higher at `w ≥ 4`, with 44 of its 69 hits at `w = 4`.
 
-Each of the 56 even-block hits with `w >= 4` reads in tower language as `F(w,h) = T(a-1,3) + T(b-1,3) + T(c-1,3)`, a disjoint union of three families of length-3 towers ([[tower-recursion-master-class](pages/tower-recursion-master-class.md)]). The first ten:
+Since `a^3 = T(a − 1, 3)`, each of the 56 even-block hits with `w ≥ 4` says that `A^e(w, h) = T(a−1, 3) + T(b−1, 3) + T(c−1, 3)`: the even-block castles of the cell are as many as the towers on a base of length 3 of heights at most `a − 1`, `b − 1` and `c − 1` together ([[castle-counting-formula](pages/castle-counting-formula.md)], the Lemma in the section *Tower count*). The first ten:
 
-| `F(w,h)` | cell | `a^3 + b^3 + c^3` | tower reading |
+| `A^e(w, h)` | cell | `a^3 + b^3 + c^3` | towers |
 |---|---|---|---|
-| 10 | `(4, 2)` | `1^3 + 1^3 + 2^3` | two empty towers and the 8 binary towers of length 3 |
-| 307 | `(6, 3)` | `3^3 + 4^3 + 6^3` | `T(2,3) + T(3,3) + T(5,3)` |
-| 528 | `(10, 2)` | `2^3 + 2^3 + 8^3` | `2 T(1,3) + T(7,3)` |
-| 820 | `(4, 9)` | `3^3 + 4^3 + 9^3` | `T(2,3) + T(3,3) + T(8,3)` |
-| 6572 | `(4, 14)` | `10^3 + 13^3 + 15^3` | `T(9,3) + T(12,3) + T(14,3)` |
-| 8128 | `(14, 2)` | `4^3 + 4^3 + 20^3` | the perfect number, `2 T(3,3) + T(19,3)` |
-| 9037 | `(5, 8)` | `13^3 + 14^3 + 16^3` | `T(12,3) + T(13,3) + T(15,3)` |
-| 54757 | `(4, 35)` | `2^3 + 16^3 + 37^3` | `T(1,3) + T(15,3) + T(36,3)` |
-| 86505 | `(11, 3)` | `2^3 + 26^3 + 41^3` | `T(1,3) + T(25,3) + T(40,3)` |
-| 190630 | `(4, 42)` | `15^3 + 31^3 + 54^3` | `T(14,3) + T(30,3) + T(53,3)` |
+| 10 | `(4, 2)` | `1^3 + 1^3 + 2^3` | `2 T(0, 3) + T(1, 3)`: twice the empty towers, and the 8 towers of height at most 1 |
+| 307 | `(6, 3)` | `3^3 + 4^3 + 6^3` | `T(2, 3) + T(3, 3) + T(5, 3)` |
+| 528 | `(10, 2)` | `2^3 + 2^3 + 8^3` | `2 T(1, 3) + T(7, 3)` |
+| 820 | `(4, 9)` | `3^3 + 4^3 + 9^3` | `T(2, 3) + T(3, 3) + T(8, 3)` |
+| 6572 | `(4, 14)` | `10^3 + 13^3 + 15^3` | `T(9, 3) + T(12, 3) + T(14, 3)` |
+| 8128 | `(14, 2)` | `4^3 + 4^3 + 20^3` | the perfect number, `2 T(3, 3) + T(19, 3)` |
+| 9037 | `(5, 8)` | `13^3 + 14^3 + 16^3` | `T(12, 3) + T(13, 3) + T(15, 3)` |
+| 54757 | `(4, 35)` | `2^3 + 16^3 + 37^3` | `T(1, 3) + T(15, 3) + T(36, 3)` |
+| 86505 | `(11, 3)` | `2^3 + 26^3 + 41^3` | `T(1, 3) + T(25, 3) + T(40, 3)` |
+| 190630 | `(4, 42)` | `15^3 + 31^3 + 54^3` | `T(14, 3) + T(30, 3) + T(53, 3)` |
 
-The remaining 46 are at `(4, h)` for `h` in `{52, 80, 93, 118, 122, 143, 149, 155, 163, 182, 187, 191, 210, 214, 233, 236, 249, 251, 258, 260, 272, 295, 307, 322, 347, 379, 387, 413}`, `(5, h)` for `h` in `{26, 27, 35, 40, 60, 61, 67}`, `(6, 14)`, `(6, 16)`, `(7, 8)`, `(7, 9)`, `(7, 17)`, `(16, 3)`, and the height-2 entries `(19, 2), (20, 2), (22, 2), (25, 2), (26, 2)`.[^exec] The bijection question of [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] (even castles of a cell onto a disjoint union of tower families) has 56 further instances here; the smallest is `F(4,2) = 10`, the ten even castles of `(4,2)` against the towers `{0,1}^3` plus two points.
+The other 46 are at `(4, h)` for `h` in `{52, 80, 93, 118, 122, 143, 149, 155, 163, 182, 187, 191, 210, 214, 233, 236, 249, 251, 258, 260, 272, 295, 307, 322, 347, 379, 387, 413}`, at `(5, h)` for `h` in `{26, 27, 35, 40, 60, 61, 67}`, at `(6, 14)`, `(6, 16)`, `(7, 8)`, `(7, 9)`, `(7, 17)`, `(16, 3)`, and at height 2 at `(19, 2)`, `(20, 2)`, `(22, 2)`, `(25, 2)` and `(26, 2)`.[^exec]
 
-## Two cubes, one cube, cube plus one
+## Cubes, two cubes, cubes plus one
 
-The finer cube properties, over all cells with `A <= 10^9` and `w >= 3`:[^exec]
+Over all cells with `A ≤ 10^9` and `w ≥ 3`:[^exec]
 
-- **Perfect cubes.** Only `F(13,2) = 16^3` and `F(25,2) = 256^3` (and the trivial `odd(3,2) = 1`): every cube castle count in range is a height-2 power of two, `F(12k+1, 2) = (16^k)^3`.
-- **Sums of two positive cubes** (A003325) in the `F` table with `w >= 4`: `16 = F(5,2)`, `28 = F(6,2)`, `1729 = F(6,4)`, `65536 = F(17,2)`, `262656 = F(19,2)`, `804482 = F(4,85) = 5^3 + 93^3`, `268435456 = F(29,2)`. The height-2 ones are structural (the `2 c^3` and `c^3 + d^3` residues above); the two that are not, `F(6,4) = 1^3 + 12^3 = 9^3 + 10^3` and `F(4,85) = 5^3 + 93^3`, are the only sums of two positive cubes among even-block counts with `w >= 4` and `h >= 3` below `10^9`, and `1729` is the only one with two representations.
-- **Cube plus or minus one.** `28 = 3^3 + 1 = F(6,2)`, `1729 = 12^3 + 1 = F(6,4)`, `4095 = 16^3 - 1 = F(3,91) = A(12,2)`, `8001 = 20^3 + 1 = F(3,127)`; the last two are triangular numbers, `C(91,2)` and `C(127,2)`.
-- **Differences of two positive cubes** in the `F` table below `10^7`, outside height 2 and the structural `A(3m,h)`: `F(3,12) = 331 = 11^3 - 10^3`, `F(4,4) = 117 = 5^3 - 2^3`, `F(4,6) = 448 = 8^3 - 4^3`, `F(3,109) = 5886 = 21^3 - 15^3`, `F(3,135) = 9045 = 21^3 - 6^3`, `F(3,209) = 21736 = 28^3 - 6^3`, `F(3,190) = 89776 = 51^3 - 35^3`, `F(4,144) = 7880087 = 199^3 - 8^3`, and about thirty more at `w = 3`.
+- **Cubes.** The only cubes among the values of `A`, `A^e` and `A^o` are `A^e(13, 2) = 16^3`, `A^e(25, 2) = 256^3` and `A^o(3, 2) = 1`; the cubes `A^e(12k + 1, 2) = (16^k)^3` of the row of height 2 are the only ones above 1.
+- **Sums of two positive cubes** among the `A^e` with `w ≥ 4`: `16 = A^e(5, 2)`, `28 = A^e(6, 2)`, `1729 = A^e(6, 4)`, `65536 = A^e(17, 2)`, `262656 = A^e(19, 2)`, `804482 = A^e(4, 85) = 5^3 + 93^3` and `268435456 = A^e(29, 2)`. The ones of height 2 are in the classes of the section *Three families with closed forms*. Outside height 2 there are two, `A^e(6, 4) = 1^3 + 12^3 = 9^3 + 10^3` and `A^e(4, 85) = 5^3 + 93^3`, and 1729 is the only one with two representations.
+- **Cubes plus or minus one** among the `A^e`: `28 = 3^3 + 1 = A^e(6, 2)`, `1729 = 12^3 + 1 = A^e(6, 4)`, `4095 = 16^3 − 1 = A^e(3, 91)` and `8001 = 20^3 + 1 = A^e(3, 127)`; the last two are the triangular numbers `C(91, 2)` and `C(127, 2)`, and `4095 = A(12, 2)` as well.
+- **Differences of two positive cubes** among the `A^e` below `10^7` off height 2: 25 counts, three with `w ≥ 4`, `A^e(4, 4) = 117 = 5^3 − 2^3`, `A^e(4, 6) = 448 = 8^3 − 4^3` and `A^e(4, 144) = 7880087 = 199^3 − 8^3`, and 22 at `w = 3`, beginning `A^e(3, 12) = 331 = 11^3 − 10^3`, `A^e(3, 91) = 4095 = 16^3 − 1^3`, `A^e(3, 109) = 5886 = 21^3 − 15^3`, `A^e(3, 135) = 9045 = 21^3 − 6^3`, `A^e(3, 190) = 89776 = 51^3 − 35^3` and `A^e(3, 209) = 21736 = 28^3 − 6^3`.
 
-## What this page settles and what it opens
+## Summary
 
-Settled:
-
-- Under Heath-Brown, "is `F(w,h)` a sum of three cubes" is the residue test, and the residue is periodic in both directions with the periods tabulated above; the excluded fraction of the `F` table is `22%` at `w >= 4` (`2/9` in the limit), `1/9` at `w = 3`, `1/12` at `h = 2`.
-- Unconditionally: `A(3m, h)` is always a difference of two cubes; `F(w,2)` is a cube at `w = 1 (mod 12)`, twice a cube at `w = 5`, four times a cube and excluded at `w = 9`, and these are the row's only exclusions; `F(3,h)` at odd `h` is triangular and never excluded, at even `h` is `5 C(h,2) + 1` and excluded iff `h = 4, 6 (mod 18)`.
-- `F(10^12, 100), F(10000, 10000), F(100, 10^12)` are `6, 7, 6 (mod 9)`: all admissible.
-- `F(5,5) = 906` was first solved in 2019; none of the seven unsolved `n < 1000` is a castle count outside the width-2 cell.
-- Even-block counts with `w >= 4` are sums of three positive cubes at the background rate (56 of 552 against 55.7); the taxicab number and `F(4,85) = 5^3 + 93^3` are the only nondegenerate two-cube even counts below `10^9`.
-- Even perfect numbers: `2^{p-1}(2^p - 1) = F(2p, 2)` for `p = 3 (mod 4)` and `= odd(3, 2^p)` for all `p`.
-- **Mod-9 equidistribution.** The `20.4%` at `A <= 10^9` is a finite-N mixing artifact and the aggregate converges monotonically to `2/9` - `21.36%` at `10^12`, `21.98%` at `10^18`, `22.214%` at `10^36`. Row rates converge by `h = 9` (all within `0.6` pp) and columns `w in {4, 6, 10, 12, 17, 28, 30}` have exactly `2/9`, with uniform histograms over their full h-period. The `h = 7` deficit is `1.5 sigma` finite-period noise in a period `2184` not divisible by `9`, not a bias in `P(k, w)`. Full analysis on [[mod-9-equidistribution](pages/mod-9-equidistribution.md)].
-
-Open:
-
-- **A bijection for `F(13,2) = T(15,3)`** and for the 56 positive-cube identities, `F(4,2) = 10 = 1 + 1 + 8` first; the Hardy-Ramanujan page's `1729 = 12^3 + 1` question with a smaller test case.
-- **Representations for `367 = F(4,7)`, `439 = F(5,4)`, `903 = F(3,43)`** below `50000^3` do not exist; the literature has them.
+- Under Heath-Brown's conjecture, `A^e(w, h)` is a sum of three cubes exactly when it is not `4` or `5` modulo 9; the residues are periodic in the width and in the height (section *The residue test*), and in each row `h ≥ 4` about `2/9` of the residues are excluded (20.5% of the counts with `w ≥ 4` and `A ≤ 10^9`). [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] treats the limit `2/9` of the excluded fraction.
+- `A(3m, h)` is a difference of two cubes; `A^e(w, 2)` is a cube at `w ≡ 1`, twice a cube at `w ≡ 5` and four times a cube, the only exclusions of the row, at `w ≡ 9 (mod 12)`; `A^e(3, h)` is triangular at odd `h` and `5 C(h, 2) + 1` at even `h`, excluded exactly when `h ≡ 4, 6 (mod 18)` (section *Three families with closed forms*).
+- `A^e(10^12, 100)`, `A^e(10000, 10000)` and `A^e(100, 10^12)` are `6, 7, 6 (mod 9)` (section *The three Project Euler targets*).
+- `A^e(5, 5) = 906` was solved in 2019, and none of the seven unsolved `n < 1000` is a castle count with `w ≥ 3` (section *The even-block counts below 1000*).
+- The even-block counts with `w ≥ 4` are sums of three positive cubes at the background rate, 56 of 552 against 55.7 (section *Sums of three positive cubes*).
+- Even perfect numbers are `A^o(3, 2^p)`, and `A^e(2p, 2)` for `p ≡ 3 (mod 4)` (section *Three families with closed forms*).
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `F(w,h)` tabulation in which `1729`, `906`, and the height-2 powers of two were first visible.
-- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - `T(k, L) = (k+1)^L`, the tower count behind the cube reading, and the Kitamasa route the mod-9 evaluation reuses.
-- [[project-euler-502](pages/project-euler-502.md)] - the three target arguments tested mod 9.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the tables of castle counts, with `1729 = A^e(6, 4)`, `906 = A^e(5, 5)` and the powers of two in the row of height 2.
+- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - `T(k, L) = (k+1)^L`, `P(k, 3) = (−1)^k (k+1)^2`, and the evaluation of `P(h−1, w)`, `P(h−2, w)` at the targets.
+- [[project-euler-502](pages/project-euler-502.md)] - the three targets.
 
 ## Related Concepts
 
-- [[sums-of-three-cubes](pages/sums-of-three-cubes.md)] - the number-theory background: the mod-9 obstruction, Heath-Brown, the 2019 results, the positive-cube density.
-- [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] - the row/column/aggregate reading of `F(w, h) mod 9`; the `20.4%` at `A <= 10^9` is a finite-N mixing artifact converging to `2/9` at rate `0.0786 * N^{-1/12}`.
-- [[mod-9-coset-lift](pages/mod-9-coset-lift.md)] - the mechanism companion: three-adic row/column divisibility gap, the six-step proof of exact `2/9` at `w = 4`, and the coset-lift criterion for column uniformity.
-- [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - `F(6,4) = 1729`, the page this one generalizes.
-- [[castle-counting-formula](pages/castle-counting-formula.md)] and [[castle-counting-function](pages/castle-counting-function.md)] - the closed form and the `A / F / odd` notation.
-- [[mod-p-observatory](pages/mod-p-observatory.md)] - period equals lcm of eigenvalue orders; the mod-9 periods here extend its tables.
-- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the `(x+1)^L (x-1)^{L-2}` characteristic polynomial behind the height-direction periods.
-- [[kitamasa](pages/kitamasa.md)] and [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - `x^w mod char_k` over `Z/9` for the PE 502 targets.
-- [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] and [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - `F(w,2) = A038505(w+1)`, whose closed form the height-2 row reads off.
-- [[fractional-width-and-height](pages/fractional-width-and-height.md)] - the cosine form of `F(w,2)`.
-- [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - `T(k,3) = (k+1)^3`.
-- [[binary-string-bijection](pages/binary-string-bijection.md)] - the `2^{w-1}` reading of the height-2 row.
-- [[castle-snippets](pages/castle-snippets.md)] - `all_castles`, `blocks`, the brute-force check of the DP.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] and [[oeis-index](pages/oeis-index.md)] - where A000217, A003072, A003325, A038505, A060464 sit on the wiki.
+- [[sums-of-three-cubes](pages/sums-of-three-cubes.md)] - the problem: the obstruction modulo 9, Heath-Brown's conjecture, the 2019 representations, and the density of sums of three positive cubes.
+- [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] - the fraction of castle counts in the residues 4 and 5 modulo 9 and its limit `2/9`.
+- [[mod-9-coset-lift](pages/mod-9-coset-lift.md)] - the 3-adic divisibility of the row and column periods and the proof that the column `w = 4` hits every residue modulo 9 equally often over 54 consecutive heights.
+- [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - `A^e(6, 4) = 1729` and `A(6, 4) = 16^3 − 9^3`.
+- [[castle-counting-formula](pages/castle-counting-formula.md)] and [[castle-counting-function](pages/castle-counting-function.md)] - the formula for `A^e(w, h)` and the counts `A`, `A^e`, `A^o`.
+- [[mod-p-observatory](pages/mod-p-observatory.md)] - the periods of the castle counts modulo a prime, which divide the lcm of the periods of their factors.
+- [[signed-tower-count](pages/signed-tower-count.md)] - `P(1, L) = Re((1+i)^{L+1})` and `P(k, 3) = (−1)^k (k+1)^2`.
+- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the characteristic polynomial `(x+1)^L (x−1)^{L−2}` of `P(·, L)` in `k`, computed for `4 ≤ L ≤ 12`.
+- [[kitamasa](pages/kitamasa.md)] and [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the reduction of `x^L` modulo `char_k`, which works over `Z/9`.
+- [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] and [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - `A^e(w, 2) = A038505(w + 1)`.
+- [[castle-snippets](pages/castle-snippets.md)] - `all_castles` and the block count for brute-force checks.
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] and [[oeis-index](pages/oeis-index.md)] - the OEIS status of the width-3 columns, and the A-numbers cited here.
 
 ## Footnotes
 
-[^1]: https://en.wikipedia.org/wiki/Sums_of_three_cubes (2026-09-20) - the mod-9 condition and "It is unknown whether this necessary condition is sufficient"; Heath-Brown's conjecture of infinitely many representations for every `n` not `4, 5 (mod 9)`; "The only remaining unsolved cases up to 1,000 are the seven numbers 114, 390, 627, 633, 732, 921, and 975"; the 2019 representations of 33 (Booker) and 42 (Booker and Sutherland), and "Booker also presented a representation for 906" with the `906 = (-74924259395610397)^3 + 72054089679353378^3 + 35961979615356503^3` triple (re-read 2026-09-28).
-[^3]: https://oeis.org/A080860 (2026-09-20) - "a(n) = 10*n^2 + 5*n + 1", data `1, 16, 51, 106, 181, 276, 391, 526, 681, 856, 1051, 1266, 1501, 1756, 2031, 2326, ...`, g.f. `(1 + 13x + 6x^2)/(1-x)^3`; OEIS term searches for `6, 31, 76, 141, 226, 331, 456, 601, 766, 951`, for `1, 6, 31, 76, 141, 226, 331`, and for the interleaved columns `F(3,h)`, `odd(3,h)`, `F(4,h)` returned no match (2026-09-20).
-[^exec]: Verified by execution (2026-09-20): Python 3 scripts with NumPy 1.26 and SymPy 1.14. (1) Exact `P(k,L)` by the signed last-height DP and `F = (A - P(h-1,w) + P(h-2,w))/2`, checked against brute-force enumeration for `w <= 5`, `h <= 4` and against `F(4,2) = 10`, `F(6,4) = 1729`, `F(13,10)`, `F(10,13)`. (2) Width-direction periods mod 9 by iterating the `4h`-state parity transfer matrix over `Z/9` until the state vector repeats (state period and transient), then the minimal divisor of the state period that the `F`, `A`, and odd read-outs obey; `h = 12` needed 11.5 million steps. (3) Height-direction periods by the order-`(2w-2)` recurrence with characteristic polynomial `(x+1)^w (x-1)^{w-2}`, seeded with exact `P(k,w)` for `k < 2w-2` and checked exactly for four further terms, run mod 9 to `k = 6000`; residues re-checked against exact `F(w,h)` for `w <= 6`, `h < 20`. (4) PE 502 targets: `den_k` built by the `num/den` polynomial recurrence over `Z/9`, initial `P(k, 0..k)` by series division, `x^L mod rev(den_k)` by square-and-multiply with NumPy convolution and long-division reduction; validated against exact `P(k,L)` for `k <= 6`, `L <= 14` and against `F(4,2), F(13,10), F(10,13), F(100,100)`; `F(10^12,100)` re-derived by binary powering of the 400-state transfer matrix over `Z/9`; `P(k,100)` at `k = 250, 251, 400` agrees between the `k`-direction recurrence and the `L`-direction Kitamasa; `P(k,100) mod 9` has period 1458 in `k` and reduction of `10^12` mod 1458 reproduces the Kitamasa residues. (5) Small counts: every cell with `A <= 20000`, `w >= 3`; residue mod 9; signed representation by a dictionary of `x^3 + y^3` for `|x|, |y| <= 1000` probed at `n - z^3`; a second pass with `max(|x|,|y|,|z|) <= 15000` for every admissible count below 20000 in any table that the first missed (ten found) and a third with `|x| <= |y| <= |z| <= 50000` for the eight below 1000 (one found, `276 = odd(3,11) = odd(3,24) = 2396^3 + 15131^3 + (-15151)^3`); every representation printed was re-multiplied exactly. (6) Positive cubes: all cells with `A <= 10^9`, `3 <= w <= 30` (19,132 cells), tested against a set of `a^3 + b^3 <= 10^9` (439,959 values) for three positive cubes, membership for two, exact cube roots for cubes and cube `+-1`, and a `y`-loop for differences of two cubes below `10^7`; density of sums of three positive cubes by a boolean sieve to `10^8`. (7) Height-2 row: `F(w,2)` for `w <= 48` against `2^{w-1} + eps_w 2^{floor((w-1)/2)}` and against the cosine form; cube / `2 c^3` / `4 c^3` / two-cube classification per `w mod 24`; `F(2p,2) = 2^{p-1}(2^p - 1)` for `p = 3, 7, 11, 19, 23, 31` and the `p = 5, 13, 17` counterexamples; `C(2^p, 2) = 2^{p-1}(2^p - 1)` for `p = 2, 3, 5, 7, 13`. (8) Width-3 column: SymPy interpolation on even and odd `h` separately for `F(3,h)`, `odd(3,h)`, `F(4,h)`, `odd(4,h)`; the `F(3,h)` forms re-checked for `h <= 30`; triangular residues mod 9 over `n < 100`. All quoted numbers are the scripts' printed output.
+[^1]: https://en.wikipedia.org/wiki/Sums_of_three_cubes (read 2026-10-16) - the obstruction modulo 9 and "It is unknown whether this necessary condition is sufficient"; Elsenhans and Jahnel (2009) left "only 33, 42, 74, 114, 165, 390, 579, 627, 633, 732, 795, 906, 921, and 975 as open problems in 2009 for n ≤ 1000"; Heath-Brown (1992) "conjectured that every n unequal to 4 or 5 modulo 9 has infinitely many representations as sums of three cubes"; "Booker also presented a representation for 906" with the triple in the table; "The only remaining unsolved cases up to 1,000 are the seven numbers 114, 390, 627, 633, 732, 921, and 975".
+[^2]: https://oeis.org/A080860, https://oeis.org/A014105, https://oeis.org/A000384, https://oeis.org/A000217 (read 2026-10-16) - "a(n) = 10*n^2 + 5*n + 1" with data `1, 16, 51, 106, 181, 276, …`; "Second hexagonal numbers: a(n) = n*(2*n + 1)"; "Hexagonal numbers: a(n) = n*(2*n-1)"; "Triangular numbers".
+[^exec]: Verified by execution (Python 3.11 with NumPy and SymPy, 2026-10-16). `P(k, L)` by the column-height dynamic program with prefix sums, checked against enumeration of all towers for `k ≤ 3`, `L ≤ 5`; `A^e(w, h)` from Equation (1) of castle-counting-formula; `P(k, 3) = (−1)^k (k+1)^2` for `k < 60`, the width-3 closed forms for `h ≤ 200`, the height-2 form for `w ≤ 60`. Periods in the width: the state of the dynamic programs for `P(h−1, ·)`, `P(h−2, ·)`, `h^w` and `(h−1)^w` evolves linearly over `Z/9`; each period `N` was checked by testing `c·T^j (T^N − I) s = 0` for `j` up to the state dimension (enough by the Cayley-Hamilton theorem, since the characteristic polynomial of `T` is monic) and minimality by the same test at `N/q` for each prime `q | N`; residue counts from the sequence over one period (11,514,360 terms at `h = 12`); the mod-3 periods the same way. Periods in the height: `P(k, w)` on each parity class from the Newton expansion of its values at `k ≤ 2w + 1` (differences of order `w + 1` vanish; checked against the dynamic program beyond the interpolation range for `w ≤ 8`), the period of `A^e(w, ·) mod 9` read off a sequence of twelve candidate periods. Census: all 19,131 cells with `A ≤ 10^9`, `w ≥ 3`, `h ≥ 2`. Targets: matrix powers over `Z/9` for `A^e(10^12, 100)`, the dynamic program over `Z/9` for `A^e(10000, 10000)`, exact Newton evaluation of the degree-100 parity polynomials for `A^e(100, 10^12)`. Representations: `x^3 + y^3` for `|x| ≤ |y| ≤ 1000` probed at `n − z^3`; deeper searches with `max(|x|, |y|, |z|) ≤ 15000` and `≤ 50000` through `x + y = d`, `d | n − z^3`, `x y = (d^2 − (n − z^3)/d)/3` and an exact square-root test; every printed triple re-multiplied exactly. Positive cubes: a boolean sieve of `a^3 + b^3 + c^3 ≤ 10^8`; the set of `x^3 + y^3 ≤ 10^9` for two cubes; exact cube roots; differences `y^3 − x^3 < 10^7`.
