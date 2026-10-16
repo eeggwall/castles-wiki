@@ -48,12 +48,18 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
   lines (A001263, A271942; the t-core family A005408 / A005891 / A063490):
   `raw/oeis-pe502/xrefs/A160747-tower.md`, checked by `bin/python/tower_t_cores.py`
   (`wiki/pages/tower-narayana-polynomial.md`).
+- [~] **A063490 castles of width 4 and 5-cores** (submitted 2026-10-16), the A160747 form at
+  `t = 5`; offset 1 needs no shift: `a(n)` = castles of width 4 with `n` blocks = 5-cores with
+  `n − 1` corners. Formula block: the numerator `x(1 + 6x + 6x^2 + x^3)` (row 4 of A001263),
+  Cho et al.'s Prop. 3.4 sum, `a(n) = A271942(n+4, 4)`. The PE 502 link, `Cf. A001263, A064788,
+  A185505, A271942.` (extends the existing line) and the t-core family line:
+  `raw/oeis-pe502/xrefs/A063490-tower.md`, checked by `bin/python/tower_t_cores.py`.
 
 ### 2. Ready to submit (drafted and checked, in order)
 
 1. [ ] **Castles by blocks = t-cores by corners, Narayana numerator** (formerly tier 2), in
-   the A160747 form (castle wording, PE 502 link, Cho et al.): A063490 next (width 4,
-   5-cores), then A005891 (width 3, 4-cores) (`raw/oeis-pe502/xrefs/*-tower.md`;
+   the A160747 form (castle wording, PE 502 link, Cho et al.): A005891 next (width 3,
+   4-cores; draft still in the old tower form) (`raw/oeis-pe502/xrefs/*-tower.md`;
    `wiki/pages/tower-narayana-polynomial.md`). The A001263 numerator formula
    `Sum_k N(w,k) C(b+w-k, w-1)` waits for a proof at general `w`: Cho et al. prove the
    block-indexed sum `Sum_i N(b,i) C(w+1+2b-2i, 2b)`, not this width-indexed one.

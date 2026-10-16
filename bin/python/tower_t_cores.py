@@ -1,6 +1,6 @@
 # Towers of width w by blocks vs. (w+1)-core partitions by corners (Cho-Huh-Nam-Sohn, arXiv:2205.15554,
-# Thm 3.3 and Prop 3.4), the Narayana-numerator formula, A160747 and A271942.
-# Drafts: raw/oeis-pe502/xrefs/A160747-tower.md.  Needs sympy; A271942 b-file path as argv[1] (optional).
+# Thm 3.3 and Prop 3.4), the Narayana-numerator formula, A160747, A063490 and A271942.
+# Drafts: raw/oeis-pe502/xrefs/A160747-tower.md, A063490-tower.md.  Needs sympy; A271942 b-file path as argv[1] (optional).
 import sys
 from itertools import product
 from math import comb
@@ -29,26 +29,36 @@ for w, B in [(1, 12), (2, 12), (3, 12), (4, 12), (5, 12), (6, 9)]:
     assert t[1:] == [cc(w + 1, b) for b in range(1, B + 1)], w
     print(f"w={w}: towers by blocks b<={B} == Narayana form == cc({w+1}, b): {t[:8]} ...")
 
-# 2. A160747 (data from the entry) == towers of width 5; closed form == cc(6, m) symbolically
-A160747 = [1, 15, 85, 295, 771, 1681, 3235, 5685, 9325, 14491, 21561, 30955, 43135, 58605, 77911, 101641,
-           130425, 164935, 205885, 254031, 310171, 375145, 449835, 535165, 632101, 741651, 864865, 1002835,
-           1156695, 1327621, 1516831, 1725585, 1955185, 2206975]
-assert towers(5, 12) == A160747[:13]
-castles5 = [0] * 14  # castles of width 5 (column heights >= 1) by blocks; blocks = h(1) + rises
-for h in product(range(1, 14), repeat=5):
-    b = blocks(h)
-    if b <= 13: castles5[b] += 1
-assert castles5[1:] == A160747[:13]
-assert A160747 == [narayana_form(5, n) for n in range(len(A160747))]
+# 2. entry data == castles of width t-1 by blocks == Narayana form; closed form == cc(t, m) symbolically.
+#    data[j] is the term for j corners and j + 1 castle blocks (A160747 offset 0, A063490 offset 1).
 m = sp.symbols('m')
+ENTRIES = {  # name: (t, data from the entry, closed form in the number of corners m)
+    'A160747': (6, [1, 15, 85, 295, 771, 1681, 3235, 5685, 9325, 14491, 21561, 30955, 43135, 58605, 77911,
+                    101641, 130425, 164935, 205885, 254031, 310171, 375145, 449835, 535165, 632101, 741651,
+                    864865, 1002835, 1156695, 1327621, 1516831, 1725585, 1955185, 2206975],
+                1 + sp.Rational(7, 4) * m * (m + 1) * (m**2 + m + 2)),                       # Mathar, n = m
+    'A063490': (5, [1, 10, 40, 105, 219, 396, 650, 995, 1445, 2014, 2716, 3565, 4575, 5760, 7134, 8711,
+                    10505, 12530, 14800, 17329, 20131, 23220, 26610, 30315, 34349, 38726, 43460, 48565,
+                    54055, 59944, 66246, 72975, 80145, 87770, 95864, 104441, 113515, 123100, 133210,
+                    143859, 155061],
+                (2 * (m + 1) - 1) * (7 * (m + 1)**2 - 7 * (m + 1) + 6) / 6),                  # the name, n = m + 1
+}
 Nm = lambda i: sp.binomial(m, i) * sp.binomial(m, i - 1) / m
-cc6 = sum(Nm(i) * sp.binomial(6 + 2 * m - 2 * i, 2 * m) for i in (1, 2, 3))
-closed = 1 + sp.Rational(7, 4) * m * (m + 1) * (m**2 + m + 2)
-assert sp.simplify(sp.expand_func(cc6) - closed) == 0
-print("A160747: data == towers(5) for n<=12 == castles of width 5 with n+1 blocks for n<=12 == Narayana form for all 34 terms;"
-      " cc(6, m) == 1 + 7m(m+1)(m^2+m+2)/4")
+for name, (t, data, closed) in ENTRIES.items():
+    w = t - 1
+    castles = [0] * 14  # castles of width w (column heights >= 1) by blocks; blocks = c(1) + rises
+    for c in product(range(1, 14), repeat=w):
+        b = blocks(c)
+        if b <= 13: castles[b] += 1
+    assert castles[1:] == data[:13] == towers(w, 12), name
+    assert data == [narayana_form(w, j) for j in range(len(data))], name
+    assert data[1:] == [cc(t, j) for j in range(1, len(data))], name
+    cct = sum(Nm(i) * sp.binomial(t + 2 * m - 2 * i, 2 * m) for i in range(1, t // 2 + 1))
+    assert sp.simplify(sp.expand_func(cct) - closed) == 0, name
+    print(f"{name}: data == castles of width {w} with j+1 blocks == towers for j<=12; == Narayana form and"
+          f" cc({t}, j) for all {len(data)} terms; cc({t}, m) == closed form symbolically")
 
-# 3. 6-cores with m corners by direct enumeration of partitions (corners = distinct parts)
+# 3. t-cores with m corners by direct enumeration of partitions (corners = distinct parts)
 def partitions(n, mx=None):
     if mx is None: mx = n
     if n == 0: yield (); return
@@ -60,16 +70,21 @@ def hooks(p):
     return [p[i] - j - 1 + conj[j] - i - 1 + 1 for i in range(len(p)) for j in range(p[i])]
 
 S, M = 60, 3
-count, biggest = [0] * (M + 1), [0] * (M + 1)
+count = {name: [0] * (M + 1) for name in ENTRIES}
+biggest = {name: [0] * (M + 1) for name in ENTRIES}
 for n in range(S + 1):
     for p in partitions(n):
         k = len(set(p))
-        if k <= M and 6 not in hooks(p):
-            count[k] += 1; biggest[k] = max(biggest[k], n)
-assert count == A160747[:M + 1], count
-print(f"6-cores with m corners, m<={M}, all sizes <= {S}: {count} (largest sizes {biggest}) == A160747")
+        if k > M: continue
+        hs = set(hooks(p))
+        for name, (t, _, _) in ENTRIES.items():
+            if t not in hs:
+                count[name][k] += 1; biggest[name][k] = max(biggest[name][k], n)
+for name, (t, data, _) in ENTRIES.items():
+    assert count[name] == data[:M + 1], (name, count[name])
+    print(f"{t}-cores with m corners, m<={M}, all sizes <= {S}: {count[name]} (largest sizes {biggest[name]}) == {name}")
 
-# 4. A160747(n) == A271942(n+6, 5): bargraphs of width 5 and semiperimeter n+6 (heights c_i + 1)
+# 4. data[j] == A271942(t + j, t - 1): a castle is a bargraph, semiperimeter = width + blocks = (t-1) + (j+1)
 if len(sys.argv) > 1:
     T = {}
     rows = [tuple(map(int, l.split())) for l in open(sys.argv[1]) if l.strip() and not l.startswith('#')]
@@ -77,5 +92,6 @@ if len(sys.argv) > 1:
     while i + s - 1 <= len(vals):  # row s (s >= 2) has s - 1 entries, k = 1..s-1
         for k in range(1, s): T[(s, k)] = vals[i + k - 1]
         i += s - 1; s += 1
-    assert all(T[(n + 6, 5)] == A160747[n] for n in range(len(A160747)))
-    print(f"A271942(n+6, 5) == A160747(n) for n < {len(A160747)}")
+    for name, (t, data, _) in ENTRIES.items():
+        assert all(T[(t + j, t - 1)] == data[j] for j in range(len(data))), name
+        print(f"{name}: term j == A271942({t} + j, {t - 1}) for all {len(data)} terms")

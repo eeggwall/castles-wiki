@@ -4,6 +4,9 @@ w=3: towers by blocks b<=12 == Narayana form == cc(4, b): [1, 6, 16, 31, 51, 76,
 w=4: towers by blocks b<=12 == Narayana form == cc(5, b): [1, 10, 40, 105, 219, 396, 650, 995] ...
 w=5: towers by blocks b<=12 == Narayana form == cc(6, b): [1, 15, 85, 295, 771, 1681, 3235, 5685] ...
 w=6: towers by blocks b<=9 == Narayana form == cc(7, b): [1, 21, 161, 721, 2331, 6083, 13663, 27483] ...
-A160747: data == towers(5) for n<=12 == castles of width 5 with n+1 blocks for n<=12 == Narayana form for all 34 terms; cc(6, m) == 1 + 7m(m+1)(m^2+m+2)/4
+A160747: data == castles of width 5 with j+1 blocks == towers for j<=12; == Narayana form and cc(6, j) for all 34 terms; cc(6, m) == closed form symbolically
+A063490: data == castles of width 4 with j+1 blocks == towers for j<=12; == Narayana form and cc(5, j) for all 41 terms; cc(5, m) == closed form symbolically
 6-cores with m corners, m<=3, all sizes <= 60: [1, 15, 85, 295] (largest sizes [0, 9, 27, 54]) == A160747
-A271942(n+6, 5) == A160747(n) for n < 34
+5-cores with m corners, m<=3, all sizes <= 60: [1, 10, 40, 105] (largest sizes [0, 6, 18, 36]) == A063490
+A160747: term j == A271942(6 + j, 5) for all 34 terms
+A063490: term j == A271942(5 + j, 4) for all 41 terms
