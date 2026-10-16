@@ -1,11 +1,11 @@
 ---
 title: "PE 502: Observations"
 category: Sources
-summary: The observations subpage — the crux (sibling sub-blocks don't interact), the parity-sign trick, why the even-block clause is almost the entire difficulty, verified factorizations, and lessons learned.
+summary: The Observations subpage lists six facts about the castle count - towers on different blocks of a row are independent, T(k, L) = (k+1)^L, the even-block count as half the sum of an unsigned and a signed count, the count A(w, h) = h^w − (h−1)^w without the even-block condition, the bare-minimum step string at odd height, and the factorizations of two checkpoint values - and closes with four lessons on method.
 tags: [project-euler, castle, observations, lessons, source, subpage]
 sources: [project-euler-502-observations]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Project Euler 502 (PE 502): Observations
@@ -16,64 +16,47 @@ updated: 2026-09-28
 
 ## Summary
 
-This subpage lists what the hub calls "the simplifying facts and lessons that cracked the problem open." Its headline claim is the crux: **two sibling blocks in the same row generate towers that never interact** — the parent-row gap is automatic — and this single fact, which "took years to see," is what makes the problem tractable.[^1] In this wiki that independence is captured as a structural property of the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] (each `R` is spent once, so siblings cannot interfere). Independence plus the binary-string bijection gives the closed form `T(k,L) = (k+1)^L` for towers of height ≤ *k* above a length-*L* block.[^2]
-
-The page also restates three points from the other subpages: the even-block count is enforced by the parity-sign trick `(A + P)/2` (unsigned total `A`, signed count `P` with weight `(−1)^{blocks}`) — "a symmetry trick that recurs in many combinatorial-enumeration problems" (see [[castle-sign](pages/castle-sign.md)]);[^3] the **"even number of blocks" clause is almost the entire difficulty**, since without it the answer collapses to `h^w − (h−1)^w`;[^4] and odd *h* forces two extra rows in the bare-minimum string to keep the block count even (see [[urd-step-strings](pages/urd-step-strings.md)]).[^5]
-
-Finally it records two concrete factorizations (both verified during ingest) and a short list of lessons learned — including that **Berlekamp–Massey** turns an unknown-recurrence sequence into a solved problem (see [[berlekamp-massey](pages/berlekamp-massey.md)]).[^6][^7]
+This subpage states six facts about the castle count, each in a few lines, and leaves the proofs to the other subpages. The source writes `F(w, h)` for the even-block count, which the wiki writes `A^e(w, h)` ([[castle-notation](pages/castle-notation.md)]). It closes with four lessons on method, one of which names the Berlekamp-Massey algorithm, which finds the shortest linear recurrence that generates a given sequence ([[berlekamp-massey](pages/berlekamp-massey.md)]).[^1]
 
 ## Key Takeaways
 
-- **The crux — sub-block independence.** Sibling blocks in the same row spawn non-interacting towers (the separating gap is automatic); this is "the single fact that makes the problem tractable, and it took years to see."[^1] Captured on [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)].
-- **`T(k,L) = (k+1)^L`** follows from the binary-string bijection plus that independence.[^2]
-- **Parity via signs:** even-block-count `= (A + P)/2`, a general symmetry trick (unsigned total `A`, signed count `P` weighting each configuration by `(−1)^{blocks}`).[^3] See [[castle-sign](pages/castle-sign.md)].
-- **The even-block clause is almost the whole difficulty:** drop it and the count is just `h^w − (h−1)^w` (all castles of height ≤ *h* minus those of height ≤ *h*−1).[^4]
-- **Verified factorizations:** `F(13,10) = 3729050610636 = 2²·3·13·1163·20553887` and `F(10,13) = 37959702514 = 2·102859·184523` (both confirmed by factoring during ingest).[^6]
+- **Towers on different blocks are independent.** "Two sibling blocks in the same row generate towers that never interact (the parent-row gap is automatic)."[^2] Every block lies within the span of the block below it, so the towers on two blocks of a row stand over disjoint runs of columns, separated by the gap between the two blocks, and are chosen independently.
+- **`T(k, L) = (k+1)^L`**, the number of towers of height at most `k` on a base of length `L`, follows from the binary-string bijection and this independence; the source points to the Solution subpage for the proof.[^3] The proof is also on [[castle-counting-formula](pages/castle-counting-formula.md)], the section *Tower count*.
+- **The even-block count from a signed count.** The source writes the even-block count as `(A + P)/2`, with `A` "the unsigned total" and `P` "the signed count with `(−1)^{blocks}`".[^4] In the wiki's symbols, among the `T(k, L)` towers of height at most `k` on a base of length `L` the even-block ones number `(T + P)/2`, and among the castles of width `w` and height `h` the even-block ones number `A^e = (A + S)/2`, with `S` the signed count over castles. The two signs are opposite, because a castle has one block more than its towers ([[castle-sign](pages/castle-sign.md)]).
+- **The count without the even-block condition** is "just `h^w − (h−1)^w`: all castles of height at most `h` minus those of height at most `h − 1`", the count `A(w, h)`.[^5]
+- **Bare-minimum strings at odd height.** The source notes that at odd `h` the bare-minimum step string needs extra steps to make the block count even.[^6] The bare-minimum string `U^h R D^h` of the Representations subpage is the single column of height `h`, with `h` blocks. For odd `h` that subpage inserts one more `U … D` pair and two more `R` steps, as in `UUUUU R D R U R DDDDD` at `h = 5`: the castle `(5, 4, 5)` of width 3, with `h + 1 = 6` blocks ([[urd-step-strings](pages/urd-step-strings.md)]).[^7]
+- **Two factorizations** of checkpoint values:[^8]
 
-## Lessons learned (from the source)
-
-The source lists four methodology lessons, recorded here as its own commentary:[^7]
-
-- Enumerate small cases before trusting a formula.
-- When counts run past 10¹², stop counting and start *generating* (functions).
-- The right representation collapses the problem; the wrong one hides it.
-- [[berlekamp-massey](pages/berlekamp-massey.md)] turns "I have a sequence, I don't know the recurrence" into a solved problem.
-
-## Where each observation leads
-
-Each of the source's five observations connects to later pages.
-
-- **The crux (sub-block independence)** is captured on [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)], taught end-to-end on [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], and is the induction step of the [[binary-string-bijection](pages/binary-string-bijection.md)] proof of `T(k,L) = (k+1)^L`.
-- **"A symmetry trick that recurs"** is the `m = 2` case of a general extraction: [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] replaces the sign by an `m`-th root of unity, [[block-count-constraints](pages/block-count-constraints.md)] places it in a residue / sparse / semigroup trichotomy, [[generating-functions-topic](pages/generating-functions-topic.md)] shows the exponential generating function (EGF) twin `(e^x + e^{−x})/2`, and [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] gives the elementary anchor - `(1 ± sgn)/2` peeling `A_n` out of `S_n`.
-- **The clause in bits.** [[castle-entropy](pages/castle-entropy.md)] shows `log₂ F(w,h) ≈ w·log₂ h − 1`: the even-block clause halves the count, one bit. The unsigned baseline `h^w − (h−1)^w` is the any-parity count `A(w,h)` on [[castle-counting-function](pages/castle-counting-function.md)], the difference-of-powers rows A000225 (`h = 2`), A001047 (`h = 3`), A005061, A005060, A005062 (`4^n − 3^n`, `5^n − 4^n`, `6^n − 5^n`) indexed on [[oeis-index](pages/oeis-index.md)]; its `h = 3` even-block part `F(w,3)` is the new sequence on [[new-sequence-fw3](pages/new-sequence-fw3.md)].
-- **The two factorizations** are point samples of what [[mod-p-observatory](pages/mod-p-observatory.md)] studies systematically (`F(w,h) mod p` is eventually periodic in each direction).
-- **The Berlekamp–Massey lesson** is run in both directions on [[recurrence-discovery](pages/recurrence-discovery.md)], routes the `h > 15000` targets on [[castle-count-algorithms](pages/castle-count-algorithms.md)], and turns adversarial on [[castle-cryptography](pages/castle-cryptography.md)], where the same algorithm is the linear feedback shift register (LFSR) attack that reconstructs a secret castle from its count stream.
+  ```
+  A^e(13, 10)  =  3 729 050 610 636  =  2² · 3 · 13 · 1163 · 20553887
+  A^e(10, 13)  =  37 959 702 514     =  2 · 102859 · 184523
+  ```
 
 ## Entities & Concepts
 
-- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — where the sub-block-independence crux is captured.
-- [[castle-sign](pages/castle-sign.md)] — the `(A+P)/2` parity-sign trick.
-- [[castle-counting-formula](pages/castle-counting-formula.md)] — `T(k,L)=(k+1)^L`, the `h^w−(h−1)^w` baseline, and the verified factorizations.
-- [[berlekamp-massey](pages/berlekamp-massey.md)] — the recurrence-recovery method named in the lessons.
-- [[urd-step-strings](pages/urd-step-strings.md)] — bare-minimum strings and the odd-*h* parity fix.
-- [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[binary-string-bijection](pages/binary-string-bijection.md)] — the crux taught, and the induction it powers.
-- [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] / [[block-count-constraints](pages/block-count-constraints.md)] / [[generating-functions-topic](pages/generating-functions-topic.md)] / [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the parity trick generalized, twinned, and anchored.
-- [[castle-entropy](pages/castle-entropy.md)] / [[castle-counting-function](pages/castle-counting-function.md)] / [[oeis-index](pages/oeis-index.md)] / [[new-sequence-fw3](pages/new-sequence-fw3.md)] — the one-bit price of the even clause and the difference-of-powers baseline.
-- [[mod-p-observatory](pages/mod-p-observatory.md)] — the factorizations studied systematically, as residues.
-- [[recurrence-discovery](pages/recurrence-discovery.md)] / [[castle-count-algorithms](pages/castle-count-algorithms.md)] / [[castle-cryptography](pages/castle-cryptography.md)] — Berlekamp–Massey in recurrence discovery, in the solution, and as an attack.
+- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the grammar of tower words, in which each `R` is spent once, so every block lies within the span of the block below it.
+- [[binary-string-bijection](pages/binary-string-bijection.md)] - the first-row binary strings in the induction proof of `T(k, L) = (k+1)^L`.
+- [[castle-counting-formula](pages/castle-counting-formula.md)] - three proofs of `T(k, L) = (k+1)^L` and the formula for `A^e(w, h)`.
+- [[castle-sign](pages/castle-sign.md)] - the splits `(T ± P)/2` of towers and `(A ± S)/2` of castles by the parity of the block count.
+- [[castle-counting-function](pages/castle-counting-function.md)] - the counts `A`, `A^e` and `A^o`, and the rows of `A(w, h) = h^w − (h−1)^w` in the OEIS.
+- [[urd-step-strings](pages/urd-step-strings.md)] - the step-string encoding and the bare-minimum string.
+- [[castle-entropy](pages/castle-entropy.md)] - the information content `log₂ A^e(w, h)` of a castle; the even-block condition lowers `log₂ A(w, h)` by about one bit.
+- [[berlekamp-massey](pages/berlekamp-massey.md)] - the algorithm named in the last lesson.
+- [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - a seminar on the tower count and the sign.
 
-Also linked from the source: [[project-euler-502-solution](pages/project-euler-502-solution.md)].
+Also linked from the source: [[project-euler-502-solution](pages/project-euler-502-solution.md)], [[project-euler-502-representations](pages/project-euler-502-representations.md)].
 
 ## Relation to Other Wiki Pages
 
-This page adds little new machinery but supplies the *motivation and attribution* behind machinery already in the wiki: it names sub-block independence as the crux behind the product form, frames the parity-sign identity as a general technique, and isolates the even-block clause as the source of the difficulty. Its lessons and the Berlekamp–Massey pointer point to [[project-euler-502-solution](pages/project-euler-502-solution.md)] and [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)].
+The observations are proved elsewhere on the wiki: the independence of towers and `T(k, L) = (k+1)^L` on [[project-euler-502-solution](pages/project-euler-502-solution.md)] and [[castle-counting-formula](pages/castle-counting-formula.md)], and the parity split on [[castle-sign](pages/castle-sign.md)].
 
 ## Footnotes
 
-[^1]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Sub-block independence" L5 — "Two sibling blocks in the same row generate towers that never interact (the parent-row gap is automatic). This is the single fact that makes the problem tractable, and it took years to see."
-[^2]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"T(k, L) = (k+1)^L" L7-9 — "The closed form for the number of towers of height at most k above a block of length L. Falls out of the binary-string bijection plus independence."
-[^3]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Parity via signs" L13 — "Even-block-count is enforced by (A + P)/2, where A is the unsigned total and P is the signed count with (-1)^{blocks}. A symmetry trick that recurs in many combinatorial-enumeration problems."
-[^4]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"The \"even number of blocks\" clause is almost the entire difficulty" L17 — "Without it, the answer is just h^w - (h-1)^w: all castles of height at most h minus those of height at most h-1."
-[^5]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Bare-minimum strings" L21 — "Odd h needs two extra rows to make the block count even. This shows how the parity constraint bites even in the naive enumeration path."
-[^6]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Useful factorizations" L25-31 — "F(13,10) = 3729050610636 = 2^2 × 3 × 1163 × 13 × 20553887" and "F(10,13) = 37959702514 = 2 × 102859 × 184523"; both re-factored during ingest and confirmed.
-[^7]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Lessons learned" L35-38 — "Enumerate small cases before trusting a formula. When counts run past 10^{12}, stop counting and start generating (functions). The right representation collapses the problem; the wrong one hides it. Berlekamp-Massey turns 'I have a sequence, I don't know the recurrence' into a solved problem."
+[^1]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Lessons learned" L35-38 [synthesis] - four lessons on method; the last is "Berlekamp-Massey turns \"I have a sequence, I don't know the recurrence\" into a solved problem."
+[^2]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Sub-block independence" L5 - "Two sibling blocks in the same row generate towers that never interact (the parent-row gap is automatic)."
+[^3]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"T(k, L) = (k+1)^L" L9 - "The closed form for the number of towers of height at most k above a block of length L. Falls out of the binary-string bijection plus independence. The proof lives on Project Euler/502/Solution."
+[^4]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Parity via signs" L13 - "Even-block-count is enforced by (A + P)/2, where A is the unsigned total and P is the signed count with (-1)^{blocks}."
+[^5]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"The \"even number of blocks\" clause is almost the entire difficulty" L17 - "Without it, the answer is just h^w - (h-1)^w: all castles of height at most h minus those of height at most h-1."
+[^6]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Bare-minimum strings" L21 [synthesis] - at odd `h` the bare-minimum string must be extended to make the block count even, with a pointer to the Representations subpage.
+[^7]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Step 1 Bare Minimum String" L153-165 - "for castles of height 4 and width 5, the bare minimum string would be 4 Us, 4 Ds, and one R to separate them", "we insert an extra U and an extra D, and two extra Rs to separate them. For example, for castles of height 5 ... U U U U U R D R U R D D D D D".
+[^8]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Useful factorizations" L25-31 - "F(13,10) = 3729050610636 = 2^2 \times 3 \times 1163 \times 13 \times 20553887" and "F(10,13) = 37959702514 = 2 \times 102859 \times 184523". Both factorizations checked with SymPy `factorint` (2026-10-16).
