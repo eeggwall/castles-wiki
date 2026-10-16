@@ -1,32 +1,30 @@
 ---
 title: Fractional width and fractional height
 category: Analyses
-summary: F(w,h) is C-finite in the width and a quasi-polynomial in the height, so both arguments interpolate to real values, and the two directions behave differently. In the width, every eigenvalue of the signed tower recurrence char_k for k <= 8 is either a positive real or one of a complex-conjugate pair (no negative real root), so on the principal branch F(w,h) is a real function of real w for every h <= 9: F(w,2) = (2^{w+1} - 2^{(w+3)/2} cos(pi(w+1)/4))/4, and F(2.5,3) = 0.689, F(3.5,4) = 60.707. In the height, P(k,L) = (-1)^k A_L(k) + B_L(k) and (-1)^k is +-i at half-integers, so F(w, m + 1/2) = (A - B_w(h-1) + B_w(h-2))/2 + i (-1)^m (A_w(h-1) + A_w(h-2))/2 is complex: F(4, 2.5) = 16.75 + 6i, with the alternating part of the parity clause as the imaginary part. The half-column problem R^2 = M has OEIS answers: rules that are squares of 0/1 rules are 8, 88, 3245 at heights 2, 3, 4 (A226321); rules with all eigenvalues real and nonnegative are 13, 261, 15418 (A086510); rules with all eigenvalues positive are 3, 25, 543 (A003024, DAGs, so I + nilpotent); among those, the rules whose principal half-column has nonnegative weights are 3, 19, 219, exactly the partial orders on the heights (A001035) for h <= 4. The nondecreasing rule is the chain poset and its half-column is the (1-x)^{-1/2} Toeplitz matrix with entries C(2k,k)/4^k. The free strip J has the half-column J/sqrt(h); every metallic strip on the wiki (the 1-smooth tridiagonal, the ridge rule J - D at heights 3 and 4) has a simple negative eigenvalue and therefore no real square root.
+summary: A^e(w, h) is a sum of exponentials in the width and, for w <= 12 (computed), a quasi-polynomial in the height, so both arguments interpolate to real values. In the width, char_k has no negative real root for k <= 40, so on the principal branch of the logarithm A^e(w, h) is a real function of real w for h <= 41, and it is the only interpolant of exponential type below pi in the imaginary direction (Carlson's theorem); A^e(w, 2) = (2^{w+1} - 2^{(w+3)/2} cos(pi(w+1)/4))/4. In the height the only eigenvalues are +1 and -1, and -1 lies on the branch cut: the principal branch gives the complex values A^e(w, m + 1/2) = (A - B_w(h-1) + B_w(h-2))/2 + i(-1)^m (A_w(h-1) + A_w(h-2))/2, for example A^e(4, 2.5) = 16.75 + 6i, the conjugate branch gives their conjugates, and cos(pi k) gives a real interpolant; all three have type pi, so none is singled out. The half-column problem R^2 = M: 8, 88, 3245 rules at heights 2, 3, 4 are squares of 0/1 rules (A226321); 13, 261, 15418 have all eigenvalues real and nonnegative (A086510); 3, 25, 543 have all eigenvalues positive (A003024, I + N with N a DAG); among those, the rules whose principal square root has nonnegative entries are exactly the partial orders, 3, 19, 219, 4231 at heights 2 to 5 (A001035). The 1-smooth strip and every ridge rule J - D have a simple negative eigenvalue and so no real square root.
 tags: [analysis, castle, fractional-calculus, interpolation, matrix-power, branch-cut, quasi-polynomial, c-finite, eigenvalues, transfer-matrix, square-root, embedding, metallic-means, computation, verification]
 sources: [project-euler-502-solution]
 created: 2026-09-19
-updated: 2026-10-02
+updated: 2026-10-16
 ---
 
 # Fractional width and fractional height
 
-The count `F(w, h)` is defined for integer width and integer height, but it is built from objects that make sense off the integers. In the width it is a **C-finite sequence**, a sum of exponentials `c_j lambda_j^w` in the eigenvalues of a transfer matrix, and `lambda^w` is meaningful for real `w` once a branch of `log lambda` is chosen. In the height it is a **quasi-polynomial**, `(-1)^h` times a polynomial plus a polynomial, and `(-1)^h = e^{i pi h}` is meaningful for real `h` too. This page interpolates both arguments, finds that the two directions behave differently, and traces the difference to a single fact about where the parity clause puts its eigenvalues. It then asks which strip rules `M` are the square of a finer rule `R`, and answers it for the strips on the wiki. Companion to [[fractional-block-count](pages/fractional-block-count.md)], which interpolates the statistic; this page interpolates the argument.
-
-Every number below was computed while writing and re-run for the final tables; the scripts are described in the execution footnote.[^exec]
+The count `A^e(w, h)` of even-block castles of width `w` and height `h` (the problem statement's `F(w, h)`; [[castle-counting-function](pages/castle-counting-function.md)]) is defined for integers, but its closed form is built from functions that make sense at real arguments. In the width it is a sum of exponentials `c_j lambda_j^w` in the eigenvalues of a transfer matrix, and `lambda^w = exp(w log lambda)` makes sense for real `w` once a branch of `log lambda` is chosen. In the height it is `(-1)^h` times a polynomial plus a polynomial, and `(-1)^h` can likewise be written `exp(h log(-1))`. This page interpolates both arguments and locates the difference between them in the eigenvalue `-1`. It then asks which strip rules `M` are the square of another rule `R`.
 
 ## What is being interpolated
 
-The closed form is[^1]
+The closed form is ([[castle-counting-formula](pages/castle-counting-formula.md)], Equation (1))[^1]
 
 ```
-F(w, h)  =  [ h^w - (h - 1)^w - P(h - 1, w) + P(h - 2, w) ] / 2,
+A^e(w, h)  =  [ h^w - (h - 1)^w - P(h - 1, w) + P(h - 2, w) ] / 2,
 ```
 
-with `P(k, L) = sum (-1)^{blocks}` over towers of height at most `k` on a base of length `L`. The unsigned part `A(w, h) = h^w - (h - 1)^w` is a difference of two exponentials with positive bases in `w` and a polynomial in `h`; it interpolates in both directions without incident and is real everywhere. The signed towers `P(k, L)` satisfy a linear recurrence in each variable separately: order about `k` in `L`, and order about `2L` in `k`.[^2] The `L`-direction recurrence has characteristic polynomial `char_k` whose roots are the eigenvalues of the signed transfer matrix ([[generating-function-gallery](pages/generating-function-gallery.md)]); the `k`-direction recurrence has characteristic polynomial `(x + 1)^L (x - 1)^{L - 2}`, so `P(k, L) = (-1)^k A_L(k) + B_L(k)` with `A_L, B_L` polynomials ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]).
+with `P(k, L) = sum (-1)^{blocks}` over towers of height at most `k` on a base of length `L`. The count `A(w, h) = h^w - (h - 1)^w` of all castles is a difference of two exponentials with positive bases in `w` and a polynomial in `h`. The signed tower count satisfies a linear recurrence in each variable. In `L` it has order `k + 1` and characteristic polynomial `char_k` ([[signed-tower-count](pages/signed-tower-count.md)]). In `k`, for `4 <= L <= 12` (computed), it has characteristic polynomial `(x + 1)^L (x - 1)^{L - 2}`, so `P(k, L) = (-1)^k A_L(k) + B_L(k)` with `A_L`, `B_L` polynomials ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]).[^2]
 
-## Fractional width: real, on the principal branch
+## Fractional width: real on the principal branch
 
-Here `P(k, w)` is the signed tower count `P(k, L)` at base length `L = w`, the castle width, exactly as it enters `F` ([[castle-notation](pages/castle-notation.md)]). Interpolating `P(k, w)` in `w` means writing `P(k, w) = sum_j c_j lambda_j^w` over the roots `lambda_j` of `char_k` (the coefficients `c_j` are fixed by the first `k + 1` integer values) and evaluating `lambda_j^w = exp(w log lambda_j)`. The result is real for all real `w` exactly when every non-real contribution cancels against its conjugate, and that depends on the sign pattern of the roots:
+Here `P(k, w)` is `P(k, L)` at base length `L = w` ([[castle-notation](pages/castle-notation.md)]). For `k <= 8` the roots `lambda_j` of `char_k` are distinct, and `P(k, w) = sum_j c_j lambda_j^w` for every integer `w >= 0`, with the coefficients `c_j` fixed by the first `k + 1` values. Interpolating means evaluating `lambda_j^w = exp(w log lambda_j)` with the principal logarithm, `-pi < arg lambda_j <= pi`. Whether the result is real depends on the signs of the roots:[^exec]
 
 | `k` | degree | positive real roots | negative real roots | complex pairs | factorization of `char_k` |
 |---|---|---|---|---|---|
@@ -39,17 +37,19 @@ Here `P(k, w)` is the signed tower count `P(k, L)` at base length `L = w`, the c
 | 7 | 8 | none | none | 4 | irreducible |
 | 8 | 9 | `4.1740` | none | 4 | `(x^4 - 4x^3 + 12x^2 - 8x + 16)(x^5 - 5x^4 + 8x^3 - 20x^2 + 8x - 16)` |
 
-**No `char_k` for `k <= 8` has a negative real root.**[^exec] In this range odd `k` has no real root at all and even `k` has exactly one real root, positive, the dominant `rho_k`. Complex roots come in conjugate pairs with conjugate coefficients, and on the principal branch `lambda^w` and `conj(lambda)^w` are conjugate for every real `w`, so their sum is real. Therefore **`P(k, w)` is a real function of real `w` for every `k <= 8`, and `F(w, h)` is real for every `h <= 9`.** The imaginary part at `w = 2.5, 3.5, 4.5, 5.5` is zero to machine precision for `k = 1, ..., 6`, and the interpolant reproduces the integer values to `10^{-9}`.[^exec]
+For every `k <= 40`, `char_k` has no real root when `k` is odd and exactly one, positive, when `k` is even (exact root counts).[^exec] So no `char_k` with `k <= 40` has a negative real root. The complex roots come in conjugate pairs with conjugate coefficients, and on the principal branch `lambda^w` and `conj(lambda)^w` are conjugate for every real `w`, so their sum is real. Therefore **`P(k, w)` is a real function of real `w` for every `k <= 40`, and so is `A^e(w, h)` for every `h <= 41`.** For `k <= 8` the imaginary part at `w = 2.5, 3.5, 4.5, 5.5` is below `10^{-40}`, and the interpolant reproduces the integer values to `10^{-33}` for `L <= 11` (40-digit arithmetic).[^exec]
 
-The height-2 case is explicit. The Solution's own derivation gives `P(1, L) = Re((1 + i)^{L+1})` from the eigenvalues `1 +- i` of the `2 x 2` signed matrix,[^3] and `(1 + i)^{n} = 2^{n/2} e^{i pi n / 4}`, so
+**Carlson's theorem** says that an entire function of exponential type that grows at most like `e^{c|y|}` on the imaginary axis for some `c < pi`, and vanishes at every nonnegative integer, is identically zero.[^3] The principal-branch interpolant `sum_j c_j exp(w log lambda_j)` grows like `e^{c|y|}` along `w = iy` with `c = max_j |arg lambda_j| < pi`, since no root is a negative real. Two interpolants of type below `pi` differ by a function of type below `pi` that vanishes at the integers, so the principal one is the only interpolant of type below `pi`. Other branches, `log lambda + 2 pi i n` for a complex root and `log conj(lambda) - 2 pi i n` for its conjugate, keep the interpolant real but add terms of type at least `pi` that vanish at the integers.
+
+The height-2 case is explicit. The Solution derives `P(1, L) = Re((1 + i)^{L+1})` from the eigenvalues `1 +- i` of the `2 x 2` signed matrix,[^4] and `(1 + i)^n = 2^{n/2} e^{i pi n / 4}`, so
 
 ```
-F(w, 2)  =  (2^w - P(1, w)) / 2  =  ( 2^{w+1} - 2^{(w+3)/2} cos(pi (w + 1) / 4) ) / 4,
+A^e(w, 2)  =  (2^w - P(1, w)) / 2  =  ( 2^{w+1} - 2^{(w+3)/2} cos(pi (w + 1) / 4) ) / 4,
 ```
 
-which is `1, 3, 6, 10, 16, 28, 56, 120` at `w = 1, ..., 8` and `4.382` at `w = 2.5`. The cosine is the conjugate pair `(1 +- i)^{w+1}` folded together; it is what makes the parity term oscillate with period 8 in the width (the order-4 hyperbolic family on [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]) and it is real at every real `w`.
+which is `1, 3, 6, 10, 16, 28, 56, 120` at `w = 1, ..., 8` and `4.382` at `w = 2.5`. The cosine is the conjugate pair `(1 +- i)^{w+1}`; it gives the signs of `P(1, w)` their period 8 in the width ([[signed-tower-count](pages/signed-tower-count.md)]).
 
-The interpolated table, principal branch, for `h = 2, ..., 6`:[^exec]
+The interpolated values on the principal branch for `h = 2, ..., 6`:[^exec]
 
 | `h` | `w = 2` | `2.5` | `3` | `3.5` | `4` | `4.5` | `5` |
 |---|---|---|---|---|---|---|---|
@@ -59,19 +59,24 @@ The interpolated table, principal branch, for `h = 2, ..., 6`:[^exec]
 | 5 | 0 | 1.742 | 10 | 38.456 | 122 | 345.039 | 906 |
 | 6 | 11 | 29.912 | 76 | 185.918 | 448 | 1080.352 | 2630 |
 
-The zeros at `w = 2` for odd `h` are structural: a width-2 castle of height `h` has exactly `h` blocks, so `F(2, h) = 0` for odd `h` and `F(2, h) = 2h - 1` for even `h`. The interpolant passes through those zeros and is positive on either side; nothing forces it to stay nonnegative in general, and whether `F(w, h) >= 0` for all real `w >= 2` is not settled here.
+A castle `(a, b)` of width 2 has `max(a, b) = h` blocks, so `A^e(2, h) = 0` for odd `h` and `A^e(2, h) = A(2, h) = 2h - 1` for even `h`; the table passes through these values.
 
-**The branch caveat.** "Real" is a statement about the principal branch. Replacing `log lambda` by `log lambda + 2 pi i n` for one complex root and `log conj(lambda) - 2 pi i n` for its conjugate keeps the interpolant real but adds an oscillation `e^{2 pi i n w}` that vanishes at the integers; there are infinitely many real interpolants and the principal one is the one of smallest exponential type, the choice Carlson's theorem singles out. So the parity clause keeps fractional width real but makes it *non-canonical*: `A(w, h)`, with only positive real bases, has one natural interpolant, and the signed part has a family.
+## Fractional height: complex on the principal branch
 
-## Fractional height: imaginary, unavoidably
-
-In the height direction the only eigenvalues are `+1` and `-1`, and `P(k, L) = (-1)^k A_L(k) + B_L(k)` with `A_L` of degree `L - 1` and `B_L` of degree `L - 3`.[^4] Interpolating in `k` means `(-1)^k = e^{i pi k}`, and at a half-integer `k = m + 1/2` this is `+- i`. There is no conjugate partner to cancel against: `-1` is its own conjugate. So
+In the height the only eigenvalues are `+1` and `-1`, and for `2 <= L <= 8`, `P(k, L) = (-1)^k A_L(k) + B_L(k)` for every `k >= 0`, with `A_L` of degree `L - 1`, `B_L = 0` for `L <= 3`, and `B_L` of degree `L - 3` for `L >= 4` (fitted on even and odd `k` separately and checked for `k <= 33`).[^5] The first cases are
 
 ```
-P(m + 1/2, L)  =  B_L(m + 1/2)  +  i (-1)^m A_L(m + 1/2),
+A_2 = k + 1,   A_3 = (k + 1)^2,   A_4 = (k + 1)(2k + 1)(2k + 3) / 6,   B_4 = (k + 1) / 2,
+A_5 = k (k + 1)^2 (k + 2) / 3,    B_5 = (k + 1)^2.
 ```
 
-and the alternating part moves wholesale onto the imaginary axis. For the small bases, whose quasi-polynomials are `A_2 = k + 1`, `A_3 = (k + 1)^2`, `A_4 = (k + 1)(2k + 1)(2k + 3) / 6` with `B_4 = (k + 1) / 2`:[^exec]
+On the principal branch `log(-1) = i pi`, so `(-1)^k = e^{i pi k}`, which is `i (-1)^m` at `k = m + 1/2`, and
+
+```
+P(m + 1/2, L)  =  B_L(m + 1/2)  +  i (-1)^m A_L(m + 1/2).
+```
+
+The values:[^exec]
 
 | `L` | `P(1/2, L)` | `P(3/2, L)` | `P(5/2, L)` |
 |---|---|---|---|
@@ -81,106 +86,82 @@ and the alternating part moves wholesale onto the imaginary axis. For the small 
 | 5 | `2.25 + 0.9375 i` | `6.25 - 10.9375 i` | `12.25 + 45.9375 i` |
 | 6 | `4 + 0.1875 i` | `20 - 8.3125 i` | `56 + 56.4375 i` |
 
-Pushing this through the closed form, with `h = m + 1/2`:
+In the closed form, with `h = m + 1/2`, `h - 1 = (m - 1) + 1/2` and `h - 2 = (m - 2) + 1/2`:
 
 ```
-F(w, m + 1/2)  =  [ A(w, h) - B_w(h - 1) + B_w(h - 2) ] / 2   +   i (-1)^m [ A_w(h - 1) + A_w(h - 2) ] / 2.
+A^e(w, m + 1/2)  =  [ A(w, h) - B_w(h - 1) + B_w(h - 2) ] / 2   +   i (-1)^m [ A_w(h - 1) + A_w(h - 2) ] / 2.
 ```
 
-At width 4: `F(4, 2.5) = 16.75 + 6 i`, `F(4, 3.5) = 55.25 - 19 i`, `F(4, 4.5) = 129.75 + 44 i`, against `A(4, h) = 34, 111, 260`.[^exec] The imaginary parts are exact: `A_4(3/2) + A_4(1/2) = 10 + 2 = 12`, half of which is `6`. The real part carries the unsigned count and the non-alternating part `B` of the parity clause; the imaginary part is its alternating part `A`. The two polynomials that [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] separates by parity of `k` are separated here by the real and imaginary axes.
+At width 4, `A^e(4, 2.5) = 16.75 + 6 i`, `A^e(4, 3.5) = 55.25 - 19 i` and `A^e(4, 4.5) = 129.75 + 44 i`, against `A(4, h) = 34, 111, 260`.[^exec] The imaginary part at `h = 2.5` is `(A_4(3/2) + A_4(1/2))/2 = (10 + 2)/2 = 6`. The real part carries `A` and the polynomials `B_w`, the imaginary part the polynomials `A_w`.
+
+The principal branch is a choice. The conjugate branch `log(-1) = -i pi` gives the complex conjugate of every value above, and the average of the two branches, `(-1)^k -> cos(pi k)`, gives the real interpolant `A_L(k) cos(pi k) + B_L(k)`. The three interpolants of `(-1)^k` differ by multiples of `sin(pi k)`, which vanishes at the integers, and all three have type exactly `pi` on the imaginary axis, so Carlson's theorem singles out none of them.
 
 ## Why the two directions differ
 
-The asymmetry has one cause. A linear recurrence interpolates to a real function on the principal branch exactly when its **negative real eigenvalues** carry zero coefficient; positive reals are harmless and complex pairs cancel. The unsigned count `A(w, h)` has eigenvalues `h` and `h - 1` in the width and none in the height (it is a polynomial), so it is real both ways. The parity clause adds the signed towers, and their eigenvalues are:
-
-- in the **width**, the roots of `char_k`: complex pairs and one positive real, never a negative real (for `k <= 8`; the general statement is open);
-- in the **height**, exactly `+1` and `-1`, with `-1` carrying the whole alternating polynomial `A_L`.
-
-So the clause adds only a choice of branch to fractional width (real either way) and forces the whole imaginary part of fractional height. The imaginary part `(-1)^m (A_w(h - 1) + A_w(h - 2)) / 2` is a polynomial in `h` of degree `w - 1`.
+The difference is the location of the eigenvalues relative to the branch cut of the logarithm, the negative real axis. In the width, the eigenvalues of `A(w, h)` are `h` and `h - 1`, and those of the signed towers are the roots of `char_k`: one positive real root or none, and complex pairs, but no negative real root for `k <= 40`. Every eigenvalue lies off the cut, so the principal branch gives a real interpolant, and Carlson's theorem makes it the only one of type below `pi`. In the height, `A(w, h)` is a polynomial, but the signed towers have the eigenvalue `-1`, on the cut, carrying the polynomial `A_L`. Each branch of `log(-1)` gives a complex interpolant, a real one needs the average of two branches, and no interpolant is singled out by its type.
 
 ## The half-column problem
 
-A fractional matrix power `M^{1/2}` asks a combinatorial question: is the strip rule `M` ([[castle-strip](pages/castle-strip.md)]) two steps of a finer rule `R`, with `R^2 = M`? If so, a width-`w` strip under `M` is a width-`2w` strip under `R` read at every other column, and `R` is a **half-column** rule. This is the embedding problem for Markov chains (Kingman 1962: which stochastic matrices are `e^{Q}` for a generator `Q`, equivalently have roots of every order) transposed from probabilities to counts.[^5] Three grades of answer, exhaustively for small heights:[^exec]
+Is the strip rule `M` ([[castle-strip](pages/castle-strip.md)]) two steps of another rule `R`, `R^2 = M`? If so, a strip of width `w` under `M` is a strip of width `2w - 1` under `R` read at every other column, and `R` is a **half-column** rule. Exhaustively for small heights:[^exec]
 
-| height | 0/1 rules | squares of a 0/1 rule | all eigenvalues real and `>= 0` | all eigenvalues real and `> 0` | of those, principal half-column with nonnegative weights |
+| height | 0/1 rules | squares of a 0/1 rule | all eigenvalues real and `>= 0` | all eigenvalues real and `> 0` | of those, principal square root with nonnegative entries |
 |---|---|---|---|---|---|
 | 2 | 16 | 8 | 13 | 3 | 3 |
 | 3 | 512 | 88 | 261 | 25 | 19 |
 | 4 | 65536 | 3245 | 15418 | 543 | 219 |
+| 5 | | | | 29281 | 4231 |
 | OEIS | | A226321 | A086510 | A003024 | A001035 |
 
-The eigenvalue columns are exact (SymPy real-root counts on the characteristic polynomial; a floating-point classification is off by a few percent at height 3 and by a fifth at height 4, because many 0/1 matrices are defective). All four columns are known sequences, and three of them carry a combinatorial meaning that transfers directly to strips:[^7][^8][^9][^10]
+The eigenvalue columns are exact (real roots of the integer characteristic polynomials, with multiplicity). All four columns are OEIS sequences:[^6][^7][^8][^9]
 
-- **Squares of 0/1 rules** are A226321, the 0/1 matrices that are squares of 0/1 matrices: half the height-2 rules, a sixth of height 3, a twentieth of height 4. These are the strips that are two steps of a finer 0/1 rule (as integer matrices, so the finer rule has at most one two-step path between any pair of heights).
-- **All eigenvalues real and nonnegative** is A086510. Such a matrix has a real square root when it has no zero eigenvalue (Higham); the principal square root also exists for real matrices with non-real eigenvalues, which this column does not count.
-- **All eigenvalues positive** is A003024, the number of DAGs on labeled vertices; McKay, Oggier, Royle, Sloane, Wanless and Wilf proved that a 0/1 matrix has all eigenvalues positive iff it is `I + N` with `N` the adjacency matrix of a DAG, so all its eigenvalues are `1`.[^9] For strips: every height may follow itself, and the remaining transitions are acyclic.
-- **Nonnegative half-column.** Among the `I + N` rules, the principal square root `sqrt(I + N) = sum_k C(1/2, k) N^k` has nonnegative entries for 3, 19, 219 rules, and these are **exactly the partial orders on the heights**, A001035, checked as sets at heights 2, 3, 4 (reflexive, antisymmetric, transitive).[^exec] The mechanism is the second binomial coefficient: `C(1/2, 2) = -1/8` lands on every two-step chain `a < b < c`, and only the direct edge `a < c` that transitivity guarantees can outweigh it (`N` contributes `+1/2` there). The rule `1 -> 3, 2 -> 1` plus loops, a two-step chain without its closing edge, has a root with `-0.125` at `(2, 3)`. Among rules with all eigenvalues positive, a nonnegative principal half-column exists iff the rule is a poset (checked through height 4, conjectured in general). Outside that class the free strip `J` also has a nonnegative half-column, `J / sqrt(h)` (below).
+- **Squares of 0/1 rules** are A226321, the 0/1 matrices that are squares of 0/1 matrices. These are the rules that are two steps of a 0/1 rule in which any two heights are joined by at most one two-step path.
+- **All eigenvalues real and nonnegative** is A086510. A real matrix none of whose real eigenvalues is negative or zero has a real square root,[^10] which covers the rules of the next column but not those with an eigenvalue 0.
+- **All eigenvalues positive** is A003024, the number of acyclic digraphs (DAGs) on labeled vertices: McKay, Oggier, Royle, Sloane, Wanless and Wilf proved that the 0/1 matrices with all eigenvalues positive real are exactly the matrices `I + N` with `N` the adjacency matrix of a DAG, and that all their eigenvalues are 1.[^8] For strips: every height may follow itself, and the other transitions form an acyclic graph.
+- **Nonnegative half-column.** For `M = I + N` the principal square root is the finite sum `sqrt(I + N) = sum_k C(1/2, k) N^k`. Its entries are nonnegative for exactly 3, 19, 219, 4231 of these rules at heights 2 to 5, and these rules are exactly the partial orders on the heights (`M_ab = 1` iff `a <= b`, reflexive, antisymmetric and transitive), A001035, checked as sets in exact rational arithmetic.[^exec] The coefficient `C(1/2, 2) = -1/8` falls on every two-step chain `a < b < c`, and only a direct edge `a < c` contributes `+1/2` against it. The rule with `1 -> 3`, `2 -> 1` and all loops has a two-step chain without its closing edge, and its square root has `-1/8` at `(2, 3)`.
 
-**The chain poset is the nondecreasing rule, and its half-column is the half-sum.** The total order `1 < 2 < ... < h` is the rule "the next column is at least as tall," whose matrix is the upper-triangular all-ones `U = (I - E)^{-1}` with `E` the superdiagonal shift. Then `U^{1/2} = (I - E)^{-1/2} = sum_k C(2k, k) 4^{-k} E^k`, a Toeplitz matrix whose weight for a jump of `k` heights is `1, 1/2, 3/8, 5/16, 35/128, 63/256, ...`, the coefficients of `(1 - x)^{-1/2}` (denominators A046161).[^exec] Half a column of the nondecreasing castle is the fractional sum of order `1/2`, and the same coefficients give the half-order block count of a box on [[fractional-block-count](pages/fractional-block-count.md)]. Two small posets for comparison: the `V` (`1 < 2`, `1 < 3`) has half-column weights `1/2` on both edges and nothing else; the diamond (`1 < 2 < 4`, `1 < 3 < 4`) has `1/2` on the four covering edges and `1/4 = 1/2 - 2 · (1/8)` on the long edge `1 < 4` (the direct edge minus its two two-step chains).
+**The chain poset is the nondecreasing rule, and its half-column is the half-sum.** The total order `1 < 2 < ... < h` is the rule "the next column is at least as tall", with matrix the upper-triangular all-ones `U = (I - E)^{-1}`, `E` the superdiagonal shift. Then `U^{1/2} = (I - E)^{-1/2} = sum_k C(2k, k) 4^{-k} E^k`, a Toeplitz matrix whose weight for a jump of `k` heights is `1, 1/2, 3/8, 5/16, 35/128, 63/256, ...`, the coefficients of `(1 - x)^{-1/2}`, with denominators A046161 ([[fractional-block-count](pages/fractional-block-count.md)]). Two small posets: the `V` (`1 < 2`, `1 < 3`) has half-column weights `1/2` on both edges and nothing else; the diamond (`1 < 2 < 4`, `1 < 3 < 4`) has `1/2` on the four covering edges and `1/2 - 2 * (1/8) = 1/4` on the edge `1 < 4`.
 
-**The named strips.** The rules the wiki has studied for their growth constants:[^exec]
+**A negative simple eigenvalue excludes a real square root.** If `X` is real and `X^2 = M`, every eigenvalue `mu` of `X` with `mu^2 = lambda < 0` is `+- i sqrt(-lambda)`, and its conjugate `-mu` is an eigenvalue of `X` with the same multiplicity; both square to `lambda`, and no real eigenvalue of `X` does, so `lambda` has even multiplicity in `M`. The named strips:[^exec]
 
 | strip | matrix | eigenvalues | real half-column |
 |---|---|---|---|
 | free strip, `h = 3` | `J` (all ones) | `3, 0, 0` | **yes**: `J / sqrt(3)` |
-| no equal neighbours, `h = 3` | `J - I` | `2, -1, -1` | a real root exists (two `1 x 1` blocks for `-1`); no nonnegative one found |
-| 1-smooth (Motzkin), `h = 3` | tridiagonal | `1 + sqrt 2, 1, 1 - sqrt 2` | **none**: simple negative eigenvalue |
-| ridge, `h = 3` (silver) | `J - D` | `1 + sqrt 2, -0.4142, -1` | **none**: simple negative eigenvalues |
-| ridge, `h = 4` (bronze) | `J - D` | `3.3028, -0.3028, -1, -1` | **none**: simple negative eigenvalue |
+| no equal neighbors, `h = 3` | `J - I` | `2, -1, -1` | a real one; no nonnegative one |
+| 1-smooth, `h = 3` | tridiagonal | `1 + sqrt 2, 1, 1 - sqrt 2` | **none**: simple negative eigenvalue |
+| ridge, `h = 3` | `J - D` | `1 + sqrt 2, -0.4142, -1` | **none**: simple negative eigenvalues |
+| ridge, `h = 4` | `J - D` | `3.3028, -0.3028, -1, -1` | **none**: simple negative eigenvalue |
 
-A real matrix has a real square root only if every Jordan block belonging to a negative eigenvalue occurs an even number of times (Higham 1987), so a **simple negative eigenvalue rules out any real square root**, nonnegative or not.[^6] The 1-smooth strip and the ridge strips all have one. The free strip is the opposite extreme: `J^2 = h J`, so `J^{1/2} = J / sqrt(h)`, a rule in which every height may follow every height with weight `1 / sqrt(h)`, and the count `1^T (J / sqrt h)^{2(w-1)} 1 = h^w` is preserved exactly (checked at `h = 3, w = 3`: `27`).[^exec]
+The free strip has `J^2 = hJ`, so `J^{1/2} = J / sqrt(h)`, a rule in which every height may follow every height with weight `1 / sqrt(h)`, and `1^T (J / sqrt h)^{2(w-1)} 1 = 1^T h^{w-2} J 1 = h^w`. The matrix `J - I` is symmetric with eigenvalues `2, -1, -1`, so `J - I = Q diag(2, -1, -1) Q^T` with `Q` orthogonal, and `Q diag(sqrt 2, [[0, 1], [-1, 0]]) Q^T` is a real square root, since `[[0, 1], [-1, 0]]^2 = -I`. It has no nonnegative square root: if `R >= 0` and `R^2 = J - I`, the zero diagonal forces `R_ii = 0` and `R_ij R_ji = 0` for `i != j`; then `(R^2)_12 = R_13 R_32 = 1` and `(R^2)_21 = R_23 R_31 = 1` make `R_13` and `R_31` both positive, a contradiction.
 
-This is a statement about the metallic ladder of [[metallic-means](pages/metallic-means.md)] and [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]: the realizing rule, the ridge rule `J - D` (adjacent columns differ in height unless both equal `h`), has characteristic polynomial `(x + 1)^{h - 2} (x^2 - (h - 1) x - 1)`, whose quadratic factor always has one negative root `-1 / delta_{h-1}`, simple. **So no ridge rule is two steps of a finer real rule.** (Whether some *other* rule with the same growth constant has a half-column is open; silver has three known realizations.) In both directions the obstruction is a negative eigenvalue.
-
-## What this page settles and what it opens
-
-Settled:
-
-- `char_k` has no negative real root for `k <= 8`; `P(k, w)` and `F(w, h)` interpolate to real functions of real `w` on the principal branch for `h <= 9`, with `F(w, 2)` in closed form.
-- `F(w, m + 1/2)` is complex with real part `(A - B_w(h-1) + B_w(h-2)) / 2` and imaginary part `(-1)^m (A_w(h-1) + A_w(h-2)) / 2`; `F(4, 2.5) = 16.75 + 6 i`.
-- The asymmetry is the sign of the eigenvalues: no negative reals in the width, exactly `-1` in the height.
-- The half-column counts are A226321 (squares of 0/1 rules), A086510 (all eigenvalues real and nonnegative), A003024 (positive spectrum, `I + N` with `N` a DAG), and A001035 (nonnegative principal half-column among the positive-spectrum rules, labeled posets); the poset identification is exact through height 4.
-- The nondecreasing rule's half-column is the `(1 - x)^{-1/2}` Toeplitz matrix; `J^{1/2} = J / sqrt h`; the 1-smooth and ridge strips have simple negative eigenvalues and no real square root.
-
-Open:
-
-- **No negative real roots for all `k`.** The gallery page gives `char_k` in closed form through Chebyshev-type recurrences; a proof that no root is a negative real would make the width interpolation real for every height.
-- **Nonnegativity of the width interpolant.** Is `F(w, h) >= 0` for all real `w >= 2` on the principal branch?
-- **Non-principal real interpolants.** Which branch choice, if any, has a combinatorial meaning (a castle of width `w + 1/2` as an object)?
-- **The poset theorem for all heights.** Among positive-spectrum rules, nonnegative half-column iff partial order is verified through height 4; the general statement needs the entries of `sqrt(I + N)` as signed chain counts and a proof that transitivity keeps them nonnegative.
-- **The `J - I` half-column.** A real square root exists; find a nonnegative one or show none exists.
-- **Half-columns for the tower word** (the silver realization that is not a finite 0/1 strip; the anchored 1-smooth strip has the tridiagonal matrix above) and for the plastic-number rules of [[plastic-number](pages/plastic-number.md)].
-- **Fractional DFT.** The skyline DFT of [[spectral-analysis](pages/spectral-analysis.md)] is the third castle operator with a spectral fractional power (`DFT^4 = I`, eigenvalues the fourth roots of unity); its `a`-th power rotates the time-frequency plane and its castle signatures are unexplored.
+The ridge rule `R_h = J - D` (neighboring columns differ in height unless both equal `h`) has characteristic polynomial `(x + 1)^{h - 2} (x^2 - (h - 1) x - 1)` ([[ridge-castle](pages/ridge-castle.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]), whose quadratic factor has the simple negative root `-1 / delta_{h-1}`, different from `-1`. So **no ridge rule `R_h`, `h >= 2`, has a real square root.**
 
 ## Appearances in Sources
 
-- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the closed form, the recurrences in both directions, the `1 +- i` eigenvalues and `P(1, L) = Re((1 + i)^{L+1})`, and `P(k, 2)`, `P(k, 3)` with their `(lambda + 1)^2`, `(lambda + 1)^3` annihilators.
+- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the closed form, the recurrences in both directions, the eigenvalues `1 +- i` and `P(1, L) = Re((1 + i)^{L+1})`, and `P(k, 2)`, `P(k, 3)` with their annihilators `(lambda + 1)^2`, `(lambda + 1)^3`.
 
 ## Related Concepts
 
-- [[fractional-block-count](pages/fractional-block-count.md)] - the companion fractional-calculus page; the statistic, not the argument, is interpolated there.
-- [[castle-counting-formula](pages/castle-counting-formula.md)] and [[castle-counting-function](pages/castle-counting-function.md)] - the object being interpolated.
-- [[generating-function-gallery](pages/generating-function-gallery.md)] - `num_k / den_k` and the roots of `char_k`; the irreducibility for odd `k`.
-- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - `(x + 1)^L (x - 1)^{L-2}` and the `A_L, B_L` table this page evaluates at half-integers.
-- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the quasi-polynomial reading of the `k` direction.
-- [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the period-8 oscillation of `F(w, 2)` in the width.
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - why `char_k` factors for even `k` and not for odd.
+- [[fractional-block-count](pages/fractional-block-count.md)] - the block count interpolated in the order of a difference, with the same `(1 - x)^{-1/2}` coefficients.
+- [[castle-counting-formula](pages/castle-counting-formula.md)] and [[castle-counting-function](pages/castle-counting-function.md)] - the closed form being interpolated.
+- [[generating-function-gallery](pages/generating-function-gallery.md)] - `num_k/den_k`, the roots of `char_k`, and their real-root counts.
+- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the polynomials `A_L`, `B_L` evaluated here at half-integers.
+- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the recurrences in `k` and their quasi-polynomial form.
+- [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the height-2 counts `A038505`, `A038503` and their recurrence, whose characteristic roots are `2` and `1 +- i`.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization of `char_k` for even `k`.
 - [[castle-strip](pages/castle-strip.md)] - the 0/1 rule matrices whose square roots are the half-columns.
-- [[metallic-means](pages/metallic-means.md)] and [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge rule `J - D` and its `(x + 1)^{h-2} (x^2 - (h-1) x - 1)`.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] - the 1-smooth strip whose tridiagonal matrix has no real square root.
-- [[kitamasa](pages/kitamasa.md)] and [[mod-p-observatory](pages/mod-p-observatory.md)] - where the fractional power `x^{w/2} mod char` becomes root extraction in the finite ring.
-- [[spectral-analysis](pages/spectral-analysis.md)] - the skyline DFT, third operator with a spectral fractional power.
+- [[ridge-castle](pages/ridge-castle.md)] and [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge rule `J - D` and its characteristic polynomial.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] - the 1-smooth strip on three heights, whose tridiagonal matrix has no real square root.
 
 ## Footnotes
 
 [^1]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The main formula" L66 - "F(w, h) = (h^w - (h-1)^w - P(h-1, w) + P(h-2, w)) / 2".
-[^2]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Recursion for P(k, L)" L83-84 - "For fixed k, P(k, L) satisfies a linear recurrence in L of order roughly k ... For fixed L, P(k, L) satisfies a linear recurrence in k of order at most about 2L."
-[^3]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Recursion for P(k, L)" L103-108 - "The matrix [[1, 1], [-1, 1]] has eigenvalues 1 + i and 1 - i. So P(1, L) is a sum of terms proportional to (1+i)^L and (1-i)^L; those two are complex conjugates, so their sum is a real number ... P(1, L) = Re((1+i)^{L+1})".
-[^4]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Recursion for P(k, L)" L117-118 - "P(k, 2) = (-1)^k (k+1), satisfying (lambda+1)^2 = 0. P(k, 3) = (-1)^k (k+1)^2, satisfying (lambda+1)^3 = 0."; the general `(x + 1)^L (x - 1)^{L-2}` and the `A_L, B_L` table are on [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] and were re-derived here by interpolating even and odd `k` separately.
-[^5]: https://doi.org/10.1007/BF00531768 (2026-09-19) [synthesis] - J. F. C. Kingman, "The imbedding problem for finite Markov chains", Z. Wahrscheinlichkeitstheorie 1 (1962) 14-24: which stochastic matrices arise as transition matrices of a continuous-time chain, equivalently as `exp(Q)` for a generator `Q`, so that roots of every order exist within the chain; the castle question replaces stochastic matrices by 0/1 count matrices and asks only for a square root.
-[^6]: https://doi.org/10.1016/0024-3795(87)90118-2 (2026-09-19) [synthesis] - N. J. Higham, "Computing real square roots of a real matrix", Linear Algebra and its Applications 88/89 (1987) 405-430: a real matrix has a real square root if and only if it has an even number of Jordan blocks of each size for every negative eigenvalue; in particular a simple negative eigenvalue excludes any real square root, and a matrix with no negative real eigenvalues has a unique real principal square root.
-[^7]: https://oeis.org/A226321 (2026-09-19) - "Number of real {0,1} matrices n X n which are the square of a {0,1} matrix", data `1, 2, 8, 88, 3245, 254411, 37324414`.
-[^8]: https://oeis.org/A086510 (2026-09-19) - "Number of n X n real (0,1)-matrices with all eigenvalues >= 0", data `1, 2, 13, 261, 15418, 2566333`.
-[^9]: https://oeis.org/A003024 (2026-09-19) - "Number of acyclic digraphs (or DAGs) with n labeled nodes", data `1, 1, 3, 25, 543, 29281, ...`; comment: "Also the number of n X n real (0,1)-matrices with all eigenvalues positive. - Conjectured by Eric W. Weisstein, Jul 10 2003 and proved by McKay et al. 2003, 2004"; reference B. D. McKay, F. E. Oggier, G. F. Royle, N. J. A. Sloane, I. M. Wanless, H. S. Wilf, "Acyclic digraphs and eigenvalues of (0,1)-matrices", J. Integer Sequences 7 (2004), arXiv math/0310423.
-[^10]: https://oeis.org/A001035 (2026-09-19) - "Number of partially ordered sets ("posets") with n labeled elements (or labeled acyclic transitive digraphs)", data `1, 1, 3, 19, 219, 4231, 130023, ...`.
-[^exec]: Verified by execution (2026-09-19): two Python 3 scripts with SymPy 1.14, NumPy 1.26, SciPy 1.15. (i) `num_k, den_k` from the gallery recurrence `num_k = 2 den_{k-1} - num_{k-1}`, `den_k = den_{k-1}(1 - 2x) + x num_{k-1}`; `char_k = lambda^{k+1} den_k(1/lambda)`; roots by `numpy.roots`, classified by sign and imaginary part; factorization by `sympy.factor`, `k = 1..8`. (ii) `P(k, L)` by the signed DP over the last column height; interpolation coefficients from the Vandermonde system on `L = 0..k`; `P(k, w)` on the principal branch via `exp(w log lambda)`; integer reproduction error `<= 1.1e-9` for `L <= 11`; imaginary parts at `w = 2.5, 3.5, 4.5, 5.5` all `< 1e-6`. (iii) `F(w, h)` table for `h = 2..6`, `w = 2..5` in half steps; the `F(w, 2)` cosine form checked against the roots-of-unity sum at `w = 1..8` and `w = 2.5`. (iv) `A_L, B_L` for `L = 2..6` by `sympy.interpolate` on even and odd `k` separately, re-checked against the DP for `k = 0..14`; `P(k, L)` at `k = 1/2, 3/2, 5/2`; `F(4, h)` at `h = 2.5, 3.5, 4.5`. (v) All `2^{h^2}` 0/1 matrices for `h = 2, 3`: which are `R @ R` with entries `<= 1` for a 0/1 `R`; which have all eigenvalues real and `>= 0`; for those, `scipy.linalg.sqrtm` real and entrywise `>= 0`. (vi) Eigenvalues of `J`, `J - I`, the tridiagonal, and `J - D` at `h = 3, 4`; `sqrtm(J) = J / sqrt 3`; `1^T (J / sqrt 3)^4 1 = 27`. Script 2: exact spectral classification of all 0/1 matrices at `h = 2, 3, 4` (a loose numeric filter, then `sympy.real_roots` on the characteristic polynomial to decide all-real-nonnegative and all-real-positive exactly); `scipy.linalg.sqrtm` entrywise sign on the positive-spectrum matrices; the reflexive-antisymmetric-transitive test and set equality with the nonnegative-root set at each height; `sqrtm` of the `6 x 6` upper-triangular all-ones matrix against `C(2k, k) / 4^k`; the `V` and diamond posets; OEIS lookups of the four count sequences by the search API. All quoted numbers are the scripts' printed output.
+[^2]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Recursion for P(k, L)" L83-84 - "For fixed k, P(k, L) satisfies a linear recurrence in L of order roughly k ... For fixed L, P(k, L) satisfies a linear recurrence in k of order at most about 2L"; the exact orders are on the linked pages.
+[^3]: https://en.wikipedia.org/wiki/Carlson%27s_theorem (read 2026-10-16) - "f(z) is an entire function of exponential type ... There exists c < pi such that |f(iy)| <= C e^{c|y|} ... f(n) = 0 for every non-negative integer n. Then f is identically zero"; sharpness shown by `sin(pi z)`.
+[^4]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Recursion for P(k, L)" L103-108 - "The matrix [[1, 1], [-1, 1]] has eigenvalues 1 + i and 1 - i. So P(1, L) is a sum of terms proportional to (1+i)^L and (1-i)^L; those two are complex conjugates, so their sum is a real number ... P(1, L) = Re((1+i)^{L+1})".
+[^5]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Recursion for P(k, L)" L117-118 - "P(k, 2) = (-1)^k (k+1), satisfying (lambda+1)^2 = 0. P(k, 3) = (-1)^k (k+1)^2, satisfying (lambda+1)^3 = 0."
+[^6]: https://oeis.org/A226321 (read 2026-09-19) - "Number of real {0,1} matrices n X n which are the square of a {0,1} matrix", data `1, 2, 8, 88, 3245, 254411, 37324414`.
+[^7]: https://oeis.org/A086510 (read 2026-09-19) - "Number of n X n real (0,1)-matrices with all eigenvalues >= 0", data `1, 2, 13, 261, 15418, 2566333`.
+[^8]: https://oeis.org/A003024 (read 2026-09-19) - "Number of acyclic digraphs (or DAGs) with n labeled nodes", data `1, 1, 3, 25, 543, 29281, ...`; https://arxiv.org/abs/math/0310423 (read 2026-10-16) - B. D. McKay, F. E. Oggier, G. F. Royle, N. J. A. Sloane, I. M. Wanless, H. S. Wilf, "Acyclic digraphs and eigenvalues of (0,1)-matrices", J. Integer Sequences 7 (2004), 04.3.3, Theorem 1: "the number of acyclic directed graphs with n labeled vertices is equal to the number of n X n matrices of 0's and 1's whose eigenvalues are positive real numbers"; the proof shows that such a matrix `B` has all eigenvalues 1 and that `B - I` is the adjacency matrix of an acyclic digraph.
+[^9]: https://oeis.org/A001035 (read 2026-09-19) - "Number of partially ordered sets ("posets") with n labeled elements (or labeled acyclic transitive digraphs)", data `1, 1, 3, 19, 219, 4231, 130023, ...`.
+[^10]: https://arxiv.org/abs/0805.0245 (read 2026-10-16) - J. Gallier, "Logarithms and Square Roots of Real Matrices", Abstract and §1 p.2: "under the same condition (no negative eigenvalues) every real n x n matrix, A, has a real square root", where the condition is that "no real eigenvalue of A is negative or zero".
+[^exec]: Verified by execution (Python 3.11 with SymPy, NumPy and mpmath, 2026-10-16): `char_k = lambda^{k+1} den_k(1/lambda)` from the update of `num_k`, `den_k`, its factorization and distinct roots for `k <= 8`, and exact counts of real and negative real roots for `k <= 40`; `P(k, L)` by the column-height dynamic program, the interpolation coefficients from the Vandermonde system, the principal-branch interpolant in 40-digit arithmetic (reproduction error and imaginary parts for `k <= 8`), the table of `A^e(w, h)` for `h = 2..6`, and the cosine form of `A^e(w, 2)`; `A_L`, `B_L` for `L = 2..8` by interpolation on even and odd `k`, checked against the dynamic program for `k <= 33`, and the half-integer values; all `2^{h^2}` 0/1 matrices for `h = 2, 3, 4`: squares of 0/1 matrices, and the exact real-root classification of their characteristic polynomials; all DAG rules `I + N` for `h <= 5` (strictly upper-triangular patterns conjugated by permutations), the exact square root `sum_k C(1/2, k) N^k` and the partial-order test; the chain, `V` and diamond posets; the eigenvalues of the named strips and `1^T (J / sqrt 3)^4 1 = 27`.
