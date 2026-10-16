@@ -1,167 +1,130 @@
 ---
 title: Castle classification - growth types
 category: Concepts
-summary: A class-level classification. A castle class - an infinite family defined by a construction rule - has a growth type, the growth constant of its count sequence along a stated size axis. Metallic slot: de Spinadel's metallic means σ_p^q, the roots of x² − px − q, named golden / silver / bronze / copper (= 2) / nickel and otherwise written by symbol; the ridge castles realize the q = 1 row δ_a = σ_a^1, the tree castles the p = 1 column σ_1^{h−1}. Non-metallic slot (tribonacci / tetranacci / supergolden / plastic-squared / …) for higher-degree algebraic growth.
+summary: Growth types classify families of castles, not single castles. A family is "X by width" (or by height, by area, by semi-perimeter) when its count, graded by that axis, grows like X^n. Metallic growth constants are de Spinadel's σ_p^q, the roots of x² − px − q, named golden, silver, bronze, copper (= 2) and nickel and otherwise written by symbol; by width the ridge castles realize the q = 1 row δ_a = σ_a^1 and the tree castles of height h the p = 1 column σ_1^{h−1}. By area the castles of height h grow at the h-nacci constants, and tree and prime castles at supergolden, plastic and ψ²; by semi-perimeter all castles grow at τ², τ the tribonacci constant.
 tags: [concept, castle, classification, taxonomy, growth-constant, metallic-means, ridge-castle, non-metallic, meta-classification, n-nacci, cubic-pisot, plastic-number, class-predicate]
-sources: [castle-classification, oeis-mining-pe502]
+sources: [de-spinadel-1999-family-of-metallic-means]
 created: 2026-09-19
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
 # Castle classification - growth types
 
-## Scope: class predicates
+## Scope
 
-The shape types on [[castle-classification-shape](pages/castle-classification-shape.md)] and the spectral types on [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] are both **single-castle** predicates: given `(c_1, …, c_w)` you ask a question about that one castle. A growth type is different. The object it classifies is **a class**, an infinite family of castles defined by a construction rule, and the answer is the growth constant of that family's count sequence along a stated size axis.
+The shape types of [[castle-classification-shape](pages/castle-classification-shape.md)] and the spectral types of [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] are predicates on a single castle `(c_1, …, c_w)`. A growth type classifies a **family** of castles, an infinite set defined by a construction rule, by the growth constant of its count along a size axis. A single castle has no growth type, and it belongs to many families with different growth constants.
 
-Two consequences make this a **meta-classification**:
+Two different rules can give the same growth type: the Pell castles ([[pell-castle](pages/pell-castle.md)]) and the ridge castles of height 3 ([[ridge-castle](pages/ridge-castle.md)]) are both silver by width.
 
-- **The invariant is not read from a single castle.** "Silver width growth castle" is not a property that a single castle either has or does not have; it is a property of the family. A single castle in a silver-width-growth class is still just a castle, and could sit in a completely different class with a different growth constant.
-- **Two very different-looking classes can share a type.** The Pell castles (anchored 1-smooth castles of exact height 3, [[pell-castle](pages/pell-castle.md)]) and the ridge castles of exact height 3 (ridge rule `R_3 = J − D`, [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) are different rules, but both are silver width growth castles.
+## Naming
 
-The rest of this page names the growth types, states the wiki's naming convention, catalogues the known members on each axis, and lists cross-axis statements.
+A family of castles is **X by width** when the number of its castles of width `w`, at a fixed height `h`, grows like `X^w` up to a subexponential factor; likewise **by height** (width fixed), **by area** (the number of cells `c_1 + ⋯ + c_w`) and **by semi-perimeter** (`w` plus the number of blocks, [[castle-perimeter](pages/castle-perimeter.md)]). The axis is always named, so "silver by width" and "silver by area" are different statements, and a growth word is never a family name.
 
-## The metallic and non-metallic slots
+The constant `X` takes its literature name where it has one:
 
-The main family of growth constants is de Spinadel's [[metallic-means](pages/metallic-means.md)], `σ_p^q = (p + √(p² + 4q)) / 2`, the positive roots of `x² − px − q` for natural `p, q` ([[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)]). Its named members are golden (`σ_1^1 = φ`), silver (`σ_2^1 = 1 + √2`), bronze (`σ_3^1 = (3 + √13) / 2`), copper (`σ_1^2 = 2`) and nickel (`σ_1^3 = (1 + √13) / 2`); the `q = 1` members are written `δ_a = σ_a^1`. A castle-strip family whose width generating function has denominator `1 − p_1 · x − p_2 · x²` with `p_1, p_2 ≥ 1` grows at `σ_{p_1}^{p_2}`, on the `q = 1` row iff `p_2 = 1` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
+- **Metallic means** ([[metallic-means](pages/metallic-means.md)]): de Spinadel's family `σ_p^q = (p + √(p² + 4q))/2`, the positive roots of `x² − px − q` for natural `p, q`, with the names golden (`σ_1^1 = φ`), silver (`σ_2^1 = 1 + √2`), bronze (`σ_3^1 = (3 + √13)/2`), copper (`σ_1^2 = 2`) and nickel (`σ_1^3 = (1 + √13)/2`) ([[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)]). The members with `q = 1` are `δ_a = σ_a^1`; the others are written by symbol, as `δ_4 = 2 + √5` and `σ_2^2 = 1 + √3`. A strip family whose width generating function has denominator `1 − p_1 x − p_2 x²` with `p_1, p_2 ≥ 1` grows at `σ_{p_1}^{p_2}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
+- **n-nacci constants**, the positive roots of `x^h = x^{h−1} + ⋯ + x + 1`: tribonacci at `h = 3`, tetranacci at `h = 4`, pentanacci at `h = 5`, increasing to 2.
+- **Cubic Pisot numbers**: supergolden, the real root of `x³ = x² + 1`; the plastic number `ψ`, the real root of `x³ = x + 1`; and `ψ²`, the real root of `x³ − 2x² + x − 1`.
 
-Not every algebraic growth constant is a metallic mean. The wiki has two other families:
+Other algebraic growth constants are written by value and minimal polynomial, as `1.685137…`, the root of `x⁵ − x⁴ − x² − x − 1`.
 
-- **n-nacci constants**, roots of `x^h = x^{h − 1} + ⋯ + 1`: tribonacci at `h = 3`, tetranacci at `h = 4`, pentanacci, and so on to `2` in the limit.
-- **cubic-Pisot constants**, roots of term-skipping cubics: supergolden (`x³ − x² − 1`), plastic-squared `ψ²` (`x³ − 2x² + x − 1`), and the plastic number `ψ` itself (`x³ − x − 1`), realized as a castle-strip area growth constant ([[area-growth-census](pages/area-growth-census.md)]).
+## By width
 
-These are the named slots. Other algebraic growth constants on the wiki have no family name: the degree-5 constant `α ≈ 1.6851` of the `h = 4` tree castles by area, the thousands of constants of [[area-growth-census](pages/area-growth-census.md)], and the width constants of other strip rules.
+At a fixed height, every member of the row `δ_a` is realized by the ridge castles, and every member of the column `σ_1^q` with `q = h − 1` by the tree castles of height `h`. The plateau-free castles of height `h ≥ 3`, in which neighboring columns always differ, grow at `h − 1 = σ_1^{(h−1)(h−2)}`, the largest eigenvalue of `J − I` on `h` heights; at `h = 3` that is copper.[^1]
 
-## Naming convention
+### Golden, `φ = δ_1`
 
-A castle class is a **"`<constant>` `<axis>` growth castle"** iff its count sequence, graded by the chosen size axis, grows at rate `<constant>`. Three components:
+- **The Fibonacci castles**, the tree castles of height 2: no two neighboring columns of height 2 ([[fibonacci-castle](pages/fibonacci-castle.md)], [[castle-graph](pages/castle-graph.md)]). They number `F_{w+2} − 1`, with generating function `x/((1 − x)(1 − x − x²))`.
+- **The ridge castles of height 2**: no two neighboring columns of height 1. Exchanging the heights 1 and 2 maps them onto the Fibonacci castles and the flat row `(1, …, 1)`, so there are `F_{w+2}` of them for `w ≥ 2`.[^1]
 
-- **`<constant>`.** When the growth constant is a metallic mean, use de Spinadel's name if it has one: **golden** (`σ_1^1 = φ`), **silver** (`σ_2^1 = 1 + √2`), **bronze** (`σ_3^1`), **copper** (`σ_1^2 = 2`), **nickel** (`σ_1^3 = (1 + √13)/2`). Otherwise use the symbol: "`δ_4` width growth castle" for `σ_4^1 = 2 + √5 = φ³`, "`σ_2^2` width growth castle" for `1 + √3`. When it is not a metallic mean, use the constant's own name: **tribonacci**, **tetranacci**, **pentanacci**, **supergolden**, **plastic-squared**, **plastic**.
-- **`<axis>`.** The size parameter being graded:
-  - **width** - the sequence is graded by width `w` (exact height `h` fixed).
-  - **vertical** - by height `h` (width `w` fixed or bounded).
-  - **area** - by total area `∑ c_i`.
-  - **block** - by block count.
-- **"growth castle"** - the noun, marking this as a class-level type.
+### Silver, `δ_2 = 1 + √2`
 
-**The axis is always stated explicitly.** A silver width growth castle and a silver vertical growth castle are different claims; there is no default axis. No shorthand like "silver castle" - the wiki uses the full form to keep the class-level meta-types unambiguous.
+- **The Pell castles** ([[pell-castle](pages/pell-castle.md)], [[pell-castle-strip](pages/pell-castle-strip.md)]): first column at height 1, neighboring columns differing by at most 1, height 3. They number `A_Pell(w) = P⋆_w − 2^{w−1}` (`0, 0, 1, 4, 13, 38, 105, 280, …`, `A094706(w − 2)`), where `P⋆_w`, the Pell numbers (A000129), count the same skylines without the condition of reaching height 3, and `2^{w−1}` counts those that stay at heights 1 and 2. With a free first column there are `A001333(w + 1) − 2^w = A106514(w − 1)` of them (`1, 3, 9, 25, 67, 175, …`), from the Pell-Lucas numbers A001333.[^1]
+- **The ridge castles of height 3** ([[ridge-castle](pages/ridge-castle.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]): `1, 5, 15, 39, 97, 237, 575, …`.[^1]
 
-## Width growth castles
+The tower words of [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] also grow at `1 + √2`, counted by word length: A004149, whose generating function has its singularity at `√2 − 1`. All castles of height `h` number `h^w − (h−1)^w` and grow at the integer `h` by width.
 
-The width axis grades a class by `w` at a fixed exact height. Every member of the `q = 1` row `δ_a` is realized (ridge castles), and so is every member of the `p = 1` column `σ_1^q` with `q = h − 1`: the tree castles of exact height `h` grow at `(1 + √(4h − 3))/2 = σ_1^{h−1}` ([[castle-graph](pages/castle-graph.md)]). The plateau-free rule at height `h ≥ 3` grows at the integer `h − 1 = σ_1^{(h−1)(h−2)}`, copper at `h = 3`. The named non-metallic constants of this page are on the area axis.
+### Bronze and the higher `δ_a`: ridge castles
 
-### Golden - `δ_1 = φ`
+The **ridge rule** lets neighboring columns have equal heights only at the maximum `h`; its castles of height `h` are the **ridge castles** ([[ridge-castle](pages/ridge-castle.md)]). The transfer matrix `R_h = J − D`, with `D = diag(1, …, 1, 0)`, has characteristic polynomial `(x + 1)^{h−2}(x² − (h − 1)x − 1)` and largest eigenvalue `δ_{h−1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]), so the ridge castles of height `a + 1` are `δ_a` by width:
 
-A class whose width-graded count sequence grows at `φ = (1 + √5) / 2`, equivalently whose width GF has dominant singularity at `1 / φ = φ − 1`. Known member:
+- **Bronze**, `δ_3 = (3 + √13)/2 = 3.3028…`: the ridge castles of height 4, `1, 7, 31, 118, 421, …`. No rule on three heights is bronze by width, since a 0/1 matrix of size 3 has largest eigenvalue at most 3; among the 0/1 matrices of size 4, 192 have largest eigenvalue `δ_3`.[^1]
+- **`δ_4 = 2 + √5 = φ³`**: the ridge castles of height 5. The ridge strips of height 5, which need not reach height 5, number `𝟙ᵀ R_5^{w−1} 𝟙 = F_{3w+2}`, and the ridge castles of height 5 number `F_{3w+2} − 4·3^{w−1}`.[^1]
+- **`δ_5, δ_6, …`**: the ridge castles of heights 6, 7, ….
 
-- **The Fibonacci castles** ([[fibonacci-castle](pages/fibonacci-castle.md)], [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2, [[castle-graph](pages/castle-graph.md)]) - the tree castles of exact height 2: no two adjacent height-2 columns, so every upper block has width 1, and at least one height-2 column. Count `F_{w + 2} − 1`, generating function `x / ((1 − x)(1 − x − x²))`, with the `p_1 = 1, p_2 = 1` denominator `1 − x − x²` carrying the growth.
-- **The ridge castles of exact height 2** ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2) - no two adjacent columns of height 1. Exchanging the heights 1 and 2 maps them onto the Fibonacci castles plus the all-1 row, so there are `F_{w + 2}` of them for `w ≥ 2`. This is the `h = 2` rung of the ridge rule below.
+### Copper, nickel and the column `σ_1^{h−1}`: tree castles
 
-### Silver - `δ_2 = 1 + √2`
+The **tree skylines** of height at most `h`, with no two neighboring columns of height at least 2, number `T_h(w)` with `T_h(w+2) = T_h(w+1) + (h − 1)·T_h(w)`, so they grow at `σ_1^{h−1} = (1 + √(4h − 3))/2`. The tree castles of height `h` number `A_tree(w, h) = T_h(w) − T_{h−1}(w)`, which for `h ≥ 3` satisfies the recurrence of order 4 with characteristic polynomial `(x² − x − (h − 1))(x² − x − (h − 2))`, not the recurrence of `T_h`; since `σ_1^{h−1} > σ_1^{h−2}`, they also grow at `σ_1^{h−1}` ([[castle-graph](pages/castle-graph.md)]):
 
-A class whose width-graded count sequence grows at `1 + √2 ≈ 2.4142`. Known members:
+- **Copper**, `σ_1^2 = 2`: the tree castles of height 3, `A001045(w + 2) − F_{w+2}` = `1, 2, 6, 13, 30, 64, 137, 286, …`, the Jacobsthal numbers A001045 minus the Fibonacci numbers. The plateau-free castles of height 3 are copper by width too.
+- **Nickel**, `σ_1^3 = (1 + √13)/2 = 2.3028…`: the tree castles of height 4, `A006130(w + 1) − A001045(w + 2)` = `1, 2, 8, 19, 54, 132, 337, 818, …`. Nickel lies in `Q(√13)`, the field of bronze.
+- **`σ_1^4 = (1 + √17)/2` and beyond**: the tree castles of heights 5, 6, ….
 
-- **The Pell castles** ([[pell-castle](pages/pell-castle.md)], from the Pell castle strip of [[pell-castle-strip](pages/pell-castle-strip.md)]) - first column at height 1, neighbouring columns differing by at most 1, some column at height 3. Count `P⋆_w − 2^{w−1}` (`0, 0, 1, 4, 13, 38, 105, 280, …`, A094706`(w − 2)`), where the Pell numbers `P⋆_w` (OEIS A000129, denominator `1 − 2x − x²`, the `p_1 = 2, p_2 = 1` case) count the same rule on the Pell castle strip without the requirement to reach height 3, and `2^{w−1}` removes the skylines that stay at heights 1 and 2. With a free first column the count is `A001333(w + 1) − 2^w` (`1, 3, 9, 25, 67, 175, …`, from the Pell-Lucas numbers A001333), which is `A106514(w − 1)`. Both grow like `1 + √2`.[^exact]
-- **The ridge castles of exact height 3** (ridge rule `R_3 = J − D`, [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2, [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) - the same growth constant, a different construction. Ridge castles of exact height 3: `1, 5, 15, 39, 97, 237, 575, …`.
+Members with `p, q ≥ 2` also occur, for instance `σ_2^2 = 1 + √3` for the height-3 rule of [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] that forbids two neighboring columns at the ceiling.
 
-The **tower word** ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]) also grows at `1 + √2`, but on a different axis: A004149 counts tower words by word length (width plus twice the block count), with an algebraic GF whose singularity is at `√2 − 1`. By width, all castles of exact height `h` number `h^w − (h − 1)^w`, an integer growth constant `h`.
+## By area
 
-### Bronze and the higher `δ_a` - realized by ridge castles
+**Golden by area.** The prime castles, the castles with no column of height 1, number `F_{n−1}` by area with the height unrestricted ([[prime-castles](pages/prime-castles.md)]); at a fixed height they grow more slowly, at the root of `x^h = x^{h−2} + ⋯ + 1`: plastic at height 3, supergolden at height 4, increasing to `φ`. The castles of height 2 number `F_{A+1} − 1` by area, the compositions of `A` into 1s and 2s with at least one 2 ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]).
 
-All higher rungs are realized by a single named predicate ([[ridge-castle](pages/ridge-castle.md)]): the **ridge rule** (adjacent columns differ in height unless both equal the max `h`; its castles of exact height `h` are the **ridge castles**, [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2), transfer matrix `R_h = J − D`, characteristic polynomial `(x + 1)^{h − 2} (x² − (h − 1) x − 1)`, Perron root the `(h − 1)`-th metallic mean `δ_{h − 1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). Metal `a` sits at height `h = a + 1`:
+**The n-nacci family.** The castles of height `h` by area are the compositions of the area with largest part `h`, with generating function `1/(1 − x − ⋯ − x^h) − 1/(1 − x − ⋯ − x^{h−1})`, so they grow at the `h`-nacci constant:[^1]
 
-- **Bronze** (`δ_3 = (3 + √13) / 2 ≈ 3.303`) - ridge castles of exact height 4, `1, 7, 31, 118, 421, …`, growth in `Q(√13)`. (Three states per column do not give bronze - it is unreachable on ≤ 3 states, where natural rules land on members off the `q = 1` row such as `σ_2^2 = 1 + √3`; the ridge rule's ceiling exception pins `p_2 = 1`.)
-- **`δ_4`** (`= 2 + √5 = φ³`) - ridge castles of exact height 5; because `δ_4 = φ³ ∈ Q(√5)`, the transfer matrix gives `𝟙ᵀR_5^{w−1}𝟙 = F_{3w + 2}`, the **Fibonacci trisection**.
-- **`δ_5` and beyond** (`δ_5, δ_6, …`) - ridge castles of exact heights 6, 7, ….
-
-Whether each rung has *other* natural realizations besides the ridge rule `R_h = J − D` (silver has several) is open.
-
-### Copper and nickel - `σ_1^2 = 2` and `σ_1^3 = (1 + √13)/2`
-
-The tree castles ([[castle-graph](pages/castle-graph.md)]) of exact height `h` satisfy the recurrence `a(n) = a(n − 1) + (h − 1)·a(n − 2)` and grow at `σ_1^{h−1}`, so they realize the whole `p = 1` column:
-
-- **Copper** (`σ_1^2 = 2`) - tree castles of height 3, the Jacobsthal numbers (A001045); also the plateau-free rule at height 3.
-- **Nickel** (`σ_1^3 = (1 + √13)/2 ≈ 2.303`) - tree castles of height 4 (A006130). Nickel lies in `Q(√13)`, the field of bronze.
-- **`σ_1^4 = (1 + √17)/2` and beyond** - tree castles of heights 5, 6, ….
-
-Members with `p, q ≥ 2` also occur as strip growths, for instance `σ_2^2 = 1 + √3` for the no-adjacent-ceiling height-3 rule of [[metallic-strip-realizability](pages/metallic-strip-realizability.md)].
-
-## Area growth castles
-
-The area axis grades by total cells `∑ c_i`. This is the axis with the richest inventory, mostly non-metallic.
-
-**Golden area growth castle.** The prime castles by area with the height unrestricted, `F_{n − 1}` of them ([[prime-castles](pages/prime-castles.md)]), grow at `φ`. At a fixed exact height they grow more slowly: plastic at height 3, supergolden at height 4, increasing towards `φ`. All castles of exact height 2 by area number `F_{A+1} − 1` and grow at `φ` ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]) - the `h = 2` rung of the n-nacci family below.
-
-**The n-nacci area growth family.** All castles of exact height `h`, graded by area, are the compositions with largest part exactly `h`, with GF `1 / (1 − x − ⋯ − x^h) − 1 / (1 − x − ⋯ − x^{h−1})`, and grow at the `h`-nacci constant:
-
-| constant | `h` | growth | minimal polynomial | count by area |
-|---|---|---|---|---|
-| **golden** (metallic `a = 1`) | 2 | `φ ≈ 1.6180` | `x² − x − 1` | `F_{A+1} − 1` (A000045) |
-| **tribonacci** | 3 | `≈ 1.8393` | `x³ − x² − x − 1` | `A000073(A+2) − F_{A+1}` |
-| **tetranacci** | 4 | `≈ 1.9276` | `x⁴ − x³ − x² − x − 1` | `A000078(A+3) − A000073(A+2)` |
-| **pentanacci** | 5 | `≈ 1.9659` | `x⁵ − ⋯ − 1` | `A001591(A+4) − A000078(A+3)` |
-| - | unrestricted | `2` | `x − 2` | `2^{A−1}` (A011782) |
-
-Only the `h = 2` rung is metallic; every `h ≥ 3` rung is a non-metallic **`n`-nacci area growth castle** of degree `h`. The family is monotone increasing to `2`.
-
-**The cubic-Pisot family.** Three cubic-Pisot constants, none metallic, have castle realizations by area; the first two come from the tree-castle-by-area family ([[tree-castle-by-area](pages/tree-castle-by-area.md)]), the `2 × 2`-block-free sub-family, a spectral type ([[castle-classification-spectrum](pages/castle-classification-spectrum.md)]):
-
-| constant | growth | minimal polynomial | castle realization |
+| `h` | growth by area | minimal polynomial | count at area `A` |
 |---|---|---|---|
-| **supergolden** | `≈ 1.4656` | `x³ − x² − 1` | the q-Fibonacci castles ([[q-fibonacci-castle](pages/q-fibonacci-castle.md)]) by number of cells, one less than Narayana's cows A000930; prime castles of exact height 4 by area ([[prime-castles](pages/prime-castles.md)]) |
-| **plastic-squared** `ψ²` | `≈ 1.7549` | `x³ − 2x² + x − 1` | tree castles by area with the height unrestricted, A005251 ([[plastic-number](pages/plastic-number.md)]) |
-| **plastic** `ψ` | `≈ 1.3247` | `x³ − x − 1` | the smallest castle-strip area growth constant, height 2, rule "height 1 may not follow height 1" ([[area-growth-census](pages/area-growth-census.md)]); prime castles of exact height 3 by area ([[prime-castles](pages/prime-castles.md)]) |
+| 2 | golden, `1.6180…` | `x² − x − 1` | `F_{A+1} − 1` (A000045) |
+| 3 | tribonacci, `1.8393…` | `x³ − x² − x − 1` | `A000073(A + 2) − F_{A+1}` |
+| 4 | tetranacci, `1.9276…` | `x⁴ − x³ − x² − x − 1` | `A000078(A + 3) − A000073(A + 2)` |
+| 5 | pentanacci, `1.9659…` | `x⁵ − x⁴ − x³ − x² − x − 1` | `A001591(A + 4) − A000078(A + 3)` |
+| unrestricted | `2` | `x − 2` | `2^{A−1}` (A011782) |
 
-Tree castles of exact height 4 by area grow at `α ≈ 1.6851`, the dominant root of `x⁵ − x⁴ − x² − x − 1` (the sequence A000570, unique tournaments, [[unique-tournament](pages/unique-tournament.md)], counts them together with the lower heights), a quintic non-metallic constant between `φ` (exact height 3) and `ψ²` (height unrestricted).[^exact]
+Only the row `h = 2` is metallic.
 
-The plastic number also enters the counting recurrence: the `k = 6` signed-tower eigenvalue is `ρ_6 = 2ψ²`, a *spectral* appearance distinct from the growth-castle realization above.
+**Cubic Pisot growth by area.**
 
-**A subexponential class.** Weakly unimodal compositions ([[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)], A001523), the convex castles by area, grow like `exp(2π√(n/3)) / (8 · 3^{3/4} · n^{5/4})` (Auluck 1951, as listed on the OEIS entry), so their exponential growth constant is `1`.
+| constant | value | minimal polynomial | families of castles |
+|---|---|---|---|
+| supergolden | `1.4656…` | `x³ − x² − 1` | the tree castles of height 2, `A077868(A − 2)` ([[tree-castle-by-area](pages/tree-castle-by-area.md)], [[q-fibonacci-castle](pages/q-fibonacci-castle.md)]); the prime castles of height 4 ([[prime-castles](pages/prime-castles.md)]) |
+| `ψ²` | `1.7549…` | `x³ − 2x² + x − 1` | the tree castles of any height, `A005251(A + 2)` ([[tree-castle-by-area](pages/tree-castle-by-area.md)], [[plastic-number](pages/plastic-number.md)]) |
+| plastic `ψ` | `1.3247…` | `x³ − x − 1` | the smallest growth constant by area of a strip rule, at height 2 with "height 1 may not follow height 1" ([[area-growth-census](pages/area-growth-census.md)]); the prime castles of height 3 ([[prime-castles](pages/prime-castles.md)]) |
 
-## Vertical and block growth castles
+The tree castles of height 3 are golden by area, and those of height 4 grow at `1.685137…`, the root of `x⁵ − x⁴ − x² − x − 1`; the tree skylines of height at most 4 are counted by A000570, the tournaments determined by their score vectors ([[tree-castle-by-area](pages/tree-castle-by-area.md)], [[unique-tournament](pages/unique-tournament.md)]).[^1]
 
-The **vertical growth axis** grades by height (`h` varying, `w` fixed). At fixed width there are `h^w − (h − 1)^w` castles of exact height `h`, a polynomial in `h`, so every class's count grows polynomially in `h` and the vertical growth constant is always `1`. For example, the k-direction signed count `P(k, L)` at fixed `L` has characteristic polynomial `(x + 1)^L (x − 1)^{L − 2}` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), a quasi-polynomial in `k`, and the count `F(w, h)` in `h` is annihilated by `(x² − 1)^w`.
+**Subexponential growth.** The convex castles by area are the weakly unimodal compositions, A001523 ([[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)]), with `a(n) ~ exp(2π√(n/3)) / (8·3^{3/4}·n^{5/4})` (Auluck 1951, as the OEIS entry gives it), so their growth constant by area is 1.[^2]
 
-The **block growth axis** grades by block count. [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] gives the block-count GF structure; its growth-constant analysis is open.
+## By height and by semi-perimeter
 
-## Cross-scope statements
+**By height.** At a fixed width there are `h^w − (h − 1)^w` castles of height `h`, a polynomial in `h` of degree `w − 1`, so every family grows at most polynomially by height, and no family has a growth constant above 1 on this axis. The counts are often quasi-polynomials: `A^e(w, h)`, as a sequence in `h`, is annihilated by `(x² − 1)^w` (computed for `w ≤ 6`), and the signed tower count `P(k, L)` at a fixed `L` has the characteristic polynomial `(x + 1)^L (x − 1)^{L−2}` in `k` for `4 ≤ L ≤ 12` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]).[^1]
 
-Axis 8 allows statements of the form *"every class of type X is also of type Y"*, where X is a single-castle predicate (shape or spectrum) and Y is a growth type. Instances:
+**By semi-perimeter.** The number of blocks alone does not bound the width, since every flat row `(1, …, 1)` has one block, so the block axis is taken together with the width as the semi-perimeter `w + blocks`. By semi-perimeter all castles grow at `τ² = 3.3830…`, the square of the tribonacci constant, and their signed count grows only at `τ` ([[castle-perimeter](pages/castle-perimeter.md)]).
 
-- **The tree castles of exact height 2 (the Fibonacci castles) are a golden width growth castle.** Immediate: "no two adjacent height-2 columns" has the Fibonacci transfer matrix `[[1, 1], [1, 0]]`.
-- **The tower word (a Motzkin-path-with-run-constraint shape type) grows at `1 + √2` by word length.** Its GF is algebraic with singularity at `√2 − 1`; the Motzkin-path type is an Axis-3 shape predicate on [[castle-classification-shape](pages/castle-classification-shape.md)].
-- **All castles of exact height `h` are an `h`-nacci area growth castle; the tree ban lowers the constant.** At exact height 3, all castles by area grow at tribonacci but tree castles by area (the spectral tree predicate on [[castle-classification-spectrum](pages/castle-classification-spectrum.md)]) grow at `φ`. At exact height 2 it drops `φ` to supergolden; with the height unrestricted it drops `2` to plastic-squared. The same single-castle predicate maps one growth type to another, differently at each height.
+## Statements across scopes
 
-Relating the growth types of one class under different axes is open.
+A shape or spectral predicate defines a family, and the family has a growth type:
 
-## Naming precedence and the wiki convention
+- **The Fibonacci castles, the tree castles of height 2, are golden by width**: the rule "no two neighboring columns of height 2" has transfer matrix `[[1, 1], [1, 0]]`.
+- **The tree predicate lowers the growth by area.** At height 3, all castles are tribonacci by area and the tree castles golden by area; at height 2 the constant drops from `φ` to supergolden, and with the height unrestricted from 2 to `ψ²`.
 
-- **Growth types are class-level.** They coexist with, do not replace, the shape and spectral types. A castle can be simultaneously "unimodal (a shape predicate) and a member of a silver width growth castle class"; the two are compatible descriptions from different scopes.
-- **Always spell out the axis.** No "silver castle" as short form; the wiki uses "silver width growth castle" or the appropriate axis explicitly. This prevents ambiguity between the four growth axes.
-- **Only known members get named types.** A rung with no known member is a valid empty class - it exists as a definition - but does not appear in the wiki's active vocabulary until a member is identified.
-
-## Open threads
-
-1. **Alternative realizations of the bronze / `δ_4` / `δ_5` width growth castles.** Silver has several named realizations; at bronze and above the named one is the ridge rule `R_h = J − D`, and 192 binary `4 × 4` matrices have Perron root bronze ([[ridge-castle](pages/ridge-castle.md)]). Does any higher rung admit a second, structurally distinct named castle-strip rule?
-2. **Block growth axis** - no member known.
-3. **Cross-axis statements** - relating growth types under different axes on the same class.
+The plastic number also appears in the signed tower count, as the largest eigenvalue `2ψ²` of `char_6` ([[signed-tower-count](pages/signed-tower-count.md)]), an eigenvalue of a recurrence and not the growth constant of a family.
 
 ## Related Concepts
 
-- [[castle-classification](pages/castle-classification.md)] - the hub, with a map of the three scopes.
-- [[castle-classification-shape](pages/castle-classification-shape.md)] - single-castle shape predicates (Axes 1-7).
-- [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - single-castle spectral predicates (Axis 9).
-- [[metallic-means](pages/metallic-means.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] / [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the metallic ladder side.
-- [[castle-strip](pages/castle-strip.md)] - the construction-rule object (a skyline read left to right under a neighbor rule) whose transfer matrix supplies width growth constants.
-- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - the n-nacci area growth family.
-- [[tree-castle-by-area](pages/tree-castle-by-area.md)] / [[plastic-number](pages/plastic-number.md)] - the cubic-Pisot area growth constants and the plastic number's spectral appearance.
-- [[area-growth-census](pages/area-growth-census.md)] - realizes the bare plastic number `ψ` as a castle-strip area growth constant.
-- [[unique-tournament](pages/unique-tournament.md)] - the A000570 growth constant `α ≈ 1.685` in the non-metallic slot.
-- [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the pedagogy page explaining what "eigenvalue" means at each scope.
-- [[castle-snippets-strips](pages/castle-snippets-strips.md)] - the growth-constant probes.
+- [[castle-classification](pages/castle-classification.md)] - the hub of the classifications by shape, spectrum and growth.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - predicates on single castles by shape.
+- [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - predicates on single castles by the spectrum of the castle graph.
+- [[metallic-means](pages/metallic-means.md)] - de Spinadel's family `σ_p^q` and its named members.
+- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - which metallic means are growth constants of strip rules by width, and the ridge matrix `R_h`.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] - the strips counted by the Pell numbers, silver by width.
+- [[castle-strip](pages/castle-strip.md)] - skylines read one column at a time under a rule on neighboring columns, whose transfer matrices give the growth by width.
+- [[castle-graph](pages/castle-graph.md)] - tree skylines and tree castles by width.
+- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - the castles of height `h` by area, the n-nacci family.
+- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - tree skylines and tree castles by area.
+- [[prime-castles](pages/prime-castles.md)] - castles with no column of height 1, by area.
+- [[area-growth-census](pages/area-growth-census.md)] - the growth constants by area of all strip rules up to height 4.
+- [[castle-perimeter](pages/castle-perimeter.md)] - castles by semi-perimeter.
+- [[unique-tournament](pages/unique-tournament.md)] - A000570 and the growth constant `1.685…`.
+- [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - eigenvalues of castle graphs, transfer matrices and recurrences, worked on small castles.
+- [[castle-snippets-strips](pages/castle-snippets-strips.md)] - code that computes growth constants of strip rules.
 
 ## Footnotes
 
-*(Except where footnoted, the identities above are cross-referenced and their derivations live on the linked pages.)*
-
-[^exact]: Verified by execution (Python 3, 2026-10-02): the anchored 1-smooth skylines over `{1, 2, 3}` reaching height 3 were enumerated for `w ≤ 10` and equal `P⋆_w − 2^{w−1}`; with a free first column they equal `A001333(w + 1) − 2^w` (`1, 3, 9, 25, 67, 175, 449, 1137, 2851, 7095`); tree castles of exact height 4 by area, by a transfer recurrence to area 400, have successive ratio `1.685137`. The other exact-height area counts are verified on [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)].
+[^1]: Verified by execution (Python 3.11 with NumPy and SymPy, 2026-10-16): by enumeration of all skylines, the Fibonacci castles and their generating function for `w ≤ 11`; the ridge castles of height 2 for `w ≤ 10`, height 3 for `w ≤ 8`, height 4 for `w ≤ 7` and height 5 for `w ≤ 6` against `F_{3w+2} − 4·3^{w−1}`, and `𝟙ᵀR_5^{w−1}𝟙 = F_{3w+2}` for `w ≤ 7`; the Pell castles for `w ≤ 10` and the free-first-column count for `w ≤ 10` against https://oeis.org/A106514 (read 2026-10-16); the tree castles of heights 3 and 4 against the differences of A001045, A006130 and the Fibonacci numbers, and the failure of `a(n) = a(n−1) + 2a(n−2)` for the tree castles of height 3; the largest eigenvalue `h − 1` of `J − I` for `h = 3, 4, 5`; the 192 matrices among all `2^16` 0/1 matrices of size 4; the n-nacci counts for `A ≤ 10` and their constants; the tree-castle growth constants by area from the generating functions `(1 + P_h(q))/(1 − q − q·P_h(q))`; `(x² − 1)^w` against `A^e(w, h)` for `w ≤ 6` and `h ≤ 6w + 7`.
+[^2]: https://oeis.org/A001523 (read 2026-10-16) - "a(n) ~ exp(2*Pi*sqrt(n/3)) / (8 * 3^(3/4) * n^(5/4)) [Auluck, 1951]. - Vaclav Kotesovec, Jun 22 2015".
