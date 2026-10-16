@@ -1,18 +1,18 @@
 ---
 title: m-smooth castles
 category: Concepts
-summary: An m-smooth castle is a castle whose neighbouring columns differ in height by at most m. Starting from the 1-smooth castles, the anchored m-smooth castles of exact height h (first column at height 1) are counted for m = 2, 3, 4 and h up to 12. The count is strips_m(w, h) − strips_m(w, h − 1); the reflection j ↔ h + 1 − j keeps the strip denominator at degree ≤ ⌈h/2⌉ and the exact-height recurrence at order ≤ h for every m. The first castle has width w_min = ⌈(h − 1)/m⌉ + 1, and there are C(slack + w_min − 2, w_min − 2) of them, slack = (w_min − 1)m − (h − 1). The growth constant lies between 2m + 1 − m(m+1)/h and 2m + 1. At h ≤ m + 1 the rule is vacuous: the free count is h^w − (h − 1)^w and its even-block part is the PE 502 count F(w, h). On the diagonal h = m + 2: strips x/(1 − (m+1)x − mx²) (Pell, A007482, A015530, A015537 for m = 1…4), castles m·x³/((1 − (m+1)x − mx²)(1 − (m+1)x)), growth the root of x² − (m+1)x − m. An addendum lists what does not extend from m = 1: the x^h numerator, the explicit eigenvalues and Chebyshev identities, the Motzkin-triangle readings, and the irregular parity orders.
-tags: [concept, castle, castle-type, m-smooth, 1-smooth, pell, transfer-matrix, exact-height, parity, generating-functions, oeis]
+summary: An m-smooth castle is a castle whose neighboring columns differ in height by at most m. Starting from the 1-smooth castles, the anchored m-smooth castles of height h (first column at height 1) are counted for m = 2, 3, 4 and h up to 12. Their number is smooth_m(w, h) = strips_m(w, h) − strips_m(w, h − 1); the reflection j ↔ h + 1 − j keeps the strip denominator at degree ≤ ⌈h/2⌉ and the recurrence of smooth_m(·, h) at order ≤ h for every m. The first castle has width w_min = ⌈(h − 1)/m⌉ + 1, and there are C(slack + w_min − 2, w_min − 2) of them, slack = (w_min − 1)m − (h − 1). The growth constant lies between 2m + 1 − m(m+1)/h and 2m + 1. At h ≤ m + 1 the rule holds for every castle: the free count is A(w, h) = h^w − (h − 1)^w and its even-block part is A^e(w, h). On the diagonal h = m + 2: strips x/(1 − (m+1)x − mx²) (Pell, A007482, A015530, A015537 for m = 1…4), castles m·x³/((1 − (m+1)x − mx²)(1 − (m+1)x)), growth de Spinadel's σ_{m+1}^m. A last section lists what holds only at m = 1: the x^h numerator, the explicit eigenvalues and Chebyshev identities, the Motzkin-triangle readings, and the irregular parity orders.
+tags: [concept, castle, castle-type, m-smooth, 1-smooth, pell, transfer-matrix, parity, generating-functions, oeis]
 sources: [pe502-pell-castle-strip, banderier-nicodeme-2010-bounded-discrete-walks]
 created: 2026-10-06
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
 # m-smooth castles
 
 ## Definition
 
-A castle is a skyline `(c_1, …, c_w)` of columns standing on a full bottom row, with maximum height exactly `h` ([[castle-polyomino](pages/castle-polyomino.md)]). An **m-smooth castle** is a castle whose neighbouring columns differ in height by at most `m` ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2). An **anchored** m-smooth castle also has its first column at height 1:
+A castle of height `h` is a skyline `(c_1, …, c_w)` with `1 ≤ c_i ≤ h` and some `c_i = h` ([[castle-polyomino](pages/castle-polyomino.md)]). An **m-smooth castle** is a castle whose neighboring columns differ in height by at most `m`, the m-smooth type of [[castle-classification-shape](pages/castle-classification-shape.md)]. An **anchored** m-smooth castle also has its first column at height 1:
 
 ```
 c_1 = 1,      |c_{i+1} − c_i| ≤ m  (1 ≤ i < w),      max_i c_i = h.
@@ -27,7 +27,7 @@ The 1-smooth castles are the case `m = 1` ([[1-smooth-castles](pages/1-smooth-ca
 **Counts.** For width `w`, ceiling `h` and step bound `m`:
 
 - `strips_m(w, h)` is the number of anchored m-smooth skylines of width `w` with every column in `{1, …, h}`. They need not reach `h`.
-- `smooth_m(w, h)` is the number of anchored m-smooth castles of width `w` and exact height `h`.
+- `smooth_m(w, h)` is the number of anchored m-smooth castles of width `w` and height `h`, the family count `A_X(w, h)` of [[castle-notation](pages/castle-notation.md)] for this family; the word form follows [[1-smooth-castles](pages/1-smooth-castles.md)].
 
 `strips_1` and `smooth_1` are the `strips` and `smooth` of [[1-smooth-castles](pages/1-smooth-castles.md)]. As there,
 
@@ -47,7 +47,7 @@ At `m = 1` ([[1-smooth-castles](pages/1-smooth-castles.md)]):
 - **Parity.** The signed recurrence orders are irregular (`3, 5, 7, 7, 9, …`).
 - **Pell.** At `h = 3`, the Pell castles: strips `x/(1 − 2x − x²)`, castles `x³/((1 − 2x − x²)(1 − 2x))`, growth `1 + √2`.
 
-Sections 2 and 3 extend these to `m ≥ 2`; the addendum lists what does not extend.
+Sections 2 and 3 extend these to `m ≥ 2`; the section *Facts that hold only at m = 1* lists what does not extend.
 
 ## 2. m = 2
 
@@ -75,21 +75,21 @@ The m-smooth rule on heights `{1, …, h}` is the `h × h` band matrix with entr
 For every `m` the band matrix commutes with the flip `j ↔ h + 1 − j`. So its eigenvectors can be chosen symmetric or antisymmetric, and the all-ones vector `𝟙`, which is symmetric, is orthogonal to the antisymmetric ones. Only the symmetric part, of dimension `⌈h/2⌉`, contributes to `strips_m`. Consequences, for every `m` and `h`:
 
 - the reduced denominator of `Σ_w strips_m(w, h) x^w` has degree at most `⌈h/2⌉`;
-- the reduced denominator of `Σ_w smooth_m(w, h) x^w` divides the product of the denominators at `h` and `h − 1`, so it has degree at most `⌈h/2⌉ + ⌈(h−1)/2⌉ = h`, and `smooth_m(·, h)` satisfies a linear recurrence of order at most `h`.
+- the reduced denominator of `Σ_w smooth_m(w, h) x^w` divides the product of the denominators at `h` and `h − 1`, so it has degree at most `⌈h/2⌉ + ⌈(h−1)/2⌉ = h`, and `smooth_m(w, h)` satisfies a linear recurrence of order at most `h` once `w` exceeds the degree of the numerator.
 
-At `m = 1` both bounds are attained. At `m ≥ 2` the degrees can be smaller, since zero eigenvalues contribute no factor. For `h ≥ m + 2` the exact-height degree is below `h` for `m = 2` at `h = 4` and `h = 8, …, 11`, for `m = 3` at `h = 5, 6` and `h = 9, …, 12`, and for `m = 4` at `h = 6, 7, 8` and `h = 12` (tables of 3.7).[^exec]
+At `m = 1` both bounds are attained. At `m ≥ 2` the degrees can be smaller, since zero eigenvalues contribute no factor. For `h ≥ m + 2` the degree for `smooth_m(·, h)` is below `h` for `m = 2` at `h = 4` and `h = 8, …, 11`, for `m = 3` at `h = 5, 6` and `h = 9, …, 12`, and for `m = 4` at `h = 6, 7, 8` and `h = 12` (tables of 3.7).[^exec]
 
-### 3.3 Small ceilings: the rule is vacuous, and F(w, h) appears
+### 3.3 Small ceilings: every castle is m-smooth, and A^e(w, h) appears
 
 When `h ≤ m + 1`, no step inside `{1, …, h}` is longer than `m`, so every castle of height `h` is m-smooth. For these ceilings:
 
-- the free count (any first column) is `h^w − (h − 1)^w`, all castles of width `w` and exact height `h` ([[castle-notation](pages/castle-notation.md)] `A(w, h)`);
-- its even-block part is `F(w, h)`, the Project Euler 502 count;
-- the anchored count is `smooth_m(w, h) = h^{w−1} − (h − 1)^{w−1}`, and its even-block part is `F(w − 1, h)`. Deleting the first column, which has height 1, maps the anchored castles of width `w` onto all castles of width `w − 1`, and keeps the block count: `blocks = c_1 + Σ max(0, c_{i+1} − c_i)` loses `1 + max(0, c_2 − 1) = c_2` and gains `c_2`.
+- the free count (any first column) is `A(w, h) = h^w − (h − 1)^w`, all castles of width `w` and height `h` ([[castle-notation](pages/castle-notation.md)]);
+- its even-block part is `A^e(w, h)`, the Project Euler 502 count, which the problem statement writes `F(w, h)`;
+- the anchored count is `smooth_m(w, h) = h^{w−1} − (h − 1)^{w−1}`, and its even-block part is `A^e(w − 1, h)`. Deleting the first column, which has height 1, maps the anchored castles of width `w` onto all castles of width `w − 1`, and keeps the block count: `blocks = c_1 + Σ max(0, c_{i+1} − c_i)` loses `1 + max(0, c_2 − 1) = c_2` and gains `c_2`.
 
-So for each fixed `h`, the m-smooth castles run from the 1-smooth castles at `m = 1` to all castles at `m ≥ h − 1`, and the PE 502 count `F(w, h)` is the even-block count at the top of that range.[^exec]
+So for each fixed `h`, the m-smooth castles run from the 1-smooth castles at `m = 1` to all castles at `m ≥ h − 1`, and `A^e(w, h)` is the even-block count at the top of that range.[^exec]
 
-### 3.4 The exact-height generating function
+### 3.4 The generating function of smooth_m(·, h)
 
 Reaching height `h` from height 1 takes at least `⌈(h − 1)/m⌉` steps, so the first anchored castle has width
 
@@ -183,7 +183,7 @@ For `h ≤ m + 1` every row is `h^{w−1} − (h − 1)^{w−1}` (3.3), so each 
 | 11 | 4 | `6, 100, 1165, 11786, 110716, 993720, 8648360, …` | `x⁴(2 − x²)(3 + 5x − x² − 5x³ + x⁵)` | 11 | ≈ 7.5194 | 5 |
 | 12 | 4 | `3, 66, 858, 9297, 91902, 860600, 7777385, …` | `x⁴(3 + 18x − 30x³ + 14x⁵ − 2x⁷)` | 11 | ≈ 7.7027 | 5 |
 
-The first entry of each row is the binomial of 3.4. The `m = 2`, `h = 4` row and the `m = 2` triangle by `(w, h)` (`1; 1, 1, 1; 1, 3, 5, 2, 1; 1, 7, 19, 12, 8, 3, 1; …`) have no OEIS match (searched 2026-10-06); the other rows have not been searched.
+The first entry of each row is the binomial of 3.4. The OEIS status of the rows and of the `m = 2` triangle by `(w, h)` (`1; 1, 1, 1; 1, 3, 5, 2, 1; 1, 7, 19, 12, 8, 3, 1; …`) is on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].
 
 ### 3.8 Block parity
 
@@ -207,7 +207,7 @@ The first-width castles of 3.4 rise by exactly `h − 1` in total, so they all h
 
 ## Other boundary conditions
 
-**Free first column.** For `(w − 1)·m ≤ h − 1` there are exactly `(2m + 1)^{w−1}` free m-smooth castles of exact height `h`: each of the `(2m + 1)^{w−1}` step sequences spans at most `h − 1` rows, so exactly one vertical position puts its top column at height `h`. At `h ≤ m + 1` the free count is all castles (3.3).
+**Free first column.** For `(w − 1)·m ≤ h − 1` there are exactly `(2m + 1)^{w−1}` free m-smooth castles of height `h`: each of the `(2m + 1)^{w−1}` step sequences spans at most `h − 1` rows, so exactly one vertical position puts its top column at height `h`. At `h ≤ m + 1` the free count is all castles (3.3).
 
 **Both end columns at height 1.** The first such castle has width `2w_min − 1`, and there are `C(slack + w_min − 2, w_min − 2)²` of them. The top must be reached exactly at the middle column, and each half is a first-width climb of 3.4, the second one reflected.
 
@@ -230,7 +230,7 @@ For `m = 2`:[^exec]
 ```python
 from math import ceil, comb
 def smooth_m(W, h, m):
-    """(even, odd) anchored m-smooth castles of exact height h, widths 1..W.
+    """(even, odd) anchored m-smooth castles of height h, widths 1..W.
     DP over (last height, block parity, reached h); a rise by r adds r blocks."""
     dp, out = {(1, 1, h == 1): 1}, []
     for w in range(1, W + 1):
@@ -252,14 +252,14 @@ for m in (1, 2, 3, 4):
 print([e + o for e, o in smooth_m(10, 4, 2)])    # 0, 0, 2, 12, 58, 252, 1034, 4092, 15802, 59964
 ```
 
-## Addendum: what does not extend
+## Facts that hold only at m = 1
 
 The definition, the subtraction `strips_m(w, h) − strips_m(w, h − 1)`, the reflection bounds on the denominators, the first width and its count, the growth bounds, the Pell structure on the diagonal `h = m + 2`, and the parity split as a computation extend to every `m`. The following parts of [[1-smooth-castles](pages/1-smooth-castles.md)] do not.
 
-- **The monomial numerator.** At `m = 1` the exact-height generating function is `x^h` over the denominators. For `m ≥ 2` the numerator starts at `x^{w_min}` with `w_min < h` and is in general a polynomial of several terms, even when `slack = 0` (`x³(1 + x)` at `m = 2`, `h = 5`).
-- **Exact degrees.** At `m = 1` the strip denominator has degree exactly `⌈h/2⌉` and the exact-height denominator exactly `h`. For `m ≥ 2` these are only upper bounds (3.2).
+- **The monomial numerator.** At `m = 1` the numerator of `Σ_w smooth(w, h) x^w` is `x^h`. For `m ≥ 2` the numerator starts at `x^{w_min}` with `w_min < h` and is in general a polynomial of several terms, even when `slack = 0` (`x³(1 + x)` at `m = 2`, `h = 5`).
+- **Exact degrees.** At `m = 1` the strip denominator has degree exactly `⌈h/2⌉` and the denominator for `smooth(·, h)` exactly `h`. For `m ≥ 2` these are only upper bounds (3.2).
 - **Explicit eigenvalues and Chebyshev identities.** The cosine formula `1 + 2cos(πk/(h+1))`, the three-term determinant recurrence, and the formulas for `η_h` in terms of the determinants all use the tridiagonal structure. The band matrices for `m ≥ 2` are not tridiagonal, and their growth constants are cubic or higher for `h ≥ m + 3` in every case computed. In their place, the [[kernel-method](pages/kernel-method.md)] writes the strips through the `2m` roots of the kernel `1 − x(u^{−m} + ⋯ + u^m)` ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
-- **The Motzkin readings.** At `m = 1` the castle counts are columns of the Motzkin triangles A283595 and A097862. The `m = 2` triangle has no OEIS match (3.7).
+- **The Motzkin readings.** At `m = 1` the castle counts are columns of the Motzkin triangles A283595 and A097862, whose paths have steps of size at most 1.
 - **Irregular parity orders.** The repeats at `h = 5` and `h = 9` in the `m = 1` signed orders do not occur for `m = 2, 3, 4`, where the order is `2h − 1` for every `h ≤ 12` (3.8).
 
 ## Related Concepts
@@ -268,16 +268,16 @@ The definition, the subtraction `strips_m(w, h) − strips_m(w, h − 1)`, the r
 - [[kernel-method](pages/kernel-method.md)] - the strips of this page between two walls, in closed form in the `2m` kernel roots ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
 - [[pell-castle](pages/pell-castle.md)] - `m = 1`, `h = 3`, the first point of the diagonal `h = m + 2`.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the two-atom reading of `1/(1 − 2x − x²)`, which the diagonal `h = m + 2` carries to every `m`.
-- [[castle-classification-shape](pages/castle-classification-shape.md)] - Axis 2, the m-smooth type.
-- [[castle-counting-formula](pages/castle-counting-formula.md)] - `F(w, h)`, the even-block count at `m ≥ h − 1`.
-- [[castle-strip](pages/castle-strip.md)] - how a neighbour rule becomes a transfer matrix on column heights.
-- [[metallic-means](pages/metallic-means.md)] - why the diagonal is metallic only at `m = 1`.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the m-smooth type among the shape types.
+- [[castle-counting-formula](pages/castle-counting-formula.md)] - `A^e(w, h)`, the even-block count at `m ≥ h − 1`.
+- [[castle-strip](pages/castle-strip.md)] - how a rule on neighboring columns becomes a transfer matrix on column heights.
+- [[metallic-means](pages/metallic-means.md)] - de Spinadel's `σ_p^q`, of which the diagonal growth constants are `σ_{m+1}^m`; only `m = 1` is on the row `q = 1`.
 - [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the status of each row.
 - [[castle-notation](pages/castle-notation.md)] - `strips_m`, `smooth_m`, `w_min`, `ρ_{h,m}`.
 
 ## Footnotes
 
-[^a007482]: https://oeis.org/A007482 (fetched 2026-10-06) - "a(n) is the number of subsequences of [ 1, ..., 2n ] in which each odd number has an even neighbor."; "G.f.: 1/(1-3*x-2*x^2)."; data `1, 3, 11, 39, 139, 495, 1763, 6279, 22363, 79647, …`, offset 0.
-[^a015530]: https://oeis.org/A015530 (fetched 2026-10-06) - "Expansion of x/(1 - 4*x - 3*x^2)."; offset 0.
-[^a015537]: https://oeis.org/A015537 (fetched 2026-10-06) - "Expansion of x/(1 - 5*x - 4*x^2)."; offset 0.
-[^exec]: Verified by execution (Python 3, SymPy, NumPy, 2026-10-06) for `m = 1, 2, 3, 4` and `h = 2, …, 12`: counts by dynamic program over (height, block parity, reached `h`) to width `8h + 12`, against brute-force enumeration for `h ≤ 7`, `m ≤ 3`, `w ≤ 7`, and against `strips_m(w, h) − strips_m(w, h − 1)`; generating functions recovered from the counts by Berlekamp-Massey, each checked to reproduce all computed terms with a recurrence order below half their number; the `m = 1` results agree with [[1-smooth-castles](pages/1-smooth-castles.md)]. Checked: `w_min` and the binomial count at `w_min`; the pinned first width `2w_min − 1` with the squared binomial; the strip denominator degree `≤ ⌈h/2⌉` and the exact-height degree `≤ h`; the growth bounds against the largest eigenvalue; for `h ≤ m + 1`, the counts `h^{w−1} − (h−1)^{w−1}` and `h^w − (h−1)^w` and the anchored even-block count equal to the free even-block count at width `w − 1`; at `h = m + 2`, both diagonal generating functions and the minimal polynomial `x² − (m+1)x − m`; the free count `(2m + 1)^{w−1}` for `(w − 1)m ≤ h − 1`; the signed denominator degree `2h − 1` for `m ≥ 2`; minimal polynomials of the growth constants from the factored characteristic polynomial. OEIS searches with no match (2026-10-06): the `m = 2`, `h = 4` row and the `m = 2` triangle by `(w, h)`.
+[^a007482]: https://oeis.org/A007482 (read 2026-10-16) - "a(n) is the number of subsequences of [ 1, ..., 2n ] in which each odd number has an even neighbor."; "G.f.: 1/(1-3*x-2*x^2)."; data `1, 3, 11, 39, 139, 495, 1763, 6279, 22363, 79647, …`, offset 0.
+[^a015530]: https://oeis.org/A015530 (read 2026-10-16) - "Expansion of x/(1 - 4*x - 3*x^2)."; offset 0.
+[^a015537]: https://oeis.org/A015537 (read 2026-10-16) - "Expansion of x/(1 - 5*x - 4*x^2)."; offset 0.
+[^exec]: Verified by execution (Python 3.11 with SymPy, 2026-10-16) for `m = 1, 2, 3, 4` and `h = 2, …, 12`, from the generating functions `x e_1ᵀ(I − xB)^{−1}𝟙` of the band matrices `B` and their signed versions: every row of the tables in 3.7 (counts, numerators, reduced denominator degrees, growth constants and their degrees), the strip denominator degrees `≤ ⌈h/2⌉` and the rows where the degree for `smooth_m(·, h)` is below `h`; the parity rows, signed denominators of degree `2h − 1` for `m = 2, 3, 4`, signed growth and the even/odd orders for `m = 2, 3, 4`, and the `m = 1` signed orders `3, 5, 7, 7, 9, …`; the free and both-ends tables for `m = 2`, with the first pinned width `2w_min − 1` and the squared binomial; the free count `(2m + 1)^{w−1}` for `(w − 1)m ≤ h − 1` (`m ≤ 3`, `h ≤ 8`, `w ≤ 8`); both diagonal generating functions for `m ≤ 5`; the first-width binomial by the code block; A007482, A015530 and A015537 checked on oeis.org.
