@@ -1,22 +1,22 @@
 ---
 title: Castle snippets - number theory
 category: Concepts
-summary: Snippets for the signed tower count, continued-fraction convergents, mod-p orders / Pisano-type periods, quasi-polynomial splits, sector transfer matrices, the H(d) factor, and the ring theory of char_k (mod-2 shape, CRT and Lagrange idempotents, sector resultant, reduced period, sectors mod 2, rational sector idempotent, fiber ideal counts, Frobenius rank and fixed space, metallic ring conductors, the inverse of x). Sibling of the core castle-snippets hub.
+summary: Tested Python snippets for the signed tower count P(k, L), continued-fraction convergents, orders and periods modulo p, the split of P(·, L) into (−1)^k A(k) + B(k), the signed transfer matrix M̃_k and its parity sectors, the factor H_d, simple and Jacobi-Perron continued fractions, and the ring theory of char_k (its shape mod 2, CRT and Lagrange idempotents, the sector resultant, reduced periods, the sector idempotent, ideal counts and the Frobenius map of the fibers, the conductors of the metallic rings, the inverse of x). Every output is rerun; sibling of castle-snippets.
 tags: [concept, castle, python, snippets, signed-tower-count, continued-fraction, mod-p, quasi-polynomial, plastic-number]
 sources: [project-euler-502-brute-force, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-19
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
 # Castle snippets - number theory
 
-A sibling page to [[castle-snippets](pages/castle-snippets.md)]: snippets that compute the signed tower count `P(k, L)`, continued-fraction convergents, Pisano-type periods, quasi-polynomial splits, and the factor `H(d)` behind the plastic-eigenvalue identity. Same conventions as the hub page - every output pinned, every snippet executed during ingest.
+A sibling page to [[castle-snippets](pages/castle-snippets.md)]: snippets that compute the signed tower count `P(k, L)`, continued-fraction convergents, periods modulo `p`, the split of `P(·, L)` into `(−1)^k A(k) + B(k)`, and the factor `H_d` behind the plastic root of `char_6`. Every output on this page was rerun on 2026-10-16 (Python 3.11 with SymPy and mpmath).[^1]
 
 ## The signed tower count
 
 ### `p_signed(k, L)` → the signed tower count P(k,L)
 
-The signed sum `Σ (−1)^blocks` over towers of height `≤ k` above a length-`L` block, by an `O(k²L)` last-column-height DP ([[signed-tower-count](pages/signed-tower-count.md)]). A new column of height `b` after height `a` opens `max(0, b−a)` new blocks, each weighted `−1`.
+The sum of `(−1)^{blocks}` over the towers of height at most `k` on a base of length `L`, by a dynamic program over the height of the last column, `O(k²L)` operations ([[signed-tower-count](pages/signed-tower-count.md)]). A column of height `b` after a column of height `a` starts `max(0, b − a)` blocks.
 
 ```python
 def p_signed(k, L):
@@ -31,15 +31,15 @@ def p_signed(k, L):
 ```
 
 ```
->>> [p_signed(1, L) for L in range(8)]        # Re((1+i)^{L+1}) = A146559
+>>> [p_signed(1, L) for L in range(8)]        # Re((1+i)^{L+1}) = A146559(L+1)
 [1, 0, -2, -4, -4, 0, 8, 16]
->>> [p_signed(2, L) for L in range(10)]       # order-3, all positive; novel (no OEIS match)
+>>> [p_signed(2, L) for L in range(10)]       # order 3
 [1, 1, 3, 9, 19, 33, 59, 121, 259, 529]
->>> [p_signed(4, L) for L in range(9)]        # order-5; novel
+>>> [p_signed(4, L) for L in range(9)]        # order 5
 [1, 1, 5, 25, 85, 225, 541, 1385, 3973]
 ```
 
-Meaning: `P(k,·)` is C-finite of order `k+1`, and the whole family's generating-function denominators satisfy `den_{k+1} = den_{k−1} − 2x·den_k`, whose roots `−x ± √(x²+1)` give the Pell/Chebyshev closed form on [[generating-function-gallery](pages/generating-function-gallery.md)]. Even-`k` rows are positive (checked `k ≤ 12`, `L < 40`); odd-`k` rows change sign in runs, their dominant eigenvalues being a complex pair.
+Meaning: `P(k, ·)` satisfies a linear recurrence of order `k + 1`, and the denominators of its generating functions satisfy `den_{k+1} = den_{k−1} − 2x·den_k`, the Pell-polynomial recurrence in `−x` ([[signed-tower-count](pages/signed-tower-count.md)], [[generating-function-gallery](pages/generating-function-gallery.md)]). The rows for even `k ≤ 12` are positive for `L < 40`; for odd `k ≤ 7` the roots of largest modulus are a complex pair, and the rows change sign in runs (computed). The OEIS status of the rows `k ≥ 2` is on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].
 
 ## Continued fractions, convergents, and quasi-polynomials
 
@@ -69,12 +69,12 @@ def convergents(digits):
 [1, 3, 7, 17, 41, 99, 239, 577]
 ```
 
-Meaning: with a constant digit `a`, numerators and denominators are the *same* metallic sequence one step apart - one OEIS entry per rung of [[metallic-means](pages/metallic-means.md)], not two.
+Meaning: with every digit equal to `a`, the numerators and denominators are one sequence shifted by one step, `p_n = q_{n+1}`, so each metallic mean of [[metallic-means](pages/metallic-means.md)] has one OEIS entry for both. The numerators `p_n − q_n` of the convergents to `√2` are the Pell-Lucas numbers A001333.
 
 
 ### `order_mod(a, c, p)` / `period_mod(a, p)` → int
 
-The order of the root of `t² − a t + c` in `F_p[t]/(t² − a t + c)` (a hand-built `F_p` or `F_{p²}`), and the Pisano-type period of `x_n = a x_{n−1} + x_{n−2}` mod `p`. They agree: the period is the order of `t` in that ring, the lcm of the two eigenvalue orders ([[mod-p-observatory](pages/mod-p-observatory.md)]). At inert primes the two conjugate eigenvalues have the same order; at split primes they can differ (`a = 1, p = 11`: the roots `8, 4` have orders 10 and 5).
+`order_mod` is the order of `t` in `F_p[t]/(t² − a t + c)`, and `period_mod` the period of `x_n = a x_{n−1} + x_{n−2}` mod `p`, which is the order of `t` for `c = −1`. When `p` does not divide the discriminant, the order of `t` is the lcm of the orders of the two roots ([[mod-p-observatory](pages/mod-p-observatory.md)]). At an inert prime the two conjugate roots have the same order; at a split prime they can differ (`a = 1`, `p = 11`: the roots `8` and `4` have orders 10 and 5).
 
 ```python
 def order_mod(a, c, p):
@@ -101,12 +101,12 @@ def period_mod(a, p):
 [(3, 4), (7, 8), (13, 14)]
 ```
 
-Meaning: at inert primes (`3, 7, 13` for `√5`) the norm-`−1` golden ratio has order `2(p+1)` - `8, 16, 28` - while the norm-`+1` `φ²` has order `p+1` - `4, 8, 14`. At an inert prime `x^{p+1}` is the norm, so `φ^{p+1} = −1`, the same norm `−1` that makes `φ`'s continued fraction purely periodic.
+Meaning: at a prime `p` inert in `Q(√5)`, the Frobenius map `u ↦ u^p` sends `φ` to its conjugate, so `φ^{p+1} = φφ̄ = −1`; the order of `φ` divides `2(p + 1)` and not `p + 1`, while `φ²`, of norm `+1`, has order dividing `p + 1`. At the inert primes 3, 7 and 13 the orders are exactly `2(p + 1) = 8, 16, 28` and `p + 1 = 4, 8, 14`.
 
 
 ### `P_table(max_k, max_L)` → `P[k][L]`
 
-The [[castle-sign](pages/castle-sign.md)] signed tower count as a compact DP (exact integers; `P[k][0] = 1` for the empty tower).
+The signed tower count of [[castle-sign](pages/castle-sign.md)] as a table, in exact integers, with `P[k][0] = 1` for the empty towers. The row `L = 4` is `(−1)^k A352116(k + 1)`, used by `quasi_split`.
 
 ```python
 def P_table(max_k, max_L):
@@ -130,7 +130,7 @@ def P_table(max_k, max_L):
 
 ### `berlekamp_massey(s)` → the shortest recurrence over the rationals
 
-Berlekamp–Massey with exact rational coefficients (the mod-`p` cousin is `bm_modp` in the cryptography snippets). Given a sequence, returns the connection polynomial (low→high, `C[0] = 1`) and its order. Over `Q` this is exact — [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] Part 3 runs it on `P(·, L)` to recover `(x+1)^L (x−1)^{L−2}`.
+The Berlekamp-Massey algorithm with exact rational coefficients; `bm_modp` on [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)] is the version mod `p`. It returns the connection polynomial, coefficients from low to high with `C[0] = 1`, and its order; the output is the shortest recurrence when the order is at most half the number of terms ([[berlekamp-massey](pages/berlekamp-massey.md)]). [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] Part 3 runs it on `P(·, L)` and finds `(x+1)^L (x−1)^{L−2}` for `4 ≤ L ≤ 12`.
 
 ```python
 from fractions import Fraction
@@ -152,12 +152,12 @@ def berlekamp_massey(s):
 ([Fraction(1, 1), Fraction(-3, 1), Fraction(4, 1), Fraction(-4, 1)], 3)
 ```
 
-Meaning: the coefficients `[1, −3, 4, −4]` are `char_2 = x³ − 3x² + 4x − 4`, recovered from ten terms (the LFSR attack of [[castle-cryptography](pages/castle-cryptography.md)]).
+Meaning: the coefficients `[1, −3, 4, −4]` give `char_2 = x³ − 3x² + 4x − 4`, recovered from ten terms, enough since the order 3 is at most half of 10. [[castle-cryptography](pages/castle-cryptography.md)] uses the same recovery against a linear-feedback shift register.
 
 
 ### `quasi_split(seq, deg)` → `(A, B)` with `seq[k] = (−1)^k A(k) + B(k)`
 
-Two Lagrange interpolations (even `k`, odd `k`) - all you need when every eigenvalue is `±1`, which is the case for the k-direction of `P` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]). Requires SymPy.
+Two Lagrange interpolations, one through the even `k` and one through the odd `k`. They suffice when every eigenvalue of the recurrence is `±1`, which holds in the `k` direction of `P` for `L ≤ 12` (computed; [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]). Requires SymPy.
 
 ```python
 import sympy as sp
@@ -177,15 +177,15 @@ def quasi_split(seq, deg):
 (k*(k + 1)**2*(k + 2)/3, (k + 1)**2)
 ```
 
-Meaning: `P(k,4) = (−1)^k (k+1)(2k+1)(2k+3)/6 + (k+1)/2`, and `|P(k,4)|` is A352116 (partial sums of odd triangular numbers). Always give `deg` at least the true degree (`L−1` here); with too few terms the interpolation silently returns garbage - re-check against the sequence, as the crosswalk page does.
+Meaning: `P(k, 4) = (−1)^k (k+1)(2k+1)(2k+3)/6 + (k+1)/2` for every `k ≤ 40` (checked), and `|P(k, 4)| = A352116(k + 1)`, the partial sums of the odd triangular numbers. `deg` must be at least the true degree, `L − 1` here; with less, the interpolation returns a wrong polynomial without warning, so the result is checked against the sequence.
 
 
 ### `M_signed(k)` / `sectors(k, Lmax)` → transfer matrix and last-column-parity sectors
 
-The signed transfer matrix of [[signed-tower-count](pages/signed-tower-count.md)] and the split `P = P_even + P_odd` by the parity of the last column height ([[tower-parity-sectors](pages/tower-parity-sectors.md)]). Requires SymPy.
+The signed transfer matrix `M̃_k`, with entry `(−1)^{max(0, a−b)}` from height `a` to height `b`, and the split `P = P_even + P_odd` by the parity of the height of the last column ([[tower-parity-sectors](pages/tower-parity-sectors.md)]). Requires SymPy.
 
 ```python
-def M_signed(k):                       # s(a, b) = (-1)^max(0, a-b)
+def M_signed(k):                       # M~_k[a][b] = (-1)^max(0, a-b)
     return sp.Matrix(k+1, k+1, lambda a, b: 1 if a <= b else (-1)**(a-b))
 
 def sectors(k, Lmax):
@@ -208,7 +208,7 @@ def sectors(k, Lmax):
 ([1, 1, 0, -2, -4, -4, 0, 8, 16], [0, -1, -2, -2, 0, 4, 8, 8, 0])
 ```
 
-Meaning: `E[L] + O[L] = P(k, L)`; for even `k` the two sequences are C-finite with the two factors of `char_k` as characteristic polynomials. `E[L]/2^L` is an integer exactly when `k ≡ 2 (mod 4)`.
+Meaning: `E[L] + O[L] = P(k, L)`; for even `k` the two sequences satisfy the recurrences whose characteristic polynomials are the two factors of `char_k`. For even `k ≤ 20` and `L ≤ 20`, `E[L]/2^L` is an integer exactly when `k ≡ 2 (mod 4)` (computed).
 
 
 ### `H(d)` → the monic factor of `char_{2d}(2μ)/2^{2d}`
@@ -235,12 +235,12 @@ def H(d):
 True
 ```
 
-Meaning: `H_3` is the minimal polynomial of `ψ²` (plastic number squared), hence `ρ_6 = 2ψ²` ([[plastic-number](pages/plastic-number.md)]); the identity `g_{2d} = H_d·(H_{d+1} + μ² H_{d−1})` holds for every `d` (proof on [[tower-parity-sectors](pages/tower-parity-sectors.md)]).
+Meaning: `H_3` is the minimal polynomial of `ψ²`, the square of the plastic number, so `ρ_6 = 2ψ²` ([[plastic-number](pages/plastic-number.md)]); the identity `g_{2d} = H_d·(H_{d+1} + μ² H_{d−1})`, with `g_{2d}(μ) = char_{2d}(2μ)/2^{2d}`, is proved for every `d` on [[tower-parity-sectors](pages/tower-parity-sectors.md)].
 
 
 ### `cf_digits(poly, x0, n)` → the simple continued fraction of an algebraic number
 
-The digit stream of a real algebraic number by repeated `⌊·⌋` and reciprocal, at `mpmath` precision. For a quadratic it repeats (Lagrange); for a cubic it never does. Part 4 of [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] uses this to show `ρ_6` has no simple-CF period. Requires mpmath.
+The digits of a real algebraic number by repeated floor and reciprocal, at `mpmath` precision. A real number has an eventually periodic continued fraction exactly when it is a quadratic irrational (Lagrange; [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]), so the digits of a cubic never become periodic; Part 4 of [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] uses this for `ρ_6`. Requires mpmath.
 
 ```python
 from mpmath import mp, mpf, findroot, floor
@@ -262,12 +262,12 @@ def cf_digits(poly_coeffs, x0, n=20):
 [2, 2, 2, 2, 2, 2, 2, 2]
 ```
 
-Meaning: the cubic digits (including the `282`) never repeat — eventually-periodic ⟺ quadratic — while the quadratic `1+√2` is all `2`s.
+Meaning: `ρ_4` and `ρ_6` are cubic, so their digits are not eventually periodic; the quadratic `1 + √2` is `[2; 2, 2, …]`.
 
 
 ### `jacobi_perron(f, x0, steps)` → the multidimensional continued fraction, exactly
 
-The Jacobi–Perron algorithm (JPA) — the `d`-dimensional continued fraction — on a degree-`d` algebraic number, with exact arithmetic in `Q(ρ)` (reduce and invert mod the minimal polynomial; mpmath only for the floors). Detects periodicity exactly: `ρ_6 = 2ψ²` is JPA-periodic, `ρ_4` is not within 400 steps. Requires SymPy + mpmath.
+The Jacobi-Perron algorithm, a continued fraction in `d − 1` dimensions for an algebraic number of degree `d`, with exact arithmetic in `Q(ρ)` (reduction and inversion modulo the minimal polynomial; mpmath only for the floors), so a repeated state is detected exactly. Requires SymPy and mpmath.
 
 ```python
 import sympy as sp
@@ -300,7 +300,7 @@ def jacobi_perron(f, x0, steps):
 'no period within 400 steps'
 ```
 
-Meaning: `ρ_6` has a period-4 multidimensional continued fraction (the cubic analogue of `[2; 2, 2, …]`), while `ρ_4` shows none in 400 exact steps. (`ρ_6/2 = ψ²` is a unit; `ρ_4/2` is not an algebraic integer; [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)].)
+Meaning: the Jacobi-Perron expansion of `ρ_6` has preperiod 5 and period 4, and that of `ρ_4` shows no period in 400 exact steps. `ρ_6/2 = ψ²` is a unit, and `ρ_4/2`, a root of `2μ³ − 3μ² + μ − 1`, is not an algebraic integer ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]).
 
 ## Ring theory of `char_k`
 
@@ -313,7 +313,7 @@ x = sp.symbols('x')
 
 ### `char_k(k)` → the characteristic polynomial of `P(k, ·)`, and its shape mod 2
 
-The three-term recurrence `char_{k+1} = x²·char_{k−1} − 2·char_k` from `char_0 = x − 1`, `char_1 = x² − 2x + 2`. Mod 2 the `−2·char_k` term drops out, which proves the pattern below.
+The three-term recurrence `char_{k+1} = x²·char_{k−1} − 2·char_k` from `char_0 = x − 1`, `char_1 = x² − 2x + 2`. Mod 2 the `−2·char_k` term drops out, which proves the shape of the output.
 
 ```python
 def char_k(k):
@@ -392,7 +392,7 @@ def sector_resultant(k):
 True
 ```
 
-Meaning: the two sectors can share a root only mod 2, so the parity-sector split of `Q[x]/(char_k)` is already defined over `Z[1/2]`. The exponent `k(k+2)/4 = d(d+1)` for `k = 2d` is conjectural beyond `k = 30`.
+Meaning: the resultant is `2^{k(k+2)/4} = 2^{d(d+1)}` for even `k = 2d ≤ 30` (computed), so for these `k` the two sector factors have a common root only modulo 2, and the parity-sector split of `Q[x]/(char_k)` is defined over `Z[1/2]`.
 
 ### `x_order(Q, p)` / `reduced_period(k, p)` → the period of `P(k, ·) mod p`, split into reduced part and nilpotent inflation
 
@@ -448,11 +448,11 @@ def sectors_mod2(k):
 [[x, x**2 + x], [x**2, x**3 + x**2], [x**3, x**4 + x**3]]
 ```
 
-Meaning: `x^{k/2}` and `x^{k/2}(x + 1)` - the two sector components of `Spec Z[x]/(char_k)` share exactly one point, `(2, x)`.
+Meaning: the factors reduce to `x^{k/2}` and `x^{k/2}(x + 1)`, so the two sector components of `Spec Z[x]/(char_k)` meet over 2 only at the point `(2, x)`, and, by the resultant, over no other prime (for even `k ≤ 30`).
 
 ### `sector_idempotent(k)` → the rational idempotent that splits the two parity sectors (even `k`), and the power of 2 in its denominator
 
-Over `Q`, the element that is `1` on the `f`-sector and `0` on the `g`-sector is `g·(g^{−1} mod f)`, reduced mod `char_k`. Its coefficients are fractions; the exponent returned is the largest power of 2 among their denominators (no other prime ever appears).
+Over `Q`, the element that is `1` on the `f`-sector and `0` on the `g`-sector is `g·(g^{−1} mod f)`, reduced mod `char_k`. Its coefficients are fractions, and the function returns the exponent of 2 in the lcm of their denominators; for even `k ≤ 40` no other prime divides them (computed).
 
 ```python
 def sector_idempotent(k):
@@ -471,7 +471,7 @@ def sector_idempotent(k):
 True
 ```
 
-Meaning: at `k = 2` the idempotent is `(x² − x + 2)/4`, the same element whose reduction mod 101 is `76x² + 25x + 51` in `crt_idempotents` above. The denominator is `2^{v_2(k!) + 1}` for every even `k ≤ 40` (conjectural beyond): it can be written down only after allowing division by 2, so it lives in `Z[1/2][x]/(char_k)` and not in `Z[x]/(char_k)`.
+Meaning: at `k = 2` the idempotent is `(x² − x + 2)/4`, the same element whose reduction mod 101 is `76x² + 25x + 51` in `crt_idempotents`. The denominator is `2^{v_2(k!) + 1}` for every even `k ≤ 40` (computed), so the idempotent lies in `Z[1/2][x]/(char_k)` and not in `Z[x]/(char_k)`.
 
 ### `fiber_ideal_count(k, p)` → `(ideals, idempotents)` of the fiber `F_p[x]/(char_k mod p)`
 
@@ -564,14 +564,17 @@ def x_inverse(k):
 ## Related Concepts
 
 - [[castle-snippets](pages/castle-snippets.md)] - the enumeration and predicates hub.
-- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the analysis these snippets were written for; every pinned value here matches that page.
+- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the convergents, quasi-polynomials and continued fractions of the castle eigenvalues, computed with these snippets.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the real side of the CF-period / mod-p-order correspondence.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the finite-field side.
-- [[metallic-means](pages/metallic-means.md)] / [[pell-numbers](pages/pell-numbers.md)] - the rungs the convergents snippets sit on.
-- [[recurrence-discovery](pages/recurrence-discovery.md)] / [[closed-form-hunting](pages/closed-form-hunting.md)] - the recurrence orders and coefficients `quasi_split` factors.
-- [[signed-tower-count](pages/signed-tower-count.md)] / [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - the `M_signed`, sectors, and `H(d)` snippets.
+- [[metallic-means](pages/metallic-means.md)] / [[pell-numbers](pages/pell-numbers.md)] - the metallic means of `convergents` and `metallic_ring`, and the Pell and Pell-Lucas numbers.
+- [[recurrence-discovery](pages/recurrence-discovery.md)] / [[closed-form-hunting](pages/closed-form-hunting.md)] - the recurrence orders of `P` in both directions and the closed forms `quasi_split` finds.
+- [[signed-tower-count](pages/signed-tower-count.md)] / [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[plastic-number](pages/plastic-number.md)] - `P(k, L)`, `M̃_k` and its sectors, and `H_d` with the plastic root of `char_6`.
 - [[castle-sign](pages/castle-sign.md)] - the block-count convention `p_signed` matches.
 - [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] / [[idempotent-decomposition](pages/idempotent-decomposition.md)] - `crt_idempotents`, `lagrange_idempotents`, `sector_resultant`.
 - [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - `char_k` and its mod-2 shape.
 - [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - `reduced_period`, `sectors_mod2`, `sector_idempotent`, `fiber_ideal_count`, `frobenius_profile`, `x_inverse`.
-- [[metallic-means](pages/metallic-means.md)] - `metallic_ring`.
+
+## Footnotes
+
+[^1]: Verified by execution (Python 3.11 with SymPy 1.14 and mpmath, 2026-10-16): every printed output on this page; `P_table` against `p_signed` for `k ≤ 6`, `L ≤ 8`; the split of `P(k, 4)` against the table for `k ≤ 40`; `E[L]/2^L` for even `k ≤ 20`, `L ≤ 20`; the roots `4, 8` of `t² − t − 1` mod 11 and their orders 5 and 10; the sector-idempotent denominators for even `k ≤ 40`; `char_3` irreducible mod 3 and `(x − 1)²` times a quadratic mod 5; `char_2 ≡ (x − 2)(x + 3)²` mod 7.
