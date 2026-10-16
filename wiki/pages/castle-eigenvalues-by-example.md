@@ -1,171 +1,136 @@
 ---
 title: Castle eigenvalues by example
 category: Concepts
-summary: A pedagogy tour of eigenvalues that appear on the castle wiki. Small castles worked out end to end - draw the polyomino, write the adjacency matrix, factor the characteristic polynomial, read off the eigenvalues - with the walk-count reading of each spectrum. Includes one-cell changes that move a castle onto or off the golden-spectrum list, and two non-isomorphic castles with the same eigenvalues.
+summary: Small castles worked by hand - draw the castle, number the cells, write the adjacency matrix of the castle graph, factor the characteristic polynomial, read off the eigenvalues and what they count in walks. Covers the castles with at most four cells, the six castles golden by spectrum (graph P_4), the 3 × 2 rectangle, silver by spectrum, three one-cell changes, the smallest pair of castles with non-isomorphic graphs and the same adjacency spectrum (10 cells), and the 4 × 2 rectangle with spectral radius φ². Also separates the four matrices whose eigenvalues appear on the wiki - adjacency, Laplacian, transfer matrix and char_k.
 tags: [concept, castle, eigenvalue, spectral, adjacency-matrix, pedagogy, worked-example, tutorial]
 sources: [project-euler-502-brute-force, oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Castle eigenvalues by example
 
-Eigenvalues appear on the castle wiki in many places - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], [[spectral-analysis](pages/spectral-analysis.md)], [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)], [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)], [[isospectral-castles](pages/isospectral-castles.md)] - and each of those pages assumes the reader already knows which "eigenvalue" is meant in its context. This page works small castles by hand, from drawing the object to reading off the spectrum, with the meaning of each calculation stated after it.
+Eigenvalues appear on many castle pages, among them [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], [[spectral-analysis](pages/spectral-analysis.md)], [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)], [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] and [[isospectral-castles](pages/isospectral-castles.md)], and they are eigenvalues of different matrices. This page names the four matrices and then works small castles by hand, from the drawing to the spectrum.
 
-## What "eigenvalue" means here
+## Four matrices
 
-The wiki lays four different operators on a castle. Each one gives its own eigenvalues; each set of eigenvalues means a different thing physically.
+- **The adjacency matrix `A`** of the castle graph, with one vertex per cell and an edge between two cells that share a side ([[castle-graph](pages/castle-graph.md)]). The castle graph is connected, its largest eigenvalue `λ_1(A)` is its spectral radius, and the number of walks of length `n` grows like `λ_1^n`. Every cell has at most four neighbors, and every castle graph has spectral radius below 4 ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]).
+- **The Laplacian `L = D − A`**, with `D` the diagonal matrix of degrees. Its eigenvalues are at least 0, and 0 has multiplicity equal to the number of connected components, so 1 for a castle (Brouwer and Haemers, Proposition 1.3.7). The second-smallest eigenvalue, the algebraic connectivity, is positive exactly when the graph is connected (§1.7), and by the matrix-tree theorem every cofactor of `L` is the number of spanning trees (Proposition 1.3.4).[^3]
+- **The transfer matrix `M`** of a family of castles defined by a rule on neighboring columns: the 0/1 matrix on the heights `1, …, h` with `M[a][b] = 1` when a column of height `a` may be followed by one of height `b`. Its largest eigenvalue is the growth constant of the family by width ([[castle-strip](pages/castle-strip.md)], [[castle-classification-growth](pages/castle-classification-growth.md)]).
+- **The polynomial `char_k(λ)`** of the linear recurrence of the signed tower count `P(k, ·)` in the base length ([[signed-tower-count](pages/signed-tower-count.md)]). Its roots are not the eigenvalues of any castle graph. In the other direction, at fixed base length `L`, the recurrence of `P(·, L)` in `k` has only the roots `±1`, with characteristic polynomial `(λ + 1)^L (λ − 1)^{L−2}` for `4 ≤ L ≤ 12` (computed, [[signed-tower-k-direction](pages/signed-tower-k-direction.md)]).
 
-- **Adjacency matrix `A`** of the castle's polyomino graph (one vertex per filled cell, an edge between orthogonally adjacent cells). Eigenvalues live in `[−4, 4]` because every cell has at most four neighbours. The largest eigenvalue `λ_1(A)` is the **spectral radius**; asymptotically, the number of length-`n` walks through the graph grows like `λ_1^n`. This is the object [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] catalogues.
-- **Combinatorial Laplacian `L = D − A`**, where `D` is the diagonal degree matrix. Eigenvalues are `≥ 0`, the smallest is always `0` (a constant is in the kernel), and the second-smallest - the *spectral gap* - controls connectivity, mixing time, and how easy the graph is to disconnect.
-- **Transfer matrix `T`** of a *class* of castles under a neighbour rule (the class's `h × h` 0/1 matrix, rows and columns indexed by column heights `1..h`). Its Perron root - largest real eigenvalue - is the **growth constant** of the class's width-graded count. This is one castle rule producing one Perron root; see [[castle-strip](pages/castle-strip.md)] for the full story and [[castle-classification-growth](pages/castle-classification-growth.md)] Axis 8 for the classification of what growth constants arise.
-- **The `char_k(λ)` characteristic polynomial** of the signed-tower recurrence at fixed height bound `k`. Its roots are the eigenvalues of the count sequence `P(k, ·)` itself as an L-recurrence. Listed in [[generating-function-gallery](pages/generating-function-gallery.md)]; the k-direction of the same object collapses to `±1` on [[signed-tower-k-direction](pages/signed-tower-k-direction.md)].
+The four are unrelated matrices, and the same number can come from two of them for different reasons. The castle `(1, 1, 2)` is golden by spectrum, since its castle graph is the path `P_4`, whose spectral radius is the golden ratio `φ` (section *The six castles golden by spectrum*). It is also a Fibonacci castle, a castle of height 2 with no two neighboring columns of height 2, and the Fibonacci castles are golden by width, since their rule has transfer matrix `[[1, 1], [1, 0]]` ([[castle-classification-growth](pages/castle-classification-growth.md)]). The two `φ`s are eigenvalues of a `4 × 4` and of a `2 × 2` matrix that have nothing to do with each other.
 
-**These four are different things.** A castle can be a *golden-spectrum castle* (its adjacency spectral radius is `φ`) and yet its class's transfer matrix has an entirely different Perron root, and the recurrence its counts satisfy has yet another spectrum. "The castle's eigenvalues" always needs an operator.
+The rest of the page is about the adjacency matrix unless it says otherwise.
 
-Everything in the rest of this page is about the **adjacency matrix** unless it says otherwise. That is the operator whose smallest examples can be computed by hand.
+## The recipe
 
-## Tiny castles, computed by hand
+1. Draw the castle, one square per cell, at positions `(i, j)` for column `i` and height `j`, both counted from 0.
+2. Number the cells `v_0, v_1, …` column by column, bottom to top.
+3. Write the adjacency matrix: `A[u, v] = 1` when the cells `u` and `v` share a side, otherwise 0. `A` is symmetric with zero diagonal.
+4. Compute the characteristic polynomial `p_A(λ) = det(λI − A)`, factor it, and read off the eigenvalues.
 
-The recipe is the same every time.
+Every matrix, polynomial and walk count on this page was computed with SymPy.[^1]
 
-1. **Draw the polyomino** - one square per filled cell, at positions `(i, j)` for column `i`, height `j`.
-2. **List the cells** and number them `0, 1, 2, …` in a fixed order (below: column-major, `(0, 0), (0, 1), …, (1, 0), (1, 1), …`).
-3. **Write the adjacency matrix** `A`: an entry `A[u, v] = 1` if the cells `u, v` are orthogonally adjacent (share an edge), otherwise `0`. `A` is symmetric with `0`s on the diagonal.
-4. **Compute the characteristic polynomial** `p_A(λ) = det(λ I − A)`.
-5. **Factor** and read off the eigenvalues.
-
-Below, every skyline `c` gives a castle. The adjacency matrix is written row by row for readability, and every polynomial and radical was computed with SymPy.[^1]
-
-### `(1)` - one cell
+### `(1)`: one cell
 
 ```
-  ■
+■
 ```
 
-One vertex, no edges. `A = [0]`, `p_A(λ) = λ`, single eigenvalue `0`. There are no walks of positive length.
+One vertex, no edges: `A = [0]`, `p_A(λ) = λ`, eigenvalue 0. There are no walks of positive length.
 
-### `(2)` and `(1, 1)` - two cells
+### `(2)` and `(1, 1)`: two cells
 
 ```
-(2)         (1, 1)
-  ■
-  ■           ■ ■
+(2)      (1, 1)
+■
+■        ■ ■
 ```
 
-Both have two cells and one edge. Both are the path graph `P_2` as an abstract graph. Adjacency matrix
+Both are the path `P_2`, with
 
 ```
 A  =  [[0, 1],
-       [1, 0]]
+       [1, 0]],          p_A(λ)  =  λ² − 1  =  (λ − 1)(λ + 1).
 ```
 
-Characteristic polynomial `p_A(λ) = λ² − 1 = (λ − 1)(λ + 1)`. Eigenvalues `1` and `−1`.
+The eigenvalues are `1` and `−1`. From each cell there is exactly one walk of each length, so the number of walks of length `n` is 2 for every `n`: the spectral radius 1 means no growth. The two castles have the same graph, so they have the same spectrum; the spectrum is a property of the graph, not of the drawing.
 
-**What the `+1` means.** The number of walks of length `n` between the two vertices is `1` when `n` is odd, `0` when `n` is even; walks that return to their start are the opposite parity. Both counts are combinations of `1^n` and `(−1)^n`. The spectral radius `1` says the total walk count stays bounded: it is `2` for every `n`.
-
-**Two castles, one spectrum.** `(2)` (stack of two) and `(1, 1)` (row of two) are indistinguishable to the adjacency spectrum. This will keep happening: the spectrum sees the abstract graph, not the drawing.
-
-### `(1, 2)` and `(1, 1, 1)` - three cells
+### `(1, 2)` and `(1, 1, 1)`: three cells
 
 ```
-(1, 2)         (1, 1, 1)
-    ■
-  ■ ■            ■ ■ ■
+(1, 2)      (1, 1, 1)
+  ■
+■ ■         ■ ■ ■
 ```
 
-Three cells, two edges, both are `P_3`. Numbering `(1, 2)` as `v_0 = (0, 0), v_1 = (1, 0), v_2 = (1, 1)`:
+Both are the path `P_3`. Numbering `(1, 2)` as `v_0 = (0, 0)`, `v_1 = (1, 0)`, `v_2 = (1, 1)`:
 
 ```
 A  =  [[0, 1, 0],
        [1, 0, 1],
-       [0, 1, 0]]
+       [0, 1, 0]],          p_A(λ)  =  λ³ − 2λ  =  λ(λ² − 2).
 ```
 
-Characteristic polynomial `p_A(λ) = λ³ − 2λ = λ (λ² − 2)`. Eigenvalues `0, √2, −√2`; spectral radius `√2 ≈ 1.414`.
+The eigenvalues are `0, √2, −√2`, and the spectral radius is `√2 = 1.414…`. A walk alternates between the middle cell, with two ways on, and an end cell, with one way on, so the number of walks from the middle cell doubles every two steps: 2, 2, 4, 4 for the lengths 1, 2, 3, 4, a factor `√2` per step.
 
-**What the `√2` means.** The number of walks of length `n` grows like `(√2)^n = 2^{n/2}`. Verifiable by hand: from the middle vertex `v_1` there are 2 walks of length 1 (to `v_0` or `v_2`), 2 of length 2 (each must return), 4 of length 3 and 4 of length 4. A walk alternates between the middle (two choices) and an endpoint (one choice), so the count doubles every two steps, a factor `√2` per step.
-
-### `(2, 2)` - the four-cycle
+### `(2, 2)`: the 4-cycle
 
 ```
-  ■ ■
-  ■ ■
+■ ■
+■ ■
 ```
 
-Four cells in a `2 × 2` block. Every cell has two neighbours; the graph is the 4-cycle `C_4`:
+The four cells of a `2 × 2` square, each with two neighbors, form the 4-cycle `C_4`. With `v_0 = (0, 0)`, `v_1 = (0, 1)`, `v_2 = (1, 0)`, `v_3 = (1, 1)`:
 
 ```
 A  =  [[0, 1, 1, 0],
        [1, 0, 0, 1],
        [1, 0, 0, 1],
-       [0, 1, 1, 0]]
+       [0, 1, 1, 0]],          p_A(λ)  =  λ⁴ − 4λ²  =  λ²(λ − 2)(λ + 2).
 ```
 
-Characteristic polynomial `p_A(λ) = λ⁴ − 4λ² = λ²(λ − 2)(λ + 2)`. Eigenvalues `2, 0, 0, −2`; spectral radius `2`.
+The eigenvalues are `2, 0, 0, −2`. The graph is regular of degree 2, so 2 is its largest eigenvalue (Brouwer and Haemers, Proposition 1.3.8), and there are `4·2^n` walks of length `n`: four starting cells and two choices per step. Coloring the cells like a chessboard gives neighboring cells opposite colors, so the graph is bipartite and its spectrum is symmetric about 0 (Proposition 3.4.1).[^3]
 
-**What the `2` means.** The graph is 2-regular (every vertex has degree 2). There are `4 · 2^n` walks of length `n` (four starting cells, two choices per step). When a graph is `d`-regular, `d` is always an eigenvalue and always the spectral radius; here `d = 2`.
-
-**Bipartite symmetry.** `C_4` is 2-colourable (checkerboard), which makes its spectrum symmetric about `0`; bipartite adjacency spectra always are. The double `0` is particular to `C_4`.
-
-### `(1, 2, 1)` - the star
+### `(1, 2, 1)`: the star
 
 ```
-    ■
-  ■ ■ ■
+  ■
+■ ■ ■
 ```
 
-Four cells: the middle-column has height 2, the outer columns height 1. The central cell `(1, 0)` has three neighbours; the other three cells each have exactly one. That is the star `K_{1, 3}` on four vertices:
+The middle column has height 2 and the outer columns height 1. The cell `(1, 0)` has three neighbors and the other three cells one each: the star `K_{1,3}`. With `v_0 = (0, 0)`, `v_1 = (1, 0)`, `v_2 = (1, 1)`, `v_3 = (2, 0)`:
 
 ```
 A  =  [[0, 1, 0, 0],
        [1, 0, 1, 1],
        [0, 1, 0, 0],
-       [0, 1, 0, 0]]
+       [0, 1, 0, 0]],          p_A(λ)  =  λ⁴ − 3λ²  =  λ²(λ² − 3).
 ```
 
-(numbering `v_0 = (0, 0), v_1 = (1, 0), v_2 = (1, 1), v_3 = (2, 0)`). Characteristic polynomial `p_A(λ) = λ⁴ − 3λ² = λ² (λ² − 3)`. Eigenvalues `0, 0, √3, −√3`; spectral radius `√3 ≈ 1.732`.
+The eigenvalues are `0, 0, √3, −√3`. A walk alternates between the center, with three ways on, and a leaf, with one, so the number of walks grows by a factor 3 every two steps, `√3` per step.
 
-**What the `√3` means.** A walk alternates between the centre and a leaf: three choices leaving the centre, one returning, so the count grows by a factor 3 every two steps, `√3` per step.
-
-**Two similar shapes, different graphs.** `(1, 2, 1)` and `(2, 1, 2)` (next) are both three columns with alternating heights, but their adjacency graphs differ.
-
-### `(2, 1, 2)` - the five-path
+### `(2, 1, 2)`: the path on five cells
 
 ```
-  ■   ■
-  ■ ■ ■
+■   ■
+■ ■ ■
 ```
 
-Five cells. The middle column is shorter, so the two "peaks" only connect through the base. Numbering `v_0 = (0, 0), v_1 = (0, 1), v_2 = (1, 0), v_3 = (2, 0), v_4 = (2, 1)`:
+With `v_0 = (0, 0)`, `v_1 = (0, 1)`, `v_2 = (1, 0)`, `v_3 = (2, 0)`, `v_4 = (2, 1)`:
 
 ```
 A  =  [[0, 1, 1, 0, 0],
        [1, 0, 0, 0, 0],
        [1, 0, 0, 1, 0],
        [0, 0, 1, 0, 1],
-       [0, 0, 0, 1, 0]]
+       [0, 0, 0, 1, 0]],          p_A(λ)  =  λ⁵ − 4λ³ + 3λ  =  λ(λ − 1)(λ + 1)(λ² − 3).
 ```
 
-The abstract graph is `P_5` (a path with five vertices), reading `v_1 - v_0 - v_2 - v_3 - v_4`. Characteristic polynomial `p_A(λ) = λ (λ − 1)(λ + 1)(λ² − 3) = λ⁵ − 4λ³ + 3λ`. Eigenvalues `√3, 1, 0, −1, −√3`; spectral radius `√3`.
+The graph is the path `P_5`, `v_1 − v_0 − v_2 − v_3 − v_4`, with eigenvalues `√3, 1, 0, −1, −√3`. Its spectral radius `√3` equals that of the star `(1, 2, 1)`, while the other eigenvalues differ (`K_{1,3}` has `0` twice, `P_5` has `±1` and a single `0`). The spectral radius alone does not determine the graph.
 
-**Same radius as `(1, 2, 1)`, different castle, different graph.** `K_{1, 3}` and `P_5` both have spectral radius `√3`; the smaller eigenvalues distinguish them (`K_{1, 3}` has a double `0`; `P_5` has `±1` and a simple `0`). This is the caveat with reading only the leading eigenvalue: it is a coarse invariant.
-
-### `(1, 1, 1, 1)` and its five siblings - the golden four-path
-
-```
-  ■ ■ ■ ■
-```
-
-Four cells in a row. Adjacency graph `P_4`. Characteristic polynomial factors as
-
-```
-p_A(λ)  =  (λ² − λ − 1)(λ² + λ − 1).
-```
-
-The first factor has roots `(1 ± √5) / 2 = φ, −1/φ`; the second has roots `−φ, 1/φ`. Eigenvalues `φ, 1/φ, −1/φ, −φ`, with spectral radius **`φ = (1 + √5) / 2 ≈ 1.618` - the golden ratio**.
-
-**Five other castles have the same spectrum.** `(4)`, `(1, 3)`, `(3, 1)`, `(1, 1, 2)`, `(2, 1, 1)` all draw as different pictures on the grid but their adjacency graphs are all `P_4`:[^1]
+### The six castles golden by spectrum
 
 ```
 (4)    (1, 3)    (3, 1)    (1, 1, 2)    (2, 1, 1)    (1, 1, 1, 1)
@@ -175,48 +140,44 @@ The first factor has roots `(1 ± √5) / 2 = φ, −1/φ`; the second has roots
 ■      ■ ■       ■ ■       ■ ■ ■        ■ ■ ■        ■ ■ ■ ■
 ```
 
-All six are **golden-spectrum castles**; no castle at fewer than four cells can be, and among four-cell castles these are exactly the ones whose graph is `P_4` (rather than `C_4` or the star `K_{1, 3}`). By Smith's theorem no other castle of any size has spectral radius `φ` ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]).
-
-### `(2, 2, 2)` and the silver rectangle
+All six have the path `P_4` as their graph, with
 
 ```
-  ■ ■ ■
-  ■ ■ ■
+p_A(λ)  =  λ⁴ − 3λ² + 1  =  (λ² − λ − 1)(λ² + λ − 1).
 ```
 
-The `3 × 2` rectangle. Six cells, adjacency graph is the Cartesian product `P_3 × P_2`. Eigenvalues of a Cartesian product are all sums `μ_i + ν_j` of the factors' eigenvalues:
+The first factor has the roots `φ = (1 + √5)/2` and `−1/φ`, the second `−φ` and `1/φ`. The spectral radius is the golden ratio `φ = 1.618…`, so these six castles are **golden by spectrum**. A castle with at most three cells has spectral radius 0, 1 or `√2`. Of the eight castles with four cells, these six have the graph `P_4`, and the other two are the 4-cycle `(2, 2)` and the star `(1, 2, 1)`. No castle of any other size is golden by spectrum ([[castle-classification-spectrum](pages/castle-classification-spectrum.md)], the section *Castles golden and silver by spectrum*).
+
+### `(2, 2, 2)`: the 3 × 2 rectangle
 
 ```
-P_3 eigenvalues:  √2, 0, −√2
-P_2 eigenvalues:  1, −1
-so P_3 × P_2:     √2 + 1, √2 − 1, 1, −1, −(√2 − 1), −(√2 + 1).
+■ ■ ■
+■ ■ ■
 ```
 
-Spectral radius **`1 + √2 ≈ 2.414` - the silver ratio**. The characteristic polynomial factors correspondingly:
+The graph is the Cartesian product `P_3 □ P_2`. The eigenvalues of a Cartesian product are the sums `μ + ν` of an eigenvalue `μ` of one factor and `ν` of the other (Brouwer and Haemers, §1.4.6), and the path `P_n` has the eigenvalues `2cos(πj/(n + 1))` (§1.4.4):[^3]
 
 ```
+P_3:            √2, 0, −√2
+P_2:            1, −1
+P_3 □ P_2:      √2 + 1, √2 − 1, 1, −1, −(√2 − 1), −(√2 + 1)
+
 p_A(λ)  =  (λ − 1)(λ + 1)(λ² − 2λ − 1)(λ² + 2λ − 1).
 ```
 
-The factor `λ² − 2λ − 1` is the silver-ratio polynomial, root `1 + √2`.
-
-**A second silver-spectrum castle.** `(1, 2, 3, 1, 2, 3)` at 12 cells has a different shape; its 12th-degree characteristic polynomial contains the silver factor `λ² − 2λ − 1` and its spectral radius is `1 + √2`, so it is also a silver-spectrum castle.[^1]
+The spectral radius is the silver mean `δ_2 = 1 + √2 = 2.414…`, the root of `λ² − 2λ − 1`, so the rectangle is **silver by spectrum**. So is the 12-cell castle `(1, 2, 3, 1, 2, 3)`: its characteristic polynomial is `λ²(λ − 1)(λ + 1)(λ² − 2λ − 1)(λ² + 2λ − 1)(λ⁴ − 6λ² + 6)`, with largest root `1 + √2`. Among the 4,868,525 castles up to mirror image scanned on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], 36 are silver by spectrum.[^1]
 
 ## Three one-cell changes
 
-**Tweak 1: `(1, 1, 1) → (1, 1, 2)`.** Add one cell on top of the last column. The graph goes from `P_3` (radius `√2`) to `P_4` (radius `φ`). A single cell moves the spectral radius from `1.414` to `1.618` and puts the castle on the golden-spectrum list.
+**`(1, 1, 1)` to `(1, 1, 2)`.** One cell on top of the last column turns the graph `P_3` into `P_4`, and the spectral radius rises from `√2 = 1.414` to `φ = 1.618`: the castle becomes golden by spectrum.
 
-**Tweak 2: `(1, 1, 1, 1) → (2, 1, 1, 1)`.** Add one cell on top of the first column. The graph is still a path (now `v_1 - v_0 - v_2 - v_3 - v_4`), still `P_5` as an abstract graph, so the spectrum jumps from the `P_4` spectrum (radius `φ`) to the `P_5` spectrum (radius `2 cos(π / 6) = √3 ≈ 1.732`). The castle leaves the golden list.[^1]
+**`(1, 1, 1, 1)` to `(2, 1, 1, 1)`.** One cell on top of the first column gives the path `P_5`, `v_1 − v_0 − v_2 − v_3 − v_4`, so the spectral radius rises from `φ` to `2cos(π/6) = √3 = 1.732`, and the castle is no longer golden by spectrum.[^1]
 
-**Tweak 3: `(2, 2) → (2, 2, 1)`.** Add one cell in a new column. The graph was `C_4` (radius `2`); now it is a 4-cycle with a pendant leaf, 5 cells, characteristic polynomial `λ(λ⁴ − 5λ² + 2)`, and the spectral radius rises to about `2.136`. Adding a vertex can only raise the spectral radius, since the old graph is a subgraph of the new one, and the graph is no longer regular.
+**`(2, 2)` to `(2, 2, 1)`.** One cell in a new column gives the 4-cycle with one pendant cell, with `p_A(λ) = λ(λ⁴ − 5λ² + 2)` and spectral radius `2.1358`. The largest eigenvalue of a connected graph increases strictly when a vertex or an edge is added (Brouwer and Haemers, Proposition 3.1.1), so it rises from 2.[^3]
 
-## Two castles, same spectrum, different shapes
+## Two castles with the same spectrum
 
-There are two levels of "same spectrum" on the wiki.
-
-**Trivial level: same abstract graph.** The six four-cell golden castles above all draw as `P_4`, so they trivially share every eigenvalue. Different-looking pictures, isomorphic graphs. The spectrum cannot distinguish castles whose graphs are isomorphic, because the spectrum is a graph invariant.
-
-**Non-trivial level: non-isomorphic graphs with the same spectrum.** Two castles that draw differently, are *not* isomorphic as graphs, and yet share every eigenvalue. These are **isospectral pairs**. The smallest such pair on the castle wiki has 10 cells:[^2]
+Castles with isomorphic graphs, such as the six castles golden by spectrum, have the same spectrum because the spectrum is a property of the graph. The question is whether castles with non-isomorphic graphs can share a spectrum. For graphs in general they can, and the smallest such pair has 5 vertices: the star `K_{1,4}` and the 4-cycle with an isolated vertex, `C_4 + K_1`, both with characteristic polynomial `λ⁵ − 4λ³` (Brouwer and Haemers, §1.3.7; McKay, §1).[^3][^4] Castle graphs are connected, and the smallest castles with non-isomorphic graphs and the same adjacency spectrum have 10 cells:[^2]
 
 ```
 (1, 1, 1, 2, 3, 2)        (1, 1, 2, 2, 3, 1)
@@ -225,60 +186,63 @@ There are two levels of "same spectrum" on the wiki.
 ■ ■ ■ ■ ■ ■               ■ ■ ■ ■ ■ ■
 ```
 
-Both are castles of width 6, height 3, 10 cells. Neither is a graph-isomorphic copy of the other. Both hold a `2 × 3` rectangle of cells (two `2 × 2` blocks sharing an edge) with a one-cell tower on top, but the first castle's tower stands on the middle column of the rectangle, giving a cell of degree 4, and the second's stands on an end column. And yet both have the same 10 eigenvalues:
+Both have width 6, height 3 and 10 cells, and both contain a `3 × 2` rectangle of cells with one cell on top. In the first the extra cell stands on the middle column of the rectangle, which gives its cell `(4, 1)` four neighbors; in the second it stands on an end column, and no cell has four neighbors. So the graphs are not isomorphic, and yet both have
 
 ```
-±2.583181, ±1.627286, ±1.000000, ±0.824085, and 0 with multiplicity 2.
+p_A(λ)  =  λ¹⁰ − 11λ⁸ + 34λ⁶ − 36λ⁴ + 12λ²,
 ```
 
-Same characteristic polynomial, so the two castles have the same number of closed walks of every length (`trace Aⁿ`: `0, 22, 0, 106, 0, 634, …`). The total walk counts `1ᵀAⁿ1` differ (`138` against `142` at `n = 3`), because they also depend on the eigenvectors.
+with the eigenvalues `±2.583181`, `±1.627286`, `±1`, `±0.824085` and `0` twice. The same spectrum means the same number of closed walks of every length: `trace Aⁿ = 0, 22, 0, 106, 0, 634` for `n = 1, …, 6`. The total numbers of walks `𝟙ᵀAⁿ𝟙` differ, `138` against `142` at `n = 3`, since they also depend on the eigenvectors.
 
-The smallest cospectral pair in general graph theory has 5 vertices (`K_{1, 4}` and `C_4 ∪ K_1`); castles are more constrained, and 10 cells is the smallest castle pair. See [[isospectral-castles](pages/isospectral-castles.md)] for the census, exhaustive to 16 cells. Sandpile invariants separate this pair: both castles have the sink-model sandpile group `Z/15` and the tide-model group `Z/8` ([[sandpile-group](pages/sandpile-group.md)]), but their sink-model clocks tick 15 and 5 ([[sandcastle-clock](pages/sandcastle-clock.md)]), and one grain on the apex of the identity sets off 57 topplings in one and 1 in the other ([[sandpile-identity](pages/sandpile-identity.md)]).
+[[isospectral-castles](pages/isospectral-castles.md)] finds all such pairs through 16 cells. Sandpile invariants separate this pair. Both castles have the sandpile group `Z/15` in the sink model and `Z/8` in the tide model ([[sandpile-group](pages/sandpile-group.md)]), but their sink-model clocks tick 15 and 5 times ([[sandcastle-clock](pages/sandcastle-clock.md)]), and one grain on the apex of the identity sets off 57 topplings in the first and 1 in the second ([[sandpile-identity](pages/sandpile-identity.md)]).
 
-## Scaling up: what stays and what changes
+## The 4 × 2 rectangle: spectral radius φ²
 
-Take the `4 × 2` rectangle `(4, 4)` - 8 cells, `P_4 × P_2`. Characteristic polynomial
+The castle `(4, 4)` has 8 cells and the graph `P_4 □ P_2`, with
 
 ```
 p_A(λ)  =  (λ² − 3λ + 1)(λ² − λ − 1)(λ² + λ − 1)(λ² + 3λ + 1).
 ```
 
-The factors `λ² − λ − 1` and `λ² + λ − 1` are the same golden factors as in `P_4`; the new factors `λ² − 3λ + 1` and `λ² + 3λ + 1` have roots `(3 ± √5) / 2 = φ², 1/φ²` and the negatives. Spectral radius **`φ² = (3 + √5) / 2 ≈ 2.618`** - the square of the golden ratio.
+The middle factors are those of `P_4`. The factor `λ² − 3λ + 1` has the roots `φ² = (3 + √5)/2` and `1/φ²`, so the spectral radius is `φ² = 1 + φ = 2.618…`, the sum of the spectral radii `φ` of `P_4` and `1` of `P_2`.
 
-**Verify by counting walks.** The number of length-`n` walks in `P_4` (from any vertex to any vertex) is `1^ᵀ A^n 1` where `A` is the `P_4` adjacency matrix. For `n = 1, 2, 3, …, 7`, that sequence is `6, 10, 16, 26, 42, 68, 110`.[^1] Each term is roughly `φ` times the previous: `10/6 = 1.667`, `16/10 = 1.6`, `26/16 = 1.625`, `42/26 = 1.615`, and the ratio converges to `φ = 1.61803…`. That is the leading eigenvalue showing up in a count that can be done by hand.
+The leading eigenvalue shows in walk counts. The numbers of walks of length `n = 1, …, 7` in `P_4` are `𝟙ᵀAⁿ𝟙 = 6, 10, 16, 26, 42, 68, 110`, and the ratios `10/6 = 1.667`, `16/10 = 1.6`, `26/16 = 1.625`, `42/26 = 1.615`, …, `110/68 = 1.6176` approach `φ = 1.61803…`.[^1]
 
-**A second `φ²`-spectrum castle.** `(1, 3, 2, 3, 1)` at 10 cells. Different shape, entirely different picture - a symmetric silhouette rising and falling - but its 10th-degree characteristic polynomial contains `(λ² − 3λ + 1)(λ² + 3λ + 1)` and its spectral radius is `φ²`, the same asymptotic walk-count growth rate.
+The 10-cell castle `(1, 3, 2, 3, 1)` also has spectral radius `φ²`: its characteristic polynomial is `(λ − 1)(λ + 1)(λ² − 3λ + 1)(λ² − λ − 1)(λ² + λ − 1)(λ² + 3λ + 1)`. The scan on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] finds 11 castles up to mirror image with spectral radius `φ²`.
 
-## The transfer-matrix picture, in one paragraph
+## Transfer matrices
 
-Everything above is about the adjacency matrix of *one* castle. A different sense of "castle eigenvalue" - the Perron root of a *class's* transfer matrix - shows up when the object of study is not one castle but a rule that generates infinitely many, one per width. That story is on [[castle-strip](pages/castle-strip.md)]: the states of the matrix are the column heights, one row and column per height in `1..h`, and the Perron root is the growth constant of the class's width-graded count. The numbers `φ` and `1 + √2` show up there too, from a different operator: a class's transfer matrix and one castle's adjacency matrix are unrelated matrices that happen to share these values.
+A transfer matrix belongs to a family of castles, not to one castle: its states are the column heights `1, …, h`, and its largest eigenvalue is the growth constant of the family by width ([[castle-strip](pages/castle-strip.md)]). The numbers `φ` and `1 + √2` appear there too: the Fibonacci castles are golden by width, and the anchored 1-smooth strips on the heights `{1, 2, 3}`, counted by the Pell numbers, are silver by width ([[pell-castle-strip](pages/pell-castle-strip.md)]).
 
-## Higher-degree eigenvalues in counting
+## The roots of char_k
 
-The last sense of "castle eigenvalue" is the roots of the characteristic polynomials `char_k(λ)` that come out of the counting recurrence for `P(k, L)`. These are typically **irrational and higher-degree** - cubic, quartic, quintic - because the recurrence is order `k + 1`. The dominant root of `char_6` is `2ψ²`, twice the square of the plastic number; it is treated on [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] Part 4. The table of `char_k` and its roots is on [[generating-function-gallery](pages/generating-function-gallery.md)]. The k-direction of `P(·, L)`, going the other way, collapses to eigenvalues `±1` on [[signed-tower-k-direction](pages/signed-tower-k-direction.md)].
+The characteristic polynomial `char_k` of the recurrence of `P(k, ·)` has degree `k + 1`. For odd `k ≤ 31` it is irreducible over the rationals, and for even `k` it splits into two factors by the parity of the last column ([[tower-parity-sectors](pages/tower-parity-sectors.md)]). The largest root of `char_6` is `2ψ²`, twice the square of the plastic number `ψ` ([[signed-tower-count](pages/signed-tower-count.md)], [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)], Part 4). [[generating-function-gallery](pages/generating-function-gallery.md)] tabulates `char_k` and its roots.
 
 ## Appearances in Sources
 
-- [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the column-height (skyline) castle model the examples use.
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k, ·)` characteristic polynomials behind the counting-recurrence eigenvalues in the last section.
+- [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the skyline model of a castle that the examples use.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the characteristic polynomials `char_k` of the signed tower count.
 
 ## Related Concepts
 
-- [[castle-polyomino](pages/castle-polyomino.md)] - the object every castle here is one of.
-- [[castle-graph](pages/castle-graph.md)] - the adjacency graph the page's whole first half operates on.
-- [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the Axis-9 census whose named types (golden-spectrum, silver-spectrum, `φ²`-spectrum) are the results this page's small examples land on.
-- [[isospectral-castles](pages/isospectral-castles.md)] - the isospectral pair worked here in detail.
-- [[castle-strip](pages/castle-strip.md)] - the transfer-matrix picture the single-paragraph aside points at.
-- [[spectral-analysis](pages/spectral-analysis.md)] - the toolkit hub naming five spectra on a castle; this page treats the adjacency one.
-- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - what happens when an eigenvalue is a quadratic irrational and one asks about its continued fraction.
-- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the OEIS entries the convergents of the eigenvalues on this page reach.
-- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] / [[generating-function-gallery](pages/generating-function-gallery.md)] - the counting-recurrence eigenvalues left out of the adjacency story.
-- [[metallic-means](pages/metallic-means.md)] - the family the growth constants `φ`, `1 + √2`, `(3 + √13) / 2` etc. belong to.
-- [[castle-snippets](pages/castle-snippets.md)] - the `castle_graph` and `castle_graph_radius` snippets used to run every computation on this page.
-- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar this page's worked examples lead into.
-- [[sandpile-group](pages/sandpile-group.md)] / [[sandcastle-clock](pages/sandcastle-clock.md)] / [[sandpile-identity](pages/sandpile-identity.md)] - the sink-model sandpile invariants of the 10-cell pair: same group `Z/15`, clocks 15 and 5, apex avalanches 57 and 1.
+- [[castle-polyomino](pages/castle-polyomino.md)] - the castle definition.
+- [[castle-graph](pages/castle-graph.md)] - the castle graph and its invariants.
+- [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the spectral radii of castle graphs: the six castles golden by spectrum, the 36 silver by spectrum and the 11 with spectral radius `φ²` in the scan.
+- [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - the spectral types, and the proof that only the six castles with graph `P_4` are golden by spectrum.
+- [[isospectral-castles](pages/isospectral-castles.md)] - all castles through 16 cells with non-isomorphic graphs and the same adjacency or Laplacian spectrum.
+- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - a seminar on what the spectrum of a castle graph determines.
+- [[castle-strip](pages/castle-strip.md)] - transfer matrices of families of castles.
+- [[spectral-analysis](pages/spectral-analysis.md)] - the spectra computed for castles and what each decides.
+- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the continued fractions of quadratic eigenvalues such as `1 + √2`.
+- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the convergents of castle eigenvalues against the OEIS.
+- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] and [[generating-function-gallery](pages/generating-function-gallery.md)] - the eigenvalues of the recurrences of `P(k, L)` in `k` and in `L`.
+- [[metallic-means](pages/metallic-means.md)] - de Spinadel's metallic means, among them `φ` and `1 + √2`.
+- [[castle-snippets](pages/castle-snippets.md)] - the `castle_graph` and `castle_graph_radius` snippets.
+- [[sandpile-group](pages/sandpile-group.md)], [[sandcastle-clock](pages/sandcastle-clock.md)] and [[sandpile-identity](pages/sandpile-identity.md)] - the sandpile invariants that separate the 10-cell pair.
 
 ## Footnotes
 
-[^1]: Every adjacency matrix, characteristic polynomial, eigenvalue, and walk-count sequence on this page was produced by SymPy on 2026-09-19 from the skyline. In particular: `p_A(λ)` for `c = (1, 1, 1, 1), (1, 1, 2), (1, 3), (3, 1), (2, 1, 1), (4)` all factor as `(λ² − λ − 1)(λ² + λ − 1)`, matching the golden-spectrum-castle list on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]; `p_A(λ)` for `(2, 2, 2)` and `(1, 2, 3, 1, 2, 3)` both contain the factor `λ² − 2λ − 1` (silver ratio); `p_A(λ)` for `(4, 4)` and `(1, 3, 2, 3, 1)` both contain the factor `λ² − 3λ + 1` (`φ²`). The `P_4` walk-count sequence `6, 10, 16, 26, 42, 68, 110` is `1^ᵀ A^n 1` for `n = 1..7` with `A` the `4 × 4` `P_4` adjacency matrix, and `110 / 68 = 1.6176…` converges to `φ`.
-[^2]: [[isospectral-castles](pages/isospectral-castles.md)] - the smallest adjacency-isospectral castle pair `(1, 1, 1, 2, 3, 2)` and `(1, 1, 2, 2, 3, 1)`; both have 10 cells and share the 10-eigenvalue spectrum `±2.583181, ±1.627286, ±1.000000, ±0.824085, 0, 0`. Re-verified by direct enumeration during writing of this page.
+[^1]: Verified by execution (Python 3.11, SymPy 1.14, 2026-10-16): the adjacency matrices and factored characteristic polynomials of `(1)`, `(2)`, `(1, 1)`, `(1, 2)`, `(1, 1, 1)`, `(2, 2)`, `(1, 2, 1)`, `(2, 1, 2)`, `(2, 1, 1, 1)`, the six 4-cell paths, `(2, 2, 2)`, `(1, 2, 3, 1, 2, 3)`, `(2, 2, 1)`, `(4, 4)` and `(1, 3, 2, 3, 1)`; the spectral radius `2.135779…` of `(2, 2, 1)`; the walk counts `𝟙ᵀAⁿ𝟙` of `P_4` for `n ≤ 7`. The counts 36 and 11 are those of the scan on castle-graph-spectral-radius.
+[^2]: Verified by execution (Python 3.11, NumPy, SymPy, networkx 3.4.2, 2026-10-16): among all castles with at most 10 cells, mirror images removed, `(1, 1, 1, 2, 3, 2)` and `(1, 1, 2, 2, 3, 1)` are in the first group of non-isomorphic castle graphs with the same exact characteristic polynomial; their eigenvalues, `trace Aⁿ` for `n ≤ 6`, `𝟙ᵀA³𝟙 = 138, 142`, degree sequences, and the sandpile groups `Z/15` (sink at the bottom-left cell) and `Z/8` (tide) by Smith normal form.
+[^3]: https://aeb.win.tue.nl/2WF02/spectra.pdf (A. E. Brouwer and W. H. Haemers, *Spectra of Graphs*, monograph version of February 1, 2011, read 2026-10-16) - Proposition 1.3.4, p.5 (the number of spanning trees is any cofactor of `L`, "known as the Matrix-Tree Theorem"); §1.3.7, p.7: "Proposition 1.3.7 The multiplicity of 0 as a Laplace eigenvalue of an undirected graph Γ equals the number of connected components of Γ", "Proposition 1.3.8 Let the undirected graph Γ be regular of valency k. Then k is the largest eigenvalue of Γ", and "both K1,4 and K1 +C4 have spectrum 2^1, 0^3, (−2)^1"; §1.4.4, p.9: the path `P_n` has spectrum "2 cos(π j/(n + 1)) (j = 1, . . . , n)"; §1.4.6, p.10: for a Cartesian product, "w(x,y) = u_x v_y is an eigenvector ... with ordinary or Laplace eigenvalue θ + η"; §1.7, p.13: "µ2(Γ) ≥ 0, with equality if and only if Γ is disconnected"; Proposition 3.1.1, p.33: for a connected graph, "(iii) The value θ0(Γ) decreases when vertices or edges are removed"; Proposition 3.4.1(i), p.38: "A graph Γ is bipartite if and only if for each eigenvalue θ of Γ, −θ is also an eigenvalue".
+[^4]: https://users.cecs.anu.edu.au/~bdm/papers/SpectralTrees.pdf (B. D. McKay, "On the spectral characterisation of trees", *Ars Combinatoria* 3 (1977) 219-232, read 2026-10-16) - §1, p.219: "the smallest pair of \"cospectral\" graphs having only 5 vertices [2]", reference [2] being Collatz and Sinogowitz, "Spektren endlicher Grafen" (1957).
