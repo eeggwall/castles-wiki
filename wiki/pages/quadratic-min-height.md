@@ -1,39 +1,39 @@
 ---
 title: Minimum height for a quadratic growth constant
 category: Analyses
-summary: For each quadratic growth constant - the larger root of x^2 - p1 x - p2 - the smallest height h at which some 0/1 castle-strip rule (which column heights may follow which) grows at exactly that rate. Exact answer for every pair with minimum height up to 6, from an exhaustive census of all 0/1 rule tables up to 6 x 6 (2^36 tables at height 6, cut to 1.28 billion by sorting rows; 758,878 distinct characteristic polynomials), which finds 53 pairs. Three results proved - (1) height > growth, so h >= floor(growth) + 1, exact whenever the second root is small; (2) the metallic line: min height (p1, 1) = p1 + 1 for every p1, so δ_5 first appears at height 6; (3) the square-root line: min height (0, p2) = ceil(2 sqrt p2), by a Perron-Frobenius period-2 argument for the lower bound and a rank-one two-group construction for the upper. One conjecture - every pair reaches its minimum height with a rule whose heights split into at most three evenly connected groups. Two groups are optimal for 47 of the 53 pairs (all six misses have p2 = 5 or 7, a prime forcing a lopsided split); three groups match all 53 and never undercut the exhaustive search. The conjecture turns min height into a finite search; its predicted table through height 9 is given. Open - a proof, or a height-7 counterexample; a closed form for p1 > 0, where ceil(2 sqrt p2) is no longer a lower bound ((2, 13) is built at height 7).
-tags: [analysis, castle, castle-strip, transfer-matrix, perron-frobenius, growth-constant, quadratic-field, metallic-means, min-height, equitable-partition, census, exhaustive-search, conjecture, implementation, verification]
-sources: [oeis-mining-pe502]
+summary: For each quadratic growth constant ρ, the larger root of x² − p₁x − p₂, the smallest height h at which some 0/1 castle-strip rule on h heights has Perron root exactly ρ. The exact minimum height is known for the 53 pairs with minimum height at most 6, from a census of all 0/1 matrices up to 6 × 6 (1.28 billion at height 6 after sorting rows; 758,878 distinct characteristic polynomials). Three results are proved. (1) The minimum height exceeds ρ, so it is at least ⌊ρ⌋ + 1; the bound is attained for 31 of the 53 pairs. (2) On the line p₂ = 1, the minimum height of δ_a is a + 1, so δ_5 first appears at height 6. (3) On the line p₁ = 0, the minimum height of √p₂ is ⌈2√p₂⌉, by a period-2 Perron-Frobenius argument for the lower bound and a rank-one construction with two groups of heights for the upper. Rules whose heights split into at most three evenly connected groups attain the minimum height of all 53 pairs, and two groups attain it for 47; the upper bounds that such rules give through height 9 are tabulated.
+tags: [analysis, castle, castle-strip, transfer-matrix, perron-frobenius, growth-constant, quadratic-field, metallic-means, min-height, equitable-partition, census, exhaustive-search, implementation, verification]
+sources: [pe502-pell-castle-strip]
 created: 2026-09-25
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
 # Minimum height for a quadratic growth constant
 
-## The question in plain words
+## The question
 
-A **castle strip** is a row of columns with heights `1..h`, together with a rule saying which heights may stand next to each other. The rule is an `h x h` table of 0s and 1s: a 1 in row `a`, column `b` means "a column of height `a` may be followed by one of height `b`" ([[castle-strip](pages/castle-strip.md)]). The number of strips of width `L` obeying the rule grows like `ρ^L`, and `ρ` - the **growth constant** - is the table's largest eigenvalue.
+A castle strip on the heights `1, …, h` is a skyline with column heights in `{1, …, h}`, under a rule saying which height may follow which; strips need not reach height `h`, so they are not castles ([[castle-strip](pages/castle-strip.md)]). The rule is an `h × h` matrix `M` of 0s and 1s, with a 1 in row `a`, column `b` when a column of height `a` may be followed by one of height `b`. The number of strips of width `w` grows like `ρ^w`, where `ρ`, the **growth constant**, is the Perron root of `M`, its largest eigenvalue.
 
-When `ρ` is a quadratic number, it is the larger root of
+When `ρ` is a quadratic irrational, it is the larger root of
 
 ```
-x^2 - p1 x - p2          ρ = (p1 + sqrt(p1^2 + 4 p2)) / 2
+x² − p₁x − p₂,          ρ = (p₁ + √(p₁² + 4p₂)) / 2,
 ```
 
-which is the recurrence `a(L) = p1 a(L-1) + p2 a(L-2)`: build a row by adding one column in `p1` ways or two columns in `p2` ways, like tiling with squares in `p1` colours and dominoes in `p2` colours. Golden is `(1, 1)`; for `p1, p2 >= 1` the root is de Spinadel's metallic mean `σ_{p1}^{p2}`, and the `δ_a` are the `p2 = 1` line ([[metallic-means](pages/metallic-means.md)]), and [[reachable-field-census](pages/reachable-field-census.md)] showed that every pair is the growth constant of some 0/1 rule at some height.
+the characteristic polynomial of the recurrence `a(L) = p₁ a(L − 1) + p₂ a(L − 2)`. For `p₁, p₂ ≥ 0`, `a(L)` counts the tilings of a row of length `L` by squares in `p₁` colors and dominoes in `p₂` colors. The golden ratio is `(1, 1)`; for `p₁, p₂ ≥ 1` the root is de Spinadel's metallic mean `σ_{p₁}^{p₂}`, and the `δ_a` are the line `p₂ = 1` ([[metallic-means](pages/metallic-means.md)]). Every pair with `p₁ ≥ 0` and `p₂ ≥ 1` is the Perron root of some 0/1 matrix ([[reachable-field-census](pages/reachable-field-census.md)]).
 
-This page asks: **what is the smallest height `h` that can do it?** Three lines of the answer are proved here, the rest is computed exactly up to height 6, and one conjecture covers everything computed so far.
+This page finds the smallest height that realizes each pair. Three lines of the answer are proved, and the rest is computed exactly up to height 6.
 
 ## Terms used on this page
 
-- **Pair** - the two integers `(p1, p2)`. Only pairs where `p1^2 + 4 p2` is not a perfect square are in scope (otherwise `ρ` is a whole number), and `p2` may be negative, as for `phi^2`, which is `(3, -1)`.
-- **Conjugate** - the other root, `(p1 - sqrt(p1^2 + 4 p2))/2`. It is always an eigenvalue of the same table.
-- **Min height** - the smallest `h` for which some `h x h` 0/1 table has growth constant exactly `ρ`.
-- **Evenly connected groups** (an equitable partition) - a split of the heights into groups such that every height in a group has the same number of allowed successors in each group. The small table of those counts has the same growth constant as the full table.
+- **Pair** - the two integers `(p₁, p₂)`, with `p₁² + 4p₂` not a perfect square (otherwise `ρ` is an integer). `p₂` may be negative, as for `φ²`, the pair `(3, −1)`.
+- **Conjugate** - the other root, `(p₁ − √(p₁² + 4p₂))/2`. It is an eigenvalue of every matrix that has `ρ` as an eigenvalue, since `x² − p₁x − p₂` is irreducible.
+- **Min height** - the smallest `h` for which some `h × h` 0/1 matrix has Perron root exactly `ρ`.
+- **Evenly connected groups** (an equitable partition) - a split of the heights into groups such that every height in a group has the same number of allowed successors in each group. The matrix of those counts, the **quotient**, has the same Perron root as `M`.
 
 ## The exact census
 
-Every 0/1 table up to 6 x 6 was generated and its characteristic polynomial computed exactly in integers. Reordering the heights does not change the polynomial, so at height 6 only tables with rows sorted by number of 1s were needed: 1.28 billion of the `2^36`. Each distinct polynomial was checked for a factor `x^2 - p1 x - p2` carrying its largest root, with the division done exactly.[^exec]
+Every 0/1 matrix up to `6 × 6` was generated and its characteristic polynomial computed exactly in integers. Relabeling the heights, `M → PMPᵀ`, does not change the characteristic polynomial, so at height 6 only matrices with rows in nonincreasing order of their number of ones were needed: 1,277,642,344 of the `2^{36}`. Each distinct polynomial was tested for a factor `x² − p₁x − p₂` carrying its largest root, by exact division.[^exec]
 
 | height | distinct characteristic polynomials | pairs whose min height is this |
 |---|---|---|
@@ -43,7 +43,7 @@ Every 0/1 table up to 6 x 6 was generated and its characteristic polynomial comp
 | 5 | 8,927 | 15 |
 | 6 | 758,878 | 24 |
 
-As checks, heights 2 to 4 reproduce the grid on [[reachable-field-census](pages/reachable-field-census.md)], and every pair found at height 5 or less appears again in the height-6 run (a smaller table padded with an empty row and column has the same growth constant). Min height for all 53 pairs, by `p1` (rows) and `p2` (columns); `·` marks a square discriminant:
+Every pair found at height 5 or less appears again at height 6, since a smaller matrix padded with a zero row and column has the same Perron root. Min height for all 53 pairs, by `p₁` (rows) and `p₂` (columns); `·` marks a square discriminant:
 
 ```
 p1\p2   -7  -6  -5  -4  -3  -2  -1 |  1   2   3   4   5   6   7   8   9
@@ -56,31 +56,31 @@ p1\p2   -7  -6  -5  -4  -3  -2  -1 |  1   2   3   4   5   6   7   8   9
   6    6   6   ·   6   6   6   6   |
 ```
 
-Blank cells with a lower bound of 6 or less were not realized by height 6; their min height is at least 7.
+A blank cell whose lower bound (result 1) is 6 or less was not realized by height 6, so its min height is at least 7.
 
 ## Three proved results
 
 ### 1. The general lower bound: height > growth
 
-An `h x h` table of 0s and 1s has at most `h` ones per row, so its largest eigenvalue is at most `h`, with equality only for the all-ones table, whose growth `h` is a whole number. A quadratic `ρ` is irrational, so
+A 0/1 matrix of size `h` has at most `h` ones in each row, and its Perron root is at most its largest row sum, so `ρ ≤ h`; equality needs a row sum `h` in every row of the strongly connected part carrying `ρ`, which makes `ρ = h` an integer. A quadratic `ρ` is irrational, so
 
 ```
-min height  >=  floor(ρ) + 1
+min height  ≥  ⌊ρ⌋ + 1.
 ```
 
-In the census this is exact whenever the conjugate is smaller than about 1 in size (the whole lower-left of the grid), and it falls behind as `p2` grows: `(1, 3)` has `ρ = 2.30` and bound 3 but needs height 4.
+The bound is attained for 31 of the 53 pairs. Every pair whose conjugate has absolute value at most 1.25 attains it, and `(6, −6)`, whose conjugate `3 − √3 = 1.27` is slightly larger, does not. `(1, 3)` has `ρ = 2.30`, conjugate `−1.30` and bound 3, and needs height 4.[^exec]
 
-### 2. The `δ_a` line: min height `(p1, 1) = p1 + 1`
+### 2. The δ_a line: min height of (a, 1) is a + 1
 
-`δ_a` sits strictly between `a` and `a + 1`, so bound 1 gives height at least `a + 1`, and the ridge rule `R_h = J - D` (adjacent columns differ in height unless both equal `h`) realizes `δ_a` at exactly height `a + 1` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]). So **min height `(a, 1) = a + 1` for every `a`.** In particular `δ_5 = (5+√29)/2 = 5.19` first appears at height 6; the census confirms it there and not before.
+`δ_a` lies strictly between `a` and `a + 1`, so result 1 gives height at least `a + 1`, and the ridge matrix `R_h = J − D` (neighboring columns may have equal height only at the ceiling `h`) has Perron root `δ_{h−1}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)], [[ridge-castle](pages/ridge-castle.md)]). So **the min height of `(a, 1)` is `a + 1` for every `a ≥ 1`.** In particular `δ_5 = (5 + √29)/2 = 5.19` first appears at height 6, which the census confirms.
 
-### 3. The square-root line: min height `(0, p2) = ceil(2 sqrt p2)`
+### 3. The square-root line: min height of (0, p₂) is ⌈2√p₂⌉
 
-Here `ρ = sqrt p2` and the conjugate is `-sqrt p2`, the same size.
+Here `ρ = √p₂` and the conjugate is `−√p₂`, of the same absolute value.
 
-*Lower bound.* The growth constant of a table is the growth constant of one of its irreducible blocks (a set of heights that can all reach each other). By Perron-Frobenius, an irreducible nonnegative matrix with two eigenvalues of largest size, `ρ` and `-ρ`, has period 2: its heights split into groups `A` and `B`, and every allowed step goes from one group to the other. Two steps take `A` back to `A`, and the two-step table on `A` has growth `ρ^2 = p2`. Each row of that two-step table counts paths `A -> B -> A` from one height, which is at most `|B| · |A|`. So `p2 <= |A| · |B|`, and the smallest `|A| + |B|` with `|A| · |B| >= p2` is `ceil(2 sqrt p2)`.
+*Lower bound.* The Perron root of `M` is the Perron root of one of its strongly connected parts (a set of heights that can all reach each other), and that part has the integer characteristic polynomial of a principal submatrix, so it also has the eigenvalue `−√p₂`. By the Perron-Frobenius theorem, an irreducible nonnegative matrix whose eigenvalues of largest absolute value include `ρ` and `−ρ` has even period, so its heights split into two groups `A` and `B` with every allowed step going from one group to the other. Two steps take `A` back to `A`, and the two-step matrix on `A` has Perron root `ρ² = p₂`. Each row sum of that two-step matrix counts paths `A → B → A` from one height, at most `|B|·|A|` of them, so `p₂ ≤ |A|·|B|`. The smallest `|A| + |B|` with `|A|·|B| ≥ p₂` is `⌈2√p₂⌉`, since `s` heights split into groups of sizes `⌊s/2⌋` and `⌈s/2⌉` have product `⌊s²/4⌋`.
 
-*Construction.* Take `|A| = a` and `|B| = b` with `a b >= p2`. Allow every step from `A` to `B`, and exactly `p2` steps from `B` to `A` in total, spread any way at all. Every height in `A` then reaches every height in `B`, so every row of the two-step table on `A` equals the same vector of counts. The two-step table has rank one, and its growth is the sum of that vector: exactly `p2`.
+*Construction.* Take `|A| = a` and `|B| = b` with `ab ≥ p₂`. Allow every step from `A` to `B`, and exactly `p₂` steps from `B` to `A` in total, placed anywhere. Every height in `A` then reaches every height in `B`, so every row of the two-step matrix on `A` is the same vector of counts. That matrix has rank one, and its Perron root is the sum of the vector: exactly `p₂`.
 
 ```
 (0, 5) at height 5:   A = {1, 2}, B = {3, 4, 5}
@@ -88,19 +88,19 @@ Here `ρ = sqrt p2` and the conjugate is `-sqrt p2`, the same size.
    00111
    11000        3 and 4 may be followed by 1 or 2
    11000        5 may be followed by 1 only       -> 5 steps from B to A
-   10000        characteristic polynomial  x^3 (x^2 - 5)
+   10000        characteristic polynomial  x³(x² − 5)
 ```
 
-Checked against the table for every non-square `p2` up to 20.
+The construction gives `⌈2√p₂⌉` for every non-square `p₂ ≤ 20`.[^exec] The bound does not carry over to `p₁ > 0`: `(2, 13)` is realized at height 7, where `⌈2√13⌉ = 8`.
 
-## The three-group conjecture
+## Rules with two or three evenly connected groups
 
-The rank-one construction is a special case of **evenly connected groups**. With two groups of sizes `a` and `b`, where each height in the first group has `α` successors in the first and `β` in the second, and each in the second has `γ` in the first and `δ` in the second, the growth constant is the larger root of `x^2 - (α + δ) x + (α δ - β γ)`. So `p1 = α + δ` and `p2 = β γ - α δ`, at height `a + b`, subject to `α, γ <= a` and `β, δ <= b`. That is a small search, and it gives an upper bound for every pair.
+The rank-one construction is a rule with two evenly connected groups. In general, with two groups of sizes `a` and `b`, where each height in the first group has `α` successors in the first and `β` in the second, and each height in the second has `γ` in the first and `δ` in the second, the Perron root is the larger root of `x² − (α + δ)x + (αδ − βγ)`. So `p₁ = α + δ` and `p₂ = βγ − αδ` at height `a + b`, subject to `α, γ ≤ a` and `β, δ ≤ b`. Every such table of counts is realized by a 0/1 matrix, and the search over tables is small, so it gives an upper bound for every pair.
 
-- **Two groups** are optimal for 47 of the 53 exactly known pairs. All six misses - `(0,5)`, `(1,5)`, `(3,5)`, `(0,7)`, `(1,7)`, `(4,7)` - have `p2 = 5` or `7`. In each, `β γ = p2 + α δ` has no factorization balanced enough to fit both groups into the height.
-- **Three groups** (the same construction with a 3 x 3 table of counts, whose characteristic polynomial is a cubic `(x - t)(x^2 - p1 x - p2)` with `ρ` the largest root) match **all 53** exact values, and never claim a height below what the exhaustive search found. The `(0, 5)` table above is three groups when read by columns (sizes 1, 1, 3), and the `(3, 5)` and `(4, 7)` optima are staircase tables: rows of 1s of lengths `5, 5, 5, 3, 2` and `6, 6, 6, 6, 4, 3`.
+- **Two groups** attain the min height for 47 of the 53 pairs. The six they miss, `(0, 5)`, `(1, 5)`, `(3, 5)`, `(0, 7)`, `(1, 7)` and `(4, 7)`, have `p₂ = 5` or `7`; in each, `βγ = p₂ + αδ` has no factorization whose factors fit into groups of total size the min height.
+- **Three groups** (a `3 × 3` table of counts, whose characteristic polynomial is `(x − t)(x² − p₁x − p₂)` with `ρ` the largest root) attain the min height of all six, and no construction with at most three groups goes below a min height of the census. The `(0, 5)` rule of result 3 has three evenly connected groups by successors, `{1, 2}`, `{3, 4}` and `{5}`, with quotient `[[0, 2, 1], [2, 0, 0], [1, 0, 0]]` and characteristic polynomial `x(x² − 5)`. The `(3, 5)` and `(4, 7)` optima are staircase matrices, whose row `i` has ones in its first `ℓ_i` columns: `ℓ = 5, 5, 5, 3, 2` with characteristic polynomial `x³(x² − 3x − 5)`, and `ℓ = 6, 6, 6, 6, 4, 3` with `x⁴(x² − 4x − 7)`.[^exec]
 
-**Conjecture: every pair reaches its minimum height with a rule whose heights split into at most three evenly connected groups.** If it holds, min height is a finite search over small tables of counts. Its predicted values through height 9 (`*` = three groups beat the best two-group split):
+So for every pair with min height at most 6, some rule with at most three evenly connected groups attains the min height. The heights that such rules reach through height 9 (`*` where three groups beat the best two-group rule):
 
 ```
 p1\p2  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20
@@ -114,27 +114,21 @@ p1\p2  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19
   7    8   8   8   8   8   8   8   ·   9   9   9*  9   9*  9
 ```
 
-Through height 6 these are proved minima; beyond 6 they are upper bounds that the conjecture says are exact. The `p1 = 0` row agrees with result 3 everywhere, as it must.
-
-## What is still open
-
-- **A proof of the three-group conjecture, or a counterexample at height 7.** Exhaustive height 7 is about `10^12` tables even after sorting rows, so a test needs a targeted search on the pairs the conjecture puts at 8 or 9.
-- **A closed form for `p1 > 0`.** Result 3 does not extend directly: `ceil(2 sqrt p2)` is not a lower bound once `p1 > 0`, since `(2, 13)` is built at height 7 where `ceil(2 sqrt 13) = 8`.
-- **Min height of a field.** [[reachable-field-census](pages/reachable-field-census.md)] asks when a number field first appears; that is the minimum of this page's min height over all pairs with that field, which the table above answers for every field it covers.
+Through height 6 these are the exact min heights; above 6 they are upper bounds. The row `p₁ = 0` agrees with result 3 everywhere. The min height of a number field is the minimum over the pairs whose discriminant has that field's squarefree part; [[reachable-field-census](pages/reachable-field-census.md)] uses the table that way for `Q(√10)` and `Q(√11)`, which first appear at height 6.
 
 ## Related Concepts
 
-- [[area-growth-census](pages/area-growth-census.md)] - the same rules counted by area instead of width: growth constants in `(1, 2)`, cubics already at height 2, and the Pisot and Salem numbers that appear.
-- [[reachable-field-census](pages/reachable-field-census.md)] - the reachability law this page sharpens, and the census grid through height 5 it extends to 6.
-- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge rule `R_h = J - D` that makes the `δ_a` line exact.
-- [[metallic-means](pages/metallic-means.md)] - de Spinadel's `σ_p^q`, the quadrant `p1, p2 >= 1`; the `δ_a` are its `p2 = 1` line.
-- [[castle-strip](pages/castle-strip.md)] - castle strips and their 0/1 transfer tables.
-- [[castle-classification-growth](pages/castle-classification-growth.md)] - growth constants as a classification axis.
+- [[reachable-field-census](pages/reachable-field-census.md)] - the number fields of strip Perron roots through height 5, and the proof that every pair with `p₂ ≥ 1` is realized at some height.
+- [[area-growth-census](pages/area-growth-census.md)] - the same rules counted by area instead of width, with its own minimum heights.
+- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] and [[ridge-castle](pages/ridge-castle.md)] - the ridge matrix `R_h = J − D`, which realizes the line `p₂ = 1`.
+- [[metallic-means](pages/metallic-means.md)] - de Spinadel's `σ_p^q`, the quadrant `p₁, p₂ ≥ 1`, with the `δ_a` on its line `p₂ = 1`.
+- [[castle-strip](pages/castle-strip.md)] - castle strips and their 0/1 transfer matrices.
+- [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types of castle families by width and by the other axes.
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castle-strip count sequences whose growth constants are the Perron roots studied here.
+- [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the transfer-matrix model of strips whose Perron roots this page studies.
 
 ## Footnotes
 
-[^exec]: Verified by execution (2026-09-25). Census: a C program enumerating every 0/1 matrix of size 2 to 5, and every 6 x 6 matrix with row sums in nonincreasing order (1,277,642,344 matrices, 18 s on 14 processes), computing the characteristic polynomial exactly in 64-bit integers by the Faddeev-LeVerrier recursion and keeping the distinct ones. For each polynomial, the largest real root `ρ` was found numerically; every candidate `x^2 - p1 x - p2` with `p1 = round((ρ^2 - p2)/ρ)`, `-60 <= p2 <= 60`, non-square discriminant and larger root `ρ` was confirmed by exact polynomial division. Every height-5 pair reappeared in the height-6 run. Two- and three-group constructions: exhaustive over group sizes summing to at most 9 and all count tables with entries bounded by the group sizes, with the three-group cubic split into an integer root times the quadratic and `ρ` required to be the largest root. All quoted numbers are the programs' printed output.
+[^exec]: Census (2026-09-25): a C program enumerating every 0/1 matrix of size 2 to 5, and every `6 × 6` matrix with row sums in nonincreasing order (1,277,642,344 matrices), computing the characteristic polynomial exactly in 64-bit integers by the Faddeev-LeVerrier recursion and keeping the distinct ones; for each polynomial, every candidate `x² − p₁x − p₂` with `−60 ≤ p₂ ≤ 60`, non-square discriminant and larger root the largest real root was confirmed by exact polynomial division. Rechecked by execution (Python 3.11 with NumPy and SymPy, 2026-10-16): the full census through height 5 (6, 32, 333 and 8,927 characteristic polynomials; 1, 4, 9 and 15 pairs new at heights 2 to 5, as in the grid); the lower bound attained for 31 of the 53 pairs, every pair with conjugate of absolute value at most 1.25 among them, and missed by `(6, −6)` (conjugate 1.27) and by `(1, 3)`; all two-group tables with group sizes summing to at most 9 and all three-group tables with sizes summing to at most 9, which reproduce the six two-group misses, attain every min height of the grid including the 24 pairs of height 6, never go below it, give `(2, 13)` at height 7, and reproduce the table through height 9 entry for entry; the `(0, 5)` matrix, its quotient, and the two staircase matrices. The height-6 enumeration itself was not rerun, so the 758,878 polynomials and the blank cells at height 6 rest on the 2026-09-25 run.
