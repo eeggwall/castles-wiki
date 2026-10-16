@@ -1,23 +1,23 @@
 ---
-title: Castle notation - castles, towers, and the parity term
+title: Castle notation - castles, towers, and signed counts
 category: Concepts
-summary: The wiki's symbol conventions in one place, including the sandpile symbols (the reduced Laplacian L̃, Dhar's Δ, K(G), L̃⁻¹, a_v, avalanche statistics, the relaxation spectrum W, ψ, λ*, t_rel, n_live) the block-weighted and Motzkin-path layer (block weight t, M_k(t), the KMS matrix K(ρ), semi-perimeter s, B(x, y), Motzkin-path castles), the area-grading layer (q, z, E(q, z), the q-Bessel N(q)/M(q), J_0, J_1, Π), the 1-smooth layer (strips(w, h), smooth(w, h), χ_h, η_h, θ_k, λ_k), the m-smooth layer (strips_m, smooth_m, w_min, ρ_{h,m}), the kernel-method layer (steps(u), strip^{[a,b]}, m₋, m₊, small and large roots), the shuffle layer (a-shuffles, rising sequences r, Eulerian numbers Eul(n, r), towers by blocks T(w, b)), and the transform layer (Bin, Cat, Bal, Riordan arrays, skeletons). Castle quantities are written width first, F(w, h); tower quantities are written tower height first, T(k, L) and P(k, L), where a tower sits on the castle's bottom row, so tower height k = castle height h − 1. T is the unsigned tower count (k+1)^L, P the signed ("parity") tower count Σ(−1)^blocks, and the parity term of F is S(w, h) = P(h−2, w) − P(h−1, w), so F(w, h) = [h^w − (h−1)^w − P(h−1, w) + P(h−2, w)]/2. P(0, L) = 1 is the trivial case; P(1, ·) is a parity ingredient of F(w, 2) and F(w, 3). Also lists the other things the letters P and T mean on the wiki, so the collisions are visible.
+summary: The wiki's symbols in one place. Castle counts are written width first: A(w, h) for the castles of width w and height h, A^e(w, h) and A^o(w, h) for the even-block and odd-block ones (A^e is the Project Euler 502 count F(w, h)), and the signed count S = A^e − A^o, with A_X, S_X for a family X. Tower counts are written tower height first: T(k, L) = (k+1)^L and the signed tower count P(k, L), with tower height k = h − 1, S(w, h) = P(h−2, w) − P(h−1, w) and A^e = (A + S)/2. Further tables cover the sandpile, transfer-matrix and path, area-grading, sampling and signal symbols, and the other meanings of shared letters on the wiki.
 tags: [concept, castle, notation, reference, signed-tower-count, castle-sign, pedagogy]
 sources: [project-euler-502-solution, project-euler-502-representations, aocp-generating-partitions]
 created: 2026-09-26
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
-# Castle notation - castles, towers, and the parity term
+# Castle notation - castles, towers, and signed counts
 
 ## Two kinds of object, two argument orders
 
 The wiki counts two related objects, and they are indexed differently.
 
-- A **castle** has width `w` and height `h` (every column at least 1, some column exactly `h`). Castle quantities put **width first**: `F(w, h)`.
-- A **tower** is what sits on top of a castle's full-width bottom row. It is a row of column heights `c_1, …, c_L ∈ {0, …, k}` over a base of length `L`, where 0 means "nothing above the bottom row". Tower quantities put **tower height first**: `T(k, L)`, `P(k, L)`.[^1]
+- A **castle** of width `w` and height `h` is a skyline `(c_1, …, c_w)` with `1 ≤ c_i ≤ h` and some `c_i = h` ([[castle-polyomino](pages/castle-polyomino.md)]). Castle counts put **width first**: `A(w, h)`.
+- Removing the bottom row of a castle leaves **towers**. Towers on a base of length `L` are given by their column heights `c_1, …, c_L ∈ {0, …, k}` above the base, where 0 means nothing above the bottom row. Towers may have height 0; castles may not. Tower counts put **tower height first**: `T(k, L)`, `P(k, L)`.[^1]
 
-A tower of height `≤ k` plus the bottom row is a castle of height `≤ k + 1`. So the translation between the two is always
+Removing the bottom row maps the castles of width `w` and height at most `h` one-to-one onto the towers of height at most `h − 1` on a base of length `w`. So the translation between the two is always
 
 ```
 tower height  k  =  h − 1        (castle height h)          base length  L  =  w        (castle width w)
@@ -27,37 +27,40 @@ tower height  k  =  h − 1        (castle height h)          base length  L  = 
 
 | symbol | meaning | arguments |
 |---|---|---|
-| `F(w, h)` | castles of width `w`, height exactly `h`, with an **even** number of blocks (the Project Euler 502 count) | width, height |
-| `odd(w, h)` | the same with an odd number of blocks, `A − F`; written as a word, since `G` is reserved for generating functions | width, height |
-| `A(w, h)` | all castles of width `w`, height exactly `h`: `h^w − (h−1)^w` | width, height |
-| `T(k, L)` | all towers of height `≤ k` on a base of length `L`: `(k + 1)^L` | tower height, base length |
-| `P(k, L)` | the **signed** tower count `Σ (−1)^{blocks}` over the same towers: the parity ingredient. The bare letter `P` is reserved for parity; the Pell numbers are starred, `P⋆_n` (below) | tower height, base length |
-| `S(w, h)` | the **parity term** of `F`: `F(w, h) − odd(w, h) = P(h−2, w) − P(h−1, w)` | width, height |
+| `A(w, h)` | the number of castles of width `w` and height `h`: `h^w − (h−1)^w` | width, height |
+| `A^e(w, h)`, `A^o(w, h)` | the number of castles of width `w` and height `h` with an **even** and with an **odd** number of blocks, so `A = A^e + A^o`. `A^e` is the Project Euler 502 count, which the problem statement writes `F(w, h)` | width, height |
+| `S(w, h)` | the **signed count** `Σ (−1)^{blocks}` over the castles of width `w` and height `h`: `S = A^e − A^o = P(h−2, w) − P(h−1, w)`, so `A^e = (A + S)/2` and `A^o = (A − S)/2` | width, height |
+| `A_X(w, h)`, `A^e_X`, `A^o_X`, `S_X` | the same counts over the castles of a family X, with an upright subscript that names the family, as in `A_ridge(w, h)`. When the family's definition fixes the height, `A_X(w)`, and the page says which height | width, height |
+| `T(k, L)` | the number of towers of height at most `k` on a base of length `L`: `(k + 1)^L` | tower height, base length |
+| `P(k, L)` | the **signed tower count** `Σ (−1)^{blocks}` over the same towers. The bare letter `P` is reserved for it; the Pell numbers are starred, `P⋆_n` (section *Other meanings of P, T, and other shared letters on the wiki*) | tower height, base length |
+| `P_X` | `P` over the towers of a family X, as `P_F(w)` over the Fibonacci towers (section *Other meanings of P, T, and other shared letters on the wiki*) | base length |
 | `P_even(k, L)`, `P_odd(k, L)` | `P` restricted to towers whose last column is even / odd ([[tower-parity-sectors](pages/tower-parity-sectors.md)]) | tower height, base length |
 | `char_k` | characteristic polynomial of the recurrence of `P(k, ·)` in `L` | tower height |
 
-T is the **tower** count and P is the **parity** (signed) version of it. Both are tower quantities, so they are indexed by tower height.[^1]
+`T` counts towers and `P` is its signed version; both are tower counts, indexed by tower height.[^1] `P` adds up over towers and `S` over castles, and the two signs are opposite: a castle has one block more than its towers, so the even-block castles stand on the odd-block towers. A sum over castles is never written with `P`. Some pages still write `F(w, h)` for `A^e(w, h)` and `odd(w, h)` for `A^o(w, h)`.
 
 ## The one formula where both orders meet
 
-```
-F(w, h)  =  [ A(w, h) + S(w, h) ] / 2
-         =  [ h^w − (h−1)^w  −  P(h−1, w)  +  P(h−2, w) ] / 2
-```
-
-`A` and `F` are castle quantities (width first), and the two `P` terms are tower quantities (tower height first) evaluated at tower heights `h − 1` and `h − 2` and base length `w` ([[castle-counting-formula](pages/castle-counting-formula.md)]).
-
-**Worked case `h = 2`.** `P(0, L) = 1` (the only tower of height 0 is empty, with no blocks), so
+For `h ≥ 2`,
 
 ```
-F(w, 2)  =  [ 2^w − 1 − P(1, w) + 1 ] / 2  =  ( 2^w − P(1, w) ) / 2
+A^e(w, h)  =  [ A(w, h) + S(w, h) ] / 2
+           =  [ h^w − (h−1)^w  −  P(h−1, w)  +  P(h−2, w) ] / 2
 ```
 
-and at `w = 2`, `P(1, 2) = −2` gives `F(2, 2) = (4 + 2)/2 = 3`, the three castles `(1,2), (2,1), (2,2)`.[^2] So `P(1, ·)` enters `F(w, 2)` as `P(h−1, w)` and `F(w, 3)` as `P(h−2, w)` (towers are binary strings, and each run of 1s is one block on the second row).
+`A`, `A^e` and `S` are castle counts (width first), and the two `P` terms are tower counts (tower height first) at tower heights `h − 1` and `h − 2` and base length `w` ([[castle-counting-formula](pages/castle-counting-formula.md)]).
+
+**Worked case `h = 2`.** `P(0, L) = 1`, since the only tower of height 0 is empty and has no blocks, so
+
+```
+A^e(w, 2)  =  [ 2^w − 1 − P(1, w) + 1 ] / 2  =  ( 2^w − P(1, w) ) / 2
+```
+
+At `w = 2`, `P(1, 2) = −2` gives `A^e(2, 2) = (4 + 2)/2 = 3`: the skylines `(1, 2)`, `(2, 1)` and `(2, 2)`, each with two blocks.[^2] Towers of height at most 1 are binary strings, and each run of 1s is one block in row 2 of the castle. `P(1, ·)` enters `A^e(w, 2)` as `P(h−1, w)` and `A^e(w, 3)` as `P(h−2, w)`.
 
 ## Trivial and first cases
 
-| tower height `k` | castle heights it serves | `P(k, L)` |
+| tower height `k` | castle heights that use it | `P(k, L)` for `L = 0, 1, 2, …` |
 |---|---|---|
 | 0 | `h = 2` (as `P(h−2, w)`) | `1` for every `L` |
 | 1 | `h = 2` (as `P(h−1, w)`), `h = 3` (as `P(h−2, w)`) | `1, 0, −2, −4, −4, 0, 8, 16, …` = `Re((1+i)^{L+1})` |
@@ -65,13 +68,13 @@ and at `w = 2`, `P(1, 2) = −2` gives `F(2, 2) = (4 + 2)/2 = 3`, the three cast
 
 ## Reading conventions
 
-- **"Height" means castle height `h`** unless the sentence is about towers. Phrases like "towers of height `≤ 1`" or "`P(1, L)`" refer to tower height and are glossed with the castle height where it matters.
-- **`P(k, w)`** on a few pages ([[fractional-width-and-height](pages/fractional-width-and-height.md)], [[mod-9-equidistribution](pages/mod-9-equidistribution.md)]) is `P(k, L)` evaluated at base length `L = w`, the castle width, exactly as it appears in the formula for `F`.
-- **Generating functions.** The source derivation also writes `P_k` and `E_k` for the tower generating functions in `x` (the sums over `L`), not for single values ([[castle-counting-formula](pages/castle-counting-formula.md)], [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]).
+- **"Height" means castle height `h`** unless the sentence is about towers. "Towers of height at most 1" and `P(1, L)` refer to tower height, and the castle height is given where it matters. A castle of height `h` has a column of height `h`; the wiki writes "height `h`", not "exact height".
+- **`P(k, w)`** on a few pages ([[fractional-width-and-height](pages/fractional-width-and-height.md)], [[mod-9-equidistribution](pages/mod-9-equidistribution.md)]) is `P(k, L)` at base length `L = w`, the castle width, as it appears in the formula for `A^e`.
+- **Generating functions.** `E_k(x) = Σ_L T(k, L) x^L` and `P_k(x) = Σ_L P(k, L) x^L` are the tower generating functions in `x`, written with their argument ([[castle-counting-formula](pages/castle-counting-formula.md)], [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]).
 
 ## Sandpile symbols
 
-The sandpile pages run grains on the castle graph (cells as vertices, edge-sharing cells joined) with a **sink** where grains vanish: one chosen cell in the **sink model**, or the whole bottom row, the ground, in the **tide model** ([[sandpile-group](pages/sandpile-group.md)]). Heights count grains from 0, and a cell topples when it holds at least as many grains as it has neighbours.
+The sandpile pages run grains on the castle graph (cells as vertices, edge-sharing cells joined) with a **sink** where grains vanish: one chosen cell in the **sink model**, or the whole bottom row, the ground, in the **tide model** ([[sandpile-group](pages/sandpile-group.md)]). Heights count grains from 0, and a cell topples when it holds at least as many grains as it has neighbors.
 
 | symbol | meaning | where |
 |---|---|---|
@@ -121,17 +124,17 @@ The block weight, the semi-perimeter, and the Motzkin-path readings add a second
 | `M_n`, `M(x)` | Motzkin numbers and their GF | [[motzkin-numbers](pages/motzkin-numbers.md)], [[motzkin-castles](pages/motzkin-castles.md)] |
 | Motzkin-path castle | castle type: 1-smooth (`\|c_{i+1} − c_i\| ≤ 1`) with `c_1 = c_w = 1`; `M_{w−1}` of them over all heights | [[castle-classification-shape](pages/castle-classification-shape.md)], [[motzkin-castles](pages/motzkin-castles.md)] |
 | Motzkin strip of height `h` | 1-smooth skylines on **castle** heights `1, …, h` (`h` states); its transfer matrix is `I + A_path` | [[motzkin-castles](pages/motzkin-castles.md)] |
-| ridge castle | castle type: exact height `h`, `c_i ≠ c_{i+1}` unless `c_i = c_{i+1} = h`, so flat runs occur only at the ceiling. `𝟙ᵀR_h^{w−1}𝟙 − (h−1)(h−2)^{w−1}` of them, growing like `δ_{h−1}^w` (golden, silver, bronze, … at `h = 2, 3, 4, …`). At `h = 2` and `w ≥ 2`, exchanging heights 1 and 2 maps them onto the Fibonacci castles plus the all-1 row | [[ridge-castle](pages/ridge-castle.md)], [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2, [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] |
+| ridge castle | castle type: height `h`, `c_i ≠ c_{i+1}` unless `c_i = c_{i+1} = h`, so flat runs occur only at the ceiling. `𝟙ᵀR_h^{w−1}𝟙 − (h−1)(h−2)^{w−1}` of them, growing like `δ_{h−1}^w` (golden, silver, bronze, … at `h = 2, 3, 4, …`). At `h = 2` and `w ≥ 2`, exchanging heights 1 and 2 maps them onto the Fibonacci castles plus the all-1 row | [[ridge-castle](pages/ridge-castle.md)], [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2, [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] |
 | `R_h` | the ridge rule's transfer matrix on **castle** heights `1, …, h`: `R_h = J − D` with `J` all-ones and `D = diag(1, …, 1, 0)`, entry 1 when `a ≠ b` or `a = b = h`; characteristic polynomial `(x + 1)^{h−2}(x² − (h−1)x − 1)`, Perron root `δ_{h−1}`. Not `M_h`, which would collide with the tower matrices `M_k` | [[metallic-strip-realizability](pages/metallic-strip-realizability.md)], [[proper-castle-projection](pages/proper-castle-projection.md)] |
-| Fibonacci castle | castle type: exact height 2, no two adjacent height-2 columns (the tree castles at exact height 2); `F_{w+2} − 1` of them | [[fibonacci-castle](pages/fibonacci-castle.md)], [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2, [[castle-graph](pages/castle-graph.md)] |
-| Pell castle | castle type: exact height 3, first column at height 1, neighbouring columns differing by at most 1 (`c_1 = 1`, `\|c_{i+1} − c_i\| ≤ 1`, `max c_i = 3`); the Pell castle strip's strips that reach their ceiling. Example `(1, 2, 3, 2)`; `(1, 2, 2, 1)` is not (never reaches 3). `P⋆_w − 2^{w−1} = A094706(w − 2)` of width `w`, silver growth; the `h = 3` case of the anchored 1-smooth castles | [[pell-castle](pages/pell-castle.md)], [[pell-castle-strip](pages/pell-castle-strip.md)], [[1-smooth-castles](pages/1-smooth-castles.md)] |
-| 1-smooth castle, anchored 1-smooth castle | castle type: exact height `h`, neighbouring columns differing by at most 1 (`\|c_{i+1} − c_i\| ≤ 1`); anchored adds `c_1 = 1`. Construction: start at height 1, step up, down or flat inside `{1, …, h}`, reach `h`. Example at `h = 4`: `(1, 2, 3, 4, 3)`; `(1, 2, 4, 3)` is not. Anchored, `smooth(w, h)` of width `w` with g.f. `x^h/(η_h η_{h−1})`, growth `1 + 2cos(π/(h+1))`; `h = 3` is the Pell castle | [[1-smooth-castles](pages/1-smooth-castles.md)], [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2 |
-| `strips(w, h)`, `smooth(w, h)` | anchored 1-smooth skylines of width `w` on heights `{1, …, h}` (need not reach `h`); anchored 1-smooth castles of width `w` and exact height `h`, `= strips(w, h) − strips(w, h − 1)`. Written as words, like `odd(w, h)`; `strips(w, 3) = P⋆_w` | [[1-smooth-castles](pages/1-smooth-castles.md)] |
+| Fibonacci castle | castle type: height 2, no two adjacent height-2 columns (the tree castles of height 2); `F_{w+2} − 1` of them | [[fibonacci-castle](pages/fibonacci-castle.md)], [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2, [[castle-graph](pages/castle-graph.md)] |
+| Pell castle | castle type: height 3, first column at height 1, neighboring columns differing by at most 1 (`c_1 = 1`, `\|c_{i+1} − c_i\| ≤ 1`, `max c_i = 3`); the Pell castle strip's strips that reach their ceiling. Example `(1, 2, 3, 2)`; `(1, 2, 2, 1)` is not (never reaches 3). `P⋆_w − 2^{w−1} = A094706(w − 2)` of width `w`, silver growth; the `h = 3` case of the anchored 1-smooth castles | [[pell-castle](pages/pell-castle.md)], [[pell-castle-strip](pages/pell-castle-strip.md)], [[1-smooth-castles](pages/1-smooth-castles.md)] |
+| 1-smooth castle, anchored 1-smooth castle | castle type: height `h`, neighboring columns differing by at most 1 (`\|c_{i+1} − c_i\| ≤ 1`); anchored adds `c_1 = 1`. Construction: start at height 1, step up, down or flat inside `{1, …, h}`, reach `h`. Example at `h = 4`: `(1, 2, 3, 4, 3)`; `(1, 2, 4, 3)` is not. Anchored, `smooth(w, h)` of width `w` with g.f. `x^h/(η_h η_{h−1})`, growth `1 + 2cos(π/(h+1))`; `h = 3` is the Pell castle | [[1-smooth-castles](pages/1-smooth-castles.md)], [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2 |
+| `strips(w, h)`, `smooth(w, h)` | anchored 1-smooth skylines of width `w` on heights `{1, …, h}` (need not reach `h`); anchored 1-smooth castles of width `w` and height `h`, `= strips(w, h) − strips(w, h − 1)`. Written as words; `strips(w, 3) = P⋆_w` | [[1-smooth-castles](pages/1-smooth-castles.md)] |
 | `χ_h(x)`, `η_h(x)` | `det(I − x(I + A_path))` on castle heights `1, …, h`, with `χ_h = (1 − x)χ_{h−1} − x²χ_{h−2}`; and `Π_{k odd ≤ h}(1 − λ_k x)`, the reduced denominator of the anchored strip g.f. (degree `⌈h/2⌉`). Not `M_h`, which collides with the tower matrices | [[1-smooth-castles](pages/1-smooth-castles.md)] |
 | `θ_k`, `λ_k` | `θ_k = πk/(h+1)` and `λ_k = 1 + 2cos θ_k`, `k = 1, …, h`: the eigenvalues of the Motzkin strip `I + A_path` of height `h` | [[1-smooth-castles](pages/1-smooth-castles.md)], [[motzkin-castles](pages/motzkin-castles.md)] |
-| m-smooth castle, anchored m-smooth castle | castle type: exact height `h`, neighbouring columns differing by at most `m` (`\|c_{i+1} − c_i\| ≤ m`); anchored adds `c_1 = 1`. Construction: start at height 1, step up or down by at most `m` (or stay) inside `{1, …, h}`, reach `h`. Example at `m = 2`, `h = 4`: `(1, 3, 4)`; `(1, 4, 3)` is not. First width `w_min`; at `h ≤ m + 1` every castle qualifies (even-block part `F(w, h)`); at `h = m + 2` the anchored strips have g.f. `x/(1 − (m+1)x − m·x²)`. `m = 1` is the 1-smooth castle | [[m-smooth-castles](pages/m-smooth-castles.md)], [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2 |
-| `strips_m(w, h)`, `smooth_m(w, h)` | the m-smooth versions of `strips` and `smooth`: anchored m-smooth skylines on heights `{1, …, h}`, and anchored m-smooth castles of exact height `h`; `strips_1 = strips`, `smooth_1 = smooth` | [[m-smooth-castles](pages/m-smooth-castles.md)] |
-| `w_min`, slack | the first width `⌈(h − 1)/m⌉ + 1` of an anchored m-smooth castle of exact height `h`, and `(w_min − 1)m − (h − 1)`; there are `C(slack + w_min − 2, w_min − 2)` castles of width `w_min`. "slack" is written as a word, since `s` is the semi-perimeter | [[m-smooth-castles](pages/m-smooth-castles.md)] |
+| m-smooth castle, anchored m-smooth castle | castle type: height `h`, neighboring columns differing by at most `m` (`\|c_{i+1} − c_i\| ≤ m`); anchored adds `c_1 = 1`. Construction: start at height 1, step up or down by at most `m` (or stay) inside `{1, …, h}`, reach `h`. Example at `m = 2`, `h = 4`: `(1, 3, 4)`; `(1, 4, 3)` is not. First width `w_min`; at `h ≤ m + 1` every castle qualifies (even-block part `A^e(w, h)`); at `h = m + 2` the anchored strips have g.f. `x/(1 − (m+1)x − m·x²)`. `m = 1` is the 1-smooth castle | [[m-smooth-castles](pages/m-smooth-castles.md)], [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2 |
+| `strips_m(w, h)`, `smooth_m(w, h)` | the m-smooth versions of `strips` and `smooth`: anchored m-smooth skylines on heights `{1, …, h}`, and anchored m-smooth castles of height `h`; `strips_1 = strips`, `smooth_1 = smooth` | [[m-smooth-castles](pages/m-smooth-castles.md)] |
+| `w_min`, slack | the first width `⌈(h − 1)/m⌉ + 1` of an anchored m-smooth castle of height `h`, and `(w_min − 1)m − (h − 1)`; there are `C(slack + w_min − 2, w_min − 2)` castles of width `w_min`. "slack" is written as a word, since `s` is the semi-perimeter | [[m-smooth-castles](pages/m-smooth-castles.md)] |
 | `ρ_{h,m}` | the largest eigenvalue of the m-smooth band matrix on castle heights `1, …, h`, the growth constant of `smooth_m(·, h)`; `2m + 1 − m(m+1)/h ≤ ρ_{h,m} ≤ 2m + 1` for `h ≥ m + 1` | [[m-smooth-castles](pages/m-smooth-castles.md)] |
 | kernel, `steps(u)`, `strip^{[a,b]}(x, u)` | for a directed walk from altitude 0 with a finite jump set: `steps(u)` has one term `u^j` per allowed jump `j` (weighted); `strip^{[a,b]}(x, u)` counts the walks that stay in `[a, b]`, `x` marking length and `u` the final altitude; the kernel is `1 − x·steps(u)`. For the anchored m-smooth strip, `steps(u) = u^{−m} + ⋯ + u^m` and `[a, b] = [0, h − 1]`, so `Σ_w strips_m(w, h) x^w = x·strip^{[0,h−1]}(x, 1)` | [[kernel-method](pages/kernel-method.md)], [[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)] |
 | `m₋`, `m₊`; `u_i`, `v_j` | the largest down-jump and up-jump of a step set (Banderier-Nicodème's `c`, `d`, renamed since `c_i` are column heights), and the small and large roots of the kernel (`m₋` of them behaving like `x^{1/m₋}`, `m₊` like `x^{−1/m₊}` at `x = 0`); for m-smooth steps `m₋ = m₊ = m` | [[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)] |
@@ -144,19 +147,19 @@ The block weight, the semi-perimeter, and the Motzkin-path readings add a second
 | spaced castle | castle type: a Fibonacci castle whose height-2 columns are at least 3 apart (tower has no `101`). Example `(2, 1, 1, 2)`; `(2, 1, 2)` is not. `A000930(w + 2) − 1 = A077868(w − 1)` of width `w`, supergolden growth; in bijection with the Fibonacci castles of `w + 1` cells. Not the valley-spacing rule of [[tower-spacing-castles](pages/tower-spacing-castles.md)] | [[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)] |
 | `(d, k)`-RLL castle | castle type: a Fibonacci castle whose tower is `(d, k)`-run-length-limited (`d ≥ 1`): gaps between height-2 columns at least `d`, every run of height-1 columns, ends included, at most `k`. Example `(2, 1, 1, 1, 2)` is `(1, 3)`-RLL; `(1, 1, 1, 1, 2)` is not. Growth `2^{capacity}`; `(2, ∞)` is the spaced castles, `(1, ∞)` all Fibonacci castles | [[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)], [[fibonacci-castle](pages/fibonacci-castle.md)] |
 | q-Fibonacci castle | the Fibonacci castles counted with `q` marking area: `q^w (f_w(q) − 1)` at width `w`, `f_w = Σ_m C(w − m + 1, m) q^m`. Not Carlitz's q-Fibonacci numbers, whose `q` counts the sum of the positions of the height-2 columns; those are written "Carlitz's q-Fibonacci numbers" in full | [[q-fibonacci-castle](pages/q-fibonacci-castle.md)], [[n-nacci-disambiguation](pages/n-nacci-disambiguation.md)] |
-| hoodoo castle | castle type: exact height `h`, a rising side and a falling side of at least one column each around a summit of columns at height `h`; the rising steps `c_{i+1} − c_i` strictly increase and the drops strictly decrease, all nonzero. Each side is a partition into distinct parts of an integer in `1, …, h − 1`; for large `w` there are (A000009 summed over `1, …, h − 1`)² of them | [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 1 |
+| hoodoo castle | castle type: height `h`, a rising side and a falling side of at least one column each around a summit of columns at height `h`; the rising steps `c_{i+1} − c_i` strictly increase and the drops strictly decrease, all nonzero. Each side is a partition into distinct parts of an integer in `1, …, h − 1`; for large `w` there are (A000009 summed over `1, …, h − 1`)² of them | [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 1 |
 | monadnock castle | castle type: as the hoodoo castle, with the rising steps strictly decreasing and the drops strictly increasing (a strictly concave skyline apart from the summit). Reversing the steps on each side maps hoodoo castles onto monadnock castles at every `(w, h)` | [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 1 |
 | `p(n)`, `pd(n)`, `part(n, m)` | partitions of `n`; partitions of `n` into distinct parts (OEIS A000009, Knuth's `q(n)`); partitions of `n` into exactly `m` parts (Knuth's vertical-bar symbol, whose pipes would break tables) | [[aocp-generating-partitions](pages/aocp-generating-partitions.md)], [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] |
-| `side(h, m)` | sides with `m` steps of a hoodoo (equally, monadnock) castle of exact height `h`: `Σ_{n=1}^{h−1} part(n − m(m−1)/2, m)` | [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] |
+| `side(h, m)` | sides with `m` steps of a hoodoo (equally, monadnock) castle of height `h`: `Σ_{n=1}^{h−1} part(n − m(m−1)/2, m)` | [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] |
 | Hindenburg algorithm | Knuth's Algorithm H of TAOCP §7.2.1.4: the partitions of `n` into exactly `m` parts in colex order; with the staircase shift it generates hoodoo and monadnock castle sides | [[aocp-generating-partitions](pages/aocp-generating-partitions.md)], [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] |
 | loopless Gray algorithm | Knuth's Algorithm H of TAOCP §7.2.1.1: loopless reflected mixed-radix Gray generation on `{1..h}^w` | [[castle-gray-code](pages/castle-gray-code.md)] |
 | cornerless Motzkin path | the tower word (castle lowered by one row) read with `U = +1`, `R = 0`, `D = −1`; Deutsch-Elizalde's `Δ` adds back the outer `U…D` | [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)], [[tower-word-language](pages/tower-word-language.md)] |
 | peak `UD`, valley `DU` | in a tower word, a zero-width block and two touching blocks: the two castle rules | [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)], [[tower-word-language](pages/tower-word-language.md)] |
-| peak (of a castle) | a maximal run of columns of height `≥ 2` ([[castle-foata-transform](pages/castle-foata-transform.md)], [[prime-castles](pages/prime-castles.md)]); in Deutsch-Elizalde's bargraph papers a peak is instead `U H^ℓ D`, a plateau higher than both neighbours, so `(3, 2, 3)` has one castle peak and two bargraph peaks | [[castle-foata-transform](pages/castle-foata-transform.md)], [[deutsch-elizalde-2017-bargraphs-dyck-paths](pages/deutsch-elizalde-2017-bargraphs-dyck-paths.md)] |
+| peak (of a castle) | a maximal run of columns of height `≥ 2` ([[castle-foata-transform](pages/castle-foata-transform.md)], [[prime-castles](pages/prime-castles.md)]); in Deutsch-Elizalde's bargraph papers a peak is instead `U H^ℓ D`, a plateau higher than both neighbors, so `(3, 2, 3)` has one castle peak and two bargraph peaks | [[castle-foata-transform](pages/castle-foata-transform.md)], [[deutsch-elizalde-2017-bargraphs-dyck-paths](pages/deutsch-elizalde-2017-bargraphs-dyck-paths.md)] |
 
-**Height bookkeeping for matrices.** A tower-height matrix (`M_k(t)`, `K(ρ)`, `M_k`) has size `k + 1` = the castle height bound `h`. A castle-height strip (the Motzkin strip, the Pell strip of [[pell-castle-strip](pages/pell-castle-strip.md)], the ridge strip `R_h`) has `h` states, heights `1, …, h`. Both have `h` states; they differ in whether the states are labelled from 0 or from 1.
+**Height bookkeeping for matrices.** A tower-height matrix (`M_k(t)`, `K(ρ)`, `M_k`) has size `k + 1` = the castle height bound `h`. A castle-height strip (the Motzkin strip, the Pell strip of [[pell-castle-strip](pages/pell-castle-strip.md)], the ridge strip `R_h`) has `h` states, heights `1, …, h`. Both have `h` states; they differ in whether the states are labeled from 0 or from 1.
 
-**Parity words.** "Even-block" always means the PE 502 parity. `F(w, h)` is reserved for height **exactly** `h`; a count over all heights (for example the even-block Motzkin-path castles) is described in words, not written `F`.
+**Parity words.** "Even-block" always means the PE 502 parity. `A^e(w, h)` counts castles of height `h`; a count over all heights (for example the even-block Motzkin-path castles) is described in words, not written `A^e`.
 
 ## Area gradings
 
@@ -178,7 +181,7 @@ The random-castle pages ([[castle-samplers](pages/castle-samplers.md)]) keep the
 
 | symbol | meaning | where |
 |---|---|---|
-| `V(w, h)` | the set of even-block castles of width `w`, height exactly `h`, so `\|V(w, h)\| = F(w, h)` | [[castle-samplers](pages/castle-samplers.md)], [[castle-native-gray-tour](pages/castle-native-gray-tour.md)], [[castle-bdd-zdd](pages/castle-bdd-zdd.md)] |
+| `V(w, h)` | the set of even-block castles of width `w` and height `h`, so `\|V(w, h)\| = A^e(w, h)` | [[castle-samplers](pages/castle-samplers.md)], [[castle-native-gray-tour](pages/castle-native-gray-tour.md)], [[castle-bdd-zdd](pages/castle-bdd-zdd.md)] |
 | `blocks(c)` | the block count of skyline `c`, `c_1 + Σ max(0, c_i − c_{i−1})` | [[castle-samplers](pages/castle-samplers.md)], [[castle-gray-code](pages/castle-gray-code.md)] |
 | block weight `t`, area weight `q` | the measure `t^blocks q^area / Z` on castles, `Z` its normalizer; `t = q = 1` is uniform | [[castle-samplers](pages/castle-samplers.md)] |
 | `N_i(state)` | the sampler's completion table: weighted ways to finish a castle with `i` columns left | [[castle-samplers](pages/castle-samplers.md)] |
@@ -209,15 +212,15 @@ These are local notations on specific pages and are unrelated to the tower count
 | `P_0`, `P_α` | area-parity sums `Σ (−1)^{area}` and their fractional versions | [[fractional-block-count](pages/fractional-block-count.md)] |
 | `P_h(q)` | the polynomial `q² + q³ + … + q^h` in the tree-castle generating function | [[tree-castle-by-area](pages/tree-castle-by-area.md)], [[castle-graph](pages/castle-graph.md)] |
 | `P_h` | the path graph on `h` vertices | [[ramanujan-castles](pages/ramanujan-castles.md)] |
-| `P⋆_n` | the **Pell numbers** (A000129, `P⋆_0 = 0`, `P⋆_1 = 1`, `P⋆_n = 2P⋆_{n−1} + P⋆_{n−2}`). The star distinguishes them from the signed tower count / parity term `P` (`P(k, L)`, `P_F`, `P_even`, …), which keeps the bare letter because parity recurs across the wiki and the PE502 reports; a Pell number is always starred, never `P_n` or `Pell(n)` | [[pell-numbers](pages/pell-numbers.md)], [[pell-castle](pages/pell-castle.md)], [[metallic-means](pages/metallic-means.md)] |
+| `P⋆_n` | the **Pell numbers** (A000129, `P⋆_0 = 0`, `P⋆_1 = 1`, `P⋆_n = 2P⋆_{n−1} + P⋆_{n−2}`). The star distinguishes them from the signed tower count `P` (`P(k, L)`, `P_F`, `P_even`, …), which keeps the bare letter because parity recurs across the wiki and the PE502 reports; a Pell number is always starred, never `P_n` or `Pell(n)` | [[pell-numbers](pages/pell-numbers.md)], [[pell-castle](pages/pell-castle.md)], [[metallic-means](pages/metallic-means.md)] |
 | `P_1`, `P_2` | Bender's auxiliary series | [[convex-castle-cap-factor](pages/convex-castle-cap-factor.md)] |
 | `P_F(w)` | the signed count of Fibonacci towers of length `w` (0/1 strings, no two adjacent 1s), `Σ_m (−1)^m C(w − m + 1, m)`; period 6, `1, 0, −1, −1, 0, 1` | [[fibonacci-castle](pages/fibonacci-castle.md)] |
 | `T(w, b)`, `N(w, k)` | towers of width `w` with `b` blocks (width first, not the tower count `T(k, L)`), and the Narayana numbers in `T(w, b) = Σ_k N(w, k) C(b + w − k, w − 1)`; `N(w, k)` is not `N(q)` or `N_i(state)` | [[narayana-numbers](pages/narayana-numbers.md)], [[tower-heap](pages/tower-heap.md)] |
 | `n`, `a`, `r`, `Eul(n, r)` | the shuffle symbols: number of cards, packets of an a-shuffle, rising sequences of a permutation, and the Eulerian numbers (permutations of `n` with `r` rising sequences), written `Eul` because `A(w, h)` is the castle count; `a` is not the sandpile operator `a_v` | [[bayer-diaconis-1992-dovetail-shuffle](pages/bayer-diaconis-1992-dovetail-shuffle.md)] |
 | `T_h(w)`, `T_h(w, q)`, `T_2(w)`, `T_3(w)` | **tree-castle** counts (castles with no `2 × 2` block), not tower counts | [[tree-castle-by-area](pages/tree-castle-by-area.md)], [[castle-graph](pages/castle-graph.md)] |
 | `M` | the Project Euler modulus `10⁹ + 7` | [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] |
-| `S(w, h)` | the parity term of `F` (this page), also used on [[castle-entropy](pages/castle-entropy.md)] | - |
-| `S` | Dhar's entropy `S = ln det Δ` of the sandpile steady state; the wiki writes `ln det L̃` instead, keeping `S(w, h)` for the parity term | [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
+| `S(w, h)` | the signed castle count `A^e − A^o` (this page), also used on [[castle-entropy](pages/castle-entropy.md)] | - |
+| `S` | Dhar's entropy `S = ln det Δ` of the sandpile steady state; the wiki writes `ln det L̃` instead, keeping `S(w, h)` for the signed castle count | [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
 | `G` | a graph (as in `K(G)`), or Dhar's expected-toppling matrix `G = Δ⁻¹` (written `L̃⁻¹` on the wiki); never a castle count, and elsewhere reserved for generating functions | [[sandpile-group](pages/sandpile-group.md)], [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
 | `A`, `D` | the adjacency and degree matrices in `L = D − A`; `A(w, h)` with arguments is the castle count, `D` is also used for diagonal sign matrices on [[tower-parity-sectors](pages/tower-parity-sectors.md)] | [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] |
 | `α`, `α_w` | `α` is the fractional order on the fractional-calculus pages ([[fractional-block-count](pages/fractional-block-count.md)]); BTW's weighted-duration exponent is written `α_w` | [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)] |
@@ -231,7 +234,7 @@ These are local notations on specific pages and are unrelated to the tower count
 | `strip^{[a,b]}`, `strips_m` | the walk g.f. of the kernel-method pages vs the anchored m-smooth strip count; the second is a coefficient of the first at `u = 1` | [[kernel-method](pages/kernel-method.md)], [[m-smooth-castles](pages/m-smooth-castles.md)] |
 | `c(x)`, `c_i` | the Catalan generating function `(1 − √(1 − 4x))/(2x)` on the Catalan and Barry pages vs column heights; `c(x)` always carries its argument. Barry's ballot numbers `B(n, k)` are written `ballot(n, k)`, since `B(x, y)` is the castle generating function | [[catalan-numbers](pages/catalan-numbers.md)], [[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)] |
 | `M_n`, `M(x)`, `M(x, y)`, `M_k`, `M_k(t)`, `M(q)` | Motzkin numbers and GF; Deutsch-Elizalde's cornerless-path GF; the signed and block-weighted transfer matrices (see the table above); the q-Bessel denominator of the signed count by area (Area gradings above). The Project Euler modulus `M` has its own row | [[motzkin-numbers](pages/motzkin-numbers.md)], [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)], [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
-| `F(u)`, `G(u)`, `H(u)`, `K(u)` | Prodinger's automaton-layer GFs in the final-height variable `u`; `F(u)` is not `F(w, h)` and `K(u)` is not `K(ρ)` | [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] |
+| `F(u)`, `G(u)`, `H(u)`, `K(u)` | Prodinger's automaton-layer GFs in the final-height variable `u`; `F(u)` is not the older name `F(w, h)` of `A^e(w, h)`, and `K(u)` is not `K(ρ)` | [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] |
 | `K(q, z)`, `K(G)`, `K`, `K(w)` | the convex castle GF; the sandpile group `K(G)` (written `K`, or `K_sink`, `K_tide` by model, on the sandpile pages); a central-binomial sum; `K(ρ)` is the KMS matrix of the table above | [[prime-convex-castles](pages/prime-convex-castles.md)], [[sandpile-group](pages/sandpile-group.md)], [[half-sum-castles](pages/half-sum-castles.md)] |
 | `τ` | the tribonacci constant on [[castle-perimeter](pages/castle-perimeter.md)] (`τ²` = growth of castles by semi-perimeter); the avalanche size exponent on the sandpile pages; on the Prodinger page, the weight of the peak `UD`, with `σ` the weight of the valley `DU` | [[castle-perimeter](pages/castle-perimeter.md)], [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)], [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] |
 | `ρ` | usually a spectral radius or growth constant (`ρ_k` on [[tower-parity-sectors](pages/tower-parity-sectors.md)]); on the KMS page, the matrix parameter `√t` | [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
@@ -253,7 +256,7 @@ These are local notations on specific pages and are unrelated to the tower count
 
 ## Related Concepts
 
-- [[castle-counting-formula](pages/castle-counting-formula.md)] - the derivation of `F(w, h)` from `T` and `P`.
+- [[castle-counting-formula](pages/castle-counting-formula.md)] - the derivation of `A^e(w, h)` from `T` and `P`.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, L)` and its recurrences.
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the `(T ± P)/2` split.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the seminar where towers and parity are introduced.
@@ -264,4 +267,4 @@ These are local notations on specific pages and are unrelated to the tower count
 ## Footnotes
 
 [^1]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"T(k, L) = (k+1)^L" L27-34 - "A tower of height ≤ k above a length-L block is a length-L binary string ... T(k, L) = ∑_b ∏_{runs} T(k-1, l) = ∑_b k^{ones(b)} = (1 + k)^L"; [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The tower word" L221 and §"The main formula" L350-367 - "A castle is U (tower) D. The bottom block is the outer U...D pair, and the tower is everything stacked on top of it" and "h^w = T(h-1,w) counts towers ... any parity. P(h-1,w) is the signed version".
-[^2]: Verified by execution (Python 3.10, 2026-09-26): by brute force over all castles, `2F(w, h) = h^w − (h−1)^w − P(h−1, w) + P(h−2, w)` and `F − odd = P(h−2, w) − P(h−1, w)` for `2 ≤ h ≤ 4`, `w ≤ 6`; `P(0, L) = 1` for `L < 10`; `2F(w, 2) = 2^w − P(1, w)` for `w ≤ 9`; `F(2, 2) = 3`, `P(1, 2) = −2`.
+[^2]: Verified by execution (Python 3.11, 2026-10-16): by enumeration of all skylines, `2A^e(w, h) = h^w − (h−1)^w − P(h−1, w) + P(h−2, w)` and `A^e − A^o = P(h−2, w) − P(h−1, w)` for `2 ≤ h ≤ 4`, `w ≤ 7` and for `h = 5`, `w ≤ 6`, with `P` summed over all towers; `A^e(2, 2) = 3` and `P(1, 2) = −2`; the `P(1, L)` and `P(2, L)` rows of the table for `L ≤ 7`.
