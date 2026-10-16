@@ -84,16 +84,11 @@ The support of a castle's skyline discrete Fourier transform `ĉ_k` is the set o
 
 The telephone tone castles of [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] put 99.997% to 99.999% of their mean-removed energy in the bins of their tones, yet 30 of the 35 have every bin nonzero and the other five lose only a few classes, so none is a sparse-spectrum castle.
 
-## Open questions
-
-1. **Bronze.** Whether any castle is bronze by spectrum: no example in the twelve boxes of [[bronze-castle-hunt](pages/bronze-castle-hunt.md)], about `7.1 × 10¹¹` skylines counted with overlaps.
-2. **Ramanujan castles beyond 22 cells.** The pattern of non-Ramanujan castles beyond the census of [[ramanujan-castles](pages/ramanujan-castles.md)].
-3. **Sparse supports of even-block castles.** Which unions of divisor classes occur as supports of castles with an even number of blocks.
-
 ## Related Concepts
 
 - [[castle-classification](pages/castle-classification.md)] - the hub of the castle classification: shape, spectral and growth types.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - the shape types, predicates on the skyline.
+- [[bronze-castle-hunt](pages/bronze-castle-hunt.md)] - the search for a castle bronze by spectrum: none in twelve boxes, about `7.1 × 10¹¹` skylines counted with overlaps.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - the growth types of castle families.
 - [[castle-graph](pages/castle-graph.md)] - the castle graph, its cycle rank, and the tree castles.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the spectral-radius census behind the golden, silver and `φ²` types, and the metallic means in the transfer-matrix spectra.
