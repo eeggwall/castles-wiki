@@ -40,12 +40,23 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
   extending DATA from 35 to 42 terms, grouping the three Oct 11 formula lines in one
   "From _Chaz Reid_, Oct 11 2026: (Start) … (End)" block, and adding keyword `easy`; it is back
   in proposed. The proof PDF already resolves, and the approved A226275 entry links to it.
+- [~] **A160747 castles of width 5 and 6-cores** (submitted 2026-10-16). One comment block:
+  `a(n)` = 6-core partitions with `n` corners (Cho, Huh, Nam, and Sohn, arXiv:2205.15554,
+  Prop. 3.4, already linked) = castles of width 5 with `n + 1` blocks, of any height, with the
+  abacus bijection (their Theorem 3.3). One formula block: the g.f. numerator is row 5 of
+  A001263, their Prop. 3.4 sum, `a(n) = A271942(n+6, 5)`. The PE 502 link and two new Cf.
+  lines (A001263, A271942; the t-core family A005408 / A005891 / A063490):
+  `raw/oeis-pe502/xrefs/A160747-tower.md`, checked by `bin/python/tower_t_cores.py`
+  (`wiki/pages/tower-narayana-polynomial.md`).
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-1. [ ] **Tower/heap = Narayana-polynomial interpretation** (formerly tier 2) on A005891 /
-   A063490 / A160747, and the numerator formula on A001263 (`raw/oeis-pe502/xrefs/*-tower.md`;
-   `wiki/pages/tower-narayana-polynomial.md`). The A063490 draft notes an offset shift.
+1. [ ] **Castles by blocks = t-cores by corners, Narayana numerator** (formerly tier 2), in
+   the A160747 form (castle wording, PE 502 link, Cho et al.): A063490 next (width 4,
+   5-cores), then A005891 (width 3, 4-cores) (`raw/oeis-pe502/xrefs/*-tower.md`;
+   `wiki/pages/tower-narayana-polynomial.md`). The A001263 numerator formula
+   `Sum_k N(w,k) C(b+w-k, w-1)` waits for a proof at general `w`: Cho et al. prove the
+   block-indexed sum `Sum_i N(b,i) C(w+1+2b-2i, 2b)`, not this width-indexed one.
 2. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
    (`raw/oeis-pe502/xrefs/*-castle.md`).
 3. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
