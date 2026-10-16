@@ -1,131 +1,121 @@
 ---
 title: The castle graph - bridge to graph theory
 category: Concepts
-summary: Every castle carries a graph - filled cells as vertices, orthogonal neighbors as edges. Basic invariants (|V| = area, cycle rank = number of 2×2 filled blocks, bipartite, planar, subgraph of Z^2, max degree 4) are read straight off the skyline. Named castle types from graph properties: **tree castle** (no 2×2 filled block), golden-, silver-, φ²-spectrum, isospectral pairs, Ramanujan. Tree-castle counts by width and height are Fibonacci at h = 2, Jacobsthal at h = 3, and the k-Fibonacci family A006130, A006131, … above; the growth constant is (1 + √(4h − 3))/2.
+summary: The castle graph of a castle has its cells as vertices and an edge between cells that share a side. It is connected, bipartite and planar, with at most 4 neighbors per cell, and its cycle rank is the number of 2×2 squares of cells. It is a tree exactly when no two neighboring columns both have height at least 2; these tree castles number F_{w+2} − 1 at height 2, and the tree skylines of height at most h satisfy T_h(w+2) = T_h(w+1) + (h−1)T_h(w), Jacobsthal at h = 3, so the tree castles of height h grow like σ_1^{h−1} = (1 + √(4h−3))/2 by width.
 tags: [concept, castle, graph, polyomino, spectral, adjacency, laplacian, tree, bipartite, planar, cycle-rank, fibonacci, jacobsthal, oeis, bridge, pedagogy]
-sources: [project-euler-502-castle-factoring]
+sources: [project-euler-502-brute-force, rossin-2000-group-of-a-sandpile]
 created: 2026-09-17
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
 # The castle graph - bridge to graph theory
 
 ## Definition
 
-Fix a castle with skyline `c = (c_1, …, c_w)`, `c_i ≥ 1`. Its **castle graph** `G_c` has
+Let `c = (c_1, …, c_w)` be the skyline of a castle ([[castle-polyomino](pages/castle-polyomino.md)]). Its **castle graph** `G_c` has
 
-- **vertices** = the filled cells `(i, j)` with `1 ≤ i ≤ w` and `1 ≤ j ≤ c_i`,
-- **edges** = pairs of cells sharing a unit side, i.e. `(i, j) ↔ (i, j+1)` (vertical, within a column) and `(i, j) ↔ (i+1, j)` (horizontal, between columns) whenever both endpoints are filled.
+- as vertices the cells `(i, j)` with `1 ≤ i ≤ w` and `1 ≤ j ≤ c_i`, column `i` and row `j`;
+- as edges the pairs of cells that share a side: `(i, j)` and `(i, j+1)` in one column, and `(i, j)` and `(i+1, j)` in neighboring columns, whenever both cells are in the castle.
 
-That is the whole definition. Six examples from around the wiki:
+Six castles, drawn row by row from the top with `#` for a cell:
 
 ```
-(4)          (1,1,1,1)      (3,3)          (2,2,2)             (1,3,2,3,1)      (1,1,2,1,1,2,1,1)
-#             ####          ##             ###                                  
-#                           ##             ###                 .#.#.
-#                           ##                                 .###.            ...#..#..
-#                                                              #####            #########
+(4)     (1,1,1,1)    (3,3)    (2,2,2)    (1,3,2,3,1)    (1,1,2,1,1,2,1,1)
+#
+#                    ##                  .#.#.
+#                    ##       ###        .###.          ..#..#..
+#       ####         ##       ###        #####          ########
 ```
 
-## Basic invariants, read off the skyline
+The skylines `(4)` and `(1, 1, 1, 1)` have the path on 4 vertices as their graph. `(3, 3)` and `(2, 2, 2)` have 6 cells, 7 edges and two `2 × 2` squares. `(1, 3, 2, 3, 1)` has 10 cells, 11 edges and two `2 × 2` squares, and `(1, 1, 2, 1, 1, 2, 1, 1)` has 10 cells, 9 edges and none.[^1]
 
-The basic invariants of `G_c` are small formulas in `c`.[^1]
+## Invariants of the skyline
 
-| invariant | formula |
+| invariant | value |
 |---|---|
-| vertex count `\|V\|` | area = `Σ c_i` |
-| vertical edges (within columns) | `Σ (c_i − 1) = |V| − w` |
-| horizontal edges (between columns) | `Σ_{i < w} min(c_i, c_{i+1})` |
-| edge count `\|E\|` | `\|V\| − w + Σ_{i < w} min(c_i, c_{i+1})` |
-| number of 2×2 filled blocks | `Σ_{i < w} max(0, min(c_i, c_{i+1}) − 1)` |
-| cycle rank `\|E\| − \|V\| + 1` (first Betti number) | **= number of 2×2 filled blocks** |
-| max degree `Δ` | at most 4 |
-| bipartite? | always (color `(i, j)` by parity of `i + j`) |
-| planar? | always (drawn on `Z²` with no crossings) |
+| vertices `\|V\|` | the area `Σ c_i` |
+| edges within columns | `Σ_i (c_i − 1) = \|V\| − w` |
+| edges between columns | `Σ_{i<w} min(c_i, c_{i+1})` |
+| `2 × 2` squares of cells | `Σ_{i<w} (min(c_i, c_{i+1}) − 1)` |
+| cycle rank `\|E\| − \|V\| + 1` | the number of `2 × 2` squares |
+| largest degree | at most 4 |
 
-**Cycle rank.** `G_c` is a planar graph whose bounded faces in the grid embedding are exactly the fully-filled unit squares; each such square contributes one independent cycle, and the total is `|E| − |V| + 1` by Euler. Verified for every castle with `w ≤ 4, h ≤ 4`.[^1] The block loops are also an integer basis of the cycle lattice on all 938 castles tested ([[sandpile-census](pages/sandpile-census.md)] §1), which is why the sandpile group can be read off the blocks ([[sandpile-group](pages/sandpile-group.md)] Part 3).
+The graph is connected, since every column stands on row 1, which is a path. So its cycle rank, the number of independent cycles, is `|E| − |V| + 1`. Adding the two kinds of edges, `|E| − |V| + 1 = Σ_{i<w} min(c_i, c_{i+1}) − (w − 1) = Σ_{i<w} (min(c_i, c_{i+1}) − 1)`, the number of `2 × 2` squares, since two neighboring columns share `min(c_i, c_{i+1}) − 1` of them.
 
-**A castle graph is a tree iff it has no 2×2 filled block**, equivalently, no two horizontally adjacent columns both have height at least 2.
+The graph is **bipartite**: coloring `(i, j)` by the parity of `i + j` gives neighboring cells opposite colors. So its adjacency spectrum is symmetric about 0; the path on 4 vertices has characteristic polynomial `x⁴ − 3x² + 1 = (x² − x − 1)(x² + x − 1)`. The graph is **planar**, drawn in the square lattice with unit edges, and it is a subgraph of the `w × h` grid graph, so its pathwidth is at most `min(w, h)`.
 
-## Named castle types from graph properties
-
-The castle graph turns each Axis 9 predicate on [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] into a graph property:
-
-| type | graph condition | wiki page |
-|---|---|---|
-| **Tree castle** | `G_c` is a tree; no 2×2 filled block | this page (section below), Axis 9 |
-| **Golden-spectrum castle** | adjacency spectral radius = `φ` | [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
-| **Silver-spectrum castle** | adjacency spectral radius = `1 + √2` | [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
-| **φ²-spectrum castle** | adjacency spectral radius = `φ² = (3+√5)/2` | [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
-| **Isospectral pair** | two non-isomorphic castles with equal adjacency or Laplacian spectrum | [[isospectral-castles](pages/isospectral-castles.md)] |
-| **Ramanujan castle** | every eigenvalue other than `±λ_1` has modulus `≤ ρ(T)`, the spectral radius of the castle graph's universal covering tree (Greenberg's definition for irregular graphs); trivially true for tree castles | [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] Axis 9 |
-
-Sparse-spectrum, low-pass / high-pass and Ihara-Ramanujan types are defined on Axis 9 without members; populating them needs the skyline discrete Fourier transform (DFT) and the Ihara zeta.
+For the castles with at most 11 cells, and 300 larger ones, the boundary cycles of the `2 × 2` squares form a basis of the integer cycle lattice ([[sandpile-census](pages/sandpile-census.md)]), and [[sandpile-group](pages/sandpile-group.md)] computes the sandpile group from them.
 
 ## Tree castles
 
-A **tree castle** is a castle whose graph is a tree: connected, `|V| = |E| + 1`, no cycles. Equivalent to "no 2×2 filled block" and to "no two horizontally adjacent columns both `≥ 2`." Small examples:
+A **tree castle** is a castle whose graph is a tree. Since the graph is connected, this holds exactly when the cycle rank is 0: when there is no `2 × 2` square of cells, that is, when no two neighboring columns both have height at least 2. Examples are the skyline `(1, 1, …, 1)`, a horizontal path; the skyline `(h)`, a vertical path; `(2, 1, 2, 1, 2)`; `(1, 3, 1)`; and the 11-cell skyline `(1, 1, 1, 2, 1, 1, 2, 1, 1)` of [[isospectral-castles](pages/isospectral-castles.md)]. The skylines `(2, 2)`, `(3, 3)` and `(1, 2, 3, 1, 2, 3)` are not tree castles.
 
-- `(1, 1, 1, …, 1)` for any `w`, drawn as a horizontal path `P_w`.
-- `(h)` for any `h ≥ 1`, drawn as a vertical path `P_h`.
-- `(2, 1, 2, 1, 2)`, three vertical 2-spikes on a common base.
-- `(1, 3, 1)`, a T-shape.
-- `(1, 1, 1, 2, 1, 1, 2, 1, 1)`, the 11-cell tree from the isospectral pair on [[isospectral-castles](pages/isospectral-castles.md)].
+A tree castle has exactly one spanning tree, so its sandpile group is trivial in both the sink model and the tide model of [[sandpile-group](pages/sandpile-group.md)]; in the tide model the bottom row is contracted to one sink, which leaves a tree. The castles with at most 16 cells number 33,150 up to mirror image, and 6,963 of them are tree castles ([[sandpile-census](pages/sandpile-census.md)]).[^2]
 
-Non-examples: `(2, 2)`, `(3, 3)`, `(1, 2, 3, 1, 2, 3)` all contain `2×2` blocks and are therefore not trees.
+### Counting tree castles by width
 
-A tree castle has exactly one spanning tree, so its sandpile group is trivial in both the sink and the tide model, and the identity is the fullest stable pile. Up to 16 cells there are 6,963 tree castles, mirror images removed ([[sandpile-census](pages/sandpile-census.md)], [[sandpile-identity](pages/sandpile-identity.md)]).
-
-### Counting tree castles: Fibonacci, Jacobsthal, and the k-Fibonacci family
-
-Fix a height bound `h`. Let `T_h(w)` be the number of skylines `(c_1, …, c_w) ∈ {1, …, h}^w` in which no two adjacent columns both have height `≥ 2`. Split by whether the last column is "short" (`c_w = 1`) or "tall" (`c_w ≥ 2`, `h − 1` choices):
+Let `T_h(w)` be the number of **tree skylines** of width `w` and height at most `h`: skylines in `{1, …, h}^w` in which no two neighboring columns both have height at least 2. A tree skyline need not reach height `h`, so it is not a castle of height `h`. Splitting by the last column, which has height 1 or is one of the `h − 1` taller heights after a column of height 1,
 
 ```
-T_h(w+2)  =  T_h(w+1)  +  (h − 1) · T_h(w),        T_h(0) = 1,   T_h(1) = h.
+T_h(w+2)  =  T_h(w+1)  +  (h − 1)·T_h(w),        T_h(0) = 1,   T_h(1) = h.        (1)
 ```
 
-Characteristic polynomial `x² − x − (h − 1)`, growth constant
+The tree castles of width `w` and height `h` are the tree skylines of height at most `h` that are not of height at most `h − 1`, so they number
 
 ```
-ρ(h)  =  (1 + √(4h − 3)) / 2.
+A_tree(w, h)  =  T_h(w) − T_{h−1}(w).                                              (2)
 ```
 
-| `h` | `T_h(w)`, `w = 0..9` | growth `ρ(h)` | Online Encyclopedia of Integer Sequences (OEIS) | recurrence |
-|---|---|---|---|---|
-| 1 | `1, 1, 1, 1, 1, 1, 1, 1, 1, 1` | `1` | (constant) | trivial |
-| 2 | `0, 1, 2, 4, 7, 12, 20, 33, 54, 88` | **`φ`** (golden, `δ_1`) | **A000071** (`F_{w+2} − 1`, the term `A000071(w+2)`) | `a(n) = a(n−1) + a(n−2) + 1` |
-| 3 | `1, 3, 5, 11, 21, 43, 85, 171, 341, 683` | `2` (integer) | **A001045** (Jacobsthal, `T_3(w) = J_{w+2}`) | `a(n) = a(n−1) + 2 a(n−2)` |
-| 4 | `1, 4, 7, 19, 40, 97, 217, 508, 1159, 2683` | `(1 + √13)/2 = 2.303` | **A006130** (`T_4(w) = a(w+1)`) | `a(n) = a(n−1) + 3 a(n−2)` |
-| 5 | `1, 5, 9, 29, 65, 181, 441, 1165, 2929, 7589` | `(1 + √17)/2 = 2.562` | **A006131** | `a(n) = a(n−1) + 4 a(n−2)` |
+The characteristic polynomial of Equation (1) is `x² − x − (h − 1)`, whose larger root is
 
-The `h = 2` row counts the tree castles of height 2 (some column reaches height 2), the Fibonacci castles; the rows `h ≥ 3` are `T_h(w)`. All OEIS numbers verified offset-exact.[^2]
+```
+σ_1^{h−1}  =  (1 + √(4h − 3)) / 2,
+```
 
-- **The `h = 2` row is Fibonacci minus one.** The tree castles of height 2 are the Fibonacci castles ([[fibonacci-castle](pages/fibonacci-castle.md)]), `F_{w+2} − 1` of width `w`, a castle interpretation of `A000071`. It puts the tree-castle family on rung 1 of the [[metallic-means](pages/metallic-means.md)] ladder ([[castle-classification](pages/castle-classification.md)] Axis 8: tree castles of height 2 are a **golden width growth castle**).
-- **The `h = 3` slice is Jacobsthal**, a castle interpretation of `A001045`. Heights 4 and 5 give `A006130` and `A006131`, and every height `h` gives a member of the "`k`-Fibonacci" family `a(n) = a(n−1) + k · a(n−2)` with `k = h − 1`. The growth constant at height `h` is the root of `x² − x − (h − 1)`, de Spinadel's metallic mean `σ_1^{h−1}` ([[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)]): golden at `h = 2`, copper `2` at `h = 3`, nickel `(1 + √13)/2` at `h = 4`. Tree castles trace out the `p = 1` column of the metallic family, where the ridge castles trace out the `q = 1` row ([[metallic-means](pages/metallic-means.md)]).
+de Spinadel's metallic mean with `p = 1` and `q = h − 1` ([[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)], [[metallic-means](pages/metallic-means.md)]). For `h ≥ 2` it exceeds `σ_1^{h−2}`, so `A_tree(w, h)` grows like `(σ_1^{h−1})^w` too: the tree castles of heights 2, 3 and 4 are golden (`φ`), copper (`2`) and nickel (`(1 + √13)/2`) by width.
 
-The area-graded (q-analogue) count is worked out on [[tree-castle-by-area](pages/tree-castle-by-area.md)]: the bivariate generating function (GF) is `T_h(x, q) = (1 + P_h(q) x)/(1 − q x − q P_h(q) x²)`, summing over widths gives one C-finite sequence per height, and each hits a named OEIS sequence - at `h = 2` the tree castles of height 2 with area `A` number `A000930(A + 1) − 1` (Narayana's cows minus one), the term `A077868(A − 2)` (supergolden growth), `h = 3` is A006498 (golden growth via factorization), `h = 4` is A000570 (tournaments), `h → ∞` is A005251 (plastic squared, a second castle interpretation).
+| `h` | `T_h(w)` for `w = 0, 1, …, 9` | OEIS | `σ_1^{h−1}` |
+|---|---|---|---|
+| 1 | `1, 1, 1, 1, 1, 1, 1, 1, 1, 1` | | `1` |
+| 2 | `1, 2, 3, 5, 8, 13, 21, 34, 55, 89` | Fibonacci, `F_{w+2}` | `φ = 1.618…` |
+| 3 | `1, 3, 5, 11, 21, 43, 85, 171, 341, 683` | Jacobsthal, `A001045(w+2)` | `2` |
+| 4 | `1, 4, 7, 19, 40, 97, 217, 508, 1159, 2683` | `A006130(w+1)` | `(1 + √13)/2 = 2.303…` |
+| 5 | `1, 5, 9, 29, 65, 181, 441, 1165, 2929, 7589` | `A006131(w+1)` | `(1 + √17)/2 = 2.562…` |
 
-## Bipartiteness, planarity, treewidth: what the castle graph inherits
+| `h` | `A_tree(w, h)` for `w = 0, 1, …, 8` |
+|---|---|
+| 2 | `0, 1, 2, 4, 7, 12, 20, 33, 54` |
+| 3 | `0, 1, 2, 6, 13, 30, 64, 137, 286` |
+| 4 | `0, 1, 2, 8, 19, 54, 132, 337, 818` |
 
-- **Bipartite.** Color `(i, j)` by the parity of `i + j`. Adjacent cells differ in exactly one coordinate by 1, so they get opposite colors. Consequence: the adjacency spectrum is symmetric about 0. Every eigenvalue `λ` is paired with `−λ`, which is visible in every exact characteristic polynomial on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] (e.g. `(x² − x − 1)(x² + x − 1)` for `P_4`).
-- **Planar and subgraph of `Z²`.** Every castle graph embeds in the square lattice with unit edges, so planar-graph results apply: Euler's formula (used above) and planar separators.
-- **Bounded pathwidth.** A castle graph is a subgraph of the `w × h` grid, so its pathwidth is at most `min(w, h)`, and bounded-treewidth algorithms run in polynomial time on castles with `min(w, h)` fixed.
+Every entry agrees with brute-force enumeration.[^3] At height 2, `T_1(w) = 1`, so `A_tree(w, 2) = F_{w+2} − 1 = A000071(w+2)`: these are the Fibonacci castles, the castles of height 2 with no two neighboring columns of height 2 ([[fibonacci-castle](pages/fibonacci-castle.md)]). The sequences `A006130` and `A006131` satisfy `a(n) = a(n−1) + 3a(n−2)` and `a(n) = a(n−1) + 4a(n−2)`, the cases `h = 4` and `h = 5` of Equation (1).
 
-## Graph theory on castles
+[[tree-castle-by-area](pages/tree-castle-by-area.md)] counts the tree skylines by area. With `q` marking area, `x` marking width and `P_h(q) = q² + q³ + ⋯ + q^h`, their generating function is `(1 + P_h(q)x)/(1 − qx − qP_h(q)x²)`, since a tree skyline is a sequence of columns of height 1, each followed or not by one taller column. At `x = 1`, the tree castles of height 2 counted by area are `A077868`, one less than Narayana's cows `A000930`; the tree skylines of height at most 3 and 4 are `A006498` and `A000570`; and the tree skylines of any height are `A005251`.[^4]
 
-- **Spectral graph theory.** Adjacency, Laplacian, normalized Laplacian, signless Laplacian, and Ihara zeta all live on `G_c`. See [[spectral-analysis](pages/spectral-analysis.md)] for the methods and [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] / [[isospectral-castles](pages/isospectral-castles.md)] for two settled applications.
-- **Extremal graph theory.** The maximum spectral radius of a castle graph with `n` cells is a Turán-type problem.
-- **Algebraic graph theory.** Because `G_c` is bipartite and planar, Kasteleyn's method counts its perfect matchings (dimer coverings). Planarity also gives the critical group through the planar dual, whose vertices are the `2 × 2` blocks ([[sandpile-group](pages/sandpile-group.md)]); the dual-graph theorem is Cori and Rossin's, reached on the wiki through [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)].
-- **Random graphs.** Random castles under any of the wiki's ensembles ([[spectral-analysis](pages/spectral-analysis.md)] method 2, Lindstrom-Gessel-Viennot (LGV) kernel) become a random-graph model whose spectra can be sampled.
-- **Sunada theory** (see [[isospectral-castles](pages/isospectral-castles.md)]) for common covers and the "hear the shape" question.
+## Spectral types
 
-The [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], [[isospectral-castles](pages/isospectral-castles.md)], [[ramanujan-castles](pages/ramanujan-castles.md)], the sandpile pages from [[sandpile-group](pages/sandpile-group.md)] on, and the tree-castle count above are the pages that use the castle graph.
+The spectral types of [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] are properties of the castle graph:
 
-## Snippet index
+| type | condition on `G_c` | page |
+|---|---|---|
+| tree castle | `G_c` is a tree | this page, section *Tree castles* |
+| golden by spectrum | the largest adjacency eigenvalue is the golden ratio `φ = (1 + √5)/2`; the castle `(1, 1, 1, 1)` is one | [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
+| silver by spectrum | the largest adjacency eigenvalue is the silver ratio `1 + √2`; the castle `(2, 2, 2)` is one | [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
+| spectral radius `φ²` | the largest adjacency eigenvalue is `φ² = (3 + √5)/2` | [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
+| isospectral pair | two castles with non-isomorphic graphs and the same adjacency or Laplacian spectrum | [[isospectral-castles](pages/isospectral-castles.md)] |
+| Ramanujan castle | every adjacency eigenvalue other than `±λ_1` has modulus at most `ρ(T)`, the spectral radius of the universal covering tree of `G_c` (Greenberg's condition for irregular graphs) | [[ramanujan-castles](pages/ramanujan-castles.md)] |
+
+Here `λ_1` is the largest adjacency eigenvalue. A finite tree is its own universal cover, so every tree castle is a Ramanujan castle.
+
+The graph is planar, so Kasteleyn's method counts its perfect matchings, and the sandpile group can be computed from the planar dual, whose bounded faces are the `2 × 2` squares; the dual-graph theorem is Cori and Rossin's ([[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)]).
+
+## Snippet
 
 Filed on [[castle-snippets](pages/castle-snippets.md)]:
 
 ```python
+import numpy as np
+
 def castle_graph(c):
     """Adjacency matrix of the castle graph as a NumPy array."""
     cells = [(i, j) for i, h in enumerate(c) for j in range(h)]
@@ -137,40 +127,42 @@ def castle_graph(c):
     return A
 
 def is_tree_castle(c):
-    """True iff G_c is a tree - equivalently, no 2x2 filled block."""
+    """True iff G_c is a tree - equivalently, no 2x2 square of cells."""
     return all(not (c[i] >= 2 and c[i+1] >= 2) for i in range(len(c)-1))
 
 def cycle_rank(c):
-    """|E| - |V| + 1 = number of 2x2 filled blocks in the castle."""
+    """|E| - |V| + 1 = number of 2x2 squares of cells in the castle."""
     return sum(max(0, min(c[i], c[i+1]) - 1) for i in range(len(c)-1))
 ```
 
 ## Appearances in Sources
 
-- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle definition (skyline, filled-cell picture) that this graph reads off.
+- [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the skyline encoding of a castle, whose cells are the vertices of the castle graph.
+- [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] - the sandpile group of a graph and the dual-graph theorem.
 
 ## Related Concepts
 
-- [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - Axis 9 is spectral predicates on this graph.
-- [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - single-eigenvalue types on this graph (golden, silver, φ²).
-- [[isospectral-castles](pages/isospectral-castles.md)] - Kac's question on this graph; the smallest Laplacian-isospectral pair is a pair of tree castles.
-- [[spectral-analysis](pages/spectral-analysis.md)] - the methods hub for spectra on this graph.
-- [[castle-polyomino](pages/castle-polyomino.md)] - the underlying object, dropping the graph reading.
-- [[castle-representations](pages/castle-representations.md)] - other encodings; the castle graph is a further encoding, into `Z²`-subgraphs.
-- [[castle-by-area](pages/castle-by-area.md)] - `|V|` is area; the graph reading dualizes area-graded questions into vertex-graded ones.
-- [[castle-classification-growth](pages/castle-classification-growth.md)] Axis 8 - tree castles are the golden, copper and nickel width growth castles at heights 2, 3 and 4.
-- [[metallic-means](pages/metallic-means.md)] - the tree-castle growth `σ_1^{h−1}`: golden, copper and nickel at `h = 2, 3, 4`.
+- [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - the classification of castles by the spectrum of the castle graph.
+- [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the castles whose graph has spectral radius `φ`, `1 + √2` or `φ²`.
+- [[isospectral-castles](pages/isospectral-castles.md)] - non-isomorphic castle graphs with the same spectrum; the smallest Laplacian pair is two tree castles with 11 cells.
+- [[ramanujan-castles](pages/ramanujan-castles.md)] - Greenberg's Ramanujan condition on castle graphs, with a census to 22 cells.
+- [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the adjacency matrices and characteristic polynomials of small castle graphs, worked by hand.
+- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - a seminar on what the spectrum of the castle graph determines.
+- [[spectral-analysis](pages/spectral-analysis.md)] - the spectral methods used on castle graphs.
+- [[sandpile-group](pages/sandpile-group.md)] - the sandpile group of the castle graph, computed from its `2 × 2` squares; trivial for tree castles.
+- [[sandpile-census](pages/sandpile-census.md)] - the sandpile groups of the 33,150 castles with at most 16 cells, up to mirror image.
+- [[castle-avalanches](pages/castle-avalanches.md)] - avalanches on the castle graph; in the tide model, rectangles and battlements of the same height have the same mean avalanche, and the `2 × 2` squares change only the tail.
+- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree skylines counted by area.
+- [[unique-tournament](pages/unique-tournament.md)] - tournaments determined by their score vectors, counted by `A000570`, the tree skylines of height at most 4 by area.
+- [[castle-classification-growth](pages/castle-classification-growth.md)] - families of castles by their growth by width, among them the tree castles.
+- [[metallic-means](pages/metallic-means.md)] - the growth `σ_1^{h−1}` of the tree castles of height `h`.
+- [[castle-by-area](pages/castle-by-area.md)] - castles counted by area, the number of vertices of the castle graph.
+- [[castle-representations](pages/castle-representations.md)] - the other encodings of a castle.
 - [[castle-snippets](pages/castle-snippets.md)] - `castle_graph`, `is_tree_castle`, `cycle_rank`.
-- [[unique-tournament](pages/unique-tournament.md)] - the wiki's other graph-theoretic object (complete oriented graphs, where castle graphs are sparse bipartite grids); the two meet at `A000570`, the `h = 4` tree-castle count by area.
-- [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the from-scratch pedagogy that computes by hand the small golden / silver / `φ²`-spectrum castles this page's Named-castle-types table tabulates.
-- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar built on this graph: what its spectrum hears and the smallest failures.
-- [[sandpile-group](pages/sandpile-group.md)] - the sandpile group: the 2×2 blocks that make the cycle rank also hold all the sand; tree castles hold none.
-- [[sandpile-census](pages/sandpile-census.md)] - the census of sandpile groups; 6,963 of the 33,150 castles to 16 cells are tree castles with trivial group.
-- [[castle-avalanches](pages/castle-avalanches.md)] - battlements and rectangles have the same mean avalanche; the 2×2 blocks set the tail.
-- [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] - source for the sandpile group of a graph, its sink independence, and the dual-graph theorem the block matrices rest on.
 
 ## Footnotes
 
-[^1]: Verified by execution (Python 3.11, NumPy, SymPy 1.14): for every castle skyline with `w ≤ 4` and `h ≤ 4` (`max c = h`), `|E| − |V| + 1` equals `Σ_{i<w} max(0, min(c_i, c_{i+1}) − 1)` (the count of 2×2 filled blocks). Basic invariants recomputed against direct enumeration.
-
-[^2]: Verified against OEIS (fetched 2026-09-17): tree-castle counts `T_h(w)` for `w = 0..11` compared to https://oeis.org/A001045 (Jacobsthal) at `h = 3`, https://oeis.org/A006130 (`a(n) = a(n-1) + 3 a(n-2)`) at `h = 4`, https://oeis.org/A006131 (`a(n) = a(n-1) + 4 a(n-2)`) at `h = 5`. All offset-exact. The `h = 2` row, the tree castles of height 2, verified 2026-10-04 by brute force for `w = 0..10` against https://oeis.org/A000071 (offset 1, data `0, 0, 1, 2, 4, 7, 12, 20, 33, 54, 88, 143`), the term `A000071(w+2)`. Growth constants `(1 + √(4h − 3))/2` verified numerically as `ρ(h) = 1, φ, 2, 2.303, 2.562, 2.791` for `h = 1..6`.
+[^1]: Verified by execution (Python 3.11, 2026-10-16): the drawings and the counts of cells, edges and `2 × 2` squares of the six examples, from the formulas of the section *Invariants of the skyline*.
+[^2]: Verified by execution (Python 3.11, 2026-10-16): the compositions of `n ≤ 16` number 33,150 up to reversal, and 6,963 of these classes have no two neighboring parts at least 2.
+[^3]: Verified by execution (Python 3.11, 2026-10-16): `T_h(w)` for `h ≤ 3`, `w ≤ 9` and `h = 4, 5`, `w ≤ 7` by enumeration of all skylines, and for `w = 8, 9` from Equation (1); `A_tree(w, h)` from Equation (2) against enumeration for `w ≤ 8` at `h = 2, 3` and `w ≤ 7` at `h = 4`, and at `w = 8` from Equation (1). https://oeis.org/A001045, https://oeis.org/A006130, https://oeis.org/A006131, https://oeis.org/A000071 (read 2026-09-17 and 2026-10-04): the offsets of the table.
+[^4]: Verified by execution (Python 3.11, 2026-10-16): the counts by area `n ≤ 14` of the tree castles of height 2 (`0, 1, 2, 3, 5, 8, 12, …`), and of the tree skylines of height at most 3, at most 4 and of any height, against the data of https://oeis.org/A077868, https://oeis.org/A000930, https://oeis.org/A006498, https://oeis.org/A000570 and https://oeis.org/A005251 (read 2026-10-16).
