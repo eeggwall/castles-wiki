@@ -1,31 +1,31 @@
 ---
 title: Generating-function gallery for P(k,L)
 category: Analyses
-summary: The rational generating functions F_k(x) = num_k/den_k of P(k,L) in L, built by a two-line recurrence — a num/den catalogue, the denominator roots (eigenvalues), and the C-finite recurrences.
+summary: The rational generating functions P_k(x) = Σ_L P(k, L) x^L = num_k(x)/den_k(x) of the signed tower count for k ≤ 6, from the update of num_k and den_k; the three-term recurrence den_{k+1} = den_{k−1} − 2x·den_k and its closed form with roots −x ± √(x² + 1); the coefficients −(k+1), 2⌊(k+1)²/4⌋, (−1)^k 2^k and (−1)^{k+1} 2^k of char_k; the eigenvalues for k ≤ 6; the spectral radius ρ_k ≤ k + 1 and the estimate ρ_k ~ k/log k; and the linear recurrences of P(k, ·) for k ≤ 5.
 tags: [analysis, castle, generating-functions, c-finite, sympy, verification]
 sources: [project-euler-502-solution, oeis-mining-pe502]
 created: 2026-09-14
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Generating-function gallery for P(k,L)
 
 ## Overview
 
-For fixed `k`, the ordinary generating function of `P(k,L)` in the width `L` is rational,
+For fixed `k`, the generating function of the signed tower count `P(k, L)` in the base length `L` is rational,
 
 ```
-F_k(x) = Σ_L P(k,L) x^L = num_k(x) / den_k(x),
+P_k(x)  =  Σ_{L≥0} P(k, L) x^L  =  num_k(x) / den_k(x),
 ```
 
-built level-by-level from `F_0(x) = 1/(1−x)` (the height-0 tower is empty, `P(0,L) = 1`) by the two-line recurrence[^1]
+built from `P_0(x) = 1/(1 − x)`, since `P(0, L) = 1`, by the update[^1]
 
 ```
-num_k(x) = 2·den_{k−1}(x) − num_{k−1}(x)
-den_k(x) = den_{k−1}(x)·(1 − 2x) + num_{k−1}(x)·x.
+num_k(x)  =  2·den_{k−1}(x) − num_{k−1}(x)
+den_k(x)  =  (1 − 2x)·den_{k−1}(x) + x·num_{k−1}(x).
 ```
 
-A single pass builds numerator and denominator for every `k`. The gallery catalogues them, their roots, and the C-finite recurrences they encode — all built and checked with SymPy.
+The source writes `F_k(x)` for `P_k(x)`. The update is Equation (5) of [[castle-counting-formula](pages/castle-counting-formula.md)], which derives it from the tower grammar. This page lists `num_k` and `den_k` for `k ≤ 6`, the recurrences and closed form they satisfy, the roots of the characteristic polynomials `char_k`, and the linear recurrences of `P(k, ·)`.
 
 ## Building the gallery in SymPy
 
@@ -52,59 +52,57 @@ for k in range(1, 9):
 | 5 | `1 − 6x + 12x² − 32x³ + 16x⁴ − 32x⁵` | `1 − 6x + 18x² − 32x³ + 48x⁴ − 32x⁵ + 32x⁶` |
 | 6 | `1 − 6x + 24x² − 32x³ + 80x⁴ − 32x⁵ + 64x⁶` | `1 − 7x + 24x² − 56x³ + 80x⁴ − 112x⁵ + 64x⁶ − 64x⁷` |
 
-Each `den_k` has degree `k+1` — the order of the C-finite recurrence (see [[recurrence-discovery](pages/recurrence-discovery.md)]).
+`num_k` has degree `k` and `den_k` degree `k + 1` ([[castle-counting-formula](pages/castle-counting-formula.md)], the Proposition in the section *Signed tower count*). For `k ≤ 40` they have no common factor, so `k + 1` is the order of the shortest linear recurrence of `P(k, ·)`.[^2]
 
 ## A three-term recurrence
 
-The coupled `num`/`den` system collapses to a single second-order recurrence. Eliminating `num` (from `num_k = 2·den_{k−1} − num_{k−1}` and `den_k = den_{k−1}(1−2x) + x·num_{k−1}`) gives
+The update multiplies the vector `(num_k, den_k)` by a matrix of trace `−2x` and determinant `−1`, so by the Cayley-Hamilton theorem, for `k ≥ 1` ([[signed-tower-count](pages/signed-tower-count.md)], the section *Recurrences in L*),
 
 ```
-den_{k+1}(x) = den_{k−1}(x) − 2x·den_k(x),
+den_{k+1}(x)  =  den_{k−1}(x) − 2x·den_k(x).                                  (1)
 ```
 
-and, via `char_k(λ) = λ^{k+1} den_k(1/λ)`, the same recurrence in the characteristic polynomials:
+With `char_k(λ) = λ^{k+1} den_k(1/λ)`, the characteristic polynomial of the recurrence of `P(k, ·)`, Equation (1) becomes
 
 ```
-char_{k+1}(λ) = λ²·char_{k−1}(λ) − 2·char_k(λ),
+char_{k+1}(λ)  =  λ²·char_{k−1}(λ) − 2·char_k(λ),        char_0 = λ − 1,   char_1 = λ² − 2λ + 2.      (2)
 ```
 
-with `char_0 = λ−1`, `char_1 = λ²−2λ+2`. Verified against the catalogue:
+Checked against the catalogue:
 
 ```python
 assert all(sp.expand(den[k+1] - (den[k-1] - 2*x*den[k])) == 0 for k in range(1, 8))
 ```
 
-One recurrence generates every denominator with no `num` bookkeeping.
+## The closed form in k
 
-## Solving the recurrence: a Pell/Chebyshev closed form
-
-The recurrence `den_{k+1} = den_{k−1} − 2x·den_k` is **linear and second-order in `k`** with coefficients constant in `k` (they depend only on the variable `x`), so it can be solved in closed form. Its characteristic equation (treating `x` as a constant) is `r² + 2x·r − 1 = 0`, with roots[^new1]
+Equation (1) is a linear recurrence in `k` whose coefficients depend on `x` only. Its characteristic equation is `r² + 2x·r − 1 = 0`, with roots
 
 ```
-r_± = −x ± √(x² + 1),        r_+ · r_− = −1,    r_+ + r_− = −2x.
+r_±  =  −x ± √(x² + 1),        r_+ · r_−  =  −1,        r_+ + r_−  =  −2x,
 ```
 
-The product of roots is `−1` and the sum is `−2x`: this is the defining data of the **Pell / Chebyshev polynomial** family (the recurrence `p_{k+1} = −2x·p_k + p_{k−1}` is the Pell-polynomial recurrence in the variable `−x`). So the denominators have the explicit closed form
+so for every `k ≥ 0`
 
 ```
-den_k(x) = A(x)·r_+^k + B(x)·r_−^k,
+den_k(x)  =  A(x)·r_+^k + B(x)·r_−^k,                                         (3)
 ```
 
-with `A, B` fixed by the two seeds `den_1 = 2x² − 2x + 1` and `den_2 = −4x³ + 4x² − 3x + 1`. Verified against the computed denominators for `k = 3, …, 7` (SymPy).[^new1] The `√(x² + 1)` in the roots is why the family is a Chebyshev-type object rather than a metallic (`√(x²+4)`-type) one; the two roots are reciprocal up to sign (`r_+ = −1/r_−`).
+with `A` and `B` fixed by `den_0 = 1 − x` and `den_1 = 1 − 2x + 2x²`. Equation (1) is the recurrence of the Pell polynomials in the variable `−x`. Equation (3) agrees with the catalogue for `k ≤ 10`.[^2]
 
-**Explicit coefficient formulas.** The closed form pins down the `char_k` coefficients that the catalogue below exhibits case by case. Writing `char_k(λ) = λ^{k+1} − (k+1)λ^k + ⋯`, verified through `k = 8`:[^new1]
+**Coefficients of `char_k`.** The coefficients of `den_k` at `x`, `x²`, `x^k` and `x^{k+1}` are the coefficients of `char_k` at `λ^k`, `λ^{k−1}`, `λ` and `1`:
 
-- leading two coefficients: `1` and `−(k+1)`;
-- coefficient of `λ^{k−1}`: `2⌊(k+1)²/4⌋`;
-- coefficient of `λ`: `(−1)^k 2^k`, and constant term `(−1)^{k−1} 2^k` (the same magnitude, opposite sign).
+```
+char_k(λ)  =  λ^{k+1} − (k + 1)λ^k + 2⌊(k + 1)²/4⌋ λ^{k−1} + ⋯ + (−1)^k 2^k λ + (−1)^{k+1} 2^k.
+```
 
-The constant term `(−1)^{k−1} 2^k` and leading `−(k+1)` were already noted on [[signed-tower-count](pages/signed-tower-count.md)]; the `λ^{k−1}` coefficient `2⌊(k+1)²/4⌋` and the closed form are derived here. A uniform formula for *every* middle coefficient follows from expanding `A·r_+^k + B·r_−^k`; the corresponding uniform formula for the `k`-direction pair `A_L, B_L` is open ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]).
+The coefficients `−(k + 1)` and `(−1)^{k+1} 2^k` are proved on [[signed-tower-count](pages/signed-tower-count.md)]. For `2⌊(k + 1)²/4⌋`: the coefficient of `x` in `den_k` is `−(k + 1)`, so Equation (1) gives `e_{k+1} = e_{k−1} + 2(k + 1)` for the coefficient `e_k` of `x²` in `den_k`, and with `e_0 = 0` and `e_1 = 2` this is `e_k = 2⌊(k + 1)²/4⌋`. The coefficient `(−1)^k 2^k` of `λ` is computed: all four agree with `den_k` for `k ≤ 40`.[^2]
 
-## Denominator roots (the eigenvalues)
+## The eigenvalues
 
-The recurrence's eigenvalues are the roots of the **characteristic polynomial** `char_k(λ) = λ^{k+1} den_k(1/λ)` (the reversed denominator). SymPy factors them:
+The roots of `char_k` are the eigenvalues of the recurrence of `P(k, ·)`, and of the signed transfer matrix `M̃_k` of [[tower-parity-sectors](pages/tower-parity-sectors.md)], whose characteristic polynomial is `char_k` (computed for `k ≤ 16`). Factored over the rationals:
 
-| k | char_k(λ) (factored) |
+| k | char_k(λ) |
 |---|---|
 | 1 | `λ² − 2λ + 2` |
 | 2 | `(λ − 2)(λ² − λ + 2)` |
@@ -113,7 +111,9 @@ The recurrence's eigenvalues are the roots of the **characteristic polynomial** 
 | 5 | `λ⁶ − 6λ⁵ + 18λ⁴ − 32λ³ + 48λ² − 32λ + 32` |
 | 6 | `(λ³ − 4λ² + 4λ − 8)(λ⁴ − 3λ³ + 8λ² − 4λ + 8)` |
 
-**Structure.** For **even `k`** the polynomial factors into two factors of degrees `k/2` and `k/2 + 1` — one of them carrying the single real root that dominates the growth. For **odd `k`** it is irreducible over ℚ (SymPy-verified for odd `k ≤ 31`; proved for `k = 2^m − 1` by Eisenstein at 2, [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]), and for every odd `k ≤ 11` computed all its eigenvalues are non-real. The reason is a symmetry: the signed transfer matrix commutes with "reflect heights, flip the sign of odd heights", whose eigenspaces are the even- and odd-last-column sectors of the tower count; for odd `k` that operator squares to `−1` and the split only happens over `Q(i)`. In the variable `μ = λ/2` the factors are explicit - `H_{k/2}(μ) = Σ_i (−1)^i C(⌊(k/2+i)/2⌋, i) μ^{k/2−i}` and its Lucas companion `H_{k/2+1} + μ² H_{k/2−1}` - and `H_3 = μ³ − 2μ² + μ − 1` is the minimal polynomial of `ψ²` for `ψ` the plastic number, so `ρ_6 = 2ψ²`. See [[tower-parity-sectors](pages/tower-parity-sectors.md)]. The roots (eigenvalues), with the dominant modulus ρ_k = max|λ|:
+For even `k ≤ 40`, `char_k` has two irreducible factors, of degrees `k/2` and `k/2 + 1`; [[tower-parity-sectors](pages/tower-parity-sectors.md)] derives the factorization for every even `k`, from a symmetry of `M̃_k`, and gives the factors in closed form. For even `k ≤ 40`, `char_k` has exactly one real root, and that root has the largest modulus. For odd `k ≤ 31`, `char_k` is irreducible and has no real root; irreducibility is proved for `k = 2^m − 1` on [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)].[^2]
+
+The roots, with `ρ_k` the largest modulus:[^2]
 
 | k | eigenvalues | ρ_k ≈ |
 |---|---|---|
@@ -124,28 +124,34 @@ The recurrence's eigenvalues are the roots of the **characteristic polynomial** 
 | 5 | `2.464 ± 1.514i`, `0.480 ± 1.650i`, `0.055 ± 1.137i` | 2.892 |
 | 6 | `3.510`, `1.467 ± 2.107i`, `0.245 ± 1.490i`, `0.033 ± 1.101i` | 3.510 |
 
-`ρ_k ≤ k+1` (the unsigned count `T(k,L) = (k+1)^L` bounds the signed one), strictly for every `k` computed.
+`ρ_6 = 2ψ²`, with `ψ` the plastic number ([[signed-tower-count](pages/signed-tower-count.md)], [[plastic-number](pages/plastic-number.md)]). Every entry of `M̃_k` is `±1`, so every eigenvalue has modulus at most the largest absolute row sum: `ρ_k ≤ k + 1`, the base of the unsigned count `T(k, L) = (k + 1)^L`. For `k ≤ 40` every root of `char_k` is a pole of `P_k(x)`, so `limsup_L |P(k, L)|^{1/L} = ρ_k`.
 
-## Growth rate: ρ_k ~ k / log k
+## Growth of ρ_k
 
-The three-term recurrence has characteristic equation `r² + 2r − λ² = 0`, so `char_k(λ) = A(λ) r_+^k + B(λ) r_-^k` with `r_± = −1 ± √(1+λ²)`; `A, B` are fixed by `char_0, char_1` and satisfy `A ≈ λ`, `B ≈ −1/(4λ)` for large `λ`. The dominant eigenvalue `ρ_k` solves `char_k(ρ_k) = 0`; balancing the two terms as `k → ∞` (worked here for even `k`, where the dominant eigenvalue is real; the odd-`k` modulus has the same asymptotics) gives
+Equation (2) is a linear recurrence in `k` with characteristic equation `r² + 2r − λ² = 0`, so
 
 ```
-((ρ−1)/(ρ+1))^k ≈ 1/(4ρ²)   ⟹   ρ ≈ k/(log ρ + log 2),
+char_k(λ)  =  A(λ)·r_+(λ)^k + B(λ)·r_−(λ)^k,        r_±(λ)  =  −1 ± √(1 + λ²),
 ```
 
-i.e. **`ρ_k ~ k / log k`**. The subleading correction is `~ log log k / log k`, so `ρ_k·log k / k → 1` only slowly:
+with `A`, `B` fixed by `char_0` and `char_1`. A root of `char_k` therefore satisfies the exact equation `(r_−/r_+)^k = −A/B`, which the computed `ρ_k` satisfy. For large real `λ`, `A ≈ λ`, `B ≈ −1/(4λ)` and `r_−/r_+ ≈ −(λ + 1)/(λ − 1)`, so for even `k` the real root satisfies approximately
+
+```
+( (ρ + 1)/(ρ − 1) )^k  ≈  4ρ²,        that is,        ρ · log(2ρ)  ≈  k,
+```
+
+which gives the estimate `ρ_k ~ k/log k`. The approximate equation gives `25.46` at `k = 100`, against `ρ_100 = 25.64`. By the estimate, the ratio `ρ_k · log k / k` is about `log k / log(2ρ_k)`, which is still `1.17` at `k = 100`:[^2]
 
 | k | 1 | 2 | 4 | 8 | 10 | 20 | 50 | 100 |
 |---|---|---|---|---|---|---|---|---|
 | ρ_k | 1.414 | 2.000 | 2.796 | 4.174 | 4.804 | 7.661 | 14.98 | 25.64 |
 | ρ_k·log k / k | 0 | 0.693 | 0.969 | 1.085 | 1.106 | 1.147 | 1.172 | 1.181 |
 
-(The balance equation reproduces these `ρ_k` for `k ≤ 100`.) So the signed count's growth rate is `ρ_k ~ k/log k` — a factor `~log k` below the unsigned base `k+1` — and `|P(k,L)|` grows like `ρ_k^L` in `L`.
+For odd `k` the roots of largest modulus are a complex pair, of modulus slightly less than at the neighboring even `k`: `ρ_99 = 24.45` and `ρ_101 = 24.85`, against `ρ_100 = 25.64`.
 
-## The C-finite recurrences
+## The linear recurrences
 
-Writing `den_k = 1 + d_1 x + ⋯ + d_{k+1} x^{k+1}` gives the recurrence `P(k,L) = −d_1 P(k,L−1) − ⋯ − d_{k+1} P(k,L−k−1)`:
+Writing `den_k = 1 + d_1 x + ⋯ + d_{k+1} x^{k+1}` gives the recurrence `P(k, L) = −d_1 P(k, L−1) − ⋯ − d_{k+1} P(k, L−k−1)` for `L ≥ k + 1`:
 
 ```
 P(1,L) = 2·P(1,L−1) − 2·P(1,L−2)
@@ -155,11 +161,11 @@ P(4,L) = 5·P(4,L−1) − 12·P(4,L−2) + 20·P(4,L−3) − 16·P(4,L−4) + 
 P(5,L) = 6·P(5,L−1) − 18·P(5,L−2) + 32·P(5,L−3) − 48·P(5,L−4) + 32·P(5,L−5) − 32·P(5,L−6)
 ```
 
-The first coefficient is `k+1` (the sum of the eigenvalues), and the last is `(−1)^k 2^k`, minus the constant term `(−1)^{k−1} 2^k` of `char_k`; the eigenvalues multiply to `2^k`. These are the two invariants recorded on [[signed-tower-count](pages/signed-tower-count.md)].[^2]
+The first coefficient is `k + 1`, the sum of the eigenvalues, and the last is `(−1)^k 2^k`, the negative of the constant term of `char_k`; the eigenvalues multiply to `2^k`.[^3]
 
 ## Verification: the series equals P(k,L)
 
-SymPy confirms each `num_k/den_k` expands to the actual tower count, computed independently by the column-height dynamic program (DP):
+The coefficients of `num_k/den_k` agree with `P(k, L)` computed by the column-height dynamic program, which does not use the update:
 
 ```python
 def P_table(K, Lmax):                      # exact integers, column-height DP
@@ -178,33 +184,34 @@ P = P_table(8, 24)
 for k in [0, 1, 2, 3, 4, 5, 8]:
     ser = sp.series(num[k]/den[k], x, 0, 21).removeO()
     assert all(sp.nsimplify(ser.coeff(x, L)) == P[k][L] for L in range(21))
-    print(f"k={k}: num_k/den_k == P(k,L) for L=0..20  ✓")
+    print(f"k={k}: num_k/den_k == P(k,L) for L=0..20")
 ```
 
-This also checks `k = 8`, beyond the table.
+The check includes `k = 8`, beyond the catalogue.
 
 ## Appearances in Sources
 
-- [[project-euler-502-solution](pages/project-euler-502-solution.md)] — the rational-function path and the `num_k`/`den_k` recurrence.
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — the `P(k,·)` C-finite family and its characteristic polynomials.
+- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the update of `num_k` and `den_k`, written for `F_k(x)`, in the rational-function path.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the characteristic polynomials `char_1` to `char_5` and their leading and constant coefficients.
 
 ## Related Concepts
 
-- [[signed-tower-count](pages/signed-tower-count.md)] — the characteristic polynomials and their coefficient invariants.
-- [[recurrence-discovery](pages/recurrence-discovery.md)] — the orders (k+1 in L, 2L−2 in k) these recurrences realize.
-- [[closed-form-hunting](pages/closed-form-hunting.md)] — the k-direction closed forms the eigenvalues would have to reproduce.
-- [[castle-counting-formula](pages/castle-counting-formula.md)] / [[castle-count-algorithms](pages/castle-count-algorithms.md)] — where `num_k/den_k` is evaluated at scale.
-- [[generating-functions](pages/generating-functions.md)] — the ordinary-GF toolkit behind a linear recurrence ⇒ rational GF.
-- [[mod-p-observatory](pages/mod-p-observatory.md)] — these `char_k` polynomials reduced mod p, whose root orders set the periods.
-- [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] - a structural derivation of `char_{k+1} = λ²char_{k−1} − 2char_k`: the signed transfer matrix is the KMS matrix `K(i)`, whose inverse `(E_∂ − i·A_path)/2` is tridiagonal with zero interior diagonal, so `char_k = ½ det(λE_∂ − 2I − iλ·A_path)` is a continuant.
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the symmetry behind the even-`k` factorization, the closed-form factors `H_d`, `V_d`, and the plastic-number eigenvalue `ρ_6 = 2ψ²` ([[plastic-number](pages/plastic-number.md)]).
-- [[new-sequence-fw3](pages/new-sequence-fw3.md)] — `Σ_w F(w,3) x^w = ½(1/(1−3x) − 1/(1−2x) − F_2(x) + F_1(x))` exactly (verified to `w = 13`); the gallery's `F_1, F_2` are its signed components.
-- [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] — uses the `ρ_k ~ k / log k` asymptotic derived here.
-- [[symbolic-method](pages/symbolic-method.md)] — the `num_k/den_k` rational `P_k` catalogued here is the symbolic-method SEQ construction applied to the castle grammar.
+- [[castle-counting-formula](pages/castle-counting-formula.md)] - the derivation of `P_k(x)` from the tower grammar and the degrees of `num_k` and `den_k`.
+- [[signed-tower-count](pages/signed-tower-count.md)] - the values of `P(k, L)`, the proofs of the coefficients of `char_k`, and the case `k = 1`.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization of `char_k` for even `k` by the parity of the last column, its closed-form factors `H_d` and `V_d`, and `ρ_6 = 2ψ²`.
+- [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] - a second derivation of Equation (2): the signed transfer matrix is diagonally similar to the Kac-Murdock-Szegő matrix `K(i)`, whose inverse is tridiagonal, so `char_k` is a continuant.
+- [[recurrence-discovery](pages/recurrence-discovery.md)] - the orders of the recurrences of `P` found by Berlekamp-Massey: `k + 1` in `L`, and `2L − 2` in `k` for `4 ≤ L ≤ 12`.
+- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the recurrences of `P(·, L)` in `k`, whose eigenvalues are `±1`.
+- [[closed-form-hunting](pages/closed-form-hunting.md)] - the closed forms of `P(k, 2)` and `P(k, 3)` in `k`.
+- [[castle-count-algorithms](pages/castle-count-algorithms.md)] - the extraction of `P(h−1, w)` from `num_{h−1}/den_{h−1}` at the Project Euler targets.
+- [[generating-functions](pages/generating-functions.md)] - rational generating functions and the linear recurrences of their coefficients.
+- [[symbolic-method](pages/symbolic-method.md)] - the dictionary from combinatorial specifications to generating functions, which turns the tower grammar into the equation for `P_k(x)`.
+- [[mod-p-observatory](pages/mod-p-observatory.md)] - the polynomials `char_k` reduced modulo `p`, whose roots set the periods of `P(k, ·) mod p`.
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `Σ_w A^e(w, 3) x^w = ½(1/(1 − 3x) − 1/(1 − 2x) − P_2(x) + P_1(x))`, from `num_1/den_1` and `num_2/den_2`.
+- [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - the estimate `ρ_k ~ k/log k`.
 
 ## Footnotes
 
-[^1]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The rational-function path (h ≤ 15000)" L124-138 — "F_k(x) = ∑_L P(k, L) x^L ... F_0(x) = 1/(1 - x) ... num_k(x) = 2·den_{k-1}(x) - num_{k-1}(x); den_k(x) = den_{k-1}(x)·(1 - 2x) + num_{k-1}(x)·x; F_k(x) = num_k(x)/den_k(x)."
-[^2]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L31-37 — "The general P(k,·) family is C-finite of order k+1: P(1): x^2 - 2x + 2 ... P(5): x^6 - 6x^5 + 18x^4 - 32x^3 + 48x^2 - 32x + 32 (constant term = (-1)^{k-1} 2^k; leading coeff -(k+1))."
-
-[^new1]: Verified by execution (SymPy, 2026-09-18) from the exact `p_signed(k, L)` DP. The `k`-recurrence `den_{k+1} = den_{k−1} − 2x·den_k` has characteristic equation `r² + 2x·r − 1 = 0`, roots `r_± = −x ± √(x²+1)` with `r_+ r_− = −1`, `r_+ + r_− = −2x` (Pell-polynomial data in `−x`). The closed form `den_k = A(x)·r_+^k + B(x)·r_−^k`, with `A, B` solved from `den_1 = 2x² − 2x + 1` and `den_2 = −4x³ + 4x² − 3x + 1`, matches the recurrence-recovered denominators for `k = 3, 4, 5, 6, 7` (`simplify(closed − computed) = 0`). Char-poly coefficient table for `k = 1..8`: leading `1`, next `−(k+1)`; coefficient of `λ^{k−1}` equals `2⌊(k+1)²/4⌋` (values `2, 4, 8, 12, 18, 24, 32, 40` = `2·1, 2·2, 2·4, 2·6, 2·9, 2·12, 2·16, 2·20`); coefficient of `λ` is `(−1)^k 2^k` and constant term `(−1)^{k−1} 2^k`.
+[^1]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The rational-function path (h ≤ 15000)" L124-138 - "F_k(x) = ∑_L P(k, L) x^L ... F_0(x) = 1/(1 - x) ... num_k(x) = 2·den_{k-1}(x) - num_{k-1}(x); den_k(x) = den_{k-1}(x)·(1 - 2x) + num_{k-1}(x)·x; F_k(x) = num_k(x)/den_k(x)."
+[^2]: Verified by execution (Python 3.11 with SymPy, NumPy and mpmath, 2026-10-16): the catalogue for `k ≤ 6`; `gcd(num_k, den_k) = 1` for `k ≤ 40` ([[castle-counting-formula](pages/castle-counting-formula.md)]); Equation (3) against `den_k` for `k ≤ 10`; the four coefficients of `char_k` for `k ≤ 40`; `char(M̃_k) = char_k` for `k ≤ 16`; two irreducible factors for even `k ≤ 40`, one real root for even `k ≤ 40`, irreducible with no real root for odd `k ≤ 31`; the root of largest modulus real and in the even-last-column sector for even `k ≤ 40` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]); the eigenvalue table; `ρ_k` from the eigenvalues of `M̃_k` for the listed `k` and for `k = 9, 11, 49, 51, 99, 101`; the exact equation at `k = 8, 20, 100`; the approximate equation at the even `k` of the table; the series of `Σ_w A^e(w, 3) x^w` against enumeration for `w ≤ 10`.
+[^3]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L31-37 - "The general P(k,·) family is C-finite of order k+1: P(1): x^2 - 2x + 2 ... P(5): x^6 - 6x^5 + 18x^4 - 32x^3 + 48x^2 - 32x + 32 (constant term = (-1)^{k-1} 2^k; leading coeff -(k+1))."
