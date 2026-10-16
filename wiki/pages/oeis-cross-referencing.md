@@ -1,50 +1,48 @@
 ---
 title: OEIS cross-referencing (interlinking method)
 category: Concepts
-summary: The discipline of matching castle counts to existing OEIS A-numbers (interlinking) and identifying unmatched counts (generation) — verify against OEIS data with offsets; drafts require human authorship.
+summary: The wiki's method for relating castle counts to the OEIS. A count that reproduces an existing entry at a stated offset is an interlink (a new reading of a known sequence); a count with no match in a dated search is recorded as such on castle-sequence-catalogue. Matches are checked against the entry's data with its offset, and agreement on a short prefix is not a match.
 tags: [concept, oeis, method, cross-reference, research-workflow]
 sources: [oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Online Encyclopedia of Integer Sequences (OEIS) cross-referencing (interlinking method)
 
 ## Description
 
-**OEIS cross-referencing** is a research method of this wiki: take a combinatorial object (here the [[castle-polyomino](pages/castle-polyomino.md)]), compute its counting sequences, and connect them to the On-Line Encyclopedia of Integer Sequences. Two complementary actions:
+The wiki relates the counting sequences of castles ([[castle-polyomino](pages/castle-polyomino.md)]) to the On-Line Encyclopedia of Integer Sequences, the OEIS, in two ways:
 
-- **Interlinking** — find an existing A-number whose terms a castle count reproduces, and record the castle as a new interpretation of that sequence (a cross-reference comment/formula).
-- **Generation** — identify a castle count with *no* OEIS match; that is a candidate new sequence to mint.
+- **Interlinking.** A castle count that reproduces the data of an existing entry, at a stated offset, gives that sequence a castle reading. For example, the castles of width `w` and height 2 with an even number of blocks number `A038505(w+1)` ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]).
+- **Recording a non-match.** A castle count whose terms match no entry in a search is recorded with the search date, so the search can be repeated.
 
-The [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] work is a full pass of both.
+[[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the result for every castle sequence on the wiki, and [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] is the first pass of both.
 
-## Discipline
+## Checks
 
-A few rules hold throughout:[^1]
+The mining pass states two checks, and the catalogue applies them to every row.[^1]
 
-- **Verify against the actual OEIS data, with offsets**, not just the first few terms. Example: `P(1,L)` agrees with `A009545 = Im((1+i)^n)` only after a shift and halving, `P(1,L) = A009545(L+3)/2`; the exact match is `A146559(L+1) = Re((1+i)^{L+1})` (see [[signed-tower-count](pages/signed-tower-count.md)]).
-- **Reject short-term false positives** — coincidental agreement on a handful of terms (e.g. sqrt-5 difference sequences, decimal-expansion hits on short block distributions) is discarded unless there is a structural reason.
-- **Prefer isolated entries** — a cross-reference is highest-value on a sparse, under-connected sequence (like the "sum of every 4th binomial" entries A038503/A038505) and marginal on a dense one (like A001523, already richly commented).
+- **The offset.** A match is checked against the entry's data and offset, not against a few leading terms. The signed tower count `P(1, L)` agrees with `A009545`, the imaginary parts of `(1+i)^n`, only after a shift and a factor 2, `P(1, L) = A009545(L+3)/2`; the entry it equals is `A146559`, the real parts, with `P(1, L) = A146559(L+1)` ([[signed-tower-count](pages/signed-tower-count.md)]).
+- **Short prefixes.** Agreement on a few terms with no combinatorial reason is not a match. The mining pass discarded two "sqrt(5) difference" sequences and some hits of short block-count distributions. A search on the first terms of the anchored 1-smooth castles of height 4 returns `A378383`, which agrees through width 10 and differs at width 11, 5206 against 5205 ([[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]).[^2]
 
-## Submission is a human act
-
-OEIS requires **human authorship** — a tool may run the verification scripts, check offsets, and format data, but may **not** author the prose, and every added comment/formula line must be signed by a human. New contributors are throttled to a few open drafts, so submissions lead with the highest-value, lowest-risk interlinks.[^2] Accordingly, this wiki records the *verified findings and identities*; the submission-ready draft text is kept as drafts in `raw/oeis-pe502/` (and `raw/oeis-pe502/xrefs/`), to be reworded and signed by a person before submission — the wiki does not present draft prose as final.
+The OEIS accepts comments and formulas only from human authors, so the wiki records the verified identities and offsets, and the texts written for OEIS entries are not on wiki pages.[^3]
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] — applies this method across the castle veins; states the offset-verification discipline and the interlinking-vs-generation split.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the first mining pass: the offset check, the discarded false positives, and the rule that a tool may verify but not author OEIS text.
 
 ## Related Concepts
 
-- [[castle-by-area](pages/castle-by-area.md)], [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)], [[narayana-numbers](pages/narayana-numbers.md)] — sequence families reached by this method.
-- [[signed-tower-count](pages/signed-tower-count.md)] — `P(1,L) = A146559(L+1)`, the offset example above.
-- [[oeis-index](pages/oeis-index.md)] — the wiki's script-generated OEIS directory: every A-number cited across the wiki, grouped by role (castle interpretation, metallic ladder, plastic, supporting), with the citing pages and mention counts.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] — the hand-curated catalogue: every castle-counting sequence with its novelty status (known / interlink / novel-candidate / unchecked) and the submission priority list.
-- [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the seminar version of this method: one sequence end to end, a trap, and a non-match.
-
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - every castle sequence with its OEIS status (known, interlink, novel-candidate, unchecked), dated searches and offsets.
+- [[oeis-index](pages/oeis-index.md)] - the generated directory of every A-number cited on the wiki, with the citing pages.
+- [[signed-tower-count](pages/signed-tower-count.md)] - `P(1, L) = A146559(L+1)` and `P(1, L) = A009545(L+3)/2`, the offset example.
+- [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] - the castle reading of `A038505` and `A038503` on the OEIS.
+- [[castle-by-area](pages/castle-by-area.md)], [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)], [[narayana-numbers](pages/narayana-numbers.md)] - families of castle counts matched to OEIS entries.
+- [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - a seminar that takes one sequence through the method.
 
 ## Footnotes
 
-[^1]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Method notes (interlinking discipline)" L175-186 — "checked against the actual OEIS data with offsets, not just the first few terms ... false positives ... were rejected ... The single highest-value new-interpretation targets are A038505 and A038503."
-[^2]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `SUBMISSION-NOTES.md` §"Mechanical vs human" L36-41, `crosslink-avenues.md` §"Suggested submission order" L120-124 — "A tool may ... NOT author the prose. Only a human may ... sign it, and submit. OEIS forbids AI-authored text" and "New contributors are throttled to a few open drafts, so lead with tier 1."
+[^1]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Method notes (interlinking discipline)" L177-179 - "Every accepted match above was checked against the actual OEIS data with offsets, not just the first few terms. The plan's own \"A009545\" was caught this way (real vs imaginary)."
+[^2]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Method notes (interlinking discipline)" L180-182 - "The false positives seen during search (... \"sqrt(5) difference sequences\"; decimal-expansion/Collatz hits on short block distributions) were rejected — no reason behind them."; the `A378383` comparison by transfer matrix against https://oeis.org/A378383 (read 2026-10-16).
+[^3]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `SUBMISSION-NOTES.md` §"4. Mechanical vs human (division of labor)" L43-45 - "A tool may: run the verification scripts, check offsets against the live entries, format data. It may NOT author the prose. Only a human may: rewrite the draft prose in their own words, sign it, and submit."
