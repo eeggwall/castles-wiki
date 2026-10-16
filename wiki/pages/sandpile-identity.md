@@ -1,51 +1,51 @@
 ---
 title: The sandpile identity of a castle - the pile that acts like zero, in the sink and tide models
 category: Concepts
-summary: Every castle's sandpile group has an identity element, the one recurrent pile that changes nothing when added to another and then stabilized, and each of the two models of sandpile-group has its own. It is found by the same two-line recipe in both, stab(2m − stab(2m)) with m the fullest stable pile, and on a tree castle it is simply the fullest stable pile. Drawn for the golden path, the silver rectangle, the 10-cell isospectral pair and a 6×6 square in both models. In the sink model (one sink cell, bottom-left) the identity is irregular and depends on where the sink is: (2,2,2) and (3,3) have the same graph but different identities. In the tide model (the whole bottom row as the sink) it is regular: every rectangle at least 2 wide has 1 grain on each top cell and 2 everywhere below (checked to 12×12), and it depends only on the castle's runs of raised columns. One grain dropped on the apex of the 10-cell pair's identity sets off 57 topplings in one castle and 1 in the other in the sink model, and 1 in both under the tide. Each model has an avalanche profile, the topplings caused by one grain on each cell starting from the identity. The sink profile, taken over every sink cell, depends only on the castle's graph and separates all 105 adjacency- and all 17 Laplacian-cospectral groups to 16 cells, with no two castles that colour refinement proves non-isomorphic sharing a profile up to 13 cells. The tide profile depends only on the castle's runs and is far from complete: (2,3) and (2,2,2) already share it, and the 1,056 castles with 12 cells have only 209 tide profiles. Cospectral groups are no test for it, since every one contains skylines of different widths.
+summary: The identity element of a castle's sandpile group, in the sink model (one sink cell, here the bottom-left cell) and the tide model (the whole bottom row as the sink) of sandpile-group, computed by Rossin's recipe stab(2m − stab(2m)) with m the fullest stable pile; on a tree castle it is the fullest stable pile itself. In the sink model the identity depends on the sink cell (on the rectangle (2, 2, 2), sink at a corner or in the middle of the bottom row gives different identities). In the tide model every rectangle at least 2 wide has identity 1 on each top-row cell and 2 below (computed for 2 ≤ w, h ≤ 12), and the identity depends only on the castle's runs of raised columns. The sink avalanche profile, the topplings caused by one grain on each cell from the identity over every choice of sink cell, separates all 105 adjacency- and 17 Laplacian-cospectral groups to 16 cells, and up to 13 cells two castles share it exactly when their graphs are isomorphic. The tide avalanche profile depends only on the runs; the 1,056 castles with 12 cells have 209 tide profiles.
 tags: [concept, castle, sandpile, identity-element, recurrent-configuration, avalanche, isospectral, laplacian, tree-castle, sink-model, tide-model, census, verification, pedagogy]
 sources: [project-euler-502-castle-factoring, rossin-2000-group-of-a-sandpile, dhar-ruelle-sen-verma-1995-algebraic-aspects]
 created: 2026-09-26
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # The sandpile identity of a castle - the pile that acts like zero, in the sink and tide models
 
 ## What the identity is
 
-In the sandpile game of [[sandpile-group](pages/sandpile-group.md)], the recurrent piles form a group: add two piles cell by cell, then let the sand topple. The **identity** is the recurrent pile `e` with a special property: add it to any recurrent pile, stabilize, and you get that same pile back. It is also where the [[sandcastle-clock](pages/sandcastle-clock.md)] starts ticking.
+The recurrent configurations of the sandpile on a castle form a group under "add cell by cell, then stabilize" ([[sandpile-group](pages/sandpile-group.md)]). Its **identity** is the recurrent configuration `e` such that adding `e` to any recurrent configuration and stabilizing returns that configuration. The [[sandcastle-clock](pages/sandcastle-clock.md)] starts at it.
 
-The identity is not the empty pile. The empty pile is not recurrent (it never comes back once sand has been added), so it is not in the group. The identity is a specific, usually nonzero, arrangement of grains.
+The identity is not the empty configuration: no addition of sand followed by stabilization returns to the empty configuration, so it is not recurrent.
 
-**How to find it.** Let `m` be the **fullest stable pile**, every cell one grain short of toppling. Then
+**Computing it.** Let `m` be the **fullest stable configuration**, with every cell one grain short of toppling. Rossin writes `δ` for `m`, `ū = δ − u`, and gives the identity as `δ ⊕ (δ ⊕ δ)‾`, which is[^1]
 
 ```
 e  =  stab( 2m − stab(2m) )
 ```
 
-Double the fullest pile, let it topple, subtract the result from `2m`, and let that topple too.[^1] The recipe is the same in both models; only the sink changes. For a **tree castle** there is nothing to compute in either model: its group is trivial, so its only recurrent pile, the fullest stable one, is the identity. The vertical golden path `(4)` has identity `1, 1, 0` from the bottom up in both models.
+The recipe is the same in both models; only the sink changes. A **tree castle**, a castle with no `2 × 2` block of cells, has a trivial group in both models ([[sandpile-group](pages/sandpile-group.md)], the Proposition in Part 3), so its only recurrent configuration, the fullest stable one, is the identity. The column `(4)` has identity `1, 1, 0` from the bottom up in both models.
 
 ## The two models
 
-[[sandpile-group](pages/sandpile-group.md)] defines both, and this page treats each in turn:
+[[sandpile-group](pages/sandpile-group.md)] defines both:
 
-- the **sink model**: one sink cell, the bottom-left cell, as on the other sandpile pages;
-- the **tide model**: the whole bottom row is the sink, so the ground absorbs sand all along the castle's base.
+- the **sink model**: one sink cell, here the bottom-left cell;
+- the **tide model**: the whole bottom row is the sink.
 
-In the drawings below the top row is printed first, `~` marks sink cells, and `.` is empty sky.[^2]
+In the drawings the top row is printed first, `~` marks sink cells, and `.` is empty space.[^2]
 
 | castle | sink model (bottom-left sink) | tide model (whole bottom row) |
 |---|---|---|
-| golden path `(4)` (vertical) | `0 / 1 / 1 / ~` | `0 / 1 / 1 / ~` |
-| silver rectangle `(2, 2, 2)` | `101 / ~21` | `111 / ~~~` |
-| `(3, 3)` (same graph as `(2, 2, 2)`) | `11 / 20 / ~1` | `11 / 22 / ~~` |
+| column `(4)`, golden by spectrum (castle-graph spectral radius `φ`) | `0 / 1 / 1 / ~` | `0 / 1 / 1 / ~` |
+| rectangle `(2, 2, 2)`, silver by spectrum (spectral radius `1 + √2`) | `101 / ~21` | `111 / ~~~` |
+| `(3, 3)`, the same graph as `(2, 2, 2)` | `11 / 20 / ~1` | `11 / 22 / ~~` |
 | 10-cell pair, A = `(1,1,1,2,3,2)` | `....0. / ...130 / ~11221` | `....0. / ...111 / ~~~~~~` |
 | 10-cell pair, B = `(1,1,2,2,3,1)` | `....0. / ..121. / ~12120` | `....0. / ..111. / ~~~~~~` |
 
 ## The identity in the sink model
 
-**The identity is irregular and depends on the sink.** `(2, 2, 2)` and `(3, 3)` are the same graph (a `3 × 2` grid, lying down or standing up) with the same group `K_sink = Z/15`. Their identities differ only because the bottom-left cell sits in a different place in the grid. On a `6 × 6` square the sink-model identity is an irregular mix of 0s to 3s. (The fractal identities drawn by Dhar, Ruelle, Sen and Verma live on the open-boundary grid, which for a castle is the dual, one site per `2 × 2` block; they are not the cell-level identities on this page.)[^7]
+**The identity depends on the sink cell.** On `(2, 2, 2)` with the sink at the bottom-left corner the identity is `101 / ~21`; with the sink at the middle of the bottom row it is `121 / 0~0`. The group is `Z/15` in both cases, since the sandpile group does not depend on the sink.[^2] `(3, 3)` is `(2, 2, 2)` turned on its side, which maps the bottom-left corner of one onto the bottom-left corner of the other, and its identity `11 / 20 / ~1` is the transposed drawing of `101 / ~21`.
 
-The `6 × 6` sink-model identity:
+On a `6 × 6` square the sink-model identity takes the values 0 to 3 without a visible pattern:
 
 ```
 021220
@@ -56,11 +56,13 @@ The `6 × 6` sink-model identity:
 ~22110
 ```
 
-**One grain on the apex.** Start at the identity and drop one grain on the apex (the top cell of the leftmost tallest column). For the 10-cell isospectral pair of [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], the grain sets off **57 topplings** in `A` and **1** in `B`. The two castles have the same eigenvalues and the same sink group `Z/15`, but different apex avalanches. On the silver castle `(3, 2, 1, 2, 2, 1, 2, 3)` of [[sandcastle-seminar](pages/sandcastle-seminar.md)] the apex grain causes 1 toppling: the apex topples once and no other cell does.[^2]
+Dhar, Ruelle, Sen and Verma draw fractal identity configurations on `L × L` grids with open boundaries on all four sides.[^3] For a castle that grid is the dual one, with one site per `2 × 2` block: the sink block matrix of the `(L + 1) × (L + 1)` castle is the Laplacian of the open-boundary `L × L` grid ([[sandpile-group](pages/sandpile-group.md)]). Their pictures therefore show configurations on the blocks, not the cell-level identities of this page.
+
+**One grain on the apex.** Start at the identity and drop one grain on the apex, the top cell of the leftmost tallest column. On the 10-cell adjacency-cospectral pair of [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] the grain causes **57 topplings** in `A` and **1** in `B`. The two castles have the same adjacency spectrum and the same sink group `Z/15`. On the castle `(3, 2, 1, 2, 2, 1, 2, 3)` of [[sandcastle-seminar](pages/sandcastle-seminar.md)] the apex grain causes 1 toppling: the apex topples once and no other cell does.[^2]
 
 ## The identity in the tide model
 
-**The identity is regular.** Every rectangle at least 2 wide has identity **1 on each top-row cell and 2 on every cell below it**, checked for every rectangle from `2 × 2` to `12 × 12`.[^3] The `6 × 6` square:
+**Rectangles.** Every rectangle at least 2 wide has tide identity **1 on each top-row cell and 2 on every cell below it, above the ground**, computed for every rectangle from `2 × 2` to `12 × 12`.[^4] The `6 × 6` square:
 
 ```
 111111
@@ -71,54 +73,44 @@ The `6 × 6` sink-model identity:
 ~~~~~~
 ```
 
-A single column `(h)` is a tree under the tide as well, so its identity is the fullest stable pile, `1, …, 1, 0` from the bottom up.
+A single column `(h)` is a tree in the tide model as well, so its identity is the fullest stable configuration, `1, …, 1, 0` from the bottom up.
 
-**The identity is a property of the shape.** The ground is a canonical sink, so there is no arbitrary choice of cell. The tide also splits a castle into its **runs of raised columns**, the maximal runs of adjacent columns of height at least 2 ([[sandpile-group](pages/sandpile-group.md)], Part 3). Runs never exchange sand, so the tide identity is the identity of each run, side by side, and castles with the same runs have the same tide identity whatever lies between them.
+**The identity depends only on the runs.** The sink is the whole bottom row, so no cell has to be chosen. The **runs of raised columns** are the maximal runs of adjacent columns of height at least 2 ([[sandpile-group](pages/sandpile-group.md)], Part 3). Two cells in different runs are never neighbors, so no grain passes between runs, and the tide identity is the identity of each run, side by side. Castles with the same runs have the same tide identity on them, wherever the runs stand along the bottom row.
 
-**One grain on the apex.** Under the tide the apex grain causes **1 toppling** in both castles of the 10-cell pair, and 1 on the silver castle: in each the apex topples once and no other cell does. The 57-against-1 contrast is a sink-model effect.[^2]
+**One grain on the apex.** In the tide model the apex grain causes **1 toppling** in both castles of the 10-cell pair, and 1 on `(3, 2, 1, 2, 2, 1, 2, 3)`: in each, the apex topples once and no other cell does.[^2]
 
 ## Avalanche profiles
 
-A single sink cell or a single drop cell makes a measurement depend on that choice. A choice-free invariant uses **every** choice the model allows. Each model has an **avalanche profile**, the number of topplings caused by one grain on each cell, starting from the identity:
+A measurement made with one sink cell or one drop cell depends on that choice. Each model has an **avalanche profile** that makes every choice the model allows: the number of topplings caused by one grain on each cell, starting from the identity.
 
-- the **sink avalanche profile** takes every sink cell and every drop cell, starting from each sink cell's identity. It depends only on the castle's graph;
-- the **tide avalanche profile** takes every drop cell above the ground, starting from the tide identity, as a sorted list. It depends only on the castle's runs, so it is a property of the shape, not the graph.
+- The **sink avalanche profile** is the sorted list of these counts over every sink cell `d` and every drop cell `v ≠ d`, starting from the identity for `d`. It depends only on the castle's graph.
+- The **tide avalanche profile** is the sorted list over every cell above the bottom row, starting from the tide identity. It depends only on the castle's runs.
 
-### The sink profile against the cospectral castles
+### The sink profile on the cospectral castles
 
-Tested on every cospectral group of [[isospectral-castles](pages/isospectral-castles.md)] to 16 cells, alongside the sandpile group and clock spectrum from [[sandpile-census](pages/sandpile-census.md)] and [[sandcastle-clock](pages/sandcastle-clock.md)] and the identity's grain totals over every sink cell:[^4]
+On every cospectral group of [[isospectral-castles](pages/isospectral-castles.md)] to 16 cells, with every skyline of every graph in the group, a group counts as separated by an invariant when two castles in it get different values:[^5]
 
-| sink-model invariant (graph invariants) | adjacency-cospectral groups separated (of 105) | Laplacian-cospectral groups separated (of 17) |
+| sink-model invariant (each depends only on the graph) | adjacency-cospectral groups separated (of 105) | Laplacian-cospectral groups separated (of 17) |
 |---|---|---|
 | sink group | 0 | 0 |
-| clock spectrum | 62 | 5 |
-| identity grain totals, every sink cell | 54 | 5 |
+| sink clock spectrum ([[sandcastle-clock](pages/sandcastle-clock.md)]) | 62 | 5 |
+| total grains of the identity, for every sink cell | 54 | 5 |
 | **sink avalanche profile** | **105 (all)** | **17 (all)** |
 
-The sink avalanche profile separates **every** cospectral group to 16 cells, including the 11-cell Laplacian pair of trees, which the local return probabilities of the fractional walk (`0 < α ≤ 1`) also separate ([[levy-flights](pages/levy-flights.md)]). There the sink group is trivial and the identity is just the fullest stable pile, yet the avalanches still differ. Going further, up to 13 cells no two castles that colour refinement proves non-isomorphic share a sink avalanche profile.[^5] At these sizes no counterexample to the completeness of the sink avalanche profile appears; the spectrum and the sink group are not complete.
+The sink avalanche profile separates every cospectral group to 16 cells, including the 11-cell pair of Laplacian-cospectral trees `(1,1,1,2,1,1,2,1,1)` and `(1,1,3,1,1,1,2,1)`. Both are trees, so their sink groups are trivial and their identities are their fullest stable configurations, and the avalanches still differ.
 
-### The tide profile: what it confuses
+**Up to 13 cells the sink profile determines the graph.** For castles with at most 13 cells, two castles have the same sink avalanche profile exactly when their castle graphs are isomorphic: the 1,056 castles with 12 cells have 321 graphs and 321 profiles, and the 2,080 with 13 cells have 625 graphs and 625 profiles.[^6] The adjacency and Laplacian spectra and the sink group do not determine the graph at these sizes.
 
-Cospectral separation is the test for graph invariants, and every sink-model invariant above is one. Tide invariants are not: they see the skyline, not just the graph. Every one of the 105 adjacency and 17 Laplacian cospectral groups contains skylines of different widths across its graph classes, so any tide count, which counts the cells above the ground, "separates" all of them for a trivial reason.[^4] The question for tide invariants is which castles they confuse.
+### The tide profile
 
-**The tide profile is far from complete.** For a shape invariant the completeness question is about runs, and the tide profile does not determine which runs a castle has. `(2, 3)` and `(2, 2, 2)`, one run each with three raised cells, already share the tide profile `0, 1, 1`. The 1,056 castles with 12 cells have only 209 distinct tide profiles, and the 2,080 with 13 cells have 336.[^6] The sink profile, over every sink cell, had no collision at all up to 13 cells.
+Cospectral groups are not a test for tide invariants. Every one of the 105 adjacency and 17 Laplacian cospectral groups contains castles of different widths across its graphs, so any tide count over the cells above the bottom row differs within it.[^5] What matters for a tide invariant is which castles it fails to tell apart.
 
-## What this settles and what it opens
-
-**Settled.**
-- The identity is `stab(2m − stab(2m))` in both models, and on a tree castle it is the fullest stable pile in both.
-- Sink model: the identity is irregular and depends on the sink cell. The sink avalanche profile separates every cospectral group to 16 cells, and no counterexample to its completeness appears up to 13 cells. It separates the cospectral groups that the clock spectrum leaves together.
-- Tide model: the identity is regular, every rectangle at least 2 wide has 1 on its top row and 2 below (checked to `12 × 12`), and it depends only on the castle's runs of raised columns. Cospectral separation is not a test for tide invariants (every cospectral group mixes widths); the tide profile is far from complete on runs.
-
-**Open.**
-- Sink model: is the sink avalanche profile a complete invariant of castle graphs, or do two non-isomorphic castles share one at some larger size?
-- Tide model: prove the rectangle pattern for all rectangles, and describe the tide identity of a general run beyond rectangles.
-- Tide model: which finer tide invariant is complete on runs? The sorted profile throws away where each toppling count occurs; keeping positions within each run is one candidate.
+The tide avalanche profile depends only on the runs, and it does not determine them. `(2, 3)` and `(2, 2, 2)`, one run each with three raised cells, have the same tide profile `0, 1, 1`. The 1,056 castles with 12 cells have 209 distinct tide profiles, and the 2,080 with 13 cells have 336.[^7]
 
 ## Snippet
 
 ```python
-def sand_board(c, sinks):                  # cells that hold sand, their non-sink neighbours, full degrees
+def sand_board(c, sinks):                  # cells that hold sand, their non-sink neighbors, full degrees
     cells = [(i, j) for i, h in enumerate(c) for j in range(h)]
     S = set(cells)
     def nbs(v):
@@ -197,28 +189,27 @@ True
 
 ## Related Concepts
 
-- [[sandpile-group](pages/sandpile-group.md)] - the game, the two models, and the runs of raised columns under the tide.
-- [[sandcastle-clock](pages/sandcastle-clock.md)] - the clock that starts at the identity; the cospectral groups its clock spectrum leaves together are separated here to 16 cells.
-- [[sandpile-census](pages/sandpile-census.md)] - the sandpile group of every castle in both models.
-- [[isospectral-castles](pages/isospectral-castles.md)] / [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the cospectral pairs.
-- [[castle-graph](pages/castle-graph.md)] - tree castles, whose identity is their fullest stable pile in both models.
-- [[castle-avalanches](pages/castle-avalanches.md)] - random dropping from the identity in both models.
-- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through both models.
-- [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the 10-cell isospectral pair worked by hand, 57 against 1 apex topplings in the sink model.
+- [[sandpile-group](pages/sandpile-group.md)] - the sandpile, the two models, the groups, and the runs of raised columns in the tide model.
+- [[sandcastle-clock](pages/sandcastle-clock.md)] - the clock that starts at the identity, and the sink clock spectrum, which separates 62 of the 105 adjacency-cospectral groups.
+- [[sandpile-census](pages/sandpile-census.md)] - the sandpile groups of every castle to 16 cells in both models.
+- [[isospectral-castles](pages/isospectral-castles.md)] - the adjacency- and Laplacian-cospectral castles to 16 cells; [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - a seminar built on them.
+- [[castle-graph](pages/castle-graph.md)] - tree castles, whose identity is their fullest stable configuration in both models.
+- [[castle-avalanches](pages/castle-avalanches.md)] - grains dropped on random cells from the identity, in both models.
+- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the castle `(3,2,1,2,2,1,2,3)` followed through both models.
+- [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the 10-cell cospectral pair worked by hand, with its 57 and 1 apex topplings in the sink model.
 
 ## Appearances in Sources
 
-- [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] - the identity as the recurrent configuration with all toppling invariants zero, and its fractal patterns on square grids (the dual of a castle, not its cells).
-- [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] - the identity `δ ⊕ (δ ⊕ δ)‾` from the fullest stable pile, and the unexplained fractal patterns of the identity on large grids.
-- [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - the steady state and the group the identity belongs to; the identity element itself is not treated there (its recipe is Rossin's, above).
+- [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] - the identity `δ ⊕ (δ ⊕ δ)‾` from the fullest stable configuration `δ`, and the remark that the identity "presents fractal aspects that we are not able yet to explain".
+- [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] - the identity as the recurrent configuration whose toppling invariants all vanish, and its fractal patterns on open-boundary square grids.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle definition behind the castle graph.
 
 ## Footnotes
 
-[^1]: https://en.wikipedia.org/wiki/Abelian_sandpile_model - the identity element of the sandpile group, its computation from the maximal stable configuration, and the fact that recurrent configurations (not the empty one) form the group. The same recipe is in [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] §2 L33, L39 - "The simplest example of a recurrent configuration is δ = (d_1 − 1, ..., d_{n−1} − 1, 0)"; "Then the identity of the sandpile group is Id = δ ⊕ (δ ⊕ δ)‾", with `ū = δ − u`, which is `stab(2m − stab(2m))` for `m = δ`.
-[^2]: Verified by execution (Python 3.10, 2026-09-26): identities computed by `stab(2m − stab(2m))` for each castle in both models; each passes `acts_as_zero` (adding it to the recurrent pile `stab(deg)` returns that pile). The drawings, the tide `6 × 6` identity, and the apex avalanches (apex cell `(4, 2)` for `A` and `B`, `(0, 2)` for the silver castle; 57, 1, 1 in the sink model and 1, 1, 1 under the tide) are pinned in the Snippet; the `6 × 6` sink-model pattern comes from the same `identity` function.
-[^3]: Verified by execution (Python 3.10, 2026-09-26): for every `w × h` rectangle with `2 ≤ w ≤ 12` and `2 ≤ h ≤ 12`, the tide identity equals 1 on row `h − 1` and 2 on rows `1 … h − 2`; the single column `(5)` has tide identity `1, 1, 1, 0` from the bottom up.
-[^4]: Verified by execution (Python 3.10, 2026-09-26): for the 105 adjacency and 17 Laplacian cospectral groups of [[sandpile-census](pages/sandpile-census.md)], each castle's identity grain totals over every sink cell and sink avalanche profile (topplings from one grain on each non-sink cell, starting at each sink cell's identity); a group counts as separated when its castles do not all agree. For the width statement every skyline of every graph class was kept: in all 105 adjacency and 17 Laplacian groups, two castles from different classes have different widths. The sink avalanche profile separates both 10-cell adjacency groups and the 11-cell Laplacian tree pair.
-[^5]: Verified by execution (Python 3.10, 2026-09-26): for every castle with at most 13 cells (mirror images removed), castles grouped by sink avalanche profile; within each group every castle has the same colour-refinement hash (8 rounds), so no profile is shared by castles that colour refinement proves non-isomorphic. At 12 and 13 cells there are 321 and 625 distinct sink profiles among 1,056 and 2,080 castles; castles sharing a profile are different skylines of the same graph as far as colour refinement can tell. About 40 seconds to 13 cells.
-[^6]: Verified by execution (Python 3.10, 2026-09-26): tide avalanche profiles for every castle with 12 and 13 cells (mirror images removed), 209 and 336 distinct; grouping castles by their multiset of runs (each run taken up to mirror image), the tide group and tide profile depend only on the runs for every castle to 12 cells, and two different run multisets share a tide profile from 3 raised cells on (`(2, 3)` and `(2, 2, 2)`, pinned in the Snippet).
-[^7]: [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] §7 Question 2 pp. 28-30 and Appendix C pp. 35-36 - "The identity configuration shows complicated fractal structures", on `L × L` square lattices with open boundaries on all four sides; the dual-grid reading is the wiki's.
+[^1]: [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] §2 L33, L37-39 - "The simplest example of a recurrent configuration is δ = (d_1 − 1, d_2 − 1, ..., d_{n−1} − 1, 0)"; "u ⊕ v = (u+v)^"; "We denote ū the recurrent configuration (d_1 − 1 − u_1, d_2 − 1 − u_2, ..., d_{n−1} − 1 − u_{n−1}, 0). Then the identity of the sandpile group is Id = δ ⊕ (δ ⊕ δ)‾". With `δ = m`, `δ ⊕ δ = stab(2m)` and `δ ⊕ (m − stab(2m)) = stab(2m − stab(2m))`.
+[^2]: Verified by execution (Python 3.11, 2026-10-16): identities by `stab(2m − stab(2m))` for each castle in both models, each acting as zero on the recurrent configuration `stab(deg)`; the drawings, the `(2, 2, 2)` identities for the sink at `(0, 0)` and at `(1, 0)`, the `6 × 6` identities, and the apex avalanches (apex `(4, 2)` for `A` and `B`, `(0, 2)` for `(3,2,1,2,2,1,2,3)`: 57, 1, 1 in the sink model and 1, 1, 1 in the tide model). Several are pinned in the Snippet.
+[^3]: [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] §7 Question 2 pp. 28-30 and Appendix C pp. 35-36 - "The identity configuration shows complicated fractal structures", on `L × L` square lattices with open boundaries on all four sides.
+[^4]: Verified by execution (Python 3.11, 2026-10-16): for every `w × h` rectangle with `2 ≤ w ≤ 12` and `2 ≤ h ≤ 12`, the tide identity is 1 on row `h − 1` and 2 on rows `1, …, h − 2`; the column `(5)` has tide identity `1, 1, 1, 0` from the bottom up.
+[^5]: Verified by execution (Python 3.11, NumPy, networkx, 2026-10-16): all 33,150 castles with at most 16 cells (mirror images removed) grouped by adjacency and by Laplacian spectrum, each group split into graph classes by exact isomorphism tests, every group confirmed by exact characteristic polynomials: 105 adjacency and 17 Laplacian groups with two or more graphs. For each of their 1,128 castles: the sink group, the sink clock spectrum, the total grains of the identity for every sink cell, and the sink avalanche profile, each equal on castles with the same graph; separated counts as tabulated. In every group two castles with different graphs have different widths.
+[^6]: Verified by execution (Python 3.11, networkx, 2026-10-16): the sink avalanche profiles of all castles with at most 13 cells (mirror images removed); castles grouped by profile, and every pair in a group tested for graph isomorphism exactly: no two castles with non-isomorphic graphs share a profile; 321 profiles and 321 graph classes among the 1,056 castles with 12 cells, 625 and 625 among the 2,080 with 13.
+[^7]: Verified by execution (Python 3.11, 2026-10-16): tide avalanche profiles of every castle with 12 and 13 cells (mirror images removed), 209 and 336 distinct; grouping all castles with at most 12 cells by their multiset of runs, each run taken up to mirror image, every group has a single tide profile; `(2, 3)` and `(2, 2, 2)` share `0, 1, 1` (pinned in the Snippet).
