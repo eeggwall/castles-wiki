@@ -81,7 +81,7 @@ The two measures meet for the family of all castles of height `h`: by Equations 
 - [[metallic-means](pages/metallic-means.md)], [[plastic-number](pages/plastic-number.md)], [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - the growth constants of the tables.
 - [[reachable-field-census](pages/reachable-field-census.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)], [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the Perron roots of strip rules, and so their entropy rates.
 - [[castle-compression](pages/castle-compression.md)] - how short a description of a castle can be, against how many bits a uniform castle carries.
-- [[song-as-castle](pages/song-as-castle.md)] - the parity bit at `(17, 16)`, where `log₂ A − log₂ A^e` agrees with 1 to six decimal places, and a one-column edit that changes the block parity about 43% of the time.
+- [[song-as-castle](pages/song-as-castle.md)] - the parity bit at `(17, 16)`, where `log₂ A − log₂ A^e` agrees with 1 to six decimal places, and the probability 0.4272 that a uniform one-column edit of a uniform castle changes the block parity (0.4236 if the edit must keep the height).
 - [[castle-steganography](pages/castle-steganography.md)] - one message bit per castle, set by a one-cell edit at a strict local maximum or minimum, which changes the block count by one.
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - linear complexity: a product of `e` shifted terms of a recurrence of order `d` satisfies a recurrence of order at most `C(d + e − 1, e)`.
 - [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] - `log₂ A^e(13, 10) = 41.8` bits, the size argument against enumeration.
