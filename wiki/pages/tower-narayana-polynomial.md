@@ -1,73 +1,63 @@
 ---
 title: "Tower block-count = Narayana polynomial"
 category: Sources
-summary: The tower (heap-of-pieces) block-count GF is Narayana_w(x)/(1−x)^w; width rows are A005408/A005891/A063490/A160747 (w≥6 new) — the Catalan/Narayana thread, living in the tower not the convex count.
+summary: OEIS-mining notes on towers with no height bound counted by blocks. Their generating function is Narayana_L(x)/(1 − x)^L with the Narayana polynomial Narayana_L(x) = Σ_k N(L, k) x^{k−1}, checked in the source for L ≤ 7; the rows L = 2, 3, 4, 5 are A005408, A005891, A063490 (offset 1) and A160747. The notes draft OEIS comments for these entries and a formula for A001263, stated as a generating-function identity and not as a statement about peaks.
 tags: [oeis, tower, narayana, heap-of-pieces, generating-functions, cross-reference, source]
 sources: [tower-narayana-polynomial]
 created: 2026-09-13
-updated: 2026-10-04
+updated: 2026-10-16
 ---
 
 # Tower block-count = Narayana polynomial
 
-**Source:** `~/code/oeis/pe502/crosslink-avenues.md` §"Tier 2" and `xrefs/A001263-tower.md` (+ `A005408/A005891/A063490/A160747-tower.md`), copied to `raw/oeis-pe502/`
+**Source:** `raw/oeis-pe502/crosslink-avenues.md` §"Tier 2", with the drafts `raw/oeis-pe502/xrefs/A001263-tower.md`, `A005408-tower.md`, `A005891-tower.md`, `A063490-tower.md` and `A160747-tower.md`
 **Date ingested:** 2026-09-13
-**Type:** verified OEIS finding (Python `tower.py`; draft cross-references)
+**Type:** OEIS-mining notes with drafts of OEIS comments
 
 ## Summary
 
-This is the castle's **Catalan/Narayana connection**, and it lives in the [[tower-heap](pages/tower-heap.md)] block-count, not in the convex-castle count (which is binomial, see [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]). A tower of width *w* is a Viennot heap of unit-height segments (column heights `c_1..c_w ≥ 0`, blocks = maximal runs). Counting towers by number of blocks, verified for `w = 1..7` against brute force:[^1]
+The notes count towers with no height bound: column heights `c_1, …, c_w ≥ 0` on a base of `w` columns, with blocks the maximal runs of columns in each row, `blocks = c_1 + Σ_{i≥2} max(0, c_i − c_{i−1})` ([[tower-heap](pages/tower-heap.md)]).[^1] The wiki writes the base length `L` and the number of towers on a base of length `L` with `b` blocks `T̂(L, b)`; the notes write `T(w, b)`, which the wiki keeps for the tower count `T(k, L)` of towers of height at most `k`. The notes state, and check against brute force for `w ≤ 7`,[^2]
 
 ```
-T(w,b) = Σ_{k=1..w} N(w,k) · C(b + w − k, w − 1),
-   GF by b:  Narayana_w(x) / (1 − x)^w,   Narayana_w(x) = Σ_k N(w,k) x^{k−1}
+T̂(L, b)              =  Σ_{k=1}^{L} N(L, k) C(b + L − k, L − 1),
+Σ_{b≥0} T̂(L, b) x^b  =  Narayana_L(x) / (1 − x)^L,        Narayana_L(x)  =  Σ_{k=1}^{L} N(L, k) x^{k−1},
 ```
 
-with `N(w,k) = (1/w)C(w,k)C(w,k−1)` the [[narayana-numbers](pages/narayana-numbers.md)] (A001263). The **Narayana polynomial** is the numerator of the tower block-count generating function.
+with `N(L, k) = (1/L) C(L, k) C(L, k−1)` the [[narayana-numbers](pages/narayana-numbers.md)], `A001263`. The rows of `T̂`:[^3]
 
-The width rows land on existing OEIS entries:[^2]
-
-| width *w* | `T(w,b)`, `b = 0,1,2,3,…` | OEIS |
+| `L` | `T̂(L, b)`, `b = 0, 1, 2, 3, …` | OEIS |
 |---|---|---|
-| 2 | 1, 3, 5, 7, 9, 11, … | **A005408** (odd numbers) |
-| 3 | 1, 6, 16, 31, 51, 76, … | **A005891** (centered pentagonal) |
-| 4 | 1, 10, 40, 105, 219, 396, … | **A063490** |
-| 5 | 1, 15, 85, 295, 771, 1681, … | **A160747** |
-| 6 | 1, 21, 161, 721, 2331, 6083, … | **new** (no OEIS match, searched 2026-10-04) |
-| 7 | 1, 28, 280, 1582, 6244, 19348, … | **new** (no OEIS match, searched 2026-10-04) |
+| 2 | 1, 3, 5, 7, 9, 11, … | `A005408`, the odd numbers |
+| 3 | 1, 6, 16, 31, 51, 76, … | `A005891`, the centered pentagonal numbers |
+| 4 | 1, 10, 40, 105, 219, 396, … | `A063490(b + 1)` (offset 1) |
+| 5 | 1, 15, 85, 295, 771, 1681, … | `A160747` |
+| 6 | 1, 21, 161, 721, 2331, 6083, … | none found in the first pass |
+| 7 | 1, 28, 280, 1582, 6244, 19348, … | none found in the first pass |
 
-**Offset note:** **A063490 is offset 1** (`a(n) = T(4, n−1)`) — the only width-row entry with a shift; A005408/A005891/A160747 are offset 0.
+Every entry agrees with enumeration of all towers ([[tower-heap](pages/tower-heap.md)]), and [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the current OEIS status of the rows `L ≥ 6`.[^4] `A005408`, `A005891` and `A160747` have offset 0; `A160747` is named by its generating function `(1 + 10x + 20x² + 10x³ + x⁴)/(1 − x)^5`, which is `Narayana_5(x)/(1 − x)^5`.[^5]
 
-## Cross-reference actions
-
-- **A005408, A005891, A063490, A160747** — add the heap/tower interpretation ("also the number of towers of unit-height segments on *w* columns with *n* blocks") plus the Narayana-polynomial formula. Drafts in `raw/oeis-pe502/xrefs/A005408-tower.md` etc.[^2]
-- **A001263** (Narayana) — add a Formula: the tower block-count GF has the Narayana polynomial as numerator, `T(w,b) = Σ_k N(w,k) C(b+w−k, w−1)`. Stated as a generating-function identity, **not** a peaks bijection — a direct peaks refinement was tested and does not factor this way.[^3]
-- **Generation:** the `w ≥ 6` tower rows are new sequences (new rows of the Narayana-polynomial triangle).[^2]
-
-Per [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] these are draft cross-references (human authorship required), kept in `raw/oeis-pe502/xrefs/`.
+The notes draft an OEIS comment for each of `A005408`, `A005891`, `A063490` and `A160747`, reading the entry as a count of towers with a given number of blocks, and a formula for `A001263`. The `A001263` draft states the identity as a generating-function identity and not as a statement about peaks: "a direct peaks refinement was tested and does not factor this way".[^6] The refinement that does factor it is by descents: the `k`-th term counts the towers with `k − 1` descents ([[tower-heap](pages/tower-heap.md)], computed for `L ≤ 7`).
 
 ## Key Takeaways
 
-- Tower block-count GF `= Narayana_w(x)/(1−x)^w`; `T(w,b) = Σ_k N(w,k) C(b+w−k, w−1)`, verified `w=1..7`.[^1]
-- Width rows: A005408, A005891, A063490, A160747 (w=2..5); new for w≥6.[^2]
-- **Catalan/Narayana enters the castle world through the heap-of-pieces tower**, not the convex count.[^1]
-- The A001263 link is a generating-function identity, explicitly not a peaks bijection.[^3] The refinement that does factor it is by **descents**: towers with `k-1` descents number `N(w,k) C(b+w-k, w-1)` (brute-force verified `w, b ≤ 7`; see [[narayana-numbers](pages/narayana-numbers.md)]).
-- Re-indexed by semi-perimeter `s = w + blocks` (a castle's semi-perimeter, [[castle-perimeter](pages/castle-perimeter.md)]), castles by `(s, w)` are the bargraph triangle A271942, and by `s` alone A082582.
+- `T̂(L, b) = Σ_k N(L, k) C(b + L − k, L − 1)`, with generating function `Narayana_L(x)/(1 − x)^L`; checked in the source for `L ≤ 7`.[^2]
+- The rows `L = 2, 3, 4, 5` are `A005408`, `A005891`, `A063490(b + 1)` and `A160747`.[^3]
+- The `A001263` formula is a generating-function identity; a refinement by peaks does not factor it.[^6]
+- A castle of width `L` with `b + 1` blocks stands on towers with `b` blocks, so `T̂(L, b)` counts the castles of semi-perimeter `L + b + 1` and width `L`, the triangle `A271942` ([[castle-perimeter](pages/castle-perimeter.md)]).
 
 ## Entities & Concepts
 
-- [[tower-heap](pages/tower-heap.md)] — the object being counted.
-- [[narayana-numbers](pages/narayana-numbers.md)] — A001263, the GF numerator.
-- [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] — the contrast: convex count is binomial, not Narayana.
-
-## Relation to Other Wiki Pages
-
-The Dyck-shape analogy of the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] (from [[project-euler-502-representations](pages/project-euler-502-representations.md)]) connects to Narayana/Catalan through the tower block count, which gives four existing OEIS entries a heap interpretation; the heap-theory reading is on [[viennot-heap-tower](pages/viennot-heap-tower.md)].
-
-[[castle-conditional-entropy](pages/castle-conditional-entropy.md)] uses the generating function `Narayana_w(x) / (1 - x)^w` as an approximate model for the block-count marginal `H(B)` of castles.
+- [[tower-heap](pages/tower-heap.md)] - towers with no height bound, counted by blocks and by descents.
+- [[narayana-numbers](pages/narayana-numbers.md)] - `N(n, k)` and its other counts.
+- [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the convex castles, counted by a binomial coefficient.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the mining pass these notes belong to.
+- [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the entropy of the block count of towers, used as a model for the block count of castles.
 
 ## Footnotes
 
-[^1]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `crosslink-avenues.md` §"Tier 2" L36-47 — "T(w,b) = # towers of width w with exactly b blocks = sum_{k=1..w} Narayana(w,k) * C(b + w − k, w − 1) ... GF = (Narayana_w(x)) / (1 − x)^w ... verified for w = 1..7 against brute force ... Narayana(w,k) = ... = A001263."
-[^2]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `crosslink-avenues.md` §"Tier 2" L49-63 — the width-row table (A005408/A005891/A063490/A160747; new for w=6,7) and the cross-link actions "add the heap/tower interpretation ... plus the Narayana-polynomial formula."
-[^3]: `raw/oeis-pe502/xrefs/A001263-tower.md` §"Identity (verified)" L23-25 — "It is a generating-function identity, not a 'peaks' bijection: a direct peaks refinement was tested and does not factor this way, so do not state a peaks interpretation."
+[^1]: `raw/oeis-pe502/crosslink-avenues.md` §"Tier 2" L36-37 - "A **tower** of width w is column heights `c_1..c_w >= 0` (no full-bottom-row, no max-height, no parity). Blocks are maximal horizontal runs, `#blocks = c_1 + sum max(0, c_i − c_{i−1})`."
+[^2]: `raw/oeis-pe502/crosslink-avenues.md` §"Tier 2" L41-47 - "Result (verified for w = 1..7 against brute force): T(w,b) = # towers of width w with exactly b blocks = sum_{k=1..w} Narayana(w,k) * C(b + w − k, w − 1) (Narayana-polynomial g.f.) g.f. = (Narayana_w(x)) / (1 − x)^w, Narayana_w(x) = sum_k Narayana(w,k) x^{k−1}. Narayana(w,k) = (1/w) C(w,k) C(w,k−1) = **A001263**."
+[^3]: `raw/oeis-pe502/crosslink-avenues.md` §"Tier 2" L49-56 - the table of `T(w, b)` for `w = 2, …, 7`, with "A005408 (odd numbers)", "A005891 (centered pentagonal)", "A063490", "A160747", and "**new**" for `w = 6, 7`; `raw/oeis-pe502/xrefs/A063490-tower.md` §"Identity (verified, note the offset shift)" L8-10 - "A063490 = \"a(n) = (2n-1)(7n^2-7n+6)/6\", **offset 1** ... a(n) = T(4, n-1)".
+[^4]: Verified by execution (Python 3.11, 2026-10-16): the table against enumeration of all towers for `L ≤ 6`, `b ≤ 7` and `L = 7`, `b ≤ 6`.
+[^5]: https://oeis.org/A005408, https://oeis.org/A005891, https://oeis.org/A063490, https://oeis.org/A160747 (read 2026-10-16) - "The odd numbers: a(n) = 2*n + 1"; "Centered pentagonal numbers: (5n^2+5n+2)/2"; "a(n) = (2*n - 1)*(7*n^2 - 7*n + 6)/6", offset 1, "G.f.: x*(1+x)*(1+5*x+x^2)/(1-x)^4"; "Expansion of (1 + 10*x + 20*x^2 + 10*x^3 + x^4)/(1-x)^5", offset 0.
+[^6]: `raw/oeis-pe502/xrefs/A001263-tower.md` §"Identity (verified)" L23-25 - "It is a generating-function identity, **not** a \"peaks\" bijection: a direct peaks refinement was tested and does not factor this way, so do not state a peaks interpretation."
