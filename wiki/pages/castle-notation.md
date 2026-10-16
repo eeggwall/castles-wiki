@@ -209,7 +209,7 @@ These are local notations on specific pages. Each is unrelated to the tower coun
 | symbol | meaning | where |
 |---|---|---|
 | `P_j(k, L)` | the sum of `ω^{j·blocks}` over the towers of height at most `k` on a base of length `L`, with `ω = e^{2πi/m}`; at `m = 2`, `P_1 = P` | [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] |
-| `S_0`, `S_α` | sums over castles of `(−1)^{area}` and of the sign of the fractional block count `B_α`; `S_1 = S(w, h)` is the signed count | [[fractional-block-count](pages/fractional-block-count.md)] |
+| `S_α`, `S_0` | `S_α(w, h) = Σ_C e^{iπ B_α(C)}` over the castles of width `w` and height `h`, with `B_α` the fractional block count; `S_0 = Σ (−1)^{area}` and `S_1 = S(w, h)`, the signed count | [[fractional-block-count](pages/fractional-block-count.md)] |
 | `P_h(q)` | the polynomial `q² + q³ + … + q^h` in the tree-castle generating function | [[tree-castle-by-area](pages/tree-castle-by-area.md)], [[castle-graph](pages/castle-graph.md)] |
 | `P_h` | the path graph on `h` vertices | [[ramanujan-castles](pages/ramanujan-castles.md)] |
 | `P⋆_n` | the **Pell numbers** (A000129, `P⋆_0 = 0`, `P⋆_1 = 1`, `P⋆_n = 2P⋆_{n−1} + P⋆_{n−2}`). The star distinguishes them from the signed tower count `P` (`P(k, L)`, `P_F`, `P_even`, …), which keeps the bare letter because parity recurs across the wiki and the PE502 reports; a Pell number is always starred, never `P_n` or `Pell(n)` | [[pell-numbers](pages/pell-numbers.md)], [[pell-castle](pages/pell-castle.md)], [[metallic-means](pages/metallic-means.md)] |
