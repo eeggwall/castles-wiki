@@ -1,83 +1,86 @@
 ---
 title: Permutation-cycle / castle-peak analogy
 category: Concepts
-summary: The correspondence permutation cycles ↔ castle peaks/excursions — a factorization (the Dyck first-return with an extra letter), the spine of the castle-factoring reading. The elementary anchor is (n−1)!, upgraded step-by-step into the castle triad — see [[castles-as-upgraded-cycle-count]].
+summary: A permutation factors uniquely into disjoint cycles, and the towers on a castle's bottom row factor uniquely into peaks, the blocks of the first row above the base with the towers they carry, separated by gap columns (the Dyck first-return decomposition with the extra letter R). The castle-factoring source builds four constructions on each side of this pairing - the sign (−1)^{n−c} beside (−1)^{blocks}, the even/odd split (1 ± sign)/2, Knuth's canonical cycle form beside the column-height word, and cycle following beside the streak scan. The pairing matches constructions, not objects - one-peak towers on a base of length 4 number 10, one-cycle permutations of 4 points 3! = 6 - and the sign of towers depends on their blocks, which can outnumber their peaks.
 tags: [concept, castle, permutations, cycles, factorization, dyck]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Permutation-cycle / castle-peak analogy
 
-## Description
+## The two factorizations
 
-The central organizing idea of the castle-factoring reading is a single analogy:
+A permutation `σ` of `{0, …, n − 1}` factors uniquely into disjoint cycles, found by following `i ↦ σ(i)` from an element not yet visited until the loop closes; the cycles are disjoint because `σ` is a bijection.[^1] Towers on a base of length `L` factor uniquely into **peaks**: in the tower grammar of [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)], a peak is a production `U V D` at the base, one block in the first row above the base together with the towers `V` it carries, and consecutive peaks are separated by gap columns `R`. In the column heights `c = (c_1, …, c_L)` of the towers, the peaks are the maximal runs of columns with `c_i ≥ 1`. The source calls this "a genuine factorization, not a metaphor": it is the Dyck first-return decomposition with the extra letter `R`.[^2]
 
-> **permutation cycles : castle peaks/excursions**
+*Example.* The towers `(1, 0, 2, 1)`, under the castle `(2, 1, 3, 2)`, have two peaks, the runs `(1)` and `(2, 1)`, and three blocks, since the second peak carries one block on another.
 
-Knuth factors a permutation into disjoint cycles by following the map `i ↦ σ(i)` from an unvisited element until the loop closes; the cycles are disjoint because the map is a bijection.[^1] The [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] factors a castle's tower word the same way: each `U V D` **peak** leaves the base, lives entirely above one sub-block, and returns to the base, and disjoint peaks are separated by `R` gaps, as disjoint cycles are separated by parentheses.[^2] The source presents this as a factorization, not a metaphor: it is the Dyck first-return decomposition with one extra letter (`R`).[^2]
+## The paired constructions
 
-## The correspondence
+The castle-factoring source pairs the two factorizations and builds the same constructions on both sides ([[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)]):[^2][^3]
 
-| Permutation | Castle tower |
-|---|---|
-| element *i*, map `i ↦ σ(i)` | column; skyline step `U`, `R`, or `D` |
-| disjoint cycle | disjoint peak `U V D` (an excursion above one sub-block) |
-| parenthesized cycle form | peaks separated by `R` gaps |
-| number of cycles | number of peaks |
-| sign `(−1)^{n−c}` | sign `(−1)^{blocks}` (see [[castle-sign](pages/castle-sign.md)]) |
+| construction | permutation `σ` of `n` points with `c` cycles | towers `c` on a base of length `L` |
+|---|---|---|
+| factors | the cycles | the peaks, the maximal runs with `c_i ≥ 1` |
+| number of factors | `c` | the number of peaks |
+| sign | `sgn(σ) = (−1)^{n−c}` | `(−1)^{blocks(c)}`, with `blocks(c) = Σ_i max(0, c_i − c_{i−1})`, `c_0 = 0` ([[castle-sign](pages/castle-sign.md)]) |
+| even/odd split | `(n! ± Σ_σ sgn(σ))/2` | `(T(k, L) ± P(k, L))/2` |
+| canonical form | Knuth's canonical cycle form, flattened ([[castle-foata-transform](pages/castle-foata-transform.md)]) | the column-height word `c_1 … c_L` |
+| records | the cycle leaders, the left-to-right minima of the flattened form | the first columns of the peaks, `{i : c_i > 0 and (i = 1 or c_{i−1} = 0)}` |
+| linear scan | following `i ↦ σ(i)`, `O(n)` | splitting the first differences `c_{i+1} − c_i` into up-streaks, flat runs and down-streaks, `O(L)` ([[monotone-streak-factorization](pages/monotone-streak-factorization.md)]) |
 
-Two statistics come out of this, and they are **distinct**: the excursion count (peaks) plays the role of the cycle count, while the *block* count plays the role of the sign atom. One peak may contain several stacked blocks, so peaks and blocks are not the same statistic.[^3]
+Knuth's canonical cycle form (The Art of Computer Programming, Vol. 1, §1.3.3) writes every singleton cycle, puts the smallest element first in each cycle, and orders the cycles by decreasing first element. The source's example is the permutation `2 4 3 0 1` in one-line form, with cycles `(0 2 3)(1 4)` and canonical form `(1 4)(0 2 3)`; erasing the parentheses gives `1 4 0 2 3`, whose left-to-right minima `1` and `0` lead the two cycles.[^4]
 
-The analogy's source side is Knuth's **canonical cycle form** (The Art of Computer Programming (TAOCP) Vol. 1, §1.3.3): write every singleton cycle explicitly, put the smallest element first within each cycle, and order cycles by decreasing first element; erasing parentheses recovers a one-line permutation.[^4] From this analogy the castle-factoring page derives three constructions — the [[castle-sign](pages/castle-sign.md)], the [[castle-foata-transform](pages/castle-foata-transform.md)], and the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — each a castle analogue of a classical permutation notion.
+Two features keep the pairing from being an isomorphism.
 
-## The (n−1)! anchor
+- **It matches constructions, not objects.** The towers of height at most 1 on a base of length 4 with one peak are the ten binary strings with one run of 1s, while the permutations of 4 points with one cycle number `3! = 6`. The source puts this as a correspondence "at the level of factoring, not cardinality".[^5]
+- **The sign is measured on blocks, not on peaks.** The sign of a permutation depends only on its number of cycles, but one peak can carry several stacked blocks, so the sign of towers is not determined by their number of peaks: in the example, two peaks and three blocks.[^3]
 
-The three constructions have a joint elementary anchor: the classical `(n−1)!` count of labelled cycles on `n` items, whose two proofs — **quotient by the free `Z/n` rotation action** (`n!/n = (n−1)!`) and **fix the cycle to start at element `1`** (the remaining `n−1` order freely) — are, in the source's reading, instances of one toolkit (Foata, sign, cycle-follow) that reappears on the castle side.[^5] Each move of the classical proof has a direct castle counterpart:
+## The (n−1)! proofs
 
-| (n−1)! proof move | Castle counterpart |
-|---|---|
-| divide by `n` / `(1 ± sgn)/2` to peel `A_n` from `S_n` | [[castle-sign](pages/castle-sign.md)] `s(C) = (−1)^{blocks}`, `(T ± P)/2` even/odd projector |
-| canonical form starting from element `1` (or Foata's largest-first flattening) | [[castle-foata-transform](pages/castle-foata-transform.md)] — peaks are maximal positive runs, records are their leftmost positive columns |
-| cycle-follow `i ↦ σ(i)` (an `O(n)` loop) | [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — first-difference scan into up/flat/down streaks (an `O(L)` loop) |
+The cycles on `n` labeled points number `(n − 1)!`, by two proofs: the `n!` orderings fall into classes of `n` under rotation, or every cycle can be written starting at the point 1. The source note reads both proofs as uses of the constructions of the section *The paired constructions* and pairs each step with the castle construction it corresponds to; [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] develops that reading as a seminar.[^6]
 
-The `(n−1)!` proof is the degenerate case: one cycle, no factoring, trivial sign. The castle machinery applies the same three moves to stacked, width-weighted, sign-selected cycles.[^6] The seminar form of this synthesis is [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)].
+## Castles that are permutations
 
-## Where the analogy becomes literal
+A **rainbow castle** has width `h` and the heights `1, …, h` in some order ([[castle-classification-shape](pages/castle-classification-shape.md)]), so its skyline is a permutation in one-line form, and the permutation constructions apply to it as a permutation. The two signs then differ: the rainbow castle `(2, 3, 1)` is the cyclic permutation `1 ↦ 2 ↦ 3 ↦ 1`, with one cycle and sign `+1`, while the castle has three blocks and sign `−1`.
 
-A **rainbow castle** ([[castle-classification-shape](pages/castle-classification-shape.md)]: `w = h`, heights a permutation of `{1..h}`) has a skyline that *is* a permutation, so the three moves above apply to it verbatim, and the classification's **even-peak** type counts local maxima, a different statistic from the excursion peaks here (`(2,3,2,3,2)` has one excursion and two local maxima).
+The word "peak" means something else on [[castle-classification-shape](pages/castle-classification-shape.md)], where the even-peak type counts local maxima of the skyline: the castle `(2, 3, 2, 3, 2)` stands on the towers `(1, 2, 1, 2, 1)`, which form one peak, and has two local maxima.
 
-## The (1 ± sgn)/2 move, generalized, and the F(4,2) = 10 hand-check
+## Height 2: peaks and the even-block count
 
-Peeling `A_n` from `S_n` is the `m = 2` character sum; [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] does it for `Z/m`, and [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] teaches the `(T ± P)/2` lesson end-to-end, `F(4,2) = 10` included. `F(4,2) = 10` is also one of the three checkpoints the problem statement supplies ([[castle-counting-function](pages/castle-counting-function.md)]), and `all_castles(4, 2)` on [[castle-snippets](pages/castle-snippets.md)] reproduces the ten strings.
+A castle of height 2 has one block in the bottom row and one block for each run of 1s in its row 2, the peaks of its towers. So it has an even number of blocks exactly when its towers have an odd number of peaks, and the binary strings of length `w` with `r` runs of 1s number `C(w + 1, 2r)`:[^7]
 
-**Even blocks ⟺ odd runs.** A height-2 castle has `1 + (number of maximal positive runs in row 2)` blocks, so the even-block castles are those whose second row has an odd number of runs: `F(w,2) = Σ_s C(w+1, 4s+2) = A038505(w+1)` ([[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]), the `m = 2` residue extraction of [[block-count-constraints](pages/block-count-constraints.md)]. At `w = 4` the only odd run count that fits is one, so the hand-check's ten strings are the one-run strings, `C(5,2) = 10`; at `w = 5` the three-run string `10101` joins and `F(5,2) = C(6,2) + C(6,6) = 16`.
+```
+A^e(w, 2)  =  Σ_{s≥0} C(w + 1, 4s + 2)  =  A038505(w + 1)
+```
+
+([[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]). At `w = 4` only one run fits among the odd numbers of runs, so the ten even-block castles of the example `A^e(4, 2) = 10` on [[castle-counting-formula](pages/castle-counting-formula.md)] are the one-peak towers, `C(5, 2) = 10`. At `w = 5` the three-run string `10101` joins them, and `A^e(5, 2) = C(6, 2) + C(6, 6) = 16`.
 
 ## Appearances in Sources
 
-- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — states the analogy, the correspondence table, and Knuth's canonical cycle form as the source-side template.
-- `raw/pe502-castle-cycle-permutations.md` — the working note (2026-09-15) that supplies the (n−1)! elementary anchor, the closing "proof-move ↔ castle counterpart" table, the rainbow-castle literalization, and the F(5,2) = 16 extension.
+- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the pairing of cycles with peaks, the correspondence table, and Knuth's canonical cycle form with its example.
 
 ## Related Concepts
 
-- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the factorization on the castle side.
-- [[castle-sign](pages/castle-sign.md)] — the sign atom in the correspondence.
-- [[castle-foata-transform](pages/castle-foata-transform.md)] — the cycles-to-records half of the analogy.
-- [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the cycle-following loop's castle analogue.
-- [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] — the seminar-shaped synthesis reading Project Euler 502 (PE 502) as the (n−1)! toolkit upgraded three times.
-- [[permutation-inversions](pages/permutation-inversions.md)] — the other classical permutation statistic (inversions), whose q-factorial generating function underlies the q-analog thread.
-- [[aocp-multisets](pages/aocp-multisets.md)] — Knuth's two-line arrays and unique cycle factorization, the Vol. 3 multiset form of this analogy's permutation side (which comes from Vol. 1 §1.3.3).
-- [[aocp-combinatorics](pages/aocp-combinatorics.md)] — Knuth's Vol. 3 inversions and the q-factorial `∏(1−z^k)/(1−z)^n`, the source behind the inversion statistic mentioned above.
-- [[castle-classification-shape](pages/castle-classification-shape.md)] — rainbow castles (skyline = permutation) and the even-peak type (local maxima, a different peak statistic).
-- [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[castle-counting-function](pages/castle-counting-function.md)] / [[castle-snippets](pages/castle-snippets.md)] — the sign move generalized and taught; `F(4,2) = 10` as checkpoint and as code.
-- [[block-count-constraints](pages/block-count-constraints.md)] — why the one-run description of `F(4,2)` does not survive to `w = 5`.
+- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the tower grammar, whose productions `U V D` at the base are the peaks.
+- [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the split `(T ± P)/2`, set beside the sign of a permutation.
+- [[castle-foata-transform](pages/castle-foata-transform.md)] - the bijection from peaks to their first columns, set beside Foata's transformation.
+- [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] - the streak scan of the first differences, set beside cycle following.
+- [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] - a seminar that builds these constructions from the two proofs of `(n − 1)!`.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the rainbow castles and the even-peak type.
+- [[aocp-multisets](pages/aocp-multisets.md)] - Knuth's two-line arrays and the cycle factorization of permutations of multisets.
+- [[permutation-inversions](pages/permutation-inversions.md)] and [[aocp-combinatorics](pages/aocp-combinatorics.md)] - inversions, the permutation statistic graded by the q-factorial `Π_k (1 − z^k)/(1 − z)^n`.
+- [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the sums of every fourth binomial coefficient, among them `A038505`.
+- [[block-count-constraints](pages/block-count-constraints.md)] - castles selected by block count, with the even-block condition as the residue class 0 modulo 2.
+- [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] - the split by block count modulo `m`.
 
 ## Footnotes
 
-[^1]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Knuth canonical cycle form" L27 — "The factorization is the loop i ↦ σ(i): start at an unvisited element and follow the map until it closes. The cycles are disjoint because the map is a bijection."
-[^2]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Castle Factoring and the Knuth-Castle Foata Transform" L7 — "each U V D peak leaves the base, lives entirely above a sub-block, and returns to the same level, and disjoint peaks are separated by R gaps. This is a genuine factorization, not a metaphor: it is the Dyck first-return decomposition with one extra letter (R)."
-[^3]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The tower grammar" L68 — "The excursion count (peaks) plays the role of the cycle count, while the block count plays the role of the sign atom. One peak may contain several stacked blocks, so these are distinct."
-[^4]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Knuth canonical cycle form" L19-25 — "writing every singleton cycle explicitly; putting the smallest element first within each cycle; ordering the cycles in decreasing order of their first element ... Erasing the parentheses recovers a one-line permutation."
-[^5]: raw/pe502-castle-cycle-permutations.md §"Warm-up: labelled cycles" L5-L10 — "The number of such directed cycles is (n-1)!, with two standard proofs: 1. Quotient by rotation. n! linear orderings collapse under the free Z/n rotation action, so n!/n = (n-1)! cycles. 2. Fix a starting point ... Both proofs are instances of a bigger machine (Foata, sign, cycle-follow) that reappears in PE 502."
-[^6]: raw/pe502-castle-cycle-permutations.md §"Tying back to (n-1)!" L80-L86 — the three-row proof-move-to-castle-counterpart table and "PE 502 is essentially: take the toolkit that proves (n-1)!, upgrade every step to a version that handles stacked, width-weighted, sign-selected cycles, and you get a closed form plus a fast recurrence."
+[^1]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Knuth canonical cycle form" L27 - "The factorization is the loop i ↦ σ(i): start at an unvisited element and follow the map until it closes. The cycles are disjoint because the map is a bijection."
+[^2]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Castle Factoring and the Knuth-Castle Foata Transform" L7 and §"The tower grammar" L43 - "each U V D peak leaves the base, lives entirely above a sub-block, and returns to the same level, and disjoint peaks are separated by R gaps. This is a genuine factorization, not a metaphor: it is the Dyck first-return decomposition with one extra letter (R)", and "Disjoint peaks are separated by R gaps, exactly as disjoint cycles are separated by parentheses."
+[^3]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The tower grammar" L45-68 [synthesis] - the correspondence table (disjoint cycle and disjoint peak, number of cycles and number of peaks, `(−1)^{n−c}` and `(−1)^{blocks}`) and "One peak may contain several stacked blocks, so these are distinct."
+[^4]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Knuth canonical cycle form" L19-25 - "writing every singleton cycle explicitly; putting the smallest element first within each cycle; ordering the cycles in decreasing order of their first element", "the linear permutation (2 4 3 0 1) has cycles (0 2 3)(1 4), so its canonical form is (1 4)(0 2 3). Erasing the parentheses recovers a one-line permutation, (1 4 0 2 3)." The left-to-right minima checked by execution (Python 3.11, 2026-10-16).
+[^5]: raw/pe502-castle-cycle-permutations.md §"Connection 2: Castle Foata transform ↔ Foata's fundamental transformation" L56-58 - "For F(4,2) = 10 these are exactly the 10 length-4 binary strings with one positive run", "Note that 3! = 6 ≠ 10: the analogy is one-cycle ↔ one-peak in structure, not in count ... The correspondence is at the level of factoring, not cardinality."
+[^6]: raw/pe502-castle-cycle-permutations.md §"Warm-up: labelled cycles" L5-10 and §"Tying back to (n-1)!" L76-86 [synthesis] - the two proofs of `(n − 1)!`, "Both proofs are instances of a bigger machine (Foata, sign, cycle-follow) that reappears in PE 502", and the table pairing each proof step with a castle construction.
+[^7]: Verified by execution (Python 3.11, 2026-10-16): the peaks and blocks of `(1, 0, 2, 1)`; ten one-peak strings of length 4; `A^e(5, 2) = 16` by enumeration; one peak and two local maxima for `(2, 3, 2, 3, 2)`; three blocks for `(2, 3, 1)`. `A^e(w, 2) = Σ_s C(w + 1, 4s + 2)` by enumeration for `w ≤ 10`.
