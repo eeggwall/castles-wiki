@@ -1,82 +1,81 @@
 ---
 title: Castle compression
 category: Concepts
-summary: How cheaply a castle can be written down. The castle rules are themselves a compression scheme — the raster↔skyline gap is worth w(h − log₂ h) bits — and the wiki's run-length encodings are a second layer. The payoff is a compressibility axis whose description tiers (parametric / rule-generated / generic) separate "irregular because a complicated process" from "irregular because no process" — a distinction the shape axes cannot express.
+summary: How many bits a castle takes to write down. The castles of width w and height h number A(w, h) = h^w − (h−1)^w, so a fixed-length code needs log₂ A(w, h) ≤ w·log₂ h bits against w·h for the raster, a saving of at least w(h − log₂ h) bits. The encodings form a ladder (raster, skyline, run-length descriptions, parametric), and castles fall into three description tiers - parametric, rule-generated (a strip rule plus an index, about w·log₂ ρ(M) bits) and generic (at least log₂ A(w, h) − c bits for all but a fraction 2^{−c}).
 tags: [concept, castle, compression, kolmogorov-complexity, encoding, representations, classification, information-theory]
 sources: [project-euler-502-representations, project-euler-502-castle-factoring]
 created: 2026-09-18
-updated: 2026-09-26
+updated: 2026-10-16
 ---
 
 # Castle compression
 
-## The castle rules are a compression scheme
+## The castle rules as a code
 
-A castle is a `w × h` stack of cells, but you never need `w·h` bits to specify one — the rules already told you most of it. A column-convex, bottom-aligned castle is determined by its skyline `(c₁, …, c_w)` of `w` heights ([[castle-representations](pages/castle-representations.md)]), so it needs `w·log₂ h` bits, whereas a raw raster of the `w × h` grid needs `w·h` bits. The rules are worth
+A castle of width `w` and height `h` is determined by its skyline `(c_1, …, c_w)` ([[castle-representations](pages/castle-representations.md)]), and the castles of width `w` and height `h` number `A(w, h) = h^w − (h−1)^w` ([[castle-counting-function](pages/castle-counting-function.md)]). A fixed-length code for them needs `⌈log₂ A(w, h)⌉` bits, and
 
 ```
-w·h − w·log₂ h  =  w·(h − log₂ h)   bits
+log₂ A(w, h)  =  w·log₂ h + log₂(1 − ((h−1)/h)^w)  ≤  w·log₂ h
 ```
 
-of compression — the gap between raster space and skyline space is the information the castle constraints supply.[^1] For `h = 5` that is `w·(5 − 2.32) ≈ 2.68w` bits: more than half the raster.
+([[castle-entropy](pages/castle-entropy.md)], Equation (2)). The raster of the `w × h` grid takes `w·h` bits, one per cell, so the castle rules save at least[^1]
+
+```
+w·h − w·log₂ h  =  w·(h − log₂ h)   bits.
+```
+
+At `h = 5` that is `w·(5 − 2.32) ≈ 2.68w` bits, more than half of the `5w`-bit raster.
 
 ## The encoding ladder
 
-The encodings on [[castle-representations](pages/castle-representations.md)] form a ladder, each rung exploiting more structure:
+The encodings of [[castle-representations](pages/castle-representations.md)] form a ladder, each rung using more of the structure of a castle:
 
-1. **Raster / binary string** — `w·h` bits, records every cell. The uncompressed baseline; the Solution subpage's verdict "the right encoding, wrong decomposition" is precisely that this encoding throws the structure away.
-2. **Skyline / integer tuple** — `w·log₂ h` bits. Exploits column-convexity and bottom-alignment (each column is one number). The workhorse encoding.
-3. **Block / run-length descriptions** — the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] and the excursion/gap word ([[castle-representations](pages/castle-representations.md)]) record a castle as its blocks: each ascent opens a block ([[castle-sign](pages/castle-sign.md)]), so a `b`-block castle is described by `b` (height, width) pairs against `w` column heights. A unimodal castle is "one bump" (`b ≈ 1`) and compresses hard; a jagged castle with `~ w/2` blocks does not.
-4. **Parametric** — the highly symmetric types (box, hook, staircase, the periodic/battlement type of [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 7) are pinned by a handful of numbers — an `O(log(w·h))`-bit description even though their count is far larger.
+1. **Raster.** The column-wise binary encoding, `1^{c_i} 0^{h−c_i}` for each column, takes `w·h` bits.
+2. **Skyline.** The `w` heights take `w·⌈log₂ h⌉` bits, or `⌈log₂ A(w, h)⌉` bits for the rank of the castle in a fixed order.
+3. **Run-length descriptions.** The [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] and the excursion/gap word of [[castle-representations](pages/castle-representations.md)] record where the height changes. A skyline that changes height at `m` of its `w − 1` column boundaries is determined by `c_1`, the `m` boundaries and the `m` changes, each a nonzero integer between `−(h − 1)` and `h − 1`. A convex castle of height `h` changes height at most `2(h − 1)` times, at most `h − 1` times on its rising side and on its falling side, so it is described by `O(h·log₂(wh))` bits. A castle that changes height at every boundary gains nothing.
+4. **Parametric.** The rectangle `(h, …, h)`, the hooks, the staircases and the other shape types fixed by a few integers ([[castle-classification-shape](pages/castle-classification-shape.md)]) are described by `O(log₂(wh))` bits.
 
-The U/R/D step string ([[urd-step-strings](pages/urd-step-strings.md)]) sits *below* the skyline on this ladder: it is a path of length `~ 2·area`, so it *expands* a tall castle rather than compressing it. Compression is not a property of an encoding alone — it is a property of the encoding *against* the castle's structure.
+The step string `U`, `R`, `D` ([[urd-step-strings](pages/urd-step-strings.md)]) has `w` letters `R` and as many `U` and as many `D` as the castle has blocks, `w + 2·blocks` letters in all. The single column `(h)` is `U^h R D^h`, `2h + 1` letters against the `⌈log₂ h⌉` bits of its skyline, so the step string is longer than the skyline for a castle with many blocks.
 
-## The compressibility axis: description tiers
+## Description tiers
 
-The payoff is a classification the shape axes (1–7 of [[castle-classification-shape](pages/castle-classification-shape.md)]) cannot see. Those axes ask "what does the shape look like." Compressibility asks "what is the cheapest *program* that produces it" — an orthogonal question, stratifying castles by description tier:
+The tiers sort castles by the length of their shortest description.
 
-- **Tier 0 — parametric.** A short explicit program names a shape: box, hook, staircase, or a periodic/battlement (a period plus a repeat count). Described in `O(log(w·h))` bits.
-- **Tier 1 — rule-generated.** The skyline is the column-by-column output of a tiny state machine — a 0/1 transfer matrix with a handful of ones, plus an initial state. These castles look irregular but have a short program: the plastic number's realizer in the [[reachable-field-census](pages/reachable-field-census.md)] is a **4-ones** matrix whose output is not convex, not periodic, not symmetric, yet is specified by four numbers. Like a pseudorandom number generator (PRNG), it has a short description but irregular output.
-- **Tier 2 — generic.** No structure; `~ w·log₂ h` bits, sitting at the counting-entropy ceiling of [[castle-entropy](pages/castle-entropy.md)].
+- **Tier 0, parametric.** The skyline is fixed by a constant number of integers up to `max(w, h)`, so by `O(log₂(wh))` bits: the rectangle, the hooks, the staircases. A periodic castle is fixed by its period of length `p` and a repeat count, `p·log₂ h + O(log₂ w)` bits.
+- **Tier 1, rule-generated.** The skyline is fixed by a rule from a small family together with data much shorter than `w·log₂ h` bits. A strip rule gives one such description ([[castle-strip](pages/castle-strip.md)]). A 0/1 transfer matrix `M` on the heights `1, …, h` allows `N(w)` strips of width `w`, with `N(w)^{1/w} → ρ(M)`, the largest eigenvalue of `M`, so a strip of the rule is fixed by `M`, `h²` bits, and its index among the `N(w)` strips, `⌈log₂ N(w)⌉ = w·log₂ ρ(M) + o(w)` bits. The rule `[[0, 0, 1], [1, 0, 0], [1, 1, 0]]` on three heights has characteristic polynomial `λ³ − λ − 1` and `ρ(M) = ψ`, the plastic number ([[reachable-field-census](pages/reachable-field-census.md)], [[plastic-number](pages/plastic-number.md)]), so its strips take `log₂ ψ = 0.406` bits per column, against `log₂ 3 = 1.585` for a skyline on three heights.[^2] Linear prediction with a coded residual, as in FLAC, is another rule-generated description ([[song-as-castle](pages/song-as-castle.md)]).
+- **Tier 2, generic.** There are fewer than `2^{n−c}` binary descriptions shorter than `n − c` bits, so for every `c ≥ 0` all but a fraction `2^{−c}` of the castles of width `w` and height `h` have no description shorter than `log₂ A(w, h) − c` bits, the counting ceiling of [[castle-entropy](pages/castle-entropy.md)].
 
-The shape axes are blind to Tier 1: a rule-generated castle fails every convex / symmetric / path-like predicate, so Axes 1–7 dump it in the same bucket as a truly random castle. Compressibility separates rule-generated irregular castles from generic ones, which no shape predicate does. The open question: is there a predicate that *detects* Tier 1 (low-complexity-but-irregular) without simulating the rule?
+The shape types of [[castle-classification-shape](pages/castle-classification-shape.md)] are predicates on single skylines; the tiers depend on the shortest description of the skyline, which no single shape predicate decides.
 
-## Neighbours of the compressibility axis
+## Related constructions
 
-- **Tier 1 is a castle strip.** The "tiny state machine" is exactly the object of [[castle-strip](pages/castle-strip.md)]: an `h × h` 0/1 transfer matrix over the heights, read column by column. The strip page is the concept behind the Tier-1 factories ([[reachable-field-census](pages/reachable-field-census.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]), and its rational width generating function (GF) `1/det(I − xM)` is the algebraic signature of a short program.
-- **The language-theoretic face.** A Tier-1 skyline is a word of a *regular* language (finite automaton, rational GF); the tower word of [[tower-word-language](pages/tower-word-language.md)] is context-free in general and collapses to regular once height is bounded - which is why [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] finds the bounded-height continued fraction terminating at the rational `1/(1 − (k+1)x)`.
-- **A Tier-1 detector already exists for linear rules.** [[berlekamp-massey](pages/berlekamp-massey.md)] returns the shortest linear recurrence generating a sequence - "shortest program" restricted to linear machines - from `2L` terms, without simulating anything; [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] measures how a degree-`e` nonlinear filter inflates that description (linear complexity `≤ C(d+e−1, e)`). The open question above is answered for the linear subclass; the 0/1-automaton case is the part still open.
-- **Spectra as lossy codes.** The skyline discrete Fourier transform (DFT) on [[spectral-analysis](pages/spectral-analysis.md)] compresses periodic skylines to a sparse frequency support (its compressed-sensing hook), and a graph spectrum is a lossy code for the castle whose collisions are exactly the isospectral pairs of [[isospectral-castles](pages/isospectral-castles.md)] - 10 cells for adjacency, 11 for Laplacian, 16 for both - the smallest castles where spectral compression loses information.
-- **Enumeration order as encoding.** Under a Gray-code order ([[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)]) consecutive castles differ in one column, so the whole space `{1..h}^w` is a one-symbol-per-step delta stream.
-- **The exact size of the Tier-2 codebook.** `A(w,h) = h^w − (h−1)^w` on [[castle-counting-function](pages/castle-counting-function.md)] - the difference-of-powers rows A000225, A001047, A005061, … - so `log₂ A(w,h)` is the exact generic cost and the `w·log₂ h` above is its leading term.
+- **Strip rules.** [[castle-strip](pages/castle-strip.md)] defines the strips of a rule and shows that their width generating function is rational, with a denominator dividing `det(I − xM)`; [[reachable-field-census](pages/reachable-field-census.md)] and [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] list the rules by their Perron root.
+- **Bounded height.** The tower words of height at most `k` form a regular language, with generating function `E_k(x) = 1/(1 − (k+1)x)`; without a height bound they form an unambiguous context-free language, and the generating function of the tower words by length is algebraic and not rational ([[tower-word-language](pages/tower-word-language.md)], [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]).
+- **Linear complexity.** [[berlekamp-massey](pages/berlekamp-massey.md)] returns the shortest linear recurrence of `N` terms when its order is at most `N/2`. On [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], a product of `e` terms of a `d`-stage linear recurrence has linear complexity at most `C(d + e − 1, e)`, `10 = C(5, 2)` for `d = 4`, `e = 2`.
+- **Spectra.** The DFT of a skyline that repeats with period `p` dividing `w` is zero outside the bins that are multiples of `w/p` ([[spectral-analysis](pages/spectral-analysis.md)]). The spectrum of the castle graph does not determine the castle: the smallest non-isomorphic castles with equal spectra have 10 cells for the adjacency matrix, 11 for the Laplacian and 16 for both ([[isospectral-castles](pages/isospectral-castles.md)]).
+- **Gray order.** In the reflected Gray order on `{1, …, h}^w`, consecutive skylines differ in one column by one ([[castle-gray-code](pages/castle-gray-code.md)]).
 
 ## Related Concepts
 
-- [[castle-representations](pages/castle-representations.md)] — the encodings that form the ladder.
-- [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the run-length encoding of the difference sequence; the first compression layer past the skyline.
-- [[castle-classification-shape](pages/castle-classification-shape.md)] — Axes 1–7, the shape axes that compressibility cross-cuts.
-- [[castle-entropy](pages/castle-entropy.md)] — the dual measure: the ceiling that compression approaches.
-- [[urd-step-strings](pages/urd-step-strings.md)], [[binary-string-bijection](pages/binary-string-bijection.md)] — the path and raster encodings at opposite ends of the ladder.
-- [[reachable-field-census](pages/reachable-field-census.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] — the rule factories that generate Tier-1 castles.
-- [[castle-counting-formula](pages/castle-counting-formula.md)] — `F(w,h)`, the count the skyline encodes within.
-- [[castle-strip](pages/castle-strip.md)] — the Tier-1 machine as a concept.
-- [[tower-word-language](pages/tower-word-language.md)] / [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] — regular vs. context-free, the language-theoretic tier ladder.
-- [[berlekamp-massey](pages/berlekamp-massey.md)] / [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] — linear complexity as a Tier-1 detector for linear rules.
-- [[spectral-analysis](pages/spectral-analysis.md)] / [[isospectral-castles](pages/isospectral-castles.md)] — spectra as lossy codes and their collisions.
-- [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] — Gray order as a delta encoding.
-- [[castle-counting-function](pages/castle-counting-function.md)] — the exact size of the generic codebook.
-- [[song-as-castle](pages/song-as-castle.md)] - the ladder run on a real waveform: a peak-normalized 16-bit signal is an `h = 65536` castle, FLAC's LPC + Rice is Tier 1, AAC is the lossy spectral tier, and Berlekamp-Massey over `F_65537` is the exact Tier-1 detector (linear complexity `N/2` on audio, `5` on a 5-tap LFSR skyline).
-- [[image-as-castle](pages/image-as-castle.md)] - the ladder on an image: PNG's Sub/Up/Average/Paeth filters are the Tier-1 predictors, JPEG's DCT the spectral tier, and the 2D height field is 32x smaller than its voxel raster.
-- [[castle-steganography](pages/castle-steganography.md)] - the "skip rule" reading of compression: one bit per castle of hidden capacity is exactly the parity clause priced on this page.
-- [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the dual view: conditioning is an oracle-side compression; H(B) vs H(N) makes the one-bit gap this page prices explicit.
-- [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
-
+- [[castle-representations](pages/castle-representations.md)] - the encodings that form the ladder.
+- [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] - the run-length description of the first differences, rung 3 of the ladder.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the shape types, predicates on single skylines.
+- [[castle-entropy](pages/castle-entropy.md)] - the counting entropy `log₂ A(w, h)`, the ceiling of tier 2.
+- [[urd-step-strings](pages/urd-step-strings.md)], [[binary-string-bijection](pages/binary-string-bijection.md)] - the step string and the binary strings of a block's first row.
+- [[castle-strip](pages/castle-strip.md)] - the strip rules of tier 1.
+- [[castle-counting-function](pages/castle-counting-function.md)] - the count `A(w, h)`, the size of the generic codebook.
+- [[song-as-castle](pages/song-as-castle.md)] - a waveform read as a castle: 16-bit samples as a castle of height 65536, FLAC's linear prediction with a residual, transform codes, and linear complexity over `F_65537` by Berlekamp-Massey.
+- [[image-as-castle](pages/image-as-castle.md)] - an image read as castles: PNG's row filters as predictors, JPEG as a transform code, and a height field `256/log₂ 256 = 32` times smaller than its voxel raster.
+- [[castle-steganography](pages/castle-steganography.md)] - hiding a message in castles, with one channel that carries one bit per castle in its block parity.
+- [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the entropy of castles conditioned on their block count and area.
+- [[one-bit-seminar](pages/one-bit-seminar.md)] - a seminar on the even-block condition as information.
 
 ## Appearances in Sources
 
-- [[project-euler-502-representations](pages/project-euler-502-representations.md)] — the three primary encodings and the "right encoding, wrong decomposition" note; the raster-vs-skyline gap.
-- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] — the run-length (streak, excursion/gap) encodings; the second compression layer.
+- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the binary-string, skyline and step-string encodings.
+- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the streak and excursion/gap encodings, rung 3 of the ladder.
 
 ## Footnotes
 
-[^1]: Exact: the skyline is a bijection with castles on the grid, so `log₂ A(w,h) ≤ w·log₂ h`, against `w·h` bits for the raster. The `w(h − log₂ h)` figure is the log-ratio of the two spaces.
+[^1]: The skyline is a bijection from the castles of width `w` and height `h` onto the skylines in `{1, …, h}^w` that reach `h`, so `log₂ A(w, h) ≤ w·log₂ h` bits suffice against `w·h` for the raster, and the difference is at least `w(h − log₂ h)`.
+[^2]: Verified by execution (Python 3.11 with NumPy, 2026-10-16): the characteristic polynomial `λ³ − λ − 1` and Perron root `1.3247` of the rule; its strips with free ends number `3, 4, 5, 7, 9, 12, 16, 21, 28, …` for `w = 1, 2, …`, `A000931(w + 9)`; `log₂ ψ = 0.4057`.
