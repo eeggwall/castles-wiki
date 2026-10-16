@@ -1,18 +1,18 @@
 ---
-title: Tone-castle catalogue - telephone signalling tones as exactly periodic castles
+title: Tone-castle catalogue - telephone signaling tones as exactly periodic castles
 category: Analyses
-summary: Every DTMF key, every R1 MF signal, the Bell precise-tone-plan call-progress tones and the 2600 Hz trunk tone, sampled 8000 times per second (the G.711 rate; the voice band is 300-3400 Hz, below the 4000 Hz Nyquist limit) and quantized to h = 256, as castles. A tone pair (f1, f2) in whole hertz has exact period w = 8000/gcd(8000, f1, f2), so every signal is a periodic castle of width w. All 15 MF signals have w = 80 (10 ms), shorter than the 27 ms minimum MF digit, so every MF burst holds at least two whole periods; DTMF keys have w = 8000 except 5 (4000) and 8 (2000), longer than the 45-55 ms DTMF burst, so a DTMF burst never holds a whole period and is only approximately periodic (best near-period phase error 0.006 to 0.035 cycles). The four nominal DFT atoms carry 99.997-99.999% of the mean-removed energy, but the exact support is a union of divisor classes: all w bins for 30 of the 35 castles. With the castle's tallest column first, blocks of r repeated periods = c_w + r·rise(c) with rise(c) odd for every signal, so the PE 502 parity of a burst alternates with the number of periods. Goertzel over a whole MF period is an exact DFT bin (off-tone response 0 before quantization, at least 49.6 dB down after); a DTMF detector's 136-sample block sits between bins, where the castle's area leaks in and moves the per-group margins by -2.9 to +3.9 dB until the mean is subtracted.
+summary: Every DTMF key, every R1 MF signal, the Bell precise-tone-plan call-progress tones and the 2600 Hz trunk tone, sampled 8000 times per second (the G.711 rate; the voice band is 300-3400 Hz, below the 4000 Hz Nyquist limit) and quantized to h = 256, as castles. A tone pair (f1, f2) in whole hertz has exact period w = 8000/gcd(8000, f1, f2), so every signal is a periodic castle of width w. All 15 MF signals have w = 80 (10 ms), shorter than the 27 ms minimum MF digit, so every MF burst holds at least two whole periods; DTMF keys have w = 8000 except 5 (4000) and 8 (2000), longer than the 45-55 ms DTMF burst, so a DTMF burst never holds a whole period and is only approximately periodic (best near-period phase error 0.006 to 0.035 cycles). The four nominal DFT atoms carry 99.997-99.999% of the mean-removed energy, but the exact support is a union of divisor classes: all w bins for 30 of the 35 castles. With the castle's tallest column first, a burst of r whole periods has c_w + r·rise(c) blocks, rise(c) the cyclic rise; rise(c) is odd for every signal in the catalogue, so the block parity of a burst alternates with r. Goertzel over a whole MF period is an exact DFT bin (off-tone response 0 before quantization, at least 49.6 dB down after); a DTMF detector's 136-sample block sits between bins, where the castle's area leaks in and moves the per-group margins by -2.9 to +3.9 dB until the mean is subtracted.
 tags: [analysis, castle, audio, telephone, dtmf, mf-signaling, goertzel, dft, periodicity, sparse-spectrum, divisor-classes, block-parity, quantization, signal-processing]
 sources: [project-euler-502-representations]
 created: 2026-10-01
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
-# Tone-castle catalogue - telephone signalling tones as exactly periodic castles
+# Tone-castle catalogue - telephone signaling tones as exactly periodic castles
 
-Telephone signalling tones are sums of one or two sine waves at whole-hertz frequencies, and the digital telephone network takes 8000 samples per second. A sampled tone is therefore exactly periodic, and one period, quantized, is a castle. This page builds that castle for every DTMF key, every R1 MF signal, the Bell call-progress tones and the 2600 Hz trunk tone, and records for each one its period, its skyline DFT support, its block count, and what a Goertzel detector sees.
+Telephone signaling tones are sums of one or two sine waves at whole-hertz frequencies, and the digital telephone network takes 8000 samples per second. A sampled tone is therefore exactly periodic, and one period, quantized, is a castle. This page builds that castle for every DTMF key, every R1 MF signal, the Bell call-progress tones and the 2600 Hz trunk tone, and records for each one its period, its skyline DFT support, its block count, and what a Goertzel detector sees.
 
-[[song-as-castle](pages/song-as-castle.md)] introduced the 2600 Hz tone (a width-40 castle) and the MF KP signal (width 80) as examples. [[spectral-analysis](pages/spectral-analysis.md)] §3 proves that the DFT support of a whole-number skyline is a union of divisor classes, which is why a quantized tone is sparse only approximately. This page runs both through the full set of signals.
+[[song-as-castle](pages/song-as-castle.md)] reads the 2600 Hz tone (a castle of width 40) and the MF KP signal (width 80) as castles. [[spectral-analysis](pages/spectral-analysis.md)] §3 proves that the DFT support of a skyline is bin 0 together with a union of divisor classes, so the support of a quantized tone contains the whole class of each of its frequencies.
 
 ## Sampling rate and bandwidth
 
@@ -31,7 +31,7 @@ x_j  =  Σ_i cos(2π f_i j / 8000),          j = 0, 1, 2, …
 c_{j+1}  =  1 + floor( 255 · (x_j + a) / (2a)  +  1/2 )      heights 1..256, h = 256
 ```
 
-Column `j + 1` holds sample `j`. The quantizer maps `[−a, a]` linearly onto `[1, 256]` and rounds halves up. Every tone is at its peak at `j = 0`, so `c_1 = 256 = h`: the touch rule holds on the first column, and every height is at least 1. The castle is the skyline encoding of [[castle-representations](pages/castle-representations.md)], 8 bits per column.
+Column `j + 1` holds sample `j`. The quantizer maps `[−a, a]` linearly onto `[1, 256]` and rounds halves up. Every tone is at its peak at `j = 0`, so `c_1 = 256`: the castle has height `h = 256`, reached at the first column, and every height is at least 1. The castle is the skyline encoding of [[castle-representations](pages/castle-representations.md)], 8 bits per column.
 
 **Period.** `cos(2π f j / 8000)` repeats when `f j / 8000` is a whole number, first at `j = 8000 / gcd(8000, f)`. A sum of tones repeats at the least common multiple of those periods:
 
@@ -68,7 +68,7 @@ Five of the eight DTMF frequencies are coprime to 8000 and have the longest poss
 
 ## MF signals: all width 80
 
-R1 multi-frequency signalling sends each of 15 codes as a pair from {700, 900, 1100, 1300, 1500, 1700} Hz.[^mf] The pair's gcd with 8000 is 100 in every case, so **every MF signal is a width-80 castle**, one period every 10 ms. The minimum MF timings are 27 ms per digit and 55 ms for KP,[^mf-timing] that is 216 and 440 samples: every MF burst holds at least 2.7 periods (KP at least 5.5).
+R1 multi-frequency signaling sends each of 15 codes as a pair from {700, 900, 1100, 1300, 1500, 1700} Hz.[^mf] The pair's gcd with 8000 is 100 in every case, so **every MF signal is a width-80 castle**, one period every 10 ms. The minimum MF timings are 27 ms per digit and 55 ms for KP,[^mf-timing] that is 216 and 440 samples: every MF burst holds at least 2.7 periods (KP at least 5.5).
 
 | code | tones (Hz) | atoms `k_1, k_2` | atom classes `d` | nonzero bins | blocks (one period) | `c_w` | even-block bursts of `r` periods |
 |---|---|---|---|---|---|---|---|
@@ -88,7 +88,7 @@ R1 multi-frequency signalling sends each of 15 codes as a pair from {700, 900, 1
 | KP2 | 1300 + 1700 | 13, 17 | 1, 1 | 64 | 2510 | 177 | `r` odd |
 | ST | 1500 + 1700 | 15, 17 | 5, 1 | 80 | 2559 | 168 | `r` even |
 
-Columns: the **atom class** of `k` is `d = gcd(k, w)`, the class `D_d` of [[spectral-analysis](pages/spectral-analysis.md)] §3, which has `φ(w/d)` bins (32 for `d = 1`, 8 for `d = 5` at `w = 80`). **Nonzero bins** counts the support of the quantized castle, bin 0 included. `c_w` is the last column's height; the last column fixes the block parity of repeated bursts (below).
+Columns: the **atom class** of `k` is `d = gcd(k, w)`, the class `D_d` of [[spectral-analysis](pages/spectral-analysis.md)] §3, which has `tot(w/d)` bins, `tot` Euler's totient (32 for `d = 1`, 8 for `d = 5` at `w = 80`). **Nonzero bins** counts the support of the quantized castle, bin 0 included. `c_w` is the last column's height; the last column fixes the block parity of repeated bursts (below).
 
 MF code 1 at `h = 9` (same quantizer with 8 in place of 255) shows the two tones beating: their difference, 200 Hz, gives an envelope that repeats every 40 columns.
 
@@ -183,17 +183,17 @@ Heights are whole numbers, so by [[spectral-analysis](pages/spectral-analysis.md
 - **30 of the 35 castles have all `w` bins nonzero.**
 - Five lose whole classes: DTMF A (`D_2`, `D_4`: 5600 of 8000 bins), DTMF 7 (`D_1600`, the four bins `1600, 3200, 4800, 6400`: 7996 bins), DTMF * (`D_2`, `D_10`: 6080 bins), MF 11/ST3 (`D_2`, `D_4`: 56 of 80 bins) and MF KP2 (`D_2`: 64 bins).
 
-The zero classes were confirmed in exact integer arithmetic: `ĉ_k = 0` for `k ∈ D_d` exactly when the cyclotomic polynomial `Φ_{w/d}(x)` divides `Σ c_{j+1} x^j`. The floating-point supports agree class by class, and no class is part zero and part nonzero.[^exec] So no tone castle is a sparse-spectrum castle in the exact sense of [[castle-classification-spectrum](pages/castle-classification-spectrum.md)]; each is approximately sparse, which is the regime [[spectral-analysis](pages/spectral-analysis.md)] §3 assigns to compressed sensing.
+The zero classes were confirmed in exact integer arithmetic: `ĉ_k = 0` for `k ∈ D_d` exactly when the cyclotomic polynomial `Φ_{w/d}(x)` divides `Σ c_{j+1} x^j`. Every other class is nonzero.[^exec] So no tone castle is a sparse-spectrum castle, whose support is bin 0 and at most one divisor class ([[castle-classification-spectrum](pages/castle-classification-spectrum.md)]), although its atoms carry at least 99.997% of the energy.
 
 ## Block parity of a tone burst
 
-The block count is `blocks(c) = c_1 + Σ max(0, c_{i+1} − c_i)` ([[castle-sign](pages/castle-sign.md)]). Let `rise(c)` be the **cyclic rise**, the same sum taken around the cycle, including the step from `c_w` back to `c_1`. A burst of `r` whole periods is the skyline `c` written `r` times, and since `c_1 = h` is the tallest column,
+The block count is `blocks(c) = c_1 + Σ max(0, c_{i+1} − c_i)` ([[castle-sign](pages/castle-sign.md)]). Let `rise(c)` be the **cyclic rise**, the same sum taken around the cycle, including the step from `c_w` back to `c_1`. A burst of `r` whole periods is the skyline `c` written `r` times. The rises inside one copy add up to `rise(c) − (c_1 − c_w)`, since `c_1 = h ≥ c_w`, and each of the `r − 1` junctions from `c_w` to `c_1` adds `c_1 − c_w`, so
 
 ```
-blocks(c repeated r times)  =  c_w  +  r · rise(c)
+blocks(c repeated r times)  =  c_1 + r (rise(c) − c_1 + c_w) + (r − 1)(c_1 − c_w)  =  c_w  +  r · rise(c).
 ```
 
-(checked for `r = 1, 2, 3, 5`). For every castle in the catalogue `rise(c)` is **odd**:
+The block parity of a burst therefore alternates with `r` exactly when `rise(c)` is odd. For every castle in the catalogue `rise(c)` is **odd**:
 
 - The skyline is symmetric, `c_{j+1} = c_{w−j+1}`, so the walk from column 1 to column `w/2 + 1` and the walk back are mirror images, and the rises on the way back are the falls on the way out. Hence `rise(c) = 2 · (falls on the way out) + c_{w/2+1} − c_1 ≡ c_{w/2+1} (mod 2)`, as `c_1 = 256` is even.
 - Every period in the catalogue is even. At `j = w/2` each tone is at `cos(π k_i) = ±1`. Both atoms even would make `w/2` a period, contradicting minimality, so at least one is odd: `x_{w/2} = −2` (both odd), `0` (one odd) or `−1` (a single odd tone), and the quantizer gives `c_{w/2+1} = 1, 129, 1`. Each is odd.
@@ -226,24 +226,18 @@ Run over a whole period (`N = w`) at a tone's own frequency, `power(f_i) = |ĉ_{
 | 6 | 13.7, 17.7 | 10.8, 15.9 | # | 13.2, 17.7 | 16.9, 15.9 |
 | B | 12.9, 19.8 | 10.2, 18.6 | D | 13.3, 20.1 | 16.8, 17.4 |
 
-Every key is detected correctly in both versions. The castle's margins differ from the ideal tone's by between about −2.9 and +3.9 dB, and the difference is not rounding: subtracting the castle's mean before the recursion restores every ideal margin to within 0.1 dB.[^exec] The castle's heights run from 1 to 256, so it carries a constant of about 128 (its area, bin 0). A constant is orthogonal to every whole-number bin of the block, but not to a fractional one, and it leaks most into the bin furthest from a whole number, 852 Hz at `k = 14.48`. Rows 770 Hz (keys 4, 5, 6, B), whose strongest competitor is 852 Hz, lose the most. At `N = 80` the MF bins are whole numbers and the area leaks nowhere.
-
-## Open problems
-
-- **Zero classes.** Five castles lose whole divisor classes (DTMF A, 7, *, MF 11/ST3, KP2) and the other thirty lose none. Which symmetry of the sampled pair and the rounding rule forces each zero class?
-- **Other quantizers.** The odd cyclic rise uses the linear quantizer with halves rounded up. Under the telephone network's 8-bit logarithmic encoding (mu-law, [[castle-phone-line](pages/castle-phone-line.md)]) the castle is still symmetric, so the parity of `rise(c)` is still the parity of the middle column; which signals keep an odd cyclic rise?
-- **Off-nominal tones.** Over the ±1.5% DTMF acceptance band, how does the best near-period inside a 45 ms burst vary with the frequency offset, and does any offset make a DTMF key exactly periodic within a burst?
+Every key is detected correctly in both versions. The castle's margins differ from the ideal tone's by between about −2.9 and +3.9 dB, and the difference is not rounding: subtracting the castle's mean before the recursion restores every ideal margin to within 0.06 dB.[^exec] The castle's heights run from 1 to 256, so it carries a constant, its mean height of about 128 (bin 0 of the DFT is its area). A constant is orthogonal to every whole-number bin of the block, but not to a fractional one, and it leaks most into the bin furthest from a whole number, 852 Hz at `k = 14.48`. Rows 770 Hz (keys 4, 5, 6, B), whose strongest competitor is 852 Hz, lose the most. At `N = 80` the MF bins are whole numbers and the area leaks nowhere.
 
 ## Related Concepts
 
-- [[song-as-castle](pages/song-as-castle.md)] - the 2600 Hz and KP examples this page extends, and the waveform-as-castle map at `h = 65536`.
+- [[song-as-castle](pages/song-as-castle.md)] - the 2600 Hz and KP castles, and a 16-bit waveform as a castle of height 65536.
 - [[spectral-analysis](pages/spectral-analysis.md)] - §3: the skyline DFT, the divisor-class theorem on supports, and the cyclic difference whose eigenbasis the Goertzel bins are.
 - [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - the sparse-spectrum predicate; tone castles are approximately sparse, not members.
-- [[castle-phone-line](pages/castle-phone-line.md)] - the same voice-band channel, sampled 8000 times per second, carrying castles as pitch-stepping tones, and its 8-bit logarithmic encoding.
+- [[castle-phone-line](pages/castle-phone-line.md)] - the same voice-band channel, sampled 8000 times per second, carrying castles as frequency-stepping tones, and its 8-bit logarithmic encoding.
 - [[castle-representations](pages/castle-representations.md)] - the skyline (integer tuple) encoding used for every castle here.
 - [[castle-sign](pages/castle-sign.md)] - the block count as first column plus total rise, behind the burst-parity formula.
 - [[castle-compression](pages/castle-compression.md)] - a periodic castle is described by one period and a repeat count, the parametric tier.
-- [[finite-fields](pages/finite-fields.md)] - cyclotomic polynomials and roots of unity, used for the exact zero-class check.
+- [[finite-fields](pages/finite-fields.md)] - arithmetic modulo a prime, used here to evaluate the height polynomial at roots of unity modulo primes `p ≡ 1 (mod 8000)`.
 
 ## Appearances in Sources
 
@@ -251,7 +245,7 @@ Every key is detected correctly in both versions. The castle's margins differ fr
 
 ## Footnotes
 
-[^exec]: Verified by execution (2026-10-01): Python 3 with NumPy and python-flint under `uv`. Castles built with the quantizer above (`floor(v + 1/2 + 10⁻⁹)`, so exact zero crossings `x_j = 0` round up to 129). Periods from `gcd`; every castle checked to have minimum height at least 1 and maximum 256. Supports from the FFT of one period, grouped by divisor class: no class is mixed, and the zero classes were confirmed exactly by divisibility of the integer polynomial `Σ c_{j+1} x^j` by `Φ_{w/d}` (python-flint `fmpz_poly`). Atom energy is `Σ_atoms |ĉ_k|² / Σ_{k≠0} |ĉ_k|²`. The identity `blocks(c repeated r times) = c_w + r · rise(c)` was checked on MF KP, DTMF 5 and busy for `r = 1, 2, 3, 5`. Replacing each frequency `f` by `8000 − f` gives the identical castle (checked on 2600 Hz, MF KP and DTMF 1). With halves rounded down instead, the middle column and the parity of `rise(c)` were recomputed for all 34 two-tone castles. Near-periods: exhaustive over `P = 1 … 440`. Goertzel: the recursion above in float64; the full-period Goertzel power matches `|ĉ_k|²` to 10 significant figures on MF KP. DTMF margins over the first 136 columns at the eight nominal frequencies, for the unquantized two-cosine signal, the castle, and the castle minus its block mean; MF margins over 80 columns at the six MF frequencies.
+[^exec]: Verified by execution (Python 3.11 with NumPy 1.26 and SymPy 1.14, 2026-10-16). Castles built with the quantizer above (`floor(v + 1/2 + 10⁻⁹)`, so exact zero crossings `x_j = 0` round up to 129); every castle has minimum height 1 and maximum 256. Periods from `gcd`; block counts, last columns and cyclic rises of all 35 castles, and the burst identity for `r = 1, 2, 3, 5` on the MF castles. Zero classes: for each castle and each proper divisor `d` of `w`, the height polynomial `Σ c_{j+1} x^j` evaluated at a primitive `(w/d)`-th root of unity modulo two primes `p ≡ 1 (mod 8000)` near `2^61`; a nonzero value proves the class nonzero, and each class found zero was confirmed by exact division by `Φ_{w/d}` in `Z[x]` (SymPy). Atom energy `Σ_atoms |ĉ_k|² / Σ_{k≠0} |ĉ_k|²` from the FFT. Replacing each `f` by `8000 − f` gives the identical castle (2600 Hz, MF KP, DTMF 1). With halves rounded down, the cyclic rise is odd for the 21 pairs with two odd atoms and even for the 13 with one. Near-periods exhaustive over `P = 1, …, 440`. Goertzel by the recursion above in double precision: the full-period power equals `|ĉ_k|²` on MF KP at bins 7, 11, 17 to 10 significant figures; MF margins over 80 columns at the six MF frequencies; DTMF margins over the first 136 columns at the eight nominal frequencies, for the two-cosine signal, the castle, and the castle minus its mean (within 0.06 dB of the ideal margins).
 [^mf]: https://en.wikipedia.org/wiki/Template:Multi-frequency_signaling_tones [synthesis] - the table "Multifrequency signals" marks two of the columns 700, 900, 1100, 1300, 1500, 1700 Hz for each code: 1 = 700+900, 2 = 700+1100, 3 = 900+1100, 4 = 700+1300, 5 = 900+1300, 6 = 1100+1300, 7 = 700+1500, 8 = 900+1500, 9 = 1100+1500, 0/10 = 1300+1500, 11/ST3 = 700+1700, 12/ST2 = 900+1700, KP = 1100+1700, KP2 = 1300+1700, ST = 1500+1700.
 [^mf-timing]: https://en.wikipedia.org/wiki/Multi-frequency_signaling §"Multi-frequency signals" - "The minimum timings of signals were initially at least 27 milliseconds per digit with 20 millisecond spacing. KP required at least 55 milliseconds as a precaution against activation of the sender by transients mimicking the KP signal."
 [^dtmf]: https://en.wikipedia.org/wiki/DTMF_signaling §"Keypad" - "each row represents the low-frequency component and each column represents the high-frequency component of the DTMF signal ... Pressing a key sends a combination of the row and column frequencies"; https://www.ti.com/lit/an/spra096a/spra096a.pdf p.2 Figure 1 [synthesis] - rows 697, 770, 852, 941 Hz carry keys `1 2 3 A`, `4 5 6 B`, `7 8 9 C`, `* 0 # D`; columns 1209, 1336, 1477, 1633 Hz.
