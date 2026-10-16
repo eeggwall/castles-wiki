@@ -1,64 +1,66 @@
 ---
 title: Simple tournament
 category: Concepts
-summary: A tournament T_n is simple if, for every proper vertex subset M, some outside vertex both beats and is beaten by vertices in M. Introduced by Muller-Nešetřil-Pelant (1975). Simple ⇒ strongly connected, but the converse fails: the unique strongly connected tournament on 4 vertices is not simple. Used in the proof of Tetali's classification of unique tournaments.
+summary: A tournament is simple if for every set M of at least two and fewer than all of its vertices, some vertex outside M beats a vertex of M and is beaten by a vertex of M. Tetali takes the notion from Muller, Nešetřil and Pelant (1975). A simple tournament on at least three vertices is strong, but the only strong tournament on 4 vertices is not simple; for n ≠ 4, Tetali quotes, every strong score vector has a simple realizer. The simple tournaments up to isomorphism number 1, 1, 1, 0, 3, 15, 197, 4008 for n = 1, …, 8 (OEIS A280772, checked by enumeration). The notion is the main tool in Tetali's classification of unique tournaments.
 tags: [concept, tournament, simple, strong, muller-nesetril-pelant, definition]
 sources: [tetali-1998-unique-tournaments]
 created: 2026-09-17
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Simple tournament
 
 ## Definition
 
-A tournament `T_n = (V, A)` is **simple** if for every proper subset `M ⊂ V` there exists a vertex `z ∈ V ∖ M` such that `z` both beats at least one vertex in `M` and is beaten by at least one vertex in `M`.[^1]
+A tournament `T_n` on the vertex set `V` is **simple** if for every proper subset `M` of `V` there is a vertex `z ∉ M` that beats at least one vertex of `M` and is beaten by at least one vertex of `M`.[^1] Taken literally the condition fails for every one-vertex set `M`, so it is read for `2 ≤ |M| < n`. Call `M` **uniform** if every vertex outside `M` either beats all of `M` or loses to all of `M`; a tournament is simple exactly when it has no uniform set `M` with `2 ≤ |M| < n`.
 
-The condition can only hold for `|M| ≥ 2`, and it is read that way. Equivalently, no subset `M` with `2 ≤ |M| < n` is uniform from the outside, that is, a set that every outside vertex either beats entirely or loses to entirely.
+Tetali takes the definition from Muller, Nešetřil and Pelant (1975), the reference the note gives "for information on simple tournaments".[^2]
 
-## Simple versus strongly connected
+*Example.* The 3-cycle is simple: for each two-vertex set `M`, the third vertex beats one vertex of `M` and loses to the other. The tournament on `{0, 1, 2, 3}` with the edges `0 → 3`, `3 → 2`, `2 → 1`, `1 → 0`, `2 → 0`, `3 → 1` is strong, since `0 → 3 → 2 → 1 → 0` is a cycle through all four vertices, and has score vector `(1, 1, 2, 2)`. It is not simple: `M = {1, 2}` is uniform, since `0` loses to both and `3` beats both.[^3]
 
-Tetali calls a simple tournament "clearly strong"; the argument works from three vertices up. A tournament on `n ≥ 3` vertices that is not strong splits as `V = X ∪ Y` with every vertex of `X` beating every vertex of `Y`, and whichever of `X`, `Y` has at least two vertices is uniform from the outside. On two vertices the transitive tournament is simple vacuously but not strong, which is why `(0, 1)` is forcibly simple.[^2]
+## Simple versus strong
 
-**The converse fails at `n = 4`.** The unique strongly connected tournament on 4 vertices (score `(1, 1, 2, 2)`) is strong but *not* simple. This is the exception noted by Tetali in the discussion after Definition 1.[^2] For `n ≠ 4`, Muller-Nešetřil-Pelant's Theorem 2 says every strong score vector has a simple realizer, making "simple" and "strong" interchangeable at the level of score sequences.[^3]
+Tetali calls a simple tournament "clearly strong".[^4] This holds on at least three vertices: a tournament on `n ≥ 3` vertices that is not strong splits its vertex set into nonempty parts `X` and `Y` with every vertex of `X` beating every vertex of `Y`, and whichever part has at least two vertices is uniform. On two vertices the transitive tournament is simple, since it has no set `M` with `2 ≤ |M| < 2`, and it is not strong; this is why `(0, 1)` is a forcibly simple score vector ([[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)]).
 
-## The counts behind the exception
+The converse fails at `n = 4`: the only strong tournament on 4 vertices, the one in the example, is not simple.[^4] For every other `n`, Tetali quotes Muller et al.'s Theorem 2: every score vector of a strong tournament on `n ≠ 4` vertices is also the score vector of a simple tournament.[^5] With the first paragraph, for `n ≥ 3`, `n ≠ 4`, a score vector belongs to a strong tournament exactly when it belongs to a simple one.
 
-The Online Encyclopedia of Integer Sequences (OEIS) count of strongly connected tournaments on `n` nodes is `A051337 = 1, 0, 1, 1, 6, 35, 353, 6008, …` for `n = 1, 2, 3, …`.[^5] The `n = 4` entry is the `1` in "the unique strongly connected tournament on 4 vertices", which is not simple. At `n = 5` there are `6` strong tournaments, of which only the regular one is unique; at `n = 6` and `n = 7` the `35` and `353` strong tournaments are exactly the rows [[tree-castle-by-area](pages/tree-castle-by-area.md)] exhausted by brute force (using the `is_strongly_connected` test on [[castle-snippets-strips](pages/castle-snippets-strips.md)]) to confirm that no strong tournament of size `≥ 6` is unique. The ambient count of all tournaments up to isomorphism is `A000568 = 1, 1, 2, 4, 12, 56, 456, 6880, …`.[^5]
+## Counts
 
-The wiki's other graph-theoretic object is the [[castle-graph](pages/castle-graph.md)] - bipartite, planar, a subgraph of `Z²`, always connected because of the full base row. The two meet in one number: the `h = 4` tree-castle count by area is `A000570`, the unique tournaments ([[unique-tournament](pages/unique-tournament.md)]).
+| `n` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+|---|---|---|---|---|---|---|---|---|
+| simple tournaments up to isomorphism, A280772 | 1 | 1 | 1 | 0 | 3 | 15 | 197 | 4008 |
+| strong tournaments, A051337 | 1 | 0 | 1 | 1 | 6 | 35 | 353 | 6008 |
+
+Every entry agrees with an enumeration of all tournaments on at most 8 vertices, which also confirms Theorem 2 for `n ≤ 8`, `n ≠ 4`.[^6] OEIS A280772, "Number of simple tournaments with n nodes", gives these eight terms and cites Table 1 of Muller, Nešetřil and Pelant.[^7]
 
 ## Role in Tetali's proof
 
-Tetali's classification of [[unique-tournament](pages/unique-tournament.md)]s uses simple tournaments as follows:[^4]
+Tetali's classification of [[unique-tournament](pages/unique-tournament.md)]s uses simple tournaments in three steps:[^8]
 
-1. For a strong tournament `T_n` in `Unique` with `n ≠ 4`, Muller-Nešetřil-Pelant Theorem 2 says the score of `T_n` has a simple realizer. Since `T_n` is unique, `T_n` itself must be that simple realizer.
-2. So the score of `T_n` is [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] - every realizer is simple, because in fact there is only one realizer and it is simple.
-3. Muller-Nešetřil-Pelant Theorem 3 lists all forcibly simple score vectors: exactly five, on 1, 2, 3, 5, 7 vertices.
-4. Filter the five to those with strong-and-unique realizers, and add the size-4 case by inspection.
+1. A strong unique tournament `T_n` with `n ≠ 4` is simple: by Theorem 2 its score vector has a simple realizer, and `T_n` is the only realizer.
+2. So its score vector is forcibly simple, every realizer being `T_n`.
+3. Theorem 3 of Muller et al., as Tetali quotes it, lists the five forcibly simple score vectors, on 1, 2, 3, 5 and 7 vertices; Tetali keeps those of strong unique tournaments and adds the size 4 separately.
 
-The size-4 exception is unavoidable at Step 1 - Muller-Nešetřil-Pelant Theorem 2 fails at `n = 4` because the unique strong tournament on 4 vertices is not simple.
+Step 1 is unavailable at `n = 4`, since the strong tournament on 4 vertices is not simple.
 
 ## Appearances in Sources
 
-- [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] - Definition 1 and the accompanying strong-vs-simple discussion (p.158 L60-67); Theorems 2 and 3 attributed to Muller-Nešetřil-Pelant 1975; used in the proof of Theorem 1.
+- [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] - Definition 1, the remark that a simple tournament is strong and the strong tournament on 4 vertices is not simple, and Theorems 2 and 3 of Muller et al. as Tetali paraphrases them.
 
 ## Related Concepts
 
-- [[unique-tournament](pages/unique-tournament.md)] - the class classified via simple/forcibly-simple.
-- [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] - the score-level version of simplicity.
-- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the castle side of `A000570`, and the brute-force sweep over the `35` and `353` strong tournaments of sizes 6 and 7.
-- [[castle-snippets](pages/castle-snippets.md)] - `is_strongly_connected(T)`, the strongly connected component (SCC) test for tournament matrices.
-- [[castle-graph](pages/castle-graph.md)] - the wiki's other graph-theoretic object; bipartite planar grids where tournaments are complete oriented graphs.
+- [[unique-tournament](pages/unique-tournament.md)] - the tournaments determined by their score vectors, classified with simple tournaments.
+- [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] - the score vectors all of whose realizers are simple.
+- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree skylines of height at most 4, equinumerous with the unique tournaments, and the enumeration of tournaments on at most 8 vertices.
+- [[castle-snippets-strips](pages/castle-snippets-strips.md)] - `is_strongly_connected(T)`, a strong-connectivity test for tournament matrices.
 
 ## Footnotes
 
-[^1]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.158 L63-65 — "Definition 1. `T_n` is simple if, for any proper subset `M` of `V(T_n)`, there exists a `z ∈ V(T_n) ∖ M` such that `z` beats at least one vertex in `M` and `z` is beaten by at least one vertex in `M`."
-
-[^2]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.158 L66-67 — "A simple tournament is clearly strong, but the converse is not necessarily true - the strong tournament on four vertices, for example, is not simple."
-
-[^3]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.158 L72-74 — "Theorem 2 (Muller et al.). For each score vector `S_n` which corresponds to a strong tournament on `n ≠ 4` vertices, there is a simple tournament which has the same score vector."
-
-[^4]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.158-159 L84-110 [synthesis] — the proof of Theorem 1 uses simple tournaments in the manner summarized here.
-
-[^5]: https://oeis.org/A051337 (2026-09-19) — "Number of strongly connected tournaments on n nodes" 1, 1, 0, 1, 1, 6, 35, 353, 6008, 178133, … (offset 0); https://oeis.org/A000568 (2026-09-19) — "Number of outcomes of unlabeled n-team round-robin tournaments" 1, 1, 1, 2, 4, 12, 56, 456, 6880, 191536, … (offset 0).
+[^1]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.158 L63-65 - "Definition 1. T_n is simple if, for any proper subset M of V(T_n), there exists a z ∈ V(T_n) ∖ M such that z beats at least one vertex in M and z is beaten by at least one vertex in M."
+[^2]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.158 L59-60, p.159 L132-133 - "We begin with the definition of a simple tournament (see [4] for information on simple tournaments)", and reference 4: "V. Muller, J. Nešetřil, and J. Pelant, Either tournaments or algebras?, Discrete Math. 11 (1975), 37-66."
+[^3]: Verified by execution (Python 3.11, 2026-10-16): the tournament of the example is the only strong tournament on 4 vertices up to isomorphism, and `{1, 2}` is its only uniform set of size 2 or 3.
+[^4]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.158 L66-67 - "A simple tournament is clearly strong, but the converse is not necessarily true - the strong tournament on four vertices, for example, is not simple."
+[^5]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.158 L70-74 - "Muller et al. [4] prove, inter alia, the following interesting theorems. We paraphrase the theorems to suit our terminology. Theorem 2 (Muller et al.). For each score vector S_n which corresponds to a strong tournament on n ≠ 4 vertices, there is a simple tournament which has the same score vector."
+[^6]: Verified by execution (Python 3.11, 2026-10-16): all tournaments on `n ≤ 8` vertices up to isomorphism, each tested for simplicity over all sets `M` with `2 ≤ |M| < n` and for strong connectivity; every simple class with `n ≥ 3` is strong, and every strong score vector with `n ≠ 4` has a simple realizer.
+[^7]: https://oeis.org/A280772 (read 2026-10-16) - "Number of simple tournaments with n nodes", offset 1, data `1, 1, 1, 0, 3, 15, 197, 4008`, a link to Müller, Nešetřil and Pelant, "Either tournaments or algebras?", Discrete Math. 11 (1975), "See table 1 on page 65". https://oeis.org/A051337 (read 2026-10-16) - "Number of strongly connected tournaments on n nodes", offset 0, `1, 1, 0, 1, 1, 6, 35, 353, 6008, …`.
+[^8]: [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] p.158-159 L84-110 [synthesis] - the proof of Theorem 1 from Theorems 2 and 3.
