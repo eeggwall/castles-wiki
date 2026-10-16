@@ -1,122 +1,123 @@
 ---
 title: Castle fibers seminar - char_2 across the primes
 category: Concepts
-summary: A seminar following one castle recurrence, P(2, L) = 1, 1, 3, 9, 19, 33, 59, 121, …, with characteristic polynomial char_2 = (x − 2)(x² − x + 2), followed through its fibers. p = 5 is a plain two-point fiber (period 24); p = 101 is the same shape, with the idempotent 76x² + 25x + 51 isolating the eigenvalue 2 (period 3400); p = 11 has three points because the quadratic splits exactly when p ≡ 1, 2, 4 (mod 7); p = 7 is fat, with a nilpotent, 6 ideals against 4 idempotents, and period 21 = 3 × 7; p = 2 is where everything meets, with x not a unit. Over Q the fibers assemble into P(2, L) = 2^L − U_L, the two parity sectors, split by the idempotent (x² − x + 2)/4, and over Z that idempotent and the inverse of x both need 1/2 because the sectors meet at (2, x); the norm relation α·ᾱ = 2 is the prime 2 splitting in Q(√−7). One table summarizes all six primes.
+summary: A seminar that follows the signed tower count P(2, L) = 1, 1, 3, 9, 19, 33, 59, 121, …, with characteristic polynomial char_2 = (x − 2)(x² − x + 2), through the fibers F_p[x]/(char_2) of the ring A = Z[x]/(char_2). At p = 5 the fiber is a product of two fields and the period of P(2, ·) mod 5 is 24; p = 101 has the same shape, the idempotent 76x² + 25x + 51 isolates the root 2, and the period is 3400; at p = 11 the quadratic splits, as it does for odd p ≠ 7 exactly when p ≡ 1, 2, 4 (mod 7), giving three points, 8 idempotents and period 10; p = 7 divides disc(char_2) = −112, and its fiber has a nonzero nilpotent, 6 ideals against 4 idempotents, and period 21 = 3 · 7; at p = 2, x is not a unit. Over Q, P(2, L) = 2^L − U_L, the two parity sectors, with U_L the Lucas sequence of (1 ± √−7)/2 (A107920), split by the idempotent (x² − x + 2)/4. Over Z that idempotent and the inverse of x need 1/2, the sectors meet at the prime (2, x), A has no idempotents other than 0 and 1, and α·ᾱ = 2 splits the prime 2 in Q(√−7). One table collects the six primes.
 tags: [concept, castle, seminar, pedagogy, teaching, ring, spectrum, finite-field, chinese-remainder-theorem, idempotent, nilradical, frobenius, quadratic-reciprocity, signed-tower-count, parity-sector]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory, oeis-mining-pe502]
 created: 2026-09-26
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Castle fibers seminar - `char_2` across the primes
 
-**Thesis.** One castle recurrence lives in one integer ring, and every mod-`p` experiment on the wiki is a look at one fiber of that ring. This seminar follows one example through six primes and then back to `Q` and `Z`.
+**Thesis.** The recurrence of the signed tower count `P(2, ·)` is multiplication by `x` in the ring `A = Z[x]/(char_2)`, and its behavior mod a prime `p`, its period, idempotents and nilpotents, is read off the fiber `A/pA`. The seminar computes the fibers at `p = 5, 101, 11, 7, 2`, then the ring over `Q` and over `Z`.
 
-**Structure.** Stop 0 sets up the object; Stops 1-7 each take one prime (or `Q`, or `Z`), one computation and one idea. The values quoted are reproduced in the Snippet section and on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)]. The theory pages behind it are [[castle-ring-spectrum](pages/castle-ring-spectrum.md)], [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] and [[idempotent-decomposition](pages/idempotent-decomposition.md)].
+**Structure.** Stop 0 defines the ring; Stops 1-5 take one prime each, Stop 6 the rationals and Stop 7 the integers, each with one computation and one *Idea:* line. The theory is on [[castle-ring-spectrum](pages/castle-ring-spectrum.md)], [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] and [[idempotent-decomposition](pages/idempotent-decomposition.md)], and the Snippet and the functions on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] reproduce the values.
 
 ## Stop 0 - the object
 
-The signed tower count at tower height `k = 2` ([[signed-tower-count](pages/signed-tower-count.md)]), that is towers of height `≤ 2` above the bottom row, so castles of height `≤ 3` ([[castle-notation](pages/castle-notation.md)]), is
+The signed tower count `P(k, L)` ([[signed-tower-count](pages/signed-tower-count.md)]) at tower height `k = 2` runs over the towers of height at most 2 on a base of length `L`, with column heights `c_1, …, c_L ∈ {0, 1, 2}` ([[castle-notation](pages/castle-notation.md)]). For `L = 0, …, 11`,
 
 ```
-P(2, L) = 1, 1, 3, 9, 19, 33, 59, 121, 259, 529, 1035, 2025, …        P(L) = 3P(L−1) − 4P(L−2) + 4P(L−3)
+P(2, L) = 1, 1, 3, 9, 19, 33, 59, 121, 259, 529, 1035, 2025        P(L) = 3P(L−1) − 4P(L−2) + 4P(L−3)
 ```
 
-Its characteristic polynomial is `char_2 = x³ − 3x² + 4x − 4 = (x − 2)(x² − x + 2)`.[^1] The recurrence lives in the ring `A = Z[x]/(char_2)`: integer polynomials, with `x³` replaced by `3x² − 4x + 4` whenever it appears, so that **multiplying by `x` is one step of the recurrence** ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)] §3).
+Its characteristic polynomial is `char_2 = x³ − 3x² + 4x − 4 = (x − 2)(x² − x + 2)`.[^1] In the ring `A = Z[x]/(char_2)` of integer polynomials with `x³` replaced by `3x² − 4x + 4`, multiplication by `x` is one step of the recurrence ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 3).
 
-Reducing mod a prime `p` gives the **fiber** `A/pA = F_p[x]/(char_2 mod p)`. Its points are the distinct irreducible factors of `char_2 mod p` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)], "The picture"). The seminar reads one fiber per stop.
+Reducing mod a prime `p` gives the **fiber** `A/pA = F_p[x]/(char_2 mod p)`, whose points are the distinct irreducible factors of `char_2 mod p` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)], section 1). Each stop reads one fiber.
 
-## Stop 1 - `p = 5`: a plain fiber
+## Stop 1 - `p = 5`: a product of two fields
 
-`char_2 ≡ (x − 2)(x² − x + 2) (mod 5)`, and the quadratic stays irreducible (its discriminant `−7 ≡ 3` is not a square mod 5). So the fiber has **two points**, with residue fields `F_5` and `F_25`. By the Chinese Remainder Theorem the ring splits:
+`char_2 ≡ (x − 2)(x² − x + 2) (mod 5)`, and the quadratic is irreducible: its discriminant `−7 ≡ 3` is not a square mod 5. So the fiber has two points, with residue fields `F_5` and `F_25`, and by the Chinese remainder theorem
 
 ```
 F_5[x]/(char_2)  ≅  F_5 × F_25            (evaluate at x = 2;  reduce mod x² − x + 2)
 ```
 
-Nothing repeats, so the fiber is **semisimple**, a product of fields with no nilpotents. Its 4 ideals are exactly the 4 idempotents (`0`, `1`, and the two "unit vectors"). The mod-5 period is `ord(x) = 24`: `ord(2) = 4` in `F_5^*`, and the root of the quadratic has order dividing `24 = 5² − 1` in `F_25^*`.[^2]
+No factor repeats, so the fiber is **semisimple**, a product of fields with no nonzero nilpotents, and each of its 4 ideals is generated by one of its 4 idempotents: `0`, `1` and the two elements that are `1` at one point and `0` at the other ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)], section 5). The period of `P(2, ·) mod 5` is the order of `x`, `24 = lcm(4, 24)`: `2` has order 4 in `F_5^*`, and the roots of the quadratic have order 24, so they generate `F_25^*`.[^2]
 
-*Idea:* reducing mod `p` turns eigenvalues into elements of finite fields, and the period is the `lcm` of their orders ([[finite-fields](pages/finite-fields.md)]).
+*Idea:* mod `p` the roots of `char_k` become elements of finite fields, and the period is the lcm of their orders ([[finite-fields](pages/finite-fields.md)]).
 
 ## Stop 2 - `p = 101`: the same shape, and the idempotent
 
-`101 ≡ 3 (mod 7)`, and the shape is the same as at 5: two points, `F_101 × F_{101²}`. The period is now `3400 = lcm(100, 3400)` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] §1).
+`101 ≡ 3 (mod 7)`, so by the rule of Stop 3 the quadratic is again irreducible: two points, `F_101 × F_{101²}`. `2` has order 100 in `F_101^*` and the roots of the quadratic have order 3400 in `F_{101²}^*`, so the period is `lcm(100, 3400) = 3400` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 1).[^2]
 
-The split can be written as explicit elements. The **idempotent** that is `1` on the `(x − 2)` point and `0` on the other is
+The idempotent that is `1` at the point `x − 2` and `0` at the other is
 
 ```
 e_1  =  (x² − x + 2)/4  =  76x² + 25x + 51   (mod 101)          e_1² = e_1,   e_1 + e_2 = 1,   e_1 e_2 = 0
 ```
 
-It is Lagrange interpolation: the other factor, divided by its value at `x = 2`. Since `x·(x² − x + 2) ≡ 2·(x² − x + 2)`, multiplying by `e_1` keeps only the eigenvalue 2: **`x^L · e_1 = 2^L · e_1`** ([[idempotent-decomposition](pages/idempotent-decomposition.md)]).[^3]
+with `e_2 = 1 − e_1`: the other factor divided by its value `4` at `x = 2`. Since `x · (x² − x + 2) = char_2 + 2 · (x² − x + 2)`, `x e_1 = 2 e_1`, so `x^L e_1 = 2^L e_1`, and multiplication by `e_1` keeps only the root 2 ([[idempotent-decomposition](pages/idempotent-decomposition.md)]).[^3]
 
-*Idea:* a splitting of a ring and its idempotents are the same thing (exercise 17.19).
+*Idea:* a commutative ring is a product of two nonzero rings exactly when it has an idempotent other than 0 and 1 (exercise 17.19); the idempotent writes the splitting as an element of the ring.
 
-## Stop 3 - `p = 11`: three points, and why
+## Stop 3 - `p = 11`: three points
 
-Mod 11 the quadratic splits too: `char_2 ≡ (x − 2)(x + 4)(x − 5)`, three points, all `F_11`, and 8 idempotents. The period drops to 10, since every eigenvalue lives in `F_11^*`.
+Mod 11 the quadratic splits: `char_2 ≡ (x − 2)(x + 4)(x − 5)`, three points with residue field `F_11`, and `2^3 = 8` idempotents. The roots `2, 7, 5` have orders 10, 10 and 5 in `F_11^*`, so the period is 10.[^4]
 
-Which primes do this? The quadratic `x² − x + 2` splits mod an odd `p ≠ 7` exactly when its discriminant `−7` is a square mod `p`, and quadratic reciprocity turns that into a condition on `p mod 7`:
+The quadratic `x² − x + 2` splits mod an odd prime `p ≠ 7` exactly when its discriminant `−7` is a square mod `p`. By quadratic reciprocity `(−7/p) = (p/7)` for odd `p ≠ 7`, and the nonzero squares mod 7 are 1, 2 and 4, so
 
 ```
-x² − x + 2 splits mod p   ⇔   p ≡ 1, 2, 4 (mod 7)          (checked for every prime 3 ≤ p < 200, p ≠ 7)
+x² − x + 2 splits mod p   ⇔   p ≡ 1, 2, 4 (mod 7)          (odd p ≠ 7)
 ```
 
-So `11 ≡ 4` splits, while `3, 5, 101` (`≡ 3, 5, 3`) do not.[^4] It is the `char_2` analogue of the `char_1` rule "`p ≡ 1 (mod 4)`" on [[finite-fields](pages/finite-fields.md)].
+`11 ≡ 4` splits, and `3, 5, 101`, which are `≡ 3, 5, 3`, do not.[^4] For `char_1 = (x − 1)² + 1`, with discriminant `−4`, the rule is `p ≡ 1 (mod 4)` ([[finite-fields](pages/finite-fields.md)]).
 
-*Idea:* for odd `p ≠ 7` the shape of the fiber is decided by `p mod 7`, through quadratic reciprocity ([[mod-p-observatory](pages/mod-p-observatory.md)]).
+*Idea:* for odd `p ≠ 7`, the residue `p mod 7` decides whether the fiber of `char_2` has two points or three.
 
 ## Stop 4 - `p = 7`: a fat fiber
 
-`7` divides the discriminant `disc(char_2) = −112 = −2⁴·7`, and the fiber gets a repeated factor: `char_2 ≡ (x − 2)(x + 3)² (mod 7)`. It still has two points, but it is **fat**:
+7 divides `disc(char_2) = −112 = −2⁴ · 7`, and `char_2 ≡ (x − 2)(x + 3)² (mod 7)`. The fiber still has two points, but it is **fat**, with nonzero nilpotents:
 
-- `(x − 2)(x + 3)` is a nonzero **nilpotent**: its square is a multiple of `char_2`. The fiber is not semisimple.
-- It has **6 ideals but only 4 idempotents**. The extra ideals `(x + 3)` and `(x − 2)(x + 3)` cut partway into the fat factor.
-- **Frobenius** `a ↦ a^7`, a linear map on the fiber, loses rank: rank 2 instead of 3. Its fixed space still has dimension 2, one per point.
-- The period is **`21 = 3 × 7`**. Throw away the nilpotents and the reduced fiber `F_7[x]/((x − 2)(x + 3))` has period 3; the nilradical contributes exactly the extra factor 7 ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §3).[^5]
+- `(x − 2)(x + 3)` is nonzero and its square `(x − 2) · char_2` is `0`, so the fiber is not semisimple.
+- It has `2 · 3 = 6` ideals, one per monic divisor of `char_2 mod 7`, and `2^2 = 4` idempotents; no idempotent generates the ideals `(x + 3)` and `((x − 2)(x + 3))`.
+- Frobenius `a ↦ a^7`, an `F_7`-linear map of the fiber, has rank 2, not 3, and its fixed space has dimension 2, one per point ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)], section 6).
+- The period is `21 = 3 · 7`. In the reduced fiber `F_7[x]/((x − 2)(x + 3))` both roots `2` and `−3` have order 3, so its period is 3, and the nilradical multiplies it by 7 ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)], section 3).[^5]
 
-*Idea:* repeated factors mean nilpotents, and nilpotents mean an extra factor of `p` in the period. The book's local-ring exercise `R/M^n` (13.26) makes `F_7[x]/((x + 3)²)` a local ring, one fat point.
+*Idea:* a factor of multiplicity `m` gives nonzero nilpotents and multiplies the period by `p^{⌈log_p m⌉}`, here 7. The local factor `F_7[x]/((x + 3)²)` is a ring `R/M^n` of exercise 13.26, local with maximal ideal `(x + 3)`: one fat point.
 
-## Stop 5 - `p = 2`: where everything meets
+## Stop 5 - `p = 2`: where the points meet
 
-`char_2 ≡ x²(x + 1) (mod 2)`. Two points, `(2, x)` and `(2, x + 1)`, and the first is fat. Here even `x` fails to be a unit: it lies in the fat point. Every castle count agrees mod 2, since `P(2, L) ≡ T(2, L) = 3^L ≡ 1` (signs disappear mod 2), so the sequence mod 2 is `1, 1, 1, …`.[^6]
+`char_2 ≡ x²(x + 1) (mod 2)`. The fiber has two points, `(2, x)` and `(2, x + 1)`, and the first is fat. `x` lies in the maximal ideal `(2, x)`, so it is not a unit, and the order of `x` gives no period. The sequence is constant: `P(2, L) ≡ T(2, L) = 3^L ≡ 1 (mod 2)`, since the signs vanish mod 2 and `T(2, L)` counts all the towers.[^6]
 
-*Idea:* 2 is the one prime dividing the product of the eigenvalues, `4` (`char_2(0) = −4`); Stop 7 shows that the sector idempotent and the inverse of `x` fail to lift there.
+*Idea:* 2 is the only prime dividing the product `2 · αᾱ = 4 = −char_2(0)` of the roots; Stop 7 shows that the sector idempotent and the inverse of `x` exist over every odd prime and fail at 2.
 
 ## Stop 6 - over `Q`: the two sectors
 
-Stop dividing by `p` and work with fractions. Over `Q`, `char_2` has two irreducible factors, the two **parity sectors** of [[tower-parity-sectors](pages/tower-parity-sectors.md)]:
+Over `Q`, `char_2` has the two irreducible factors `x − 2` and `x² − x + 2`, the two parity sectors of [[tower-parity-sectors](pages/tower-parity-sectors.md)]:
 
 ```
-Q[x]/(char_2)  ≅  Q × Q(√−7)          P(2, L)  =  2^L  −  U_L,     U_L = 0, 1, 1, −1, −3, −1, 5, 7, −3, −17, …
+Q[x]/(char_2)  ≅  Q × Q(√−7)          P(2, L)  =  2^L  −  U_L,     U_L = 0, 1, 1, −1, −3, −1, 5, 7, −3, −17, −11, 23, …
 ```
 
-`2^L` is the even-last-column sector (the dominant eigenvalue 2) and `−U_L` is the odd sector, where `U_L` is the Lucas sequence of the roots `α, ᾱ = (1 ± √−7)/2` (OEIS A107920).[^7] The idempotent that separates the sectors is the rational element
+`2^L` is the `+1` sector, the signed count of the towers whose last column has even height, with root 2. `−U_L` is the `−1` sector, odd last column, where `U_L = (α^L − ᾱ^L)/(α − ᾱ)` is the Lucas sequence `U_L(1, 2)` of the roots `α, ᾱ = (1 ± √−7)/2` of `x² − x + 2`, A107920 in the OEIS.[^7] The idempotent of `Q[x]/(char_2)` that separates the sectors is
 
 ```
 e  =  (x² − x + 2)/4
 ```
 
-and **Stop 2's `e_1` is this `e` reduced mod 101**, with `1/4 ≡ 76`. Every odd fiber inherits the sector split from this one rational element.
+and Stop 2's `e_1` is `e` reduced mod 101, with `1/4 ≡ 76`.
 
-*Idea:* the fibers are shadows of one object over `Q`. Their idempotents come from the rational idempotent by reduction.
+*Idea:* at every odd prime `p` the reductions of `e` and `1 − e` are idempotents of the fiber. Where the quadratic splits, as at `p = 11`, the fiber has four more, which split the quadratic sector and are reductions of no idempotent of `Q[x]/(char_2)`.
 
-## Stop 7 - over `Z`: the whole picture
+## Stop 7 - over `Z`: the whole ring
 
-Now the integer ring `A = Z[x]/(char_2)` itself.
+The ring `A = Z[x]/(char_2)` itself:
 
-- **The sectors meet at `(2, x)`.** Mod 2 the sector factors become `x − 2 ≡ x` and `x² − x + 2 ≡ x(x + 1)`, which share the point `(2, x)`. Their resultant is `4 = 2²`: they can only meet over 2.[^8]
-- **So `A` has no idempotents besides 0 and 1.** A splitting of `A` would split its spectrum in two, but the two sectors are glued at `(2, x)`. The rational `e = (x² − x + 2)/4` needs the `1/4`. The same happens to `x`: `x·(x² − 3x + 4) = 4` in `A`, so `x^{−1} = (x² − 3x + 4)/4` exists in every odd fiber but not in `A`. Both the sector idempotent and the inverse of `x` need `1/2`, the way `5` is idempotent mod 10 but not in `Z` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §5).
-- **The only fat fibers are over 2 and 7**, the primes dividing `disc(char_2) = −112`.
-- **2 splits in `Q(√−7)`.** Mod 2 the quadratic `x² − x + 2 ≡ x(x + 1)` has two roots, so the prime 2 splits into `α` and `ᾱ` in the ring of integers `Z[(1 + √−7)/2]`, with `α·ᾱ = 2`. This is the same norm relation that explains the `d = 3` linear-complexity deficits of the castle cryptosystem ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] §5), now read as the prime 2 splitting.[^9]
+- **The sectors meet at `(2, x)`.** The resultant of `x − 2` and `x² − x + 2` is the value `4 = 2²` of the quadratic at 2, so the two sector factors share a root mod `p` only at `p = 2`. Mod 2 they are `x` and `x(x + 1)`, which share the point `(2, x)`.[^8]
+- **`A` has no idempotents other than 0 and 1.** `A` is a subring of `Q[x]/(char_2) ≅ Q × Q(√−7)`, whose idempotents are `0`, `1`, `e` and `1 − e`, and `e = (x² − x + 2)/4` does not have integer coefficients. In terms of the spectrum, an idempotent of `A` other than 0 and 1 would split `Spec A` into two disjoint closed sets, and the two sectors meet at `(2, x)` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)], section 5).
+- **`x` is not a unit of `A`.** Its norm, the product 4 of the roots, is not `±1`. Since `x · (x² − 3x + 4) = char_2 + 4`, `x · (x² − 3x + 4) = 4` in `A`, and `x^{−1} = (x² − 3x + 4)/4` exists in every fiber over an odd prime. The sector idempotent and the inverse of `x` both lie in `A[1/2]` and not in `A`.
+- **The fat fibers are over 2 and 7**, the primes dividing `disc(char_2) = −112`.
+- **2 splits in `Q(√−7)`.** Mod 2 the quadratic `x² − x + 2 ≡ x(x + 1)` has two distinct roots, so the prime 2 is the product of two distinct primes of norm 2 in the ring of integers `Z[α] = Z[(1 + √−7)/2]` of `Q(√−7)`; they are `(α)` and `(ᾱ)`, since `α · ᾱ = 2`.[^9] The relation `αᾱ = 2` also gives the two `d = 3` linear-complexity deficits of [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] (section 5): it makes the product of the roots `α` and `ᾱ` equal to the root 2, and it cancels the coefficient of `4 = 2αᾱ` in a product of three shifts.
 
-*Idea:* the observatory's rows are the fibers of one integer ring, the sectors are its components, and the components meet over the prime 2.
+*Idea:* the periods mod `p` that [[mod-p-observatory](pages/mod-p-observatory.md)] combines are orders of `x` in the fibers of `A`, and `Spec A` has two components, the parity sectors, which meet only over 2, at `(2, x)`.
 
 ## Summary table
 
 `char_2` across six primes:
 
-| `p` | `char_2 mod p` (degree, multiplicity) | points | fat? | Frobenius (rank, fixed dim) | ideals / idempotents | period of `P(2, ·) mod p` |
+| `p` | `char_2 mod p` (degree, multiplicity) | points | fat? | Frobenius (rank, fixed-space dimension) | ideals / idempotents | period of `P(2, ·) mod p` |
 |---|---|---|---|---|---|---|
 | 2 | (1,1), (1,**2**) | 2 | yes | (2, 2) | 6 / 4 | - (`x` not a unit; sequence `≡ 1`) |
 | 3 | (1,1), (2,1) | 2 | no | (3, 2) | 4 / 4 | 8 |
@@ -125,7 +126,7 @@ Now the integer ring `A = Z[x]/(char_2)` itself.
 | 11 | (1,1), (1,1), (1,1) | 3 | no | (3, 3) | 8 / 8 | 10 |
 | 101 | (1,1), (2,1) | 2 | no | (3, 2) | 4 / 4 | 3400 |
 
-For odd `p ≠ 7` the number of points is decided by `p mod 7`. Fat rows are exactly the primes dividing `−112`. Frobenius rank drops exactly on fat rows, and its fixed dimension always equals the number of points. Ideals equal idempotents exactly on non-fat rows.
+For odd `p ≠ 7` the number of points is 2 or 3 according to `p mod 7` (Stop 3). The fat rows are the primes dividing `−112`. The rank of Frobenius is below 3 exactly on the fat rows, and the dimension of its fixed space is the number of points, as the Proposition of [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] (section 6) states. The numbers of ideals and of idempotents agree exactly on the rows that are not fat.
 
 ## Snippet
 
@@ -154,10 +155,10 @@ def fiber_board(k, primes):
 
 ## Exercises
 
-1. Predict the board row for `p = 29` before computing it. (`29 ≡ 1 (mod 7)`: three points, not fat, Frobenius `(3, 3)`, 8 ideals and 8 idempotents; the period divides `28`.)
+1. Predict the row of the table for `p = 29` before computing it. (`29 ≡ 1 (mod 7)`: three points, not fat, Frobenius `(3, 3)`, 8 ideals and 8 idempotents; the period divides `28`, and it is 28.)
 2. Run `fiber_board(4, [3, 5, 107])` and find the fat rows. (`disc(char_4) = 2¹⁶·3·107`.)
 3. Write down the three idempotents of the `p = 11` fiber as Lagrange polynomials through `2, −4, 5`, and check that the rational `e` of Stop 6 reduces to the one at `2`, and `1 − e` to the sum of the other two.
-4. Explain why every fiber of `char_2`, including `p = 2`, has at least two points, so no choice of prime lets the cryptosystem of [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] avoid a CRT split of `char_2`. Then explain, using Stop 7, why the idempotents of the `p = 2` fiber cannot be reductions of Stop 6's `e`.
+4. Explain why every fiber of `char_2`, including `p = 2`, has at least two points, so that no choice of prime lets the cryptosystem of [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] avoid a CRT split of `char_2`. Then explain, using Stop 7, why the idempotents of the `p = 2` fiber cannot be reductions of Stop 6's `e`.
 
 ## Appearances in Sources
 
@@ -166,31 +167,26 @@ def fiber_board(k, primes):
 
 ## Related Concepts
 
-- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the theory page this seminar walks through.
-- [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] / [[idempotent-decomposition](pages/idempotent-decomposition.md)] - Stops 1-3 and 6.
-- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - unit groups and periods of the same fibers; the `α·ᾱ = 2` deficit of Stop 7.
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the two sectors of Stop 6.
-- [[finite-fields](pages/finite-fields.md)] / [[mod-p-observatory](pages/mod-p-observatory.md)] - Stops 1-4 one prime at a time.
-- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the same ring used as a cryptosystem.
-- [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the companion seminar for the counting side.
-- [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - the functions the board uses.
-- [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the seminar on the same parity sectors from the combinatorial side.
-- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the seminar on castle spectra and Kac's question.
-- [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - the seminar on OEIS mining as a research method.
-- [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
-- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through its sandpile group, clock, identity and avalanches.
-- [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages of the silver-ratio strip, the castle cryptography series, and audio as castles.
-
+- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the fibers, components, nilradicals and Frobenius of `Z[x]/(char_k)` for every `k`; this seminar is the case `k = 2`.
+- [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the splitting of the fibers in Stops 1-3.
+- [[idempotent-decomposition](pages/idempotent-decomposition.md)] - the idempotents of Stops 2, 3 and 6, and the idempotent counts `2^r` of the fibers.
+- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the order of `x` at `p = 101` (section 1), and the linear-complexity deficits that come from `αᾱ = 2` (section 5).
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the two sectors of Stop 6, with A107920 as the odd sector at `k = 2`.
+- [[finite-fields](pages/finite-fields.md)] - the orders of the roots in `F_p^*` and `F_{p²}^*`, and the rule `p ≡ 1 (mod 4)` for `char_1`.
+- [[mod-p-observatory](pages/mod-p-observatory.md)] - the periods of `A^e` mod 3, 5 and 7, built from the orders of `x` in these fibers, and the double root of `char_2 mod 7`.
+- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `F_p[x]/(char_2)` as a cryptosystem, with its CRT projections at `p = 101`.
+- [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the seminar that derives `T(k, L) = (k + 1)^L` and the signed count `P(k, L)`.
+- [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the seminar on the parity-sector split of `P(6, ·)` and Hardin's word counts.
+- [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - `char_k`, `x_order`, `reduced_period`, `frobenius_profile`, `fiber_ideal_count`, `sector_idempotent` and `x_inverse`.
 
 ## Footnotes
 
-[^1]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L31-37 [synthesis] - "P(2): x^3 - 3x^2 + 4x - 4 (= (x-2)(x^2-x+2))" in the `P(k, ·)` family. The terms `1, 1, 3, 9, 19, 33, 59, 121, 259, 529, 1035, 2025` were recomputed from the recurrence `P(L) = 3P(L−1) − 4P(L−2) + 4P(L−3)` (2026-09-26) and match `p_signed(2, L)` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] through `L = 9`.
-[^2]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `sp.factor_list(char_2, modulus=5)` gives `(x − 2)(x² − x + 2)`; `ord(x) = 24` in `F_5[x]/(char_2)` by stripping prime factors of the unit-group order `4 · 24`; `ord(2 mod 5) = 4`. The CRT split is [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.20.
-[^3]: Verified by execution (Python 3.10, SymPy, 2026-09-26) under `crt_idempotents` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)]: `−25x² + 25x − 50 ≡ 76x² + 25x + 51 (mod 101)` is idempotent mod `char_2`, and the pair sums to 1 with product 0. Splitting ⇔ idempotent is [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.19.
-[^4]: Verified by execution (Python 3.10, SymPy, 2026-09-26): for every prime `3 ≤ p < 200`, `p ≠ 7`, `x² − x + 2` has two factors mod `p` iff `p mod 7 ∈ {1, 2, 4}`; `char_2 mod 11 = (x − 2)(x + 4)(x − 5)`, period 10. The rule is quadratic reciprocity, `(−7/p) = (p/7)` for odd `p ≠ 7`.
-[^5]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `char_2 mod 7 = (x − 2)(x + 3)²`; `((x − 2)(x + 3))² ≡ 0 mod (char_2, 7)`; ideal count `∏ (m_i + 1) = 6`, idempotents `2^2 = 4`; Frobenius rank 2 and fixed dimension 2 (`frobenius_profile`); `ord(x) = 21` in the fiber and `3` in `F_7[x]/((x − 2)(x + 3))` (`reduced_period`). The local-ring fact is [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 13.26.
-[^6]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `char_2 mod 2 = x²(x + 1)`; `P(2, L) mod 2 = 1` for `L ≤ 11`. `P ≡ T (mod 2)` because the signed and unsigned counts differ only in signs, and `T(2, L) = 3^L` ([[signed-tower-count](pages/signed-tower-count.md)]).
-[^7]: Verified by execution (2026-09-26): with `A = 1` and `U_L` satisfying `U_L = U_{L−1} − 2U_{L−2}`, `U_0 = 0`, `U_1 = 1`, the identity `P(2, L) = 2^L − U_L` holds for `L ≤ 11` (e.g. `529 = 512 + 17`, `U_9 = −17`). `−U_L = P_odd(2, L)` is the odd-sector sequence identified with `−A107920` on [[tower-parity-sectors](pages/tower-parity-sectors.md)]; the rational idempotent `(x² − x + 2)/4` is pinned under `sector_idempotent(2)` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].
-[^8]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `sp.resultant(x − 2, x² − x + 2, x) = 4`; `x·(x² − 3x + 4) = char_2 + 4`, so `x·(x² − 3x + 4) ≡ 4` in `A` (`x_inverse(2)` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)]). The failure of idempotents and units to lift is [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Exs. 12.19 and 4.10.
-[^9]: `x² − x + 2 ≡ x(x + 1) (mod 2)` has two distinct roots, so by the Dedekind criterion 2 splits into two primes of norm 2 in `Z[(1 + √−7)/2]`, generated by the roots `α, ᾱ = (1 ± √−7)/2`, whose product is the constant term 2 (Vieta). The same relation `α·ᾱ = 2` is derived and used on [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] §5.
+[^1]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L31-37 [synthesis] - "P(2): x^3 - 3x^2 + 4x - 4 (= (x-2)(x^2-x+2))" in the `P(k, ·)` family. The terms for `L ≤ 11` were recomputed by summation over all `3^L` towers and from the recurrence (Python 3.11, 2026-10-16), and match `p_signed(2, L)` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].
+[^2]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `char_2 ≡ (x − 2)(x² − x + 2)` mod 5 and mod 101, with the quadratic irreducible; the order of `x` in `F_p[x]/(x² − x + 2)` is 24 at `p = 5` and 3400 at `p = 101`; `ord(2) = 4` mod 5 and 100 mod 101; `x_order(char_2, p)` is 24 and 3400. The CRT split is [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.20.
+[^3]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `crt_idempotents(char_k(2), 101)` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] returns `−25x² + 25x − 50 ≡ 76x² + 25x + 51` and `25x² − 25x − 50 ≡ 25x² − 25x + 51 (mod 101)`, each idempotent mod `char_2`, with sum 1, product 0 and `x e_1 ≡ 2 e_1`. Splitting ⇔ idempotent is [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.19.
+[^4]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): for every prime `3 ≤ p < 200`, `p ≠ 7`, `x² − x + 2` has two factors mod `p` exactly when `p mod 7 ∈ {1, 2, 4}`; `char_2 mod 11 = (x − 2)(x + 4)(x − 5)`, the roots `2, 7, 5` of orders 10, 10, 5, and period 10.
+[^5]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `char_2 mod 7 = (x − 2)(x + 3)²`; `((x − 2)(x + 3))² ≡ 0 mod (char_2, 7)`; `fiber_ideal_count(2, 7) = (6, 4)`; `frobenius_profile(2, 7) = (2, 2)`; `reduced_period(2, 7) = (3, 7, 21)`. The local-ring fact is [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 13.26.
+[^6]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `char_2 mod 2 = x²(x + 1)`; `P(2, L) mod 2 = 1` for `L ≤ 11`. `P ≡ T (mod 2)` because the signed and unsigned counts differ only in signs, and `T(2, L) = 3^L` ([[signed-tower-count](pages/signed-tower-count.md)]).
+[^7]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): with `U_0 = 0`, `U_1 = 1`, `U_L = U_{L−1} − 2U_{L−2}`, the identity `P(2, L) = 2^L − U_L` holds for `L ≤ 11` against summation over all towers (e.g. `529 = 512 + 17`, `U_9 = −17`), and the signed count of the towers with last column of even height is `2^L` for `L ≤ 6`; `sector_idempotent(2)` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] returns `x²/4 − x/4 + 1/2` with denominator exponent 2. https://oeis.org/A107920 (read 2026-10-16) - "Lucas and Lehmer numbers with parameters (1 +- sqrt(-7))/2."; "This is the Lucas Sequence U_n(P, Q) = U_n(1, 2)"; data `0, 1, 1, -1, -3, -1, 5, 7, -3, -17, -11, 23`.
+[^8]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `sp.resultant(x − 2, x² − x + 2, x) = 4`; `x·(x² − 3x + 4) − char_2 = 4`, and `x_inverse(2)` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] returns `(x² − 3x + 4, 4)`. The failure of idempotents and units to lift is [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Exs. 12.19 and 4.10.
+[^9]: `Z[α]`, with `α` a root of `x² − x + 2`, is the ring of integers of `Q(√−7)` because `−7 ≡ 1 (mod 4)`, so the factorization of 2 follows that of `x² − x + 2 ≡ x(x + 1) (mod 2)`: two distinct primes of norm 2. `α ᾱ = 2` is the constant term of `x² − x + 2`, so the two primes are `(α)` and `(ᾱ)`. The relation `αᾱ = 2` is used on [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 5.
