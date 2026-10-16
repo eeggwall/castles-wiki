@@ -51,7 +51,7 @@ The notes draft an OEIS comment for each of `A005408`, `A005891`, `A063490` and 
 - [[narayana-numbers](pages/narayana-numbers.md)] - `N(n, k)` and its other counts.
 - [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the convex castles, counted by a binomial coefficient.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the mining pass these notes belong to.
-- [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the entropy of the block count of towers, used as a model for the block count of castles.
+- [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the entropy of the block count of castles, and why the tower counts by blocks, which have no finite total at fixed base length, are not a model for it.
 
 ## Footnotes
 

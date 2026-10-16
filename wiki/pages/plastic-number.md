@@ -94,7 +94,7 @@ Three powers of `ψ` are growth constants on the wiki:
 | constant | value | where |
 |---|---|---|
 | `2ψ²` | `3.5098` | the signed tower count `P(6, ·)` (section *The signed tower count at k = 6*). The castle graph of `(1, 1, 2, 7, 7, 5, 7, 7)` has spectral radius `8.0 · 10⁻⁹` below `2ψ²`, and `2ψ²` is not an eigenvalue of it ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]) |
-| `ψ²` | `1.7549` | `A005251`, which counts the tree castles by area with no bound on the height ([[tree-castle-by-area](pages/tree-castle-by-area.md)]), the castles of height 2 whose raised columns are separated by valleys at least 2 columns wide ([[tower-spacing-castles](pages/tower-spacing-castles.md)]), and the binary strings with no isolated 1 of [[hardin-word-identity](pages/hardin-word-identity.md)], related by the bijections of [[a005251-bijection](pages/a005251-bijection.md)] |
+| `ψ²` | `1.7549` | `A005251`, which counts the tree castles by area with no bound on the height ([[tree-castle-by-area](pages/tree-castle-by-area.md)]), the skylines of height at most 2 whose raised columns are separated by valleys at least 2 columns wide ([[tower-spacing-castles](pages/tower-spacing-castles.md)]), and the binary strings with no isolated 1 of [[hardin-word-identity](pages/hardin-word-identity.md)], related by the bijections of [[a005251-bijection](pages/a005251-bijection.md)] |
 | `ψ` | `1.3247` | the strips of the rule in the paragraph *A rule on three heights*, found in the census of strip Perron roots ([[reachable-field-census](pages/reachable-field-census.md)]) |
 
 **A rule on three heights.** Of the 512 binary `3 × 3` matrices, exactly 6 have characteristic polynomial `x³ − x − 1`, and each has four entries equal to 1.[^6] One is

@@ -122,7 +122,7 @@ and the tree castles of area `A` number `A005251(A + 2)`. The reversed denominat
 
 A005251 has two other castle readings. The even sector of the signed tower count at `k = 6` is `P_even(6, L) = 2^L·A005251(L + 3)` ([[tower-parity-sectors](pages/tower-parity-sectors.md)], [[hardin-word-identity](pages/hardin-word-identity.md)]), and the binary strings of length `L + 1` with no isolated 1 also number `A005251(L + 3)` (the bit-string bijection of the section *Compositions*, with the height unrestricted). And [[a005251-bijection](pages/a005251-bijection.md)] maps the tree skylines of area `A` to the binary strings of length `A − 1` with no factor `010`: the skyline `(c_1, …, c_w)` goes to `0^{c_1 − 1} 1 0^{c_2 − 1} 1 ⋯ 1 0^{c_w − 1}`, in which a column of height at least 2 is a nonempty run of zeros, so two neighboring such columns are exactly a factor `010`. This map is checked onto the strings avoiding `010` for `A ≤ 12`.[^4]
 
-[[tower-spacing-castles](pages/tower-spacing-castles.md)] gives the castles of height 2 and minimum tower spacing 2, also counted by A005251.
+[[tower-spacing-castles](pages/tower-spacing-castles.md)] gives the skylines of height at most 2 and minimum tower spacing 2, also counted by A005251 (as `A005251(w + 3)` by width).
 
 ## Tournaments at height 4
 
@@ -223,7 +223,7 @@ The functions are also filed on [[castle-snippets-strips](pages/castle-snippets-
 - [[plastic-number](pages/plastic-number.md)] - `ψ`, and the growth `ψ²` of the tree castles of any height by area.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] and [[hardin-word-identity](pages/hardin-word-identity.md)] - `P_even(6, L) = 2^L·A005251(L + 3)`.
 - [[a005251-bijection](pages/a005251-bijection.md)] - the tree skylines of area `A` and the binary strings of length `A − 1` with no factor `010`.
-- [[tower-spacing-castles](pages/tower-spacing-castles.md)] - castles of height 2 with minimum tower spacing 2, counted by A005251.
+- [[tower-spacing-castles](pages/tower-spacing-castles.md)] - skylines of height at most 2 with minimum tower spacing 2, counted by `A005251(w + 3)`.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - families of castles by growth, with the tree castles by area.
 - [[metallic-means](pages/metallic-means.md)] - the quadratic constants `σ_p^q`, of which `φ` at `h = 3` is the only one in Table 1.
 - [[castle-by-area](pages/castle-by-area.md)] - convex, valley and other castles counted by area.

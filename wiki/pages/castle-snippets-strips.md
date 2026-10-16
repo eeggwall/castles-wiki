@@ -286,7 +286,7 @@ True
 Meaning: the exact factoring step runs once per orbit instead of once per matrix. At `h = 6` the `2^{36}` matrices still give at least `2^{36}/720 ≈ 9.5 × 10^7` orbits, and [[reachable-field-census](pages/reachable-field-census.md)] treats `h ≥ 6` by other means.
 
 
-### `tower_spacing_matrix(h, g)` → the min-tower-spacing castle counter
+### `tower_spacing_matrix(h, g)` → the min-tower-spacing skyline counter
 
 The horizontal-gap variation of rule 3: every valley between raised regions must be `≥ g` columns wide ([[tower-spacing-castles](pages/tower-spacing-castles.md)]). Column-by-column transfer matrix; each constrained row `2..h` carries a state `pre` / `fill` / `g1..g_{g−1}` (empties since the last fill, capped at `g`), and a fill that would close a gap shorter than `g` is illegal. Requires NumPy.
 
