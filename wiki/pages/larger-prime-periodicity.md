@@ -1,26 +1,31 @@
 ---
 title: Larger-prime periodicity of char_k
 category: Analyses
-summary: The mod-p observatory covers primes p = 3, 5, 7 with periods small enough to enumerate. This page extends the picture to larger primes and to the Project Euler 502 modulus 10^9 + 7. Full periods grow fast - per(char_k) mod p divides the lcm of p^{d_i} - 1 over the factor degrees d_i, which can reach p^{k+1} - 1 (about 10^{63} at p = 10^9 + 7, k = 6, if char_6 were irreducible there). The eigenvalue-order structure persists: char_k factors over F_p by Chebotarev-type patterns predictable from the Galois group of char_k over Q. Discriminants of char_k over Z control where repeated roots appear: disc(char_k) odd prime factors are 7 (at k=2), 5 (k=3), 3 and 107 (k=4), 53 (k=5), 3 and 23 and 643 (k=6), 5449 (k=7) - a sporadic-looking list that determines the primes where the mod-p observatory's factor-of-p period inflation appears. At 10^9 + 7 specifically: M ≡ 3 (mod 4) makes char_1 irreducible (period divides M^2 - 1 = ~10^18); char_2 has (x - 2) as a linear factor with ord_M(2) = 500000003 (the odd half of M - 1, which is itself prime); char_6 splits with three linear factors (three rational roots mod M), giving three eigenvalue orders each dividing M - 1. The full period at any k >= 1 is beyond enumeration, but the factorization structure is one polynomial-factor-list call.
+summary: For odd primes p up to 97 and k ≤ 6, the order per(char_k) of x in (F_p[x]/(char_k))^*, which is the period of P(k, ·) mod p in every tabulated case, read off the factorization of char_k mod p; a factor of multiplicity m multiplies the order by exactly p^⌈log_p m⌉ (proved). The odd prime factors of disc(char_k) for k ≤ 10 are the primes where char_k mod p has a repeated factor, each time one linear factor of multiplicity 2. The degrees of the factors follow the Galois group of char_k over Q (D_4 for char_3). At the Project Euler modulus M = 10^9 + 7, char_1 and char_3 are irreducible, char_2 = (x − 2)(x² − x + 2) with ord_M(2) = (M − 1)/2, char_6 has three roots mod M of order (M − 1)/2, and M divides no disc(char_k) for k ≤ 30.
 tags: [analysis, castle, modular-arithmetic, periodicity, large-primes, chebotarev, discriminant, project-euler-502]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502]
 created: 2026-09-22
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Larger-prime periodicity of char_k
 
-The [[mod-p-observatory](pages/mod-p-observatory.md)] catalogues `char_k mod p` factorizations and full periods for `p = 3, 5, 7` and `h <= 5`. That range is where the periods are small enough to enumerate exactly (`58824` at `p = 7, k = 5` is the biggest). Past `p = 7`, or past `h = 6`, the periods grow fast: `per(char_k) mod p` divides `p^{k+1} - 1` when the char poly is irreducible, which at the Project Euler 502 modulus `p = 10^9 + 7` and `k = 6` would be `(10^9 + 7)^7 - 1 ~ 10^{63}`. **The structure persists**: `char_k mod p` factors into irreducibles by Chebotarev-type patterns, each irreducible of degree `d` contributes an eigenvalue with order dividing `p^d - 1`, and repeated roots appear at exactly the primes dividing `disc(char_k)`. This page tabulates that structure for larger `p` and works out the `10^9 + 7` case explicitly.
+The [[mod-p-observatory](pages/mod-p-observatory.md)] computes the periods of the castle counts `A^e(·, h)` mod `p` for `p = 3, 5, 7`, from the periods of the signed tower counts `P(k, ·)` mod `p`. This page computes those tower periods for odd primes up to 97, explains them by the factorization of the characteristic polynomial `char_k` of `P(k, ·)` ([[signed-tower-count](pages/signed-tower-count.md)]), and works out the Project Euler modulus `M = 10^9 + 7` (written `M`, since `P` is the signed tower count, [[castle-notation](pages/castle-notation.md)]).
 
-## The two limits: period explosion and structural persistence
+For an odd prime `p`, let `R = F_p[x]/(char_k)`. The constant term `(−1)^{k+1} 2^k` of `char_k` is nonzero mod `p`, so `x` is a unit of `R`, and `per(char_k)` denotes the order of `x` in the unit group `R^*`. Every sequence mod `p` that satisfies the recurrence of `char_k` is purely periodic with a period dividing `per(char_k)`, and `P(k, ·) mod p` has period exactly `per(char_k)` when `num_k` and `den_k` are coprime mod `p` ([[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]). They are coprime in every case tabulated on this page (computed).[^exec]
 
-For `char_k mod p`:
+## The period from the factorization
 
-- If `char_k` is irreducible over `F_p`, its unique irreducible factor has degree `k + 1`, and `per(char_k) mod p = ord(root)` where the root lives in `F_{p^{k+1}}^*`. The order divides `p^{k+1} - 1`. **Ceiling grows as `p^{k+1}`**, exponential in both `p` and `k`.
-- If `char_k` splits into irreducibles of degrees `d_1, ..., d_r`, the period is `lcm(ord(root_1), ..., ord(root_r))`, each order dividing its `p^{d_i} - 1`.
-- If some irreducible factor `g` has multiplicity `m > 1`, the period picks up an extra factor `p^{ceil(log_p m)}` (the "multiplicity-inflation" rule). Repeated roots occur exactly when `p | disc(char_k)`. The factor is the nilradical of `F_p[x]/(char_k)`: the rule is checked as an exact equality at seven discriminant-zero primes on [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] §3, but its exactness (rather than divisibility) is not proved.
+Write `char_k ≡ ∏ g_i^{m_i} (mod p)` with distinct irreducible `g_i` of degree `d_i`. The Chinese remainder theorem splits `R` into the rings `F_p[x]/(g_i^{m_i})`, and `per(char_k)` is the lcm of the orders of `x` in their unit groups.
 
-`per(char_k) mod p` for larger primes, tabulated:[^exec]
+- When `m_i = 1`, `F_p[x]/(g_i)` is the field `F_{p^{d_i}}`, and the order of `x` there divides `p^{d_i} − 1`. If `char_k` is irreducible mod `p`, then `per(char_k)` divides `p^{k+1} − 1`.
+- When `m_i = m ≥ 2`, the order of `x` in `F_p[x]/(g^m)` is its order mod `g` times exactly `p^{⌈log_p m⌉}`.
+
+*Proof of the second case.* In `S = F_p[x]/(g^m)` the Frobenius map `y ↦ y^p` is additive. Let `q = p^d`, choose `t` with `q^t ≥ m`, and set `θ = x^{q^t}`. Then `g(θ) = g(x)^{q^t} = 0`, since `g` has coefficients in `F_p` and `(g)^m = 0`; `θ ≡ x (mod g)`; and `θ^q = θ`, because `x^q = x + n` with `n ∈ (g)` and `n^{q^t} = 0`. So `θ` has the order of `x mod g`, which is prime to `p`. Write `g(X) = (X − θ)u(X)`; then `u(x) ≡ u(θ) = g′(θ) ≡ g′(x) (mod g)`, a unit because `g` is separable, so `x − θ = g(x)u(x)^{−1}` generates the ideal `(g)`, and `a = (x − θ)θ^{−1}` has `a^j ≠ 0` for `j < m`. Since `(1 + a)^{p^e} = 1 + a^{p^e}`, the order of `1 + a` is `p^{⌈log_p m⌉}`. So `x = θ(1 + a)` is a product of commuting elements of coprime orders `ord(x mod g)` and `p^{⌈log_p m⌉}`. ∎
+
+[[castle-ring-spectrum](pages/castle-ring-spectrum.md)] (section 3) describes the same factor as the exponent of `1 + N`, `N` the nilradical of `R`, and checks the full order at every odd discriminant prime below 200 for `k ≤ 8`.
+
+`per(char_k)` mod `p`:[^exec]
 
 | `p` | `k = 1` | `k = 2` | `k = 3` | `k = 4` | `k = 5` | `k = 6` |
 |---|---|---|---|---|---|---|
@@ -39,11 +44,11 @@ For `char_k mod p`:
 | 53 | 52 | 52 | 1404 | 446628 | 148824 | 1578096 |
 | 97 | 96 | 4704 | 9408 | 4704 | 912672 | 44720928 |
 
-The periods jump erratically; the **factorization pattern** determines them.
+The entries vary widely with `p`; each one is the lcm read off the factorization in the section *Factorization patterns and the Galois group*.
 
-## Discriminants of char_k: the "special" primes
+## Discriminants: the primes with repeated factors
 
-Repeated roots in `char_k mod p` occur iff `p | disc(char_k)`. Over `Z`, the discriminants are integers with a large power-of-2 factor plus a small odd part:[^exec]
+Since `char_k` is monic, `char_k mod p` has a repeated factor exactly when `p` divides the discriminant `disc(char_k)`. The discriminants are a power of 2 times a small odd part:[^exec]
 
 | `k` | degree | `disc(char_k)` | odd prime factors |
 |---|---|---|---|
@@ -58,18 +63,18 @@ Repeated roots in `char_k mod p` occur iff `p | disc(char_k)`. Over `Z`, the dis
 | 9 | 10 | `-2^{90} * 37 * 14153` | 37, 14153 |
 | 10 | 11 | `-2^{100} * 5 * 19 * 4409 * 15121` | 5, 19, 4409, 15121 |
 
-**Every one of these odd primes is a place where `char_k mod p` acquires a repeated root**, driving one factor of `p` into the mod-`p` period. Empirically the multiplicity of the repeated factor is always 2 in these cases (the disc primes appear to first order, not to a square). Notable hits:
+For `k ≤ 10`, each odd prime factor divides `disc(char_k)` exactly once, and at each such `p` the polynomial `char_k mod p` has exactly one repeated factor, linear and of multiplicity 2 (computed). By the section *The period from the factorization*, each such prime multiplies the order of `x` by exactly `p`. Examples:
 
-- **`p = 7` at `k = 2`**: `(x + 3)^2` in `char_2 mod 7`; drives `F(w, 4) mod 7` to period `8400 = 1200 * 7` on the [[mod-p-observatory](pages/mod-p-observatory.md)].
-- **`p = 5` at `k = 3`**: `(x - 1)^2` in `char_3 mod 5`.
-- **`p = 3` at `k = 4, 6, ...`**: the `k mod 12 in {4, 6}` pattern proved in [[mod-9-coset-lift](pages/mod-9-coset-lift.md)].
-- **`p = 5` at `k = 10`**: the disc prime returns for the second time.
+- `p = 7`, `k = 2`: `char_2 ≡ (x − 2)(x + 3)^2 (mod 7)`, which makes the period of `A^e(·, 4) mod 7` equal to `8400 = 1200 · 7` ([[mod-p-observatory](pages/mod-p-observatory.md)]).
+- `p = 5`, `k = 3`: `char_3 ≡ (x − 1)^2 · (quadratic) (mod 5)`.
+- `p = 3`: `(x − 1)^2` divides `char_k mod 3` exactly when `k ≡ 4 (mod 12)` and `(x + 1)^2` exactly when `k ≡ 6 (mod 12)`, and no cube of a linear factor ever does (proved on [[mod-9-coset-lift](pages/mod-9-coset-lift.md)]); no factor of degree at least 2 repeats for `k ≤ 200` (computed). `k = 4` and `k = 6` appear in the table.
+- `p = 5` divides both `disc(char_3)` and `disc(char_10)`.
 
-The odd part of the discriminant grows fast: `107, 53, 23·643, 5449, 257·49697, 37·14153, 5·19·4409·15121` for `k = 4..10`. Above `k ~ 4` these are "sporadic-looking" - individual primes that happen to divide `disc(char_k)` with no small-prime pattern. **Whether `disc(char_k)` ever hits `10^9 + 7`** for some `k` is a coincidence question; for `k <= 10`, the answer is no (see the `10^9 + 7` section below).
+The odd parts for `k = 4, …, 10` are `3·107`, `53`, `3·23·643`, `5449`, `257·49697`, `37·14153` and `5·19·4409·15121`. The modulus `M = 10^9 + 7` divides none of `disc(char_k)` for `k ≤ 30` (computed).
 
-## Splitting patterns follow Chebotarev
+## Factorization patterns and the Galois group
 
-Factorization signatures of `char_k mod p` for `k = 1..5`, `p in {3..97}`:[^exec]
+For a prime `p` not dividing `disc(char_k)`, the degrees of the irreducible factors of `char_k mod p` are the cycle lengths of a permutation of the `k + 1` roots of `char_k`, the Frobenius element at `p` in the Galois group `G` of `char_k` over `Q`. Chebotarev's density theorem states that each cycle type occurs for a proportion of primes equal to the proportion of elements of `G` with that cycle type. The factorization signatures of `char_k mod p` for `k = 1, …, 5`, with `d^m` marking a factor of degree `d` and multiplicity `m > 1`:[^exec]
 
 | `p` | `char_1` | `char_2` | `char_3` | `char_4` | `char_5` |
 |---|---|---|---|---|---|
@@ -98,130 +103,120 @@ Factorization signatures of `char_k mod p` for `k = 1..5`, `p in {3..97}`:[^exec
 | 89 | `1\|1` | `1\|2` | `1\|1\|1\|1` | `2\|3` | `1\|1\|1\|3` |
 | 97 | `1\|1` | `1\|2` | `1\|1\|2` | `1\|1\|1\|2` | `1\|1\|1\|3` |
 
-Read the columns:
+By column:
 
-- **char_1** (deg 2, disc `-4`) splits iff `p ≡ 1 (mod 4)` (`p in {5, 13, 17, 29, 37, 41, 53, 61, 73, 89, 97}` here) and is irreducible otherwise. Quadratic reciprocity on `-4`.
-- **char_2 = (x - 2)(x^2 - x + 2)** always has the linear factor `(x - 2)`. The quadratic has discriminant `-7`, so it splits iff `-7` is a QR mod `p`, i.e. by reciprocity iff `p` is a QR mod 7 (`p ≡ 1, 2, 4 (mod 7)`). Hits `1|1|1` at `p in {11, 23, 29, 37, 43, 53, 67, 71, 79}`; hits `1|2` at the rest. Repeated `1|1^2` only at `p = 7` (disc prime).
-- **char_3** (deg 4, Galois group the dihedral group `D_4` of order 8, computed with SymPy, which has no 3-cycles, so the signature `1|3` never occurs): factor signatures include `4` (irreducible), `2|2` (two conjugate quadratics), `1|1|2`, `1|1|1|1` (fully split - a small density), and the disc-prime case `1^2|2` at `p = 5`. Chebotarev density theorem says each pattern has a limiting frequency determined by the cycle types in the Galois group.
-- **char_5** never splits completely in the table: `p = 37` gives four linear factors (`1|1|1|1|2`) and `p = 61, 89, 97` give three (`1|1|1|3`). The commonest signatures are `2|4` and `6` (irreducible).
+- `char_1 = (x − 1)^2 + 1` has discriminant `−4`. It splits mod `p` exactly when `−1` is a square mod `p`, which by Euler's criterion means `p ≡ 1 (mod 4)`: `p = 5, 13, 17, 29, 37, 41, 53, 61, 73, 89, 97` in the table.
+- `char_2 = (x − 2)(x^2 − x + 2)`. The quadratic has discriminant `−7` and splits mod `p ≠ 7` exactly when `−7` is a square mod `p`, which by quadratic reciprocity means `p ≡ 1, 2, 4 (mod 7)`: `p = 11, 23, 29, 37, 43, 53, 67, 71, 79` in the table. At `p = 7` it is the square `(x + 3)^2`.
+- `char_3` has Galois group the dihedral group `D_4` of order 8 (computed). Its elements have cycle types `1|1|1|1` (one element), `2|2` (three), `1|1|2` (two) and `4` (two), so the four signatures occur with densities `1/8`, `3/8`, `1/4` and `1/4`. `D_4` has no 3-cycle, so `1|3` never occurs. Over the primes `3 ≤ p < 3000` other than 5, the proportions are `0.105`, `0.379`, `0.262` and `0.255` (computed). At `p = 5` the signature is `1^2|2`.
+- `char_5` splits completely mod no prime in the table. At `p = 37` it has four linear factors and a quadratic, at `p = 61, 89, 97` three linear factors and a cubic. The commonest signatures are `2|4` (seven primes) and `6`, irreducible (six primes).
 
-The **repeated-factor rows** are highlighted by the caret notation `d^m` where `m > 1`. Every repeated factor in the table matches a disc-prime listed above. The rest of the table is squarefree, and the periods are computable factor-by-factor.
+Every repeated factor in the table occurs at a prime dividing the discriminant, as listed in the section *Discriminants: the primes with repeated factors*.
 
-## The `10^9 + 7` case
+## The Project Euler modulus M = 10^9 + 7
 
-Set `M = 10^9 + 7` (the Project Euler modulus; `M` rather than `P`, which the wiki reserves for the signed tower count, [[castle-notation](pages/castle-notation.md)]). Its small-prime residues shape which `char_k mod M` splittings occur:[^exec]
+The residues of `M` decide which of the factorizations of the section *Factorization patterns and the Galois group* occur mod `M`:[^exec]
 
 ```
 M = 1000000007  (prime)
-M mod 4 = 3          (so -1 is a non-residue; char_1 is irreducible)
-M mod 7 = 6          (a non-residue of 7; char_2's quadratic is irreducible)
+M mod 4 = 3          (so -1 is not a square; char_1 is irreducible)
+M mod 7 = 6          (not a square mod 7; char_2's quadratic is irreducible)
+M mod 8 = 7          (so 2 is a square mod M)
 M - 1 = 2 * 500000003     (500000003 is prime)
 M + 1 = 2^3 * 3^2 * 7 * 109^2 * 167
 ```
 
-`M - 1 = 2 * q` for a single odd prime `q = 500000003`. Every element of `F_M^*` has order dividing `2 * q`, and only orders in `{1, 2, q, 2q}` are possible. This makes eigenvalue-order computations for linear factors of `char_k mod M` trivial once the root is known.
+`M − 1 = 2q` with `q = 500000003` prime, so every element of `F_M^*` has order 1, 2, `q` or `2q`.
 
-**`char_k mod M` factorizations for `k = 1..6`:**
+`char_k mod M` for `k = 1, …, 7`:
 
-| `k` | deg | factorization mod `M` | linear-root eigenvalue orders |
+| `k` | degree | factorization mod `M` | orders of the roots |
 |---|---|---|---|
-| 1 | 2 | irreducible (deg 2) | root in `F_{M^2}`, order divides `M^2 - 1 ~ 10^{18}` |
-| 2 | 3 | `(x - 2) * (x^2 - x + 2)` | `ord_M(2) = 500000003 = q` (`2` is a QR of `M`, so ord divides `q`, and `q` is prime, so `ord in {1, q}`; not 1, so `q`) |
-| 3 | 4 | irreducible (deg 4) | root in `F_{M^4}`, order divides `M^4 - 1 ~ 10^{36}` |
-| 4 | 5 | (deg 2) `*` (deg 3) | root in `F_{M^2}` (order `\| M^2 - 1`); root in `F_{M^3}` (order `\| M^3 - 1`) |
-| 5 | 6 | (deg 2) `*` (deg 4) | roots in `F_{M^2}` and `F_{M^4}` |
-| 6 | 7 | `(x - r_1)(x - r_2)(x - r_3) * (deg 2) * (deg 2)` | **three linear factors** with roots `r_1 = 958603953, r_2 = 708901077, r_3 = 332494988`; each order divides `M - 1 = 2q` |
+| 1 | 2 | irreducible | in `F_{M^2}`, dividing `M^2 − 1 ~ 10^{18}` |
+| 2 | 3 | `(x − 2)(x^2 − x + 2)` | `ord_M(2) = q`: `2` is a square mod `M`, so its order divides `q`, which is prime, and `2 ≠ 1` |
+| 3 | 4 | irreducible | in `F_{M^4}`, dividing `M^4 − 1 ~ 10^{36}` |
+| 4 | 5 | (degree 2)(degree 3) | in `F_{M^2}` and `F_{M^3}` |
+| 5 | 6 | (degree 2)(degree 4) | in `F_{M^2}` and `F_{M^4}` |
+| 6 | 7 | `(x − r_1)(x − r_2)(x − r_3)` (degree 2)(degree 2) | `r_1 = 958603953`, `r_2 = 708901077`, `r_3 = 332494988`, each of order `q` |
+| 7 | 8 | (degree 2)(degree 6) | in `F_{M^2}` and `F_{M^6}` |
 
-At `k = 6`, `char_6 mod M` has **three linear factors**, i.e. three rational roots mod `M`. Their orders in `F_M^*` are each in `{1, 2, q, 2q}` and computable by one exponentiation per root. Combined with the two quadratic factors (each contributing a root in `F_{M^2}` of order dividing `M^2 - 1`), `per(char_6) mod M` is the lcm of five eigenvalue orders, each computable.
+So `per(char_6)` mod `M` is the lcm of `q` and the orders of the roots of the two quadratic factors, each dividing `M^2 − 1`.
 
-**Full-period ceiling by k:**
+Upper bounds for `per(char_k)` mod `M`, the lcm of `M^{d_i} − 1` over the factor degrees `d_i`:
 
-| `k` | ceiling for `per(char_k) mod M` (lcm of `M^{d_i} - 1` over the factors) |
+| `k` | bound |
 |---|---|
-| 1 | `M^2 - 1 ~ 10^{18}` |
-| 2 | `M^2 - 1 ~ 10^{18}` |
-| 3 | `M^4 - 1 ~ 10^{36}` |
-| 4 | `lcm(M^2 - 1, M^3 - 1) = (M^2 - 1)(M^2 + M + 1) ~ 10^{36}` |
-| 5 | `M^4 - 1 ~ 10^{36}` |
-| 6 | `M^2 - 1 ~ 10^{18}` (due to 3 linear + 2 quadratic factors) |
-| 7 | `M^6 - 1 ~ 10^{54}` (factors of degree 2 and 6) |
+| 1 | `M^2 − 1 ~ 10^{18}` |
+| 2 | `M^2 − 1 ~ 10^{18}` |
+| 3 | `M^4 − 1 ~ 10^{36}` |
+| 4 | `lcm(M^2 − 1, M^3 − 1) = (M^2 − 1)(M^2 + M + 1) ~ 10^{36}` |
+| 5 | `M^4 − 1 ~ 10^{36}` |
+| 6 | `M^2 − 1 ~ 10^{18}` (three linear and two quadratic factors) |
+| 7 | `M^6 − 1 ~ 10^{54}` (factors of degree 2 and 6) |
 
-**Does `M` divide any `disc(char_k)` for `k <= 10`?** Checking directly: `disc(char_k) mod M` is `1000000003, 999999895, 20480, 21037056, 183367454, 996996034, 176533116, 740488628, ...` for `k = 1..8` - none zero. **No `char_k` for `k <= 10` has a repeated factor mod `M`**, so every factorization is squarefree and the period is a clean lcm of eigenvalue orders. The full period at each `k` is beyond enumeration but the factorization structure is one polynomial-`factor_list` call, and each individual eigenvalue order is computable from the standard discrete-log-in-`F_{M^d}^*` machinery.
+`disc(char_k) mod M` is `1000000003, 999999895, 20480, 21037056, 183367454, 996996034, 176533116, 740488628` for `k = 1, …, 8`, and no `disc(char_k)` with `k ≤ 30` is divisible by `M` (computed). So `char_k mod M` is squarefree for every `k ≤ 30`, and its period is the lcm of the orders of its roots.
 
-## What can be computed vs. what can be enumerated
+## What is computed at large p
 
-The mod-p observatory at `p = 3, 5, 7` printed full periods (up to `58824`) as one column of a table. At `p = 10^9 + 7` the periods are too large to list, but the following is one call each:
+At `p = 3, 5, 7` the [[mod-p-observatory](pages/mod-p-observatory.md)] lists full periods. At `M` the periods are too large to list, and each of the following is one computation:
 
-- `char_k mod M` factorization (SymPy `factor_list`, milliseconds).
-- Degrees `d_1, ..., d_r` of the irreducible factors.
-- Repeated-factor detection (compare degree sum to `k + 1`).
-- For each linear factor `(x - r_i)`, the order of `r_i` in `F_M^*` when `M - 1` has known factorization.
-- For each degree-`d` factor, the order divides `p^d - 1` and is computable once `p^d - 1` is factored: `M^2 - 1 = (M - 1)(M + 1)` is factored above, and the cyclotomic pieces factor quickly (`M^2 + M + 1 = 6067 * 164826110927971`, `M^2 + 1 = 2 * 5^2 * 58699937 * 340715873`).
+- the factorization of `char_k mod M` and the degrees `d_i` of its factors;
+- whether a factor is repeated (`M | disc(char_k)`);
+- the order of each root `r_i` of a linear factor in `F_M^*`, from the factorization of `M − 1`;
+- for a factor of degree `d`, the order of its roots from the factorization of `M^d − 1`. `M^2 − 1 = (M − 1)(M + 1)` is factored in the section *The Project Euler modulus M = 10^9 + 7*, and `M^2 + M + 1 = 6067 · 164826110927971`, `M^2 + 1 = 2 · 5^2 · 58699937 · 340715873`.
 
-The [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] pipeline never needs the full period at `10^9 + 7`: it uses Kitamasa evaluation to jump directly to `x^w mod char_k` in `F_M[x] / char_k`, sidestepping period enumeration entirely.
+The evaluation of the Project Euler targets does not use these periods: Kitamasa's method computes `x^w mod char_k` in `F_M[x]/(char_k)` directly ([[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)], [[kitamasa](pages/kitamasa.md)]).
 
-## Connection to castle cryptography
+## The unit group of R
 
-The [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] page uses `F_p[x] / char_k` as the cryptographic ring and computes with elements of order equal to the mod-`p` period. The [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] decomposition reads:
+The ring `R = F_p[x]/(char_k)` is the ring of [[castle-cryptography-ring](pages/castle-cryptography-ring.md)]. When `char_k mod p` is squarefree, `R` is a product of fields and
 
 ```
-R^* = (F_p[x] / char_k)^*  =  prod_i Z / (p^{d_i} - 1),
+R^*  ≅  ∏_i Z/(p^{d_i} − 1),
 ```
 
-with one factor per irreducible piece of `char_k mod p`. When `char_k mod p` is squarefree, **the period is the order of `x` in `R^*`**, and the order of `x` is `lcm(ord_i(x))` across the invariant factors. When `char_k mod p` has a repeated factor at a discriminant prime, the ring picks up a local `p`-group `U = 1 + (g) / (g)^m` beside the field factor, and `x`'s order in `U` is `p` (for multiplicity 2) - reproducing the multiplicity-inflation rule of [[mod-p-observatory](pages/mod-p-observatory.md)].
+with one cyclic factor per irreducible factor `g_i` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)]), and `per(char_k)` is the lcm of the orders of `x` in the fields `F_p[x]/(g_i)`. A factor `g` of multiplicity `m ≥ 2` contributes `F_{p^d}^* × (1 + (g)/(g^m))`, a unit group times a `p`-group, and the component of `x` in the `p`-group has order `p^{⌈log_p m⌉}` (section *The period from the factorization*).
 
-At `10^9 + 7`, this reading says the cryptographic ring `R = F_M[x] / char_k` has invariant-factor group `prod_i Z / (M^{d_i} - 1)`, with `d_i` read directly from the mod-`M` factorization: at `k = 2`, `R^* = Z/(M - 1) * Z/(M^2 - 1)`; at `k = 6`, five factors including three `Z/(M - 1)` copies from the linear roots and two `Z/(M^2 - 1)` from the quadratics.
+At `M`: for `k = 2`, `R^* ≅ Z/(M − 1) × Z/(M^2 − 1)`; for `k = 6`, three copies of `Z/(M − 1)` from the linear factors and two of `Z/(M^2 − 1)` from the quadratic factors.
 
 ## Appearances in Sources
 
-- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the closed form and the `char_k` machinery.
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k, .)` C-finite family whose characteristic polynomials are studied here.
+- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the update of `num_k` and `den_k`, whose reversed denominators are the `char_k`.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the characteristic polynomials `char_1` to `char_5` of the rows `P(k, ·)`.
 
 ## Related Concepts
 
-- [[mod-p-observatory](pages/mod-p-observatory.md)] - the small-prime observatory this page extends; `p = 3, 5, 7` fully enumerated periods.
-- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `F_p[x] / char_k` and its computational cost model.
-- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - `R^* = prod Z / (p^{d_i} - 1)`, the algebraic form of the eigenvalue-order lcm.
-- [[signed-tower-count](pages/signed-tower-count.md)] - `char_k` over `Z` and the constant term `(-1)^{k-1} 2^k` guaranteeing pure periodicity mod every odd prime.
-- [[generating-function-gallery](pages/generating-function-gallery.md)] - the `char_k` recurrence and their explicit forms.
-- [[mod-9-coset-lift](pages/mod-9-coset-lift.md)] - the mod-9 (composite) case; `p = 3` extended to `p = 9` by the same multiplicity-inflation rule.
-- [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] - the mod-`10^9 + 7` pipeline whose C-finiteness (not its period) is what's exploited.
-- [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - a composite modulus example: `1729 = 7 * 13 * 19` periods `72, 2520, 25200` for `h = 2, 3, 4`, the lcm of the three prime-mod periods.
-- [[finite-fields](pages/finite-fields.md)] - `F_{p^d}^*` orders are this page's central mechanism; the pedagogy hub for the eigenvalue-order arithmetic used here.
-- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the fibers over each `p` as points of `Spec Z[x]/(char_k)`, and the inflation rule split into reduced part and nilradical.
+- [[mod-p-observatory](pages/mod-p-observatory.md)] - the periods of `A^e(·, h)` mod 3, 5, 7, built from `per(char_k)`.
+- [[signed-tower-count](pages/signed-tower-count.md)] - `char_k` over `Z`, its constant term `(−1)^{k+1} 2^k`, and its irreducibility for odd `k`.
+- [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the period of `P(k, ·) mod p` as the order of `x` when `num_k` and `den_k` are coprime mod `p`.
+- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the fibers of `Z[x]/(char_k)` over each prime, and the nilradical of the fat fibers.
+- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the unit group of `R` in invariant-factor form.
+- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `R` as a group for discrete-logarithm cryptography.
+- [[generating-function-gallery](pages/generating-function-gallery.md)] - the recurrence `char_{k+1} = x^2 char_{k−1} − 2 char_k` and the closed form of the denominators.
+- [[mod-9-coset-lift](pages/mod-9-coset-lift.md)] - the repeated factors of `char_k mod 3` and the periods mod 9.
+- [[finite-fields](pages/finite-fields.md)] - the orders of elements of `F_{p^d}^*`.
+- [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] - the evaluation mod `10^9 + 7` by the recurrence.
+- [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - the periods `72, 2520, 25200` of the castle counts mod `1729 = 7 · 13 · 19` for `h = 2, 3, 4`, the lcm of the periods mod 7, 13 and 19.
 
 ## Footnotes
 
-[^exec]: Verified by execution (2026-09-22), Python 3 with SymPy 1.14. **`char_k` construction**: three-term recurrence `char_0 = x - 1, char_1 = x^2 - 2x + 2, char_{k+1} = x^2 char_{k-1} - 2 char_k`; verified against [[generating-function-gallery](pages/generating-function-gallery.md)]. **Discriminants**: `sp.Poly(char_k, x).discriminant()` for `k = 1..10`, factored with `sp.factorint`; odd-prime parts read directly. **Factor signatures**: `sp.factor_list(sp.Poly(char_k, x, modulus=p))[1]` for each `p in {3..97}` and `k in {1..5}`, degree-of-each-irreducible-factor recorded as a sorted multiset. **`per(char_k) mod p` table**: for each irreducible factor `g` of degree `d`, order of `x mod g` computed by iterating the linear recurrence in state `(F_p)^d` until return to `x^0 = 1`; total `per = lcm` of factor orders, with `* p^{ceil(log_p m)}` for any multiplicity-`m` repeated factor. Runs in seconds up to `p = 97, k = 6`; the biggest period computed is `205346960` at `(p, k) = (29, 6)`. **`10^9 + 7` factorization**: `sp.factor_list(..., modulus=10**9 + 7)` for `k = 1..6`; `char_6 mod M` produced three linear factors with roots computed as `-c_0 * pow(c_1, -1, M) mod M`. **`ord_M(2)` computation**: `pow(2, (M-1)/2, M) = 1`, so `ord | (M-1)/2 = 500000003`; since `500000003` is prime, `ord in {1, 500000003}`; `pow(2, 1, M) = 2 != 1`, so `ord = 500000003`. **Disc-mod-M table**: `int(sp.Poly(char_k, x).discriminant()) % M` for `k = 1..8`; no `k` in that range hits zero.
+[^exec]: Verified by execution (Python 3.11 with SymPy, 2026-10-16). `char_k` from `char_0 = x − 1`, `char_1 = x^2 − 2x + 2`, `char_{k+1} = x^2 char_{k−1} − 2 char_k`, checked equal to `x^{k+1} den_k(1/x)` for `k ≤ 9`. The `per(char_k)` table: the order of `x` in `F_p[x]/(char_k)`, computed in the full ring by fast exponentiation and reduction of the exponent `lcm((p^{d_i} − 1) p^{⌈log_p m_i⌉})`; every entry reproduced; `gcd(num_k, den_k) = 1` mod `p` for every cell. The discriminants for `k ≤ 10` and the factorizations of `char_k` modulo each odd prime factor (one linear factor of multiplicity 2 each time). The signature table for `p ≤ 97`, `k ≤ 5`, every cell reproduced. The Galois group of `char_3` (`D_4`, order 8) and the signature proportions over `3 ≤ p < 3000`. The residues and factorizations of `M ± 1`, `M^2 + M + 1`, `M^2 + 1`; the factorizations of `char_k mod M` for `k ≤ 7`; the roots of `char_6 mod M` and their orders; `disc(char_k) mod M` for `k ≤ 30`. The snippet below reproduces the discriminants and the roots of `char_6 mod M`:
 
     ```python
     import sympy as sp
-    from math import lcm, ceil, log
     x = sp.symbols('x')
 
-    # char_k recurrence
     c = {0: x - 1, 1: x**2 - 2*x + 2}
     for k in range(1, 12):
         c[k+1] = sp.expand(x**2 * c[k-1] - 2 * c[k])
 
-    # Discriminants and their odd prime factors
     for k in range(1, 11):
         d = int(sp.Poly(c[k], x).discriminant())
-        odd_primes = sorted(q for q in sp.factorint(abs(d)) if q > 2)
-        print(k, d, odd_primes)
+        print(k, d, sorted(q for q in sp.factorint(abs(d)) if q > 2))
 
-    # char_k mod M factorization signature
-    def factor_signature(char_poly, p):
-        factors = sp.factor_list(sp.Poly(char_poly, x, modulus=p))[1]
-        return sorted((sp.Poly(g, x, modulus=p).degree(), m) for g, m in factors)
-
-    # 10^9 + 7 case: which k give linear factors?
     M = 10**9 + 7
     for k in range(1, 7):
-        factors = sp.factor_list(sp.Poly(c[k], x, modulus=M))[1]
-        for g, m in factors:
+        for g, m in sp.factor_list(sp.Poly(c[k], x, modulus=M))[1]:
             if sp.Poly(g, x, modulus=M).degree() == 1:
-                coeffs = [int(v) % M for v in sp.Poly(g, x, modulus=M).all_coeffs()]
-                root = (-coeffs[1] * pow(coeffs[0], -1, M)) % M
-                print(f'k={k}: rational root {root}')
+                a, b = [int(v) % M for v in sp.Poly(g, x, modulus=M).all_coeffs()]
+                print(f'k={k}: root {(-b * pow(a, -1, M)) % M}')
     ```
