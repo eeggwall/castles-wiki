@@ -1,16 +1,16 @@
 ---
 title: Castle steganography - hiding a base64 string in a castle
 category: Analyses
-summary: Two ways to hide an arbitrary base64 string inside castles, both executed and round-tripped on the standard cameraman image read as 512 row castles. The payload is a 56-character base64 string (336 bits, decoding to "castles are skylines, skylines are numbers"); as its own castle it is one column per symbol at h=64. Channel A, least-significant bit of the column heights - one bit per column, never touching the peak column or the floor so the cover stays a castle at the same h; all 336 bits fit in one 512-wide row, 168 columns move by one cell, recovery exact; capacity 43,690 base64 characters per 512x512 image. Channel B, block parity - one bit per castle, set by a +/-1 change at a strict local extremum, which provably changes the block count by exactly one; 336 bits in 336 rows, 161 rows needed a change (175 already had the right parity), 161 pixels changed by one, PSNR 80.2 dB, recovery exact, 336/336 after a PNG round trip and 175/336 (chance) after JPEG q95; the block parity of untouched rows is a coin flip (249 odd / 263 even), so the embedding does not shift the distribution. Both are textbook LSB-style channels in castle clothing; the castle-specific fact is that channel B's capacity is exactly the one bit the even-block clause is worth on castle-entropy, and that its cost is provably one cell per flipped castle.
-tags: [analysis, castle, steganography, base64, lsb, parity, block-parity, image, covert-channel, implementation, seminar]
+summary: Two channels that hide a base64 string in castles, run on the cameraman image read as 512 row castles. The payload is a 56-character base64 string (336 bits). Channel A writes one bit into the lowest bit of each usable column height, skipping the heights whose low-bit pair contains 1 or the row's maximum h, so the row stays a castle at h and the extractor finds the same columns; all 336 bits fit in row 100, 168 columns move by one, and the image holds 257,919 bits. Channel B writes one bit per castle, its block parity, by raising a strict interior local maximum below h or lowering a strict interior local minimum above 1, which changes the block count by exactly one; 161 of rows 0 to 335 need one changed pixel, PSNR 80.2 dB, recovery exact, 336 of 336 bits after PNG and 175 after JPEG quality 95. The untouched rows have 249 odd and 263 even block counts.
+tags: [analysis, castle, steganography, base64, lsb, parity, block-parity, image, implementation]
 sources: [project-euler-502-representations]
 created: 2026-09-19
-updated: 2026-09-26
+updated: 2026-10-16
 ---
 
 # Castle steganography - hiding a base64 string in a castle
 
-The question: given an arbitrary base64 string, hide it in a castle so that the castle still looks like a castle and the string comes back exactly. Two channels, both executed on 2026-09-19 with the standard 512x512 cameraman image ([[image-as-castle](pages/image-as-castle.md)]) read as 512 row castles of width 512.[^exec] Neither channel is new as steganography - both are least-significant-bit ideas; what is castle-specific is the cost of keeping the constraints and the capacity of the parity clause.
+Given a base64 string, hide it in castles so that every castle stays a castle and the string comes back exactly. The cover is the 512 x 512 grayscale cameraman image read as 512 row castles of width 512, with heights `pixel + 1` and each row a castle at its own maximum `h` ([[image-as-castle](pages/image-as-castle.md)]).[^exec] Channel A writes one bit per column, channel B one bit per castle.
 
 ## The payload
 
@@ -19,77 +19,74 @@ secret  = "Y2FzdGxlcyBhcmUgc2t5bGluZXMsIHNreWxpbmVzIGFyZSBudW1iZXJz"
           56 base64 characters = 336 bits  ->  b"castles are skylines, skylines are numbers"
 ```
 
-A base64 string is already a castle: one column per character, height = alphabet index + 1, `h = 64`. The secret is the width-56 skyline `(25, 55, 6, 52, 30, 7, 50, 38, 29, 51, 2, 34, ...)`. It contains no `/` (index 63), so no column reaches 64; a leading sentinel column of height 64 makes it a valid castle at the cost of one column. (The exact rank/unrank of [[song-as-castle](pages/song-as-castle.md)] avoids even that column.) The bits to hide are the 6 bits of each symbol, most significant first.
+The bits to hide are the 6 bits of each character's index in the base64 alphabet, most significant first; 164 of the 336 bits are 1. The string is itself a skyline of width 56 with heights `index + 1`: `(25, 55, 6, 52, 30, 7, 50, 38, 29, 51, 2, 34, …)`, of height 58, since it contains no character of index above 57.
 
-## Channel A - the least significant bit of a column
+## Channel A - the lowest bit of a column height
 
-Cover: one row of the image as a skyline `c`, heights `1..h` where `h` is the row's own maximum (row 100 has `h = 215`). Write one payload bit into the low bit of each column height, skipping three kinds of column so that the result is still a castle at the same `h`: the peak column (moving it could lower the maximum), the floor (height 1 could drop to 0), and any column at `h - 1` (which could rise to become a second peak). Extraction reads the low bits back at the same positions.
+Write a payload bit `b` into a column of height `c` by setting the lowest bit of `c` to `b`, which moves `c` by at most one, within its low-bit pair `{2m, 2m + 1}`. Two kinds of column are skipped:
+
+- columns of height 1, which could drop to 0, and
+- columns in the low-bit pair of the row's maximum `h`, which could move to `h + 1` or remove the only column of height `h`. For odd `h` that pair is `{h − 1, h}`; for even `h` it is `{h, h + 1}`, so only the columns of height `h` are skipped.
+
+A written column stays in its low-bit pair, so the set of skipped columns is the same before and after writing, the row keeps the maximum `h`, and the extractor finds the same columns and reads their lowest bits.
+
+In row 100, `h = 215`, odd, so the skipped heights are 1, 214 and 215, and 455 of the 512 columns are usable:
 
 ```
-336 of 336 bits in one width-512 row castle (h = 215)
+336 of 336 bits in row 100 (h = 215)
 168 columns changed, each by one cell           still a castle at h = 215: True
 recovered exactly: True
-capacity: 1 bit per column -> 262,144 bits = 43,690 base64 characters per 512x512 image
+usable columns in the whole image: 257,919 -> 42,986 base64 characters
 ```
 
-Half the columns change (a random bit agrees with the existing low bit half the time), each by one grey level. This is ordinary LSB steganography with castle vocabulary; its one castle-specific feature is the skip rule, which keeps the touch rule and the bottom row intact.
+A column changes when its lowest bit differs from the payload bit, here in 168 of 336 columns.
 
 ## Channel B - the block parity
 
-The even-block clause of PE 502 is one bit per castle ([[castle-entropy](pages/castle-entropy.md)] prices it at exactly one bit). Channel B spends that bit on a message: **one castle carries one bit, its block parity.**
+The block count of a skyline is `blocks(c) = Σ_i max(0, c_i − c_{i−1})` with `c_0 = 0` ([[castle-sign](pages/castle-sign.md)]). Channel B writes one bit into each castle, the parity of its block count. When the parity is already the payload bit, nothing changes; otherwise one cell is moved:
 
-Setting the parity needs a single-cell edit that changes the block count by exactly one. With `blocks(c) = c_1 + sum_i max(0, c_i - c_{i-1})` ([[castle-sign](pages/castle-sign.md)]):
+- **Raise a strict local maximum by one** (`c_{i−1} < c_i > c_{i+1}`, `1 < i < w`, `c_i < h`): the rise into column `i` grows by one and the rise out of it stays zero, so the block count grows by one.
+- **Lower a strict local minimum by one** (`c_{i−1} > c_i < c_{i+1}`, `1 < i < w`, `c_i ≥ 2`): the rise into column `i` stays zero and the rise into column `i + 1` grows by one, so the block count grows by one.
 
-- **Raise a strict local maximum by one** (`c_{i-1} < c_i > c_{i+1}`): the rise into column `i` grows by one, the rise out of it stays zero. Block count `+1`.
-- **Lower a strict local minimum by one** (`c_{i-1} > c_i < c_{i+1}`): the rise into `i` stays zero, the rise into `i+1` grows by one. Block count `+1`.
+Either edit changes the parity, keeps the heights between 1 and `h`, and moves one cell ([[one-bit-seminar](pages/one-bit-seminar.md)], the section *Stop 3*). The edit is chosen: a uniform one-column edit of a uniform castle of width 17 and height 16 changes the parity with probability 0.4272 ([[song-as-castle](pages/song-as-castle.md)]). The extractor reads each row's block parity.
 
-Either edit flips the parity with certainty and moves one cell; the constraints are only that a raised maximum stays below `h` and a lowered minimum stays at least 1. Compare the 43% flip rate of a *random* single-column edit measured on [[song-as-castle](pages/song-as-castle.md)] - the channel works because the edit is chosen, not random.
-
-Embedding the 336 bits as the parities of rows 0..335:
+The 336 bits written as the parities of rows 0 to 335, at the first strict interior local extremum of each row that needs a change:
 
 ```
-161 rows needed a +/-1 change of one cell; 175 already had the right parity
-pixels changed: 161 of 262,144, all by exactly 1        PSNR = 80.2 dB
+161 rows needed a change of one cell; 175 already had the right parity
+pixels changed: 161 of 262,144, each by 1        PSNR = 80.2 dB
 recovered exactly: True
-after a PNG round trip:      336 / 336 bits
-after a JPEG q95 round trip: 175 / 336 bits   (chance is 168)
-block parity of the 512 untouched rows: 249 odd, 263 even
+after a PNG round trip:          336 / 336 bits
+after a JPEG quality-95 round trip: 175 / 336 bits
+block parity of the 512 rows before writing: 249 odd, 263 even
 ```
 
-Capacity is one bit per castle: 512 bits = 85 base64 characters per 512x512 image, about 1/512 of channel A. In exchange the edit count is minimal (about half the castles need one cell each), and the statistic being written is one a natural image already draws at random - untouched rows split 249/263 - so the embedding leaves no first-order trace in the parity distribution. Both channels survive lossless recoding (PNG) and neither survives JPEG, whose quantization re-randomizes low bits and block counts alike.
+The capacity is one bit per castle, 512 bits or 85 base64 characters per 512 x 512 image. After writing, the row parities are the payload bits. PNG reproduces every pixel, so both channels survive it; JPEG changes low bits and block counts, and channel B keeps 175 of 336 bits.
 
 ## Side by side
 
-| | channel A - LSB of heights | channel B - block parity |
+| | channel A - lowest bit of a height | channel B - block parity |
 |---|---|---|
-| capacity | 1 bit per **column** | 1 bit per **castle** |
-| cells moved per bit | 0.5 on average | 0.5 on average, but per castle not per column |
-| castle rules | kept by skipping peak, floor, `h-1` | kept by choosing an interior extremum |
-| what the warden sees | low-bit statistics change | parity distribution unchanged (coin flip before and after) |
-| survives PNG / JPEG | yes / no | yes / no |
-| castle-specific content | the skip rule | the one bit of the parity clause, and the one-cell flip lemma |
-
-## Where this sits
-
-Used this way, the even-block bit is a covert channel of capacity one bit per castle, written with one cell; it is the block-parity bit of [[song-as-castle](pages/song-as-castle.md)] used as a channel. Open: against a warden that counts blocks, is there a second-order statistic (parity of adjacent rows, block count distribution) that channel B disturbs? That is open.
+| capacity | 1 bit per usable column (257,919 in the image) | 1 bit per castle (512 in the image) |
+| cells moved | 168 for 336 bits in row 100 | 161 for 336 bits in rows 0 to 335 |
+| how the castle is kept | skip height 1 and the low-bit pair of `h` | edit a strict interior local extremum |
+| PNG / JPEG quality 95 | survives / does not | 336 of 336 / 175 of 336 |
 
 ## Related Concepts
 
-- [[image-as-castle](pages/image-as-castle.md)] - the cover: an image as 512 row castles.
-- [[castle-phone-line](pages/castle-phone-line.md)] - both channels sent down a simulated phone line as pitch-stepping tones; block parity does not survive, a spaced-out height bit does.
-- [[song-as-castle](pages/song-as-castle.md)] - the rank/unrank bijection and the 43% random-flip figure.
-- [[castle-entropy](pages/castle-entropy.md)] - the parity clause is one bit; channel B is that bit as capacity.
-- [[castle-sign](pages/castle-sign.md)] - the block count formula the flip lemma is read off.
-- [[castle-compression](pages/castle-compression.md)] - why lossless codecs preserve both channels and lossy ones destroy them.
-- [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the one bit this channel monetizes is the same bit that separates H(B) from H(N); the parity-clause thread.
+- [[image-as-castle](pages/image-as-castle.md)] - the cover image as 512 row castles.
+- [[castle-phone-line](pages/castle-phone-line.md)] - the two channels sent over a simulated telephone line; the block parity does not survive it, and a height code with spacing 6 does.
+- [[song-as-castle](pages/song-as-castle.md)] - the rank/unrank bijection of castles and the parity-change probability of a uniform one-column edit.
+- [[castle-entropy](pages/castle-entropy.md)] - the even-block condition costs one bit up to `log₂(1 + S/A)`; channel B writes that bit.
+- [[castle-sign](pages/castle-sign.md)] - the block count as total ascent.
+- [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the entropies of the block count and the area of the even-block castles; on that ensemble the block count is even, so the parity that channel B writes is fixed.
 - [[castle-snippets](pages/castle-snippets.md)] - the `blocks` predicate.
-- [[one-bit-seminar](pages/one-bit-seminar.md)] - Stop 5 of the one-bit seminar; Stop 3 gives the exact one-cell flip rule behind channel B.
-- [[sandpile-identity](pages/sandpile-identity.md)] - the sink avalanche profile, a castle-graph fingerprint that no two non-isomorphic castle graphs share up to 13 cells; like block parity, it cannot tell a castle from its mirror image.
+- [[one-bit-seminar](pages/one-bit-seminar.md)] - Stop 3, the one-cell edits that change the parity, and Stop 5, the parity as a channel.
 
 ## Appearances in Sources
 
-- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the block count as the sum of positive first differences, which makes the one-cell flip lemma a two-line check.
+- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the block count read from the differences of consecutive column heights.
 
 ## Footnotes
 
-[^exec]: Verified by execution (2026-09-19): Python 3 with numpy, scipy, Pillow and scikit-image under `uv`; the cover is `skimage.data.camera()`. Embedding and extraction were run and compared bit for bit; PNG and JPEG round trips used Pillow's encoders. All quoted numbers are the script's printed output.
+[^exec]: Verified by execution (Python 3.11 with NumPy 1.26 and Pillow 11.3, 2026-10-16), on the cameraman image of scikit-image's data files (`camera.png`, which `skimage.data.camera()` returns). Both channels written and read back bit for bit; the image-wide capacity of channel A counted over all 512 rows with the skip rule above; PSNR from the mean squared pixel change; PNG and JPEG round trips with Pillow's encoders.
