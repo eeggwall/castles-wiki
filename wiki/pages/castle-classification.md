@@ -1,90 +1,68 @@
 ---
 title: Castle classification
 category: Concepts
-summary: Hub for the castle-type taxonomy. Three scopes with different classifying scales: shape types (Axes 1-7, skyline predicates on individual castles), spectral types (single-castle graph-spectrum predicates), and growth types (class-level, count-sequence growth constants). Compressibility is a fourth invariant living on castle-compression.
+summary: The hub of the castle classification, at three scopes. Shape types are predicates on one castle's skyline (the 42 types of the Castle Types source plus ridge, hoodoo and monadnock castles). Spectral types are predicates on the spectrum of one castle's graph (tree castles, castles golden and silver by spectrum, isospectral pairs, Ramanujan castles, sparse-spectrum castles). Growth types classify families of castles by the growth constant of their count along a named axis ("golden by width", "tribonacci by area"). Compressibility is a separate invariant on castle-compression.
 tags: [concept, castle, classification, taxonomy, hub, scope, shape, spectral, growth]
-sources: [castle-classification]
+sources: [oeis-mining-pe502]
 created: 2026-09-15
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
 # Castle classification
 
-The wiki classifies castles at three different **scopes**, each answering a different question. The three scopes need three pages because each has its own machinery, its own set of named types, and its own open threads. This page is the hub that maps them.
+The wiki classifies castles at three **scopes**: a shape type is a property of one castle's skyline, a spectral type a property of the spectrum of one castle's graph, and a growth type a property of a family of castles. Each scope has its own page; this page maps them.
 
-## The framing
+## Castles and types
 
-A **castle** is a valid stacked-block configuration on a `w × h` grid ([[castle-polyomino](pages/castle-polyomino.md)]), determined by its **skyline** - the sequence of column heights[^1]
+A castle of width `w` and height `h` is determined by its skyline, the column heights[^1]
 
 ```
-c_1, c_2, …, c_w      with 1 ≤ c_i ≤ h and max_i c_i = h.
+(c_1, c_2, …, c_w)      with 1 ≤ c_i ≤ h and some c_i = h
 ```
 
-Every castle is automatically **column-convex** (each column is one contiguous vertical run) and **bottom-aligned** (row 1 is a full-width block). A **castle type** is a further restriction beyond those two, and the restrictions come in three kinds.
+([[castle-polyomino](pages/castle-polyomino.md)]). Every castle is column-convex, each column one vertical run of cells from row 1, and its bottom row is full. A **castle type** is a further condition on the castle, and the conditions come in three kinds.
 
-## Map of the three scopes
+## The three scopes
 
-| Scope | Object classified | Invariant | Named types | Page |
+| scope | what is classified | the invariant | named types | page |
 |---|---|---|---|---|
-| **Shape** | one castle | skyline predicate on `(c_1, …, c_w)` | unimodal, Ferrers, staircase, palindromic, Dyck-path, Motzkin-path, rainbow, hook, crenellated, m-smooth, m-disparate, ridge, hoodoo, monadnock, … (42 types on 7 axes, plus the wiki-named ridge, hoodoo, and monadnock types) | [[castle-classification-shape](pages/castle-classification-shape.md)] |
-| **Spectrum** | one castle | spectrum of a graph derived from it ([[castle-graph](pages/castle-graph.md)]) | tree, golden-spectrum, silver-spectrum, `φ²`-spectrum, isospectral (pair predicate), Ramanujan | [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] |
-| **Growth** | a whole class of castles under a construction rule | growth constant of the class's count sequence along a stated size axis | golden / silver / bronze / `σ_4^1` / `σ_5^1` `<axis>` growth castle, tribonacci / tetranacci / supergolden / plastic-squared `<axis>` growth castle | [[castle-classification-growth](pages/castle-classification-growth.md)] |
+| **shape** | one castle | a predicate on the skyline `(c_1, …, c_w)` | unimodal, Ferrers, staircase, palindromic, Dyck-path, Motzkin-path, rainbow, hook, crenellated, m-smooth, m-disparate, …: the 42 types of the Castle Types source in seven groups, plus ridge, hoodoo and monadnock castles | [[castle-classification-shape](pages/castle-classification-shape.md)] |
+| **spectrum** | one castle | a spectrum of its castle graph ([[castle-graph](pages/castle-graph.md)]) or of its skyline | tree castles; castles golden by spectrum (spectral radius `φ`) and silver by spectrum (`1 + √2`); spectral radius `φ²`; isospectral pairs; Ramanujan castles; sparse-spectrum castles | [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] |
+| **growth** | a family of castles defined by a rule | the growth constant of the family's count along a named axis: width, height, area or semi-perimeter | golden, silver, bronze, copper and nickel by width; `δ_4`, `δ_5`, … by width; tribonacci, tetranacci, supergolden, plastic and `ψ²` by area | [[castle-classification-growth](pages/castle-classification-growth.md)] |
 
-A fourth invariant, **compressibility** - the length of the shortest description that produces the castle - is not classified by shape, spectrum, or growth. It sits on its own page [[castle-compression](pages/castle-compression.md)], with three tiers (parametric, rule-generated, generic) that cross-cut all three scopes above.
+The shape and spectral scopes classify one castle, but they read it differently. A shape predicate reads the skyline directly. A spectral predicate builds the castle graph, with the cells as vertices and an edge between cells that share a side, and reads the eigenvalues of a matrix attached to it. The graph is determined by the skyline, so every spectral type is a function of the skyline, and a coarser one: different skylines can have isomorphic graphs (the six castles whose graph is the path `P_4`), and non-isomorphic graphs can have the same spectrum ([[isospectral-castles](pages/isospectral-castles.md)]).
 
-## Reading the scope column
+The growth scope classifies a family defined by a rule (a rule on neighboring columns, the ridge rule, the tree condition, or any predicate that defines an infinite set of castles) by how fast the number of its castles grows. "Silver by width" is a property of such a family, not of one castle. A shape or spectral predicate defines a family, and that family has a growth type: the tree castles of height 2, a spectral type and a shape type at once, are golden by width ([[castle-classification-growth](pages/castle-classification-growth.md)], the section *Statements across scopes*). The tree condition is a shape condition and a graph condition at once, since a castle graph is a tree exactly when no `2 × 2` square of cells is filled ([[castle-graph](pages/castle-graph.md)]).
 
-The **shape** and **spectrum** scopes both classify a single castle, but they read different features of it. A shape predicate looks at the skyline `(c_1, …, c_w)` directly (unimodal, palindromic, exactly two peaks). A spectral predicate builds the polyomino graph (cells as vertices, orthogonal neighbours as edges) and reads eigenvalues off some operator on it. Two castles with different shapes can share a spectrum (isospectral pairs); two castles with the same shape trivially share every graph invariant. Every spectral predicate is therefore a function of the shape, a *coarser* one, that sorts castles by walks, mixing and expansion rather than by the skyline.
+Compressibility, the length of the shortest description of a castle, is a separate invariant, with three description tiers that cut across the three scopes ([[castle-compression](pages/castle-compression.md)]).
 
-The **growth** scope is different: it classifies not a single castle but an entire family - a construction rule (a neighbour rule read left to right, a ceiling exception such as the ridge rule, a tree ban, or any other predicate defining an infinite class of castles) - and asks how fast the count sequence grows. "Silver width growth castle" is not a property a single castle either has or does not have; it is a property of an infinite family and the rule that defines it.
+## Parity
 
-The scopes interact: a shape predicate defines a class, and the class has a growth type; a spectral predicate can coincide with a shape one (the tree-castle condition "no `2 × 2` filled block" is both a shape restriction and a graph-theoretic one); and the same class can be classified at two scopes. [[castle-classification-growth](pages/castle-classification-growth.md)] ends with the cross-scope theorems.
+Project Euler 502 counts the castles with an even number of blocks. Every type is defined without the parity condition, and the even-block members of a type are counted by `A^e = (A + S)/2`, with `S` the signed count over its castles ([[castle-sign](pages/castle-sign.md)]). For some types the parity is fixed by the shape: a convex (unimodal) castle of height `h` has exactly `h` blocks, one per row, so all convex castles of height `h` have the parity of `h`, and the even-block condition keeps all of them or none.[^2]
 
-## Three questions per type
+## Source
 
-1. **Is it counted?** Does the wiki already have a count (exact formula, generating function, algorithm) for the type?
-2. **What is its count's shape?** Growth constant, C-finite / algebraic / transcendental character, OEIS identification if any.
-3. **How does it interact with the parity clause?** Does the parity-projected version have the same shape, or is parity locked out by the type's structure?
-
-Question (2) is where the shape and growth pages meet: answering it for a shape type places that type's class on the growth axis.
-
-**Parity.** Project Euler 502 (PE 502) requires an even number of blocks. Each type is defined without reference to that clause, and the even-block projector `(A ± P) / 2` ([[castle-sign](pages/castle-sign.md)]) is applied on top when needed.[^1] The clause is not independent of typing: a convex (unimodal) castle of height `h` has exactly `h` blocks, one per row, so every convex castle has the block parity of `h` and the projector keeps all of them or none.[^2]
-
-## Upstream source
-
-The shape-type catalogue is hydrated from `charlesreid1.com/wiki/Project_Euler/502/Castle_Types` (fetched 2026-09-15; wikitext cached at `raw/castle-types.wiki`). That page defines 42 types - 7 base types drawn from the polyomino literature (column-convex, unimodal, directed, parallelogram, Ferrers, staircase, m-disparate) and 35 proposed types aggregated from adjacent literature or newly defined.[^3] The upstream page states the types as skyline predicates only; the shape page organizes them into the seven structural axes and ties each type to the wiki thread that already touches it. The spectrum, growth, and compressibility scopes are the wiki's own additions.
-
-## Open threads
-
-Each scope's page carries its own detailed open list; the largest open items across all three:
-
-1. **k-modal for `k ≥ 2`** (shape) - the parametric family whose `k = 1` case is [[convex-castle](pages/convex-castle.md)] (binomial).
-2. **Symmetry types** (shape) - palindromic, centrally symmetric, self-conjugate - untouched.
-3. **Rainbow** (shape) - skylines that are permutations of `{1, …, h}`, tied to the [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] triad.
-4. **Ramanujan castles** (spectrum) - the universal-cover definition is stated on [[castle-classification-spectrum](pages/castle-classification-spectrum.md)]; the census on [[ramanujan-castles](pages/ramanujan-castles.md)] finds every castle with at most 14 cells Ramanujan and the first failures at 15 cells; the smallest failing rectangle is `2 × 14`.
-5. **Bronze-spectrum castles** (spectrum) - no example in twelve searched boxes totaling about `7.1 × 10^11` skylines (with overlaps); existence remains open ([[bronze-castle-hunt](pages/bronze-castle-hunt.md)]).
-6. **Sparse-spectrum, low / high-pass, Ihara-Ramanujan** (spectrum) - the three sketched types on [[castle-classification-spectrum](pages/castle-classification-spectrum.md)].
-7. **Alternative realizations of the bronze / `σ_4^1` / `σ_5^1` width growth castles** (growth) - the ridge castles (`R_h = J − D`) are the named realization, and 192 binary `4 × 4` matrices have Perron root bronze ([[ridge-castle](pages/ridge-castle.md)]); does any higher rung admit a second, structurally distinct named rule the way silver does?
-8. **Vertical and block growth axes** (growth) - no member known for either.
-9. **Compressibility** as a classifier in its own right ([[castle-compression](pages/castle-compression.md)]).
+The shape types are taken from `charlesreid1.com/wiki/Project_Euler/502/Castle_Types` (fetched 2026-09-15, cached at `raw/castle-types.wiki`). It defines 42 types as predicates on the skyline: 7 base types from the polyomino literature (column-convex, unimodal, directed, parallelogram, Ferrers, staircase, m-disparate) and 35 further types.[^3] [[castle-classification-shape](pages/castle-classification-shape.md)] groups them into seven groups and links each to the wiki page that treats it. The spectral, growth and compressibility scopes are the wiki's own.
 
 ## Related Concepts
 
-- [[castle-classification-shape](pages/castle-classification-shape.md)] - shape-based catalogue (Axes 1-7).
-- [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - spectral catalogue (tree, golden-spectrum, isospectral, Ramanujan, …).
-- [[castle-classification-growth](pages/castle-classification-growth.md)] - class-level growth-type catalogue (metallic and non-metallic slots).
-- [[castle-compression](pages/castle-compression.md)] - compressibility as a fourth invariant.
-- [[castle-polyomino](pages/castle-polyomino.md)] - the base object.
-- [[castle-representations](pages/castle-representations.md)] - the skyline `(c_1, …, c_w)` the shape predicates read.
-- [[castle-graph](pages/castle-graph.md)] - the polyomino graph the spectral predicates read.
-- [[castle-strip](pages/castle-strip.md)] - the construction-rule object whose growth constant places a class on the growth axis.
-- [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - a pedagogy page that walks through the different "eigenvalues" appearing at each scope.
-- [[castle-sign](pages/castle-sign.md)] - the parity projector applied on top of any type.
-- [[convex-castle](pages/convex-castle.md)] - the type whose block count is fixed by its shape.
-- [[spectral-analysis](pages/spectral-analysis.md)] - the methods hub paired with the spectral predicates.
-- [[castle-snippets](pages/castle-snippets.md)] - short tested Python snippets for the shape predicates and the castle-graph primitives.
-- [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - each restriction axis defined here gives a subset of `V(w,h)` with its own single-column-change Gray-tour question.
-- [[area-growth-census](pages/area-growth-census.md)] - realizes the bare plastic number `ψ` as an area growth constant, at height 2.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the shape types, each with its predicate, an example skyline and a count where one is known.
+- [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - the spectral types: tree castles, castles golden and silver by spectrum, isospectral pairs, Ramanujan and sparse-spectrum castles.
+- [[castle-classification-growth](pages/castle-classification-growth.md)] - the growth types by width, height, area and semi-perimeter, with the families that realize each constant.
+- [[castle-compression](pages/castle-compression.md)] - the description tiers of castles: parametric, rule-generated and generic.
+- [[castle-polyomino](pages/castle-polyomino.md)] - the castle definition.
+- [[castle-representations](pages/castle-representations.md)] - the skyline and the other encodings of a castle.
+- [[castle-graph](pages/castle-graph.md)] - the castle graph, its invariants, and the tree castles.
+- [[castle-strip](pages/castle-strip.md)] - families defined by a rule on neighboring columns, counted by a transfer matrix whose largest eigenvalue is the growth constant by width.
+- [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - small castles with their adjacency spectra computed by hand, and the other matrices whose eigenvalues appear on the wiki.
+- [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the split into even-block and odd-block castles.
+- [[convex-castle](pages/convex-castle.md)] - the convex castles, whose block count equals their height.
+- [[spectral-analysis](pages/spectral-analysis.md)] - the spectra computed for castles and what each decides.
+- [[ramanujan-castles](pages/ramanujan-castles.md)] - every castle with at most 14 cells is Ramanujan; the smallest exceptions have 15 cells.
+- [[bronze-castle-hunt](pages/bronze-castle-hunt.md)] - the search for a castle whose graph has spectral radius bronze.
+- [[castle-snippets](pages/castle-snippets.md)] - tested Python snippets for the shape predicates and the castle graph.
+- [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - Gray tours on the even-block castles of small width and height.
+- [[area-growth-census](pages/area-growth-census.md)] - the growth constants by area of all strip rules up to height 4; the smallest above 1 at height `h ≥ 2` is the root of `z^{h(h+1)/2} − z − 1`, the plastic number at `h = 2`.
 
 ## Footnotes
 
