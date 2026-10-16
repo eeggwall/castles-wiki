@@ -1,33 +1,45 @@
 ---
 title: The mod-9 coset-lift mechanism
 category: Concepts
-summary: Why column w = 4 hits F mod 9 uniformly, why the columns w = 3^{k-1} + {1, 3, 8} do in the range checked, and why the rows computed cannot. First, the row / column divisibility gap: column periods per_w = 2 * 3^{ceil(log_3 w) + 1} are divisible by 9, so a uniform mod-9 histogram is arithmetically possible; row periods per_h have v_3 = 1 for every h <= 40 (computed), so no such row is uniform. A theorem bounds the 3-adic content: the joint state (y_k, z_k, u_k) = (char_k(x_0), char_k'(x_0), char_k''(x_0)) mod 3 at x_0 = +-1 cycles with period 24 and never vanishes, so (x - 1)^3 and (x + 1)^3 never divide char_k mod 3; with the higher-degree factors squarefree (observed for k <= 200) this bounds v_3 of each char_k period mod 9 by 2, and the observed value is 1. Second, an elementary six-step proof at w = 4 (closed form, parity split, mod-3 uniformity on m mod 9, coset lift F(4, h + 18) = F(4, h) + 6 mod 9 on even h) gives the exact 2/9 rate there without Heath-Brown. Third, the coset-lift criterion: for every w in [10, 100], w is uniform iff the differences F(w, h + per_w/3) - F(w, h) mod 9 take exactly the values {3, 6}; the non-uniform w also take the value 0, a fixed point of the coset shift.
+summary: Why the column w = 4 of A^e mod 9 is exactly uniform, why some columns can be and no row with h ≤ 40 can. P(·, L) satisfies a linear recurrence whose characteristic polynomial divides (x − 1)^{L+1}(x + 1)^L (proved), so for 2 ≤ w ≤ 293 the column A^e(w, ·) mod 9 has minimal period per_w = 2·3^{⌈log_3 w⌉+1}, divisible by 9; the row periods per_h have v_3 = 1 for h ≤ 40 (computed), so no such row is uniform. Over F_3, (x − 1)^2 divides char_k exactly when k ≡ 4 (mod 12), (x + 1)^2 exactly when k ≡ 6 (mod 12), and no cube of a linear factor ever does (proved by a state cycle of length 24); no factor of degree ≥ 2 repeats for k ≤ 200 (computed). An elementary proof shows A^e(4, h) mod 9 hits each residue 6 times per period 54, so the w = 4 column has exclusion rate exactly 2/9. The coset-lift criterion, computed for 2 ≤ w ≤ 293: a column is uniform exactly when the shift-by-per_w/3 differences mod 9 take only the values 3 and 6.
 tags: [concept, castle, sum-of-cubes, mod-9, periodicity, coset-lift, elementary-proof, three-adic, characteristic-polynomial]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-22
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # The mod-9 coset-lift mechanism
 
-The [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] page records the finding: `F(w, h) mod 9` is equidistributed in the limit, columns `w in {4, 6, 10, 12, 17, 28, 30, 35, 82, 84, 89, 244, 246, 251, ...}` hit the equidistribution value `2/9` exactly, the rows computed do not (they carry a `+-1`-per-residue rounding jitter), and the aggregate over cells with `A(w, h) <= N` approaches `2/9` at rate `0.0786 * N^{-1/12}`. Three results explain the finding:
+No integer `≡ 4` or `5 (mod 9)` is a sum of three cubes, since every cube is `0` or `±1` mod 9 ([[sums-of-three-cubes](pages/sums-of-three-cubes.md)]). For a set of castle counts, the **exclusion rate** is the proportion of them `≡ 4` or `5 (mod 9)`; if the residues mod 9 are equidistributed it is `2/9`. [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] computes these rates for the castle counts `A^e(w, h)` (the `F(w, h)` of the problem statement): the columns `w = 4, 6, 10, 12, 17, 28, 30, 35, 82, 84, 89, 244, 246, 251` are exactly uniform mod 9 for `w ≤ 293`, and no row with `h ≤ 40` is. This page gives three results behind that finding.
 
-1. **The row / column divisibility gap.** Column periods have `v_3 >= 2` structurally; row periods have `v_3 = 1` for every `h <= 40` (computed). Uniformity mod 9 is arithmetically possible for columns and impossible for those rows.
-2. **The `w = 4` proof.** A six-step elementary derivation gives `F(4, h) mod 9` uniform over any 54 consecutive `h`, unconditionally.
-3. **The coset-lift criterion.** In the range checked (`10 <= w <= 100`), column `w` is uniform iff the shift-by-`per_w / 3` differences of `F(w, . ) mod 9` take only the values `{3, 6}`; at non-uniform `w` they also take `0`, a coset-shift fixed point.
+1. **The row/column divisibility gap.** For `2 ≤ w ≤ 293` the column period is divisible by 9; for `h ≤ 40` the row period is divisible by 3 and not by 9. A sequence can be uniform mod 9 over one period only if 9 divides the period.
+2. **The `w = 4` proof.** An elementary argument shows that `A^e(4, ·) mod 9` hits every residue 6 times in each period of 54.
+3. **The coset-lift criterion.** For `2 ≤ w ≤ 293` (computed), the column `w` is uniform exactly when the differences `A^e(w, h + per_w/3) − A^e(w, h) mod 9` take only the values 3 and 6.
 
-All three are variants of one technique: study `F` mod 9 as a coset shift on `Z/9`, whose lifted behavior is controlled by the k-direction characteristic polynomial `(x + 1)^w (x - 1)^{w - 2}` of [[signed-tower-k-direction](pages/signed-tower-k-direction.md)]. The name **coset-lift** points at the shared move: represent `F` values as elements of a coset of `3 Z / 9` in `Z / 9`, and pin the residue within the coset by a shift argument.
+A **coset lift** is the step used in results 2 and 3: a value mod 9 is a residue mod 3 together with a choice inside its coset `r + 3Z/9`, and a shift of `h` that preserves the residue mod 3 moves the value inside the coset. When the shift by `per_w/3` always moves the value by 3 or 6, the three shifts of one `h` cover the whole coset.
 
-## The row / column divisibility gap
+## The recurrence in the tower height
 
-The row and column readings of [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] behave qualitatively differently for a **3-adic** reason:
+**Lemma.** For fixed `L`, the sequence `P(·, L)` satisfies a linear recurrence whose characteristic polynomial divides `(x − 1)^{L+1}(x + 1)^L`.
 
-| direction | period formula | `v_3(period)` | 9 divides? |
+*Proof.* Let `c ∈ {0, …, k}^L` be the column heights of towers, with `c_0 = 0`, and let `0 = v_0 < v_1 < ⋯ < v_r` be the distinct values among `0, c_1, …, c_L`, so `r ≤ L`. Fix the pattern, which `c_i` takes which value `v_{a_i}`, and write `d_j = v_j − v_{j−1} ≥ 1`. Then `blocks(c) = Σ_i max(0, c_i − c_{i−1}) = Σ_j b_j d_j`, with `b_j` the number of `i` such that `a_{i−1} < j ≤ a_i`. So with `s_j = (−1)^{b_j}`, the towers of this pattern and height at most `k` contribute `Σ s_1^{d_1} ⋯ s_r^{d_r}` over `d_j ≥ 1`, `d_1 + ⋯ + d_r ≤ k`, and
+
+```
+Σ_{k ≥ 0} t^k · (contribution at k)  =  1/(1 − t) · Π_{j=1}^{r} s_j t/(1 − s_j t).
+```
+
+Summing over the finitely many patterns, `Σ_k P(k, L) t^k` is a proper rational function whose denominator divides `(1 − t)^{L+1}(1 + t)^L`. ∎
+
+In particular `P(k, L)` is a polynomial in `k` of degree at most `L` on each class of `k` modulo 2, the form in which [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)] proves it. The computed characteristic polynomial, `(x + 1)^L (x − 1)^{L−2}` for `4 ≤ L ≤ 12`, is a divisor ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]). For fixed `w`, the column `A^e(w, ·) mod 9` therefore satisfies a linear recurrence of order `2w + 1`, since `h^w − (h−1)^w` is a polynomial of degree `w − 1` in `h`. A period checked on `2w + 1` consecutive values of `h` is a period for all `h ≥ 2`.
+
+## The row/column divisibility gap
+
+| direction | period mod 9 | `v_3(period)` | 9 divides? |
 |---|---|---|---|
-| columns (fixed `w`, `w >= 2`) | `per_w = 2 * 3^{ceil(log_3 w) + 1}` | `ceil(log_3 w) + 1 >= 2` | **always** |
-| rows (fixed `h`, computed `h <= 40`) | `per_h = lcm(ord_9(h), ord_9(h-1), per(char_{h-1}) mod 9, per(char_{h-2}) mod 9)` | `1` | **never** |
+| columns (fixed `w`, `2 ≤ w ≤ 293`) | `per_w = 2 · 3^{⌈log_3 w⌉ + 1}` | `⌈log_3 w⌉ + 1 ≥ 2` | yes |
+| rows (fixed `h`, `h ≤ 40`) | divides `per_h = lcm(ord_9(h), ord_9(h−1), per_9(char_{h−1}), per_9(char_{h−2}))` | `1` | no |
 
-Row periods `per_h` for `h = 2..16`, each factored, with 3-adic valuation `v_3` in the last column:[^exec]
+Here `ord_9(a)` is the order of `a` mod 9, taken as 1 when `3 | a` (then `a^w ≡ 0` for `w ≥ 2`), and `per_9(char_k)` is the order of `x` in `Z/9[x]/(char_k)`. Row periods `per_h` for `h = 2, …, 16`:[^exec]
 
 | `h` | `per_h` | factorization | `v_3` |
 |---|---|---|---|
@@ -47,134 +59,102 @@ Row periods `per_h` for `h = 2..16`, each factored, with 3-adic valuation `v_3` 
 | 15 | 25170390960 | `2^4 * 3 * 5 * 11^2 * 13 * 61 * 1093` | 1 |
 | 16 | 88096368360 | `2^3 * 3 * 5 * 7 * 11^2 * 13 * 61 * 1093` | 1 |
 
-Every row period through `h = 16` has exactly one factor of 3, and the same computation gives `v_3(per_h) = 1` for every `h <= 40`.
+For `h ≤ 11`, `per_h` is the minimal period of `A^e(·, h) mod 9` from `w = 2` (computed from the recurrence of `P(k, ·)` in the base length). The same computation gives `v_3(per_h) = 1` for every `h ≤ 40`.
 
-**Columns.** The k-direction characteristic polynomial of `P(k, w)` is `(x+1)^w (x-1)^{w-2}` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), with a root of multiplicity `w` at `-1`. Reducing mod `9` and applying the "multiplicity `m` inflates the period by `p^{ceil(log_p m)}`" rule of the [[mod-p-observatory](pages/mod-p-observatory.md)] with `p = 3`, the mod-9 period picks up a factor `3^{ceil(log_3 w) + 1}` (the extra `+1` in the exponent is the second-power lift from `mod 3` to `mod 9`). For `w >= 2` this is `>= 9`, so `9 | per_w` for every column and a flat 9-bucket histogram over one period is arithmetically possible.
+**Columns.** For `2 ≤ w ≤ 293`, `per_w` is the minimal period of `A^e(w, ·) mod 9` from `h = 2`: the values, computed from `P(k, w) mod 9` for `k ≤ 6600`, repeat with period `per_w` over more than `2w + 1` consecutive `h` and with no proper divisor of it, and the Lemma extends the period to every `h`.[^exec] The form of `per_w` follows from the computed characteristic polynomial. In `Z/9[x]/((x + 1)^w)` put `N = x + 1`, so `x^{2n} = (1 − N)^{2n} = Σ_j C(2n, j)(−N)^j`. Since `j · C(n, j) = n · C(n − 1, j − 1)`, `3^{e − v_3(j)}` divides `C(2 · 3^e, j)`, so `x^{2·3^e} = 1` once `e ≥ 2 + v_3(j)` for every `j < w`, that is for `e = ⌈log_3 w⌉ + 1`; the factor `(x − 1)^{w−2}` needs no more, and the two factors are coprime because `(x + 1) − (x − 1) = 2` is a unit mod 9. For `w ≥ 2`, `9 | per_w`.
 
-**Rows.** The w-direction period `per_h` is the lcm of the `L`-direction characteristic-polynomial periods for `char_{h-1}` and `char_{h-2}` mod 9, together with the multiplicative orders `ord_9(h), ord_9(h-1)`. The multiplicative orders divide `phi(9) = 6`, so their 3-adic content is at most 1. For each `char_k`, the period mod 9 is the period mod 3 or three times it (if `x^N = 1 + 3g` then `x^{3N} = 1` mod 9), and the period mod 3 has 3-adic valuation `ceil(log_3 m)` for the largest multiplicity `m` of a factor of `char_k mod 3` (the orders of the irreducible factors are prime to 3). So `v_3` of the `char_k` period mod 9 is at most `1 + ceil(log_3 m)`.
+**Rows.** The multiplicative orders `ord_9(h)` and `ord_9(h−1)` divide `φ(9) = 6`, with `φ` Euler's totient. For each `char_k`, the order of `x` mod 9 is its order `N` mod 3 or `3N`: if `x^N = 1 + 3g`, then `x^{3N} = 1` mod 9. The order mod 3 has 3-adic valuation exactly `⌈log_3 m⌉`, with `m` the largest multiplicity of a factor of `char_k mod 3`, because the orders of the irreducible factors are prime to 3 and a factor of multiplicity `m` contributes exactly `3^{⌈log_3 m⌉}` ([[larger-prime-periodicity](pages/larger-prime-periodicity.md)], section *The period from the factorization*). So `v_3(per_9(char_k)) ≤ 1 + ⌈log_3 m⌉`.
 
-**Extended search: no multiplicity `>= 3` through `k <= 200`.** Direct factorization of `char_k mod 3` for `k = 1..200`:[^exec]
+**Theorem.** Over `F_3`, `(x − 1)^2` divides `char_k` exactly when `k ≡ 4 (mod 12)`, `(x + 1)^2` divides `char_k` exactly when `k ≡ 6 (mod 12)`, and neither `(x − 1)^3` nor `(x + 1)^3` divides any `char_k`.
 
-```
-k with repeated mod-3 factor:  4, 6, 16, 18, 28, 30, 40, 42, 52, 54, 64, 66, 76, 78, 88, 90, 100, ...
-```
-
-These are exactly `k in [1, 200]` with `k mod 12 in {4, 6}`. In every case, the repeated factor is `(x - 1)^2` (for `k = 4 mod 12`) or `(x + 1)^2` (for `k = 6 mod 12`), and the multiplicity is always exactly `2`. **The maximum multiplicity of any `char_k mod 3` factor for `k <= 200` is `2`**, which bounds `v_3` of each `char_k` period mod 9 by 2. The bound is not reached where computed: `v_3 = 1` for every `k <= 39`, because the squarefree cases pick up the factor 3 from the lift to 9 and the repeated-root cases (`k = 4, 6 mod 12`) do not. Hence `v_3(per_h) = 1` for every `h <= 40`.
-
-**Theorem (linear factors, proved).** For every `k >= 0`, `(x - 1)^3` and `(x + 1)^3` do not divide `char_k mod 3`. Equivalently, the linear factors `(x - 1)` and `(x + 1)` each appear in `char_k mod 3` with multiplicity at most 2.
-
-**Proof.** The mod-3 recurrence `char_{k+1}(x) = x^2 char_{k-1}(x) + char_k(x)` evaluated at `x_0 = 1` or `x_0 = -1` gives a Fibonacci-like scalar recurrence, together with linked recurrences for the first and second derivatives:
+*Proof.* Modulo 3 the recurrence `char_{k+1} = x^2 char_{k−1} − 2 char_k` is `char_{k+1} = x^2 char_{k−1} + char_k`. At `x_0 = ±1`, using `x_0^2 = 1` and `4 ≡ 1`, the values `y_k = char_k(x_0)`, `z_k = char_k′(x_0)` and `u_k = char_k″(x_0)` mod 3 satisfy
 
 ```
-y_k    = char_k(x_0) mod 3,             y_{k+1} = y_{k-1} + y_k
-z_k    = char_k'(x_0) mod 3,            z_{k+1} = 2 x_0 y_{k-1} + z_{k-1} + z_k
-u_k    = char_k''(x_0) mod 3,           u_{k+1} = 2 y_{k-1} + x_0 z_{k-1} + u_{k-1} + u_k
+y_{k+1}  =  y_{k-1} + y_k
+z_{k+1}  =  2 x_0 y_{k-1} + z_{k-1} + z_k
+u_{k+1}  =  2 y_{k-1} + x_0 z_{k-1} + u_{k-1} + u_k
 ```
 
-(The extra terms come from differentiating `x^2 char_{k-1}` once and twice at `x_0`, using `x_0^2 = 1` and `4 = 1 mod 3`. The `y` recurrence is the same at both points; the `z` and `u` recurrences differ by the sign of `x_0`.)
+The state `(y_{k−1}, y_k, z_{k−1}, z_k, u_{k−1}, u_k)` lies in `F_3^6` and evolves by a fixed linear map, starting from `(0, 1, 1, 0, 0, 2)` at `x_0 = 1` and `(1, 2, 1, 2, 0, 2)` at `x_0 = −1`. In both cases the state sequence is periodic from `k = 0` with period 24. Over one period, `(y_k, z_k) = (0, 0)` exactly at `k = 4, 16` for `x_0 = 1` and at `k = 6, 18` for `x_0 = −1`, and `(y_k, z_k, u_k) = (0, 0, 0)` never.[^exec] Since `2` is invertible mod 3, `(x − x_0)^3` divides `char_k` exactly when `y_k = z_k = u_k = 0`, and `(x − x_0)^2` exactly when `y_k = z_k = 0`. ∎
 
-The joint state `(y_{k-1}, y_k, z_{k-1}, z_k, u_{k-1}, u_k)` evolves deterministically in `F_3^6`, a finite set of size 729, and therefore enters a cycle. **Direct enumeration**: at `x = 1` the state cycle has length exactly 24, starting from `k = 1`. Over one full period (`k = 1..24`), the triple `(y_k, z_k, u_k) = (0, 0, 0)` **never occurs**. Same result at `x = -1`, again period 24, no triple-zero. Since the state cycles, this covers every `k >= 1`, and the base cases `k = 0, 1` are handled by direct check. Multiplicity 3 (which would require `y_k = z_k = u_k = 0`) is therefore impossible at either `x = +-1` for any `k`. QED.
+No irreducible factor of degree at least 2 of `char_k mod 3` is repeated for `k ≤ 200` (computed). So for `k ≤ 200` the largest multiplicity is 2, at `k ≡ 4, 6 (mod 12)`, and `v_3(per_9(char_k)) ≤ 2`. The computed value is `v_3 = 1` for every `1 ≤ k ≤ 40`: at the squarefree `k` the lift from 3 to 9 multiplies the order by 3, and at `k ≡ 4, 6 (mod 12)` it does not. Hence `v_3(per_h) = 1` for every `h ≤ 40`.
 
-The (y, z) subsequence at `x = 1` hits `(0, 0)` exactly at `k in {4, 16}` within one period of 24, i.e. `k ≡ 4 (mod 12)`; at `x = -1` at `k in {6, 18}`, i.e. `k ≡ 6 (mod 12)`. This is the mod-12 pattern of `(x - 1)^2` and `(x + 1)^2` factors observed empirically.
-
-**Residual conjecture.** No irreducible factor of `char_k mod 3` of degree `>= 2` has multiplicity `>= 2`. Empirical through `k <= 200`. With the theorem above it would make the maximum multiplicity `2` for every `k`, which bounds `v_3` of each `char_k` period mod 9 by 2; `v_3(per_h) = 1` for every `h` needs in addition that the lift to 9 is trivial exactly at the repeated-root `k` (observed for `k <= 39`). Equivalent formulation of the conjecture: `gcd(char_k, char_k') mod 3 in F_3[x]` is always a product of `(x - 1)` and `(x + 1)` factors, never contains a higher-degree irreducible.
-
-**Consequence for uniformity.** If `9 | per_w` (columns), the 9-bucket histogram *can* be exactly `[per_w / 9] * 9`, and it is for the `{0, 2, 7}`-offset `w`'s. If `9 ∤ per_h` (rows), the 9-bucket histogram *cannot* be uniform, since some buckets hit `floor(per_h / 9)` and others `ceil(per_h / 9)`, and the row's exclusion rate differs from `2/9` by at least `1/(9 per_h)`. That floor tends to 0 as `per_h` grows; it does not by itself decide how close the rows come to `2/9`.
+**Consequence for uniformity.** If `9 ∤ per_h`, the period of the row `A^e(·, h) mod 9`, which divides `per_h`, is not divisible by 9, so the nine residues cannot occur equally often over one period and the row's exclusion rate differs from `2/9`. This bound alone does not say how far from `2/9` the rows are. If `9 | per_w`, uniformity is possible, and it occurs for the columns listed in the introduction.
 
 ## The `w = 4` proof
 
-The uniform mod-9 histogram of the `w = 4` column, and so its exact `2/9` exclusion rate, follows from an elementary argument: the closed form for `F(4, h)`, polynomial arithmetic, and a coset lift. It uses no character sums and does not depend on Heath-Brown's conjecture.
+**Theorem.** `A^e(4, ·) mod 9` has period 54, and each residue mod 9 occurs exactly 6 times in each period. So the exclusion rate of the column `w = 4` is exactly `12/54 = 2/9`.
 
-**Step 1. Closed form.** From `P(k, 4) = (-1)^k A_4(k) + B_4(k)` with `A_4(k) = (k+1)(2k+1)(2k+3)/6` and `B_4(k) = (k+1)/2` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), substitution into `F(4, h) = (h^4 - (h-1)^4 - P(h-1, 4) + P(h-2, 4))/2` gives
+The proof is elementary and uses no conjecture on sums of three cubes.
 
-```
-12 * F(4, h)  =  (24 h^3 - 36 h^2 + 24 h - 9)  +  (-1)^h * (8 h^3 - 12 h^2 + 10 h - 3).
-```
-
-Verified: `F(4, 2) = 10`, `F(4, 3) = 21`, `F(4, 4) = 117`, `F(4, 5) = 122`, `F(4, 7) = 367` come out of the formula exactly.
-
-**Step 2. Split by parity.** For `h = 2m` (even),
+*Step 1. Closed form.* `P(k, 4) = (−1)^k A_4(k) + B_4(k)` with `A_4(k) = (k+1)(2k+1)(2k+3)/6` and `B_4(k) = (k+1)/2` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]). Both sides satisfy the recurrence of the Lemma, of order 9, and they agree for `k = 0, …, 8` (computed by summing over all towers), so they agree for all `k`. Substituting into `A^e(4, h) = (h^4 − (h−1)^4 − P(h−1, 4) + P(h−2, 4))/2` ([[castle-counting-formula](pages/castle-counting-formula.md)], Equation (1)) gives
 
 ```
-F(4, 2m)  =  (64 m^3 - 48 m^2 + 17 m - 3) / 3.
+12 · A^e(4, h)  =  (24 h^3 − 36 h^2 + 24 h − 9)  +  (−1)^h (8 h^3 − 12 h^2 + 10 h − 3).
 ```
 
-For `h = 2m + 1` (odd),
+It gives `A^e(4, 2) = 10`, `A^e(4, 3) = 21`, `A^e(4, 4) = 117`, `A^e(4, 5) = 122` and `A^e(4, 7) = 367`, which agree with enumeration of the castles.
+
+*Step 2. Split by parity.* For `h = 2m` and `h = 2m + 1`,
 
 ```
-F(4, 2m + 1)  =  (32 m^3 + 24 m^2 + 7 m) / 3.
+A^e(4, 2m)      =  Q_e(m)/3,     Q_e(m)  =  64 m^3 − 48 m^2 + 17 m − 3,
+A^e(4, 2m + 1)  =  Q_o(m)/3,     Q_o(m)  =  32 m^3 + 24 m^2 + 7 m.
 ```
 
-Both numerators are divisible by 3 for every `m in Z`. On the even side, `64 m^3 - 48 m^2 + 17 m - 3 = m^3 + 2m mod 3 = m(m^2 - 1) mod 3 = m(m - 1)(m + 1) mod 3`, a product of three consecutive integers, hence `0 mod 3`. On the odd side, `32 m^3 + 24 m^2 + 7 m = 2m^3 + m = m(2m^2 + 1) mod 3`, which vanishes for `m in {0, 1, 2} mod 3` by direct check.
+Modulo 3, `Q_e ≡ m^3 − m` and `Q_o ≡ −(m^3 − m)`, which vanish for every integer `m` by Fermat's little theorem.
 
-**Step 3. Uniform mod 3.** Reduce `F(4, 2m) mod 3` for `m = 0..8`:
+*Step 3. Uniform mod 3.* `A^e(4, 2m) mod 3 = (Q_e(m) mod 9)/3`, and `Q_e(m) ≡ m^3 + 6m^2 + 8m + 6 (mod 9)`. For `m = 0, …, 8`, `Q_e mod 9 = 6, 3, 0, 3, 0, 6, 0, 6, 3`, so `A^e(4, 2m) mod 3 = 2, 1, 0, 1, 0, 2, 0, 2, 1`, each residue three times. The same evaluation gives `A^e(4, 2m + 1) mod 3 = 0, 0, 2, 1, 1, 0, 2, 2, 1`, again three of each.
 
-```
-F(4, 2m) mod 3  =  (Q_e(m) mod 9) / 3    where  Q_e(m) = 64 m^3 - 48 m^2 + 17 m - 3
-                =  m^3 + 6 m^2 + 8 m + 6 (mod 9), then /3.
-```
-
-Direct evaluation gives `Q_e mod 9 = 6, 3, 0, 3, 0, 6, 0, 6, 3` for `m = 0..8`, dividing by 3 gives `F(4, 2m) mod 3 = 2, 1, 0, 1, 0, 2, 0, 2, 1` - the three residues `{0, 1, 2}` each appear **exactly three times**. Same evaluation on the odd side gives `F(4, 2m + 1) mod 3 = 0, 0, 2, 1, 1, 0, 2, 2, 1`, again three of each.
-
-**Step 4. Coset lift.** The polynomial `Q_e(m)` satisfies
+*Step 4. Coset lift.* For a cubic `Q(m) = a_3 m^3 + a_2 m^2 + a_1 m + a_0`,
 
 ```
-Q_e(m + 9) - Q_e(m)   =  1728 m^2 + 14688 m + 42921   =  18 (mod 27),
-Q_e(m + 18) - Q_e(m)  =  (computed similarly)          =   9 (mod 27),
+Q(m + 9) − Q(m)  =  27 a_3 m^2 + (243 a_3 + 18 a_2) m + 729 a_3 + 81 a_2 + 9 a_1  ≡  18 a_2 m + 9 a_1   (mod 27).
 ```
 
-both constants (independent of `m`). The `m^2` term `1728 m^2` is `64 * 27 * m^2 = 0 mod 27`; the `m` term `14688 m` is `544 * 27 * m = 0 mod 27`; only the constant term survives, and it survives at `9 * (17 mod 27) = 153 = 18 mod 27` for the `Delta_9` and at `18 * 17 = 306 = 9 mod 27` for `Delta_18`. Dividing by `3` (to get `F` in place of `Q_e / 3`):
+For `Q_e` and `Q_o`, `3 | a_2` (`a_2 = −48` and `24`), so the difference is the constant `9 a_1 mod 27`: `9 · 17 ≡ 18` for `Q_e` and `9 · 7 ≡ 9` for `Q_o`. The difference over a shift of 18 is twice that. Dividing by 3,
 
 ```
-F(4, 2(m + 9)) - F(4, 2m)   =   6 (mod 9),
-F(4, 2(m + 18)) - F(4, 2m)  =   3 (mod 9).
+A^e(4, 2(m + 9)) − A^e(4, 2m)          ≡  6 (mod 9),     A^e(4, 2(m + 18)) − A^e(4, 2m)          ≡  3 (mod 9),
+A^e(4, 2(m + 9) + 1) − A^e(4, 2m + 1)  ≡  3 (mod 9),     A^e(4, 2(m + 18) + 1) − A^e(4, 2m + 1)  ≡  6 (mod 9).
 ```
 
-For the odd side, the same computation gives `9 mod 27` and `18 mod 27` respectively (swapped):
+The shift by 27 in `m` adds `3 · 18 ≡ 0` or `3 · 9 ≡ 0 (mod 27)` to `Q`, so `A^e(4, h + 54) ≡ A^e(4, h) (mod 9)`: 54 is a period.
 
-```
-F(4, 2(m + 9) + 1) - F(4, 2m + 1)   =   3 (mod 9),
-F(4, 2(m + 18) + 1) - F(4, 2m + 1)  =   6 (mod 9).
-```
+*Step 5. Cosets.* For every `h`, the three values `A^e(4, h)`, `A^e(4, h + 18)`, `A^e(4, h + 36)` mod 9 are `v`, `v + 6`, `v + 3` or `v`, `v + 3`, `v + 6`, the whole coset `v + 3Z/9`.
 
-**Step 5. Cosets tile the period.** In both cases, the triple `{F(4, h), F(4, h + 18), F(4, h + 36)}` mod 9 is `{v, v + 6, v + 3}` in some order - a **complete coset of `3 Z / 9` in `Z / 9`**, three distinct residues. So each "base" value of `m in {0..8}` gives the three residues of the coset `F(4, 2 * base) + 3 Z / 9`.
+*Step 6. Counting.* On the even side, the nine values `m = 0, …, 8` fall three into each class mod 3 (Step 3), and each lifts to the three residues of its coset at `m`, `m + 9`, `m + 18` (Step 5). So over `m = 0, …, 26` each residue mod 9 occurs 3 times. The odd side is the same. Over one period of 54 values of `h`, each residue occurs `3 + 3 = 6` times, the residues 4 and 5 together 12 times. ∎
 
-**Step 6. Counting.** From Step 3, on the even side, the 9 base values `F(4, 2m) mod 3` for `m = 0..8` land three-in-each of the three cosets `{0, 3, 6}, {1, 4, 7}, {2, 5, 8}` (uniform mod 3). Each base value lifts to a full coset of three residues mod 9. So the 27 residues `F(4, 2m) mod 9` for `m = 0..26` cover each coset `3 * 3 = 9` times, distributed `3` per residue inside the coset. Total: **each residue in `Z / 9` is hit exactly 3 times** on the even side. Same argument, same count on the odd side.
-
-**Conclusion.** Over the full period `h = 2..55`, `F(4, h) mod 9` hits each of the 9 residues exactly `3 + 3 = 6` times. The histogram is exactly `[6, 6, 6, 6, 6, 6, 6, 6, 6]`, the exclusion count is `12`, and the exclusion rate is exactly `12 / 54 = 2 / 9`. QED, without appeal to Heath-Brown or to any conjecture.
-
-**What the proof uses.** The argument rests on three properties of the `w = 4` polynomials: the quadratic coefficient of `Q_e` and `Q_o` is divisible by 3 (making `18 a_2 = 0 mod 27` in the difference); the linear coefficients happen to be `17` and `7`, both `+-1 mod 3`, giving `Delta_9 F` a nonzero coset shift; and `F mod 3` is uniform on `m mod 9` (which is the least trivial input, verified by direct 9-value evaluation). For the other uniform columns the corresponding polynomials come from `A_w, B_w`; whether the same three steps go through for each of them, and which step fails at the non-uniform `w`, is not written out. A theorem saying which `w` satisfy all three steps is open; the coset-lift criterion below is its computed form.
+The proof uses three properties of `Q_e` and `Q_o`: `3 | a_2`, `3 ∤ a_1`, and uniformity of the values mod 3 over `m mod 9`. The coset-lift criterion (section *The coset-lift criterion*) is the computed counterpart for other columns.
 
 ## The coset-lift criterion
 
-The coset shift in the `w = 4` proof gives a criterion that holds for every `w` checked. Uniform and non-uniform `w` are distinguished by one condition on the shift-by-`per_w / 3` differences of `F(w, . ) mod 9`:[^exec]
+For `2 ≤ w ≤ 293` (computed):[^exec]
 
 ```
-w uniform   iff   { F(w, h + per_w / 3) - F(w, h) mod 9 : h in [0, per_w) }  =  {3, 6}.
+the column w is uniform mod 9   ⇔   { A^e(w, h + per_w/3) − A^e(w, h)  mod 9 : one period of h }  =  {3, 6}.
 ```
 
-Every uniform `w` checked produces exactly the two-element image `{3, 6}` (the non-zero elements of `3 Z / 9`); every non-uniform `w` produces `{0, 3, 6}`, the extra `0` coming from a "coset-shift fixed point" `h` with `F(w, h + per_w / 3) = F(w, h) mod 9`. Verified for every `w in [10, 100]`: the nine uniform columns `10, 12, 17, 28, 30, 35, 82, 84, 89` give `{3, 6}` and all 82 others give `{0, 3, 6}`.
+The differences always lie in `3Z/9`. At the 14 uniform columns the set is `{3, 6}`. At every other column with `w ≥ 3` it is `{0, 3, 6}`, and at `w = 2` it is `{0, 3}`: some `h` has `A^e(w, h + per_w/3) ≡ A^e(w, h) (mod 9)`, a fixed point of the coset shift. In the `w = 4` proof the shift by `per_w/3 = 18` moves the even values by 6 and the odd values by 3, never by 0.
 
-The `w = 4` proof makes this explicit: `F(4, h + 18) - F(4, h) = 6 (mod 9)` for even `h`, `3 (mod 9)` for odd `h`, both non-zero and both in `{3, 6}`. For general uniform `w`, the shift `per_w / 3` plays the role of `18`, and the constant-difference-in-`{3, 6}` behavior generalizes.
-
-**The `{0, 2, 7}` template as fixed-point emptiness.** [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] records that uniform `w` follow the pattern `w = 3^{k-1} + d` for `d in {1, 3, 8}` (three explicit sequences per bracket `k >= 3`, plus `d in {1, 3}` in bracket 2). Higher-offset representatives of the same mod-9 residue class - e.g. `w = 19` in bracket 3, `w = 37` in bracket 4 - are not uniform. In the criterion's terms, the higher-offset `w` have a coset-shift fixed point and the offsets `{0, 2, 7}` do not. Which `w` have no fixed point is open.
-
-Why the offsets are `0, 2, 7` is open. The `w = 4` proof is the one written-out case (`w = 3^1 + 1`, the `d = 1` value in bracket 2).
+**The offsets.** The uniform columns are `w = 3^{k−1} + d` with `d ∈ {1, 3, 8}` for `k = 3, 4, 5, 6` and `d ∈ {1, 3}` for `k = 2` ([[mod-9-equidistribution](pages/mod-9-equidistribution.md)], section *The column reading*). Other columns in the same residue class mod 9, such as `w = 19` and `w = 37`, have a fixed point. The criterion is computed, not proved, and does not explain the offsets.
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - `F(w, h)` tabulation whose mod-9 residues drive the coset-lift analysis.
-- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - `T(k, L) = (k+1)^L` and the Kitamasa route; the k-direction recurrence used to extend `P(k, w) mod 9` past the seeds.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the tables of `A^e(w, h)` whose residues mod 9 are studied here.
+- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the recurrences of `P(k, L)` in the base length and in the tower height.
 
 ## Related Concepts
 
-- [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] - the finding this page explains: the census, the `alpha = 1/12` closed-form rate, the row/column readings.
-- [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)] - the parent question and the `2/9` target.
-- [[mod-p-observatory](pages/mod-p-observatory.md)] - period equals lcm of eigenvalue orders; the multiplicity-inflation rule `p^{ceil(log_p m)}` used here.
-- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - `P(k, L) = (-1)^k A_L(k) + B_L(k)`, the `(x+1)^L (x-1)^{L-2}` char poly that fixes `v_3(per_w) >= 2`.
-- [[castle-counting-formula](pages/castle-counting-formula.md)] - the closed form `F = (h^w - (h-1)^w - P(h-1, w) + P(h-2, w))/2` used in the `w = 4` proof.
-- [[kitamasa](pages/kitamasa.md)] - jump-to-index-N over `Z/9` used to sanity-check large-`h` rows.
+- [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] - the row and column histograms mod 9, the uniform and rate-matched columns, and the aggregate rate over cells with `A ≤ N`.
+- [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)] - which castle counts are sums of three cubes.
+- [[sums-of-three-cubes](pages/sums-of-three-cubes.md)] - the residues 4 and 5 mod 9 and Heath-Brown's conjecture.
+- [[mod-p-observatory](pages/mod-p-observatory.md)] - the periods of `A^e` modulo a prime and the factor `p^{⌈log_p m⌉}` of a repeated factor.
+- [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - the proof that a factor of multiplicity `m` multiplies the order by exactly `p^{⌈log_p m⌉}`, and the repeated factors of `char_k` modulo larger primes.
+- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the closed forms `P(k, L) = (−1)^k A_L(k) + B_L(k)` and the characteristic polynomial `(x + 1)^L (x − 1)^{L−2}` computed for `4 ≤ L ≤ 12`.
+- [[castle-counting-formula](pages/castle-counting-formula.md)] - the formula for `A^e(w, h)` used in the `w = 4` proof.
+- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the fibers of `char_k` over 3 and their nilradicals.
 
 ## Footnotes
 
-[^exec]: Verified by execution (2026-09-22), Python 3 with NumPy 1.26 and SymPy 1.14. **`char_k mod 3` multiplicity extension**: SymPy `factor_list(..., modulus=3)` for `k = 1..200`; global max multiplicity across every `k` in range is 2, achieved iff `k mod 12 in {4, 6}` and always at root `+-1`. All irreducible factors of degree `>= 2` have multiplicity 1. **Joint-state cycle proof**: iteration of `(y_{k-1}, y_k, z_{k-1}, z_k, u_{k-1}, u_k)` in `F_3^6` starting from the initial conditions `(0, 1, 1, 0, 0, 2)` (at `x = 1`, from `char_0 = x - 1, char_1 = x^2 - 2x + 2`) enters a cycle of length 24 at `k = 1`; enumeration over `k = 0..24` records `(y_k, z_k) = (0, 0)` at exactly `k in {4, 16}` and `(y_k, z_k, u_k) = (0, 0, 0)` at *no* `k`. Same procedure at `x = -1` (initial `(1, 2, 1, 2, 0, 2)`) gives cycle length 24, pair-zeros at `k in {6, 18}`, triple-zeros nowhere. **Row-period `v_3` table (`h = 2..16`)**: `char_k` polynomials built from the three-term recurrence `char_{k+1} = x^2 char_{k-1} - 2 char_k` seeded by `char_0 = x - 1, char_1 = x^2 - 2x + 2`; period of `x` mod `(char_k, 9)` computed by iterating the companion-matrix state and detecting return to `(1, 0, ..., 0)`; row period computed as `lcm(ord_9(h), ord_9(h-1), per(char_{h-1}) mod 9, per(char_{h-2}) mod 9)`; three-adic valuation `v_3(per_h) = 1` verified for every `h` in the table. **`w = 4` proof**: symbolic computation of the closed form `12 F(4, h) = (24 h^3 - 36 h^2 + 24 h - 9) + (-1)^h (8 h^3 - 12 h^2 + 10 h - 3)` against direct evaluation of `F(4, h) = (h^4 - (h-1)^4 - P(h-1, 4) + P(h-2, 4))/2` for `h = 2..15` (all match); split into `Q_e(m) = 64 m^3 - 48 m^2 + 17 m - 3` and `Q_o(m) = 32 m^3 + 24 m^2 + 7 m` verified against `F(4, 2m)` and `F(4, 2m+1)` for `m = 1..27`; divisibility of `Q_e, Q_o` by 3 checked symbolically mod 3; `F(4, 2m) mod 3` and `F(4, 2m + 1) mod 3` uniform over `m mod 9` verified in 18 direct evaluations; `Q_e(m + 9) - Q_e(m) mod 27 = 18` and `Q_e(m + 18) - Q_e(m) mod 27 = 9` (and `Q_o` swapped) verified for `m = 0..5` (constant in `m` by the algebraic argument in the page). Final histogram `[6, 6, 6, 6, 6, 6, 6, 6, 6]` matches the count derived from the coset-tiling argument. **Coset-lift criterion check** (2026-09-28): for every `w` in `[10, 100]`, the mod-9 sequence `F(w, h)` over one period `per_w = 2 * 3^{ceil(log_3 w) + 1}` (seed DP, then the k-direction recurrence with char poly `(x+1)^w (x-1)^{w-2}` mod 9), its histogram, and the difference set `{ (r[h + per_w/3] - r[h]) mod 9 }`; the nine uniform `w` return `{3, 6}` and the other 82 return `{0, 3, 6}`. **Row periods `h <= 40`** (2026-09-28): the period of `x` modulo `char_k` over `F_3` from the factorization (lcm of irreducible-factor orders, times 3 for a double factor), lifted to mod 9 by testing `x^N = 1` modulo `(9, char_k)`; `v_3(per_h) = 1` for every `h = 2..40`.
+[^exec]: Verified by execution (Python 3.11 with SymPy and NumPy, 2026-10-16). The state cycle of the Theorem at `x_0 = ±1` (period 24, the pair zeros, no triple zero) and the factorization of `char_k mod 3` for `k ≤ 200` (repeated factors exactly `(x − 1)^2` at `k ≡ 4` and `(x + 1)^2` at `k ≡ 6 (mod 12)`, none of degree ≥ 2). The orders of `x` in `Z/9[x]/(char_k)` for `k ≤ 40` (from the order mod 3, by fast exponentiation, and a test of `x^N = 1` mod 9), with `v_3 = 1` for `1 ≤ k ≤ 40` and the lift from 3 to 9 multiplying the order by 3 exactly at the squarefree `k`, and the row periods `per_h` for `h ≤ 40`; for `h ≤ 11`, `per_h` equals the minimal period of `A^e(·, h) mod 9` from `w = 2`, computed from the recurrence of `P(k, ·)` given by `den_k`. `P(k, L) mod 9` for `k ≤ 6600` and `L ≤ 293` from the series `num_k/den_k` truncated at degree 293, checked against summation over all towers for small `k, L`; from it, for each `2 ≤ w ≤ 293`, the minimal period `per_w` of `A^e(w, ·) mod 9`, the histogram over one period, the uniform columns, and the difference sets of the criterion. The `w = 4` proof: `P(k, 4)` by summation for `k ≤ 8`, the closed form against the formula for `h < 40`, `Q_e` and `Q_o` against `A^e(4, 2m)` and `A^e(4, 2m + 1)` for `m ≤ 27`, the residues of Step 3, the differences of Step 4 as polynomials mod 27, and the histogram `[6, 6, 6, 6, 6, 6, 6, 6, 6]` over `h = 2, …, 55`.
