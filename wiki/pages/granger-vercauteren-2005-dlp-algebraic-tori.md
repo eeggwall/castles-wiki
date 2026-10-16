@@ -5,7 +5,7 @@ summary: Granger and Vercauteren give an index calculus algorithm that works dir
 tags: [paper, source, cryptography, cryptanalysis, discrete-logarithm, index-calculus, algebraic-torus, torus, xtr, ceilidh, luc, pollard-rho, finite-field, cyclotomic, compression]
 sources: [granger-vercauteren-2005-dlp-algebraic-tori]
 created: 2026-10-09
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
 # On the Discrete Logarithm Problem on Algebraic Tori (Granger-Vercauteren, 2005)
@@ -29,7 +29,7 @@ By Lemma 1 (from Rubin and Silverberg) it is isomorphic to the subgroup of `F_{q
 
 **Why the torus is what is left.** Applying the norm maps to every intermediate subfield and solving the discrete logs there determines the exponent `s` only modulo `lcm{Φ_d(q) : d | n, d ≠ n}`. Up to a negligible factor, the rest of the discrete log comes from the order-`Φ_n(q)` subgroup, which is `T_n(F_q)`.[^6] The paper opens §2 with Odlyzko's 1984 remark that fields of composite extension degree "may be very weak", and says its main result shows the concern "may indeed be valid".[^7]
 
-**The algorithm and its reach.** Following Gaudry, the algorithm is an index calculus that works directly in the torus, through its compressed representation. It is faster than Pollard rho in the full torus `T_2(F_{q^m})` from `m = 5` and in `T_6(F_{q^m})` from `m = 3`. In a prime-order subgroup of about `2^160` it is faster only for larger `m`.[^8] The authors state that over prime fields `F_p` the security of LUC, XTR, CEILIDH and MNT curves is not affected, and that over extension fields "this is not always the case".[^9] §§4.5 and 5.5 repeat this after the complexity analysis. Neither algorithm improves on the existing attacks on LUC, XTR or CEILIDH over `F_p`, while XTR over extension fields and the `T_30(F_p)` system "need to be reassessed".[^10]
+**The algorithm and its reach.** Following Gaudry, the algorithm is an index calculus that works directly in the torus, through its compressed representation. It is faster than Pollard rho in the full torus `T_2(F_{q^m})` from `m = 5` and in `T_6(F_{q^m})` from `m = 3`. In a prime-order subgroup of about `2^160` it is faster only for larger `m`.[^8] The authors state that over prime fields `F_p` the security of LUC, XTR, CEILIDH and MNT curves is not affected, and that over extension fields "this is not always the case".[^9] The compact representation that lowers the communication cost of the tori "may also be exploited by the cryptanalyst".[^14] §§4.5 and 5.5 repeat the conclusion after the complexity analysis. Neither algorithm improves on the existing attacks on LUC, XTR or CEILIDH over `F_p`, while XTR over extension fields and the `T_30(F_p)` system "need to be reassessed".[^10]
 
 **Table 2 and `T_30`.** Table 2 gives the log₂ of the expected running time in seconds for the `T_6` algorithm at `m = 1, …, 5`, against Pollard rho in a subgroup of size `2^160`, for fields `F_{p^{6m}}` of 200 to 1000 bits:[^11]
 
@@ -48,14 +48,8 @@ By Lemma 1 (from Rubin and Silverberg) it is isomorphic to the subgroup of `F_{q
 The castle torus of [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] is the order-`p² − p + 1` subgroup of `F_{p^6}`, the castle ring `F_p[x]/(char_5)` with `char_5` irreducible mod `p`. In this paper's notation it is `T_6(F_p)`, the case `q = p` prime and `m = 1`.
 
 - **The attack does not apply.** This is the prime-field case the paper exempts.[^9][^10] In Table 2 the `m = 1` column is slower than Pollard rho in every row, and the gap grows with the field (25 against 18 bits of time at 200-bit fields, 161 against 69 at 1000 bits).[^11] Round three's full-size field has 3072 bits, beyond the table.
-- **The subfield collapse.** Round three's red team pushes a torus element into `F_{p^2}` and `F_{p^3}` and gets 1. That step is the norm-map reduction of §2.1: the subfields give the discrete log only modulo their orders, and the torus part remains.[^6] By Lemma 1, a torus element of prime order does not lie in a proper subfield.[^3]
+- **The subfield reduction.** Round three raises a torus element to `p^4 + p^2 + 1` and to `p^3 + 1`, the norm maps to `F_{p^2}` and `F_{p^3}`, and gets 1, since both exponents are multiples of `p² − p + 1`. That step is the norm-map reduction of §2.1: the subfields give the discrete log only modulo their orders, and the torus part remains.[^6] By Lemma 1, a torus element of prime order does not lie in a proper subfield.[^3]
 - **Definition and compression.** Round three's torus (norms to `F_{p^2}` and `F_{p^3}` both 1, size `p² − p + 1`) is Definition 1 with `n = 6`. Its 3-to-1 trace compression is the compression factor `6/φ(6) = 3`.[^2][^4][^5]
-
-## Key Takeaways
-
-- An index calculus that works directly in tori threatens tori over extension fields, `T_30(F_p)` inside `T_6(F_{p^5})` above all. It does not threaten `T_6` over a prime field, which is where XTR, CEILIDH and the castle torus live.
-- The torus is the part of `F_{q^n}^×` that subfield norms cannot reach. This is why round three's subfield collapse finds nothing.
-- The compression that makes torus cryptography attractive is also what the attack uses: "the lower communication cost offered by these tori, may also be exploited by the cryptanalyst".[^14]
 
 ## Entities & Concepts
 
@@ -65,7 +59,7 @@ The castle torus of [[castle-cryptography-round-three](pages/castle-cryptography
 
 ## Relation to Other Wiki Pages
 
-[[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] cites this paper for "Attacks that do not apply", for the subfield-collapse step and for its torus definition. [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] prescribed the torus design, with `p` chosen so `Φ_d(p)` carries a large prime, and found the subfield collapse that the torus is immune to.
+[[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] cites this paper for the attacks that do not apply, for the subfield reduction and for its torus definition. [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] prescribed the torus (Fix 4), with `p` chosen so that `Φ_d(p)` has a large prime factor, after its Attack 4 carried a key into a proper subfield.
 
 ## Footnotes
 
