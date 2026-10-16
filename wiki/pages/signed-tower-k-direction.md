@@ -1,44 +1,47 @@
 ---
 title: The k-direction of P(k, L) as a quasi-polynomial
 category: Concepts
-summary: At fixed base length L, the signed tower count P(k, L) has k-direction characteristic polynomial (x+1)^L (x-1)^{L-2}, so the only eigenvalues are +1 and -1. P(k, L) is a period-2 quasi-polynomial in k, (-1)^k A_L(k) + B_L(k), with A_L, B_L given explicitly to L = 8; the mod-p period in k is 2·p^{ceil(log_p L)}. Includes the |P(k,4)| = A352116 OEIS hit and its C_3-crystal-ball / tetrahedral bisections.
+summary: At fixed base length L, the signed tower count P(k, L) satisfies a linear recurrence in the tower height k. For 4 ≤ L ≤ 12 its characteristic polynomial is (x+1)^L (x−1)^{L−2} (computed by Berlekamp-Massey), and for L ≤ 3 it is (x−1)(x+1), (x+1)² and (x+1)³, so for L ≤ 12 every eigenvalue is +1 or −1 and P(k, L) = (−1)^k A_L(k) + B_L(k) with polynomials A_L, B_L, given explicitly for L ≤ 8. For L ≤ 11 and p ∈ {3, 5, 7, 11}, P(·, L) mod p has period 2·p^{⌈log_p L⌉} (computed). |P(k, 4)| = A352116(k+1).
 tags: [concept, signed-tower-count, quasi-polynomial, k-direction, ehrhart, mod-p, oeis]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-19
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # The k-direction of P(k, L) as a quasi-polynomial
 
-`P(k, L)` is the signed tower count of [[signed-tower-count](pages/signed-tower-count.md)]: the sum of `(−1)^{blocks}` over towers of height at most `k` above a length-`L` base. This page is about what `P(k, L)` looks like as a function of `k` at fixed `L`. The L-direction (fixed `k`, varying `L`) is a C-finite recurrence of order `k + 1` with characteristic polynomial `char_k`, whose roots are the castle's irrational eigenvalues; that direction is covered on [[signed-tower-count](pages/signed-tower-count.md)] and [[generating-function-gallery](pages/generating-function-gallery.md)]. The k-direction is different: it collapses entirely to eigenvalues `±1`.
+`P(k, L)` is the signed tower count of [[signed-tower-count](pages/signed-tower-count.md)]: the sum of `(−1)^{blocks}` over the towers of height at most `k` on a base of length `L`. For fixed `k`, `P(k, ·)` satisfies a linear recurrence in `L` of order `k + 1`, with characteristic polynomial `char_k` ([[castle-counting-formula](pages/castle-counting-formula.md)], the Proposition in the section *Signed tower count*). This page fixes `L` instead and treats `P(·, L)` as a sequence in the tower height `k`.
 
-## The factorization
+The rows `L = 2` and `L = 3` show the shape: `P(k, 2) = (−1)^k (k + 1)`, proved on [[signed-tower-count](pages/signed-tower-count.md)], and `P(k, 3) = (−1)^k (k + 1)²`.[^1]
 
-The k-direction recurrences of `P(k, L)` at fixed `L` were found by Berlekamp-Massey (BM) on [[recurrence-discovery](pages/recurrence-discovery.md)], with order `2L − 2` for `L ≥ 4` and coefficient lists recorded on [[closed-form-hunting](pages/closed-form-hunting.md)] as "palindromic for even `L`, anti-palindromic for odd `L`". Factoring the characteristic polynomials (BM output + `sp.factor`, verified through `L = 12` with `k ≤ 60`) gives the same shape every time:[^1]
+## The characteristic polynomials
 
-```
-L = 4:   (x + 1)^4 (x − 1)^2
-L = 5:   (x + 1)^5 (x − 1)^3
-L = 6:   (x + 1)^6 (x − 1)^4
-…
-L:       char_L^{k-dir}(x) = (x + 1)^L (x − 1)^{L−2}.
-```
-
-The symmetry comes from the factors: `x + 1` is palindromic and `x − 1` anti-palindromic, so the product is palindromic exactly when `L` is even. **Every k-direction eigenvalue is `+1` or `−1`**, so `P(k, L)` is a period-2 **quasi-polynomial** in `k`:
+For fixed `L`, `P(·, L)` satisfies a linear recurrence in `k`, which the source finds with the Berlekamp-Massey algorithm ([[berlekamp-massey](pages/berlekamp-massey.md)]) to evaluate `P` at large `k`.[^2] Berlekamp-Massey on `P(k, L)` for `k ≤ 80`, and factoring, give the characteristic polynomials of the shortest recurrences:[^3]
 
 ```
-P(k, L)  =  (−1)^k · A_L(k)  +  B_L(k),        deg A_L ≤ L − 1,   deg B_L ≤ L − 3.
+L = 1:              (x − 1)(x + 1)
+L = 2:              (x + 1)²
+L = 3:              (x + 1)³
+L = 4, 5, …, 12:    (x + 1)^L (x − 1)^{L−2}
 ```
 
-**Why it must be so (argument sketch).** `P(k, L)` sums `(−1)^{desc(c)}` over the lattice points `c ∈ {0, …, k}^L`, and the descent `Σ max(0, c_i − c_{i+1})` is a *linear* form on each piece of the cube cut out by the order type of `c`. A sum of a fixed root of unity raised to a linear form over the lattice points of a dilated rational polytope is an **Ehrhart-type quasi-polynomial** in the dilation `k` (Ehrhart's theorem: the number of lattice points in `k · P` for a rational polytope `P` is a quasi-polynomial in `k` of degree `dim P`) whose period divides the order of the root - here 2. So the only possible eigenvalues are `±1`, with `P(k, L) = (−1)^k A_L(k) + B_L(k)`. The OEIS-mining notes record the same shape for the *even-block count*: the columns `F(w, ·)` are annihilated by `(x²−1)^w`.[^2] For the signed count the multiplicities are exact: `L` at `−1` and `L − 2` at `+1`.
+So for `4 ≤ L ≤ 12` the order is `2L − 2`. The polynomial `x + 1` is palindromic and `x − 1` anti-palindromic, so `(x + 1)^L (x − 1)^{L−2}` is palindromic when `L` is even and anti-palindromic when `L` is odd, which is the pattern of the coefficient lists on [[closed-form-hunting](pages/closed-form-hunting.md)].
 
-The sketch gives the eigenvalues `±1`; a proof of the exact multiplicities is open, and the identity is verified for `L ≤ 12`.
+For `L ≤ 12` every eigenvalue is `+1` or `−1`, so `P(k, L)` is a **quasi-polynomial** in `k` of period 2:
+
+```
+P(k, L)  =  (−1)^k · A_L(k)  +  B_L(k)                                        (1)
+```
+
+with polynomials `A_L` and `B_L`. For `4 ≤ L ≤ 12`, `A_L` has degree `L − 1` and `B_L` degree `L − 3`, the multiplicities of `−1` and `+1` less one. [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] outlines an Ehrhart-type argument for the eigenvalues `±1` at every `L`; the exact multiplicities at every `L` are not proved.
+
+The even-block castle counts inherit the shape. In `A^e(w, h) = [h^w − (h−1)^w − P(h−1, w) + P(h−2, w)]/2`, the first two terms are a polynomial in `h` of degree `w − 1`, which `(x − 1)^w` annihilates. So for `w ≤ 12` the column `A^e(w, ·)` is annihilated by `(x + 1)^w (x − 1)^w = (x² − 1)^w`, the polynomial that the OEIS-mining notes observed for the columns.[^4]
 
 ## The quasi-polynomials A_L, B_L
 
-Splitting a period-2 quasi-polynomial from data is two Lagrange interpolations - one on the even terms, one on the odd - which is the `quasi_split` snippet on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)]. Applied to `P(k, L)` and verified against the direct dynamic program (DP) for all `k ≤ 60`:[^1]
+Equation (1) determines `A_L` and `B_L` by interpolation: the values at even `k` give `B_L + A_L`, and those at odd `k` give `B_L − A_L` (the `quasi_split` snippet on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)]). Each row of the table agrees with the column-height dynamic program for all `k ≤ 100`:[^3]
 
-| `L` | `A_L(k)` (alternating part, degree `L − 1`) | `B_L(k)` (steady part, degree `L − 3`) | `P(k, L)`, `k = 0, 1, 2, …` |
+| `L` | `A_L(k)`, degree `L − 1` | `B_L(k)`, degree `L − 3` | `P(k, L)` for `k = 0, 1, 2, …` |
 |---|---|---|---|
 | 2 | `k + 1` | `0` | `1, −2, 3, −4, 5, …` |
 | 3 | `(k + 1)²` | `0` | `1, −4, 9, −16, 25, …` |
@@ -46,67 +49,71 @@ Splitting a period-2 quasi-polynomial from data is two Lagrange interpolations -
 | 5 | `k (k + 1)² (k + 2) / 3` | `(k + 1)²` | `1, 0, 33, −64, 225, −384, 833, −1280, 2241, −3200` |
 | 6 | `k (k + 1)(k + 2)(2k² + 4k − 1) / 15` | `(k + 1)(2k + 1)(2k + 3) / 3` | `1, 8, 59, −32, 541, −680, 2583, −3520, 8601, −11672` |
 | 7 | `(k + 1)²(4k⁴ + 16k³ + 4k² − 24k + 45) / 90` | `(k + 1)²(8k² + 16k + 3) / 6` | `1, 16, 121, 192, 1385, −112, 7889, −5376, 30897, −29040` |
-| 8 | `(k + 1)(4k⁶ + 24k⁵ + 25k⁴ − 60k³ + 256k² + 696k + 315) / 315` | `4 k (k + 1)(k + 2)(2k + 1)(2k + 3) / 15` | `1, 16, 259, 832, 3973, 5040, 26503, 10624, 117129, −11824` |
+| 8 | `(k + 1)(4k⁶ + 24k⁵ + 25k⁴ − 60k³ + 256k² + 696k + 315) / 315` | `4k (k + 1)(k + 2)(2k + 1)(2k + 3) / 15` | `1, 16, 259, 832, 3973, 5040, 26503, 10624, 117129, −11824` |
 
-Patterns visible through `L = 12`: the leading coefficient of `A_L` is `2^{L − 2} / (L − 1)!` and that of `B_L` (for `L ≥ 4`) is `2^{2L − 9} / (L − 3)!`, so `|P(k, L)| ~ 2^{L − 2} · k^{L − 1} / (L − 1)!` for fixed `L` - polynomial growth in the height, against `(k + 1)^L` for the unsigned count on [[castle-counting-formula](pages/castle-counting-formula.md)]. `A_L(−1) = 0` and `B_L(−1) = 0` always. `B_6 = 2 · A_4`. The numerators `N_L(y)` of `Σ_k P(k, L) y^k = N_L(y) / ((1 + y)^L (1 − y)^{L − 2})` are themselves palindromic: `1, −2, 10, −2, 1` (`L = 4`), `1, 2, 31, −4, 31, 2, 1` (`L = 5`), `1, 10, 72, 54, 238, 54, 72, 10, 1` (`L = 6`). A uniform formula for `A_L, B_L` is the open item.
+At `L = 4`: `A_4(2) = 3·5·7/6 = 35/2` and `B_4(2) = 3/2`, so `P(2, 4) = 35/2 + 3/2 = 19`; and `P(3, 4) = −4·7·9/6 + 2 = −40`.
 
-## OEIS hits
+For `4 ≤ L ≤ 12` (computed):[^3]
 
-Checked offset-exact on 2026-09-16:[^3]
+- the leading coefficient of `A_L` is `2^{L−2} / (L − 1)!` (this holds from `L = 2`), and that of `B_L` is `2^{2L−9} / (L − 3)!`. Since `A_L` has the larger degree, for fixed `L` the size `|P(k, L)|` grows like `2^{L−2} k^{L−1} / (L − 1)!`, a polynomial in `k`, while the number of towers is `T(k, L) = (k + 1)^L`;
+- `A_L(−1) = B_L(−1) = 0`, which also holds at `L = 2, 3`;
+- `B_6 = 2·A_4`.
 
-- **`|P(k, 4)| = 1, 4, 19, 40, 85, 140, 231, 336, 489, 660, …` is [A352116](https://oeis.org/A352116)**, the partial sums of the odd triangular numbers ([A014493](https://oeis.org/A014493) = `1, 3, 15, 21, 45, 55, 91, 105, …`). Summing them reproduces `|P(k, 4)|`, verified for `k ≤ 39`:
-
-  ```
-  >>> odd_tri = [t for t in (m*(m+1)//2 for m in range(1, 40)) if t % 2 == 1]
-  >>> [sum(odd_tri[:j+1]) for j in range(10)]
-  [1, 4, 19, 40, 85, 140, 231, 336, 489, 660]
-  ```
-
-  Read through the quasi-polynomial: `P(2m, 4) = (2m + 1)(8m² + 8m + 3) / 3` is **[A063496](https://oeis.org/A063496)**, whose Peter Bala comment identifies it as the *crystal ball sequence of the C_3 root lattice*; and `P(2m + 1, 4) = −4 · C(2m + 3, 3)`, i.e. `|P(2m + 1, 4)|` is **[A199833](https://oeis.org/A199833) = 4 · [A000447](https://oeis.org/A000447)**, four times a tetrahedral number. So the signed height-`k` towers on a length-4 base count, up to sign, lattice points in balls of the `C_3` root lattice (even `k`) and four times a tetrahedral number (odd `k`). A bijective explanation is open.
-- `2 · A_4(k) = B_6(k) = (k + 1)(2k + 1)(2k + 3) / 3` is **A000447** (`= C(2k + 3, 3)`); `A_5(k) = k (k + 1)² (k + 2) / 3` is **[A112742](https://oeis.org/A112742)** (`n²(n² − 1) / 3` at `n = k + 1`).
-- `P(k, L)` for `L = 5, 6, 7` and the `N_L` rows have **no OEIS match** - generation candidates; the mining notes also list the columns as new.[^2]
-
-## Mod-p period: `2 · p^{ceil(log_p L)}`
-
-With all eigenvalues `±1`, the mod-`p` period of `P(·, L)` in `k` comes entirely from the eigenvalue multiplicities - a polynomial part of degree up to `L − 1` in `k`, so the period can exceed `p` once that degree reaches `p`:
+The generating function in `k` is `Σ_k P(k, L) y^k = N_L(y) / ((1 + y)^L (1 − y)^{L−2})`. For `L = 4, 5, 6` the numerator `N_L` has degree `2L − 4` and palindromic coefficients:
 
 ```
->>> [(L, [period([P[kk][L] % p for kk in range(261)]) for p in (3, 5, 7)]) for L in (2, 3, 4, 5, 6, 8)]
-[(2, [6, 10, 14]), (3, [6, 10, 14]), (4, [18, 10, 14]), (5, [18, 10, 14]), (6, [18, 50, 14]), (8, [18, 50, 98])]
+N_4:   1, −2, 10, −2, 1
+N_5:   1, 2, 31, −4, 31, 2, 1
+N_6:   1, 10, 72, 54, 238, 54, 72, 10, 1
 ```
 
-The period is `2p` while `L ≤ p` and jumps to `2p²` as soon as `L > p`: `18 = 2 · 3²` at `L = 4`, `50 = 2 · 5²` at `L = 6`, `98 = 2 · 7²` at `L = 8`. Uniform formula (verified for `L ≤ 11`, `p ∈ {3, 5, 7, 11}`):[^1]
+No formula for `A_L` and `B_L` at every `L` is known.
+
+## The row L = 4 in the OEIS
+
+- `|P(k, 4)| = A352116(k + 1)`: `1, 4, 19, 40, 85, 140, 231, 336, 489, 660, …`, the partial sums of the odd triangular numbers `A014493`. The values agree for `k ≤ 44`.[^5]
+- The even terms are `P(2m, 4) = (2m + 1)(8m² + 8m + 3)/3 = A063496(m + 1)`. Peter Bala's comment on `A063496` identifies it, with offset 0, as the crystal ball sequence of the `C_3` lattice: the number of points `v = (a, b, c) ∈ Z³` with `a + b + c` even and `(|a| + |b| + |c|)/2 ≤ m`.[^5]
+- The odd terms are `P(2m + 1, 4) = −4·C(2m + 3, 3) = −4·A000447(m + 1)`, four times the sum of the first `m + 1` odd squares. Their absolute values are the terms `A199833(m + 1)`, for which the OEIS gives `4·A000447(n)` as an empirical formula.[^5]
+- `2·A_4(k) = B_6(k) = (k + 1)(2k + 1)(2k + 3)/3 = A000447(k + 1)`, and `A_5(k) = k (k + 1)² (k + 2)/3 = A112742(k + 1)`, where `A112742(n) = n²(n² − 1)/3`.[^5]
+
+[[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of the rows `L ≥ 5` and of the numerators `N_L`.
+
+## Periods modulo p
+
+For `1 ≤ L ≤ 11` and `p ∈ {3, 5, 7, 11}`, the sequence `P(·, L) mod p` has period (computed)[^3]
 
 ```
-period_p(P(·, L) in k)  =  2 · p^{ceil(log_p L)}.
+2 · p^{⌈log_p L⌉},
 ```
 
-This is the standard "a repeated eigenvalue of multiplicity `m` contributes `p^{ceil(log_p m)}`" rule of the [[mod-p-observatory](pages/mod-p-observatory.md)], with the multiplicity known exactly. It accounts for that page's one irregular height-direction entry: `F(4, ·) mod 3` has period 18, not `2p = 6`, because `L = w = 4 > 3`.
+where `p^{⌈log_p L⌉}` is the least power of `p` that is at least `L`: the period is `2p` while `2 ≤ L ≤ p`, and `2p²` for `p < L ≤ p²`. For example, the periods for `p = 3` are 6 at `L = 2, 3` and 18 at `L = 4, …, 9`, and the period for `p = 7` is 98 at `L = 8`.
+
+The factor 2 is the order of the eigenvalue `−1`, and the power of `p` comes from the eigenvalue multiplicities, by the rule on [[mod-p-observatory](pages/mod-p-observatory.md)] that an eigenvalue of multiplicity `m` multiplies the period by `p^{⌈log_p m⌉}`. With `w = 4 > 3`, it gives the period 18 of `A^e(4, ·)` modulo 3 in that page's table of periods in the height direction.[^3]
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `(x² − 1)^w` observation for the even-block count that this page sharpens to exact multiplicities `(x + 1)^L (x − 1)^{L − 2}` for the signed count.
-- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the `num_k / den_k` recurrence whose k-direction is factored here.
-- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the block-count (total descent) formula the `P_table` DP implements.
+- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the closed forms of `P(k, 2)` and `P(k, 3)`, a linear recurrence of `P(·, L)` in `k`, and the Berlekamp-Massey path that evaluates it at `k = 10^12`.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the observation that `(x² − 1)^w` annihilates the column `A^e(w, ·)`.
+- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the block count as total descent, which the column-height dynamic program sums.
 
 ## Related Concepts
 
-- [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, L)` and its L-direction (C-finite of order `k + 1`).
-- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the surrounding analysis: metallic-rung convergents, the norm-`−1` continued-fraction and mod-p counterparts, and the plastic-number L-direction eigenvalue `2ψ²`.
-- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the real-number counterpart of this page's mod-p result.
-- [[mod-p-observatory](pages/mod-p-observatory.md)] - the finite-field side; this page's `2 · p^{ceil(log_p L)}` accounts for its irregular `18`.
-- [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] - the mod-9 histogram of `F(w, . )` over one h-period; when its period `2 · 3^(1 + ceil(log_3 w))` is divisible by 9, some columns produce exactly uniform histograms (`w = 3^{k-1} + d` for `d in {1, 3, 8}`) and others do not.
-- [[mod-9-coset-lift](pages/mod-9-coset-lift.md)] - the mechanism companion: the `(x + 1)^L (x - 1)^{L-2}` char poly of this page is what gives `v_3(per_w) >= 2` and drives the coset-lift proof at `w = 4`.
-- [[closed-form-hunting](pages/closed-form-hunting.md)] - the `2L − 2` orders and palindromic coefficient lists factored here.
-- [[recurrence-discovery](pages/recurrence-discovery.md)] - where the k-direction recurrences were first extracted by Berlekamp-Massey.
-- [[generating-function-gallery](pages/generating-function-gallery.md)] / [[castle-counting-formula](pages/castle-counting-formula.md)] - the L-direction machinery this page is the complementary direction of.
-- [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - `P_table`, `quasi_split`, `berlekamp_massey`; the reusable snippets.
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the complementary L-direction: `char_k` factors into parity sectors `H_d · V_d` while the k-direction factors as `(x+1)^L (x-1)^{L-2}` here.
+- [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, L)`, its recurrences of order `k + 1` in `L`, and the closed forms of `P(k, 2)` and `P(k, 3)`.
+- [[castle-counting-formula](pages/castle-counting-formula.md)] - the generating functions `P_k(x)` in the `L` direction and the formula for `A^e(w, h)`.
+- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the computation behind this page, the Ehrhart-type argument for the eigenvalues `±1`, and the eigenvalues of `char_k` set against the OEIS.
+- [[recurrence-discovery](pages/recurrence-discovery.md)] - the orders of the recurrences of `P` found by Berlekamp-Massey in both directions.
+- [[closed-form-hunting](pages/closed-form-hunting.md)] - the closed forms of `P(k, 2)` and `P(k, 3)` and the palindromic coefficient lists of the recurrences in `k`.
+- [[mod-p-observatory](pages/mod-p-observatory.md)] - periods of the castle counts modulo `p`, including the rule for repeated eigenvalues.
+- [[mod-9-coset-lift](pages/mod-9-coset-lift.md)] - the 3-adic part of the column periods of `A^e(w, ·)` modulo 9, and the columns that are uniform modulo 9.
+- [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] - the residues of `A^e(w, h)` modulo 9 and how often they avoid 4 and 5.
+- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - continued fractions of the castle eigenvalues, in which the recurrences in `k` contribute only the roots `±1`.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization of `char_k`, the characteristic polynomial in the `L` direction, by the parity of the last column.
+- [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - the snippets `P_table`, `berlekamp_massey` and `quasi_split`.
 
 ## Footnotes
 
-[^1]: Verified by execution (Python 3.11, SymPy 1.14); the computation is Part 3 of [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]. (i) `P_table(60, 12)` + Berlekamp-Massey + `sp.factor`: characteristic polynomial equals `(x + 1)^L (x − 1)^{L − 2}` for every `L = 4..12` (`sp.expand(charpoly − target) == 0`). (ii) `quasi_split` for `L = 1..12`, each `A_L, B_L` re-checked against all 61 DP values; leading coefficients read off as `2^{L − 2} / (L − 1)!` and `2^{2L − 9} / (L − 3)!` for `L ≤ 12`; `N_L(y)` obtained as the truncated series of `(Σ_k P(k, L) y^k) · (1 + y)^L (1 − y)^{L − 2}`, with all coefficients beyond degree `2L − 3` zero. (iii) k-direction periods of `P(·, L) mod p` for `L = 2..11`, `p ∈ {3, 5, 7, 11}` equal `2 · p^j` with `p^j` the least power `≥ L`.
-
-[^2]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 3" L77-79 - "Columns (fixed w, varying h) are quasi-polynomials: F(w,h) is annihilated by (x^2-1)^w, i.e. F(w,h) = P(h) + (-1)^h Q(h) with P,Q polynomials of degree < w." and L168 - "F(w,h), w>=3 (columns) | - | NEW (quasi-poly, (x^2-1)^w)".
-
-[^3]: https://oeis.org/A352116 (2026-09-16) - "Partial sums of the odd triangular numbers (A014493)", data `1, 4, 19, 40, 85, 140, 231, 336, 489, 660, 891, 1144, 1469, …`; https://oeis.org/A014493 - "Odd triangular numbers", `1, 3, 15, 21, 45, 55, …`; https://oeis.org/A063496 - "a(n) = (2*n - 1)*(8*n^2 - 8*n + 3)/3", with Peter Bala's comment "this sequence is the crystal ball sequence for the C_3 lattice"; https://oeis.org/A199833 - data `4, 40, 140, 336, 660, 1144, …`, formula "a(n) = (16/3)*n^3 - (4/3)*n = 4*A000447(n)"; https://oeis.org/A000447 - "a(n) = 1^2 + 3^2 + 5^2 + … + (2*n-1)^2 = n*(4*n^2 - 1)/3", "a(n) = binomial(2*n+1, 3)"; https://oeis.org/A112742 - "a(n) = n^2*(n^2 - 1)/3".
+[^1]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Recursion for P(k, L)" L115-118 - "P(k, 2) = (-1)^k (k+1), satisfying (λ+1)^2 = 0. P(k, 3) = (-1)^k (k+1)^2, satisfying (λ+1)^3 = 0."
+[^2]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Recursion for P(k, L)" L84 and §"The k-direction Berlekamp-Massey path (h > 15000)" L157-165 - "For fixed L, P(k, L) satisfies a linear recurrence in k of order at most about 2L. Consequence: computing P(k, L) for large k is O(L^2 log k) after Berlekamp-Massey finds the recurrence", and "For fixed w, generate P(0, w), P(1, w), ..., P(N-1, w) for N = 4(w+2) + 20 ... Berlekamp-Massey finds the minimal linear recurrence."
+[^3]: Verified by execution (Python 3.11 with SymPy, 2026-10-16), with `P(k, L)` from the column-height dynamic program, checked against the sum over all towers for `k ≤ 4`, `L ≤ 5`: Berlekamp-Massey on `P(k, L)` for `k ≤ 80` and factoring, for `L ≤ 12`; the table rows for `L ≤ 8` against `P(k, L)` for `k ≤ 100`; for `L ≤ 12`, the interpolated `A_L`, `B_L` against all `k ≤ 100`, their degrees and leading coefficients, and their values at `−1`; `B_6 = 2A_4`; `N_4`, `N_5`, `N_6`; the periods of `P(·, L) mod p` for `L ≤ 11` and `p ∈ {3, 5, 7, 11}` over `k < 420`; the period 18 of `A^e(4, h) mod 3` over `2 ≤ h < 200`; the annihilation of `A^e(w, ·)` by `(x² − 1)^w` for `w ≤ 7`; `|P(k, 4)|`, `P(2m, 4)` and `−P(2m + 1, 4)` against all the terms of `A352116`, `A063496` and `A199833` shown on oeis.org.
+[^4]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 3" L77-79 - "Columns (fixed w, varying h) are quasi-polynomials: F(w,h) is annihilated by (x^2-1)^w, i.e. F(w,h) = P(h) + (-1)^h Q(h) with P,Q polynomials of degree < w."
+[^5]: https://oeis.org/A352116, https://oeis.org/A063496, https://oeis.org/A199833, https://oeis.org/A000447, https://oeis.org/A112742 (read 2026-10-16) - A352116: "Partial sums of the odd triangular numbers (A014493)", offset 1; A063496: "a(n) = (2*n - 1)*(8*n^2 - 8*n + 3)/3", offset 1, with Peter Bala's remark "The following remarks about the C_3 lattice assume the sequence offset is 0 ... this sequence is the crystal ball sequence for the C_3 lattice ... all integer lattice points v = (a,b,c) in Z^3 such that a + b + c is even, equipped with the taxicab type norm ||v|| = (1/2) * (|a| + |b| + |c|)"; A199833: offset 1, "Empirical: a(n) = (16/3)*n^3 - (4/3)*n = 4*A000447(n)"; A000447: "a(n) = 1^2 + 3^2 + 5^2 + 7^2 + ... + (2*n-1)^2 = n*(4*n^2 - 1)/3"; A112742: "a(n) = n^2*(n^2 - 1)/3".
