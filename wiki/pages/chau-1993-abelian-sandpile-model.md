@@ -1,23 +1,21 @@
 ---
 title: "Abelian sandpile model (Chau, 1993)"
 category: Sources
-summary: A three-page Physical Review E Rapid Communication in the abelian sandpile programme. It states the model in Dhar's form (toppling h_i → h_i − Δ_ji, det Δ recurrent states, two-point function G = Δ⁻¹) and proposes a method for higher-order correlation functions and the avalanche-size distribution. This page records the paper's framing and its reference list of early abelian sandpile papers (Dhar, Creutz, Dhar-Majumdar, Lee-Liang-Tzeng, Ruelle-Sen, Markošová-Markoš, Chau-Cheng); its computational method is not summarized here.
+summary: A three-page Physical Review E Rapid Communication on the abelian sandpile model. It states the model in Dhar's form (toppling h_i → h_i − Δ_ji, det Δ recurrent states, two-point function G = Δ⁻¹) and proposes a method for higher-order correlation functions and the avalanche-size distribution. This page records the paper's framing and its reference list of early abelian sandpile papers (Dhar, Creutz, Dhar-Majumdar, Lee-Liang-Tzeng, Ruelle-Sen, Markošová-Markoš, Chau-Cheng). The PDF is not in the repository; the bibliographic data and the reference list were checked against Crossref, and the quotations were not re-read.
 tags: [paper, source, sandpile, abelian-sandpile, self-organized-criticality, bibliography, correlation-function, avalanche]
 sources: [chau-1993-abelian-sandpile-model]
 created: 2026-09-27
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Abelian sandpile model (Chau, 1993)
 
-**Source:** `raw/chau-1993-abelian-sandpile-model.pdf` (a scan with no text layer, git-ignored; cited by page).
-**Publication:** H. F. Chau, "Abelian sandpile model", *Physical Review E* **47** (1993) R3815-R3817, Rapid Communications; received 5 January 1993. University of Illinois at Urbana-Champaign.[^1]
+**Source:** `raw/chau-1993-abelian-sandpile-model.pdf`, a scan with no text layer, cited by page. The PDF is not in the repository, so the quotations below, taken from a local copy, were not re-read; the title, journal data and reference list were checked against the Crossref record of DOI 10.1103/PhysRevE.47.R3815 on 2026-10-16.
+**Publication:** H. F. Chau, "Abelian sandpile model", *Physical Review E* **47** (1993) R3815-R3817, Rapid Communications; received 5 January 1993. University of Illinois at Urbana-Champaign. DOI 10.1103/PhysRevE.47.R3815.[^1]
 **Date ingested:** 2026-09-27
 **Type:** paper (PDF, 3 pp.)
 
-## Scope of this page
-
-This page records the paper's framing and its references. The method it proposes (conditional correlation functions and an algorithm for the avalanche-size distribution) is not summarized on the wiki.
+The method the paper proposes, conditional correlation functions and an algorithm for the avalanche-size distribution, is not summarized here.
 
 ## Framing
 
@@ -36,7 +34,7 @@ The reference list covers abelian sandpile papers of 1987-1992, most without a s
 | [3] | Creutz, *Comput. Phys.* 5 (1991) 198 | no |
 | [4] | Dhar and Majumdar, *J. Phys. A* 23 (1990) 4333; Lee, Liang and Tzeng, *Phys. Rev. Lett.* 67 (1991) 1479 and 68 (1992) 1442(E); Lee and Tzeng, *Phys. Rev. A* 45 (1992) 1253; Ruelle and Sen, *J. Phys. A (Lett.)* 25 (1992) L1257 | no |
 | [5] | Gabrielov (unpublished) | - |
-| [6] | Chau and Cheng, *Phys. Rev. A* 46 (1992) 2981, and unpublished | no |
+| [6] | Chau and Cheng, *Phys. Rev. A* 46 (1992) R2981, and unpublished | no |
 | [7] | Markošová and Markoš, *Phys. Rev. A* 46 (1992) 3531; Peng, *J. Phys. A* 25 (1992) 5279; Chau and Cheng (unpublished) | no |
 | [8] | Chau and Cheng, *Phys. Lett. A* 157 (1991) 103 | [[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)] |
 | [9] | Grimmett, *Percolation* (Springer, 1989) | no |
@@ -47,7 +45,7 @@ In the text, [2, 3] support the exact count of critical states and the two-point
 
 - [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - the model and results the paper builds on.
 - [[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)] - the companion paper on equivalent toppling rules (its ref. [8]).
-- [[sandpile-group](pages/sandpile-group.md)] / [[castle-avalanches](pages/castle-avalanches.md)] - the castle sandpile pages, which use the model in the form stated here.
+- [[sandpile-group](pages/sandpile-group.md)] / [[castle-avalanches](pages/castle-avalanches.md)] - the castle sandpile pages, where `Δ` is the reduced Laplacian `L̃` of the castle graph, so `Δ_ji = Δ_ij` and the number of recurrent configurations is `det L̃`.
 - [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] - the 1995 algebraic treatment by Dhar, Ruelle, Sen and Verma; Ruelle and Sen are the authors of the 1992 paper in ref. [4].
 
 ## Footnotes
@@ -56,5 +54,5 @@ In the text, [2, 3] support the exact count of critical states and the two-point
 [^2]: raw/chau-1993-abelian-sandpile-model.pdf p.R3815 first paragraph [synthesis] - self-organized criticality from Bak, Tang and Wiesenfeld [1]; "Dhar pointed out that the finite cellular-automata type of model with toppling triggered by local height can be described by a finite Abelian group [2]"; "Both the total number of self-organized critical states and the two-point correlation function can be calculated exactly in these models [2,3]"; other quantities [4], other triggering conditions [5,6], and "the relation between the ASM, percolation, and spanning trees is also explored [7]".
 [^3]: raw/chau-1993-abelian-sandpile-model.pdf p.R3815 abstract and second paragraph [synthesis] - "A systematic and simple method to find the correlation function of the Abelian sandpile model up to any finite order is developed", with "an algorithm for evaluating the distribution function of the avalanche size P(s)", described as "more efficient (and accurate) than the numerical simulation".
 [^4]: raw/chau-1993-abelian-sandpile-model.pdf p.R3815 third paragraph [synthesis] - cells with local heights `h_i` "(or sometimes real numbers)", addition according to a probability distribution `μ(i)`, toppling `h_i → h_i − Δ_ji` (eq. 1); "the total number of self-organized critical states in an ASM is given by det Δ", interpreted for real heights "as the volume of the phase space of the recurrence states [5,6]"; `G_ij = Δ⁻¹_ij` [2].
-[^5]: raw/chau-1993-abelian-sandpile-model.pdf p.R3817 References [1]-[9].
+[^5]: raw/chau-1993-abelian-sandpile-model.pdf p.R3817 References [1]-[9]; checked against the reference list of the Crossref record https://api.crossref.org/works/10.1103/physreve.47.r3815 (read 2026-10-16), which gives ref. [6] as Phys. Rev. A 46, R2981.
 [^6]: raw/chau-1993-abelian-sandpile-model.pdf p.R3816 [synthesis] - "Further discussions of the role of elementary row operations on the ASM and the equivalence of toppling rules can be found elsewhere [2,8]."
