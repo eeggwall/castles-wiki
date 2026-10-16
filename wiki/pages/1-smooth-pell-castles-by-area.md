@@ -1,28 +1,28 @@
 ---
 title: 1-smooth Pell castles by area
 category: Analyses
-summary: Count 1-smooth Pell castles, anchored at height 1 and reaching exact height 3, by cells rather than columns. Each castle contributes z^w q^n, with width w and area n; setting q = 1 forgets area and setting z = 1 forgets width. Last-column equations and exact-height subtraction give area generating function q^6/((1-q-q^2)(1-q^2-2q^3-q^4-q^5)) and area growth 1.666301937, compared with silver-ratio growth by width. A brief height-2 comparison explains the golden factor and distinguishes unrestricted smooth castles from Fibonacci and ridge castles.
+summary: The Pell castles (first column at height 1, neighboring columns differing by at most 1, height 3) counted by width w and area n together, through B_Pell(q, z) = Σ q^area z^width. Last-column equations for the strips with ceiling 3, minus the strips on heights 1 and 2, give B_Pell(q, z) as a rational function; setting q = 1 gives the width count z³/((1 − 2z)(1 − 2z − z²)), silver by width, and setting z = 1 gives the area count q⁶/((1 − q − q²)(1 − q² − 2q³ − q⁴ − q⁵)), growing like 1.666301937^n. The anchored castles of height 2 by area number F_n − 1, and the page separates them from the Fibonacci and ridge castles of height 2.
 tags: [analysis, castle, 1-smooth, pell, fixed-height, area, generating-function, transfer-matrix, pedagogy]
 sources: [pe502-pell-castle-strip]
 created: 2026-10-07
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
 # 1-smooth Pell castles by area
 
 ## 1. Fix height 3, then choose what to count by
 
-A 1-smooth castle has neighbouring column heights differing by at most 1. This page counts only **Pell castles**: the first column has height 1, the last column is free, and the maximum height is exactly 3:
+A 1-smooth castle has neighboring column heights differing by at most 1. This page counts only **Pell castles**: the first column has height 1, the last column is free, and the castle has height 3, which is part of the definition:
 
 ```
 c_1 = 1,      |c_{i+1} - c_i| <= 1,      max_i c_i = 3.
 ```
 
-The main family stays at **exact height 3**. Only the width and area vary. Both block parities are included; there is no even-block restriction here. The family and its width counts are on [[pell-castle](pages/pell-castle.md)].[^definition] Section 5.5 compares the height-2 family that enters the subtraction.
+The castles all have height 3; only the width and area vary. Both block parities are included; there is no even-block restriction here. The family and its width counts are on [[pell-castle](pages/pell-castle.md)].[^definition] Section 5.5 compares the height-2 family that enters the subtraction.
 
 For example, `(1, 2, 3, 2)` qualifies, while `(1, 2, 2, 1)` never reaches height 3 and `(1, 3, 2)` has a forbidden jump.
 
-**Exact height and ceiling.** A strip with ceiling 3 may stay entirely at heights 1 and 2. A castle of exact height 3 must visit height 3 at least once. Section 5.3 subtracts the strips that do not.
+**Strips and castles.** A strip with ceiling 3 may stay entirely at heights 1 and 2, so strips are not castles. A castle of height 3 has a column of height 3. Section 5.3 subtracts the strips that do not reach height 3.
 
 ## 2. One castle, two measurements
 
@@ -38,7 +38,7 @@ For `(1, 2, 3, 2)`, the width is 4 and the area is 8. Those measurements group c
 
 ## 3. Record both measurements with two variables
 
-Use `z` to record width and `q` to record area. A single castle of width `w` and area `n` contributes the monomial `z^w q^n`.
+Use `q` to record area and `z` to record width, as in the castle generating function `B(q, z)` of [[castle-notation](pages/castle-notation.md)]. A single castle of width `w` and area `n` contributes the monomial `z^w q^n`.
 
 The smallest Pell examples are:[^examples]
 
@@ -53,15 +53,15 @@ The smallest Pell examples are:[^examples]
 Add one contribution for every Pell castle. Define
 
 ```
-C_3(z, q) = sum over Pell castles of z^width q^area.
+B_Pell(q, z) = sum over Pell castles of z^width q^area.
 ```
 
-Thus the coefficient of `z^w q^n` is the number of Pell castles with **both** width `w` and area `n`. The subscript 3 is the fixed exact height.
+Thus the coefficient of `z^w q^n` is the number of Pell castles with **both** width `w` and area `n`. The subscript names the family.
 
 For Pell castles, grouping the first terms by width gives:[^examples]
 
 ```
-C_3(z, q) = z^3 q^6
+B_Pell(q, z) = z^3 q^6
            + z^4 (q^7 + 2q^8 + q^9)
            + z^5 (q^8 + 4q^9 + 4q^10 + 3q^11 + q^12)
            + terms of width 6 and above.
@@ -82,7 +82,7 @@ q^7 + 2q^8 + q^9  ->  1 + 2 + 1 = 4.
 The four width-4 castles are combined regardless of area. Likewise, the width-5 polynomial has coefficient sum `1 + 4 + 4 + 3 + 1 = 13`. So
 
 ```
-C_3(z, 1) = z^3 + 4z^4 + 13z^5 + 38z^6 + 105z^7 + 280z^8 + ... .
+B_Pell(1, z) = z^3 + 4z^4 + 13z^5 + 38z^6 + 105z^7 + 280z^8 + ... .
 ```
 
 The coefficient of `z^w` counts every Pell castle of width `w`.[^specializations]
@@ -102,13 +102,13 @@ For area 8, there are three castles:[^examples]
 The width-4 term contributes `2q^8`, and the width-5 term contributes another `q^8`. Their sum is `3q^8`. The area series begins
 
 ```
-C_3(1, q) = q^6 + q^7 + 3q^8 + 6q^9 + 11q^10 + 22q^11
+B_Pell(q, 1) = q^6 + q^7 + 3q^8 + 6q^9 + 11q^10 + 22q^11
            + 40q^12 + 74q^13 + 135q^14 + 242q^15 + ... .
 ```
 
 The coefficient of `q^n` counts every Pell castle of area `n`.[^specializations]
 
-Both specializations count only castles of exact height 3.
+Both specializations count only castles of height 3.
 
 Both operations produce finite coefficient sums: at a fixed width there are only finitely many allowed skylines, and at a fixed area the width is at most the area because every column contains at least one cell.
 
@@ -134,7 +134,7 @@ The 1-smooth rule says that a height-1 column can follow heights 1 or 2, a heigh
 
 ### 5.2 First count strips with ceiling 3
 
-Let `X_j(z, q)` count anchored strips that end at height `j`, with all columns at most 3. These strips do **not** yet have to reach 3. Sorting them by their last column gives
+Let `X_j(q, z)` count anchored strips that end at height `j`, with all columns at most 3. These strips do **not** yet have to reach 3. Sorting them by their last column gives
 
 ```
 X_1 = zq   (1 + X_1 + X_2),
@@ -144,11 +144,11 @@ X_3 = zq^3 (X_2 + X_3).
 
 For the first equation, the final height-1 column is either the whole one-column strip, accounting for the `1`, or follows a strip ending at height 1 or 2. The other equations have no one-column case because the first column must be height 1.
 
-The total ceiling-3 strip function is `S_3 = X_1 + X_2 + X_3`. Solving these three linear equations gives[^derivation]
+The total ceiling-3 strip function is `G_3 = X_1 + X_2 + X_3`. Solving these three linear equations gives[^derivation]
 
 ```
-D_3(z, q) = 1 - z(q + q^2 + q^3) + z^2 q^4 + z^3 q^6,
-S_3(z, q) = zq(1 - zq^3) / D_3(z, q).
+D_3(q, z) = 1 - z(q + q^2 + q^3) + z^2 q^4 + z^3 q^6,
+G_3(q, z) = zq(1 - zq^3) / D_3(q, z).
 ```
 
 ### 5.3 Subtract the strips that never reach 3
@@ -156,17 +156,17 @@ S_3(z, q) = zq(1 - zq^3) / D_3(z, q).
 A ceiling-3 strip that never reaches 3 is a strip on heights 1 and 2. Its first column is 1, and each later column can independently be 1 or 2. Therefore
 
 ```
-D_2(z, q) = 1 - z(q + q^2),
-S_2(z, q) = zq / D_2(z, q).
+D_2(q, z) = 1 - z(q + q^2),
+G_2(q, z) = zq / D_2(q, z).
 ```
 
 This is the initial height-1 column, of weight `zq`, followed by a sequence of columns of weights `zq` or `zq^2`.
 
-Requiring exact height 3 now gives[^derivation]
+Requiring a column of height 3 now gives[^derivation]
 
 ```
-C_3(z, q) = S_3(z, q) - S_2(z, q)
-          = z^3 q^6 (1 - zq) / (D_2(z, q) D_3(z, q)).
+B_Pell(q, z) = G_3(q, z) - G_2(q, z)
+             = z^3 q^6 (1 - zq) / (D_2(q, z) D_3(q, z)).
 ```
 
 Its first term is `z^3 q^6`, the staircase `(1, 2, 3)`, and its expansion is the series of Section 3.
@@ -176,51 +176,51 @@ Its first term is `z^3 q^6`, the staircase `(1, 2, 3)`, and its expansion is the
 Setting `q = 1` gives
 
 ```
-D_2(z, 1) = 1 - 2z,
-D_3(z, 1) = (1 - z)(1 - 2z - z^2).
+D_2(1, z) = 1 - 2z,
+D_3(1, z) = (1 - z)(1 - 2z - z^2).
 ```
 
 The numerator's `1 - z` cancels, leaving the known width function
 
 ```
-C_3(z, 1) = z^3 / ((1 - 2z)(1 - 2z - z^2)).
+B_Pell(1, z) = z^3 / ((1 - 2z)(1 - 2z - z^2)).
 ```
 
 Setting `z = 1` instead gives
 
 ```
-D_2(1, q) = 1 - q - q^2,
-D_3(1, q) = (1 - q)(1 - q^2 - 2q^3 - q^4 - q^5).
+D_2(q, 1) = 1 - q - q^2,
+D_3(q, 1) = (1 - q)(1 - q^2 - 2q^3 - q^4 - q^5).
 ```
 
 The numerator's `1 - q` cancels, leaving the area function[^specializations]
 
 ```
-C_3(1, q) = q^6 / ((1 - q - q^2)(1 - q^2 - 2q^3 - q^4 - q^5)).
+B_Pell(q, 1) = q^6 / ((1 - q - q^2)(1 - q^2 - 2q^3 - q^4 - q^5)).
 ```
 
 ### 5.5 Height 2 and the Fibonacci castles
 
-On heights `{1, 2}`, every pair of columns differs by at most 1. Thus **every height-2 castle is 1-smooth**: both adjacent 1s and adjacent 2s are allowed. To keep the same boundary condition as the Pell family, start at height 1 and require a visit to height 2. The joint generating function is
+On heights `{1, 2}`, every pair of columns differs by at most 1. Thus **every height-2 castle is 1-smooth**: both adjacent 1s and adjacent 2s are allowed. To keep the same boundary condition as the Pell family, start at height 1 and require a visit to height 2. The generating function `B_2(q, z)` of these anchored castles of height 2 is
 
 ```
-C_2(z, q) = S_2(z, q) - zq/(1 - zq)
+B_2(q, z) = G_2(q, z) - zq/(1 - zq)
           = z^2 q^3 / ((1 - zq)(1 - z(q + q^2))).
 ```
 
 The subtracted term counts the strips that remain entirely at height 1. Setting `z = 1` gives[^height-two-area]
 
 ```
-C_2(1, q) = q^3 / ((1 - q)(1 - q - q^2)),
+B_2(q, 1) = q^3 / ((1 - q)(1 - q - q^2)),
 area-n count = F_n - 1,
 counts at n = 3, 4, ...:  1, 2, 4, 7, 12, 20, 33, 54, ... .
 ```
 
 Here `F_0 = 0`, `F_1 = 1`, and `F_n = F_{n-1} + F_{n-2}`. After the initial height-1 column, the remaining cells form a composition of `n - 1` into 1s and 2s. There are `F_n` such compositions; removing the all-1 composition gives `F_n - 1`. Their area growth is the golden ratio `phi = (1 + sqrt(5))/2`. This is the same **height-2 area factor `1 - q - q^2`** that occurs in the Pell area denominator, through the ceiling-2 strips removed in Section 5.3.
 
-The named Fibonacci and ridge castles use stricter neighbour rules:[^height-two-rules]
+The Fibonacci and ridge castles use stricter neighbor rules:[^height-two-rules]
 
-| exact-height-2 family | adjacent `(1, 1)` | adjacent `(2, 2)` |
+| family of height 2 | adjacent `(1, 1)` | adjacent `(2, 2)` |
 |---|---|---|
 | 1-smooth | allowed | allowed |
 | [[fibonacci-castle](pages/fibonacci-castle.md)] | allowed | forbidden |
@@ -228,7 +228,7 @@ The named Fibonacci and ridge castles use stricter neighbour rules:[^height-two-
 
 For example, `(1, 2, 2)` is 1-smooth but not a Fibonacci castle; `(1, 1, 2)` is 1-smooth but not a ridge castle.
 
-[[fibonacci-castle](pages/fibonacci-castle.md)] counts all castles of exact height 2 by area, with a free first column: their area-n count is `F_{n+1} - 1`. The anchor shifts this to `F_n - 1`: removing the initial 1 is a bijection to a free-first-column height-2 castle with one fewer cell.[^height-two-area] The area refinement of the stricter, named Fibonacci family is [[q-fibonacci-castle](pages/q-fibonacci-castle.md)]. Exchanging heights 1 and 2 exchanges the Fibonacci and ridge neighbour rules, but changes area from `n` to `3w - n` at width `w`, so it is not an area-preserving identification.[^height-two-rules]
+[[fibonacci-castle](pages/fibonacci-castle.md)] counts all castles of height 2 by area, with a free first column: their area-n count is `F_{n+1} - 1`. The anchor shifts this to `F_n - 1`: removing the initial 1 is a bijection to a free-first-column height-2 castle with one fewer cell.[^height-two-area] The area refinement of the stricter, named Fibonacci family is [[q-fibonacci-castle](pages/q-fibonacci-castle.md)]. Exchanging heights 1 and 2 exchanges the Fibonacci and ridge neighbor rules, but changes area from `n` to `3w - n` at width `w`, so it is not an area-preserving identification.[^height-two-rules]
 
 ## 6. What growth by area means
 
@@ -266,17 +266,9 @@ Compare the two ways of measuring this same Pell family:
 
 A column contains 1, 2 or 3 cells, so castles of a given width can have different areas, and castles of a given area can have different widths.
 
-## Reproduce the Pell counts
+## Counting by area directly
 
-The verification source is `raw/1-smooth-castles-by-area-verification.py`. Run it with Python 3 and SymPy:
-
-```bash
-python3 raw/1-smooth-castles-by-area-verification.py
-```
-
-Its Pell checks compare the joint generating function against direct enumeration through width 7, compare the area coefficients against an independent dynamic program through area 100, and compare the area-1000 consecutive-count ratio with the reciprocal pole.[^examples][^specializations][^growth]
-
-For Pell castles, the area dynamic program remembers just the last column height and whether height 3 has been reached. Appending a height-`b` column, with `b` in `{1, 2, 3}`, adds `b` cells, moving a count at area `n` to area `n + b`. Use the source's `area_counts` function with its height argument set to 3.
+A dynamic program over the area counts the Pell castles without the generating function. Its state is the height of the last column and whether height 3 has been reached; appending a column of height `b ∈ {1, 2, 3}`, with `|b − a| ≤ 1` for the previous height `a`, moves a count from area `n` to area `n + b`. Started from the single column `(1)` at area 1, it reproduces the coefficients of `B_Pell(q, 1)`, and the ratio of consecutive counts at area 1000 agrees with `alpha_3` to eleven digits.[^growth]
 
 ## Related Concepts
 
@@ -284,19 +276,19 @@ For Pell castles, the area dynamic program remembers just the last column height
 - [[1-smooth-castles](pages/1-smooth-castles.md)] - the larger family containing Pell castles; the main count here stays at height 3.
 - [[fibonacci-castle](pages/fibonacci-castle.md)] - distinguishes the named height-2 family from all height-2 castles counted by area.
 - [[q-fibonacci-castle](pages/q-fibonacci-castle.md)] - area grading of that stricter Fibonacci family, not of every height-2 smooth castle.
-- [[ridge-castle](pages/ridge-castle.md)] - the other height-2 neighbour rule, related to the Fibonacci rule by exchanging heights.
-- [[pell-castle-strip](pages/pell-castle-strip.md)] - the ceiling-3 superset, from which the lower-ceiling strips are removed in Section 5.
+- [[ridge-castle](pages/ridge-castle.md)] - the other neighbor rule at height 2, related to the Fibonacci rule by exchanging heights.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] - the strips with ceiling 3, from which the strips on heights 1 and 2 are removed in Section 5.
 - [[castle-strip](pages/castle-strip.md)] - column heights as the finite counting states.
 - [[generating-functions](pages/generating-functions.md)] - coefficient bookkeeping and rational generating functions.
-- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - its height-3 row counts all castles by area, without the anchor or the smoothness restriction.
+- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - castles of height `h` by area; its height-3 row counts all castles of height 3, without the anchor or the smoothness rule.
 - [[area-growth-census](pages/area-growth-census.md)] - area counting for arbitrary fixed-height strip rules.
 
 ## Footnotes
 
-[^definition]: `raw/1-smooth-castles-by-area-verification.py` §`is_castle` L1-L6,L17-L20 [synthesis] - with its height argument set to 3, fixes the Pell family, anchor, neighbour rule and inclusion of both block parities.
-[^examples]: `raw/1-smooth-castles-by-area-verification.py` §`main`, joint coefficients L73-L94 [synthesis] - the listed width-4 and area-8 castles, the first width polynomials, and exhaustive comparison of every Pell joint coefficient through width 7. Executed 2026-10-07.
-[^derivation]: `raw/1-smooth-castles-by-area-verification.py` §`strip_gf` and §`main`, last-column equations L23-L39,L96-L111 [synthesis] - independently constructs the weighted transfer matrix, solves the last-column equations, and verifies the ceiling-2, ceiling-3 and exact-height-3 rational functions as symbolic identities. Executed 2026-10-07.
-[^specializations]: `raw/1-smooth-castles-by-area-verification.py` §`main`, specializations L113-L127 [synthesis] - verifies both Pell factorizations and variable specializations, the displayed width and area counts, and agreement with the separate area dynamic program through area 100. Executed 2026-10-07.
-[^growth]: `raw/1-smooth-castles-by-area-verification.py` §`main`, dominant pole L129-L140 [synthesis] - computes the second factor's roots, checks the unique smallest modulus and its position below the first factor's positive root, and confirms the reciprocal against the area-1000 count ratio; `r = 0.600131331307573712987720337438`, `alpha_3 = 1.66630193731293346886105074154`. Executed 2026-10-07.
-[^height-two-area]: `raw/pell-area-height-two-comparison.py` §`joint_gf` and §`main` L18-L24,L27-L50 [synthesis] - verifies the anchored and free exact-height-2 smooth generating functions, compares their joint coefficients with enumeration through width 8, and checks the area coefficients `F_n - 1` and `F_{n+1} - 1` through area 19. Executed 2026-10-07.
-[^height-two-rules]: `raw/pell-area-height-two-comparison.py` §rule matrices and §`main` L12-L15,L35-L42,L51-L54 [synthesis] - the smooth rule allows every pair, Fibonacci forbids `(2, 2)`, ridge forbids `(1, 1)`, and exchanging heights conjugates the Fibonacci rule to the ridge rule. At each column the exchanged height is `3 - c_i`, giving the area identity `sum_i (3 - c_i) = 3w - n`. Executed 2026-10-07.
+[^definition]: The Pell castles and their width counts are defined and checked on [[pell-castle](pages/pell-castle.md)].
+[^examples]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the coefficients of `B_Pell(q, z)` against enumeration of all Pell castles for widths `w ≤ 7`, including the width-4 and width-5 polynomials and the three castles of area 8.
+[^derivation]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the solution of the three last-column equations equals `G_3(q, z)`, and `G_3 − G_2 = z³q⁶(1 − zq)/(D_2 D_3)` as rational functions.
+[^specializations]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `D_3(1, z) = (1 − z)(1 − 2z − z²)` and `D_3(q, 1) = (1 − q)(1 − q² − 2q³ − q⁴ − q⁵)`; the width series `1, 4, 13, 38, 105, 280, …` and the area series `1, 1, 3, 6, 11, 22, 40, 74, 135, 242, …` from area 6.
+[^growth]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the five roots of `1 − q² − 2q³ − q⁴ − q⁵`, of moduli `0.600131`, `0.956074` (twice) and `1.350160` (twice); `r = 0.600131331307574`, `alpha_3 = 1/r = 1.66630193731293`; the area counts by the dynamic program to area 1000, with ratio `1.66630193731294` at area 1000.
+[^height-two-area]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `B_2(q, z) = z²q³/((1 − zq)(1 − z(q + q²)))`; the anchored castles of height 2 by area number `F_n − 1` and all castles of height 2 by area `F_{n+1} − 1`, both checked by enumeration through area 10.
+[^height-two-rules]: The Fibonacci rule forbids two neighboring columns of height 2 ([[fibonacci-castle](pages/fibonacci-castle.md)]) and the ridge rule at height 2 forbids two neighboring columns of height 1 ([[ridge-castle](pages/ridge-castle.md)]); exchanging the heights 1 and 2 sends a column of height `c_i` to height `3 − c_i`, so the area `n` of a castle of width `w` becomes `Σ_i (3 − c_i) = 3w − n`.
