@@ -1,82 +1,84 @@
 ---
 title: Avalanches on castles - Bak-Tang-Wiesenfeld sand in the sink and tide models
 category: Analyses
-summary: The original self-organized-criticality sandpile (Bak, Tang and Wiesenfeld, 1987) run on castles in both models of sandpile-group, starting from the identity and dropping grains on random cells - the tide model, where the whole bottom row is the sink, and the sink model, where the only sink is the bottom-left cell. Dhar's theorem makes the mean avalanche size exact in both (the average of the solution of L̃x = 1), and simulation agrees to within 0.3%. Under the tide the mean depends only on height for rectangles and battlements - exactly h(2h−1)/6, the value for a single column - so a 10×10 rectangle full of 2×2 blocks and a battlement with none both average 31.67 topplings per grain; for every castle up to 12 cells (2,130 castles) the tide mean is at most the column-by-column prediction, with equality exactly when every run of adjacent columns rising above the base has constant height; and the 2×2 blocks change only the tail (a 20×20 rectangle reaches 3,701 topplings with a size density falling like s^(−0.93), a battlement of height-20 spikes never exceeds 190). The sink model reverses this. A single column is the same in both models, but the sink-model mean grows with width as well as height (symmetric under turning a rectangle on its side), and the 2×2 blocks lower it by giving sand parallel routes to the corner: the 20×20 rectangle averages 692.0 topplings and the height-20 battlement 1,520.9, against 130 for both under the tide. The rectangle keeps a heavy tail (largest 21,248, slope about −0.98 on [10, 1000]); the battlement has none - every grain crosses the base, every drop topples at least 200 times, and the upper half of all avalanches fits between 1,655 and 2,280.
+summary: The self-organized-criticality sandpile of Bak, Tang and Wiesenfeld run on castles in both models of sandpile-group, the tide model (the whole bottom row as the sink) and the sink model (one sink cell, the bottom-left cell), starting from the identity and dropping grains on uniformly random cells. By Dhar's theorem the mean avalanche size is the average of the solution of L̃x = 1, and simulation agrees within 0.3%. In the tide model every rectangle and every battlement of height h has mean h(2h−1)/6 (proved), and every castle with at most 12 cells has mean at most the column-by-column value, with equality exactly when each run of raised columns has constant height (computed); the 2×2 blocks change the tail, not the mean (20×20 rectangle: largest avalanche 3,701 of 60,000; battlement of height 20: every avalanche at most 190 = 20·19/2, exactly). In the sink model the mean grows with width as well as height, and the battlement (1, 20)*10, a tree castle, averages 1,520.9 topplings against 692.0 for the 20×20 rectangle; the rectangle keeps a heavy tail (largest 21,248), while every grain on the battlement causes the same avalanche each time it lands on the same cell, between 209 and 2,280 topplings.
 tags: [analysis, castle, sandpile, avalanche, self-organized-criticality, bak-tang-wiesenfeld, dhar, green-function, laplacian, sink-model, tide-model, battlement, rectangle, heavy-tail, numpy, simulation, verification]
 sources: [project-euler-502-castle-factoring, rossin-2000-group-of-a-sandpile, dhar-ruelle-sen-verma-1995-algebraic-aspects, dhar-1990-self-organized-critical-sandpile, bak-tang-wiesenfeld-1988-self-organized-criticality]
 created: 2026-09-26
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Avalanches on castles - Bak-Tang-Wiesenfeld sand in the sink and tide models
 
 ## The experiment
 
-In 1987 Bak, Tang and Wiesenfeld dropped sand, one grain at a time, on random cells of a large grid, using the toppling rule of [[sandpile-group](pages/sandpile-group.md)]. They found that the pile organizes itself into a critical state: most grains cause no avalanche or a small one, but avalanches of every size occur, with a size distribution close to a power law. They called this **self-organized criticality**.[^1]
+Bak, Tang and Wiesenfeld added sand to random sites of a square grid, one grain at a time, with the toppling rule of [[sandpile-group](pages/sandpile-group.md)], and found that avalanches of every size occur, with a size distribution close to a power law. They called this **self-organized criticality**.[^1]
 
-Here the grid is a castle, and the experiment is run in both models of [[sandpile-group](pages/sandpile-group.md)]:
+Here the grid is a castle, in both models of [[sandpile-group](pages/sandpile-group.md)]:
 
-- the **tide model**: the sink is the whole bottom row, so sand leaves through the ground wherever a cell stands on it;
-- the **sink model**: the sink is one cell, the bottom-left cell, so every grain that leaves must reach that corner.
+- the **tide model**: the sink is the whole bottom row;
+- the **sink model**: the sink is one cell, the bottom-left cell.
 
-In both, the pile starts at its identity ([[sandpile-identity](pages/sandpile-identity.md)]), which is already recurrent, so no warm-up is needed. Each drop lands on a uniformly random cell outside the sink, and the page records two numbers for each avalanche:
+In both, the pile starts at its identity ([[sandpile-identity](pages/sandpile-identity.md)]), which is recurrent. Each grain lands on a uniformly random cell outside the sink, and each avalanche has two numbers:
 
 - its **size**, the number of topplings it causes;
-- its **duration**, the number of rounds, where one round topples everything that is unstable at once.
+- its **duration**, the number of rounds of the Snippet's `topple`, where each round topples, as often as they can, the cells made unstable by the previous round.
 
-The questions are how ladders, rectangles and battlements compare, whether the block count (the castle's horizontal blocks, as in Project Euler 502) or the number of `2 × 2` blocks sets the largest avalanches, and how much of the answer depends on where the sand leaves.
+The shapes compared are rectangles `(h,)*w` and **battlements** `(1, h)*w`, `w` columns of height `h` each followed by a column of height 1. A battlement has no `2 × 2` block of cells, so it is a tree castle.
 
-## The mean avalanche is exact, in both models
+## The mean avalanche is exact
 
-A theorem of Dhar makes the average avalanche size computable without simulation. In the long run, the expected number of topplings at cell `u` caused by a grain dropped at cell `v` is the `(v, u)` entry of `L̃⁻¹`, the inverse of the Laplacian with the sink removed.[^2] Averaging over a uniformly random drop cell,
+**Theorem (Dhar).** In the steady state, the expected number of topplings at cell `u` caused by a grain added at cell `v` is the `(v, u)` entry of `L̃⁻¹`, the inverse of the reduced Laplacian.[^2]
+
+Averaging over a uniformly random drop cell gives
 
 ```
-mean avalanche size  =  (1/n) · (sum of all entries of L̃⁻¹)  =  average of x,  where  L̃ x = 1
+mean avalanche size  =  (1/n) · (sum of all entries of L̃⁻¹)  =  average of x,  where  L̃ x = 1,      (1)
 ```
 
-The formula is the same in both models; only `L̃` changes (one row and column deleted in the sink model, the whole bottom row in the tide model). Simulation agrees with it to within 0.3% on every shape tested in both models.[^3]
+with `n` the number of cells outside the sink. Only `L̃` differs between the models. Simulation agrees with Equation (1) to within 0.3% on every shape tested in both models, and averaging the topplings over all recurrent configurations reproduces `L̃⁻¹` entry by entry on small castles.[^3]
 
-**A single column is the same in both models.** A column of height `h` is a path hanging from its bottom cell, and that bottom cell is the sink either way. So its mean is `h(2h − 1)/6` in both models: 1 at `h = 2`, 2.5 at `h = 3`, 11 at `h = 6`, 31.67 at `h = 10`. A horizontal path `(1, 1, …, 1)` of `n` cells is the same path lying down, with the sink at its end, and in the sink model it has the same mean `n(2n − 1)/6`. (Under the tide a horizontal path is entirely ground and holds no sand.)[^4]
+**A single column is the same in both models.** A column of height `h` is a path whose bottom cell is the sink in either model. The solution of `L̃x = 1` at height `j = 1, …, h − 1` above the bottom cell is
+
+```
+x(j)  =  j (2h − 1 − j) / 2,                                                         (2)
+```
+
+since `2x(j) − x(j − 1) − x(j + 1) = 1` for `j < h − 1`, with `x(0) = 0`, and `x(h − 1) − x(h − 2) = 1` at the top. Its average over `j` is `h(2h − 1)/6`: 1 at `h = 2`, 2.5 at `h = 3`, 11 at `h = 6`, 31.67 at `h = 10`. A horizontal path `(1, 1, …, 1)` of `n` cells is the same path lying down, and in the sink model it has mean `n(2n − 1)/6`. In the tide model a horizontal path is all sink and holds no sand.[^4]
 
 ## Tide model
 
-### Height alone sets the mean for rectangles and battlements
+### Rectangles and battlements: the mean depends on the height only
 
-For a `w × h` rectangle, and for a **battlement** of height-`h` spikes separated by single cells, the tide mean avalanche is
+**Proposition.** In the tide model, every rectangle `(h,)*w` and every battlement `(1, h)*w` has mean avalanche size `h(2h − 1)/6`, the value of a single column.
 
-```
-mean  =  h (2h − 1) / 6
-```
+*Proof.* In a rectangle, try `x` equal to Equation (2) on every column. A cell in row `j` with `1 ≤ j ≤ h − 2` has its two vertical neighbors and up to two side neighbors, and the side terms of `L̃x` cancel against the matching part of the degree, so the equation of the cell is the path equation `2x(j) − x(j − 1) − x(j + 1) = 1`; the same holds in the top row with `x(h − 1) − x(h − 2) = 1`. So `x` solves `L̃x = 1`, and its average is the column average. In a battlement the raised cells of different columns are not neighbors, so each column is a separate path standing on the bottom row.[^5]
 
-for every width. That is exactly the value for a single column of height `h`: 1 for ladders (`h = 2`), 2.5 at `h = 3`, 11 at `h = 6`, 31.67 at `h = 10`, 130 at `h = 20`.[^5]
+So the `10 × 10` rectangle, made of `2 × 2` blocks, and the battlement `(1, 10)*10`, with none, both have mean 31.67.
 
-**Why.** In a rectangle every column looks the same, so the solution `x` of `L̃x = 1` depends only on the row. The sideways terms then cancel, and what remains is the equation for one vertical path hanging from the ground. Its solution is `x(j) = j(2h − 1 − j)/2` at height `j`, and its average over `j = 1 … h − 1` is `h(2h − 1)/6`. A battlement is the same path repeated, because its spikes never touch above the ground. So a `10 × 10` rectangle, packed with `2 × 2` blocks, and a battlement of height-10 spikes, with none, have the **same mean avalanche**.
-
-**General castles.** Joining columns of different heights lowers the mean in every case computed: for every castle with at most 12 cells (2,130 castles), the tide mean is **at most** the column-by-column prediction (each column treated as its own path), with equality **exactly** when every run of adjacent columns rising above the base has constant height.[^6] For example, `(3, 5, 2, 2, 6, 4)` averages 5.77 topplings against a column prediction of 6.63.
+**General castles.** For every castle with at most 12 cells and height at least 2 (2,130 castles, mirror images removed), the tide mean is **at most** the **column prediction**, the mean of Equation (2) taken over the raised cells of each column separately, with equality in 1,129 castles, **exactly** those in which every run of adjacent columns of height at least 2 has constant height.[^6] For example, `(3, 5, 2, 2, 6, 4)` averages 5.77 topplings against a column prediction of 6.63.
 
 ### The 2×2 blocks change the tail, not the mean
 
-Two castles with the same tide mean can have very different avalanche distributions. From 60,000 random drops each:[^7]
+From 60,000 random drops each (seed 5):[^7]
 
-| tide model | 20×20 rectangle | battlement of height-20 spikes |
+| tide model | 20×20 rectangle | battlement `(1, 20)*10` |
 |---|---|---|
 | mean size | 130.3 | 130.4 |
 | median size (drops that topple) | 47 | 145 |
-| 99th percentile | 2,408 | 190 |
+| 99th percentile (drops that topple) | 2,409 | 190 |
 | largest avalanche | 3,701 | 190 |
-| drops with size `≥ 200` | 15.5% | none |
+| drops with size `≥ 200` | 15.4% | none |
 | longest duration (rounds) | 601 | 37 |
-| log-log slope of the size density on `[10, 1000]` | about `−0.93` | flat |
+| log-log slope of the size density on `[10, 1000]` | about `−0.93` | no sizes above 190 |
 
-In the battlement each spike is a separate path, so an avalanche can never be bigger than one spike's worth. The largest observed are 45, 66 and 190 topplings at heights 10, 12 and 20, which is `(h − 1)h/2`. In the rectangle the `2 × 2` blocks tie the columns together, so sand spreads sideways and the largest avalanches grow with the rectangle's area: 447 at `10 × 10`, over 3,500 at `20 × 20`. The size density looks like a power law over two decades, as Bak, Tang and Wiesenfeld reported on the square grid. These castles are small, though, and the slope is an estimate over a finite range, not an exponent.
-
-**Tide answer.** Neither the block count nor the `2 × 2` count sets the *mean*: height does. The `2 × 2` count (more exactly, how the columns are joined above the base) sets the *tail* and the size of the largest avalanches.
+**The battlement's avalanches are fixed.** A battlement is a tree castle, so its tide group is trivial and the identity is its only recurrent configuration ([[sandpile-group](pages/sandpile-group.md)], the Proposition in Part 3). Every grain therefore lands on the same configuration, and a grain on the cell at height `j` causes exactly `x(j) = j(2h − 1 − j)/2` topplings, Equation (2). The largest is `x(h − 1) = h(h − 1)/2`: 45, 66 and 190 at heights 10, 12 and 20, the largest values the simulations record. In the rectangle the `2 × 2` blocks join the columns, and the largest observed avalanches grow with the area: 447 at `10 × 10` on 20,000 drops, 3,701 at `20 × 20` on 60,000. The rectangle's size density has slope about `−0.93` on `[10, 1000]`, a fit over a finite range; Bak, Tang and Wiesenfeld report `τ ≈ 1.0` on a `50 × 50` square with sand lost at all four edges.[^8]
 
 ## Sink model
 
-### Width matters, and the blocks lower the mean
+### Width matters
 
-With a single sink cell every grain that leaves must travel to the bottom-left corner, so the mean now grows with the width as well as the height. Exact sink-model means for rectangles `(h,)*w`:[^8]
+With one sink cell the mean depends on the width as well as the height. Exact sink-model means for rectangles `(h,)*w`:[^9]
 
 | `h` \ `w` | 1 | 2 | 4 | 8 | 10 |
 |---|---|---|---|---|---|
@@ -85,9 +87,9 @@ With a single sink cell every grain that leaves must travel to the bottom-left c
 | 6 | 11.0 | 12.396 | 21.903 | 52.572 | 72.156 |
 | 10 | 31.667 | 33.853 | 49.436 | 99.328 | 129.909 |
 
-The table is symmetric under turning the rectangle on its side: `(h,)*w` and `(w,)*h` are the same graph, and the corner sink goes to a corner, so `2 × 10` and `10 × 2` both average 33.853. The first column is the single-column value `h(2h − 1)/6`, which the tide model gives for every width.
+The table is symmetric: `(h,)*w` and `(w,)*h` are the same graph, and the corner sink goes to a corner, so `2 × 10` and `10 × 2` both average 33.853. The first column is the single-column value `h(2h − 1)/6`.
 
-Battlements `(1, h)*w` (`w` spikes of height `h`, `2w` columns in all), sink model:[^8]
+Battlements `(1, h)*w` (`w` columns of height `h`, `2w` columns in all), sink model:[^9]
 
 | `h` \ `w` | 1 | 2 | 4 | 8 |
 |---|---|---|---|---|
@@ -95,27 +97,23 @@ Battlements `(1, h)*w` (`w` spikes of height `h`, `2w` columns in all), sink mod
 | 6 | 15.167 | 28.0 | 82.963 | 305.455 |
 | 10 | 38.5 | 58.667 | 145.302 | 495.632 |
 
-**The sink model reverses the tide finding.** Under the tide the `2 × 2` blocks leave the mean alone. With one sink cell they lower it, because they give the sand many parallel routes to the corner, while a battlement, a tree, has exactly one route: along its base. The `20 × 20` rectangle averages **692.0** topplings per grain and the battlement of height-20 spikes `(1, 20)*10` **1,520.9**, more than twice as much, against 130.0 for both under the tide.[^8]
-
-Whether a column-style inequality holds in the sink model, and what would play the role of the column prediction, is not known.
+At height 20 the battlement `(1, 20)*10` averages **1,520.9** topplings per grain and the `20 × 20` rectangle **692.0**, against 130.0 for both in the tide model.[^9]
 
 ### The tails
 
-From 60,000 random drops each (seed 5), starting at the sink-model identity:[^9]
+From 60,000 random drops each (seed 5), starting at the sink-model identity:[^10]
 
-| sink model | 20×20 rectangle | battlement of height-20 spikes |
+| sink model | 20×20 rectangle | battlement `(1, 20)*10` |
 |---|---|---|
 | mean size | 692.3 | 1,520.6 |
 | median size (drops that topple) | 132 | 1,655 |
-| 99th percentile | 11,650 | 2,277 |
+| 99th percentile (drops that topple) | 11,650 | 2,277 |
 | largest avalanche | 21,248 | 2,280 |
 | drops with size `≥ 200` | 22.6% | 100% |
 | longest duration (rounds) | 2,848 | 75 |
-| log-log slope of the size density on `[10, 1000]` | about `−0.98` | none (the upper half of all sizes lies in `[1655, 2280]`) |
+| log-log slope of the size density on `[10, 1000]` | about `−0.98` | not a power law: every size lies in `[209, 2280]` |
 
-The rectangle keeps a heavy tail, its largest avalanche about six times larger than under the tide (21,248 against 3,701), with a density slope close to the tide value. The battlement has no tail at all: every grain that sets off an avalanche has to push sand along the whole base to the corner, so every avalanche is large (all at least 200 topplings, 78% above 1,000) and the upper half of them lies between 1,655 and 2,280. On 20,000 drops, the `10 × 10` rectangle averages 129.8 with a largest avalanche of 2,697 over 534 rounds, and the battlement `(1, 10)*10` averages 757.5 with a largest of 1,135.[^9]
-
-**Sink answer.** Width and the number of routes to the corner set the *mean*, and the `2 × 2` blocks lower it. The blocks still produce the heavy tail; a castle without them has large avalanches but no tail far beyond its typical size.
+The rectangle keeps a heavy tail; its largest avalanche is about six times its tide-model value (21,248 against 3,701). The battlement is again a tree castle, so its sink group is trivial, its identity is its only recurrent configuration, and a grain on cell `v` always causes `Σ_u (L̃⁻¹)_{vu}` topplings. These row sums range from **209** to **2,280** over the 209 cells outside the sink, with median 1,655, and 77.5% of them exceed 1,000. On 20,000 drops, the `10 × 10` rectangle averages 129.8 with a largest avalanche of 2,697 over 534 rounds, and the battlement `(1, 10)*10` averages 757.5, with row sums from 109 to 1,135.[^10]
 
 ## The two models side by side
 
@@ -124,28 +122,11 @@ The rectangle keeps a heavy tail, its largest avalanche about six times larger t
 | single column, height 10 | 31.667 | 31.667 | - | - |
 | `10 × 10` rectangle | 31.667 | 129.909 | 447 (20,000) | 2,697 (20,000) |
 | `20 × 20` rectangle | 130.0 | 692.017 | 3,701 (60,000) | 21,248 (60,000) |
-| battlement `(1, 20)*10` | 130.0 | 1,520.909 | 190 (60,000) | 2,280 (60,000) |
+| battlement `(1, 20)*10` | 130.0 | 1,520.909 | 190 (exact) | 2,280 (exact) |
 
-(Exact means; largest avalanches from the simulations of [^3], [^7] and [^9].)
+The means are exact; the rectangles' largest avalanches come from the simulations of the sections *Tide model* and *Sink model*.
 
-## What this settles and what it opens
-
-**Settled.**
-- The mean avalanche size is exact (Dhar) in both models, and simulation confirms it.
-- A single column has mean `h(2h − 1)/6` in both models.
-- Tide model: rectangles and battlements have mean `h(2h − 1)/6`, depending on height alone. Every castle to 12 cells has mean at most its column prediction, with equality exactly when each run of raised columns has constant height. The `2 × 2` blocks set the tail, not the mean; same-mean castles can differ by a factor of 20 in their largest avalanche.
-- Sink model: the mean depends on width and height, is symmetric under turning a rectangle on its side, and is lowered by the `2 × 2` blocks (battlement 1,520.9 against rectangle 692.0 at height 20). The rectangle keeps a heavy tail; the battlement's avalanches are all large and tightly bunched below 2,280.
-
-**Open, tide model.**
-- Prove the inequality and its equality case for all castles.
-- How the rectangle's largest avalanche and tail slope scale with width and height, and whether an exponent emerges for large castles with the sink only at the bottom. The usual square-grid setting lets sand leave through all four sides, as in the grids of [^10]. In that setting Bak, Tang and Wiesenfeld found `τ ≈ 1.0` on a `50 × 50` square, close to the `−0.93` measured here on the tide rectangle, while later and larger simulations gave the `τ ≈ 1.22` quoted by Dhar; Dhar's four-side-open `ℓ × ℓ` square has mean avalanche size `∼ ℓ²`, against the tide rectangle's `h(2h − 1)/6` ([[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)]).[^11] [^12]
-
-**Open, sink model.**
-- A closed form for the rectangle mean in `w` and `h`, and for the battlement mean.
-- How the rectangle's tail scales with size, and whether its slope converges to the tide value.
-- Whether the battlement's size distribution has a limit shape as the spikes and the base grow.
-
-**Open, both.** Whether duration and size are related by a power law.
+**Comparison with the square grid.** On the square grid with sand lost at all four edges, Bak, Tang and Wiesenfeld found `τ ≈ 1.0` on a `50 × 50` array, close to the slope `−0.93` measured here on the tide rectangle, and Dhar quotes the later estimate `τ ≈ 1.22` and computes the mean avalanche size `⟨T⟩ ∼ ℓ²` on the `ℓ × ℓ` grid, against `h(2h − 1)/6` for the tide rectangle ([[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)]).[^8][^11] Rossin's grids lose sand through every side in the same way.[^12]
 
 ## Snippet
 
@@ -233,39 +214,38 @@ def drop_sand(c, drops, model='tide', seed=1):   # start at the identity, drop g
 (50.75, 51.0, 75)
 ```
 
-Under the tide the `12 × 12` rectangle and the battlement of height-12 spikes both average about 46 topplings (exact: `12·23/6 = 46`); the rectangle's largest avalanche is 754 topplings over 193 rounds, the battlement's 66 over 21. In the sink model a single column and a horizontal path of 10 cells both average 31.667, the `2 × 10` and `10 × 2` rectangles both 33.853, and on `6 × 6` the battlement `(1, 6)*3` averages more than the rectangle (50.75 against 35.73) while the rectangle has the larger avalanches.
+In the tide model the `12 × 12` rectangle and the battlement `(1, 12)*6` both average about 46 topplings (exactly `12·23/6 = 46`); the rectangle's largest avalanche is 754 topplings over 193 rounds, the battlement's 66 over 21. In the sink model a single column and a horizontal path of 10 cells both average 31.667, the `2 × 10` and `10 × 2` rectangles both 33.853, and on `6 × 6` the battlement `(1, 6)*3` averages more than the rectangle (50.75 against 35.73) while the rectangle has the larger avalanches.
 
 ## Related Concepts
 
-- [[sandpile-group](pages/sandpile-group.md)] - the game, the toppling rule, and the sink and tide models.
-- [[sandpile-identity](pages/sandpile-identity.md)] - the identity the dropping starts from, in both models, and the single-grain avalanche profiles.
-- [[sandcastle-clock](pages/sandcastle-clock.md)] - dropping always on the same cell instead of at random.
+- [[sandpile-group](pages/sandpile-group.md)] - the sandpile, the toppling rule, the two models, and the triviality of the groups of tree castles.
+- [[sandpile-identity](pages/sandpile-identity.md)] - the identity the dropping starts from, and the single-grain avalanche profiles.
+- [[sandcastle-clock](pages/sandcastle-clock.md)] - grains dropped always on the same cell.
 - [[sandpile-census](pages/sandpile-census.md)] - the sandpile groups of every castle to 16 cells.
-- [[castle-graph](pages/castle-graph.md)] - tree castles and battlements, and the `2 × 2` blocks that tie columns together.
-- [[levy-flights](pages/levy-flights.md)] - the inverse reduced Laplacian as a grounded effective-resistance matrix, and another power-law tail on castles.
-- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the Sandcastles seminar, following the 16-cell silver castle `(3,2,1,2,2,1,2,3)` through its sandpile group, clock, identity and avalanches.
+- [[castle-graph](pages/castle-graph.md)] - tree castles, battlements among them, and the `2 × 2` blocks that join columns.
+- [[levy-flights](pages/levy-flights.md)] - the inverse reduced Laplacian as a grounded effective-resistance matrix, and a power-law tail of the fractional walk on castles.
+- [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the castle `(3,2,1,2,2,1,2,3)` followed through its group, clock, identity and avalanches.
 
 ## Appearances in Sources
 
-- [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)] - the automaton, the random-dropping protocol, and the original exponents (size, weighted duration, power spectrum) that this page's measurements are compared with.
-- [[chau-1993-abelian-sandpile-model](pages/chau-1993-abelian-sandpile-model.md)] - the reference list for the early abelian sandpile literature (Bak-Tang-Wiesenfeld, Dhar, Creutz, Dhar-Majumdar, and the percolation and spanning-tree papers).
-- [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - the theorem `G = Δ⁻¹` behind the exact mean in both models, the uniform steady state the dropping converges to, and the two-dimensional exponent estimates.
-- [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] - Dhar's steady-state results (commuting addition operators, equally likely recurrent configurations) as summarized in its §2.
-- [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] - square grids with sand leaving through every side ([^10]).
+- [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)] - the automaton, the random-dropping protocol, and the size exponent on the square grid.
+- [[chau-1993-abelian-sandpile-model](pages/chau-1993-abelian-sandpile-model.md)] - the reference list for the early abelian sandpile literature.
+- [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] - the theorem `G = Δ⁻¹` behind Equation (1), the uniform steady state, and the two-dimensional exponent estimate.
+- [[dhar-ruelle-sen-verma-1995-algebraic-aspects](pages/dhar-ruelle-sen-verma-1995-algebraic-aspects.md)] - Dhar's steady-state results as summarized in its §2.
+- [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] - square grids with sand lost through every side.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the castle definition behind the castle graph.
 
 ## Footnotes
 
 [^1]: [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)] pp.364-370 §§I, III.B [synthesis] - the full account of the 1987 letter (*Phys. Rev. Lett.* 59, 381): extended dissipative systems "naturally evolve into a critical state, with no characteristic time or length scales"; on the square lattice, adding units at random sites (eq. 3.8) and toppling by eq. 3.2 gives a size distribution close to a power law, exponent about 1.0 in two dimensions.
-[^2]: [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] pp.1614-1616 L85-101, L235-254 [synthesis] - in the steady state "only recurrent configurations have a nonzero probability of occurrence, and this nonzero value is the same for all recurrent configurations"; `G_ij`, "the expected number of topplings at site j, due to the avalanche caused by adding a particle at i", satisfies `Σ_k G_ik Δ_kj = δ_ij` (eq. 19), so `G_ij = [Δ⁻¹]_ij` (eq. 20); for a castle `Δ` is the reduced Laplacian `L̃` of either model. Checked against simulation in [^3] and exactly in [^13].
-[^3]: Verified by execution (Python 3.10, NumPy, 2026-09-26): tide model, 20,000 uniformly random drops starting from the identity on `(2,)*20`, `(10,)*10`, `(20,)*20`, `(1,10)*10`, `(3,)*20`, `(6,)*40` give simulated means 1.000, 31.571, 129.875, 31.584, 2.497, 11.002 against exact means 1.000, 31.667, 130.000, 31.667, 2.500, 11.000. Sink model, 60,000 drops on `(20,)*20` and `(1,20)*10` give 692.3 and 1,520.6 against exact 692.017 and 1,520.909; 20,000 drops on `(10,)*10` and `(1,10)*10` give 129.8 and 757.5 against 129.909 and 758.899; 20,000 drops on the seminar castle `(3,2,1,2,2,1,2,3)` give 32.1 against 32.133.
-[^4]: Verified by execution (Python 3.10, NumPy, 2026-09-26): `mean_avalanche_exact((h,), 'sink') = mean_avalanche_exact((h,), 'tide') = h(2h − 1)/6` for `h = 2, 3, 6, 10`, and `mean_avalanche_exact((1,)*n, 'sink') = n(2n − 1)/6` for `n = 2, 5, 10`; the height-10 and 10-cell cases are pinned in the Snippet.
-[^5]: Verified by execution (Python 3.10, NumPy, 2026-09-26): `mean_avalanche_exact` (tide) equals `h(2h − 1)/6` to `10⁻⁹` for every rectangle `(h,)*w` and every battlement `(1, h)*w` with `2 ≤ h ≤ 12`, `1 ≤ w ≤ 8`.
-[^6]: Verified by execution (Python 3.10, NumPy, 2026-09-26): for all 2,130 mirror-distinct castles with at most 12 cells and height at least 2, the tide `mean_avalanche_exact(c) ≤ column_prediction(c) + 10⁻⁹`, with equality (to `10⁻⁹`) in 1,129 cases, exactly those in which every maximal run of adjacent columns of height at least 2 has constant height.
-[^7]: Verified by execution (Python 3.10, NumPy, 2026-09-26): tide model, 60,000 random drops (seed 5) from the identity of `(20,)*20` and `(1,20)*10`; median and 99th percentile over drops with size `> 0`; slope from a least-squares fit of log density against log size in 10 logarithmic bins on `[10, 1000]`. The battlement maxima 45, 66, 190 at heights 10, 12, 20 are from the runs of [^3], the Snippet and this footnote; the `10 × 10` rectangle maximum 447 is from [^3]. The `12 × 12` comparison is pinned in the Snippet.
-[^8]: Verified by execution (Python 3.10, NumPy, 2026-09-26): sink-model `mean_avalanche_exact` (sink at the bottom-left cell) for `(h,)*w` with `h ∈ {2, 3, 6, 10}`, `w ∈ {1, 2, 4, 8, 10}`, for `(1, h)*w` with `h ∈ {3, 6, 10}`, `w ∈ {1, 2, 4, 8}`, and for `(20,)*20` and `(1,20)*10`, as tabulated; `(2,)*10` and `(10,)*2`, `(20,)*20` and `(1,20)*10` are pinned in the Snippet.
-[^9]: Verified by execution (Python 3.10, NumPy, 2026-09-26): sink model, 60,000 random drops (seed 5) from the sink-model identity of `(20,)*20` and `(1,20)*10`, and 20,000 drops (seed 5) on `(10,)*10` and `(1,10)*10`; median and 99th percentile over drops with size `> 0`; slope fitted as in [^7] (on the battlement the fit over `[10, 1000]` has little data: every drop topples at least 200 times and 78% exceed 1,000). A 5,000-drop version on `6 × 6` is pinned in the Snippet.
-[^10]: [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] §1 L25 and §4 L92 - "Figure 1: Multi-graph corresponding to the 4 × 4 grid"; "the 2 × 2 grid consisting of 4 cells, each connected twice to the sink": boundary cells are joined to the sink once per missing neighbour, so sand leaves through every side.
-[^11]: [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)] p.368 L283-300 [synthesis] - "D(s) ≈ s^{−τ}, τ ≈ 1.0 for D = 2" on a 50 × 50 array (eq. 3.3), with what the paper calls closed boundary conditions, `z(0, y) = z(x, 0) = z(N+1, y) = z(x, N+1) = 0` (L280-281): the toppling variable `z` of eq. 3.2 is lost at all four edges.
-[^12]: [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] pp.1613, 1616 L42-53, L252-268 [synthesis] - "the numerical estimate τ ≈ 1.22" at `d = 2`, and eq. 21 with "⟨T⟩ ∼ L²" for the lattice with losses at every edge (exponents read from the page images).
-[^13]: Verified by execution (Python 3.10, SymPy, exact fractions, 2026-09-27): averaging the toppling counts over every recurrent configuration (found by the burning test) after one grain at each cell reproduces `L̃⁻¹` entry by entry on `(2,2)`, `(2,2,2)`, `(3,3)`, `(2,3,2)`, `(2,2,2,2)` in the sink model and `(3,3,3)`, `(1,3,3,2)` in the tide model (4 to 95 recurrent configurations).
+[^2]: [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] pp.1614-1616 L85-101, L235-254 [synthesis] - in the steady state "only recurrent configurations have a nonzero probability of occurrence, and this nonzero value is the same for all recurrent configurations"; `G_ij`, "the expected number of topplings at site j, due to the avalanche caused by adding a particle at i", satisfies `Σ_k G_ik Δ_kj = δ_ij` (eq. 19), so `G_ij = [Δ⁻¹]_ij` (eq. 20); for a castle `Δ` is the reduced Laplacian `L̃` of either model.
+[^3]: Verified by execution (Python 3.11, NumPy, SymPy, 2026-10-16): tide model, 20,000 drops (seed 1) from the identity on `(2,)*20`, `(10,)*10`, `(20,)*20`, `(1,10)*10`, `(3,)*20`, `(6,)*40` give means 1.000, 31.571, 129.875, 31.584, 2.497, 11.002 against exact 1, 31.667, 130, 31.667, 2.5, 11; sink model, 60,000 drops (seed 5) on `(20,)*20` and `(1,20)*10` give 692.3 and 1,520.6 against exact 692.017 and 1,520.909, 20,000 drops (seed 5) on `(10,)*10` and `(1,10)*10` give 129.8 and 757.5 against 129.909 and 758.899, and 20,000 drops (seed 2) on `(3,2,1,2,2,1,2,3)` give 32.06 against 32.133. Averaging the topplings over all recurrent configurations, found by breadth-first search from the fullest stable configuration, after one grain at each cell reproduces `L̃⁻¹` exactly on `(2,2)`, `(2,2,2)`, `(3,3)`, `(2,3,2)`, `(2,2,2,2)` in the sink model and `(3,3,3)`, `(1,3,3,2)` in the tide model (4 to 95 recurrent configurations).
+[^4]: Verified by execution (Python 3.11, NumPy, 2026-10-16): Equation (1) gives `h(2h − 1)/6` for the column `(h)` in both models at `h = 2, 3, 6, 10`, and `n(2n − 1)/6` for `(1,)*n` in the sink model at `n = 2, 5, 10`; the height-10 and 10-cell cases are pinned in the Snippet.
+[^5]: Verified by execution (Python 3.11, NumPy, 2026-10-16): the tide mean equals `h(2h − 1)/6` to `10⁻¹²` for every rectangle `(h,)*w` and every battlement `(1, h)*w` with `2 ≤ h ≤ 12`, `1 ≤ w ≤ 8`.
+[^6]: Verified by execution (Python 3.11, NumPy, 2026-10-16): for all 2,130 mirror-distinct castles with at most 12 cells and height at least 2, the tide mean is at most the column prediction plus `10⁻⁹`, with equality (to `10⁻⁹`) in 1,129 castles, exactly those in which every maximal run of adjacent columns of height at least 2 has constant height.
+[^7]: Verified by execution (Python 3.11, NumPy, 2026-10-16): tide model, 60,000 random drops (seed 5) from the identity of `(20,)*20` and `(1,20)*10`; median and 99th percentile (linear interpolation) over drops with size `> 0`; slope from a least-squares fit of log density against log size over 10 logarithmic bins on `[10, 1000]`. The `10 × 10` maximum 447 is from the 20,000-drop run of [^3]; the `12 × 12` comparison is pinned in the Snippet.
+[^8]: [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)] p.368 L278-300 [synthesis] - "D(s) ≈ s^{−τ}, τ ≈ 1.0 for D = 2" on a 50 × 50 array (eq. 3.3), with what the paper calls closed boundary conditions, `z(0, y) = z(x, 0) = z(N+1, y) = z(x, N+1) = 0`: the toppling variable `z` of eq. 3.2 is lost at all four edges.
+[^9]: Verified by execution (Python 3.11, NumPy, 2026-10-16): Equation (1) in the sink model (sink at the bottom-left cell) for `(h,)*w` with `h ∈ {2, 3, 6, 10}`, `w ∈ {1, 2, 4, 8, 10}`, for `(1, h)*w` with `h ∈ {3, 6, 10}`, `w ∈ {1, 2, 4, 8}`, and for `(20,)*20` and `(1,20)*10`, as tabulated; the symmetry `(h,)*w ↔ (w,)*h` checked on three pairs; several values are pinned in the Snippet.
+[^10]: Verified by execution (Python 3.11, NumPy, 2026-10-16): sink model, 60,000 random drops (seed 5) from the identity of `(20,)*20` and `(1,20)*10`, and 20,000 drops (seed 5) on `(10,)*10` and `(1,10)*10`, statistics as in [^7]; the row sums of `L̃⁻¹` on `(1,20)*10`, from 209 to 2,280 with median 1,655, and on `(1,10)*10`, from 109 to 1,135, from the solution of `L̃x = 1`; the smallest simulated avalanche on `(1,20)*10` is 209. A 5,000-drop version on `6 × 6` is pinned in the Snippet.
+[^11]: [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] pp.1613, 1616 L42-53, L252-268 [synthesis] - "the numerical estimate τ ≈ 1.22" at `d = 2`, and eq. 21 with "⟨T⟩ ∼ L²" for the lattice with losses at every edge (exponents read from the page images).
+[^12]: [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)] §1 L25 and §4 L92 - "Figure 1: Multi-graph corresponding to the 4 × 4 grid"; "the 2 × 2 grid consisting of 4 cells, each connected twice to the sink": boundary cells are joined to the sink once per missing neighbor, so sand leaves through every side.
