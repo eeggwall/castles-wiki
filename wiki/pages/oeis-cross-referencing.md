@@ -24,7 +24,7 @@ The wiki relates the counting sequences of castles ([[castle-polyomino](pages/ca
 The mining pass states two checks, and the catalogue applies them to every row.[^1]
 
 - **The offset.** A match is checked against the entry's data and offset, not against a few leading terms. The signed tower count `P(1, L)` agrees with `A009545`, the imaginary parts of `(1+i)^n`, only after a shift and a factor 2, `P(1, L) = A009545(L+3)/2`; the entry it equals is `A146559`, the real parts, with `P(1, L) = A146559(L+1)` ([[signed-tower-count](pages/signed-tower-count.md)]).
-- **Short prefixes.** Agreement on a few terms with no combinatorial reason is not a match. The mining pass discarded two "sqrt(5) difference" sequences and some hits of short block-count distributions. A search on the first terms of the anchored 1-smooth castles of height 4 returns `A378383`, which agrees through width 10 and differs at width 11, 5206 against 5205 ([[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]).[^2]
+- **Short prefixes.** Agreement on a few terms with no combinatorial reason is not a match. The mining pass discarded two "sqrt(5) difference" sequences and some hits of short block-count distributions. A search on the first terms of the anchored 1-smooth castles of height 4 returns `A378383`, which agrees through width 10 and differs at width 11, where the castles number 5205 and A378383 has 5206 ([[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]).[^2]
 
 The OEIS accepts comments and formulas only from human authors, so the wiki records the verified identities and offsets, and the texts written for OEIS entries are not on wiki pages.[^3]
 
