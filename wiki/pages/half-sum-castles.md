@@ -1,37 +1,35 @@
 ---
 title: Half-sum castles
 category: Analyses
-summary: The order-1/2 fractional partial sum of the castle count, H_h(w) = sum_k C(2k,k)/4^k F(w-k,h), has generating function G_h(x)/sqrt(1-x), algebraic of degree 2 and never rational, so no finite strip rule counts it. Because F grows like h^w/2, the pole at 1/h dominates the branch point at 1, and H_h(w)/F(w,h) -> sqrt(h/(h-1)), an algebraic constant. sqrt(pi) enters only in the branch remainder, which is G_h(1)/sqrt(pi w) with G_h(1) = 0, 1/2, 1/30, 1/20 for h = 2..5; G_h(1) is minus the sum of the castle count continued to negative widths, and at h = 2 it vanishes because the numerator carries a factor (1-x), leaving 1/(2 sqrt(pi) w^{3/2}). Shifting the half-sum onto the dominant pole, weights C(2k,k)(h/4)^k, gives h^w sqrt(w/pi) exactly in the leading term; at h = 4 the weights are the integers C(2k,k), and pi = lim w 16^w / K(w)^2 with K(w) = sum_k C(2k,k) F(w-k,4) = 1, 9, 51, 241, 1069, ... The integer half-sums count castles followed by a balanced tail (at h = 4, a height-4 skyline with as many 1s as 4s), a product of a castle and a tail; the one family where the half-sum is intrinsic is the nondecreasing castles, where half a sum in the width is half a row in the height, C(w+h-2, w-1) -> C(w+h-3/2, w-1). No half-sum row has an OEIS match.
-tags: [analysis, castle, fractional-calculus, half-sum, cesaro, riemann-liouville, generating-function, algebraic, singularity-analysis, pi, wallis, central-binomial, context-free, nondecreasing, computation, oeis, novel-candidate]
+summary: The order-1/2 fractional partial sum in the width of the even-block castle count, H_h(w) = Σ_k C(2k,k)/4^k A^e(w−k, h), has generating function G_h(x)/√(1−x), algebraic of degree 2 and not rational, so no finite strip rule counts it. A^e(w, h) grows like h^w/2, the pole at 1/h dominates the branch point at 1, and H_h(w)/A^e(w, h) → √(h/(h−1)). √π enters only in the branch remainder G_h(1)/√(πw), with G_h(1) = 0, 1/2, 1/30, 1/20 for h = 2..5; G_h(1) is minus the sum of the row continued to negative widths, and at h = 2 it vanishes because the numerator carries a factor 1 − x. Shifting the half-sum onto the dominant pole, with weights C(2k,k)(h/4)^k, gives h^w √(w/π) in the leading term; at h = 4 the weights are the integers C(2k,k), and π = lim w·16^w/K_4(w)^2 with K_4(w) = Σ_k C(2k,k) A^e(w−k, 4) = 1, 9, 51, 241, 1069, ... At h = 4 the integer half-sum counts castles followed by a balanced tail (a height-4 skyline with as many columns of height 1 as of height 4). For the nondecreasing castles the half-sum in the width is half a row in the height, C(w+h−2, w−1) → C(w+h−3/2, w−1).
+tags: [analysis, castle, fractional-calculus, half-sum, cesaro, riemann-liouville, generating-function, algebraic, singularity-analysis, pi, wallis, central-binomial, context-free, nondecreasing, computation, oeis]
 sources: [project-euler-502-brute-force, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-23
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Half-sum castles
 
-The partial sum of a count sequence is multiplication of its generating function by `(1 - x)^{-1}`; the Riemann-Liouville fractional sum of order `alpha` is multiplication by `(1 - x)^{-alpha}`, the Cesaro mean of order `alpha`. This page applies the order-`1/2` sum to the castle count `F(w, h)` in the width. Its companion [[fractional-block-count](pages/fractional-block-count.md)] runs the same operator with the opposite sign on a single skyline, and [[fractional-width-and-height](pages/fractional-width-and-height.md)] runs it in the height direction as the half-column of the nondecreasing rule.
-
-The method is in the execution footnote.[^exec]
+The partial sum of a count sequence is multiplication of its generating function by `(1 − x)^{−1}`; the Riemann-Liouville fractional sum of order `α` is multiplication by `(1 − x)^{−α}`. This page applies the sum of order `1/2` in the width to the even-block castle count `A^e(w, h)` ([[castle-counting-function](pages/castle-counting-function.md)]). [[fractional-block-count](pages/fractional-block-count.md)] applies the same operator with the opposite sign to a single skyline, and [[fractional-width-and-height](pages/fractional-width-and-height.md)] applies it in the height direction as the half-column of the nondecreasing rule.
 
 ## Definition and the tables
 
-The coefficients of `(1 - x)^{-1/2}` are `C(2k, k) / 4^k = 1, 1/2, 3/8, 5/16, 35/128, ...`, so the **half-sum** of the height-`h` row is
+The coefficients of `(1 − x)^{−1/2}` are `C(2k, k)/4^k = 1, 1/2, 3/8, 5/16, 35/128, …`, so the **half-sum** of the height-`h` row is
 
 ```
-H_h(w)  =  sum_{k = 0}^{w}  C(2k, k) / 4^k  *  F(w - k, h),        sum_w H_h(w) x^w  =  G_h(x) / sqrt(1 - x),
+H_h(w)  =  Σ_{k=0}^{w}  C(2k, k)/4^k · A^e(w − k, h),        Σ_w H_h(w) x^w  =  G_h(x) / √(1 − x),      (1)
 ```
 
-with `G_h(x) = sum_w F(w, h) x^w` the rational generating function of the row ([[generating-function-gallery](pages/generating-function-gallery.md)]) and `F(0, h) = 0`. Applying the half-sum twice gives the ordinary cumulative count. The rows, recomputed by the last-column transfer matrix and fitted by [[berlekamp-massey](pages/berlekamp-massey.md)]:[^exec]
+with `G_h(x) = Σ_w A^e(w, h) x^w` the rational generating function of the row ([[generating-function-gallery](pages/generating-function-gallery.md)]) and `A^e(0, h) = 0`. Applying the half-sum twice gives the ordinary cumulative count, since `((1 − x)^{−1/2})^2 = (1 − x)^{−1}`. The rows, computed by the last-column transfer matrix and fitted by [[berlekamp-massey](pages/berlekamp-massey.md)]:[^exec]
 
 | `h` | `G_h(x)` |
 |---|---|
-| 2 | `x (1 - x) / ((1 - 2x)(1 - 2x + 2x^2))` |
-| 3 | `x^3 (3 - 3x + 2x^2) / ((1 - 2x)(1 - 3x)(1 - 2x + 2x^2)(1 - x + 2x^2))` |
-| 4 | `x (1 - 7x + 18x^2 - 26x^3 + 40x^4 - 44x^5 + 32x^6 - 16x^7) / ((1 - 2x)(1 - 3x)(1 - 4x)(1 - x + 2x^2)(1 - 4x + 8x^2 - 8x^3 + 8x^4))` |
-| 5 | `2x^3 (5 - 29x + 60x^2 - 94x^3 + 112x^4 - 104x^5 + 64x^6 - 32x^7) / ((1 - 4x)(1 - 5x)(1 - 2x + 4x^2)(1 - 3x + 2x^2 - 4x^3)(1 - 4x + 8x^2 - 8x^3 + 8x^4))` |
+| 2 | `x (1 − x) / ((1 − 2x)(1 − 2x + 2x²))` |
+| 3 | `x³ (3 − 3x + 2x²) / ((1 − 2x)(1 − 3x)(1 − 2x + 2x²)(1 − x + 2x²))` |
+| 4 | `x (1 − 7x + 18x² − 26x³ + 40x⁴ − 44x⁵ + 32x⁶ − 16x⁷) / ((1 − 2x)(1 − 3x)(1 − 4x)(1 − x + 2x²)(1 − 4x + 8x² − 8x³ + 8x⁴))` |
+| 5 | `2x³ (5 − 29x + 60x² − 94x³ + 112x⁴ − 104x⁵ + 64x⁶ − 32x⁷) / ((1 − 4x)(1 − 5x)(1 − 2x + 4x²)(1 − 3x + 2x² − 4x³)(1 − 4x + 8x² − 8x³ + 8x⁴))` |
 
-The series reproduce `F(4, 2) = 10`, `F(5, 5) = 906`, and `F(6, 4) = 1729`, and the `h = 2` row is A038505 shifted by one. The half-sums are dyadic rationals:
+The series give `A^e(4, 2) = 10`, `A^e(5, 5) = 906` and `A^e(6, 4) = 1729`, and the `h = 2` row is `A038505(w + 1)` ([[castle-counting-function](pages/castle-counting-function.md)]). The half-sums are dyadic rationals:
 
 | `w` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
 |---|---|---|---|---|---|---|---|---|
@@ -40,7 +38,7 @@ The series reproduce `F(4, 2) = 10`, `F(5, 5) = 906`, and `F(6, 4) = 1729`, and 
 | `H_4(w)` | 1 | 15/2 | 279/8 | 2167/16 | 65483/128 | 513081/256 | 8334451/1024 | 68729799/2048 |
 | `H_5(w)` | 0 | 0 | 10 | 127 | 3883/4 | 47839/8 | 2137191/64 | 22845977/128 |
 
-Two integer versions clear the denominators. `4^w H_h(w)` has generating function `G_h(4x) / sqrt(1 - 4x)`. The **binomial half-sum** `K_h(w) = sum_k C(2k, k) F(w - k, h)` has `G_h(x) / sqrt(1 - 4x)`:
+Two integer versions clear the denominators. `4^w H_h(w)` has generating function `G_h(4x)/√(1 − 4x)`. The **binomial half-sum** `K_h(w) = Σ_k C(2k, k) A^e(w − k, h)` has `G_h(x)/√(1 − 4x)` (it is not the convex castle generating function `K(q, z)` of [[castle-notation](pages/castle-notation.md)]):
 
 | `h` | `K_h(w)` from the first nonzero term |
 |---|---|
@@ -49,111 +47,102 @@ Two integer versions clear the denominators. `4^w H_h(w)` has generating functio
 | 4 | 1, 9, 51, 241, 1069, 4671, 20353, 88383, 381583, 1635893 |
 | 5 | 10, 142, 1210, 8222, 49806, 283570, 1557158, 8354490 |
 
-None of the four `K_h` rows, the `4^w H_h` rows, or the dyadic numerators of `H_2` has an OEIS match (search API, 2026-09-23).[^exec] They go on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] as novel-candidates, with the caveat that convolutions of a known sequence with the central binomials rarely get their own entry.
+The OEIS status of the `K_h` rows, the `4^w H_h` rows and the numerators of `H_2` is recorded on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].
 
-## Where the `sqrt(pi)` goes
+## Where the √π goes
 
-The weight `C(2k, k) / 4^k` is `~ 1 / sqrt(pi k)`, and the half-sum of the constant sequence `1` is `(2w + 1) C(2w, w) / 4^w ~ 2 sqrt(w / pi)` (numerators A001803), the Wallis case. The half-sum of a sequence of radius 1 therefore carries `sqrt(pi)` in its leading constant. Castle rows grow exponentially, and that changes the order of the terms.
+The weight `C(2k, k)/4^k` is asymptotic to `1/√(πk)`, and the half-sum of the constant sequence 1 is `(2w + 1) C(2w, w)/4^w ~ 2√(w/π)` (numerators A001803). So the half-sum of a sequence of radius of convergence 1 carries `√π` in its leading constant. Castle rows grow exponentially, and that changes the order of the terms.
 
-**The dominant pole.** `G_h` has a simple pole at `x = 1/h` with `F(w, h) ~ h^w / 2` (the residue constant is `1/2` at every `h = 2..5`), and every other pole also lies inside the unit disk. Multiplying a simple pole at `r` by `(1 - x)^{-1/2}` scales it by `(1 - r)^{-1/2}`, so
-
-```
-H_h(w)  =  sum_i  c_i lambda_i^w (1 - 1/lambda_i)^{-1/2}  +  R_h(w),          H_h(w) / F(w, h)  ->  sqrt(h / (h - 1)),
-```
-
-where `F(w, h) = sum_i c_i lambda_i^w` is the exponential-polynomial form of the row. The leading ratio is `sqrt 2, sqrt(3/2), sqrt(4/3), sqrt(5/4)` for `h = 2..5`, which matches to 12 digits at `w = 100`.[^exec] To leading order, half-summing an exponentially growing castle row scales it by an algebraic constant.
-
-**`sqrt(pi)` is in the remainder.** The branch point at `x = 1` contributes `G_h(x) (1 - x)^{-1/2} = G_h(1) (1 - x)^{-1/2} - G_h'(1) (1 - x)^{1/2} + ...`, so
+**The dominant pole.** `G_h` has a simple pole at `x = 1/h` with `A^e(w, h) ~ h^w/2`, since `A^e = (A + S)/2` and `S/A → 0` ([[castle-entropy](pages/castle-entropy.md)]); every other pole lies inside the unit disk as well. Multiplying a simple pole at `r` by `(1 − x)^{−1/2}` scales its contribution by `(1 − r)^{−1/2}`, so
 
 ```
-R_h(w)  =  G_h(1) / sqrt(pi w)  +  O(w^{-3/2}).
+H_h(w)  =  Σ_i  c_i λ_i^w (1 − 1/λ_i)^{−1/2}  +  R_h(w),          H_h(w) / A^e(w, h)  →  √(h / (h − 1)),      (2)
 ```
 
-| `h` | `G_h(1)` | `R_h(w) sqrt(pi w)` at `w = 50` | at `w = 100` |
+where `A^e(w, h) = Σ_i c_i λ_i^w` is the exponential-polynomial form of the row. The leading ratio is `√2, √(3/2), √(4/3), √(5/4)` for `h = 2..5`, matched by the exact `H_h(100)/A^e(100, h)` to at least 11 digits.[^exec] To leading order, half-summing an exponentially growing castle row multiplies it by an algebraic constant.
+
+**√π is in the remainder.** The branch point at `x = 1` contributes `G_h(x)(1 − x)^{−1/2} = G_h(1)(1 − x)^{−1/2} − G_h′(1)(1 − x)^{1/2} + ⋯`, so
+
+```
+R_h(w)  =  G_h(1) / √(πw)  +  O(w^{−3/2}).                                    (3)
+```
+
+| `h` | `G_h(1)` | `R_h(w) √(πw)` at `w = 50` | at `w = 100` |
 |---|---|---|---|
 | 2 | 0 | 0.00923 | 0.00480 |
 | 3 | 1/2 | 0.48235 | 0.49091 |
 | 4 | 1/30 | 0.03473 | 0.03409 |
 | 5 | 1/20 | 0.04866 | 0.04931 |
 
-At `h = 2` the numerator of `G_2` is divisible by `1 - x`, so the `w^{-1/2}` term vanishes. The next term is `G_2'(1) / (2 sqrt(pi) w^{3/2})` with `G_2'(1) = 1`, and `2 sqrt(pi) w^{3/2} R_2(w)` reads `0.923, 0.960, 0.980` at `w = 50, 100, 200`.[^exec] `R_h(w)` is the difference between a rational number and an algebraic one, so it gives `pi` only in the limit, and only after the algebraic exponential part has been subtracted. So `pi` enters only through a limit, as on [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)].
+At `h = 2` the numerator of `G_2` is divisible by `1 − x`, so the `w^{−1/2}` term vanishes. The next term is `G_2′(1)/(2√π w^{3/2})` with `G_2′(1) = 1`, and `2√π w^{3/2} R_2(w)` is `0.923, 0.960, 0.980` at `w = 50, 100, 200`.[^exec] `R_h(w)` is the difference between a rational number and an algebraic one, so `π` appears only in the limit, after the exponential part has been subtracted ([[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)]).
 
-## The coefficient of `sqrt(pi)` as a negative-width sum
+## The coefficient of √π as a negative-width sum
 
-The recurrence of each row runs backwards, which defines `F(w, h)` at negative integer widths. That is the same continuation [[fractional-width-and-height](pages/fractional-width-and-height.md)] uses at real `w`. For `h = 2..5` the two-sided sequence agrees with `F` at every `w >= 0` (no exceptional initial terms), and `F(-1, h) = -1 / (2h(h - 1))`:
+The recurrence of each row runs backwards, which defines `A^e(w, h)` at negative integer widths; [[fractional-width-and-height](pages/fractional-width-and-height.md)] uses the same continuation at real `w`. For `h = 2..5` the two-sided sequence agrees with `A^e` at every `w ≥ 0`, and `A^e(−1, h) = −1/(2h(h − 1))`:
 
-| `h` | `F(-1, h)`, `F(-2, h)`, `F(-3, h)`, `F(-4, h)` |
+| `h` | `A^e(−1, h)`, `A^e(−2, h)`, `A^e(−3, h)`, `A^e(−4, h)` |
 |---|---|
-| 2 | -1/4, -1/8, 1/16, 5/32 |
-| 3 | -1/12, -5/72, -19/432, -227/2592 |
-| 4 | -1/24, -7/288, -37/3456, -175/41472 |
-| 5 | -1/40, -9/800, -61/16000, -369/320000 |
+| 2 | −1/4, −1/8, 1/16, 5/32 |
+| 3 | −1/12, −5/72, −19/432, −227/2592 |
+| 4 | −1/24, −7/288, −37/3456, −175/41472 |
+| 5 | −1/40, −9/800, −61/16000, −369/320000 |
 
-For a single exponential, `sum_{w >= 0} lambda^w x^w + sum_{w < 0} lambda^w x^w = 1/(1 - lambda x) + 1/(lambda x - 1) = 0` as rational functions. So `G_h(x) = -sum_{w <= -1} F(w, h) x^w`, and at `x = 1` the right side converges because every `|lambda_i| > 1` (the smallest is `1.196` at `h = 5`). Therefore
-
-```
-G_h(1)  =  - sum_{w <= -1} F(w, h),
-```
-
-which the truncated sums confirm: `0`, `-0.5`, `-0.03333`, `-0.04999` against `G_h(1) = 0, 1/2, 1/30, 1/20`.[^exec] The coefficient of `1/sqrt(pi w)` in the half-sum is minus the sum of the row continued to negative widths.
-
-## The matched half-sum: `pi` in the leading term
-
-Moving the fractional singularity onto the dominant pole, with weights `C(2k, k) (h/4)^k` and generating function `G_h(x) / sqrt(1 - hx)`, turns the simple pole into `(1 - hx)^{-3/2}`:
+For a single exponential, `Σ_{w ≥ 0} λ^w x^w + Σ_{w < 0} λ^w x^w = 1/(1 − λx) + 1/(λx − 1) = 0` as rational functions. So `G_h(x) = −Σ_{w ≤ −1} A^e(w, h) x^w`, and at `x = 1` the right side converges because every `|λ_i| > 1` (the smallest is `1.196`, at `h = 5`). Therefore
 
 ```
-M_h(w)  =  sum_{k} C(2k, k) (h/4)^k F(w - k, h)  ~  (1/2) h^w * 2 sqrt(w / pi)  =  h^w sqrt(w / pi).
+G_h(1)  =  − Σ_{w ≤ −1} A^e(w, h),                                            (4)
 ```
 
-At `h = 4` the weights are integers and `M_4 = K_4`, the binomial half-sum `1, 9, 51, 241, 1069, 4671, 20353, ...` of the table above. So `pi` is a limit of exact castle integers:
+and the sums truncated at `w = −55` are `0`, `−0.5`, `−0.03333`, `−0.04999`, against `−G_h(1) = 0, −1/2, −1/30, −1/20`.[^exec] The coefficient of `1/√(πw)` in the half-sum is minus the sum of the row continued to negative widths. For `h = 6, 7, 8`, `G_h(1) = 41/1740, 103/6090, 421/35490`, and `h = 2` is the only one of these heights whose numerator has the factor `1 − x`.[^exec]
+
+## The matched half-sum: π in the leading term
+
+Moving the fractional singularity onto the dominant pole, with weights `C(2k, k)(h/4)^k` and generating function `G_h(x)/√(1 − hx)`, turns the simple pole into `(1 − hx)^{−3/2}`:
 
 ```
-pi  =  lim_{w -> infinity}  w 16^w / K_4(w)^2,        K_4(w) = sum_k C(2k, k) F(w - k, 4).
+Ĥ_h(w)  =  Σ_k  C(2k, k) (h/4)^k  A^e(w − k, h)  ~  (1/2) h^w · 2√(w/π)  =  h^w √(w/π).      (5)
+```
+
+At `h = 4` the weights are integers and `Ĥ_4 = K_4`, the binomial half-sum `1, 9, 51, 241, 1069, 4671, 20353, …` of the section *Definition and the tables*. So `π` is a limit of exact castle integers:
+
+```
+π  =  lim_{w → ∞}  w · 16^w / K_4(w)^2,        K_4(w) = Σ_k C(2k, k) A^e(w − k, 4).        (6)
 ```
 
 | `w` | 50 | 100 | 200 | 400 | 800 | 1600 |
 |---|---|---|---|---|---|---|
-| `w 16^w / K_4(w)^2` | 3.26682 | 3.20168 | 3.17108 | 3.15620 | 3.14886 | 3.14522 |
-| Richardson `2 p(w) - p(w/2)` | 3.11399 | 3.13655 | 3.14047 | 3.14133 | 3.14153 | 3.14158 |
+| `p(w) = w 16^w / K_4(w)^2` | 3.26682 | 3.20168 | 3.17108 | 3.15620 | 3.14886 | 3.14522 |
+| Richardson `2p(w) − p(w/2)` | 3.11399 | 3.13655 | 3.14047 | 3.14133 | 3.14153 | 3.14158 |
 
-The error is `O(1/w)` (about `1.85 pi / w`), from the next terms of the expansion at the pole, and one Richardson step makes it `O(1/w^2)`. The rational-weight version at `h = 2, 3, 5` converges the same way: `3.1298`, `3.2103`, `3.2308` at `w = 200`.[^exec] A pole and a square-root branch at the same point is also the shape of Delest and Viennot's perimeter count of convex polyominoes, whose `4^n` term carries a subdominant `C(2n, n)`.[^1]
+The error is `O(1/w)`, about `1.85π/w`, from the next terms of the expansion at the pole, and one Richardson step makes it `O(1/w²)`. The rational-weight versions at `h = 2, 3, 5` give `3.1298`, `3.2103`, `3.2308` at `w = 200`.[^exec] A pole and a square-root branch point at the same place also shape Delest and Viennot's count of convex polyominoes by perimeter, whose `4^n` term carries a subdominant `C(2n, n)`.[^1]
 
 ## What the half-sum counts
 
-`G_h(x) / sqrt(1 - x)` is algebraic of degree 2 over `Q(x)` and not rational. So no finite-state strip rule, and no regular language of castle words, has the half-sum as its count. The dyadic `H_h` is not a count at all. The integer versions are N-algebraic: `1 / sqrt(1 - 4x) = 1 / (1 - 2x C(x))` with `C` the Catalan series, so `G_h(x) / sqrt(1 - 4x)` counts a regular castle word followed by a word of an unambiguous context-free language. The algebraicity sits entirely in the tail, as in Delest and Viennot's convex polyominoes.[^2]
+`G_h(x)/√(1 − x)` is algebraic of degree 2 over `Q(x)` and not rational, so no finite-state strip rule and no regular language of castle words has the half-sum as its count. The dyadic `H_h` is not a count. The integer versions are N-algebraic: `1/√(1 − 4x) = 1/(1 − 2x c(x))`, with `c(x)` the Catalan generating function ([[catalan-numbers](pages/catalan-numbers.md)]), so `G_h(x)/√(1 − 4x)` counts an even-block castle followed by a word of an unambiguous context-free language. The algebraicity sits in the tail, as in Delest and Viennot's convex polyominoes.[^2]
 
-At `h = 4` the tail has a castle reading. `C(2k, k) = [y^0] (y + 2 + 1/y)^k` is the number of width-`k` skylines over heights `{1, 2, 3, 4}` with as many columns of height 4 as of height 1. So `K_4(w)` counts width-`w` height-4 skylines cut at a marked column into an even-block castle prefix that reaches height 4 and a balanced suffix. This is a product of a castle and a tail; no castle-intrinsic object with count `K_h` is known.
+At `h = 4` the tail is a skyline. `C(2k, k) = [y^0] (y + 2 + 1/y)^k` is the number of skylines of width `k` on the heights `{1, 2, 3, 4}` with as many columns of height 4 as of height 1. So `K_4(w)` counts the skylines of width `w` on `{1, 2, 3, 4}` cut at a column into a prefix that is an even-block castle of height 4 and a balanced suffix, a product of a castle count and a tail count.
 
-**The nondecreasing castles are the exception.** A nondecreasing castle of width `w` and height `h` has `c_w = h`, so its block count is `h`, and there are `C(w + h - 2, w - 1)` of them, generating function `x / (1 - x)^h`. The half-sum raises the exponent by `1/2`:
+**The nondecreasing castles.** A nondecreasing castle of width `w` and height `h` has `c_w = h`, so its block count is `h`, and there are `C(w + h − 2, w − 1)` of them, with generating function `x/(1 − x)^h`. The half-sum raises the exponent by `1/2`:
 
 ```
-sum_k C(2k, k)/4^k  C(w - k + h - 2, w - k - 1)  =  C(w + h - 3/2, w - 1),
+Σ_k  C(2k, k)/4^k · C(w − k + h − 2, w − k − 1)  =  C(w + h − 3/2, w − 1),         (7)
 ```
 
-verified exactly for `h <= 6`, `w <= 19`.[^exec] The right side is the same binomial at height `h + 1/2`: for the nondecreasing family, half a sum in the width is half a row in the height. This is the width/height symmetry of `C(w + h - 2, w - 1)`, and it matches the half-column of the nondecreasing rule, which is the same `(1 - x)^{-1/2}` Toeplitz matrix read in the height direction ([[fractional-width-and-height](pages/fractional-width-and-height.md)]). The parity clause is trivial here (even iff `h` is even). For the full count the symmetry fails: `H_h(w)` is real, while `F(w, h + 1/2)` has a nonzero imaginary part.
-
-## What this settles, and what it leaves
-
-- Settled: the half-sum of every castle row `h = 2..5` in closed generating-function form, with the leading constant `sqrt(h / (h - 1))`, the `sqrt(pi)` coefficient `G_h(1)`, its reading as minus the negative-width sum, and the integer limit formula for `pi` at `h = 4`.
-- Settled: the half-sum is never a regular-language count; the integer half-sums are context-free as castle-times-balanced-tail products.
-- Open: a castle-intrinsic object with count `K_4(w)`, or a proof that the cut is forced (for instance, a bijection from skylines with a balanced suffix to some rule-changed castle family of [[castle-classification](pages/castle-classification.md)]).
-- Open: a formula for `G_h(1)`. The values for `h = 2..8` are `0, 1/2, 1/30, 1/20, 41/1740, 103/6090, 421/35490`, with no visible pattern; only `h = 2` has the factor `1 - x`, so only there does the negative-width count sum to zero.
+the coefficient of `x^w` in `x (1 − x)^{−h−1/2}`, checked exactly for `h ≤ 6`, `w ≤ 19`.[^exec] The right side is the same binomial at height `h + 1/2`: for the nondecreasing castles, half a sum in the width is half a row in the height, by the symmetry of `C(w + h − 2, w − 1)` in `w` and `h`. It matches the half-column of the nondecreasing rule, the same `(1 − x)^{−1/2}` Toeplitz matrix read in the height direction ([[fractional-width-and-height](pages/fractional-width-and-height.md)]). The parity is trivial here: the castle has an even number of blocks exactly when `h` is even. For the full count the symmetry fails: `H_h(w)` is real, while the continuation `A^e(w, h + 1/2)` has a nonzero imaginary part.
 
 ## Related Concepts
 
-- [[fractional-block-count](pages/fractional-block-count.md)] - the same `(1 - x)^{alpha}` operator on one skyline; the box castle's `B_{1/2}` is the half-sum of a constant.
-- [[fractional-width-and-height](pages/fractional-width-and-height.md)] - the continuation of `F` in `w` used for negative widths, the complex half-integer heights, and the half-column `U^{1/2}`.
-- [[fractional-recurrences](pages/fractional-recurrences.md)] - the other `nabla^alpha` construction on castle recurrences.
-- [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - why `pi` still arrives only through a limit.
-- [[castle-counting-function](pages/castle-counting-function.md)] and [[generating-function-gallery](pages/generating-function-gallery.md)] - the rows being summed.
-- [[castle-perimeter](pages/castle-perimeter.md)] - the other place castle counts become algebraic, graded by semi-perimeter.
-- [[catalan-numbers](pages/catalan-numbers.md)] - the `C(x)` in `1 / sqrt(1 - 4x) = 1 / (1 - 2x C(x))`.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - where the `K_h` rows are listed.
+- [[fractional-block-count](pages/fractional-block-count.md)] - the same `(1 − x)^α` operator on one skyline; the box castle's `B_{1/2}` is the half-sum of a constant.
+- [[fractional-width-and-height](pages/fractional-width-and-height.md)] - the continuation of the count in `w` used for negative widths, the complex half-integer heights, and the half-column `U^{1/2}`.
+- [[fractional-recurrences](pages/fractional-recurrences.md)] - fractional difference operators applied to castle recurrences.
+- [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - `π` and `e` reached only through limits of rational and algebraic quantities.
+- [[castle-counting-function](pages/castle-counting-function.md)] and [[generating-function-gallery](pages/generating-function-gallery.md)] - the rows `A^e(·, h)` and their generating functions.
+- [[castle-perimeter](pages/castle-perimeter.md)] - castles by semi-perimeter, whose generating function is algebraic of degree 2.
+- [[catalan-numbers](pages/catalan-numbers.md)] - the `c(x)` in `1/√(1 − 4x) = 1/(1 − 2x c(x))`.
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the `K_h` rows and their OEIS status.
 
 ## Footnotes
 
 [^1]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] p.169 Abstract - "we prove that the number of convex polyominoes with perimeter 2n+8 is (2n+11)4^n - 4(2n+1)C(2n,n)."
-
 [^2]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] p.203 §12(6) - "Roughly speaking, the algebraicity has been 'concentrated' in the Dyck language. The generating functions p_I(t) and p_III(t) are rational expressions in term of t and c(t)."
-
-[^exec]: Verified by execution (2026-09-23): Python 3, `fractions`, SymPy 1.14, mpmath. `F(w, h)` for `h = 2..5` by a transfer DP on (last height, block parity, height reached), block count as total ascent; checked against `F(4, 2) = 10`, `F(5, 5) = 906`, `F(6, 4) = 1729`. Rational `G_h` by Berlekamp-Massey over `Q` on 60 terms, numerator from the product with the denominator, factored by `sympy.factor`. Dyadic `H_h(w)` exactly in `fractions`; `4^w H_h`, `K_h`, and the matched sums as integers. Poles by `mpmath.polyroots` at 80 digits; the exponential part `sum_i -N(r_i)/D'(r_i) (1 - r_i)^{-1/2} r_i^{-w-1}` subtracted from the exact `H_h(w)` at `w = 50, 100, 200` (the `w = 200` rows at `h >= 3` lose precision and are not quoted). Backward extension of each row by its recurrence in `fractions`, recurrence checked on `-50 <= w <= 55`, the negative-width sum truncated at `w = -55`. `K_4(w)` to `w = 1600` in exact integers, the ratio at 400 digits. Nondecreasing identity: enumeration for `h <= 5`, `w <= 7` (count and block count `= h`), then the half-sum against `C(w + h - 3/2, w - 1)` in `fractions` for `h <= 6`, `w <= 19`. `G_h` and `G_h(1)` for `h = 6..8` by the same fit, checked on 40 further terms. OEIS lookups of the `h = 2..5` rows, `K_h`, `4^w H_h`, and the `H_2` numerators by the search API. All quoted numbers are the scripts' printed output.
+[^exec]: Verified by execution (Python 3.11 with `fractions`, SymPy and mpmath, 2026-10-16): `A^e(w, h)` for `h = 2..8` by a transfer DP on (last height, block parity, height reached), with `A^e(4, 2) = 10`, `A^e(5, 5) = 906`, `A^e(6, 4) = 1729`; `G_h` by Berlekamp-Massey over `Q` on 60 or 80 terms and factored, with `G_h(1)` for `h = 2..8`; the dyadic `H_h(w)`, `K_h(w)`, `4^w H_h(w)` exactly; the ratios `H_h(100)/A^e(100, h)` at 80 digits; the poles at 80 digits and the remainders `R_h(w) = H_h(w) − Σ_i (exponential part)` at `w = 50, 100`, and at `w = 200` for `h = 2`; the backward continuation of each row by its recurrence, the recurrence checked on `−50 ≤ w ≤ 55`, the negative-width sums truncated at `w = −55`; `K_4(w)` in exact integers to `w = 1600`, the ratios at 400 digits, and the rational-weight sums at `w = 200`; Equation (7) for `h ≤ 6`, `w ≤ 19` in `fractions`.
