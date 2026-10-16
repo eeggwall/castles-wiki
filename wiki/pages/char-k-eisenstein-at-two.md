@@ -1,107 +1,107 @@
 ---
 title: Eisenstein at 2 - char_k is irreducible for k = 2^m - 1
 category: Analyses
-summary: Rescale x = 2y and divide out 2^k - Q_k(y) = char_k(2y)/2^k is an integer polynomial with the same shape of recurrence, Q_{k+1} = y² Q_{k-1} - Q_k. Its reversal is Eisenstein at 2 exactly when Q_k ≡ 1 (mod 2), and mod 2 the recurrence is a Fibonacci recurrence over F_2[y²] whose k-th term is α^(k+1) + β^(k+1) - equal to 1 iff k+1 is a power of 2. So char_k is irreducible over Q, with 2 totally ramified, for k = 1, 3, 7, 15, 31, …, by proof. The same condition is exactly "the 2-adic Newton polygon of char_k is one segment", so no other k is reached this way; irreducibility for the remaining odd k is still only SymPy-verified.
+summary: Rescaling λ = 2μ turns char_k into Q_k(μ) = char_k(2μ)/2^k, an integer polynomial with Q_{k+1} = μ²·Q_{k−1} − Q_k. The reversal of Q_k is Eisenstein at 2 exactly when Q_k ≡ 1 (mod 2), and modulo 2 the recurrence is a Fibonacci recurrence over F_2[t], t = μ², whose k-th term is the power sum α^{k+1} + β^{k+1}; it equals 1 exactly when k + 1 is a power of 2. So char_k is irreducible over Q, with 2 totally ramified, for k = 1, 3, 7, 15, 31, …. The same condition is the condition that the 2-adic Newton polygon of char_k is one segment, so Eisenstein and Dumas at 2 reach no other k; for the other odd k ≤ 31, irreducibility is computed.
 tags: [analysis, castle, characteristic-polynomial, irreducible-polynomial, eisenstein, newton-polygon, two-adic, fibonacci-polynomial, signed-tower-count, proof, sympy, verification]
-sources: [calugareanu-hamburg-exercises-basic-ring-theory, oeis-mining-pe502]
+sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-26
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Eisenstein at 2 - `char_k` is irreducible for `k = 2^m − 1`
 
-## Context
+`char_k(λ) = λ^{k+1} den_k(1/λ)` is the characteristic polynomial of the linear recurrence of the signed tower count `P(k, ·)` in the base length ([[signed-tower-count](pages/signed-tower-count.md)]). For odd `k ≤ 31` it is irreducible over `Q` (computed). For even `k` it has two factors, which [[tower-parity-sectors](pages/tower-parity-sectors.md)] derives from the involution `JD` of the signed transfer matrix `M̃_k`. For odd `k`, `(JD)² = −I`, and `JD` makes `char_k` a product `g·ḡ` of conjugate polynomials over `Q(i)`, which does not decide whether `char_k` factors over `Q`.
 
-[[generating-function-gallery](pages/generating-function-gallery.md)] and [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] record that `char_k` - the degree-`(k+1)` characteristic polynomial of the signed tower count `P(k, ·)` ([[signed-tower-count](pages/signed-tower-count.md)]) - is irreducible over `Q` for every odd `k` tested. [[tower-parity-sectors](pages/tower-parity-sectors.md)] explains the *even* `k` factorization by a symmetry `JD` of the transfer matrix, but for odd `k` that symmetry is a complex structure, and a complex structure only says `char_k` is a norm `g·ḡ` from `Q(i)[x]`. It does not rule out a further split over `Q`, and odd-`k` irreducibility is otherwise a computation (SymPy, `k ≤ 31`).
+**Theorem.** For `k + 1 = 2^m`, `m ≥ 1`, `char_k` is irreducible over `Q`, and 2 is totally ramified in `Q(ρ)` for every root `ρ` of `char_k`.
 
-This page proves it for the infinite subfamily `k = 2^m − 1` using the Eisenstein criterion in its unique-factorization-domain form (Gauss's lemma plus Eisenstein, exercise 17.21 of [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)]), and shows the method reaches exactly that subfamily and no more.
+The proof applies Eisenstein's criterion at the prime 2 after a rescaling (Steps 1 to 3). Step 4 shows that the criterion, and its generalization by Newton polygons, reaches exactly these `k`.
 
-The criterion is not limited to integer primes: exercise 5.15 of the same book proves `X² + Y² − 1` irreducible in `K[Y][X]` by Eisenstein at the polynomial prime `Y + 1`.[^1]
-
-**Eisenstein's criterion.** Let `f = a_0 + a_1 X + … + a_n X^n` have integer coefficients and let `p` be a prime with `p ∤ a_n`, `p | a_i` for `i < n`, and `p² ∤ a_0`. Then `f` is irreducible over `Q`; if also no prime divides every coefficient, it is irreducible over `Z` as well.[^2]
+**Eisenstein's criterion.** Let `f = a_0 + a_1 X + ⋯ + a_n X^n` have integer coefficients, and let `p` be a prime with `p ∤ a_n`, `p | a_i` for `i < n`, and `p² ∤ a_0`. Then `f` is irreducible over `Q`.[^1]
 
 ## Step 1 - rescale by 2
 
-`char_k` obeys `char_0 = x − 1`, `char_1 = x² − 2x + 2`, `char_{k+1} = x²·char_{k−1} − 2·char_k`.[^3] Its constant term is `±2^k`. Set
+`char_0 = λ − 1`, `char_1 = λ² − 2λ + 2`, and for `k ≥ 1`
 
 ```
-Q_k(y)  =  char_k(2y) / 2^k .
+char_{k+1}(λ)  =  λ²·char_{k−1}(λ) − 2·char_k(λ),                              (1)
 ```
 
-Substituting `x = 2y` into the recurrence and dividing by `2^{k+1}` gives
+which is the recurrence `den_{k+1} = den_{k−1} − 2x·den_k` of [[signed-tower-count](pages/signed-tower-count.md)] multiplied by `λ^{k+2}` at `x = 1/λ`. `char_k` is monic of degree `k + 1` with constant term `(−1)^{k+1} 2^k`. Set
 
 ```
-Q_0 = 2y − 1,   Q_1 = 2y² − 2y + 1,   Q_{k+1} = y²·Q_{k−1} − Q_k .
+Q_k(μ)  =  char_k(2μ) / 2^k.
 ```
 
-This recurrence has integer coefficients, so every `Q_k` is an integer polynomial. Its leading coefficient is `2^{k+1}/2^k = 2`, and its constant term `char_k(0)/2^k = ±1` is odd.[^4] (This is the same rescaling `λ = 2μ` that [[tower-parity-sectors](pages/tower-parity-sectors.md)] uses to make the even-`k` factors explicit.)
-
-## Step 2 - the Eisenstein condition is "`Q_k ≡ 1 mod 2`"
-
-Reverse the coefficients: `R_k(y) = y^{k+1} Q_k(1/y)`. `R_k` has leading coefficient `Q_k(0) = ±1` (odd) and constant term `2` (even, not divisible by 4). So `R_k` is Eisenstein at 2 **exactly when every middle coefficient of `Q_k` is even**, that is, when
+Substituting `λ = 2μ` in Equation (1) and dividing by `2^{k+1}` gives
 
 ```
-Q_k(y)  ≡  1   (mod 2).
+Q_0  =  2μ − 1,        Q_1  =  2μ² − 2μ + 1,        Q_{k+1}  =  μ²·Q_{k−1} − Q_k.        (2)
 ```
 
-When it holds, `R_k` is irreducible over `Q`. Reversal and rescaling preserve irreducibility (for polynomials with nonzero constant term), so `char_k` is irreducible too.
+Equation (2) has integer coefficients, so every `Q_k` is an integer polynomial. Its leading coefficient is `2^{k+1}/2^k = 2`, and its constant term `char_k(0)/2^k = ±1` is odd.[^2] This is the rescaling `λ = 2μ` of [[tower-parity-sectors](pages/tower-parity-sectors.md)].
 
-## Step 3 - mod 2 the recurrence is Fibonacci
+## Step 2 - the Eisenstein condition is `Q_k ≡ 1 (mod 2)`
 
-Reduce mod 2 and write `q_k = Q_k mod 2`. Since `2y ≡ 0`,
-
-```
-q_0 = 1,   q_1 = 1,   q_{k+1} = q_k + t·q_{k−1}      over F_2[t],  t = y².
-```
-
-That is a Fibonacci recurrence. Let `α, β` be the roots of `z² + z + t` over an extension of `F_2(t)`, so `α + β = 1` and `αβ = t`. The Binet form `q_k = (α^{k+1} − β^{k+1})/(α − β)` has denominator `α − β = α + β = 1` in characteristic 2, so
+Reverse the coefficients: `R_k(μ) = μ^{k+1} Q_k(1/μ)`. Its leading coefficient is `Q_k(0) = ±1`, which is odd, and its constant term is the leading coefficient 2 of `Q_k`, which is even and not divisible by 4. So `R_k` is Eisenstein at 2 exactly when every other coefficient of `Q_k` is even, that is, when
 
 ```
-q_k  =  α^{k+1} + β^{k+1}  =  s_{k+1},   the (k+1)-st power sum.
+Q_k(μ)  ≡  1   (mod 2).                                                        (3)
 ```
 
-**If `k + 1 = 2^m`:** Frobenius gives `s_{2^m} = (α + β)^{2^m} = 1`. So `q_k = 1`.
+When Equation (3) holds, `R_k` is irreducible over `Q`. `Q_k` and `R_k` have nonzero constant terms, so `Q_k` is irreducible exactly when `R_k` is, and `char_k(λ) = 2^k Q_k(λ/2)` is irreducible exactly when `Q_k` is.
 
-**Otherwise** write `k + 1 = 2^m·r` with `r ≥ 3` odd. Then `s_{k+1} = (s_r)^{2^m}`, so it suffices that `s_r ≠ 1`. Newton's recurrence `s_n = s_{n−1} + t·s_{n−2}` with `s_0 = 2 = 0`, `s_1 = 1` gives constant term `1` for every `s_n` with `n ≥ 1`, and the coefficient of `t` obeys `c_n = c_{n−1} + 1` for `n ≥ 3` from `c_2 = 0`. So `c_r = 1` for every odd `r ≥ 3`, `s_r` has a nonzero `t`-term, and `q_k ≠ 1`.
+*Example.* `char_3 = λ⁴ − 4λ³ + 8λ² − 8λ + 8` gives `Q_3 = 2μ⁴ − 4μ³ + 4μ² − 2μ + 1 ≡ 1 (mod 2)`, whose reversal `R_3 = μ⁴ − 2μ³ + 4μ² − 4μ + 2` is Eisenstein at 2, so `char_3` is irreducible.
 
-**Theorem.** `Q_k ≡ 1 (mod 2)` if and only if `k + 1` is a power of 2. Consequently `char_k` is irreducible over `Q` for `k = 1, 3, 7, 15, 31, 63, …`, and 2 is totally ramified in `Q(ρ)` for any root `ρ` of these `char_k`.[^5]
+## Step 3 - modulo 2 the recurrence is Fibonacci
 
-## Step 4 - this is exactly the reach of the method
+Write `q_k` for `Q_k` modulo 2, a polynomial over the field `F_2` with two elements. Since `2μ ≡ 0`, Equation (2) becomes
 
-The 2-adic valuations of `char_k`'s coefficients `a_i` run from `v(a_0) = k` down to `v(a_{k+1}) = 0`. The **2-adic Newton polygon** is a single segment of slope `k/(k+1)` exactly when `v(a_i) ≥ k − ik/(k+1)`, i.e. (valuations are integers) `v(a_i) ≥ k − i + 1` for `1 ≤ i ≤ k`. That is the same inequality as Step 2's "every middle coefficient of `Q_k` is even." Because `gcd(k, k+1) = 1`, a single segment of that slope forces irreducibility over `Q_2`. This is Dumas's generalization of Eisenstein, and here it adds nothing new: it succeeds for exactly the same `k`. For every other odd `k` the polygon breaks into several segments, and neither Eisenstein nor Dumas at 2 decides irreducibility.[^5]
+```
+q_0  =  1,        q_1  =  1,        q_{k+1}  =  q_k + t·q_{k−1}        over F_2[t],  t = μ².
+```
 
-| `k` | `Q_k mod 2` | reversed `Q_k` Eisenstein at 2? | irreducible over `Q` |
+Let `α` and `β` be the roots of `z² + z + t` in an extension of `F_2(t)`, so `α + β = 1` and `αβ = t`; they are distinct, since the derivative of `z² + z + t` is 1. The recurrence has characteristic polynomial `z² − z − t = z² + z + t`, and its solution with `q_0 = q_1 = 1` is `q_k = (α^{k+1} − β^{k+1})/(α − β)`, as the cases `k = 0, 1` show. In characteristic 2, `α − β = α + β = 1`, so
+
+```
+q_k  =  α^{k+1} + β^{k+1}  =  s_{k+1},        the power sum of degree k + 1.
+```
+
+*If `k + 1 = 2^m`*: the Frobenius map `z ↦ z²` is additive in characteristic 2 ([[finite-fields](pages/finite-fields.md)]), so `s_{2^m} = (α + β)^{2^m} = 1`, and `q_k = 1`.
+
+*Otherwise*, write `k + 1 = 2^m·r` with `r ≥ 3` odd. Then `s_{k+1} = (s_r)^{2^m}`, and `(s_r)^{2^m} = 1` only if `s_r = 1`, since `z^{2^m} − 1 = (z − 1)^{2^m}`. The power sums satisfy `s_n = s_{n−1} + t·s_{n−2}`, with `s_0 = 2 = 0` and `s_1 = 1`. Modulo `t` this gives `s_n ≡ 1` for `n ≥ 1`. So the coefficient `c_n` of `t` in `s_n` satisfies `c_n = c_{n−1} + 1` for `n ≥ 3`, with `c_2 = 0`, and `c_r = 1` for every odd `r ≥ 3`. So `s_r ≠ 1`, and `q_k ≠ 1`.
+
+So `Q_k ≡ 1 (mod 2)` exactly when `k + 1` is a power of 2, and by Step 2 `char_k` is irreducible for those `k`.
+
+*Total ramification.* For these `k`, `R_k` is Eisenstein at 2, so its 2-adic Newton polygon is one segment of slope `−1/(k + 1)`, and its roots `2/ρ` have 2-adic valuation `1/(k + 1)` in every extension of the 2-adic valuation to `Q(ρ)`. The ramification index of every prime of `Q(ρ)` over 2 is therefore at least `k + 1 = [Q(ρ) : Q]`, so there is one such prime and 2 is totally ramified. This proves the Theorem.
+
+## Step 4 - the reach of the method
+
+Write `char_k = Σ_i a_i λ^i` and `v` for the 2-adic valuation, so `v(a_0) = k` and `v(a_{k+1}) = 0`. The 2-adic Newton polygon of `char_k` is the single segment from `(0, k)` to `(k + 1, 0)` exactly when `v(a_i) ≥ k(k + 1 − i)/(k + 1)` for every `i`. For `1 ≤ i ≤ k`, `k(k + 1 − i)/(k + 1)` lies strictly between `k − i` and `k + 1 − i`, so for integer valuations the condition is `v(a_i) ≥ k + 1 − i`. The coefficient of `μ^i` in `Q_k` is `a_i 2^{i−k}`, and it is even exactly when `v(a_i) ≥ k + 1 − i`. So the polygon is one segment exactly when Equation (3) holds. A single segment of slope `−k/(k + 1)`, with `gcd(k, k + 1) = 1`, proves irreducibility over the 2-adic numbers (Dumas's generalization of Eisenstein's criterion), and it does so for the same `k`. For every other odd `k`, neither Eisenstein's criterion nor Dumas's at the prime 2 applies.[^3]
+
+| `k` | `Q_k mod 2` | `R_k` Eisenstein at 2 | `char_k` irreducible over `Q` |
 |---|---|---|---|
-| 1 | `1` | yes: `y² − 2y + 2` | proved here |
-| 3 | `1` | yes: `y⁴ − 2y³ + 4y² − 4y + 2` | proved here |
-| 5 | `1 + y⁴` | no | SymPy only |
-| 7 | `1` | yes | proved here |
-| 9, 11, 13 | `≠ 1` | no | SymPy only |
-| 15 | `1` | yes | proved here |
+| 1 | `1` | yes: `R_1 = μ² − 2μ + 2` | proved |
+| 3 | `1` | yes: `R_3 = μ⁴ − 2μ³ + 4μ² − 4μ + 2` | proved |
+| 5 | `1 + μ⁴` | no | computed |
+| 7 | `1` | yes | proved |
+| 9, 11, 13 | not 1 | no | computed |
+| 15 | `1` | yes | proved |
 
-## What this settles and what it opens
-
-**Settled.**
-- `char_{2^m − 1}` is irreducible over `Q` for every `m ≥ 1`, with 2 totally ramified. These are the `k` where `P(k, ·)` has order `2^m`.
-- Eisenstein and Dumas at the prime 2 reach exactly this family, and nothing else, because the obstruction mod 2 is a Fibonacci polynomial over `F_2`.
-
-**Open.**
-- Odd `k` not of the form `2^m − 1` (`k = 5, 9, 11, 13, 17, …`): irreducible by SymPy through `k = 31`, with no proof. A proof needs a different prime, a different substitution, or a Galois-theoretic argument (for instance, showing the `Q(i)`-factors `g, ḡ` from the `JD` complex structure are themselves irreducible and not defined over `Q`).
-- Which odd primes divide `disc(char_k)` ([[larger-prime-periodicity](pages/larger-prime-periodicity.md)] lists `k ≤ 10`), and whether any of them is totally ramified for other `k`; such a prime would be a candidate for a further Eisenstein argument.
+For odd `k ≤ 31` other than `1, 3, 7, 15, 31`, `char_k` is irreducible by computation, with no proof.[^3]
 
 ## Snippet
 
 ```python
 import sympy as sp
-y = sp.symbols('y')
-Q = [sp.Poly(2*y - 1, y), sp.Poly(2*y**2 - 2*y + 1, y)]
+mu = sp.symbols('mu')
+Q = [sp.Poly(2*mu - 1, mu), sp.Poly(2*mu**2 - 2*mu + 1, mu)]
 for k in range(1, 80):
-    Q.append(sp.Poly(y**2, y)*Q[k-1] - Q[k])          # Q_{k+1} = y^2 Q_{k-1} - Q_k
-def eis_rev(P):                                        # reversed P Eisenstein at 2?
+    Q.append(sp.Poly(mu**2, mu)*Q[k-1] - Q[k])         # Equation (2)
+def eis_rev(P):                                         # is the reversal of P Eisenstein at 2?
     co = P.all_coeffs()[::-1]
     return co[0] % 2 == 1 and all(a % 2 == 0 for a in co[1:]) and co[-1] % 4 != 0
 print([k for k in range(81) if eis_rev(Q[k])])
-# mod 2, as bitmasks over F_2[t]: q_{k+1} = q_k + t q_{k-1}
+# modulo 2, as bitmasks over F_2[t]: q_{k+1} = q_k + t q_{k-1}
 q = [1, 1]
 for k in range(1, 5000): q.append(q[k] ^ (q[k-1] << 1))
 print([k for k in range(5001) if q[k] == 1])
@@ -114,23 +114,19 @@ print([k for k in range(5001) if q[k] == 1])
 
 ## Appearances in Sources
 
-- [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - exercise 17.21 (Eisenstein over a UFD, with Gauss's lemma), the tool applied here.
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k, ·)` family and its `char_k`.
+- [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - exercise 17.21, Eisenstein's criterion over a unique factorization domain, with Gauss's lemma.
 
 ## Related Concepts
 
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the `JD` symmetry: it explains the even-`k` split and makes odd-`k` `char_k` a norm from `Q(i)[x]`. That is the step this page's proof replaces for `k = 2^m − 1`.
-- [[generating-function-gallery](pages/generating-function-gallery.md)] - the `char_k` table and the even/odd factorization pattern.
-- [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - "irreducible = prime for polynomials"; the odd-`k` rows of its table are proved here for `k = 1, 3`.
-- [[finite-fields](pages/finite-fields.md)] - the Frobenius identity `(α + β)^{2^m} = α^{2^m} + β^{2^m}` in characteristic 2, the key step of Step 3.
-- [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - discriminants of `char_k`; total ramification at 2 is the extreme case of 2 dividing the discriminant.
-- [[pell-numbers](pages/pell-numbers.md)] - another Lucas/Fibonacci-type sequence on the wiki; here a Fibonacci recurrence appears one level down, over `F_2[t]`.
-- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the fiber over 2: for `k = 1`, `Z[x]/(char_1) ≅ Z[i]` and the prime `(2, x)` is `(1 + i)` with `2 = −i(1 + i)²`, the smallest case of the total ramification proved here.
+- [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, ·)`, `char_k`, and the recurrence of `den_k` behind Equation (1).
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the involution `JD`, the factors of `char_k` for even `k`, and the product `g·ḡ` over `Q(i)` for odd `k`.
+- [[finite-fields](pages/finite-fields.md)] - the Frobenius map in characteristic `p`, used in Step 3.
+- [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - `char_1`, `char_3` and `char_5` as irreducible polynomials; the first two are proved irreducible here.
+- [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - the discriminants of `char_k` for `k ≤ 10` and their odd prime factors.
+- [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the case `k = 1`: `Z[λ]/(char_1) ≅ Z[i]` by `λ ↦ 1 + i`, the prime `(2, λ)` maps to `(1 + i)`, and `2 = −i(1 + i)²`.
 
 ## Footnotes
 
-[^1]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 5.15 p.25; solution p.113 [synthesis] - `Y + 1` divides the coefficients `0` and `Y² − 1` of `X² + (Y² − 1)` but `(Y + 1)²` does not divide `Y² − 1` when `char K ≠ 2`, so Eisenstein in `K[Y][X]` applies.
-[^2]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.21 p.76; solution pp.193-194 [synthesis] - Eisenstein's criterion over a UFD `R` gives irreducibility in `K[X]` for `K` the fraction field, and in `R[X]` when the polynomial is primitive; the solution reduces the `K[X]` case to `R[X]` by clearing denominators (Gauss's lemma).
-[^3]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L31-37 [synthesis] - the `char_k` family of the signed tower counts, `P(k, ·)` C-finite of order `k+1`, `char_1..char_5` listed with constant term `(−1)^{k−1} 2^k`. The three-term construction `char_{k+1} = x²·char_{k−1} − 2·char_k` is the one used on [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] and checked there against [[generating-function-gallery](pages/generating-function-gallery.md)].
-[^4]: Verified by execution (Python 3.10, SymPy, 2026-09-26): `Poly(char_k(2y)) == 2^k · Q_k` for every `k ≤ 80`, with `Q_k` built from `Q_0 = 2y − 1`, `Q_1 = 2y² − 2y + 1`, `Q_{k+1} = y² Q_{k−1} − Q_k`; every `Q_k` has integer coefficients and leading coefficient 2.
-[^5]: Verified by execution (Python 3.10, SymPy, 2026-09-26): (i) reversed `Q_k` is Eisenstein at 2 exactly for `k ∈ {0, 1, 3, 7, 15, 31, 63}` among `k ≤ 80`, the same set as `Q_k ≡ 1 mod 2`; (ii) the 2-adic Newton polygon of `char_k` is a single segment exactly for `k ∈ {1, 3, 7, 15, 31, 63}` among odd `k ≤ 69`; (iii) the `F_2[t]` bitmask recurrence has `q_k = 1` exactly for `k = 2^m − 1` among `k ≤ 5000`; (iv) `sp.factor_list(char_k)` has a single factor of multiplicity 1 for every odd `k ≤ 31`. The proof in Step 3 is by hand; (i)-(iii) are consistency checks on it.
+[^1]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.21 p.76; solution pp.193-194 [synthesis] - Eisenstein's criterion over a UFD `R` gives irreducibility in `K[X]` for `K` the fraction field, and in `R[X]` when the polynomial is primitive; the solution reduces the `K[X]` case to `R[X]` by clearing denominators (Gauss's lemma).
+[^2]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): Equation (1) against `char_k` built from the `num`/`den` update for `k ≤ 80`; `char_k(2μ) = 2^k Q_k` with `Q_k` from Equation (2) for `k ≤ 80`, each with integer coefficients, leading coefficient 2 and constant term `±1`.
+[^3]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the reversal of `Q_k` is Eisenstein at 2 exactly for `k ∈ {0, 1, 3, 7, 15, 31, 63}` among `k ≤ 80`; the 2-adic Newton polygon of `char_k` is one segment exactly for `k ∈ {1, 3, 7, 15, 31, 63}` among odd `k ≤ 69`; the bitmask recurrence over `F_2[t]` gives `q_k = 1` exactly for `k = 2^m − 1` among `k ≤ 5000`; `char_k` has one irreducible factor, of multiplicity 1, for every odd `k ≤ 31`; `R_1`, `R_3` and `Q_5 mod 2` as in the table. The proof in Step 3 is by hand, and the first three checks are consistency checks on it.
