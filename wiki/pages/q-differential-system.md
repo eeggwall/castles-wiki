@@ -1,14 +1,14 @@
 ---
-title: Linear q-differential systems and their q = 1 shadow
+title: Linear q-differential systems and their q -> 1 limit
 category: Concepts
 summary: A linear q-differential system relates a vector of series at x to the same vector at xq, F(x) = y M(x) F(xq) + C(x). This is the shape the area-counting equations for convex polyominoes take. There is no general integration method, but Bousquet-Mélou and Fédou solve one by working in its q = 1 limit, an ordinary differential system with Bessel solutions, and then lifting the ODE recipe back to q. The recipe is to find a homogeneous solution matrix W with W = M W(xq), substitute F = W G, and solve the resulting scalar equations g(x) - y g(xq) = h coefficientwise as g_n = h_n/(1 - yq^n), with log_q(x) = log x / log q standing in for the logarithm.
 tags: [concept, q-analog, q-differential-system, q-bessel, variation-of-parameters, generating-function, polyomino, convex, functional-equation]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes]
 created: 2026-09-22
-updated: 2026-10-02
+updated: 2026-10-16
 ---
 
-# Linear q-differential systems and their q = 1 shadow
+# Linear q-differential systems and their q → 1 limit
 
 ## Description
 
@@ -20,7 +20,7 @@ F(x) = y M(x) F(xq) + C(x)
 
 where `F` is a vector of unknown power series in `x` (with `y` and `q` as parameters), `M` is a matrix of known series, and `C` is a known inhomogeneous term. The "derivative" is the q-shift `x -> xq`: the equation relates each series to itself at `xq`. Area-counting equations for polyominoes take this form. Adding a column of height `k` multiplies the area weight by `q^k`, and summing over `k` lands the generating function at a shifted argument.[^1] For parallelogram, directed convex and convex polyominoes, Bousquet-Mélou's algebraic-language encoding gives a system of this form with blocks of size 1, 2 and 3.[^2] Its power-series solution is unique, but, in the paper's words, "there exists no general technique to integrate q-differential equations".[^3]
 
-## The q = 1 shadow
+## The q → 1 limit
 
 Bousquet-Mélou and Fédou's approach is to solve the ordinary differential system that the q-system tends to, and use it as a template.[^4]
 
@@ -43,10 +43,10 @@ At the inhomogeneous step the `q = 1` template ran out: "we could no longer 'cop
 
 ## Where the castle wiki meets it
 
-Own reasoning, not from the source:
+The wiki's reading, not from the source:
 
-- **Fixed height is the finite case.** A castle of bounded height has a finite transfer matrix and a rational generating function ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]). Letting height be unbounded while marking area is what turns the column recurrence into a q-shift equation like the ones above. On the area ladder, Ferrers diagrams and stacks still solve as sums of q-products. The parallelogram rung, `y J_1/J_0`, is the first whose solution is a ratio of q-series.
-- **The scalar step is the adding-a-slice step.** `g_n = h_n/(1 - yq^n)` is the same geometric-series resolution that the "adding a slice" construction on [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] performs when one column height is iterated. What the method adds is the solution matrix `W`, which tracks several interacting boundary phases at once.
+- **Bounded height is the finite case.** At a fixed bound on the height, castles counted by area have a finite transfer matrix on the column heights and a rational generating function ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]). Without a bound, adding a column of height `k` multiplies the area weight by `q^k`, and the column recurrence becomes a q-shift equation of the form above. Among the convex families of [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)], the Ferrers diagrams and the stacks have area generating functions that are sums of q-products, and the parallelograms, with `y J_1/J_0`, are the first whose generating function is a ratio of q-series.
+- **The q-shift is diagonal on monomials.** Since `(xq)^n = q^n x^n`, the scalar equation `g(x) - y g(xq) = h` is solved one coefficient at a time, `g_n = h_n/(1 - yq^n)`. The work of the method is in finding the solution matrix `W` that reduces the system to such equations.
 
 ## Appearances in Sources
 
@@ -57,10 +57,9 @@ Own reasoning, not from the source:
 - [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - the area ladder whose top three rungs this method solves.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - Bousquet-Mélou's later add-a-column functional equations, a different route to the same generating functions.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - q-Bessel quotients from another polyomino family.
-- [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - an early one-unknown instance (own reasoning): parallelograms by area satisfy `B(x, y) = xy/(1-xy) + xy/(1-xy)^2 (B(x, 1) - B(x, xy))`, a shift `y -> xy`, which Klarner and Rivest solved by iteration as a ratio of alternating q-series.
-- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - the *nonlinear* companion. Quadratic q-shift equations for the same families, linearised by `G(x) = α H(qx)/H(x) - b(x)`; the closed forms are q-Bessel ratios of the same shape but the linearisation route bypasses the 3×3 system this page describes for convex polyominoes.
-- [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - a case closed by one q-shift: the castle grammar graded by area is `E(u) = A/(1 - uA)`, `A(u) = 1 - x + x E(uq)`, and the linearisation closes to `A = N/M` in one Möbius step rather than the coupled 3×3 system needed for convex polyominoes.
-- [[aocp-generating-functions](pages/aocp-generating-functions.md)] - ordinary generating-function background.
+- [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] - an equation in one unknown with a shift `y -> xy`: Klarner and Rivest's (17), `Π(x, y) = xy/(1 - xy) + xy/(1 - xy)^2 (Π(x, 1) - Π(x, xy))` for parallelograms by area, whose iteration gives `Π(x, 1)` as a ratio of two alternating q-series (19).
+- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - nonlinear q-shift equations for related families (quadratic, and cubic for directed column-convex polygons), linearized by `G(x) = α H(qx)/H(x) - b(x)`, with q-Bessel ratios as solutions.
+- [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - the castles by width, blocks and area: `E_∞(u) = B(u)/(1 - uB(u))` with `B(u) = 1 - x + x E_∞(uq)`, a single q-shift equation whose recursion is a Möbius map, so `B = N/M` with explicit q-series `N` and `M`.
 
 ## Footnotes
 
