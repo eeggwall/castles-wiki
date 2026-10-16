@@ -1,11 +1,11 @@
 ---
 title: "PE 502: Brute Force"
 category: Sources
-summary: The Python reference module (castle.py) — exact-integer F/F_odd/F_any, a column-height p_signed DP, full enumeration by parity and unimodality, and OEIS mining for further structure.
+summary: The Python reference module castle.py for Project Euler 502, in exact integer arithmetic. It computes A^e, A^o and A from the closed form, the signed tower count P(k, L) by a dynamic program over the last column height, and the castles of width w and height h by enumeration, tallied by block parity and by unimodality. Its self-test checks the four Project Euler values and the enumeration for w, h ≤ 5.
 tags: [project-euler, castle, brute-force, python, verification, oeis, source, subpage]
 sources: [project-euler-502-brute-force]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Project Euler 502 (PE 502): Brute Force
@@ -16,66 +16,67 @@ updated: 2026-09-28
 
 ## Summary
 
-`castle.py` is the exact-integer Python reference that cross-checks the Java solver ([[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)]): no modular reduction, no Berlekamp–Massey, no Kitamasa. Its exact `F(w,h)` DP covers the full checkpoint range.[^1] Running it during ingest reproduced every self-test and the brute-vs-formula cross-check exactly.
+`castle.py` cross-checks the Java solver of [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] in exact integer arithmetic, with no modular reduction, no Berlekamp-Massey and no Kitamasa. The source puts the enumerator's range at about `w, h ≤ 15`, and the dynamic program covers every exact checkpoint.[^1] The module computes:[^2]
 
-It exposes several counting functions:[^2]
+- `F(w, h)`, the even-block count `A^e(w, h)`, from the closed form of the [[castle-counting-formula](pages/castle-counting-formula.md)];
+- `F_odd(w, h)`, the odd-block count `A^o(w, h)`;
+- `F_any(w, h) = h^w − (h−1)^w`, the count `A(w, h)` of castles of width `w` and height `h`;
+- `p_signed(k, L)`, the signed tower count `P(k, L)`;
+- `brute(w, h)`, the castles of width `w` and height `h` by enumeration of `{1, …, h}^w`, tallied by the parity of the block count and by unimodality;
+- `block_poly(w, h)`, the distribution of the block count over the castles of width `w` and height at most `h`.
 
-- `F(w,h)` — even-block castles, via the same closed form as the [[castle-counting-formula](pages/castle-counting-formula.md)].
-- `F_odd(w,h)` — odd-block castles; the complement of `F` (this wiki names the odd count `A − F`, deliberately unsymbolized — see [[castle-counting-function](pages/castle-counting-function.md)]).
-- `F_any(w,h) = h^w − (h−1)^w` — height exactly *h*, any parity; this is the general count `A(w,h)`.
-- `p_signed(k,L)` — the signed sum `P(k,L)` by an `O(k²L)` last-column-height dynamic program (DP).
-- `brute(w,h)` — full enumeration of column-height tuples `c ∈ {1..h}^w` with `max c = h`, tallied by parity and by unimodality.
-- `block_poly(w,h)` — the block-count distribution over height ≤ *h*.
-
-The module adds two pieces of machinery. First, a **column-height block-count formula**: reading a castle as a skyline `c_1…c_w ∈ {1..h}^w` with `max c = h`, the number of blocks is[^3]
+**Block count.** A castle of width `w` and height `h` is a skyline `c_1, …, c_w ∈ {1, …, h}` with `max c = h`, and a block is a maximal run of columns at one level, so[^3]
 
 ```
-#blocks = ∑_{r=1}^{h} #{runs of columns with c_i ≥ r} = c_1 + ∑_{i=2}^{w} max(0, c_i − c_{i−1})
+blocks(c)  =  Σ_{r=1}^{h} #{runs of columns with c_i ≥ r}  =  c_1 + Σ_{i=2}^{w} max(0, c_i − c_{i−1}).
 ```
 
-(verified during ingest to match the run-based definition for all skylines with `w,h ≤ 6`). Rule 3 (same-row gaps) is automatic in the run decomposition; Rule 6 (even count) is imposed by parity at the end.[^3] Second, `p_signed` is a **third route to `P`** (alongside the grammar generating function and the streak factorization): a new column of height `b` after height `a` starts `max(0, b−a)` new runs, each weighted `−1`, giving an `O(k²)` transition on a length-`(k+1)` last-height state.[^4]
+The gap rule between neighboring blocks in a row holds for every skyline, since two runs at one level are separated by a lower column, and the even-block rule is a filter on the block count.[^3]
 
-`brute` additionally separates **unimodal** skylines (column-convex *and* row-convex) into `conv_even`/`conv_odd`: the [[convex-castle](pages/convex-castle.md)] class, counted by `C(2h+w−3, w−1)`.[^5] And the module frames **Online Encyclopedia of Integer Sequences (OEIS) mining** as a research method: sweeping `brute` over a `(w,h)` rectangle yields sequences (even, odd, unimodal, block-count distributions) to look up in the OEIS for further structure.[^6]
+**Signed tower count.** `p_signed` computes `P(k, L)` from its definition. A column of height `b` after a column of height `a` starts `max(0, b − a)` new blocks, each contributing a factor `−1`, so the state is a vector of length `k + 1` indexed by the last column height, updated in `O(k²)` operations per column and `O(k²L)` in all.[^4] It uses neither the grammar generating function nor the rational-function update, which makes it an independent check of both.
+
+**Unimodal castles.** `brute` also tallies the unimodal skylines, which rise and then fall, into `conv_even` and `conv_odd`.[^5] These are the [[convex-castle](pages/convex-castle.md)]s, of which there are `C(2h+w−3, w−1)` of width `w` and height `h`; every one has exactly `h` blocks, so they are all even-block or all odd-block according to the parity of `h`.
+
+**OEIS mining.** The source lists three uses of the enumerator: ground truth for `p_signed`, which is checked against `brute` on `w, h ≤ 5` before any change reaches the Java solver; the block-count distributions and unimodal counts of the other subpages; and sequences from a rectangle of `(w, h)` to look up in the OEIS.[^6] [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] is that search.
+
+The source's `F`, `F_odd` and `F_any` are the wiki's `A^e`, `A^o` and `A` ([[castle-notation](pages/castle-notation.md)]).
 
 ## Verification
 
-Re-run during ingest, all exact:[^7]
+The self-test checks:[^7]
 
-- Checkpoints: `F(4,2)=10`, `F(13,10)=3729050610636`, `F(10,13)=37959702514`, `F(100,100) mod (10^9+7) = 841913936`.
-- Brute cross-check for all `w,h ≤ 5`: `brute["even"] == F`, `brute["even"] + brute["odd"] == F_any`.
-- The column-height block-count formula matches the run-based count for all `w,h ≤ 6`.
+- the four Project Euler values `A^e(4, 2) = 10`, `A^e(13, 10) = 3 729 050 610 636`, `A^e(10, 13) = 37 959 702 514` and `A^e(100, 100) mod (10^9 + 7) = 841 913 936`, which also head the Java `main`;
+- for all `w, h ≤ 5`, that `brute` agrees with `F` and `F_odd`, and that the even and odd tallies add up to `F_any`.
 
-These are the same four checkpoints that head the Java `main`.[^7]
+The same checks, with the block-count formula against the definition by runs for `w, h ≤ 6` and `p_signed` against the sum over all towers for `k ≤ 4`, `L ≤ 5`, agree when recomputed.[^8]
 
 ## Key Takeaways
 
-- Exact-integer reference (`F`, `F_odd`, `F_any = A`, `p_signed`, `brute`) that is the ground truth for the DP: any change to `p_signed` is validated against `brute` on `w,h ≤ 5` before touching the solver.[^8]
-- **Block-count formula on column heights:** `#blocks = c_1 + ∑_{i≥2} max(0, c_i − c_{i−1})` — verified.[^3]
-- `p_signed` gives a **third, column-height DP** computation of `P`, `O(k²L)`.[^4]
-- **Unimodal skyline = column-convex ∧ row-convex = the [[convex-castle](pages/convex-castle.md)]**; the brute `conv_*` counts split it by parity.[^5]
-- **OEIS mining** — brute over a `(w,h)` rectangle produces sequences to look up for further structure.[^6]
+- An exact reference for `A^e`, `A^o`, `A` and `P`, with an enumerator that is the ground truth for the dynamic program.[^6]
+- The block count of a skyline is its total ascent `c_1 + Σ_{i≥2} max(0, c_i − c_{i−1})`.[^3]
+- `p_signed` computes `P(k, L)` from its definition in `O(k²L)` operations.[^4]
+- The unimodal skylines are the convex castles; `brute` splits them by block parity.[^5]
 
 ## Entities & Concepts
 
-- [[convex-castle](pages/convex-castle.md)] — the unimodal (column-convex ∧ row-convex) class the `conv_*` counts measure.
-- [[castle-counting-function](pages/castle-counting-function.md)] — `F`, and `F_any` as the general count `A(w,h)`.
-- [[castle-counting-formula](pages/castle-counting-formula.md)], [[castle-sign](pages/castle-sign.md)], [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the formula, the block-count/descent, and the third `p_signed` route.
-- [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)], [[column-convex-polyomino](pages/column-convex-polyomino.md)] — the two convexities whose intersection is the unimodal castle.
-- [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] — the `product(range(1,h+1), repeat=w)` enumeration is Knuth's Algorithm M (mixed-radix add-one) with all radices `= h`.
-- [[castle-snippets](pages/castle-snippets.md)] — short, tested Python snippets for enumeration, classification predicates, growth-constant probes, and OEIS lookups; matches this page's `blocks_of` / `is_unimodal` conventions.
-- Sibling subpages of the [[project-euler-502](pages/project-euler-502.md)] hub: [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)], [[project-euler-502-representations](pages/project-euler-502-representations.md)], [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)], [[project-euler-502-observations](pages/project-euler-502-observations.md)], [[project-euler-502-solution](pages/project-euler-502-solution.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)].
+- [[castle-counting-formula](pages/castle-counting-formula.md)] - the closed form behind `F`, and the dynamic program for `P(k, L)` as an independent check.
+- [[castle-counting-function](pages/castle-counting-function.md)] - the counts `A`, `A^e` and `A^o`.
+- [[castle-sign](pages/castle-sign.md)] - the block count as total ascent and as total descent.
+- [[convex-castle](pages/convex-castle.md)] - the unimodal castles that `conv_even` and `conv_odd` count, `C(2h+w−3, w−1)` of width `w` and height `h`.
+- [[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)], [[column-convex-polyomino](pages/column-convex-polyomino.md)] - the two convexities; every castle is column-convex, and the unimodal castles are the row-convex ones.
+- [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - Knuth's Algorithm M, which generates `{1, …, h}^w` in the lexicographic order of the enumeration, with every radix `h`.
+- [[castle-snippets](pages/castle-snippets.md)] - tested Python snippets for enumeration, predicates and OEIS lookups, with the same `is_unimodal` test.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the OEIS search over the module's sequences.
 
-## Relation to Other Wiki Pages
-
-This module is the empirical backstop for the whole solution: it independently confirms `F`, `P`, and the `A = F + F_odd` decomposition by direct enumeration. It also supplies two threads — the explicit column-height block-count formula (feeding [[castle-sign](pages/castle-sign.md)] and [[monotone-streak-factorization](pages/monotone-streak-factorization.md)]) and the unimodal/`conv_*` counts (feeding [[convex-castle](pages/convex-castle.md)]) — plus the OEIS-mining method that turns brute output into lookups against the wider combinatorics literature.
+Sibling subpages of [[project-euler-502](pages/project-euler-502.md)]: [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)], [[project-euler-502-representations](pages/project-euler-502-representations.md)], [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)], [[project-euler-502-observations](pages/project-euler-502-observations.md)], [[project-euler-502-solution](pages/project-euler-502-solution.md)], [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)].
 
 ## Footnotes
 
-[^1]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Brute Force" L5 — "A small Python module used to cross-check the Java solver ... Exact integer arithmetic, no modular reduction, no BM, no Kitamasa ... for the full range of the exact F(w, h) checks on the DP path."
-[^2]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"What it computes" L9-14 — the list of functions: F (even, exact), F_odd (odd, complement of F), F_any (any parity, h^w − (h−1)^w), p_signed(k,L) (the signed sum P by an O(k·L·k) DP), brute(w,h) (full enumeration), block_poly(w,h).
-[^3]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Column-height encoding" L18-27 — "column heights c_1, …, c_w ∈ {1, …, h} with max c = h ... #blocks = ∑_{r=1}^{h} #{runs of columns with c_i ≥ r} = c_1 + ∑_{i=2}^{w} max(0, c_i − c_{i−1}) ... Rule 3 ... is automatic in the run decomposition ... Rule 6 ... applied by parity at the end"; formula re-verified against the run definition for all skylines w,h ≤ 6 during ingest.
-[^4]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"p_signed" L31-47 — "A new column of height b after a column of height a starts max(0, b − a) new runs, each contributing a factor of −1 ... State is a length-(k+1) vector indexed by the last column height. The transition is O(k^2), so O(k^2 L) total."; the DP re-run against brute during ingest, exact.
-[^5]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"brute" L54 — "conv_even, conv_odd - the same, restricted to unimodal skylines (column-convex AND row-convex)".
-[^6]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Why keep a brute enumerator" L93 — "OEIS mining. Running brute over a rectangle of (w, h) produces sequences (even, odd, unimodal, block-count distributions) that can be looked up in the OEIS to reveal further structure."
-[^7]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Self-test" L74-83 — "F(4, 2) = 10 ... F(13, 10) = 3 729 050 610 636 ... F(10, 13) = 37 959 702 514 ... F(100, 100) mod (10^9 + 7) = 841 913 936" plus "brute(w, h)['even'] == F(w, h) ... brute(w, h)['even'] + brute(w, h)['odd'] == F_any(w, h)"; all re-run exact during ingest.
-[^8]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Why keep a brute enumerator" L91 — "Ground truth for the DP. Any change to p_signed is validated against brute on w, h ≤ 5 before touching the Java solver."
+[^1]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Brute Force" L5 - "A small Python module used to cross-check the Java solver on Project Euler/502/Implementation Notes. Exact integer arithmetic, no modular reduction, no BM, no Kitamasa. Fast enough for w, h ≤ 15 or so on the brute enumerator, and for the full range of the exact F(w, h) checks on the DP path."
+[^2]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"What it computes" [synthesis] L9-14 - `F` (even-block, exact, by the closed form), `F_odd` (odd-block, the complement of `F`), `F_any` (any parity, `h^w − (h−1)^w`), `p_signed(k, L)` (the signed sum `P(k, L)` by an `O(k·L·k)` DP), `brute(w, h)` (enumeration tallied by parity and unimodality), `block_poly(w, h)` (the block-count distribution over height `≤ h`).
+[^3]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Column-height encoding" L18-27 - "column heights c_1, …, c_w ∈ {1, …, h} with max c = h", "#blocks = ∑_{r=1}^{h} #{runs of columns with c_i ≥ r} = c_1 + ∑_{i=2}^{w} max(0, c_i − c_{i−1})", "Rule 3 (gap between neighbouring blocks in the same row) is automatic in the run decomposition: two runs at the same level are always separated by a strictly lower column. Rule 6 (even block count) is applied by parity at the end."
+[^4]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"p_signed" L31-47 - "A new column of height b after a column of height a starts max(0, b − a) new runs, each contributing a factor of −1", "State is a length-(k+1) vector indexed by the last column height. The transition is O(k^2), so O(k^2 L) total. Exact integers throughout."
+[^5]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"brute" L51-67 - "conv_even, conv_odd - the same, restricted to unimodal skylines (column-convex AND row-convex)", and the test "walk up, then walk down; accept iff the walk covers the whole tuple". The count `C(2h+w−3, w−1)` and the block count `h` are from [[convex-castle](pages/convex-castle.md)], checked by enumeration for `w ≤ 7`, `h ≤ 5` and for `w ≤ 6`, `h ≤ 4` (Python 3.11, 2026-10-16).
+[^6]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Why keep a brute enumerator" L89-93 - "Ground truth for the DP. Any change to p_signed is validated against brute on w, h ≤ 5 before touching the Java solver.", "The dist and conv_* counts feed the observations", "OEIS mining. Running brute over a rectangle of (w, h) produces sequences (even, odd, unimodal, block-count distributions) that can be looked up in the OEIS to reveal further structure."
+[^7]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Self-test" L72-85 - "F(4, 2) = 10", "F(13, 10) = 3 729 050 610 636", "F(10, 13) = 37 959 702 514", "F(100, 100) mod (10^9 + 7) = 841 913 936", "brute(w, h)[\"even\"] == F(w, h)", "brute(w, h)[\"odd\"] == F_odd(w, h)", "brute(w, h)[\"even\"] + brute(w, h)[\"odd\"] == F_any(w, h)", and "The same four checks appear at the top of the Java main".
+[^8]: Verified by execution (Python 3.11, 2026-10-16): the four values from the closed form with `P` from the rational-function update and from `p_signed`; the closed form against enumeration for `2 ≤ h ≤ 5`, `w ≤ 6`; the block-count formula against the count of runs row by row for all skylines with `w, h ≤ 6`; `p_signed(k, L)` against the sum of `(−1)^{blocks}` over all towers for `k ≤ 4`, `1 ≤ L ≤ 5`.
