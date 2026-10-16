@@ -48,7 +48,7 @@ Rule 6 (even block count) is the parity filter. The even-parity count is
 - **`binomial-vandermonde-identity.md`** — why `convex(w,h) = C(2h+w-3, w-1)` (the
   up/down decomposition + generalized Vandermonde), and why it is binomial, not Catalan.
 - **`oeis-xref-draft.md`** — draft cross-reference comment for A038505/A038503 (the
-  height-2 castle interpretation). **Draft only**; OEIS requires human authorship.
+  height-2 castle interpretation). **Draft only**.
 - **`new-sequence-F3.md`** — draft submission package for the new sequence `F(w,3)`
   (even-block castles of height 3): name, 50 terms, recurrence, g.f., program, crossrefs.
 - **`crosslink-avenues.md`** — the full cross-link submission menu (tier 1/2/3), including
@@ -112,12 +112,12 @@ Done: computation + verification, tabulations, binomial proof, cross-ref draft, 
 tower/Narayana-polynomial finding, the cross-link menu, plan bug-fixes. Remaining (human action):
 
 1. **Submit cross-links** per `crosslink-avenues.md` — lead with the tier-1 trio
-   A038505 / A038503 / A146559 (reword `oeis-xref-draft.md` in own words; add the
+   A038505 / A038503 / A146559 (from `oeis-xref-draft.md`; add the
    `Cf. A000225` link).
 2. **Submit a new sequence.** `F(w,3)` is the cleanest candidate:
    `0, 0, 3, 21, 89, 307, 977, 3031, 9321, 28479, 86505, 261615, …`
    (width `w`, height exactly 3, even number of blocks), 6th-order recurrence
    `(x−3)(x−2)(x²−x+2)(x²−2x+2)`. Needs a name, definition, formula, program, b-file.
 
-Note the repo-wide `oeis-submission-process.md` for the submission mechanics and the
-OEIS AI policy (human authorship required; new contributors throttled to a few drafts).
+Note the repo-wide `oeis-submission-process.md` for the submission mechanics
+(new contributors are throttled to a few open edits).

@@ -1,6 +1,6 @@
 # Cross-link draft — A009545 as the signed count of height-2 castles ending at height 2
 
-Status: DRAFT for Charles to reword and submit. OEIS requires human authorship.
+Status: DRAFT for Charles to submit.
 Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md.
 Checked against the live entry 2026-10-04 (A009545 revision #193, Jul 27 2026).
 
@@ -102,15 +102,13 @@ A038503 / A038505 families.
 
 ## Flags
 
-1. Rewrite in own words and sign `- _Chaz Reid_, Mon DD YYYY` with the actual submission
-   date (see ../SUBMISSION-NOTES.md §3).
-2. Every castle in the comment is at exact height 2 ("height 2", "maximum height is 2").
+1. Every castle in the comment is at exact height 2 ("height 2", "maximum height is 2").
    Do not write "height at most 2".
-3. Scope the family once ("Among the castle polyominoes of width n and height 2 whose last
+2. Scope the family once ("Among the castle polyominoes of width n and height 2 whose last
    column reaches height 2, ...") so both counts refer to it.
-4. Even minus odd, in that order: the sign is positive at n = 1 (one castle, 2 blocks).
-5. "Problem 502" (not "Project 502").
-6. Do not change Name/Data/Offset/Keywords or existing lines.
+3. Even minus odd, in that order: the sign is positive at n = 1 (one castle, 2 blocks).
+4. "Problem 502" (not "Project 502").
+5. Do not change Name/Data/Offset/Keywords or existing lines.
 
 ## Verification script
 

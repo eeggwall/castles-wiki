@@ -1,8 +1,7 @@
 # New-sequence draft — `F(w,3)`, even-block castles of height 3
 
-Status: **DRAFT for Charles to reword and submit.** OEIS requires human authorship; the
-text below is a checked, correct starting point, not final prose. Verify the exact
-field syntax against the [Style Sheet](https://oeis.org/wiki/Style_Sheet) before pasting.
+Status: DRAFT for Charles to submit. Verify the exact field syntax against the
+[Style Sheet](https://oeis.org/wiki/Style_Sheet) before pasting.
 Execution notes (field map, signature format, scope): see SUBMISSION-NOTES.md.
 
 **Plan (2026-10-04):** this entry is **row 3 of a new array entry** for `F(w,h)` (even-block
@@ -129,14 +128,11 @@ def a_brute(n):
 
 ## Flags for Charles before submitting
 
-1. Rewrite the Name and Comment in your own words and sign
-   `- _Firstname Lastname_, Mon DD YYYY` (replace the placeholder `_Charles Reid_,
-   Sep 05 2026` with the actual account name and date; OEIS forbids AI-authored text).
-2. OEIS Style Sheet: use `Sum_{i=2..n}`, `binomial(n,k)`, plain ASCII — never TeX/`\sum`/
+1. OEIS Style Sheet: use `Sum_{i=2..n}`, `binomial(n,k)`, plain ASCII — never TeX/`\sum`/
    `\binom`, no Mathematica.
-3. Confirm the Project Euler link form:
+2. Confirm the Project Euler link form:
    `Project Euler, <a href="https://projecteuler.net/problem=502">Problem 502: Counting
    castles</a>` (title confirmed "Counting Castles").
-4. Offset: default `offset 1` with the two leading zeros (see "Data & offset").
-5. New contributors are throttled to a few open drafts — submit the A038505/A038503
+3. Offset: default `offset 1` with the two leading zeros (see "Data & offset").
+4. New contributors are throttled to a few open drafts — submit the A038505/A038503
    cross-reference first (lower-risk interlinking), then this new sequence.

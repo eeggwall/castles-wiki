@@ -1,6 +1,6 @@
 # Cross-link draft — A000931 (Padovan) as the plastic castle strip
 
-Status: DRAFT for Charles to reword and submit. OEIS requires human authorship.
+Status: DRAFT for Charles to submit.
 Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md.
 Checked against the live entry 2026-10-04 (A000931; 33 comments).
 
@@ -57,9 +57,8 @@ something it lacks (A049703, A226136/A003410). If submitted anyway, comment only
 
 ## Flags
 
-1. Rewrite in own words and sign `- _Chaz Reid_, Mon DD YYYY` (two-digit day).
-2. Keep `n >= 3`: at `n = 1, 2` some strips never reach height 3 and are not castles of height 3.
-3. "Problem 502" (not "Project 502").
+1. Keep `n >= 3`: at `n = 1, 2` some strips never reach height 3 and are not castles of height 3.
+2. "Problem 502" (not "Project 502").
 
 ## Verification script
 

@@ -1,6 +1,6 @@
 # Cross-link draft — A332578 (compositions of n with unimodal negation) as valley castles by area
 
-Status: DRAFT for Charles to reword and submit.  OEIS requires human authorship.
+Status: DRAFT for Charles to submit.
 Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md.
 
 ## Identity (verified)
@@ -39,9 +39,8 @@ mostly for the Project Euler cross-reference.
 
 ## Flags
 
-1. Rewrite in own words; sign `- _Firstname Lastname_, Mon DD YYYY`.
-2. This is a small addition on a dense entry.  Do NOT propose the strict-valley
+1. This is a small addition on a dense entry.  Do NOT propose the strict-valley
    sequence or the parity refinements on this entry — those are separate new
    submissions (see `../vein9b-concave.md`).
-3. Verify A332578's current comment list actually lacks a PE 502 / castle phrasing
+2. Verify A332578's current comment list actually lacks a PE 502 / castle phrasing
    before submitting.

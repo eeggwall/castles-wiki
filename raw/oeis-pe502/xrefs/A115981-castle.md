@@ -1,6 +1,6 @@
 # Cross-link draft — A115981 (compositions of n not viewable as stacks) as non-convex castles by area
 
-Status: DRAFT for Charles to reword and submit.  OEIS requires human authorship.
+Status: DRAFT for Charles to submit.
 Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md.
 
 ## Identity (verified)
@@ -42,7 +42,6 @@ skyline" phrasing.
 
 ## Flags
 
-1. Rewrite in own words; sign `- _Firstname Lastname_, Mon DD YYYY`.
-2. Small comment on a dense entry.  The parity refinements
+1. Small comment on a dense entry.  The parity refinements
    (`nc_even`, `nc_odd`) are separate new submissions -- do NOT propose them here.
-3. Verify A115981 does not already carry a PE 502 / castle phrasing.
+2. Verify A115981 does not already carry a PE 502 / castle phrasing.

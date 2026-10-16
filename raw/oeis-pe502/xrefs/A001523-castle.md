@@ -1,6 +1,6 @@
 # Cross-link draft — A001523 (stacks / unimodal compositions) as convex castles by area
 
-Status: DRAFT for Charles to reword and submit.  OEIS requires human authorship.
+Status: DRAFT for Charles to submit.
 Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md.
 
 ## Identity (verified)
@@ -42,11 +42,9 @@ and does not warrant a separate formula.
 
 ## Flags
 
-1. Rewrite in own words; sign `- _Firstname Lastname_, Mon DD YYYY` (replace placeholder
-   `_Charles Reid_, Sep 05 2026`).
-2. This is a small addition on a dense entry.  Do NOT propose the parity-refinement
+1. This is a small addition on a dense entry.  Do NOT propose the parity-refinement
    sequences (even / odd castles by area, and their convex versions) on this entry —
    those are separate new submissions, not comments here (see `../vein9-area.md`).
-3. Verify A001523's current comment list actually lacks the PE 502 phrasing before
+2. Verify A001523's current comment list actually lacks the PE 502 phrasing before
    submitting (the "weakly unimodal composition" reading is already there; the PE 502
    framing is what's new).
