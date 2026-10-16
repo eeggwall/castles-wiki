@@ -33,7 +33,7 @@ Two facts about castle graphs are used in the sections that follow.
 - `h = 3`: `T_3(w) = A001045(w + 2)`, the Jacobsthal numbers;
 - `h = 4, 5`: `T_4(w) = A006130(w + 1)` and `T_5(w) = A006131(w + 1)`.
 
-By area, the tree skylines of height at most `h` have the generating function `G_h(q) = (1 + P_h(q))/(1 − q − q·P_h(q))` with `P_h(q) = q² + ⋯ + q^h`, so the denominator is `1 − q − q³ − ⋯ − q^{h+1}`; all skylines of height at most `h` have the denominator `1 − q − q² − ⋯ − q^h`, the `h`-nacci denominator ([[tree-castle-by-area](pages/tree-castle-by-area.md)], [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]). The tree skylines by area grow at the supergolden ratio at `h = 2` (A000930), at `φ` at `h = 3` (A006498), and at `ψ²` without a height bound (A005251), `ψ` the plastic number.
+By area, the tree skylines of height at most `h` have the generating function `G_h(q) = (1 + P_h(q))/(1 − q − q·P_h(q))` with `P_h(q) = q² + ⋯ + q^h`, so the denominator is `1 − q − q³ − ⋯ − q^{h+1}`; all skylines of height at most `h` have the denominator `1 − q − q² − ⋯ − q^h`, the `h`-nacci denominator ([[tree-castle-by-area](pages/tree-castle-by-area.md)], [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]). The tree skylines by area grow at the supergolden ratio at `h = 2` (A000930), at `φ` at `h = 3` (A006498), and at `ψ²` without a height bound (A005251), `ψ` the plastic number.
 
 **Sandpile group.** The tree castles are exactly the castles whose sandpile group is trivial, in the sink model and in the tide model ([[sandpile-census](pages/sandpile-census.md)]).
 

@@ -116,7 +116,7 @@ By area, the castles of height at most 3 grow at the tribonacci constant, and th
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - the algebraic constants in the closed forms of C-finite castle counts.
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - Ramanujan's solutions of `x³ + y³ = z³ ± 1` grow term to term by `δ_9² = (83 + 9√85)/2`, whose continued fraction is `[82; 1, 81, 1, 81, …]`.
 - [[fractional-recurrences](pages/fractional-recurrences.md)] - the growth of the recurrence `∇^α a_n = a_{n−1}` as a function of its order `α`, which equals `φ` at `α = 1/2`.
-- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - castles of height `h` by area, which grow at the `h`-nacci constants; only the case `h = 2`, golden, is a metallic mean.
+- [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - castles of height `h` by area, which grow at the `h`-nacci constants; only the case `h = 2`, golden, is a metallic mean.
 - [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - `metallic_ring(a)`, which computes `D0` and `f` for `Z[δ_a]`.
 
 ## Footnotes

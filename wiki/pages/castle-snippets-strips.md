@@ -103,7 +103,7 @@ Meaning: the Pell numbers give `a = 2`, the silver mean `1 + √2 ≈ 2.4142`, a
 (1, 1.618033988749895, 0.22173173479658925)
 ```
 
-The distance 0.222 rules out a metallic mean: the tribonacci constant `1.83929…`, the real root of `x³ = x² + x + 1`, is a cubic irrational, and every `δ_a` is quadratic. The sequence counts the skylines of height at most 3 by area ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]; `bounded_castles_by_area(3, ·)` in the section *Tree skylines and skylines by area*).
+The distance 0.222 rules out a metallic mean: the tribonacci constant `1.83929…`, the real root of `x³ = x² + x + 1`, is a cubic irrational, and every `δ_a` is quadratic. The sequence counts the skylines of height at most 3 by area ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]; `bounded_castles_by_area(3, ·)` in the section *Tree skylines and skylines by area*).
 
 
 ## Named strip rules
@@ -440,7 +440,7 @@ Meaning: at `h = 3` the denominator is `1 − q − q³ − q⁴ = (1 + q²)(1 �
 
 ### `bounded_castles_by_area(h, A_max)` → the skylines of height at most h by area
 
-The skylines with column heights in `{1, …, h}` and area `A`, the castles of height at most `h`, are the compositions of `A` into parts `{1, …, h}`, counted by the `h`-step Fibonacci numbers with generating function `1/(1 − x − x² − ⋯ − x^h)`. The growth is the `h`-nacci constant: `φ` at `h = 2`, the tribonacci constant `1.8393…` at `h = 3`, increasing to 2 as `h → ∞` ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]). The tree skylines of `tree_area_by_area` have the denominator `1 − q − q³ − ⋯ − q^{h+1}`, with no `q²` term.
+The skylines with column heights in `{1, …, h}` and area `A`, the castles of height at most `h`, are the compositions of `A` into parts `{1, …, h}`, counted by the `h`-step Fibonacci numbers with generating function `1/(1 − x − x² − ⋯ − x^h)`. The growth is the `h`-nacci constant: `φ` at `h = 2`, the tribonacci constant `1.8393…` at `h = 3`, increasing to 2 as `h → ∞` ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]). The tree skylines of `tree_area_by_area` have the denominator `1 − q − q³ − ⋯ − q^{h+1}`, with no `q²` term.
 
 ```python
 def bounded_castles_by_area(h, A_max):
@@ -603,7 +603,7 @@ Meaning: for `m = 1` the valid words are binary strings with no isolated `1` (th
 - [[proper-castle-projection](pages/proper-castle-projection.md)] - the `proper_even` projection.
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the horizontal-gap variation whose transfer matrix is `tower_spacing_matrix`.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree skylines by width and area, and their bijections with compositions and unique tournaments.
-- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - the castles of height `h` by area and the `h`-nacci growth constants of `bounded_castles_by_area`.
+- [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - the castles of height `h` by area and the `h`-nacci growth constants of `bounded_castles_by_area`.
 - [[a005251-bijection](pages/a005251-bijection.md)] / [[hardin-word-identity](pages/hardin-word-identity.md)] - the `encode`/`decode` bijection and the `word_matrix` automaton.
 - [[plastic-number](pages/plastic-number.md)] - `ψ²`, the growth constant of A005251, and the castle counts that grow at it.
 

@@ -103,7 +103,7 @@ Here `N_4(q) = 1 + 2q² + 2q³ + 6q⁴ + 4q⁵ + 7q⁶ + 4q⁷ + 4q⁸ + 2q⁹ +
 
 ### Area, blocks and peaks
 
-Peaks refine the columns. A castle with `p` peaks has at least `p + 1` blocks. Equality `b = p + 1` means every peak is a single block, so the castle has height 2; that diagonal is the row `h = 2` of [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]. The next cells, in castles of area `n`:[^exec][^oeis]
+Peaks refine the columns. A castle with `p` peaks has at least `p + 1` blocks. Equality `b = p + 1` means every peak is a single block, so the castle has height 2; that diagonal is the row `h = 2` of [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]. The next cells, in castles of area `n`:[^exec][^oeis]
 
 | blocks, peaks | first terms | OEIS |
 |---|---|---|

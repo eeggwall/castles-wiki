@@ -42,7 +42,7 @@ These interlinks are stated and proved on the pages cited; the section *Catalogu
 
 - `A009545`: among the castles of width `n` and height 2 whose last column has height 2, `A009545(n)` is the number with an even number of blocks minus the number with an odd number ([[tower-parity-sectors](pages/tower-parity-sectors.md)]).
 - `A005251`, `A202882`, `A203094`, `A203184`: the Hardin word identity reads each as `2^{−L}` times a signed tower count over the towers whose last column is even, and proves their empirical recurrences ([[hardin-word-identity](pages/hardin-word-identity.md)]). The tower-spacing skylines with `g = 2` give each an unsigned reading ([[tower-spacing-castles](pages/tower-spacing-castles.md)]), and `A005251` has four readings related by an explicit bijection ([[a005251-bijection](pages/a005251-bijection.md)]; the section *Multi-interpretation hub*).
-- `A000071`, `A000073`, `A000078`, `A001591`: castles by area of height 2 and of height at most 3, 4, 5, through compositions with bounded parts ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]).
+- `A000071`, `A000073`, `A000078`, `A001591`: castles by area of height 2 and of height at most 3, 4, 5, through compositions with bounded parts ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]).
 - The tower-spacing arrays of Hardin, "each element the minimum of `g` adjacent elements" (`A217878` to `A217881`, `A217949` to `A217952`) and "maxima of three adjacent elements" (`A228457`, `A228458`), with the tables `A217883`, `A217954` and `A228461`; the `h = 2` row `A005252`, `A005253`, `A005689`, `A098574` joins `A005251` with the closed form `Sum_k C(w+g−(g−1)k, 2k)` ([[tower-spacing-castles](pages/tower-spacing-castles.md)]).
 - `A001045`, `A006130`, `A006131`: the tree castles of height at most 3, 4 and 5 by width number `A001045(w+2)`, `A006130(w+1)` and `A006131(w+1)` ([[castle-graph](pages/castle-graph.md)]).
 - `A005408`, `A005891`, `A063490`, `A160747`: the towers of width `w = 2, 3, 4, 5` by number of blocks `b` are `A005408(b)`, `A005891(b)`, `A063490(b+1)` and `A160747(b)`, and the Narayana triangle `A001263` enters the general row ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]).
@@ -67,7 +67,7 @@ The bijection takes a composition of `n` to a binary string of length `n − 1` 
 
 ### Castles by area with bounded height: the n-nacci family
 
-A castle of area `n` is a composition of `n`, its column heights in order ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]). The castles of height at most `h` are the compositions with parts at most `h`, counted by the `h`-step Fibonacci numbers with g.f. `1/(1 − x − ⋯ − x^h)`; the castles of height 2 are the compositions into parts 1 and 2 that use a 2, `F_{n+1} − 1` of them.
+A castle of area `n` is a composition of `n`, its column heights in order ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]). The castles of height at most `h` are the compositions with parts at most `h`, counted by the `h`-step Fibonacci numbers with g.f. `1/(1 − x − ⋯ − x^h)`; the castles of height 2 are the compositions into parts 1 and 2 that use a 2, `F_{n+1} − 1` of them.
 
 | object | first terms (`n = 1…`) | growth | status |
 |---|---|---|---|
@@ -379,7 +379,7 @@ Fibonacci castles, the castles of height 2 with no two neighboring columns of he
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the convergents of castle eigenvalues against the OEIS, `|P(k, 4)| = A352116(k+1)`, and the Jacobi-Perron expansion of `2ψ²`.
 - [[hardin-word-identity](pages/hardin-word-identity.md)] - the Hardin sequences `A202882`, `A203094`, `A203184` and the proof of their recurrences.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - the row `A^e(·, 3)`.
-- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - castles by area with bounded height and the n-nacci numbers.
+- [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - castles by area with bounded height and the n-nacci numbers.
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the tower-spacing skylines and Hardin's running-minimum arrays.
 - [[proper-castle-projection](pages/proper-castle-projection.md)] - the even-block ridge castles.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the strip Perron roots and the fields they reach.

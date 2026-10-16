@@ -83,7 +83,7 @@ Every entry agrees with an enumeration of all tournaments on at most 8 vertices.
 - [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] - the five forcibly simple score vectors that the proof filters.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree skylines of height at most 4 by area, their compositions, and the Proposition matching them with the unique tournaments.
 - [[block-count-constraints](pages/block-count-constraints.md)] - compositions with parts in a set `D` as the `SEQ` construction, beside the coin-change series of the `MSET` construction.
-- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - the growth `1.9276` of all castles of height 4 by area, beside the growth `1.6851` of A000570.
+- [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - the growth `1.9276` of all castles of height 4 by area, beside the growth `1.6851` of A000570.
 - [[a005251-bijection](pages/a005251-bijection.md)] - the tree castles of any height by area, compositions with no two neighboring parts at least 2.
 - [[castle-snippets-strips](pages/castle-snippets-strips.md)] - `castle_to_composition`, `composition_to_castle` and the strong-connectivity test `is_strongly_connected`.
 

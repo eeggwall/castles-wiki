@@ -36,7 +36,7 @@ where `A_S` is the principal submatrix of `A` on the heights in `S`. The right s
 
 Two bounds hold for every rule on `h` heights:
 
-- A rule on `h` heights counts a subset of the compositions (ordered sums) of the area with parts at most `h`, so its growth constant is at most the **`h`-nacci constant** of those compositions ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]): the golden ratio `1.618` at `h = 2`, the tribonacci constant `1.839` at 3, the tetranacci constant `1.928` at 4, always below 2. The all-ones rule attains it.
+- A rule on `h` heights counts a subset of the compositions (ordered sums) of the area with parts at most `h`, so its growth constant is at most the **`h`-nacci constant** of those compositions ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]): the golden ratio `1.618` at `h = 2`, the tribonacci constant `1.839` at 3, the tetranacci constant `1.928` at 4, always below 2. The all-ones rule attains it.
 - The minimal polynomial of the growth constant has degree at most `T = h(h+1)/2`.
 
 ## The census through height 4
@@ -205,7 +205,7 @@ The two families of Pisot numbers converging to the golden ratio from below, the
 
 - [[quadratic-min-height](pages/quadratic-min-height.md)] - the same rules counted by width, where the growth constant is the largest eigenvalue of the rule matrix itself.
 - [[castle-by-area](pages/castle-by-area.md)] - castles counted by area.
-- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - the `h`-nacci constants, the ceiling at each height.
+- [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - the `h`-nacci constants, the ceiling at each height.
 - [[plastic-number](pages/plastic-number.md)] - the smallest Pisot number, here the area growth constant of the rule "height 1 may not follow height 1" on 2 heights.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the number fields of the strip growth constants by width.
 - [[castle-strip](pages/castle-strip.md)] - castle strips and their 0/1 rule matrices.

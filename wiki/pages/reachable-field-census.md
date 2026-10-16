@@ -110,7 +110,7 @@ Nine cubic minimal polynomials occur at `h = 3`:[^5]
 | `x³ − x² − 1` | `1.4656` | the supergolden constant ([[tree-castle-by-area](pages/tree-castle-by-area.md)]) | 6 |
 | `x³ − 2x² + x − 1` | `1.7549` | `ψ²` | 6 |
 | `x³ − x² − 2x + 1` | `1.8019` | `2cos(π/7)`, in `Q(ζ₇)⁺` | 6 |
-| `x³ − x² − x − 1` | `1.8393` | the tribonacci constant ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]) | 12 |
+| `x³ − x² − x − 1` | `1.8393` | the tribonacci constant ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]) | 12 |
 | `x³ − x² − 2x − 1` | `2.1479` | | 6 |
 | `x³ − 2x² − 1` | `2.2056` | | 6 |
 | `x³ − 2x² − x + 1` | `2.2470` | `1 + 2cos(2π/7)`, in `Q(ζ₇)⁺` | 12 |
@@ -158,7 +158,7 @@ The new fields at `h = 6` need dense matrices: the matrices with at most 6 ones 
 - [[ridge-castle](pages/ridge-castle.md)] - the ridge castles, with the ridge strip counts `A001333(w + 1)`, `A003688(w + 1)`, `A015448(w + 1)` at heights 3, 4, 5.
 - [[metallic-means](pages/metallic-means.md)] - de Spinadel's family `σ_p^q`, with `δ_a = σ_a^1`; this census places the field of each `δ_a`.
 - [[plastic-number](pages/plastic-number.md)] - the plastic number and `ψ²`, Perron roots of 0/1 strip matrices at `h = 3`.
-- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] and [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tribonacci constant, the supergolden constant and `ψ²` as growth constants by area.
+- [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] and [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tribonacci constant, the supergolden constant and `ψ²` as growth constants by area.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types of castle families, "X by width" and by the other axes.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the `δ_a` as the norm `−1` quadratics with continued fraction `[a; a, a, …]`.
 - [[fractional-recurrences](pages/fractional-recurrences.md)] - the growth constant `g(α)` of `∇^α a_n = a_{n−1}`, a continuous increasing curve that passes through three of this page's cubics at rational `α` (the supergolden constant at `1/3`, `ψ²` at `2/3`, `ψ³` at `3/2`). At an algebraic irrational `α`, `g(α)` is transcendental by the Gelfond-Schneider theorem, so no 0/1 matrix has it as its Perron root.

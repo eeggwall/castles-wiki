@@ -280,7 +280,7 @@ A dynamic program over the area counts the Pell castles without the generating f
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the strips with ceiling 3, from which the strips on heights 1 and 2 are removed in Section 5.
 - [[castle-strip](pages/castle-strip.md)] - column heights as the finite counting states.
 - [[generating-functions](pages/generating-functions.md)] - coefficient bookkeeping and rational generating functions.
-- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - castles of height `h` by area; its height-3 row counts all castles of height 3, without the anchor or the smoothness rule.
+- [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - castles of height `h` by area; its height-3 row counts all castles of height 3, without the anchor or the smoothness rule.
 - [[area-growth-census](pages/area-growth-census.md)] - area counting for arbitrary fixed-height strip rules.
 
 ## Footnotes

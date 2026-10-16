@@ -64,7 +64,7 @@ Members with `p, q ≥ 2` also occur, for instance `σ_2^2 = 1 + √3` for the h
 
 ## By area
 
-**Golden by area.** The prime castles, the castles with no column of height 1, number `F_{n−1}` by area with the height unrestricted ([[prime-castles](pages/prime-castles.md)]); at a fixed height they grow more slowly, at the root of `x^h = x^{h−2} + ⋯ + 1`: plastic at height 3, supergolden at height 4, increasing to `φ`. The castles of height 2 number `F_{A+1} − 1` by area, the compositions of `A` into 1s and 2s with at least one 2 ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]).
+**Golden by area.** The prime castles, the castles with no column of height 1, number `F_{n−1}` by area with the height unrestricted ([[prime-castles](pages/prime-castles.md)]); at a fixed height they grow more slowly, at the root of `x^h = x^{h−2} + ⋯ + 1`: plastic at height 3, supergolden at height 4, increasing to `φ`. The castles of height 2 number `F_{A+1} − 1` by area, the compositions of `A` into 1s and 2s with at least one 2 ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]).
 
 **The n-nacci family.** The castles of height `h` by area are the compositions of the area with largest part `h`, with generating function `1/(1 − x − ⋯ − x^h) − 1/(1 − x − ⋯ − x^{h−1})`, so they grow at the `h`-nacci constant:[^1]
 
@@ -115,7 +115,7 @@ The plastic number also appears in the signed tower count, as the largest eigenv
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the strips counted by the Pell numbers, silver by width.
 - [[castle-strip](pages/castle-strip.md)] - skylines read one column at a time under a rule on neighboring columns, whose transfer matrices give the growth by width.
 - [[castle-graph](pages/castle-graph.md)] - tree skylines and tree castles by width.
-- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - the castles of height `h` by area, the n-nacci family.
+- [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - the castles of height `h` by area, the n-nacci family.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - tree skylines and tree castles by area.
 - [[prime-castles](pages/prime-castles.md)] - castles with no column of height 1, by area.
 - [[area-growth-census](pages/area-growth-census.md)] - the growth constants by area of all strip rules up to height 4.

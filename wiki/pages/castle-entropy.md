@@ -61,7 +61,7 @@ For the families below, the castles, the skylines of the rule that reach the top
 
 Here `R_h` is the ridge rule's transfer matrix, `F_n` the Fibonacci numbers, and `A000931` the Padovan numbers; `ψ` is the real root of `ψ³ = ψ + 1` ([[plastic-number](pages/plastic-number.md)]), and the metallic means `δ_a` are on [[metallic-means](pages/metallic-means.md)].
 
-A growth constant along another axis is not a rate per column. Counted by area, the castles of height 3 grow like the tribonacci constant `τ = 1.8393`, the real root of `τ³ = τ² + τ + 1`, which is `log₂ τ = 0.879` bits per cell ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]); counted by semi-perimeter, all castles grow like `τ²` ([[castle-perimeter](pages/castle-perimeter.md)]).
+A growth constant along another axis is not a rate per column. Counted by area, the castles of height 3 grow like the tribonacci constant `τ = 1.8393`, the real root of `τ³ = τ² + τ + 1`, which is `log₂ τ = 0.879` bits per cell ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]); counted by semi-perimeter, all castles grow like `τ²` ([[castle-perimeter](pages/castle-perimeter.md)]).
 
 The two measures meet for the family of all castles of height `h`: by Equations (1) and (2), `(1/w)·log₂ A^e(w, h) → log₂ h`, its entropy rate, and the parity bit contributes `−1/w` to the rate.
 
@@ -78,7 +78,7 @@ The two measures meet for the family of all castles of height `h`: by Equations 
 - [[signed-tower-count](pages/signed-tower-count.md)] - the characteristic polynomials `char_k` and their roots of largest modulus.
 - [[castle-strip](pages/castle-strip.md)] - transfer matrices, strip counts and Perron roots.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the growth constant `h` of `A^e(·, h)`, against the eigenvalues of the signed transfer matrix.
-- [[metallic-means](pages/metallic-means.md)], [[plastic-number](pages/plastic-number.md)], [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - the growth constants of the tables.
+- [[metallic-means](pages/metallic-means.md)], [[plastic-number](pages/plastic-number.md)], [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - the growth constants of the tables.
 - [[reachable-field-census](pages/reachable-field-census.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)], [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the Perron roots of strip rules, and so their entropy rates.
 - [[castle-compression](pages/castle-compression.md)] - how short a description of a castle can be, against how many bits a uniform castle carries.
 - [[song-as-castle](pages/song-as-castle.md)] - the parity bit at `(17, 16)`, where `log₂ A − log₂ A^e` agrees with 1 to six decimal places, and the probability 0.4272 that a uniform one-column edit of a uniform castle changes the block parity (0.4236 if the edit must keep the height).

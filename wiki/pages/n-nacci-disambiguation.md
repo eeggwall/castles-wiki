@@ -22,7 +22,7 @@ Most castle appearances of the n-nacci numbers come from one fact. A castle of a
 #{castles of height h and area A}  =  (compositions of A, parts ≤ h)  −  (compositions of A, parts ≤ h − 1),
 ```
 
-and the count grows like the `h`-nacci constant ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]). The first terms, `A = 1, 2, …`:[^exec]
+and the count grows like the `h`-nacci constant ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]). The first terms, `A = 1, 2, …`:[^exec]
 
 | `h` | castles of height `h` by area | closed form | growth |
 |---|---|---|---|
@@ -42,7 +42,7 @@ These counts all come from the transfer matrix `[[1, 1], [1, 0]]` on the heights
 - **Fibonacci castles.** Height 2, no two adjacent height-2 columns. There are `F_{w+2} − 1` of width `w`, golden by width ([[fibonacci-castle](pages/fibonacci-castle.md)], [[castle-classification-shape](pages/castle-classification-shape.md)], [[castle-classification-growth](pages/castle-classification-growth.md)], [[castle-notation](pages/castle-notation.md)]). They are the tree castles of height 2 ([[castle-graph](pages/castle-graph.md)], [[castle-classification-spectrum](pages/castle-classification-spectrum.md)]). [[tree-castle-by-area](pages/tree-castle-by-area.md)] splits them by the number `t ≥ 1` of height-2 columns into the triangle `C(w − t + 1, t)`.
 - **Ridge castles of height 2.** Exchanging the heights 1 and 2 maps them onto the Fibonacci castles together with the flat row `(1, …, 1)`, so there are `F_{w+2}` of them for `w ≥ 2` ([[ridge-castle](pages/ridge-castle.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
 - **Trivial heaps on the path `P_w`.** With the path-graph dependency of [[viennot-heap-tower](pages/viennot-heap-tower.md)], under which pieces at columns `i` and `j` are dependent when `|i − j| ≤ 1`, the trivial heaps are the independent sets of `P_w`: the sets of height-2 columns of the Fibonacci castles of width `w`, together with the empty set, `F_{w+2}` in all.
-- **Castles of height 2 by area.** `F_{A+1} − 1`, the row `h = 2` of the spine table ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]). These are the Fibonacci castles shifted by one: append a height-1 column to a Fibonacci castle of width `w`, read each height-2 column together with the height-1 column after it as a part 2, and each remaining height-1 column as a part 1. This is a bijection from the Fibonacci castles of width `w` onto the castles of height 2 and area `w + 1`. Example: `(1, 2, 1, 1, 2)` becomes `(1, 2, 1, 2)`.[^exec]
+- **Castles of height 2 by area.** `F_{A+1} − 1`, the row `h = 2` of the spine table ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]). These are the Fibonacci castles shifted by one: append a height-1 column to a Fibonacci castle of width `w`, read each height-2 column together with the height-1 column after it as a part 2, and each remaining height-1 column as a part 1. This is a bijection from the Fibonacci castles of width `w` onto the castles of height 2 and area `w + 1`. Example: `(1, 2, 1, 1, 2)` becomes `(1, 2, 1, 2)`.[^exec]
 - **Single-block peaks.** In the table of castles by area, blocks and peaks on [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)], the diagonal "blocks = peaks + 1", where every peak is a single block, consists of the skylines of height at most 2, `F_{A+1}` of area `A`: the castles of height 2 and the flat row.
 
 **The q-Fibonacci castles count area.** Counting the Fibonacci castles with a variable `q` for area gives the q-Fibonacci castles ([[q-fibonacci-castle](pages/q-fibonacci-castle.md)]): at width `w` the polynomial is `q^w (f_w(q) − 1)` with `f_w(q) = Σ_m C(w − m + 1, m) q^m`. By number of cells there are `1, 2, 3, 5, 8, 12, 18, 27, 40, 59, 87, …` of them from 2 cells on, `A000930(n + 1) − 1` with `n` cells, one less than Narayana's cows, growing like the supergolden constant `1.4656…`.[^exec] These are different from the tiling q-Fibonacci polynomials (section 8).
@@ -113,7 +113,7 @@ Lindgren, Ngo and Segroves call the second family "the standard q-analogue" of t
 
 ### 1. Castles of height 3 by area (on the spine)
 
-`A000073(A + 2) − F_{A+1} = 1, 2, 5, 11, 23, 47, 94, 185, …` from area 3, growing like `τ` ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]).[^exec] The skylines of height at most 3 by area, `A000073(A + 2)`, are computed by `bounded_castles_by_area` on [[castle-snippets-strips](pages/castle-snippets-strips.md)], which also shows that `nearest_metallic` returns golden for them at distance `0.222`, since `τ` is cubic and every `δ_a` quadratic. The OEIS status is on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)], the growth type "tribonacci by area" on [[castle-classification-growth](pages/castle-classification-growth.md)] and [[castle-classification](pages/castle-classification.md)], and the entropy `log₂ τ = 0.879` bits per cell on [[castle-entropy](pages/castle-entropy.md)].
+`A000073(A + 2) − F_{A+1} = 1, 2, 5, 11, 23, 47, 94, 185, …` from area 3, growing like `τ` ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]).[^exec] The skylines of height at most 3 by area, `A000073(A + 2)`, are computed by `bounded_castles_by_area` on [[castle-snippets-strips](pages/castle-snippets-strips.md)], which also shows that `nearest_metallic` returns golden for them at distance `0.222`, since `τ` is cubic and every `δ_a` quadratic. The OEIS status is on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)], the growth type "tribonacci by area" on [[castle-classification-growth](pages/castle-classification-growth.md)] and [[castle-classification](pages/castle-classification.md)], and the entropy `log₂ τ = 0.879` bits per cell on [[castle-entropy](pages/castle-entropy.md)].
 
 ### 2. The ceiling by area at height 3 (on the spine)
 
@@ -134,7 +134,7 @@ The castles by semi-perimeter (the bargraphs, A082582) grow like `τ²`, and the
 
 ## Tetranacci, pentanacci, and higher
 
-- **Castles of height `h ≥ 4` by area.** The rows `h = 4` and `5` of the spine table, growing like the tetranacci constant `1.9276…`, the pentanacci constant `1.9659…`, and so on toward `2` ([[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)], [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)], [[castle-classification-growth](pages/castle-classification-growth.md)], [[castle-snippets-strips](pages/castle-snippets-strips.md)]).
+- **Castles of height `h ≥ 4` by area.** The rows `h = 4` and `5` of the spine table, growing like the tetranacci constant `1.9276…`, the pentanacci constant `1.9659…`, and so on toward `2` ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)], [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)], [[castle-classification-growth](pages/castle-classification-growth.md)], [[castle-snippets-strips](pages/castle-snippets-strips.md)]).
 - **The ceiling at height `h`.** The `h`-nacci constant bounds the growth by area of every strip rule on `h` heights (the tetranacci constant first appears at height 4). So a constant by area needs at least the first height whose `h`-nacci constant reaches it, the ceiling bound, one of the two lower bounds on the minimum height on [[area-growth-census](pages/area-growth-census.md)].
 - **Width.** The forced-descent rule of tribonacci section 3, on `h` heights, has the companion matrix of `x^h − x^{h−1} − ⋯ − 1` as its transfer matrix.
 - **Bounded parts in general.** Flajolet and Sedgewick's compositions with parts in `{1, …, r}` have ordinary generating function `(1 − z)/(1 − 2z + z^{r+1})` ([[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)]).
@@ -142,7 +142,7 @@ The castles by semi-perimeter (the bargraphs, A082582) grow like `τ²`, and the
 
 ## Related Concepts
 
-- [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] - the spine: castles by area as compositions with bounded parts.
+- [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - the spine: castles by area as compositions with bounded parts.
 - [[metallic-means](pages/metallic-means.md)] - de Spinadel's metallic means, whose first member is `φ` and which the n-nacci constants for `h ≥ 3` are not.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types such as "golden by width" and "tribonacci by area".
 - [[castle-notation](pages/castle-notation.md)] - `τ` and the Fibonacci castle entries.
