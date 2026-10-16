@@ -1,18 +1,18 @@
 ---
 title: 1-smooth castles
 category: Concepts
-summary: A 1-smooth castle is a castle whose neighbouring columns differ in height by at most 1. Starting from the Pell castles (first column at height 1, exact height 3), the anchored 1-smooth castles of exact height h are counted for every h; this page gives h = 2 to 12. The count is strips(w, h) − strips(w, h − 1), the anchored strips with ceiling h minus those with ceiling h − 1, and its width generating function is x^h/(η_h(x)·η_{h−1}(x)) for every h, where η_h(x) = Π(1 − λ_k x) over odd k ≤ h, λ_k = 1 + 2cos(πk/(h+1)); so the count satisfies a recurrence of order exactly h and grows like 1 + 2cos(π/(h+1)), climbing 2, 1+√2, φ², 1+√3, … to 3. The counts are column h − 1 of A283595 (Motzkin prefixes by height); pinning both end columns gives x^{2h−1}/(χ_h·χ_{h−1}) and column h − 1 of A097862. What does not extend past small h - Pell and Fibonacci closed forms, quadratic and metallic growth constants, the two-atom reading of 1/(1 − 2x − x²), a uniform parity recurrence - is collected in an addendum.
-tags: [concept, castle, castle-type, 1-smooth, pell, transfer-matrix, chebyshev, exact-height, parity, motzkin, generating-functions, oeis]
+summary: A 1-smooth castle is a castle whose neighboring columns differ in height by at most 1; an anchored one also has its first column at height 1. Starting from the Pell castles (anchored 1-smooth castles of height 3), the anchored 1-smooth castles of height h are counted for every h, with tables for h = 2 to 12. The count smooth(w, h) = strips(w, h) − strips(w, h − 1) subtracts the anchored strips on {1, ..., h − 1} from those on {1, ..., h}, and its width generating function is x^h/(η_h(x) η_{h−1}(x)) for every h, where η_h(x) = Π(1 − λ_k x) over odd k ≤ h and λ_k = 1 + 2cos(πk/(h+1)). So the count satisfies a recurrence of order h and grows like 1 + 2cos(π/(h+1)): 2, 1 + √2, φ², 1 + √3, ... toward 3. The counts are column h − 1 of A283595 (Motzkin prefixes by height); pinning both end columns gives x^{2h−1}/(χ_h χ_{h−1}) and column h − 1 of A097862. Facts that hold only at small heights (Pell and Fibonacci closed forms, quadratic and metallic growth constants, the two-atom reading of 1/(1 − 2x − x²), the parity orders) are collected at the end.
+tags: [concept, castle, castle-type, 1-smooth, pell, transfer-matrix, chebyshev, parity, motzkin, generating-functions, oeis]
 sources: [pe502-pell-castle-strip, barry-2005-catalan-transform]
 created: 2026-10-06
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
 # 1-smooth castles
 
 ## Definition
 
-A castle is a skyline `(c_1, …, c_w)` of columns standing on a full bottom row, with maximum height exactly `h` ([[castle-polyomino](pages/castle-polyomino.md)]). A **1-smooth castle** is a castle whose neighbouring columns differ in height by at most 1 (the m-smooth type at `m = 1`, [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2; general `m` on [[m-smooth-castles](pages/m-smooth-castles.md)]). An **anchored** 1-smooth castle also has its first column at height 1:
+A castle of height `h` is a skyline `(c_1, …, c_w)` with `1 ≤ c_i ≤ h` and some `c_i = h` ([[castle-polyomino](pages/castle-polyomino.md)]). A **1-smooth castle** is a castle whose neighboring columns differ in height by at most 1 (the m-smooth type of [[castle-classification-shape](pages/castle-classification-shape.md)] at `m = 1`; general `m` on [[m-smooth-castles](pages/m-smooth-castles.md)]). An **anchored** 1-smooth castle also has its first column at height 1:
 
 ```
 c_1 = 1,      |c_{i+1} − c_i| ≤ 1  (1 ≤ i < w),      max_i c_i = h.
@@ -20,14 +20,14 @@ c_1 = 1,      |c_{i+1} − c_i| ≤ 1  (1 ≤ i < w),      max_i c_i = h.
 
 - **Construction rule.** Start at height 1; at each step move up one, down one, or stay, never leaving `{1, …, h}`; and reach height `h` at least once.
 - **Examples.** At `h = 4`, the five anchored 1-smooth castles of width 5 are `(1, 1, 2, 3, 4)`, `(1, 2, 2, 3, 4)`, `(1, 2, 3, 3, 4)`, `(1, 2, 3, 4, 3)`, `(1, 2, 3, 4, 4)`.
-- **Non-examples.** `(1, 2, 3, 3)` is not a castle of height 4 (it never reaches 4); `(1, 2, 4, 3)` rises by 2 in one step.
+- **Non-examples.** The skyline `(1, 2, 3, 3)` is not a castle of height 4, since it never reaches 4; the skyline `(1, 2, 4, 3)` rises by 2 in one step.
 
-The Pell castles are the anchored 1-smooth castles of exact height 3 ([[pell-castle](pages/pell-castle.md)]). This page starts from them and follows the anchored castles to every `h`; the free and the both-ends-pinned boundary conditions are in [Other boundary conditions](#other-boundary-conditions).
+The Pell castles are the anchored 1-smooth castles of height 3; they have height 3 by definition ([[pell-castle](pages/pell-castle.md)]). This page starts from them and follows the anchored castles to every `h`; the free and the both-ends-pinned boundary conditions are in [Other boundary conditions](#other-boundary-conditions).
 
 **Counts.** For width `w` and ceiling `h`:
 
-- `strips(w, h)` is the number of anchored 1-smooth skylines of width `w` with every column in `{1, …, h}`. They need not reach `h`: these are the anchored strips of the Motzkin strip of height `h` ([[motzkin-castles](pages/motzkin-castles.md)] §4).
-- `smooth(w, h)` is the number of anchored 1-smooth castles of width `w` and exact height `h`.
+- `strips(w, h)` is the number of anchored 1-smooth skylines of width `w` with every column in `{1, …, h}`. They need not reach `h`, so they are not castles of height `h`: they are the anchored strips of the Motzkin strip of height `h` ([[motzkin-castles](pages/motzkin-castles.md)] §4).
+- `smooth(w, h)` is the number of anchored 1-smooth castles of width `w` and height `h`, the family count `A_X(w, h)` of [[castle-notation](pages/castle-notation.md)] for X the anchored 1-smooth castles.
 
 A strip with ceiling `h` either reaches `h` or stays in `{1, …, h − 1}`, so
 
@@ -43,10 +43,10 @@ At `h = 3` the pieces are:[^exec]
 - **Strips.** Anchored at height 1, the `(1 − x)` factor cancels and `Σ_w strips(w, 3) x^w = x/(1 − 2x − x²)`, so `strips(w, 3) = P⋆_w`, the Pell numbers (A000129, [[pell-numbers](pages/pell-numbers.md)]).
 - **Subtraction.** The strips that never reach 3 stay on `{1, 2}`, where every column after the first is free: `strips(w, 2) = 2^{w−1}`. So `smooth(w, 3) = P⋆_w − 2^{w−1}`.
 - **Generating function.** `Σ_w smooth(w, 3) x^w = x³/((1 − 2x − x²)(1 − 2x))`.
-- **Growth.** `1 + √2`, the silver ratio.
+- **Growth.** The silver mean `δ_2 = 1 + √2`: the Pell castles are silver by width.
 - **Parity.** Split by PE 502's block parity, the even-block and odd-block rows satisfy a recurrence of order 8 and their difference one of order 5.
 
-Sections 2 and 3 extend these to higher `h`; the addendum lists what does not extend.
+Sections 2 and 3 extend these to higher `h`; the last section lists the facts that hold only at small heights.
 
 ## 2. h = 4
 
@@ -125,7 +125,7 @@ With `χ_h(x) = x^h U_h((1 − x)/(2x))`, where `U_h` are the Chebyshev polynomi
 
 At `h = 2m + 1` the even-`k` angles `θ_{2j} = πj/(m+1)` are the angles of `χ_m`, so `χ_m` is the factor that cancels. At `h = 2m` the factor `χ_m − xχ_{m−1}` is the one whose zeros sit at the odd angles `θ = (2j − 1)π/(2m + 1)`. For example, `η_4 = χ_2 − xχ_1 = (1 − 2x) − x(1 − x) = 1 − 3x + x²`.[^exec]
 
-### 3.3 The exact-height generating function
+### 3.3 The generating function of the castles of height h
 
 **Proposition.** For every `h ≥ 1`,
 
@@ -160,23 +160,23 @@ and the fraction of anchored strips that reach their ceiling tends to 1. The gro
 | 4 | `1, 2, 5, 13, 34, 89, 233, 610, 1597, 4181, …` | A001519 (`F_{2w−1}`) | `1, 5, 19, 64, 202, 612, 1803, 5205, …` | `φ² ≈ 2.6180` | 2 |
 | 5 | `1, 2, 5, 13, 35, 95, 259, 707, 1931, 5275, …` | A057960(`w − 1`) | `1, 6, 26, 97, 334, 1094, 3465, 10714, …` | `1 + √3 ≈ 2.7321` | 2 |
 | 6 | `1, 2, 5, 13, 35, 96, 266, 741, 2070, 5791, …` | A085810(`w`) | `1, 7, 34, 139, 516, 1802, 6038, 19643, …` | `1 + 2cos(π/7) ≈ 2.8019` | 3 |
-| 7 | `1, 2, 5, 13, 35, 96, 267, 749, 2113, 5982, …` | no match | `1, 8, 43, 191, 760, 2816, 9933, 33812, …` | `1 + √(2 + √2) ≈ 2.8478` | 4 |
-| 8 | `1, 2, 5, 13, 35, 96, 267, 750, 2122, 6035, …` | no match | `1, 9, 53, 254, 1078, 4223, 15639, 55575, …` | `1 + 2cos(π/9) ≈ 2.8794` | 3 |
-| 9 | `1, 2, 5, 13, 35, 96, 267, 750, 2123, 6045, …` | no match | `1, 10, 64, 329, 1483, 6123, 23751, 87957, …` | `1 + 2cos(π/10) ≈ 2.9021` | 4 |
+| 7 | `1, 2, 5, 13, 35, 96, 267, 749, 2113, 5982, …` | - | `1, 8, 43, 191, 760, 2816, 9933, 33812, …` | `1 + √(2 + √2) ≈ 2.8478` | 4 |
+| 8 | `1, 2, 5, 13, 35, 96, 267, 750, 2122, 6035, …` | - | `1, 9, 53, 254, 1078, 4223, 15639, 55575, …` | `1 + 2cos(π/9) ≈ 2.8794` | 3 |
+| 9 | `1, 2, 5, 13, 35, 96, 267, 750, 2123, 6045, …` | - | `1, 10, 64, 329, 1483, 6123, 23751, 87957, …` | `1 + 2cos(π/10) ≈ 2.9021` | 4 |
 | 10 | `1, 2, 5, 13, 35, 96, 267, 750, 2123, 6046, 17302, …` | - | `1, 11, 76, 417, 1989, 8631, 34993, 134828, …` | `1 + 2cos(π/11) ≈ 2.9190` | 5 |
 | 11 | `1, 2, 5, 13, 35, 96, 267, 750, 2123, 6046, 17303, 49720, …` | - | `1, 12, 89, 519, 2611, 11878, 50236, 201076, …` | `1 + (√6 + √2)/2 ≈ 2.9319` | 4 |
 | 12 | `1, 2, 5, 13, 35, 96, 267, 750, 2123, 6046, 17303, 49721, 143364, …` | - | `1, 13, 103, 636, 3365, 16012, 70516, 292791, …` | `1 + 2cos(π/13) ≈ 2.9419` | 6 |
 
-"Degree" is the degree of the growth constant as an algebraic number, half of Euler's totient of `2h + 2`. "No match" means an oeis.org search of at least the first ten terms on 2026-10-06 returned nothing; "-" means not searched.[^exec]
+"Degree" is the degree of the growth constant as an algebraic number, half of Euler's totient of `2h + 2`. "-" means no A-number is listed here; [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of those rows.[^exec]
 
 - **The strip rows.** An anchored skyline of width `w` cannot rise above height `w`, so the ceiling matters only from `w = h + 1` on, and for `w ≤ h` the strip row equals the anchored 1-smooth count with no ceiling, A005773(`w`).[^a005773] The `h = 5` row is A057960, base-5 digit strings that start with 0 and whose adjacent digits differ by at most 1;[^a057960] the `h = 6` row is A085810, three-choice paths in a corridor of height 5.[^a085810]
 - **The castle rows.** Every `smooth` row is a column of one OEIS triangle: `smooth(w, h)` is A283595 at row `w − 1`, column `h − 1`, the number of Motzkin prefixes of length `w − 1` and height `h − 1`. The entry gives no generating function.[^a283595] At `h = 3` the row is also A094706(`w − 2`) ([[pell-castle](pages/pell-castle.md)]).
 
 ### 3.6 Block parity
 
-PE 502 counts castles by the parity of their block count. For an anchored 1-smooth castle, `blocks(c) = c_1 + Σ max(0, c_{i+1} − c_i) = 1 + (number of rises)`. So the signed count `Σ (−1)^{blocks}` is the transfer-matrix count with each rise weighted by `−1`, and the eigenvalues become `1 + 2i·cos θ_k` ([[motzkin-castles](pages/motzkin-castles.md)] §3). Even-block and odd-block counts are (`smooth` ± signed)/2.
+Project Euler 502 counts the castles with an even number of blocks. For an anchored 1-smooth castle, `blocks(c) = c_1 + Σ max(0, c_{i+1} − c_i) = 1 + (number of rises)`. So the signed count `Σ (−1)^{blocks}` is the transfer-matrix count with each rise weighted by `−1`, and the eigenvalues become `1 + 2i·cos θ_k` ([[motzkin-castles](pages/motzkin-castles.md)] §3). Even-block and odd-block counts are (`smooth` ± signed)/2.
 
-At `w = h` and, for `h ≥ 2`, `w = h + 1`, every anchored 1-smooth castle of exact height `h` has `h − 1` rises and so `h` blocks. The first entries are all even-block for even `h` and all odd-block for odd `h`.[^exec]
+At `w = h` and, for `h ≥ 2`, `w = h + 1`, every anchored 1-smooth castle of height `h` has `h − 1` rises and so `h` blocks. The first entries are all even-block for even `h` and all odd-block for odd `h`.[^exec]
 
 | `h` | even-block, `w = h, h+1, …` | odd-block, `w = h, h+1, …` | even − odd, `w = h, h+1, …` | growth of even − odd | order, even − odd | order, even / odd |
 |---|---|---|---|---|---|---|
@@ -192,21 +192,21 @@ At `w = h` and, for `h ≥ 2`, `w = h + 1`, every anchored 1-smooth castle of ex
 | 11 | `0, 0, 10, 141, 1076, 5898, 26358, 104378, …` | `1, 12, 79, 378, 1535, 5980, 23878, 96698, …` | `−1, −12, −69, −237, −459, −82, 2480, 7680, …` | 2.1753 | 17 | 28 |
 | 12 | `1, 13, 92, 470, 2017, 8190, 33730, 140609, …` | `0, 0, 11, 166, 1348, 7822, 36786, 152182, …` | `1, 13, 81, 304, 669, 368, −3056, −11573, …` | 2.1842 | 19 | 31 |
 
-The orders are the degrees of the reduced denominators, from the weighted transfer matrix; at `h = 2` the even-block row has order 3 and the odd-block row order 4. For every `h ≤ 12` the signed count grows more slowly than `smooth(w, h)`, so each parity class is half of `smooth(w, h)` up to a smaller term. The signed growth rate is `√(1 + 4cos²(π/(h+1)))` for every `h ≤ 12` except `h = 5` and `h = 9`, where that eigenvalue cancels and the rate equals the one at `h − 1`. The `h = 4` even-block and odd-block rows have no OEIS match (searched 2026-10-06); the rows for `h ≥ 5` have not been searched.[^exec]
+The orders are the degrees of the reduced denominators, from the weighted transfer matrix; at `h = 2` the even-block row has order 3 and the odd-block row order 4. For every `h ≤ 12` the signed count grows more slowly than `smooth(w, h)`, so each parity class is half of `smooth(w, h)` up to a smaller term. The signed growth rate is `√(1 + 4cos²(π/(h+1)))` for every `h ≤ 12` except `h = 5` and `h = 9`, where that eigenvalue cancels and the rate equals the one at `h − 1`.[^exec]
 
 ## Other boundary conditions
 
-The same matrix with other end conditions gives the other two 1-smooth families of exact height `h`. Both have the growth `1 + 2cos(π/(h+1))` of 3.4.[^exec]
+The same matrix with other end conditions gives the other two 1-smooth families of height `h`. Both have the growth `1 + 2cos(π/(h+1))` of 3.4.[^exec]
 
 **Both end columns at height 1.** The strip generating function is `x·χ_{h−1}/χ_h`, a corner cofactor. The determinants satisfy `χ_{h−1}² − χ_h χ_{h−2} = x^{2(h−1)}`: substituting the recurrence shows the left side is `x²` times its value at `h − 1`, and it equals 1 at `h = 1`. So for every `h ≥ 1` (with `χ_{−1} = 0`),
 
 ```
-Σ_w #{1-smooth castles of exact height h with c_1 = c_w = 1} x^w  =  x^{2h−1} / (χ_h(x) · χ_{h−1}(x)),
+Σ_w #{1-smooth castles of height h with c_1 = c_w = 1} x^w  =  x^{2h−1} / (χ_h(x) · χ_{h−1}(x)),
 ```
 
-of order `deg χ_h + deg χ_{h−1}`: `2h − 1` when `h ≡ 1 (mod 3)` and `2h − 2` otherwise, since `χ_h` has degree `h − 1` when 3 divides `h + 1` (the zero eigenvalue `λ_k = 0`). No eigenvalue cancels here, since `v_k(1) = sin θ_k ≠ 0`. The first such castle has width `2h − 1`, `(1, 2, …, h, …, 2, 1)`. Subtracting 1 from every column gives a Motzkin path of length `w − 1` and height `h − 1`, so the count is A097862 at row `w − 1`, column `h − 1`. The entry states this column generating function, `z^{2k}/(P_k P_{k+1})` with its `P_k` equal to `χ_k`, by path length instead of width;[^a097862] [[castle-classification-shape](pages/castle-classification-shape.md)] Axis 3 tabulates it by `(w, h)` for `w ≤ 9`. At `h = 3` this is the row `0, 0, 0, 0, 1, 5, 18, 56, …` on [[pell-castle](pages/pell-castle.md)]. Since the transfer matrix is `I + A`, the strips with both ends at height 1 (exact height or not) are a [[binomial-transform](pages/binomial-transform.md)]: choose the `2k` column boundaries where the height changes, then a Dyck path of semilength `k` and height `≤ h − 1` through them, so the strip count is `Σ_k C(w − 1, 2k)·#{Dyck paths of semilength k, height ≤ h − 1}`, Barry's aerated transform; with no ceiling it is Barry's `M_n = Σ_k C(n, 2k) C_k`.[^barry]
+of order `deg χ_h + deg χ_{h−1}`: `2h − 1` when `h ≡ 1 (mod 3)` and `2h − 2` otherwise, since `χ_h` has degree `h − 1` when 3 divides `h + 1` (the zero eigenvalue `λ_k = 0`). No eigenvalue cancels here, since `v_k(1) = sin θ_k ≠ 0`. The first such castle has width `2h − 1`, `(1, 2, …, h, …, 2, 1)`. Subtracting 1 from every column gives a Motzkin path of length `w − 1` and height `h − 1`, so the count is A097862 at row `w − 1`, column `h − 1`. The entry states this column generating function, `z^{2k}/(P_k P_{k+1})` with its `P_k` equal to `χ_k`, by path length instead of width;[^a097862] [[castle-classification-shape](pages/castle-classification-shape.md)] tabulates it by `(w, h)` for `w ≤ 9` under the Motzkin-path type. At `h = 3` this is the row `0, 0, 0, 0, 1, 5, 18, 56, …` on [[pell-castle](pages/pell-castle.md)]. Since the transfer matrix is `I + A`, the strips with both ends at height 1, whether or not they reach `h`, are a [[binomial-transform](pages/binomial-transform.md)]: choose the `2k` column boundaries where the height changes, then a Dyck path of semilength `k` and height `≤ h − 1` through them, so the strip count is `Σ_k C(w − 1, 2k)·#{Dyck paths of semilength k, height ≤ h − 1}`, Barry's aerated transform; with no ceiling it is Barry's `M_n = Σ_k C(n, 2k) C_k`.[^barry]
 
-**Free first column.** Only odd `k` contribute, because `𝟙` is orthogonal to the even-`k` eigenvectors on both sides, and the reduced denominator is again `η_h η_{h−1}` (checked for `h ≤ 12`), but the numerator is not a monomial. At `h = 3` it is `x(1 − x)`. The count of skylines is `(2/(h+1)) Σ_{k odd} cot²(θ_k/2) λ_k^{w−1}`. For `w ≤ h` there are exactly `3^{w−1}` free 1-smooth castles of exact height `h`. Each of the `3^{w−1}` step sequences spans at most `w − 1 ≤ h − 1` rows, so it has exactly one vertical position that puts its top column at height `h`.
+**Free first column.** Only odd `k` contribute, because `𝟙` is orthogonal to the even-`k` eigenvectors on both sides, and the reduced denominator is again `η_h η_{h−1}` (checked for `h ≤ 12`), but the numerator is not a monomial. At `h = 3` it is `x(1 − x)`. The count of skylines is `(2/(h+1)) Σ_{k odd} cot²(θ_k/2) λ_k^{w−1}`. For `w ≤ h` there are exactly `3^{w−1}` free 1-smooth castles of height `h`. Each of the `3^{w−1}` step sequences spans at most `w − 1 ≤ h − 1` rows, so it has exactly one vertical position that puts its top column at height `h`.
 
 | `h` | free first column, `w = h+1, h+2, …` | both ends at height 1, `w = 2h−1, 2h, …` |
 |---|---|---|
@@ -222,14 +222,14 @@ of order `deg χ_h + deg χ_{h−1}`: `2h − 1` when `h ≡ 1 (mod 3)` and `2h 
 | 11 | `177145, 531411, 1594055, 4781127, 14338159, …` | `1, 21, 250, 2208, 16077, 102005, …` |
 | 12 | `531439, 1594291, 4782667, 14346729, 43033457, …` | `1, 23, 297, 2825, 22025, 148905, …` |
 
-The free row at `h = 3` is A106514(`w − 1`) ([[pell-castle](pages/pell-castle.md)]). The `h = 4` free row `1, 3, 9, 27, 79, 227, 643, 1801, 4999` has no OEIS match (searched 2026-10-06).
+The free row at `h = 3` is A106514(`w − 1`) ([[pell-castle](pages/pell-castle.md)]).
 
 ## Computation
 
 ```python
 from math import cos, pi
 def smooth(W, h):
-    """(even, odd) anchored 1-smooth castles of exact height h, widths 1..W.
+    """(even, odd) anchored 1-smooth castles of height h, widths 1..W.
     DP over (last height, block parity, reached h); blocks = 1 + number of rises."""
     dp, out = {(1, 1, h == 1): 1}, []
     for w in range(1, W + 1):
@@ -252,27 +252,27 @@ for h in range(1, 13):
 print([e + o for e, o in smooth(12, 4)])    # 0, 0, 0, 1, 5, 19, 64, 202, 612, 1803, 5205, 14797
 ```
 
-## Addendum: what does not extend
+## Facts that hold only at small heights
 
-The definition, the subtraction `strips(w, h) − strips(w, h − 1)`, the transfer matrix, the exact-height generating function and its monomial numerator, the growth ladder, and the parity split as a computation extend to every `h`. The following do not.
+The definition, the subtraction `strips(w, h) − strips(w, h − 1)`, the transfer matrix, the generating function of the castles of height `h` and its monomial numerator, the growth ladder, and the parity split as a computation extend to every `h`. The following do not.
 
-- **Named integer sequences.** The strip rows are Pell at `h = 3` and odd-indexed Fibonacci at `h = 4`. At `h = 5` and `6` they are OEIS entries named for digit strings and corridor paths (A057960, A085810), and at `h = 7, 8, 9` they have no OEIS match. The castle rows exist in the OEIS only as columns of A283595, and at `h = 3` as A094706.
+- **Named integer sequences.** The strip rows are Pell at `h = 3` and odd-indexed Fibonacci at `h = 4`. At `h = 5` and `6` they are OEIS entries named for digit strings and corridor paths (A057960, A085810). The castle rows exist in the OEIS only as columns of A283595, and at `h = 3` as A094706.
 - **Quadratic growth constants.** `1 + 2cos(π/(h+1))` has degree equal to half of Euler's totient of `2h + 2`, which is at most 2 only for `h ≤ 5`. For `h = 6, …, 12` the growth constants are cubic, quartic, quintic and sextic (table 3.5).
-- **Metallic labels.** The growth `1 + 2cos(π/(h+1))` is a metallic mean ([[metallic-means](pages/metallic-means.md)]) at three heights: copper `2 = σ_1^2` at `h = 2`, silver `1 + √2` at `h = 3`, and `1 + √3 = σ_2^2`, the root of `x² − 2x − 2`, at `h = 5`. So the 1-smooth castles are copper, silver and `σ_2^2` width growth castles ([[castle-classification-growth](pages/castle-classification-growth.md)]) at those heights. `φ²` (`h = 4`, root of `x² − 3x + 1`) is quadratic but not a member. Silver at `h = 3` comes from the 1-smooth rule. The ridge rule reaches the metallic means at every height ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
-- **The two-atom reading.** The Analytic Combinatorics exercise of [[pell-castle-strip](pages/pell-castle-strip.md)] reads `1/(1 − 2x − x²)` as sequences of a width-1 atom of weight 2 and a width-2 atom of weight 1. That reading needs a denominator `1 − (2x + x²)` and belongs to `h = 3`. Writing `Σ_w strips(w, h) x^{w−1} = 1/(1 − a_h(x))`, the series `a_h` is `2x + x²` at `h = 3` and `2x + x²/(1 − x)` at `h = 4`. Its first 25 coefficients are nonnegative for every `h ≤ 12`; this wiki gives no reading of its terms as atoms. In the other direction, the m-smooth castles keep the two-atom reading on the diagonal `h = m + 2`, with atoms of weight `m + 1` and `m` ([[m-smooth-castles](pages/m-smooth-castles.md)] §3.6).
-- **A uniform parity recurrence.** At `h = 3` the parity rows have order 8 and the signed row order 5. For `h = 2, …, 12` the signed orders are `3, 5, 7, 7, 9, 11, 13, 13, 15, 17, 19`, with repeats at `h = 5` and `h = 9`. Unlike the order `h` of the unsigned count (3.3), these orders are computed height by height.
+- **Metallic labels.** The growth `1 + 2cos(π/(h+1))` is a metallic mean ([[metallic-means](pages/metallic-means.md)]) at three heights: copper `2 = σ_1^2` at `h = 2`, silver `1 + √2` at `h = 3`, and `1 + √3 = σ_2^2`, the root of `x² − 2x − 2`, at `h = 5`. So the anchored 1-smooth castles of heights 2, 3 and 5 are copper, silver and `σ_2^2` by width ([[castle-classification-growth](pages/castle-classification-growth.md)]). `φ²` (`h = 4`, root of `x² − 3x + 1`) is quadratic but not a member. Silver at `h = 3` comes from the 1-smooth rule. The ridge rule reaches the metallic means at every height ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
+- **The two-atom reading.** The Analytic Combinatorics exercise of [[pell-castle-strip](pages/pell-castle-strip.md)] reads `1/(1 − 2x − x²)` as sequences of a width-1 atom of weight 2 and a width-2 atom of weight 1. That reading needs a denominator `1 − (2x + x²)` and belongs to `h = 3`. Writing `Σ_w strips(w, h) x^{w−1} = 1/(1 − a_h(x))`, the series `a_h` is `2x + x²` at `h = 3` and `2x + x²/(1 − x)` at `h = 4`. Its first 25 coefficients are nonnegative for every `h ≤ 12`. In the other direction, the m-smooth castles keep the two-atom reading on the diagonal `h = m + 2`, with atoms of weight `m + 1` and `m` ([[m-smooth-castles](pages/m-smooth-castles.md)] §3.6).
+- **The parity orders.** At `h = 3` the parity rows have order 8 and the signed row order 5. For `h = 2, …, 12` the signed orders are `3, 5, 7, 7, 9, 11, 13, 13, 15, 17, 19`, with repeats at `h = 5` and `h = 9`. Unlike the order `h` of the unsigned count (3.3), these orders are computed height by height.
 
 ## Related Concepts
 
-- [[1-smooth-pell-castles-by-area](pages/1-smooth-pell-castles-by-area.md)] - the Pell castles at exact height 3 counted by cells rather than columns, with joint width/area bookkeeping and area growth.
+- [[1-smooth-pell-castles-by-area](pages/1-smooth-pell-castles-by-area.md)] - the Pell castles of height 3 counted by cells rather than columns, with joint width/area bookkeeping and area growth.
 - [[pell-castle](pages/pell-castle.md)] - the `h = 3` case, where this page starts.
 - [[kernel-method](pages/kernel-method.md)] - the same strips through the two roots of the kernel `1 − x(u^{−1} + 1 + u)` ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the `h = 3` strip and the two-atom reading of `1/(1 − 2x − x²)`.
 - [[binomial-transform](pages/binomial-transform.md)] - `I + A` as a binomial transform: flat steps chosen freely, the walls only constrain the skeleton ([[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)]).
 - [[motzkin-castles](pages/motzkin-castles.md)] - the same matrix with both end columns pinned (§4, the growth ladder) and the signed eigenvalues `1 + 2i·cos θ_k` (§3); anchored at height 1 with no ceiling, the Motzkin prefixes A005773 (§5).
-- [[castle-strip](pages/castle-strip.md)] - how a neighbour rule becomes a transfer matrix on column heights.
-- [[m-smooth-castles](pages/m-smooth-castles.md)] - neighbouring columns differing by at most `m`, starting from this page.
-- [[castle-classification-shape](pages/castle-classification-shape.md)] - Axis 2, the m-smooth type at `m = 1`.
+- [[castle-strip](pages/castle-strip.md)] - how a rule on neighboring columns becomes a transfer matrix on column heights.
+- [[m-smooth-castles](pages/m-smooth-castles.md)] - neighboring columns differing by at most `m`, starting from this page.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the m-smooth type, here at `m = 1`.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types; the Pell castles are its silver example.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge rule, which reaches the metallic means at every height.
 - [[pell-numbers](pages/pell-numbers.md)] - `P⋆_w = strips(w, 3)`.
@@ -287,5 +287,5 @@ The definition, the subtraction `strips(w, h) − strips(w, h − 1)`, the trans
 [^a085810]: https://oeis.org/A085810 (fetched 2026-10-06) - "Number of three-choice paths along a corridor of height 5, starting from the lower side."; "G.f.: (1-2*x)/(1-4*x+3*x^2+x^3)."; data `1, 2, 5, 13, 35, 96, 266, 741, 2070, 5791, 16213, 45409, 127206, 356384, …`, offset 1.
 [^a283595]: https://oeis.org/A283595 (fetched 2026-10-06) - "Triangle read by rows: T(n,k) is the number of Motzkin prefixes (i.e., left factors of Motzkin paths) of length n and height k."; data `1, 1, 1, 1, 3, 1, 1, 7, 4, 1, 1, 15, 13, 5, 1, 1, 31, 38, 19, 6, 1, …`, offset 0; the entry has no formula section.
 [^a097862]: https://oeis.org/A097862 (fetched 2026-10-06) - "Triangle read by rows: T(n,k) is the number of Motzkin paths of length n and height k (n>=0, k>=0)."; "The g.f. for column k is z^(2k)/[P_k*P_{k+1}], where the polynomials P_k are defined by P_0=1, P_1=1-z, P_k=(1-z)P_{k-1}-z^2*P_{k-2}."; data `1, 1, 1, 1, 1, 3, 1, 7, 1, 1, 15, 5, 1, 31, 18, 1, …`, offset 0, row `n` has `1 + ⌊n/2⌋` terms.
-[^exec]: Verified by execution (Python 3, SymPy, 2026-10-06) for `h = 1, …, 12`: the strip, exact-height, signed, free and pinned generating functions from the transfer matrix `I + A_path` (rises weighted `−1` for the signed count); the cofactor formula and the cosine sums against them; `Σ_w smooth(w, h) x^w = x^h/(η_h η_{h−1})` and the pinned formula `x^{2h−1}/(χ_h χ_{h−1})` as identities; the even/odd split against brute-force enumeration for `w ≤ 13`; `smooth(h + 1, h) = h + 1` with all `h` blocks; the free count `3^{w−1}` for `w ≤ h`; the anchored rows against A283595 rows 0-8, the pinned rows against A097862 rows 0-11, the strip rows against A001519, A057960, A085810 (14 terms) and A005773 for `w ≤ h`; the minimal polynomial degree of `1 + 2cos(π/(h+1))` against half of Euler's totient of `2h + 2`; the signed growth rates and reduced-denominator degrees as tabulated; the first 25 coefficients of `a_h` nonnegative; the two `η_h` formulas in terms of `χ` as polynomial identities for `h ≤ 12`, and the two factorizations of `χ_{2m+1}` and `χ_{2m}` for `m ≤ 15`. OEIS searches (2026-10-06) with no match: the strip rows at `h = 7, 8, 9`; the `smooth` rows at `h = 4, …, 9` as standalone sequences (they are columns of A283595); the `h = 4` even-block and odd-block rows; the `h = 4` free row.
+[^exec]: Verified by execution (Python 3.11, SymPy, 2026-10-06 and 2026-10-16) for `h = 1, …, 12`: the strip, castle, signed, free and pinned generating functions from the transfer matrix `I + A_path` (rises weighted `−1` for the signed count); the cofactor formula and the cosine sums against them; `Σ_w smooth(w, h) x^w = x^h/(η_h η_{h−1})` and the pinned formula `x^{2h−1}/(χ_h χ_{h−1})` as identities; the even/odd split against brute-force enumeration for `w ≤ 13`; `smooth(h + 1, h) = h + 1` with all `h` blocks; the free count `3^{w−1}` for `w ≤ h`; the anchored rows against A283595 rows 0-8, the pinned rows against A097862 rows 0-11, the strip rows against A001519, A057960, A085810 (14 terms) and A005773 for `w ≤ h`; the minimal polynomial degree of `1 + 2cos(π/(h+1))` against half of Euler's totient of `2h + 2`; the signed growth rates and reduced-denominator degrees as tabulated; the first 25 coefficients of `a_h` nonnegative; the two `η_h` formulas in terms of `χ` as polynomial identities for `h ≤ 12`, and the two factorizations of `χ_{2m+1}` and `χ_{2m}` for `m ≤ 15`. On 2026-10-16 every table on the page was recomputed by a dynamic program over (last height, block parity, reached h), the reduced denominators η_h and the generating function x^h/(η_h η_{h−1}) were rederived from (I − x(I + A_path))^{−1} for `h ≤ 12`, the parity orders were recomputed by Berlekamp-Massey on 120 terms, and A001519, A005773, A057960, A085810, A097862 and A283595 were rechecked on oeis.org.
 [^barry]: [[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)] §7 L1100-L1130, L1174-L1194 [synthesis] - the transform `b_n = Σ_k C(n, 2k) a_k`, factored as `Bin ◦ (1, x²)` ("'aerate' a sequence with interpolated zeros and then follow this with a binomial transform"), and `M_n = Σ_k C(n, 2k) C(k)`. The castle reading is verified on the source page (footnote exec): with `c_1 = c_w = 1`, the strip count equals `Σ_k C(w − 1, 2k)` times the closed flat-free walks of length `2k` for `h ∈ {2, 3, 4, 5, 8}` and no ceiling, `w ≤ 14`.
