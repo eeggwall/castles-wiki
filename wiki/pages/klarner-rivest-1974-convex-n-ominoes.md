@@ -10,7 +10,7 @@ updated: 2026-10-16
 
 # Asymptotic Bounds for the Number of Convex n-Ominoes (Klarner & Rivest 1974)
 
-**Source:** `raw/klarner-rivest-1974-convex-n-ominoes.txt`, a hand transcription of the scanned paper, which has no usable text layer: D. A. Klarner and R. L. Rivest, "Asymptotic bounds for the number of convex n-ominoes", *Discrete Mathematics* 8 (1974) 31-40. The scan is not in the repository.
+**Source:** `raw/klarner-rivest-1974-convex-n-ominoes.txt`, a hand transcription of the scanned paper, which has no usable text layer: D. A. Klarner and R. L. Rivest, "Asymptotic bounds for the number of convex n-ominoes", *Discrete Mathematics* 8 (1974) 31-40. The scan is the PDF on Rivest's publications page (https://people.csail.mit.edu/rivest/pubs/KR74.pdf), with a local copy in the git-ignored `assets/`; equation (1) and the cubic on p. 32, and `Q_2`, `Q_3`, `Q_4` and Table 1 on p. 38, were read from it and agree with the transcription.
 **Date ingested:** 2026-09-22
 **Type:** paper (10 pp.)
 
@@ -18,7 +18,7 @@ updated: 2026-10-16
 
 The paper answers a question Donald Knuth put to the authors: how fast does the number `c(n)` of convex n-ominoes grow?[^1] An n-omino is a polyomino of area `n` taken up to translation, and it is convex when every row and every column is one strip of cells.[^2] The comparison families at the time were the row-convex polyominoes, `b(n)` of area `n` with growth constant `β = 3.20…`, and all polyominoes, `t(n)` of area `n`, whose growth constant `θ` was known to lie in `3.72 < θ < 4.65`.[^3]
 
-The transcription of the row-convex generating function (1) reads `x(1 − x)^3/(1 − 4x + 7x² − 5x³)`, with `β` the largest root of `y³ − 4y² + 7y − 5`. That denominator has the coefficients of `1 − 5x + 7x² − 4x³` in reverse order, gives the coefficients `1, 1, 0, −3, …`, and its cubic `y³ − 4y² + 7y − 5` has only one real root, `1.5698…`, beside a complex pair of modulus `1.7847…`. The row-convex generating function is `x(1 − x)^3/(1 − 5x + 7x² − 4x³)`, A001169, whose denominator gives `β = 3.2055694304…` ([[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)]).[^3][^4]
+The paper prints the row-convex generating function (1) as `x(1 − x)^3/(1 − 4x + 7x² − 5x³)`, and `β` as "the largest real root of `y³ − 4y² + 7y − 5 = 0`; that is, `β = 3.20…`" (p. 32); the transcription copies both. The two printed polynomials have the coefficients 4 and 5 exchanged. The printed denominator gives the coefficients `1, 1, 0, −3, …`, and the printed cubic has only one real root, `1.5698…`, beside a complex pair of modulus `1.7847…`, so the printed `β = 3.20…` is not a root of it. The row-convex generating function is `x(1 − x)^3/(1 − 5x + 7x² − 4x³)`, A001169, and `β = 3.2055694304…` is the largest root of `y³ − 5y² + 7y − 4`, the value the paper states ([[horizontally-convex-polyomino](pages/horizontally-convex-polyomino.md)]).[^3][^4]
 
 **The trisection.** Cutting a convex polyomino along two rows splits it into an upper **stack**, a middle **parallelogram** and a lower upside-down stack (Fig. 2).[^5] A stack has a left boundary that climbs to the right and a right boundary that climbs to the left, so its columns stand on its bottom row with a unimodal skyline (Wright's stacks; `s(3) = 4`). A parallelogram has both boundaries climbing to the right.[^6] Stacks inject into parallelograms (`s(n) ≤ p(n)`), parallelograms are supermultiplicative (`p(m)p(n) ≤ p(m + n)`), and gluing the three pieces back gives[^7]
 
@@ -61,7 +61,7 @@ On 2026-10-16 (Python 3.11 with SymPy):
 - The recurrence (31) with `V_1 = x`, `V_2 = 2x² − x³`, inserted in (30), gives `D_1`, `D_2`, `D_3` as printed.
 - The largest real roots of `Q_k(1/x)` and `D_k(1/x)` for `k = 1, …, 10`, truncated to eight decimals, are every entry of Table 1 (rounded, `β_5` and `β_6` would end in `…712` and `…791`).
 - The expansion of (19) agrees with the parallelograms enumerated by rows through area 9, and with A006958 through area 14; the row-length counts (14) and `f(m, n) = min{m, n}` agree with the enumeration.
-- The expansions of the transcribed and the OEIS row-convex generating functions, and the roots of their denominators (section *Summary*).
+- The expansions of the printed and the OEIS row-convex generating functions, and the roots of their denominators (section *Summary*).
 
 ## Entities & Concepts
 
@@ -92,7 +92,7 @@ Equation (17) has the form `X(s) = x e(s) + x f(s) X(1) + x g(s) X(sq)` of Lemma
 [^1]: [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] p.32 §1 L59-61 - "Recently, Donald Knuth wrote us and asked us if the number c(n) of convex n-ominoes had been investigated. This paper is entirely motivated by Knuth's question."
 [^2]: [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] p.31 Abstract L16-21 - "Two n-ominoes are considered the same if one is mapped onto the other by some translation of the plane. An n-omino is convex if all cells in a row or column form a connected strip."
 [^3]: [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] p.32 §1 L40-58 - "the best lower bound (given in [3]) is 3.72 < theta, while the best upper bound (given in [5]) is theta < 4.65"; "(1) x(1-x)^3 / (1 - 4x + 7x^2 - 5x^3) = sum_{n>=1} b(n) x^n ... beta which is equal to the largest real root of y^3 - 4y^2 + 7y - 5 = 0; that is, beta = 3.20...".
-[^4]: https://oeis.org/A001169 (read 2026-10-16) - "Number of board-pile polyominoes with n cells", "G.f.: x*(1-x)^3/(1 - 5*x + 7*x^2 - 4*x^3)", and the limit ratio "3.20556943040... = A246773"; the transcribed denominator expanded and its roots computed (Python 3.11, 2026-10-16).
+[^4]: https://oeis.org/A001169 (read 2026-10-16) - "Number of board-pile polyominoes with n cells", "G.f.: x*(1-x)^3/(1 - 5*x + 7*x^2 - 4*x^3)", and the limit ratio "3.20556943040... = A246773"; the printed denominator expanded and its roots computed (Python 3.11, 2026-10-16).
 [^5]: [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] p.32-33 §2 L69-80 - "A convex n-omino may be split into three parts by making two cuts between certain rows so that the upper and lower parts are roughly trapezoids and the middle part is roughly a parallelogram ... Fig. 2. Trisection of a convex 28-omino."
 [^6]: [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] p.33 §2 L82-91 - "A convex n-omino whose left boundary climbs to the right and whose right boundary climbs to the left corresponds to a partition of n called a stack by Wright [9] ... s(3) = 4. A convex n-omino whose left and right boundaries both climb to the right is called a parallelogram ... s(n) <= p(n) for all n".
 [^7]: [[klarner-rivest-1974-convex-n-ominoes](pages/klarner-rivest-1974-convex-n-ominoes.md)] p.33-34 §2 L89-124 [synthesis] - supermultiplicativity `p(m)p(n) <= p(m+n)` gives (2); "every convex n-omino splits into two stacks and one parallelogram" gives (3); (4)-(5) conclude `lim c(n)^{1/n} = lim p(n)^{1/n} = gamma`.
