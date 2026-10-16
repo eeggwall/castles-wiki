@@ -5,7 +5,7 @@ summary: Count castle strips (a 0/1 rule saying which column heights may follow 
 tags: [analysis, castle, castle-strip, semi-perimeter, perimeter, generating-function, transfer-matrix, growth-constant, census, exhaustive-search, min-height, metallic-means, plastic-number, supergolden, golden-ratio, silver-ratio, bronze, oeis, sympy, verification]
 sources: [project-euler-502]
 created: 2026-10-11
-updated: 2026-10-11
+updated: 2026-10-16
 ---
 
 # Growth constants by semi-perimeter
@@ -46,7 +46,7 @@ Height 2 gives only supergolden (`z³ − z² − 1`, the rule "no two adjacent 
 
 ## The ceiling at each height
 
-A rule at height `h` counts a subset of the castles of height at most `h`, so its growth constant by semi-perimeter is at most that of all castles of exact height `h`. That ceiling (the growth constant by semi-perimeter of all castles of exact height `h`) rises with `h` towards `τ² ≈ 3.383`:[^exec]
+A rule at height `h` counts a subset of the castles of height at most `h`, so its growth constant by semi-perimeter is at most that of all castles of height `h`. That ceiling (the growth constant by semi-perimeter of all castles of height `h`) rises with `h` towards `τ² ≈ 3.383`:[^exec]
 
 | `h` | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 15 | 20 | 21 | 22 |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -58,12 +58,12 @@ A rule at height `h` counts a subset of the castles of height at most `h`, so it
 
 | constant | value | first height (semi-perimeter growth) | how many rules there | a family |
 |---|---|---|---|---|
-| supergolden | `1.4656` | 2 | - | ridge castles or Fibonacci castles of exact height 2 |
-| `ψ²` | `1.7549` | 2 | 1 | all castles of exact height 2 |
+| supergolden | `1.4656` | 2 | - | ridge castles or Fibonacci castles of height 2 |
+| `ψ²` | `1.7549` | 2 | 1 | all castles of height 2 |
 | golden `φ` | `1.6180` | 3 | 26 | every column 1 or 3 |
 | plastic `ψ` | `1.3247` | 3 | 10 | every column 1 or 9 (height 9; below) |
 | tribonacci | `1.8393` | 3 | - | - |
-| silver `1 + √2` | `2.4142` | 5 | 601 | exact height 5, no 1 next to a 2, no 4 next to a 5 |
+| silver `1 + √2` | `2.4142` | 5 | 601 | height 5, no 1 next to a 2, no 4 next to a 5 |
 | bronze `(3 + √13)/2` | `3.3028` | at least 22 | - | open |
 
 The rule counts at heights 3 and 5 are from an exhaustive scan of all rules at that height; none of golden, plastic or silver occurs at a lower height.[^exec]
@@ -91,9 +91,9 @@ For even `d = 2k` the equation is `(y − 1) y^k = 1`. The plastic case is the i
 
 Silver semi-perimeter growth first appears at height 5: of the `2^25` rules, 601 grow at exactly `1 + √2` by semi-perimeter. Each was confirmed by exact division of its denominator by `1 − 2x − x²` and an exact count showing no smaller positive root.[^exec] The rule with the plainest description allows a step exactly when it allows the reverse step, so its castles are closed under reading right to left:
 
-- **exact height 5; no column of height 1 next to one of height 2, and no column of height 4 next to one of height 5.** Example: `(3, 5, 3, 1, 4)`, semi-perimeter `5 + 3 + 2 + 3 = 13`.
+- **height 5; no column of height 1 next to one of height 2, and no column of height 4 next to one of height 5.** Example: `(3, 5, 3, 1, 4)`, semi-perimeter `5 + 3 + 2 + 3 = 13`.
 
-Its denominator is `(1 − x)² (1 + x²)(1 − 2x − x²)(1 − x + x² + x³)`, up to sign, and its castles of exact height 5 number `1, 7, 26, 74, 196, 525, 1421, 3809, 10040, 26102, 67250` at `s = 6, …, 16` (no OEIS match, searched 2026-10-11). The ratios of consecutive counts approach silver slowly (`2.426` near `s = 56`), because the castles of this rule that stay below height 5 have growth constant `2.3138` by semi-perimeter, close to silver.
+Its denominator is `(1 − x)² (1 + x²)(1 − 2x − x²)(1 − x + x² + x³)`, up to sign, and its castles of height 5 number `1, 7, 26, 74, 196, 525, 1421, 3809, 10040, 26102, 67250` at `s = 6, …, 16` (no OEIS match, searched 2026-10-11). The ratios of consecutive counts approach silver slowly (`2.426` near `s = 56`), because the castles of this rule that stay below height 5 have growth constant `2.3138` by semi-perimeter, close to silver.
 
 ## Open threads
 
@@ -112,4 +112,4 @@ Its denominator is `(1 − x)² (1 + x²)(1 − 2x − x²)(1 − x + x² + x³)
 
 ## Footnotes
 
-[^exec]: Verified by execution (2026-10-11): `bin/python/semi_perimeter_census.py`, run log `bin/python/semi_perimeter_census-run.log`. Census: every rule of size 1 to 4, denominator by exact Berkowitz determinant in SymPy, factor carrying the smallest positive root found by exact real-root isolation, minimal polynomial by reversal. Ceiling: growth of the all-ones rule by bisection on the spectral radius of `M(x)`; the bronze comparison at heights 21 and 22 in mpmath at 50 digits. Scans: all `2^(h²)` rules at heights 3, 4, 5 batched through `numpy.linalg.eigvals`, keeping spectral radius of `M(1/g)` within `10^{-7}` of 1 (26 golden and 10 plastic at height 3, 3,669 golden at height 4, no silver at height 4, 601 silver candidates at height 5); each silver candidate confirmed by exact division by `1 − 2x − x²` and `count_roots` on `[0, 0.41421356]`. Two-height denominators by `sp.factor`. Counts of the silver family by brute force for `s ≤ 16` and by transfer matrix to `s = 60`; castles of exact height 9 with every column 1 or 9 by transfer matrix to `s = 90` (ratio `1.32471` at `s = 89`).
+[^exec]: Verified by execution (2026-10-11): `bin/python/semi_perimeter_census.py`, run log `bin/python/semi_perimeter_census-run.log`. Census: every rule of size 1 to 4, denominator by exact Berkowitz determinant in SymPy, factor carrying the smallest positive root found by exact real-root isolation, minimal polynomial by reversal. Ceiling: growth of the all-ones rule by bisection on the spectral radius of `M(x)`; the bronze comparison at heights 21 and 22 in mpmath at 50 digits. Scans: all `2^(h²)` rules at heights 3, 4, 5 batched through `numpy.linalg.eigvals`, keeping spectral radius of `M(1/g)` within `10^{-7}` of 1 (26 golden and 10 plastic at height 3, 3,669 golden at height 4, no silver at height 4, 601 silver candidates at height 5); each silver candidate confirmed by exact division by `1 − 2x − x²` and `count_roots` on `[0, 0.41421356]`. Two-height denominators by `sp.factor`. Counts of the silver family by brute force for `s ≤ 16` and by transfer matrix to `s = 60`; castles of height 9 with every column 1 or 9 by transfer matrix to `s = 90` (ratio `1.32471` at `s = 89`).
