@@ -5,12 +5,12 @@ summary: "Knuth's section on integer partitions - Algorithm P (all partitions, r
 tags: [knuth, taocp, source, partitions, distinct-parts, generation, hindenburg-algorithm, euler, hardy-ramanujan, gaussian-binomial, gray-code, hoodoo-castle, monadnock-castle]
 sources: [aocp-generating-partitions]
 created: 2026-10-02
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
 # AOCP Generating All Partitions (Knuth, *The Art of Computer Programming*, Vol. 4A §7.2.1.4)
 
-**Source:** `assets/knuth-taocp-4a-7.2.1.4-generating-all-partitions.pdf` - Donald E. Knuth, *The Art of Computer Programming*, Vol. 4A, *Combinatorial Algorithms, Part 1* (2011), §7.2.1.4 "Generating all partitions", pp. 390-415. The PDF is a scan with no text layer and is git-ignored; it is cited by book page.
+**Source:** `assets/knuth-taocp-4a-7.2.1.4-generating-all-partitions.pdf` - Donald E. Knuth, *The Art of Computer Programming*, Vol. 4A, *Combinatorial Algorithms, Part 1* (2011), §7.2.1.4 "Generating all partitions", pp. 390-415. The PDF, a scan with no text layer, is git-ignored and is not in the repository; quotations are cited by book page.
 **Date ingested:** 2026-10-02
 **Type:** book section (algorithms, enumeration, asymptotics, 73 exercises)
 
@@ -26,7 +26,7 @@ The wiki keeps `q` for area and `P(k, L)` for the signed tower count ([[castle-n
 | `P(z)` | Euler's generating function `Σ p(n) z^n` | `Σ p(n) z^n` (written out) |
 | Algorithm H of §7.2.1.4 | partitions of `n` into `m` parts | **the Hindenburg algorithm** |
 
-Knuth reuses the label "Algorithm H" in neighbouring sections: §7.2.1.1 for loopless reflected mixed-radix Gray generation (the wiki's **loopless Gray algorithm**, [[castle-gray-code](pages/castle-gray-code.md)]) and §7.2.1.5 for restricted growth strings. Only the §7.2.1.4 one is meant below.
+Knuth reuses the label "Algorithm H" in neighboring sections: §7.2.1.1 for loopless reflected mixed-radix Gray generation (the wiki's **loopless Gray algorithm**, [[castle-gray-code](pages/castle-gray-code.md)]) and §7.2.1.5 for restricted growth strings. On this page "Algorithm H" means the §7.2.1.4 one.
 
 ## Summary
 
@@ -39,7 +39,7 @@ The exercises carry most of the distinct-part material. Exercise 34 is the stair
 ## Key Takeaways
 
 - **The Hindenburg algorithm plus the staircase shift generates every hoodoo and monadnock castle side.** A side of `m` steps rising by `n` is a partition of `n` into `m` distinct parts. Run the Hindenburg algorithm on `(n − m(m − 1)/2, m)` and add `(m − 1, m − 2, …, 0)` to each output, which gives the steps largest first. That is a monadnock rising side as is and a hoodoo rising side reversed. Adding a fixed vector preserves colex order, so the sides come out in colex order, at constant amortized cost by Theorem H. Implemented and checked on [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)].[^2][^3][^9]
-- **The side counts are Knuth's `part(n, m)` shifted.** Sides of `m` steps with rise `n` number `part(n − m(m − 1)/2, m)`, so recurrence (39), GF (41) and Table 2 count them, and exercise 34's estimate gives the polynomial growth of hoodoo counts in `h` at fixed width.[^5][^9]
+- **The side counts are Knuth's `part(n, m)` shifted.** Sides of `m` steps with rise `n` number `part(n − m(m − 1)/2, m)`, so recurrence (39), GF (41) and Table 2 count them. Exercise 34's estimate makes the number of hoodoo castles of width `w` grow in `h` like a polynomial of degree `w − 1`, derived on [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)].[^5][^9]
 - **Knuth's asymptotics cover `p(n)`, not `pd(n)`.** The large-width hoodoo count by height needs the distinct-part asymptotic, taken from OEIS A000009 on [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)]. Knuth's eq. (36) is used there only to compare that count with `p(2(h − 1))`.[^4]
 - **Ferrers castles in a fixed `(w, h)` cell are counted by area by Theorem C.** A Ferrers castle has `c_1 = h ≥ c_2 ≥ … ≥ c_w ≥ 1`; lowering the last `w − 1` columns by one leaves a partition in a `(w − 1) × (h − 1)` box, so by area the cell is `q^{h+w−1} [w + h − 2, w − 1]_q` (checked by enumeration for `w ≤ 6`, `h ≤ 5`).[^6]
 - **The rim representation is the inversion grading.** A partition of `n` is a permutation of the multiset `{n·0, n·1}` with exactly `n` inversions, the same area = inversions correspondence that [[permutation-inversions](pages/permutation-inversions.md)] uses for Dyck words.[^7]
@@ -52,7 +52,7 @@ The exercises carry most of the distinct-part material. Exercise 34 is the stair
 - [[permutation-inversions](pages/permutation-inversions.md)] - the rim representation as multiset permutations with `n` inversions.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - the "partition in a box" Gaussian binomials of Theorem C.
 - [[castle-gray-code](pages/castle-gray-code.md)] - the other Algorithm H (§7.2.1.1), and Gray codes in general.
-- [[castle-samplers](pages/castle-samplers.md)] - where a Nijenhuis-Wilf-style sampler would sit.
+- [[castle-samplers](pages/castle-samplers.md)] - the castle samplers, which, like the Nijenhuis-Wilf generator of exercise 47, draw uniformly from a table of completion counts.
 
 ## Relation to Other Wiki Pages
 
@@ -60,7 +60,7 @@ The tuple and Gray-code sections of Vol. 4A (§7.2.1.1-7.2.1.2, [[aocp-generatin
 
 Theorem C is the classical source of the Gaussian binomials already used on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] (towers with no descent by area) and gives the Ferrers row of [[castle-classification-shape](pages/castle-classification-shape.md)] its `(w, h)`-cell count by area. The rim representation joins the inversion grading of [[aocp-combinatorics](pages/aocp-combinatorics.md)] and [[permutation-inversions](pages/permutation-inversions.md)].
 
-Not used on the wiki: the Erdős-Lehner distribution of the number of parts (Theorem E), Temperley's limiting shape, the majorization lattice (exercises 54-58), and Bulgarian solitaire (exercises 70-72).
+The section also treats the Erdős-Lehner distribution of the number of parts (Theorem E), the limiting shape of a random partition, the majorization lattice (exercises 54-58), and Bulgarian solitaire (exercises 70-72).
 
 ## Footnotes
 
