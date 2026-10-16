@@ -1,135 +1,91 @@
 ---
-title: Viennot heaps of pieces on the tower
+title: Viennot heaps of pieces on towers
 category: Analyses
-summary: The tower as a Viennot heap of pieces over w free columns, its trace-monoid presentation, the Cartier-Foata inversion recovering `1/(1-x)^w` for cell count, and the transfer-matrix reading that produces `Narayana_w(x)/(1-x)^w` for block count. Also identifies where the naive block-piece basis (intervals in `[1,w]`, dependency = shared column) fails to reproduce the tower count, and what a heap-theoretic proof of the Narayana numerator would have to supply.
+summary: Towers with no height bound on a base of length L, read as Viennot heaps of unit-cell pieces, give the cell-count generating function 1/(1 − x)^L by Cartier-Foata inversion. The block count is not additive over unit-cell pieces, and the heaps of interval pieces do not count towers (8 heaps of two pieces against 5 towers with two blocks at L = 2). A transfer matrix on the previous column height gives the block-count identity Σ_b T̂(L, b) x^b = Narayana_L(x)/(1 − x)^L, and the Narayana number N(L, k) times C(b + L − k, L − 1) counts the towers with b blocks and k − 1 descents (computed for L ≤ 7).
 tags: [analysis, tower, viennot, heap-of-pieces, commutation-monoid, trace-monoid, cartier-foata, transfer-matrix, narayana]
-sources: [tower-narayana-polynomial, bousquet-melou-fedou-1995-convex-polyominoes, bayer-diaconis-1992-dovetail-shuffle]
+sources: [tower-narayana-polynomial, bousquet-melou-fedou-1995-convex-polyominoes, bayer-diaconis-1992-dovetail-shuffle, prellberg-brak-1995-cluster-models]
 created: 2026-09-21
-updated: 2026-10-08
+updated: 2026-10-16
 ---
 
-# Viennot heaps of pieces on the tower
+# Viennot heaps of pieces on towers
 
 ## Setup
 
-[[tower-heap](pages/tower-heap.md)] names the tower as Viennot's "heap of pieces" with piece basis `B = {u_1, …, u_w}`, diagonal dependency `u_i R u_j iff i = j`, and cell-count identity `C_w(x) = 1/(1-x)^w` from Cartier-Foata inversion (tautological here because the columns already commute freely). This page treats the *block* count: why the naive heap-of-block-pieces recipe fails, and how a finite-state transfer matrix reproduces the block-count Narayana identity of [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)].
+Towers on a base of length `L` with no height bound are given by their column heights `c = (c_1, …, c_L)`, `c_i ≥ 0`, and their blocks are the maximal runs of columns with `c_i ≥ r` in each row `r` ([[tower-heap](pages/tower-heap.md)]). [[tower-heap](pages/tower-heap.md)] reads them as Viennot heaps of unit-cell pieces `u_1, …, u_L`, one piece per cell of column `i`, with `u_i` and `u_j` dependent exactly when `i = j`. The columns commute freely, so Cartier-Foata inversion gives the cell-count generating function `1/(1 − x)^L`. This page treats the block count. Write `T̂(L, b)` for the number of towers on a base of length `L` with `b` blocks; the hat separates it from the tower count `T(k, L)` ([[castle-notation](pages/castle-notation.md)]).
 
-## Block count is not a piece-additive statistic
+*Example.* At `L = 2` the towers with one block are `(1, 0)`, `(0, 1)` and `(1, 1)`, so `T̂(2, 1) = 3`.
 
-The block count of a tower is not a piece-additive statistic under the basis `B`. A segment at `(row r, column i)` contributes to a *new* block if `c_{i-1} < r` and to an *existing* block otherwise, and this decision depends on the height at column `i-1` (the [[castle-foata-transform](pages/castle-foata-transform.md)] "positive-run" reading of blocks).[^3] Concretely, `blocks(c) = c_1 + Sum_{i>=2} max(0, c_i - c_{i-1})` is not of the form `Sum_i f(c_i)`, so it does not factor as `Prod_i` (weight of piece at column `i`), and the Cartier-Foata setup of [[tower-heap](pages/tower-heap.md)] cannot see it.
+## Block count is not additive over unit-cell pieces
 
-Two natural attempts to bring block count into the piece structure:
+A cell at row `r` and column `i` starts a new block exactly when `c_{i−1} < r` (with `c_0 = 0`), so whether it adds to the block count depends on the neighboring column. The block count
 
-- **Coarsen the piece basis to horizontal-run intervals.** Take pieces to be intervals `[i,j]` in `[1,w]` at some row, with `[i,j] R [i',j']` iff `[i,j] cap [i',j'] != empty`. Trivial heaps are then sets of pairwise column-disjoint intervals; a standard stars-and-bars gives `C(w+k, 2k)` such sets of size `k`, so the Cartier-Foata sum is `Sum_k (-1)^k C(w+k, 2k) x^k`. At `w = 2` this is `1 - 3x + x^2`, whose inverse `1 + 3x + 8x^2 + 21x^3 + ...` is the Fibonacci bisection A001906, *not* the tower row `1, 3, 5, 7, ...` (A005408). The mismatch is that Viennot's abstract heap of intervals is not the tower: pieces `[1,1]` and `[2,2]` at the same row merge into the block `[1,2]` in a tower but stay two pieces in the heap, and heaps like `[1,2]` on top of `[1,1]` (where the wider piece has no support in column 2) count in the heap monoid but do not lift to any tower. So the interval-piece basis overcounts in both ways.
+```
+blocks(c)  =  c_1 + Σ_{i≥2} max(0, c_i − c_{i−1})
+```
 
-- **Refine the weighting under the unit-segment basis.** Keep `B = {u_1, ..., u_w}` and let a piece at column `i` carry weight `x^{[i is a block-start position for this piece]}`. This makes the weight a function of the *state* at column `i-1` as well as the piece, which is the finite-state transfer matrix reading below.
+is not of the form `Σ_i f(c_i)`, so it is not a product of weights of the pieces, and the unit-cell Cartier-Foata inversion does not see it ([[castle-sign](pages/castle-sign.md)]).[^1]
+
+**Interval pieces do not count towers.** Take the pieces to be intervals `[i, j]` in `[1, L]`, with two intervals dependent when they share a column. The trivial heaps are the sets of pairwise disjoint intervals, and there are `C(L + k, 2k)` sets of `k` of them (stars and bars), so the Cartier-Foata series is `Σ_k (−1)^k C(L + k, 2k) x^k`. At `L = 2` this is `1 − 3x + x²`, whose inverse is
+
+```
+1 / (1 − 3x + x²)  =  1 + 3x + 8x² + 21x³ + 55x⁴ + …        (A001906)
+```
+
+while the towers on a base of length 2 number `T̂(2, b) = 2b + 1`: `1, 3, 5, 7, …` (A005408). The two agree at `x^0` and `x^1` and differ at `x²`, 8 heaps of two pieces against 5 towers with two blocks. A heap of intervals is not a tower in two ways: the pieces `[1, 1]` and `[2, 2]` side by side in one row are two pieces of the heap but one block `[1, 2]` of a tower, and the heap with `[1, 2]` above `[1, 1]` overhangs column 2 and is not a tower.[^2]
 
 ## The transfer-matrix reading
 
-Read a tower column by column with state `= previous column height`. The transfer matrix `M` on state space `N` has entries
+Read a tower column by column with the height of the previous column as the state. The matrix `M_∞(x)` on the heights `0, 1, 2, …` with
 
 ```
-M[a, b]  =  x^{max(0, b - a)}
+M_∞(x)[a, b]  =  x^{max(0, b − a)}
 ```
 
-so one step from height `a` to height `b` picks up `max(0, b - a)` new block-starts, weighted by `x`. With `c_0 = 0` (a boundary term making `max(0, c_1 - c_0) = c_1`) and no constraint on `c_w`,
+records the `max(0, b − a)` blocks that a column of height `b` starts after a column of height `a`. It is the block-weighted tower matrix `M_k(t)` of [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] with the height bound removed and `t = x`; its transpose at `x = −1`, restricted to the heights `0, …, k`, is the signed matrix `M̃_k` of [[tower-parity-sectors](pages/tower-parity-sectors.md)]. With `e_0` the start vector at height 0 and `𝟙` the all-ones vector,
 
 ```
-T_w(x)  =  Sum_b T(w,b) x^b  =  e_0^T . M^w . 1
+Σ_b T̂(L, b) x^b  =  e_0ᵀ M_∞(x)^L 𝟙  =  Narayana_L(x) / (1 − x)^L,        Narayana_L(x)  =  Σ_{k=1}^{L} N(L, k) x^{k−1},      (1)
 ```
 
-where `e_0` is the "start at height 0" indicator vector and `1` is the all-ones vector on state space. The block count is the total ascent of the tower with `c_0 = 0`, matching the definition on [[tower-heap](pages/tower-heap.md)].[^4]
-
-This is the same finite-state DP as the signed transfer matrix `M_signed[a,b] = 1` if `a <= b` and `(-1)^{a-b}` otherwise, of [[tower-parity-sectors](pages/tower-parity-sectors.md)], with two differences: heights are unbounded here (state space `N`, not `{0..k}`), and the weight is `x^{max(0, b-a)}` rather than the sign `(-1)^{max(0, a-b)}`. Run for `w = 1..7`, this DP agrees with brute force and with the [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] identity:[^5]
+with `N(L, k) = (1/L) C(L, k) C(L, k − 1)` the [[narayana-numbers](pages/narayana-numbers.md)] (A001263). Equation (1) is the identity of [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)], computed there for `L ≤ 7`.[^3] In coefficients,
 
 ```
-T_w(x)  =  Narayana_w(x) / (1 - x)^w
-Narayana_w(x)  =  Sum_{k=1..w} N(w,k) x^{k-1}          N(w,k) = (1/w) C(w,k) C(w,k-1)
+T̂(L, b)  =  Σ_{k=1}^{L} N(L, k) · C(b + L − k, L − 1).                         (2)
 ```
 
-with `N(w,k)` the [[narayana-numbers](pages/narayana-numbers.md)] (A001263).[^5]
+The rows of Equation (1) are `1/(1 − x)` at `L = 1` (one tower `(b)` with `b` blocks), `(1 + x)/(1 − x)²` at `L = 2` (`2b + 1`, A005408) and `(1 + 3x + x²)/(1 − x)³` at `L = 3` (`1, 6, 16, 31, 51, 76, …`, A005891), and `1 + 3x + x²` is row 3 of A001263.[^4]
 
-## What the Narayana factorization actually says
+## Descents factor Equation (2)
 
-The `(1 - x)^w` denominator is the Cartier-Foata cell-count denominator of [[tower-heap](pages/tower-heap.md)]. Reading the identity that way,
+A descent of a tower is a position `i < L` with `c_i > c_{i+1}`. The towers on a base of length `L` with `b` blocks and `k − 1` descents number exactly `N(L, k) C(b + L − k, L − 1)`, so the descents split Equation (2) term by term (computed for `L ≤ 6`, `b ≤ 7` and for `L = 7`, `b ≤ 6`). Reversing a tower preserves its block count, since the total ascent from `c_0 = 0` equals the total descent to `c_{L+1} = 0`, and exchanges descents with ascents, so the ascents give the same distribution.[^4] The number of peaks does not factor Equation (2) this way; the source states the identity at the level of generating functions for that reason.[^5]
 
-```
-T_w(x) . (1 - x)^w  =  Narayana_w(x)          (a polynomial in x, degree w - 1)
-```
-
-says the block-count GF is obtained from the cell-count GF `1/(1-x)^w` by *replacing the constant-1 numerator with the Narayana polynomial*. Combinatorially the coefficient version reads
-
-```
-T(w,b)  =  Sum_{k=1..w} N(w,k) . C(b + w - k, w - 1)
-```
-
-as "pick `k in {1..w}` in `N(w,k)` ways, then a weak composition of `b - k + 1` into `w` parts in `C(b+w-k, w-1)` ways".[^5] The same two-step count, forced part then spare pieces by stars and bars, is how Bayer and Diaconis prove Worpitzky's identity for permutations by rising sequences, with the identical binomial under `a = b + 1`, `n = w − 1`, `r = k` ([[bayer-diaconis-1992-dovetail-shuffle](pages/bayer-diaconis-1992-dovetail-shuffle.md)]). An explicit peaks refinement was tested and does not factor the tower this way, which is why the A001263 cross-reference draft states the identity at the level of generating functions rather than as a peaks bijection.[^6] The statistic that does factor it is descents. `k - 1` is the number of **descents** of the height sequence (positions `i` with `c_i > c_{i+1}`): towers of width `w` with `b` blocks and `k - 1` descents number exactly `N(w,k) C(b+w-k, w-1)`. By the reversal symmetry, ascents give the same distribution. This is verified by brute force over all height vectors for `w ≤ 7`, `b ≤ 7` ([[narayana-numbers](pages/narayana-numbers.md)]) and is unproved. One reading (own reasoning) is that `Narayana_w(x)/(1-x)^w` has the "h-polynomial over `(1-x)^w`" shape, with descents in the role they play for Eulerian numbers in Worpitzky's identity.
-
-The heap-theoretic content of the Narayana numerator is therefore what a proof would have to supply: a labelling of trace-monoid elements (or of Cartier-Foata trivial heaps) whose signed count over the tower's dependency structure produces `Sum_k N(w,k) x^{k-1}`. The interval-piece attempt above shows that the obvious piece basis does not supply it.
-
-## Open directions
-
-Two directions from the trace-monoid framing:
-
-- **Path-graph dependency.** Replace the diagonal dependency `u_i R u_j iff i = j` with the path-graph dependency `u_i R u_j iff |i - j| <= 1` and weight pieces by an extra variable `y` that tracks *horizontal adjacency of segments in the same row* (the merger event that the interval-heap attempt got wrong). The trivial heaps are then the independent sets of the path `P_w`, `C(w-k+1, k)` of size `k` and `F_{w+2}` (Fibonacci) in all, so on the `y = 0` slice the Cartier-Foata sum is `Sum_k (-1)^k C(w-k+1, k) x^k`. Whether the resulting bivariate GF specializes on some `y`-slice to `Narayana_w(x) / (1-x)^w` is open; a positive answer would be a commutation-monoid derivation of the Narayana numerator.
-
-- **The commutant of `M`.** The signed transfer matrix of [[tower-parity-sectors](pages/tower-parity-sectors.md)] commutes with `JD` (reflect heights, flip odd-height signs), which for even `k` splits the signed characteristic polynomial `char_k` into parity sectors. Which elements of the commutant of the unsigned block-count matrix `M` come from combinatorial symmetries of towers, and whether they give a sector structure behind the Narayana factorization, is open.
-
-## Verification
-
-Cell-count GF at small `w`, matching multichoose `C(n + w - 1, w - 1)`:
-
-```
-w=1:  1/(1-x)      = 1 + x + x^2 + ...              [C(n,0) = 1: unique tower per cell count]
-w=2:  1/(1-x)^2    = 1 + 2x + 3x^2 + 4x^3 + ...     [C(n+1, 1) = n + 1: partitions of n into 2 heights]
-```
-
-Block-count GF at small `w`, from the tower-narayana identity of [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]:
-
-```
-w=1:  1/(1-x)                                       T(1,b) = 1               [one tower per b: c_1 = b]
-w=2:  (1 + x)/(1-x)^2                               T(2,b) = 2b + 1          [odd numbers, A005408]
-w=3:  (1 + 3x + x^2)/(1-x)^3                        T(3,b) = ...             [A005891, centered pentagonal]
-```
-
-The Narayana polynomial `1 + 3x + x^2 = N(3,1) + N(3,2) x + N(3,3) x^2` matches row 3 of A001263: `1, 3, 1`. The full width-row table (`w = 2..7`) is on [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)].
-
-Interval-piece Cartier-Foata sum (framework that fails), at `w = 2`:
-
-```
-Sum_k (-1)^k C(2+k, 2k) x^k  =  1 - 3x + x^2
-1 / (1 - 3x + x^2)           =  1 + 3x + 8x^2 + 21x^3 + ...        (Fibonacci bisection, A001906)
-tower row w=2                =  1, 3, 5, 7, 9, ...                  (odd numbers, A005408)
-```
-
-matches at `x^0, x^1` and diverges at `x^2`: the interval-heap series has `8` at `x^2` (the heaps of two interval pieces) where the tower has `5`.
+Equation (2) has the shape of Worpitzky's identity `a^n = Σ_r A(n, r) C(a + n − r, n)`, with `A(n, r)` the Eulerian numbers, under `a = b + 1`, `n = L − 1`, `r = k`: the binomial is the same and the Narayana numbers stand where the Eulerian numbers stand. Bayer and Diaconis prove that an `a`-shuffle of `n` cards gives a permutation with `r` rising sequences with probability `C(a + n − r, n)/a^n` by stars and bars: one cut between each pair of consecutive rising sequences is forced, and the `a − r` spare cuts go into `n + 1` bins. Summing over all permutations gives Worpitzky's identity ([[bayer-diaconis-1992-dovetail-shuffle](pages/bayer-diaconis-1992-dovetail-shuffle.md)]).[^6] Each term of Equation (2) is a count of the same two-step kind: `N(L, k)` choices, then a weak composition of `b − k + 1` into `L` parts, `C(b + L − k, L − 1)` of them.
 
 ## Appearances in Sources
 
-- [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] - the block-count identity `T_w(x) = Narayana_w(x)/(1-x)^w`, verified `w = 1..7`, and the Viennot heap-of-pieces framing of the tower.
-- [[bayer-diaconis-1992-dovetail-shuffle](pages/bayer-diaconis-1992-dovetail-shuffle.md)] - Worpitzky's identity by stars and bars, the permutation model of the "pick `k`, then a weak composition" count.
+- [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] - Equation (1) for `L ≤ 7`, the tower definition, and the statement that the identity is not a peaks bijection.
+- [[bayer-diaconis-1992-dovetail-shuffle](pages/bayer-diaconis-1992-dovetail-shuffle.md)] - Worpitzky's identity from the probability of a permutation after an `a`-shuffle.
+- [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] - a bijection between parallelogram polyominoes and heaps of segments, which explains the quotient form of their generating functions.[^7]
+- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - the bar-graph equation (3.11) among the equations linearized by (4.2), and generating functions of the form `y(H(qx)/H(x) − 1)` with `H` satisfying a linear functional equation, a form explained for staircase polygons by a bijection with heaps.[^8]
 
 ## Related Concepts
 
-- [[tower-heap](pages/tower-heap.md)] - the object being counted and the cell-count Cartier-Foata setup.
-- [[narayana-numbers](pages/narayana-numbers.md)] - the numerator of the block-count GF.
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the signed transfer matrix and its commutant, the parity-sector sibling of the commutation-monoid thread.
-- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the tower-word grammar the transfer matrix reads out.
-- [[castle-foata-transform](pages/castle-foata-transform.md)] - blocks as maximal positive runs; the peak / record dictionary the block-start weighting realizes.
-- [[symbolic-method](pages/symbolic-method.md)] - the analytic-combinatorics framework the transfer-matrix extraction sits in.
-- [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - Bousquet-Melou stack-polyomino generating functions, the polyomino cousin of this construction.
-- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - their linearization writes the staircase GF as `y(H(qx)/H(x) - 1)`, a structure that "can also be explained via a bijection with heaps". The castle bar-graph equation (3.11) is in the same linearizable class, so a heap reading of the castle's area-graded GF is the matching open question.[^7]
-- [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] - parallelogram polyominoes as heaps of segments, the heap explanation of their `J_1/J_0` quotient form.
-- [[sandpile-group](pages/sandpile-group.md)] - the same series `1/(1 − 3x + x²)` (A001906) counts the tide-model sandpile group of the 2-wide ladder lying down, whose block matrix is tridiagonal with 3 on the diagonal.
+- [[tower-heap](pages/tower-heap.md)] - towers with no height bound, the unit-cell heap and the cell count `1/(1 − x)^L`.
+- [[narayana-numbers](pages/narayana-numbers.md)] - `N(L, k)`, the numerator of Equation (1), and its readings on Dyck paths and parallelogram polyominoes.
+- [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] - the block-weighted transfer matrix `M_k(t)` on the heights `0, …, k`.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the signed matrix `M̃_k` and the split of the signed tower count by the parity of the last column.
+- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the grammar of tower words.
+- [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - generating functions of stack polyominoes, unimodal skylines on a full base.
+- [[sandpile-group](pages/sandpile-group.md)] - the series `1/(1 − 3x + x²)`, A001906, whose coefficients are the tide orders of the 2-wide ladders lying down.
 
 ## Footnotes
 
-[^3]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `raw/oeis-pe502/xrefs/A001263-tower.md` §"The tower object (self-contained definition)" L29-34 - "each block is a horizontal segment of adjacent cells at some height, every block rests on the floor or on the block directly below it (nothing floats or overhangs), and two blocks in the same row are separated by at least one empty cell ... its number of blocks is the number of maximal horizontal runs, c_1 + Sum_{i=2..w} max(0, c_i - c_{i-1})."
-
-[^4]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `raw/oeis-pe502/xrefs/A001263-tower.md` §"The tower object (self-contained definition)" L34 - the ascent-form block formula the transfer matrix `M[a,b] = x^{max(0,b-a)}` implements column-by-column; verified column-by-column against `python3 tower.py` for `w = 1..7` on the same raw file §"Identity (verified)" L23.
-
-[^5]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `raw/oeis-pe502/xrefs/A001263-tower.md` §"Identity (verified)" L14-21 - "A tower of width w has, by number of blocks, the generating function sum_b (number of towers of width w with b blocks) x^b = ( sum_{k=1..w} N(w,k) x^{k-1} ) / (1 - x)^w. Equivalently, the number of towers of width w with exactly b blocks is sum_{k=1..w} N(w,k) * C(b + w - k, w - 1). This is verified for w = 1..7 by python3 tower.py (DP == closed form == brute force)."
-
-[^6]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `raw/oeis-pe502/xrefs/A001263-tower.md` §"Identity (verified)" L24-25 - "It is a generating-function identity, not a 'peaks' bijection: a direct peaks refinement was tested and does not factor this way, so do not state a peaks interpretation."
-
-[^7]: [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] `prellberg-brak-1995-partially-directed-cluster-models.txt` §4 L771-778 - "both models have generating functions which can be expressed in the form G(x, y, q) = y(H(qx, y, q)/H(x, y, q) - 1) (4.14) where the function H satisfies a linear functional equation. In the case of staircase polygons, this structure can also be explained via a bijection with heaps"; the linearizable class including bar-graphs is L673-682.
+[^1]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `raw/oeis-pe502/xrefs/A001263-tower.md` §"The tower object (self-contained definition)" L29-34 - "each block is a horizontal segment of adjacent cells at some height, every block rests on the floor or on the block directly below it (nothing floats or overhangs), and two blocks in the same row are separated by at least one empty cell ... its number of blocks is the number of maximal horizontal runs, c_1 + Sum_{i=2..w} max(0, c_i - c_{i-1})."
+[^2]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the number of sets of `k` pairwise disjoint intervals in `[1, L]` equals `C(L + k, 2k)` for `L ≤ 5`, `k ≤ 3`; the series of `1/(1 − 3x + x²)`.
+[^3]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `raw/oeis-pe502/xrefs/A001263-tower.md` §"Identity (verified)" L14-21 - "A tower of width w has, by number of blocks, the generating function sum_b (number of towers of width w with b blocks) x^b = ( sum_{k=1..w} N(w,k) x^{k-1} ) / (1 - x)^w. Equivalently, the number of towers of width w with exactly b blocks is sum_{k=1..w} N(w,k) * C(b + w - k, w - 1)."
+[^4]: Verified by execution (Python 3.11, 2026-10-16), by enumeration of all towers on a base of length `L` with `b` blocks (heights at most `b`): `T̂(3, b) = 1, 6, 16, 31, 51, 76` for `b ≤ 5`; the descent and ascent refinements of Equation (2) for `L ≤ 6`, `b ≤ 7` and for `L = 7`, `b ≤ 6`.
+[^5]: [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] `raw/oeis-pe502/xrefs/A001263-tower.md` §"Identity (verified)" L24-25 - "It is a generating-function identity, not a 'peaks' bijection: a direct peaks refinement was tested and does not factor this way, so do not state a peaks interpretation."
+[^6]: [[bayer-diaconis-1992-dovetail-shuffle](pages/bayer-diaconis-1992-dovetail-shuffle.md)] `raw/bayer-diaconis-1992-dovetail-shuffle.txt` Theorem 3 and its proof [synthesis] L444-466, L497-505 - the probability of a permutation with `r` rising sequences after an `a`-shuffle is `C(a + n − r, n)/a^n`; the proof "emulate[s] the classical stars and bars argument": at least one cut between each pair of successive rising sequences, the `a − r` spare cuts in `n + 1` bins; summing over all permutations, with the Eulerian numbers counting permutations by rising sequences, gives "Worpitzky's identity".
+[^7]: [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] `raw/bousquet-melou-fedou-1995-convex-polyominoes.txt` L205-211 - "One approach is based on a bijection between parallelogram polyominoes and some heaps of segments ... The main advantage of this first method is that it provides a combinatorial explanation for the appearance of the quotients, and interpretations for their numerator and their denominator [7]."
+[^8]: [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] `raw/prellberg-brak-1995-partially-directed-cluster-models.txt` §4 L673-682, L771-778 - "the functional equations for bar-graph polygons, alternating bar-graph polygons, staircase polygons, and ZL walks can all be linearized"; "both models have generating functions which can be expressed in the form ... (4.14) where the function H satisfies a linear functional equation. In the case of staircase polygons, this structure can also be explained via a bijection with heaps".
