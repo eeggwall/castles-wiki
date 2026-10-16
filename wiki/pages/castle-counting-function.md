@@ -39,7 +39,7 @@ and asks for[^5]
 ( A^e(10^12, 100) + A^e(10000, 10000) + A^e(100, 10^12) )  mod  1 000 000 007.
 ```
 
-The [[castle-counting-formula](pages/castle-counting-formula.md)] gives `A^e(w, h)` in closed form through the signed tower count `P(k, L)`, and reproduces all four values. [[castle-count-algorithms](pages/castle-count-algorithms.md)] evaluates the three terms of the target: `A^e(10^12, 100)` and `A^e(10000, 10000)` from the rational generating function of `P(h−1, ·)`, and `A^e(100, 10^12)` from a recurrence in the tower height found by Berlekamp-Massey.[^6] The source records the value of the target only as a base64 checksum, which [[project-euler-502-solution](pages/project-euler-502-solution.md)] keeps; the wiki does not decode it.
+The [[castle-counting-formula](pages/castle-counting-formula.md)] gives `A^e(w, h)` in closed form through the signed tower count `P(k, L)`, and reproduces all four values. [[castle-count-algorithms](pages/castle-count-algorithms.md)] evaluates the three terms of the target: `A^e(10^12, 100)` and `A^e(10000, 10000)` from the rational generating function of `P(h−1, ·)`, and `A^e(100, 10^12)` from a recurrence in the tower height found by Berlekamp-Massey.[^6] The source records the value of the target only as a base64 checksum, and the wiki does not reproduce it ([[project-euler-502-solution](pages/project-euler-502-solution.md)]).
 
 ## Rows in the OEIS
 
@@ -63,7 +63,7 @@ A^o(w, 2)  =  Σ_{j≥1} C(w+1, 4j)    =  A038503(w+1) − 1
 - [[project-euler-502](pages/project-euler-502.md)] - the problem statement: the count `F(w, h)`, the four checkpoint values, and the target sum.
 - [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] - the size of `F(13, 10)` as the reason to count with generating functions rather than by enumeration.
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the closed form for `F(w, h)` from the tower grammar, checked against three checkpoints.
-- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the notation `A(w, h)`, `F(w, h)`, the evaluation paths for the three terms of the target, and the checksum of its value.
+- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the notation `A(w, h)`, `F(w, h)`, and the evaluation paths for the three terms of the target.
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the module that computes `F`, `F_odd` and `F_any = A`, and checks `F + F_odd = F_any` by enumeration.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the OEIS rows `A(·, h)` and the height-2 sequences `A038505` and `A038503`.
 
