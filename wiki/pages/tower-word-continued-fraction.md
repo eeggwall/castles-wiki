@@ -1,88 +1,97 @@
 ---
 title: Continued fractions of the tower word
 category: Concepts
-summary: The tower word is a peakless-valleyless Motzkin path — OEIS A004149 by length, growth √2+1 — read against Flajolet's combinatorial continued fractions; graded by width at bounded height its recursion 1/E_k = 1/E_{k−1} − x telescopes to 1/(1−(k+1)x), where the Motzkin J-fraction nests.
+summary: Flajolet's theorem identifies the Jacobi continued fraction with the generating function of weighted Motzkin paths. The tower words are the Motzkin paths with no UD and no DU; counted by length they are A004149, whose generating function satisfies a quadratic with discriminant (z−1)(z+1)(z²+1)(z²+2z−1), so they grow like (1 + √2)^n with a square-root singularity, and OEIS lists a continued fraction for them. Counted by width at height at most k, 1/E_k = 1/E_{k−1} − x telescopes to 1/(1 − (k+1)x), while the Motzkin paths of height at most k are the convergents of the Motzkin J-fraction.
 tags: [concept, castle, tower-word, continued-fraction, flajolet, motzkin, algebraic, oeis, generating-functions]
 sources: [project-euler-502-representations]
 created: 2026-09-14
-updated: 2026-10-04
+updated: 2026-10-16
 ---
 
 # Continued fractions of the tower word
 
-## The tower word is a peakless-valleyless Motzkin path
+## Tower words as Motzkin paths
 
-The **tower word** ([[tower-word-language](pages/tower-word-language.md)], [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]) is the skyline of a tower read as a word over `{U, R, D}` with `U = +1`, `R = 0`, `D = −1`: a **Motzkin path** that stays `≥ 0` and returns to `0`, carrying one extra **run constraint** — no `UD`, no `DU`.[^1] In path language those two forbidden factors are exactly a **peak** (`UD`) and a **valley** (`DU`), so a tower word is a **peakless-valleyless Motzkin path**: vertical steps come in maximal runs, and any two vertical runs of opposite direction are separated by at least one flat (`R`).[^1]
+A **tower word** is the word of the towers on a base of length `L`, in the letters `U` (up one row), `R` (one column, written once per column at the column's height) and `D` (down one row). It starts and ends at height 0, never goes below 0, and contains neither `UD` nor `DU`.[^1] With `U = +1`, `R = 0` and `D = −1` it is a Motzkin path with no peak `UD` and no valley `DU`, a cornerless Motzkin path ([[tower-word-language](pages/tower-word-language.md)]). For example `URDRURD` is the word of the towers `(1, 0, 1)`.
 
-## Flajolet: continued fractions count Motzkin paths
+## Flajolet: continued fractions count paths
 
-The framework is Flajolet's *Combinatorial aspects of continued fractions*: the universal **Stieltjes–Jacobi continued fraction** is the generating function of **labelled paths in the plane** — height-weighted Motzkin paths — and the paper derives continued-fraction expansions for the Catalan, Bell/Stirling, tangent/secant, and Euler/Eulerian numbers from this one correspondence.[^2] Dyck paths (no flats) give **S-fractions**, general Motzkin paths give **J-fractions**. Two classical examples, both re-derived here:[^3]
+Flajolet proves that the Jacobi continued fraction is the generating function of Motzkin paths in which each step is weighted by its type and by the height it starts from: a rise from height `j` by `a_j`, a fall from height `j` by `b_j`, and a flat step at height `j` by `c_j`, so that the fraction is `1/(1 − c_0 − a_0 b_1/(1 − c_1 − a_1 b_2/(1 − ⋯)))` (Theorem 1, p.129).[^2] Setting the flat weights to 0 leaves the Dyck paths and the Stieltjes continued fraction. With every weight 1, the coefficients of the Jacobi fraction sum to the Motzkin numbers and those of the Stieltjes fraction to the Catalan numbers (p.131).[^2] The two simplest cases, with `z` marking length:[^3]
 
-- **Catalan S-fraction.** `C(z) = 1/(1 − z/(1 − z/(1 − z/(…)))) = (1 − √(1−4z))/(2z)` counts Dyck paths; the coefficients are the Catalan numbers `1, 1, 2, 5, 14, 42, 132, …`.[^3]
-- **Motzkin J-fraction.** `M(z) = 1/(1 − z − z²/(1 − z − z²/(1 − …))) = (1 − z − √(1−2z−3z²))/(2z²)` counts plain Motzkin paths; coefficients `1, 1, 2, 4, 9, 21, 51, 127, …`.[^3]
+- the **Catalan S-fraction** `C(z) = 1/(1 − z/(1 − z/(1 − ⋯))) = (1 − √(1 − 4z))/(2z)`, with coefficients `1, 1, 2, 5, 14, 42, 132, …`, counting Dyck paths with `z` marking each pair `UD`;
+- the **Motzkin J-fraction** `M(z) = 1/(1 − z − z²/(1 − z − z²/(1 − ⋯))) = (1 − z − √(1 − 2z − 3z²))/(2z²)`, with coefficients `1, 1, 2, 4, 9, 21, 51, 127, …`, counting Motzkin paths.
 
-The simplest continued fraction of a number, `1 + 1/(1 + 1/(1 + …))`, is the **golden ratio** `φ = (1+√5)/2`: its convergents are the Fibonacci ratios `F_{n+1}/F_n = 2, 3/2, 5/3, 8/5, 13/8, …`.[^3] Fibonacci's Binet form `F_n = (φ^n − φ̂^n)/√5` is on [[aocp-generating-functions](pages/aocp-generating-functions.md)], and Fibonacci appears in prime-castle counting as `2^{n−1} − F_{n−1}` (see [[castle-by-area](pages/castle-by-area.md)]).
-
-## The tower word by steps is A004149
-
-Mark each step `U, R, D` by `z` (total length), so a tower word of width `L` and `b` blocks is worth `z^{L + 2b}`. Each length then has finitely many tower words, and the count is **Online Encyclopedia of Integer Sequences (OEIS) A004149**, "generalized Catalan numbers", whose entry states the object verbatim: *"Number of Motzkin paths of length n−1 (n≥1) with no peaks and no valleys, i.e., no UD's and no DU's, where U=(1,1) and D=(1,−1)."* (Emeric Deutsch, 2004).[^4] So **tower words of length `n` number A004149(`n+1`)**: `1, 1, 1, 2, 4, 8, 16, 33, 69, 146, 312, 673, 1463, 3202, 7050, …`, recomputed here two independent ways (direct enumeration and iterating the grammar) with the same result.[^4]
-
-The generating function is **algebraic, not rational** — the bounded-height language is regular, but the unbounded-height tower word is context-free (see [[tower-word-language](pages/tower-word-language.md)]). The Pell numbers (`P⋆_n = 2P⋆_{n−1} + P⋆_{n−2}`, OEIS A000129, [[pell-numbers](pages/pell-numbers.md)]) also grow like `(1 + √2)^n`, the silver-ratio counterpart of Fibonacci/`φ`, and a castle strip counted by them is on [[pell-castle-strip](pages/pell-castle-strip.md)]. Reading the tower grammar with each step marked by `z` gives the fixed-point equation
+Truncating a continued fraction at depth `k` gives the paths of height at most `k`; for these Flajolet notes that the set of paths is regular, so the convergents are rational (proof of Theorem 1, p.129).[^2] For Motzkin paths, with `M_0(z) = 1/(1 − z)`,[^3]
 
 ```
-E(z) = (1 + z²(E − 1)) / (1 − z − z³(E − 1))   ⟹   z³E² − (1 − z − z² + z³)E + (1 − z²) = 0,
+M_k(z)  =  1/(1 − z − z²·M_{k−1}(z))
 ```
 
-a quadratic with discriminant `(z−1)(z+1)(z²+1)(z²+2z−1)`.[^5] The singularity nearest the origin is `z* = √2 − 1`, so the tower-word counts grow like `(√2 + 1)^n ≈ 2.4142^n`.[^5] The growth constant `√2 + 1 = [2; 2, 2, …]` is a quadratic unit with a purely periodic continued fraction ([[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]).
+counts the Motzkin paths of height at most `k`.
 
-A004149's references include **Barry**, *Generalized Catalan recurrences, Riordan arrays, elliptic curves, and orthogonal polynomials* (orthogonal polynomials correspond to J-fractions), and **Asinowski–Banderier–Roitner**, *Generating functions for lattice paths with several forbidden patterns* ("no UD, no DU" is a forbidden-pattern condition).[^6]
+## The tower words by length
 
-## Width grading and the J-fraction
+Mark each step by `z`, so a tower word with `L` letters `R` and `b` blocks has weight `z^{L + 2b}`. Each length has finitely many tower words, and the tower words of length `n` number `A004149(n + 1)`:[^3][^4]
 
-The tower word is a Motzkin path with the no-`UD`/no-`DU` run constraint added. **Drop the constraint** and the tower grammar becomes the plain Motzkin first-return grammar — the interior `V` may be empty (admitting the `UD` peak) and the tail may restart immediately (admitting the `DU` valley) — so the unconstrained tower word is a Motzkin path, counted by the J-fraction above.[^1]
+```
+1, 1, 1, 2, 4, 8, 16, 33, 69, 146, 312, 673, 1463, 3202, 7050, 15605, …        (n = 0, 1, 2, …)
+```
 
-With **bounded height `k`** the tower word is a regular language, and its width generating function is rational: the grammar reads off the recurrence `E_k = E_{k−1}/(1 − x·E_{k−1})`, which collapses to `E_k = 1/(1 − (k+1)x)`, i.e. `T(k,L) = (k+1)^L` ([[castle-counting-formula](pages/castle-counting-formula.md)]).[^7] In reciprocal form the recurrence is `1/E_k = 1/E_{k−1} − x`, which telescopes from `1/E_0 = 1 − x` to `1/E_k = 1 − (k+1)x`: each level of height subtracts one `x`. Counting by width in this way needs the run constraint, since without it `UD` pairs could be inserted freely and the words with `L` flats would be infinite in number. The Motzkin J-fraction, graded by length, nests instead: `M_k = 1/(1 − z − z²·M_{k−1})`. Both are rational at bounded height and algebraic without a height bound.
+OEIS describes `A004149(n)` as the "Number of Motzkin paths of length n-1 (n>=1) with no peaks and no valleys, i.e., no UD's and no DU's".[^4] At `n = 3` the tower words are `RRR` and `URD`.
 
-## Open
+Reading the tower grammar with every step marked by `z` gives, for the generating function `E(z)` of the tower words by length,[^3]
 
-A J-fraction for A004149 with explicit coefficients is not worked out here; A004149 lists Barry's paper on Riordan arrays and orthogonal polynomials, the side such an expansion would come from. Area-graded continued fractions for castles are on [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] (eq. 3.12) and [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] (§3.14).
+```
+E(z)  =  1 + z·E(z) + z²(E(z) − 1)(1 + z·E(z)),
+z³E² − (1 − z − z² + z³)E + (1 − z²)  =  0,                                   (1)
+```
+
+with discriminant `(z − 1)(z + 1)(z² + 1)(z² + 2z − 1)`. With `g(z) = 1 + z·E(z)`, Equation (1) is equivalent to the equation `z²g² − (1 − z + z² + z³)g + 1 = 0` of the OEIS entry.[^4] The discriminant has a simple zero at `z = √2 − 1`, the zero of smallest modulus, so `E(z)` has a square-root singularity there and is algebraic but not rational. The tower words grow like `(√2 + 1)^n`, so they are silver by length; OEIS gives `A004149(n) ~ (1 + √2)^{n+1/2}/(√π n^{3/2})`.[^4] The silver ratio `1 + √2 = [2; 2, 2, …]` is `δ_2` of [[metallic-means](pages/metallic-means.md)], and its continued fraction is on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)].
+
+OEIS lists a continued fraction for the generating function of `A004149`, due to Barry:[^4]
+
+```
+g(z)  =  1/(1 − z − z⁴/(1 − z − z² − z³ − z⁴/(1 − z − z² − z³ − z⁴/(1 − ⋯)))),
+```
+
+whose expansion agrees with `A004149` through `n = 15`.[^3] Its references include Barry's *Generalized Catalan recurrences, Riordan arrays, elliptic curves, and orthogonal polynomials* and Asinowski, Banderier and Roitner's *Generating functions for lattice paths with several forbidden patterns*, and Prodinger's paper on cornerless Motzkin paths ([[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)]).[^4]
+
+## The tower words by width
+
+Without the conditions on `UD` and `DU`, the tower grammar becomes the first-return grammar of Motzkin paths: the inner word `V` may be empty, which allows `UD`, and a `U` may follow the closing `D`, which allows `DU`. The tower words are therefore a subset of the Motzkin paths.
+
+With the height bounded by `k` and `x` marking each `R`, the grammar gives `E_k(x) = E_{k−1}(x)/(1 − x·E_{k−1}(x))` with `E_0(x) = 1/(1 − x)` ([[castle-counting-formula](pages/castle-counting-formula.md)], the section *Tower count*).[^5] In reciprocal form,
+
+```
+1/E_k(x)  =  1/E_{k−1}(x) − x,
+```
+
+which telescopes from `1/E_0(x) = 1 − x` to `1/E_k(x) = 1 − (k+1)x`: each row of height subtracts one `x`. So `T(k, L) = (k+1)^L`. Counting by width needs the conditions on `UD` and `DU`, since without them the factors `UD` add length but no `R`, and each `L` has infinitely many words. The Motzkin paths of height at most `k`, counted by length, instead nest as the convergents `M_k(z)` of the Motzkin J-fraction (section *Flajolet: continued fractions count paths*). Without a height bound, the tower words with `L` letters `R` are infinite in number, while the tower words and the Motzkin paths counted by length have the algebraic generating functions `E(z)` and `M(z)`.
 
 ## Appearances in Sources
 
-- [[tower-word-language](pages/tower-word-language.md)] / [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the tower word as a Motzkin path with the no-`UD`/no-`DU` run constraint.
-- [[castle-counting-formula](pages/castle-counting-formula.md)] — `E_k = 1/(1−(k+1)x)`, `T(k,L) = (k+1)^L`, and the `P_k` signed recurrence.
-- [[signed-tower-count](pages/signed-tower-count.md)] — the quadratic `P(1,L) = Re((1+i)^{L+1})` and its `1±i` roots.
+- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the tower word, its two excluded factors, and the grammar from which `E_k(x)` and Equation (1) are read off.
 
 ## Related Concepts
 
-- [[motzkin-numbers](pages/motzkin-numbers.md)] — the `M_n` family the J-fraction counts; the tower word's unconstrained parent.
-- [[dyck-words](pages/dyck-words.md)] / [[catalan-numbers](pages/catalan-numbers.md)] — the two-letter root and the S-fraction `C(z)`.
-- [[aocp-generating-functions](pages/aocp-generating-functions.md)] — the Fibonacci/`φ` method, the golden ratio's algebraic home.
-- [[castle-by-area](pages/castle-by-area.md)] — the area grading whose q-analog is the q-continued-fraction thread.
-- [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — q-Motzkin and the q-Bessel ratio, the q-side of this correspondence.
-- [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] - peakless-valleyless Motzkin paths are its "cornerless" paths, in bijection with bargraphs (castles); its §3.14 area continued fraction is a second area-graded expansion.
-- [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] - the kernel-method GF of Motzkin paths by length with peaks and valleys weighted; at both weights 0 its returning series is A004149, the tower word by length, and its prefixes (any final height) are A308435.
-- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] — an area-graded continued fraction for castles. Their bar-graph equation (3.11) is the castle GF by width, blocks and area, and iterating it gives a continued fraction in the q-shifted width variable (eq. 3.12).[^8]
-- [[generating-function-gallery](pages/generating-function-gallery.md)] / [[closed-form-hunting](pages/closed-form-hunting.md)] — the rational GFs and characteristic polynomials of `P(k,L)`; their roots' continued fractions are on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)].
-- [[pell-numbers](pages/pell-numbers.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] — the integer-sequence and castle-strip realizations of the growth constant `1 + √2`.
-- [[metallic-means](pages/metallic-means.md)] — `1 + √2` is the silver rung of this family.
-- [[aocp-combinatorics](pages/aocp-combinatorics.md)] — the inversion statistic and the q-factorial.
-- [[castle-compression](pages/castle-compression.md)] — bounded height makes the language regular and the GF rational: the "rule-generated" tier of the compressibility axis.
+- [[tower-word-language](pages/tower-word-language.md)] - the tower words as a formal language, the bijection with column heights, and the proof that the grammar is unambiguous.
+- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the tower grammar.
+- [[castle-counting-formula](pages/castle-counting-formula.md)] - `E_k(x) = 1/(1 − (k+1)x)` and the signed version `P_k(x)`.
+- [[motzkin-numbers](pages/motzkin-numbers.md)] - the Motzkin numbers counted by the J-fraction.
+- [[dyck-words](pages/dyck-words.md)] and [[catalan-numbers](pages/catalan-numbers.md)] - Dyck words and the Catalan numbers counted by the S-fraction.
+- [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] - bargraphs as cornerless Motzkin paths, and a continued fraction for bargraphs by area from the first-return decomposition.
+- [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - the functional equation (3.11) for bargraphs by width, blocks and area, and the continued fraction (3.12) obtained by iterating it.[^6]
+- [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] - Motzkin paths counted with a weight for each `UD` and each `DU`; with both weights 0, the paths returning to 0 are `A004149` and the paths ending at any height are `A308435`.
+- [[castle-by-area](pages/castle-by-area.md)] - castles counted by area.
+- [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - steep Dyck words and the q-Motzkin numbers.
+- [[generating-function-gallery](pages/generating-function-gallery.md)] and [[closed-form-hunting](pages/closed-form-hunting.md)] - the rational generating functions of `P(k, L)` and the roots of their characteristic polynomials.
+- [[pell-numbers](pages/pell-numbers.md)] and [[pell-castle-strip](pages/pell-castle-strip.md)] - the Pell numbers, which also grow like `(1 + √2)^n`, and the strips they count.
 
 ## Footnotes
 
-[^1]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The tower word" L221-230 — "A tower above a length-L block uses exactly L R's, never drops below the base, and returns to it," and "no UD ... and no DU."
-
-[^2]: Philippe Flajolet, *Combinatorial aspects of continued fractions*, Discrete Mathematics 32 (1980) 125–161; doi:10.1016/0012-365X(80)90050-3. The Stieltjes–Jacobi continued fraction as the characteristic series of labelled (Motzkin) paths, with continued-fraction expansions for Catalan, Bell/Stirling, tangent/secant, and Euler/Eulerian numbers. (Cited bibliographically; the paper is not read here.)
-
-[^3]: Catalan S-fraction `1/(1 − z/(1 − z/(…)))` and Motzkin J-fraction `1/(1 − z − z²/(1 − z − …))` re-derived with SymPy and matched to the Catalan (`1,1,2,5,14,42,132,429`) and Motzkin (`1,1,2,4,9,21,51,127,323,835`) sequences; golden-ratio convergents `2, 3/2, 5/3, 8/5, 13/8, 21/13, 34/21, 55/34` → `(1+√5)/2`.
-
-[^4]: OEIS A004149, comment by Emeric Deutsch (Jan 08 2004): "Number of Motzkin paths of length n-1 (n>=1) with no peaks and no valleys, i.e., no UD's and no DU's, where U=(1,1) and D=(1,-1)." The tower-word count by total steps, recomputed by direct enumeration and by iterating `E_k`, gives `1,1,1,2,4,8,16,33,69,146,312,673,1463,3202,7050,15605` for lengths `0..15` = A004149(`L+1`).
-
-[^5]: The fixed point `E = (1 + z²(E−1))/(1 − z − z³(E−1))` simplifies to `z³E² − (1−z−z²+z³)E + (1−z²) = 0`, discriminant `(z−1)(z+1)(z²+1)(z²+2z−1)`, singularity `√2−1`, growth constant `1/(√2−1) = √2+1` — verified with SymPy.
-
-[^6]: Paul Barry, *Generalized Catalan recurrences, Riordan arrays, elliptic curves, and orthogonal polynomials*, arXiv:1910.00875 (2019); Andrei Asinowski, Cyril Banderier, Valerie Roitner, *Generating functions for lattice paths with several forbidden patterns* (2019) — both listed as references on OEIS A004149.
-
-[^7]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Unsigned count" L297-309 — "E_k = 1/(1-(k+1)x)" and "T(k,L) = (k+1)^L".
-
-[^8]: [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] `prellberg-brak-1995-partially-directed-cluster-models.txt` §3.1 L473-479 - "This equation can be solved for B(x, y, q) and leads to a continued-fraction representation of the generating function, given by iteration of" eq. (3.12).
+[^1]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"The tower word" L227-230 - "A tower above a length-L block uses exactly L R's, never drops below the base, and returns to it", "a valid tower word has no UD (that would be a zero-width block) and no DU (two touching blocks)".
+[^2]: https://algo.inria.fr/flajolet/Publications/Flajolet80b.pdf (read 2026-10-16) - P. Flajolet, "Combinatorial aspects of continued fractions", Discrete Mathematics 32 (1980) 125-161: abstract p.125, "the universal continued fraction of the Stieltjes-Jacobi type is equivalent to the characteristic series of labelled paths in the plane"; Theorem 1 p.129, "the characteristic series of labelled paths is equal to this infinite continued fraction", with "For each h, the set P^[h] is a regular or rational set" in its proof; p.131, the Stieltjes type "appears when we set formally the c_j's to 0", and "the sum of the coefficients of R_n is the nth Motzkin number, and the sum of the coefficients of R'_2n is the nth Catalan number".
+[^3]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the S-fraction and J-fraction expansions against the Catalan and Motzkin numbers; `M_k(z)` against enumeration of Motzkin paths of height at most `k` for `k ≤ 3`, length at most 8; the tower words of length `n ≤ 11` by enumeration, equal to `A004149(n+1)`, and the series of the root of Equation (1) through `n = 11`; the factorization of the discriminant; Barry's continued fraction against `A004149` through `n = 15`.
+[^4]: https://oeis.org/A004149 (read 2026-10-16) - "Number of Motzkin paths of length n-1 (n>=1) with no peaks and no valleys, i.e., no UD's and no DU's, where U=(1,1) and D=(1,-1)" (Emeric Deutsch, Jan 08 2004); "G.f. g(x) satisfies x^2*g^2 - (1-x+x^2+x^3)*g + 1 = 0" (Robert Israel); "a(n) ~ (1+sqrt(2))^(n+1/2)/(sqrt(Pi)*n^(3/2))" (Vaclav Kotesovec); "G.f.: 1/(1-x-x^4/(1-x-x^2-x^3-x^4/(1-x-x^2-x^3-x^4/(1-... (continued fraction)" (Paul Barry, May 22 2009); references to Barry (arXiv:1910.00875), Asinowski, Banderier and Roitner (2019), and Prodinger (arXiv:2501.13645).
+[^5]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Unsigned count" L294-310 - "E_k = E_{k-1}/(1 - x E_{k-1})", "The base case E_0 ... 1/(1-x)", "E_k = 1/(1 - (k+1)x)", "T(k,L) = (k+1)^L".
+[^6]: [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] `prellberg-brak-1995-partially-directed-cluster-models.txt` §3.1 L473-480 - "This equation can be solved for B(x, y, q) and leads to a continued-fraction representation of the generating function, given by iteration of" eq. (3.12).
