@@ -1,92 +1,93 @@
 ---
-title: Castles of exact height h by area - the n-nacci family
+title: Castles of height h by area - the n-nacci family
 category: Analyses
-summary: All castles (not just tree castles) of exact height h, graded by total area A, are the compositions of A with largest part exactly h, so their count is the difference of two consecutive n-nacci counts, (compositions into {1, …, h}) − (compositions into {1, …, h − 1}), with GF 1/(1 − x − ⋯ − x^h) − 1/(1 − x − ⋯ − x^{h−1}). The count grows like the h-nacci constant - φ at h = 2 (F_{A+1} − 1), tribonacci 1.8393 at h = 3 (A000073(A+2) − F_{A+1}), tetranacci 1.9276 at h = 4, pentanacci 1.9659 at h = 5 - tending to 2, the growth of all castles by area. Tree castles of exact height h grow more slowly (supergolden, golden, 1.6851, and plastic squared with the height unrestricted).
+summary: The castles of height h and area n are the compositions of n with largest part h, so they number the compositions of n into parts at most h minus those into parts at most h − 1, with generating function 1/(1 − x − ⋯ − x^h) − 1/(1 − x − ⋯ − x^{h−1}). They grow like the h-nacci constant, the real root above 1 of x^h = x^{h−1} + ⋯ + x + 1 - golden by area at h = 2 (F_{n+1} − 1 castles), tribonacci 1.8393 at h = 3 (A000073(n+2) − F_{n+1}), 1.9276 at h = 4, 1.9659 at h = 5 - tending to 2, the growth of all castles by area. The tree castles of height h grow more slowly by area (1.4656, φ, 1.6851 at h = 2, 3, 4, and ψ² with the height unrestricted).
 tags: [analysis, castle, area, generating-function, oeis, fibonacci, tribonacci, tetranacci, n-nacci, composition, growth-constant]
-sources: [project-euler-502-castle-factoring]
+sources: [oeis-mining-pe502]
 created: 2026-09-17
-updated: 2026-10-04
+updated: 2026-10-16
 ---
 
-# Castles of exact height `h` by area
+# Castles of height `h` by area
 
-## The result
+## The count
 
-Grade **all** castles - no tree or convexity restriction - of exact height `h` (some column reaches `h`) by total area `A = Σ c_i`. A castle skyline `(c_1, …, c_w)` is a composition of its area ([[castle-representations](pages/castle-representations.md)]), and Rule 3 is automatic for area-graded all-castles (the same observation that gives the `2^{A−1}` count of all castles on [[castle-by-area](pages/castle-by-area.md)]). Exact height `h` means largest part exactly `h`. Compositions with every part in `{1, …, h}` satisfy the `h`-term recurrence `a(A) = a(A−1) + ⋯ + a(A−h)`, the `h`-nacci recurrence, because the last part is one of `1, …, h`. So
-
-```
-#{castles of exact height h and area A}
-    =  #{compositions of A into parts {1, …, h}}  −  #{compositions of A into parts {1, …, h − 1}},
-```
-
-with ordinary generating function[^1]
+A castle of height `h` is a skyline `(c_1, …, c_w)` with `1 ≤ c_i ≤ h` and some `c_i = h` ([[castle-polyomino](pages/castle-polyomino.md)]), and its area is `n = c_1 + ⋯ + c_w`. So a castle of area `n` is a composition of `n`, every composition of `n` is a castle, and the castles of area `n` number `2^{n−1}` ([[castle-by-area](pages/castle-by-area.md)]).[^1] The castles of height `h` and area `n` are the compositions of `n` with largest part `h`. The compositions with every part in `{1, …, h}` satisfy the `h`-nacci recurrence `a(n) = a(n−1) + ⋯ + a(n−h)`, since the last part is one of `1, …, h`. So
 
 ```
-Σ_A (count) x^A  =  1 / (1 − x − ⋯ − x^h)  −  1 / (1 − x − ⋯ − x^{h−1}).
+#{castles of height h and area n}
+    =  #{compositions of n into parts {1, …, h}}  −  #{compositions of n into parts {1, …, h − 1}},       (1)
 ```
 
-The first term dominates, so the count grows like the `h`-nacci constant, the root in `(1, 2)` of `x^h = x^{h−1} + ⋯ + x + 1`.
+with ordinary generating function[^2]
 
-## The ladder
+```
+Σ_n (count) x^n  =  1 / (1 − x − ⋯ − x^h)  −  1 / (1 − x − ⋯ − x^{h−1}).                               (2)
+```
 
-| `h` | exact-height-`h` castles by area, `A = 1..12` | closed form | growth constant |
+*Example.* The castles of height 2 and area 4 are the skylines `(2, 1, 1)`, `(1, 2, 1)`, `(1, 1, 2)` and `(2, 2)`: the five compositions of 4 into parts 1 and 2, less `(1, 1, 1, 1)`.
+
+The first term of Equation (2) has the larger dominant root, so the count grows like the `h`-nacci constant, the real root above 1 of `x^h = x^{h−1} + ⋯ + x + 1`, which lies in `(1, 2)`.
+
+## The table
+
+| `h` | castles of height `h` and area `n`, `n = 1..12` | closed form | growth constant |
 |---|---|---|---|
-| 2 | `0, 1, 2, 4, 7, 12, 20, 33, 54, 88, 143, 232` | `F_{A+1} − 1` (A000045) | `φ ≈ 1.6180` |
-| **3** | `0, 0, 1, 2, 5, 11, 23, 47, 94, 185, 360, 694` | `A000073(A+2) − F_{A+1}` | **`τ ≈ 1.8393`** (root of `x³ = x² + x + 1`) |
-| 4 | `0, 0, 0, 1, 2, 5, 12, 27, 59, 127, 269, 563` | `A000078(A+3) − A000073(A+2)` | `≈ 1.9276` (root of `x⁴ = x³ + x² + x + 1`) |
-| 5 | `0, 0, 0, 0, 1, 2, 5, 12, 28, 63, 139, 303` | `A001591(A+4) − A000078(A+3)` | `≈ 1.9659` |
-| unrestricted | `1, 2, 4, 8, 16, 32, 64, …` | `2^{A−1}` (A011782) | `2` |
+| 2 | `0, 1, 2, 4, 7, 12, 20, 33, 54, 88, 143, 232` | `F_{n+1} − 1` (A000045) | `φ = 1.6180` |
+| 3 | `0, 0, 1, 2, 5, 11, 23, 47, 94, 185, 360, 694` | `A000073(n+2) − F_{n+1}` | `τ = 1.8393`, the root of `x³ = x² + x + 1` |
+| 4 | `0, 0, 0, 1, 2, 5, 12, 27, 59, 127, 269, 563` | `A000078(n+3) − A000073(n+2)` | `1.9276`, the root of `x⁴ = x³ + x² + x + 1` |
+| 5 | `0, 0, 0, 0, 1, 2, 5, 12, 28, 63, 139, 303` | `A001591(n+4) − A000078(n+3)` | `1.9659` |
+| unrestricted | `1, 2, 4, 8, 16, 32, 64, …` | `2^{n−1}` (A011782) | `2` |
 
-The n-nacci constants increase from `φ` to `2`, the growth of all castles by area ([[castle-by-area](pages/castle-by-area.md)]). The closed forms use the OEIS offsets: A000073 has GF `x²/(1−x−x²−x³)`, so compositions of `A` into parts `{1, 2, 3}` number `A000073(A+2)`; A000078 has GF `x³/(1−x−x²−x³−x⁴)`, giving `A000078(A+3)`; and likewise `A001591(A+4)` for parts up to 5.[^2]
+Every entry agrees with enumeration of the compositions for `n ≤ 14`.[^2] The closed forms use the OEIS offsets: A000073 has generating function `x²/(1 − x − x² − x³)`, so the compositions of `n` into parts `{1, 2, 3}` number `A000073(n+2)`; A000078 has `x³/(1 − x − x² − x³ − x⁴)`, giving `A000078(n+3)`; and A001591 gives `A001591(n+4)` for parts up to 5.[^3] The `h`-nacci constants increase from `φ` toward `2` (`1.9836` at `h = 6`, `1.9920` at `h = 7`).
 
-## Why this is not the tree-castle-by-area family
+## Tree castles of height h by area
 
-The neighbouring family is [[tree-castle-by-area](pages/tree-castle-by-area.md)]: **tree** castles (no 2×2 filled block, i.e. no two adjacent columns both `≥ 2`) graded by area. At the same exact height they grow more slowly:[^1]
+A **tree castle** has no `2 × 2` block of cells: no two adjacent columns both have height at least 2 ([[castle-graph](pages/castle-graph.md)], [[tree-castle-by-area](pages/tree-castle-by-area.md)]). The tree castles of height `h` grow more slowly by area:[^2]
 
-| exact height `h` | all castles (this page) | tree castles |
+| `h` | castles of height `h` | tree castles of height `h` |
 |---|---|---|
-| 2 | `φ` | supergolden `≈ 1.4656` (one less than Narayana's cows, A000930) |
-| 3 | tribonacci `τ ≈ 1.8393` | golden `φ` (from A006498, whose denominator has the factor `1 − q − q²`) |
-| 4 | tetranacci `≈ 1.9276` | `≈ 1.6851` (from A000570, Tetali; [[unique-tournament](pages/unique-tournament.md)]) |
-| unrestricted | `2` | plastic squared `ψ² ≈ 1.7549` (A005251) |
+| 2 | `φ = 1.6180` | `1.4656`, the root of `x³ = x² + 1`; the count is `A000930(n+1) − 1` |
+| 3 | `τ = 1.8393` | `φ`; the denominator of A006498 has the factor `1 − q − q²` |
+| 4 | `1.9276` | `1.6851`, the root of `x⁵ = x⁴ + x² + x + 1` (A000570) |
+| unrestricted | `2` | `ψ² = 1.7549`, the root of `x³ − 2x² + x − 1`, with `ψ` the plastic number (A005251) |
 
-The OEIS sequences in the tree column count tree castles with every column at most `h`; the exact-height count is the difference of consecutive rows and has the same growth constant. At exact height `h` the all-castle count exceeds the tree count from area `h + 2` on, where the tree constraint first deletes a composition with two adjacent parts `≥ 2`. The tree family's area denominators (`1 − q − q³`, `1 − q − q³ − q⁴`, …) have no `q²` term, because in its composition form every tall column merges with a short one into a part of size at least 3; the all-castle denominators `1 − x − ⋯ − x^h` keep it.
+The OEIS sequences in the right column count the tree skylines of height at most `h`, which need not reach `h` and are not castles. The tree castles of height `h` are the difference of consecutive rows, and since the growth constants increase with `h` they have the same growth constant as the row for `h`. At each `h = 2, 3, 4`, the castles and the tree castles of height `h` agree in number through area `h + 1` and differ from area `h + 2` on, where the composition `(h, 2)` is the first with two adjacent parts at least 2.[^2]
 
-## Fibonacci and tribonacci, on one ladder
+The tree skylines of height at most `h` have area generating function `(1 + P_h(q))/(1 − q − q P_h(q))` with `P_h(q) = q² + ⋯ + q^h` ([[tree-castle-by-area](pages/tree-castle-by-area.md)]), and its denominator `1 − q − q³ − ⋯ − q^{h+1}` has no `q²` term: except at the end, a column of height `j ≥ 2` is followed by a column of height 1, and the denominator counts the sequences of single columns of height 1 (the term `q`) and of such pairs, each of area `j + 1 ≥ 3` (the term `q P_h(q)`). The compositions into parts at most `h` have the denominator `1 − x − x² − ⋯ − x^h`, with the `x²` term.
 
-Fibonacci and tribonacci are the `h = 2` and `h = 3` members of this one family.
+## Fibonacci and tribonacci
 
-- **Fibonacci (`h = 2`).** Castles of exact height 2 by area number `F_{A+1} − 1`: compositions into `{1, 2}` with at least one 2. They grow like `(φ/√5)·φ^A ≈ 0.7236·φ^A`, so they are golden by area although by width they number `2^w − 1`.[^growth] This is a different Fibonacci appearance from the prime-castle count `F_{n−1}` ([[prime-castles](pages/prime-castles.md)], compositions into parts `≥ 2`) and from the Fibonacci castles by width ([[castle-graph](pages/castle-graph.md)]). It has the same numbers as the Fibonacci castles of width `A − 1` (by appending a height-1 column and reading each height-2 column with the column after it as a part 2; [[n-nacci-disambiguation](pages/n-nacci-disambiguation.md)]).
-- **Tribonacci (`h = 3`).** Castles of exact height 3 by area number `A000073(A+2) − F_{A+1}` and grow like `τ`. With the supergolden constant (`x³ = x² + 1`, the q-Fibonacci castles by number of cells, [[q-fibonacci-castle](pages/q-fibonacci-castle.md)]) and the plastic number (`x³ = x + 1`, as `ψ²` and `2ψ²` on [[plastic-number](pages/plastic-number.md)]), the castle realizes three cubic constants by area.
+- **Height 2.** The castles of height 2 and area `n` are the compositions of `n` into parts 1 and 2 with at least one 2, `F_{n+1} − 1` of them. They grow like `(φ/√5)·φ^n ≈ 0.7236·φ^n`, so they are golden by area, although by width they number `2^w − 1`.[^4] The same numbers count the Fibonacci castles of width `n − 1` ([[fibonacci-castle](pages/fibonacci-castle.md)]): append a column of height 1 to a Fibonacci castle of width `n − 1`, read each column of height 2 together with the column after it, which has height 1, as a part 2, and each other column as a part 1. This gives every composition of `n` into parts 1 and 2 with at least one 2, exactly once. The prime castles of area `n`, the compositions into parts at least 2, are a different Fibonacci count, `F_{n−1}` ([[prime-castles](pages/prime-castles.md)]).
+- **Height 3.** The castles of height 3 and area `n` number `A000073(n+2) − F_{n+1}` and grow like `τ = 1.8393`. Three cubic constants occur as growth by area of these families: `1.4656` for the tree castles of height 2 (the Fibonacci castles counted by area, [[q-fibonacci-castle](pages/q-fibonacci-castle.md)]), `τ` for the castles of height 3, and `ψ²` for the tree castles with the height unrestricted ([[plastic-number](pages/plastic-number.md)]).
 
-## Relation to the metallic-means classification
+## The metallic means
 
-On the Axis-8 meta-classification of [[castle-classification](pages/castle-classification.md)] / [[metallic-means](pages/metallic-means.md)], this family is **not** metallic: the n-nacci constants for `h ≥ 3` are roots of `x^h = x^{h−1} + ⋯ + 1`, algebraic of degree `h`, and none is a metallic mean `(a + √(a²+4))/2`. Only the `h = 2` rung (`φ`) is on the metallic ladder. The tree castles by area are metallic only at exact height 3, where their growth is `φ`.
+For `3 ≤ h ≤ 20` the polynomial `x^h − x^{h−1} − ⋯ − x − 1` is irreducible over the rationals (computed), so the `h`-nacci constant has degree `h ≥ 3` and is not one of de Spinadel's metallic means `σ_p^q`, which are quadratic ([[metallic-means](pages/metallic-means.md)]).[^2] At `h = 2` the growth is the golden mean `φ = σ_1^1`. Among the tree castles by area, those of height 3 are golden by area, and the constants at `h = 2` and `h = 4` have degrees 3 and 5.
 
 ## Reproduce
 
-The `bounded_castles_by_area(h, A_max)` snippet on [[castle-snippets-strips](pages/castle-snippets-strips.md)] computes the compositions of `A` with parts at most `h`, with a brute-force cross-check against skylines. The exact-height counts above are `bounded_castles_by_area(h, ·)` minus `bounded_castles_by_area(h − 1, ·)`.
+The snippet `bounded_castles_by_area(h, A_max)` on [[castle-snippets-strips](pages/castle-snippets-strips.md)] counts the compositions of each area with parts at most `h`, with a brute-force cross-check against skylines. The counts of castles of height `h` are `bounded_castles_by_area(h, ·)` minus `bounded_castles_by_area(h − 1, ·)`.
 
 ## Appearances in Sources
 
-- [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the `F(w, h)` skyline model whose height `h` and area statistic this grading uses.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castles of area `n` as the `2^{n−1}` compositions of `n`.
 
 ## Related Concepts
 
-- [[n-nacci-disambiguation](pages/n-nacci-disambiguation.md)] - every Fibonacci, tribonacci and higher n-nacci appearance on the wiki, with this page as the common spine.
-- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the sparser sibling (2×2-block ban), with term-skipping denominators.
-- [[castle-by-area](pages/castle-by-area.md)] - all castles by area, `2^{A−1}`, the limit of this ladder.
-- [[plastic-number](pages/plastic-number.md)] - the third cubic constant (`ψ`, `x³ = x + 1`); this page adds the tribonacci constant (`x³ = x² + x + 1`) to the cubic constants by area.
-- [[metallic-means](pages/metallic-means.md)] - the family the `h = 2` rung (`φ`) belongs to and the `h ≥ 3` rungs sit outside.
-- [[castle-graph](pages/castle-graph.md)] - the tree castles by width (Fibonacci, Jacobsthal, k-Fibonacci), the width-axis cousin of this area-axis ladder.
-- [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - the composition ↔ castle correspondence this result rests on, in its convex (stack) form.
-- [[unique-tournament](pages/unique-tournament.md)] - the graph-theoretic side of the `h = 4` tree sequence A000570.
-- [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - the by-area enumeration behind `bounded_castles_by_area` is Knuth's Algorithm M with an area filter.
-- [[area-growth-census](pages/area-growth-census.md)] - every castle-strip rule through height 5 by area; the `h`-nacci constant is the largest growth at each height.
+- [[n-nacci-disambiguation](pages/n-nacci-disambiguation.md)] - the Fibonacci, tribonacci and higher n-nacci appearances on the wiki, grouped by the mechanism that produces them.
+- [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree skylines of height at most `h` and the tree castles of height `h` by area.
+- [[castle-by-area](pages/castle-by-area.md)] - all castles by area, `2^{n−1}`, and the convex and valley families.
+- [[plastic-number](pages/plastic-number.md)] - the plastic number `ψ` and `ψ²`, the growth of the tree castles by area with the height unrestricted.
+- [[metallic-means](pages/metallic-means.md)] - de Spinadel's family `σ_p^q`, to which `φ` belongs and the `h`-nacci constants for `h ≥ 3` do not.
+- [[castle-graph](pages/castle-graph.md)] - the tree castles by width.
+- [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - the convex castles of area `n` as the weakly unimodal compositions of `n`.
+- [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - Knuth's mixed-radix generation (Algorithm M), which enumerates the skylines.
+- [[area-growth-census](pages/area-growth-census.md)] - every 0/1 strip rule through height 5 by area; the growth constant of a rule on height `h` is at most the `h`-nacci constant.
 
 ## Footnotes
 
-[^1]: Verified by execution (Python 3, 2026-10-02): brute-force enumeration of compositions with largest part exactly `h` agrees with the difference of the two composition recurrences for `h = 2..5` and `A ≤ 14`; the tree-castle counts at exact height `h = 2, 3, 4` by area were enumerated directly for `A ≤ 16` and by a two-state transfer recurrence to `A = 400`, where the successive ratios are `1.465571`, `1.618034`, `1.685137`; at each `h` the all-castle and tree counts agree through area `h + 1` and differ from area `h + 2`. The GF `1/(1 − x − ⋯ − x^h)` is the standard OGF for compositions into parts `{1, …, h}` (sequence (SEQ) of `{x, x², …, x^h}`; [[symbolic-method](pages/symbolic-method.md)] SEQ construction). An earlier check (2026-09-17) compared the composition counts with parts at most `h` to skylines `c ∈ {1, …, h}^w` for `h = 2..5` and `A ≤ 14`.
-
-[^2]: OEIS (fetched 2026-09-17): https://oeis.org/A000073 - tribonacci, "a(n) = a(n-1) + a(n-2) + a(n-3)", GF `x²/(1 − x − x² − x³)`, data `0, 0, 1, 1, 2, 4, 7, 13, 24, 44, 81, 149, 274`, comment "number of compositions of n-2 with no part greater than 3"; tribonacci constant `1.839286755…`, the real root of `x³ − x² − x − 1`. https://oeis.org/A000078 - tetranacci, GF `x³/(1 − x − x² − x³ − x⁴)`, "number of compositions of n-3 with no part greater than 4". Offsets `A000073(A+2)`, `A000078(A+3)`, `A001591(A+4)` follow from the numerator power `x^{h−1}` in each GF. A000045 (Fibonacci) and A011782 (`2^{n−1}`) are standard.
-[^growth]: Verified by execution (Python 3, 2026-10-04): `(F_61 − 1)/φ^60 = 0.72360680` against `φ/√5 = 0.72360680`.
+[^1]: raw/oeis-pe502/vein9-area.md L11-12 - "**All castles of area n** = all compositions of n into positive parts = 2^(n-1) = A000079(n-1) = A011782 shifted."
+[^2]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the castles of height `h = 2..5` and area `n ≤ 14` by enumeration of compositions, against Equations (1) and (2) and the closed forms; the dominant roots of `x^h − x^{h−1} − ⋯ − 1` for `h ≤ 7`, and their irreducibility for `h ≤ 20`; the tree castles of height `h = 2, 3, 4` by enumeration for `n ≤ 16`, the first area at which they differ from all castles of height `h` (4, 5, 6), and the factorizations of the tree-skyline denominators, `x³ − x² − 1`, `(x² − x − 1)(x² + 1)`, `x⁵ − x⁴ − x² − x − 1`; the Fibonacci castles of width `n − 1` against the castles of height 2 and area `n` for `n ≤ 11`.
+[^3]: https://oeis.org/A000073 (read 2026-09-17) - tribonacci, "a(n) = a(n-1) + a(n-2) + a(n-3)", g.f. `x²/(1 − x − x² − x³)`, data `0, 0, 1, 1, 2, 4, 7, 13, 24, 44, 81, 149, 274`, comment "number of compositions of n-2 with no part greater than 3"; https://oeis.org/A000078 - tetranacci, g.f. `x³/(1 − x − x² − x³ − x⁴)`, "number of compositions of n-3 with no part greater than 4"; https://oeis.org/A001591 (read 2026-10-16) - "Pentanacci numbers: a(n) = a(n-1) + a(n-2) + a(n-3) + a(n-4) + a(n-5), a(0)=a(1)=a(2)=a(3)=0, a(4)=1"; https://oeis.org/A011782 (read 2026-10-16) - "Coefficients of expansion of (1-x)/(1-2*x) in powers of x"; https://oeis.org/A000930 (read 2026-10-16) - "Narayana's cows sequence: a(0) = a(1) = a(2) = 1; thereafter a(n) = a(n-1) + a(n-3)".
+[^4]: Verified by execution (Python 3, 2026-10-04): `(F_61 − 1)/φ^60 = 0.72360680` against `φ/√5 = 0.72360680`.
