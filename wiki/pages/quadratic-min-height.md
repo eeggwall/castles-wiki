@@ -1,7 +1,7 @@
 ---
 title: Minimum height for a quadratic growth constant
 category: Analyses
-summary: For each quadratic growth constant ρ, the larger root of x² − p₁x − p₂, the smallest height h at which some 0/1 castle-strip rule on h heights has Perron root exactly ρ. The exact minimum height is known for the 53 pairs with minimum height at most 6, from a census of all 0/1 matrices up to 6 × 6 (1.28 billion at height 6 after sorting rows; 758,878 distinct characteristic polynomials). Three results are proved. (1) The minimum height exceeds ρ, so it is at least ⌊ρ⌋ + 1; the bound is attained for 31 of the 53 pairs. (2) On the line p₂ = 1, the minimum height of δ_a is a + 1, so δ_5 first appears at height 6. (3) On the line p₁ = 0, the minimum height of √p₂ is ⌈2√p₂⌉, by a period-2 Perron-Frobenius argument for the lower bound and a rank-one construction with two groups of heights for the upper. Rules whose heights split into at most three evenly connected groups attain the minimum height of all 53 pairs, and two groups attain it for 47; the upper bounds that such rules give through height 9 are tabulated.
+summary: For each quadratic growth constant ρ, the larger root of x² − p₁x − p₂, the smallest height h at which some 0/1 castle-strip rule on h heights has Perron root exactly ρ. The exact minimum height is known for the 53 pairs with minimum height at most 6, from a census of all 0/1 matrices up to 6 × 6 (1.28 billion at height 6 after sorting rows; 758,878 distinct characteristic polynomials). Four results are proved. (1) The minimum height exceeds ρ, so it is at least ⌊ρ⌋ + 1; the bound is attained for 31 of the 53 pairs. (2) On the line p₂ = 1, the minimum height of δ_a is a + 1, so δ_5 first appears at height 6. (3) On the line p₁ = 0, the minimum height of √p₂ is ⌈2√p₂⌉, by a period-2 Perron-Frobenius argument for the lower bound and a rank-one construction with two groups of heights for the upper. (4) For 1 ≤ p₂ ≤ p₁, the minimum height is p₁ + 1, by a construction with two groups of heights. Rules whose heights split into at most three evenly connected groups attain the minimum height of all 53 pairs, and two groups attain it for 47; the upper bounds that such rules give through height 9 are tabulated.
 tags: [analysis, castle, castle-strip, transfer-matrix, perron-frobenius, growth-constant, quadratic-field, metallic-means, min-height, equitable-partition, census, exhaustive-search, implementation, verification]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-25
@@ -22,7 +22,7 @@ x² − p₁x − p₂,          ρ = (p₁ + √(p₁² + 4p₂)) / 2,
 
 the characteristic polynomial of the recurrence `a(L) = p₁ a(L − 1) + p₂ a(L − 2)`. For `p₁, p₂ ≥ 0`, `a(L)` counts the tilings of a row of length `L` by squares in `p₁` colors and dominoes in `p₂` colors. The golden ratio is `(1, 1)`; for `p₁, p₂ ≥ 1` the root is de Spinadel's metallic mean `σ_{p₁}^{p₂}`, and the `δ_a` are the line `p₂ = 1` ([[metallic-means](pages/metallic-means.md)]). Every pair with `p₁ ≥ 0` and `p₂ ≥ 1` is the Perron root of some 0/1 matrix ([[reachable-field-census](pages/reachable-field-census.md)]).
 
-This page finds the smallest height that realizes each pair. Three lines of the answer are proved, and the rest is computed exactly up to height 6.
+This page finds the smallest height that realizes each pair. A general lower bound, two lines and a triangle of the answer are proved, and the rest is computed exactly up to height 6.
 
 ## Terms used on this page
 
@@ -58,7 +58,7 @@ p1\p2   -7  -6  -5  -4  -3  -2  -1 |  1   2   3   4   5   6   7   8   9
 
 A blank cell whose lower bound (result 1) is 6 or less was not realized by height 6, so its min height is at least 7.
 
-## Three proved results
+## Four proved results
 
 ### 1. The general lower bound: height > growth
 
@@ -92,6 +92,25 @@ Here `ρ = √p₂` and the conjugate is `−√p₂`, of the same absolute valu
 ```
 
 The construction gives `⌈2√p₂⌉` for every non-square `p₂ ≤ 20`.[^exec] The bound does not carry over to `p₁ > 0`: `(2, 13)` is realized at height 7, where `⌈2√13⌉ = 8`.
+
+### 4. The triangle 1 ≤ p₂ ≤ p₁: min height p₁ + 1
+
+Fix `p₁ = n ≥ 1`. For `1 ≤ p₂ ≤ n`, `ρ` lies strictly between `n` and `n + 1`: `ρ > n` because `p₂ > 0`, and `ρ < n + 1` exactly when `n² + 4p₂ < (n + 2)²`, that is `p₂ < n + 1`. The discriminant `n² + 4p₂` lies strictly between `n²` and `(n + 2)²`, and it equals `(n + 1)²` only if `4p₂ = 2n + 1`, which is odd, so it is never a square. At `p₂ = n + 1` the polynomial factors as `(x − (n + 1))(x + 1)` and `ρ = n + 1`. So the row `p₁ = n` of the grid begins with exactly `n` pairs `(n, 1), …, (n, n)` with `⌊ρ⌋ = n`, followed by a square discriminant.
+
+*Lower bound.* Result 1, since `ρ > n`.
+
+*Construction.* Use the heights `1, …, n + 1`. Each of the heights `1, …, n` may be followed by any height; height `n + 1` may be followed by `p₂` of the heights `1, …, n` and not by itself. The groups `{1, …, n}` and `{n + 1}` are evenly connected, with quotient `[[n, 1], [p₂, 0]]` and characteristic polynomial `x² − nx − p₂`. The first `n` rows of the matrix are equal, so it has rank at most 2, and its characteristic polynomial is `x^{n−1}(x² − nx − p₂)`.
+
+```
+(3, 2) at height 4:
+   1111        1, 2, 3 may be followed by any height
+   1111
+   1111
+   1100        4 may be followed by 1 or 2 only
+   characteristic polynomial  x²(x² − 3x − 2)
+```
+
+**So the min height of `(p₁, p₂)` is `p₁ + 1` for every `1 ≤ p₂ ≤ p₁`.** At `p₂ = 1` this is result 2 again, by a different matrix from the ridge matrix. In the census grid the triangle is the 15 pairs with `p₁ ≤ 5` and `1 ≤ p₂ ≤ p₁`, and the table of the next section shows it for `p₁ = 6` and `7`.[^tri]
 
 ## Rules with two or three evenly connected groups
 
@@ -132,3 +151,4 @@ Through height 6 these are the exact min heights; above 6 they are upper bounds.
 ## Footnotes
 
 [^exec]: Census (2026-09-25): a C program enumerating every 0/1 matrix of size 2 to 5, and every `6 × 6` matrix with row sums in nonincreasing order (1,277,642,344 matrices), computing the characteristic polynomial exactly in 64-bit integers by the Faddeev-LeVerrier recursion and keeping the distinct ones; for each polynomial, every candidate `x² − p₁x − p₂` with `−60 ≤ p₂ ≤ 60`, non-square discriminant and larger root the largest real root was confirmed by exact polynomial division. Rechecked by execution (Python 3.11 with NumPy and SymPy, 2026-10-16): the full census through height 5 (6, 32, 333 and 8,927 characteristic polynomials; 1, 4, 9 and 15 pairs new at heights 2 to 5, as in the grid); the lower bound attained for 31 of the 53 pairs, every pair with conjugate of absolute value at most 1.25 among them, and missed by `(6, −6)` (conjugate 1.27) and by `(1, 3)`; all two-group tables with group sizes summing to at most 9 and all three-group tables with sizes summing to at most 9, which reproduce the six two-group misses, attain every min height of the grid including the 24 pairs of height 6, never go below it, give `(2, 13)` at height 7, and reproduce the table through height 9 entry for entry; the `(0, 5)` matrix, its quotient, and the two staircase matrices. The height-6 enumeration itself was not rerun, so the 758,878 polynomials and the blank cells at height 6 rest on the 2026-09-25 run.
+[^tri]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): for every `1 ≤ n ≤ 12` and `1 ≤ p₂ ≤ n`, the `(n + 1) × (n + 1)` matrix of result 4 has characteristic polynomial exactly `x^{n−1}(x² − nx − p₂)`, its larger root lies in `(n, n + 1)`, and `n² + 4p₂` is not a square; the grid entries with `p₁ ≤ 5` and `1 ≤ p₂ ≤ p₁` all read `p₁ + 1`.

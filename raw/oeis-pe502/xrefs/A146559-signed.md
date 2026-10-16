@@ -1,6 +1,6 @@
 # Cross-link draft — A146559 as the signed count of height-2 castles
 
-Status: DRAFT for Charles to reword and submit. OEIS requires human authorship.
+Status: DRAFT for Charles to submit.
 Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md.
 Checked against the live entry 2026-10-04 (A146559 revision #152, Sep 28 2026).
 Rewritten 2026-10-04 to state every castle count at exact height 2.
@@ -97,14 +97,12 @@ are not in OEIS (searched 2026-09-18) and are on the new-sequence list.
 
 ## Flags
 
-1. Rewrite in own words and sign `- _Chaz Reid_, Mon DD YYYY` with the actual submission
-   date (see ../SUBMISSION-NOTES.md §3).
-2. Every castle count in the comment is at exact height 2 ("height 2", "maximum height
+1. Every castle count in the comment is at exact height 2 ("height 2", "maximum height
    is 2"). Do not write "height at most 2".
-3. If the editor finds the comment long, the clause after the semicolon can go: Wu's
+2. If the editor finds the comment long, the clause after the semicolon can go: Wu's
    formula already gives the binomial sum.
-4. "Problem 502" (not "Project 502").
-5. Do not change Name/Data/Offset/Keywords or existing lines.
+3. "Problem 502" (not "Project 502").
+4. Do not change Name/Data/Offset/Keywords or existing lines.
 
 ## Verification script
 

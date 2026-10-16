@@ -1,7 +1,7 @@
 ---
 title: Plastic number
 category: Concepts
-summary: ψ = 1.3247…, the real root of x³ = x + 1 and the smallest Pisot number, with the Padovan numbers (A000931) and the Perrin numbers (A001608) as its Fibonacci and Lucas numbers. Its square ψ² has minimal polynomial μ³ − 2μ² + μ − 1 (the recurrence of A005251) and a Jacobi-Perron expansion of period 1. On the castle wiki, 2ψ² is the largest root of char_6, the growth constant of the signed tower count P(6, ·), and ψ itself is the Perron root of six 3 × 3 strip rules, whose strips are plastic by width.
+summary: ψ = 1.3247…, the real root of x³ = x + 1 and the smallest Pisot number, with the Padovan numbers (A000931) and the Perrin numbers (A001608) as its Fibonacci and Lucas numbers. Its square ψ² has minimal polynomial μ³ − 2μ² + μ − 1 (the recurrence of A005251) and a Jacobi-Perron expansion of period 1. On the castle wiki, 2ψ² is the largest root of char_6, the growth constant of the signed tower count P(6, ·), and ψ itself is the Perron root of six 3 × 3 strip rules, whose strips are plastic by width; the maximal and (1, 2)-RLL castles are plastic by width and the ridge castles of height 2 by area, all counted by shifted Padovan numbers.
 tags: [concept, plastic-number, pisot, padovan, perrin, cubic, jacobi-perron, eigenvalue, castle, oeis, strip-perron-root]
 sources: [verger-gaugry-2024-salem-minoration, oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-16
@@ -94,8 +94,8 @@ Three powers of `ψ` are growth constants on the wiki:
 | constant | value | where |
 |---|---|---|
 | `2ψ²` | `3.5098` | the signed tower count `P(6, ·)` (section *The signed tower count at k = 6*). The castle graph of `(1, 1, 2, 7, 7, 5, 7, 7)` has spectral radius `8.0 · 10⁻⁹` below `2ψ²`, and `2ψ²` is not an eigenvalue of it ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]) |
-| `ψ²` | `1.7549` | `A005251`, which counts the tree castles by area with no bound on the height ([[tree-castle-by-area](pages/tree-castle-by-area.md)]), the skylines of height at most 2 whose raised columns are separated by valleys at least 2 columns wide ([[tower-spacing-castles](pages/tower-spacing-castles.md)]), and the binary strings with no isolated 1 of [[hardin-word-identity](pages/hardin-word-identity.md)], related by the bijections of [[a005251-bijection](pages/a005251-bijection.md)] |
-| `ψ` | `1.3247` | the strips of the rule in the paragraph *A rule on three heights*, found in the census of strip Perron roots ([[reachable-field-census](pages/reachable-field-census.md)]) |
+| `ψ²` | `1.7549` | `A005251`, which counts the tree castles by area with no bound on the height ([[tree-castle-by-area](pages/tree-castle-by-area.md)]), the skylines of height at most 2 whose raised columns are separated by valleys at least 2 columns wide ([[tower-spacing-castles](pages/tower-spacing-castles.md)]), and the binary strings with no isolated 1 of [[hardin-word-identity](pages/hardin-word-identity.md)], related by the bijections of [[a005251-bijection](pages/a005251-bijection.md)]; by semi-perimeter `s`, all castles of height 2, `A077855(s − 3)` ([[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)]) |
+| `ψ` | `1.3247` | by width, the strips of the rule in the paragraph *A rule on three heights*, found in the census of strip Perron roots ([[reachable-field-census](pages/reachable-field-census.md)]), the maximal castles and the `(1, 2)`-RLL castles of height 2, and the castles of the rule `1 → 2 → 3 → {1, 2}` of height 3; by area, the ridge castles of height 2. All are counted by shifted Padovan numbers ([[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)], [[padovan-families](pages/padovan-families.md)]) |
 
 **A rule on three heights.** Of the 512 binary `3 × 3` matrices, exactly 6 have characteristic polynomial `x³ − x − 1`, and each has four entries equal to 1.[^6] One is
 
@@ -123,6 +123,8 @@ the rule in which a column of height 1 is followed by one of height 3, a column 
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the simple continued fractions of the quadratic eigenvalues, and Lagrange's theorem.
 - [[pell-numbers](pages/pell-numbers.md)] - the Pell numbers and companion Pell numbers of `1 + √2`, the quadratic counterpart of the Padovan and Perrin numbers.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the census of Perron roots of strip rules, in which `x³ − x − 1` occurs among the rules on three heights.
+- [[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)] - `ψ` beside golden, silver and bronze by width, area, semi-perimeter and spectrum; no graph has spectral radius `ψ`.
+- [[padovan-families](pages/padovan-families.md)] - the castle families counted by Padovan numbers, their common core of blocks of size 2 and 3, and the bijections between them.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - the closed forms of the castle counts, whose constants are algebraic numbers such as `ψ`.
 - [[fractional-recurrences](pages/fractional-recurrences.md)] - the recurrence `∇^α a_n = a_{n−1}`, whose characteristic equation `(1 − r)^α = r` gives the growth constant `ψ²` at `α = 2/3` and `ψ³ = ψ + 1` at `α = 3/2`.
 

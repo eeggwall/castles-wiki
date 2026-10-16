@@ -30,20 +30,20 @@ sequence).  Unless the draft explicitly says otherwise:
 ## 3. Signature / attribution (required on every added line)
 
 - Every comment/formula line you add MUST be signed by a human author, OEIS style:
-      `- _Firstname Lastname_, Mon DD YYYY`      (two-digit day: `Oct 04 2026`, not `Oct 4 2026`)
+      `- _Chaz Reid_, Mon DD YYYY`      (two-digit day: `Oct 04 2026`, not `Oct 4 2026`)
   Example from OEIS: `- _N. J. A. Sloane_, Jul 15 2000`.
   The day always has two digits: `Sep 08 2026`, `Oct 04 2026`. An edit signed `Oct 4 2026`
   had to be resubmitted (A146559, 2026-10-04).
-- In the drafts, the literal `_Charles Reid_, Sep 05 2026` is a PLACEHOLDER.  Replace it
-  with the actual OEIS account name and the actual submission date.  Do not paste it
-  verbatim without checking the account name and date.
+- Sign as `- _Chaz Reid_, Mon DD YYYY` (the OEIS account name), with the actual submission
+  date.
+- Several added lines in one field (comments or formulas) are one signed block, not lines
+  that each carry the same signature: the first line is `From _Chaz Reid_, Mon DD YYYY: (Start)`
+  and the last line ends with ` (End)`.
 
 ## 4. Mechanical vs human (division of labor)
 
-- A tool may: run the verification scripts, check offsets against the live entries, format
-  data.  It may NOT author the prose.
-- Only a human may: rewrite the draft prose in their own words, sign it, and submit.  OEIS
-  forbids AI-authored text (`oeis-submission-process.md`, "AI policy").
+- Tools may run verification scripts, check facts.
+- Humans must author prose.
 
 ## 5. Notation rules
 

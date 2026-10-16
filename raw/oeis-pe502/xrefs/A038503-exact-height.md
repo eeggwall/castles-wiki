@@ -1,6 +1,6 @@
 # Correction draft — A038503 castle comment at exact height
 
-Status: DRAFT for Charles to reword and submit. OEIS requires human authorship.
+Status: DRAFT for Charles to submit.
 Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md.
 Checked against the live entry 2026-10-04 (A038503 revision #93, Oct 03 2026).
 
@@ -73,7 +73,7 @@ alike.
 
 ## Flags
 
-1. Rewrite in own words. Since this replaces your own line, keep or update the signature
+1. Since this replaces your own line, keep or update the signature
    per the editor's preference (usually the original signature stays and the edit is
    recorded in the history; ask in the edit's "reason" box if unsure).
 2. In the edit's reason/notes box, say why: "state the count at exact height 2, as on

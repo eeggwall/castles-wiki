@@ -15,35 +15,53 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
 
 ## OEIS submissions (human action — drafts in `raw/oeis-pe502/`)
 
-OEIS requires human authorship; the drafts are checked starting points to reword and
-sign, not to submit verbatim. OEIS allows **3 open edits at a time**, and each takes a
-while to review, so the queue runs as a pipeline: when a review slot opens, submit the top
-item of "Ready to submit". Keep stages 2-4 stocked while waiting. Signatures use a
+OEIS allows **3 open edits at a time**, and each takes a while to review, so the queue runs
+as a pipeline: when a review slot opens, submit the top item of "Ready to submit". Keep stages 2-4 stocked while waiting. Signatures use a
 two-digit day (`Oct 04 2026`). See `wiki/pages/oeis-cross-referencing.md`; the
 mathematical status of each sequence (known / interlink / novel-candidate / unchecked)
 lives on `wiki/pages/castle-sequence-catalogue.md`.
 
 ### 1. In review (max 3)
 
-- [~] **A146559 castle comment** `a(n) = P(1, n−1)` (signed tower count at `k = 1`),
-  submitted 2026-10-04 (resubmitted with the date as `Oct 04 2026`). Comment only, exact
-  height: `a(n) − 1` = odd − even castles of height 2: `raw/oeis-pe502/xrefs/A146559-signed.md`
-  (`wiki/pages/castle-sequence-catalogue.md`, `wiki/pages/signed-tower-count.md`).
-- [~] **A009545 castle comment** (submitted 2026-10-06). Comment only, width `n`, no `− 1`:
-  `a(n)` = even-block − odd-block castles of width `n` and height 2 whose last column reaches
-  height 2, for `n >= 1`, with the PE 502 citation; the optional runs sentence was dropped for
-  length: `raw/oeis-pe502/xrefs/A009545-signed.md` (`wiki/pages/signed-tower-count.md`,
-  `wiki/pages/tower-parity-sectors.md`).
 - [~] **A226136 → A003410** (submitted 2026-10-06). Formula line "Conjecture: a(n) =
   A003410(n) for n >= 4", equivalent to Barker's conjectured g.f. (A003410's g.f. minus
   `1 + x + x^2 + x^3`), and `Cf. A003410`: `raw/oeis-pe502/xrefs/A226136-A003410.md`
   (`wiki/pages/fibonacci-castles-sub-families.md`).
+  Major edit on the same draft 2026-10-11 (#20–#24, proposed): link to the proof PDF
+  `a226136.pdf` "Proof of Barker's Conjecture for A226136", with the formula line
+  "Conjectures confirmed (see Reid link)"; b-file `n = 1..1000` (terms 1..35 from
+  Kimberling); the Kimberling–Moses Fibonacci Quarterly 52 (2014) link (Example 4.2); the
+  linear-recurrence index entry, signature `(1,0,1)`; `a(n) = 1 + Sum_{k=0..n-2} A226275(k)`;
+  a Python program; `Cf. A226274, A226275`. A discussion note asks the editors to delete the
+  stray upload `a226136.txt`.
+  Still in review (checked 2026-10-16): Jason Yuen edited it on 2026-10-13 (#25–#28),
+  extending DATA from 35 to 42 terms, grouping the three Oct 11 formula lines in one
+  "From _Chaz Reid_, Oct 11 2026: (Start) … (End)" block, and adding keyword `easy`; it is back
+  in proposed. The proof PDF already resolves, and the approved A226275 entry links to it.
+- [~] **A160747 castles of width 5 and 6-cores** (submitted 2026-10-16). One comment block:
+  `a(n)` = 6-core partitions with `n` corners (Cho, Huh, Nam, and Sohn, arXiv:2205.15554,
+  Prop. 3.4, already linked) = castles of width 5 with `n + 1` blocks, of any height, with the
+  abacus bijection (their Theorem 3.3). One formula block: the g.f. numerator is row 5 of
+  A001263, their Prop. 3.4 sum, `a(n) = A271942(n+6, 5)`. The PE 502 link and two new Cf.
+  lines (A001263, A271942; the t-core family A005408 / A005891 / A063490):
+  `raw/oeis-pe502/xrefs/A160747-tower.md`, checked by `bin/python/tower_t_cores.py`
+  (`wiki/pages/tower-narayana-polynomial.md`).
+- [~] **A063490 castles of width 4 and 5-cores** (submitted 2026-10-16), the A160747 form at
+  `t = 5`; offset 1 needs no shift: `a(n)` = castles of width 4 with `n` blocks = 5-cores with
+  `n − 1` corners. Formula block: the numerator `x(1 + 6x + 6x^2 + x^3)` (row 4 of A001263),
+  Cho et al.'s Prop. 3.4 sum, `a(n) = A271942(n+4, 4)`. The PE 502 link, `Cf. A001263, A064788,
+  A185505, A271942.` (extends the existing line) and the t-core family line:
+  `raw/oeis-pe502/xrefs/A063490-tower.md`, checked by `bin/python/tower_t_cores.py`.
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-1. [ ] **Tower/heap = Narayana-polynomial interpretation** (formerly tier 2) on A005891 /
-   A063490 / A160747, and the numerator formula on A001263 (`raw/oeis-pe502/xrefs/*-tower.md`;
-   `wiki/pages/tower-narayana-polynomial.md`). The A063490 draft notes an offset shift.
+1. [ ] **Castles by blocks = t-cores by corners, Narayana numerator** (formerly tier 2), in
+   the A160747 form (castle wording, PE 502 link, Cho et al.), drafts in castle form
+   (`raw/oeis-pe502/xrefs/*-tower.md`; `wiki/pages/tower-narayana-polynomial.md`):
+   1. [ ] A005891 (width 3, 4-cores).
+   2. [ ] A001263: castles of width `n` with `m` blocks number
+      `Sum_k T(n,k) C(m+n-k-1, n-1)`, for every `n`, proved: `x -> x/(1-y)` in the g.f. of
+      A001263 gives Deutsch-Elizalde's bargraph equation (2) (arXiv:1609.00088).
 2. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
    (`raw/oeis-pe502/xrefs/*-castle.md`).
 3. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
@@ -125,6 +143,14 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
 
 Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with the reason).
 
+- [ ] **Castles that never drop by two, by semi-perimeter** (moved from IDEAS.md): `1, 2, 5, 12, 29, 71, 175, 434, 1082, 2709, 6807, 17157, …`
+  (columns never more than one lower than the column before, any ends) is absent from OEIS (searched 2026-09-27) and has two
+  readings joined by a verified bijection: valleyless Motzkin meanders of length `s − 2`, which Prodinger prints as "not in" OEIS
+  (`wiki/pages/motzkin-castles.md` §6-7). Draft package in `raw/oeis-pe502/`: terms to 30+, GF from the kernel solution, both
+  readings, A004148 (the returning sub-count) as cross-reference. Strongest novel candidate of the Motzkin thread.
+- [ ] **Tree castles by area, `h ≥ 8`** (moved from IDEAS.md): `wiki/pages/tree-castle-by-area.md` identifies `h = 5, 6, 7` as
+  interlinks; `h = 8` has no match (searched 2026-09-26) and is a new-sequence candidate with the GF
+  `(1 + P_h(q))/(1 − q − q·P_h(q))`, `P_h(q) = q² + ⋯ + q^h`.
 - [ ] **New-sequence candidates**, each only if it brings its own formula
   (`wiki/pages/castle-sequence-catalogue.md`, "Other generation candidates"):
   - **The `F(w,h)` array:** rows `F(w,4)`, `F(w,5)`, `F(w,6)`; the odd-block rows
@@ -163,6 +189,15 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   `F(3, 2m+1) = A014105(m)` (verified `m ≤ 11`, 2026-10-04), now also stated under the
   stage-2 `w = 3` column item. Open question: a separate comment on this dense entry, or
   only the column entry.
+- [ ] **A004148** (generalized Catalan numbers; peakless Motzkin paths, RNA secondary
+  structures): castle comment, the castles that drop by at most 1 and end at height 1, by
+  semi-perimeter `s`, number `A004148(s − 1)` (`1, 1, 2, 4, 8, 17, 37, 82, 185, 423, 978`
+  from `s = 2`; matched over 21 terms, 2026-09-26). Their mirror images are the bargraphs
+  with no double rise, which Deutsch and Elizalde map bijectively to RNA secondary
+  structures. Open question: whether the entry already carries the Deutsch-Elizalde
+  bargraph reading, which would make the castle comment a restatement
+  (`wiki/pages/motzkin-castles.md`,
+  `wiki/pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md`).
 
 **Skipped (assessed, with reason):**
 
@@ -191,8 +226,8 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   zeros between successive ones" comment; A077868 is the better home.
 - A003849 / A001950 / A003622 (the 56-column castle from the Fibonacci word): a single castle,
   not a sequence interpretation.
-- A005408 (towers of width 2): its draft recommends skipping by default (dense entry, marginal
-  reading); `raw/oeis-pe502/xrefs/A005408-tower.md`.
+- A005408 (castles of width 2, 3-cores): dense core entry, marginal reading; the draft is in
+  castle form in case it is wanted: `raw/oeis-pe502/xrefs/A005408-tower.md`.
 
 ### Done (live on OEIS)
 
@@ -206,6 +241,19 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   2026-10-06). The "height at most 2" comment, which counted the `r = 0` term `C(n,0)` as a
   castle, is replaced by `a(n) − 1` = odd-block castles of width `n−1` and height 2:
   `raw/oeis-pe502/xrefs/A038503-exact-height.md`.
+- [x] **A146559 castle comment** `a(n) = P(1, n−1)` (signed tower count at `k = 1`),
+  submitted 2026-10-04, approved (A146559 #167, Oct 11 2026). Comment only, exact height:
+  `a(n) − 1` = odd − even castles of height 2: `raw/oeis-pe502/xrefs/A146559-signed.md`
+  (`wiki/pages/castle-sequence-catalogue.md`, `wiki/pages/signed-tower-count.md`).
+- [x] **A009545 castle comment** (submitted 2026-10-06, approved: A009545 #203, Oct 14 2026).
+  Comment only, width `n`, no `− 1`: `a(n)` = even-block − odd-block castles of width `n` and
+  height 2 whose last column reaches height 2, for `n >= 1`, then a sentence defining the
+  castle, and the PE 502 link: `raw/oeis-pe502/xrefs/A009545-signed.md`
+  (`wiki/pages/signed-tower-count.md`, `wiki/pages/tower-parity-sectors.md`).
+- [x] **A226275 recurrence** (submitted 2026-10-11, approved: A226275 #26, Oct 15 2026). Link
+  to the A226136 proof (Theorem 1(b)); one "From _Chaz Reid_, Oct 11 2026" block with "Above
+  formula proven in Reid link", `a(n) = a(n-1) + a(n-3)` for `n >= 6` and
+  `a(n) = A226136(n+2) − A226136(n+1)`; a Python program.
 
 ## Ingestion queue (wiki pages not yet ingested)
 

@@ -126,7 +126,7 @@ Write the minimal polynomial of a quadratic Perron root as `x² − p₁x − p�
 
 1. **Every real quadratic field occurs as the field of some pair.** For `p₁ = 0` the discriminant is `4p₂`, whose squarefree part is that of `p₂`, so the pairs `(0, d)` give every squarefree `d ≥ 2`. Over all `p₁ ≥ 0, p₂ ≥ 1` the discriminant `p₁² + 4p₂ ≡ p₁² (mod 4)` takes every value `≥ 4` that is `≡ 0` or `1 (mod 4)`.[^8]
 2. **The metallic means are the quadrant `p₁, p₂ ≥ 1`, and the `δ_a` are its line `p₂ = 1`.** The larger root of `x² − p₁x − p₂` with `p₁, p₂ ≥ 1` is `σ_{p₁}^{p₂}`, and `p₂ = 1` gives `δ_{p₁}`: the roots of norm `−1`, with continued fraction `[a; a, a, …]` ([[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]).
-3. **Every pair with `p₁ ≥ 0, p₂ ≥ 1` is the Perron root of a 0/1 matrix.** The multigraph with adjacency matrix `[[p₁, p₂], [1, 0]]` has `p₁ + p₂ + 1` edges; the 0/1 matrix with one state per edge, and a 1 from edge `e` to edge `f` when `f` starts where `e` ends, has the same nonzero eigenvalues, a standard recoding of symbolic dynamics. So every real quadratic field is the field of a castle-strip Perron root at some height. The minimum height of a pair is computed exactly through height 6, and proved on the line `p₂ = 1` and on the line `p₁ = 0`, on [[quadratic-min-height](pages/quadratic-min-height.md)]; the per-height field lists of this page are its level sets.[^9]
+3. **Every pair with `p₁ ≥ 0, p₂ ≥ 1` is the Perron root of a 0/1 matrix.** The multigraph with adjacency matrix `[[p₁, p₂], [1, 0]]` has `p₁ + p₂ + 1` edges; the 0/1 matrix with one state per edge, and a 1 from edge `e` to edge `f` when `f` starts where `e` ends, has the same nonzero eigenvalues, a standard recoding of symbolic dynamics. So every real quadratic field is the field of a castle-strip Perron root at some height. The minimum height of a pair is computed exactly through height 6, and proved on the line `p₂ = 1`, on the line `p₁ = 0` and on the triangle `1 ≤ p₂ ≤ p₁`, on [[quadratic-min-height](pages/quadratic-min-height.md)]; the per-height field lists of this page are its level sets.[^9]
 
 `Q(√11)` is not reached by height 5. The smallest discriminant with squarefree part 11 is 44, since `11 ≡ 3 (mod 4)` is not a discriminant, and its pairs are `(0, 11)`, `(2, 10)`, `(4, 7)` and `(6, 2)`; `(4, 7)` has minimum height 6 ([[quadratic-min-height](pages/quadratic-min-height.md)]), so `Q(√11)` first appears at height 6, with the Perron root `2 + √11`.
 
@@ -153,7 +153,7 @@ The new fields at `h = 6` need dense matrices: the matrices with at most 6 ones 
 
 ## Related Concepts
 
-- [[quadratic-min-height](pages/quadratic-min-height.md)] - the minimum height of each quadratic Perron root `(p₁, p₂)`: exact through height 6, proved on the lines `p₂ = 1` and `p₁ = 0`.
+- [[quadratic-min-height](pages/quadratic-min-height.md)] - the minimum height of each quadratic Perron root `(p₁, p₂)`: exact through height 6, proved on the lines `p₂ = 1` and `p₁ = 0` and on the triangle `1 ≤ p₂ ≤ p₁`.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge rule `R_h = J − D`, whose Perron root is `δ_{h−1}`.
 - [[ridge-castle](pages/ridge-castle.md)] - the ridge castles, with the ridge strip counts `A001333(w + 1)`, `A003688(w + 1)`, `A015448(w + 1)` at heights 3, 4, 5.
 - [[metallic-means](pages/metallic-means.md)] - de Spinadel's family `σ_p^q`, with `δ_a = σ_a^1`; this census places the field of each `δ_a`.

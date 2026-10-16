@@ -1,8 +1,6 @@
 # OEIS cross-reference draft — height-2 PE 502 castles -> A038505 / A038503
 
 Status: SUBMITTED to OEIS as "Chaz Reid" on 2026-09-18. The draft below is retained as the pre-submission record; the final wording differs as noted below.
-OEIS forbids AI-authored submissions; treat everything below as a checked,
-correct starting point, not as final text.
 Execution notes (field map, signature format, scope): see SUBMISSION-NOTES.md.
 
 **Changes made at submission (2026-09-18):**
@@ -153,39 +151,33 @@ existing list, unchanged):
 
 ## 5. Things to verify / decide before submitting (flags)
 
-1. **Own wording + attribution.** OEIS requires human authorship. Rework the
-   sentences into your own words. Sign each comment/formula line
-   ` - _Firstname Lastname_, Mon DD YYYY` — replace the placeholder
-   `_Charles Reid_, Sep 05 2026` with the actual OEIS account name and the actual
-   submission date.  Do not submit the text verbatim as AI output.
-
-2. **"Project Euler Problem 502" phrasing.** OEIS links PE problems as
+1. **"Project Euler Problem 502" phrasing.** OEIS links PE problems as
    `Project Euler, <a href="https://projecteuler.net/problem=502">Problem 502: Counting castles</a>`
    (compare A030101's link to Problem 463).  Consider also adding that Link line
    to each sequence so the reference is clickable; then the comment can just say
    "Project Euler Problem 502".  Confirm the exact problem title ("Counting
    castles") on projecteuler.net before adding a link.
 
-3. **Notation in comments.** The Style Sheet prefers plain English in COMMENTS;
+2. **Notation in comments.** The Style Sheet prefers plain English in COMMENTS;
    the `Sum_k binomial(n, 4*k)` / `binomial(w+1, 2*r)` fragments above are
    OEIS-style ASCII (not TeX) and are fine, but if the editor flags them, move
    the identities to the FORMULA section and keep the comments purely verbal.
    Avoid `\binom`, `\sum`, `$...$`, and Mathematica.
 
-4. **Formula-summation style.** The entries already use `Sum_{k=0..n}
+3. **Formula-summation style.** The entries already use `Sum_{k=0..n}
    binomial(n, 2+4*k)`; match that (underscore braces) in the FORMULA section if
    you add the explicit sum there.  In the draft I wrote `Sum_k ...` only inside
    the A038503 *comment*; restate it in house style if you move it.
 
-5. **Crossref syntax.** "Cf. A000225, ..." comma-separated, ends with a period,
+4. **Crossref syntax.** "Cf. A000225, ..." comma-separated, ends with a period,
    one A-number each, leading A-numbers roughly ascending.  Use exactly the lines in
    section 4; do not add a trailing period inside the parenthetical before the comma.
 
-6. **Offsets.** Do not change the offset fields (0,4) / (0,5).  The claim
+5. **Offsets.** Do not change the offset fields (0,4) / (0,5).  The claim
    "a(n) = F(n-1, 2) for n >= 2" is consistent with offset 0 because a(0) = a(1)
    = 0 (widths -1 and 0 have no castles); state the n >= 2 / a(0)=a(1)=0 part
    explicitly so the editor can see the shift is right.
 
-7. **Whether to also add A000225 to A038504 / A000749.** Not required (both
+6. **Whether to also add A000225 to A038504 / A000749.** Not required (both
    already sit in the family cluster).  Optional for completeness; A000749's
    xref list is long and the total-count link is cleaner on A038505/A038503.

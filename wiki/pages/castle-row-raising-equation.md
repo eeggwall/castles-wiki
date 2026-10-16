@@ -10,31 +10,31 @@ updated: 2026-10-16
 
 # The castle row-raising equation
 
-[[prime-castles](pages/prime-castles.md)] glues castles at a shared height-1 column. The result is a free monoid `M`: its elements are the castles that begin and end with a height-1 column, the padded castles `(1, C, 1)` together with the identity `(1)`, and its primes are `(1, X, 1)` with `X` a castle having no height-1 column, together with the trivial prime `(1, 1)`. A nonempty `X` with no height-1 column is a castle `Y` with a full row slid under it, `X = (y_1 + 1, …, y_w + 1)`. So the primes are the castles again, raised one row, and freeness turns that into a functional equation. This page writes the equation with the width tracked, which makes it a `z → qz` recursion, and gives three specializations: unsigned, signed, and by peaks.
+[[prime-castles](pages/prime-castles.md)] glues castles at a shared height-1 column. The result is a free monoid `𝓜`: its elements are the castles that begin and end with a height-1 column, the padded castles `(1, C, 1)` together with the identity `(1)`, and its primes are `(1, X, 1)` with `X` a castle having no height-1 column, together with the trivial prime `(1, 1)`. A nonempty `X` with no height-1 column is a castle `Y` with a full row slid under it, `X = (y_1 + 1, …, y_w + 1)`. So the primes are the castles again, raised one row, and freeness turns that into a functional equation. This page writes the equation with the width tracked, which makes it a `z → qz` recursion, and gives three specializations: unsigned, signed, and by peaks.
 
 ## The equation
 
-Grade `M` by reduced area `area − 1` (variable `q`) and reduced width `width − 1` (variable `z`), both additive under gluing. Raising `Y` one row keeps its width and adds `width(Y)` cells, so it is the substitution `z → qz`. With `B(q, z)` the castle generating function by area and width, the empty castle included ([[castle-notation](pages/castle-notation.md)]), and `π(q, z)` the generating function of the primes (written `π` because `P` is the signed tower count):
+Grade `𝓜` by reduced area `area − 1` (variable `q`) and reduced width `width − 1` (variable `z`), both additive under gluing. Raising `Y` one row keeps its width and adds `width(Y)` cells, so it is the substitution `z → qz`. With `B(q, z)` the castle generating function by area and width, the empty castle included ([[castle-notation](pages/castle-notation.md)]), and `π(q, z)` the generating function of the primes (written `π` because `P` is the signed tower count):
 
 ```
 primes:    π(q, z)  =  qz · B(q, qz)          (the empty castle raised is (1, 1), weight qz)
-padded:    M        =  1 + qz · B(q, z)       (the identity (1), then (1, C, 1) for every castle C)
-freeness:  M        =  1 / (1 − π)
+padded:    𝓜        =  1 + qz · B(q, z)       (the identity (1), then (1, C, 1) for every castle C)
+freeness:  𝓜        =  1 / (1 − π)
 
            1 + qz B(z)  =  1 / (1 − qz B(qz))                                     (1)
 ```
 
-Unsigned, Equation (1) holds for the known `B(q, z) = (1 − q)/(1 − q − qz)`, the compositions by number of parts, and adds nothing. It carries information once a character of `M`, a homomorphism to the nonzero numbers, weights the primes. [[signed-prime-castles](pages/signed-prime-castles.md)] shows that any statistic additive over the prime factors gives one, and the block count minus one is such a statistic.
+Unsigned, Equation (1) holds for the known `B(q, z) = (1 − q)/(1 − q − qz)`, the compositions by number of parts, and adds nothing. It carries information once a character of `𝓜`, a homomorphism to the nonzero numbers, weights the primes. [[signed-prime-castles](pages/signed-prime-castles.md)] shows that any statistic additive over the prime factors gives one, and the block count minus one is such a statistic.
 
 ## The signed equation
 
-Let `E(q, z) = Σ (−1)^{blocks(C)} q^{area(C)} z^{width(C)}`, the empty castle included with weight `+1`. Gluing loses one block, so the sign character of `M` is `(−1)^{blocks − 1}`. Raising adds one block, so a prime `(1, X, 1)` with `X` raised from `Y` carries `(−1)^{blocks(Y)}`, while a padded `(1, C, 1)` carries `−(−1)^{blocks(C)}`. The trivial prime `(1, 1)` carries `+1` either way. That gives
+Let `E(q, z) = Σ (−1)^{blocks(C)} q^{area(C)} z^{width(C)}`, the empty castle included with weight `+1`. Gluing loses one block, so the sign character of `𝓜` is `χ = (−1)^{blocks − 1} = −(−1)^{blocks}` ([[signed-prime-castles](pages/signed-prime-castles.md)]). Raising adds one block, so a prime `(1, X, 1)` with `X` raised from `Y` carries `(−1)^{blocks(Y)}`, while a padded `(1, C, 1)` carries `−(−1)^{blocks(C)}`. The trivial prime `(1, 1)` carries `+1` either way. That gives
 
 ```
 1 + qz (2 − E(z))  =  1 / (1 − qz E(qz))                                          (2)
 ```
 
-The `2` comes from the empty castle, which is counted `+1` inside `E` but enters `M` as `(1, 1)` with sign `+1` instead of `−1`. This is the signed identity of [[signed-prime-castles](pages/signed-prime-castles.md)], with the width kept. With `1` in place of `2` the identity fails.[^1]
+The `2` comes from the empty castle, which is counted `+1` inside `E` but enters `𝓜` as `(1, 1)` with sign `+1` instead of `−1`. This is the signed identity of [[signed-prime-castles](pages/signed-prime-castles.md)], with the width kept. With `1` in place of `2` the identity fails.[^1]
 
 **A recursion.** The right side of Equation (2) at area `n + 1` involves `E(qz)` only through area `n − 1`, because the factor `qz` and the shift each add area. So reading off the coefficient of `q^{n+1}` gives `−z E_n(z)`, the signed castles of area `n` by width, from lower terms, one area at a time. Write `even(n)` and `odd(n)` for the numbers of castles of area `n` with an even and with an odd number of blocks, as on [[castle-by-area](pages/castle-by-area.md)]. The recursion gives `even(n) − odd(n)` for `n ≤ 300`, and an independent column dynamic program over (area, last column height) gives the same value at every `n ≤ 300`:[^1]
 
@@ -81,7 +81,7 @@ G(q, t)  =  (1 − q − q² + t q²) / (1 − 2q + q³ − t q³)              
 
 The one-peak castles have the shape of the convex castles, with the unimodality of `X` dropped. The convex version of the row-raising substitution is `U(q) = K(q, q)`, the prime convex castles of [[prime-convex-castles](pages/prime-convex-castles.md)], where `K(q, z)` is the convex castle generating function by area and width.
 
-Signed and by peaks together, the prime weight is `qz (1 + t (E(q, qz) − 1))`, and the generating function of `M` by reduced area, reduced width, peaks and the sign character is `1/(1 − qz (1 + t(E(q, qz) − 1)))`, with the same recursion. It agrees with enumeration as a series in `q`, `z` and `t` through reduced area 10.[^5]
+Signed and by peaks together, the prime weight is `qz (1 + t (E(q, qz) − 1))`, and the generating function of `𝓜` by reduced area, reduced width, peaks and the sign character is `1/(1 − qz (1 + t(E(q, qz) − 1)))`, with the same recursion. It agrees with enumeration as a series in `q`, `z` and `t` through reduced area 10.[^5]
 
 ## Computation
 

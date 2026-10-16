@@ -156,6 +156,7 @@ DEPARTMENTS.md     the nine Departments (R E N Z Q S T F X): descriptors, concep
 OEIS.md            OEIS submissions (human action), ingestion queue, housekeeping
 config/            link-style rules (markdown: [[slug](pages/slug.md)]) + oeis-annotations.tsv
 bin/               stdlib helper scripts + the pre-commit hook (see Quick start)
+bin/java/, bin/python/  research programs and run logs cited by page footnotes (never pasted into pages)
 raw/               immutable source documents (wikitext, notes, cached refs) — never edited
 assets/            scratch images / PDFs for ingest (git-ignored; not needed to use the wiki)
 wiki/

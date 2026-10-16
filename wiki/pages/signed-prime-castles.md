@@ -10,30 +10,30 @@ updated: 2026-10-16
 
 # Signed prime castles
 
-[[prime-castles](pages/prime-castles.md)] builds the free monoid `M` of castles glued at a shared height-1 column: `x ∘ y` merges the last column of `x` with the first column of `y`, both of height 1. Its primes are the castles `(1, X, 1)` with `X` free of height-1 columns, and every castle `C` enters `M` padded as `(1, C, 1)`. The identity is the castle `(1)`. This page adds the sign `(−1)^{blocks}` that the even-block condition of Project Euler 502 is about ([[block-count-constraints](pages/block-count-constraints.md)]).
+[[prime-castles](pages/prime-castles.md)] builds the free monoid `𝓜` of castles glued at a shared height-1 column: `x ∘ y` merges the last column of `x` with the first column of `y`, both of height 1. Its primes are the castles `(1, X, 1)` with `X` free of height-1 columns, and every castle `C` enters `𝓜` padded as `(1, C, 1)`. The identity is the castle `(1)`. This page adds the sign `(−1)^{blocks}` that the even-block condition of Project Euler 502 is about ([[block-count-constraints](pages/block-count-constraints.md)]).
 
 ## The sign is a character
 
-Gluing merges the two bottom rows into one block and leaves every other block as it was, since the shared column has height 1. So `blocks(x ∘ y) = blocks(x) + blocks(y) − 1`, and `β = blocks − 1` is a monoid homomorphism `M → (Z, +)`. Hence
+Gluing merges the two bottom rows into one block and leaves every other block as it was, since the shared column has height 1. So `blocks(x ∘ y) = blocks(x) + blocks(y) − 1`, and `β = blocks − 1` is a monoid homomorphism `𝓜 → (Z, +)`. Hence
 
 ```
 χ(C) = (−1)^{blocks(C) − 1}
 ```
 
-is a character of `M`, a homomorphism to `{±1}`: `χ(x ∘ y) = χ(x) χ(y)`. Since `M` is free, a character is the same as a choice of value on each prime. Any homomorphism to an abelian group factors through the free commutative monoid on the primes, so **`χ` depends only on the multiset of a castle's prime factors**, not on their order. `M` itself is not commutative: `(1, 2, 1) ∘ (1, 3, 1) = (1, 2, 1, 3, 1)` and `(1, 3, 1) ∘ (1, 2, 1) = (1, 3, 1, 2, 1)` are different castles.
+is a character of `𝓜`, a homomorphism to `{±1}`: `χ(x ∘ y) = χ(x) χ(y)`. It is the negative of the castle sign of [[castle-sign](pages/castle-sign.md)], `χ(C) = −(−1)^{blocks(C)}`, and the shift by one block is needed: the castle sign itself is not a character, since `(−1)^{blocks(x ∘ y)} = −(−1)^{blocks(x)} (−1)^{blocks(y)}`. So a sum weighted by `χ` is odd-block minus even-block, where the signed series `E(q, z)` of [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] is even-block minus odd-block. Since `𝓜` is free, a character is the same as a choice of value on each prime. Any homomorphism to an abelian group factors through the free commutative monoid on the primes, so **`χ` depends only on the multiset of a castle's prime factors**, not on their order. `𝓜` itself is not commutative: `(1, 2, 1) ∘ (1, 3, 1) = (1, 2, 1, 3, 1)` and `(1, 3, 1) ∘ (1, 2, 1) = (1, 3, 1, 2, 1)` are different castles.
 
 ## The signed identity
 
-Grade `M` by reduced area, `area − 1`, so that gluing adds reduced areas. Let
+Grade `𝓜` by reduced area, `area − 1`, so that gluing adds reduced areas. Let
 
 ```
 π_χ(q) = Σ_{primes p} χ(p) q^{area(p) − 1},
 ```
 
-the signed prime series; it is written `π_χ` because `P` is the signed tower count and `A` the castle count, and `π` is the unsigned prime series of [[prime-castles](pages/prime-castles.md)]. Since `M` is free and `χ` is a character,
+the signed prime series; it is written `π_χ` because `P` is the signed tower count and `A` the castle count, and `π` is the unsigned prime series of [[prime-castles](pages/prime-castles.md)]. Since `𝓜` is free and `χ` is a character,
 
 ```
-Σ_{x ∈ M} χ(x) q^{area(x) − 1}  =  1 / (1 − π_χ(q)),                                        (1)
+Σ_{x ∈ 𝓜} χ(x) q^{area(x) − 1}  =  1 / (1 − π_χ(q)),                                        (1)
 ```
 
 and the sum without the identity is `π_χ/(1 − π_χ)`. A padded castle `(1, C, 1)` has reduced area `area(C) + 1` and the same number of blocks as `C`, so the coefficient of `q^{n+1}` in Equation (1) is `A^o(n) − A^e(n)`, the odd-block minus the even-block castles of area `n` ([[castle-by-area](pages/castle-by-area.md)]). The coefficients of `π_χ`, from reduced area 1, are the trivial prime `(1, 1)` and then the signed sums over the castles with no height-1 column:
@@ -74,7 +74,7 @@ The first 14 terms agree with a direct count of the distinct sorted factor lists
 
 ## Which statistics are characters
 
-A statistic `f` is a character after a shift when `f(x ∘ y) = f(x) + f(y) − f((1))` on all of `M`. For a free monoid this holds exactly when `f` is a sum of values on the prime factors. Each row of the table was tested on every pair of padded castles through area 6, and each "no" comes with a witness.[^3]
+A statistic `f` is a character after a shift when `f(x ∘ y) = f(x) + f(y) − f((1))` on all of `𝓜`. For a free monoid this holds exactly when `f` is a sum of values on the prime factors. Each row of the table was tested on every pair of padded castles through area 6, and each "no" comes with a witness.[^3]
 
 | statistic | character? | value on a prime `(1, X, 1)` | reason |
 |---|---|---|---|
@@ -90,7 +90,7 @@ A statistic `f` is a character after a shift when `f(x ∘ y) = f(x) + f(y) − 
 
 Records are characters when a record means a column that leaves the base, as on [[castle-foata-transform](pages/castle-foata-transform.md)]; read as left-to-right maxima of the column heights they compare against the whole prefix and are not. The fractional block count `B_α` of [[fractional-block-count](pages/fractional-block-count.md)] is not a character for `0 < α < 1`, because `Δ^α c_i` is a weighted sum over all earlier columns, so the terms of the right factor depend on the left one. Its endpoints `B_0 = area` and `B_1 = blocks` are characters.
 
-**Weighted generating functions.** For characters `f_1, …, f_r`, weighting each prime `p` by `t_1^{f_1(p)} ⋯ t_r^{f_r(p)}` turns Equation (1) into the weighted sum over `M`. Marking peaks gives a rational generating function for the castles by area and peaks, and marking peaks and the sign together gives a joint recursion; both are on [[castle-row-raising-equation](pages/castle-row-raising-equation.md)].
+**Weighted generating functions.** For characters `f_1, …, f_r`, weighting each prime `p` by `t_1^{f_1(p)} ⋯ t_r^{f_r(p)}` turns Equation (1) into the weighted sum over `𝓜`. Marking peaks gives a rational generating function for the castles by area and peaks, and marking peaks and the sign together gives a joint recursion; both are on [[castle-row-raising-equation](pages/castle-row-raising-equation.md)].
 
 ## Computation
 
@@ -98,15 +98,15 @@ The signed identity through area 16, with `comps`, `blocks` and `primes` from [[
 
 ```python
 N = 16
-Ps = [0] * (N + 2)                              # signed primes by reduced area: pi_chi
+pi_chi = [0] * (N + 2)                          # signed primes by reduced area
 for k in range(N + 1):
     for X in comps(k):
-        if 1 not in X: Ps[1 + k] += (-1) ** (blocks((1,) + X + (1,)) - 1)
-Ms = [1] + [0] * (N + 1)                        # 1/(1 - pi_chi)
-for m in range(1, N + 2): Ms[m] = sum(Ps[j] * Ms[m - j] for j in range(1, m + 1))
+        if 1 not in X: pi_chi[1 + k] += (-1) ** (blocks((1,) + X + (1,)) - 1)
+inv = [1] + [0] * (N + 1)                       # 1/(1 - pi_chi)
+for m in range(1, N + 2): inv[m] = sum(pi_chi[j] * inv[m - j] for j in range(1, m + 1))
 for n in range(1, N + 1):
     even = sum(1 for c in comps(n) if blocks(c) % 2 == 0)
-    assert Ms[n + 1] == 2 ** (n - 1) - 2 * even  # odd - even
+    assert inv[n + 1] == 2 ** (n - 1) - 2 * even # odd - even
 ```
 
 ## Relation to other pages
@@ -123,4 +123,4 @@ for n in range(1, N + 1):
 
 [^1]: Verified by execution (Python 3.11, 2026-10-16), over every composition of `n ≤ 16`: the coefficients of `π_χ` and of `1/(1 − π_χ)`, and `A^e(n) − A^o(n)`. The values for `n ≤ 12` reproduce raw/oeis-pe502/vein9-area.md §"Parity splits" L46-47 - "`even(n)` | 0, 1, 2, 5, 8, 17, 30, 65, 122, 261, 502, 1043 ... `odd(n)` | 1, 1, 2, 3, 8, 15, 34, 63, 134, 251, 522, 1005".
 [^2]: Verified by execution (Python 3.11, 2026-10-16): the distinct sorted prime-factor lists over all castles of area `n ≤ 14`, and the Euler-transform product with `π_j = F_{j−2}` through `n = 17`.
-[^3]: Verified by execution (Python 3.11, 2026-10-16), over all 4225 ordered pairs from the 65 elements of `M` up to area 8 (the identity `(1)`, `(1, 1)`, and every padded castle of area at most 6): area, width, blocks, height-1 columns and peaks satisfy the shifted additivity on every pair; left-to-right maxima fail on 2329 pairs, height on 3249, and `B_{1/2}` on 4096. `B_α` is computed as `Σ_i max(0, Σ_{k=0}^{i−1} (−1)^k C(α, k) c_{i−k})`, the definition on [[fractional-block-count](pages/fractional-block-count.md)].
+[^3]: Verified by execution (Python 3.11, 2026-10-16), over all 4225 ordered pairs from the 65 elements of `𝓜` up to area 8 (the identity `(1)`, `(1, 1)`, and every padded castle of area at most 6): area, width, blocks, height-1 columns and peaks satisfy the shifted additivity on every pair; left-to-right maxima fail on 2329 pairs, height on 3249, and `B_{1/2}` on 4096. `B_α` is computed as `Σ_i max(0, Σ_{k=0}^{i−1} (−1)^k C(α, k) c_{i−k})`, the definition on [[fractional-block-count](pages/fractional-block-count.md)].

@@ -1,0 +1,46 @@
+# python3 bin/python/semi_perimeter_census.py  (2026-10-11, Python 3.10, numpy, sympy, mpmath)
+ceiling (all castles of exact height h):
+  all castles of height 2: 1.754878
+  all castles of height 3: 2.205569
+  all castles of height 4: 2.494691
+  all castles of height 5: 2.690181
+  all castles of height 6: 2.828093
+  all castles of height 7: 2.928829
+  all castles of height 8: 3.004560
+  all castles of height 9: 3.062886
+  all castles of height 10: 3.108739
+  all castles of height 11: 3.145425
+  all castles of height 12: 3.175229
+  all castles of height 13: 3.199766
+  all castles of height 14: 3.220205
+  all castles of height 15: 3.237410
+  all castles of height 16: 3.252027
+  all castles of height 17: 3.264550
+  all castles of height 18: 3.275361
+  all castles of height 19: 3.284757
+  all castles of height 20: 3.292974
+  all castles of height 21: 3.300203
+  all castles of height 22: 3.306595
+  spectral radius of M(1/bronze), all castles of height 21: 0.998657129535844
+  spectral radius of M(1/bronze), all castles of height 22: 1.00199920787609
+two-height castles {a, a + d}: denominators
+  d = 1: -x**3 + x**2 - 2*x + 1
+  d = 2: -(x**2 - x + 1)*(x**2 + x - 1)
+  d = 3: -x**5 + x**2 - 2*x + 1
+  d = 4: -(x**3 - x + 1)*(x**3 + x - 1)
+  d = 8: -(x**2 - x + 1)*(x**3 + x**2 - 1)*(x**5 - x + 1)
+silver rules at height 4: 0
+silver at height 5: 601 numeric candidates, 601 confirmed exactly
+  rule "no 1 next to 2, no 4 next to 5" in the confirmed list: True ; denominator -(x - 1)**2*(x**2 + 1)*(x**2 + 2*x - 1)*(x**3 + x**2 - x + 1)
+  its castles of exact height 5 by semi-perimeter s = 6..16: [1, 7, 26, 74, 196, 525, 1421, 3809, 10040, 26102, 67250]
+census:
+h=1: 2 distinct denominators, 1 new constants, degrees {1: 1}; smallest new 1.000000 (1 - z), largest 1.000000
+h=2: 6 distinct denominators, 2 new constants, degrees {3: 2}; smallest new 1.465571 (-z**3 + z**2 + 1), largest 1.754878
+h=3: 58 distinct denominators, 34 new constants, degrees {1: 1, 2: 1, 3: 6, 4: 6, 5: 20}; smallest new 1.167304 (-z**5 + z + 1), largest 2.205569
+h=4: 2914 distinct denominators, 2106 new constants, degrees {3: 6, 4: 34, 5: 152, 6: 400, 7: 708, 8: 806}; smallest new 1.104873 (-z**8 + z**2 + 1), largest 2.494691
+total 548 s
+
+# python3 -c from semi_perimeter_census import search; ...  (same day: rule counts per target)
+height 2: golden 0, plastic 0, psi^2 1
+height 3: golden 26, plastic 10, psi^2 36
+height 4: golden 3669, plastic 1940

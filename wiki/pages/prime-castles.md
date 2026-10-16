@@ -14,7 +14,7 @@ updated: 2026-10-16
 
 ## The gluing monoid
 
-Let `M` be the castles that begin and end with a height-1 column. Glue two of them by laying them side by side and merging the last column of the left one with the first column of the right one:
+Let `𝓜` be the castles that begin and end with a height-1 column. Glue two of them by laying them side by side and merging the last column of the left one with the first column of the right one:
 
 ```
 (1, 2, 1) ∘ (1, 3, 3, 1)  =  (1, 2, 1, 3, 3, 1)
@@ -28,13 +28,13 @@ width(x ∘ y)  = width(x)  + width(y)  - 1
 blocks(x ∘ y) = blocks(x) + blocks(y) - 1
 ```
 
-The block identity holds because the two bottom rows merge into one block, and nothing above the bottom row can touch across a height-1 column. Padding, `C ↦ (1, C, 1)`, adds two cells and no blocks, and together with `() ↦ (1, 1)` for the empty skyline it is a bijection from the castles, and the empty skyline, onto `M` without its identity.[^1]
+The block identity holds because the two bottom rows merge into one block, and nothing above the bottom row can touch across a height-1 column. Padding, `C ↦ (1, C, 1)`, adds two cells and no blocks, and together with `() ↦ (1, 1)` for the empty skyline it is a bijection from the castles, and the empty skyline, onto `𝓜` without its identity.[^1]
 
-**`M` is free.** Cut a padded castle at every interior height-1 column. The pieces are `(1, X, 1)` with `X` a castle having no height-1 column, or `X` empty, and gluing them back gives the castle again. No other factorization exists: a seam is a height-1 column, every interior height-1 column must be a seam, and a piece `(1, X, 1)` has no height-1 column inside it.
+**`𝓜` is free.** Cut a padded castle at every interior height-1 column. The pieces are `(1, X, 1)` with `X` a castle having no height-1 column, or `X` empty, and gluing them back gives the castle again. No other factorization exists: a seam is a height-1 column, every interior height-1 column must be a seam, and a piece `(1, X, 1)` has no height-1 column inside it.
 
 **Primes.** In a free monoid, the elements into which every element factors uniquely are its primes, and they are also its irreducible elements; Gessel and Li use the word this way for monoids of compositions under concatenation.[^2] The word has nothing to do with prime numbers. So:
 
-- The primes of `M` are `(1, X, 1)` with `X` a castle with no height-1 column, the **prime castles**, and the trivial prime `(1, 1)`, with `X` empty. By area the prime castles are the compositions of `n` into parts `≥ 2`, which number `F_{n-1}`: `0, 1, 1, 2, 3, 5, 8, 13, 21, ...` for `n = 1, 2, 3, ...`, an identity Gessel and Li list from Stanley.[^2] With the height unrestricted, `F_{n-1} ~ φ^n/(φ√5)`, so the prime castles are golden by area ([[metallic-means](pages/metallic-means.md)]), while all castles of area `n` number `2^{n-1}`.[^3] At a fixed height the growth is smaller (section *Prime castles of height h*).
+- The primes of `𝓜` are `(1, X, 1)` with `X` a castle with no height-1 column, the **prime castles**, and the trivial prime `(1, 1)`, with `X` empty. By area the prime castles are the compositions of `n` into parts `≥ 2`, which number `F_{n-1}`: `0, 1, 1, 2, 3, 5, 8, 13, 21, ...` for `n = 1, 2, 3, ...`, an identity Gessel and Li list from Stanley.[^2] With the height unrestricted, `F_{n-1} ~ φ^n/(φ√5)`, so the prime castles are golden by area ([[metallic-means](pages/metallic-means.md)]), while all castles of area `n` number `2^{n-1}`.[^3] At a fixed height the growth is smaller (section *Prime castles of height h*).
 - The **composite castles**, those with at least one height-1 column, number `2^{n-1} - F_{n-1}`: `1, 1, 3, 6, 13, 27, 56, ...`.
 - A castle with `k` height-1 columns has `k + 1` prime factors. For example `(2, 1, 3, 3, 1, 1, 2)` has three height-1 columns and four prime factors, and its padded form is `(1,2,1) ∘ (1,3,3,1) ∘ (1,1) ∘ (1,2,1)`.
 
@@ -42,15 +42,15 @@ These three statements and the three identities of the gluing were checked on ev
 
 ## The prime generating function
 
-Grade `M` by reduced area, `area - 1`, so that gluing adds. A prime `(1, X, 1)` has reduced area `1 + area(X)`, and `X` ranges over the compositions with parts `≥ 2`, including the empty one. With `π(q)` the generating function of the primes by reduced area (written `π` because `P` is the signed tower count),
+Grade `𝓜` by reduced area, `area - 1`, so that gluing adds. A prime `(1, X, 1)` has reduced area `1 + area(X)`, and `X` ranges over the compositions with parts `≥ 2`, including the empty one. With `π(q)` the generating function of the primes by reduced area (written `π` because `P` is the signed tower count),
 
 ```
 π(q)  =  q (1 + q²/(1 - q - q²))  =  q (1 - q)/(1 - q - q²)
 
-1/(1 - π(q))  =  (1 - q - q²)/(1 - 2q)  =  1 + q + q · q/(1 - 2q)
+𝓜(q)  =  1/(1 - π(q))  =  (1 - q - q²)/(1 - 2q)  =  1 + q + q · q/(1 - 2q)
 ```
 
-On the right, `1` is the identity `(1)`, `q` is the padded empty skyline `(1, 1)`, and `q · q/(1 - 2q)` is the padded castles, the `2^{n-1}` castles of area `n` at reduced area `n + 1`. Without the identity this is the sequence construction `M − 1 = π/(1 − π)` of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)], and it is the identity of Gessel and Li for a free monoid with an additive weight: the generating function of the monoid is `1/(1 − Σ_p x^{weight(p)})`, summed over its primes.[^2]
+On the right, `1` is the identity `(1)`, `q` is the padded empty skyline `(1, 1)`, and `q · q/(1 - 2q)` is the padded castles, the `2^{n-1}` castles of area `n` at reduced area `n + 1`. Without the identity this is the sequence construction `𝓜(q) − 1 = π/(1 − π)` of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)], and it is the identity of Gessel and Li for a free monoid with an additive weight: the generating function of the monoid is `1/(1 − Σ_p x^{weight(p)})`, summed over its primes.[^2]
 
 **The primes are castles raised one row.** A nonempty `X` with no height-1 column is a castle `Y` with a full row slid under it, and `area(X) = area(Y) + width(Y)`. So with `B(q, z)` the castle generating function by area and width, the empty skyline included ([[castle-notation](pages/castle-notation.md)]), `π(q) = q · B(q, q)`. Tracking the width as well gives a functional equation in `z → qz`, which [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] derives, signed and weighted by peaks.
 

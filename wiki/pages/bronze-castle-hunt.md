@@ -1,7 +1,7 @@
 ---
 title: The bronze-by-spectrum search - castle graphs with spectral radius (3 + √13)/2
 category: Analyses
-summary: A search for a castle that is bronze by spectrum, one whose castle graph has largest adjacency eigenvalue exactly the bronze mean δ_3 = (3 + √13)/2 = 3.3028. Factoring δ_3·I − A one cell at a time and counting negative pivots, which by Sylvester's law of inertia counts the eigenvalues above δ_3, prunes a search over every skyline in twelve boxes from 22 wide x 3 tall to 5 wide x 32 tall, about 7.1 x 10^11 skylines counting box overlaps. None is bronze by spectrum. The 55 distinct floating-point near-misses, the closest 2.3 x 10^-12 above δ_3, all have a nonzero integer determinant det(A^2 − 3A − I), so δ_3 is not an eigenvalue of any of them. Two constructions are ruled out by proof: no rectangle has δ_3 as an eigenvalue (averaging over the Galois group of a cyclotomic field leaves only 2.618 and 0.382), and no castle graph has an equitable partition into two groups with quotient eigenvalue δ_3, the way the 3 x 2 rectangle is silver by spectrum. Among the 28,251 castles up to 6 x 6 (one per mirror pair), no eigenvalue is within 4.5 x 10^-5 of δ_3.
+summary: A search for a castle that is bronze by spectrum, one whose castle graph has largest adjacency eigenvalue exactly the bronze mean δ_3 = (3 + √13)/2 = 3.3028. Factoring δ_3·I − A one cell at a time and counting negative pivots, which by Sylvester's law of inertia counts the eigenvalues above δ_3, prunes a search over every skyline in twelve boxes from 22 wide x 3 tall to 5 wide x 32 tall, about 7.1 x 10^11 skylines counting box overlaps. None is bronze by spectrum. The 55 distinct floating-point near-misses, the closest 2.3 x 10^-12 above δ_3, all have a nonzero integer determinant det(A^2 − 3A − I), so δ_3 is not an eigenvalue of any of them. Two constructions are ruled out by proof: no rectangle has δ_3 as an eigenvalue (averaging over the Galois group of a cyclotomic field leaves only 2.618 and 0.382), and no castle graph has an equitable partition into two groups with quotient eigenvalue δ_3, the way the 3 x 2 rectangle is silver by spectrum. An exhaustive search over quotient matrices, with a SAT solver for a local test on 7 x 7 patches of the grid, extends the second to equitable partitions into three, four or five groups. Among the 28,251 castles up to 6 x 6 (one per mirror pair), no eigenvalue is within 4.5 x 10^-5 of δ_3.
 tags: [analysis, castle, spectral, adjacency, spectral-radius, metallic-means, bronze-ratio, search, pruning, inertia, galois, equitable-partition, near-miss, implementation, verification]
 sources: [project-euler-502-representations]
 created: 2026-09-24
@@ -16,7 +16,7 @@ The **castle graph** has the cells of a castle as vertices, with two cells joine
 
 The metallic means `δ_a = σ_a^1 = (a + √(a² + 4))/2` are golden `δ_1 = 1.618`, silver `δ_2 = 2.414`, bronze `δ_3 = (3 + √13)/2 = 3.3028`, then `δ_4 = 4.236` and beyond ([[metallic-means](pages/metallic-means.md)]). A castle is **golden by spectrum** when its castle graph has spectral radius `δ_1`, **silver by spectrum** at `δ_2` ([[castle-classification-spectrum](pages/castle-classification-spectrum.md)]), and, on this page, **bronze by spectrum** at `δ_3`. The six 4-cell castles whose graph is the path `P_4` are golden by spectrum; in a scan of 4,868,525 castles up to mirror image, 36 are silver by spectrum, the 3 x 2 rectangle among them, and none is bronze by spectrum; and no castle has spectral radius `δ_4` or larger, since these exceed 4 ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]).
 
-This page searches a far larger set of skylines for a castle bronze by spectrum and finds none; it also proves that two natural constructions cannot give one.
+This page searches a far larger set of skylines for a castle bronze by spectrum and finds none; it also proves that two natural constructions cannot give one, and by a computer search excludes equitable partitions into at most five groups.
 
 ## Terms used on this page
 
@@ -131,11 +131,34 @@ The quotient `[[1, 1], [2, 1]]` has characteristic polynomial `x² − 2x − 1`
 
 A cell has at most 4 neighbors. In any finite set of cells, the leftmost cell of the lowest row has no neighbor in the set below it or to its left, so it has at most 2 neighbors in the set. Every row of the table is ruled out. ∎
 
+### Three, four and five groups with equal neighbor counts
+
+For an equitable partition into `k` groups, write `Q = (q_ij)` for the quotient matrix: every cell of group `i` has `q_ij` neighbors in group `j`. The largest eigenvalue of `Q` is the spectral radius of the castle graph, so a castle bronze by spectrum with such a partition gives a quotient with largest eigenvalue `δ_3`. Three conditions restrict `Q`:
+
+- **Degree.** Every row of `Q` sums to at most 4.
+- **Corners.** The groups can be ordered so that a cell of each group has at most 2 neighbors in its own group and the groups after it. In any union of groups, the leftmost cell of the lowest row has at most 2 neighbors in the union, and by equitability so has every cell of its group; take that group first among the remaining ones and repeat.
+- **Local fit.** Around any cell, the groups of the nearby cells match `Q` at every cell whose four neighbors are all nearby.
+
+The quotient of a connected castle graph is irreducible, and the group sizes `n_i > 0` satisfy `n_i q_ij = n_j q_ji`, so `q_ij > 0` exactly when `q_ji > 0`. An exhaustive search over the integer matrices satisfying these conditions, followed by the local-fit test, gives:[^groups]
+
+| groups | quotients with largest eigenvalue `δ_3` satisfying the degree and corner conditions | of those, passing the local fit |
+|---|---|---|
+| 2 | 0 | - |
+| 3 | 0 | - |
+| 4 | 36 | 0 |
+| 5 | 390 | 6 as sets of grid cells, 0 as castles |
+
+The local-fit test asks a SAT solver whether a 7 x 7 patch of the grid, centered on a cell of a given group, can be labeled with groups and empty squares so that every cell of the inner 5 x 5 has the neighbor counts its row of `Q` prescribes. Each of the 36 quotients with four groups, and 384 of the 390 with five, has a group with no such patch. A castle with that partition would supply the patch, so none of these quotients comes from a castle, or from any finite or infinite set of grid cells. The other six quotients with five groups have patches up to 11 x 11 as sets of grid cells, but none once the castle condition is added (every column rises from one base row without gaps): in each, some group has no 7 x 7 patch. None of the six is realized by a finite set of cells in a box up to 12 x 12. The golden, silver and `φ²` quotients above pass the test for every group, with and without the castle condition.
+
+*Example.* One of the 36 quotients with four groups has rows `(0, 1, 0, 0)`, `(1, 0, 2, 0)`, `(0, 3, 0, 1)`, `(0, 0, 3, 1)` and characteristic polynomial `(x − 1)(x + 3)(x² − 3x − 1)`. A cell of group 4 has three neighbors in group 3 and one in group 4, and a cell of group 3 has three in group 2 and one in group 4. Let `X` be a cell of group 4 and, by symmetry of the grid, `Y` its neighbor of group 4 to its right. The cell `U` above `X` is in group 3, and its group-4 neighbor is `X`, so its other three neighbors are in group 2, among them the cell above `Y`. That cell is also a neighbor of `Y` other than `X`, so it is in group 3. No cell is in both groups.
+
+So a castle bronze by spectrum has no equitable partition into five or fewer groups.
+
 ## Results
 
 - No skyline in the twelve boxes is bronze by spectrum, and `δ_3` is not an eigenvalue of any of the 55 near-misses.
 - No rectangle has `δ_3` as an eigenvalue.
-- No equitable partition into two groups gives `δ_3`.
+- No equitable partition into two groups gives `δ_3`, and by an exhaustive search with a SAT solver, none into three, four or five groups.
 - No castle up to 6 x 6 has an eigenvalue within `4.5 x 10^-5` of `δ_3`.
 
 Whether some larger castle is bronze by spectrum is not settled by these results.
@@ -156,3 +179,4 @@ Whether some larger castle is bronze by spectrum is not settled by these results
 ## Footnotes
 
 [^exec]: Verified by execution (2026-09-24). Search: a C program factoring `δ_3·I − A` one cell at a time in column-major, bottom-up order; it stops a branch when a pivot is below `10^-11` and records every pivot within `10^-8` of zero. The smallest recorded pivot in absolute value was `3.7 x 10^-10`, so no branch was stopped for being close to zero. It was validated on `δ_2` (14 skylines up to 7 x 6, all pivots below `2 x 10^-13` in absolute value), `δ_1` and `φ²`. The 64 recorded candidates (55 distinct, since boxes overlap) were checked with NumPy `eigvalsh` and an exact SymPy fraction-free (Bareiss) determinant of `A² − 3A − I`: all nonzero. Rechecked (Python 3.11 with NumPy, SymPy and mpmath, 2026-10-16): the four closest near-misses (radius − `δ_3` to 40 digits, and their determinants), the tower family for `k = 3..9`, the 14 skylines up to 7 x 6 silver by spectrum, the 28,251 mirror classes up to 6 x 6 (closest eigenvalue to `δ_3` at distance `4.48 x 10^-5`), every rectangle eigenvalue up to 300 x 300, the values `2μ(n)/tot(n)` for `n < 2000`, and the box sizes `H + ⋯ + H^W`. The search over the twelve boxes was not rerun.
+[^groups]: Verified by execution (Python 3 with NumPy and python-sat, CaDiCaL 1.5.3, 2026-10-10), script `bin/python/bronze_groups.py`, run log `bin/python/bronze_groups-run.log`. Quotients: every `k x k` matrix of nonnegative integers for `k = 2, …, 5` in the corner order (row `i` sums to at most 2 over columns `i, …, k` and to at most 4 in all), batched through `numpy.linalg.eigvals`, keeping largest eigenvalue modulus within `10^-8` of `δ_3`, then irreducible and with consistent group sizes: none at `k = 2`; none at `k = 3` (24 before the corner condition, counting relabelings); 36 of 1,808,625 at `k = 4`; 390 of 1,093,062,600 at `k = 5`. Local fit: a `(2R + 1) x (2R + 1)` window, one label per cell (empty or a group), the center fixed to group `g`, and a clause ruling out each forbidden assignment of the four neighbors of every inner cell; castle condition: a base-row variable, every cell below the base empty, and a nonempty cell above an empty one only on the base row. At `R = 3`, all 36 four-group and 384 five-group quotients have a failing group; the other six fit for every group at `R = 3, 4, 5` without the castle condition and fail with it at `R = 3, 4, 5`. Finite search in an `N x N` box with every cell constrained and every group present: no solution for the six at `N = 6, 8, 10, 12`. Controls `[[0, 1], [1, 1]]` (`φ`), `[[1, 1], [2, 1]]` (`δ_2`) and `[[1, 1], [1, 2]]` (`φ²`) fit for every group at `R = 4`, with and without the castle condition. The characteristic polynomial of the example quotient rechecked with SymPy (2026-10-16).

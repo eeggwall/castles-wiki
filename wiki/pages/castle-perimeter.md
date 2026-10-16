@@ -104,6 +104,7 @@ Here `F_n` are the Fibonacci numbers with `F_1 = F_2 = 1`; Delest and Viennot wr
 - [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - the tribonacci constant `τ` as the growth of the castles of height 3 counted by area, where this page has `τ²` as the growth by semi-perimeter.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - the functional equation (3.11) for bargraphs by horizontal perimeter, vertical perimeter and area, quadratic in `B`, and the scaling exponents `γ_u = −1/2`, `γ_t = −1/3`, `φ = 2/3` of their continuum limit.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - the castle generating function `Π/(1 − x − Π)` by width, blocks and area, which at equal weights for width and blocks grades by semi-perimeter and area.
+- [[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)] - strip rules counted by semi-perimeter: the growth constants at each height through 4, silver first at height 5, and the bound that excludes bronze below height 22.
 
 ## Footnotes
 
