@@ -1,127 +1,105 @@
 ---
 title: The castle strip - bridge to transfer matrices
 category: Concepts
-summary: A castle strip is a castle read left-to-right as a sequence of columns, one column at a time. The rule "which column heights may sit next to which" is an h×h 0/1 transfer matrix M whose rows and columns are indexed by the allowed heights {1, …, h}: M[a][b] = 1 means a height-a column may be immediately followed by a height-b column. Counting strips of width w is then matrix powers (𝟙ᵀM^{w−1}𝟙), the width generating function has denominator dividing det(I − xM), and the growth constant is M's largest eigenvalue (Perron root). The metallic-mean and reachable-field results are about this object; the states are the heights.
+summary: A castle strip is a skyline (c_1, …, c_w) with heights in {1, …, h} in which every pair of neighboring columns obeys a rule; a strip need not reach height h, so it is not a castle of height h, and the strips that do reach h are the castles of height h of the rule's family. The rule is an h × h 0/1 transfer matrix M whose states are the heights (M[a][b] = 1 when a column of height a may be followed by one of height b). There are 𝟙ᵀM^{w−1}𝟙 strips of width w, their generating function has a denominator dividing det(I − xM), and their growth by width is the Perron root of M.
 tags: [concept, castle, transfer-matrix, strip, height, perron-root, growth-constant, generating-function, pedagogy, bridge]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-10-07
+updated: 2026-10-16
 ---
 
 # The castle strip - bridge to transfer matrices
 
-## Purpose
+[[pell-castle-strip](pages/pell-castle-strip.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] and [[reachable-field-census](pages/reachable-field-census.md)] count skylines with transfer matrices and read growth constants off the eigenvalues of small 0/1 matrices. This page defines the strips, the matrices and the two quantities those pages use, the strip count and the Perron root.
 
-Several wiki pages — [[pell-castle-strip](pages/pell-castle-strip.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)], [[reachable-field-census](pages/reachable-field-census.md)] — talk about "castle strips," "transfer matrices," and "height-states," and derive growth constants from the eigenvalues of small 0/1 matrices. This page builds that machinery from scratch: what a strip is, why a matrix describes it, and that **the matrix's rows and columns are the allowed column heights**, which the other pages assume.
+## Strips
 
-## What a castle strip is
+Fix a height bound `h` and a **rule**: for each pair of heights `a, b` in `{1, …, h}`, whether a column of height `a` may stand immediately to the left of a column of height `b`. A **castle strip** of width `w` under the rule is a skyline `(c_1, …, c_w)` with every `c_i` in `{1, …, h}` such that every pair of neighboring columns `(c_i, c_{i+1})` is allowed. A strip need not reach height `h`, so a strip is not a castle of height `h`. The strips that reach height `h` are castles of height `h` ([[castle-polyomino](pages/castle-polyomino.md)]), and they make up the castles of height `h` of the rule's family.
 
-A **castle** is a skyline `c = (c_1, …, c_w)` — a row of `w` columns, column `i` having integer height `c_i` between `1` and `h` ([[castle-representations](pages/castle-representations.md)]). A **castle strip** is the same object read **left to right, one column at a time**, together with a **rule** saying which heights are allowed to be neighbors.
+Three rules:
 
-The rule is a yes/no question about each *adjacent pair* of columns:
+- every pair allowed: every skyline in `{1, …, h}^w` is a strip;
+- `a ≠ b`, the plateau-free rule: no two neighboring columns of equal height;
+- `|a − b| ≤ 1`, the 1-smooth rule: neighboring heights differ by at most 1. Its strips on `{1, …, h}` form the Motzkin strip of height `h` ([[motzkin-castles](pages/motzkin-castles.md)]).
 
-> given a column of height `a`, is a column of height `b` allowed immediately to its right?
+*Example.* At `h = 3` under the 1-smooth rule, the skyline `(1, 2, 3, 2)` is a strip that reaches height 3, so it is a castle of height 3; the skyline `(1, 2, 2, 1)` is a strip that is not a castle of height 3; and the skyline `(1, 3, 2)` is not a strip, since its first two heights differ by 2.
 
-Call that predicate `A(a, b)` (`A` for "allowed"). A castle strip of width `w` is any sequence `c_1, c_2, …, c_w` of heights in `{1, …, h}` such that every adjacent pair passes the rule: `A(c_1, c_2)`, `A(c_2, c_3)`, …, all true. Different rules carve out different families:
+## The transfer matrix
 
-- `A(a, b) =` **always true** → *every* skyline is allowed (the unrestricted strip).
-- `A(a, b) = (a ≠ b)` → no two equal-height neighbors (the "plateau-free" strip).
-- `A(a, b) = (|a − b| ≤ 1)` → heights change by at most 1 (the "1-smooth" / Motzkin strip).
-
-The word "strip" emphasizes that we walk along one dimension (left to right, the **width**), deciding each next column from the current one — a one-dimensional sweep across the castle.
-
-## The transfer matrix: the states are the heights
-
-A rule `A(a, b)` on heights `{1, …, h}` is exactly an **`h × h` matrix `M` of 0s and 1s**, where
+A rule on the heights `{1, …, h}` is an `h × h` matrix `M` of 0s and 1s with
 
 ```
-M[a][b] = 1   if a column of height a may be followed by a column of height b   (i.e. A(a, b) is true),
-M[a][b] = 0   otherwise.
+M[a][b]  =  1   if a column of height a may be followed by a column of height b,
+M[a][b]  =  0   otherwise.
 ```
 
-**Row `a` and column `b` are indexed by the heights themselves**: the `h` "states" of the transfer matrix are the `h` possible column heights `1, 2, …, h`. When a later page says "a 0/1 transfer matrix on `h` height-states," it means exactly this `h × h` matrix, and "`h = 4`" means "column heights run 1 to 4."
+Its rows and columns are indexed by the heights themselves: the `h` states of the transfer matrix are the column heights `1, …, h`. "A 0/1 transfer matrix on `h` height states" on the other pages means this matrix.
 
-Entry `M[a][b]` reads as a sentence: **"can a height-`a` column stand next to a height-`b` column?"** — 1 for yes, 0 for no. The matrix is just the rule's truth table laid out as a grid.
-
-## A worked example you can check by hand
-
-Take `h = 2` (heights `1` and `2`) and the rule "**anything may follow anything**" — every pair allowed. The matrix is
+With `𝟙` the all-ones column vector of length `h`, the number of strips of width `w` is
 
 ```
-        to height 1   to height 2
-from 1 [     1             1      ]
-from 2 [     1             1      ]
+N(w)  =  𝟙ᵀ M^{w−1} 𝟙.                                                       (1)
 ```
 
-`M = [[1, 1], [1, 1]]`. Now count strips of each width by hand and check the matrix reproduces them:
+The entry `(a, b)` of `M^{w−1}` counts the strips of width `w` that start at height `a` and end at height `b`, since each factor `M` appends one column, and the two vectors `𝟙` sum over the first and last heights.
 
-- **width 1:** heights `1` or `2` → **2** strips.
-- **width 2:** any of `(1,1), (1,2), (2,1), (2,2)` — all allowed → **4** strips.
-- **width 3:** `2 × 2 × 2` = **8** strips.
+*Example: `h = 2`.* With every pair allowed, `M = [[1, 1], [1, 1]]`, and Equation (1) gives `N(1) = 2`, `N(2) = 4`, `N(3) = 8`: the skylines `(1)`, `(2)`; the four skylines in `{1, 2}²`; and the eight in `{1, 2}³`. Under the plateau-free rule, `M = [[0, 1], [1, 0]]`, and the only strips are the alternating skylines `(1, 2, 1, …)` and `(2, 1, 2, …)`, so `N(w) = 2` for every `w`, as Equation (1) gives.
 
-The matrix machinery gives the same counts. The number of allowed width-`w` strips is
+## Growth constant and generating function
+
+**Growth constant.** The **Perron root** `ρ(M)` is the largest eigenvalue of `M`, which is real and nonnegative because `M` is nonnegative (Perron-Frobenius theorem); when every height can be reached from every height under the rule, it is positive and a simple eigenvalue. `N(w)` is the sum of the entries of `M^{w−1}`, which for a nonnegative matrix is a matrix norm, so by Gelfand's formula
 
 ```
-(number of width-w strips)  =  𝟙ᵀ M^{w−1} 𝟙,
+lim_{w→∞} N(w)^{1/w}  =  ρ(M).                                               (2)
 ```
 
-where `𝟙` is the all-ones column vector (length `h`) and `𝟙ᵀ` its transpose. Reading it: start in any height (`𝟙` on the right picks all `h` starting heights), take `w − 1` steps (each `M` multiply appends one more allowed column), and total over all ending heights (`𝟙ᵀ` on the left). For `M = [[1,1],[1,1]]`:
+This is the growth by width of the strips. For `M = [[1, 1], [1, 1]]` the eigenvalues are 2 and 0, and `N(w) = 2^w`. [[metallic-means](pages/metallic-means.md)] and [[reachable-field-census](pages/reachable-field-census.md)] ask which numbers arise as the Perron root of a 0/1 matrix.
 
-- `w = 1`: `𝟙ᵀ𝟙 = 2` ✓
-- `w = 2`: `𝟙ᵀ M 𝟙 = 4` ✓
-- `w = 3`: `𝟙ᵀ M² 𝟙 = 8` ✓
+**Generating function.** Summing Equation (1) over `w`,
 
-Change the rule and the matrix changes. "No two equal neighbors" (`a ≠ b`) at `h = 2` is `M = [[0, 1], [1, 0]]`: from height 1 you must go to 2 and vice versa, so the only strips are the alternating ones `1,2,1,2,…` and `2,1,2,1,…` — exactly **2 strips of every width**, which `𝟙ᵀ M^{w−1} 𝟙 = 2` confirms.
+```
+Σ_{w≥1} N(w) x^{w−1}  =  𝟙ᵀ (I − xM)^{−1} 𝟙,                                (3)
+```
 
-## Reading the growth constant and the generating function
+a rational function whose denominator divides `det(I − xM)`, since by Cramer's rule every entry of `(I − xM)^{−1}` is a polynomial divided by `det(I − xM)`. A factor can cancel, as the factor `1 − x` of the 1-smooth rule on `{1, 2, 3}` does on [[pell-castle-strip](pages/pell-castle-strip.md)]. The coefficients of the reduced denominator give the linear recurrence of `N(w)` ([[generating-functions](pages/generating-functions.md)]), and by Equation (2) its root of smallest modulus is `1/ρ(M)`. For `h = 2` the denominator has degree at most 2, so the growth constant is an integer or a quadratic irrational ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
 
-Two quantities fall straight out of `M`, and they are what the advanced pages actually use.
+## Strips and the Project Euler castles
 
-**Growth constant = largest eigenvalue.** As the width `w` grows, the strip count `𝟙ᵀ M^{w−1} 𝟙` grows like `λ^w`, where `λ` is the **largest eigenvalue of `M`** — its **Perron root** (largest eigenvalue of a nonnegative matrix, guaranteed real and positive when the strip is "connected"). For `M = [[1,1],[1,1]]` the eigenvalues are `2` and `0`, so the count grows like `2^w` — matching `2, 4, 8, …`. This `λ` is the **growth constant** that [[metallic-means](pages/metallic-means.md)] and [[reachable-field-census](pages/reachable-field-census.md)] study: which numbers `λ` arise this way, from a 0/1 rule matrix.
+- **Every pair allowed.** Then `M` is the all-ones matrix `J`, with Perron root `h`, and `N(w) = h^w` counts the castles of width `w` and height at most `h`. The Project Euler rules impose no condition on neighboring columns, since the blocks are the maximal runs of each row and the gap rule holds for every skyline ([[castle-polyomino](pages/castle-polyomino.md)]). The strips that reach `h` number `A(w, h) = h^w − (h−1)^w`.
+- **Named families.** The 1-smooth rule on `{1, 2, 3}` with the first column at height 1 gives the Pell castle strip, `Σ_w N(w) x^{w−1} = 1/(1 − 2x − x²)`, silver by width; its strips that reach height 3 are the Pell castles ([[pell-castle-strip](pages/pell-castle-strip.md)]). The ridge rule gives the ridge castles ([[ridge-castle](pages/ridge-castle.md)]). Each rule defines a family of castles, the strips that reach the top height, and its Perron root is computed from `M`.
 
-**Generating function: denominator `det(I − xM)`.** Packaging the width counts into one power series `∑_{w ≥ 1} (\text{count}) x^{w−1}` gives the rational function `𝟙ᵀ (I − xM)^{−1} 𝟙`, whose denominator divides `det(I − xM)` (a factor can cancel, as the `(1 − x)` of the 1-smooth strip does on [[pell-castle-strip](pages/pell-castle-strip.md)]). The denominator's degree, roots, and coefficients are the strip's C-finite fingerprint ([[generating-functions](pages/generating-functions.md)]); the growth constant `λ` is `1/ρ` for `ρ` the smallest-modulus root of `det(I − xM)`. For the two-height examples the denominators have degree at most 2, so their growth constants are integers or quadratic irrationals, as in the metallic-means pages ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
+[[castle-graph](pages/castle-graph.md)] takes eigenvalues of a single castle's cell adjacency matrix; a strip rule's Perron root is the growth constant of a whole family.
 
-## How the strip relates to a real castle
+## Vocabulary
 
-The strip is a **rule-restricted, single-height-band slice** of the castle world, and it connects to Project Euler 502 (PE 502)'s actual castles in two ways:
-
-- **The unrestricted `h`-height strip is "all castles of height ≤ h" graded by width.** With `A(a,b)` always true, `M` is the all-ones `h × h` matrix `J`, growth constant `h` (its Perron root), count `h^w`. That is the full count of castles of height at most `h`: PE 502's rules 1-5 impose no neighbor restriction, because blocks are the maximal runs of each row and the rule-3 gap is automatic ([[castle-counting-formula](pages/castle-counting-formula.md)]).
-- **Named sub-families are specific strips.** The 1-smooth rule `|a − b| ≤ 1` on heights `{1, 2, 3}`, started at height 1, is the Pell strip `1/(1 − 2x − x²)` ([[pell-castle-strip](pages/pell-castle-strip.md)]); the tower word, a Motzkin-path language ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]), has the same silver growth. A "castle-strip rule" is thus a **candidate castle sub-family** — pick a neighbor rule, and its growth constant is a Perron root you can compute from the matrix.
-
-The [[castle-graph](pages/castle-graph.md)] reads eigenvalues off an individual castle's cell adjacency; the strip reads a growth constant off a *class's* height-adjacency rule.
-
-## Vocabulary crosswalk
-
-Because several pages use compressed phrasings, here is the plain-language key:
-
-| phrase you'll see | what it means here |
+| phrase on other pages | meaning |
 |---|---|
-| "transfer matrix on `h` height-states" | the `h × h` 0/1 rule matrix; states = heights `1..h` |
-| "`M[a][b] = 1`" | height-`a` column may be followed by height-`b` column |
-| "Perron root of `M`" | largest eigenvalue = width-growth constant of the strip |
-| "denominator `det(I − xM)`" | the strip's generating-function denominator (C-finite recurrence) |
-| "`p₁, p₂`" (in `1 − p₁x − p₂x²`) | coefficients of a quadratic strip denominator (not widths, not states) ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) |
-| "minimum height for a growth constant" | smallest `h` (= smallest matrix / fewest distinct heights) whose 0/1 rule matrix has that Perron root |
-| "ridge rule", "`R_h = J − D`" | adjacent heights differ unless both equal `h`: all-ones minus the identity with its last diagonal entry zeroed; realizes the metallic means; its castles of exact height `h` are the ridge castles ([[castle-classification-shape](pages/castle-classification-shape.md)] Axis 2, [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) |
+| "transfer matrix on `h` height states" | the `h × h` 0/1 rule matrix, with states the heights `1, …, h` |
+| "`M[a][b] = 1`" | a column of height `a` may be followed by a column of height `b` |
+| "Perron root of `M`" | the largest eigenvalue, the growth by width of the strips |
+| "denominator `det(I − xM)`" | a multiple of the denominator of the generating function (3) |
+| "`p₁, p₂`" (in `1 − p₁x − p₂x²`) | the coefficients of a quadratic strip denominator ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) |
+| "minimum height for a growth constant" | the smallest `h` for which some 0/1 matrix of size `h` has that Perron root |
+| "ridge rule", "`R_h = J − D`" | neighboring heights differ unless both equal `h`; `J` is the all-ones matrix and `D = diag(1, …, 1, 0)`. Its strips that reach `h` are the ridge castles of height `h`, and its Perron root is the metallic mean `δ_{h−1}` ([[ridge-castle](pages/ridge-castle.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) |
 
-## Reproduce
+## Computation
 
-The one-line strip counter and growth-constant / field probes are on [[castle-snippets-strips](pages/castle-snippets-strips.md)] (`strip_field_census`, `ridge_R` / `ridge_count`, `sh_canonical`). The minimal counter is just `numpy`: build `M` from your rule, then `ones @ numpy.linalg.matrix_power(M, w-1) @ ones` for the width-`w` count, or `max(numpy.linalg.eigvals(M).real)` for the growth constant.
+[[castle-snippets-strips](pages/castle-snippets-strips.md)] has the strip counter and the probes for Perron roots and their number fields (`strip_field_census`, `ridge_R`, `ridge_count`, `sh_canonical`). With NumPy, `ones @ numpy.linalg.matrix_power(M, w - 1) @ ones` is Equation (1), and `max(abs(numpy.linalg.eigvals(M)))` is the Perron root.
 
 ## Related Concepts
 
 - [[kernel-method](pages/kernel-method.md)] - the same strips counted through the roots of the kernel `1 − x·steps(u)` instead of a transfer matrix ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
-- [[pell-castle-strip](pages/pell-castle-strip.md)] - the worked seminar: the anchored 1-smooth height-3 strip is `1/(1 − 2x − x²)`, growth `1 + √2` (silver).
-- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - which growth constants `λ` are strip Perron roots; the `p₁/p₂` two-knob reduction and the ridge rule `R_h = J − D`, the metallic realizer.
-- [[reachable-field-census](pages/reachable-field-census.md)] - the exhaustive census of strip Perron roots by number field; the reachability law.
-- [[metallic-means](pages/metallic-means.md)] - the ladder of growth constants `δ_a` these strips realize.
-- [[castle-graph](pages/castle-graph.md)] - the sibling bridge: individual-castle cell-adjacency and its spectrum (Axis 9), as opposed to the strip's class-level height-adjacency.
-- [[castle-representations](pages/castle-representations.md)] - the skyline `(c_1, …, c_w)` a strip walks along.
-- [[generating-functions](pages/generating-functions.md)] - why `1/det(I − xM)` is the width GF and how its denominator encodes the recurrence.
-- [[castle-classification-growth](pages/castle-classification-growth.md)] - Axis 8, where a strip's growth constant classifies its castle class ("`<metal>` width growth castle").
-- [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - the other way to walk `{1..h}^w`: Algorithm M visits skylines one at a time (the odometer), the strip's transfer matrix counts them all at once (the automaton).
-- [[castle-compression](pages/castle-compression.md)] - a strip rule is the "tiny state machine" of the compressibility axis' Tier 1: skylines that look irregular but are generated by a handful of matrix ones.
-- [[power-law-memory-rules](pages/power-law-memory-rules.md)] - the non-Markov generalization: replace `A(a, b)` on one adjacent pair with a Grunwald-Letnikov constraint reaching back over every prior column, K-truncate to an `h^{K-1}`-state 0/1 transfer matrix, and its Perron root ratchets through the reachable-field census as `K` grows.
-- [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - Motzkin and q-Motzkin objects on the polyomino side; the 1-smooth strip's height sequence is a Motzkin-type path (steps −1, 0, +1).
-- [[inscribed-polyomino](pages/inscribed-polyomino.md)] / [[marin-2024-polyominoes-in-rectangle](pages/marin-2024-polyominoes-in-rectangle.md)] - the transfer matrix for *all* polyominoes with bounding box `w × h`: its states carry a non-crossing partition of the row's components and two wall flags, A378947(h) of them (99 at `h = 5`), where a castle strip needs the `h` heights.
-- [[castle-samplers](pages/castle-samplers.md)] - drawing strips at random from the transfer matrix, and drawing random rules (random 0/1 matrices) whose bulk spectra follow the circular and semicircle laws.
+- [[pell-castle-strip](pages/pell-castle-strip.md)] - the anchored 1-smooth strips on `{1, 2, 3}`, with generating function `1/(1 − 2x − x²)` and growth `1 + √2`.
+- [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - which growth constants are Perron roots of 0/1 matrices; the reduction to the two coefficients `p₁, p₂`, and the ridge rule.
+- [[reachable-field-census](pages/reachable-field-census.md)] - the census of strip Perron roots by number field.
+- [[metallic-means](pages/metallic-means.md)] - de Spinadel's metallic means `σ_p^q`, among them the Perron roots `δ_a` of the ridge rules.
+- [[castle-classification-growth](pages/castle-classification-growth.md)] - the growth type of a family of castles, the growth constant of its count along a stated axis.
+- [[castle-graph](pages/castle-graph.md)] - the cell adjacency matrix of a single castle and its spectrum.
+- [[castle-representations](pages/castle-representations.md)] - the skyline encoding of a castle.
+- [[generating-functions](pages/generating-functions.md)] - rational generating functions and the linear recurrences of their coefficients.
+- [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - Knuth's Algorithm M, which lists the skylines in `{1, …, h}^w` one at a time, where Equation (1) counts them.
+- [[castle-compression](pages/castle-compression.md)] - the castles of the first compression tier, generated by a strip rule with few allowed pairs.
+- [[power-law-memory-rules](pages/power-law-memory-rules.md)] - the 1-smooth rule replaced by a Grünwald-Letnikov constraint over all earlier columns; truncated to `K` columns, it is a strip rule on `h^{K−1}` states.
+- [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - Motzkin and q-Motzkin objects among polyominoes; the heights of a 1-smooth strip form a path with steps `−1, 0, +1`.
+- [[inscribed-polyomino](pages/inscribed-polyomino.md)], [[marin-2024-polyominoes-in-rectangle](pages/marin-2024-polyominoes-in-rectangle.md)] - the transfer matrix of all polyominoes with bounding box `w × h`, whose states are the `A378947(h)` row states of Marin's automaton (99 at `h = 5`), where a strip needs the `h` heights.
+- [[castle-samplers](pages/castle-samplers.md)] - drawing strips at random from a transfer matrix, and the spectra of random 0/1 rule matrices.
