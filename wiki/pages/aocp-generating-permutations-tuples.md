@@ -1,11 +1,11 @@
 ---
 title: "AOCP Generating Permutations & Tuples (Knuth TAOCP Vol. 4)"
 category: Sources
-summary: Knuth's combinatorial-generation algorithms — mixed-radix add-one tuple generation (Algorithm M) and reflected Gray code (Algorithm G); the castle's brute enumerator is Algorithm M with uniform radix h.
+summary: Notes on Knuth's generation of all n-tuples in TAOCP Vol. 4A - mixed-radix add-one generation (Algorithm M) and the binary reflected Gray code (Algorithm G, one bit per step, the bit chosen by the ruler function). The castle brute force over {1, ..., h}^w visits the skylines in Algorithm M's order; the mixed-radix Gray code on {1, ..., h}^w is not in these notes and is on castle-gray-code.
 tags: [knuth, taocp, generation, mixed-radix, gray-code, brute-force, source]
 sources: [aocp-generating-permutations-tuples]
 created: 2026-09-13
-updated: 2026-10-02
+updated: 2026-10-16
 ---
 
 # AOCP Generating Permutations & Tuples (Knuth, *The Art of Computer Programming*, Vol. 4)
@@ -16,66 +16,42 @@ updated: 2026-10-02
 
 ## Summary
 
-Algorithms for **generating** (exhaustively listing) all tuples, in two orderings.
+The notes describe two orders in which to list all tuples.
 
-**Mixed-radix add-one (Algorithm M).** To run through every tuple `(a_1,…,a_n)` with `0 ≤ a_j < m_j`, treat the tuple as a number in the mixed-radix system `[m_1,…,m_n]` and repeatedly **add one with carry** until overflow.[^1] It starts from binary/decimal counting (`2^n`, `10^n` strings) and generalizes to arbitrary per-position bounds; for small *n* it is just nested `for` loops over `a_j ∈ 0..m_j−1`.[^2] Each step "visits" a tuple and hands it to the consumer.
+**Mixed-radix add-one (Algorithm M).** To visit every tuple `(a_1, …, a_n)` with `0 ≤ a_j < m_j`, read the tuple as a number in the mixed-radix system `[m_1, …, m_n]` and add one with carry until the number overflows.[^1] The notes start from the binary strings of length `n` (counting from `0…0` to `1…1`, `2^n` strings) and the decimal strings (`10^n`), and note that for small `n` the algorithm is `n` nested loops with `a_j` running over `0, …, m_j − 1`, the last index fastest.[^2] "Visit" hands the tuple to the consumer.[^1]
 
-**Reflected Gray code (Algorithm G).** An alternative order in which **exactly one bit changes per step** (e.g. `n=4`: `0000, 0001, 0011, 0010, …`).[^3] It is defined by the reflected recurrence `Γ_{n+1} = 0Γ_n, 1Γ_n^R` (prefix `0` to the list, then `1` to its reversal), so consecutive strings differ in one bit; the bit to flip is chosen by the **ruler function** ρ(k).[^4] The page notes its appearances — Baudot telegraph code (`Γ_5`) and the Chinese-ring puzzle.[^5]
+**Binary reflected Gray code (Algorithm G).** An order of the binary strings of length `n` in which consecutive strings differ in exactly one bit; for `n = 4` it begins `0000, 0001, 0011, 0010, 0110, 0111, 0101, 0100` (the notes' example list skips `0110`).[^3] The list `Γ_n` is defined by `Γ_0 = ε` and `Γ_{n+1} = 0Γ_n, 1Γ_n^R`, the strings of `Γ_n` prefixed by 0 followed by the strings of `Γ_n` in reverse order prefixed by 1; the last string of `Γ_n` equals the first of `Γ_n^R`, so one bit changes at each step.[^4] Algorithm G flips bit `j = ρ(k)` at its `k`-th step, where the ruler function `ρ(k)` is the exponent of the largest power of 2 dividing `k`; for odd `k` that is bit 0, found from a parity bit, and otherwise `j` is the least `j ≥ 1` with `a_{j−1} = 1`.[^4] At `n = 4` the steps flip bits `0, 1, 0, 2, 0, 1, 0`, which give the eight strings above. The notes also mention the Baudot telegraph code (`Γ_5`) and the Chinese ring puzzle.[^5]
+
+The notes contain no mixed-radix Gray code. The reflected Gray code on `{1, …, h}^w` used on the wiki is Knuth's loopless Algorithm H of TAOCP §7.2.1.1, on [[castle-gray-code](pages/castle-gray-code.md)].
 
 ## Relevance to the castle
 
-The connection is concrete and lives in the brute-force enumerator:
+**The brute force is Algorithm M.** A castle of width `w` and height `h` is a skyline in `{1, …, h}^w` that reaches `h` ([[castle-polyomino](pages/castle-polyomino.md)]). Python's `product(range(1, h+1), repeat=w)`, used by [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] and by `all_castles(w, h)` on [[castle-snippets](pages/castle-snippets.md)], visits `{1, …, h}^w` in the order of Algorithm M with every radix `m_j = h`, shifted by 1. The same loop over `{0, …, k}^L` sums `(−1)^{blocks}` over towers on [[tower-parity-sectors](pages/tower-parity-sectors.md)], and checks the even-block counts on [[proper-castle-projection](pages/proper-castle-projection.md)]. Of the `h^w` skylines visited, `A(w, h) = h^w − (h−1)^w` are castles of height `h`, a fraction `1 − ((h−1)/h)^w` that tends to 1 as `w` grows ([[castle-counting-function](pages/castle-counting-function.md)]).
 
-- **The castle brute-force is Algorithm M with uniform radix.** A castle of width *w*, height *h* is a column-height tuple `c ∈ {1..h}^w` — exactly a mixed-radix space with all `m_j = h`. The reference enumerator ([[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]) does `product(range(1,h+1), repeat=w)`, which *is* the "add one in radix `[h,h,…,h]` and visit" of Algorithm M (verified: the space has size `h^w`).
-- **The `2^n` binary-string count** is the [[binary-string-bijection](pages/binary-string-bijection.md)]: generating all length-*w* binary strings by counting `0…0` to `1…1` enumerates the configurations of one length-*w* block.
-- **Gray-code ordering** walks the space by the smallest moves, one coordinate at a time, and the castle's block-count / `is_unimodal` deltas under such a single-column change connect to the [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] view.
+**The binary case** is the [[binary-string-bijection](pages/binary-string-bijection.md)]: the binary strings of length `L` are the configurations of blocks in the row above a block of length `L`.
 
-**Knuth's generation algorithms in castle space.** Algorithm M is the castle brute force. The **castle Gray code** ([[castle-gray-code](pages/castle-gray-code.md)]) orders the space `{1..h}^w` so each step changes one column height by one, with a proved `Δ blocks ∈ {−1, 0, +1}` bump lemma and an O(1) update for [[castle-sign](pages/castle-sign.md)] and `P`: a loopless enumerator with the castle filters applied at emit. Knuth's generic algorithms do not restrict the generation to *valid* castles (max height exactly *h*, and the even-block filter); whether a Gray tour of the valid castles alone exists is open ([[castle-native-gray-tour](pages/castle-native-gray-tour.md)]).
+**One-column steps.** In a Gray order on `{1, …, h}^w`, consecutive skylines differ in one column by 1 ([[castle-gray-code](pages/castle-gray-code.md)]). Raising `c_i` by 1 changes the term `max(0, c_i − c_{i−1})` of `blocks(c) = Σ_i max(0, c_i − c_{i−1})` (with `c_0 = 0`) by 0 or +1 and the term `max(0, c_{i+1} − c_i)` by 0 or −1, so the block count changes by −1, 0 or +1 (checked over all one-column raises for `(w, h) = (5, 4)` and `(6, 3)`). Along such an order the sign `(−1)^{blocks}` is updated in constant time, and its running sum over all of `{1, …, h}^w` ends at `−P(h−1, w)`, since each skyline has one block more than its towers ([[castle-sign](pages/castle-sign.md)]; checked for `w ≤ 5`, `h ≤ 4`).[^7] [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] works through Gray tours of the even-block castles of height `h` alone at small sizes.
 
-## Where Algorithm M already runs on the wiki
-
-The wiki's exhaustive censuses over `{1..h}^w` are Algorithm M with a post-filter. The primitive is `all_castles(w, h)` on [[castle-snippets](pages/castle-snippets.md)] - `product(range(1, h+1), repeat=w)` filtered by `max(c) == h` - and the same loop drives the big sweeps: the 65,534 skylines of [[isospectral-castles](pages/isospectral-castles.md)], the 4.87 million castles of [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], and the parity-sector, n-nacci, and proper-castle tables on [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)], and [[proper-castle-projection](pages/proper-castle-projection.md)]. The post-filter is cheap: of the `h^w` tuples visited, `h^w − (h−1)^w` are proper castles ([[castle-counting-function](pages/castle-counting-function.md)]), a fraction tending to `1` as `w` grows; the even-block half of those is `F(w,h)`, which [[castle-entropy](pages/castle-entropy.md)] prices at one bit of the `w·log₂ h` the odometer spends.
-
-Two facts about the castle Gray code:
-
-- **A one-column move changes the block count by 0 or ±1.** With `#blocks = c_1 + Σ_{i≥2} max(0, c_i − c_{i−1})` (the column-height formula on [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)]), raising `c_i` by one can only raise the term `max(0, c_i − c_{i−1})` and only lower the term `max(0, c_{i+1} − c_i)`, each by at most `1`, so the net change is in `{−1, 0, +1}` (checked exhaustively for `(w,h) = (5,4)` and `(6,3)`). Along a Gray walk the [[castle-sign](pages/castle-sign.md)] `(−1)^{blocks}` therefore flips exactly when the block count moves, an `O(1)` update, and the signed count `P` accumulates incrementally.
-- **The odometer and the automaton.** Algorithm M enumerates tuples one at a time; the [[castle-strip](pages/castle-strip.md)] transfer matrix walks the same space column by column and counts all `h^w` (or a rule-restricted subset) at once.
-
-Gray order is also a delta encoding - consecutive castles differ in one symbol - which is where it meets the encoding ladder of [[castle-compression](pages/castle-compression.md)].
-
-**Online Encyclopedia of Integer Sequences (OEIS).** The reflected Gray code itself is A003188 (decimal value of the Gray code of `n`: 0, 1, 3, 2, 6, 7, 5, 4, …), and Knuth's ruler function `ρ(k)` - the bit to flip at step `k` - is the 2-adic valuation A007814 (0, 1, 0, 2, 0, 1, 0, 3, …).[^6]
-
-## Key Takeaways
-
-- **Algorithm M** — mixed-radix add-one generation of all tuples `0 ≤ a_j < m_j`; nested `for` loops for small *n*.[^1][^2]
-- **Algorithm G** — reflected Gray code `Γ_{n+1} = 0Γ_n, 1Γ_n^R`, one bit changing per step, flip position given by the ruler function.[^3][^4]
-- The castle **brute-force enumerator is Algorithm M with all radices `= h`** (`{1..h}^w`, size `h^w`) — verified.
-- Enumerating length-*w* binary strings (the `2^n` case) is the block-configuration count of the [[binary-string-bijection](pages/binary-string-bijection.md)].
+**OEIS.** The binary reflected Gray code is `A003188`, "Decimal equivalent of Gray code for n" (`0, 1, 3, 2, 6, 7, 5, 4, …`), and the ruler function is `A007814`, the 2-adic valuation (`ρ(k) = A007814(k)` for `k ≥ 1`: `0, 1, 0, 2, 0, 1, 0, 3, …`).[^6]
 
 ## Entities & Concepts
 
-- [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] — the castle enumerator, an instance of Algorithm M.
-- [[binary-string-bijection](pages/binary-string-bijection.md)] — the `2^n` binary-string enumeration.
-- [[castle-by-area](pages/castle-by-area.md)] — the by-area enumeration, another exhaustive tuple listing.
-- [[castle-gray-code](pages/castle-gray-code.md)] — the castle-space walk of Algorithm G, with the block-count ±1 lemma and the O(1) sign / `P` update.
-- [[monotone-streak-factorization](pages/monotone-streak-factorization.md)] — the up/flat/down streaks that a single-column change edits.
-- [[castle-snippets](pages/castle-snippets.md)] - `all_castles(w, h)`, the wiki's Algorithm M in `itertools` form.
-- [[isospectral-castles](pages/isospectral-castles.md)] / [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] / [[tower-parity-sectors](pages/tower-parity-sectors.md)] / [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)] / [[proper-castle-projection](pages/proper-castle-projection.md)] - the censuses that run on it.
-- [[castle-counting-function](pages/castle-counting-function.md)] / [[castle-entropy](pages/castle-entropy.md)] - how many of the `h^w` visited tuples survive the filters, and what that costs in bits.
-- [[castle-strip](pages/castle-strip.md)] - the automaton alternative to the odometer.
-- [[castle-compression](pages/castle-compression.md)] - Gray order as a one-symbol delta encoding.
-- [[aocp-generating-partitions](pages/aocp-generating-partitions.md)] - the partitions section of the same volume (§7.2.1.4), whose Hindenburg algorithm generates hoodoo and monadnock castle sides directly.
-
-
-## Relation to Other Wiki Pages
-
-An algorithmic-methods reference: it names the exhaustive-generation procedure behind the castle's brute-force cross-check (Algorithm M = mixed-radix enumeration of `{1..h}^w`) and connects the `2^n` binary case to the block bijection. Gray-code order in castle space is developed on [[castle-gray-code](pages/castle-gray-code.md)].
+- [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the castle enumerator over `{1, …, h}^w`, in Algorithm M's order.
+- [[castle-snippets](pages/castle-snippets.md)] - `all_castles(w, h)`, the same loop filtered by `max(c) = h`.
+- [[binary-string-bijection](pages/binary-string-bijection.md)] - the binary strings of length `L` as the block configurations above a block of length `L`.
+- [[castle-gray-code](pages/castle-gray-code.md)] - the reflected mixed-radix Gray code on `{1, …, h}^w` (Knuth's Algorithm H of §7.2.1.1) and the change of the block count by at most 1 per step.
+- [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - Gray tours restricted to the even-block castles of height `h`.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[proper-castle-projection](pages/proper-castle-projection.md)] - censuses that loop over `{0, …, k}^L` or `{1, …, h}^w`.
+- [[castle-counting-function](pages/castle-counting-function.md)] - the number `A(w, h)` of castles among the visited skylines.
+- [[castle-compression](pages/castle-compression.md)] - Gray order, in which consecutive skylines differ in one column by one.
+- [[aocp-generating-partitions](pages/aocp-generating-partitions.md)] - the partitions section of the same volume (§7.2.1.4), whose Hindenburg algorithm generates the sides of hoodoo and monadnock castles.
 
 ## Footnotes
 
-[^1]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Arbitrary string permutations"/"Algorithm M" L19-71 — "run through all cases in which 0 ≤ a_j < m_j ... adding unity to the number [a_1, ..., a_n] in the mixed-radix number system [m_1, ..., m_n] ... visits all n-tuples by repeatedly adding 1 to the mixed-radix number until overflow occurs."
-[^2]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Binary/Decimal string permutations"/"Algorithm M" L9-15, L73-81 — "generate all 2^n binary strings ... start at 0, and keep adding 1 ... 10^n such strings ... if the number of slots (n) is small, we can write it out using nested for loops: for a_1 in range 0 to (m_1 - 1): ..."
-[^3]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Gray Binary Code Generation Algorithm" L85 — "it produces permutations such that each permutation changes only one bit. For example, for n=4, we have 0000, 0001, 0011, 0010, 0111, 0101, 0100, etc."
-[^4]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Recurrence Relation"/"Algorithm G" L96-169 — "Γ_{n+1} = 0 Γ_n, 1 Γ_n^R ... The last string of Γ_n equals the first string of Γ_n^R so exactly one bit changes each step ... j = rho(k) (rho is the ruler function)"; one-bit-change property re-verified for n=4 during ingest.
-[^5]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Baudot Code"/"Chinese ring puzzle" L129-139 — "The baudot telegraph machine uses Γ_5 gray code ... Chinese ring puzzle ... The state of the puzzle can be represented with binary notation."
-[^6]: https://oeis.org/A003188 (2026-09-19) — "Decimal equivalent of Gray code for n" 0, 1, 3, 2, 6, 7, 5, 4, 12, 13, 15, 14, …; https://oeis.org/A007814 (2026-09-19) — "Exponent of highest power of 2 dividing n, a.k.a. the binary carry sequence, the ruler sequence, or the 2-adic valuation of n" 0, 1, 0, 2, 0, 1, 0, 3, …
+[^1]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Arbitrary string permutations", §"Algorithm M" L21-71 - "Suppose we want to run through all cases in which 0 ≤ a_j < m_j", "repeatedly adding unity to the number [a_1, a_2, a_3, ..., a_n] in the mixed-radix number system [m_1, m_2, ..., m_n]", "This algorithm visits all n-tuples by repeatedly adding 1 to the mixed-radix number until overflow occurs", "the \"visit\" action is where we hand things off to the consumer".
+[^2]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Binary string permutations", §"Decimal string permutations", §"Algorithm M" L9-17, L73-81 - "Suppose we want to generate all 2^n binary strings of length n ... just start at 0, and keep adding 1", "There are 10^n such strings", "if the number of slots (n) is small, we can write it out using nested for loops".
+[^3]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Gray Binary Code Generation Algorithm" L85 - "it produces permutations such that each permutation changes only one bit"; the first eight strings for `n = 4` computed as `k XOR (k >> 1)` for `k = 0, …, 7` (Python 3.11, 2026-10-16).
+[^4]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Recurrence Relation", §"Algorithm G" L89-103, L141-169 - "Γ_0 = ε", "Γ_{n+1} = 0 Γ_n, 1 Γ_n^R", "The last string of Γ_n equals the first string of Γ_n^R so exactly one bit changes each step", "after kth time performing this step, j = rho(k) (rho is the ruler function)".
+[^5]: [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] §"Baudot Code", §"Chinese ring puzzle" L129-139 - "The baudot telegraph machine uses Γ_5 gray code", "The state of the puzzle can be represented with binary notation".
+[^6]: https://oeis.org/A003188, https://oeis.org/A007814 (read 2026-10-16) - "Decimal equivalent of Gray code for n" `0, 1, 3, 2, 6, 7, 5, 4, …`; "Exponent of highest power of 2 dividing n, a.k.a. the binary carry sequence, the ruler sequence, or the 2-adic valuation of n" `0, 1, 0, 2, 0, 1, 0, 3, …` from `n = 1`.
+[^7]: Verified by execution (Python 3.11, 2026-10-16): every one-column raise in `{1, …, h}^w` changes the block count by at most 1 for `(w, h) = (5, 4)` and `(6, 3)`; `Σ_{c ∈ {1..h}^w} (−1)^{blocks(c)} = −P(h−1, w)` for `w ≤ 5`, `h ≤ 4`.
