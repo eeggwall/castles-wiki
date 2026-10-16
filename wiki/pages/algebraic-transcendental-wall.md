@@ -76,7 +76,7 @@ The signed count of castles by area is a quotient of q-series ([[castle-q-bessel
 - [[tower-word-language](pages/tower-word-language.md)] - tower words of bounded height form a regular language with a rational generating function; without a height bound the generating function is algebraic and not rational.
 - [[prime-castles](pages/prime-castles.md)] - the `F_{n−1}` prime castles and the `2^{n−1} − F_{n−1}` composite castles of area `n`.
 - [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - the convex castles by area, `A001523`.
-- [[fractional-recurrences](pages/fractional-recurrences.md)] - the growth constants `g(α)` of the Atici-Eloe recurrence `∇^α a_n = a_{n−1}`: algebraic for rational `α`, and transcendental for algebraic irrational `α` by the Gelfond-Schneider theorem, which says that `log a / log b` is rational or transcendental for algebraic `a, b ≠ 0, 1`.
+- [[fractional-recurrences](pages/fractional-recurrences.md)] - the growth constants `g(α)` of the fractional recurrence `∇^α a_n = a_{n−1}`: algebraic for rational `α`, and transcendental for algebraic irrational `α` by the Gelfond-Schneider theorem, which says that `log a / log b` is rational or transcendental for algebraic `a, b ≠ 0, 1`.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - the bar-graph generating function as a quotient of q-series, and the scaling function near the tricritical point, the logarithmic derivative of the Airy function, obtained in a limit.
 
 ## Footnotes
