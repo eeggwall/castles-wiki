@@ -1,108 +1,136 @@
 ---
 title: Plastic number
 category: Concepts
-summary: ψ = 1.3247…, the real root of x³ = x + 1 - the cubic sibling of the golden ratio, the smallest Pisot number, with Padovan (A000931) and Perrin (A001608) as its Fibonacci and Lucas. Its square ψ² has minimal polynomial μ³ − 2μ² + μ − 1 and a period-1 Jacobi-Perron expansion. It enters the castle as the k = 6 signed-tower eigenvalue ρ_6 = 2ψ², and the bare ψ ≈ 1.3247 is a castle-strip Perron root at height 3 (x³ − x − 1, found in the reachable-field census) — a Padovan/Perrin growth castle.
+summary: ψ = 1.3247…, the real root of x³ = x + 1 and the smallest Pisot number, with the Padovan numbers (A000931) and the Perrin numbers (A001608) as its Fibonacci and Lucas numbers. Its square ψ² has minimal polynomial μ³ − 2μ² + μ − 1 (the recurrence of A005251) and a Jacobi-Perron expansion of period 1. On the castle wiki, 2ψ² is the largest root of char_6, the growth constant of the signed tower count P(6, ·), and ψ itself is the Perron root of six 3 × 3 strip rules, whose strips are plastic by width.
 tags: [concept, plastic-number, pisot, padovan, perrin, cubic, jacobi-perron, eigenvalue, castle, oeis, strip-perron-root]
-sources: [oeis-mining-pe502, project-euler-502-solution]
+sources: [verger-gaugry-2024-salem-minoration, oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-16
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
 # Plastic number
 
 ## Definition
 
-The **plastic number** (also plastic ratio, plastic constant, or "le nombre radiant" in van der Laan's architectural writing) is the real root of
+The **plastic number**, also called the plastic constant, is the real root of[^1]
 
 ```
-x³ = x + 1,        ψ = 1.324717957244746…      (OEIS A060006)
+x³ = x + 1,        ψ = 1.324717957244746…      (A060006)
 ```
 
-It is the cubic analogue of the golden ratio `φ` (`x² = x + 1`) and stands to the **Padovan** and **Perrin** sequences as `φ` stands to Fibonacci and Lucas:[^1]
+It plays for the cubic `x³ − x − 1` the role the golden ratio `φ` plays for `x² − x − 1`. The recurrence `a(n) = a(n−2) + a(n−3)` with the initial values `1, 0, 0` gives the **Padovan numbers** `A000931`, and its power sums `ψ^n + ψ'^n + ψ''^n` over the three roots give the **Perrin numbers** `A001608`, as the Fibonacci and Lucas numbers come from `φ`:[^1]
 
-| | golden `φ` | plastic `ψ` |
+| | golden ratio `φ` | plastic number `ψ` |
 |---|---|---|
 | minimal polynomial | `x² − x − 1` | `x³ − x − 1` |
-| "Fibonacci" (`a(n) = a(n−2) + a(n−3)`) | `F_n`, A000045 | Padovan `1, 1, 1, 2, 2, 3, 4, 5, 7, 9, 12, 16, 21, 28, …`, A000931 |
-| "Lucas" (trace `ψ^n + ψ'^n + ψ''^n`) | `L_n`, A000032 | Perrin `3, 0, 2, 3, 2, 5, 5, 7, 10, 12, 17, 22, 29, 39, 51, …`, A001608 |
-| conjugates | `−1/φ`, modulus `0.618` | a complex pair of modulus `ψ^{−1/2} = 0.8688` |
-| Pisot? | yes | yes - the **smallest** Pisot number |
-| unit? | fundamental unit of `Q(√5)` | fundamental unit of the cubic field `Q(ψ)`, discriminant `−23` |
+| recurrence, initial values `1, 0(, 0)` | Fibonacci `F_n`, A000045 | Padovan `1, 0, 0, 1, 0, 1, 1, 1, 2, 2, 3, 4, 5, 7, 9, 12, 16, 21, 28, …`, A000931 |
+| power sums of the roots | Lucas `L_n`, A000032 | Perrin `3, 0, 2, 3, 2, 5, 5, 7, 10, 12, 17, 22, 29, 39, 51, …`, A001608 |
+| other roots | `−1/φ`, modulus `0.618` | a complex pair of modulus `ψ^{−1/2} = 0.8688` |
+| Pisot number | yes | yes, the smallest |
+| field | `Q(√5)`, discriminant 5 | `Q(ψ)`, discriminant `−23` |
 
-The **Pisot** property (all conjugates strictly inside the unit circle) is what makes `ψ^n` approach integers: `ψ^n − Perrin(n) → 0`. Padovan numbers are the impulse response of the recurrence, Perrin the trace; the same relationship as [[pell-numbers](pages/pell-numbers.md)] and companion Pell for `1 + √2`.
+A **Pisot number** is a real algebraic integer greater than 1 whose other conjugates all have modulus less than 1. The product of the roots of `x³ − x − 1` is 1, so the complex pair has modulus `ψ^{−1/2} < 1` and `ψ` is a Pisot number. Siegel proved that it is the smallest one, as Verger-Gaugry states.[^2] Since the other two roots tend to 0 in modulus when raised to the `n`-th power, `ψ^n − Perrin(n) → 0`.
+
+`ψ` is the fundamental unit of `Q(ψ)`. Its norm is 1, so it is a unit, and the discriminant `−23` of `x³ − x − 1` is squarefree, so `Z[ψ]` is the whole ring of integers. A unit `ε > 1` of this field has two complex conjugates of modulus `ε^{−1/2} < 1`, so it is a Pisot number, and therefore `ε ≥ ψ`.
+
+The same pairing for the silver ratio `1 + √2` gives the Pell numbers `P⋆_n` and their power sums, the companion Pell numbers `A002203` ([[pell-numbers](pages/pell-numbers.md)]).
 
 ## The square, and its expansion
 
-`ψ²` has minimal polynomial[^2]
+`ψ²` has minimal polynomial[^3]
 
 ```
-μ³ − 2μ² + μ − 1,        ψ² = 1.754877666…
+μ³ − 2μ² + μ − 1,        ψ² = 1.754877666…,
 ```
 
-(the resultant of `x³ − x − 1` with `μ − x²`). The corresponding recurrence `a(n) = 2a(n−1) − a(n−2) + a(n−3)` is the recurrence of **A005251**, whose OEIS reading is "`a(n+3)` = number of `n`-bit strings avoiding the factor `010`"; the closely-related "no isolated `1`" strings of length `N` give `A005251(N+2)` (a *different* offset — the two families are equinumerous only across a one-bit length shift, see [[a005251-bijection](pages/a005251-bijection.md)]). The Padovan bisection `A000931(2n)` satisfies the recurrence too.
+the resultant of `x³ − x − 1` and `μ − x²`. The corresponding recurrence `a(n) = 2a(n−1) − a(n−2) + a(n−3)` is satisfied by `A005251`. The OEIS reads `A005251(n + 3)` as the number of binary strings of length `n` that avoid the factor `010`; the binary strings of length `N` with no isolated 1 number `A005251(N + 2)`, so the two families are equinumerous with lengths differing by one ([[a005251-bijection](pages/a005251-bijection.md)]).[^3] The even-indexed Padovan numbers `A000931(2n)`, `1, 0, 0, 1, 2, 3, 5, 9, 16, 28, …`, satisfy the same recurrence, since squaring the roots of `x³ − x − 1` gives the roots of `μ³ − 2μ² + μ − 1`.
 
-Neither `ψ` nor `ψ²` has a periodic *simple* continued fraction - Lagrange forbids it for any cubic - but both have periodic **Jacobi-Perron** expansions (the two-dimensional continued fraction on `(α, α²)`), computed exactly on [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]:[^3]
-
-```
-ψ :  digits (1,1), (2,3), then (0,3), (0,4) repeating          preperiod 2, period 2
-ψ²:  digits (1,3), (0,1), (3,9), (6,12), then (7,12) repeating  preperiod 4, period 1
-2ψ²: digits (3,12), (0,1), (1,1), (1,1), (7,8), then (1,1), (1,1), (1,1), (5,9) repeating   preperiod 5, period 4
-```
-
-`ψ²` has a **period-one** Jacobi-Perron expansion - the cubic counterpart of the metallic means' `[a; a, a, …]`. The period matrix of the `2ψ²` expansion has determinant 1, characteristic polynomial `x³ − 51x² − 13x − 1` (coefficients `Perrin(14) = 51` and `Perrin(−14) = −13`), and dominant eigenvalue `ψ^14`, the unit that a periodic Jacobi-Perron expansion produces (Bernstein).
-
-## Where it enters the castle
-
-The L-direction recurrence of the signed tower count `P(k, L)` ([[signed-tower-count](pages/signed-tower-count.md)]) has characteristic polynomial `char_k` of degree `k+1` ([[generating-function-gallery](pages/generating-function-gallery.md)]). For `k = 6` the dominant eigenvalue is[^2]
+By Lagrange's theorem, a real number has an eventually periodic simple continued fraction exactly when it is a quadratic irrational, so neither `ψ` nor `ψ²` has one. The Jacobi-Perron algorithm is a two-dimensional continued fraction: starting from `(α_1, α_2) = (α, α²)`, it records the digits `(⌊α_1⌋, ⌊α_2⌋)` and replaces the pair by `((α_2 − ⌊α_2⌋)/(α_1 − ⌊α_1⌋), 1/(α_1 − ⌊α_1⌋))`. On `ψ`, `ψ²` and `2ψ²` its digits are[^4]
 
 ```
-ρ_6 = 2ψ² = 3.509755332…,      minimal polynomial λ³ − 4λ² + 4λ − 8.
+ψ :  (1,1), (2,3), then (0,3), (0,4) repeating                                    preperiod 2, period 2
+ψ²:  (1,3), (0,1), (3,9), (6,12), then (7,12) repeating                           preperiod 4, period 1
+2ψ²: (3,12), (0,1), (1,1), (1,1), (7,8), then (1,1), (1,1), (1,1), (5,9) repeating   preperiod 5, period 4
 ```
 
-The structural reason is on [[tower-parity-sectors](pages/tower-parity-sectors.md)]: for even `k = 2d` the rescaled polynomial `char_k(2μ)/2^k` factors as `H_d(μ)·(H_{d+1}(μ) + μ² H_{d−1}(μ))` with `H_d(μ) = Σ_i (−1)^i C(⌊(d+i)/2⌋, i) μ^{d−i}`, and `H_3 = μ³ − 2μ² + μ − 1` is the minimal polynomial of `ψ²`. The factor `H_d` is the characteristic polynomial of the **even-last-column sector** when `k ≡ 2 (mod 4)`, which gives the identity
+The expansion of `ψ²` has period 1, as the simple continued fraction `[a; a, a, …]` of `δ_a` does ([[metallic-means](pages/metallic-means.md)]). The period matrix of the expansion of `2ψ²` has determinant 1 and characteristic polynomial `x³ − 51x² − 13x − 1`, where `51 = Perrin(14)` and `−13 = Perrin(−14)`, the Perrin recurrence run backward. An integer matrix with determinant 1 has a monic integer characteristic polynomial with constant term `±1`, so its eigenvalues are units; the dominant one here is `ψ^14` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]).[^4]
+
+## The signed tower count at k = 6
+
+For fixed `k`, the signed tower count `P(k, ·)` satisfies the linear recurrence with characteristic polynomial `char_k` of degree `k + 1` ([[signed-tower-count](pages/signed-tower-count.md)]). At `k = 6`,[^3]
 
 ```
-Σ_{towers of height ≤ 6, length L, last column even} (−1)^{blocks}  =  2^L · A005251(L+3)
-                                                                    =  2^L · #{(L+1)-bit strings with no isolated 1}.
+char_6(λ)  =  (λ³ − 4λ² + 4λ − 8)(λ⁴ − 3λ³ + 8λ² − 4λ + 8),
 ```
 
-So `2ψ²` is the growth constant of height-`≤6` signed towers, and it sits on the wiki's list of algebraic growth constants next to `φ` and `1 + √2` ([[metallic-means](pages/metallic-means.md)]) - a non-metallic, non-quadratic rung. `2ψ²` itself is not Pisot (its conjugates have modulus `2/ψ = 1.51`), but `ψ² = ρ_6/2` is, and `ρ_k/2` is an algebraic unit for every `k ≡ 2 (mod 4)`.
+and the root of largest modulus is the root of the cubic factor
 
-## Where the bare `ψ` growth appears
+```
+ρ_6  =  2ψ²  =  3.509755332…,
+```
 
-Besides `ψ²` and `2ψ²`, the **bare plastic number `ψ ≈ 1.3247`** appears as a plain growth rate, found by the [[reachable-field-census](pages/reachable-field-census.md)]:
+since substituting `λ = 2μ` turns the cubic factor into `8(μ³ − 2μ² + μ − 1)`. So `P(6, L)` grows like `(2ψ²)^L`.
 
-| what | value | where |
+[[tower-parity-sectors](pages/tower-parity-sectors.md)] explains the factorization. For even `k = 2d`,
+
+```
+char_k(2μ) / 2^k  =  H_d(μ) · ( H_{d+1}(μ) + μ² H_{d−1}(μ) ),        H_d(μ)  =  Σ_i (−1)^i C(⌊(d+i)/2⌋, i) μ^{d−i},
+```
+
+and `H_3(μ) = μ³ − 2μ² + μ − 1` is the minimal polynomial of `ψ²`. When `k ≡ 2 (mod 4)`, `H_d` is the characteristic polynomial of the towers whose last column has even height, and at `k = 6` their signed count is[^5]
+
+```
+Σ_{towers of height at most 6 on a base of length L, last column even}  (−1)^{blocks}  =  2^L · A005251(L + 3),
+```
+
+`2^L` times the number of binary strings of length `L + 1` with no isolated 1. At `L = 1` this is `4 = 2·2`: the towers `(0)`, `(2)`, `(4)`, `(6)` have `0, 2, 4, 6` blocks.
+
+`2ψ²` is not a Pisot number, since its conjugates have modulus `2/ψ = 1.51`; `ψ² = ρ_6/2` is. For `k ≡ 2 (mod 4)` and `k ≤ 30`, `ρ_k/2` is a root of `H_{k/2}` (computed), whose constant term is `−1`, so `ρ_k/2` is an algebraic unit.[^5]
+
+## The plastic number as a growth constant
+
+Three powers of `ψ` are growth constants on the wiki:
+
+| constant | value | where |
 |---|---|---|
-| `2ψ²` | `3.5098` | `k = 6` signed-tower dominant eigenvalue `ρ_6` (this page); a `10⁻⁸` adjacency near-miss on [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)], not exact |
-| `ψ²` | `1.7549` | growth constant of **A005251**, with *three* castle readings — the [[hardin-word-identity](pages/hardin-word-identity.md)], the `h → ∞` [[tree-castle-by-area](pages/tree-castle-by-area.md)], and the `(h=2, g=2)` [[tower-spacing-castles](pages/tower-spacing-castles.md)] (height-2 castles with towers ≥ 2 apart), related by an explicit bijection ([[a005251-bijection](pages/a005251-bijection.md)]): the tree-castle compositions and the avoid-`010` strings of the OEIS reading are the same object under the gap-string map, and Hardin's no-isolated-1 strings are one bit-shift away |
-| **`ψ`** | **`1.3247`** | **a castle-strip Perron root at height 3** — [[reachable-field-census](pages/reachable-field-census.md)] |
+| `2ψ²` | `3.5098` | the signed tower count `P(6, ·)` (section *The signed tower count at k = 6*). The castle graph of `(1, 1, 2, 7, 7, 5, 7, 7)` has spectral radius `8.0 · 10⁻⁹` below `2ψ²`, and `2ψ²` is not an eigenvalue of it ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]) |
+| `ψ²` | `1.7549` | `A005251`, which counts the tree castles by area with no bound on the height ([[tree-castle-by-area](pages/tree-castle-by-area.md)]), the castles of height 2 whose raised columns are separated by valleys at least 2 columns wide ([[tower-spacing-castles](pages/tower-spacing-castles.md)]), and the binary strings with no isolated 1 of [[hardin-word-identity](pages/hardin-word-identity.md)], related by the bijections of [[a005251-bijection](pages/a005251-bijection.md)] |
+| `ψ` | `1.3247` | the strips of the rule in the paragraph *A rule on three heights*, found in the census of strip Perron roots ([[reachable-field-census](pages/reachable-field-census.md)]) |
 
-A plain (unsigned) castle statistic whose count grows at the bare `ψ` is a **Padovan / Perrin growth castle** — one graded so its count satisfies the *lag*-recurrence `a(n) = a(n−2) + a(n−3)` (Padovan A000931, Perrin A001608), the term-skipping cousin of Fibonacci's `a(n) = a(n−1) + a(n−2)`. This is a different object from `ψ²`, whose recurrence `a(n) = 2a(n−1) − a(n−2) + a(n−3)` (A005251) uses the immediately-preceding term.
+**A rule on three heights.** Of the 512 binary `3 × 3` matrices, exactly 6 have characteristic polynomial `x³ − x − 1`, and each has four entries equal to 1.[^6] One is
 
-**The realizing rule.** The exhaustive census of castle-strip Perron roots ([[reachable-field-census](pages/reachable-field-census.md)]) finds `x³ − x − 1`, the minimal polynomial of `ψ`, at **height 3**: 6 of the 512 binary `3×3` transfer matrices have it as characteristic polynomial, each with 4 ones. One is `[[0,0,1],[1,0,0],[1,1,0]]`, a near-companion matrix of `x³ = x + 1`, i.e. the height-adjacency rule `1 → 3`, `2 → 1`, `3 → {1, 2}`. So a height-3 castle strip under that rule grows at exactly `ψ`, and its width count satisfies a `ψ`-recurrence.
+```
+        to 1  to 2  to 3
+from 1 [  0     0     1  ]
+from 2 [  1     0     0  ]
+from 3 [  1     1     0  ]
+```
+
+the rule in which a column of height 1 is followed by one of height 3, a column of height 2 by one of height 1, and a column of height 3 by one of height 1 or 2 ([[castle-strip](pages/castle-strip.md)]). By the Cayley-Hamilton theorem, `M³ = M + I`, so for any start and end vectors the number of strips of width `w` satisfies `N(w + 3) = N(w + 1) + N(w)`. With free ends the strips number `3, 4, 5, 7, 9, 12, 16, 21, 28, …`, which is `A000931(w + 9)`, and they are plastic by width.[^6] Strips under this rule that avoid height 3 have width at most 2, so all but finitely many strips reach height 3 and are castles of height 3.
 
 ## Appearances in Sources
 
-- [[reachable-field-census](pages/reachable-field-census.md)] - where the bare `ψ` was found as a height-3 castle-strip Perron root (`x³ − x − 1`).
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k,·)` family whose `k = 6` row carries the plastic eigenvalue.
-- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the `num_k/den_k` recurrence that generates `char_k`.
-- [[verger-gaugry-2024-salem-minoration](pages/verger-gaugry-2024-salem-minoration.md)] - `ψ` as the Pisot minorant (Siegel) and as `θ_5^{-1}`, the top of its trinomial scale for Salem numbers.
+- [[verger-gaugry-2024-salem-minoration](pages/verger-gaugry-2024-salem-minoration.md)] - Siegel's theorem that `ψ` is the smallest Pisot number, and `ψ = θ_5^{−1}` on the trinomial scale of the Salem bound.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the family `P(k, ·)`, whose row `k = 6` grows like `(2ψ²)^L`.
+- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the update of `num_k` and `den_k` that gives `char_k`.
 
 ## Related Concepts
 
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization `H_d · V_d` that produces `2ψ²`, and the Hardin word-count identities it implies.
-- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - where `ρ_6 = 2ψ²` was found; the Jacobi-Perron computations.
-- [[metallic-means](pages/metallic-means.md)] - the quadratic family (`φ`, `1+√2`, …) the plastic number sits beside; same Pisot / unit / periodic-expansion story one degree up.
-- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - why a cubic cannot have a periodic simple continued fraction, and what replaces it.
-- [[pell-numbers](pages/pell-numbers.md)] - the impulse / trace pairing (Pell / companion Pell) that Padovan / Perrin repeat in degree 3.
-- [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - `ψ` is algebraic of degree 3, on the reachable side of the wall.
-- [[fractional-recurrences](pages/fractional-recurrences.md)] - `ψ² = 1.7549` is the growth constant of the fractional-Fibonacci recurrence `∇^α a_n = a_{n-1}` at `α = 2/3` exactly, and `ψ³ = ψ + 1 = 2.3247` at `α = 3/2` exactly. Two of the wiki's cubic Perron roots pinned to small rational orders of a single continuous family.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization of `char_k` for even `k` into `H_d` and its cofactor, and the word counts of the even-last-column towers.
+- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the computation of `ρ_6 = 2ψ²` and of the Jacobi-Perron expansions and period matrices.
+- [[signed-tower-count](pages/signed-tower-count.md)] - the characteristic polynomials `char_k` and the factorization of `char_6`.
+- [[metallic-means](pages/metallic-means.md)] - the quadratic units `δ_a = σ_a^1`, whose simple continued fractions `[a; a, a, …]` have period 1.
+- [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the simple continued fractions of the quadratic eigenvalues, and Lagrange's theorem.
+- [[pell-numbers](pages/pell-numbers.md)] - the Pell numbers and companion Pell numbers of `1 + √2`, the quadratic counterpart of the Padovan and Perrin numbers.
+- [[reachable-field-census](pages/reachable-field-census.md)] - the census of Perron roots of strip rules, in which `x³ − x − 1` occurs among the rules on three heights.
+- [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - the closed forms of the castle counts, whose constants are algebraic numbers such as `ψ`.
+- [[fractional-recurrences](pages/fractional-recurrences.md)] - the recurrence `∇^α a_n = a_{n−1}`, whose characteristic equation `(1 − r)^α = r` gives the growth constant `ψ²` at `α = 2/3` and `ψ³ = ψ + 1` at `α = 3/2`.
 
 ## Footnotes
 
-[^1]: https://oeis.org/A060006 (2026-09-16) - "Decimal expansion of real root of x^3 - x - 1 (the plastic constant)"; https://oeis.org/A000931 - "Padovan sequence (or Padovan numbers): a(n) = a(n-2) + a(n-3) with a(0) = 1, a(1) = a(2) = 0"; https://oeis.org/A001608 - "Perrin sequence (or Perrin numbers, or Ondrej Such sequence): a(n) = a(n-2) + a(n-3)", data `3, 0, 2, 3, 2, 5, 5, 7, 10, 12, 17, 22, 29, 39, 51, 68, 90`. The Pisot property, the conjugate modulus `ψ^{−1/2}` (product of the three roots is 1) and the field discriminant `−23` are standard.
-
-[^2]: Verified by execution (SymPy 1.14): `factor(resultant(x³ − x − 1, μ − x², x)) = μ³ − 2μ² + μ − 1`; `factor(resultant(μ³ − 2μ² + μ − 1, λ − 2μ, μ)) = λ³ − 4λ² + 4λ − 8`, which is the cubic factor of `char_6 = (λ³ − 4λ² + 4λ − 8)(λ⁴ − 3λ³ + 8λ² − 4λ + 8)`; numerically `2ψ² = 3.5097553324933855…` against the gallery's `ρ_6`. https://oeis.org/A005251 (2026-09-16) - "a(n) = 2*a(n-1) - a(n-2) + a(n-3)", comment "a(n+3) is the number of n-bit sequences that avoid 010".
-
-[^3]: Verified by execution: exact Jacobi-Perron in `Q(ρ)` (SymPy `rem`/`invert` modulo the minimal polynomial, mpmath at 800 digits for floors) on `x³ − x − 1` near `1.32` (periodic, preperiod 2, period 2, digits `[1,1],[2,3],[0,3],[0,4]`), on `μ³ − 2μ² + μ − 1` near `1.75` (periodic, preperiod 4, period 1, digits `[1,3],[0,1],[3,9],[6,12],[7,12]`), and on `λ³ − 4λ² + 4λ − 8` near `3.5` (periodic, preperiod 5, period 4). Period matrix and Perrin identification as on [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)].
+[^1]: https://oeis.org/A060006, https://oeis.org/A000931, https://oeis.org/A001608 (read 2026-09-16) - "Decimal expansion of real root of x^3 - x - 1 (the plastic constant)"; "Padovan sequence (or Padovan numbers): a(n) = a(n-2) + a(n-3) with a(0) = 1, a(1) = a(2) = 0"; "Perrin sequence (or Perrin numbers, or Ondrej Such sequence): a(n) = a(n-2) + a(n-3)", data `3, 0, 2, 3, 2, 5, 5, 7, 10, 12, 17, 22, 29, 39, 51, 68, 90`. Padovan and Perrin terms recomputed from the recurrence (Python 3.11, 2026-10-16).
+[^2]: [[verger-gaugry-2024-salem-minoration](pages/verger-gaugry-2024-salem-minoration.md)] §1 "Introduction" L69-70 - "The set of Pisot numbers admits the minorant Θ = 1.3247 . . ., unique root > 1 of X 3 − X − 1 by a result of Siegel [97]." Siegel's theorem is taken as Verger-Gaugry states it.
+[^3]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `resultant(x³ − x − 1, μ − x²) = μ³ − 2μ² + μ − 1`; the factorization of `char_6` and `2ψ² = 3.5097553324…` as its root of largest modulus; avoid-`010` strings of length `n ≤ 9` equal `A005251(n+3)` and strings of length `N ≤ 9` with no isolated 1 equal `A005251(N+2)`; `A000931(2n)` against the recurrence for `n < 10`. https://oeis.org/A005251 (read 2026-09-16) - "a(n) = 2*a(n-1) - a(n-2) + a(n-3)", comment "a(n+3) is the number of n-bit sequences that avoid 010".
+[^4]: Verified by execution (mpmath at 200 digits, 2026-10-16): the Jacobi-Perron digits of `(ψ, ψ²)`, `(ψ², ψ⁴)` and `(2ψ², 4ψ⁴)` to 10, 10 and 14 steps; `Perrin(−14) = −13`; the characteristic polynomial of `ψ^14` is `x³ − 51x² − 13x − 1`. The exact computation in `Q(ψ)` is on [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)].
+[^5]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the factorization `char_k(2μ)/2^k = H_d(μ)(H_{d+1}(μ) + μ² H_{d−1}(μ))` for even `k ≤ 30`; for `k ≡ 2 (mod 4)`, `k ≤ 30`, the root of largest modulus of `char_k` is twice a root of `H_{k/2}`, and the constant term of `H_{k/2}` is `−1`; the even-last-column sum at `k = 6` against `2^L A005251(L+3)` by summing over all towers for `L ≤ 7`.
+[^6]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): all 512 binary `3 × 3` matrices, of which 6 have characteristic polynomial `x³ − x − 1`, all with four entries 1; the strip counts `1ᵀ M^{w−1} 1` for `w ≤ 15` against `N(w + 3) = N(w + 1) + N(w)` and `A000931(w + 9)`.
