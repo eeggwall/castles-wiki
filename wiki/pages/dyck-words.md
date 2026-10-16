@@ -1,11 +1,11 @@
 ---
 title: Dyck words
 category: Sources
-summary: The two-letter balanced words counted by the Catalan numbers, with path and plane-tree readings; steep Dyck words → Motzkin, and the first-return grammar that PE 502's castle U/R/D grammar generalizes. Under the [[symbolic-method]], the first-return grammar is a recursive specification `D = ε + x·D·x̄·D`.
+summary: Dyck words over {x, x̄}, counted by the Catalan numbers, read as lattice paths graded by inversion number (the area above the path, leading to the q-Catalan numbers) and as plane forests. Steep Dyck words, with no factor x x̄ x, have the grammar S → x x̄ | x S x̄ | x S x̄ S and are counted by the Motzkin numbers. The source states that the castle tower grammar generalizes the Dyck first-return split.
 tags: [dyck-words, catalan, motzkin, grammar, first-return, lattice-path, symbolic-method, source]
 sources: [dyck-words, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-13
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Dyck words
@@ -16,70 +16,86 @@ updated: 2026-09-28
 
 ## Summary
 
-A **Dyck word** is a word over a two-letter alphabet `{x, x̄}` in which every left factor has at least as many `x` as `x̄` (the path never dips below the axis) and the whole word has equal counts (it returns to the axis).[^1] Reading `x` as an up (NE) step and `x̄` as a down (SE) step makes a Dyck word a lattice path from the axis back to it that never goes negative. The number of Dyck words of length `2n` is the *n*th Catalan number `C_n = (1/(n+1))binomial(2n,n)` (`1,1,2,5,14,42,132,…`), and enumerating them by **inversion number** leads to the [[q-catalan-numbers](pages/q-catalan-numbers.md)].[^2] The castle's grammar generalizes the Dyck first-return grammar (see below).
+A **Dyck word** is a word over the two-letter alphabet `{x, x̄}` in which every left factor has at least as many `x` as `x̄`, and the whole word has as many `x` as `x̄`.[^1] Read `x` as an up step and `x̄` as a down step: a Dyck word is a lattice path that starts on the axis, never goes below it, and ends on it. The Dyck words of length `2n` number `C_n = (1/(n+1)) C(2n, n)`, the Catalan numbers `1, 1, 2, 5, 14, 42, 132, …`, and counting them by inversion number gives the [[q-catalan-numbers](pages/q-catalan-numbers.md)].[^2] For `n = 2` the Dyck words are `x x x̄ x̄` and `x x̄ x x̄`.
 
-The page develops several readings and connections:
+The source develops the following:
 
-- **Statistics.** An *inversion* is a pair `w_i = x̄`, `w_j = x` with `i<j`; the *down set* `D(w)` is the indices where a down step is immediately followed by an up step. The inversion number equals the area of the [[polyominoes](pages/polyominoes.md)] Ferrers diagram between `w` and the default path `x…x x̄…x̄`.[^3]
-- **The tree reading.** Reading `x`/`x̄` as `(`/`)` and matching parentheses draws a plane forest of *n* nodes (a rooted plane tree of `n+1` nodes with a root added); `C_n` counts Dyck words, plane forests, and rooted plane trees alike.[^4] The path reading and tree reading are "two faces of the same word" that disagree on shape — the path grades by *area*, the tree by *nesting*.[^5]
-- **Steep Dyck words** (see below) — the run-constrained sub-family that meets the Motzkin numbers.
-- **Generalizing Dyck grammars** — the first-return decomposition that the castle's U/R/D grammar is an instance of (see below).
+- **Statistics.** An *inversion* of `w = w_1 ⋯ w_{2n}` is a pair `i < j` with `w_i = x̄` and `w_j = x`, and the *down set* `D(w)` is the set of indices `i` where `w_i = x̄` and `w_{i+1} = x`. The inversion number of `w` is the area of the Ferrers diagram between `w` and the path `x ⋯ x x̄ ⋯ x̄` ([[polyominoes](pages/polyominoes.md)]).[^3] The word `x x̄ x x̄` has one inversion, and `x x x̄ x̄` has none.
+- **The tree reading.** Read `x` as `(` and `x̄` as `)`, and match each `(` with the `)` that closes it. Each matched pair is a node and a pair nested inside another is its child, so a Dyck word of length `2n` is a plane forest of `n` nodes, and adding a root gives a rooted plane tree of `n + 1` nodes. `C_n` counts all three.[^4] The inversion number ranks the nested word `x ⋯ x x̄ ⋯ x̄` lowest and the alternating word `x x̄ x x̄ ⋯` highest, while the tree records the nesting.[^5]
+- **Steep Dyck words**, counted by the Motzkin numbers (next section).
+- **Generalizing Dyck grammars**: the first-return decomposition, which the castle tower grammar generalizes (section *The first-return grammar the castle generalizes*).
 
 ## Steep Dyck words and Motzkin
 
-A Dyck word is **steep** if it is nonempty and contains no `x x̄ x` factor (no up-down-up) — every down step is preceded by a down step, followed by a down step, or is the final step.[^6] Removing exactly the offending production from the nonempty-Dyck grammar `D' → xx̄ | xx̄D' | xD'x̄ | xD'x̄D'` leaves the **steep grammar**[^7]
+A Dyck word is **steep** if it is nonempty and has no factor `x x̄ x`. In path terms, every down step is preceded by a down step, followed by a down step, or is the last step.[^6] The steep Dyck words of length 6 are `x x x x̄ x̄ x̄` and `x x x̄ x̄ x x̄`.
+
+The nonempty Dyck words have the grammar `D′ → x x̄ | x x̄ D′ | x D′ x̄ | x D′ x̄ D′`, and the factor `x x̄ x` comes only from the rule `D′ → x x̄ D′`. Removing that rule leaves the grammar of the steep Dyck words,[^7]
 
 ```
-S → x x̄ | x S x̄ | x S x̄ S
+S  →  x x̄  |  x S x̄  |  x S x̄ S
 ```
 
-whose generating function reads off as `G_SW(x) = x + x·G_SW(x) + x·G_SW(x)²` — the Motzkin functional equation — so **steep Dyck words of length `2n` are counted by the `(n−1)`th [[motzkin-numbers](pages/motzkin-numbers.md)]** (verified during ingest: `1,1,2,4,9,21,…`).[^7] Refined by inversion number via q-grammars, they give the q-Motzkin numbers, the object of [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)]; the source ties them to steep parallelogram polyominoes through the classical bijection between parallelogram polyominoes and Dyck words.[^8]
+With `S_n` the number of steep Dyck words of length `2n` and `G_SW(z) = Σ_{n≥1} S_n z^n` (the source writes `x` for both the letter and the variable), the grammar gives
+
+```
+G_SW(z)  =  z + z·G_SW(z) + z·G_SW(z)²,
+```
+
+so the steep Dyck words of length `2n` are counted by the `(n−1)`th [[motzkin-numbers](pages/motzkin-numbers.md)]: `1, 1, 2, 4, 9, 21, 51, …` for `n = 1, 2, 3, …`.[^7][^12] Counted by inversion number through q-grammars, they give the q-Motzkin numbers `M_{n−1}(q)`, the subject of [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)]. The source relates them to steep parallelogram polyominoes through the classical bijection between parallelogram polyominoes and Dyck words.[^8]
 
 ## The first-return grammar the castle generalizes
 
-The page states the connection to the castle: the **first-return grammar generalizes** — keep the same "split at the first return to the base" decomposition but change the step set. In [[project-euler-502](pages/project-euler-502.md)] the steps become `U` (up a row), `R` (right a column), `D` (down a row), a castle tower is a word over these that stays above the base and returns to it, and the same first-return split gives the grammar whose generating function counts castles.[^9] This is the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]: the Dyck first-return split with one extra (horizontal) letter.
+The source states that the first-return grammar generalizes: with other steps, the same decomposition still builds the words. For Project Euler 502 the steps are `U` (up one row), `R` (one column to the right) and `D` (down one row), a castle tower is a word in them that stays at or above the base and returns to it, and the castle rules become a grammar with the same first-return split, whose generating function gives the counts.[^9] This is the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)], the Dyck first-return split with the extra horizontal letter `R`.
 
-**The first-return grammar as a symbolic-method specification.** The Dyck grammar `D = ε + x·D·x̄·D` (empty word, or opening `x` + inner Dyck + closing `x̄` + trailing Dyck) is a recursive specification in the sense of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)]: the [[symbolic-method](pages/symbolic-method.md)] translates it directly to `D(z) = 1 + z² · D(z)²` (with each of `x, x̄` marking size 1, so `x·x̄` contributes `z²`), and solving gives `D(z) = (1 − √(1−4z²))/(2z²) = ∑ C_n z^{2n}` — the Catalan generating function graded by half-length. Analytic Combinatorics (AC)'s own §I.2 (pp. 33-35) develops the equivalent `G = Z × SEQ(G)` for general plane trees, which are in bijection with Dyck words; the castle's own first-return grammar is the same construction with a U/R/D alphabet and the U-and-D letters weight-marked separately.
+**As a symbolic-method specification.** This reading is the wiki's; the source does not state it. The Dyck grammar `D → ε | x D x̄ D`, as Delest and Viennot write it,[^13] splits a Dyck word at its first return to the axis: the empty word, or `x`, a Dyck word, `x̄`, and a Dyck word. As a recursive specification in the sense of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)], with `z` marking each letter, the [[symbolic-method](pages/symbolic-method.md)] turns it into `D(z) = 1 + z² D(z)²`, so
 
-## Dyck words as the carrier of algebraicity (Delest-Viennot)
+```
+D(z)  =  (1 − √(1 − 4z²)) / (2z²)  =  Σ_{n≥0} C_n z^{2n}.
+```
 
-Delest and Viennot's convex-polyomino enumeration uses the Dyck language as its running example and as the core of every coding. The type I and type III languages are built from Dyck words by rational transductions and intersection with a rational language, so their generating functions are rational in `t` and the Catalan GF `c(t)`. In their words, the algebraicity is "concentrated" in the Dyck language.[^10] Their bijection β ([[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)]) gives a second area statistic on Dyck words besides the inversion number above: **the sum of peak heights** equals the area of the corresponding parallelogram polyomino, and the number of peaks equals its width.[^11] The two area readings differ. Inversion number measures the Ferrers diagram cut off by the path, while Σ peak heights measures the column stack β builds from the peaks.
+The castle tower grammar is the same construction over the letters `U`, `R`, `D`, with only `R` marked, so that a word is weighted by its number of columns.
+
+## Dyck words in Delest and Viennot
+
+Delest and Viennot's enumeration of convex polyominoes codes them by words built from Dyck words: their type I and type III languages come from the Dyck language by rational transductions and intersection with a rational language, so the generating functions of types I and III are rational in `t` and in the Catalan generating function `c(t)`. In their words, the algebraicity is "concentrated" in the Dyck language.[^10] Their bijection β ([[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)]) gives a second area statistic on Dyck words besides the inversion number: the sum of the heights of the peaks equals the area of the corresponding parallelogram polyomino, and the number of peaks equals its width.[^11] The two statistics differ: the inversion number is the area of the Ferrers diagram between the path and `x ⋯ x x̄ ⋯ x̄`, while the sum of peak heights is the area of the stack of columns that β builds from the peaks.
 
 ## Key Takeaways
 
-- Dyck word = balanced `{x, x̄}` word, path never negative; `#` of length `2n` is `C_n` ([[catalan-numbers](pages/catalan-numbers.md)]); by inversion number → q-Catalan.[^2]
-- Path reading (area) and plane-tree reading (nesting) are two faces of the same word.[^5]
-- **Steep Dyck words** (no `x x̄ x`) satisfy `S → xx̄ | xSx̄ | xSx̄S`, generating function `G = x + xG + xG²` → **length `2n` counted by the `(n−1)`th Motzkin number** (verified).[^7]
-- **Σ peak heights** is a second area statistic: it equals parallelogram-polyomino area under Delest-Viennot's β, and #peaks equals width (Narayana).[^11]
-- The castle's U/R/D grammar is the **first-return grammar generalized** — the direct root of [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)].[^9]
+- The Dyck words of length `2n` number `C_n` ([[catalan-numbers](pages/catalan-numbers.md)]); counted by inversion number they give the q-Catalan numbers.[^2]
+- A Dyck word reads as a lattice path, graded by inversion number, and as a plane forest, which records nesting.[^5]
+- The steep Dyck words, with no factor `x x̄ x`, have the grammar `S → x x̄ | x S x̄ | x S x̄ S` and generating function `G_SW = z + z G_SW + z G_SW²`; those of length `2n` are counted by the `(n−1)`th Motzkin number.[^7]
+- Under Delest-Viennot's β, the sum of peak heights is the area of a parallelogram polyomino and the number of peaks its width, which gives the Narayana numbers.[^11]
+- The castle tower grammar is the Dyck first-return grammar with a third letter ([[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]).[^9]
 
 ## Entities & Concepts
 
-- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] — the castle grammar, a first-return generalization of the Dyck grammar.
-- [[catalan-numbers](pages/catalan-numbers.md)] — count Dyck words; [[q-catalan-numbers](pages/q-catalan-numbers.md)] — count them by inversion.
-- [[motzkin-numbers](pages/motzkin-numbers.md)] — count steep Dyck words (length 2n → (n−1)th Motzkin).
-- [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] — steep Dyck words and their q-refinement.
-- [[polyominoes](pages/polyominoes.md)] — Ferrers-diagram area = Dyck inversion number.
-- [[permutation-inversions](pages/permutation-inversions.md)] — the inversion statistic (and its q-factorial GF) that grades Dyck words into q-Catalan / q-Motzkin.
-- [[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)] / [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - Dyck words as parallelogram polyominoes (area = Σ peak heights) and as the algebraic core of the convex-polyomino count.
-- [[symbolic-method](pages/symbolic-method.md)] / [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] — the framework that recasts the first-return grammar as a recursive specification.
+- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the castle tower grammar, the first-return split with the letters `U`, `R`, `D`.
+- [[catalan-numbers](pages/catalan-numbers.md)] - the number of Dyck words; [[q-catalan-numbers](pages/q-catalan-numbers.md)] - the Dyck words counted by inversion number and other statistics.
+- [[motzkin-numbers](pages/motzkin-numbers.md)] - the number of steep Dyck words of length `2n` is the `(n−1)`th Motzkin number.
+- [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - steep Dyck words and steep polyominoes counted by three q-Motzkin analogs.
+- [[polyominoes](pages/polyominoes.md)] - Ferrers diagrams, whose area is the inversion number of a Dyck word.
+- [[permutation-inversions](pages/permutation-inversions.md)] - the inversion statistic on permutations and its generating function, the q-factorial.
+- [[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)] and [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - Dyck words as parallelogram polyominoes, with area the sum of peak heights, and as the core of the convex-polyomino count.
+- [[symbolic-method](pages/symbolic-method.md)] and [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)] - recursive specifications and their ordinary generating functions.
 
 Also linked from the source: [[lattice-paths](pages/lattice-paths.md)].
 
 ## Relation to Other Wiki Pages
 
-The [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is a first-return Dyck grammar with a third letter, the steep sub-family is where the Motzkin/q-Motzkin thread of [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] starts, and the Catalan/q-Catalan counts sit directly above it.
+The [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is the Dyck first-return grammar with a third letter. The steep Dyck words lead to the q-Motzkin numbers of [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], and the Dyck words counted by inversion number to the q-Catalan numbers of [[q-catalan-numbers](pages/q-catalan-numbers.md)].
 
 ## Footnotes
 
-[^1]: [[dyck-words](pages/dyck-words.md)] §"Preliminary Definitions" L37-43 — "Rule 1: for any left factor u of w, |u|_x ≥ |u|_{x̄} ... Rule 2: |w|_x = |w|_{x̄} ... x is an upward diagonal step and x̄ is a downward diagonal step. Rule 1 keeps the path from dipping below the x axis, and Rule 2 makes it return to the axis."
-[^2]: [[dyck-words](pages/dyck-words.md)] §"Dyck Words Definitions" L61-69 — "The number of Dyck words of length 2n is the nth Catalan number, C_n = (1/(n+1)) binomial(2n,n) (1, 1, 2, 5, 14, 42, 132, ...). Enumerating words by inversion number leads to the q-Catalan numbers."
-[^3]: [[dyck-words](pages/dyck-words.md)] §"Dyck Words Definitions" L53-81 — "An inversion is a pair w_i w_j with w_i = x̄, w_j = x, and i < j. The down set D(w) is the set of indices where a down step is immediately followed by an up step ... The inversion number of w equals the area of the Ferrers diagram between w and the 'default' path x x … x x̄ x̄ … x̄."
-[^4]: [[dyck-words](pages/dyck-words.md)] §"The Tree Reading" L93-106 — "Read x as ( and x̄ as ) ... Each matched pair is a node ... A word of length 2n is a forest of n nodes ... C_n counts all of these: Dyck words of length 2n, plane forests of n nodes, and rooted plane trees of n+1 nodes."
-[^5]: [[dyck-words](pages/dyck-words.md)] §"The Tree Reading" L108 — "The path reading above and the tree reading are two faces of the same word, and they disagree on shape. The path's area ranks the nested word ... lowest and the flat alternating word highest, while the tree records nesting exactly."
-[^6]: [[dyck-words](pages/dyck-words.md)] §"Steep Dyck Words" L114 — "A Dyck word is steep if it is nonempty and contains no x x̄ x factor (no up-down-up) ... every down step is preceded by a down step, followed by a down step, or is the final step."
-[^7]: [[dyck-words](pages/dyck-words.md)] §"Steep Dyck Words" L136-155 — the nonempty-Dyck grammar, removing the "x x̄ D'" rule to get "S → x x̄ | x S x̄ | x S x̄ S", and "G_{SW}(x) = x + x G_{SW}(x) + x G_{SW}(x)^2 ... steep Dyck words of length 2n are enumerated by the (n-1)th Motzkin number"; steep(2n) = (n−1)th Motzkin re-verified for n=1..6 during ingest.
-[^8]: [[dyck-words](pages/dyck-words.md)] §"Steep Dyck Words" L124-156 — "Via q-grammars, the generating function of steep Dyck words of length 2n, counted by inversion number, equals the (n-1)th q-Motzkin number M_{n-1}(q) ... Getting the q-refinement requires the q-analog (w;q) of a Dyck word and q-grammars."
-[^9]: [[dyck-words](pages/dyck-words.md)] §"Generalizing Dyck Grammars" L160 — "The first-return grammar generalizes ... In Project Euler/502 the up and right movements are split into U ..., R ..., and D ..., and a castle tower is a word over these that stays above the base and returns to it. The castle rules re-cast as a grammar with the same first-return split."
+[^1]: [[dyck-words](pages/dyck-words.md)] §"Preliminary Definitions" L37-43 - "Rule 1: for any left factor u of w, |u|_x ≥ |u|_{x̄}", "Rule 2: |w|_x = |w|_{x̄}", "x is an upward diagonal step and x̄ is a downward diagonal step. Rule 1 keeps the path from dipping below the x axis, and Rule 2 makes it return to the axis."
+[^2]: [[dyck-words](pages/dyck-words.md)] §"Dyck Words Definitions" L61-69 - "The number of Dyck words of length 2n is the nth Catalan number, C_n = \dfrac{1}{n+1} \binom{2n}{n} (1, 1, 2, 5, 14, 42, 132, ...). Enumerating words by inversion number leads to the q-Catalan numbers."
+[^3]: [[dyck-words](pages/dyck-words.md)] §"Dyck Words Definitions" L53-81 - "An inversion is a pair w_i w_j with w_i = x̄, w_j = x, and i < j", "The down set D(w) is the set of indices where a down step is immediately followed by an up step", "The inversion number of w equals the area of the Ferrers diagram between w and the \"default\" path x x … x x̄ x̄ … x̄."
+[^4]: [[dyck-words](pages/dyck-words.md)] §"The Tree Reading" L93-106 - "Read x as ( and x̄ as ), then match each ( with the ) that closes it. Each matched pair is a node, and a pair nested inside another is its child", "A word of length 2n is a forest of n nodes", "C_n counts all of these: Dyck words of length 2n, plane forests of n nodes, and rooted plane trees of n+1 nodes."
+[^5]: [[dyck-words](pages/dyck-words.md)] §"The Tree Reading" L108 - "The path's area ranks the nested word x x … x x̄ x̄ … x̄ lowest and the flat alternating word highest, while the tree records nesting exactly."
+[^6]: [[dyck-words](pages/dyck-words.md)] §"Steep Dyck Words" L114 - "A Dyck word is steep if it is nonempty and contains no x x̄ x factor (no up-down-up)", "every down step is preceded by a down step, followed by a down step, or is the final step."
+[^7]: [[dyck-words](pages/dyck-words.md)] §"Steep Dyck Words" L130-154 - "D′ → x x̄ | x x̄ D′ | x D′ x̄ | x D′ x̄ D′", "The forbidden x x̄ x sequence is produced only by the second rule", "S → x x̄ | x S x̄ | x S x̄ S", "G_{SW}(x) = x + x G_{SW}(x) + x G_{SW}(x)^2", "so steep Dyck words of length 2n are enumerated by the (n-1)th Motzkin number."
+[^8]: [[dyck-words](pages/dyck-words.md)] §"Steep Dyck Words" L118-124 - "There is a classical bijection between parallelogram polyominoes and Dyck words", "Via q-grammars, the generating function of steep Dyck words of length 2n, counted by inversion number, equals the (n-1)th q-Motzkin number M_{n-1}(q)".
+[^9]: [[dyck-words](pages/dyck-words.md)] §"Generalizing Dyck Grammars" L160 - "The first-return grammar generalizes: change the steps and the same decomposition still builds words", "a castle tower is a word over these that stays above the base and returns to it. The castle rules re-cast as a grammar with the same first-return split".
 [^10]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] p.189 Remark 6.2 and p.203 §12(6) [synthesis] - "The pigmented Dyck is algebraic because V is obtained from the Dyck language D using the operations rational transduction and intersection with a rational language"; "the algebraicity has been 'concentrated' in the Dyck language. The generating functions p_I(t) and p_III(t) are rational expressions in term of t and c(t)."
 [^11]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] p.183 Prop 4.1, p.184 Remark 4.4 - "The area of P is the sum of the height of the peaks"; width-k parallelogram polyominoes number (1/n)C(n,k)C(n,k-1), "the well-known formula for the number of Dyck words of length 2n having k peaks."
+[^12]: Verified by execution (Python 3.11, 2026-10-16): enumeration of all Dyck words for `n ≤ 7` gives `C_n`; the steep ones number `1, 1, 2, 4, 9, 21, 51`; the inversion number equals half the summed height difference from `x ⋯ x x̄ ⋯ x̄`, the number of unit cells of the Ferrers diagram, for `n ≤ 6`; the examples at `n = 2` and `n = 3`.
+[^13]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] pp.172-175 §2, Examples 2.1-2.3 [synthesis] - the Dyck grammar `D → xDx̄D, D → e`.
