@@ -121,7 +121,7 @@ For `a ≤ 5` and every prime `3 ≤ p < 100` with `p ∤ a² + 4`, the period o
 
 ## Part 3 - The k-direction
 
-`P(k, L)` is computed by a dynamic program over the column heights, with the block count as total descent.[^3] For `4 ≤ L ≤ 12`, the shortest recurrence of `P(·, L)` in the tower height `k` has characteristic polynomial `(x + 1)^L (x − 1)^{L−2}` (computed). Its eigenvalues are `±1`, and
+`P(k, L)` is computed by a dynamic program over the column heights, with the block count as total descent.[^3] For `4 ≤ L ≤ 12`, the shortest recurrence of `P(·, L)` in the tower height `k` has characteristic polynomial `(x + 1)^L (x − 1)^{L−2}` (computed); at every `L` it divides `(x + 1)^{L+1} (x − 1)^{L+1}`, since `P(k, L)` is a polynomial in `k` of degree at most `L` on each class of `k` modulo 2 ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)], section *The residue test*). Its eigenvalues are `±1`, and
 
 ```
 P(k, L)  =  (−1)^k · A_L(k) + B_L(k),         deg A_L ≤ L − 1,  deg B_L ≤ L − 3,

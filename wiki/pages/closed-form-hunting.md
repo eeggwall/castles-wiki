@@ -30,7 +30,7 @@ The source states `P(k, 3) = (−1)^k (k + 1)²`, with the recurrence `(x + 1)³
 
 ## From L = 4 on
 
-At `L = 4`, `P(1, 4) = −4` while `(−1)^1 (1 + 1)^3 = −8`, so the pattern of `L ≤ 3` stops. For `4 ≤ L ≤ 12` the shortest recurrence of `P(·, L)` has order `2L − 2`, and its characteristic polynomial is[^3]
+At `L = 4`, `P(1, 4) = −4` while `(−1)^1 (1 + 1)^3 = −8`, so the pattern of `L ≤ 3` stops. At every `L`, `P(k, L)` is a polynomial in `k` of degree at most `L` on each class of `k` modulo 2 ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)], section *The residue test*), so `P(k, L) = (−1)^k A_L(k) + B_L(k)` with polynomials of degree at most `L`. For `4 ≤ L ≤ 12` the shortest recurrence of `P(·, L)` has order `2L − 2`, and its characteristic polynomial is[^3]
 
 ```
 (x + 1)^L (x − 1)^{L−2}.
