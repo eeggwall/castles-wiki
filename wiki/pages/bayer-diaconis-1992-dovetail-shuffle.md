@@ -1,16 +1,16 @@
 ---
 title: "Bayer & Diaconis (1992) - Trailing the dovetail shuffle to its lair"
 category: Sources
-summary: Bayer and Diaconis show that an a-shuffle of n cards (cut into a packets, riffle them together) gives a permutation with r rising sequences with probability C(a + n − r, n)/a^n. The proof is stars and bars - r − 1 cuts are forced between the rising sequences and the a − r spare cuts go into n + 1 bins - and summing over permutations is Worpitzky's identity a^n = Σ_r Eul(n, r) C(a + n − r, n). The castle use is the tower block-count identity T(w, b) = Σ_k N(w, k) C(b + w − k, w − 1), refined by descents, which has the same shape: under a = b + 1, n = w − 1, r = k the two binomials coincide, which suggests a stars-and-bars bijective proof of the Narayana numerator; none is constructed. The paper's mixing results ((3/2) log₂ n riffle shuffles, cutoff, total variation through a sufficient statistic) are also summarized.
+summary: Bayer and Diaconis show that an a-shuffle of n cards (cut into a packets, riffle them together) gives a permutation with r rising sequences with probability C(a + n − r, n)/a^n. The proof is stars and bars - r − 1 cuts are forced between the rising sequences and the a − r spare cuts go into n + 1 bins - and summing over permutations is Worpitzky's identity a^n = Σ_r Eul(n, r) C(a + n − r, n). About (3/2) log₂ n riffle shuffles mix n cards, with a cutoff, and total variation is computed on one sufficient statistic. On the castle side, the tower block-count identity T^(L, b) = Σ_k N(L, k) C(b + L − k, L − 1), refined by descents, uses the same binomial at a = b + 1, n = L − 1, r = k.
 tags: [source, paper, permutations, descents, eulerian-numbers, worpitzky, stars-and-bars, tower, narayana, markov-chain, mixing]
 sources: [bayer-diaconis-1992-dovetail-shuffle]
 created: 2026-10-08
-updated: 2026-10-09
+updated: 2026-10-16
 ---
 
 # Bayer & Diaconis (1992) - Trailing the dovetail shuffle to its lair
 
-**Source:** `raw/bayer-diaconis-1992-dovetail-shuffle.pdf` (text layer at `raw/bayer-diaconis-1992-dovetail-shuffle.txt`, extracted with `pdftotext -layout`; the PDF is git-ignored, the text is tracked). D. Bayer and P. Diaconis, "Trailing the dovetail shuffle to its lair", *Ann. Appl. Probab.* 2(2), 1992, pp. 294-313; JSTOR scan (stable URL http://www.jstor.org/stable/2959752), copy from https://www.stat.berkeley.edu/~aldous/157/Papers/bayer_diaconis.pdf.[^1] The text layer garbles most displayed formulas, so formulas on this page are cited by synthesis and were checked by execution.
+**Source:** `raw/bayer-diaconis-1992-dovetail-shuffle.pdf` (text layer at `raw/bayer-diaconis-1992-dovetail-shuffle.txt`, extracted with `pdftotext -layout`; the PDF is not in the repository, the text is tracked). D. Bayer and P. Diaconis, "Trailing the dovetail shuffle to its lair", *Ann. Appl. Probab.* 2(2), 1992, pp. 294-313; JSTOR scan (stable URL http://www.jstor.org/stable/2959752), copy from https://www.stat.berkeley.edu/~aldous/157/Papers/bayer_diaconis.pdf.[^1] The text layer garbles most displayed formulas, so formulas on this page are cited by synthesis and were checked by execution.
 **Date ingested:** 2026-10-08
 **Type:** paper (PDF, 20 pp. + JSTOR cover page)
 
@@ -40,7 +40,7 @@ A **descent** of a sequence `s_1, …, s_n` is a position `i` with `s_i > s_{i+1
 a^n  =  Σ_{r=1..n} Eul(n, r) · C(a + n − r, n),
 ```
 
-which is Worpitzky's identity.[^9] As a generating function in `a` it reads `Σ_a a^n x^a = Σ_r Eul(n, r) x^r / (1 − x)^{n+1}`, the Eulerian polynomial over `(1 − x)^{n+1}` (own reasoning, checked by execution).[^18] The authors note that Theorem 3 can also be read off from Stanley's extension of Worpitzky's identity to partially ordered sets (*Enumerative Combinatorics* Vol. 1, Thm. 4.5.14) at the poset with no relations, and that the poset version "may have interesting shuffling interpretations".[^10]
+which is Worpitzky's identity.[^9] Multiplying by `x^a` and summing over `a ≥ 0`, with `Σ_a C(a + n − r, n) x^a = x^r/(1 − x)^{n+1}`, gives the generating function `Σ_a a^n x^a = Σ_r Eul(n, r) x^r / (1 − x)^{n+1}`, the Eulerian polynomial over `(1 − x)^{n+1}`.[^18] The authors note that Theorem 3 can also be read off from Stanley's extension of Worpitzky's identity to partially ordered sets (*Enumerative Combinatorics* Vol. 1, Thm. 4.5.14) at the poset with no relations, and that the poset version "may have interesting shuffling interpretations".[^10]
 
 **Consequences.** Theorem 3 extends earlier work of Shannon on equal probabilities for permutations with the same number of rising sequences.[^11] The number of rising sequences, observed along repeated a-shuffles, is itself a Markov chain (Corollary 2), because given that number the permutation is uniform.[^12] In the group algebra of the symmetric group, the sums `A_r` of all permutations with `r` rising sequences span a commutative semisimple algebra of dimension `n`; multiplication by the 2-shuffle element has eigenvalues `1, 1/2, …, 1/2^{n−1}` (Corollary 3), and the paper links this algebra to Solomon's descent algebra and to Hodge decompositions of Hochschild homology.[^13]
 
@@ -50,42 +50,42 @@ which is Worpitzky's identity.[^9] As a generating function in `a` it reads `Σ_
 
 ## The castle reading
 
-A **tower** of width `w` is a column-height vector `c_1, …, c_w ≥ 0` with `blocks = c_1 + Σ_{i≥2} max(0, c_i − c_{i−1})` ([[tower-heap](pages/tower-heap.md)]). The tower block-count identity is
+The wiki's towers on a base of length `L` are column-height vectors `c_1, …, c_L ≥ 0`, with `blocks = c_1 + Σ_{i≥2} max(0, c_i − c_{i−1})`; `T̂(L, b)` counts those of any height with `b` blocks, written with a hat to separate it from the tower count `T(k, L)` ([[tower-heap](pages/tower-heap.md)]). The tower block-count identity is
 
 ```
-T(w, b)  =  Σ_{k=1..w} N(w, k) · C(b + w − k, w − 1),      Σ_b T(w, b) x^b  =  Narayana_w(x) / (1 − x)^w,
+T̂(L, b)  =  Σ_{k=1..L} N(L, k) · C(b + L − k, L − 1),      Σ_b T̂(L, b) x^b  =  Σ_k N(L, k) x^{k−1} / (1 − x)^L,
 ```
 
-with `N(w, k)` the Narayana numbers, and the `k`-th term counts the towers with `k − 1` descents ([[narayana-numbers](pages/narayana-numbers.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]). Both identities are a descent-indexed polynomial over a power of `(1 − x)`, and the binomials match (own reasoning, checked by execution):[^18]
+with `N(L, k)` the Narayana numbers, and the `k`-th term counts the towers with `k − 1` descents; both are computed, not proved ([[narayana-numbers](pages/narayana-numbers.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]).[^18] The binomial of Theorem 3 at `a = b + 1`, `n = L − 1` and `r = k` is the binomial of the tower identity, `C(a + n − r, n) = C(b + L − k, L − 1)`, and the two generating functions have the same denominator `(1 − x)^{n+1} = (1 − x)^L`. The parameters correspond as follows:
 
 | Bayer-Diaconis | tower |
 |---|---|
-| `n` cards, `n + 1` gaps for cuts | `w` columns, `w` bins for blocks (`n = w − 1`) |
+| `n` cards, `n + 1` gaps for cuts | `L` columns (`n = L − 1`), `L` bins |
 | `a` packets | `b + 1` (`a = b + 1`) |
 | `r` rising sequences, `r − 1` forced cuts | `k`, with `k − 1` descents |
-| `a − r` spare cuts | `b − k + 1` spare blocks |
-| `C(a + n − r, n)` | `C(b + w − k, w − 1)` |
-| `Eul(n, r)` permutations | `N(w, k)` towers |
+| `a − r` spare cuts | `b − k + 1` units in the binomial |
+| `C(a + n − r, n)` | `C(b + L − k, L − 1)` |
+| `Eul(n, r)` permutations | `N(L, k)` |
 
-The stars-and-bars factor is the same, but the objects differ: `r` runs over `1, …, n = w − 1` while `k` runs over `1, …, w`, so the dictionary does not send towers to permutations. It suggests the shape of a bijective proof of the Narayana numerator, which [[narayana-numbers](pages/narayana-numbers.md)] and [[viennot-heap-tower](pages/viennot-heap-tower.md)] record as unproved: a tower with `k − 1` descents would be built from a forced part, counted by `N(w, k)`, and `b − k + 1` spare blocks placed in `w` bins, as Theorem 3 builds a cut of the deck from `r − 1` forced cuts and `a − r` spare ones.
+The index ranges differ: `r` runs over `1, …, n = L − 1` and `k` over `1, …, L`, so the correspondence is between the binomials, not between permutations and towers.
 
 ## Key Takeaways
 
 - **Theorem 3.** An a-shuffle gives a permutation with `r` rising sequences with probability `C(a + n − r, n)/a^n`, by stars and bars over the cuts.[^6][^7]
 - **Worpitzky's identity** is Theorem 3 summed over permutations.[^9]
-- **The castle use.** The tower block-count identity has the same descent-indexed stars-and-bars shape, with matching binomials under `a = b + 1`, `n = w − 1`, `r = k`; a bijective proof of the Narayana numerator along the lines of Theorem 3's proof is open (own reasoning).[^18]
+- **The castle use.** The tower block-count identity has the same binomial, `C(b + L − k, L − 1)`, under `a = b + 1`, `n = L − 1`, `r = k`.[^18]
 - **Mixing.** About `(3/2) log₂ n` riffle shuffles mix `n` cards, with a sharp cutoff; total variation reduces to one sufficient statistic.[^15][^16]
 
 ## Entities & Concepts
 
-- [[narayana-numbers](pages/narayana-numbers.md)] - the tower identity whose shape matches Worpitzky's.
-- [[tower-heap](pages/tower-heap.md)] - the tower and its block count.
-- [[viennot-heap-tower](pages/viennot-heap-tower.md)] - the "pick `k`, then a weak composition" reading of the tower identity.
-- [[aocp-permutations](pages/aocp-permutations.md)] - permutations on the wiki.
+- [[narayana-numbers](pages/narayana-numbers.md)] - the Narayana numbers and the tower identity with the binomial `C(b + L − k, L − 1)`.
+- [[tower-heap](pages/tower-heap.md)] - towers with no height bound, `T̂(L, b)`, and the comparison with Theorem 3's binomial.
+- [[viennot-heap-tower](pages/viennot-heap-tower.md)] - the tower identity read as a choice of `k` and a weak composition, set beside Worpitzky's identity.
+- [[aocp-permutations](pages/aocp-permutations.md)] - permutations, inversions and the insertion construction.
 
 ## Relation to Other Wiki Pages
 
-[[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] found the Narayana numerator and [[narayana-numbers](pages/narayana-numbers.md)] the descent refinement; this paper supplies the classical identity of the same shape and a proof of it by stars and bars. [[castle-samplers](pages/castle-samplers.md)] asks for the mixing time of a chain on castles; the method here, total variation computed on one sufficient statistic, rests on Theorem 3's exact formula, and the wiki has no formula of that kind for a castle chain.
+[[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] records the Narayana numerator and [[narayana-numbers](pages/narayana-numbers.md)] the descent refinement; this paper gives Worpitzky's identity, with the same binomial, and its proof by stars and bars. [[castle-samplers](pages/castle-samplers.md)] runs a heat-bath chain on castles, with coupling from the past for exact draws; the total-variation computation here uses the exact formula of Theorem 3 on one sufficient statistic. [[sandcastle-relaxation](pages/sandcastle-relaxation.md)] compares the relaxation time of a castle sandpile with the riffle shuffle, whose second-largest eigenvalue is `1/2` at every deck size.
 
 ## Footnotes
 
@@ -106,4 +106,4 @@ The stars-and-bars factor is the same, but the objects differ: `r` runs over `1,
 [^15]: [[bayer-diaconis-1992-dovetail-shuffle](pages/bayer-diaconis-1992-dovetail-shuffle.md)] §4 L694-L697, Theorem 4 p.307 L769-L777, Remarks 1-2 p.309 L890-L908 [synthesis] - with `m = log₂(n^{3/2} c)` shuffles, `c` fixed, the total variation tends to `1 − 2Φ(−1/(4c√3))` as `n → ∞`, `Φ` the standard normal distribution function, so about `(3/2) log₂ n` shuffles are needed; the text layer garbles `3/2` ("3 10g2 n", "321g2 n").
 [^16]: [[bayer-diaconis-1992-dovetail-shuffle](pages/bayer-diaconis-1992-dovetail-shuffle.md)] §4 proof of Theorem 4 pp.307-308 L785-L804 [synthesis] - "the number of rising sequences is a sufficient statistic for both" the shuffle and uniform distributions, and total variation equals the total variation between the induced laws of a sufficient statistic; Tanny and Stanley show the Eulerian number divided by `n!` is the chance that a sum of `n` uniforms on `[0, 1]` lies between `j` and `j + 1`, giving the central limit theorem.
 [^17]: [[bayer-diaconis-1992-dovetail-shuffle](pages/bayer-diaconis-1992-dovetail-shuffle.md)] §5 pp.310-311 L931-L1031 [synthesis] - §5.1 a guessing-game distance, §5.2 McGrath's formula after shuffles and a uniform cut, §5.3 face-up/face-down shuffles on the hyperoctahedral group and Beals's Theorem 5 reducing them to the ordinary model.
-[^18]: Verified by execution (Python 3, 2026-10-08): for `n ≤ 6`, every permutation has (number of rising sequences) = (number of descents of its inverse) + 1; Worpitzky's identity holds for `a ≤ 8`, and its generating-function form to `x^20`; dealing each card of an ordered deck into one of `a` piles in all `a^n` ways and stacking the piles produces each permutation `π` from exactly `C(a + n − r, n)` deals, `r` the number of rising sequences of `π`, for `a = 2, 3` (Theorem 3); `C(b + w − k, w − 1) = C(a + n − r, n)` at `a = b + 1`, `n = w − 1`, `r = k` for `w ≤ 7`, `b ≤ 11`; and, by brute force over height vectors, the towers of width `w` with `b` blocks and `k − 1` descents number `N(w, k) C(b + w − k, w − 1)` for `w ≤ 6`, `b ≤ 8`. The undivided tower identity is the one verified on [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)].
+[^18]: Verified by execution (Python 3, 2026-10-08; rerun 2026-10-16): for `n ≤ 6`, every permutation has (number of rising sequences) = (number of descents of its inverse) + 1; Worpitzky's identity for `n ≤ 8`, `a ≤ 8`, and its generating-function form to `x^20`; dealing each card of an ordered deck into one of `a` piles in all `a^n` ways and stacking the piles produces each permutation from exactly `C(a + n − r, n)` deals, `r` the number of rising sequences of the shuffled deck, for `n ≤ 5`, `a = 2, 3` (Theorem 3); the total variation for 52 cards after 1 to 10 riffle shuffles, from Theorem 3, equal to Table 1 to three decimals; `C(b + L − k, L − 1) = C(a + n − r, n)` at `a = b + 1`, `n = L − 1`, `r = k`; and, by brute force over height vectors, the towers on a base of length `L` with `b` blocks and `k − 1` descents number `N(L, k) C(b + L − k, L − 1)` for `L ≤ 6`, `b ≤ 8`.
