@@ -1,56 +1,54 @@
 ---
 title: The odd castles and the block-count tables
 category: Analyses
-summary: "Records for the odd count and the block-count tables. The odd count odd(w,h) = A - F gets its own rows: odd(w,h) = (A + P(h-1,w) - P(h-2,w))/2, with the same characteristic polynomial as F(w,h) for every h from 4 to 7. It differs only at h = 2 (odd gains the root 1) and h = 3 (odd loses the root 2, so its order is 5 against 6). The ten parity-refined area sequences and their signed differences were searched against OEIS on 2026-09-26, with no match. Three joint tables were enumerated. By area and blocks, the b-block column is rational with denominator (1-q)^2...(1-q^(b-1))^2 (1-q^b) for b <= 4; the pattern breaks at b = 5. By area, blocks and peaks, two blocks give the quarter-squares A002620, three blocks with one peak A097701, and three blocks with two peaks A002624, all three interlinks. By (w,h) and blocks, the h-block column is the convex count C(N, 2h-2) with N = w+2h-3, the (h+1)-block column is (2h-3) C(N, 2h), and the (h+2)-block column is a three-term binomial sum."
-tags: [analysis, castle, oeis, sequence, odd-count, parity, area, block-count, peaks, joint-distribution, c-finite, binomial, interlink, novel-candidate, verification]
+summary: "The odd-block count A^o(w, h) = (A − S)/2 = (A + P(h−1, w) − P(h−2, w))/2 as a sequence of its own: for 4 <= h <= 7 its minimal characteristic polynomial is that of A^e(·, h); at h = 2 A^o gains the root 1, and at h = 3 it loses the root 2, so its order is 5 against 6. The by-area families (all castles, convex, valley, non-convex, strict valley) split by block parity. Three joint tables: by area and blocks, the b-block column has denominator (1−q)^2 ⋯ (1−q^{b−1})^2 (1−q^b) for b <= 4 and not at b = 5; by area, blocks and peaks, two blocks give the quarter-squares A002620, three blocks with one peak A097701 and three blocks with two peaks A002624; by width, height and blocks, the h-block column is C(N, 2h−2) with N = w + 2h − 3, the (h+1)-block column (2h−3) C(N, 2h), and the (h+2)-block column a three-term binomial sum."
+tags: [analysis, castle, oeis, sequence, odd-count, parity, area, block-count, peaks, joint-distribution, c-finite, binomial, verification]
 sources: [oeis-mining-pe502]
 created: 2026-09-26
-updated: 2026-10-04
+updated: 2026-10-16
 ---
 
 # The odd castles and the block-count tables
 
-## Scope
+[[oeis-mining-pe502](pages/oeis-mining-pe502.md)] covers `A^e`, `A = h^w − (h−1)^w` and the signed tower count `P`. This page adds three sets of records: the odd-block count `A^o(w, h)` as a sequence of its own; the splits by block parity of the by-area families of [[castle-by-area](pages/castle-by-area.md)]; and the joint distributions of block count, peaks and area. Area and peaks alone are on [[castle-row-raising-equation](pages/castle-row-raising-equation.md)], and area and blocks as a generating function on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]. The OEIS status of every sequence on this page is recorded on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].
 
-[[oeis-mining-pe502](pages/oeis-mining-pe502.md)] covers `F`, `A = h^w - (h-1)^w` and the signed tower count `P`. This page adds three sets of records, listed on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]: the odd count `odd(w,h) = A(w,h) - F(w,h)` as a sequence of its own; the parity-refined area sequences of [[castle-by-area](pages/castle-by-area.md)], with a dated OEIS search; and the joint distributions of block count, peaks and area (area and peaks alone are on [[castle-row-raising-equation](pages/castle-row-raising-equation.md)], and area and blocks as a generating function (GF) on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]).
+The statistics are the wiki's standard ones. The block count is `blocks(c) = c_1 + Σ_{i≥2} max(0, c_i − c_{i−1})` ([[castle-sign](pages/castle-sign.md)]). A peak is a maximal run of columns with `c_i ≥ 2` ([[castle-notation](pages/castle-notation.md)], [[prime-castles](pages/prime-castles.md)]). The area is `Σ c_i`. The castles of area `n` are the compositions of `n`; by width and height, the castles are those of width `w` and height `h`. Every number on this page was checked two ways, by brute force over compositions and skylines and by a transfer-matrix dynamic program.[^exec]
 
-The statistics are the wiki's standard ones. Blocks are `B(c) = c_1 + sum_{i>=2} max(0, c_i - c_{i-1})` ([[castle-sign](pages/castle-sign.md)]). A peak is a maximal run of columns with `c_i >= 2` ([[castle-foata-transform](pages/castle-foata-transform.md)], [[prime-castles](pages/prime-castles.md)]). Area is `sum c_i`. By area, a castle is any composition; by `(w, h)`, it is a PE 502 castle with maximum exactly `h`. Every number below was checked two ways: brute force over compositions and skylines, and transfer-matrix dynamic programming (DP).[^exec] Every OEIS status is from a search on 2026-09-26.[^search]
+## The odd-block count
 
-## The odd count as its own entry
-
-A castle is a full base row with a tower of heights `0..h-1` on top, so its block count is one more than the tower's. That gives `sum (-1)^blocks = P(h-2, w) - P(h-1, w)` over castles of maximum exactly `h`, with `P(k, L)` the signed tower count of [[signed-tower-count](pages/signed-tower-count.md)]. Halving the difference from `A`:
+Removing the bottom row of a castle of width `w` and height `h` leaves towers of height at most `h − 1` with one block fewer, so the signed count over these castles is `S(w, h) = P(h−2, w) − P(h−1, w)`, with `P(k, L)` the signed tower count ([[castle-counting-formula](pages/castle-counting-formula.md)], [[signed-tower-count](pages/signed-tower-count.md)]). Then
 
 ```
-odd(w, h) = (A(w, h) + P(h-1, w) - P(h-2, w)) / 2
-F(w, h)   = (A(w, h) - P(h-1, w) + P(h-2, w)) / 2
+A^o(w, h)  =  (A − S)/2  =  ( A(w, h) + P(h−1, w) − P(h−2, w) ) / 2
+A^e(w, h)  =  (A + S)/2  =  ( A(w, h) − P(h−1, w) + P(h−2, w) ) / 2
 ```
 
-At `h = 3` this is `F(w,3) = (3^w - 2^w - P(2,w) + P(1,w))/2`, the closed form of [[new-sequence-fw3](pages/new-sequence-fw3.md)].[^exec]
+At `h = 3` the second line is `A^e(w, 3) = (3^w − 2^w − P(2, w) + P(1, w))/2`, the closed form of [[new-sequence-fw3](pages/new-sequence-fw3.md)].[^exec]
 
 The rows, from `w = 1`:
 
-| `h` | `odd(w, h)` | order | characteristic polynomial |
+| `h` | `A^o(w, h)` | order | characteristic polynomial |
 |---|---|---|---|
-| 2 | `0, 0, 1, 5, 15, 35, 71, 135, 255, 495, 991, 2015` | 4 | `(x-2)(x-1)(x^2-2x+2)` |
-| 3 | `1, 5, 16, 44, 122, 358, 1082, 3274, 9850, 29546, 88594` | 5 | `(x-3)(x^2-2x+2)(x^2-x+2)` |
-| 4 | `0, 0, 6, 58, 342, 1638, 7134, 29774, 121990, 495910` | 9 | `(x-4)(x-3)(x-2)(x^2-x+2)(x^4-4x^3+8x^2-8x+8)` |
-| 5 | `1, 9, 51, 247, 1195, 6051, 31467, 164115, 850379` | 11 | `(x-5)(x-4)(x^2-2x+4)(x^3-3x^2+2x-4)(x^4-4x^3+8x^2-8x+8)` |
-| 6 | `0, 0, 15, 223, 2021, 14905, 100157, 645029, 4069173` | 13 | `(x-6)(x-5)(x^2-2x+4)(x^3-3x^2+2x-4)(x^6-6x^5+18x^4-32x^3+48x^2-32x+32)` |
-| 7 | `1, 13, 106, 738, 5124, 37128, 275804, 2053324` | 15 | `(x-7)(x-6)(x^3-4x^2+4x-8)(x^4-3x^3+8x^2-4x+8)(x^6-6x^5+18x^4-32x^3+48x^2-32x+32)` |
+| 2 | `0, 0, 1, 5, 15, 35, 71, 135, 255, 495, 991, 2015` | 4 | `(x−2)(x−1)(x²−2x+2)` |
+| 3 | `1, 5, 16, 44, 122, 358, 1082, 3274, 9850, 29546, 88594` | 5 | `(x−3)(x²−2x+2)(x²−x+2)` |
+| 4 | `0, 0, 6, 58, 342, 1638, 7134, 29774, 121990, 495910` | 9 | `(x−4)(x−3)(x−2)(x²−x+2)(x⁴−4x³+8x²−8x+8)` |
+| 5 | `1, 9, 51, 247, 1195, 6051, 31467, 164115, 850379` | 11 | `(x−5)(x−4)(x²−2x+4)(x³−3x²+2x−4)(x⁴−4x³+8x²−8x+8)` |
+| 6 | `0, 0, 15, 223, 2021, 14905, 100157, 645029, 4069173` | 13 | `(x−6)(x−5)(x²−2x+4)(x³−3x²+2x−4)(x⁶−6x⁵+18x⁴−32x³+48x²−32x+32)` |
+| 7 | `1, 13, 106, 738, 5124, 37128, 275804, 2053324` | 15 | `(x−7)(x−6)(x³−4x²+4x−8)(x⁴−3x³+8x²−4x+8)(x⁶−6x⁵+18x⁴−32x³+48x²−32x+32)` |
 
-The `h = 2` row is `A038503(w+1) - 1`, as on [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]. The rows for `h = 3..7` have no OEIS match: **novel-candidate**. The orders 5, 9 and 11 at `h = 3, 4, 5` agree with [[oeis-mining-pe502](pages/oeis-mining-pe502.md)].[^exec][^search]
+The `h = 2` row is `A038503(w + 1) − 1` ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]). The orders 5, 9 and 11 at `h = 3, 4, 5` agree with [[oeis-mining-pe502](pages/oeis-mining-pe502.md)].[^exec]
 
-**Where odd and even part ways.** For `h = 4..7` the minimal characteristic polynomial of `odd(., h)` equals that of `F(., h)`, factor for factor. They differ only at `h = 2` and `h = 3`, where `(h-1)^w` from `A` meets an eigenvalue `h - 1` of one of the `P` terms. At `h = 3` the root 2 of `P(2, .)` enters `odd` with coefficient `+1/2` and cancels the `-2^w/2` from `A`, so `odd(., 3)` has order 5 while `F(., 3)` has order 6. At `h = 2` it goes the other way: the constant `P(0, w) = 1` cancels the `-1^w` of `A` in `F` and doubles it in `odd`, so `odd` has the extra root 1. From `h = 4` on, no `P(k, .)` with `k = h-1` or `h-2` has the integer eigenvalue `h - 1` (checked through `h = 7`), so nothing cancels and both rows have order `2h + 1`.[^exec]
+**Where the odd and even rows part.** For `h = 4..7` the minimal characteristic polynomial of `A^o(·, h)` equals that of `A^e(·, h)`, factor for factor. They differ only at `h = 2` and `h = 3`, where `(h−1)^w` from `A` meets the eigenvalue `h − 1` of one of the `P` terms. At `h = 3` the root 2 of `P(2, ·)` enters `A^o` with coefficient `+1/2` and cancels the `−2^w/2` from `A`, so `A^o(·, 3)` has order 5 while `A^e(·, 3)` has order 6. At `h = 2` it goes the other way: the constant `P(0, w) = 1` cancels the `−1^w` of `A` in `A^e`, which has order 3, and doubles it in `A^o`, which gains the root 1. For `4 ≤ h ≤ 7` neither `P(h−1, ·)` nor `P(h−2, ·)` has the eigenvalue `h − 1`, so nothing cancels and both rows have order `2h + 1`.[^exec]
 
-**Columns.** At fixed `w` the counts are quasi-polynomials in `h` that alternate by the parity of `h`. The `w = 3` column is on [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)] and `F(4, h)` is in the catalogue. The new columns, from `h = 1`:
+**Columns.** At fixed `w` the counts depend on the parity of `h`, since `P(·, w)` is a period-2 quasi-polynomial in the tower height (computed for `4 ≤ w ≤ 12`, [[signed-tower-k-direction](pages/signed-tower-k-direction.md)]). The `w = 3` column is on [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)] and `A^e(4, h)` is on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]. Further columns, from `h = 1`:
 
-| column | first terms | status |
-|---|---|---|
-| `odd(4, h)` | `1, 5, 44, 58, 247, 223, 738, 564, 1645, 1145, 3096, 2030` | **novel-candidate** (also its even-`h` and odd-`h` halves) |
-| `odd(5, h)` | `1, 15, 122, 342, 1195, 2021, 5124, 6924, 14901, 17755, 34606` | **novel-candidate** |
-| `odd(6, h)` | `1, 35, 358, 1638, 6051, 14905, 37128, 69196, 140709, 224143` | **novel-candidate** |
-| `F(5, h)` | `0, 16, 89, 439, 906, 2630, 3907, 9037, 11380, 23196, 26445` | **novel-candidate** |
-| `F(6, h)` | `0, 28, 307, 1729, 5478, 16126, 33865, 75299, 128588, 244416` | **novel-candidate** |
+| column | first terms |
+|---|---|
+| `A^o(4, h)` | `1, 5, 44, 58, 247, 223, 738, 564, 1645, 1145, 3096, 2030` |
+| `A^o(5, h)` | `1, 15, 122, 342, 1195, 2021, 5124, 6924, 14901, 17755, 34606` |
+| `A^o(6, h)` | `1, 35, 358, 1638, 6051, 14905, 37128, 69196, 140709, 224143` |
+| `A^e(5, h)` | `0, 16, 89, 439, 906, 2630, 3907, 9037, 11380, 23196, 26445` |
+| `A^e(6, h)` | `0, 28, 307, 1729, 5478, 16126, 33865, 75299, 128588, 244416` |
 
 ## The parity-refined area sequences
 
@@ -58,7 +56,7 @@ Each by-area family splits by block parity. Terms from `n = 1`:[^exec]
 
 | name | castles of area `n` | first terms | sum |
 |---|---|---|---|
-| `even` | all, even blocks | `0, 1, 2, 5, 8, 17, 30, 65, 122, 261, 502, 1043, 2026, 4145, 8124, 16499` | `even + odd = 2^(n-1)` |
+| `even` | all, even blocks | `0, 1, 2, 5, 8, 17, 30, 65, 122, 261, 502, 1043, 2026, 4145, 8124, 16499` | `even + odd = 2^(n−1)` |
 | `odd` | all, odd blocks | `1, 1, 2, 3, 8, 15, 34, 63, 134, 251, 522, 1005, 2070, 4047, 8260, 16269` | |
 | `cev` | convex, even | `0, 1, 2, 5, 8, 15, 24, 41, 64, 105, 162, 255, 386, 589, 874, 1300` | `cev + cod = A001523` |
 | `cod` | convex, odd | `1, 1, 2, 3, 7, 12, 23, 38, 66, 104, 168, 257, 398, 594, 891, 1304` | |
@@ -69,13 +67,13 @@ Each by-area family splits by block parity. Terms from `n = 1`:[^exec]
 | `sv_even` | strict valley, even | `0, 0, 0, 0, 0, 2, 2, 11, 12, 36, 44, 99, 126, 244, 316, 554` | sum `= strict_valley` |
 | `sv_odd` | strict valley, odd | `0, 0, 0, 0, 1, 1, 6, 6, 22, 24, 63, 76, 159, 201, 375, 483` | |
 
-A strict-valley castle is a valley that is not monotone. The first sixteen terms of `strict_valley` itself are `0, 0, 0, 0, 1, 3, 8, 17, 34, 60, 107, 175, 285, 445, 691, 1037`, and they agree with [[castle-by-area](pages/castle-by-area.md)]. All eleven sequences have no OEIS match. The same holds for the signed differences: `even - odd`, `cev - cod` (`-1, 0, 0, 2, 1, 3, 1, 3, -2, 1, -6, -2`), `valley_even - valley_odd` (`-1, 0, 0, 1, -1, 3, -4, 7, -11, 16, -21, 27`), `nc_even - nc_odd` and `sv_even - sv_odd`. The status of all of them is **novel-candidate** (searched 2026-09-26).[^search]
+A strict-valley castle is a valley castle that is not convex ([[castle-by-area](pages/castle-by-area.md)]); the skyline `(2, 1, 2)` is the smallest. The first sixteen terms of `strict_valley` itself are `0, 0, 0, 0, 1, 3, 8, 17, 34, 60, 107, 175, 285, 445, 691, 1037`. The signed differences begin `cev − cod = −1, 0, 0, 2, 1, 3, 1, 3, −2, 1, −6, −2` and `valley_even − valley_odd = −1, 0, 0, 1, −1, 3, −4, 7, −11, 16, −21, 27`.[^exec]
 
 ## Joint tables
 
 ### Area and blocks
 
-`T(n, b)` counts castles of area `n` with `b` blocks. Rows from `n = 1`, for `b = 1..n`:
+Write `a_b(n)` for the number of castles of area `n` with `b` blocks. Rows from `n = 1`, for `b = 1..n`:
 
 ```
 1
@@ -90,38 +88,38 @@ A strict-valley castle is a valley that is not monotone. The first sixteen terms
 1 25 106 157 117 67 25 11 2 1
 ```
 
-Row sums are `2^(n-1)`. The alternating row sums are `even(n) - odd(n)`. The rows are the coefficients of the trivariate GF on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] at unit width weight. The triangle read by rows has no OEIS match: **novel-candidate**.[^exec][^search]
+Row sums are `2^(n−1)`, and the alternating row sums are `even(n) − odd(n)`. The rows are the coefficients of the generating function by area and blocks on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] at unit width weight.[^exec]
 
-With `b` fixed, a castle is one of finitely many nested arrangements of `b` intervals, and each arrangement contributes a rational GF in the area. So every column is rational. The columns found, checked to area 90:[^exec]
+With `b` fixed, a castle is one of finitely many nested arrangements of `b` intervals, and each arrangement contributes a rational generating function in the area. So every column is rational. The columns, checked to area 90:[^exec]
 
-| `b` | column GF | first terms (`n = b..`) | status |
+| `b` | column generating function | first terms (`n = b, b+1, …`) | OEIS |
 |---|---|---|---|
-| 2 | `q^2 / ((1-q)^2 (1-q^2))` | `1, 2, 4, 6, 9, 12, 16, 20, 25, 30, 36` | **interlink** → [A002620](https://oeis.org/A002620) quarter-squares, `= A002620(n)` |
-| 3 | `q^3 (1 + q^2 + q^3 + q^4) / ((1-q)^2 (1-q^2)^2 (1-q^3))` | `1, 2, 6, 12, 24, 41, 69, 106, 160, 229, 322` | **novel-candidate** |
-| 4 | `q^4 N_4(q) / ((1-q)^2 (1-q^2)^2 (1-q^3)^2 (1-q^4))` | `1, 2, 7, 16, 39, 78, 157, 284, 502, 834, 1351` | **novel-candidate** |
-| 5 | rational; smallest product denominator found `(1-q)(1-q^2)^2(1-q^3)^3(1-q^4)^2(1-q^5)` | `1, 2, 8, 19, 53, 117, 266, 540, 1078, 2011, 3659` | **novel-candidate** |
+| 2 | `q² / ((1−q)² (1−q²))` | `1, 2, 4, 6, 9, 12, 16, 20, 25, 30, 36` | `A002620(n)`, the quarter-squares |
+| 3 | `q³ (1 + q² + q³ + q⁴) / ((1−q)² (1−q²)² (1−q³))` | `1, 2, 6, 12, 24, 41, 69, 106, 160, 229, 322` | |
+| 4 | `q⁴ N_4(q) / ((1−q)² (1−q²)² (1−q³)² (1−q⁴))` | `1, 2, 7, 16, 39, 78, 157, 284, 502, 834, 1351` | |
+| 5 | rational, with denominator `(1−q)(1−q²)²(1−q³)³(1−q⁴)²(1−q⁵)` | `1, 2, 8, 19, 53, 117, 266, 540, 1078, 2011, 3659` | |
 
-Here `N_4(q) = 1 + 2q^2 + 2q^3 + 6q^4 + 4q^5 + 7q^6 + 4q^7 + 4q^8 + 2q^9 + q^10`. For `b <= 4` the denominator is `(1-q)^2 ... (1-q^(b-1))^2 (1-q^b)`. At `b = 5` that denominator no longer clears the column. For every `b <= 6` the pole at `q = 1` has order `2b - 1`, so the `b`-block column grows like `n^(2b-2)`. The two-block case is elementary: a two-block castle is `1^a 2^m 1^c` with `m >= 1`, which leaves `floor(n^2/4)` choices.
+Here `N_4(q) = 1 + 2q² + 2q³ + 6q⁴ + 4q⁵ + 7q⁶ + 4q⁷ + 4q⁸ + 2q⁹ + q¹⁰`. For `b ≤ 4` the denominator is `(1−q)² ⋯ (1−q^{b−1})² (1−q^b)`; at `b = 5` that product does not clear the column, and the denominator in the table does, with a numerator of degree 25. For `b ≤ 6` the pole at `q = 1` has order `2b − 1`, so the `b`-block column grows like `n^{2b−2}` (computed). The two-block case is elementary: a two-block castle is `1^a 2^m 1^c` with `m ≥ 1`, which leaves `⌊n²/4⌋` choices.
 
 ### Area, blocks and peaks
 
-Peaks refine the columns. Every castle with `p` peaks has at least `p + 1` blocks. Equality `b = p + 1` means every peak is a single block, which is exactly height 2, so that diagonal is the Fibonacci row of [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]. The next cells, in castles of area `n`:[^exec][^oeis]
+Peaks refine the columns. A castle with `p` peaks has at least `p + 1` blocks. Equality `b = p + 1` means every peak is a single block, so the castle has height 2; that diagonal is the row `h = 2` of [[exact-height-castle-by-area](pages/exact-height-castle-by-area.md)]. The next cells, in castles of area `n`:[^exec][^oeis]
 
-| blocks, peaks | first terms | identification | status |
-|---|---|---|---|
-| 2, 1 | `1, 2, 4, 6, 9, 12, 16, 20` (from `n = 2`) | `A002620(n)` | **interlink** (above) |
-| 3, 1 | `1, 2, 5, 9, 16, 25, 39, 56, 80, 109, 147, 192` (from `n = 3`) | `A097701(n-3)`, "Expansion of `1/((1-x)^2*(1-x^2)^2*(1-x^3))`" | **interlink** |
-| 3, 2 | `1, 3, 8, 16, 30, 50, 80, 120, 175, 245, 336, 448` (from `n = 5`) | `A002624(n-5)`, "Expansion of `(1-x)^(-3) * (1-x^2)^(-2)`" | **interlink** |
-| 4, 1 | `1, 2, 5, 10, 20, 34, 60, 96, 153, 232, 348, 502` | | **novel-candidate** |
-| 5, 1 | `1, 2, 5, 10, 22, 39, 74, 127, 219, 357, 582, 905` | | **novel-candidate** |
-| 4, 2 | `2, 6, 18, 40, 84, 156, 278, 462, 744, 1146, 1722, 2508` | | **novel-candidate** |
-| 5, 2 | `3, 9, 28, 66, 149, 297, 573, 1029, 1794, 2988, 4853, 7627` | | **novel-candidate** |
+| blocks, peaks | first terms | OEIS |
+|---|---|---|
+| 2, 1 | `1, 2, 4, 6, 9, 12, 16, 20` (from `n = 2`) | `A002620(n)` |
+| 3, 1 | `1, 2, 5, 9, 16, 25, 39, 56, 80, 109, 147, 192` (from `n = 3`) | `A097701(n − 3)`, "Expansion of `1/((1-x)^2*(1-x^2)^2*(1-x^3))`" |
+| 3, 2 | `1, 3, 8, 16, 30, 50, 80, 120, 175, 245, 336, 448` (from `n = 5`) | `A002624(n − 5)`, "Expansion of `(1-x)^(-3) * (1-x^2)^(-2)`" |
+| 4, 1 | `1, 2, 5, 10, 20, 34, 60, 96, 153, 232, 348, 502` (from `n = 4`) | |
+| 5, 1 | `1, 2, 5, 10, 22, 39, 74, 127, 219, 357, 582, 905` (from `n = 5`) | |
+| 4, 2 | `2, 6, 18, 40, 84, 156, 278, 462, 744, 1146, 1722, 2508` (from `n = 6`) | |
+| 5, 2 | `3, 9, 28, 66, 149, 297, 573, 1029, 1794, 2988, 4853, 7627` (from `n = 7`) | |
 
-Both new interlinks agree with the OEIS data over the full length compared, through area 40. Neither entry has a composition or castle reading. The castle readings: A three-block one-peak castle is a base, a block on it and a block on that. A three-block two-peak castle is a base carrying two separated one-block towers. The two-peak and three-block-one-peak GFs differ only by trading one `(1-q^3)` for a `(1-q)`.
+Both identifications with OEIS entries hold over the full length compared, through area 40. A three-block castle with one peak is a base, a block on it and a block on that. A three-block castle with two peaks is a base carrying two separated one-block towers. The two generating functions differ only by one factor: `(1−q³)` for one peak against `(1−q)` for two.
 
 ### Width, height and blocks
 
-At fixed `(w, h)` the blocks run from `h` (the convex castles, [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]) up to a maximum reached by the battlement `h, 1, h, 1, ...`. [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] lists this table as new ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] holds the tower side). Its `h = 3` rows from `w = 1`, for blocks `3, 4, 5, ...`:
+At fixed `(w, h)` the block count runs from `h`, for the convex castles ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]), up to a maximum reached by the battlement `h, 1, h, 1, …` ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] treats the towers by blocks). Its `h = 3` rows from `w = 1`, for blocks `3, 4, 5, …`:
 
 ```
 1
@@ -133,30 +131,29 @@ At fixed `(w, h)` the blocks run from `h` (the convex castles, [[convex-castle-b
 210  630  765  340  106   7   1
 ```
 
-Each row sums to `3^w - 2^w`. At `h = 2` the entries are binomials, `C(w+1, 2b-2)`. For general `h`, set `N = w + 2h - 3`. Then the first three columns are, verified for `w <= 25` and `2 <= h <= 6`:[^exec]
+Each row sums to `3^w − 2^w`. At `h = 2` the entries are binomials, `C(w + 1, 2b − 2)`. For general `h`, set `N = w + 2h − 3`. Then the first three columns are, checked for `w ≤ 18` and `2 ≤ h ≤ 6`:[^exec]
 
 ```
-blocks h     :  C(N, 2h-2)
-blocks h + 1 :  (2h-3) C(N, 2h)
-blocks h + 2 :  (2h-5) C(N, 2h) + 2(2h-5) C(N, 2h+1) + (2h+1)(h-2) C(N, 2h+2)      (h >= 3)
+blocks h     :  C(N, 2h − 2)
+blocks h + 1 :  (2h − 3) C(N, 2h)
+blocks h + 2 :  (2h − 5) C(N, 2h) + 2(2h − 5) C(N, 2h + 1) + (2h + 1)(h − 2) C(N, 2h + 2)      (h ≥ 3)
 ```
 
-The first line is the convex count. The `b`-block column is a polynomial in `w` of degree `2b - 2`, the same exponent as the area column. The last entry of each row is `1` at odd `w` (the battlement alone) and `(h-1)w + 1` at even `w`. The second column at `h = 3` is **interlink** → [A253943](https://oeis.org/A253943), `a(n) = 3*binomial(n+1,6)`, at `n = w + 2`. The `h = 4` second column `5 C(w+5, 8)`, the `h = 3` third column `1, 9, 51, 219, 765, 2277, 5973`, and the `h = 3` and `h = 4` triangles have no OEIS match: **novel-candidate**.[^search][^oeis]
+The first line is the convex count. The `b`-block column is a polynomial in `w` of degree `2b − 2`, the same exponent as the area column. The last entry of each row is `1` at odd `w` (the battlement alone) and `(h − 1)w + 1` at even `w` (checked for `w ≤ 15`, `h ≤ 7`). The second column at `h = 3` is `3 C(w + 3, 6) = A253943(w + 2)`, and the second column at `h = 4` is `5 C(w + 5, 8)`.[^oeis]
 
 ## Related Concepts
 
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the bank these records enter.
-- [[castle-by-area](pages/castle-by-area.md)] - the by-area families split by parity here.
-- [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `F(w,3)`, whose odd companion is the `h = 3` row above.
-- [[signed-tower-count](pages/signed-tower-count.md)] - the `P(k, .)` terms in the odd-count formula.
-- [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] - the area and peaks triangle, the pair not repeated here.
-- [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - the closed-form GF behind the area and blocks triangle.
-- [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the joint `(B, N)` distribution read as entropy.
-- [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the first column of the `(w, h)` block table.
-- [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] - the verify-with-offsets discipline used for the three interlinks.
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the OEIS status of the sequences on this page.
+- [[castle-by-area](pages/castle-by-area.md)] - the by-area families and their definitions.
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `A^e(w, 3)`, whose odd-block companion is the `h = 3` row of the first table.
+- [[signed-tower-count](pages/signed-tower-count.md)] - the `P(k, ·)` terms in the formulas for `A^o` and `A^e`.
+- [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] - castles counted by area and peaks.
+- [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - the generating function by area, width and blocks behind the area-and-blocks triangle.
+- [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the joint distribution of blocks and area read as entropy.
+- [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the first column of the width-height-blocks table.
+- [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] - the offset check used for the identifications with OEIS entries.
 
 ## Footnotes
 
-[^exec]: Verified by execution (2026-09-26), Python 3 with SymPy. `odd(w,h)` and `F(w,h)` by a column DP on (last height, block parity, maximum reached) for `w <= 44`, `h <= 7`. Minimal recurrences were found by linear solve and Berlekamp-Massey on 40 terms and then factored. The `P(k, L)` identity was brute-forced for `h <= 5`, `w <= 6`. The area families were brute-forced over all compositions of `n <= 20`. The area and blocks table came from an area DP on (last height, blocks) through area 45, and the columns `b <= 7` from the same DP through area 90, which served for the column GFs: each column was multiplied by product denominators `prod (1-q^j)^(m_j)`, `m_j <= 3`, and the result checked to be a polynomial of degree below 80. The area, blocks and peaks table came from a DP on (last height, blocks, peaks) through area 40. The `(w, h)` block table came from a DP on (last height, blocks, maximum reached) for `w <= 25`, `h <= 7`; its columns were solved exactly in the basis `C(N, k)` with zero residual, and the last-entry law was checked for `w <= 15`, `h <= 7`. Cross-checks: row sums `2^(n-1)` and `h^w - (h-1)^w`, `F(6,4) = 1729`, `odd(w,2) = A038503(w+1) - 1`, and the terms of `even`, `odd`, `cev`, `cod` and `strict_valley` given on the castle-by-area page.
-[^search]: OEIS searches (https://oeis.org/search, JSON format, 2026-09-26) on the first 8 to 12 nonzero terms returned no results for: the `odd(., h)` rows for `h = 3..7`; the columns `odd(4..6, .)`, the even-`h` and odd-`h` halves of `odd(4, .)`, and `F(5, .)`, `F(6, .)`; all ten parity-refined area sequences, `strict_valley` and the five signed differences; the area and blocks columns `b = 3, 4, 5` and the antidiagonals `b = n - 3, n - 4`; the blocks and peaks cells `(4,1), (5,1), (6,1), (4,2), (5,2), (6,2)`; and the `h = 3` third column, the `h = 4` second column and the `h = 3, 4` triangles read by rows. The area and blocks triangle read by rows (12 terms) returned only entries that share the opening `1, 1, 1, 1, 2, 1` and then diverge.
-[^oeis]: OEIS entries fetched in JSON (2026-09-26). A002620 "Quarter-squares: a(n) = floor(n/2)*ceiling(n/2)". A097701 "Expansion of 1/((1-x)^2*(1-x^2)^2*(1-x^3))", offset 0, comments on partitions into five parts and partitions "into two kinds of parts 1, two kinds of parts 2, and one kind of parts 3". A002624 "Expansion of (1-x)^(-3) * (1-x^2)^(-2)", offset 0, comments on a triangle product, queens on a chessboard, and partitions "with three kinds of 1 and two kinds of 2". A253943 "a(n) = 3*binomial(n+1,6)", offset 5. None of the four mentions compositions or castles. The alignments were compared by execution against the listed data: A002620 for areas 2 to 40, A097701 for 38 terms, A002624 for 36 terms.
+[^exec]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `A^o(w, h)` and `A^e(w, h)` by a column DP on (last height, block parity, height reached) for `w ≤ 44`, `h ≤ 7`, with minimal recurrences by Berlekamp-Massey over `Q` and factored, and the columns at fixed `w = 4, 5, 6`; the by-area families and the area-blocks and area-blocks-peaks tables by brute force over all compositions of `n ≤ 16`; the area-blocks columns `b ≤ 6` by a DP on (last height, blocks) through area 90, with the column generating functions for `b ≤ 4` checked to area 90, the `b ≤ 4` denominator failing at `b = 5` and the table's `b = 5` denominator clearing the column with a numerator of degree 25; the width-height-blocks table by a DP on (last height, blocks, height reached), its three column formulas for `w ≤ 18`, `2 ≤ h ≤ 6`, the binomials at `h = 2` for `w ≤ 14`, the last-entry law for `w ≤ 15`, `h ≤ 7`, and `3 C(w + 3, 6)`, `5 C(w + 5, 8)`.
+[^oeis]: OEIS entries (read 2026-10-16). A002620 "Quarter-squares: a(n) = floor(n/2)*ceiling(n/2)". A097701 "Expansion of 1/((1-x)^2*(1-x^2)^2*(1-x^3))", offset 0. A002624 "Expansion of (1-x)^(-3) * (1-x^2)^(-2)", offset 0. A253943 "a(n) = 3*binomial(n+1,6)", offset 5. The alignments were compared by execution against the listed data: A002620 for areas 2 to 40, A097701 for 38 terms, A002624 for 36 terms.
