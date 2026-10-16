@@ -1,133 +1,121 @@
 ---
 title: Castle cryptography - a build / red-team / blue-team seminar series
 category: Analyses
-summary: A three-seminar series that treats a castle-based public-key system the way real security work is organized — separate build, attack, and remediate tracks. Seminar 1 (BUILD) implements a working public-key system whose keypair is a "castle" instead of an SSH keypair, deferring the security question entirely to focus on the implementation: the public castle is a characteristic polynomial Q = char_k mod p over F_p, a private key is a secret exponent, and key exchange is Kitamasa exponentiation x^a mod Q (the castle solve's own fast-index trick) — a running castle Diffie-Hellman in ~20 lines. Seminar 2 (RED TEAM) is applied cryptanalysis of this novel system: the char polys factor so the discrete log splits (Pohlig-Hellman), and Berlekamp-Massey reconstructs the secret castle from the count stream (the LFSR attack). Seminar 3 (BLUE TEAM) is remediation: given the breaks, how do you improve the system — irreducible (prime) char polys to stop the factorization split, nonlinear feedback to defeat Berlekamp-Massey, and an account of what still falls short of real security. Uses finite fields, binary exponentiation, primes and integer sequences, via short programs. Every primitive already exists: finite-fields, kitamasa, berlekamp-massey, mod-p-observatory, signed-tower-count. Round two of the loop (castle-cryptography-round-two) builds ElGamal and a signature, recovers Alice's actual private key in 0.07 s, breaks both round-one fixes (the group order p^d − 1 factors algebraically; nonlinear filters linearize to complexity C(d+e−1, e)), and sizes the keys.
+summary: A three-seminar series on a toy public-key system built from the signed tower count. The public parameters are a prime p and Q = char_k mod p, a private key is an exponent a, the public key is x^a mod Q, and Diffie-Hellman key exchange is exponentiation in F_p[x]/(Q), the step Kitamasa's method performs. Seminar 1 builds the system; Seminar 2 breaks it two ways (even-k char_k factor, so the ring splits by the CRT and the discrete log splits; Berlekamp-Massey recovers Q from 2 deg Q terms of any published stream); Seminar 3 closes both breaks (an irreducible Q mod p; a nonlinear filter, whose linear complexity is at most C(d+e-1, e)) and names the remaining ceiling, index calculus in F_{p^d}. Rounds two and three of the series break and rebuild the fixes.
 tags: [analysis, seminar, cryptography, public-key, finite-field, kitamasa, berlekamp-massey, discrete-log, diffie-hellman, cryptanalysis, red-team, blue-team, pedagogy, implementation, castle]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
-updated: 2026-09-28
+updated: 2026-10-16
 ---
 
 # Castle cryptography
 
 ## The series
 
-Three seminars, one per phase of security work — **build**, **attack**, **remediate**:
+Three seminars, one per phase of security work:
 
-1. **Seminar 1 — BUILD.** *Implement* a public-key system whose keypair is a castle: a **private castle** and a **public castle** in place of an SSH `id_rsa` / `id_rsa.pub`, and two strangers deriving a shared secret from each other's public castles. Security is set aside here: the part implements the system as short programs and worked examples that run in a read-eval-print loop (REPL).
-2. **Seminar 2 — RED TEAM.** *Attack* it. Two breaks, each a small instance of a standard attack.
-3. **Seminar 3 — BLUE TEAM.** *Improve* it. Given the breaks, harden the system, and distinguish closing one attack from reaching an actual hardness assumption.
+1. **Seminar 1 - Build.** A public-key system whose public modulus comes from the signed tower count, implemented as short programs, with Diffie-Hellman key exchange between two parties. Security is not evaluated in this seminar.
+2. **Seminar 2 - Red team.** Two attacks on the system, each a small instance of a standard attack.
+3. **Seminar 3 - Blue team.** A fix for each attack, and the attack that remains after both fixes.
 
-The series uses **finite fields, binary exponentiation, primes, and integer sequences**; every primitive it needs is already on the wiki.
+The series runs three times. [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] is the second round: it adds ElGamal encryption and a Schnorr-style signature, recovers a private key, breaks both fixes of this page, sizes the keys against the three attacks (the largest prime factor of the group order, the linear complexity, index calculus), and states four questions to ask of a new cryptosystem. [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] is the third: it builds on `char_5`, a field of degree 6, in a prime-order subgroup of the torus (the XTR/CEILIDH construction), which closes the subfield attack of round two, and sizes the remaining index-calculus attack against the extended tower number field sieve.
 
+## The shared setup
 
-**The loop runs three times.** This page is the first lap. [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] is the second: the build adds ElGamal and a signature, the red team recovers Alice's real private key and then breaks *both* of this page's fixes, and the blue team sizes the quantities the attacks depend on (largest prime factor of the group order, linear complexity, `L_q[1/3]`). The second lap is where the method - four questions to ask of any novel cryptosystem - is stated. [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] is the third: it follows round two's own prescription (build on `char_5`, a degree-6 field) but compresses into a prime-order "torus" subgroup (the XTR/CEILIDH construction), which closes the subfield-collapse attack that broke round two; the remaining ceiling is index calculus, sized against the 2016 extended tower number field sieve.
-
-## The shared setup: the castle's characteristic polynomial mod p
-
-A castle's signed tower count `P(k,L)` satisfies a linear recurrence with **characteristic polynomial** `char_k(x)` ([[signed-tower-count](pages/signed-tower-count.md)], [[generating-function-gallery](pages/generating-function-gallery.md)]). Reduce it modulo a prime `p` and you get a polynomial over the finite field `F_p`. The quotient ring
+The signed tower count `P(k, L)` satisfies a linear recurrence in `L` with characteristic polynomial `char_k(x)` of degree `k + 1` ([[signed-tower-count](pages/signed-tower-count.md)]); for example `char_2(x) = x³ − 3x² + 4x − 4`. Reducing `char_k` modulo a prime `p` gives a polynomial `Q(x)` over the field `F_p` with `p` elements, and the arithmetic of the series takes place in the quotient ring
 
 ```
-R  =  F_p[x] / (Q(x)),        Q = char_k mod p,
+R  =  F_p[x] / (Q(x)),        Q  =  char_k mod p.
 ```
 
-is where all the arithmetic happens. Multiplying two elements of `R` and reducing is just "apply the recurrence's rewrite rule `x^{deg Q} → …` until the degree drops" — the same rewrite [[kitamasa](pages/kitamasa.md)] uses. **The public castle is the modulus `Q`.** All three seminars work in this ring.
+Multiplying two elements of `R` means multiplying polynomials and reducing modulo `Q`, which rewrites `x^{deg Q}` by the recurrence, the same reduction [[kitamasa](pages/kitamasa.md)]'s method uses. The public parameters are `p` and `Q`; a private key is an exponent `a`, and the matching public key is `x^a mod Q`.
 
 ---
 
-# Seminar 1 — BUILD
+# Seminar 1 - Build
 
-**Full write-up:** [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] is Seminar 1 as a standalone page - every sub-experiment executed and pinned (the recurrence and `char_k`, the period appearing mod `p = 101` via CRT, the ring `F_p[x]/(Q)` with multiplication-by-`x`-as-recurrence, the CRT decomposition of a reducible `Q`, element orders of `x` at `10⁹ + 7`, Kitamasa cost curves, and the working Diffie-Hellman with private keys `a = 373309869`, `b = 566180101`).
+[[castle-cryptography-ring](pages/castle-cryptography-ring.md)] is Seminar 1 in full: the recurrence and `char_k`, the period of `P(k, ·)` mod `p = 101` by the CRT, the ring `R` with multiplication by `x` as one step of the recurrence, the CRT decomposition of a reducible `Q`, the order of `x` at `p = 10⁹ + 7`, the cost of Kitamasa's method, and a Diffie-Hellman exchange with private keys `a = 373309869` and `b = 566180101`.
 
-Seminar 1 implements the system without evaluating its security: reduce a castle to a ring, exponentiate, exchange a key.
+1. **Periodicity.** Modulo `p`, the roots of `Q` lie in a finite field `F_{p^d}`, where every nonzero element has finite multiplicative order, so `P(k, ·) mod p` is periodic ([[finite-fields](pages/finite-fields.md)], [[mod-p-observatory](pages/mod-p-observatory.md)]).
+2. **The forward map.** `x^a mod Q` is computed by binary exponentiation in `O(deg(Q)² · log a)` operations; at `a = 10^12` that is 39 squarings and 12 multiplications. This is the computation of [[kitamasa](pages/kitamasa.md)]'s method.
+3. **Key exchange.** With public parameters `(p, Q = char_2 mod p)` and generator `x`, the two parties publish `A = x^a mod Q` and `B = x^b mod Q`, and each computes `x^{ab} mod Q` from the other's public key and its own exponent.
+4. **When `Q` splits.** For `char_1(x) = x² − 2x + 2`, with discriminant `−4`, and an odd prime `p`, `char_1` splits mod `p` exactly when `−1` is a square mod `p`, that is when `p ≡ 1 (mod 4)`, by Euler's criterion.
 
-**Summary.** (1) Reduce a castle char poly mod `p` and the eigenvalues land in `F_{p^d}` where every element now has finite order - the sequence becomes periodic, and the period is the lcm of the eigenvalue orders ([[finite-fields](pages/finite-fields.md)], [[mod-p-observatory](pages/mod-p-observatory.md)]). (2) The forward operation `x^a mod Q` by binary exponentiation costs `O(deg(Q)² · log a)` - about 40 squarings for `a = 10^12`. This is [[kitamasa](pages/kitamasa.md)]: the castle solve's fast-index step is a modular exponentiation, the one-way map Diffie-Hellman relies on. (3) With public parameters `(p, Q = char_2 mod p)` and generator `g = x`, Alice and Bob exchange `A = x^a mod Q` and `B = x^b mod Q`, then each computes `x^{ab} mod Q` - a working asymmetric castle cryptosystem in ~20 lines of Python, built entirely from the Kitamasa primitive. (4) Whether `Q` splits mod `p` (and how big the key space is) is answered by quadratic reciprocity: for `char_1 = x² − 2x + 2`, discriminant `−4`, `Q` splits iff `p ≡ 1 (mod 4)`. Security is not evaluated in this seminar; that is Seminar 2.
-
-The pinned code (`mulmod` / `powmod` in ~20 lines) and its execution are on [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] and [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)].
+The `mulmod` and `powmod` functions and their output are on [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] and [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)].
 
 ---
 
-# Seminar 2 — RED TEAM
+# Seminar 2 - Red team
 
-Seminar 2 evaluates the Seminar 1 system. It breaks in two standard ways, both with tools already on the wiki.
+## Attack 1 - the modulus factors, so the discrete log splits
 
-## Attack 1 — the char polys factor, so the discrete log splits
+For even `k`, `char_k` factors over the rationals ([[tower-parity-sectors](pages/tower-parity-sectors.md)]); for example `char_2(x) = (x − 2)(x² − x + 2)`. When `Q` factors, the Chinese remainder theorem splits `R` into one ring per factor: for `char_2`, the field `F_p` and the ring `F_p[x]/(x² − x + 2)`, which is the field `F_{p²}` when `x² − x + 2` is irreducible mod `p`. The discrete logarithm of a public key splits into discrete logarithms in the unit groups of the factors, solved separately and recombined by the CRT on the exponents, and each of those splits further over the prime factors of its group order (Pohlig-Hellman). A system whose security rests on the discrete logarithm uses a group whose order has a large prime factor.
 
-`char_2 = (x − 2)(x² − x + 2)` ([[tower-parity-sectors](pages/tower-parity-sectors.md)] explains why *even-`k`* char polys factor). Because `Q` factors, the ring `R = F_p[x]/(Q)` **decomposes** by the Chinese Remainder Theorem into one ring per factor — a degree-1 piece living in `F_p` and a degree-2 piece living in `F_{p²}`. The discrete log the security rested on splits into **two smaller discrete logs**, solved independently and recombined (**Pohlig–Hellman**). The attacker never faces the full-size problem.
+## Attack 2 - Berlekamp-Massey recovers the modulus
 
-The attack uses the factorization of the char poly and the small eigenvalue orders. Standard systems work in a group whose order has a large prime factor, so no split of this kind helps.
+Suppose a variant keeps `Q` secret and publishes the terms of a sequence that satisfies its recurrence, as a keystream. [[berlekamp-massey](pages/berlekamp-massey.md)] returns the shortest linear recurrence of the published terms, and it is the recurrence of `Q` once `2·deg(Q)` consecutive terms are known. The first six terms of `P(2, ·)`, `1, 1, 3, 9, 19, 33`, already give the coefficient vector `[1, −3, 4, −4]`, that is `char_2(x) = x³ − 3x² + 4x − 4`.[^1]
 
-## Attack 2 — Berlekamp–Massey reconstructs the secret castle
-
-Suppose a variant instead tried to keep `Q` *secret* and publish a stream of count terms (a keystream). [[berlekamp-massey](pages/berlekamp-massey.md)] — the wiki's recurrence-recovery tool, and the standard linear feedback shift register (LFSR) attack — recovers the entire recurrence from only about `2·deg(Q)` consecutive terms. Feed it `P(2,L) = 1, 1, 3, 9, 19, 33, 59, …` and it returns `1, −3, 4, −4`, the recurrence of `char_2`.[^2]
-
-Berlekamp–Massey recovers any linearly generated stream from twice its linear complexity in terms, which is why stream ciphers use *nonlinear* feedback. A castle is a linear recurrence, so a scheme that publishes its output publishes the castle.
+Any sequence that satisfies a linear recurrence of order `d` is recovered this way from `2d` terms, so a scheme that publishes terms of `P(k, ·) mod p` publishes `Q`.
 
 ## Seminar 2 verdict
 
-**The toy, as built, is broken two independent ways** — one exploiting the modulus's factorization, one exploiting the linearity of its output. Neither break needs anything beyond tools already on the wiki.
+The system as built is broken twice: once through the factorization of the modulus, once through the linearity of its output.
 
 ---
 
-# Seminar 3 — BLUE TEAM
+# Seminar 3 - Blue team
 
-Seminar 3 fixes the Seminar 2 breaks and checks what the fixes leave open.
+## Fix 1 - an irreducible modulus closes the CRT split
 
-## Fix 1 — an irreducible (prime) char poly closes the CRT split
+Attack 1 used the factorization of `Q`, so the fix is a `Q` that does not factor, an irreducible polynomial. For odd `k ≤ 31`, `char_k` is irreducible over the rationals (computed; proved for `k = 2^m − 1` on [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]): `char_1(x) = x² − 2x + 2`, `char_3(x) = x⁴ − 4x³ + 8x² − 8x + 8`, `char_5`, ….[^2] Irreducibility over the rationals is not enough: `Q` must stay irreducible modulo the chosen `p`. `char_1` is irreducible mod an odd prime `p` exactly when `p ≡ 3 (mod 4)`, and `char_3` splits into four linear factors mod 101 and is irreducible mod `10⁹ + 7`.[^2] With such a `p`, `R` is the single field `F_{p^d}`, `d = deg Q`, and the discrete logarithm lives in one cyclic group of order `p^d − 1`.
 
-Attack 1 exploited `Q` factoring. The fix is to choose a `Q` that **does not factor** — an *irreducible* polynomial, the polynomial analogue of a prime number. The castle family supplies candidates: the **odd-`k`** char polys are irreducible over `ℚ` in every case checked (proved for `k = 2^m − 1` on [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]; `char_1 = x²−2x+2`, `char_3 = x⁴−4x³+8x²−8x+8`, `char_5`), while the even-`k` ones factor.[^3] Irreducibility over `ℚ` is not enough by itself: `Q` must stay irreducible mod the chosen `p` (`char_1` does exactly when `p ≡ 3 (mod 4)`, and `char_3` splits completely mod 101 but not mod `10⁹ + 7`). With such a `p`, the ring `F_p[x]/(Q)` is the single field `F_{p^d}`, and the discrete log is the full-size problem in one group of order `p^d − 1`, with no CRT shortcut. **The ring's Pohlig–Hellman split is gone** - but only the ring's: `p^d − 1 = ∏_{e|d} Φ_e(p)` factors *algebraically*, so Pohlig–Hellman on the **group order** still applies, and round two recovers the private key from an irreducible `char_1` in 0.04 s ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], Attack 4). Irreducibility is necessary but not enough: `Φ_d(p)` must also have a large prime factor. ([[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] unpacks *char poly*, *irreducible = prime*, and *discrete logarithm problem (DLP)* from scratch for the engineer, with the reducible-vs-irreducible comparison worked out.)
+The split of the ring is gone, but the group order still factors: `p^d − 1 = Π_{e | d} Φ_e(p)`, with `Φ_e` the `e`-th cyclotomic polynomial, so Pohlig-Hellman applies to the group order, and round two recovers a private key from an irreducible `char_1` this way ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], Attack 4). The fix needs `Φ_d(p)` to have a large prime factor as well. [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] explains characteristic polynomials, irreducible polynomials and the discrete logarithm problem from the start, with the reducible and irreducible cases worked side by side.
 
-## Fix 2 — nonlinear feedback defeats Berlekamp–Massey
+## Fix 2 - a nonlinear filter raises the linear complexity
 
-Attack 2 exploited *linearity*: the castle's output obeys a linear recurrence, so Berlekamp–Massey reads it off. No choice of `Q` helps, because the flaw is the linearity. The fix stream ciphers use is to **break the linearity.** Filter the linear castle stream through a nonlinear function (a nonlinear combining/filter generator), or clock it irregularly, so the visible output's linear complexity rises. *How much* it rises is computable: a degree-`e` polynomial filter on a `d`-stage register is itself linear of complexity at most `C(d+e−1, e)` (its characteristic roots are the degree-`e` monomials in the roots of `Q`), and Berlekamp–Massey over `F_p` recovers it from `2L` terms - round two measures `10 / 14 / 20` on the 4-stage `char_3` register ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], Attack 5). So the filter has to be *sized*: a 64-stage register (the tower count `P(63, ·)`, castle height 64) with a degree-16 filter reaches `≈ 2⁵⁵`.
+Attack 2 used the linearity of the output, which no choice of `Q` removes. The fix is a nonlinear filter: publish a polynomial function of several consecutive terms instead of the terms. If `s_n = Σ_i c_i λ_i^n` with `λ_1, …, λ_d` the roots of `Q`, a product of `e` terms is a sum over the degree-`e` monomials in the `λ_i`, so it satisfies a linear recurrence of order at most `C(d + e − 1, e)`, and Berlekamp-Massey recovers that recurrence from twice as many terms. Round two measures the orders 10, 14 and 20 for the filters `s_n s_{n+1}`, `s_n s_{n+1} + s_{n+2}` and `s_n s_{n+1} s_{n+2}` on the four-stage register of `char_3` ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], Attack 5). The filter therefore has to be sized: a 64-stage register (`P(63, ·)`, castles of height 64) with a degree-16 filter has linear complexity up to `C(79, 16) ≈ 2^{54.3}`.
 
-## Fix 3 — the remaining ceiling
+## Fix 3 - the remaining ceiling
 
-Even with an irreducible `Q` and nonlinear output, the castle DLP lives in `F_{p^d}` (these char polys are degree 2–7), and discrete logs in finite fields have a **subexponential** attack (index calculus, cost `L_q[1/3]` in the field size `q = p^d`). The field therefore has to be large, about 3072 bits for 128-bit security by the standard recommendation, and deployed systems use such prime fields or elliptic curves. Closing the two named attacks leaves the toy at this index-calculus ceiling, sized in round two.
+With an irreducible `Q` and a filtered output, the discrete logarithm lives in `F_{p^d}` with `d = k + 1` small, and discrete logarithms in finite fields have a subexponential attack, index calculus, of cost `L_q[1/3]` in the field size `q = p^d`. The field must then be large, about 3072 bits for 128-bit security, the sizing that [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] takes from the published literature; round two computes the field size at which `L_q[1/3]` reaches `2^{128}`.
 
 ## The series at a glance
 
-| Seminar | Track | Deliverable | Wiki tools |
+| seminar | track | result | pages |
 |---|---|---|---|
-| 1 | **Build (the ring)** | a running castle Diffie–Hellman; security question *deferred* | [[castle-cryptography-ring](pages/castle-cryptography-ring.md)], [[finite-fields](pages/finite-fields.md)], [[kitamasa](pages/kitamasa.md)], [[mod-p-observatory](pages/mod-p-observatory.md)] |
-| 2 | **Red team** | two working attacks (CRT/Pohlig–Hellman split; Berlekamp–Massey LFSR recovery) | [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[berlekamp-massey](pages/berlekamp-massey.md)] |
-| 3 | **Blue team** | irreducible-`Q` fix, nonlinear-output fix, and the remaining ceiling | [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)], odd-`k` char polys |
-| 2nd lap | **Build / red / blue again** | ElGamal + Schnorr signature; Alice's key recovered (0.07 s); both fixes broken; key sizes (`Φ_d(p)` prime, linear complexity, `L_q[1/3]`); the four-question method | [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] |
-| 3rd lap | **Build / red / blue, the torus** | prime-order XTR/CEILIDH-style subgroup via trace compression on `char_5`; subfield-collapse attack closed; Pollard rho and index calculus (ExtNFS) set the ceiling; key sizes retuned (~530-560 bit `p` for 128-bit security) | [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] |
-
-Everything runs in a plain Python REPL; no libraries beyond `sympy` for the factoring demos. The pinned programs live on [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)].
-
-## Where this sits
-
-A teaching series, not a secure system. It draws on [[finite-fields](pages/finite-fields.md)], [[mod-p-observatory](pages/mod-p-observatory.md)], [[kitamasa](pages/kitamasa.md)] and [[berlekamp-massey](pages/berlekamp-massey.md)], and each crypto idea it uses (trapdoor, discrete log, group structure, CRT/Pohlig–Hellman, the LFSR attack) has a runnable castle instance. The from-scratch number theory for engineers (char poly, irreducible, DLP) is on [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)].
+| 1 | build | Diffie-Hellman key exchange in `F_p[x]/(char_2)`; security not evaluated | [[castle-cryptography-ring](pages/castle-cryptography-ring.md)], [[finite-fields](pages/finite-fields.md)], [[kitamasa](pages/kitamasa.md)], [[mod-p-observatory](pages/mod-p-observatory.md)] |
+| 2 | red team | two attacks: the CRT and Pohlig-Hellman split, and Berlekamp-Massey recovery of `Q` | [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[berlekamp-massey](pages/berlekamp-massey.md)] |
+| 3 | blue team | an irreducible `Q`, a nonlinear filter, and the index-calculus ceiling | [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)], [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] |
+| round 2 | build, red team, blue team | ElGamal and a Schnorr signature; a private key recovered; both fixes broken; key sizes; the four questions | [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] |
+| round 3 | build, red team, blue team | a prime-order torus subgroup on `char_5`; the subfield attack closed; Pollard rho and the extended tower number field sieve set the key size | [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] |
 
 ## Reproduce
 
-The `castle_dh` key exchange (the `mulmod` / `powmod` pair), round two's `castle_dlp` (Pohlig–Hellman + baby-step giant-step), `bm_modp` (Berlekamp–Massey over `F_p`, the reconstruction demo) and `castle_schnorr` are pinned on [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)]; all were executed, the shared secret matches, and Berlekamp–Massey returns `[1, −3, 4, −4]` from the `P(2,·)` terms.
+The key exchange `castle_dh` (the functions `mulmod` and `powmod`), round two's `castle_dlp` (Pohlig-Hellman with baby-step giant-step), `bm_modp` (Berlekamp-Massey over `F_p`) and `castle_schnorr` are on [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)], with their outputs: the two shared secrets agree, and Berlekamp-Massey returns `[1, −3, 4, −4]` from the terms of `P(2, ·)`.
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k,·)` families and their characteristic polynomials that serve as the public castles.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the rows `P(k, ·)` and their characteristic polynomials `char_1` to `char_5`.
 
 ## Related Concepts
 
-- [[finite-fields](pages/finite-fields.md)] - `F_{p^d}`, cyclic multiplicative groups, and why the sequences are periodic mod `p`; the seminar's field foundation.
-- [[kitamasa](pages/kitamasa.md)] - `x^n mod Q` by binary exponentiation; the castle solve's fast-index step is the cryptosystem's one-way map.
-- [[berlekamp-massey](pages/berlekamp-massey.md)] - recovers the recurrence from sample terms; the LFSR attack that breaks the naive secret-castle scheme.
-- [[mod-p-observatory](pages/mod-p-observatory.md)] - `period = lcm of eigenvalue orders`; the group structure the discrete log lives in, and the prime-choice experiment.
-- [[signed-tower-count](pages/signed-tower-count.md)] / [[generating-function-gallery](pages/generating-function-gallery.md)] - the `P(k,L)` characteristic polynomials `char_k` used as public castles.
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - why even-`k` `char_k` factors, the structure Seminar 2's first attack uses.
-- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - Seminar 1 expanded as its own standalone page, every claim executed and pinned (the recurrence, period mod `p`, ring arithmetic, CRT split, element orders, Kitamasa, DH).
-- [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - the engineer-facing explainer: char poly, irreducible (= prime for polynomials), and the discrete logarithm problem, from scratch.
-- [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the second lap: ElGamal and signature built, Alice's key recovered, both fixes broken, keys sized, and the four-question red-team method.
-- [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] - the third lap: the castle torus, an XTR/CEILIDH-style prime-order subgroup that closes the subfield-collapse attack, red-teamed against Pollard rho and the extended tower number field sieve.
-- [[castle-sign](pages/castle-sign.md)] - the `(−1)^{blocks}` sign underlying `P(k,L)`; the object being exponentiated.
-- [[castle-snippets](pages/castle-snippets.md)] - the runnable `castle_dh` and Berlekamp–Massey programs.
-- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the ring `R = F_p[x]/(Q)` written as an abelian group in invariant-factor form; Pohlig-Hellman runs on the primary decomposition of `⟨x⟩`, the security level is set by its largest prime factor, and the discriminant-zero primes of [[mod-p-observatory](pages/mod-p-observatory.md)] add a `p`-group `1 + (g)/(g)^m` beside the field factor.
-- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[one-bit-seminar](pages/one-bit-seminar.md)] / [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] / [[sandcastle-seminar](pages/sandcastle-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] / [[song-as-castle](pages/song-as-castle.md)] - the other seminar pages.
+- [[finite-fields](pages/finite-fields.md)] - the fields `F_{p^d}`, their cyclic unit groups, and the periods of the sequences mod `p`.
+- [[kitamasa](pages/kitamasa.md)] - `x^n mod Q` by binary exponentiation, the forward map of the system.
+- [[berlekamp-massey](pages/berlekamp-massey.md)] - the shortest linear recurrence of a sequence, and when the output is correct.
+- [[mod-p-observatory](pages/mod-p-observatory.md)] - the periods of `P(k, ·) mod p` as orders of `x` in `R`, and how they depend on `p`.
+- [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, L)` and its characteristic polynomials `char_k`.
+- [[generating-function-gallery](pages/generating-function-gallery.md)] - the rational functions `num_k/den_k` whose denominators give `char_k`.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization of `char_k` for even `k`, which Attack 1 uses.
+- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - Seminar 1 in full, with every computation.
+- [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - characteristic polynomials, irreducible polynomials and the discrete logarithm problem from the start.
+- [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the second round: ElGamal and a signature, a private key recovered, both fixes broken, key sizes.
+- [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] - the third round: a prime-order torus subgroup on `char_5`, attacked with Pollard rho and the extended tower number field sieve.
+- [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the unit group of `R` as a product of cyclic groups; Pohlig-Hellman runs on its primary decomposition, and at a prime where `char_k` has a repeated factor `R` gains a `p`-group beside the field factor.
+- [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` summed in `P(k, L)`.
+- [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)] - the programs of the series.
+- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], [[one-bit-seminar](pages/one-bit-seminar.md)], [[hardin-identity-seminar](pages/hardin-identity-seminar.md)], [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[sandcastle-seminar](pages/sandcastle-seminar.md)], [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)], [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], [[pell-castle-strip](pages/pell-castle-strip.md)], [[song-as-castle](pages/song-as-castle.md)] - the other seminar pages.
 
 ## Footnotes
 
-[^2]: Verified by execution: rational Berlekamp–Massey on `P(2,L) = 1, 1, 3, 9, 19, 33, 59, 121, 259, 529, 1035, 2025` returns the length-3 recurrence with coefficient vector `[1, −3, 4, −4]`, i.e. the characteristic polynomial `x³ − 3x² + 4x − 4` reconstructed from the count terms alone. `char_2 = (x − 2)(x² − x + 2)` (SymPy `factor`), the factorization the discrete-log split exploits.
-
-[^3]: Verified by execution (SymPy `Poly.is_irreducible` over `ℚ`, 2026-09-18): odd-`k` char polys `char_1 = x²−2x+2`, `char_3 = x⁴−4x³+8x²−8x+8`, `char_5 = x⁶−6x⁵+18x⁴−32x³+48x²−32x+32` are **irreducible**; even-`k` char polys `char_2`, `char_4`, `char_6` **factor** (the even/odd split of [[tower-parity-sectors](pages/tower-parity-sectors.md)]). So swapping an even-`k` modulus for an odd-`k` one removes the CRT split of Attack 1 at primes `p` where the odd-`k` modulus stays irreducible mod `p`. Full worked comparison on [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)].
+[^1]: Verified by execution (Python 3.11, 2026-10-16): `P(2, L) = 1, 1, 3, 9, 19, 33, 59, 121, 259, 529, 1035, 2025` for `L = 0, …, 11` from the `num`/`den` update; rational Berlekamp-Massey returns the order-3 recurrence with coefficient vector `[1, −3, 4, −4]` from the first 6 terms and from all 12; `char_2(x) = (x − 2)(x² − x + 2)` by SymPy `factor`.
+[^2]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `char_k(x) = x^{k+1} den_k(1/x)` irreducible over the rationals for every odd `k ≤ 31`; `char_1` mod `p` irreducible for `p = 3, 7, 11, 10⁹ + 7` and split for `p = 5, 13, 101`; `char_3 ≡ (x + 21)(x + 24)(x − 26)(x − 23) mod 101` and irreducible mod `10⁹ + 7`; `C(79, 16) = 21566576904406820 ≈ 2^{54.26}`; 39 squarings and 12 multiplications for `a = 10^12`.
