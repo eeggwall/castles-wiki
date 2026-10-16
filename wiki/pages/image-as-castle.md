@@ -1,47 +1,47 @@
 ---
 title: An image as a castle
 category: Analyses
-summary: JPG and PNG to castle, three readings executed on the standard 512x512 cameraman test image (skimage.data.camera). (1) Raster - the bytes as one h=256 skyline, w=262144. (2) Row castles - each of the 512 rows is a width-512 skyline; 163 rows already have a 255 and are castles at h=256 as they stand, the rest need a peak-normalize or their own h, exactly as a waveform does. (3) Height field - the grayscale image is a two-dimensional castle, heights 1..256 over a 512x512 base, and the block count generalizes: in 1D, blocks(c) equals the sum over levels k of the number of runs of columns with c >= k (verified on 200 random skylines), so in 2D blocks = sum over 256 levels of the number of 4-connected components of the superlevel set; the cameraman has 171,687 blocks, odd. This is a concrete definition for the open "higher-dimensional castles" item and coincides with total 0-dimensional superlevel-set persistence. A silhouette reading (top dark pixel per column against the bright sky) gives a PE 502 castle of width 512 with heights 290..448 - a picture of a shape is a castle. Compression ladder measured: PNG 53.2%, JPEG q90 22.6%, JPEG q50 8.4% of raw; PNG's filters are order-1 predictors (Tier 1), JPEG's DCT is the spectral tier; the height-field skyline is 32x smaller than the voxel raster (2.1 Mbit vs 67 Mbit).
+summary: Three readings of the 512 x 512 grayscale cameraman image as castles, with heights pixel + 1. (1) Raster - the bytes in row order as one skyline of width 262,144 and height 256. (2) Row castles - each row a skyline of width 512; 163 rows reach height 256, and the others are castles at their own maxima, 176 to 255. (3) Height field - a castle with a two-dimensional base, whose block count is defined as the sum over levels k of the number of 4-connected components of {heights >= k}, the two-dimensional form of the identity blocks(c) = sum_k #(runs of columns with c_i >= k); the cameraman has 171,687 blocks, odd, and area 34,094,639, and the block count is the total length of the 0-dimensional persistence bars of the superlevel-set filtration. A silhouette (topmost dark pixel per column) is a castle of width 512 with heights 290 to 448. Sizes: zlib 64.4%, PNG 53.2%, JPEG quality 90 22.6%, quality 50 8.4% of the raw bytes; the height field takes 2.1 Mbit against 67 Mbit for the 512 x 512 x 256 voxel raster, a factor h/log2 h = 32.
 tags: [analysis, castle, encoding, image, png, jpeg, height-field, higher-dimensional, compression, persistence, implementation]
 sources: [project-euler-502-representations]
 created: 2026-09-19
-updated: 2026-09-19
+updated: 2026-10-16
 ---
 
 # An image as a castle
 
-Companion to [[song-as-castle](pages/song-as-castle.md)], which does the same for audio. An audio signal is one skyline; an image is a stack of them, or one two-dimensional castle. All numbers below were executed on the standard 512x512 grayscale "cameraman" test image, `skimage.data.camera()`, on 2026-09-19.[^exec]
+[[song-as-castle](pages/song-as-castle.md)] reads a sound recording as one skyline. A grayscale image is a stack of skylines, or one castle with a two-dimensional base. Every number below is computed on the standard 512 x 512 grayscale "cameraman" test image with heights `pixel + 1`, from 1 to 256.[^exec]
 
 ## Three readings
 
-**1. Raster.** Read the pixel bytes in row-major order, add one, and the image is a single skyline: `w = 262144`, `h = 256`. The cameraman contains a 255, so the touch rule holds as it stands. This is the generic reading, Tier 2 on [[castle-compression](pages/castle-compression.md)]'s ladder, and it says nothing about the picture.
+**1. Raster.** Read the pixels in row order and add one: the image is a single skyline of width `w = 262,144` and height `h = 256`, since the image contains a pixel of value 255. This reading uses no structure of the picture.
 
-**2. Row castles.** Each row is a width-512 skyline with heights `pixel + 1`. Of the 512 rows, 163 contain a 255 and are castles at `h = 256` as they stand; the others have maxima from 175 to 254 and are castles only at their own `h`, or after a per-row peak-normalize - the same bookkeeping [[song-as-castle](pages/song-as-castle.md)] does for a waveform that does not reach full scale. A grayscale image is 512 castles of width 512, and any per-castle statistic ([[castle-sign](pages/castle-sign.md)]'s block count, the skyline DFT of [[spectral-analysis](pages/spectral-analysis.md)]) becomes a per-row feature. [[castle-steganography](pages/castle-steganography.md)] uses this reading.
+**2. Row castles.** Each row is a skyline of width 512. Of the 512 rows, 163 contain a pixel of value 255 and are castles of height 256; the others reach heights 176 to 255 and are castles of their own maximum height. Any statistic of a castle, such as the block count ([[castle-sign](pages/castle-sign.md)]) or the skyline DFT ([[spectral-analysis](pages/spectral-analysis.md)]), becomes a statistic of a row. [[castle-steganography](pages/castle-steganography.md)] and [[castle-phone-line](pages/castle-phone-line.md)] use this reading.
 
-**3. Height field - the two-dimensional castle.** Take heights `1..256` over the 512x512 base. The bottom layer is full, the maximum is reached, and the object is a stack of unit cubes with no overhangs - a castle with a 2D base. For higher-dimensional castles, the open question is what the block count should be. The 1D count answers it. On a skyline,
-
-```
-blocks(c) = c_1 + sum_i max(0, c_i - c_{i-1})  =  sum_{k=1}^{h}  #(maximal runs of columns with c_i >= k)
-```
-
-because each block is a unit-height horizontal run at some level `k`, and the runs at level `k` are exactly the connected components of `{i : c_i >= k}`. Verified on 200 random skylines against the `blocks` predicate of [[castle-snippets](pages/castle-snippets.md)]. The right-hand side needs no ordering of the base, so it *is* the 2D definition:
+**3. Height field.** The heights over the 512 x 512 base form a **two-dimensional castle**: a stack of unit cubes with no overhangs, every base cell covered, and some column at height 256. Its block count comes from the one-dimensional identity
 
 ```
-blocks(image) = sum_{k=1}^{256}  #(4-connected components of {(x,y) : g(x,y) + 1 >= k})
+blocks(c)  =  c_1 + Σ_{i≥2} max(0, c_i − c_{i−1})  =  Σ_{k=1}^{h} #(maximal runs of columns with c_i ≥ k),
 ```
 
-For the cameraman: **171,687 blocks, odd**, area 34,094,639 cells. In the language of topological data analysis this is the total 0-dimensional persistence of the superlevel-set filtration - every block is one unit of one bar's length - so the PE 502 parity of an image is the parity of its total persistence.[^ph] A one-line `scipy.ndimage.label` per level computes it.
-
-## The silhouette: a picture of a shape is a castle
-
-Threshold at the median, and for each column take the topmost dark pixel (the photographer and the tripod are dark against a bright sky). The result is a width-512 skyline with heights from 290 to 448 - a PE 502 castle read off a photograph. Downsampled to 32 columns:
+which holds because the blocks in row `k` of a castle are, by definition, the maximal runs of columns with `c_i ≥ k`. The right-hand side uses only connectivity, so it defines the block count of a two-dimensional castle with heights `g`:
 
 ```
-skyline (8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 9, 8, 9, 9, 8, 7, 7, 7, 7, 7, 8, 7, 8, 8, 8)
+blocks(g)  =  Σ_{k=1}^{256}  #(4-connected components of {(x, y) : g(x, y) ≥ k}).
+```
 
-..........#######...............
-.....#############.##...........
-######################.....#.###
+The cameraman has 171,687 blocks, an odd number, and area 34,094,639 cells. The number of components of `{g ≥ k}` is the number of 0-dimensional persistence bars of the superlevel-set filtration alive at level `k`, so the block count is the total length of those bars, measured in levels.[^ph]
+
+## The silhouette
+
+Threshold the image at its median pixel value, 152, and for each column take the topmost dark pixel; its distance from the bottom edge, `512 − row`, is the column's height. The result is a castle of width 512 with heights from 290 to 448, the top of the photographer and the tripod against the sky. Every 16th column, starting at column 0, with heights scaled by `10/448` and rounded:
+
+```
+skyline (7, 7, 7, 7, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 10, 9, 8, 7, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7)
+
+...........#####................
+.......##########...............
+....##############.##...........
 ################################
 ################################
 ################################
@@ -51,40 +51,41 @@ skyline (8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 9, 8, 9, 9, 8
 ################################
 ```
 
-This reading is lossy (it keeps one number per column). Any silhouette read this way is a skyline, and so has a rank under the bijection of [[song-as-castle](pages/song-as-castle.md)].
+The silhouette keeps one number per column of the image.
 
-## Compression: the same ladder as audio
+## Compression
 
-| form | bytes | of raw | castle at `h = 256` | tier |
+| form | bytes | of raw | as a castle at `h = 256` | method |
 |---|---|---|---|---|
-| raw 512x512 grayscale | 262,144 | 100.0% | `w = 262,144` | 2 - generic |
-| zlib -9 of the raw bytes | 168,858 | 64.4% | `w = 168,858` | 2 - byte statistics |
-| PNG (optimized) | 139,500 | 53.2% | `w = 139,500` | 1 - predict + entropy-code |
-| JPEG quality 90 | 59,366 | 22.6% | `w = 59,366` | lossy - spectral |
-| JPEG quality 50 | 22,050 | 8.4% | `w = 22,050` | lossy - spectral |
+| raw 512 x 512 grayscale | 262,144 | 100.0% | `w = 262,144` | none |
+| zlib level 9 of the raw bytes | 168,858 | 64.4% | `w = 168,858` | DEFLATE |
+| PNG (optimized) | 139,500 | 53.2% | `w = 139,500` | row filters, then DEFLATE |
+| JPEG quality 90 | 59,366 | 22.6% | `w = 59,366` | DCT and quantization (lossy) |
+| JPEG quality 50 | 22,050 | 8.4% | `w = 22,050` | DCT and quantization (lossy) |
 
-PNG beats zlib on the same bytes because of its per-row filters - Sub, Up, Average, Paeth - which predict each byte from its left and upper neighbours before DEFLATE runs.[^png] Those are order-1 linear predictors in two directions: the image version of FLAC's LPC on [[song-as-castle](pages/song-as-castle.md)], Tier 1 on the ladder. JPEG replaces the residual with quantized 8x8 DCT coefficients, the spectral tier.[^jpeg] And the raster gap of [[castle-compression](pages/castle-compression.md)] is again the biggest step of all: the height-field skyline is 2.1 Mbit, the `512 x 512 x 256` voxel raster of the same 2D castle would be 67 Mbit, a factor of 32 = `h / log2 h`.
+PNG filters each row before compressing it with DEFLATE, the algorithm zlib implements: the filters Sub, Up, Average and Paeth predict each byte from the byte to its left, the byte above, their average, or whichever of left, above and upper-left the Paeth rule picks, and DEFLATE compresses the prediction errors.[^png] FLAC's linear prediction plays the same part for audio on [[song-as-castle](pages/song-as-castle.md)]. JPEG applies the discrete cosine transform to 8 x 8 blocks and quantizes the coefficients.[^jpeg]
+
+The height field takes `512 · 512 · log₂ 256 = 2,097,152` bits, 2.1 Mbit; the voxel raster of the same two-dimensional castle, one bit per cell of the `512 x 512 x 256` box, takes 67,108,864 bits, 67 Mbit, a factor `256 / log₂ 256 = 32`. [[castle-compression](pages/castle-compression.md)] makes the same comparison for one-dimensional castles: `log₂ A(w, h) ≤ w log₂ h` bits against `w h` for the raster.
 
 ## Related Concepts
 
-- [[song-as-castle](pages/song-as-castle.md)] - the audio version; same map, one skyline instead of a stack.
-- [[castle-steganography](pages/castle-steganography.md)] - hiding a string in the row castles of this image.
-- [[castle-compression](pages/castle-compression.md)] - the tier ladder the codecs instantiate.
-- [[castle-sign](pages/castle-sign.md)] - the block count whose level-sum form generalizes to 2D.
+- [[song-as-castle](pages/song-as-castle.md)] - the same readings for audio: one skyline instead of a stack.
+- [[castle-steganography](pages/castle-steganography.md)] - a message hidden in the row castles of this image.
+- [[castle-phone-line](pages/castle-phone-line.md)] - the row castles sent over a simulated telephone line.
+- [[castle-compression](pages/castle-compression.md)] - the description tiers of a castle and the comparison of `log₂ A(w, h)` bits with the `w h` bits of the raster.
+- [[castle-sign](pages/castle-sign.md)] - the block count as total ascent.
 - [[castle-representations](pages/castle-representations.md)] - the skyline encoding.
-- [[castle-snippets](pages/castle-snippets.md)] - the `blocks` predicate used for the 1D verification.
-- [[spectral-analysis](pages/spectral-analysis.md)] - the skyline DFT, per row.
-- [[block-count-constraints](pages/block-count-constraints.md)] - the level-sum identity `blocks(c) = Σ_k #(runs c_i ≥ k)` is a specialization of the general G-mechanism this page axiomatizes into a residue/sparse/semigroup trichotomy.
-- [[castle-entropy](pages/castle-entropy.md)] - the `w · log_2 h` bit budget and the 32× compression figure (`h / log_2 h`) are canonical castle-entropy material.
-- [[oeis-index](pages/oeis-index.md)] - the persistence identity `blocks(image) = 0-dim total persistence over 256 superlevel sets` is a new castle interpretation of persistent-homology cell counts, not yet in the directory.
+- [[castle-snippets](pages/castle-snippets.md)] - the `blocks` predicate.
+- [[spectral-analysis](pages/spectral-analysis.md)] - the skyline DFT, applied row by row.
+- [[castle-entropy](pages/castle-entropy.md)] - `log₂ A(w, h) ≈ w log₂ h` bits per castle of width `w` and height `h`.
 
 ## Appearances in Sources
 
-- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the integer-tuple encoding and the block count as a sum of positive differences, which the level-sum identity rewrites.
+- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the integer-tuple encoding and the block count from the differences of consecutive heights, which the level sum rewrites.
 
 ## Footnotes
 
-[^exec]: Verified by execution (2026-09-19): Python 3 with numpy, scipy 1.15 (`ndimage.label`), Pillow 11 (PNG and JPEG encoders), scikit-image (`data.camera()`), run under `uv`. All quoted numbers are the script's printed output.
+[^exec]: Verified by execution (2026-10-16), on the cameraman image of scikit-image's data files (`camera.png`, which `skimage.data.camera()` returns): row maxima, the two-dimensional block count with `scipy.ndimage.label` (4-connectivity) at each of the 256 levels, the one-dimensional identity on 200 random skylines, the silhouette and its sampled skyline, zlib level 9, and PNG (optimized) and JPEG sizes from Pillow 11.3; Python 3.11 with NumPy 1.26 and Pillow, and Python 3.14 with SciPy 1.17 for `ndimage`.
 [^ph]: https://en.wikipedia.org/wiki/Persistent_homology §"Definition" [synthesis] - persistent homology tracks the homology classes of a filtration (a nested sequence of spaces, here the superlevel sets `{g >= k}` as `k` decreases); the 0-dimensional classes are connected components, and each component's lifetime across the filtration is one bar of the barcode. The sum over levels of the component count is the sum of the bar lengths.
-[^png]: https://www.w3.org/TR/png/#9Filters §"9. Filtering" [synthesis] - PNG filter type 0 to 4 are None, Sub, Up, Average, Paeth; each predicts a byte from the corresponding byte to the left, above, their average, or the Paeth predictor of the three neighbours, and the filtered bytes are what DEFLATE compresses.
+[^png]: https://www.w3.org/TR/png/#9Filters §"9. Filtering" [synthesis] - PNG filter type 0 to 4 are None, Sub, Up, Average, Paeth; each predicts a byte from the corresponding byte to the left, above, their average, or the Paeth predictor of the three neighbors, and the filtered bytes are what DEFLATE compresses.
 [^jpeg]: https://en.wikipedia.org/wiki/JPEG §"JPEG codec example" [synthesis] - the encoder splits the image into 8x8 blocks, applies the discrete cosine transform, quantizes the coefficients with a quality-dependent table, and entropy-codes the result.
