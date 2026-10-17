@@ -5,7 +5,7 @@ summary: OEIS-mining notes on towers with no height bound counted by blocks. The
 tags: [oeis, tower, narayana, heap-of-pieces, generating-functions, cross-reference, source]
 sources: [tower-narayana-polynomial]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-17
 ---
 
 # Tower block-count = Narayana polynomial
@@ -49,6 +49,7 @@ The notes draft an OEIS comment for each of `A005408`, `A005891`, `A063490` and 
 
 - [[tower-heap](pages/tower-heap.md)] - towers with no height bound, counted by blocks and by descents.
 - [[narayana-numbers](pages/narayana-numbers.md)] - `N(n, k)` and its other counts.
+- [[cho-huh-nam-sohn-2022-bounded-free-motzkin-paths](pages/cho-huh-nam-sohn-2022-bounded-free-motzkin-paths.md)] - the same numbers as the `(L+1)`-core partitions with `b` corners, with a second Narayana sum indexed by blocks, `Σ_i N(b, i) C(L + 1 + 2b − 2i, 2b)`.
 - [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the convex castles, counted by a binomial coefficient.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the mining pass these notes belong to.
 - [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the entropy of the block count of castles, and why the tower counts by blocks, which have no finite total at fixed base length, are not a model for it.

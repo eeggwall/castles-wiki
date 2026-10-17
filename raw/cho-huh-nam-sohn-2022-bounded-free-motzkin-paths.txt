@@ -1,0 +1,1099 @@
+                                              COMBINATORICS ON BOUNDED FREE MOTZKIN PATHS
+                                                          AND ITS APPLICATIONS
+
+
+
+
+arXiv:2205.15554v1 [math.CO] 31 May 2022
+                                                      HYUNSOO CHO, JISUN HUH, HAYAN NAM, AND JAEBUM SOHN
+
+
+
+
+                                                   Abstract. In this paper, we construct a bijection from a set of bounded free
+                                                   Motzkin paths to a set of bounded Motzkin prefixes that induces a bijection
+                                                   from a set of bounded free Dyck paths to a set of bounded Dyck prefixes. We
+                                                   also give bijections between a set of bounded cornerless Motzkin paths and a
+                                                   set of t-core partitions, and a set of bounded cornerless symmetric Motzkin
+                                                   paths and a set of self-conjugate t-core partitions. As an application, we get
+                                                   explicit formulas for the number of ordinary and self-conjugate t-core partitions
+                                                   with a fixed number of corners.
+
+                                                                                1. Introduction
+                                              The main result of this paper is finding a bijection between two sets of paths in
+                                           a bounded strip, which have been studied by several researchers (for example, see
+                                           [1, 5, 6, 7, 10, 13]).
+                                              A Motzkin path of length n is a path from (0, 0) to (n, 0) which stays weakly
+                                           above the x-axis and consists of steps u = (1, 1), d = (1, −1), and f = (1, 0), called
+                                           up, down, and flat steps, respectively. A free Motzkin path of length n is a path
+                                           which starts at (0, 0) or (0, 1), ends at (n, 0), and consists of u, d, and f . A Motzkin
+                                           path with no restrictions on the end point is called a Motzkin prefix. For a given
+                                           path, a peak is a point preceded by an up step and followed by a down step and a
+                                           valley is a point preceded by a down step and followed by an up step. We say that
+                                           a path is cornerless if it has no peaks or valleys.
+                                              For non-negative integers m, r, and k, let F (m, r, k) be the set of free Motzkin
+                                           paths of length m + r with r flat steps that are contained in the strip −⌊ k2 ⌋ ≤
+                                           y ≤ ⌊ k+1
+                                                   2 ⌋. We denote M(m, r, k) the set of Motzkin prefixes of length m + r with
+                                           r flat steps that are contained in the strip 0 ≤ y ≤ k. We define Lk to be one
+                                           of the boundaries of each path depending on the value of k. More specifically, for
+                                           P ∈ F (m, r, k), denote Lk by
+                                                                               (
+                                                                                 ⌊ k+1
+                                                                                    2 ⌋ if k is odd,
+                                                                          y=
+                                                                                 −⌊ k2 ⌋ if k is even.
+                                             Let F (m, r, k) (resp. M(m, r, k)) be the set of paths in F (m, r, k) (resp. M(m, r, k))
+                                           which touch the line Lk (resp. y = k) so that
+                                                                     k
+                                                                     [                                          k
+                                                                                                                [
+                                                     F (m, r, k) =         F (m, r, i) and M(m, r, k) =               M(m, r, i).
+                                                                     i=0                                        i=0
+                                             Our main theorem states the following.
+                                           Theorem 1.1. For given non-negative integers m, r, and k, there is a bijection
+                                           between the sets F (m, r, k) and M(m, r, k).
+                                                                                          1
+ 2             HYUNSOO CHO, JISUN HUH, HAYAN NAM, AND JAEBUM SOHN
+
+
+   To prove Theorem 1.1, we construct a map φm,k and show that it is bijective in
+ Sections 2.1 and 2.2.
+   Using the adjacency matrices of path graphs, Cigler [5] showed that
+                                                              
+                                           X
+                                                j       n
+                       |An,k | = |Bn,k | =  (−1)
+                                                   ⌊ n+(k+2)j
+                                                        2     ⌋
+                                         j∈Z
+
+ and expected the existence of a simple bijection between An,k and Bn,k , where An,k
+ is the set of paths of length n which consist of u and d only, start at (0, 0), end
+                                                                           k
+ on height 0 or −1, and are contained in the strip −⌊ k+1    2 ⌋ ≤ y ≤ ⌊ 2 ⌋ of width
+ k, and Bn,k is the set of paths of length n which consist of u and d only, start
+ at (0, 0) and are contained in the strip 0 ≤ y ≤ k. Recently, Gu and Prodinger
+ [10] and Dershowitz [7] found bijections between An,k and Bn,k independently. We
+ note that Theorem 1.1 with no flat step (equivalently, r = 0) gives a new bijection
+ between An,k and Bn,k since F (n, 0, k) can be obtained from An,k by mirroring
+ left and right and flipping along the x-axis, and M(n, 0, k) = Bn,k as it is. We
+ should mention that the bijection φm,k is inspired by the bijection due to Gu and
+ Prodinger, but there is a property that φm,k holds whereas Gu and Prodinger’s
+ does not. This property is described in Section 2.3.
+    Let F c (m, r, k) be the set of cornerless free Motzkin paths in F (m, r, k) that
+ never start with a down (resp. up) step for odd (resp. even) m and Mc (m, r, k)
+ be the set of cornerless Motzkin prefixes in M(m, r, k) that end with a flat step.
+ In Section 3.1, we show that φm,k induces a bijection between F c (m, r, k) and
+ Mc (m, r, k).
+    In Section 3.2, we combinatorially interpret t-core partitions by cornerless Motzkin
+ paths. We describe a bijection between a set of cornerless Motzkin paths and a set
+ of t-core partitions. As an application of this bijection, we count the number of
+ t-core partitions with m corners. In Section 3.3, we also count the number of self-
+ conjugate t-core partitions with m corners by constructing bijections between any
+ pair of the following sets: a set of cornerless free Motzkin paths, a set of cornerless
+ symmetric Motzkin paths, and a set of self-conjugate t-core partitions.
+
+                                      2. Bijection
+     In this section, we recursively define a map
+                                [                 [
+                         φm,k :     F (m, r, k) →   M(m, r, k),
+                              r≥0                r≥0
+
+ according to the values of m and k, and then show that it is bijective. For simplicity,
+ we define some notations first. For a path P = p1 p2 . . . pn , where each pi denotes
+ the ith step in P , let
+                                               ←
+                                               −
+                       P := p1 p2 . . . pn and P := pn pn−1 . . . p1 ,
+ where u := d, d := u, and f := f .
+ 2.1. Map φm,k . Now we define the map. Let P be a path in the set F (m, r, k) for
+ some r ≥ 0, and γ ≥ 0 denote the maximum number such that f γ is a suffix of P .
+Case 0. If k = 0 or k = 1, then the map is defined as
+                                               ←
+                                               −
+                                  φm,k (P ) := P .
+          We show the bijection φm,1 in Figure 1.
+       COMBINATORICS ON BOUNDED FREE MOTZKIN PATHS AND ITS APPLICATIONS                                              3
+
+
+                 fβ                                                              fβ
+                                         f   γ
+                                                                 f   ǫ       u                        fγ
+                                B                                                            B
+                                l                                                        l
+                                         fβ                                                  fβ
+                 f   γ          ←
+                                −                                f   γ            ←
+                                                                                  −               d fǫ
+                                B                                                 B
+
+                         (a) For odd m                                           (b) For even m
+
+                                Figure 1. The bijections φm,1 in Case 0
+
+   Now assume k > 1. A special step of P is the first step ending on the line Lk .
+ We write P as
+ (1)                                              P = Af α sf β Bf γ ,
+ where s is the special step, α ≥ 0 (resp. β ≥ 0) is the maximum number of con-
+ secutive flat steps right before (resp. after) the step s, A denotes the prefix of P
+ before the subpath f α s, and B denotes the subpath between the subpaths sf β and
+ f γ . Note that A and B never end with a flat step (See Figure 2).
+
+        k+1
+                                fβ                                       k
+         2               fα s                         Lk                 2
+
+                 A                      B
+                                                 fγ
+                                                                                 A                         fγ
+                                                                                                  B
+       − k−1
+          2                                                      − k2                 fα s                      Lk
+                                                                                             fβ
+
+                     (a) For odd k                                                   (b) For even k
+
+                                    Figure 2. The division of P for k > 1
+
+    Let the last vertex on the line Lk (resp. y = k) be the turning point of a path in
+ F (m, r, k) (resp. M(m, r, k)). We call the first step after the turning point starting
+ from the x-axis and heading away from the line Lk the break step, and denote it by
+ b. If P has the break step b, let δ ≥ 0 be the maximum number of consecutive flat
+ steps right before the step b and we write B as B1 f δ bB2 .
+Case 1. Let m and k have the same parity with k > 1.
+            i) If there is no break step, then we write P as (1) and define the map as
+                                           (
+                                            Q if k is odd,
+ (2)                          φm,k (P ) :=
+                                            Q if k is even,
+                  where
+                                       Q := f γ Bf α sAf β .
+                   Note that φm,k (P ) ends on the line y = k.
+               ii) If there is the break step b, then P can be written as
+ (3)                                         P = Af α sf β B1 f δ bB2 f γ .
+                  Note that B1 is a subpath starting from the line Lk and ending at the
+                  x-axis with a down (resp. up) step, and B2 is a subpath starting from
+ 4                     HYUNSOO CHO, JISUN HUH, HAYAN NAM, AND JAEBUM SOHN
+
+
+                       the line y = (−1)k and ending at the x-axis with a non-flat step for
+                       odd (resp. even) k. Define
+                                                 (
+                                                   QC if k is odd,
+ (4)                                φm,k (P ) :=
+                                                   QC if k is even,
+                       where
+                                                                (
+                               γ      α       β                     φm′ ,k′ (B2 f δ ) if k is odd,
+               Q := f B1 f sAf b and C :=
+                                                                    φm′ ,k′ (B2 f δ ) if k is even.
+                       Note that m′ is odd in this case. The bijection in Case 1 is illustrated
+                       in Figure 3.
+
+
+                                     fβ                                                     fβ
+        k+1
+         2
+                           fα s                           Lk    k+1
+                                                                 2
+                                                                                     fα s                                       Lk
+                       A                  B           γ                         A                B1       δ                 γ
+                                                  f                                                   f                 f
+                                                                                                           b
+                                                                                                                   B2
+       − k−1
+          2
+                                                               − k−1
+                                                                  2
+
+                                     l                                                            l
+                                                  fβ                                                  fβ
+           k                                                        k                                          b
+                                   fα s   A                                              fα s    A
+        k+1                                                     k+1
+         2                                                       2
+                                                                                                                    C
+                           B                                                        B1
+               fγ                                                       fγ
+
+          (a) Case 1–i) for odd m and k                             (b) Case 1–ii) for odd m and k
+
+          k                                                         k
+          2                                                         2
+
+                                                                                                           b       B2
+                   A                              fγ                        A                         fδ                fγ
+                                          B                                                      B1
+        − k2               fα s                           Lk    − k2                 fα s                                       Lk
+                                    fβ                                                      fβ
+                                     l                                                            l
+                                                  fβ                                                  fβ
+          k                                                         k                                          b
+                                          A                                                      A
+          k
+                                   fα s                             k
+                                                                                         fα s
+          2                                                         2                                               C
+                   γ       B                                                γ       B1
+               f                                                        f
+
+         (c) Case 1–i) for even m and k                          (d) Case 1–ii) for even m and k
+
+                                    Figure 3. The bijection φm,k in Case 1
+
+
+Case 2. Let m and k have different parity with k > 1. In this case we write A as
+        A1 aA2 , where a is the first up (resp. down) step starting from the x-axis
+        (resp. y = 1) in P for odd (resp. even) k. Here, A1 and A2 can be empty.
+        Note that if A2 is non-empty, then it never ends with a flat step. Similar to
+      COMBINATORICS ON BOUNDED FREE MOTZKIN PATHS AND ITS APPLICATIONS                       5
+
+
+         the map in Case 1–ii), we define the map as (4), where Q and C are given
+         as follows.
+           i) If there is no break step, then P can be written as
+(5)                                 P = A1 aA2 f α sf β Bf γ ,
+              and we set
+                                                       (
+                    γ       α       β                      φm′ ,k′ (A1 )   if k is odd,
+(6)         Q := f Bf sA2 f a            and C :=
+                                                           φm′ ,k′ (A1 )   if k is even.
+           ii) If there is the break step b, then P can be written as
+(7)                             P = A1 aA2 f α sf β B1 f δ bB2 f γ ,
+              and we set
+                                                   (
+                γ       α       β                      φm′ ,k′ (A1 bB2 f δ ) if k is odd,
+(8)      Q := f B1 f sA2 f a            and C :=
+                                                       φm′ ,k′ (A1 bB2 f δ ) if k is even.
+         Note that m′ is even in this case. The bijection in Case 2–ii) is illustrated
+         in Figure 4. By regarding B1 as B and f δ bB2 as ∅ in this figure, we see the
+         bijection in Case 2–i).
+
+Lemma 2.1. For given non-negative integers m and k, the map φm,k is well-
+defined.
+                                                                            ←−
+Proof. Let P ∈ F (m, r, k). In Case 0, it is clear that φm,k (P ) = P ∈ M(m, r, k).
+Now consider Case 1–i). In this case, for a path P as in (1), we define φm,k (P ) as
+(2). If k is odd (resp. even), then A is a subpath of P that starts from the line
+y = 1 (resp. x-axis), ends on the line y = (−1)k−1 ⌊(k − 1)/2⌋, and is contained
+in the strip −⌊(k − 1)/2⌋ ≤ y ≤ ⌊k/2⌋, while B is a subpath that starts from
+the line y = (−1)k−1 ⌊(k + 1)/2⌋, ends on the x-axis, and is contained in the strip
+−⌊k/2⌋ ≤ y ≤ ⌊(k + 1)/2⌋. Hence, the prefix f γ Bf α (resp. f γ Bf α ) of φm,k (P ) is a
+Motzkin prefix that ends at the line y = ⌊(k + 1)/2⌋ and is contained in the strip
+0 ≤ y ≤ k. It follows that the remaining path sAf β (resp. sAf β ) starts from the
+line y = ⌊(k + 1)/2⌋, ends on the line y = k, and is contained in the strip 1 ≤ y ≤ k.
+Hence, the prefix f γ Bf α (resp. f γ Bf α ) of φm,k (P ) is a Motzkin prefix that ends at
+the line y = ⌊(k + 1)/2⌋ and is contained in the strip 0 ≤ y ≤ k, and the remaining
+subpath sAf β (resp. sAf β ) starts from the line y = ⌊(k + 1)/2⌋, ends on the line
+y = k, and is contained in the strip 1 ≤ y ≤ k for odd (resp. even) k. Therefore,
+φm,k (P ) ∈ M(m, r, k).
+   For the remaining cases, we write A as A1 aA2 and B as B1 f δ bB2 if neces-
+sary. Now we use the induction on k. For any k ′ < k, suppose that φm′ ,k′ (P ∗ ) ∈
+M(m′ , r′ , k ′ ) for any paths P ∗ ∈ F (m′ , r′ , k ′ ). Let P ∈ F (m, r, k), φm,k (P ) is de-
+fined as QC or QC, where Q and C are of the forms in (4), (6), or (8). In any cases,
+similar to Case 1–i), Q or Q is a prefix of φm,k (P ) that starts from the x-axis,
+touches the line y = k, ends on the line y = k − 1, and is contained in the strip
+0 ≤ y ≤ k. Since C ∈ M(m′ , r′ , k ′ ) with k ′ < k, C is a suffix of φm,k (P ) that starts
+from the line y = k − 1 and is contained in the strip k − k ′ − 1 ≤ y ≤ k − 1 by the
+induction hypothesis. Thus, we conclude that φm,k (P ) ∈ M(m, r, k).                         
+Example 2.2. For given free Motzkin paths, let us apply the map φm,k .
+6                 HYUNSOO CHO, JISUN HUH, HAYAN NAM, AND JAEBUM SOHN
+
+
+
+     k+1                                 fβ
+      2
+                                fα s                                       Lk
+                         A2                    B1
+                    a                               fδ                fγ
+                                                         b
+              A1                                                 B2
+    − k−1
+       2
+
+                                     l
+                                          fβ
+        k                                      a
+                          α
+                         f s     A2                                                      B2
+     k+1
+      2                                                                              b        fδ
+                   B1                                        C
+             fγ                                                                 A1
+
+                                         (a) For even m and odd k
+
+        k
+        2
+              A1
+                                                    f δb         B2   fγ
+                    a
+                         A2                    B1
+      − k2                       α
+                                f s                                        Lk
+                                         fβ
+                                     l
+                                          fβ
+        k                                      a
+                                 A2
+                         f αs                                                            B2
+        k
+        2                                                                            b        fδ
+                                                             C
+                   B1                                                           A1
+             fγ
+
+                                         (b) For odd m and even k
+
+                         Figure 4. The bijection φm,k in Case 2–ii)
+
+
+    (a) For the path
+                           P1 = f duduuf df duuf df f ∈ F (10, 6, 2),
+         by applying Case 1–ii) and Case 0, we get
+                        φ10,2 (P1 ) = f f uduuf df duf uddf ∈ M(10, 6, 2)
+                                                                                ←−
+        since A = ∅, β = δ = 0, and C = φ1,1 (B2 f δ ) in (3), and φ1,1 (f d) = f d =
+        uf .
+    (b) For the path
+              P2 = f duduuf udf dduuf udf df f df uf uddf uf ∈ F (20, 11, 3),
+         by applying Case 2-ii), we obtain
+         φ20,3 (P2 ) = f uf uuddf duf uf udf f duddf uf udf duuf ∈ M(20, 11, 3)
+       COMBINATORICS ON BOUNDED FREE MOTZKIN PATHS AND ITS APPLICATIONS                                        7
+
+
+         since A2 = ∅, β = 0, and C = φ10,2 (A1 bB2 f δ ) = φ10,2 (P1 ) in (7), where
+         P1 is the path given in (a).
+ See Figure 5 for further details.
+
+
+       1                              b B2 f
+                                               γ
+                                                                2                           f αs b
+           α            B1                                  ↔       fγ            B1
+   −1 f s                                          L2           0                                    C
+
+                                     (a) A bijection φ10,2 in Case 1–ii)
+
+
+       2                     f αs                                                                         L3
+                         a                                               fδ                          fγ
+                 A1                                B1                         b        B2
+   −1
+
+                                                            l
+
+       3                                      f αs      a
+
+           fγ                B1                                                   C
+       0
+                                     (b) A bijection φ20,3 in Case 2–ii)
+
+
+                                  Figure 5. Examples of the map φm,k
+
+
+ 2.2. Map ψm,k . Now we define a map
+                           [                [
+                    ψm,k :     M(m, r, k) →   F (m, r, k)
+                                        r≥0                         r≥0
+
+ and show that ψm,k = φ−1
+                       m,k . Let S be a path in the set M(m, r, k) for some r ≥ 0.
+                                                ←
+                                                −
+Case 0. For k = 0 or 1, we define ψm,k (S) = S .
+    Recall that the last vertex on the line y = k is called the turning point of a path
+ in M(m, r, k). We define a critical point of S as the rightmost point on the x-axis
+ which locates before the turning point.
+Case I. For k > 1, assume that S is a path which ends on the line y = k. Note that
+         m and k have the same parity and we write
+                                          S = f γ B ∗ f α u∗ A∗ f β ,
+                where u∗ is the first up step starting from the line y = ⌊(k + 1)/2⌋ after
+                the critical point of S, γ ≥ 0 (resp. β ≥ 0) is the maximum number of
+                consecutive initial (resp. final) flat steps of P , and α ≥ 0 is the maximum
+                number of consecutive flat steps before the step u∗ . Hence, B ∗ (resp. A∗ ) is
+                the subpath of S such that it starts from the x-axis (resp. y = ⌊k/2⌋ + 1),
+                ends on the line y = ⌊k/2⌋ (resp. y = k), and is contained in the strip
+                0 ≤ y ≤ k (resp. 1 ≤ y ≤ k). We define
+                                         (
+                                           A∗ f α u∗ f β B ∗ f γ if k is odd,
+ (9)                        ψm,k (S) :=
+                                           A∗ f α u∗ f β B ∗ f γ if k is even.
+  8            HYUNSOO CHO, JISUN HUH, HAYAN NAM, AND JAEBUM SOHN
+
+
+Case II. Suppose that S is a path which does not end on the line y = k for k > 1.
+         In this case, we write
+
+                                 S = f γ B ∗ f α u∗ A∗ f β d∗ C ∗ ,
+
+          where u∗ , A∗ , B ∗ , α, β, γ is defined as in Case I, d∗ is the last down step
+          starting from the line y = k, and C ∗ is a suffix of S after the step d∗ . Note
+          that C ∗ ∈ M(m′ , r′ , k ′ ) for some k ′ < k since C ∗ is contained in the strip
+          0 ≤ y ≤ k − 1.
+            i) Let m and k have the same parity, which follows that m′ is odd. We
+               write ψm′ ,k′ (C ∗ ) = B • f δ , where δ ≥ 0 is the maximum number of
+               consecutive flat steps at the suffix of ψm′ ,k′ (C ∗ ). We set
+                                 (
+                                    A∗ f α u∗ f β B ∗ f δ d∗ B • f γ if k is odd,
+  (10)            ψm,k (S) :=
+                                    A∗ f α u∗ f β B ∗ f δ d∗ B • f γ if k is even.
+
+            ii) Let m and k have different parity. In this case, m′ is even. We divide
+                two cases whether ψm′ ,k′ (C ∗ ) goes above the x-axis or not.
+                If ψm′ ,k′ (C ∗ ) does not go above the x-axis, then we write ψm′ ,k′ (C ∗ ) =
+                A• and define
+                                    (
+                                      A• d∗ A∗ f α u∗ f β B ∗ f γ if k is odd,
+  (11)              ψm,k (S) :=
+                                      A• d∗ A∗ f α u∗ f β B ∗ f γ if k is even.
+
+               If ψm′ ,k′ (C ∗ ) goes above the x-axis, then we write ψm′ ,k′ (C ∗ ) = A• u• B • f δ ,
+               where u• is the first up step starting from the x-axis and δ ≥ 0 is the
+               maximum number of consecutive flat steps at the suffix of ψm′ ,k′ (C ∗ ).
+               We define
+                               (
+                                  A• d∗ A∗ f α u∗ f β B ∗ f δ u• B • f γ if k is odd,
+  (12)         ψm,k (S) :=
+                                  A• d∗ A∗ f α u∗ f β B ∗ f δ u• B • f γ if k is even.
+
+  Lemma 2.3. The map ψm,k is the inverse map of φm,k .
+
+  Proof. For k = 0 or 1, it is clear that ψm,k (φm,k (P )) = P for any path P ∈
+  F (m, r, k) by the construction.
+     From now on, we set k > 1. Let P ∈ F (m, r, k) when m and k have the same
+  parity and there is no break step in P so that P is represented as P = Af α sf β Bf γ .
+  When k is odd (resp. even), it follows from (2) and (9) that ψm,k (φm,k (P )) = P
+  since A = A∗ (resp. A = A∗ ), s = u∗ (resp. s = u∗ ), and B = B ∗ (resp. B = B ∗ ),
+  where S = φm,k (P ) ∈ M(m, r, k).
+     Now, we assume that ψm′ ,k′ (P ∗ ) ∈ F (m′ , r′ , k ′ ) for any path P ∗ with k ′ < k.
+  Let P ∈ F (m, r, k) when m and k have the same parity and there is a break step b
+  in P so that P is represented as P = Af α sf β B1 f δ bB2 f γ . For odd (resp. even) k,
+  according to (4) and (10), ψm,k (φm,k (P )) = P since A = A∗ (resp. A = A∗ ), s = u∗
+  (resp. s = u∗ ), B1 = B ∗ (resp. B1 = B ∗ ), b = d∗ (resp. b = d∗ ), and B2 = B • (resp.
+  B2 = B • ).
+     Similarly, by (6), (8), (11), and (12), we can see that ψm,k (φm,k (P )) = P , where
+  P ∈ F (m, r, k) when m and k have different parity with k > 1.                         
+   COMBINATORICS ON BOUNDED FREE MOTZKIN PATHS AND ITS APPLICATIONS                                               9
+
+
+Example 2.4. For given Motzkin prefixes,
+            S1 = uuf uf ddduf uuf ∈ M(9, 4, 3),
+            S2 = uuf uuf dddf df uuudf ddf ∈ M(14, 6, 4),
+            S3 = f uuuf uduuf uf f dddf ddf uuuf uf ddduf uuf ∈ M(23, 11, 6),
+we have
+           ψ9,3 (S1 ) = uf ddf df uuudf d ∈ F (9, 4, 3),
+       ψ14,4 (S2 ) = df df uuuuf ddf df uuudf d ∈ F (14, 6, 4),
+       ψ23,6 (S3 ) = uf uf ddduddf df df f uuuuuf ddf df uuudf df ∈ F(23, 11, 6).
+See Figure 6 for further details.
+
+
+                                                                          fβ
+  3                                                    4                       d∗
+                                       u∗f β                      f αu∗ A∗
+                 B∗                                         B   ∗
+                                                                                                  C∗
+  0
+                                                       0
+                                                                                         l
+                      l
+                                                       2
+  2                                            L3                             d∗
+       ∗β
+      uf                                                   A∗            B∗                       B•
+                          B∗                            α ∗
+ −1                                                 −2 f u                                                   L4
+                                                                    fβ
+
+(a) A bijection ψ9,3 in Case I                                   (b) A bijection ψ14,4 in Case II–i)
+
+                                               fβ
+       6                                            d∗
+                     f αu∗        A∗
+                B∗
+                                                                                    C∗
+           fγ
+       0
+
+                                                                   l
+       3
+                A•
+                             d∗                                          u•                            fγ
+                                   A∗                             B∗                         B•
+
+
+      −3                                       f αu∗                                                        L6
+                                                           fβ
+
+                                   (c) A bijection ψ23,6 in Case II–ii)
+
+
+                               Figure 6. Examples of the map ψm,k
+10           HYUNSOO CHO, JISUN HUH, HAYAN NAM, AND JAEBUM SOHN
+
+
+2.3. A property of φm,k . For a free Motzkin path P , a maximal subpath in P
+with no down (resp. up) step is called an upward (resp. downward ) run if it contains
+at least one up (resp. down) step. Let run(P ) denote the total number of runs in
+P . If P has no flat step, then the total number of peaks and valleys of P is counted
+by run(P ) − 1. For example, the path P = uuf uf ddduf uuf has two upward runs,
+uuf uf and uf uuf , and one downward run f ddd so that run(P ) = 3. Note that
+run(P ) = 0 if and only if P is empty or a path consisting of flat steps only, and
+run(P ) = run(P ). For a path P ∈ F (m, r, k), the following proposition shows that
+run(P ) and run(φm,k (P )) are differ by at most 1.
+
+Proposition 2.5. For positive integers m and k, let P ∈ F (m, r, k) be given.
+     (a) If P starts with an upward run, then
+
+                      run(φm,k (P )) = run(P ) − {1 − (−1)m }/2.
+
+     (b) If P starts with a downward run, then
+
+                      run(φm,k (P )) = run(P ) − {1 + (−1)m }/2.
+
+Proof. As erasing any number of flat steps do not change the number of runs, it
+suffices to show that this proposition holds when r = 0. We prove it by using
+induction on k.
+                                                                                     ←
+                                                                                     −
+   For the initial step with k = 1, we consider Case 0. Recall that φm,1 (P ) = P . If
+                                                          ←−
+P starts with an up step, m must be even and run( P ) = run(P ). When P starts
+                                           ←
+                                           −
+with a down step, m is odd and run( P ) = run(P ).
+   Now we assume k > 1 and suppose that this proposition holds for any P ∗ ∈
+F (m′ , 0, k ′ ) with k ′ < k. Here we give a detailed proof for (a) and the proof for (b)
+comes out similarly.
+   Suppose that P ∈ F (m, 0, k) starts with an up step and let S = φm,k (P ). We
+need to show that run(S) is given by run(P ) − 1 (resp. run(P )) if m is odd (resp.
+even).
+   In Case 1–i), we write P = AuB (resp. P = AdB) and S = BuA (resp. S =
+BuA), where B (resp. B) ends with an up step if m is odd (resp. even). If A is
+empty, then m must be odd so that run(S) = run(B) = run(P ) − 1 as we desire.
+Now assume that A starts with an up step. In this case, run(P ) = run(A) + run(B)
+and
+                                 (
+                                   run(A) + run(B) − 1 if m is odd,
+                      run(S) =
+                                   run(A) + run(B)        if m is even,
+so we are done.
+   In Case 1–ii), we write P = AuB1 dB2 (resp. P = AdB1 uB2 ) and B2 ∈ F (m′ , k ′ )
+(resp. B2 ∈ F (m′ , k ′ )) for some k ′ < k and odd m′ , where m is odd (resp. even).
+Let r := run(A) + run(B1 ). Note that if m is odd (resp. even), then
+                (
+                  r + run(B2 )          if B2 starts with an up (resp. down) step,
+      run(P ) =
+                  r + run(B2 ) − 1 if B2 starts with a down (resp. up) step.
+
+In this case, if m is odd (resp. even), then S = B1 uAdC (resp. S = B1 uAdC),
+where C = φm′ ,k′ (B2 ) (resp. C = φm′ ,k′ (B2 )). By the induction hypothesis, if m is
+   COMBINATORICS ON BOUNDED FREE MOTZKIN PATHS AND ITS APPLICATIONS                  11
+
+
+odd (resp. even), then
+                 (
+                   run(B2 )         if B2 starts with an up (resp. down) step,
+       run(C) =
+                   run(B2 ) − 1     if B2 starts with a down (resp. up) step.
+Hence, if m is odd, then run(S) = r + run(C) − 1 so that
+                     (
+                       r + run(B2 ) − 1 if B2 starts with an up step,
+           run(S) =
+                       r + run(B2 ) − 2 if B2 starts with a down step,
+which means that run(S) = run(P ) − 1. Similarly, we show that run(S) = run(P )
+for even m.
+   The proofs of Case 2–i) and Case 2–ii) are similar, so we only prove Case 2–ii).
+We divide this case into two cases depending on the parity of m.
+   When m is odd, we write P = A1 dA2 dB1 uB2 and S = B1 uA2 dC, where A1
+starts with an up step and C = φm′ ,k′ (A1 uB2 ) for some k ′ < k and even m′ . Note
+that run(P ) = run(A1 ) + run(dA2 dB1 ) + run(uB2 ) − 2, run(S) = run(B1 uA2 d) +
+run(C) − 1, and run(C) = run(A1 uB2 ) − 1 by the induction hypothesis. We have
+          (
+            run(A1 ) + run(dA2 dB1 ) + run(B2 ) − 1 if B2 starts with a down step,
+run(P ) =
+            run(A1 ) + run(dA2 dB1 ) + run(B2 ) − 2 if B2 starts with an up step,
+and
+           (
+               run(B1 uA2 d) + run(A1 ) + run(B2 ) − 2 if B2 starts with a down step,
+run(S) =
+               run(B1 uA2 d) + run(A1 ) + run(B2 ) − 3 if B2 starts with an up step.
+Since run(dA2 dB1 ) = run(B1 uA2 d) whenever A2 starts with u or d, we get run(S) =
+run(P ) − 1.
+   For even m, we write P = uA2 uB1 dB2 and S = B1 uA2 dC, where C = φm′ ,k′ (uB2 )
+for some k ′ < k and even m′ . We have A1 = ∅ because P starts with u. We also
+get run(S) = run(P ) in a similar manner.                                         
+Remark 2.6. Proposition 2.5 confirms that | run(P ) − run(φm,k (P ))| ≤ 1, which
+shows that the map φm,k is structurally distinguishable from the map from Gu and
+Prodinger [10]. For example, Gu and Prodinger’s map sends
+                 P = dduuuuudddddduuu 7→ S = uuuuuuddduuuddud,
+which shows that their map has paths satisfying | run(P ) − run(S)| = 2 (one can
+obtain this example by putting A = dddddduuu, B = uu, C = du, and D = ∅ in
+Figure 2.5 in [10]).
+   Let F (m, r, k; i) denote the set of paths in F (m, r, k) with ⌈i/2⌉ downward (resp.
+upward) runs for odd (resp. even) m, and let M(m, r, k; i) denote the set of paths in
+M(m, r, k) with i runs. By Proposition 2.5, it is straightforward to get the following
+corollary.
+Corollary 2.7. For non-negative integers i and m of the same (resp. different)
+parity, the map φm,k induces a bijection between the set M(m, r, k; i) and the set
+of paths in F (m, r, k; i) that end with a downward (resp. upward) run.
+Remark 2.8. It is clear that the set of paths in M(m, 0, k; i) is in bijection with the
+set of symmetric Dyck paths of length 2m with i peaks which touch the line y = k
+and is contained in the strip 0 ≤ y ≤ k. By Corollary 2.7, the set of symmetric Dyck
+12            HYUNSOO CHO, JISUN HUH, HAYAN NAM, AND JAEBUM SOHN
+
+
+paths of length 2m with i peaks corresponds to the set of paths in ∪k F (m, 0, k; i)
+that end with a downward (resp. upward) run whenever i and m have the same
+(resp. different) parity. This one-to-one correspondence gives a combinatorial proof
+of the well-known fact that the number of symmetric Dyck paths of length 2m with
+i peaks is given by
+                                   m−1  m 
+                                    ⌊ 2 ⌋ ⌊2⌋
+(13)                                                 .
+                                    ⌊ i−1
+                                       2 ⌋    ⌊ 2i ⌋
+
+                        3. Cornerless free Motzkin paths
+  In this section, we combinatorially interpret cornerless Motzkin paths as a t-core
+partitions. First let us consider the restriction of the map φm,k .
+3.1. Restriction to cornerless free Motkzin paths. Recall that F c (m, r, k)
+is the set of cornerless free Motzkin paths in F (m, r, k) that never start with a
+down (resp. up) step for odd (resp. even) m and Mc (m, r, k) is the set of cornerless
+Motzkin prefixes in M(m, r, k) that end with a flat step. Now we show that the
+map φm,k , defined in Section 2.1, gives a one-to-one correspondence between these
+sets.
+Proposition 3.1. For given non-negative integers m, r, and k, φm,k induces a
+bijection between the sets F c (m, r, k) and Mc (m, r, k).
+Proof. Let P ∈ F (m, r, k) and φm,k (P ) ∈ M(m, r, k). For k = 0 or 1, P ∈
+                                                                                ←−
+F c (m, r, k) when it is cornerless and starts with a flat step, and P ∈ Mc (m, r, k)
+when it is cornerless and ends with a flat step. Hence, P ∈ F c (m, r, k) if and only
+                     ←
+                     −
+if φm,k (P ) = P ∈ Mc (m, r, k).
+   Let m and k have the same parity and there is no break step in P with k > 1. It
+follows from (1) and (2) that P ∈ F c (m, r, k) and φm,k (P ) ∈ Mc (m, r, k) have the
+same restriction such that A and B are cornerless, A does not start with a down
+(resp. up) step for odd (resp. even) m, and β > 0. Hence, P ∈ F c (m, r, k) if and
+only if φm,k (P ) ∈ Mc (m, r, k).
+   For the remaining cases, we assume that φm′ ,k′ induces a bijection between
+F c (m′ , r′ , k ′ ) and Mc (m′ , r′ , k ′ ) for k ′ < k. We consider the case when m and k have
+the same parity and there is a break step b in P . By (3) and (4), P ∈ F c (m, r, k) and
+φm,k (P ) ∈ Mc (m, r, k) have the same condition such that A and B1 are cornerless,
+A does not start with a down (resp. up) step, B2 f δ (resp. B2 f δ ) ∈ F c (m′ , r′ , k ′ )
+for some k ′ < k when m is odd (resp. even), and β > 0. Hence, P ∈ F c (m, r, k) if
+and only if φm,k (P ) ∈ Mc (m, r, k).
+   Similarly, we can show that P ∈ F c (m, r, k) if and only if φm,k (P ) ∈ Mc (m, r, k)
+when m and k have different parity by considering (5), (6), (7), and (8).                     
+3.2. Cornerless Motkzin paths and t-cores. A partition λ = (λ1 , λ2 , . . . , λℓ ) is
+a non-increasing positive integer sequence. The Young diagram of λ is an array of
+boxes arranged in left-justified rows with λi boxes in the ith row. An inner corner
+of a Young diagram is a box that can be removed from the Young diagram and
+the rest of the Young diagram is still the Young diagram of a partition. We say
+that λ has m corners if its Young diagram has m inner corners. For a given Young
+diagram, the hook length of a box at the position (i, j), denoted by h(i, j), is the
+number of boxes on the right, in the below, and itself. For a partition λ, the beta-set
+    COMBINATORICS ON BOUNDED FREE MOTZKIN PATHS AND ITS APPLICATIONS                         13
+
+
+of λ, denoted by β(λ), is the set of hook lengths of boxes in the first column of the
+Young diagram of λ. A partition is called a t-core if its Young diagram has no box
+of hook length t. We mainly consider t-core partitions with m corners and use the
+abacus diagram introduced by James and Kerber [12] to count them. The t-abacus
+diagram is a diagram to be the bottom and left-justified diagram with infinitely
+many rows labeled by i ∈ N ∪ {0} and t columns labeled by j = 0, 1, . . . , t − 1
+whose position (i, j) is labeled by ti + j. The t-abacus of a partition λ is obtained
+from the t-abacus diagram by placing a bead on each position labeled by h, where
+h ∈ β(λ). A position without bead is called a spacer. The following lemma is useful
+to determine whether a given partition is t-core or not.
+Lemma 3.2. [12, Lemma 2.7.13] A partition λ is a t-core if and only if h ∈ β(λ)
+implies h − t ∈ β(λ) whenever h > t. Equivalently, λ is a t-core if and only if the
+t-abacus of λ has no spacer below a bead in any column.
+   From the above lemma, we easily obtain a simple bijection between the set of
+t-core partitions and the set of non-negative integer sequences (n0 , n1 , . . . , nt−1 ),
+where n0 = 0 and nj is the number of beads in column j for j = 1, . . . , t − 1. Using
+the bijection between the bar graphs and cornerless Motzkin paths, introduced
+by Deutsch and Elizalde [8], we give a path interpretation of the t-core partitions
+restricted by the number of corners and the first hook length h(1, 1).
+Theorem 3.3. For non-negative integers t, m, and k, there is a bijection between
+any pair of the following sets.
+   (a) The set of t-core partitions with m corners such that h(1, 1) < kt.
+   (b) The set of non-negative integer sequences (n0 , n1 , . . . , nt−1 ) satisfying that
+        n0 = 0, ni ≤ k for all i, and
+                                   t
+                                   X
+                                         |ni − ni−1 | = 2m,
+                                   i=1
+
+        where we set nt := 0.
+    (c) The set of cornerless Motzkin paths of length 2m + t − 1 with t − 1 flat steps
+        that are contained in the strip 0 ≤ y ≤ k.
+Proof. Let A, B, and C be the set described in (a), (b), and (c), respectively. Set
+the maps φ1 : A → B and φ2 : B → C. For a partition λ ∈ A, let ni be the
+number of beads in the ith column of the t-abacus of λ. Given λ ∈ A, define
+φ1 (λ) = (n0 , n1 , . . . , nt−1 ). Then, by the definition of the t-abacus and the fact
+that h(1, 1) < kt, it is given that n0 = 0 and ni ≤ k for each i. Moreover, we get
+one inner cornerP  for each maximal sequence of consecutive numbers in the beta-set
+                      t
+β(λ). Note that i=1 max(ni − ni−1 , 0) counts the number of hook lengths which is
+the smallest
+           Ptamong each maximal sequence of consecutive numbers in the beta-set,
+so we get i=1 |ni − ni−1 | = 2m. Let ψ1 : B → A and #»        n = (n0 , n1 , . . . , nt−1 ) ∈ B.
+Define ψ1 ( #»
+            n ) = λ, where λ is the partition obtained from the t-abacus diagram
+with ni beads in the ith column. We place the beads on the elements of β(λ) in the
+t-abacus diagram. Then, since column 0 has no bead and each ni ≤ k for all i, the
+largest element in β(λ) is less than kt, meaning that λ is a t-core partition with
+h(1, 1) < kt. Also, the fact that the sum of |ni − ni−1 | is 2m implies that there are
+m piles of beads which are placed on m maximal consecutive numbers, so λ has m
+corners.
+14             HYUNSOO CHO, JISUN HUH, HAYAN NAM, AND JAEBUM SOHN
+
+
+    For #»
+        n = (n0 , n1 , . . . , nt−1 ) ∈ B, let φ2 ( #»
+                                                    n ) = P n#» , where P n#» be the cornerless
+Motzkin path which starts at (0, 0), ends at (2m + t − 1, 0), and has t − 1 flat steps
+at height n1 , n2 , · · · , nt−1 with proper up and/or down steps connecting those flat
+steps. Due to the fact that ni ≤ k, it is given that P n#» is contained in the strip
+0 ≤ y ≤ k.
+    Let ψ2 : C → B and P ∈ C. Define ψ2 (P ) = (n0 , n1 , . . . , nt−1 ), where n0 = 0
+and, for 1 ≤ i ≤ t − 1, each ni represents the height of the ith flat step in P . We
+know that P is contained in the strip 0 ≤ y ≤ k, which implies ni ≤ k. On the
+path P , there are 2m many up and down steps. The number |ni − ni−1 | represents
+the difference of the height of the (i − 1)st flat step and the ith flat step, so it
+counts
+Pt       the number of up P       or down steps in between thosePtwo flat steps. Since
+                                   t                                    t
+   i=1 max(n i −  n  i−1  , 0) =   i=1 | min(ni − ni−1 , 0)|, we get    i=1 |ni − ni−1 | = 2m.
+                                                                                             
+   For example, there are sixteen 4-core partitions with 2 corners. By letting t = 4
+and m = 2 in Theorem 3.3, we get the correspondence between these partitions,
+abaci, non-negative integer sequences, and cornerless Motzkin paths as described
+in Figure 7.
+   We denote that a partition λ is a (t1 , t2 , . . . , tp )-core if λ is a ti -core for all
+i = 1, . . . , p. It is known that the number of t-core partitions is infinite, and the
+number of (t1 , t2 , . . . , tp )-cores is finite for relatively prime t1 , . . . , tp . Huang and
+Wang [11] enumerated the number of (t, t + 1)-cores, (t, t + 1, t + 2)-cores with the
+fixed number of corners, where these results are generalized to (t, t + 1, · · · , t + p)-
+cores in [4]. As far as we know, it seems new to get the formula for the number
+of t-core partitions with the fixed number of corners, which we enumerate this by
+using the path interpretation.
+Proposition 3.4. The number of t-core partitions with m corners is given by
+                              min(m,⌊t/2⌋)                    
+                                  X                 t + 2m − 2i
+                  cc(t, m) :=              N (m, i)             ,
+                                  i=1
+                                                        2m
+                 1 m
+                        m
+where N (m, i) = m   i   i−1 denotes the Narayana number.
+
+Proof. By Theorem 3.3, cc(t, m) is equal to the number of cornerless Motzkin paths
+of length 2m + t − 1 with t − 1 flat steps. Let a Dyck path consisting of m up steps
+and m down steps with i peaks be given. The number of ways of inserting t − 1 flat
+steps such that the resultant path becomes a cornerless Motzkin path is t+2m−2i2m
+since we have to insert at least one flat steps at the positions of i peaks and i − 1
+valleys. As the number of Dyck paths consisting of m up steps and m down steps
+with i peaks is counted by the Narayana number N (m, i), the proof is followed. 
+   The numbers of t-core partitions with m corners for 2 ≤ t ≤ 6 and 1 ≤ m ≤ 8
+are given in Table 1. Clearly, cc(2, m) = 1, cc(3, m) = 2m + 1, and cc(4, m) =
+(5m2 + 5m + 2)/2. See sequences A063490 and A160747 in [14] for more the values
+of cc(t, m) for t = 5 and t = 6, respectively.
+
+3.3. Cornerless symmetric Motzkin paths and self-conjugate t-cores. For
+a partition λ, its conjugate is the partition λ′ = (λ′1 , λ′2 , . . . ), where each λ′j is the
+number of boxes in the jth column of the Young diagram of λ. A partition λ is
+called self-conjugate if λ = λ′ . Let MD(λ) denote the set of the main diagonal hook
+   COMBINATORICS ON BOUNDED FREE MOTZKIN PATHS AND ITS APPLICATIONS                    15
+
+
+                              4 5 6 7
+             ∗ (4,4,2,2) ↔    0 1 2 3    ↔    [0,0,2,2]   ↔
+
+                              4 5 6 7
+            (2,2,2,1,1,1) ↔              ↔    [0,2,2,2]   ↔                 ⋆
+                              0 1 2 3
+
+                              4 5 6 7
+             (3,3,1,1,1) ↔    0 1 2 3    ↔    [0,1,2,2]   ↔
+
+                              4 5 6 7
+                 (5,2,2) ↔    0 1 2 3    ↔    [0,0,1,2]   ↔
+
+                              4 5 6 7
+                    (6,3) ↔   0 1 2 3    ↔    [0,0,0,2]   ↔
+
+                              4 5 6 7
+               (3,3,1,1) ↔    0 1 2 3    ↔    [0,2,2,0]   ↔
+
+                              4 5 6 7
+                 (4,2,2) ↔    0 1 2 3    ↔    [0,0,2,1]   ↔
+
+                              4 5 6 7
+             (2,2,1,1,1) ↔    0 1 2 3    ↔    [0,2,2,1]   ↔
+
+                              4 5 6 7
+             ∗ (4,1,1,1) ↔    0 1 2 3    ↔    [0,1,1,2]   ↔
+
+                              4 5 6 7
+                    (5,2) ↔              ↔    [0,0,2,0]   ↔                 ⋆
+                              0 1 2 3
+
+                              4 5 6 7
+               (3,1,1,1) ↔               ↔    [0,1,2,1]   ↔                 ⋆
+                              0 1 2 3
+
+                              4 5 6 7
+                 (4,1,1) ↔    0 1 2 3    ↔    [0,1,2,0]   ↔
+
+                              4 5 6 7
+               (2,1,1,1) ↔    0 1 2 3    ↔    [0,2,1,1]   ↔
+
+                              4 5 6 7
+               ∗ (3,1,1) ↔    0 1 2 3    ↔    [0,2,1,0]   ↔
+
+                              4 5 6 7
+                    (4,1) ↔   0 1 2 3    ↔    [0,2,0,0]   ↔
+
+                              4 5 6 7
+                 ∗ (2,1) ↔               ↔    [0,1,0,1]   ↔                 ⋆
+                              0 1 2 3
+
+
+         Figure 7. 4-cores with 2 corners and the corresponding objects
+
+
+      t\m       1       2      3         4        5             6     7          8
+        2       1       1      1         1        1             1     1          1
+        3       3       5      7         9        11           13     15         17
+        4       6      16      31        51       76           106   141        181
+        5      10      40     105       219      396          650    995        1445
+        6      15      85     295       771      1681         3235   5685       9325
+
+            Table 1. The numbers cc(t, m) of t-cores with m corners
+
+
+lengths of λ. Note that if λ is a self-conjugate partition, then the elements in MD(λ)
+16            HYUNSOO CHO, JISUN HUH, HAYAN NAM, AND JAEBUM SOHN
+
+
+are all distinct and odd. Similar to Lemma 3.2, Ford, Mai, and Sze [9] gave a useful
+result to determine whether a given partition is self-conjugate t-core or not.
+Proposition 3.5. [9, Proposition 3] Let λ be a self-conjugate partition. Then λ is
+a t-core if and only if both of the following hold:
+    (a) For h > t, if h ∈ MD(λ), then h − 2t ∈ MD(λ).
+    (b) If h1 , h2 ∈ MD(λ), then h1 + h2 6= 2t.
+   We slightly modify the t-abacus to get the t-doubled abacus, which is useful when
+we deal with a self-conjugate t-core partition. Let the t-doubled abacus diagram is a
+left-justified diagram with infinitely many rows labeled by i ∈ Z and ⌊t/2⌋ columns
+labeled by j = 0, 1, . . . , ⌊t/2⌋ − 1 whose position (i, j) is labeled by |2(ti + j) + 1|.
+The t-doubled abacus of a self-conjugate partition λ is obtained from the t-doubled
+abacus diagram by placing a bead on each position labeled by h, where h ∈ MD(λ).
+From Proposition 3.5, we have the following lemma.
+Lemma 3.6. A self-conjugate partition λ is t-core if and only if the t-doubled
+abacus diagram of λ satisfies both of the following.
+    (a) If a bead is placed on position (i, j) with i > 0 (resp. i < 0), then a bead is
+        also placed on position (0, j) (resp. (−1, j)) and there is no spacer between
+        them in any column j.
+   (b) A bead can be placed on at most one of the two positions (−1, j) and (0, j)
+        in any column j.
+   From the above lemma, we easily obtain a simple bijection between the set of
+self-conjugate t-core partitions and the set of integer sequences (n0 , . . . , n⌊t/2⌋−1 ),
+where the number of beads in column j is denoted by either nj or −nj for j =
+0, 1, . . . , ⌊t/2⌋ − 1 if a bead is placed in position (0, j) or not, respectively. Now we
+give a path interpretation of the self-conjugate t-core partitions restricted by the
+number of corners and the first hook length h(1, 1). We define
+                          k
+                          [                                         k
+                                                                    [
+        Fc (m, r, k) :=         F c (m, r, i) and Mc (m, r, k) :=         Mc (m, r, i).
+                          i=0                                       i=0
+
+Theorem 3.7. For non-negative integers t, m, and k, there is a bijection between
+any pair of the following sets.
+   (a) The set of self-conjugate t-cores with m corners such that h(1, 1) < kt.
+   (b) The set of integer sequences (n0 , n1 , . . . , n⌊t/2⌋−1 ) satisfying that for odd
+        (resp. even) m, n0 is positive (resp. non-positive); for all i, −⌊k/2⌋ ≤ ni ≤
+        ⌊(k + 1)/2⌋; and
+                      ⌊t/2⌋
+                                           (
+                       X                     m + 1 for odd m,
+                            |ni − ni−1 | =
+                       i=0
+                                             m        for even m,
+         where we set n−1 := 0 and n⌊t/2⌋ := 0.
+     (c) The set of cornerless free Motzkin paths in Fc (m, ⌊t/2⌋, k).
+     (d) The set of cornerless Motzkin prefixes in Mc (m, ⌊t/2⌋, k).
+     (e) The set of cornerless symmetric Motzkin paths of length 2m + t − 1 with
+         t − 1 flat steps that are contained in the strip 0 ≤ y ≤ k.
+Proof. Let A, B, C, D, and E be the set described in (a), (b), (c), (d), and (e),
+respectively. By similar argument to the proof of Proposition 3.1, we know that
+    COMBINATORICS ON BOUNDED FREE MOTZKIN PATHS AND ITS APPLICATIONS                       17
+
+
+there is a bijection between C and D. Now we set φ1 : A → B, φ2 : B → C, and
+φ3 : D → E and show that φ1 , φ2 , φ3 are bijections.
+   Given λ ∈ A, let φ1 (A) = (n0 , n1 , . . . , n⌊t/2⌋−1 ), where each ni is the highest or
+lowest row that the bead is placed in the ith column depending on the sign of ni .
+We get that 1 ∈ M D(λ) when the number of corners m is odd and 1 6∈ M D(λ)
+otherwise. Thus, n0 is positive when m is odd and negative otherwise. This map
+gives a bijection between A and B.
+   Let #»
+        n = (n0 , n1 , . . . , n⌊t/2⌋−1 ). For odd (resp. even) m, let φ2 ( #»
+                                                                            n ) be the corner-
+less free Motzkin path that starts at (0, 1) (resp. (0, 0)), ends at (m + ⌊t/2⌋, 0), has
+ith flat step at height ni−1 with proper up and down steps between them. Then,
+the map φ2 describes a bijection between B and C.
+   Denote a path by P = p1 p2 · · · pm+⌊t/2⌋ ∈ D. We set
+                 (
+                   p1 p2 · · · pm+⌊t/2⌋ pm+⌊t/2⌋ · · · p2 p1               if m is odd,
+       φ3 (P ) =
+                   p1 p2 · · · pm+⌊t/2⌋−1 pm+⌊t/2⌋ pm+⌊t/2⌋−1 · · · p2 p1 if m is even.
+Then, the map φ3 is a bijective.                                                           
+   Note that Figure 7 shows that there are four self-conjugate 4-core partitions with
+2 corners and four cornerless symmetric Motzkin paths of length 7 with 3 flat steps,
+which are marked by ∗ and ⋆, respectively. The correspondences between the sets
+described in Theorem 3.7 for t = 4, m = 2 and t = 5, m = 3 are given in Figure 8.
+   Although the number of self-conjugate (t, t + 1, · · · , t + p)-cores with the fixed
+number of corners is unknown in general, it is enumerated in [2, 3] when p = 1, 2,
+and 3. The number of self-conjugate t-core partitions with m corners can be counted
+by using these path interpretations.
+Proposition 3.8. The number of self-conjugate t-core partitions with m corners
+is given by
+                         min(m,⌊t/2⌋)  m−1  m  t
+                                       ⌊ 2 ⌋ ⌊ 2 ⌋ ⌊2⌋ + m − i
+                             X                                  
+            scc(t, m) :=
+                             i=1
+                                       ⌊ i−1
+                                          2 ⌋ ⌊ 2i ⌋     m
+for m > 0 and scc(t, 0) = 1. In addition, scc(t, m) = scc(t + 1, m) for even t.
+Proof. By Theorem 3.7, scc(t, m) also counts the number of cornerless symmetric
+Motzkin paths of length 2m + t − 1 with t − 1 flat steps. Let a symmetric Dyck path
+consisting of m up steps and m down steps with i peaks with 2i ≤ t be given. The
+number of ways inserting t − 1 flat steps such that the resultant path becomes a
+cornerless symmetric Motzkin path is ⌊t/2⌋+m−i
+                                            m       . The proof is followed since the
+number of symmetric Dyck paths consisting of m up steps and m down steps with
+i peaks is given by (13).                                                          
+   The numbers of self-conjugate t-core partitions with m corners for 2 ≤ t ≤ 11
+and 1 ≤ m ≤ 8 are given in Table 2. Clearly, scc(2, m) = scc(3, m) = 1, scc(4, m) =
+scc(5, m) = ⌊3m/2⌋ + 1, and scc(6, m) = scc(7, m) = (10m(m + 1) + (−1)m (2m +
+1) + 7)/8.
+18               HYUNSOO CHO, JISUN HUH, HAYAN NAM, AND JAEBUM SOHN
+
+
+                  1 3
+(4,4,2,2) ↔                 ↔    [-1,-1]      ↔              ↔                ↔
+                  7 5
+
+
+                  1 3
+(4,1,1,1) ↔                 ↔    [-1,0]       ↔              ↔                ↔
+                  7 5
+
+
+                  1 3
+     (3,1,1) ↔              ↔    [0,-1]       ↔              ↔                ↔
+                  7 5
+
+
+                  1 3
+      (2,1) ↔               ↔       [0,1]     ↔              ↔                ↔
+                  7 5
+
+
+                                              (a) t = 4 and m = 2
+
+
+                        1113
+                         13
+ (7,7,4,4,2,2,2) ↔              ↔     [2,2]      ↔           ↔            ↔
+                         97
+                        1113
+                         13
+ (7,3,3,1,1,1,1) ↔              ↔     [1,2]      ↔           ↔            ↔
+                         97
+                        1113
+                         13
+     (6,3,3,1,1,1) ↔            ↔     [2,1]      ↔           ↔            ↔
+                         97
+                        1113
+                         13
+     (6,2,1,1,1,1) ↔            ↔     [2,0]      ↔           ↔            ↔
+                         97
+                        1113
+                         13     ↔ [1,-1] ↔
+        (4,2,1,1) ↔                                          ↔            ↔
+                         97
+
+                                              (b) t = 5 and m = 3
+
+           Figure 8. Examples of self-conjugate t-cores with m corners and
+           the corresponding objects
+
+
+           t\m          1       2           3         4     5        6     7       8
+            2,3         1       1           1         1     1        1     1       1
+            4,5         2       4           5         7     8       10     11      13
+            6,7         3       9           15       27    37       55     69      93
+            8,9         4       16          34       76    124      216   309     471
+          10,11         5       25          65       175   335      675   1095    1875
+
+           Table 2. The numbers scc(t, m) of self-conjugate t-cores with m
+           corners
+
+
+                                                  References
+ [1] Shaun V. Ault and Charles Kicey. Counting paths in corridors using circular Pascal arrays.
+     Discrete Math., 332:45–54, 2014.
+ [2] Hyunsoo Cho and Kyounghwan Hong. Corners of self-conjugate (s, s + 1)-cores and (s, s + 1)-
+     cores. Discrete Math., 345(9):Paper No. 112949, 2022.
+    COMBINATORICS ON BOUNDED FREE MOTZKIN PATHS AND ITS APPLICATIONS                             19
+
+
+ [3] Hyunsoo Cho and JiSun Huh. Self-conjugate (s, s + d, . . . , s + pd)-core partitions and free
+     Motzkin paths. Ramanujan J., 57(3):907–929, 2022.
+ [4] Hyunsoo Cho, JiSun Huh, and Jaebum Sohn. The (s, s + d, . . . , s + pd)-core partitions and
+     the rational Motzkin paths. Adv. in Appl. Math., 121:102096, 17, 2020.
+ [5] Johann Cigler. Some remarks and conjectures related to lattice paths in strips along the
+     x-axis. arXiv preprint arXiv:1501.04750, 2015.
+ [6] Johann Cigler and Christian Krattenthaler. Bounded dyck paths, bounded alternating se-
+     quences, orthogonal polynomials, and reciprocity. arXiv preprint arXiv:2012.03878, 2020.
+ [7] Nachum Dershowitz. Between Broadway and the Hudson: a bijection of corridor paths. J.
+     Integer Seq., 24(2):Art. 21.2.8, 19, 2021.
+ [8] Emeric Deutsch and Sergi Elizalde. Statistics on bargraphs viewed as cornerless Motzkin
+     paths. Discrete Appl. Math., 221:54–66, 2017.
+ [9] Ben Ford, Hoàng Mai, and Lawrence Sze. Self-conjugate simultaneous p- and q-core partitions
+     and blocks of An . J. Number Theory, 129(4):858–865, 2009.
+[10] Nancy S. S. Gu and Helmut Prodinger. Combinatorics on lattice paths in strips. European
+     J. Combin., 94:Paper No. 103310, 14, 2021.
+[11] Harry H. Y. Huang and Larry X. W. Wang. The corners of core partitions. SIAM J. Discrete
+     Math., 32(3):1887–1902, 2018.
+[12] Gordon James and Adalbert Kerber. The representation theory of the symmetric group,
+     volume 16 of Encyclopedia of Mathematics and its Applications. Addison-Wesley Publishing
+     Co., Reading, Mass., 1981.
+[13] Christian Krattenthaler and Sri Gopal Mohanty. Lattice path combinatorics–applications to
+     probability and statistics. Encyclopedia of Statistical Sciences, 2nd edition, Wiley, New York,
+     2003.
+[14] Neil J. A. Sloane. The on-line encyclopedia of integer sequences, https://oeis.org.
+
+  Hyunsoo Cho, Institute of Mathematical Sciences, Ewha Womans University, Seoul,
+Republic of Korea
+  Email address: hyunsoo@ewha.ac.kr
+
+   JiSun Huh, Department of Mathematics, Ajou University, Suwon, Republic of Korea
+   Email address: hyunyjia@ajou.ac.kr
+
+   Hayan Nam, Department of Mathematics, Duksung Women’s University, Seoul, Re-
+public of Korea
+   Email address: hnam@duksung.ac.kr
+
+  Jaebum Sohn, Department of Mathematics, Yonsei University, Seoul, Republic of
+Korea
+  Email address: jsohn@yonsei.ac.kr
+

@@ -1,11 +1,11 @@
 ---
 title: Tower (heap of pieces)
 category: Concepts
-summary: Towers on a base of length L with no height bound, given by column heights (c_1, …, c_L) ∈ N^L, counted by their blocks. The number T̂(L, b) with b blocks is finite, since a tower has at least as many blocks as its height, and Σ_b T̂(L, b) x^b = Σ_k N(L, k) x^{k−1}/(1 − x)^L with the Narayana numbers N(L, k), the k-th term counting the towers with k − 1 descents (both computed for L ≤ 7). T̂(L, b) is also the number of castles of width L with b + 1 blocks. As a heap of unit cells the towers are N^L, with cell-count generating function 1/(1 − x)^L.
+summary: Towers on a base of length L with no height bound, given by column heights (c_1, …, c_L) ∈ N^L, counted by their blocks. The number T̂(L, b) with b blocks is finite, since a tower has at least as many blocks as its height, and Σ_b T̂(L, b) x^b = Σ_k N(L, k) x^{k−1}/(1 − x)^L with the Narayana numbers N(L, k), the k-th term counting the towers with k − 1 descents (both computed for L ≤ 7). A second sum, indexed by blocks, T̂(L, b) = Σ_i N(b, i) C(L + 1 + 2b − 2i, 2b), is proved by Cho, Huh, Nam and Sohn, its i-th term counting the towers with i plateaus higher than both neighbors. T̂(L, b) also counts the (L+1)-core partitions with b corners, and the castles of width L with b + 1 blocks. As a heap of unit cells the towers are N^L, with cell-count generating function 1/(1 − x)^L.
 tags: [concept, tower, heap-of-pieces, viennot, narayana, castle]
-sources: [oeis-mining-pe502, tower-narayana-polynomial, project-euler-502-representations]
+sources: [oeis-mining-pe502, tower-narayana-polynomial, project-euler-502-representations, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-17
 ---
 
 # Tower (heap of pieces)
@@ -39,6 +39,20 @@ The rows `T̂(L, ·)` for `L = 2, 3, 4, 5` are `A005408`, `A005891`, `A063490` (
 
 The binomial `C(b + L − k, L − 1)` is the count `C(a + n − r, n)` at `a = b + 1`, `n = L − 1` and `r = k` with which Bayer and Diaconis count the ways to cut a deck of `n` cards into `a` packets that produce a given permutation with `r` rising sequences, in their stars-and-bars proof of Worpitzky's identity ([[bayer-diaconis-1992-dovetail-shuffle](pages/bayer-diaconis-1992-dovetail-shuffle.md)]).[^6]
 
+## The sum indexed by blocks
+
+Cho, Huh, Nam and Sohn prove a second Narayana sum, with the Narayana index on the blocks instead of the base length ([[cho-huh-nam-sohn-2022-bounded-free-motzkin-paths](pages/cho-huh-nam-sohn-2022-bounded-free-motzkin-paths.md)]). For `b ≥ 1`,[^9]
+
+```
+T̂(L, b)  =  Σ_{i=1}^{min(b, ⌊(L+1)/2⌋)}  N(b, i) · C(L + 1 + 2b − 2i, 2b).
+```
+
+The tower word of a tower with `b` blocks has `b` up steps `U`, `b` down steps `D` and `L` flat steps `R`, and contains no `UD` and no `DU` ([[motzkin-castles](pages/motzkin-castles.md)] §1). Deleting the `R`s leaves a Dyck path with `b` up steps. If it has `i` peaks, it has `i − 1` valleys, and the tower word is recovered by putting the `L` flat steps into the `2b + 1` gaps of the Dyck path with at least one in each of the `2i − 1` gaps at a peak or a valley, which can be done in `C(L + 1 + 2b − 2i, 2b)` ways. So term `i` counts the towers with `i` plateaus higher than the columns on both sides, with height 0 outside the base. For `b ≥ 1` these are the bargraph peaks of Deutsch and Elizalde, not the peaks of [[castle-foata-transform](pages/castle-foata-transform.md)] ([[castle-notation](pages/castle-notation.md)]).[^10]
+
+*Example: `L = 2`.* For `b ≥ 1` the sum has the single term `i = 1`, `N(b, 1) C(2b + 1, 2b) = 2b + 1`, and every tower `(c_1, c_2)` with `b ≥ 1` blocks has exactly one plateau higher than both sides: the higher column, or both columns when they are equal.
+
+The same paper reads the towers as partitions. A partition `λ` is a `t`-core if none of its hook lengths is `t`, and its corners are its distinct part sizes. The towers on a base of length `L` with `b` blocks and height at most `k` correspond to the `(L+1)`-cores with `b` corners whose largest hook length `λ_1 + ℓ(λ) − 1` is below `k(L + 1)`. Column `j` of the tower is the number of first-column hook lengths congruent to `j` modulo `L + 1`. So `T̂(L, b)` is the number of `(L+1)`-cores with `b` corners.[^9][^10]
+
 ## Heap presentation
 
 The source calls the towers Viennot's "heap of pieces" of unit-height segments.[^7] With one unit cell per column as the piece `u_i`, and two pieces dependent exactly when they lie in the same column, pieces in different columns commute, the monoid of heaps is the free commutative monoid `N^L`, and a heap is a vector of column heights, so the heaps are the towers. Weighting each cell by `x`, the generating function of towers by cells is `Σ_c x^{c_1 + ⋯ + c_L} = 1/(1 − x)^L`, and the towers with `n` cells number `C(n + L − 1, L − 1)`. The Cartier-Foata inversion formula, which writes the inverse of a heap generating function as a signed sum over the trivial heaps (sets of pairwise independent pieces), gives `Σ_{S ⊆ {1, …, L}} (−x)^{|S|} = (1 − x)^L`.
@@ -50,6 +64,7 @@ The block count is not a statistic of this presentation. With intervals of colum
 - [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] - the generating function of towers counted by blocks, and its rows in the OEIS.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the mining pass in which the towers were counted by blocks.
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the castle as `U (towers) D`, with the bottom row as the outer `U … D`.
+- [[cho-huh-nam-sohn-2022-bounded-free-motzkin-paths](pages/cho-huh-nam-sohn-2022-bounded-free-motzkin-paths.md)] - the sum indexed by blocks with its proof, and the towers as core partitions.
 
 ## Related Concepts
 
@@ -77,3 +92,5 @@ The block count is not a statistic of this presentation. With intervals of colum
 [^6]: raw/bayer-diaconis-1992-dovetail-shuffle.txt §3 proof of Theorem 3 p.301 L455-461 - "At least one cut must fall between each successive pair of rising sequences of n, but the remaining cuts can be located arbitrarily. Thus, the n cards form dividers creating n + 1 bins, into which the a - r spare cuts are allocated."
 [^7]: `raw/oeis-pe502/crosslink-avenues.md` §"Tier 2" L38-39 - "This is Viennot's \"heap of pieces\": stack unit-height segments on w columns, each segment resting on the one below, segments in the same row separated by a gap."
 [^8]: [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] §4 L770-778 - "both models have generating functions which can be expressed in the form G(x, y, q) = y(H(qx, y, q)/H(x, y, q) - 1) (4.14) where the function H satisfies a linear functional equation. In the case of staircase polygons, this structure can also be explained via a bijection with heaps".
+[^9]: [[cho-huh-nam-sohn-2022-bounded-free-motzkin-paths](pages/cho-huh-nam-sohn-2022-bounded-free-motzkin-paths.md)] p.13 Theorem 3.3 L721-733 and p.14 Proposition 3.4 L785-801 [synthesis] - the `t`-cores with `m` corners and `h(1, 1) < kt` are in bijection with the cornerless Motzkin paths of length `2m + t − 1` with `t − 1` flat steps in the strip `0 ≤ y ≤ k`, and their number is `Σ_i N(m, i) C(t + 2m − 2i, 2m)`, proved by inserting the flat steps into a Dyck path "at least one flat steps at the positions of i peaks and i − 1 valleys"; here `t = L + 1` and `m = b`.
+[^10]: Verified by execution (Python 3.10, 2026-10-17): `bin/python/bounded_t_cores.py`, run log `bin/python/bounded_t_cores-run.log`. The sum and its refinement by plateaus higher than both neighbors against enumeration of all towers for `L ≤ 6`, `b ≤ 7` and `L = 7`, `b ≤ 6`; the map from cores to towers as a bijection with blocks equal to corners for `L + 1 ≤ 6` and `k ≤ 3`.
