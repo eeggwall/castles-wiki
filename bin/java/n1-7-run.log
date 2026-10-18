@@ -1,0 +1,166 @@
+# javac bin/java/TournamentEnum.java; java TournamentEnum n for n = 1..7  (2026-10-17, OpenJDK 25.0.2)
+### java TournamentEnum 1
+valid score sequences on n=1: 1
+  SC-SUD score [0]
+  score [0]: 1 iso classes  (0.0s elapsed)
+
+Total iso classes on n=1: 1
+Score-uniquely-determined (SUD): 1
+Strongly-connected AND SUD (SC-SUD): 1
+Non-SC SUD: 0
+Total time: 0.1s
+
+### java TournamentEnum 2
+valid score sequences on n=2: 1
+  score [0, 1]: 1 iso classes  (0.0s elapsed)
+
+Total iso classes on n=2: 1
+Score-uniquely-determined (SUD): 1
+Strongly-connected AND SUD (SC-SUD): 0
+Non-SC SUD: 1
+Total time: 0.0s
+
+### java TournamentEnum 3
+valid score sequences on n=3: 2
+  score [0, 1, 2]: 1 iso classes  (0.0s elapsed)
+  SC-SUD score [1, 1, 1]
+  score [1, 1, 1]: 1 iso classes  (0.0s elapsed)
+
+Total iso classes on n=3: 2
+Score-uniquely-determined (SUD): 2
+Strongly-connected AND SUD (SC-SUD): 1
+Non-SC SUD: 1
+Total time: 0.0s
+
+### java TournamentEnum 4
+valid score sequences on n=4: 4
+  score [0, 1, 2, 3]: 1 iso classes  (0.0s elapsed)
+  score [0, 2, 2, 2]: 1 iso classes  (0.0s elapsed)
+  score [1, 1, 1, 3]: 1 iso classes  (0.0s elapsed)
+  SC-SUD score [1, 1, 2, 2]
+  score [1, 1, 2, 2]: 1 iso classes  (0.0s elapsed)
+
+Total iso classes on n=4: 4
+Score-uniquely-determined (SUD): 4
+Strongly-connected AND SUD (SC-SUD): 1
+Non-SC SUD: 3
+Total time: 0.0s
+
+### java TournamentEnum 5
+valid score sequences on n=5: 9
+  score [0, 1, 2, 3, 4]: 1 iso classes  (0.0s elapsed)
+  score [0, 1, 3, 3, 3]: 1 iso classes  (0.0s elapsed)
+  score [0, 2, 2, 2, 4]: 1 iso classes  (0.0s elapsed)
+  score [0, 2, 2, 3, 3]: 1 iso classes  (0.0s elapsed)
+  score [1, 1, 1, 3, 4]: 1 iso classes  (0.0s elapsed)
+  score [1, 1, 2, 2, 4]: 1 iso classes  (0.0s elapsed)
+  score [1, 1, 2, 3, 3]: 2 iso classes  (0.0s elapsed)
+  score [1, 2, 2, 2, 3]: 3 iso classes  (0.0s elapsed)
+  SC-SUD score [2, 2, 2, 2, 2]
+  score [2, 2, 2, 2, 2]: 1 iso classes  (0.0s elapsed)
+
+Total iso classes on n=5: 12
+Score-uniquely-determined (SUD): 7
+Strongly-connected AND SUD (SC-SUD): 1
+Non-SC SUD: 6
+Total time: 0.0s
+
+### java TournamentEnum 6
+valid score sequences on n=6: 22
+  score [0, 1, 2, 3, 4, 5]: 1 iso classes  (0.0s elapsed)
+  score [0, 1, 2, 4, 4, 4]: 1 iso classes  (0.1s elapsed)
+  score [0, 1, 3, 3, 3, 5]: 1 iso classes  (0.1s elapsed)
+  score [0, 1, 3, 3, 4, 4]: 1 iso classes  (0.1s elapsed)
+  score [0, 2, 2, 2, 4, 5]: 1 iso classes  (0.1s elapsed)
+  score [0, 2, 2, 3, 3, 5]: 1 iso classes  (0.1s elapsed)
+  score [0, 2, 2, 3, 4, 4]: 2 iso classes  (0.1s elapsed)
+  score [0, 2, 3, 3, 3, 4]: 3 iso classes  (0.1s elapsed)
+  score [0, 3, 3, 3, 3, 3]: 1 iso classes  (0.1s elapsed)
+  score [1, 1, 1, 3, 4, 5]: 1 iso classes  (0.1s elapsed)
+  score [1, 1, 1, 4, 4, 4]: 1 iso classes  (0.1s elapsed)
+  score [1, 1, 2, 2, 4, 5]: 1 iso classes  (0.1s elapsed)
+  score [1, 1, 2, 3, 3, 5]: 2 iso classes  (0.1s elapsed)
+  score [1, 1, 2, 3, 4, 4]: 4 iso classes  (0.2s elapsed)
+  score [1, 1, 3, 3, 3, 4]: 3 iso classes  (0.2s elapsed)
+  score [1, 2, 2, 2, 3, 5]: 3 iso classes  (0.2s elapsed)
+  score [1, 2, 2, 2, 4, 4]: 3 iso classes  (0.2s elapsed)
+  score [1, 2, 2, 3, 3, 4]: 12 iso classes  (0.2s elapsed)
+  score [1, 2, 3, 3, 3, 3]: 4 iso classes  (0.2s elapsed)
+  score [2, 2, 2, 2, 2, 5]: 1 iso classes  (0.2s elapsed)
+  score [2, 2, 2, 2, 3, 4]: 4 iso classes  (0.2s elapsed)
+  score [2, 2, 2, 3, 3, 3]: 5 iso classes  (0.2s elapsed)
+
+Total iso classes on n=6: 56
+Score-uniquely-determined (SUD): 11
+Strongly-connected AND SUD (SC-SUD): 0
+Non-SC SUD: 11
+Total time: 0.2s
+
+### java TournamentEnum 7
+valid score sequences on n=7: 59
+  score [0, 1, 2, 3, 4, 5, 6]: 1 iso classes  (0.2s elapsed)
+  score [0, 1, 2, 3, 5, 5, 5]: 1 iso classes  (0.5s elapsed)
+  score [0, 1, 2, 4, 4, 4, 6]: 1 iso classes  (0.7s elapsed)
+  score [0, 1, 2, 4, 4, 5, 5]: 1 iso classes  (1.0s elapsed)
+  score [0, 1, 3, 3, 3, 5, 6]: 1 iso classes  (1.2s elapsed)
+  score [0, 1, 3, 3, 4, 4, 6]: 1 iso classes  (1.5s elapsed)
+  score [0, 1, 3, 3, 4, 5, 5]: 2 iso classes  (1.7s elapsed)
+  score [0, 1, 3, 4, 4, 4, 5]: 3 iso classes  (1.9s elapsed)
+  score [0, 1, 4, 4, 4, 4, 4]: 1 iso classes  (2.1s elapsed)
+  score [0, 2, 2, 2, 4, 5, 6]: 1 iso classes  (2.3s elapsed)
+  score [0, 2, 2, 2, 5, 5, 5]: 1 iso classes  (2.5s elapsed)
+  score [0, 2, 2, 3, 3, 5, 6]: 1 iso classes  (2.7s elapsed)
+  score [0, 2, 2, 3, 4, 4, 6]: 2 iso classes  (2.9s elapsed)
+  score [0, 2, 2, 3, 4, 5, 5]: 4 iso classes  (3.1s elapsed)
+  score [0, 2, 2, 4, 4, 4, 5]: 3 iso classes  (3.2s elapsed)
+  score [0, 2, 3, 3, 3, 4, 6]: 3 iso classes  (3.4s elapsed)
+  score [0, 2, 3, 3, 3, 5, 5]: 3 iso classes  (3.6s elapsed)
+  score [0, 2, 3, 3, 4, 4, 5]: 12 iso classes  (3.8s elapsed)
+  score [0, 2, 3, 4, 4, 4, 4]: 4 iso classes  (4.0s elapsed)
+  score [0, 3, 3, 3, 3, 3, 6]: 1 iso classes  (4.2s elapsed)
+  score [0, 3, 3, 3, 3, 4, 5]: 4 iso classes  (4.4s elapsed)
+  score [0, 3, 3, 3, 4, 4, 4]: 5 iso classes  (4.5s elapsed)
+  score [1, 1, 1, 3, 4, 5, 6]: 1 iso classes  (4.7s elapsed)
+  score [1, 1, 1, 3, 5, 5, 5]: 1 iso classes  (4.9s elapsed)
+  score [1, 1, 1, 4, 4, 4, 6]: 1 iso classes  (5.1s elapsed)
+  score [1, 1, 1, 4, 4, 5, 5]: 1 iso classes  (5.3s elapsed)
+  score [1, 1, 2, 2, 4, 5, 6]: 1 iso classes  (5.5s elapsed)
+  score [1, 1, 2, 2, 5, 5, 5]: 1 iso classes  (5.7s elapsed)
+  score [1, 1, 2, 3, 3, 5, 6]: 2 iso classes  (5.9s elapsed)
+  score [1, 1, 2, 3, 4, 4, 6]: 4 iso classes  (6.0s elapsed)
+  score [1, 1, 2, 3, 4, 5, 5]: 8 iso classes  (6.2s elapsed)
+  score [1, 1, 2, 4, 4, 4, 5]: 6 iso classes  (6.4s elapsed)
+  score [1, 1, 3, 3, 3, 4, 6]: 3 iso classes  (6.6s elapsed)
+  score [1, 1, 3, 3, 3, 5, 5]: 3 iso classes  (6.8s elapsed)
+  score [1, 1, 3, 3, 4, 4, 5]: 12 iso classes  (7.0s elapsed)
+  score [1, 1, 3, 4, 4, 4, 4]: 4 iso classes  (7.2s elapsed)
+  score [1, 2, 2, 2, 3, 5, 6]: 3 iso classes  (7.3s elapsed)
+  score [1, 2, 2, 2, 4, 4, 6]: 3 iso classes  (7.5s elapsed)
+  score [1, 2, 2, 2, 4, 5, 5]: 6 iso classes  (7.7s elapsed)
+  score [1, 2, 2, 3, 3, 4, 6]: 12 iso classes  (7.9s elapsed)
+  score [1, 2, 2, 3, 3, 5, 5]: 12 iso classes  (8.1s elapsed)
+  score [1, 2, 2, 3, 4, 4, 5]: 41 iso classes  (8.3s elapsed)
+  score [1, 2, 2, 4, 4, 4, 4]: 7 iso classes  (8.5s elapsed)
+  score [1, 2, 3, 3, 3, 3, 6]: 4 iso classes  (8.7s elapsed)
+  score [1, 2, 3, 3, 3, 4, 5]: 47 iso classes  (8.9s elapsed)
+  score [1, 2, 3, 3, 4, 4, 4]: 37 iso classes  (9.1s elapsed)
+  score [1, 3, 3, 3, 3, 3, 5]: 5 iso classes  (9.3s elapsed)
+  score [1, 3, 3, 3, 3, 4, 4]: 15 iso classes  (9.5s elapsed)
+  score [2, 2, 2, 2, 2, 5, 6]: 1 iso classes  (9.6s elapsed)
+  score [2, 2, 2, 2, 3, 4, 6]: 4 iso classes  (9.8s elapsed)
+  score [2, 2, 2, 2, 3, 5, 5]: 4 iso classes  (10.0s elapsed)
+  score [2, 2, 2, 2, 4, 4, 5]: 7 iso classes  (10.2s elapsed)
+  score [2, 2, 2, 3, 3, 3, 6]: 5 iso classes  (10.4s elapsed)
+  score [2, 2, 2, 3, 3, 4, 5]: 37 iso classes  (10.6s elapsed)
+  score [2, 2, 2, 3, 4, 4, 4]: 22 iso classes  (10.8s elapsed)
+  score [2, 2, 3, 3, 3, 3, 5]: 15 iso classes  (11.0s elapsed)
+  score [2, 2, 3, 3, 3, 4, 4]: 47 iso classes  (11.2s elapsed)
+  score [2, 3, 3, 3, 3, 3, 4]: 15 iso classes  (11.4s elapsed)
+  score [3, 3, 3, 3, 3, 3, 3]: 3 iso classes  (14.3s elapsed)
+
+Total iso classes on n=7: 456
+Score-uniquely-determined (SUD): 18
+Strongly-connected AND SUD (SC-SUD): 0
+Non-SC SUD: 18
+Total time: 14.3s
+

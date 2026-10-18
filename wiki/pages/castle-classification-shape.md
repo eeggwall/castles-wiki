@@ -3,9 +3,9 @@ title: Castle classification - shape types
 category: Concepts
 summary: The 42 shape types of castles of the Castle Types source, 7 base types and 35 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo and monadnock types. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle, hoodoo-castle, monadnock-castle, distinct-parts]
-sources: [castle-classification, aocp-generating-partitions]
+sources: [castle-classification, aocp-generating-partitions, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths]
 created: 2026-09-19
-updated: 2026-10-16
+updated: 2026-10-17
 ---
 
 # Castle classification - shape types
@@ -139,7 +139,7 @@ Types 11, 12 and 21:
 
 | type | predicate | example | wiki page and count |
 |---|---|---|---|
-| **Palindromic** | `c_i = c_{w+1−i}` | `(1, 3, 2, 3, 1)` | by width and blocks, the symmetric-bargraph generating function of [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] §4.1; by semi-perimeter `A273905`, `1, 2, 3, 5, 9, 15, 27, 46, 83, …`; at fixed `(w, h)` open |
+| **Palindromic** | `c_i = c_{w+1−i}` | `(1, 3, 2, 3, 1)` | by width and blocks, the symmetric-bargraph generating function of [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] §4.1, and over all heights the closed sum of [[cho-huh-nam-sohn-2022-bounded-free-motzkin-paths](pages/cho-huh-nam-sohn-2022-bounded-free-motzkin-paths.md)] for `T̂_pal(w, b − 1)`, the number of palindromic towers on a base of length `w` with `b − 1` blocks, which counts the palindromic castles of width `w` with `b` blocks[^10]; by semi-perimeter `A273905`, `1, 2, 3, 5, 9, 15, 27, 46, 83, …`; at fixed `(w, h)` open |
 | **Centrally symmetric** | `c_i + c_{w+1−i} = h + 1` | `(1, 2, 3)` | open |
 | **Self-conjugate** | `c_i = #{j : c_j ≥ i}` | `(3, 2, 1)` | open; requires `w = h` |
 
@@ -195,7 +195,7 @@ For `w ≥ 2`, a linear castle with `d = 0` is the boxcastle; one with `d > 0` h
 
 1. **k-modal castles** for `k ≥ 2`; the case `k = 1` is the convex castles ([[convex-castle](pages/convex-castle.md)]).
 2. **m-disparate castles** for any `m`, the counterpart of the m-smooth castles, which [[m-smooth-castles](pages/m-smooth-castles.md)] counts for `m ≤ 4`.
-3. **The symmetry types.** The palindromic castles have a generating function by width and blocks ([[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]); their table by `(w, h)`, their even/odd split, and the other two types are open.
+3. **The symmetry types.** The palindromic castles have a generating function by width and blocks ([[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]) and, over all heights, a closed sum by width and blocks ([[cho-huh-nam-sohn-2022-bounded-free-motzkin-paths](pages/cho-huh-nam-sohn-2022-bounded-free-motzkin-paths.md)]); their table by `(w, h)`, their even/odd split, and the other two types are open.
 4. **Rainbow castles** by block count, through the permutations of [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)].
 5. **Even-peak castles**, the parity of the number of local maxima.
 6. **Shape types at bounded height.** The Dyck-path and Motzkin-path castles of height at most `h` have rational generating functions that are ratios of Chebyshev-type polynomials (`A080934`, `A097862`); which other shape types do is open.
@@ -229,3 +229,4 @@ For `w ≥ 2`, a linear castle with `d = 0` is the boxcastle; one with `d > 0` h
 [^7]: https://oeis.org/A080936 (read 2026-10-16) - "Triangle read by rows: T(n,k) is the number of Dyck paths of semilength n and height k (1 <= k <= n)"; data begins 1; 1, 1; 1, 3, 1; 1, 7, 5, 1; 1, 15, 18, 7, 1.
 [^8]: https://oeis.org/A080934 (read 2026-10-16) - "Square array read by antidiagonals of number of Catalan paths (nonnegative, starting and ending at 0, step +-1) of 2n steps with all values less than or equal to k".
 [^9]: https://oeis.org/A097862 (read 2026-10-16) - "Triangle read by rows: T(n,k) is the number of Motzkin paths of length n and height k (n>=0, k>=0)"; data begins 1; 1; 1, 1; 1, 3; 1, 7, 1; 1, 15, 5; 1, 31, 18, 1.
+[^10]: [[cho-huh-nam-sohn-2022-bounded-free-motzkin-paths](pages/cho-huh-nam-sohn-2022-bounded-free-motzkin-paths.md)] p.17 Proposition 3.8 L965-974 [synthesis] - `scc(t, m)`, the number of self-conjugate `t`-cores with `m` corners, which Theorem 3.7 puts in bijection with the cornerless symmetric Motzkin paths with `t − 1` flat steps, the tower words of the palindromic towers on a base of length `t − 1` with `m` blocks; so the palindromic castles of width `w` with `b` blocks number `T̂_pal(w, b − 1) = scc(w + 1, b − 1)` (checked by enumeration in `bin/python/bounded_t_cores.py`, run log `bin/python/bounded_t_cores-run.log`).

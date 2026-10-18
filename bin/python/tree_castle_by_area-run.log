@@ -1,0 +1,16 @@
+# python3 bin/python/tree_castle_by_area.py  (2026-10-17, Python 3.10, SymPy)
+[1] Equation (1) = enumeration for w <= 7, h = 2..5; Equation (2) for w <= 7; at q = 1, w <= 12: F(w+2), A001045(w+2), A006130(w+1), A006131(w+1): True
+[2] tree castles of height 2: C(w - t + 1, t) and row sums F(w+2) - 1 = A000071(w+2), w <= 11: True
+[3] h=2: Table 1 row = Eq. (3) (A <= 14) = enumeration (A <= 12) = OEIS at its shift: True; reversed denominator q**3 - q**2 - 1, growth constant by area 1.465571232, irreducible factor of degree 3
+[3] h=3: Table 1 row = Eq. (3) (A <= 14) = enumeration (A <= 12) = OEIS at its shift: True; reversed denominator (q**2 + 1)*(q**2 - q - 1), growth constant by area 1.618033989, irreducible factor of degree 2
+[3] h=4: Table 1 row = Eq. (3) (A <= 14) = enumeration (A <= 12) = OEIS at its shift: True; reversed denominator q**5 - q**4 - q**2 - q - 1, growth constant by area 1.685137110, irreducible factor of degree 5
+[3] h=5: Table 1 row = Eq. (3) (A <= 14) = enumeration (A <= 12) = OEIS at its shift: True; reversed denominator q**6 - q**5 - q**3 - q**2 - q - 1, growth constant by area 1.717830145, irreducible factor of degree 6
+[3] h=6: Table 1 row = Eq. (3) (A <= 14) = enumeration (A <= 12) = OEIS at its shift: True; reversed denominator (q**2 - q + 1)*(q**5 - q**3 - 2*q**2 - 2*q - 1), growth constant by area 1.734691346, irreducible factor of degree 5
+[3] h=7: Table 1 row = Eq. (3) (A <= 14) = enumeration (A <= 12) = OEIS at its shift: True; reversed denominator (q**2 + 1)*(q**6 - q**5 - q**4 - q - 1), growth constant by area 1.743700166, irreducible factor of degree 6
+[3] h=8: Table 1 row = Eq. (3) (A <= 14) = enumeration (A <= 12) = OEIS at its shift: True; reversed denominator q**9 - q**8 - q**6 - q**5 - q**4 - q**3 - q**2 - q - 1, growth constant by area 1.748624153, irreducible factor of degree 9
+[3] h=inf: Table 1 row = Eq. (3) (A <= 14) = enumeration (A <= 12) = OEIS at its shift: True; reversed denominator q**3 - 2*q**2 + q - 1, growth constant by area 1.754877666, irreducible factor of degree 3
+[3] growth constants by area increase with h: True
+[3] Table 2 = enumeration (A <= 12) and differences of Table 1 rows; A077868(A - 2) = A000930(A + 1) - 1; A006498(2n) = F(n+1)^2, A006498(2n - 1) = F(n+1) F(n), n <= 9: True
+[4] composition map onto {1, 3, ..., h+1} with inverse (2 <= h <= 6, A <= 12); bit strings with runs of ones of length 2..h (h = 2..5 and unrestricted, n <= 13); strings of length A - 1 avoiding 010 (A <= 12): True
+[5] castles of height 2 with tower spacing at least 2 = A005251(w + 3) - 1, w <= 14: True
+[6] A000570(n) = A000570(n-1) + A000570(n-3) + A000570(n-4) + A000570(n-5) for 6 <= n <= 23, growth 1.685137110 : True
