@@ -41,6 +41,7 @@ public class TournamentEnum {
                 if (unique) {
                     sudIso++;
                     if (sc) scSud++; else nonScSud++;
+                    if (sc) System.out.println("  SC-SUD score " + Arrays.toString(s));
                 }
             }
             System.out.printf("  score %s: %d iso classes  (%.1fs elapsed)%n",
