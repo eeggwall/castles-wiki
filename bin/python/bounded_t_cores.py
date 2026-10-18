@@ -86,14 +86,12 @@ for t in range(2, 7):
         towers = [c for c in product(range(k + 1), repeat=L)]
         assert sorted(image) == sorted(towers), (t, k)                       # bijection onto towers of height <= k
         assert all(blocks(core_to_tower(lam, t)) == corners(lam) for lam in cores)   # blocks = corners
-        # self-conjugate cores and palindromic towers: equal counts by corners / blocks (Thm 3.7 is a
-        # different bijection; the residue map does not send conjugation to reversal)
+        # self-conjugate cores and palindromic towers: equal counts by corners / blocks (Thm 3.7)
         sc = Counter(corners(lam) for lam in cores if lam == conjugate(lam))
         assert sc == Counter(blocks(c) for c in towers if c == c[::-1]), (t, k)
     print(f"t={t}: core -> tower (residue counts of first-column hooks) is a bijection from t-cores with"
           f" largest hook < k t onto towers of height <= k, blocks = corners; self-conjugate cores by corners"
           f" = palindromic towers by blocks, k <= 3: True")
-print("the residue map does not restrict: self-conjugate 3-core (1) ->", core_to_tower((1,), 3))
 print("example: (4,4,2,2) is a 4-core:", is_core((4, 4, 2, 2), 4), " tower", core_to_tower((4, 4, 2, 2), 4),
       " first-column hooks", first_column_hooks((4, 4, 2, 2)), " corners", corners((4, 4, 2, 2)))
 

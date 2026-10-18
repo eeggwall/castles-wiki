@@ -12,7 +12,6 @@ t=3: core -> tower (residue counts of first-column hooks) is a bijection from t-
 t=4: core -> tower (residue counts of first-column hooks) is a bijection from t-cores with largest hook < k t onto towers of height <= k, blocks = corners; self-conjugate cores by corners = palindromic towers by blocks, k <= 3: True
 t=5: core -> tower (residue counts of first-column hooks) is a bijection from t-cores with largest hook < k t onto towers of height <= k, blocks = corners; self-conjugate cores by corners = palindromic towers by blocks, k <= 3: True
 t=6: core -> tower (residue counts of first-column hooks) is a bijection from t-cores with largest hook < k t onto towers of height <= k, blocks = corners; self-conjugate cores by corners = palindromic towers by blocks, k <= 3: True
-the residue map does not restrict: self-conjugate 3-core (1) -> (1, 0)
 example: (4,4,2,2) is a 4-core: True  tower (0, 2, 2)  first-column hooks [7, 6, 3, 2]  corners 2
 w=1, h=2..4: A(w,h) = nonempty (w+1)-cores in the window, A^e(w,h) = those with odd corners, palindromic = self-conjugate: True; A^e(w,2..4) = [1, 0, 1]
 w=2, h=2..4: A(w,h) = nonempty (w+1)-cores in the window, A^e(w,h) = those with odd corners, palindromic = self-conjugate: True; A^e(w,2..4) = [3, 0, 7]
