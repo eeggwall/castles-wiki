@@ -20,6 +20,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 - **C - Chinese Remainder Theorem:** applying the Chinese Remainder Theorem.
 - **M - Metallurgy:** investigating occurrences of golden, silver and bronze means and the higher rungs `δ_4`, `δ_5`, …; golden, silver, plastic ratios; metallic by count, by width, by area, by spectrum; Fibonacci castles
 - **B - Bioinformatics:** biological sequences, molecular folding, structure counts, and the combinatorics computational biology shares with castles.
+- **The OEIS Observatory:** observing and cataloging occurrences of OEIS sequences in castle-related contexts.
 - **The Telephone Company:** phone signals, audio codecs, tone catalogues, expander-graph and Ihara-zeta reads of the castle graph, information-theoretic entropy of skylines, and the isospectral seminar.
 - **Facilities:** applied, physical-world tooling: real objects turned into castles (keys, city skylines, mountain ridgelines, ballparks).
 
@@ -138,6 +139,10 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 ### B - Bioinformatics
 
 - RNA secondary structures: Deutsch and Elizalde's bijection from no-double-rise bargraphs of semiperimeter `n + 1` to secondary structures on `n` vertices; its mirror, the castles that drop by at most 1 and end at height 1, counted by semiperimeter as A004148, the RNA sequence.
+
+### The OEIS Observatory
+
+- The OEIS Observatory is dedicated to observing and cataloging the various occurrences of OEIS sequences in various castle polyomino-related contexts
 
 ### The Telephone Company
 
