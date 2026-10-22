@@ -37,16 +37,22 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
   Cho et al.'s Prop. 3.4 sum, `a(n) = A271942(n+4, 4)`. The PE 502 link, `Cf. A001263, A064788,
   A185505, A271942.` (extends the existing line) and the t-core family line:
   `raw/oeis-pe502/xrefs/A063490-tower.md`, checked by `bin/python/tower_t_cores.py`.
+- [~] **A005891 castles of width 3 and 4-cores** (submitted 2026-10-21), the A160747 form at
+  `t = 4`: `a(n)` = 4-cores with `n` corners = castles of width 3 with `n + 1` blocks.
+  Formula block: Cho et al.'s Prop. 3.4 sum and `a(n) = A271942(n+4, 3)`, with no
+  Narayana-numerator line, since the entry's "triangular numbers convolved with
+  [1, 3, 1, 0, 0, 0, ...]" comment (Adamson and Povolotsky, May 29 2009) already states it.
+  The Cho et al. and PE 502 links, `A001263, A271942` added to the first Cf. line, and the
+  t-core family line: `raw/oeis-pe502/xrefs/A005891-tower.md`, checked by
+  `bin/python/tower_t_cores.py`.
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-1. [ ] **Castles by blocks = t-cores by corners, Narayana numerator** (formerly tier 2), in
-   the A160747 form (castle wording, PE 502 link, Cho et al.), drafts in castle form
-   (`raw/oeis-pe502/xrefs/*-tower.md`; `wiki/pages/tower-narayana-polynomial.md`):
-   1. [ ] A005891 (width 3, 4-cores).
-   2. [ ] A001263: castles of width `n` with `m` blocks number
-      `Sum_k T(n,k) C(m+n-k-1, n-1)`, for every `n`, proved: `x -> x/(1-y)` in the g.f. of
-      A001263 gives Deutsch-Elizalde's bargraph equation (2) (arXiv:1609.00088).
+1. [ ] **A001263, castles by blocks for every width** (formerly tier 2), in the A160747 form
+   (castle wording, PE 502 link, Cho et al.): castles of width `n` with `m` blocks number
+   `Sum_k T(n,k) C(m+n-k-1, n-1)`, for every `n`, proved: `x -> x/(1-y)` in the g.f. of
+   A001263 gives Deutsch-Elizalde's bargraph equation (2) (arXiv:1609.00088)
+   (`raw/oeis-pe502/xrefs/A001263-tower.md`; `wiki/pages/tower-narayana-polynomial.md`).
 2. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
    (`raw/oeis-pe502/xrefs/*-castle.md`).
 3. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
