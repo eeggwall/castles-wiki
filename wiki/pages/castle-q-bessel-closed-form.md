@@ -5,7 +5,7 @@ summary: "Graded by width u, blocks x and area q, the tower grammar gives E_∞(
 tags: [analysis, castle, area, blocks, perimeter, q-analog, q-series, q-bessel, q-catalan, parallelogram-polyomino, grammar, functional-equation, q-shift, parity, sign, asymptotics, narayana, descents, q-binomial, novel-candidate]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes, prellberg-brak-1995-cluster-models, column-convex-polygon-enumeration, project-euler-502-representations, aocp-generating-partitions]
 created: 2026-09-23
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Castles by width, blocks and area
@@ -131,13 +131,6 @@ def castles(x):                                     # N/M - 1 at u = 1, blocks w
     return [int(c) for c in P]
 print(castles(-1)[1:])                              # even - odd by area
 ```
-
-## Open
-
-- A combinatorial proof of Equation (5).
-- A proof that `q_0` is the only zero of `M` in `|q| < 0.82`; the count by the argument principle is numerical.
-- The same grading of the grammar with peaks or with left-to-right records in place of blocks.
-- Prellberg and Brak prove that the unsigned bar-graph GF by perimeter and area has the Airy scaling function `Ai'/Ai` at `q → 1`, `y → y_c(1)`, with exponents `γ_u = −1/2`, `γ_t = −1/3`, `φ = 2/3` ([[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)]). The meromorphy at `x = −1`, `u = 1` concerns a different limit, `q → q_0`. Whether the signed double series `Σ_{w, n} (even − odd)(w, n) u^w q^n` has an Airy scaling limit is open.
 
 ## Relation to other pages
 

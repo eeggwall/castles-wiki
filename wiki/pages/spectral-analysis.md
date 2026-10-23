@@ -5,7 +5,7 @@ summary: The spectra computed for castles and what each decides. (1) The signed 
 tags: [concept, castle, spectral, transfer-matrix, laplacian, dft, dct, galois, ramanujan-sum, homometric, ihara-zeta, ramanujan, isospectral, determinantal]
 sources: [project-euler-502-brute-force]
 created: 2026-09-16
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Spectral analysis of castles
@@ -221,12 +221,6 @@ The covering tree `T` has maximum degree `d_max`, the largest degree in `G`, so 
 | **Anchored 1-smooth strips on `{1, 2, 3}`**, silver by width | transfer matrix `[[1, 1, 0], [1, 1, 1], [0, 1, 1]]` with spectral radius `1 + √2`; the count's own signed transfer matrix never has a `δ_a` eigenvalue (section 1) |
 | **Golden and silver by spectrum** | adjacency spectral radius `φ` (the six `P_4` castles) or `1 + √2` (36 castles up to mirror image in the scan of [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]) |
 | **Weighted by area**, a factor `q^c` for a column of height `c`, in a family given by a primitive 0/1 rule `M` on `{1, …, h}` | the transfer matrix with entries `M[a][b]·q^b` is primitive for `q > 0`, so its largest eigenvalue is simple (Perron-Frobenius) and analytic in `q`, and there is no non-analytic point at fixed `h` |
-
-## Open questions
-
-- **Height without bound.** Whether the largest eigenvalue of an area-weighted transfer matrix has a non-analytic point in `q` as `h → ∞`.
-- **Homometric castles.** The counts of genuine homometric pairs beyond 12 cells, and whether each comes from a factorization `c = a ⊛ b` paired with `a ⊛ reverse(b)`, `⊛` the cyclic convolution.
-- **Sparse supports of even-block castles.** Which unions of divisor classes occur as supports of castles with an even number of blocks.
 
 ## Related Concepts
 

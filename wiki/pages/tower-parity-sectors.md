@@ -5,7 +5,7 @@ summary: The signed transfer matrix M̃_k commutes with JD, "reflect heights, fl
 tags: [analysis, castle, signed-tower-count, transfer-matrix, symmetry, factorization, plastic-number, quasi-polynomial, oeis, hardin, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Tower parity sectors - why `char_k` factors, and where the plastic number comes from
@@ -179,6 +179,8 @@ The sequence `y_m = (r − s)(α² r^m − β² s^m)` satisfies the same recurre
 
 **Which factor is which sector.** For `d ≤ 20`, `H_d` and `V_d` are irreducible and `V_d` is primitive, so the two sector polynomials of `char_{2d}` are `H_d` and `V_d`, in the variable `μ`. Their degrees decide which is which: the `+1` sector has dimension `d` when `d` is odd and `d + 1` when `d` is even. So for even `k ≤ 40`, `H_{k/2}` is the polynomial of the `+1` (even-last-column) sector when `k ≡ 2 (mod 4)` and of the `−1` (odd-last-column) sector when `k ≡ 0 (mod 4)`.
 
+**Over `Z[1/2]` and modulo 2.** The two sector factors `2^d H_d(λ/2)` and `2^d V_d(λ/2)` of `char_{2d}` have resultant `±2^{d(d+1)}` for every `d ≤ 15` (computed), so for these `d` the sector split of `Q[x]/(char_k)` holds over `Z[1/2]` and survives reduction modulo every odd prime ([[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]). Modulo 2 the two factors are `λ^d` and `λ^d(λ + 1)` for `d ≤ 15` (computed), and [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] reads the two sectors as the components of `Spec Z[x]/(char_k)`, which meet only at the point `(2, x)`.[^8]
+
 ## Part 3 - The sector sequences and OEIS
 
 The sectors are invariant under `M̃_k`, so `P_even(k, ·)` and `P_odd(k, ·)` satisfy the linear recurrences of their sector polynomials. The sector of `H_{k/2}` has the characteristic polynomial `2^{k/2} H_{k/2}(λ/2)` in `λ`, so its sequence divided by `2^L` has the monic integer characteristic polynomial `H_{k/2}(μ)`, and is an integer sequence:
@@ -237,13 +239,6 @@ Hardin's entries give their recurrences as "Empirical", for example "a(n) = 3*a(
 
 So for towers of height at most 4, the odd-last-column signed count is `2^L` times the period-6 pattern `0, −1, −1, 0, 1, 1`, from the eigenvalues `1 ± i√3`. The even sectors for `k ≡ 0 (mod 4)` carry `V_{k/2}`, whose leading coefficient is 2, and are not divisible by `2^L`: `1, 3, 9, 25, 69, 193, 541, …` at `k = 4` and `1, 5, 25, 105, 425, 1761, …` at `k = 8`. The odd sector at `k = 2` is `−A107920(L)`, the Lucas sequence of `(1 ± √−7)/2`, the two eigenvalues of `k = 2` other than 2.[^3] [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of the other sector sequences.
 
-## Open problems
-
-- The two sector factors `2^d H_d(λ/2)` and `2^d V_d(λ/2)` of `char_{2d}` have resultant `2^{d(d+1)}` for every `d ≤ 15` (computed). A proof would show that the sector split of `Q[x]/(char_k)` holds over `Z[1/2]` and survives reduction modulo every odd prime ([[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]). Modulo 2 the two factors are `λ^d` and `λ^d(λ + 1)` for `d ≤ 15` (computed), and [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] reads the two sectors as the components of `Spec Z[x]/(char_k)`, which meet only at the point `(2, x)`.
-- Irreducibility of `char_k` for every odd `k`. Eisenstein's criterion at 2 reaches exactly `k = 2^m − 1` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]); `k = 5, 9, 11, 13, …` need another argument.
-- Irreducibility of `H_d` and `V_d` for every `d`, which would settle which factor is which sector at every even `k`; and a proof that the root of largest modulus lies in the `+1` sector.
-- A sign-reversing involution that proves the Hardin identity object by object.
-
 ## Snippet index
 
 | snippet | teaches | where |
@@ -293,3 +288,4 @@ So for towers of height at most 4, the odd-last-column signed count is `2^L` tim
 [^5]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The rational-function path (h ≤ 15000)" L132-138 - "num_k(x) = 2·den_{k-1}(x) - num_{k-1}(x); den_k(x) = den_{k-1}(x)·(1 - 2x) + num_{k-1}(x)·x". The recurrence `den_{k+1} = den_{k−1} − 2x·den_k`, equivalently `char_{k+1} = λ² char_{k−1} − 2 char_k`, follows by the Cayley-Hamilton theorem ([[signed-tower-count](pages/signed-tower-count.md)]).
 [^6]: Verified by execution (SymPy, 2026-10-16): `resultant(x³ − x − 1, μ − x², x)` is `μ³ − 2μ² + μ − 1 = H_3` up to sign, and `2³ H_3(λ/2) = λ³ − 4λ² + 4λ − 8`, the cubic factor of `char_6`.
 [^7]: https://oeis.org/A005251, https://oeis.org/A202882, https://oeis.org/A203094, https://oeis.org/A203184 (read 2026-10-16) - A005251, offset 0: "For n>=3, a(n) is the number of binary strings of length n-2 without any maximal runs of ones of length 1"; A202882, offset 1: "Number of n X 1 0..2 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor", `1, 3, 9, 22, 51, 121, 292, 704, 1691, 4059, 9749`, "Empirical: a(n) = 3*a(n-1) -3*a(n-2) +4*a(n-3) -a(n-4) +a(n-5)"; A203094: "Number of nX1 0..3 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor", `1, 4, 16, 50, 144, 422, 1268, 3823, 11472, 34350`, "Empirical: a(n) = 4*a(n-1) -6*a(n-2) +10*a(n-3) -5*a(n-4) +6*a(n-5) -a(n-6) +a(n-7)"; A203184: "Number of n X 1 0..4 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor", `1, 5, 25, 95, 325, 1121, 3985, 14288, 50995, 181336`, "Empirical: a(n) = 5*a(n-1) -10*a(n-2) +20*a(n-3) -15*a(n-4) +21*a(n-5) -7*a(n-6) +8*a(n-7) -a(n-8) +a(n-9)". The three empirical recurrences are the coefficient lists of `H_5`, `H_7`, `H_9`.
+[^8]: Verified by execution (Python 3.11 with SymPy, 2026-10-22): with `H_d` as in the section *The monic factor* and `V_d = H_{d+1} + μ² H_{d−1}`, the resultant in `λ` of `2^d H_d(λ/2)` and `2^d V_d(λ/2)` is `±2^{d(d+1)}` (4, 64, 4096 at `d = 1, 2, 3`), and their reductions modulo 2 are `λ^d` and `λ^d(λ + 1)`, for `d ≤ 15`.

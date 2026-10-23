@@ -5,7 +5,7 @@ summary: Five castle families grow at the plastic number ψ and are counted exac
 tags: [analysis, castle, padovan, plastic-number, generating-function, bijection, maximal-castle, run-length-limited, ridge-castle, tree-castle, palindrome, oeis, sympy, verification]
 sources: [project-euler-502]
 created: 2026-10-11
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # The Padovan families of castles
@@ -75,10 +75,6 @@ with `T_1(y) = y (1 − y + y²) / (1 − 2y + y² − y³)` and `T_b(y) = y² /
 
 and the factor `1 − x² + x³` cancels from the sum. The factorization is the polynomial form of `ψ²` being the square of `ψ`: `(x³ − x − 1)(x³ − x + 1) = x⁶ − 2x⁴ + x² − 1`, whose roots are `±` the roots of `x³ − x − 1`. So halving the ψ² family of all tree castles gives a ψ family, and its generating function is the maximal castles' exactly.
 
-## Open threads
-
-1. **A bijection for the palindromic tree castles.** They have the maximal castles' generating function at every size, but no map between them is written down; the cancellation of `1 − x² + x³` suggests the map is not block by block.
-
 ## Related Concepts
 
 - [[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)] - the five families in the four-constant grid.
@@ -89,4 +85,4 @@ and the factor `1 − x² + x³` cancels from the sum. The factorization is the 
 
 ## Footnotes
 
-[^exec]: Verified by execution (Python 3.10, SymPy, 2026-10-11): `bin/python/padovan_families.py`, run log `bin/python/padovan_families-run.log`. Each family enumerated by brute force (castles of width or area `n`); the series of each generating function above equals the counts for `n = 1, …, 18`. The three maps are injective with image exactly the maximal castles of the stated width, for ridge area `A = 2, …, 20`, rule width `w = 3, …, 20` and `(1, 2)`-RLL width `w = 3, …, 18`. Prime castles of height 3 by brute force for `A = 1, …, 20`. `T_1`, `T_b` and `D(x)` by solving `T_1 = y(1 + T_1 + T_b)`, `T_b = (y²/(1 − y))(1 + T_1)` and simplifying; the factorization by `sp.factor`. Padovan values from https://oeis.org/A000931/b000931.txt (fetched 2026-10-10).
+[^exec]: Verified by execution (Python 3.10, SymPy, 2026-10-11): `bin/python/padovan_families.py`, run log `bin/python/padovan_families-run.log`. Each family enumerated by brute force (castles of width or area `n`); the series of each generating function in the table of *The five families* equals the counts for `n = 1, …, 18`. The three maps are injective with image exactly the maximal castles of the stated width, for ridge area `A = 2, …, 20`, rule width `w = 3, …, 20` and `(1, 2)`-RLL width `w = 3, …, 18`. Prime castles of height 3 by brute force for `A = 1, …, 20`. `T_1`, `T_b` and `D(x)` by solving `T_1 = y(1 + T_1 + T_b)`, `T_b = (y²/(1 − y))(1 + T_1)` and simplifying; the factorization by `sp.factor`. Padovan values from https://oeis.org/A000931/b000931.txt (fetched 2026-10-10).

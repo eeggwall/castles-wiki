@@ -5,7 +5,7 @@ summary: The 42 shape types of castles of the Castle Types source, 7 base types 
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle, hoodoo-castle, monadnock-castle, distinct-parts]
 sources: [castle-classification, aocp-generating-partitions, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths]
 created: 2026-09-19
-updated: 2026-10-17
+updated: 2026-10-22
 ---
 
 # Castle classification - shape types
@@ -190,15 +190,6 @@ Types 19, 20, 22, 23, 28, 29, 33 and 34:
 | **Integer-mean** | `w` divides `Σ c_i` | `(1, 3, 2)` | open |
 
 For `w ≥ 2`, a linear castle with `d = 0` is the boxcastle; one with `d > 0` has `c_w = h` and `c_1 = h − (w − 1)d ≥ 1`, so `d ≤ (h − 1)/(w − 1)`, and `d < 0` is its mirror image. So the linear castles number `2⌊(h−1)/(w−1)⌋ + 1`, which agrees with brute-force enumeration for `2 ≤ w ≤ 6`, `h ≤ 8`.[^5]
-
-## Open problems
-
-1. **k-modal castles** for `k ≥ 2`; the case `k = 1` is the convex castles ([[convex-castle](pages/convex-castle.md)]).
-2. **m-disparate castles** for any `m`, the counterpart of the m-smooth castles, which [[m-smooth-castles](pages/m-smooth-castles.md)] counts for `m ≤ 4`.
-3. **The symmetry types.** The palindromic castles have a generating function by width and blocks ([[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]) and, over all heights, a closed sum by width and blocks ([[cho-huh-nam-sohn-2022-bounded-free-motzkin-paths](pages/cho-huh-nam-sohn-2022-bounded-free-motzkin-paths.md)]); their table by `(w, h)`, their even/odd split, and the other two types are open.
-4. **Rainbow castles** by block count, through the permutations of [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)].
-5. **Even-peak castles**, the parity of the number of local maxima.
-6. **Shape types at bounded height.** The Dyck-path and Motzkin-path castles of height at most `h` have rational generating functions that are ratios of Chebyshev-type polynomials (`A080934`, `A097862`); which other shape types do is open.
 
 ## Related Concepts
 

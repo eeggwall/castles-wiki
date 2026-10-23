@@ -5,7 +5,7 @@ summary: The four constants golden φ, silver 1 + √2, bronze (3 + √13)/2 and
 tags: [analysis, castle, metallic-means, golden-ratio, silver-ratio, bronze, plastic-number, padovan, growth-constant, width, area, semi-perimeter, spectral-radius, run-length-limited, ridge-castle, classification, totally-real, oeis, sympy, verification]
 sources: [project-euler-502]
 created: 2026-10-10
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Golden, silver, bronze and plastic growth of castles
@@ -128,12 +128,6 @@ Banning `11` and banning `22` give the same growth by width, since exchanging th
 - **Padovan for plastic, as Fibonacci for golden.** Every plastic family here - the maximal castles, the palindromic tree castles and the three new ones - is counted exactly by the Padovan numbers A000931, shifted ([[padovan-families](pages/padovan-families.md)] explains the shared core and gives the bijections), as the golden families are counted by the Fibonacci numbers. The silver Pell castles are counted by the Pell numbers less `2^{w−1}`, and the bronze ridge strips by A003688, not the bronze metallic sequence A006190 ([[proper-castle-projection](pages/proper-castle-projection.md)]).
 - **Smallest versus largest.** At height 2, golden is the largest area growth constant (all castles) and plastic the smallest above 1 (the ridge rule). By width at height 3, plastic is the smallest constant above 1, and the rule realizing it is the cycle `1 → 2 → 3 → 1` with one extra step.
 - **One family, two constants.** The ridge castles of height 2 are golden by width and plastic by area.
-
-## Open threads
-
-1. **Bronze by semi-perimeter.** Impossible below height 22 and open from there (by width, bronze is the ridge castles of height 4) ([[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)]).
-2. **Bronze by spectrum.** Open ([[bronze-castle-hunt](pages/bronze-castle-hunt.md)]).
-3. **A bijection for the palindromic tree castles.** The Padovan families share one core, blocks of size 2 and 3, and three of them map bijectively onto the maximal castles ([[padovan-families](pages/padovan-families.md)]); the palindromic tree castles have the maximal castles' generating function but no explicit map yet.
 
 ## Related Concepts
 
