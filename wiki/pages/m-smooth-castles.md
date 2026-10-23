@@ -5,7 +5,7 @@ summary: An m-smooth castle is a castle whose neighboring columns differ in heig
 tags: [concept, castle, castle-type, m-smooth, 1-smooth, pell, transfer-matrix, parity, generating-functions, oeis]
 sources: [pe502-pell-castle-strip, banderier-nicodeme-2010-bounded-discrete-walks]
 created: 2026-10-06
-updated: 2026-10-22
+updated: 2026-10-23
 ---
 
 # m-smooth castles
@@ -183,7 +183,7 @@ For `h ≤ m + 1` every row is `h^{w−1} − (h − 1)^{w−1}` (3.3), so each 
 | 11 | 4 | `6, 100, 1165, 11786, 110716, 993720, 8648360, …` | `x⁴(2 − x²)(3 + 5x − x² − 5x³ + x⁵)` | 11 | ≈ 7.5194 | 5 |
 | 12 | 4 | `3, 66, 858, 9297, 91902, 860600, 7777385, …` | `x⁴(3 + 18x − 30x³ + 14x⁵ − 2x⁷)` | 11 | ≈ 7.7027 | 5 |
 
-The first entry of each row is the binomial of 3.4. The OEIS status of the rows and of the `m = 2` triangle by `(w, h)` (`1; 1, 1, 1; 1, 3, 5, 2, 1; 1, 7, 19, 12, 8, 3, 1; …`) is on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].
+The first entry of each row is the binomial of 3.4.
 
 ### 3.8 Block parity
 

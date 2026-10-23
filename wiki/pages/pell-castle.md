@@ -5,7 +5,7 @@ summary: A Pell castle is a castle of height 3 whose first column has height 1 a
 tags: [concept, castle, castle-type, pell, silver-ratio, transfer-matrix, 1-smooth, parity, oeis]
 sources: [pe502-pell-castle-strip]
 created: 2026-10-04
-updated: 2026-10-22
+updated: 2026-10-23
 ---
 
 # Pell castle
@@ -53,7 +53,7 @@ The same numbers are column 2 of the triangle A283595, Motzkin prefixes of lengt
 
 **Growth.** The root of smallest modulus of `(1 − 2x − x²)(1 − 2x)` is `1/(1 + √2)`, so the Pell castles grow like the silver mean `1 + √2 ≈ 2.4142`: they are silver by width ([[castle-classification-growth](pages/castle-classification-growth.md)], [[metallic-means](pages/metallic-means.md)]). The subtracted `2^{w−1}` grows more slowly, so the Pell castles are a fraction of the Pell strips that tends to 1.
 
-**The other boundary conditions.** Dropping `c_1 = 1` gives the 1-smooth castles of height 3, `A001333(w + 1) − 2^w = 1, 3, 9, 25, 67, 175, 449, …` from the Pell-Lucas numbers A001333 ([[castle-classification-growth](pages/castle-classification-growth.md)]); their generating function is `x(1 − x)/((1 − 2x)(1 − 2x − x²))`, so they number exactly `A106514(w − 1)`, "Expansion of (1-x)/((1-2*x)*(1-2*x-x^2))".[^a106514] Requiring both end columns at height 1 gives `0, 0, 0, 0, 1, 5, 18, 56, 161, 441, …`, generating function `x⁵/((1 − x)(1 − 2x)(1 − 2x − x²))`: the partial sums of the Pell castles, shifted by 2, since the generating function is `x²/(1 − x)` times the Pell castles'. That row is column 2 of the triangle A097862 (Motzkin paths of length `w − 1` and height 2); its OEIS status as a sequence is on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].[^a097862] All three grow like `1 + √2`.[^exec]
+**The other boundary conditions.** Dropping `c_1 = 1` gives the 1-smooth castles of height 3, `A001333(w + 1) − 2^w = 1, 3, 9, 25, 67, 175, 449, …` from the Pell-Lucas numbers A001333 ([[castle-classification-growth](pages/castle-classification-growth.md)]); their generating function is `x(1 − x)/((1 − 2x)(1 − 2x − x²))`, so they number exactly `A106514(w − 1)`, "Expansion of (1-x)/((1-2*x)*(1-2*x-x^2))".[^a106514] Requiring both end columns at height 1 gives `0, 0, 0, 0, 1, 5, 18, 56, 161, 441, …`, generating function `x⁵/((1 − x)(1 − 2x)(1 − 2x − x²))`: the partial sums of the Pell castles, shifted by 2, since the generating function is `x²/(1 − x)` times the Pell castles'. That row is column 2 of the triangle A097862 (Motzkin paths of length `w − 1` and height 2).[^a097862] All three grow like `1 + √2`.[^exec]
 
 ## Blocks and parity
 
@@ -71,7 +71,7 @@ The first even-block Pell castles have width 5: `(1, 2, 1, 2, 3)` and `(1, 2, 3,
 (1 − x)(1 − 2x)(1 − 2x − x²)(1 − 2x + 2x²)(1 − 2x + 3x²),
 ```
 
-and `S_Pell` one of order 5 with denominator `(1 − x)(1 − 2x + 2x²)(1 − 2x + 3x²)` (found by Berlekamp-Massey on 40 terms, [[berlekamp-massey](pages/berlekamp-massey.md)]). The roots of `1 − 2x + 2x²` are `1/(1 ± i)` and those of `1 − 2x + 3x²` are `1/(1 ± i√2)`, so `S_Pell` grows like `√3 < 1 + √2`, and `A^e_Pell = (A_Pell + S_Pell)/2` is half the Pell castles up to a smaller term, as `A^e = (A + S)/2` is for all castles ([[castle-counting-formula](pages/castle-counting-formula.md)]). The OEIS status of the three rows is on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].[^exec]
+and `S_Pell` one of order 5 with denominator `(1 − x)(1 − 2x + 2x²)(1 − 2x + 3x²)` (found by Berlekamp-Massey on 40 terms, [[berlekamp-massey](pages/berlekamp-massey.md)]). The roots of `1 − 2x + 2x²` are `1/(1 ± i)` and those of `1 − 2x + 3x²` are `1/(1 ± i√2)`, so `S_Pell` grows like `√3 < 1 + √2`, and `A^e_Pell = (A_Pell + S_Pell)/2` is half the Pell castles up to a smaller term, as `A^e = (A + S)/2` is for all castles ([[castle-counting-formula](pages/castle-counting-formula.md)]).[^exec]
 
 ## Other ceilings
 

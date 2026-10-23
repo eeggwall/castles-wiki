@@ -5,7 +5,7 @@ summary: The exact appearances of the Motzkin numbers in castle counts. Removing
 tags: [analysis, castle, motzkin, lattice-paths, cornerless, bargraph, parity, sign, gaussian-integers, transfer-matrix, chebyshev, metallic, semi-perimeter, oeis, hub]
 sources: [motzkin-numbers, project-euler-502-representations, project-euler-502-brute-force, deutsch-elizalde-2016-bargraphs-cornerless-motzkin, prodinger-2025-cornerless-motzkin-bargraphs, banderier-nicodeme-2010-bounded-discrete-walks, barry-2005-catalan-transform, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths]
 created: 2026-09-26
-updated: 2026-10-22
+updated: 2026-10-23
 ---
 
 # Motzkin castles - where the Motzkin numbers meet the castle
@@ -131,7 +131,7 @@ The bijection carries two refinements:
 - **Returning meanders** (final height 0) are the castles ending in a height-1 column, which is the A004148 row of §6. So the RNA-structure count of Deutsch-Elizalde is also a valleyless-path count.
 - **Peaks.** A factor `UD` of the word is a column that rose and then drops. So the peak count of the meander is the number of *spires*: non-final columns strictly taller than both neighbors, with the first column compared against height 1 on its left. Checked on the same range. Prodinger's corner-weighted GF, with the valley weight at 0, is therefore the GF of these castles by semi-perimeter, last-column height, and spires.
 
-By mirror symmetry the same numbers count castles whose columns never *rise* by more than one, graded the same way. [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of the sequence.
+By mirror symmetry the same numbers count castles whose columns never *rise* by more than one, graded the same way.
 
 ## Appearances in Sources
 

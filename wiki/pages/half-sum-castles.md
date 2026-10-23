@@ -5,7 +5,7 @@ summary: The order-1/2 fractional partial sum in the width of the even-block cas
 tags: [analysis, castle, fractional-calculus, half-sum, cesaro, riemann-liouville, generating-function, algebraic, singularity-analysis, pi, wallis, central-binomial, context-free, nondecreasing, computation, oeis]
 sources: [project-euler-502-brute-force, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-23
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # Half-sum castles
@@ -46,8 +46,6 @@ Two integer versions clear the denominators. `4^w H_h(w)` has generating functio
 | 3 | 3, 27, 149, 671, 2755, 10833, 41679, 158465, 598681 |
 | 4 | 1, 9, 51, 241, 1069, 4671, 20353, 88383, 381583, 1635893 |
 | 5 | 10, 142, 1210, 8222, 49806, 283570, 1557158, 8354490 |
-
-The OEIS status of the `K_h` rows, the `4^w H_h` rows and the numerators of `H_2` is recorded on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].
 
 ## Where the √π goes
 
@@ -139,7 +137,7 @@ the coefficient of `x^w` in `x (1 − x)^{−h−1/2}`, checked exactly for `h �
 - [[castle-counting-function](pages/castle-counting-function.md)] and [[generating-function-gallery](pages/generating-function-gallery.md)] - the rows `A^e(·, h)` and their generating functions.
 - [[castle-perimeter](pages/castle-perimeter.md)] - castles by semi-perimeter, whose generating function is algebraic of degree 2.
 - [[catalan-numbers](pages/catalan-numbers.md)] - the `c(x)` in `1/√(1 − 4x) = 1/(1 − 2x c(x))`.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the `K_h` rows and their OEIS status.
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the `K_h` rows.
 
 ## Footnotes
 

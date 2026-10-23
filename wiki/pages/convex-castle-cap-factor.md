@@ -5,7 +5,7 @@ summary: "The three area prefactors of the convex ladder are residues at 1/μ: p
 tags: [analysis, polyomino, convex, directed-convex, parallelogram-polyomino, stack-polyomino, convex-castle, asymptotics, residue, prefactor, q-series, bender, verification, oeis]
 sources: [bender-1974-convex-n-ominoes, bousquet-melou-fedou-1995-convex-polyominoes, klarner-rivest-1974-convex-n-ominoes]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # The convex-castle cap factor
@@ -26,7 +26,7 @@ K = 1.07524214134071812420          (Bender's K, recomputed)
 μ = 1/r = 2.30913859333049473110    (A276994)
 ```
 
-The parallelogram and convex values agree with OEIS A006958's `0.2974535058111219...` and A067675's `2.9195985097136070...` in every digit OEIS prints.[^1] The OEIS status of the other constants is recorded on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].
+The parallelogram and convex values agree with OEIS A006958's `0.2974535058111219...` and A067675's `2.9195985097136070...` in every digit OEIS prints.[^1]
 
 *Notation.* The page keeps Bender's symbols: `P_1`, `P_2`, the trapezoid series `T(x, y)`, the cap series `S(x, y)` and the constant `K` are Bender's, not the signed tower count `P`, the tower count `T`, the signed castle count `S` or the convex castle generating function `K(q, z)` of [[castle-notation](pages/castle-notation.md)]; `M_1` is Bousquet-Mélou and Fédou's numerator.
 

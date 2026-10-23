@@ -5,7 +5,7 @@ summary: A 1-smooth castle is a castle whose neighboring columns differ in heigh
 tags: [concept, castle, castle-type, 1-smooth, pell, transfer-matrix, chebyshev, parity, motzkin, generating-functions, oeis]
 sources: [pe502-pell-castle-strip, barry-2005-catalan-transform, knopfmacher-mansour-munagi-prodinger-2008-smooth-words]
 created: 2026-10-06
-updated: 2026-10-22
+updated: 2026-10-23
 ---
 
 # 1-smooth castles
@@ -195,7 +195,7 @@ and the fraction of anchored strips that reach their ceiling tends to 1. The gro
 | 11 | `1, 2, 5, 13, 35, 96, 267, 750, 2123, 6046, 17303, 49720, …` | - | `1, 12, 89, 519, 2611, 11878, 50236, 201076, …` | `1 + (√6 + √2)/2 ≈ 2.9319` | 4 |
 | 12 | `1, 2, 5, 13, 35, 96, 267, 750, 2123, 6046, 17303, 49721, 143364, …` | - | `1, 13, 103, 636, 3365, 16012, 70516, 292791, …` | `1 + 2cos(π/13) ≈ 2.9419` | 6 |
 
-"Degree" is the degree of the growth constant as an algebraic number, half of Euler's totient of `2h + 2`. "-" means no A-number is listed here; [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of those rows.[^exec]
+"Degree" is the degree of the growth constant as an algebraic number, half of Euler's totient of `2h + 2`. "-" means no A-number is listed here.[^exec]
 
 - **The strip rows.** An anchored skyline of width `w` cannot rise above height `w`, so the ceiling matters only from `w = h + 1` on, and for `w ≤ h` the strip row equals the anchored 1-smooth count with no ceiling, A005773(`w`).[^a005773] The `h = 5` row is A057960, base-5 digit strings that start with 0 and whose adjacent digits differ by at most 1;[^a057960] the `h = 6` row is A085810, three-choice paths in a corridor of height 5.[^a085810]
 - **The castle rows.** Every `smooth` row is a column of one OEIS triangle: `smooth(w, h)` is A283595 at row `w − 1`, column `h − 1`, the number of Motzkin prefixes of length `w − 1` and height `h − 1`. The entry gives no generating function.[^a283595] At `h = 3` the row is also A094706(`w − 2`) ([[pell-castle](pages/pell-castle.md)]).

@@ -5,7 +5,7 @@ summary: The ridge strips of metallic-strip-realizability need not reach their c
 tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, parity, even-block, bronze, silver, oeis, sympy, verification]
 sources: [project-euler-502]
 created: 2026-09-18
-updated: 2026-10-22
+updated: 2026-10-23
 ---
 
 # From ridge strips to even-block ridge castles
@@ -64,7 +64,7 @@ The even-block ridge castles of height `h`, by width:[^5]
 | 5 | 0, 0, 10, 104, 604, 2836, 12630, 55668, 242744, 1047448, 4489986, 19175568 |
 | 6 | 1, 11, 66, 320, 1601, 8661, 47807, 261401, 1411224, 7537448, 39939391, 210495659 |
 
-For `h ≥ 3`, `A_ridge(·, h)` satisfies the recurrence of order 3 with characteristic polynomial `(x² − (h − 1)x − 1)(x − (h − 2))` ([[ridge-castle](pages/ridge-castle.md)]); at `h = 4` it is `1, 7, 31, 118, 421, 1453, 4924, 16513, …`. The even-block counts `A^e_ridge(·, h)` satisfy linear recurrences of order 4, 8, 10, 12, 14 for `h = 2, …, 6` (Berlekamp-Massey on 60 terms, computed). Each characteristic polynomial contains the factors `x² − (h − 1)x − 1` and `char(R̃_h)`; at `h = 3` it is `(x − 1)(x² + 1)(x² − 2x − 1)(x³ − x² + x − 3)`.[^5] [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of these rows.
+For `h ≥ 3`, `A_ridge(·, h)` satisfies the recurrence of order 3 with characteristic polynomial `(x² − (h − 1)x − 1)(x − (h − 2))` ([[ridge-castle](pages/ridge-castle.md)]); at `h = 4` it is `1, 7, 31, 118, 421, 1453, 4924, 16513, …`. The even-block counts `A^e_ridge(·, h)` satisfy linear recurrences of order 4, 8, 10, 12, 14 for `h = 2, …, 6` (Berlekamp-Massey on 60 terms, computed). Each characteristic polynomial contains the factors `x² − (h − 1)x − 1` and `char(R̃_h)`; at `h = 3` it is `(x − 1)(x² + 1)(x² − 2x − 1)(x³ − x² + x − 3)`.[^5]
 
 ## The ridge strips number `x_{w+1} + x_w`
 

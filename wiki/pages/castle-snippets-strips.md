@@ -5,7 +5,7 @@ summary: Tested Python snippets for castle strips (the Pell and ridge strips, th
 tags: [concept, castle, python, snippets, strip, growth-constant, metallic-mean, tree-castle, hardin]
 sources: [project-euler-502-brute-force]
 created: 2026-09-19
-updated: 2026-10-22
+updated: 2026-10-23
 ---
 
 # Castle snippets - strips and growth
@@ -167,7 +167,7 @@ def proper_even(h, Wmax):
 [0, 0, 10, 104, 604, 2836, 12630, 55668]
 ```
 
-Meaning: both rows agree with enumeration of the ridge castles for `w ≤ 7`. Their growth is `δ_{h−1}`, because the spectral radius of `R̃_h`, `1.000, 1.575, 1.768, 2.242, 2.413` for `h = 2, …, 6`, and the growth `h − 2` of the rule `J − I` are below `δ_{h−1} = 1.618, 2.414, 3.303, 4.236, 5.193`. Without the signed part and the division by 2 the function gives `A_ridge(w, h)`. The OEIS status of the rows is on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].
+Meaning: both rows agree with enumeration of the ridge castles for `w ≤ 7`. Their growth is `δ_{h−1}`, because the spectral radius of `R̃_h`, `1.000, 1.575, 1.768, 2.242, 2.413` for `h = 2, …, 6`, and the growth `h − 2` of the rule `J − I` are below `δ_{h−1} = 1.618, 2.414, 3.303, 4.236, 5.193`. Without the signed part and the division by 2 the function gives `A_ridge(w, h)`.
 
 
 ### `strip_field(M)` → the Perron root and number field of one rule

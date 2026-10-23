@@ -5,7 +5,7 @@ summary: "On the free monoid of castles glued at a shared height-1 column, block
 tags: [analysis, castle, area, prime-castle, monoid, character, parity, block-count, sign, multinomial, peaks, records, fractional, q-series, oeis]
 sources: [oeis-mining-pe502]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # Signed prime castles
@@ -70,7 +70,7 @@ The number of classes, the castles of area `n` up to rearranging their prime fac
 classes(n), n = 1, …, 17:   1, 2, 3, 5, 9, 15, 26, 45, 78, 134, 233, 401, 693, 1195, 2061, 3546, 6107
 ```
 
-The first 14 terms agree with a direct count of the distinct sorted factor lists over all castles, and the product formula gives all 17.[^2] [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of this sequence. The partitions of a multiset on [[bender-1974-partitions-of-multisets](pages/bender-1974-partitions-of-multisets.md)] count unordered groupings of a castle's primes, not these classes.
+The first 14 terms agree with a direct count of the distinct sorted factor lists over all castles, and the product formula gives all 17.[^2] The partitions of a multiset on [[bender-1974-partitions-of-multisets](pages/bender-1974-partitions-of-multisets.md)] count unordered groupings of a castle's primes, not these classes.
 
 ## Which statistics are characters
 

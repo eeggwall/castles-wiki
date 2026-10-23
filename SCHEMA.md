@@ -250,7 +250,7 @@ fields — role group, OEIS name, one-line castle role — live in `config/oeis-
 an A-number cited on the wiki but missing from that file is listed under "Not yet annotated"
 until a row is added. Rerun the script after any edit that adds or removes an A-number; the
 pre-commit gate's `--check` mode blocks a commit that leaves it stale. `--fetch-names` fills
-empty `name` cells from oeis.org. The hand-curated novelty catalogue is a normal page,
+empty `name` cells from oeis.org. The hand-curated sequence catalogue is a normal page,
 `castle-sequence-catalogue`, and is not generated.
 
 ## Index Categories

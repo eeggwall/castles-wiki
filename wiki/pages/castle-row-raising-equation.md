@@ -5,7 +5,7 @@ summary: "A prime castle is a castle raised one row, so the free gluing monoid o
 tags: [analysis, castle, area, width, prime-castle, monoid, functional-equation, q-shift, q-series, parity, sign, peaks, asymptotics, residue, oeis]
 sources: [oeis-mining-pe502, prellberg-brak-1995-cluster-models]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # The castle row-raising equation
@@ -45,7 +45,7 @@ even(n) − odd(n), n = 1..40:
 538338, −873300, 1418778, −2303708, 3739942, −6074756, 9862434, −16016304, 26008230
 ```
 
-For `n ≤ 12` these are the differences of the `even` and `odd` rows of [[castle-by-area](pages/castle-by-area.md)]. [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of the sequence.
+For `n ≤ 12` these are the differences of the `even` and `odd` rows of [[castle-by-area](pages/castle-by-area.md)].
 
 ## The signed growth constant
 
@@ -77,7 +77,7 @@ The peaks of a castle, its maximal runs of columns of height at least 2 ([[castl
 G(q, t)  =  (1 − q − q² + t q²) / (1 − 2q + q³ − t q³)                              (3)
 ```
 
-`G` counts castles by area and peaks, with the empty castle as its constant term; at `t = 1` it is `(1 − q)/(1 − 2q)`. Its rows from area 1 are `1; 1 1; 1 3; 1 7; 1 14 1; 1 26 5; 1 46 17; 1 79 47 1; 1 133 115 7; …`, the coefficient of `t^k` counting the castles with `k` peaks, and they agree with enumeration through area 13.[^5] The one-peak column `1, 3, 7, 14, 26, 46, 79, 133, 221, …` is `A001924(n − 1)`, "Apply partial sum operator twice to Fibonacci numbers". A one-peak castle is `(1^a, X, 1^b)` with `a, b ≥ 0` and `X` a nonempty castle with no height-1 column. Such `X` are the compositions into parts `≥ 2`, `F_{m−1}` of area `m`, and the two runs of height-1 columns contribute the factor `(1 − q)^{−2}`, so the one-peak castles have generating function `q²/((1 − q − q²)(1 − q)²)`, the twice-summed Fibonacci numbers.[^5] The two-peak column is `1, 5, 17, 47, 115, 259, 550, 1118, …`. [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of the triangle and its columns.
+`G` counts castles by area and peaks, with the empty castle as its constant term; at `t = 1` it is `(1 − q)/(1 − 2q)`. Its rows from area 1 are `1; 1 1; 1 3; 1 7; 1 14 1; 1 26 5; 1 46 17; 1 79 47 1; 1 133 115 7; …`, the coefficient of `t^k` counting the castles with `k` peaks, and they agree with enumeration through area 13.[^5] The one-peak column `1, 3, 7, 14, 26, 46, 79, 133, 221, …` is `A001924(n − 1)`, "Apply partial sum operator twice to Fibonacci numbers". A one-peak castle is `(1^a, X, 1^b)` with `a, b ≥ 0` and `X` a nonempty castle with no height-1 column. Such `X` are the compositions into parts `≥ 2`, `F_{m−1}` of area `m`, and the two runs of height-1 columns contribute the factor `(1 − q)^{−2}`, so the one-peak castles have generating function `q²/((1 − q − q²)(1 − q)²)`, the twice-summed Fibonacci numbers.[^5] The two-peak column is `1, 5, 17, 47, 115, 259, 550, 1118, …`.
 
 The one-peak castles have the shape of the convex castles, with the unimodality of `X` dropped. The convex version of the row-raising substitution is `U(q) = K(q, q)`, the prime convex castles of [[prime-convex-castles](pages/prime-convex-castles.md)], where `K(q, z)` is the convex castle generating function by area and width.
 
@@ -126,7 +126,7 @@ print(t[1:17], t[300] / t[299])                 # even - odd; ratio -> -rho
 - [[castle-perimeter](pages/castle-perimeter.md)] - castles by semi-perimeter, where the sign halves the exponent.
 - [[castle-foata-transform](pages/castle-foata-transform.md)] - peaks.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - the linearizable shape of Equations (1) and (2), and the bar-graph equation (3.11), the castle generating function by width, blocks and area.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the OEIS status of the sequences and constants here.
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the sequences and constants here.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - a seminar on castles by area whose Stop 4 is this equation.
 
 ## Footnotes

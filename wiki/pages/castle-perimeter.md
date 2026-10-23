@@ -2,10 +2,10 @@
 title: Castle perimeter - blocks are the vertical half-perimeter
 category: Analyses
 summary: A castle of width w has semi-perimeter s = w + blocks, so the block count is half the vertical perimeter and the even-block condition of Project Euler 502 says that s and w have the same parity; s ≥ w + h with equality exactly for convex castles. Castles by semi-perimeter are the bargraphs A082582, with the algebraic generating function B(t) = (1 − 2t − t² − √(1 − 4t + 2t² + t⁴))/(2t) and growth τ² = 3.38297 (τ the tribonacci constant); by semi-perimeter and width they are A271942. The signed count has generating function (1 + t² − √((1 + t)(1 − t + 3t² + t³)))/(2t) and grows only like τ. Convex castles by semi-perimeter are F_{2s−3} = A001519(s − 1), and their signed count is periodic with period 6.
-tags: [analysis, castle, perimeter, blocks, parity, bargraph, generating-function, algebraic, tribonacci, fibonacci, delest-viennot, oeis, novel-candidate]
+tags: [analysis, castle, perimeter, blocks, parity, bargraph, generating-function, algebraic, tribonacci, fibonacci, delest-viennot, oeis]
 sources: [algebraic-languages-and-polyominoes-enumeration, project-euler-502-brute-force, tower-narayana-polynomial, baril-florez-ramirez-2026-generalized-narayana-arrays]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # Castle perimeter - blocks are the vertical half-perimeter
@@ -48,7 +48,7 @@ B(t)  =  ( 1 − 2t − t² − √(1 − 4t + 2t² + t⁴) ) / (2t)
       =  t² + 2t³ + 5t⁴ + 13t⁵ + 35t⁶ + 97t⁷ + 275t⁸ + 794t⁹ + ⋯
 ```
 
-This is `A082582`, whose entry states that "a(n) is the number of bargraphs of semiperimeter n (n>=2)"; the OEIS generating function is `B(t) + 1 + t`. The triangle by semi-perimeter and width is `A271942`, "the number of bargraphs of semiperimeter n having width k", and its entries are `A271942(s, w) = Σ_k N(w, k) C(s − k − 1, w − 1)`, rechecked for `s = 2, …, 8`.[^5] `A082582` also counts the Dyck paths of semilength `n` that avoid `UUDD`, and the Dyck paths of semilength `n` with no peak at a height `≡ 2 (mod 3)`, which Baril, Flórez and Ramírez join by a bijection.[^6] [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of the castle reading.
+This is `A082582`, whose entry states that "a(n) is the number of bargraphs of semiperimeter n (n>=2)"; the OEIS generating function is `B(t) + 1 + t`. The triangle by semi-perimeter and width is `A271942`, "the number of bargraphs of semiperimeter n having width k", and its entries are `A271942(s, w) = Σ_k N(w, k) C(s − k − 1, w − 1)`, rechecked for `s = 2, …, 8`.[^5] `A082582` also counts the Dyck paths of semilength `n` that avoid `UUDD`, and the Dyck paths of semilength `n` with no peak at a height `≡ 2 (mod 3)`, which Baril, Flórez and Ramírez join by a bijection.[^6]
 
 **Growth `τ²`.** The discriminant `1 − 4t + 2t² + t⁴` factors as `(t − 1)(t³ + t² + 3t − 1)`. Substituting `t = 1/y` and multiplying by `−y³` turns the cubic into `y³ − 3y² − y − 1`, the minimal polynomial of `τ²`, where `τ = 1.83928…` is the tribonacci constant, the real root of `τ³ = τ² + τ + 1`. The singularity of `B(t)` nearest 0 is the square-root branch point `t = 1/τ²`, so the castles of semi-perimeter `s` grow like `τ^{2s} s^{−3/2}`, with `τ² = 3.38297…`. The ratio of consecutive coefficients is `3.29999` at `s = 60`, below `τ²` as the factor `s^{−3/2}` requires.[^4]
 
@@ -68,7 +68,7 @@ The even-block castles by semi-perimeter have generating function `(B + B_s)/2`:
 s = 2, …, 16:   0, 1, 3, 7, 17, 47, 137, 400, 1168, 3450, 10338, 31311, 95521, 293169, 904999
 ```
 
-Both series agree with a dynamic program over skylines through `s = 30`. [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of the even and signed sequences.
+Both series agree with a dynamic program over skylines through `s = 30`.
 
 **The sign halves the growth exponent.** Substituting `t = −1/y` in the signed cubic `t³ + 3t² − t + 1` and multiplying by `y³` gives `y³ + y² + 3y − 1`, the unsigned cubic in `y`. Its roots are `1/τ²` and a complex pair whose product with `1/τ²` is 1, so the pair has modulus `τ`. The singularities of `B_s` are therefore `t = −1`, `t = −τ²`, and a complex pair of modulus `1/τ`, which is the nearest to 0. So the signed count grows like `τ^s s^{−3/2}` with an oscillating factor: `|[t^n] B_s| · n^{3/2}/τ^n` lies between `0.07` and `0.84` for `n = 300, …, 320`. The unsigned count grows like `τ^{2s}`, so the even-block and odd-block castles of semi-perimeter `s` differ by about the square root of their number.[^4]
 

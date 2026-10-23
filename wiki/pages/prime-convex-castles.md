@@ -5,7 +5,7 @@ summary: "A prime convex castle is a convex castle with no column of height 1, a
 tags: [analysis, castle, area, composition, prime-castle, convex-castle, unimodal, stack-polyomino, fibonacci, asymptotics, parity, q-series, oeis]
 sources: [oeis-mining-pe502]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # Prime convex castles
@@ -28,7 +28,7 @@ It has at most one nontrivial prime factor, `(1, X, 1)`, and `X` is convex. This
 | all prime, `F_{n-1}` | 1 | 1 | 2 | 3 | 5 | 8 | 13 | 21 | 34 | 55 | 89 | 144 | 233 | 377 | 610 | 987 | 1597 | 2584 | 4181 |
 | difference `F_{n-1} − U(n)` | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 2 | 6 | 13 | 28 | 54 | 106 | 194 | 353 | 626 | 1097 | 1890 | 3233 |
 
-`U(1) = 0`, and `U(n)` continues `1298, 1757, 2374, 3184, 4262, 5661, 7508, 9899, 13016, 17033` for `n = 21, …, 30`.[^1] The compositions into parts at least 2 number `F_{n-1}`, and every one of them is unimodal through `n = 7`, so `U(n) = F_{n-1}` there; at `n = 8` the composition `(3, 2, 3)` is the first that dips. `F_{n-1}` grows like `φ^n` and `U(n)` subexponentially, so almost every prime castle is not convex. The OEIS status of `U`, of the difference row and of the tables on this page is recorded on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].
+`U(1) = 0`, and `U(n)` continues `1298, 1757, 2374, 3184, 4262, 5661, 7508, 9899, 13016, 17033` for `n = 21, …, 30`.[^1] The compositions into parts at least 2 number `F_{n-1}`, and every one of them is unimodal through `n = 7`, so `U(n) = F_{n-1}` there; at `n = 8` the composition `(3, 2, 3)` is the first that dips. `F_{n-1}` grows like `φ^n` and `U(n)` subexponentially, so almost every prime castle is not convex.
 
 ## Three descriptions of U
 
@@ -138,7 +138,7 @@ print([a[n] - a[n - 1] for n in range(2, 20)])   # A342528 from offset 1
 - [[convex-castle](pages/convex-castle.md)] - the convex castles counted by area and width in description 3, and their block count `h`.
 - [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] - raising a castle one row, `z → qz`.
 - [[signed-prime-castles](pages/signed-prime-castles.md)] - the sign as a character of the gluing monoid.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the OEIS status of the sequences on this page.
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the sequences on this page.
 
 ## Footnotes
 

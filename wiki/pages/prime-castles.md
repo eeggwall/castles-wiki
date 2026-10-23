@@ -5,7 +5,7 @@ summary: "Gluing two castles that begin and end with a height-1 column, by mergi
 tags: [analysis, castle, area, composition, prime-castle, monoid, factorization, fibonacci, convex-castle, parity, q-series, oeis]
 sources: [oeis-mining-pe502, deutsch-elizalde-2017-bargraphs-dyck-paths]
 created: 2026-09-22
-updated: 2026-10-22
+updated: 2026-10-23
 ---
 
 # Prime castles
@@ -105,7 +105,7 @@ Blocks are additive after the shift by one, so the block parity of a castle is d
 | prime, even | 0 | 1 | 0 | 2 | 0 | 4 | 2 | 9 | 6 | 24 | 18 | 58 | 54 | 143 | 150 | 364 |
 | prime, odd | 0 | 0 | 1 | 0 | 3 | 1 | 6 | 4 | 15 | 10 | 37 | 31 | 90 | 90 | 227 | 246 |
 
-The two rows add up to `F_{n−1}`, and their difference is `0, 1, −1, 2, −3, 3, −4, 5, −9, 14, −19, 27, −36, 53, −77, 118`. Their OEIS status is on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].
+The two rows add up to `F_{n−1}`, and their difference is `0, 1, −1, 2, −3, 3, −4, 5, −9, 14, −19, 27, −36, 53, −77, 118`.
 
 ## Computation
 

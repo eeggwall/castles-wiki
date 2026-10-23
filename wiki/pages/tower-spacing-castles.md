@@ -5,7 +5,7 @@ summary: A skyline has tower spacing at least g when, in every row, each run of 
 tags: [analysis, castle, gap-rule, tower-spacing, transfer-matrix, growth-constant, plastic-number, golden-ratio, generating-function, rule-3, sympy, verification, oeis, min-filter, unimodal]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-10-22
+updated: 2026-10-23
 ---
 
 # Minimum tower spacing - skylines and castles
@@ -102,11 +102,7 @@ The cells with `2 ≤ h, g ≤ 6`, with `spacing_g(w, h) = a(w)` where no shift 
 | 5 | A203184`(w+1)` | A228457 | - | - | - |
 | 6 | A203050`(w+1)` | A228458 | - | - | - |
 
-Hardin's two-dimensional tables are the rows `h = 3` (A217883, "0..2 arrays with each element the minimum of k adjacent elements") and `h = 4` (A217954) and the column `g = 3` (A228461, "arrays of maxima of three adjacent elements"). The column `g = 2` is Hardin's words with no strict local maximum (Equation (3)). [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of the cells marked `-`, whose first terms are:
-
-| cell | `spacing_g(w, h)` for `w = 1, …, 10` | growth | order |
-|---|---|---|---|
-| `(5, 4)` | `5, 25, 95, 295, 791, 1927, 4496, 10606, 26290, 68711` | `2.58882` | 17 |
+Hardin's two-dimensional tables are the rows `h = 3` (A217883, "0..2 arrays with each element the minimum of k adjacent elements") and `h = 4` (A217954) and the column `g = 3` (A228461, "arrays of maxima of three adjacent elements"). The column `g = 2` is Hardin's words with no strict local maximum (Equation (3)).58882` | 17 |
 | `(5, 5)` | `5, 25, 95, 295, 791, 1897, 4196, 8848, 18502, 39962` | `2.36081` | 21 |
 | `(5, 6)` | `5, 25, 95, 295, 791, 1897, 4166, 8548, 16744, 32174` | `2.19911` | 25 |
 | `(6, 4)` | `6, 36, 161, 581, 1792, 4955, 12889, 33279, 89509, 255685` | `2.88388` | 21 |
@@ -120,7 +116,7 @@ Hardin's two-dimensional tables are the rows `h = 3` (A217883, "0..2 arrays with
 ## Related Concepts
 
 - [[hardin-word-identity](pages/hardin-word-identity.md)] - the words `W_m` of Equation (3), and `P_even(4m + 2, L) = 2^L W_m(L + 1)`.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the OEIS status of every cell.
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - every cell.
 - [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - the unimodal skylines, the limit `g → ∞`.
 - [[castle-strip](pages/castle-strip.md)] and [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - skylines counted under rules on the heights of neighboring columns, and the growth constants those rules reach.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the growth constants reachable by rules on neighboring heights.

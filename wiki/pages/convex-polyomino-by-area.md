@@ -5,7 +5,7 @@ summary: Every convex-polyomino family counted by area n on one ladder - rectang
 tags: [analysis, polyomino, convex, area, q-analog, generating-function, parity, ferrers, stack-polyomino, parallelogram-polyomino, directed-convex, continued-fraction, oeis, verification]
 sources: [analytic-combinatorics-ch1-ogfs, column-convex-polygon-enumeration, counting-horizontally-convex-polyominoes, castle-by-area, bousquet-melou-fedou-1995-convex-polyominoes, klarner-rivest-1974-convex-n-ominoes, bender-1974-convex-n-ominoes]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # Convex polyominoes by area
@@ -114,7 +114,7 @@ These are the coefficients of `-A049346`, equivalently `(-1)^n A227310(n)`, whos
 
 With `Π(q, y) = Σ y^{height} q^{area}` over the parallelogram polyominoes, the same series has an S-fraction form in which the height variable marks every other numerator, `1 + Π(q, y) = 1/(1 - yq/(1 - q/(1 - yq^2/(1 - q^2/(1 - yq^3/...)))))`, which matches the full height distribution through area 28.[^1][^19]
 
-**Stacks, directed convex, convex.** No closed form of these signed counts is on the wiki. They are small against the totals: at `n = 20`, `S_stack = 12`, `S_dc = −19` and `S_convex = −393`, against 11240, 12229209 and 53974959 polyominoes. [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of these rows.
+**Stacks, directed convex, convex.** No closed form of these signed counts is on the wiki. They are small against the totals: at `n = 20`, `S_stack = 12`, `S_dc = −19` and `S_convex = −393`, against 11240, 12229209 and 53974959 polyominoes.
 
 ## The column sweep
 

@@ -5,7 +5,7 @@ summary: The signed transfer matrix M̃_k commutes with JD, "reflect heights, fl
 tags: [analysis, castle, signed-tower-count, transfer-matrix, symmetry, factorization, plastic-number, quasi-polynomial, oeis, hardin, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-10-22
+updated: 2026-10-23
 ---
 
 # Tower parity sectors - why `char_k` factors, and where the plastic number comes from
@@ -237,7 +237,7 @@ Hardin's entries give their recurrences as "Empirical", for example "a(n) = 3*a(
 | 8 | `0, −2, −4, −3, 4, 15, 19, 0, −46, −88, −57, 104, …` | `H_4 = μ⁴ − 2μ³ + 3μ² − μ + 1` |
 | 12 | `0, −3, −9, −13, 3, 65, 167, 182, −215, −1378, …` | `H_6` |
 
-So for towers of height at most 4, the odd-last-column signed count is `2^L` times the period-6 pattern `0, −1, −1, 0, 1, 1`, from the eigenvalues `1 ± i√3`. The even sectors for `k ≡ 0 (mod 4)` carry `V_{k/2}`, whose leading coefficient is 2, and are not divisible by `2^L`: `1, 3, 9, 25, 69, 193, 541, …` at `k = 4` and `1, 5, 25, 105, 425, 1761, …` at `k = 8`. The odd sector at `k = 2` is `−A107920(L)`, the Lucas sequence of `(1 ± √−7)/2`, the two eigenvalues of `k = 2` other than 2.[^3] [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of the other sector sequences.
+So for towers of height at most 4, the odd-last-column signed count is `2^L` times the period-6 pattern `0, −1, −1, 0, 1, 1`, from the eigenvalues `1 ± i√3`. The even sectors for `k ≡ 0 (mod 4)` carry `V_{k/2}`, whose leading coefficient is 2, and are not divisible by `2^L`: `1, 3, 9, 25, 69, 193, 541, …` at `k = 4` and `1, 5, 25, 105, 425, 1761, …` at `k = 8`. The odd sector at `k = 2` is `−A107920(L)`, the Lucas sequence of `(1 ± √−7)/2`, the two eigenvalues of `k = 2` other than 2.[^3]
 
 ## Snippet index
 

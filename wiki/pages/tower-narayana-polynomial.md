@@ -1,18 +1,18 @@
 ---
 title: "Tower block-count = Narayana polynomial"
 category: Sources
-summary: OEIS-mining notes on towers with no height bound counted by blocks. Their generating function is Narayana_L(x)/(1 − x)^L with the Narayana polynomial Narayana_L(x) = Σ_k N(L, k) x^{k−1}, checked in the source for L ≤ 7; the rows L = 2, 3, 4, 5 are A005408, A005891, A063490 (offset 1) and A160747. The notes draft OEIS comments for these entries and a formula for A001263, stated as a generating-function identity and not as a statement about peaks.
+summary: OEIS-mining notes on towers with no height bound counted by blocks. Their generating function is Narayana_L(x)/(1 − x)^L with the Narayana polynomial Narayana_L(x) = Σ_k N(L, k) x^{k−1}, checked in the source for L ≤ 7; the rows L = 2, 3, 4, 5 are A005408, A005891, A063490 (offset 1) and A160747. The identity behind A001263 is a generating-function identity: a refinement by peaks does not factor it, and the refinement by descents does.
 tags: [oeis, tower, narayana, heap-of-pieces, generating-functions, cross-reference, source]
 sources: [tower-narayana-polynomial]
 created: 2026-09-13
-updated: 2026-10-17
+updated: 2026-10-23
 ---
 
 # Tower block-count = Narayana polynomial
 
-**Source:** `raw/oeis-pe502/crosslink-avenues.md` §"Tier 2", with the drafts `raw/oeis-pe502/xrefs/A001263-tower.md`, `A005408-tower.md`, `A005891-tower.md`, `A063490-tower.md` and `A160747-tower.md`
+**Source:** `raw/oeis-pe502/crosslink-avenues.md` §"Tier 2", with the notes `raw/oeis-pe502/xrefs/A001263-tower.md`, `A005408-tower.md`, `A005891-tower.md`, `A063490-tower.md` and `A160747-tower.md`
 **Date ingested:** 2026-09-13
-**Type:** OEIS-mining notes with drafts of OEIS comments
+**Type:** OEIS-mining notes
 
 ## Summary
 
@@ -31,12 +31,12 @@ with `N(L, k) = (1/L) C(L, k) C(L, k−1)` the [[narayana-numbers](pages/narayan
 | 3 | 1, 6, 16, 31, 51, 76, … | `A005891`, the centered pentagonal numbers |
 | 4 | 1, 10, 40, 105, 219, 396, … | `A063490(b + 1)` (offset 1) |
 | 5 | 1, 15, 85, 295, 771, 1681, … | `A160747` |
-| 6 | 1, 21, 161, 721, 2331, 6083, … | none found in the first pass |
-| 7 | 1, 28, 280, 1582, 6244, 19348, … | none found in the first pass |
+| 6 | 1, 21, 161, 721, 2331, 6083, … | - |
+| 7 | 1, 28, 280, 1582, 6244, 19348, … | - |
 
-Every entry agrees with enumeration of all towers ([[tower-heap](pages/tower-heap.md)]), and [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the current OEIS status of the rows `L ≥ 6`.[^4] `A005408`, `A005891` and `A160747` have offset 0; `A160747` is named by its generating function `(1 + 10x + 20x² + 10x³ + x⁴)/(1 − x)^5`, which is `Narayana_5(x)/(1 − x)^5`.[^5]
+Every entry agrees with enumeration of all towers ([[tower-heap](pages/tower-heap.md)]).[^4] `A005408`, `A005891` and `A160747` have offset 0; `A160747` is named by its generating function `(1 + 10x + 20x² + 10x³ + x⁴)/(1 − x)^5`, which is `Narayana_5(x)/(1 − x)^5`.[^5]
 
-The notes draft an OEIS comment for each of `A005408`, `A005891`, `A063490` and `A160747`, reading the entry as a count of towers with a given number of blocks, and a formula for `A001263`. The `A001263` draft states the identity as a generating-function identity and not as a statement about peaks: "a direct peaks refinement was tested and does not factor this way".[^6] The refinement that does factor it is by descents: the `k`-th term counts the towers with `k − 1` descents ([[tower-heap](pages/tower-heap.md)], computed for `L ≤ 7`).
+The identity behind `A001263` is a generating-function identity and not a statement about peaks: "a direct peaks refinement was tested and does not factor this way".[^6] The refinement that does factor it is by descents: the `k`-th term counts the towers with `k − 1` descents ([[tower-heap](pages/tower-heap.md)], computed for `L ≤ 7`).
 
 ## Key Takeaways
 

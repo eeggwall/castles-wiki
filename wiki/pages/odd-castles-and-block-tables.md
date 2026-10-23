@@ -5,12 +5,12 @@ summary: "The odd-block count A^o(w, h) = (A − S)/2 = (A + P(h−1, w) − P(h
 tags: [analysis, castle, oeis, sequence, odd-count, parity, area, block-count, peaks, joint-distribution, c-finite, binomial, verification]
 sources: [oeis-mining-pe502]
 created: 2026-09-26
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # The odd castles and the block-count tables
 
-[[oeis-mining-pe502](pages/oeis-mining-pe502.md)] covers `A^e`, `A = h^w − (h−1)^w` and the signed tower count `P`. This page adds three sets of records: the odd-block count `A^o(w, h)` as a sequence of its own; the splits by block parity of the by-area families of [[castle-by-area](pages/castle-by-area.md)]; and the joint distributions of block count, peaks and area. Area and peaks alone are on [[castle-row-raising-equation](pages/castle-row-raising-equation.md)], and area and blocks as a generating function on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]. The OEIS status of every sequence on this page is recorded on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].
+[[oeis-mining-pe502](pages/oeis-mining-pe502.md)] covers `A^e`, `A = h^w − (h−1)^w` and the signed tower count `P`. This page adds three sets of records: the odd-block count `A^o(w, h)` as a sequence of its own; the splits by block parity of the by-area families of [[castle-by-area](pages/castle-by-area.md)]; and the joint distributions of block count, peaks and area. Area and peaks alone are on [[castle-row-raising-equation](pages/castle-row-raising-equation.md)], and area and blocks as a generating function on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)].
 
 The statistics are the wiki's standard ones. The block count is `blocks(c) = c_1 + Σ_{i≥2} max(0, c_i − c_{i−1})` ([[castle-sign](pages/castle-sign.md)]). A peak is a maximal run of columns with `c_i ≥ 2` ([[castle-notation](pages/castle-notation.md)], [[prime-castles](pages/prime-castles.md)]). The area is `Σ c_i`. The castles of area `n` are the compositions of `n`; by width and height, the castles are those of width `w` and height `h`. Every number on this page was checked two ways, by brute force over compositions and skylines and by a transfer-matrix dynamic program.[^exec]
 
@@ -143,7 +143,7 @@ The first line is the convex count. The `b`-block column is a polynomial in `w` 
 
 ## Related Concepts
 
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the OEIS status of the sequences on this page.
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the sequences on this page.
 - [[castle-by-area](pages/castle-by-area.md)] - the by-area families and their definitions.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `A^e(w, 3)`, whose odd-block companion is the `h = 3` row of the first table.
 - [[signed-tower-count](pages/signed-tower-count.md)] - the `P(k, ·)` terms in the formulas for `A^o` and `A^e`.

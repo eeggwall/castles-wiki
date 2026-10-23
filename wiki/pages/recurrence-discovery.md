@@ -5,7 +5,7 @@ summary: Berlekamp-Massey on the signed tower count P(k, L) in both directions, 
 tags: [analysis, castle, recurrence, berlekamp-massey, c-finite, verification]
 sources: [project-euler-502-solution, oeis-mining-pe502, project-euler-502-castle-factoring]
 created: 2026-09-14
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # Recurrence discovery for P(k,L)
@@ -139,7 +139,7 @@ At `L = 1` the towers are one column of height `c ≤ k` with `c` blocks, so `P(
 - [[generating-function-gallery](pages/generating-function-gallery.md)] - the rational functions `num_k/den_k` and the recurrence `den_{k+1} = den_{k−1} − 2x·den_k`.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization of `char_k` for even `k` by the parity of the last column.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the roots of `char_k` and of the recurrences in `k`, set against the OEIS.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the OEIS status of the rows `P(k, ·)`.
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the rows `P(k, ·)`.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] - the correspondence between linear recurrences and rational generating functions.
 - [[generating-functions](pages/generating-functions.md)] - the section *From a rational generating function to its recurrence*, coefficient matching on `den_k(x)·P_k(x) = num_k(x)`.
 

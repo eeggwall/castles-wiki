@@ -5,7 +5,7 @@ summary: Tested Python snippets for the signed tower count P(k, L), continued-fr
 tags: [concept, castle, python, snippets, signed-tower-count, continued-fraction, mod-p, quasi-polynomial, plastic-number]
 sources: [project-euler-502-brute-force, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-19
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # Castle snippets - number theory
@@ -39,7 +39,7 @@ def p_signed(k, L):
 [1, 1, 5, 25, 85, 225, 541, 1385, 3973]
 ```
 
-Meaning: `P(k, ·)` satisfies a linear recurrence of order `k + 1`, and the denominators of its generating functions satisfy `den_{k+1} = den_{k−1} − 2x·den_k`, the Pell-polynomial recurrence in `−x` ([[signed-tower-count](pages/signed-tower-count.md)], [[generating-function-gallery](pages/generating-function-gallery.md)]). The rows for even `k ≤ 12` are positive for `L < 40`; for odd `k ≤ 7` the roots of largest modulus are a complex pair, and the rows change sign in runs (computed). The OEIS status of the rows `k ≥ 2` is on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].
+Meaning: `P(k, ·)` satisfies a linear recurrence of order `k + 1`, and the denominators of its generating functions satisfy `den_{k+1} = den_{k−1} − 2x·den_k`, the Pell-polynomial recurrence in `−x` ([[signed-tower-count](pages/signed-tower-count.md)], [[generating-function-gallery](pages/generating-function-gallery.md)]). The rows for even `k ≤ 12` are positive for `L < 40`; for odd `k ≤ 7` the roots of largest modulus are a complex pair, and the rows change sign in runs (computed).
 
 ## Continued fractions, convergents, and quasi-polynomials
 

@@ -5,7 +5,7 @@ summary: Castles counted by their area n, the number of cells, instead of by wid
 tags: [concept, castle, area, composition, oeis, unimodal, valley]
 sources: [oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # Castles by area
@@ -73,7 +73,7 @@ valley(n)  =  strict_valley(n) + 2p(n) − d(n).
 
 At `n = 5`: `13 = 1 + 2·7 − 2`.
 
-[[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)] lists sixteen terms of each parity split, and [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records their OEIS status.
+[[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)] lists sixteen terms of each parity split.
 
 ## By width and height
 

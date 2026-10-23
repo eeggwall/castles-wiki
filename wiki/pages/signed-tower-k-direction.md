@@ -5,7 +5,7 @@ summary: At fixed base length L, the signed tower count P(k, L) satisfies a line
 tags: [concept, signed-tower-count, quasi-polynomial, k-direction, ehrhart, mod-p, oeis]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-19
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # The k-direction of P(k, L) as a quasi-polynomial
@@ -75,8 +75,6 @@ No formula for `A_L` and `B_L` at every `L` is known.
 - The even terms are `P(2m, 4) = (2m + 1)(8m² + 8m + 3)/3 = A063496(m + 1)`. Peter Bala's comment on `A063496` identifies it, with offset 0, as the crystal ball sequence of the `C_3` lattice: the number of points `v = (a, b, c) ∈ Z³` with `a + b + c` even and `(|a| + |b| + |c|)/2 ≤ m`.[^5]
 - The odd terms are `P(2m + 1, 4) = −4·C(2m + 3, 3) = −4·A000447(m + 1)`, four times the sum of the first `m + 1` odd squares. Their absolute values are the terms `A199833(m + 1)`, for which the OEIS gives `4·A000447(n)` as an empirical formula.[^5]
 - `2·A_4(k) = B_6(k) = (k + 1)(2k + 1)(2k + 3)/3 = A000447(k + 1)`, and `A_5(k) = k (k + 1)² (k + 2)/3 = A112742(k + 1)`, where `A112742(n) = n²(n² − 1)/3`.[^5]
-
-[[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of the rows `L ≥ 5` and of the numerators `N_L`.
 
 ## Periods modulo p
 

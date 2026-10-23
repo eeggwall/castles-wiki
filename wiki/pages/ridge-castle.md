@@ -5,7 +5,7 @@ summary: The ridge castles of height h are the castles of height h whose neighbo
 tags: [concept, castle, castle-type, ridge-castle, metallic-mean, transfer-matrix, growth-constant, golden, silver, bronze, fibonacci, parity, blocks]
 sources: [project-euler-502]
 created: 2026-10-03
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # Ridge castle
@@ -81,8 +81,6 @@ A_ridge(w, 5)  =  F_{3w+2} − 4·3^{w−1}.
 | 4 | `1, 7, 31, 118, 421, 1453, 4924, 16513, 55039, 182782` |
 | 5 | `1, 9, 53, 269, 1273, 5793, 25741, 112645, 487985, 2099577` |
 | 6 | `1, 11, 81, 516, 3061, 17421, 96566, 525851, 2828221, 15076556` |
-
-[[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of these rows.
 
 ## Growth
 

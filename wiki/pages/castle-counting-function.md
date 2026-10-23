@@ -5,7 +5,7 @@ summary: The castle counts A(w, h) = h^w − (h−1)^w, A^e(w, h) and A^o(w, h) 
 tags: [concept, castle, counting-function, project-euler]
 sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-10-22
+updated: 2026-10-23
 ---
 
 # Castle counts A(w,h), A^e(w,h) and A^o(w,h)
@@ -45,7 +45,7 @@ The [[castle-counting-formula](pages/castle-counting-formula.md)] gives `A^e(w, 
 
 - For each height `h`, `A(·, h)` is a difference of powers: `A000225` (`2^n − 1`) at `h = 2`, `A001047` (`3^n − 2^n`) at `h = 3`, `A005061` (`4^n − 3^n`), `A005060` (`5^n − 4^n`) and `A005062` (`6^n − 5^n`) at `h = 4, 5, 6`.[^7]
 - At height 2, `A^e(·, 2)` and `A^o(·, 2)` are shifts of `A038505` and `A038503` (section *Height 2*).
-- [[new-sequence-fw3](pages/new-sequence-fw3.md)] treats the row `A^e(·, 3)`, and [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of the other rows.
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] treats the row `A^e(·, 3)`.
 
 ### Height 2
 
@@ -56,7 +56,7 @@ A^e(w, 2)  =  Σ_{j≥0} C(w+1, 4j+2)  =  A038505(w+1)
 A^o(w, 2)  =  Σ_{j≥1} C(w+1, 4j)    =  A038503(w+1) − 1
 ```
 
-`A038503(n)` and `A038505(n)` are the sums of `C(n, j)` over `j ≡ 0` and over `j ≡ 2 (mod 4)`, two of the four sums of every fourth binomial coefficient ([[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]). Both OEIS entries carry the castle reading ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]). At width 3, `A^e(3, 2) = C(4, 2) = 6` and `A^o(3, 2) = C(4, 4) = 1`.
+`A038503(n)` and `A038505(n)` are the sums of `C(n, j)` over `j ≡ 0` and over `j ≡ 2 (mod 4)`, two of the four sums of every fourth binomial coefficient ([[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]). [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] proves both readings. At width 3, `A^e(3, 2) = C(4, 2) = 6` and `A^o(3, 2) = C(4, 4) = 1`.
 
 ## Appearances in Sources
 

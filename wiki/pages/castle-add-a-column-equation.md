@@ -5,7 +5,7 @@ summary: "Adding a first column to a castle and recording its height s gives the
 tags: [analysis, castle, polyomino, column-convex, add-a-column, functional-equation, q-shift, area, blocks, ferrers, stack-polyomino, parallelogram-polyomino, transfer-matrix, oeis, parity]
 sources: [column-convex-polygon-enumeration, counting-horizontally-convex-polyominoes]
 created: 2026-09-23
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # Castles in the add-a-column framework
@@ -98,8 +98,6 @@ With the block sign, a Ferrers castle of height `h` has sign `(−1)^h`, and a r
 A^e − A^o over monotone castles of area n  =  2(−1)^n A000700(n) − Σ_{d|n} (−1)^d
                                            =  −1, 0, 0, 1, 0, 2, 0, 2, −1, 4, −2, 4, −4, 6, −4, 7, −8, 10, −10, 12      (n = 1..20)
 ```
-
-[[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of this row.
 
 ## Related
 

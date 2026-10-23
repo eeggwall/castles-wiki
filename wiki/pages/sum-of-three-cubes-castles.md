@@ -5,7 +5,7 @@ summary: Which castle counts are sums of three cubes. With signed cubes, under H
 tags: [analysis, castle, sum-of-cubes, mod-9, periodicity, kitamasa, closed-form, height-2, perfect-numbers, taxicab, booker-sutherland, worked-example, computation]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502]
 created: 2026-09-20
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # Sum of three cubes castles
@@ -90,7 +90,7 @@ A^o(3, h)  =  5 C(h, 2) + 1    (h odd)          C(h, 2)           (h even)
 A(3, h)    =  6 C(h, 2) + 1  =  h^3 − (h−1)^3
 ```
 
-checked against the dynamic program for `h ≤ 200`.[^exec] At odd height the even-block counts are `A^e(3, 2m+1) = m(2m+1) = 0, 3, 10, 21, 36, 55, …`, the second hexagonal numbers A014105, every other triangular number of A000217. At even height they are `A^e(3, 2m) = 10m^2 − 5m + 1 = 5 m(2m − 1) + 1 = 6, 31, 76, 141, 226, 331, …`, five times a hexagonal number of A000384 plus one. The other half of the odd column, `A^o(3, 2n+1) = 10n^2 + 5n + 1 = 1, 16, 51, 106, 181, 276, …`, is A080860, and `A^e(3, 2m)` is the same quadratic at `n = −m`.[^2] [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of these columns.
+checked against the dynamic program for `h ≤ 200`.[^exec] At odd height the even-block counts are `A^e(3, 2m+1) = m(2m+1) = 0, 3, 10, 21, 36, 55, …`, the second hexagonal numbers A014105, every other triangular number of A000217. At even height they are `A^e(3, 2m) = 10m^2 − 5m + 1 = 5 m(2m − 1) + 1 = 6, 31, 76, 141, 226, 331, …`, five times a hexagonal number of A000384 plus one. The other half of the odd column, `A^o(3, 2n+1) = 10n^2 + 5n + 1 = 1, 16, 51, 106, 181, 276, …`, is A080860, and `A^e(3, 2m)` is the same quadratic at `n = −m`.[^2]
 
 Triangular numbers are `0, 1, 3, 6 (mod 9)`, never `4` or `5`. And `5 C(h, 2) + 1 ≡ 4 (mod 9)` exactly when `C(h, 2) ≡ 6 (mod 9)`, that is `h ≡ 4, 6 (mod 9)`, while `5 C(h, 2) + 1 ≡ 5` would need `C(h, 2) ≡ 8`, which never happens. Therefore
 
@@ -238,7 +238,7 @@ Over all cells with `A ≤ 10^9` and `w ≥ 3`:[^exec]
 - [[kitamasa](pages/kitamasa.md)] and [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the reduction of `x^L` modulo `char_k`, which works over `Z/9`.
 - [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] and [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - `A^e(w, 2) = A038505(w + 1)`.
 - [[castle-snippets](pages/castle-snippets.md)] - `all_castles` and the block count for brute-force checks.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] and [[oeis-index](pages/oeis-index.md)] - the OEIS status of the width-3 columns, and the A-numbers cited here.
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] and [[oeis-index](pages/oeis-index.md)] - the width-3 columns, and the A-numbers cited here.
 
 ## Footnotes
 

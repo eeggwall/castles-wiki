@@ -5,7 +5,7 @@ summary: A weakly unimodal composition of n weakly increases and then weakly dec
 tags: [concept, composition, unimodal, oeis, castle, area]
 sources: [oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # Weakly unimodal composition
@@ -36,7 +36,7 @@ cev(n)  =  0, 1, 2, 5, 8, 15, 24, 41, 64, 105, 162, 255, …
 cod(n)  =  1, 1, 2, 3, 7, 12, 23, 38, 66, 104, 168, 257, …        (n = 1, 2, 3, …)
 ```
 
-At `n = 4`, `cev(4) = 5` counts the castles `(2, 2)`, `(1, 2, 1)`, `(2, 1, 1)`, `(1, 1, 2)` and `(4)`, and `cod(4) = 3` counts `(1, 1, 1, 1)`, `(3, 1)` and `(1, 3)`. The OEIS status of `cev` and `cod` is on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].
+At `n = 4`, `cev(4) = 5` counts the castles `(2, 2)`, `(1, 2, 1)`, `(2, 1, 1)`, `(1, 1, 2)` and `(4)`, and `cod(4) = 3` counts `(1, 1, 1, 1)`, `(3, 1)` and `(1, 3)`.
 
 ## Appearances in Sources
 

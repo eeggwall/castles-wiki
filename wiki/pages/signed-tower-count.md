@@ -5,7 +5,7 @@ summary: P(k, L) = Σ (−1)^blocks over the towers of height at most k on a bas
 tags: [concept, castle, signed-count, c-finite, oeis, generating-functions]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-representations]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # Signed tower count P(k,L)
@@ -95,9 +95,9 @@ For fixed `L`, `P(·, L)` also satisfies a linear recurrence in `k`. For every `
 
 ## OEIS
 
-- `A146559`, the real parts of `(1+i)^n`, is the row `k = 1`: `P(1, L) = A146559(L+1)`. The entry carries a comment on castles of height 2 and the formula `a(n) = A038503(n) − A038505(n)` ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]).[^6]
+- `A146559`, the real parts of `(1+i)^n`, is the row `k = 1`: `P(1, L) = A146559(L+1)`, and `A146559(n) = A038503(n) − A038505(n)` ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]).[^6]
 - `A009545`, the imaginary parts of `(1+i)^n`, gives `P_odd(1, L) = −A009545(L)` and `P(1, L) = A009545(L+3)/2`.
-- The OEIS status of the rows `k ≥ 2` is recorded on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)].
+-
 
 ## Appearances in Sources
 
@@ -130,7 +130,7 @@ For fixed `L`, `P(·, L)` also satisfies a linear recurrence in `k`. For every `
 [^3]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L333-340 - "P_k = (2 - P_{k-1})/(1 - 2x + x P_{k-1}), P_0 = 1/(1-x)" and "num_k = 2 den_{k-1} - num_{k-1}, den_k = den_{k-1}(1-2x) + x num_{k-1}".
 [^4]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L31-37 - "The general P(k,·) family is C-finite of order k+1: P(1): x^2 - 2x + 2 (eigenvalues 1 +/- i) P(2): x^3 - 3x^2 + 4x - 4 (= (x-2)(x^2-x+2)) ... P(5): x^6 - 6x^5 + 18x^4 - 32x^3 + 48x^2 - 32x + 32 (constant term = (-1)^{k-1} 2^k; leading coeff -(k+1))".
 [^5]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Recursion for P(k, L)" L94-108 - "Split the strings by their last bit ... Appending a 0 never changes the run count; appending a 1 starts a new run exactly when the previous bit is 0", "a_L = a_{L-1} + b_{L-1}, b_L = -a_{L-1} + b_{L-1} with a_1 = 1, b_1 = -1", "P(1, L) = Re((1+i)^{L+1})".
-[^6]: https://oeis.org/A146559 (read 2026-10-16) - "Expansion of (1-x)/(1 - 2*x + 2*x^2)", "(1+i)^n = a(n) + A009545(n)*i", "a(n) = Re( (1+i)^n )", "a(n) = A038503(n) - A038505(n)", and the comment "Among the castle polyominoes of width n-1 and reaching height 2, a(n) - 1 is the number with an odd number of blocks minus the number of those with an even number of blocks, for n >= 2".
+[^6]: https://oeis.org/A146559 (read 2026-10-16) - "Expansion of (1-x)/(1 - 2*x + 2*x^2)", "(1+i)^n = a(n) + A009545(n)*i", "a(n) = Re( (1+i)^n )" and "a(n) = A038503(n) - A038505(n)".
 [^7]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L21-29 - "A009545 is the *imaginary* part of (1+i)^n ... P(1,L) = Re((1+i)^{L+1}) = A146559(L+1) ... A009545(n) = Im((1+i)^n) (the companion, not P)".
 [^8]: raw/oeis-pe502/xrefs/A146559-signed.md §"Identity (verified)" L23-41 - "a(n) - 1 = odd(n-1, 2) - F(n-1, 2) for n >= 2", "Verified by brute force for w = n-1 = 1..14", with the table of values from `n = 2` to `n = 13`.
 [^9]: https://oeis.org/A038503 and https://oeis.org/A038505 (read 2026-10-16) - "Sum of every 4th entry of row n in Pascal's triangle, starting at \"n choose 0\"" and "... starting at binomial(n,2)".

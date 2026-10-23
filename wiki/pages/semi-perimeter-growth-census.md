@@ -5,7 +5,7 @@ summary: Count castle strips (a 0/1 rule saying which column heights may follow 
 tags: [analysis, castle, castle-strip, semi-perimeter, perimeter, generating-function, transfer-matrix, growth-constant, census, exhaustive-search, min-height, metallic-means, plastic-number, supergolden, golden-ratio, silver-ratio, bronze, oeis, sympy, verification]
 sources: [project-euler-502]
 created: 2026-10-11
-updated: 2026-10-22
+updated: 2026-10-23
 ---
 
 # Growth constants by semi-perimeter
@@ -93,7 +93,7 @@ Silver semi-perimeter growth first appears at height 5: of the `2^25` rules, 601
 
 - **height 5; no column of height 1 next to one of height 2, and no column of height 4 next to one of height 5.** Example: `(3, 5, 3, 1, 4)`, semi-perimeter `5 + 3 + 2 + 3 = 13`.
 
-Its denominator is `(1 − x)² (1 + x²)(1 − 2x − x²)(1 − x + x² + x³)`, up to sign, and its castles of height 5 number `1, 7, 26, 74, 196, 525, 1421, 3809, 10040, 26102, 67250` at `s = 6, …, 16` ([[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of the row). The ratios of consecutive counts approach silver slowly (`2.426` near `s = 56`), because the castles of this rule that stay below height 5 have growth constant `2.3138` by semi-perimeter, close to silver.
+Its denominator is `(1 − x)² (1 + x²)(1 − 2x − x²)(1 − x + x² + x³)`, up to sign, and its castles of height 5 number `1, 7, 26, 74, 196, 525, 1421, 3809, 10040, 26102, 67250` at `s = 6, …, 16`. The ratios of consecutive counts approach silver slowly (`2.426` near `s = 56`), because the castles of this rule that stay below height 5 have growth constant `2.3138` by semi-perimeter, close to silver.
 
 ## Related Concepts
 

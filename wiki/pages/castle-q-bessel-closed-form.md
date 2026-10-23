@@ -2,10 +2,10 @@
 title: Castles by width, blocks and area - a sequence of parallelograms over q-Bessel series
 category: Analyses
 summary: "Graded by width u, blocks x and area q, the tower grammar gives E_∞(u) = B(u)/(1 − uB(u)) with B(u) = 1 − x + x E_∞(uq), where B(u) − 1 counts the castles. The recursion for B is a Möbius map, so B = N/M with explicit q-series N and M, and castles = N/M − 1 = Π/(1 − x − Π), where Π = Y J_1/J_0 is the parallelogram-polyomino series at width (1 − x)u and height x. Checked as an exact identity through area 13 and through area 12 against two enumerations. At x = −1, u = 1 the signed count of castles by area is N(q)/M(q) − 1 with M analytic in |q| < 1, so it is meromorphic there; the zero q_0 = −0.6158281351848... of M gives the growth constant and prefactor to 30 digits, and the next zero q_1 = −0.8202719776 gives the correction O(0.7508^n). Counted by descents, towers of width w give q-binomials in the cells with no descent and with w − 1 descents, and for w = 3, 4 the other cells are not multiples of the matching q-binomial."
-tags: [analysis, castle, area, blocks, perimeter, q-analog, q-series, q-bessel, q-catalan, parallelogram-polyomino, grammar, functional-equation, q-shift, parity, sign, asymptotics, narayana, descents, q-binomial, novel-candidate]
+tags: [analysis, castle, area, blocks, perimeter, q-analog, q-series, q-bessel, q-catalan, parallelogram-polyomino, grammar, functional-equation, q-shift, parity, sign, asymptotics, narayana, descents, q-binomial]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes, prellberg-brak-1995-cluster-models, column-convex-polygon-enumeration, project-euler-502-representations, aocp-generating-partitions]
 created: 2026-09-23
-updated: 2026-10-22
+updated: 2026-10-23
 ---
 
 # Castles by width, blocks and area

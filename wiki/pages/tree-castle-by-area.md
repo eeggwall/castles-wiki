@@ -5,7 +5,7 @@ summary: Tree skylines (no two neighboring columns of height at least 2) of heig
 tags: [analysis, castle, tree-castle, area, generating-function, q-analogue, oeis, narayana-cows, plastic-number, supergolden, fibonacci, sympy, verification]
 sources: [tetali-1998-unique-tournaments]
 created: 2026-09-17
-updated: 2026-10-17
+updated: 2026-10-23
 ---
 
 # Tree castle by area
@@ -72,7 +72,7 @@ Write `D(q)` for the denominator of Equation (3) in lowest terms and `d` for its
 | 8 | `1, 2, 4, 7, 12, 21, 37, 65, 113, 197, 345, 604, 1056, 1846` | | `x⁹ − x⁸ − x⁶ − x⁵ − ⋯ − 1` | `1.748624…` |
 | ∞ | `1, 2, 4, 7, 12, 21, 37, 65, 114, 200, 351, 616, 1081, 1897` | `A005251(A + 2)` | `x³ − 2x² + x − 1` | `ψ² = 1.754878…` |
 
-Every entry agrees with brute-force enumeration for `A ≤ 12` and with Equation (3) for `A ≤ 14`, and the OEIS identifications hold for every listed term of each entry.[^3] [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of the row `h = 8`.
+Every entry agrees with brute-force enumeration for `A ≤ 12` and with Equation (3) for `A ≤ 14`, and the OEIS identifications hold for every listed term of each entry.[^3]
 
 **Table 2.** Tree castles of height `h` with area `A`, the coefficient of `q^A` in `G_h(q) − G_{h−1}(q)`:
 

@@ -113,7 +113,7 @@ Lindgren, Ngo and Segroves call the second family "the standard q-analogue" of t
 
 ### 1. Castles of height 3 by area (on the spine)
 
-`A000073(A + 2) − F_{A+1} = 1, 2, 5, 11, 23, 47, 94, 185, …` from area 3, growing like `τ` ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]).[^exec] The skylines of height at most 3 by area, `A000073(A + 2)`, are computed by `bounded_castles_by_area` on [[castle-snippets-strips](pages/castle-snippets-strips.md)], which also shows that `nearest_metallic` returns golden for them at distance `0.222`, since `τ` is cubic and every `δ_a` quadratic. The OEIS status is on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)], the growth type "tribonacci by area" on [[castle-classification-growth](pages/castle-classification-growth.md)] and [[castle-classification](pages/castle-classification.md)], and the entropy `log₂ τ = 0.879` bits per cell on [[castle-entropy](pages/castle-entropy.md)].
+`A000073(A + 2) − F_{A+1} = 1, 2, 5, 11, 23, 47, 94, 185, …` from area 3, growing like `τ` ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]).[^exec] The skylines of height at most 3 by area, `A000073(A + 2)`, are computed by `bounded_castles_by_area` on [[castle-snippets-strips](pages/castle-snippets-strips.md)], which also shows that `nearest_metallic` returns golden for them at distance `0.222`, since `τ` is cubic and every `δ_a` quadratic. The growth type "tribonacci by area" is on [[castle-classification-growth](pages/castle-classification-growth.md)] and [[castle-classification](pages/castle-classification.md)], and the entropy `log₂ τ = 0.879` bits per cell on [[castle-entropy](pages/castle-entropy.md)].
 
 ### 2. The ceiling by area at height 3 (on the spine)
 

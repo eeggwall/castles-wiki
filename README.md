@@ -185,7 +185,7 @@ authoritative spec.
 - **`wiki/pages/oeis-index.md` is generated** too — `bin/generate-oeis-index.py` scans every
   page for OEIS A-numbers and lists the citing pages with mention counts; the role annotations
   it merges in live in `config/oeis-annotations.tsv`. It is committed (other pages link to it),
-  and the pre-commit hook blocks a commit that leaves it stale. The hand-curated novelty
+  and the pre-commit hook blocks a commit that leaves it stale. The hand-curated sequence
   catalogue is a normal page, `castle-sequence-catalogue`.
 - **The git history is the operation log.** Each operation is one commit with a `Wiki-Op:`
   trailer (`init`, `ingest`, `update`, …); render the human log with

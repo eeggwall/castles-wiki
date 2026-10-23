@@ -5,7 +5,7 @@ summary: Bousquet-Mélou's 1996 generating functions for stack, parallelogram, d
 tags: [analysis, polyomino, column-convex, directed-column-convex, area, perimeter, parity, sign, q-series, castle, stack-polyomino, parallelogram-polyomino, directed-convex, oeis, asymptotics, verification]
 sources: [column-convex-polygon-enumeration]
 created: 2026-09-23
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # The column-convex ladder by area
@@ -53,7 +53,7 @@ The castle row is the signed count of [[castle-row-raising-equation](pages/castl
 | directed column-convex | `−0.5780051505` | `1.7300884` | `−0.009058018` | `2.61803` |
 | column-convex | `−0.4449266995` | `2.2475612` | `4.12460·10⁻⁵` | `3.20557` |
 
-For directed column-convex polyominoes, `q_0` is a zero of Theorem 3.6's denominator `L_0(1)`, and the next poles are a complex pair of modulus `0.780`. For column-convex polyominoes, `q_0` is a zero of Theorem 4.8's `1 + W + yX`, and the next poles are a complex pair of modulus `0.594`; with a small constant and a second pole close behind, `S_cc(n) q_0^n` settles to `4.1246·10⁻⁵` only from about `n = 70`. On all three rungs the signed count grows more slowly than the unsigned count, so the even and odd weights balance to leading order. The ratios of the two growth constants are `1.624/2 = 0.81` for castles, `1.730/2.618 = 0.66` for directed column-convex and `2.248/3.206 = 0.70` for column-convex polyominoes. [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of the signed rows.
+For directed column-convex polyominoes, `q_0` is a zero of Theorem 3.6's denominator `L_0(1)`, and the next poles are a complex pair of modulus `0.780`. For column-convex polyominoes, `q_0` is a zero of Theorem 4.8's `1 + W + yX`, and the next poles are a complex pair of modulus `0.594`; with a small constant and a second pole close behind, `S_cc(n) q_0^n` settles to `4.1246·10⁻⁵` only from about `n = 70`. On all three rungs the signed count grows more slowly than the unsigned count, so the even and odd weights balance to leading order. The ratios of the two growth constants are `1.624/2 = 0.81` for castles, `1.730/2.618 = 0.66` for directed column-convex and `2.248/3.206 = 0.70` for column-convex polyominoes.
 
 **The paper's stacks lie on their side.** Lemma 2.4 builds every stack polygon of width at least 2 by construction A, which extends the new first column both above and below the old one.[^4] So the paper's stacks are nested columns shrinking away from a base column on the left, a quarter turn from the upright stacks of [[convex-castle](pages/convex-castle.md)]. The area count is the same, but `v(P)` of the paper's stack is the width of the upright stack, so at `y = −1` Lemma 2.5 signs stacks by width, which has no Project Euler 502 meaning. The stacks signed by height, which is the block sign of a convex castle, are on [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)].
 

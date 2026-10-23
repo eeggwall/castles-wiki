@@ -5,7 +5,7 @@ summary: The sandpile groups of the 33,150 castles with at most 16 cells (mirror
 tags: [analysis, castle, sandpile, critical-group, census, isospectral, laplacian, adjacency, smith-normal-form, cyclic-group, tree-castle, block-graph, sink-model, tide-model, numpy, sympy, verification]
 sources: [rossin-2000-group-of-a-sandpile, dhar-ruelle-sen-verma-1995-algebraic-aspects, dhar-1990-self-organized-critical-sandpile, chau-cheng-1991-deterministic-soc-sandpile, project-euler-502-castle-factoring]
 created: 2026-09-26
-updated: 2026-10-16
+updated: 2026-10-23
 ---
 
 # Sandpile census - every castle to 16 cells, in the sink and tide models
@@ -47,7 +47,7 @@ Put the boundary cycle of each `2 × 2` block as a column of the cycle matrix `C
 | 16 | 16,512 | 2,964 | 14,329 | 48 | 15,028 | 113 |
 | **1-16** | **33,150** | **6,963** | **29,439** | | **30,617** | |
 
-Every entry agrees with a recomputation from the block matrices.[^4] The trivial column is the same in both models, because both groups are trivial exactly on the tree castles ([[sandpile-group](pages/sandpile-group.md)], Part 3). It is `A005683` term for term: the tree castles of `n` cells number `A005251(n+2)`, the palindromic ones are the Padovan numbers `A000931(n+6)`, and the castles up to mirror image number `(A005251(n+2) + A000931(n+6))/2`.[^4] [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of the cyclic and distinct-group columns.
+Every entry agrees with a recomputation from the block matrices.[^4] The trivial column is the same in both models, because both groups are trivial exactly on the tree castles ([[sandpile-group](pages/sandpile-group.md)], Part 3). It is `A005683` term for term: the tree castles of `n` cells number `A005251(n+2)`, the palindromic ones are the Padovan numbers `A000931(n+6)`, and the castles up to mirror image number `(A005251(n+2) + A000931(n+6))/2`.[^4]
 
 ### The commonest sink groups
 
@@ -234,7 +234,7 @@ def cospectral_groups(castles, operator):  # sets of non-isomorphic castles shar
 - [[castle-avalanches](pages/castle-avalanches.md)] - random dropping in both models, computed from the same inverse reduced Laplacian.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - a seminar following the 16-cell castle `(3, 2, 1, 2, 2, 1, 2, 3)`, silver by spectrum, through both models.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the other spectra of castles.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the OEIS status of the census columns.
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the census columns.
 
 ## Appearances in Sources
 
