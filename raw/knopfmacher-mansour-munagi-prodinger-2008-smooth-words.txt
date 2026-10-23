@@ -1,0 +1,739 @@
+                                                  SMOOTH WORDS AND CHEBYSHEV POLYNOMIALS
+
+                                                  ARNOLD KNOPFMACHER, TOUFIK MANSOUR, AUGUSTINE MUNAGI,
+                                                                 AND HELMUT PRODINGER
+
+
+
+
+arXiv:0809.0551v1 [math.CO] 3 Sep 2008
+                                                Abstract. A word σ = σ1 · · · σn over the alphabet [k] = {1, 2, . . . , k} is said to be
+                                                smooth if there are no two adjacent letters with difference greater than 1. A word σ
+                                                is said to be smooth cyclic if it is a smooth word and in addition satisfies |σn − σ1 | ≤
+                                                1. We find the explicit generating functions for the number of smooth words and
+                                                cyclic smooth words in [k]n , in terms of Chebyshev polynomials of the second kind.
+                                                Additionally, we find explicit formula for the numbers themselves, as trigonometric
+                                                sums. These lead to immediate asymptotic corollaries. We also enumerate smooth
+                                                necklaces, which are cyclic smooth words that are not equivalent up to rotation.
+
+                                         2000 Mathematics Subject Classification: 68R05, 05A05, 05A15, 05A16
+
+                                         Keywords: smooth word, smooth cyclic word, smooth necklace, Chebyshev polynomial,
+                                         generating function, tridiagonal matrix.
+
+                                                                                1. Introduction
+
+                                         Let [k]n be the set of all words of length n over the alphabet [k] = {1, 2, . . . , k}. In
+                                         the past decade, many research papers have been devoted to the study of enumeration
+                                         problems on the set [k]n . For instance, the enumeration of words which contain a
+                                         prescribed number of a given set of strings as substrings is a classical problem in
+                                         combinatorics. This problem can, for example, be attacked using the transfer matrix
+                                         method, see [6, Section 4.7] and [2]. Régnier and Szpankowski [4] used a combinatorial
+                                         approach to study the frequency of occurrences of certain strings (which they also call
+                                         a “pattern”) in a random word, where overlapping copies of the strings are counted
+                                         separately. Burstein and Mansour [1] have considered the enumeration of elements
+                                         of [k]n that satisfy certain restrictions, where the restrictions may be characterized in
+                                         terms of pattern avoidance.
+                                         In this paper we consider the enumeration of a special class of words, namely the smooth
+                                         words. Intuitively the name “smooth” indicates that one can move between adjacent
+                                         letters of a word with at most a very slight “bump.” The precise definition follows.
+                                         A word σ ∈ [k]n is said to be smooth if it avoids a (contiguous) string of the form ij
+                                         where |i − j| > 1. For example, there are 7 smooth words in [3]2 , namely 11, 12, 21, 22,
+                                         23, 32 and 33. A word σ is said to be smooth cyclic if it is a smooth word and in addition
+                                         satisfies σn − σ1 ∈ {0, 1, −1}. Clearly, each word in [k]n , k = 1, 2, is smooth cyclic (and
+                                         thus also smooth). We denote the number of smooth words (respectively, smooth cyclic
+                                         words) in [k]n by swn,k (respectively, scwn,k ). Table 1 shows the numbers of smooth
+                                         words and smooth cyclic words of length n over the alphabet [k] for 0 ≤ n ≤ 11 and
+                                         3 ≤ k ≤ 7.
+                                                                                           1
+2             A. KNOPFMACHER, T. MANSOUR, A. MUNAGI, AND H. PRODINGER
+
+        n     0   1   2     3  4   5    6   7            8        9      10       11
+      swn,3   1   3   7    17 41 99 239 577             1393    3363    8119    19601
+     scwn,3   1   3   7    15 35 83 199 479             1155    2787    6727    16239
+      swn,4   1   4   10   26 68 178 466 1220           3194    8362    21892   57314
+     scwn,4   1   4   10   22 54 134 340 872            2254    5854    15250   39802
+      swn,5   1   5   13   35 95 259 707 1931           5275    14411   39371   107563
+     scwn,5   1   5   13   29 73 185 481 1265           3361    8993    24193   65345
+      swn,6   1   6   16   44 122 340 950 2658          7442    20844   58392   163594
+     scwn,6   1   6   16   36 92 236 622 1658           4468    12132   33146   90998
+      swn,7   1   7   19   53 149 421 1193 3387         9627    27383   77923   221805
+     scwn,7   1   7   19   43 111 287 763 2051          5575    15271   42099   116651
+     Table 1. Numbers of smooth words and smooth cyclic words swn,k , scwn,k .
+
+
+
+We will find the explicit generating functions for swn,k and scwn,k in terms of Chebyshev
+polynomials of the second kind. Additionally, we find explicit formulæ for the numbers
+themselves, in terms of certain trigonometric expressions. They allow for immediate
+asymptotic corollaries.
+Chebyshev polynomials of the second kind are defined by
+                                                sin(r + 1)θ
+                                 Ur (cos θ) =
+                                                   sin θ
+for r ≥ 0. Evidently, Ur (x) is a polynomial of degree r in x with integer coefficients.
+For example, U0 (x) = 1, U1 (x) = 2x, U2 (x) = 4x2 − 1, and in general,
+
+                              Ur (x) = 2xUr−1 (x) − Ur−2 (x).                            (1.1)
+
+Chebyshev polynomials of the first kind are defined by Tr (cos θ) = cos(rθ) which is
+equivalent to Tr (x) = 21 (Ur (x) − Ur−2 (x)). Chebyshev polynomials were invented for
+the needs of approximation theory, but are also widely used in various other branches
+of mathematics, including algebra, combinatorics, and number theory (see [5]).
+Two words σ = σ1 · · · σn and π = π1 · · · πn in [k]n are said to be rotation equivalent
+if there exists an index i, 1 ≤ i ≤ n such that πi πi+1 · · · πn π1 π2 · · · πi−1 = σ. For
+example, the words 122, 212 and 221 are rotation equivalent. The set of necklaces of
+length n over the alphabet [k] is the set of words in [k]n up to the rotation-equivalence.
+For example, if k = 2 and n = 3 there are 4 necklaces, namely, 111, 122 (212 and 221
+are rotation equivalent), 112 (121 and 211 are rotation equivalent) and 222. Using our
+results on smooth cyclic words, we also determine the number of smooth necklaces in
+[k]n .
+The paper is organized as follows. In Section 2 we obtain the generating function for
+the number swn,k of smooth words, followed shortly by the explicit enumeration formula
+(Theorems 2.2 and 2.4). The asymptotic growth rate is also obtained in this section.
+In Section 3 we obtain the corresponding enumeration results for smooth cyclic words.
+Lastly, Section 4 deals with the enumeration of smooth necklaces.
+                      SMOOTH WORDS AND CHEBYSHEV POLYNOMIALS                                  3
+
+                           2. Enumeration of Smooth words
+
+Let swk (x) denote the generating function for the number of smooth words over [k]:
+                                          X
+                                swk (x) =     swn,k xn .
+                                                   n≥0
+
+In order to obtain a formula for swk (x), we introduce the following notations. Let
+swk (x | i1 i2 · · · is ) be the generating function for the number of smooth words σ1 · · · σn
+of length n over the alphabet [k] such that σ1 · · · σs = i1 · · · is .
+Lemma 2.1. The generating function swk (x | i) satisfies
+                                                                                
+             swk (x | i) = x + x swk (x | i − 1) + swk (x | i) + swk (x | i + 1) ,
+for all 1 ≤ i ≤ k, where swk (x | i) = 0 if i 6∈ [k].
+
+Proof. Let σ be any nonempty smooth word. If σ contains exactly one letter then
+σ1 ∈ [k]. Otherwise, the second letter of σ = iσ2 · · · σn is either i − 1, i or i + 1. Thus,
+in terms of generating functions we have that
+                                                                               
+            swk (x | i) = x + x swk (x | i − 1) + swk (x | i) + swk (x | i + 1) ,
+for all 1 ≤ i ≤ k, which completes the proof.                                                
+
+Rewriting Lemma 2.1 as a matrix system we obtain
+                               swk (x | 1)      1
+                                            
+
+                          A        .
+                                    ..      =  ...  x,                                (2.1)
+                               swk (x | k)      1
+where A = (aij ) is a k × k matrix defined by aii = 1 − x, ai(i+1) = a(i+1)i = −x, and
+aij = 0 for all |i − j| > 1. Clearly, A is a tridiagonal matrix.
+Applying a result of Usmani [8]1 on the inversion of A we get
+                                   (
+                                     xj−i θi−1 θk−j /θk i ≤ j,
+                        (A−1 )ij =
+                                     xi−j θj−1 θk−i /θk i > j,
+where θi satisfies the recurrence relation θi = (1 − x)θi−1 − x2 θi−2 , with the initial
+conditions θ0 = 1 and θ1 = 1 − x. It follows from (1.1) that the solution is given by
+      i    1−x
+θi = x Ui 2x . Consequently
+                                 
+                                   Ui−1 1−x      Uk−j 1−x
+                                                          
+                                          2x            2x
+                                 
+                                 
+                                 
+                                                 1−x
+                                                            i ≤ j,
+                                         xU
+                                 
+                                            k    2x
+                      (A−1 )ij =         1−x
+                                                      1−x
+                                                                                 (2.2)
+                                  U j−1  2x
+                                                 U k−i
+                                                      2x    i > j.
+                                 
+                                 
+                                         xU 1−x
+                                 
+                                 
+                                                    k    2x
+Thus the solution of (2.1) is
+                                   swk (x | 1)         1
+                                                     
+                                        ..         −1  .. 
+                                        .      =A      . x.
+                                     swk (x | k)              1
+  1Equivalent results have been published earlier, for instance in [3].
+4               A. KNOPFMACHER, T. MANSOUR, A. MUNAGI, AND H. PRODINGER
+
+This implies that the generating function swk (x | i) is given by
+                                             i−2                   k−i       
+                               1              X                     X
+               swk (x | i) =         Uk−i (t)     Uj (t) + Ui−1 (t)     Uj (t) ,
+                             Uk (t)           j=0                   j=0
+
+where t = 1−x
+           2x
+              .
+In order to simplify the right-hand side we use the identity
+                                   p
+                                   X                Up+1 (t) − Up (t) − 1
+                                         Uj (t) =                         ,                      (2.3)
+                                   j=0
+                                                          2(t − 1)
+
+which may be proved easily from the fact that
+            p
+            X                 sin((p + 1)t)(cos(t) − 1) + sin(t) cos((p + 1)t) − sin(t)
+                  sin(jt) =
+            j=0
+                                                    2(cos(t) − 1)
+
+and Tn (x) = 21 (Un (x) − Un−2 (x)).2
+Thus
+                          1
+    swk (x | i) =                  [Ui−1 (t)Uk+1−i (t) − Uk−i (t)Ui−2 (t) − Uk−i (t) − Ui−1 (t)] .
+                    2(t − 1)Uk (t)
+Now apply the identity
+                                   Ui−j (t) − tUi−j−1 (t) − Ui+j+2 (t) + tUi+j+1 (t)
+                  Ui (t)Uj (t) =                                                     ,           (2.4)
+                                                       2(1 − t2 )
+to obtain
+                                                                                             
+                    1          Uk (t) − tUk−1 (t) − Uk+2 (t) + tUk+1 (t)
+swk (x | i) =                                                            − Uk−i (t) − Ui−1 (t) ,
+              2(t − 1)Uk (t)                   2(1 − t2 )
+which, by (1.1), is equivalent to
+                                           1
+                     swk (x | i) =                  [Uk (t) − Uk−i (t) − Ui−1 (t)] .             (2.5)
+                                     2(t − 1)Uk (t)
+
+Now, using swk (x) = 1 + ki=1 swk (x | i) and again (2.3), we obtain an explicit formula
+                         P
+for the generating function swk (x).
+Theorem 2.2. The generating function swk (x) for the number of smooth words of
+length n over the alphabet [k] is given by
+                                                  2x2 1 + Uk−1 1−x
+                                                                   
+                            x(k − (3k + 2)x)                    2x
+             swk (x) = 1 +                   +                   .
+                                (1 − 3x)2      (1 − 3x)2 Uk 1−x
+                                                             2x
+
+
+It is easy to see that each word in [k]n , k = 1, 2, is a smooth word. For small values of
+k, Theorem 2.2 gives
+    2The verification of such identities is a priori trivial and can be done by a computer, since, upon
+rewriting the trigonometric functions via Euler’s formulæ, one only has to sum some finite geometric
+series.
+                    SMOOTH WORDS AND CHEBYSHEV POLYNOMIALS                               5
+
+                    1+x                                                 n
+      • sw3 (x) = 1−2x−x 2 , that is, the number of smooth words in [3]   is given by
+                              1       √ n+1 1        √ n+1
+                                 1+ 2        + 1− 2          .
+                              2                2
+                   1+x−x2
+                                                                        n
+      • sw4 (x) = 1−3x+x 2 , that is, the number of smooth words in [4]   is given by
+                             √   2n+1            √  2n+1
+                    2 1+ 5                  2 1− 5
+                   √                     −√                  = 2F2n+1 .
+                     5       2               5     2
+                             2
+                   1+2x−2x −2x     3
+                                                                                n
+     • sw5 (x) = (1−x)(1−2x−2x 2 ) , that is, the number of smooth words in [5]   is given
+       by              √                           √
+                    2+ 3           √ n+1 2 − 3           √ n+1 1
+                            1+ 3            +         1− 3       + .
+                      6                           6                 3
+In order to obtain an explicit formula for the number of smooth words of length n over
+the alphabet [k] we need the following lemma.
+Lemma 2.3. Let m ≥ 1. Then
+                                            m          2    jπ
+                                       1 X (−1)j+1 sin m+1
+                                                                    
+                              1
+                                   =                     jπ
+                                                             
+                            Um (x)   m + 1 j=1 x − cos m+1
+and
+                                        m                2   jπ
+                                   1 X (1 + (−1)j+1 ) sin m+1
+                                                                
+                  1 + Um−1 (x)
+                               =                       jπ
+                                                                 .
+                     Um (x)      m + 1 j=1  x − cos m+1
+
+Proof. Let us compute the partial fraction decomposition of Um1(x) . By general prin-
+                      Am,j
+ciples, it is m                                  jπ
+              P                                     
+                j=1 x−ρm,j , where ρm,j = cos m+1 are the zeros of the m-th Chebyshev
+polynomials of the second kind. Now, Am,j = U ′ (ρ1m,j ) and note that
+                                                    m
+
+
+                           ′       dUm (x)    d sin(m + 1)θ  dθ
+                                                 
+                        Um   (x) =         =                     · .
+                                     dx       dθ       sin θ       dx
+We work out that
+                  dUm      (m + 1) cos(m + 1)θ · sin θ − sin(m + 1)θ · cos θ
+                       =                                                     ,
+                   dθ                           sin2 θ
+and if we plug in x = ρm,j simplification occurs, since certain terms are just zero; we
+obtain that
+       dUm                     (m + 1) cos(m + 1)θ · sin θ − sin(m + 1)θ · cos θ
+             (arccos ρm,j ) =
+        dθ                                          sin2 θ                       θ= πj
+                                                                                m+1
+                                                     πj                    πj
+                              (m + 1) cos(πj) · sin m+1   − sin(πj) · cos m+1
+                            =                          πj
+                                                 sin2 m+1
+                                                     πj
+                              (m + 1) cos(πj) · sin m+1
+                            =                πj
+                                      sin2 m+1
+                                           j
+                                 (m + 1)(−1)
+                            =           πj   .
+                                   sin m+1
+6            A. KNOPFMACHER, T. MANSOUR, A. MUNAGI, AND H. PRODINGER
+
+                                                                                         j+1
+Further dx
+        dθ
+                                   1
+           = − sin θ, so together Am,j    ′
+                                       = Um (ρm,j ) = (m+1)(−1)
+                                                        sin2 πj
+                                                                                                 , which completes the
+                                                                                    m+1
+proof of the first identity. Similarly, the second one can be obtained.                                                 
+
+Now we are ready to obtain an explicit formula for the number of smooth words.
+Theorem 2.4. The number of smooth words of length n over the alphabet [k] is given
+by
+                      k
+                 1 X              j+1    2    jπ              jπ n−1
+       swn,k =           (1 + (−1) ) cot            1 + 2 cos          ,
+               k + 1 j=1                   2(k + 1)           k+1
+or alternatively as
+                            2           X               (2j + 1)π            (2j + 1)π n−1
+             swn,k =                            cot2                1 + 2 cos                .
+                           k+1                           2(k + 1)               k+1
+                                     0≤j≤ k−1
+                                           2
+
+
+                           jπ                                                   2x    1+Uk−1 (t)            2
+Proof. Fix k and let θj = k+1  . Lemma 2.3 says that the coefficient of xn in (1−3x)2   Uk (t)
+with t = 1−x
+          2x
+              (see Theorem    2.2) is given by
+                                                 k
+                                 n 2x2      1 X (1 + (−1)j+1 ) sin2 θj
+                    pn,k = [x ]                     1−x
+                                (1 − 3x)2 k + 1 j=1  2x
+                                                        − cos θj
+                                                                                                                    (2.6)
+                                                                    k
+                                                   X (1 + (−1)j+1 ) sin2 θj
+                              4              1
+                           =     [xn−3 ]                                     .
+                             k+1         (1 − 3x)2 j=1 1 − x (1 + 2 cos θj )
+Now notice that
+           1                      3                  3ω             ω2
+                      = −                    −                  +
+   (1 − 3x)2 (1 − xω)     (ω − 3)(1 − 3x)2 (ω − 3)2 (1 − 3x) (ω − 3)2 (1 − xω)
+and
+                                                            θj
+                        ω − 3 = 1 + 2 cos θj − 3 = −4 sin2 ( ).              (2.7)
+                                                            2
+So we are dealing with
+                    3                         3 (1 + 2 cos θj )                       (1 + 2 cos θj )2
+    A=          θ
+                                      −             θ
+                                                                        +            θ
+                                                                                                                    ,
+         4 sin2 ( 2j )(1 − 3x)2           16 sin4 ( 2j )(1 − 3x)            16 sin4 ( 2j )(1 − x(1 + 2 cos θj ))
+which implies that the coefficient of xn−3 in A is given by
+                    3n−2 (n − 2)              3n−2 (1 + 2 cos θj )          (1 + 2 cos θj )n−1
+                                 θ
+                                          −                 θ
+                                                                        +                    θ
+                                                                                                     .
+                        4 sin2 ( 2j )             16 sin4 ( 2j )                16 sin4 ( 2j )
+Hence, (2.6) can be written as
+              k
+                                   3 (n − 2) 3n−2 (1 + 2 cos θj ) (1 + 2 cos θj )n−1
+                                   n−2                                              
+         4 X            j+1   2
+pn,k =           (1+(−1) ) sin θj           θ
+                                                 −          θ
+                                                                 +            θ
+       k + 1 j=1                    4 sin2 ( j )   16 sin4 ( j )     16 sin4 ( j )
+                                                                2                        2                      2
+
+which simplifies to
+              k                                 n−2
+                                                    (1 + 2 cos θj ) (1 + 2 cos θj )n−1
+                                                                                      
+         1 X            j+1   2 θj        n−2 3
+pn,k =           (1+(−1) ) cos ( ) 4(n−2)3 −              θ
+                                                                   +          θ
+                                                                                         .
+       k + 1 j=1                2                   sin2 ( j )          sin2 ( j )        2                     2
+                         SMOOTH WORDS AND CHEBYSHEV POLYNOMIALS                                7
+                        Pk                              θ
+Using the identity         j=1 (1 + (−1)
+                                           j+1
+                                                 ) cos2 ( 2j ) = k+1
+                                                                  2
+                                                                     , we get that
+                                 k
+                 n−2        1 X                       θj h                                   i
+pn,k = 2(n−2)3          +           (1+(−1)j+1) cot2 ( ) (1+2 cos θj )n−1 −3n−2 (1+2 cos θj ) .
+                          k + 1 j=1                   2
+Note that
+                        x(k − (3k + 2)x)               k                 3k + 2
+                [xn ]                2
+                                         = [xn−1 ]          2
+                                                              − [xn−2 ]
+                            (1 − 3x)               (1 − 3x)             (1 − 3x)2
+                                         = kn3n−1 − (n − 1)(3k + 2)3n−2
+                                            = (3k − 2n + 2)3n−2 .
+Therefore, Theorem 2.2 gives
+ swn,k = (3k − 2n + 2)3n−2 + pn,k
+       = (3k − 2)3n−2
+                       k
+                  1 X              j+1   2 θj
+                                              h
+                                                              n−1    n−2
+                                                                                      i
+              +           (1 + (−1) ) cot ( ) (1 + 2 cos θj )     − 3 (1 + 2 cos θj )
+                k + 1 j=1                  2
+       = (3k − 2)3n−2
+                       k
+                  1 X                          θj               h                         i
+              +           (1 + (−1)j+1 ) cot2 ( )(1 + 2 cos θj ) (1 + 2 cos θj )n−2 − 3n−2 .
+                k + 1 j=1                      2
+Notice further that
+                k
+              X                         θj
+                   (1 + (−1)j+1 ) cos2 ( )(1 + 2 cos θj ) = (k + 1)(3k − 2),
+               j=1
+                                        2
+thus we have that
+                                k
+                           1 X                          θj
+                 swn,k =           (1 + (−1)j+1 ) cot2 ( )(1 + 2 cos θj )n−1 ,
+                         k + 1 j=1                      2
+as claimed.                                                                                  
+Corollary 2.5. Asymptotically, we have as n → ∞,
+                          2        2    π                 π n−1
+                swn,k ∼        cot              1 + 2 cos         .
+                        k+1          2(k + 1)             k+1
+
+Note that since there are k possible initial letters for a smooth word and at most
+three possibilities thereafter for each subsequent letter, the number of smooth words is
+bounded above by k3k−1 . This upper bound becomes increasingly more accurate as k
+grows larger (except for a factor of π82 below), since as k → ∞,
+                                          π       π 2 2π 2
+                             1 + 2 cos       = 3 − 2 + 3 + O(k −4 )
+                                         k+1      k    k
+and
+                              2          π      8k   8    1
+                                 cot2          = 2 + 2 +O    .
+                             k+1      2(k + 1)  π   π     k
+8                A. KNOPFMACHER, T. MANSOUR, A. MUNAGI, AND H. PRODINGER
+
+                                     3. Smooth cyclic words
+
+In
+P this section      we find an explicit formula for the generating function scwk (x) =
+                n
+   n≥0 scw n,k x  .
+Denote by scwk (x | i1 · · · is | j) the generating function for the number of smooth cyclic
+words σ = σ1 · · · σn of length n over [k] such that σ1 · · · σs = i1 · · · is and σn = j. We
+define
+                                                  k
+                                                  X
+                     scwk (x, v | i1 · · · is ) =   scwk (x | i1 · · · is | j)v j .
+                                                     j=1
+
+Lemma 3.1. For all i = 1, 2, . . . , k,
+           scwk (x, v | i) = (v i−1 [[i > 1]] + v i + v i+1 [[k > i]])x2
+                            + x(scwk (x, v | i − 1) + scwk (x, v | i) + scwk (x, v | i + 1),
+where scwk (x, v | j) = 0 for j 6∈ [k] and [[P ]] = 1 if the condition P holds, and [[P ]] = 0
+otherwise.
+
+Proof. Let σ be any smooth cyclic word containing at least two letters. If σ contains
+exactly two letters and σ1 = i, then j = i − 1, i, i + 1, which gives the contribution
+(v i−1 [[i > 1]] + v i + v i+1 [[k > i]])x2 . Otherwise, the second letter of σ = iσ2 · · · σn−1 j is
+either i − 1, i or i + 1. Hence, in terms of generating functions, we have
+    scwk (x, v | i) = (v i−1 [[i > 1]] + v i + v i+1 [[k > i]])x2
+                                                                                         
+                            + scwk (x, v | i − 1) + scwk (x, v | i) + scwk (x, v | i + 1) x, (3.1)
+for all 1 ≤ i ≤ k, which completes the proof.                                                     
+
+Restating Lemma 3.1 as a matrix system we have
+                      scwk (x, v | 1)          v + v2
+                                                         
+                   scwk (x, v | 2)   v + v 2 + v 3 
+               A
+                            ..        
+                                      =         ..         2
+                                                            x ,                               (3.2)
+                             .                  .        
+                  scw (x, v | k − 1) v k−2 + v k−1 + v k 
+                                 k
+                               scwk (x, v | k)                  v k−1 + v k
+where A is the tridiagonal matrix already defined in the previous section.
+Theorem 3.2. The generating function for the number of smooth cyclic words of length
+n over an alphabet of k letters is given by
+                                               2(k + 1)x Uk−1 1−x
+                                                                     
+                              kx(1 + 3x)                          2x
+            scwk (x) = 1 +                  −                          .
+                            (1 + x)(1 − 3x) (1 + x)(1 − 3x) Uk 1−x
+                                                                2x
+
+Proof. Equation (3.2) gives that
+                    scwk (x, v | 1)                v + v2
+                                                              
+                 scwk (x, v | 2)           v + v2 + v3 
+                          ..        = A−1 
+                                                    ..          2
+                                                                 x ,
+                
+                           .                        .         
+                scw (x, v | k − 1)        v k−2 + v k−1 + v k 
+                      k
+                    scwk (x, v | k)              v k−1 + v k
+                        SMOOTH WORDS AND CHEBYSHEV POLYNOMIALS                                     9
+
+where A−1 is defined in (2.2).
+Fix t = 1−x
+         2x
+            and i, where i = 1, 2, . . . , k. By comparing the coefficients of v j in the i-th
+row in the above matrix equation we obtain, for i 6= 1, k,
+         k
+         X
+                scwk (x | i | j) = x2 (A−1         −1         −1     −1        −1
+                                        i(i−2) + 2Ai(i−1) + 3Aii + 2Ai(i+1) + Ai(i+2) ),
+         j=1
+
+and for i = 1, k we have
+                      2
+                      X
+                             scwk (x | 1 | j) = x2 (2A−1     −1    −1
+                                                      11 + 2A12 + A13 ),
+                       j=1
+                     k
+                     X
+                             scwk (x | k | j) = x2 (2A−1     −1        −1
+                                                      kk + 2Ak(k−1) + Ak(k−2) ).
+                     j=k−1
+
+Note that scwk (x | i | j) = 0 for |j − i| > 1. Thus the generating function scwk (x) is
+given by
+                                        k
+                                        X
+  1 + kx − x (A−12   −1
+               11 + Akk ) + x
+                             2
+                                              (A−1         −1         −1     −1        −1
+                                                i(i−2) + 2Ai(i−1) + 3Aii + 2Ai(i+1) + Ai(i+2) ),
+                                        i=1
+where 1 counts the empty words, and kx counts the words of length 1 in the set of
+words over [k]. Therefore, applying (2.2) we obtain
+                                    2x(2Uk−1 (t) + 2Uk−2 (t) + Uk−3 (t))
+              scwk (x) = 1 + kx +
+                                                    Uk (t)
+                                k−1
+                           x X                                       
+                       +             Ui−3 (t) + 2Ui−2 (t) + 3Ui−1 (t) Uk−i (t)
+                         Uk (t) i=2
+                             + Ui−1 (t)(2Uk−1−i (t) + Uk−2−i (t)),
+which, by simple algebraic operations, is equivalent to
+                                   2x(2Uk−1 (t) + 2Uk−2 (t) + Uk−3 (t))
+             scwk (x) = 1 + kx +
+                                                  Uk (t)
+                               k−3
+                          x X                                      
+                      +             2Ui−1 (t) + 4Ui (t) + 3Ui+1 (t) Uk−2−i (t).
+                        Uk (t) i=0
+and can be simplified to3
+   scwk (x) = 1 + kx
+                     
+                x
+            +          4Uk−1(t) + 4Uk−2 (t) + 2Uk−3 (t)
+              Uk (t)
+                           x2       
+                +                    3(k − 2)Uk+1 (t) + 4(k − 2)Uk (t) − kUk−1 (t)
+                   (1 + x)(1 − 3x)
+                                                                                      
+                         − 4(k − 1)Uk−2 (t) − 2(k + 1)Uk−3 (t) − 4Uk−4 (t) − 2Uk−5 (t) .
+
+  3Such identities can be proved using a computer, as explained before. It is, however, not so easy
+to find them.
+10            A. KNOPFMACHER, T. MANSOUR, A. MUNAGI, AND H. PRODINGER
+
+Using the recursion (1.1) for the Chebyshev polynomials several times we arrive at
+                                     kx(1 + 3x)       2(k + 1)x Uk−1 (t)
+                scwk (x) = 1 +                    −                       ,
+                                   (1 + x)(1 − 3x) (1 + x)(1 − 3x) Uk (t)
+as claimed.                                                                                
+
+Now let us find an explicit formula for the number of cyclic smooth words of length n
+over the alphabet [k].
+Theorem 3.3. The number of smooth cyclic words of length n over the alphabet [k] is
+given by
+                              Xk            jπ n
+                     scwn,k =      1 + 2 cos           .
+                              j=1
+                                             k+1
+
+                             jπ
+Proof. Fix k and θj = k+1       . Then Lemma 2.3 implies that the coefficient of xn in
+  2(k+1)x Uk−1 (t)
+(1+x)(1−3x) Uk (t)
+                   , with t = 1−x
+                                2x
+                                   , is given by
+                                                  k
+                               n       4x2       X         sin2 θj
+                     qn,k = [x ]                                          .
+                                 (1 + x)(1 − 3x) j=1 1 − x(1 + 2 cos θj )
+Using the fact that
+           1                     1                  ω2                  9
+                        =                +                      −                 ,
+(1 + x)(1 − 3x)(1 − xω)   4(1 + ω)(1 + x) (ω − 3)(1 + ω)(1 − xω) 4(ω − 3)(1 − 3x)
+and (2.7), we obtain that
+                       k
+                                    "                                                  #
+                       X                (−1)n      (1 + 2 cos  θ j ) n
+                                                                              3 n
+             qn,k =     sin2 θj             θj
+                                                 −        2            +          θ
+                    j=1            4 cos2 ( 2
+                                               )       sin  θj           4 sin2 ( 2j )
+                     k                                                             
+                             2 θj                                        2 θj
+                    X
+                                          n                    n                  n
+                  =       sin ( )(−1) − (1 + 2 cos θj ) + cos ( )3 .
+                    j=1
+                                2                                           2
+                                 θ                            θ
+Using the identities kj=1 cos2 ( 2j ) = k2 and kj=1 sin2 ( 2j ) = k2 , we get that
+                    P                             P
+
+                                              k
+                                k    n   n
+                                            X
+                          qn,k = (−1) + 3 −      (1 + 2 cos θj )n .
+                                2            j=1
+
+Hence, Theorem 3.2 states that the coefficient of xn , n ≥ 1, in the generating function
+scwk (x) is given by
+                                                k
+                            k n                X
+                                     n
+                                                   (1 + 2 cos θj )n ,
+                                       
+                    scwn,k = 3 + (−1) − qn,k =
+                            2                  j=1
+
+as claimed.                                                                                
+Corollary 3.4. Asymptotically, we have as n → ∞,
+                                            π n
+                         scwn,k ∼ 1 + 2 cos         .
+                                             k+1
+                        SMOOTH WORDS AND CHEBYSHEV POLYNOMIALS                                 11
+
+Note that, asymptotically, smooth and cyclic smooth words have the same exponential
+growth order, just a different constant. More precisely we may deduce
+Corollary 3.5. The proportion  of smooth    words that are cyclic smooth in [k]n tends
+                     π              π
+to 12 (k + 1) 2 cos k+1 + 1 tan2 2(k+1)
+                                       
+                                          as n → ∞.
+
+We observe that for large k,
+       1
+                       π              π      3π 2 3π 2
+         (k + 1) 2 cos       + 1 tan2             =    − 2 + O(k −3).
+       2                 k+1            2(k + 1)    8k  8k
+
+                                  4. Smooth necklaces
+
+Smooth necklaces were defined in the introduction of the paper. To count the number
+snn,k of smooth necklaces of length n over an alphabet of k letters we consider equiva-
+lence classes of smooth cyclic words up to rotation. From Theorem 3.2 we then obtain
+the following result by a direct application of Theorem 3.2 and [7, Exercise 7.112(a)].
+Theorem 4.1. Let n ≥ 1. The number snn,k of smooth necklaces of length n over an
+alphabet of k letters is given by
+                                  k                iπ n/j
+                               1 XX
+                      snn,k =        φ(j) 1 + 2 cos
+                               n i=1                k+1
+                                         j|n
+
+where φ is Euler’s totient function (φ(n) is the number of positive integers ≤ n that
+are relatively prime to n), and we write j | n if j divides n.
+
+We see from this that asymptotically as n → ∞, snn,k ∼ scwn,k .
+The following table (Table 2) is obtained from Theorem 4.1.
+
+              n     0   1 2 3        4    5   6   7        8    9   10   11
+            snn,1   1   1 1 1        1    1   1   1        1    1   1     1
+            snn,2   1   2 3 4        6    8 14 20          36  60  108   188
+            snn,3   1   3 5 7       12    19 39 71        152 315 685 1479
+            snn,4   1   4 7 10      18    30 65 128       293 658 1544 3622
+            snn,5   1   5 9 13      24    41 91 185       435 1009 2445 5945
+            snn,6   1   6 11 16     30    52 117 242      577 1360 3347 8278
+            snn,7   1   7 13 19     36    63 143 299      719 1711 4249 10611
+                        Table 2. Numbers of smooth necklaces snn,k .
+
+
+
+                                          References
+[1] A. Burstein and T. Mansour, Counting occurrences of some subword patterns, Discr. Math. Theor.
+    Comp. Sci. 6:1 (2003) 1–12.
+[2] I. P. Goulden and D. M. Jackson, Combinatorial enumeration, John Wiley and Sons, New York,
+    1983.
+[3] W. Panny and H. Prodinger, The Expected Height of Paths for Several Notions of Height, Stud.
+    Sci. Math. Hung. 20 (1985) 119–132.
+12            A. KNOPFMACHER, T. MANSOUR, A. MUNAGI, AND H. PRODINGER
+
+[4] M. Régnier and W. Szpankowski, On the approximate pattern occurrences in a text, in “Compres-
+    sion and Complexity of Sequences 1997”, IEEE Computer Society, 1998, 253–264.
+[5] T. Rivlin, Chebyshev polynomials, from approximation theory to algebra and number theory, John
+    Wiley, New York, 1990.
+[6] R. P. Stanley, Enumerative Combinatorics, Vol. 1., Cambridge Univ. Press, 1997.
+[7] R. P. Stanley, Enumerative Combinatorics, Vol. 2., Cambridge Univ. Press, 1999.
+[8] R. Usmani, Inversion of Jacobi’s tridiagonal matrix, Comput. Math. Appl. 27 (1994) 59–66.
+
+The John Knopfmacher Centre for Applicable Analysis and Number Theory, School
+of Mathematics, University of the Witwatersrand, Johannesburg, South Africa.
+E-mail address: Arnold.Knopfmacher@ wits.ac.za
+
+Department of Mathematics, University of Haifa, 31905 Haifa, Israel.
+E-mail address: toufik@math.haifa.ac.il
+
+The John Knopfmacher Centre for Applicable Analysis and Number Theory, School
+of Mathematics, University of the Witwatersrand, Johannesburg, South Africa.
+E-mail address: Augustine.Munagi@wits.ac.za
+
+Department of Mathematics, University of Stellenbosch, 7602 Stellenbosch, South
+Africa
+E-mail address: hproding@sun.ac.za
+

@@ -197,6 +197,7 @@ A156638	supporting	Numbers that are congruent to 4 or 5 mod 9.	the integers 4 an
 A160747	count	Expansion of (1 + 10*x + 20*x^2 + 10*x^3 + x^4)/(1-x)^5.	T^(5, b), the towers on a base of length 5 with b blocks
 A165434	supporting	Number of tri-coverings of a set.	Bender's v((0,0,n)): every element three times, repeated blocks allowed, no repeated element in a block
 A171842	count	Binomial transform of 1,0,1,0,2,0,4,0,8,0,16,...	1-smooth strips on the heights {1, 2, 3} with both end columns at height 1, A171842(w - 1), the Motzkin paths of length w - 1 and height at most 2; silver by width
+A188866	count	T(n,k) is the number of n X k binary arrays without the pattern 0 1 diagonally, vertically or antidiagonally.	free 1-smooth strips (smooth words) on n + 1 heights; free 1-smooth castles of height h = T(h-1, w) - T(h-2, w)
 A189593	count	Number of permutations of 1..n with displacements restricted to {-6,-5,-4,-3,-2,0,1}.	tree skylines of height at most 6 by area: A189593(n + 1); the composition reading proves the entry's empirical recurrence
 A189600	count	Number of permutations of 1..n with displacements restricted to {-7,-6,-5,-4,-3,-2,0,1}.	tree skylines of height at most 7 by area: A189600(n + 1)
 A199833	count	Number of -n..n arrays of 4 elements with zero sum and no two neighbors summing to zero.	|P(2m + 1, 4)| = A199833(m + 1) = 4 A000447(m + 1); the entry marks its formula as empirical
