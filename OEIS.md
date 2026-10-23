@@ -23,45 +23,24 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
 
 ### 1. In review (max 3)
 
-- [~] **A226136 → A003410** (submitted 2026-10-06). Formula line "Conjecture: a(n) =
-  A003410(n) for n >= 4", equivalent to Barker's conjectured g.f. (A003410's g.f. minus
-  `1 + x + x^2 + x^3`), and `Cf. A003410`: `raw/oeis-pe502/xrefs/A226136-A003410.md`
-  (`wiki/pages/fibonacci-castles-sub-families.md`).
-  Major edit on the same draft 2026-10-11 (#20–#24, proposed): link to the proof PDF
-  `a226136.pdf` "Proof of Barker's Conjecture for A226136", with the formula line
-  "Conjectures confirmed (see Reid link)"; b-file `n = 1..1000` (terms 1..35 from
-  Kimberling); the Kimberling–Moses Fibonacci Quarterly 52 (2014) link (Example 4.2); the
-  linear-recurrence index entry, signature `(1,0,1)`; `a(n) = 1 + Sum_{k=0..n-2} A226275(k)`;
-  a Python program; `Cf. A226274, A226275`. A discussion note asks the editors to delete the
-  stray upload `a226136.txt`.
-  Still in review (checked 2026-10-16): Jason Yuen edited it on 2026-10-13 (#25–#28),
-  extending DATA from 35 to 42 terms, grouping the three Oct 11 formula lines in one
-  "From _Chaz Reid_, Oct 11 2026: (Start) … (End)" block, and adding keyword `easy`; it is back
-  in proposed. The proof PDF already resolves, and the approved A226275 entry links to it.
-- [~] **A160747 castles of width 5 and 6-cores** (submitted 2026-10-16). One comment block:
-  `a(n)` = 6-core partitions with `n` corners (Cho, Huh, Nam, and Sohn, arXiv:2205.15554,
-  Prop. 3.4, already linked) = castles of width 5 with `n + 1` blocks, of any height, with the
-  abacus bijection (their Theorem 3.3). One formula block: the g.f. numerator is row 5 of
-  A001263, their Prop. 3.4 sum, `a(n) = A271942(n+6, 5)`. The PE 502 link and two new Cf.
-  lines (A001263, A271942; the t-core family A005408 / A005891 / A063490):
-  `raw/oeis-pe502/xrefs/A160747-tower.md`, checked by `bin/python/tower_t_cores.py`
-  (`wiki/pages/tower-narayana-polynomial.md`).
-- [~] **A063490 castles of width 4 and 5-cores** (submitted 2026-10-16), the A160747 form at
-  `t = 5`; offset 1 needs no shift: `a(n)` = castles of width 4 with `n` blocks = 5-cores with
-  `n − 1` corners. Formula block: the numerator `x(1 + 6x + 6x^2 + x^3)` (row 4 of A001263),
-  Cho et al.'s Prop. 3.4 sum, `a(n) = A271942(n+4, 4)`. The PE 502 link, `Cf. A001263, A064788,
-  A185505, A271942.` (extends the existing line) and the t-core family line:
-  `raw/oeis-pe502/xrefs/A063490-tower.md`, checked by `bin/python/tower_t_cores.py`.
+- [~] **A005891 castles of width 3 and 4-cores** (submitted 2026-10-21, #138–#141), the
+  A160747 form at `t = 4`: `a(n)` = 4-cores with `n` corners = castles of width 3 with `n + 1`
+  blocks. Formula block: Cho et al.'s Prop. 3.4 sum and `a(n) = A271942(n+4, 3)`; the Narayana
+  row-3 line was cut in #140, Oct 21. Links to Cho et al. and PE 502; `A001263, A271942` added
+  to the first Cf. line, and the t-core family line: `raw/oeis-pe502/xrefs/A005891-tower.md`.
+  Still in review (checked 2026-10-23): Alper Ferudun (#142, Oct 21) added "without the rule
+  that the number of blocks is even" to the castle comment and checked the counts and
+  formulas; Chaz Reid (#146–#147, Oct 22) changed "castles" to "castle polyominoes"; back in
+  proposed.
 
 ### 2. Ready to submit (drafted and checked, in order)
 
 1. [ ] **Castles by blocks = t-cores by corners, Narayana numerator** (formerly tier 2), in
    the A160747 form (castle wording, PE 502 link, Cho et al.), drafts in castle form
    (`raw/oeis-pe502/xrefs/*-tower.md`; `wiki/pages/tower-narayana-polynomial.md`):
-   1. [ ] A005891 (width 3, 4-cores).
-   2. [ ] A001263: castles of width `n` with `m` blocks number
-      `Sum_k T(n,k) C(m+n-k-1, n-1)`, for every `n`, proved: `x -> x/(1-y)` in the g.f. of
-      A001263 gives Deutsch-Elizalde's bargraph equation (2) (arXiv:1609.00088).
+   A001263: castles of width `n` with `m` blocks number `Sum_k T(n,k) C(m+n-k-1, n-1)`, for
+   every `n`, proved: `x -> x/(1-y)` in the g.f. of A001263 gives Deutsch-Elizalde's bargraph
+   equation (2) (arXiv:1609.00088).
 2. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
    (`raw/oeis-pe502/xrefs/*-castle.md`).
 3. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
@@ -254,6 +233,28 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   to the A226136 proof (Theorem 1(b)); one "From _Chaz Reid_, Oct 11 2026" block with "Above
   formula proven in Reid link", `a(n) = a(n-1) + a(n-3)` for `n >= 6` and
   `a(n) = A226136(n+2) − A226136(n+1)`; a Python program.
+- [x] **A226136 → A003410** (submitted 2026-10-06, approved: A226136 #29, Oct 18 2026). Link
+  to the proof PDF `a226136.pdf`; one "From _Chaz Reid_, Oct 11 2026" block with "Conjectures
+  confirmed (see Reid link)", `a(n) = A003410(n)` for `n >= 4` (equivalent to Barker's g.f.)
+  and `a(n) = 1 + Sum_{k=0..n-2} A226275(k)`; b-file `n = 1..1000`; the Kimberling–Moses
+  link; the recurrence index entry, signature `(1,0,1)`; `Cf. A003410, A226274, A226275`.
+  Jason Yuen extended DATA to 42 terms and added keyword `easy`; the stray `a226136.txt` is
+  deleted: `raw/oeis-pe502/xrefs/A226136-A003410.md`
+  (`wiki/pages/fibonacci-castles-sub-families.md`).
+- [x] **A160747 castles of width 5 and 6-cores** (submitted 2026-10-16, approved: A160747 #62,
+  Oct 22 2026). Comment block: 6-cores with `n` corners = castle polyominoes of width 5 with
+  `n + 1` blocks (column heights `c(i) >= 1`, fixed Oct 18 after Alper Ferudun's note).
+  Formula block: `Sum_{k=1..5} A001263(5,k)*binomial(n+5-k, 4)` (Sean A. Irvine cut the
+  "row 5 of A001263" clause), Cho et al.'s Prop. 3.4 sum, `a(n) = A271942(n+6, 5)`. The PE 502
+  link, `Cf. A001263, A271942` and the t-core family line:
+  `raw/oeis-pe502/xrefs/A160747-tower.md` (`wiki/pages/tower-narayana-polynomial.md`).
+- [x] **A063490 castles of width 4 and 5-cores** (submitted 2026-10-16, approved: A063490 #66,
+  Oct 22 2026). Comment block: 5-cores with `n − 1` corners = castle polyominoes of width 4
+  with `n` blocks. Formula block: `Sum_{k=1..4} A001263(4,k)*binomial(n+3-k, 3)` (Sean A.
+  Irvine cut the "x times row 4 of A001263" clause), Cho et al.'s Prop. 3.4 sum,
+  `a(n) = A271942(n+4, 4)`. The PE 502 link (Jason Yuen moved it from REFERENCES to LINKS),
+  `Cf. A001263, A064788, A185505, A271942.` and the t-core family line:
+  `raw/oeis-pe502/xrefs/A063490-tower.md`.
 
 ## Ingestion queue (wiki pages not yet ingested)
 
