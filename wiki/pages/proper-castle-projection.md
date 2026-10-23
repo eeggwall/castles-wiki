@@ -5,7 +5,7 @@ summary: The ridge strips of metallic-strip-realizability need not reach their c
 tags: [analysis, castle, ridge-castle, metallic-mean, growth-constant, transfer-matrix, perron-root, parity, even-block, bronze, silver, oeis, sympy, verification]
 sources: [project-euler-502]
 created: 2026-09-18
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # From ridge strips to even-block ridge castles
@@ -66,7 +66,7 @@ The even-block ridge castles of height `h`, by width:[^5]
 
 For `h ≥ 3`, `A_ridge(·, h)` satisfies the recurrence of order 3 with characteristic polynomial `(x² − (h − 1)x − 1)(x − (h − 2))` ([[ridge-castle](pages/ridge-castle.md)]); at `h = 4` it is `1, 7, 31, 118, 421, 1453, 4924, 16513, …`. The even-block counts `A^e_ridge(·, h)` satisfy linear recurrences of order 4, 8, 10, 12, 14 for `h = 2, …, 6` (Berlekamp-Massey on 60 terms, computed). Each characteristic polynomial contains the factors `x² − (h − 1)x − 1` and `char(R̃_h)`; at `h = 3` it is `(x − 1)(x² + 1)(x² − 2x − 1)(x³ − x² + x − 3)`.[^5] [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] records the OEIS status of these rows.
 
-## The ridge strips give the companion sequences
+## The ridge strips number `x_{w+1} + x_w`
 
 The ridge strip count `𝟙ᵀ R_h^{w−1} 𝟙` is not the primary metallic sequence `x_n = (h − 1)x_{n−1} + x_{n−2}`, `x_0 = 0`, `x_1 = 1`, of [[metallic-means](pages/metallic-means.md)]. `R_h` preserves the plane spanned by `𝟙` and `e_h` and acts on it with characteristic polynomial `x² − (h − 1)x − 1`, so the eigenvalue `−1` does not contribute and the ridge strips of width `w` number `x_{w+1} + x_w` ([[ridge-castle](pages/ridge-castle.md)]):[^6]
 

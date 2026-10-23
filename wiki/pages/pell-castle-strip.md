@@ -5,7 +5,7 @@ summary: A seminar-shaped analysis. Coefficient matching on D(x) = 1/(1 − 2x �
 tags: [analysis, castle, pell, generating-functions, coefficient-matching, seminar, pedagogy, silver-ratio, transfer-matrix]
 sources: [pe502-pell-castle-strip, barry-2005-catalan-transform]
 created: 2026-09-15
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # The Pell castle strip - from 1/(1 − 2x − x²) to the silver mean

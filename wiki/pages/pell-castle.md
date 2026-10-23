@@ -5,7 +5,7 @@ summary: A Pell castle is a castle of height 3 whose first column has height 1 a
 tags: [concept, castle, castle-type, pell, silver-ratio, transfer-matrix, 1-smooth, parity, oeis]
 sources: [pe502-pell-castle-strip]
 created: 2026-10-04
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Pell castle

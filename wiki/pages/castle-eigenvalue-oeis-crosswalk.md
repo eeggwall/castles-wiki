@@ -5,14 +5,14 @@ summary: The convergents of the castle eigenvalues against the OEIS. Each metall
 tags: [analysis, castle, continued-fraction, convergents, oeis, eigenvalue, quasi-polynomial, plastic-number, jacobi-perron, pisano, mod-p, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Castle eigenvalues meet OEIS: the convergent crosswalk
 
 The convergents `p_n/q_n` of a continued fraction are its truncations, and their numerators and denominators are integer sequences. This page computes them for the eigenvalues of the castle recurrences, matches them against the OEIS, and relates the continued-fraction period of an eigenvalue to its multiplicative order modulo `p` ([[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]). Its results:
 
-1. **The metallic means** (Part 1). For `δ_a = [a; a, a, …]` the numerators and denominators are one recurrence sequence, one step apart, and the trace of the convergent matrix is the companion sequence. For `1 + √2` both are the Pell numbers `A000129`, and `A001333` is the numerator sequence of `√2 = (1 + √2) − 1`.
+1. **The metallic means** (Part 1). For `δ_a = [a; a, a, …]` the numerators and denominators are one recurrence sequence, one step apart, and the trace of the convergent matrix is the Lucas sequence `V_n(a, −1)`: the Lucas numbers `A000032` at `a = 1` and the companion Pell numbers `A002203` at `a = 2`. For `1 + √2` both are the Pell numbers `A000129`, and `A001333` is the numerator sequence of `√2 = (1 + √2) − 1`.
 2. **The norm on both sides** (Part 2). The norm `δ_a·δ̂_a = −1` makes the continued fraction of `δ_a` purely periodic, and at every inert prime it gives `δ_a^{p+1} = −1`, so the period of the sequence modulo `p` divides `2(p + 1)` and not `p + 1`.
 3. **The k-direction** (Part 3). For `4 ≤ L ≤ 12`, the characteristic polynomial of `P(·, L)` is `(x + 1)^L (x − 1)^{L−2}` (computed), so its eigenvalues are `±1` and there is no irrational continued fraction. `|P(k, 4)| = A352116(k + 1)`.
 4. **The L-direction** (Part 4). The roots of `char_k` are the irrational eigenvalues. The dominant root of `char_6` is `2ψ²`, with `ψ` the plastic number; the even-sector part of `P(6, L)` is `2^L·A005251(L+3)`; and the Jacobi-Perron expansion of `2ψ²` is periodic, with period matrix of dominant eigenvalue `ψ^14`.
@@ -50,7 +50,7 @@ def convergents(digits):
 [(2, 1), (5, 2), (12, 5), (29, 12), (70, 29), (169, 70), (408, 169)]
 ```
 
-When every digit is `a`, the convergent recurrence is the recurrence `x_n = a·x_{n−1} + x_{n−2}` with `x_0 = 0`, `x_1 = 1`, so `q_n = x_{n+1}` and `p_n = x_{n+2}`: the convergents of `φ` are `F_{n+2}/F_{n+1}` and those of `1 + √2` are `P⋆_{n+2}/P⋆_{n+1}`, with `P⋆` the Pell numbers. In matrix form `[[p_n, p_{n−1}], [q_n, q_{n−1}]] = M^{n+1}` with `M = [[a, 1], [1, 0]]` and `det M = −1`, and the trace `p_n + q_{n−1}` is the companion sequence `y_{n+1} = δ_a^{n+1} + δ̂_a^{n+1}`, with `δ̂_a = a − δ_a` the conjugate of `δ_a`:
+When every digit is `a`, the convergent recurrence is the recurrence `x_n = a·x_{n−1} + x_{n−2}` with `x_0 = 0`, `x_1 = 1`, so `q_n = x_{n+1}` and `p_n = x_{n+2}`: the convergents of `φ` are `F_{n+2}/F_{n+1}` and those of `1 + √2` are `P⋆_{n+2}/P⋆_{n+1}`, with `P⋆` the Pell numbers. In matrix form `[[p_n, p_{n−1}], [q_n, q_{n−1}]] = M^{n+1}` with `M = [[a, 1], [1, 0]]` and `det M = −1`, and the trace `p_n + q_{n−1}` is the Lucas sequence `y_{n+1} = V_{n+1}(a, −1) = δ_a^{n+1} + δ̂_a^{n+1}`, with `δ̂_a = a − δ_a` the conjugate of `δ_a`:
 
 ```
 >>> [p - q for p, q in convergents([2]*8)]            # convergent numerators of sqrt(2) = [1; 2, 2, ...]

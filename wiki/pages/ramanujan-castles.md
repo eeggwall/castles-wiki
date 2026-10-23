@@ -5,7 +5,7 @@ summary: A castle is Ramanujan when the second-largest adjacency eigenvalue λ_2
 tags: [concept, castle, spectral, ramanujan, universal-cover, alon-boppana, cavity-method, non-backtracking, expander, computation, worked-example]
 sources: [project-euler-502-brute-force]
 created: 2026-09-19
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Ramanujan castles

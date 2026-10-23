@@ -5,7 +5,7 @@ summary: For each quadratic growth constant ρ, the larger root of x² − p₁x
 tags: [analysis, castle, castle-strip, transfer-matrix, perron-frobenius, growth-constant, quadratic-field, metallic-means, min-height, equitable-partition, census, exhaustive-search, implementation, verification]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-25
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Minimum height for a quadratic growth constant

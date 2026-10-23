@@ -5,7 +5,7 @@ summary: A tournament (complete oriented graph) is unique if every tournament wi
 tags: [concept, tournament, unique, score-sequence, oeis, a000570, tetali, classification]
 sources: [tetali-1998-unique-tournaments]
 created: 2026-09-17
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Unique tournament

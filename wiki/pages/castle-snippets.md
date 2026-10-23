@@ -5,7 +5,7 @@ summary: Short tested Python snippets that enumerate the castles of width w and 
 tags: [concept, castle, python, snippets, computational, classification, reference]
 sources: [project-euler-502-brute-force]
 created: 2026-09-16
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Castle snippets

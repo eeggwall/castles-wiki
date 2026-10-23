@@ -5,7 +5,7 @@ summary: Flajolet's theorem identifies the Jacobi continued fraction with the ge
 tags: [concept, castle, tower-word, continued-fraction, flajolet, motzkin, algebraic, oeis, generating-functions]
 sources: [project-euler-502-representations]
 created: 2026-09-14
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Continued fractions of the tower word

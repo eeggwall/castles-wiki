@@ -260,7 +260,7 @@ In this range the ceiling acts once. At `w = 2h` the term `tri(2h − 1, 2h − 
 smooth(h, h) = 1,    smooth(h + 1, h) = h + 1,    smooth(h + 2, h) = (h² + 5h + 2)/2,    smooth(h + 3, h) = (h³ + 12h² + 29h + 12)/6.
 ```
 
-The first two are the staircase counts of 3.3, and by the second form of 3.3 these are also the first `h` coefficients of `1/η_{2h}`. The last width of the range, `w = 2h − 1`, is the diagonal A283667 of A283595, the Motzkin prefixes of length `2n` and height `n`: `smooth(2h − 1, h) = A283667(h − 1)`. That entry gives a recursion and an asymptotic, and the formula above gives it in closed form, `A283667(n) = tri(2n, n) + tri(2n, n + 1) − tri(2n, n + 2) − tri(2n, n + 3)`.[^a283667][^exec]
+The first two are the staircase counts of 3.3, and by the second form of 3.3 these are also the first `h` coefficients of `1/η_{2h}`. The last width of the range, `w = 2h − 1`, is the diagonal A283667 of A283595, the Motzkin prefixes of length `2n` and height `n`: `smooth(2h − 1, h) = A283667(h − 1)`. That entry gives a recursion and an asymptotic, and the near-staircase formula gives it in closed form, `A283667(n) = tri(2n, n) + tri(2n, n + 1) − tri(2n, n + 2) − tri(2n, n + 3)`.[^a283667][^exec]
 
 ### 3.8 The strip as a sequence of atoms
 

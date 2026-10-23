@@ -5,7 +5,7 @@ summary: The castle counts A(w, h) = h^w − (h−1)^w, A^e(w, h) and A^o(w, h) 
 tags: [concept, castle, counting-function, project-euler]
 sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-mining-pe502]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Castle counts A(w,h), A^e(w,h) and A^o(w,h)
@@ -62,7 +62,7 @@ A^o(w, 2)  =  Σ_{j≥1} C(w+1, 4j)    =  A038503(w+1) − 1
 
 - [[project-euler-502](pages/project-euler-502.md)] - the problem statement: the count `F(w, h)`, the four checkpoint values, and the target sum.
 - [[project-euler-502-problem-setup](pages/project-euler-502-problem-setup.md)] - the size of `F(13, 10)` as the reason to count with generating functions rather than by enumeration.
-- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the closed form for `F(w, h)` from the tower grammar, checked against three checkpoints.
+- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the closed form for `A^e(w, h)` from the tower grammar, checked against three checkpoints.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the notation `A(w, h)`, `F(w, h)`, and the evaluation paths for the three terms of the target.
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the module that computes `F`, `F_odd` and `F_any = A`, and checks `F + F_odd = F_any` by enumeration.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the OEIS rows `A(·, h)` and the height-2 sequences `A038505` and `A038503`.

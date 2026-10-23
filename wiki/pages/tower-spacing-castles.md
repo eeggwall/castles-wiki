@@ -5,7 +5,7 @@ summary: A skyline has tower spacing at least g when, in every row, each run of 
 tags: [analysis, castle, gap-rule, tower-spacing, transfer-matrix, growth-constant, plastic-number, golden-ratio, generating-function, rule-3, sympy, verification, oeis, min-filter, unimodal]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Minimum tower spacing - skylines and castles

@@ -5,7 +5,7 @@ summary: Castle strips (skylines on the heights 1..h under a 0/1 rule saying whi
 tags: [analysis, castle, castle-strip, area, generating-function, transfer-matrix, growth-constant, perron-number, pisot-number, salem-number, lehmer, mahler-measure, plastic-number, supergolden, n-nacci, census, exhaustive-search, min-height, implementation, verification]
 sources: [verger-gaugry-2024-salem-minoration, pe502-pell-castle-strip]
 created: 2026-09-25
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Castle strips counted by area - the growth-constant census

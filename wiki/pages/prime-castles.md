@@ -5,7 +5,7 @@ summary: "Gluing two castles that begin and end with a height-1 column, by mergi
 tags: [analysis, castle, area, composition, prime-castle, monoid, factorization, fibonacci, convex-castle, parity, q-series, oeis]
 sources: [oeis-mining-pe502, deutsch-elizalde-2017-bargraphs-dyck-paths]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Prime castles

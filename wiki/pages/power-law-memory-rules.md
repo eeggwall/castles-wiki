@@ -5,7 +5,7 @@ summary: The 1-smooth strip rule |c_n − c_{n−1}| <= 1 with the first differe
 tags: [analysis, castle, fractional-calculus, grunwald-letnikov, transfer-matrix, non-markov, power-law-memory, perron-root, plastic-number, supergolden, golden-ratio, reachable-field, truncation, algebraic]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Power-law memory strip rules

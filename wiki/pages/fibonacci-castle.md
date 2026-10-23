@@ -5,7 +5,7 @@ summary: The Fibonacci castles are the castles of height 2 with no two neighbori
 tags: [concept, castle, castle-type, fibonacci, golden-ratio, transfer-matrix, q-matrix, fibonacci-tower, fibonacci-word, wythoff, zeckendorf, parity, blocks, golden-mean-shift, entropy, run-length-limited, constrained-coding, tree-castle, ridge-castle]
 sources: [prellberg-brak-1995-cluster-models, deutsch-elizalde-2017-bargraphs-dyck-paths]
 created: 2026-10-03
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Fibonacci castle

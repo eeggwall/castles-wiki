@@ -5,7 +5,7 @@ summary: The castles of height h and area n are the compositions of n with large
 tags: [analysis, castle, area, generating-function, oeis, fibonacci, tribonacci, tetranacci, n-nacci, composition, growth-constant]
 sources: [oeis-mining-pe502]
 created: 2026-09-17
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Castles of height `h` by area

@@ -5,7 +5,7 @@ summary: The Pell castles (first column at height 1, neighboring columns differi
 tags: [analysis, castle, 1-smooth, pell, fixed-height, area, generating-function, transfer-matrix, pedagogy]
 sources: [pe502-pell-castle-strip]
 created: 2026-10-07
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # 1-smooth Pell castles by area

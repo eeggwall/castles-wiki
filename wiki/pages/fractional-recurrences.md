@@ -5,7 +5,7 @@ summary: For the recurrence ∇^α a_n = a_{n−1}, with ∇^α the Grunwald-Let
 tags: [analysis, castle, fractional-calculus, grunwald-letnikov, metallic-mean, golden-ratio, transcendental, algebraic, gelfond-schneider, plastic-number, supergolden, reachable-field, characteristic-equation]
 sources: [de-spinadel-1999-family-of-metallic-means]
 created: 2026-09-21
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Fractional recurrences and the metallic means

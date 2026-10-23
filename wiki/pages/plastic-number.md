@@ -5,7 +5,7 @@ summary: ψ = 1.3247…, the real root of x³ = x + 1 and the smallest Pisot num
 tags: [concept, plastic-number, pisot, padovan, perrin, cubic, jacobi-perron, eigenvalue, castle, oeis, strip-perron-root]
 sources: [verger-gaugry-2024-salem-minoration, oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-16
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Plastic number

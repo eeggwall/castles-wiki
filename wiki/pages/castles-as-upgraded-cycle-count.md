@@ -5,7 +5,7 @@ summary: A seminar that starts from the two proofs that there are (n−1)! cycle
 tags: [analysis, castle, permutations, cycles, seminar, factorization, sign]
 sources: [project-euler-502-castle-factoring]
 created: 2026-09-15
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Castles as an upgrade of the (n−1)! cycle count
@@ -49,7 +49,7 @@ Directly: the bottom row is one block, so an even-block castle of height 2 stand
 
 Each of the three pairs can be checked on these ten castles:
 
-- **The sign.** The towers with an odd number of blocks number `(T(1, 4) − P(1, 4))/2 = (16 + 4)/2 = 10`, and they are the towers of the even-block castles of height at most 2; the flat row `(1, 1, 1, 1)` stands on the string `0000`, with no block, so it is not among them.[^6]
+- **The sign.** The towers with an odd number of blocks number `(T(1, 4) − P(1, 4))/2 = (16 + 4)/2 = 10`, and they are the towers of the ten even-block castles of height 2 and width 4. The flat row `(1, 1, 1, 1)` is not among them: it stands on the string `0000`, a tower with no block.[^6]
 - **Foata.** Each of the ten strings has one maximal run of 1s, so one peak and one record.[^7]
 - **The streak scan.** With `c_0 = c_5 = 0`, the first differences of each string have one up-streak and one down-streak, each of size 1, and are otherwise 0, so the total descent is 1, one block above the bottom row.[^8]
 

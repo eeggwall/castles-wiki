@@ -5,7 +5,7 @@ summary: De Spinadel's metallic means σ_p^q = (p + √(p² + 4q))/2, the positi
 tags: [concept, metallic-mean, golden-ratio, silver-ratio, pell, fibonacci, continued-fraction, quadratic-irrational, norm-minus-one]
 sources: [pe502-pell-castle-strip, calugareanu-hamburg-exercises-basic-ring-theory, de-spinadel-1999-family-of-metallic-means]
 created: 2026-09-15
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Metallic means
@@ -54,7 +54,7 @@ The sequence `x_n` of `δ_a` from `x_0 = 0`, `x_1 = 1` is
 x_n  =  (δ_a^n − δ̂_a^n) / (δ_a − δ̂_a),
 ```
 
-and since `|δ̂_a| < 1`, `x_{n+1}/x_n → δ_a`. The convergents `p_n/q_n` of `[a; a, a, …]` are `x_{n+2}/x_{n+1}`: numerator and denominator are the same sequence, one step apart. The companion sequence `y_0 = 2`, `y_1 = a`, `y_n = a·y_{n−1} + y_{n−2}` is the trace `δ_a^n + δ̂_a^n`, equal to `p_n + q_{n−1}`. It is the Lucas numbers `A000032` at `a = 1`, `A002203` at `a = 2` (whose half is `A001333`, the numerators of the convergents of `√2`), and `A006497`, `A014448`, `A087130` at `a = 3, 4, 5`.[^6] [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] tabulates the convergents of each `δ_a` for `a ≤ 5`.
+and since `|δ̂_a| < 1`, `x_{n+1}/x_n → δ_a`. The convergents `p_n/q_n` of `[a; a, a, …]` are `x_{n+2}/x_{n+1}`: numerator and denominator are the same sequence, one step apart. The Lucas sequence of the second kind `y_n = V_n(a, −1)`, with `y_0 = 2`, `y_1 = a` and `y_n = a·y_{n−1} + y_{n−2}`, is the trace `δ_a^n + δ̂_a^n`, equal to `p_n + q_{n−1}`. It is the Lucas numbers `A000032` at `a = 1`, the companion Pell numbers `A002203` at `a = 2` (whose half is `A001333`, the numerators of the convergents of `√2`), and `A006497`, `A014448`, `A087130` at `a = 3, 4, 5`.[^6] [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] tabulates the convergents of each `δ_a` for `a ≤ 5`.
 
 **`δ_4 = φ³`.** Since `φ² = φ + 1`, `φ³ = 2φ + 1 = 2 + √5 = δ_4`, and de Spinadel records the same identity.[^7] So `δ_4` lies in `Q(√5)`, the field of `φ`, and its sequence `0, 1, 4, 17, 72, 305, …` is `F_{3n}/2`, half of every third Fibonacci number.[^8] More generally, if `δ = δ_b` and `n` is odd, then `δ^n` has norm `(−1)^n = −1`, so `δ^n = δ_t` with `t` its trace. For `a ≤ 100` the `δ_a` that are odd powers of a smaller `δ_b` are those with `a = 4, 11, 14, 29, 36, 76, 82`: `φ³`, `φ⁵`, `(1 + √2)³`, `φ⁷`, `δ_3³`, `φ⁹ = δ_4³` and `(1 + √2)⁵`.[^9] The `δ_a` with `a = 1, 2, 3, 5, 6, 7, 8, 9, 10` lie in nine different fields, `Q(√5)`, `Q(√2)`, `Q(√13)`, `Q(√29)`, `Q(√10)`, `Q(√53)`, `Q(√17)`, `Q(√85)` and `Q(√26)`.
 
@@ -128,7 +128,7 @@ By area, the castles of height at most 3 grow at the tribonacci constant, and th
 [^3]: [[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)] §3 L206-209 - "the integer metallic means ... appear in quite a regular way. The first for q = 2 ..., the second for q = 6 ..., the third for q = 12 ..., the forth for q = 20".
 [^4]: [[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)] §3 L165 - "if p = 2 y q = 1 we obtain the Silver Mean", `σ_Ag = [2̄] = 1 + √2` (transcribed).
 [^5]: The theorems of Lagrange (a real number has an eventually periodic continued fraction exactly when it is a quadratic irrational) and Galois (purely periodic exactly when reduced) are stated on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]. `δ_a = a + 1/δ_a` and the bound `−1 < δ̂_a < 0` hold for every `a ≥ 1`, since `δ_a > 1`.
-[^6]: Verified by execution (Python 3.11, 2026-10-16): the companion sequences for `a ≤ 5` against https://oeis.org/A000032, A002203, A001333, A006497, A014448 and A087130 (read 2026-10-16); `x_29/x_28` against `δ_a` to ten decimal places for `a ≤ 5`.
+[^6]: Verified by execution (Python 3.11, 2026-10-16): the sequences `V_n(a, −1)` for `a ≤ 5` against https://oeis.org/A000032, A002203, A001333, A006497, A014448 and A087130 (read 2026-10-16); `x_29/x_28` against `δ_a` to ten decimal places for `a ≤ 5`.
 [^7]: [[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)] §3 L175-182 - "For p = 4; q = 1, the metallic mean" `σ_4^1 = 2 + √5 = [4̄] = φ³` (transcribed), "a striking result related to the continued fraction expansion of uneven powers of the Golden Mean."
 [^8]: Verified by execution (Python 3.11, 2026-10-16): the first ten terms of `x_n = 4x_{n−1} + x_{n−2}` equal `F_{3n}/2`.
 [^9]: Verified by execution (Python 3.11, 2026-10-16): the traces `V_n = b·V_{n−1} + V_{n−2}` (`V_0 = 2`, `V_1 = b`) of `δ_b^n` for odd `n ≥ 3` and `b ≤ 100` that are at most 100 are exactly `4, 11, 14, 29, 36, 76, 82`; the squarefree parts of `a² + 4` for `a ≤ 10`.

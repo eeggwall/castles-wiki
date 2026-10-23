@@ -5,7 +5,7 @@ summary: An exhaustive census, for h ≤ 5, of the Perron roots of the 2^{h²} 0
 tags: [analysis, castle, growth-constant, transfer-matrix, perron-root, number-field, metallic-mean, plastic-number, census, pisot, quadratic-field, sympy, verification]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Reachable-field census of castle-strip growth constants

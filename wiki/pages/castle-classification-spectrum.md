@@ -5,7 +5,7 @@ summary: Predicates on a single castle read from a spectrum. From the castle gra
 tags: [concept, castle, classification, taxonomy, spectral, adjacency-matrix, laplacian, ramanujan, smith-theorem, dynkin, tree-castle, isospectral, single-castle-predicate, dft, sparse-spectrum]
 sources: [oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Castle classification - spectral types

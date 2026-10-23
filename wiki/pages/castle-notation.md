@@ -37,7 +37,7 @@ tower height  k  =  h − 1        (castle height h)          base length  L  = 
 | `P_even(k, L)`, `P_odd(k, L)` | `P` restricted to towers whose last column is even / odd ([[tower-parity-sectors](pages/tower-parity-sectors.md)]) | tower height, base length |
 | `char_k` | characteristic polynomial of the recurrence of `P(k, ·)` in `L` | tower height |
 
-`T` counts towers and `P` is its signed version; both are tower counts, indexed by tower height.[^1] `P` adds up over towers and `S` over castles, and the two signs are opposite: a castle has one block more than its towers, so the even-block castles stand on the odd-block towers. A sum over castles is never written with `P`. Some pages still write `F(w, h)` for `A^e(w, h)` and `odd(w, h)` for `A^o(w, h)`.
+`T` counts towers and `P` is its signed version; both are tower counts, indexed by tower height.[^1] `P` adds up over towers and `S` over castles, and the two signs are opposite: a castle has one block more than its towers, so the even-block castles stand on the odd-block towers. A sum over castles is never written with `P`. The Project Euler sources and notes write `F(w, h)` for `A^e(w, h)` and `odd(w, h)` or `F_odd(w, h)` for `A^o(w, h)`; quotes keep their notation, and the wiki's own text writes `A^e` and `A^o`.
 
 ## The one formula where both orders meet
 

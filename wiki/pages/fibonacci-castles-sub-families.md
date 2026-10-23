@@ -5,7 +5,7 @@ summary: Sub-families of the Fibonacci castles, all of height 2, cut out by a ru
 tags: [concept, castle, castle-type, fibonacci, fibonacci-tower, fibonacci-word, sturmian, balanced-word, totient, sub-family, maximal-independent-set, padovan, plastic-number, narayana-cows, supergolden, run-length-limited, capacity, oeis]
 sources: [project-euler-502]
 created: 2026-10-04
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Fibonacci castle sub-families

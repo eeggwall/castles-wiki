@@ -5,7 +5,7 @@ summary: Paul Barry studies invertible transforms of integer sequences as Riorda
 tags: [source, paper, oeis, catalan, motzkin, pell, binomial-transform, riordan-array, ballot, 1-smooth, transfer-matrix, generating-functions]
 sources: [barry-2005-catalan-transform]
 created: 2026-10-08
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Barry (2005) - A Catalan transform and related transformations on integer sequences

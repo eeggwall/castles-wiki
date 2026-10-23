@@ -5,7 +5,7 @@ summary: Tested Python snippets for castle strips (the Pell and ridge strips, th
 tags: [concept, castle, python, snippets, strip, growth-constant, metallic-mean, tree-castle, hardin]
 sources: [project-euler-502-brute-force]
 created: 2026-09-19
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Castle snippets - strips and growth

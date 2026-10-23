@@ -5,7 +5,7 @@ summary: Ten ways to draw random castles and the objects beside them, each imple
 tags: [concept, castle, sampling, monte-carlo, transfer-matrix, rejection-sampling, rank-unrank, gray-code, mcmc, coupling-from-the-past, wilson-algorithm, spanning-tree, lgv, wang-landau, random-matrix, sattolo, foata, verification]
 sources: [project-euler-502-brute-force, project-euler-502-castle-factoring, aocp-generating-permutations-tuples]
 created: 2026-09-27
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Castle samplers

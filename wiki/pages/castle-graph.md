@@ -5,7 +5,7 @@ summary: The castle graph of a castle has its cells as vertices and an edge betw
 tags: [concept, castle, graph, polyomino, spectral, adjacency, laplacian, tree, bipartite, planar, cycle-rank, fibonacci, jacobsthal, oeis, bridge, pedagogy]
 sources: [project-euler-502-brute-force, rossin-2000-group-of-a-sandpile]
 created: 2026-09-17
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # The castle graph - bridge to graph theory

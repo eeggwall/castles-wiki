@@ -5,7 +5,7 @@ summary: The sequence A^e(w, 3) of castles of width w and height 3 with an even 
 tags: [oeis, castle, new-sequence, c-finite, height-3, source]
 sources: [new-sequence-fw3]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Even-block castles of height 3, A^e(w, 3)
@@ -92,5 +92,5 @@ The OEIS status of this row and of the rows `h = 4, 5, 6` is recorded on [[castl
 [^4]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"Formula" L61-68 - "a(n) = (3^n - 2^n - P(2,n) + P(1,n)) / 2, where P(1,n) = Re((1+i)^(n+1)) = A146559(n+1)", "P(2,n) = 3*P(2,n-1) - 4*P(2,n-2) + 4*P(2,n-3)".
 [^5]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"Formula" L70-79 - "Linear recurrence (holds for n >= 7): a(n) = 8*a(n-1) - 27*a(n-2) + 54*a(n-3) - 70*a(n-4) + 56*a(n-5) - 24*a(n-6)", "Characteristic polynomial (x-3)(x-2)(x^2-x+2)(x^2-2x+2)", "A(x) = (3*x^3 - 3*x^4 + 2*x^5) / (1 - 8*x + 27*x^2 - 54*x^3 + 70*x^4 - 56*x^5 + 24*x^6)".
 [^6]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `mine-notes.md` §"Vein 3" L70-75 - "F(w,3): order 6, (x-3)(x-2)(x^2-x+2)(x^2-2x+2)", "F(w,4): order 9", "F(w,5): order 11", "F(w,3) loses one order because P(2,·) has x-2 as a factor, shared with 2^w."
-[^7]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): Berlekamp-Massey on 60 terms of `A^e(·, h)` and `A^o(·, h)` for `2 ≤ h ≤ 8` (orders 3, 6, 9, 11, 13, 15, 17 and 4, 5, 9, 11, 13, 15, 17); the recurrence and generating function above from the terms; the periods of `A^e(·, 3)` modulo 5, 7, 11 and 13 (24, 168, 40, 168) on 3000 terms; `log₂ 261615` and `log₂(3^12 − 2^12) − 1`; the order 3400 of `x` in `F_101[x]/(char_2)`.
+[^7]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): Berlekamp-Massey on 60 terms of `A^e(·, h)` and `A^o(·, h)` for `2 ≤ h ≤ 8` (orders 3, 6, 9, 11, 13, 15, 17 and 4, 5, 9, 11, 13, 15, 17); the recurrence and generating function of the section *Formulas* from the terms; the periods of `A^e(·, 3)` modulo 5, 7, 11 and 13 (24, 168, 40, 168) on 3000 terms; `log₂ 261615` and `log₂(3^12 − 2^12) − 1`; the order 3400 of `x` in `F_101[x]/(char_2)`.
 [^8]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `mine-notes.md` §"Vein 3" L77-79 - "Columns (fixed w, varying h) are quasi-polynomials: F(w,h) is annihilated by (x^2-1)^w, i.e. F(w,h) = P(h) + (-1)^h Q(h) with P,Q polynomials of degree < w. (Observed: F(3,h) order 6, F(4,h) order 8, F(5,h) order 10.)"

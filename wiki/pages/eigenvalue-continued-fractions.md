@@ -5,7 +5,7 @@ summary: Continued fractions of the eigenvalues of the castle recurrences. A rea
 tags: [concept, castle, continued-fraction, eigenvalue, characteristic-polynomial, palindromic, lagrange, galois, quadratic, fibonacci, mod-p, pedagogy]
 sources: [de-spinadel-1999-family-of-metallic-means, project-euler-502-solution]
 created: 2026-09-15
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Eigenvalue continued fractions

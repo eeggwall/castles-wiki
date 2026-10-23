@@ -5,7 +5,7 @@ summary: Small castles worked by hand - draw the castle, number the cells, write
 tags: [concept, castle, eigenvalue, spectral, adjacency-matrix, pedagogy, worked-example, tutorial]
 sources: [project-euler-502-brute-force, oeis-mining-pe502]
 created: 2026-09-19
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Castle eigenvalues by example

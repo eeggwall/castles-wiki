@@ -5,7 +5,7 @@ summary: Where de Spinadel's metallic means appear as eigenvalues on the wiki. T
 tags: [analysis, castle, spectral, adjacency, transfer-matrix, metallic-means, golden-ratio, silver-ratio, spectral-type, isospectral, numpy, sympy, verification]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-16
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Metallic means in castle spectra

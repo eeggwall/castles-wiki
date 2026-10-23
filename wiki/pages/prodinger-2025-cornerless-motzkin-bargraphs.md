@@ -5,7 +5,7 @@ summary: Prodinger counts Motzkin paths and their prefixes (meanders) by length 
 tags: [paper, source, motzkin, cornerless, peakless, valleyless, meander, prefix, skew-motzkin, kernel-method, automaton, bargraph, generating-functions, oeis]
 sources: [prodinger-2025-cornerless-motzkin-bargraphs]
 created: 2026-09-27
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Cornerless, peakless, valleyless Motzkin paths (regular and skew) and applications to bargraphs (Prodinger, 2025)
