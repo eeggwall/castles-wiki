@@ -101,6 +101,9 @@ if len(sys.argv) > 1:
     for name, (t, data, _) in ENTRIES.items():
         assert all(T[(t + j, t - 1)] == data[j] for j in range(len(data))), name
         print(f"{name}: term j == A271942({t} + j, {t - 1}) for all {len(data)} terms")
+    # the A001263 formula line: Sum_k N(n,k) C(m+n-k-1, n-1) == A271942(n+m, n), every b-file term
+    assert all(narayana_form(n, s - n - 1) == v for (s, n), v in T.items())  # m blocks = tower with m - 1
+    print(f"A001263: Sum_k N(n,k) C(m+n-k-1, n-1) == A271942(n+m, n) for all {len(T)} b-file terms (n+m <= {max(s for s, _ in T)})")
 
 # 5. A001263: castles of width w by blocks have g.f. Sum_k N(w,k) y^k / (1-y)^w for every w.
 #    Deutsch-Elizalde: the castle (bargraph) g.f. B(x, y), x width, y blocks, solves x B^2 - (1-x-y-xy) B + xy = 0.
