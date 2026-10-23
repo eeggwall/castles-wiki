@@ -41,9 +41,16 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
    A001263: castles of width `n` with `m` blocks number `Sum_k T(n,k) C(m+n-k-1, n-1)`, for
    every `n`, proved: `x -> x/(1-y)` in the g.f. of A001263 gives Deutsch-Elizalde's bargraph
    equation (2) (arXiv:1609.00088).
-2. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
+2. [ ] **A283595 column g.f.** (the entry has no formula section): one formula block, the g.f.
+   of column `k` is `z^k/(R_k R_{k+1})` with `R_{2j} = P_j − z P_{j−1}`,
+   `R_{2j+1} = P_{j+1} − z^2 P_{j−1}` (`P_k` of A097862, `P_{−1} = 0`), the product form
+   of `R_k` over odd `i`, and a proof line; `Column k=2 gives A094706(n-1).` No castle comment
+   (the castle is the Motzkin prefix raised one row, as on A097862) and no novelty claim:
+   `raw/oeis-pe502/xrefs/A283595-column-gf.md`, checked by `bin/python/a283595_column_gf.py`
+   against the full b-file (`wiki/pages/1-smooth-castles.md` §3.2-3.3).
+3. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
    (`raw/oeis-pe502/xrefs/*-castle.md`).
-3. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
+4. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
    two-parameter family into one array entry, with notable rows and columns as their own
    entries, cf. A217883 "Column 2 is A202882(n+1)"). In order:
    1. [ ] **Array `F(w,h)`**: even-block castles of width `w` and exact height `h`, square
@@ -60,7 +67,7 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
       the draft: the odd half is `F(3, 2m+1) = A014105(m)` (second hexagonal numbers); the
       even half is `F(3,2m) = 10m^2 − 5m + 1` (`6, 31, 76, 141, …`, no match 2026-09-20); and
       `odd(3, 2n+1) = A080860(n)` (`10n^2 + 5n + 1`), an interlink.
-4. [ ] **A003410 castle comment** (optional edit 2 of the A226136 draft, lower priority): for
+5. [ ] **A003410 castle comment** (optional edit 2 of the A226136 draft, lower priority): for
    `n >= 4`, `a(n)` = castles of width `n` and height 2 with no two adjacent columns at height
    2 and every run of height-1 columns of length at most 3 (the `(1,3)`-RLL Fibonacci
    castles): `raw/oeis-pe502/xrefs/A226136-A003410.md` §"Edit 2"
@@ -68,44 +75,31 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
 
 ### 3. Needs a draft (verified, worth submitting; in submission order)
 
-1. [ ] **A283595** (Motzkin prefixes of length `n` and height `k`; the entry has no formula
-   section): castle comment, `T(n,k)` = castles of width `n+1` and exact height `k+1` whose
-   first column is at height 1 and whose neighbouring columns differ by at most 1 (column 2
-   is the Pell castles, A094706). Formula line: the g.f. of column `k` is
-   `z^k/(R_k(z) R_{k+1}(z))` with `R_{2j} = P_j − z P_{j−1}` and
-   `R_{2j+1} = P_{j+1} − z^2 P_{j−1}`, where `P_k` are the polynomials of A097862
-   (`P_{−1} = 0`; the entry's own notation, not the Pell numbers). Proved on the wiki (only odd
-   eigenvalue indices survive; the numerator is a single power of `z`), and checked against the
-   entry's rows 0-8 and as an identity for `k ≤ 11` (2026-10-06). Finch, arXiv:1802.04615
-   (linked from the entry), checked 2026-10-07: it works with ±1 walks and only refers to
-   A283595 for the Motzkin-prefix counts, so there is no column g.f. to cite. Present the
-   formula without a novelty claim; bounded-height path g.f.s are classical
-   (`wiki/pages/1-smooth-castles.md` §3.2-3.3, §3.5).
-2. [ ] **A094706** (Convolution of Pell(n) and 2^n; the entry has no comments): the Pell
+1. [ ] **A094706** (Convolution of Pell(n) and 2^n; the entry has no comments): the Pell
    castles (exact height 3, first column 1, neighbouring columns differing by at most 1) of
    width `w` number `A094706(w − 2) = P⋆_w − 2^{w−1}` (`P⋆_w` the Pell numbers), proved by
    the g.f. `x³/((1−2x−x²)(1−2x))` (`wiki/pages/pell-castle.md`). Add the formula
    `a(n) = A283595(n+1, 2)` (column 2 of the Motzkin-prefix triangle: lowering a Pell castle
    by one row gives a Motzkin prefix of height 2) and `Cf. A283595`; pairs with the A283595
-   item above (`wiki/pages/1-smooth-castles.md`).
-3. [ ] **A077868**: two castle readings and the bijection between them. Spaced Fibonacci
+   formula (stage 2) (`wiki/pages/1-smooth-castles.md`).
+2. [ ] **A077868**: two castle readings and the bijection between them. Spaced Fibonacci
    castles (height-2 columns at least 3 apart) of width `w` number `A077868(w − 1)`; tree
    castles of height 2 with area `A` (cells) number `A077868(A − 2)`; the domino-boundary map
    matches the Fibonacci castles with `w + 1` cells to the spaced castles of width `w`.
    Brute-force verified 2026-10-04
    (`wiki/pages/fibonacci-castles-sub-families.md`, `wiki/pages/tree-castle-by-area.md`).
-4. [ ] **A049703**: balanced Fibonacci castles of width `w` number `A005598(w)/2 = A049703(w)`
+3. [ ] **A049703**: balanced Fibonacci castles of width `w` number `A005598(w)/2 = A049703(w)`
    (towers balanced, i.e. finite Sturmian); the entry is defined only as `A005598(n)/2`, with
    no combinatorial reading. Brute-force verified `w ≤ 15`, 2026-10-04
    (`wiki/pages/fibonacci-castles-sub-families.md`).
-5. [ ] **A106514**: the 1-smooth castles of exact height 3 (free first column) of width `w`
+4. [ ] **A106514**: the 1-smooth castles of exact height 3 (free first column) of width `w`
    number `A106514(w − 1)`, g.f. `x(1−x)/((1−2x)(1−2x−x²))`, proved; the entry has
    only convolution and eigensequence comments (`wiki/pages/pell-castle.md`).
-6. [ ] **Tower-spacing new sequences** (`wiki/pages/tower-spacing-castles.md`): the six
+5. [ ] **Tower-spacing new sequences** (`wiki/pages/tower-spacing-castles.md`): the six
    unfiled cells `(h,g)` for `h in {5,6}`, `g in {4,5,6}` (Hardin's "0..(h-1) arrays, each
    element the minimum of `g` adjacent elements", never filed at these parameters; no match
    2026-09-20).
-7. [ ] **Tower-spacing table comments**: one comment each on the tables A217883 / A217954 /
+6. [ ] **Tower-spacing table comments**: one comment each on the tables A217883 / A217954 /
    A228461 giving the castle reading and the running-minimum proof. The nineteen matched
    cells are covered by the tables, so no per-cell comments
    (`wiki/pages/tower-spacing-castles.md`).
