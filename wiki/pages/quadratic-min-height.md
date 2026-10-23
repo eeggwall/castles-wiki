@@ -20,7 +20,7 @@ When `ρ` is a quadratic irrational, it is the larger root of
 x² − p₁x − p₂,          ρ = (p₁ + √(p₁² + 4p₂)) / 2,
 ```
 
-the characteristic polynomial of the recurrence `a(L) = p₁ a(L − 1) + p₂ a(L − 2)`. For `p₁, p₂ ≥ 0`, `a(L)` counts the tilings of a row of length `L` by squares in `p₁` colors and dominoes in `p₂` colors. The golden ratio is `(1, 1)`; for `p₁, p₂ ≥ 1` the root is de Spinadel's metallic mean `σ_{p₁}^{p₂}`, and the `δ_a` are the line `p₂ = 1` ([[metallic-means](pages/metallic-means.md)]). Every pair with `p₁ ≥ 0` and `p₂ ≥ 1` is the Perron root of some 0/1 matrix ([[reachable-field-census](pages/reachable-field-census.md)]).
+the characteristic polynomial of the recurrence `a(L) = p₁ a(L − 1) + p₂ a(L − 2)`. For `p₁, p₂ ≥ 0`, `a(L)` counts the tilings of a row of length `L` by squares in `p₁` colors and dominoes in `p₂` colors. The golden mean is `(1, 1)`; for `p₁, p₂ ≥ 1` the root is de Spinadel's metallic mean `σ_{p₁}^{p₂}`, and the `δ_a` are the line `p₂ = 1` ([[metallic-means](pages/metallic-means.md)]). Every pair with `p₁ ≥ 0` and `p₂ ≥ 1` is the Perron root of some 0/1 matrix ([[reachable-field-census](pages/reachable-field-census.md)]).
 
 This page finds the smallest height that realizes each pair. A general lower bound, two lines and a triangle of the answer are proved, and the rest is computed exactly up to height 6.
 

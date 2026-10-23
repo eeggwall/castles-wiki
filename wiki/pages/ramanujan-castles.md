@@ -114,7 +114,7 @@ So `λ_1 = 1 + √2 = 2.4142` and `λ_2 = 1`, and the cavity method gives `ρ(T)
 
 ### `(4, 4)`, the `2 × 4` rectangle
 
-The graph is `P_2 × P_4`, with `λ_1 = 1 + φ = φ² = 2.6180` and `λ_2 = φ = 1.6180`, where `φ` is the golden ratio, and `ρ(T) = 2.5653`. `1.6180 ≤ 2.5653`. **Ramanujan.**
+The graph is `P_2 × P_4`, with `λ_1 = 1 + φ = φ² = 2.6180` and `λ_2 = φ = 1.6180`, where `φ` is the golden mean, and `ρ(T) = 2.5653`. `1.6180 ≤ 2.5653`. **Ramanujan.**
 
 ## The census to 22 cells
 

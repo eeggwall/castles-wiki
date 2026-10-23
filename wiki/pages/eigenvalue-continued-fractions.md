@@ -20,7 +20,7 @@ A continued fraction is
 [a₀; a₁, a₂, …]  =  a₀ + 1/(a₁ + 1/(a₂ + 1/( … ))),
 ```
 
-with integers `a₀` and `a₁, a₂, … ≥ 1`. Every real number has one, computed by taking the integer part, subtracting it, inverting the remainder, and repeating. The golden ratio `φ = (1 + √5)/2 ≈ 1.618` satisfies `φ = 1 + 1/φ`, so the remainder after the first step is `φ` again and `φ = [1; 1, 1, 1, …]`. A continued fraction is **eventually periodic** when its digits repeat from some point on, and **purely periodic** when they repeat from the first digit.
+with integers `a₀` and `a₁, a₂, … ≥ 1`. Every real number has one, computed by taking the integer part, subtracting it, inverting the remainder, and repeating. The golden mean `φ = (1 + √5)/2 ≈ 1.618` satisfies `φ = 1 + 1/φ`, so the remainder after the first step is `φ` again and `φ = [1; 1, 1, 1, …]`. A continued fraction is **eventually periodic** when its digits repeat from some point on, and **purely periodic** when they repeat from the first digit.
 
 **Convergents.** The truncations `p_n/q_n = [a₀; a₁, …, a_n]` satisfy `p_n = a_n p_{n−1} + p_{n−2}` and `q_n = a_n q_{n−1} + q_{n−2}`. For `φ`, every `a_n = 1`, so this is the Fibonacci recurrence and the convergents are `F_{n+2}/F_{n+1}`:[^1]
 
@@ -38,7 +38,7 @@ The direction from periodic to quadratic is the computation for `φ`: if the dig
 [a; a, a, …]  =  (a + √(a² + 4))/2,
 ```
 
-the positive root of `x² − ax − 1`, since `x = a + 1/x`. These are the metallic means `δ_a`: `a = 1` gives `φ`, `a = 2` the silver ratio `1 + √2`, `a = 3` the bronze ratio `(3 + √13)/2` ([[metallic-means](pages/metallic-means.md)]).[^3]
+the positive root of `x² − ax − 1`, since `x = a + 1/x`. These are the metallic means `δ_a`: `a = 1` gives `φ`, `a = 2` the silver mean `1 + √2`, `a = 3` the bronze mean `(3 + √13)/2` ([[metallic-means](pages/metallic-means.md)]).[^3]
 
 ## Purely periodic means reduced (Galois)
 

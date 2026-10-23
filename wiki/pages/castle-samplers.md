@@ -208,7 +208,7 @@ For the block profile itself the block-weighted transfer matrix is exact, so Wan
 
 This sampler draws the rule instead of the castle. A strip rule is an `h × h` 0/1 matrix saying which column heights may follow which ([[castle-strip](pages/castle-strip.md)]), and its Perron root is the growth constant of its strips by width. Two priors on rules:
 
-- **Uniform over all rules on `h` heights.** There are `2^{h²}` of them, 66,066 for `h ≤ 4` in all, which [[area-growth-census](pages/area-growth-census.md)] lists. At `h = 3` the 512 rules have 18 distinct Perron roots: 1 for 219 rules, the golden ratio for 96, 2 for 75 and 0 for 25, with mean 1.418.[^exec]
+- **Uniform over all rules on `h` heights.** There are `2^{h²}` of them, 66,066 for `h ≤ 4` in all, which [[area-growth-census](pages/area-growth-census.md)] lists. At `h = 3` the 512 rules have 18 distinct Perron roots: 1 for 219 rules, the golden mean for 96, 2 for 75 and 0 for 25, with mean 1.418.[^exec]
 - **Bernoulli rules for large `h`.** Each entry is 1 with probability `p`, independently, and the rule is a random matrix. Apart from the Perron root, about `ph`, the spectrum follows the limit laws of random matrices.
 
 At `h = 1000` and `2000` a Bernoulli rule behaved as those laws predict:[^exec]

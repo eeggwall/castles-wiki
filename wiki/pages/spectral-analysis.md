@@ -92,7 +92,7 @@ Every `ĉ_k` lies in the field `Q(ω)`. Each symmetry of that field (Galois auto
 D_d  =  { k : gcd(k, w) = d },      one for each divisor d of w,  of size tot(w/d)
 ```
 
-where `tot(q)` is Euler's totient, the number of `a` from 1 to `q` with `gcd(a, q) = 1`, written `tot` because `φ` is the golden ratio on the wiki.
+where `tot(q)` is Euler's totient, the number of `a` from 1 to `q` with `gcd(a, q) = 1`, written `tot` because `φ` is the golden mean on the wiki.
 
 Every such union occurs. For `q` dividing `w`, the Ramanujan sum `r_q(j) = ∑_{1 ≤ a ≤ q, gcd(a,q) = 1} e^{2πi aj/q}` is a whole number for every `j`: it is a sum of roots of unity, so an algebraic integer, and every automorphism of `Q(e^{2πi/q})` permutes its terms, so it is rational, and a rational algebraic integer is an integer. Its DFT is `w` on the class `D_{w/q}` and 0 elsewhere. A sum of Ramanujan sums, plus a constant that lifts every height to at least 1, is a skyline with any prescribed union. So:
 

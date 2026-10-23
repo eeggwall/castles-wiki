@@ -18,9 +18,9 @@ The number of strips of area `n` grows like `ρ^n`, and `ρ` is the rule's **are
 
 ## Terms used on this page
 
-- **Minimal polynomial, conjugates** - the growth constant `ρ` is a root of an integer polynomial; the monic one of lowest degree is its minimal polynomial, and that polynomial's other roots are the conjugates of `ρ`. The golden ratio `1.618` has minimal polynomial `x² − x − 1` and one conjugate, `−0.618`.
+- **Minimal polynomial, conjugates** - the growth constant `ρ` is a root of an integer polynomial; the monic one of lowest degree is its minimal polynomial, and that polynomial's other roots are the conjugates of `ρ`. The golden mean `1.618` has minimal polynomial `x² − x − 1` and one conjugate, `−0.618`.
 - **Perron number** - 1, or a real algebraic integer `θ > 1` whose conjugates all have absolute value less than `θ`.[^verger-def] An area growth constant above 1 is the largest eigenvalue of a nonnegative integer matrix (the unrolled table `U` in the proof of the theorem), so no conjugate is larger in absolute value.
-- **Pisot number** - a Perron number above 1 whose conjugates all lie strictly inside the unit circle. The smallest is the **plastic number** `1.3247`, the root of `x³ − x − 1` (Siegel), and the set of Pisot numbers is closed (Salem).[^verger-def] Its smallest limit point is the golden ratio, and Dufresnoy and Pisot determined every Pisot number below it.[^pisot] The [[plastic-number](pages/plastic-number.md)] page has the castle readings of the plastic number.
+- **Pisot number** - a Perron number above 1 whose conjugates all lie strictly inside the unit circle. The smallest is the **plastic number** `1.3247`, the root of `x³ − x − 1` (Siegel), and the set of Pisot numbers is closed (Salem).[^verger-def] Its smallest limit point is the golden mean, and Dufresnoy and Pisot determined every Pisot number below it.[^pisot] The [[plastic-number](pages/plastic-number.md)] page has the castle readings of the plastic number.
 - **Salem number** - an algebraic integer `β > 1` whose conjugates all have absolute value at most 1, with at least one on the unit circle. Its conjugates are `1/β` and pairs of complex conjugates on the unit circle, its minimal polynomial is reciprocal, and its degree is even and at least 4.[^verger-def]
 - **Lehmer's number** - `1.17628…`, the largest root of Lehmer's polynomial `x^10 + x^9 − x^7 − x^6 − x^5 − x^4 − x^3 + x + 1`, the smallest known Salem number, found by Lehmer in 1933.[^verger-def] Lehmer's conjecture states that the **Mahler measure** of an integer polynomial (the product of the absolute values of its roots outside the unit circle) is either 1 or at least some constant above 1, believed to be `1.17628`.[^lehmer] The restriction to Salem numbers, that they are bounded away from 1, is the Salem conjecture; a 2024 preprint claims the bound `1.08544` ([[verger-gaugry-2024-salem-minoration](pages/verger-gaugry-2024-salem-minoration.md)]), and other authors state it as a conjecture.[^verger-thm]
 
@@ -36,7 +36,7 @@ where `A_S` is the principal submatrix of `A` on the heights in `S`. The right s
 
 Two bounds hold for every rule on `h` heights:
 
-- A rule on `h` heights counts a subset of the compositions (ordered sums) of the area with parts at most `h`, so its growth constant is at most the **`h`-nacci constant** of those compositions ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]): the golden ratio `1.618` at `h = 2`, the tribonacci constant `1.839` at 3, the tetranacci constant `1.928` at 4, always below 2. The all-ones rule attains it.
+- A rule on `h` heights counts a subset of the compositions (ordered sums) of the area with parts at most `h`, so its growth constant is at most the **`h`-nacci constant** of those compositions ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]): the golden mean `1.618` at `h = 2`, the tribonacci constant `1.839` at 3, the tetranacci constant `1.928` at 4, always below 2. The all-ones rule attains it.
 - The minimal polynomial of the growth constant has degree at most `T = h(h+1)/2`.
 
 ## The census through height 4
@@ -50,7 +50,7 @@ Every 0/1 rule of size 1 to 4 (2, 16, 512 and 65,536 rules) was expanded by Equa
 | 3 | 105 | 64 | 3 (5), 4 (7), 5 (23), 6 (29) | 14 | 4 |
 | 4 | 8,255 | 6,226 | 2 to 10; 2,611 of degree 10 | 74 | 29 |
 
-Height 2 gives exactly the golden ratio, the plastic number and the supergolden constant `1.4656`, the root of `x³ − x² − 1`:
+Height 2 gives exactly the golden mean, the plastic number and the supergolden constant `1.4656`, the root of `x³ − x² − 1`:
 
 ```
 rule   growth                       denominator          reading
@@ -62,7 +62,7 @@ rule   growth                       denominator          reading
 10
 ```
 
-The largest constant at each height is the `h`-nacci constant: the tribonacci constant `1.839287` first at height 3 and the tetranacci constant `1.927562` first at height 4. The tribonacci constant cannot appear at height 2, because it exceeds the golden ratio, the ceiling at height 2.
+The largest constant at each height is the `h`-nacci constant: the tribonacci constant `1.839287` first at height 3 and the tetranacci constant `1.927562` first at height 4. The tribonacci constant cannot appear at height 2, because it exceeds the golden mean, the ceiling at height 2.
 
 ## The smallest constant at each height
 
@@ -96,7 +96,7 @@ The census's own minimizers have the same shape with the heights visited in anot
 
 ### The ten smallest Pisot numbers
 
-The ten smallest Pisot numbers, from Dufresnoy and Pisot's determination of all Pisot numbers below the golden ratio,[^pisot] all appear by height 4:
+The ten smallest Pisot numbers, from Dufresnoy and Pisot's determination of all Pisot numbers below the golden mean,[^pisot] all appear by height 4:
 
 | rank | Pisot number | minimal polynomial | first height |
 |---|---|---|---|
@@ -197,7 +197,7 @@ Through height 5 the larger of the two is the exact minimum height for almost ev
 | Pisot | 293 | 64 | - | - |
 | Salem | 154 | 44 | - | - |
 
-The two families of Pisot numbers converging to the golden ratio from below, the roots of `x^n(x² − x − 1) + 1` and of `x^n(x² − x − 1) + (x² − 1)`,[^pisot] meet the bound for every member through degree 15: each first appears at the first height whose degree bound allows it, degree 3 at height 2, degrees 4 to 6 at height 3, 7 to 10 at height 4, and 11 to 15 at height 5.[^exec]
+The two families of Pisot numbers converging to the golden mean from below, the roots of `x^n(x² − x − 1) + 1` and of `x^n(x² − x − 1) + (x² − 1)`,[^pisot] meet the bound for every member through degree 15: each first appears at the first height whose degree bound allows it, degree 3 at height 2, degrees 4 to 6 at height 3, 7 to 10 at height 4, and 11 to 15 at height 5.[^exec]
 
 **Lehmer's number is the smallest constant that misses the bound**: degree 10 allows height 4, and it needs 5. Every other Salem exception is at least `1.448423`, and every Pisot exception at least `1.561752`, the eighth-smallest Pisot number, of degree 6, first at height 4 against a bound of 3.
 
@@ -221,7 +221,7 @@ The two families of Pisot numbers converging to the golden ratio from below, the
 
 [^verger-def]: [[verger-gaugry-2024-salem-minoration](pages/verger-gaugry-2024-salem-minoration.md)] §1 L50-56, L66-70, L121-132 - "A Salem number is an algebraic integer β > 1 such that its Galois conjugates β(i) satisfy: |β(i)| ≤ 1 for all i = 1, 2, . . ., m − 1, with m = deg(β) ≥ 4, β(0) = β and at least one conjugate β(i), i ≠ 0, on the unit circle", "All the Galois conjugates of a Salem number β lie on the unit circle, by pairs of complex conjugates, except 1/β", "The minimal polynomial Pβ(X) ∈ Z[X] of β is reciprocal"; "A Perron number is either 1 or a real algebraic integer θ > 1 such that the Galois conjugates θ(i), i ≠ 0, of θ(0) := θ satisfy: |θ(i)| < θ", "A Pisot number is a Perron number > 1 for which |θ(i)| < 1 for all i ≠ 0. The set of Pisot numbers admits the minorant Θ = 1.3247 . . ., unique root > 1 of X^3 − X − 1 by a result of Siegel"; "Salem [93] proved that the set S of Pisot numbers is closed"; "The smallest Salem number known is Lehmer's number τ := 1.17628 . . ., discovered by Lehmer in 1933 [63], with minimal polynomial (named \"Lehmer's polynomial\"): X^10 + X^9 − X^7 − X^6 − X^5 − X^4 − X^3 + X + 1."
 
-[^pisot]: https://en.wikipedia.org/wiki/Pisot%E2%80%93Vijayaraghavan_number (read 2026-09-25) - "The smallest of them is the golden ratio" for the limit points, Dufresnoy and Pisot "determined all elements of S that are less than φ", the table "ten smallest Pisot numbers in increasing order", and the two families of Pisot numbers converging to the golden ratio.
+[^pisot]: https://en.wikipedia.org/wiki/Pisot%E2%80%93Vijayaraghavan_number (read 2026-09-25) - "The smallest of them is the golden ratio" for the limit points, Dufresnoy and Pisot "determined all elements of S that are less than φ", the table "ten smallest Pisot numbers in increasing order", and the two families of Pisot numbers converging to the golden mean.
 
 [^lehmer]: https://en.wikipedia.org/wiki/Lehmer%27s_conjecture (read 2026-09-25) - the conjecture and Mahler measure, `M(P) = 1.176280818...` for Lehmer's polynomial, "It is widely believed that this example represents the true minimal value".
 

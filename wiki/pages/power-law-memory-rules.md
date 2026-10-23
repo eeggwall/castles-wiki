@@ -1,7 +1,7 @@
 ---
 title: Power-law memory strip rules
 category: Analyses
-summary: The 1-smooth strip rule |c_n − c_{n−1}| <= 1 with the first difference replaced by the Grunwald-Letnikov difference of order alpha, truncated to the last K columns, |sum_{k<K} (−1)^k C(alpha, k) c_{n−k}| <= 1. Its transfer matrix M(alpha, K) is a 0/1 matrix on the h^{K−1} windows of K − 1 columns, so its Perron root rho(alpha, K) is algebraic. At h = 2, rho(alpha, K) is nondecreasing in K for K <= 16 and takes, as exact minimal polynomials show, the plastic number at (1/2, 6), the supergolden constant at (1/2, 7) and (3/4, 4), the golden ratio at (1/2, 9), (3/4, 5), (3/4, 6), (9/10, 4) and (9/10, 5), and psi^2 at (9/10, 6). It is at most 2, and the gaps 2 − rho(alpha, K) shrink by factors of about 0.89, 0.84 and 0.82 per step at alpha = 1/2, 3/4, 9/10 for 11 <= K <= 16. At h = 3 and alpha = 1/2, 3/4, 9/10 the Perron root equals the h = 2 value for K <= 8, because every cyclic component of windows containing height 3 has a smaller Perron root. At alpha = 1 the rule is the 1-smooth strip, at alpha = 2 a rule on second differences (golden at h = 2), and at alpha = 5/4, 3/2 only the constant strips survive.
+summary: The 1-smooth strip rule |c_n − c_{n−1}| <= 1 with the first difference replaced by the Grunwald-Letnikov difference of order alpha, truncated to the last K columns, |sum_{k<K} (−1)^k C(alpha, k) c_{n−k}| <= 1. Its transfer matrix M(alpha, K) is a 0/1 matrix on the h^{K−1} windows of K − 1 columns, so its Perron root rho(alpha, K) is algebraic. At h = 2, rho(alpha, K) is nondecreasing in K for K <= 16 and takes, as exact minimal polynomials show, the plastic number at (1/2, 6), the supergolden constant at (1/2, 7) and (3/4, 4), the golden mean at (1/2, 9), (3/4, 5), (3/4, 6), (9/10, 4) and (9/10, 5), and psi^2 at (9/10, 6). It is at most 2, and the gaps 2 − rho(alpha, K) shrink by factors of about 0.89, 0.84 and 0.82 per step at alpha = 1/2, 3/4, 9/10 for 11 <= K <= 16. At h = 3 and alpha = 1/2, 3/4, 9/10 the Perron root equals the h = 2 value for K <= 8, because every cyclic component of windows containing height 3 has a smaller Perron root. At alpha = 1 the rule is the 1-smooth strip, at alpha = 2 a rule on second differences (golden at h = 2), and at alpha = 5/4, 3/2 only the constant strips survive.
 tags: [analysis, castle, fractional-calculus, grunwald-letnikov, transfer-matrix, non-markov, power-law-memory, perron-root, plastic-number, supergolden, golden-ratio, reachable-field, truncation, algebraic]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-22
@@ -66,7 +66,7 @@ The bold entries are named algebraic numbers. Berlekamp-Massey on the strip coun
 
 - `1.3247` at `(1/2, 6)` is a root of `λ³ − λ − 1`, the plastic number `ψ` ([[plastic-number](pages/plastic-number.md)]);
 - `1.4656` at `(1/2, 7)` and `(3/4, 4)` is a root of `λ³ − λ² − 1`, the supergolden constant ([[tree-castle-by-area](pages/tree-castle-by-area.md)]);
-- `1.6180` at `(1/2, 9)`, `(3/4, 5)`, `(3/4, 6)`, `(9/10, 4)` and `(9/10, 5)` is a root of `λ² − λ − 1`, the golden ratio `φ` ([[metallic-means](pages/metallic-means.md)]);
+- `1.6180` at `(1/2, 9)`, `(3/4, 5)`, `(3/4, 6)`, `(9/10, 4)` and `(9/10, 5)` is a root of `λ² − λ − 1`, the golden mean `φ` ([[metallic-means](pages/metallic-means.md)]);
 - `1.7549` at `(9/10, 6)` is a root of `λ³ − 2λ² + λ − 1`, `ψ²`;
 - `1.5385` at `(1/2, 8)` is a root of the irreducible sextic `λ⁶ − λ⁵ − λ³ − 1`.
 
@@ -111,7 +111,7 @@ At `α = 5/4` and `α = 3/2` the Perron root is 1 for every `K ≤ 11` at `h = 2
 - [[reachable-field-census](pages/reachable-field-census.md)] - the Perron roots of 0/1 strip matrices on at most five heights, by number field.
 - [[plastic-number](pages/plastic-number.md)] - `ψ` and `ψ²`, the Perron roots at `(1/2, 6)` and `(9/10, 6)`.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the supergolden constant as the growth by area of the tree skylines of height at most 2.
-- [[metallic-means](pages/metallic-means.md)] - the golden ratio, and the silver mean `1 + √2` of the case `α = 1`, `h = 3`.
+- [[metallic-means](pages/metallic-means.md)] - the golden mean, and the silver mean `1 + √2` of the case `α = 1`, `h = 3`.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the 1-smooth strip on `{1, 2, 3}`, the case `α = 1`, `h = 3`.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - which metallic means are Perron roots of strip rules on a given number of heights.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - continued fractions of the castle eigenvalues, `φ` among them.

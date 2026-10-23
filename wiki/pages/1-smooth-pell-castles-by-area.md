@@ -216,7 +216,7 @@ area-n count = F_n - 1,
 counts at n = 3, 4, ...:  1, 2, 4, 7, 12, 20, 33, 54, ... .
 ```
 
-Here `F_0 = 0`, `F_1 = 1`, and `F_n = F_{n-1} + F_{n-2}`. After the initial height-1 column, the remaining cells form a composition of `n - 1` into 1s and 2s. There are `F_n` such compositions; removing the all-1 composition gives `F_n - 1`. Their area growth is the golden ratio `phi = (1 + sqrt(5))/2`. This is the same **height-2 area factor `1 - q - q^2`** that occurs in the Pell area denominator, through the ceiling-2 strips removed in Section 5.3.
+Here `F_0 = 0`, `F_1 = 1`, and `F_n = F_{n-1} + F_{n-2}`. After the initial height-1 column, the remaining cells form a composition of `n - 1` into 1s and 2s. There are `F_n` such compositions; removing the all-1 composition gives `F_n - 1`. Their area growth is the golden mean `phi = (1 + sqrt(5))/2`. This is the same **height-2 area factor `1 - q - q^2`** that occurs in the Pell area denominator, through the ceiling-2 strips removed in Section 5.3.
 
 The Fibonacci and ridge castles use stricter neighbor rules:[^height-two-rules]
 

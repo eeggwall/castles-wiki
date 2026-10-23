@@ -104,7 +104,7 @@ The exact characteristic polynomials confirm the floating-point matches:[^3]
 (1,3,2,3,1)        (x - 1)*(x + 1)*(x**2 - 3*x + 1)*(x**2 - x - 1)*(x**2 + x - 1)*(x**2 + 3*x + 1)
 ```
 
-**The products.** The path `P_n` has eigenvalues `2cos(jπ/(n+1))`, and the eigenvalues of a Cartesian product of graphs are the sums of the eigenvalues of the factors. `P_4` has spectral radius `2cos(π/5) = φ`, so the six 4-cell castles whose graph is a path, `(4)`, `(1,3)`, `(3,1)`, `(1,1,2)`, `(2,1,1)` and `(1,1,1,1)`, are golden by spectrum. No other castle is ([[castle-classification-spectrum](pages/castle-classification-spectrum.md)], the section *Castles golden and silver by spectrum*, by Smith's theorem). `P_2 × P_3` has spectral radius `2cos(π/3) + 2cos(π/4) = 1 + √2`, so the `3 × 2` rectangle, `(3,3)` and `(2,2,2)`, is silver by spectrum, and `P_2 × P_4` has spectral radius `1 + φ = φ²`. The three non-rectangular silver castles of the first census, up to mirror image:
+**The products.** The path `P_n` has eigenvalues `2cos(jπ/(n+1))`, and the eigenvalues of a Cartesian product of graphs are the sums of the eigenvalues of the factors. `P_4` has spectral radius `2cos(π/5) = φ`, so the six 4-cell castles whose graph is a path, `(4)`, `(1,3)`, `(3,1)`, `(1,1,2)`, `(2,1,1)` and `(1,1,1,1)`, are golden by spectrum. No other castle is ([[castle-classification-spectrum](pages/castle-classification-spectrum.md)], the section *Castles golden and silver by spectrum*, by Smith's theorem). `P_2 × P_3` has spectral radius `2cos(π/3) + 2cos(π/4) = 1 + √2`, so the `3 × 2` rectangle, `(3,3)` and `(2,2,2)`, is silver by spectrum, and `P_2 × P_4` has spectral radius `1 + φ = φ²`. The three non-rectangular castles of the first census that are silver by spectrum, up to mirror image:
 
 ```
 (1,2,3,1,2,3)      (2,1,6,2,1,3)      (1,1,2,4,1,3,1)
@@ -170,7 +170,7 @@ Its characteristic polynomial is `x(x−1)(x+1)` times an irreducible polynomial
 - [[castle-graph](pages/castle-graph.md)] - the castle graph, with its cycle rank and the tree castles.
 - [[castle-eigenvalues-by-example](pages/castle-eigenvalues-by-example.md)] - the adjacency matrices, characteristic polynomials and walk counts of small castles worked by hand, including castles golden and silver by spectrum.
 - [[bronze-castle-hunt](pages/bronze-castle-hunt.md)] - the bronze search, with the proofs for rectangles and two-group even splits.
-- [[isospectral-castles](pages/isospectral-castles.md)] - non-isomorphic castles with equal spectra; no two of the 36 silver castles have the same spectrum.
+- [[isospectral-castles](pages/isospectral-castles.md)] - non-isomorphic castles with equal spectra; no two of the 36 castles silver by spectrum have the same spectrum.
 - [[metallic-means](pages/metallic-means.md)] - de Spinadel's family and its named members.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the anchored 1-smooth strips on `{1, 2, 3}`, whose transfer matrix has spectral radius `1 + √2`.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the signed transfer matrix `M̃_k`, the factors `H_d` and `V_d` of `char_k`, and `P(k, L) = e_0ᵀ M̃_k^L v`.

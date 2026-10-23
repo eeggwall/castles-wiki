@@ -20,7 +20,7 @@ Which algebraic numbers are the growth rates of castle strips, and which number 
 
 **The number field.** `ρ` is a root of the characteristic polynomial of `M`, an integer polynomial, so it is an algebraic integer. Its **minimal polynomial** is the irreducible factor of the characteristic polynomial that has `ρ` as a root, and its **number field** is `Q(ρ)`. A quadratic `ρ` has `Q(ρ) = Q(√d)` for a squarefree integer `d`, and the field is named by `d`.
 
-*Example, `h = 2`.* The rule "no two adjacent height-2 columns" is `M = [[1, 1], [1, 0]]`, with characteristic polynomial `x² − x − 1`, Perron root the golden ratio `φ`, field `Q(√5)`, and `N(w) = F_{w+2}` strips of width `w`.
+*Example, `h = 2`.* The rule "no two adjacent height-2 columns" is `M = [[1, 1], [1, 0]]`, with characteristic polynomial `x² − x − 1`, Perron root the golden mean `φ`, field `Q(√5)`, and `N(w) = F_{w+2}` strips of width `w`.
 
 The census runs over all `2^{h²}` 0/1 matrices for `h = 2, 3, 4, 5`. For each matrix it computes the characteristic polynomial exactly; for each distinct polynomial it factors over the integers, takes the irreducible factor whose largest real root is the Perron root, and reads the field from that factor: degree 1 is rational, degree 2 gives `Q(√d)` with `d` the squarefree part of the discriminant, degree 3 or more gives a cubic, quartic or quintic field. The factorization and the field are exact; floating point only selects the factor carrying the Perron root.[^1]
 

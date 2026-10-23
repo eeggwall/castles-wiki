@@ -91,7 +91,7 @@ def nearest_metallic(r, max_a=6):
 1
 ```
 
-Meaning: the Pell numbers give `a = 2`, the silver mean `1 + √2 ≈ 2.4142`, and the Fibonacci numbers `a = 1`, the golden ratio `φ ≈ 1.6180`.
+Meaning: the Pell numbers give `a = 2`, the silver mean `1 + √2 ≈ 2.4142`, and the Fibonacci numbers `a = 1`, the golden mean `φ ≈ 1.6180`.
 
 `growth_constant` reads the grading its sequence has, by width, by area or by semi-perimeter ([[castle-classification-growth](pages/castle-classification-growth.md)]). `nearest_metallic` returns a metallic mean for every input, so the distance has to be checked:
 

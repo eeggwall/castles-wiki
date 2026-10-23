@@ -18,9 +18,9 @@ The **plastic number**, also called the plastic constant, is the real root of[^1
 x³ = x + 1,        ψ = 1.324717957244746…      (A060006)
 ```
 
-It plays for the cubic `x³ − x − 1` the role the golden ratio `φ` plays for `x² − x − 1`. The recurrence `a(n) = a(n−2) + a(n−3)` with the initial values `1, 0, 0` gives the **Padovan numbers** `A000931`, and its power sums `ψ^n + ψ'^n + ψ''^n` over the three roots give the **Perrin numbers** `A001608`, as the Fibonacci and Lucas numbers come from `φ`:[^1]
+It plays for the cubic `x³ − x − 1` the role the golden mean `φ` plays for `x² − x − 1`. The recurrence `a(n) = a(n−2) + a(n−3)` with the initial values `1, 0, 0` gives the **Padovan numbers** `A000931`, and its power sums `ψ^n + ψ'^n + ψ''^n` over the three roots give the **Perrin numbers** `A001608`, as the Fibonacci and Lucas numbers come from `φ`:[^1]
 
-| | golden ratio `φ` | plastic number `ψ` |
+| | golden mean `φ` | plastic number `ψ` |
 |---|---|---|
 | minimal polynomial | `x² − x − 1` | `x³ − x − 1` |
 | recurrence, initial values `1, 0(, 0)` | Fibonacci `F_n`, A000045 | Padovan `1, 0, 0, 1, 0, 1, 1, 1, 2, 2, 3, 4, 5, 7, 9, 12, 16, 21, 28, …`, A000931 |
@@ -33,7 +33,7 @@ A **Pisot number** is a real algebraic integer greater than 1 whose other conjug
 
 `ψ` is the fundamental unit of `Q(ψ)`. Its norm is 1, so it is a unit, and the discriminant `−23` of `x³ − x − 1` is squarefree, so `Z[ψ]` is the whole ring of integers. A unit `ε > 1` of this field has two complex conjugates of modulus `ε^{−1/2} < 1`, so it is a Pisot number, and therefore `ε ≥ ψ`.
 
-The same pairing for the silver ratio `1 + √2` gives the Pell numbers `P⋆_n` and their power sums, the companion Pell numbers `A002203` ([[pell-numbers](pages/pell-numbers.md)]).
+The same pairing for the silver mean `1 + √2` gives the Pell numbers `P⋆_n` and their power sums, the companion Pell numbers `A002203` ([[pell-numbers](pages/pell-numbers.md)]).
 
 ## The square, and its expansion
 

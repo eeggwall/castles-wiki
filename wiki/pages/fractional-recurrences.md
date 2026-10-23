@@ -1,7 +1,7 @@
 ---
 title: Fractional recurrences and the metallic means
 category: Analyses
-summary: For the recurrence ∇^α a_n = a_{n−1}, with ∇^α the Grunwald-Letnikov difference of order α, the growth constant g(α) = 1/r*(α), with r* the root in (0, 1) of (1 − r)^α = r, increases continuously from 1 at α = 0 to infinity, like α/log α. A rational order α = p/q gives an algebraic g of degree at most max(p, q); α = 1/3, 1/2, 2/3, 3/2 give the supergolden constant, the golden ratio φ, ψ² and ψ³ = ψ + 1, with ψ the plastic number. An algebraic irrational α gives a transcendental g by the Gelfond-Schneider theorem. The metallic mean δ_a is g(α_a), and α_a is rational only at a = 1 (α_1 = 1/2), because 1 − 1/δ_a has norm a; for a ≥ 2, α_a is transcendental. For ∇^α a_n = a_{n−1} + a_{n−2}, Fibonacci at α = 0 and Pell at α = 1, the only metallic mean at a positive rational order is silver, at α = 1.
+summary: For the recurrence ∇^α a_n = a_{n−1}, with ∇^α the Grunwald-Letnikov difference of order α, the growth constant g(α) = 1/r*(α), with r* the root in (0, 1) of (1 − r)^α = r, increases continuously from 1 at α = 0 to infinity, like α/log α. A rational order α = p/q gives an algebraic g of degree at most max(p, q); α = 1/3, 1/2, 2/3, 3/2 give the supergolden constant, the golden mean φ, ψ² and ψ³ = ψ + 1, with ψ the plastic number. An algebraic irrational α gives a transcendental g by the Gelfond-Schneider theorem. The metallic mean δ_a is g(α_a), and α_a is rational only at a = 1 (α_1 = 1/2), because 1 − 1/δ_a has norm a; for a ≥ 2, α_a is transcendental. For ∇^α a_n = a_{n−1} + a_{n−2}, Fibonacci at α = 0 and Pell at α = 1, the only metallic mean at a positive rational order is silver, at α = 1.
 tags: [analysis, castle, fractional-calculus, grunwald-letnikov, metallic-mean, golden-ratio, transcendental, algebraic, gelfond-schneider, plastic-number, supergolden, reachable-field, characteristic-equation]
 sources: [de-spinadel-1999-family-of-metallic-means]
 created: 2026-09-21
@@ -61,7 +61,7 @@ g(α)  =  1 / r*(α),        (1 − r*)^α  =  r*.                              
 | `α` | equation for `r*` | equation for `g` | `g` | name |
 |---|---|---|---|---|
 | `1/3` | `r³ + r − 1 = 0` | `x³ − x² − 1 = 0` | `1.46557` | supergolden ([[tree-castle-by-area](pages/tree-castle-by-area.md)]) |
-| `1/2` | `r² + r − 1 = 0` | `x² − x − 1 = 0` | `1.61803` | golden ratio `φ` |
+| `1/2` | `r² + r − 1 = 0` | `x² − x − 1 = 0` | `1.61803` | golden mean `φ` |
 | `2/3` | `r³ − r² + 2r − 1 = 0` | `x³ − 2x² + x − 1 = 0` | `1.75488` | `ψ²` ([[plastic-number](pages/plastic-number.md)]) |
 | `1` | `2r − 1 = 0` | `x − 2 = 0` | `2` | |
 | `3/2` | `r³ − 2r² + 3r − 1 = 0` | `x³ − 3x² + 2x − 1 = 0` | `2.32472` | `ψ³ = ψ + 1` |

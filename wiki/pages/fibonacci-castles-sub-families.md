@@ -31,7 +31,7 @@ that is `A_word(w) = w` at `w = 1, 2` and `w + 1` from `w = 3` on.[^exec]
 A 0/1 string is **balanced** if any two of its factors of equal length contain numbers of 1s that differ by at most 1.[^berstel-bal] A **balanced castle** is a Fibonacci castle whose tower is balanced. Three facts about balanced binary words carry over:
 
 - the finite balanced words are exactly the finite Sturmian words, the factors of infinite Sturmian words;[^berstel-28]
-- the balanced binary words of length `n` number `B(n) = 1 + Σ_{i=1}^{n} (n + 1 − i) tot(i)`, with `tot(i)` Euler's totient, the number of `j ≤ i` coprime to `i` (written `tot` because `φ` is the golden ratio here); Berstel names Lipatov (1982) for the first proof;[^berstel-32][^a005598]
+- the balanced binary words of length `n` number `B(n) = 1 + Σ_{i=1}^{n} (n + 1 − i) tot(i)`, with `tot(i)` Euler's totient, the number of `j ≤ i` coprime to `i` (written `tot` because `φ` is the golden mean here); Berstel names Lipatov (1982) for the first proof;[^berstel-32][^a005598]
 - `B(n) = n³/π² + O(n²)`.[^berstel-36]
 
 **Proposition.** For `w ≥ 1`, the balanced castles of width `w` number

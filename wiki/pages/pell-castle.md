@@ -75,7 +75,7 @@ and `S_Pell` one of order 5 with denominator `(1 − x)(1 − 2x + 2x²)(1 − 2
 
 ## Other ceilings
 
-The same rule with ceiling `h` instead of 3 is followed on [[1-smooth-castles](pages/1-smooth-castles.md)], for `h = 2` to 12. The subtraction becomes `strips(w, h) − strips(w, h − 1)`, the anchored strips with ceiling `h` minus those with ceiling `h − 1`, and the generating function `x³/((1 − 2x − x²)(1 − 2x))` is the `h = 3` case of `x^h/(η_h(x)·η_{h−1}(x))`, where `η_h` is the reduced denominator of the strip generating function. At `h = 4` the strips are counted by the odd-indexed Fibonacci numbers and the castles grow like `φ²`; the Pell numbers and the silver ratio belong to `h = 3`.
+The same rule with ceiling `h` instead of 3 is followed on [[1-smooth-castles](pages/1-smooth-castles.md)], for `h = 2` to 12. The subtraction becomes `strips(w, h) − strips(w, h − 1)`, the anchored strips with ceiling `h` minus those with ceiling `h − 1`, and the generating function `x³/((1 − 2x − x²)(1 − 2x))` is the `h = 3` case of `x^h/(η_h(x)·η_{h−1}(x))`, where `η_h` is the reduced denominator of the strip generating function. At `h = 4` the strips are counted by the odd-indexed Fibonacci numbers and the castles grow like `φ²`; the Pell numbers and the silver mean belong to `h = 3`.
 
 Raising the step bound instead, to neighboring columns differing by at most `m`, keeps the Pell form on the diagonal `h = m + 2`: the strips have generating function `x/(1 − (m+1)x − m·x²)` and the castles `m·x³/((1 − (m+1)x − m·x²)(1 − (m+1)x))`, which is this page's generating function at `m = 1` ([[m-smooth-castles](pages/m-smooth-castles.md)] §3.6).
 
@@ -108,7 +108,7 @@ print([e for e, o in c])    # 0, 0, 0, 0, 2, 13, 51, 154, 400, 969, 2331, 5742, 
 
 ## Related Concepts
 
-- [[1-smooth-pell-castles-by-area](pages/1-smooth-pell-castles-by-area.md)] - these same Pell castles by width and area together, with area growth `1.666301937...` rather than the silver ratio by width.
+- [[1-smooth-pell-castles-by-area](pages/1-smooth-pell-castles-by-area.md)] - these same Pell castles by width and area together, with area growth `1.666301937...` rather than the silver mean by width.
 - [[1-smooth-castles](pages/1-smooth-castles.md)] - the anchored 1-smooth castles of height `h` for every `h`, with the Pell castles as `h = 3`.
 - [[m-smooth-castles](pages/m-smooth-castles.md)] - step bound `m`; the Pell castles are the `m = 1` point of the diagonal `h = m + 2`.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the Pell castle strip, the superset without the ceiling requirement, and the seminar from the Analytic Combinatorics exercise.

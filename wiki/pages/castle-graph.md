@@ -99,8 +99,8 @@ The spectral types of [[castle-classification-spectrum](pages/castle-classificat
 | type | condition on `G_c` | page |
 |---|---|---|
 | tree castle | `G_c` is a tree | this page, section *Tree castles* |
-| golden by spectrum | the largest adjacency eigenvalue is the golden ratio `φ = (1 + √5)/2`; the castle `(1, 1, 1, 1)` is one | [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
-| silver by spectrum | the largest adjacency eigenvalue is the silver ratio `1 + √2`; the castle `(2, 2, 2)` is one | [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
+| golden by spectrum | the largest adjacency eigenvalue is the golden mean `φ = (1 + √5)/2`; the castle `(1, 1, 1, 1)` is one | [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
+| silver by spectrum | the largest adjacency eigenvalue is the silver mean `1 + √2`; the castle `(2, 2, 2)` is one | [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
 | spectral radius `φ²` | the largest adjacency eigenvalue is `φ² = (3 + √5)/2` | [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] |
 | isospectral pair | two castles with non-isomorphic graphs and the same adjacency or Laplacian spectrum | [[isospectral-castles](pages/isospectral-castles.md)] |
 | Ramanujan castle | every adjacency eigenvalue other than `±λ_1` has modulus at most `ρ(T)`, the spectral radius of the universal covering tree of `G_c` (Greenberg's condition for irregular graphs) | [[ramanujan-castles](pages/ramanujan-castles.md)] |

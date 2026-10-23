@@ -78,7 +78,7 @@ So the prime castles of height 3 are plastic by area, and those of height 4 supe
 
 ## The same factorization on Dyck paths
 
-Dyck paths form a free monoid under concatenation. Its primes are the paths `uPd` that touch the axis only at their two ends, and the number of prime factors of a path is its number of returns to the axis. Deutsch and Elizalde's bijection from Dyck paths to bargraphs, which are castles ([[deutsch-elizalde-2017-bargraphs-dyck-paths](pages/deutsch-elizalde-2017-bargraphs-dyck-paths.md)]), carries this factorization to the one on this page. They write the bijection `φ`; this page writes `φ_DE`, since `φ` is the golden ratio here. With `B ◦ B′` the concatenation of two bargraphs read as height sequences and `UBD` the bargraph `B` raised one row:[^5]
+Dyck paths form a free monoid under concatenation. Its primes are the paths `uPd` that touch the axis only at their two ends, and the number of prime factors of a path is its number of returns to the axis. Deutsch and Elizalde's bijection from Dyck paths to bargraphs, which are castles ([[deutsch-elizalde-2017-bargraphs-dyck-paths](pages/deutsch-elizalde-2017-bargraphs-dyck-paths.md)]), carries this factorization to the one on this page. They write the bijection `φ`; this page writes `φ_DE`, since `φ` is the golden mean here. With `B ◦ B′` the concatenation of two bargraphs read as height sequences and `UBD` the bargraph `B` raised one row:[^5]
 
 - `φ_DE(uPd)` is `φ_DE(P)` raised one row, so a prime Dyck path `uPd` with `P` nonempty goes to a castle with no height-1 column (Prop. 3.5(i)).
 - `φ_DE(PP′)` is `φ_DE(P) ◦ (1) ◦ φ_DE(P′)` when both paths have height at least 2, and `φ_DE(P) ◦ φ_DE(P′)` otherwise (Prop. 3.5(ii)).
@@ -144,7 +144,7 @@ for n in range(1, 17):
 - [[prime-convex-castles](pages/prime-convex-castles.md)]: the one nontrivial prime of a convex castle, counted.
 - [[convex-castle](pages/convex-castle.md)]: the convex castles.
 - [[castle-foata-transform](pages/castle-foata-transform.md)]: peaks, which count the nontrivial prime factors.
-- [[metallic-means](pages/metallic-means.md)], [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)]: the golden ratio as the growth constant of the prime castles by area.
+- [[metallic-means](pages/metallic-means.md)], [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)]: the golden mean as the growth constant of the prime castles by area.
 - [[q-thread-seminar](pages/q-thread-seminar.md)]: a seminar on castles by area, whose Stop 3 is this factorization.
 
 ## Footnotes

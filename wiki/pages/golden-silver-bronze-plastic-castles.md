@@ -1,5 +1,5 @@
 ---
-title: Golden, silver, bronze and plastic castles
+title: Golden, silver, bronze and plastic growth of castles
 category: Analyses
 summary: The four constants golden φ, silver 1 + √2, bronze (3 + √13)/2 and plastic ψ (real root of x³ = x + 1) side by side on every axis where a castle family or a single castle can carry a growth constant or spectral radius - width, area, semi-perimeter, adjacency spectrum, the signed transfer matrix. All four are width growth constants. By area only golden and plastic can occur, because every class of castles grows at most 2 by area. By adjacency spectrum plastic cannot occur, because ψ has complex conjugates and a graph's eigenvalues are real. New plastic families, each counted exactly by the Padovan numbers A000931 like the existing maximal castles - the (1, 2)-RLL castles by width, the ridge castles of height 2 by area, and the height-3 rule 1 → 2 → 3 → {1, 2} by width. At height 2 one table shows all three gradings - all castles, Fibonacci castles and ridge castles by width, area and semi-perimeter - with golden, plastic, supergolden and ψ² as the entries. φ and ψ are the smallest width growth constants above 1 at heights 2 and 3.
 tags: [analysis, castle, metallic-means, golden-ratio, silver-ratio, bronze, plastic-number, padovan, growth-constant, width, area, semi-perimeter, spectral-radius, run-length-limited, ridge-castle, classification, totally-real, oeis, sympy, verification]
@@ -8,11 +8,11 @@ created: 2026-10-10
 updated: 2026-10-16
 ---
 
-# Golden, silver, bronze and plastic castles
+# Golden, silver, bronze and plastic growth of castles
 
 ## The question
 
-"Golden castle" means nothing until it says what is golden. A **family** of castles can grow at the golden rate when counted by width, by area or by semi-perimeter, and a **single** castle can have the golden ratio as the largest eigenvalue of its cell graph. These are different statements about different objects, and a constant can be possible on one axis and impossible on another. This page puts four constants side by side on each axis:
+"Golden castle" means nothing until it says what is golden. A **family** of castles can grow at the golden rate when counted by width, by area or by semi-perimeter, and a **single** castle can have the golden mean as the largest eigenvalue of its cell graph. These are different statements about different objects, and a constant can be possible on one axis and impossible on another. This page puts four constants side by side on each axis:
 
 | constant | value | minimal polynomial | other roots |
 |---|---|---|---|
@@ -25,7 +25,7 @@ The first three are the metallic means ([[metallic-means](pages/metallic-means.m
 
 ## Terms used on this page
 
-- **Growth castle** - a family of castles whose count, graded by a stated size, grows like `c^n`; it is a "`c` `<axis>` growth castle" ([[castle-classification-growth](pages/castle-classification-growth.md)]). The size `n` is one of:
+- **`c` by a size** - a family of castles is `c` by width, by area or by semi-perimeter when its count, graded by that size, grows like `c^n` ([[castle-classification-growth](pages/castle-classification-growth.md)]). The size `n` is one of:
   - **width** `w`, at a fixed height `h`;
   - **area**, the number of cells `c_1 + ⋯ + c_w`;
   - **semi-perimeter** `s = w + #blocks`, half the perimeter of the castle polygon ([[castle-perimeter](pages/castle-perimeter.md)]). Reading left to right, the block count adds `max(0, c_i − c_{i−1})` at each column (with `c_0 = 0`), so a column of height `b` after one of height `a` adds `1 + max(0, b − a)` to `s`.
@@ -67,7 +67,7 @@ Bold entries are new on this page. The sections below give each entry its rule, 
 
 ## Area
 
-**Silver and bronze area growth castles do not exist.** A castle of area `n` is a composition of `n` (its column heights in order), so there are `2^{n−1}` castles of area `n` in all, and every family of castles grows at most 2 by area. Silver `2.414` and bronze `3.303` exceed 2. Golden and plastic, both below 2, occur:
+**No family of castles is silver or bronze by area.** A castle of area `n` is a composition of `n` (its column heights in order), so there are `2^{n−1}` castles of area `n` in all, and every family of castles grows at most 2 by area. Silver `2.414` and bronze `3.303` exceed 2. Golden and plastic, both below 2, occur:
 
 | constant | family | rule | example | count at area `A` |
 |---|---|---|---|---|

@@ -1,5 +1,5 @@
 ---
-title: "The Pell castle strip - from 1/(1 − 2x − x²) to the silver ratio"
+title: "The Pell castle strip - from 1/(1 − 2x − x²) to the silver mean"
 category: Analyses
 summary: A seminar-shaped analysis. Coefficient matching on D(x) = 1/(1 − 2x − x²) gives the Pell recurrence with its initial terms; read as a sequence of two atoms, D(x) counts tilings; and the anchored 1-smooth strips on the heights {1, 2, 3} realize it, P⋆_w of width w with Σ P⋆_w x^{w−1} = D(x). Strips need not reach height 3; those that do are the Pell castles, P⋆_w − 2^{w−1} = A094706(w − 2) of them. The anchored strips are silver by width.
 tags: [analysis, castle, pell, generating-functions, coefficient-matching, seminar, pedagogy, silver-ratio, transfer-matrix]
@@ -8,11 +8,11 @@ created: 2026-09-15
 updated: 2026-10-16
 ---
 
-# The Pell castle strip - from 1/(1 − 2x − x²) to the silver ratio
+# The Pell castle strip - from 1/(1 − 2x − x²) to the silver mean
 
 ## Overview
 
-The source note works the following exercise, which it records as an end-of-chapter exercise of Analytic Combinatorics ([[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)]): *given the generating function `D(x) = 1/(1 − 2x − x²)`, find the recurrence for its coefficients and the initial terms.* This page follows the exercise to a family of skylines. Coefficient matching gives the recurrence and the initial terms from one equation (section 1). Read as a sequence construction, `D(x)` counts tilings by two atoms (section 2). The 1-smooth rule on the heights `{1, 2, 3}`, with the first column at height 1, gives skylines whose generating function is exactly `D(x)`, and their counts are the Pell numbers `P⋆_w` (section 3). Their growth constant is the silver ratio `1 + √2` (section 4).
+The source note works the following exercise, which it records as an end-of-chapter exercise of Analytic Combinatorics ([[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)]): *given the generating function `D(x) = 1/(1 − 2x − x²)`, find the recurrence for its coefficients and the initial terms.* This page follows the exercise to a family of skylines. Coefficient matching gives the recurrence and the initial terms from one equation (section 1). Read as a sequence construction, `D(x)` counts tilings by two atoms (section 2). The 1-smooth rule on the heights `{1, 2, 3}`, with the first column at height 1, gives skylines whose generating function is exactly `D(x)`, and their counts are the Pell numbers `P⋆_w` (section 3). Their growth constant is the silver mean `1 + √2` (section 4).
 
 ## 1. Coefficient matching
 
@@ -99,7 +99,7 @@ The strips with both end columns at height 2 also number `A001333(w − 1)`, sin
 
 **Two heights are not enough.** For a 0/1 matrix `M` of size 2, `det(I − xM) = 1 − (tr M)x + (det M)x²` with `tr M ∈ {0, 1, 2}`, and it takes exactly the six values `1`, `1 − x`, `1 − 2x`, `1 − x²`, `(1 − x)²` and `1 − x − x²`.[^3] The generating function of a strip has a denominator that divides `det(I − xM)`, so no rule on two heights gives the denominator `1 − 2x − x²`.
 
-## 4. The silver ratio
+## 4. The silver mean
 
 The coefficients
 
@@ -113,9 +113,9 @@ are the Pell numbers shifted by one, `a_n = P⋆_{n+1}` ([[pell-numbers](pages/p
 P⋆_n  =  ( (1 + √2)^n − (1 − √2)^n ) / (2√2),
 ```
 
-so `P⋆_n ~ (1 + √2)^n / (2√2)`, and the anchored strips are silver by width. This is the case `a = 2` of the Binet formula for the roots of `λ² − aλ − 1`, whose case `a = 1` gives the Fibonacci numbers and the golden ratio `φ` ([[aocp-generating-functions](pages/aocp-generating-functions.md)], [[metallic-means](pages/metallic-means.md)]). On the castle side, the Fibonacci castles, the tree castles of height 2, number `F_{w+2} − 1` and are golden by width ([[castle-graph](pages/castle-graph.md)]).
+so `P⋆_n ~ (1 + √2)^n / (2√2)`, and the anchored strips are silver by width. This is the case `a = 2` of the Binet formula for the roots of `λ² − aλ − 1`, whose case `a = 1` gives the Fibonacci numbers and the golden mean `φ` ([[aocp-generating-functions](pages/aocp-generating-functions.md)], [[metallic-means](pages/metallic-means.md)]). On the castle side, the Fibonacci castles, the tree castles of height 2, number `F_{w+2} − 1` and are golden by width ([[castle-graph](pages/castle-graph.md)]).
 
-The silver ratio `1 + √2 = [2; 2, 2, …]` has a purely periodic continued fraction because it is a reduced quadratic surd, a unit of norm `−1` ([[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]). It is also the growth constant of two other castle constructions:
+The silver mean `1 + √2 = [2; 2, 2, …]` has a purely periodic continued fraction because it is a reduced quadratic surd, a unit of norm `−1` ([[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)]). It is also the growth constant of two other castle constructions:
 
 - the tower words counted by their total number of steps, `A004149`, whose generating function has its singularity nearest 0 at `√2 − 1` ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]);
 - the ridge strips on the heights `{1, 2, 3}`, with transfer matrix `R_3 = J − D`, `J` the all-ones matrix and `D = diag(1, 1, 0)`, which with free ends number `3, 7, 17, 41, …`, the Pell-Lucas numbers again ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).[^3]

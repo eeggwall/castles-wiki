@@ -46,7 +46,7 @@ E(z)  =  1 + z·E(z) + z²(E(z) − 1)(1 + z·E(z)),
 z³E² − (1 − z − z² + z³)E + (1 − z²)  =  0,                                   (1)
 ```
 
-with discriminant `(z − 1)(z + 1)(z² + 1)(z² + 2z − 1)`. With `g(z) = 1 + z·E(z)`, Equation (1) is equivalent to the equation `z²g² − (1 − z + z² + z³)g + 1 = 0` of the OEIS entry.[^4] The discriminant has a simple zero at `z = √2 − 1`, the zero of smallest modulus, so `E(z)` has a square-root singularity there and is algebraic but not rational. The tower words grow like `(√2 + 1)^n`, so they are silver by length; OEIS gives `A004149(n) ~ (1 + √2)^{n+1/2}/(√π n^{3/2})`.[^4] The silver ratio `1 + √2 = [2; 2, 2, …]` is `δ_2` of [[metallic-means](pages/metallic-means.md)], and its continued fraction is on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)].
+with discriminant `(z − 1)(z + 1)(z² + 1)(z² + 2z − 1)`. With `g(z) = 1 + z·E(z)`, Equation (1) is equivalent to the equation `z²g² − (1 − z + z² + z³)g + 1 = 0` of the OEIS entry.[^4] The discriminant has a simple zero at `z = √2 − 1`, the zero of smallest modulus, so `E(z)` has a square-root singularity there and is algebraic but not rational. The tower words grow like `(√2 + 1)^n`, so they are silver by length; OEIS gives `A004149(n) ~ (1 + √2)^{n+1/2}/(√π n^{3/2})`.[^4] The silver mean `1 + √2 = [2; 2, 2, …]` is `δ_2` of [[metallic-means](pages/metallic-means.md)], and its continued fraction is on [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)].
 
 OEIS lists a continued fraction for the generating function of `A004149`, due to Barry:[^4]
 
