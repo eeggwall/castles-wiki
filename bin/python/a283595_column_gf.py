@@ -128,3 +128,12 @@ print(f"R_k == product over odd i, P_k == product over all i, k <= {K}; eigenvec
 a094706 = series_div([0, 1], mul([1, -2, -1], [1, -2]), N)
 assert [T[n][2] for n in range(2, N + 1)] == a094706[1:N], "column 2"
 print(f"column 2: T(n,2) == A094706(n-1) for n = 2..{N}")
+
+# 7. The draft's Python program (walks on {0..k}, height at most k minus height at most k-1) against the brute force
+def H(n, k):
+    v = [1] + [0]*k
+    for _ in range(n): v = [(v[j-1] if j else 0) + v[j] + (v[j+1] if j < k else 0) for j in range(k+1)]
+    return sum(v)
+def T_prog(n, k): return H(n, k) - H(n, k-1) if k else 1
+assert all(T_prog(n, k) == T[n][k] for n in range(N + 1) for k in range(n + 1))
+print(f"Python program: T(n,k) == brute force for rows 0..{N}")

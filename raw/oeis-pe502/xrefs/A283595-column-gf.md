@@ -21,6 +21,20 @@ Proof: Motzkin prefixes of height at most k are walks from 0 on {0..k}, so by th
 Column k=2 gives A094706(n-1).
 ```
 
+**PROGRAM** (append after the Mathematica program; the entry has no Python program):
+
+```
+(Python)
+def H(n, k): # Motzkin prefixes of length n and height at most k
+    v = [1] + [0]*k
+    for _ in range(n): v = [(v[j-1] if j else 0) + v[j] + (v[j+1] if j < k else 0) for j in range(k+1)]
+    return sum(v)
+def T(n, k): return H(n, k) - H(n, k-1) if k else 1
+print([T(n, k) for n in range(11) for k in range(n+1)]) # _Chaz Reid_, Oct 23 2026
+```
+
+The printed list is the entry's DATA, rows 0..10 (66 terms).
+
 ## Proof
 
 Write `λ_i = 1 + 2cos(iπ/(k+2))`. A Motzkin prefix of height at most `k` is a walk on
@@ -61,7 +75,8 @@ brute-force count of Motzkin prefixes by length and height; the column g.f. repr
 column `k = 0..140` up to row 140, and `deg R_k = ⌈k/2⌉`; for `k <= 40`, the height-at-most-`k`
 g.f. reduces to a proper fraction over `R_{k+1}`, the two factorizations of `P` hold, both
 product forms agree with `R_k` and `P_k` to 35 digits, and the eigenvector sums vanish
-exactly at even `i`; column 2 equals `A094706(n-1)` for `n = 2..140`.
+exactly at even `i`; column 2 equals `A094706(n-1)` for `n = 2..140`; the Python program's
+`T(n,k)` equals the brute force for rows 0..140.
 
 ## Already there (do NOT duplicate)
 

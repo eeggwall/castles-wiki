@@ -5,3 +5,4 @@ height <= k: Sum z^j P_(k-j)/P_(k+1) == brute force, and reduces to N_k/R_(k+1),
 P_(2j+1) = P_j R_(2j+1) and P_(2j) = R_(2j) (P_j + z P_(j-1)), j <= 40
 R_k == product over odd i, P_k == product over all i, k <= 40; eigenvector sums 0 exactly at even i; odd-i eigenvalues nonzero
 column 2: T(n,2) == A094706(n-1) for n = 2..140
+Python program: T(n,k) == brute force for rows 0..140
