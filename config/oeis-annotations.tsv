@@ -160,6 +160,7 @@ A067675	supporting	Number of fixed convex polyominoes with n cells.	convex polyo
 A067676	supporting	Number of fixed directed convex polyominoes with n cells.	directed convex polyominoes by area
 A069010	supporting	Number of runs of 1's in the binary representation of n.	runs in a row, the Catalan index in Marin's state count
 A077855	count	Expansion of 1/((1-2*x+x^2-x^3)*(1-x)).	castles of height 2 by semi-perimeter s: A077855(s − 3); growth ψ² by semi-perimeter
+A077860	count	Expansion of 1/((1 - 2*x + 2*x^2)*(1-x)).	signed castles of height 2: S(w, 2) = A077860(w - 1); the anchored 1-smooth castles of height 2, A077860(w - 2)
 A077868	count	Expansion of 1/((1-x)*(1-x-x^3)).	tree castles of height 2 with n cells: the term A077868(n-2), n >= 2; spaced Fibonacci castles of width w: A077868(w-1)
 A079816	count	Number of permutations satisfying -k <= p(i)-i <= r and p(i)-i not in I, i=1..n, with k=1, r=5, I={1}.	tree skylines of height at most 5 by area: A079816(n + 1), compositions of n + 1 into {1, 3, 4, 5, 6}
 A080860	count	a(n) = 10*n^2 + 5*n + 1.	odd-block castles of width 3 and odd height: A^o(3, 2n + 1) = 10n^2 + 5n + 1 = A080860(n); at even height A^e(3, 2m) = 10m^2 - 5m + 1 = 5 A000384(m) + 1
@@ -189,6 +190,7 @@ A107587	count	Number of Motzkin n-paths with an even number of up steps.	odd-blo
 A107920	supporting	Lucas and Lehmer numbers with parameters (1 +- sqrt(-7))/2.	Lucas-Lehmer with (1±√-7)/2 (P_odd(2,L) at k=2)
 A112742	count	a(n) = n^2*(n^2 - 1)/3.	A112742(k + 1) is the alternating part A_5(k) in P(k, 5) = (-1)^k A_5(k) + B_5(k)
 A115981	count	The number of compositions of n which cannot be viewed as stacks.	non-convex castles by area
+A122611	supporting	G.f.: 1/(1 - 7 x + 15 x^2 - 6 x^3 - 11 x^4 + 6 x^5 + x^6).	1/eta_12: agrees with the anchored 1-smooth castles of height 6 for six terms, since their g.f. is x^6/(eta_12 + x^6)
 A130578	count	Number of different possible rows (or columns) in an n X n crossword puzzle.	castles of height 3 with every column 1 or 3, by semi-perimeter s: A130578(s − 1); golden by semi-perimeter
 A132393	supporting	Triangle of unsigned Stirling numbers of the first kind (see A048994), read by rows, T(n,k) for 0 <= k <= n.	Stirling numbers of the first kind; [n, 1] = (n - 1)!, the cycle count of castles-as-upgraded-cycle-count
 A140662	supporting	Number of possible column states for self-avoiding polygons in a slit of width n.	state count of a polygon automaton, cited beside Marin's
@@ -232,6 +234,7 @@ A276068	supporting	Sum of the lengths of the first descents in all bargraphs hav
 A276994	supporting	Decimal expansion of the Klarner-Rivest polyomino constant.	growth constant 2.30913... of parallelogram, directed convex and convex polyominoes by area
 A280772	supporting	Number of simple tournaments with n nodes.	simple tournaments on n vertices, 1, 1, 1, 0, 3, 15, 197, 4008 for n <= 8 (simple-tournament)
 A283595	count	Triangle read by rows: T(n,k) is the number of Motzkin prefixes (i.e., left factors of Motzkin paths) of length n and height k.	anchored 1-smooth castles by width and height: the entry at (w - 1, h - 1); its column 2 is the Pell castles
+A283667	count	Number of Motzkin prefixes of length 2n and height n.	anchored 1-smooth castles of width 2h - 1 and height h, `=a(h-1)`; closed form by four trinomial coefficients
 A292357	supporting	Array read by antidiagonals: T(m,n) is the number of fixed polyominoes that have a width of m and height of n.	`I(w, h)`, the inscribed polyominoes; castles are its bargraphs
 A308435	supporting	Peak- and valleyless Motzkin meanders.	cornerless Motzkin meanders by length: tower-word prefixes, a castle interrupted mid-build (Prodinger 2025)
 A319421	supporting	Triangle read by rows: T(n,k) (1 <= k <= n) = one-half of the number of binary vectors of length n and cuts-resistance k.	agrees with the triangle of castles by area and blocks on its first five rows only (castle-sequence-catalogue)
