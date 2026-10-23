@@ -15,29 +15,32 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
 
 ## OEIS submissions (human action — drafts in `raw/oeis-pe502/`)
 
-OEIS allows **3 open edits at a time**, and each takes a while to review, so the queue runs
-as a pipeline: when a review slot opens, submit the top item of "Ready to submit". Keep stages 2-4 stocked while waiting. Signatures use a
-two-digit day (`Oct 04 2026`). A tool may run the verification scripts, check offsets against the live entries and format data; only a person rewrites the draft prose, signs it and submits (`raw/oeis-pe502/SUBMISSION-NOTES.md` §4). See `wiki/pages/oeis-cross-referencing.md`; the
-OEIS status of each castle sequence (known / interlink / novel-candidate / unchecked) is
-kept here, in section 5; the wiki's `castle-sequence-catalogue` lists the sequences and the
-entries they equal, with no status.
+**Procedure.**
+
+1. The OEIS allows **3 open edits at a time**, and each takes days to review. Stage 1 lists
+   the open edits. When one is approved, move it to *Done* with its revision number, the
+   approval date and any change the editor made, then submit the top item of stage 2.
+2. An entry takes one open edit at a time: a follow-up edit to an entry in stage 1 waits for
+   that edit's approval.
+3. Keep stages 2 to 4 stocked while waiting: draft the top of stage 3 into stage 2, and give
+   each stage-4 candidate a verdict (stage 3, or *Skipped* with the reason).
+4. A tool may run the verification scripts, check offsets against the live entries and
+   format data; only a person rewrites the draft prose, signs it and submits
+   (`raw/oeis-pe502/SUBMISSION-NOTES.md` §4). Signatures use a two-digit day (`Oct 04 2026`).
+5. Editors' changes so far, to follow in new drafts: a new link goes after the existing
+   links and before the Index link (Stefano Spezia, A160747); a Narayana-numerator formula is
+   written `a(n) = Sum_{k=1..L} A001263(L,k)*binomial(n+L-k, L-1)` with the numerator named in
+   words (Sean A. Irvine, A160747 and A063490).
+6. The OEIS status of each castle sequence (known / interlink / novel-candidate / unchecked)
+   is kept in *Search record* at the end of this file; the wiki's `castle-sequence-catalogue`
+   lists the sequences and the entries they equal, with no status.
+
+**Next step (2026-10-23).** Stage 1 is full: A005891, A001263, A283595. When a slot opens,
+submit stage 2 item 1, the dense-entry synonyms. When A283595 #43 is approved, its follow-up
+(stage 3 item 1) can be drafted.
 
 ### 1. In review (max 3)
 
-- [~] **A160747 castles of width 5 and 6-cores** (submitted 2026-10-16). One comment block:
-  `a(n)` = 6-core partitions with `n` corners (Cho, Huh, Nam, and Sohn, arXiv:2205.15554,
-  Prop. 3.4, already linked) = castles of width 5 with `n + 1` blocks, of any height, with the
-  abacus bijection (their Theorem 3.3). One formula block: the g.f. numerator is row 5 of
-  A001263, their Prop. 3.4 sum, `a(n) = A271942(n+6, 5)`. The PE 502 link and two new Cf.
-  lines (A001263, A271942; the t-core family A005408 / A005891 / A063490):
-  `raw/oeis-pe502/xrefs/A160747-tower.md`, checked by `bin/python/tower_t_cores.py`
-  (`wiki/pages/tower-narayana-polynomial.md`).
-- [~] **A063490 castles of width 4 and 5-cores** (submitted 2026-10-16), the A160747 form at
-  `t = 5`; offset 1 needs no shift: `a(n)` = castles of width 4 with `n` blocks = 5-cores with
-  `n − 1` corners. Formula block: the numerator `x(1 + 6x + 6x^2 + x^3)` (row 4 of A001263),
-  Cho et al.'s Prop. 3.4 sum, `a(n) = A271942(n+4, 4)`. The PE 502 link, `Cf. A001263, A064788,
-  A185505, A271942.` (extends the existing line) and the t-core family line:
-  `raw/oeis-pe502/xrefs/A063490-tower.md`, checked by `bin/python/tower_t_cores.py`.
 - [~] **A005891 castles of width 3 and 4-cores** (submitted 2026-10-21), the A160747 form at
   `t = 4`: `a(n)` = 4-cores with `n` corners = castles of width 3 with `n + 1` blocks.
   Formula block: Cho et al.'s Prop. 3.4 sum and `a(n) = A271942(n+4, 3)`, with no
@@ -46,17 +49,26 @@ entries they equal, with no status.
   The Cho et al. and PE 502 links, `A001263, A271942` added to the first Cf. line, and the
   t-core family line: `raw/oeis-pe502/xrefs/A005891-tower.md`, checked by
   `bin/python/tower_t_cores.py`.
+- [~] **A001263 castles by blocks for every width** (submitted 2026-10-23, #788-#791). One
+  comment block: `Sum_{k=1..n} T(n,k)*binomial(m+n-k-1, n-1)` = castle polyominoes of width
+  `n` with `m` blocks, of any height and without the even-block rule, with the proof through
+  Deutsch and Elizalde's equation (2); the Deutsch-Elizalde (arXiv:1609.00088) and PE 502
+  links; a Python program. Michel Marcus asked why not a new array; the reply points to
+  A271942 (bargraphs by semiperimeter and width), added as the formula
+  `... = A271942(n+m, n)` with `Cf. A005408, A005891, A063490, A160747, A271942`:
+  `raw/oeis-pe502/xrefs/A001263-tower.md` (`wiki/pages/tower-narayana-polynomial.md`).
+- [~] **A283595 column generating functions** (submitted 2026-10-23, #42-#43). One formula
+  block: the g.f. of column `k` is `z^k/(R_k*R_{k+1})` with `R_{2j} = P_j − z*P_{j−1}`,
+  `R_{2j+1} = P_{j+1} − z^2*P_{j−1}` (`P_k` of A097862), and
+  `R_k = Product_{i=1..k, i odd} (1 − (1 + 2*cos(i*Pi/(k+1)))*z)`; a Python program;
+  `Column k=2 gives A094706(n-1)` (`wiki/pages/1-smooth-castles.md` §3.2-3.3). The castle
+  comment and the other formula lines are stage 3 item 1.
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-1. [ ] **A001263, castles by blocks for every width** (formerly tier 2), in the A160747 form
-   (castle wording, PE 502 link, Cho et al.): castles of width `n` with `m` blocks number
-   `Sum_k T(n,k) C(m+n-k-1, n-1)`, for every `n`, proved: `x -> x/(1-y)` in the g.f. of
-   A001263 gives Deutsch-Elizalde's bargraph equation (2) (arXiv:1609.00088)
-   (`raw/oeis-pe502/xrefs/A001263-tower.md`; `wiki/pages/tower-narayana-polynomial.md`).
-2. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
+1. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
    (`raw/oeis-pe502/xrefs/*-castle.md`).
-3. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
+2. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
    two-parameter family into one array entry, with notable rows and columns as their own
    entries, cf. A217883 "Column 2 is A202882(n+1)"). In order:
    1. [ ] **Array `F(w,h)`**: even-block castles of width `w` and exact height `h`, square
@@ -73,7 +85,7 @@ entries they equal, with no status.
       the draft: the odd half is `F(3, 2m+1) = A014105(m)` (second hexagonal numbers); the
       even half is `F(3,2m) = 10m^2 − 5m + 1` (`6, 31, 76, 141, …`, no match 2026-09-20); and
       `odd(3, 2n+1) = A080860(n)` (`10n^2 + 5n + 1`), an interlink.
-4. [ ] **A003410 castle comment** (optional edit 2 of the A226136 draft, lower priority): for
+3. [ ] **A003410 castle comment** (optional edit 2 of the A226136 draft, lower priority): for
    `n >= 4`, `a(n)` = castles of width `n` and height 2 with no two adjacent columns at height
    2 and every run of height-1 columns of length at most 3 (the `(1,3)`-RLL Fibonacci
    castles): `raw/oeis-pe502/xrefs/A226136-A003410.md` §"Edit 2"
@@ -81,28 +93,20 @@ entries they equal, with no status.
 
 ### 3. Needs a draft (verified, worth submitting; in submission order)
 
-1. [ ] **A283595** (Motzkin prefixes of length `n` and height `k`; the entry has no formula
-   section): castle comment, `T(n,k)` = castles of width `n+1` and exact height `k+1` whose
-   first column is at height 1 and whose neighbouring columns differ by at most 1 (column 2
-   is the Pell castles, A094706). Formula line: the g.f. of column `k` is
-   `z^k/(R_k(z) R_{k+1}(z))` with `R_{2j} = P_j − z P_{j−1}` and
-   `R_{2j+1} = P_{j+1} − z^2 P_{j−1}`, where `P_k` are the polynomials of A097862
-   (`P_{−1} = 0`; the entry's own notation, not the Pell numbers). Proved on the wiki (only odd
-   eigenvalue indices survive; the numerator is a single power of `z`), and checked against the
-   entry's rows 0-8 and as an identity for `k ≤ 11` (2026-10-06). Finch, arXiv:1802.04615
-   (linked from the entry), checked 2026-10-07: it works with ±1 walks and only refers to
-   A283595 for the Motzkin-prefix counts, so there is no column g.f. to cite. Present the
-   formula without a novelty claim; bounded-height path g.f.s are classical
-   (`wiki/pages/1-smooth-castles.md` §3.2-3.3, §3.5). Two more formula lines (2026-10-22):
-   the column g.f. is also `z^k/(R_{2k+2}(z) + z^{k+1})`, since `R_{k+1} R_k = R_{2k+2} + z^{k+1}`
-   (§3.3, a product-to-sum identity for the Chebyshev polynomials of the first and third kinds);
-   and for `k ≤ n ≤ 2k`, `T(n,k) = A027907(n,n+k) + A027907(n,n+k+1) − A027907(n,n+k+2)
-   − A027907(n,n+k+3)`, by the reflection principle with only one reflection in the ceiling
-   (§3.7), checked against the castle counts that match the b-file for `k ≤ 11`, `n ≤ 22`.
-   - The diagonal **A283667** (`T(2n,n)`, Motzkin prefixes of length `2n` and height `n`) has
-     only a recursion and an asymptotic; the second line gives
-     `a(n) = A027907(2n,3n) + A027907(2n,3n+1) − A027907(2n,3n+2) − A027907(2n,3n+3)`,
-     checked against all 24 terms of its data (2026-10-22). Submit with the A283595 edit.
+1. [ ] **A283595 follow-up** (after #43 is approved): the castle comment, `T(n,k)` = castles
+   of width `n+1` and height `k+1` whose first column is at height 1 and whose neighboring
+   columns differ by at most 1 (column 2 is the Pell castles, A094706); and two formula lines,
+   the column g.f. `z^k/(R_{2k+2}(z) + z^{k+1})`, since `R_{k+1} R_k = R_{2k+2} + z^{k+1}`
+   (a product-to-sum identity for the Chebyshev polynomials of the first and third kinds), and
+   for `k ≤ n ≤ 2k`, `T(n,k) = A027907(n,n+k) + A027907(n,n+k+1) − A027907(n,n+k+2) −
+   A027907(n,n+k+3)` (the reflection principle with one reflection in the ceiling), checked
+   against the castle counts that match the b-file for `k ≤ 11`, `n ≤ 22`
+   (`wiki/pages/1-smooth-castles.md` §3.3, §3.7). Present the formulas without a novelty
+   claim; bounded-height path g.f.s are classical.
+   - [ ] **A283667 closed form** (a separate entry; it can go before the follow-up): the
+     entry has only a recursion and an asymptotic, and `a(n) = A027907(2n,3n) +
+     A027907(2n,3n+1) − A027907(2n,3n+2) − A027907(2n,3n+3)`, checked against all 24 terms
+     of its data (2026-10-22; `wiki/pages/1-smooth-castles.md` §3.7).
 2. [ ] **A094706** (Convolution of Pell(n) and 2^n; the entry has no comments): the Pell
    castles (exact height 3, first column 1, neighbouring columns differing by at most 1) of
    width `w` number `A094706(w − 2) = P⋆_w − 2^{w−1}` (`P⋆_w` the Pell numbers), proved by
@@ -153,7 +157,7 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   interlinks; `h = 8` has no match (searched 2026-09-26) and is a new-sequence candidate with the GF
   `(1 + P_h(q))/(1 − q − q·P_h(q))`, `P_h(q) = q² + ⋯ + q^h`.
 - [ ] **New-sequence candidates**, each only if it brings its own formula
-  (`wiki/pages/castle-sequence-catalogue.md`, "Other generation candidates"):
+  (the *Search record* at the end of this file, "Other rows"):
   - **The `F(w,h)` array:** rows `F(w,4)`, `F(w,5)`, `F(w,6)`; the odd-block rows
     `odd(w,3)`, `odd(w,4)` and `odd(w,h≥3)` generally; the column `F(4,h)` (`0, 10, 21,
     117, 122, 448, …`); further rows and columns. Searched rows and columns: no match
@@ -230,11 +234,113 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
 - A005408 (castles of width 2, 3-cores): dense core entry, marginal reading; the draft is in
   castle form in case it is wanted: `raw/oeis-pe502/xrefs/A005408-tower.md`.
 
-### 5. Search record (statuses of the castle sequences on the wiki)
+### Done (live on OEIS)
+
+- [x] **A160747 castles of width 5 and 6-cores** (submitted 2026-10-16, approved: A160747 #62,
+  Oct 22 2026, Sean A. Irvine). Castle comment with the 6-abacus bijection of Cho et al., the PE
+  502 link (placed after Haws, before the Index link, at Stefano Spezia's request), the t-core
+  family Cf. lines; the editor rewrote the formula as
+  `a(n) = Sum_{k=1..5} A001263(5,k)*binomial(n+5-k, 4)`, "the numerator of the g.f. is row 5
+  of the Narayana triangle A001263": `raw/oeis-pe502/xrefs/A160747-tower.md`.
+- [x] **A063490 castles of width 4 and 5-cores** (submitted 2026-10-16, approved: A063490 #66,
+  Oct 22 2026, Sean A. Irvine). Castle comment with the 5-abacus bijection, the PE 502 link,
+  `Cf. A001263, A064788, A185505, A271942`; Jason Yuen tidied the comment block and moved the
+  PE 502 reference to the links (Oct 18); the editor rewrote the formula as
+  `a(n) = Sum_{k=1..4} A001263(4,k)*binomial(n+3-k, 3)`, with the numerator
+  `x*(1 + 6*x + 6*x^2 + x^3)` named as x times row 4 of A001263:
+  `raw/oeis-pe502/xrefs/A063490-tower.md`.
+- [x] **A038505 / A038503 / A146559** — the height-2 hyperbolic interlink
+  (`raw/oeis-pe502/oeis-xref-draft.md`; `wiki/pages/oeis-height2-hyperbolic-castles.md`).
+  Approved and live (checked 2026-10-04: A038503 #93, Oct 03 2026; A038505 #140, Oct 04 2026;
+  A146559 #152, Sep 28 2026): castle comments, the A000225 decomposition formulas,
+  `A146559 = A038503 − A038505`, `Cf. A000225` on both, the PE 502 link on A038505.
+- [x] A038505 typo fix, "Project 502" → "Problem 502" (A038505 #140, Oct 04 2026).
+- [x] **A038503 exact-height correction** (submitted 2026-10-04, approved; confirmed
+  2026-10-06). The "height at most 2" comment, which counted the `r = 0` term `C(n,0)` as a
+  castle, is replaced by `a(n) − 1` = odd-block castles of width `n−1` and height 2:
+  `raw/oeis-pe502/xrefs/A038503-exact-height.md`.
+- [x] **A146559 castle comment** `a(n) = P(1, n−1)` (signed tower count at `k = 1`),
+  submitted 2026-10-04, approved (A146559 #167, Oct 11 2026). Comment only, exact height:
+  `a(n) − 1` = odd − even castles of height 2: `raw/oeis-pe502/xrefs/A146559-signed.md`
+  (`wiki/pages/castle-sequence-catalogue.md`, `wiki/pages/signed-tower-count.md`).
+- [x] **A009545 castle comment** (submitted 2026-10-06, approved: A009545 #203, Oct 14 2026).
+  Comment only, width `n`, no `− 1`: `a(n)` = even-block − odd-block castles of width `n` and
+  height 2 whose last column reaches height 2, for `n >= 1`, then a sentence defining the
+  castle, and the PE 502 link: `raw/oeis-pe502/xrefs/A009545-signed.md`
+  (`wiki/pages/signed-tower-count.md`, `wiki/pages/tower-parity-sectors.md`).
+- [x] **A226275 recurrence** (submitted 2026-10-11, approved: A226275 #26, Oct 15 2026). Link
+  to the A226136 proof (Theorem 1(b)); one "From _Chaz Reid_, Oct 11 2026" block with "Above
+  formula proven in Reid link", `a(n) = a(n-1) + a(n-3)` for `n >= 6` and
+  `a(n) = A226136(n+2) − A226136(n+1)`; a Python program.
+- [x] **A226136 → A003410** (submitted 2026-10-06, major edit 2026-10-11, approved: A226136
+  #29, Oct 18 2026). Link to the proof PDF `a226136.pdf` "Proof of Barker's Conjecture for
+  A226136"; one "From _Chaz Reid_, Oct 11 2026: (Start) … (End)" block with "Conjectures
+  confirmed (see Reid link)", `a(n) = A003410(n)` for `n >= 4` (A003410's g.f. minus
+  `1 + x + x^2 + x^3`) and `a(n) = 1 + Sum_{k=0..n-2} A226275(k)`; b-file `n = 1..1000`
+  (terms 1..35 from Kimberling); the Kimberling–Moses Fibonacci Quarterly 52 (2014) link
+  (Example 4.2); the linear-recurrence index entry, signature `(1,0,1)`; a Python program;
+  `Cf. A003410` and `Cf. A226274, A226275`. Jason Yuen's 2026-10-13 edit extended DATA to 42
+  terms and added keyword `easy`: `raw/oeis-pe502/xrefs/A226136-A003410.md`
+  (`wiki/pages/fibonacci-castles-sub-families.md`).
+
+## Ingestion queue (wiki pages not yet ingested)
+
+- [x] **Dyck Words** — done (`wiki/pages/dyck-words.md`). The first-return grammar the
+  castle U/R/D grammar generalizes; steep Dyck words → Motzkin (verified).
+- [x] **Lattice Paths** — done (`wiki/pages/lattice-paths.md`). Origin of the U/R/D
+  encoding; stars-and-bars `C(W+H,H)`.
+- [x] **AOCP/Combinatorics** — done (`wiki/pages/aocp-combinatorics.md`). Knuth's
+  inversions + the q-factorial generating function `∏(1−z^k)/(1−z)^n`; seeds
+  `wiki/pages/permutation-inversions.md`, a concrete foundation for the q-equivalent thread.
+- [x] **AOCP/Permutations** — done (`wiki/pages/aocp-permutations.md`). TAOCP Vol. 1
+  basics: n!, the insert-into-slots construction (stars-and-bars root), Stirling &
+  Legendre (verified).
+- [x] **AOCP/Generating Functions** — done (`wiki/pages/aocp-generating-functions.md`).
+  The Fibonacci method, linear-recurrence ⇒ rational GF, the operation algebra, and the
+  negative binomial — the methodological bedrock of the castle's rational GFs.
+- [x] **AOCP/Generating Permutations and Tuples** — done
+  (`wiki/pages/aocp-generating-permutations-tuples.md`). Mixed-radix add-one (Algorithm M =
+  the castle brute-force) and reflected Gray code; seeds the "generation algorithms in
+  castle space" seminar thread above.
+- [x] **AOCP/Binomial Coefficients** — done (`wiki/pages/aocp-binomial-coefficients.md`).
+  Vandermonde's convolution (closes the convex-castle count), hockey-stick, negate-upper-index,
+  2^n / alternating sum, Stirling numbers.
+- [x] **AOCP/Multisets** — done (`wiki/pages/aocp-multisets.md`). Multinomial permutations,
+  two-line arrays, Foata intercalation, and the unique cycle factorization that grounds the
+  castle's permutation-cycle analogy.
+- [x] **AOCP/Multinomial Coefficients** — done (`wiki/pages/aocp-multinomial-coefficients.md`).
+  The multinomial coefficient, the multinomial theorem, and the telescoping-into-binomials
+  factorization (the higher-D lattice-path count). Completes the AOCP web the castle references.
+- [x] The general **Generating Functions** topic page (distinct from
+  AOCP/Generating Functions) — the concept page `wiki/pages/generating-functions.md` is
+  seeded; this standalone source is still queued.
+- [x] **Dyck Words/Examples** — worked enumeration examples (by hand, Python, SymPy) for
+  Dyck and steep Dyck words; referenced by Castle Factoring. Newly surfaced.
+- [x] **Dyck Words/Lisp** — Dyck words as Lisp S-expression skeletons. Newly surfaced.
+- [x] **AOCP/Multisets** — referenced by AOCP/Combinatorics and Lattice Paths; the
+  multiset-permutation / multichoose machinery. Newly surfaced.
+- [x] **Generating Functions** (general topic page) — done
+  (`wiki/pages/generating-functions-topic.md`). Sedgewick–Flajolet/Trotter reference with
+  an explicit PE 502 application; the imaginary-roots / EGF-parity / every-4th-term examples
+  are the same operations the castle uses.
+- [x] **Combinatorics** — the general umbrella topic page (distinct from AOCP/Combinatorics).
+
+## Housekeeping
+
+- [x] Setup note / README for collaborators — done (`README.md`): what the wiki is, its
+  layout and conventions, and the fresh-clone setup (re-run `git config core.hooksPath
+  bin/hooks`, MCP config paths are machine-specific, `assets/` PDFs are git-ignored and
+  re-fetchable from charlesreid1.com).
+- [x] Remote for backup/sharing — done. `origin` → github.com/eeggwall/castles-wiki
+  (SSH); `main` tracks `origin/main`.
+
+---
+
+## Search record (statuses of the castle sequences on the wiki)
 
 The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue.md`, as last recorded: searches with no match (with their dates), near-misses, unsearched rows, and the entries that equal a castle count without stating the castle reading. The catalogue section is given for each row; its terms and formulas are on the catalogue page.
 
-#### Searched with no match, near-misses, unsearched
+### Searched with no match, near-misses, unsearched
 
 | catalogue section | object | first terms | status as recorded |
 |---|---|---|---|
@@ -323,7 +429,7 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 | Other rows | The towers of width `w ≥ 6` by number of blocks `b` ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]): `w = 6`: `1, 21, 161, 721, 2331, 6083, …`; `w = 7`: `1, 28, 280, 1582, 6244, 19348, …` from `b = 0`: **novel-candidate** (no match, 2026-10-16). | - | (status in the text) |
 | Other rows | The denominators of the Jacobi-Perron convergents of `2ψ²` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]): `1, 1, 2, 4, 47, 53, 104, 204, 2409, 2717, 5330, …`: **novel-candidate** (no match, 2026-10-16). | - | (status in the text) |
 
-#### No match in the first mining pass (`raw/oeis-pe502/mine-notes.md`, `crosslink-avenues.md`, `vein9-area.md`)
+### No match in the first mining pass (`raw/oeis-pe502/mine-notes.md`, `crosslink-avenues.md`, `vein9-area.md`)
 
 - The rows `A^e(·, h)` for `h = 3, 4, 5` (recurrence orders 6, 9, 11) and the columns `A^e(w, ·)` for `w = 3, 4, 5`.
 - The rows `A^o(·, h)` for `h = 3, 4, 5` (orders 5, 9, 11): "No OEIS match" (Vein 8).
@@ -331,7 +437,7 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 - The towers by blocks, rows `w = 6, 7`: "new" (Tier 2).
 - The castles by area split by block parity (even, odd, `cev`, `cod`: "four new sequences"), the strict-valley castles by area, `0, 0, 0, 0, 1, 3, 8, 17, 34, 60, 107, 175, 285, 445, 691, …` ("NEW sequence"), and "The 6 parity-refined variants ... are all new" (Veins 9, 9b).
 
-#### Equal to an entry that does not state the castle reading (interlinks)
+### Equal to an entry that does not state the castle reading (interlinks)
 
 | catalogue section | object | entry, as recorded |
 |---|---|---|
@@ -407,91 +513,3 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 | Sandpile groups | `\ | **interlink** → [A001906](https://oeis.org/A001906) `F_{2n}` (`= A001906(w)`; every block on the ground) |
 | Sandpile groups | `\ | **interlink** → [A001835](https://oeis.org/A001835) (`= A001835(h)`; one block on the ground) |
 | Fibonacci castle sub-families | balanced castles | **interlink** → [A049703](https://oeis.org/A049703) (`= A049703(w)`; the entry is defined only as `A005598(n)/2`, with no comments, 2026-10-16) |
-
-
-### Done (live on OEIS)
-
-- [x] **A038505 / A038503 / A146559** — the height-2 hyperbolic interlink
-  (`raw/oeis-pe502/oeis-xref-draft.md`; `wiki/pages/oeis-height2-hyperbolic-castles.md`).
-  Approved and live (checked 2026-10-04: A038503 #93, Oct 03 2026; A038505 #140, Oct 04 2026;
-  A146559 #152, Sep 28 2026): castle comments, the A000225 decomposition formulas,
-  `A146559 = A038503 − A038505`, `Cf. A000225` on both, the PE 502 link on A038505.
-- [x] A038505 typo fix, "Project 502" → "Problem 502" (A038505 #140, Oct 04 2026).
-- [x] **A038503 exact-height correction** (submitted 2026-10-04, approved; confirmed
-  2026-10-06). The "height at most 2" comment, which counted the `r = 0` term `C(n,0)` as a
-  castle, is replaced by `a(n) − 1` = odd-block castles of width `n−1` and height 2:
-  `raw/oeis-pe502/xrefs/A038503-exact-height.md`.
-- [x] **A146559 castle comment** `a(n) = P(1, n−1)` (signed tower count at `k = 1`),
-  submitted 2026-10-04, approved (A146559 #167, Oct 11 2026). Comment only, exact height:
-  `a(n) − 1` = odd − even castles of height 2: `raw/oeis-pe502/xrefs/A146559-signed.md`
-  (`wiki/pages/castle-sequence-catalogue.md`, `wiki/pages/signed-tower-count.md`).
-- [x] **A009545 castle comment** (submitted 2026-10-06, approved: A009545 #203, Oct 14 2026).
-  Comment only, width `n`, no `− 1`: `a(n)` = even-block − odd-block castles of width `n` and
-  height 2 whose last column reaches height 2, for `n >= 1`, then a sentence defining the
-  castle, and the PE 502 link: `raw/oeis-pe502/xrefs/A009545-signed.md`
-  (`wiki/pages/signed-tower-count.md`, `wiki/pages/tower-parity-sectors.md`).
-- [x] **A226275 recurrence** (submitted 2026-10-11, approved: A226275 #26, Oct 15 2026). Link
-  to the A226136 proof (Theorem 1(b)); one "From _Chaz Reid_, Oct 11 2026" block with "Above
-  formula proven in Reid link", `a(n) = a(n-1) + a(n-3)` for `n >= 6` and
-  `a(n) = A226136(n+2) − A226136(n+1)`; a Python program.
-- [x] **A226136 → A003410** (submitted 2026-10-06, major edit 2026-10-11, approved: A226136
-  #29, Oct 18 2026). Link to the proof PDF `a226136.pdf` "Proof of Barker's Conjecture for
-  A226136"; one "From _Chaz Reid_, Oct 11 2026: (Start) … (End)" block with "Conjectures
-  confirmed (see Reid link)", `a(n) = A003410(n)` for `n >= 4` (A003410's g.f. minus
-  `1 + x + x^2 + x^3`) and `a(n) = 1 + Sum_{k=0..n-2} A226275(k)`; b-file `n = 1..1000`
-  (terms 1..35 from Kimberling); the Kimberling–Moses Fibonacci Quarterly 52 (2014) link
-  (Example 4.2); the linear-recurrence index entry, signature `(1,0,1)`; a Python program;
-  `Cf. A003410` and `Cf. A226274, A226275`. Jason Yuen's 2026-10-13 edit extended DATA to 42
-  terms and added keyword `easy`: `raw/oeis-pe502/xrefs/A226136-A003410.md`
-  (`wiki/pages/fibonacci-castles-sub-families.md`).
-
-## Ingestion queue (wiki pages not yet ingested)
-
-- [x] **Dyck Words** — done (`wiki/pages/dyck-words.md`). The first-return grammar the
-  castle U/R/D grammar generalizes; steep Dyck words → Motzkin (verified).
-- [x] **Lattice Paths** — done (`wiki/pages/lattice-paths.md`). Origin of the U/R/D
-  encoding; stars-and-bars `C(W+H,H)`.
-- [x] **AOCP/Combinatorics** — done (`wiki/pages/aocp-combinatorics.md`). Knuth's
-  inversions + the q-factorial generating function `∏(1−z^k)/(1−z)^n`; seeds
-  `wiki/pages/permutation-inversions.md`, a concrete foundation for the q-equivalent thread.
-- [x] **AOCP/Permutations** — done (`wiki/pages/aocp-permutations.md`). TAOCP Vol. 1
-  basics: n!, the insert-into-slots construction (stars-and-bars root), Stirling &
-  Legendre (verified).
-- [x] **AOCP/Generating Functions** — done (`wiki/pages/aocp-generating-functions.md`).
-  The Fibonacci method, linear-recurrence ⇒ rational GF, the operation algebra, and the
-  negative binomial — the methodological bedrock of the castle's rational GFs.
-- [x] **AOCP/Generating Permutations and Tuples** — done
-  (`wiki/pages/aocp-generating-permutations-tuples.md`). Mixed-radix add-one (Algorithm M =
-  the castle brute-force) and reflected Gray code; seeds the "generation algorithms in
-  castle space" seminar thread above.
-- [x] **AOCP/Binomial Coefficients** — done (`wiki/pages/aocp-binomial-coefficients.md`).
-  Vandermonde's convolution (closes the convex-castle count), hockey-stick, negate-upper-index,
-  2^n / alternating sum, Stirling numbers.
-- [x] **AOCP/Multisets** — done (`wiki/pages/aocp-multisets.md`). Multinomial permutations,
-  two-line arrays, Foata intercalation, and the unique cycle factorization that grounds the
-  castle's permutation-cycle analogy.
-- [x] **AOCP/Multinomial Coefficients** — done (`wiki/pages/aocp-multinomial-coefficients.md`).
-  The multinomial coefficient, the multinomial theorem, and the telescoping-into-binomials
-  factorization (the higher-D lattice-path count). Completes the AOCP web the castle references.
-- [x] The general **Generating Functions** topic page (distinct from
-  AOCP/Generating Functions) — the concept page `wiki/pages/generating-functions.md` is
-  seeded; this standalone source is still queued.
-- [x] **Dyck Words/Examples** — worked enumeration examples (by hand, Python, SymPy) for
-  Dyck and steep Dyck words; referenced by Castle Factoring. Newly surfaced.
-- [x] **Dyck Words/Lisp** — Dyck words as Lisp S-expression skeletons. Newly surfaced.
-- [x] **AOCP/Multisets** — referenced by AOCP/Combinatorics and Lattice Paths; the
-  multiset-permutation / multichoose machinery. Newly surfaced.
-- [x] **Generating Functions** (general topic page) — done
-  (`wiki/pages/generating-functions-topic.md`). Sedgewick–Flajolet/Trotter reference with
-  an explicit PE 502 application; the imaginary-roots / EGF-parity / every-4th-term examples
-  are the same operations the castle uses.
-- [x] **Combinatorics** — the general umbrella topic page (distinct from AOCP/Combinatorics).
-
-## Housekeeping
-
-- [x] Setup note / README for collaborators — done (`README.md`): what the wiki is, its
-  layout and conventions, and the fresh-clone setup (re-run `git config core.hooksPath
-  bin/hooks`, MCP config paths are machine-specific, `assets/` PDFs are git-ignored and
-  re-fetchable from charlesreid1.com).
-- [x] Remote for backup/sharing — done. `origin` → github.com/eeggwall/castles-wiki
-  (SSH); `main` tracks `origin/main`.
