@@ -31,26 +31,27 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
   Still in review (checked 2026-10-23): Alper Ferudun (#142, Oct 21) added "without the rule
   that the number of blocks is even" to the castle comment and checked the counts and
   formulas; Chaz Reid (#146–#147, Oct 22) changed "castles" to "castle polyominoes"; back in
-  proposed.
+  proposed. Michel Marcus (#148–#149, Oct 23) edited the Mathematica section only.
+- [~] **A001263 castles of width `n` with `m` blocks** (submitted 2026-10-23, #788–#789). One
+  comment block: `Sum_{k=1..n} T(n,k)*binomial(m+n-k-1, n-1)` = castle polyominoes of width `n`
+  with `m` blocks, of any height and without the even-blocks rule, with the column-height
+  definition and `See A005408, A005891, A063490, A160747 for n = 2..5`; a proof line from
+  Deutsch-Elizalde eq. (2). The Deutsch-Elizalde and PE 502 links; a Python program for
+  `T(n,k)`: `raw/oeis-pe502/xrefs/A001263-tower.md`, checked by `bin/python/tower_t_cores.py`.
+  Michel Marcus asked (Oct 23) why the castles of width `n` with `m` blocks are not submitted
+  as a new array: they are A271942 (bargraphs by semiperimeter and width) at
+  `(n + m, n)`, since the semiperimeter is the width plus the blocks.
+- [~] **A283595 column g.f.** (submitted 2026-10-23, #42–#43). One formula block: the g.f. of
+  column `k` is `z^k/(R_k*R_{k+1})` with `R_k` from the A097862 polynomials `P_k`, and the
+  product form of `R_k` over odd `i`; submitted without the proof line. `Column k=2 gives
+  A094706(n-1).` and a Python program: `raw/oeis-pe502/xrefs/A283595-column-gf.md`, checked
+  by `bin/python/a283595_column_gf.py` (`wiki/pages/1-smooth-castles.md` §3.2-3.3).
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-1. [ ] **Castles by blocks = t-cores by corners, Narayana numerator** (formerly tier 2), in
-   the A160747 form (castle wording, PE 502 link, Cho et al.), drafts in castle form
-   (`raw/oeis-pe502/xrefs/*-tower.md`; `wiki/pages/tower-narayana-polynomial.md`):
-   A001263: castles of width `n` with `m` blocks number `Sum_k T(n,k) C(m+n-k-1, n-1)`, for
-   every `n`, proved: `x -> x/(1-y)` in the g.f. of A001263 gives Deutsch-Elizalde's bargraph
-   equation (2) (arXiv:1609.00088).
-2. [ ] **A283595 column g.f.** (the entry has no formula section): one formula block, the g.f.
-   of column `k` is `z^k/(R_k R_{k+1})` with `R_{2j} = P_j − z P_{j−1}`,
-   `R_{2j+1} = P_{j+1} − z^2 P_{j−1}` (`P_k` of A097862, `P_{−1} = 0`), the product form
-   of `R_k` over odd `i`, and a proof line; `Column k=2 gives A094706(n-1).` No castle comment
-   (the castle is the Motzkin prefix raised one row, as on A097862) and no novelty claim:
-   `raw/oeis-pe502/xrefs/A283595-column-gf.md`, checked by `bin/python/a283595_column_gf.py`
-   against the full b-file (`wiki/pages/1-smooth-castles.md` §3.2-3.3).
-3. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
+1. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
    (`raw/oeis-pe502/xrefs/*-castle.md`).
-4. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
+2. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
    two-parameter family into one array entry, with notable rows and columns as their own
    entries, cf. A217883 "Column 2 is A202882(n+1)"). In order:
    1. [ ] **Array `F(w,h)`**: even-block castles of width `w` and exact height `h`, square
@@ -67,7 +68,7 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
       the draft: the odd half is `F(3, 2m+1) = A014105(m)` (second hexagonal numbers); the
       even half is `F(3,2m) = 10m^2 − 5m + 1` (`6, 31, 76, 141, …`, no match 2026-09-20); and
       `odd(3, 2n+1) = A080860(n)` (`10n^2 + 5n + 1`), an interlink.
-5. [ ] **A003410 castle comment** (optional edit 2 of the A226136 draft, lower priority): for
+3. [ ] **A003410 castle comment** (optional edit 2 of the A226136 draft, lower priority): for
    `n >= 4`, `a(n)` = castles of width `n` and height 2 with no two adjacent columns at height
    2 and every run of height-1 columns of length at most 3 (the `(1,3)`-RLL Fibonacci
    castles): `raw/oeis-pe502/xrefs/A226136-A003410.md` §"Edit 2"
@@ -81,7 +82,7 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
    the g.f. `x³/((1−2x−x²)(1−2x))` (`wiki/pages/pell-castle.md`). Add the formula
    `a(n) = A283595(n+1, 2)` (column 2 of the Motzkin-prefix triangle: lowering a Pell castle
    by one row gives a Motzkin prefix of height 2) and `Cf. A283595`; pairs with the A283595
-   formula (stage 2) (`wiki/pages/1-smooth-castles.md`).
+   formula (in review) (`wiki/pages/1-smooth-castles.md`).
 2. [ ] **A077868**: two castle readings and the bijection between them. Spaced Fibonacci
    castles (height-2 columns at least 3 apart) of width `w` number `A077868(w − 1)`; tree
    castles of height 2 with area `A` (cells) number `A077868(A − 2)`; the domino-boundary map
