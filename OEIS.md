@@ -27,17 +27,18 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
 - A tool may run the verification scripts, check offsets against the live entries and
   format data; only a person rewrites the draft prose, signs it and submits
   (`raw/oeis-pe502/SUBMISSION-NOTES.md` §4). Signatures use a two-digit day (`Oct 04 2026`).
-- Editors' changes so far, to follow in new drafts: a new link goes after the existing
-  links and before the Index link (Stefano Spezia, A160747); a Narayana-numerator formula is
-  written `a(n) = Sum_{k=1..L} A001263(L,k)*binomial(n+L-k, L-1)` with the numerator named in
-  words (Sean A. Irvine, A160747 and A063490).
+- Editors' changes so far, to follow in new drafts: links go in alphabetical order by
+  author, after the b-file and before the Index link (Stefano Spezia, A160747); a formula
+  line is the bare formula, with at most a citation in parentheses, and any explanation goes
+  in a comment (Sean A. Irvine removed the words after the Narayana-numerator formulas on
+  A160747 and A063490).
 - The OEIS status of each castle sequence (known / interlink / novel-candidate / unchecked)
   is kept in *Search record* at the end of this file; the wiki's `castle-sequence-catalogue`
   lists the sequences and the entries they equal, with no status.
 
 **Next step (2026-10-23).** Stage 1 is full: A005891, A001263, A283595. When a slot opens,
-submit the top item of stage 2, the dense-entry synonyms. When A283595 #43 is approved, its follow-up
-(the first item of stage 3) can be drafted.
+submit the top item of stage 2, the A003410 link back to A226136. When A283595 #43 is
+approved, its follow-up (the first item of stage 3) can be drafted.
 
 ### 1. In review (max 3)
 
@@ -66,30 +67,29 @@ submit the top item of stage 2, the dense-entry synonyms. When A283595 #43 is ap
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-- [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
-  (`raw/oeis-pe502/xrefs/*-castle.md`).
-- [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
-  two-parameter family into one array entry, with notable rows and columns as their own
-  entries, cf. A217883 "Column 2 is A202882(n+1)"). In order:
-  - [ ] **Array `F(w,h)`**: even-block castles of width `w` and exact height `h`, square
-    array read by antidiagonals (keyword `tabl`), with the general formula
-    `F(w,h) = ½[h^w − (h−1)^w + P(h−2,w) − P(h−1,w)]`, the PE 502 link, the table in the
-    Example section, and Cf. the all-parity array A047969 (`h^w − (h−1)^w`; A343237 is its
-    transpose) and row 2 = A038505(w+1). Not on OEIS in either antidiagonal order (searched
-    2026-10-04). **Draft not written.**
-  - [ ] **Row `h = 3`, `F(w,3)`** (`raw/oeis-pe502/new-sequence-F3.md`, crossrefs updated to
-    point at the array; `wiki/pages/new-sequence-fw3.md`). No match (re-searched 2026-10-04).
-  - [ ] **Column `w = 3`, `F(3,h)`** = `0, 6, 3, 31, 10, 76, 21, 141, 36, 226, …`: `C(h,2)` at
-    odd `h`, `5·C(h,2) + 1` at even `h` (`wiki/pages/sum-of-three-cubes-castles.md`). No match
-    (searched 2026-10-04). **Draft not written.** The halves and the odd-block column, for
-    the draft: the odd half is `F(3, 2m+1) = A014105(m)` (second hexagonal numbers); the
-    even half is `F(3,2m) = 10m^2 − 5m + 1` (`6, 31, 76, 141, …`, no match 2026-09-20); and
-    `odd(3, 2n+1) = A080860(n)` (`10n^2 + 5n + 1`), an interlink.
-- [ ] **A003410 castle comment** (optional edit 2 of the A226136 draft, lower priority): for
-  `n >= 4`, `a(n)` = castles of width `n` and height 2 with no two adjacent columns at height
-  2 and every run of height-1 columns of length at most 3 (the `(1,3)`-RLL Fibonacci
-  castles): `raw/oeis-pe502/xrefs/A226136-A003410.md` §"Edit 2"
+- [ ] **A003410 → A226136** (the link back for the approved A226136 edit): the formula
+  `a(n) = A226136(n) for n >= 4` and `Cf. A226136`. No castle comment: the castle's second
+  row is Deutsch's binary word, so it would restate Deutsch's comment:
+  `raw/oeis-pe502/xrefs/A226136-A003410.md` §"Edit 2"
   (`wiki/pages/fibonacci-castles-sub-families.md`).
+- [ ] **A005408 3-cores by corners**: one comment, `a(n)` = 3-core partitions with `n`
+  corners (Cho et al., Proposition 3.4, p. 14 "cc(3, m) = 2m + 1"), the Cho et al. link
+  (after Hongwei Chen) and the t-core family Cf. line, which A160747 and A063490 already
+  carry with A005408 as `t = 3`. The width-2 castle reading is left out: it is the `w = 2`
+  case of `h^w − (h−1)^w`, which goes once on A047969: `raw/oeis-pe502/xrefs/A005408-tower.md`.
+- [ ] **A001523 castles with as many blocks as rows**: one comment, the castles with `n` cells
+  whose number of blocks equals their height are the stacks, since every row holds at least
+  one block and exactly one when the column heights are weakly unimodal; the PE 502 link
+  (after Flórez, Ramírez, and Villamizar): `raw/oeis-pe502/xrefs/A001523-castle.md`.
+- [ ] **A115981 castles with more blocks than rows** (after or with A001523, which it
+  refers to): the complementary comment and the PE 502 link (after Weisstein):
+  `raw/oeis-pe502/xrefs/A115981-castle.md`.
+- [ ] **New sequence `F(w,3)`**, the even-block castles of width `n` and height 3,
+  `0, 0, 3, 21, 89, 307, …` (no match, nor for the odd-block companion, 2026-10-23): the
+  factored g.f., the order-6 recurrence, `a(n) = (3^n − 2^(n+1) + A146559(n+1) +
+  A107920(n))/2`, the width-3 example, a linear-time Python program from the definition,
+  `Cf. A001047, A038505, A107920, A146559`. Standalone: the array (stage 3) can follow it:
+  `raw/oeis-pe502/new-sequence-F3.md` (`wiki/pages/new-sequence-fw3.md`).
 
 ### 3. Needs a draft (verified, worth submitting; in submission order)
 
@@ -134,7 +134,23 @@ submit the top item of stage 2, the dense-entry synonyms. When A283595 #43 is ap
 - [ ] **A047969 castle comment** (replaces per-row comments on the dense rows A000225,
   A001047, …): the nexus-number array `a(n,k) = (n+1)^(k+1) − n^(k+1)` counts the castles
   of width `k+1` and exact height `n+1`, `h^w − (h−1)^w` with `h = n+1`, `w = k+1`. The
-  stage-2 `F(w,h)` array item already gives `Cf. A047969`.
+  `F(w,h)` array item below gives `Cf. A047969`.
+- [ ] **The PE 502 count `F(w,h)` as an array, and its column `w = 3`** (OEIS rolls a
+  two-parameter family into one array entry, with notable rows and columns as their own
+  entries, cf. A217883 "Column 2 is A202882(n+1)"; the row `h = 3` is in stage 2). In order:
+  - [ ] **Array `F(w,h)`**: even-block castles of width `w` and exact height `h`, square
+    array read by antidiagonals (keyword `tabl`), with the general formula
+    `F(w,h) = ½[h^w − (h−1)^w + P(h−2,w) − P(h−1,w)]`, the PE 502 link, the table in the
+    Example section, and Cf. the all-parity array A047969 (`h^w − (h−1)^w`; A343237 is its
+    transpose), row 2 = A038505(w+1) and row 3 = the stage-2 `F(w,3)` entry. Not on OEIS in
+    either antidiagonal order (searched
+    2026-10-04). **Draft not written.**
+  - [ ] **Column `w = 3`, `F(3,h)`** = `0, 6, 3, 31, 10, 76, 21, 141, 36, 226, …`: `C(h,2)` at
+    odd `h`, `5·C(h,2) + 1` at even `h` (`wiki/pages/sum-of-three-cubes-castles.md`). No match
+    (searched 2026-10-04). **Draft not written.** The halves and the odd-block column, for
+    the draft: the odd half is `F(3, 2m+1) = A014105(m)` (second hexagonal numbers); the
+    even half is `F(3,2m) = 10m^2 − 5m + 1` (`6, 31, 76, 141, …`, no match 2026-09-20); and
+    `odd(3, 2n+1) = A080860(n)` (`10n^2 + 5n + 1`), an interlink.
 - [ ] **Tower-spacing new sequences** (`wiki/pages/tower-spacing-castles.md`): the six
   unfiled cells `(h,g)` for `h in {5,6}`, `g in {4,5,6}` (Hardin's "0..(h-1) arrays, each
   element the minimum of `g` adjacent elements", never filed at these parameters; no match
@@ -161,7 +177,7 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   - **The `F(w,h)` array:** rows `F(w,4)`, `F(w,5)`, `F(w,6)`; the odd-block rows
     `odd(w,3)`, `odd(w,4)` and `odd(w,h≥3)` generally; the column `F(4,h)` (`0, 10, 21,
     117, 122, 448, …`); further rows and columns. Searched rows and columns: no match
-    2026-10-04. The `w = 3` column facts are under stage 2.
+    2026-10-04. The `w = 3` column facts are under stage 3.
   - **Area:** the parity-refined area sequences (`cev+cod = A001523`), `strict_valley`.
   - **Towers and signed counts:** tower rows `w ≥ 6` (`w = 6, 7`: no match 2026-10-04); the
     `P(k,·)` families for `k ≥ 2`; `|P(k,5)|`, `|P(k,6)|`, the `k`-direction rows (no match
@@ -192,7 +208,7 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
       …`); no match 2026-10-06.
 - [ ] **A014105** (second hexagonal numbers `n(2n+1)`): the odd half of the `F(3,h)` column,
   `F(3, 2m+1) = A014105(m)` (verified `m ≤ 11`, 2026-10-04), now also stated under the
-  stage-2 `w = 3` column item. Open question: a separate comment on this dense entry, or
+  stage-3 `w = 3` column item. Open question: a separate comment on this dense entry, or
   only the column entry.
 - [ ] **A004148** (generalized Catalan numbers; peakless Motzkin paths, RNA secondary
   structures): castle comment, the castles that drop by at most 1 and end at height 1, by
@@ -222,7 +238,7 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   dense entries; the castle reading goes once on the array A047969 (stage 3).
 - The plastic strip (rule `1→3, 2→1, 3→{1,2}`): its count is `A000931(w + 9)`, Padovan,
   which the entry already covers with word and automaton readings (Finch's `(1,2)`-RLL
-  words, Deutsch's compositions into 2s and 3s). Draft written anyway, recommending skip:
+  words, Deutsch's compositions into 2s and 3s), and the rule is the wiki's own:
   `raw/oeis-pe502/xrefs/A000931-plastic-strip.md`.
 - A000931 (maximal Fibonacci castles, `A000931(w + 6)`): the entry already counts the maximal
   independent sets of the path graph, which is the same statement.
@@ -231,23 +247,24 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   zeros between successive ones" comment; A077868 is the better home.
 - A003849 / A001950 / A003622 (the 56-column castle from the Fibonacci word): a single castle,
   not a sequence interpretation.
-- A005408 (castles of width 2, 3-cores): dense core entry, marginal reading; the draft is in
-  castle form in case it is wanted: `raw/oeis-pe502/xrefs/A005408-tower.md`.
+- A332578 (compositions whose negation is unimodal, the valley castles by area): the entry
+  already defines them and links A001523; no castle statistic sets them apart (a valley castle
+  has `c(1) + c(w) − min(c)` blocks), so a comment would rename the definition:
+  `raw/oeis-pe502/xrefs/A332578-castle.md`.
 
 ### Done (live on OEIS)
 
 - [x] **A160747 castles of width 5 and 6-cores** (submitted 2026-10-16, approved: A160747 #62,
   Oct 22 2026, Sean A. Irvine). Castle comment with the 6-abacus bijection of Cho et al., the PE
   502 link (placed after Haws, before the Index link, at Stefano Spezia's request), the t-core
-  family Cf. lines; the editor rewrote the formula as
-  `a(n) = Sum_{k=1..5} A001263(5,k)*binomial(n+5-k, 4)`, "the numerator of the g.f. is row 5
-  of the Narayana triangle A001263": `raw/oeis-pe502/xrefs/A160747-tower.md`.
+  family Cf. lines; the editor removed the words after the formulas, leaving
+  `a(n) = Sum_{k=1..5} A001263(5,k)*binomial(n+5-k, 4)` bare:
+  `raw/oeis-pe502/xrefs/A160747-tower.md`.
 - [x] **A063490 castles of width 4 and 5-cores** (submitted 2026-10-16, approved: A063490 #66,
   Oct 22 2026, Sean A. Irvine). Castle comment with the 5-abacus bijection, the PE 502 link,
   `Cf. A001263, A064788, A185505, A271942`; Jason Yuen tidied the comment block and moved the
-  PE 502 reference to the links (Oct 18); the editor rewrote the formula as
-  `a(n) = Sum_{k=1..4} A001263(4,k)*binomial(n+3-k, 3)`, with the numerator
-  `x*(1 + 6*x + 6*x^2 + x^3)` named as x times row 4 of A001263:
+  PE 502 reference to the links (Oct 18); the editor removed the words after the formulas,
+  leaving `a(n) = Sum_{k=1..4} A001263(4,k)*binomial(n+3-k, 3)` bare:
   `raw/oeis-pe502/xrefs/A063490-tower.md`.
 - [x] **A038505 / A038503 / A146559** — the height-2 hyperbolic interlink
   (`raw/oeis-pe502/oeis-xref-draft.md`; `wiki/pages/oeis-height2-hyperbolic-castles.md`).

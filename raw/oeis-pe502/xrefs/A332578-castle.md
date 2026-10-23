@@ -1,6 +1,9 @@
 # Cross-link draft — A332578 (compositions of n with unimodal negation) as valley castles by area
 
-Status: DRAFT for Charles to submit.
+Status: SKIPPED (2026-10-23). The entry already defines these compositions as those whose
+negation is unimodal and links A001523 and A329398. Unlike A001523 and A115981, no castle statistic
+sets the valley castles apart (the block count of a valley castle is c(1) + c(w) - min(c), with no
+clean characterization), so the comment would only rename the definition. Kept for the record.
 Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md.
 
 ## Identity (verified)

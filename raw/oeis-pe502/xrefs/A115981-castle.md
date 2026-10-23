@@ -1,47 +1,37 @@
-# Cross-link draft — A115981 (compositions of n not viewable as stacks) as non-convex castles by area
+# Cross-link draft — A115981 (compositions that are not stacks) as the castles with more blocks than their height
 
-Status: DRAFT for Charles to submit.
+Status: DRAFT for Charles to submit. Submit after, or together with, the A001523 comment
+(`A001523-castle.md`), which it refers to.
 Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md.
+Checked against the live entry 2026-10-23 (A115981 revision #23, Feb 16 2025).
 
-## Identity (verified)
+## Edits (lines to add)
 
-A115981 = number of compositions of n which cannot be viewed as stacks, with formula
-`a(n) = A011782(n) − A001523(n)`.  Offset 0,7; data starts `0, 0, 0, 0, 0, 1, 5, 17,
-49, 126, 303, 694, 1536, 3312, 7009, 14619, ...`.
+All additions; nothing existing is changed.
 
-For n >= 1, A115981(n) is also the number of **non-convex castles** (Project Euler
-Problem 502, "Counting Castles") of area n, where a castle is a column-height
-composition (c_1, ..., c_w) of n into positive parts and non-convex means the
-sequence is NOT weakly unimodal (has at least one interior local minimum).  This is
-the complement of the "convex castle" reading of A001523 (see A001523 for the convex
-side), and the entry's own formula `A011782(n) − A001523(n)` is exactly
-`all castles − convex castles` when castles are indexed by area.
+**COMMENTS** (append after Gus Wiseman's comment):
 
-Verified against A115981 for n = 1..15 by `python3 vein9b_concave.py`.
+```
+For n >= 1, a(n) is also the number of castle polyominoes with n cells that have more blocks than their height, of any height and without the rule that the number of blocks is even (Project Euler, Problem 502: Counting Castles): the column heights form a composition of n and the blocks are the maximal horizontal runs of cells; every castle has at least as many blocks as its height, with equality exactly for the stacks counted by A001523. - _Chaz Reid_, Mon DD YYYY
+```
 
-## What is already there (do NOT duplicate)
+**LINKS** (after Weisstein, the only link):
 
-The entry already gives the "cannot be viewed as a stack" reading, the formula
-`A011782 − A001523`, and links to A001523 (the complement).  The castle wording is
-a synonym; the value is the Project Euler cross-reference and the visual "non-convex
-skyline" phrasing.
+```
+Project Euler, <a href="https://projecteuler.net/problem=502">Problem 502: Counting Castles</a>.
+```
 
-## Draft additions
+No CROSSREFS: the entry already says "The complement is counted by A001523."
 
-### Comment (append; one line)
+## What the entry already has, and what this adds
 
-> Also the number of non-convex castles (Project Euler Problem 502, "Counting
-> Castles") of area n, for n >= 1: column-height compositions (c_1, ..., c_w) of n
-> into positive parts that are NOT weakly unimodal (equivalently, skylines with at
-> least one interior valley).
+The name, "compositions of n which cannot be viewed as stacks", and the formula
+`a(n) = A011782(n) - A001523(n)` describe the same set. The comment adds the castle statistic that
+separates it from its complement: these are the castles with n cells that need more blocks than
+rows.
 
-### Crossrefs (append if not already present)
+## Proof and verification
 
-> Cf. A332578 (valley-shaped castles), A038505, A038503, A146559 (castle counts of
-> PE 502 indexed by width and height).
-
-## Flags
-
-1. Small comment on a dense entry.  The parity refinements
-   (`nc_even`, `nc_odd`) are separate new submissions -- do NOT propose them here.
-2. Verify A115981 does not already carry a PE 502 / castle phrasing.
+See `A001523-castle.md`: blocks >= height for every castle, with equality exactly for the weakly
+unimodal column heights. The enumeration there checks the count against A115981 for n <= 18
+(2026-10-23).

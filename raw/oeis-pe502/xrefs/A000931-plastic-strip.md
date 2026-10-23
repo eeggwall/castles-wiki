@@ -1,6 +1,8 @@
 # Cross-link draft — A000931 (Padovan) as the plastic castle strip
 
-Status: DRAFT for Charles to submit.
+Status: SKIPPED (2026-10-23), as recommended below: the natural castle family counted by
+A000931, the maximal Fibonacci castles, is the entry's existing maximal-independent-set reading,
+and the plastic strip is a wiki-built rule. Kept for the record.
 Execution notes (field map, signature format, scope): see ../SUBMISSION-NOTES.md.
 Checked against the live entry 2026-10-04 (A000931; 33 comments).
 

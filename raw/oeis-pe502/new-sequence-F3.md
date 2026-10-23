@@ -1,17 +1,15 @@
 # New-sequence draft — `F(w,3)`, even-block castles of height 3
 
-Status: DRAFT for Charles to submit. Verify the exact field syntax against the
-[Style Sheet](https://oeis.org/wiki/Style_Sheet) before pasting.
+Status: DRAFT for Charles to submit. Searched 2026-10-23: no OEIS match for the terms, for the
+odd-block companion `1, 5, 16, 44, 122, 358, 1082, 3274`, or for the signed difference
+`1, 5, 13, 23, 33, 51, 105, 243` (even minus odd, negated).
 Execution notes (field map, signature format, scope): see SUBMISSION-NOTES.md.
 
-**Plan (2026-10-04):** this entry is **row 3 of a new array entry** for `F(w,h)` (even-block
-castles of width `w` and exact height `h`, read by antidiagonals), which is submitted first and
-carries the general formula and the table; this row then says "Row 3 of A______", and the
-fixed-width column `F(3,h)` gets its own entry. See TODO.md, OEIS stage 2. Searched
-2026-10-04: the `F(w,h)` array is not on OEIS in either antidiagonal order; the all-parity
-array `h^w - (h-1)^w` is A047969 (A343237 transposed).
+A standalone entry: the formulas below need no array. If the `F(w,h)` array is drafted later
+(OEIS.md, stage 3), it says "Row 3 is A______"; if an editor asks for the array first, as
+Michel Marcus asked on A001263, that item is the answer.
 
-The sequence (index `n` = width `w`, so `a(n) = F(n,3)`):
+The sequence (index `n` = width `w`, so `a(n) = F(n,3)`), 50 terms:
 
 ```
 0, 0, 3, 21, 89, 307, 977, 3031, 9321, 28479, 86505, 261615, 788969,
@@ -27,112 +25,96 @@ The sequence (index `n` = width `w`, so `a(n) = F(n,3)`):
 119649664052358815097705, 358948992720026361835215
 ```
 
-## Name (proposed)
+## Fields
 
-> Number of castles (Project Euler Problem 502, "Counting Castles") of width n and
-> height exactly 3 having an even number of blocks.
+**NAME**
 
-## Data & offset
+```
+Number of castle polyominoes of width n and height 3 with an even number of blocks.
+```
 
-- `offset` **1** (a(n) = F(n,3), n = 1,2,3,...).  **Default: submit with the two leading
-  zeros** a(1) = a(2) = 0 — they are meaningful, not padding: a width-1 or width-2 castle
-  of height 3 always has max(c) = 3 blocks (odd), so none has an even block count.
-- (Fallback if an editor objects to the leading zeros: trim to `3, 21, 89, ...` with
-  `offset 3`.)
+**DATA** (the first 30 terms, 255 characters):
 
-## Keywords
+```
+0,0,3,21,89,307,977,3031,9321,28479,86505,261615,788969,2375119,7141769,21457999,64439145,193447887,580605705,1742342799,5228079593,15686337295,47063203337,141197992015,423610748265,1270865801295,3812664520713,11438127787791,34314651807209,102944492309647
+```
 
-`nonn, easy` (all terms nonnegative; linear recurrence).
+**OFFSET** `1,3`. The leading zeros are counts: a castle of width 1 or 2 and height 3 has 3
+blocks, the height of its tallest column.
 
-## Comment (definition, plain English)
+**COMMENTS**
 
-> A castle is a stack of unit-height blocks on a grid, in which blocks snap to the grid,
-> each block rests on the grid or on a block below (nothing floats), the bottom row is a
-> single block spanning the full width n, the maximum height is exactly 3, no two
-> neighbouring blocks in the same row touch, and the number of blocks is even. Such a
-> castle is determined by its column heights c(1),...,c(n) in {1,2,3} with at least one
-> 3; the number of blocks is c(1) + Sum_{i=2..n} max(0, c(i)-c(i-1)). Equivalently, with
-> r2 = number of runs of columns of height >= 2 and r3 = number of runs of columns of
-> height 3, the number of blocks is 1 + r2 + r3, so it is even iff r2 + r3 is odd.
+```
+A castle (Project Euler, Problem 502: Counting Castles) is a stack of unit blocks on a grid, whose bottom row is a single block of length n, whose higher blocks have height 1 and rest on the blocks below without overhang, and in which two neighboring blocks of the same row are separated by a gap; its height is its number of rows. If the columns that reach height 2 form r runs and the columns that reach height 3 form s runs, the number of blocks is 1 + r + s, so an even number of blocks means r + s is odd.
+The castles of width n and height 3 number A001047(n) = 3^n - 2^n, so A001047(n) - a(n) of them have an odd number of blocks.
+```
 
-## Formula
+**LINKS**
 
-Closed form (with P(k,w) = Sum over (c_1..c_w) in {0..k}^w of (-1)^(c_1 + Sum_{i=2..w} max(0, c_i-c_{i-1}))):
+```
+Project Euler, <a href="https://projecteuler.net/problem=502">Problem 502: Counting Castles</a>.
+<a href="/index/Rec#order_06">Index entries for linear recurrences with constant coefficients</a>, signature (8,-27,54,-70,56,-24).
+```
+
+**FORMULA**
+
+```
+G.f.: x^3*(3 - 3*x + 2*x^2)/((1 - 2*x)*(1 - 3*x)*(1 - x + 2*x^2)*(1 - 2*x + 2*x^2)).
+a(n) = 8*a(n-1) - 27*a(n-2) + 54*a(n-3) - 70*a(n-4) + 56*a(n-5) - 24*a(n-6) for n >= 7.
+a(n) = (3^n - 2^(n+1) + A146559(n+1) + A107920(n))/2.
+```
+
+**EXAMPLE**
+
+```
+a(3) = 3: the castles of width 3 and height 3 with an even number of blocks have column heights (2,1,3), (3,1,2) and (3,2,3), each with 4 blocks.
+```
+
+**PROG** (rename `a` to the assigned A-number):
+
+```
+(Python)
+def a(n):
+    # states: (height of the last column, parity of the number of blocks, height 3 reached)
+    d = {(h, h % 2, h == 3): 1 for h in (1, 2, 3)}
+    for _ in range(n - 1):
+        e = {}
+        for (h, p, t), c in d.items():
+            for g in (1, 2, 3):
+                k = (g, (p + max(0, g - h)) % 2, t or g == 3)
+                e[k] = e.get(k, 0) + c
+        d = e
+    return sum(c for (h, p, t), c in d.items() if t and p == 0) # _Chaz Reid_, Mon DD YYYY
+```
+
+**CROSSREFS**
+
+```
+Cf. A001047, A038505, A107920, A146559.
+```
+
+**KEYWORDS** `nonn,easy`
+
+## Derivation (not for submission)
+
+A castle of width `n` and height 3 is a column-height word `c(1), ..., c(n)` in `{1, 2, 3}` with
+at least one 3, and its number of blocks is `c(1) + Sum_{i=2..n} max(0, c(i) - c(i-1))`. The
+castle counting formula at `h = 3` gives
 
     a(n) = (3^n - 2^n - P(2,n) + P(1,n)) / 2,
-    where P(1,n) = Re((1+i)^(n+1)) = A146559(n+1).
 
-P(2,n) is the signed tower count (castle.py: p_signed(2,n)); it satisfies the order-3
-recurrence P(2,n) = 3*P(2,n-1) - 4*P(2,n-2) + 4*P(2,n-3), with
-P(2,1)=1, P(2,2)=3, P(2,3)=9 (characteristic polynomial (x-2)(x^2-x+2)).
+with the signed tower counts `P(k,n) = Sum over (c_1..c_n) in {0..k}^n of
+(-1)^(c_1 + Sum_{i=2..n} max(0, c_i - c_{i-1}))`. `P(1,n) = Re((1+i)^(n+1)) = A146559(n+1)`, and
+`P(2,n)` satisfies `P(2,n) = 3*P(2,n-1) - 4*P(2,n-2) + 4*P(2,n-3)` with `P(2,1..3) = 1, 3, 9`
+(characteristic polynomial `(x-2)(x^2-x+2)`); its partial fractions give
+`P(2,n) = 2^n - A107920(n)`, with A107920 the Lucas and Lehmer numbers with parameters
+`(1 +- sqrt(-7))/2`. The two together give the third FORMULA line. The characteristic polynomial of the sequence is
+`(x-3)(x-2)(x^2-x+2)(x^2-2x+2)`, of degree 6 because `P(2,·)` and `2^n` share the root 2.
 
-Linear recurrence (holds for n >= 7):
+## Verification (2026-10-23)
 
-    a(n) = 8*a(n-1) - 27*a(n-2) + 54*a(n-3) - 70*a(n-4) + 56*a(n-5) - 24*a(n-6),
-    with a(1)=0, a(2)=0, a(3)=3, a(4)=21, a(5)=89, a(6)=307.
-
-Characteristic polynomial `(x-3)(x-2)(x^2-x+2)(x^2-2x+2)`.
-
-Generating function:
-
-    A(x) = (3*x^3 - 3*x^4 + 2*x^5) / (1 - 8*x + 27*x^2 - 54*x^3 + 70*x^4 - 56*x^5 + 24*x^6).
-
-Complementary relation (with odd(n,3) = odd-block castles of height 3, also new):
-
-    a(n) + odd(n,3) = 3^n - 2^n = A001047(n).
-
-## Program (Python)
-
-Efficient (linear recurrence; reproduces all 50 terms):
-
-```python
-def a(n):
-    # castles of width n, height 3, even number of blocks (Project Euler 502)
-    if n < 3:
-        return 0
-    v = [0, 0, 3, 21, 89, 307]          # a(1)..a(6)
-    while len(v) < n:
-        v.append(8*v[-1] - 27*v[-2] + 54*v[-3] - 70*v[-4] + 56*v[-5] - 24*v[-6])
-    return v[n-1]
-
-print([a(n) for n in range(1, 21)])
-```
-
-Self-contained brute-force check (VERIFICATION ONLY — do not submit; exponential in n),
-from the definition:
-
-```python
-from itertools import product
-def a_brute(n):
-    t = 0
-    for c in product((1,2,3), repeat=n):
-        if 3 not in c:
-            continue
-        b = c[0] + sum(max(0, c[i]-c[i-1]) for i in range(1, n))
-        if b % 2 == 0:
-            t += 1
-    return t
-```
-
-## Crossrefs (Cf.)
-
-- `A038505` (the h=2 analogue: `F(w,2) = A038505(w+1)`).
-- `A038503` (`odd(w,2) = A038503(w+1) - 1`).
-- `A000225` (total height-2 castles, `2^w - 1`).
-- The array entry (to be allocated) for `F(w,h)`: "Row 3 of A______".
-- `A047969` (the all-parity array `h^w - (h-1)^w`, of which `A001047` is a row).
-- `A001047` (`3^n - 2^n`, total height-3 castles of any parity).
-- `A146559` (`Re((1+i)^n)`), `A009545` (`Im((1+i)^n)`).
-- The odd-block companion `odd(n,3)` and the taller analogues `F(n,4)`, `F(n,5)`,
-  `odd(n,4)`, `odd(n,5)` are (as yet unallocated) sibling sequences.
-
-## Flags for Charles before submitting
-
-1. OEIS Style Sheet: use `Sum_{i=2..n}`, `binomial(n,k)`, plain ASCII — never TeX/`\sum`/
-   `\binom`, no Mathematica.
-2. Confirm the Project Euler link form:
-   `Project Euler, <a href="https://projecteuler.net/problem=502">Problem 502: Counting
-   castles</a>` (title confirmed "Counting Castles").
-3. Offset: default `offset 1` with the two leading zeros (see "Data & offset").
-4. New contributors are throttled to a few open drafts — submit the A038505/A038503
-   cross-reference first (lower-risk interlinking), then this new sequence.
+Python 3.11, integer arithmetic: the 50 terms equal the g.f. expansion, the recurrence, the
+closed form with A146559 and A107920 (live data and offsets checked 2026-10-23), and the program;
+enumeration of all words `c` for `n <= 12` gives the first 12 terms and `1 + r + s` blocks for
+every castle; `P(1,n)` and `P(2,n)` by their definitions equal `A146559(n+1)` and
+`2^n - A107920(n)` for `n <= 11`.
