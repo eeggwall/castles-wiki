@@ -92,7 +92,16 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
    (linked from the entry), checked 2026-10-07: it works with ±1 walks and only refers to
    A283595 for the Motzkin-prefix counts, so there is no column g.f. to cite. Present the
    formula without a novelty claim; bounded-height path g.f.s are classical
-   (`wiki/pages/1-smooth-castles.md` §3.2-3.3, §3.5).
+   (`wiki/pages/1-smooth-castles.md` §3.2-3.3, §3.5). Two more formula lines (2026-10-22):
+   the column g.f. is also `z^k/(R_{2k+2}(z) + z^{k+1})`, since `R_{k+1} R_k = R_{2k+2} + z^{k+1}`
+   (§3.3, a product-to-sum identity for the Chebyshev polynomials of the first and third kinds);
+   and for `k ≤ n ≤ 2k`, `T(n,k) = A027907(n,n+k) + A027907(n,n+k+1) − A027907(n,n+k+2)
+   − A027907(n,n+k+3)`, by the reflection principle with only one reflection in the ceiling
+   (§3.7), checked against the castle counts that match the b-file for `k ≤ 11`, `n ≤ 22`.
+   - The diagonal **A283667** (`T(2n,n)`, Motzkin prefixes of length `2n` and height `n`) has
+     only a recursion and an asymptotic; the second line gives
+     `a(n) = A027907(2n,3n) + A027907(2n,3n+1) − A027907(2n,3n+2) − A027907(2n,3n+3)`,
+     checked against all 24 terms of its data (2026-10-22). Submit with the A283595 edit.
 2. [ ] **A094706** (Convolution of Pell(n) and 2^n; the entry has no comments): the Pell
    castles (exact height 3, first column 1, neighbouring columns differing by at most 1) of
    width `w` number `A094706(w − 2) = P⋆_w − 2^{w−1}` (`P⋆_w` the Pell numbers), proved by
