@@ -5,7 +5,7 @@ summary: Hand-curated catalogue of every castle-counting sequence on the wiki, b
 tags: [analysis, oeis, castle, sequence, catalogue, novelty, interlink]
 sources: [oeis-mining-pe502]
 created: 2026-09-17
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # Castle sequence catalogue
@@ -135,16 +135,17 @@ The 1-smooth rule on `{1, …, h}` ([[1-smooth-castles](pages/1-smooth-castles.m
 
 | object | first terms | growth | status |
 |---|---|---|---|
-| `smooth(w, h)`, first column at height 1, height `h` | `h = 4`: `0, 0, 0, 1, 5, 19, 64, 202, 612`; one row per `h` on the concept page | `1 + 2cos(π/(h+1))` | **interlink** → column `h − 1` of [A283595](https://oeis.org/A283595) (Motzkin prefixes by height, row `w − 1`; checked for `h ≤ 7`, `w ≤ 14`). As a sequence of its own, the row `h = 4` agrees with [A378383](https://oeis.org/A378383) for `w ≤ 10` and differs at `w = 11` (5205 against 5206), so it has no match (2026-10-16); the rows `h = 5…9` have no match (2026-10-06) |
+| `smooth(w, h)`, first column at height 1, height `h` | `h = 4`: `0, 0, 0, 1, 5, 19, 64, 202, 612`; one row per `h` on the concept page | `1 + 2cos(π/(h+1))` | **interlink** → column `h − 1` of [A283595](https://oeis.org/A283595) (Motzkin prefixes by height, row `w − 1`; checked for `h ≤ 7`, `w ≤ 14`). As a sequence of its own, the row `h = 4` agrees with [A378383](https://oeis.org/A378383) for `w ≤ 10` and differs at `w = 11` (5205 against 5206), so it has no match (2026-10-16); the row `h = 2` is [A000225](https://oeis.org/A000225)(`w − 1`); the row `h = 6` agrees with [A122611](https://oeis.org/A122611), the expansion of `1/η_12`, for `w = 6, …, 11` and differs at `w = 12` (6038 against 6039), because the g.f. is `x^h/(η_{2h} + x^h)`; the rows `h = 5…12` have no match (2026-10-22) |
 | `strips(w, 4)` | `1, 2, 5, 13, 34, 89, 233` | `φ²` | **interlink** → [A001519](https://oeis.org/A001519) (`= A001519(w) = F_{2w−1}`) |
 | `strips(w, 5)` | `1, 2, 5, 13, 35, 95, 259, 707` | `1+√3` | **interlink** → [A057960](https://oeis.org/A057960) (`= A057960(w−1)`) |
 | `strips(w, 6)` | `1, 2, 5, 13, 35, 96, 266, 741` | `1+2cos(π/7)` | **interlink** → [A085810](https://oeis.org/A085810) (`= A085810(w)`, corridor of height 5) |
-| `strips(w, h)`, `h = 7, 8, 9` | `h = 7`: `1, 2, 5, 13, 35, 96, 267, 749, 2113, 5982` | `1+2cos(π/(h+1))` | **novel-candidate** (`h = 7`: no match, 2026-10-16; `h = 8, 9`: 2026-10-06); each agrees with [A005773](https://oeis.org/A005773) exactly for `w ≤ h` |
+| `strips(w, h)`, `h = 7…12` | `h = 7`: `1, 2, 5, 13, 35, 96, 267, 749, 2113, 5982` | `1+2cos(π/(h+1))` | **novel-candidate** (no match for `h = 7…12`, 2026-10-22); each agrees with [A005773](https://oeis.org/A005773) exactly for `w ≤ h` |
 | even-block / odd-block, `h = 4` | `1, 5, 16, 42, 106, 287, 843, 2535` / `0, 0, 3, 22, 96, 325, 960, 2670` (from `w = 4`) | `φ²` | **novel-candidate** (order 11 each; no match, 2026-10-16) |
-| even-block / odd-block / signed, `h = 5…12` | on the concept page | `1 + 2cos(π/(h+1))` | **unchecked** |
+| even-block / odd-block / signed, `h = 2` | `1, 3, 6, 10, 16, 28, 56, 120` / `0, 0, 1, 5, 15, 35, 71, 135` / `1, 3, 5, 5, 1, −7, −15, −15` (from `w = 2`) | `2` / `2` / `√2` | **interlink** → [A038505](https://oeis.org/A038505)(`w`), [A038503](https://oeis.org/A038503)(`w`) `− 1` and [A077860](https://oeis.org/A077860)(`w − 2`): deleting the first column gives all castles of height 2 and width `w − 1`, which the comments on A038505 and A038503 count by parity |
+| even-block / odd-block / signed, `h = 5…12` | on the concept page | `1 + 2cos(π/(h+1))` | **novel-candidate** (no match for any of the 24 rows, nor for `h = 3, 4`, 2026-10-22); orders and signed growth for every `h` on the concept page |
 | both end columns at height 1, height `h` | `h = 4`: `1, 7, 33, 129, 453, 1485` from `w = 7` | `1 + 2cos(π/(h+1))` | **interlink** → column `h − 1` of [A097862](https://oeis.org/A097862) (row `w − 1`, checked for `h ≤ 7`, `w ≤ 14`; g.f. `x^{2h−1}/(χ_h χ_{h−1})`) |
-| any first column, height 4 | `1, 3, 9, 27, 79, 227, 643, 1801, 4999` | `φ²` | **novel-candidate** (no match, 2026-10-16) |
-| any first column, height `h = 5…12` | on the concept page | `1 + 2cos(π/(h+1))` | **unchecked** |
+| any first column, height `h = 4…12` | `h = 4`: `1, 3, 9, 27, 79, 227, 643, 1801, 4999` | `1 + 2cos(π/(h+1))` | **interlink** → [A188866](https://oeis.org/A188866)`(h − 1, w) − A188866(h − 2, w)`, the difference of two rows of the smooth-word table; as sequences of their own no match for `h = 4…12` (2026-10-22) |
+| last column within 1 of the first (cyclic), height `h` | `A002426(w)` for `w ≤ 2h − 1`; `h = 3` from `w = 6`: `135, 351, 899, 2275, 5703` | `1 + 2cos(π/(h+1))` | **interlink** → [A002426](https://oeis.org/A002426)(`w`) for `w ≤ 2h − 1` (central trinomial coefficients); the rows `h = 3, 4` have no match from `w = 2h` on (2026-10-22) |
 
 ### m-smooth castles of height h
 
@@ -157,7 +158,9 @@ Skylines whose neighboring columns differ by at most `m`, with first column at h
 | strips, `h = m + 2`, `m = 4` | `1, 5, 29, 165, 941, 5365` | `(5+√41)/2` | **interlink** → [A015537](https://oeis.org/A015537) (`= A015537(w)`, "Expansion of x/(1 - 5*x - 4*x^2)") |
 | castles, `m = 2`, height 4 | `0, 0, 2, 12, 58, 252, 1034, 4092, 15802` | `(3+√17)/2` | **novel-candidate** (g.f. `2x³/((1−3x−2x²)(1−3x))`; no match, 2026-10-16) |
 | castles, `m = 2`, triangle by `(w, h)` | `1; 1, 1, 1; 1, 3, 5, 2, 1; 1, 7, 19, 12, 8, 3, 1; …` | - | **novel-candidate** (no match, 2026-10-16) |
-| castles of height `h ≥ m + 2`, other rows; their parity splits; rows with free and pinned ends | on the concept page | `ρ_{h,m}` | **unchecked** |
+| strips, `m = 2`, `h = 5` | `1, 3, 12, 47, 185, 728, 2865, 11275` | `≈ 3.9354` | **interlink** → [A088132](https://oeis.org/A088132)(`w − 1`) (g.f. `(1 − x)/(1 − 4x + x³)`; the entry has no walk reading, 2026-10-22) |
+| first column at height 1, no ceiling, `m = 2` / both end columns at height 1, no ceiling, `m = 2` | `1, 3, 12, 51, 226, 1025, 4724` / `1, 1, 3, 9, 32, 120, 473` | - | **interlink** → [A180898](https://oeis.org/A180898)(`w`) and [A104184](https://oeis.org/A104184)(`w − 1`), walks with steps `−2, …, 2` above the axis ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]) |
+| castles of height `h ≥ m + 2`, other rows; their parity splits; rows with free and pinned ends | on the concept page | `ρ_{h,m}` | **novel-candidate** (no match for the `m = 2` castle rows `h = 4…12`, the `m = 2` parity rows at `h = 4`, the `m = 2` free and pinned rows at `h = 4, 5`, and the first rows at `m = 3, 4`, 2026-10-22) |
 
 *(Every row agrees with a transfer-matrix count for `w ≤ 24`, 2026-10-16.)*
 
@@ -390,5 +393,5 @@ Fibonacci castles, the castles of height 2 with no two neighboring columns of he
 
 ## Footnotes
 
-[^1]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): every row with listed terms recomputed by enumeration, transfer matrix or dynamic program at the ranges stated under each table; every cited A-number fetched from oeis.org and compared with the computed terms at the stated offset; every `novel-candidate` row with listed terms searched on oeis.org by its terms, with no matching entry except the prefix agreements stated in the rows (`A378383`, `A228645`, `A319421`, `A092479`); the entries' comments and formulas read for the statements about castle readings and conjectures.
+[^1]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): every row with listed terms recomputed by enumeration, transfer matrix or dynamic program at the ranges stated under each table; every cited A-number fetched from oeis.org and compared with the computed terms at the stated offset; every `novel-candidate` row with listed terms searched on oeis.org by its terms, with no matching entry except the prefix agreements stated in the rows (`A378383`, `A122611`, `A228645`, `A319421`, `A092479`); the rows of the 1-smooth and m-smooth sections searched again on 2026-10-22; the entries' comments and formulas read for the statements about castle readings and conjectures.
 [^2]: https://oeis.org/A038505, https://oeis.org/A038503 and https://oeis.org/A146559 (read 2026-10-16) - each carries a comment on "castle polyominoes of width n-1 and height 2" (Project Euler, Problem 502); A038503: "a(n) = A000225(n-1) - A038505(n) + 1 for n >= 1" and "a(n) = A038505(n) + A146559(n)"; A146559: "a(n) = A038503(n) - A038505(n)".

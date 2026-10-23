@@ -171,6 +171,7 @@ A085478	supporting	Triangle read by rows: T(n, k) = binomial(n + k, 2*k).	|inver
 A085810	count	Number of three-choice paths along a corridor of height 5, starting from the lower side.	anchored 1-smooth strips with ceiling 6 (first column 1, heights 1..6), `=a(w)`
 A086510	supporting	Number of n X n real (0,1)-matrices with all eigenvalues >= 0.	strip rules with a real principal square root: 13, 261, 15418 at heights 2, 3, 4 (fractional-width-and-height)
 A087130	metallic	a(n) = 5*a(n-1)+a(n-2) for n>1, a(0)=2, a(1)=5.	trace for δ_5 (a=5)
+A088132	count	a(n) equals the square of the n-th partial sum added to twice the n-th partial sum of the squares, divided by a(n-1), for all n>1, with a(0)=1, a(1)=3.	anchored 2-smooth strips on 5 heights, `=a(w-1)`; g.f. (1-x)/(1-4x+x^3)
 A091964	supporting	Number of left factors of peakless Motzkin paths of length n.	peakless Motzkin meanders by length (Prodinger 2025, printed there as "valleyless"); rule-relaxed tower words with only the zero-width-block rule dropped, open end
 A092479	supporting	T(n,k) is the number of numbers <= 2^n having exactly k prime factors (with repetitions), 0<=k<=n, triangle read by rows.	agrees with the triangle of castles by area and blocks on its first five rows only (castle-sequence-catalogue)
 A092526	supporting	Decimal expansion of (2/3)*cos( (1/3)*arccos(29/2) ) + 1/3, the real root of x^3 - x^2 - 1.	1.4655712…, the growth by area of the tree castles of height 2 (q-fibonacci-castle, tree-castle-by-area)
@@ -183,6 +184,7 @@ A097862	count	Triangle read by rows: T(n,k) is the number of Motzkin paths of le
 A098574	count	a(n) = Sum_{k=0..floor(n/7)} C(n-5*k,2*k).	skylines of height at most 2 with minimum tower spacing 6, a(w + 6)
 A100235	supporting	Triangle, read by rows, of the coefficients of [x^k] in G100234(x)^n such that the row sums are 6^n-1 for n>0, where G100234(x) is the g.f. of A100234.	the triangle whose secondary diagonal, divided by the row number, is A100237 (castle-eigenvalue-oeis-crosswalk)
 A100237	metallic	Secondary diagonal of triangle A100235 divided by row number: a(n) = A100235(n+1,n)/(n+1) for n >= 0.	δ_5 − 1 CF numerators: (1-x)/(1-5x-x²)
+A104184	count	a(n) is the number of paths from (0,0) to (n,0) using steps of the form (1,2),(1,1),(1,0),(1,-1) or (1,-2) and staying above the x-axis. Also, a(n) is the number of possible combinations of balls on the lawn after n turns, using a Motzkin variation of the (4,2)-case of the tennis ball problem considered by D. Merlini, R. Sprugnoli and M. C. Verri.	2-smooth castles of any height with both end columns at height 1, `=a(w-1)`
 A105422	supporting	Triangle read by rows: T(n,k) is the number of compositions of n having exactly k parts equal to 1.	prime-factor counts of castles by area (k+1 factors for k height-1 columns)
 A105633	supporting	Row sums of triangle A105632.	Dyck paths avoiding UUDU = Dyck paths with no peak at a height divisible by 3 (Baril-Florez-Ramirez); not a castle count
 A106514	count	Expansion of (1-x)/((1-2*x)*(1-2*x-x^2)).	1-smooth castles of height 3 with any first column, of width w: A106514(w - 1)
@@ -199,6 +201,7 @@ A156638	supporting	Numbers that are congruent to 4 or 5 mod 9.	the integers 4 an
 A160747	count	Expansion of (1 + 10*x + 20*x^2 + 10*x^3 + x^4)/(1-x)^5.	T^(5, b), the towers on a base of length 5 with b blocks
 A165434	supporting	Number of tri-coverings of a set.	Bender's v((0,0,n)): every element three times, repeated blocks allowed, no repeated element in a block
 A171842	count	Binomial transform of 1,0,1,0,2,0,4,0,8,0,16,...	1-smooth strips on the heights {1, 2, 3} with both end columns at height 1, A171842(w - 1), the Motzkin paths of length w - 1 and height at most 2; silver by width
+A180898	count	Number of sequences of n integers p(i), i=0..n-1, with 0 <= p(i) <= 2*i and |p(i) - p(i-1)| <= 2.	anchored 2-smooth castles of any height (walks with steps -2..2 above the axis), `=a(w)`
 A188866	count	T(n,k) is the number of n X k binary arrays without the pattern 0 1 diagonally, vertically or antidiagonally.	free 1-smooth strips (smooth words) on n + 1 heights; free 1-smooth castles of height h = T(h-1, w) - T(h-2, w)
 A189593	count	Number of permutations of 1..n with displacements restricted to {-6,-5,-4,-3,-2,0,1}.	tree skylines of height at most 6 by area: A189593(n + 1); the composition reading proves the entry's empirical recurrence
 A189600	count	Number of permutations of 1..n with displacements restricted to {-7,-6,-5,-4,-3,-2,0,1}.	tree skylines of height at most 7 by area: A189600(n + 1)
