@@ -1,11 +1,11 @@
 ---
 title: m-smooth castles
 category: Concepts
-summary: An m-smooth castle is a castle whose neighboring columns differ in height by at most m. Starting from the 1-smooth castles, the anchored m-smooth castles of height h (first column at height 1) are counted for m = 2, 3, 4 and h up to 12. Their number is smooth_m(w, h) = strips_m(w, h) − strips_m(w, h − 1); the reflection j ↔ h + 1 − j keeps the strip denominator at degree ≤ ⌈h/2⌉ and the recurrence of smooth_m(·, h) at order ≤ h for every m. The first castle has width w_min = ⌈(h − 1)/m⌉ + 1, and there are C(slack + w_min − 2, w_min − 2) of them, slack = (w_min − 1)m − (h − 1). The growth constant lies between 2m + 1 − m(m+1)/h and 2m + 1. At h ≤ m + 1 the rule holds for every castle: the free count is A(w, h) = h^w − (h − 1)^w and its even-block part is A^e(w, h). On the diagonal h = m + 2: strips x/(1 − (m+1)x − mx²) (Pell, A007482, A015530, A015537 for m = 1…4), castles m·x³/((1 − (m+1)x − mx²)(1 − (m+1)x)), growth de Spinadel's σ_{m+1}^m. A last section lists what holds only at m = 1: the x^h numerator, the explicit eigenvalues and Chebyshev identities, the Motzkin-triangle readings, and the irregular parity orders.
+summary: An m-smooth castle is a castle whose neighboring columns differ in height by at most m. Starting from the 1-smooth castles, the anchored m-smooth castles of height h (first column at height 1) are counted for m = 2, 3, 4 and h up to 12. Their number is smooth_m(w, h) = strips_m(w, h) − strips_m(w, h − 1); the reflection j ↔ h + 1 − j keeps the strip denominator at degree ≤ ⌈h/2⌉ and the recurrence of smooth_m(·, h) at order ≤ h for every m. The first castle has width w_min = ⌈(h − 1)/m⌉ + 1, and there are C(slack + w_min − 2, w_min − 2) of them, slack = (w_min − 1)m − (h − 1). The growth constant lies between 2m + 1 − m(m+1)/h and 2m + 1. At h ≤ m + 1 the rule holds for every castle: the free count is A(w, h) = h^w − (h − 1)^w and its even-block part is A^e(w, h). On the diagonal h = m + 2: strips x/(1 − (m+1)x − mx²) (Pell, A007482, A015530, A015537 for m = 1…4), castles m·x³/((1 − (m+1)x − mx²)(1 − (m+1)x)), growth de Spinadel's σ_{m+1}^m. A last section lists what holds only at m = 1: the x^h numerator, the explicit eigenvalues and Chebyshev identities, the method of images, the Motzkin-triangle readings, and the parity orders that follow h mod 4.
 tags: [concept, castle, castle-type, m-smooth, 1-smooth, pell, transfer-matrix, parity, generating-functions, oeis]
 sources: [pe502-pell-castle-strip, banderier-nicodeme-2010-bounded-discrete-walks]
 created: 2026-10-06
-updated: 2026-10-16
+updated: 2026-10-22
 ---
 
 # m-smooth castles
@@ -44,7 +44,7 @@ At `m = 1` ([[1-smooth-castles](pages/1-smooth-castles.md)]):
 - **Generating function.** `Σ_w smooth(w, h) x^w = x^h/(η_h η_{h−1})`: the numerator is the single monomial `x^h`, and the recurrence has order exactly `h`.
 - **Eigenvalues.** Explicit, `1 + 2cos(πk/(h+1))`, with Chebyshev formulas for the determinants.
 - **Growth.** `1 + 2cos(π/(h+1))`, climbing to 3.
-- **Parity.** The signed recurrence orders are irregular (`3, 5, 7, 7, 9, …`).
+- **Parity.** The signed recurrence orders follow `h mod 4` (`3, 5, 7, 7, 9, …`), because about half of the signed eigenvalues cancel when `h` is odd.
 - **Pell.** At `h = 3`, the Pell castles: strips `x/(1 − 2x − x²)`, castles `x³/((1 − 2x − x²)(1 − 2x))`, growth `1 + √2`.
 
 Sections 2 and 3 extend these to `m ≥ 2`; the section *Facts that hold only at m = 1* lists what does not extend.
@@ -77,7 +77,7 @@ For every `m` the band matrix commutes with the flip `j ↔ h + 1 − j`. So its
 - the reduced denominator of `Σ_w strips_m(w, h) x^w` has degree at most `⌈h/2⌉`;
 - the reduced denominator of `Σ_w smooth_m(w, h) x^w` divides the product of the denominators at `h` and `h − 1`, so it has degree at most `⌈h/2⌉ + ⌈(h−1)/2⌉ = h`, and `smooth_m(w, h)` satisfies a linear recurrence of order at most `h` once `w` exceeds the degree of the numerator.
 
-At `m = 1` both bounds are attained. At `m ≥ 2` the degrees can be smaller, since zero eigenvalues contribute no factor. For `h ≥ m + 2` the degree for `smooth_m(·, h)` is below `h` for `m = 2` at `h = 4` and `h = 8, …, 11`, for `m = 3` at `h = 5, 6` and `h = 9, …, 12`, and for `m = 4` at `h = 6, 7, 8` and `h = 12` (tables of 3.7).[^exec]
+At `m = 1` both bounds are attained. At `m ≥ 2` the degrees can be smaller, for two reasons: a zero eigenvalue contributes no factor, and a symmetric eigenvector orthogonal to `𝟙` contributes nothing to `strips_m`. For `h ≥ m + 2` the degree for `smooth_m(·, h)` is below `h` for `m = 2` at `h = 4` and `h = 8, …, 11`, for `m = 3` at `h = 5, 6` and `h = 9, …, 12`, and for `m = 4` at `h = 6, 7, 8` and `h = 12` (tables of 3.7). Every drop comes from zero eigenvalues of the symmetric part at height `h` or `h − 1`, except four. At `m = 2`, `h = 10, 11` and `m = 3`, `h = 9, 10`, a symmetric eigenvector of eigenvalue `−1` at height 10 (`m = 2`) or 9 (`m = 3`) is orthogonal to `𝟙`; at `m = 3`, `h = 10` a zero eigenvalue at height 10 also drops out.[^exec]
 
 ### 3.3 Small ceilings: every castle is m-smooth, and A^e(w, h) appears
 
@@ -137,7 +137,7 @@ the second because `strips_m(w, m + 1) = (m + 1)^{w−1}` (3.3). The growth cons
 
 - **At `m = 1`** these are the Pell strip and the Pell castles ([[pell-castle](pages/pell-castle.md)]).
 - **The strip rows** are Pell A000129(`w`) at `m = 1`, A007482(`w − 1`) at `m = 2`, A015530(`w`) at `m = 3` and A015537(`w`) at `m = 4`, the last two named "Expansion of x/(1 - 4*x - 3*x^2)" and "Expansion of x/(1 - 5*x - 4*x^2)".[^a007482][^a015530][^a015537]
-- **The two-atom reading of [[pell-castle-strip](pages/pell-castle-strip.md)].** `1/(1 − (m+1)x − m·x²)` counts sequences of a width-1 atom of weight `m + 1` and a width-2 atom of weight `m`.
+- **The two-atom reading of [[pell-castle-strip](pages/pell-castle-strip.md)].** `1/(1 − (m+1)x − m·x²)` counts sequences of a width-1 atom of weight `m + 1` and a width-2 atom of weight `m`. Off the diagonal the atom series `1 − 1/Σ_w strips_m(w, h) x^{w−1}` has infinitely many terms. Its first 40 coefficients are nonnegative integers for `m = 2, 3, 4` and every `h ≤ 12`; at `m = 1` it is `2x + x²·mot_h(x)` for every `h`, with `mot_h` a Motzkin series on half the height ([[1-smooth-castles](pages/1-smooth-castles.md)] §3.8).
 - **A metallic mean at every `m`.** The growth constant is the root of `x² − (m+1)x − m`, de Spinadel's `σ_{m+1}^m` ([[metallic-means](pages/metallic-means.md)]). It is on the `q = 1` row only at `m = 1`, where `x² − 2x − 1` gives silver.
 
 ### 3.7 Tables
@@ -189,7 +189,7 @@ The first entry of each row is the binomial of 3.4. The OEIS status of the rows 
 
 For an anchored castle, `blocks(c) = c_1 + Σ max(0, c_{i+1} − c_i) = 1 + (total rise)`, so a rise by `r` adds `r` blocks. The signed count `Σ (−1)^{blocks}` is the transfer-matrix count with each rise by `r` weighted `(−1)^r`; even-block and odd-block counts are (`smooth_m` ± signed)/2.
 
-For `m = 2, 3, 4` and every `h ≤ 12`, the reduced denominator of the signed count has degree exactly `2h − 1`, the full degree of the two determinants. At `m = 1` it does not: the orders there repeat at `h = 5` and `h = 9`. For `m = 2`:[^exec]
+For `m = 2, 3, 4` and every `h ≤ 12`, the reduced denominator of the signed count has degree exactly `2h − 1`, the full degree of the two determinants. At `m = 1` it does not: when `h` is odd about half of the signed eigenvalues cancel, and the orders repeat at every `h ≡ 1 (mod 4)` ([[1-smooth-castles](pages/1-smooth-castles.md)] §3.6). For `m = 2`:[^exec]
 
 | `h` | even-block, `w = w_min, …` | odd-block, `w = w_min, …` | growth of even − odd | order, even − odd | order, even / odd |
 |---|---|---|---|---|---|
@@ -203,7 +203,7 @@ For `m = 2, 3, 4` and every `h ≤ 12`, the reduced denominator of the signed co
 | 11 | `0, 0, 31, 539, 5076, 36808, 234711, …` | `1, 23, 214, 1432, 8571, 49423, 278135, …` | 2.7401 | 21 | 31 |
 | 12 | `6, 89, 734, 4840, 29581, 174713, 1004744, …` | `0, 5, 182, 2329, 19851, 139454, 883127, …` | 2.7401 | 23 | 35 |
 
-The first-width castles of 3.4 rise by exactly `h − 1` in total, so they all have `h` blocks: the first entry is even-block for even `h` and odd-block for odd `h`. In every row the signed count grows more slowly than `smooth_2(w, h)`, so each parity class is half of `smooth_2(w, h)` up to a smaller term. The even/odd orders for `m = 3` are `12, 16, 20, 23, 25, 27, 30, 33` and for `m = 4` are `14, 18, 22, 26, 29, 32, 34` (from `h = m + 2` to 12).[^exec]
+The first-width castles of 3.4 rise by exactly `h − 1` in total, so they all have `h` blocks: the first entry is even-block for even `h` and odd-block for odd `h`. In every row the signed count grows more slowly than `smooth_2(w, h)`, so each parity class is half of `smooth_2(w, h)` up to a smaller term. The growth column repeats in pairs from `h = 5` on, but no eigenvalue cancels. The signed band matrix at even `h` has a smaller spectral radius than at `h − 1` (`2.35725` at `h = 6` against `2.38919` at `h = 5`), so the subtracted count at `h − 1` dominates. The even/odd orders for `m = 3` are `12, 16, 20, 23, 25, 27, 30, 33` and for `m = 4` are `14, 18, 22, 26, 29, 32, 34` (from `h = m + 2` to 12).[^exec]
 
 ## Other boundary conditions
 
@@ -260,7 +260,8 @@ The definition, the subtraction `strips_m(w, h) − strips_m(w, h − 1)`, the r
 - **Exact degrees.** At `m = 1` the strip denominator has degree exactly `⌈h/2⌉` and the denominator for `smooth(·, h)` exactly `h`. For `m ≥ 2` these are only upper bounds (3.2).
 - **Explicit eigenvalues and Chebyshev identities.** The cosine formula `1 + 2cos(πk/(h+1))`, the three-term determinant recurrence, and the formulas for `η_h` in terms of the determinants all use the tridiagonal structure. The band matrices for `m ≥ 2` are not tridiagonal, and their growth constants are cubic or higher for `h ≥ m + 3` in every case computed. In their place, the [[kernel-method](pages/kernel-method.md)] writes the strips through the `2m` roots of the kernel `1 − x(u^{−m} + ⋯ + u^m)` ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
 - **The Motzkin readings.** At `m = 1` the castle counts are columns of the Motzkin triangles A283595 and A097862, whose paths have steps of size at most 1.
-- **Irregular parity orders.** The repeats at `h = 5` and `h = 9` in the `m = 1` signed orders do not occur for `m = 2, 3, 4`, where the order is `2h − 1` for every `h ≤ 12` (3.8).
+- **The method of images.** At `m = 1` a step cannot pass a wall without landing on it, so reflecting in the two walls writes `strips(w, h)` as an alternating sum of trinomial coefficients ([[1-smooth-castles](pages/1-smooth-castles.md)] §3.7). For `m ≥ 2` a step can jump over a wall, and the reflection formula does not apply.
+- **Parity orders that follow `h mod 4`.** At `m = 1` about half of the signed eigenvalues cancel when `h` is odd, and the signed orders repeat at every `h ≡ 1 (mod 4)`. For `m = 2, 3, 4` the order is `2h − 1` for every `h ≤ 12` (3.8).
 
 ## Related Concepts
 
@@ -280,4 +281,4 @@ The definition, the subtraction `strips_m(w, h) − strips_m(w, h − 1)`, the r
 [^a007482]: https://oeis.org/A007482 (read 2026-10-16) - "a(n) is the number of subsequences of [ 1, ..., 2n ] in which each odd number has an even neighbor."; "G.f.: 1/(1-3*x-2*x^2)."; data `1, 3, 11, 39, 139, 495, 1763, 6279, 22363, 79647, …`, offset 0.
 [^a015530]: https://oeis.org/A015530 (read 2026-10-16) - "Expansion of x/(1 - 4*x - 3*x^2)."; offset 0.
 [^a015537]: https://oeis.org/A015537 (read 2026-10-16) - "Expansion of x/(1 - 5*x - 4*x^2)."; offset 0.
-[^exec]: Verified by execution (Python 3.11 with SymPy, 2026-10-16) for `m = 1, 2, 3, 4` and `h = 2, …, 12`, from the generating functions `x e_1ᵀ(I − xB)^{−1}𝟙` of the band matrices `B` and their signed versions: every row of the tables in 3.7 (counts, numerators, reduced denominator degrees, growth constants and their degrees), the strip denominator degrees `≤ ⌈h/2⌉` and the rows where the degree for `smooth_m(·, h)` is below `h`; the parity rows, signed denominators of degree `2h − 1` for `m = 2, 3, 4`, signed growth and the even/odd orders for `m = 2, 3, 4`, and the `m = 1` signed orders `3, 5, 7, 7, 9, …`; the free and both-ends tables for `m = 2`, with the first pinned width `2w_min − 1` and the squared binomial; the free count `(2m + 1)^{w−1}` for `(w − 1)m ≤ h − 1` (`m ≤ 3`, `h ≤ 8`, `w ≤ 8`); both diagonal generating functions for `m ≤ 5`; the first-width binomial by the code block; A007482, A015530 and A015537 checked on oeis.org.
+[^exec]: Verified by execution (Python 3.11 with SymPy, 2026-10-16) for `m = 1, 2, 3, 4` and `h = 2, …, 12`, from the generating functions `x e_1ᵀ(I − xB)^{−1}𝟙` of the band matrices `B` and their signed versions: every row of the tables in 3.7 (counts, numerators, reduced denominator degrees, growth constants and their degrees), the strip denominator degrees `≤ ⌈h/2⌉` and the rows where the degree for `smooth_m(·, h)` is below `h`; the parity rows, signed denominators of degree `2h − 1` for `m = 2, 3, 4`, signed growth and the even/odd orders for `m = 2, 3, 4`, and the `m = 1` signed orders `3, 5, 7, 7, 9, …`; the free and both-ends tables for `m = 2`, with the first pinned width `2w_min − 1` and the squared binomial; the free count `(2m + 1)^{w−1}` for `(w − 1)m ≤ h − 1` (`m ≤ 3`, `h ≤ 8`, `w ≤ 8`); both diagonal generating functions for `m ≤ 5`; the first-width binomial by the code block; A007482, A015530 and A015537 checked on oeis.org. On 2026-10-22 (Python 3.11 with NumPy and SymPy): every table of 3.7, 3.8 and the boundary conditions recomputed; the denominator drops of 3.2 attributed by diagonalizing the symmetric part of the band matrix at `h` and `h − 1` (zero eigenvalues, and eigenvectors orthogonal to `𝟙`, to `10^{−9}`); the signed spectral radii for `m = 2`, `h ≤ 12`, with every eigenvalue's coefficient nonzero; the atom series to 40 coefficients for `m ≤ 4`, `h ≤ 12`, in exact rational arithmetic.
