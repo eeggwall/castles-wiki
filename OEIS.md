@@ -49,9 +49,25 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-1. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
+1. [ ] **Reverse links**, one edit each, each adding only the lines shown. The first three
+   point at approved entries; the last three answer the A001263 and A283595 edits, so they
+   wait until those are approved.
+   1. [ ] A003410: `Cf. A226136.` (A226136 is this sequence from `n = 4`, approved #29).
+   2. [ ] A226274: `Cf. A226136.` (A226136's Cf. line cites A226274).
+   3. [ ] A038505: `Cf. A146559.` (`A146559 = A038503 − A038505`; A038503 and A146559
+      already link both ways).
+   4. [ ] A271942: `Cf. A001263.` and `Columns k=2..5 give A005408(n-3), A005891(n-4),
+      A063490(n-4), A160747(n-6).` (A001263's formula `= A271942(n+m, n)`; the width-2..5
+      castle counts; checked against the A271942 b-file by `bin/python/tower_t_cores.py`).
+   5. [ ] A097862: `Cf. A283595.` (A283595's column g.f. is built from A097862's `P_k`).
+   6. [ ] A094706: `a(n) = A283595(n+1, 2) for n >= 1.` and `Cf. A283595.` (A283595's
+      `Column k=2 gives A094706(n-1).`; checked by `bin/python/a283595_column_gf.py`).
+
+   Not added: A005408 (the odd numbers, dense). The t-core family line there would assert a
+   3-core reading the entry does not have, and its castle draft is skipped.
+2. [ ] **Dense-entry synonyms** (formerly tier 3) A001523 / A332578 / A115981
    (`raw/oeis-pe502/xrefs/*-castle.md`).
-2. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
+3. [ ] **The PE 502 count `F(w,h)` as an array, then its rows and columns** (OEIS rolls a
    two-parameter family into one array entry, with notable rows and columns as their own
    entries, cf. A217883 "Column 2 is A202882(n+1)"). In order:
    1. [ ] **Array `F(w,h)`**: even-block castles of width `w` and exact height `h`, square
@@ -68,7 +84,7 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
       the draft: the odd half is `F(3, 2m+1) = A014105(m)` (second hexagonal numbers); the
       even half is `F(3,2m) = 10m^2 − 5m + 1` (`6, 31, 76, 141, …`, no match 2026-09-20); and
       `odd(3, 2n+1) = A080860(n)` (`10n^2 + 5n + 1`), an interlink.
-3. [ ] **A003410 castle comment** (optional edit 2 of the A226136 draft, lower priority): for
+4. [ ] **A003410 castle comment** (optional edit 2 of the A226136 draft, lower priority): for
    `n >= 4`, `a(n)` = castles of width `n` and height 2 with no two adjacent columns at height
    2 and every run of height-1 columns of length at most 3 (the `(1,3)`-RLL Fibonacci
    castles): `raw/oeis-pe502/xrefs/A226136-A003410.md` §"Edit 2"
@@ -79,10 +95,9 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
 1. [ ] **A094706** (Convolution of Pell(n) and 2^n; the entry has no comments): the Pell
    castles (exact height 3, first column 1, neighbouring columns differing by at most 1) of
    width `w` number `A094706(w − 2) = P⋆_w − 2^{w−1}` (`P⋆_w` the Pell numbers), proved by
-   the g.f. `x³/((1−2x−x²)(1−2x))` (`wiki/pages/pell-castle.md`). Add the formula
-   `a(n) = A283595(n+1, 2)` (column 2 of the Motzkin-prefix triangle: lowering a Pell castle
-   by one row gives a Motzkin prefix of height 2) and `Cf. A283595`; pairs with the A283595
-   formula (in review) (`wiki/pages/1-smooth-castles.md`).
+   the g.f. `x³/((1−2x−x²)(1−2x))` (`wiki/pages/pell-castle.md`). The formula
+   `a(n) = A283595(n+1, 2)` and `Cf. A283595` are in the stage-2 reverse links
+   (`wiki/pages/1-smooth-castles.md`).
 2. [ ] **A077868**: two castle readings and the bijection between them. Spaced Fibonacci
    castles (height-2 columns at least 3 apart) of width `w` number `A077868(w − 1)`; tree
    castles of height 2 with area `A` (cells) number `A077868(A − 2)`; the domino-boundary map
