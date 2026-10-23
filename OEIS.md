@@ -40,7 +40,10 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
   `T(n,k)`: `raw/oeis-pe502/xrefs/A001263-tower.md`, checked by `bin/python/tower_t_cores.py`.
   Michel Marcus asked (Oct 23) why the castles of width `n` with `m` blocks are not submitted
   as a new array: they are A271942 (bargraphs by semiperimeter and width) at
-  `(n + m, n)`, since the semiperimeter is the width plus the blocks.
+  `(n + m, n)`, since the semiperimeter is the width plus the blocks. Chaz Reid (#790–#791,
+  Oct 23) added the formula `Sum_{k=1..n} T(n,k)*binomial(m+n-k-1, n-1) = A271942(n+m, n)`
+  for `n, m >= 1` and `Cf. A005408, A005891, A063490, A160747, A271942.`, and answered in the
+  discussion; back in proposed.
 - [~] **A283595 column g.f.** (submitted 2026-10-23, #42–#43). One formula block: the g.f. of
   column `k` is `z^k/(R_k*R_{k+1})` with `R_k` from the A097862 polynomials `P_k`, and the
   product form of `R_k` over odd `i`; submitted without the proof line. `Column k=2 gives
