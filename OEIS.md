@@ -94,26 +94,18 @@ lives on `wiki/pages/castle-sequence-catalogue.md`.
    matches the Fibonacci castles with `w + 1` cells to the spaced castles of width `w`.
    Brute-force verified 2026-10-04
    (`wiki/pages/fibonacci-castles-sub-families.md`, `wiki/pages/tree-castle-by-area.md`).
-4. [ ] **A000071**: the Fibonacci castles of width `w` number `F_{w+2} − 1`, the term
-   `A000071(w+2)`; castles of height 2 with area `A` number `F_{A+1} − 1`, the term
-   `A000071(A+1)`. Brute-force verified 2026-10-04
-   (`wiki/pages/fibonacci-castle.md`, `wiki/pages/castle-graph.md`).
-5. [ ] **A049703**: balanced Fibonacci castles of width `w` number `A005598(w)/2 = A049703(w)`
+4. [ ] **A049703**: balanced Fibonacci castles of width `w` number `A005598(w)/2 = A049703(w)`
    (towers balanced, i.e. finite Sturmian); the entry is defined only as `A005598(n)/2`, with
    no combinatorial reading. Brute-force verified `w ≤ 15`, 2026-10-04
    (`wiki/pages/fibonacci-castles-sub-families.md`).
-6. [ ] **A106514**: the 1-smooth castles of exact height 3 (free first column) of width `w`
+5. [ ] **A106514**: the 1-smooth castles of exact height 3 (free first column) of width `w`
    number `A106514(w − 1)`, g.f. `x(1−x)/((1−2x)(1−2x−x²))`, proved; the entry has
    only convolution and eigensequence comments (`wiki/pages/pell-castle.md`).
-7. [ ] **A047969 castle comment** (replaces per-row comments on the dense rows A000225,
-   A001047, …): the nexus-number array `a(n,k) = (n+1)^(k+1) − n^(k+1)` counts the castles
-   of width `k+1` and exact height `n+1`, `h^w − (h−1)^w` with `h = n+1`, `w = k+1`. The
-   stage-2 `F(w,h)` array item already gives `Cf. A047969`.
-8. [ ] **Tower-spacing new sequences** (`wiki/pages/tower-spacing-castles.md`): the six
+6. [ ] **Tower-spacing new sequences** (`wiki/pages/tower-spacing-castles.md`): the six
    unfiled cells `(h,g)` for `h in {5,6}`, `g in {4,5,6}` (Hardin's "0..(h-1) arrays, each
    element the minimum of `g` adjacent elements", never filed at these parameters; no match
    2026-09-20).
-9. [ ] **Tower-spacing table comments**: one comment each on the tables A217883 / A217954 /
+7. [ ] **Tower-spacing table comments**: one comment each on the tables A217883 / A217954 /
    A228461 giving the castle reading and the running-minimum proof. The nineteen matched
    cells are covered by the tables, so no per-cell comments
    (`wiki/pages/tower-spacing-castles.md`).
@@ -193,7 +185,13 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   most 1): the entry already states the column g.f. `z^(2k)/[P_k*P_{k+1}]`, whose `P_k` are
   the 1-smooth determinants, and the castle reading is the Motzkin path raised one row.
 - A000225 / A001047 / … (`h^w − (h−1)^w`, all castles of exact height `h`, one row per `h`):
-  dense entries; the castle reading goes once on the array A047969 (stage 3).
+  dense entries, and the array A047969 already has the reading (skipped below).
+- A000071 (the Fibonacci castles of width `w`, `A000071(w+2)`; the castles of height 2 with
+  area `A`, `A000071(A+1)`): the entry already has both, as "nonempty subsets of {1,2,...,n}
+  that contain no consecutive elements" and Arndt's "compositions of n with maximal part 2".
+- A047969 (castles of width `k+1` and height `n+1`, `h^w − (h−1)^w`): the entry already has
+  Arnold's "a(n-1, k-1) is the number of ordered k-tuples of positive integers such that the
+  largest of these integers is n", the column heights of those castles.
 - The plastic strip (rule `1→3, 2→1, 3→{1,2}`): its count is `A000931(w + 9)`, Padovan,
   which the entry already covers with word and automaton readings (Finch's `(1,2)`-RLL
   words, Deutsch's compositions into 2s and 3s). Draft written anyway, recommending skip:
