@@ -14,7 +14,7 @@ updated: 2026-10-16
 
 Which algebraic numbers are the growth rates of castle strips, and which number fields do they lie in?
 
-**Castle strips.** A strip on the heights `1, …, h` is a skyline whose column heights lie in `{1, …, h}`, under a rule saying which height may follow which. Strips need not reach height `h`, so they are not castles; the strips that reach `h` are the castles of height `h` of the rule's family ([[castle-strip](pages/castle-strip.md)]). The rule is a 0/1 **transfer matrix** `M`, with `M[a][b] = 1` when a column of height `a` may be followed by one of height `b`.
+**Castle strips.** A strip on the heights `1, …, h` is a skyline whose column heights lie in `{1, …, h}`, under a rule saying which height may follow which. Strips need not reach height `h`, so they need not be castles of height `h`; the strips that reach `h` are the castles of height `h` of the rule's family ([[castle-strip](pages/castle-strip.md)]). The rule is a 0/1 **transfer matrix** `M`, with `M[a][b] = 1` when a column of height `a` may be followed by one of height `b`.
 
 **The growth rate.** The number of strips of width `w` is `N(w) = 𝟙ᵀ M^{w−1} 𝟙`, the sum of the entries of `M^{w−1}`, and by Gelfand's formula `N(w)^{1/w} → ρ(M)`, the largest eigenvalue of `M`, its **Perron root**.
 

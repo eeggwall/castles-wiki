@@ -14,7 +14,7 @@ updated: 2026-10-16
 
 Project Euler 502's rule 3 asks for at least one unit of empty space between neighboring blocks in a row ([[castle-polyomino](pages/castle-polyomino.md)]). Raise "one" to `g`: a skyline `c = (c_1, …, c_w)` has **tower spacing at least `g`** when, for every row `r`, each run of empty cells in row `r` that has filled cells on both sides has length at least `g`. Row `r` is filled at the columns with `c_i ≥ r`, so the rule says that two columns reaching row `r` with only lower columns between them are at least `g + 1` columns apart. Row 1 is full in every skyline, so the rule constrains rows `2, …, h`. At `g = 1` every skyline qualifies.[^1]
 
-`spacing_g(w, h)` is the number of skylines of width `w` with entries in `{1, …, h}` and tower spacing at least `g`. These skylines need not reach height `h`, so they are not castles of height `h`; the castles of height `h` among them number
+`spacing_g(w, h)` is the number of skylines of width `w` with entries in `{1, …, h}` and tower spacing at least `g`. These skylines need not reach height `h`, so they need not be castles of height `h`; the castles of height `h` among them number
 
 ```
 A_spacing(g)(w, h)  =  spacing_g(w, h) − spacing_g(w, h − 1).

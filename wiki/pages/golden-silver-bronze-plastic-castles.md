@@ -50,9 +50,9 @@ Bold entries are new on this page. The sections below give each entry its rule, 
 |---|---|---|---|---|
 | golden | Fibonacci castles ([[fibonacci-castle](pages/fibonacci-castle.md)]) | height 2, no two adjacent height-2 columns | `(2, 1, 2, 1, 1)` | `F_{w+2} − 1` |
 | golden | ridge castles of height 2 ([[ridge-castle](pages/ridge-castle.md)]) | height 2, no two adjacent height-1 columns | `(2, 1, 2, 2, 1)` | `F_{w+2}` (`w ≥ 2`) |
-| silver | Pell castles ([[pell-castle](pages/pell-castle.md)]) | first column 1, neighbours differ by at most 1, reaches 3 | `(1, 2, 3, 2)` | `P⋆_w − 2^{w−1}` |
-| silver | ridge castles of height 3 | neighbours differ unless both are 3 | `(1, 3, 3, 2)` | `1, 5, 15, 39, 97, …` |
-| bronze | ridge castles of height 4 | neighbours differ unless both are 4 | `(4, 4, 1, 3)` | `1, 7, 31, 118, 421, …` |
+| silver | Pell castles ([[pell-castle](pages/pell-castle.md)]) | first column 1, neighbors differ by at most 1, reaches 3 | `(1, 2, 3, 2)` | `P⋆_w − 2^{w−1}` |
+| silver | ridge castles of height 3 | neighbors differ unless both are 3 | `(1, 3, 3, 2)` | `1, 5, 15, 39, 97, …` |
+| bronze | ridge castles of height 4 | neighbors differ unless both are 4 | `(4, 4, 1, 3)` | `1, 7, 31, 118, 421, …` |
 | plastic | maximal castles ([[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)]) | height 2, height-2 columns separated by one or two height-1 columns, at most one height-1 column at each end | `(2, 1, 1, 2, 1)` | `A000931(w + 6)` |
 | **plastic** | **`(1, 2)`-RLL castles** | height 2, height-2 columns separated by one or two height-1 columns, at most two height-1 columns at each end | `(2, 1, 2, 1, 1, 2)` | `A000931(w + 8)` (`w ≥ 3`) |
 | **plastic** | **the rule `1 → 2 → 3 → {1, 2}`** | height 3, each column one higher than the last, except after a 3, which drops to 1 or 2 | `(1, 2, 3, 2, 3, 1, 2, 3)` | `A000931(w + 4)` with first column 1 (`w ≥ 3`) |

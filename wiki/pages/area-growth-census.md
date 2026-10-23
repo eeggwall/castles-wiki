@@ -12,7 +12,7 @@ updated: 2026-10-16
 
 ## The question
 
-A castle strip on the heights `1, …, h` is a skyline with column heights in `{1, …, h}`, under a rule given by an `h × h` matrix `A` of 0s and 1s: a 1 in row `a`, column `b` means a column of height `a` may be followed by one of height `b`. Strips need not reach height `h`, so they are not castles ([[castle-strip](pages/castle-strip.md)]). [[quadratic-min-height](pages/quadratic-min-height.md)] counts strips by **width**. This page counts them by **area**, the total number of cells, the grading of [[castle-by-area](pages/castle-by-area.md)].
+A castle strip on the heights `1, …, h` is a skyline with column heights in `{1, …, h}`, under a rule given by an `h × h` matrix `A` of 0s and 1s: a 1 in row `a`, column `b` means a column of height `a` may be followed by one of height `b`. Strips need not reach height `h`, so they need not be castles of height `h` ([[castle-strip](pages/castle-strip.md)]). [[quadratic-min-height](pages/quadratic-min-height.md)] counts strips by **width**. This page counts them by **area**, the total number of cells, the grading of [[castle-by-area](pages/castle-by-area.md)].
 
 The number of strips of area `n` grows like `ρ^n`, and `ρ` is the rule's **area growth constant**. The question: **which numbers `ρ` appear, and what is the smallest height at which each first appears?** The census is exhaustive through height 5.
 

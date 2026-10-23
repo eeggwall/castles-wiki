@@ -53,7 +53,7 @@ So `Σ_n u_n x^n = 1/(1 − x − x³ − x⁴ − x⁵) − 1`, and `u_n = u_{n
 
 ## Relation to castles
 
-The tree skylines of height at most 4, skylines on `{1, 2, 3, 4}` with no two neighboring columns of height at least 2, are not castles of height 4 in general; [[tree-castle-by-area](pages/tree-castle-by-area.md)] maps those of area `n − 1` one-to-one onto the compositions of `n` into parts `{1, 3, 4, 5}`. With the Proposition,
+The tree skylines of height at most 4, skylines on `{1, 2, 3, 4}` with no two neighboring columns of height at least 2, need not be castles of height 4; [[tree-castle-by-area](pages/tree-castle-by-area.md)] maps those of area `n − 1` one-to-one onto the compositions of `n` into parts `{1, 3, 4, 5}`. With the Proposition,
 
 ```
 tree skylines of height ≤ 4 and area n − 1   ↔   compositions of n into {1, 3, 4, 5}   ↔   unique tournaments on n vertices.

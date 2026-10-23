@@ -22,7 +22,7 @@ c_1 = 1,      |c_{i+1} − c_i| ≤ 1  (1 ≤ i < w),      max_i c_i = 3.
 - **Examples.** `(1, 2, 3, 2)` and `(1, 2, 2, 3, 3, 2, 1)` are Pell castles. The four Pell castles of width 4 are `(1, 1, 2, 3)`, `(1, 2, 2, 3)`, `(1, 2, 3, 2)`, `(1, 2, 3, 3)`.
 - **Non-examples.** `(1, 2, 2, 1)` never reaches height 3; `(2, 3, 2)` starts at height 2; `(1, 3, 2)` rises by 2 in one step.
 
-**From the Pell castle strip.** The Pell castle strip ([[pell-castle-strip](pages/pell-castle-strip.md)]) is the same rule without the ceiling requirement: the anchored 1-smooth skylines on heights `1, 2, 3`, which need not reach height 3. Strips need not reach their top height, so they are not castles; the Pell castles are the Pell strips that reach height 3.
+**From the Pell castle strip.** The Pell castle strip ([[pell-castle-strip](pages/pell-castle-strip.md)]) is the same rule without the ceiling requirement: the anchored 1-smooth skylines on heights `1, 2, 3`, which need not reach height 3. Strips need not reach their top height, so they need not be castles of height 3; the Pell castles are the Pell strips that reach height 3.
 
 ## Counting Pell castles
 

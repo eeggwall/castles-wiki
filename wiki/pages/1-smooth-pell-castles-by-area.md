@@ -22,7 +22,7 @@ The castles all have height 3; only the width and area vary. Both block parities
 
 For example, `(1, 2, 3, 2)` qualifies, while `(1, 2, 2, 1)` never reaches height 3 and `(1, 3, 2)` has a forbidden jump.
 
-**Strips and castles.** A strip with ceiling 3 may stay entirely at heights 1 and 2, so strips are not castles. A castle of height 3 has a column of height 3. Section 5.3 subtracts the strips that do not reach height 3.
+**Strips and castles.** A strip with ceiling 3 may stay entirely at heights 1 and 2, so strips need not be castles of height 3. A castle of height 3 has a column of height 3. Section 5.3 subtracts the strips that do not reach height 3.
 
 ## 2. One castle, two measurements
 

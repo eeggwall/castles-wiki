@@ -27,7 +27,7 @@ Two facts about castle graphs are used in the sections that follow.
 
 **Skyline form.** No `2 × 2` square of cells, that is, no two neighboring columns of height at least 2 ([[castle-graph](pages/castle-graph.md)]). For example, `(2, 1, 2)` is a tree castle and `(2, 2)` is not.
 
-**Counts.** Write `T_h(w)` for the tree skylines of width `w` with heights in `{1, …, h}`, which need not reach `h` and are not castles, and `A_tree(w, h) = T_h(w) − T_{h−1}(w)` for the tree castles of height `h`. The tree skylines satisfy `T_h(w + 2) = T_h(w + 1) + (h − 1) T_h(w)`, so both grow at `(1 + √(4h − 3))/2 = σ_1^{h−1}` ([[castle-graph](pages/castle-graph.md)]). The tree skylines are named OEIS sequences:[^2]
+**Counts.** Write `T_h(w)` for the tree skylines of width `w` with heights in `{1, …, h}`, which need not reach `h` and so need not be castles of height `h`, and `A_tree(w, h) = T_h(w) − T_{h−1}(w)` for the tree castles of height `h`. The tree skylines satisfy `T_h(w + 2) = T_h(w + 1) + (h − 1) T_h(w)`, so both grow at `(1 + √(4h − 3))/2 = σ_1^{h−1}` ([[castle-graph](pages/castle-graph.md)]). The tree skylines are named OEIS sequences:[^2]
 
 - `h = 2`: `T_2(w) = F_{w+2}`, so the tree castles of height 2, the Fibonacci castles, number `F_{w+2} − 1 = A000071(w + 2)` and are golden by width ([[castle-classification-growth](pages/castle-classification-growth.md)]);
 - `h = 3`: `T_3(w) = A001045(w + 2)`, the Jacobsthal numbers;

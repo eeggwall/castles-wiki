@@ -81,7 +81,7 @@ Golden and `δ_4` both lie in `Q(√5)`, but `x² = x + 1` has the solution `φ`
 
 ## Metallic means on castles
 
-A family of castles, or of strips, is **golden by width** when its counts by width grow like `φ^w`, and the same for the other members and the other axes: area, blocks, or the length of a word ([[castle-classification-growth](pages/castle-classification-growth.md)]). Strips need not reach their top height, so they are not castles.
+A family of castles, or of strips, is **golden by width** when its counts by width grow like `φ^w`, and the same for the other members and the other axes: area, blocks, or the length of a word ([[castle-classification-growth](pages/castle-classification-growth.md)]). Strips need not reach their top height, so they need not be castles of that height.
 
 - **Golden.** The Fibonacci castles, the castles of height 2 with no two neighboring columns of height 2, number `F_{w+2} − 1` and are golden by width ([[fibonacci-castle](pages/fibonacci-castle.md)]). The prime castles, those with no column of height 1, number `F_{n−1}` at area `n` and are golden by area ([[prime-castles](pages/prime-castles.md)]).
 - **Silver.** The 1-smooth strips on the heights `{1, 2, 3}` with first column at height 1 number `P⋆_w`, with generating function `1/(1 − 2x − x²)`, and are silver by width ([[pell-castle-strip](pages/pell-castle-strip.md)], [[pell-numbers](pages/pell-numbers.md)]). The ridge castles of height 3 are silver by width (next item). The tower words, counted by their total number of steps `U`, `R` and `D`, are `A004149` and silver by that length ([[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]).

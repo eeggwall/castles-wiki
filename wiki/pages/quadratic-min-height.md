@@ -12,7 +12,7 @@ updated: 2026-10-16
 
 ## The question
 
-A castle strip on the heights `1, …, h` is a skyline with column heights in `{1, …, h}`, under a rule saying which height may follow which; strips need not reach height `h`, so they are not castles ([[castle-strip](pages/castle-strip.md)]). The rule is an `h × h` matrix `M` of 0s and 1s, with a 1 in row `a`, column `b` when a column of height `a` may be followed by one of height `b`. The number of strips of width `w` grows like `ρ^w`, where `ρ`, the **growth constant**, is the Perron root of `M`, its largest eigenvalue.
+A castle strip on the heights `1, …, h` is a skyline with column heights in `{1, …, h}`, under a rule saying which height may follow which; strips need not reach height `h`, so they need not be castles of height `h` ([[castle-strip](pages/castle-strip.md)]). The rule is an `h × h` matrix `M` of 0s and 1s, with a 1 in row `a`, column `b` when a column of height `a` may be followed by one of height `b`. The number of strips of width `w` grows like `ρ^w`, where `ρ`, the **growth constant**, is the Perron root of `M`, its largest eigenvalue.
 
 When `ρ` is a quadratic irrational, it is the larger root of
 

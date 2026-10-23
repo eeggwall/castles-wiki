@@ -26,7 +26,7 @@ The Pell castles are the anchored 1-smooth castles of height 3; they have height
 
 **Counts.** For width `w` and ceiling `h`:
 
-- `strips(w, h)` is the number of anchored 1-smooth skylines of width `w` with every column in `{1, …, h}`. They need not reach `h`, so they are not castles of height `h`: they are the anchored strips of the Motzkin strip of height `h` ([[motzkin-castles](pages/motzkin-castles.md)] §4).
+- `strips(w, h)` is the number of anchored 1-smooth skylines of width `w` with every column in `{1, …, h}`. They need not reach `h`, so they need not be castles of height `h`: they are the anchored strips of the Motzkin strip of height `h` ([[motzkin-castles](pages/motzkin-castles.md)] §4).
 - `smooth(w, h)` is the number of anchored 1-smooth castles of width `w` and height `h`, the family count `A_X(w, h)` of [[castle-notation](pages/castle-notation.md)] for X the anchored 1-smooth castles.
 
 A strip with ceiling `h` either reaches `h` or stays in `{1, …, h − 1}`, so
