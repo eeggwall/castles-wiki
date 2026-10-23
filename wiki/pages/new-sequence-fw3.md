@@ -34,7 +34,13 @@ The [[castle-counting-formula](pages/castle-counting-formula.md)] at `h = 3` giv
 A^e(w, 3)  =  ( 3^w − 2^w − P(2, w) + P(1, w) ) / 2,
 ```
 
-with the signed tower counts `P(1, w) = Re((1+i)^{w+1}) = A146559(w+1)` and `P(2, w)`, which satisfies `P(2, w) = 3P(2, w−1) − 4P(2, w−2) + 4P(2, w−3)` ([[signed-tower-count](pages/signed-tower-count.md)]). The odd-block castles of height 3 number `A^o(w, 3) = 3^w − 2^w − A^e(w, 3)`, where `3^w − 2^w = A001047(w)` counts all castles of width `w` and height 3.
+with the signed tower counts `P(1, w) = Re((1+i)^{w+1}) = A146559(w+1)` and `P(2, w)`, which satisfies `P(2, w) = 3P(2, w−1) − 4P(2, w−2) + 4P(2, w−3)` ([[signed-tower-count](pages/signed-tower-count.md)]). The partial fractions of `P(2, ·)` give `P(2, w) = 2^w − A107920(w)`, with A107920 the Lucas and Lehmer numbers with parameters `(1 ± √−7)/2`, the two parity sectors of [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)], so the closed form is a sum of known sequences:[^4]
+
+```
+A^e(w, 3)  =  ( 3^w − 2^{w+1} + A146559(w+1) + A107920(w) ) / 2.
+```
+
+The odd-block castles of height 3 number `A^o(w, 3) = 3^w − 2^w − A^e(w, 3)`, where `3^w − 2^w = A001047(w)` counts all castles of width `w` and height 3.
 
 The sequence satisfies, for `w ≥ 7`,[^5]
 
@@ -45,7 +51,7 @@ a(w)  =  8a(w−1) − 27a(w−2) + 54a(w−3) − 70a(w−4) + 56a(w−5) − 2
 with characteristic polynomial `(x − 3)(x − 2)(x² − x + 2)(x² − 2x + 2)`, and its generating function is
 
 ```
-Σ_w a(w) x^w  =  (3x³ − 3x⁴ + 2x⁵) / (1 − 8x + 27x² − 54x³ + 70x⁴ − 56x⁵ + 24x⁶).
+Σ_w a(w) x^w  =  x³(3 − 3x + 2x²) / ((1 − 2x)(1 − 3x)(1 − x + 2x²)(1 − 2x + 2x²)).
 ```
 
 **The order.** The four terms of the closed form have characteristic polynomials `x − 3`, `x − 2`, `char_2 = (x − 2)(x² − x + 2)` and `char_1 = x² − 2x + 2`, of total degree 7. `char_2` shares the root 2 with `2^w`, so their least common multiple has degree 6, and Berlekamp-Massey on the terms confirms order 6.[^6] The odd-block row `A^o(w, 3)` = `1, 5, 16, 44, 122, 358, 1082, 3274, …` has order 5, with characteristic polynomial `(x − 3)(x² − x + 2)(x² − 2x + 2)`: in `A^o` the two components at the root 2 cancel. For `4 ≤ h ≤ 8` both `A^e(·, h)` and `A^o(·, h)` have order `2h + 1`, the total degree of `x − h`, `x − (h−1)`, `char_{h−1}` and `char_{h−2}`; at `h = 2` the orders are 3 and 4.[^7]
@@ -70,6 +76,7 @@ with characteristic polynomial `(x − 3)(x − 2)(x² − x + 2)(x² − 2x + 2
 - [[castle-counting-function](pages/castle-counting-function.md)] - the counts `A`, `A^e` and `A^o`, of which this is the row `h = 3`.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] - the closed form of `A^e(w, h)`.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(1, ·)` and `P(2, ·)` and their characteristic polynomials.
+- [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - `P(2, w) = 2^w − A107920(w)`, split by the parity of the last column.
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the row `h = 2`, `A^e(w, 2) = A038505(w+1)`.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] - geometric generating functions and the difference of powers `3^w − 2^w = A001047(w)`.
 - [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] - the height-2 rows `A^e(w, 2) = A038505(w+1)` and `A^o(w, 2) = A038503(w+1) − 1`.
@@ -84,11 +91,11 @@ with characteristic polynomial `(x − 3)(x − 2)(x² − x + 2)(x² − 2x + 2
 
 ## Footnotes
 
-[^1]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"The sequence" L15-29 - "The sequence (index n = width w, so a(n) = F(n,3)): 0, 0, 3, 21, 89, 307, 977, 3031, 9321, 28479, 86505, 261615, 788969, …". All 50 listed terms agree with the closed form, and the first 9 with enumeration of all skylines (Python 3.11, 2026-10-16).
-[^2]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"Data & offset" L38-40 - "a width-1 or width-2 castle of height 3 always has max(c) = 3 blocks (odd), so none has an even block count."
-[^3]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"Comment (definition, plain English)" L54-57 - "the number of blocks is c(1) + Sum_{i=2..n} max(0, c(i)-c(i-1)). Equivalently, with r2 = number of runs of columns of height >= 2 and r3 = number of runs of columns of height 3, the number of blocks is 1 + r2 + r3, so it is even iff r2 + r3 is odd."
-[^4]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"Formula" L61-68 - "a(n) = (3^n - 2^n - P(2,n) + P(1,n)) / 2, where P(1,n) = Re((1+i)^(n+1)) = A146559(n+1)", "P(2,n) = 3*P(2,n-1) - 4*P(2,n-2) + 4*P(2,n-3)".
-[^5]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"Formula" L70-79 - "Linear recurrence (holds for n >= 7): a(n) = 8*a(n-1) - 27*a(n-2) + 54*a(n-3) - 70*a(n-4) + 56*a(n-5) - 24*a(n-6)", "Characteristic polynomial (x-3)(x-2)(x^2-x+2)(x^2-2x+2)", "A(x) = (3*x^3 - 3*x^4 + 2*x^5) / (1 - 8*x + 27*x^2 - 54*x^3 + 70*x^4 - 56*x^5 + 24*x^6)".
+[^1]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"The sequence" L12-25 - "The sequence (index `n` = width `w`, so `a(n) = F(n,3)`), 50 terms: 0, 0, 3, 21, 89, 307, 977, 3031, 9321, 28479, 86505, 261615, 788969, …". All 50 listed terms agree with the closed form, and the first 9 with enumeration of all skylines (Python 3.11, 2026-10-16).
+[^2]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"Fields" OFFSET L42-43 - "The leading zeros are counts: a castle of width 1 or 2 and height 3 has 3 blocks, the height of its tallest column."
+[^3]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"Fields" COMMENTS L48 - "If the columns that reach height 2 form r runs and the columns that reach height 3 form s runs, the number of blocks is 1 + r + s, so an even number of blocks means r + s is odd."
+[^4]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"Derivation" L104-111 and §"Fields" FORMULA L64 - "a(n) = (3^n - 2^n - P(2,n) + P(1,n)) / 2", "P(1,n) = Re((1+i)^(n+1)) = A146559(n+1)", "P(2,n) = 3*P(2,n-1) - 4*P(2,n-2) + 4*P(2,n-3)", "P(2,n) = 2^n - A107920(n), with A107920 the Lucas and Lehmer numbers with parameters (1 +- sqrt(-7))/2", "a(n) = (3^n - 2^(n+1) + A146559(n+1) + A107920(n))/2".
+[^5]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"Fields" FORMULA L62-63 and §"Derivation" L111-112 - "G.f.: x^3*(3 - 3*x + 2*x^2)/((1 - 2*x)*(1 - 3*x)*(1 - x + 2*x^2)*(1 - 2*x + 2*x^2))", "a(n) = 8*a(n-1) - 27*a(n-2) + 54*a(n-3) - 70*a(n-4) + 56*a(n-5) - 24*a(n-6) for n >= 7", "The characteristic polynomial of the sequence is (x-3)(x-2)(x^2-x+2)(x^2-2x+2)".
 [^6]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `mine-notes.md` §"Vein 3" L70-75 - "F(w,3): order 6, (x-3)(x-2)(x^2-x+2)(x^2-2x+2)", "F(w,4): order 9", "F(w,5): order 11", "F(w,3) loses one order because P(2,·) has x-2 as a factor, shared with 2^w."
 [^7]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): Berlekamp-Massey on 60 terms of `A^e(·, h)` and `A^o(·, h)` for `2 ≤ h ≤ 8` (orders 3, 6, 9, 11, 13, 15, 17 and 4, 5, 9, 11, 13, 15, 17); the recurrence and generating function of the section *Formulas* from the terms; the periods of `A^e(·, 3)` modulo 5, 7, 11 and 13 (24, 168, 40, 168) on 3000 terms; `log₂ 261615` and `log₂(3^12 − 2^12) − 1`; the order 3400 of `x` in `F_101[x]/(char_2)`.
 [^8]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `mine-notes.md` §"Vein 3" L77-79 - "Columns (fixed w, varying h) are quasi-polynomials: F(w,h) is annihilated by (x^2-1)^w, i.e. F(w,h) = P(h) + (-1)^h Q(h) with P,Q polynomials of degree < w. (Observed: F(3,h) order 6, F(4,h) order 8, F(5,h) order 10.)"
