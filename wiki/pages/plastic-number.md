@@ -5,7 +5,7 @@ summary: ψ = 1.3247…, the real root of x³ = x + 1 and the smallest Pisot num
 tags: [concept, plastic-number, pisot, padovan, perrin, cubic, jacobi-perron, eigenvalue, castle, oeis, strip-perron-root]
 sources: [verger-gaugry-2024-salem-minoration, oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-16
-updated: 2026-10-22
+updated: 2026-10-25
 ---
 
 # Plastic number
@@ -43,7 +43,7 @@ The same pairing for the silver mean `1 + √2` gives the Pell numbers `P⋆_n` 
 μ³ − 2μ² + μ − 1,        ψ² = 1.754877666…,
 ```
 
-the resultant of `x³ − x − 1` and `μ − x²`. The corresponding recurrence `a(n) = 2a(n−1) − a(n−2) + a(n−3)` is satisfied by `A005251`. The OEIS reads `A005251(n + 3)` as the number of binary strings of length `n` that avoid the factor `010`; the binary strings of length `N` with no isolated 1 number `A005251(N + 2)`, so the two families are equinumerous with lengths differing by one ([[a005251-bijection](pages/a005251-bijection.md)]).[^3] The even-indexed Padovan numbers `A000931(2n)`, `1, 0, 0, 1, 2, 3, 5, 9, 16, 28, …`, satisfy the same recurrence, since squaring the roots of `x³ − x − 1` gives the roots of `μ³ − 2μ² + μ − 1`.
+the resultant of `x³ − x − 1` and `μ − x²`. The corresponding recurrence `a(n) = 2a(n−1) − a(n−2) + a(n−3)` is satisfied by `A005251`. The OEIS reads `A005251(n + 3)` as the number of binary strings of length `n` that avoid the factor `010`; the binary strings of length `N` with no isolated 1 number `A005251(N + 2)`, so the two families are equinumerous with lengths differing by one.[^3] [[a005251-bijection](pages/a005251-bijection.md)] gives an explicit bijection from the strings of length `N` avoiding `010` onto the strings of length `N + 1` with no isolated 1, and reads the cubic as the characteristic polynomial of a three-state automaton for the strings avoiding `010`. The even-indexed Padovan numbers `A000931(2n)`, `1, 0, 0, 1, 2, 3, 5, 9, 16, 28, …`, satisfy the same recurrence, since squaring the roots of `x³ − x − 1` gives the roots of `μ³ − 2μ² + μ − 1`.
 
 By Lagrange's theorem, a real number has an eventually periodic simple continued fraction exactly when it is a quadratic irrational, so neither `ψ` nor `ψ²` has one. The Jacobi-Perron algorithm is a two-dimensional continued fraction: starting from `(α_1, α_2) = (α, α²)`, it records the digits `(⌊α_1⌋, ⌊α_2⌋)` and replaces the pair by `((α_2 − ⌊α_2⌋)/(α_1 − ⌊α_1⌋), 1/(α_1 − ⌊α_1⌋))`. On `ψ`, `ψ²` and `2ψ²` its digits are[^4]
 
@@ -95,7 +95,7 @@ Three powers of `ψ` are growth constants on the wiki:
 |---|---|---|
 | `2ψ²` | `3.5098` | the signed tower count `P(6, ·)` (section *The signed tower count at k = 6*). The castle graph of `(1, 1, 2, 7, 7, 5, 7, 7)` has spectral radius `8.0 · 10⁻⁹` below `2ψ²`, and `2ψ²` is not an eigenvalue of it ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]) |
 | `ψ²` | `1.7549` | `A005251`, which counts the tree castles by area with no bound on the height ([[tree-castle-by-area](pages/tree-castle-by-area.md)]), the skylines of height at most 2 whose raised columns are separated by valleys at least 2 columns wide ([[tower-spacing-castles](pages/tower-spacing-castles.md)]), and the binary strings with no isolated 1 of [[hardin-word-identity](pages/hardin-word-identity.md)], related by the bijections of [[a005251-bijection](pages/a005251-bijection.md)]; by semi-perimeter `s`, all castles of height 2, `A077855(s − 3)` ([[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)]) |
-| `ψ` | `1.3247` | by width, the strips of the rule in the paragraph *A rule on three heights*, found in the census of strip Perron roots ([[reachable-field-census](pages/reachable-field-census.md)]), the maximal castles and the `(1, 2)`-RLL castles of height 2, and the castles of the rule `1 → 2 → 3 → {1, 2}` of height 3; by area, the ridge castles of height 2. All are counted by shifted Padovan numbers ([[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)], [[padovan-families](pages/padovan-families.md)]) |
+| `ψ` | `1.3247` | by width, the strips of the rule in the paragraph *A rule on three heights*, found in the census of strip Perron roots ([[reachable-field-census](pages/reachable-field-census.md)]), the maximal castles and the `(1, 2)`-RLL castles of height 2, and the castles of the rule `1 → 2 → 3 → {1, 2}` of height 3; by area, the ridge castles of height 2 and, up to sign, the excess of the even-block over the odd-block tree castles of any height, `(−1)^n A000931(n − 1)` ([[a005251-bijection](pages/a005251-bijection.md)]). All are counted by shifted Padovan numbers ([[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)], [[padovan-families](pages/padovan-families.md)]) |
 
 **A rule on three heights.** Of the 512 binary `3 × 3` matrices, exactly 6 have characteristic polynomial `x³ − x − 1`, and each has four entries equal to 1.[^6] One is
 

@@ -5,7 +5,7 @@ summary: A seminar on the Hardin word identity. Split the signed tower count P(6
 tags: [concept, castle, seminar, pedagogy, teaching, signed-tower-count, transfer-matrix, symmetry, bijection, hardin, words, automaton, oeis, a005251, plastic-number]
 sources: [oeis-mining-pe502, tetali-1998-unique-tournaments]
 created: 2026-09-26
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Hardin identity seminar - towers, words, and one change of basis
@@ -119,9 +119,9 @@ R. H. Hardin recorded recurrences for A202882, A203094 and A203184 on the OEIS a
 
 The word sequence of Stop 0 also counts:
 
-- **Tree castles by area.** A tree castle has no filled `2 × 2` square, so no two adjacent columns are both `≥ 2`. By area, with unlimited height, these are compositions with no two adjacent parts `≥ 2`, counted by `A005251(n+2)` ([[tree-castle-by-area](pages/tree-castle-by-area.md)]). The classic "cut the gaps" encoding sends such a composition to a binary string with no factor `010` ([[a005251-bijection](pages/a005251-bijection.md)]). Strings avoiding `010` of length `N` and Hardin's no-isolated-1 strings of length `N + 1` both number `A005251(N + 3)`.
+- **Tree castles by area.** A tree castle has no filled `2 × 2` square, so no two adjacent columns are both `≥ 2`. By area, with unlimited height, these are compositions with no two adjacent parts `≥ 2`, counted by `A005251(n+2)` ([[tree-castle-by-area](pages/tree-castle-by-area.md)]). The classic "cut the gaps" encoding sends such a composition to a binary string with no factor `010` ([[a005251-bijection](pages/a005251-bijection.md)]). Strings avoiding `010` of length `N` and Hardin's no-isolated-1 strings of length `N + 1` both number `A005251(N + 3)`, and an explicit bijection joins them: split a string avoiding `010` at its `1`s, then turn each run of `r ≥ 1` zeros into `1^{r+1}` and each empty block into `0` ([[a005251-bijection](pages/a005251-bijection.md)]).
 - **Tournaments.** The tree skylines of height at most 4 and area `n − 1`, which need not reach height 4, number `A000570(n)`, as do the tournaments on `n` vertices determined by their score sequences. The link is Tetali's theorem that such tournaments are built from four basic ones on 1, 3, 4 and 5 vertices ([[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)], [[tree-castle-by-area](pages/tree-castle-by-area.md)]).[^6]
-- **The plastic number.** The characteristic polynomial `μ³ − 2μ² + μ − 1` of the `m = 1` machine is the minimal polynomial of `ψ²`, the square of the plastic number, so the word counts, and with them the tree castles of unlimited height by area, grow like `ψ²` ([[plastic-number](pages/plastic-number.md)]).
+- **The plastic number.** The characteristic polynomial `μ³ − 2μ² + μ − 1` of the `m = 1` machine is the minimal polynomial of `ψ²`, the square of the plastic number, and it is also the characteristic polynomial of the three-state automaton for the strings avoiding `010` ([[a005251-bijection](pages/a005251-bijection.md)]). So the word counts, and with them the tree castles of unlimited height by area, grow like `ψ²` ([[plastic-number](pages/plastic-number.md)]).
 
 *Idea:* A005251 counts the even-sector signed towers divided by `2^L`, the words, and the tree castles by area; at height at most 4 the tree skylines meet the tournaments of A000570.
 
