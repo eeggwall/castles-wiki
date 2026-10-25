@@ -96,11 +96,27 @@ The two counts of [[castle-counting-formula](pages/castle-counting-formula.md)] 
 - At `y = 1` the equation is Equation (2) there, and `A = [[1, 0], [−x, 1]]` gives `1/E_k = 1/E_{k−1} − x`, so `E_k = 1/(1 − (k+1)x)` and `T(k, L) = (k+1)^L`.
 - At `y = −1` the equation is Equation (3) there, and `A = [[−1, 2], [x, 1 − 2x]]` is the update `num_k = 2 den_{k−1} − num_{k−1}`, `den_k = (1 − 2x) den_{k−1} + x num_{k−1}` of Equation (5), so `E_k(x, −1)` is the generating function `P_k(x)` of the signed tower count `P(k, L)`.
 
+**The fixed point.** A tower with `b` blocks has height at most `b`, so the coefficient of `x^L y^b` in `E_k` is the same for all `k ≥ b`, and `E_k` converges coefficient by coefficient to the generating function `E_∞` of the towers of every height. `E_∞` is a fixed point of the height map:
+
+```
+xy E_∞²  −  (1 − x)(1 − y) E_∞  +  (1 − y)  =  0.
+```
+
+A castle is a bottom row `U … D` carrying towers on a base of length at least 1, so the castles by width and blocks have generating function `B = y(E_∞ − 1)`, and in `B` the fixed-point equation is
+
+```
+x B²  −  (1 − x − y − xy) B  +  xy  =  0,
+```
+
+Deutsch and Elizalde's equation for bargraphs counted by width and up steps ([[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]).[^17] So the castles of height at most `h` are `B_h = y(E_{h−1} − 1)`, the iterates of the map `B ↦ y[(1 + B)/(1 − x(1 + B)) − 1]` from `B_0 = 0`, and they converge to Deutsch and Elizalde's generating function.[^18] Deutsch and Elizalde count bargraphs by area with `M_area(t, x, y) = 1/(1/(1 + y(M_area(t, tx, y) − 1)) − x)` and iterate it into a continued fraction;[^19] at `t = 1` this is the height map, and for `t ≠ 1` each step substitutes `tx` for `x`, so the iterates are no longer powers of one matrix.
+
+**The signed count in the height direction.** At `y = −1`, `A` has trace `−2x` and determinant `−1`, so `A² = −2x A + I` by the Cayley-Hamilton theorem, the numerators and the denominators each satisfy `s_{k+1} = −2x s_k + s_{k−1}`, and the eigenvalues are `−x ± √(1 + x²)`, which are `±1` at `x = 0`. Expanding `P_k` in these eigenvalues proves that for every `L ≥ 4` the shortest recurrence of `P(·, L)` in `k` has the eigenvalue `−1` with multiplicity `L` and `+1` with multiplicity `L − 2` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)], section *Proof of the multiplicities*).
+
 ## Independence of the towers on different blocks
 
-In the production `U V D (empty | R E_k)`, the towers `V` on a block come from their own copy of `E_{k−1}`, independent of the rest of the word. So the towers on different blocks of a row are independent, and the gap between two blocks of a row separates the towers above them as well.[^17] This independence makes the count multiply over the blocks, which is the induction proof of `T(k, L) = (k+1)^L` ([[castle-counting-formula](pages/castle-counting-formula.md)], section *Tower count*).
+In the production `U V D (empty | R E_k)`, the towers `V` on a block come from their own copy of `E_{k−1}`, independent of the rest of the word. So the towers on different blocks of a row are independent, and the gap between two blocks of a row separates the towers above them as well.[^20] This independence makes the count multiply over the blocks, which is the induction proof of `T(k, L) = (k+1)^L` ([[castle-counting-formula](pages/castle-counting-formula.md)], section *Tower count*).
 
-A Dyck word in `U` and `D` alone records how the blocks nest and their left-to-right order, but not their widths or the gaps between them. The letter `R` records the columns: the towers of height 0 on a base of length `L` are written `R^L`, and the gaps between neighboring blocks are `R`s. The cycle-forest form, which matches each `U` with the `D` that closes it and drops the `R`s, keeps only the nesting of the blocks and does not determine the towers ([[castle-representations](pages/castle-representations.md)]).[^18] The towers `(1, 0, 1)`, written `URDRURD`, and `(1, 1, 0, 0, 1)`, written `URRDRRURD`, have the same cycle forest, two blocks side by side.
+A Dyck word in `U` and `D` alone records how the blocks nest and their left-to-right order, but not their widths or the gaps between them. The letter `R` records the columns: the towers of height 0 on a base of length `L` are written `R^L`, and the gaps between neighboring blocks are `R`s. The cycle-forest form, which matches each `U` with the `D` that closes it and drops the `R`s, keeps only the nesting of the blocks and does not determine the towers ([[castle-representations](pages/castle-representations.md)]).[^21] The towers `(1, 0, 1)`, written `URDRURD`, and `(1, 1, 0, 0, 1)`, written `URRDRRURD`, have the same cycle forest, two blocks side by side.
 
 ## Appearances in Sources
 
@@ -108,7 +124,7 @@ A Dyck word in `U` and `D` alone records how the blocks nest and their left-to-r
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the grammar read as a factorization of a tower into blocks separated by `R` gaps, and the cycle-forest form.
 - [[project-euler-502-observations](pages/project-euler-502-observations.md)] - the independence of the towers on two blocks of the same row.
 - [[dyck-words](pages/dyck-words.md)] - the Dyck first-return grammar, and the steep Dyck words, made by removing the one rule that creates `x x̄ x`.
-- [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] - the decomposition `HA | UA′D | UA′DHA` of cornerless Motzkin paths, with `A′` nonempty: this grammar without the height bound, with `H` for `R` and `A′` for `V`.
+- [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] - the decomposition `HA | UA′D | UA′DHA` of cornerless Motzkin paths, with `A′` nonempty: this grammar without the height bound, with `H` for `R` and `A′` for `V`, the bargraph equation as the fixed point of the height map, and the area continued fraction, which at `t = 1` iterates it.
 - [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] - Motzkin paths counted with a weight on each `UD` and each `DU`; both weights 0 give the tower words.
 
 ## Related Concepts
@@ -141,5 +157,8 @@ A Dyck word in `U` and `D` alone records how the blocks nest and their left-to-r
 [^14]: [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] p.3 §1 L117-120 - "enumeration of Motzkin paths where peaks resp. valleys may occur but are counted using extra variables σ and τ", "if both variables are zero, we are in the cornerless world, and if σ = τ = 1, we have ordinary Motzkin paths".
 [^15]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): `det A = y`; for `k ≤ 5` and `L ≤ 7`, the coefficient of `x^L` in `num_k / den_k` with `(num_k, den_k) = A^k (1, 1 − x)` equals `Σ y^{blocks}` over the towers in `{0, …, k}^L`; at `y = 1`, `E_k = 1/(1 − (k+1)x)` for `k ≤ 5`; at `y = −1`, `A` reproduces Equation (5) of the counting formula for `k ≤ 8`.
 [^16]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Unsigned count" L282-303, §"Signed count" L316-340 - "E_k = 1 + x E_k + (E_{k-1} - 1)(1 + x E_k)", "E_k = 1/(1 - (k+1)x)", "Weight each block, that is each D, by -1", "P_k = 1 + x P_k - (P_{k-1} - 1)(1 + x P_k)", "num_k = 2 den_{k-1} - num_{k-1}, den_k = den_{k-1}(1-2x) + x num_{k-1}".
-[^17]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Sub-block independence" L5 - "Two sibling blocks in the same row generate towers that never interact (the parent-row gap is automatic)."
-[^18]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Cycle-forest form" L208-212 - "Match each U with the D that closes it (stack matching). Each matched pair is a block", "The forest is only the vertical nesting skeleton: it discards the R steps, so it does not recover the tower word", "Above a length-L base the tower with no blocks is R^L, a simple horizontal run with no vertical steps."
+[^17]: [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] pp.2-3 §2 L94-101 [synthesis] - equation (1), `M = (1 + y(M − 1))(1 + xM)`, and with `B = y(M − 1)`, "a consequence of the bijection ∆", equation (2), `xB² − (1 − x − y − xy)B + xy = 0`.
+[^18]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): the fixed-point equation of the height map, and in `B = y(E − 1)` Deutsch and Elizalde's equation (2); the map in `B`; its iterates from `B_0 = 0` equal the castles of height at most `h` by width and blocks for `h ≤ 5`, `w ≤ 7`.
+[^19]: [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] pp.15-16 §3.14 L747-757 [synthesis] - `M_area(t, x, y) = (1 + y(M_area(t, tx, y) − 1))(1 + xM_area(t, x, y))`, solved as `1/(1/(1 + y(M_area(t, tx, y) − 1)) − x)`, and "Iterating this formula to get a continued fraction".
+[^20]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Sub-block independence" L5 - "Two sibling blocks in the same row generate towers that never interact (the parent-row gap is automatic)."
+[^21]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Cycle-forest form" L208-212 - "Match each U with the D that closes it (stack matching). Each matched pair is a block", "The forest is only the vertical nesting skeleton: it discards the R steps, so it does not recover the tower word", "Above a length-L base the tower with no blocks is R^L, a simple horizontal run with no vertical steps."
