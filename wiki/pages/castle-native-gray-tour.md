@@ -5,12 +5,12 @@ summary: Whether the even-block castles V(w, h) = {c : max c = h, blocks(c) even
 tags: [concept, castle, gray-code, hamiltonian-path, generation, algorithm, open-problem]
 sources: [project-euler-502-brute-force]
 created: 2026-09-20
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle-native Gray tour
 
-[[castle-gray-code](pages/castle-gray-code.md)] walks the whole cube `{1..h}^w` with one column changing by `±1` per step and keeps the even-block castles as it passes them. A tour that visits only the even-block castles would list `A^e(w, h)` castles in `A^e(w, h)` visits, with the sign `(−1)^{blocks}` equal to `+1` throughout. This page asks whether such a tour exists at small sizes; no castle-native Gray code is known. [[castle-move-graph-zdd](pages/castle-move-graph-zdd.md)] carries the search to `(6, 2)`, `(4, 3)` and `(3, 4)`.
+[[castle-gray-code](pages/castle-gray-code.md)] walks the whole cube `{1..h}^w` with one column changing by `±1` per step and keeps the even-block castles as it passes them. A tour that visits only the even-block castles would list `A^e(w, h)` castles in `A^e(w, h)` visits, with the sign `(−1)^{blocks}` equal to `+1` throughout. This page asks whether such a tour exists at small sizes; no castle-native Gray code is known. [[castle-move-graph-zdd](pages/castle-move-graph-zdd.md)] carries the search to every `(w, h)` with `w ≥ 3`, `h ≤ 10` and at most 600 castles.
 
 ## The object
 
@@ -90,7 +90,7 @@ A - C - F - E - B          D unvisited
 A - C - F - E - D          B unvisited
 ```
 
-So `V(3, 2)` has no Hamilton path under bumps. The castle removed by the parity condition, `(2, 1, 2)` with three blocks, is the one that joined `A` and `D` to the rest in `V_proper(3, 2)`.
+So `V(3, 2)` has no Hamilton path under bumps. The castle removed by the parity condition, `(2, 1, 2)` with three blocks, is the one that joined `A` and `D` to the rest in `V_proper(3, 2)`. The area gives the same answer in one step: a bump changes the area by 1, so every bump edge joins `A`, `B`, `D` or `F`, of even area, to `C` or `E`, of odd area, and a path that alternates between a side of four castles and a side of two cannot visit all six ([[castle-move-graph-zdd](pages/castle-move-graph-zdd.md)], Theorem 1).
 
 ## `V(3, 2)` under bumps and swaps
 
@@ -124,7 +124,7 @@ V(3, 3)  =  { (2, 1, 3),  (3, 1, 2),  (3, 2, 3) },       each with 4 blocks.
 | double bumps | none |
 | far swap `c_1 ↔ c_3` | `(2,1,3) - (3,1,2)` only |
 
-`(3, 2, 3)` is fixed by `c_1 ↔ c_3`, and every bump or double bump of it gives a tuple with 3 blocks: `(2,2,3)`, `(3,1,3)`, `(3,3,3)`, `(3,2,2)`, `(1,2,3)` and `(3,2,1)`. So it is isolated under all four kinds of move, and `V(3, 3)` has no Hamilton path under them.
+`(3, 2, 3)` is fixed by `c_1 ↔ c_3`, and every bump or double bump of it gives a tuple with 3 blocks: `(2,2,3)`, `(3,1,3)`, `(3,3,3)`, `(3,2,2)`, `(1,2,3)` and `(3,2,1)`. So it is isolated under all four kinds of move, and `V(3, 3)` has no Hamilton path under them. The same holds at every odd height: every castle of `V(3, h)` has a strict valley in the middle, and every move between two of them keeps the parity of the middle column, which separates `(3, 2, 3)` from the other two here ([[castle-move-graph-zdd](pages/castle-move-graph-zdd.md)], Theorem 3).
 
 ## Summary of the small cases
 
@@ -132,7 +132,7 @@ V(3, 3)  =  { (2, 1, 3),  (3, 1, 2),  (3, 2, 3) },       each with 4 blocks.
 - `V(3, 2)` under bumps: no Hamilton path, because of the two pendant castles `(1, 1, 2)` and `(2, 1, 1)`. Under bumps and swaps: a Hamilton path exists.
 - `V(3, 3)` under all four kinds of move: no Hamilton path; the only edge is `(2,1,3) - (3,1,2)`.
 
-[[castle-move-graph-zdd](pages/castle-move-graph-zdd.md)] finds that bumps and swaps give Hamilton paths at `(3, 2)`, `(4, 2)` and `(3, 4)` and not at `(5, 2)`, `(6, 2)` or `(4, 3)`; adding far swaps repairs `(5, 2)` and `(6, 2)`, and adding double bumps repairs `(4, 3)`.
+[[castle-move-graph-zdd](pages/castle-move-graph-zdd.md)] finds that bumps and swaps give Hamilton paths at `(3, 2)`, `(4, 2)` and `(3, 4)` and not at `(5, 2)`, `(6, 2)` or `(4, 3)`; adding far swaps repairs `(5, 2)` and `(6, 2)`, and adding double bumps repairs `(4, 3)`. It proves that bumps alone give no Hamilton path at any width `w ≥ 3`, that at height 2 bumps and swaps give none from width 5 on, and that at width 3 and every odd height the four kinds of move together give none.
 
 ## Entities & Concepts
 
