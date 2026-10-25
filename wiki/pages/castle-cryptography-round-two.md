@@ -25,7 +25,7 @@ Round one stopped at the shared secret. ElGamal encryption and a signature use t
 
 Both need a subgroup `⟨g⟩` of prime order `q`.
 
-**On `char_1`, degree 2.** Since `p ≡ 3 (mod 4)`, `−1` is not a square mod `p` (Euler's criterion), so `char_1`, with discriminant `−4`, is irreducible and `R = F_{p²}`. The order of `x` is `8 · 500000003`, so the choice is `q = 500000003` and `g = x⁸`. But `x⁸ = 16` in `R`: the roots of `char_1` are `1 ± i`, and `(1 + i)⁸ = 16`. So the subgroup of order `q` lies in `F_p ⊂ F_{p²}`, every public key `g^a = 16^a` is a scalar, and the ring contributes nothing beyond `F_p`.[^1]
+**On `char_1`, degree 2.** Since `p ≡ 3 (mod 4)`, `−1` is not a square mod `p` (Euler's criterion), so `char_1`, with discriminant `−4`, is irreducible and `R = F_{p²}`. The order of `x` is `8 · 500000003`, so the choice is `q = 500000003` and `g = x⁸`. But `x⁸ = 16` in `R`: the roots of `char_1` are `1 ± i`, and `(1 + i)⁸ = 16`. So the subgroup of order `q` lies in `F_p ⊂ F_{p²}`, every public key `g^a = 16^a` is a scalar, and the ring contributes nothing beyond `F_p`.[^1] The prime `q` divides the order of `x` for every `k` at this `p`, because the norm of `x` is `2^k` and `2` has order `q` mod `p` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 8), and the norm `N(A) = 2^{ka}` reads the component of order `q` off any public key.
 
 **On `char_3`, degree 4.** `p⁴ − 1 = (p − 1)(p + 1)(p² + 1)`, and `p² + 1 = 2 · 5² · 58699937 · 340715873`. The primes `58699937` and `340715873` do not divide `p² − 1`, the order of the unit group of the largest proper subfield `F_{p²}`, since `gcd(p² + 1, p² − 1) = 2`. With `q = 340715873` and `g = r^{(p⁴ − 1)/q}` for a random `r ∈ R`, the generator has all four coefficients nonzero, ElGamal decrypts the message `[1, 1, 3, 9]` (the first four terms of `P(2, ·)`), and the signature verifies on the signed message and fails on a changed one.[^1]
 
@@ -205,7 +205,7 @@ With Fixes 4 and 5 in place, discrete logarithms in `F_{p^d}` still face index c
 The two rounds give a procedure for judging a new cryptosystem:
 
 1. **Name the hard problem exactly:** the group, its order and the map. "Discrete logarithm in `F_p[x]/(Q)`" is incomplete until `|⟨g⟩|` is written down.
-2. **Find where the structure splits:** does the modulus factor (the CRT on the ring), does the order of the group factor (Pohlig-Hellman, always possible for `p^d − 1` by the cyclotomic factorization), does a subgroup lie in a subfield (the norm map, as in `x⁸ = 16`)?
+2. **Find where the structure splits:** does the modulus factor (the CRT on the ring), does the order of the group factor (Pohlig-Hellman, always possible for `p^d − 1` by the cyclotomic factorization), does a subgroup lie in a subfield (the norm map, as in `x⁸ = 16` and in the norm `2^{ka}` of a public key, [[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 9)?
 3. **Check whether the output is linear or a low-degree function of something linear:** Berlekamp-Massey for the first, linearization with the bound `C(d + e − 1, e)` for the second.
 4. **Size each attack separately:** the square root of the largest prime factor, the linear complexity, and `L_q[1/3]`.
 

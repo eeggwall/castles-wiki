@@ -125,7 +125,7 @@ M - 1 = 2 * 500000003     (500000003 is prime)
 M + 1 = 2^3 * 3^2 * 7 * 109^2 * 167
 ```
 
-`M − 1 = 2q` with `q = 500000003` prime, so every element of `F_M^*` has order 1, 2, `q` or `2q`.
+`M − 1 = 2q` with `q = 500000003` prime, so every element of `F_M^*` has order 1, 2, `q` or `2q`. The norm of `x` in `F_M[x]/(char_k)` is `2^k`, of order `q`, so `q` divides `per(char_k)` for every `k` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 8).
 
 `char_k mod M` for `k = 1, …, 7`:
 

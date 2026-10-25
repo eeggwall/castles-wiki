@@ -5,7 +5,7 @@ summary: The third round of the build / red-team / blue-team series: round two's
 tags: [analysis, seminar, cryptography, cryptanalysis, red-team, blue-team, torus, xtr, ceilidh, trace, compression, kitamasa, pollard-rho, pohlig-hellman, index-calculus, number-field-sieve, extnfs, key-size, finite-field, cyclotomic, castle]
 sources: [oeis-mining-pe502, granger-vercauteren-2005-dlp-algebraic-tori]
 created: 2026-09-24
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle cryptography, round three - the castle torus
@@ -69,7 +69,7 @@ with coefficients in the subfield `F_{p^2}`, a linear recurrence of order 3 like
 
 ### The subfield reduction finds nothing
 
-Round two's subfield attack carried the key into a smaller field inside the large one, where the discrete logarithm was easy. Here the smaller fields are `F_{p^2}` and `F_{p^3}`, and pushing down means raising to `p^4 + p^2 + 1` or to `p^3 + 1`. Both of those numbers are multiples of `p^2 - p + 1`, so every torus element lands on 1: checked at both sizes. This is the defining property of the torus. Norms to the subfields determine a discrete log only modulo the subfield orders, and what remains lives in the torus.[^gv-reduction]
+Round two's subfield attack carried the key into a smaller field inside the large one, where the discrete logarithm was easy. Here the smaller fields are `F_{p^2}` and `F_{p^3}`, and pushing down means raising to `p^4 + p^2 + 1` or to `p^3 + 1`. Both of those numbers are multiples of `p^2 - p + 1`, so every torus element lands on 1: checked at both sizes. This is the defining property of the torus. Norms to the subfields determine a discrete log only modulo the subfield orders, and what remains lives in the torus.[^gv-reduction] The norm to `F_p` of Seminar 1, which returns the whole private key at `k = 3` in round one's field ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 9), is the norm to `F_{p^2}` followed by the norm from `F_{p^2}` to `F_p`, so it is 1 on the torus as well.
 
 ### Generic attacks
 
