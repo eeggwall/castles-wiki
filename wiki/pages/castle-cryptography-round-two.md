@@ -90,6 +90,8 @@ The factorization holds for every `p`, and Pohlig-Hellman runs over the prime fa
 | `char_3`, degree 4 | yes | `2⁴ · 5 · 58699937 · 340715873 · 500000003` | `500000003 ≈ 2^28.9` | recovered |
 | the Schnorr subgroup on `char_3` | yes | `q = 340715873 ≈ 2^28.3` | `q` | recovered by plain BSGS |
 
+For every `k ≤ 7`, at this `p` and at `p' = 1,000,000,403`, the largest prime factor of the order of `x` is at most `164,826,110,927,971 ≈ 2^{47.2}`, so BSGS on it takes about `2^{23.6}` steps ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 7).
+
 The factors depend only on `p`:
 
 ```python

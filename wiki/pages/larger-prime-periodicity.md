@@ -141,17 +141,17 @@ M + 1 = 2^3 * 3^2 * 7 * 109^2 * 167
 
 So `per(char_6)` mod `M` is the lcm of `q` and the orders of the roots of the two quadratic factors, each dividing `M^2 − 1`.
 
-Upper bounds for `per(char_k)` mod `M`, the lcm of `M^{d_i} − 1` over the factor degrees `d_i`:
+Upper bounds for `per(char_k)` mod `M`, the lcm of `M^{d_i} − 1` over the factor degrees `d_i`, and the exact periods, the orders of `x` in the census of [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] (section 7):[^per-m]
 
-| `k` | bound |
-|---|---|
-| 1 | `M^2 − 1 ~ 10^{18}` |
-| 2 | `M^2 − 1 ~ 10^{18}` |
-| 3 | `M^4 − 1 ~ 10^{36}` |
-| 4 | `lcm(M^2 − 1, M^3 − 1) = (M^2 − 1)(M^2 + M + 1) ~ 10^{36}` |
-| 5 | `M^4 − 1 ~ 10^{36}` |
-| 6 | `M^2 − 1 ~ 10^{18}` (three linear and two quadratic factors) |
-| 7 | `M^6 − 1 ~ 10^{54}` (factors of degree 2 and 6) |
+| `k` | bound | `per(char_k)` |
+|---|---|---|
+| 1 | `M^2 − 1 ~ 10^{18}` | `4(M − 1) ≈ 2^{31.9}` |
+| 2 | `M^2 − 1 ~ 10^{18}` | `(M^2 − 1)/2 ≈ 2^{58.8}` |
+| 3 | `M^4 − 1 ~ 10^{36}` | the bound divided by `1,250,000,010`, `≈ 2^{89.4}` |
+| 4 | `lcm(M^2 − 1, M^3 − 1) = (M^2 − 1)(M^2 + M + 1) ~ 10^{36}` | the bound divided by `333,333,336`, `≈ 2^{91.3}` |
+| 5 | `M^4 − 1 ~ 10^{36}` | the bound divided by `25`, `≈ 2^{114.9}` |
+| 6 | `M^2 − 1 ~ 10^{18}` (three linear and two quadratic factors) | `(M^2 − 1)/2 ≈ 2^{58.8}`, the same as `per(char_2)` |
+| 7 | `M^6 − 1 ~ 10^{54}` (factors of degree 2 and 6) | `M^6 − 1`, the bound |
 
 `disc(char_k) mod M` is `1000000003, 999999895, 20480, 21037056, 183367454, 996996034, 176533116, 740488628` for `k = 1, …, 8`, and no `disc(char_k)` with `k ≤ 30` is divisible by `M` (computed). So `char_k mod M` is squarefree for every `k ≤ 30`, and its period is the lcm of the orders of its roots.
 
@@ -220,3 +220,5 @@ At `M`: for `k = 2`, `R^* ≅ Z/(M − 1) × Z/(M^2 − 1)`; for `k = 6`, three 
                 a, b = [int(v) % M for v in sp.Poly(g, x, modulus=M).all_coeffs()]
                 print(f'k={k}: root {(-b * pow(a, -1, M)) % M}')
     ```
+
+[^per-m]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): for `k ≤ 7`, the factor degrees of `char_k mod M`, the bound `lcm(M^{d_i} − 1)` factored through the cyclotomic factors `Φ_e(M)`, and the order of `x` in `F_M[x]/(char_k)` by removing prime factors from the bound; each order is a multiple of `q = 500000003`.
