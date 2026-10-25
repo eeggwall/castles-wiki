@@ -174,7 +174,7 @@ The ring `R = F_p[x]/(char_k)` is the ring of [[castle-cryptography-ring](pages/
 R^*  ≅  ∏_i Z/(p^{d_i} − 1),
 ```
 
-with one cyclic factor per irreducible factor `g_i` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)]), and `per(char_k)` is the lcm of the orders of `x` in the fields `F_p[x]/(g_i)`. A factor `g` of multiplicity `m ≥ 2` contributes `F_{p^d}^* × (1 + (g)/(g^m))`, a unit group times a `p`-group, and the component of `x` in the `p`-group has order `p^{⌈log_p m⌉}` (section *The period from the factorization*).
+with one cyclic factor per irreducible factor `g_i`, and exactly as many invariant factors, since `p − 1` divides every `p^{d_i} − 1` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 2), and `per(char_k)` is the lcm of the orders of `x` in the fields `F_p[x]/(g_i)`. A factor `g` of multiplicity `m ≥ 2` contributes `F_{p^d}^* × (1 + (g)/(g^m))`, a unit group times a `p`-group, and the component of `x` in the `p`-group has order `p^{⌈log_p m⌉}` (section *The period from the factorization*).
 
 At `M`: for `k = 2`, `R^* ≅ Z/(M − 1) × Z/(M^2 − 1)`; for `k = 6`, three copies of `Z/(M − 1)` from the linear factors and two of `Z/(M^2 − 1)` from the quadratic factors.
 
