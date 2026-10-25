@@ -3,9 +3,9 @@ title: Castle cryptography, round two - break the fixes, size the keys
 category: Analyses
 summary: The second round of the build / red-team / blue-team series on the castle cryptosystem. BUILD - ElGamal and a Schnorr-style signature on the map x^a; on char_1 the subgroup of prime order (p − 1)/2 lies in the scalars (x^8 = 16, since (1 + i)^8 = 16), so the build uses char_3 with the prime q = 340715873 dividing p^2 + 1. RED TEAM - (Attack 3) Pohlig-Hellman with baby-step giant-step recovers the castle_dh private key 373309869 from p, Q and the public key; (Attack 4) an irreducible Q does not help, since p^d − 1 = ∏_{e | d} Φ_e(p) factors for every p and the largest prime factor at p = 10^9 + 7 is 500000003 for char_1 and char_3; (Attack 5) a polynomial filter of degree e on a d-stage castle register has linear complexity at most C(d + e − 1, e) in each degree, measured 10, 14, 20 at d = 4 and 21, 27, 56 at d = 6, and Berlekamp-Massey recovers it from 2L terms. BLUE TEAM - Φ_d(p) must carry a 256-bit prime (p of 128 bits at d = 4 or 6, the XTR and torus design), the linear complexity must be pushed to about 2^40 or beyond (a 64-stage register with a degree-16 filter reaches 2^54.6), and the index-calculus cost L_q[1/3, (64/9)^{1/3}] reaches 2^128 near q = p^d of 2537 bits.
 tags: [analysis, seminar, cryptography, cryptanalysis, red-team, blue-team, pohlig-hellman, baby-step-giant-step, berlekamp-massey, linear-complexity, elgamal, schnorr, signature, finite-field, cyclotomic, index-calculus, key-size, castle]
-sources: [oeis-mining-pe502, granger-vercauteren-2005-dlp-algebraic-tori]
+sources: [granger-vercauteren-2005-dlp-algebraic-tori]
 created: 2026-09-18
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle cryptography, round two
@@ -211,7 +211,6 @@ The two rounds give a procedure for judging a new cryptosystem:
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the families `P(k, ·)`, whose characteristic polynomials serve as the moduli and registers.
 - [[granger-vercauteren-2005-dlp-algebraic-tori](pages/granger-vercauteren-2005-dlp-algebraic-tori.md)] - the torus of order `Φ_n(p)` as the part of `F_{p^n}^×` that no proper subfield reaches (Fix 4), and index calculus on tori, which does not affect tori over a prime field.
 
 ## Related Concepts
@@ -230,6 +229,7 @@ The two rounds give a procedure for judging a new cryptosystem:
 - [[castle-compression](pages/castle-compression.md)] - linear complexity as a description length.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `A^e(w, 3)`, whose recurrence has order 6 because the root 2 of `char_2` is also the root of the term `2^w`.
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the unit group `R^*` as a product of cyclic groups, Pohlig-Hellman through `Z/n ≅ ∏ Z/q^e`, and the two `d = 3` shortfalls of Attack 5 from `α + ᾱ = 1` and `α·ᾱ = 2`.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the families `P(k, ·)`, whose characteristic polynomials serve as the moduli and registers.
 
 ## Footnotes
 

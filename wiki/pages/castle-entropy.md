@@ -3,9 +3,9 @@ title: Castle entropy
 category: Concepts
 summary: Two information measures for castles. The uniform entropy log₂ A^e(w, h) of one even-block castle is log₂ A(w, h) − 1 + log₂(1 + S/A), so the even-block condition costs one bit up to a correction that tends to 0 as w grows (for 2 ≤ h ≤ 16, computed); the estimate w·log₂ h − 1 carries a second correction from the height condition, 0.42 bits at (13, 10). The entropy rate of a family given by a transfer matrix is log₂ of its Perron root, in bits per column: log₂ h for all castles of height h, 0.694 for the Fibonacci castles, 1.272, 1.724 and 2.083 for the ridge castles of heights 3, 4, 5, 0.406 for the maximal castles.
 tags: [concept, castle, entropy, information-theory, counting, growth-constant, metallic-means, parity, pedagogy]
-sources: [project-euler-502-solution, oeis-mining-pe502]
+sources: [project-euler-502-solution]
 created: 2026-09-18
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle entropy
@@ -68,7 +68,6 @@ The two measures meet for the family of all castles of height `h`: by Equations 
 ## Appearances in Sources
 
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the counts `A(w, h)` and `F(w, h)`, the wiki's `A^e(w, h)`, and the formula through `P(h−1, w)` and `P(h−2, w)`.
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the characteristic polynomials `char_1` to `char_5` of the signed tower counts.
 
 ## Related Concepts
 
@@ -89,6 +88,7 @@ The two measures meet for the family of all castles of height `h`: by Equations 
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the periods of `A^e(w, h)` modulo a prime, set by the orders of the roots of `char_k` modulo `p`.
 - [[aocp-permutations](pages/aocp-permutations.md)] - Stirling's formula, which gives the uniform entropy `log₂ n! ≈ n·log₂ n − n·log₂ e` of a permutation of `n` points.
 - [[castle-notation](pages/castle-notation.md)] - the symbols `A`, `A^e`, `A^o`, `S` and `P`.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the characteristic polynomials `char_1` to `char_5` of the signed tower counts.
 
 ## Footnotes
 

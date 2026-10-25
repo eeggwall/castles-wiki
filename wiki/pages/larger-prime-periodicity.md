@@ -3,9 +3,9 @@ title: Larger-prime periodicity of char_k
 category: Analyses
 summary: For odd primes p up to 97 and k ≤ 6, the order per(char_k) of x in (F_p[x]/(char_k))^*, which is the period of P(k, ·) mod p in every tabulated case, read off the factorization of char_k mod p; a factor of multiplicity m multiplies the order by exactly p^⌈log_p m⌉ (proved). The odd prime factors of disc(char_k) for k ≤ 10 are the primes where char_k mod p has a repeated factor, each time one linear factor of multiplicity 2. The degrees of the factors follow the Galois group of char_k over Q (D_4 for char_3). At the Project Euler modulus M = 10^9 + 7, char_1 and char_3 are irreducible, char_2 = (x − 2)(x² − x + 2) with ord_M(2) = (M − 1)/2, char_6 has three roots mod M of order (M − 1)/2, and M divides no disc(char_k) for k ≤ 30.
 tags: [analysis, castle, modular-arithmetic, periodicity, large-primes, chebotarev, discriminant, project-euler-502]
-sources: [project-euler-502-castle-factoring, oeis-mining-pe502]
+sources: [project-euler-502-castle-factoring]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Larger-prime periodicity of char_k
@@ -181,7 +181,6 @@ At `M`: for `k = 2`, `R^* ≅ Z/(M − 1) × Z/(M^2 − 1)`; for `k = 6`, three 
 ## Appearances in Sources
 
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the update of `num_k` and `den_k`, whose reversed denominators are the `char_k`.
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the characteristic polynomials `char_1` to `char_5` of the rows `P(k, ·)`.
 
 ## Related Concepts
 
@@ -196,6 +195,7 @@ At `M`: for `k = 2`, `R^* ≅ Z/(M − 1) × Z/(M^2 − 1)`; for `k = 6`, three 
 - [[finite-fields](pages/finite-fields.md)] - the orders of elements of `F_{p^d}^*`.
 - [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] - the evaluation mod `10^9 + 7` by the recurrence.
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - the periods `72, 2520, 25200` of the castle counts mod `1729 = 7 · 13 · 19` for `h = 2, 3, 4`, the lcm of the periods mod 7, 13 and 19.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the characteristic polynomials `char_1` to `char_5` of the rows `P(k, ·)`.
 
 ## Footnotes
 

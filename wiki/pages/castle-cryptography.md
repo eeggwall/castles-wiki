@@ -3,9 +3,9 @@ title: Castle cryptography - a build / red-team / blue-team seminar series
 category: Analyses
 summary: A three-seminar series on a toy public-key system built from the signed tower count. The public parameters are a prime p and Q = char_k mod p, a private key is an exponent a, the public key is x^a mod Q, and Diffie-Hellman key exchange is exponentiation in F_p[x]/(Q), the step Kitamasa's method performs. Seminar 1 builds the system; Seminar 2 breaks it two ways (even-k char_k factor, so the ring splits by the CRT and the discrete log splits; Berlekamp-Massey recovers Q from 2 deg Q terms of any published stream); Seminar 3 closes both breaks (an irreducible Q mod p; a nonlinear filter, whose linear complexity is at most C(d+e-1, e)) and names the remaining ceiling, index calculus in F_{p^d}. Rounds two and three of the series break and rebuild the fixes.
 tags: [analysis, seminar, cryptography, public-key, finite-field, kitamasa, berlekamp-massey, discrete-log, diffie-hellman, cryptanalysis, red-team, blue-team, pedagogy, implementation, castle]
-sources: [oeis-mining-pe502]
+sources: [project-euler-502-representations]
 created: 2026-09-18
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle cryptography
@@ -93,10 +93,6 @@ With an irreducible `Q` and a filtered output, the discrete logarithm lives in `
 
 The key exchange `castle_dh` (the functions `mulmod` and `powmod`), round two's `castle_dlp` (Pohlig-Hellman with baby-step giant-step), `bm_modp` (Berlekamp-Massey over `F_p`) and `castle_schnorr` are on [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)], with their outputs: the two shared secrets agree, and Berlekamp-Massey returns `[1, −3, 4, −4]` from the terms of `P(2, ·)`.
 
-## Appearances in Sources
-
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the rows `P(k, ·)` and their characteristic polynomials `char_1` to `char_5`.
-
 ## Related Concepts
 
 - [[finite-fields](pages/finite-fields.md)] - the fields `F_{p^d}`, their cyclic unit groups, and the periods of the sequences mod `p`.
@@ -114,6 +110,7 @@ The key exchange `castle_dh` (the functions `mulmod` and `powmod`), round two's 
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` summed in `P(k, L)`.
 - [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)] - the programs of the series.
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], [[one-bit-seminar](pages/one-bit-seminar.md)], [[hardin-identity-seminar](pages/hardin-identity-seminar.md)], [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[sandcastle-seminar](pages/sandcastle-seminar.md)], [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)], [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], [[pell-castle-strip](pages/pell-castle-strip.md)], [[song-as-castle](pages/song-as-castle.md)] - the other seminar pages.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the rows `P(k, ·)` and their characteristic polynomials `char_1` to `char_5`.
 
 ## Footnotes
 

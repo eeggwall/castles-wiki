@@ -3,7 +3,7 @@ title: Sum of three cubes castles
 category: Analyses
 summary: Which castle counts are sums of three cubes. With signed cubes, under Heath-Brown's conjecture a count is a sum of three cubes exactly when it is not 4 or 5 modulo 9, and A^e(w, h) mod 9 is periodic in the width (periods 24, 24, 240, 3120, 2184, 2184, 2184, 10920, 21840, 21840, 11514360 for h = 2..12, all proved minimal) and in the height (period 2 * 3^(1 + ceil(log_3 w)) for 2 <= w <= 10 and w = 100, computed), since P(k, w) is a polynomial of degree at most w in k on each parity class. In each row h >= 4 about 2/9 of the residues are 4 or 5 (20.5% of the A^e(w, h) with w >= 4 and A <= 10^9), and the three Project Euler targets A^e(10^12, 100), A^e(10000, 10000), A^e(100, 10^12) are 6, 7, 6 mod 9. Closed forms settle three families - A^e(w, 2) = 2^(w-1) + eps 2^floor((w-1)/2) is a cube at w = 1 (mod 12), twice a cube at w = 5 and four times a cube, hence excluded, at w = 9 (mod 12); the width-3 column is triangular numbers interleaved with 5 C(h, 2) + 1, excluded iff h = 4, 6 (mod 18); A(3m, h) is a difference of two cubes. With positive cubes, 56 of the 552 even-block counts with w >= 4 below 10^8 are sums of three positive cubes against 55.7 expected. Even perfect numbers are A^o(3, 2^p), and A^e(2p, 2) for p = 3 (mod 4).
 tags: [analysis, castle, sum-of-cubes, mod-9, periodicity, kitamasa, closed-form, height-2, perfect-numbers, taxicab, booker-sutherland, worked-example, computation]
-sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502]
+sources: [project-euler-502-solution, project-euler-502]
 created: 2026-09-20
 updated: 2026-10-25
 ---
@@ -221,7 +221,6 @@ Over all cells with `A ≤ 10^9` and `w ≥ 3`:[^exec]
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the tables of castle counts, with `1729 = A^e(6, 4)`, `906 = A^e(5, 5)` and the powers of two in the row of height 2.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - `T(k, L) = (k+1)^L`, `P(k, 3) = (−1)^k (k+1)^2`, and the evaluation of `P(h−1, w)`, `P(h−2, w)` at the targets.
 - [[project-euler-502](pages/project-euler-502.md)] - the three targets.
 
@@ -239,6 +238,7 @@ Over all cells with `A ≤ 10^9` and `w ≥ 3`:[^exec]
 - [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] and [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - `A^e(w, 2) = A038505(w + 1)`.
 - [[castle-snippets](pages/castle-snippets.md)] - `all_castles` and the block count for brute-force checks.
 - [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] and [[oeis-index](pages/oeis-index.md)] - the width-3 columns, and the A-numbers cited here.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the tables of castle counts, with `1729 = A^e(6, 4)`, `906 = A^e(5, 5)` and the powers of two in the row of height 2.
 
 ## Footnotes
 

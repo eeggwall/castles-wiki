@@ -3,9 +3,9 @@ title: Plastic number
 category: Concepts
 summary: ψ = 1.3247…, the real root of x³ = x + 1 and the smallest Pisot number, with the Padovan numbers (A000931) and the Perrin numbers (A001608) as its Fibonacci and Lucas numbers. Its square ψ² has minimal polynomial μ³ − 2μ² + μ − 1 (the recurrence of A005251) and a Jacobi-Perron expansion of period 1. On the castle wiki, 2ψ² is the largest root of char_6, the growth constant of the signed tower count P(6, ·), and ψ itself is the Perron root of six 3 × 3 strip rules, whose strips are plastic by width; the maximal and (1, 2)-RLL castles are plastic by width and the ridge castles of height 2 by area, all counted by shifted Padovan numbers.
 tags: [concept, plastic-number, pisot, padovan, perrin, cubic, jacobi-perron, eigenvalue, castle, oeis, strip-perron-root]
-sources: [verger-gaugry-2024-salem-minoration, oeis-mining-pe502, project-euler-502-solution]
+sources: [verger-gaugry-2024-salem-minoration, project-euler-502-solution]
 created: 2026-09-16
-updated: 2026-10-22
+updated: 2026-10-25
 ---
 
 # Plastic number
@@ -111,7 +111,6 @@ the rule in which a column of height 1 is followed by one of height 3, a column 
 ## Appearances in Sources
 
 - [[verger-gaugry-2024-salem-minoration](pages/verger-gaugry-2024-salem-minoration.md)] - Siegel's theorem that `ψ` is the smallest Pisot number, and `ψ = θ_5^{−1}` on the trinomial scale of the Salem bound.
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the family `P(k, ·)`, whose row `k = 6` grows like `(2ψ²)^L`.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the update of `num_k` and `den_k` that gives `char_k`.
 
 ## Related Concepts
@@ -127,6 +126,7 @@ the rule in which a column of height 1 is followed by one of height 3, a column 
 - [[padovan-families](pages/padovan-families.md)] - the castle families counted by Padovan numbers, their common core of blocks of size 2 and 3, and the bijections between them.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - the closed forms of the castle counts, whose constants are algebraic numbers such as `ψ`.
 - [[fractional-recurrences](pages/fractional-recurrences.md)] - the recurrence `∇^α a_n = a_{n−1}`, whose characteristic equation `(1 − r)^α = r` gives the growth constant `ψ²` at `α = 2/3` and `ψ³ = ψ + 1` at `α = 3/2`.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the family `P(k, ·)`, whose row `k = 6` grows like `(2ψ²)^L`.
 
 ## Footnotes
 

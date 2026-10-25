@@ -3,9 +3,9 @@ title: Castle cryptography, round three - the castle torus
 category: Analyses
 summary: The third round of the build / red-team / blue-team series: round two's prescription, a system on char_5 (degree 6) with p chosen so that q = p^2 - p + 1 is prime, attacked with the published attacks on fields of size p^6. BUILD, at a toy size (p = 171271, q of 35 bits) and at a 128-bit size (512-bit p, 1024-bit q, field of about 3072 bits). char_5 is irreducible mod 94 of 600 primes near 10^6. The generator is the shift x raised to (p^6 - 1)/q, an element of the torus of order q used by XTR and CEILIDH. A public key is sent as its trace to F_{p^2}, 2 numbers mod p instead of 6, and the receiver finishes the exchange by a Kitamasa jump on the recurrence t_{n+3} = c t_{n+2} - c^p t_{n+1} + t_n of the traces. RED TEAM - the norms to both subfields of a torus element are 1, Pohlig-Hellman has nothing to split since q is prime, Pollard rho recovers the toy key in 199,332 steps against sqrt q = 171,270 and faces about 2^512 at full size, and index calculus sets the security level. The extended tower number field sieve (2016) applies because 6 is composite and lowers the cost constant from 1.923, round two's, to 1.747 (1.71 with several number fields), so on the heuristic formula a 128-bit system needs p of 531 to 559 bits, not 423, and a 512-bit p gives 2^126; a p of special form, such as a castle count, lowers the constant to 1.526 and the cost at 512 bits to 2^110. BLUE TEAM - the system is an instance of XTR, which the literature rates no longer competitive with elliptic curves.
 tags: [analysis, seminar, cryptography, cryptanalysis, red-team, blue-team, torus, xtr, ceilidh, trace, compression, kitamasa, pollard-rho, pohlig-hellman, index-calculus, number-field-sieve, extnfs, key-size, finite-field, cyclotomic, castle]
-sources: [oeis-mining-pe502, granger-vercauteren-2005-dlp-algebraic-tori]
+sources: [granger-vercauteren-2005-dlp-algebraic-tori]
 created: 2026-09-24
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle cryptography, round three - the castle torus
@@ -114,10 +114,10 @@ Round three sets every parameter the earlier rounds identified: a prime group or
 - [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - the factorizations and periods of `char_k` mod larger primes, including `10⁹ + 7`.
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - security set by the largest prime dividing the group order, here the prime `q` itself.
 - [[sandpile-group](pages/sandpile-group.md)] - another finite abelian group attached to a castle, read off a Smith normal form.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k,·)` castle families whose characteristic polynomials, `char_5` among them, serve as the field moduli.
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k,·)` castle families whose characteristic polynomials, `char_5` among them, serve as the field moduli.
 - [[granger-vercauteren-2005-dlp-algebraic-tori](pages/granger-vercauteren-2005-dlp-algebraic-tori.md)] - the torus definition, the subfield-norm reduction, and the index calculus on tori that leaves `T_6` over a prime field unaffected.
 
 ## Footnotes

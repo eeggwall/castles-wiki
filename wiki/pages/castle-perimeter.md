@@ -3,7 +3,7 @@ title: Castle perimeter - blocks are the vertical half-perimeter
 category: Analyses
 summary: A castle of width w has semi-perimeter s = w + blocks, so the block count is half the vertical perimeter and the even-block condition of Project Euler 502 says that s and w have the same parity; s ≥ w + h with equality exactly for convex castles. Castles by semi-perimeter are the bargraphs A082582, with the algebraic generating function B(t) = (1 − 2t − t² − √(1 − 4t + 2t² + t⁴))/(2t) and growth τ² = 3.38297 (τ the tribonacci constant); by semi-perimeter and width they are A271942. The signed count has generating function (1 + t² − √((1 + t)(1 − t + 3t² + t³)))/(2t) and grows only like τ. Convex castles by semi-perimeter are F_{2s−3} = A001519(s − 1), and their signed count is periodic with period 6.
 tags: [analysis, castle, perimeter, blocks, parity, bargraph, generating-function, algebraic, tribonacci, fibonacci, delest-viennot, oeis]
-sources: [algebraic-languages-and-polyominoes-enumeration, project-euler-502-brute-force, tower-narayana-polynomial, baril-florez-ramirez-2026-generalized-narayana-arrays]
+sources: [algebraic-languages-and-polyominoes-enumeration, project-euler-502-brute-force, baril-florez-ramirez-2026-generalized-narayana-arrays]
 created: 2026-09-22
 updated: 2026-10-25
 ---

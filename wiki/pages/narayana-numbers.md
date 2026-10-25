@@ -3,7 +3,7 @@ title: Narayana numbers
 category: Concepts
 summary: The Narayana numbers N(n, k) = (1/n) C(n, k) C(n, k−1) (OEIS A001263) count the Dyck paths of semilength n with k peaks and the parallelogram polyominoes of semi-perimeter n + 1 and width k, and sum over k to the Catalan number C_n. On the castle side they are the numerator of the generating function of towers counted by blocks, Σ_b T̂(L, b) x^b = Σ_k N(L, k) x^{k−1} / (1 − x)^L (proved from the tower grammar), and, as Dyck paths by peaks, the terms of the second sum T̂(L, b) = Σ_i N(b, i) C(L + 1 + 2b − 2i, 2b), indexed by blocks.
 tags: [concept, narayana, catalan, oeis, tower, generating-functions]
-sources: [oeis-mining-pe502, tower-narayana-polynomial, algebraic-languages-and-polyominoes-enumeration, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths]
+sources: [algebraic-languages-and-polyominoes-enumeration, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths]
 created: 2026-09-13
 updated: 2026-10-25
 ---
@@ -47,8 +47,6 @@ The convex castles are counted by a binomial coefficient, not by Narayana number
 
 ## Appearances in Sources
 
-- [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] - the generating function of towers counted by blocks, and its rows in the OEIS.
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the mining pass in which the identity was found.
 - [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - Remark 4.4: parallelogram polyominoes by width are counted by `N(n, k)`, and β carries this to Dyck paths by peaks.
 - [[baril-florez-ramirez-2026-generalized-narayana-arrays](pages/baril-florez-ramirez-2026-generalized-narayana-arrays.md)] - `N(n, k)` refined by the heights of the `k` peaks (type-1 and type-2 Narayana arrays).
 - [[cho-huh-nam-sohn-2022-bounded-free-motzkin-paths](pages/cho-huh-nam-sohn-2022-bounded-free-motzkin-paths.md)] - Proposition 3.4: the `t`-cores with `m` corners, which are the towers on a base of length `t − 1` with `m` blocks, counted by `Σ_i N(m, i) C(t + 2m − 2i, 2m)`.
@@ -60,6 +58,8 @@ The convex castles are counted by a binomial coefficient, not by Narayana number
 - [[parallelogram-polyomino-dyck-bijection](pages/parallelogram-polyomino-dyck-bijection.md)] - Delest-Viennot's β, under which the width of a parallelogram polyomino is the number of peaks of a Dyck path.
 - [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the binomial count of the convex castles.
 - [[castle-perimeter](pages/castle-perimeter.md)] - the castles counted by semi-perimeter and width, A271942, which are the numbers `T̂(L, b)` re-indexed.
+- [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)] - the generating function of towers counted by blocks, and its rows in the OEIS.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castle counts matched to OEIS entries, the tower block-count rows among them.
 
 ## Footnotes
 

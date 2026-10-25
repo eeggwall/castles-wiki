@@ -3,7 +3,7 @@ title: The mod-9 coset-lift mechanism
 category: Concepts
 summary: Why the column w = 4 of A^e mod 9 is exactly uniform, why some columns can be and no row with h ≤ 40 can. P(·, L) satisfies a linear recurrence whose characteristic polynomial divides (x − 1)^{L+1}(x + 1)^L (proved), so for 2 ≤ w ≤ 293 the column A^e(w, ·) mod 9 has minimal period per_w = 2·3^{⌈log_3 w⌉+1}, divisible by 9; the row periods per_h have v_3 = 1 for h ≤ 40 (computed), so no such row is uniform. Over F_3, (x − 1)^2 divides char_k exactly when k ≡ 4 (mod 12), (x + 1)^2 exactly when k ≡ 6 (mod 12), and no cube of a linear factor ever does (proved by a state cycle of length 24); no factor of degree ≥ 2 repeats for k ≤ 200 (computed). An elementary proof shows A^e(4, h) mod 9 hits each residue 6 times per period 54, so the w = 4 column has exclusion rate exactly 2/9. The coset-lift criterion, computed for 2 ≤ w ≤ 293: a column is uniform exactly when the shift-by-per_w/3 differences mod 9 take only the values 3 and 6.
 tags: [concept, castle, sum-of-cubes, mod-9, periodicity, coset-lift, elementary-proof, three-adic, characteristic-polynomial]
-sources: [oeis-mining-pe502, project-euler-502-solution]
+sources: [project-euler-502-solution]
 created: 2026-09-22
 updated: 2026-10-25
 ---
@@ -141,7 +141,6 @@ The differences always lie in `3Z/9`. At the 14 uniform columns the set is `{3, 
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the tables of `A^e(w, h)` whose residues mod 9 are studied here.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the recurrences of `P(k, L)` in the base length and in the tower height.
 
 ## Related Concepts
@@ -154,6 +153,7 @@ The differences always lie in `3Z/9`. At the 14 uniform columns the set is `{3, 
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the closed forms `P(k, L) = (−1)^k A_L(k) + B_L(k)` and the characteristic polynomial `(x + 1)^L (x − 1)^{L−2}`, proved for every `L ≥ 4`.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] - the formula for `A^e(w, h)` used in the `w = 4` proof.
 - [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the fibers of `char_k` over 3 and their nilradicals.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the tables of `A^e(w, h)` whose residues mod 9 are studied here.
 
 ## Footnotes
 

@@ -3,9 +3,9 @@ title: Castle classification - spectral types
 category: Concepts
 summary: Predicates on a single castle read from a spectrum. From the castle graph (cells as vertices, edges between cells that share a side) - tree castles, whose graph is a tree (F_{w+2} − 1 of height 2, exactly the castles with a trivial sandpile group); castles golden by spectrum, spectral radius φ, which are exactly the six castles whose graph is the path P_4, by Smith's theorem; castles silver by spectrum, spectral radius 1 + √2, 36 up to mirror image in a scan of 4,868,525 castles; spectral radius φ²; no castle, and no graph, has spectral radius ψ or another cubic constant with complex conjugates; isospectral pairs (smallest at 10 cells for the adjacency spectrum, 11 for the Laplacian); and Ramanujan castles in Greenberg's universal-cover form (every castle with at most 14 cells; the first failures have 15). From the skyline DFT, whose supports are bin 0 plus unions of divisor classes - sparse-spectrum castles, with support bin 0 and at most one class, crenellated castles at even width among them.
 tags: [concept, castle, classification, taxonomy, spectral, adjacency-matrix, laplacian, ramanujan, smith-theorem, dynkin, tree-castle, isospectral, single-castle-predicate, dft, sparse-spectrum]
-sources: [oeis-mining-pe502]
+sources: [project-euler-502]
 created: 2026-09-19
-updated: 2026-10-22
+updated: 2026-10-25
 ---
 
 # Castle classification - spectral types

@@ -3,9 +3,9 @@ title: Castle cryptography, seminar 1 - the ring
 category: Analyses
 summary: Seminar 1 of the castle cryptography series, the algebra the later rounds use. (1) char_2 = x^3 − 3x^2 + 4x − 4 is the recurrence P(2, L) = 3P(2, L−1) − 4P(2, L−2) + 4P(2, L−3). (2) Mod p = 101, char_2 = (x − 2)(x^2 − x + 2) and P(2, ·) is periodic with period 3400, the order of x: lcm of the orders 100 of 2 in F_101^* and 3400 of a root of x^2 − x + 2 in F_{101^2}^*. (3) In R = F_p[x]/(Q), multiplication by x is one step of the recurrence. (4) The Chinese Remainder Theorem splits R along the factors of Q, with explicit projections and idempotents. (5) The order of x at p = 10^9 + 7 for k = 1, 2, 3, factored; the prime 500000003 = (p − 1)/2 divides all three. (6) x^a mod Q by binary exponentiation costs bitlength(a) + popcount(a) ring multiplications in the loop as written (53 at a = 10^12), the Kitamasa step of the castle count. (7) Diffie-Hellman on R with public parameters (p, Q), private exponent a and public key x^a mod Q.
 tags: [analysis, seminar, cryptography, ring, finite-field, quotient-ring, linear-recurrence, characteristic-polynomial, kitamasa, diffie-hellman, chinese-remainder-theorem, mod-p-observatory, baseline, pedagogy, implementation, castle]
-sources: [oeis-mining-pe502, calugareanu-hamburg-exercises-basic-ring-theory]
+sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-18
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle cryptography, seminar 1 - the ring
@@ -183,7 +183,6 @@ Three facts from this page are the starting points of the attacks:
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the families `P(k, ·)` and their characteristic polynomials, used as the moduli.
 - [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - the Chinese Remainder Theorem for pairwise comaximal ideals.
 
 ## Related Concepts
@@ -202,6 +201,7 @@ Three facts from this page are the starting points of the attacks:
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the unit group `R^*` as a product of cyclic groups, `R^* ≅ ∏ Z/(p^{d_i} − 1)` when `Q` is squarefree mod `p`, and the period of `P(k, ·)` as the order of `x`.
 - [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the theorem behind section 4.
 - [[idempotent-decomposition](pages/idempotent-decomposition.md)] - the CRT split by explicit idempotents of `R`, `2^r` of them for `r` distinct factors of `Q`.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the families `P(k, ·)` and their characteristic polynomials, used as the moduli.
 
 ## Footnotes
 

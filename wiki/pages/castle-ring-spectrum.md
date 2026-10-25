@@ -3,9 +3,9 @@ title: The castle ring's spectrum - Spec Z[x]/(char_k) over Spec Z
 category: Analyses
 summary: The ring A_k = Z[x]/(char_k) as a family of rings over the primes. Its fiber over p is F_p[x]/(char_k mod p), whose points are the distinct irreducible factors of char_k mod p, and its fiber over Q has one point for odd k and two for even k, the parity sectors, which are the irreducible components. For every even k ≤ 30 the components meet at exactly one point, (2, x). At a prime dividing disc(char_k) the fiber has nilpotents, and the period of P(k, ·) mod p is the period in the reduced fiber times p^⌈log_p m⌉ at all seven such primes p < 200 with k ≤ 8. A fiber is semisimple exactly when char_k mod p is squarefree; A_k has no idempotents other than 0 and 1, the sector idempotent has denominator 2^(v_2(k!)+1) for every even k ≤ 40, and x is inverted only with 1/2^k. Frobenius on a fiber has rank Σ d_i ⌈m_i/p⌉ and a fixed space of dimension equal to the number of points. For k = 1, A_1 = Z[i]; the k = 4 minor sector gives Z[√−3], which rescaling by 2 turns into Z[ω].
 tags: [analysis, castle, ring, spectrum, prime-ideal, nilradical, local-ring, finite-field, parity-sector, resultant, period, gaussian-integers, eisenstein-integers, sympy, verification]
-sources: [calugareanu-hamburg-exercises-basic-ring-theory, oeis-mining-pe502]
+sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-26
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # The castle ring's spectrum - `Spec Z[x]/(char_k)` over `Spec Z`
@@ -134,7 +134,6 @@ Frobenius maps each root `λ` of `g_i` to the root `λ^p` of `g_i`, of the same 
 ## Appearances in Sources
 
 - [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - Chapter 13: prime ideals of `Z[X]` (13.16), `Z[i]` and `Z[ω]` (13.1, 13.6), the nilradical (13.11), `Spec` and the Zariski topology (13.18-13.21), local rings `R/M^n` (13.23, 13.26); Chapter 12: `Z_n` semisimple iff squarefree (12.6), semisimple iff zero radical for Artinian rings (12.12), ideals as `Re` (12.9), idempotents that do not lift (12.19); Chapter 5: Frobenius (5.14), Artin-Schreier polynomials (5.16); Chapter 4: what surjective maps preserve (4.10), telling rings apart by the equations they solve (4.11); Chapter 17: disconnected spectrum and idempotents (17.19).
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the family `char_k`.
 
 ## Related Concepts
 
@@ -148,6 +147,7 @@ Frobenius maps each root `λ` of `g_i` to the root `λ^p` of `g_i`, of the same 
 - [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - the snippets of the section *Snippets*.
 - [[metallic-means](pages/metallic-means.md)] - the same question of which ring, not only which field, for the metallic means: `δ_4 = φ³` generates `Z[√5]`, of index 2 in `Z[φ]`.
 - [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - a seminar on `char_2` across `p = 5, 101, 11, 7, 2`, then over `Q` and `Z`.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the family `char_k`.
 
 ## Footnotes
 

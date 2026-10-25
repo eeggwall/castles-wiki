@@ -3,9 +3,9 @@ title: The A005251 bijection - compositions ↔ no-010 strings
 category: Analyses
 summary: The tree castles of area n, of any height, are the compositions of n with no two neighboring parts at least 2, A005251(n + 2) of them. The standard map from compositions of n to binary strings of length n − 1, a part c becoming 0^{c−1} and the parts joined by single 1s, sends them onto the strings with no factor 010, which number A005251(n + 2) as well; proved, and checked for n ≤ 14. The same sequence counts the compositions avoiding the part 2, the tower-spacing skylines of height at most 2 (spacing_2(w, 2) = A005251(w + 3)), the binary strings with no isolated 1 (A005251(N + 2) at length N), and the even-sector signed towers P_even(6, L)/2^L = A005251(L + 3).
 tags: [analysis, castle, bijection, a005251, plastic-number, composition, binary-string, hardin, tree-castle, tower-spacing, verification]
-sources: [oeis-mining-pe502]
+sources: [oeis-encyclopedia]
 created: 2026-09-18
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # The A005251 bijection
@@ -61,10 +61,6 @@ The strings without `101` of length `w` are the complements of the strings witho
 
 The snippets `encode`, `decode` and the check that the image is the set of strings without `010` are on [[castle-snippets-strips](pages/castle-snippets-strips.md)].
 
-## Appearances in Sources
-
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the signed tower counts `P(k, ·)`; their even sector at `k = 6` is `2^L A005251(L + 3)` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]).
-
 ## Related Concepts
 
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree castles and tree skylines counted by area, with the row of unbounded height `A005251(A + 2)`.
@@ -76,6 +72,7 @@ The snippets `encode`, `decode` and the check that the image is the set of strin
 - [[binary-string-bijection](pages/binary-string-bijection.md)] - the blocks in the row above a block of length `L` as binary strings of length `L`, a different encoding.
 - [[unique-tournament](pages/unique-tournament.md)] - the tree skylines of height at most 4, counted by A000570 through compositions into `{1, 3, 4, 5}`.
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - Stop 7 lists these readings of A005251.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the signed tower counts `P(k, ·)`; their even sector at `k = 6` is `2^L A005251(L + 3)` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]).
 
 ## Footnotes
 
