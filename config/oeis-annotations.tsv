@@ -238,8 +238,6 @@ A292357	supporting	Array read by antidiagonals: T(m,n) is the number of fixed po
 A308435	supporting	Peak- and valleyless Motzkin meanders.	cornerless Motzkin meanders by length: tower-word prefixes, a castle interrupted mid-build (Prodinger 2025)
 A319591	supporting	Number of nonnegative integer matrices with n columns and any number of nonzero distinct rows with every column summing to 3 up to permutation of rows.	Bender's c*((0,0,n)): every element three times, no repeated blocks
 A322487	supporting	Number of (3*n) X n matrices with nonnegative integer entries and each column sum being 3 up to permutation of rows.	Bender's v*((0,0,n)): all partitions of a multiset with every element three times
-A325668	supporting	First term of n-th difference sequence of (floor(k*r)), r = sqrt(5), k >= 0.	false positive rejected by the first OEIS mining pass (a "sqrt(5) difference" sequence agreeing on a few terms of a castle distribution)
-A325842	supporting	First term of n-th difference sequence of (round(k*sqrt(5))), k >= 0.	false positive rejected by the first OEIS mining pass (a "sqrt(5) difference" sequence agreeing on a few terms of a castle distribution)
 A329398	count	Number of compositions of n with uniform Lyndon factorization and uniform co-Lyndon factorization.	monotone castles by area, 2p(n) - d(n); the entry proves the monotone reading
 A332578	count	Number of compositions of n whose negation is unimodal.	valley castles by area
 A332669	count	Number of compositions of n whose negation is not unimodal.	not-unimodal compositions
