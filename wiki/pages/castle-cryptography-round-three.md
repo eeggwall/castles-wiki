@@ -1,7 +1,7 @@
 ---
 title: Castle cryptography, round three - the castle torus
 category: Analyses
-summary: The third round of the build / red-team / blue-team series: round two's prescription, a system on char_5 (degree 6) with p chosen so that q = p^2 - p + 1 is prime, attacked with the published attacks on fields of size p^6. BUILD, at a toy size (p = 171271, q of 35 bits) and at a 128-bit size (512-bit p, 1024-bit q, field of about 3072 bits). char_5, whose Galois group has order 72 and keeps the roots of its two cubic factors over Q(i) in two blocks, is irreducible mod a density 1/6 of primes by Chebotarev, only at p ≡ 3 (mod 4) with (−106/p) = −1, and for 2/3 of the primes that pass those two filters; the full-size p is the least prime above 2^511.5 that passes them with q prime. The generator is the shift x raised to (p^6 - 1)/q, an element of the torus of order q used by XTR and CEILIDH. A public key is sent as its trace to F_{p^2}, 2 numbers mod p instead of 6, and the receiver finishes the exchange by a Kitamasa jump on the recurrence t_{n+3} = c t_{n+2} - c^p t_{n+1} + t_n of the traces; the trace of c to F_p is the term s_{ea} of the power sums of char_5, a castle recurrence. RED TEAM - the norms to both subfields of a torus element are 1, Pohlig-Hellman has nothing to split since q is prime, Pollard rho recovers the toy key in 199,332 steps against sqrt q = 171,270 and faces about 2^512 at full size, and index calculus sets the security level. The extended tower number field sieve (2016) applies because 6 is composite and lowers the cost constant from 1.923, round two's, to 1.747 (1.71 with several number fields), so on the heuristic formula a 128-bit system needs p of 531 to 559 bits, not 423, and a 512-bit p gives 2^126; a p of special form, such as a castle count, lowers the constant to 1.526 and the cost at 512 bits to 2^110. BLUE TEAM - the system is an instance of XTR, which the literature rates no longer competitive with elliptic curves.
+summary: The third round of the build / red-team / blue-team series: round two's prescription, a system on char_5 (degree 6) with p chosen so that q = p^2 - p + 1 is prime, attacked with the published attacks on fields of size p^6. BUILD, at a toy size (p = 171271, q of 35 bits) and at a 128-bit size (512-bit p, 1024-bit q, field of about 3072 bits). char_5, whose Galois group has order 72 and keeps the roots of its two cubic factors over Q(i) in two blocks, is irreducible mod a density 1/6 of primes by Chebotarev, only at p ≡ 3 (mod 4) with (−106/p) = −1, and for 2/3 of the primes that pass those two filters; the full-size p is the least prime above 2^511.5 that passes them with q prime. The generator is the shift x raised to (p^6 - 1)/q, an element of the torus of order q used by XTR and CEILIDH. A public key is sent as its trace to F_{p^2}, 2 numbers mod p instead of 6, and the receiver finishes the exchange by a Kitamasa jump on the recurrence t_{n+3} = c t_{n+2} - c^p t_{n+1} + t_n of the traces; the trace of c to F_p is the term s_{ea} of the power sums of char_5, a castle recurrence. RED TEAM, in the order of round two's four questions - the norms to both subfields of a torus element are 1, Pohlig-Hellman has nothing to split since q is prime, Pollard rho recovers the toy key in 199,332 steps against sqrt q = 171,270 and faces about 2^512 at full size, no stream of output is published, and index calculus sets the security level. The extended tower number field sieve (2016) applies because 6 is composite and lowers the cost constant from 1.923, round two's, to 1.747 (1.71 with several number fields), so on the heuristic formula a 128-bit system needs p of 531 to 559 bits, not 423, and a 512-bit p gives 2^126; a p of special form, such as a castle count, lowers the constant to 1.526 and the cost at 512 bits to 2^110. BLUE TEAM - the system is an instance of XTR, which the literature rates no longer competitive with elliptic curves.
 tags: [analysis, seminar, cryptography, cryptanalysis, red-team, blue-team, torus, xtr, ceilidh, trace, compression, kitamasa, pollard-rho, pohlig-hellman, index-calculus, number-field-sieve, extnfs, key-size, finite-field, cyclotomic, castle]
 sources: [oeis-mining-pe502, granger-vercauteren-2005-dlp-algebraic-tori]
 created: 2026-09-24
@@ -90,15 +90,31 @@ Since `g^a = x^{ea}` with `e = (p^6 - 1)/q`, the trace of `c` from `F_{p^2}` to 
 
 ## Red team, round three
 
-### The subfield reduction finds nothing
+Round two ended with four questions for judging a cryptosystem ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], *The method*). This red team answers them in order.
 
-Round two's subfield attack carried the key into a smaller field inside the large one, where the discrete logarithm was easy. Here the smaller fields are `F_{p^2}` and `F_{p^3}`, and pushing down means raising to `p^4 + p^2 + 1` or to `p^3 + 1`. Both of those numbers are multiples of `p^2 - p + 1`, so every torus element lands on 1: checked at both sizes. This is the defining property of the torus. Norms to the subfields determine a discrete log only modulo the subfield orders, and what remains lives in the torus.[^gv-reduction] The norm to `F_p` of Seminar 1, which returns the whole private key at `k = 3` in round one's field ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 9), is the norm to `F_{p^2}` followed by the norm from `F_{p^2}` to `F_p`, so it is 1 on the torus as well.
+### The hard problem
 
-### Generic attacks
+The discrete logarithm in the subgroup `⟨g⟩` of `F_{p^6}^*` with the map `a ↦ g^a`. At both sizes `g ≠ 1` and `g^q = 1`, so `|⟨g⟩| = q = p^2 - p + 1`, a prime.
 
-`q` is prime, so Pohlig-Hellman, the step that recovered Alice's key in round two, has nothing to split. Pollard rho, with the walk partitioned into three classes by the first two coefficients of the element and Floyd's cycle detection, recovers the toy private key `a = 4696630792` after 199,332 steps of the slower walk, against `sqrt q = 171,270`.[^exec] At full size the same attack takes about `sqrt q ≈ 2^512` steps.
+### Where the structure splits
 
-### Index calculus
+Three splits broke the earlier rounds, and none is available here.
+
+- **The ring.** `char_5` is irreducible mod `p`, so `F_p[x]/(char_5)` is the field `F_{p^6}`, with no CRT split.
+- **The group order.** `q` is prime, so Pohlig-Hellman, the step that recovered Alice's key in round two, has nothing to split.
+- **A subfield.** Round two's subfield attack carried the key into a smaller field inside the large one, where the discrete logarithm was easy. Here the smaller fields are `F_{p^2}` and `F_{p^3}`, and pushing down means raising to `p^4 + p^2 + 1` or to `p^3 + 1`. Both of those numbers are multiples of `p^2 - p + 1`, so every torus element lands on 1: checked at both sizes. This is the defining property of the torus. Norms to the subfields determine a discrete log only modulo the subfield orders, and what remains lives in the torus.[^gv-reduction] The norm to `F_p` of Seminar 1, which returns the whole private key at `k = 3` in round one's field ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 9), is the norm to `F_{p^2}` followed by the norm from `F_{p^2}` to `F_p`, so it is 1 on the torus as well.
+
+### What is published, and whether it is linear
+
+Round one's Attack 2 and round two's Attack 5 needed a published stream: consecutive terms of a linear recurrence, or a low-degree function of them. Here the public parameters are `p` and `char_5`, from which `g` is computed, and each party publishes one trace, `c = Tr(g^a)` in `F_{p^2}`. The traces of the powers of one element satisfy the order-3 recurrence of the section *Compression*, but its coefficients are `c` and `c^p`, so a run of them says nothing beyond `c`. In castle terms `c` carries one term `s_{ea}` of the power-sum sequence of `char_5`, where Berlekamp-Massey would need 12 consecutive terms. There is no stream to attack.
+
+### The size of each attack
+
+#### Generic attacks
+
+Pollard rho, with the walk partitioned into three classes by the first two coefficients of the element and Floyd's cycle detection, recovers the toy private key `a = 4696630792` after 199,332 steps of the slower walk, against `sqrt q = 171,270`.[^exec] At full size the same attack takes about `sqrt q ≈ 2^512` steps.
+
+#### Index calculus
 
 Index calculus works on the field `F_{p^6}` directly, and its best version for fields like this one improved in 2016. The **extended tower number field sieve** of Kim and Barbulescu lowers the cost for fields `F_{p^n}` of medium-size `p` with composite `n`, "from `L_Q(1/3, (96/9)^{1/3})` to `L_Q(1/3, (48/9)^{1/3})`", or to 1.71 with several number fields, and "can be used when n=6 and n=12".[^kb] Kim and Jeong extend the same constants to every composite `n`, and show that when "p is of special form" the constant falls to `(32/9)^{1/3}`.[^kj]
 
@@ -118,7 +134,7 @@ Three readings:
 - **`p` must not be a castle number.** A `p` of special form, such as a castle count or a value of a castle polynomial, admits the special-form sieve, which lowers the cost at a 512-bit `p` from `2^126` to `2^110`. `p` must be random.
 - **The small coefficients of `char_5` do not help the attacker.** Any two irreducible polynomials of degree 6 over `F_p` define isomorphic fields, and discrete logarithms carry across the isomorphism, so the sieve may choose its own polynomials; the special-form speedup depends on the form of `p`, not on the modulus.
 
-### Attacks that do not apply
+#### Attacks that do not apply
 
 Granger and Vercauteren's index calculus works directly in the tori `T_2(F_{q^m})` and `T_6(F_{q^m})` ([[granger-vercauteren-2005-dlp-algebraic-tori](pages/granger-vercauteren-2005-dlp-algebraic-tori.md)]). It matters for tori over fields that are themselves extensions: `T_30(F_p)` embeds in `T_6(F_{p^5})`, and they call for the security of fields `F_{q^30}` to be "completely reassessed". Over prime fields they state that LUC, XTR and CEILIDH are not affected.[^gv] The castle torus is `T_6(F_p)`, their case `m = 1`, where their `T_6` algorithm is slower than Pollard rho in every row of their running-time table (fields up to 1000 bits).[^gv-table] Stam's later survey agrees: "for T6(q) having non-prime q seems to offer no discernible benefit over prime T6".[^stam-gv] So this attack does not apply.
 
