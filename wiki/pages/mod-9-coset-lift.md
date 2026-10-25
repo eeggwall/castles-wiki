@@ -5,7 +5,7 @@ summary: Why the column w = 4 of A^e mod 9 is exactly uniform, why some columns 
 tags: [concept, castle, sum-of-cubes, mod-9, periodicity, coset-lift, elementary-proof, three-adic, characteristic-polynomial]
 sources: [oeis-mining-pe502, project-euler-502-solution]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # The mod-9 coset-lift mechanism
@@ -30,7 +30,7 @@ A **coset lift** is the step used in results 2 and 3: a value mod 9 is a residue
 
 Summing over the finitely many patterns, `Σ_k P(k, L) t^k` is a proper rational function whose denominator divides `(1 − t)^{L+1}(1 + t)^L`. ∎
 
-In particular `P(k, L)` is a polynomial in `k` of degree at most `L` on each class of `k` modulo 2, the form in which [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)] proves it. The computed characteristic polynomial, `(x + 1)^L (x − 1)^{L−2}` for `4 ≤ L ≤ 12`, is a divisor ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]). For fixed `w`, the column `A^e(w, ·) mod 9` therefore satisfies a linear recurrence of order `2w + 1`, since `h^w − (h−1)^w` is a polynomial of degree `w − 1` in `h`. A period checked on `2w + 1` consecutive values of `h` is a period for all `h ≥ 2`.
+In particular `P(k, L)` is a polynomial in `k` of degree at most `L` on each class of `k` modulo 2, the form in which [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)] proves it. The characteristic polynomial, `(x + 1)^L (x − 1)^{L−2}` for every `L ≥ 4`, is a divisor ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]). For fixed `w`, the column `A^e(w, ·) mod 9` therefore satisfies a linear recurrence of order `2w + 1`, since `h^w − (h−1)^w` is a polynomial of degree `w − 1` in `h`. A period checked on `2w + 1` consecutive values of `h` is a period for all `h ≥ 2`.
 
 ## The row/column divisibility gap
 
@@ -151,7 +151,7 @@ The differences always lie in `3Z/9`. At the 14 uniform columns the set is `{3, 
 - [[sums-of-three-cubes](pages/sums-of-three-cubes.md)] - the residues 4 and 5 mod 9 and Heath-Brown's conjecture.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the periods of `A^e` modulo a prime and the factor `p^{⌈log_p m⌉}` of a repeated factor.
 - [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - the proof that a factor of multiplicity `m` multiplies the order by exactly `p^{⌈log_p m⌉}`, and the repeated factors of `char_k` modulo larger primes.
-- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the closed forms `P(k, L) = (−1)^k A_L(k) + B_L(k)` and the characteristic polynomial `(x + 1)^L (x − 1)^{L−2}` computed for `4 ≤ L ≤ 12`.
+- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the closed forms `P(k, L) = (−1)^k A_L(k) + B_L(k)` and the characteristic polynomial `(x + 1)^L (x − 1)^{L−2}`, proved for every `L ≥ 4`.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] - the formula for `A^e(w, h)` used in the `w = 4` proof.
 - [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the fibers of `char_k` over 3 and their nilradicals.
 

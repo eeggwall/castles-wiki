@@ -74,7 +74,7 @@ In this section `x` marks the width, as in `P_k(x)`. The height step of the [[ge
 λ_±  =  −x ± s,        s  =  √(1 + x²),        λ_+ λ_−  =  −1,
 ```
 
-and `num_k = a λ_+^k + b λ_−^k`, `den_k = c λ_+^k + d λ_−^k`, with power series fixed by `k = 0, 1`:
+the roots `r_±` of the three-term recurrence of `den_k` on [[generating-function-gallery](pages/generating-function-gallery.md)], and `num_k = a λ_+^k + b λ_−^k`, `den_k = c λ_+^k + d λ_−^k`, with power series fixed by `k = 0, 1`:
 
 ```
 a  =  (1 − x + s) / (2s),                    b  =  (s − 1 + x) / (2s),

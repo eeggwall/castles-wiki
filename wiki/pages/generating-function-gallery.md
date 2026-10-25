@@ -5,7 +5,7 @@ summary: The rational generating functions P_k(x) = Σ_L P(k, L) x^L = num_k(x)/
 tags: [analysis, castle, generating-functions, c-finite, sympy, verification]
 sources: [project-euler-502-solution, oeis-mining-pe502]
 created: 2026-09-14
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Generating-function gallery for P(k,L)
@@ -200,7 +200,7 @@ The check includes `k = 8`, beyond the catalogue.
 - [[signed-tower-count](pages/signed-tower-count.md)] - the values of `P(k, L)`, the proofs of the coefficients of `char_k`, and the case `k = 1`.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization of `char_k` for even `k` by the parity of the last column, its closed-form factors `H_d` and `V_d`, and `ρ_6 = 2ψ²`.
 - [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] - a second derivation of Equation (2): the signed transfer matrix is diagonally similar to the Kac-Murdock-Szegő matrix `K(i)`, whose inverse is tridiagonal, so `char_k` is a continuant.
-- [[recurrence-discovery](pages/recurrence-discovery.md)] - the orders of the recurrences of `P` found by Berlekamp-Massey: `k + 1` in `L`, and `2L − 2` in `k` for `4 ≤ L ≤ 12`.
+- [[recurrence-discovery](pages/recurrence-discovery.md)] - the orders of the recurrences of `P` found by Berlekamp-Massey: `k + 1` in `L`, and `2L − 2` in `k` for `4 ≤ L ≤ 12`, which [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] proves for every `L ≥ 4` from the roots `r_±` of Equation (1).
 - [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the recurrences of `P(·, L)` in `k`, whose eigenvalues are `±1`.
 - [[closed-form-hunting](pages/closed-form-hunting.md)] - the closed forms of `P(k, 2)` and `P(k, 3)` in `k`.
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] - the extraction of `P(h−1, w)` from `num_{h−1}/den_{h−1}` at the Project Euler targets.

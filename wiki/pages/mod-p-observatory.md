@@ -5,7 +5,7 @@ summary: Modulo an odd prime p, the castle count A^e(w, h) is eventually periodi
 tags: [analysis, castle, modular-arithmetic, periodicity, automaticity, sympy]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502]
 created: 2026-09-14
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Mod-p observatory for A^e(w,h)
@@ -43,7 +43,7 @@ The sequence in the width is purely periodic unless `h ≡ 0` or `1 (mod p)`, wh
 
 ## Periods in the height
 
-For fixed `w`, `h^w − (h−1)^w` is a polynomial in `h`, which has period `p` mod `p`. For `4 ≤ L ≤ 12` the recurrence of `P(·, L)` in `k` has characteristic polynomial `(x + 1)^L (x − 1)^{L−2}` (computed; [[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), with the forms `(x − 1)(x + 1)`, `(x + 1)²` and `(x + 1)³` at `L = 1, 2, 3`, so its only roots are `±1`, of orders 1 and 2, and the rest of the period comes from their multiplicities. `P(k, L) mod p` has period `2·p^{⌈log_p L⌉}` in `k`: `2p` while `2 ≤ L ≤ p`, and `2p²` once `p < L ≤ p²`, as `18 = 2·3²` at `L = 4`, `p = 3`, `50 = 2·5²` at `L = 6`, `p = 5`, and `98 = 2·7²` at `L = 8`, `p = 7`. This holds for `L ≤ 11` and `p ∈ {3, 5, 7, 11}` (computed).[^4] The periods of `A^e(w, ·) mod p` in the height:[^4]
+For fixed `w`, `h^w − (h−1)^w` is a polynomial in `h`, which has period `p` mod `p`. For every `L ≥ 4` the recurrence of `P(·, L)` in `k` has characteristic polynomial `(x + 1)^L (x − 1)^{L−2}` (proved on [[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), with the forms `(x − 1)(x + 1)`, `(x + 1)²` and `(x + 1)³` at `L = 1, 2, 3`, so its only roots are `±1`, of orders 1 and 2, and the rest of the period comes from their multiplicities. `P(k, L) mod p` has period `2·p^{⌈log_p L⌉}` in `k`: `2p` while `2 ≤ L ≤ p`, and `2p²` once `p < L ≤ p²`, as `18 = 2·3²` at `L = 4`, `p = 3`, `50 = 2·5²` at `L = 6`, `p = 5`, and `98 = 2·7²` at `L = 8`, `p = 7`. This holds for `L ≤ 11` and `p ∈ {3, 5, 7, 11}` (computed).[^4] The periods of `A^e(w, ·) mod p` in the height:[^4]
 
 | p | w=1 | w=2 | w=3 | w=4 |
 |---|---|---|---|---|
@@ -169,7 +169,7 @@ for h in range(2, 6):
 
 - [[signed-tower-count](pages/signed-tower-count.md)] - `char_k` over the rationals and its constant term `(−1)^{k+1} 2^k`, which makes `P(k, ·) mod p` purely periodic.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] - the rational functions `num_k/den_k` and the polynomials `char_k`.
-- [[recurrence-discovery](pages/recurrence-discovery.md)] - the orders `k + 1` in `L` and `2L − 2` in `k` (computed for `4 ≤ L ≤ 12`).
+- [[recurrence-discovery](pages/recurrence-discovery.md)] - the orders `k + 1` in `L` and `2L − 2` in `k` (computed for `4 ≤ L ≤ 12`, and proved for every `L ≥ 4`).
 - [[finite-fields](pages/finite-fields.md)] - the fields `F_{p^d}` in which the roots of `char_k` lie.
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] - the evaluation modulo `10^9 + 7`, which uses the recurrence.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the continued fractions of the eigenvalues, and `δ^{p+1} = −1` for a quadratic unit of norm `−1` at a prime `p` inert in its field.

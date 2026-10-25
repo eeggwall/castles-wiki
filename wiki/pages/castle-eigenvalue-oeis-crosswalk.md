@@ -1,11 +1,11 @@
 ---
 title: Castle eigenvalues meet OEIS - the convergent crosswalk
 category: Analyses
-summary: The convergents of the castle eigenvalues against the OEIS. Each metallic mean δ_a = [a; a, …] has numerators and denominators from one sequence, matched offset-exact for a ≤ 5 (Fibonacci, Pell A000129, A006190, A001076, A052918). The norm −1 makes δ_a purely periodic (Galois) and gives δ^{p+1} = −1 at every inert prime, so the period of the sequence modulo p divides 2(p+1) and not p+1. In the k-direction the characteristic polynomial of P(·, L) is (x+1)^L (x−1)^{L−2} for 4 ≤ L ≤ 12 (computed), with |P(k, 4)| = A352116(k+1). In the L-direction the dominant root of char_6 is 2ψ², ψ the plastic number; the even-sector part of P(6, L) is 2^L·A005251(L+3); and the Jacobi-Perron expansion of 2ψ² is periodic, with the unit ψ^14 as the dominant eigenvalue of its period matrix.
+summary: The convergents of the castle eigenvalues against the OEIS. Each metallic mean δ_a = [a; a, …] has numerators and denominators from one sequence, matched offset-exact for a ≤ 5 (Fibonacci, Pell A000129, A006190, A001076, A052918). The norm −1 makes δ_a purely periodic (Galois) and gives δ^{p+1} = −1 at every inert prime, so the period of the sequence modulo p divides 2(p+1) and not p+1. In the k-direction the characteristic polynomial of P(·, L) is (x+1)^L (x−1)^{L−2} for every L ≥ 4 (computed here for L ≤ 12, proved on the k-direction page), with |P(k, 4)| = A352116(k+1). In the L-direction the dominant root of char_6 is 2ψ², ψ the plastic number; the even-sector part of P(6, L) is 2^L·A005251(L+3); and the Jacobi-Perron expansion of 2ψ² is periodic, with the unit ψ^14 as the dominant eigenvalue of its period matrix.
 tags: [analysis, castle, continued-fraction, convergents, oeis, eigenvalue, quasi-polynomial, plastic-number, jacobi-perron, pisano, mod-p, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-10-22
+updated: 2026-10-25
 ---
 
 # Castle eigenvalues meet OEIS: the convergent crosswalk
@@ -14,7 +14,7 @@ The convergents `p_n/q_n` of a continued fraction are its truncations, and their
 
 1. **The metallic means** (Part 1). For `δ_a = [a; a, a, …]` the numerators and denominators are one recurrence sequence, one step apart, and the trace of the convergent matrix is the Lucas sequence `V_n(a, −1)`: the Lucas numbers `A000032` at `a = 1` and the companion Pell numbers `A002203` at `a = 2`. For `1 + √2` both are the Pell numbers `A000129`, and `A001333` is the numerator sequence of `√2 = (1 + √2) − 1`.
 2. **The norm on both sides** (Part 2). The norm `δ_a·δ̂_a = −1` makes the continued fraction of `δ_a` purely periodic, and at every inert prime it gives `δ_a^{p+1} = −1`, so the period of the sequence modulo `p` divides `2(p + 1)` and not `p + 1`.
-3. **The k-direction** (Part 3). For `4 ≤ L ≤ 12`, the characteristic polynomial of `P(·, L)` is `(x + 1)^L (x − 1)^{L−2}` (computed), so its eigenvalues are `±1` and there is no irrational continued fraction. `|P(k, 4)| = A352116(k + 1)`.
+3. **The k-direction** (Part 3). For every `L ≥ 4`, the characteristic polynomial of `P(·, L)` is `(x + 1)^L (x − 1)^{L−2}` (computed here for `L ≤ 12`, proved on [[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), so its eigenvalues are `±1` and there is no irrational continued fraction. `|P(k, 4)| = A352116(k + 1)`.
 4. **The L-direction** (Part 4). The roots of `char_k` are the irrational eigenvalues. The dominant root of `char_6` is `2ψ²`, with `ψ` the plastic number; the even-sector part of `P(6, L)` is `2^L·A005251(L+3)`; and the Jacobi-Perron expansion of `2ψ²` is periodic, with period matrix of dominant eigenvalue `ψ^14`.
 
 The snippets ran under Python 3.11 with SymPy and mpmath, and their outputs are reproduced as printed.[^8][^9]
@@ -121,17 +121,17 @@ For `a ≤ 5` and every prime `3 ≤ p < 100` with `p ∤ a² + 4`, the period o
 
 ## Part 3 - The k-direction
 
-`P(k, L)` is computed by a dynamic program over the column heights, with the block count as total descent.[^3] For `4 ≤ L ≤ 12`, the shortest recurrence of `P(·, L)` in the tower height `k` has characteristic polynomial `(x + 1)^L (x − 1)^{L−2}` (computed); at every `L` it divides `(x − 1)^{L+1} (x + 1)^L` (the Lemma of [[mod-9-coset-lift](pages/mod-9-coset-lift.md)]), since `P(k, L)` is a polynomial in `k` of degree at most `L` on each class of `k` modulo 2 ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)], section *The residue test*). Its eigenvalues are `±1`, and
+`P(k, L)` is computed by a dynamic program over the column heights, with the block count as total descent.[^3] For `4 ≤ L ≤ 12`, the shortest recurrence of `P(·, L)` in the tower height `k` has characteristic polynomial `(x + 1)^L (x − 1)^{L−2}` (computed), and [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] proves this for every `L ≥ 4`; at every `L` it divides `(x − 1)^{L+1} (x + 1)^L` (the Lemma of [[mod-9-coset-lift](pages/mod-9-coset-lift.md)]), since `P(k, L)` is a polynomial in `k` of degree at most `L` on each class of `k` modulo 2 ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)], section *The residue test*). Its eigenvalues are `±1`, and
 
 ```
 P(k, L)  =  (−1)^k · A_L(k) + B_L(k),         deg A_L ≤ L − 1,  deg B_L ≤ L − 3,
 ```
 
-for these `L`. [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] gives the polynomials `A_L`, `B_L`, the OEIS identities of the rows, and the periods modulo primes:
+for every `L ≥ 4`, with equality in both degrees. [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] gives the polynomials `A_L`, `B_L`, the OEIS identities of the rows, and the periods modulo primes:
 
 - `|P(k, 4)| = A352116(k + 1)`, the partial sums of the odd triangular numbers; `P(2m, 4) = A063496(m + 1)` and `|P(2m + 1, 4)| = A199833(m + 1) = 4·A000447(m + 1)`.[^6]
 - The period of `P(·, L) mod p` in `k` is `2·p^j`, with `p^j` the least power of `p` that is at least `L`, for `2 ≤ L ≤ 11` and `p ∈ {3, 5, 7, 11}` (computed). At `L = 4` and `p = 3` this is `2·3² = 18`, the period of `A^e(4, ·)` modulo 3 on [[mod-p-observatory](pages/mod-p-observatory.md)].[^8]
-- The OEIS-mining notes observe that the columns `A^e(w, ·)` are annihilated by `(x² − 1)^w`.[^4]
+- The OEIS-mining notes observe that the columns `A^e(w, ·)` are annihilated by `(x² − 1)^w`;[^4] [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] proves it for every `w`.
 
 The eigenvalues are `±1`, so there is no irrational continued fraction in this direction. Modulo `p` there is no `p + 1` against `2(p + 1)`: the repeated eigenvalues `±1` give the factor `p^j`.
 

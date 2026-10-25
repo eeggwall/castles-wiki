@@ -1,16 +1,16 @@
 ---
 title: Closed-form hunting for P(k,L)
 category: Analyses
-summary: Closed forms of the signed tower count P(k, L) as a function of the tower height k at fixed base length L. P(k, 1) = (1 + (−1)^k)/2, P(k, 2) = (−1)^k (k+1) (proved) and P(k, 3) = (−1)^k (k+1)²; for 4 ≤ L ≤ 12 the recurrence in k has order 2L − 2 and characteristic polynomial (x+1)^L (x−1)^{L−2} (computed), so P(k, L) is (−1)^k times a polynomial of degree L − 1 plus a polynomial of degree L − 3, not (−1)^k times a single power.
+summary: Closed forms of the signed tower count P(k, L) as a function of the tower height k at fixed base length L. P(k, 1) = (1 + (−1)^k)/2, P(k, 2) = (−1)^k (k+1) (proved) and P(k, 3) = (−1)^k (k+1)²; for every L ≥ 4 the recurrence in k has order 2L − 2 and characteristic polynomial (x+1)^L (x−1)^{L−2} (computed here for L ≤ 12, proved on the k-direction page), so P(k, L) is (−1)^k times a polynomial of degree L − 1 plus a polynomial of degree L − 3, not (−1)^k times a single power.
 tags: [analysis, castle, closed-form, c-finite, verification]
 sources: [project-euler-502-castle-factoring, project-euler-502-solution]
 created: 2026-09-14
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Closed-form hunting for P(k,L)
 
-The signed tower count `P(k, L)` adds up `(−1)^{blocks}` over the towers of height at most `k` on a base of length `L` ([[signed-tower-count](pages/signed-tower-count.md)]). This page gives its closed forms as a function of `k` at fixed `L`. For `L = 2, 3`, `P(k, L)` is `(−1)^k` times a power of `k + 1`. For `4 ≤ L ≤ 12` the recurrence in `k` has order `2L − 2`, and `P(k, L)` is the sum of `(−1)^k` times one polynomial and a second polynomial. The orders are tabulated on [[recurrence-discovery](pages/recurrence-discovery.md)].
+The signed tower count `P(k, L)` adds up `(−1)^{blocks}` over the towers of height at most `k` on a base of length `L` ([[signed-tower-count](pages/signed-tower-count.md)]). This page gives its closed forms as a function of `k` at fixed `L`. For `L = 2, 3`, `P(k, L)` is `(−1)^k` times a power of `k + 1`. For every `L ≥ 4` the recurrence in `k` has order `2L − 2`, and `P(k, L)` is the sum of `(−1)^k` times one polynomial and a second polynomial. The orders are tabulated on [[recurrence-discovery](pages/recurrence-discovery.md)].
 
 ## The closed forms for L ≤ 3
 
@@ -30,7 +30,7 @@ The source states `P(k, 3) = (−1)^k (k + 1)²`, with the recurrence `(x + 1)³
 
 ## From L = 4 on
 
-At `L = 4`, `P(1, 4) = −4` while `(−1)^1 (1 + 1)^3 = −8`, so the pattern of `L ≤ 3` stops. At every `L`, `P(k, L)` is a polynomial in `k` of degree at most `L` on each class of `k` modulo 2 ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)], section *The residue test*), so `P(k, L) = (−1)^k A_L(k) + B_L(k)` with polynomials of degree at most `L`. For `4 ≤ L ≤ 12` the shortest recurrence of `P(·, L)` has order `2L − 2`, and its characteristic polynomial is[^3]
+At `L = 4`, `P(1, 4) = −4` while `(−1)^1 (1 + 1)^3 = −8`, so the pattern of `L ≤ 3` stops. At every `L`, `P(k, L)` is a polynomial in `k` of degree at most `L` on each class of `k` modulo 2 ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)], section *The residue test*), so `P(k, L) = (−1)^k A_L(k) + B_L(k)` with polynomials of degree at most `L`. For every `L ≥ 4` the shortest recurrence of `P(·, L)` has order `2L − 2` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)], section *Proof of the multiplicities*; computed here for `L ≤ 12`), and its characteristic polynomial is[^3]
 
 ```
 (x + 1)^L (x − 1)^{L−2}.

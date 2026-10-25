@@ -1,11 +1,11 @@
 ---
 title: Eigenvalue continued fractions
 category: Concepts
-summary: Continued fractions of the eigenvalues of the castle recurrences. A real number has an eventually periodic continued fraction exactly when it is a quadratic irrational (Lagrange), and a quadratic irrational α > 1 is purely periodic exactly when its conjugate lies in (−1, 0) (Galois); a quadratic unit of norm −1, such as φ or 1 + √2, is therefore purely periodic. The recurrences of P(·, L) in the tower height have only the eigenvalues ±1 for 4 ≤ L ≤ 12 (computed); the irrational eigenvalues are the roots of char_k, which are not units, and the real ones of degree 3 or more have non-periodic continued fractions. At inert primes the norm −1 gives δ^{p+1} = −1.
+summary: Continued fractions of the eigenvalues of the castle recurrences. A real number has an eventually periodic continued fraction exactly when it is a quadratic irrational (Lagrange), and a quadratic irrational α > 1 is purely periodic exactly when its conjugate lies in (−1, 0) (Galois); a quadratic unit of norm −1, such as φ or 1 + √2, is therefore purely periodic. The recurrences of P(·, L) in the tower height have only the eigenvalues ±1, with multiplicities L and L − 2 for every L ≥ 4; the irrational eigenvalues are the roots of char_k, which are not units, and the real ones of degree 3 or more have non-periodic continued fractions. At inert primes the norm −1 gives δ^{p+1} = −1.
 tags: [concept, castle, continued-fraction, eigenvalue, characteristic-polynomial, palindromic, lagrange, galois, quadratic, fibonacci, mod-p, pedagogy]
 sources: [de-spinadel-1999-family-of-metallic-means, project-euler-502-solution]
 created: 2026-09-15
-updated: 2026-10-22
+updated: 2026-10-25
 ---
 
 # Eigenvalue continued fractions
@@ -68,7 +68,7 @@ The quadratics of norm `−1` are of a different kind: the roots `r` and `−1/r
 
 The signed tower count `P(k, L)` satisfies linear recurrences in both arguments ([[signed-tower-count](pages/signed-tower-count.md)]).
 
-**In the tower height `k`.** For `4 ≤ L ≤ 12`, the shortest recurrence of `P(·, L)` has order `2L − 2` and characteristic polynomial `(x + 1)^L (x − 1)^{L−2}` (computed; [[signed-tower-k-direction](pages/signed-tower-k-direction.md)], [[closed-form-hunting](pages/closed-form-hunting.md)]):[^4]
+**In the tower height `k`.** For every `L ≥ 4`, the shortest recurrence of `P(·, L)` has order `2L − 2` and characteristic polynomial `(x + 1)^L (x − 1)^{L−2}` (proved on [[signed-tower-k-direction](pages/signed-tower-k-direction.md)], computed for `L ≤ 12` there and on [[closed-form-hunting](pages/closed-form-hunting.md)]):[^4]
 
 ```
 L = 4:  [1, 2, −1, −4, −1, 2, 1]                   (x + 1)⁴ (x − 1)²
@@ -76,7 +76,7 @@ L = 5:  [1, 2, −2, −6, 0, 6, 2, −2, −1]            (x + 1)⁵ (x − 1)�
 L = 6:  [1, 2, −3, −8, 2, 12, 2, −8, −3, 2, 1]     (x + 1)⁶ (x − 1)⁴
 ```
 
-The roots `±1` are their own reciprocals, so these polynomials are palindromic for even `L` and anti-palindromic for odd `L`. The eigenvalues are rational, so their continued fractions terminate, and for these `L` `P(k, L)` is `(−1)^k` times a polynomial in `k` plus a polynomial in `k`.
+The roots `±1` are their own reciprocals, so these polynomials are palindromic for even `L` and anti-palindromic for odd `L`. The eigenvalues are rational, so their continued fractions terminate, and `P(k, L)` is `(−1)^k` times a polynomial in `k` plus a polynomial in `k`.
 
 **In the base length `L`.** The recurrence of `P(k, ·)` has characteristic polynomial `char_k(λ) = λ^{k+1} den_k(1/λ)` of degree `k + 1`, whose roots have product `2^k`. For `k ≤ 30`, no irreducible factor of `char_k` has constant term `±1`, so no root of `char_k` is an algebraic unit (computed).[^4] The real roots of degree 3 or more have continued fractions that are not eventually periodic, by Lagrange's theorem; the first such root, in order of `k`, is the dominant root of `char_4`, a root of the cubic factor `λ³ − 3λ² + 2λ − 4`. [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] computes them and replaces the simple continued fraction by the Jacobi-Perron expansion, which is periodic for the dominant root `2ψ²` of `char_6`, with `ψ` the plastic number ([[plastic-number](pages/plastic-number.md)]).
 

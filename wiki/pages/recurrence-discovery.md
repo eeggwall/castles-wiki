@@ -1,11 +1,11 @@
 ---
 title: Recurrence discovery for P(k,L)
 category: Analyses
-summary: Berlekamp-Massey on the signed tower count P(k, L) in both directions, from exact values. In L the shortest recurrence has order k + 1 for k ≤ 8, matching the proved degree of den_k. In k, on the values for k ≤ 50, it has order 2, 2, 3 for L = 1, 2, 3 and 2L − 2 for 4 ≤ L ≤ 12 (computed), with closed forms for L ≤ 3.
+summary: Berlekamp-Massey on the signed tower count P(k, L) in both directions, from exact values. In L the shortest recurrence has order k + 1 for k ≤ 8, matching the proved degree of den_k. In k, on the values for k ≤ 50, it has order 2, 2, 3 for L = 1, 2, 3 and 2L − 2 for 4 ≤ L ≤ 12 (computed, and proved for every L ≥ 4), with closed forms for L ≤ 3.
 tags: [analysis, castle, recurrence, berlekamp-massey, c-finite, verification]
 sources: [project-euler-502-solution, oeis-mining-pe502, project-euler-502-castle-factoring]
 created: 2026-09-14
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # Recurrence discovery for P(k,L)
@@ -110,7 +110,7 @@ On the 21 values `L = 0, …, 20`, each order is `k + 1`, the degree of `den_k`;
 
 On the 51 values `k = 0, …, 50`, the shortest recurrence has order `2L − 2` for `4 ≤ L ≤ 12` (computed), against the source's "at most about 2w".[^1] Every order in the table is at most 25, half the number of terms, so it is the shortest recurrence of the 51 values. The orders 2, 2, 3 for `L ≤ 3` do not follow `2L − 2`; the section *Closed forms for L ≤ 3* gives these rows.
 
-For `4 ≤ L ≤ 12` the characteristic polynomial is `(x + 1)^L (x − 1)^{L−2}`, computed by Berlekamp-Massey on `k ≤ 80` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]). So every root is `±1` and the order is `L + (L − 2)` for these `L`. That every root is `±1` holds at every `L`: `P(k, L)` is a polynomial in `k` of degree at most `L` on each class of `k` modulo 2 ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)], section *The residue test*), so the order is at most `2L + 1` (the Lemma of [[mod-9-coset-lift](pages/mod-9-coset-lift.md)]).
+For every `L ≥ 4` the characteristic polynomial is `(x + 1)^L (x − 1)^{L−2}`, computed by Berlekamp-Massey on `k ≤ 80` for `L ≤ 12` and proved from the eigenvalues of the height step ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)], section *Proof of the multiplicities*). So every root is `±1` and the order is `L + (L − 2)`. That every root is `±1` holds at every `L`: `P(k, L)` is a polynomial in `k` of degree at most `L` on each class of `k` modulo 2 ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)], section *The residue test*), so the order is at most `2L + 1` (the Lemma of [[mod-9-coset-lift](pages/mod-9-coset-lift.md)]).
 
 ### Closed forms for L ≤ 3
 
@@ -131,7 +131,7 @@ At `L = 1` the towers are one column of height `c ≤ k` with `c` blocks, so `P(
 ## Related Concepts
 
 - [[signed-tower-count](pages/signed-tower-count.md)] - the values, characteristic polynomials and closed forms of `P(k, L)`.
-- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the characteristic polynomials in `k` and the polynomials in `k` that make up `P(k, L)`, for `L ≤ 12`.
+- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the characteristic polynomials in `k`, proved for every `L ≥ 4`, and the polynomials in `k` that make up `P(k, L)`.
 - [[closed-form-hunting](pages/closed-form-hunting.md)] - the closed forms of `P(k, L)` in `k` for small `L`.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - the algorithm, and when its output is the shortest recurrence of a sequence.
 - [[kitamasa](pages/kitamasa.md)] - the evaluation of a far term of a recurrence once it is known.

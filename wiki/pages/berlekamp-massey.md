@@ -5,7 +5,7 @@ summary: The Berlekamp-Massey algorithm returns the shortest linear recurrence s
 tags: [concept, algorithm, linear-recurrence, berlekamp-massey, method]
 sources: [project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Berlekamp–Massey
@@ -35,7 +35,7 @@ Without a proved bound on the order, the output is a recurrence of the computed 
 
 The source routes the castle counts with `h > 15000`, among the Project Euler targets only `A^e(100, 10^12)`, to a path in the tower height `k`. For fixed `w`, the source computes `P(0, w), …, P(N − 1, w)` modulo `p = 10^9 + 7` with `N = 4(w + 2) + 20`, finds a recurrence in `k` with Berlekamp-Massey, and evaluates it at `k = h − 2` and `k = h − 1` with [[kitamasa](pages/kitamasa.md)]'s method; at `w = 100`, `N = 428`.[^4] [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] describes the code, `computePviaKBoth`, in which the remainder for `k = h − 1` is `x` times the remainder for `k = h − 2`, reduced once more.
 
-By the Corollary, the output is the recurrence of `P(·, w)` modulo `p` when that sequence satisfies a recurrence of order at most `N/2 = 2w + 14`. The source says that "the recurrence order is at most about 2w empirically" and that "Berlekamp-Massey discovers the recurrence, so no proof is required to use it".[^5] Run over the rationals, Berlekamp-Massey finds the order `2L − 2` in `k` for `4 ≤ L ≤ 12`, with characteristic polynomial `(x + 1)^L (x − 1)^{L−2}`, which has integer coefficients and so also gives a recurrence modulo `p` ([[recurrence-discovery](pages/recurrence-discovery.md)], computed). For these `L` the order is below `N/2`; at `L = 100` no bound is proved on the wiki.
+By the Corollary, the output is the recurrence of `P(·, w)` modulo `p` when that sequence satisfies a recurrence of order at most `N/2 = 2w + 14`. The source says that "the recurrence order is at most about 2w empirically" and that "Berlekamp-Massey discovers the recurrence, so no proof is required to use it".[^5] Run over the rationals, Berlekamp-Massey finds the order `2L − 2` in `k` for `4 ≤ L ≤ 12`, with characteristic polynomial `(x + 1)^L (x − 1)^{L−2}`, which has integer coefficients and so also gives a recurrence modulo `p` ([[recurrence-discovery](pages/recurrence-discovery.md)], computed), and [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] proves this polynomial for every `L ≥ 4`. It is monic with integer coefficients, so at every `w ≥ 4`, `w = 100` included, `P(·, w)` modulo `p` satisfies a recurrence of order `2w − 2`, below `N/2 = 2w + 14`, and by the Corollary the output generates the whole sequence.
 
 ## Appearances in Sources
 
@@ -47,7 +47,7 @@ By the Corollary, the output is the recurrence of `P(·, w)` modulo `p` when tha
 
 - [[kitamasa](pages/kitamasa.md)] - the method that evaluates the recurrence at a far index.
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] - the path in `k`, used when `h > 15000`.
-- [[recurrence-discovery](pages/recurrence-discovery.md)] - Berlekamp-Massey over the rationals on `P(k, L)`: order `k + 1` in `L`, and `2L − 2` in `k` for `4 ≤ L ≤ 12`.
+- [[recurrence-discovery](pages/recurrence-discovery.md)] - Berlekamp-Massey over the rationals on `P(k, L)`: order `k + 1` in `L`, and `2L − 2` in `k` for `4 ≤ L ≤ 12`, proved for every `L ≥ 4`.
 - [[closed-form-hunting](pages/closed-form-hunting.md)] - the closed forms `P(k, 2) = (−1)^k (k+1)` and `P(k, 3) = (−1)^k (k+1)²`, whose recurrences in `k` Berlekamp-Massey recovers.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] - the formula for `A^e(w, h)` through `P(h−1, w)` and `P(h−2, w)`.
 - [[castle-counting-function](pages/castle-counting-function.md)] - the Project Euler target and its three terms.

@@ -5,7 +5,7 @@ summary: Which castle counts are sums of three cubes. With signed cubes, under H
 tags: [analysis, castle, sum-of-cubes, mod-9, periodicity, kitamasa, closed-form, height-2, perfect-numbers, taxicab, booker-sutherland, worked-example, computation]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502]
 created: 2026-09-20
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # Sum of three cubes castles
@@ -234,7 +234,7 @@ Over all cells with `A ≤ 10^9` and `w ≥ 3`:[^exec]
 - [[castle-counting-formula](pages/castle-counting-formula.md)] and [[castle-counting-function](pages/castle-counting-function.md)] - the formula for `A^e(w, h)` and the counts `A`, `A^e`, `A^o`.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the periods of the castle counts modulo a prime, which divide the lcm of the periods of their factors.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(1, L) = Re((1+i)^{L+1})` and `P(k, 3) = (−1)^k (k+1)^2`.
-- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the characteristic polynomial `(x+1)^L (x−1)^{L−2}` of `P(·, L)` in `k`, computed for `4 ≤ L ≤ 12`.
+- [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] - the characteristic polynomial `(x+1)^L (x−1)^{L−2}` of `P(·, L)` in `k`, proved for every `L ≥ 4`.
 - [[kitamasa](pages/kitamasa.md)] and [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the reduction of `x^L` modulo `char_k`, which works over `Z/9`.
 - [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] and [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - `A^e(w, 2) = A038505(w + 1)`.
 - [[castle-snippets](pages/castle-snippets.md)] - `all_castles` and the block count for brute-force checks.
