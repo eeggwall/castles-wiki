@@ -1,8 +1,8 @@
 ---
 title: Castle cryptography, seminar 1 - the ring
 category: Analyses
-summary: Seminar 1 of the castle cryptography series, the algebra the later rounds use, in the order the system is used. (1) char_2 = x^3 − 3x^2 + 4x − 4 is the recurrence P(2, L) = 3P(2, L−1) − 4P(2, L−2) + 4P(2, L−3). (2) In R = F_p[x]/(Q), multiplication by x is one step of the recurrence. (3) x^a mod Q by binary exponentiation costs bitlength(a) + popcount(a) ring multiplications in the loop as written (53 at a = 10^12), the Kitamasa step of the castle count. (4) Diffie-Hellman on R with public parameters (p, Q), private exponent a and public key x^a mod Q. (5) The public key is the window P(k, a), …, P(k, a + k) mod p of signed tower counts, through the Hankel matrix of P(k, 0), …, P(k, 2k), of determinant (−1)^{k(k+1)/2} 2^{k²} for k ≤ 7 and invertible mod every odd prime. (6) num_k and den_k are coprime mod every prime, since their update matrix has determinant −1, so the period of P(k, ·) mod an odd prime is the order of x; at p = 101 it is 3400. (7) The unit group of R, by the Chinese Remainder Theorem a product of the unit groups of the factors of Q, and the order of x at p = 10^9 + 7 for k = 1, 2, 3, factored; the prime 500000003 = (p − 1)/2 divides all three.
-tags: [analysis, seminar, cryptography, ring, finite-field, quotient-ring, linear-recurrence, characteristic-polynomial, kitamasa, diffie-hellman, chinese-remainder-theorem, hankel-matrix, mod-p-observatory, baseline, pedagogy, implementation, castle]
+summary: Seminar 1 of the castle cryptography series, the algebra the later rounds use, in the order the system is used. (1) char_2 = x^3 − 3x^2 + 4x − 4 is the recurrence P(2, L) = 3P(2, L−1) − 4P(2, L−2) + 4P(2, L−3). (2) In R = F_p[x]/(Q), multiplication by x is one step of the recurrence. (3) x^a mod Q by binary exponentiation costs bitlength(a) + popcount(a) ring multiplications in the loop as written (53 at a = 10^12), the Kitamasa step of the castle count. (4) Diffie-Hellman on R with public parameters (p, Q), private exponent a and public key x^a mod Q. (5) The public key is the window P(k, a), …, P(k, a + k) mod p of signed tower counts, through the Hankel matrix of P(k, 0), …, P(k, 2k), of determinant (−1)^{k(k+1)/2} 2^{k²} for k ≤ 7 and invertible mod every odd prime. (6) num_k and den_k are coprime mod every prime, since their update matrix has determinant −1, so the period of P(k, ·) mod an odd prime is the order of x; at p = 101 it is 3400. (7) The unit group of R and the order of x for k ≤ 7 at p = 10^9 + 7 and p' = 1000000403, with the index of x, at least 2^27.9, and the largest prime factor of its order, at most 2^47.2. (8) The norm of x is 2^k, so the order of 2^k divides the order of x: at p = 10^9 + 7 the prime 500000003 = (p − 1)/2 divides it for every k, and the norm 2^{ka} of a public key gives a mod 500000003 by one discrete logarithm in F_p^*.
+tags: [analysis, seminar, cryptography, ring, finite-field, quotient-ring, linear-recurrence, characteristic-polynomial, kitamasa, diffie-hellman, chinese-remainder-theorem, hankel-matrix, norm, census, mod-p-observatory, baseline, pedagogy, implementation, castle]
 sources: [oeis-mining-pe502, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-18
 updated: 2026-10-25
@@ -10,7 +10,7 @@ updated: 2026-10-25
 
 # Castle cryptography, seminar 1 - the ring
 
-The [[castle-cryptography](pages/castle-cryptography.md)] series has three seminars: build, red team and blue team. This page is Seminar 1 in full, the algebra the attacks and fixes use; [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] is the second round of the series. Sections 1 to 4 build the system in the order it is used: the recurrence, the ring, the one-way map and the key exchange. Section 5 reads the public key as castle counts. Sections 6 and 7 describe the group the keys live in: the period and the order of `x`. The page leaves security to Seminar 2, and section 8 lists the facts that Seminar 2 and round two start from. The central object is the characteristic polynomial `char_k` of the signed tower count `P(k, ·)`, reduced mod a prime `p`.
+The [[castle-cryptography](pages/castle-cryptography.md)] series has three seminars: build, red team and blue team. This page is Seminar 1 in full, the algebra the attacks and fixes use; [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] is the second round of the series. Sections 1 to 4 build the system in the order it is used: the recurrence, the ring, the one-way map and the key exchange. Section 5 reads the public key as castle counts. Sections 6 to 8 describe the group the keys live in: the period, the order of `x` and the norm. The page leaves security to Seminar 2, and section 9 lists the facts that Seminar 2 and round two start from. The central object is the characteristic polynomial `char_k` of the signed tower count `P(k, ·)`, reduced mod a prime `p`.
 
 ---
 
@@ -149,7 +149,7 @@ Bob publishes     P(2, b),  P(2, b + 1),  P(2, b + 2)   =  604270770, 787138505,
 shared window     P(2, ab), P(2, ab + 1), P(2, ab + 2)  =  426037164, 487263844, 278640608
 ```
 
-Each party turns the other's window into a ring element with `H_2^{−1}`, raises it to its own exponent, and reads off the window of `x^{ab}`. The keypair is a castle count: the private key is a base length `a`, the public key is the signed count of the towers of height at most `k` on the bases of length `a`, …, `a + k`, mod `p`, and the discrete logarithm asks for the base length from that window. A run of `2(k + 1)` consecutive terms is twice a window, and from it Berlekamp-Massey recovers `Q` (section 8).
+Each party turns the other's window into a ring element with `H_2^{−1}`, raises it to its own exponent, and reads off the window of `x^{ab}`. The keypair is a castle count: the private key is a base length `a`, the public key is the signed count of the towers of height at most `k` on the bases of length `a`, …, `a + k`, mod `p`, and the discrete logarithm asks for the base length from that window. A run of `2(k + 1)` consecutive terms is twice a window, and from it Berlekamp-Massey recovers `Q` (section 9).
 
 ## 6. The period is the order of `x`
 
@@ -196,15 +196,53 @@ The order of an element `g` divides the order `N` of the unit group, and is foun
 | 2 | 3 | `(x − 2)(x² − x + 2)` | `F_p^* × F_{p²}^*` | `500,000,007,000,000,024` | `2³ · 3² · 7 · 109² · 167 · 500,000,003` |
 | 3 | 4 | irreducible | `F_{p⁴}^*` | `800,000,016,000,000,107,200,000,240` | `2⁴ · 5 · 58,699,937 · 340,715,873 · 500,000,003` |
 
-The orders have 32, 59 and 90 bits. In every row the largest prime factor is `500,000,003 = (p − 1)/2`, about `2^28.9`, which divides every `p^d − 1`. Generic discrete-logarithm attacks cost about the square root of the largest prime factor of the order, so that prime, not the size of the order, is what round two attacks and sizes.
+The orders have 32, 59 and 90 bits, and in each row the largest prime factor is `500,000,003 = (p − 1)/2`, about `2^28.9`. Generic discrete-logarithm attacks cost about the square root of the largest prime factor of the order, so that prime, not the size of the order, is what round two attacks and sizes.
 
-## 8. What Seminar 2 and round two take up
+**The census for `k ≤ 7` at two primes.** The second prime, `p' = 1,000,000,403`, is the first prime above `10⁹` with `(p' − 1)/2` prime and `p' ≡ 3 (mod 8)`; section 8 uses the residue mod 8. The **index** of `x` is `|R^*|/ord(x)`, the number of cosets of the subgroup that `x` generates; `x` generates `R^*` exactly when its index is 1.
 
-Three facts from this page are the starting points of the attacks:
+| `p` | `k` | degrees of the factors of `char_k mod p` | `log₂ \|R^*\|` | `log₂ ord(x)` | largest prime factor of `ord(x)` | `log₂` index |
+|---|---|---|---|---|---|---|
+| `10⁹ + 7` | 1 | 2 | 59.8 | 31.9 | 500,000,003 | 27.9 |
+| `10⁹ + 7` | 2 | 1, 2 | 89.7 | 58.8 | 500,000,003 | 30.9 |
+| `10⁹ + 7` | 3 | 4 | 119.6 | 89.4 | 500,000,003 | 30.2 |
+| `10⁹ + 7` | 4 | 2, 3 | 149.5 | 91.3 | 164,826,110,927,971 | 58.2 |
+| `10⁹ + 7` | 5 | 2, 4 | 179.4 | 114.9 | 500,000,003 | 64.4 |
+| `10⁹ + 7` | 6 | 1, 1, 1, 2, 2 | 209.3 | 58.8 | 500,000,003 | 150.5 |
+| `10⁹ + 7` | 7 | 2, 6 | 239.2 | 179.4 | 164,826,110,927,971 | 59.8 |
+| `p'` | 1 | 2 | 59.8 | 31.9 | 500,000,201 | 27.9 |
+| `p'` | 2 | 1, 2 | 89.7 | 59.8 | 500,000,201 | 29.9 |
+| `p'` | 3 | 4 | 119.6 | 91.7 | 609,538,861 | 27.9 |
+| `p'` | 4 | 1, 2, 2 | 149.5 | 58.8 | 500,000,201 | 90.7 |
+| `p'` | 5 | 2, 4 | 179.4 | 119.6 | 609,538,861 | 59.8 |
+| `p'` | 6 | 3, 4 | 209.3 | 179.4 | 609,538,861 | 29.9 |
+| `p'` | 7 | 2, 2, 4 | 239.2 | 119.6 | 609,538,861 | 119.6 |
+
+Every entry agrees with exact computation.[^10] The index is never small: it is at least `2^27.9`, and at `k = 6` mod `10⁹ + 7`, where `char_6` splits into five factors, `x` generates a subgroup of `2^58.8` elements in a unit group of `2^209.3`. The largest prime factor of `ord(x)` is at most `164,826,110,927,971 ≈ 2^47.2` in every row, so the generic attacks of round two cost at most about `2^23.6` group operations on each of these fourteen rings. At `p = 10⁹ + 7` the prime `500,000,003` divides `ord(x)` in every row, and section 8 proves that it does for every `k`.
+
+## 8. The norm
+
+The **norm** `N(y)` of an element `y` of `R` is the determinant of multiplication by `y`, as a linear map of the `d`-dimensional space `R` over `F_p`. Determinants multiply, so the norm is a homomorphism from `R^*` to `F_p^*`; when `R` is the field `F_{p^d}` it is the field norm `y^{(p^d − 1)/(p − 1)}`. Multiplication by `x` is the companion matrix of section 1, whose determinant is `(−1)^d` times the constant term of `Q`. With `d = k + 1` and the constant term `(−1)^{k+1} 2^k` of `char_k` ([[signed-tower-count](pages/signed-tower-count.md)]),
+
+```
+N(x)  =  2^k        for every k and every odd prime p.
+```
+
+**Proposition.** The order of `2^k` in `F_p^*` divides the order of `x` in `R^*`.
+
+*Proof.* If `x^m = 1`, then `2^{km} = N(x)^m = N(x^m) = N(1) = 1`. ∎
+
+At `p = 10⁹ + 7`, `p ≡ 7 (mod 8)`, so 2 is a square mod `p` and its order divides `(p − 1)/2 = 500,000,003`, which is prime; so `ord(2) = 500,000,003`, and `2^k` has the same order for every `k < 500,000,003`. That prime divides the order of `x` for every such `k`, which is why it appears in every row of section 7 at this prime. At `p' = 1,000,000,403`, `p' ≡ 3 (mod 8)`, so 2 is not a square and `ord(2) = p' − 1`; then `2^k` has order `p' − 1` for odd `k` and `(p' − 1)/2` for even `k`, and both divide the order of `x` in the census.[^11]
+
+The norm of a public key is public as well: `N(A) = N(x)^a = 2^{ka}`, a `d × d` determinant computed from `A`. Section 9 takes this up.
+
+## 9. What Seminar 2 and round two take up
+
+Four facts from this page are the starting points of the attacks:
 
 1. `char_2 = (x − 2)(x² − x + 2)` over the integers, and the two factors are coprime mod every odd prime, so the CRT splits `R` at every odd prime (section 7). Attack 1 of [[castle-cryptography](pages/castle-cryptography.md)] splits the discrete logarithm along this factorization, and Attack 3 of round two recovers the private key `373309869` from `p`, `Q` and `A`.
-2. `ord(x)` factors into small primes and `500,000,003` (section 7). Pohlig-Hellman reduces the discrete logarithm to these primes; Attack 4 of round two applies it even when `Q` is irreducible.
-3. `P(k, ·)` satisfies a linear recurrence (section 1), so any leaked run of `2(k + 1)` terms, twice the window of section 5, determines `Q` by Berlekamp-Massey: Attack 2 of [[castle-cryptography](pages/castle-cryptography.md)].
+2. The order of `x` factors into primes below `2^47.2` in every row of section 7, and `500,000,003` divides it at `p = 10⁹ + 7` for every `k` (section 8). Pohlig-Hellman reduces the discrete logarithm to these primes; Attack 4 of round two applies it even when `Q` is irreducible.
+3. The norm `N(A) = 2^{ka}` of a public key (section 8) gives `ka` modulo the order of 2 by one discrete logarithm in `F_p^*`. At `k = 3`, where `R` is the field `F_{p⁴}`, the key `A = x^{373309869}` has norm `118,957,670 = 8^{373309869} mod p`, and the discrete logarithm of `118,957,670` to the base 8, in the subgroup of order `500,000,003`, is `373,309,869`: the whole private key, since it is below `500,000,003`. In general the norm gives `a mod 500,000,003`, 29 of the 89 bits of `ord(x)` at `k = 3`. The torus of [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] consists of elements whose norms to `F_{p²}` and `F_{p³}` are 1, so their norm to `F_p` is 1 as well, and this leak is empty there.[^12]
+4. `P(k, ·)` satisfies a linear recurrence (section 1), so any leaked run of `2(k + 1)` terms, twice the window of section 5, determines `Q` by Berlekamp-Massey: Attack 2 of [[castle-cryptography](pages/castle-cryptography.md)].
 
 ## Appearances in Sources
 
@@ -215,6 +253,7 @@ Three facts from this page are the starting points of the attacks:
 
 - [[castle-cryptography](pages/castle-cryptography.md)] - the series: Seminar 1 (this page), the two attacks of Seminar 2, with the CRT split of `R` at `p = 101` worked out in Attack 1, and the fixes of Seminar 3.
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the second round: ElGamal and a signature, the private key recovered by Pohlig-Hellman, and both round-one fixes broken.
+- [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] - the third round, in a torus whose elements have norm 1.
 - [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - the terms characteristic polynomial, irreducible polynomial and discrete logarithm, explained from the `castle_dh` code.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, L)`, `char_k`, its factors for even `k`, and the update of `num_k` and `den_k`, of determinant `−1`.
 - [[finite-fields](pages/finite-fields.md)] - `F_p`, `F_{p^d}` and their cyclic unit groups, the factors of the CRT split.
@@ -239,3 +278,6 @@ Three facts from this page are the starting points of the attacks:
 [^7]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): `det M = −1`; for `k ≤ 8`, `deg num_k ≤ k`, `deg den_k = k + 1`, `den_k(0) = 1` and `gcd(num_k, den_k) = 1` over the rationals; for `k ≤ 7`, `|Res(num_k, den_k)| = 2^{k²}`, and `num_k`, `den_k` follow the three-term update `u_{k+1} = u_{k−1} − 2x·u_k` of [[signed-tower-count](pages/signed-tower-count.md)].
 [^8]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.20 p.76; solution p.193 [synthesis] - for pairwise comaximal ideals `I_1, …, I_n`, `R/∩I_i → ∏ R/I_i` is an isomorphism; in `F_p[x]`, `(f)` and `(g)` are comaximal exactly when `gcd(f, g) = 1`.
 [^9]: Verified by execution (Python 3.11 with SymPy, 2026-10-16) at `p = 10⁹ + 7`: `char_1` and `char_3` are irreducible mod `p` and `char_2 = (x − 2)(x² − x + 2)`; the orders of `x` by removing prime factors from the exponent of the unit group, with the factorizations shown; `log₂` of the orders 31.9, 58.8, 89.4.
+[^10]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): for `k ≤ 7` at `p = 10⁹ + 7` and `p' = 1,000,000,403`, `char_k mod p` is squarefree (its discriminant is nonzero mod `p`) with the factor degrees shown; `|R^*| = ∏ (p^{d_i} − 1)`; the order of `x` by removing prime factors from the exponent `lcm(p^{d_i} − 1)`, each `p^d − 1` factored through its cyclotomic factors `Φ_e(p)`; the rows `k ≤ 3` at `10⁹ + 7` agree with the table above.
+[^11]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): `(−1)^{k+1} char_k(0) = 2^k` for `k ≤ 7`; `ord(2) = 500,000,003` mod `10⁹ + 7` and `1,000,000,402` mod `1,000,000,403`; in every row of the census of section 7 the order of `2^k` divides the order of `x`.
+[^12]: Verified by execution (Python 3.11 with SymPy, 2026-10-25) at `p = 10⁹ + 7`, `Q = char_3`: `A = x^{373309869} = [640326273, 453668323, 34250164, 802108396]`; the determinant of multiplication by `A` is `118,957,670 = 8^{373309869} mod p`; `sympy.discrete_log(p, 118957670, 8) = 373309869`.
