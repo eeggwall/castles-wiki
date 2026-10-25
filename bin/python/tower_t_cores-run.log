@@ -16,4 +16,5 @@ A160747: term j == A271942(6 + j, 5) for all 34 terms
 A063490: term j == A271942(5 + j, 4) for all 41 terms
 A005891: term j == A271942(4 + j, 3) for all 47 terms
 A005408: term j == A271942(3 + j, 2) for all 66 terms
+A001263: Sum_k N(n,k) C(m+n-k-1, n-1) == A271942(n+m, n) for all 11175 b-file terms (n+m <= 150)
 A001263: Deutsch-Elizalde equation == Dyck-by-peaks equation at u = x/(1-y); [x^w] B = Sum_k N(w,k) y^k/(1-y)^w for w <= 8
