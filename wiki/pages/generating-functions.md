@@ -5,7 +5,7 @@ summary: A generating function is a formal power series whose coefficients are t
 tags: [concept, generating-functions, combinatorics, method, symbolic-method]
 sources: [project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-castle-factoring, aocp-generating-functions, generating-functions-topic, analytic-combinatorics-ch1-ogfs, pe502-pell-castle-strip]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Generating functions
@@ -28,6 +28,8 @@ On the wiki, generating functions compute the castle counts `A^e(w, h)` of the [
 
 - the tower count, `E_k(x) = Σ_L T(k, L) x^L = 1/(1 − (k+1)x)`, so `T(k, L) = (k+1)^L`;
 - the signed tower count, `P_k(x) = Σ_L P(k, L) x^L = num_k(x)/den_k(x)`, a rational function with a denominator of degree `k + 1`, built by a polynomial update from `P_0(x) = 1/(1 − x)`. For example `P_1(x) = (1 − 2x)/(1 − 2x + 2x²)`.
+
+Both are cases of one bivariate generating function: with `y` marking each block, `E_k(x, y)` passes from height `k − 1` to `k` by a 2 × 2 matrix, and `y = 1` and `y = −1` give `E_k(x)` and `P_k(x)`. Its limit `E_∞(x, y)`, over towers of every height, solves a quadratic, Deutsch and Elizalde's bargraph equation ([[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)], section *Counts*).
 
 `A^e(w, h)` uses two coefficients of `P_k(x)`, `P(h−1, w)` and `P(h−2, w)` ([[castle-counting-formula](pages/castle-counting-formula.md)], Equation (1)).
 

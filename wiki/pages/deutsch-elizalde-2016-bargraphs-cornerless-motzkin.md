@@ -5,7 +5,7 @@ summary: Deutsch and Elizalde map bargraphs bijectively to cornerless Motzkin pa
 tags: [paper, source, bargraph, motzkin, cornerless, lattice-paths, generating-functions, bijection, statistics, rna-secondary-structure, palindromic, continued-fraction, oeis]
 sources: [deutsch-elizalde-2016-bargraphs-cornerless-motzkin]
 created: 2026-09-26
-updated: 2026-10-17
+updated: 2026-10-25
 ---
 
 # Statistics on bargraphs viewed as cornerless Motzkin paths (Deutsch-Elizalde, 2016)
@@ -36,7 +36,7 @@ The rest of the paper is a toolkit. Whenever a statistic behaves well under `Δ`
 
 - [[motzkin-castles](pages/motzkin-castles.md)] - the hub; this paper supplies its §1 bijection and the A004148 bijection.
 - [[castle-perimeter](pages/castle-perimeter.md)] - semiperimeter `= #U + #H = w + #blocks`, and A082582.
-- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] / [[tower-word-language](pages/tower-word-language.md)] - the tower grammar, which is this paper's cornerless decomposition.
+- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] / [[tower-word-language](pages/tower-word-language.md)] - the tower grammar, which is this paper's cornerless decomposition with a height bound; its height map has equation (2) as fixed point, the castles of height at most `h` as iterates, and at `t = 1` it is the area recursion of §3.14.
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] - the tower word as a peakless-valleyless Motzkin path.
 - [[prime-castles](pages/prime-castles.md)] - castles with no height-1 column, counted by semi-perimeter through the row-deletion bijection.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - reverse Ferrers and palindromic castles, with GFs.

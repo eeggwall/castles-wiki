@@ -5,7 +5,7 @@ summary: Flajolet and Sedgewick's dictionary from combinatorial specifications t
 tags: [concept, generating-functions, symbolic-method, admissible-construction, specification, ogf]
 sources: [analytic-combinatorics-ch1-ogfs]
 created: 2026-09-15
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Symbolic method
@@ -47,7 +47,7 @@ This is one route to a rational generating function. The other runs through a li
 ## The castles
 
 - **The towers.** The towers of height at most `k` on a base of length `L` are given by their column heights in `{0, …, k}^L` ([[castle-counting-formula](pages/castle-counting-formula.md)], the section *Tower count*), so as a class they are `SEQ(Z + Z + ⋯ + Z)`, with `k + 1` copies of `Z`, one for each height of a column, and `E_k(x) = Σ_L T(k, L) x^L = 1/(1 − (k+1)x)`.
-- **The tower grammar.** The [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] `E_k → empty | R E_k | U V D (empty | R E_k)` is a recursive specification in which each `R` is an atom and `U` and `D` have size 0. Equation (2) of [[castle-counting-formula](pages/castle-counting-formula.md)] is its translation by the rules for unions and products. The signed count `P_k(x)` weights each block by `−1`, so it is a weighted sum over the class rather than the generating function of a class; Equation (3) there is the same translation with a factor `−1` on the production `U V D`.
+- **The tower grammar.** The [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] `E_k → empty | R E_k | U V D (empty | R E_k)` is a recursive specification in which each `R` is an atom and `U` and `D` have size 0. Equation (2) of [[castle-counting-formula](pages/castle-counting-formula.md)] is its translation by the rules for unions and products. The signed count `P_k(x)` weights each block by `−1`, so it is a weighted sum over the class rather than the generating function of a class; Equation (3) there is the same translation with a factor `−1` on the production `U V D`. With a second variable `y` marking each block, the translation is one equation for the class graded by width and blocks, and solving it for `E_k` gives a Möbius map in `E_{k−1}` whose cases `y = 1` and `y = −1` are Equations (2) and (3) ([[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)], section *Counts*).
 - **Regular languages.** At fixed height the tower words form a regular language: a finite automaton that tracks the height and the previous letter recognizes them ([[tower-word-language](pages/tower-word-language.md)]), so their generating function is rational, as `E_k(x)` and `P_k(x)` are.
 - **Stack polyominoes.** The stack polyominoes, whose column heights weakly rise and then weakly fall, are the convex castles counted by area. Example I.8 specifies them by the first tallest column, `Z^k`, with a partition into parts at most `k − 1` before it and a partition into parts at most `k` after it ([[stack-polyomino-gf](pages/stack-polyomino-gf.md)]).
 

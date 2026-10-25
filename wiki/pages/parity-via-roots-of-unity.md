@@ -5,7 +5,7 @@ summary: Counting towers or castles by block count modulo m. With ω = e^{2πi/m
 tags: [concept, castle, parity, roots-of-unity, character, pedagogy]
 sources: [project-euler-502-solution, project-euler-502-representations]
 created: 2026-09-14
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Generalizing the parity sign (roots of unity)
@@ -58,7 +58,7 @@ Write `P_{j,k}(x) = Σ_L P_j(k, L) x^L`, and `t = ω^j` for the weight of one bl
 P_{j,k}(x)  =  (1 − t + t·P_{j,k−1}(x)) / (1 − x(1 − t) − t·x·P_{j,k−1}(x)),        P_{j,0}(x)  =  1/(1 − x).        (4)
 ```
 
-At `t = 1` this is `E_k(x) = E_{k−1}(x)/(1 − x·E_{k−1}(x))`, and at `t = −1` it is `P_k(x) = (2 − P_{k−1}(x))/(1 − 2x + x·P_{k−1}(x))`.
+At `t = 1` this is `E_k(x) = E_{k−1}(x)/(1 − x·E_{k−1}(x))`, and at `t = −1` it is `P_k(x) = (2 − P_{k−1}(x))/(1 − 2x + x·P_{k−1}(x))`. Equation (4) is the height map of the tower grammar with block variable `y = t`, so `P_{j,k} = E_k(x, ω^j)`, and numerator and denominator advance by the matrix `[[t, 1 − t], [−xt, 1 − x + xt]]`, of determinant `t` ([[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)], section *Counts*).
 
 *The case `k = 1`.* Towers of height at most 1 are binary strings, and their blocks are the runs of 1s. The strings of length `L` with `r` runs number `C(L+1, 2r)`, one for each choice of the `2r` run ends among the `L + 1` gaps between and around the columns. With `s` either square root of `ω^j`,
 

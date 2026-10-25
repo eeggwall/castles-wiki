@@ -5,7 +5,7 @@ summary: Flajolet's theorem identifies the Jacobi continued fraction with the ge
 tags: [concept, castle, tower-word, continued-fraction, flajolet, motzkin, algebraic, oeis, generating-functions]
 sources: [project-euler-502-representations]
 created: 2026-09-14
-updated: 2026-10-22
+updated: 2026-10-25
 ---
 
 # Continued fractions of the tower word
@@ -66,7 +66,7 @@ With the height bounded by `k` and `x` marking each `R`, the grammar gives `E_k(
 1/E_k(x)  =  1/E_{k−1}(x) − x,
 ```
 
-which telescopes from `1/E_0(x) = 1 − x` to `1/E_k(x) = 1 − (k+1)x`: each row of height subtracts one `x`. So `T(k, L) = (k+1)^L`. Counting by width needs the conditions on `UD` and `DU`, since without them the factors `UD` add length but no `R`, and each `L` has infinitely many words. The Motzkin paths of height at most `k`, counted by length, instead nest as the convergents `M_k(z)` of the Motzkin J-fraction (section *Flajolet: continued fractions count paths*). Without a height bound, the tower words with `L` letters `R` are infinite in number, while the tower words and the Motzkin paths counted by length have the algebraic generating functions `E(z)` and `M(z)`.
+which telescopes from `1/E_0(x) = 1 − x` to `1/E_k(x) = 1 − (k+1)x`: each row of height subtracts one `x`. So `T(k, L) = (k+1)^L`. With `y` marking each block as well, the step is `E_k = 1/(1/(1 − y + y E_{k−1}) − x)`, a Möbius map, so the `E_k(x, y)` are the convergents of the periodic continued fraction `E = 1/(−x + 1/(1 − y + y E))`; at `y = 1` the inner level is `E_{k−1}` itself and the step is the translation above ([[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)], section *Counts*). Counting by width needs the conditions on `UD` and `DU`, since without them the factors `UD` add length but no `R`, and each `L` has infinitely many words. The Motzkin paths of height at most `k`, counted by length, instead nest as the convergents `M_k(z)` of the Motzkin J-fraction (section *Flajolet: continued fractions count paths*). Without a height bound, the tower words with `L` letters `R` are infinite in number, but finite once the blocks are fixed, with generating function `E_∞(x, y)`, the fixed point of that continued fraction, while the tower words and the Motzkin paths counted by length have the algebraic generating functions `E(z)` and `M(z)`.
 
 ## Appearances in Sources
 

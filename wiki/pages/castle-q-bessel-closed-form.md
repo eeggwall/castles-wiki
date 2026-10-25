@@ -5,7 +5,7 @@ summary: "Graded by width u, blocks x and area q, the tower grammar gives E_∞(
 tags: [analysis, castle, area, blocks, perimeter, q-analog, q-series, q-bessel, q-catalan, parallelogram-polyomino, grammar, functional-equation, q-shift, parity, sign, asymptotics, narayana, descents, q-binomial]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes, prellberg-brak-1995-cluster-models, column-convex-polygon-enumeration, project-euler-502-representations, aocp-generating-partitions]
 created: 2026-09-23
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # Castles by width, blocks and area
@@ -35,6 +35,8 @@ Substituting `E_∞(uq) = B(uq)/(1 − uq B(uq))` into Equation (1) gives a Möb
 ```
 B(u)  =  ( (x − (1 − x) uq) B(uq) + (1 − x) ) / ( 1 − uq B(uq) ).                         (2)
 ```
+
+At `q = 1` Equation (1) is the fixed-point equation of the height map of the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] (section *Counts*), with `u` for width and `x` for blocks, and the matrix of Equation (2) has the trace `1 + x − u + ux` and the determinant `x` of that height step. The shift `u → uq` is what replaces its powers by q-series.
 
 Write `B = N/M`, with `(N, M)(u) = [[x − (1 − x)uq, 1 − x], [−uq, 1]] (N, M)(uq)`. With `n_k`, `m_k` the coefficients of `u^k` in `N`, `M`, the two rows give `m_k (1 − q^k) = −q^k n_{k−1}` and `n_k (1 − x q^k) = −(1 − x) q^k n_{k−1} + (1 − x) q^k m_k`, so `n_k = −(1 − x) q^k n_{k−1} / ((1 − q^k)(1 − x q^k))`. With `n_0 = m_0 = 1` and `(a)_k = (1 − a)(1 − aq)⋯(1 − aq^{k−1})`:
 
