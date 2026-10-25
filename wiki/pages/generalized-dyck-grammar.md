@@ -1,7 +1,7 @@
 ---
 title: Tower grammar
 category: Concepts
-summary: The grammar E_k → empty | R E_k | U V D (empty | R E_k) of the words in U, R, D that write towers of height at most k, with V the nonempty towers of height at most k − 1 on a block, which the Project Euler 502 notes call the generalized Dyck grammar. It is the first-return grammar of Motzkin paths, M → empty | R M | U M D M, with one cut for each factor a tower word excludes: an empty interior makes UD, and a tail starting with U makes DU. It generates each tower word exactly once, without the height bound it is Deutsch and Elizalde's decomposition of cornerless Motzkin paths, and its generating functions give the tower count T(k, L) = (k+1)^L and the signed tower count P(k, L).
+summary: The grammar E_k → empty | R E_k | U V D (empty | R E_k) of the words in U, R, D that write towers of height at most k, with V the nonempty towers of height at most k − 1 on a block, which the Project Euler 502 notes call the generalized Dyck grammar. It is the first-return grammar of Motzkin paths, M → empty | R M | U M D M, with one cut for each factor a tower word excludes: an empty interior makes UD, and a tail starting with U makes DU. It generates each tower word exactly once, without the height bound it is Deutsch and Elizalde's decomposition of cornerless Motzkin paths, and its generating function by width and blocks is a Möbius map in the height, one 2 × 2 matrix whose specializations y = 1 and y = −1 give the tower count T(k, L) = (k+1)^L and the signed tower count P(k, L).
 tags: [concept, castle, motzkin, cornerless, dyck, grammar, first-return, generating-functions]
 sources: [project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, dyck-words, deutsch-elizalde-2016-bargraphs-cornerless-motzkin, prodinger-2025-cornerless-motzkin-bargraphs]
 created: 2026-09-13
@@ -25,6 +25,8 @@ Two facts about tower words are used throughout:[^3]
 
 `URDRURD` has two `D`s and two blocks. The no-overhang rule needs no separate statement: a block is written between the `U` and the `D` of the block it rests on, so it lies within that block's columns.[^5]
 
+Conversely, the heights at which the `R`s stand determine the word, since between two consecutive `R`s a change of direction would make `UD` or `DU` ([[tower-word-language](pages/tower-word-language.md)], *Lemma*). So the tower words of height at most `k` on a base of length `L` correspond to the tuples in `{0, …, k}^L` and number `(k+1)^L`; [[castle-counting-formula](pages/castle-counting-formula.md)], section *Tower count*, gives this proof and two others.
+
 ## The grammar
 
 Let `E_k` be the set of words of towers of height at most `k`. A tower word is empty, or starts with a gap column, or starts with a block:[^6]
@@ -44,8 +46,6 @@ The alternatives read:[^7]
 `V` is a nonempty word in `E_{k−1}`, one row lower because the block uses one row. `V` nonempty keeps the width of the block positive, which excludes `UD`, and the tail `empty | R E_k` keeps two blocks of a row from touching, which excludes `DU`; this is the same-row gap rule.[^7] In the example, `URDRURD` parses as the block `U R D`, with `V = R`, followed by the tail `R E_k` with `E_k = URD`, a second block with `V = R` and an empty tail.
 
 The grammar generates each tower word exactly once: the first letter decides the alternative, and the `D` that closes `U V D` is the first return to the base, and the section *From the Motzkin grammar* proves it. For `k ≤ 3` and `L ≤ 5`, the words it generates are the `(k+1)^L` words of the towers of height at most `k` on a base of length `L`, each with one parse.[^8]
-
-**Counts.** Let `x` mark each `R`, so that towers on a base of length `L` have weight `x^L`. The grammar gives the generating function `E_k(x)` of the tower count `T(k, L)` and, with each block weighted by `−1`, the generating function `P_k(x)` of the signed tower count `P(k, L)` ([[castle-counting-formula](pages/castle-counting-formula.md)], Equations (2) and (3)). Solving them gives `T(k, L) = (k+1)^L` and the recurrence of `P_k(x)` in `k`.
 
 ## From the Motzkin grammar
 
@@ -68,11 +68,39 @@ The steep Dyck words, with no factor `x x̄ x`, come from the Dyck grammar the s
 
 Without the height bound, the cut grammar is the decomposition Deutsch and Elizalde give for cornerless Motzkin paths, which "parallels the standard recursive decomposition of Motzkin paths": a nonempty path is `HA`, `UA′D` or `UA′DHA` with `A′` nonempty, where `H` is `R` and `A′` is `V` ([[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]).[^13] Prodinger counts Motzkin paths with a weight on each `UD` and a weight on each `DU`, so that both weights 0 give the cornerless paths and both weights 1 all Motzkin paths ([[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)]).[^14] In the grammar these are weights on the two cuts, one on each empty interior and one on each tail that starts with `U`.[^11]
 
+## Counts
+
+Let `x` mark each `R` and `y` each block, so that towers on a base of length `L` with `b` blocks have weight `x^L y^b`, and let `E_k(x, y)` be the sum of the weights of the towers of height at most `k`. Each production gives one term, as in the [[symbolic-method](pages/symbolic-method.md)]: `1` for the empty word, `x E_k` for a gap column and the rest, and `y (E_{k−1} − 1)(1 + x E_k)` for a block, its nonempty towers `V` and its tail. So
+
+```
+E_k  =  1 + x E_k + y (E_{k−1} − 1)(1 + x E_k),        E_0  =  1/(1 − x),
+```
+
+and solving for `E_k`,
+
+```
+E_k  =  (y E_{k−1} + 1 − y) / (−xy E_{k−1} + 1 − x + xy).
+```
+
+This is a linear fractional (Möbius) map `E ↦ (aE + b)/(cE + d)` applied to `E_{k−1}`, so the height step is one 2 × 2 matrix acting on the numerator and the denominator:[^15]
+
+```
+A  =  [  y        1 − y    ]        det A  =  y,
+      [ −xy    1 − x + xy  ]
+
+(num_k, den_k)  =  A^k (1, 1 − x),        E_k  =  num_k / den_k.
+```
+
+The two counts of [[castle-counting-formula](pages/castle-counting-formula.md)] are its specializations:[^16]
+
+- At `y = 1` the equation is Equation (2) there, and `A = [[1, 0], [−x, 1]]` gives `1/E_k = 1/E_{k−1} − x`, so `E_k = 1/(1 − (k+1)x)` and `T(k, L) = (k+1)^L`.
+- At `y = −1` the equation is Equation (3) there, and `A = [[−1, 2], [x, 1 − 2x]]` is the update `num_k = 2 den_{k−1} − num_{k−1}`, `den_k = (1 − 2x) den_{k−1} + x num_{k−1}` of Equation (5), so `E_k(x, −1)` is the generating function `P_k(x)` of the signed tower count `P(k, L)`.
+
 ## Independence of the towers on different blocks
 
-In the production `U V D (empty | R E_k)`, the towers `V` on a block come from their own copy of `E_{k−1}`, independent of the rest of the word. So the towers on different blocks of a row are independent, and the gap between two blocks of a row separates the towers above them as well.[^15] This independence makes the count multiply over the blocks, which is the induction proof of `T(k, L) = (k+1)^L` ([[castle-counting-formula](pages/castle-counting-formula.md)], section *Tower count*).
+In the production `U V D (empty | R E_k)`, the towers `V` on a block come from their own copy of `E_{k−1}`, independent of the rest of the word. So the towers on different blocks of a row are independent, and the gap between two blocks of a row separates the towers above them as well.[^17] This independence makes the count multiply over the blocks, which is the induction proof of `T(k, L) = (k+1)^L` ([[castle-counting-formula](pages/castle-counting-formula.md)], section *Tower count*).
 
-A Dyck word in `U` and `D` alone records how the blocks nest and their left-to-right order, but not their widths or the gaps between them. The letter `R` records the columns: the towers of height 0 on a base of length `L` are written `R^L`, and the gaps between neighboring blocks are `R`s. The cycle-forest form, which matches each `U` with the `D` that closes it and drops the `R`s, keeps only the nesting of the blocks and does not determine the towers ([[castle-representations](pages/castle-representations.md)]).[^16] The towers `(1, 0, 1)`, written `URDRURD`, and `(1, 1, 0, 0, 1)`, written `URRDRRURD`, have the same cycle forest, two blocks side by side.
+A Dyck word in `U` and `D` alone records how the blocks nest and their left-to-right order, but not their widths or the gaps between them. The letter `R` records the columns: the towers of height 0 on a base of length `L` are written `R^L`, and the gaps between neighboring blocks are `R`s. The cycle-forest form, which matches each `U` with the `D` that closes it and drops the `R`s, keeps only the nesting of the blocks and does not determine the towers ([[castle-representations](pages/castle-representations.md)]).[^18] The towers `(1, 0, 1)`, written `URDRURD`, and `(1, 1, 0, 0, 1)`, written `URRDRRURD`, have the same cycle forest, two blocks side by side.
 
 ## Appearances in Sources
 
@@ -87,7 +115,7 @@ A Dyck word in `U` and `D` alone records how the blocks nest and their left-to-r
 
 - [[urd-step-strings](pages/urd-step-strings.md)] - the step-string encoding of castles over which the grammar is defined.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] - the generating functions `E_k(x)` and `P_k(x)` read off the grammar, and the formula for `A^e(w, h)`.
-- [[tower-word-language](pages/tower-word-language.md)] - the tower words as a language of Motzkin paths (`U`, `R`, `D` as steps `+1`, `0`, `−1`) without `UD` and `DU`, and the proof that the grammar is unambiguous.
+- [[tower-word-language](pages/tower-word-language.md)] - the tower words as a language of Motzkin paths (`U`, `R`, `D` as steps `+1`, `0`, `−1`) without `UD` and `DU`, the lemma that the heights of the `R`s determine a tower word, and the language at fixed height (regular) and without a bound (algebraic).
 - [[motzkin-numbers](pages/motzkin-numbers.md)] - the Motzkin paths and the first-return recurrence that the two cuts restrict.
 - [[lattice-paths](pages/lattice-paths.md)] - shortest lattice paths written as step strings, where the `U`/`R`/`D` encoding comes from.
 - [[symbolic-method](pages/symbolic-method.md)] - the translation of a recursive specification such as `E_k = ε + R·E_k + U·V·D·(ε + R·E_k)` into an equation for its ordinary generating function, as in [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)].
@@ -111,5 +139,7 @@ A Dyck word in `U` and `D` alone records how the blocks nest and their left-to-r
 [^12]: [[dyck-words](pages/dyck-words.md)] §"Steep Dyck Words" L130-145 - "D′ → x x̄ | x x̄ D′ | x D′ x̄ | x D′ x̄ D′", "The forbidden x x̄ x sequence is produced only by the second rule", "S → x x̄ | x S x̄ | x S x̄ S".
 [^13]: [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] p.2 §2 L89-92 - "Cornerless Motzkin paths admit a very simple decomposition that parallels the standard recursive decomposition of Motzkin paths", "every nonempty path in M can be decomposed uniquely as HA, U A′ D, or U A′ DHA, where A is an arbitrary path in M and A′ is an arbitrary nonempty path".
 [^14]: [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] p.3 §1 L117-120 - "enumeration of Motzkin paths where peaks resp. valleys may occur but are counted using extra variables σ and τ", "if both variables are zero, we are in the cornerless world, and if σ = τ = 1, we have ordinary Motzkin paths".
-[^15]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Sub-block independence" L5 - "Two sibling blocks in the same row generate towers that never interact (the parent-row gap is automatic)."
-[^16]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Cycle-forest form" L208-212 - "Match each U with the D that closes it (stack matching). Each matched pair is a block", "The forest is only the vertical nesting skeleton: it discards the R steps, so it does not recover the tower word", "Above a length-L base the tower with no blocks is R^L, a simple horizontal run with no vertical steps."
+[^15]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): `det A = y`; for `k ≤ 5` and `L ≤ 7`, the coefficient of `x^L` in `num_k / den_k` with `(num_k, den_k) = A^k (1, 1 − x)` equals `Σ y^{blocks}` over the towers in `{0, …, k}^L`; at `y = 1`, `E_k = 1/(1 − (k+1)x)` for `k ≤ 5`; at `y = −1`, `A` reproduces Equation (5) of the counting formula for `k ≤ 8`.
+[^16]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Unsigned count" L282-303, §"Signed count" L316-340 - "E_k = 1 + x E_k + (E_{k-1} - 1)(1 + x E_k)", "E_k = 1/(1 - (k+1)x)", "Weight each block, that is each D, by -1", "P_k = 1 + x P_k - (P_{k-1} - 1)(1 + x P_k)", "num_k = 2 den_{k-1} - num_{k-1}, den_k = den_{k-1}(1-2x) + x num_{k-1}".
+[^17]: [[project-euler-502-observations](pages/project-euler-502-observations.md)] §"Sub-block independence" L5 - "Two sibling blocks in the same row generate towers that never interact (the parent-row gap is automatic)."
+[^18]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"Cycle-forest form" L208-212 - "Match each U with the D that closes it (stack matching). Each matched pair is a block", "The forest is only the vertical nesting skeleton: it discards the R steps, so it does not recover the tower word", "Above a length-L base the tower with no blocks is R^L, a simple horizontal run with no vertical steps."
