@@ -5,7 +5,7 @@ summary: Granger and Vercauteren give an index calculus algorithm that works dir
 tags: [paper, source, cryptography, cryptanalysis, discrete-logarithm, index-calculus, algebraic-torus, torus, xtr, ceilidh, luc, pollard-rho, finite-field, cyclotomic, compression]
 sources: [granger-vercauteren-2005-dlp-algebraic-tori]
 created: 2026-10-09
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # On the Discrete Logarithm Problem on Algebraic Tori (Granger-Vercauteren, 2005)
@@ -45,7 +45,7 @@ By Lemma 1 (from Rubin and Silverberg) it is isomorphic to the subgroup of `F_{q
 
 ## The castle reading
 
-The castle torus of [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] is the order-`p² − p + 1` subgroup of `F_{p^6}`, the castle ring `F_p[x]/(char_5)` with `char_5` irreducible mod `p`. In this paper's notation it is `T_6(F_p)`, the case `q = p` prime and `m = 1`.
+The castle torus of [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] is the order-`p² − p + 1` subgroup of `F_{p^6}`, the castle ring `F_p[x]/(char_5)` with `char_5` irreducible mod `p`, which holds for a density `1/6` of primes, all with `p ≡ 3 (mod 4)` (round three, *Choosing p*). In this paper's notation it is `T_6(F_p)`, the case `q = p` prime and `m = 1`.
 
 - **The attack does not apply.** This is the prime-field case the paper exempts.[^9][^10] In Table 2 the `m = 1` column is slower than Pollard rho in every row, and the gap grows with the field (25 against 18 bits of time at 200-bit fields, 161 against 69 at 1000 bits).[^11] Round three's full-size field has 3072 bits, beyond the table.
 - **The subfield reduction.** Round three raises a torus element to `p^4 + p^2 + 1` and to `p^3 + 1`, the norm maps to `F_{p^2}` and `F_{p^3}`, and gets 1, since both exponents are multiples of `p² − p + 1`. That step is the norm-map reduction of §2.1: the subfields give the discrete log only modulo their orders, and the torus part remains.[^6] By Lemma 1, a torus element of prime order does not lie in a proper subfield.[^3]

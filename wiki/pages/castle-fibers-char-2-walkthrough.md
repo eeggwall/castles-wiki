@@ -22,7 +22,7 @@ The signed tower count `P(k, L)` ([[signed-tower-count](pages/signed-tower-count
 P(2, L) = 1, 1, 3, 9, 19, 33, 59, 121, 259, 529, 1035, 2025        P(L) = 3P(L−1) − 4P(L−2) + 4P(L−3)
 ```
 
-Its characteristic polynomial is `char_2 = x³ − 3x² + 4x − 4 = (x − 2)(x² − x + 2)`.[^1] In the ring `A = Z[x]/(char_2)` of integer polynomials with `x³` replaced by `3x² − 4x + 4`, multiplication by `x` is one step of the recurrence ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 3).
+Its characteristic polynomial is `char_2 = x³ − 3x² + 4x − 4 = (x − 2)(x² − x + 2)`.[^1] In the ring `A = Z[x]/(char_2)` of integer polynomials with `x³` replaced by `3x² − 4x + 4`, multiplication by `x` is one step of the recurrence ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 2).
 
 Reducing mod a prime `p` gives the **fiber** `A/pA = F_p[x]/(char_2 mod p)`, whose points are the distinct irreducible factors of `char_2 mod p` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)], section 1). Each stop reads one fiber.
 
@@ -175,7 +175,7 @@ def fiber_board(k, primes):
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the two sectors of Stop 6, with A107920 as the odd sector at `k = 2`.
 - [[finite-fields](pages/finite-fields.md)] - the orders of the roots in `F_p^*` and `F_{p²}^*`, and the rule `p ≡ 1 (mod 4)` for `char_1`.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the periods of `A^e` mod 3, 5 and 7, built from the orders of `x` in these fibers, and the double root of `char_2 mod 7`.
-- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `F_p[x]/(char_2)` as a cryptosystem, with its CRT projections at `p = 101`.
+- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `F_p[x]/(char_2)` as a cryptosystem; its CRT projections at `p = 101` are worked in Attack 1 of [[castle-cryptography](pages/castle-cryptography.md)].
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the seminar that derives `T(k, L) = (k + 1)^L` and the signed count `P(k, L)`.
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the seminar on the parity-sector split of `P(6, ·)` and Hardin's word counts.
 - [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - `char_k`, `x_order`, `reduced_period`, `frobenius_profile`, `fiber_ideal_count`, `sector_idempotent` and `x_inverse`.

@@ -107,8 +107,8 @@ By column:
 
 - `char_1 = (x − 1)^2 + 1` has discriminant `−4`. It splits mod `p` exactly when `−1` is a square mod `p`, which by Euler's criterion means `p ≡ 1 (mod 4)`: `p = 5, 13, 17, 29, 37, 41, 53, 61, 73, 89, 97` in the table.
 - `char_2 = (x − 2)(x^2 − x + 2)`. The quadratic has discriminant `−7` and splits mod `p ≠ 7` exactly when `−7` is a square mod `p`, which by quadratic reciprocity means `p ≡ 1, 2, 4 (mod 7)`: `p = 11, 23, 29, 37, 43, 53, 67, 71, 79` in the table. At `p = 7` it is the square `(x + 3)^2`.
-- `char_3` has Galois group the dihedral group `D_4` of order 8 (computed). Its elements have cycle types `1|1|1|1` (one element), `2|2` (three), `1|1|2` (two) and `4` (two), so the four signatures occur with densities `1/8`, `3/8`, `1/4` and `1/4`. `D_4` has no 3-cycle, so `1|3` never occurs. Over the primes `3 ≤ p < 3000` other than 5, the proportions are `0.105`, `0.379`, `0.262` and `0.255` (computed). At `p = 5` the signature is `1^2|2`.
-- `char_5` splits completely mod no prime in the table. At `p = 37` it has four linear factors and a quadratic, at `p = 61, 89, 97` three linear factors and a cubic. The commonest signatures are `2|4` (seven primes) and `6`, irreducible (six primes).
+- `char_3` has Galois group the dihedral group `D_4` of order 8 (computed). Its elements have cycle types `1|1|1|1` (one element), `2|2` (three), `1|1|2` (two) and `4` (two), so the four signatures occur with densities `1/8`, `3/8`, `1/4` and `1/4`. `D_4` has no 3-cycle, so `1|3` never occurs. Over the primes `3 ≤ p < 3000` other than 5, the proportions are `0.105`, `0.379`, `0.262` and `0.255` (computed). At `p = 5` the signature is `1^2|2`. The signature `4` occurs only at `p ≡ 3 (mod 4)`: for odd `k`, `char_k = g·ḡ` over `Q(i)` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]), so `char_3` splits into two quadratics whenever `i` lies in `F_p`.
+- `char_5` splits completely mod no prime in the table. At `p = 37` it has four linear factors and a quadratic, at `p = 61, 89, 97` three linear factors and a cubic. The commonest signatures are `2|4` (seven primes) and `6`, irreducible (six primes). Its Galois group has order 72 and two blocks of three roots, the cubic factors of `char_5` over `Q(i)` ([[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)]), and its cycle types give the densities `1/4` for `2|4`, `1/6` each for `6` and `1|2|3`, `1/8` for `1|1|2|2`, `1/12` each for `2|2|2` and `1|1|1|1|2`, `1/18` each for `1|1|1|3` and `3|3`, and `1/72` for `1^6`, against `0.259`, `0.157`, `0.203`, `0.110`, `0.093`, `0.063`, `0.063`, `0.037` and `0.014` over the 428 primes `3 ≤ p < 3000` other than 53. Every prime at which `char_5` is irreducible is `≡ 3 (mod 4)`.[^g72]
 
 Every repeated factor in the table occurs at a prime dividing the discriminant, as listed in the section *Discriminants: the primes with repeated factors*.
 
@@ -125,7 +125,7 @@ M - 1 = 2 * 500000003     (500000003 is prime)
 M + 1 = 2^3 * 3^2 * 7 * 109^2 * 167
 ```
 
-`M − 1 = 2q` with `q = 500000003` prime, so every element of `F_M^*` has order 1, 2, `q` or `2q`.
+`M − 1 = 2q` with `q = 500000003` prime, so every element of `F_M^*` has order 1, 2, `q` or `2q`. The norm of `x` in `F_M[x]/(char_k)` is `2^k`, of order `q`, so `q` divides `per(char_k)` for every `k` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 8).
 
 `char_k mod M` for `k = 1, …, 7`:
 
@@ -141,17 +141,17 @@ M + 1 = 2^3 * 3^2 * 7 * 109^2 * 167
 
 So `per(char_6)` mod `M` is the lcm of `q` and the orders of the roots of the two quadratic factors, each dividing `M^2 − 1`.
 
-Upper bounds for `per(char_k)` mod `M`, the lcm of `M^{d_i} − 1` over the factor degrees `d_i`:
+Upper bounds for `per(char_k)` mod `M`, the lcm of `M^{d_i} − 1` over the factor degrees `d_i`, and the exact periods, the orders of `x` in the census of [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] (section 7):[^per-m]
 
-| `k` | bound |
-|---|---|
-| 1 | `M^2 − 1 ~ 10^{18}` |
-| 2 | `M^2 − 1 ~ 10^{18}` |
-| 3 | `M^4 − 1 ~ 10^{36}` |
-| 4 | `lcm(M^2 − 1, M^3 − 1) = (M^2 − 1)(M^2 + M + 1) ~ 10^{36}` |
-| 5 | `M^4 − 1 ~ 10^{36}` |
-| 6 | `M^2 − 1 ~ 10^{18}` (three linear and two quadratic factors) |
-| 7 | `M^6 − 1 ~ 10^{54}` (factors of degree 2 and 6) |
+| `k` | bound | `per(char_k)` |
+|---|---|---|
+| 1 | `M^2 − 1 ~ 10^{18}` | `4(M − 1) ≈ 2^{31.9}` |
+| 2 | `M^2 − 1 ~ 10^{18}` | `(M^2 − 1)/2 ≈ 2^{58.8}` |
+| 3 | `M^4 − 1 ~ 10^{36}` | the bound divided by `1,250,000,010`, `≈ 2^{89.4}` |
+| 4 | `lcm(M^2 − 1, M^3 − 1) = (M^2 − 1)(M^2 + M + 1) ~ 10^{36}` | the bound divided by `333,333,336`, `≈ 2^{91.3}` |
+| 5 | `M^4 − 1 ~ 10^{36}` | the bound divided by `25`, `≈ 2^{114.9}` |
+| 6 | `M^2 − 1 ~ 10^{18}` (three linear and two quadratic factors) | `(M^2 − 1)/2 ≈ 2^{58.8}`, the same as `per(char_2)` |
+| 7 | `M^6 − 1 ~ 10^{54}` (factors of degree 2 and 6) | `M^6 − 1`, the bound |
 
 `disc(char_k) mod M` is `1000000003, 999999895, 20480, 21037056, 183367454, 996996034, 176533116, 740488628` for `k = 1, …, 8`, and no `disc(char_k)` with `k ≤ 30` is divisible by `M` (computed). So `char_k mod M` is squarefree for every `k ≤ 30`, and its period is the lcm of the orders of its roots.
 
@@ -174,7 +174,7 @@ The ring `R = F_p[x]/(char_k)` is the ring of [[castle-cryptography-ring](pages/
 R^*  ≅  ∏_i Z/(p^{d_i} − 1),
 ```
 
-with one cyclic factor per irreducible factor `g_i` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)]), and `per(char_k)` is the lcm of the orders of `x` in the fields `F_p[x]/(g_i)`. A factor `g` of multiplicity `m ≥ 2` contributes `F_{p^d}^* × (1 + (g)/(g^m))`, a unit group times a `p`-group, and the component of `x` in the `p`-group has order `p^{⌈log_p m⌉}` (section *The period from the factorization*).
+with one cyclic factor per irreducible factor `g_i`, and exactly as many invariant factors, since `p − 1` divides every `p^{d_i} − 1` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 2), and `per(char_k)` is the lcm of the orders of `x` in the fields `F_p[x]/(g_i)`. A factor `g` of multiplicity `m ≥ 2` contributes `F_{p^d}^* × (1 + (g)/(g^m))`, a unit group times a `p`-group, and the component of `x` in the `p`-group has order `p^{⌈log_p m⌉}` (section *The period from the factorization*).
 
 At `M`: for `k = 2`, `R^* ≅ Z/(M − 1) × Z/(M^2 − 1)`; for `k = 6`, three copies of `Z/(M − 1)` from the linear factors and two of `Z/(M^2 − 1)` from the quadratic factors.
 
@@ -186,7 +186,7 @@ At `M`: for `k = 2`, `R^* ≅ Z/(M − 1) × Z/(M^2 − 1)`; for `k = 6`, three 
 
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the periods of `A^e(·, h)` mod 3, 5, 7, built from `per(char_k)`.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `char_k` over `Z`, its constant term `(−1)^{k+1} 2^k`, and its irreducibility for odd `k`.
-- [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the period of `P(k, ·) mod p` as the order of `x` when `num_k` and `den_k` are coprime mod `p`.
+- [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the period of `P(k, ·) mod p` as the order of `x`, since `num_k` and `den_k` are coprime mod every prime.
 - [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the fibers of `Z[x]/(char_k)` over each prime, and the nilradical of the fat fibers.
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the unit group of `R` in invariant-factor form.
 - [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `R` as a group for discrete-logarithm cryptography.
@@ -220,3 +220,7 @@ At `M`: for `k = 2`, `R^* ≅ Z/(M − 1) × Z/(M^2 − 1)`; for `k = 6`, three 
                 a, b = [int(v) % M for v in sp.Poly(g, x, modulus=M).all_coeffs()]
                 print(f'k={k}: root {(-b * pow(a, -1, M)) % M}')
     ```
+
+[^per-m]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): for `k ≤ 7`, the factor degrees of `char_k mod M`, the bound `lcm(M^{d_i} − 1)` factored through the cyclotomic factors `Φ_e(M)`, and the order of `x` in `F_M[x]/(char_k)` by removing prime factors from the bound; each order is a multiple of `q = 500000003`.
+
+[^g72]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): `galois_group(char_5)` has order 72 (`S6TransitiveSubgroups.G72`) with cycle-type counts 18, 12, 12, 9, 6, 6, 4, 4, 1 for `2|4`, `6`, `1|2|3`, `1|1|2|2`, `2|2|2`, `1|1|1|1|2`, `1|1|1|3`, `3|3`, `1^6`; the signatures of `char_5 mod p` for the 428 primes `3 ≤ p < 3000` other than 53, none irreducible with `p ≡ 1 (mod 4)`; the signature `4` of `char_3` at 109 primes `3 ≤ p < 3000`, none with `p ≡ 1 (mod 4)`.

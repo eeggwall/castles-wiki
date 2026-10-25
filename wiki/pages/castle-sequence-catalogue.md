@@ -210,7 +210,7 @@ The signed tower count `P(k, L) = Σ (−1)^{blocks}` in the base length `L` at 
 | `P(5, L)` | `1, 0, −6, −36, −140, −384, −680, −112, 5040, …` | 6 | `2.892` (modulus) | - |
 | `P(6, L)` | `1, 1, 7, 49, 231, 833, 2583, 7889, 26503, …` | 7 | `2ψ² = 3.5098` | - (`char_6 = (x³−4x²+4x−8)(x⁴−3x³+8x²−4x+8)`, largest root `2ψ²`, [[plastic-number](pages/plastic-number.md)]) |
 
-*(The characteristic polynomials `char_k` are irreducible for odd `k ≤ 31` and have two irreducible factors for even `k ≤ 14` (computed). The denominators have the closed form `den_k = A·r_+^k + B·r_−^k` with `r_± = −x ± √(x²+1)`, on [[generating-function-gallery](pages/generating-function-gallery.md)].)*
+*(The characteristic polynomials `char_k` are irreducible for odd `k ≤ 31`, each proved by a prime mod which it stays irreducible ([[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)]), and have two irreducible factors for even `k ≤ 14` (computed). The denominators have the closed form `den_k = A·r_+^k + B·r_−^k` with `r_± = −x ± √(x²+1)`, on [[generating-function-gallery](pages/generating-function-gallery.md)].)*
 
 ### Strip Perron-root sequences
 

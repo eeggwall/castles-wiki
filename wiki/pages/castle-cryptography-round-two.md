@@ -1,7 +1,7 @@
 ---
 title: Castle cryptography, round two - break the fixes, size the keys
 category: Analyses
-summary: The second round of the build / red-team / blue-team series on the castle cryptosystem. BUILD - ElGamal and a Schnorr-style signature on the map x^a; on char_1 the subgroup of prime order (p − 1)/2 lies in the scalars (x^8 = 16, since (1 + i)^8 = 16), so the build uses char_3 with the prime q = 340715873 dividing p^2 + 1. RED TEAM - (Attack 3) Pohlig-Hellman with baby-step giant-step recovers the castle_dh private key 373309869 from p, Q and the public key; (Attack 4) an irreducible Q does not help, since p^d − 1 = ∏_{e | d} Φ_e(p) factors for every p and the largest prime factor at p = 10^9 + 7 is 500000003 for char_1 and char_3; (Attack 5) a polynomial filter of degree e on a d-stage castle register has linear complexity at most C(d + e − 1, e) in each degree, measured 10, 14, 20 at d = 4 and 21, 27, 56 at d = 6, and Berlekamp-Massey recovers it from 2L terms. BLUE TEAM - Φ_d(p) must carry a 256-bit prime (p of 128 bits at d = 4 or 6, the XTR and torus design), the linear complexity must be pushed to about 2^40 or beyond (a 64-stage register with a degree-16 filter reaches 2^54.6), and the index-calculus cost L_q[1/3, (64/9)^{1/3}] reaches 2^128 near q = p^d of 2537 bits.
+summary: The second round of the build / red-team / blue-team series on the castle cryptosystem. BUILD - ElGamal and a Schnorr-style signature on the map x^a; on char_1 the subgroup of prime order (p − 1)/2 lies in the scalars (x^8 = 16, since (1 + i)^8 = 16), so the build uses char_3 with the prime q = 340715873 dividing p^2 + 1. RED TEAM - (Attack 3) Pohlig-Hellman with baby-step giant-step recovers the castle_dh private key 373309869 from p, Q and the public key, and prime power by prime power Bob's key 566180101, which the F_p piece alone does not determine, and a random 58-bit key; (Attack 4) an irreducible Q does not help, since p^d − 1 = ∏_{e | d} Φ_e(p) factors for every p and the largest prime factor at p = 10^9 + 7 is 500000003 for char_1 and char_3; the norm 2^{ka} reaches that part of the order from F_p, and a random 89-bit char_3 key falls to the norm and two BSGS tables in F_{p^4}; (Attack 5) a polynomial filter of degree e on a d-stage castle register has linear complexity at most C(d + e − 1, e) in each degree, measured 10, 14, 20 at d = 4 and 21, 27, 56 at d = 6, with the bounds failing only at d = 3 and d = 5 among d ≤ 7, and Berlekamp-Massey recovers it from 2L terms. BLUE TEAM - Φ_d(p) must carry a 256-bit prime (p of 128 bits at d = 4 or 6, the XTR and torus design), the linear complexity must be sized against the 2L output terms an attacker needs and a Berlekamp-Massey of O(L log² L) operations (a 64-stage register with a degree-16 filter reaches L ≈ 2^54.6, about 2^66 operations on 2^55.6 terms), the castle supplies F_{p^d} for even d from char_{d−1} and for odd d only from a parity sector, and the index-calculus cost L_q[1/3, (64/9)^{1/3}] reaches 2^128 near q = p^d of 2537 bits.
 tags: [analysis, seminar, cryptography, cryptanalysis, red-team, blue-team, pohlig-hellman, baby-step-giant-step, berlekamp-massey, linear-complexity, elgamal, schnorr, signature, finite-field, cyclotomic, index-calculus, key-size, castle]
 sources: [granger-vercauteren-2005-dlp-algebraic-tori]
 created: 2026-09-18
@@ -25,7 +25,7 @@ Round one stopped at the shared secret. ElGamal encryption and a signature use t
 
 Both need a subgroup `⟨g⟩` of prime order `q`.
 
-**On `char_1`, degree 2.** Since `p ≡ 3 (mod 4)`, `−1` is not a square mod `p` (Euler's criterion), so `char_1`, with discriminant `−4`, is irreducible and `R = F_{p²}`. The order of `x` is `8 · 500000003`, so the choice is `q = 500000003` and `g = x⁸`. But `x⁸ = 16` in `R`: the roots of `char_1` are `1 ± i`, and `(1 + i)⁸ = 16`. So the subgroup of order `q` lies in `F_p ⊂ F_{p²}`, every public key `g^a = 16^a` is a scalar, and the ring contributes nothing beyond `F_p`.[^1]
+**On `char_1`, degree 2.** Since `p ≡ 3 (mod 4)`, `−1` is not a square mod `p` (Euler's criterion), so `char_1`, with discriminant `−4`, is irreducible and `R = F_{p²}`. The order of `x` is `8 · 500000003`, so the choice is `q = 500000003` and `g = x⁸`. But `x⁸ = 16` in `R`: the roots of `char_1` are `1 ± i`, and `(1 + i)⁸ = 16`. So the subgroup of order `q` lies in `F_p ⊂ F_{p²}`, every public key `g^a = 16^a` is a scalar, and the ring contributes nothing beyond `F_p`.[^1] The prime `q` divides the order of `x` for every `k` at this `p`, because the norm of `x` is `2^k` and `2` has order `q` mod `p` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 8), and the norm `N(A) = 2^{ka}` reads the component of order `q` off any public key.
 
 **On `char_3`, degree 4.** `p⁴ − 1 = (p − 1)(p + 1)(p² + 1)`, and `p² + 1 = 2 · 5² · 58699937 · 340715873`. The primes `58699937` and `340715873` do not divide `p² − 1`, the order of the unit group of the largest proper subfield `F_{p²}`, since `gcd(p² + 1, p² − 1) = 2`. With `q = 340715873` and `g = r^{(p⁴ − 1)/q}` for a random `r ∈ R`, the generator has all four coefficients nonzero, ElGamal decrypts the message `[1, 1, 3, 9]` (the first four terms of `P(2, ·)`), and the signature verifies on the signed message and fails on a changed one.[^1]
 
@@ -72,6 +72,14 @@ bsgs_modp(2, A2, 500000003, p)           # 2^a = A2 (mod p), ord(2) = 500000003
 
 This piece determines `a` modulo `500000003`, and since `a < 500000003` it is the key.[^3]
 
+**A key that the `F_p` piece does not determine.** Bob's private key `b = 566180101` of `castle_dh` is larger than `500000003`, and the `F_p` piece gives only `b mod 500000003 = 66180098`. The quadratic piece carries the whole order of `x`, `n = (p² − 1)/2 = 2³·3²·7·109²·167·500000003`, so Pohlig-Hellman on the image of `B = x^b` in `F_p[x]/(x² − x + 2)` solves one logarithm for each prime power of `n` and combines them by the CRT on the exponents:[^9]
+
+| prime power | `2³` | `3²` | `7` | `109²` | `167` | `500000003` |
+|---|---|---|---|---|---|---|
+| `b` modulo it | 5 | 1 | 4 | 2927 | 1 | 66180098 |
+
+The CRT returns `b = 566180101`. The same steps recover a random 58-bit exponent, `a′ = 209524239335210880` (`random.seed(502)`, uniform below `n`): below `n` the size of the key does not matter, and the largest prime, `500000003`, sets the cost.
+
 ## Attack 4 - an irreducible `Q` does not help
 
 Round one's Fix 1 used an odd-`k` characteristic polynomial, irreducible over the rationals, so that `R` is one field `F_{p^d}` when `Q` stays irreducible mod `p`. That removes the split of the ring but not the split of the group, because the order of the group factors whether or not `Q` does:
@@ -90,6 +98,8 @@ The factorization holds for every `p`, and Pohlig-Hellman runs over the prime fa
 | `char_3`, degree 4 | yes | `2⁴ · 5 · 58699937 · 340715873 · 500000003` | `500000003 ≈ 2^28.9` | recovered |
 | the Schnorr subgroup on `char_3` | yes | `q = 340715873 ≈ 2^28.3` | `q` | recovered by plain BSGS |
 
+For every `k ≤ 7`, at this `p` and at `p' = 1,000,000,403`, the largest prime factor of the order of `x` is at most `164,826,110,927,971 ≈ 2^{47.2}`, so BSGS on it takes about `2^{23.6}` steps ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 7).
+
 The factors depend only on `p`:
 
 ```python
@@ -107,18 +117,27 @@ sp.factorint((10**9 + 7)**2 + 1) # p^2 + 1
 
 The subgroup prime of the build is `340715873`, a factor of `p² + 1`, and a BSGS table for it has `18,459` entries. The same private key `373309869` is recovered under `char_2`, `char_1` and `char_3`.[^5]
 
+**The norm reaches the `p − 1` part first.** The norm of `x` is `2^k` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 8), so the norm of a public key is `N(A) = 2^{ka}`, a `d × d` determinant, and one BSGS in `F_p` gives `a` modulo the order `500000003` of `2^k`. That is the part of `ord(x)` inside `Φ_1(p) = p − 1`; the rest needs logarithms in `F_{p^d}`:[^10]
+
+| `Q` | `ord(x)` | part reached by the norm in `F_p` | part that needs `F_{p^d}` |
+|---|---|---|---|
+| `char_1`, degree 2 | `2³ · 500000003` | `500000003` | `2³`: eight candidates |
+| `char_3`, degree 4 | `2⁴ · 5 · 58699937 · 340715873 · 500000003` | `500000003` | `2⁴ · 5 · 58699937 · 340715873` |
+
+For `a = 373309869` the norm alone returns the key under both, since `a < 500000003`; under `char_1` it is `N(A) = 342998455 = 2^a`, the same number as the projection `A(2)` of Attack 3. A random 89-bit exponent under `char_3`, `a″ = 438173760476770048741236733` (`random.seed(503)`, uniform below `ord(x)`), needs both parts: the norm gives `a″ mod 500000003 = 154871724`, BSGS tables of `7,662` and `18,459` entries in `F_{p⁴}` give `a″` modulo `58699937` and `340715873`, and `2⁴` and `5` are solved directly. This is the subfield rule of Fix 4 at work: a prime of `Φ_1(p)` is reached from `F_p`, and only the primes of `Φ_2(p)` and `Φ_4(p)` need the large field.
+
 ## Attack 5 - a nonlinear filter does not help either
 
 Round one's Fix 2 published a polynomial function of consecutive terms instead of the terms, so that Berlekamp-Massey would not find a short recurrence. The attack is linearization. If `s_n = Σ_i c_i λ_iⁿ` satisfies a recurrence with characteristic polynomial `Q` of degree `d`, with roots `λ_i`, then a product of `e` shifted terms is a linear combination of the powers `(λ_{i₁} ⋯ λ_{i_e})ⁿ`, so it satisfies a linear recurrence whose characteristic roots are among the `C(d + e − 1, e)` products of `e` roots. A filter that is a polynomial of degree `e` therefore has linear complexity, the order of its shortest linear recurrence, at most `Σ_{j ≤ e} C(d + j − 1, j)` (at most `C(d + e − 1, e)` if every term has degree `e`), and Berlekamp-Massey over `F_p` recovers that recurrence from `2L` terms. On the castle registers `P(k, ·) mod p`, `d = k + 1`:[^6]
 
-| filter | `d = 3` (`char_2`) | `d = 4` (`char_3`) | `d = 6` (`char_5`) | bound |
-|---|---|---|---|---|
-| `s_n · s_{n+1}` | 6 | 10 | 21 | `C(d+1, 2)` |
-| `s_n²` | 6 | 10 | 21 | `C(d+1, 2)` |
-| `s_n · s_{n+1} + s_{n+2}` | 8 | 14 | 27 | `C(d+1, 2) + d` |
-| `s_n · s_{n+1} · s_{n+2}` | 9 | 20 | 56 | `C(d+2, 3)` |
+| filter | `d = 2` (`char_1`) | `d = 3` (`char_2`) | `d = 4` (`char_3`) | `d = 5` (`char_4`) | `d = 6` (`char_5`) | `d = 7` (`char_6`) | bound |
+|---|---|---|---|---|---|---|---|
+| `s_n · s_{n+1}` | 3 | 6 | 10 | 15 | 21 | 28 | `C(d+1, 2)` |
+| `s_n²` | 3 | 6 | 10 | 15 | 21 | 28 | `C(d+1, 2)` |
+| `s_n · s_{n+1} + s_{n+2}` | 5 | 8 | 14 | 20 | 27 | 35 | `C(d+1, 2) + d` |
+| `s_n · s_{n+1} · s_{n+2}` | 4 | 9 | 20 | 31 | 56 | 84 | `C(d+2, 3)` |
 
-The bounds are reached at `d = 4` and `d = 6`. At `d = 3` both shortfalls come from `α + ᾱ = 1` and `α·ᾱ = 2` for the roots `α, ᾱ` of `x² − x + 2`: for `s_n s_{n+1} + s_{n+2}` the product `αᾱ = 2` equals the third root, so one root is counted twice, and for `s_n s_{n+1} s_{n+2}` the ten products are distinct but the coefficient of `4 = 2αᾱ` vanishes ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 5). The characteristic polynomial of `s_n s_{n+1}` for `char_2` is `∏_{i ≤ j}(x − λ_iλ_j) = x⁶ − 5x⁵ + 8x⁴ − 12x³ − 16x² − 64x + 256`, and Berlekamp-Massey mod `p` returns these coefficients. In every case the recovered recurrence predicts every later term, and `2L` terms suffice.
+The bounds are reached at `d = 2, 4, 6` and `7`. The shortfalls are at `d = 3` and `d = 5`, both at even `k`, where `char_k` factors; at `d = 7`, also even `k`, every bound is reached. At `d = 3` both shortfalls come from `α + ᾱ = 1` and `α·ᾱ = 2` for the roots `α, ᾱ` of `x² − x + 2`: for `s_n s_{n+1} + s_{n+2}` the product `αᾱ = 2` equals the third root, so one root is counted twice, and for `s_n s_{n+1} s_{n+2}` the ten products are distinct but the coefficient of `4 = 2αᾱ` vanishes ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 5). At `d = 5` the product filter reaches 31 of 35: the roots `β = 2e^{±iπ/3}` of the factor `λ² − 2λ + 4` of `char_4` satisfy `β_1³ = β_2³ = −8`, which merges two products whose coefficients cancel, and `β_1β_2(β_1 + β_2) = 8 = −β³`, which removes two more (the same section). The characteristic polynomial of `s_n s_{n+1}` for `char_2` is `∏_{i ≤ j}(x − λ_iλ_j) = x⁶ − 5x⁵ + 8x⁴ − 12x³ − 16x² − 64x + 256`, and Berlekamp-Massey mod `p` returns these coefficients. In every case the recovered recurrence predicts every later term, and `2L` terms suffice.
 
 A four-stage register has linear complexity 4, and the product of two adjacent terms has linear complexity `10 = C(5, 2)`:
 
@@ -163,38 +182,42 @@ The three attacks depend on three quantities: the largest prime factor of the or
 
 Generic discrete-logarithm attacks, BSGS and Pollard rho, cost about the square root of the largest prime factor of the order of the group, so `2¹²⁸` security needs a prime of 256 bits dividing `p^d − 1`. It must divide `Φ_d(p)`, of size about `p^{φ(d)}`: a prime dividing a smaller factor `Φ_e(p)` with `e < d` divides the order of the unit group of the subfield `F_{p^e}`, and the norm map carries the problem into that subfield, as `x⁸ = 16` carried the `char_1` subgroup into `F_p`. So:
 
-| `d` | `φ(d)` | `p` needed for `Φ_d(p)` to have 256 bits |
-|---|---|---|
-| 2 | 1 | `p ≳ 2²⁵⁶` |
-| 4 | 2 | `p ≳ 2¹²⁸` |
-| 6 | 2 | `p ≳ 2¹²⁸` |
-| 7 | 6 | `p ≳ 2⁴³` |
+| `d` | `φ(d)` | castle modulus | `p` needed for `Φ_d(p)` to have 256 bits |
+|---|---|---|---|
+| 2 | 1 | `char_1` | `p ≳ 2²⁵⁶` |
+| 4 | 2 | `char_3` | `p ≳ 2¹²⁸` |
+| 6 | 2 | `char_5` | `p ≳ 2¹²⁸` |
+| 7 | 6 | the degree-7 parity sector of `char_12` or `char_14` | `p ≳ 2⁴³` |
 
 and `p` must then be chosen so that `Φ_d(p)` has such a prime factor. This is the design of XTR and torus-based cryptography, which work in the subgroup of order `Φ_6(p) = p² − p + 1` of `F_{p⁶}^*` ([[granger-vercauteren-2005-dlp-algebraic-tori](pages/granger-vercauteren-2005-dlp-algebraic-tori.md)]). The castle has a degree-6 modulus, `char_5`, and round three builds a castle torus on it ([[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)]).
 
+**Which castle polynomial gives each `d`.** A field `F_{p^d}` comes from an irreducible factor of `char_k` that stays irreducible mod `p`. For odd `k`, `char_k` itself has degree `d = k + 1` and is irreducible over the rationals (proved for every odd `k ≤ 31` by a prime mod which it stays irreducible, [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)], and for `k = 2^m − 1` by Eisenstein, [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]). For even `k`, `char_k` factors into two parity sectors of degrees `k/2` and `k/2 + 1` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]), each irreducible over the rationals for even `k ≤ 40` (computed, [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]). So an even `d` comes from `char_{d−1}`, and an odd `d` only from a parity sector: `d = 3` from `char_4` or `char_6`, and `d = 7`, the largest `φ(d)/d` in the table, from `char_12` or `char_14`, not from `char_6`, which splits as `3 + 4`. For odd `k`, `char_k = g·ḡ` over `Q(i)`, so `char_{d−1}` stays irreducible mod `p` only when `p ≡ 3 (mod 4)`; round three finds `char_5` irreducible for a density `1/6` of primes, by Chebotarev's theorem ([[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)]).
+
 ## Fix 5 - size the register and the filter
 
-Berlekamp-Massey needs `2L` terms and about `L²` operations for linear complexity `L`, so `L ≈ 2⁴⁰` already costs about `2⁸⁰` operations. The bound `Σ_{j ≤ e} C(d + j − 1, j) = C(d + e, e) − 1` gives the linear complexity a register and filter can reach:[^8]
+Berlekamp-Massey needs `2L` terms for linear complexity `L`, and the loop of Attack 5 takes about `L²` operations. The attacker can do better. The shortest recurrence of `2L` terms is a Padé approximant of their generating polynomial, and Brent, Gustavson and Yun compute Padé approximants by a divide-and-conquer extended Euclidean algorithm in `O(L log² L)` operations, which they apply to Berlekamp's algorithm.[^11] With the constants dropped, `L ≈ 2⁴⁰` costs about `2⁴⁰ · 40² ≈ 2^{50.6}` operations, and the binding requirement is the `2L ≈ 2⁴¹` terms of output the attacker must see. The bound `Σ_{j ≤ e} C(d + j − 1, j) = C(d + e, e) − 1` gives the linear complexity a register and filter can reach, and with it both costs:[^8]
 
-| register stages `d` | filter degree `e` | linear complexity at most |
-|---|---|---|
-| 6 | 6 | `923 ≈ 2^9.9` |
-| 32 | 8 | `76,904,684 ≈ 2^26.2` |
-| 64 | 16 | `≈ 2^54.6` |
-| 128 | 16 | `≈ 2^69.2` |
+| register stages `d` | filter degree `e` | linear complexity at most | terms `2L` | operations `L log₂² L` |
+|---|---|---|---|---|
+| 6 | 6 | `923 ≈ 2^9.9` | `2^10.9` | `2^16.5` |
+| 32 | 8 | `76,904,684 ≈ 2^26.2` | `2^27.2` | `2^35.6` |
+| 64 | 16 | `≈ 2^54.6` | `2^55.6` | `2^66.1` |
+| 128 | 16 | `≈ 2^69.2` | `2^70.2` | `2^81.4` |
 
-A castle register of `d` stages runs `char_{d−1}`, so a 64-stage register is `char_63`, the signed tower count `P(63, L)` for castles of height 64, with a filter of degree 16.
+A 64-stage register with a degree-16 filter falls to about `2^66` operations on `2^55.6` terms, and 128-bit security in operations needs `L` of about `2^114`.
+
+A castle register of `d` stages runs `char_{d−1}`, so a 64-stage register is `char_63`, the signed tower count `P(63, L)` for castles of height 64, with a filter of degree 16. The bound is reached only when no relation among the roots merges or cancels terms, which fails at `d = 3` and `d = 5` in Attack 5, so a designer has to check that the chosen register reaches it, as the census of Attack 5 does for `d ≤ 7`.
 
 ## Fix 6 - the index-calculus ceiling
 
 With Fixes 4 and 5 in place, discrete logarithms in `F_{p^d}` still face index calculus and the number field sieve, of heuristic cost `L_q[1/3, (64/9)^{1/3}] = exp((64/9)^{1/3} (ln q)^{1/3} (ln ln q)^{2/3})` for `q = p^d`, with the `o(1)` term dropped. At `p = 10⁹ + 7`:[^8]
 
-| `d` | `q = p^d` | Pollard rho on the largest prime factor | `L_q[1/3]` |
-|---|---|---|---|
-| 2 | `2^59.8` | `2^14.4` | `2^23.1` |
-| 4 | `2^119.6` | `2^14.4` | `2^32.6` |
-| 6 | `2^179.4` | `2^23.6` | `2^39.5` |
-| 7 | `2^209.3` | `2^34.3` | `2^42.5` |
+| `d` | castle modulus | `q = p^d` | Pollard rho on the largest prime factor | `L_q[1/3]` |
+|---|---|---|---|---|
+| 2 | `char_1` | `2^59.8` | `2^14.4` | `2^23.1` |
+| 4 | `char_3` | `2^119.6` | `2^14.4` | `2^32.6` |
+| 6 | `char_5` | `2^179.4` | `2^23.6` | `2^39.5` |
+| 7 | a degree-7 parity sector | `2^209.3` | `2^34.3` | `2^42.5` |
 
 `L_q[1/3]` reaches `2¹²⁸` at `q ≈ 2²⁵³⁷`: `p ≈ 2¹²⁶⁹` at `d = 2`, `2⁶³⁴` at `d = 4` and `2⁴²³` at `d = 6`, close to the 3072-bit finite fields recommended for 128-bit security ([[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)]). So at `p = 10⁹ + 7` no choice of `Q` makes the castle discrete logarithm hard; 128-bit security needs `p` of hundreds of bits, and the system is then ordinary finite-field cryptography. Round three replaces the constant `(64/9)^{1/3}` by that of the extended tower number field sieve, which applies at composite `d`.
 
@@ -205,9 +228,9 @@ With Fixes 4 and 5 in place, discrete logarithms in `F_{p^d}` still face index c
 The two rounds give a procedure for judging a new cryptosystem:
 
 1. **Name the hard problem exactly:** the group, its order and the map. "Discrete logarithm in `F_p[x]/(Q)`" is incomplete until `|⟨g⟩|` is written down.
-2. **Find where the structure splits:** does the modulus factor (the CRT on the ring), does the order of the group factor (Pohlig-Hellman, always possible for `p^d − 1` by the cyclotomic factorization), does a subgroup lie in a subfield (the norm map, as in `x⁸ = 16`)?
+2. **Find where the structure splits:** does the modulus factor (the CRT on the ring), does the order of the group factor (Pohlig-Hellman, always possible for `p^d − 1` by the cyclotomic factorization), does a subgroup lie in a subfield (the norm map, as in `x⁸ = 16` and in the norm `2^{ka}` of a public key, [[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 9)?
 3. **Check whether the output is linear or a low-degree function of something linear:** Berlekamp-Massey for the first, linearization with the bound `C(d + e − 1, e)` for the second.
-4. **Size each attack separately:** the square root of the largest prime factor, the linear complexity, and `L_q[1/3]`.
+4. **Size each attack separately:** the square root of the largest prime factor, the linear complexity (in output terms as well as operations), and `L_q[1/3]`.
 
 ## Appearances in Sources
 
@@ -217,13 +240,14 @@ The two rounds give a procedure for judging a new cryptosystem:
 
 - [[castle-cryptography](pages/castle-cryptography.md)] - round one: the build, Attacks 1 and 2, and Fixes 1 to 3.
 - [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] - round three: Fix 4 built as a castle torus on `char_5` (512-bit `p`, prime `p² − p + 1`, 3-to-1 compression by the trace), and the `L_q[1/3]` table of Fix 6 updated for the extended tower number field sieve.
-- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - Seminar 1, whose table of element orders (section 5) Attack 3 factors.
+- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - Seminar 1, whose table of element orders (section 7) Attack 3 factors.
 - [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - the terms characteristic polynomial, irreducible polynomial and discrete logarithm, and why an irreducible `Q` still leaves `p^d − 1` factored.
 - [[kitamasa](pages/kitamasa.md)] - the exponentiation `x^a mod Q` used by ElGamal, the signature and every attack.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - the algorithm that recovers a linear recurrence, run here over `F_p` against filters.
 - [[finite-fields](pages/finite-fields.md)] - `F_{p^d}^*` is cyclic of order `p^d − 1`; the cyclotomic factorization and the subfields that Attack 4 and Fix 4 use.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the periods of `P(k, ·) mod p` and the orders of the roots of `char_k`.
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization of `char_k` for even `k`, which Attack 3 uses for `char_2`.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization of `char_k` for even `k`, which Attack 3 uses for `char_2`, into parity sectors of degrees `k/2` and `k/2 + 1`, the castle moduli of odd degree in Fixes 4 and 6.
+- [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - the irreducibility of `char_k` for odd `k`, the castle moduli of even degree.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the roots `1 ± i` of `char_1`, whose eighth power is `16`.
 - [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)] - `castle_dlp`, `bm_modp` and `castle_schnorr`, with their outputs.
 - [[castle-compression](pages/castle-compression.md)] - linear complexity as a description length.
@@ -238,6 +262,9 @@ The two rounds give a procedure for judging a new cryptosystem:
 [^3]: Verified by execution (Python 3.11, 2026-10-16): `A(2) = A[0] + 2A[1] + 4A[2] = 342998455 mod p`, and `bsgs_modp(2, 342998455, 500000003, p) = 373309869`; `⌈√500000003⌉ = 22,361`.
 [^4]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `char_1` and `char_3` are irreducible mod `p`; `castle_dlp` recovers `373309869` from `x^{373309869} mod char_1` (`ord(x) = 4000000024`) and mod `char_3` (`ord(x) = 800000016000000107200000240 = 2⁴·5·58699937·340715873·500000003`); plain BSGS recovers the Schnorr private key in the subgroup of order `340715873`.
 [^5]: Verified by execution (SymPy `factorint`, 2026-10-16): `p + 1 = 2³ · 3² · 7 · 109² · 167`, `p² + 1 = 2 · 5² · 58699937 · 340715873`, `p² − 1 = 2⁴ · 3² · 7 · 109² · 167 · 500000003`; `⌈√340715873⌉ = 18,459`.
-[^6]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): Berlekamp-Massey over `F_p` on `P(k, ·) mod p` returns linear complexity `k + 1` for `k = 2, 3, 5`, and on the four filters the values in the table (400 terms each); the recovered connection polynomials annihilate all later terms. `∏_{i ≤ j}(x − λ_iλ_j)` over the roots of `char_2` is `x⁶ − 5x⁵ + 8x⁴ − 12x³ − 16x² − 64x + 256`.
+[^6]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): Berlekamp-Massey over `F_p` on `P(k, ·) mod p` returns linear complexity `k + 1` for `k = 1, …, 6`, and on the four filters the values in the table (400 terms each; the columns `d = 2, 5, 7` computed 2026-10-25); the recovered connection polynomials annihilate all later terms. `∏_{i ≤ j}(x − λ_iλ_j)` over the roots of `char_2` is `x⁶ − 5x⁵ + 8x⁴ − 12x³ − 16x² − 64x + 256`.
 [^7]: Verified by execution (Python 3.11, 2026-10-16): `bm(P(3, ·) mod p, p) = 4` and `bm(s_n s_{n+1}, p) = 10`, and the first `20` terms give the same connection polynomial.
-[^8]: Computed (Python 3.11 with SymPy, 2026-10-16): `C(d + e, e) − 1` gives `923`, `76904684`, `2^54.58`, `2^69.22`; at `p = 10⁹ + 7`, the largest prime factor of `p^d − 1` is `2^28.9` for `d = 2, 4`, `2^47.2` for `d = 3, 6` and `2^68.5` for `d = 7`, and `L_q[1/3, (64/9)^{1/3}]` is `2^23.1`, `2^28.3`, `2^32.6`, `2^39.5`, `2^42.5` for `d = 2, 3, 4, 6, 7`; it equals `2⁸⁰` at `q ≈ 2^850` and `2¹²⁸` at `q ≈ 2^2537`.
+[^8]: Computed (Python 3.11 with SymPy, 2026-10-16): `C(d + e, e) − 1` gives `923`, `76904684`, `2^54.58`, `2^69.22`, with `2L` equal to `2^10.9`, `2^27.2`, `2^55.6`, `2^70.2` and `L log₂² L` to `2^16.5`, `2^35.6`, `2^66.1`, `2^81.4`, and `L log₂² L = 2¹²⁸` at `L ≈ 2^114.3` (2026-10-25); at `p = 10⁹ + 7`, the largest prime factor of `p^d − 1` is `2^28.9` for `d = 2, 4`, `2^47.2` for `d = 3, 6` and `2^68.5` for `d = 7`, and `L_q[1/3, (64/9)^{1/3}]` is `2^23.1`, `2^28.3`, `2^32.6`, `2^39.5`, `2^42.5` for `d = 2, 3, 4, 6, 7`; it equals `2⁸⁰` at `q ≈ 2^850` and `2¹²⁸` at `q ≈ 2^2537`.
+[^9]: Verified by execution (Python 3.11 with SymPy, 2026-10-25) at `p = 10⁹ + 7`, `Q = char_2`: `B = x^{566180101} = [12836899, 147220895, 148070992]`; Pohlig-Hellman with BSGS on its image in `F_p[x]/(x² − x + 2)`, of order `n = 500000007000000024`, gives `b` modulo `2³, 3², 7, 109², 167, 500000003` as `5, 1, 4, 2927, 1, 66180098`, and the CRT gives `566180101`; for `a′ = 209524239335210880` (`random.seed(502); random.randrange(n)`) the same steps return `a′`.
+[^10]: Verified by execution (Python 3.11 with SymPy, 2026-10-25) at `p = 10⁹ + 7`: the determinant of multiplication by `A = x^{373309869}` is `342998455 = 2^a` mod `char_1` and `118957670 = 8^a` mod `char_3`, and `sympy.discrete_log` returns `373309869` for both; for `a″ = 438173760476770048741236733` (`random.seed(503); random.randrange(ord(x))` with `ord(x) = 2⁴·5·58699937·340715873·500000003`), `x^{a″} mod char_3 = [636396480, 898753727, 941512093, 432891416]`, its norm gives `a″ mod 500000003 = 154871724`, and Pohlig-Hellman returns `a″`, with residues `13, 3, 6946123, 158046801` modulo `2⁴, 5, 58699937, 340715873`; `⌈√58699937⌉ = 7,662`.
+[^11]: https://www.research.ibm.com/publications/fast-solution-of-toeplitz-systems-of-equations-and-computation-of-pade-approximants (R. P. Brent, F. G. Gustavson and D. Y. Y. Yun, "Fast solution of Toeplitz systems of equations and computation of Padé approximants", J. Algorithms 1 (1980) 259-295; abstract read 2026-10-25) - "We prove that entries in the Padé table can be computed by the Extended Euclidean Algorithm"; the algorithms run "in time O(n log2 n)"; "We also apply our results to obtain new complexity bounds for the solution of banded Toeplitz systems and for BCH decoding via Berlekamp's algorithm."

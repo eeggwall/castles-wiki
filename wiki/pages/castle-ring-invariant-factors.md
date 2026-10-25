@@ -1,7 +1,7 @@
 ---
 title: Castle ring by invariant factors
 category: Analyses
-summary: The unit group of the castle ring R = F_p[x]/(char_k mod p) as a product of cyclic groups. By the Chinese Remainder Theorem, R^* ≅ ∏ (F_{p^{d_i}}^* × U_i) over the irreducible factors g_i^{m_i} of char_k mod p, with U_i a p-group of order p^{d_i(m_i − 1)}, trivial when m_i = 1. The mod-p period of P(k, ·) is the order of x in R^* (num_k and den_k coprime mod p in every case here), Kitamasa's method is exponentiation in R^*, and Pohlig-Hellman costs about √q for the largest prime q dividing ord(x), which at p = 10⁹ + 7 is 500000003 = (p − 1)/2 for k = 1, 2, 3. At a prime dividing disc(char_k) the p-group supplies the extra factor of p in the period (per(char_2 mod 7) = 21 = 3·7). The two d = 3 linear-complexity deficits of the filtered generator both come from α·ᾱ = 2 for the roots of x² − x + 2.
+summary: The unit group of the castle ring R = F_p[x]/(char_k mod p) as a product of cyclic groups. By the Chinese Remainder Theorem, R^* ≅ ∏ (F_{p^{d_i}}^* × U_i) over the irreducible factors g_i^{m_i} of char_k mod p, with U_i a p-group of order p^{d_i(m_i − 1)}, trivial when m_i = 1 and elementary abelian of rank d_i when m_i = 2. The mod-p period of P(k, ·) is the order of x in R^* (num_k and den_k are coprime mod every prime). For odd p, R^* has max(r, rank U) invariant factors, r the number of distinct irreducible factors of char_k mod p, since p − 1 divides every p^{d_i} − 1; so for squarefree char_k mod p, R^* is cyclic exactly when char_k is irreducible mod p, and x can generate R^* only when moreover k is odd and p ≡ ±3 (mod 8). Pohlig-Hellman costs about √q for the largest prime q dividing ord(x), which at p = 10⁹ + 7 is 500000003 = (p − 1)/2 for k = 1, 2, 3. At a prime dividing disc(char_k) the p-group supplies the extra factor of p in the period, exactly one factor when m = 2, since x^{p^d} − x is squarefree (per(char_2 mod 7) = 21 = 3·7). The two d = 3 linear-complexity deficits of the filtered generator both come from α·ᾱ = 2, the norm of a root of x² − x + 2, which with the root 2 makes up the norm 4 of x. Among k ≤ 6 the only other deficit is s_n s_{n+1} s_{n+2} at k = 4, 31 of 35, from the roots 2e^{±iπ/3} of λ² − 2λ + 4: β³ = −8 merges two terms whose coefficients cancel, and β_1β_2(β_1 + β_2) = 8 = −β³ removes two more.
 tags: [analysis, cryptography, ring, finite-field, unit-group, invariant-factors, structure-theorem, pohlig-hellman, kitamasa, discriminant, linear-complexity, castle]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-21
@@ -10,7 +10,7 @@ updated: 2026-10-25
 
 # Castle ring by invariant factors
 
-[[castle-cryptography-ring](pages/castle-cryptography-ring.md)] computes in `R = F_p[x]/(Q)` with `Q = char_k mod p`, the characteristic polynomial of the signed tower count `P(k, ·)` reduced mod an odd prime `p`, and [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] attacks discrete logarithms in the cyclic group `⟨x⟩ ⊆ R^*`. This page writes `R^*` as a finite abelian group in invariant factors and reads the periods, the cost of Kitamasa's method, the Pohlig-Hellman attack and the linear-complexity deficits of round two from it.
+[[castle-cryptography-ring](pages/castle-cryptography-ring.md)] computes in `R = F_p[x]/(Q)` with `Q = char_k mod p`, the characteristic polynomial of the signed tower count `P(k, ·)` reduced mod an odd prime `p`, and [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] attacks discrete logarithms in the cyclic group `⟨x⟩ ⊆ R^*`. This page writes `R^*` as a finite abelian group in invariant factors and reads from it the periods, the number of generators, the Pohlig-Hellman attack, the extra factor of `p` at a repeated root, and, in section 5, the linear-complexity deficits of round two from the norm relations among the roots. [[kitamasa](pages/kitamasa.md)]'s method computes `x^n mod Q` by repeated squaring in `R`, in `O(log n)` products of `O(D²)` operations each for `D = deg Q = k + 1`; the constant term `(−1)^{k+1} 2^k` of `char_k` is nonzero mod every odd prime, so `x` is a unit and the computation takes place in the group `R^*`.
 
 A finite abelian group is isomorphic to `Z/n_1 × ⋯ × Z/n_t` with `n_1 | n_2 | ⋯ | n_t`; the `n_i` are its **invariant factors**, and `n_t`, the largest, is its **exponent**, the least `n` with `g^n = 1` for every element `g`. For a product of cyclic groups of orders `c_1, …, c_s`, the invariant factors are the nonunit diagonal entries of the Smith normal form of `diag(c_1, …, c_s)`, the diagonal matrix that row and column operations over `Z` reduce it to.
 
@@ -35,19 +35,30 @@ The cases of the cryptography pages:[^1]
 | 2 | `10⁹ + 7` | `(x − 2)(x² − x + 2)` | `Z/(p − 1) × Z/(p² − 1)` | `(p − 1, p² − 1)` | `2³·3²·7·109²·167·500000003 = (p² − 1)/2` |
 | 3 | `10⁹ + 7` | `x⁴ − 4x³ + 8x² − 8x + 8` (irreducible) | `Z/(p⁴ − 1)` | `(p⁴ − 1)` | `2⁴·5·58699937·340715873·500000003` |
 
-**The period is the order of `x`.** The period of `P(k, ·) mod p` divides the order of `x` in `R^*` and equals it when `num_k` and `den_k` are coprime mod `p`, so that `Q` is the minimal polynomial of the sequence mod `p`; that holds in every row of both tables on this page (computed). The order of `x` in a product is the lcm of the orders of its components, the images of `x` in the factors `F_{p^{d_i}}^*`, which are the roots of the `g_i` ([[mod-p-observatory](pages/mod-p-observatory.md)]). In the first row, `ord(2) = 100` in `F_101^*`, the root `α` of `x² − x + 2` has order `3400 = (101² − 1)/3` in `F_{101²}^*`, and `lcm(100, 3400) = 3400`.
+**The period is the order of `x`.** The period of `P(k, ·) mod p` divides the order of `x` in `R^*` and equals it when `num_k` and `den_k` are coprime mod `p`, so that `Q` is the minimal polynomial of the sequence mod `p`; that holds at every prime, since the update of `num_k` and `den_k` has determinant `−1` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 6). The order of `x` in a product is the lcm of the orders of its components, the images of `x` in the factors `F_{p^{d_i}}^*`, which are the roots of the `g_i` ([[mod-p-observatory](pages/mod-p-observatory.md)]). In the first row, `ord(2) = 100` in `F_101^*`, the root `α` of `x² − x + 2` has order `3400 = (101² − 1)/3` in `F_{101²}^*`, and `lcm(100, 3400) = 3400`.
 
-**The order of `x` need not be the exponent.** In the first row the exponent is `10200` and the order of `x` is `3400`. In the third row the exponent is `p² − 1` and the order of `x` is `(p² − 1)/2`. There the norm of `α` from `F_{p²}` to `F_p` is `α^{p+1} = α·ᾱ = 2` (Vieta on `x² − x + 2`), and `2` is a square mod `p` because `p ≡ 7 (mod 8)`. So `α^{(p²−1)/2} = 2^{(p−1)/2} = 1`, and the order of `α` divides `(p² − 1)/2`; it equals it (computed), and `ord(2) = (p − 1)/2` divides it.
+**The order of `x` need not be the exponent.** In the first row the exponent is `10200` and the order of `x` is `3400`. In the third row the exponent is `p² − 1` and the order of `x` is `(p² − 1)/2`. There the norm of `α` from `F_{p²}` to `F_p` is `α^{p+1} = α·ᾱ = 2` (Vieta on `x² − x + 2`), and `2` is a square mod `p` because `p ≡ 7 (mod 8)`. So `α^{(p²−1)/2} = 2^{(p−1)/2} = 1`, and the order of `α` divides `(p² − 1)/2`; it equals it (computed), and `ord(2) = (p − 1)/2` divides it. The norm of `x` itself is `2^k` for every `k`, so the order of `2^k` divides the order of `x` in every row ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 8).
 
-## 2. Kitamasa's method is exponentiation in `R^*`
+## 2. How many generators `R^*` needs
 
-[[kitamasa](pages/kitamasa.md)] computes `x^n mod Q` by repeated squaring in `R`. The constant term of `char_k` is `(−1)^{k+1} 2^k`, nonzero mod every odd prime, so `x` is a unit of `R` and the computation takes place in the group `R^*`: `O(log n)` squarings and products, each `O(D²)` operations for `D = deg Q = k + 1`.
+The invariant factors of `R^*` follow from the factorization of `Q`. Write `r` for the number of distinct irreducible factors `g_i` of `Q` mod `p`, and `rank U` for the number of cyclic factors of the `p`-group `U = ∏_i U_i`. A finite abelian group with invariant factors `n_1 | ⋯ | n_t` has `t` cyclic factors in its `ℓ`-part for every prime `ℓ` dividing `n_1`, since `ℓ` then divides every `n_i`, and no prime part has more; so `t` is the largest number of cyclic factors in one prime part.
+
+**Proposition.** For odd `p`, `R^*` has exactly `max(r, rank U)` invariant factors.
+
+*Proof.* In Equation (1), each `F_{p^{d_i}}^*` is cyclic of order `p^{d_i} − 1`, which is even, since `p − 1` divides it. So the 2-part of `R^*` has exactly `r` cyclic factors, one in each `F_{p^{d_i}}^*`, and for a prime `ℓ ≠ p` the `ℓ`-part has at most `r`. The orders `p^{d_i} − 1` are prime to `p`, so the `p`-part of `R^*` is `U`, with `rank U` cyclic factors. The number of invariant factors is the largest of these counts, `max(r, rank U)`. ∎
+
+In every case on this page the repeated factor is a single linear `g` with `m = 2`, so `rank U ≤ 1 ≤ r`, and `R^*` needs exactly `r` generators: one in the irreducible rows, two in the others. Two consequences:
+
+- **`R^*` is cyclic exactly when `r = 1` and `rank U ≤ 1`.** For squarefree `Q` that is exactly when `Q` is irreducible; a reducible squarefree `Q` gives `R^*` at least two invariant factors.
+- **`x` generates `R^*` only if `R^*` is cyclic, and for irreducible `Q` only if the norm `2^k` of `x` generates `F_p^*`** ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 8), since the norm `y ↦ y^{(p^d − 1)/(p − 1)}` maps `F_{p^d}^*` onto `F_p^*`. A power `2^k` generates `F_p^*` only if `2` does, which requires `2` to be a non-square mod `p`, that is `p ≡ ±3 (mod 8)`, and only if `gcd(k, p − 1) = 1`, which requires `k` odd. At `p = 10⁹ + 7 ≡ 7 (mod 8)`, `x` generates `R^*` for no `k`, and the census of [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] (section 7) finds the index of `x` to be at least `2^27.9` at both of its primes.
+
+Every row of both tables on this page, and each of 70 pairs `(k, p)` with `k ≤ 7`, six of them with a repeated factor, has `max(r, rank U)` invariant factors.[^12]
 
 ## 3. Pohlig-Hellman and the largest prime factor of `ord(x)`
 
 Attack 3 of round two recovers a private exponent from `x^a` by factoring `n = ord(x)`, solving the discrete logarithm modulo each prime power `q^e` dividing `n`, and combining the results by the Chinese Remainder Theorem on the integers ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]). The group `⟨x⟩` is cyclic of order `n`, and `Z/n ≅ ∏ Z/q^e` over the prime powers `q^e` exactly dividing `n`. Baby-step giant-step solves a logarithm in a cyclic group of prime order `q` in about `√q` operations, and one of order `q^e` with `e` such solutions. So the attack costs about `√q` for the largest prime `q` dividing `ord(x)`.
 
-The last three rows of the table share the largest prime factor `500000003 = (p − 1)/2`, which is prime. Every irreducible factor of degree `d` contributes `F_{p^d}^*`, of order `p^d − 1`, divisible by `p − 1`; so `500000003` divides `|R^*|` for every `Q` at this prime, and it divides the order of `x` in all three rows. This is why Attack 4 of round two recovers the same private key, `373309869`, under three different moduli `Q` at the same `p`. Changing `Q` does not remove the prime from `R^*`; changing `p` does. Round two's Fix 4, to choose `p` so that `Φ_d(p)` carries a 256-bit prime, makes the largest prime factor of `ord(x)` exceed `2^{256}` and the cost exceed `2^{128}`.
+The last three rows of the table share the largest prime factor `500000003 = (p − 1)/2`, which is prime. It is not the largest for every `k`: at `k = 4` and `k = 7` the order of `x` has the prime factor `164,826,110,927,971` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 7). Every irreducible factor of degree `d` contributes `F_{p^d}^*`, of order `p^d − 1`, divisible by `p − 1`; so `500000003` divides `|R^*|` for every `Q` at this prime, and it divides the order of `x` for every `k`, since the norm of `x` is `2^k` and `2^k` has order `500000003` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 8). This is why Attack 4 of round two recovers the same private key, `373309869`, under three different moduli `Q` at the same `p`. Changing `Q` does not remove the prime from `R^*`; changing `p` does. Round two's Fix 4, to choose `p` so that `Φ_d(p)` carries a 256-bit prime, makes the largest prime factor of `ord(x)` exceed `2^{256}` and the cost exceed `2^{128}`.
 
 ## 4. Repeated factors: the `p`-group `U`
 
@@ -58,6 +69,8 @@ F_p[x]/(g^m),          1  →  1 + (g)/(g^m)  →  ( F_p[x]/(g^m) )^*  →  F_{p
 ```
 
 `F_p[x]/(g^m)` is `F_p[x]/M^m` for the maximal ideal `M = (g)`, and every `R/M^m` is a local ring.[^11] The kernel `U = 1 + (g)/(g^m)` has order `p^{d(m−1)}`: its elements are `1 + n` with `n` a multiple of `g`, and `g` is nilpotent mod `g^m`, so `1 + n` is a unit, by the same fact that makes `1 + aX` a unit of `R[X]` for nilpotent `a`.[^9] The orders `p^{d(m−1)}` and `p^d − 1` are coprime, so the sequence splits: `(F_p[x]/(g^m))^* ≅ F_{p^d}^* × U`.
+
+**When `m = 2`.** Then `(1 + ga)(1 + gb) ≡ 1 + g(a + b)` mod `g²`, so `U ≅ (F_p[x]/(g), +) ≅ (Z/p)^d`, elementary abelian of rank `d`; for `d = 1` it is the `Z/p` of the table below. For odd `p` the component of `x` in `U` is never trivial. It is trivial exactly when `x^{p^d − 1} ≡ 1` mod `g²`, that is when `g²` divides `x^{p^d} − x`, and `x^{p^d} − x` is squarefree over `F_p`, since its derivative is `−1`. So the component has order exactly `p`, and the order of `x` mod `g²` is its order mod `g` times `p`. This is the case `m = 2` of the theorem of [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] that a factor of multiplicity `m` multiplies the order by exactly `p^{⌈log_p m⌉}`.[^13]
 
 *Example: `char_2 mod 7`.* `char_2 ≡ (x − 2)(x + 3)² (mod 7)`, since `(x + 3)² = x² + 6x + 9 ≡ x² − x + 2`.[^2] In `F_7[x]/((x + 3)²)`, write `y = x + 3`; then `(a + by)^n = a^n + n a^{n−1} b y`, so the local unit group, of order 42, is `F_7^* × (1 + F_7 y) ≅ Z/6 × Z/7 ≅ Z/42`. With the factor `x − 2`:
 
@@ -77,11 +90,13 @@ The repeated-factor cases of the wiki's tables, with `U` of order `p^{d(m−1)}`
 | `char_3` | `2¹²·5` | 5 | `(x − 1)²(x² − 2x − 2)` | `Z/5` | `(4, 120)` | 120 |
 | `char_4` | `2¹⁶·3·107` | 3 | `(x − 1)²(x³ − x − 1)` | `Z/3` | `(2, 78)` | 39 |
 
-In the `char_3` row, `R^* ≅ Z/4 × Z/5 × Z/24 ≅ Z/4 × Z/120`, and `x` has orders 1, 5 and 24 in the three factors. In the `char_4` row, `R^* ≅ Z/2 × Z/3 × Z/26 ≅ Z/2 × Z/78`, and `x` has order 1 in `F_3^*` (its image is `1`), 3 in `U` and 13 in `F_27^*`, so its order `39` is half the exponent `78`. In each row with `d = 1` and `m = 2`, the component of `x` in `U` has the full order `p`. In ring terms `U` is `1 + N(R)` for the nilradical `N(R)`, and the period is the period in the reduced ring `R/N(R)` times `p^{⌈log_p m⌉}` at all seven repeated-factor primes `p < 200` with `k ≤ 8` ([[castle-ring-spectrum](pages/castle-ring-spectrum.md)], section 3).
+In the `char_3` row, `R^* ≅ Z/4 × Z/5 × Z/24 ≅ Z/4 × Z/120`, and `x` has orders 1, 5 and 24 in the three factors. In the `char_4` row, `R^* ≅ Z/2 × Z/3 × Z/26 ≅ Z/2 × Z/78`, and `x` has order 1 in `F_3^*` (its image is `1`), 3 in `U` and 13 in `F_27^*`, so its order `39` is half the exponent `78`. In each row with odd `p` the component of `x` in `U` has order `p`, as the case `m = 2` requires. In ring terms `U` is `1 + N(R)` for the nilradical `N(R)`, and for every `m` the period is the period in the reduced ring `R/N(R)` times `p^{⌈log_p m⌉}`, which [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] proves from the Frobenius map; [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] (section 3) checks it at the seven repeated-factor primes `p < 200` with `k ≤ 8`.
 
-## 5. The two `d = 3` linear-complexity deficits
+## 5. The norm relations among the roots and the linear-complexity deficits
 
-Attack 5 of round two measures the linear complexity, the length of the shortest linear recurrence, of the filtered sequences `s_n s_{n+1} + s_{n+2}` and `s_n s_{n+1} s_{n+2}` for `s_n = P(2, n) mod p`, whose characteristic polynomial `char_2 = (x − 2)(x² − x + 2)` has `d = 3` roots. Write `s_n = Σ_i c_i λ_i^n` over the roots `λ_i ∈ {2, α, ᾱ}`. A product of shifts expands as a sum `Σ_μ C_μ μ^n` over the products `μ` of roots, and its linear complexity is the number of distinct `μ` with `C_μ ≠ 0`. The bounds are `C(d+1, 2) + d = 9` and `C(d+2, 3) = 10`, and the measured values at `p = 10⁹ + 7` are 8 and 9 (computed), while round two reports `d = 4` and `d = 6` at their bounds ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], Attack 5). Both deficits come from `α + ᾱ = 1` and `α·ᾱ = 2`, Vieta on `x² − x + 2`, which says that the norm of `α` from `F_{p²}` to `F_p` is the third root `2`.
+The norm of `x` is `2^k` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 8). Over the factors of `char_k` it is the product of the norms of the images of `x`, the products of the roots of each factor. At `k = 2`, `char_2 = (x − 2)(x² − x + 2)` gives `2 · αᾱ = 4`: the root `2`, times the norm `αᾱ = 2` of `α` from `F_{p²}` to `F_p`. At `k = 4`, the factors `λ² − 2λ + 4` and `λ³ − 3λ² + 2λ − 4` give `β_1 β_2 · γ_1 γ_2 γ_3 = 4 · 4`. Such relations among the roots lower the linear complexities that round two measures.
+
+Attack 5 of round two measures the linear complexity, the length of the shortest linear recurrence, of the filtered sequences `s_n s_{n+1} + s_{n+2}` and `s_n s_{n+1} s_{n+2}` for `s_n = P(2, n) mod p`, whose characteristic polynomial `char_2 = (x − 2)(x² − x + 2)` has `d = 3` roots. Write `s_n = Σ_i c_i λ_i^n` over the roots `λ_i ∈ {2, α, ᾱ}`. A product of shifts expands as a sum `Σ_μ C_μ μ^n` over the products `μ` of roots, and its linear complexity is the number of distinct `μ` with `C_μ ≠ 0`. The bounds are `C(d+1, 2) + d = 9` and `C(d+2, 3) = 10`, and the measured values at `p = 10⁹ + 7` are 8 and 9 (computed), while round two's Attack 5 table, for `d = 2` to `7`, reaches its bounds except at `d = 3` and `d = 5` ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], Attack 5). Both deficits come from `α + ᾱ = 1` and `α·ᾱ = 2`, Vieta on `x² − x + 2`, which says that the norm of `α` from `F_{p²}` to `F_p` is the third root `2`.
 
 **`s_n s_{n+1} + s_{n+2}`: 8, not 9.** The values `μ` are the six products of two roots, `{4, 2α, 2ᾱ, α², ᾱ², αᾱ}`, and the three roots `{2, α, ᾱ}`. Since `αᾱ = 2`, one product coincides with a root, and there are `6 + 3 − 1 = 8` distinct values.[^6]
 
@@ -95,13 +110,33 @@ Attack 5 of round two measures the linear complexity, the length of the shortest
 
 using `α² + ᾱ² = (α + ᾱ)² − 2αᾱ`. So nine of the ten values occur.[^7]
 
+**The census for `k ≤ 6`.** At `p = 10⁹ + 7`, the linear complexities found by Berlekamp-Massey:[^14]
+
+| `k` | `d` | `s_n s_{n+1} + s_{n+2}` | bound `C(d+1, 2) + d` | `s_n s_{n+1} s_{n+2}` | bound `C(d+2, 3)` |
+|---|---|---|---|---|---|
+| 1 | 2 | 5 | 5 | 4 | 4 |
+| 2 | 3 | 8 | 9 | 9 | 10 |
+| 3 | 4 | 14 | 14 | 20 | 20 |
+| 4 | 5 | 20 | 20 | 31 | 35 |
+| 5 | 6 | 27 | 27 | 56 | 56 |
+| 6 | 7 | 35 | 35 | 84 | 84 |
+
+The values at `k = 2` and `k = 4` are the same at `p = 1,000,000,403` and `p = 998,244,353`. Besides `k = 2`, only the product filter at `k = 4` falls short, by 4.
+
+**`s_n s_{n+1} s_{n+2}` at `k = 4`: 31, not 35.** `char_4 = (λ² − 2λ + 4)(λ³ − 3λ² + 2λ − 4)` ([[signed-tower-count](pages/signed-tower-count.md)]), and the roots of the quadratic factor are `β = 1 ± i√3 = 2e^{±iπ/3}`, twice the primitive sixth roots of unity: `λ² − 2λ + 4 = 4·Φ_6(λ/2)`. So `β_1 β_2 = 4`, the norm of `β`, `β_1 + β_2 = 2`, and `β_1³ = β_2³ = −8`. Four of the 35 terms drop out:
+
+- `β_1³ = β_2³`, so these two products give one value, with coefficient `−8(c_1³ + c_2³)`, where `c_1, c_2` are the coefficients of `β_1^n, β_2^n` in `s_n`. From `P(4, 0), …, P(4, 4) = 1, 1, 5, 25, 85`, `c_2 = −c_1 = i/√3`, so `c_1³ + c_2³ = 0` and the value is lost: two terms.
+- For the multiset `{β_1, β_1, β_2}` the three orderings give `β_1 β_2² + β_2 β_1² + β_1³ = β_1 β_2 (β_1 + β_2) + β_1³ = 8 − 8 = 0`, and `{β_1, β_2, β_2}` likewise: two more terms.
+
+The other 31 products of three roots are distinct, with nonzero coefficients.[^15]
+
 ## Appearances in Sources
 
 - [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - the Chinese Remainder Theorem (Ex. 17.20), local rings `R/M^n` (Ex. 13.26), units of `R[X]` (Exs. 14.15-14.16), and `(2, X)` in `Z[X]` (Exs. 14.13, 14.19).
 
 ## Related Concepts
 
-- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `F_p[x]/(Q)`, its CRT split (section 4) and the orders of `x` (section 5).
+- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `F_p[x]/(Q)` (section 2), the coprimality of `num_k` and `den_k` (section 6), the orders of `x` for `k ≤ 7` at two primes (section 7) and the norm `2^k` of `x` (section 8).
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - Attack 3 (Pohlig-Hellman), Attack 4 (the cyclotomic factorization of `p^d − 1`), Attack 5 (the linear-complexity bounds), Fix 4.
 - [[castle-cryptography](pages/castle-cryptography.md)] - the castle cryptosystem the two seminars build and attack.
 - [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - characteristic polynomials, irreducibility and discrete logarithms for the cryptosystem.
@@ -109,9 +144,10 @@ using `α² + ᾱ² = (α + ᾱ)² − 2αᾱ`. So nine of the ten values occur.
 - [[finite-fields](pages/finite-fields.md)] - `F_{p^d}^*` is cyclic of order `p^d − 1`.
 - [[kitamasa](pages/kitamasa.md)] - `x^n mod Q` by repeated squaring.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - why `char_k` factors for even `k`, as `char_2 = (x − 2)(x² − x + 2)`.
+- [[signed-tower-count](pages/signed-tower-count.md)] - `char_k` and its factors, as `char_4 = (λ² − 2λ + 4)(λ³ − 3λ² + 2λ − 4)`.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the real and complex roots of `char_k`.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - the algorithm that measures linear complexity.
-- [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - the factorizations of `char_k` mod `10⁹ + 7` and the periods there.
+- [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - the factorizations of `char_k` mod `10⁹ + 7` and the periods there, and the proof that a factor of multiplicity `m` multiplies the order of `x` by exactly `p^{⌈log_p m⌉}`.
 - [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] - character sums over `Z/m`, another use of finite abelian groups.
 - [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the product decomposition this page starts from.
 - [[idempotent-decomposition](pages/idempotent-decomposition.md)] - the same decomposition by idempotents; a repeated factor changes the unit group but not the number `2^r` of idempotents.
@@ -134,3 +170,7 @@ using `α² + ᾱ² = (α + ᾱ)² − 2αᾱ`. So nine of the ten values occur.
 [^9]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Exs. 14.15-14.16 p.61; solutions pp.171-172 [synthesis] - `f ∈ R[X]` is a unit iff its constant term is a unit and its other coefficients are nilpotent; `R` has a nonzero nilpotent iff `R[X]` has a unit of positive degree.
 [^10]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Exs. 14.13, 14.19 pp.60-61; solutions pp.171-172 [synthesis] - `(2, X)` is not principal in `Z[X]`, and `Z[X]/(n, X) ≅ Z_n`.
 [^11]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 13.26 p.57; solution pp.166-167 [synthesis] - for `M` maximal in a commutative ring with identity, `R/M^n` is local: each `a + 1` with `a ∈ M` is a unit mod `M^n` by the finite geometric series, so `M/M^n` is the unique maximal ideal.
+[^12]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): for `k ≤ 7` and `p ∈ {3, 5, 7, 11, 13, 53, 101, 107, 10⁹ + 7, 1,000,000,403}`, the Smith normal form of the diagonal matrix of the cyclic orders in Equation (1), with `U = Z/p` for each repeated linear factor as in the table of section 4, has `max(r, rank U)` nonunit entries; the six pairs with a repeated factor are `(k, p) = (2, 7), (3, 5), (4, 3), (4, 107), (5, 53), (6, 3)`.
+[^13]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): for the repeated factor `g` of `char_k mod p` at `(k, p) = (2, 7), (3, 5), (4, 3), (4, 107), (5, 53), (6, 3), (6, 23), (6, 643)`, all linear of multiplicity 2, `x^{p − 1} ≢ 1 (mod g²)`.
+[^14]: Verified by execution (Python 3.11, 2026-10-25): Berlekamp-Massey over `F_p` on `4·C(d + 2, 3) + 37` terms of each filtered sequence, with `s_n = P(k, n) mod p` from the signed transfer matrix, for `k ≤ 6` at `p = 10⁹ + 7`, and for `k = 2, 4` also at `p = 1,000,000,403` and `998,244,353`.
+[^15]: Verified by execution (Python 3.11 with mpmath at 60 digits, 2026-10-25): the 35 products of three roots of `char_4` take 34 distinct values, the only coincidence being `β_1³ = β_2³ = −8`; the sums over orderings vanish exactly for `{β_1, β_1, β_2}` and `{β_1, β_2, β_2}`; the coefficients solved from `P(4, 0), …, P(4, 4)` give `c(β_2) = −c(β_1) = 0.57735026918962…·i = i/√3`.

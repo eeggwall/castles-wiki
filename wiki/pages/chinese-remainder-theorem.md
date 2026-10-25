@@ -5,7 +5,7 @@ summary: For pairwise comaximal ideals I_1, …, I_n of a ring with identity, R/
 tags: [concept, ring, chinese-remainder-theorem, comaximal-ideals, quotient-ring, finite-field, castle]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-26
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Chinese Remainder Theorem (rings)
@@ -26,7 +26,7 @@ is a ring isomorphism; equivalently, every system `r ≡ a_i (mod I_i)` has a so
 F_p[x]/(Q)   ≅   ∏_i  F_p[x]/(g_i^{m_i}) .
 ```
 
-A factor with `m_i = 1` is the field `F_{p^{d_i}}` ([[finite-fields](pages/finite-fields.md)]). A factor with `m_i ≥ 2` is a local ring, whose unit group is `F_{p^{d_i}}^*` times a `p`-group of order `p^{d_i(m_i − 1)}` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 4).
+A factor with `m_i = 1` is the field `F_{p^{d_i}}` ([[finite-fields](pages/finite-fields.md)]). A factor with `m_i ≥ 2` is a local ring, whose unit group is `F_{p^{d_i}}^*` times a `p`-group of order `p^{d_i(m_i − 1)}`, elementary abelian of rank `d_i` when `m_i = 2` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 4).
 
 **The inverse map.** The inverse of the CRT map is `(a_1, …, a_n) ↦ Σ a_i e_i`, where `e_i ≡ 1 (mod I_i)` and `e_i ≡ 0 (mod I_j)` for `j ≠ i`. The `e_i` are **orthogonal idempotents**: `e_i² = e_i`, `e_i e_j = 0` for `i ≠ j`, and `Σ e_i = 1` ([[idempotent-decomposition](pages/idempotent-decomposition.md)]).
 
@@ -34,12 +34,12 @@ A factor with `m_i = 1` is the field `F_{p^{d_i}}` ([[finite-fields](pages/finit
 
 ## In the castle work
 
-Let `R = F_p[x]/(char_k mod p)`, the ring in which multiplication by `x` is the recurrence of the signed tower count `P(k, ·)` mod `p` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 3). The theorem enters in four places.
+Let `R = F_p[x]/(char_k mod p)`, the ring in which multiplication by `x` is the recurrence of the signed tower count `P(k, ·)` mod `p` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 2). The theorem enters in four places.
 
-- **Periods.** The period of `P(k, ·) mod p` divides the order of `x` in `R^*`, with equality when `num_k` and `den_k` are coprime mod `p`, as in every case on this page (computed). Under the CRT split the order of `x` is the lcm of the orders of its images in the factors ([[mod-p-observatory](pages/mod-p-observatory.md)], [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 1).
-- **Unit groups.** For squarefree `char_k mod p`, `R^* ≅ ∏_i Z/(p^{d_i} − 1)`. A repeated factor gives a local factor whose `p`-group multiplies the period by a power of `p` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 4).
+- **Periods.** The period of `P(k, ·) mod p` divides the order of `x` in `R^*`, with equality, since `num_k` and `den_k` are coprime mod every prime ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 6). Under the CRT split the order of `x` is the lcm of the orders of its images in the factors ([[mod-p-observatory](pages/mod-p-observatory.md)], [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 1).
+- **Unit groups.** For squarefree `char_k mod p`, `R^* ≅ ∏_i Z/(p^{d_i} − 1)`, with exactly one invariant factor per irreducible factor for odd `p` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 2). A repeated factor of multiplicity `m` gives a local factor whose `p`-group multiplies the period by exactly `p^{⌈log_p m⌉}`, one factor `p` when `m = 2` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 4).
 - **Pohlig-Hellman.** The attack on the castle Diffie-Hellman uses the theorem twice: once on `R`, and once on the integers, to combine the discrete logarithms found modulo the prime powers dividing the order of `x` ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]).
-- **A worked split.** At `p = 101`, `char_2 = (x − 2)(x² − x + 2)` with `x² − x + 2` irreducible (its discriminant `−7` is not a square mod 101), so `R ≅ F_101 × F_{101²}`. The projections are evaluation at `x = 2` and reduction mod `x² − x + 2` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 4), and the idempotents that invert the split are on [[idempotent-decomposition](pages/idempotent-decomposition.md)].
+- **A worked split.** At `p = 101`, `char_2 = (x − 2)(x² − x + 2)` with `x² − x + 2` irreducible (its discriminant `−7` is not a square mod 101), so `R ≅ F_101 × F_{101²}`. The projections are evaluation at `x = 2` and reduction mod `x² − x + 2` ([[castle-cryptography](pages/castle-cryptography.md)], Attack 1), and the idempotents that invert the split are on [[idempotent-decomposition](pages/idempotent-decomposition.md)].
 
 ## Appearances in Sources
 
@@ -49,7 +49,8 @@ Let `R = F_p[x]/(char_k mod p)`, the ring in which multiplication by `x` is the 
 
 - [[idempotent-decomposition](pages/idempotent-decomposition.md)] - the idempotents that invert the CRT map; a ring is a product of two nonzero rings exactly when it has an idempotent other than `0` and `1`.
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the unit group `R^*`, factor by factor, and the order of `x` in it.
-- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - section 4, the projections of `R` onto its factors, computed.
+- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring (section 2), the coprimality of `num_k` and `den_k` (section 6) and the unit group of `R` (section 7).
+- [[castle-cryptography](pages/castle-cryptography.md)] - Attack 1, the projections of `R` onto its factors at `p = 101`, computed.
 - [[finite-fields](pages/finite-fields.md)] - the fields `F_{p^d}` that the squarefree factors give.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the periods of the castle counts mod `p` as lcms over the factors.
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - Pohlig-Hellman on the castle Diffie-Hellman.

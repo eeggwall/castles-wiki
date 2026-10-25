@@ -55,7 +55,7 @@ The update is multiplication of the vector `(num, den)` by the matrix `[[−1, 2
 den_{k+1}  =  den_{k−1} − 2x·den_k,
 ```
 
-and the same for `num`. This is the recurrence of the Pell polynomials in the variable `−x` ([[generating-function-gallery](pages/generating-function-gallery.md)]).
+and the same for `num`. This is the recurrence of the Pell polynomials in the variable `−x` ([[generating-function-gallery](pages/generating-function-gallery.md)]). Since `det M = −1`, `M` is invertible over `F_p[x]` for every prime `p`, so `num_k` and `den_k` are coprime mod every prime, and the period of `P(k, ·)` mod an odd prime is the order of `x` in `F_p[x]/(char_k)` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 6).
 
 **Factors and dominant roots.** For odd `k ≤ 15`, `char_k` is irreducible over the rationals; for `k = 2^m − 1` this is proved on [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]. For even `k ≤ 14`, `char_k` has exactly two irreducible factors, and [[tower-parity-sectors](pages/tower-parity-sectors.md)] derives the factorization from the split of `P` by the parity of the last column. For `k = 2, 4, 6` the root of largest modulus is real, and `P(k, L) > 0` for every even `k ≤ 12` and `L < 40`. For odd `k ≤ 7` the roots of largest modulus are a complex-conjugate pair, and `P(k, ·)` changes sign in runs.[^1]
 
