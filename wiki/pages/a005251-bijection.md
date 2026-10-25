@@ -1,7 +1,7 @@
 ---
 title: The A005251 bijection - compositions ↔ no-010 strings
 category: Analyses
-summary: The tree castles of area n, of any height, are the compositions of n with no two neighboring parts at least 2, A005251(n + 2) of them. The standard map from compositions of n to binary strings of length n − 1, a part c becoming 0^{c−1} and the parts joined by single 1s, sends them onto the strings with no factor 010, which number A005251(n + 2) as well; proved, and checked for n ≤ 14. Composed with the column map of tree-castle-by-area, a column of height c ≥ 2 becoming a run 1^c, it gives an explicit bijection from the strings of length n − 1 with no 010 onto the strings of length n with no isolated 1. Matched with the tree castles of area n, the compositions of n + 1 avoiding the part 2, the binary strings of length n with no isolated 1 and the tower-spacing skylines of width n − 1 and height at most 2 correspond to them by explicit bijections, and the even-sector signed towers P_even(6, n − 1)/2^{n−1} have the same count by a change of basis.
+summary: The tree castles of area n, of any height, are the compositions of n with no two neighboring parts at least 2, A005251(n + 2) of them. The standard map from compositions of n to binary strings of length n − 1, a part c becoming 0^{c−1} and the parts joined by single 1s, sends them onto the strings with no factor 010, which number A005251(n + 2) as well; proved, and checked for n ≤ 14. A three-state automaton counts the strings directly, with characteristic polynomial x³ − 2x² + x − 1 and generating function (1 + x²)/(1 − 2x + x² − x³), and the bijection matches it with the area generating function of the tree skylines. Composed with the column map of tree-castle-by-area, a column of height c ≥ 2 becoming a run 1^c, it gives an explicit bijection from the strings of length n − 1 with no 010 onto the strings of length n with no isolated 1. Matched with the tree castles of area n, the compositions of n + 1 avoiding the part 2, the binary strings of length n with no isolated 1 and the tower-spacing skylines of width n − 1 and height at most 2 correspond to them by explicit bijections, and the even-sector signed towers P_even(6, n − 1)/2^{n−1} have the same count by a change of basis.
 tags: [analysis, castle, bijection, a005251, plastic-number, composition, binary-string, hardin, tree-castle, tower-spacing, verification]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
@@ -45,6 +45,34 @@ The image is exactly the set of strings without `010` for every `n ≤ 14`, with
 | `(1,3,1)` | `1001` | | `(5)` | `0000` |
 
 The composition `(2, 2, 1)`, with two neighboring parts equal to 2, is excluded; it maps to `0101`, which contains `010`.
+
+## Counting the strings
+
+The strings without `010` can be counted directly. Read a string from left to right and record how much of `010` its end has begun: state `a` when the string is empty or ends in a `1` not preceded by `0`, state `b` when it ends in `0`, and state `c` when it ends in `01`. Appending `0` sends `a` and `b` to `b` and is forbidden at `c`, which would complete `010`; appending `1` sends `a` to `a`, `b` to `c` and `c` to `a`. With rows and columns in the order `a, b, c`, the transfer matrix is
+
+```
+M  =  [ 1 1 0 ]        a:  0 → b,  1 → a
+      [ 0 1 1 ]        b:  0 → b,  1 → c
+      [ 1 0 0 ]        c:          1 → a
+
+det(x·I − M)  =  x(x − 1)² − 1  =  x³ − 2x² + x − 1.
+```
+
+The number `s(N)` of strings of length `N` without `010` is the sum of row `a` of `M^N`, so
+
+```
+Σ_{N≥0} s(N) x^N  =  (1 + x²) / (1 − 2x + x² − x³)  =  1 + 2x + 4x² + 7x³ + 12x⁴ + 21x⁵ + ⋯ .        (1)
+```
+
+By the Cayley-Hamilton theorem, `s(N) = 2s(N−1) − s(N−2) + s(N−3)` for `N ≥ 3`, the cubic recurrence of A005251, and `s(0), s(1), s(2) = 1, 2, 4` are `A005251(3), A005251(4), A005251(5)`; so `s(N) = A005251(N + 3)` for every `N`.[^1] The automaton reaches the cubic, the minimal polynomial of `ψ²`, directly, with no factor `x + 1` to discard.
+
+On the castle side, [[tree-castle-by-area](pages/tree-castle-by-area.md)] derives the generating function of the tree skylines by area, the empty skyline included, from their columns: `G_∞(q) = (1 − q + q²)/(1 − 2q + q² − q³)`. With Equation (1) at `x = q`, the two satisfy
+
+```
+G_∞(q)  =  1 + q · Σ_{N≥0} s(N) q^N,
+```
+
+which is the bijection read coefficient by coefficient: the `1` is the empty skyline, and a tree castle of area `n` carries `q^n` while its string has length `n − 1`. Both counts are derived independently, one from the columns and one from the strings, and the bijection is a combinatorial proof of this identity.[^6]
 
 ## Strings with no isolated 1
 
@@ -96,3 +124,4 @@ The snippets `encode`, `decode` and the check that the image is the set of strin
 [^3]: https://oeis.org/A005251 (read 2026-10-16) - "For n >= 2, a(n) is the number of (n-2)-length binary words with no isolated zeros. - Milan Janjic, Mar 07 2015", "For n>=3, a(n) is the number of binary strings of length n-2 without any maximal runs of ones of length 1. - Félix Balado, Aug 25 2025".
 [^4]: Verified by execution (Python 3.11, 2026-10-25): for every `n ≤ 14`, the tree castles of area `n` number `A005251(n + 2)`, and the column map, the leading-column map and the skyline map of the table send them one-to-one onto the binary strings of length `n` with no isolated `1`, the compositions of `n + 1` without the part 2 and the skylines in `{1, 2}^{n−1}` with tower spacing at least 2 (in row 2, every run of empty cells between two filled cells has length at least 2).
 [^5]: Verified by execution (Python 3.11, 2026-10-25): for every `n ≤ 14`, the map of the Proposition sends the binary strings of length `n − 1` without `010` one-to-one onto the binary strings of length `n` with no isolated `1`, and on the gap string of every tree castle of area `n` it agrees with the column map of the table in the section *The readings at one index*.
+[^6]: Verified by execution (Python 3.11 with SymPy 1.14, 2026-10-25): the characteristic polynomial of `M` is `x³ − 2x² + x − 1`; row `a` of `(I − xM)^{−1}`, summed, is Equation (1), whose coefficients equal `A005251(N + 3)` for `N < 30`; and `G_∞(q) − 1 − q·Σ s(N) q^N` simplifies to 0.
