@@ -5,7 +5,7 @@ summary: How the Project Euler 502 values A^e(w, h) are computed. A^e needs P(h�
 tags: [analysis, castle, algorithms, generating-functions, kitamasa, berlekamp-massey]
 sources: [project-euler-502-solution, project-euler-502-implementation-notes]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle-count algorithms
@@ -44,7 +44,7 @@ For fixed `w`, the program computes `P(0, w), …, P(N − 1, w)` modulo the pri
 2. Kitamasa's method reaches `k = h − 2`;
 3. one more step of the reduction, multiplication by `x` and one reduction modulo the characteristic polynomial, gives `k = h − 1`, so both values come from one pass.
 
-The output is the recurrence of `P(·, w)` when that sequence satisfies a recurrence of order at most `N/2 = 2w + 14` ([[berlekamp-massey](pages/berlekamp-massey.md)], the Corollary). For `4 ≤ L ≤ 12` the order is `2L − 2` (computed, [[recurrence-discovery](pages/recurrence-discovery.md)]); for `L = w = 100` no bound is proved. The source states the order as "at most about 2w empirically" and that "no proof is required to use it".[^4]
+The output is the recurrence of `P(·, w)` when that sequence satisfies a recurrence of order at most `N/2 = 2w + 14` ([[berlekamp-massey](pages/berlekamp-massey.md)], the Corollary). For every `L ≥ 4` the order is `2L − 2`, computed for `L ≤ 12` ([[recurrence-discovery](pages/recurrence-discovery.md)]) and proved for every `L` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), so at `L = w = 100` the order is 198, below `N/2 = 214`. The source states the order as "at most about 2w empirically" and that "no proof is required to use it".[^4]
 
 ## The exact path
 

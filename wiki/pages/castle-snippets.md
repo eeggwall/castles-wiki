@@ -5,7 +5,7 @@ summary: Short tested Python snippets that enumerate the castles of width w and 
 tags: [concept, castle, python, snippets, computational, classification, reference]
 sources: [project-euler-502-brute-force]
 created: 2026-09-16
-updated: 2026-10-22
+updated: 2026-10-25
 ---
 
 # Castle snippets
@@ -471,7 +471,7 @@ A search result is a candidate match until its stored terms and offset agree wit
 - [[castle-classification](pages/castle-classification.md)] - the classification of castles by shape, spectrum and growth, whose shape types the predicates test.
 - [[castle-representations](pages/castle-representations.md)] - the skyline encoding the snippets use.
 - [[castle-sign](pages/castle-sign.md)] - the block count as total ascent and as total descent.
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the first pass of castle counts against the OEIS.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castle counts matched to OEIS entries.
 - [[castle-graph](pages/castle-graph.md)] - the castle graph, its cycle rank, and the tree castles by height.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the census of spectral radii.
 

@@ -3,9 +3,9 @@ title: Castle fibers seminar - char_2 across the primes
 category: Concepts
 summary: A seminar that follows the signed tower count P(2, L) = 1, 1, 3, 9, 19, 33, 59, 121, …, with characteristic polynomial char_2 = (x − 2)(x² − x + 2), through the fibers F_p[x]/(char_2) of the ring A = Z[x]/(char_2). At p = 5 the fiber is a product of two fields and the period of P(2, ·) mod 5 is 24; p = 101 has the same shape, the idempotent 76x² + 25x + 51 isolates the root 2, and the period is 3400; at p = 11 the quadratic splits, as it does for odd p ≠ 7 exactly when p ≡ 1, 2, 4 (mod 7), giving three points, 8 idempotents and period 10; p = 7 divides disc(char_2) = −112, and its fiber has a nonzero nilpotent, 6 ideals against 4 idempotents, and period 21 = 3 · 7; at p = 2, x is not a unit. Over Q, P(2, L) = 2^L − U_L, the two parity sectors, with U_L the Lucas sequence of (1 ± √−7)/2 (A107920), split by the idempotent (x² − x + 2)/4. Over Z that idempotent and the inverse of x need 1/2, the sectors meet at the prime (2, x), A has no idempotents other than 0 and 1, and α·ᾱ = 2 splits the prime 2 in Q(√−7). One table collects the six primes.
 tags: [concept, castle, seminar, pedagogy, teaching, ring, spectrum, finite-field, chinese-remainder-theorem, idempotent, nilradical, frobenius, quadratic-reciprocity, signed-tower-count, parity-sector]
-sources: [calugareanu-hamburg-exercises-basic-ring-theory, oeis-mining-pe502]
+sources: [calugareanu-hamburg-exercises-basic-ring-theory, project-euler-502-representations, oeis-encyclopedia]
 created: 2026-09-26
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle fibers seminar - `char_2` across the primes
@@ -163,7 +163,8 @@ def fiber_board(k, primes):
 ## Appearances in Sources
 
 - [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - the ring theory behind each stop: CRT (17.20), idempotents and splittings (17.19), local rings (13.26), nilradical (13.11), Frobenius and Artin-Schreier (5.14, 5.16), what reduction preserves (4.10).
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - `P(2, ·)` and `char_2`.
+- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the recurrence of `P(2, ·)`, whose characteristic polynomial is `char_2`.
+- [[oeis-encyclopedia](pages/oeis-encyclopedia.md)] - `A107920`, the Lucas sequence `U_L(1, 2)` of Stop 6.
 
 ## Related Concepts
 
@@ -181,7 +182,7 @@ def fiber_board(k, primes):
 
 ## Footnotes
 
-[^1]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L31-37 [synthesis] - "P(2): x^3 - 3x^2 + 4x - 4 (= (x-2)(x^2-x+2))" in the `P(k, ·)` family. The terms for `L ≤ 11` were recomputed by summation over all `3^L` towers and from the recurrence (Python 3.11, 2026-10-16), and match `p_signed(2, L)` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)].
+[^1]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L346 - "k=2: P(2,L) = 3P(2,L-1) - 4P(2,L-2) + 4P(2,L-3)", whose characteristic polynomial is `char_2`. Verified by execution (Python 3.11 with SymPy, 2026-10-25): `char_2 = (x − 2)(x² − x + 2)`, and `P(2, L)` for `L ≤ 11`, by summation over all `3^L` towers, satisfies the recurrence; the terms match `p_signed(2, L)` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] (checked 2026-10-16).
 [^2]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `char_2 ≡ (x − 2)(x² − x + 2)` mod 5 and mod 101, with the quadratic irreducible; the order of `x` in `F_p[x]/(x² − x + 2)` is 24 at `p = 5` and 3400 at `p = 101`; `ord(2) = 4` mod 5 and 100 mod 101; `x_order(char_2, p)` is 24 and 3400. The CRT split is [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.20.
 [^3]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `crt_idempotents(char_k(2), 101)` on [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] returns `−25x² + 25x − 50 ≡ 76x² + 25x + 51` and `25x² − 25x − 50 ≡ 25x² − 25x + 51 (mod 101)`, each idempotent mod `char_2`, with sum 1, product 0 and `x e_1 ≡ 2 e_1`. Splitting ⇔ idempotent is [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.19.
 [^4]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): for every prime `3 ≤ p < 200`, `p ≠ 7`, `x² − x + 2` has two factors mod `p` exactly when `p mod 7 ∈ {1, 2, 4}`; `char_2 mod 11 = (x − 2)(x + 4)(x − 5)`, the roots `2, 7, 5` of orders 10, 10, 5, and period 10.

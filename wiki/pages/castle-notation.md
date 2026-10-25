@@ -70,7 +70,7 @@ At `w = 2`, `P(1, 2) = −2` gives `A^e(2, 2) = (4 + 2)/2 = 3`: the skylines `(1
 
 - **"Height" means castle height `h`** unless the sentence is about towers. "Towers of height at most 1" and `P(1, L)` refer to tower height, and the castle height is given where it matters. A castle of height `h` has a column of height `h`; the wiki writes "height `h`", not "exact height".
 - **`P(k, w)`** on a few pages ([[fractional-width-and-height](pages/fractional-width-and-height.md)], [[mod-9-equidistribution](pages/mod-9-equidistribution.md)]) is `P(k, L)` at base length `L = w`, the castle width, as it appears in the formula for `A^e`.
-- **Generating functions.** `E_k(x) = Σ_L T(k, L) x^L` and `P_k(x) = Σ_L P(k, L) x^L` are the tower generating functions in `x`, written with their argument ([[castle-counting-formula](pages/castle-counting-formula.md)], [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]).
+- **Generating functions.** `E_k(x) = Σ_L T(k, L) x^L` and `P_k(x) = Σ_L P(k, L) x^L` are the tower generating functions in `x`, written with their argument ([[castle-counting-formula](pages/castle-counting-formula.md)], [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]). With `y` marking blocks, `E_k(x, y)` counts the towers of height at most `k` by width and blocks, so `E_k(x) = E_k(x, 1)` and `P_k(x) = E_k(x, −1)`, and `E_∞(x, y)` counts the towers of every height ([[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)], section *Counts*). [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] writes the same function as `E_∞(u, x, q)` at `q = 1`, with `u` for width and `x` for blocks.
 
 ## Sandpile symbols
 

@@ -3,9 +3,9 @@ title: Prime castles - the free gluing monoid by area
 category: Analyses
 summary: "Gluing two castles that begin and end with a height-1 column, by merging the last column of one with the first column of the other, makes a free monoid. Its primes, in Gessel and Li's sense, are the castles with no height-1 column, padded as (1, X, 1); by area they are the compositions into parts at least 2, F_{n-1} of them, golden by area, and the castles of height h among them grow like the largest root of x^h = x^{h-2} + ... + x + 1 (plastic by area at h = 3, supergolden by area at h = 4). A castle with k height-1 columns has k + 1 prime factors (A105422), and its peaks are its nontrivial prime factors. The prime generating function is π(q) = q(1 - q)/(1 - q - q^2) and 1/(1 - π) = (1 - q - q^2)/(1 - 2q). Deutsch and Elizalde's bijection from Dyck paths to bargraphs carries the factorization of Dyck paths into primes onto this one. Block parity is additive over prime factors."
 tags: [analysis, castle, area, composition, prime-castle, monoid, factorization, fibonacci, convex-castle, parity, q-series, oeis]
-sources: [oeis-mining-pe502, deutsch-elizalde-2017-bargraphs-dyck-paths]
+sources: [deutsch-elizalde-2017-bargraphs-dyck-paths, oeis-encyclopedia]
 created: 2026-09-22
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # Prime castles
@@ -149,7 +149,7 @@ for n in range(1, 17):
 
 ## Footnotes
 
-[^1]: Checked by execution (Python 3, 2026-09-22; rerun 2026-10-16 with Python 3.11): every composition of `n ≤ 16` has padded block count equal to its own, satisfies `sum (blocks(prime) − 1) = blocks − 1` and `#factors = #height-1 columns + 1`, and has peak count equal to its number of nontrivial factors; the prime castles of area `n` number `F_{n−1}`. The even and odd totals of the same enumeration reproduce raw/oeis-pe502/vein9-area.md §"Parity splits" L46-47 [synthesis] - the `even(n)` and `odd(n)` rows for `n = 1..12`.
+[^1]: Checked by execution (Python 3, 2026-09-22; rerun 2026-10-16 with Python 3.11): every composition of `n ≤ 16` has padded block count equal to its own, satisfies `sum (blocks(prime) − 1) = blocks − 1` and `#factors = #height-1 columns + 1`, and has peak count equal to its number of nontrivial factors; the prime castles of area `n` number `F_{n−1}`. The even and odd totals of the same enumeration are `even(n) = 0, 1, 2, 5, 8, 17, 30, 65, 122, 261, 502, 1043` and `odd(n) = 1, 1, 2, 3, 8, 15, 34, 63, 134, 251, 522, 1005` for `n = 1..12` (rechecked 2026-10-25).
 [^2]: https://cs.uwaterloo.ca/journals/JIS/VOL16/Gessel/gessel6.pdf (Gessel and Li, "Compositions and Fibonacci Identities", J. Integer Seq. 16 (2013), Article 13.4.5; read 2026-10-16) §"Free monoids" p.3 - "if M is a free monoid, then there exists a subset P of M such that every element of M has a unique factorization as a product of elements of P. We call P the set of primes of M."; "If L is a free monoid, then the factorization is always unique and the irreducible elements are the primes of L"; and the identity `Σ_{m∈M} x^{ω(m)} = (1 − Σ_{p∈P} x^{ω(p)})^{−1}` (their (3)) for a weight function `ω`. The Introduction, p.1, lists from Stanley's Enumerative Combinatorics, Vol. 1, "(ii) F_{n−1} is the number of compositions of n into parts greater than 1".
 [^3]: Verified by execution (Python 3, 2026-10-04): `F_59/φ^60 = 0.27639320` against `1/(φ√5) = 0.27639320`; the compositions of `n` number `2^{n−1}`, and the composite castles `2^{n−1} − F_{n−1}`.
 [^4]: Verified by execution (Python 3, SymPy, 2026-10-02; the table rerun by enumeration 2026-10-16): for `h = 3..8` the count from the two composition recurrences matches a count of the compositions of `n ≤ 16` with largest part `h` and no part 1; the polynomials were factored with SymPy and their largest real roots computed numerically; the successive ratios of the counts at `n = 200` agree with those roots (to five decimals for `h = 3, 4`, and approaching from above for larger `h`).

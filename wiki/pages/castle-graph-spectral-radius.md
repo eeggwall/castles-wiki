@@ -3,9 +3,9 @@ title: Metallic means in castle spectra
 category: Analyses
 summary: Where de Spinadel's metallic means appear as eigenvalues on the wiki. The castle count A^e(w, h) ~ h^w/2 grows at the integer h, the largest eigenvalue of the unsigned transfer matrix; the signed transfer matrix M̃_k has spectral radius ρ_k < k + 1, and no δ_a is an eigenvalue of any M̃_k, since every eigenvalue is twice a root of an integer polynomial with leading coefficient 2 (ρ_2 = 2 is copper, σ_1^2). The metallic means are spectral radii of transfer matrices of castle families (the Pell strip is silver by width, the Fibonacci castles golden by width) and of castle graphs. A castle is golden by spectrum when its castle graph has spectral radius φ, which holds for exactly the six castles whose graph is the path P_4, and silver by spectrum at 1 + √2, which holds for 36 castles up to mirror image among 4,868,525 scanned (6 to 20 cells); 11 have spectral radius φ², none in the scan has bronze, and no castle graph has spectral radius δ_a for a ≥ 4.
 tags: [analysis, castle, spectral, adjacency, transfer-matrix, metallic-means, golden-ratio, silver-ratio, spectral-type, isospectral, numpy, sympy, verification]
-sources: [project-euler-502-castle-factoring, oeis-mining-pe502, project-euler-502-solution]
+sources: [project-euler-502-castle-factoring, project-euler-502-solution]
 created: 2026-09-16
-updated: 2026-10-22
+updated: 2026-10-25
 ---
 
 # Metallic means in castle spectra
@@ -160,8 +160,7 @@ Its characteristic polynomial is `x(x−1)(x+1)` times an irreducible polynomial
 ## Appearances in Sources
 
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the formula for `A^e(w, h)` whose term `h^w` sets the growth constant.
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the characteristic polynomials `char_1` to `char_5`.
-- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the signed tower count `P(k, L)` and its recurrence in `L`.
+- [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the signed tower count `P(k, L)`, its recurrence in `L`, and the update of `num_k` and `den_k` from which the characteristic polynomials `char_k` are computed.
 
 ## Related Concepts
 
@@ -183,7 +182,7 @@ Its characteristic polynomial is `x(x−1)(x+1)` times an irreducible polynomial
 ## Footnotes
 
 [^1]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L123-127 - "F(w,h) = (h^w - (h-1)^w - P(h-1,w) + P(h-2,w))/2".
-[^2]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L31-37 - the characteristic polynomials of `P(k, ·)` for `k ≤ 5`, "constant term = (-1)^{k-1} 2^k".
+[^2]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The rational-function path (h ≤ 15000)" L124-138 - "num_k(x) = 2 · den_{k-1}(x) - num_{k-1}(x)", "den_k(x) = den_{k-1}(x) · (1 - 2x) + num_{k-1}(x) · x", "F_k(x) = num_k(x)/den_k(x)", from which `char_k(λ) = λ^{k+1} den_k(1/λ)`. Verified by execution (Python 3.11 with SymPy, 2026-10-25): `char_k` from this update for `k ≤ 30` has degree `k + 1` and constant term `(−1)^{k+1} 2^k`.
 [^3]: Verified by execution (Python 3.11 with NumPy, SymPy and networkx, 2026-10-16): `A^e(w, 2)` for `w ≤ 14` by enumeration; `char(M̃_k) = char_k` for `k ≤ 7`; `g_k` integral with leading coefficient 2 and constant term `±1` for `k ≤ 30`; `ρ_k` for `k ≤ 30`, the degrees 8 and 18 of `ρ_3` and `ρ_5` from the resultant of `char_k(y)` and `y^{k+1} char_k(t/y)`, and the leading coefficient of the factor of `g_k` containing `ρ_k/2` for `k ≤ 30`; the first census (134,111 castles, tolerance `10⁻⁹`) and the seven factorizations; the large scan of all 4,868,525 castles up to mirror image in the stated boxes with `eigvalsh` (tolerance `10⁻⁸`), each silver and `φ²` match confirmed by exact division of the characteristic polynomial; the polynomial of `(1,1,2,7,7,5,7,7)`, whose degree-34 factor has dominant root `3.5097553244763626829414848…`, `8.0·10⁻⁹` below `2ψ²`.
 [^4]: Verified by execution: no eigenvalue of `M̃_k` for `k ≤ 20` lies within `10⁻⁶` of `δ_a` for `a ≤ 6`, as the Proposition requires.
 [^5]: https://aeb.win.tue.nl/2WF02/spectra.pdf (A. E. Brouwer and W. H. Haemers, *Spectra of Graphs*, monograph version of February 1, 2011, read 2026-10-16) - Theorem 2.2.1(vi), p.22: "If |S| ≤ T and S has eigenvalue σ, then |σ| ≤ θ0. If equality holds, then |S| = T, and there are a diagonal matrix E with diagonal entries of absolute value 1 and a constant c of absolute value 1, such that S = cETE^{−1}"; Proposition 3.1.2, p.33: "Let Γ be a connected graph with largest eigenvalue θ1. If Γ is regular of valency k, then θ1 = k. Otherwise, we have kmin < k̄ < θ1 < kmax where kmin, kmax and k̄ are the minimum, maximum and average degree."

@@ -3,9 +3,9 @@ title: The Hardy-Ramanujan castle (1729)
 category: Analyses
 summary: 1729, the taxicab number 1^3 + 12^3 = 9^3 + 10^3, is a castle count - A^e(6, 4) = 1729, the only cell with w, h <= 40 where 1729 appears among A, A^e and A^o, and A(6, 4) = 16^3 - 9^3 is a difference of cubes in the same cell. The rearrangement 9^3 + 10^3 + (-12)^3 = 1 leads to Ramanujan's near-miss family a_n^3 + b_n^3 = c_n^3 + (-1)^n, a linear recurrence with denominator (1 + x)(1 - 83x + x^2) that Berlekamp-Massey recovers from six terms; 1729 is its n = -1 term, and its growth constant (83 + 9 sqrt 85)/2 is the square of the metallic mean delta_9 = (9 + sqrt 85)/2, the Perron root of the height-10 ridge matrix R_10 = J - D. Also - the base-10 digit castle (1, 7, 2, 9) (an even-block castle of area 19, Ramanujan in the spectral sense, with skyline DFT bins 19, 13 and 2 +- i that give 1729 mod 9, mod 11 and mod 101), the first four Carmichael numbers 561, 1105, 1729, 2465 as castle counts, and A^e(w, h) mod 1729 with periods 72, 2520, 25200 at h = 2, 3, 4.
 tags: [analysis, castle, 1729, taxicab, hardy-ramanujan, dft, divisibility-test, sum-of-cubes, near-miss, c-finite, berlekamp-massey, metallic-mean, carmichael, mod-p, worked-example, computation]
-sources: [oeis-mining-pe502, project-euler-502-solution]
+sources: [project-euler-502-solution, oeis-encyclopedia]
 created: 2026-09-19
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # The Hardy-Ramanujan castle (1729)
@@ -31,7 +31,7 @@ The continued fraction of the cube root is `1729^{1/3} = [12; 432, 12, 648, 9, 1
 
 ## 1729 is a castle count: the cell (6, 4)
 
-The row `A^e(w, 4)` of the mining notes reads `1, 7, 31, 117, 439, 1729, 7063, 29201, …`, so `A^e(6, 4) = 1729`.[^6] Enumerating the `4^6 − 3^6 = 3367` skylines in `{1, …, 4}^6` that reach 4, with the block count `c_1 + Σ max(0, c_i − c_{i−1})` ([[castle-snippets](pages/castle-snippets.md)]), gives:[^exec]
+The row `A^e(w, 4)` reads `1, 7, 31, 117, 439, 1729, 7063, 29201, …` for `w = 1, 2, 3, …`, so `A^e(6, 4) = 1729`.[^6] Enumerating the `4^6 − 3^6 = 3367` skylines in `{1, …, 4}^6` that reach 4, with the block count `c_1 + Σ max(0, c_i − c_{i−1})` ([[castle-snippets](pages/castle-snippets.md)]), gives:[^exec]
 
 | quantity at `(w, h) = (6, 4)` | value | factorization |
 |---|---|---|
@@ -205,11 +205,11 @@ The factorization `1729 = 12^3 + 1 = Φ_2(12) Φ_6(12) = 13 · 133`, with `133 =
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the row `A^e(w, 4) = 1, 7, 31, 117, 439, 1729, …` of the mining tables, where 1729 is a castle count.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the tower count `T(k, L) = (k+1)^L`, which makes `T(k, 3)` a cube.
 
 ## Related Concepts
 
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the row `A^e(w, 4) = 1, 7, 31, 117, 439, 1729, …` among the castle counts matched against the OEIS.
 - [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)] - which castle counts are sums of three cubes; [[sums-of-three-cubes](pages/sums-of-three-cubes.md)] is the number theory.
 - [[ramanujan-castles](pages/ramanujan-castles.md)] - the spectral Ramanujan property of castle graphs and the edge-cavity computation of `ρ(T)`.
 - [[metallic-means](pages/metallic-means.md)] - the metallic means `δ_a = (a + √(a^2 + 4))/2`; Ramanujan's near-miss growth constant is `δ_9^2`.
@@ -232,7 +232,7 @@ The factorization `1729 = 12^3 + 1 = Φ_2(12) Φ_6(12) = 13 · 133`, with `133 =
 [^3]: https://oeis.org/A050794 (2026-09-19) - Diophantine equation `x^3 + y^3 = z^3 + 1` with `1 < x < y < z`, "Fermat near misses", data `1729, 1092728, 3375001, 15438250, 121287376, 401947273, …`; comment (Omar E. Pol, 2009) "a(1)=1729 is the Hardy-Ramanujan number".
 [^4]: https://oeis.org/A002997 (2026-09-19) - "Carmichael numbers", data `561, 1105, 1729, 2465, 2821, 6601, 8911, 10585, 15841, 29341, …`; definition "composite numbers k such that a^(k-1) == 1 (mod k) for every a coprime to k"; Korselt (1899): an odd composite `k` is Carmichael if and only if it is squarefree and `p − 1 | k − 1` for every prime `p | k`.
 [^5]: https://arxiv.org/abs/1510.00735 (2026-09-19) - Ken Ono and Sarah Trebat-Leder, "The 1729 K3 Surface", Research in Number Theory (2016), abstract [synthesis]: revisiting Ramanujan's writings around 1729 and Euler's `a^3 + b^3 = c^3 + d^3`, they find that Ramanujan "discovered a K3 surface with Picard number 18" yielding "infinitely many cubic twists over Q with rank >= 2".
-[^6]: raw/oeis-pe502/terms_50.txt §"F(w,4)" L10-12 - "## F(w,4)  [even blocks, height 4, w=1..50]" followed by the data line beginning "1 7 31 117 439 1729 7063 29201 120471 493617".
+[^6]: Verified by execution (Python 3.11, 2026-10-25): enumerating the skylines in `{1, …, 4}^w` that reach 4, with block count `c_1 + Σ max(0, c_i − c_{i−1})`, the even-block ones number `1, 7, 31, 117, 439, 1729, 7063, 29201` for `w = 1, …, 8`.
 [^7]: https://en.wikipedia.org/wiki/Sums_of_three_cubes (2026-09-19) - "cannot equal 4 or 5 modulo 9, because the cubes modulo 9 are 0, 1, and -1"; Mahler 1936: "(9b^4)^3 + (3b - 9b^4)^3 + (1 - 9b^3)^3 = 1"; the primitive-solution table lists `(9, 10, -12)` for `n = 1`; "in 2019, Andrew Booker settled the case n = 33"; "in September 2019, Booker and Andrew Sutherland finally settled the n = 42 case".
 [^8]: https://mathworld.wolfram.com/RamanujansSumIdentity.html (2026-09-19) - the three generating functions with denominator `1 - 82x - 82x^2 + x^3`, the identity `a_n^3 + b_n^3 = c_n^3 + (-1)^n`, Hirschhorn's closed forms with `alpha, beta = (83 +- 9 sqrt 85)/2` and denominators 85, and "the first seven cases n=0 to 6 is sufficient to prove the result" (Hirschhorn 1996); references M. D. Hirschhorn, "An Amazing Identity of Ramanujan", Math. Mag. 68 (1995) 199-201, and "A Proof in the Spirit of Zeilberger of an Amazing Identity of Ramanujan", Math. Mag. 69 (1996) 267-269. https://oeis.org/A051028 (2026-09-19) - "Ramanujan's a-series: expansion of (1+53x+9x^2)/(1-82x-82x^2+x^3)", g.f. "(1+53*x+9*x^2)/((1+x)*(1-83*x+x^2))", recurrence signature `(82, 82, -1)`, comment (Emeric Deutsch, 2006) "The 'amazing' identity of Ramanujan is a(n)^3 + b(n)^3 = c(n)^3 + (-1)^n" with `b, c` = A051029, A051030.
 [^9]: https://oeis.org/A005917 (2026-09-19) - "Rhombic dodecahedral numbers: a(n) = n^4 - (n - 1)^4", data `1, 15, 65, 175, 369, 671, 1105, 1695, 2465, 3439, 4641, 6095`; formula "a(n) = (2*n - 1)*(2*n^2 - 2*n + 1)".

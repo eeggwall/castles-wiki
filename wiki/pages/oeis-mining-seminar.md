@@ -3,16 +3,16 @@ title: OEIS mining seminar - one castle sequence, end to end
 category: Concepts
 summary: A seminar that runs OEIS mining on castle counts, one row at a time. Enumerate castles by brute force; cut the table into rows; look a row up and reject a short false positive (1, 3, 6, 10 also begins the triangular numbers, which give 15 where castles give 16); align the offset, A^e(w, 2) = A038505(w+1) and A^o(w, 2) = A038503(w+1) − 1; prove both by counting runs; reject a relative of the right entry (P(1, L) = A009545(L+3)/2, while the exact match is P(1, L) = A146559(L+1)); and read the next row, A^e(w, 3) = 0, 0, 3, 21, 89, 307, …, through its order-6 recurrence from Berlekamp-Massey and its closed form. One Snippet block reproduces every value.
 tags: [concept, castle, seminar, pedagogy, teaching, oeis, offsets, false-positive, berlekamp-massey, hyperbolic-sequence, a038505, a038503, a146559, a009545]
-sources: [oeis-mining-pe502, oeis-height2-hyperbolic-castles, new-sequence-fw3]
+sources: [oeis-encyclopedia]
 created: 2026-09-26
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # OEIS mining seminar - one castle sequence, end to end
 
 **Thesis.** A row of castle counts is connected to the rest of mathematics when it equals an entry of the On-Line Encyclopedia of Integer Sequences (OEIS) at an exact offset. Each match is checked at that offset, short coincidences are rejected, and every accepted match is proved; a row is also read through its recurrence and closed form.
 
-**Structure.** Seven stops, 0 to 6: one row that matches, one false match, and one row read through its recurrence. The Snippet block at the end reproduces every value. The method is stated on [[oeis-cross-referencing](pages/oeis-cross-referencing.md)], and the first mining pass is [[oeis-mining-pe502](pages/oeis-mining-pe502.md)].
+**Structure.** Seven stops, 0 to 6: one row that matches, one false match, and one row read through its recurrence. The Snippet block at the end reproduces every value. The method is stated on [[oeis-cross-referencing](pages/oeis-cross-referencing.md)], and the other matches of castle counts against the OEIS are collected on [[oeis-mining-pe502](pages/oeis-mining-pe502.md)].
 
 ## Stop 0 - the enumerator
 
@@ -40,8 +40,6 @@ A^e(w, 2)  =  1, 3, 6, 10, 16, 28, 56, 120, 256, 528, …        (w = 1, 2, 3, �
 
 The first four terms `1, 3, 6, 10` also begin the **triangular numbers** `1, 3, 6, 10, 15, 21, …` (A000217), and the fifth term separates them: 16, not 15. The row agrees term by term with **A038505**, the sums `Σ_k C(n, 4k+2)` of every fourth binomial coefficient starting at `C(n, 2)`.[^1]
 
-The first mining pass rejected other matches of the same kind: the "sqrt(5) difference" sequences A325842 and A325668, and decimal-expansion hits on short block distributions, which agreed on a few terms for no reason ([[oeis-mining-pe502](pages/oeis-mining-pe502.md)]).[^2]
-
 *Idea:* agreement on a few terms is not a match until many more terms agree and a proof explains why.
 
 ## Stop 3 - align the offset
@@ -54,13 +52,13 @@ A^o(w, 2)              =  A038503(w + 1) − 1        (A038503(n) = Σ_k C(n, 4k
 A^e(w, 2) + A^o(w, 2)  =  2^w − 1                   (A000225)
 ```
 
-All three hold for `w ≤ 12` by enumeration.[^3] A038503 and A038505 are two of the four sums of every fourth binomial coefficient ([[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]).
+All three hold for `w ≤ 12` by enumeration.[^2] A038503 and A038505 are two of the four sums of every fourth binomial coefficient ([[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)]).
 
 *Idea:* a match is an identity with an index shift in it, and the shift is tested on every computed term.
 
 ## Stop 4 - prove it
 
-A castle of height 2 is the bottom row, one block, together with a binary string of length `w` that marks the columns of height 2 and contains at least one `1`. If the `1`s form `r` runs, the castle has `1 + r` blocks. The binary strings of length `w` with `r` runs of `1`s number `C(w + 1, 2r)`, one for each choice of the `2r` run ends among the `w + 1` gaps between and around the columns. So:[^4]
+A castle of height 2 is the bottom row, one block, together with a binary string of length `w` that marks the columns of height 2 and contains at least one `1`. If the `1`s form `r` runs, the castle has `1 + r` blocks. The binary strings of length `w` with `r` runs of `1`s number `C(w + 1, 2r)`, one for each choice of the `2r` run ends among the `w + 1` gaps between and around the columns. So:[^3]
 
 ```
 blocks even  ⇔  r odd         ⇔  2r ≡ 2 (mod 4)     ⇒     A^e(w, 2)  =  Σ_k C(w+1, 4k+2)    =  A038505(w+1)
@@ -80,7 +78,7 @@ P(1, L)         =  1, 0, −2, −4, −4,  0,  8, 16, …     =  Re((1+i)^{L+1}
 A009545(L+1)    =  1, 2,  2,  0, −4, −8, −8,  0, …     (the imaginary parts: not a match)
 ```
 
-The rejected entry is related to the right one. Since `(1+i)^{L+3} = 2i·(1+i)^{L+1}`, `P(1, L) = A009545(L+3)/2`, a shift and a halving. The entry that matches with no shift or scale is A146559.[^5] A009545 also has a castle reading of its own: splitting `P(1, L)` by the parity of the last column gives `P_even(1, L) = A146559(L)` and `P_odd(1, L) = −A009545(L)` ([[tower-parity-sectors](pages/tower-parity-sectors.md)], Part 3). So `A009545(w)` is the number of castles of width `w` and height 2 with `c_w = 2` and an even number of blocks, minus the number with an odd number.
+The rejected entry is related to the right one. Since `(1+i)^{L+3} = 2i·(1+i)^{L+1}`, `P(1, L) = A009545(L+3)/2`, a shift and a halving. The entry that matches with no shift or scale is A146559.[^4] A009545 also has a castle reading of its own: splitting `P(1, L)` by the parity of the last column gives `P_even(1, L) = A146559(L)` and `P_odd(1, L) = −A009545(L)` ([[tower-parity-sectors](pages/tower-parity-sectors.md)], Part 3). So `A009545(w)` is the number of castles of width `w` and height 2 with `c_w = 2` and an even number of blocks, minus the number with an odd number.
 
 *Idea:* an entry that matches only after a shift and a scale is a cross-reference, and the match is the entry that agrees exactly.
 
@@ -99,7 +97,7 @@ a(n) = 8a(n−1) − 27a(n−2) + 54a(n−3) − 70a(n−4) + 56a(n−5) − 24a
 characteristic polynomial  (x − 3)(x − 2)(x² − x + 2)(x² − 2x + 2)
 ```
 
-Each factor comes from the closed form `A^e(w, 3) = (3^w − 2^w − P(2, w) + P(1, w))/2` ([[castle-counting-formula](pages/castle-counting-formula.md)], Equation (1)): `x − 3` and `x − 2` from `3^w − 2^w`, which is `A(w, 3)` (A001047), and the rest from `char_2(x) = (x − 2)(x² − x + 2)` and `char_1(x) = x² − 2x + 2`, the characteristic polynomials of `P(2, ·)` and `P(1, ·)`. The odd count `A^o(w, 3)` has a recurrence of order 5, since its components at the root 2 cancel ([[new-sequence-fw3](pages/new-sequence-fw3.md)]).[^7]
+Each factor comes from the closed form `A^e(w, 3) = (3^w − 2^w − P(2, w) + P(1, w))/2` ([[castle-counting-formula](pages/castle-counting-formula.md)], Equation (1)): `x − 3` and `x − 2` from `3^w − 2^w`, which is `A(w, 3)` (A001047), and the rest from `char_2(x) = (x − 2)(x² − x + 2)` and `char_1(x) = x² − 2x + 2`, the characteristic polynomials of `P(2, ·)` and `P(1, ·)`. The odd count `A^o(w, 3)` has a recurrence of order 5, since its components at the root 2 cancel ([[new-sequence-fw3](pages/new-sequence-fw3.md)]).[^5]
 
 *Idea:* the recurrence of a row, its generating function and its closed form come from the closed form of `A^e(w, h)`.
 
@@ -177,14 +175,11 @@ True
 1. Find the smallest `w` at which `A^o(w, 2)` differs from `C(w + 1, 4)`, and list the castles that make the difference.
 2. Compute `A^o(w, 3)` for `w ≤ 13` and run `berlekamp_massey` on it. Show that its order is 5 by writing `A^o = (A − S)/2` with `S(w, 3) = P(1, w) − P(2, w)` and checking which roots cancel ([[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)]).
 
-## Appearances in Sources
-
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the first mining pass: the rejected short matches, and the correction from A009545 to A146559.
-- [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] - the height-2 identities `A^e(w, 2) = A038505(w+1)` and `A^o(w, 2) = A038503(w+1) − 1`.
-- [[new-sequence-fw3](pages/new-sequence-fw3.md)] - the row `A^e(·, 3)` with its recurrence and characteristic polynomial.
-
 ## Related Concepts
 
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the other matches of castle counts against the OEIS.
+- [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] - the height-2 identities `A^e(w, 2) = A038505(w+1)` and `A^o(w, 2) = A038503(w+1) − 1`, and the castle comments of their OEIS entries.
+- [[new-sequence-fw3](pages/new-sequence-fw3.md)] - the row `A^e(·, 3)` with its recurrence and characteristic polynomial.
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] - the two checks of the method, offsets and short prefixes.
 - [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] / [[oeis-index](pages/oeis-index.md)] - every castle sequence with its terms, and every A-number the wiki cites.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(1, L) = A146559(L+1)` and the rows `P(k, ·)`.
@@ -199,8 +194,7 @@ True
 ## Footnotes
 
 [^1]: https://oeis.org/A038505 and https://oeis.org/A000217 (read 2026-10-16) - A038505 is "Sum of every 4th entry of row n in Pascal's triangle, starting at binomial(n,2)" (`0, 0, 1, 3, 6, 10, 16, 28, 56, 120, …`); A000217 is the triangular numbers (`0, 1, 3, 6, 10, 15, …`).
-[^2]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Method notes (interlinking discipline)" L175-182 - "checked against the actual OEIS data with offsets, not just the first few terms ... The false positives seen during search (A325842, A325668 \"sqrt(5) difference sequences\"; decimal-expansion/Collatz hits on short block distributions) were rejected".
-[^3]: Verified by execution (Python 3.11, 2026-10-16): `A^e(w, 2) = A038505(w+1)`, `A^o(w, 2) = A038503(w+1) − 1` and `A^e + A^o = 2^w − 1` for every `w ≤ 12`, by enumeration against the binomial-sum definitions; every output of the Snippet block; the order 5 of `A^o(w, 3)` for `w ≤ 13`.
-[^4]: [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] `oeis-xref-draft.md` §0 L35-43 - "the number of blocks is 1 + r, where r = number of runs of height-2 columns. #strings of length w with exactly r runs of 1's = binomial(w+1, 2r). Even block count <=> 1 + r even <=> r odd <=> 2r = 2 mod 4, so F(w,2) = A038505(w+1) ... odd(w,2) = A038503(w+1) - 1 = Sum_{k>=1} binomial(w+1, 4k)".
-[^5]: https://oeis.org/A009545 and https://oeis.org/A146559 (read 2026-10-16) - A146559 is "Expansion of (1-x)/(1 - 2*x + 2*x^2)" with "(1+i)^n = a(n) + A009545(n)*i"; [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L21-29 - "A009545 is the *imaginary* part of (1+i)^n ... P(1,L) = Re((1+i)^{L+1}) = A146559(L+1)".
-[^7]: [[new-sequence-fw3](pages/new-sequence-fw3.md)] `new-sequence-F3.md` §"Fields" FORMULA L63 and §"Derivation" L111-112 - "a(n) = 8*a(n-1) - 27*a(n-2) + 54*a(n-3) - 70*a(n-4) + 56*a(n-5) - 24*a(n-6) for n >= 7", "The characteristic polynomial of the sequence is (x-3)(x-2)(x^2-x+2)(x^2-2x+2)"; the recurrence is re-derived by `berlekamp_massey` in the Snippet.
+[^2]: Verified by execution (Python 3.11, 2026-10-16): `A^e(w, 2) = A038505(w+1)`, `A^o(w, 2) = A038503(w+1) − 1` and `A^e + A^o = 2^w − 1` for every `w ≤ 12`, by enumeration against the binomial-sum definitions; every output of the Snippet block; the order 5 of `A^o(w, 3)` for `w ≤ 13`.
+[^3]: Verified by execution (Python 3.11, 2026-10-25): for `w ≤ 14`, the binary strings of length `w` with `r` runs of `1`s number `C(w + 1, 2r)`, and the castles of width `w` and height 2 with an even and with an odd number of blocks number `Σ_k C(w+1, 4k+2)` and `Σ_{k≥1} C(w+1, 4k)`, which equal `A038505(w+1)` and `A038503(w+1) − 1` in the OEIS data.
+[^4]: https://oeis.org/A009545 and https://oeis.org/A146559 (read 2026-10-25) - A009545 is "Expansion of e.g.f. sin(x)*exp(x)" with "Imaginary part of (1+i)^n"; A146559 is "Expansion of (1-x)/(1 - 2*x + 2*x^2)" with "(1+i)^n = a(n) + A009545(n)*i" and "a(n) = Re( (1+i)^n )".
+[^5]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): Berlekamp-Massey on 60 terms of `A^e(·, 3)` gives order 6 with characteristic polynomial `(x − 3)(x − 2)(x² − x + 2)(x² − 2x + 2)`, and on 60 terms of `A^o(·, 3)` order 5; the recurrence holds for `7 ≤ w ≤ 50`; the recurrence is re-derived by `berlekamp_massey` in the Snippet.

@@ -3,7 +3,7 @@ title: Castle sequence catalogue
 category: Analyses
 summary: Catalogue of every castle-counting sequence on the wiki, by the object it counts, with first terms, recurrence or generating function, growth constant, and the OEIS entry it equals where there is one, at the stated offset. Every row with listed terms was recomputed by enumeration, transfer matrix or dynamic program, and every cited entry was compared with the computed terms.
 tags: [analysis, oeis, castle, sequence, catalogue]
-sources: [oeis-mining-pe502]
+sources: [oeis-encyclopedia]
 created: 2026-09-17
 updated: 2026-10-25
 ---
@@ -14,7 +14,7 @@ updated: 2026-10-25
 
 This page catalogues the sequences that castles produce, organized by the castle object each one counts rather than by OEIS A-number. Every sequence has a record with first terms, a recurrence or generating function (g.f.), its growth constant, and the entry of the On-Line Encyclopedia of Integer Sequences (OEIS) it equals, at the stated offset; "-" means no entry is listed.[^1]
 
-[[oeis-index](pages/oeis-index.md)] is the generated directory of every A-number cited on the wiki, with the citing pages. [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] describes the checks a match must pass, [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] is the first mining pass, and [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] proves the height-2 rows.
+[[oeis-index](pages/oeis-index.md)] is the generated directory of every A-number cited on the wiki, with the citing pages. [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] describes the checks a match must pass, [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] collects the castle counts matched to OEIS entries, and [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] proves the height-2 rows.
 
 The symbols are those of [[castle-notation](pages/castle-notation.md)]: `A^e(w, h)` and `A^o(w, h)` count the castles of width `w` and height `h` with an even and an odd number of blocks. A skyline on `{1, …, h}` need not reach height `h`, so a count of skylines on `{1, …, h}` is a count of castles of every height up to `h`.
 
@@ -273,7 +273,7 @@ The classical polyomino families intersected with the castles ([[castle-add-a-co
 
 ### Odd-block counts, parity-refined area, and joint block tables
 
-The remaining rows of the first mining pass; full terms on [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)].
+The odd-block, parity-refined and joint block rows; full terms on [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)].
 
 | object | first terms | g.f. / formula | OEIS |
 |---|---|---|---|
@@ -365,10 +365,6 @@ Fibonacci castles, the castles of height 2 with no two neighboring columns of he
 - The towers of width `w ≥ 6` by number of blocks `b` ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]): `w = 6`: `1, 21, 161, 721, 2331, 6083, …`; `w = 7`: `1, 28, 280, 1582, 6244, 19348, …` from `b = 0`.
 - The denominators of the Jacobi-Perron convergents of `2ψ²` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]): `1, 1, 2, 4, 47, 53, 104, 204, 2409, 2717, 5330, …`.
 
-## Appearances in Sources
-
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the first mining pass, the source of the difference-of-powers, height-2, signed tower, convex and area rows.
-
 ## Related Concepts
 
 - [[oeis-index](pages/oeis-index.md)] - the generated directory of every A-number cited on the wiki, with the citing pages.
@@ -388,6 +384,7 @@ Fibonacci castles, the castles of height 2 with no two neighboring columns of he
 - [[a005251-bijection](pages/a005251-bijection.md)] - the bijection between the readings of `A005251`.
 - [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] - a seminar that takes one row through the method.
 - [[motzkin-castles](pages/motzkin-castles.md)] - the Motzkin rows: cornerless Motzkin paths, the parity split of `M_{w−1}`, the Motzkin paths of bounded height, and the rows by semi-perimeter.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castle counts matched to OEIS entries, among them the difference-of-powers, height-2, signed tower, convex and area rows.
 
 ## Footnotes
 

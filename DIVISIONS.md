@@ -28,7 +28,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 
 ### R - Representations
 
-- Column-height vectors, w/h notation, and the tower word / generalized Dyck grammar.
+- Column-height vectors, w/h notation, and the tower word / tower grammar.
 - Lattice-path and permutation-cycle readings, with the two-line array and Foata intercalation as the classical grounding.
 - Polyomino embedding and the castle graph as an encoding rather than an object.
 - Substructures: strips, snippets, and proper projections between heights.

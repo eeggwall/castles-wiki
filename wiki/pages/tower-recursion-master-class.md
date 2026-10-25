@@ -5,7 +5,7 @@ summary: A seminar on the two steps that count castles. First, towers are determ
 tags: [concept, castle, towers, parity, sign, pedagogy, dyck, teaching]
 sources: [project-euler-502-solution, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations]
 created: 2026-09-14
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Tower recursion master class
@@ -60,7 +60,7 @@ In the tower grammar of [[generalized-dyck-grammar](pages/generalized-dyck-gramm
 P_k(x)  =  1 + x·P_k(x) − (P_{k−1}(x) − 1)(1 + x·P_k(x)),        P_0(x) = 1/(1 − x).
 ```
 
-[[castle-counting-formula](pages/castle-counting-formula.md)] solves it as a rational function, and [[signed-tower-count](pages/signed-tower-count.md)] studies the sequences `P(k, ·)`.
+[[castle-counting-formula](pages/castle-counting-formula.md)] solves it as a rational function, and [[signed-tower-count](pages/signed-tower-count.md)] studies the sequences `P(k, ·)`. With a block weight `y` in place of `−1`, the same reading makes the step from height `k − 1` to `k` one 2 × 2 matrix, whose cases `y = 1` and `y = −1` give `E_k(x)` and `P_k(x)` ([[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)], section *Counts*).
 
 ## The castle counts
 
@@ -88,7 +88,7 @@ S(4, 2)  =  P(0, 4) − P(1, 4)  =  1 + 4  =  5,
 A^e(4, 2)  =  (15 + 5)/2  =  10,        A^o(4, 2)  =  (15 − 5)/2  =  5.
 ```
 
-The ten even-block castles stand on the strings with one run of 1s, and the five odd-block castles `(2, 1, 2, 1)`, `(1, 2, 1, 2)`, `(2, 1, 1, 2)`, `(2, 2, 1, 2)` and `(2, 1, 2, 2)` on the strings with two runs.[^10] The value `A^e(4, 2) = 10` is the first checkpoint of the problem statement ([[castle-counting-function](pages/castle-counting-function.md)]).
+The ten even-block castles stand on the strings with one run of 1s, and the five odd-block castles `(2, 1, 2, 1)`, `(1, 2, 1, 2)`, `(2, 1, 1, 2)`, `(2, 2, 1, 2)` and `(2, 1, 2, 2)` on the strings with two runs.[^10] The value `P(1, 4) = −4` can also be counted: the involution of [[signed-tower-count](pages/signed-tower-count.md)] (section *The case k = 1*) pairs off twelve of the sixteen strings with opposite signs and leaves `0100`, `0110`, `1100` and `1110`, each with one run. The value `A^e(4, 2) = 10` is the first checkpoint of the problem statement ([[castle-counting-function](pages/castle-counting-function.md)]).
 
 ## Appearances in Sources
 

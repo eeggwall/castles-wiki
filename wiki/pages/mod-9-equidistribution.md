@@ -3,9 +3,9 @@ title: Mod-9 equidistribution of the castle counts
 category: Analyses
 summary: The proportion of castle counts A^e(w, h) ≡ 4 or 5 (mod 9), the residues no sum of three cubes takes, over the cells (w, h) with w ≥ 4 and A(w, h) ≤ N. It is 20.46% at N = 10^9 and tends to 2/9 with deficit (4/54)(4^{1/3}/5^{1/4}) N^{−1/12} = 0.0786 N^{−1/12} (proved from the exact rates of the columns w = 4, 5, 6); the computed rates are 21.37% at 10^12, 21.98% at 10^18 and 22.214% at 10^36. The columns w = 4, 6, 10, 12, 17, 28, 30, 35, 82, 84, 89, 244, 246, 251, which are 3^{k−1} + d with d ∈ {1, 3, 8}, are exactly uniform mod 9 for w ≤ 293, and nine more columns have rate exactly 2/9 without being uniform; no row with h ≤ 40 is uniform. No shift or reflection sends A^e to −A^e mod 9 in any row h ≤ 8 or column 3 ≤ w ≤ 15. The castle counts within 1 of a cube with A ≤ 10^9 are listed: those of height 2 come from 2^{w−1} at w ≡ 1 (mod 12), and on the column w = 3 the triangular numbers h(h − 1)/2 within 1 of a cube are exactly h = 91, 127 (integral points of two Mordell curves).
 tags: [analysis, castle, sum-of-cubes, mod-9, periodicity, equidistribution, finite-sample-artifact, kitamasa, cube-near-miss, mordell-curve]
-sources: [oeis-mining-pe502, project-euler-502-solution]
+sources: [project-euler-502-solution]
 created: 2026-09-21
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Mod-9 equidistribution of the castle counts
@@ -196,7 +196,6 @@ The integral points of these curves are `(2, ±1)`, `(32, ±181)` on `Y^2 = X^3 
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the tables of `A^e(w, h)` studied here mod 9.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the recurrences of `P(k, L)` in the base length and in the tower height.
 
 ## Related Concepts
@@ -209,6 +208,7 @@ The integral points of these curves are `(2, ±1)`, `(32, ±181)` on `Y^2 = X^3 
 - [[castle-counting-formula](pages/castle-counting-formula.md)] - the formula `A^e = (h^w − (h−1)^w − P(h−1, w) + P(h−2, w))/2`.
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - `A^e(6, 4) = 1729`.
 - [[kitamasa](pages/kitamasa.md)] - jumping a linear recurrence over `Z/9` to a far index.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the tables of `A^e(w, h)` studied here mod 9.
 
 ## Footnotes
 

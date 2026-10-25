@@ -3,9 +3,9 @@ title: The odd castles and the block-count tables
 category: Analyses
 summary: "The odd-block count A^o(w, h) = (A − S)/2 = (A + P(h−1, w) − P(h−2, w))/2 as a sequence of its own: for 4 <= h <= 7 its minimal characteristic polynomial is that of A^e(·, h); at h = 2 A^o gains the root 1, and at h = 3 it loses the root 2, so its order is 5 against 6. The by-area families (all castles, convex, valley, non-convex, strict valley) split by block parity. Three joint tables: by area and blocks, the b-block column has denominator (1−q)^2 ⋯ (1−q^{b−1})^2 (1−q^b) for b <= 4 and not at b = 5; by area, blocks and peaks, two blocks give the quarter-squares A002620, three blocks with one peak A097701 and three blocks with two peaks A002624; by width, height and blocks, the h-block column is C(N, 2h−2) with N = w + 2h − 3, the (h+1)-block column (2h−3) C(N, 2h), and the (h+2)-block column a three-term binomial sum."
 tags: [analysis, castle, oeis, sequence, odd-count, parity, area, block-count, peaks, joint-distribution, c-finite, binomial, verification]
-sources: [oeis-mining-pe502]
+sources: [oeis-encyclopedia]
 created: 2026-09-26
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # The odd castles and the block-count tables

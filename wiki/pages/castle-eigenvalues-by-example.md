@@ -3,9 +3,9 @@ title: Castle eigenvalues by example
 category: Concepts
 summary: Small castles worked by hand - draw the castle, number the cells, write the adjacency matrix of the castle graph, factor the characteristic polynomial, read off the eigenvalues and what they count in walks. Covers the castles with at most four cells, the six castles golden by spectrum (graph P_4), the 3 × 2 rectangle, silver by spectrum, three one-cell changes, the smallest pair of castles with non-isomorphic graphs and the same adjacency spectrum (10 cells), and the 4 × 2 rectangle with spectral radius φ². Also separates the four matrices whose eigenvalues appear on the wiki - adjacency, Laplacian, transfer matrix and char_k.
 tags: [concept, castle, eigenvalue, spectral, adjacency-matrix, pedagogy, worked-example, tutorial]
-sources: [project-euler-502-brute-force, oeis-mining-pe502]
+sources: [project-euler-502-brute-force]
 created: 2026-09-19
-updated: 2026-10-22
+updated: 2026-10-25
 ---
 
 # Castle eigenvalues by example
@@ -221,7 +221,6 @@ The characteristic polynomial `char_k` of the recurrence of `P(k, ·)` has degre
 ## Appearances in Sources
 
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the skyline model of a castle that the examples use.
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the characteristic polynomials `char_k` of the signed tower count.
 
 ## Related Concepts
 
@@ -239,6 +238,7 @@ The characteristic polynomial `char_k` of the recurrence of `P(k, ·)` has degre
 - [[metallic-means](pages/metallic-means.md)] - de Spinadel's metallic means, among them `φ` and `1 + √2`.
 - [[castle-snippets](pages/castle-snippets.md)] - the `castle_graph` and `castle_graph_radius` snippets.
 - [[sandpile-group](pages/sandpile-group.md)], [[sandcastle-clock](pages/sandcastle-clock.md)] and [[sandpile-identity](pages/sandpile-identity.md)] - the sandpile invariants that separate the 10-cell pair.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the characteristic polynomials `char_k` of the signed tower count.
 
 ## Footnotes
 

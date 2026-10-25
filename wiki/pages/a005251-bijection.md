@@ -3,7 +3,7 @@ title: The A005251 bijection - compositions ↔ no-010 strings
 category: Analyses
 summary: The tree castles of area n, of any height, are the compositions of n with no two neighboring parts at least 2, A005251(n + 2) of them. The standard map from compositions of n to binary strings of length n − 1, a part c becoming 0^{c−1} and the parts joined by single 1s, sends them onto the strings with no factor 010, which number A005251(n + 2) as well; proved, and checked for n ≤ 14. A three-state automaton counts the strings directly, with characteristic polynomial x³ − 2x² + x − 1 and generating function (1 + x²)/(1 − 2x + x² − x³), and the bijection matches it with the area generating function of the tree skylines. Composed with the column map of tree-castle-by-area, a column of height c ≥ 2 becoming a run 1^c, it gives an explicit bijection from the strings of length n − 1 with no 010 onto the strings of length n with no isolated 1. Matched with the tree castles of area n, the compositions of n + 1 avoiding the part 2, the binary strings of length n with no isolated 1 and the tower-spacing skylines of width n − 1 and height at most 2 correspond to them by explicit bijections, and the even-sector signed towers P_even(6, n − 1)/2^{n−1} have the same count by a change of basis. Under the gap map a tree castle's width, height and number of blocks are one more than the number of 1s, the longest run of zeros and the number of zeros, so height at most h means also avoiding 0^h, and Σ (−1)^{blocks} over the tree castles of area n is (−1)^n A000931(n − 1), a signed Padovan number.
 tags: [analysis, castle, bijection, a005251, plastic-number, composition, binary-string, hardin, tree-castle, tower-spacing, padovan, parity, verification]
-sources: [oeis-mining-pe502]
+sources: [oeis-encyclopedia]
 created: 2026-09-18
 updated: 2026-10-25
 ---
@@ -138,10 +138,6 @@ The Padovan numbers grow like `ψ^n`,[^8] and the tree castles like `ψ^{2n}`, s
 
 Padovan numbers also correct the count up to mirror image: [[castle-graph](pages/castle-graph.md)] counts the tree castles of area `n` up to mirror image as `(A005251(n + 2) + A000931(n + 6))/2`, the palindromic ones numbering `A000931(n + 6)` ([[padovan-families](pages/padovan-families.md)]).
 
-## Appearances in Sources
-
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the signed tower counts `P(k, ·)`; their even sector at `k = 6` is `2^L A005251(L + 3)` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]).
-
 ## Related Concepts
 
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree castles and tree skylines counted by area, with the row of unbounded height `A005251(A + 2)`, and the column map onto the strings with no isolated `1`.
@@ -154,6 +150,7 @@ Padovan numbers also correct the count up to mirror image: [[castle-graph](pages
 - [[binary-string-bijection](pages/binary-string-bijection.md)] - the blocks in the row above a block of length `L` as binary strings of length `L`, a different encoding.
 - [[unique-tournament](pages/unique-tournament.md)] - the tree skylines of height at most 4, counted by A000570 through compositions into `{1, 3, 4, 5}`.
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - Stop 7 lists these readings of A005251.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the signed tower counts `P(k, ·)`; their even sector at `k = 6` is `2^L A005251(L + 3)` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]).
 
 ## Footnotes
 

@@ -5,7 +5,7 @@ summary: The spectra computed for castles and what each decides. (1) The signed 
 tags: [concept, castle, spectral, transfer-matrix, laplacian, dft, dct, galois, ramanujan-sum, homometric, ihara-zeta, ramanujan, isospectral, determinantal]
 sources: [project-euler-502-brute-force]
 created: 2026-09-16
-updated: 2026-10-22
+updated: 2026-10-25
 ---
 
 # Spectral analysis of castles
@@ -36,7 +36,7 @@ The spectral radius `ρ_k` of `M̃_k` satisfies `ρ_k < k + 1` for `k ≥ 1`, so
 
 The metallic means `δ_a` appear as spectral radii of the transfer matrices of castle families: the anchored 1-smooth strips on the heights `{1, 2, 3}`, with the `3 × 3` matrix `[[1, 1, 0], [1, 1, 1], [0, 1, 1]]` and spectral radius `1 + √2` ([[pell-castle-strip](pages/pell-castle-strip.md)]), and the tree skylines of height at most 2, with the matrix `[[1, 1], [1, 0]]` and spectral radius `φ`. They also appear as adjacency spectral radii of castle graphs (section 5).
 
-For each `k`, `char_k` is the characteristic polynomial of the recurrence of `P(k, ·)` in `L`, so the roots of that recurrence are the eigenvalues of `M̃_k`. The recurrence of `P(·, L)` in the tower height `k` is a different recurrence, with characteristic polynomial `(x+1)^L (x−1)^{L−2}` for `4 ≤ L ≤ 12` (computed; [[signed-tower-k-direction](pages/signed-tower-k-direction.md)]). [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] gives the continued fractions of the roots of both recurrences.
+For each `k`, `char_k` is the characteristic polynomial of the recurrence of `P(k, ·)` in `L`, so the roots of that recurrence are the eigenvalues of `M̃_k`. The recurrence of `P(·, L)` in the tower height `k` is a different recurrence, with characteristic polynomial `(x+1)^L (x−1)^{L−2}` for every `L ≥ 4` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]). [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] gives the continued fractions of the roots of both recurrences.
 
 ## 2. Non-crossing paths
 

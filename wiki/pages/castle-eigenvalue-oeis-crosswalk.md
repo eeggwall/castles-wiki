@@ -1,11 +1,11 @@
 ---
 title: Castle eigenvalues meet OEIS - the convergent crosswalk
 category: Analyses
-summary: The convergents of the castle eigenvalues against the OEIS. Each metallic mean δ_a = [a; a, …] has numerators and denominators from one sequence, matched offset-exact for a ≤ 5 (Fibonacci, Pell A000129, A006190, A001076, A052918). The norm −1 makes δ_a purely periodic (Galois) and gives δ^{p+1} = −1 at every inert prime, so the period of the sequence modulo p divides 2(p+1) and not p+1. In the k-direction the characteristic polynomial of P(·, L) is (x+1)^L (x−1)^{L−2} for 4 ≤ L ≤ 12 (computed), with |P(k, 4)| = A352116(k+1). In the L-direction the dominant root of char_6 is 2ψ², ψ the plastic number; the even-sector part of P(6, L) is 2^L·A005251(L+3); and the Jacobi-Perron expansion of 2ψ² is periodic, with the unit ψ^14 as the dominant eigenvalue of its period matrix.
+summary: The convergents of the castle eigenvalues against the OEIS. Each metallic mean δ_a = [a; a, …] has numerators and denominators from one sequence, matched offset-exact for a ≤ 5 (Fibonacci, Pell A000129, A006190, A001076, A052918). The norm −1 makes δ_a purely periodic (Galois) and gives δ^{p+1} = −1 at every inert prime, so the period of the sequence modulo p divides 2(p+1) and not p+1. In the k-direction the characteristic polynomial of P(·, L) is (x+1)^L (x−1)^{L−2} for every L ≥ 4 (computed here for L ≤ 12, proved on the k-direction page), with |P(k, 4)| = A352116(k+1). In the L-direction the dominant root of char_6 is 2ψ², ψ the plastic number; the even-sector part of P(6, L) is 2^L·A005251(L+3); and the Jacobi-Perron expansion of 2ψ² is periodic, with the unit ψ^14 as the dominant eigenvalue of its period matrix.
 tags: [analysis, castle, continued-fraction, convergents, oeis, eigenvalue, quasi-polynomial, plastic-number, jacobi-perron, pisano, mod-p, sympy, verification, pedagogy]
-sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
+sources: [oeis-encyclopedia, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-10-22
+updated: 2026-10-25
 ---
 
 # Castle eigenvalues meet OEIS: the convergent crosswalk
@@ -14,7 +14,7 @@ The convergents `p_n/q_n` of a continued fraction are its truncations, and their
 
 1. **The metallic means** (Part 1). For `δ_a = [a; a, a, …]` the numerators and denominators are one recurrence sequence, one step apart, and the trace of the convergent matrix is the Lucas sequence `V_n(a, −1)`: the Lucas numbers `A000032` at `a = 1` and the companion Pell numbers `A002203` at `a = 2`. For `1 + √2` both are the Pell numbers `A000129`, and `A001333` is the numerator sequence of `√2 = (1 + √2) − 1`.
 2. **The norm on both sides** (Part 2). The norm `δ_a·δ̂_a = −1` makes the continued fraction of `δ_a` purely periodic, and at every inert prime it gives `δ_a^{p+1} = −1`, so the period of the sequence modulo `p` divides `2(p + 1)` and not `p + 1`.
-3. **The k-direction** (Part 3). For `4 ≤ L ≤ 12`, the characteristic polynomial of `P(·, L)` is `(x + 1)^L (x − 1)^{L−2}` (computed), so its eigenvalues are `±1` and there is no irrational continued fraction. `|P(k, 4)| = A352116(k + 1)`.
+3. **The k-direction** (Part 3). For every `L ≥ 4`, the characteristic polynomial of `P(·, L)` is `(x + 1)^L (x − 1)^{L−2}` (computed here for `L ≤ 12`, proved on [[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), so its eigenvalues are `±1` and there is no irrational continued fraction. `|P(k, 4)| = A352116(k + 1)`.
 4. **The L-direction** (Part 4). The roots of `char_k` are the irrational eigenvalues. The dominant root of `char_6` is `2ψ²`, with `ψ` the plastic number; the even-sector part of `P(6, L)` is `2^L·A005251(L+3)`; and the Jacobi-Perron expansion of `2ψ²` is periodic, with period matrix of dominant eigenvalue `ψ^14`.
 
 The snippets ran under Python 3.11 with SymPy and mpmath, and their outputs are reproduced as printed.[^8][^9]
@@ -121,17 +121,17 @@ For `a ≤ 5` and every prime `3 ≤ p < 100` with `p ∤ a² + 4`, the period o
 
 ## Part 3 - The k-direction
 
-`P(k, L)` is computed by a dynamic program over the column heights, with the block count as total descent.[^3] For `4 ≤ L ≤ 12`, the shortest recurrence of `P(·, L)` in the tower height `k` has characteristic polynomial `(x + 1)^L (x − 1)^{L−2}` (computed); at every `L` it divides `(x − 1)^{L+1} (x + 1)^L` (the Lemma of [[mod-9-coset-lift](pages/mod-9-coset-lift.md)]), since `P(k, L)` is a polynomial in `k` of degree at most `L` on each class of `k` modulo 2 ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)], section *The residue test*). Its eigenvalues are `±1`, and
+`P(k, L)` is computed by a dynamic program over the column heights, with the block count as total descent.[^3] For `4 ≤ L ≤ 12`, the shortest recurrence of `P(·, L)` in the tower height `k` has characteristic polynomial `(x + 1)^L (x − 1)^{L−2}` (computed), and [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] proves this for every `L ≥ 4`; at every `L` it divides `(x − 1)^{L+1} (x + 1)^L` (the Lemma of [[mod-9-coset-lift](pages/mod-9-coset-lift.md)]), since `P(k, L)` is a polynomial in `k` of degree at most `L` on each class of `k` modulo 2 ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)], section *The residue test*). Its eigenvalues are `±1`, and
 
 ```
 P(k, L)  =  (−1)^k · A_L(k) + B_L(k),         deg A_L ≤ L − 1,  deg B_L ≤ L − 3,
 ```
 
-for these `L`. [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] gives the polynomials `A_L`, `B_L`, the OEIS identities of the rows, and the periods modulo primes:
+for every `L ≥ 4`, with equality in both degrees. [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] gives the polynomials `A_L`, `B_L`, the OEIS identities of the rows, and the periods modulo primes:
 
 - `|P(k, 4)| = A352116(k + 1)`, the partial sums of the odd triangular numbers; `P(2m, 4) = A063496(m + 1)` and `|P(2m + 1, 4)| = A199833(m + 1) = 4·A000447(m + 1)`.[^6]
 - The period of `P(·, L) mod p` in `k` is `2·p^j`, with `p^j` the least power of `p` that is at least `L`, for `2 ≤ L ≤ 11` and `p ∈ {3, 5, 7, 11}` (computed). At `L = 4` and `p = 3` this is `2·3² = 18`, the period of `A^e(4, ·)` modulo 3 on [[mod-p-observatory](pages/mod-p-observatory.md)].[^8]
-- The OEIS-mining notes observe that the columns `A^e(w, ·)` are annihilated by `(x² − 1)^w`.[^4]
+- The columns `A^e(w, ·)` are annihilated by `(x² − 1)^w` for every `w`, as [[signed-tower-k-direction](pages/signed-tower-k-direction.md)] proves.[^4]
 
 The eigenvalues are `±1`, so there is no irrational continued fraction in this direction. Modulo `p` there is no `p + 1` against `2(p + 1)`: the repeated eigenvalues `±1` give the factor `p^j`.
 
@@ -317,7 +317,7 @@ All snippets ran under Python 3.11 with SymPy and mpmath; the dynamic program an
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the characteristic polynomials of `P(k, ·)`, and the observation that the columns `A^e(w, ·)` are annihilated by `(x² − 1)^w`.
+- [[oeis-encyclopedia](pages/oeis-encyclopedia.md)] - the sequences matched against the convergents and against the rows of `P`.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the update of `num_k` and `den_k`, from which `char_k` and the partial fractions of `P_6(x)` are computed.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the block count as total descent, which the dynamic program for `P(k, L)` uses.
 
@@ -338,13 +338,13 @@ All snippets ran under Python 3.11 with SymPy and mpmath; the dynamic program an
 
 ## Footnotes
 
-[^1]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L31-37 - "The general P(k,·) family is C-finite of order k+1: P(1): x^2 - 2x + 2 ... P(5): x^6 - 6x^5 + 18x^4 - 32x^3 + 48x^2 - 32x + 32 (constant term = (-1)^{k-1} 2^k; leading coeff -(k+1))."
+[^1]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): with `num_k`, `den_k` from the update in footnote 2, `char_k(λ) = λ^{k+1} den_k(1/λ)` for `k ≤ 30` has degree `k + 1`, constant term `(−1)^{k+1} 2^k` and `λ^k`-coefficient `−(k + 1)`, satisfies `char_0 = λ − 1`, `char_1 = λ² − 2λ + 2` and `char_{k+1} = λ² char_{k−1} − 2 char_k`, and gives `char_5 = λ^6 − 6λ^5 + 18λ^4 − 32λ^3 + 48λ^2 − 32λ + 32`.
 
 [^2]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The rational-function path (h ≤ 15000)" L124-138 - "F_k(x) = ∑_L P(k, L) x^L ... num_k(x) = 2·den_{k-1}(x) - num_{k-1}(x); den_k(x) = den_{k-1}(x)·(1 - 2x) + num_{k-1}(x)·x; F_k(x) = num_k(x)/den_k(x)." The source's `F_k(x)` is the wiki's `P_k(x)`.
 
 [^3]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L104-108 - "In the column-height form, the block count is the total descent: blocks = ∑_{i=0}^{L} max(0, c_i - c_{i+1}), c_0 = c_{L+1} = 0".
 
-[^4]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 3" L77-79 - "Columns (fixed w, varying h) are quasi-polynomials: F(w,h) is annihilated by (x^2-1)^w, i.e. F(w,h) = P(h) + (-1)^h Q(h) with P,Q polynomials of degree < w." The notes' `F(w, h)` is `A^e(w, h)`.
+[^4]: Verified by execution (Python 3.11, 2026-10-25): `(x² − 1)^w` annihilates `A^e(w, h)`, `2 ≤ h ≤ 61`, for `w ≤ 8`, with `P(k, w)` from the column-height dynamic program.
 
 [^5]: OEIS entries read 2026-10-16 and matched against the recurrence output (`x_0, x_1 = 0, 1`; trace `y_0, y_1 = 2, a`): https://oeis.org/A000045 "Fibonacci numbers"; https://oeis.org/A000032 "Lucas numbers beginning at 2"; https://oeis.org/A000129 "Pell numbers"; https://oeis.org/A002203 "Companion Pell numbers: a(n) = 2*a(n-1) + a(n-2), a(0) = a(1) = 2"; https://oeis.org/A001333 "Pell-Lucas numbers: numerators of continued fraction convergents to sqrt(2)"; https://oeis.org/A006190 "a(n) = 3*a(n-1) + a(n-2), with a(0)=0, a(1)=1"; https://oeis.org/A006497 "a(n) = 3*a(n-1) + a(n-2) with a(0) = 2, a(1) = 3"; https://oeis.org/A052924 "Expansion of g.f.: (1-x)/(1 - 3*x - x^2)"; https://oeis.org/A001076 "Denominators of continued fraction convergents to sqrt(5)"; https://oeis.org/A001077 "Numerators of continued fraction convergents to sqrt(5)"; https://oeis.org/A014448 "Even Lucas numbers: a(n) = L(3*n)"; https://oeis.org/A033887 "a(n) = Fibonacci(3*n + 1)"; https://oeis.org/A052918 "a(0) = 1, a(1) = 5, a(n+1) = 5*a(n) + a(n-1)"; https://oeis.org/A087130 "a(n) = 5*a(n-1)+a(n-2) for n>1, a(0)=2, a(1)=5"; https://oeis.org/A100237 "Secondary diagonal of triangle A100235 divided by row number", data `1, 4, 21, 109, 566, …`; and https://oeis.org/A041010, A041011 (`√8`), A041018, A041019 (`√13`), A041030, A041031 (`√20`), A041046, A041047 (`√29`), each named "Numerators" or "Denominators of continued fraction convergents to sqrt(d)".
 

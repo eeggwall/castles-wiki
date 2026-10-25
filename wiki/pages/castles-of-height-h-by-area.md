@@ -3,7 +3,7 @@ title: Castles of height h by area - the n-nacci family
 category: Analyses
 summary: The castles of height h and area n are the compositions of n with largest part h, so they number the compositions of n into parts at most h minus those into parts at most h − 1, with generating function 1/(1 − x − ⋯ − x^h) − 1/(1 − x − ⋯ − x^{h−1}). They grow like the h-nacci constant, the real root above 1 of x^h = x^{h−1} + ⋯ + x + 1 - golden by area at h = 2 (F_{n+1} − 1 castles), tribonacci 1.8393 at h = 3 (A000073(n+2) − F_{n+1}), 1.9276 at h = 4, 1.9659 at h = 5 - tending to 2, the growth of all castles by area. The tree castles of height h grow more slowly by area (1.4656, φ, 1.6851 at h = 2, 3, 4, and ψ² with the height unrestricted).
 tags: [analysis, castle, area, generating-function, oeis, fibonacci, tribonacci, tetranacci, n-nacci, composition, growth-constant]
-sources: [oeis-mining-pe502]
+sources: [oeis-encyclopedia]
 created: 2026-09-17
 updated: 2026-10-25
 ---
@@ -69,12 +69,9 @@ For `3 ≤ h ≤ 20` the polynomial `x^h − x^{h−1} − ⋯ − x − 1` is i
 
 The snippet `bounded_castles_by_area(h, A_max)` on [[castle-snippets-strips](pages/castle-snippets-strips.md)] counts the compositions of each area with parts at most `h`, with a brute-force cross-check against skylines. The counts of castles of height `h` are `bounded_castles_by_area(h, ·)` minus `bounded_castles_by_area(h − 1, ·)`.
 
-## Appearances in Sources
-
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castles of area `n` as the `2^{n−1}` compositions of `n`.
-
 ## Related Concepts
 
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castles of area `n` as the `2^{n−1}` compositions of `n`, among the first OEIS matches.
 - [[n-nacci-disambiguation](pages/n-nacci-disambiguation.md)] - the Fibonacci, tribonacci and higher n-nacci appearances on the wiki, grouped by the mechanism that produces them.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree skylines of height at most `h` and the tree castles of height `h` by area.
 - [[castle-by-area](pages/castle-by-area.md)] - all castles by area, `2^{n−1}`, and the convex and valley families.
@@ -87,7 +84,7 @@ The snippet `bounded_castles_by_area(h, A_max)` on [[castle-snippets-strips](pag
 
 ## Footnotes
 
-[^1]: raw/oeis-pe502/vein9-area.md L11-12 - "**All castles of area n** = all compositions of n into positive parts = 2^(n-1) = A000079(n-1) = A011782 shifted."
+[^1]: https://oeis.org/A011782 (read 2026-10-25) - "Number of compositions (ordered partitions) of n", "a(0) = 1, a(n) = 2^(n-1)".
 [^2]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the castles of height `h = 2..5` and area `n ≤ 14` by enumeration of compositions, against Equations (1) and (2) and the closed forms; the dominant roots of `x^h − x^{h−1} − ⋯ − 1` for `h ≤ 7`, and their irreducibility for `h ≤ 20`; the tree castles of height `h = 2, 3, 4` by enumeration for `n ≤ 16`, the first area at which they differ from all castles of height `h` (4, 5, 6), and the factorizations of the tree-skyline denominators, `x³ − x² − 1`, `(x² − x − 1)(x² + 1)`, `x⁵ − x⁴ − x² − x − 1`; the Fibonacci castles of width `n − 1` against the castles of height 2 and area `n` for `n ≤ 11`.
 [^3]: https://oeis.org/A000073 (read 2026-09-17) - tribonacci, "a(n) = a(n-1) + a(n-2) + a(n-3)", g.f. `x²/(1 − x − x² − x³)`, data `0, 0, 1, 1, 2, 4, 7, 13, 24, 44, 81, 149, 274`, comment "number of compositions of n-2 with no part greater than 3"; https://oeis.org/A000078 - tetranacci, g.f. `x³/(1 − x − x² − x³ − x⁴)`, "number of compositions of n-3 with no part greater than 4"; https://oeis.org/A001591 (read 2026-10-16) - "Pentanacci numbers: a(n) = a(n-1) + a(n-2) + a(n-3) + a(n-4) + a(n-5), a(0)=a(1)=a(2)=a(3)=0, a(4)=1"; https://oeis.org/A011782 (read 2026-10-16) - "Coefficients of expansion of (1-x)/(1-2*x) in powers of x"; https://oeis.org/A000930 (read 2026-10-16) - "Narayana's cows sequence: a(0) = a(1) = a(2) = 1; thereafter a(n) = a(n-1) + a(n-3)".
 [^4]: Verified by execution (Python 3, 2026-10-04): `(F_61 − 1)/φ^60 = 0.72360680` against `φ/√5 = 0.72360680`.

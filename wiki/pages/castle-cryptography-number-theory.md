@@ -3,9 +3,9 @@ title: Castle cryptography - the number theory, for engineers
 category: Analyses
 summary: The three terms the castle cryptosystem uses, explained from the castle_dh code. The characteristic polynomial records the recurrence of P(k, ·) (the feedback polynomial of a linear feedback shift register) and is the modulus Q of the ring F_p[x]/(Q). An irreducible polynomial is the polynomial analogue of a prime: a reducible Q splits the discrete logarithm problem (DLP) into smaller ones by the Chinese Remainder Theorem, while a Q irreducible mod p makes the ring one field F_{p^d}. An irreducible Q is not enough for security: p^d − 1 = ∏ Φ_e(p) factors for every p, so Pohlig-Hellman still applies, finite fields have subexponential index-calculus attacks, and Berlekamp-Massey recovers any linear output whatever Q is.
 tags: [analysis, cryptography, number-theory, characteristic-polynomial, irreducible-polynomial, discrete-logarithm, finite-field, pedagogy, engineer, castle]
-sources: [oeis-mining-pe502]
+sources: [project-euler-502-representations]
 created: 2026-09-18
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle cryptography - the number theory, for engineers
@@ -120,10 +120,6 @@ The order of the group still factors, for every `p` and whatever `Q` is: `p² �
 1. **An irreducible `Q` is not enough.** Discrete logarithms in `F_{p^d}` have a subexponential attack, index calculus, of cost `L_q[1/3]` in the field size `q = p^d`, so the field must have about 3072 bits for 128-bit security ([[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)]). Before index calculus, the factorization of `p^d − 1` already sets the generic cost by the largest prime factor of `Φ_d(p)`, not by `p^d`; round two sizes it ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], Fix 4).
 2. **Berlekamp-Massey recovers `Q` whatever it is.** It finds the shortest linear recurrence of a sequence from twice as many terms as its order ([[berlekamp-massey](pages/berlekamp-massey.md)]), irreducible or not. If a scheme publishes `2d` consecutive terms of `P(k, ·) mod p`, `Q` is recovered, so the fix for published output is a nonlinear filter (Fix 2 of [[castle-cryptography](pages/castle-cryptography.md)]), which round two's Attack 5 also breaks at small sizes.
 
-## Appearances in Sources
-
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k,·)` families and their characteristic polynomials.
-
 ## Related Concepts
 
 - [[castle-cryptography](pages/castle-cryptography.md)] - the build / red-team / blue-team seminar series this page supports.
@@ -138,6 +134,7 @@ The order of the group still factors, for every `p` and whatever `Q` is: `p² �
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the unit group `R^*` as a product of cyclic groups for reducible and irreducible `Q` alike, and Pohlig-Hellman as the reduction to prime-order parts.
 - [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - the Eisenstein proof behind the odd-`k` rows for `k = 2^m − 1`.
 - [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the ring-level CRT that splits a reducible `Q`.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k,·)` families and their characteristic polynomials.
 
 
 ## Footnotes

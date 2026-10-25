@@ -3,7 +3,7 @@ title: Castle classification
 category: Concepts
 summary: The hub of the castle classification, at three scopes. Shape types are predicates on one castle's skyline (the 42 types of the Castle Types source plus ridge, hoodoo and monadnock castles). Spectral types are predicates on the spectrum of one castle's graph (tree castles, castles golden and silver by spectrum, isospectral pairs, Ramanujan castles, sparse-spectrum castles). Growth types classify families of castles by the growth constant of their count along a named axis ("golden by width", "tribonacci by area"). Compressibility is a separate invariant on castle-compression.
 tags: [concept, castle, classification, taxonomy, hub, scope, shape, spectral, growth]
-sources: [oeis-mining-pe502]
+sources: [project-euler-502-representations]
 created: 2026-09-15
 updated: 2026-10-25
 ---
@@ -38,7 +38,7 @@ Compressibility, the length of the shortest description of a castle, is a separa
 
 ## Parity
 
-Project Euler 502 counts the castles with an even number of blocks. Every type is defined without the parity condition, and the even-block members of a type are counted by `A^e = (A + S)/2`, with `S` the signed count over its castles ([[castle-sign](pages/castle-sign.md)]). For some types the parity is fixed by the shape: a convex (unimodal) castle of height `h` has exactly `h` blocks, one per row, so all convex castles of height `h` have the parity of `h`, and the even-block condition keeps all of them or none.[^2]
+Project Euler 502 counts the castles with an even number of blocks. Every type is defined without the parity condition, and the even-block members of a type are counted by `A^e = (A + S)/2`, with `S` the signed count over its castles ([[castle-sign](pages/castle-sign.md)]). For some types the parity is fixed by the shape: a convex (unimodal) castle of height `h` has exactly `h` blocks, one per row ([[convex-castle](pages/convex-castle.md)], section *Block count*), so all convex castles of height `h` have the parity of `h`, and the even-block condition keeps all of them or none.[^2]
 
 ## Source
 
@@ -67,5 +67,5 @@ The shape types are taken from `charlesreid1.com/wiki/Project_Euler/502/Castle_T
 ## Footnotes
 
 [^1]: raw/castle-types.wiki L1-L9 - "A castle on a w × h grid is determined by its skyline, the sequence of column heights c_1, c_2, …, c_w with 1 ≤ c_i ≤ h and max_i c_i = h. (Problem 502 also requires an even number of blocks; the types below mostly ignore, or independently re-impose, that parity rule.) Every castle is automatically column-convex and bottom-aligned, so each type is a further restriction on the skyline." (Source: https://charlesreid1.com/wiki/Project_Euler/502/Castle_Types, fetched 2026-09-15.)
-[^2]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §1 L25-33 - "#blocks >= max(c) = h, with equality iff the profile is unimodal ... a convex castle of height h has exactly h blocks, and convex castles are exactly the minimum-block castles".
+[^2]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Steps-Based Approach" L88-90, §"The tower word" L229 [synthesis] - the word of a convex castle has a front of `U` and `R` steps with "No D steps" and a back of `D` and `R` steps with "No U steps", so it has one `U` per row, and "blocks in the tower = number of D's = number of U's". Verified by execution (Python 3.11, 2026-10-25): every unimodal skyline of height `h` has `h` blocks, for `w ≤ 8`, `h ≤ 6` with `h^w ≤ 400000`.
 [^3]: raw/castle-types.wiki §"Base types" L11-L19 and §"Proposed additional types" L21-L57 [synthesis] - the 7 base types and the 35 numbered proposed types, all stated as skyline predicates.

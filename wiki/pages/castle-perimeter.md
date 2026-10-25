@@ -3,9 +3,9 @@ title: Castle perimeter - blocks are the vertical half-perimeter
 category: Analyses
 summary: A castle of width w has semi-perimeter s = w + blocks, so the block count is half the vertical perimeter and the even-block condition of Project Euler 502 says that s and w have the same parity; s ≥ w + h with equality exactly for convex castles. Castles by semi-perimeter are the bargraphs A082582, with the algebraic generating function B(t) = (1 − 2t − t² − √(1 − 4t + 2t² + t⁴))/(2t) and growth τ² = 3.38297 (τ the tribonacci constant); by semi-perimeter and width they are A271942. The signed count has generating function (1 + t² − √((1 + t)(1 − t + 3t² + t³)))/(2t) and grows only like τ. Convex castles by semi-perimeter are F_{2s−3} = A001519(s − 1), and their signed count is periodic with period 6.
 tags: [analysis, castle, perimeter, blocks, parity, bargraph, generating-function, algebraic, tribonacci, fibonacci, delest-viennot, oeis]
-sources: [algebraic-languages-and-polyominoes-enumeration, project-euler-502-brute-force, tower-narayana-polynomial, baril-florez-ramirez-2026-generalized-narayana-arrays]
+sources: [algebraic-languages-and-polyominoes-enumeration, project-euler-502-brute-force, baril-florez-ramirez-2026-generalized-narayana-arrays]
 created: 2026-09-22
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # Castle perimeter - blocks are the vertical half-perimeter
@@ -34,7 +34,7 @@ Three consequences:
 
 ## Castles by semi-perimeter
 
-Removing the bottom row leaves towers with one block fewer ([[castle-notation](pages/castle-notation.md)]). The towers on a base of length `w` with `b` blocks, over all heights, number[^3]
+Removing the bottom row leaves towers with one block fewer ([[castle-notation](pages/castle-notation.md)]). The towers on a base of length `w` with `b` blocks, over all heights, number ([[tower-heap](pages/tower-heap.md)], proved there from the fixed point of the tower grammar's height map)[^3]
 
 ```
 Σ_{k=1}^{w}  N(w, k) · C(b + w − k, w − 1),
@@ -110,7 +110,7 @@ Here `F_n` are the Fibonacci numbers with `F_1 = F_2 = 1`; Delest and Viennot wr
 
 [^1]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Column-height encoding" L22-24 - "#blocks = ∑_{r=1}^{h} #{runs of columns with c_i ≥ r} = c_1 + ∑_{i=2}^{w} max(0, c_i − c_{i−1})".
 [^2]: [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] p.169 Abstract - "we prove that the number of convex polyominoes with perimeter 2n+8 is (2n+11)4^n - 4(2n+1)C(2n,n)."
-[^3]: raw/oeis-pe502/xrefs/A001263-tower.md L15-20 - "sum_b (number of towers of width w with b blocks) x^b = ( sum_{k=1..w} N(w,k) x^{k-1} ) / (1 - x)^w" and "the number of towers of width w with exactly b blocks is sum_{k=1..w} N(w,k) * C(b + w - k, w - 1)".
+[^3]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): the coefficients of `x^w` in the power-series root of the tower grammar's fixed-point equation equal `Narayana_w(y)/(1 − y)^w` for `w ≤ 10`, and their coefficients of `y^b` equal the number of towers on a base of length `w` with `b` blocks for `w ≤ 5`, `b ≤ 7`.
 [^4]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the series of `B(t)` and `B_s(t)` against a dynamic program over skylines by semi-perimeter, width and blocks, through `s = 30`; the even-block counts for `s ≤ 16`; the factorization of the discriminant and the cubic of `τ²`; the coefficients of `B_s` to `n = 330` from its quadratic, with `|[t^n] B_s| n^{3/2}/τ^n` in `[0.0719, 0.8335]` for `300 ≤ n ≤ 320`; the coefficient ratio `3.29999` of `B` at `s = 60`; the convex generating function for `w, h ≤ 5` and its three series; the semi-perimeter of the castle `(2, 1, 2)`.
 [^5]: https://oeis.org/A082582 and https://oeis.org/A271942 (read 2026-10-16) - A082582: "Expansion of (1 + x^2 - sqrt( 1 - 4*x + 2*x^2 + x^4)) / (2*x) in powers of x", "a(n) is the number of bargraphs of semiperimeter n (n>=2)", "a(n) is the number of Dyck paths of semilength n with no UUDD"; A271942: "Triangle read by rows: T(n,k) is the number of bargraphs of semiperimeter n having width k (n>=2, k>=1)", data "1, 1, 1, 1, 3, 1, 1, 5, 6, 1, 1, 7, 16, 10, 1, 1, 9, 31, 40, 15, 1, 1, 11, 51, 105, 85, 21, 1, …".
 [^6]: [[baril-florez-ramirez-2026-generalized-narayana-arrays](pages/baril-florez-ramirez-2026-generalized-narayana-arrays.md)] §3.1.3 pp.342-344 L514-558, L618-628 - Example 3.10's array of Dyck paths by the number of peaks at heights `≡ 2 (mod 3)` has first column `1, 1, 1, 2, 5, 13, 35, 97`; "the first column ... corresponds to the sequence A082582, where the n-th term represents the number of Dyck paths of semilength n that avoid the pattern UUDD", and `µ″` is "a bijection mapping a Dyck path avoiding UUDD to the set of Dyck paths avoiding peaks at height congruent to 2 modulo 3".

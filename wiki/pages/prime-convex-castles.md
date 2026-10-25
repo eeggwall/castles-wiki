@@ -3,9 +3,9 @@ title: Prime convex castles - unimodal compositions with no part 1
 category: Analyses
 summary: "A prime convex castle is a convex castle with no column of height 1, a unimodal composition into parts at least 2. By area they number U = 1, 1, 2, 3, 5, 8, 12, 19, 28, 42, ... (n >= 2), which agrees with the Fibonacci numbers until the castle (3, 2, 3) at area 8. U is the second difference of A001523, by removing a height-1 column from each end, and it is the convex castle g.f. K(q, z) at z = q, the convex castles raised one row. The first difference of A001523, the convex castles whose first column is not 1, is A342528(n - 1), compositions with alternating parts weakly decreasing (checked through area 120). The ratio 3n U(n)/(pi^2 A001523(n)) is 0.724 to 0.898 for n = 100 to 1000. A prime convex castle of height h has h blocks, so the parity split of U is the split by the parity of the height."
 tags: [analysis, castle, area, composition, prime-castle, convex-castle, unimodal, stack-polyomino, fibonacci, asymptotics, parity, q-series, oeis]
-sources: [oeis-mining-pe502]
+sources: [oeis-encyclopedia]
 created: 2026-09-22
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # Prime convex castles

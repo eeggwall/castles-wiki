@@ -3,7 +3,7 @@ title: Hardin identity seminar - towers, words, and one change of basis
 category: Concepts
 summary: A seminar on the Hardin word identity. Split the signed tower count P(6, L) = 1, 1, 7, 49, 231, 833, … by the parity of the last column; the even half 1, 4, 16, 56, 192, … is divisible by 2^L, leaving 1, 2, 4, 7, 12, 21, 37, 65 (A005251, binary strings with no isolated 1). The stops explain it - towers as a 7 × 7 signed transfer matrix, the involution JD (reflect heights, flip odd signs) that splits it into two sectors, a basis in which the even sector matrix is twice an integer matrix (the 2^L), a three-state pending-letter automaton for the words, and a 0/1 change of basis S with det −1 that conjugates one matrix into the other. The same argument at k = 4m + 2 proves the identity for every m, with Hardin's A202882, A203094, A203184, whose "Empirical" recurrences hold. A closing stop places A005251 among tree castles by area and, at height 4, Tetali's unique tournaments. One snippet block reproduces every value.
 tags: [concept, castle, seminar, pedagogy, teaching, signed-tower-count, transfer-matrix, symmetry, bijection, hardin, words, automaton, oeis, a005251, plastic-number]
-sources: [oeis-mining-pe502, tetali-1998-unique-tournaments]
+sources: [tetali-1998-unique-tournaments]
 created: 2026-09-26
 updated: 2026-10-25
 ---
@@ -231,7 +231,6 @@ def S_pattern(m):                          # the 0/1 change of basis, sector coo
 3. Why does the method need `k ≡ 2 (mod 4)`? Compute the even sector at `k = 4` (`1, 3, 9, 25, 69, …`, [[tower-parity-sectors](pages/tower-parity-sectors.md)] Part 3) and see where the divisibility by `2^L` fails.
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the signed tower count `P(k, ·)` whose sectors the seminar splits.
 - [[tetali-1998-unique-tournaments](pages/tetali-1998-unique-tournaments.md)] - the tournament end of Stop 7.
 
 ## Related Concepts
@@ -249,6 +248,7 @@ def S_pattern(m):                          # the 0/1 change of basis, sector coo
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the seminar following the 16-cell castle `(3, 2, 1, 2, 2, 1, 2, 3)`, silver by spectrum, through its sandpile group, clock, identity and avalanches.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
 - [[pell-castle-strip](pages/pell-castle-strip.md)], [[castle-cryptography](pages/castle-cryptography.md)], [[song-as-castle](pages/song-as-castle.md)] - the seminars on the Pell strip, on a public-key system built from the signed tower count, and on audio as castles.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the signed tower count `P(k, ·)` whose sectors the seminar splits.
 
 
 ## Footnotes

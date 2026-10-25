@@ -3,9 +3,9 @@ title: Mod-p observatory for A^e(w,h)
 category: Analyses
 summary: Modulo an odd prime p, the castle count A^e(w, h) is eventually periodic in the width and in the height. In the width its period divides lcm(ord_p(h), ord_p(h−1), per(char_{h−1}), per(char_{h−2})), with equality for p = 3, 5, 7 and h ≤ 5 (computed), where per(char_k) is the lcm of the orders of the irreducible factors of char_k mod p, multiplied by p^{⌈log_p m⌉} for a factor of multiplicity m. char_1 splits mod p exactly when p ≡ 1 (mod 4), and char_2 has a double root mod 7, which multiplies a period by 7. In the height, P(k, L) mod p has period 2·p^{⌈log_p L⌉} in k (L ≤ 11, p ≤ 11, computed).
 tags: [analysis, castle, modular-arithmetic, periodicity, automaticity, sympy]
-sources: [project-euler-502-castle-factoring, oeis-mining-pe502]
+sources: [project-euler-502-castle-factoring, project-euler-502-representations]
 created: 2026-09-14
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Mod-p observatory for A^e(w,h)
@@ -23,7 +23,7 @@ the `F(w, h)` of the problem statement ([[castle-counting-formula](pages/castle-
 ## Periods in the width
 
 - `h^w mod p` has period `ord_p(h)`, the multiplicative order of `h` mod `p`, which divides `p − 1` by Fermat's little theorem; the same holds for `(h−1)^w`. When `p` divides the base, the term is 1 at `w = 0` and 0 after.
-- `P(k, ·)` satisfies a linear recurrence of order `k + 1` with characteristic polynomial `char_k` ([[signed-tower-count](pages/signed-tower-count.md)]).[^2] Its constant term is `(−1)^{k+1} 2^k`, nonzero mod every odd `p`, so `P(k, ·) mod p` is purely periodic. Its period divides `per(char_k)`, the lcm of the orders of the irreducible factors `g` of `char_k` mod `p`, where the order of `g` is the least `e` with `g` dividing `x^e − 1`, and a factor of multiplicity `m` contributes its order times `p^{⌈log_p m⌉}` (section *The finite-field picture*). For `p = 3, 5, 7` and `k ≤ 4` the period of `P(k, ·)` is `per(char_k)`.[^3]
+- `P(k, ·)` satisfies a linear recurrence of order `k + 1` with characteristic polynomial `char_k` ([[signed-tower-count](pages/signed-tower-count.md)]).[^2] Its constant term is `(−1)^{k+1} 2^k` ([[castle-counting-formula](pages/castle-counting-formula.md)], the Proposition in the section *Signed tower count*), nonzero mod every odd `p`, so `P(k, ·) mod p` is purely periodic. Its period divides `per(char_k)`, the lcm of the orders of the irreducible factors `g` of `char_k` mod `p`, where the order of `g` is the least `e` with `g` dividing `x^e − 1`, and a factor of multiplicity `m` contributes its order times `p^{⌈log_p m⌉}` (section *The finite-field picture*). For `p = 3, 5, 7` and `k ≤ 4` the period of `P(k, ·)` is `per(char_k)`.[^3]
 
 So in the width, for fixed `h ≥ 2`, the period of `A^e(·, h) mod p` divides
 
@@ -43,7 +43,7 @@ The sequence in the width is purely periodic unless `h ≡ 0` or `1 (mod p)`, wh
 
 ## Periods in the height
 
-For fixed `w`, `h^w − (h−1)^w` is a polynomial in `h`, which has period `p` mod `p`. For `4 ≤ L ≤ 12` the recurrence of `P(·, L)` in `k` has characteristic polynomial `(x + 1)^L (x − 1)^{L−2}` (computed; [[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), with the forms `(x − 1)(x + 1)`, `(x + 1)²` and `(x + 1)³` at `L = 1, 2, 3`, so its only roots are `±1`, of orders 1 and 2, and the rest of the period comes from their multiplicities. `P(k, L) mod p` has period `2·p^{⌈log_p L⌉}` in `k`: `2p` while `2 ≤ L ≤ p`, and `2p²` once `p < L ≤ p²`, as `18 = 2·3²` at `L = 4`, `p = 3`, `50 = 2·5²` at `L = 6`, `p = 5`, and `98 = 2·7²` at `L = 8`, `p = 7`. This holds for `L ≤ 11` and `p ∈ {3, 5, 7, 11}` (computed).[^4] The periods of `A^e(w, ·) mod p` in the height:[^4]
+For fixed `w`, `h^w − (h−1)^w` is a polynomial in `h`, which has period `p` mod `p`. For every `L ≥ 4` the recurrence of `P(·, L)` in `k` has characteristic polynomial `(x + 1)^L (x − 1)^{L−2}` (proved on [[signed-tower-k-direction](pages/signed-tower-k-direction.md)]), with the forms `(x − 1)(x + 1)`, `(x + 1)²` and `(x + 1)³` at `L = 1, 2, 3`, so its only roots are `±1`, of orders 1 and 2, and the rest of the period comes from their multiplicities. `P(k, L) mod p` has period `2·p^{⌈log_p L⌉}` in `k`: `2p` while `2 ≤ L ≤ p`, and `2p²` once `p < L ≤ p²`, as `18 = 2·3²` at `L = 4`, `p = 3`, `50 = 2·5²` at `L = 6`, `p = 5`, and `98 = 2·7²` at `L = 8`, `p = 7`. This holds for `L ≤ 11` and `p ∈ {3, 5, 7, 11}` (computed).[^4] The periods of `A^e(w, ·) mod p` in the height:[^4]
 
 | p | w=1 | w=2 | w=3 | w=4 |
 |---|---|---|---|---|
@@ -163,17 +163,18 @@ for h in range(2, 6):
 ## Appearances in Sources
 
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the formula for `A^e(w, h)` through `P`, which this page reduces mod `p`.
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the recurrences of `P(k, ·)` and their characteristic polynomials.
+- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the recurrence of `P(k, ·)` of order `k + 1`, with the cases `k = 1, 2`.
 
 ## Related Concepts
 
 - [[signed-tower-count](pages/signed-tower-count.md)] - `char_k` over the rationals and its constant term `(−1)^{k+1} 2^k`, which makes `P(k, ·) mod p` purely periodic.
 - [[generating-function-gallery](pages/generating-function-gallery.md)] - the rational functions `num_k/den_k` and the polynomials `char_k`.
-- [[recurrence-discovery](pages/recurrence-discovery.md)] - the orders `k + 1` in `L` and `2L − 2` in `k` (computed for `4 ≤ L ≤ 12`).
+- [[recurrence-discovery](pages/recurrence-discovery.md)] - the orders `k + 1` in `L` and `2L − 2` in `k` (computed for `4 ≤ L ≤ 12`, and proved for every `L ≥ 4`).
 - [[finite-fields](pages/finite-fields.md)] - the fields `F_{p^d}` in which the roots of `char_k` lie.
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] - the evaluation modulo `10^9 + 7`, which uses the recurrence.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the continued fractions of the eigenvalues, and `δ^{p+1} = −1` for a quadratic unit of norm `−1` at a prime `p` inert in its field.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `A^e(w, 3)`, which uses `P(2, w)`, so its period mod 7 contains the factor 7 of `char_2`'s double root.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castle counts matched against the OEIS, among them the recurrences of `P(k, ·)`.
 - [[hardy-ramanujan-castle](pages/hardy-ramanujan-castle.md)] - `A^e(·, h) mod 1729 = 7·13·19`, with periods 72, 2520 and 25200 for `h = 2, 3, 4`, the lcm of the periods mod 7, 13 and 19.
 - [[mod-9-equidistribution](pages/mod-9-equidistribution.md)] - the distribution of `A^e(w, h) mod 9` by row, by column and over the cells with `A(w, h) ≤ N`.
 - [[mod-9-coset-lift](pages/mod-9-coset-lift.md)] - the periods mod 9, and a proof that `(x ± 1)^3` never divides `char_k mod 3`.
@@ -186,6 +187,6 @@ for h in range(2, 6):
 ## Footnotes
 
 [^1]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L123-127 - "\"castle has even total blocks\" is therefore \"tower has an odd number of blocks\", which is the (T-P)/2 term in F(w,h) = (h^w - (h-1)^w - P(h-1,w) + P(h-2,w))/2".
-[^2]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L31-37 - "The general P(k,·) family is C-finite of order k+1: P(1): x^2 - 2x + 2 ... P(5): x^6 - 6x^5 + 18x^4 - 32x^3 + 48x^2 - 32x + 32 (constant term = (-1)^{k-1} 2^k; leading coeff -(k+1))".
+[^2]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L343-346 - "P_k is rational with denominator of degree k+1, so P(k,L) satisfies a linear recurrence in L of order k+1", "k=1: P(1,L) = 2P(1,L-1) - 2P(1,L-2)", "k=2: P(2,L) = 3P(2,L-1) - 4P(2,L-2) + 4P(2,L-3)".
 [^3]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the factorizations of `char_k` mod 3, 5, 7 for `k ≤ 4` and `per(char_k)` for `k ≤ 6`; the periods of the sequences `P(k, ·) mod p` for `k ≤ 4`, equal to `per(char_k)`; the periods of `A^e(·, h) mod p` for `2 ≤ h ≤ 5`, read off 8000, 800 and 20000 terms at `p = 3, 5, 7` and equal to the lcm; pure periodicity from `w = 0` except at `h ≡ 0, 1 (mod p)`. The code in the section *Verification (SymPy)* reruns the case `p = 7`.
 [^4]: Verified by execution (Python 3.11, 2026-10-16): the period of `P(k, L) mod p` in `k` equals `2·p^{⌈log_p L⌉}` for `1 ≤ L ≤ 11` and `p ∈ {3, 5, 7, 11}`, from at least `4·2p^{⌈log_p L⌉}` values of `k`; the periods of `A^e(w, ·) mod p` for `w ≤ 4`, from `h < 300`.

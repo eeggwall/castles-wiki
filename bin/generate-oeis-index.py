@@ -194,8 +194,10 @@ def render_body(cites, ann):
     out.append("- [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] - the method: "
                "check a match against OEIS data at the stated offset, and do not count a "
                "short prefix as a match.")
-    out.append("- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the source workspace "
-               "where the first mining passes were carried out.")
+    out.append("- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castle counts "
+               "matched to OEIS entries, with their offsets.")
+    out.append("- [[oeis-encyclopedia](pages/oeis-encyclopedia.md)] - the encyclopedia itself: A-numbers, data lines "
+               "and offsets.")
     return "\n".join(out) + "\n"
 
 
@@ -208,7 +210,7 @@ def frontmatter(n_seq, updated):
         f"({n_seq} sequences), grouped by role, with the citing pages and mention counts. "
         f"Regenerate with bin/generate-oeis-index.py; roles live in config/oeis-annotations.tsv.",
         "tags: [reference, oeis, index, directory, cross-reference, generated]",
-        "sources: [oeis-mining-pe502]",
+        "sources: [oeis-encyclopedia]",
         f"created: {CREATED}",
         f"updated: {updated}",
         "---",

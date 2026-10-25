@@ -3,9 +3,9 @@ title: Sums of three cubes
 category: Concepts
 summary: The Diophantine problem n = x^3 + y^3 + z^3 over the integers. No n = 4, 5 (mod 9) is a sum of three cubes, and Heath-Brown conjectured (1992) that every other n has infinitely many representations, which would make membership a residue test; whether membership is decidable is unknown. Below 1000 the unsolved n not excluded mod 9 are 114, 390, 627, 633, 732, 921, 975; 33 and 42 were solved in 2019 by Booker and by Booker and Sutherland. The sums of three positive cubes (A003072) are conjectured to have positive density; their fraction below 10^8 is 0.101. The castle side of the question is on sum-of-three-cubes-castles.
 tags: [concept, number-theory, sum-of-cubes, diophantine, mod-9, heath-brown, booker-sutherland, waring, oeis]
-sources: [oeis-mining-pe502]
+sources: [oeis-encyclopedia]
 created: 2026-09-20
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Sums of three cubes

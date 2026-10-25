@@ -3,9 +3,9 @@ title: Castle snippets - cryptography
 category: Concepts
 summary: Four tested Python snippets for the castle cryptosystem in R = F_p[x]/(char_k mod p) at p = 10^9 + 7. castle_dh is Diffie-Hellman with public parameters (p, Q), a private exponent and public key x^a mod Q; castle_dlp recovers the private key 373309869 by splitting Q, Pohlig-Hellman and baby-step giant-step, for char_2, char_1 and char_3; bm_modp is Berlekamp-Massey over F_p and measures the linear complexity 10 of s_n s_{n+1} on a 4-stage register; castle_schnorr is ElGamal and a Schnorr-style signature in the subgroup of order 340715873 of F_{p^4}.
 tags: [concept, castle, python, snippets, cryptography, diffie-hellman, discrete-log, berlekamp-massey, schnorr, elgamal]
-sources: [oeis-mining-pe502]
+sources: [project-euler-502-representations]
 created: 2026-09-19
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle snippets - cryptography
@@ -203,10 +203,6 @@ True
 Meaning: key exchange, encryption and signatures all come from one exponentiation, and the `bsgs` of `castle_dlp` recovers the signing key with a table of `⌈√q⌉ = 18,459` entries. The construction works; its parameters are far too small.
 
 
-## Appearances in Sources
-
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k, ·)` characteristic polynomials used as moduli and registers.
-
 ## Related Concepts
 
 - [[castle-snippets](pages/castle-snippets.md)] - the enumeration and predicates hub.
@@ -215,6 +211,7 @@ Meaning: key exchange, encryption and signatures all come from one exponentiatio
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - the recovery attack `bm_modp` runs.
 - [[signed-tower-count](pages/signed-tower-count.md)] - the `P(k, ·)` sequence the LFSR attack reconstructs.
 - [[finite-fields](pages/finite-fields.md)] - the field structure of `F_p[x] / (Q)`.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the `P(k, ·)` characteristic polynomials used as moduli and registers.
 
 ## Footnotes
 

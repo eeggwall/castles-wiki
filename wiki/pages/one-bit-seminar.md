@@ -5,7 +5,7 @@ summary: A seminar on Project Euler 502's even-block clause read as information,
 tags: [concept, castle, seminar, pedagogy, teaching, entropy, information, parity, castle-sign, steganography, compression, topological-entropy]
 sources: [project-euler-502-observations, project-euler-502-solution]
 created: 2026-09-26
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # One bit seminar - the parity clause as information
@@ -70,6 +70,8 @@ because the rise into column `i` grows exactly when column `i` was at least as t
 Lowering a column is the reverse move. For the castle `(1, 3, 2)`, raising the columns in turn gives `Δ = 0, 1, 0`.
 
 **Exceptions.** A move must keep the castle a castle of height `h`: heights stay in `1..h`, and some column stays at `h`. That rule leaves a few castles with no flipping move. At `w = 4, h = 2`, the castle `(1, 2, 2, 1)` has none: raising a column of height 2 would exceed `h`, and each of its four legal moves, raising an end column or lowering a middle one, has `Δ = 0`.[^4] At `w = 6, h = 3` the two such castles are `(1, 2, 3, 3, 2, 1)` and `(3, 3, 1, 1, 3, 3)`.
+
+At height at most 2 one rule chooses the flipping move for all but a few castles at once: change the top cell of the first odd column whose two neighbors have equal height, counting the outside as height 1. A column with equal neighbors is always a weak local maximum or a strict local minimum, so the move flips the parity, and it pairs the castles of width `w` and height at most 2 into pairs of opposite parity, leaving `2^{⌈w/2⌉}` castles of one parity unpaired, or none when `w ≡ 1 (mod 4)` ([[signed-tower-count](pages/signed-tower-count.md)], section *The case k = 1*).
 
 | `w`, `h` | castles | castles with no flipping one-cell edit | random one-cell edit flips parity |
 |---|---|---|---|

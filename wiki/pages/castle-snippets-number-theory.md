@@ -5,7 +5,7 @@ summary: Tested Python snippets for the signed tower count P(k, L), continued-fr
 tags: [concept, castle, python, snippets, signed-tower-count, continued-fraction, mod-p, quasi-polynomial, plastic-number]
 sources: [project-euler-502-brute-force, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-19
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # Castle snippets - number theory
@@ -157,7 +157,7 @@ Meaning: the coefficients `[1, −3, 4, −4]` give `char_2 = x³ − 3x² + 4x 
 
 ### `quasi_split(seq, deg)` → `(A, B)` with `seq[k] = (−1)^k A(k) + B(k)`
 
-Two Lagrange interpolations, one through the even `k` and one through the odd `k`. They suffice when every eigenvalue of the recurrence is `±1`, which holds in the `k` direction of `P` for `L ≤ 12` (computed; [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]). Requires SymPy.
+Two Lagrange interpolations, one through the even `k` and one through the odd `k`. They suffice when every eigenvalue of the recurrence is `±1`, which holds in the `k` direction of `P` at every `L` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]). Requires SymPy.
 
 ```python
 import sympy as sp

@@ -3,9 +3,9 @@ title: Castle ring by invariant factors
 category: Analyses
 summary: The unit group of the castle ring R = F_p[x]/(char_k mod p) as a product of cyclic groups. By the Chinese Remainder Theorem, R^* ≅ ∏ (F_{p^{d_i}}^* × U_i) over the irreducible factors g_i^{m_i} of char_k mod p, with U_i a p-group of order p^{d_i(m_i − 1)}, trivial when m_i = 1. The mod-p period of P(k, ·) is the order of x in R^* (num_k and den_k coprime mod p in every case here), Kitamasa's method is exponentiation in R^*, and Pohlig-Hellman costs about √q for the largest prime q dividing ord(x), which at p = 10⁹ + 7 is 500000003 = (p − 1)/2 for k = 1, 2, 3. At a prime dividing disc(char_k) the p-group supplies the extra factor of p in the period (per(char_2 mod 7) = 21 = 3·7). The two d = 3 linear-complexity deficits of the filtered generator both come from α·ᾱ = 2 for the roots of x² − x + 2.
 tags: [analysis, cryptography, ring, finite-field, unit-group, invariant-factors, structure-theorem, pohlig-hellman, kitamasa, discriminant, linear-complexity, castle]
-sources: [oeis-mining-pe502, calugareanu-hamburg-exercises-basic-ring-theory]
+sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-21
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle ring by invariant factors
@@ -97,7 +97,6 @@ using `α² + ᾱ² = (α + ᾱ)² − 2αᾱ`. So nine of the ten values occur.
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the family `P(k, ·)` and its characteristic polynomials `char_k`.
 - [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - the Chinese Remainder Theorem (Ex. 17.20), local rings `R/M^n` (Ex. 13.26), units of `R[X]` (Exs. 14.15-14.16), and `(2, X)` in `Z[X]` (Exs. 14.13, 14.19).
 
 ## Related Concepts
@@ -120,6 +119,7 @@ using `α² + ᾱ² = (α + ᾱ)² − 2αᾱ`. So nine of the ten values occur.
 - [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the fibers of `Spec Z[x]/(char_k)`; section 3 splits the period into the reduced part and the nilradical.
 - [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - `char_2` across several primes; Stop 7 reads `α·ᾱ = 2` as the splitting of 2 in `Z[(1 + √−7)/2]`.
 - [[sandpile-group](pages/sandpile-group.md)] - another finite abelian group read off a Smith normal form.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the family `P(k, ·)` and its characteristic polynomials `char_k`.
 
 ## Footnotes
 

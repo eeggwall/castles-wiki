@@ -3,9 +3,9 @@ title: The Hardin word identity - even-sector towers are 2^L times no-local-maxi
 category: Analyses
 summary: For every m ≥ 0 and k = 4m + 2, the signed count of towers of height at most k with an even last column is P_even(k, L) = 2^L W_m(L + 1), where W_m(n) counts the words in {0, …, m}^n in which every nonzero letter is at most one of its neighbors (A005251, A202882, A203094, A203184). Proof - the even sector of the signed transfer matrix, halved, and a 2m + 1 state word automaton are conjugate by an explicit 0/1 matrix S with det S = (−1)^m, which also matches the start and end vectors. The automaton's characteristic polynomial is H_{2m+1}(μ) for m ≤ 10 (computed), so Hardin's "Empirical" recurrences on A202882, A203094, A203184 hold.
 tags: [analysis, castle, signed-tower-count, transfer-matrix, bijection, hardin, oeis, words, sympy, verification, proof]
-sources: [oeis-mining-pe502, project-euler-502-castle-factoring]
+sources: [project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # The Hardin word identity
@@ -208,7 +208,6 @@ Both readings were checked for `m = 1, 2` and `L ≤ 3`.[^3]
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the family `P(k, ·)` that Equation (1) decomposes.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the block count as total descent, behind the entries of `M̃_k`.
 
 ## Related Concepts
@@ -222,6 +221,7 @@ Both readings were checked for `m = 1, 2` and `L ≤ 3`.[^3]
 - [[tower-word-language](pages/tower-word-language.md)] - tower words as a regular language at fixed height, recognized by a finite automaton.
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the block count as total ascent and descent.
 - [[castle-notation](pages/castle-notation.md)] - tower height `k`, here `4m + 2`, and castle height `k + 1`.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the family `P(k, ·)` that Equation (1) decomposes.
 
 ## Footnotes
 

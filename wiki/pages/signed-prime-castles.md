@@ -3,9 +3,9 @@ title: Signed prime castles - the block sign as a character of the prime-castle 
 category: Analyses
 summary: "On the free monoid of castles glued at a shared height-1 column, blocks − 1 is additive, so the sign χ = (−1)^(blocks − 1) is a character. It depends only on the multiset of a castle's prime factors. With π_χ(q) the signed prime series by reduced area, Σ χ(x) q^(area(x) − 1) = 1/(1 − π_χ) over the monoid, and its coefficients are the odd − even split of the castles by area, checked through area 16. A multiset of primes with multiplicities m_i gives k!/Π m_i! castles, and the number of such classes by area, 1, 2, 3, 5, 9, 15, 26, 45, 78, 134, …, is the Euler transform of the prime counts. Area, width, blocks, height-1 columns, peaks and base-leaving records are characters; left-to-right maxima, height and B_α for 0 < α < 1 are not."
 tags: [analysis, castle, area, prime-castle, monoid, character, parity, block-count, sign, multinomial, peaks, records, fractional, q-series, oeis]
-sources: [oeis-mining-pe502]
+sources: [project-euler-502]
 created: 2026-09-22
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # Signed prime castles
@@ -121,6 +121,6 @@ for n in range(1, N + 1):
 
 ## Footnotes
 
-[^1]: Verified by execution (Python 3.11, 2026-10-16), over every composition of `n ≤ 16`: the coefficients of `π_χ` and of `1/(1 − π_χ)`, and `A^e(n) − A^o(n)`. The values for `n ≤ 12` reproduce raw/oeis-pe502/vein9-area.md §"Parity splits" L46-47 - "`even(n)` | 0, 1, 2, 5, 8, 17, 30, 65, 122, 261, 502, 1043 ... `odd(n)` | 1, 1, 2, 3, 8, 15, 34, 63, 134, 251, 522, 1005".
+[^1]: Verified by execution (Python 3.11, 2026-10-16), over every composition of `n ≤ 16`: the coefficients of `π_χ` and of `1/(1 − π_χ)`, and `A^e(n) − A^o(n)`. For `n ≤ 12` the enumeration gives `A^e(n) = 0, 1, 2, 5, 8, 17, 30, 65, 122, 261, 502, 1043` and `A^o(n) = 1, 1, 2, 3, 8, 15, 34, 63, 134, 251, 522, 1005` (rechecked 2026-10-25).
 [^2]: Verified by execution (Python 3.11, 2026-10-16): the distinct sorted prime-factor lists over all castles of area `n ≤ 14`, and the Euler-transform product with `π_j = F_{j−2}` through `n = 17`.
 [^3]: Verified by execution (Python 3.11, 2026-10-16), over all 4225 ordered pairs from the 65 elements of `𝓜` up to area 8 (the identity `(1)`, `(1, 1)`, and every padded castle of area at most 6): area, width, blocks, height-1 columns and peaks satisfy the shifted additivity on every pair; left-to-right maxima fail on 2329 pairs, height on 3249, and `B_{1/2}` on 4096. `B_α` is computed as `Σ_i max(0, Σ_{k=0}^{i−1} (−1)^k C(α, k) c_{i−k})`, the definition on [[fractional-block-count](pages/fractional-block-count.md)].

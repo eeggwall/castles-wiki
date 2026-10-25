@@ -5,7 +5,7 @@ summary: For h ≥ 2, the number of castles of width w and height h with an even
 tags: [concept, castle, generating-functions, closed-form, dyck, proof]
 sources: [project-euler-502, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-solution, project-euler-502-implementation-notes, project-euler-502-brute-force]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle counting formula
@@ -95,6 +95,8 @@ num_k  =  2·den_{k−1} − num_{k−1}
 den_k  =  (1 − 2x)·den_{k−1} + x·num_{k−1}                                    (5)
 ```
 
+Equation (5) is the matrix `[[−1, 2], [x, 1 − 2x]]` acting on `(num_{k−1}, den_{k−1})`. With a variable `y` on each block in place of `−1`, Equations (2) and (3) are the cases `y = 1` and `y = −1` of one height step, the matrix `[[y, 1 − y], [−xy, 1 − x + xy]]` ([[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)], section *Counts*); at `y = −1` its eigenvalues `−x ± √(1 + x²)` give the recurrence of `P(·, L)` in `k` ([[signed-tower-k-direction](pages/signed-tower-k-direction.md)]).
+
 **Proposition.** For `k ≥ 0`, `den_k(0) = 1`, `num_k` has degree `k`, and `den_k` has degree `k + 1` with leading coefficient `(−1)^{k+1} 2^k`. Writing `den_k(x) = 1 + d_1 x + ⋯ + d_{k+1} x^{k+1}`,
 
 ```
@@ -173,7 +175,7 @@ These are the four values in the problem statement.[^1] Equation (1) reproduces 
 - [[castle-counting-function](pages/castle-counting-function.md)] - the counts `A`, `A^e` and `A^o`, the four checkpoint values, and the Project Euler target.
 - [[castle-polyomino](pages/castle-polyomino.md)] - the castle definition.
 - [[castle-notation](pages/castle-notation.md)] - the symbols `A`, `A^e`, `A^o`, `S`, `T` and `P`, and the tower height `k = h − 1`.
-- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the tower grammar behind Equations (2) and (3).
+- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the tower grammar behind Equations (2) and (3), which are the cases `y = 1` and `y = −1` of one 2 × 2 matrix in the height.
 - [[binary-string-bijection](pages/binary-string-bijection.md)] - the first-row binary strings of the induction proof.
 - [[signed-tower-count](pages/signed-tower-count.md)] - the family `P(k, ·)`: recurrences, characteristic polynomials and closed forms.
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the split of towers into `(T + P)/2` even-block and `(T − P)/2` odd-block ones.

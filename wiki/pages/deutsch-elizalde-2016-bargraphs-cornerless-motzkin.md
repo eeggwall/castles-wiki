@@ -5,7 +5,7 @@ summary: Deutsch and Elizalde map bargraphs bijectively to cornerless Motzkin pa
 tags: [paper, source, bargraph, motzkin, cornerless, lattice-paths, generating-functions, bijection, statistics, rna-secondary-structure, palindromic, continued-fraction, oeis]
 sources: [deutsch-elizalde-2016-bargraphs-cornerless-motzkin]
 created: 2026-09-26
-updated: 2026-10-17
+updated: 2026-10-25
 ---
 
 # Statistics on bargraphs viewed as cornerless Motzkin paths (Deutsch-Elizalde, 2016)
@@ -36,7 +36,7 @@ The rest of the paper is a toolkit. Whenever a statistic behaves well under `Δ`
 
 - [[motzkin-castles](pages/motzkin-castles.md)] - the hub; this paper supplies its §1 bijection and the A004148 bijection.
 - [[castle-perimeter](pages/castle-perimeter.md)] - semiperimeter `= #U + #H = w + #blocks`, and A082582.
-- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] / [[tower-word-language](pages/tower-word-language.md)] - the tower grammar, which is this paper's cornerless decomposition.
+- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] / [[tower-word-language](pages/tower-word-language.md)] - the tower grammar, which is this paper's cornerless decomposition with a height bound; its height map has equation (2) as fixed point, the castles of height at most `h` as iterates, and at `t = 1` it is the area recursion of §3.14.
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] - the tower word as a peakless-valleyless Motzkin path.
 - [[prime-castles](pages/prime-castles.md)] - castles with no height-1 column, counted by semi-perimeter through the row-deletion bijection.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - reverse Ferrers and palindromic castles, with GFs.
@@ -48,7 +48,7 @@ The rest of the paper is a toolkit. Whenever a statistic behaves well under `Δ`
 
 ## Relation to Other Wiki Pages
 
-This paper agrees with the wiki's tower-word machinery. The semiperimeter convention, the A082582 series, and the quadratic GF all agree with [[castle-perimeter](pages/castle-perimeter.md)]. That page derives the same `B(t)` from the tower-Narayana identity; this paper derives it from the cornerless decomposition. Its variables `(x, y)` are the wiki's `(width, blocks)`, so the whole statistic table can be read as castle statistics and split by PE 502 parity with `y → −y`. The follow-up is [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)]: the same bijection read from the prefix side, with `UD` and `DU` weighted instead of forbidden, solved by the kernel method, and extended to skew Motzkin paths.
+This paper agrees with the wiki's tower-word machinery. The semiperimeter convention, the A082582 series, and the quadratic GF all agree with [[castle-perimeter](pages/castle-perimeter.md)]. That page derives the same `B(t)` from the tower-Narayana identity; this paper derives it from the cornerless decomposition. The two routes meet in the tower grammar: its height map has equation (2) as fixed point, and the substitution `x = z(1 − y)` turns that fixed point into the Narayana equation, which proves the tower-Narayana identity ([[tower-heap](pages/tower-heap.md)]). Its variables `(x, y)` are the wiki's `(width, blocks)`, so the whole statistic table can be read as castle statistics and split by PE 502 parity with `y → −y`. The follow-up is [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)]: the same bijection read from the prefix side, with `UD` and `DU` weighted instead of forbidden, solved by the kernel method, and extended to skew Motzkin paths.
 
 ## Footnotes
 
