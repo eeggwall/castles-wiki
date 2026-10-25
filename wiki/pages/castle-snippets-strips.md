@@ -5,7 +5,7 @@ summary: Tested Python snippets for castle strips (the Pell and ridge strips, th
 tags: [concept, castle, python, snippets, strip, growth-constant, metallic-mean, tree-castle, hardin]
 sources: [project-euler-502-brute-force]
 created: 2026-09-19
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # Castle snippets - strips and growth
@@ -506,7 +506,33 @@ def decode(s):  return tuple(len(r) + 1 for r in s.split('1'))  # 0-run of lengt
 (True, 37)
 ```
 
-Meaning: a part at least 2 becomes a nonempty block of `0`s, so two neighboring parts at least 2 become `0…010…0` around their separating `1`, and the map takes the restricted compositions onto the strings with no `010`. The map is onto, with the counts equal, for every `n ≤ 11` (checked; [[a005251-bijection](pages/a005251-bijection.md)]).
+Meaning: a part at least 2 becomes a nonempty block of `0`s, so two neighboring parts at least 2 become `0…010…0` around their separating `1`, and the map takes the restricted compositions onto the strings with no `010`. The map is onto for every `n`, by the Proposition on [[a005251-bijection](pages/a005251-bijection.md)], and is checked here for `n ≤ 11`.
+
+### `to_runs(s)` → the strings with no isolated 1, and the block parity
+
+Composed with the column map of [[tree-castle-by-area](pages/tree-castle-by-area.md)], a column of height 1 becoming `0` and a column of height `c ≥ 2` becoming `1^c`, the gap map gives a bijection from the strings of length `n − 1` without `010` onto the strings of length `n` with no isolated `1` ([[a005251-bijection](pages/a005251-bijection.md)]). A tree castle has one more block than its string has zeros, so the strings also give the signed block count of the tree castles by area.
+
+```python
+import re
+
+def to_runs(s):   # string of length n-1 without 010 -> string of length n with no isolated 1
+    return ''.join('0' if b == '' else '1' * (len(b) + 1) for b in s.split('1'))
+```
+
+```
+>>> to_runs(encode((1, 4))), to_runs(encode((2, 1, 2)))     # the castles (1, 4) and (2, 1, 2)
+('01111', '11011')
+>>> n = 7
+>>> src = [''.join(b) for b in product('01', repeat=n-1) if '010' not in ''.join(b)]
+>>> tgt = {''.join(b) for b in product('01', repeat=n) if all(len(r) >= 2 for r in re.findall('1+', ''.join(b)))}
+>>> {to_runs(s) for s in src} == tgt, len(src)
+(True, 37)
+>>> # sum of (-1)^blocks over the tree castles of area n = 1..12, with blocks = 1 + zeros:
+>>> [sum((-1) ** (1 + s.count('0')) for s in product('01', repeat=n-1) if '010' not in ''.join(s)) for n in range(1, 13)]
+[-1, 0, 0, 1, 0, 1, -1, 1, -2, 2, -3, 4]
+```
+
+Meaning: each run of `r ≥ 1` zeros, a column of height `r + 1`, becomes a run of `r + 1` ones, and each empty block, a column of height 1, becomes a `0`, so the runs of ones are separated by zeros and none has length 1. The signed counts are `(−1)^n A000931(n − 1)`, signed Padovan numbers.
 
 
 ### `A005251(n)` → the plastic-squared sequence directly
@@ -609,5 +635,5 @@ Meaning: for `m = 1` the valid words are binary strings with no isolated `1` (th
 
 ## Footnotes
 
-[^1]: Verified by execution (Python 3.11 with SymPy and NumPy, 2026-10-16): every printed output on this page; `proper_even(4, ·)` and `proper_even(5, ·)` against enumeration of ridge castles for `w ≤ 7`; the spectral radii of `R̃_h` for `h ≤ 6`; `strip_field_census(3)` and `(4)` with the nine cubics at `h = 3`; 104 orbits at `h = 3` and 3,044 at `h = 4`; `tower_spacing_counts(3, 2, ·)` against enumeration for `w ≤ 7` and `tower_spacing_counts(2, 2, ·) = A005251(w + 3)` for `w ≤ 10`; the bijection of `castle_to_composition` for `n ≤ 11`; the tree-skyline series against enumeration for `A ≤ 15`; `encode` onto the strings without `010` for `n ≤ 11`; `P_even(10, n − 1)/2^{n−1} = A202882(n)` for `n ≤ 10`.
+[^1]: Verified by execution (Python 3.11 with SymPy and NumPy, 2026-10-16): every printed output on this page; `proper_even(4, ·)` and `proper_even(5, ·)` against enumeration of ridge castles for `w ≤ 7`; the spectral radii of `R̃_h` for `h ≤ 6`; `strip_field_census(3)` and `(4)` with the nine cubics at `h = 3`; 104 orbits at `h = 3` and 3,044 at `h = 4`; `tower_spacing_counts(3, 2, ·)` against enumeration for `w ≤ 7` and `tower_spacing_counts(2, 2, ·) = A005251(w + 3)` for `w ≤ 10`; the bijection of `castle_to_composition` for `n ≤ 11`; the tree-skyline series against enumeration for `A ≤ 15`; `encode` onto the strings without `010` for `n ≤ 11`; `P_even(10, n − 1)/2^{n−1} = A202882(n)` for `n ≤ 10`. On 2026-10-25 (Python 3.11): the `to_runs` outputs, `to_runs` onto the strings with no isolated `1` for `n ≤ 14`, and the signed counts from the strings against `(−1)^n A000931(n − 1)` for `n ≤ 12`.
 [^2]: https://oeis.org/A005251 (read 2026-10-16) - "(Python) from sympy import Matrix def A005251(n): return (Matrix([[2,-1,1],[1,0,0],[0,1,0]])**(n-2)*Matrix([1,1,0]))[0] # _Chai Wah Wu_, Jun 10 2026"; "a(n+3) is the number of n-bit sequences that avoid 010"; "For n>=3, a(n) is the number of binary strings of length n-2 without any maximal runs of ones of length 1".

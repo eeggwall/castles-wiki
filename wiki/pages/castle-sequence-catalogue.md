@@ -25,7 +25,7 @@ These identities are stated and proved on the pages cited; the section *Catalogu
 - `A038505`, `A038503`, `A146559`: `A^e(w, 2) = A038505(w+1)` and `A^o(w, 2) = A038503(w+1) − 1` ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]); `A146559(n) = P(1, n − 1)`, so `A146559(n) − 1` is the number of castles of width `n − 1` and height 2 with an odd number of blocks minus the number with an even number ([[signed-tower-count](pages/signed-tower-count.md)]).
 
 - `A009545`: among the castles of width `n` and height 2 whose last column has height 2, `A009545(n)` is the number with an even number of blocks minus the number with an odd number ([[tower-parity-sectors](pages/tower-parity-sectors.md)]).
-- `A005251`, `A202882`, `A203094`, `A203184`: the Hardin word identity reads each as `2^{−L}` times a signed tower count over the towers whose last column is even, and proves their empirical recurrences ([[hardin-word-identity](pages/hardin-word-identity.md)]). The tower-spacing skylines with `g = 2` give each an unsigned reading ([[tower-spacing-castles](pages/tower-spacing-castles.md)]), and `A005251` has four readings related by an explicit bijection ([[a005251-bijection](pages/a005251-bijection.md)]; the section *Multi-interpretation hub*).
+- `A005251`, `A202882`, `A203094`, `A203184`: the Hardin word identity reads each as `2^{−L}` times a signed tower count over the towers whose last column is even, and proves their empirical recurrences ([[hardin-word-identity](pages/hardin-word-identity.md)]). The tower-spacing skylines with `g = 2` give each an unsigned reading ([[tower-spacing-castles](pages/tower-spacing-castles.md)]), and `A005251` has five readings related by explicit bijections and a sixth, the even sector, by a count identity ([[a005251-bijection](pages/a005251-bijection.md)]; the section *Multi-interpretation hub*).
 - `A000071`, `A000073`, `A000078`, `A001591`: castles by area of height 2 and of height at most 3, 4, 5, through compositions with bounded parts ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]).
 - The tower-spacing arrays of Hardin, "each element the minimum of `g` adjacent elements" (`A217878` to `A217881`, `A217949` to `A217952`) and "maxima of three adjacent elements" (`A228457`, `A228458`), with the tables `A217883`, `A217954` and `A228461`; the `h = 2` row `A005252`, `A005253`, `A005689`, `A098574` joins `A005251` with the closed form `Sum_k C(w+g−(g−1)k, 2k)` ([[tower-spacing-castles](pages/tower-spacing-castles.md)]).
 - `A001045`, `A006130`, `A006131`: the tree castles of height at most 3, 4 and 5 by width number `A001045(w+2)`, `A006130(w+1)` and `A006131(w+1)` ([[castle-graph](pages/castle-graph.md)]).
@@ -38,16 +38,28 @@ These identities are stated and proved on the pages cited; the section *Catalogu
 
 ### Multi-interpretation hub
 
-`A005251` (`0, 1, 1, 1, 2, 4, 7, 12, 21, 37, …` from `n = 0`, growth `ψ² = 1.7549`, with `ψ` the plastic number) counts four castle objects, related by an explicit bijection ([[a005251-bijection](pages/a005251-bijection.md)]):
+`A005251` (`0, 1, 1, 1, 2, 4, 7, 12, 21, 37, …` from `n = 0`, growth `ψ² = 1.7549`, with `ψ` the plastic number) counts six objects: the tree castles of area `n`, four more in explicit bijection with them, and the even-sector signed towers, equal in number by a change of basis ([[a005251-bijection](pages/a005251-bijection.md)]):
 
-| castle object | count | `A005251` offset |
-|---|---|---|
-| tree castles of area `n`, any height (compositions of `n` with no two adjacent parts `≥ 2`) | `1, 2, 4, 7, 12, …` from `n = 1` | `A005251(n+2)` |
-| binary strings of length `N` with no factor `010` | `1, 2, 4, 7, 12, …` from `N = 0` | `A005251(N+3)` |
-| tower-spacing skylines `(h = 2, g = 2)` of width `w` | `2, 4, 7, 12, 21, …` from `w = 1` | `A005251(w+3)` |
-| Hardin's words with no isolated 1, equivalently `P_even(6, L)/2^L` | `1, 2, 4, 7, …` from `L = 0` | `A005251(L+3)` (binary words of length `L + 1` with no isolated 1) |
+| object | count | `A005251` offset | from the tree castles of area `n` |
+|---|---|---|---|
+| tree castles of area `n`, any height (compositions of `n` with no two adjacent parts `≥ 2`) | `1, 2, 4, 7, 12, …` from `n = 1` | `A005251(n+2)` | - |
+| binary strings of length `N` with no factor `010` | `1, 2, 4, 7, 12, …` from `N = 0` | `A005251(N+3)` | the gap map, `N = n − 1` |
+| Hardin's binary words of length `N` with no isolated 1, `W_1(N)` | `1, 2, 4, 7, 12, …` from `N = 1` | `A005251(N+2)` | the column map, `N = n` |
+| compositions of `m` with no part 2 | `1, 1, 2, 4, 7, …` from `m = 1` | `A005251(m+1)` | the leading-column map, `m = n + 1` |
+| tower-spacing skylines `(h = 2, g = 2)` of width `w` | `2, 4, 7, 12, 21, …` from `w = 1` | `A005251(w+3)` | the gap map, then the complement, `w = n − 1` |
+| `P_even(6, L)/2^L`, the even-sector signed towers | `1, 2, 4, 7, …` from `L = 0` | `A005251(L+3)` | equal counts by a change of basis, `L = n − 1` |
 
-The bijection takes a composition of `n` to a binary string of length `n − 1` with no factor `010`, and "no two adjacent parts `≥ 2`" to "no factor `010`". A tower-spacing skyline of width `w` with `g = 2` is a raised-column string of length `w` with no factor `101`, which complementing the bits turns into the second row. See [[plastic-number](pages/plastic-number.md)].
+The gap map takes a composition of `n` to a binary string of length `n − 1`, a part `c` becoming `c − 1` zeros and the parts joined by single `1`s, and "no two adjacent parts `≥ 2`" to "no factor `010`". The complement of that string is the second row of a tower-spacing skyline of width `n − 1` with `g = 2`, which has no factor `101`. The column map sends a column of height 1 to `0` and a column of height `c ≥ 2` to `1^c`. See [[plastic-number](pages/plastic-number.md)].
+
+A tree castle of area `n` and width `w` has `1 + n − w` blocks, one more than the number of zeros of its string, and by the parity of the number of blocks the tree castles of area `n` split as follows ([[a005251-bijection](pages/a005251-bijection.md)]). Terms from `n = 1`.
+
+| object | first terms | g.f. / formula | OEIS |
+|---|---|---|---|
+| tree castles of area `n`, even number of blocks | `0, 1, 2, 4, 6, 11, 18, 33, 56, 101, 174, 310, 538, 952` | `(A005251(n+2) + (−1)^n A000931(n−1))/2` | - |
+| tree castles of area `n`, odd number of blocks | `1, 1, 2, 3, 6, 10, 19, 32, 58, 99, 177, 306, 543, 945` | `(A005251(n+2) − (−1)^n A000931(n−1))/2` | - |
+| even minus odd | `−1, 0, 0, 1, 0, 1, −1, 1, −2, 2, −3, 4, −5, 7` | `−q(1 − q²)/(1 − q² + q³)` | [A000931](https://oeis.org/A000931) Padovan, signed (`= (−1)^n A000931(n−1)`) |
+
+*(Every row agrees with enumeration for `n ≤ 20`; the OEIS has no match for the even row from `n = 2` to 13 or the odd row from `n = 1` to 13, 2026-10-25.)*
 
 ### Castles by area with bounded height: the n-nacci family
 

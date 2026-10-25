@@ -5,7 +5,7 @@ summary: A skyline has tower spacing at least g when, in every row, each run of 
 tags: [analysis, castle, gap-rule, tower-spacing, transfer-matrix, growth-constant, plastic-number, golden-ratio, generating-function, rule-3, sympy, verification, oeis, min-filter, unimodal]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # Minimum tower spacing - skylines and castles
@@ -121,7 +121,7 @@ Hardin's two-dimensional tables are the rows `h = 3` (A217883, "0..2 arrays with
 - [[castle-strip](pages/castle-strip.md)] and [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - skylines counted under rules on the heights of neighboring columns, and the growth constants those rules reach.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the growth constants reachable by rules on neighboring heights.
 - [[plastic-number](pages/plastic-number.md)] - `ψ²`, the growth at `(h, g) = (2, 2)`.
-- [[tree-castle-by-area](pages/tree-castle-by-area.md)] and [[a005251-bijection](pages/a005251-bijection.md)] - the other castle readings of A005251.
+- [[tree-castle-by-area](pages/tree-castle-by-area.md)] and [[a005251-bijection](pages/a005251-bijection.md)] - the other castle readings of A005251; the gap map followed by the complement sends the tree castles of area `n` one-to-one onto the skylines of width `n − 1` at `h = 2`, `g = 2`.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the 1-smooth strips on `{1, 2, 3}`, silver by width.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - the shape types, among them the m-smooth and m-disparate rules on neighboring heights.
 - [[castle-snippets-strips](pages/castle-snippets-strips.md)] - the snippet `tower_spacing_matrix(h, g)`.
