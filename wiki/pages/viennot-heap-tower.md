@@ -1,11 +1,11 @@
 ---
 title: Viennot heaps of pieces on towers
 category: Analyses
-summary: Towers with no height bound on a base of length L, read as Viennot heaps of unit-cell pieces, give the cell-count generating function 1/(1 − x)^L by Cartier-Foata inversion. The block count is not additive over unit-cell pieces, and the heaps of interval pieces do not count towers (8 heaps of two pieces against 5 towers with two blocks at L = 2). A transfer matrix on the previous column height gives the block-count identity Σ_b T̂(L, b) x^b = Narayana_L(x)/(1 − x)^L, and the Narayana number N(L, k) times C(b + L − k, L − 1) counts the towers with b blocks and k − 1 descents (computed for L ≤ 7).
-tags: [analysis, tower, viennot, heap-of-pieces, commutation-monoid, trace-monoid, cartier-foata, transfer-matrix, narayana]
+summary: Towers with no height bound on a base of length L, read as Viennot heaps of unit-cell pieces, give the cell-count generating function 1/(1 − x)^L by Cartier-Foata inversion. The block count is not additive over unit-cell pieces, and the heaps of interval pieces do not count towers (8 heaps of two pieces against 5 towers with two blocks at L = 2). A transfer matrix on the previous column height gives the block-count identity Σ_b T̂(L, b) x^b = Narayana_L(x)/(1 − x)^L, proved for every L by reading the blocks as pieces that may only be nested or separated: sending the interval [i, j] to the segment from vertex i − 1 to vertex j + 1 of an (L + 2)-gon turns a tower into a multiset of pairwise non-crossing diagonals, and the h-vector of the simplicial associahedron is the Narayana numbers (Tzanaki). The Narayana number N(L, k) times C(b + L − k, L − 1) counts the towers with b blocks and k − 1 descents (computed for L ≤ 7).
+tags: [analysis, tower, viennot, heap-of-pieces, commutation-monoid, trace-monoid, cartier-foata, transfer-matrix, narayana, associahedron, h-vector, noncrossing]
 sources: [tower-narayana-polynomial, bousquet-melou-fedou-1995-convex-polyominoes, bayer-diaconis-1992-dovetail-shuffle, prellberg-brak-1995-cluster-models]
 created: 2026-09-21
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Viennot heaps of pieces on towers
@@ -48,13 +48,47 @@ records the `max(0, b − a)` blocks that a column of height `b` starts after a 
 Σ_b T̂(L, b) x^b  =  e_0ᵀ M_∞(x)^L 𝟙  =  Narayana_L(x) / (1 − x)^L,        Narayana_L(x)  =  Σ_{k=1}^{L} N(L, k) x^{k−1},      (1)
 ```
 
-with `N(L, k) = (1/L) C(L, k) C(L, k − 1)` the [[narayana-numbers](pages/narayana-numbers.md)] (A001263). Equation (1) is the identity of [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)], computed there for `L ≤ 7`.[^3] In coefficients,
+with `N(L, k) = (1/L) C(L, k) C(L, k − 1)` the [[narayana-numbers](pages/narayana-numbers.md)] (A001263). Equation (1) is the identity of [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)], computed there for `L ≤ 7`,[^3] and section *Blocks as non-crossing diagonals* proves it for every `L`. In coefficients,
 
 ```
 T̂(L, b)  =  Σ_{k=1}^{L} N(L, k) · C(b + L − k, L − 1).                         (2)
 ```
 
 The rows of Equation (1) are `1/(1 − x)` at `L = 1` (one tower `(b)` with `b` blocks), `(1 + x)/(1 − x)²` at `L = 2` (`2b + 1`, A005408) and `(1 + 3x + x²)/(1 − x)³` at `L = 3` (`1, 6, 16, 31, 51, 76, …`, A005891), and `1 + 3x + x²` is row 3 of A001263.[^4]
+
+## Blocks as non-crossing diagonals
+
+The blocks themselves are the right pieces, provided two of them may stand together only when they are nested or apart. Call two intervals of `[1, L]` **compatible** when one contains the other or at least one column separates them: `[i, j]` and `[i', j']` with `[i, j] ⊆ [i', j']`, `[i', j'] ⊆ [i, j]`, `j + 1 < i'` or `j' + 1 < i`.
+
+**Lemma 1.** Listing the blocks is a bijection from the towers on a base of length `L` with `b` blocks to the multisets of `b` pairwise compatible intervals of `[1, L]`. The inverse gives column `i` the height `c_i`, the number of intervals of the multiset that contain `i`.
+
+*Proof.* The blocks of row `r` are the maximal runs of the columns with `c_i ≥ r`. So two blocks of one row are separated by a column of height below `r`, and a block of a higher row lies inside a block of row `r`. If a block `B'` of a higher row is not inside a block `B` of row `r`, the block of row `r` that holds `B'` is separated from `B`, and so is `B'`. So the blocks are pairwise compatible, and column `i` lies in one block of each of its `c_i` rows.
+
+Conversely, take a multiset of pairwise compatible intervals, with heights `c_i` as stated. Two intervals that share a column are nested, so the intervals containing any one column form a chain. Give each interval the depth `r` when it is the `r`-th interval of that chain counted from the outside, ordering equal copies one after another; the depth does not depend on the column chosen. Two intervals of the same depth are not nested, so they are separated, and the intervals of depth `r` cover exactly the columns with `c_i ≥ r`. So they are the maximal runs of those columns, the blocks of row `r`, and the tower with heights `c_i` has the given multiset as its blocks. ∎
+
+**Lemma 2.** Label the vertices of a convex polygon `0, 1, …, L + 1` in order, and send the interval `[i, j]` to the segment from vertex `i − 1` to vertex `j + 1`. Two intervals are compatible exactly when their segments do not cross. The interval `[1, L]` goes to the edge from 0 to `L + 1`, and the other `L(L + 1)/2 − 1` intervals go one to one onto the `(L + 2)(L − 1)/2` diagonals.
+
+*Proof.* Take `i ≤ i'`. If `i = i'` the intervals are nested. Otherwise they are incompatible exactly when `i' ≤ j + 1` and `j < j'`, the cases where they stand side by side or overlap, and that is exactly when the endpoints interleave, `i − 1 < i' − 1 < j + 1 < j' + 1`, so that the segments cross. The segment of `[i, j]` joins two vertices whose labels differ by `j − i + 2 ≥ 2`, which is a diagonal unless it is the edge from 0 to `L + 1`, and every such pair of vertices comes from one interval. ∎
+
+Sets of pairwise non-crossing diagonals of the `(L + 2)`-gon form a simplicial complex `Δ_L`, whose largest faces are the triangulations, with `L − 1` diagonals each. Tzanaki identifies it with the boundary complex of the simplicial associahedron. Its **h-vector** `(h_0, …, h_d)`, with `d = L − 1`, is defined from the numbers `f_{i−1}` of faces with `i` diagonals by[^9]
+
+```
+Σ_{i=0}^{d} f_{i−1} (x − 1)^{d−i}  =  Σ_{i=0}^{d} h_i x^{d−i},
+```
+
+and Tzanaki proves `h_i = (1/(i + 1)) C(L − 1, i) C(L, i)`, which is `N(L, i + 1)` because `C(L, i + 1) = L C(L − 1, i)/(i + 1)`.[^9]
+
+**Theorem.** For every `L ≥ 1`, Equation (1) holds: `Σ_b T̂(L, b) x^b = Narayana_L(x) / (1 − x)^L`.
+
+*Proof.* By Lemmas 1 and 2, a tower with `b` blocks is a multiset of `b` pairwise non-crossing segments, each a diagonal of the `(L + 2)`-gon or the edge from 0 to `L + 1`, and the edge crosses nothing. A multiset whose set of distinct diagonals is the face `S` contributes `(x/(1 − x))^{|S|}`, each diagonal of `S` taken at least once, and the edge, taken any number of times, contributes `1/(1 − x)`. So
+
+```
+Σ_b T̂(L, b) x^b  =  (1/(1 − x)) Σ_{S ∈ Δ_L} (x/(1 − x))^{|S|}  =  (1/(1 − x)) Σ_{i=0}^{d} f_{i−1} (x/(1 − x))^i.
+```
+
+Replacing `x` by `1/x` in the definition of the h-vector and multiplying by `x^d` gives `Σ_i f_{i−1} (1 − x)^{d−i} x^i = Σ_i h_i x^i`, so the last sum is `Σ_i h_i x^i / (1 − x)^d`, and with `h_i = N(L, i + 1)` and `d = L − 1` the series is `Narayana_L(x)/(1 − x)^L`. At `L = 1` there is no diagonal and the series is `1/(1 − x)`, as Equation (1) says. ∎
+
+*Example.* At `L = 2` the polygon is a square with vertices `0, 1, 2, 3`. The intervals `[1, 1]` and `[2, 2]` go to the two diagonals `(0, 2)` and `(1, 3)`, which cross, and `[1, 2]` goes to the edge `(0, 3)`. `Δ_2` is two points, with `f = (1, 2)` and `h = (1, 1)`, and the series is `(1 + x)/(1 − x)²`. The 5 towers with two blocks are `[1, 1]` twice, `[2, 2]` twice, `[1, 2]` twice, `[1, 1]` with `[1, 2]`, and `[2, 2]` with `[1, 2]`. The interval heaps of the section *Block count is not additive over unit-cell pieces* have three more: `[1, 1]` beside `[2, 2]`, whose diagonals cross, and `[1, 2]` laid on `[1, 1]` or on `[2, 2]`, which overhang. A heap orders its pieces and lets incompatible ones stand together; the towers are the unordered multisets of compatible pieces.[^10]
 
 ## Descents factor Equation (2)
 
@@ -89,3 +123,5 @@ Equation (2) has the shape of Worpitzky's identity `a^n = Σ_r A(n, r) C(a + n �
 [^6]: [[bayer-diaconis-1992-dovetail-shuffle](pages/bayer-diaconis-1992-dovetail-shuffle.md)] `raw/bayer-diaconis-1992-dovetail-shuffle.txt` Theorem 3 and its proof [synthesis] L444-466, L497-505 - the probability of a permutation with `r` rising sequences after an `a`-shuffle is `C(a + n − r, n)/a^n`; the proof "emulate[s] the classical stars and bars argument": at least one cut between each pair of successive rising sequences, the `a − r` spare cuts in `n + 1` bins; summing over all permutations, with the Eulerian numbers counting permutations by rising sequences, gives "Worpitzky's identity".
 [^7]: [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] `raw/bousquet-melou-fedou-1995-convex-polyominoes.txt` L205-211 - "One approach is based on a bijection between parallelogram polyominoes and some heaps of segments ... The main advantage of this first method is that it provides a combinatorial explanation for the appearance of the quotients, and interpretations for their numerator and their denominator [7]."
 [^8]: [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] `raw/prellberg-brak-1995-partially-directed-cluster-models.txt` §4 L673-682, L771-778 - "the functional equations for bar-graph polygons, alternating bar-graph polygons, staircase polygons, and ZL walks can all be linearized"; "both models have generating functions which can be expressed in the form ... (4.14) where the function H satisfies a linear functional equation. In the case of staircase polygons, this structure can also be explained via a bijection with heaps".
+[^9]: https://arxiv.org/abs/math/0501100 (E. Tzanaki, "Polygon dissections and some generalizations of cluster complexes", arXiv:math/0501100v3, 2005; read 2026-10-25) p.1, p.2 Corollary 1.3 and p.3 Equation (1), with `m = 1` and `n = L` - "Consider the abstract simplicial complex ∆^m_{A_{n−1}} whose faces are the m-divisible dissections of an (mn + 2)-gon P. Precisely, the vertices of ∆^m_{A_{n−1}} are the diagonals which dissect P into an (mj + 2)-gon and an (m(n − j) + 2)-gon (1 ≤ j ≤ n − 1) and the faces are sets of diagonals of this type which are pairwise noncrossing"; "For m = 1 this simplicial complex is isomorphic to the boundary complex of the (n−1)-dimensional simplicial associahedron"; "Corollary 1.3. The i-th entry of the h-vector of ∆^m_W is equal to (1/(i+1)) C(n−1, i) C(mn, i), i = 0, . . . , n − 1, ... in the cases W = A_{n−1}"; "The f-vector determines the h-vector h(∆) = (h_0, h_1, . . . , h_d) through the formula Σ_{i=0}^{d} f_{i−1}(x − 1)^{d−i} = Σ_{i=0}^{d} h_i x^{d−i}."
+[^10]: Verified by execution (Python 3.11, 2026-10-25): Lemma 1 as a count, the towers with `b` blocks against the multisets of `b` pairwise compatible intervals, for `L ≤ 5` and `b ≤ 5`; Lemma 2 for every pair of intervals of `[1, L]` and the count of diagonals, for `L ≤ 10`; the h-vector of `Δ_L` from its face numbers, equal to `N(L, k)` for `2 ≤ L ≤ 7`; the 5 towers with two blocks at `L = 2`.
