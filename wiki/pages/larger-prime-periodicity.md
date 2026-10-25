@@ -5,7 +5,7 @@ summary: For odd primes p up to 97 and k ≤ 6, the order per(char_k) of x in (F
 tags: [analysis, castle, modular-arithmetic, periodicity, large-primes, chebotarev, discriminant, project-euler-502]
 sources: [project-euler-502-castle-factoring, oeis-mining-pe502]
 created: 2026-09-22
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Larger-prime periodicity of char_k
@@ -187,7 +187,7 @@ At `M`: for `k = 2`, `R^* ≅ Z/(M − 1) × Z/(M^2 − 1)`; for `k = 6`, three 
 
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the periods of `A^e(·, h)` mod 3, 5, 7, built from `per(char_k)`.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `char_k` over `Z`, its constant term `(−1)^{k+1} 2^k`, and its irreducibility for odd `k`.
-- [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the period of `P(k, ·) mod p` as the order of `x` when `num_k` and `den_k` are coprime mod `p`.
+- [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the period of `P(k, ·) mod p` as the order of `x`, since `num_k` and `den_k` are coprime mod every prime.
 - [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the fibers of `Z[x]/(char_k)` over each prime, and the nilradical of the fat fibers.
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the unit group of `R` in invariant-factor form.
 - [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `R` as a group for discrete-logarithm cryptography.
