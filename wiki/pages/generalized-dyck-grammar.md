@@ -1,7 +1,7 @@
 ---
 title: Tower grammar
 category: Concepts
-summary: The grammar E_k → empty | R E_k | U V D (empty | R E_k) of the words in U, R, D that write towers of height at most k, with V the nonempty towers of height at most k − 1 on a block, which the Project Euler 502 notes call the generalized Dyck grammar. It is the first-return grammar of Motzkin paths, M → empty | R M | U M D M, with one cut for each factor a tower word excludes: an empty interior makes UD, and a tail starting with U makes DU. It generates each tower word exactly once, without the height bound it is Deutsch and Elizalde's decomposition of cornerless Motzkin paths, and its generating function by width and blocks is a Möbius map in the height, one 2 × 2 matrix whose specializations y = 1 and y = −1 give the tower count T(k, L) = (k+1)^L and the signed tower count P(k, L).
+summary: The grammar E_k → empty | R E_k | U V D (empty | R E_k) of the words in U, R, D that write towers of height at most k, with V the nonempty towers of height at most k − 1 on a block, which the Project Euler 502 notes call the generalized Dyck grammar. It is the first-return grammar of Motzkin paths, M → empty | R M | U M D M, with one cut for each factor a tower word excludes: an empty interior makes UD, and a tail starting with U makes DU. It generates each tower word exactly once, without the height bound it is Deutsch and Elizalde's decomposition of cornerless Motzkin paths, and its generating function by width and blocks is a Möbius map in the height, one 2 × 2 matrix whose specializations y = 1 and y = −1 give the tower count T(k, L) = (k+1)^L and the signed tower count P(k, L). Its fixed point is Deutsch and Elizalde's bargraph equation, which gives the tower-Narayana identity, and at y = −1 its eigenvalues −x ± √(1+x²) give the exact recurrence of P(·, L) in k.
 tags: [concept, castle, motzkin, cornerless, dyck, grammar, first-return, generating-functions]
 sources: [project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations, dyck-words, deutsch-elizalde-2016-bargraphs-cornerless-motzkin, prodinger-2025-cornerless-motzkin-bargraphs]
 created: 2026-09-13
@@ -102,7 +102,7 @@ The two counts of [[castle-counting-formula](pages/castle-counting-formula.md)] 
 xy E_∞²  −  (1 − x)(1 − y) E_∞  +  (1 − y)  =  0.
 ```
 
-A castle is a bottom row `U … D` carrying towers on a base of length at least 1, so the castles by width and blocks have generating function `B = y(E_∞ − 1)`, and in `B` the fixed-point equation is
+With `x = z(1 − y)` this is the first-return equation of Dyck paths counted by peaks, so the coefficient of `x^L` in `E_∞` is `Narayana_L(y)/(1 − y)^L`, the tower-Narayana identity ([[tower-heap](pages/tower-heap.md)], *Proof of the identity*). A castle is a bottom row `U … D` carrying towers on a base of length at least 1, so the castles by width and blocks have generating function `B = y(E_∞ − 1)`, and in `B` the fixed-point equation is
 
 ```
 x B²  −  (1 − x − y − xy) B  +  xy  =  0,
@@ -136,7 +136,7 @@ A Dyck word in `U` and `D` alone records how the blocks nest and their left-to-r
 - [[lattice-paths](pages/lattice-paths.md)] - shortest lattice paths written as step strings, where the `U`/`R`/`D` encoding comes from.
 - [[symbolic-method](pages/symbolic-method.md)] - the translation of a recursive specification such as `E_k = ε + R·E_k + U·V·D·(ε + R·E_k)` into an equation for its ordinary generating function, as in [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)].
 - [[generating-functions](pages/generating-functions.md)] - generating functions as the method for counting castles.
-- [[narayana-numbers](pages/narayana-numbers.md)] and [[tower-heap](pages/tower-heap.md)] - towers of unbounded height on a base of length `w` counted by blocks, with generating function a Narayana polynomial over `(1 − x)^w`.
+- [[narayana-numbers](pages/narayana-numbers.md)] and [[tower-heap](pages/tower-heap.md)] - towers of unbounded height on a base of length `w` counted by blocks, with generating function a Narayana polynomial over `(1 − x)^w`, proved on [[tower-heap](pages/tower-heap.md)] from the fixed point `E_∞`.
 - [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] - the blocks of the first row above the base set beside the cycles of a permutation.
 
 ## Footnotes
