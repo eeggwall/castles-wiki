@@ -150,6 +150,7 @@ Round three sets every parameter the earlier rounds identified: a prime group or
 - [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `F_p[x]/(Q)` and the castle Diffie-Hellman baseline.
 - [[kitamasa](pages/kitamasa.md)] - the jump behind both the torus generator and the compressed key exchange.
 - [[finite-fields](pages/finite-fields.md)] - `F_{p^6}`, its subfields, and the cyclotomic factorization of `p^6 - 1`.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization `char_k = g·ḡ` over `Q(i)` for odd `k`, which confines `char_5` to primes `p ≡ 3 (mod 4)`.
 - [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - the factorizations and periods of `char_k` mod larger primes, including `10⁹ + 7`.
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - security set by the largest prime dividing the group order, here the prime `q` itself.
 - [[sandpile-group](pages/sandpile-group.md)] - another finite abelian group attached to a castle, read off a Smith normal form.
