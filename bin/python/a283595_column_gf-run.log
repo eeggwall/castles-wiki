@@ -1,0 +1,8 @@
+brute force: rows 0..140; rows 0..5 = [[1], [1, 1], [1, 3, 1], [1, 7, 4, 1], [1, 15, 13, 5, 1], [1, 31, 38, 19, 6, 1]]
+b-file: all 10011 terms (rows 0..140) == brute force
+column g.f. z^k/(R_k R_(k+1)) == columns k = 0..140, rows up to 140; deg R_k = ceil(k/2)
+height <= k: Sum z^j P_(k-j)/P_(k+1) == brute force, and reduces to N_k/R_(k+1), deg N_k < deg R_(k+1), k <= 40
+P_(2j+1) = P_j R_(2j+1) and P_(2j) = R_(2j) (P_j + z P_(j-1)), j <= 40
+R_k == product over odd i, P_k == product over all i, k <= 40; eigenvector sums 0 exactly at even i; odd-i eigenvalues nonzero
+column 2: T(n,2) == A094706(n-1) for n = 2..140
+Python program: T(n,k) == brute force for rows 0..140

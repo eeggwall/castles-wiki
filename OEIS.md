@@ -37,41 +37,64 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
   lists the sequences and the entries they equal, with no status.
 
 **Next step (2026-10-23).** Stage 1 is full: A005891, A001263, A283595. When a slot opens,
-submit the top item of stage 2, the A003410 link back to A226136. When A283595 #43 is
+submit the first reverse link of stage 2, A003410 back to A226136. When A283595 #43 is
 approved, its follow-up (the first item of stage 3) can be drafted.
 
 ### 1. In review (max 3)
 
-- [~] **A005891 castles of width 3 and 4-cores** (submitted 2026-10-21), the A160747 form at
-  `t = 4`: `a(n)` = 4-cores with `n` corners = castles of width 3 with `n + 1` blocks.
-  Formula block: Cho et al.'s Prop. 3.4 sum and `a(n) = A271942(n+4, 3)`, with no
-  Narayana-numerator line, since the entry's "triangular numbers convolved with
+- [~] **A005891 castles of width 3 and 4-cores** (submitted 2026-10-21, #138–#141), the
+  A160747 form at `t = 4`: `a(n)` = 4-cores with `n` corners = castles of width 3 with `n + 1`
+  blocks. Formula block: Cho et al.'s Prop. 3.4 sum and `a(n) = A271942(n+4, 3)`; the Narayana
+  row-3 line was cut in #140, Oct 21, since the entry's "triangular numbers convolved with
   [1, 3, 1, 0, 0, 0, ...]" comment (Adamson and Povolotsky, May 29 2009) already states it.
-  The Cho et al. and PE 502 links, `A001263, A271942` added to the first Cf. line, and the
+  Links to Cho et al. and PE 502; `A001263, A271942` added to the first Cf. line, and the
   t-core family line: `raw/oeis-pe502/xrefs/A005891-tower.md`, checked by
   `bin/python/tower_t_cores.py`.
-- [~] **A001263 castles by blocks for every width** (submitted 2026-10-23, #788-#791). One
-  comment block: `Sum_{k=1..n} T(n,k)*binomial(m+n-k-1, n-1)` = castle polyominoes of width
-  `n` with `m` blocks, of any height and without the even-block rule, with the proof through
-  Deutsch and Elizalde's equation (2); the Deutsch-Elizalde (arXiv:1609.00088) and PE 502
-  links; a Python program. Michel Marcus asked why not a new array; the reply points to
-  A271942 (bargraphs by semiperimeter and width), added as the formula
-  `... = A271942(n+m, n)` with `Cf. A005408, A005891, A063490, A160747, A271942`:
-  `raw/oeis-pe502/xrefs/A001263-tower.md` (`wiki/pages/tower-narayana-polynomial.md`).
-- [~] **A283595 column generating functions** (submitted 2026-10-23, #42-#43). One formula
-  block: the g.f. of column `k` is `z^k/(R_k*R_{k+1})` with `R_{2j} = P_j − z*P_{j−1}`,
-  `R_{2j+1} = P_{j+1} − z^2*P_{j−1}` (`P_k` of A097862), and
-  `R_k = Product_{i=1..k, i odd} (1 − (1 + 2*cos(i*Pi/(k+1)))*z)`; a Python program;
-  `Column k=2 gives A094706(n-1)` (`wiki/pages/1-smooth-castles.md` §3.2-3.3). The castle
-  comment and the other formula lines are the first item of stage 3.
+  Still in review (checked 2026-10-23): Alper Ferudun (#142, Oct 21) added "without the rule
+  that the number of blocks is even" to the castle comment and checked the counts and
+  formulas; Chaz Reid (#146–#147, Oct 22) changed "castles" to "castle polyominoes"; back in
+  proposed. Michel Marcus (#148–#149, Oct 23) edited the Mathematica section only.
+- [~] **A001263 castles of width `n` with `m` blocks** (submitted 2026-10-23, #788–#789). One
+  comment block: `Sum_{k=1..n} T(n,k)*binomial(m+n-k-1, n-1)` = castle polyominoes of width `n`
+  with `m` blocks, of any height and without the even-blocks rule, with the column-height
+  definition and `See A005408, A005891, A063490, A160747 for n = 2..5`; a proof line from
+  Deutsch-Elizalde eq. (2). The Deutsch-Elizalde and PE 502 links; a Python program for
+  `T(n,k)`: `raw/oeis-pe502/xrefs/A001263-tower.md` (`wiki/pages/tower-narayana-polynomial.md`),
+  checked by `bin/python/tower_t_cores.py`.
+  Michel Marcus asked (Oct 23) why the castles of width `n` with `m` blocks are not submitted
+  as a new array: they are A271942 (bargraphs by semiperimeter and width) at
+  `(n + m, n)`, since the semiperimeter is the width plus the blocks. Chaz Reid (#790–#791,
+  Oct 23) added the formula `Sum_{k=1..n} T(n,k)*binomial(m+n-k-1, n-1) = A271942(n+m, n)`
+  for `n, m >= 1` and `Cf. A005408, A005891, A063490, A160747, A271942.`, and answered in the
+  discussion; back in proposed.
+- [~] **A283595 column g.f.** (submitted 2026-10-23, #42–#43). One formula block: the g.f. of
+  column `k` is `z^k/(R_k*R_{k+1})` with `R_{2j} = P_j − z*P_{j−1}`,
+  `R_{2j+1} = P_{j+1} − z^2*P_{j−1}` (`P_k` of A097862), and the product form
+  `R_k = Product_{i=1..k, i odd} (1 − (1 + 2*cos(i*Pi/(k+1)))*z)`; submitted without the proof
+  line. `Column k=2 gives A094706(n-1).` and a Python program:
+  `raw/oeis-pe502/xrefs/A283595-column-gf.md`, checked by `bin/python/a283595_column_gf.py`
+  (`wiki/pages/1-smooth-castles.md` §3.2-3.3). The castle comment and the other formula lines
+  are the first item of stage 3.
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-- [ ] **A003410 → A226136** (the link back for the approved A226136 edit): the formula
-  `a(n) = A226136(n) for n >= 4` and `Cf. A226136`. No castle comment: the castle's second
-  row is Deutsch's binary word, so it would restate Deutsch's comment:
-  `raw/oeis-pe502/xrefs/A226136-A003410.md` §"Edit 2"
-  (`wiki/pages/fibonacci-castles-sub-families.md`).
+- [ ] **Reverse links**, one edit each, each adding only the lines shown. The first three
+  point at approved entries; the last three answer the A001263 and A283595 edits, so they
+  wait until those are approved.
+  - [ ] **A003410 → A226136** (the link back for the approved A226136 edit, #29): the formula
+    `a(n) = A226136(n) for n >= 4` and `Cf. A226136`. No castle comment: the castle's second
+    row is Deutsch's binary word, so it would restate Deutsch's comment:
+    `raw/oeis-pe502/xrefs/A226136-A003410.md` §"Edit 2"
+    (`wiki/pages/fibonacci-castles-sub-families.md`).
+  - [ ] A226274: `Cf. A226136.` (A226136's Cf. line cites A226274).
+  - [ ] A038505: `Cf. A146559.` (`A146559 = A038503 − A038505`; A038503 and A146559
+    already link both ways).
+  - [ ] A271942: `Cf. A001263.` and `Columns k=2..5 give A005408(n-3), A005891(n-4),
+    A063490(n-4), A160747(n-6).` (A001263's formula `= A271942(n+m, n)`; the width-2..5
+    castle counts; checked against the A271942 b-file by `bin/python/tower_t_cores.py`).
+  - [ ] A097862: `Cf. A283595.` (A283595's column g.f. is built from A097862's `P_k`).
+  - [ ] A094706: `a(n) = A283595(n+1, 2) for n >= 1.` and `Cf. A283595.` (A283595's
+    `Column k=2 gives A094706(n-1).`; checked by `bin/python/a283595_column_gf.py`).
 - [ ] **A005408 3-cores by corners**: one comment, `a(n)` = 3-core partitions with `n`
   corners (Cho et al., Proposition 3.4, p. 14 "cc(3, m) = 2m + 1"), the Cho et al. link
   (after Hongwei Chen) and the t-core family Cf. line, which A160747 and A063490 already
@@ -110,20 +133,15 @@ approved, its follow-up (the first item of stage 3) can be drafted.
 - [ ] **A094706** (Convolution of Pell(n) and 2^n; the entry has no comments): the Pell
   castles (exact height 3, first column 1, neighbouring columns differing by at most 1) of
   width `w` number `A094706(w − 2) = P⋆_w − 2^{w−1}` (`P⋆_w` the Pell numbers), proved by
-  the g.f. `x³/((1−2x−x²)(1−2x))` (`wiki/pages/pell-castle.md`). Add the formula
-  `a(n) = A283595(n+1, 2)` (column 2 of the Motzkin-prefix triangle: lowering a Pell castle
-  by one row gives a Motzkin prefix of height 2) and `Cf. A283595`; pairs with the A283595
-  item above (`wiki/pages/1-smooth-castles.md`).
+  the g.f. `x³/((1−2x−x²)(1−2x))` (`wiki/pages/pell-castle.md`). The formula
+  `a(n) = A283595(n+1, 2)` and `Cf. A283595` are in the stage-2 reverse links
+  (`wiki/pages/1-smooth-castles.md`).
 - [ ] **A077868**: two castle readings and the bijection between them. Spaced Fibonacci
   castles (height-2 columns at least 3 apart) of width `w` number `A077868(w − 1)`; tree
   castles of height 2 with area `A` (cells) number `A077868(A − 2)`; the domino-boundary map
   matches the Fibonacci castles with `w + 1` cells to the spaced castles of width `w`.
   Brute-force verified 2026-10-04
   (`wiki/pages/fibonacci-castles-sub-families.md`, `wiki/pages/tree-castle-by-area.md`).
-- [ ] **A000071**: the Fibonacci castles of width `w` number `F_{w+2} − 1`, the term
-  `A000071(w+2)`; castles of height 2 with area `A` number `F_{A+1} − 1`, the term
-  `A000071(A+1)`. Brute-force verified 2026-10-04
-  (`wiki/pages/fibonacci-castle.md`, `wiki/pages/castle-graph.md`).
 - [ ] **A049703**: balanced Fibonacci castles of width `w` number `A005598(w)/2 = A049703(w)`
   (towers balanced, i.e. finite Sturmian); the entry is defined only as `A005598(n)/2`, with
   no combinatorial reading. Brute-force verified `w ≤ 15`, 2026-10-04
@@ -131,10 +149,6 @@ approved, its follow-up (the first item of stage 3) can be drafted.
 - [ ] **A106514**: the 1-smooth castles of exact height 3 (free first column) of width `w`
   number `A106514(w − 1)`, g.f. `x(1−x)/((1−2x)(1−2x−x²))`, proved; the entry has
   only convolution and eigensequence comments (`wiki/pages/pell-castle.md`).
-- [ ] **A047969 castle comment** (replaces per-row comments on the dense rows A000225,
-  A001047, …): the nexus-number array `a(n,k) = (n+1)^(k+1) − n^(k+1)` counts the castles
-  of width `k+1` and exact height `n+1`, `h^w − (h−1)^w` with `h = n+1`, `w = k+1`. The
-  `F(w,h)` array item below gives `Cf. A047969`.
 - [ ] **The PE 502 count `F(w,h)` as an array, and its column `w = 3`** (OEIS rolls a
   two-parameter family into one array entry, with notable rows and columns as their own
   entries, cf. A217883 "Column 2 is A202882(n+1)"; the row `h = 3` is in stage 2). In order:
@@ -235,7 +249,13 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   most 1): the entry already states the column g.f. `z^(2k)/[P_k*P_{k+1}]`, whose `P_k` are
   the 1-smooth determinants, and the castle reading is the Motzkin path raised one row.
 - A000225 / A001047 / … (`h^w − (h−1)^w`, all castles of exact height `h`, one row per `h`):
-  dense entries; the castle reading goes once on the array A047969 (stage 3).
+  dense entries, and the array A047969 already has the reading (skipped below).
+- A000071 (the Fibonacci castles of width `w`, `A000071(w+2)`; the castles of height 2 with
+  area `A`, `A000071(A+1)`): the entry already has both, as "nonempty subsets of {1,2,...,n}
+  that contain no consecutive elements" and Arndt's "compositions of n with maximal part 2".
+- A047969 (castles of width `k+1` and height `n+1`, `h^w − (h−1)^w`): the entry already has
+  Arnold's "a(n-1, k-1) is the number of ordered k-tuples of positive integers such that the
+  largest of these integers is n", the column heights of those castles.
 - The plastic strip (rule `1→3, 2→1, 3→{1,2}`): its count is `A000931(w + 9)`, Padovan,
   which the entry already covers with word and automaton readings (Finch's `(1,2)`-RLL
   words, Deutsch's compositions into 2s and 3s), and the rule is the wiki's own:
@@ -255,17 +275,22 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
 ### Done (live on OEIS)
 
 - [x] **A160747 castles of width 5 and 6-cores** (submitted 2026-10-16, approved: A160747 #62,
-  Oct 22 2026, Sean A. Irvine). Castle comment with the 6-abacus bijection of Cho et al., the PE
-  502 link (placed after Haws, before the Index link, at Stefano Spezia's request), the t-core
-  family Cf. lines; the editor removed the words after the formulas, leaving
-  `a(n) = Sum_{k=1..5} A001263(5,k)*binomial(n+5-k, 4)` bare:
-  `raw/oeis-pe502/xrefs/A160747-tower.md`.
+  Oct 22 2026, Sean A. Irvine). Comment block: 6-cores with `n` corners = castle polyominoes of
+  width 5 with `n + 1` blocks (column heights `c(i) >= 1`, fixed Oct 18 after Alper Ferudun's
+  note), with the 6-abacus bijection of Cho et al. Formula block:
+  `Sum_{k=1..5} A001263(5,k)*binomial(n+5-k, 4)`, Cho et al.'s Prop. 3.4 sum,
+  `a(n) = A271942(n+6, 5)`; the editor removed the words after the formulas, including the
+  "row 5 of A001263" clause. The PE 502 link (placed after Haws, before the Index link, at
+  Stefano Spezia's request), `Cf. A001263, A271942` and the t-core family line:
+  `raw/oeis-pe502/xrefs/A160747-tower.md` (`wiki/pages/tower-narayana-polynomial.md`).
 - [x] **A063490 castles of width 4 and 5-cores** (submitted 2026-10-16, approved: A063490 #66,
-  Oct 22 2026, Sean A. Irvine). Castle comment with the 5-abacus bijection, the PE 502 link,
-  `Cf. A001263, A064788, A185505, A271942`; Jason Yuen tidied the comment block and moved the
-  PE 502 reference to the links (Oct 18); the editor removed the words after the formulas,
-  leaving `a(n) = Sum_{k=1..4} A001263(4,k)*binomial(n+3-k, 3)` bare:
-  `raw/oeis-pe502/xrefs/A063490-tower.md`.
+  Oct 22 2026, Sean A. Irvine). Comment block: 5-cores with `n − 1` corners = castle polyominoes
+  of width 4 with `n` blocks, with the 5-abacus bijection; Jason Yuen tidied the comment block
+  and moved the PE 502 reference from REFERENCES to LINKS (Oct 18). Formula block:
+  `Sum_{k=1..4} A001263(4,k)*binomial(n+3-k, 3)`, Cho et al.'s Prop. 3.4 sum,
+  `a(n) = A271942(n+4, 4)`; the editor removed the words after the formulas, including the
+  "x times row 4 of A001263" clause. `Cf. A001263, A064788, A185505, A271942.` and the t-core
+  family line: `raw/oeis-pe502/xrefs/A063490-tower.md`.
 - [x] **A038505 / A038503 / A146559** — the height-2 hyperbolic interlink
   (`raw/oeis-pe502/oeis-xref-draft.md`; `wiki/pages/oeis-height2-hyperbolic-castles.md`).
   Approved and live (checked 2026-10-04: A038503 #93, Oct 03 2026; A038505 #140, Oct 04 2026;
@@ -297,7 +322,8 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   (terms 1..35 from Kimberling); the Kimberling–Moses Fibonacci Quarterly 52 (2014) link
   (Example 4.2); the linear-recurrence index entry, signature `(1,0,1)`; a Python program;
   `Cf. A003410` and `Cf. A226274, A226275`. Jason Yuen's 2026-10-13 edit extended DATA to 42
-  terms and added keyword `easy`: `raw/oeis-pe502/xrefs/A226136-A003410.md`
+  terms and added keyword `easy`; the stray `a226136.txt` is deleted:
+  `raw/oeis-pe502/xrefs/A226136-A003410.md`
   (`wiki/pages/fibonacci-castles-sub-families.md`).
 
 ## Ingestion queue (wiki pages not yet ingested)
