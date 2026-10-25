@@ -31,7 +31,7 @@ Over an odd prime `p`, the fiber has one point for each distinct irreducible fac
 
 ## 2. The components are the parity sectors, and they meet only at `(2, x)`
 
-Over `Q` the fiber has one point for odd `k`, since `char_k` is irreducible (proved for `k = 2^m − 1` on [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)], computed for odd `k ≤ 31`), and two points for even `k`, the two parity-sector factors `f`, `g` of [[tower-parity-sectors](pages/tower-parity-sectors.md)]. Their closures `V(f)` and `V(g)` are the two **irreducible components** of `Spec A_k`.
+Over `Q` the fiber has one point for odd `k`, since `char_k` is irreducible (proved for `k = 2^m − 1` on [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] by Eisenstein, and for every odd `k ≤ 31` by a prime mod which it stays irreducible, [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)]), and two points for even `k`, the two parity-sector factors `f`, `g` of [[tower-parity-sectors](pages/tower-parity-sectors.md)]. Their closures `V(f)` and `V(g)` are the two **irreducible components** of `Spec A_k`.
 
 The two components meet over `p` exactly when `f` and `g` share a factor mod `p`, which is when `p` divides the resultant `Res(f, g)`. For every even `k ≤ 30`, `Res(f, g) = 2^{k(k+2)/4}` ([[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]), so the components can meet only over 2. Mod 2 the factors are powers of `x`, one of them times `x + 1`:[^4]
 

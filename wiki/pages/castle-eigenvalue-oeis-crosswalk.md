@@ -5,7 +5,7 @@ summary: The convergents of the castle eigenvalues against the OEIS. Each metall
 tags: [analysis, castle, continued-fraction, convergents, oeis, eigenvalue, quasi-polynomial, plastic-number, jacobi-perron, pisano, mod-p, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-10-22
+updated: 2026-10-25
 ---
 
 # Castle eigenvalues meet OEIS: the convergent crosswalk
@@ -139,7 +139,7 @@ The eigenvalues are `±1`, so there is no irrational continued fraction in this 
 
 ### The plastic number
 
-The recurrences of `P(k, ·)` in `L` have characteristic polynomials `char_k(λ) = λ^{k+1} den_k(1/λ)` of degree `k + 1`, with `char_0 = λ − 1`, `char_1 = λ² − 2λ + 2`, `char_{k+1} = λ²·char_{k−1} − 2·char_k`, and constant term `(−1)^{k+1} 2^k` ([[signed-tower-count](pages/signed-tower-count.md)]).[^1][^2] For even `k`, `char_k` has two irreducible factors and the root of largest modulus `ρ_k` is real ([[tower-parity-sectors](pages/tower-parity-sectors.md)]); for odd `k ≤ 31` it is irreducible (proved for `k = 2^m − 1` on [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]), with a complex-conjugate pair of largest modulus ([[generating-function-gallery](pages/generating-function-gallery.md)]). The product of all the roots of `char_k` is `2^k`, so divide the dominant root by 2:
+The recurrences of `P(k, ·)` in `L` have characteristic polynomials `char_k(λ) = λ^{k+1} den_k(1/λ)` of degree `k + 1`, with `char_0 = λ − 1`, `char_1 = λ² − 2λ + 2`, `char_{k+1} = λ²·char_{k−1} − 2·char_k`, and constant term `(−1)^{k+1} 2^k` ([[signed-tower-count](pages/signed-tower-count.md)]).[^1][^2] For even `k`, `char_k` has two irreducible factors and the root of largest modulus `ρ_k` is real ([[tower-parity-sectors](pages/tower-parity-sectors.md)]); for odd `k ≤ 31` it is irreducible (proved for `k = 2^m − 1` on [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)], and for every odd `k ≤ 31` by a prime mod which it stays irreducible on [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)]), with a complex-conjugate pair of largest modulus ([[generating-function-gallery](pages/generating-function-gallery.md)]). The product of all the roots of `char_k` is `2^k`, so divide the dominant root by 2:
 
 ```
 >>> sp.factor(c[6])

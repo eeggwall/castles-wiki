@@ -146,7 +146,7 @@ Round three sets every parameter the earlier rounds identified: a prime group or
 
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the second lap, whose Fix 4 and Fix 6 prescribe this build and whose `L_q[1/3]` table this page updates.
 - [[castle-cryptography](pages/castle-cryptography.md)] - the first lap and the three-seminar structure.
-- [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - `char_5`, and the irreducibility of the odd-`k` castle polynomials over the rationals (checked to `k = 31`, proved for `k = 2^m − 1`).
+- [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - `char_5`, and the irreducibility of the odd-`k` castle polynomials over the rationals (proved through `k = 31` by one prime each, and by Eisenstein for `k = 2^m − 1`).
 - [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `F_p[x]/(Q)` and the castle Diffie-Hellman baseline.
 - [[kitamasa](pages/kitamasa.md)] - the jump behind both the torus generator and the compressed key exchange.
 - [[finite-fields](pages/finite-fields.md)] - `F_{p^6}`, its subfields, and the cyclotomic factorization of `p^6 - 1`.

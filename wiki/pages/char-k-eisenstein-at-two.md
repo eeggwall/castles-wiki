@@ -5,12 +5,12 @@ summary: Rescaling λ = 2μ turns char_k into Q_k(μ) = char_k(2μ)/2^k, an inte
 tags: [analysis, castle, characteristic-polynomial, irreducible-polynomial, eisenstein, newton-polygon, two-adic, fibonacci-polynomial, signed-tower-count, proof, sympy, verification]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-26
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Eisenstein at 2 - `char_k` is irreducible for `k = 2^m − 1`
 
-`char_k(λ) = λ^{k+1} den_k(1/λ)` is the characteristic polynomial of the linear recurrence of the signed tower count `P(k, ·)` in the base length ([[signed-tower-count](pages/signed-tower-count.md)]). For odd `k ≤ 31` it is irreducible over `Q` (computed). For even `k` it has two factors, which [[tower-parity-sectors](pages/tower-parity-sectors.md)] derives from the involution `JD` of the signed transfer matrix `M̃_k`. For odd `k`, `(JD)² = −I`, and `JD` makes `char_k` a product `g·ḡ` of conjugate polynomials over `Q(i)`, which does not decide whether `char_k` factors over `Q`.
+`char_k(λ) = λ^{k+1} den_k(1/λ)` is the characteristic polynomial of the linear recurrence of the signed tower count `P(k, ·)` in the base length ([[signed-tower-count](pages/signed-tower-count.md)]). For odd `k ≤ 31` it is irreducible over `Q`, each `k` proved by a prime `p` mod which it stays irreducible ([[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)]). For even `k` it has two factors, which [[tower-parity-sectors](pages/tower-parity-sectors.md)] derives from the involution `JD` of the signed transfer matrix `M̃_k`. For odd `k`, `(JD)² = −I`, and `JD` makes `char_k` a product `g·ḡ` of conjugate polynomials over `Q(i)`, which does not decide whether `char_k` factors over `Q`.
 
 **Theorem.** For `k + 1 = 2^m`, `m ≥ 1`, `char_k` is irreducible over `Q`, and 2 is totally ramified in `Q(ρ)` for every root `ρ` of `char_k`.
 
@@ -82,12 +82,12 @@ Write `char_k = Σ_i a_i λ^i` and `v` for the 2-adic valuation, so `v(a_0) = k`
 |---|---|---|---|
 | 1 | `1` | yes: `R_1 = μ² − 2μ + 2` | proved |
 | 3 | `1` | yes: `R_3 = μ⁴ − 2μ³ + 4μ² − 4μ + 2` | proved |
-| 5 | `1 + μ⁴` | no | computed |
+| 5 | `1 + μ⁴` | no | proved: irreducible mod 3 |
 | 7 | `1` | yes | proved |
-| 9, 11, 13 | not 1 | no | computed |
+| 9, 11, 13 | not 1 | no | proved: irreducible mod 59, 43, 31 |
 | 15 | `1` | yes | proved |
 
-For odd `k ≤ 31` other than `1, 3, 7, 15, 31`, `char_k` is irreducible by computation, with no proof.[^3]
+For odd `k ≤ 31` other than `1, 3, 7, 15, 31` the reversal is not Eisenstein at 2,[^3] and the irreducibility of `char_k` is proved by a prime mod which it stays irreducible, which Gauss's lemma turns into irreducibility over `Q`: `p = 3` for `k = 5, 19`, `7` for `21, 25`, `31` for `13, 27, 29`, `43` for `11`, `47` for `23`, `59` for `9` and `179` for `17` ([[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)]).
 
 ## Snippet
 

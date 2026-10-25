@@ -5,14 +5,14 @@ summary: The signed transfer matrix M̃_k commutes with JD, "reflect heights, fl
 tags: [analysis, castle, signed-tower-count, transfer-matrix, symmetry, factorization, plastic-number, quasi-polynomial, oeis, hardin, sympy, verification, pedagogy]
 sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
 created: 2026-09-16
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # Tower parity sectors - why `char_k` factors, and where the plastic number comes from
 
 ## The question
 
-`char_k(λ) = λ^{k+1} den_k(1/λ)` is the characteristic polynomial of the linear recurrence of the signed tower count `P(k, ·)` in the base length `L` ([[signed-tower-count](pages/signed-tower-count.md)]). For even `k ≤ 40` it has two irreducible factors, of degrees `k/2` and `k/2 + 1`, and for odd `k ≤ 31` it is irreducible (computed, [[generating-function-gallery](pages/generating-function-gallery.md)]). At `k = 6` its root of largest modulus is `2ψ²`, with `ψ` the [[plastic-number](pages/plastic-number.md)]. This page derives the factorization from a symmetry of the transfer matrix (Part 1), gives the two factors in closed form and proves the product formula (Part 2), and identifies the sequences of the two sectors (Part 3). For `k ≡ 2 (mod 4)` the even-last-column part of `P(k, L)` is `2^L` times a word count that R. H. Hardin entered in the OEIS with an "empirical" recurrence; [[hardin-word-identity](pages/hardin-word-identity.md)] proves the identity for each `k ≤ 34`.
+`char_k(λ) = λ^{k+1} den_k(1/λ)` is the characteristic polynomial of the linear recurrence of the signed tower count `P(k, ·)` in the base length `L` ([[signed-tower-count](pages/signed-tower-count.md)]). For even `k ≤ 40` it has two irreducible factors, of degrees `k/2` and `k/2 + 1`, and for odd `k ≤ 31` it is irreducible ([[generating-function-gallery](pages/generating-function-gallery.md)]), each `k` proved by a prime mod which it stays irreducible ([[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)]). At `k = 6` its root of largest modulus is `2ψ²`, with `ψ` the [[plastic-number](pages/plastic-number.md)]. This page derives the factorization from a symmetry of the transfer matrix (Part 1), gives the two factors in closed form and proves the product formula (Part 2), and identifies the sequences of the two sectors (Part 3). For `k ≡ 2 (mod 4)` the even-last-column part of `P(k, L)` is `2^L` times a word count that R. H. Hardin entered in the OEIS with an "empirical" recurrence; [[hardin-word-identity](pages/hardin-word-identity.md)] proves the identity for each `k ≤ 34`.
 
 Every printed value on this page was recomputed.[^1]
 
