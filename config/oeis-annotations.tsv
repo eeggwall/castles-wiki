@@ -76,6 +76,7 @@ A005251	count	a(0) = 0, a(1) = a(2) = a(3) = 1; thereafter, a(n) = a(n-1) + a(n-
 A005252	count	a(n) = Sum_{k=0..floor(n/4)} binomial(n-2k,2k).	skylines of height at most 2 with minimum tower spacing 3, a(w + 3); golden by width
 A005253	count	Number of binary words of length n in which the ones occur only in blocks of length at least 4.	skylines of height at most 2 with minimum tower spacing 4, a(w + 3)
 A005408	count	The odd numbers: a(n) = 2*n + 1.	T^(2, b) = 2b + 1, the towers on a base of length 2 with b blocks
+A005418	count	Number of (n-1)-bead black-white reversible strings; also binary grids; also row sums of Losanitsch's triangle A034851; also number of caterpillar graphs on n+2 vertices.	castles of n cells up to mirror image, the compositions of n up to direction: (2^(n-1) + 2^floor(n/2))/2 = A005418(n)
 A005436	supporting	Number of convex polygons of perimeter 2n on square lattice.	convex polyominoes by perimeter (Delest-Viennot)
 A005598	count	a(n) = 1 + Sum_{i=1..n} (n-i+1)*phi(i).	balanced binary words (finite Sturmian words) of length n; twice the balanced Fibonacci castles
 A005683	count	Numbers of Twopins positions.	tree castles (trivial sandpile group) of n cells, mirror images removed: (A005251(n+2) + A000931(n+6))/2, agreement through n = 26
@@ -107,6 +108,7 @@ A015448	metallic	a(0) = 1, a(1) = 1, and a(n) = 4*a(n-1) + a(n-2) for n >= 2.	th
 A015449	metallic	Expansion of (1-4*x)/(1-5*x-x^2).	the ridge strips of height 6 of width w number A015449(w + 1); growth delta_5 = (5 + sqrt 29)/2
 A015530	count	Expansion of x/(1 - 4*x - 3*x^2).	anchored 3-smooth strips with ceiling 5 (first column 1), `=a(w)`
 A015537	count	Expansion of x/(1 - 5*x - 4*x^2).	anchored 4-smooth strips with ceiling 6 (first column 1), `=a(w)`
+A016116	supporting	a(n) = 2^floor(n/2).	symmetric compositions of n: the palindromic castles of n cells, which with the compositions give the castles up to mirror image
 A020554	supporting	Number of multigraphs on n labeled edges (without loops).	Bender's v((0,n)): every element twice, repeated blocks allowed, no repeated element in a block
 A020555	supporting	Number of multigraphs on n labeled edges (with loops). Also number of genetically distinct states amongst n individuals.	Bender's v*((0,n)): all partitions of a multiset with every element twice
 A023431	count	Generalized Catalan Numbers x^3*A(x)^2 + (x-1)*A(x) + 1 =0.	Motzkin-path castles by semi-perimeter, `=a(s-2)`
