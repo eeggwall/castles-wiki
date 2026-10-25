@@ -74,8 +74,8 @@ which telescopes from `1/E_0(x) = 1 − x` to `1/E_k(x) = 1 − (k+1)x`: each ro
 
 ## Related Concepts
 
-- [[tower-word-language](pages/tower-word-language.md)] - the tower words as a formal language, the bijection with column heights, and the proof that the grammar is unambiguous.
-- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the tower grammar.
+- [[tower-word-language](pages/tower-word-language.md)] - the tower words as a formal language and the bijection with column heights.
+- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the tower grammar, the proof that it is unambiguous, and the Möbius height map whose convergents are the `E_k(x, y)`.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] - `E_k(x) = 1/(1 − (k+1)x)` and the signed version `P_k(x)`.
 - [[motzkin-numbers](pages/motzkin-numbers.md)] - the Motzkin numbers counted by the J-fraction.
 - [[dyck-words](pages/dyck-words.md)] and [[catalan-numbers](pages/catalan-numbers.md)] - Dyck words and the Catalan numbers counted by the S-fraction.

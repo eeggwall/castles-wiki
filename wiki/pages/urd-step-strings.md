@@ -5,7 +5,7 @@ summary: The step string of a castle, a word in U (up one row), R (one column) a
 tags: [concept, castle, representations, urd, dyck, lattice-paths]
 sources: [project-euler-502-representations, project-euler-502-solution]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # U/R/D step strings
@@ -56,8 +56,8 @@ The Solution subpage lists this enumeration among the approaches that did not wo
 - [[castle-representations](pages/castle-representations.md)] - the three encodings of a castle: column-wise binary strings, skylines and step strings.
 - [[convex-castle](pages/convex-castle.md)] - the castles with a unimodal skyline, their count `C(2h + w − 3, w − 1)`, and the proof that a castle has at least `h` blocks, with equality exactly for convex castles.
 - [[convex-core](pages/convex-core.md)] - the smallest convex castle above a castle, and the castles that share it.
-- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the grammar of the tower words, which counts all castles.
-- [[tower-word-language](pages/tower-word-language.md)] - the tower words as cornerless Motzkin paths, and the proof that the grammar is unambiguous.
+- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the grammar of the tower words, which counts all castles, and the proof that it is unambiguous.
+- [[tower-word-language](pages/tower-word-language.md)] - the tower words as cornerless Motzkin paths.
 - [[lattice-paths](pages/lattice-paths.md)] - the step strings of Project Euler 15, from which the source takes the encoding.
 - [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] - the words with given numbers of `U`, `R` and `D`, counted by multinomial coefficients, and the trinomial coefficients `A027907` of the words of length `n` by final height.
 - [[aocp-multisets](pages/aocp-multisets.md)] - Knuth's two-line arrays for permutations of a multiset, the form of a step string as a permutation of its letters.

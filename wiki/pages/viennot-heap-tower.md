@@ -1,11 +1,11 @@
 ---
 title: Viennot heaps of pieces on towers
 category: Analyses
-summary: Towers with no height bound on a base of length L, read as Viennot heaps of unit-cell pieces, give the cell-count generating function 1/(1 − x)^L by Cartier-Foata inversion. The block count is not additive over unit-cell pieces, and the heaps of interval pieces do not count towers (8 heaps of two pieces against 5 towers with two blocks at L = 2). A transfer matrix on the previous column height gives the block-count identity Σ_b T̂(L, b) x^b = Narayana_L(x)/(1 − x)^L, and the Narayana number N(L, k) times C(b + L − k, L − 1) counts the towers with b blocks and k − 1 descents (computed for L ≤ 7).
+summary: Towers with no height bound on a base of length L, read as Viennot heaps of unit-cell pieces, give the cell-count generating function 1/(1 − x)^L by Cartier-Foata inversion. The block count is not additive over unit-cell pieces, and the heaps of interval pieces do not count towers (8 heaps of two pieces against 5 towers with two blocks at L = 2). A transfer matrix on the previous column height gives the block-count identity Σ_b T̂(L, b) x^b = Narayana_L(x)/(1 − x)^L, proved on the tower-heap page, and the Narayana number N(L, k) times C(b + L − k, L − 1) counts the towers with b blocks and k − 1 descents (computed for L ≤ 7).
 tags: [analysis, tower, viennot, heap-of-pieces, commutation-monoid, trace-monoid, cartier-foata, transfer-matrix, narayana]
 sources: [tower-narayana-polynomial, bousquet-melou-fedou-1995-convex-polyominoes, bayer-diaconis-1992-dovetail-shuffle, prellberg-brak-1995-cluster-models]
 created: 2026-09-21
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Viennot heaps of pieces on towers
@@ -48,7 +48,7 @@ records the `max(0, b − a)` blocks that a column of height `b` starts after a 
 Σ_b T̂(L, b) x^b  =  e_0ᵀ M_∞(x)^L 𝟙  =  Narayana_L(x) / (1 − x)^L,        Narayana_L(x)  =  Σ_{k=1}^{L} N(L, k) x^{k−1},      (1)
 ```
 
-with `N(L, k) = (1/L) C(L, k) C(L, k − 1)` the [[narayana-numbers](pages/narayana-numbers.md)] (A001263). Equation (1) is the identity of [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)], computed there for `L ≤ 7`.[^3] In coefficients,
+with `N(L, k) = (1/L) C(L, k) C(L, k − 1)` the [[narayana-numbers](pages/narayana-numbers.md)] (A001263). Equation (1) is the identity of [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)], computed there for `L ≤ 7`,[^3] and proved for every `L` on [[tower-heap](pages/tower-heap.md)] from the fixed point of the tower grammar's height map. In coefficients,
 
 ```
 T̂(L, b)  =  Σ_{k=1}^{L} N(L, k) · C(b + L − k, L − 1).                         (2)
