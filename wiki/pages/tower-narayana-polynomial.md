@@ -1,11 +1,11 @@
 ---
 title: "Tower block-count = Narayana polynomial"
 category: Sources
-summary: OEIS-mining notes on towers with no height bound counted by blocks. Their generating function is Narayana_L(x)/(1 − x)^L with the Narayana polynomial Narayana_L(x) = Σ_k N(L, k) x^{k−1}, checked in the source for L ≤ 7; the rows L = 2, 3, 4, 5 are A005408, A005891, A063490 (offset 1) and A160747. The identity behind A001263 is a generating-function identity: a refinement by peaks does not factor it, and the refinement by descents does.
+summary: OEIS-mining notes on towers with no height bound counted by blocks. Their generating function is Narayana_L(x)/(1 − x)^L with the Narayana polynomial Narayana_L(x) = Σ_k N(L, k) x^{k−1}, checked in the source for L ≤ 7 and proved on the tower-heap page from the tower grammar; the rows L = 2, 3, 4, 5 are A005408, A005891, A063490 (offset 1) and A160747. The identity behind A001263 is a generating-function identity: a refinement by peaks does not factor it, and the refinement by descents does.
 tags: [oeis, tower, narayana, heap-of-pieces, generating-functions, cross-reference, source]
 sources: [tower-narayana-polynomial]
 created: 2026-09-13
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # Tower block-count = Narayana polynomial
@@ -40,7 +40,7 @@ The identity behind `A001263` is a generating-function identity and not a statem
 
 ## Key Takeaways
 
-- `T̂(L, b) = Σ_k N(L, k) C(b + L − k, L − 1)`, with generating function `Narayana_L(x)/(1 − x)^L`; checked in the source for `L ≤ 7`.[^2]
+- `T̂(L, b) = Σ_k N(L, k) C(b + L − k, L − 1)`, with generating function `Narayana_L(x)/(1 − x)^L`; checked in the source for `L ≤ 7`,[^2] and proved for every `L` on [[tower-heap](pages/tower-heap.md)] from the fixed point of the tower grammar's height map.
 - The rows `L = 2, 3, 4, 5` are `A005408`, `A005891`, `A063490(b + 1)` and `A160747`.[^3]
 - The `A001263` formula is a generating-function identity; a refinement by peaks does not factor it.[^6]
 - A castle of width `L` with `b + 1` blocks stands on towers with `b` blocks, so `T̂(L, b)` counts the castles of semi-perimeter `L + b + 1` and width `L`, the triangle `A271942` ([[castle-perimeter](pages/castle-perimeter.md)]).
