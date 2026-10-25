@@ -9,7 +9,7 @@ A castle of width `w`, height exactly `h` is a column-height profile
 
     #blocks = c_1 + sum_{i>=2} max(0, c_i - c_{i-1})
 
-Rule 3 (gap between neighbouring same-row blocks) is automatic in this model.
+Rule 3 (gap between neighboring same-row blocks) is automatic in this model.
 Rule 6 (even block count) is the parity filter.  All results below follow from
 this and the signed-tower count
 
@@ -96,7 +96,7 @@ Therefore the convex count (any parity) is binomial, not Catalan/Narayana:
 
 and the even-parity convex count = convex(w,h) if h even, else 0 (since every
 convex castle has h blocks).  The "delightful Catalan find" of the plan's vein 4
-does **not** materialise: the natural w/h parameterisation gives binomials.  A
+does **not** materialize: the natural w/h parameterization gives binomials.  A
 Catalan/Narayana bridge would require an extra constraint the castle does not
 impose (e.g. the ballot condition on the front boundary), so it is not free.
 

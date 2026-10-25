@@ -12,7 +12,7 @@ A **castle** of width `w`, height exactly `h` is a column-height profile `c_1..c
 
     #blocks = c_1 + sum_{i>=2} max(0, c_i - c_{i-1}).
 
-Rule 3 (gap between neighbouring same-row blocks) is automatic in the run decomposition;
+Rule 3 (gap between neighboring same-row blocks) is automatic in the run decomposition;
 Rule 6 (even block count) is the parity filter. The even-parity count is
 
     F(w,h)  = (h^w - (h-1)^w - P(h-1,w) + P(h-2,w)) / 2,
@@ -97,7 +97,7 @@ Rule 6 (even block count) is the parity filter. The even-parity count is
   `{A038503, A038505}` (and by symmetry `A038504`, `A000749`) a geometric reading.
 - **Convex ⟺ unimodal ⟺ exactly `h` blocks.** `#blocks ≥ h` with equality iff unimodal,
   so convex castles are the minimum-block castles, counted by `C(2h+w−3, w−1)`.
-- **No Catalan anywhere in the natural parameterisations.** The castle's constraints
+- **No Catalan anywhere in the natural parameterizations.** The castle's constraints
   (gap, parity, convexity) are all *binomial* constraints; there is no ballot /
   non-crossing condition (see `binomial-vandermonde-identity.md` §4).
 - **But the *tower* block-count has a Narayana-polynomial generating function.** The number of towers (heaps of

@@ -8,7 +8,7 @@ from pysat.solvers import Cadical153
 BRONZE = (3 + 13 ** 0.5) / 2
 
 def tables(k):
-    """k x k neighbour-count tables in peeling order with largest eigenvalue bronze,
+    """k x k neighbor-count tables in peeling order with largest eigenvalue bronze,
     irreducible and with consistent group sizes."""
     def rows(i):  # row i: sum over columns i..k-1 at most 2, total at most 4
         return [pre + suf for suf in itertools.product(range(3), repeat=k - i) if sum(suf) <= 2
@@ -44,8 +44,8 @@ def sizes_consistent(Q):  # positive n_i with n_i q_ij = n_j q_ji
     return True
 
 def fits(Q, g, R, castle=False, box=None):
-    """Local fit: can a (2R+1)^2 patch centred on a group-g cell be labelled (0 = empty, 1..k = group)
-    so every inner cell has the neighbour counts of its row?  box=N instead asks for a whole finite
+    """Local fit: can a (2R+1)^2 patch centered on a group-g cell be labeled (0 = empty, 1..k = group)
+    so every inner cell has the neighbor counts of its row?  box=N instead asks for a whole finite
     N x N shape with every group present."""
     k = len(Q); L = k + 1
     if box: cells = [(x, y) for x in range(box) for y in range(box)]

@@ -21,7 +21,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 - **M - Metallurgy:** investigating occurrences of golden, silver and bronze means and the higher rungs `δ_4`, `δ_5`, …; golden, silver, plastic ratios; metallic by count, by width, by area, by spectrum; Fibonacci castles
 - **B - Bioinformatics:** biological sequences, molecular folding, structure counts, and the combinatorics computational biology shares with castles.
 - **The OEIS Observatory:** observing and cataloging occurrences of OEIS sequences in castle-related contexts.
-- **The Telephone Company:** phone signals, audio codecs, tone catalogues, expander-graph and Ihara-zeta reads of the castle graph, information-theoretic entropy of skylines, and the isospectral seminar.
+- **The Telephone Company:** phone signals, audio codecs, tone catalogs, expander-graph and Ihara-zeta reads of the castle graph, information-theoretic entropy of skylines, and the isospectral seminar.
 - **Facilities:** applied, physical-world tooling: real objects turned into castles (keys, city skylines, mountain ridgelines, ballparks).
 
 ## Conceptual coverage
@@ -148,7 +148,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 
 - Waveform codecs: LPC-plus-Rice on the peak-normalized song waveform, the castle codec (skyline -> Tier-1 rule plus residual) as a spec; the codec ladder (WAV / FLAC / MP3 / AAC / Opus) as the tier ladder on a real signal.
 - Tone castles: DTMF and MF digits at 8 kHz as exactly periodic castles with DFT support and Goertzel response; which tone pairs are exactly periodic and which only approximately.
-- Skyline as tone: encoding a column-height sequence as an instantaneous-frequency tone; Woodward's theorem approaches the height histogram at a rate the block count sets; the audio-spectral analogue of the isospectral census.
+- Skyline as tone: encoding a column-height sequence as an instantaneous-frequency tone; Woodward's theorem approaches the height histogram at a rate the block count sets; the audio-spectral analog of the isospectral census.
 - The isospectral seminar: Kac's "hear the shape" question, the 10-cell adjacency-isospectral pair and the 11-cell Laplacian-isospectral tree pair, Sunada-style constructions, whether Ihara zeta or the skyline DFT separates what adjacency does not.
 - Expanders and zeta: Ramanujan castles as the spectrally-expander-like shapes, `zeta_C(u)` over prime closed walks on the castle graph; arithmetic combinatorics.
 - Voice-channel survival: which castle statistics (LSB of height, block parity, histogram bins, low DFT modes) live through FM demodulation on a band-limited voice channel.
@@ -204,7 +204,7 @@ Not yet named: Q/S, Q/T (area CLTs already sit in T/E), X/Q, and X/F.
 
 | Pair | Hook | Subplot |
 |---|---|---|
-| TTC/S | sound as spectrum | Kac's isospectral question with two drawings, the Woodward-gap audio-spectral analogue of the isospectral census, and expander castles read as Ramanujan / Ihara zeta objects |
+| TTC/S | sound as spectrum | Kac's isospectral question with two drawings, the Woodward-gap audio-spectral analog of the isospectral census, and expander castles read as Ramanujan / Ihara zeta objects |
 | TTC/R | waveform as skyline | the codec ladder on real signals, entropy bounds on skylines, and the castle codec as a spec |
 | TTC/X | keying the wire | which castle statistics survive an adversarial voice channel, and what a band-limited FM demodulator leaks about a stego payload |
 | TTC/Z | signal specimens | DTMF and MF tone castles placed in the zoo as periodic exhibits |

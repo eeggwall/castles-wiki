@@ -97,7 +97,7 @@ needed here.)
 **Submit (Comment only), at lower priority** than the exact-height sweep, and after the
 A038503 correction and the A146559 comment clear review. It is a clean, new geometric
 reading (exact height, no offset shift), but A009545 is a dense entry (193 revisions), and
-the "last column reaches height 2" condition makes the family more specialised than the
+the "last column reaches height 2" condition makes the family more specialized than the
 A038503 / A038505 families.
 
 ## Flags

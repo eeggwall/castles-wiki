@@ -131,7 +131,7 @@ approved, its follow-up (the first item of stage 3) can be drafted.
     A027907(2n,3n+1) − A027907(2n,3n+2) − A027907(2n,3n+3)`, checked against all 24 terms
     of its data (2026-10-22; `wiki/pages/1-smooth-castles.md` §3.7).
 - [ ] **A094706** (Convolution of Pell(n) and 2^n; the entry has no comments): the Pell
-  castles (exact height 3, first column 1, neighbouring columns differing by at most 1) of
+  castles (exact height 3, first column 1, neighboring columns differing by at most 1) of
   width `w` number `A094706(w − 2) = P⋆_w − 2^{w−1}` (`P⋆_w` the Pell numbers), proved by
   the g.f. `x³/((1−2x−x²)(1−2x))` (`wiki/pages/pell-castle.md`). The formula
   `a(n) = A283595(n+1, 2)` and `Cf. A283595` are in the stage-2 reverse links
@@ -245,7 +245,7 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   strips, not castle families, for the same reason; A057960 and A085810 already carry the
   equivalent corridor-path reading, and A001519 is dense. The castle readings go on A283595
   and the diagonal castle rows.
-- A097862 castle comment (both end columns at height 1, neighbouring columns differing by at
+- A097862 castle comment (both end columns at height 1, neighboring columns differing by at
   most 1): the entry already states the column g.f. `z^(2k)/[P_k*P_{k+1}]`, whose `P_k` are
   the 1-smooth determinants, and the castle reading is the Motzkin path raised one row.
 - A000225 / A001047 / … (`h^w − (h−1)^w`, all castles of exact height `h`, one row per `h`):
@@ -381,11 +381,11 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
 
 ## Search record (statuses of the castle sequences on the wiki)
 
-The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue.md`, as last recorded: searches with no match (with their dates), near-misses, unsearched rows, and the entries that equal a castle count without stating the castle reading. The catalogue section is given for each row; its terms and formulas are on the catalogue page.
+The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue.md`, as last recorded: searches with no match (with their dates), near-misses, unsearched rows, and the entries that equal a castle count without stating the castle reading. The catalog section is given for each row; its terms and formulas are on the catalog page.
 
 ### Searched with no match, near-misses, unsearched
 
-| catalogue section | object | first terms | status as recorded |
+| catalog section | object | first terms | status as recorded |
 |---|---|---|---|
 | Tower-spacing skylines | `(h=5, g=4)` | `5, 25, 95, 295, 791, 1927, 4496, 10606` | **novel-candidate** (no match, 2026-10-16; order 17) |
 | Tower-spacing skylines | `(h=5, g=5)` | `5, 25, 95, 295, 791, 1897, 4196, 8848` | **novel-candidate** (no match, 2026-10-16; order 21) |
@@ -482,7 +482,7 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 
 ### Equal to an entry that does not state the castle reading (interlinks)
 
-| catalogue section | object | entry, as recorded |
+| catalog section | object | entry, as recorded |
 |---|---|---|
 | Castles by area with bounded height: the n-nacci family | height 2 | **interlink** → [A000071](https://oeis.org/A000071) (`= A000071(n+1) = F_{n+1} − 1`) |
 | Castles by area with bounded height: the n-nacci family | height at most 3 | **interlink** → [A000073](https://oeis.org/A000073) (`= A000073(n+2)`) |

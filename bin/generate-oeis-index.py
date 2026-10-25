@@ -13,7 +13,7 @@ The curated half — each A-number's role group, OEIS name, and one-line castle 
 in config/oeis-annotations.tsv (tab-separated: anum, group, name, role). An A-number cited
 on the wiki but absent from that file is still listed, under "Not yet annotated", so a new
 citation surfaces automatically; add a row to the TSV to move it into its group. The
-hand-curated sequence catalogue is a separate page, castle-sequence-catalogue, and is not
+hand-curated sequence catalog is a separate page, castle-sequence-catalogue, and is not
 touched here. Stdlib only.
 """
 import json
@@ -190,7 +190,7 @@ def render_body(cites, ann):
     out.append("## Related Concepts")
     out.append("")
     out.append("- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the "
-               "curated catalogue: every castle-counting sequence with its terms and OEIS entry.")
+               "curated catalog: every castle-counting sequence with its terms and OEIS entry.")
     out.append("- [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] - the method: "
                "check a match against OEIS data at the stated offset, and do not count a "
                "short prefix as a match.")

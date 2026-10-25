@@ -296,7 +296,7 @@ This page is the mechanical half of the wiki's sequence directory and is regener
 
 ## Related Concepts
 
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the curated catalogue: every castle-counting sequence with its terms and OEIS entry.
+- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the curated catalog: every castle-counting sequence with its terms and OEIS entry.
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] - the method: check a match against OEIS data at the stated offset, and do not count a short prefix as a match.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castle counts matched to OEIS entries, with their offsets.
 - [[oeis-encyclopedia](pages/oeis-encyclopedia.md)] - the encyclopedia itself: A-numbers, data lines and offsets.

@@ -87,12 +87,12 @@ Vandermonde).  A binomial is exactly what a product of two monotone-piece counts
 
 Catalan / Narayana counts arise when a **non-crossing or ballot constraint couples the two
 halves** — e.g. a Dyck path's ascending and descending segments must jointly stay above the
-diagonal.  The castle's Rule 3 (gap between neighbouring same-row blocks) imposes no such
+diagonal.  The castle's Rule 3 (gap between neighboring same-row blocks) imposes no such
 coupling: in the run decomposition it is automatic, so it neither constrains the front nor
 ties the front to the back.
 
 So the plan's hoped-for "delightful Catalan find" does not exist for the natural `(w,h)`
-parameterisation; a Catalan/Narayana object would require grafting on an extra condition
+parameterization; a Catalan/Narayana object would require grafting on an extra condition
 (ballot, fixed peak/area, non-crossing) that the castle definition does not contain.
 
 ## 5. The same binomial theme elsewhere in the castle object
@@ -116,5 +116,5 @@ The binomial character is not isolated to convex castles — it runs through the
   heights by inclusion–exclusion, another binomial mechanism).
 
 No Catalan/Narayana/Motzkin number has yet surfaced in any of the natural `(w,h)`- or
-`(w,blocks)`-parameterised castle counts.  The gap rule, the even-parity rule, and the
+`(w,blocks)`-parameterized castle counts.  The gap rule, the even-parity rule, and the
 convex restriction all turn out to be *binomial* constraints.
