@@ -1,8 +1,8 @@
 ---
 title: The castle graph - bridge to graph theory
 category: Concepts
-summary: The castle graph of a castle has its cells as vertices and an edge between cells that share a side. It is connected, bipartite and planar, with at most 4 neighbors per cell, and its cycle rank is the number of 2×2 squares of cells. It is a tree exactly when no two neighboring columns both have height at least 2; these tree castles number F_{w+2} − 1 at height 2, and the tree skylines of height at most h satisfy T_h(w+2) = T_h(w+1) + (h−1)T_h(w), Jacobsthal at h = 3, so the tree castles of height h grow like σ_1^{h−1} = (1 + √(4h−3))/2 by width. Up to mirror image, 6,963 of the 33,150 castles with at most 16 cells are tree castles.
-tags: [concept, castle, graph, polyomino, spectral, adjacency, laplacian, tree, bipartite, planar, cycle-rank, fibonacci, jacobsthal, oeis, bridge, pedagogy, burnside, padovan]
+summary: The castle graph of a castle has its cells as vertices and an edge between cells that share a side. It is connected, bipartite and planar, with at most 4 neighbors per cell, and its cycle rank is the number of 2×2 squares of cells, whose boundary cycles are an integer basis of the cycle lattice of every castle, in the sink and tide models. It is a tree exactly when no two neighboring columns both have height at least 2; these tree castles number F_{w+2} − 1 at height 2, and the tree skylines of height at most h satisfy T_h(w+2) = T_h(w+1) + (h−1)T_h(w), Jacobsthal at h = 3, so the tree castles of height h grow like σ_1^{h−1} = (1 + √(4h−3))/2 by width. Up to mirror image, 6,963 of the 33,150 castles with at most 16 cells are tree castles.
+tags: [concept, castle, graph, polyomino, spectral, adjacency, laplacian, tree, bipartite, planar, cycle-rank, fibonacci, jacobsthal, oeis, bridge, pedagogy, cycle-lattice, burnside, padovan]
 sources: [project-euler-502-brute-force, rossin-2000-group-of-a-sandpile]
 created: 2026-09-17
 updated: 2026-10-25
@@ -44,7 +44,26 @@ The graph is connected, since every column stands on row 1, which is a path. So 
 
 The graph is **bipartite**: coloring `(i, j)` by the parity of `i + j` gives neighboring cells opposite colors. So its adjacency spectrum is symmetric about 0; the path on 4 vertices has characteristic polynomial `x⁴ − 3x² + 1 = (x² − x − 1)(x² + x − 1)`. The graph is **planar**, drawn in the square lattice with unit edges, and it is a subgraph of the `w × h` grid graph, so its pathwidth is at most `min(w, h)`.
 
-For the castles with at most 11 cells, and 300 larger ones, the boundary cycles of the `2 × 2` squares form a basis of the integer cycle lattice ([[sandpile-census](pages/sandpile-census.md)]), and [[sandpile-group](pages/sandpile-group.md)] computes the sandpile group from them.
+## Planarity and the cycle lattice
+
+Every column stands on row 1, so a castle has no holes: a lattice point enclosed by a cycle of the drawing has a cell of that cycle above it in its column, and so is a cell itself. The bounded faces of the drawing are exactly the `2 × 2` squares, and Euler's formula `|V| − |E| + f = 2`, with `f` the number of faces including the unbounded one, gives the cycle rank `|E| − |V| + 1 = f − 1` as the number of squares a second time.
+
+**The `2 × 2` squares are an integer basis of the cycles.** The **cycle lattice** of the graph is the set of integer flows on its edges, each edge given a direction, with net flow 0 at every cell. For `1 ≤ k < min(c_i, c_{i+1})`, let `Q_{i,k}` be the boundary cycle, run counterclockwise, of the square on the cells `(i, k)`, `(i+1, k)`, `(i, k+1)` and `(i+1, k+1)`. For every castle, the `Q_{i,k}` are an integer basis of the cycle lattice: every integer cycle is a combination of them with integer coefficients, in exactly one way.
+
+*Proof.*
+
+- *Comb.* The edges within columns and the edges of row 1 form a spanning tree `T`, a comb whose teeth are the columns: it reaches every cell and has `(|V| − w) + (w − 1) = |V| − 1` edges.
+- *Rectangles.* The edges outside `T` are the edges `e_{i,j}` from `(i, j)` to `(i+1, j)` with `2 ≤ j ≤ min(c_i, c_{i+1})`, one for each square, the one along its top, which gives the cycle rank a third time. Adding `e_{i,j}` to `T` closes the boundary cycle `Z_{i,j}` of the rectangle of rows `1, …, j` over columns `i` and `i + 1`. Run counterclockwise, it is the sum of the squares below `e_{i,j}`, since each edge between two of them is run once in each direction:
+
+  ```
+  Z_{i,j}  =  Q_{i,1} + Q_{i,2} + ⋯ + Q_{i,j−1}.
+  ```
+
+- *Basis.* Let `z` be an integer cycle and `z_{i,j}` its flow along `e_{i,j}` in the direction `Z_{i,j}` runs it. Then `z − Σ z_{i,j} Z_{i,j}` is a cycle carried by `T`, and it is 0, since a nonzero flow on a tree has nonzero net flow at a leaf of its support. So the `Z_{i,j}` are an integer basis. The relation for `Z_{i,j}` and its inverse, `Q_{i,1} = Z_{i,2}` and `Q_{i,k} = Z_{i,k+1} − Z_{i,k}` for `k ≥ 2`, have integer coefficients, so the `Q_{i,k}` are an integer basis too.
+
+The same proof works in the tide model of [[sandpile-group](pages/sandpile-group.md)], where the bottom row is merged into one sink `s` and the edges inside row 1 disappear. The edges within columns form the spanning tree, each column hanging from `s`; the edges outside it are again the `e_{i,j}`; and the cycle of a square on row 1 becomes the triangle through `s`, `(i, 2)` and `(i+1, 2)`, which takes the place of `Q_{i,1}` in the relation for `Z_{i,j}`. So the squares are an integer basis in both models, and [[sandpile-group](pages/sandpile-group.md)] computes the sandpile group from them; [[sandpile-census](pages/sandpile-census.md)] confirms it on every castle with at most 16 cells.[^2]
+
+**The planar dual and matchings.** The graph is planar, so Kasteleyn's method counts its perfect matchings, and [[sandpile-group](pages/sandpile-group.md)] computes the sandpile group from the planar dual, which has a vertex for each `2 × 2` square and one for the outer face. For the castle `(3, 3, 3)` the dual is the `2 × 2` grid of [[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)], each cell joined twice to the sink, and both have the group `Z/24 × Z/8`.
 
 ## Tree castles
 
@@ -130,8 +149,6 @@ The spectral types of [[castle-classification-spectrum](pages/castle-classificat
 
 Here `λ_1` is the largest adjacency eigenvalue. A finite tree is its own universal cover, so every tree castle is a Ramanujan castle.
 
-The graph is planar, so Kasteleyn's method counts its perfect matchings, and the sandpile group can be computed from the planar dual, whose bounded faces are the `2 × 2` squares; the dual-graph theorem is Cori and Rossin's ([[rossin-2000-group-of-a-sandpile](pages/rossin-2000-group-of-a-sandpile.md)]).
-
 ## Snippet
 
 Filed on [[castle-snippets](pages/castle-snippets.md)]:
@@ -187,6 +204,7 @@ def cycle_rank(c):
 ## Footnotes
 
 [^1]: Verified by execution (Python 3.11, 2026-10-16): the drawings and the counts of cells, edges and `2 × 2` squares of the six examples, from the formulas of the section *Invariants of the skyline*.
+[^2]: The proof is own reasoning, checked by execution (Python 3.11, 2026-10-25): for all 16,383 skylines with at most 14 cells, in both the castle graph and the tide model's merged graph, the number of `2 × 2` squares equals the cycle rank, and the square cycles restricted to the edges `e_{i,j}` form a matrix of determinant `±1`.
 [^3]: Verified by execution (Python 3.11, 2026-10-16): `T_h(w)` for `h ≤ 3`, `w ≤ 9` and `h = 4, 5`, `w ≤ 7` by enumeration of all skylines, and for `w = 8, 9` from Equation (1); `A_tree(w, h)` from Equation (2) against enumeration for `w ≤ 8` at `h = 2, 3` and `w ≤ 7` at `h = 4`, and at `w = 8` from Equation (1). https://oeis.org/A001045, https://oeis.org/A006130, https://oeis.org/A006131, https://oeis.org/A000071 (read 2026-09-17 and 2026-10-04): the offsets of the table.
 [^4]: Verified by execution (Python 3.11, 2026-10-16): the counts by area `n ≤ 14` of the tree castles of height 2 (`0, 1, 2, 3, 5, 8, 12, …`), and of the tree skylines of height at most 3, at most 4 and of any height, against the data of https://oeis.org/A077868, https://oeis.org/A000930, https://oeis.org/A006498, https://oeis.org/A000570 and https://oeis.org/A005251 (read 2026-10-16).
 [^6]: Verified by execution (Python 3.11, 2026-10-25): for every `n ≤ 16`, the compositions of `n`, the palindromic ones, the compositions with no two neighboring parts at least 2 and the palindromic ones among those number `2^{n−1}`, `2^{⌊n/2⌋}`, `A005251(n + 2)` and `A000931(n + 6)`, and both formulas give the mirror-image classes counted directly, which sum to 33,150 and 6,963. https://oeis.org/A016116 (read 2026-10-25) - "Number of symmetric compositions of n"; https://oeis.org/A005251 and https://oeis.org/A000931 (read 2026-10-25): the data; https://oeis.org/A005418 (read 2026-10-25), offset 1 - "Also number of compositions of n up to direction"; https://oeis.org/A005683 (read 2026-10-25), offset 3 - "a(n) = (A005251(n) + A000931(n+4))/2".

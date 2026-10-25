@@ -12,7 +12,7 @@ updated: 2026-10-25
 
 This page computes the sandpile groups `K_sink` and `K_tide` of every castle with at most 16 cells, in the two models of [[sandpile-group](pages/sandpile-group.md)]: the sink model, with one sink cell, and the tide model, with the whole bottom row as the sink. The results:
 
-1. The `2 × 2` blocks give an integer basis of the cycle lattice of every castle with blocks, in both models (section 1).
+1. The `2 × 2` blocks give an integer basis of the cycle lattice of every castle with blocks, in both models: [[castle-graph](pages/castle-graph.md)] proves it, and section 1 checks it to 16 cells.
 2. The groups of all 33,150 castles, mirror images removed, in both models (section 2).
 3. The sink group separates none of the cospectral groups of [[isospectral-castles](pages/isospectral-castles.md)], because the castles in each share their graph of blocks; the tide group, which also depends on which blocks sit on the bottom row, separates 23 of them (section 3).
 4. A path of blocks gives a cyclic group in both models, and the tide group is cyclic more often (section 4).
@@ -23,7 +23,7 @@ Each castle's groups are computed from its **block matrices**, one row per `2 ×
 
 ## 1. The 2×2 blocks are an integer basis of the cycles
 
-Put the boundary cycle of each `2 × 2` block as a column of the cycle matrix `C`, with one row per edge. For all 26,187 castles with at most 16 cells that have a block, the Smith normal form of `C` has every invariant factor equal to 1, so every integer cycle is an integer combination of block cycles. With the rank count `cycle rank = number of blocks` of [[castle-graph](pages/castle-graph.md)], the block cycles are a basis of the cycle lattice. The same holds in the tide model, where the cycle of a block on the bottom row is the triangle through the merged bottom row and the other blocks keep their 4-cycles.[^3]
+Put the boundary cycle of each `2 × 2` block as a column of the cycle matrix `C`, with one row per edge. For all 26,187 castles with at most 16 cells that have a block, the Smith normal form of `C` has every invariant factor equal to 1, so every integer cycle is an integer combination of block cycles. With the rank count `cycle rank = number of blocks` of [[castle-graph](pages/castle-graph.md)], the block cycles are a basis of the cycle lattice. The same holds in the tide model, where the cycle of a block on the bottom row is the triangle through the merged bottom row and the other blocks keep their 4-cycles.[^3] [[castle-graph](pages/castle-graph.md)] proves both for every castle, from the spanning tree formed by the columns and the bottom row.
 
 ## 2. The census, in both models
 
@@ -228,7 +228,7 @@ def cospectral_groups(castles, operator):  # sets of non-isomorphic castles shar
 
 - [[sandpile-group](pages/sandpile-group.md)] - the sandpile, the two models, the reduced Laplacian, and the block matrices this census uses.
 - [[isospectral-castles](pages/isospectral-castles.md)] and [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] - the cospectral groups tested here.
-- [[castle-graph](pages/castle-graph.md)] - the cycle rank as the number of `2 × 2` blocks, and the tree castles.
+- [[castle-graph](pages/castle-graph.md)] - the cycle rank as the number of `2 × 2` blocks, the proof that the block cycles are an integer basis of the cycle lattice, and the tree castles, counted up to mirror image.
 - [[sandcastle-clock](pages/sandcastle-clock.md)] - the clock, the order of one grain at the apex, which separates cospectral castles that the sink group does not.
 - [[sandpile-identity](pages/sandpile-identity.md)] - the identity element, the zero of the group, in both models.
 - [[castle-avalanches](pages/castle-avalanches.md)] - random dropping in both models, computed from the same inverse reduced Laplacian.
