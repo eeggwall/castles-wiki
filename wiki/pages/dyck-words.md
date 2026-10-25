@@ -5,7 +5,7 @@ summary: Dyck words over {x, x̄}, counted by the Catalan numbers, read as latti
 tags: [dyck-words, catalan, motzkin, grammar, first-return, lattice-path, symbolic-method, source]
 sources: [dyck-words, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Dyck words
@@ -45,7 +45,7 @@ so the steep Dyck words of length `2n` are counted by the `(n−1)`th [[motzkin-
 
 ## The first-return grammar the castle generalizes
 
-The source states that the first-return grammar generalizes: with other steps, the same decomposition still builds the words. For Project Euler 502 the steps are `U` (up one row), `R` (one column to the right) and `D` (down one row), a castle tower is a word in them that stays at or above the base and returns to it, and the castle rules become a grammar with the same first-return split, whose generating function gives the counts.[^9] This is the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)], the Dyck first-return split with the extra horizontal letter `R`.
+The source states that the first-return grammar generalizes: with other steps, the same decomposition still builds the words. For Project Euler 502 the steps are `U` (up one row), `R` (one column to the right) and `D` (down one row), a castle tower is a word in them that stays at or above the base and returns to it, and the castle rules become a grammar with the same first-return split, whose generating function gives the counts.[^9] This is the [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]. With the extra horizontal letter `R` the split is the first-return split of Motzkin paths, and the castle rules cut it twice, once for each excluded factor `UD` and `DU`, as the steep Dyck words cut one rule from the Dyck grammar.
 
 **As a symbolic-method specification.** This reading is the wiki's; the source does not state it. The Dyck grammar `D → ε | x D x̄ D`, as Delest and Viennot write it,[^13] splits a Dyck word at its first return to the axis: the empty word, or `x`, a Dyck word, `x̄`, and a Dyck word. As a recursive specification in the sense of [[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)], with `z` marking each letter, the [[symbolic-method](pages/symbolic-method.md)] turns it into `D(z) = 1 + z² D(z)²`, so
 
@@ -65,11 +65,11 @@ Delest and Viennot's enumeration of convex polyominoes codes them by words built
 - A Dyck word reads as a lattice path, graded by inversion number, and as a plane forest, which records nesting.[^5]
 - The steep Dyck words, with no factor `x x̄ x`, have the grammar `S → x x̄ | x S x̄ | x S x̄ S` and generating function `G_SW = z + z G_SW + z G_SW²`; those of length `2n` are counted by the `(n−1)`th Motzkin number.[^7]
 - Under Delest-Viennot's β, the sum of peak heights is the area of a parallelogram polyomino and the number of peaks its width, which gives the Narayana numbers.[^11]
-- The castle tower grammar is the Dyck first-return grammar with a third letter ([[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]).[^9]
+- The castle tower grammar is the Dyck first-return grammar with a third letter,[^9] which makes it the Motzkin first-return grammar cut twice ([[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]).
 
 ## Entities & Concepts
 
-- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the castle tower grammar, the first-return split with the letters `U`, `R`, `D`.
+- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the castle tower grammar, the Motzkin first-return split in the letters `U`, `R`, `D` with two cuts.
 - [[catalan-numbers](pages/catalan-numbers.md)] - the number of Dyck words; [[q-catalan-numbers](pages/q-catalan-numbers.md)] - the Dyck words counted by inversion number and other statistics.
 - [[motzkin-numbers](pages/motzkin-numbers.md)] - the number of steep Dyck words of length `2n` is the `(n−1)`th Motzkin number.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - steep Dyck words and steep polyominoes counted by three q-Motzkin analogs.
@@ -82,7 +82,7 @@ Also linked from the source: [[lattice-paths](pages/lattice-paths.md)].
 
 ## Relation to Other Wiki Pages
 
-The [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is the Dyck first-return grammar with a third letter. The steep Dyck words lead to the q-Motzkin numbers of [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], and the Dyck words counted by inversion number to the q-Catalan numbers of [[q-catalan-numbers](pages/q-catalan-numbers.md)].
+The [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] is the Dyck first-return grammar with a third letter, that is the Motzkin first-return grammar, cut twice the way the steep Dyck grammar is cut once. The steep Dyck words lead to the q-Motzkin numbers of [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)], and the Dyck words counted by inversion number to the q-Catalan numbers of [[q-catalan-numbers](pages/q-catalan-numbers.md)].
 
 ## Footnotes
 

@@ -5,7 +5,7 @@ summary: The Motzkin number M_n (OEIS A001006) counts the ways to draw noninters
 tags: [concept, motzkin, lattice-paths, q-analog, generating-functions]
 sources: [motzkin-numbers, steep-polyominoes-q-motzkin-bessel, barry-2005-catalan-transform]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Motzkin numbers
@@ -34,7 +34,7 @@ The source also notes that a q-analog `M_n(q)` refines the Motzkin numbers and a
 ## Motzkin numbers and castles
 
 - **Castles with steps of at most 1.** A castle whose neighboring columns differ in height by at most 1 and whose end columns both have height 1 is a Motzkin path of length `w − 1` raised by one row: the steps between columns are the steps of the path. So these castles of width `w`, over all heights, number `M_{w−1}`: at `w = 3` the castles `(1, 1, 1)` and `(1, 2, 1)` ([[motzkin-castles](pages/motzkin-castles.md)]).[^5]
-- **Tower words.** The tower word of a castle, in the letters `U`, `R`, `D`, is a Motzkin path with no factor `UD` and no factor `DU` ([[tower-word-language](pages/tower-word-language.md)], [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]).
+- **Tower words.** The tower word of a castle, in the letters `U`, `R`, `D`, is a Motzkin path with no factor `UD` and no factor `DU` ([[tower-word-language](pages/tower-word-language.md)]). The tower grammar is the first-return decomposition above with one cut for each excluded factor: an empty interior makes `UD`, and a tail that starts with an up step makes `DU` ([[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]).
 - **Steep Dyck words.** The steep Dyck words of length `2n`, with no factor `x x̄ x`, number `M_{n−1}` ([[dyck-words](pages/dyck-words.md)]).
 
 ## Appearances in Sources

@@ -5,7 +5,7 @@ summary: The Catalan numbers C_n = C(2n, n)/(n + 1) (A000108; 1, 1, 2, 5, 14, 42
 tags: [concept, catalan, dyck, narayana, generating-functions, combinatorics, symbolic-method]
 sources: [analytic-combinatorics-ch1-ogfs, barry-2005-catalan-transform]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Catalan numbers
@@ -45,7 +45,7 @@ G(z)  =  (1 − √(1 − 4z)) / 2  =  z + z² + 2z³ + 5z⁴ + 14z⁵ + 42z⁶ 
 
 and the plane trees with `n` nodes number `C_{n−1}`. Flajolet and Sedgewick note that for this reason "the term Catalan tree is often employed as synonymous to 'general (rooted unlabelled plane) tree'".[^6] A triangulation of a convex polygon splits into a root triangle and two triangulations, one on each side, so the class `T` of triangulations, counted by triangles, satisfies `T = {ε} + T × ∇ × T` with `∇` the root triangle, and `T(z) = 1 + z T(z)²`, which is the equation of `c(x)`.[^7]
 
-A nonempty Dyck word factors uniquely as `U w_1 D w_2`, where `w_1` and `w_2` are Dyck words and `U w_1 D` is the part before the word first returns to height 0. This first-return decomposition gives `c = 1 + x c²` once more. The tower grammar of castles is the same decomposition with a third letter `R`, one per column ([[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]).
+A nonempty Dyck word factors uniquely as `U w_1 D w_2`, where `w_1` and `w_2` are Dyck words and `U w_1 D` is the part before the word first returns to height 0. This first-return decomposition gives `c = 1 + x c²` once more. With a third letter `R`, one per column, as a case of its own, the same decomposition is the first-return decomposition of Motzkin paths, and the tower grammar of castles is that decomposition with one cut for each excluded factor, `UD` and `DU` ([[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)]).
 
 ## Castle appearances
 

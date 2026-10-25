@@ -41,7 +41,7 @@ The alternatives read:[^7]
 
 - `empty` is the word of the towers on a base of length 0.
 - `R E_k` is one column of height 0 above the base, then the rest.
-- `U V D (empty | R E_k)` is a block in the first row above the base, which the source calls a peak: up onto the block, the word `V` of the towers on it, and down off it; then either the end, or a gap column followed by the rest.
+- `U V D (empty | R E_k)` is a block in the first row above the base, which the source calls a peak (a block, not a factor `UD` of a Motzkin path, which tower words exclude): up onto the block, the word `V` of the towers on it, and down off it; then either the end, or a gap column followed by the rest.
 
 `V` is a nonempty word in `E_{k−1}`, one row lower because the block uses one row. `V` nonempty keeps the width of the block positive, which excludes `UD`, and the tail `empty | R E_k` keeps two blocks of a row from touching, which excludes `DU`; this is the same-row gap rule.[^7] In the example, `URDRURD` parses as the block `U R D`, with `V = R`, followed by the tail `R E_k` with `E_k = URD`, a second block with `V = R` and an empty tail.
 

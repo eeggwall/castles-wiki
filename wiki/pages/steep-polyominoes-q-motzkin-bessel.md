@@ -5,7 +5,7 @@ summary: Barcucci, Del Lungo, Fédou and Pinzani define three q-analogs of the M
 tags: [paper, polyomino, dyck-words, motzkin, generating-functions, q-analog, source]
 sources: [steep-polyominoes-q-motzkin-bessel, bousquet-melou-fedou-1995-convex-polyominoes]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Steep Polyominoes, q-Motzkin Numbers and q-Bessel Functions (Barcucci et al.)
@@ -42,7 +42,7 @@ A **(lower) steep parallelogram polyomino** is a parallelogram polyomino whose S
 - [[dyck-words](pages/dyck-words.md)] - the steep Dyck words, their grammar, and their count by the Motzkin numbers.
 - [[motzkin-numbers](pages/motzkin-numbers.md)] - the numbers whose q-analogs the paper defines.
 - [[permutation-inversions](pages/permutation-inversions.md)] - the inversion statistic, with the q-factorial as its generating function.
-- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the grammar of tower words, a Dyck-type grammar with the letter `R`.
+- [[generalized-dyck-grammar](pages/generalized-dyck-grammar.md)] - the grammar of tower words, the Motzkin first-return grammar with two cuts, made the way the steep Dyck grammar is made by one.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - the parallelogram polyominoes by the add-a-column method.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - castles by width, blocks and area through the parallelogram series.
 
