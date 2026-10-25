@@ -1,7 +1,7 @@
 ---
 title: Castle cryptography, round two - break the fixes, size the keys
 category: Analyses
-summary: The second round of the build / red-team / blue-team series on the castle cryptosystem. BUILD - ElGamal and a Schnorr-style signature on the map x^a; on char_1 the subgroup of prime order (p − 1)/2 lies in the scalars (x^8 = 16, since (1 + i)^8 = 16), so the build uses char_3 with the prime q = 340715873 dividing p^2 + 1. RED TEAM - (Attack 3) Pohlig-Hellman with baby-step giant-step recovers the castle_dh private key 373309869 from p, Q and the public key; (Attack 4) an irreducible Q does not help, since p^d − 1 = ∏_{e | d} Φ_e(p) factors for every p and the largest prime factor at p = 10^9 + 7 is 500000003 for char_1 and char_3; (Attack 5) a polynomial filter of degree e on a d-stage castle register has linear complexity at most C(d + e − 1, e) in each degree, measured 10, 14, 20 at d = 4 and 21, 27, 56 at d = 6, and Berlekamp-Massey recovers it from 2L terms. BLUE TEAM - Φ_d(p) must carry a 256-bit prime (p of 128 bits at d = 4 or 6, the XTR and torus design), the linear complexity must be pushed to about 2^40 or beyond (a 64-stage register with a degree-16 filter reaches 2^54.6), and the index-calculus cost L_q[1/3, (64/9)^{1/3}] reaches 2^128 near q = p^d of 2537 bits.
+summary: The second round of the build / red-team / blue-team series on the castle cryptosystem. BUILD - ElGamal and a Schnorr-style signature on the map x^a; on char_1 the subgroup of prime order (p − 1)/2 lies in the scalars (x^8 = 16, since (1 + i)^8 = 16), so the build uses char_3 with the prime q = 340715873 dividing p^2 + 1. RED TEAM - (Attack 3) Pohlig-Hellman with baby-step giant-step recovers the castle_dh private key 373309869 from p, Q and the public key, and prime power by prime power Bob's key 566180101, which the F_p piece alone does not determine, and a random 58-bit key; (Attack 4) an irreducible Q does not help, since p^d − 1 = ∏_{e | d} Φ_e(p) factors for every p and the largest prime factor at p = 10^9 + 7 is 500000003 for char_1 and char_3; (Attack 5) a polynomial filter of degree e on a d-stage castle register has linear complexity at most C(d + e − 1, e) in each degree, measured 10, 14, 20 at d = 4 and 21, 27, 56 at d = 6, and Berlekamp-Massey recovers it from 2L terms. BLUE TEAM - Φ_d(p) must carry a 256-bit prime (p of 128 bits at d = 4 or 6, the XTR and torus design), the linear complexity must be pushed to about 2^40 or beyond (a 64-stage register with a degree-16 filter reaches 2^54.6), and the index-calculus cost L_q[1/3, (64/9)^{1/3}] reaches 2^128 near q = p^d of 2537 bits.
 tags: [analysis, seminar, cryptography, cryptanalysis, red-team, blue-team, pohlig-hellman, baby-step-giant-step, berlekamp-massey, linear-complexity, elgamal, schnorr, signature, finite-field, cyclotomic, index-calculus, key-size, castle]
 sources: [oeis-mining-pe502, granger-vercauteren-2005-dlp-algebraic-tori]
 created: 2026-09-18
@@ -71,6 +71,14 @@ bsgs_modp(2, A2, 500000003, p)           # 2^a = A2 (mod p), ord(2) = 500000003
 ```
 
 This piece determines `a` modulo `500000003`, and since `a < 500000003` it is the key.[^3]
+
+**A key that the `F_p` piece does not determine.** Bob's private key `b = 566180101` of `castle_dh` is larger than `500000003`, and the `F_p` piece gives only `b mod 500000003 = 66180098`. The quadratic piece carries the whole order of `x`, `n = (p² − 1)/2 = 2³·3²·7·109²·167·500000003`, so Pohlig-Hellman on the image of `B = x^b` in `F_p[x]/(x² − x + 2)` solves one logarithm for each prime power of `n` and combines them by the CRT on the exponents:[^9]
+
+| prime power | `2³` | `3²` | `7` | `109²` | `167` | `500000003` |
+|---|---|---|---|---|---|---|
+| `b` modulo it | 5 | 1 | 4 | 2927 | 1 | 66180098 |
+
+The CRT returns `b = 566180101`. The same steps recover a random 58-bit exponent, `a′ = 209524239335210880` (`random.seed(502)`, uniform below `n`): below `n` the size of the key does not matter, and the largest prime, `500000003`, sets the cost.
 
 ## Attack 4 - an irreducible `Q` does not help
 
@@ -243,3 +251,4 @@ The two rounds give a procedure for judging a new cryptosystem:
 [^6]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): Berlekamp-Massey over `F_p` on `P(k, ·) mod p` returns linear complexity `k + 1` for `k = 2, 3, 5`, and on the four filters the values in the table (400 terms each); the recovered connection polynomials annihilate all later terms. `∏_{i ≤ j}(x − λ_iλ_j)` over the roots of `char_2` is `x⁶ − 5x⁵ + 8x⁴ − 12x³ − 16x² − 64x + 256`.
 [^7]: Verified by execution (Python 3.11, 2026-10-16): `bm(P(3, ·) mod p, p) = 4` and `bm(s_n s_{n+1}, p) = 10`, and the first `20` terms give the same connection polynomial.
 [^8]: Computed (Python 3.11 with SymPy, 2026-10-16): `C(d + e, e) − 1` gives `923`, `76904684`, `2^54.58`, `2^69.22`; at `p = 10⁹ + 7`, the largest prime factor of `p^d − 1` is `2^28.9` for `d = 2, 4`, `2^47.2` for `d = 3, 6` and `2^68.5` for `d = 7`, and `L_q[1/3, (64/9)^{1/3}]` is `2^23.1`, `2^28.3`, `2^32.6`, `2^39.5`, `2^42.5` for `d = 2, 3, 4, 6, 7`; it equals `2⁸⁰` at `q ≈ 2^850` and `2¹²⁸` at `q ≈ 2^2537`.
+[^9]: Verified by execution (Python 3.11 with SymPy, 2026-10-25) at `p = 10⁹ + 7`, `Q = char_2`: `B = x^{566180101} = [12836899, 147220895, 148070992]`; Pohlig-Hellman with BSGS on its image in `F_p[x]/(x² − x + 2)`, of order `n = 500000007000000024`, gives `b` modulo `2³, 3², 7, 109², 167, 500000003` as `5, 1, 4, 2927, 1, 66180098`, and the CRT gives `566180101`; for `a′ = 209524239335210880` (`random.seed(502); random.randrange(n)`) the same steps return `a′`.
