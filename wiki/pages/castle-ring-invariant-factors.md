@@ -1,7 +1,7 @@
 ---
 title: Castle ring by invariant factors
 category: Analyses
-summary: The unit group of the castle ring R = F_p[x]/(char_k mod p) as a product of cyclic groups. By the Chinese Remainder Theorem, R^* ≅ ∏ (F_{p^{d_i}}^* × U_i) over the irreducible factors g_i^{m_i} of char_k mod p, with U_i a p-group of order p^{d_i(m_i − 1)}, trivial when m_i = 1 and elementary abelian of rank d_i when m_i = 2. The mod-p period of P(k, ·) is the order of x in R^* (num_k and den_k are coprime mod every prime). For odd p, R^* has max(r, rank U) invariant factors, r the number of distinct irreducible factors of char_k mod p, since p − 1 divides every p^{d_i} − 1; so for squarefree char_k mod p, R^* is cyclic exactly when char_k is irreducible mod p, and x can generate R^* only when moreover k is odd and p ≡ ±3 (mod 8). Pohlig-Hellman costs about √q for the largest prime q dividing ord(x), which at p = 10⁹ + 7 is 500000003 = (p − 1)/2 for k = 1, 2, 3. At a prime dividing disc(char_k) the p-group supplies the extra factor of p in the period, exactly one factor when m = 2, since x^{p^d} − x is squarefree (per(char_2 mod 7) = 21 = 3·7). The two d = 3 linear-complexity deficits of the filtered generator both come from α·ᾱ = 2, the norm of a root of x² − x + 2, which with the root 2 makes up the norm 4 of x.
+summary: The unit group of the castle ring R = F_p[x]/(char_k mod p) as a product of cyclic groups. By the Chinese Remainder Theorem, R^* ≅ ∏ (F_{p^{d_i}}^* × U_i) over the irreducible factors g_i^{m_i} of char_k mod p, with U_i a p-group of order p^{d_i(m_i − 1)}, trivial when m_i = 1 and elementary abelian of rank d_i when m_i = 2. The mod-p period of P(k, ·) is the order of x in R^* (num_k and den_k are coprime mod every prime). For odd p, R^* has max(r, rank U) invariant factors, r the number of distinct irreducible factors of char_k mod p, since p − 1 divides every p^{d_i} − 1; so for squarefree char_k mod p, R^* is cyclic exactly when char_k is irreducible mod p, and x can generate R^* only when moreover k is odd and p ≡ ±3 (mod 8). Pohlig-Hellman costs about √q for the largest prime q dividing ord(x), which at p = 10⁹ + 7 is 500000003 = (p − 1)/2 for k = 1, 2, 3. At a prime dividing disc(char_k) the p-group supplies the extra factor of p in the period, exactly one factor when m = 2, since x^{p^d} − x is squarefree (per(char_2 mod 7) = 21 = 3·7). The two d = 3 linear-complexity deficits of the filtered generator both come from α·ᾱ = 2, the norm of a root of x² − x + 2, which with the root 2 makes up the norm 4 of x. Among k ≤ 6 the only other deficit is s_n s_{n+1} s_{n+2} at k = 4, 31 of 35, from the roots 2e^{±iπ/3} of λ² − 2λ + 4: β³ = −8 merges two terms whose coefficients cancel, and β_1β_2(β_1 + β_2) = 8 = −β³ removes two more.
 tags: [analysis, cryptography, ring, finite-field, unit-group, invariant-factors, structure-theorem, pohlig-hellman, kitamasa, discriminant, linear-complexity, castle]
 sources: [oeis-mining-pe502, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-21
@@ -94,7 +94,7 @@ In the `char_3` row, `R^* ≅ Z/4 × Z/5 × Z/24 ≅ Z/4 × Z/120`, and `x` has 
 
 ## 5. The norm relations among the roots and the linear-complexity deficits
 
-The norm of `x` is `2^k` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 8). Over the factors of `char_k` it is the product of the norms of the images of `x`, the products of the roots of each factor. At `k = 2`, `char_2 = (x − 2)(x² − x + 2)` gives `2 · αᾱ = 4`: the root `2`, times the norm `αᾱ = 2` of `α` from `F_{p²}` to `F_p`. Such relations among the roots lower the linear complexities that round two measures.
+The norm of `x` is `2^k` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 8). Over the factors of `char_k` it is the product of the norms of the images of `x`, the products of the roots of each factor. At `k = 2`, `char_2 = (x − 2)(x² − x + 2)` gives `2 · αᾱ = 4`: the root `2`, times the norm `αᾱ = 2` of `α` from `F_{p²}` to `F_p`. At `k = 4`, the factors `λ² − 2λ + 4` and `λ³ − 3λ² + 2λ − 4` give `β_1 β_2 · γ_1 γ_2 γ_3 = 4 · 4`. Such relations among the roots lower the linear complexities that round two measures.
 
 Attack 5 of round two measures the linear complexity, the length of the shortest linear recurrence, of the filtered sequences `s_n s_{n+1} + s_{n+2}` and `s_n s_{n+1} s_{n+2}` for `s_n = P(2, n) mod p`, whose characteristic polynomial `char_2 = (x − 2)(x² − x + 2)` has `d = 3` roots. Write `s_n = Σ_i c_i λ_i^n` over the roots `λ_i ∈ {2, α, ᾱ}`. A product of shifts expands as a sum `Σ_μ C_μ μ^n` over the products `μ` of roots, and its linear complexity is the number of distinct `μ` with `C_μ ≠ 0`. The bounds are `C(d+1, 2) + d = 9` and `C(d+2, 3) = 10`, and the measured values at `p = 10⁹ + 7` are 8 and 9 (computed), while round two reports `d = 4` and `d = 6` at their bounds ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)], Attack 5). Both deficits come from `α + ᾱ = 1` and `α·ᾱ = 2`, Vieta on `x² − x + 2`, which says that the norm of `α` from `F_{p²}` to `F_p` is the third root `2`.
 
@@ -109,6 +109,26 @@ Attack 5 of round two measures the linear complexity, the length of the shortest
 ```
 
 using `α² + ᾱ² = (α + ᾱ)² − 2αᾱ`. So nine of the ten values occur.[^7]
+
+**The census for `k ≤ 6`.** At `p = 10⁹ + 7`, the linear complexities found by Berlekamp-Massey:[^14]
+
+| `k` | `d` | `s_n s_{n+1} + s_{n+2}` | bound `C(d+1, 2) + d` | `s_n s_{n+1} s_{n+2}` | bound `C(d+2, 3)` |
+|---|---|---|---|---|---|
+| 1 | 2 | 5 | 5 | 4 | 4 |
+| 2 | 3 | 8 | 9 | 9 | 10 |
+| 3 | 4 | 14 | 14 | 20 | 20 |
+| 4 | 5 | 20 | 20 | 31 | 35 |
+| 5 | 6 | 27 | 27 | 56 | 56 |
+| 6 | 7 | 35 | 35 | 84 | 84 |
+
+The values at `k = 2` and `k = 4` are the same at `p = 1,000,000,403` and `p = 998,244,353`. Besides `k = 2`, only the product filter at `k = 4` falls short, by 4.
+
+**`s_n s_{n+1} s_{n+2}` at `k = 4`: 31, not 35.** `char_4 = (λ² − 2λ + 4)(λ³ − 3λ² + 2λ − 4)` ([[signed-tower-count](pages/signed-tower-count.md)]), and the roots of the quadratic factor are `β = 1 ± i√3 = 2e^{±iπ/3}`, twice the primitive sixth roots of unity: `λ² − 2λ + 4 = 4·Φ_6(λ/2)`. So `β_1 β_2 = 4`, the norm of `β`, `β_1 + β_2 = 2`, and `β_1³ = β_2³ = −8`. Four of the 35 terms drop out:
+
+- `β_1³ = β_2³`, so these two products give one value, with coefficient `−8(c_1³ + c_2³)`, where `c_1, c_2` are the coefficients of `β_1^n, β_2^n` in `s_n`. From `P(4, 0), …, P(4, 4) = 1, 1, 5, 25, 85`, `c_2 = −c_1 = i/√3`, so `c_1³ + c_2³ = 0` and the value is lost: two terms.
+- For the multiset `{β_1, β_1, β_2}` the three orderings give `β_1 β_2² + β_2 β_1² + β_1³ = β_1 β_2 (β_1 + β_2) + β_1³ = 8 − 8 = 0`, and `{β_1, β_2, β_2}` likewise: two more terms.
+
+The other 31 products of three roots are distinct, with nonzero coefficients.[^15]
 
 ## Appearances in Sources
 
@@ -125,6 +145,7 @@ using `α² + ᾱ² = (α + ᾱ)² − 2αᾱ`. So nine of the ten values occur.
 - [[finite-fields](pages/finite-fields.md)] - `F_{p^d}^*` is cyclic of order `p^d − 1`.
 - [[kitamasa](pages/kitamasa.md)] - `x^n mod Q` by repeated squaring.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - why `char_k` factors for even `k`, as `char_2 = (x − 2)(x² − x + 2)`.
+- [[signed-tower-count](pages/signed-tower-count.md)] - `char_k` and its factors, as `char_4 = (λ² − 2λ + 4)(λ³ − 3λ² + 2λ − 4)`.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the real and complex roots of `char_k`.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - the algorithm that measures linear complexity.
 - [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] - the factorizations of `char_k` mod `10⁹ + 7` and the periods there, and the proof that a factor of multiplicity `m` multiplies the order of `x` by exactly `p^{⌈log_p m⌉}`.
@@ -151,3 +172,5 @@ using `α² + ᾱ² = (α + ᾱ)² − 2αᾱ`. So nine of the ten values occur.
 [^11]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 13.26 p.57; solution pp.166-167 [synthesis] - for `M` maximal in a commutative ring with identity, `R/M^n` is local: each `a + 1` with `a ∈ M` is a unit mod `M^n` by the finite geometric series, so `M/M^n` is the unique maximal ideal.
 [^12]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): for `k ≤ 7` and `p ∈ {3, 5, 7, 11, 13, 53, 101, 107, 10⁹ + 7, 1,000,000,403}`, the Smith normal form of the diagonal matrix of the cyclic orders in Equation (1), with `U = Z/p` for each repeated linear factor as in the table of section 4, has `max(r, rank U)` nonunit entries; the six pairs with a repeated factor are `(k, p) = (2, 7), (3, 5), (4, 3), (4, 107), (5, 53), (6, 3)`.
 [^13]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): for the repeated factor `g` of `char_k mod p` at `(k, p) = (2, 7), (3, 5), (4, 3), (4, 107), (5, 53), (6, 3), (6, 23), (6, 643)`, all linear of multiplicity 2, `x^{p − 1} ≢ 1 (mod g²)`.
+[^14]: Verified by execution (Python 3.11, 2026-10-25): Berlekamp-Massey over `F_p` on `4·C(d + 2, 3) + 37` terms of each filtered sequence, with `s_n = P(k, n) mod p` from the signed transfer matrix, for `k ≤ 6` at `p = 10⁹ + 7`, and for `k = 2, 4` also at `p = 1,000,000,403` and `998,244,353`.
+[^15]: Verified by execution (Python 3.11 with mpmath at 60 digits, 2026-10-25): the 35 products of three roots of `char_4` take 34 distinct values, the only coincidence being `β_1³ = β_2³ = −8`; the sums over orderings vanish exactly for `{β_1, β_1, β_2}` and `{β_1, β_2, β_2}`; the coefficients solved from `P(4, 0), …, P(4, 4)` give `c(β_2) = −c(β_1) = 0.57735026918962…·i = i/√3`.
