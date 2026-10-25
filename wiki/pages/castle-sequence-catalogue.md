@@ -5,7 +5,7 @@ summary: Catalogue of every castle-counting sequence on the wiki, by the object 
 tags: [analysis, oeis, castle, sequence, catalogue]
 sources: [oeis-mining-pe502]
 created: 2026-09-17
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # Castle sequence catalogue
@@ -312,6 +312,7 @@ The sandpile groups of the castles with at most 16 cells, mirror images identifi
 
 | object | first terms | g.f. / formula | OEIS |
 |---|---|---|---|
+| castles, mirror images identified (the castles of the census) | `1, 2, 3, 6, 10, 20, 36, 72, 136, 272, 528, 1056, 2080, 4160, 8256, 16512` | `(2^{n−1} + 2^{⌊n/2⌋})/2` | [A005418](https://oeis.org/A005418) compositions of `n` up to direction ([[castle-graph](pages/castle-graph.md)]) |
 | castles with trivial group (the tree castles, in both models) | `1, 2, 3, 5, 8, 13, 22, 37, 63, 108, 186, 322, 559, 973, 1697, 2964` | `(A005251(n+2) + A000931(n+6))/2` | [A005683](https://oeis.org/A005683) Twopins positions (`= A005683(n+2)`; the formula agrees with the b-file for `n ≤ 38`) |
 | palindromic tree castles | `1, 2, 2, 3, 4, 5, 7, 9, 12, 16, 21, 28, 37, 49, 65, 86` | `A000931(n+6)` | [A000931](https://oeis.org/A000931) Padovan |
 | castles with cyclic `K_sink` | `1, 2, 3, 6, 10, 20, 36, 72, 134, 264, 503, 997, 1933, 3791, 7338, 14329` |  | - |

@@ -1,11 +1,11 @@
 ---
 title: The castle graph - bridge to graph theory
 category: Concepts
-summary: The castle graph of a castle has its cells as vertices and an edge between cells that share a side. It is connected, bipartite and planar, with at most 4 neighbors per cell, and its cycle rank is the number of 2×2 squares of cells. It is a tree exactly when no two neighboring columns both have height at least 2; these tree castles number F_{w+2} − 1 at height 2, and the tree skylines of height at most h satisfy T_h(w+2) = T_h(w+1) + (h−1)T_h(w), Jacobsthal at h = 3, so the tree castles of height h grow like σ_1^{h−1} = (1 + √(4h−3))/2 by width.
-tags: [concept, castle, graph, polyomino, spectral, adjacency, laplacian, tree, bipartite, planar, cycle-rank, fibonacci, jacobsthal, oeis, bridge, pedagogy]
+summary: The castle graph of a castle has its cells as vertices and an edge between cells that share a side. It is connected, bipartite and planar, with at most 4 neighbors per cell, and its cycle rank is the number of 2×2 squares of cells. It is a tree exactly when no two neighboring columns both have height at least 2; these tree castles number F_{w+2} − 1 at height 2, and the tree skylines of height at most h satisfy T_h(w+2) = T_h(w+1) + (h−1)T_h(w), Jacobsthal at h = 3, so the tree castles of height h grow like σ_1^{h−1} = (1 + √(4h−3))/2 by width. Up to mirror image, 6,963 of the 33,150 castles with at most 16 cells are tree castles.
+tags: [concept, castle, graph, polyomino, spectral, adjacency, laplacian, tree, bipartite, planar, cycle-rank, fibonacci, jacobsthal, oeis, bridge, pedagogy, burnside, padovan]
 sources: [project-euler-502-brute-force, rossin-2000-group-of-a-sandpile]
 created: 2026-09-17
-updated: 2026-10-22
+updated: 2026-10-25
 ---
 
 # The castle graph - bridge to graph theory
@@ -50,7 +50,7 @@ For the castles with at most 11 cells, and 300 larger ones, the boundary cycles 
 
 A **tree castle** is a castle whose graph is a tree. Since the graph is connected, this holds exactly when the cycle rank is 0: when there is no `2 × 2` square of cells, that is, when no two neighboring columns both have height at least 2. Examples are the skyline `(1, 1, …, 1)`, a horizontal path; the skyline `(h)`, a vertical path; `(2, 1, 2, 1, 2)`; `(1, 3, 1)`; and the 11-cell skyline `(1, 1, 1, 2, 1, 1, 2, 1, 1)` of [[isospectral-castles](pages/isospectral-castles.md)]. The skylines `(2, 2)`, `(3, 3)` and `(1, 2, 3, 1, 2, 3)` are not tree castles.
 
-A tree castle has exactly one spanning tree, so its sandpile group is trivial in both the sink model and the tide model of [[sandpile-group](pages/sandpile-group.md)]; in the tide model the bottom row is contracted to one sink, which leaves a tree. The castles with at most 16 cells number 33,150 up to mirror image, and 6,963 of them are tree castles ([[sandpile-census](pages/sandpile-census.md)]).[^2]
+A tree castle has exactly one spanning tree, so its sandpile group is trivial in both the sink model and the tide model of [[sandpile-group](pages/sandpile-group.md)]; in the tide model the bottom row is contracted to one sink, which leaves a tree.
 
 ### Counting tree castles by width
 
@@ -91,6 +91,29 @@ de Spinadel's metallic mean with `p = 1` and `q = h − 1` ([[de-spinadel-1999-f
 Every entry agrees with brute-force enumeration.[^3] At height 2, `T_1(w) = 1`, so `A_tree(w, 2) = F_{w+2} − 1 = A000071(w+2)`: these are the Fibonacci castles, the castles of height 2 with no two neighboring columns of height 2 ([[fibonacci-castle](pages/fibonacci-castle.md)]). The sequences `A006130` and `A006131` satisfy `a(n) = a(n−1) + 3a(n−2)` and `a(n) = a(n−1) + 4a(n−2)`, the cases `h = 4` and `h = 5` of Equation (1).
 
 [[tree-castle-by-area](pages/tree-castle-by-area.md)] counts the tree skylines by area. With `q` marking area, `x` marking width and `P_h(q) = q² + q³ + ⋯ + q^h`, their generating function is `(1 + P_h(q)x)/(1 − qx − qP_h(q)x²)`, since a tree skyline is a sequence of columns of height 1, each followed or not by one taller column. At `x = 1`, the tree castles of height 2 counted by area are `A077868`, one less than Narayana's cows `A000930`; the tree skylines of height at most 3 and 4 are `A006498` and `A000570`; and the tree skylines of any height are `A005251`.[^4]
+
+### Up to mirror image
+
+Reversing a skyline gives its mirror image, which has the same castle graph. By Burnside's lemma for the two-element group of the identity and the reversal, a set of skylines closed under reversal has half as many mirror-image classes as its size plus its number of palindromes, the skylines equal to their mirror image. By area `n`:
+
+- the skylines of area `n` are the compositions of `n`, `2^{n−1}` of them, and `2^{⌊n/2⌋}` are palindromes, the symmetric compositions `A016116`;
+- the tree skylines of area `n` number `A005251(n + 2)`, and the palindromic ones `A000931(n + 6)`, Padovan numbers, with generating function `x(1 + x)²/(1 − x² − x³)` ([[padovan-families](pages/padovan-families.md)]).
+
+So up to mirror image,
+
+```
+castles of area n       :  (2^{n−1} + 2^{⌊n/2⌋}) / 2,
+tree castles of area n  :  (A005251(n + 2) + A000931(n + 6)) / 2.
+```
+
+The first is `A005418(n)`, the compositions of `n` up to direction. The second is `A005683(n + 2)`, the Twopins positions, whose OEIS entry gives the same formula, and it is the trivial-group column of [[sandpile-census](pages/sandpile-census.md)].
+
+| skylines up to mirror image | area `n = 1, 2, …, 16` | `n ≤ 16` |
+|---|---|---|
+| all | `1, 2, 3, 6, 10, 20, 36, 72, 136, 272, 528, 1056, 2080, 4160, 8256, 16512` | 33,150 |
+| tree | `1, 2, 3, 5, 8, 13, 22, 37, 63, 108, 186, 322, 559, 973, 1697, 2964` | 6,963 |
+
+The sums are the 33,150 castles of [[sandpile-census](pages/sandpile-census.md)] and the 6,963 tree castles among them, the castles whose sandpile groups are trivial in both models. Every entry agrees with brute-force enumeration.[^6]
 
 ## Spectral types
 
@@ -153,6 +176,7 @@ def cycle_rank(c):
 - [[sandpile-census](pages/sandpile-census.md)] - the sandpile groups of the 33,150 castles with at most 16 cells, up to mirror image.
 - [[castle-avalanches](pages/castle-avalanches.md)] - avalanches on the castle graph; in the tide model, rectangles and battlements of the same height have the same mean avalanche, and the `2 × 2` squares change only the tail.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree skylines counted by area.
+- [[padovan-families](pages/padovan-families.md)] - the palindromic tree castles by area, which give the tree castles up to mirror image.
 - [[unique-tournament](pages/unique-tournament.md)] - tournaments determined by their score vectors, counted by `A000570`, the tree skylines of height at most 4 by area.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - families of castles by their growth by width, among them the tree castles.
 - [[metallic-means](pages/metallic-means.md)] - the growth `σ_1^{h−1}` of the tree castles of height `h`.
@@ -163,6 +187,6 @@ def cycle_rank(c):
 ## Footnotes
 
 [^1]: Verified by execution (Python 3.11, 2026-10-16): the drawings and the counts of cells, edges and `2 × 2` squares of the six examples, from the formulas of the section *Invariants of the skyline*.
-[^2]: Verified by execution (Python 3.11, 2026-10-16): the compositions of `n ≤ 16` number 33,150 up to reversal, and 6,963 of these classes have no two neighboring parts at least 2.
 [^3]: Verified by execution (Python 3.11, 2026-10-16): `T_h(w)` for `h ≤ 3`, `w ≤ 9` and `h = 4, 5`, `w ≤ 7` by enumeration of all skylines, and for `w = 8, 9` from Equation (1); `A_tree(w, h)` from Equation (2) against enumeration for `w ≤ 8` at `h = 2, 3` and `w ≤ 7` at `h = 4`, and at `w = 8` from Equation (1). https://oeis.org/A001045, https://oeis.org/A006130, https://oeis.org/A006131, https://oeis.org/A000071 (read 2026-09-17 and 2026-10-04): the offsets of the table.
 [^4]: Verified by execution (Python 3.11, 2026-10-16): the counts by area `n ≤ 14` of the tree castles of height 2 (`0, 1, 2, 3, 5, 8, 12, …`), and of the tree skylines of height at most 3, at most 4 and of any height, against the data of https://oeis.org/A077868, https://oeis.org/A000930, https://oeis.org/A006498, https://oeis.org/A000570 and https://oeis.org/A005251 (read 2026-10-16).
+[^6]: Verified by execution (Python 3.11, 2026-10-25): for every `n ≤ 16`, the compositions of `n`, the palindromic ones, the compositions with no two neighboring parts at least 2 and the palindromic ones among those number `2^{n−1}`, `2^{⌊n/2⌋}`, `A005251(n + 2)` and `A000931(n + 6)`, and both formulas give the mirror-image classes counted directly, which sum to 33,150 and 6,963. https://oeis.org/A016116 (read 2026-10-25) - "Number of symmetric compositions of n"; https://oeis.org/A005251 and https://oeis.org/A000931 (read 2026-10-25): the data; https://oeis.org/A005418 (read 2026-10-25), offset 1 - "Also number of compositions of n up to direction"; https://oeis.org/A005683 (read 2026-10-25), offset 3 - "a(n) = (A005251(n) + A000931(n+4))/2".
