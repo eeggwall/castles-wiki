@@ -1,7 +1,7 @@
 ---
 title: Castle cryptography, round two - break the fixes, size the keys
 category: Analyses
-summary: The second round of the build / red-team / blue-team series on the castle cryptosystem. BUILD - ElGamal and a Schnorr-style signature on the map x^a; on char_1 the subgroup of prime order (p − 1)/2 lies in the scalars (x^8 = 16, since (1 + i)^8 = 16), so the build uses char_3 with the prime q = 340715873 dividing p^2 + 1. RED TEAM - (Attack 3) Pohlig-Hellman with baby-step giant-step recovers the castle_dh private key 373309869 from p, Q and the public key, and prime power by prime power Bob's key 566180101, which the F_p piece alone does not determine, and a random 58-bit key; (Attack 4) an irreducible Q does not help, since p^d − 1 = ∏_{e | d} Φ_e(p) factors for every p and the largest prime factor at p = 10^9 + 7 is 500000003 for char_1 and char_3; the norm 2^{ka} reaches that part of the order from F_p, and a random 89-bit char_3 key falls to the norm and two BSGS tables in F_{p^4}; (Attack 5) a polynomial filter of degree e on a d-stage castle register has linear complexity at most C(d + e − 1, e) in each degree, measured 10, 14, 20 at d = 4 and 21, 27, 56 at d = 6, with the bounds failing only at d = 3 and d = 5 among d ≤ 7, and Berlekamp-Massey recovers it from 2L terms. BLUE TEAM - Φ_d(p) must carry a 256-bit prime (p of 128 bits at d = 4 or 6, the XTR and torus design), the linear complexity must be sized against the 2L output terms an attacker needs and a Berlekamp-Massey of O(L log² L) operations (a 64-stage register with a degree-16 filter reaches L ≈ 2^54.6, about 2^66 operations on 2^55.6 terms), and the index-calculus cost L_q[1/3, (64/9)^{1/3}] reaches 2^128 near q = p^d of 2537 bits.
+summary: The second round of the build / red-team / blue-team series on the castle cryptosystem. BUILD - ElGamal and a Schnorr-style signature on the map x^a; on char_1 the subgroup of prime order (p − 1)/2 lies in the scalars (x^8 = 16, since (1 + i)^8 = 16), so the build uses char_3 with the prime q = 340715873 dividing p^2 + 1. RED TEAM - (Attack 3) Pohlig-Hellman with baby-step giant-step recovers the castle_dh private key 373309869 from p, Q and the public key, and prime power by prime power Bob's key 566180101, which the F_p piece alone does not determine, and a random 58-bit key; (Attack 4) an irreducible Q does not help, since p^d − 1 = ∏_{e | d} Φ_e(p) factors for every p and the largest prime factor at p = 10^9 + 7 is 500000003 for char_1 and char_3; the norm 2^{ka} reaches that part of the order from F_p, and a random 89-bit char_3 key falls to the norm and two BSGS tables in F_{p^4}; (Attack 5) a polynomial filter of degree e on a d-stage castle register has linear complexity at most C(d + e − 1, e) in each degree, measured 10, 14, 20 at d = 4 and 21, 27, 56 at d = 6, with the bounds failing only at d = 3 and d = 5 among d ≤ 7, and Berlekamp-Massey recovers it from 2L terms. BLUE TEAM - Φ_d(p) must carry a 256-bit prime (p of 128 bits at d = 4 or 6, the XTR and torus design), the linear complexity must be sized against the 2L output terms an attacker needs and a Berlekamp-Massey of O(L log² L) operations (a 64-stage register with a degree-16 filter reaches L ≈ 2^54.6, about 2^66 operations on 2^55.6 terms), the castle supplies F_{p^d} for even d from char_{d−1} and for odd d only from a parity sector, and the index-calculus cost L_q[1/3, (64/9)^{1/3}] reaches 2^128 near q = p^d of 2537 bits.
 tags: [analysis, seminar, cryptography, cryptanalysis, red-team, blue-team, pohlig-hellman, baby-step-giant-step, berlekamp-massey, linear-complexity, elgamal, schnorr, signature, finite-field, cyclotomic, index-calculus, key-size, castle]
 sources: [oeis-mining-pe502, granger-vercauteren-2005-dlp-algebraic-tori]
 created: 2026-09-18
@@ -182,14 +182,16 @@ The three attacks depend on three quantities: the largest prime factor of the or
 
 Generic discrete-logarithm attacks, BSGS and Pollard rho, cost about the square root of the largest prime factor of the order of the group, so `2¹²⁸` security needs a prime of 256 bits dividing `p^d − 1`. It must divide `Φ_d(p)`, of size about `p^{φ(d)}`: a prime dividing a smaller factor `Φ_e(p)` with `e < d` divides the order of the unit group of the subfield `F_{p^e}`, and the norm map carries the problem into that subfield, as `x⁸ = 16` carried the `char_1` subgroup into `F_p`. So:
 
-| `d` | `φ(d)` | `p` needed for `Φ_d(p)` to have 256 bits |
-|---|---|---|
-| 2 | 1 | `p ≳ 2²⁵⁶` |
-| 4 | 2 | `p ≳ 2¹²⁸` |
-| 6 | 2 | `p ≳ 2¹²⁸` |
-| 7 | 6 | `p ≳ 2⁴³` |
+| `d` | `φ(d)` | castle modulus | `p` needed for `Φ_d(p)` to have 256 bits |
+|---|---|---|---|
+| 2 | 1 | `char_1` | `p ≳ 2²⁵⁶` |
+| 4 | 2 | `char_3` | `p ≳ 2¹²⁸` |
+| 6 | 2 | `char_5` | `p ≳ 2¹²⁸` |
+| 7 | 6 | the degree-7 parity sector of `char_12` or `char_14` | `p ≳ 2⁴³` |
 
 and `p` must then be chosen so that `Φ_d(p)` has such a prime factor. This is the design of XTR and torus-based cryptography, which work in the subgroup of order `Φ_6(p) = p² − p + 1` of `F_{p⁶}^*` ([[granger-vercauteren-2005-dlp-algebraic-tori](pages/granger-vercauteren-2005-dlp-algebraic-tori.md)]). The castle has a degree-6 modulus, `char_5`, and round three builds a castle torus on it ([[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)]).
+
+**Which castle polynomial gives each `d`.** A field `F_{p^d}` comes from an irreducible factor of `char_k` that stays irreducible mod `p`. For odd `k`, `char_k` itself has degree `d = k + 1` and is irreducible over the rationals (proved for `k = 2^m − 1` on [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)], computed for odd `k ≤ 31`). For even `k`, `char_k` factors into two parity sectors of degrees `k/2` and `k/2 + 1` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]), each irreducible over the rationals for even `k ≤ 40` (computed, [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]). So an even `d` comes from `char_{d−1}`, and an odd `d` only from a parity sector: `d = 3` from `char_4` or `char_6`, and `d = 7`, the largest `φ(d)/d` in the table, from `char_12` or `char_14`, not from `char_6`, which splits as `3 + 4`.
 
 ## Fix 5 - size the register and the filter
 
@@ -210,12 +212,12 @@ A castle register of `d` stages runs `char_{d−1}`, so a 64-stage register is `
 
 With Fixes 4 and 5 in place, discrete logarithms in `F_{p^d}` still face index calculus and the number field sieve, of heuristic cost `L_q[1/3, (64/9)^{1/3}] = exp((64/9)^{1/3} (ln q)^{1/3} (ln ln q)^{2/3})` for `q = p^d`, with the `o(1)` term dropped. At `p = 10⁹ + 7`:[^8]
 
-| `d` | `q = p^d` | Pollard rho on the largest prime factor | `L_q[1/3]` |
-|---|---|---|---|
-| 2 | `2^59.8` | `2^14.4` | `2^23.1` |
-| 4 | `2^119.6` | `2^14.4` | `2^32.6` |
-| 6 | `2^179.4` | `2^23.6` | `2^39.5` |
-| 7 | `2^209.3` | `2^34.3` | `2^42.5` |
+| `d` | castle modulus | `q = p^d` | Pollard rho on the largest prime factor | `L_q[1/3]` |
+|---|---|---|---|---|
+| 2 | `char_1` | `2^59.8` | `2^14.4` | `2^23.1` |
+| 4 | `char_3` | `2^119.6` | `2^14.4` | `2^32.6` |
+| 6 | `char_5` | `2^179.4` | `2^23.6` | `2^39.5` |
+| 7 | a degree-7 parity sector | `2^209.3` | `2^34.3` | `2^42.5` |
 
 `L_q[1/3]` reaches `2¹²⁸` at `q ≈ 2²⁵³⁷`: `p ≈ 2¹²⁶⁹` at `d = 2`, `2⁶³⁴` at `d = 4` and `2⁴²³` at `d = 6`, close to the 3072-bit finite fields recommended for 128-bit security ([[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)]). So at `p = 10⁹ + 7` no choice of `Q` makes the castle discrete logarithm hard; 128-bit security needs `p` of hundreds of bits, and the system is then ordinary finite-field cryptography. Round three replaces the constant `(64/9)^{1/3}` by that of the extended tower number field sieve, which applies at composite `d`.
 
@@ -245,7 +247,8 @@ The two rounds give a procedure for judging a new cryptosystem:
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - the algorithm that recovers a linear recurrence, run here over `F_p` against filters.
 - [[finite-fields](pages/finite-fields.md)] - `F_{p^d}^*` is cyclic of order `p^d − 1`; the cyclotomic factorization and the subfields that Attack 4 and Fix 4 use.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the periods of `P(k, ·) mod p` and the orders of the roots of `char_k`.
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization of `char_k` for even `k`, which Attack 3 uses for `char_2`.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization of `char_k` for even `k`, which Attack 3 uses for `char_2`, into parity sectors of degrees `k/2` and `k/2 + 1`, the castle moduli of odd degree in Fixes 4 and 6.
+- [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] - the irreducibility of `char_k` for odd `k`, the castle moduli of even degree.
 - [[eigenvalue-continued-fractions](pages/eigenvalue-continued-fractions.md)] - the roots `1 ± i` of `char_1`, whose eighth power is `16`.
 - [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)] - `castle_dlp`, `bm_modp` and `castle_schnorr`, with their outputs.
 - [[castle-compression](pages/castle-compression.md)] - linear complexity as a description length.
