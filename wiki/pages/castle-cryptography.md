@@ -34,11 +34,12 @@ Multiplying two elements of `R` means multiplying polynomials and reducing modul
 
 # Seminar 1 - Build
 
-[[castle-cryptography-ring](pages/castle-cryptography-ring.md)] is Seminar 1 in full, in the order the system is used: the recurrence and `char_k`, the ring `R` with multiplication by `x` as one step of the recurrence, the cost of Kitamasa's method, and a Diffie-Hellman exchange with private keys `a = 373309869` and `b = 566180101` at `p = 10⁹ + 7`. It then describes the group the keys live in: the period of `P(k, ·)` mod `p = 101` and the order of `x` at `p = 10⁹ + 7`.
+[[castle-cryptography-ring](pages/castle-cryptography-ring.md)] is Seminar 1 in full, in the order the system is used: the recurrence and `char_k`, the ring `R` with multiplication by `x` as one step of the recurrence, the cost of Kitamasa's method, a Diffie-Hellman exchange with private keys `a = 373309869` and `b = 566180101` at `p = 10⁹ + 7`, and the same exchange run on windows of castle counts. It then describes the group the keys live in: the period of `P(k, ·) mod p` as the order of `x` at every odd prime, and the order of `x` at `p = 10⁹ + 7` for `k = 1, 2, 3`.
 
-1. **Periodicity.** Modulo `p`, the roots of `Q` lie in a finite field `F_{p^d}`, where every nonzero element has finite multiplicative order, so `P(k, ·) mod p` is periodic ([[finite-fields](pages/finite-fields.md)], [[mod-p-observatory](pages/mod-p-observatory.md)]).
+1. **Periodicity.** Modulo `p`, the roots of `Q` lie in a finite field `F_{p^d}`, where every nonzero element has finite multiplicative order, so `P(k, ·) mod p` is periodic ([[finite-fields](pages/finite-fields.md)], [[mod-p-observatory](pages/mod-p-observatory.md)]). Its period is the order of `x` in `R` at every odd prime: the update of the numerator and denominator of its generating function has determinant `−1`, so they are coprime mod every prime.
 2. **The forward map.** `x^a mod Q` is computed by binary exponentiation in `O(deg(Q)² · log a)` operations; at `a = 10^12` that is 39 squarings and 12 multiplications. This is the computation of [[kitamasa](pages/kitamasa.md)]'s method.
 3. **Key exchange.** With public parameters `(p, Q = char_2 mod p)` and generator `x`, the two parties publish `A = x^a mod Q` and `B = x^b mod Q`, and each computes `x^{ab} mod Q` from the other's public key and its own exponent.
+4. **The public key is a window of castle counts.** `x^a mod Q` determines `P(k, a), …, P(k, a + k) mod p` and is determined by it, through the Hankel matrix of the first `2k + 1` terms, of determinant `±2^{k²}` for `k ≤ 7` and invertible mod every odd prime. The private key is a base length, and the public key is a signed tower count.
 
 The `mulmod` and `powmod` functions and their output are on [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] and [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)].
 
@@ -99,7 +100,7 @@ With an irreducible `Q` and a filtered output, the discrete logarithm lives in `
 
 | seminar | track | result | pages |
 |---|---|---|---|
-| 1 | build | Diffie-Hellman key exchange in `F_p[x]/(char_2)`; security not evaluated | [[castle-cryptography-ring](pages/castle-cryptography-ring.md)], [[finite-fields](pages/finite-fields.md)], [[kitamasa](pages/kitamasa.md)], [[mod-p-observatory](pages/mod-p-observatory.md)] |
+| 1 | build | Diffie-Hellman key exchange in `F_p[x]/(char_2)`, also run on windows of castle counts; the period as the order of `x`; security not evaluated | [[castle-cryptography-ring](pages/castle-cryptography-ring.md)], [[finite-fields](pages/finite-fields.md)], [[kitamasa](pages/kitamasa.md)], [[mod-p-observatory](pages/mod-p-observatory.md)] |
 | 2 | red team | two attacks: the CRT and Pohlig-Hellman split, worked at `p = 101`, and Berlekamp-Massey recovery of `Q` | [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)], [[idempotent-decomposition](pages/idempotent-decomposition.md)], [[berlekamp-massey](pages/berlekamp-massey.md)] |
 | 3 | blue team | an irreducible `Q`, a nonlinear filter, and the index-calculus ceiling | [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)], [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] |
 | round 2 | build, red team, blue team | ElGamal and a Schnorr signature; a private key recovered; both fixes broken; key sizes; the four questions | [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] |

@@ -1,8 +1,8 @@
 ---
 title: Castle cryptography, seminar 1 - the ring
 category: Analyses
-summary: Seminar 1 of the castle cryptography series, the algebra the later rounds use, in the order the system is used. (1) char_2 = x^3 − 3x^2 + 4x − 4 is the recurrence P(2, L) = 3P(2, L−1) − 4P(2, L−2) + 4P(2, L−3). (2) In R = F_p[x]/(Q), multiplication by x is one step of the recurrence. (3) x^a mod Q by binary exponentiation costs bitlength(a) + popcount(a) ring multiplications in the loop as written (53 at a = 10^12), the Kitamasa step of the castle count. (4) Diffie-Hellman on R with public parameters (p, Q), private exponent a and public key x^a mod Q. (5) Mod p = 101, char_2 = (x − 2)(x^2 − x + 2) and P(2, ·) is periodic with period 3400, the order of x: lcm of the orders 100 of 2 in F_101^* and 3400 of a root of x^2 − x + 2 in F_{101^2}^*. (6) The unit group of R, by the Chinese Remainder Theorem a product of the unit groups of the factors of Q, and the order of x at p = 10^9 + 7 for k = 1, 2, 3, factored; the prime 500000003 = (p − 1)/2 divides all three.
-tags: [analysis, seminar, cryptography, ring, finite-field, quotient-ring, linear-recurrence, characteristic-polynomial, kitamasa, diffie-hellman, chinese-remainder-theorem, mod-p-observatory, baseline, pedagogy, implementation, castle]
+summary: Seminar 1 of the castle cryptography series, the algebra the later rounds use, in the order the system is used. (1) char_2 = x^3 − 3x^2 + 4x − 4 is the recurrence P(2, L) = 3P(2, L−1) − 4P(2, L−2) + 4P(2, L−3). (2) In R = F_p[x]/(Q), multiplication by x is one step of the recurrence. (3) x^a mod Q by binary exponentiation costs bitlength(a) + popcount(a) ring multiplications in the loop as written (53 at a = 10^12), the Kitamasa step of the castle count. (4) Diffie-Hellman on R with public parameters (p, Q), private exponent a and public key x^a mod Q. (5) The public key is the window P(k, a), …, P(k, a + k) mod p of signed tower counts, through the Hankel matrix of P(k, 0), …, P(k, 2k), of determinant (−1)^{k(k+1)/2} 2^{k²} for k ≤ 7 and invertible mod every odd prime. (6) num_k and den_k are coprime mod every prime, since their update matrix has determinant −1, so the period of P(k, ·) mod an odd prime is the order of x; at p = 101 it is 3400. (7) The unit group of R, by the Chinese Remainder Theorem a product of the unit groups of the factors of Q, and the order of x at p = 10^9 + 7 for k = 1, 2, 3, factored; the prime 500000003 = (p − 1)/2 divides all three.
+tags: [analysis, seminar, cryptography, ring, finite-field, quotient-ring, linear-recurrence, characteristic-polynomial, kitamasa, diffie-hellman, chinese-remainder-theorem, hankel-matrix, mod-p-observatory, baseline, pedagogy, implementation, castle]
 sources: [oeis-mining-pe502, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-18
 updated: 2026-10-25
@@ -10,7 +10,7 @@ updated: 2026-10-25
 
 # Castle cryptography, seminar 1 - the ring
 
-The [[castle-cryptography](pages/castle-cryptography.md)] series has three seminars: build, red team and blue team. This page is Seminar 1 in full, the algebra the attacks and fixes use; [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] is the second round of the series. Sections 1 to 4 build the system in the order it is used: the recurrence, the ring, the one-way map and the key exchange. Sections 5 and 6 describe the group the keys live in: the period and the order of `x`. The page leaves security to Seminar 2, and section 7 lists the facts that Seminar 2 and round two start from. The central object is the characteristic polynomial `char_k` of the signed tower count `P(k, ·)`, reduced mod a prime `p`.
+The [[castle-cryptography](pages/castle-cryptography.md)] series has three seminars: build, red team and blue team. This page is Seminar 1 in full, the algebra the attacks and fixes use; [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] is the second round of the series. Sections 1 to 4 build the system in the order it is used: the recurrence, the ring, the one-way map and the key exchange. Section 5 reads the public key as castle counts. Sections 6 and 7 describe the group the keys live in: the period and the order of `x`. The page leaves security to Seminar 2, and section 8 lists the facts that Seminar 2 and round two start from. The central object is the characteristic polynomial `char_k` of the signed tower count `P(k, ·)`, reduced mod a prime `p`.
 
 ---
 
@@ -115,11 +115,47 @@ True
 
 The exchange is `castle_dh` on [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)]. ElGamal encryption, with public key `A` and ciphertext `(g^k, m · A^k)`, and a Schnorr-style signature use the same map; round two builds both ([[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)]).
 
-## 5. The period is the order of `x`
+## 5. The public key is a window of castle counts
+
+[[kitamasa](pages/kitamasa.md)]'s method reads a term of the sequence off a ring element. For `c = c_0 + c_1 x + ⋯ + c_k x^k` in `R`, set
+
+```
+ℓ(c)  =  c_0·P(k, 0) + c_1·P(k, 1) + ⋯ + c_k·P(k, k)   (mod p).
+```
+
+Then `ℓ(x^n) = P(k, n) mod p` for every `n ≥ 0`, since reducing `x^n` modulo `Q` uses the same recurrence as the sequence. So the public key `A = x^a mod Q` determines a **window** of `k + 1` consecutive signed tower counts:
+
+```
+ℓ(A), ℓ(x·A), …, ℓ(x^k·A)  =  P(k, a), P(k, a + 1), …, P(k, a + k)   (mod p).
+```
+
+The map from the coefficients of `A` to its window is the Hankel matrix `H_k`, whose entry in row `i` and column `j` is `P(k, i + j)`, for `0 ≤ i, j ≤ k`. At `k = 2`,
+
+```
+H_2  =  [[1, 1, 3], [1, 3, 9], [3, 9, 19]],        det H_2  =  −16,
+```
+
+and for every `k ≤ 7` (computed)
+
+```
+det H_k  =  (−1)^{k(k+1)/2} · 2^{k²}.
+```
+
+`H_k` is invertible mod every odd prime `p`. A sequence that satisfies a recurrence of order `k + 1` has an invertible `(k + 1) × (k + 1)` Hankel matrix exactly when it satisfies no shorter recurrence, and section 6 proves that the shortest recurrence of `P(k, ·) mod p` is `char_k mod p`. So the window determines `A`, and the exchange of section 4 can be run on castle counts alone. At `p = 10⁹ + 7` and `Q = char_2`, with the keys of section 4:[^5]
+
+```
+Alice publishes   P(2, a),  P(2, a + 1),  P(2, a + 2)   =  259105132, 367673055, 221456604
+Bob publishes     P(2, b),  P(2, b + 1),  P(2, b + 2)   =  604270770, 787138505, 176847572
+shared window     P(2, ab), P(2, ab + 1), P(2, ab + 2)  =  426037164, 487263844, 278640608
+```
+
+Each party turns the other's window into a ring element with `H_2^{−1}`, raises it to its own exponent, and reads off the window of `x^{ab}`. The keypair is a castle count: the private key is a base length `a`, the public key is the signed count of the towers of height at most `k` on the bases of length `a`, …, `a + k`, mod `p`, and the discrete logarithm asks for the base length from that window. A run of `2(k + 1)` consecutive terms is twice a window, and from it Berlekamp-Massey recovers `Q` (section 8).
+
+## 6. The period is the order of `x`
 
 Over the rationals `P(2, L)` grows: the roots of `char_2` are `2` and `(1 ± i√7)/2`, of moduli `2` and `√2`. Mod a prime `p` the state vector takes at most `p³` values, so it repeats, and since the constant term `−4` of `char_2` is invertible mod an odd prime `p`, the step can be run backwards and the sequence is purely periodic ([[mod-p-observatory](pages/mod-p-observatory.md)]).
 
-At `p = 101`:[^5]
+At `p = 101`:[^6]
 
 ```
 >>> [P(2, L) % 101 for L in range(12)]
@@ -135,18 +171,24 @@ At `p = 101`:[^5]
 | `2`, the root of `x − 2` | `F_101^*` | `100` |
 | a root of `x² − x + 2` | `F_{101²}^*` | `3400` |
 
-`lcm(100, 3400) = 3400`. The period of `P(2, ·) mod p` divides the order of `x` in `R`, with equality when `num_2` and `den_2` are coprime mod `p` ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)]), and here the period is `3400`.
+`lcm(100, 3400) = 3400`, which is the period. The period of a sequence mod `p` always divides the order of `x` in `R`, and it equals it when `num_k` and `den_k` are coprime mod `p`, so that `Q` is the shortest recurrence of the sequence ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)]). That condition holds at every prime.
 
-## 6. The unit group and the order of `x`
+**Proposition.** For every `k` and every prime `p`, `num_k` and `den_k` are coprime mod `p`. So for every odd prime `p` the shortest recurrence of `P(k, ·) mod p` is `char_k mod p`, and the period of `P(k, ·) mod p` is the order of `x` in `R`.
+
+*Proof.* The update of [[signed-tower-count](pages/signed-tower-count.md)], `num_k = 2·den_{k−1} − num_{k−1}` and `den_k = (1 − 2x)·den_{k−1} + x·num_{k−1}`, multiplies the vector `(num, den)` by the matrix `M = [[−1, 2], [x, 1 − 2x]]`, whose determinant is `−1`. So `M` is invertible over `F_p[x]` for every prime `p`, and `(num_0, den_0) = (1, 1 − x)` is `M^{−k}` applied to `(num_k, den_k)`. A common factor of `num_k` and `den_k` mod `p` therefore divides `num_0 = 1`. For odd `p`, `den_k` keeps its degree `k + 1` mod `p`, since its leading coefficient is `(−1)^{k+1} 2^k`, and `deg num_k ≤ k` by the update; so `num_k/den_k` is in lowest terms with a denominator of degree `k + 1`, and the shortest recurrence of `P(k, ·) mod p` is `char_k mod p`. ∎
+
+Over the integers, `|Res(num_k, den_k)| = 2^{k²}` for `k ≤ 7` (computed), the absolute value of `det H_k` in section 5. It has no odd prime factor, although the discriminant of `char_k` has some: `7` for `char_2`, a prime at which `char_2` has a repeated root ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)]).[^7]
+
+## 7. The unit group and the order of `x`
 
 The units of `R`, its invertible elements, form a group, and discrete-logarithm cryptography works in that group.
 
 - **`Q` irreducible over `F_p`.** Then `R` is the field `F_{p^d}`, every nonzero element is a unit, and the unit group is cyclic of order `p^d − 1` ([[finite-fields](pages/finite-fields.md)]).
-- **`Q = Q_1 · Q_2` over `F_p` with `gcd(Q_1, Q_2) = 1`.** Then by the Chinese Remainder Theorem `R ≅ F_p[x]/(Q_1) × F_p[x]/(Q_2)` ([[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]).[^6] Multiplication is componentwise, so the unit group is the product of the unit groups of the two factors.
+- **`Q = Q_1 · Q_2` over `F_p` with `gcd(Q_1, Q_2) = 1`.** Then by the Chinese Remainder Theorem `R ≅ F_p[x]/(Q_1) × F_p[x]/(Q_2)` ([[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]).[^8] Multiplication is componentwise, so the unit group is the product of the unit groups of the two factors.
 
 At `p = 101`, `char_2 = (x − 2)(x² − x + 2)` with the quadratic factor irreducible, so `R ≅ F_101 × F_{101²}` and its unit group is `F_101^* × F_{101²}^*`. Attack 1 of [[castle-cryptography](pages/castle-cryptography.md)] computes the two projections and the idempotents that invert them.
 
-The order of an element `g` divides the order `N` of the unit group, and is found by factoring `N` and removing each prime factor `q` while `g^{N/q} = 1`. For `g = x` at `p = 10⁹ + 7`:[^7]
+The order of an element `g` divides the order `N` of the unit group, and is found by factoring `N` and removing each prime factor `q` while `g^{N/q} = 1`. For `g = x` at `p = 10⁹ + 7`:[^9]
 
 | `k` | `d = k + 1` | `char_k mod p` | unit group of `R` | `ord(x)` | factored |
 |---|---|---|---|---|---|
@@ -156,13 +198,13 @@ The order of an element `g` divides the order `N` of the unit group, and is foun
 
 The orders have 32, 59 and 90 bits. In every row the largest prime factor is `500,000,003 = (p − 1)/2`, about `2^28.9`, which divides every `p^d − 1`. Generic discrete-logarithm attacks cost about the square root of the largest prime factor of the order, so that prime, not the size of the order, is what round two attacks and sizes.
 
-## 7. What Seminar 2 and round two take up
+## 8. What Seminar 2 and round two take up
 
 Three facts from this page are the starting points of the attacks:
 
-1. `char_2 = (x − 2)(x² − x + 2)` over the integers, and the two factors are coprime mod every odd prime, so the CRT splits `R` at every odd prime (section 6). Attack 1 of [[castle-cryptography](pages/castle-cryptography.md)] splits the discrete logarithm along this factorization, and Attack 3 of round two recovers the private key `373309869` from `p`, `Q` and `A`.
-2. `ord(x)` factors into small primes and `500,000,003` (section 6). Pohlig-Hellman reduces the discrete logarithm to these primes; Attack 4 of round two applies it even when `Q` is irreducible.
-3. `P(k, ·)` satisfies a linear recurrence (section 1), so any leaked run of `2(k + 1)` terms determines `Q` by Berlekamp-Massey: Attack 2 of [[castle-cryptography](pages/castle-cryptography.md)].
+1. `char_2 = (x − 2)(x² − x + 2)` over the integers, and the two factors are coprime mod every odd prime, so the CRT splits `R` at every odd prime (section 7). Attack 1 of [[castle-cryptography](pages/castle-cryptography.md)] splits the discrete logarithm along this factorization, and Attack 3 of round two recovers the private key `373309869` from `p`, `Q` and `A`.
+2. `ord(x)` factors into small primes and `500,000,003` (section 7). Pohlig-Hellman reduces the discrete logarithm to these primes; Attack 4 of round two applies it even when `Q` is irreducible.
+3. `P(k, ·)` satisfies a linear recurrence (section 1), so any leaked run of `2(k + 1)` terms, twice the window of section 5, determines `Q` by Berlekamp-Massey: Attack 2 of [[castle-cryptography](pages/castle-cryptography.md)].
 
 ## Appearances in Sources
 
@@ -174,7 +216,7 @@ Three facts from this page are the starting points of the attacks:
 - [[castle-cryptography](pages/castle-cryptography.md)] - the series: Seminar 1 (this page), the two attacks of Seminar 2, with the CRT split of `R` at `p = 101` worked out in Attack 1, and the fixes of Seminar 3.
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the second round: ElGamal and a signature, the private key recovered by Pohlig-Hellman, and both round-one fixes broken.
 - [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - the terms characteristic polynomial, irreducible polynomial and discrete logarithm, explained from the `castle_dh` code.
-- [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, L)`, `char_k`, and its factors for even `k`.
+- [[signed-tower-count](pages/signed-tower-count.md)] - `P(k, L)`, `char_k`, its factors for even `k`, and the update of `num_k` and `den_k`, of determinant `−1`.
 - [[finite-fields](pages/finite-fields.md)] - `F_p`, `F_{p^d}` and their cyclic unit groups, the factors of the CRT split.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the periods of `P(k, ·)` and of the castle counts mod `p`, which divide the lcm of the orders of the roots.
 - [[kitamasa](pages/kitamasa.md)] - `x^a mod Q` by binary exponentiation, the fast step of the castle count and the one-way map here.
@@ -183,7 +225,7 @@ Three facts from this page are the starting points of the attacks:
 - [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)] - `castle_dh` and the `mulmod` and `powmod` helpers.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `A^e(w, 3)`, whose characteristic polynomial contains `char_2 = (x − 2)(x² − x + 2)`.
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the unit group `R^*` as a product of cyclic groups, `R^* ≅ ∏ Z/(p^{d_i} − 1)` when `Q` is squarefree mod `p`, and the period of `P(k, ·)` as the order of `x`.
-- [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the theorem behind the unit group of section 6.
+- [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the theorem behind the unit group of section 7.
 - [[idempotent-decomposition](pages/idempotent-decomposition.md)] - the CRT split by explicit idempotents of `R`, `2^r` of them for `r` distinct factors of `Q`.
 
 ## Footnotes
@@ -192,6 +234,8 @@ Three facts from this page are the starting points of the attacks:
 [^2]: Verified by execution (Python 3.11, 2026-10-16) at `p = 10⁹ + 7`, `Q = [−4, 4, −3, 1]`: `mulmod([1, 1, 0], [2, 1, 0], Q, p) = [2, 3, 1]` and `mulmod([2, 3, 1], [0, 1, 0], Q, p) = [4, 1000000005, 6]`, with `1000000005 = −2 mod p`.
 [^3]: Verified by execution (Python 3.11, 2026-10-16) at `p = 10⁹ + 7`, `Q = char_2`, counting the squarings and multiplications in the `powmod` loop for each `a`; `powmod(x, 12345) = [24371334, 336255992, 769290382]`, and the search over `x, x², …` reaches it after `12345` multiplications.
 [^4]: Verified by execution (Python 3.11, 2026-10-16) at `p = 10⁹ + 7`, `Q = char_2`, `a = 373309869`, `b = 566180101`: the values of `A`, `B` and the shared secret shown, and `powmod(B, a) = powmod(A, b)`; the same numbers as `castle_dh` on [[castle-snippets-cryptography](pages/castle-snippets-cryptography.md)].
-[^5]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the terms mod 101; the first return of `(1, 1, 3)` at `L = 3400`; `char_2 mod 101 = (x − 2)(x² − x + 2)`; `(−7)^{50} ≡ −1 mod 101`; the order of `2` in `F_101^*` is `100`, and the order of `x` in `F_101[x]/(x² − x + 2)` is `3400`, with `101² − 1 = 10200 = 2³ · 3 · 5² · 17`.
-[^6]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.20 p.76; solution p.193 [synthesis] - for pairwise comaximal ideals `I_1, …, I_n`, `R/∩I_i → ∏ R/I_i` is an isomorphism; in `F_p[x]`, `(f)` and `(g)` are comaximal exactly when `gcd(f, g) = 1`.
-[^7]: Verified by execution (Python 3.11 with SymPy, 2026-10-16) at `p = 10⁹ + 7`: `char_1` and `char_3` are irreducible mod `p` and `char_2 = (x − 2)(x² − x + 2)`; the orders of `x` by removing prime factors from the exponent of the unit group, with the factorizations shown; `log₂` of the orders 31.9, 58.8, 89.4.
+[^5]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): `det H_k = (−1)^{k(k+1)/2} 2^{k²}` for `k ≤ 7`, with `P(k, 0), …, P(k, 2k)` from the signed transfer matrix; at `p = 10⁹ + 7`, `Q = char_2`, the windows `ℓ(A), ℓ(xA), ℓ(x²A)` of Alice's key and of the shared secret agree with `P(2, n), P(2, n + 1), P(2, n + 2) mod p` for `n = a` and `n = ab`, computed independently by powers of the signed transfer matrix, which also gives Bob's window; `H_2^{−1}` applied to Alice's window returns `A = [704821174, 848698009, 235195321]`.
+[^6]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the terms mod 101; the first return of `(1, 1, 3)` at `L = 3400`; `char_2 mod 101 = (x − 2)(x² − x + 2)`; `(−7)^{50} ≡ −1 mod 101`; the order of `2` in `F_101^*` is `100`, and the order of `x` in `F_101[x]/(x² − x + 2)` is `3400`, with `101² − 1 = 10200 = 2³ · 3 · 5² · 17`.
+[^7]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): `det M = −1`; for `k ≤ 8`, `deg num_k ≤ k`, `deg den_k = k + 1`, `den_k(0) = 1` and `gcd(num_k, den_k) = 1` over the rationals; for `k ≤ 7`, `|Res(num_k, den_k)| = 2^{k²}`, and `num_k`, `den_k` follow the three-term update `u_{k+1} = u_{k−1} − 2x·u_k` of [[signed-tower-count](pages/signed-tower-count.md)].
+[^8]: [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] Ex. 17.20 p.76; solution p.193 [synthesis] - for pairwise comaximal ideals `I_1, …, I_n`, `R/∩I_i → ∏ R/I_i` is an isomorphism; in `F_p[x]`, `(f)` and `(g)` are comaximal exactly when `gcd(f, g) = 1`.
+[^9]: Verified by execution (Python 3.11 with SymPy, 2026-10-16) at `p = 10⁹ + 7`: `char_1` and `char_3` are irreducible mod `p` and `char_2 = (x − 2)(x² − x + 2)`; the orders of `x` by removing prime factors from the exponent of the unit group, with the factorizations shown; `log₂` of the orders 31.9, 58.8, 89.4.
