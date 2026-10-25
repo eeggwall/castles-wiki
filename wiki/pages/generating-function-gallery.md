@@ -3,7 +3,7 @@ title: Generating-function gallery for P(k,L)
 category: Analyses
 summary: The rational generating functions P_k(x) = Σ_L P(k, L) x^L = num_k(x)/den_k(x) of the signed tower count for k ≤ 6, from the update of num_k and den_k; the three-term recurrence den_{k+1} = den_{k−1} − 2x·den_k and its closed form with roots −x ± √(x² + 1); the coefficients −(k+1), 2⌊(k+1)²/4⌋, (−1)^k 2^k and (−1)^{k+1} 2^k of char_k; the eigenvalues for k ≤ 6; the spectral radius ρ_k ≤ k + 1 and the estimate ρ_k ~ k/log k; and the linear recurrences of P(k, ·) for k ≤ 5.
 tags: [analysis, castle, generating-functions, c-finite, sympy, verification]
-sources: [project-euler-502-solution, oeis-mining-pe502]
+sources: [project-euler-502-solution]
 created: 2026-09-14
 updated: 2026-10-25
 ---
@@ -161,7 +161,7 @@ P(4,L) = 5·P(4,L−1) − 12·P(4,L−2) + 20·P(4,L−3) − 16·P(4,L−4) + 
 P(5,L) = 6·P(5,L−1) − 18·P(5,L−2) + 32·P(5,L−3) − 48·P(5,L−4) + 32·P(5,L−5) − 32·P(5,L−6)
 ```
 
-The first coefficient is `k + 1`, the sum of the eigenvalues, and the last is `(−1)^k 2^k`, the negative of the constant term of `char_k`; the eigenvalues multiply to `2^k`.[^3]
+The first coefficient is `k + 1`, the sum of the eigenvalues, and the last is `(−1)^k 2^k`, the negative of the constant term of `char_k`; the eigenvalues multiply to `2^k` ([[signed-tower-count](pages/signed-tower-count.md)], section *Recurrences in L*).[^3]
 
 ## Verification: the series equals P(k,L)
 
@@ -192,7 +192,6 @@ The check includes `k = 8`, beyond the catalogue.
 ## Appearances in Sources
 
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the update of `num_k` and `den_k`, written for `F_k(x)`, in the rational-function path.
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the characteristic polynomials `char_1` to `char_5` and their leading and constant coefficients.
 
 ## Related Concepts
 
@@ -209,9 +208,10 @@ The check includes `k = 8`, beyond the catalogue.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - the polynomials `char_k` reduced modulo `p`, whose roots set the periods of `P(k, ·) mod p`.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `Σ_w A^e(w, 3) x^w = ½(1/(1 − 3x) − 1/(1 − 2x) − P_2(x) + P_1(x))`, from `num_1/den_1` and `num_2/den_2`.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - the estimate `ρ_k ~ k/log k`.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castle counts matched against the OEIS, among them the characteristic polynomials `char_1` to `char_5`.
 
 ## Footnotes
 
 [^1]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The rational-function path (h ≤ 15000)" L124-138 - "F_k(x) = ∑_L P(k, L) x^L ... F_0(x) = 1/(1 - x) ... num_k(x) = 2·den_{k-1}(x) - num_{k-1}(x); den_k(x) = den_{k-1}(x)·(1 - 2x) + num_{k-1}(x)·x; F_k(x) = num_k(x)/den_k(x)."
 [^2]: Verified by execution (Python 3.11 with SymPy, NumPy and mpmath, 2026-10-16): the catalogue for `k ≤ 6`; `gcd(num_k, den_k) = 1` for `k ≤ 40` ([[castle-counting-formula](pages/castle-counting-formula.md)]); Equation (3) against `den_k` for `k ≤ 10`; the four coefficients of `char_k` for `k ≤ 40`; `char(M̃_k) = char_k` for `k ≤ 16`; two irreducible factors for even `k ≤ 40`, one real root for even `k ≤ 40`, irreducible with no real root for odd `k ≤ 31`; the root of largest modulus real and in the even-last-column sector for even `k ≤ 40` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]); the eigenvalue table; `ρ_k` from the eigenvalues of `M̃_k` for the listed `k` and for `k = 9, 11, 49, 51, 99, 101`; the exact equation at `k = 8, 20, 100`; the approximate equation at the even `k` of the table; the series of `Σ_w A^e(w, 3) x^w` against enumeration for `w ≤ 10`.
-[^3]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L31-37 - "The general P(k,·) family is C-finite of order k+1: P(1): x^2 - 2x + 2 ... P(5): x^6 - 6x^5 + 18x^4 - 32x^3 + 48x^2 - 32x + 32 (constant term = (-1)^{k-1} 2^k; leading coeff -(k+1))."
+[^3]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): from the update of `num_k` and `den_k`, for `k ≤ 20`, `char_k` is monic of degree `k + 1` with coefficient `−(k + 1)` of `λ^k` and constant term `(−1)^{k+1} 2^k`; the recurrences listed for `k ≤ 3` hold for the brute-force values of `P(k, L)`.

@@ -3,7 +3,7 @@ title: Signed tower count P(k,L)
 category: Concepts
 summary: P(k, L) = Σ (−1)^blocks over the towers of height at most k on a base of length L, which gives the signed castle count S(w, h) = P(h−2, w) − P(h−1, w). For fixed k it satisfies a linear recurrence of order k + 1 whose characteristic polynomial char_k has λ^k-coefficient −(k+1) and constant term (−1)^{k+1} 2^k. At k = 1, P(1, L) = Re((1+i)^{L+1}) = A146559(L+1), and a sign-reversing involution that flips the first odd column with equal neighbors leaves 2^{⌈L/2⌉} fixed points of one sign, or none when L ≡ 1 (mod 4).
 tags: [concept, castle, signed-count, c-finite, oeis, generating-functions]
-sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-representations]
+sources: [project-euler-502-solution, project-euler-502-representations, oeis-encyclopedia]
 created: 2026-09-13
 updated: 2026-10-25
 ---
@@ -110,9 +110,9 @@ For fixed `L`, `P(·, L)` also satisfies a linear recurrence in `k`. For every `
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the characteristic polynomials `char_1` to `char_5`, the identification `P(1, L) = A146559(L+1)`, and `A009545` as the imaginary part.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the definition of `P(k, L)`, the derivation of `P(1, L) = Re((1+i)^{L+1})` from the split by the last bit, and the values `P(k, 2)` and `P(k, 3)`.
-- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the update of `num_k` and `den_k`.
+- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the update of `num_k` and `den_k`, the recurrence of order `k + 1` and its cases `k = 1, 2`.
+- [[oeis-encyclopedia](pages/oeis-encyclopedia.md)] - the real and imaginary parts of `(1+i)^n`, `A146559` and `A009545`, and the sums `A038503` and `A038505` of every fourth binomial coefficient.
 
 ## Related Concepts
 
@@ -131,16 +131,17 @@ For fixed `L`, `P(·, L)` also satisfies a linear recurrence in `k`. For every `
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `A^e(w, 3) = (3^w − 2^w − P(2, w) + P(1, w))/2`, the first row of castle counts that uses `P(2, ·)`.
 - [[tower-heap](pages/tower-heap.md)] - the towers counted by blocks without sign, through Narayana polynomials.
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] - matching sequences against the OEIS up to shifts of the index, as between `A146559` and `A009545`.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castle counts matched against the OEIS, among them `P(1, L) = A146559(L+1)` and the polynomials `char_k`.
 
 ## Footnotes
 
 [^1]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the table by summing `(−1)^{blocks}` over all towers, and the rows `k = 4, 6` from the `num`/`den` update; `char_1` to `char_6` and their factorizations; irreducibility of `char_k` for odd `k ≤ 15` and two irreducible factors for even `k ≤ 14`; the roots of largest modulus for `k ≤ 7`; `P(k, L) > 0` for even `k ≤ 12` and `L < 40`; `P(k, 2) = (−1)^k (k+1)` and `P(k, 3) = (−1)^k (k+1)²` for `k ≤ 6`; `P_even(1, L)` and `P_odd(1, L)` for `L ≤ 11`.
 [^2]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Recursion for P(k, L)" L115-118 - "Small cases (also consistent): P(k, 2) = (-1)^k (k+1), satisfying (λ+1)^2 = 0. P(k, 3) = (-1)^k (k+1)^2, satisfying (λ+1)^3 = 0."
 [^3]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L333-340 - "P_k = (2 - P_{k-1})/(1 - 2x + x P_{k-1}), P_0 = 1/(1-x)" and "num_k = 2 den_{k-1} - num_{k-1}, den_k = den_{k-1}(1-2x) + x num_{k-1}".
-[^4]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L31-37 - "The general P(k,·) family is C-finite of order k+1: P(1): x^2 - 2x + 2 (eigenvalues 1 +/- i) P(2): x^3 - 3x^2 + 4x - 4 (= (x-2)(x^2-x+2)) ... P(5): x^6 - 6x^5 + 18x^4 - 32x^3 + 48x^2 - 32x + 32 (constant term = (-1)^{k-1} 2^k; leading coeff -(k+1))".
+[^4]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L343-346 - "P_k is rational with denominator of degree k+1, so P(k,L) satisfies a linear recurrence in L of order k+1", "k=1: P(1,L) = 2P(1,L-1) - 2P(1,L-2)", "k=2: P(2,L) = 3P(2,L-1) - 4P(2,L-2) + 4P(2,L-3)".
 [^5]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"Recursion for P(k, L)" L94-108 - "Split the strings by their last bit ... Appending a 0 never changes the run count; appending a 1 starts a new run exactly when the previous bit is 0", "a_L = a_{L-1} + b_{L-1}, b_L = -a_{L-1} + b_{L-1} with a_1 = 1, b_1 = -1", "P(1, L) = Re((1+i)^{L+1})".
 [^6]: https://oeis.org/A146559 (read 2026-10-16) - "Expansion of (1-x)/(1 - 2*x + 2*x^2)", "(1+i)^n = a(n) + A009545(n)*i", "a(n) = Re( (1+i)^n )" and "a(n) = A038503(n) - A038505(n)".
-[^7]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L21-29 - "A009545 is the *imaginary* part of (1+i)^n ... P(1,L) = Re((1+i)^{L+1}) = A146559(L+1) ... A009545(n) = Im((1+i)^n) (the companion, not P)".
+[^7]: https://oeis.org/A009545 (read 2026-10-25) - "Imaginary part of (1+i)^n." and "(1+i)^n = A146559(n) + a(n)*i where i = sqrt(-1)."
 [^8]: https://oeis.org/A038503 and https://oeis.org/A038505 (read 2026-10-16) - "Sum of every 4th entry of row n in Pascal's triangle, starting at \"n choose 0\"" and "... starting at binomial(n,2)".
 [^9]: Verified by execution (Python 3.11, 2026-10-25): for `L ≤ 10`, the strings with `r` runs of 1s number `C(L+1, 2r)`; `φ` is an involution that reverses the sign; its fixed points number `2^{⌈L/2⌉}` for `L ≢ 1 (mod 4)` and none for `L ≡ 1 (mod 4)`, and their signed sum is `P(1, L)`.
 [^10]: Verified by execution (Python 3.11, 2026-10-25): over the castles of width `w ≤ 14` and height 2, the number with an odd number of blocks minus the number with an even number is `P(1, w) − 1 = Re((1+i)^{w+1}) − 1`.

@@ -3,9 +3,9 @@ title: Tower parity sectors - why char_k factors, and where the plastic number c
 category: Analyses
 summary: The signed transfer matrix M̃_k commutes with JD, "reflect heights, flip the sign of odd heights", so for even k the signed tower count splits by the parity of the last column, P = P_even + P_odd, and char_k splits into the characteristic polynomials of the two sectors. In μ = λ/2 the factors are H_d(μ) = Σ_i (−1)^i C(⌊(d+i)/2⌋, i) μ^{d−i} and V_d = H_{d+1} + μ² H_{d−1}, with char_{2d}(2μ) = 2^{2d} H_d V_d proved by Pascal's rule and a Lucas-type doubling computation. H_3 is the minimal polynomial of ψ² (ψ the plastic number), so ρ_6 = 2ψ². For k = 4m + 2 the even sector is 2^L times Hardin's counts of words in which every nonzero letter is at most a neighbor (A005251, A202882, A203094, A203184).
 tags: [analysis, castle, signed-tower-count, transfer-matrix, symmetry, factorization, plastic-number, quasi-polynomial, oeis, hardin, sympy, verification, pedagogy]
-sources: [oeis-mining-pe502, project-euler-502-solution, project-euler-502-castle-factoring]
+sources: [project-euler-502-solution, project-euler-502-castle-factoring, oeis-encyclopedia]
 created: 2026-09-16
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # Tower parity sectors - why `char_k` factors, and where the plastic number comes from
@@ -96,7 +96,7 @@ So `A009545(L)` is the number of castles of width `L` and height 2 with last col
 
 ### Rescale by 2
 
-The eigenvalues of `M̃_k` multiply to `2^k`, since the constant term of `char_k` is `(−1)^{k+1} 2^k`.[^4] So set `λ = 2μ` and `g_k(μ) = char_k(2μ)/2^k`. The recurrence `char_{k+1} = λ² char_{k−1} − 2 char_k` ([[signed-tower-count](pages/signed-tower-count.md)], the section *Recurrences in L*)[^5] becomes
+The eigenvalues of `M̃_k` multiply to `2^k`, since the constant term of `char_k` is `(−1)^{k+1} 2^k` ([[castle-counting-formula](pages/castle-counting-formula.md)], the Proposition in the section *Signed tower count*).[^4] So set `λ = 2μ` and `g_k(μ) = char_k(2μ)/2^k`. The recurrence `char_{k+1} = λ² char_{k−1} − 2 char_k` ([[signed-tower-count](pages/signed-tower-count.md)], the section *Recurrences in L*)[^5] becomes
 
 ```
 g_{k+1}  =  μ² g_{k−1} − g_k,        g_0 = 2μ − 1,   g_1 = 2μ² − 2μ + 1,             (1)
@@ -179,7 +179,7 @@ The sequence `y_m = (r − s)(α² r^m − β² s^m)` satisfies the same recurre
 
 **Which factor is which sector.** For `d ≤ 20`, `H_d` and `V_d` are irreducible and `V_d` is primitive, so the two sector polynomials of `char_{2d}` are `H_d` and `V_d`, in the variable `μ`. Their degrees decide which is which: the `+1` sector has dimension `d` when `d` is odd and `d + 1` when `d` is even. So for even `k ≤ 40`, `H_{k/2}` is the polynomial of the `+1` (even-last-column) sector when `k ≡ 2 (mod 4)` and of the `−1` (odd-last-column) sector when `k ≡ 0 (mod 4)`.
 
-**Over `Z[1/2]` and modulo 2.** The two sector factors `2^d H_d(λ/2)` and `2^d V_d(λ/2)` of `char_{2d}` have resultant `±2^{d(d+1)}` for every `d ≤ 15` (computed), so for these `d` the sector split of `Q[x]/(char_k)` holds over `Z[1/2]` and survives reduction modulo every odd prime ([[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]). Modulo 2 the two factors are `λ^d` and `λ^d(λ + 1)` for `d ≤ 15` (computed), and [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] reads the two sectors as the components of `Spec Z[x]/(char_k)`, which meet only at the point `(2, x)`.[^8]
+**Over `Z[1/2]` and modulo 2.** The two sector factors `2^d H_d(λ/2)` and `2^d V_d(λ/2)` of `char_{2d}` have resultant `±2^{d(d+1)}` for every `d ≤ 15` (computed), so for these `d` the sector split of `Q[x]/(char_k)` holds over `Z[1/2]` and survives reduction modulo every odd prime ([[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)]). Modulo 2 the two factors are `λ^d` and `λ^d(λ + 1)` for `d ≤ 15` (computed), and [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] reads the two sectors as the components of `Spec Z[x]/(char_k)`, which meet only at the point `(2, x)`.[^7]
 
 ## Part 3 - The sector sequences and OEIS
 
@@ -195,7 +195,7 @@ def sectors(k, Lmax):
     return E, O
 ```
 
-**`k ≡ 2 (mod 4)`: the even sector is `2^L` times a Hardin word count.**[^7]
+**`k ≡ 2 (mod 4)`: the even sector is `2^L` times a Hardin word count.**[^8]
 
 | `k` | `P_even(k, L) / 2^L`, `L = 0, 1, 2, …` | OEIS | description (`n = L + 1`) |
 |---|---|---|---|
@@ -254,7 +254,6 @@ So for towers of height at most 4, the odd-last-column signed count is `2^L` tim
 
 ## Appearances in Sources
 
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the characteristic polynomials of `P(k, ·)` and their constant terms.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the update of `num_k` and `den_k`, from which the recurrence of `char_k`, and so Equation (1), follows.
 - [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] - the block count as total descent, which the transfer matrix encodes.
 
@@ -278,14 +277,15 @@ So for towers of height at most 4, the odd-last-column signed count is `2^L` tim
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - Knuth's Algorithm M, the mixed-radix enumeration of `{0, …, k}^L` that the brute-force checks run.
 - [[castle-notation](pages/castle-notation.md)] - the tower height `k = h − 1` and the argument orders of `P(k, L)` and `A^e(w, h)`.
 - [[tower-heap](pages/tower-heap.md)] - towers counted by blocks without sign, through Narayana polynomials.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castle counts matched against the OEIS, among them the characteristic polynomials of `P(k, ·)`.
 
 ## Footnotes
 
 [^1]: Verified by execution (Python 3.11 with SymPy and NumPy, 2026-10-16). (i) `JD·M̃_k = M̃_k·JD`, `(JD)² = (−1)^k I` and `JD·M̃_k·JD = (−1)^k M̃_k` for `k ≤ 30`; `char(M̃_k) = char_k` for `k ≤ 16`; `P(k, L) = e_0ᵀ M̃_k^L v` against the sum over towers for `k ≤ 4`, `L ≤ 5`. (ii) The sector polynomials of `M̃_k` for even `k ≤ 40`: `H_{k/2}` in the `+1` sector exactly when `k ≡ 2 (mod 4)`, and the root of largest modulus in the `+1` sector. (iii) `P_even`, `P_odd` by enumeration against the matrix for `k = 2, 4, 6`, `L ≤ 4`. (iv) Equation (1) for `k ≤ 40`; `H_{d+2} = −H_{d+1} + μ² H_d` for `d ≤ 40`; Equation (2) for `d ≤ 20`. (v) `H_d` and `V_d` irreducible, `V_d` primitive, for `d ≤ 20`; `H_d(±1)` and the constant terms for `d < 30`; `char_k` irreducible for odd `k ≤ 31`; the factor table and the coefficient lists for even `k ≤ 26`. (vi) `P_even(4m+2, L)/2^L` against `hardin_count(m, L+1)` for the stated lengths; the sector tables for `L ≤ 12`. (vii) The resultants and the reductions modulo 2 for `d ≤ 15`.
 [^2]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L104-108 - "In the column-height form, the block count is the total descent: blocks = ∑_{i=0}^{L} max(0, c_i - c_{i+1}), c_0 = c_{L+1} = 0".
 [^3]: https://oeis.org/A146559, https://oeis.org/A009545, https://oeis.org/A107920, https://oeis.org/A010892 (read 2026-10-16) - A146559: "Expansion of (1-x)/(1 - 2*x + 2*x^2)", `1, 1, 0, -2, -4, -4, 0, 8, 16, 16, 0, -32`; A009545: "Expansion of e.g.f. sin(x)*exp(x)", `0, 1, 2, 2, 0, -4, -8, -8, 0, 16`; A107920: "Lucas and Lehmer numbers with parameters (1 +- sqrt(-7))/2", `0, 1, 1, -1, -3, -1, 5, 7, -3, -17`; A010892: "Inverse of 6th cyclotomic polynomial. A period 6 sequence", `1, 1, 0, -1, -1, 0, …`, offset 0.
-[^4]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L31-37 - "The general P(k,·) family is C-finite of order k+1: P(1): x^2 - 2x + 2 ... (constant term = (-1)^{k-1} 2^k; leading coeff -(k+1))."
+[^4]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): from the update of `num_k` and `den_k`, the constant term of `char_k` is `(−1)^{k+1} 2^k` for `k ≤ 20`.
 [^5]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The rational-function path (h ≤ 15000)" L132-138 - "num_k(x) = 2·den_{k-1}(x) - num_{k-1}(x); den_k(x) = den_{k-1}(x)·(1 - 2x) + num_{k-1}(x)·x". The recurrence `den_{k+1} = den_{k−1} − 2x·den_k`, equivalently `char_{k+1} = λ² char_{k−1} − 2 char_k`, follows by the Cayley-Hamilton theorem ([[signed-tower-count](pages/signed-tower-count.md)]).
 [^6]: Verified by execution (SymPy, 2026-10-16): `resultant(x³ − x − 1, μ − x², x)` is `μ³ − 2μ² + μ − 1 = H_3` up to sign, and `2³ H_3(λ/2) = λ³ − 4λ² + 4λ − 8`, the cubic factor of `char_6`.
-[^7]: https://oeis.org/A005251, https://oeis.org/A202882, https://oeis.org/A203094, https://oeis.org/A203184 (read 2026-10-16) - A005251, offset 0: "For n>=3, a(n) is the number of binary strings of length n-2 without any maximal runs of ones of length 1"; A202882, offset 1: "Number of n X 1 0..2 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor", `1, 3, 9, 22, 51, 121, 292, 704, 1691, 4059, 9749`, "Empirical: a(n) = 3*a(n-1) -3*a(n-2) +4*a(n-3) -a(n-4) +a(n-5)"; A203094: "Number of nX1 0..3 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor", `1, 4, 16, 50, 144, 422, 1268, 3823, 11472, 34350`, "Empirical: a(n) = 4*a(n-1) -6*a(n-2) +10*a(n-3) -5*a(n-4) +6*a(n-5) -a(n-6) +a(n-7)"; A203184: "Number of n X 1 0..4 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor", `1, 5, 25, 95, 325, 1121, 3985, 14288, 50995, 181336`, "Empirical: a(n) = 5*a(n-1) -10*a(n-2) +20*a(n-3) -15*a(n-4) +21*a(n-5) -7*a(n-6) +8*a(n-7) -a(n-8) +a(n-9)". The three empirical recurrences are the coefficient lists of `H_5`, `H_7`, `H_9`.
-[^8]: Verified by execution (Python 3.11 with SymPy, 2026-10-22): with `H_d` as in the section *The monic factor* and `V_d = H_{d+1} + μ² H_{d−1}`, the resultant in `λ` of `2^d H_d(λ/2)` and `2^d V_d(λ/2)` is `±2^{d(d+1)}` (4, 64, 4096 at `d = 1, 2, 3`), and their reductions modulo 2 are `λ^d` and `λ^d(λ + 1)`, for `d ≤ 15`.
+[^7]: Verified by execution (Python 3.11 with SymPy, 2026-10-22): with `H_d` as in the section *The monic factor* and `V_d = H_{d+1} + μ² H_{d−1}`, the resultant in `λ` of `2^d H_d(λ/2)` and `2^d V_d(λ/2)` is `±2^{d(d+1)}` (4, 64, 4096 at `d = 1, 2, 3`), and their reductions modulo 2 are `λ^d` and `λ^d(λ + 1)`, for `d ≤ 15`.
+[^8]: https://oeis.org/A005251, https://oeis.org/A202882, https://oeis.org/A203094, https://oeis.org/A203184 (read 2026-10-16) - A005251, offset 0: "For n>=3, a(n) is the number of binary strings of length n-2 without any maximal runs of ones of length 1"; A202882, offset 1: "Number of n X 1 0..2 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor", `1, 3, 9, 22, 51, 121, 292, 704, 1691, 4059, 9749`, "Empirical: a(n) = 3*a(n-1) -3*a(n-2) +4*a(n-3) -a(n-4) +a(n-5)"; A203094: "Number of nX1 0..3 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor", `1, 4, 16, 50, 144, 422, 1268, 3823, 11472, 34350`, "Empirical: a(n) = 4*a(n-1) -6*a(n-2) +10*a(n-3) -5*a(n-4) +6*a(n-5) -a(n-6) +a(n-7)"; A203184: "Number of n X 1 0..4 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor", `1, 5, 25, 95, 325, 1121, 3985, 14288, 50995, 181336`, "Empirical: a(n) = 5*a(n-1) -10*a(n-2) +20*a(n-3) -15*a(n-4) +21*a(n-5) -7*a(n-6) +8*a(n-7) -a(n-8) +a(n-9)". The three empirical recurrences are the coefficient lists of `H_5`, `H_7`, `H_9`.

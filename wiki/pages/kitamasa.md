@@ -3,9 +3,9 @@ title: Kitamasa
 category: Concepts
 summary: Kitamasa's method computes one far term a_n of a linear recurrence of order D in O(D² log n) operations - reduce x^n modulo the characteristic polynomial and combine the D coefficients of the remainder with the first D terms. Worked for the Fibonacci numbers by hand and for the signed tower count P(1, L) at L = 10^12; the extractor on both computational paths of the castle count.
 tags: [concept, algorithm, linear-recurrence, kitamasa, method, c-finite, pedagogy, teaching]
-sources: [project-euler-502-solution, project-euler-502-implementation-notes, generating-functions-topic, oeis-mining-pe502]
+sources: [project-euler-502-solution, project-euler-502-implementation-notes, generating-functions-topic, project-euler-502-representations]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Kitamasa
@@ -194,7 +194,7 @@ The recurrence (1) also advances the state `(a_{n+D−1}, …, a_n)` by one step
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - Kitamasa's method as the extractor on both computational paths, the rule for choosing it over the power series, and its cost against the transfer matrix.
 - [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] - the switch `extractCoeff`, the characteristic polynomial built from `−den[1..D]`, and the shift `poly2 · x mod charPoly`.
 - [[generating-functions-topic](pages/generating-functions-topic.md)] - the coefficients of `num_k/den_k` satisfy a linear recurrence whose characteristic polynomial is the reversed denominator, "exactly the setup where Kitamasa's method applies".
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the characteristic polynomials of `P(1, ·)` and `P(2, ·)` and the closed form `P(1, L) = Re((1+i)^{L+1})`.
+- [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the recurrences of `P(1, ·)` and `P(2, ·)` and the closed form `P(1, L) = Re((1+i)^{L+1})`.
 
 ## Related Concepts
 
@@ -208,14 +208,15 @@ The recurrence (1) also advances the state `(a_{n+D−1}, …, a_n)` by one step
 - [[counting-horizontally-convex-polyominoes](pages/counting-horizontally-convex-polyominoes.md)] - Hickerson's recurrence `a(n) = 5a(n−1) − 7a(n−2) + 4a(n−3)` for the horizontally convex polyominoes.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - the row `A^e(w, 3) = (3^w − 2^w − P(2, w) + P(1, w))/2`, built from the two sequences worked here.
 - [[algebraic-transcendental-wall](pages/algebraic-transcendental-wall.md)] - the closed forms of the castle counts, sums over the algebraic roots `λ` of their characteristic polynomials.
+- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castle counts matched against the OEIS, among them `P(1, L) = A146559(L+1)`.
 
 ## Footnotes
 
 [^1]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The rational-function path (h ≤ 15000)" L145 - "Kitamasa: turn the recurrence into \"compute x^w mod charPoly\", then O(D^2 log w)."
-[^2]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L25-32 - "P(1,L) = Re((1+i)^{L+1}) = A146559(L+1)", "P(1,L) = 0,-2,-4,-4,0,8,16,16,0,-32,..." (listed from L = 1), "P(1): x^2 - 2x + 2 (eigenvalues 1 +/- i)".
+[^2]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L345 - "k=1: P(1,L) = 2P(1,L-1) - 2P(1,L-2), closed form P(1,L) = Re((1+i)^{L+1})". The twelve values agree with the sum over all binary strings of length `L ≤ 11` (verified by execution, Python 3.11, 2026-10-25).
 [^3]: [[project-euler-502-implementation-notes](pages/project-euler-502-implementation-notes.md)] §"Rational-function path" L39-41 - "extractCoeff - the direct-vs-Kitamasa switch", "extractCoeffMatExp + kitamasa + polyMulMod - standard Kitamasa on the characteristic polynomial x^d - ∑ rec[i] x^{d-1-i} derived from -den[1..D]."
 [^4]: Verified by execution (Python 3.11, 2026-10-16): every output shown, `P(1, L)` and `P(2, L)` against the sum over all towers, and `kitamasa([3, −4, 4], [1, 1, 3], 10**6, p)` against walking the recurrence `10^6` steps modulo `p`.
-[^5]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 1" L31-33 - "The general P(k,·) family is C-finite of order k+1: P(1): x^2 - 2x + 2 (eigenvalues 1 +/- i) P(2): x^3 - 3x^2 + 4x - 4 (= (x-2)(x^2-x+2))".
+[^5]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L346 - "k=2: P(2,L) = 3P(2,L-1) - 4P(2,L-2) + 4P(2,L-3)".
 [^6]: [[generating-functions-topic](pages/generating-functions-topic.md)] §"Application: Project Euler 502" L123-126 - "The P(k, L) recursion ... lifts to a rational generating function F_k(x) = num_k(x) / den_k(x) with level-by-level update rules. Coefficient extraction reduces to a linear recurrence with characteristic polynomial den_k(x) (reversed), which is exactly the setup where Kitamasa's method applies."
 [^7]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The rational-function path (h ≤ 15000)" L147-153 - "Direct wins when w ≤ D+1 or w · min(w, D) < 50 D^2; otherwise Kitamasa" and "F(10^12, 100): h = 100 ≤ 15000, this path is taken; D ≈ 101, w = 10^12 gives Kitamasa." The degree `D` of `den_{h−1}` is exactly `h` ([[castle-counting-formula](pages/castle-counting-formula.md)]).
 [^8]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The k-direction Berlekamp-Massey path (h > 15000)" L157-161 - "generate P(0, w), P(1, w), …, P(N-1, w) ... all mod p. Then: Berlekamp-Massey finds the minimal linear recurrence. Kitamasa jumps directly to any index k. Both P(h-2, w) and P(h-1, w) are computed in one pass, saving a factor of 2."
