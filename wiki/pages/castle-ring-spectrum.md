@@ -5,7 +5,7 @@ summary: The ring A_k = Z[x]/(char_k) as a family of rings over the primes. Its 
 tags: [analysis, castle, ring, spectrum, prime-ideal, nilradical, local-ring, finite-field, parity-sector, resultant, period, gaussian-integers, eisenstein-integers, sympy, verification]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory, oeis-mining-pe502]
 created: 2026-09-26
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # The castle ring's spectrum - `Spec Z[x]/(char_k)` over `Spec Z`
@@ -67,7 +67,7 @@ This is the rule `per · p^{⌈log_p m⌉}` that [[larger-prime-periodicity](pag
 
 - **`k = 1`: `A_1 = Z[x]/(x² − 2x + 2) ≅ Z[i]`** via `x ↦ 1 + i`. The prime `(2, x)` goes to `(2, 1 + i) = (1 + i)`, the Gaussian prime over 2, and `2 = −i(1 + i)²` is the total ramification at 2 that [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)] proves for every `k = 2^m − 1`. Over an odd prime `p` the fiber has two points when `p ≡ 1 (mod 4)`, where `char_1 = (x − 1)² + 1` splits, and one when `p ≡ 3 (mod 4)`, where `(p)` stays prime, as `(3)` does in exercise 13.1 ([[finite-fields](pages/finite-fields.md)]).[^8]
 - **`k = 4`, minor sector `λ² − 2λ + 4`**, with roots `1 ± i√3`. Rescaled by `λ = 2μ` it is `4(μ² − μ + 1)`, and `H_2 = μ² − μ + 1` of [[tower-parity-sectors](pages/tower-parity-sectors.md)] has roots `−ω` and `−ω²` for a primitive cube root of unity `ω`, so `Z[μ]/(H_2) ≅ Z[ω]`, the Eisenstein integers. Mod 2, `H_2 ≡ μ² + μ + 1` is irreducible and `Z[ω]/(2) ≅ F_4` is a field (exercise 13.6).[^9] The unrescaled `λ² − 2λ + 4 ≡ λ² (mod 2)` is a fat point at `(2, λ)`. The rescaling by 2 that turns the fat point into a field is the substitution `x = 2y` of [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)].
-- **The three quadratic rings.** The quadratic factors of `char_1, …, char_12` are exactly `x² − 2x + 2` (`k = 1`), `x² − x + 2` (`k = 2`) and `x² − 2x + 4` (`k = 4`), with discriminants `−4`, `−7` and `−12 = 2²·(−3)`, and they give `Z[x]/(x² − 2x + 2) = Z[i]`, `Z[x]/(x² − x + 2) = Z[(1 + √−7)/2]` and `Z[x]/(x² − 2x + 4) = Z[1 + √−3] = Z[√−3]`. They are pairwise non-isomorphic by the equation test of exercise 4.11: only the first has a solution of `y² = −1`, and only the second a solution of `y² − y + 2 = 0`.[^10] The first two are the full rings of integers of their fields. `Z[√−3]` has index 2 in `Z[ω]` and is not a unique factorization domain: `4 = 2·2 = (1 + √−3)(1 − √−3)`. The rescaling `λ = 2μ` of the previous item turns it into `Z[ω]`.[^11]
+- **The three quadratic rings.** The quadratic factors of `char_1, …, char_12` are exactly `x² − 2x + 2` (`k = 1`), `x² − x + 2` (`k = 2`) and `x² − 2x + 4` (`k = 4`), with discriminants `−4`, `−7` and `−12 = 2²·(−3)`, and they give `Z[x]/(x² − 2x + 2) = Z[i]`, `Z[x]/(x² − x + 2) = Z[(1 + √−7)/2]` and `Z[x]/(x² − 2x + 4) = Z[1 + √−3] = Z[√−3]`. They are pairwise non-isomorphic by the equation test of exercise 4.11: only the first has a solution of `y² = −1`, and only the second a solution of `y² − y + 2 = 0`.[^10] The first two are the full rings of integers of their fields. `Z[√−3]` has index 2 in `Z[ω]` and is not a unique factorization domain: `4 = 2·2 = (1 + √−3)(1 − √−3)`. The rescaling `λ = 2μ` of the previous item turns it into `Z[ω]`.[^11] Its roots `1 ± √−3 = 2e^{±iπ/3}`, twice the primitive sixth roots of unity, lower the linear complexity of round two's product filter at `k = 4` from 35 to 31 ([[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)], section 5).
 
 ## 5. Semisimple fibers, and the idempotents of `A_k`
 
