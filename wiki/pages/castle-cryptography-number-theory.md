@@ -1,7 +1,7 @@
 ---
 title: Castle cryptography - the number theory, for engineers
 category: Analyses
-summary: The three terms the castle cryptosystem uses, explained from the castle_dh code. The characteristic polynomial records the recurrence of P(k, ·) (the feedback polynomial of a linear feedback shift register) and is the modulus Q of the ring F_p[x]/(Q). An irreducible polynomial is the polynomial analogue of a prime: a reducible Q splits the discrete logarithm problem (DLP) into smaller ones by the Chinese Remainder Theorem, while a Q irreducible mod p makes the ring one field F_{p^d}. An irreducible Q is not enough for security: p^d − 1 = ∏ Φ_e(p) factors for every p, so Pohlig-Hellman still applies, finite fields have subexponential index-calculus attacks, and Berlekamp-Massey recovers any linear output whatever Q is.
+summary: The three terms the castle cryptosystem uses, explained from the castle_dh code. The characteristic polynomial records the recurrence of P(k, ·) (the feedback polynomial of a linear feedback shift register) and is the modulus Q of the ring F_p[x]/(Q). For odd k ≤ 31, char_k is irreducible over Q, each proved by one prime mod which it stays irreducible (p = 3 for char_1, char_3 and char_5). An irreducible polynomial is the polynomial analogue of a prime: a reducible Q splits the discrete logarithm problem (DLP) into smaller ones by the Chinese Remainder Theorem, while a Q irreducible mod p makes the ring one field F_{p^d}. An irreducible Q is not enough for security: p^d − 1 = ∏ Φ_e(p) factors for every p, so Pohlig-Hellman still applies, finite fields have subexponential index-calculus attacks, and Berlekamp-Massey recovers any linear output whatever Q is.
 tags: [analysis, cryptography, number-theory, characteristic-polynomial, irreducible-polynomial, discrete-logarithm, finite-field, pedagogy, engineer, castle]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
@@ -46,7 +46,7 @@ In the cryptosystem, `Q` is the **modulus**: arithmetic is mod `Q`, so whenever 
 - A **prime integer** doesn't factor into smaller integers > 1: `7` is prime, `12 = 3·4` is not.
 - An **irreducible polynomial** doesn't factor into smaller-degree polynomials over the given field: `x² + 1` is irreducible over the reals, `x² − 1 = (x−1)(x+1)` is not.
 
-For the castle characteristic polynomials the split goes by the parity of `k`: `char_k` is irreducible over the rationals for odd `k ≤ 31` and has exactly two irreducible factors for even `k ≤ 40` (computed; [[signed-tower-count](pages/signed-tower-count.md)], [[tower-parity-sectors](pages/tower-parity-sectors.md)]). The first six:[^1]
+For the castle characteristic polynomials the split goes by the parity of `k`: `char_k` is irreducible over the rationals for odd `k ≤ 31`, proved below by one prime for each `k`, and has exactly two irreducible factors for even `k ≤ 40` (computed; [[signed-tower-count](pages/signed-tower-count.md)], [[tower-parity-sectors](pages/tower-parity-sectors.md)]). The first six:[^1]
 
 | | char poly | factors? |
 |---|---|---|
@@ -73,7 +73,20 @@ sp.factor(x**4 - 4*x**3 + 8*x**2 - 8*x + 8)  # char_3 : irreducible
 x**4 - 4*x**3 + 8*x**2 - 8*x + 8
 ```
 
-`factor` returns `char_3` unchanged: it has no factor over `ℚ`.[^3] For `char_1` and `char_3` there is also a proof: substitute `x = 2y`, divide by `2^k`, reverse the coefficients, and the result (`y⁴ − 2y³ + 4y² − 4y + 2` for `char_3`) is Eisenstein at 2. That works for exactly `k = 1, 3, 7, 15, …` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]); the irreducibility of `char_5` is computed.
+`factor` returns `char_3` unchanged: it has no factor over `ℚ`.[^3] For `char_1` and `char_3` there is also a proof: substitute `x = 2y`, divide by `2^k`, reverse the coefficients, and the result (`y⁴ − 2y³ + 4y² − 4y + 2` for `char_3`) is Eisenstein at 2. That works for exactly `k = 1, 3, 7, 15, …` ([[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]).
+
+**One prime proves irreducibility.** A monic polynomial with integer coefficients that is irreducible mod a prime `p` is irreducible over `ℚ`: by Gauss's lemma a factorization over `ℚ` gives one over the integers into monic factors of lower degree, and it stays a factorization mod `p`. `char_5` is irreducible mod 3, so it is irreducible over `ℚ`. Every odd `k ≤ 31` has such a prime, so the odd rows are proved through `k = 31`:[^5]
+
+| smallest prime `p` with `char_k` irreducible mod `p` | odd `k` |
+|---|---|
+| 3 | 1, 3, 5, 19 |
+| 7 | 7, 15, 21, 25 |
+| 23 | 31 |
+| 31 | 13, 27, 29 |
+| 43 | 11 |
+| 47 | 23 |
+| 59 | 9 |
+| 179 | 17 |
 
 Irreducibility depends on the field. The table is over the rationals `ℚ`. Mod a prime `p`, a polynomial irreducible over `ℚ` can still split ([[finite-fields](pages/finite-fields.md)]): `char_3` splits into four linear factors mod 101 and stays irreducible mod `10⁹ + 7`.[^4] For every odd `k`, `char_k = g·ḡ` over `Q(i)` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]), so `char_k` splits mod every `p ≡ 1 (mod 4)`, as mod `101`, and can stay irreducible only at `p ≡ 3 (mod 4)`, as at `10⁹ + 7`; for `char_5` the primes that keep it irreducible have density `1/6` ([[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)]). For the quadratic `char_1`, with discriminant `−4`, the question is whether `−1` is a square mod `p`, which Euler's criterion answers: it is irreducible exactly when `p ≡ 3 (mod 4)`. A factorization over the integers holds mod every `p`, so `char_2` splits mod every prime.
 
@@ -148,3 +161,4 @@ The order of the group still factors, for every `p` and whatever `Q` is: `p² �
 
 [^3]: Verified by execution (SymPy, 2026-10-16): `sp.factor(x**3 − 3*x**2 + 4*x − 4) = (x − 2)*(x**2 − x + 2)` (composite) and `sp.factor(x**4 − 4*x**3 + 8*x**2 − 8*x + 8)` returns the polynomial unchanged (irreducible).
 [^4]: Verified by execution (SymPy, 2026-10-16): `char_3 mod 101 = (x + 21)(x + 24)(x − 26)(x − 23)`, and `char_3` is irreducible mod `10⁹ + 7`; `10⁹ + 7 ≡ 3 (mod 4)`.
+[^5]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): for each odd `k ≤ 31`, `char_k` from the `num`/`den` update of [[signed-tower-count](pages/signed-tower-count.md)], and the least prime `p ≥ 3` with `char_k mod p` irreducible (SymPy `factor_list` over `F_p`): `3, 3, 3, 7, 59, 43, 31, 7, 179, 3, 7, 47, 7, 31, 31, 23` for `k = 1, 3, …, 31`.
