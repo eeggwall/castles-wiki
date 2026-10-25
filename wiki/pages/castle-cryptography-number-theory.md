@@ -117,18 +117,16 @@ This is why Fix 1 of [[castle-cryptography](pages/castle-cryptography.md)] repla
 - the factor `x − 2` has degree 1, and its piece is `F_p`, an ordinary discrete logarithm mod `p`;
 - the factor `x² − x + 2` has degree 2, and its piece is `F_{p²}` when the factor is irreducible mod `p`.
 
-The attacker solves the two smaller discrete logarithms separately and combines them by the CRT. At `p = 101`:
+The attacker solves the two smaller discrete logarithms separately and combines them by the CRT. At `p = 103` both kinds of modulus behave as the table says: `x² − x + 2` is irreducible, since `−7` is not a square mod 103, and so is `char_3`, which `103 ≡ 3 (mod 4)` allows:[^7]
 
 ```
-reducible char_2:   pieces of group order (p−1) = 100  and  (p²−1) = 10200
-an irreducible quartic:   one group of order  p⁴−1 = 104,060,400
+reducible char_2:     pieces of group order  p − 1 = 102  and  p² − 1 = 10,608
+irreducible char_3:   one group of order     p⁴ − 1 = 112,550,880  =  2⁵·3·5·13·17·1061
 ```
-
-(`char_3` itself splits into four linear factors mod 101, so at this `p` it would not give the quartic field; at `p = 10⁹ + 7` it does.)
 
 **Irreducible `Q` (odd `k`): no split of the ring.** When `Q` stays irreducible mod `p`, `F_p[x]/(Q)` is the field `F_{p^d}`, and the DLP is the discrete logarithm in `F_{p^d}^*`, of order `p^d − 1`. The ring gives no CRT split.
 
-The order of the group still factors, for every `p` and whatever `Q` is: `p² − 1 = (p − 1)(p + 1)`, `p⁴ − 1 = (p − 1)(p + 1)(p² + 1)`, and in general `p^d − 1 = ∏_{e | d} Φ_e(p)` with `Φ_e` the `e`-th cyclotomic polynomial. So Pohlig-Hellman runs on the prime factors of the order instead of the factors of the modulus, and its cost is about the square root of the largest prime dividing the order of `x`. At `p = 10⁹ + 7` that prime is `500000003 ≈ 2^28.9` for both `char_1` and `char_3`, and Attack 4 of [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] recovers the private key in both cases. The norm forces `500000003` into the order of `x` for every `k` at this prime, since the norm of `x` is `2^k` and `2` has order `500000003` mod `p` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 8). An irreducible `Q` removes the split of the ring; the split of the group is removed only by choosing `p` so that `Φ_d(p)` has a large prime factor.
+The order of the group still factors, for every `p` and whatever `Q` is: `p² − 1 = (p − 1)(p + 1)`, `p⁴ − 1 = (p − 1)(p + 1)(p² + 1)`, and in general `p^d − 1 = ∏_{e | d} Φ_e(p)` with `Φ_e` the `e`-th cyclotomic polynomial. So Pohlig-Hellman runs on the prime factors of the order instead of the factors of the modulus, and its cost is about the square root of the largest prime dividing the order of `x`. At `p = 103` the order of `x` mod `char_3` is `1,442,960 = 2⁴·5·17·1061`, so the largest piece has `1061` elements, about 33 baby steps. At `p = 10⁹ + 7` that prime is `500000003 ≈ 2^28.9` for both `char_1` and `char_3`, and Attack 4 of [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] recovers the private key in both cases. The norm forces `500000003` into the order of `x` for every `k` at this prime, since the norm of `x` is `2^k` and `2` has order `500000003` mod `p` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 8). An irreducible `Q` removes the split of the ring; the split of the group is removed only by choosing `p` so that `Φ_d(p)` has a large prime factor.
 
 
 | | reducible `Q` (even `k`) | irreducible `Q` (odd `k`, irreducible mod `p`) |
@@ -172,3 +170,4 @@ The order of the group still factors, for every `p` and whatever `Q` is: `p² �
 [^4]: Verified by execution (SymPy, 2026-10-16): `char_3 mod 101 = (x + 21)(x + 24)(x − 26)(x − 23)`, and `char_3` is irreducible mod `10⁹ + 7`; `10⁹ + 7 ≡ 3 (mod 4)`.
 [^5]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): for each odd `k ≤ 31`, `char_k` from the `num`/`den` update of [[signed-tower-count](pages/signed-tower-count.md)], and the least prime `p ≥ 3` with `char_k mod p` irreducible (SymPy `factor_list` over `F_p`): `3, 3, 3, 7, 59, 43, 31, 7, 179, 3, 7, 47, 7, 31, 31, 23` for `k = 1, 3, …, 31`.
 [^6]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): the Galois groups of `char_1`, `char_3`, `char_5` have orders 2, 8, 72 (`galois_group`: `C_2`, `D_4`, `S6TransitiveSubgroups.G72`); for `k = 1, 3, 5, 7, 9, 11`, `char_k mod p` is irreducible for 1509, 754, 527, 372, 295, 243 of the 3,000 primes from 10,007 to 40,277.
+[^7]: Verified by execution (Python 3.11 with SymPy, 2026-10-25) at `p = 103`: `x² − x + 2` and `char_3` are irreducible; `2` has order 51 in `F_103^*` and a root of `x² − x + 2` has order `5304 = 2³·3·13·17` in `F_{103²}^*`; `p⁴ − 1 = 112550880 = 2⁵·3·5·13·17·1061`, and the order of `x` mod `char_3` is `1442960 = 2⁴·5·17·1061`.
