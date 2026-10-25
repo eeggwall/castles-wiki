@@ -5,7 +5,7 @@ summary: Every place the wiki meets the Fibonacci, tribonacci, tetranacci and hi
 tags: [concept, disambiguation, fibonacci, tribonacci, tetranacci, pentanacci, n-nacci, growth-constant, composition, index]
 sources: [algebraic-languages-and-polyominoes-enumeration, dhar-ruelle-sen-verma-1995-algebraic-aspects, aocp-generating-functions, analytic-combinatorics-ch1-ogfs]
 created: 2026-10-02
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # n-nacci disambiguation
@@ -135,7 +135,7 @@ The castles by semi-perimeter (the bargraphs, A082582) grow like `τ²`, and the
 ## Tetranacci, pentanacci, and higher
 
 - **Castles of height `h ≥ 4` by area.** The rows `h = 4` and `5` of the spine table, growing like the tetranacci constant `1.9276…`, the pentanacci constant `1.9659…`, and so on toward `2` ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)], [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)], [[castle-classification-growth](pages/castle-classification-growth.md)], [[castle-snippets-strips](pages/castle-snippets-strips.md)]).
-- **The ceiling at height `h`.** The `h`-nacci constant bounds the growth by area of every strip rule on `h` heights (the tetranacci constant first appears at height 4). So a constant by area needs at least the first height whose `h`-nacci constant reaches it, the ceiling bound, one of the two lower bounds on the minimum height on [[area-growth-census](pages/area-growth-census.md)].
+- **The ceiling at height `h`.** The `h`-nacci constant bounds the growth by area of every strip rule on `h` heights (the tetranacci constant first appears at height 4). So a constant by area needs at least the first height whose `h`-nacci constant reaches it, the ceiling bound, one of the three lower bounds on the minimum height on [[area-growth-census](pages/area-growth-census.md)].
 - **Width.** The forced-descent rule of tribonacci section 3, on `h` heights, has the companion matrix of `x^h − x^{h−1} − ⋯ − 1` as its transfer matrix.
 - **Bounded parts in general.** Flajolet and Sedgewick's compositions with parts in `{1, …, r}` have ordinary generating function `(1 − z)/(1 − 2z + z^{r+1})` ([[analytic-combinatorics-ch1-ogfs](pages/analytic-combinatorics-ch1-ogfs.md)]).
 - **Not n-nacci.** With `2 × 2` blocks banned, the tree skylines of height at most 4 and area `n` number `A000570(n + 1)` (tournaments) instead of a tetranacci count ([[unique-tournament](pages/unique-tournament.md)], [[tree-castle-by-area](pages/tree-castle-by-area.md)]). With no bound on the height, the tree castles of area `n` number `A005251(n + 2)` and grow like `ψ²`, the square of the plastic number, not 2 ([[plastic-number](pages/plastic-number.md)]).[^exec]

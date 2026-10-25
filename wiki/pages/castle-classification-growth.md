@@ -5,7 +5,7 @@ summary: Growth types classify families of castles, not single castles. A family
 tags: [concept, castle, classification, taxonomy, growth-constant, metallic-means, ridge-castle, non-metallic, meta-classification, n-nacci, cubic-pisot, plastic-number, class-predicate]
 sources: [de-spinadel-1999-family-of-metallic-means]
 created: 2026-09-19
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle classification - growth types
@@ -94,7 +94,7 @@ Two of these constants are metallic means: golden at `h = 2`, and copper `σ_1^2
 |---|---|---|---|
 | supergolden | `1.4656…` | `x³ − x² − 1` | the tree castles of height 2, `A077868(A − 2)` ([[tree-castle-by-area](pages/tree-castle-by-area.md)], [[q-fibonacci-castle](pages/q-fibonacci-castle.md)]); the prime castles of height 4 ([[prime-castles](pages/prime-castles.md)]) |
 | `ψ²` | `1.7549…` | `x³ − 2x² + x − 1` | the tree castles of any height, `A005251(A + 2)` ([[tree-castle-by-area](pages/tree-castle-by-area.md)], [[plastic-number](pages/plastic-number.md)]) |
-| plastic `ψ` | `1.3247…` | `x³ − x − 1` | the ridge castles of height 2, with no two neighboring columns of height 1, `A000931(A + 5)` for `A ≥ 2` ([[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)]), whose rule "height 1 may not follow height 1" has the smallest growth constant by area of a strip rule at height 2 ([[area-growth-census](pages/area-growth-census.md)]); the prime castles of height 3 ([[prime-castles](pages/prime-castles.md)]) |
+| plastic `ψ` | `1.3247…` | `x³ − x − 1` | the ridge castles of height 2, with no two neighboring columns of height 1, `A000931(A + 5)` for `A ≥ 2` ([[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)]), whose rule "height 1 may not follow height 1" has the smallest growth constant above 1 by area of a strip rule at height 2 ([[area-growth-census](pages/area-growth-census.md)]); the prime castles of height 3 ([[prime-castles](pages/prime-castles.md)]) |
 
 The tree castles of height 3 are golden by area, and those of height 4 grow at `1.685137…`, the root of `x⁵ − x⁴ − x² − x − 1`; the tree skylines of height at most 4 are counted by A000570, the tournaments determined by their score vectors ([[tree-castle-by-area](pages/tree-castle-by-area.md)], [[unique-tournament](pages/unique-tournament.md)]).[^1]
 
@@ -137,7 +137,7 @@ The plastic number also appears in the signed tower count, as the largest eigenv
 - [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - the castles of height `h` by area, the n-nacci family.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - tree skylines and tree castles by area.
 - [[prime-castles](pages/prime-castles.md)] - castles with no column of height 1, by area.
-- [[area-growth-census](pages/area-growth-census.md)] - the growth constants by area of all strip rules up to height 4.
+- [[area-growth-census](pages/area-growth-census.md)] - the growth constants by area of all strip rules through height 5.
 - [[castle-perimeter](pages/castle-perimeter.md)] - castles by semi-perimeter.
 - [[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)] - the growth constants by semi-perimeter of all strip rules up to height 4, silver at height 5, and the bound that excludes bronze below height 22.
 - [[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)] - golden, silver, bronze and plastic side by side by width, area, semi-perimeter and spectrum.

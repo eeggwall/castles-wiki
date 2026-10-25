@@ -5,7 +5,7 @@ summary: Verger-Gaugry's preprint claims that every Salem number exceeds θ_31^{
 tags: [paper, source, preprint, salem-number, pisot-number, perron-number, lehmer, mahler-measure, mossinghoff, beta-expansion, parry-number, trinomial, plastic-number, supergolden]
 sources: [verger-gaugry-2024-salem-minoration]
 created: 2026-10-09
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # A Non-Trivial Minoration for the Set of Salem Numbers (Verger-Gaugry, 2024)
@@ -40,7 +40,7 @@ updated: 2026-10-16
 
 ## The castle reading
 
-[[area-growth-census](pages/area-growth-census.md)] counts castle strips by area. Its growth constants are Perron numbers, and the census meets the Pisot and Salem lists.
+[[area-growth-census](pages/area-growth-census.md)] counts castle strips by area. Its growth constants are Perron numbers apart from the periodic ones, whose minimal polynomials are polynomials in `z^p`. Its census of every rule through height 5 finds all ten smallest Pisot numbers by height 4 and all 11 known Salem numbers below 1.3 of degree at most 14 by height 5, and every Salem number of degree 4, 6 or 8 below 2 has a known minimum height.
 
 - **Lehmer's four Salem numbers.** All four from Table 2 are area growth constants of castle strips. The degree-4 and degree-6 numbers (`1.722084`, `1.401268`) first appear at height 3, the degree-8 number (`1.280638`) at height 4, and Lehmer's number at height 5. These are the census's own first heights. The four minimal polynomials above have largest roots `1.722084`, `1.401268`, `1.280638` and `1.176281`, with every other root on the unit circle except the reciprocal (computed).[^exec]
 - **The degree-8 bound.** The census's degree-8 entry `1.280638` is the bound of §3 itself. It is the smallest Salem number of degree at most 8, and Table 2 gives its polynomial.[^7][^8]

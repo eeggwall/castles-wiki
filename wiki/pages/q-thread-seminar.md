@@ -5,7 +5,7 @@ summary: A seminar on castles graded by area, with one castle (2, 1, 3, 3, 1, 1,
 tags: [concept, castle, seminar, pedagogy, teaching, area, q-analog, q-catalan, q-motzkin, q-bessel, prime-castles, signed-count, polyomino, composition]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes, steep-polyominoes-q-motzkin-bessel, prellberg-brak-1995-cluster-models]
 created: 2026-09-27
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # q-thread seminar - castles by area
@@ -132,7 +132,7 @@ Barcucci, Del Lungo, Fédou and Pinzani define three q-analogues of the Motzkin 
 
 ## Stop 7 - fix the height
 
-With the height bounded, the counts by area are rational and their growth constants are algebraic numbers. The tree skylines by area (no `2 × 2` block of cells, height at most `h`) give one C-finite sequence per height: A000930 (Narayana's cows) at `h = 2`, A006498 at `h = 3`, A000570, the tournaments determined by their score vectors, at `h = 4`, and A005251, growth `ψ²`, with the height unrestricted; the tree castles of height `h` are the differences of consecutive rows ([[tree-castle-by-area](pages/tree-castle-by-area.md)]). Over all 0/1 strip rules, [[area-growth-census](pages/area-growth-census.md)] finds that the growth constant by area of a rule on height `h` is at most the `h`-nacci constant, below 2, and that the smallest one above 1 is the root of `z^T − z − 1` with `T = h(h+1)/2`. All ten smallest Pisot numbers appear by height 4, and Lehmer's number first appears at height 5.
+With the height bounded, the counts by area are rational and their growth constants are algebraic numbers. The tree skylines by area (no `2 × 2` block of cells, height at most `h`) give one C-finite sequence per height: A000930 (Narayana's cows) at `h = 2`, A006498 at `h = 3`, A000570, the tournaments determined by their score vectors, at `h = 4`, and A005251, growth `ψ²`, with the height unrestricted; the tree castles of height `h` are the differences of consecutive rows ([[tree-castle-by-area](pages/tree-castle-by-area.md)]). Over all 0/1 strip rules, [[area-growth-census](pages/area-growth-census.md)] proves that the growth constant by area of a rule on `h` heights is at most the `h`-nacci constant, below 2, and that the smallest one above 1 is the root of `z^T − z − 1` with `T = h(h+1)/2`, which first appears at height `h`. Its census of every rule through height 5 finds all ten smallest Pisot numbers by height 4 and Lehmer's number first at height 5, and the largest of three lower bounds on the minimum height, from the degree, the `h`-nacci ceiling and the norm, is exact for 96.8% of the constants.
 
 *Idea:* bounded height turns counting by area into a finite transfer matrix, and the growth constants that occur are algebraic numbers with a smallest height each.
 
@@ -147,7 +147,7 @@ With the height bounded, the counts by area are rational and their growth consta
 | area with the sign | a character, a q-shift recursion | `even − odd ~ 0.0985 (−1.62383)^n` |
 | closed form | sequences of parallelograms | `Π/(1 − x − Π)`, Pólya q-Catalan, poles at `q_0 = −0.61583`, `q_1 = −0.82027` |
 | tower words | cornerless Motzkin paths | Prodinger's weights at `τ = σ = 0` |
-| bounded height | a finite transfer matrix | growth at most the `h`-nacci constant; smallest root of `z^T − z − 1` |
+| bounded height | a finite transfer matrix | growth at most the `h`-nacci constant; smallest above 1 the root of `z^T − z − 1` |
 
 ## Snippet
 

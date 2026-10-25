@@ -5,7 +5,7 @@ summary: Ten ways to draw random castles and the objects beside them, each imple
 tags: [concept, castle, sampling, monte-carlo, transfer-matrix, rejection-sampling, rank-unrank, gray-code, mcmc, coupling-from-the-past, wilson-algorithm, spanning-tree, lgv, wang-landau, random-matrix, sattolo, foata, verification]
 sources: [project-euler-502-brute-force, project-euler-502-castle-factoring, aocp-generating-permutations-tuples]
 created: 2026-09-27
-updated: 2026-10-22
+updated: 2026-10-25
 ---
 
 # Castle samplers
@@ -208,7 +208,7 @@ For the block profile itself the block-weighted transfer matrix is exact, so Wan
 
 This sampler draws the rule instead of the castle. A strip rule is an `h × h` 0/1 matrix saying which column heights may follow which ([[castle-strip](pages/castle-strip.md)]), and its Perron root is the growth constant of its strips by width. Two priors on rules:
 
-- **Uniform over all rules on `h` heights.** There are `2^{h²}` of them, 66,066 for `h ≤ 4` in all, which [[area-growth-census](pages/area-growth-census.md)] lists. At `h = 3` the 512 rules have 18 distinct Perron roots: 1 for 219 rules, the golden mean for 96, 2 for 75 and 0 for 25, with mean 1.418.[^exec]
+- **Uniform over all rules on `h` heights.** There are `2^{h²}` of them, 66,066 for `h ≤ 4` in all, and [[area-growth-census](pages/area-growth-census.md)] enumerates every one through `h = 5`, 33.6 million in all, for its growth by area. At `h = 3` the 512 rules have 18 distinct Perron roots: 1 for 219 rules, the golden mean for 96, 2 for 75 and 0 for 25, with mean 1.418.[^exec]
 - **Bernoulli rules for large `h`.** Each entry is 1 with probability `p`, independently, and the rule is a random matrix. Apart from the Perron root, about `ph`, the spectrum follows the limit laws of random matrices.
 
 At `h = 1000` and `2000` a Bernoulli rule behaved as those laws predict:[^exec]
@@ -247,7 +247,7 @@ The first five are within 1.3 standard errors of the exact value, and the Wang-L
 - [[castle-foata-transform](pages/castle-foata-transform.md)], [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] - peaks as records, and the pairing with permutations.
 - [[castle-graph](pages/castle-graph.md)], [[sandpile-group](pages/sandpile-group.md)], [[sandpile-census](pages/sandpile-census.md)] - the graph and the two sink models on which Wilson's algorithm runs, and the tree counts it reproduces.
 - [[spectral-analysis](pages/spectral-analysis.md)] - section 2, the Lindström-Gessel-Viennot determinant of parallelogram polyominoes.
-- [[area-growth-census](pages/area-growth-census.md)] - the list of all rules that the uniform prior samples.
+- [[area-growth-census](pages/area-growth-census.md)] - every rule that the uniform prior samples, enumerated through height 5 by area.
 - [[castle-entropy](pages/castle-entropy.md)] - `log₂ A^e = log₂ A − 1 + log₂(1 + S/A)`, behind `A^e/A → 1/2`.
 - [[castle-notation](pages/castle-notation.md)] - the block weight `t`, the area weight `q`, `V(w, h)`, `N_i(state)`, `g(b)` and `H_n`.
 - [[aocp-generating-partitions](pages/aocp-generating-partitions.md)] - exercise 47, the Nijenhuis-Wilf uniform random-partition generator, which also draws from a table of completion counts.

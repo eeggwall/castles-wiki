@@ -5,7 +5,7 @@ summary: The hub of the castle classification, at three scopes. Shape types are 
 tags: [concept, castle, classification, taxonomy, hub, scope, shape, spectral, growth]
 sources: [oeis-mining-pe502]
 created: 2026-09-15
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle classification
@@ -62,7 +62,7 @@ The shape types are taken from `charlesreid1.com/wiki/Project_Euler/502/Castle_T
 - [[bronze-castle-hunt](pages/bronze-castle-hunt.md)] - the search for a castle whose graph has spectral radius bronze.
 - [[castle-snippets](pages/castle-snippets.md)] - tested Python snippets for the shape predicates and the castle graph.
 - [[castle-native-gray-tour](pages/castle-native-gray-tour.md)] - Gray tours on the even-block castles of small width and height.
-- [[area-growth-census](pages/area-growth-census.md)] - the growth constants by area of all strip rules up to height 4; the smallest above 1 at height `h ≥ 2` is the root of `z^{h(h+1)/2} − z − 1`, the plastic number at `h = 2`.
+- [[area-growth-census](pages/area-growth-census.md)] - the growth constants by area of all strip rules through height 5; the smallest above 1 at height `h ≥ 2` is the root of `z^{h(h+1)/2} − z − 1`, the plastic number at `h = 2`, and it first appears at height `h`.
 
 ## Footnotes
 

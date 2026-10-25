@@ -5,7 +5,7 @@ summary: The castles of height h and area n are the compositions of n with large
 tags: [analysis, castle, area, generating-function, oeis, fibonacci, tribonacci, tetranacci, n-nacci, composition, growth-constant]
 sources: [oeis-mining-pe502]
 created: 2026-09-17
-updated: 2026-10-22
+updated: 2026-10-25
 ---
 
 # Castles of height `h` by area
@@ -83,7 +83,7 @@ The snippet `bounded_castles_by_area(h, A_max)` on [[castle-snippets-strips](pag
 - [[castle-graph](pages/castle-graph.md)] - the tree castles by width.
 - [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - the convex castles of area `n` as the weakly unimodal compositions of `n`.
 - [[aocp-generating-permutations-tuples](pages/aocp-generating-permutations-tuples.md)] - Knuth's mixed-radix generation (Algorithm M), which enumerates the skylines.
-- [[area-growth-census](pages/area-growth-census.md)] - every 0/1 strip rule through height 5 by area; the growth constant of a rule on height `h` is at most the `h`-nacci constant.
+- [[area-growth-census](pages/area-growth-census.md)] - every 0/1 strip rule through height 5 by area; the growth constant of a rule on `h` heights is at most the `h`-nacci constant, which the all-ones rule attains, so a constant first appears no earlier than the first height whose `h`-nacci constant reaches it.
 
 ## Footnotes
 
