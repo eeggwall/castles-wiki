@@ -3,9 +3,9 @@ title: The convex core of a castle
 category: Analyses
 summary: Every castle has a unique smallest convex (unimodal) skyline above it, its convex core, given by core(c)_i = min(max(c_1..c_i), max(c_i..c_w)). The castles over a core u are the castles that agree with u on its anchors (the first column of each rising plateau, the last column of each falling plateau, both ends of the top plateau) and lie below u elsewhere. The free columns of a plateau at level m are towers of height at most m − 1 hanging from it, so the castles over u number prod T(m − 1, free) = prod m^free and their signed sum is (−1)^h prod P(m − 1, free). Summed over the C(2h + w − 3, w − 1) cores these give A(w, h) = h^w − (h−1)^w and S(w, h) = P(h−2, w) − P(h−1, w), so A^e(w, h) is a sum over convex cores of products of tower counts. Below a castle there need not be a unique largest unimodal skyline: (2, 1, 2) has two maximal ones.
 tags: [analysis, castle, convex, unimodal, tower, signed-tower-count, parity, verification, hull]
-sources: [project-euler-502-representations, project-euler-502-solution, oeis-mining-pe502]
+sources: [project-euler-502-representations, project-euler-502-solution]
 created: 2026-09-20
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # The convex core of a castle
@@ -77,7 +77,7 @@ with `y` the hanging towers of each plateau, so
 
 *Proof.* The block count is the total ascent of the skyline from height 0 ([[castle-sign](pages/castle-sign.md)]), and a unimodal skyline of height `h` has total ascent `h`. The free columns `x_1, …, x_n` of a plateau at height `m` lie between columns of height at least `m`, so they add the total ascent of the closed walk `(m, x_1, …, x_n, m)` to the total ascent of the core. A closed walk has equal total ascent and total descent, and the total descent of `(m, x_1, …, x_n, m)` is the total ascent of `y = (m − x_1, …, m − x_n)` from 0, which is `blocks(y)`. The plateaus contribute independently, which gives Equation (4).
 
-Equation (3) at a convex castle gives `blocks = h`, the minimum-block characterization of convex castles.[^3] In the width-4, height-2 example, the four castles over the rectangle have `2, 3, 3, 3` blocks, and the signed sum `1 − 3 = −2` is `(−1)^2 P(1, 2)`.
+Equation (3) at a convex castle gives `blocks = h`, the minimum-block characterization of convex castles ([[convex-castle](pages/convex-castle.md)], section *Block count*).[^3] In the width-4, height-2 example, the four castles over the rectangle have `2, 3, 3, 3` blocks, and the signed sum `1 − 3 = −2` is `(−1)^2 P(1, 2)`.
 
 Summing Equations (2) and (4) over the cores:
 
@@ -122,7 +122,6 @@ Enumerating `{1, …, h}^w` with maximum `h` and grouping by `core` reproduces b
 
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the rectangular, convex and variation classes and the `D`/`U` insertion rules.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the enumeration of variations as an approach that did not give a formula.
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - `blocks ≥ h` with equality exactly for unimodal skylines.
 
 ## Related Concepts
 
@@ -140,5 +139,5 @@ Enumerating `{1, …, h}^w` with maximum `h` and grouping by `core` reproduces b
 
 [^1]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Steps-Based Approach" L109, L117 - "we can classify all remaining castles as variations on convex castles. To construct variations on castles, we look for runs of RRRs of length 3 or more. Each pair of Rs creates a slot for additional U or D moves", "we MUST insert Ds first; if we insert Us first, we will construct a duplicate castle variation that would be covered by another convex castle. We must also insert Ds and Us in pairs, so as to keep the total height change 0. Last, we cannot insert Ds and Us next to one another."
 [^2]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"What was tried and did not work" L190 - "U/R/D convex-castle enumeration. Conceptually clean, but the case analysis to enumerate variations of a convex castle never resolved into a formula."
-[^3]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `binomial-vandermonde-identity.md` §1 L25-28 - "#blocks >= max(c) = h, with equality iff the profile is unimodal. Hence a convex castle of height h has exactly h blocks, and convex castles are exactly the minimum-block castles of height h."
+[^3]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Steps-Based Approach" L88-90, §"Step 1 Bare Minimum String" L153 [synthesis] - the word of a convex castle has a front with "No D steps" and a back with "No U steps", so one `U` per row, and "The bare minimum string consists of the minimum number of Us and Ds that the castle is required to have". Verified by execution (Python 3.11, 2026-10-25): every skyline of height `h` has at least `h` blocks, with equality exactly when it is unimodal, for `w ≤ 8`, `h ≤ 6` with `h^w ≤ 400000`.
 [^4]: Verified by execution (Python 3.11, 2026-10-16): for every `2 ≤ w ≤ 6` and `2 ≤ h ≤ 5`, `core(c)` is unimodal for every castle, the cores are exactly the `C(2h + w − 3, w − 1)` convex castles, and Equations (2) and (4) hold for every core, with `P` summed over all towers; the two sums over cores at `(6, 4)` (3367, 91) and `(5, 3)` (211, −33); the rectangle as the unique largest fiber for `3 ≤ w ≤ 6`, `2 ≤ h ≤ 5` with `h^w ≤ 20000`, and all fibers equal to 1 at `w = 2`; the castles over `(2, 2, 3, 2, 2, 2)` (8); maximal unimodal minorants by brute force over all unimodal skylines below each castle, `(3, 2)`: 1 of 7, `(6, 4)`: 2,905 of 3,367, `(6, 5)`: 10,242 of 11,529.

@@ -3,9 +3,9 @@ title: Castle counts A(w,h), A^e(w,h) and A^o(w,h)
 category: Concepts
 summary: The castle counts A(w, h) = h^w − (h−1)^w, A^e(w, h) and A^o(w, h) of castles of width w and height h, all of them, those with an even number of blocks, and those with an odd number. A^e is the Project Euler 502 count F(w, h); the problem gives four checkpoint values and asks for A^e(10^12, 100) + A^e(10^4, 10^4) + A^e(100, 10^12) mod 10^9 + 7. At height 2, A^e(w, 2) = A038505(w+1) and A^o(w, 2) = A038503(w+1) − 1.
 tags: [concept, castle, counting-function, project-euler]
-sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-mining-pe502]
+sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-encyclopedia]
 created: 2026-09-13
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # Castle counts A(w,h), A^e(w,h) and A^o(w,h)
@@ -65,7 +65,7 @@ A^o(w, 2)  =  Σ_{j≥1} C(w+1, 4j)    =  A038503(w+1) − 1
 - [[project-euler-502-representations](pages/project-euler-502-representations.md)] - the closed form for `A^e(w, h)` from the tower grammar, checked against three checkpoints.
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the notation `A(w, h)`, `F(w, h)`, and the evaluation paths for the three terms of the target.
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the module that computes `F`, `F_odd` and `F_any = A`, and checks `F + F_odd = F_any` by enumeration.
-- [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the OEIS rows `A(·, h)` and the height-2 sequences `A038505` and `A038503`.
+- [[oeis-encyclopedia](pages/oeis-encyclopedia.md)] - the rows `A(·, h)` as `A000225`, `A001047`, `A005061`, `A005060`, `A005062`, and the height-2 sequences `A038505` and `A038503`, whose entries name the castles of height 2.
 
 ## Related Concepts
 
@@ -85,5 +85,5 @@ A^o(w, 2)  =  Σ_{j≥1} C(w+1, 4j)    =  A038503(w+1) − 1
 [^4]: [[project-euler-502](pages/project-euler-502.md)] §"Project 502: Castle Polyominoes" L28 - "F(4,2) = 10, F(13,10) = 3729050610636, F(10,13) = 37959702514, and F(100,100) mod 1,000,000,007 = 841913936". All four recomputed from the closed form on [[castle-counting-formula](pages/castle-counting-formula.md)] (Python 3.11, 2026-10-16).
 [^5]: [[project-euler-502](pages/project-euler-502.md)] §"Project 502: Castle Polyominoes" L30 - "Find (F(10^12,100) + F(10000,10000) + F(100,10^12)) mod 1,000,000,007."
 [^6]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The rational-function path (h ≤ 15000)" [synthesis] L149-153, §"The k-direction Berlekamp-Massey path (h > 15000)" L155-163 - `F(10^12, 100)` and `F(10000, 10000)` take the rational-function path, with Kitamasa and direct extraction, and `F(100, 10^12)` the Berlekamp-Massey path in `k`.
-[^7]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 2" L42-46 - "h=2 -> A000225 (2^w - 1, Mersenne) h=3 -> A001047 (3^w - 2^w) h=4 -> A005061 (4^w - 3^w) h=5 -> A005060 (5^w - 4^w) h=6 -> A005062 (6^w - 5^w)"; names checked against oeis.org on 2026-10-16.
-[^8]: [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] `mine-notes.md` §"Vein 3" L55-60 - "F(w,2) = A038505(w+1) = sum_k C(w+1, 2+4k) (even blocks) odd(w,2) = A038503(w+1) - 1 = sum_{k>=1} C(w+1, 4k) (odd blocks)", "A038505 = \"sum of every 4th entry of row n, starting at binomial(n,2)\"; A038503 = \"… starting at n choose 0\""; both identities checked by enumeration for `w ≤ 10` (Python 3.11, 2026-10-16).
+[^7]: https://oeis.org/A000225, https://oeis.org/A001047, https://oeis.org/A005061, https://oeis.org/A005060, https://oeis.org/A005062 (read 2026-10-25) - "a(n) = 2^n - 1.", "a(n) = 3^n - 2^n.", "a(n) = 4^n - 3^n.", "a(n) = 5^n - 4^n." and "a(n) = 6^n - 5^n.". Verified by execution (Python 3.11, 2026-10-25): `h^w − (h−1)^w` equals the terms of the five entries for `w ≤ 10`, and the count of skylines of height `h` where `h^w ≤ 400000`.
+[^8]: https://oeis.org/A038505, https://oeis.org/A038503 (read 2026-10-25) - "Sum of every 4th entry of row n in Pascal's triangle, starting at binomial(n,2)." with the comment "a(n) is the number of castle polyominoes of width n-1 and height 2 with an even number of blocks (Project Euler, Problem 502: Counting Castles), for n >= 2", and "Sum of every 4th entry of row n in Pascal's triangle, starting at \"n choose 0\"." with the comment "a(n)-1 is the number of castle polyominoes of width n-1 and height 2 with an odd number of blocks (Project Euler, Problem 502: Counting Castles), for n >= 2". Verified by execution (Python 3.11, 2026-10-25): both lines of the display against enumeration of the castles of height 2 for `w ≤ 15`.
