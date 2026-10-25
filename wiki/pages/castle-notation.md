@@ -5,7 +5,7 @@ summary: The wiki's symbols in one place. Castle counts are written width first:
 tags: [concept, castle, notation, reference, signed-tower-count, castle-sign, pedagogy]
 sources: [project-euler-502-solution, project-euler-502-representations, aocp-generating-partitions]
 created: 2026-09-26
-updated: 2026-10-22
+updated: 2026-10-25
 ---
 
 # Castle notation - castles, towers, and signed counts
@@ -225,7 +225,7 @@ These are local notations on specific pages. Each is unrelated to the tower coun
 | `P_F(w)` | the signed count of Fibonacci towers of length `w` (0/1 strings, no two adjacent 1s), `Σ_m (−1)^m C(w − m + 1, m)`; period 6, `1, 0, −1, −1, 0, 1` | [[fibonacci-castle](pages/fibonacci-castle.md)] |
 | `T̂(L, b)`, `N(L, k)`, `T̂_pal(L, b)` | the number of towers of any height on a base of length `L` with `b` blocks, which is finite because towers with `b` blocks have height at most `b`; the hat separates it from the tower count `T(k, L)`. `N(L, k)` are the Narayana numbers, and `T̂(L, b) = Σ_k N(L, k) C(b + L − k, L − 1) = Σ_i N(b, i) C(L + 1 + 2b − 2i, 2b)`, the second sum indexed by blocks; `N(L, k)` is not `N(q)` or `N_i(state)`. `T̂_pal(L, b)` counts the palindromic towers, `c_j = c_{L+1−j}`, the subscript naming the family as in `A_X` | [[narayana-numbers](pages/narayana-numbers.md)], [[tower-heap](pages/tower-heap.md)], [[cho-huh-nam-sohn-2022-bounded-free-motzkin-paths](pages/cho-huh-nam-sohn-2022-bounded-free-motzkin-paths.md)] |
 | `n`, `a`, `r`, `Eul(n, r)` | the shuffle symbols: number of cards, packets of an a-shuffle, rising sequences of a permutation, and the Eulerian numbers (permutations of `n` with `r` rising sequences), written `Eul` because `A(w, h)` is the castle count; `a` is not the sandpile operator `a_v` | [[bayer-diaconis-1992-dovetail-shuffle](pages/bayer-diaconis-1992-dovetail-shuffle.md)] |
-| `T_h(w)`, `T_h(w, q)`; `A_tree(w, h)` | the **tree skylines** of width `w` and height at most `h`, skylines in `{1, …, h}^w` with no `2 × 2` block of cells, which need not reach `h` and so need not be castles of height `h`, by width and with `q` marking area (the area generating function is `G_h(q)` on [[tree-castle-by-area](pages/tree-castle-by-area.md)]); and the **tree castles** of height `h`, `A_tree(w, h) = T_h(w) − T_{h−1}(w)`. `T_h` is not the tower count `T(k, L)` | [[castle-graph](pages/castle-graph.md)], [[tree-castle-by-area](pages/tree-castle-by-area.md)] |
+| `T_h(w)`, `T_h(w, q)`; `A_tree(w, h)` | the **tree skylines** of width `w` and height at most `h`, skylines in `{1, …, h}^w` with no `2 × 2` block of cells, which need not reach `h` and so need not be castles of height `h`, by width and with `q` marking area (the area generating function is `G_h(q)` on [[tree-castle-by-area](pages/tree-castle-by-area.md)]); and the **tree castles** of height `h`, `A_tree(w, h) = T_h(w) − T_{h−1}(w)`, with signed count `S_tree(w, h) = (−1)^h·(1 − P_F(w))`. `T_h` is not the tower count `T(k, L)` | [[castle-graph](pages/castle-graph.md)], [[tree-castle-by-area](pages/tree-castle-by-area.md)] |
 | `M` | the Project Euler modulus `10⁹ + 7` | [[larger-prime-periodicity](pages/larger-prime-periodicity.md)] |
 | `S(w, h)` | the signed castle count `A^e − A^o` (this page), also used on [[castle-entropy](pages/castle-entropy.md)] | - |
 | `S` | Dhar's entropy `S = ln det Δ` of the sandpile steady state; the wiki writes `ln det L̃` instead, keeping `S(w, h)` for the signed castle count | [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] |
