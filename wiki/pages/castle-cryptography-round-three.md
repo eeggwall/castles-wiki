@@ -132,7 +132,7 @@ Three readings:
 
 - **Composite degree.** Degree 6 makes the torus and the 3-to-1 compression possible, and it also makes the tower sieve apply. On the heuristic formula a 128-bit castle torus needs `p` of 531 to 559 bits, not round two's 423, and the published 512-bit size gives `2^126`. The published sizes are rounded recommendations built on more careful cost models than this formula,[^stam-table] so 512 bits is the minimum, with no margin.
 - **`p` must not be a castle number.** A `p` of special form, such as a castle count or a value of a castle polynomial, admits the special-form sieve, which lowers the cost at a 512-bit `p` from `2^126` to `2^110`. `p` must be random.
-- **The small coefficients of `char_5` do not help the attacker.** Any two irreducible polynomials of degree 6 over `F_p` define isomorphic fields, and discrete logarithms carry across the isomorphism, so the sieve may choose its own polynomials; the special-form speedup depends on the form of `p`, not on the modulus.
+- **The small coefficients of `char_5` do not help the attacker.** Any two irreducible polynomials of degree 6 over `F_p` define isomorphic fields, and discrete logarithms carry across the isomorphism, so the sieve may choose its own polynomials; the special-form speedup depends on the form of `p`, not on the modulus. Nor does the structure of `char_5` help. Its Galois group of order 72 keeps the two blocks of three roots of `f` and `f̄` (section *Choosing p*), and at every prime where `char_5` is irreducible, `p ≡ 3 (mod 4)`, so `F_{p^2} = F_p(i)` and `F_{p^6} = F_{p^2}[x]/(f)`: the extension of degree 3 over `F_{p^2}` that every `F_{p^6}` has and that XTR's traces already use.
 
 #### Attacks that do not apply
 
@@ -140,7 +140,7 @@ Granger and Vercauteren's index calculus works directly in the tori `T_2(F_{q^m}
 
 ## Blue team verdict
 
-Round three sets every parameter the earlier rounds identified: a prime group order (no Pohlig-Hellman), the torus subgroup (no subfield reduction), `sqrt q ≈ 2^512` (Pollard rho out of reach), and a random 512-bit `p` (index calculus at about `2^126` on the heuristic formula). The result is XTR: the castle supplies an irreducible polynomial of degree 6 and a recurrence reading of the trace exponentiation, and nothing that makes the system harder or easier to break than XTR. And the literature's verdict on XTR is that after the move to 128-bit security and the improvements in finite-field discrete logs it is "no longer competitive with elliptic curves".[^stam-abs]
+Round three sets every parameter the earlier rounds identified: a prime group order (no Pohlig-Hellman), the torus subgroup (no subfield reduction), `sqrt q ≈ 2^512` (Pollard rho out of reach), and a random 512-bit `p` (index calculus at about `2^126` on the heuristic formula). The result is XTR: the castle supplies an irreducible polynomial of degree 6 and a recurrence reading of the trace exponentiation, and nothing that makes the system harder or easier to break than XTR. Its Galois group and its factorization over `Q(i)` decide only which primes it can be used at. And the literature's verdict on XTR is that after the move to 128-bit security and the improvements in finite-field discrete logs it is "no longer competitive with elliptic curves".[^stam-abs]
 
 ## Related Concepts
 
