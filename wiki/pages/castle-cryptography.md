@@ -73,7 +73,7 @@ The inverse map uses the idempotents `e_1 = (x² − x + 2)/4 = 51 + 25x + 76x²
 
 Suppose a variant keeps `Q` secret and publishes the terms of a sequence that satisfies its recurrence, as a keystream. [[berlekamp-massey](pages/berlekamp-massey.md)] returns the shortest linear recurrence of the published terms, and it is the recurrence of `Q` once `2·deg(Q)` consecutive terms are known. The first six terms of `P(2, ·)`, `1, 1, 3, 9, 19, 33`, already give the coefficient vector `[1, −3, 4, −4]`, that is `char_2(x) = x³ − 3x² + 4x − 4`.[^2]
 
-Any sequence that satisfies a linear recurrence of order `d` is recovered this way from `2d` terms, so a scheme that publishes terms of `P(k, ·) mod p` publishes `Q`.
+Any sequence that satisfies a linear recurrence of order `d` is recovered this way from `2d` terms, so a scheme that publishes terms of `P(k, ·) mod p` publishes `Q`. Read as castle counts, a public key is a window of `d = k + 1` consecutive terms ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 5), half of what Berlekamp-Massey needs, so a variant that keeps `Q` secret and publishes windows reveals `Q` as soon as `2d` consecutive terms are public.
 
 ## Seminar 2 verdict
 
