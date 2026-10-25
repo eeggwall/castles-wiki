@@ -5,7 +5,7 @@ summary: The three terms the castle cryptosystem uses, explained from the castle
 tags: [analysis, cryptography, number-theory, characteristic-polynomial, irreducible-polynomial, discrete-logarithm, finite-field, pedagogy, engineer, castle]
 sources: [oeis-mining-pe502]
 created: 2026-09-18
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle cryptography - the number theory, for engineers
@@ -81,7 +81,7 @@ Irreducibility depends on the field. The table is over the rationals `ℚ`. Mod 
 
 The security of `castle_dh` rests on the gap between two directions:
 
-- **Forward:** given a secret exponent `a`, compute the public key `A = x^a mod Q`. That is `powmod`: for `a = 10¹²`, 39 squarings and 12 multiplications ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 6).
+- **Forward:** given a secret exponent `a`, compute the public key `A = x^a mod Q`. That is `powmod`: for `a = 10¹²`, 39 squarings and 12 multiplications ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 3).
 - **Backward:** given `A` and `Q`, recover `a`. That is the **discrete logarithm**: which power of `x` gives `A`? Generic attacks, which use only the group operation, cost about the square root of the largest prime factor of the order of `x`.
 
 Classic Diffie-Hellman has the same two directions, with numbers mod a prime in place of polynomials mod `Q`. "Discrete" refers to the finite group, and "logarithm" means the exponent.
@@ -127,7 +127,7 @@ The order of the group still factors, for every `p` and whatever `Q` is: `p² �
 ## Related Concepts
 
 - [[castle-cryptography](pages/castle-cryptography.md)] - the build / red-team / blue-team seminar series this page supports.
-- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - Seminar 1 in full: the ring `F_p[x]/(Q)`, the CRT split and the element orders.
+- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - Seminar 1 in full: the ring `F_p[x]/(Q)`, the key exchange and its windows of castle counts, the element orders and the norm.
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - the second lap, where the irreducible-`Q` fix is shown necessary but not sufficient (group-order Pohlig–Hellman) and the keys are sized.
 - [[finite-fields](pages/finite-fields.md)] - `F_{p^d}`, cyclic groups, and why over-`ℚ`-irreducible polys can still split mod `p`.
 - [[kitamasa](pages/kitamasa.md)] - `x^a mod Q` by binary exponentiation, the easy forward direction.

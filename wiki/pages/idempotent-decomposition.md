@@ -5,12 +5,12 @@ summary: An idempotent e (e² = e) other than 0 and 1 splits a commutative ring 
 tags: [concept, ring, idempotent, chinese-remainder-theorem, quotient-ring, finite-field, eigenvalue, projection, castle]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-26
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Idempotent decomposition
 
-An element `e` of a ring is **idempotent** if `e² = e`; `0` and `1` always are. This page splits the castle ring `F_p[x]/(char_k)`, in which multiplication by `x` is one step of the recurrence of the signed tower count `P(k, ·)` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 3), into its factors by idempotents, and determines which of them come from idempotents of `Z[x]/(char_k)`.
+An element `e` of a ring is **idempotent** if `e² = e`; `0` and `1` always are. This page splits the castle ring `F_p[x]/(char_k)`, in which multiplication by `x` is one step of the recurrence of the signed tower count `P(k, ·)` ([[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 2), into its factors by idempotents, and determines which of them come from idempotents of `Z[x]/(char_k)`.
 
 ## Idempotents and splittings
 
@@ -40,7 +40,7 @@ e_2  =  1 − e_1           =  25x² − 25x + 51      (0 at x = 2;  1 mod x² �
 e_1 + e_2 = 1,    e_1 · e_2 = 0 (mod char_2, p = 101)
 ```
 
-`e_1` is the other factor `x² − x + 2` divided by its value 4 at the root `2`, with `4^{−1} = 76 (mod 101)`. Since `x · (x² − x + 2) = char_2 + 2 · (x² − x + 2)`, `x e_1 = 2 e_1` and `x^L e_1 = 2^L e_1`. So `e_1` isolates the root `2` of `char_2`, its root of largest modulus. This is the `+1` sector of [[tower-parity-sectors](pages/tower-parity-sectors.md)], the signed count of the towers whose last column has even height; at `k = 2` that count is `2^L`, since it satisfies the recurrence of the sector polynomial `x − 2` and equals `1` at `L = 0`. `e_2` isolates the roots `(1 ± √−7)/2` of `x² − x + 2`, which lie in `F_{101²}` because `101 ≡ 3 (mod 7)` and so `−7` is not a square mod 101. The CRT projections `R → F_101 × F_{101²}` of [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] (section 4) are inverted by `(a_1, a_2) ↦ a_1 e_1 + a_2 e_2`.
+`e_1` is the other factor `x² − x + 2` divided by its value 4 at the root `2`, with `4^{−1} = 76 (mod 101)`. Since `x · (x² − x + 2) = char_2 + 2 · (x² − x + 2)`, `x e_1 = 2 e_1` and `x^L e_1 = 2^L e_1`. So `e_1` isolates the root `2` of `char_2`, its root of largest modulus. This is the `+1` sector of [[tower-parity-sectors](pages/tower-parity-sectors.md)], the signed count of the towers whose last column has even height; at `k = 2` that count is `2^L`, since it satisfies the recurrence of the sector polynomial `x − 2` and equals `1` at `L = 0`. `e_2` isolates the roots `(1 ± √−7)/2` of `x² − x + 2`, which lie in `F_{101²}` because `101 ≡ 3 (mod 7)` and so `−7` is not a square mod 101. The CRT projections `R → F_101 × F_{101²}` of [[castle-cryptography](pages/castle-cryptography.md)] (Attack 1) are inverted by `(a_1, a_2) ↦ a_1 e_1 + a_2 e_2`.
 
 **Brute-force check.** The table counts the idempotents of `F_p[x]/(char_k)` among all `p^{k+1}` elements, and gives the product of the nonzero ones:[^exec]
 
@@ -96,7 +96,8 @@ The value `ε_j(ω^i) = [i = j]` is the orthogonality relation `(1/m) Σ_b ω^{b
 ## Related Concepts
 
 - [[chinese-remainder-theorem](pages/chinese-remainder-theorem.md)] - the splitting of `F_p[x]/(char_k)` into the rings `F_p[x]/(g_i^{m_i})`, whose inverse is `(a_i) ↦ Σ a_i e_i`.
-- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `F_p[x]/(char_k)` (section 3) and its CRT projections at `k = 2`, `p = 101`, inverted by `e_1` and `e_2` (section 4).
+- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `F_p[x]/(char_k)` (section 2).
+- [[castle-cryptography](pages/castle-cryptography.md)] - Attack 1: the CRT projections at `k = 2`, `p = 101`, inverted by `e_1` and `e_2`.
 - [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] - the unit groups of the local factors; a repeated factor adds a `p`-group of units and no idempotents.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the two sector factors of `char_k` for even `k`; at `k = 2` the `+1` sector is the root `2` that `e_1` isolates.
 - [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] - the roots-of-unity filter, whose orthogonality relation gives the idempotents `ε_j` of `C[t]/(t^m − 1)`.

@@ -5,7 +5,7 @@ summary: The second round of the build / red-team / blue-team series on the cast
 tags: [analysis, seminar, cryptography, cryptanalysis, red-team, blue-team, pohlig-hellman, baby-step-giant-step, berlekamp-massey, linear-complexity, elgamal, schnorr, signature, finite-field, cyclotomic, index-calculus, key-size, castle]
 sources: [oeis-mining-pe502, granger-vercauteren-2005-dlp-algebraic-tori]
 created: 2026-09-18
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle cryptography, round two
@@ -218,7 +218,7 @@ The two rounds give a procedure for judging a new cryptosystem:
 
 - [[castle-cryptography](pages/castle-cryptography.md)] - round one: the build, Attacks 1 and 2, and Fixes 1 to 3.
 - [[castle-cryptography-round-three](pages/castle-cryptography-round-three.md)] - round three: Fix 4 built as a castle torus on `char_5` (512-bit `p`, prime `p² − p + 1`, 3-to-1 compression by the trace), and the `L_q[1/3]` table of Fix 6 updated for the extended tower number field sieve.
-- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - Seminar 1, whose table of element orders (section 5) Attack 3 factors.
+- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - Seminar 1, whose table of element orders (section 7) Attack 3 factors.
 - [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - the terms characteristic polynomial, irreducible polynomial and discrete logarithm, and why an irreducible `Q` still leaves `p^d − 1` factored.
 - [[kitamasa](pages/kitamasa.md)] - the exponentiation `x^a mod Q` used by ElGamal, the signature and every attack.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - the algorithm that recovers a linear recurrence, run here over `F_p` against filters.

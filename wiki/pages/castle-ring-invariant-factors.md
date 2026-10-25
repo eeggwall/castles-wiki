@@ -5,7 +5,7 @@ summary: The unit group of the castle ring R = F_p[x]/(char_k mod p) as a produc
 tags: [analysis, cryptography, ring, finite-field, unit-group, invariant-factors, structure-theorem, pohlig-hellman, kitamasa, discriminant, linear-complexity, castle]
 sources: [oeis-mining-pe502, calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-21
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle ring by invariant factors
@@ -102,7 +102,7 @@ using `α² + ᾱ² = (α + ᾱ)² − 2αᾱ`. So nine of the ten values occur.
 
 ## Related Concepts
 
-- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `F_p[x]/(Q)`, its CRT split (section 4) and the orders of `x` (section 5).
+- [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `F_p[x]/(Q)` (section 2), the coprimality of `num_k` and `den_k` (section 6), the orders of `x` for `k ≤ 7` at two primes (section 7) and the norm `2^k` of `x` (section 8).
 - [[castle-cryptography-round-two](pages/castle-cryptography-round-two.md)] - Attack 3 (Pohlig-Hellman), Attack 4 (the cyclotomic factorization of `p^d − 1`), Attack 5 (the linear-complexity bounds), Fix 4.
 - [[castle-cryptography](pages/castle-cryptography.md)] - the castle cryptosystem the two seminars build and attack.
 - [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] - characteristic polynomials, irreducibility and discrete logarithms for the cryptosystem.

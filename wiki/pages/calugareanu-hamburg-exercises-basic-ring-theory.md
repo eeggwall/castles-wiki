@@ -5,7 +5,7 @@ summary: An exercise book in ring theory with full solutions, read for the algeb
 tags: [book, source, ring-theory, exercises, chinese-remainder-theorem, idempotent, eisenstein, finite-field, gaussian-integers, quotient-ring]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory]
 created: 2026-09-26
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Exercises in Basic Ring Theory (Călugăreanu, Hamburg 1998)
@@ -96,7 +96,7 @@ The rest (4.1-4.3, 4.6-4.7, 4.12-4.15: unital maps, maps out of `Q`, preimages o
 
 ## Relation to Other Wiki Pages
 
-This book gives textbook proofs for the ring-theory steps that [[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 4, and [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] use without proof. It adds idempotents, a computable form of the CRT split, and the Eisenstein argument of [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]: odd-`k` irreducibility of `char_k` is proved for `k = 2^m − 1` and SymPy-verified otherwise (`k ≤ 31`), as [[tower-parity-sectors](pages/tower-parity-sectors.md)] states it. The Eisenstein argument proves the irreducibility of `char_1` and `char_3` (`k = 1, 3` are of the form `2^m − 1`) that [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] uses.
+This book gives textbook proofs for the ring-theory steps that [[castle-cryptography-ring](pages/castle-cryptography-ring.md)], section 7, [[castle-cryptography](pages/castle-cryptography.md)], Attack 1, and [[castle-ring-invariant-factors](pages/castle-ring-invariant-factors.md)] use without proof. It adds idempotents, a computable form of the CRT split, and the Eisenstein argument of [[char-k-eisenstein-at-two](pages/char-k-eisenstein-at-two.md)]: odd-`k` irreducibility of `char_k` is proved for `k = 2^m − 1` and SymPy-verified otherwise (`k ≤ 31`), as [[tower-parity-sectors](pages/tower-parity-sectors.md)] states it. The Eisenstein argument proves the irreducibility of `char_1` and `char_3` (`k = 1, 3` are of the form `2^m − 1`) that [[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)] uses.
 
 ## Footnotes
 
