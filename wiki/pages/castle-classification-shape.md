@@ -1,7 +1,7 @@
 ---
 title: Castle classification - shape types
 category: Concepts
-summary: The 42 shape types of castles of the Castle Types source, 7 base types and 35 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo and monadnock types. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
+summary: The 41 shape types of castles taken from the Castle Types source, 7 base types and 34 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo and monadnock types. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle, hoodoo-castle, monadnock-castle, distinct-parts]
 sources: [castle-classification, aocp-generating-partitions, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths, project-euler-502-representations, oeis-encyclopedia]
 created: 2026-09-19
@@ -10,7 +10,7 @@ updated: 2026-10-25
 
 # Castle classification - shape types
 
-A **shape type** is a predicate on the skyline `(c_1, …, c_w)` of one castle of width `w` and height `h` ([[castle-polyomino](pages/castle-polyomino.md)], and [[castle-classification](pages/castle-classification.md)] for the other kinds of type). Every castle is column-convex and has a full bottom row, so each type is a further restriction on the skyline.[^1] The Castle Types source lists 7 base types from the polyomino literature and 35 proposed types; this page groups them into seven axes, gives each a construction rule and an example skyline, and records the wiki page and the count where they exist. Three further types, the ridge, hoodoo and monadnock castles, are not among the 42 of the source.
+A **shape type** is a predicate on the skyline `(c_1, …, c_w)` of one castle of width `w` and height `h` ([[castle-polyomino](pages/castle-polyomino.md)], and [[castle-classification](pages/castle-classification.md)] for the other kinds of type). Every castle is column-convex and has a full bottom row, so each type is a further restriction on the skyline.[^1] The Castle Types source lists 7 base types from the polyomino literature and 35 proposed types; this page groups 41 of them into seven axes, gives each a construction rule and an example skyline, and records the wiki page and the count where they exist. Three further types, the ridge, hoodoo and monadnock castles, are not among the 42 of the source.
 
 ## The 7 base types
 
@@ -28,7 +28,7 @@ The base types are polyomino and composition families:[^2]
 
 A Ferrers castle has `c_1 = h`, and lowering the other `w − 1` columns by one leaves a partition in a `(w − 1) × (h − 1)` box, so the Ferrers castles number `C(w + h − 2, w − 1)`, with the area generating function from Cauchy's Theorem C ([[aocp-generating-partitions](pages/aocp-generating-partitions.md)]; checked for `w ≤ 6`, `h ≤ 5`). A staircase castle is a choice of `w − 1` distinct heights below `h`. Every castle is directed: walk east along row 1 to the column of the cell, then north up the column. Every weakly increasing skyline is a parallelogram castle, since `i + c_i` then increases with `i`, so the cells on the line `i + j = s` are those with `s − c_i < i ≤ s`, an interval; the skyline `(3, 1, 1)` is not one, since the line through its cells `(1, 3)` and `(3, 1)` misses the cell `(2, 2)`. The horizontal counterpart of m-disparate, a minimum width for the valleys between raised regions, is counted on [[tower-spacing-castles](pages/tower-spacing-castles.md)].
 
-## The 35 proposed types, by axis
+## The 34 proposed types, by axis
 
 The proposed types fall into seven axes.[^3]
 
@@ -147,14 +147,13 @@ A self-conjugate skyline is a partition equal to its conjugate, so it is weakly 
 
 ### Axis 5: Extremum constraints
 
-Types 15, 16, 24, 25, 26, 27 and 35:
+Types 15, 16, 24, 25, 26 and 35:
 
 | type | predicate | example | wiki page and count |
 |---|---|---|---|
 | **Flat-top** | `h` occurs in two neighboring columns | `(1, 3, 3, 2)` | open |
 | **Single-summit** | `h` occurs in exactly one column | `(1, 3, 2, 2)` | open |
 | **Twin-peak** | `h` occurs in exactly two columns | `(3, 1, 3)` | open |
-| **Single-valley** | 1 occurs in exactly one column | `(2, 1, 3)` | open |
 | **Rainbow** | `w = h`, and the heights are a permutation of `{1, …, h}` | `(2, 3, 1)` | `h!` castles ([[aocp-permutations](pages/aocp-permutations.md)]); by inversions of the skyline, the Mahonian numbers `A008302` ([[aocp-combinatorics](pages/aocp-combinatorics.md)]) |
 | **Boxcastle** | `c_i = h` for all `i` | `(2, 2, 2)` | 1 |
 | **Hook** | `c_1 = h`, `c_i = 1` for `i ≥ 2` | `(3, 1, 1, 1)` | 1 at every `(w, h)`, since the predicate fixes every column |
