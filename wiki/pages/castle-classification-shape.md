@@ -1,7 +1,7 @@
 ---
 title: Castle classification - shape types
 category: Concepts
-summary: The 41 shape types of castles taken from the Castle Types source, 7 base types and 34 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo and monadnock types. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
+summary: The 41 shape types of castles taken from the Castle Types source, 7 base types and 34 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo, monadnock, valley and k-valley types. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle, hoodoo-castle, monadnock-castle, distinct-parts]
 sources: [castle-classification, aocp-generating-partitions, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths, project-euler-502-representations, oeis-encyclopedia]
 created: 2026-09-19
@@ -10,7 +10,7 @@ updated: 2026-10-25
 
 # Castle classification - shape types
 
-A **shape type** is a predicate on the skyline `(c_1, …, c_w)` of one castle of width `w` and height `h` ([[castle-polyomino](pages/castle-polyomino.md)], and [[castle-classification](pages/castle-classification.md)] for the other kinds of type). Every castle is column-convex and has a full bottom row, so each type is a further restriction on the skyline.[^1] The Castle Types source lists 7 base types from the polyomino literature and 35 proposed types; this page groups 41 of them into seven axes, gives each a construction rule and an example skyline, and records the wiki page and the count where they exist. Three further types, the ridge, hoodoo and monadnock castles, are not among the 42 of the source.
+A **shape type** is a predicate on the skyline `(c_1, …, c_w)` of one castle of width `w` and height `h` ([[castle-polyomino](pages/castle-polyomino.md)], and [[castle-classification](pages/castle-classification.md)] for the other kinds of type). Every castle is column-convex and has a full bottom row, so each type is a further restriction on the skyline.[^1] The Castle Types source lists 7 base types from the polyomino literature and 35 proposed types; this page groups 41 of them into seven axes, gives each a construction rule and an example skyline, and records the wiki page and the count where they exist. Five further types, the ridge, hoodoo, monadnock, valley and k-valley castles, are not among the 42 of the source.
 
 ## The 7 base types
 
@@ -34,7 +34,7 @@ The proposed types fall into seven axes.[^3]
 
 ### Axis 1: Convexity and modality
 
-Types 1 to 6, 30 and 31 restrict the local extrema of the skyline, and the hoodoo and monadnock types restrict how the steps change along each side of a unimodal skyline. A local maximum is a maximal run of equal columns higher than both neighbors, with height 0 outside the castle.
+Types 1 to 6, 30 and 31 restrict the local extrema of the skyline, and the hoodoo and monadnock types restrict how the steps change along each side of a unimodal skyline. The valley and k-valley types count the valleys, the pairs of columns `i < j − 1` with every column between them lower than both. A local maximum is a maximal run of equal columns higher than both neighbors, with height 0 outside the castle.
 
 | type | predicate | example | wiki page and count |
 |---|---|---|---|
@@ -48,6 +48,8 @@ Types 1 to 6, 30 and 31 restrict the local extrema of the skyline, and the hoodo
 | **Concave-skyline** | `c_{i−1} − 2c_i + c_{i+1} ≤ 0` | `(1, 3, 4, 4, 3)` | open; a subset of unimodal |
 | **Hoodoo** | unimodal; the rising steps strictly increase and the drops strictly decrease | `(2, 3, 6, 16, 35, 35, 25, 18, 14, 12)` | counted at every `(w, h)` (paragraph *Hoodoo and monadnock castles*) |
 | **Monadnock** | unimodal; the rising steps strictly decrease and the drops strictly increase | `(2, 21, 31, 34, 35, 35, 33, 29, 22, 12)` | as many as hoodoo castles at every `(w, h)` (paragraph *Hoodoo and monadnock castles*) |
+| **Valley** | exactly one valley: a flat floor between two walls `i < j − 1`, unimodal on each side, with the side of the lower wall falling away from the floor (`c_i ≥ c_j` and `c_j, …, c_w` weakly decreasing, or `c_i ≤ c_j` and `c_1, …, c_i` weakly increasing) | `(2, 1, 1, 3, 2)` | `(h − 1)² C(w + 2h − 3, 2h)`, with `blocks = h + depth` ([[valley-castles](pages/valley-castles.md)]) |
+| **k-valley** | exactly `k` valleys | `(2, 1, 3, 3, 1, 1, 2)`, `k = 2` | `k = 0` is convex, `k = 1` is valley; `C(w + 1, 2k + 2)` at height 2 ([[valley-castles](pages/valley-castles.md)]) |
 
 The unimodal and reverse Ferrers castles are counted by the [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)], the vee castles by area on [[castle-by-area](pages/castle-by-area.md)], and the hoodoo and monadnock castles in the paragraph *Hoodoo and monadnock castles*. The convex and vee castles are equinumerous in every `(w, h)` cell computed; no bijection is known.
 

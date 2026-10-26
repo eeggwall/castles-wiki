@@ -139,7 +139,7 @@ blocks h + 1 :  (2h − 3) C(N, 2h)
 blocks h + 2 :  (2h − 5) C(N, 2h) + 2(2h − 5) C(N, 2h + 1) + (2h + 1)(h − 2) C(N, 2h + 2)      (h ≥ 3)
 ```
 
-The first line is the convex count. The `b`-block column is a polynomial in `w` of degree `2b − 2`, the same exponent as the area column. The last entry of each row is `1` at odd `w` (the battlement alone) and `(h − 1)w + 1` at even `w` (checked for `w ≤ 15`, `h ≤ 7`). The second column at `h = 3` is `3 C(w + 3, 6) = A253943(w + 2)`, and the second column at `h = 4` is `5 C(w + 5, 8)`.[^oeis]
+The first line is the convex count. The second line and the first term of the third are proved on [[valley-castles](pages/valley-castles.md)]: the castles with `h + 1` blocks are the valley castles of depth 1, and those with `h + 2` blocks are the valley castles of depth 2 and the 2-valley castles whose valleys both have depth 1. The `b`-block column is a polynomial in `w` of degree `2b − 2`, the same exponent as the area column. The last entry of each row is `1` at odd `w` (the battlement alone) and `(h − 1)w + 1` at even `w` (checked for `w ≤ 15`, `h ≤ 7`). The second column at `h = 3` is `3 C(w + 3, 6) = A253943(w + 2)`, and the second column at `h = 4` is `5 C(w + 5, 8)`.[^oeis]
 
 ## Related Concepts
 
@@ -151,6 +151,7 @@ The first line is the convex count. The `b`-block column is a polynomial in `w` 
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - the generating function by area, width and blocks behind the area-and-blocks triangle.
 - [[castle-conditional-entropy](pages/castle-conditional-entropy.md)] - the joint distribution of blocks and area read as entropy.
 - [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the first column of the width-height-blocks table.
+- [[valley-castles](pages/valley-castles.md)] - the second column of the width-height-blocks table, from the valleys of a castle.
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] - the offset check used for the identifications with OEIS entries.
 
 ## Footnotes
