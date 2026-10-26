@@ -5,7 +5,7 @@ summary: A skyline has tower spacing at least g when, in every row, each run of 
 tags: [analysis, castle, gap-rule, tower-spacing, transfer-matrix, growth-constant, plastic-number, golden-ratio, generating-function, rule-3, sympy, verification, oeis, min-filter, unimodal]
 sources: [pe502-pell-castle-strip, balado-silvestre-2026-runs-binary-strings]
 created: 2026-09-18
-updated: 2026-10-25
+updated: 2026-10-26
 ---
 
 # Minimum tower spacing - skylines and castles
@@ -106,7 +106,11 @@ The cells with `2 ≤ h, g ≤ 6`, with `spacing_g(w, h) = a(w)` where no shift 
 | 5 | A203184`(w+1)` | A228457 | - | - | - |
 | 6 | A203050`(w+1)` | A228458 | - | - | - |
 
-Hardin's two-dimensional tables are the rows `h = 2` (A217839, "0..1 arrays"), `h = 3` (A217883, "0..2 arrays with each element the minimum of k adjacent elements") and `h = 4` (A217954) and the column `g = 3` (A228461, "arrays of maxima of three adjacent elements"). The column `g = 2` is Hardin's words with no strict local maximum (Equation (3)).58882` | 17 |
+Hardin's two-dimensional tables are the rows `h = 2` (A217839, "0..1 arrays"), `h = 3` (A217883, "0..2 arrays with each element the minimum of k adjacent elements") and `h = 4` (A217954) and the column `g = 3` (A228461, "arrays of maxima of three adjacent elements"). The column `g = 2` is Hardin's words with no strict local maximum (Equation (3)). The cells marked `-` in the table above have these first terms:
+
+| cell | `spacing_g(w, h)` for `w = 1, …, 10` | growth | order |
+|---|---|---|---|
+| `(5, 4)` | `5, 25, 95, 295, 791, 1927, 4496, 10606, 26290, 68711` | `2.58882` | 17 |
 | `(5, 5)` | `5, 25, 95, 295, 791, 1897, 4196, 8848, 18502, 39962` | `2.36081` | 21 |
 | `(5, 6)` | `5, 25, 95, 295, 791, 1897, 4166, 8548, 16744, 32174` | `2.19911` | 25 |
 | `(6, 4)` | `6, 36, 161, 581, 1792, 4955, 12889, 33279, 89509, 255685` | `2.88388` | 21 |
