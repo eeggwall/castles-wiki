@@ -62,7 +62,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 
 ### Z - Zoo
 
-- Taxonomy: geometric versus non-geometric classification, and the sub-family lattice (convex, valley, tree, stack, Ferrers, parallelogram, prime).
+- Taxonomy: geometric versus non-geometric classification, and the sub-family lattice (convex, vee, tree, stack, Ferrers, parallelogram, prime).
 - Rule variations: tower spacing (skylines as window-`g` running minima, Hardin's min-of-`g`-adjacent tables), gap rules, no-touching, vertical spacing, higher dimensions with the superlevel-component block count.
 - Symmetry on the census: mirror, cyclic shift, the dihedral group, and Burnside counts of shapes up to reflection.
 - Signal specimens: DTMF and MF tones as exactly periodic castles, image rows and waveforms placed in the zoo.
@@ -77,7 +77,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 - The q-polyomino zoo: Bousquet-Melou add-a-column GFs read off at the area variable; A001169 and A001523 as landmarks.
 - Classical q-families: Carlitz q-Catalan, Barcucci q-Motzkin and q-Bessel, weakly unimodal compositions, steep polyominoes.
 - Bistatistics: area with block count, peaks, records; hunting q-binomial and Narayana-q coefficients.
-- Bijections: `h=3` tree versus all by area, and convex to valley cell by cell in `(w,h)`.
+- Bijections: `h=3` tree versus all by area, and convex to vee cell by cell in `(w,h)`.
 
 ### S - Spectra
 
