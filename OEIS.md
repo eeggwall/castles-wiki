@@ -192,7 +192,7 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
     `odd(w,3)`, `odd(w,4)` and `odd(w,h≥3)` generally; the column `F(4,h)` (`0, 10, 21,
     117, 122, 448, …`); further rows and columns. Searched rows and columns: no match
     2026-10-04. The `w = 3` column facts are under stage 3.
-  - **Area:** the parity-refined area sequences (`cev+cod = A001523`), `strict_valley`.
+  - **Area:** the parity-refined area sequences (`cev+cod = A001523`), `strict_vee`.
   - **Towers and signed counts:** tower rows `w ≥ 6` (`w = 6, 7`: no match 2026-10-04); the
     `P(k,·)` families for `k ≥ 2`; `|P(k,5)|`, `|P(k,6)|`, the `k`-direction rows (no match
     2026-10-04).
@@ -267,8 +267,8 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   zeros between successive ones" comment; A077868 is the better home.
 - A003849 / A001950 / A003622 (the 56-column castle from the Fibonacci word): a single castle,
   not a sequence interpretation.
-- A332578 (compositions whose negation is unimodal, the valley castles by area): the entry
-  already defines them and links A001523; no castle statistic sets them apart (a valley castle
+- A332578 (compositions whose negation is unimodal, the vee castles by area): the entry
+  already defines them and links A001523; no castle statistic sets them apart (a vee castle
   has `c(1) + c(w) − min(c)` blocks), so a comment would rename the definition:
   `raw/oeis-pe502/xrefs/A332578-castle.md`.
 
@@ -440,7 +440,7 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 | Classical polyomino families among castles, by area | signed monotone castles `even − odd` | `-1, 0, 0, 1, 0, 2, 0, 2, -1, 4, -2, 4, -4, 6` | **novel-candidate** (signed, negated and absolute values, no match, 2026-10-16) |
 | Odd-block counts, parity-refined area, and joint block tables | `A^o(w, h)` rows, `h = 3..7` | `h = 3`: `1, 5, 16, 44, 122, 358, 1082, 3274` | **novel-candidate** (`h = 3, 4`: no match, 2026-10-16; `h = 5…7`: 2026-09-26) |
 | Odd-block counts, parity-refined area, and joint block tables | columns `A^o(4..6, h)`, `A^e(5, h)`, `A^e(6, h)` | `A^o(4, h)`: `1, 5, 44, 58, 247, 223, 738, 564` | **novel-candidate** (`A^o(4, ·)`: no match, 2026-10-16; others: 2026-09-26) |
-| Odd-block counts, parity-refined area, and joint block tables | even, odd, convex, valley, non-convex and strict-valley castles by area, split by parity, and their signed differences | on the page | **novel-candidate** (no match, 2026-09-26) |
+| Odd-block counts, parity-refined area, and joint block tables | even, odd, convex, vee, non-convex and strict-vee castles by area, split by parity, and their signed differences | on the page | **novel-candidate** (no match, 2026-09-26) |
 | Odd-block counts, parity-refined area, and joint block tables | castles by area and blocks, triangle | rows `1; 1,1; 1,2,1; 1,4,2,1; 1,6,6,2,1` | **novel-candidate** (no match, 2026-10-16; [A319421](https://oeis.org/A319421) and [A092479](https://oeis.org/A092479) agree on the first five rows, and the sixth row is `1, 9, 12, 7, 2, 1`) |
 | Odd-block counts, parity-refined area, and joint block tables | three-, four- and five-block columns; other cells by blocks and peaks | on the page | **novel-candidate** (no match, 2026-09-26) |
 | Odd-block counts, parity-refined area, and joint block tables | castles of width `w` and height `h` with `h + 1` blocks | `h = 3`: `3, 21, 84, 252, 630, 1386` (from `w = 3`) | **interlink** → [A253943](https://oeis.org/A253943) at `h = 3` (`= A253943(w+2) = 3 C(w+3, 6)`); `h = 4`, `5, 45, 225, 825, 2475, 6435`: **novel-candidate** (no match, 2026-10-16) |
@@ -468,7 +468,7 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 | Other rows | The odd-block rows `A^o(w, 3) = 1, 5, 16, 44, 122, 358, 1082, 3274, …` and `A^o(w, 4) = 0, 0, 6, 58, 342, 1638, 7134, …`: **novel-candidate** (no match, 2026-10-16). | - | (status in the text) |
 | Other rows | Columns of width 3 ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)]): `A^e(3, 2m) = 10m² − 5m + 1 = 5m(2m − 1) + 1`, `6, 31, 76, 141, 226, 331, 456, 601, 766, 951, …`: **novel-candidate** (no match by terms, 2026-10-16; it is `A080860(−m)`). `A^o(3, 2n+1) = 10n² + 5n + 1`, `1, 16, 51, 106, 181, 276, …`: **interlink** → [A080860](https://oeis.org/A080860) (`= A080860(n)`). `A^e(3, 2m+1) = C(2m+1, 2) = m(2m+1)`: **known**, the second hexagonal numbers [A014105](https://oeis.org/A014105). `A^o(3, 2m) = C(2m, 2) = m(2m − 1)`: **known**, the hexagonal numbers [A000384](https://oeis.org/A000384). The interleaved columns `A^e(3, h)` (`6, 3, 31, 10, 76, 21, …` from `h = 2`), `A^o(3, h)` (`1, 1, 16, 6, 51, 15, …` from `h = 1`) and `A^e(4, h)` (`10, 21, 117, 122, 448, 367, 1131, 820, …` from `h = 2`): **novel-candidate** (no match, 2026-10-16). `A^e(4, h)` is `(4h−3)(4h²−3h+2)/6` at even `h` and `(h−1)(8h²−4h+3)/6` at odd `h` (checked `h < 30`). | - | (status in the text) |
 | Other rows | `\|P(k, L)\|` in the tower height `k` at fixed `L ≥ 5` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]): `\|P(k, 5)\| = 1, 0, 33, 64, 225, 384, 833, 1280, 2241, …` and `\|P(k, 6)\| = 1, 8, 59, 32, 541, 680, 2583, 3520, …` from `k = 0`: **novel-candidate** (no match, 2026-10-16). The rows in `L` are in the section *Signed tower count P(k, ·) rows*. | - | (status in the text) |
-| Other rows | The parity-refined sequences by area (even and odd; convex, valley, non-convex and strict-valley) ([[castle-by-area](pages/castle-by-area.md)]): **novel-candidate**, searched 2026-09-26; terms on [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)]. | - | (status in the text) |
+| Other rows | The parity-refined sequences by area (even and odd; convex, vee, non-convex and strict-vee) ([[castle-by-area](pages/castle-by-area.md)]): **novel-candidate**, searched 2026-09-26; terms on [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)]. | - | (status in the text) |
 | Other rows | The towers of width `w ≥ 6` by number of blocks `b` ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]): `w = 6`: `1, 21, 161, 721, 2331, 6083, …`; `w = 7`: `1, 28, 280, 1582, 6244, 19348, …` from `b = 0`: **novel-candidate** (no match, 2026-10-16). | - | (status in the text) |
 | Other rows | The denominators of the Jacobi-Perron convergents of `2ψ²` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]): `1, 1, 2, 4, 47, 53, 104, 204, 2409, 2717, 5330, …`: **novel-candidate** (no match, 2026-10-16). | - | (status in the text) |
 
@@ -478,7 +478,7 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 - The rows `A^o(·, h)` for `h = 3, 4, 5` (orders 5, 9, 11): "No OEIS match" (Vein 8).
 - The block-count distribution of the castles of height `h ≥ 2`: "a new 2D table (no OEIS match)" (Vein 7).
 - The towers by blocks, rows `w = 6, 7`: "new" (Tier 2).
-- The castles by area split by block parity (even, odd, `cev`, `cod`: "four new sequences"), the strict-valley castles by area, `0, 0, 0, 0, 1, 3, 8, 17, 34, 60, 107, 175, 285, 445, 691, …` ("NEW sequence"), and "The 6 parity-refined variants ... are all new" (Veins 9, 9b).
+- The castles by area split by block parity (even, odd, `cev`, `cod`: "four new sequences"), the strict-vee castles by area, `0, 0, 0, 0, 1, 3, 8, 17, 34, 60, 107, 175, 285, 445, 691, …` ("NEW sequence"), and "The 6 parity-refined variants ... are all new" (Veins 9, 9b).
 
 ### Equal to an entry that does not state the castle reading (interlinks)
 
