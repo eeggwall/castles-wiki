@@ -1,7 +1,7 @@
 ---
 title: Castle classification
 category: Concepts
-summary: The hub of the castle classification, at three scopes. Shape types are predicates on one castle's skyline (41 types from the Castle Types source plus ridge, hoodoo, monadnock, valley and k-valley castles). Spectral types are predicates on the spectrum of one castle's graph (tree castles, castles golden and silver by spectrum, isospectral pairs, Ramanujan castles, sparse-spectrum castles). Growth types classify families of castles by the growth constant of their count along a named axis ("golden by width", "tribonacci by area"). Compressibility is a separate invariant on castle-compression.
+summary: The hub of the castle classification, at three scopes. Shape types are predicates on one castle's skyline (41 types from the Castle Types source plus ridge, hoodoo, monadnock, valley, k-valley and city-building castles). Spectral types are predicates on the spectrum of one castle's graph (tree castles, castles golden and silver by spectrum, isospectral pairs, Ramanujan castles, sparse-spectrum castles). Growth types classify families of castles by the growth constant of their count along a named axis ("golden by width", "tribonacci by area"). Compressibility is a separate invariant on castle-compression.
 tags: [concept, castle, classification, taxonomy, hub, scope, shape, spectral, growth]
 sources: [project-euler-502-representations]
 created: 2026-09-15
@@ -26,7 +26,7 @@ A castle of width `w` and height `h` is determined by its skyline, the column he
 
 | scope | what is classified | the invariant | named types | page |
 |---|---|---|---|---|
-| **shape** | one castle | a predicate on the skyline `(c_1, …, c_w)` | unimodal, Ferrers, staircase, palindromic, Dyck-path, Motzkin-path, rainbow, hook, crenellated, m-smooth, m-disparate, …: 41 types from the Castle Types source in seven groups, plus ridge, hoodoo, monadnock, valley and k-valley castles | [[castle-classification-shape](pages/castle-classification-shape.md)] |
+| **shape** | one castle | a predicate on the skyline `(c_1, …, c_w)` | unimodal, Ferrers, staircase, palindromic, Dyck-path, Motzkin-path, rainbow, hook, crenellated, m-smooth, m-disparate, …: 41 types from the Castle Types source in seven groups, plus ridge, hoodoo, monadnock, valley, k-valley and city-building castles | [[castle-classification-shape](pages/castle-classification-shape.md)] |
 | **spectrum** | one castle | a spectrum of its castle graph ([[castle-graph](pages/castle-graph.md)]) or of its skyline | tree castles; castles golden by spectrum (spectral radius `φ`) and silver by spectrum (`1 + √2`); spectral radius `φ²`; isospectral pairs; Ramanujan castles; sparse-spectrum castles | [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] |
 | **growth** | a family of castles defined by a rule | the growth constant of the family's count along a named axis: width, height, area or semi-perimeter | golden, silver, bronze, copper and nickel by width; `δ_4`, `δ_5`, … by width; tribonacci, tetranacci, supergolden, plastic and `ψ²` by area | [[castle-classification-growth](pages/castle-classification-growth.md)] |
 

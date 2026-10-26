@@ -248,3 +248,4 @@ A343773	count	Excess of the number of even Motzkin n-paths (A107587) over the od
 A352116	count	Partial sums of the odd triangular numbers (A014493).	|P(k, 4)| = A352116(k + 1), partial sums of the odd triangular numbers
 A378383	supporting	Number of subwords of the form UDDD in nondecreasing Dyck paths of length 2*n.	agrees with the anchored 1-smooth castles of height 4 through width 10 only; at width 11 the castles number 5205 and the entry has 5206 (castle-sequence-catalogue)
 A378947	supporting	Number of row states in an automaton for the enumeration of the number of fixed polyominoes with bounding box of width n.	states of Marin's row automaton; the castle strip needs h
+A400000	supporting	The city-building sequence: a(n) = the height h of the shortest building which can see exactly h earlier buildings.	the city-building sequence: its terms a(2..w+1) are the city-building castles that always take the lowest legal column

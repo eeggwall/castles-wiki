@@ -1,7 +1,7 @@
 ---
 title: Castle classification - shape types
 category: Concepts
-summary: The 41 shape types of castles taken from the Castle Types source, 7 base types and 34 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo, monadnock, valley and k-valley types. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
+summary: The 41 shape types of castles taken from the Castle Types source, 7 base types and 34 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo, monadnock, valley, k-valley and city-building types. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle, hoodoo-castle, monadnock-castle, distinct-parts]
 sources: [castle-classification, aocp-generating-partitions, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths, project-euler-502-representations, oeis-encyclopedia]
 created: 2026-09-19
@@ -10,7 +10,7 @@ updated: 2026-10-25
 
 # Castle classification - shape types
 
-A **shape type** is a predicate on the skyline `(c_1, …, c_w)` of one castle of width `w` and height `h` ([[castle-polyomino](pages/castle-polyomino.md)], and [[castle-classification](pages/castle-classification.md)] for the other kinds of type). Every castle is column-convex and has a full bottom row, so each type is a further restriction on the skyline.[^1] The Castle Types source lists 7 base types from the polyomino literature and 35 proposed types; this page groups 41 of them into seven axes, gives each a construction rule and an example skyline, and records the wiki page and the count where they exist. Five further types, the ridge, hoodoo, monadnock, valley and k-valley castles, are not among the 42 of the source.
+A **shape type** is a predicate on the skyline `(c_1, …, c_w)` of one castle of width `w` and height `h` ([[castle-polyomino](pages/castle-polyomino.md)], and [[castle-classification](pages/castle-classification.md)] for the other kinds of type). Every castle is column-convex and has a full bottom row, so each type is a further restriction on the skyline.[^1] The Castle Types source lists 7 base types from the polyomino literature and 35 proposed types; this page groups 41 of them into seven axes, gives each a construction rule and an example skyline, and records the wiki page and the count where they exist. Six further types, the ridge, hoodoo, monadnock, valley, k-valley and city-building castles, are not among the 42 of the source.
 
 ## The 7 base types
 
@@ -177,7 +177,7 @@ The even-peak condition is a parity of the number of local maxima, not of the bl
 
 ### Axis 7: Value patterns
 
-Types 19, 20, 22, 23, 28, 29, 33 and 34:
+Types 19, 20, 22, 23, 28, 29, 33 and 34, and the city-building type:
 
 | type | predicate | example | wiki page and count |
 |---|---|---|---|
@@ -189,6 +189,7 @@ Types 19, 20, 22, 23, 28, 29, 33 and 34:
 | **Linear** | `c_i = a + (i − 1)d` | `(1, 3, 5)` | `2⌊(h−1)/(w−1)⌋ + 1` castles for `w ≥ 2` |
 | **Prime-top** | `h` is prime | `(1, 3, 2)` | every castle of prime height |
 | **Integer-mean** | `w` divides `Σ c_i` | `(1, 3, 2)` | open |
+| **City-building** | with the ground `c_0 = 0` in front, every column sees exactly `c_j` of the columns `0, …, j − 1`, a top seeing an earlier one when every top between is on or below the segment joining them (the rule of the city-building sequence A400000) | `(1, 1, 2, 1, 2, 2, 1)` | finitely many at each height, `2, 12, 600, 965952, 31776964193520` for `h = 1, …, 5`; the prefixes of A400000 are members ([[city-building-castles](pages/city-building-castles.md)]) |
 
 For `w ≥ 2`, a linear castle with `d = 0` is the boxcastle; one with `d > 0` has `c_w = h` and `c_1 = h − (w − 1)d ≥ 1`, so `d ≤ (h − 1)/(w − 1)`, and `d < 0` is its mirror image. So the linear castles number `2⌊(h−1)/(w−1)⌋ + 1`, which agrees with brute-force enumeration for `2 ≤ w ≤ 6`, `h ≤ 8`.[^5]
 
