@@ -1,9 +1,9 @@
 ---
 title: Minimum tower spacing - skylines and castles
 category: Analyses
-summary: A skyline has tower spacing at least g when, in every row, each run of empty cells with filled cells on both sides has length at least g. spacing_g(w, h) counts such skylines of width w on {1, …, h}, which need not reach h; the castles of height h among them number spacing_g(w, h) − spacing_g(w, h − 1). A skyline has tower spacing at least g exactly when its 0-based heights are the window-g running minimum of a longer array, so spacing_g(·, h) is Hardin's count of minimum-filter outputs (A217883, A217954, A228461 and their columns), and at g = 2 it is W_{h−1}(w + 1), Hardin's words with no strict local maximum. At h = 2, spacing_g(w, 2) = Σ_k C(w + g − (g−1)k, 2k), with denominator (1 − x)² − x^{g+1}, growth ψ² at g = 2, φ at g = 3 and the supergolden ratio at g = 5. For 2 ≤ h, g ≤ 6 the minimal recurrence has order (h − 1)g + 1 (proved by computation), and for h ≥ 3 no growth constant is a metallic mean.
+summary: A skyline has tower spacing at least g when, in every row, each run of empty cells with filled cells on both sides has length at least g. spacing_g(w, h) counts such skylines of width w on {1, …, h}, which need not reach h; the castles of height h among them number spacing_g(w, h) − spacing_g(w, h − 1). A skyline has tower spacing at least g exactly when its 0-based heights are the window-g running minimum of a longer array, so spacing_g(·, h) is Hardin's count of minimum-filter outputs (A217883, A217954, A228461 and their columns), and at g = 2 it is W_{h−1}(w + 1), Hardin's words with no strict local maximum. At h = 2, spacing_g(w, 2) = Σ_k C(w + g − (g−1)k, 2k), with denominator (1 − x)² − x^{g+1}, growth ψ² at g = 2, φ at g = 3 and the supergolden ratio at g = 5. For 2 ≤ h, g ≤ 6 the minimal recurrence has order (h − 1)g + 1 (proved by computation), and for h ≥ 3 no growth constant is a metallic mean. The row h = 2 is Hardin's table A217839, with spacing_7(w, 2) = A217838(w), and spacing_h(s − h, 2) − 1 counts the castles of height h with every column 1 or h by semi-perimeter s.
 tags: [analysis, castle, gap-rule, tower-spacing, transfer-matrix, growth-constant, plastic-number, golden-ratio, generating-function, rule-3, sympy, verification, oeis, min-filter, unimodal]
-sources: [pe502-pell-castle-strip]
+sources: [pe502-pell-castle-strip, balado-silvestre-2026-runs-binary-strings]
 created: 2026-09-18
 updated: 2026-10-25
 ---
@@ -53,9 +53,13 @@ For odd `g = 2j − 1`, the denominator is a difference of squares, `(1 − x �
 | 4 | `1 − 2x + x² − x⁵` | `1.52895` | `A005253(w + 3)` |
 | 5 | `(1 − x − x³)(1 − x + x³)` | `1.46557`, the supergolden ratio, `y³ = y² + 1` | `A005689(w + 6)` |
 | 6 | `1 − 2x + x² − x⁷` | `1.41780` | `A098574(w + 6)` |
-| 7 | `(1 − x − x⁴)(1 − x + x⁴)` | `1.38028`, `y⁴ = y³ + 1` | |
+| 7 | `(1 − x − x⁴)(1 − x + x⁴)` | `1.38028`, `y⁴ = y³ + 1` | `A217838(w)` |
 
 `ψ` is the plastic number, and `x³ − 2x² + x − 1`, the reversal of the `g = 2` denominator, is the minimal polynomial of `ψ²` ([[plastic-number](pages/plastic-number.md)]). The OEIS entries of the table carry Equation (1) as binomial sums, and `A005253` counts "binary words of length n in which the ones occur only in blocks of length at least 4".[^4] In general `spacing_g(w, 2)` is the number of binary words of length `w + g − 1` whose runs of `1`s all have length at least `g` (section *Minimum filters*).
+
+These words are the strings with no run of 1s of length 1 to `g − 1` in [[balado-silvestre-2026-runs-binary-strings](pages/balado-silvestre-2026-runs-binary-strings.md)], a census of runs in binary strings, which finds them in the OEIS as A005251, A005252, A005253, A005689, A098574 and A217838 for `g = 2, …, 7`, at the shifts of the table above. A217838 fills the row `g = 7`: `spacing_7(w, 2) = A217838(w)`, whose generating function has the denominator `(1 − x + x⁴)(1 − x − x⁴)`. Hardin's table A217839, "Number of n element 0..1 arrays with each element the minimum of k adjacent elements of a random 0..1 array of n+k-1 elements", is the whole row `h = 2`: `T(w, g) = spacing_g(w, 2)`, with the columns 2 to 6 at the shifts above.[^8][^9][^10]
+
+**Castles by semi-perimeter.** Subtracting the all-zero word, `spacing_h(s − h, 2) − 1` counts the castles of height `h` with every column 1 or `h` and semi-perimeter `s`: lengthening each run of height-`h` columns by `h − 1` columns sends them one-to-one onto the nonzero words of length `s − 1` whose runs of 1s are all at least `h` long ([[balado-silvestre-2026-runs-binary-strings](pages/balado-silvestre-2026-runs-binary-strings.md)], section *The castle reading*). So the denominator `(1 − x)² − x^{g+1}` at `g = h` is the one that [[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)] gives for the castles on the two heights 1 and `h`, and the growth constants by semi-perimeter of the `{1, 3}` castles (golden) and of all castles of height 2 (`ψ²`) are those of this table at `g = 3` and `g = 2`.[^10]
 
 ## The minimum-filter description
 
@@ -102,7 +106,7 @@ The cells with `2 ≤ h, g ≤ 6`, with `spacing_g(w, h) = a(w)` where no shift 
 | 5 | A203184`(w+1)` | A228457 | - | - | - |
 | 6 | A203050`(w+1)` | A228458 | - | - | - |
 
-Hardin's two-dimensional tables are the rows `h = 3` (A217883, "0..2 arrays with each element the minimum of k adjacent elements") and `h = 4` (A217954) and the column `g = 3` (A228461, "arrays of maxima of three adjacent elements"). The column `g = 2` is Hardin's words with no strict local maximum (Equation (3)).58882` | 17 |
+Hardin's two-dimensional tables are the rows `h = 2` (A217839, "0..1 arrays"), `h = 3` (A217883, "0..2 arrays with each element the minimum of k adjacent elements") and `h = 4` (A217954) and the column `g = 3` (A228461, "arrays of maxima of three adjacent elements"). The column `g = 2` is Hardin's words with no strict local maximum (Equation (3)).58882` | 17 |
 | `(5, 5)` | `5, 25, 95, 295, 791, 1897, 4196, 8848, 18502, 39962` | `2.36081` | 21 |
 | `(5, 6)` | `5, 25, 95, 295, 791, 1897, 4166, 8548, 16744, 32174` | `2.19911` | 25 |
 | `(6, 4)` | `6, 36, 161, 581, 1792, 4955, 12889, 33279, 89509, 255685` | `2.88388` | 21 |
@@ -125,6 +129,8 @@ Hardin's two-dimensional tables are the rows `h = 3` (A217883, "0..2 arrays with
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the 1-smooth strips on `{1, 2, 3}`, silver by width.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - the shape types, among them the m-smooth and m-disparate rules on neighboring heights.
 - [[castle-snippets-strips](pages/castle-snippets-strips.md)] - the snippet `tower_spacing_matrix(h, g)`.
+- [[balado-silvestre-2026-runs-binary-strings](pages/balado-silvestre-2026-runs-binary-strings.md)] - the binary words of the row `h = 2` as strings with no short run of 1s, and their OEIS entries through `g = 7`.
+- [[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)] and [[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)] - the castles on the heights 1 and `h` by semi-perimeter, counted by `spacing_h(s − h, 2) − 1`.
 
 ## Footnotes
 
@@ -135,3 +141,6 @@ Hardin's two-dimensional tables are the rows `h = 3` (A217883, "0..2 arrays with
 [^5]: Verified by execution (Python 3.11, 2026-10-16): Equation (3) against brute-force counts of Hardin's words for `2 ≤ h ≤ 5`, `w ≤ 6`; the binary words of length `w + g − 1` with every run of `1`s at least `g` against Equation (1) for `2 ≤ g ≤ 6`, `w ≤ 8`.
 [^6]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): `spacing_g(w, h)` for `2 ≤ h, g ≤ 6` and `w ≤ 100` by the dynamic program; Berlekamp-Massey over the rationals gives order `(h − 1)g + 1` in every cell, and the recurrence holds on `C(h + g − 1, g) + (h − 1)g + 6` terms (up to 498 at `(6, 6)`); the growth constant as the largest root of the recurrence polynomial and the degree of its irreducible factor (2 at `(2, 3)`, 3 at `(2, 2)` and `(2, 5)`, at least 4 for `h ≥ 3`); the recurrences of A217878 (`3, −3, 1, 3, −1, 1, 1`) and A217949 (`4, −6, 4, 5, −4, 6, 4, 0, 2, 1`) equal the computed ones; the unimodal comparison for `h ≤ 4`, `g ≤ 5`.
 [^7]: https://oeis.org (read 2026-10-16) - the data fields of A202882, A203094, A203184, A203050, A217878 to A217881, A217949 to A217952, A228457 and A228458 agree with `spacing_g(w, h)` at the stated shifts for every listed term (22 to 33 terms); A217883 and A217954 are "T(n,k) = number of n-element 0..2 [0..3] arrays with each element the minimum of k adjacent elements of a random 0..2 [0..3] array of n+k-1 elements", and A228461 is "T(n,k) = number of arrays of maxima of three adjacent elements of some length n+2 0..k array".
+[^8]: [[balado-silvestre-2026-runs-binary-strings](pages/balado-silvestre-2026-runs-binary-strings.md)] §2.4.4 p.24 L1169-1176 - "w≤1 (n − 2, 0) = w1 (n − 2, 0) is A005251 for n ≥ 2", "w≤2 (n − 1, 0) is A005252 for n ≥ 1", "w≤3 (n, 0) is A005253", "w≤4 (n − 2, 0) is A005689 (number of Twopins positions) for n ≥ 6", "w≤5 (n − 1, 0) is A098574 for n ≥ 1", "w≤6 (n + 6, 0) is A217838", where `w_{≤k}(n, 0)` counts the `n`-strings with no nonnull run of length at most `k`.
+[^9]: https://oeis.org/A217838 and https://oeis.org/A217839 (read 2026-10-25) - A217838 "Number of n element 0..1 arrays with each element the minimum of 7 adjacent elements of a random 0..1 array of n+6 elements", offset 0, data `1, 2, 4, 7, 11, 16, 22, 29, 37, 47, 61, 82, …`, g.f. `(x^7+x^6+x^5+x^4+x^3+x^2+1)/((1 - x + x^4)*(1 - x - x^4))`, "Column 7 of A217839"; A217839 "T(n,k)=Number of n element 0..1 arrays with each element the minimum of k adjacent elements of a random 0..1 array of n+k-1 elements", "Column 2 is A005251(n+3)" through "Column 6 is A098574(n+6)".
+[^10]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): `spacing_7(w, 2)` against A217838 for `w ≤ 16`; every listed term of A217839 (the antidiagonals through `n + k = 12`) against `spacing_k(n, 2)`; the lengthening map, a bijection from the castles of height `h` with every column 1 or `h` and semi-perimeter `s` onto the nonzero binary words of length `s − 1` with every run of 1s at least `h` long, for `h ≤ 5`, `s ≤ 14`, and the count `spacing_h(s − h, 2) − 1` for `h ≤ 9`, `s ≤ h + 11`.

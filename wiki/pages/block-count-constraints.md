@@ -1,11 +1,11 @@
 ---
 title: Block-count constraints
 category: Concepts
-summary: Counting towers or castles whose block count lies in a set S is a coefficient extraction from the block-count generating function G_{k,L}(z) = Σ z^blocks over towers. Three methods, by the shape of S - an m-term average over roots of unity when S is a residue class modulo m, a dot product with the lacunary series of S for any S, and the indicator series of a numerical semigroup when S is closed under addition. At height at most 1, G_{1,L}(z) = Σ_r C(L+1, 2r) z^r, so G_{1,L}(−1) = P(1, L) = A146559(L+1) and the two parity classes are A038503(L+1) and A038505(L+1) = A^e(L, 2).
+summary: Counting towers or castles whose block count lies in a set S is a coefficient extraction from the block-count generating function G_{k,L}(z) = Σ z^blocks over towers. Three methods, by the shape of S - an m-term average over roots of unity when S is a residue class modulo m, a dot product with the lacunary series of S for any S, and the indicator series of a numerical semigroup when S is closed under addition. At height at most 1, G_{1,L}(z) = Σ_r C(L+1, 2r) z^r, so G_{1,L}(−1) = P(1, L) = A146559(L+1) and the two parity classes are A038503(L+1) and A038505(L+1) = A^e(L, 2). Also at height at most 1, at least m blocks occur in Σ_{t ≥ 2m−1} C(L, t) towers, and the blocks total G′_{1,L}(1) = (L + 1) 2^{L−2} = A001792(L − 1), (L + 1)/4 per tower on average.
 tags: [concept, castle, generating-functions, roots-of-unity, coin-problem, pedagogy]
-sources: [project-euler-502-castle-factoring, project-euler-502-observations]
+sources: [project-euler-502-castle-factoring, project-euler-502-observations, balado-silvestre-2026-runs-binary-strings]
 created: 2026-09-14
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Block-count constraints
@@ -94,6 +94,20 @@ By Equation (1), `G_{1,L}(−1) = Σ_r (−1)^r C(L+1, 2r) = Re((1+i)^{L+1})`, w
 
 since `r` is even exactly when `2r ≡ 0 (mod 4)`. The odd-block towers stand under the even-block castles of height 2, whose count `A^e(L, 2)` is the `F(L, 2)` of the problem statement ([[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)], [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]). In general, the towers of height at most 1 with `blocks ≡ r (mod m)` are counted by a sum of every `2m`-th binomial coefficient `C(L+1, j)`, `j ≡ 2r (mod 2m)`; the case `m = 4` is a sum of every eighth.
 
+Two more counts at height at most 1 are in [[balado-silvestre-2026-runs-binary-strings](pages/balado-silvestre-2026-runs-binary-strings.md)], which counts binary strings by their runs of 1s. For `S = {m, m + 1, …}`, Equation (3) gives the towers with at least `m` blocks, and by `C(L+1, 2r) = C(L, 2r) + C(L, 2r − 1)` they number
+
+```
+#{ blocks ≥ m }  =  Σ_{t ≥ 2m−1} C(L, t)  =  2^L − Σ_{t=0}^{2m−2} C(L, t),
+```
+
+`A000225(L) = 2^L − 1`, `A002662(L)` and `A002664(L)` at `m = 1, 2, 3`; at `m = 1` these are the castles of height 2, one per nonempty tower.[^4] The derivative at `z = 1` totals the blocks over all `2^L` towers,
+
+```
+G′_{1,L}(1)  =  Σ_r r C(L+1, 2r)  =  (L + 1) 2^{L−2}  =  A001792(L − 1),
+```
+
+the paper's eq. (368), so a tower of height at most 1 on a base of length `L` has `(L + 1)/4` blocks on average, and the castles of height 2 and width `w`, the `2^w − 1` nonempty towers with the bottom block added, have `1 + (w + 1) 2^{w−2}/(2^w − 1)` blocks on average.[^4][^5][^6]
+
 At every height, the even-block condition of Project Euler 502 is Equation (2) with `m = 2`, applied to `z·(G_{h−1,w} − G_{h−2,w})`; this gives `A^e(w, h)` on [[castle-counting-formula](pages/castle-counting-formula.md)].
 
 ## Appearances in Sources
@@ -113,9 +127,13 @@ At every height, the even-block condition of Project Euler 502 is Equation (2) w
 - [[symbolic-method](pages/symbolic-method.md)] - the constructions `MSET` and `SEQ`.
 - [[unique-tournament](pages/unique-tournament.md)] and [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the compositions with parts in `{1, 3, 4, 5}`, `A000570`.
 - [[castle-entropy](pages/castle-entropy.md)] - the information carried by the even-block condition.
+- [[balado-silvestre-2026-runs-binary-strings](pages/balado-silvestre-2026-runs-binary-strings.md)] - the binary strings by their runs of 1s, the towers of height at most 1 by their blocks.
 
 ## Footnotes
 
 [^1]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" [synthesis] L98-121 - the sign `s(C) = (−1)^{blocks(C)}`, the unsigned count `T` and the signed count `P = Σ s(C)`, so `T = G(1)` and `P = G(−1)`.
 [^2]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L123 - "The full castle is U (tower) D, so its block count is the tower block count plus one for the bottom block".
 [^3]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): Equation (1) for `L ≤ 7`; the castle generating function `z·(G_{h−1,w} − G_{h−2,w})` against enumeration for `w ≤ 4`, `2 ≤ h ≤ 4`; the `m = 4` count at `k = 1`, `L = 6`; the counts `1, 10, 5` at `L = 4` and `12` at `L = 10`; the compositions with parts in `{1, 3, 4, 5}` against the terms of `A000570`.
+[^4]: [[balado-silvestre-2026-runs-binary-strings](pages/balado-silvestre-2026-runs-binary-strings.md)] §2.5.4 pp.26-27 L1322-1340 and §8.1 p.97 L5066-5075, p.100 L5213-5215 [synthesis] - "w≥1 (n) = 2n − 1 is A000225", "w≥2 (n) is A002662", "w≥3 (n) is A002664", with `w^{≥m}(n) = 2^n − Σ_{t=0}^{2(m−1)} C(n, t)` from `C(n+1, 2t) = C(n, 2t) + C(n, 2t − 1)`; "the number of nonnull runs (of arbitrary lengths, all strictly greater than zero) over all n-strings by ρ(n)", eq. (368) `ρ(n) = (n + 1) 2^{n−2}`; "ρ≥k (n + k) and ρ(n + 1) are A001792".
+[^5]: https://oeis.org/A001792, https://oeis.org/A002662, https://oeis.org/A002664 (read 2026-10-25) - A001792 "a(n) = (n+2)*2^(n-1)", data `1, 3, 8, 20, 48, 112, 256, …`, "a(n) is the number of runs of consecutive 1's in all binary sequences of length (n+1)"; A002662 "a(n) = 2^n - 1 - n*(n+1)/2", data `0, 0, 0, 1, 5, 16, 42, …`; A002664 "a(n) = 2^n - C(n,0) - ... - C(n,4)", "a(n) is the number of binary strings of length n that contain at least three runs of ones".
+[^6]: Verified by execution (Python 3.11, 2026-10-25): the towers of height at most 1 with at least `m` blocks against `Σ_{t ≥ 2m−1} C(L, t)` for `L ≤ 12`, `m ≤ 5`, and against the terms of A000225, A002662 and A002664 for `L ≤ 12`; the total block count `(L + 1) 2^{L−2}` against enumeration for `L ≤ 14`, and against the terms of A001792 at `L − 1`; the mean block count of the castles of height 2 against enumeration for `w ≤ 12`.
