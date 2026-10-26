@@ -1,18 +1,23 @@
 ---
 title: Castle classification - growth types
 category: Concepts
-summary: Growth types classify families of castles, not single castles. A family is "X by width" (or by height, by area, by semi-perimeter) when its count, graded by that axis, grows like X^n. Metallic growth constants are de Spinadel's σ_p^q, the roots of x² − px − q, named golden, silver, bronze, copper (= 2) and nickel and otherwise written by symbol; by width the ridge castles realize the q = 1 row δ_a = σ_a^1 and the tree castles of height h the p = 1 column σ_1^{h−1}. Three Padovan-counted families are plastic by width. By area every family grows at most 2, so none is silver or bronze; the castles of height h grow at the h-nacci constants, and tree, prime and ridge castles at supergolden, plastic and ψ². By semi-perimeter all castles grow at τ², τ the tribonacci constant; silver first occurs at height 5, and no family of height at most 21 is bronze (computed).
+summary: Growth types classify families of castles, not single castles; upper bounds hold for every family, and existence and first-height statements are about rules, 0/1 tables of which height may follow which, since every constant below the ceiling of an axis is the growth constant of some family. A family is "X by width" (or by height, by area, by semi-perimeter) when its count, graded by that axis, grows like X^n. Metallic growth constants are de Spinadel's σ_p^q, the roots of x² − px − q, named golden, silver, bronze, copper (= 2) and nickel and otherwise written by symbol; by width the ridge castles realize the q = 1 row δ_a = σ_a^1 and the tree castles of height h the p = 1 column σ_1^{h−1}. Three Padovan-counted families are plastic by width. By area every family grows at most 2, so none is silver or bronze; the castles of height h grow at the h-nacci constants, and tree, prime and ridge castles at supergolden, plastic and ψ². By semi-perimeter all castles grow at τ², τ the tribonacci constant; silver first occurs at height 5, no family of height at most 21 is bronze (computed), and whether a rule of height 22 or more is bronze is open.
 tags: [concept, castle, classification, taxonomy, growth-constant, metallic-means, ridge-castle, non-metallic, meta-classification, n-nacci, cubic-pisot, plastic-number, class-predicate]
 sources: [de-spinadel-1999-family-of-metallic-means, balado-silvestre-2026-runs-binary-strings]
 created: 2026-09-19
-updated: 2026-10-25
+updated: 2026-10-26
 ---
 
 # Castle classification - growth types
 
 ## Scope
 
-The shape types of [[castle-classification-shape](pages/castle-classification-shape.md)] and the spectral types of [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] are predicates on a single castle `(c_1, …, c_w)`. A growth type classifies a **family** of castles, an infinite set defined by a construction rule, by the growth constant of its count along a size axis. A single castle has no growth type, and it belongs to many families with different growth constants.
+The shape types of [[castle-classification-shape](pages/castle-classification-shape.md)] and the spectral types of [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] are predicates on a single castle `(c_1, …, c_w)`. A growth type classifies a **family** of castles, an infinite set of castles, by the growth constant of its count along a size axis. A single castle has no growth type, and it belongs to many families with different growth constants.
+
+Most families on this page come from a **rule**, a 0/1 table on the heights `1, …, h` that says which column height may follow which ([[castle-strip](pages/castle-strip.md)]): the family is the castles of height `h` whose neighboring columns all obey it, sometimes with a condition on the first column, as for the Pell castles. A rule's count has a rational generating function along each axis, so its growth constant is an algebraic number. The two kinds of statement on this page hold for different classes:
+
+- **Upper bounds hold for every family.** A family of castles of height at most `h` is a subset of all of them and grows no faster: no family grows faster than 2 by area, and no family of height at most 21 grows faster than `3.3002…` by semi-perimeter.
+- **Existence and first-height statements are about rules.** Every constant `X ≥ 1` below the growth constant of all castles of height `h` along an axis is the growth constant of some family of castles of height `h`: for each size `n`, take the first `⌊X^n⌋` castles of size `n` in lexicographic order, or all of them when there are fewer. So a statement that a constant does or does not occur, or first occurs at some height, is about rules: "no rule on three heights is bronze by width", "no rule of height at most 4 is silver by semi-perimeter".
 
 Two different rules can give the same growth type: the Pell castles ([[pell-castle](pages/pell-castle.md)]) and the ridge castles of height 3 ([[ridge-castle](pages/ridge-castle.md)]) are both silver by width.
 
@@ -115,7 +120,7 @@ The tree castles of height 3 are golden by area, and those of height 4 grow at `
 
 The two-height families `{1, h}` in this list (the golden `{1, 3}` castles, the `ψ²` castles of height 2, the plastic `{1, 9}` castles) correspond one-to-one to the nonzero binary strings of length `s − 1` whose runs of 1s are all at least `h` long, by deleting the bottom row and lengthening each run of height-`h` columns by `h − 1` ([[balado-silvestre-2026-runs-binary-strings](pages/balado-silvestre-2026-runs-binary-strings.md)], [[golden-silver-bronze-plastic-castles](pages/golden-silver-bronze-plastic-castles.md)]).[^runs]
 
-All castles of height at most 21 grow at `3.3002…` by semi-perimeter, below bronze `δ_3 = 3.3028…`, so no family of castles of height at most 21 is bronze by semi-perimeter (computed); from height 22 on the bound allows it, and whether some family is bronze by semi-perimeter is open.
+All castles of height at most 21 grow at `3.3002…` by semi-perimeter, below bronze `δ_3 = 3.3028…`, so no family of castles of height at most 21 is bronze by semi-perimeter (computed). All castles of height 22 grow faster than bronze, so some family of castles of height 22 is bronze by semi-perimeter (section *Scope*), and the question is whether some rule is. A rule is bronze by semi-perimeter exactly when the spectral radius of its matrix `M(x)`, with a step from height `a` to height `b` weighted `x^{1 + max(0, b − a)}` ([[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)]), is 1 at `x = 1/δ_3 = (√13 − 3)/2`; then `det(I − M(x))` vanishes there, which can be checked exactly in `Q(√13)`. Removing a step from a rule does not raise the spectral radius, and at `x = 1/δ_3` the rule of height 22 that allows every step has spectral radius `1.001999`, so a bronze rule of height 22 is that rule with steps removed that together lower the spectral radius at `1/δ_3` from `1.001999` to exactly 1.[^1] Whether a rule of height 22 or more is bronze by semi-perimeter is open.
 
 ## Statements across scopes
 
