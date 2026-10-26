@@ -1,7 +1,7 @@
 ---
 title: The odd castles and the block-count tables
 category: Analyses
-summary: "The odd-block count A^o(w, h) = (A − S)/2 = (A + P(h−1, w) − P(h−2, w))/2 as a sequence of its own: for 4 <= h <= 7 its minimal characteristic polynomial is that of A^e(·, h); at h = 2 A^o gains the root 1, and at h = 3 it loses the root 2, so its order is 5 against 6. The by-area families (all castles, convex, valley, non-convex, strict valley) split by block parity. Three joint tables: by area and blocks, the b-block column has denominator (1−q)^2 ⋯ (1−q^{b−1})^2 (1−q^b) for b <= 4 and not at b = 5; by area, blocks and peaks, two blocks give the quarter-squares A002620, three blocks with one peak A097701 and three blocks with two peaks A002624; by width, height and blocks, the h-block column is C(N, 2h−2) with N = w + 2h − 3, the (h+1)-block column (2h−3) C(N, 2h), and the (h+2)-block column a three-term binomial sum."
+summary: "The odd-block count A^o(w, h) = (A − S)/2 = (A + P(h−1, w) − P(h−2, w))/2 as a sequence of its own: for 4 <= h <= 7 its minimal characteristic polynomial is that of A^e(·, h); at h = 2 A^o gains the root 1, and at h = 3 it loses the root 2, so its order is 5 against 6. The by-area families (all castles, convex, vee, non-convex, strict vee) split by block parity. Three joint tables: by area and blocks, the b-block column has denominator (1−q)^2 ⋯ (1−q^{b−1})^2 (1−q^b) for b <= 4 and not at b = 5; by area, blocks and peaks, two blocks give the quarter-squares A002620, three blocks with one peak A097701 and three blocks with two peaks A002624; by width, height and blocks, the h-block column is C(N, 2h−2) with N = w + 2h − 3, the (h+1)-block column (2h−3) C(N, 2h), and the (h+2)-block column a three-term binomial sum."
 tags: [analysis, castle, oeis, sequence, odd-count, parity, area, block-count, peaks, joint-distribution, c-finite, binomial, verification]
 sources: [oeis-encyclopedia]
 created: 2026-09-26
@@ -60,14 +60,14 @@ Each by-area family splits by block parity. Terms from `n = 1`:[^exec]
 | `odd` | all, odd blocks | `1, 1, 2, 3, 8, 15, 34, 63, 134, 251, 522, 1005, 2070, 4047, 8260, 16269` | |
 | `cev` | convex, even | `0, 1, 2, 5, 8, 15, 24, 41, 64, 105, 162, 255, 386, 589, 874, 1300` | `cev + cod = A001523` |
 | `cod` | convex, odd | `1, 1, 2, 3, 7, 12, 23, 38, 66, 104, 168, 257, 398, 594, 891, 1304` | |
-| `valley_even` | valley, even | `0, 1, 2, 4, 6, 12, 16, 32, 40, 78, 98, 175, 224, 380, 488, 786` | sum `= A332578` |
-| `valley_odd` | valley, odd | `1, 1, 2, 3, 7, 9, 20, 25, 51, 62, 119, 148, 261, 331, 551, 708` | |
+| `vee_even` | vee, even | `0, 1, 2, 4, 6, 12, 16, 32, 40, 78, 98, 175, 224, 380, 488, 786` | sum `= A332578` |
+| `vee_odd` | vee, odd | `1, 1, 2, 3, 7, 9, 20, 25, 51, 62, 119, 148, 261, 331, 551, 708` | |
 | `nc_even` | non-convex, even | `0, 0, 0, 0, 0, 2, 6, 24, 58, 156, 340, 788, 1640, 3556, 7250, 15199` | sum `= A115981` |
 | `nc_odd` | non-convex, odd | `0, 0, 0, 0, 1, 3, 11, 25, 68, 147, 354, 748, 1672, 3453, 7369, 14965` | |
-| `sv_even` | strict valley, even | `0, 0, 0, 0, 0, 2, 2, 11, 12, 36, 44, 99, 126, 244, 316, 554` | sum `= strict_valley` |
-| `sv_odd` | strict valley, odd | `0, 0, 0, 0, 1, 1, 6, 6, 22, 24, 63, 76, 159, 201, 375, 483` | |
+| `sv_even` | strict vee, even | `0, 0, 0, 0, 0, 2, 2, 11, 12, 36, 44, 99, 126, 244, 316, 554` | sum `= strict_vee` |
+| `sv_odd` | strict vee, odd | `0, 0, 0, 0, 1, 1, 6, 6, 22, 24, 63, 76, 159, 201, 375, 483` | |
 
-A strict-valley castle is a valley castle that is not convex ([[castle-by-area](pages/castle-by-area.md)]); the skyline `(2, 1, 2)` is the smallest. The first sixteen terms of `strict_valley` itself are `0, 0, 0, 0, 1, 3, 8, 17, 34, 60, 107, 175, 285, 445, 691, 1037`. The signed differences begin `cev − cod = −1, 0, 0, 2, 1, 3, 1, 3, −2, 1, −6, −2` and `valley_even − valley_odd = −1, 0, 0, 1, −1, 3, −4, 7, −11, 16, −21, 27`.[^exec]
+A strict-vee castle is a vee castle that is not convex ([[castle-by-area](pages/castle-by-area.md)]); the skyline `(2, 1, 2)` is the smallest. The first sixteen terms of `strict_vee` itself are `0, 0, 0, 0, 1, 3, 8, 17, 34, 60, 107, 175, 285, 445, 691, 1037`. The signed differences begin `cev − cod = −1, 0, 0, 2, 1, 3, 1, 3, −2, 1, −6, −2` and `vee_even − vee_odd = −1, 0, 0, 1, −1, 3, −4, 7, −11, 16, −21, 27`.[^exec]
 
 ## Joint tables
 

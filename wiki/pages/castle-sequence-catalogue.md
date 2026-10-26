@@ -30,7 +30,7 @@ These identities are stated and proved on the pages cited; the section *Catalogu
 - The tower-spacing arrays of Hardin, "each element the minimum of `g` adjacent elements" (`A217878` to `A217881`, `A217949` to `A217952`) and "maxima of three adjacent elements" (`A228457`, `A228458`), with the tables `A217883`, `A217954` and `A228461`; the `h = 2` row `A005252`, `A005253`, `A005689`, `A098574` joins `A005251` with the closed form `Sum_k C(w+g−(g−1)k, 2k)` ([[tower-spacing-castles](pages/tower-spacing-castles.md)]).
 - `A001045`, `A006130`, `A006131`: the tree castles of height at most 3, 4 and 5 by width number `A001045(w+2)`, `A006130(w+1)` and `A006131(w+1)` ([[castle-graph](pages/castle-graph.md)]).
 - `A005408`, `A005891`, `A063490`, `A160747`: the towers of width `w = 2, 3, 4, 5` by number of blocks `b` are `A005408(b)`, `A005891(b)`, `A063490(b+1)` and `A160747(b)`, and the Narayana triangle `A001263` enters the general row ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]).
-- `A001523`, `A115981`, `A332578`: the convex, non-convex and valley castles by area ([[castle-by-area](pages/castle-by-area.md)]).
+- `A001523`, `A115981`, `A332578`: the convex, non-convex and vee castles by area ([[castle-by-area](pages/castle-by-area.md)]).
 - `A352116`: `|P(k, 4)| = A352116(k+1)` in the tower height `k` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]).
 - `A343386`, `A107587`, `A343773`, `A171842`, `A005773`: the Motzkin-path castles and their parity split, the Motzkin strip of height 3, and the Motzkin left factors ([[motzkin-castles](pages/motzkin-castles.md)]; the section *Motzkin castles*).
 
@@ -279,7 +279,7 @@ The odd-block, parity-refined and joint block rows; full terms on [[odd-castles-
 |---|---|---|---|
 | `A^o(w, h)` rows, `h = 3..7` | `h = 3`: `1, 5, 16, 44, 122, 358, 1082, 3274` | `(A + P(h−1, w) − P(h−2, w))/2`; order 5, 9, 11, 13, 15 | - |
 | columns `A^o(4..6, h)`, `A^e(5, h)`, `A^e(6, h)` | `A^o(4, h)`: `1, 5, 44, 58, 247, 223, 738, 564` | a polynomial in `h` plus `(−1)^h` times a polynomial in `h` | - |
-| even, odd, convex, valley, non-convex and strict-valley castles by area, split by parity, and their signed differences | on the page | `cev + cod = A001523`, `valley_even + valley_odd = A332578`, `nc_even + nc_odd = A115981` | - |
+| even, odd, convex, vee, non-convex and strict-vee castles by area, split by parity, and their signed differences | on the page | `cev + cod = A001523`, `vee_even + vee_odd = A332578`, `nc_even + nc_odd = A115981` | - |
 | castles by area and blocks, triangle | rows `1; 1,1; 1,2,1; 1,4,2,1; 1,6,6,2,1` | column `b` rational for `b ≤ 4` | - |
 | two-block castles by area | `1, 2, 4, 6, 9, 12, 16, 20, 25` (from `n = 2`) | `q²/((1−q)²(1−q²))` | [A002620](https://oeis.org/A002620) quarter-squares (`= A002620(n)`) |
 | three-block castles with one peak, by area | `1, 2, 5, 9, 16, 25, 39, 56, 80` (from `n = 3`) | `q³/((1−q)²(1−q²)²(1−q³))` | [A097701](https://oeis.org/A097701) (`= A097701(n−3)`) |
@@ -361,7 +361,7 @@ Fibonacci castles, the castles of height 2 with no two neighboring columns of he
 - The odd-block rows `A^o(w, 3) = 1, 5, 16, 44, 122, 358, 1082, 3274, …` and `A^o(w, 4) = 0, 0, 6, 58, 342, 1638, 7134, …`.
 - Columns of width 3 ([[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)]): `A^e(3, 2m) = 10m² − 5m + 1 = 5m(2m − 1) + 1`, `6, 31, 76, 141, 226, 331, 456, 601, 766, 951, …`, which is `A080860(−m)`. `A^o(3, 2n+1) = 10n² + 5n + 1`, `1, 16, 51, 106, 181, 276, …`, is [A080860](https://oeis.org/A080860)(`n`). `A^e(3, 2m+1) = C(2m+1, 2) = m(2m+1)` are the second hexagonal numbers [A014105](https://oeis.org/A014105), and `A^o(3, 2m) = C(2m, 2) = m(2m − 1)` the hexagonal numbers [A000384](https://oeis.org/A000384). The interleaved columns are `A^e(3, h)` (`6, 3, 31, 10, 76, 21, …` from `h = 2`), `A^o(3, h)` (`1, 1, 16, 6, 51, 15, …` from `h = 1`) and `A^e(4, h)` (`10, 21, 117, 122, 448, 367, 1131, 820, …` from `h = 2`). `A^e(4, h)` is `(4h−3)(4h²−3h+2)/6` at even `h` and `(h−1)(8h²−4h+3)/6` at odd `h` (checked `h < 30`).
 - `|P(k, L)|` in the tower height `k` at fixed `L ≥ 5` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]): `|P(k, 5)| = 1, 0, 33, 64, 225, 384, 833, 1280, 2241, …` and `|P(k, 6)| = 1, 8, 59, 32, 541, 680, 2583, 3520, …` from `k = 0`. The rows in `L` are in the section *Signed tower count P(k, ·) rows*.
-- The parity-refined sequences by area (even and odd; convex, valley, non-convex and strict-valley) ([[castle-by-area](pages/castle-by-area.md)]); terms on [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)].
+- The parity-refined sequences by area (even and odd; convex, vee, non-convex and strict-vee) ([[castle-by-area](pages/castle-by-area.md)]); terms on [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)].
 - The towers of width `w ≥ 6` by number of blocks `b` ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]): `w = 6`: `1, 21, 161, 721, 2331, 6083, …`; `w = 7`: `1, 28, 280, 1582, 6244, 19348, …` from `b = 0`.
 - The denominators of the Jacobi-Perron convergents of `2ψ²` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]): `1, 1, 2, 4, 47, 53, 104, 204, 2409, 2717, 5330, …`.
 

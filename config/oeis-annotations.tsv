@@ -239,7 +239,7 @@ A308435	supporting	Peak- and valleyless Motzkin meanders.	cornerless Motzkin mea
 A319591	supporting	Number of nonnegative integer matrices with n columns and any number of nonzero distinct rows with every column summing to 3 up to permutation of rows.	Bender's c*((0,0,n)): every element three times, no repeated blocks
 A322487	supporting	Number of (3*n) X n matrices with nonnegative integer entries and each column sum being 3 up to permutation of rows.	Bender's v*((0,0,n)): all partitions of a multiset with every element three times
 A329398	count	Number of compositions of n with uniform Lyndon factorization and uniform co-Lyndon factorization.	monotone castles by area, 2p(n) - d(n); the entry proves the monotone reading
-A332578	count	Number of compositions of n whose negation is unimodal.	valley castles by area
+A332578	count	Number of compositions of n whose negation is unimodal.	vee castles by area
 A332669	count	Number of compositions of n whose negation is not unimodal.	not-unimodal compositions
 A332834	count	Number of compositions of n that are neither weakly increasing nor weakly decreasing.	non-monotone castles by area
 A342528	count	Number of compositions with alternating parts weakly decreasing (or weakly increasing).	convex castles of area n+1 whose first column is not 1 (first difference of A001523)

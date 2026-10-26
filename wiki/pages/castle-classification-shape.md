@@ -43,13 +43,13 @@ Types 1 to 6, 30 and 31 restrict the local extrema of the skyline, and the hoodo
 | **Strictly unimodal** | strictly increasing to one column, then strictly decreasing | `(1, 3, 4, 2)` | a subset of the unimodal castles; open |
 | **Bimodal** | exactly two local maxima | `(1, 3, 1, 2, 1)` | open |
 | **k-modal** | at most `k` local maxima | `(1, 2, 1, 3, 1, 2, 1)`, `k = 3` | open; `k = 1` is unimodal |
-| **Anti-unimodal (V-shaped)** | weakly decreasing, then weakly increasing | `(3, 1, 1, 2)` | the valley castles, by area `A332578` ([[castle-by-area](pages/castle-by-area.md)]) |
-| **Convex-skyline** | `c_{i−1} − 2c_i + c_{i+1} ≥ 0` | `(3, 1, 1, 2)` | open; a subset of anti-unimodal |
+| **Vee (V-shaped)** | weakly decreasing, then weakly increasing | `(3, 1, 1, 2)` | the vee castles, by area `A332578` ([[castle-by-area](pages/castle-by-area.md)]) |
+| **Convex-skyline** | `c_{i−1} − 2c_i + c_{i+1} ≥ 0` | `(3, 1, 1, 2)` | open; a subset of vee |
 | **Concave-skyline** | `c_{i−1} − 2c_i + c_{i+1} ≤ 0` | `(1, 3, 4, 4, 3)` | open; a subset of unimodal |
 | **Hoodoo** | unimodal; the rising steps strictly increase and the drops strictly decrease | `(2, 3, 6, 16, 35, 35, 25, 18, 14, 12)` | counted at every `(w, h)` (paragraph *Hoodoo and monadnock castles*) |
 | **Monadnock** | unimodal; the rising steps strictly decrease and the drops strictly increase | `(2, 21, 31, 34, 35, 35, 33, 29, 22, 12)` | as many as hoodoo castles at every `(w, h)` (paragraph *Hoodoo and monadnock castles*) |
 
-The unimodal and reverse Ferrers castles are counted by the [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)], the valley castles by area on [[castle-by-area](pages/castle-by-area.md)], and the hoodoo and monadnock castles in the paragraph *Hoodoo and monadnock castles*. The convex and valley castles are equinumerous in every `(w, h)` cell computed; no bijection is known.
+The unimodal and reverse Ferrers castles are counted by the [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)], the vee castles by area on [[castle-by-area](pages/castle-by-area.md)], and the hoodoo and monadnock castles in the paragraph *Hoodoo and monadnock castles*. The convex and vee castles are equinumerous in every `(w, h)` cell computed; no bijection is known.
 
 **Convexity fixes the block count.** A convex castle of height `h` has exactly `h` blocks, one per row, and the convex castles are exactly the castles of height `h` with `h` blocks, the fewest possible ([[convex-castle](pages/convex-castle.md)], section *Block count*).[^4] So the convex castles all have an even number of blocks when `h` is even and an odd number when `h` is odd.
 
@@ -57,7 +57,7 @@ The unimodal and reverse Ferrers castles are counted by the [[convex-castle-bino
 
 - **Hoodoo castle.** The rising steps strictly increase and the drops strictly decrease, so each side is discrete-convex. In the example, of height 35 and width 10, the rising steps are `1, 3, 10, 19` and the drops `10, 7, 4, 2`.
 - **Monadnock castle.** The rising steps strictly decrease and the drops strictly increase, so the whole skyline is discrete-concave. In the example, of height 35 and width 10, the rising steps are `19, 10, 3, 1` and the drops `2, 4, 7, 10`.
-- **Relation to the convex-skyline and concave-skyline types.** A convex-skyline castle is a valley, while a hoodoo is discrete-convex on each side but not at the summit. The monadnock castles are the concave-skyline castles with both sides present and strictly monotone steps.
+- **Relation to the convex-skyline and concave-skyline types.** A convex-skyline castle is a vee castle, while a hoodoo is discrete-convex on each side but not at the summit. The monadnock castles are the concave-skyline castles with both sides present and strictly monotone steps.
 - **Sides are partitions into distinct parts.** The steps of one side are distinct positive integers, and their sum is `h` minus the height of the side's outer column, a number from 1 to `h − 1`. Read as a set, a side is a partition into distinct parts of an integer in `1, …, h − 1`, and each such partition gives exactly one hoodoo side (steps in increasing order) and one monadnock side (decreasing order). A side with `m` steps needs a rise of at least `1 + 2 + ⋯ + m = m(m+1)/2`, so a side has at most 1 column at `h = 2, 3`, 2 at `h = 4, …, 6`, and 3 at `h = 7, …, 10`.
 - **Step reversal.** Reversing the order of the steps on each side turns a hoodoo castle into a monadnock castle with the same `w`, `h`, end columns, side lengths and summit length; the two examples are such a pair. The hoodoo castle has the smaller area, 166 against 254 in the example, since its sides lie below the chord between their ends and the monadnock's above it.
 - **Count.** The two sides are chosen independently and the summit takes the remaining width, so the count at width `w` is the number of ordered pairs of partitions into distinct parts, of integers in `1, …, h − 1`, whose numbers of parts add to at most `w − 1`. By width `w = 3, 4, 5, …`, the hoodoo castles, and equally the monadnock castles, number:
@@ -200,7 +200,7 @@ For `w ≥ 2`, a linear castle with `d = 0` is the boxcastle; one with `d > 0` h
 - [[polyominoes](pages/polyominoes.md)], [[column-convex-polyomino](pages/column-convex-polyomino.md)], [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - the polyomino families of the base types.
 - [[stack-polyomino-gf](pages/stack-polyomino-gf.md)] - the unimodal skylines counted by area, Analytic Combinatorics Exercise I.8.
 - [[dyck-words](pages/dyck-words.md)], [[motzkin-numbers](pages/motzkin-numbers.md)], [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] - the path-like types and the tower words.
-- [[castle-by-area](pages/castle-by-area.md)] - the even-area and valley castles counted by area.
+- [[castle-by-area](pages/castle-by-area.md)] - the even-area and vee castles counted by area.
 - [[castle-sign](pages/castle-sign.md)], [[castle-foata-transform](pages/castle-foata-transform.md)] - the block count and the peaks.
 - [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] - the permutation constructions that apply to rainbow castles.
 - [[castle-snippets](pages/castle-snippets.md)] - Python predicates for the types on this page.

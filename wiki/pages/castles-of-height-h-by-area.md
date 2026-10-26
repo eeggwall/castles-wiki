@@ -74,7 +74,7 @@ The snippet `bounded_castles_by_area(h, A_max)` on [[castle-snippets-strips](pag
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castles of area `n` as the `2^{n−1}` compositions of `n`, among the first OEIS matches.
 - [[n-nacci-disambiguation](pages/n-nacci-disambiguation.md)] - the Fibonacci, tribonacci and higher n-nacci appearances on the wiki, grouped by the mechanism that produces them.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree skylines of height at most `h` and the tree castles of height `h` by area.
-- [[castle-by-area](pages/castle-by-area.md)] - all castles by area, `2^{n−1}`, and the convex and valley families.
+- [[castle-by-area](pages/castle-by-area.md)] - all castles by area, `2^{n−1}`, and the convex and vee families.
 - [[plastic-number](pages/plastic-number.md)] - the plastic number `ψ` and `ψ²`, the growth of the tree castles by area with the height unrestricted.
 - [[metallic-means](pages/metallic-means.md)] - de Spinadel's family `σ_p^q`, to which `φ` belongs and the `h`-nacci constants for `h ≥ 3` do not.
 - [[castle-graph](pages/castle-graph.md)] - the tree castles by width.

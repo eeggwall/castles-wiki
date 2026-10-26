@@ -5,7 +5,7 @@ summary: Bousquet-Mélou's 1996 generating functions for stack, parallelogram, d
 tags: [analysis, polyomino, column-convex, directed-column-convex, area, perimeter, parity, sign, q-series, castle, stack-polyomino, parallelogram-polyomino, directed-convex, oeis, asymptotics, verification]
 sources: [column-convex-polygon-enumeration]
 created: 2026-09-23
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # The column-convex ladder by area
@@ -33,7 +33,7 @@ The paper states the last two generating functions, which it writes `DV(1, 1, 1,
 stacks (A001523)  ⊂  castles (2^{n−1})  ⊂  directed column-convex (F_{2n−1})  ⊂  column-convex (A001169),
 ```
 
-with growth by area subexponential, `2`, `φ²` and `3.20557`. [[castle-by-area](pages/castle-by-area.md)] splits the castles into the convex castles (A001523) and the non-convex castles (A115981). The valley castles (A332578), whose tops fall and then rise, are directed column-convex and not convex, and are not one of the paper's families. The directed column-convex polyominoes by area and the convex castles by semi-perimeter are both counted by A001519 ([[castle-perimeter](pages/castle-perimeter.md)]).
+with growth by area subexponential, `2`, `φ²` and `3.20557`. [[castle-by-area](pages/castle-by-area.md)] splits the castles into the convex castles (A001523) and the non-convex castles (A115981). The vee castles (A332578), whose tops fall and then rise, are directed column-convex and not convex, and are not one of the paper's families. The directed column-convex polyominoes by area and the convex castles by semi-perimeter are both counted by A001519 ([[castle-perimeter](pages/castle-perimeter.md)]).
 
 ## At y = −1: the block sign on every rung
 
