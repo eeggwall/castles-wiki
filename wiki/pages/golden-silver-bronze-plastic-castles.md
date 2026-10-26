@@ -1,7 +1,7 @@
 ---
 title: Golden, silver, bronze and plastic growth of castles
 category: Analyses
-summary: The four constants golden φ, silver 1 + √2, bronze (3 + √13)/2 and plastic ψ (real root of x³ = x + 1) side by side on every axis where a castle family or a single castle can carry a growth constant or spectral radius - width, area, semi-perimeter, adjacency spectrum, the signed transfer matrix. All four are width growth constants. By area only golden and plastic can occur, because every class of castles grows at most 2 by area. By adjacency spectrum plastic cannot occur, because ψ has complex conjugates and a graph's eigenvalues are real. New plastic families, each counted exactly by the Padovan numbers A000931 like the existing maximal castles - the (1, 2)-RLL castles by width, the ridge castles of height 2 by area, and the height-3 rule 1 → 2 → 3 → {1, 2} by width. The prime castles of height 3 number A000931(A + 3) − [A even] by area; of the plastic families by semi-perimeter, the rule 1 → 2, 2 → {2, 3}, 3 → 1 is counted by Padovan numbers in sevenths plus a term of period 6, and the castles with every column 1 or 9 carry a second term growing like 1.187^s. At height 2 one table shows all three gradings - all castles, Fibonacci castles and ridge castles by width, area and semi-perimeter - with golden, plastic, supergolden and ψ² as the entries. φ and ψ are the smallest width growth constants above 1 at heights 2 and 3. Lengthening each run of height-h columns by h − 1 sends the castles of height h with every column 1 or h and semi-perimeter s onto the nonzero binary strings of length s − 1 whose runs of 1s are all at least h long, the height-2 tower-spacing counts spacing_h(s − h, 2) − 1.
+summary: The four constants golden φ, silver 1 + √2, bronze (3 + √13)/2 and plastic ψ (real root of x³ = x + 1) side by side on every axis where a castle family or a single castle can carry a growth constant or spectral radius - width, area, semi-perimeter, adjacency spectrum, the signed transfer matrix. All four are width growth constants. By area only golden and plastic can occur, because every class of castles grows at most 2 by area. By adjacency spectrum plastic cannot occur, because ψ has complex conjugates and a graph's eigenvalues are real. Every irrational eigenvalue of a signed transfer matrix of Project Euler 502 has even norm, so none of the four constants, all units, is one, and plastic enters only as 2ψ². New plastic families, each counted exactly by the Padovan numbers A000931 like the existing maximal castles - the (1, 2)-RLL castles by width, the ridge castles of height 2 by area, and the height-3 rule 1 → 2 → 3 → {1, 2} by width. The prime castles of height 3 number A000931(A + 3) − [A even] by area; of the plastic families by semi-perimeter, the rule 1 → 2, 2 → {2, 3}, 3 → 1 is counted by Padovan numbers in sevenths plus a term of period 6, and the castles with every column 1 or 9 carry a second term growing like 1.187^s. At height 2 one table shows all three gradings - all castles, Fibonacci castles and ridge castles by width, area and semi-perimeter - with golden, plastic, supergolden and ψ² as the entries. φ and ψ are the smallest width growth constants above 1 at heights 2 and 3. Lengthening each run of height-h columns by h − 1 sends the castles of height h with every column 1 or h and semi-perimeter s onto the nonzero binary strings of length s − 1 whose runs of 1s are all at least h long, the height-2 tower-spacing counts spacing_h(s − h, 2) − 1.
 tags: [analysis, castle, metallic-means, golden-ratio, silver-ratio, bronze, plastic-number, padovan, growth-constant, width, area, semi-perimeter, spectral-radius, run-length-limited, ridge-castle, classification, totally-real, oeis, sympy, verification]
 sources: [project-euler-502, balado-silvestre-2026-runs-binary-strings]
 created: 2026-10-10
@@ -38,11 +38,22 @@ The first three are the metallic means ([[metallic-means](pages/metallic-means.m
 |---|---|---|---|---|
 | width | Fibonacci castles; ridge castles, `h = 2` | Pell castles; ridge castles, `h = 3` | ridge castles, `h = 4` | maximal castles; **`(1, 2)`-RLL castles; the rule `1 → 2 → 3 → {1, 2}`, `h = 3`** |
 | area | all castles of height 2; prime castles | **impossible** | **impossible** | **ridge castles, `h = 2`**; palindromic tree castles; prime castles of height 3 |
-| semi-perimeter | castles with every column 1 or 3 | **a height-5 rule (601 of `2^25`)** | **impossible below height 22**; open | **every column 1 or 9**; a height-3 rule |
+| semi-perimeter | castles with every column 1 or 3 | **a height-5 rule (601 of `2^25`)** | **no family below height 22**; open for rules | **every column 1 or 9**; a height-3 rule |
 | adjacency spectrum | the six 4-cell paths | 36 castles up to mirror image | open | **impossible** |
 | signed transfer matrix of Project Euler 502 (PE 502) | never | never | never | `2ψ²` at tower height `k = 6` |
 
 Bold entries are new on this page. The sections below give each entry its rule, an example and its count.
+
+## The empty cells
+
+Each impossible or open cell of the grid has its own obstruction:
+
+| cells | obstruction | section |
+|---|---|---|
+| silver and bronze by area | there are `2^{n−1}` castles of area `n`, so no family grows faster than 2 by area | *Area* |
+| bronze by semi-perimeter | all castles of height at most 21 grow at `3.3002 < δ_3` by semi-perimeter, so no family of height at most 21 is bronze; from height 22 on some family is bronze, and whether some rule is remains open | *Semi-perimeter* |
+| plastic by adjacency spectrum | a graph's eigenvalues are real, and `ψ` has complex conjugates; bronze is totally real and below 4, the largest degree in a castle graph, so neither argument excludes it | *Adjacency spectrum* |
+| golden, silver and bronze in the signed transfer matrix | every irrational eigenvalue of a signed transfer matrix has even norm, and the metallic means are units | *The signed transfer matrix* |
 
 ## Width
 
@@ -93,7 +104,7 @@ The denominators, with `x` marking semi-perimeter, are `(1 − x − x²)(1 − 
 
 **Runs of 1s.** A castle of height `h` with every column 1 or `h`, and `r` runs of height-`h` columns, has `1 + (h − 1)r` blocks, so its semi-perimeter is `s = w + 1 + (h − 1)r`. Deleting the bottom row and lengthening each run by `h − 1` columns gives a nonzero binary string of length `s − 1` whose runs of 1s are all at least `h` long, and shortening each run by `h − 1` undoes it. So the `{1, 3}` castles are the strings with every run at least 3 long, all castles of height 2 (`h = 2`) those with every run at least 2 long, and the `{1, 9}` castles those with every run at least 9 long. Balado and Silvestre list the first two as A130578 and A077855 ([[balado-silvestre-2026-runs-binary-strings](pages/balado-silvestre-2026-runs-binary-strings.md)]), and `h = 4` is `A209231(s − 1)`. These strings are the height-2 tower-spacing counts of [[tower-spacing-castles](pages/tower-spacing-castles.md)], `spacing_h(s − h, 2) − 1`, with denominator `(1 − x)² − x^{h+1}`; at `h = 9` it has the factor `x³ + x² − 1`, whose reciprocal roots satisfy `y³ = y + 1`, the plastic number.[^runs]
 
-An exhaustive check of all rules through height 4 (65,536 tables at height 4) finds golden at height 3 (26 rules) and plastic at height 3 (10 rules), and no silver or bronze.[^census] The full census is on [[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)]: silver semi-perimeter growth first appears at height 5, in 601 rules; castles with every column one of two heights 8 apart grow at plastic by semi-perimeter; and no family of castles of height at most 21 has bronze semi-perimeter growth, because all castles of height 21 grow at only `3.3002` by semi-perimeter.
+An exhaustive check of all rules through height 4 (65,536 tables at height 4) finds golden at height 3 (26 rules) and plastic at height 3 (10 rules), and no silver or bronze.[^census] The full census is on [[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)]: silver semi-perimeter growth first appears at height 5, in 601 rules; castles with every column one of two heights 8 apart grow at plastic by semi-perimeter; and no family of castles of height at most 21 has bronze semi-perimeter growth, because all castles of height 21 grow at only `3.3002` by semi-perimeter. All castles of height 22 grow faster than bronze, so some family of height 22 is bronze by semi-perimeter, and the open question is whether some rule is ([[castle-classification-growth](pages/castle-classification-growth.md)], section *Scope*).
 
 ## Adjacency spectrum
 
@@ -110,7 +121,11 @@ An exhaustive check of all rules through height 4 (65,536 tables at height 4) fi
 
 ## The signed transfer matrix
 
-The PE 502 signed tower count has transfer matrices whose eigenvalues are twice algebraic units ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]); none of golden, silver or bronze is ever one. Plastic enters through its square: at tower height `k = 6` the dominant eigenvalue is `ρ_6 = 2ψ²` ([[plastic-number](pages/plastic-number.md)]). On this axis plastic is the only one of the four present.
+The PE 502 signed tower count has an integer transfer matrix `M̃_k` at each tower height `k`. With `char_k` its characteristic polynomial, `g_k(μ) = char_k(2μ)/2^k` has integer coefficients and leading coefficient 2, so every eigenvalue of `M̃_k` is twice a root of `g_k`; for `k ≤ 30` the dominant eigenvalue `ρ_k` is twice a unit exactly when `k ≡ 2 (mod 4)` ([[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)]).
+
+**Every irrational eigenvalue of every `M̃_k` has even norm.** An eigenvalue `λ` of an integer matrix is an algebraic integer. Suppose `λ` is irrational, with monic minimal polynomial `m(x) = x^d + ⋯ + m_0` of degree `d ≥ 2`, and that its norm `±m_0` is odd. Then `λ/2` is a root of `m(2μ) = 2^d μ^d + ⋯ + m_0`, which is irreducible, and primitive because its constant term is odd. Since `λ/2` is also a root of `g_k`, Gauss's lemma makes `m(2μ)` divide `g_k` in `Z[μ]`, so `2^d` divides the leading coefficient 2, which is impossible for `d ≥ 2`. So the norm is even. [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] gives this argument for the metallic means `δ_a`.
+
+The four constants are units, of norm `±1`, so none of them is an eigenvalue of any `M̃_k`, and neither are `ψ²`, supergolden or tribonacci. Plastic enters through `2ψ²`, of norm 8: at tower height `k = 6` the dominant eigenvalue is `ρ_6 = 2ψ²` ([[plastic-number](pages/plastic-number.md)]). On this axis plastic is the only one of the four present.
 
 ## Height 2, three gradings
 
