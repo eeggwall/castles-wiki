@@ -124,7 +124,7 @@ V(3, 3)  =  { (2, 1, 3),  (3, 1, 2),  (3, 2, 3) },       each with 4 blocks.
 | double bumps | none |
 | far swap `c_1 ↔ c_3` | `(2,1,3) - (3,1,2)` only |
 
-`(3, 2, 3)` is fixed by `c_1 ↔ c_3`, and every bump or double bump of it gives a tuple with 3 blocks: `(2,2,3)`, `(3,1,3)`, `(3,3,3)`, `(3,2,2)`, `(1,2,3)` and `(3,2,1)`. So it is isolated under all four kinds of move, and `V(3, 3)` has no Hamilton path under them. The same holds at every odd height: every castle of `V(3, h)` has a strict valley in the middle, and every move between two of them keeps the parity of the middle column, which separates `(3, 2, 3)` from the other two here ([[castle-move-graph-zdd](pages/castle-move-graph-zdd.md)], Theorem 3).
+`(3, 2, 3)` is fixed by `c_1 ↔ c_3`, and every bump or double bump of it gives a tuple with 3 blocks: `(2,2,3)`, `(3,1,3)`, `(3,3,3)`, `(3,2,2)`, `(1,2,3)` and `(3,2,1)`. So it is isolated under all four kinds of move, and `V(3, 3)` has no Hamilton path under them. The same holds at every odd height: every castle of `V(3, h)` is a valley castle, its middle column the floor of a valley with walls 1 and 3 ([[valley-castles](pages/valley-castles.md)]), and every move between two of them keeps the parity of the middle column, which separates `(3, 2, 3)` from the other two here ([[castle-move-graph-zdd](pages/castle-move-graph-zdd.md)], Theorem 3).
 
 ## Summary of the small cases
 
