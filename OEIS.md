@@ -169,10 +169,10 @@ approved, its follow-up (the first item of stage 3) can be drafted.
   unfiled cells `(h,g)` for `h in {5,6}`, `g in {4,5,6}` (Hardin's "0..(h-1) arrays, each
   element the minimum of `g` adjacent elements", never filed at these parameters; no match
   2026-09-20).
-- [ ] **Tower-spacing table comments**: one comment each on the tables A217883 / A217954 /
-  A228461 giving the castle reading and the running-minimum proof. The nineteen matched
-  cells are covered by the tables, so no per-cell comments
-  (`wiki/pages/tower-spacing-castles.md`).
+- [ ] **Tower-spacing table comments**: one comment each on the tables A217839 / A217883 /
+  A217954 / A228461 giving the castle reading and the running-minimum proof (A217839 is the
+  row `h = 2`). The twenty matched cells, with `(h, g) = (2, 7)` = A217838, are covered by
+  the tables, so no per-cell comments (`wiki/pages/tower-spacing-castles.md`).
 
 ### 4. Candidates (found on the wiki, not yet assessed)
 
@@ -234,7 +234,27 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   (`wiki/pages/motzkin-castles.md`,
   `wiki/pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md`).
 
+- [ ] **A388547 castle comment** (`wiki/pages/golden-silver-bronze-plastic-castles.md`,
+  `wiki/pages/semi-perimeter-growth-census.md`): for `k ≥ 2`, `T(n, k)` is the number of
+  castles of height `k` whose columns all have height 1 or `k`, with semi-perimeter `n + 1`
+  (width plus blocks): delete the bottom row and lengthen each run of height-`k` columns by
+  `k − 1`. Column 2, `A077855(n − 2)`, is then all castles of height 2 by semi-perimeter, and
+  columns 3 and 4 are A130578 and A209231. None of the four entries states a castle reading
+  (read 2026-10-26). Checked against enumeration for every row `n ≤ 12` of the data. One
+  comment on the table, as for the tower-spacing tables.
+
 **Skipped (assessed, with reason):**
+
+- A048004 / A000100 / A000102 / A006979 / A006980 (the castles of area `n` and exact height
+  `h`, `T(n − 1, h − 1)`, and the columns `h = 3, …, 6`): every entry already counts the
+  compositions of `n` by largest part, which are the castles by area (A048004:
+  "Equivalently, number of compositions of n+1 having largest part (exactly) k+1"; A006980
+  is the 6th column of A048004).
+- A000225 / A002662 / A002664 / A001792 (the towers of height at most 1 with at least 1, 2
+  and 3 blocks, and their total block count): dense binomial-sum entries, and A002664 and
+  A001792 already state the run readings ("at least three runs of ones", "the number of runs
+  of consecutive 1's in all binary sequences of length (n+1)"), which are the towers' block
+  counts.
 
 - A000129 / A001333 / A171842 (the Pell castle strip under its three boundary conditions):
   dense entries, and a strip need not reach its ceiling, so it is not a castle family; the
@@ -488,6 +508,11 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 | Castles by area with bounded height: the n-nacci family | height at most 3 | **interlink** → [A000073](https://oeis.org/A000073) (`= A000073(n+2)`) |
 | Castles by area with bounded height: the n-nacci family | height at most 4 | **interlink** → [A000078](https://oeis.org/A000078) (`= A000078(n+3)`) |
 | Castles by area with bounded height: the n-nacci family | height at most 5 | **interlink** → [A001591](https://oeis.org/A001591) (`= A001591(n+4)`) |
+| Castles by area with bounded height: the n-nacci family | height exactly 3 | **interlink** → [A000100](https://oeis.org/A000100) (`= A000100(n)`; compositions with largest part 3) |
+| Castles by area with bounded height: the n-nacci family | height exactly 4 | **interlink** → [A000102](https://oeis.org/A000102) (`= A000102(n)`) |
+| Castles by area with bounded height: the n-nacci family | height exactly 5 | **interlink** → [A006979](https://oeis.org/A006979) (`= A006979(n)`) |
+| Castles by area with bounded height: the n-nacci family | height exactly 6 | **interlink** → [A006980](https://oeis.org/A006980) (`= A006980(n)`, offset 6) |
+| Castles by area with bounded height: the n-nacci family | exact height, by `(n, h)` | **interlink** → [A048004](https://oeis.org/A048004) (`T(n − 1, h − 1)`, through the run reading: a column of height `c` as a run of `c − 1` 1s) |
 | Tower-spacing skylines | `(h=2, g=2)` | **interlink** → [A005251](https://oeis.org/A005251) (`= A005251(w+3)`; the section *Multi-interpretation hub*) |
 | Tower-spacing skylines | `(h=3, g=2)` | **interlink** → [A202882](https://oeis.org/A202882) (`= A202882(w+1)`; Hardin) |
 | Tower-spacing skylines | `(h=4, g=2)` | **interlink** → [A203094](https://oeis.org/A203094) (`= A203094(w+1)`; Hardin) |
@@ -497,6 +522,8 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 | Tower-spacing skylines | `(h=2, g=4)` | **interlink** → [A005253](https://oeis.org/A005253) (`= A005253(w+3)`) |
 | Tower-spacing skylines | `(h=2, g=5)` | **interlink** → [A005689](https://oeis.org/A005689) Twopins positions (`= A005689(w+6)`) |
 | Tower-spacing skylines | `(h=2, g=6)` | **interlink** → [A098574](https://oeis.org/A098574) (`= A098574(w+6)`) |
+| Tower-spacing skylines | `(h=2, g=7)` | **interlink** → [A217838](https://oeis.org/A217838) (`= A217838(w)`; 0..1 arrays, "minimum of 7 adjacent elements") |
+| Tower-spacing skylines | the row `h = 2`, by `(w, g)` | **interlink** → [A217839](https://oeis.org/A217839) (`T(w, g) = spacing_g(w, 2)`; Hardin's 0..1 minimum-filter table) |
 | Tower-spacing skylines | `(h=3, g=3)` | **interlink** → [A217878](https://oeis.org/A217878) (0..2 arrays, "minimum of 3 adjacent elements") |
 | Tower-spacing skylines | `(h=3, g=4)` | **interlink** → [A217879](https://oeis.org/A217879) (0..2, minimum of 4) |
 | Tower-spacing skylines | `(h=3, g=5)` | **interlink** → [A217880](https://oeis.org/A217880) (0..2, minimum of 5) |
@@ -539,6 +566,10 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 | Signed tower count P(k, ·) rows | `P(1, L)` | **interlink** → [A146559](https://oeis.org/A146559) (`= A146559(L+1) = Re((1+i)^{L+1})`) |
 | Castles by semi-perimeter | all castles (bargraphs) | **interlink** → [A082582](https://oeis.org/A082582) (`= A082582(s)`, bargraphs by semi-perimeter; no castle reading, 2026-10-16) |
 | Castles by semi-perimeter | castles by `(s, w)` | **interlink** → [A271942](https://oeis.org/A271942) (rows checked for `s ≤ 16`; the entry does not give the Narayana form) |
+| Castles by semi-perimeter | castles of height 2 | **interlink** → [A077855](https://oeis.org/A077855) (`= A077855(s − 3)`; binary words whose runs of 0s are all at least 2 long; no castle reading, 2026-10-26) |
+| Castles by semi-perimeter | height 3, every column 1 or 3 | **interlink** → [A130578](https://oeis.org/A130578) (`= A130578(s − 1)`; crossword rows) |
+| Castles by semi-perimeter | height 4, every column 1 or 4 | **interlink** → [A209231](https://oeis.org/A209231) (`= A209231(s − 1)`) |
+| Castles by semi-perimeter | height `h`, every column 1 or `h`, by `(s, h)` | **interlink** → [A388547](https://oeis.org/A388547) (`T(s − 1, h)` for `h ≥ 2`) |
 | Prime castles by area | convex castles with first column not at height 1 | **interlink** → [A342528](https://oeis.org/A342528) (`= A342528(n−1) = A001523(n) − A001523(n−1)`, checked for `n ≤ 1001` against the two b-files; neither entry cites the other, 2026-10-16) |
 | Prime castles by area | one-peak castles | **interlink** → [A001924](https://oeis.org/A001924) (`= A001924(n−1)`; the entry has no reading by compositions) |
 | Odd-block counts, parity-refined area, and joint block tables | two-block castles by area | **interlink** → [A002620](https://oeis.org/A002620) quarter-squares (`= A002620(n)`) |
