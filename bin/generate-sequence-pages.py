@@ -309,8 +309,9 @@ def render_catalogue(families, rows):
         f"- {link('oeis-mining-pe502')} - the castle counts matched to OEIS entries, among them the difference-of-powers, height-2, signed tower, convex and area rows.",
     ]
     out += ["", "## Footnotes", ""]
-    out.append("[^1]: Verified by execution (Python 3.11 with SymPy, 2026-10-16 and 2026-10-22; the "
-               "zig-zag rows Python 3.10, 2026-10-27, `bin/python/zig_zag_castles.py`): every row with "
+    out.append("[^1]: Verified by execution (Python 3.11 with SymPy, 2026-10-16 and 2026-10-22; Python 3.10, "
+               "2026-10-27, for the rows checked by `bin/python/zig_zag_castles.py` and "
+               "`bin/python/sequence_catalogue_rows.py`, run logs beside them): every row with "
                "listed terms recomputed by enumeration, transfer matrix or dynamic program at the "
                "ranges stated under each table; every cited A-number fetched from oeis.org and "
                "compared with the computed terms at the stated offset.")

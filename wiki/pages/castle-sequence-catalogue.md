@@ -1,7 +1,7 @@
 ---
 title: Castle sequence catalogue
 category: Reference
-summary: Script-generated catalogue of the castle-counting sequences on the wiki (249 rows in 24 families), by the object each one counts: first terms, recurrence or generating function, growth constant, and the OEIS entry it equals at the stated offset, or none. Built with oeis-index from one data file, config/castle-sequences.tsv, by bin/generate-sequence-pages.py.
+summary: Script-generated catalogue of the castle-counting sequences on the wiki (247 rows in 24 families), by the object each one counts: first terms, recurrence or generating function, growth constant, and the OEIS entry it equals at the stated offset, or none. Built with oeis-index from one data file, config/castle-sequences.tsv, by bin/generate-sequence-pages.py.
 tags: [reference, oeis, castle, sequence, catalogue, generated]
 sources: [oeis-encyclopedia]
 created: 2026-09-17
@@ -30,13 +30,13 @@ These identities are stated and proved on the pages cited; the section *Catalogu
 - [[motzkin-castles](pages/motzkin-castles.md)]: [A171842](https://oeis.org/A171842), 1-smooth strips on {1, 2, 3}, both end columns at height 1: `A171842(w−1)`; [A343386](https://oeis.org/A343386), even-block Motzkin-path castles: `A343386(w−1)`; [A107587](https://oeis.org/A107587), odd-block Motzkin-path castles: `A107587(w−1)`; [A343773](https://oeis.org/A343773), signed `Σ(−1)^blocks`: `−A343773(w−1)`; [A005773](https://oeis.org/A005773), 1-smooth, first column at height 1, by width: `A005773(w)`.
 - [[pell-castle](pages/pell-castle.md)]: [A094706](https://oeis.org/A094706), 1-smooth strips on {1, 2, 3}, Pell castles: first column at height 1, height 3: `A094706(w−2)`; [A106514](https://oeis.org/A106514), 1-smooth strips on {1, 2, 3}, any first column, height 3: `A106514(w−1)`.
 - [[signed-tower-count](pages/signed-tower-count.md)]: [A146559](https://oeis.org/A146559), signed tower count, `P(1, L)`: `A146559(L+1)`.
-- [[tower-parity-sectors](pages/tower-parity-sectors.md)]: [A009545](https://oeis.org/A009545), signed tower count, -P_odd(1,L): even-block minus odd-block castles of width L and height 2 whose last column reaches height 2.
-- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]: [A352116](https://oeis.org/A352116), signed tower count, |P(k, 4)| = A352116(k + 1), partial sums of the odd triangular numbers.
+- [[tower-parity-sectors](pages/tower-parity-sectors.md)]: [A009545](https://oeis.org/A009545), signed tower count, even-block minus odd-block castles of height 2 whose last column has height 2: `A009545(w)`.
+- [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]: [A352116](https://oeis.org/A352116), signed tower count, `|P(k, 4)|` in the tower height `k`: `A352116(k + 1)`.
 - [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]: [A038505](https://oeis.org/A038505), `A^e(w, 2)`, even-block castles of height 2: `A038505(w + 1)`; [A038503](https://oeis.org/A038503), `A^o(w, 2)`, odd-block castles of height 2: `A038503(w + 1) − 1`.
-- [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]: [A001263](https://oeis.org/A001263), Narayana numbers N(L, k): T^(L, b) = sum_k N(L, k) C(b + L - k, L - 1) for the towers on a base of length L with b blocks; [A005408](https://oeis.org/A005408), T^(2, b) = 2b + 1, the towers on a base of length 2 with b blocks: `A005408(b)`; [A005891](https://oeis.org/A005891), T^(3, b), the towers on a base of length 3 with b blocks (centered pentagonal numbers): `A005891(b)`; [A063490](https://oeis.org/A063490), T^(4, b), the towers on a base of length 4 with b blocks (offset 1): `A063490(b+1)`; [A160747](https://oeis.org/A160747), T^(5, b), the towers on a base of length 5 with b blocks: `A160747(b)`.
-- [[castle-graph](pages/castle-graph.md)]: [A001045](https://oeis.org/A001045), Jacobsthal numbers: tree skylines of height at most 3 and width w, T_3(w) = A001045(w + 2); [A006130](https://oeis.org/A006130), tree skylines of height at most 4 and width w: T_4(w) = A006130(w + 1); [A006131](https://oeis.org/A006131), tree skylines of height at most 5 and width w: T_5(w) = A006131(w + 1).
-- [[fibonacci-castle](pages/fibonacci-castle.md)]: [A000071](https://oeis.org/A000071), tree castles of height 2 (Fibonacci castles): `A000071(w + 2)`.
-- [[castle-by-area](pages/castle-by-area.md)]: [A001523](https://oeis.org/A001523), convex castles by area (weakly unimodal compositions); [A115981](https://oeis.org/A115981), non-convex castles by area; [A332578](https://oeis.org/A332578), vee castles by area.
+- [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]: [A005408](https://oeis.org/A005408), towers of width 2 by blocks: `A005408(b)`; [A005891](https://oeis.org/A005891), towers of width 3 by blocks: `A005891(b)`; [A063490](https://oeis.org/A063490), towers of width 4 by blocks: `A063490(b + 1)`; [A160747](https://oeis.org/A160747), towers of width 5 by blocks: `A160747(b)`; [A001263](https://oeis.org/A001263), Narayana numbers `N(L, k)`: `T̂(L, b) = Σ_k N(L, k) C(b + L − k, L − 1)` for the towers on a base of length `L` with `b` blocks.
+- [[castle-graph](pages/castle-graph.md)]: [A001045](https://oeis.org/A001045), tree skylines of height at most 3, `T_3(w)`: `A001045(w + 2)`; [A006130](https://oeis.org/A006130), tree skylines of height at most 4, `T_4(w)`: `A006130(w + 1)`; [A006131](https://oeis.org/A006131), tree skylines of height at most 5, `T_5(w)`: `A006131(w + 1)`.
+- [[fibonacci-castle](pages/fibonacci-castle.md)]: [A000071](https://oeis.org/A000071), Fibonacci castles, the tree castles of height 2 (no two neighboring columns of height 2): `A000071(w + 2)`.
+- [[castle-by-area](pages/castle-by-area.md)]: [A001523](https://oeis.org/A001523), castles by area, convex castles (weakly unimodal compositions): `A001523(n)`; [A115981](https://oeis.org/A115981), castles by area, non-convex castles: `A115981(n)`; [A332578](https://oeis.org/A332578), castles by area, vee castles (weakly decreasing, then weakly increasing): `A332578(n)`.
 - [[hardin-word-identity](pages/hardin-word-identity.md)]: [A202882](https://oeis.org/A202882), Hardin words at `m = 2`: `P_even(10, L)/2^L`, the even-sector signed towers; [A203094](https://oeis.org/A203094), Hardin words at `m = 3`: `P_even(14, L)/2^L`, the even-sector signed towers; [A203184](https://oeis.org/A203184), Hardin words at `m = 4`: `P_even(18, L)/2^L`, the even-sector signed towers.
 
 ## Catalogue
@@ -138,22 +138,22 @@ Skylines on `{1, 2, 3}` whose neighboring heights differ by at most 1 ([[pell-ca
 
 The 1-smooth rule on `{1, …, h}` ([[1-smooth-castles](pages/1-smooth-castles.md)]) extends the Pell rows to `h = 2, …, 12`. `strips(w, h)` counts the skylines on `{1, …, h}` with first column at height 1, and `smooth(w, h)` those of height `h`, with g.f. `x^h/(η_h η_{h−1})`.
 
-| object | first terms | growth | OEIS |
-|---|---|---|---|
-| `smooth(w, h)`, first column at height 1, height `h` | `h = 4`: `0, 0, 0, 1, 5, 19, 64, 202, 612`; one row per `h` on the concept page | `1 + 2cos(π/(h+1))` | [A283595](https://oeis.org/A283595) (`= A283595(w − 1, h − 1)`; Motzkin prefixes by height; checked for `h ≤ 7`, `w ≤ 14`); the row `h = 2` is [A000225](https://oeis.org/A000225)(`w − 1`) |
-| `strips(w, 4)` | `1, 2, 5, 13, 34, 89, 233` | `φ²` | [A001519](https://oeis.org/A001519) (`= A001519(w) = F_{2w−1}`) |
-| `strips(w, 5)` | `1, 2, 5, 13, 35, 95, 259, 707` | `1+√3` | [A057960](https://oeis.org/A057960) (`= A057960(w−1)`) |
-| `strips(w, 6)` | `1, 2, 5, 13, 35, 96, 266, 741` | `1+2cos(π/7)` | [A085810](https://oeis.org/A085810) (`= A085810(w)`; corridor of height 5) |
-| `strips(w, h)`, `h = 7…12` | `h = 7`: `1, 2, 5, 13, 35, 96, 267, 749, 2113, 5982` | `1+2cos(π/(h+1))` | - (each agrees with [A005773](https://oeis.org/A005773) exactly for `w ≤ h`) |
-| even-block / odd-block, `h = 4` | `1, 5, 16, 42, 106, 287, 843, 2535` / `0, 0, 3, 22, 96, 325, 960, 2670` (from `w = 4`) | `φ²` | - (order 11 each) |
-| even-block, `h = 2` | `1, 3, 6, 10, 16, 28, 56, 120` (from `w = 2`) | `2` | [A038505](https://oeis.org/A038505) (`= A038505(w)`; deleting the first column gives all castles of height 2 and width `w − 1`) |
-| odd-block, `h = 2` | `0, 0, 1, 5, 15, 35, 71, 135` (from `w = 2`) | `2` | [A038503](https://oeis.org/A038503) (`= A038503(w) − 1`; deleting the first column gives all castles of height 2 and width `w − 1`) |
-| signed, `h = 2` | `1, 3, 5, 5, 1, −7, −15, −15` (from `w = 2`) | `√2` | [A077860](https://oeis.org/A077860) (`= A077860(w − 2)`; deleting the first column gives all castles of height 2 and width `w − 1`) |
-| even-block / odd-block / signed, `h = 5…12` | on the concept page | `1 + 2cos(π/(h+1))` | - (orders and signed growth for every `h` on the concept page) |
-| both end columns at height 1, height `h` | `h = 4`: `1, 7, 33, 129, 453, 1485` from `w = 7` | `1 + 2cos(π/(h+1))` | [A097862](https://oeis.org/A097862) (`= A097862(w − 1, h − 1)`; checked for `h ≤ 7`, `w ≤ 14`; g.f. `x^{2h−1}/(χ_h χ_{h−1})`) |
-| any first column, height `h = 4…12` | `h = 4`: `1, 3, 9, 27, 79, 227, 643, 1801, 4999` | `1 + 2cos(π/(h+1))` | [A188866](https://oeis.org/A188866) `(h − 1, w) − A188866(h − 2, w)`, the difference of two rows of the smooth-word table |
-| last column within 1 of the first (cyclic), height `h` | `A002426(w)` for `w ≤ 2h − 1`; `h = 3` from `w = 6`: `135, 351, 899, 2275, 5703` | `1 + 2cos(π/(h+1))` | [A002426](https://oeis.org/A002426) (`= A002426(w)`) for `w ≤ 2h − 1` (central trinomial coefficients) |
-| anchored 1-smooth castles of width 2h - 1 and height h, `=a(h-1)`; closed form by four trinomial coefficients |  |  | [A283667](https://oeis.org/A283667) |
+| object | from | first terms | g.f. / formula | growth | OEIS |
+|---|---|---|---|---|---|
+| `smooth(w, h)`, first column at height 1, height `h` |  | `h = 4`: `0, 0, 0, 1, 5, 19, 64, 202, 612`; one row per `h` on the concept page |  | `1 + 2cos(π/(h+1))` | [A283595](https://oeis.org/A283595) (`= A283595(w − 1, h − 1)`; Motzkin prefixes by height; checked for `h ≤ 7`, `w ≤ 14`); the row `h = 2` is [A000225](https://oeis.org/A000225)(`w − 1`) |
+| `strips(w, 4)` |  | `1, 2, 5, 13, 34, 89, 233` |  | `φ²` | [A001519](https://oeis.org/A001519) (`= A001519(w) = F_{2w−1}`) |
+| `strips(w, 5)` |  | `1, 2, 5, 13, 35, 95, 259, 707` |  | `1+√3` | [A057960](https://oeis.org/A057960) (`= A057960(w−1)`) |
+| `strips(w, 6)` |  | `1, 2, 5, 13, 35, 96, 266, 741` |  | `1+2cos(π/7)` | [A085810](https://oeis.org/A085810) (`= A085810(w)`; corridor of height 5) |
+| `strips(w, h)`, `h = 7…12` |  | `h = 7`: `1, 2, 5, 13, 35, 96, 267, 749, 2113, 5982` |  | `1+2cos(π/(h+1))` | - (each agrees with [A005773](https://oeis.org/A005773) exactly for `w ≤ h`) |
+| even-block / odd-block, `h = 4` |  | `1, 5, 16, 42, 106, 287, 843, 2535` / `0, 0, 3, 22, 96, 325, 960, 2670` (from `w = 4`) |  | `φ²` | - (order 11 each) |
+| even-block, `h = 2` |  | `1, 3, 6, 10, 16, 28, 56, 120` (from `w = 2`) |  | `2` | [A038505](https://oeis.org/A038505) (`= A038505(w)`; deleting the first column gives all castles of height 2 and width `w − 1`) |
+| odd-block, `h = 2` |  | `0, 0, 1, 5, 15, 35, 71, 135` (from `w = 2`) |  | `2` | [A038503](https://oeis.org/A038503) (`= A038503(w) − 1`; deleting the first column gives all castles of height 2 and width `w − 1`) |
+| signed, `h = 2` |  | `1, 3, 5, 5, 1, −7, −15, −15` (from `w = 2`) |  | `√2` | [A077860](https://oeis.org/A077860) (`= A077860(w − 2)`; deleting the first column gives all castles of height 2 and width `w − 1`) |
+| even-block / odd-block / signed, `h = 5…12` |  | on the concept page |  | `1 + 2cos(π/(h+1))` | - (orders and signed growth for every `h` on the concept page) |
+| both end columns at height 1, height `h` |  | `h = 4`: `1, 7, 33, 129, 453, 1485` from `w = 7` |  | `1 + 2cos(π/(h+1))` | [A097862](https://oeis.org/A097862) (`= A097862(w − 1, h − 1)`; checked for `h ≤ 7`, `w ≤ 14`; g.f. `x^{2h−1}/(χ_h χ_{h−1})`) |
+| any first column, height `h = 4…12` |  | `h = 4`: `1, 3, 9, 27, 79, 227, 643, 1801, 4999` |  | `1 + 2cos(π/(h+1))` | [A188866](https://oeis.org/A188866) `(h − 1, w) − A188866(h − 2, w)`, the difference of two rows of the smooth-word table |
+| last column within 1 of the first (cyclic), height `h` |  | `A002426(w)` for `w ≤ 2h − 1`; `h = 3` from `w = 6`: `135, 351, 899, 2275, 5703` |  | `1 + 2cos(π/(h+1))` | [A002426](https://oeis.org/A002426) (`= A002426(w)`) for `w ≤ 2h − 1` (central trinomial coefficients) |
+| anchored 1-smooth castles of width `2h − 1` and height `h` (Motzkin prefixes of length `2h − 2` and height `h − 1`) | `h = 1…` | `1, 3, 13, 64, 334, 1802, 9933` | closed form by four trinomial coefficients |  | [A283667](https://oeis.org/A283667) (`= A283667(h − 1)`) |
 
 ### m-smooth castles of height h
 
@@ -177,24 +177,24 @@ Skylines whose neighboring columns differ by at most `m`, with first column at h
 
 A **Motzkin-path castle** is a 1-smooth skyline (`|c_{i+1} − c_i| ≤ 1`) with both end columns at height 1 ([[motzkin-castles](pages/motzkin-castles.md)]). Its heights minus 1 form a Motzkin path of length `w − 1`, and its block count is `1 + #up-steps`, so the even-block castles are the Motzkin paths with an odd number of up-steps.
 
-| object | first terms | growth | OEIS |
-|---|---|---|---|
-| Motzkin-path castles by width | `1, 1, 2, 4, 9, 21, 51, 127, 323, 835` | `3` | [A001006](https://oeis.org/A001006) (`= A001006(w−1) = M_{w−1}`) |
-| even-block Motzkin-path castles | `0, 0, 1, 3, 6, 10, 20, 56, 168, 456, 1137, 2827` | `3` | [A343386](https://oeis.org/A343386) (`= A343386(w−1)`; odd Motzkin paths) |
-| odd-block Motzkin-path castles | `1, 1, 1, 1, 3, 11, 31, 71, 155, 379, 1051, 2971` | `3` | [A107587](https://oeis.org/A107587) (`= A107587(w−1)`; even Motzkin paths) |
-| signed `Σ(−1)^blocks` | `−1, −1, 0, 2, 3, −1, −11, −15, 13, 77, 86, −144` | `\|1 ± 2i\| = √5` | [A343773](https://oeis.org/A343773) (`= −A343773(w−1)`; `A343773(n) = (−1)^n A007440(n+1)`, the reversion of the Fibonacci g.f.) |
-| Motzkin-path castles, heights at most 4 | `1, 1, 2, 4, 9, 21, 51, 127, 322, 826` | `φ²` | [A005207](https://oeis.org/A005207) (`= A005207(w−1) = (F_{2w−3} + F_w)/2`; Kociemba's comment counts these walks) |
-| Motzkin-path castles, heights at most 5 | `1, 1, 2, 4, 9, 21, 51, 127, 323, 835, 2187` | `1+√3` | [A094286](https://oeis.org/A094286) (`= A094286(w−1)`; its name is the same condition with heights below 6) |
-| 1-smooth, first column at height 1, by width | `1, 2, 5, 13, 35, 96, 267, 750` | `3` | [A005773](https://oeis.org/A005773) (`= A005773(w)`; Motzkin left factors and directed animals) |
-| drops of at most 1, last column at height 1, by width | `1, 2, 5, 14, 42, 132, 429` | `4` | [A000108](https://oeis.org/A000108) (`= A000108(w) = C_w`) |
-| Motzkin-path castles by semi-perimeter (`s = 2…`) | `1, 1, 1, 2, 4, 7, 13, 26, 52, 104, 212, 438` | - | [A023431](https://oeis.org/A023431) (`= A023431(s−2)`; Motzkin paths with no `UD` and no `UU`) |
-| drops of at most 1, last column at height 1, by semi-perimeter | `1, 1, 2, 4, 8, 17, 37, 82, 185, 423, 978` | - | [A004148](https://oeis.org/A004148) (`= A004148(s−1)`; peakless Motzkin paths; the mirror image without double rises is Deutsch-Elizalde's RNA-secondary-structure bijection, [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]) |
-| drops of at most 1, any ends, by semi-perimeter | `1, 2, 5, 12, 29, 71, 175, 434, 1082, 2709, 6807, 17157` | - | - (in bijection with the valleyless Motzkin meanders of length `s − 2` of [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)]; refined by last-column height and spires on [[motzkin-castles](pages/motzkin-castles.md)]) |
-| 1-smooth, first column at height 1, by semi-perimeter | `1, 1, 2, 4, 8, 16, 33, 69, 145, 307, 655, 1405, 3027` | - | - |
-| 1-smooth, any ends, by semi-perimeter | `1, 2, 5, 11, 24, 52, 113, 246, 537, 1176, 2583, 5688` | - | - |
-| tower words counted by length (total number of steps): A004149(n + 1) of length n; silver by length, with an algebraic, not rational, generating function |  |  | [A004149](https://oeis.org/A004149) |
-| Dyck-path castles of height at most h by width: the entry at ((w - 1)/2, h - 1) |  |  | [A080934](https://oeis.org/A080934) |
-| Dyck-path castles by width and height: the entry at ((w - 1)/2, h - 1) |  |  | [A080936](https://oeis.org/A080936) |
+| object | from | first terms | g.f. / formula | growth | OEIS |
+|---|---|---|---|---|---|
+| Motzkin-path castles by width |  | `1, 1, 2, 4, 9, 21, 51, 127, 323, 835` |  | `3` | [A001006](https://oeis.org/A001006) (`= A001006(w−1) = M_{w−1}`) |
+| even-block Motzkin-path castles |  | `0, 0, 1, 3, 6, 10, 20, 56, 168, 456, 1137, 2827` |  | `3` | [A343386](https://oeis.org/A343386) (`= A343386(w−1)`; odd Motzkin paths) |
+| odd-block Motzkin-path castles |  | `1, 1, 1, 1, 3, 11, 31, 71, 155, 379, 1051, 2971` |  | `3` | [A107587](https://oeis.org/A107587) (`= A107587(w−1)`; even Motzkin paths) |
+| signed `Σ(−1)^blocks` |  | `−1, −1, 0, 2, 3, −1, −11, −15, 13, 77, 86, −144` |  | `\|1 ± 2i\| = √5` | [A343773](https://oeis.org/A343773) (`= −A343773(w−1)`; `A343773(n) = (−1)^n A007440(n+1)`, the reversion of the Fibonacci g.f.) |
+| Motzkin-path castles, heights at most 4 |  | `1, 1, 2, 4, 9, 21, 51, 127, 322, 826` |  | `φ²` | [A005207](https://oeis.org/A005207) (`= A005207(w−1) = (F_{2w−3} + F_w)/2`; Kociemba's comment counts these walks) |
+| Motzkin-path castles, heights at most 5 |  | `1, 1, 2, 4, 9, 21, 51, 127, 323, 835, 2187` |  | `1+√3` | [A094286](https://oeis.org/A094286) (`= A094286(w−1)`; its name is the same condition with heights below 6) |
+| 1-smooth, first column at height 1, by width |  | `1, 2, 5, 13, 35, 96, 267, 750` |  | `3` | [A005773](https://oeis.org/A005773) (`= A005773(w)`; Motzkin left factors and directed animals) |
+| drops of at most 1, last column at height 1, by width |  | `1, 2, 5, 14, 42, 132, 429` |  | `4` | [A000108](https://oeis.org/A000108) (`= A000108(w) = C_w`) |
+| Motzkin-path castles by semi-perimeter (`s = 2…`) |  | `1, 1, 1, 2, 4, 7, 13, 26, 52, 104, 212, 438` |  | - | [A023431](https://oeis.org/A023431) (`= A023431(s−2)`; Motzkin paths with no `UD` and no `UU`) |
+| drops of at most 1, last column at height 1, by semi-perimeter |  | `1, 1, 2, 4, 8, 17, 37, 82, 185, 423, 978` |  | - | [A004148](https://oeis.org/A004148) (`= A004148(s−1)`; peakless Motzkin paths; the mirror image without double rises is Deutsch-Elizalde's RNA-secondary-structure bijection, [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]) |
+| drops of at most 1, any ends, by semi-perimeter |  | `1, 2, 5, 12, 29, 71, 175, 434, 1082, 2709, 6807, 17157` |  | - | - (in bijection with the valleyless Motzkin meanders of length `s − 2` of [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)]; refined by last-column height and spires on [[motzkin-castles](pages/motzkin-castles.md)]) |
+| 1-smooth, first column at height 1, by semi-perimeter |  | `1, 1, 2, 4, 8, 16, 33, 69, 145, 307, 655, 1405, 3027` |  | - | - |
+| 1-smooth, any ends, by semi-perimeter |  | `1, 2, 5, 11, 24, 52, 113, 246, 537, 1176, 2583, 5688` |  | - | - |
+| tower words (cornerless Motzkin paths) by length `n` | `n = 0…` | `1, 1, 1, 2, 4, 8, 16, 33, 69, 146, 312, 673, 1463, 3202` | algebraic g.f., not rational | `1 + √2`, silver by length | [A004149](https://oeis.org/A004149) (`= A004149(n + 1)`; [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)]) |
+| Dyck-path castles of height at most `h`, by width | `w = 1, 3, 5, …` | `h = 3`: `1, 1, 2, 4, 8, 16, 32, 64, 128` |  |  | [A080934](https://oeis.org/A080934) (`= A080934((w − 1)/2, h − 1)`; square array read by antidiagonals) |
+| Dyck-path castles of width `w` and height `h` | `w = 1, 3, 5, …` | `h = 3`: `1, 3, 7, 15, 31, 63, 127` (from `w = 5`) |  |  | [A080936](https://oeis.org/A080936) (`= A080936((w − 1)/2, h − 1)`; triangle read by rows) |
 
 *(Every row agrees with a transfer-matrix count for `w ≤ 24` or with enumeration for `s ≤ 16`, and every A-number row with the OEIS data at the stated offset, 2026-10-16. All castles by semi-perimeter, `A082582`, are cornerless Motzkin paths and are equinumerous with skew Motzkin paths; they are in the section *Castles by semi-perimeter*. Their first five terms `1, 2, 5, 13, 35` agree with `A005773`, and the sixth differs, 97 against 96.)*
 
@@ -234,11 +234,11 @@ Skylines whose neighboring columns differ by exactly 1, the 1-smooth and plateau
 | zig-zag strips on `{1, …, 11}`, `c_1` odd, width `2n − 1` | `w = 1…` | `6, 10, 20, 36, 72, 132, 264, 488, 976, 1812` |  | `2cos(π/12)` | [A153372](https://oeis.org/A153372) (`= A153372((w + 1)/2)`; odd `w`) |
 | zig-zag strips on `{1, …, 11}`, `c_1` even, width `2n − 1` | `w = 1…` | `5, 10, 18, 36, 66, 132, 244, 488, 906, 1812` |  | `2cos(π/12)` | [A153373](https://oeis.org/A153373) (`= A153373((w + 1)/2)`; odd `w`) |
 | zig-zag strips on `{1, …, 12}` | `w = 1…` | `12, 22, 42, 80, 154, 296, 572, 1104, 2138, 4136` |  | `2cos(π/13)` | [A153361](https://oeis.org/A153361) (`= A153361(w)`) |
-| zig-zag strips of width `n` on `{1, …, n}`, `c_1` with the parity of `n` (the `n × n` square) |  |  |  |  | [A153334](https://oeis.org/A153334) |
-| zig-zag strips of width `n` on `{1, …, n}`, `c_1` with the other parity (the `n × n` square) |  |  |  |  | [A153335](https://oeis.org/A153335) |
-| zig-zag strips of width `2n` on `{1, …, 2n}`, `c_1` even (the `2n × 2n` square) |  |  |  |  | [A153336](https://oeis.org/A153336) |
-| zig-zag strips of width `2n − 1` on `{1, …, 2n − 1}`, `c_1` odd (the `2n − 1 × 2n − 1` square) |  |  |  |  | [A153337](https://oeis.org/A153337) |
-| zig-zag strips of width `2n − 1` on `{1, …, 2n − 1}`, `c_1` even (the `2n − 1 × 2n − 1` square) |  |  |  |  | [A153338](https://oeis.org/A153338) |
+| zig-zag strips of width `n` on `{1, …, n}`, `c_1` with the parity of `n` (the `n × n` square) | `n = 1…` | `1, 1, 4, 8, 24, 52, 136, 296` |  |  | [A153334](https://oeis.org/A153334) (`= A153334(n)`) |
+| zig-zag strips of width `n` on `{1, …, n}`, `c_1` with the other parity (the `n × n` square) | `n = 1…` | `0, 1, 2, 8, 18, 52, 116, 296` |  |  | [A153335](https://oeis.org/A153335) (`= A153335(n)`) |
+| zig-zag strips of width `2n` on `{1, …, 2n}`, `c_1` even (the `2n × 2n` square) | `n = 1…` | `1, 8, 52, 296, 1556, 7768, 37416, 175568` |  |  | [A153336](https://oeis.org/A153336) (`= A153336(n)`) |
+| zig-zag strips of width `2n − 1` on `{1, …, 2n − 1}`, `c_1` odd (the `(2n − 1) × (2n − 1)` square) | `n = 1…` | `1, 4, 24, 136, 720, 3624, 17584, 83024` |  |  | [A153337](https://oeis.org/A153337) (`= A153337(n)`) |
+| zig-zag strips of width `2n − 1` on `{1, …, 2n − 1}`, `c_1` even (the `(2n − 1) × (2n − 1)` square) | `n = 1…` | `0, 2, 18, 116, 650, 3372, 16660, 79592` |  |  | [A153338](https://oeis.org/A153338) (`= A153338(n)`) |
 
 *(Every row agrees with `bin/python/zig_zag_castles.py` and with every term of the OEIS data field at the stated offset, 2026-10-27.)*
 
@@ -271,12 +271,11 @@ The signed tower count `P(k, L) = Σ (−1)^{blocks}` in the base length `L` at 
 | `P(6, L)` | `L = 0…` | `1, 1, 7, 49, 231, 833, 2583, 7889, 26503, …` | order 7 | `2ψ² = 3.5098` | - (`char_6 = (x³−4x²+4x−8)(x⁴−3x³+8x²−4x+8)`, largest root `2ψ²`, [[plastic-number](pages/plastic-number.md)]) |
 | `\|P(k, 5)\|` in the tower height `k` | `k = 0…` | `1, 0, 33, 64, 225, 384, 833, 1280, 2241, …` |  |  | - ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]) |
 | `\|P(k, 6)\|` in the tower height `k` | `k = 0…` | `1, 8, 59, 32, 541, 680, 2583, 3520, …` |  |  | - ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]) |
-| \|P(2m + 1, 4)\| = 4 A000447(m + 1) = A199833(m + 1) |  |  |  |  | [A000447](https://oeis.org/A000447) |
-| -P_odd(1,L): even-block minus odd-block castles of width L and height 2 whose last column reaches height 2 |  |  |  |  | [A009545](https://oeis.org/A009545) |
-| P(2m, 4) = A063496(m + 1), the crystal-ball numbers of the C_3 lattice |  |  |  |  | [A063496](https://oeis.org/A063496) |
-| A112742(k + 1) is the alternating part A_5(k) in P(k, 5) = (-1)^k A_5(k) + B_5(k) |  |  |  |  | [A112742](https://oeis.org/A112742) |
-| \|P(2m + 1, 4)\| = A199833(m + 1) = 4 A000447(m + 1); the entry marks its formula as empirical |  |  |  |  | [A199833](https://oeis.org/A199833) |
-| \|P(k, 4)\| = A352116(k + 1), partial sums of the odd triangular numbers |  |  |  |  | [A352116](https://oeis.org/A352116) |
+| even-block minus odd-block castles of height 2 whose last column has height 2 | `w = 1…` | `1, 2, 2, 0, -4, -8, -8, 0, 16, 32, 32, 0` |  |  | [A009545](https://oeis.org/A009545) (`= A009545(w) = −P_odd(1, w)`) |
+| `P(2m, 4)`, even tower height | `m = 0…` | `1, 19, 85, 231, 489, 891, 1469, 2255, 3281` | `(2m + 1)(8m² + 8m + 3)/3` |  | [A063496](https://oeis.org/A063496) (`= A063496(m + 1)`; the crystal-ball numbers of the `C_3` lattice) |
+| `A_5(k)`, the alternating part of `P(k, 5) = (−1)^k A_5(k) + B_5(k)`, with `A_5` and `B_5` polynomials in `k` | `k = 0…` | `0, 4, 24, 80, 200, 420, 784, 1344, 2160` | `k(k + 1)²(k + 2)/3` |  | [A112742](https://oeis.org/A112742) (`= A112742(k + 1)`; [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)]) |
+| `\|P(2m + 1, 4)\|`, odd tower height | `m = 0…` | `4, 40, 140, 336, 660, 1144, 1820, 2720, 3876` |  |  | [A199833](https://oeis.org/A199833) (`= A199833(m + 1) = 4·A000447(m + 1)`; the entry marks its formula as empirical) |
+| `\|P(k, 4)\|` in the tower height `k` | `k = 0…` | `1, 4, 19, 40, 85, 140, 231, 336, 489, 660, 891, 1144` |  |  | [A352116](https://oeis.org/A352116) (`= A352116(k + 1)`; partial sums of the odd triangular numbers) |
 
 *(The characteristic polynomials `char_k` are irreducible for odd `k ≤ 31`, each proved by a prime mod which it stays irreducible ([[castle-cryptography-number-theory](pages/castle-cryptography-number-theory.md)]), and have two irreducible factors for even `k ≤ 14` (computed). The denominators have the closed form `den_k = A·r_+^k + B·r_−^k` with `r_± = −x ± √(x²+1)`, on [[generating-function-gallery](pages/generating-function-gallery.md)].)*
 
@@ -309,15 +308,15 @@ The castles of width `w` and height `h`, `A(w, h) = h^w − (h−1)^w` of them, 
 | `A^o(w, 4)` | `w = 1…` | `0, 0, 6, 58, 342, 1638, 7134, …` |  |  | - |
 | `A^e(3, 2m)`, width 3 and even height | `m = 1…` | `6, 31, 76, 141, 226, 331, 456, 601, 766, 951, …` | `10m² − 5m + 1 = 5m(2m − 1) + 1` |  | - (`A080860(−m)`; [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)]) |
 | `A^o(3, 2n+1)`, width 3 and odd height | `n = 0…` | `1, 16, 51, 106, 181, 276, …` | `10n² + 5n + 1` |  | [A080860](https://oeis.org/A080860) (`= A080860(n)`; [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)]) |
-| `A^e(3, 2m+1)`, width 3 and odd height |  |  | `C(2m+1, 2) = m(2m+1)` |  | [A014105](https://oeis.org/A014105) (`= A014105(m)`) second hexagonal numbers; [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)] |
-| `A^o(3, 2m)`, width 3 and even height |  |  | `C(2m, 2) = m(2m − 1)` |  | [A000384](https://oeis.org/A000384) (`= A000384(m)`) hexagonal numbers; [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)] |
+| `A^e(3, 2m+1)`, width 3 and odd height | `m = 0…` | `0, 3, 10, 21, 36, 55, 78, 105, 136, 171` | `C(2m+1, 2) = m(2m+1)` |  | [A014105](https://oeis.org/A014105) (`= A014105(m)`) second hexagonal numbers; [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)] |
+| `A^o(3, 2m)`, width 3 and even height | `m = 1…` | `1, 6, 15, 28, 45, 66, 91, 120, 153` | `C(2m, 2) = m(2m − 1)` |  | [A000384](https://oeis.org/A000384) (`= A000384(m)`) hexagonal numbers; [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)] |
 | `A^e(3, h)`, interleaved | `h = 2…` | `6, 3, 31, 10, 76, 21, …` |  |  | - |
 | `A^o(3, h)`, interleaved | `h = 1…` | `1, 1, 16, 6, 51, 15, …` |  |  | - |
 | `A^e(4, h)` | `h = 2…` | `10, 21, 117, 122, 448, 367, 1131, 820, …` | `(4h−3)(4h²−3h+2)/6` at even `h` and `(h−1)(8h²−4h+3)/6` at odd `h` (checked `h < 30`) |  | - |
 | convex castles of height 3 | `w = 1…` | `1, 5, 15, 35, 70, 126, 210` | `C(w + 3, 4)` |  | [A000332](https://oeis.org/A000332) (`= A000332(w + 3)`) |
-| `A^e(w, 2)`, even-block castles of height 2 | `w = 1…` |  |  |  | [A038505](https://oeis.org/A038505) (`= A038505(w + 1)`) |
-| `A^o(w, 2)`, odd-block castles of height 2 | `w = 1…` |  |  |  | [A038503](https://oeis.org/A038503) (`= A038503(w + 1) − 1`) |
-| `S(w, 2)`, signed castles of height 2 | `w = 1…` |  |  |  | [A077860](https://oeis.org/A077860) (`= A077860(w − 1)`) |
+| `A^e(w, 2)`, even-block castles of height 2 | `w = 1…` | `1, 3, 6, 10, 16, 28, 56, 120, 256, 528` |  | `2` | [A038505](https://oeis.org/A038505) (`= A038505(w + 1)`) |
+| `A^o(w, 2)`, odd-block castles of height 2 | `w = 1…` | `0, 0, 1, 5, 15, 35, 71, 135, 255, 495` |  | `2` | [A038503](https://oeis.org/A038503) (`= A038503(w + 1) − 1`) |
+| `S(w, 2)`, signed castles of height 2 | `w = 1…` | `1, 3, 5, 5, 1, -7, -15, -15, 1, 33` |  | `√2` | [A077860](https://oeis.org/A077860) (`= A077860(w − 1)`) |
 
 *(The `A(w, h)` rows and the convex row agree with brute-force enumeration for `w ≤ 7` and with the OEIS data at the stated offset, 2026-10-27.)*
 
@@ -325,26 +324,25 @@ The castles of width `w` and height `h`, `A(w, h) = h^w − (h−1)^w` of them, 
 
 The towers on a base of length `w` counted by their number of blocks `b` ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]).
 
-| object | from | first terms | OEIS |
-|---|---|---|---|
-| towers of width 6 by blocks | `b = 0…` | `1, 21, 161, 721, 2331, 6083, …` | - ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]) |
-| towers of width 7 by blocks | `b = 0…` | `1, 28, 280, 1582, 6244, 19348, …` | - ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]) |
-| Narayana numbers N(L, k): T^(L, b) = sum_k N(L, k) C(b + L - k, L - 1) for the towers on a base of length L with b blocks |  |  | [A001263](https://oeis.org/A001263) |
-| T^(2, b) = 2b + 1, the towers on a base of length 2 with b blocks |  |  | [A005408](https://oeis.org/A005408) (`= A005408(b)`) |
-| T^(3, b), the towers on a base of length 3 with b blocks (centered pentagonal numbers) |  |  | [A005891](https://oeis.org/A005891) (`= A005891(b)`) |
-| T^(4, b), the towers on a base of length 4 with b blocks (offset 1) |  |  | [A063490](https://oeis.org/A063490) (`= A063490(b+1)`) |
-| T^(5, b), the towers on a base of length 5 with b blocks |  |  | [A160747](https://oeis.org/A160747) (`= A160747(b)`) |
+| object | from | first terms | g.f. / formula | OEIS |
+|---|---|---|---|---|
+| towers of width 2 by blocks | `b = 0…` | `1, 3, 5, 7, 9, 11, 13, 15` | `2b + 1` | [A005408](https://oeis.org/A005408) (`= A005408(b)`) |
+| towers of width 3 by blocks | `b = 0…` | `1, 6, 16, 31, 51, 76, 106, 141` | `(5b² + 5b + 2)/2` | [A005891](https://oeis.org/A005891) (`= A005891(b)`; centered pentagonal numbers) |
+| towers of width 4 by blocks | `b = 0…` | `1, 10, 40, 105, 219, 396, 650, 995` | `(2b + 1)(7b² + 7b + 6)/6` | [A063490](https://oeis.org/A063490) (`= A063490(b + 1)`) |
+| towers of width 5 by blocks | `b = 0…` | `1, 15, 85, 295, 771, 1681, 3235` | g.f. `(1 + 10x + 20x² + 10x³ + x⁴)/(1 − x)^5` | [A160747](https://oeis.org/A160747) (`= A160747(b)`) |
+| towers of width 6 by blocks | `b = 0…` | `1, 21, 161, 721, 2331, 6083, …` |  | - ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]) |
+| towers of width 7 by blocks | `b = 0…` | `1, 28, 280, 1582, 6244, 19348, …` |  | - ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]) |
 
 ### Tree skylines and tree castles by width
 
 Tree skylines have no `2 × 2` square of cells; the tree castles of height `h` are the tree skylines that reach `h` ([[castle-graph](pages/castle-graph.md)]).
 
-| object | from | growth | OEIS |
-|---|---|---|---|
-| Jacobsthal numbers: tree skylines of height at most 3 and width w, T_3(w) = A001045(w + 2) |  |  | [A001045](https://oeis.org/A001045) |
-| tree skylines of height at most 4 and width w: T_4(w) = A006130(w + 1) |  |  | [A006130](https://oeis.org/A006130) |
-| tree skylines of height at most 5 and width w: T_5(w) = A006131(w + 1) |  |  | [A006131](https://oeis.org/A006131) |
-| tree castles of height 2 (Fibonacci castles) | `w = 1…` | `φ` | [A000071](https://oeis.org/A000071) (`= A000071(w + 2)`) `= F_{w+2} − 1` |
+| object | from | first terms | g.f. / formula | growth | OEIS |
+|---|---|---|---|---|---|
+| tree skylines of height at most 3, `T_3(w)` | `w = 1…` | `3, 5, 11, 21, 43, 85, 171, 341` | `T_h(w + 2) = T_h(w + 1) + (h − 1)T_h(w)` | `2`, copper by width | [A001045](https://oeis.org/A001045) (`= A001045(w + 2)`) Jacobsthal numbers |
+| tree skylines of height at most 4, `T_4(w)` | `w = 1…` | `4, 7, 19, 40, 97, 217, 508, 1159` | `T_h(w + 2) = T_h(w + 1) + (h − 1)T_h(w)` | `(1 + √13)/2`, nickel by width | [A006130](https://oeis.org/A006130) (`= A006130(w + 1)`) |
+| tree skylines of height at most 5, `T_5(w)` | `w = 1…` | `5, 9, 29, 65, 181, 441, 1165, 2929` | `T_h(w + 2) = T_h(w + 1) + (h − 1)T_h(w)` | `(1 + √17)/2` | [A006131](https://oeis.org/A006131) (`= A006131(w + 1)`) |
+| Fibonacci castles, the tree castles of height 2 (no two neighboring columns of height 2) | `w = 1…` | `1, 2, 4, 7, 12, 20, 33, 54, 88, 143` | `F_{w+2} − 1` | `φ` | [A000071](https://oeis.org/A000071) (`= A000071(w + 2)`) |
 
 ### Castles by semi-perimeter
 
@@ -362,9 +360,9 @@ A castle's semi-perimeter is `s = w + blocks` ([[castle-perimeter](pages/castle-
 | palindromic castles | `s = 2…` | `1, 2, 3, 5, 9, 15, 27, 46, 83` | the symmetric-bargraph g.f. ([[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] §4.1) | - | [A273905](https://oeis.org/A273905) (`= A273905(s)`; symmetric bargraphs) |
 | castles of height 5 with no 1 next to a 2 and no 4 next to a 5, silver by semi-perimeter | `s = 2…` | `1, 7, 26, 74, 196, 525, 1421, 3809, 10040, 26102, 67250` (from `s = 6`) | rational, denominator `(1 − x)²(1 + x²)(1 − 2x − x²)(1 − x + x² + x³)` | `1 + √2` | - ([[semi-perimeter-growth-census](pages/semi-perimeter-growth-census.md)]) |
 | prime castles (no column of height 1) | `s = 2…` | `0, 1, 2, 5, 13, 35, 97, 275, 794, 2327` | `t·B(t)` | `τ²` | [A082582](https://oeis.org/A082582) (`= A082582(s−1)`; for `s ≥ 3`; the row-deletion bijection, [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)] §3.9) |
-| castles of height 2 by semi-perimeter s: A077855(s − 3); growth ψ² by semi-perimeter |  |  |  |  | [A077855](https://oeis.org/A077855) |
-| castles of height 3 with every column 1 or 3, by semi-perimeter s: A130578(s − 1); golden by semi-perimeter |  |  |  |  | [A130578](https://oeis.org/A130578) |
-| castles (bargraphs) by semi-perimeter and peaks; the anti-diagonals n - k = m sum to the Catalan number C_m (Deutsch-Elizalde 2017) |  |  |  |  | [A271940](https://oeis.org/A271940) |
+| castles of height 2 | `s = 3…` | `1, 3, 6, 11, 20, 36, 64, 113, 199, 350, 615, 1080` |  | `ψ²` | [A077855](https://oeis.org/A077855) (`= A077855(s − 3)`) |
+| castles of height 3 with every column of height 1 or 3 | `s = 4…` | `1, 3, 6, 10, 16, 26, 43, 71, 116, 188, 304, 492` |  | `φ`, golden by semi-perimeter | [A130578](https://oeis.org/A130578) (`= A130578(s − 1)`) |
+| castles by semi-perimeter `s` and number of peaks `k`, a peak being a maximal run of equal columns higher than both neighbors | `s = 2…` | rows `1; 2; 5; 13; 34, 1; 89, 8; 233, 42; 610, 183, 1` |  |  | [A271940](https://oeis.org/A271940) (`= A271940(s, k)`; the sums along `s − k = m` are the Catalan numbers `C_m`, Deutsch-Elizalde 2017) |
 
 *(Every row agrees with enumeration for `s ≤ 16` and with the series of its g.f., and every A-number row with the OEIS data at the stated offset, 2026-10-16; [[castle-perimeter](pages/castle-perimeter.md)] checks the series through `s = 30`.)*
 
@@ -393,16 +391,16 @@ Gluing castles at a shared column of height 1 makes a free monoid; its primes co
 
 The classical polyomino families intersected with the castles ([[castle-add-a-column-equation](pages/castle-add-a-column-equation.md)]): a monotone castle is a Ferrers or reverse-Ferrers skyline. Terms from `n = 1`.
 
-| object | first terms | g.f. / formula | OEIS |
-|---|---|---|---|
-| monotone castles (weakly increasing or weakly decreasing) | `1, 2, 4, 7, 12, 18, 28, 40, 57, 80, 110, 148` | `2p(n) − d(n)` | [A329398](https://oeis.org/A329398) (`= A329398(n)`; defined by Lyndon factorizations; the entry proves that these are the weakly monotone compositions, so `a(n) = 2A000041(n) − A000005(n)`) |
-| non-monotone castles | `0, 0, 0, 1, 4, 14, 36, 88, 199, 432` | `2^{n−1} − 2p(n) + d(n)` | [A332834](https://oeis.org/A332834) (compositions neither weakly increasing nor weakly decreasing) |
-| signed monotone castles `even − odd` | `-1, 0, 0, 1, 0, 2, 0, 2, -1, 4, -2, 4, -4, 6` | `2(−1)^n A000700(n) − Σ_{d\|n} (−1)^d` | - |
-| convex castles by area (weakly unimodal compositions) |  |  | [A001523](https://oeis.org/A001523) |
-| all castles by area (unrestricted compositions): 2^(n-1) |  |  | [A011782](https://oeis.org/A011782) |
-| non-convex castles by area |  |  | [A115981](https://oeis.org/A115981) |
-| vee castles by area |  |  | [A332578](https://oeis.org/A332578) |
-| not-unimodal compositions |  |  | [A332669](https://oeis.org/A332669) |
+| object | first terms | g.f. / formula | growth | OEIS |
+|---|---|---|---|---|
+| monotone castles (weakly increasing or weakly decreasing) | `1, 2, 4, 7, 12, 18, 28, 40, 57, 80, 110, 148` | `2p(n) − d(n)` |  | [A329398](https://oeis.org/A329398) (`= A329398(n)`; defined by Lyndon factorizations; the entry proves that these are the weakly monotone compositions, so `a(n) = 2A000041(n) − A000005(n)`) |
+| non-monotone castles | `0, 0, 0, 1, 4, 14, 36, 88, 199, 432` | `2^{n−1} − 2p(n) + d(n)` |  | [A332834](https://oeis.org/A332834) (compositions neither weakly increasing nor weakly decreasing) |
+| signed monotone castles `even − odd` | `-1, 0, 0, 1, 0, 2, 0, 2, -1, 4, -2, 4, -4, 6` | `2(−1)^n A000700(n) − Σ_{d\|n} (−1)^d` |  | - |
+| convex castles (weakly unimodal compositions) | `1, 2, 4, 8, 15, 27, 47, 79, 130, 209, 330, 512` |  |  | [A001523](https://oeis.org/A001523) (`= A001523(n)`) |
+| all castles (compositions) | `1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048` | `2^{n−1}` | `2` | [A011782](https://oeis.org/A011782) (`= A011782(n)`) |
+| non-convex castles | `0, 0, 0, 0, 1, 5, 17, 49, 126, 303, 694, 1536` |  |  | [A115981](https://oeis.org/A115981) (`= A115981(n)`) |
+| vee castles (weakly decreasing, then weakly increasing) | `1, 2, 4, 7, 13, 21, 36, 57, 91, 140, 217, 323` |  |  | [A332578](https://oeis.org/A332578) (`= A332578(n)`) |
+| castles that are not vee castles | `0, 0, 0, 1, 3, 11, 28, 71, 165, 372, 807, 1725` |  |  | [A332669](https://oeis.org/A332669) (`= A332669(n)`; compositions whose negation is not unimodal) |
 
 *(Every row and formula agrees with enumeration of compositions for `n ≤ 15`, 2026-10-16.)*
 
@@ -520,4 +518,4 @@ Fibonacci castles, the castles of height 2 with no two neighboring columns of he
 
 ## Footnotes
 
-[^1]: Verified by execution (Python 3.11 with SymPy, 2026-10-16 and 2026-10-22; the zig-zag rows Python 3.10, 2026-10-27, `bin/python/zig_zag_castles.py`): every row with listed terms recomputed by enumeration, transfer matrix or dynamic program at the ranges stated under each table; every cited A-number fetched from oeis.org and compared with the computed terms at the stated offset.
+[^1]: Verified by execution (Python 3.11 with SymPy, 2026-10-16 and 2026-10-22; Python 3.10, 2026-10-27, for the rows checked by `bin/python/zig_zag_castles.py` and `bin/python/sequence_catalogue_rows.py`, run logs beside them): every row with listed terms recomputed by enumeration, transfer matrix or dynamic program at the ranges stated under each table; every cited A-number fetched from oeis.org and compared with the computed terms at the stated offset.
