@@ -252,6 +252,8 @@ a000032			Lucas numbers (companion of Fibonacci)					A000032			Lucas numbers beg
 a000041			Ferrers diagrams by area					A000041			a(n) is the number of partitions of n (the partition numbers).	supporting	
 a000045			tree castles of height 2 of width `w` number `F_{w+2} − 1` (see A000071)					A000045			Fibonacci numbers: F(n) = F(n-1) + F(n-2) with F(0) = 0 and F(1) = 1.	count	
 a000079			powers of 2 (P_even(2,L) = 2^L)					A000079			Powers of 2: a(n) = 2^n.	supporting	
+a000100			castles of area n and height 3: A000100(n); the binary strings of length n - 1 whose longest run of 1s has length 2					A000100			a(n) is the number of compositions of n in which the maximal part is 3.	count	
+a000102			castles of area n and height 4: A000102(n)					A000102			a(n) = number of compositions of n in which the maximum part size is 4.	count	
 a000110			the partitions of a set of n elements, the multiset partitions of n distinct elements (multiset-partitions, bender-1974-partitions-of-multisets)					A000110			Bell or exponential numbers: number of ways to partition a set of n labeled elements.	supporting	
 a000124			unimodal skylines of height at most 2 and width w, 1 + C(w + 1, 2), the limit g -> infinity of the h = 2 row of the tower-spacing skylines					A000124			Central polygonal numbers (the Lazy Caterer's sequence): n(n+1)/2 + 1; or, maximal number of pieces formed when slicing a pancake with n cuts.	supporting	
 a000142			rainbow castles: exactly h! at width h					A000142			Factorial numbers: n! = 1*2*3*4*...*n (order of symmetric group S_n, number of permutations of n letters).	supporting	
@@ -274,6 +276,7 @@ a001235			1729 = A^e(6, 4) is the first term; no other taxicab number is a castl
 a001263		tower-narayana-polynomial	Narayana numbers `N(L, k)`: `T̂(L, b) = Σ_k N(L, k) C(b + L − k, L − 1)` for the towers on a base of length `L` with `b` blocks					A001263			Triangle of Narayana numbers T(n,k) = C(n-1,k-1)*C(n,k-1)/k with 1 <= k <= n, read by rows. Also called the Catalan triangle.	count	proved
 a001333		castle-eigenvalue-oeis-crosswalk	Pell-Lucas numbers, numerators of the continued-fraction convergents to `√2`					A001333			Pell-Lucas numbers: numerators of continued fraction convergents to sqrt(2).	metallic	
 a001608			Perrin numbers, the traces of the powers of the plastic number psi					A001608			Perrin sequence (or Perrin numbers, or Ondrej Such sequence): a(n) = a(n-2) + a(n-3) with a(0) = 3, a(1) = 0, a(2) = 2.	plastic	
+a001792			total number of blocks over the towers of height at most 1 on a base of length L: A001792(L - 1) = (L + 1) 2^{L-2}, (L + 1)/4 per tower					A001792			a(n) = (n+2)*2^(n-1).	count	
 a001803			numerators of 2w C(2w,w)/4^w = B_{1/2}(box) / h, the half-order block count of a box castle (fractional-block-count)					A001803			Numerators in expansion of (1 - x)^(-3/2).	supporting	
 a001906			the Cartier-Foata reciprocal of the interval-piece heap					A001906			F(2n) = bisection of Fibonacci sequence: a(n) = 3*a(n-1) - a(n-2).	count	
 a001906-2			the even-Fibonacci mode `m_w` of the height-3 castle's sink group (Dhar-Ruelle-Sen-Verma Appendix A)					A001906			F(2n) = bisection of Fibonacci sequence: a(n) = 3*a(n-1) - a(n-2).	count	
@@ -281,6 +284,8 @@ a001950			positions of the height-2 columns of the Fibonacci castle whose tower 
 a002203			companion Pell (trace of Pell)					A002203			Companion Pell numbers: a(n) = 2*a(n-1) + a(n-2), a(0) = a(1) = 2.	metallic	
 a002426			unconstrained U/R/D words returning to height 0; Motzkin is the ballot-restricted version					A002426			Central trinomial coefficients: largest coefficient of (1 + x + x^2)^n.	supporting	
 a002596			numerators of the half-order Grunwald-Letnikov weights (-1)^k C(1/2,k) (fractional-block-count)					A002596			Numerators in expansion of sqrt(1+x). Absolute values give numerators in expansion of sqrt(1-x).	supporting	
+a002662			towers of height at most 1 on a base of length L with at least 2 blocks: A002662(L)					A002662			a(n) = 2^n - 1 - n*(n+1)/2.	count	
+a002664			towers of height at most 1 on a base of length L with at least 3 blocks: A002664(L)					A002664			a(n) = 2^n - C(n,0) - ... - C(n,4).	count	
 a002718			Bender's c((0,n)): partitions of a multiset with every element twice, no repeated blocks, no repeated element in a block					A002718			Number of bicoverings of an n-set.	supporting	
 a002997			the first four terms 561, 1105, 1729, 2465 are castle counts: A^o(3, 34), A(4, 7), A^e(6, 4), A(4, 9)					A002997			Carmichael numbers.	supporting	
 a003024			strip rules with all eigenvalues real and positive, i.e. I + nilpotent: 3, 25, 543 at heights 2, 3, 4 (fractional-width-and-height)					A003024			Number of acyclic digraphs (or DAGs) with n labeled nodes.	supporting	
@@ -297,6 +302,8 @@ a005917			A(4,h) = h^4 - (h-1)^4; contains the Carmichael numbers 1105 (h=7) and
 a006190			bronze metallic sequence: a(n) = 3a(n-1) + a(n-2)					A006190			a(n) = 3*a(n-1) + a(n-2), with a(0)=0, a(1)=1.	metallic	
 a006497			trace sequence for bronze					A006497			a(n) = 3*a(n-1) + a(n-2) with a(0) = 2, a(1) = 3.	metallic	
 a006958			parallelogram polyominoes by area, the q-Bessel rung					A006958			Number of parallelogram polyominoes with n cells (also called staircase polyominoes, although that term is overused).	supporting	
+a006979			castles of area n and height 5: A006979(n)					A006979			a(n) is the number of compositions of n in which the maximum part size is 5.	count	
+a006980			castles of area n and height 6: A006980(n)					A006980			Compositions: 6th column of A048004.	count	
 a007318			the binomial toolkit behind every binomial castle count					A007318			Pascal's triangle read by rows: C(n,k) = binomial(n,k) = n!/(k!*(n-k)!), 0 <= k <= n.	supporting	
 a007440			reversion of the Fibonacci g.f.; A343773(n) = (-1)^n A007440(n + 1), the signed Motzkin-path castle count					A007440			Reversion of g.f. for Fibonacci numbers 1, 1, 2, 3, 5, ....	supporting	
 a007764			A007764(8), the corner-to-corner self-avoiding paths on the 8 × 8 grid, as an example size of a ZDD (castle-bdd-zdd)					A007764			Number of nonintersecting (or self-avoiding) rook paths joining opposite corners of an n X n grid.	supporting	
@@ -330,8 +337,9 @@ a041030			numerators of CF convergents to √20					A041030			Numerators of cont
 a041031			denominators of CF convergents to √20					A041031			Denominators of continued fraction convergents to sqrt(20).	metallic	
 a041046			numerators of CF convergents to √29					A041046			Numerators of continued fraction convergents to sqrt(29).	metallic	
 a041047			denominators of CF convergents to √29					A041047			Denominators of continued fraction convergents to sqrt(29).	metallic	
-a045623			total number of height-1 columns over the castles of area n: A045623(n - 1); the castles of area n have (n + 6)/4 prime factors on average					A045623			Number of 1's in all compositions of n+1.	supporting	
+a045623			columns of height j over the castles of area n: A045623(n - j) in total, the height-1 columns A045623(n - 1) at j = 1; the castles of area n have (n + 6)/4 prime factors on average					A045623			Number of 1's in all compositions of n+1.	supporting	
 a046161			denominators of the half-order Grunwald-Letnikov weights and of the chain-rule half-column C(2k,k)/4^k (fractional-block-count, fractional-width-and-height)					A046161			a(n) = denominator of binomial(2n,n)/4^n.	supporting	
+a048004			castles of area n and height h: T(n - 1, h - 1), a column of height c read as a run of c - 1 1s					A048004			Triangular array read by rows: T(n,k) = number of binary vectors of length n whose longest run of consecutive 1's has length k, for n >= 0, 0 <= k <= n.	count	
 a049219			Hickerson's auxiliary count b(n) of restricted horizontally convex n-ominoes (counting-horizontally-convex-polyominoes)					A049219			Number of horizontally convex n-ominoes in which the top row has exactly 1 square.	supporting	
 a049220			Hickerson's auxiliary count c(n) of restricted horizontally convex n-ominoes (counting-horizontally-convex-polyominoes)					A049220			Number of horizontally convex n-ominoes in which the top row has at least 2 squares and the rightmost square in the top row is above the leftmost square in the second row.	supporting	
 a049221			Hickerson's auxiliary count d(n) of restricted horizontally convex n-ominoes (counting-horizontally-convex-polyominoes)					A049221			Number of horizontally convex n-ominoes in which the top row has exactly 1 square, which is not above the rightmost square in the second row.	supporting	
@@ -371,6 +379,9 @@ a202882		hardin-word-identity	Hardin words at `m = 2`: `P_even(10, L)/2^L`, the 
 a203050			Hardin words at `m = 5`					A203050			Number of nX1 0..5 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor.	count	
 a203094		hardin-word-identity	Hardin words at `m = 3`: `P_even(14, L)/2^L`, the even-sector signed towers					A203094			Number of nX1 0..3 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor.	count	proved
 a203184		hardin-word-identity	Hardin words at `m = 4`: `P_even(18, L)/2^L`, the even-sector signed towers					A203184			Number of n X 1 0..4 arrays with every nonzero element less than or equal to some horizontal or vertical neighbor.	count	proved
+a209231			castles of height 4 with every column 1 or 4, by semi-perimeter s: A209231(s - 1)					A209231			Number of binary words of length n such that there is at least one 0  and every run of consecutive 0's is of length >= 4.	count	
+a217838			skylines of height at most 2 with minimum tower spacing 7, a(w)					A217838			Number of n element 0..1 arrays with each element the minimum of 7 adjacent elements of a random 0..1 array of n+6 elements.	count	
+a217839			the `h=2` row of the minimum-tower-spacing `(h,g)` table: T(w, g) = spacing_g(w, 2)					A217839			T(n,k)=Number of n element 0..1 arrays with each element the minimum of k adjacent elements of a random 0..1 array of n+k-1 elements.	supporting	
 a217883		tower-spacing-castles	the `h=3` row of the minimum-tower-spacing `(h,g)` table					A217883			T(n,k) = number of n-element 0..2 arrays with each element the minimum of k adjacent elements of a random 0..2 array of n+k-1 elements.	supporting	proved
 a217954		tower-spacing-castles	the `h=4` row of the minimum-tower-spacing `(h,g)` table					A217954			T(n,k) = number of n-element 0..3 arrays with each element the minimum of k adjacent elements of a random 0..3 array of n+k-1 elements.	supporting	proved
 a226136			agrees with A003410(n), the (1,3)-RLL Fibonacci castles, for n = 4..35; Barker's g.f. for it is their g.f.					A226136			Positions of the positive integers in the ordering of rational numbers as generated by the rules: 1 is in S, and if nonzero x is in S, then x+1 and -1/x are in S.	count	

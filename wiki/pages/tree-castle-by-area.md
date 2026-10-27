@@ -5,7 +5,7 @@ summary: Tree skylines (no two neighboring columns of height at least 2) of heig
 tags: [analysis, castle, tree-castle, area, generating-function, q-analogue, oeis, narayana-cows, plastic-number, supergolden, fibonacci, sympy, verification]
 sources: [tetali-1998-unique-tournaments]
 created: 2026-09-17
-updated: 2026-10-25
+updated: 2026-10-26
 ---
 
 # Tree castle by area
@@ -165,6 +165,7 @@ The column of strong unique tournaments, the unique tournaments `1, 1, 2, 4, 7, 
 - [[q-fibonacci-castle](pages/q-fibonacci-castle.md)] - the tree castles of height 2, the Fibonacci castles, counted with `q` marking area: `q^w (f_w(q) − 1)` at width `w`.
 - [[fibonacci-castle](pages/fibonacci-castle.md)] - the tree castles of height 2 by width, `F_{w+2} − 1`.
 - [[plastic-number](pages/plastic-number.md)] - `ψ`, and the growth `ψ²` of the tree castles of any height by area.
+- [[castle-classification-growth](pages/castle-classification-growth.md)] - every tree castle has semi-perimeter `A + 1`, so the counts by area here are also counts by semi-perimeter.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] and [[hardin-word-identity](pages/hardin-word-identity.md)] - `P_even(6, L) = 2^L·A005251(L + 3)`.
 - [[a005251-bijection](pages/a005251-bijection.md)] - the tree skylines of area `A` and the binary strings of length `A − 1` with no factor `010`, the six readings of A005251 at one index, and the signed block count by area, `(−1)^A·A000931(A − 1)`.
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the castles of height 2 with tower spacing at least 2, counted by `A005251(w + 3) − 1`.

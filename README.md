@@ -36,7 +36,7 @@ concrete, accessible problems for seminars and external collaborators. Each conc
 written as a thread to follow; each ingested source is an entry point into a neighboring
 domain. See [`wiki/overview.md`](wiki/overview.md) for the current synthesis,
 [`IDEAS.md`](IDEAS.md) for the seminar program and the open and done research items by
-Department, [`DEPARTMENTS.md`](DEPARTMENTS.md) for what each Department covers and how they
+Division, [`DIVISIONS.md`](DIVISIONS.md) for what each Division covers and how they
 cross, and [`OEIS.md`](OEIS.md) for OEIS submissions and pending housekeeping.
 
 ## Quick start (fresh clone → asking questions)
@@ -151,8 +151,9 @@ files, and notes — they matter when you're ingesting MediaWiki pages or PDFs.
 
 ```
 SCHEMA.md          conventions + how the wiki tools locate this wiki (do not move/delete)
-IDEAS.md           project and seminar ideas: the seminar arcs, then open and done items by Department
-DEPARTMENTS.md     the nine Departments (R E N Z Q S T F X): descriptors, conceptual coverage, crossovers
+IDEAS.md           project and seminar ideas: the seminar arcs, then open and done items by Division
+DIVISIONS.md       the Divisions (R E N Z Q S T F X C M B, The OEIS Observatory, The Telephone Company,
+                   Facilities): descriptors, conceptual coverage, crossovers
 OEIS.md            OEIS submissions (human action), ingestion queue, housekeeping
 config/            link-style rules (markdown: [[slug](pages/slug.md)]) + castle-sequences.tsv, the sequence data
 bin/               stdlib helper scripts + the pre-commit hook (see Quick start)
@@ -168,7 +169,7 @@ wiki/
 ```
 
 Pages are grouped by `category` frontmatter into **Sources** (ingested documents),
-**Concepts**, **Analyses**, and **Reference** (script-generated lookup pages). Currently 130 pages (30 Sources, 66 Concepts, 33 Analyses, 1 Reference).
+**Concepts**, **Analyses**, and **Reference** (script-generated lookup pages). Currently 229 pages (54 Sources, 100 Concepts, 73 Analyses, 2 Reference).
 
 ## Conventions
 
