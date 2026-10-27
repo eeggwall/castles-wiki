@@ -5,7 +5,7 @@ summary: A skyline has tower spacing at least g when, in every row, each run of 
 tags: [analysis, castle, gap-rule, tower-spacing, transfer-matrix, growth-constant, plastic-number, golden-ratio, generating-function, rule-3, sympy, verification, oeis, min-filter, unimodal]
 sources: [pe502-pell-castle-strip, balado-silvestre-2026-runs-binary-strings]
 created: 2026-09-18
-updated: 2026-10-26
+updated: 2026-10-27
 ---
 
 # Minimum tower spacing - skylines and castles
@@ -43,26 +43,26 @@ With the Hardin word identity, `spacing_2(L, m + 1) = P_even(4m + 2, L) / 2^L`: 
 
 ## The level-run recursion
 
-Let `A_h(x) = Σ_n a_h(n) x^n` count the arrays over `{0, …, h − 1}` whose level sets have all runs of length at least `g`, by their length `n`, so that `spacing_g(w, h) = a_h(w + g − 1)` (section *The minimum-filter description*).
+Let `Z_h(x)` count the arrays over `{0, …, h − 1}` whose level sets have all runs of length at least `g`, with `x` marking their length, so that `spacing_g(w, h) = [x^{w+g−1}] Z_h(x)` (section *The minimum-filter description*). Write `[g]_x = 1 + x + ⋯ + x^{g−1} = (1 − x^g)/(1 − x)`, with `[0]_x = 0`.
 
-**Recursion.** Such an array is a sequence of 0s and maximal runs of nonzero entries, with a 0 between any two runs. Each run is a run of `{a ≥ 1}`, so it has length at least `g`, and subtracting 1 from its entries leaves an array over `{0, …, h − 2}` whose level sets again have all runs of length at least `g`; every such array of length at least `g` arises. An array shorter than `g` has no nonzero entry, so `a_{h−1}(n) = 1` for `n < g`, and the runs have generating function `K_h = A_{h−1} − (1 + x + ⋯ + x^{g−1})`. The words in 0s and runs with no two runs adjacent give
-
-```
-A_h  =  (1 + K_h) / (1 − x − x K_h),        A_1  =  1/(1 − x).                     (2)
-```
-
-**The matrix.** Write `A_h = N_h / D_h`, with `N_1 = 1` and `D_1 = 1 − x`. With `R = 1 + x + ⋯ + x^{g−1}`, `K_h = (N_{h−1} − R D_{h−1}) / D_{h−1}`, and since `1 − R = −xS` and `1 − x + xR = 1 + x²S`, Equation (2) advances the pair by one matrix:
+**Recursion.** Such an array is a sequence of 0s and maximal runs of nonzero entries, with a 0 between any two runs. Each run is a run of `{a ≥ 1}`, so it has length at least `g`, and subtracting 1 from its entries leaves an array over `{0, …, h − 2}` whose level sets again have all runs of length at least `g`; every such array of length at least `g` arises. An array shorter than `g` has no nonzero entry, so `Z_{h−1}` has coefficient 1 at every `x^n` with `n < g`, and the runs have generating function `Z_{h−1} − [g]_x`. The words in 0s and runs with no two runs adjacent give
 
 ```
-( N_h )     (  1     −xS    ) ( N_{h−1} )
-( D_h )  =  ( −x    1 + x²S ) ( D_{h−1} ),        S = 1 + x + ⋯ + x^{g−2}.          (3)
+Z_h  =  (1 + Z_{h−1} − [g]_x) / (1 − x − x (Z_{h−1} − [g]_x)),        Z_1  =  1/(1 − x).        (2)
 ```
 
-At `h = 2` it gives `A_2 = (1 − x + x^g)/((1 − x)² − x^{g+1})`, whose coefficients from `x^{g−1}` on are those of Equation (5) (section *Height 2*). At `(h, g) = (3, 2)`, `S = 1` and `D_3 = (1 + x²)(1 − 2x + x² − x³) − x(1 − x + x²) = 1 − 3x + 3x² − 4x³ + x⁴ − x⁵`, the reversal of `H_5` (section *The table*). At `g = 1`, `S = 0` and `D_h = 1 − hx`, the count `h^w` of all skylines.[^11]
+**The matrix.** Write `Z_h = N_h(x) / D_h(x)`, with `N_1 = 1` and `D_1 = 1 − x`. The runs are `(N_{h−1} − [g]_x D_{h−1}) / D_{h−1}`, and since `1 − [g]_x = −x [g − 1]_x` and `1 − x + x [g]_x = 1 + x² [g − 1]_x`, Equation (2) advances the pair by one matrix:
 
-**Theorem.** For every `h ≥ 1` and `g ≥ 2`, `N_h` and `D_h` are coprime and `D_h` has degree `(h − 1)g + 1`, so `spacing_g(·, h)` satisfies a linear recurrence of order `(h − 1)g + 1` and no shorter one.
+```
+( N_h )     (  1     −x [g − 1]_x    ) ( N_{h−1} )
+( D_h )  =  ( −x    1 + x² [g − 1]_x ) ( D_{h−1} ).                                  (3)
+```
 
-*Proof.* The matrix of Equation (3) has determinant `(1 + x²S) − x²S = 1`, so its inverse has polynomial entries, and `(1, 1 − x)` is the inverse to the power `h − 1` applied to `(N_h, D_h)`; a common factor of `N_h` and `D_h` therefore divides 1. For the degrees, `deg N_h = deg D_h − 1` holds at `h = 1`, and if it holds at `h − 1`, then `(1 + x²S) D_{h−1}` has degree `deg D_{h−1} + g`, above the degree `deg D_{h−1}` of `x N_{h−1}`, so `deg D_h = deg D_{h−1} + g`, and `N_h = N_{h−1} − xS D_{h−1}` has degree `deg D_{h−1} + g − 1 = deg D_h − 1`. So `deg D_h = 1 + (h − 1)g`. The coefficients of the reduced fraction `N_h / D_h`, with `D_h(0) = 1`, satisfy the recurrence of `D_h` and no shorter one, and since the leading coefficient of `D_h` is nonzero, dropping the first `g − 1` of them does not shorten it. ∎
+At `h = 2` it gives `Z_2 = (1 − x + x^g)/((1 − x)² − x^{g+1})`, whose coefficients from `x^{g−1}` on are those of Equation (5) (section *Height 2*). At `(h, g) = (3, 2)`, `[1]_x = 1` and `D_3 = (1 + x²)(1 − 2x + x² − x³) − x(1 − x + x²) = 1 − 3x + 3x² − 4x³ + x⁴ − x⁵`, the reversal of `H_5` (section *The table*). At `g = 1`, `[0]_x = 0` and `D_h = 1 − hx`, the count `h^w` of all skylines.[^11]
+
+**Theorem.** For every `h ≥ 1` and `g ≥ 2`, `N_h(x)` and `D_h(x)` are coprime and `D_h(x)` has degree `(h − 1)g + 1`, so `spacing_g(·, h)` satisfies a linear recurrence of order `(h − 1)g + 1` and no shorter one.
+
+*Proof.* The matrix of Equation (3) has determinant `(1 + x² [g − 1]_x) − x² [g − 1]_x = 1`, so its inverse has polynomial entries, and `(1, 1 − x)` is the inverse to the power `h − 1` applied to `(N_h, D_h)`; a common factor of `N_h` and `D_h` therefore divides 1. For the degrees, `deg N_h = deg D_h − 1` holds at `h = 1`, and if it holds at `h − 1`, then `(1 + x² [g − 1]_x) D_{h−1}` has degree `deg D_{h−1} + g`, above the degree `deg D_{h−1}` of `x N_{h−1}`, so `deg D_h = deg D_{h−1} + g`, and `N_h = N_{h−1} − x [g − 1]_x D_{h−1}` has degree `deg D_{h−1} + g − 1 = deg D_h − 1`. So `deg D_h = 1 + (h − 1)g`. The coefficients of the reduced fraction `N_h / D_h`, with `D_h(0) = 1`, satisfy the recurrence of `D_h` and no shorter one, and since the leading coefficient of `D_h` is nonzero, dropping the first `g − 1` of them does not shorten it. ∎
 
 ## Height 2
 
@@ -72,7 +72,7 @@ At `h = 2` a skyline is a binary string, `1` for a column of height 2, whose int
 spacing_g(w, 2)  =  Σ_{k ≥ 0} C(w + g − (g − 1)k, 2k).                         (4)
 ```
 
-Equation (2) at `h = 2` has `K_2 = x^g/(1 − x)`, so `A_2 = (1 − x + x^g)/((1 − x)² − x^{g+1})`, and dropping its first `g − 1` coefficients gives the generating function
+Equation (2) at `h = 2` has the runs `Z_1 − [g]_x = x^g/(1 − x)`, so `Z_2 = (1 − x + x^g)/((1 − x)² − x^{g+1})`, and dropping its first `g − 1` coefficients gives the generating function
 
 ```
 Σ_{w ≥ 0} spacing_g(w, 2) x^w  =  (1 + x² + x³ + ⋯ + x^g) / ((1 − x)² − x^{g+1}).   (5)
