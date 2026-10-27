@@ -5,7 +5,7 @@ summary: The sequence A^e(w, 3) of castles of width w and height 3 with an even 
 tags: [oeis, castle, c-finite, height-3, analysis]
 sources: [oeis-encyclopedia]
 created: 2026-09-13
-updated: 2026-10-25
+updated: 2026-10-26
 ---
 
 # Even-block castles of height 3, A^e(w, 3)
@@ -71,6 +71,7 @@ with characteristic polynomial `(x − 3)(x − 2)(x² − x + 2)(x² − 2x + 2
 
 - [[castle-counting-function](pages/castle-counting-function.md)] - the counts `A`, `A^e` and `A^o`, of which this is the row `h = 3`.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] - the closed form of `A^e(w, h)`.
+- [[block-count-constraints](pages/block-count-constraints.md)] - `A^e(w, 3)` as a double sum of binomials, from the Dyck paths of height 2 by peaks.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(1, ·)` and `P(2, ·)` and their characteristic polynomials.
 - [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - `P(2, w) = 2^w − A107920(w)`, split by the parity of the last column.
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the row `h = 2`, `A^e(w, 2) = A038505(w+1)`.
