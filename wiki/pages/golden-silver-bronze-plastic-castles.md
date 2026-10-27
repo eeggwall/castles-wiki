@@ -5,7 +5,7 @@ summary: The four constants golden φ, silver 1 + √2, bronze (3 + √13)/2 and
 tags: [analysis, castle, metallic-means, golden-ratio, silver-ratio, bronze, plastic-number, padovan, growth-constant, width, area, semi-perimeter, spectral-radius, run-length-limited, ridge-castle, classification, totally-real, oeis, sympy, verification]
 sources: [project-euler-502, balado-silvestre-2026-runs-binary-strings]
 created: 2026-10-10
-updated: 2026-10-26
+updated: 2026-10-27
 ---
 
 # Golden, silver, bronze and plastic growth of castles
@@ -169,7 +169,7 @@ The eight plastic families of the grid all grow at `ψ`, and five of them are co
 | the rule `1 → 2`, `2 → {2, 3}`, `3 → 1` | semi-perimeter | Equation (1) | Padovan numbers in sevenths, a constant and a term of period 6 |
 | castles with every column 1 or 9 | semi-perimeter | `spacing_9(s − 9, 2) − 1` | a second growing term, like `1.187^s` |
 
-**Prime castles of height 3.** A castle with columns 2 and 3 is a composition of its area into 2s and 3s. These compositions satisfy `c(n) = c(n − 2) + c(n − 3)` with `c(0) = 1`, so there are `c(A) = A000931(A + 3)` of them, and the castles of height 3 are those with at least one 3. At even `A` exactly one composition, all 2s, has none.
+**Prime castles of height 3.** A castle with columns 2 and 3 is a composition of its area into 2s and 3s. Their number `comp_{2,3}(n)` at area `n` satisfies `comp_{2,3}(n) = comp_{2,3}(n − 2) + comp_{2,3}(n − 3)` with `comp_{2,3}(0) = 1`, so `comp_{2,3}(A) = A000931(A + 3)`, and the castles of height 3 are those with at least one 3. At even `A` exactly one composition, all 2s, has none.
 
 **The rule `1 → 2`, `2 → {2, 3}`, `3 → 1`.** Its castles of height 3 have generating function
 
@@ -177,10 +177,10 @@ The eight plastic families of the grid all grow at `ψ`, and five of them are co
 x⁴ (1 + x²)(1 − x² + x³) / ((1 − x)(1 − x + x²)(1 − x² − x³)),
 ```
 
-and partial fractions over the three factors of the denominator give, with `c(n) = A000931(n + 3)`,
+and partial fractions over the three factors of the denominator give, with `comp_{2,3}(n) = A000931(n + 3)`, the compositions of `n` into 2s and 3s,
 
 ```
-a(s)  =  (4 c(s) + 6 c(s − 1) + 12 c(s − 2) + e(s)) / 7  −  2,        s ≥ 4,          (1)
+a(s)  =  (4 comp_{2,3}(s) + 6 comp_{2,3}(s − 1) + 12 comp_{2,3}(s − 2) + e(s)) / 7  −  2,        s ≥ 4,     (1)
 ```
 
 where `e(s)` repeats `−1, 2, 3, 1, −2, −3` from `s = 4`, since `1 − x + x²` divides `1 + x³`. The counts from `s = 4` are `1, 2, 3, 5, 6, 9, 13, 18, 25, 33, 44, 59, …`.
