@@ -5,7 +5,7 @@ summary: Counting towers or castles whose block count lies in a set S is a coeff
 tags: [concept, castle, generating-functions, roots-of-unity, coin-problem, narayana, pedagogy]
 sources: [project-euler-502-castle-factoring, project-euler-502-observations, balado-silvestre-2026-runs-binary-strings, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths]
 created: 2026-09-14
-updated: 2026-10-26
+updated: 2026-10-27
 ---
 
 # Block-count constraints
@@ -126,14 +126,14 @@ The subscript `≤k` separates `N_{≤k}(b, p)` from the samplers' completion ta
 N_{≤2}(b, p)  =  C(b, 2p − b).                                                          (6)
 ```
 
-A Dyck path of height at most 2 is a sequence of pieces `U (UD)^n D` with `n ≥ 0`, of semilength `n + 1`. The piece with `n = 0` has one peak, and the piece with `n ≥ 1` has `n`. With `x` marking semilength and `y` peaks, the pieces have generating function `xy + x²y/(1 − xy)`, so with `s = √y` the paths have generating function
+A Dyck path of height at most 2 is a sequence of pieces `U (UD)^n D` with `n ≥ 0`, of semilength `n + 1`. The piece with `n = 0` has one peak, and the piece with `n ≥ 1` has `n`. With `x` marking semilength and `y` peaks, the pieces have generating function `xy + x²y/(1 − xy)`, so the paths have generating function
 
 ```
 1 / (1 − xy − x²y/(1 − xy))  =  (1 − xy) / ((1 − xy)² − x²y)
-                             =  ( 1/(1 − x(y + s))  +  1/(1 − x(y − s)) ) / 2.
+                             =  ( 1/(1 − x(y + √y))  +  1/(1 − x(y − √y)) ) / 2.
 ```
 
-The coefficient of `x^b` is `((y + s)^b + (y − s)^b)/2 = Σ_{j even} C(b, j) s^j y^{b−j}`, and `s^j y^{b−j} = y^p` at `j = 2b − 2p`, so the coefficient of `y^p` is `C(b, 2b − 2p) = C(b, 2p − b)`. By Equations (5) and (6),
+The coefficient of `x^b` is `((y + √y)^b + (y − √y)^b)/2 = Σ_{j even} C(b, j) y^{b − j/2}`, and `y^{b − j/2} = y^p` at `j = 2b − 2p`, so the coefficient of `y^p` is `C(b, 2b − 2p) = C(b, 2p − b)`. By Equations (5) and (6),
 
 ```
 [z^b] G_{2,L}(z)  =  Σ_{b/2 ≤ p ≤ b}  C(b, 2p − b) · C(L + 1 + 2b − 2p, 2b).
