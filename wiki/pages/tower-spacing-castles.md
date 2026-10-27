@@ -1,7 +1,7 @@
 ---
 title: Minimum tower spacing - skylines and castles
 category: Analyses
-summary: A skyline has tower spacing at least g when, in every row, each run of empty cells with filled cells on both sides has length at least g. spacing_g(w, h) counts such skylines of width w on {1, …, h}, which need not reach h; the castles of height h among them number spacing_g(w, h) − spacing_g(w, h − 1). A skyline has tower spacing at least g exactly when its 0-based heights are the window-g running minimum of a longer array, so spacing_g(·, h) is Hardin's count of minimum-filter outputs (A217883, A217954, A228461 and their columns), and at g = 2 it is W_{h−1}(w + 1), Hardin's words with no strict local maximum. At h = 2, spacing_g(w, 2) = Σ_k C(w + g − (g−1)k, 2k), with denominator (1 − x)² − x^{g+1}, growth ψ² at g = 2, φ at g = 3 and the supergolden ratio at g = 5. For 2 ≤ h, g ≤ 6 the minimal recurrence has order (h − 1)g + 1 (proved by computation), and for h ≥ 3 no growth constant is a metallic mean. The row h = 2 is Hardin's table A217839, with spacing_7(w, 2) = A217838(w), and spacing_h(s − h, 2) − 1 counts the castles of height h with every column 1 or h by semi-perimeter s.
+summary: A skyline has tower spacing at least g when, in every row, each run of empty cells with filled cells on both sides has length at least g. spacing_g(w, h) counts such skylines of width w on {1, …, h}, which need not reach h; the castles of height h among them number spacing_g(w, h) − spacing_g(w, h − 1). A skyline has tower spacing at least g exactly when its 0-based heights are the window-g running minimum of a longer array, so spacing_g(·, h) is Hardin's count of minimum-filter outputs (A217883, A217954, A228461 and their columns), and at g = 2 it is W_{h−1}(w + 1), Hardin's words with no strict local maximum. At h = 2, spacing_g(w, 2) = Σ_k C(w + g − (g−1)k, 2k), with denominator (1 − x)² − x^{g+1}, growth ψ² at g = 2, φ at g = 3 and the supergolden ratio at g = 5. The minimal recurrence has order (h − 1)g + 1 at every h and g ≥ 2: the arrays whose level sets have all runs at least g long satisfy a recursion in h whose numerator and denominator advance by a 2 × 2 matrix of determinant 1. For h ≥ 3 no growth constant is a metallic mean. The row h = 2 is Hardin's table A217839, with spacing_7(w, 2) = A217838(w), and spacing_h(s − h, 2) − 1 counts the castles of height h with every column 1 or h by semi-perimeter s.
 tags: [analysis, castle, gap-rule, tower-spacing, transfer-matrix, growth-constant, plastic-number, golden-ratio, generating-function, rule-3, sympy, verification, oeis, min-filter, unimodal]
 sources: [pe502-pell-castle-strip, balado-silvestre-2026-runs-binary-strings]
 created: 2026-09-18
@@ -78,6 +78,29 @@ spacing_2(w, h)  =  W_{h−1}(w + 1).                                           
 
 With the Hardin word identity, `spacing_2(L, m + 1) = P_even(4m + 2, L) / 2^L`: the skylines of height at most `m + 1` with tower spacing at least 2 are counted by the even sector of the signed tower count at tower height `4m + 2`.[^5]
 
+## The level-run recursion
+
+An entry `a_i = v` lies in a window of `g` consecutive entries that are all at least `v` exactly when the run of the level set `{a ≥ v}` that contains position `i` has length at least `g`. So the arrays fixed by the opening are those in which every level set `{a ≥ r}`, `r = 1, …, h − 1`, has all its runs of length at least `g`: if some run of `{a ≥ r}` were shorter, its smallest entry would lie in no such window. Let `A_h(x) = Σ_n a_h(n) x^n` count these arrays over `{0, …, h − 1}` by their length `n`, so that `spacing_g(w, h) = a_h(w + g − 1)`.
+
+**Recursion.** Such an array is a sequence of 0s and maximal runs of nonzero entries, with a 0 between any two runs. Each run is a run of `{a ≥ 1}`, so it has length at least `g`, and subtracting 1 from its entries leaves an array over `{0, …, h − 2}` whose level sets again have all runs of length at least `g`; every such array of length at least `g` arises. An array shorter than `g` has no nonzero entry, so `a_{h−1}(n) = 1` for `n < g`, and the runs have generating function `K_h = A_{h−1} − (1 + x + ⋯ + x^{g−1})`. The words in 0s and runs with no two runs adjacent give
+
+```
+A_h  =  (1 + K_h) / (1 − x − x K_h),        A_1  =  1/(1 − x).                     (4)
+```
+
+**The matrix.** Write `A_h = N_h / D_h`, with `N_1 = 1` and `D_1 = 1 − x`. With `R = 1 + x + ⋯ + x^{g−1}`, `K_h = (N_{h−1} − R D_{h−1}) / D_{h−1}`, and since `1 − R = −xS` and `1 − x + xR = 1 + x²S`, Equation (4) advances the pair by one matrix:
+
+```
+( N_h )     (  1     −xS    ) ( N_{h−1} )
+( D_h )  =  ( −x    1 + x²S ) ( D_{h−1} ),        S = 1 + x + ⋯ + x^{g−2}.          (5)
+```
+
+At `h = 2` it gives `A_2 = (1 − x + x^g)/((1 − x)² − x^{g+1})`, whose coefficients from `x^{g−1}` on are those of Equation (2). At `(h, g) = (3, 2)`, `S = 1` and `D_3 = (1 + x²)(1 − 2x + x² − x³) − x(1 − x + x²) = 1 − 3x + 3x² − 4x³ + x⁴ − x⁵`, the reversal of `H_5` (section *The table*). At `g = 1`, `S = 0` and `D_h = 1 − hx`, the count `h^w` of all skylines.[^11]
+
+**Theorem.** For every `h ≥ 1` and `g ≥ 2`, `N_h` and `D_h` are coprime and `D_h` has degree `(h − 1)g + 1`, so `spacing_g(·, h)` satisfies a linear recurrence of order `(h − 1)g + 1` and no shorter one.
+
+*Proof.* The matrix of Equation (5) has determinant `(1 + x²S) − x²S = 1`, so its inverse has polynomial entries, and `(1, 1 − x)` is the inverse to the power `h − 1` applied to `(N_h, D_h)`; a common factor of `N_h` and `D_h` therefore divides 1. For the degrees, `deg N_h = deg D_h − 1` holds at `h = 1`, and if it holds at `h − 1`, then `(1 + x²S) D_{h−1}` has degree `deg D_{h−1} + g`, above the degree `deg D_{h−1}` of `x N_{h−1}`, so `deg D_h = deg D_{h−1} + g`, and `N_h = N_{h−1} − xS D_{h−1}` has degree `deg D_{h−1} + g − 1 = deg D_h − 1`. So `deg D_h = 1 + (h − 1)g`. The coefficients of the reduced fraction `N_h / D_h`, with `D_h(0) = 1`, satisfy the recurrence of `D_h` and no shorter one, and since the leading coefficient of `D_h` is nonzero, dropping the first `g − 1` of them does not shorten it. ∎
+
 ## The table
 
 Growth constants, the largest roots of the minimal recurrences:[^6]
@@ -90,7 +113,7 @@ Growth constants, the largest roots of the minimal recurrences:[^6]
 | 5 | 3.5589 | 2.9392 | 2.5888 | 2.3608 | 2.1991 |
 | 6 | 4.0967 | 3.3154 | 2.8839 | 2.6069 | 2.4123 |
 
-- **Minimal recurrence order.** In every cell with `2 ≤ h, g ≤ 6`, the shortest linear recurrence of `spacing_g(·, h)` has order `(h − 1)g + 1`. Berlekamp-Massey finds it from 100 terms, and since the sequence satisfies a recurrence of order at most the number of states `C(h + g − 1, g)`, checking the found recurrence on (states + order + 5) terms proves it holds for every `w`. At `(3, 3)` and `(4, 3)` these are the recurrences that A217878 and A217949 list as "Empirical", coefficient for coefficient, so those hold.
+- **Minimal recurrence order.** The shortest linear recurrence of `spacing_g(·, h)` has order `(h − 1)g + 1` at every `h` and `g ≥ 2` (section *The level-run recursion*). In every cell with `2 ≤ h, g ≤ 6`, Berlekamp-Massey finds the same order from 100 terms, and the found recurrence holds on (states + order + 5) terms, where the states number `C(h + g − 1, g)`. At `(3, 3)` and `(4, 3)` these are the recurrences that A217878 and A217949 list as "Empirical", coefficient for coefficient, so those hold.
 - **No metallic growth for `h ≥ 3`.** For `3 ≤ h ≤ 6` and `2 ≤ g ≤ 6`, the minimal polynomial of the growth constant has degree at least 4, while every metallic mean `σ_p^q` has degree at most 2 ([[metallic-means](pages/metallic-means.md)]). At `(3, 2)` the growth `2.40221` is the largest root of `x⁵ − 3x⁴ + 3x³ − 4x² + x − 1`, the polynomial `H_5` of [[hardin-word-identity](pages/hardin-word-identity.md)], just below the silver mean `2.41421`. At `h = 2` the growth constant is the golden mean `φ = σ_1^1` at `g = 3`; at `g = 2` and `g = 5` it is the cubic `ψ²` or the supergolden ratio.
 - **The limit `g → ∞`.** For `w ≤ g + 1` an internal run of length at least `g` does not fit between two filled cells, so the rule forbids every internal run and the skylines are the unimodal ones ([[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)]); at `w = g + 2` the skyline `(2, 1, …, 1, 2)` is allowed and not unimodal. So `spacing_g(w, h)` equals the number of unimodal skylines exactly for `w ≤ g + 1` (checked for `h ≤ 4`, `g ≤ 5`; at `h = 2` the unimodal count is `1 + C(w + 1, 2)`, `A000124`).
 
@@ -148,3 +171,4 @@ Hardin's two-dimensional tables are the rows `h = 2` (A217839, "0..1 arrays"), `
 [^8]: [[balado-silvestre-2026-runs-binary-strings](pages/balado-silvestre-2026-runs-binary-strings.md)] §2.4.4 p.24 L1169-1176 - "w≤1 (n − 2, 0) = w1 (n − 2, 0) is A005251 for n ≥ 2", "w≤2 (n − 1, 0) is A005252 for n ≥ 1", "w≤3 (n, 0) is A005253", "w≤4 (n − 2, 0) is A005689 (number of Twopins positions) for n ≥ 6", "w≤5 (n − 1, 0) is A098574 for n ≥ 1", "w≤6 (n + 6, 0) is A217838", where `w_{≤k}(n, 0)` counts the `n`-strings with no nonnull run of length at most `k`.
 [^9]: https://oeis.org/A217838 and https://oeis.org/A217839 (read 2026-10-25) - A217838 "Number of n element 0..1 arrays with each element the minimum of 7 adjacent elements of a random 0..1 array of n+6 elements", offset 0, data `1, 2, 4, 7, 11, 16, 22, 29, 37, 47, 61, 82, …`, g.f. `(x^7+x^6+x^5+x^4+x^3+x^2+1)/((1 - x + x^4)*(1 - x - x^4))`, "Column 7 of A217839"; A217839 "T(n,k)=Number of n element 0..1 arrays with each element the minimum of k adjacent elements of a random 0..1 array of n+k-1 elements", "Column 2 is A005251(n+3)" through "Column 6 is A098574(n+6)".
 [^10]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): `spacing_7(w, 2)` against A217838 for `w ≤ 16`; every listed term of A217839 (the antidiagonals through `n + k = 12`) against `spacing_k(n, 2)`; the lengthening map, a bijection from the castles of height `h` with every column 1 or `h` and semi-perimeter `s` onto the nonzero binary words of length `s − 1` with every run of 1s at least `h` long, for `h ≤ 5`, `s ≤ 14`, and the count `spacing_h(s − h, 2) − 1` for `h ≤ 9`, `s ≤ h + 11`.
+[^11]: Verified by execution (Python 3.11 with SymPy, 2026-10-26): Equation (4) against the dynamic program of section *The transfer matrix* for `2 ≤ h, g ≤ 5` and `w ≤ 40`; Equation (5), the coprimality of `N_h` and `D_h`, and `deg D_h = (h − 1)g + 1` for `2 ≤ h, g ≤ 7`; `D_3` at `g = 2`.
