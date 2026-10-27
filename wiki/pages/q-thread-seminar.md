@@ -1,7 +1,7 @@
 ---
 title: q-thread seminar - castles by area
 category: Concepts
-summary: A seminar on castles graded by area, with one castle (2, 1, 3, 3, 1, 1, 2) carried through. A castle of area n is a composition of n, so there are 2^{n−1} of them. On the ladder of convex-polyomino families by area the castles are the bar graphs and the convex castles are the stacks (A001523). Convex and valley castles tie in every cell (w, h) at C(2h + w − 3, w − 1) but differ by area from n = 4 (8 against 7). Cutting at height-1 columns makes castles a free monoid whose primes are castles raised one row (F_{n−1} by area). The sign (−1)^{blocks−1} is a character of that monoid, so the signed count obeys the row-raising equation 1 + qz(2 − E(z)) = 1/(1 − qz E(qz)) and is 0.0985 (−1.62383)^n up to a relative error O(0.7508^n). The closed form is a sequence of parallelograms, Π/(1 − x − Π), over the Bousquet-Mélou-Fédou q-Bessel series, the Pólya q-Catalan family, and the pole is the first zero q_0 = −0.61583 of the q-Bessel denominator M, whose second zero q_1 = −0.82027 sets the error. With the height bounded, the counts by area are rational.
+summary: A seminar on castles graded by area, with one castle (2, 1, 3, 3, 1, 1, 2) carried through. A castle of area n is a composition of n, so there are 2^{n−1} of them. On the ladder of convex-polyomino families by area the castles are the bar graphs and the convex castles are the stacks (A001523). Convex and vee castles tie in every cell (w, h) at C(2h + w − 3, w − 1) but differ by area from n = 4 (8 against 7). Cutting at height-1 columns makes castles a free monoid whose primes are castles raised one row (F_{n−1} by area). The sign (−1)^{blocks−1} is a character of that monoid, so the signed count obeys the row-raising equation 1 + qz(2 − E(z)) = 1/(1 − qz E(qz)) and is 0.0985 (−1.62383)^n up to a relative error O(0.7508^n). The closed form is a sequence of parallelograms, Π/(1 − x − Π), over the Bousquet-Mélou-Fédou q-Bessel series, the Pólya q-Catalan family, and the pole is the first zero q_0 = −0.61583 of the q-Bessel denominator M, whose second zero q_1 = −0.82027 sets the error. With the height bounded, the counts by area are rational.
 tags: [concept, castle, seminar, pedagogy, teaching, area, q-analog, q-catalan, q-motzkin, q-bessel, prime-castles, signed-count, polyomino, composition]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes, steep-polyominoes-q-motzkin-bessel, prellberg-brak-1995-cluster-models]
 created: 2026-09-27
@@ -41,12 +41,12 @@ Two changes move a family between rungs. Give a stack a bottom boundary of its o
 
 *Idea:* place a new family among known ones and find the rule that separates it from its neighbors.
 
-## Stop 2 - convex and valley: the same cells, different areas
+## Stop 2 - convex and vee: the same cells, different areas
 
-A **convex** castle rises weakly and then falls weakly. A **valley** castle falls weakly and then rises weakly. At fixed width and height they have the same count in every cell ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)], [[castle-by-area](pages/castle-by-area.md)]):
+A **convex** castle rises weakly and then falls weakly. A **vee** castle falls weakly and then rises weakly. At fixed width and height they have the same count in every cell ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)], [[castle-by-area](pages/castle-by-area.md)]):
 
 ```
-convex(w, h)  =  valley(w, h)  =  C(2h + w − 3, w − 1)          checked at (3,2) 6, (4,3) 35, (5,3) 70, (6,4) 462
+convex(w, h)  =  vee(w, h)  =  C(2h + w − 3, w − 1)          checked at (3,2) 6, (4,3) 35, (5,3) 70, (6,4) 462
 ```
 
 By area they differ from `n = 4`:
@@ -54,10 +54,10 @@ By area they differ from `n = 4`:
 ```
  n        1  2  3  4   5   6   7   8    9   10   11   12
 convex    1  2  4  8  15  27  47  79  130  209  330  512     A001523
-valley    1  2  4  7  13  21  36  57   91  140  217  323     A332578
+vee       1  2  4  7  13  21  36  57   91  140  217  323     A332578
 ```
 
-At `n = 4` all 8 compositions are convex, but the castle `(1, 2, 1)` is not a valley castle.[^1] So no bijection between the convex and the valley castles of each cell `(w, h)` also preserves the area.
+At `n = 4` all 8 compositions are convex, but the castle `(1, 2, 1)` is not a vee castle.[^1] So no bijection between the convex and the vee castles of each cell `(w, h)` also preserves the area.
 
 *Idea:* equal counts in one grading ask for a bijection, and a second grading shows which statistics the bijection can keep.
 
@@ -142,7 +142,7 @@ With the height bounded, the counts by area are rational and their growth consta
 |---|---|---|
 | area alone | compositions | `2^{n−1}` |
 | area on the ladder | bar graphs; convex castles are stacks | A011782, A001523; growth 2, between the stacks and `2.309` |
-| area against `(w, h)` | convex and valley castles tie in each cell and differ by area | `C(2h + w − 3, w − 1)`; 8 against 7 at `n = 4` |
+| area against `(w, h)` | convex and vee castles tie in each cell and differ by area | `C(2h + w − 3, w − 1)`; 8 against 7 at `n = 4` |
 | gluing | a free monoid of castles raised one row | primes `F_{n−1}` |
 | area with the sign | a character, a q-shift recursion | `even − odd ~ 0.0985 (−1.62383)^n` |
 | closed form | sequences of parallelograms | `Π/(1 − x − Π)`, Pólya q-Catalan, poles at `q_0 = −0.61583`, `q_1 = −0.82027` |
@@ -167,7 +167,7 @@ def convex(c):                             # weakly up, then weakly down
     i = 0
     while i + 1 < len(c) and c[i+1] >= c[i]: i += 1
     return all(c[j+1] <= c[j] for j in range(i, len(c) - 1))
-valley = lambda c: convex(tuple(-x for x in c))
+vee = lambda c: convex(tuple(-x for x in c))
 
 def primes(c):                             # the X of each factor (1, X, 1) of (1, C, 1)
     segs, cur = [], []
@@ -242,9 +242,9 @@ def ltr_maxima(c):
 True
 >>> [sum(convex(c) for c in comps(n)) for n in range(1, 13)]
 [1, 2, 4, 8, 15, 27, 47, 79, 130, 209, 330, 512]
->>> [sum(valley(c) for c in comps(n)) for n in range(1, 13)]
+>>> [sum(vee(c) for c in comps(n)) for n in range(1, 13)]
 [1, 2, 4, 7, 13, 21, 36, 57, 91, 140, 217, 323]
->>> [(w, h, cell(convex, w, h), cell(valley, w, h), comb(2*h + w - 3, w - 1)) for w, h in [(3, 2), (4, 3), (5, 3), (6, 4)]]
+>>> [(w, h, cell(convex, w, h), cell(vee, w, h), comb(2*h + w - 3, w - 1)) for w, h in [(3, 2), (4, 3), (5, 3), (6, 4)]]
 [(3, 2, 6, 6, 6), (4, 3, 35, 35, 35), (5, 3, 70, 70, 70), (6, 4, 462, 462, 462)]
 >>> C = (2, 1, 3, 3, 1, 1, 2); sum(C), blocks(C), primes(C)
 (13, 5, [(2,), (3, 3), (), (2,)])
@@ -274,7 +274,7 @@ True
 
 1. Factor `(3, 1, 1, 2, 2, 1)` into primes, and check that `blocks − 1` adds up over the factors.
 2. Show that raising a castle one row adds exactly one block, and explain why Stop 4 needs exactly one rather than at least one.
-3. List the eight compositions of 4 and find the one that is not a valley castle. Then explain why no bijection from convex to valley castles can keep both `(w, h)` and area.
+3. List the eight compositions of 4 and find the one that is not a vee castle. Then explain why no bijection from convex to vee castles can keep both `(w, h)` and area.
 4. Read off `even(5) − odd(5) = 0` from the row-raising recursion by hand, using `E` through area 3.
 
 ## Appearances in Sources
@@ -297,7 +297,7 @@ True
 
 ## Footnotes
 
-[^1]: Verified by execution (Python 3.11, 2026-10-16): all compositions of `n ≤ 12`, the convex and valley counts by area, and the cells `(3, 2), (4, 3), (5, 3), (6, 4)` against `C(2h + w − 3, w − 1)`, as in the Snippet. The rows by area are the A001523 and A332578 rows of [[castle-by-area](pages/castle-by-area.md)] and [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)].
+[^1]: Verified by execution (Python 3.11, 2026-10-16): all compositions of `n ≤ 12`, the convex and vee counts by area, and the cells `(3, 2), (4, 3), (5, 3), (6, 4)` against `C(2h + w − 3, w − 1)`, as in the Snippet. The rows by area are the A001523 and A332578 rows of [[castle-by-area](pages/castle-by-area.md)] and [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)].
 [^2]: Verified by execution (Python 3.11, 2026-10-16): `Σ (blocks(prime) − 1) = blocks − 1` over the prime factorization of every composition of `n ≤ 14`; raising adds one block for every composition of `n ≤ 12`; the prime counts `F_{n−1}`; area, width, blocks and height-1 columns, each minus one, additive over the factors for `n ≤ 11`, and left-to-right maxima and height not; `1 + qz(2 − E(z)) = 1/(1 − qz E(qz))` as a bivariate series through `q^12` with `E` by enumeration.
 [^3]: Verified by execution (Python 3.11, 2026-10-16): the column dynamic program agrees with enumeration for `n ≤ 16`, and its ratio at `n = 120` is `−1.62382967400459`; bisection on `M(q)` truncated at `k = 60` gives `q_0 = −0.6158281351848058` and `q_1 = −0.820271977584318`, as on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] and [[castle-row-raising-equation](pages/castle-row-raising-equation.md)], whose `C` is used for the `n = 16` check.
 [^4]: [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] p.56 L151-160 [synthesis] - "Their generating function is the quotient of two q-analogues of Bessel-like functions", eq. (1) `X = y J_1/J_0` with the series `J_1` and `J_0`, as transcribed on that page and on [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)].

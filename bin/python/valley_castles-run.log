@@ -1,0 +1,23 @@
+# python3 bin/python/valley_castles.py  (2026-10-25, Python 3.10)
+[1] blocks = h + total depth; core - c = sum of depths over the valleys above each column; core area - area = sum of depth x span; no two valleys cross; at most w - 2 valleys, none iff unimodal; horizontally visible pairs = (w - 1) + valleys; all castles w <= 9, h <= 5: True
+[2] the stack scan agrees with brute force (valleys and block parity), w <= 9, h <= 5: True
+[3] shape lemma: exactly one valley iff exactly one wall pair has a flat floor below both walls, unimodal sides, and (c_i >= c_j, right side weakly decreasing) or (c_i <= c_j, left side weakly increasing); w <= 9, h <= 5: True
+[4] valley castles = (h - 1)^2 C(w + 2h - 3, 2h), 1 <= w <= 16, 1 <= h <= 7: True
+[5] case (A) gives C(w + 2h - 3, 2h) for each 1 <= f < c_j <= h, and its castles with c_j = h are the overlap, (h - 1) C(w + 2h - 3, 2h); w <= 9, h <= 5: True
+[6] depth d: (2h - 1 - 2d) C(w + 2h - 3, 2h); even-block C(h, 2) or C(h - 1, 2) times C(w + 2h - 3, 2h) as h is odd or even, odd-block the other; w <= 9, h <= 5: True
+[6] parity split and S_valley = (-1)^(h+1) (h - 1) C(w + 2h - 3, 2h) by the scan, w <= 16, h <= 7: True
+[7] the castles with h + 1 blocks are the valley castles of depth 1, (2h - 3) C(w + 2h - 3, 2h); those with h + 2 blocks are the valley castles of depth 2, (2h - 5) C(w + 2h - 3, 2h), and the 2-valley castles with both depths 1; w <= 9, 2 <= h <= 5: True
+[8] 0 valleys: C(w + 2h - 3, w - 1), w <= 16, h <= 7; height 2, k valleys: C(w + 1, 2k + 2), w <= 18: True
+[8] height 3, 2 valleys: 12 C(w + 3, 8) + 2 C(w + 3, 7), w <= 16: True
+[8] h = 3, w = 3, castles by number of valleys k = 0, 1, ...: [15, 4]
+[8] h = 3, w = 4, castles by number of valleys k = 0, 1, ...: [35, 28, 2]
+[8] h = 3, w = 5, castles by number of valleys k = 0, 1, ...: [70, 112, 28, 1]
+[8] h = 3, w = 6, castles by number of valleys k = 0, 1, ...: [126, 336, 180, 23]
+[8] h = 3, w = 7, castles by number of valleys k = 0, 1, ...: [210, 840, 780, 218, 11]
+[8] h = 3, w = 8, castles by number of valleys k = 0, 1, ...: [330, 1848, 2640, 1298, 185, 4]
+[8] h = 4, w = 3, castles by number of valleys k = 0, 1, ...: [28, 9]
+[8] h = 4, w = 4, castles by number of valleys k = 0, 1, ...: [84, 81, 10]
+[8] h = 4, w = 5, castles by number of valleys k = 0, 1, ...: [210, 405, 155, 11]
+[8] h = 4, w = 6, castles by number of valleys k = 0, 1, ...: [462, 1485, 1155, 255, 10]
+[8] h = 4, w = 7, castles by number of valleys k = 0, 1, ...: [924, 4455, 5830, 2622, 358, 8]
+[8] h = 4, w = 8, castles by number of valleys k = 0, 1, ...: [1716, 11583, 22880, 17342, 5004, 446, 4]

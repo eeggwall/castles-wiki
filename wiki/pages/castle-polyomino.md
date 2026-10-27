@@ -5,7 +5,7 @@ summary: The central object of study. A castle of width w and height h is a skyl
 tags: [concept, castle, polyomino, bargraph, column-convex, skyline, combinatorics]
 sources: [project-euler-502, prellberg-brak-1995-cluster-models, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-solution, project-euler-502-brute-force]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-25
 ---
 
 # Castle (polyomino)
@@ -86,7 +86,7 @@ Besides the skyline, a castle can be encoded by column-wise binary strings or by
 - [[castle-counting-formula](pages/castle-counting-formula.md)] - the closed form `A^e(w, h) = [A(w, h) − P(h−1, w) + P(h−2, w)]/2` through the signed tower count.
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^{blocks}` and the split into even-block and odd-block castles.
 - [[castle-representations](pages/castle-representations.md)] - the three encodings: binary strings, skylines, and step strings.
-- [[castle-classification](pages/castle-classification.md)] - families of castles, with the 42 shape types of [[castle-classification-shape](pages/castle-classification-shape.md)].
+- [[castle-classification](pages/castle-classification.md)] - families of castles, with the 41 shape types of [[castle-classification-shape](pages/castle-classification-shape.md)].
 - [[castle-strip](pages/castle-strip.md)] - castles read one column at a time under a rule on neighboring columns, counted by transfer matrices.
 - [[convex-castle](pages/convex-castle.md)] - castles with a unimodal skyline, the stack polyominoes of the literature.
 - [[castle-perimeter](pages/castle-perimeter.md)] - the semi-perimeter `w + blocks` of a castle, and castles counted by semi-perimeter (A082582).

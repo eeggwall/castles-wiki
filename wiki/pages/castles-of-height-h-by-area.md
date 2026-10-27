@@ -88,7 +88,7 @@ The snippet `bounded_castles_by_area(h, A_max)` on [[castle-snippets-strips](pag
 - [[balado-silvestre-2026-runs-binary-strings](pages/balado-silvestre-2026-runs-binary-strings.md)] - binary strings by their runs of 1s; through the run reading, the castles by area by their column heights.
 - [[a005251-bijection](pages/a005251-bijection.md)] - the same map from compositions to binary strings, with 0s and 1s exchanged.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree skylines of height at most `h` and the tree castles of height `h` by area.
-- [[castle-by-area](pages/castle-by-area.md)] - all castles by area, `2^{n−1}`, and the convex and valley families.
+- [[castle-by-area](pages/castle-by-area.md)] - all castles by area, `2^{n−1}`, and the convex and vee families.
 - [[plastic-number](pages/plastic-number.md)] - the plastic number `ψ` and `ψ²`, the growth of the tree castles by area with the height unrestricted.
 - [[metallic-means](pages/metallic-means.md)] - de Spinadel's family `σ_p^q`, to which `φ` belongs and the `h`-nacci constants for `h ≥ 3` do not.
 - [[castle-graph](pages/castle-graph.md)] - the tree castles by width.

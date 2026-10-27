@@ -171,7 +171,7 @@ The column of strong unique tournaments, the unique tournaments `1, 1, 2, 4, 7, 
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the castles of height 2 with tower spacing at least 2, counted by `A005251(w + 3) − 1`.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - families of castles by growth, with the tree castles by area.
 - [[metallic-means](pages/metallic-means.md)] - the quadratic constants `σ_p^q`, of which `φ` at `h = 3` is the only one in Table 1.
-- [[castle-by-area](pages/castle-by-area.md)] - convex, valley and other castles counted by area.
+- [[castle-by-area](pages/castle-by-area.md)] - convex, vee and other castles counted by area.
 - [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - all castles of height `h` by area, the compositions with largest part `h`, compared with the tree castles of height `h`.
 - [[padovan-families](pages/padovan-families.md)] - the palindromic tree castles by area, `A000931(A + 6)`, whose growth by area is `ψ`, the square root of the `ψ²` of all tree castles.
 - [[unique-tournament](pages/unique-tournament.md)], [[simple-tournament](pages/simple-tournament.md)], [[forcibly-simple-score-vector](pages/forcibly-simple-score-vector.md)] - the tournament properties in Tetali's theorem.

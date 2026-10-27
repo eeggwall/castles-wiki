@@ -1,0 +1,76 @@
+# python3 bin/python/zig_zag_castles.py  (2026-10-27, Python 3.10)
+[1] (I + A_path) (.) (J - I) = A_path, entrywise, for h = 2..12: True
+[1] h = 3: 1-smooth [[1, 1, 0], [1, 1, 1], [0, 1, 1]]  plateau-free [[0, 1, 1], [1, 0, 1], [1, 1, 0]]  product [[0, 1, 0], [1, 0, 1], [0, 1, 0]]
+[1] characteristic polynomial of A_path on h heights = U_h(x/2), h = 1..12: True
+[1] eigenvalues 2cos(pi k/(h+1)), k = 1..h, h = 1..12: True
+[2] the zig-zag castles of width 4 and height 3: [(1, 2, 3, 2), (2, 1, 2, 3), (2, 3, 2, 1), (2, 3, 2, 3), (3, 2, 1, 2), (3, 2, 3, 2)] count 6 blocks [3, 4, 3, 4, 4, 4]
+     (1, 2, 3, 2) ..#. .### ####
+     (2, 1, 2, 3) ...# #.## ####
+     (2, 3, 2, 1) .#.. ###. ####
+     (2, 3, 2, 3) .#.# #### ####
+     (3, 2, 1, 2) #... ##.# ####
+     (3, 2, 3, 2) #.#. #### ####
+[2] (1, 2, 2, 3) and (1, 3, 2) are not zig-zag: True ; blocks(1, 2, 3, 2) = 3
+[3] A153340(n) = zig-zag strips of width n on heights 1..8, all, n >= 1: True, 32 terms
+[3] A153362(n) = zig-zag strips of width n on heights 1..9, all, n >= 1: True, 31 terms
+[3] A153360(n) = zig-zag strips of width n on heights 1..10, all, n >= 1: True, 31 terms
+[3] A153368(n) = zig-zag strips of width n on heights 1..11, all, n >= 1: True, 31 terms
+[3] A153361(n) = zig-zag strips of width n on heights 1..12, all, n >= 1: True, 30 terms
+[3] A090993(n) = zig-zag strips of width n + 1 on heights 1..5, all, n >= 1: True, 32 terms
+[3] A090995(n) = zig-zag strips of width n + 1 on heights 1..6, all, n >= 1: True, 31 terms
+[3] A153339(n) = zig-zag strips of width n on heights 1..5, c_1 with the parity of h, n >= 1: True, 34 terms
+[3] A090992(n) = zig-zag strips of width n + 1 on heights 1..8, c_1 with the parity of h, n >= 1: True, 32 terms
+[3] A090994(n) = zig-zag strips of width n + 1 on heights 1..10, c_1 with the parity of h, n >= 1: True, 31 terms
+[3] A153363(n) = zig-zag strips of width n on heights 1..9, c_1 with the parity of h, n >= 1: True, 32 terms
+[3] A153364(n) = zig-zag strips of width n on heights 1..9, c_1 with the other parity, n >= 1: True, 32 terms
+[3] A153365(n) = zig-zag strips of width 2n on heights 1..9, c_1 with the parity of h, n >= 1: True, 23 terms
+[3] A153366(n) = zig-zag strips of width 2n - 1 on heights 1..9, c_1 with the parity of h, n >= 1: True, 24 terms
+[3] A153367(n) = zig-zag strips of width 2n - 1 on heights 1..9, c_1 with the other parity, n >= 1: True, 24 terms
+[3] A153369(n) = zig-zag strips of width n on heights 1..11, c_1 with the parity of h, n >= 1: True, 32 terms
+[3] A153370(n) = zig-zag strips of width n on heights 1..11, c_1 with the other parity, n >= 1: True, 32 terms
+[3] A153371(n) = zig-zag strips of width 2n on heights 1..11, c_1 with the parity of h, n >= 1: True, 23 terms
+[3] A153372(n) = zig-zag strips of width 2n - 1 on heights 1..11, c_1 with the parity of h, n >= 1: True, 23 terms
+[3] A153373(n) = zig-zag strips of width 2n - 1 on heights 1..11, c_1 with the other parity, n >= 1: True, 23 terms
+[3] A030435(n) = zig-zag strips of width n - 1 on heights 1..7, c_1 with the parity of h, n >= 2: True, 36 terms
+[3] A030436(n) = zig-zag strips of width n - 2 on heights 1..7, c_1 with the other parity, n >= 3: True, 38 terms
+[3] A030436(n) = zig-zag strips of width n + 1 on heights 1..7, c_1 = 1, n >= 0: True, 38 terms
+[3] A030435(n) = 2 x zig-zag strips of width n + 1 on heights 1..7, c_1 = 1, n >= 0: True, 36 terms
+[3] A153334(n) = zig-zag strips of width s on heights 1..s, s = n, c_1 with the parity of h: True, 30 terms
+[3] A153335(n) = zig-zag strips of width s on heights 1..s, s = n, c_1 with the other parity: True, 30 terms
+[3] A153336(n) = zig-zag strips of width s on heights 1..s, s = 2n, c_1 with the parity of h: True, 22 terms
+[3] A153337(n) = zig-zag strips of width s on heights 1..s, s = 2n - 1, c_1 with the parity of h: True, 22 terms
+[3] A153338(n) = zig-zag strips of width s on heights 1..s, s = 2n - 1, c_1 with the other parity: True, 24 terms
+[3] every listed entry agrees on every term of its data field: True
+[4] A_zigzag(w, 3) = A027383(w - 1): True, 43 terms
+[4] A_zigzag(w, 4) = A027557(w - 1): True, 34 terms
+[4] A_zigzag(w, 5) = A027559(w - 1): True, 33 terms
+[4] A_zigzag(w, 6) = A027560(w - 1): True, 33 terms
+[4] castle -> step string is a bijection onto the (h-1)-balanced strings of length w - 1, h = 2..7, w = 1..13: True
+[4] h = 2: 2 for w >= 2: True ; h = 3: 3*2^((w-1)/2) - 2 (w odd), 2^((w+2)/2) - 2 (w even): True ; h = 4: 2F_{w+2} - 2^floor((w+1)/2) - 2^floor(w/2): True (w < 60)
+[4] A_zigzag(w, h), w = 1..12:
+    h = 2: [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+    h = 3: [1, 2, 4, 6, 10, 14, 22, 30, 46, 62, 94, 126]
+    h = 4: [1, 2, 4, 8, 14, 26, 44, 78, 130, 224, 370, 626]
+    h = 5: [1, 2, 4, 8, 16, 30, 58, 106, 200, 360, 668, 1190]
+    h = 6: [1, 2, 4, 8, 16, 32, 62, 122, 232, 450, 846, 1622]
+[5] blocks(c) = (c_1 + c_w + w - 1)/2 on every zig-zag strip, h <= 7, w <= 12: True
+[5] even-block and odd-block counts from the formula agree with direct enumeration, h = 2..7, w <= 12: True
+    h = 2, w = 1..16, A^e: [1, 2, 1, 0, 1, 2, 1, 0, 1, 2, 1, 0, 1, 2, 1, 0]
+    h = 2, w = 1..16, A^o: [0, 0, 1, 2, 1, 0, 1, 2, 1, 0, 1, 2, 1, 0, 1, 2]
+    h = 3, w = 1..16, A^e: [0, 0, 1, 4, 7, 6, 7, 16, 31, 30, 31, 64, 127, 126, 127, 256]
+    h = 3, w = 1..16, A^o: [1, 2, 3, 2, 3, 8, 15, 14, 15, 32, 63, 62, 63, 128, 255, 254]
+    h = 4, w = 1..16, A^e: [1, 2, 3, 4, 5, 12, 26, 42, 57, 104, 201, 334, 482, 804, 1469, 2472]
+    h = 4, w = 1..16, A^o: [0, 0, 1, 4, 9, 14, 18, 36, 73, 120, 169, 292, 546, 914, 1341, 2184]
+    h = 5, w = 1..16, A^e: [0, 0, 1, 4, 9, 16, 28, 50, 101, 188, 333, 574, 1092, 1984, 3505, 6020]
+    h = 5, w = 1..16, A^o: [1, 2, 3, 4, 7, 14, 30, 56, 99, 172, 335, 616, 1090, 1874, 3507, 6308]
+    h = 6, w = 1..16, A^e: [1, 2, 3, 4, 7, 16, 32, 60, 115, 230, 424, 792, 1512, 2940, 5333, 9832]
+    h = 6, w = 1..16, A^o: [0, 0, 1, 4, 9, 16, 30, 62, 117, 220, 422, 830, 1514, 2808, 5331, 10274]
+[6] h = 2: sqrt(A_zigzag(4002, h)/A_zigzag(4000, h)) = 1.000000000000, 2cos(pi/(h+1)) = 1.000000000000
+[6] h = 3: sqrt(A_zigzag(4002, h)/A_zigzag(4000, h)) = 1.414213562373, 2cos(pi/(h+1)) = 1.414213562373
+[6] h = 4: sqrt(A_zigzag(4002, h)/A_zigzag(4000, h)) = 1.618033988750, 2cos(pi/(h+1)) = 1.618033988750
+[6] h = 5: sqrt(A_zigzag(4002, h)/A_zigzag(4000, h)) = 1.732050807569, 2cos(pi/(h+1)) = 1.732050807569
+[6] h = 6: sqrt(A_zigzag(4002, h)/A_zigzag(4000, h)) = 1.801937735805, 2cos(pi/(h+1)) = 1.801937735805
+[6] h = 7: sqrt(A_zigzag(4002, h)/A_zigzag(4000, h)) = 1.847759065023, 2cos(pi/(h+1)) = 1.847759065023
+[6] h = 8: sqrt(A_zigzag(4002, h)/A_zigzag(4000, h)) = 1.879385241572, 2cos(pi/(h+1)) = 1.879385241572
+[6] h = 9: sqrt(A_zigzag(4002, h)/A_zigzag(4000, h)) = 1.902113032590, 2cos(pi/(h+1)) = 1.902113032590
+[6] h = 4: 2cos(pi/5) = phi: True

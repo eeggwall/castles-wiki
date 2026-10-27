@@ -5,7 +5,7 @@ summary: Growth types classify families of castles, not single castles; upper bo
 tags: [concept, castle, classification, taxonomy, growth-constant, metallic-means, ridge-castle, non-metallic, meta-classification, n-nacci, cubic-pisot, plastic-number, class-predicate]
 sources: [de-spinadel-1999-family-of-metallic-means, balado-silvestre-2026-runs-binary-strings]
 created: 2026-09-19
-updated: 2026-10-26
+updated: 2026-10-27
 ---
 
 # Castle classification - growth types
@@ -41,6 +41,7 @@ At a fixed height, every member of the row `δ_a` is realized by the ridge castl
 
 - **The Fibonacci castles**, the tree castles of height 2: no two neighboring columns of height 2 ([[fibonacci-castle](pages/fibonacci-castle.md)], [[castle-graph](pages/castle-graph.md)]). They number `F_{w+2} − 1`, with generating function `x/((1 − x)(1 − x − x²))`.
 - **The ridge castles of height 2**: no two neighboring columns of height 1. Exchanging the heights 1 and 2 maps them onto the Fibonacci castles and the flat row `(1, …, 1)`, so there are `F_{w+2}` of them for `w ≥ 2`.[^1]
+- **The zig-zag castles of height 4**: neighboring columns differ by exactly 1 ([[zig-zag-castles](pages/zig-zag-castles.md)]). They number `2F_{w+2} − 2^{⌊(w+1)/2⌋} − 2^{⌊w/2⌋}` = `1, 2, 4, 8, 14, 26, 44, 78, …`, A027557(`w − 1`). The zig-zag castles of height `h` grow at `2cos(π/(h+1))`, the largest eigenvalue of the path on `h` heights, and `2cos(π/5) = φ`.[^zz]
 
 ### Silver, `δ_2 = 1 + √2`
 
@@ -180,3 +181,4 @@ The plastic number also appears in the signed tower count, as the largest eigenv
 [^2]: https://oeis.org/A001523 (read 2026-10-16) - "a(n) ~ exp(2*Pi*sqrt(n/3)) / (8 * 3^(3/4) * n^(5/4)) [Auluck, 1951]. - Vaclav Kotesovec, Jun 22 2015".
 [^crilly]: https://www.jstor.org/stable/3620208 (T. Crilly, "A supergolden rectangle", *The Mathematical Gazette* 78 (1994) 320-325, read 2026-10-11) - p.322: "x must satisfy the cubic equation x³ − x² − 1 = 0", for a rectangle cut into a square and two smaller rectangles similar to it; p.323: "in the case of the supergolden ratio ψ we have the cubic x³ = x² + 1". Crilly's symbol `ψ` is the wiki's symbol for the plastic number, so the wiki writes this constant by name. The printed value `1.465567…` differs from the root `1.4655712…` in the fifth decimal.
 [^runs]: [[balado-silvestre-2026-runs-binary-strings](pages/balado-silvestre-2026-runs-binary-strings.md)] §2.7 p.31 L1550-1554 and §2.7.4 p.33 L1664-1670 [synthesis] - eq. (87), the `n`-strings with at least one 1 whose nonnull runs all have length at least `k`, "We subtract one both in (87) and in (88) to discount the all-zeros n-string"; "w≥2 (n + 2) is A077855", "w≥3 (n) is A130578", "w≥4 (n) is A209231". https://oeis.org/A209231 (read 2026-10-25) - "Number of binary words of length n such that there is at least one 0  and every run of consecutive 0's is of length >= 4", offset 0, data `0, 0, 0, 0, 1, 3, 6, 10, 15, 22, 33, 51, …`. Verified by execution (Python 3.11 with SymPy, 2026-10-25): the lengthening map, a bijection from the castles of height `h` with every column 1 or `h` (every castle of height 2 at `h = 2`) and semi-perimeter `s` onto the nonzero binary strings of length `s − 1` whose runs of 1s are all at least `h` long, for `h ≤ 5`, `s ≤ 14`; the count `spacing_h(s − h, 2) − 1` for `h ≤ 9`, `s ≤ h + 11`; `A209231(s − 1)` at `h = 4` for `s ≤ 14`; `(1 − x)² − x^{10} = −(x² − x + 1)(x³ + x² − 1)(x⁵ − x + 1)`.
+[^zz]: https://oeis.org/A027557 (read 2026-10-27) - "a(n) = 2*A000045(n+3) - 2^floor((n+2)/2) - 2^floor((n+1)/2). - _Max Alekseyev_, Jun 02 2005"; the counts and the growth verified by execution (Python 3.10, 2026-10-27): `bin/python/zig_zag_castles.py` items [4] and [6], run log `bin/python/zig_zag_castles-run.log`.

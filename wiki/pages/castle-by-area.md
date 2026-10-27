@@ -1,8 +1,8 @@
 ---
 title: Castles by area
 category: Concepts
-summary: Castles counted by their area n, the number of cells, instead of by width and height. A castle of area n is a composition of n, so there are 2^{n−1} of them; the convex castles of area n are the weakly unimodal compositions (A001523), the valley castles A332578, the non-convex castles A115981 and the castles that are not valleys A332669. The page tabulates these counts and their splits by block parity for n ≤ 12.
-tags: [concept, castle, area, composition, oeis, unimodal, valley]
+summary: Castles counted by their area n, the number of cells, instead of by width and height. A castle of area n is a composition of n, so there are 2^{n−1} of them; the convex castles of area n are the weakly unimodal compositions (A001523), the vee castles A332578, the non-convex castles A115981 and the castles that are not vee castles A332669. The page tabulates these counts and their splits by block parity for n ≤ 12.
+tags: [concept, castle, area, composition, oeis, unimodal, vee]
 sources: [oeis-encyclopedia]
 created: 2026-09-13
 updated: 2026-10-25
@@ -28,11 +28,11 @@ The skylines `(1, 2)` and `(2, 1)` have two blocks, the skyline `(3)` has three 
 The counts use these families of skylines:
 
 - **convex**: unimodal, weakly increasing and then weakly decreasing ([[convex-castle](pages/convex-castle.md)]);
-- **valley**: weakly decreasing and then weakly increasing;
-- **strict valley**: valley and not convex, so with a column lower than a column on each side of it;
+- **vee** (V-shaped): weakly decreasing and then weakly increasing;
+- **strict vee**: vee and not convex, so with a column lower than a column on each side of it;
 - **non-convex**: not convex.
 
-The skyline `(2, 1, 2)` is a strict valley, `(1, 2, 1)` is convex and not a valley, and the monotone skylines, such as `(1, 1, 2)`, are both convex and valleys.
+The skyline `(2, 1, 2)` is a strict vee, `(1, 2, 1)` is convex and not a vee, and the monotone skylines, such as `(1, 1, 2)`, are both convex and vee.
 
 ## Counts by area
 
@@ -46,29 +46,29 @@ For `n = 1, …, 12`, the numbers of castles of area `n` are:[^2]
 | convex | 1, 2, 4, 8, 15, 27, 47, 79, 130, 209, 330, 512 | `A001523(n)` |
 | convex, even block count | 0, 1, 2, 5, 8, 15, 24, 41, 64, 105, 162, 255 | |
 | convex, odd block count | 1, 1, 2, 3, 7, 12, 23, 38, 66, 104, 168, 257 | |
-| valley | 1, 2, 4, 7, 13, 21, 36, 57, 91, 140, 217, 323 | `A332578(n)` |
-| valley, even block count | 0, 1, 2, 4, 6, 12, 16, 32, 40, 78, 98, 175 | |
-| valley, odd block count | 1, 1, 2, 3, 7, 9, 20, 25, 51, 62, 119, 148 | |
-| strict valley | 0, 0, 0, 0, 1, 3, 8, 17, 34, 60, 107, 175 | |
-| strict valley, even block count | 0, 0, 0, 0, 0, 2, 2, 11, 12, 36, 44, 99 | |
-| strict valley, odd block count | 0, 0, 0, 0, 1, 1, 6, 6, 22, 24, 63, 76 | |
+| vee | 1, 2, 4, 7, 13, 21, 36, 57, 91, 140, 217, 323 | `A332578(n)` |
+| vee, even block count | 0, 1, 2, 4, 6, 12, 16, 32, 40, 78, 98, 175 | |
+| vee, odd block count | 1, 1, 2, 3, 7, 9, 20, 25, 51, 62, 119, 148 | |
+| strict vee | 0, 0, 0, 0, 1, 3, 8, 17, 34, 60, 107, 175 | |
+| strict vee, even block count | 0, 0, 0, 0, 0, 2, 2, 11, 12, 36, 44, 99 | |
+| strict vee, odd block count | 0, 0, 0, 0, 1, 1, 6, 6, 22, 24, 63, 76 | |
 | non-convex | 0, 0, 0, 0, 1, 5, 17, 49, 126, 303, 694, 1536 | `A115981(n)` |
 | non-convex, even block count | 0, 0, 0, 0, 0, 2, 6, 24, 58, 156, 340, 788 | |
 | non-convex, odd block count | 0, 0, 0, 0, 1, 3, 11, 25, 68, 147, 354, 748 | |
-| not a valley | 0, 0, 0, 1, 3, 11, 28, 71, 165, 372, 807, 1725 | `A332669(n)` |
+| not a vee | 0, 0, 0, 1, 3, 11, 28, 71, 165, 372, 807, 1725 | `A332669(n)` |
 
 Every entry agrees with brute-force enumeration of the compositions of `n`.[^3] Each parity split adds up to its family, and the OEIS rows read as follows:[^4]
 
 - `A011782(n) = 2^{n−1}` for `n ≥ 1`, the number of compositions of `n`.
 - `A001523(n)`, "number of stacks, or planar partitions of n; also number of weakly unimodal compositions of n": a convex castle of area `n` is a weakly unimodal composition of `n` ([[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)]).
-- `A332578(n)`, the compositions of `n` whose negation is unimodal: negating a skyline exchanges valleys and unimodal sequences.
+- `A332578(n)`, the compositions of `n` whose negation is unimodal: negating a skyline exchanges the V-shaped and the unimodal sequences.
 - `A115981(n) = A011782(n) − A001523(n)`, the compositions of `n` "which cannot be viewed as stacks".
 - `A332669(n) = 2^{n−1} − A332578(n)`, the compositions of `n` whose negation is not unimodal.
 
-A skyline is both convex and a valley exactly when it is monotone. The weakly increasing and the weakly decreasing compositions of `n` each correspond to the partitions of `n`, and the compositions that are both have all parts equal, one for each divisor of `n`. So, with `p(n)` the number of partitions of `n` and `d(n)` the number of divisors,[^5]
+A skyline is both convex and a vee exactly when it is monotone. The weakly increasing and the weakly decreasing compositions of `n` each correspond to the partitions of `n`, and the compositions that are both have all parts equal, one for each divisor of `n`. So, with `p(n)` the number of partitions of `n` and `d(n)` the number of divisors,[^5]
 
 ```
-valley(n)  =  strict_valley(n) + 2p(n) − d(n).
+vee(n)  =  strict_vee(n) + 2p(n) − d(n).
 ```
 
 At `n = 5`: `13 = 1 + 2·7 − 2`.
@@ -77,7 +77,7 @@ At `n = 5`: `13 = 1 + 2·7 − 2`.
 
 ## By width and height
 
-Counted by width and height instead of area, the valley castles and the convex castles agree: for `w ≤ 7` and `h ≤ 6` (with `h^w ≤ 300000`), the valley castles of width `w` and height `h` number `C(2h + w − 3, w − 1) = A_convex(w, h)` ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]).[^6] The two sets differ: at `w = 3`, `h = 2`, the skyline `(1, 2, 1)` is convex and not a valley, and `(2, 1, 2)` is a valley and not convex. By area they differ from `n = 4` on, 8 convex castles against 7 valleys.
+Counted by width and height instead of area, the vee castles and the convex castles agree: for `w ≤ 7` and `h ≤ 6` (with `h^w ≤ 300000`), the vee castles of width `w` and height `h` number `C(2h + w − 3, w − 1) = A_convex(w, h)` ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]).[^6] The two sets differ: at `w = 3`, `h = 2`, the skyline `(1, 2, 1)` is convex and not a vee, and `(2, 1, 2)` is a vee and not convex. By area they differ from `n = 4` on, 8 convex castles against 7 vee castles.
 
 ## Appearances in Sources
 
@@ -110,8 +110,8 @@ Counted by width and height instead of area, the valley castles and the convex c
 ## Footnotes
 
 [^1]: raw/bousquet-melou-rechnitzer-2002-lattice-animals-heaps-of-dimers.pdf p.237 Table 1 - "Bargraph (Compositions) 2 Rational Obvious"; https://oeis.org/A011782 (read 2026-10-25) - "Number of compositions (ordered partitions) of n."
-[^2]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): every row of the table for `n ≤ 12`, by enumerating the compositions of `n`, and the rows of all, convex, valley, non-convex and not-a-valley castles against the terms of `A011782`, `A001523`, `A332578`, `A115981` and `A332669` for `n ≤ 15`.
-[^3]: Verified by execution (Python 3.11, 2026-10-16): every row of the table for `n ≤ 15`, by enumerating the compositions of `n`; the identity for `valley(n)` for `n ≤ 14`; the valley and convex castles by width and height for `w ≤ 7`, `h ≤ 6` with `h^w ≤ 300000`.
+[^2]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): every row of the table for `n ≤ 12`, by enumerating the compositions of `n`, and the rows of all, convex, vee, non-convex and not-a-vee castles against the terms of `A011782`, `A001523`, `A332578`, `A115981` and `A332669` for `n ≤ 15`.
+[^3]: Verified by execution (Python 3.11, 2026-10-16): every row of the table for `n ≤ 15`, by enumerating the compositions of `n`; the identity for `vee(n)` for `n ≤ 14`; the vee and convex castles by width and height for `w ≤ 7`, `h ≤ 6` with `h^w ≤ 300000`.
 [^4]: https://oeis.org/A011782, https://oeis.org/A001523, https://oeis.org/A332578, https://oeis.org/A115981, https://oeis.org/A332669 (read 2026-10-25) - "Coefficients of expansion of (1-x)/(1-2*x) in powers of x." with the comment "Number of compositions (ordered partitions) of n.", "Number of stacks, or planar partitions of n; also number of weakly unimodal compositions of n.", "Number of compositions of n whose negation is unimodal.", "The number of compositions of n which cannot be viewed as stacks." with the formula "a(n) = A011782(n) - A001523(n).", and "Number of compositions of n whose negation is not unimodal." with the formula "a(n) + A332578(n) = 2^(n - 1) for n > 0."
-[^5]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): `valley(n) = strict_valley(n) + 2p(n) − d(n)` for `n ≤ 15`.
-[^6]: Verified by execution (Python 3.11, 2026-10-25): the valley castles of width `w` and height `h` number `C(2h + w − 3, w − 1)` for `w ≤ 7`, `h ≤ 6` with `h^w ≤ 300000`; `(1, 2, 1)` is convex and not a valley, and `(2, 1, 2)` is a valley and not convex.
+[^5]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): `vee(n) = strict_vee(n) + 2p(n) − d(n)` for `n ≤ 15`.
+[^6]: Verified by execution (Python 3.11, 2026-10-25): the vee castles of width `w` and height `h` number `C(2h + w − 3, w − 1)` for `w ≤ 7`, `h ≤ 6` with `h^w ≤ 300000`; `(1, 2, 1)` is convex and not a vee castle, and `(2, 1, 2)` is a vee castle and not convex.

@@ -1,7 +1,7 @@
 ---
 title: "OEIS matches of PE 502 castle counts"
 category: Analyses
-summary: The castle counts of Project Euler 502 that equal OEIS entries, offsets included. P(1, L) = A146559(L+1), with the imaginary part of (1+i)^n in A009545; A(·, h) = A000225, A001047, A005061, A005060, A005062 for h = 2, …, 6; A^e(w, 2) = A038505(w+1) and A^o(w, 2) = A038503(w+1) − 1, two of the four sums of every fourth binomial coefficient; the rows A^e(·, h) and A^o(·, h) with recurrences of orders 6, 9, 11 and 5, 9, 11 for h = 3, 4, 5, and the columns A^e(w, ·) with characteristic polynomial (x² − 1)^w; the convex count C(2h+w−3, w−1), A000217 and A000332 at h = 2, 3; towers by blocks, A034839 at height at most 1 and the rows A005408, A005891, A063490, A160747 of any height; and by area A000079, A001523 (convex), A332578 (valley), A115981 (non-convex).
+summary: The castle counts of Project Euler 502 that equal OEIS entries, offsets included. P(1, L) = A146559(L+1), with the imaginary part of (1+i)^n in A009545; A(·, h) = A000225, A001047, A005061, A005060, A005062 for h = 2, …, 6; A^e(w, 2) = A038505(w+1) and A^o(w, 2) = A038503(w+1) − 1, two of the four sums of every fourth binomial coefficient; the rows A^e(·, h) and A^o(·, h) with recurrences of orders 6, 9, 11 and 5, 9, 11 for h = 3, 4, 5, and the columns A^e(w, ·) with characteristic polynomial (x² − 1)^w; the convex count C(2h+w−3, w−1), A000217 and A000332 at h = 2, 3; towers by blocks, A034839 at height at most 1 and the rows A005408, A005891, A063490, A160747 of any height; and by area A000079, A001523 (convex), A332578 (vee), A115981 (non-convex).
 tags: [analysis, oeis, castle, cross-reference]
 sources: [oeis-encyclopedia, project-euler-502-solution]
 created: 2026-09-13
@@ -45,7 +45,7 @@ Towers of height at most 1 on a base of length `w` are binary strings, and those
 
 ## Castles by area
 
-A castle of area `n` is a composition of `n`, its column heights in order, so all castles of area `n` number `2^{n−1} = A000079(n−1) = A011782(n)`. The convex castles of area `n` are the weakly unimodal compositions of `n`, `A001523(n)`; the valley castles, which weakly fall and then weakly rise, are `A332578(n)`; and the non-convex castles are `A115981(n) = A011782(n) − A001523(n)` ([[castle-by-area](pages/castle-by-area.md)], [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)]).[^12][^13]
+A castle of area `n` is a composition of `n`, its column heights in order, so all castles of area `n` number `2^{n−1} = A000079(n−1) = A011782(n)`. The convex castles of area `n` are the weakly unimodal compositions of `n`, `A001523(n)`; the vee castles, which weakly fall and then weakly rise, are `A332578(n)`; and the non-convex castles are `A115981(n) = A011782(n) − A001523(n)` ([[castle-by-area](pages/castle-by-area.md)], [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)]).[^12][^13]
 
 ## The matches
 
@@ -60,7 +60,7 @@ A castle of area `n` is a composition of `n`, its column heights in order, so al
 | towers by blocks, rows `w = 2, …, 5` | `A005408`, `A005891`, `A063490` (offset 1), `A160747` |
 | all castles by area | `A000079(n−1) = A011782(n) = 2^{n−1}` |
 | convex castles by area | `A001523(n)` |
-| valley castles by area | `A332578(n)` |
+| vee castles by area | `A332578(n)` |
 | non-convex castles by area | `A115981(n)` |
 
 ## Appearances in Sources
