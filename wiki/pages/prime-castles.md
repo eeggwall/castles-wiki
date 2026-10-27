@@ -1,11 +1,11 @@
 ---
 title: Prime castles - the free gluing monoid by area
 category: Analyses
-summary: "Gluing two castles that begin and end with a height-1 column, by merging the last column of one with the first column of the other, makes a free monoid. Its primes, in Gessel and Li's sense, are the castles with no height-1 column, padded as (1, X, 1); by area they are the compositions into parts at least 2, F_{n-1} of them, golden by area, and the castles of height h among them grow like the largest root of x^h = x^{h-2} + ... + x + 1 (plastic by area at h = 3, supergolden by area at h = 4). A castle with k height-1 columns has k + 1 prime factors (A105422), and its peaks are its nontrivial prime factors. The prime generating function is π(q) = q(1 - q)/(1 - q - q^2) and 1/(1 - π) = (1 - q - q^2)/(1 - 2q). Deutsch and Elizalde's bijection from Dyck paths to bargraphs carries the factorization of Dyck paths into primes onto this one. Block parity is additive over prime factors. Over all castles of area n the columns of height j total A045623(n − j), from Balado and Silvestre's count of the runs of length j − 1 over all binary strings of length n − 1."
+summary: "Gluing two castles that begin and end with a height-1 column, by merging the last column of one with the first column of the other, makes a free monoid. Its primes, in Gessel and Li's sense, are the castles with no height-1 column, padded as (1, X, 1); by area they are the compositions into parts at least 2, F_{n-1} of them, golden by area, and the castles of height h among them grow like the largest root of x^h = x^{h-2} + ... + x + 1 (plastic by area at h = 3, supergolden by area at h = 4), increasing to φ with φ − ρ_h ~ φ^{1−h}/√5; at even h the polynomial has the factor x + 1, so those of even height h grow like the castles whose columns all have odd height below h. A castle with k height-1 columns has k + 1 prime factors (A105422), and its peaks are its nontrivial prime factors. The prime generating function is π(q) = q(1 - q)/(1 - q - q^2) and 1/(1 - π) = (1 - q - q^2)/(1 - 2q). Deutsch and Elizalde's bijection from Dyck paths to bargraphs carries the factorization of Dyck paths into primes onto this one. Block parity is additive over prime factors. Over all castles of area n the columns of height j total A045623(n − j), from Balado and Silvestre's count of the runs of length j − 1 over all binary strings of length n − 1."
 tags: [analysis, castle, area, composition, prime-castle, monoid, factorization, fibonacci, convex-castle, parity, q-series, oeis]
 sources: [deutsch-elizalde-2017-bargraphs-dyck-paths, oeis-encyclopedia, balado-silvestre-2026-runs-binary-strings]
 created: 2026-09-22
-updated: 2026-10-25
+updated: 2026-10-26
 ---
 
 # Prime castles
@@ -75,6 +75,22 @@ As `h → ∞` the left side of the second form tends to `1/(x(x − 1))`, so th
 | unrestricted | `F_{n-1}` | `φ = 1.6180` | `x² − x − 1` |
 
 So the prime castles of height 3 are plastic by area, and those of height 4 supergolden by area ([[castle-classification-growth](pages/castle-classification-growth.md)], [[plastic-number](pages/plastic-number.md)]).
+
+**Even heights.** For even `h`, expanding the product gives
+
+```
+1 − x² − x³ − ⋯ − x^h  =  (1 + x)(1 − x − x³ − x⁵ − ⋯ − x^{h−1}),
+```
+
+the factor `x + 1` of the table at `h = 4, 6, 8`, written in reversed form. The cofactor counts the compositions into the odd parts `1, 3, …, h − 1`, the castles whose columns all have odd height less than `h`. With `c(n)` the compositions of `n` into parts `2, …, h`, the compositions of `n` into these odd parts therefore number `c(n) + c(n − 1)`, and the prime castles of even height `h` grow at the same constant as the castles with odd columns below `h`: the supergolden ratio at `h = 4`, from the parts 1 and 3. With the height unbounded, the same identity `(1 + x)(1 − x)/(1 − x − x²) = (1 − x²)/(1 − x − x²)` gives `F_{n−1} + F_{n−2} = F_n` compositions of `n` into odd parts. For odd `h ≤ 21` the polynomial `x^h − x^{h−2} − ⋯ − x − 1` is irreducible over the rationals, and for even `h ≤ 22` so is the cofactor (computed).[^height]
+
+**The approach to `φ`.** Since `x^{−2} + ⋯ + x^{−h} = (x^{−1} − x^{−h})/(x − 1)`, the second form of the equation is `x² − x − 1 = −x^{1−h}`. At its root `φ` the left side has slope `2φ − 1 = √5`, so the largest root `ρ_h` satisfies
+
+```
+φ − ρ_h  ~  φ^{1−h} / √5,        h → ∞.
+```
+
+The ratio of the two sides is `1.717` at `h = 3`, `1.083` at `h = 8` and `1.017` at `h = 12`.[^height]
 
 ## The same factorization on Dyck paths
 
@@ -159,4 +175,5 @@ for n in range(1, 17):
 [^6]: Own reasoning from Prop. 3.5 and Thm. 3.2(g), verified by execution (Python 3, 2026-10-02): `φ_DE` implemented from its definition and applied to every Dyck path of semilength `≤ 11` is injective; every one-return path of semilength `≥ 2` goes to a castle with no height-1 column, and every castle in the image with no height-1 column comes from a one-return path; returns `=` height-1 columns `+ 1` for every path of height `≥ 2`; and semilength `=` semi-perimeter `−` peaks in the sense of Thm. 3.2(a) ([[deutsch-elizalde-2017-bargraphs-dyck-paths](pages/deutsch-elizalde-2017-bargraphs-dyck-paths.md)] §3 L155).
 [^7]: https://oeis.org/A105422 and https://oeis.org/A045623 (read 2026-09-22) - A105422 "Triangle read by rows: T(n,k) is the number of compositions of n having exactly k parts equal to 1"; A045623 "Number of 1's in all compositions of n+1", offset 0. The totals `1, 2, 5, 12, 28, 64, 144, 320, 704` for `n = 1..9` recomputed by execution, 2026-10-16.
 [^8]: Computed by execution (Python 3.11, 2026-10-16) over all castles through area 16; the rows agree with the 2026-09-22 computation.
+[^height]: Verified by execution (Python 3.11 with SymPy and mpmath, 2026-10-26): the product identity for even `h ≤ 28`; the compositions of `n` into the odd parts below `h` against `c(n) + c(n − 1)` for `h = 4, 6, 8, 10` and `n ≤ 30`, and the compositions into odd parts against `F_n` for `n ≤ 30`; the irreducibility of `1 − x² − ⋯ − x^h` for odd `h ≤ 21` and of `1 − x − x³ − ⋯ − x^{h−1}` for even `h ≤ 22`; the largest roots `ρ_h` for `h ≤ 12`, with `(φ − ρ_h)/(φ^{1−h}/√5) = 1.717, 1.444, 1.286, 1.188, 1.125, 1.083, 1.056, 1.037, 1.025, 1.017` for `h = 3, …, 12`.
 [^runs]: [[balado-silvestre-2026-runs-binary-strings](pages/balado-silvestre-2026-runs-binary-strings.md)] §8.1.1 p.97 L5066-5072 and §8.1.2 p.100 L5213-5214 [synthesis] - "We denote the number of k-runs over all n-strings by ρk (n)", eq. (367) `ρ_k(n) = (n − k + 3) 2^{n−(k+2)} [k < n] + [k = n]`; "ρk (n + k) is A045623 (number of 1’s in all compositions of n + 1)". Verified by execution (Python 3.11, 2026-10-25): eq. (367) for `n ≤ 13`, `0 ≤ k ≤ n`, with the null runs of a string read off by splitting it at its 0s; the columns of height `j` over all compositions of `n` against `A045623(n − j)` for `1 ≤ j ≤ n ≤ 14`.
