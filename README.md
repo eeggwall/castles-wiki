@@ -66,7 +66,7 @@ git config core.hooksPath bin/hooks
 ```
 
 The hook runs `bin/check-contradictions.py`, `bin/lint-mechanical.py --staged`, and
-`bin/generate-oeis-index.py --check` with `python3` before every commit. (Override an intentional commit with `git commit --no-verify`.)
+`bin/generate-sequence-pages.py --check` with `python3` before every commit. (Override an intentional commit with `git commit --no-verify`.)
 
 ### 3. Wire up the MCP servers
 
@@ -154,7 +154,7 @@ SCHEMA.md          conventions + how the wiki tools locate this wiki (do not mov
 IDEAS.md           project and seminar ideas: the seminar arcs, then open and done items by Department
 DEPARTMENTS.md     the nine Departments (R E N Z Q S T F X): descriptors, conceptual coverage, crossovers
 OEIS.md            OEIS submissions (human action), ingestion queue, housekeeping
-config/            link-style rules (markdown: [[slug](pages/slug.md)]) + oeis-annotations.tsv
+config/            link-style rules (markdown: [[slug](pages/slug.md)]) + castle-sequences.tsv, the sequence data
 bin/               stdlib helper scripts + the pre-commit hook (see Quick start)
 bin/java/, bin/python/  research programs and run logs cited by page footnotes (never pasted into pages)
 raw/               immutable source documents (wikitext, notes, cached refs) — never edited
@@ -163,7 +163,8 @@ wiki/
   index.md         GENERATED catalog (git-ignored) — never hand-edit; run bin/generate-index.py
   overview.md      evolving synthesis across all sources
   pages/           all wiki pages, flat, slug-named (no subdirectories)
-    oeis-index.md  GENERATED A-number directory (committed) — run bin/generate-oeis-index.py
+    oeis-index.md  GENERATED A-number directory (committed) — run bin/generate-sequence-pages.py
+    castle-sequence-catalogue.md  GENERATED sequence catalogue by family (committed), same script
 ```
 
 Pages are grouped by `category` frontmatter into **Sources** (ingested documents),
@@ -182,11 +183,12 @@ authoritative spec.
 - **`wiki/index.md` is generated**, not hand-written — set page frontmatter (`category`,
   `summary`, `created`) and run `python3 bin/generate-index.py`. It is git-ignored, so
   regenerate it before reading after a fresh clone.
-- **`wiki/pages/oeis-index.md` is generated** too — `bin/generate-oeis-index.py` scans every
-  page for OEIS A-numbers and lists the citing pages with mention counts; the role annotations
-  it merges in live in `config/oeis-annotations.tsv`. It is committed (other pages link to it),
-  and the pre-commit hook blocks a commit that leaves it stale. The hand-curated sequence
-  catalog is a normal page, `castle-sequence-catalogue`.
+- **The sequence pages are generated** too — `wiki/pages/castle-sequence-catalogue.md` (by
+  family) and `wiki/pages/oeis-index.md` (by A-number, with the citing pages and mention counts)
+  are two views of one curated data file, `config/castle-sequences.tsv`, built by
+  `bin/generate-sequence-pages.py`. Both are committed (other pages link to them), and the
+  pre-commit hook blocks a commit that leaves either stale. To add or change a sequence, edit the
+  data file and rerun the script.
 - **The git history is the operation log.** Each operation is one commit with a `Wiki-Op:`
   trailer (`init`, `ingest`, `update`, …); render the human log with
   `python3 bin/render-log.py`.
