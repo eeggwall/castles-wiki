@@ -54,7 +54,7 @@ Lesson: cleaning prose is also an audit. Recompute every claim a flourish was at
 3. Recompute each nearby claim (scratch script in the session scratchpad).
 4. Apply the edits: exact string replacements, each asserted to match once.
 5. Run the regression check (below). It must report zero hits.
-6. Regenerate `wiki/index.md` with `bin/generate-index.py`, and `wiki/pages/oeis-index.md` with `bin/generate-oeis-index.py` if the hook asks.
+6. Regenerate `wiki/index.md` with `bin/generate-index.py`, and the sequence pages `wiki/pages/castle-sequence-catalogue.md` and `wiki/pages/oeis-index.md` with `bin/generate-sequence-pages.py` if the hook asks.
 7. Tick the page here.
 
 ## Detection

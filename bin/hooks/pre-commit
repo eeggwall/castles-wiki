@@ -1,12 +1,12 @@
 #!/bin/sh
 # Wiki pre-commit gates: block a commit that stages a page with an unresolved contradiction
 # flag (check-contradictions.py) or a structural problem — missing frontmatter, a broken
-# link, or a slug collision (lint-mechanical.py --staged) — or a stale generated OEIS directory
-# (generate-oeis-index.py --check), or a retired rhetorical phrase back anywhere in the wiki
+# link, or a slug collision (lint-mechanical.py --staged) — or a stale generated sequence page,
+# oeis-index or castle-sequence-catalogue (generate-sequence-pages.py --check), or a retired rhetorical phrase back anywhere in the wiki
 # (slop-scan.py --regress, see DESLOP.md). All four are deterministic, no LLM.
 # Override: git commit --no-verify.
 ROOT="$(git rev-parse --show-toplevel)"
 python3 "$ROOT/bin/check-contradictions.py" || exit 1
 python3 "$ROOT/bin/lint-mechanical.py" --staged || exit 1
-python3 "$ROOT/bin/generate-oeis-index.py" --check || exit 1
+python3 "$ROOT/bin/generate-sequence-pages.py" --check || exit 1
 python3 "$ROOT/bin/slop-scan.py" --regress --staged >/dev/null || exit 1
