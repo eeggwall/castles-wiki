@@ -54,7 +54,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 - Perron roots, reachable number fields, and the Pisot/Salem question for cubics.
 - Continued fractions, convergents, and the eigenvalue-to-OEIS crosswalk.
 - Bounded-height nacci sequences and periodicity modulo primes.
-- Exact arithmetic at scale: PE 502 targets and modular reduction.
+- Exact arithmetic at scale: PE 502 targets and modular reduction; the parity of the even-block count, decided by the mirror, which makes all three targets odd.
 - The Hardin word identity, A005251, and the missing sign-reversing involution.
 - Castle counts as integers: sums of three cubes and the mod-9 residue, `F(6,4) = 1729` and Ramanujan's near-miss C-finite families, Carmichael and perfect numbers as castle counts.
 - Symmetry of the signed transfer matrix: the commutant of `M_k`, the parity sectors of `char_k`, cyclic sieving at `q = -1` on the tower Narayana.
