@@ -5,7 +5,7 @@ summary: The 41 shape types of castles taken from the Castle Types source, 7 bas
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle, hoodoo-castle, monadnock-castle, distinct-parts]
 sources: [castle-classification, aocp-generating-partitions, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths, project-euler-502-representations, oeis-encyclopedia]
 created: 2026-09-19
-updated: 2026-10-27
+updated: 2026-10-28
 ---
 
 # Castle classification - shape types
@@ -51,7 +51,7 @@ Types 1 to 6, 30 and 31 restrict the local extrema of the skyline, and the hoodo
 | **Valley** | exactly one valley: a flat floor between two walls `i < j − 1`, unimodal on each side, with the side of the lower wall falling away from the floor (`c_i ≥ c_j` and `c_j, …, c_w` weakly decreasing, or `c_i ≤ c_j` and `c_1, …, c_i` weakly increasing) | `(2, 1, 1, 3, 2)` | `(h − 1)² C(w + 2h − 3, 2h)`, with `blocks = h + depth` ([[valley-castles](pages/valley-castles.md)]) |
 | **k-valley** | exactly `k` valleys | `(2, 1, 3, 3, 1, 1, 2)`, `k = 2` | `k = 0` is convex, `k = 1` is valley; `C(w + 1, 2k + 2)` at height 2 ([[valley-castles](pages/valley-castles.md)]) |
 
-The unimodal and reverse Ferrers castles are counted by the [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)], the vee castles by area on [[castle-by-area](pages/castle-by-area.md)], and the hoodoo and monadnock castles in the paragraph *Hoodoo and monadnock castles*. The convex and vee castles are equinumerous in every `(w, h)` cell computed; no bijection is known.
+The unimodal and reverse Ferrers castles are counted by the [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)], the vee castles by area on [[castle-by-area](pages/castle-by-area.md)], and the hoodoo and monadnock castles in the paragraph *Hoodoo and monadnock castles*. The convex and vee castles are equinumerous in every `(w, h)` cell, by the **band reflection** `c_i ↦ max(c) + min(c) − c_i`. It keeps the tallest and the shortest column heights, so it maps the castles of width `w` and height `h` to themselves; it reverses the order of the heights, so it turns a skyline that falls weakly and then rises weakly into one that rises weakly and then falls weakly; and it is its own inverse. So it is a bijection from the vee castles onto the convex castles of each cell.[^11] It does not keep the area: the vee castle `(2, 1, 2)`, of area 5, goes to the convex castle `(1, 2, 1)`, of area 4, and by area the two families differ ([[q-thread-seminar](pages/q-thread-seminar.md)], Stop 2).
 
 **Convexity fixes the block count.** A convex castle of height `h` has exactly `h` blocks, one per row, and the convex castles are exactly the castles of height `h` with `h` blocks, the fewest possible ([[convex-castle](pages/convex-castle.md)], section *Block count*).[^4] So the convex castles all have an even number of blocks when `h` is even and an odd number when `h` is odd.
 
@@ -224,3 +224,4 @@ For `w ≥ 2`, a linear castle with `d = 0` is the boxcastle; one with `d > 0` h
 [^8]: https://oeis.org/A080934 (read 2026-10-16) - "Square array read by antidiagonals of number of Catalan paths (nonnegative, starting and ending at 0, step +-1) of 2n steps with all values less than or equal to k".
 [^9]: https://oeis.org/A097862 (read 2026-10-16) - "Triangle read by rows: T(n,k) is the number of Motzkin paths of length n and height k (n>=0, k>=0)"; data begins 1; 1; 1, 1; 1, 3; 1, 7, 1; 1, 15, 5; 1, 31, 18, 1.
 [^10]: [[cho-huh-nam-sohn-2022-bounded-free-motzkin-paths](pages/cho-huh-nam-sohn-2022-bounded-free-motzkin-paths.md)] p.17 Proposition 3.8 L965-974 [synthesis] - `scc(t, m)`, the number of self-conjugate `t`-cores with `m` corners, which Theorem 3.7 puts in bijection with the cornerless symmetric Motzkin paths with `t − 1` flat steps, the tower words of the palindromic towers on a base of length `t − 1` with `m` blocks; so the palindromic castles of width `w` with `b` blocks number `T̂_pal(w, b − 1) = scc(w + 1, b − 1)` (checked by enumeration in `bin/python/bounded_t_cores.py`, run log `bin/python/bounded_t_cores-run.log`).
+[^11]: Verified by execution (Python 3.10, 2026-10-28): the band reflection maps the vee castles of width `w` and height `h` one-to-one onto the convex castles of the same cell, in all 42 cells with `w ≤ 7`, `h ≤ 6` and `h^w ≤ 300000`.
