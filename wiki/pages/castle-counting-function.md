@@ -1,11 +1,11 @@
 ---
 title: Castle counts A(w,h), A^e(w,h) and A^o(w,h)
 category: Concepts
-summary: The castle counts A(w, h) = h^w − (h−1)^w, A^e(w, h) and A^o(w, h) of castles of width w and height h, all of them, those with an even number of blocks, and those with an odd number. A^e is the Project Euler 502 count F(w, h); the problem gives four checkpoint values and asks for A^e(10^12, 100) + A^e(10^4, 10^4) + A^e(100, 10^12) mod 10^9 + 7. At height 2, A^e(w, 2) = A038505(w+1) and A^o(w, 2) = A038503(w+1) − 1.
+summary: The castle counts A(w, h) = h^w − (h−1)^w, A^e(w, h) and A^o(w, h) of castles of width w and height h, all of them, those with an even number of blocks, and those with an odd number. A^e is the Project Euler 502 count F(w, h); the problem gives four checkpoint values and asks for A^e(10^12, 100) + A^e(10^4, 10^4) + A^e(100, 10^12) mod 10^9 + 7; each of the three terms is odd, since for w ≥ 3 A^e(w, h) is odd exactly when h ≡ 0 or 3 (mod 4). At height 2, A^e(w, 2) = A038505(w+1) and A^o(w, 2) = A038503(w+1) − 1.
 tags: [concept, castle, counting-function, project-euler]
 sources: [project-euler-502, project-euler-502-problem-setup, project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-encyclopedia]
 created: 2026-09-13
-updated: 2026-10-25
+updated: 2026-10-28
 ---
 
 # Castle counts A(w,h), A^e(w,h) and A^o(w,h)
@@ -40,6 +40,8 @@ and asks for[^5]
 ```
 
 The [[castle-counting-formula](pages/castle-counting-formula.md)] gives `A^e(w, h)` in closed form through the signed tower count `P(k, L)`, and reproduces all four values. [[castle-count-algorithms](pages/castle-count-algorithms.md)] evaluates the three terms of the target: `A^e(10^12, 100)` and `A^e(10000, 10000)` from the rational generating function of `P(h−1, ·)`, and `A^e(100, 10^12)` from a recurrence in the tower height found by Berlekamp-Massey.[^6] The source records the value of the target only as a base64 checksum, and the wiki does not reproduce it ([[project-euler-502-solution](pages/project-euler-502-solution.md)]).
+
+The parity of `A^e(w, h)` follows from the mirror: for `w ≥ 3`, `A^e(w, h)` is odd exactly when `h ≡ 0` or `3 (mod 4)` ([[mod-p-observatory](pages/mod-p-observatory.md)], section *Modulo 2*). The checkpoints at `(4, 2)`, `(13, 10)` and `(10, 13)` are even, as `h` leaves the remainders 2, 2 and 1, and the three terms of the target are odd, as `h = 100`, `10000` and `10^12` are divisible by 4.
 
 ## Rows in the OEIS
 
@@ -76,6 +78,7 @@ A^o(w, 2)  =  Σ_{j≥1} C(w+1, 4j)    =  A038503(w+1) − 1
 - [[castle-count-algorithms](pages/castle-count-algorithms.md)] - the computation of the three terms of the target.
 - [[block-count-constraints](pages/block-count-constraints.md)] - castles selected by block count in residue classes, sparse sets and numerical semigroups, of which the even-block condition is the residue class 0 modulo 2.
 - [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - the convex castles counted by area (A001523).
+- [[mod-p-observatory](pages/mod-p-observatory.md)] - `A^e(w, h)` modulo primes, and its parity, which the mirror decides.
 
 ## Footnotes
 

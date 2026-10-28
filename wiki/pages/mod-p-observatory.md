@@ -1,11 +1,11 @@
 ---
 title: Mod-p observatory for A^e(w,h)
 category: Analyses
-summary: Modulo an odd prime p, the castle count A^e(w, h) is eventually periodic in the width and in the height. In the width its period divides lcm(ord_p(h), ord_p(h−1), per(char_{h−1}), per(char_{h−2})), with equality for p = 3, 5, 7 and h ≤ 5 (computed), where per(char_k) is the lcm of the orders of the irreducible factors of char_k mod p, multiplied by p^{⌈log_p m⌉} for a factor of multiplicity m. char_1 splits mod p exactly when p ≡ 1 (mod 4), and char_2 has a double root mod 7, which multiplies a period by 7. In the height, P(k, L) mod p has period 2·p^{⌈log_p L⌉} in k (L ≤ 11, p ≤ 11, computed).
-tags: [analysis, castle, modular-arithmetic, periodicity, automaticity, sympy]
+summary: Modulo an odd prime p, the castle count A^e(w, h) is eventually periodic in the width and in the height. In the width its period divides lcm(ord_p(h), ord_p(h−1), per(char_{h−1}), per(char_{h−2})), with equality for p = 3, 5, 7 and h ≤ 5 (computed), where per(char_k) is the lcm of the orders of the irreducible factors of char_k mod p, multiplied by p^{⌈log_p m⌉} for a factor of multiplicity m. char_1 splits mod p exactly when p ≡ 1 (mod 4), and char_2 has a double root mod 7, which multiplies a period by 7. In the height, P(k, L) mod p has period 2·p^{⌈log_p L⌉} in k (L ≤ 11, p ≤ 11, computed). Modulo 2 the formula cannot be used, since it divides by 2; a castle and its mirror image have the same block count, and pairing them gives A^e(w, h) ≡ ⌊(h − 1)/2⌋ (mod 2) for every w ≥ 3, so A^e(w, h) is odd exactly when h ≡ 0 or 3 (mod 4), and the three Project Euler targets are odd.
+tags: [analysis, castle, modular-arithmetic, periodicity, automaticity, parity, mirror, palindrome, sympy]
 sources: [project-euler-502-castle-factoring, project-euler-502-representations]
 created: 2026-09-14
-updated: 2026-10-25
+updated: 2026-10-28
 ---
 
 # Mod-p observatory for A^e(w,h)
@@ -18,7 +18,7 @@ For `h ≥ 2` the even-block castle count is[^1]
 A^e(w, h)  =  [ h^w − (h−1)^w − P(h−1, w) + P(h−2, w) ] / 2,
 ```
 
-the `F(w, h)` of the problem statement ([[castle-counting-formula](pages/castle-counting-formula.md)]). Each term satisfies a linear recurrence in `w`. Modulo a prime `p`, a sequence that satisfies a linear recurrence of order `d` is eventually periodic, since its state, the last `d` values, takes at most `p^d` values; it is purely periodic when the constant term of the recurrence is nonzero mod `p`, since the step from one state to the next can then be inverted. An eventually periodic sequence is automatic in every base. This page computes the periods for `p = 3, 5, 7` and where they come from; division by 2 needs `p` odd.
+the `F(w, h)` of the problem statement ([[castle-counting-formula](pages/castle-counting-formula.md)]). Each term satisfies a linear recurrence in `w`. Modulo a prime `p`, a sequence that satisfies a linear recurrence of order `d` is eventually periodic, since its state, the last `d` values, takes at most `p^d` values; it is purely periodic when the constant term of the recurrence is nonzero mod `p`, since the step from one state to the next can then be inverted. An eventually periodic sequence is automatic in every base. This page computes the periods for `p = 3, 5, 7` and where they come from; division by 2 needs `p` odd, and the section *Modulo 2* treats `p = 2` by a different argument.
 
 ## Periods in the width
 
@@ -52,6 +52,39 @@ For fixed `w`, `h^w − (h−1)^w` is a polynomial in `h`, which has period `p` 
 | 7 | 2 | 14 | 14 | 14 |
 
 At `w = 1` the castle of height `h` is one column with `h` blocks, so `A^e(1, h) = 1` for even `h` and 0 for odd `h`, period 2. At `p = 3`, `w = 4` the period is `18 = 2·3²`, since `L = 4 > 3`.
+
+## Modulo 2
+
+The formula for `A^e(w, h)` divides by 2, so it says nothing about `A^e(w, h)` mod 2. The mirror decides it instead.
+
+**Proposition.** For every width `w ≥ 3`,
+
+```
+A^e(w, h)  ≡  ⌊(h − 1)/2⌋   (mod 2),
+```
+
+so `A^e(w, h)` is odd exactly when `h ≡ 0` or `3 (mod 4)`, that is, when the triangular number `h(h + 1)/2` is even. At `w = 1` and `w = 2`, `A^e(w, h)` is odd exactly when `h` is even.
+
+*Proof.* The mirror image of a castle, its skyline read from right to left, is a castle of the same width and height. Reversing a skyline exchanges its total ascent and its total descent, which are equal, so a castle and its mirror image have the same block count ([[castle-sign](pages/castle-sign.md)]). The mirror pairs each even-block castle that is not a palindrome with a different even-block castle, so `A^e(w, h)` has the parity of the number of even-block palindromic castles.
+
+A palindrome is determined by its first `⌈w/2⌉` columns, and column `⌈w/2⌉` is its middle column, or the left one of its two equal middle columns when `w` is even. Its block count is twice the total ascent of `(0, c_1, …, c_{⌈w/2⌉})` minus `c_{⌈w/2⌉}`: the left half climbs that total ascent, and the right half climbs what the left half descends, which is the total ascent less `c_{⌈w/2⌉}`. So a palindrome has the parity of its middle column. Its first `⌈w/2⌉` columns take any heights in `{1, …, h}` with one of them equal to `h`, so the even-block palindromes number
+
+```
+⌊h/2⌋ · h^{⌈w/2⌉−1}  −  ⌊(h−1)/2⌋ · (h−1)^{⌈w/2⌉−1},
+```
+
+the choices with an even middle column, less those whose columns all stay below `h`. For `w ≥ 3` both exponents are at least 1: when `h` is even the first term is even and the second has the parity of `⌊(h−1)/2⌋`, since `h − 1` is odd; when `h` is odd the second term is even and the first has the parity of `⌊h/2⌋ = ⌊(h−1)/2⌋`. For `w ≤ 2` both exponents are 0 and the count is `⌊h/2⌋ − ⌊(h−1)/2⌋`, which is 1 for even `h` and 0 for odd `h`.
+
+So in the width `A^e(·, h)` mod 2 is constant from `w = 3` on, and in the height `A^e(w, ·)` mod 2 has period 4 for `w ≥ 3` and period 2 for `w ≤ 2`:
+
+```
+h mod 4                1   2   3   0
+A^e(w, h) mod 2        0   0   1   1        (w ≥ 3)
+```
+
+Since one of `h` and `h − 1` is even, `A(w, h) = h^w − (h−1)^w` is odd, and `A^o(w, h) = A(w, h) − A^e(w, h)` has the opposite parity to `A^e(w, h)`.
+
+The checkpoints of the problem statement agree: `A^e(4, 2) = 10`, `A^e(13, 10) = 3729050610636` and `A^e(10, 13) = 37959702514` are even, with `h` leaving the remainders 2, 2 and 1 on division by 4 ([[castle-counting-function](pages/castle-counting-function.md)]). The three terms of the target, `A^e(10^12, 100)`, `A^e(10000, 10000)` and `A^e(100, 10^12)`, all have `h` divisible by 4, so all three are odd, and so is their sum before it is reduced modulo `10^9 + 7`.[^5]
 
 ## The finite-field picture
 
@@ -183,6 +216,8 @@ for h in range(2, 6):
 - [[castle-ring-spectrum](pages/castle-ring-spectrum.md)] - the factorization of `char_k` mod `p` as the fiber over `p` of `Spec Z[x]/(char_k)`; a repeated factor is a nonzero nilradical of the fiber.
 - [[calugareanu-hamburg-exercises-basic-ring-theory](pages/calugareanu-hamburg-exercises-basic-ring-theory.md)] - exercises 14.7 to 14.9, which factor small polynomials over `F_3`, `F_5`, `F_7`, among them `x³ + x + 2 = (x + 1)(x² − x + 2)`, whose quadratic factor is that of `char_2`.
 - [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] - counting castles by block count modulo `m` with roots of unity.
+- [[castle-sign](pages/castle-sign.md)] - the block count as total ascent and total descent, which makes it the same for a castle and its mirror image.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the palindromic castles of each `(w, h)` cell and their even-block count, from the section *Modulo 2*.
 
 ## Footnotes
 
@@ -190,3 +225,4 @@ for h in range(2, 6):
 [^2]: [[project-euler-502-representations](pages/project-euler-502-representations.md)] §"Signed count" L343-346 - "P_k is rational with denominator of degree k+1, so P(k,L) satisfies a linear recurrence in L of order k+1", "k=1: P(1,L) = 2P(1,L-1) - 2P(1,L-2)", "k=2: P(2,L) = 3P(2,L-1) - 4P(2,L-2) + 4P(2,L-3)".
 [^3]: Verified by execution (Python 3.11 with SymPy, 2026-10-16): the factorizations of `char_k` mod 3, 5, 7 for `k ≤ 4` and `per(char_k)` for `k ≤ 6`; the periods of the sequences `P(k, ·) mod p` for `k ≤ 4`, equal to `per(char_k)`; the periods of `A^e(·, h) mod p` for `2 ≤ h ≤ 5`, read off 8000, 800 and 20000 terms at `p = 3, 5, 7` and equal to the lcm; pure periodicity from `w = 0` except at `h ≡ 0, 1 (mod p)`. The code in the section *Verification (SymPy)* reruns the case `p = 7`.
 [^4]: Verified by execution (Python 3.11, 2026-10-16): the period of `P(k, L) mod p` in `k` equals `2·p^{⌈log_p L⌉}` for `1 ≤ L ≤ 11` and `p ∈ {3, 5, 7, 11}`, from at least `4·2p^{⌈log_p L⌉}` values of `k`; the periods of `A^e(w, ·) mod p` for `w ≤ 4`, from `h < 300`.
+[^5]: Verified by execution (Python 3.10, 2026-10-28): `bin/python/even_count_parity.py` items [1] to [3], run log `bin/python/even_count_parity-run.log`. The proposition against the exact `A^e(w, h) = (A + S)/2` for `1 ≤ w ≤ 60` and `1 ≤ h ≤ 60`; the checkpoints `A^e(4, 2)`, `A^e(13, 10)` and `A^e(10, 13)`; and, for every castle with `h ≤ 5`, `w ≤ 7` and `h^w ≤ 200000`, that the mirror keeps the block count, that a palindrome's block count has the parity of its middle column, and the count of even-block palindromes.

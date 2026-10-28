@@ -1,0 +1,19 @@
+[1] A^e(w, h) = floor((h-1)/2) mod 2 for 3 <= w <= 60, 1 <= h <= 60: True
+[1] A^e(w, h) = 1 mod 2 exactly for even h, at w = 1, 2 and 1 <= h <= 60: True
+[1] Project Euler checkpoints A^e(4, 2) = 10, A^e(13, 10) = 3729050610636, A^e(10, 13) = 37959702514 reproduced; all three even
+[1] h =  1: A^e(w, h) mod 2 for w = 1..12: 000000000000
+[1] h =  2: A^e(w, h) mod 2 for w = 1..12: 110000000000
+[1] h =  3: A^e(w, h) mod 2 for w = 1..12: 001111111111
+[1] h =  4: A^e(w, h) mod 2 for w = 1..12: 111111111111
+[1] h =  5: A^e(w, h) mod 2 for w = 1..12: 000000000000
+[1] h =  6: A^e(w, h) mod 2 for w = 1..12: 110000000000
+[1] h =  7: A^e(w, h) mod 2 for w = 1..12: 001111111111
+[1] h =  8: A^e(w, h) mod 2 for w = 1..12: 111111111111
+[1] h =  9: A^e(w, h) mod 2 for w = 1..12: 000000000000
+[1] h = 10: A^e(w, h) mod 2 for w = 1..12: 110000000000
+[1] h = 11: A^e(w, h) mod 2 for w = 1..12: 001111111111
+[1] h = 12: A^e(w, h) mod 2 for w = 1..12: 111111111111
+[2] for every castle with h <= 5, w <= 7 (h^w <= 200000): the mirror keeps the block count; the palindromic castles number h^ceil(w/2) - (h-1)^ceil(w/2); a palindrome's block count has the parity of its middle column; the even-block palindromes number floor(h/2) h^(ceil(w/2)-1) - floor((h-1)/2) (h-1)^(ceil(w/2)-1); and A^e(w, h) has the parity of the even-block palindromes
+[3] A^e(1000000000000, 100): h mod 4 = 0, so A^e is odd
+[3] A^e(10000, 10000): h mod 4 = 0, so A^e is odd
+[3] A^e(100, 1000000000000): h mod 4 = 0, so A^e is odd
