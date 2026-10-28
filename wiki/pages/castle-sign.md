@@ -2,10 +2,10 @@
 title: Castle sign
 category: Concepts
 summary: The sign (−1)^blocks of a castle or of towers, with blocks equal to the total ascent and to the total descent of the column heights. Summed over towers it is the signed tower count P(k, L), and over castles the signed count S(w, h). It splits any set of castles or towers into even-block and odd-block members, (T ± P)/2 for towers and A^e, A^o = (A ± S)/2 for castles, as (1 ± sgn)/2 splits permutations.
-tags: [concept, castle, sign, permutations, parity, generating-functions]
+tags: [concept, castle, sign, permutations, parity, generating-functions, mirror]
 sources: [project-euler-502-castle-factoring, project-euler-502-observations, project-euler-502-brute-force]
 created: 2026-09-13
-updated: 2026-10-16
+updated: 2026-10-28
 ---
 
 # Castle sign
@@ -39,6 +39,10 @@ The tower sign and the castle sign are opposite. A castle has one block more tha
 
 *Example: base length 3.* The towers of height at most 1 on a base of length 3 are the 8 binary strings of length 3, each run of 1s one block. Only `000` and `101` have an even number of blocks, and `P(1, 3) = 2 − 6 = −4`, so `(T(1, 3) + P(1, 3))/2 = (8 − 4)/2 = 2`. The six odd-block towers are the six even-block castles of width 3 and height 2, and the castle `(2, 1, 2)`, on the towers `101`, is the one odd-block castle of height 2. So `S(3, 2) = 6 − 1 = 5 = P(0, 3) − P(1, 3)`.
 
+## Mirror images
+
+The mirror image of a castle, its skyline read from right to left, is a castle of the same width and height with the same block count, since reversing the skyline exchanges its total ascent and its total descent, which are equal. So the mirror maps the even-block castles of each cell to themselves and pairs off those that are not palindromes, and `A^e(w, h)` has the parity of the number of even-block palindromic castles. A palindrome's block count has the parity of its middle column, and from this `A^e(w, h)` is odd, for every `w ≥ 3`, exactly when `h ≡ 0` or `3 (mod 4)` ([[mod-p-observatory](pages/mod-p-observatory.md)], section *Modulo 2*).[^7]
+
 ## The permutation sign
 
 The sign of a permutation `σ` of `n` points with `c` cycles is `sgn(σ) = (−1)^{n−c}`.[^1] With `(1 ± sgn(σ))/2` in place of `(1 ± (−1)^b)/2`, the same split counts the even permutations as `(n! + Σ_σ sgn(σ))/2 = n!/2` for `n ≥ 2`, since then `Σ_σ sgn(σ) = 0`. The split `(T ± P)/2` is this identity with the block count in place of `n − c`.[^6] [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] carries the correspondence through the castle Foata transform and the monotone streak factorization.
@@ -62,6 +66,7 @@ The sign of a permutation `σ` of `n` points with `c` cycles is `sgn(σ) = (−1
 - [[generating-functions-topic](pages/generating-functions-topic.md)] - the exponential generating function `(e^x + e^{−x})/2`, which applies `(1 + (−1)^n)/2` to the index `n` of a sequence.
 - [[permutation-cycle-castle-analogy](pages/permutation-cycle-castle-analogy.md)] - the correspondence of permutation cycles with peaks, the blocks of the first row above the base, under which `sgn(σ)` corresponds to `(−1)^{blocks}`.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - a seminar on the tower count and the sign.
+- [[mod-p-observatory](pages/mod-p-observatory.md)] - the even-block count modulo primes, and modulo 2 from the mirror pairing.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the even-block condition as one bit, and the cells whose raising changes the sign of a castle.
 
 ## Footnotes
@@ -72,3 +77,4 @@ The sign of a permutation `σ` of `n` points with `c` cycles is `sgn(σ) = (−1
 [^4]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" [synthesis] L116-123 - with `T` the unsigned and `P` the signed count, the source states `(T + P)/2` and `(T − P)/2` as the even-block and odd-block counts, "exactly the (1 ± sgn)/2 trick that separates permutations into even and odd classes".
 [^5]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L123-127 - "The full castle is U (tower) D, so its block count is the tower block count plus one for the bottom block; \"castle has even total blocks\" is therefore \"tower has an odd number of blocks\", which is the (T-P)/2 term".
 [^6]: raw/pe502-castle-cycle-permutations.md §"Connection 1: Castle sign ↔ (1 ± sgn)/2 trick" L38 - "Weight each castle by (−1)^blocks, splitting the total count T into even- and odd-block halves via (T ± P)/2. This is exactly the (1 ± sgn)/2 trick used to peel A_n out of S_n."
+[^7]: Verified by execution (Python 3.10, 2026-10-28): `bin/python/even_count_parity.py` items [1] and [2], run log `bin/python/even_count_parity-run.log`. For every castle with `h ≤ 5`, `w ≤ 7` and `h^w ≤ 200000`, the castle and its mirror image have the same block count and a palindrome's block count has the parity of its middle column; and `A^e(w, h) ≡ ⌊(h − 1)/2⌋ (mod 2)` for `3 ≤ w ≤ 60` and `1 ≤ h ≤ 60`.
