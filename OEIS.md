@@ -234,6 +234,15 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   (`wiki/pages/motzkin-castles.md`,
   `wiki/pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md`).
 
+- [ ] **A372325 comment** (`wiki/pages/von-neumann-castles.md`): A372325, "Numbers whose binary
+  expansion has an even number of 1's among positions listed in this sequence" (David A. Madore), is the
+  set of `m` for which A116549(`m`) is odd, the hereditarily finite sets of Ackermann code `m` with an odd
+  number of pairs of braces, and so the `m` whose castle `ack(m)` has an odd number of blocks: A116549
+  satisfies `a(m) = 1 + Σ a(k)` over the binary 1s `k` of `m`, so `a(m)` is odd exactly when an even
+  number of those `k` have `a(k)` odd, which is the entry's rule. Equal for `m < 2^16` and on the 63-term
+  data field (2026-10-28). The entry cross-references only A133457 and A272011. A comment plus the
+  reverse link on A116549; the complement, `1, 3, 4, 6, 9, 11, 12, 14, …` (A116549 even), has no match
+  (*Search record*).
 - [ ] **A388547 castle comment** (`wiki/pages/golden-silver-bronze-plastic-castles.md`,
   `wiki/pages/semi-perimeter-growth-census.md`): for `k ≥ 2`, `T(n, k)` is the number of
   castles of height `k` whose columns all have height 1 or `k`, with semi-perimeter `n + 1`
@@ -483,6 +492,9 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 | Fibonacci castle sub-families | `(2, 10)`-RLL castles | `1, 2, 3, 5, 8, 12, 18, 27, 40, 59, 87, 126, 183` | **novel-candidate** (no match, 2026-10-16) |
 | Multi-interpretation hub | A005251, the four readings | - | **interlink**; the entry states none of the four readings (checked 2026-10-16) |
 | Strip Perron-root sequences | quadratic strips off the line `p₂ = 1`, fields `Q(√17)`, `Q(√21)`, `Q(√6)`, `Q(√7)`, `Q(√33)` | - | **unchecked**; several strip matrices reach each field, so a field has no single count sequence to search |
+| Von Neumann castles and Ackermann castles | the columns of the skyline whose first `2^n − 1` columns are `vN(n)`, `s_2(i) + (i mod 2)` | `2, 1, 3, 1, 3, 2, 4, 1, 3, 2, 4, 2, 4, 3, 5` from `i = 1` | **novel-candidate** (no match, 2026-10-28, nor with a leading `0` for `i = 0`); `= A000120(i) + A000035(i)`, its even and odd terms are `A000120(j)` and `A000120(j) + 2`, [[von-neumann-castles](pages/von-neumann-castles.md)] |
+| Von Neumann castles and Ackermann castles | the `m` with an even-block Ackermann castle `ack(m)` (A116549(`m`) even) | `1, 3, 4, 6, 9, 11, 12, 14, 17, 19, 20, 22, 25, 27, 28, 30` | **novel-candidate** (no match, 2026-10-28); the complement of [A372325](https://oeis.org/A372325), the odd-block ones (*Equal to an entry …* below), [[von-neumann-castles](pages/von-neumann-castles.md)] |
+| Von Neumann castles and Ackermann castles | the areas of `ack(m)` | `1, 2, 3, 6, 4, 7, 8, 11, 9, 12, 13, 16, 14, 17, 18, 21` from `m = 0` | **novel-candidate** (no match, 2026-10-28, nor without the first term); `area(m) = width(ack(m)) + Σ area(k)` over the binary 1s `k` of `m` (checked for `m < 2^16`); terms in `bin/python/von_neumann_castles-run.log` item [6], not on the page or in the catalogue |
 | Other rows | `A^e(w, 3)`, the even-block castles of height 3, `0, 0, 3, 21, 89, 307, 977, 3031, …` ([[new-sequence-fw3](pages/new-sequence-fw3.md)]): **novel-candidate** (no match, 2026-10-16). | - | (status in the text) |
 | Other rows | The rows `A^e(w, 4) = 1, 7, 31, 117, 439, 1729, 7063, 29201, …`, `A^e(w, 5) = 0, 0, 10, 122, 906, 5478, 30274, …` and `A^e(w, 6) = 1, 11, 76, 448, 2630, 16126, 101654, …` of the array `A^e(w, h)`: **novel-candidate** (no match, 2026-10-16). | - | (status in the text) |
 | Other rows | The odd-block rows `A^o(w, 3) = 1, 5, 16, 44, 122, 358, 1082, 3274, …` and `A^o(w, 4) = 0, 0, 6, 58, 342, 1638, 7134, …`: **novel-candidate** (no match, 2026-10-16). | - | (status in the text) |
@@ -587,3 +599,4 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 | Sandpile groups | `\ | **interlink** → [A001906](https://oeis.org/A001906) `F_{2n}` (`= A001906(w)`; every block on the ground) |
 | Sandpile groups | `\ | **interlink** → [A001835](https://oeis.org/A001835) (`= A001835(h)`; one block on the ground) |
 | Fibonacci castle sub-families | balanced castles | **interlink** → [A049703](https://oeis.org/A049703) (`= A049703(w)`; the entry is defined only as `A005598(n)/2`, with no comments, 2026-10-16) |
+| Von Neumann castles and Ackermann castles | the `m` with an odd-block Ackermann castle `ack(m)` (A116549(`m`) odd) | **interlink** → [A372325](https://oeis.org/A372325) (the terms from `n = 1`; the same self-referential rule, an even number of binary 1s at positions in the set; equal for `m < 2^16`; the entry has no castle or brace reading, 2026-10-28), [[von-neumann-castles](pages/von-neumann-castles.md)] |
