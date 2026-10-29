@@ -1,0 +1,980 @@
+       
+Teor Imovr. ta Matem. Statist.                                        Theor. Probability and Math. Statist.
+Vip. 78, 2008                                                                      No. 78, 2009, Pages 133–146
+                                                                                        S 0094-9000(09)00767-4
+                                                            Article electronically published on August 4, 2009
+
+
+
+SOME APPLICATIONS OF THE GNEDENKO–KOROLYUK METHOD
+             TO EMPIRICAL DISTRIBUTIONS
+UDC 519.21
+
+
+
+
+                   E. O. LUTSENKO, O. V. MARINICH, AND I. K. MATSAK
+
+
+        Abstract. A new proof of the Kolmogorov theorem on the asymptotic behavior
+        of the deviation between a theoretical and an empirical distribution function is pre-
+        sented. We use the Gnedenko–Korolyuk approach based on some combinatorial prop-
+        erties of the merged sample constructed from two other independent samples. Some
+        statistical applications of the Gnedenko–Korolyuk theorem are discussed.
+
+
+
+
+                                       1. Introduction
+  For independent identically distributed random variables
+                                       ξ1 ,    ξ2 ,     ...,       ξn
+assuming values in R and having the distribution function F (t), consider the empirical
+                       1
+
+distribution function
+                                1
+                                   n
+                      Fn∗ (t) =      I       (ξi ), −∞ < t < ∞.
+                                n i=1 (−∞,t)
+  Kolmogorov in his well-known paper [1] introduced the following statistic:
+                                 Dn =         sup       |Fn∗ (t) − F (t)|
+                                        −∞<t<∞
+
+and proved the following classical result.
+Theorem 1.1 (Kolmogorov). If F (t) is a continuous distribution function, then
+                                           ∞
+                                           
+                   √                                          
+(1)           lim P nDn < z = K(z) = 1 − 2   (−1)n−1 exp −2n2 z 2 .
+             n→∞
+                                                                n=1
+
+   Kolmogorov used a diﬀerent notation in [1], namely D and Φ(z) instead of Dn
+and K(z), respectively.
+   This fundamental result determined in fact the main stream of further research re-
+lated to the empirical functions. The next steps are due to Smirnov [2] who found the
+distribution of the so-called ω 2 statistic and showed that
+                                 √ +                         
+                          lim P n̂Dm,n       < z = 1 − exp −2z 2 ,
+                         m→∞
+(2)                                    √           
+                                lim P n̂Dm,n < z = K(z),
+                                m→∞
+
+
+  2000 Mathematics Subject Classiﬁcation. Primary 60B12.
+  Key words and phrases. Empirical distribution function, Kolmogorov theorem, Gnedenko–Korolyuk
+method.
+
+                                                                          2009 American Mathematical Society
+                                                                          c
+
+                                                      133
+134                     E. O. LUTSENKO, O. V. MARINICH, AND I. K. MATSAK
+
+
+where
+            +
+           Dm,n =      sup    (Fn∗ (t) − G∗m (t)),         Dm,n =       sup    |Fn∗ (t) − G∗m (t)|,
+                    −∞<t<∞                                            −∞<t<∞
+
+n̂ = mn/(m + n), and Fn∗ (t) and G∗m (t) are the empirical distribution functions con-
+structed from two independent identically distributed samples of sizes n and m, respec-
+tively, m ≤ n.
+   Kolmogorov and Smirnov used lengthy calculations when proving relations (1) and (2),
+respectively. Gnedenko and Korolyuk [3] found in 1951 an ingenious combinatorial proof
+of equality (2) for m = n. Moreover, the explicit distribution of the statistic Dn,n is
+obtained in [3] for ﬁnite n. Below is their main result.
+Theorem 1.2 (Gnedenko–Korolyuk).     √ If F (t) is a continuous distribution function of
+two
+ √  independent  samples and  c =
+                                 z   2n is the minimal integer that does not exceed
+z 2n, then, for (2n)−1/2 < z ≤ n/2,1
+                                                
+                                      n +                   C n−c
+(3)                     +
+                      Φn (z) = P        Dn,n < z = 1 − 2nn ,
+                                      2                      C2n
+                                      
+                                                   2 
+                                                      [n/c]
+                             n
+(4)           Φn (z) = P       Dn,n < z = 1 − n                      n−kc
+                                                            (−1)k−1 C2n   ,
+                             2                    C2n
+                                                                      k=1
+
+and                                              
+                                                      0,   for z ≤ (2n)−1/2 ,
+                             Φ+
+                              n (z) = Φn (z) =                     
+                                                      1,   for z > n/2.
+                                                                     +
+   The explicit expressions for the distributions of the statistics Dm,n and Dm,n are found
+by Korolyuk [4] for all m and n. However these expressions are much more complicated
+as compared to relations (3) and (4).
+   Further studies of the asymptotic behavior of the function Fn (t) lead to the investi-
+gation of the weak convergence of the empirical process
+                               √
+                      βn (t) = n(Fn∗ (t) − F (t)),      −∞ < t < ∞,
+to the Brownian bridge [5]. Surveys of results in this direction can be found in [6]–[8].
+   Following the Gnedenko–Korolyuk approach, we provide below a direct proof of the
+Kolmogorov theorem. From our standpoint, the proof presented here is simpler than
+other known proofs of this result (see, for example, [9, 10]) and does not use general
+results on the weak convergence of measures such as Prokhorov’s theorem. We also
+discuss some statistical applications of the Gnedenko–Korolyuk theorem.
+
+                               2. Gnedenko–Korolyuk method
+      Apart from the sample ξ1 , ξ2 , . . . , ξn , we consider another sample of the same size
+                                        η1 ,   η2 ,    ...,    ηn .
+Denote by Fn∗ (x) and G∗n (x) the empirical distribution functions for these samples. Equal-
+ities (2)–(4) can be used to test the homogeneity of the samples (ξi ) and (ηi ).
+    Following Gnedenko and Korolyuk [3], we prove Theorem 1.2 and the asymptotic
+relation (2) for m = n. In doing so, we discuss the combinatorial part of the proof in
+more detail as compared to the proof in [3].
+    First we present two auxiliary combinatorial results.
+   1 Editorial Note: Here and in what follows the authors use the C-notation for binomial coeﬃcients,
+        
+ m = n .
+Cn      m
+              SOME APPLICATIONS OF THE GNEDENKO–KOROLYUK METHOD                          135
+
+
+Lemma 2.1. Let L be the class of polygonal lines that have 2n segments each and possess
+the following properties:
+    (1) the lines start at the point (0; 0) and end at the point (2n; 0),
+    (2) the slope of any segment is either 1 or −1,
+    (3) the slopes can change only at integer points.
+   Then the number of polygonal lines of class L that have no common points with the
+                         n
+line y = c is equal to C2n  − C2n
+                                n−c
+                                    , where c ∈ N, c ≤ n.
+                                               n
+Proof. The cardinality of the class L equals C2n  (this can easily be proved by the one-to-
+one correspondence between the polygonal lines and sequences of length 2n containing
+equal amounts of the symbols 1 and −1). Now we ﬁnd the number of polygonal lines of
+the class L that have common points with the line y = c.
+   Consider a polygonal line. Reﬂecting, with respect to the line y = c, the part of the
+polygonal line to the right of the ﬁrst intersection point with y = c we obtain a new
+polygonal line starting at the point (0; 0) and ending at the point (2n; 2c). Conversely,
+every polygonal line ending at the point (2n; 2c) corresponds to a polygonal line ending
+at the point (2n; 0); the latter line is constructed as described above. The number of
+                                                                   n−c
+polygonal lines starting at (0; 0) and ending at (2n; 2c) equals C2n   (because of the one-
+to-one correspondence between those lines and sequences consisting of n + c symbols 1
+and n − c symbols −1).
+   Therefore the number of polygonal lines of the class L that do not intersect the line
+                    n
+y = c is equal to C2n − C2n
+                          n−c
+                              .                                                          
+  The following result is a generalization of Lemma 2.1.
+Corollary 2.1. Let L(i; j) be the class of polygonal lines corresponding to sequences
+consisting of i symbols 1 and j symbols −1. Thus those lines consist of i + j segments,
+start at the point (0; 0), and end at the point (i + j; i − j).
+   Then the number of lines of the class L(i, j) that have no common points with the line
+                             c+j
+                    i
+y = c is equal to Ci+j  − Ci+j   if i − j < c or 0 if i − j ≥ c.
+                                                     i
+Proof. The cardinality of the class L(i, j) equals Ci+j . If i − j ≥ c, then any polygonal
+line of L(i, j) intersects y = c. Thus the total number of those polygonal lines that have
+no common points with the line y = c equals zero.
+    If i − j < c, one can follow the same reasoning as in the proof of Lemma 2.1. Note
+that the end point of the segment intersecting the line y = c corresponds to the point
+(i + j; i − j) under the reﬂection. The total number of polygonal lines with this property
+      c+j
+is Ci+j   . Thus the number of lines that do not intersect the line y = c is equal to
+            c+j
+Ci+j − Ci+j
+  i
+                .                                                                       
+Lemma 2.2. The total number of polygonal lines of the class L that do not intersect
+                                                [n/c]
+both lines y = c and y = −c is equal to C2n
+                                         n
+                                            − 2 i=1 (−1)i−1 C2n
+                                                             n−ic
+                                                                  , c ∈ N, c ≤ n.
+Proof. Since |L| = C2nn
+                        , we need to ﬁnd the number of polygonal lines that have common
+points with at least one line, y = c or y = −c.
+   Consider such a line. Let, for example, it intersect y = c. It follows from the proof of
+                                                          n−c
+Lemma 2.1 that the total number of such lines equals C2n      . Similar reasoning is applied
+to the lines that intersect y = −c. The diﬀerence between these two cases is that, in the
+latter case, the correspondence is constructed by reﬂection with respect to y = −c and
+then the polygonal line starts at the point (0; 0) and ends at the point (2n; −2c). The
+                                      n−c
+number of those polygonal lines is C2n    .
+   There are, however, polygonal lines that intersect both y = c and y = −c. Let L1 be
+the class of polygonal lines that intersect at least one of the lines y = c or y = −c and
+136                   E. O. LUTSENKO, O. V. MARINICH, AND I. K. MATSAK
+
+
+let L2 be the class of polygonal lines that intersect both y = c and y = −c. The class
+of polygonal lines that start at the point (0; 0) and end at the point (2n; d) is denoted
+by L(d).
+   Then
+           |L1 | = |L(2c)| + |L(−2c)| − |L2 | = C2n
+                                                 n−c    n−c
+                                                     + C2n  − |L2 | = 2C2n
+                                                                        n−c
+                                                                            − |L2 |.
+   Consider an arbitrary polygonal line of the class L2 . Let it intersect the line y = c for
+the ﬁrst time at the point x1 . Let x2 be the ﬁrst point after x1 where the polygonal line
+intersects y = −c. Reﬂect the part of the polygonal line after x1 with respect to y = c.
+Then the point (x2 ; −c) corresponds to (x2 ; 3c), while the point (2n; 0) corresponds to
+(2n; 2c). Now reﬂect the part of the polygonal line after x2 with respect to y = 3c. Then
+the end point (2n; 2c) of the polygonal line corresponds to the point (2n; 4c).
+   As a result we obtain a polygonal line of the class L(4c). Starting with a line of L(4c)
+one can uniquely obtain the initial line of the class L2 by applying the backward rule.
+                                             n−2c
+The cardinality of the class L(4c) equals C2n     .
+   The bijection between those lines of L2 that ﬁrst intersect y = −c at some point x1
+and then intersect y = c at some point x2 and lines of L(−4c) is constructed similarly.
+   There are some polygonal lines that belong to both classes L(4c) and L(−4c). These
+lines have the property that there are a < b < g such that a and g are some points of
+intersection with y = c, while b is a point of intersection with y = −c, or otherwise.
+Denote this class of polygonal lines by L3 . Then
+          |L2 | = |L(4c)| + |L(−4c)| − |L3 | = C2n
+                                                n−2c    n−2c
+                                                     + C2n   − |L3 | = 2C2n
+                                                                         n−2c
+                                                                              − |L3 |.
+   Consider a polygonal line of L3 . Let there exist three points x1 < x2 < x3 such
+that x1 and x3 are points of intersection with y = c, while x2 is a point of intersection
+with y = −c and the line has no common points with y = c before x1 , it has no common
+points with y = −c in the interval (x1 , x2 ), and it does not intersect y = c in the interval
+(x2 , x3 ). Reﬂecting the line step by step after x1 with respect to y = c, then after x2
+with respect to y = 3c, and after x3 with respect to y = 5c we obtain a polygonal line of
+the class L(6c). Starting with a line of L(6c) one can uniquely obtain the initial line of
+the class L3 by applying the backward rule.
+   The same reasoning applies if x1 and x3 are points of intersection with y = −c, while x2
+is a point of intersection with y = c; the only diﬀerence between these two cases is that,
+in the latter case, the resulting line belongs to L(−6c).
+   Again, some of the polygonal lines belong to both classes L(6c) and L(−6c). Those
+lines are characterized by the property that they ﬁrst intersect y = c, then y = −c, then
+again y = c, and ﬁnally they intersect y = −c, or they do the same for y = c and y = −c
+interchanged. The class of those lines is denoted by L4 . Then
+          |L3 | = |L(6c)| + |L(−6c)| − |L4 | = C2n
+                                                n−3c    n−3c
+                                                     + C2n   − |L4 | = 2C2n
+                                                                         n−3c
+                                                                              − |L4 |.
+      As before we derive the equality
+                                    |Li | = 2C2n
+                                              n−ic
+                                                   − |Li+1 |,
+where Li is the class of polygonal lines that sequentially intersect y = c and y = −c at
+least i times.
+   This procedure will end after a ﬁnite number of steps, since any polygonal line can
+intersect y = c and y = −c sequentially no more than [n/c] times. Thus
+                                                   n−[n/c]c
+                                     |L[n/c] | = 2C2n         ,
+since any polygonal line of this class is not counted twice (there are no polygonal lines
+having [n/c] + 1 or more points of intersection).
+               SOME APPLICATIONS OF THE GNEDENKO–KOROLYUK METHOD                                                 137
+
+
+  Now we combine the above results. Denote the number of polygonal lines of interest
+by N . Then
+                                                  n
+                                             N = C2n − |L1 |,
+                                                                                                  n−[n/c]c
+   |L1 | = 2C2n
+             n−c
+                 − |L2 |,           |L2 | = 2C2n
+                                              n−2c
+                                                   − |L3 |,        ...,        |L[n/c] | = 2C2n              .
+  Combining all the above expressions,
+                                                                                       n−[ n
+                                                                                           c ]c
+                 n
+            N = C2n − 2C2n
+                        n−c     n−2c
+                            + 2C2n   − 2C2n
+                                         n−3c
+                                              + · · · + (−1)[n/c] 2C2n
+                            
+                            [n/c]
+                  n
+               = C2n −2                      n−ic
+                                    (−1)i−1 C2n   .                                                               
+                            i=1
+
+Proof of Theorem 1.2. Denote by K1 (x) = nFn∗ (x) the number of those elements of the
+ﬁrst sample that are not less than x. We use the similar notation K2 (x) = nG∗n (x) for
+the second sample. Then
+                                                                              
+        n +                         √                                        √
+ P        Dn,n < z = P nDn,n  +
+                                 < z 2n = P        sup (K1 (x) − K2 (x)) < z 2n .
+        2                                       −∞<x<∞
+
+    Now we merge two samples ξ1 , ξ2 , . . . , ξn and η1 , η2 , . . . , ηn and obtain the sample
+z1 , z2 , . . . , z2n ; we write its elements in the ascending order
+                                       z(1) ≤ z(2) ≤ · · · ≤ z(2n) .
+  Consider the following random variables:
+                                   
+                                     1,    z(k) ∈ (ξi ),
+                              εk =
+                                     −1, z(k) ∈ (ηi ),
+                                      
+                                      n
+                            Sn =            εk ,   S0 = 0,        S2n = 0.
+                                      k=1
+
+  Thus Sk = K1 (z(k) + 0) − K2 (z(k) + 0) and
+                                              
+                                          √                                               √
+        P    sup (K1 (x) − K2 (x)) < z 2n = P                           sup         Sk < z 2n
+              −∞<x<∞                                                 k∈{1,...,2n}
+                                                                 
+                                                            =P          sup         Sk < c .
+                                                                     k∈{1,...,2n}
+
+   According to the symmetry (recall that the random variables ξi and ηk have the same
+distribution function), all allocations of the symbols 1 and −1 in the sequence (εi ) have
+the same probability.
+   Notice that an arbitrary sequence (Sn ) can be treated as a certain polygonal line
+of the class L introduced above. The inequality supk∈{1,...,2n} Sk < c means that the
+polygonal line does not intersect y = c. The probability P{supk∈{1,...,2n} Sk < c} equals
+the fraction of those lines in L for which the latter inequality holds, whence
+                     
+                                               C n − C n−c        C n−c
+                   P       sup       Sk < c = 2n n 2n = 1 − 2nn
+                        k∈{1,...,2n}               C2n             C2n
+
+by Lemma 2.1. Thus
+                                                               n−c
+                                         n +                     C2n
+                               P          D    <z         = 1−     n .
+                                         2 n,n                   C2n
+138                     E. O. LUTSENKO, O. V. MARINICH, AND I. K. MATSAK
+
+
+      Similarly we prove another equality:
+                                                                                                             
+           n                                           √                                                     √
+ P           Dn,n < z        = P nD(n,n) < z 2n = P                         sup     |K1 (x) − K2 (x)| < z 2n
+           2                                                            −∞<x<∞
+                                                                           
+                                                               √
+                             =P        sup        |Sk | < z 2n          =P         sup         |Sk | < c .
+                                      −∞<x<∞                                    k∈{1,...,2n}
+
+
+      The inequality
+
+                                                       sup      |Sk | < c
+                                                k∈{1,...,2n}
+
+
+means that the polygonal line does not intersect both lines y = c and y = −c. Thus
+                                                                           [n/c]
+                                                                n
+                                                               C2n −2       k=1 (−1)
+                                                                                     k−1 n−kc
+                                                                                        C2n
+                    P          sup         |Sk | < c       =                     n
+                            k∈{1,...,2n}                                      C2n
+
+                                                               2 
+                                                                        [n/c]
+                                                           =1− n            n−kc
+                                                                   (−1)k−1 C2n
+                                                              C2n
+                                                                        k=1
+
+
+by Lemma 2.2.                                                                                                    
+
+
+Corollary 2.2 (Smirnov).
+                                                
+                                                      1 − e−2z , z > 0,
+                                                              2
+                                       n +
+(5)                          lim P       Dn,n < z =
+                            n→∞        2              0,          z ≤ 0,
+                                                  
+                                         n               K(z), z > 0,
+(6)                             lim P      Dn,n < z =
+                               n→∞       2               0,     z ≤ 0.
+
+Proof. This result can be obtained by passing to the limit in equalities (3)–(4) in the
+Gnedenko–Korolyuk theorem.
+  For this, we determine the asymptotic behavior of the ratio
+                                                                  √ 
+                                 n−kc
+                                C2n     n
+                                      /C2n ,           where c = z 2n , k ∈ Z.
+
+By Stirling’s formula,
+                                           √
+                                n! = nn e−n 2πn(1 + o(1)),                      n → ∞.
+
+Then
+       n−kc
+      C2n            n! n!
+            =
+        n
+       C2n    (n − kc)! (n + kc)!
+                                n2n e−2n 2πn(1 + o(1))
+            =                                         
+              (n − kc)n−kc (n + kc)n+kc e−2n 2π(n − kc) 2π(n + kc)
+                            n2n n(1 + o(1))                        (1 + o(1))
+              =                            √           =                               .
+                  (n − kc)n−kc (n + kc)n+kc n2 − k2 c2   (1 − kc/n)n−kc (1 + kc/n)n+kc
+               SOME APPLICATIONS OF THE GNEDENKO–KOROLYUK METHOD                        139
+
+
+   Passing to the logarithms, we get
+                                                    n−kc              n+kc
+               n−kc
+              C2n                                  kc                   kc
+         ln     n     = ln(1 + o(1)) − ln 1 −                 − ln 1 +
+               C2n                                  n                   n
+                                                                        
+                                              kc                        kc
+                      = −(n − kc) ln 1 −            − (n + kc) ln 1 +        + o(1)
+                                              n                         n
+                                                          2 2 
+                                         kc k2 c2           k c
+                      = −(n − kc) − −                 +o
+                                          n     2n2          n2
+                                              2 2
+                                                          2 2 
+                                        kc k c             k c
+                         − (n + kc)        −        +o             + o(1)
+                                        n     2n2           n2
+                                                                     2 2
+                           k 2 c2                k 2 c2                k c
+                      =−          + (n − kc)o             + (n + kc)o         + o(1).
+                             n                    n2                    n2
+                √        √
+   Since c = z 2n = z 2n + O(1), we have
+                                          
+                                     n−kc
+                                    C2n
+                               ln     n      = −2k2 z 2 + o(1).
+                                     C2n
+
+   Therefore
+                                      n−kc
+                                     C2n
+                                           = e−2k z +o(1) .
+                                                 2 2
+
+                                       n
+                                      C2n
+                   +
+  Both statistics Dn,n and Dn,n are nonnegative, whence the corollary follows for z ≤ 0.
+  For z > 0, we apply the Gnedenko–Korolyuk theorem and the latter equality:
+                                    n−c                         
+             n +                       C2n
+                                              = lim 1 − e−2z +o(1) = 1 − e−2z ,
+                                                                2                   2
+   lim P       Dn,n < z = lim 1 − n
+  n→∞        2              n→∞        C2n       n→∞
+
+whence equality (5) follows.
+   To prove (6) for some integer N we write
+                                                      
+                                  n                      
+               ∆(n, z) = P         Dn,n < z − K(z)
+                                   2
+                                                                            
+                           [n/c]                        ∞                   
+                                         C n−kc                     2 2
+                        =          (−1) k 2n
+                                                   −              k −2k z 
+                                                             (−1) e
+                                            C2nn                             
+                          k=−[n/c]                    k=−∞                  
+                                                                              
+(7)                                                                   n−kc 
+                                            2 2                     C
+                        ≤       (−1)k e−2k z  +            (−1)k 2nn 
+                           |k|≥N                 N ≤|k|<[n/c]          C2n 
+                                                                          
+                                                                         
+                                           n−kc                          
+                                        k C2n                  k −2k2 z 2 
+                          +        (−1)      n   −         (−1) e         .
+                                           C2n                            
+                               |k|<N                   |k|<N
+
+   Fix some ε > 0 and z > 0 and choose N such that
+                                           
+                               exp −2N 2 z 2 < ε/16.
+The ﬁrst term on the right hand side of inequality (7) is a double sum of a monotone
+sign-alternating series. The sum of this series is estimated by the absolute value of its
+ﬁrst term. Thus this term is estimated from above by ε/8.
+   Since
+                                   n−kc       n−(k+1)c
+                                  C2n    > C2n         ,
+140                    E. O. LUTSENKO, O. V. MARINICH, AND I. K. MATSAK
+
+
+a similar method applies to the second term on the right hand side of inequality (7).
+                                      n−N c   n
+Therefore this term is estimated by 4C2n    /C2n . For large n, the bound is
+                                           4e−2N z +o(1) < ε/3.
+                                                    2 2
+
+
+
+      Further, consider the third term on the right hand side of (7) for a ﬁxed N :
+                              
+                                                            
+                                           C n−kc             
+                                                   − e−2k z  .
+                                                          2 2
+                                               2n
+                                    (−1)k      n
+                              |k|<N          C2n               
+Since the sum is ﬁnite and every diﬀerence approaches zero as n → ∞, there exists n0
+for which the term of interest does not exceed ε/2 for all n > n0 . Therefore
+                                            ε ε ε
+                                 ∆(n, z) ≤ + + < ε
+                                            8 3 2
+for all n > n0 . This implies equality (6).                                       
+
+                             3. Proof of the Kolmogorov theorem
+  Let W (t) be the standard Brownian motion and let W 0 (t) = W (t) − tW (1) be the
+Brownian bridge, that is, a Gaussian stochastic process such that
+                       E W 0 (t) = 0,             E W 0 (t)W 0 (s) = min(t, s) − ts.
+   If a distribution function F (t) is continuous, then Kolmogorov [1] noticed that the
+limit distribution of the statistic Dn does not depend on F (t). Thus we assume without
+loss of generality that the sample ξ1 , . . . , ξn√is uniformly distributed in the interval [0, 1]
+so that F (t) = t for t ∈ [0, 1], and βn (t) = n(Fn∗ (t) − t) is a uniform empirical process.
+   Put Xi (t) = I(ξi < t) − t. Then
+                                            1 
+                                                       n
+                                                           Sn (t)
+                                  βn (t) = √       Xi (t) = √ ,
+                                             n i=1            n
+                         E Xi (t) = 0,            E Xi (t)Xi (s) = min(t, s) − ts,
+                                                  1
+                                                            n
+             E βn (t) = 0,      E(βn (t)βn (s)) =       E Xi (t)Xi (s) = min(t, s) − ts.
+                                                  n i=1
+Thus βn (t) has the same mean value and covariance function as the Brownian bridge.
+By the central limit theorem in Rk ,
+                                                                
+                                         Sn (t1 )       Sn (tk )    D                             
+(8)     (βn (t1 ), . . . , βn (tk )) =    √       ,...,  √         −→ W 0 (t1 ), . . . , W 0 (tk )
+                                             n              n
+for arbitrary points
+                                  0 ≤ t1 < · · · < tk ≤ 1;
+that is, the ﬁnite-dimensional distributions of βn (t) weakly converge to those of W 0 (t)
+as n → ∞.
+   Note that         √ +                         √
+                      nDn = sup βn (t),            nDn = sup |βn (t)|.
+                                   t∈[0,1]                             t∈[0,1]
+      Thus the Kolmogorov theorem follows from
+                                                              
+                                   max |βn (t)| −→ max W 0 (t)
+                                                 D
+(9)
+                                  0≤t≤1                    0≤t≤1
+
+as n → ∞ and
+                                                               
+                                                     
+(10)                              P       max W 0 (t) < z         = K(z).
+                                          0≤t≤1
+               SOME APPLICATIONS OF THE GNEDENKO–KOROLYUK METHOD                           141
+
+
+In what follows we need the following auxiliary result.
+Lemma 3.1. For all ε > 0,
+                                   
+(11)                   lim lim P          sup |βn (t) − βn (s)| > ε   = 0.
+                       δ→0 n→∞         |t−s|<δ
+
+Proof. The reasoning below is a modiﬁcation of a similar reasoning in the book [11,
+Chapter 6, §5]. Let S = {k2−N : N > 1, 0 ≤ k ≤ 2N } be the family of binary numbers
+in [0, 1] and let                                    
+                                   
+                                         k         k − 1 
+                      αN = sup βn           − βn            .
+                                 N
+                                1≤k≤2    2N          2N 
+It is clear that
+                                                         
+                                                         m
+(12)                        |βn (s1 ) − βn (s2 )| ≤ 2            αr
+                                                        r=m(δ)
+                                        −m
+for all s1 , s2 ∈ S such that s1 = k1 2  , s2 = k2 2−m , and |s1 − s2 | < δ, where
+                                                         
+                                  m(δ) = min k : δ2k ≥ 1 .
+Fix δ > 0 and let m be suﬃciently large in order that δ2m−1 ≥ 1. Let 0 ≤ s < t ≤ 1 and
+|s−t| < δ. Then there are integer numbers k1 and k2 such that k2 2−m √       ≤ s ≤ (k2 +1)2−m
+         −m                   −m
+and k1 2     ≤ t ≤ (k1 + 1)2 . It is clear that the function βn (t) + nt increases in t,
+whence
+                                                                              
+              k1      √      k1               √             k1 + 1      √     k1 + 1
+         βn         +    n        ≤ β n (t) +   nt  ≤ β n             +   n            .
+              2m             2m                               2m               2m
+                                   √
+Similar bounds hold for βn (s) + ns, too. Then
+                       √                                                     
+                      2 n         k1 + 1             k2          k2 + 1           k1 
+  |βn (t) − βn (s)| ≤ m + βn                − β            + β             − β           .
+                                                                                       2m 
+                                       m          n    m           n     m         n
+                       2             2                2                 2
+Since m is such that
+                        |(k1 + 1)2−m − k2 2−m | ≤ δ + 2 · 2−m ≤ 2δ,
+we have
+                                         √                               
+                                                                              
+(13)        sup |βn (t) − βn (s)| ≤
+                                        2 n
+                                            + 2       sup       βn k1 − βn k2  .
+                                         2m                        2m      2m 
+           |t−s|<δ                              |k1 −k2 |≤δ2m+1
+
+Now we choose m = mn such that
+                             √
+                               n             n
+(14)                         m
+                                 → 0,        m
+                                                 ≥ 1.
+                            2  n            2 n
+Put                                                            
+                 ∆n =      sup    βn (k1 2−mn ) − βn (k2 2−mn ).
+                             |k1 −k2 |≤δ2mn
+
+In view of (13), it remains to prove that
+(15)                               lim lim P{∆n > ε} = 0.
+                                  δ→0 n→∞
+
+We use bound (12) and the inequality
+                                k            p
+                              N
+                                              k − 1 
+                             2
+                        p
+                       αN ≤     
+                                βn 2N − βn    2N 
+                                                       .
+                                  k=1
+142                E. O. LUTSENKO, O. V. MARINICH, AND I. K. MATSAK
+
+
+Then
+                             
+                             m n                     
+                                                     m n
+                                                               1/4
+                E ∆n ≤ 2                E αr ≤ 2             E αr4
+                           r=m(δ)                   r=m(δ)
+(16)                         2r                 4 1/4
+                         
+                         mn         k         k − 1 
+                      ≤2          
+                                E βn    − βn                 .
+                                      2r          2r   
+                           r=m(δ)        k=1
+
+Since                                                    
+                                              √  νn
+                             βn (t + h) − βn (t) =
+                                               n     −h ,
+                                                  n
+where νn is a binomial random variable with parameters n and p = h, we obtain
+                                          4           
+                                 2  νn               h             h
+      E |βn (t + h) − βn (t)| = n E 
+                             4
+                                        − h ≤ 3 h +
+                                                   2
+                                                           ≤ 3h2 + mn ≤ 4h2
+                                      n                n           2
+(see [12, Chapter 6, §34]). Here we used inequality (14). Substituting the latter bound
+in (16) we get
+                       mn         1/4
+                       
+                               r 4
+                                            √  −r/4
+            E ∆n ≤ 2         2 2r       ≤2 2          2     → 0,     δ → 0.
+                                2
+                     r=m(δ)                                r≥m(δ)
+
+This implies equality (15), whence (11) follows.                                         
+Proposition 3.1. Let βn (t) be a uniform empirical process and let W 0 (t) be the Brow-
+nian bridge. Then (9) holds as n → ∞.
+Proof. Put
+                                                        (k)
+                     β n = max |βn (t)|,               β n = max |βn (i/k)|.
+                             0≤t≤1                             0≤i≤k
+
+The convergence of ﬁnite-dimensional distributions (8) implies
+                                           
+                                       0 i 
+                         (k) D
+                       β n −→ max W           ,     n → ∞.
+                                0≤i≤k        k 
+                                        (k)
+It is clear that P{β n < x} ≤ P{β n < x}. Thus
+                                                          
+                                                     i 
+                     limn→∞ P{β n < x} ≤ P max W 0       < x   .
+                                            0≤i≤k     k 
+Further
+                                              (k)                                  (k)
+          P{β n ≥ x} = P β n ≥ x, β n > x − ε + P β n ≥ x, β n ≤ x − ε
+                                  (k)                                  (k)
+                      ≤ P β n > x − ε + P β n ≥ x, β n ≤ x − ε .
+Hence
+                                        (k)                                  (k)
+              P{β n < x} ≥ P β n ≤ x − ε − P β n ≥ x, β n ≤ x − ε
+                                               
+                               (k)             1
+                         ≥ P β n ≤ x − ε − Pn     ,
+                                               k
+where                        
+                Pn (δ) = P        sup |βn (t) − βn (s)| > ε
+                                 |t−s|≤δ
+                                                       
+                                                   i 
+                                                 
+                      ≥ P max |βn (t)| ≥ x, max βn     ≤x−ε .
+                          0≤t≤1            0≤i≤k    k 
+              SOME APPLICATIONS OF THE GNEDENKO–KOROLYUK METHOD                         143
+
+
+   Combining together all the above estimates for probabilities and passing to the limit
+as n → ∞ we obtain
+                          
+                    i 
+      P max W 0          < x   ≥ lim P{β n < x} ≥ lim P{β n < x}
+         0≤i≤k       k            n→∞                n→∞
+                                                                      
+                                              0 i 
+                                 ≥ P max W           < x − ε − lim Pn 1 .
+                                       0≤i≤k       k                        k
+The Brownian bridge W 0 (t) as well as the Brownian process W (t) is continuous. There-
+fore                                                          
+                                i                      0 
+                P max W 0           <  x   → P    sup  W (t) < x
+                   0≤i≤k         k                0≤t≤1
+
+as k → ∞. Moreover Lemma 3.1 implies that limδ→0 limn→∞ Pn (δ) = 0. Passing to the
+limit in the above inequalities as k → ∞ and then as ε → 0 we get
+                                                            
+                                                        
+                        lim P{β n < x} = P sup W 0 (t) < x
+                          n→∞                           0≤t≤1
+
+for all x, where the distribution function is right continuous. This completes the proof
+of Proposition 3.1.                                                                   
+
+   It remains to show that (10) holds in order to complete the proof of Kolmogorov’s
+theorem. Of course, this is a well-known result. However its direct proof is not trivial at
+all (see, for example, [5, 9]). Below we present a new proof of equality (10) based on the
+approach proposed by Gnedenko and Korolyuk.
+   Consider two empirical distribution functions Fn∗ (t) and G∗n (t) constructed from inde-
+pendent samples uniformly distributed in the interval [0, 1]; both samples are of size n.
+Put                                      
+                                           n ∗
+                                 (s)
+                                βn (t) =     (F (t) − G∗n (t)).
+                                           2 n
+                                (s)
+It is clear that the process βn (t) can be represented as follows:
+                                                            
+                                             β (t) − β (t)
+(17)                              βn(s) (t) = n √ n ,
+                                                         2
+                  
+where βn (t) and βn (t) are two independent uniform empirical processes. Thus
+                    E βn(s) (t) = 0,          E βn(s) (t)βn(s) (s) = min(t, s) − ts.
+As in the case of the process βn (t), the latter equality implies the convergence of ﬁnite
+                              (s)
+dimensional distributions of βn (t) to those of the Brownian bridge W 0 (t).
+  Lemma 3.1 and representation (17) imply the following result.
+Lemma 3.2. For all ε > 0,
+                                      
+                                                                    
+                        lim lim P          sup βn(s) (t) − βn(s) (s) > ε   = 0.
+                        δ→0 n→∞           |t−s|<δ
+
+   Using Lemma 3.2 and following the lines of the proof of Proposition 3.1 we get the
+following result.
+Proposition 3.2.
+                                              D             
+                                sup βn(s) (t) −→ sup W 0 (t) .
+                              0≤t≤1                     0≤t≤1
+144                      E. O. LUTSENKO, O. V. MARINICH, AND I. K. MATSAK
+
+
+      Equality (10) follows from Proposition 3.2, since
+                                  
+                                    n                     
+                                      Dn,n = sup βn(s) (t)
+                                    2         0≤t≤1
+
+and in view of Corollary 2.2. The Kolmogorov theorem is proved.
+
+                                                      4. Remarks
+1. The Smirnov limit theorem
+                                              √ +     
+                                                nDn < z = 1 − e−2z
+                                                                   2
+                                    lim P
+                                   n→∞
+can also be proved by the Gnedenko–Korolyuk method.
+2. Discrete distributions. Recall that equalities (1)–(4) are proved for the case of a
+continuous distribution function F (t). It is known in the general case that the empirical
+process weakly converges to the process W 0 (F (t)), where W 0 (t) is a Brownian bridge
+([9, Chapter 3, §16, Theorem 16.4]). If the distribution function F (t) is discontinuous,
+then the distribution of the random variable supt |W 0 (F (t))| is not the Kolmogorov distri-
+bution and depends on the distribution function F (t) (see [13]). Naturally, Theorem 1.2
+does not hold for discrete random variables. Based on the Gnedenko–Korolyuk approach,
+                                                                  +
+we propose to use some randomized statistics DRn,n                     and DRn,n (instead of Smirnov’s
+statistic) whose distribution does not depend on the distribution function F (t).
+   Let the samples (ξ1 , ξ2 , . . . , ξn ) and (η1 , η2 , . . . , ηn ) be the observations after the ran-
+dom variables ξ and η, respectively. Without loss of generality, we may assume that their
+                                                                        +
+values are (1, 2, . . . , m, . . . ). To construct statistics DRn,n         and DRn,n we put, similarly
+to the continuous case,
+             z1 = ξ1 ,      ...,        zn = ξn ,          zn+1 = η1 ,       ...,       z2n = ηn .
+Then we write the sample (zi ) in the ascending order
+(18)                                     z(1) ≤ z(2) ≤ · · · ≤ z(2n) .
+Fix some k ≥ 1 and let
+(19)                 z(i) = k      for i = ik−1 + 1, . . . , ik ,        ik − ik−1 = mk
+(for example, we may assume that the ﬁrst i members are taken from the sample (ξk )
+and the last i members are taken from the sample (ηk )). We introduce a partial order in
+sequence (19); namely, if νk = (νk1 , . . . , νkmk ) is a uniform random variable deﬁned on all
+permutations of the sequence (ik−1 + 1, . . . , ik ) and if νk does not depend on samples (ξi )
+and (ηi ), then we make the following transformation:
+                                (ik−1 + 1, . . . , ik ) → (νk1 , . . . , νkmk ).
+After this randomization is done for all k ≥ 1, we obtain the sequence
+                                          ∗      ∗              ∗
+(20)                                     z(1) ≤ z(2) ≤ · · · ≤ z(2n)
+instead of the sequence (18). The further procedure is analogous to that considered in
+the continuous case. Put
+                                     
+                                             ∗
+                                       1,   z(k) ∈ (ξi ),
+                               ε∗k =         ∗
+                                       −1, z(k) ∈ (ηi ),
+                                        
+                                        n
+                                Sn∗ =         ε∗k ,      S0∗ = 0,      ∗
+                                                                      S2n = 0,
+                                        k=1
+                            +
+                          DRn,n =        sup Sk∗ ,          DRn,n =       sup |Sk∗ |.
+                                        0≤k≤2n                           0≤k≤2n
+               SOME APPLICATIONS OF THE GNEDENKO–KOROLYUK METHOD                                  145
+
+
+Then the Gnedenko–Korolyuk theorem implies the following corollary.
+Corollary 4.1. Let the random variables ξ and η have the same discrete distribution.
+    +                                              +
+If Dn,n  and Dn,n are changed in Theorem 1.2 for DRn,n and DRn,n , respectively, then
+equalities (3) and (4) remain true.
+3. Testing compound hypotheses. It is an important problem to decide whether a
+sample is drawn from a given parametric family of distributions. The theory of this
+problem is quite complicated, and its results are not easy to use in practice (see [8]).
+   Let F = {F ((t − a)/σ), (a, σ) ∈ Q} be a family of distribution functions depending on
+the shift and scale parameters, a and σ, respectively, where F (t) is a continuous distri-
+bution function. Consider a sample (ξi ) of size n drawn from an unknown distribution
+function F0 (t). We want to test the hypothesis H0 = {F0 ∈ F}. A modiﬁed Kolmogorov
+statistic                                                     
+                                              ∗
+                                                         t − â 
+                              D̂n = sup Fn (t) − F               
+                                     −∞<t<∞                 σ̂
+is often used for this purpose where â and σ̂ are maximum likelihood estimates of the
+parameters a and σ. It is known that the limit distribution of the statistic D̂n depends on
+the distribution function F (t) (see Theorems 1 and 2 in [14, Chapter 3, §17]). Thus one
+needs a separate table of critical points of the distribution of D̂n for every distribution
+function F (t) in order to test the above hypothesis.
+   Using the Gnedenko–Korolyuk theorem one can construct the following simple proce-
+dure for testing the hypothesis H0 .
+      a) Given a sample (ξi ), simulate a sample (ηi ) of the same size n and with the
+          distribution function F (t) (we assume that a = 0 and σ = 1).
+     b) Starting from the samples (ξi ) and (ηi ), construct new samples (ξ¯j ) and (η̄j ),
+          where
+              ξ4j−2 − ξ4j−3             η4j−2 − η4j−3                               n
+       ξ¯j =                ,     η̄j =               ,    j = 1, 2, . . . , m, m =     .
+               ξ4j − ξ4j−1               η4j − η4j−1                                 4
+                                                               ∗
+      c) Evaluate the empirical distribution functions F̄m       (t) and Ḡ∗m (t) from the sam-
+                ¯
+          ples (ξj ) and (η̄j ), respectively, and the corresponding    statistic D̄m,m . If the
+                                                                
+          hypothesis H0 is true, then the random variable m        2 D̄m,m  has the distribution
+          Φm (z) deﬁned by equality (4).
+      d) Now the hypothesis H0 can be tested in a standard way.
+   It is clear that a large portion of information is lost when passing from the sample
+(ξj ) to the samples (ξ¯j ) and (η̄j ). Nevertheless the losses are negligible if the size of the
+samples is large.
+
+                                     Acknowledgement
+  The authors are indebted to Academician V. S. Korolyuk who made several important
+remarks concerning the content of the paper.
+
+                                         Bibliography
+     1. A. Kolmogorov, Sulla determinazione empirica di una legge di distribuzione, Giorn. Ist. Ital.
+        Attuari 4 (1933), no. 1, 83–91.
+     2. N. V. Smirnov, Theory of Probability and Mathematical Statistics, Nauka, Moscow, 1970. (Rus-
+        sian) MR0265117 (42:30)
+     3. B. V. Gnedenko and V. S. Korolyuk, On the maximal deviation between two empirical distri-
+        butions, Doklady AN SSSR 80 (1951), no. 4, 525–528. (Russian) MR0045357 (13:570l)
+     4. V. S. Korolyuk, On the deviation between the empirical distributions for the case of two inde-
+        pendent samples, Izv. AN SSSR, Ser. Matem. 19 (1955), no. 1, 81–96. (Russian) MR0067418
+        (16:727c)
+146                     E. O. LUTSENKO, O. V. MARINICH, AND I. K. MATSAK
+
+
+       5. J. L. Doob, Heuristic approach to the Kolmogorov–Smirnov theorems, Ann. Math. Statist. 20
+          (1949), 393–403. MR0030732 (11:43a)
+       6. P. Gaenssler and W. Stute, Empirical processes: A survey of results for independent and
+          identically distributed random variables, Ann. Probab. 7 (1979), no. 2, 193–243. MR525051
+          (80d:60002)
+       7. M. Csörgö and P. Révész, Strong Approximations in Probability and Statistics, Akademiai
+          Kiado, Budapest, 1981. MR666546 (84d:60050)
+       8. E. V. Khmaladze, Some applications of the theory of martingales in statistics, Uspekhi Mat.
+          Nauk 37 (1982), no. 6, 194–212; English transl. in Russ. Math. Surv. 37 (1982), no. 6, 215–237.
+          MR683280 (84c:62066)
+       9. P. Billingsley, Convergence of Probability Measures, Wiley, New York, 1968. MR0233396
+          (38:1718)
+      10. E. Pitman, Some Basic Theory for Statistical Inference, Chapman and Hall, London, 1979.
+          MR549771 (81f:62001)
+      11. I. I. Gikhman and A. V. Skorokhod, Theory of Stochastic Processes, vol. 1, Nauka, Moscow,
+          1971; English. transl., Springer-Verlag, Berlin–Heidelberg–New York, 1974. MR0341539
+          (49:6287)
+      12. B. V. Gnedenko, Theory of Probability, Sixth edition, Nauka, Moscow, 1988; English. transl.,
+          Gordon and Breach Science Publishers Newark, NJ, 1997.
+      13. P. Schmid, On the Kolmogorov and Smirnov limit theorems for discontinuous distribution
+          functions, Ann. Math. Statist. 29 (1958), 1011–1027. MR0101582 (21:392)
+      14. A. A. Borovkov, Mathematical Statistics, Nauka, Moscow, 1984; English. transl., Taylor and
+          Francis, Amsterdam, 1999. MR782295 (86i:62001)
+
+  Department of Operation Research, Faculty for Cybernetics, National Taras Shevchenko
+University, Academician Glushkov Avenue 6, Kyiv 03127, Ukraine
+  E-mail address: ievgen lutsenko@ukr.net
+
+  Department of Operation Research, Faculty for Cybernetics, National Taras Shevchenko
+University, Academician Glushkov Avenue 6, Kyiv 03127, Ukraine
+  E-mail address: marinich@voliacable.com
+
+  Department of Operation Research, Faculty for Cybernetics, National Taras Shevchenko
+University, Academician Glushkov Avenue 6, Kyiv 03127, Ukraine
+  E-mail address: mik@unicyb.kiev.ua
+
+                                                                               Received 2/JUL/2007
+                                                                          Translated by O. I. KLESOV
+

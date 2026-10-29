@@ -99,6 +99,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 
 - The sampler substrate: ten techniques from rejection to coupling-from-the-past and Wang-Landau.
 - CLT routes: a castle statistic, its normal limit, pi from the mode density.
+- Limit laws of castle heights: Kolmogorov's law `1 - 2 sum (-1)^(k-1) e^(-2k^2 x^2)` for the Kolmogorov castles, the castles of the two-sample Kolmogorov-Smirnov test, whose 5% critical value is a castle height.
 - RMT routes: semicircle, Tracy-Widom, Airy edge, Marchenko-Pastur, Kesten-McKay.
 - Geometric probability: Buffon needle across a skyline, Barbier, Ehrhart on the castle polytope.
 - Classical identities on castle asymptotics: Stirling, Basel, Wallis.

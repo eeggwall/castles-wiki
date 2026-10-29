@@ -5,7 +5,7 @@ summary: Banderier and Nicodème extend the kernel method to directed walks of b
 tags: [source, paper, lattice-paths, kernel-method, generating-functions, m-smooth, 1-smooth, transfer-matrix, motzkin]
 sources: [banderier-nicodeme-2010-bounded-discrete-walks]
 created: 2026-10-07
-updated: 2026-10-22
+updated: 2026-10-28
 ---
 
 # Banderier & Nicodème (2010) - Bounded discrete walks
@@ -73,7 +73,7 @@ and the paper's two-wall theorem expresses the m-smooth strip, and so `smooth_m(
 
 ## Relation to Other Wiki Pages
 
-The wiki counts castle strips with transfer matrices on column heights ([[castle-strip](pages/castle-strip.md)]). For the 1-smooth rule the eigenvalues are explicit and give the Chebyshev formulas of [[1-smooth-castles](pages/1-smooth-castles.md)]; for the m-smooth rule with `m ≥ 2` they are computed numerically, and [[m-smooth-castles](pages/m-smooth-castles.md)] computes its generating functions from counts. This paper supplies the closed form for those strips in terms of the kernel roots. The kernel method also appears on [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)], applied to Motzkin paths on a three-layer automaton.
+The wiki counts castle strips with transfer matrices on column heights ([[castle-strip](pages/castle-strip.md)]). For the 1-smooth rule the eigenvalues are explicit and give the Chebyshev formulas of [[1-smooth-castles](pages/1-smooth-castles.md)]; for the m-smooth rule with `m ≥ 2` they are computed numerically, and [[m-smooth-castles](pages/m-smooth-castles.md)] computes its generating functions from counts. This paper supplies the closed form for those strips in terms of the kernel roots. The kernel method also appears on [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)], applied to Motzkin paths on a three-layer automaton. [[kolmogorov-castles](pages/kolmogorov-castles.md)] counts the bridges with jumps `±1` between the walls `−h` and `h` by reflection, which are the Kolmogorov castles of height at most `h`, and the paper's question about the maximum of the absolute value of a random bridge is the height of a random Kolmogorov castle, whose limit law is Kolmogorov's; the Rayleigh law of Theorem 6 is the limit law of the tallest peak marked by one sample.
 
 ## Footnotes
 

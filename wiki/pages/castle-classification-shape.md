@@ -138,7 +138,7 @@ Types 13 and 14 identify the skyline with a lattice path, and the Königsberg ty
 
 | type | predicate | example | wiki page |
 |---|---|---|---|
-| **Dyck-path** | `c_1 = c_w = 1`, `\|c_{i+1} − c_i\| = 1` | `(1, 2, 1, 2, 3, 2, 1)` | [[dyck-words](pages/dyck-words.md)], [[catalan-numbers](pages/catalan-numbers.md)]; the zig-zag castles with both end columns at height 1 ([[zig-zag-castles](pages/zig-zag-castles.md)]) |
+| **Dyck-path** | `c_1 = c_w = 1`, `\|c_{i+1} − c_i\| = 1` | `(1, 2, 1, 2, 3, 2, 1)` | [[dyck-words](pages/dyck-words.md)], [[catalan-numbers](pages/catalan-numbers.md)]; the zig-zag castles with both end columns at height 1 ([[zig-zag-castles](pages/zig-zag-castles.md)]); with one of two marks on each peak, the Kolmogorov castles of the two-sample Kolmogorov-Smirnov test, `C(2n, n)` at width `2n + 1` ([[kolmogorov-castles](pages/kolmogorov-castles.md)]) |
 | **Motzkin-path** | `c_1 = c_w = 1`, `\|c_{i+1} − c_i\| ≤ 1` | `(1, 2, 2, 3, 2, 1)` | [[motzkin-numbers](pages/motzkin-numbers.md)]; without the condition on the end columns, the 1-smooth type of the rate-of-change types (Axis 2) |
 | **Königsberg** | every degree of the castle graph is even once a ground vertex is joined to the bottom row | `(1, 2, 3, 3, 2, 1)` | [[konigsberg-castles](pages/konigsberg-castles.md)]: exactly the double staircases `(1, …, k, k, …, 1)`, one at each even width; the open-stroke castles, with exactly two odd vertices, are finitely many at each height, `h² + 3h − 2` of them at odd widths |
 
