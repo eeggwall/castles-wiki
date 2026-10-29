@@ -5,7 +5,7 @@ summary: The castle graph of a castle has its cells as vertices and an edge betw
 tags: [concept, castle, graph, polyomino, spectral, adjacency, laplacian, tree, bipartite, planar, cycle-rank, fibonacci, jacobsthal, oeis, bridge, pedagogy, cycle-lattice, parity, burnside, padovan]
 sources: [project-euler-502-brute-force, rossin-2000-group-of-a-sandpile]
 created: 2026-09-17
-updated: 2026-10-28
+updated: 2026-10-29
 ---
 
 # The castle graph - bridge to graph theory
@@ -233,6 +233,7 @@ def cycle_rank(c):
 - [[sandpile-census](pages/sandpile-census.md)] - the sandpile groups of the 33,150 castles with at most 16 cells, up to mirror image.
 - [[castle-avalanches](pages/castle-avalanches.md)] - avalanches on the castle graph; in the tide model, rectangles and battlements of the same height have the same mean avalanche, and the `2 × 2` squares change only the tail.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree skylines counted by area.
+- [[tree-castle-diffusion](pages/tree-castle-diffusion.md)] - the graph of a tree castle as a comb, the bottom row with a tooth on each column, and the simple random walk on it.
 - [[hilbert-castles](pages/hilbert-castles.md)] - the Hilbert duality of strip rules, which gives the tree skylines by width and area from the strips with every column at height at least 2.
 - [[fibonacci-castle](pages/fibonacci-castle.md)] - the tree castles of height 2, and the signed Fibonacci tower count `P_F(w)` that gives the parity of the tree castles at every height.
 - [[padovan-families](pages/padovan-families.md)] - the palindromic tree castles by area, which give the tree castles up to mirror image.

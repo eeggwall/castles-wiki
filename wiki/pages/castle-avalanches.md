@@ -5,7 +5,7 @@ summary: The self-organized-criticality sandpile of Bak, Tang and Wiesenfeld run
 tags: [analysis, castle, sandpile, avalanche, self-organized-criticality, bak-tang-wiesenfeld, dhar, green-function, laplacian, sink-model, tide-model, battlement, rectangle, heavy-tail, numpy, simulation, verification]
 sources: [project-euler-502-castle-factoring, rossin-2000-group-of-a-sandpile, dhar-ruelle-sen-verma-1995-algebraic-aspects, dhar-1990-self-organized-critical-sandpile, bak-tang-wiesenfeld-1988-self-organized-criticality]
 created: 2026-09-26
-updated: 2026-10-16
+updated: 2026-10-29
 ---
 
 # Avalanches on castles - Bak-Tang-Wiesenfeld sand in the sink and tide models
@@ -223,6 +223,7 @@ In the tide model the `12 × 12` rectangle and the battlement `(1, 12)*6` both a
 - [[sandcastle-clock](pages/sandcastle-clock.md)] - grains dropped always on the same cell.
 - [[sandpile-census](pages/sandpile-census.md)] - the sandpile groups of every castle to 16 cells.
 - [[castle-graph](pages/castle-graph.md)] - tree castles, battlements among them, and the `2 × 2` blocks that join columns.
+- [[tree-castle-diffusion](pages/tree-castle-diffusion.md)] - the simple random walk on a battlement: the order-1/2 window, the long-time rate `2/(h + 1)` and the crossover at `t = 8(h + 1)²/π`.
 - [[levy-flights](pages/levy-flights.md)] - the inverse reduced Laplacian as a grounded effective-resistance matrix, and a power-law tail of the fractional walk on castles.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the castle `(3,2,1,2,2,1,2,3)` followed through its group, clock, identity and avalanches.
 
