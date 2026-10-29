@@ -138,7 +138,7 @@ print([a[n] - a[n - 1] for n in range(2, 20)])   # A342528 from offset 1
 - [[convex-castle](pages/convex-castle.md)] - the convex castles counted by area and width in description 3, and their block count `h`.
 - [[castle-row-raising-equation](pages/castle-row-raising-equation.md)] - raising a castle one row, `z → qz`.
 - [[signed-prime-castles](pages/signed-prime-castles.md)] - the sign as a character of the gluing monoid.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the sequences on this page.
+- [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the sequences on this page.
 
 ## Footnotes
 

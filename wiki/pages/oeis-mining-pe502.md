@@ -10,7 +10,7 @@ updated: 2026-10-25
 
 # OEIS matches of Project Euler 502 (PE 502) castle counts
 
-> **See also:** [[oeis-index](pages/oeis-index.md)] - every A-number cited on the wiki and the pages that cite it; [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the castle sequences with their terms and the entries they equal.
+> **See also:** [[oeis-index](pages/oeis-index.md)] - every A-number cited on the wiki and the pages that cite it; [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the castle sequences with their terms and the entries they equal.
 
 ## Summary
 

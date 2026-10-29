@@ -181,7 +181,7 @@ True
 - [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] - the height-2 identities `A^e(w, 2) = A038505(w+1)` and `A^o(w, 2) = A038503(w+1) − 1`, and the castle comments of their OEIS entries.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - the row `A^e(·, 3)` with its recurrence and characteristic polynomial.
 - [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] - the two checks of the method, offsets and short prefixes.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] / [[oeis-index](pages/oeis-index.md)] - every castle sequence with its terms, and every A-number the wiki cites.
+- [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] / [[oeis-index](pages/oeis-index.md)] - every castle sequence with its terms, and every A-number the wiki cites.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(1, L) = A146559(L+1)` and the rows `P(k, ·)`.
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the four sums of every fourth binomial coefficient, two of which count the castles of height 2.
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - the algorithm of Stop 6, and when its output is the shortest recurrence.

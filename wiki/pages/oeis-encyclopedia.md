@@ -28,7 +28,7 @@ An entry is a set of lines. The Data lines "give the beginning of the sequence",
 
 ## Relation to Other Wiki Pages
 
-Wiki pages cite an entry by its URL, the date it was read and a verbatim quote from it. [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] is the method of matching a castle count against an entry at its offset, [[oeis-index](pages/oeis-index.md)] lists every A-number cited on the wiki with the citing pages, and [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] and [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] collect the castle counts with their entries.
+Wiki pages cite an entry by its URL, the date it was read and a verbatim quote from it. [[oeis-cross-referencing](pages/oeis-cross-referencing.md)] is the method of matching a castle count against an entry at its offset, [[oeis-index](pages/oeis-index.md)] lists every A-number cited on the wiki with the citing pages, and [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] and [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] collect the castle counts with their entries.
 
 ## Footnotes
 

@@ -168,7 +168,7 @@ print([castles(n, lambda a: a <= 3, lambda g: 1 <= g <= 3) for n in range(1, 11)
 
 - [[fibonacci-castle](pages/fibonacci-castle.md)] - the parent family, its Fibonacci towers, and the 56-column castle from the Fibonacci word.
 - [[castle-notation](pages/castle-notation.md)] - the Fibonacci tower, the balanced tower, and the family counts `A_X(w)`.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the counts on this page.
+- [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the counts on this page.
 - [[castle-entropy](pages/castle-entropy.md)] - entropy rates of castle families; the Fibonacci castles have `log₂ φ` bits per column, and the Fibonacci-word and balanced castles, which grow polynomially, have rate 0.
 - [[q-fibonacci-castle](pages/q-fibonacci-castle.md)] - the Fibonacci castles counted by area, which the spaced castles count by width.
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - skylines whose raised regions, which may be wide, are separated by wide valleys.

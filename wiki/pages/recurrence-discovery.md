@@ -139,7 +139,7 @@ At `L = 1` the towers are one column of height `c ≤ k` with `c` blocks, so `P(
 - [[generating-function-gallery](pages/generating-function-gallery.md)] - the rational functions `num_k/den_k` and the recurrence `den_{k+1} = den_{k−1} − 2x·den_k`.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization of `char_k` for even `k` by the parity of the last column.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] - the roots of `char_k` and of the recurrences in `k`, set against the OEIS.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the rows `P(k, ·)`.
+- [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the rows `P(k, ·)`.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] - the correspondence between linear recurrences and rational generating functions.
 - [[generating-functions](pages/generating-functions.md)] - the section *From a rational generating function to its recurrence*, coefficient matching on `den_k(x)·P_k(x) = num_k(x)`.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the castle counts matched against the OEIS, among them the characteristic polynomials of `P(k, ·)`.

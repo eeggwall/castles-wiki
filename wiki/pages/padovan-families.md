@@ -23,7 +23,7 @@ A column of height 2 next to columns of height 1 is the basic piece throughout. 
 | maximal castles ([[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)]) | height 2; gaps of 1 or 2; end runs of at most 1 | `(2, 1, 1, 2, 1)` | `P(w + 6)` | width `w` |
 | `(1, 2)`-RLL castles ([[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)]) | height 2; gaps of 1 or 2; end runs of at most 2 | `(1, 1, 2, 1, 2)` | `P(w + 8)` for `w ≥ 3` | width `w` |
 | ridge castles of height 2 ([[ridge-castle](pages/ridge-castle.md)]) | columns 1 and 2, some 2, no two adjacent 1s | `(2, 1, 2, 2, 1)` | `P(A + 5)` for `A ≥ 2` | area `A` |
-| palindromic tree castles ([[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]) | no two adjacent columns both of height 2 or more; the same read backwards | `(3, 1, 3)` | `P(A + 6)` | area `A` |
+| palindromic tree castles ([[castle-sequence-catalog](pages/castle-sequence-catalog.md)]) | no two adjacent columns both of height 2 or more; the same read backwards | `(3, 1, 3)` | `P(A + 6)` | area `A` |
 | the rule `1 → 2 → 3 → {1, 2}` from height 1 | first column 1; each column one higher than the last, except after a 3, which drops to 1 or 2; reaches 3 | `(1, 2, 3, 2, 3, 1, 2)` | `P(w + 4)` for `w ≥ 3` | width `w` |
 
 Their generating functions all have the denominator `1 − x² − x³`:[^exec]

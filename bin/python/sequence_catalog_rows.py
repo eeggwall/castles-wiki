@@ -2,7 +2,7 @@
 # (enumeration, transfer matrix or dynamic program) and checked against every listed term of the OEIS
 # data field at the stated offset; the tables A080934, A080936 and A271940 entry by entry; and the
 # split P(k, 5) = (-1)^k A_5(k) + B_5(k) into polynomials against A112742.
-# Data: config/castle-sequences.tsv; page: wiki/pages/castle-sequence-catalogue.md.
+# Data: config/castle-sequences.tsv; page: wiki/pages/castle-sequence-catalog.md.
 from fractions import Fraction
 from functools import lru_cache
 from itertools import product

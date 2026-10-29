@@ -14,7 +14,7 @@ updated: 2026-10-25
 
 The wiki relates the counting sequences of castles ([[castle-polyomino](pages/castle-polyomino.md)]) to the On-Line Encyclopedia of Integer Sequences, the OEIS, by interlinking: a castle count that reproduces the data of an existing entry, at a stated offset, gives that sequence a castle reading. For example, the castles of width `w` and height 2 with an even number of blocks number `A038505(w+1)` ([[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)]).
 
-[[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] lists every castle sequence on the wiki with the entry it equals, and [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] collects the castle counts matched to OEIS entries, with their offsets.
+[[castle-sequence-catalog](pages/castle-sequence-catalog.md)] lists every castle sequence on the wiki with the entry it equals, and [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] collects the castle counts matched to OEIS entries, with their offsets.
 
 ## Checks
 
@@ -30,7 +30,7 @@ Two checks decide whether a match is an interlink.
 
 ## Related Concepts
 
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - every castle sequence with its terms and the entry it equals, at the stated offset.
+- [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - every castle sequence with its terms and the entry it equals, at the stated offset.
 - [[oeis-index](pages/oeis-index.md)] - the generated directory of every A-number cited on the wiki, with the citing pages.
 - [[signed-tower-count](pages/signed-tower-count.md)] - `P(1, L) = A146559(L+1)` and `P(1, L) = A009545(L+3)/2`, the offset example.
 - [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] - the height-2 identities `A^e(w, 2) = A038505(w+1)` and `A^o(w, 2) = A038503(w+1) − 1`.

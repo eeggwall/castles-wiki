@@ -137,7 +137,7 @@ the coefficient of `x^w` in `x (1 − x)^{−h−1/2}`, checked exactly for `h �
 - [[castle-counting-function](pages/castle-counting-function.md)] and [[generating-function-gallery](pages/generating-function-gallery.md)] - the rows `A^e(·, h)` and their generating functions.
 - [[castle-perimeter](pages/castle-perimeter.md)] - castles by semi-perimeter, whose generating function is algebraic of degree 2.
 - [[catalan-numbers](pages/catalan-numbers.md)] - the `c(x)` in `1/√(1 − 4x) = 1/(1 − 2x c(x))`.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the `K_h` rows.
+- [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the `K_h` rows.
 
 ## Footnotes
 

@@ -234,7 +234,7 @@ def cospectral_groups(castles, operator):  # sets of non-isomorphic castles shar
 - [[castle-avalanches](pages/castle-avalanches.md)] - random dropping in both models, computed from the same inverse reduced Laplacian.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - a seminar following the 16-cell castle `(3, 2, 1, 2, 2, 1, 2, 3)`, silver by spectrum, through both models.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the other spectra of castles.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the census columns.
+- [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the census columns.
 
 ## Appearances in Sources
 

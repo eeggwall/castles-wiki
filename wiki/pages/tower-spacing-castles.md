@@ -32,7 +32,7 @@ The rule bounds the horizontal distance between raised columns, unlike the rules
 
 Write `ε` for the window-`g` running minimum from arrays of length `w + g − 1` to arrays of length `w`, and `δ` for the clipped running maximum back. They are adjoint: `εa ≥ b` exactly when `a ≥ δb`, entrywise. So `εδε = ε` and `δεδ = δ`, and `ε` maps the image of `δ` one-to-one onto the image of `ε`, with inverse `δ`. The image of `ε` is the set of skylines with tower spacing at least `g`, by the Theorem. The image of `δ` is the set of arrays fixed by the opening `δε`: those in which every entry lies in a window of `g` consecutive entries that are all at least as large. Equivalently, every level set `{a ≥ r}`, `r = 1, …, h − 1`, has all its runs of length at least `g`: an entry `a_i = v` lies in such a window exactly when the run of `{a ≥ v}` that contains position `i` has length at least `g`, and a shorter run of some `{a ≥ r}` would leave its smallest entry in no such window. Hence `spacing_g(w, h)` counts both:
 
-- the distinct outputs of a window-`g` minimum filter on `{0, …, h − 1}^{w+g−1}`, which Hardin counts on the OEIS as the arrays "with each element the minimum of k adjacent elements" of a longer random array, and, by the complement `x → h − 1 − x`, the outputs of a maximum filter, counted on the OEIS as the "arrays of maxima of three adjacent elements" at `g = 3` ([[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]);
+- the distinct outputs of a window-`g` minimum filter on `{0, …, h − 1}^{w+g−1}`, which Hardin counts on the OEIS as the arrays "with each element the minimum of k adjacent elements" of a longer random array, and, by the complement `x → h − 1 − x`, the outputs of a maximum filter, counted on the OEIS as the "arrays of maxima of three adjacent elements" at `g = 3` ([[castle-sequence-catalog](pages/castle-sequence-catalog.md)]);
 - the arrays of length `w + g − 1` fixed by the opening, those whose level sets have all runs of length at least `g`. At `h = 2` these are the binary words whose runs of `1`s have length at least `g`. At `g = 2` they are the words in which every nonzero entry is at most one of its neighbors, with a virtual `0` beyond each end, the words counted by `W_{h−1}` on [[hardin-word-identity](pages/hardin-word-identity.md)]:
 
 ```
@@ -147,7 +147,7 @@ Hardin's two-dimensional tables are the rows `h = 2` (A217839, "0..1 arrays"), `
 ## Related Concepts
 
 - [[hardin-word-identity](pages/hardin-word-identity.md)] - the words `W_m` of Equation (1), and `P_even(4m + 2, L) = 2^L W_m(L + 1)`.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - every cell.
+- [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - every cell.
 - [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - the unimodal skylines, the limit `g → ∞`.
 - [[castle-strip](pages/castle-strip.md)] and [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - skylines counted under rules on the heights of neighboring columns, and the growth constants those rules reach.
 - [[reachable-field-census](pages/reachable-field-census.md)] - the growth constants reachable by rules on neighboring heights.

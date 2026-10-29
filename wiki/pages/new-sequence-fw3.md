@@ -77,7 +77,7 @@ with characteristic polynomial `(x − 3)(x − 2)(x² − x + 2)(x² − 2x + 2
 - [[hyperbolic-sequence-family](pages/hyperbolic-sequence-family.md)] - the row `h = 2`, `A^e(w, 2) = A038505(w+1)`.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] - geometric generating functions and the difference of powers `3^w − 2^w = A001047(w)`.
 - [[oeis-height2-hyperbolic-castles](pages/oeis-height2-hyperbolic-castles.md)] - the height-2 rows `A^e(w, 2) = A038505(w+1)` and `A^o(w, 2) = A038503(w+1) − 1`.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the rows `A^e(·, h)` and `A^o(·, h)`.
+- [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the rows `A^e(·, h)` and `A^o(·, h)`.
 - [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `F_p[x]/(char_2)`, in which `x` has order 3400 for `p = 101`.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - the factorization of `char_k` for even `k`.
 - [[mod-p-observatory](pages/mod-p-observatory.md)] - castle counts modulo primes, and the repeated root of `char_2` modulo 7.

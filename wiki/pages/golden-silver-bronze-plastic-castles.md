@@ -85,7 +85,7 @@ Each impossible or open cell of the grid has its own obstruction:
 | golden | all castles of height 2 ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]) | columns 1 and 2, some 2 | `(1, 2, 1)` | `F_{A+1} − 1` |
 | golden | prime castles ([[prime-castles](pages/prime-castles.md)]) | no column of height 1 | `(2, 3)` | `F_{A−1}` |
 | **plastic** | **ridge castles of height 2** | no two adjacent height-1 columns, some 2 | `(2, 1, 2, 2, 1)`, area 8 | `A000931(A + 5)` (`A ≥ 2`) |
-| plastic | palindromic tree castles ([[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]) | no two adjacent columns both of height 2 or more (no `2 × 2` block), and the same read backwards | `(3, 1, 3)` | `A000931(A + 6)` |
+| plastic | palindromic tree castles ([[castle-sequence-catalog](pages/castle-sequence-catalog.md)]) | no two adjacent columns both of height 2 or more (no `2 × 2` block), and the same read backwards | `(3, 1, 3)` | `A000931(A + 6)` |
 | plastic | prime castles of height 3 ([[prime-castles](pages/prime-castles.md)]) | columns 2 and 3, some 3 | `(2, 3, 2)` | `A000931(A + 3) − [A even]` |
 
 The ridge castles of height 2 are golden by width and plastic by area. Their area generating function has denominator `1 − x² − x³`: a castle is a sequence of the blocks `2` (area 2) and `2 1` (area 3), ending in either, with a leading `1` allowed, which is the Padovan recurrence `a(A) = a(A − 2) + a(A − 3)`.[^exec]

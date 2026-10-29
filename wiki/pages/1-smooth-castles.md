@@ -374,7 +374,7 @@ The definition, the subtraction `strips(w, h) − strips(w, h − 1)`, the trans
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types; the Pell castles are its silver example.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge rule, which reaches the metallic means at every height.
 - [[pell-numbers](pages/pell-numbers.md)] - `P⋆_w = strips(w, 3)`.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the status of each row.
+- [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the status of each row.
 - [[castle-notation](pages/castle-notation.md)] - `strips`, `smooth`, `χ_h`, `η_h`, `θ_k`, `λ_k`.
 
 ## Footnotes

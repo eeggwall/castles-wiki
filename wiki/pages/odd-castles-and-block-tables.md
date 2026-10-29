@@ -40,7 +40,7 @@ The `h = 2` row is `A038503(w + 1) − 1` ([[oeis-height2-hyperbolic-castles](pa
 
 **Where the odd and even rows part.** For `h = 4..7` the minimal characteristic polynomial of `A^o(·, h)` equals that of `A^e(·, h)`, factor for factor. They differ only at `h = 2` and `h = 3`, where `(h−1)^w` from `A` meets the eigenvalue `h − 1` of one of the `P` terms. At `h = 3` the root 2 of `P(2, ·)` enters `A^o` with coefficient `+1/2` and cancels the `−2^w/2` from `A`, so `A^o(·, 3)` has order 5 while `A^e(·, 3)` has order 6. At `h = 2` it goes the other way: the constant `P(0, w) = 1` cancels the `−1^w` of `A` in `A^e`, which has order 3, and doubles it in `A^o`, which gains the root 1. For `4 ≤ h ≤ 7` neither `P(h−1, ·)` nor `P(h−2, ·)` has the eigenvalue `h − 1`, so nothing cancels and both rows have order `2h + 1`.[^exec]
 
-**Columns.** At fixed `w` the counts depend on the parity of `h`, since `P(·, w)` is a period-2 quasi-polynomial in the tower height (computed for `4 ≤ w ≤ 12`, [[signed-tower-k-direction](pages/signed-tower-k-direction.md)]). The `w = 3` column is on [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)] and `A^e(4, h)` is on [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)]. Further columns, from `h = 1`:
+**Columns.** At fixed `w` the counts depend on the parity of `h`, since `P(·, w)` is a period-2 quasi-polynomial in the tower height (computed for `4 ≤ w ≤ 12`, [[signed-tower-k-direction](pages/signed-tower-k-direction.md)]). The `w = 3` column is on [[sum-of-three-cubes-castles](pages/sum-of-three-cubes-castles.md)] and `A^e(4, h)` is on [[castle-sequence-catalog](pages/castle-sequence-catalog.md)]. Further columns, from `h = 1`:
 
 | column | first terms |
 |---|---|
@@ -143,7 +143,7 @@ The first line is the convex count. The second line and the first term of the th
 
 ## Related Concepts
 
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the sequences on this page.
+- [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the sequences on this page.
 - [[castle-by-area](pages/castle-by-area.md)] - the by-area families and their definitions.
 - [[new-sequence-fw3](pages/new-sequence-fw3.md)] - `A^e(w, 3)`, whose odd-block companion is the `h = 3` row of the first table.
 - [[signed-tower-count](pages/signed-tower-count.md)] - the `P(k, ·)` terms in the formulas for `A^o` and `A^e`.

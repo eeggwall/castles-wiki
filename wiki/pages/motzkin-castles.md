@@ -104,8 +104,8 @@ Grading by semi-perimeter `s = w + #blocks` instead of width sends several castl
 | Motzkin-path castles (1-smooth, `c_1 = c_w = 1`) | `1, 1, 1, 2, 4, 7, 13, 26, 52, 104, 212, 438` | **A023431**(`s - 2`): Motzkin paths with no `UD` and no `UU`[^10] |
 | drops of at most 1, `c_w = 1` | `1, 1, 2, 4, 8, 17, 37, 82, 185, 423, 978` | **A004148**(`s - 1`): peakless Motzkin paths, RNA secondary structures[^11] |
 | drops of at most 1, any ends | `1, 2, 5, 12, 29, 71, 175, 434, 1082, 2709, 6807` | valleyless Motzkin meanders of length `s − 2` (§7)[^15] |
-| 1-smooth, `c_1 = 1` | `1, 1, 2, 4, 8, 16, 33, 69, 145, 307, 655, 1405, 3027` | [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] |
-| 1-smooth, free ends | `1, 2, 5, 11, 24, 52, 113, 246, 537, 1176, 2583, 5688` | [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] |
+| 1-smooth, `c_1 = 1` | `1, 1, 2, 4, 8, 16, 33, 69, 145, 307, 655, 1405, 3027` | [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] |
+| 1-smooth, free ends | `1, 2, 5, 11, 24, 52, 113, 246, 537, 1176, 2583, 5688` | [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] |
 
 The A023431 row follows directly from section 2: a Motzkin-path castle of width `w` with `u` up steps has `s = w + 1 + u`, so it is a Motzkin path of length `w - 1` in which each up step costs one extra unit. That is the entry's "lattice paths … using only steps H=(1,0), U=(1,1) and D=(2,-1)" read backwards (reversal swaps the roles of up and down).[^10] The "drops of at most 1" family ends at height 1 and never falls more than one level per column, so its bargraph has no double fall `DD`. Its mirror image has no double rise, and Deutsch and Elizalde give a bijection from no-double-rise bargraphs of semiperimeter `n + 1` to RNA secondary structures on `n` vertices, which is why A004148 appears.[^13] By width the same castles number the **Catalan** numbers `C_w` (A000108).
 
@@ -157,7 +157,7 @@ By mirror symmetry the same numbers count castles whose columns never *rise* by 
 - [[metallic-means](pages/metallic-means.md)] / [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the metallic means on the ladder, and the path-graph eigenvalues `2cos(πj/(n+1))` as spectral radii of castle graphs.
 - [[dyck-words](pages/dyck-words.md)] / [[catalan-numbers](pages/catalan-numbers.md)] - steep Dyck words (`M_{n−1}`), and the castles whose columns drop by at most one and end at height 1, `C_w` by width.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - the q-Motzkin direction.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the status-tagged record of every sequence on this page.
+- [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the status-tagged record of every sequence on this page.
 - [[castle-notation](pages/castle-notation.md)] - the symbol conventions; the Motzkin-path castle, the Motzkin strip (castle heights `1, …, h`), `M_n`, `B(x, y)` and `s` are recorded there.
 - [[prime-castles](pages/prime-castles.md)] - the castles with no column of height 1, counted through the castle generating function.
 

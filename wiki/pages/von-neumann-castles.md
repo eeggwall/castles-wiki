@@ -171,7 +171,7 @@ These are the recursions of three OEIS entries. A116549 is defined by `a(0) = 1`
 - [[zig-zag-castles](pages/zig-zag-castles.md)] - a different family: neighboring columns differ by exactly 1.
 - [[catalan-numbers](pages/catalan-numbers.md)] - the plane trees with `b` nodes, `C_{b−1}` of them, and so the alternating castles with `b` blocks.
 - [[castle-notation](pages/castle-notation.md)] - `vN(n)`, `castle(x)`, `code(x)`, `ack(m)` and `s_2(i)`.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the von Neumann and Ackermann castle rows.
+- [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the von Neumann and Ackermann castle rows.
 
 ## Footnotes
 

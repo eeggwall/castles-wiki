@@ -274,7 +274,7 @@ The definition, the subtraction `strips_m(w, h) − strips_m(w, h − 1)`, the r
 - [[castle-counting-formula](pages/castle-counting-formula.md)] - `A^e(w, h)`, the even-block count at `m ≥ h − 1`.
 - [[castle-strip](pages/castle-strip.md)] - how a rule on neighboring columns becomes a transfer matrix on column heights.
 - [[metallic-means](pages/metallic-means.md)] - de Spinadel's `σ_p^q`, of which the diagonal growth constants are `σ_{m+1}^m`; only `m = 1` is on the row `q = 1`.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the status of each row.
+- [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the status of each row.
 - [[castle-notation](pages/castle-notation.md)] - `strips_m`, `smooth_m`, `w_min`, `ρ_{h,m}`.
 
 ## Footnotes

@@ -33,7 +33,7 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
   in a comment (Sean A. Irvine removed the words after the Narayana-numerator formulas on
   A160747 and A063490).
 - The OEIS status of each castle sequence (known / interlink / novel-candidate / unchecked)
-  is kept in *Search record* at the end of this file; the wiki's `castle-sequence-catalogue`
+  is kept in *Search record* at the end of this file; the wiki's `castle-sequence-catalog`
   lists the sequences and the entries they equal, with no status.
 
 **Next step (2026-10-23).** Stage 1 is full: A005891, A001263, A283595. When a slot opens,
@@ -443,7 +443,7 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
 - [x] **A146559 castle comment** `a(n) = P(1, n−1)` (signed tower count at `k = 1`),
   submitted 2026-10-04, approved (A146559 #167, Oct 11 2026). Comment only, exact height:
   `a(n) − 1` = odd − even castles of height 2: `raw/oeis-pe502/xrefs/A146559-signed.md`
-  (`wiki/pages/castle-sequence-catalogue.md`, `wiki/pages/signed-tower-count.md`).
+  (`wiki/pages/castle-sequence-catalog.md`, `wiki/pages/signed-tower-count.md`).
 - [x] **A009545 castle comment** (submitted 2026-10-06, approved: A009545 #203, Oct 14 2026).
   Comment only, width `n`, no `− 1`: `a(n)` = even-block − odd-block castles of width `n` and
   height 2 whose last column reaches height 2, for `n >= 1`, then a sentence defining the
@@ -520,7 +520,7 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
 
 ## Search record (statuses of the castle sequences on the wiki)
 
-The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue.md`, as last recorded: searches with no match (with their dates), near-misses, unsearched rows, and the entries that equal a castle count without stating the castle reading. The catalog section is given for each row; its terms and formulas are on the catalog page.
+The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalog.md`, as last recorded: searches with no match (with their dates), near-misses, unsearched rows, and the entries that equal a castle count without stating the castle reading. The catalog section is given for each row; its terms and formulas are on the catalog page.
 
 ### Searched with no match, near-misses, unsearched
 

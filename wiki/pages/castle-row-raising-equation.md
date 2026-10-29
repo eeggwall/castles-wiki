@@ -126,7 +126,7 @@ print(t[1:17], t[300] / t[299])                 # even - odd; ratio -> -rho
 - [[castle-perimeter](pages/castle-perimeter.md)] - castles by semi-perimeter, where the sign halves the exponent.
 - [[castle-foata-transform](pages/castle-foata-transform.md)] - peaks.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - the linearizable shape of Equations (1) and (2), and the bar-graph equation (3.11), the castle generating function by width, blocks and area.
-- [[castle-sequence-catalogue](pages/castle-sequence-catalogue.md)] - the sequences and constants here.
+- [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the sequences and constants here.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - a seminar on castles by area whose Stop 4 is this equation.
 
 ## Footnotes

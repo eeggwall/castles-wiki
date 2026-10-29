@@ -165,7 +165,7 @@ wiki/
   overview.md      evolving synthesis across all sources
   pages/           all wiki pages, flat, slug-named (no subdirectories)
     oeis-index.md  GENERATED A-number directory (committed) — run bin/generate-sequence-pages.py
-    castle-sequence-catalogue.md  GENERATED sequence catalogue by family (committed), same script
+    castle-sequence-catalog.md  GENERATED sequence catalogue by family (committed), same script
 ```
 
 Pages are grouped by `category` frontmatter into **Sources** (ingested documents),
@@ -184,7 +184,7 @@ authoritative spec.
 - **`wiki/index.md` is generated**, not hand-written — set page frontmatter (`category`,
   `summary`, `created`) and run `python3 bin/generate-index.py`. It is git-ignored, so
   regenerate it before reading after a fresh clone.
-- **The sequence pages are generated** too — `wiki/pages/castle-sequence-catalogue.md` (by
+- **The sequence pages are generated** too — `wiki/pages/castle-sequence-catalog.md` (by
   family) and `wiki/pages/oeis-index.md` (by A-number, with the citing pages and mention counts)
   are two views of one curated data file, `config/castle-sequences.tsv`, built by
   `bin/generate-sequence-pages.py`. Both are committed (other pages link to them), and the
