@@ -248,8 +248,8 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   whose neighboring columns have coprime heights (a castle of area `n` is a composition of
   `n`, its column heights in order). Matched against the b-file for `n ≤ 40` (2026-10-28).
   The entry has only Kotesovec's `a(n) ~ c·d^n`, `d = 1.87801…`, and no comments (read
-  2026-10-28). The wiki page counts the family by width and height, not by area, so the
-  connection goes onto the wiki by a separate update before a draft. The signed count by
+  2026-10-28). The connection is on the wiki page, section *By area*, cited to the live
+  entry, with the growth `d` reproduced to 13 digits at `n = 200`. The signed count by
   area, `Σ (−1)^blocks` = `−1, 0, 0, 1, −2, −3, −8, −6, −12, −6, −22, −20, −56, …` from
   `n = 1`, has no match (signed and negated, 2026-10-28).
 - [ ] **The Euler product `Λ = 0.67846225243…` of the totient castles**
@@ -545,8 +545,8 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 | Totient castles | totient castles of height 3 | `1, 4, 12, 33, 86, 218, 543, 1338, 3274, 7975` | **novel-candidate** (no match, 2026-10-28); `= A001333(w + 1) − F_{w+2}`, proved |
 | Totient castles | totient castles of heights 4, 5, 6 | `h = 4`: `1, 4, 16, 55, 184, 590, 1859, 5754` | **novel-candidate** (no match for any of the three, 2026-10-28) |
 | Totient castles | even-block totient castles, heights 3 and 4 | `0, 0, 3, 14, 39, 100, 259, 652` / `1, 4, 12, 32, 95, 298, 938, 2898` | **novel-candidate** (no match, 2026-10-28) |
-| Totient castles | totient strips, `h = 4…7` (not on the page) | `h = 4`: `4, 11, 33, 96, 283, 829, 2436, 7147` | **novel-candidate** (no match for any, with or without a leading 1, 2026-10-28) |
-| Totient castles | signed totient castles by area (not on the page) | `−1, 0, 0, 1, −2, −3, −8, −6, −12, −6, −22` | **novel-candidate** (signed and negated, no match, 2026-10-28) |
+| Totient castles | totient strips, `h = 4…7` | `h = 4`: `4, 11, 33, 96, 283, 829, 2436, 7147` | **novel-candidate** (no match for any, with or without a leading 1, 2026-10-28) |
+| Totient castles | signed totient castles by area | `−1, 0, 0, 1, −2, −3, −8, −6, −12, −6, −22` | **novel-candidate** (signed and negated, no match, 2026-10-28) |
 | Totient castles | the Euler product `Λ` | `0.67846225243…` | **novel-candidate** decimal expansion (no match for 12 digits, 2026-10-28) |
 | Totient castles | growth by width at `h = 4…8` | `2.9354323`, `3.9172860`, `4.1746638`, `5.2572382`, `5.7697533` | `h = 4`: no match for 8 digits (2026-10-28); `h = 5…8` unsearched |
 | Other rows | open-stroke castles by height ([[konigsberg-castles](pages/konigsberg-castles.md)]): all, even widths, even-block, odd-block | `3, 33, 137, 377, 831, 1593, 2773, 4497` | **novel-candidate** (no match for any of the four, 2026-10-28); a quartic in `h` for `h ≤ 12`, computed only |
