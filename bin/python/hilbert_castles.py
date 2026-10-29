@@ -4,7 +4,8 @@
 # heights 5 to 7, by width and by width and area, and the pairing of cuts behind it; the examples on the page;
 # the Hilbert strips against the OEIS; the Hilbert castles by count, closed form, generating function, growth
 # and block parity; the path on four heights against its complement; the m-disparate castles, the dual of the
-# (m - 1)-smooth rule; the tree skylines, the dual of the strips whose columns all have height at least 2.
+# (m - 1)-smooth rule; the tree skylines, the dual of the strips whose columns all have height at least 2;
+# the OEIS tie-ins recorded in OEIS.md.
 # Page: wiki/pages/hilbert-castles.md.  OEIS data below: the data fields, read 2026-10-28.
 import math
 import random
@@ -47,6 +48,18 @@ OEIS = {
     'A019274': (1, [0, 0, 2, 4, 8, 14, 24, 40, 66, 108, 176, 286, 464, 752, 1218, 1972, 3192, 5166, 8360,
                 13528, 21890, 35420, 57312, 92734, 150048, 242784, 392834, 635620, 1028456, 1664078, 2692536,
                 4356616, 7049154, 11405772, 18454928, 29860702, 48315632]),
+    'A118649': (0, [1, 2, 5, 12, 30, 74, 184, 456, 1132, 2808, 6968, 17288, 42896, 106432, 264080, 655232,
+                1625760, 4033824, 10008704, 24833536, 61616832, 152883328, 379333248, 941199488, 2335298816,
+                5794330112, 14376858880, 35671780352, 88508618240]),
+    'A052994': (0, [0, 2, 2, 6, 12, 28, 62, 140, 314, 706, 1586, 3564, 8008, 17994, 40432, 90850, 204138,
+                458694, 1030676, 2315908, 5203798, 11692828, 26273546, 59036122, 132652962, 298068500,
+                669753840, 1504923218, 3381531776, 7598232930, 17073074418]),
+    'A006356': (0, [1, 3, 6, 14, 31, 70, 157, 353, 793, 1782, 4004, 8997, 20216, 45425, 102069, 229347,
+                515338, 1157954, 2601899, 5846414, 13136773, 29518061, 66326481, 149034250, 334876920,
+                752461609, 1690765888, 3799116465, 8536537209, 19181424995]),
+    'A220062': (0, [1, 1, 0, 1, 1, 0, 1, 2, 0, 0, 1, 3, 2, 0, 0, 1, 4, 4, 2, 0, 0, 1, 5, 6, 6, 2, 0, 0, 1, 6,
+                8, 10, 8, 2, 0, 0, 1, 7, 10, 14, 16, 12, 2, 0, 0, 1, 8, 12, 18, 24, 26, 16, 2, 0, 0, 1, 9, 14,
+                22, 32, 42, 42, 24, 2, 0, 0, 1, 10, 16, 26, 40, 58, 72, 68, 32, 2, 0, 0]),
 }
 
 
@@ -442,3 +455,44 @@ for h in range(2, 8):
 print('[8] tree skylines: 1/G_tall(-x, q) = (1 + P_h(q)x)/(1 - qx - qP_h(q)x^2), equal to the area-width series '
       'up to x^8, and at q = 1 (1 + (h-1)x)/(1 - x - (h-1)x^2), h = 2..7: True')
 print('[8] T_h(w), w = 0..9:', {h: strip_series(rule(h, lambda a, b: a == 1 or b == 1), 9) for h in (2, 3, 4)})
+
+# [9] OEIS tie-ins (OEIS.md): the disparate strips against A118649 and A052994, the m-disparate castles of
+# height m + 3, and the Hilbert word array against the zig-zag array A220062 by the duality.
+off, data = OEIS['A118649']
+s5 = strip_series(disparate(5, 2), len(data) + 2)
+print('[9] 2-disparate strips on 5 heights = A118649(w + 1), w >= 1:',
+      all(s5[w] == data[w + 1 - off] for w in range(1, len(data) - 1 + off)), f'{len(data) - 2} terms')
+off, data = OEIS['A052994']
+s6 = strip_series(disparate(6, 3), len(data) + 2)
+print('[9] 3-disparate strips on 6 heights = A052994(w + 2), w >= 1:',
+      all(s6[w] == data[w + 2 - off] for w in range(1, len(data) - 2 + off)), f'{len(data) - 3} terms')
+o6, d6 = OEIS['A006356']
+print('[9] A052994(n) = 2 A006356(n - 2), n >= 2, on the data:',
+      all(data[n - off] == 2 * d6[n - 2 - o6] for n in range(2, min(len(data), len(d6) + 2))))
+ok = all(strip_series(disparate(m + 3, m), 30)[2:] == strip_series(disparate(6, 3), 30)[2:] for m in range(3, 10))
+cas = all(castle_counts(lambda hh: disparate(hh, m), m + 3, 25)[1:] ==
+          [2 * d6[w - o6] - 2 * F[w + 2] for w in range(2, 26)] for m in range(3, 10))
+print('[9] m >= 3: the m-disparate strips on m + 3 heights equal the 3-disparate strips on 6 heights for w = 2..30,',
+      'and the castles of height m + 3 number 2(A006356(w) - F_(w+2)) for w = 2..25, m = 3..9:', ok, cas)
+off, data = OEIS['A220062']
+arr, d = {}, 0
+pos = 0
+while pos + d + 1 <= len(data):
+    for n in range(d + 1):
+        arr[(n, d - n)] = data[pos + n]
+    pos += d + 1
+    d += 1
+cols_ok = True
+for k in range(1, d - 3):
+    N = d - k
+    zig = [arr[(n, k)] for n in range(N)]
+    cols_ok &= zig == strip_series(zigzag(k), N - 1)
+    cols_ok &= dual_product_is_one(strip_series(hilbert(k), N - 1), zig)
+print(f'[9] A220062 column k = zig-zag strips on k heights, and the Hilbert strips on k heights have g.f.',
+      f'1/(sum_n A220062(n, k) (-x)^n), k = 1..{d - 4}, on the {d} antidiagonals of the data ({d - 1} to 4 terms):',
+      cols_ok)
+hil = {(n, k): strip_series(hilbert(k), n)[n] if k else int(n == 0) for k in range(14) for n in range(14)}
+print('[9] the Hilbert word array A(n, k) by antidiagonals (n up, k down):',
+      [hil[(n, dd - n)] for dd in range(9) for n in range(dd + 1)])
+print('[9] the Hilbert castle array A_hilbert(w, h) by antidiagonals (w up, h down):',
+      [castle_counts(hilbert, dd - w + 1, w)[w - 1] for dd in range(1, 9) for w in range(1, dd + 1)])
