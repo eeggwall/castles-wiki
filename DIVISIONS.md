@@ -21,7 +21,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 - **M - Metallurgy:** investigating occurrences of golden, silver and bronze means and the higher rungs `δ_4`, `δ_5`, …; golden, silver, plastic ratios; metallic by count, by width, by area, by spectrum; Fibonacci castles
 - **B - Bioinformatics:** biological sequences, molecular folding, structure counts, and the combinatorics computational biology shares with castles.
 - **The OEIS Observatory:** observing and cataloging occurrences of OEIS sequences in castle-related contexts.
-- **The Telephone Company:** phone signals, audio codecs, tone catalogs, expander-graph and Ihara-zeta reads of the castle graph, information-theoretic entropy of skylines, and the isospectral seminar.
+- **The Telephone Company:** phone signals, audio codecs, tone catalogs, musical intervals as strip rules, expander-graph and Ihara-zeta reads of the castle graph, information-theoretic entropy of skylines, and the isospectral seminar.
 - **Facilities:** applied, physical-world tooling: real objects turned into castles (keys, city skylines, mountain ridgelines, ballparks).
 
 ## Conceptual coverage
@@ -153,6 +153,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 - Expanders and zeta: Ramanujan castles as the spectrally-expander-like shapes, `zeta_C(u)` over prime closed walks on the castle graph; arithmetic combinatorics.
 - Voice-channel survival: which castle statistics (LSB of height, block parity, histogram bins, low DFT modes) live through FM demodulation on a band-limited voice channel.
 - Information theory of skylines: uniform entropy `~ w log_2 h - 1`, growth constants as topological entropies, and the compressibility axis.
+- Musical intervals as strip rules: columns read as strings whose lengths are their heights (Mersenne's law), the Mersenne castles whose neighboring columns sound a perfect consonance, and the triangular lattice of octaves and fifths on the heights `2^i 3^j`.
 - Constrained coding: run-length-limited sequences as castle towers, Shannon capacity of a constraint, and recording and telephone line codes.
 - Real signals as castles: URL ids, ID3 labels, and 16-bit waveforms as `h = 65536` castles; Berlekamp-Massey and the NTT over `F_65537` as the finite-field layer; Beethoven's Ninth as the crown-jewel exemplar.
 
