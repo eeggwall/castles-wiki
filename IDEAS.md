@@ -66,7 +66,7 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 | 9. pi from a pile of blocks | planned | next: spine (samplers page delivered) |
 | 10. Knuth's algorithms in castle space | in progress | next: seminar page |
 | 11. The rule zoo: variations on the castle | in progress | next: seminar page |
-| 12. The half-derivative of a castle | in progress | next: seminar page |
+| 12. The half-derivative of a castle | delivered | [half-derivative-seminar](wiki/pages/half-derivative-seminar.md) |
 | 13. Beethoven's Ninth, at every scale | delivered | [song-as-castle](wiki/pages/song-as-castle.md) |
 | 14. Sandcastles | delivered | [sandcastle-seminar](wiki/pages/sandcastle-seminar.md) |
 | 15. The taxicab thread | in progress | next: seminar page |
@@ -141,7 +141,7 @@ New arc ideas enter as `planned` with a thesis line. Update the board below when
 
 ### Arc 12. The half-derivative of a castle
 - Thesis: every integer-order operation the castle already uses - the column difference that counts blocks, the partial sum that accumulates counts, the matrix power that adds a column, the Laplacian that hears the shape - has a fractional-order version, and turning the order knob continuously exposes structure the integer points hide: area and block count are the two ends of one statistic, the parity clause is real in the width and imaginary in the height, a half-sum carries `sqrt(pi)`, and a tree castle is a comb whose walk subdiffuses at order `1/2` inside a window that closes near `h^2`.
-- Status: in progress. The four spine pages exist; the seminar page does not.
+- Status: delivered. Seminar page: [half-derivative-seminar](wiki/pages/half-derivative-seminar.md).
 - Spine: [fractional-block-count](wiki/pages/fractional-block-count.md), [fractional-width-and-height](wiki/pages/fractional-width-and-height.md), [half-sum-castles](wiki/pages/half-sum-castles.md), [tree-castle-diffusion](wiki/pages/tree-castle-diffusion.md).
 - Open items feeding it: from F, the power-law memory rules; the rest of the F Division by crossover.
 
