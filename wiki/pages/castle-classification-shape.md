@@ -1,7 +1,7 @@
 ---
 title: Castle classification - shape types
 category: Concepts
-summary: The 41 shape types of castles taken from the Castle Types source, 7 base types and 34 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo, monadnock, valley, k-valley, city-building and zig-zag types. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
+summary: The 41 shape types of castles taken from the Castle Types source, 7 base types and 34 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag and Mersenne types. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle, hoodoo-castle, monadnock-castle, distinct-parts]
 sources: [castle-classification, aocp-generating-partitions, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths, project-euler-502-representations, oeis-encyclopedia]
 created: 2026-09-19
@@ -10,7 +10,7 @@ updated: 2026-10-28
 
 # Castle classification - shape types
 
-A **shape type** is a predicate on the skyline `(c_1, …, c_w)` of one castle of width `w` and height `h` ([[castle-polyomino](pages/castle-polyomino.md)], and [[castle-classification](pages/castle-classification.md)] for the other kinds of type). Every castle is column-convex and has a full bottom row, so each type is a further restriction on the skyline.[^1] The Castle Types source lists 7 base types from the polyomino literature and 35 proposed types; this page groups 41 of them into seven axes, gives each a construction rule and an example skyline, and records the wiki page and the count where they exist. Six further types, the ridge, hoodoo, monadnock, valley, k-valley, city-building and zig-zag castles, are not among the 42 of the source.
+A **shape type** is a predicate on the skyline `(c_1, …, c_w)` of one castle of width `w` and height `h` ([[castle-polyomino](pages/castle-polyomino.md)], and [[castle-classification](pages/castle-classification.md)] for the other kinds of type). Every castle is column-convex and has a full bottom row, so each type is a further restriction on the skyline.[^1] The Castle Types source lists 7 base types from the polyomino literature and 35 proposed types; this page groups 41 of them into seven axes, gives each a construction rule and an example skyline, and records the wiki page and the count where they exist. Eight further types, the ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag and Mersenne castles, are not among the 42 of the source.
 
 ## The 7 base types
 
@@ -79,7 +79,7 @@ h = 7:  36, 108, 156, 168, 169, 169, …
 
 ### Axis 2: Rate of change
 
-Types 7, 8 and 9, the base type m-disparate, the ridge type and the zig-zag type:
+Types 7, 8 and 9, the base type m-disparate, the ridge type, the zig-zag type and the Mersenne type:
 
 | type | predicate | example | wiki page and count |
 |---|---|---|---|
@@ -87,6 +87,7 @@ Types 7, 8 and 9, the base type m-disparate, the ridge type and the zig-zag type
 | **Ridge** | `c_i ≠ c_{i+1}` unless `c_i = c_{i+1} = h` | `(3, 1, 3, 4, 4, 1, 4, 4, 1, 4, 2, 1)` | `𝟙ᵀ R_h^{w−1} 𝟙 − (h−1)(h−2)^{w−1}`, growth `δ_{h−1}` by width (paragraph *Ridge castles*) |
 | **m-smooth** | `\|c_{i+1} − c_i\| ≤ m` | `(1, 2, 2, 3, 2)`, `m = 1` | [[1-smooth-castles](pages/1-smooth-castles.md)], [[m-smooth-castles](pages/m-smooth-castles.md)] |
 | **Zig-zag** | `\|c_{i+1} − c_i\| = 1`: the 1-smooth and plateau-free predicates together | `(1, 2, 3, 2)` | [[zig-zag-castles](pages/zig-zag-castles.md)]: their step bits are the `(h − 1)`-balanced strings of length `w − 1`, A027383, A027557, A027559, A027560 at `h = 3, …, 6`; growth `2cos(π/(h+1))` by width, golden by width at `h = 4` |
+| **Mersenne** | `c_{i+1}/c_i` in `{1, 2, 1/2, 3/2, 2/3, 4/3, 3/4}`: neighboring columns, read as strings whose lengths are their heights, sound a unison, an octave, a fifth or a fourth | `(2, 3, 4, 2, 1)` | [[mersenne-castles](pages/mersenne-castles.md)]: all castles at `h = 2`, the 1-smooth castles at `h = 3`; the count at height `h` depends only on the largest divisor of `h` of the form `2^a 3^b`, and the growth by width stays below 7 and tends to 7 along those divisors |
 | **Zigzag** | the differences `c_{i+1} − c_i` alternate in sign | `(1, 3, 2, 3, 1)` | open; not the zig-zag type of the row above, whose differences are all `±1` |
 | **m-disparate** | `\|c_{i+1} − c_i\| ≥ m` | `(1, 3, 1, 4)`, `m = 2` | open |
 

@@ -1,0 +1,95 @@
+# python3 bin/python/mersenne_castles.py  (2026-10-28, Python 3.11.12, SymPy 1.14.0)
+[1] consonant ratios b/a: 1 (unison), 2 (octave), 1/2 (octave), 3/2 (fifth), 2/3 (fifth), 4/3 (fourth), 3/4 (fourth)
+[1] M_cons(4): [[1, 1, 0, 0], [1, 1, 1, 1], [0, 1, 1, 1], [0, 1, 1, 1]]
+[1] M_cons symmetric for h <= 400: True
+[1] consonant heights of a, over all heights b >= 1: at most 7 for a <= 400; 7 exactly when 12 | a: True
+[1] the twelfth 3:1 and the major third 5:4 are not in the rule: True True
+[2] (2, 3, 4, 2, 1) is a Mersenne castle of height 4: True ; steps: ['fifth', 'fourth', 'octave', 'octave'] ; blocks 4
+      . . # . .
+      . # # . .
+      # # # # .
+      # # # # #
+[2] the pairs (1, 3) and (4, 5) break the rule: True True
+[2] the Mersenne castles of width 3 and height 4: 21 [(1, 2, 4), (2, 2, 4), (2, 3, 4), (2, 4, 2), (2, 4, 3), (2, 4, 4), (3, 2, 4), (3, 3, 4), (3, 4, 2), (3, 4, 3), (3, 4, 4), (4, 2, 1), (4, 2, 2), (4, 2, 3), (4, 2, 4), (4, 3, 2), (4, 3, 3), (4, 3, 4), (4, 4, 2), (4, 4, 3), (4, 4, 4)]
+[3] h = 1: A(w, 1) = 1 for w <= 30: True
+[3] h = 2: every castle of height 2 obeys the rule (w <= 14): True ; A(w, 2) = 2^w - 1 for w <= 40: True
+[3] h = 3: the rule on {1, 2, 3} is |a - b| <= 1: True ; A(w, 3) = A106514(w - 1) for w = 1..28: True
+[3] char poly h = 3: [1, -3, 1, 1] = (x - 1)(x^2 - 2x - 1): True
+[3] char poly h = 4: [1, -4, 2, 2, 0] = x(x^3 - 4x^2 + 2x + 2): True
+[3] A(w, 2), w = 1..12: [1, 3, 7, 15, 31, 63, 127, 255, 511, 1023, 2047, 4095]
+[3] A(w, 3), w = 1..12: [1, 3, 9, 25, 67, 175, 449, 1137, 2851, 7095, 17553, 43225]
+[3] A(w, 4), w = 1..12: [1, 5, 21, 79, 281, 965, 3239, 10703, 34981, 113433, 365727, 1174199]
+[3] sum_w A(w, 4) x^w = x(1 - x)/((1 - 2x - x^2)(1 - 4x + 2x^2 + 2x^3)), w <= 60: True
+[3] A(401, h)/A(400, h): h = 3 2.414213562373 vs 1 + sqrt 2 = 2.414213562373; h = 4 3.170086486626
+[4] for h <= 300 the classes of {1..h} under chains of consonances are m * {2^i 3^j <= h/m}, m prime to 6: True
+[4] A(w, h) = A(w, h0) and S(w, h) = S(w, h0), h <= 72, w <= 8: True
+[4] h = 5: [1, 1, 1, 1, 1, 1, 1, 1] ; h = 10: [1, 3, 7, 15, 31, 63, 127, 255] ; h = 12 vs 60: [1, 7, 39, 205, 1041] [1, 7, 39, 205, 1041]
+[4] blocks(m c) = m blocks(c) on the Mersenne castles of height 6, w <= 6, m = 5, 7: True
+[5] exponent steps (i, j) of 2^i 3^j: {'unison': (0, 0), 'octave up': (1, 0), 'octave down': (-1, 0), 'fifth up': (-1, 1), 'fifth down': (1, -1), 'fourth up': (2, -1), 'fourth down': (-2, 1)}
+[5] fourth up = octave up - fifth up: True
+[5] |{2^i 3^j <= h}| = A071521(h) for h = 1..75: True
+[5] the heights 2^i 3^j <= 32 (octave --, fifth /, fourth \):
+                                 27
+                               /
+                        9  -- 18
+                      /  \  /  \
+               3  -- 6  -- 12 -- 24
+             /  \  /  \  /  \  /  \
+      1  -- 2  -- 4  -- 8  -- 16 -- 32
+[5] 2^i 3^j <= h has all 7 consonant heights in the set exactly when i >= 2, j >= 1, 2^(i+1) 3^j <= h, for 3-smooth h <= 2^20: True
+[6] characteristic polynomials of the rule on the heights 2^i 3^j <= h:
+     h =  2,  2 heights, rho = 2.0000000000, factor of rho: x - 2 (degree 1), char poly x*(x - 2)
+     h =  3,  3 heights, rho = 2.4142135624, factor of rho: x**2 - 2*x - 1 (degree 2), char poly (x - 1)*(x**2 - 2*x - 1)
+     h =  4,  4 heights, rho = 3.1700864866, factor of rho: x**3 - 4*x**2 + 2*x + 2 (degree 3), char poly x*(x**3 - 4*x**2 + 2*x + 2)
+     h =  6,  5 heights, rho = 3.6411864762, factor of rho: x**4 - 5*x**3 + 4*x**2 + 4*x - 2 (degree 4), char poly x*(x**4 - 5*x**3 + 4*x**2 + 4*x - 2)
+     h =  8,  6 heights, rho = 3.9809365881, factor of rho: x**5 - 5*x**4 + 2*x**3 + 8*x**2 + x - 1 (degree 5), char poly (x - 1)*(x**5 - 5*x**4 + 2*x**3 + 8*x**2 + x - 1)
+     h =  9,  7 heights, rho = 4.0535605220, factor of rho: x**5 - 6*x**4 + 6*x**3 + 10*x**2 - 8*x - 6 (degree 5), char poly x*(x - 1)*(x**5 - 6*x**4 + 6*x**3 + 10*x**2 - 8*x - 6)
+     h = 12,  8 heights, rho = 4.4119962368, factor of rho: x**6 - 8*x**5 + 16*x**4 + 6*x**3 - 31*x**2 + 2*x + 15 (degree 6), char poly x**2*(x**6 - 8*x**5 + 16*x**4 + 6*x**3 - 31*x**2 + 2*x + 15)
+     h = 16,  9 heights, rho = 4.5811847108, factor of rho: x**7 - 10*x**6 + 32*x**5 - 30*x**4 - 21*x**3 + 36*x**2 + x - 6 (degree 7), char poly x*(x + 1)*(x**7 - 10*x**6 + 32*x**5 - 30*x**4 - 21*x**3 + 36*x**2 + x - 6)
+     h = 18, 10 heights, rho = 4.7093830399, factor of rho: x**10 - 10*x**9 + 29*x**8 - 6*x**7 - 75*x**6 + 48*x**5 + 62*x**4 - 30*x**3 - 16*x**2 + 4*x + 1 (degree 10), char poly x**10 - 10*x**9 + 29*x**8 - 6*x**7 - 75*x**6 + 48*x**5 + 62*x**4 - 30*x**3 - 16*x**2 + 4*x + 1
+     h = 24, 11 heights, rho = 4.9422578268, factor of rho: x**8 - 10*x**7 + 28*x**6 - 4*x**5 - 60*x**4 + 26*x**3 + 29*x**2 - 4*x - 3 (degree 8), char poly x*(x - 2)*(x + 1)*(x**8 - 10*x**7 + 28*x**6 - 4*x**5 - 60*x**4 + 26*x**3 + 29*x**2 - 4*x - 3)
+     h = 27, 12 heights, rho = 4.9608906144, factor of rho: x**8 - 10*x**7 + 27*x**6 + 4*x**5 - 74*x**4 + 14*x**3 + 50*x**2 + 6*x - 3 (degree 8), char poly x*(x - 2)*(x - 1)*(x + 1)*(x**8 - 10*x**7 + 27*x**6 + 4*x**5 - 74*x**4 + 14*x**3 + 50*x**2 + 6*x - 3)
+     h = 32, 13 heights, rho = 5.0457120807, factor of rho: x**12 - 13*x**11 + 56*x**10 - 64*x**9 - 149*x**8 + 347*x**7 + 74*x**6 - 490*x**5 + 48*x**4 + 266*x**3 - 32*x**2 - 44*x + 6 (degree 12), char poly x*(x**12 - 13*x**11 + 56*x**10 - 64*x**9 - 149*x**8 + 347*x**7 + 74*x**6 - 490*x**5 + 48*x**4 + 266*x**3 - 32*x**2 - 44*x + 6)
+[6] rho(h), average consonant heights dbar(h), (7 - rho)(ln h)^2, and the bound 12(log2 h + 3 log3 h + 4)/(log2 h log3 h):
+     h = 2^5  |V| =  13  |D| =  12  dbar = 4.3846  rho = 5.045712  (7 - rho)(ln h)^2 = 23.47  bound 14.047
+     h = 2^7  |V| =  22  |D| =  18  dbar = 5.0000  rho = 5.680142  (7 - rho)(ln h)^2 = 31.07  bound 9.413
+     h = 2^10 |V| =  41  |D| =  27  dbar = 5.4878  rho = 6.194808  (7 - rho)(ln h)^2 = 38.69  bound 6.263
+     h = 2^16 |V| =  95  |D| =  44  dbar = 5.9684  rho = 6.612878  (7 - rho)(ln h)^2 = 47.61  bound 3.736
+     h = 2^20 |V| = 143  |D| =  55  dbar = 6.1748  rho = 6.733120  (7 - rho)(ln h)^2 = 51.29  bound 2.941
+     h = 2^30 |V| = 309  |D| =  84  dbar = 6.4304  rho = 6.868733  (7 - rho)(ln h)^2 = 56.76  bound 1.919
+     h = 2^40 |V| = 538  |D| = 113  dbar = 6.5613  rho = 6.922365  (7 - rho)(ln h)^2 = 59.68  bound 1.423
+[6] dbar <= rho < 7, |D| <= log2 h + 3 log3 h + 4, |V| >= log2 h log3 h / 2: all 3-smooth h <= 10^6 and the rows above: True
+[6] h =  4 = 1 * 4: A(1001, h)/A(1000, h) = 3.1700864866, rho(h0) = 3.1700864866
+[6] h =  5 = 5 * 1: A(1001, h)/A(1000, h) = 1.0000000000, rho(h0) = 1.0000000000
+[6] h =  6 = 1 * 6: A(1001, h)/A(1000, h) = 3.6411864762, rho(h0) = 3.6411864762
+[6] h = 10 = 5 * 2: A(1001, h)/A(1000, h) = 2.0000000000, rho(h0) = 2.0000000000
+[6] h = 12 = 1 * 12: A(1001, h)/A(1000, h) = 4.4119962368, rho(h0) = 4.4119962368
+[6] h = 24 = 1 * 24: A(1001, h)/A(1000, h) = 4.9422578268, rho(h0) = 4.9422578268
+[6] h = 30 = 5 * 6: A(1001, h)/A(1000, h) = 3.6411864762, rho(h0) = 3.6411864762
+[6] h = 36 = 1 * 36: A(1001, h)/A(1000, h) = 5.1763439524, rho(h0) = 5.1763439524
+[7] even-block and odd-block Mersenne castles, w = 1..10, against brute-force enumeration:
+     h = 1: A   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+            A^e [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            A^o [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+     h = 2: A   [1, 3, 7, 15, 31, 63, 127, 255, 511, 1023]
+            A^e [1, 3, 6, 10, 16, 28, 56, 120, 256, 528]
+            A^o [0, 0, 1, 5, 15, 35, 71, 135, 255, 495]
+     h = 3: A   [1, 3, 9, 25, 67, 175, 449, 1137, 2851, 7095]
+            A^e [0, 0, 1, 7, 29, 91, 243, 597, 1433, 3483]
+            A^o [1, 3, 8, 18, 38, 84, 206, 540, 1418, 3612]
+     h = 4: A   [1, 5, 21, 79, 281, 965, 3239, 10703, 34981, 113433]
+            A^e [1, 5, 18, 56, 169, 523, 1671, 5421, 17603, 56905]
+            A^o [0, 0, 3, 23, 112, 442, 1568, 5282, 17378, 56528]
+     h = 6: A   [1, 5, 23, 101, 423, 1717, 6815, 26605, 102559, 391477]
+            A^e [1, 5, 20, 72, 256, 942, 3568, 13634, 51956, 196958]
+            A^o [0, 0, 3, 29, 167, 775, 3247, 12971, 50603, 194519]
+     h = 8: A   [1, 5, 25, 119, 547, 2447, 10727, 46301, 197439, 833797]
+            A^e [1, 5, 25, 109, 445, 1771, 7025, 28049, 112940, 457788]
+            A^o [0, 0, 0, 10, 102, 676, 3702, 18252, 84499, 376009]
+     h = 9: A   [1, 3, 13, 57, 255, 1131, 4977, 21733, 94289, 406821]
+            A^e [0, 0, 1, 9, 65, 373, 1898, 9056, 41631, 186785]
+            A^o [1, 3, 12, 48, 190, 758, 3079, 12677, 52658, 220036]
+     h = 12: A   [1, 7, 39, 205, 1041, 5155, 25043, 119855, 566869, 2655597]
+            A^e [1, 7, 36, 174, 810, 3682, 16585, 74573, 335498, 1510886]
+            A^o [0, 0, 3, 31, 231, 1473, 8458, 45282, 231371, 1144711]
+[7] transfer counts agree with the search: True ; the search agrees with all of {1..h}^w where h^w <= 300000: True
