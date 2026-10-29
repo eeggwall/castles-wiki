@@ -5,7 +5,7 @@ summary: A Mersenne castle is a castle whose neighboring columns, read as string
 tags: [concept, castle, mersenne-castle, transfer-matrix, consonance, music, 3-smooth-numbers, triangular-lattice, perron-root, block-count, parity, silver, oeis, verification]
 sources: [project-euler-502-brute-force]
 created: 2026-10-28
-updated: 2026-10-28
+updated: 2026-10-29
 ---
 
 # Mersenne castles
@@ -194,14 +194,14 @@ Every entry agrees with brute-force enumeration. The row `h₀ = 2` is the even-
 
 ## Footnotes
 
-[^mersenne]: https://en.wikipedia.org/wiki/Mersenne%27s_laws (read 2026-10-28) - "The equation was first proposed by French mathematician and music theorist Marin Mersenne in his 1636 work Harmonie universelle."; "The natural frequency is: a) Inversely proportional to the length of the string (the law of Pythagoras)"; and, quoting Gozza, "Mersenne investigated and refined these relationships by experiment but did not himself originate them". *Harmonie universelle* itself is cited through this page and was not read.
+[^mersenne]: https://en.wikipedia.org/wiki/Mersenne%27s_laws (read 2026-10-28) - "The equation was first proposed by French mathematician and music theorist Marin Mersenne in his 1636 work Harmonie universelle."; "The natural frequency is: a) Inversely proportional to the length of the string (the law of Pythagoras)"; and, quoting Gozza, "Mersenne investigated and refined these relationships by experiment but did not himself originate them".
 [^consonance]: https://en.wikipedia.org/wiki/Consonance_and_dissonance (read 2026-10-28) §Definitions, Music theory - "Perfect consonances: unisons and octaves, perfect fourths and perfect fifths"; "Imperfect consonances: major thirds and minor sixths, minor thirds and major sixths".
 [^pythagoras]: https://en.wikipedia.org/wiki/Musical_system_of_ancient_Greece (read 2026-10-28) §The Pythagoreans - "Pythagoras construed the intervals arithmetically, allowing for 1:1 = Unison, 2:1 = Octave, 3:2 = Fifth, 4:3 = Fourth."
 [^philolaus]: https://en.wikipedia.org/wiki/Musical_system_of_ancient_Greece (read 2026-10-28) §The Pythagoreans - "Philolaus recognizes that, if the interval of a fourth goes up from any given note, and then up the interval of a fifth, the final note is an octave above the first note. Thus, the octave is made up of a fourth and a fifth."
 [^vitry]: https://oeis.org/A003586 (read 2026-10-28) - "3-smooth numbers: numbers of the form 2^i*3^j with i, j >= 0.", comment "These numbers were once called "harmonic numbers", see Lenstra links. - _N. J. A. Sloane_, Jul 03 2015"; and I. Peterson, "Medieval Harmony", Science News MathTrek (1999-01-23), https://web.archive.org/web/20130930182203/http://www.sciencenews.org/pages/sn_arc99/1_23_99/mathland.htm (read 2026-10-28) - "Philippe de Vitry (1291-1361) was one of the most prominent figures in medieval music." and "One of de Vitry's observations concerned numbers that can be written as a power of 2 multiplied by a power of 3. ... He called them harmonic numbers."
 [^a106514]: https://oeis.org/A106514 (read 2026-10-28) - "Expansion of (1-x)/((1-2*x)*(1-2*x-x^2)).", data `1, 3, 9, 25, 67, 175, 449, 1137, 2851, …`, offset 0.
 [^a071521]: https://oeis.org/A071521 (read 2026-10-28) - "Number of 3-smooth numbers <= n."; formula "Asymptotically: let a=1/(2*log(2)*log(3)), b=sqrt(6), then from Ramanujan a(n) ~ a*log(2*n)*log(3*n) or equivalently a(n) ~ a*log(b*n)^2."
-[^blocks]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"brute" L24 - "= c_1 + \sum_{i=2}^{w} \max(0, c_i - c_{i-1})", the column-height block-count formula.
+[^blocks]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"Column-height encoding" L24 - "= c_1 + \sum_{i=2}^{w} \max(0, c_i - c_{i-1})", the column-height block-count formula.
 [^exec1]: Verified by execution (Python 3.11 with SymPy, 2026-10-28): `bin/python/mersenne_castles.py` item [1], run log `bin/python/mersenne_castles-run.log`. `M_cons(4)`; symmetry for `h ≤ 400`; at most 7 consonant heights, and 7 exactly when 12 divides the height, for heights up to 400.
 [^exec2]: Verified by execution (Python 3.11, 2026-10-28): `bin/python/mersenne_castles.py` item [2], run log `bin/python/mersenne_castles-run.log`. The example, its steps, drawing and block count; the pairs `(1, 3)` and `(4, 5)` break the rule.
 [^exec3]: Verified by execution (Python 3.11, 2026-10-28): `bin/python/mersenne_castles.py` item [3], run log `bin/python/mersenne_castles-run.log`. Every castle of height 2 obeys the rule for `w ≤ 14`, and `A_Mersenne(w, 2) = 2^w − 1` for `w ≤ 40`; the rule on `{1, 2, 3}` is the 1-smooth rule, and `A_Mersenne(w, 3) = A106514(w − 1)` on all 28 terms of the data field; the characteristic polynomials at `h = 3, 4`; the generating function at `h = 4` for `w ≤ 60`; `A_Mersenne(401, h)/A_Mersenne(400, h)` equals `1 + √2` and `3.170086486626` at `h = 3, 4`.
