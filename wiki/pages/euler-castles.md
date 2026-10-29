@@ -5,7 +5,7 @@ summary: An Euler castle is a castle whose column heights fall by 0 or 1 at each
 tags: [concept, castle, euler-castle, partitions, distinct-parts, pentagonal-number-theorem, franklin-involution, convex-castle, staircase, block-count, parity, semi-perimeter, fibonacci, verification]
 sources: [project-euler-502-brute-force]
 created: 2026-10-28
-updated: 2026-10-28
+updated: 2026-10-29
 ---
 
 # Euler castles
@@ -18,7 +18,7 @@ A castle of width `w` and height `h` is a skyline `(c_1, …, c_w)` with `1 ≤ 
 c_i − c_{i+1}  ∈  {0, 1}   for 1 ≤ i < w,        c_w = 1.
 ```
 
-So `c_1 = h`, and every height from `h` down to 1 occurs. The name is for Euler's pentagonal number theorem, which the Euler castles turn into a statement about the Project Euler 502 parity (section *The parity*).
+So `c_1 = h`, and every height from `h` down to 1 occurs. The name is for Euler's pentagonal number theorem, which the Euler castles turn into a statement about the Project Euler 502 parity (section *The parity: Euler's pentagonal number theorem*).
 
 *Examples.* `(3, 3, 2, 1, 1)` is an Euler castle of width 5, height 3 and area 10. The flat castle `(1, …, 1)` and the staircase `(k, k − 1, …, 1)` are Euler castles; `(3, 1, 1)` is not, since it falls by 2. The eight Euler castles of width 4 are
 
@@ -153,7 +153,7 @@ the sum running over all Euler castles. So at each area and semi-perimeter the e
 ## Related Concepts
 
 - [[convex-castle](pages/convex-castle.md)] - the castles of height `h` with exactly `h` blocks, which contain the Euler castles.
-- [[castle-classification-shape](pages/castle-classification-shape.md)] - the catalogue entry for the Euler castles, and the staircase castles, which are the Euler castles turned on their side.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the catalog entry for the Euler castles, and the staircase castles, which are the Euler castles turned on their side.
 - [[castle-perimeter](pages/castle-perimeter.md)] - the semi-perimeter `w + blocks`, which Franklin's move keeps.
 - [[aocp-generating-partitions](pages/aocp-generating-partitions.md)] - Knuth's section on partitions, with partitions into distinct parts and Euler's products.
 - [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] - two more castle types built from partitions into distinct parts, on the steps of each side.

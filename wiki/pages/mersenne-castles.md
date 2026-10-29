@@ -155,7 +155,7 @@ So the growth of the Mersenne castles of height `h = 2^a 3^b` by width tends to 
 
 *Counting.* The unit squares `[i, i+1) × [j, j+1)` with corner `(i, j)` in the triangle cover the triangle, so `|𝒱(h)|` is at least its area, `(ln h)²/(2 ln 2 ln 3) = ½ log₂ h · log₃ h`. Combining the three bounds gives Inequality (3). ∎
 
-Inequality (3) is far from the truth:[^exec6]
+Inequality (3) is far from sharp:[^exec6]
 
 | `h` | `\|𝒱(h)\|` | `\|D(h)\|` | `d̄(h)` | `ρ_cons(h)` | `(7 − ρ_cons(h))(ln h)²` | Inequality (3) |
 |---|---|---|---|---|---|---|
