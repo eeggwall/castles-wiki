@@ -1,7 +1,7 @@
 ---
 title: Totient castles
 category: Concepts
-summary: A totient castle is a castle whose neighboring columns have coprime heights, so a column of height a can be followed by about h φ(a)/a heights, φ(a) Euler's totient. The rule's matrix is the coprimality matrix M_h on {1, …, h}. At height 2 the totient castles are the Fibonacci castles, golden by width; at height 3 their strips are the Pell-Lucas numbers A001333(w + 1), like the 1-smooth strips on {1, 2, 3}, and the castles are silver by width; at heights 4 to 8 they grow at 2.9354, 3.9173, 4.1747, 5.2572 and 5.7698 by width. For large h the largest eigenvalue of M_h is Λh + O(h^{1/2+ε}), with the Euler product Λ = Π_p (1 − (1 − x_p)/p) = 0.67846225…, x_p the positive root of x² + (p − 1)x − (p − 1): the vector with entries Π_{p | a} x_p is an approximate eigenvector, and the Collatz-Wielandt bounds close in on Λh. So the totient castles of height h grow by width at about 0.6785 h, more than the share 6/π² = 0.6079 of coprime pairs.
+summary: A totient castle is a castle whose neighboring columns have coprime heights, so a column of height a can be followed by about h φ(a)/a heights, φ(a) Euler's totient. The rule's matrix is the coprimality matrix M_h on {1, …, h}. At height 2 the totient castles are the Fibonacci castles, golden by width; at height 3 their strips are the Pell-Lucas numbers A001333(w + 1), like the 1-smooth strips on {1, 2, 3}, and the castles are silver by width; at heights 4 to 8 they grow at 2.9354, 3.9173, 4.1747, 5.2572 and 5.7698 by width. For large h the largest eigenvalue of M_h is Λh + O(h^{1/2+ε}), with the Euler product Λ = Π_p (1 − (1 − x_p)/p) = 0.67846225…, x_p the positive root of x² + (p − 1)x − (p − 1): the vector with entries Π_{p | a} x_p is an approximate eigenvector, and the Collatz-Wielandt bounds close in on Λh. So the totient castles of height h grow by width at about 0.6785 h, more than the share 6/π² = 0.6079 of coprime pairs. By area, over all heights, they are the compositions with coprime neighboring parts, A167606, growing like 1.87801…^n.
 tags: [concept, castle, totient-castle, castle-strip, transfer-matrix, coprime, euler-totient, euler-product, perron-frobenius, collatz-wielandt, fibonacci, pell-lucas, growth-constant, parity, verification]
 sources: [project-euler-502-brute-force]
 created: 2026-10-28
@@ -36,6 +36,17 @@ A_totient(w, h)  =  𝟙ᵀ M_h^{w−1} 𝟙  −  𝟙ᵀ M_{h−1}^{w−1} �
 
 Every entry agrees with brute-force enumeration for `w ≤ 7`.[^exec1]
 
+The strips themselves, the words over `{1, …, h}` whose neighboring letters are coprime, number:[^exec7]
+
+| `h` | `𝟙ᵀ M_h^{w−1} 𝟙`, `w = 1, …, 10` |
+|---|---|
+| 2 | `2, 3, 5, 8, 13, 21, 34, 55, 89, 144`, the Fibonacci numbers `F_{w+2}` |
+| 3 | `3, 7, 17, 41, 99, 239, 577, 1393, 3363, 8119`, the Pell-Lucas numbers `A001333(w + 1)` |
+| 4 | `4, 11, 33, 96, 283, 829, 2436, 7147, 20985, 61592` |
+| 5 | `5, 19, 75, 293, 1149, 4499, 17627, 69045, 270477, 1059523` |
+| 6 | `6, 23, 99, 408, 1713, 7133, 29812, 124391, 519411, 2168140` |
+| 7 | `7, 35, 187, 977, 5149, 27043, 142227, 747605, 3930581, 20663491` |
+
 ## Notation used on this page
 
 | symbol | meaning |
@@ -43,13 +54,14 @@ Every entry agrees with brute-force enumeration for `w ≤ 7`.[^exec1]
 | `φ(a)`, `φ` | `φ(a)`, always with its argument, is Euler's totient; the bare `φ` is the golden ratio `(1 + √5)/2` |
 | `M_h`, `ρ(M_h)` | the coprimality matrix on `1, …, h` and its largest eigenvalue |
 | `A_totient(w, h)`, `A^e_totient`, `A^o_totient`, `S_totient` | the totient castles of width `w` and height `h`; the even-block and odd-block ones; `A^e_totient − A^o_totient` |
+| `A_totient(n)`, `A^e_totient(n)`, `S_totient(n)` | the same counts over the totient castles of area `n`, of any height |
 | `x_p`, `Λ` | the positive root of `x² + (p − 1)x − (p − 1)` for a prime `p`, and `Λ = Π_p (1 − (1 − x_p)/p)` |
 | `v_a`, `g(d)` | `v_a = Π_{p | a} x_p`; the multiplicative function with `g(p) = x_p − 1` and `g(d) = 0` unless `d` is squarefree |
 | `ω(a)`, `τ(d)` | the number of distinct prime factors of `a`, and the number of divisors of `d` |
 
 ## Small heights
 
-**Height 2.** `M_2 = [[1, 1], [1, 0]]` forbids two neighboring columns of height 2, so the totient castles of height 2 are the Fibonacci castles, `F_{w+2} − 1` of width `w` with `F_1 = F_2 = 1`, golden by width ([[fibonacci-castle](pages/fibonacci-castle.md)]).[^exec1]
+**Height 2.** `M_2 = [[1, 1], [1, 0]]` forbids two neighboring columns of height 2, so the totient castles of height 2 are the Fibonacci castles, `F_{w+2} − 1 = A000071(w + 2)` of width `w` with `F_1 = F_2 = 1`, golden by width ([[fibonacci-castle](pages/fibonacci-castle.md)]).[^a000071][^exec1]
 
 **Height 3.** The totient rule on `{1, 2, 3}` allows every pair but `(2, 2)` and `(3, 3)`:
 
@@ -139,6 +151,21 @@ By the Lemma and `v_a ≥ x_2^{ω(a)} = φ^{−ω(a)}`, both sides are `Λh` up 
 
 The average row sum is the number of coprime pairs divided by `h`, and its share tends to `6/π²`; the largest eigenvalue is larger, `Λ > 6/π²`, because the Perron vector weights the heights with few small prime factors, `v_1 = 1`, `v_2 = 0.618`, `v_6 = 0.452`, and those are coprime to more heights.
 
+## By area
+
+A castle of area `n` is a composition of `n`, its column heights in order ([[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)]), so the totient castles of area `n`, of any height, are the compositions of `n` whose neighboring parts are coprime. These are counted by `A167606`, "Number of compositions of n where each pair of adjacent parts is relatively prime":[^a167606][^exec7]
+
+```
+A_totient(n)  =  A167606(n)  =  1, 2, 4, 7, 14, 25, 48, 90, 168, 316, 594, 1116, …     (n = 1, 2, 3, …)
+```
+
+By Kotesovec's asymptotic in the entry, they grow like `c · d^n` with `d = 1.87801540657…`; the ratio of consecutive counts at `n = 200` agrees with `d` to 13 digits.[^a167606][^exec7] Their signed count `Σ (−1)^blocks` and their even-block count by area are[^exec7]
+
+```
+S_totient(n)    =  −1, 0, 0, 1, −2, −3, −8, −6, −12, −6, −22, −20, −56, −47, −108, −79, …
+A^e_totient(n)  =   0, 1, 2, 4, 6, 11, 20, 42, 78, 155, 286, 548, 1020, 1944, 3640, 6899, …
+```
+
 ## The parity
 
 With the sign `(−1)^{max(0, b − a)}` on each allowed step, the signed matrix of the totient rule counts `S_totient(w, h)` ([[castle-sign](pages/castle-sign.md)]). Its spectral radius is smaller than `ρ(M_h)` at every height computed, so at each of these heights the even-block share of the totient castles tends to 1/2:[^exec6]
@@ -160,12 +187,15 @@ At height 2 the signed count repeats `1, 2, 2, 1, 0, 0` with period 6, the parit
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the 1-smooth strips on `{1, 2, 3}`, as many as the totient strips there.
 - [[metallic-means](pages/metallic-means.md)] - the golden and silver means, the growth at heights 2 and 3.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - families of castles by growth constant.
+- [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - castles of area `n` as compositions of `n`, the reading behind `A167606`.
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^blocks` and the signed transfer matrix.
 - [[castle-notation](pages/castle-notation.md)] - the symbols of this page.
 
 ## Footnotes
 
 [^a001333]: https://oeis.org/A001333 (read 2026-10-28) - "Pell-Lucas numbers: numerators of continued fraction convergents to sqrt(2).", offset 0, data `1, 1, 3, 7, 17, 41, 99, 239, 577, 1393, 3363, 8119`.
+[^a000071]: https://oeis.org/A000071 (read 2026-10-28) - "a(n) = Fibonacci(n) - 1.", offset 1, data `0, 0, 1, 2, 4, 7, 12, 20, 33, 54, 88, 143`.
+[^a167606]: https://oeis.org/A167606 (read 2026-10-28) - "Number of compositions of n where each pair of adjacent parts is relatively prime.", offset 0, data `1, 1, 2, 4, 7, 14, 25, 48, 90, 168, 316, 594, 1116`; formula "a(n) ~ c * d^n, where d=1.8780154065731862176678940156530410192010138618103068156064519919669849911..., c=0.5795813856338135589080831265343299561832275012313700387790334792220408848... - _Vaclav Kotesovec_, May 01 2014".
 [^pf-cw]: https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem (read 2026-10-28) §"Collatz–Wielandt formula" - "for all non-negative non-zero vectors x, let f(x) be the minimum value of [Ax]i / xi taken over all those i such that xi ≠ 0. Then f is a real valued function whose maximum over all non-negative non-zero vectors x is the Perron–Frobenius eigenvalue." and "for all strictly positive vectors x, let g(x) be the maximum value of [Ax]i / xi taken over i. Then g is a real valued function whose minimum over all strictly positive vectors x is the Perron–Frobenius eigenvalue."
 [^pf-primitive]: https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem (read 2026-10-28) - "A real matrix A is primitive if it is non-negative and its mth power is positive for some natural number m", and "If A is a positive (or more generally primitive) matrix, then there exists a real positive eigenvalue r (Perron–Frobenius eigenvalue or Perron root), which is strictly greater in absolute value than all other eigenvalues".
 [^exec1]: Verified by execution (Python 3.11, 2026-10-28): `bin/python/totient_castles.py` item [1], run log `bin/python/totient_castles-run.log`. The transfer-matrix counts against brute force for `w ≤ 7`, `h ≤ 6`; height 2 against `F_{w+2} − 1` for `w ≤ 20` and the `A000071` data; at height 3 the strips against the `A001333` data and against the 1-smooth strips, and the castles against `A001333(w + 1) − F_{w+2}`, for `w ≤ 14`.
@@ -174,3 +204,4 @@ At height 2 the signed count repeats `1, 2, 2, 1, 0, 0` with period 6, the parit
 [^exec4]: Verified by execution (Python 3.11, 2026-10-28): `bin/python/totient_castles.py` item [4], run log `bin/python/totient_castles-run.log`. `v = 1 ∗ g` for `n ≤ 3000`, and the bound of the Lemma for every `a ≤ h` at `h = 50, 100, 200, 400`, where the largest error is 0.006 times the bound.
 [^exec5]: Verified by execution (Python 3.11, 2026-10-28): `bin/python/totient_castles.py` item [5], run log `bin/python/totient_castles-run.log`. The Collatz-Wielandt bounds from `v`, and `ρ(M_h)` by power iteration with residual below `10^{−14}`, at `h = 100, 400, 1600`.
 [^exec6]: Verified by execution (Python 3.11, 2026-10-28, SymPy): `bin/python/totient_castles.py` item [6], run log `bin/python/totient_castles-run.log`. The signed counts by the signed transfer matrix against brute force for `w ≤ 6`, `h ≤ 5`; the signed characteristic polynomials and their spectral radii for `h ≤ 6`.
+[^exec7]: Verified by execution (Python 3.11, 2026-10-28): `bin/python/totient_castles.py` item [7], run log `bin/python/totient_castles-run.log`. The totient castles by area against the `A167606` b-file for `n ≤ 30`, the count and the signed count against brute force over the compositions for `n ≤ 12`, the ratio at `n = 200`, and the strips for `h ≤ 7`, `w ≤ 10`.

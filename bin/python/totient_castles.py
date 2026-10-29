@@ -182,3 +182,46 @@ for w in range(1, 7):
                  if max(c) == h and all(gcd(p, q) == 1 for p, q in zip(c, c[1:])))
         ok &= sg == castles(h, w, sign=True)[-1]
 print(f"[6] the signed transfer matrix = brute force, w <= 6, h <= 5: {ok}")
+
+# [7] by area: the compositions with coprime neighboring parts (A167606), and the strips by width
+A167606 = [1, 1, 2, 4, 7, 14, 25, 48, 90, 168, 316, 594, 1116, 2096, 3935, 7388, 13877, 26061, 48944,
+           91919, 172623, 324188, 608827, 1143390, 2147309, 4032677, 7573426, 14223008, 26711028,
+           50163722, 94208254]  # offset 0, b-file read 2026-10-28
+N = 200
+count = [[0] * (N + 1) for _ in range(N + 1)]      # count[n][p]: castles of area n, first column p
+signed = [[0] * (N + 1) for _ in range(N + 1)]     # the same weighted by (-1)^(blocks - first column)
+for n in range(1, N + 1):
+    for p in range(1, n + 1):
+        if p == n:
+            count[n][p], signed[n][p] = 1, 1
+            continue
+        for q in range(1, n - p + 1):
+            if gcd(p, q) == 1:
+                count[n][p] += count[n - p][q]
+                signed[n][p] += (-1) ** max(0, q - p) * signed[n - p][q]
+by_area = [sum(count[n][1:]) for n in range(N + 1)]
+s_area = [sum((-1) ** p * signed[n][p] for p in range(1, n + 1)) for n in range(N + 1)]
+ok = by_area[1:31] == A167606[1:31]
+brute = []
+for n in range(1, 13):
+    tot, sg = 0, 0
+    def rec(rem, last, acc, bl):
+        global tot, sg
+        if rem == 0:
+            tot += 1
+            sg += (-1) ** bl
+            return
+        for q in range(1, rem + 1):
+            if last == 0 or gcd(last, q) == 1:
+                rec(rem - q, q, acc + [q], bl + max(0, q - last))
+    rec(n, 0, [], 0)
+    brute.append((tot, sg))
+ok &= [b[0] for b in brute] == by_area[1:13] and [b[1] for b in brute] == s_area[1:13]
+print(f"[7] totient castles of area n = A167606(n), n <= 30, and with the signed count against brute force "
+      f"for n <= 12: {ok}")
+print(f"[7] by area, n = 1..16: {by_area[1:17]}")
+print(f"[7] signed by area, n = 1..16: {s_area[1:17]}")
+print(f"[7] even-block by area, n = 1..16: {[(a + s) // 2 for a, s in zip(by_area[1:17], s_area[1:17])]}")
+print(f"[7] a(200)/a(199) = {by_area[200] / by_area[199]:.13f}, against Kotesovec's d = 1.8780154065731862")
+for h in range(2, 8):
+    print(f"[7] strips with coprime neighbors on 1..{h}, w = 1..10: {strips(h, 10)}")

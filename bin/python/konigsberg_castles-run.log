@@ -25,3 +25,4 @@
 [5] h = 4: family sizes {dip, two ramps: 1, dip, ramp and hill: 6, dip, two hills: 9, spike: 4, step of 2: 6}
 [5] blocks: h outside the dips between two hills, h + min(p, q) - x on them, h <= 7: True
 [5] widths: 2h + 1 for the dips between ramps or a ramp and a hill, 2h - 1 for the steps of 2, 1, 3, ..., 2h - 1 for the spikes, 2h + 3, ..., 4h - 1 for the dips between two hills, h <= 7: True
+[6] odd widths = 2 A034856(h) = A028552(h) - 2; widths 2m <= 2h - 4, 2h - 2, 2h = A002378(m), A033428(h - 1), A202803(h - 1); h <= 12: True

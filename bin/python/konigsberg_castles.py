@@ -228,3 +228,16 @@ for h in range(1, 8):
 print(f"[5] blocks: h outside the dips between two hills, h + min(p, q) - x on them, h <= 7: {ok}")
 print(f"[5] widths: 2h + 1 for the dips between ramps or a ramp and a hill, 2h - 1 for the steps of 2, "
       f"1, 3, ..., 2h - 1 for the spikes, 2h + 3, ..., 4h - 1 for the dips between two hills, h <= 7: {widths}")
+
+# [6] OEIS data for the closed forms (read 2026-10-28; each list from offset 0 unless noted)
+A034856 = [1, 4, 8, 13, 19, 26, 34, 43, 53, 64, 76, 89, 103, 118, 134]          # offset 1
+A028552 = [0, 4, 10, 18, 28, 40, 54, 70, 88, 108, 130, 154, 180, 208, 238]
+A002378 = [0, 2, 6, 12, 20, 30, 42, 56, 72, 90, 110, 132, 156, 182, 210]
+A033428 = [0, 3, 12, 27, 48, 75, 108, 147, 192, 243, 300, 363, 432, 507, 588]
+A202803 = [0, 6, 22, 48, 84, 130, 186, 252, 328, 414, 510, 616, 732, 858, 994]
+ok = all(odd_w[h - 1] == 2 * A034856[h - 1] == A028552[h] - 2 for h in range(1, H + 1))
+ok &= all(rows[h][2 * m - 1] == A002378[m] for h in range(1, H + 1) for m in range(1, h - 1))
+ok &= all(rows[h][2 * h - 3] == A033428[h - 1] for h in range(2, H + 1))
+ok &= all(rows[h][2 * h - 1] == A202803[h - 1] for h in range(1, H + 1))
+print(f"[6] odd widths = 2 A034856(h) = A028552(h) - 2; widths 2m <= 2h - 4, 2h - 2, 2h = A002378(m), "
+      f"A033428(h - 1), A202803(h - 1); h <= {H}: {ok}")

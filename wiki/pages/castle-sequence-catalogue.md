@@ -1,7 +1,7 @@
 ---
 title: Castle sequence catalogue
 category: Reference
-summary: Script-generated catalogue of the castle-counting sequences on the wiki (258 rows in 26 families), by the object each one counts: first terms, recurrence or generating function, growth constant, and the OEIS entry it equals at the stated offset, or none. Built with oeis-index from one data file, config/castle-sequences.tsv, by bin/generate-sequence-pages.py.
+summary: Script-generated catalogue of the castle-counting sequences on the wiki (278 rows in 27 families), by the object each one counts: first terms, recurrence or generating function, growth constant, and the OEIS entry it equals at the stated offset, or none. Built with oeis-index from one data file, config/castle-sequences.tsv, by bin/generate-sequence-pages.py.
 tags: [reference, oeis, castle, sequence, catalogue, generated]
 sources: [oeis-encyclopedia]
 created: 2026-09-17
@@ -38,7 +38,8 @@ These identities are stated and proved on the pages cited; the section *Catalogu
 - [[fibonacci-castle](pages/fibonacci-castle.md)]: [A000071](https://oeis.org/A000071), Fibonacci castles, the tree castles of height 2 (no two neighboring columns of height 2): `A000071(w + 2)`.
 - [[castle-by-area](pages/castle-by-area.md)]: [A001523](https://oeis.org/A001523), castles by area, convex castles (weakly unimodal compositions): `A001523(n)`; [A115981](https://oeis.org/A115981), castles by area, non-convex castles: `A115981(n)`; [A332578](https://oeis.org/A332578), castles by area, vee castles (weakly decreasing, then weakly increasing): `A332578(n)`.
 - [[euler-castles](pages/euler-castles.md)]: [A000009](https://oeis.org/A000009), Euler castles of area `n` (partitions of `n` into distinct parts): `A000009(n)`; [A067661](https://oeis.org/A067661), even-block Euler castles of area `n`: `A067661(n)`; [A067659](https://oeis.org/A067659), odd-block Euler castles of area `n`: `A067659(n)`; [A010815](https://oeis.org/A010815), signed Euler castles of area `n`, `even − odd`: `A010815(n)`; [A000045](https://oeis.org/A000045), Euler castles of semi-perimeter `s`: `A000045(s − 1)`; [A010892](https://oeis.org/A010892), signed Euler castles of semi-perimeter `s`, `even − odd`: `−A010892(s − 2)`.
-- [[totient-castles](pages/totient-castles.md)]: [A000071](https://oeis.org/A000071), totient castles of height 2, the Fibonacci castles: `A000071(w + 2)`; [A001333](https://oeis.org/A001333), totient strips on {1, 2, 3}: `A001333(w + 1)`.
+- [[totient-castles](pages/totient-castles.md)]: [A000071](https://oeis.org/A000071), totient castles of height 2, the Fibonacci castles: `A000071(w + 2)`; [A001333](https://oeis.org/A001333), totient strips on {1, 2, 3}: `A001333(w + 1)`; [A167606](https://oeis.org/A167606), totient castles of area `n`, any height (compositions with coprime neighboring parts): `A167606(n)`.
+- [[konigsberg-castles](pages/konigsberg-castles.md)]: [A034856](https://oeis.org/A034856), open-stroke castles of height `h` and odd width: `2 A034856(h)`.
 - [[hardin-word-identity](pages/hardin-word-identity.md)]: [A202882](https://oeis.org/A202882), Hardin words at `m = 2`: `P_even(10, L)/2^L`, the even-sector signed towers; [A203094](https://oeis.org/A203094), Hardin words at `m = 3`: `P_even(14, L)/2^L`, the even-sector signed towers; [A203184](https://oeis.org/A203184), Hardin words at `m = 4`: `P_even(18, L)/2^L`, the even-sector signed towers.
 
 ## Catalogue
@@ -419,7 +420,7 @@ Castles whose heights fall by 0 or 1 at each step and end at height 1 ([[euler-c
 | Euler castles of semi-perimeter `s` | `s = 2…` | `1, 1, 2, 3, 5, 8, 13, 21` | `t²/(1 − t − t²)` | `φ`, golden by semi-perimeter | [A000045](https://oeis.org/A000045) (`= A000045(s − 1) = F_{s−1}`) |
 | signed Euler castles of semi-perimeter `s`, `even − odd` | `s = 2…` | `−1, −1, 0, 1, 1, 0`, period 6 | `−t²/(1 − t + t²)` |  | [A010892](https://oeis.org/A010892) (`= −A010892(s − 2)`) |
 
-*(Every row agrees with `bin/python/euler_castles.py` and with every term of the OEIS data field at the stated offset, 2026-10-28.)*
+*(Every row agrees with `bin/python/euler_castles.py`, and every row with an A-number agrees with the OEIS data at the stated offset over the range the script checks, 2026-10-28.)*
 
 ### Totient castles
 
@@ -432,8 +433,37 @@ Castles whose neighboring columns have coprime heights, with the coprimality mat
 | totient castles of height 3 | `w = 1…` | `1, 4, 12, 33, 86, 218, 543, 1338, 3274, 7975` | `A001333(w + 1) − F_{w+2}` | `1 + √2`, silver by width | - |
 | totient castles of height 4 | `w = 1…` | `1, 4, 16, 55, 184, 590, 1859, 5754, 17622, 53473` | characteristic polynomial `x (x³ − x² − 5x − 2)` | `2.9354323` | - |
 | even-block totient castles of height 3 | `w = 1…` | `0, 0, 3, 14, 39, 100, 259, 652, 1604, 3934` | signed characteristic polynomial `x³ − x² + x − 3` |  | - |
+| totient castles of height 5 | `w = 1…` | `1, 8, 42, 197, 866, 3670, 15191, 61898, 249492, 997931` | characteristic polynomial `x (x + 1)(x³ − 2x² − 7x − 2)` | `3.9172860` | - |
+| totient castles of height 6 | `w = 1…` | `1, 4, 24, 115, 564, 2634, 12185, 55346, 248934, 1108617` | characteristic polynomial `x (x⁵ − x⁴ − 11x³ − 10x² + 2x + 2)` | `4.1746638` | - |
+| even-block totient castles of height 4 | `w = 1…` | `1, 4, 12, 32, 95, 298, 938, 2898, 8853, 26804` | signed characteristic polynomial `x⁴ − x³ + 3x² − 2x + 4` |  | - |
+| totient strips on {1, …, 4} | `w = 1…` | `4, 11, 33, 96, 283, 829, 2436, 7147, 20985, 61592` | `𝟙ᵀ M_4^{w−1} 𝟙` | `2.9354323` | - |
+| totient strips on {1, …, 5} | `w = 1…` | `5, 19, 75, 293, 1149, 4499, 17627, 69045, 270477` | `𝟙ᵀ M_5^{w−1} 𝟙` | `3.9172860` | - |
+| totient strips on {1, …, 6} | `w = 1…` | `6, 23, 99, 408, 1713, 7133, 29812, 124391, 519411` | `𝟙ᵀ M_6^{w−1} 𝟙` | `4.1746638` | - |
+| totient strips on {1, …, 7} | `w = 1…` | `7, 35, 187, 977, 5149, 27043, 142227, 747605` | `𝟙ᵀ M_7^{w−1} 𝟙` | `5.2572382` | - |
+| totient castles of area `n`, any height (compositions with coprime neighboring parts) | `n = 1…` | `1, 2, 4, 7, 14, 25, 48, 90, 168, 316, 594, 1116` |  | `1.87801540657…` by area | [A167606](https://oeis.org/A167606) (`= A167606(n)`) |
+| signed totient castles of area `n`, `even − odd` | `n = 1…` | `−1, 0, 0, 1, −2, −3, −8, −6, −12, −6, −22, −20` |  |  | - |
+| even-block totient castles of area `n` | `n = 1…` | `0, 1, 2, 4, 6, 11, 20, 42, 78, 155, 286, 548` |  |  | - |
 
-*(Every row agrees with `bin/python/totient_castles.py` and with every term of the OEIS data field at the stated offset, 2026-10-28.)*
+*(Every row agrees with `bin/python/totient_castles.py`, and every row with an A-number agrees with the OEIS data at the stated offset over the range the script checks, 2026-10-28.)*
+
+### Open-stroke castles
+
+Castles whose graph, with one ground vertex joined to every bottom cell, has exactly two vertices of odd degree, so that one open stroke traces it ([[konigsberg-castles](pages/konigsberg-castles.md)]); every degree even gives the Königsberg castles, the double staircases `(1, …, k, k, …, 1)`. Finitely many at each height, at most `6h + 2` wide; the odd-width count is proved, the even-width counts are computed for `h ≤ 12`.
+
+| object | from | first terms | g.f. / formula | OEIS |
+|---|---|---|---|---|
+| open-stroke castles of height `h` | `h = 1…` | `3, 33, 137, 377, 831, 1593, 2773, 4497, 6907, 10161, 14433, 19913` | `(2h⁴ + 11h³ − 5h² − 2h + 3)/3` for `h ≤ 12`, computed | - |
+| open-stroke castles of height `h` and odd width | `h = 1…` | `2, 8, 16, 26, 38, 52, 68, 86, 106, 128, 152, 178` | `h² + 3h − 2`, five families | [A034856](https://oeis.org/A034856) (`= 2 A034856(h) = A028552(h) − 2`) |
+| open-stroke castles of height `h` and even width | `h = 1…` | `1, 25, 121, 351, 793, 1541, 2705, 4411, 6801, 10033` | `(2h⁴ + 11h³ − 8h² − 11h + 9)/3` for `h ≤ 12`, computed | - |
+| even-block open-stroke castles of height `h` | `h = 1…` | `0, 23, 49, 225, 354, 887, 1259, 2417, 3236, 5351` |  | - |
+| odd-block open-stroke castles of height `h` | `h = 1…` | `3, 10, 88, 152, 477, 706, 1514, 2080, 3671, 4810` |  | - |
+| open-stroke castles of height 2, by width (all of them) | `w = 1…10` | `1, 3, 3, 6, 3, 10, 1, 5, 0, 1` |  | - |
+| open-stroke castles of height 3, by width (all of them) | `w = 1…16` | `1, 2, 1, 12, 5, 22, 5, 35, 3, 29, 1, 15, 0, 5, 0, 1` |  | - |
+| open-stroke castles of height `h` at width `2m`, any `h ≥ m + 2` | `m = 1…` | `2, 6, 12, 20, 30, 42, 56, 72, 90, 110` | `m(m + 1)`, computed for `h ≤ 12` | [A002378](https://oeis.org/A002378) (`= A002378(m)`) |
+| open-stroke castles of height `h` at width `2h − 2` | `h = 2…` | `3, 12, 27, 48, 75, 108, 147, 192, 243, 300, 363` | `3(h − 1)²`, computed for `h ≤ 12` | [A033428](https://oeis.org/A033428) (`= A033428(h − 1)`) |
+| open-stroke castles of height `h` at width `2h` | `h = 1…` | `0, 6, 22, 48, 84, 130, 186, 252, 328, 414, 510, 616` | `(5h − 4)(h − 1)`, computed for `h ≤ 12` | [A202803](https://oeis.org/A202803) (`= A202803(h − 1)`) |
+
+*(Every row agrees with `bin/python/konigsberg_castles.py`, and every row with an A-number agrees with the OEIS data for `h ≤ 12`, 2026-10-28.)*
 
 ### Odd-block counts, parity-refined area, and joint block tables
 

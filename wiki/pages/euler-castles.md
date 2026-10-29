@@ -69,7 +69,7 @@ A_Euler(w, h)  =  C(w − 1, h − 1),        Σ_{w,h ≥ 1} A_Euler(w, h) x^w y
 
 and there are `2^{w−1}` Euler castles of width `w`, all eight of width 4 being listed above.[^exec2] Every Euler castle of height `h` has `h` blocks, so `A^e_Euler(w, h) = C(w − 1, h − 1)` for even `h` and 0 for odd `h`.
 
-**By area.** By the row reading, the Euler castles of area `n` are the partitions of `n` into distinct parts, `A_Euler(n) = pd(n) = A000009(n)`, with generating function `Π_{k ≥ 1} (1 + q^k) − 1`:[^a000009][^exec2]
+**By area.** By the row reading, the Euler castles of area `n` are the partitions of `n` into distinct parts, `A_Euler(n) = pd(n) = A000009(n)`, with generating function `Π_{k ≥ 1} (1 + q^k) − 1`. The entry also states the column reading: its "partitions of n where if k is the largest part, all parts 1..k are present" (Perry) are the column heights of the Euler castles, and the entry proves the equality by the Ferrers dual, which is the row reading above.[^a000009][^a000009-perry][^exec2]
 
 | `n` | Euler castles of area `n` (blocks) | `A_Euler(n)` | `S_Euler(n)` |
 |---|---|---|---|
@@ -172,6 +172,7 @@ the sum running over all Euler castles. So at each area and semi-perimeter the e
 [^chapman-mn]: https://arxiv.org/pdf/math/0009036 (read 2026-10-28) p.3 §2 - "In each case `m_λ′ + n_λ′ = m_λ + n_λ`.", after the two cases in which Franklin's map lowers the number of parts `n_λ` by one and raises the largest part `m_λ` by one, or the reverse (`n_λ` and `m_λ` defined on p.2).
 [^chapman-7]: https://arxiv.org/pdf/math/0009036 (read 2026-10-28) p.4 §3, Equation (7) - "`Σ_{λ∈D} (−1)^{n_λ} x^{m_λ+n_λ} q^{N_λ} = 1 + Σ_{r=1}^∞ (−1)^r [x^{3r−1} q^{r(3r−1)/2} + x^{3r} q^{r(3r+1)/2}]`", with `D` the partitions into distinct parts, the empty one included, and `N_λ` the sum of the parts.
 [^a000009]: https://oeis.org/A000009 (read 2026-10-28) - "Expansion of Product_{m >= 1} (1 + x^m); number of partitions of n into distinct parts; number of partitions of n into odd parts", offset 0, data `1, 1, 1, 2, 2, 3, 4, 5, 6, 8, 10, 12, 15, 18, 22, 27, 32`.
+[^a000009-perry]: https://oeis.org/A000009 (read 2026-10-28) - "Number of partitions of n where if k is the largest part, all parts 1..k are present. - _Jon Perry_, Sep 21 2005" and "Jack Grahl and Franklin T. Adams-Watters prove this claim of Jon Perry's by observing that the Ferrers dual of a "gapless" partition is guaranteed to have distinct parts; since the Ferrers dual is an involution, this establishes a bijection between the two sets of partitions. - _Allan C. Wechsler_, Sep 28 2021".
 [^a001318]: https://oeis.org/A001318 (read 2026-10-28) - "Generalized pentagonal numbers: m*(3*m - 1)/2, m = 0, +-1, +-2, +-3, ....", data `0, 1, 2, 5, 7, 12, 15, 22, 26, 35, 40`.
 [^a010815]: https://oeis.org/A010815 (read 2026-10-28) - "From Euler's Pentagonal Theorem: coefficient of q^n in Product_{m>=1} (1 - q^m).", offset 0, data `1, -1, -1, 0, 0, 1, 0, 1, 0, 0, 0, 0, -1, 0, 0, -1`.
 [^a0676]: https://oeis.org/A067661, https://oeis.org/A067659 (read 2026-10-28) - "Number of partitions of n into distinct parts such that number of parts is even.", offset 0, data `1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 5, 6, 7, 9, 11, 13, 16`; "Number of partitions of n into distinct parts such that number of parts is odd.", offset 0, data `0, 1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 8, 9, 11, 14, 16`.

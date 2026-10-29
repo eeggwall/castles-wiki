@@ -215,6 +215,26 @@ totient-2	totient	totient-castles	totient strips on {1, 2, 3}	`w = 1…`	`3, 7, 
 totient-3	totient	totient-castles	totient castles of height 3	`w = 1…`	`1, 4, 12, 33, 86, 218, 543, 1338, 3274, 7975`	`A001333(w + 1) − F_{w+2}`	`1 + √2`, silver by width						proved
 totient-4	totient	totient-castles	totient castles of height 4	`w = 1…`	`1, 4, 16, 55, 184, 590, 1859, 5754, 17622, 53473`	characteristic polynomial `x (x³ − x² − 5x − 2)`	`2.9354323`						
 totient-5	totient	totient-castles	even-block totient castles of height 3	`w = 1…`	`0, 0, 3, 14, 39, 100, 259, 652, 1604, 3934`	signed characteristic polynomial `x³ − x² + x − 3`							
+totient-6	totient	totient-castles	totient castles of height 5	`w = 1…`	`1, 8, 42, 197, 866, 3670, 15191, 61898, 249492, 997931`	characteristic polynomial `x (x + 1)(x³ − 2x² − 7x − 2)`	`3.9172860`						
+totient-7	totient	totient-castles	totient castles of height 6	`w = 1…`	`1, 4, 24, 115, 564, 2634, 12185, 55346, 248934, 1108617`	characteristic polynomial `x (x⁵ − x⁴ − 11x³ − 10x² + 2x + 2)`	`4.1746638`						
+totient-8	totient	totient-castles	even-block totient castles of height 4	`w = 1…`	`1, 4, 12, 32, 95, 298, 938, 2898, 8853, 26804`	signed characteristic polynomial `x⁴ − x³ + 3x² − 2x + 4`							
+totient-9	totient	totient-castles	totient strips on {1, …, 4}	`w = 1…`	`4, 11, 33, 96, 283, 829, 2436, 7147, 20985, 61592`	`𝟙ᵀ M_4^{w−1} 𝟙`	`2.9354323`						
+totient-10	totient	totient-castles	totient strips on {1, …, 5}	`w = 1…`	`5, 19, 75, 293, 1149, 4499, 17627, 69045, 270477`	`𝟙ᵀ M_5^{w−1} 𝟙`	`3.9172860`						
+totient-11	totient	totient-castles	totient strips on {1, …, 6}	`w = 1…`	`6, 23, 99, 408, 1713, 7133, 29812, 124391, 519411`	`𝟙ᵀ M_6^{w−1} 𝟙`	`4.1746638`						
+totient-12	totient	totient-castles	totient strips on {1, …, 7}	`w = 1…`	`7, 35, 187, 977, 5149, 27043, 142227, 747605`	`𝟙ᵀ M_7^{w−1} 𝟙`	`5.2572382`						
+totient-13	totient	totient-castles	totient castles of area `n`, any height (compositions with coprime neighboring parts)	`n = 1…`	`1, 2, 4, 7, 14, 25, 48, 90, 168, 316, 594, 1116`		`1.87801540657…` by area	A167606	n		Number of compositions of n where each pair of adjacent parts is relatively prime.	count	proved
+totient-14	totient	totient-castles	signed totient castles of area `n`, `even − odd`	`n = 1…`	`−1, 0, 0, 1, −2, −3, −8, −6, −12, −6, −22, −20`								
+totient-15	totient	totient-castles	even-block totient castles of area `n`	`n = 1…`	`0, 1, 2, 4, 6, 11, 20, 42, 78, 155, 286, 548`								
+konigsberg-1	konigsberg	konigsberg-castles	open-stroke castles of height `h`	`h = 1…`	`3, 33, 137, 377, 831, 1593, 2773, 4497, 6907, 10161, 14433, 19913`	`(2h⁴ + 11h³ − 5h² − 2h + 3)/3` for `h ≤ 12`, computed							
+konigsberg-2	konigsberg	konigsberg-castles	open-stroke castles of height `h` and odd width	`h = 1…`	`2, 8, 16, 26, 38, 52, 68, 86, 106, 128, 152, 178`	`h² + 3h − 2`, five families		A034856	2 a(h)	(`= A028552(h) − 2`)	a(n) = binomial(n+1, 2) + n - 1 = n*(n+3)/2 - 1.	count	proved
+konigsberg-3	konigsberg	konigsberg-castles	open-stroke castles of height `h` and even width	`h = 1…`	`1, 25, 121, 351, 793, 1541, 2705, 4411, 6801, 10033`	`(2h⁴ + 11h³ − 8h² − 11h + 9)/3` for `h ≤ 12`, computed							
+konigsberg-4	konigsberg	konigsberg-castles	even-block open-stroke castles of height `h`	`h = 1…`	`0, 23, 49, 225, 354, 887, 1259, 2417, 3236, 5351`								
+konigsberg-5	konigsberg	konigsberg-castles	odd-block open-stroke castles of height `h`	`h = 1…`	`3, 10, 88, 152, 477, 706, 1514, 2080, 3671, 4810`								
+konigsberg-6	konigsberg	konigsberg-castles	open-stroke castles of height 2, by width (all of them)	`w = 1…10`	`1, 3, 3, 6, 3, 10, 1, 5, 0, 1`								
+konigsberg-7	konigsberg	konigsberg-castles	open-stroke castles of height 3, by width (all of them)	`w = 1…16`	`1, 2, 1, 12, 5, 22, 5, 35, 3, 29, 1, 15, 0, 5, 0, 1`								
+konigsberg-8	konigsberg	konigsberg-castles	open-stroke castles of height `h` at width `2m`, any `h ≥ m + 2`	`m = 1…`	`2, 6, 12, 20, 30, 42, 56, 72, 90, 110`	`m(m + 1)`, computed for `h ≤ 12`		A002378	m		Oblong (or promic, pronic, or heteromecic) numbers: a(n) = n*(n+1).	count	
+konigsberg-9	konigsberg	konigsberg-castles	open-stroke castles of height `h` at width `2h − 2`	`h = 2…`	`3, 12, 27, 48, 75, 108, 147, 192, 243, 300, 363`	`3(h − 1)²`, computed for `h ≤ 12`		A033428	h − 1		a(n) = 3*n^2.	count	
+konigsberg-10	konigsberg	konigsberg-castles	open-stroke castles of height `h` at width `2h`	`h = 1…`	`0, 6, 22, 48, 84, 130, 186, 252, 328, 414, 510, 616`	`(5h − 4)(h − 1)`, computed for `h ≤ 12`		A202803	h − 1		a(n) = n*(5*n+1).	count	
 blocks-1	blocks		`A^o(w, h)` rows, `h = 3..7`		`h = 3`: `1, 5, 16, 44, 122, 358, 1082, 3274`	`(A + P(h−1, w) − P(h−2, w))/2`; order 5, 9, 11, 13, 15							
 blocks-2	blocks		columns `A^o(4..6, h)`, `A^e(5, h)`, `A^e(6, h)`		`A^o(4, h)`: `1, 5, 44, 58, 247, 223, 738, 564`	a polynomial in `h` plus `(−1)^h` times a polynomial in `h`							
 blocks-3	blocks		even, odd, convex, vee, non-convex and strict-vee castles by area, split by parity, and their signed differences		on the page	`cev + cod = A001523`, `vee_even + vee_odd = A332578`, `nc_even + nc_odd = A115981`							
@@ -333,6 +353,7 @@ a020555			Bender's v*((0,n)): all partitions of a multiset with every element tw
 a023432			strictly alternating bargraphs by semi-perimeter correspond to Motzkin paths with no UD, UU, DD (Deutsch-Elizalde §4.2)					A023432			Number of Dyck n-paths with ascents and descents of length equal to 1 (mod 3).	supporting	
 a026674			Ballot transform of the Fibonacci numbers (Barry Table 2)					A026674			a(n) = T(2n-1,n-1) = T(2n,n+1), T given by A026725.	supporting	
 a027907			unconstrained U/R/D words by final height, the ceiling the castle grammar prunes					A027907			Triangle of trinomial coefficients T(n,k) (n >= 0, 0 <= k <= 2*n), read by rows: n-th row is obtained by expanding (1 + x + x^2)^n.	supporting	
+a028552		konigsberg-castles	`n(n + 3)`; minus 2, the open-stroke castles of odd width					A028552			a(n) = n*(n+3).	supporting	
 a033887			F(3n+1): δ_4 convergent numerators					A033887			a(n) = Fibonacci(3*n + 1).	metallic	
 a034182			polyominoes with bounding box 2 × n (`I(2, n) = Q_{n+1} − 2`)					A034182			Number of not-necessarily-symmetric n X 2 crossword puzzle grids.	supporting	
 a034184			polyominoes with bounding box 3 × n					A034184			Not necessarily symmetric n X 3 crossword puzzle grids.	supporting	
