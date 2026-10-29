@@ -3,7 +3,7 @@
 # Checks: the examples; width, height, area and columns of vN(n); its blocks row by row (the binomial
 # tree); the castles of plane trees are the alternating castles of odd width, counted by blocks by the
 # Catalan numbers; the castles of hereditarily finite sets by blocks (A004111); the Ackermann castles
-# ack(m) of the natural numbers: blocks, width, height, parity, against the OEIS.
+# ack(m) of the natural numbers: blocks, width, height, parity (A372325), against the OEIS.
 # Page: wiki/pages/von-neumann-castles.md.  OEIS data below: the data fields, read 2026-10-28.
 import sys
 from functools import lru_cache, cmp_to_key
@@ -35,6 +35,9 @@ OEIS = {  # A-number: (offset, data field)
                     12, 13, 14, 15, 6, 7, 8, 9, 9, 10, 11, 12, 10, 11, 12, 13, 13, 14, 15, 16, 10, 11, 12, 13,
                     13, 14, 15, 16, 14, 15, 16, 17, 17, 18, 19, 20]),
     'A230864': (1, [0, 1, 2, 2] + [3] * 12 + [4] * 64),
+    'A372325': (1, [0, 2, 5, 7, 8, 10, 13, 15, 16, 18, 21, 23, 24, 26, 29, 31, 33, 35, 36, 38, 41, 43, 44, 46, 49,
+                    51, 52, 54, 57, 59, 60, 62, 64, 66, 69, 71, 72, 74, 77, 79, 80, 82, 85, 87, 88, 90, 93, 95,
+                    97, 99, 100, 102, 105, 107, 108, 110, 113, 115, 116, 118, 121, 123, 124]),
 }
 
 
@@ -423,6 +426,25 @@ even = [m for m in range(64) if blocks(ack(m)) % 2 == 0]
 print('[6] m < 64 with an even-block castle ack(m):', even)
 check('[6] blocks(ack(m)) = 1 + #{bits k of m with blocks(ack(k)) odd} mod 2, m < 2^16:',
       all(blocks(ack(m)) % 2 == (1 + sum(blocks(ack(k)) % 2 for k in bits(m))) % 2 for m in range(M6)))
+odd = [m for m in range(M6) if blocks(ack(m)) % 2 == 1]
+
+
+def a372325(n_max):
+    """The entry's rule: k is a term when an even number of the 1s of k sit at positions that are terms."""
+    terms, mask = [], 0
+    for k in range(n_max):
+        if bin(k & mask).count('1') % 2 == 0:
+            terms.append(k)
+            mask |= 1 << k
+    return terms
+
+
+check('[6] the m with an odd-block castle ack(m) = A372325(n), n >= 1, on the data field and by its rule for m < 2^16:',
+      odd[:len(OEIS['A372325'][1])] == OEIS['A372325'][1] and odd == a372325(M6))
+check('[6] A372325 example: 118 = 2^6 + 2^5 + 2^4 + 2^2 + 2^1 has an odd-block castle; 8192 = 2^13 does not:',
+      blocks(ack(118)) % 2 == 1 and blocks(ack(8192)) % 2 == 0)
+check('[6] the m with an odd-block castle are the m with A116549(m) odd, on the data field:',
+      all((m in odd) == (oeis('A116549', m) % 2 == 1) for m in oeis_range('A116549')))
 print('[6] areas m = 0..15:', [sum(ack(m)) for m in range(16)])
 
 print('all checks passed:', ok_all)
