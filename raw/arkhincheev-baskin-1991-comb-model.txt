@@ -1,0 +1,327 @@
+Anomalous diffusion and drift in a comb model of percolation clusters
+              V. E. Arkhincheev and E. M. Baskin
+             Buryat Scientifir Center, Siberian Division of the Academy of Sciences of the USSR, Ulan- Ude
+              (Submitted 28 December 1990)
+              Zh. Eksp. Teor. Fiz. 100,292-300 (July 1991)
+              The example of a comb structure is used in a study of the influence of "dead ends" on the diffusion
+              and drift of particles along percolation clusters. It is shown that the equation for the
+              determination of the particle density on the axis of a structure is integrodifferential. When the
+              number of particles is not conserved, the first derivative with respect to time in this equation is
+              replaced with a fractional derivative of order 1/2. A correspondence is established with the
+              problem of diffusion characterized by a continuous distribution of delay times. The results are
+              given of a numerical modeling of the diffusion and drift in a two-dimensional percolation system.
+              An analysis is made of the relationship between these results and the general problem of the drift
+              and diffusion along fractals and in systems with traps.
+
+
+
+
+1. INTRODUCTION                                                             order 1/2. An exact expression is also obtained for the
+     The anomalous diffusion in fractal structures is a sub-                Green's function used in the anomalous diffusion problem.
+ject of great topical interest. The anomaly consists in the                 It is shown that the mobility of this center of gravity in an
+usual time dependence of the mean-square displacement:                      external static electric field decreases with time in accor-
+                                                                            dance with the following law:
+      < x Z ( t ))a t 2 / ( 2 : + 8 ) .                            (1)
+                                                                               p ( t )a y,lt".                                               (3)
+Here, 0 is the critical exponent of the anomalous diffusion
+process. The law ( 1) had been established by numerical                          It therefore follows that different types of behavior of
+modeling of percolation clusters (random fractals) and by                   the mobility in an external field are possible: we can either
+the renormalization group method for regular fractals of the                have the nonlinear dependence (2) in the case of constant
+Sierpinski gasket type.' However, there is as yet no rigorous               mobility whenp ccp,IE I' or themobility may decrease with
+description of this effect: in fact, the anomalous diffusion                time in accordance with Eq. ( 3 ) . We therefore carried out
+equation has not yet been derived.                                          numerical modeling of the drift of a particle in a percolation
+     In our earlier paperZwe suggested a phenomenological                   cluster. We discovered power-law relaxation over short time
+description of the anomalous diffusion in a homogeneous                     intervals and a strongly nonlinear (exponential) behavior of
+isotropic system. We demonstrated that in this case the gen-                the mobility for long times ( lo5 steps) and in strong fields,
+eralized diffusion equation has fractional spatial derivatives.             when the capture by field-induced traps becomes important.
+As a result, we established in Ref. 2 a nonlinear relationship              The present paper deals with these topics.
+between the current and the electric field due to anomalous
+diffusion:                                                                  2. MODEL OF A COMB STRUCTURE
+                                                                            2.1. Anomalous diffusionequation
+                                                                                A special feature of the diffusion in our model is that
+In other words, under the conventional diffusion conditions                displacement in the x direction is possible only along the
+( 0 = 0) we can expect Ohm's law to be satisfied; in the                   structure axis. In other words, the diffusion coefficient D,
+anomalous diffusion case a more general expression (2) re-                 differs from zero only for y = 0: Dxx = D, 6(y). The diffu-
+places Ohm's law (linear response). However, it is not clear               sion coefficient along the ribs is of the conventional type:
+to what extent the model of a homogeneous medium with                      Dyy = D, . Therefore, a random walk on a comb structure is
+anomalous diffusion can be used to describe real percolation               described by the diffusion tensor
+systems.
+     A model allowing for the presence of "dead ends" in
+percolation systems (Fig. 1) was proposed in Ref. 3. The
+technique of generating functions was used in Ref. 3 to estab-
+lish asymptotic behavior of the mean-square displacement
+along the axis of a structure and to show that it depends
+anomalously on time [Eq. ( 1) ] with the exponent 0 = 2.
+However, the diffusion equation was not derived and incor-
+rect extrapolation to the Gaussian form was proposed for the
+Green's function.
+      We shall derive below an equation describing the diffu-
+sion and drift along the axis of a structure. It can be repre-
+sented as a continuity equation in which the first derivative              FIG. 1. Comb structure: the conducting axis ( y = 0) has ribs going to
+with respect to time is replaced with a fractional derivative of           infinity.
+
+161            Sov. Phys. JETP 73 (I),July 1991              0038-5846191I070161-05$03.00         @ 1991 American Institute of Physics     161
+The diffusion equation is therefore
+                                                                 (see Ref. 4), we obtain the following diffusion equation for
+                                                                 the particle number on the structure axis:
+
+Here, G(x,y,t) is the Green function for the diffusion prob-
+lem. Applying the Laplace approximation with respect to
+time and the Fourier transformation along the coordinate x,      where
+we obtain a mixed (p,k,y) representation:
+
+
+
+The solution of Eq. (6) is                                            The integrodifferential nature of the diffusion equation
+                                                                 ( 14) is a consequence of the random disappearance and sub-
+                                                                 sequent creation of a diffusing particle (disappearance from
+                                                                 the axis and return to it) in the course of a random walk
+     As pointed out above, the diffusion along the structure     along the structure axis.
+axis, i.e., for y = 0, is anomalous. The corresponding                This formulation of the random-walk problem differs
+Green's function is                                              from the case of a continuous distribution of the delay times
+                             m                                   (continuous-time random walk-CTRW), first discussed in
+                                                                 Refs. 5 and 6. The difference is this: in the latter problem the
+                                                                 particle does not disappear but is delayed at each site with
+                                                                 some probability. The total number of particles is then con-
+Equation ( 8 ) is derived assuming the identity                  served. In the case of a comb structure the formulation with
+       m
+                                                                 a continuous distribution of the delay times is equivalent to a
+       1eap (--ar) d r
+       0
+                         =-
+                             1
+                             a
+                                 .                               study of
+                                                                               -
+The total number of particles on the structure axis decreases
+with time:
+          +m                                                     According to Eq. ( 7 ) , the function 8 is described by the
+                                                                 equation
+
+
+Therefore, the Green's function G(x,O,t) describes the diffu-
+sion when the number of particles is not conserved. Bearing      Consequently, in the CTRW case the diffusion equation rep-
+this point in mind, we can calculate the displacement along      resents the continuity equation for a medium with time dis-
+the structure axis:                                              persion:
+                                                                    dn
+                                                                         +
+                                                                    - div j=O,
+                                                                     dt
+
+It must be stressed that the results given by Eqs. (9) and       where
+( 10) are exact and they follow from the integral representa-
+tion of Eq. (8). The asymptotic form is found by the steep-
+est-descent method:
+
+
+                                                                 The diffusion is still anomalous to the same exponent 0 = 2.
+                                                          (11)   The Green's function for this problem is different:
+                                                                                         a
+One should also mention the unusual statistics of a random                         D,"
+walk along the axis, the example, the probability of returning
+to the starting point of a random walk is
+                                                                     ~(x,t)=-       Jexp(----
+                                                                           n ( ~ ~ t,) "    m,r
+                                                                                              za                t
+                                                                                                              D2r2  Idr
+                                                                                                                     -        (17)
+
+                                                                       The results obtained are readily generalized. For exam-
+                                                                 ple, it is interesting to consider the transition from the anom-
+    We now consider the equation for G(x,O,t). It follows        alous to the conventional diffusion. For this transition to
+from Eq. (7) that in the (p,k) representation, this equation     occur it is sufficient to immerse a comb structure in a poorly
+is                                                               conducting medium with the diffusion coefficient Do
+                                                                 (DogD,). In this case the diffusion coefficient is described
+      [2(D,p)"+D,kZ]G( p , k ) =I.                       (13)
+                                                                 by
+Using the definition of the fractional derivative with respect
+to time
+
+162        Sov. Phys. JETP 73 ( I ) , July 1991                                          V. E. Arkhincheev and E. M. Baskin   162
+For short time intervals, namely when t(D /D2 D i, the   :                 According to Eq. (24), the probability distribution
+                                                                     function for short distances is governed primarily by the
+anomalous diffusion of Eq. (10) applies, whereas for long
+times we have the conventional diffusion obeying the Dot             drift; in the case of long distances it is governed by the diffu-
+law.                                                                 sion. In the conventional diffusion case the motion of the
+     The transition to the conventional diffusion also occurs        center of gravity and of the maximum of a packet coincide,
+when the average length of the ribs L is finite. Then, for long      whereas in the anomalous diffusion case the spreading of a
+times t) L 2/D2, we obtain (x2(t)) a Dlt /L.                         packet is more complex. For short times t 4 t,, the center of
+                                                                     gravity of a packet travels faster than the point correspond-
+2.2. Diffusion in an electric field                                  ing to the maximum of the function G ( x , t;E). For t ) t,, a
+     The application of an electric field E gives rise to anisot-    definite front is established and the velocity of the packet
+ropy of the random walks. In weak fields the anisotropy pa-          maximum is higher than the velocity of the center of gravity:
+rameter is small [a(E)( l ] and is proportional to the field.
+Consequently. in the case of the field current we have
+j = npE. The mobility tensor for a comb structure is
+                                                                          We also consider the influence of an electric field on the
+                                                                     probability of returning to the starting point of a random
+                                                                     walk. The sideways drift in the conventional diffusion case
+     The Green's function for the problem of diffusion in an         gives rise to an exponential reduction in the probability of
+electric field directed along the structure axis is                  return:
+      6' ( p , k ; E ) = [2 ( D z p )"+D,k2+iky,E] -I.       (20)       G(O, t ; El =G ( 0 , t; E=O) exp (-t/tE).                (26)
+When the method described above is applied to Eq. (20), we           Here, t, -L ;/D, ( 9 = 0). In our case, it follows from Eqs.
+obtain the following expression for the Green's function de-         ( 12) and (2 1) that for long times we can expect a power-law
+scribing the diffusion and drift along the structure axis:           reduction:
+
+
+                                                                     The result of Eq. (27) is readily understood. The electric
+                                                                     field acts on the particles only when they reach the structure
+                                                             (21)    axis; most of the time they are at the ribs and, therefore, a
+We now find the first moment of the Green's function in the          weaker (power-law) dependence is obtained. This accounts
+field                                                                for the lag of the center of gravity of a packet behind its
+                                                                     maximum.
+
+                                                                     3. NUMERICAL MODELING OF DRIFT IN PERCOLATION
+                                                                     CLUSTERS
+It should be stressed that the response to a static electric field
+is time-dependent, i.e., the velocity of the center of gravity             The models discussed above do not allow fully for the
+decreases with time in accordance with the law                       complex geometry of the percolation clusters. It is not possi-
+                                                                     ble to say apriori which of the expressions given by Eqs. (2)
+                                                                     and (3) satisfactorily describes the drift of a particle in a
+                                                                     percolation cluster. Therefore, we carried out numerical
+                                                                     modeling of the drift in percolation clusters.
+It is clear from Eq. (23) that in the anomalous diffusion case
+                                                                           We describe briefly the modeling procedure. A ran-
+we cannot select a suitable inertial reference system moving
+                                                                     dom-number generator produced a quadratic lattice of size
+at a constant velocity in which only diffusion would take
+                                                                     L X L (L = 400 or 500) and with a given fraction of
+place.                                                               knocked-out sites near the percolation threshold. This is the
+      The steepest-descent method yields the asymptotic
+                                                                     familiar problem of sites in percolation theory.' We then
+form of the Green's function in an electric field:
+                                                                     modeled a random walk on this lattice with periodic bound-
+                                                                     ary conditions. The selection of the starting point of the walk
+                                                                     was arbitrary. The probability of a step along one of four
+                                                                     directions was determined by selecting a random number
+                                                                     within the interval [0, I ] split into four equal parts. When a
+                                                                     site in the selected direction was knocked out, a random se-
+                                                                     lection of the direction was made until a transition to the
+                                                                     nearest site took place. The number of failed attempts was
+The quantities introduced above have a clear physical mean-          ignored in the total number of steps. Configurations in
+ing: L, = D,/p, is the length governed by the external elec-         which the starting point of a random walk corresponded to
+tric field, while                                                    an empty site or when there were no nearest intact sites were
+                                                                     ignored in calculating the mean-square displacement.
+                                                                           Averaging was carried out over randomly selected
+                                                                     starting points of random walks and over realizations of the
+is the diffusion time over a distance L,.                            random percolation lattice. The total number of averaging
+
+163        SOV.Phys. JETP 73 ( I ) , July 1991                                              V. E. Arkhincheev and E. M. Baskin   163
+procedures was of the order of 250. The anisotropy of a jump
+(in an electric field) was modeled by a nonuniform splitting
+of the interval [0, 11. The length representing the motion
+along the field (or opposite to the field) was increased (or
+reduced) by an amount equal to the anisotropy a.
+     The calculation program was checked by applying it to
+a homogeneous medium and a comb structure. The results of
+the modeling of the diffusion itself in clusters agreed with
+those given in Ref. 8.
+     We found that for short times the mobility of a particle
+decreased with time in accordance with a power law
+
+                                                                            FIG. 3. Dependence of the particle mobility on the electric field /1 =
+The results are presented in Fig. 2. Relaxation of the mobil-               eEL, / T for long times ( t = lo5).
+ity with time is a consequence of the loss of a particle from a
+current-carrying path to "dead ends" and of the twisted na-
+ture of the percolation paths. It follows from these numerical
+calculations that the value of the exponent y differs from the              Therefore, in place of the possible law (2), we found a differ-
+ 1/2 typical of a comb structure and is approximately equal                 ent nonlinear behavior of Eq. (29). This was because the
+to 1/3. Using a scale analysis we can relate the power expo-                electric field plays a dual role in inhomogeneous percolation
+nent y to the anomalous diffusion exponent 8:                               systems. On the one hand, the field causes the drift of parti-
+                                                                            cles and, on the other, it creates particle traps. The electric-
+                                                                            field-induced traps may be the "dead ends" and parts of the
+If we represent the mobility of a particle in a percolation                 percolation paths directed against the field. Equation (2)
+cluster in the scaling form                                                 was derived using a model description of the diffusion of the
+                                                                            effective-medium type without any allowance for the cap-
+                                                                            ture by traps. Equation (29) can be explained as follows.
+                                                                            The probability of crossing a trap of length L is exponential-
+
+       -
+and repeat the familiar procedure in which it is assumed that
+for tc WJ the mobility should be independent of the proxim-
+ity to the percolation threshold, we can determine the
+                                                                            ly small: it is proportional to exp ( - eEL/T); the character-
+                                                                            istic size of traps is of the order of the correlation radius LC.
+
+asymptotic behavior of the function f and the relationship
+between the power exponents y and 8 given above.                                 We have discussed the diffusion and drift in a comb
+      We also found the steady-state mobility after a long                  structure and in percolation clusters. The main problem in
+time (lo5 steps) and in strong electric fields (eELc/TB 1,                  describing the anomalous diffusion is that of the nature of
+where LCis the correlation radius of an infinite cluster). We               the generalized diffusion equation. For a homogeneous iso-
+found that the mobility is a nonlinear function of the electric             tropic model with anomalous diffusion it is an equation with
+field (Fig. 3). It can be extrapolated using the following                  fractional spatial derivative^.^ In the present paper the ex-
+exponential dependence:                                                     ample of a comb structure is used to show that the presence
+                                                                            of "dead ends" leads to fractional time derivatives. If the
+      P ( E ) POexp (-eEL,IT) .                                    (29)
+                                                                            anomalous nature of the diffusion in percolation clusters
+                                                                            were entirely due to the "dead ends," then it would have
+                                                                            sufficied to replace the derivative a '/'/at 'I2 in Eq. ( 14)
+                                                                            with a     + ')/at '/(' '). In general, of course, we have to
+                                                                                                      +
+
+
+
+
+                                                                            allow also for the spatial nonlocalization. Therefore, the
+                                                                            generalized diffusion equation for percolation clusters can
+                                                                            be represented in the form
+
+
+                                                                            The power exponents S a n d v are related by
+
+
+                                                                            When Eq. ( 31) is obeyed, the diffusion problems are charac-
+                                                                            terized by a specific type of self-similar behavior in which the
+                                                                            anomalous dependence of the mean-square displacement on
+                                                                            time given by Eq. ( 1) is always reproduced. The explicit
+                                                                            form of the self-similar variable is selected:
+FIG. 2. Time dependence of the mobility p of a particle in percolation
+clusters plotted for a = eEa/T = 0.05 (O), a = 0.10 (A),and a =
+0.15 (a).The excess above the percolation threshold is 0.03. The straight       Another important topic is the explicit form of the
+line and the points are obtained for a comb structure.                      Green's function of the problem with anomalous diffusion.
+
+164        Sov. Phys. JETP 73 (I), July 1991                                                         V. E. Arkhincheev and E. M. Baskin      164
+It follows from Eq. (8) that the Green's function can be            the particles on the structure axis, which migrate by the
+described asymptotically by                                         anomalous diffusion in a homogeneous one-dimensional me-
+                                                                    dium. The anomalous nature of the diffusion is ensured by
+                                                                    the presence of creation and annihilation centers at each
+                                                                    point on the axis. It follows from earlier work2 that the mo-
+A similar expression is obtained also in the model of a homo-       bility in such media should be a nonlinear function of the
+geneous isotropic medium. It should be stressed that Eq.            electric field. The position of the center of gravity of a packet
+( 3 2 )is rigorous, in contrast to the extrapolation expressions    is determined by all the particles. In their case the anoma-
+given in Ref. 9.                                                    logs diffusion is due to random delay at each site and the
+      We studied the relationship between the diffusion and         consequence of this is also a reduction in the mobility of the
+conductivity in the anomalous diffusion case. The problem is        center of gravity with time.
+that the diffusion coefficient defined in the usual manner                The power-law relaxation of the mobility of a particle in
+                                                                    percolation clusters discovered by the numerical modeling
+                                                                    method suggests the need to use fractional time derivatives
+                                                                    in the generalized diffusion equation of Eq. ( 3 0 )
+vanishes. Consequently, in the linear approximation we can                 he authors are grateful to A. V. Chaplik for suggesting
+also use the Einstein relationship to obtain zero mobility. On      a simple method [Eq. (4) 1 that can be used to describe the
+the other hand, a classical particle does not become local-         diffusion in a comb structure.
+ized:
+                                                                    'Y. Gefen, A. Aharony, B. B. Mandelbrot, and S. Kirkpatrick, Phys.
+                                                                     Rev. Lett. 47, 1771 (1981); Ya. B. Zel'dovich, S. A. Molchanov, A. A.
+This contradiction can be resolved by at least two methods,          Ruzrnaikin, and D. D. Sokolov, Usp. Fiz.Nauk 152, 3 (1987) [Sov.
+                                                                     Phys. Usp. 30,353 (1987)l.
+namely by showing that in the anomalous diffusion case 1)           'V. E. Arkhincheev, E. M. Baskin, and E. G. Batyev, J. Non-Cryst. Solids
+there is not linear response, i.e., the Einstein relationship is     90,21 (1987).
+invalid [see Eq. ( 2 ) ] ;2 ) there is no constant mobility in a    3G. H. Weiss and S. Havlin, Physica A (Utrecht) 134,474 (1986).
+                                                                    4M. M. Dzhrbashyan, Integral Transformations and Representation of
+static electric field, in other words, the average displacement      Functions in the Plane of the Complex Variable [in Russia], Nauka,
+increases with time more slowly than the first power oft.            Moscow ( 1966).
+     In a comb structure we have both cases described by            'E. W. Montroll and G. H. Weiss, J. Math. Phys. ( N . Y . )6, 167 ( 1965).
+                                                                    6M. F. Shlesinger, J. Stat. Phys. 10,421 (1974).
+Eqs. ( 2 ) and ( 3 ) . The constant and nonlinear mobility          'B. I. Shklovskii and A. L. Efros, Electronic Theory of Doped Semicon-
+p ( E )cc ,uo E characterizes the motion of the maximum of a         ductors, Springer Verlag, Berlin ( 1984).
+packet, whereas the mobility of the center of gravity of the        'R. B. Pandey, D. Stauffer, A. Margolina, and J. Zabolitzky, J. Stat.
+                                                                     Phys. 34,427 ( 1984).
+packet decreases with time: p ( t ) ccpo/t ' I 2 .This difference   'A. B. Harris and A. Aharony, Europhys. Lett. 4, 1335 (1987).
+is easily understood. The contribution to the motion of the
+packet maximum is made only by the mobile particles, i.e.,          Translated by A. Tybulewicz
+
+
+
+
+165      Sov. Phys. JETP 73 (I),July 1991                                                     V. E. Arkhincheev and E. M. Baskin        165
+
