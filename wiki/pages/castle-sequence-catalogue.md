@@ -1,7 +1,7 @@
 ---
 title: Castle sequence catalogue
 category: Reference
-summary: Script-generated catalogue of the castle-counting sequences on the wiki (257 rows in 25 families), by the object each one counts: first terms, recurrence or generating function, growth constant, and the OEIS entry it equals at the stated offset, or none. Built with oeis-index from one data file, config/castle-sequences.tsv, by bin/generate-sequence-pages.py.
+summary: Script-generated catalogue of the castle-counting sequences on the wiki (256 rows in 25 families), by the object each one counts: first terms, recurrence or generating function, growth constant, and the OEIS entry it equals at the stated offset, or none. Built with oeis-index from one data file, config/castle-sequences.tsv, by bin/generate-sequence-pages.py.
 tags: [reference, oeis, castle, sequence, catalogue, generated]
 sources: [oeis-encyclopedia]
 created: 2026-09-17
@@ -243,15 +243,14 @@ Skylines whose neighboring columns differ by exactly 1, the 1-smooth and plateau
 
 *(Every row agrees with `bin/python/zig_zag_castles.py` and with every term of the OEIS data field at the stated offset, 2026-10-27.)*
 
-### Mersenne strips and Mersenne castles
+### Mersenne castles
 
-Castles whose neighboring columns, read as strings whose lengths are the column heights, sound a perfect consonance: heights in ratio 1, 2, 3/2 or 4/3, or the inverse ([[mersenne-castles](pages/mersenne-castles.md)]). `mstrips(w, h) = 𝟙ᵀ M_cons^{w−1} 𝟙` counts the Mersenne strips on `{1, …, h}` and `A_Mersenne(w, h) = mstrips(w, h) − mstrips(w, h − 1)` the Mersenne castles of height `h`. A consonance keeps the part of a height prime to 6, so `A_Mersenne(w, h) = A_Mersenne(w, h₀)` for `h₀` the largest divisor of `h` of the form `2^a 3^b`, and the rows are at those heights.
+Castles whose neighboring columns, read as strings whose lengths are the column heights, sound a perfect consonance: heights in ratio 1, 2, 3/2 or 4/3, or the inverse ([[mersenne-castles](pages/mersenne-castles.md)]). `A_Mersenne(w, h)` counts the Mersenne castles of width `w` and height `h`. A consonance keeps the part of a height prime to 6, so `A_Mersenne(w, h) = A_Mersenne(w, h₀)` for `h₀` the largest divisor of `h` of the form `2^a 3^b`, and the rows are at those heights.
 
 | object | from | first terms | g.f. / formula | growth | OEIS |
 |---|---|---|---|---|---|
 | Mersenne castles of height 2, all castles of height 2 | `w = 1…` | `1, 3, 7, 15, 31, 63, 127, 255, 511, 1023` | `2^w − 1` | `2` | [A000225](https://oeis.org/A000225) (`= A000225(w)`) |
 | Mersenne castles of height 3, the 1-smooth castles of height 3 | `w = 1…` | `1, 3, 9, 25, 67, 175, 449, 1137, 2851, 7095` | g.f. `x(1 − x)/((1 − 2x)(1 − 2x − x²))` | `1+√2` | [A106514](https://oeis.org/A106514) (`= A106514(w − 1)`) |
-| Mersenne strips on `{1, …, 4}` | `w = 1…` | `4, 12, 38, 120, 380, 1204, 3816, 12096, 38344, 121552` | g.f. `2x(2 − 2x − x²)/(1 − 4x + 2x² + 2x³)` | `3.17008…`, root of `x³ − 4x² + 2x + 2` | - |
 | Mersenne castles of height 4 | `w = 1…` | `1, 5, 21, 79, 281, 965, 3239, 10703, 34981, 113433` | g.f. `x(1 − x)/((1 − 2x − x²)(1 − 4x + 2x² + 2x³))` | `3.17008…`, root of `x³ − 4x² + 2x + 2` | - |
 | Mersenne castles of height 6 | `w = 1…` | `1, 5, 23, 101, 423, 1717, 6815, 26605, 102559, 391477` |  | `3.64118…`, root of `x⁴ − 5x³ + 4x² + 4x − 2` | - |
 | Mersenne castles of height 8 | `w = 1…` | `1, 5, 25, 119, 547, 2447, 10727, 46301, 197439, 833797` |  | `3.98093…` | - |

@@ -32,8 +32,8 @@ def M_cons(h):
     return [[1 if cons(a, b) else 0 for b in range(1, h + 1)] for a in range(1, h + 1)]
 
 
-def mstrips(w, h, sign=False):
-    """Mersenne strips of width w on 1..h; with sign, the sum of (-1)^blocks."""
+def skylines(w, h, sign=False):
+    """Skylines of width w on 1..h obeying the rule, reaching h or not; with sign, sum of (-1)^blocks."""
     if h <= 0 or w <= 0:
         return 0
     v = [(-1) ** a if sign else 1 for a in range(1, h + 1)]
@@ -44,11 +44,11 @@ def mstrips(w, h, sign=False):
 
 
 def A(w, h):
-    return mstrips(w, h) - mstrips(w, h - 1)
+    return skylines(w, h) - skylines(w, h - 1)
 
 
 def S(w, h):
-    return mstrips(w, h, True) - mstrips(w, h - 1, True)
+    return skylines(w, h, True) - skylines(w, h - 1, True)
 
 
 def blocks(c):
@@ -155,7 +155,7 @@ def pmul(p, q):
 
 # [1] the rule
 print('[1] consonant ratios b/a:', ', '.join(f'{r} ({NAMES[r]})' for r in RATIOS))
-print('[1] M_cons at h = 4:', M_cons(4))
+print('[1] M_cons(4):', M_cons(4))
 print('[1] M_cons symmetric for h <= 400:', all(cons(a, b) == cons(b, a) for a in range(1, 401) for b in range(1, 401)))
 deg = [sum(cons(a, b) for b in range(1, 3 * a)) for a in range(1, 401)]
 print('[1] consonant heights of a, over all heights b >= 1: at most', max(deg), 'for a <= 400;',
@@ -168,13 +168,13 @@ print('[2]', ex, 'is a Mersenne castle of height 4:', is_mersenne(ex) and max(ex
       '; steps:', [NAMES[Fr(b, a)] for a, b in zip(ex, ex[1:])], '; blocks', blocks(ex))
 for row in range(4, 0, -1):
     print('     ', ' '.join('#' if c >= row else '.' for c in ex))
-print('[2] (1, 3) and (4, 5) are not Mersenne strips:', not is_mersenne((1, 3)), not is_mersenne((4, 5)))
+print('[2] the pairs (1, 3) and (4, 5) break the rule:', not is_mersenne((1, 3)), not is_mersenne((4, 5)))
 w4 = [c for c in product(range(1, 5), repeat=3) if max(c) == 4 and is_mersenne(c)]
 print('[2] the Mersenne castles of width 3 and height 4:', len(w4), w4)
 
 # [3] small heights
 print('[3] h = 1: A(w, 1) = 1 for w <= 30:', all(A(w, 1) == 1 for w in range(1, 31)))
-print('[3] h = 2: every castle of height 2 is a Mersenne castle (w <= 14):',
+print('[3] h = 2: every castle of height 2 obeys the rule (w <= 14):',
       all(is_mersenne(c) for w in range(1, 15) for c in product((1, 2), repeat=w)),
       '; A(w, 2) = 2^w - 1 for w <= 40:', all(A(w, 2) == 2 ** w - 1 for w in range(1, 41)))
 print('[3] h = 3: the rule on {1, 2, 3} is |a - b| <= 1:',
@@ -185,12 +185,9 @@ print('[3] char poly h = 3:', cp3, '= (x - 1)(x^2 - 2x - 1):', cp3 == pmul([1, -
 print('[3] char poly h = 4:', cp4, '= x(x^3 - 4x^2 + 2x + 2):', cp4 == pmul([1, 0], [1, -4, 2, 2]))
 for h in (2, 3, 4):
     print(f'[3] A(w, {h}), w = 1..12:', [A(w, h) for w in range(1, 13)])
-print('[3] mstrips(w, 4), w = 1..10:', [mstrips(w, 4) for w in range(1, 11)])
 den4 = pmul([1, -2, -1], [1, -4, 2, 2])
 print('[3] sum_w A(w, 4) x^w = x(1 - x)/((1 - 2x - x^2)(1 - 4x + 2x^2 + 2x^3)), w <= 60:',
       series([0, 1, -1], den4, 61)[1:] == [A(w, 4) for w in range(1, 61)])
-print('[3] sum_w mstrips(w, 4) x^w = 2x(2 - 2x - x^2)/(1 - 4x + 2x^2 + 2x^3), w <= 60:',
-      series([0, 4, -4, -2], [1, -4, 2, 2], 61)[1:] == [mstrips(w, 4) for w in range(1, 61)])
 print('[3] A(401, h)/A(400, h): h = 3 %.12f vs 1 + sqrt 2 = %.12f; h = 4 %.12f'
       % (A(401, 3) / A(400, 3), 1 + math.sqrt(2), A(401, 4) / A(400, 4)))
 

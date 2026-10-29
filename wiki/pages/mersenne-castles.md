@@ -1,8 +1,8 @@
 ---
 title: Mersenne castles
 category: Concepts
-summary: A Mersenne castle is a castle whose neighboring columns, read as strings whose lengths are the column heights (Mersenne's law, frequency inversely proportional to length), sound a perfect consonance - heights in ratio 1, 2, 3/2 or 4/3, or the inverse (unison, octave, fifth, fourth). At height 2 they are all castles (2^w − 1, A000225), at height 3 the 1-smooth castles (A106514, silver by width), at height 4 they grow at 3.1701, the root of x³ − 4x² + 2x + 2. Every consonance keeps the part of a height prime to 6, so A_Mersenne(w, h) = A_Mersenne(w, h₀) for h₀ the largest divisor of h of the form 2^a 3^b (only the flat castles at h = 5, 7, 11, …). On the heights 2^i 3^j the rule is the triangular lattice with a loop at each point, since a fourth and a fifth make an octave; the Perron root ρ_cons(h) on the heights 2^i 3^j ≤ h is below 7 and tends to 7, with 7 − ρ_cons(h) = O(1/log h), and the Mersenne castles of height h grow at ρ_cons(h₀) by width.
-tags: [concept, castle, mersenne-castle, strip-rule, transfer-matrix, consonance, music, 3-smooth-numbers, triangular-lattice, perron-root, block-count, parity, silver, oeis, verification]
+summary: A Mersenne castle is a castle whose neighboring columns, read as strings whose lengths are the column heights (Mersenne's law, frequency inversely proportional to length), sound a perfect consonance - heights in ratio 1, 2, 3/2 or 4/3, or the inverse (unison, octave, fifth, fourth). At height 2 they are all castles (2^w − 1, A000225), at height 3 the 1-smooth castles (A106514, silver by width), at height 4 they grow at 3.1701, the root of x³ − 4x² + 2x + 2. Every consonance keeps the part of a height prime to 6, so A_Mersenne(w, h) = A_Mersenne(w, h₀) for h₀ the largest divisor of h of the form 2^a 3^b (only the flat castles at h = 5, 7, 11, …). On the heights 2^i 3^j the rule is the triangular lattice with a loop at each point, since a fourth and a fifth make an octave. The Mersenne castles of height h grow by width at ρ_cons(h₀), the largest eigenvalue of the rule on the heights 2^i 3^j ≤ h₀, which is below 7 and tends to 7, with 7 − ρ_cons(h₀) = O(1/log h₀).
+tags: [concept, castle, mersenne-castle, transfer-matrix, consonance, music, 3-smooth-numbers, triangular-lattice, perron-root, block-count, parity, silver, oeis, verification]
 sources: [project-euler-502-brute-force]
 created: 2026-10-28
 updated: 2026-10-28
@@ -35,11 +35,11 @@ The rule takes the four perfect consonances within an octave and none of their c
   # # # # #
 ```
 
-The skylines `(1, 3)` and `(4, 5)` are not Mersenne strips.[^exec2]
+No Mersenne castle has neighboring columns of heights 1 and 3, or 4 and 5.[^exec2]
 
-## The rule as a strip rule
+## Counting by transfer matrix
 
-A strip rule on the heights `1, …, h` is an `h × h` matrix of 0s and 1s, with a 1 in row `a` and column `b` when a column of height `a` may stand to the left of a column of height `b` ([[castle-strip](pages/castle-strip.md)]). The consonance rule is the symmetric matrix `M_cons`, with a 1 where `b/a` is in the list (1). At `h = 4`:
+On the heights `1, …, h` the consonance rule is the symmetric `h × h` matrix `M_cons(h)`, with a 1 in row `a` and column `b` when `b/a` is in the list (1). At `h = 4`:
 
 ```
           1  2  3  4
@@ -49,29 +49,27 @@ A strip rule on the heights `1, …, h` is an `h × h` matrix of 0s and 1s, with
      4  [ 0  1  1  1 ]
 ```
 
-A **Mersenne strip** of width `w` on the heights `1, …, h` is a skyline in `{1, …, h}^w` whose neighboring columns obey the consonance rule. It need not reach height `h`, so it need not be a castle of height `h`. By Equation (1) of [[castle-strip](pages/castle-strip.md)],
+Entry `(a, b)` of `M_cons(h)^{w−1}` counts the skylines of width `w` with every column in `{1, …, h}`, first column `a` and last column `b`, whose neighboring columns obey the rule. Such a skyline is a Mersenne castle of height `h` exactly when some column reaches `h`, so subtracting those with every column below `h` leaves
 
 ```
-mstrips(w, h)  =  𝟙ᵀ M_cons^{w−1} 𝟙,        A_Mersenne(w, h)  =  mstrips(w, h) − mstrips(w, h − 1),        (2)
+A_Mersenne(w, h)  =  𝟙ᵀ M_cons(h)^{w−1} 𝟙  −  𝟙ᵀ M_cons(h − 1)^{w−1} 𝟙,        (2)
 ```
 
-with `𝟙` the all-ones vector of length `h`.
+with `𝟙` the all-ones vector.
 
 The list (1) has seven ratios, so a height has at most 7 consonant heights. A height `a` has all seven exactly when `a/2`, `2a/3` and `3a/4` are whole numbers, that is, when 12 divides `a`: the height 12 is consonant with 6, 8, 9, 12, 16, 18 and 24.[^exec1]
 
 ## Heights 2, 3 and 4
 
 - **Height 2.** The pairs `(1, 1)`, `(1, 2)`, `(2, 2)` are a unison, an octave and a unison, so every castle of height 2 is a Mersenne castle, and `A_Mersenne(w, 2) = A(w, 2) = 2^w − 1`, A000225(`w`).
-- **Height 3.** The heights 1 and 2 are an octave apart and 2 and 3 a fifth, while 1 and 3 are a twelfth apart. So on `{1, 2, 3}` the consonance rule is `|a − b| ≤ 1`, the 1-smooth rule, and the Mersenne castles of height 3 are exactly the 1-smooth castles of height 3, with any first column ([[1-smooth-castles](pages/1-smooth-castles.md)]). They number A106514(`w − 1`) `= 1, 3, 9, 25, 67, 175, 449, …` ([[pell-castle](pages/pell-castle.md)]), with generating function `Σ_w A_Mersenne(w, 3) x^w = x(1 − x)/((1 − 2x)(1 − 2x − x²))`.[^a106514] The characteristic polynomial of `M_cons` is `(x − 1)(x² − 2x − 1)`, and the Mersenne castles of height 3 are silver by width, growing at `δ_2 = 1 + √2` ([[metallic-means](pages/metallic-means.md)]).
-- **Height 4.** The octave `2 : 4` and the fourth `3 : 4` join the rule; the heights 1 and 4 (two octaves) and 1 and 3 are not consonant. The characteristic polynomial of `M_cons` is `x(x³ − 4x² + 2x + 2)`, and the generating functions are
+- **Height 3.** The heights 1 and 2 are an octave apart and 2 and 3 a fifth, while 1 and 3 are a twelfth apart. So on `{1, 2, 3}` the consonance rule is `|a − b| ≤ 1`, the 1-smooth rule, and the Mersenne castles of height 3 are exactly the 1-smooth castles of height 3, with any first column ([[1-smooth-castles](pages/1-smooth-castles.md)]). They number A106514(`w − 1`) `= 1, 3, 9, 25, 67, 175, 449, …` ([[pell-castle](pages/pell-castle.md)]), with generating function `Σ_w A_Mersenne(w, 3) x^w = x(1 − x)/((1 − 2x)(1 − 2x − x²))`.[^a106514] The characteristic polynomial of `M_cons(3)` is `(x − 1)(x² − 2x − 1)`, and the Mersenne castles of height 3 are silver by width, growing at `δ_2 = 1 + √2` ([[metallic-means](pages/metallic-means.md)]).
+- **Height 4.** The octave `2 : 4` and the fourth `3 : 4` join the rule; the heights 1 and 4 (two octaves) and 1 and 3 are not consonant. The characteristic polynomial of `M_cons(4)` is `x(x³ − 4x² + 2x + 2)`, and the generating function is
 
 ```
-Σ_w mstrips(w, 4) x^w  =  2x(2 − 2x − x²) / (1 − 4x + 2x² + 2x³),
-
 Σ_w A_Mersenne(w, 4) x^w  =  x(1 − x) / ((1 − 2x − x²)(1 − 4x + 2x² + 2x³)).
 ```
 
-The Mersenne castles of height 4 grow at `3.17008…` by width, the largest root of `x³ − 4x² + 2x + 2`; the factor `1 − 2x − x²` carries the growth `1 + √2` of the strips on three heights that Equation (2) subtracts.[^exec3]
+The Mersenne castles of height 4 grow at `3.17008…` by width, the largest root of `x³ − 4x² + 2x + 2`; the factor `1 − 2x − x²` comes from the second term of Equation (2).[^exec3]
 
 ## Octaves and fifths: the classes of heights
 
@@ -122,9 +120,9 @@ The number of heights in `𝒱(h)` is A071521(`h`), which grows like `(ln h)²/(
 
 Write `ρ_cons(n)` for the largest eigenvalue of the consonance rule on the heights `𝒱(n)`.
 
-**Theorem 3.** The Mersenne strips on the heights `1, …, h` grow at `ρ_cons(h)` by width, and the Mersenne castles of height `h` grow at `ρ_cons(h₀)` by width.
+**Theorem 3.** The Mersenne castles of height `h` grow at `ρ_cons(h₀)` by width.
 
-*Proof.* By Theorem 1, `M_cons` on `{1, …, h}` splits into one block for each class `m · 𝒱(⌊h/m⌋)`, and dividing by `m` makes that block the rule on `𝒱(⌊h/m⌋) ⊆ 𝒱(h)`. A principal submatrix of a nonnegative matrix has no larger largest eigenvalue, so the largest eigenvalue of `M_cons` on `{1, …, h}` is `ρ_cons(h)`, and by Equation (2) of [[castle-strip](pages/castle-strip.md)] the strips grow at it. By Theorem 2 the castles of height `h` are counted as those of height `h₀`, which lie in `𝒱(h₀)` and reach `h₀`: `A_Mersenne(w, h₀) = 𝟙ᵀ M^{w−1} 𝟙 − 𝟙ᵀ M′^{w−1} 𝟙`, with `M` the rule on `𝒱(h₀)` and `M′` the rule on `𝒱(h₀)` without `h₀`. `M` is irreducible by Theorem 1 and has 1s on its diagonal, so by the Perron-Frobenius theorem `𝟙ᵀ M^{w−1} 𝟙` grows like a positive multiple of `ρ_cons(h₀)^w`. `M′` is a proper principal submatrix of an irreducible matrix, so its largest eigenvalue is strictly smaller. ∎
+*Proof.* By Theorem 2 the castles of height `h` are counted as those of height `h₀`. Their columns lie in `𝒱(h₀)` and some column reaches `h₀`, so as in Equation (2), `A_Mersenne(w, h₀) = 𝟙ᵀ M^{w−1} 𝟙 − 𝟙ᵀ M′^{w−1} 𝟙`, with `M` the rule on `𝒱(h₀)` and `M′` the rule on `𝒱(h₀)` without `h₀`. `M` is irreducible by Theorem 1 and has 1s on its diagonal, so by the Perron-Frobenius theorem `𝟙ᵀ M^{w−1} 𝟙` grows like a positive multiple of `ρ_cons(h₀)^w`. `M′` is a proper principal submatrix of an irreducible nonnegative matrix, so its largest eigenvalue is strictly smaller. ∎
 
 The factor of the characteristic polynomial that has `ρ_cons(h₀)` as a root, irreducible over the rationals:[^exec6]
 
@@ -143,13 +141,13 @@ The factor of the characteristic polynomial that has `ρ_cons(h₀)` as a root, 
 | 27 | 12 | degree 8 | `4.96089…` |
 | 32 | 13 | degree 12 | `5.04571…` |
 
-**Theorem 4.** For every `h`, `ρ_cons(h) < 7`, and for `h ≥ 2`
+**Theorem 4.** For every height `h = 2^a 3^b`, `ρ_cons(h) < 7`, and for `h ≥ 2`
 
 ```
 7 − ρ_cons(h)  ≤  12 (log₂ h + 3 log₃ h + 4) / (log₂ h · log₃ h).                (3)
 ```
 
-So `ρ_cons(h)` tends to 7, with `7 − ρ_cons(h) = O(1/log h)`. By Theorem 3, the growth of the Mersenne castles of height `h` by width tends to 7 along every sequence of heights whose part `h₀` tends to infinity, and it is 1 at every height prime to 6.
+So the growth of the Mersenne castles of height `h = 2^a 3^b` by width tends to 7, with `7 − ρ_cons(h) = O(1/log h)`. By Theorem 3, at every height the growth is `ρ_cons(h₀) < 7`; it tends to 7 along every sequence of heights whose part `h₀` tends to infinity, and it is 1 at every height prime to 6.
 
 *Proof.* *Upper bound.* The largest eigenvalue of an irreducible nonnegative matrix is at most its largest row sum, and equals it only when all row sums are equal. Each row of the rule on `𝒱(h)` sums to at most 7, by the list (1), and the row of the height 1 sums to at most 2, so `ρ_cons(h) < 7`.
 
@@ -188,12 +186,11 @@ Every entry agrees with brute-force enumeration. The row `h₀ = 2` is the even-
 
 ## Related Concepts
 
-- [[castle-strip](pages/castle-strip.md)] - strip rules as 0/1 matrices and the strip counts of Equation (2); the consonance rule is one of its rules.
 - [[1-smooth-castles](pages/1-smooth-castles.md)], [[pell-castle](pages/pell-castle.md)] - the 1-smooth rule, which is the consonance rule on the heights 1, 2, 3; the 1-smooth castles of height 3 with any first column, A106514.
 - [[metallic-means](pages/metallic-means.md)] - the silver mean `δ_2 = 1 + √2`, the growth of the Mersenne castles of height 3.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - the Mersenne type among the rate-of-change types.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types by width; the Mersenne castles of height 4 grow at the cubic `3.17008…`.
-- [[castle-notation](pages/castle-notation.md)] - `M_cons`, `mstrips(w, h)`, `A_Mersenne(w, h)`, `h₀`, `𝒱(n)` and `ρ_cons(n)`.
+- [[castle-notation](pages/castle-notation.md)] - `M_cons(h)`, `A_Mersenne(w, h)`, `h₀`, `𝒱(n)` and `ρ_cons(n)`.
 
 ## Footnotes
 
@@ -205,9 +202,9 @@ Every entry agrees with brute-force enumeration. The row `h₀ = 2` is the even-
 [^a106514]: https://oeis.org/A106514 (read 2026-10-28) - "Expansion of (1-x)/((1-2*x)*(1-2*x-x^2)).", data `1, 3, 9, 25, 67, 175, 449, 1137, 2851, …`, offset 0.
 [^a071521]: https://oeis.org/A071521 (read 2026-10-28) - "Number of 3-smooth numbers <= n."; formula "Asymptotically: let a=1/(2*log(2)*log(3)), b=sqrt(6), then from Ramanujan a(n) ~ a*log(2*n)*log(3*n) or equivalently a(n) ~ a*log(b*n)^2."
 [^blocks]: [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] §"brute" L24 - "= c_1 + \sum_{i=2}^{w} \max(0, c_i - c_{i-1})", the column-height block-count formula.
-[^exec1]: Verified by execution (Python 3.11 with SymPy, 2026-10-28): `bin/python/mersenne_castles.py` item [1], run log `bin/python/mersenne_castles-run.log`. `M_cons` at `h = 4`; symmetry for `h ≤ 400`; at most 7 consonant heights, and 7 exactly when 12 divides the height, for heights up to 400.
-[^exec2]: Verified by execution (Python 3.11, 2026-10-28): `bin/python/mersenne_castles.py` item [2], run log `bin/python/mersenne_castles-run.log`. The example, its steps, drawing and block count, and the two non-examples.
-[^exec3]: Verified by execution (Python 3.11, 2026-10-28): `bin/python/mersenne_castles.py` item [3], run log `bin/python/mersenne_castles-run.log`. Every skyline in `{1, 2}^w` is a Mersenne strip for `w ≤ 14`, and `A_Mersenne(w, 2) = 2^w − 1` for `w ≤ 40`; the rule on `{1, 2, 3}` is the 1-smooth rule, and `A_Mersenne(w, 3) = A106514(w − 1)` on all 28 terms of the data field; the characteristic polynomials at `h = 3, 4`; both generating functions at `h = 4` for `w ≤ 60`; `A_Mersenne(401, h)/A_Mersenne(400, h)` equals `1 + √2` and `3.170086486626` at `h = 3, 4`.
+[^exec1]: Verified by execution (Python 3.11 with SymPy, 2026-10-28): `bin/python/mersenne_castles.py` item [1], run log `bin/python/mersenne_castles-run.log`. `M_cons(4)`; symmetry for `h ≤ 400`; at most 7 consonant heights, and 7 exactly when 12 divides the height, for heights up to 400.
+[^exec2]: Verified by execution (Python 3.11, 2026-10-28): `bin/python/mersenne_castles.py` item [2], run log `bin/python/mersenne_castles-run.log`. The example, its steps, drawing and block count; the pairs `(1, 3)` and `(4, 5)` break the rule.
+[^exec3]: Verified by execution (Python 3.11, 2026-10-28): `bin/python/mersenne_castles.py` item [3], run log `bin/python/mersenne_castles-run.log`. Every castle of height 2 obeys the rule for `w ≤ 14`, and `A_Mersenne(w, 2) = 2^w − 1` for `w ≤ 40`; the rule on `{1, 2, 3}` is the 1-smooth rule, and `A_Mersenne(w, 3) = A106514(w − 1)` on all 28 terms of the data field; the characteristic polynomials at `h = 3, 4`; the generating function at `h = 4` for `w ≤ 60`; `A_Mersenne(401, h)/A_Mersenne(400, h)` equals `1 + √2` and `3.170086486626` at `h = 3, 4`.
 [^exec4]: Verified by execution (Python 3.11, 2026-10-28): `bin/python/mersenne_castles.py` item [4], run log `bin/python/mersenne_castles-run.log`. The classes of Theorem 1 for every `h ≤ 300`; Theorem 2 for the counts and the signed counts at `h ≤ 72`, `w ≤ 8`; the heights 5, 10 and 60; `blocks(m c) = m · blocks(c)` for `m = 5, 7` on the Mersenne castles of height 6 with `w ≤ 6`.
 [^exec5]: Verified by execution (Python 3.11, 2026-10-28): `bin/python/mersenne_castles.py` item [5], run log `bin/python/mersenne_castles-run.log`. The exponent steps of the six consonances and the identity fourth = octave − fifth; `|𝒱(h)| = A071521(h)` on all 75 terms of the data field; the drawing at `h = 32`; the criterion for seven consonant heights for every `h = 2^a 3^b ≤ 2^20`.
 [^exec6]: Verified by execution (Python 3.11 with SymPy, 2026-10-28): `bin/python/mersenne_castles.py` item [6], run log `bin/python/mersenne_castles-run.log`. The characteristic polynomials, factored over the rationals by SymPy, and `ρ_cons(h₀)` by Collatz-Wielandt bounds to `10^{−13}`; the table of the bound (3); `d̄(h) ≤ ρ_cons(h) < 7`, `|D(h)| ≤ log₂ h + 3 log₃ h + 4` and `|𝒱(h)| ≥ ½ log₂ h · log₃ h` for every `h = 2^a 3^b ≤ 10^6` and the table rows; `A_Mersenne(1001, h)/A_Mersenne(1000, h)` equals `ρ_cons(h₀)` to ten decimals at `h = 4, 5, 6, 10, 12, 24, 30, 36`.

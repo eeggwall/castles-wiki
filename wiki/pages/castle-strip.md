@@ -5,7 +5,7 @@ summary: A castle strip is a skyline (c_1, …, c_w) with heights in {1, …, h}
 tags: [concept, castle, transfer-matrix, strip, height, perron-root, growth-constant, generating-function, pedagogy, bridge]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-10-28
+updated: 2026-10-27
 ---
 
 # The castle strip - bridge to transfer matrices
@@ -16,13 +16,12 @@ updated: 2026-10-28
 
 Fix a height bound `h` and a **rule**: for each pair of heights `a, b` in `{1, …, h}`, whether a column of height `a` may stand immediately to the left of a column of height `b`. A **castle strip** of width `w` under the rule is a skyline `(c_1, …, c_w)` with every `c_i` in `{1, …, h}` such that every pair of neighboring columns `(c_i, c_{i+1})` is allowed. A strip need not reach height `h`, so a strip is not a castle of height `h`. The strips that reach height `h` are castles of height `h` ([[castle-polyomino](pages/castle-polyomino.md)]), and they make up the castles of height `h` of the rule's family.
 
-Five rules:
+Four rules:
 
 - every pair allowed: every skyline in `{1, …, h}^w` is a strip;
 - `a ≠ b`, the plateau-free rule: no two neighboring columns of equal height;
 - `|a − b| ≤ 1`, the 1-smooth rule: neighboring heights differ by at most 1. Its strips on `{1, …, h}` form the Motzkin strip of height `h` ([[motzkin-castles](pages/motzkin-castles.md)]);
-- `|a − b| = 1`, the zig-zag rule: neighboring heights differ by exactly 1. It is the 1-smooth rule and the plateau-free rule imposed together ([[zig-zag-castles](pages/zig-zag-castles.md)]);
-- `b/a` in `{1, 2, 1/2, 3/2, 2/3, 4/3, 3/4}`, the consonance rule: neighboring columns, read as strings whose lengths are their heights, sound a unison, an octave, a fifth or a fourth ([[mersenne-castles](pages/mersenne-castles.md)]).
+- `|a − b| = 1`, the zig-zag rule: neighboring heights differ by exactly 1. It is the 1-smooth rule and the plateau-free rule imposed together ([[zig-zag-castles](pages/zig-zag-castles.md)]).
 
 *Example.* At `h = 3` under the 1-smooth rule, the skyline `(1, 2, 3, 2)` is a strip that reaches height 3, so it is a castle of height 3; the skyline `(1, 2, 2, 1)` is a strip that is not a castle of height 3; and the skyline `(1, 3, 2)` is not a strip, since its first two heights differ by 2.
 
@@ -70,7 +69,7 @@ a rational function whose denominator divides `det(I − xM)`, since by Cramer's
 ## Strips and the Project Euler castles
 
 - **Every pair allowed.** Then `M` is the all-ones matrix `J`, with Perron root `h`, and `N(w) = h^w` counts the castles of width `w` and height at most `h`. The Project Euler rules impose no condition on neighboring columns, since the blocks are the maximal runs of each row and the gap rule holds for every skyline ([[castle-polyomino](pages/castle-polyomino.md)]). The strips that reach `h` number `A(w, h) = h^w − (h−1)^w`.
-- **Named families.** The 1-smooth rule on `{1, 2, 3}` with the first column at height 1 gives the Pell castle strip, `Σ_w N(w) x^{w−1} = 1/(1 − 2x − x²)`, silver by width; its strips that reach height 3 are the Pell castles ([[pell-castle-strip](pages/pell-castle-strip.md)]). The ridge rule gives the ridge castles ([[ridge-castle](pages/ridge-castle.md)]). The zig-zag rule gives the zig-zag castles, whose strips on `{1, …, h}` are the zig-zag paths of the OEIS in a rectangle of width `h`, with Perron root `2cos(π/(h+1))` ([[zig-zag-castles](pages/zig-zag-castles.md)]). The consonance rule gives the Mersenne castles, whose count at height `h` depends only on the largest divisor of `h` of the form `2^a 3^b`, and whose Perron root on `{1, …, h}` stays below 7 and tends to 7 ([[mersenne-castles](pages/mersenne-castles.md)]). Each rule defines a family of castles, the strips that reach the top height, and its Perron root is computed from `M`.
+- **Named families.** The 1-smooth rule on `{1, 2, 3}` with the first column at height 1 gives the Pell castle strip, `Σ_w N(w) x^{w−1} = 1/(1 − 2x − x²)`, silver by width; its strips that reach height 3 are the Pell castles ([[pell-castle-strip](pages/pell-castle-strip.md)]). The ridge rule gives the ridge castles ([[ridge-castle](pages/ridge-castle.md)]). The zig-zag rule gives the zig-zag castles, whose strips on `{1, …, h}` are the zig-zag paths of the OEIS in a rectangle of width `h`, with Perron root `2cos(π/(h+1))` ([[zig-zag-castles](pages/zig-zag-castles.md)]). Each rule defines a family of castles, the strips that reach the top height, and its Perron root is computed from `M`.
 
 [[castle-graph](pages/castle-graph.md)] takes eigenvalues of a single castle's cell adjacency matrix; a strip rule's Perron root is the growth constant of a whole family.
 
@@ -85,7 +84,6 @@ a rational function whose denominator divides `det(I − xM)`, since by Cramer's
 | "`p₁, p₂`" (in `1 − p₁x − p₂x²`) | the coefficients of a quadratic strip denominator ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) |
 | "minimum height for a growth constant" | the smallest `h` for which some 0/1 matrix of size `h` has that Perron root |
 | "zig-zag rule", "`M ⊙ M′`" | neighboring heights differ by exactly 1, with matrix `A_path`; the entrywise product of two rule matrices, the two rules imposed together ([[zig-zag-castles](pages/zig-zag-castles.md)]) |
-| "consonance rule", "`M_cons`" | neighboring heights in ratio 1, 2, 3/2 or 4/3, or the inverse; its strips that reach `h` are the Mersenne castles of height `h` ([[mersenne-castles](pages/mersenne-castles.md)]) |
 | "ridge rule", "`R_h = J − D`" | neighboring heights differ unless both equal `h`; `J` is the all-ones matrix and `D = diag(1, …, 1, 0)`. Its strips that reach `h` are the ridge castles of height `h`, and its Perron root is the metallic mean `δ_{h−1}` ([[ridge-castle](pages/ridge-castle.md)], [[metallic-strip-realizability](pages/metallic-strip-realizability.md)]) |
 
 ## Computation
@@ -110,4 +108,3 @@ a rational function whose denominator divides `det(I − xM)`, since by Cramer's
 - [[inscribed-polyomino](pages/inscribed-polyomino.md)], [[marin-2024-polyominoes-in-rectangle](pages/marin-2024-polyominoes-in-rectangle.md)] - the transfer matrix of all polyominoes with bounding box `w × h`, whose states are the `A378947(h)` row states of Marin's automaton (99 at `h = 5`), where a strip needs the `h` heights.
 - [[castle-samplers](pages/castle-samplers.md)] - drawing strips at random from a transfer matrix, and the spectra of random 0/1 rule matrices.
 - [[zig-zag-castles](pages/zig-zag-castles.md)] - the zig-zag rule, the 1-smooth and plateau-free rules imposed together; its strips are the zig-zag paths of the OEIS, and its castles of height `h` correspond to the `(h − 1)`-balanced strings.
-- [[mersenne-castles](pages/mersenne-castles.md)] - the consonance rule; on the heights `2^i 3^j` it is the triangular lattice with a loop at each point, and its Perron root tends to 7.
