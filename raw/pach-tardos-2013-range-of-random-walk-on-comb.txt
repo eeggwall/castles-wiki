@@ -1,0 +1,361 @@
+                                                        The Range of a Random Walk on a Comb
+
+
+
+
+arXiv:1309.6360v1 [math.PR] 24 Sep 2013
+                                                                      János Pach∗           Gábor Tardos†
+
+
+
+                                                                                     Abstract
+                                                   The graph obtained from the integer grid Z × Z by the removal of all horizontal
+                                                edges that do not belong to the x-axis is called a comb. In a random walk on a
+                                                graph, whenever a walker is at a vertex v, in the next step it will visit one of the
+                                                neighbors of v, each with probability 1/d(v), where d(v) denotes the degree of v.
+                                                We answer a question of Csáki, Csörgő, Földes, Révész, and Tusnády by showing
+                                                that theexpected number
+                                                                      √ of vertices visited by a random walk on the comb after n
+                                                steps is 2√12π + o(1)   n log n. This contradicts a claim of Weiss and Havlin.
+
+
+                                          1    Introduction
+                                          The theory of finite Markov chains or, in graph-theoretic language, the theory of random
+                                          walks on graphs is a classical topic in probability theory. It has many applications from
+                                          flows in networks, through statistical physics to complexity theory in computer science
+                                          (see Lovász [Lo96] and Woess [Wo00]).
+                                              To obtain a random walk in a locally finite graph G with vertex set V (G), we start at
+                                          any vertex v ∈ V (G) and in the next step we move to one of its neighbors, independently
+                                          of all previous events, with probability 1/d(v). Here, d(v) denotes the number of edges
+                                          in G incident to v. Every neighbor of v is equally likely to come next. Perhaps the
+                                          simplest example is a random walk on the d-dimensional integer grid Zd , studied by
+                                          Pólya [Po21]. He proved that for d = 1 and 2, with probability 1, a random walk will
+                                          return to its starting point infinitely often, while for d ≥ 3 only a finite number of times.
+                                             The 2-dimensional comb C2 is a spanning tree of the integer grid Z2 obtained by
+                                          removing all of its “horizontal” edges (that is, edges parallel to the x-axis) that do not
+                                          belong to the x-axis. In this graph, all vertices (or “sites”) (x, y) have degree 2, except
+                                             ∗
+                                               EPFL, Lausanne and Rényi Institute, Budapest. Supported by NSF Grant CCF-08-30272, by OTKA
+                                          under EUROGIGA projects GraDR and ComPoSe 10-EuroGIGA-OP-003, and by Swiss National Science
+                                          Foundation Grants 200021-137574 and 200020-144531. Email: pach@cims.nyu.edu
+                                             †
+                                               Rényi Institute, Budapest. Supported by an NSERC grant and the OTKA grant NN102029. Email:
+                                          tardos@renyi.hu
+
+
+                                                                                         1
+for the vertices of the form (x, 0), which have degree 4. For any nonnegative integer n, let
+Wn = (Xn , Yn ) be the random variable denoting the position of the walker after n steps.
+We assume the walk starts at the origin, so W0 = (0, 0). The study of random walks on
+the comb was initiated by Weiss and Havlin [WeH86], as a model of “anomalous diffusion
+on fractal structures.” These investigations were later extended to combs of higher
+dimensions by Gerl [Ge86] and Cassi and Regina [CaR92]. Krishnapur and Peres [KrP04]
+proved that, on the 2-dimensional comb, with probability 1, two independent walkers
+meet only a finite number of times. This is a rather surprising phenomenon, in view
+of the fact that the random walk is recurrent, that is, a single random walker visits
+each site an infinite number of times with probability 1. Some insight was provided
+by Bertacchi and Zucca [BeZ03] and by Bertacchi [Be06], whose asymptotic estimates
+suggested that a walker spends most of her time moving vertically along a “tooth” of the
+comb. Several strong approximation and limit theorems for random walks on a comb
+have been established by Csáki, Csörgő, Földes, and Révész [CsCs09],[CsCs11].
+    Let Vn denote the number of vertices (sites) visited during the first n steps of the
+random walk Wn = (Xn , Yn ) on the 2-dimensional comb. According to the main result
+in [WeH86], the expected value of Vn is asymptotically proportional to n3/4 , for large
+n. It is not hard to see that almost surely the deviation of the horizontal projection
+Xn of the walk is roughly n1/4 , while the expected length of the vertical projection is
+of order n1/2 . See, e.g., Bertacchi [Be06] (cp. Panny and Prodinger [PaP85]). This
+suggests that the expected number of sites visited by the random walk on C2 is around
+n1/4 · n1/2 = n3/4 , as was stated by Weiss and Havlin [WeH86]. The aim of this note is
+to show that the truth is closer n1/2 , than to n3/4 .
+    All logarithms used in this paper are natural logarithms.
+
+Theorem 1 The expected value of Vn , the number of vertices visited during the first n
+steps of a random walk on the 2-dimensional comb, satisfies
+                                                  √
+                                              
+                                      1
+                         E[Vn ] =    √ + o(1)       n log n.
+                                    2 2π
+
+2    Elementary properties of a random walk on Z
+We collect some well-known and easy facts about 1-dimensional random walks on Z; all
+of them can be found, e.g., in [Fe68] or [Ré07]. For any pair of integers n, i ≥ 0, let pn,i
+denote the probability that starting at 0, after n steps we end up at the vertex (integer)
+i. We have                                      
+                                              n     1
+                                    pn,i = n+i n ,
+                                               2   2
+
+
+                                             2
+where the value of the above binomial coefficient is considered 0, whenever n+i
+                                                                             2 is not
+an integer. It follows that
+                                            r          !
+                                    n    1      2            1
+                         pn,i ≤          n
+                                           =       + o(1) √ ,
+                                  ⌊n/2⌋ 2       π             n
+as n tends to infinity. Moreover, we have
+                                          r           !
+                                              2         1
+                                 pn,i =         + o(1) √ ,                                (1)
+                                              π          n
+             √
+whenever i/ n → 0 and n + i is even.
+     Let An stand for the number of times the random walk visits the origin during the
+first n steps and Bn for the number of sites visited during the the first n steps. We have
+                                   n            r          !
+                                  X                2          √
+                         E[An ] =     pm,0 =         + o(1)     n,                     (2)
+                                                   π
+                                  m=0
+                                          r           !
+                                             2          √
+                              E[Bn ] = 2        + o(1)    n.                           (3)
+                                             π
+See, e.g., [Ré07], p. 253. Finally, for any j > 0, let rj denote the probability that
+starting at position 0, the infinite random walk on Z reaches j before it would return to
+0. We have
+                                              1
+                                          rj = .                                      (4)
+                                              2j
+
+3    Proof of Theorem 1
+The vertices and edges of the comb C2 that belong to the x-axis form the backbone. The
+connected components of the graph obtained from C2 after the removal of the backbone
+are called teeth.
+    We consider the projections (Xi ) and (Yi ) of the two-dimensional walk (Xi , Yi ),
+separately. First, we reduce these one-dimensional walks by getting rid of the steps
+when the value does not change. In this way, horizontal steps contribute only to the
+reduced projection (Xi′ ) and vertical steps contribute only to the reduced projection (Yi′ ).
+Note that with probability 1 both reduced walks are infinite and they are distributed as
+the standard random walk on the line. Let us consider the random walk on the comb up
+to (and including) the nth vertical move. We call this walk W . Its reduced projections
+are (Xi′ )ai=0 and (Yi′ )ni=0 , where the random variable a is the number of horizontal moves
+in W . Let c stand for the number of sites on the backbone reached by W . It is easy to
+describe the asymptotic behavior of E[a] and E[c].
+
+                                               3
+Lemma 2                                      r           !
+                                                 2
+                                E[a] =             + o(1) n1/2 ;
+                                                 π
+
+                                       E[c] = Θ(n1/4 ).
+
+Proof: Let d denote the number of times W moves from a tooth to a position on
+the backbone, including the starting position at the origin, but not including the final
+position after the last move, even if it satisfies this condition. Clearly, d is distributed as
+An−1 . W has d chances to make horizontal moves. At each chance, it makes precisely i
+consecutive horizontal moves with probability 2−i−1 . Thus, for the expected value of a,
+the number of horizontal moves in W , we have
+                          ∞                                     r          !
+                         X
+                               −i−1                               2          √
+             E[a] = E[d     i2      ] = E[d] = E[An−1 ] =           + o(1)      n.
+                                                                  π
+                          i=0
+
+Here the last equality follows by (2).
+    Obviously, the conditional distribution of c, given a, is the same as the distribution
+of Ba , so that by (3) we obtain
+                                          r           !
+                                             2          √
+                              E[c|a] = 2       + o(1)     a.
+                                             π
+
+Hence, we have
+            r            !               r           !                          !
+                 2          √                2         p            27/4
+   E[c] =   2      + o(1) E[ a] ≤        2     + o(1)    E[a] =           + o(1) n1/4 .    (5)
+                 π                           π                      π 3/4
+                                                       √                     √
+On the other hand, the limiting distribution of d/ n (i.e., that of An−1 / n) is equal
+to the distribution of the absolute value of a random variable with standard normal
+                                                                   √
+distribution (see, e.g., [Ré07], p. 506). Therefore, we have P (d/ n ≥ 1/2) ≥ 1/2 + o(1).
+Using the fact that, given d, the inequality
+                                         q √ a ≥ d holds with probability exactly 1/2,
+                   √
+we obtain that E[ a] ≥ (1/4 + o(1)) 12 n = Θ(n1/4 ). In view of (5), this implies the
+second part of the lemma.                                                               ✷
+
+    We prove Theorem 1 by estimating the expected number of sites Vn′ reached by W .
+As W makes n+a moves, it reaches the Vn sites visited in the first n steps and potentially
+at most a further sites. According to the first part of Lemma 2, this potential increase
+is so small that it does not change the asymptotic behavior of the expected value.
+
+
+
+                                                  4
+     First, we establish the upper bound. We classify a site (i, j) as close if |j| < n1/4 ,
+far if |j| > 2n1/2 log1/2 n, and intermediate if n1/4 ≤ |j| ≤ 2n1/2 log1/2 n, and estimate
+the expected number of sites reached in each class, separately.
+     The number of close sites reached is less than 2n1/4 + 1 times the number c of
+sites reached on the backbone. Thus, by Lemma 2, the expected number of close sites
+               √
+reached is O( n). The number of far sites reached can easily be bounded by the number
+of steps 0 ≤ i ≤ n with |Yi′ | > 2n1/2 log1/2 n. For each i ≤ n, the Chernoff bound gives
+P (|Yi′ | > 2n1/2 log1/2 n) < 1/n. Therefore, the expected number of far sites reached is
+at most 1.
+     Let us call the tooth of the comb containing the site where W ends the final tooth. In
+case Yn′ = 0, there is no final tooth. The total number of intermediate sites on the final
+tooth is less than n1/2 log1/2 n, so this also bounds the expected number of intermediate
+sites reached on the final tooth.
+     Finally, we consider the number w of intermediate sites reached outside the final
+tooth. When such a site at distance j is reached, it must be reached through a vertical
+move. If the i-th vertical move reaches it for the last time in W , then we have |Yi′ | = j
+and the part of the walk after the i-th vertical move (starting from this site) must reach
+the backbone before it comes back to the same site. The probability for |Yi′ | = j is 2pi,j .
+Assuming that this happens, according to (4), the probability that the infinite random
+walk reaches the backbone before it returns to the same site is rj = 1/(2j). Hence, the
+total probability is at most pi,j /j. We bound E[w] by summing pi,j /j over all 1 ≤ i ≤ n
+and n1/4              1/2 log1/2 n. Using the fact that p
+          p ≤ j ≤ 2n √                                    i,j = 0 if i + j is odd and, by (1),
+pi,j ≤ ( 2/π + o(1))/ i, it follows that
+                                 r         !                   r            !
+             XX                    2           X      1           2            1√
+   E[w] ≤            pi,j /j ≤       + o(1)           √ ≤            + o(1)       n log n. (6)
+                                   π                 j i          π            4
+            j   i                               i,j
+                                            i+j even
+
+
+Summing over all the sites reached by W , we obtain the upper bound in the theorem:
+                                                       √
+                                                    
+                                  ′        1
+                     E[Vn ] ≤ E[Vn ] ≤    √ + o(1)       n log n.
+                                         2 2π
+
+    Before turning to the lower bound, we introduce the symbol uj to denote the prob-
+ability that W reaches the site (0, j). We need the following lemma.
+
+Lemma 3                                                   !
+                                             n1/4 log n
+                                   uj = O                     .
+                                              |j| + 1
+
+
+
+
+                                              5
+Proof: PLet ti stand for the probability that W reaches the site (i, 0). Clearly, we have
+E[c] = +∞                 ′
+         i=−∞ ti . Let W denote the random walk on the comb starting at the origin
+and ending with the 2n-th vertical move. For the number V2n  ′ of the sites W ′ reached,
+
+we have                                       √
+                                     ′
+                                 E[V2n ] = O( n log n),                               (7)
+by the upper bound (6) we have just proved. For every i and every j, the probability that
+W ′ reaches the site (i, j) is at least ti uj . Indeed, with probability ti the walk reaches (i, 0)
+before the n-th vertical move, and after that it reaches (i, j) within n further vertical
+steps with probability uj . Note that if (i, j) is reached, then at least |j| + 1 sites of the
+form (i, j ′ ) are reached (along the same tooth). Therefore, we obtain
+                                     X
+                               ′
+                          E[V2n  ]≥      (|j| + 1)ti uj = (|j| + 1)uj E[c].
+                                     i
+
+From here, applying our upper bound (7) and Lemma 2, the result follows.                         ✷
+
+    Now we are ready to prove the lower bound in Theorem 1.
+    Let Zi stand for the site reached by the i-th vertical move of the random walk W .
+Let qi,j stand for the probability that |Yi′ | = j and Zi is reached by the i-th vertical move
+for the last time in W , 0 < i ≤ n. Each site that does not belong to the backbone and
+is reached by W , is reached for the last time by a single uniquely determined vertical
+move. Thus, we have                                  X
+                                E[Vn′ ] = E[c] +            qi,j .
+                                                    0<j,0<i≤n
+
+    Suppose that Zi is not on the backbone. If after the i-th vertical move the random
+walk W returns to the backbone before it would revisit Zi , and after returning to the
+backbone it still does not visit Zi during the following n vertical moves, then Zi was
+reached in W for the last time by the i-th vertical move. Therefore, using the notation
+in Section 2, we have
+
+                        qi,j ≥ 2pi,j rj (1 − uj ) for 0 < i ≤ n, j > 0.                   (8)
+
+The lower bound for E[Vn′ ] ≥ qi,j can be obtained by evaluating the terms qi,j . Let us
+                                P
+consider only those terms qi,j for which n1/4 log2 n < j < n1/2 / log n, j 2 log n ≤ √ i ≤ n,
+and i + j is even. Forp  these values, by  √  Lemma   3, we  have uj = o(1). Since j/ i → 0,
+(1) yields that pi,j = ( 2/π + o(1))/ i. Combining this with (4), inequality (8) gives
+                                            r           !
+                                                2           1
+                                  qi,j ≥          + o(1) √ .
+                                               π             ij
+
+
+
+                                                6
+Thus, for a fixed j, we get
+                                                      r           !√
+                              X                           2          n
+                                             qi,j ≥         + o(1)     .
+                                                          π         j
+                        j 2 log n≤i≤n, i≡j
+
+
+Summing over all j, n1/4 log2 n < j < n1/2 / log n, we obtain
+                      r           !
+                                     √ X1                       √
+                                                             
+                ′         2                           1
+           E[Vn ] ≥         + o(1)    n         ≥    √ + o(1)     n log n,
+                          π                   j     2 2π
+                                         j
+
+as claimed. Note that our estimates for the expectation of Vn′ carry over to the expecta-
+                                             √
+tion of Vn , as |Vn′ − Vn | ≤ a and E[a] = O( n). This completes the proof of Theorem 1.
+✷✷
+
+Acknowledgment. We are indebted to G. Tusnády for calling our attention to the
+problem addressed in this note, and to E. Csáki, M. Csörgő, A. Földes, and P. Révész
+for their valuable remarks.
+
+
+References
+[Be06] D. Bertacchi, Asymptotic behaviour of the simple random walk on the 2-
+  dimensional comb, Electron. J. Probab. 11 (2006), no. 45, 1184–1203.
+[BeZ03] D. Bertacchi and F. Zucca, Uniform asymptotic estimates of transition proba-
+  bilities on combs, J. Aust. Math. Soc. 75 no. 3, 325–353.
+[CaR92] D. Cassi and S. Regina, Random walks on d-dimensional comb lattices, Mod.
+  Phys. Lett. B 6 (1992),1397–1403.
+[CsCs09] E. Csáki, M. Csörgő, A. Földes, and P. Révész, Strong limit theorems for a
+  simple random walk on the 2-dimensional comb, Electron. J. Probab. 14 (2009), no.
+  82, 2371–2390.
+[CsCs11] E. Csáki, M. Csörgő, A. Földes, and P. Révész, On the local time of random
+   walk on the 2-dimensional comb, Stochastic Processes and their Applications 121:6
+  (2011) 1290–1314.
+[Fe68] W. Feller, An Introduction to Probability Theory and its Applications. Vol. I. (3rd
+  ed.), John Wiley & Sons, New York, 1968.
+[Ge86] P. Gerl, Natural spanning trees of Zd are recurrent, Discrete Math. 61 (1986),
+  333–336.
+[KrP04] M. Krishnapur and Y. Peres, Recurrent graphs where two independent random
+  walks collide finitely often, Electron. Comm. Probab. 9 (2004), 72–81
+
+                                                  7
+[Lo96] L. Lovász, Random walks on graphs: a survey, in: Combinatorics, Paul Erdős is
+  eighty, Vol. 2, Bolyai Soc. Math. Stud. 2, 353–397, J. Bolyai Math. Soc., Budapest,
+  1996.
+[PaP85] W. Panny and H. Prodinger, The expected height of paths for several notions
+  of height,Studia Sci. Math. Hungar. 20 (1985), no. 1-4, 119–132.
+[Po21] G. Pólya, Über eine Aufgabe der Wahrscheinlichkeitsrechnung betreffend die
+  Irrfahrt im Strassennetz, Math. Annalen 84 (1921), 149–160.
+[Ré07] A. Rényi, Probability Theory, Dover Publications, Mineola, New York, 2007.
+  Originally published by North-Holland, Amsterdam and Akadémiai Kiadó, Budapest,
+  1970.
+[WeH86] G. H. Weiss and Sh. Havlin, Some properties of a random walk on a comb
+  structure,Physica A 134 (1986), 474–482.
+[Wo00] W. Woess, Random walks on infinite graphs and groups, Cambridge Tracts in
+  Mathematics 138, Cambridge University Press, London, 2000.
+
+
+
+
+                                          8
+
