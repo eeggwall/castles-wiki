@@ -5,7 +5,7 @@ summary: "Two unimodal castle types of height h whose sides change step size str
 tags: [concept, castle, classification, unimodal, distinct-parts, partitions, hindenburg-algorithm, generation, growth-constant, hoodoo-castle, monadnock-castle, implementation, verification]
 sources: [aocp-generating-partitions]
 created: 2026-10-02
-updated: 2026-10-16
+updated: 2026-10-28
 ---
 
 # Hoodoo and monadnock castles
@@ -152,6 +152,7 @@ The exact count divided by this estimate is `1.33, 1.16, 1.08, 1.04` at `N = 10,
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types by width, of which neither family has one: both counts are eventually constant in `w`.
 - [[castle-snippets](pages/castle-snippets.md)] - the `is_hoodoo` and `is_monadnock` predicates used to check the generator.
 - [[multiset-partitions](pages/multiset-partitions.md)] - partitions into distinct parts as Bender's `c*` count on a one-element multiset.
+- [[euler-castles](pages/euler-castles.md)] - the castles whose rows, rather than the steps of a side, are a partition into distinct parts.
 - [[castle-gray-code](pages/castle-gray-code.md)] - the loopless Gray algorithm (Knuth's §7.2.1.1 Algorithm H), not to be confused with the Hindenburg algorithm used here.
 
 ## Footnotes

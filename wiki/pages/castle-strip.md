@@ -5,7 +5,7 @@ summary: A castle strip is a skyline (c_1, …, c_w) with heights in {1, …, h}
 tags: [concept, castle, transfer-matrix, strip, height, perron-root, growth-constant, generating-function, pedagogy, bridge]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-18
-updated: 2026-10-27
+updated: 2026-10-28
 ---
 
 # The castle strip - bridge to transfer matrices
@@ -92,6 +92,7 @@ a rational function whose denominator divides `det(I − xM)`, since by Cramer's
 
 ## Related Concepts
 
+- [[totient-castles](pages/totient-castles.md)] - the coprimality rule, whose largest eigenvalue on `1, …, h` is `Λh + O(h^{1/2+ε})` with an Euler product `Λ = 0.67846…`.
 - [[kernel-method](pages/kernel-method.md)] - the same strips counted through the roots of the kernel `1 − x·steps(u)` instead of a transfer matrix ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the anchored 1-smooth strips on `{1, 2, 3}`, with generating function `1/(1 − 2x − x²)` and growth `1 + √2`.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - which growth constants are Perron roots of 0/1 matrices; the reduction to the two coefficients `p₁, p₂`, and the ridge rule.

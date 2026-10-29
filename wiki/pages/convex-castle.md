@@ -5,7 +5,7 @@ summary: A castle whose skyline is unimodal, rising weakly to its maximum and th
 tags: [concept, castle, convex, unimodal, column-convex, row-convex, combinatorics, stars-and-bars]
 sources: [project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-encyclopedia, algebraic-languages-and-polyominoes-enumeration, bender-1974-convex-n-ominoes]
 created: 2026-09-13
-updated: 2026-10-25
+updated: 2026-10-28
 ---
 
 # Convex castle
@@ -104,6 +104,7 @@ Every castle `c` lies under a unique smallest convex castle, its **convex core**
 - [[convex-polyomino-by-area](pages/convex-polyomino-by-area.md)] - the families of convex polyominoes counted by area, with the convex castles as the stacks.
 - [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] - the add-a-column method, which counts stacks by perimeter and area (its Lemmas 2.4 and 2.5).
 - [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] - two families of convex castles whose sides are partitions into distinct parts; at fixed width they are a fraction of the convex castles that tends to a constant as `h` grows.
+- [[euler-castles](pages/euler-castles.md)] - the convex castles that fall by 0 or 1 at each step to height 1, whose rows are partitions into distinct parts; their block parity by area is Euler's pentagonal series.
 - [[aocp-binomial-coefficients](pages/aocp-binomial-coefficients.md)] - Vandermonde's convolution, Knuth's equation (21).
 - [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] - the multinomial coefficient, of which the stars-and-bars count is a case.
 

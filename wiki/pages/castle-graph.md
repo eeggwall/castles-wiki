@@ -5,7 +5,7 @@ summary: The castle graph of a castle has its cells as vertices and an edge betw
 tags: [concept, castle, graph, polyomino, spectral, adjacency, laplacian, tree, bipartite, planar, cycle-rank, fibonacci, jacobsthal, oeis, bridge, pedagogy, cycle-lattice, parity, burnside, padovan]
 sources: [project-euler-502-brute-force, rossin-2000-group-of-a-sandpile]
 created: 2026-09-17
-updated: 2026-10-25
+updated: 2026-10-28
 ---
 
 # The castle graph - bridge to graph theory
@@ -219,6 +219,7 @@ def cycle_rank(c):
 
 ## Related Concepts
 
+- [[konigsberg-castles](pages/konigsberg-castles.md)] - the castle graph with a ground vertex joined to the bottom row: the castles whose every degree is even, and those with exactly two odd vertices.
 - [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - the classification of castles by the spectrum of the castle graph.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the castles whose graph has spectral radius `φ`, `1 + √2` or `φ²`.
 - [[isospectral-castles](pages/isospectral-castles.md)] - non-isomorphic castle graphs with the same spectrum; the smallest Laplacian pair is two tree castles with 11 cells.
