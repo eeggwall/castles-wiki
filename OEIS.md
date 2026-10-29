@@ -148,7 +148,10 @@ approved, its follow-up (the first item of stage 3) can be drafted.
   (`wiki/pages/fibonacci-castles-sub-families.md`).
 - [ ] **A106514**: the 1-smooth castles of exact height 3 (free first column) of width `w`
   number `A106514(w − 1)`, g.f. `x(1−x)/((1−2x)(1−2x−x²))`, proved; the entry has
-  only convolution and eigensequence comments (`wiki/pages/pell-castle.md`).
+  only convolution and eigensequence comments (`wiki/pages/pell-castle.md`). The same
+  castles are the Mersenne castles of height 3, whose neighboring heights are in ratio 1, 2
+  or 3/2 (a unison, an octave or a fifth), since on the heights 1, 2, 3 those are the steps
+  of at most 1 (`wiki/pages/mersenne-castles.md`); the comment can give both readings.
 - [ ] **The PE 502 count `F(w,h)` as an array, and its column `w = 3`** (OEIS rolls a
   two-parameter family into one array entry, with notable rows and columns as their own
   entries, cf. A217883 "Column 2 is A202882(n+1)"; the row `h = 3` is in stage 2). In order:
@@ -243,6 +246,17 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   (read 2026-10-26). Checked against enumeration for every row `n ≤ 12` of the data. One
   comment on the table, as for the tower-spacing tables.
 
+- [ ] **Mersenne castles** (`wiki/pages/mersenne-castles.md`): castles whose neighboring
+  heights are in ratio 1, 2, 3/2 or 4/3, or the inverse. The count at height `h` equals the
+  count at `h₀`, the largest divisor of `h` of the form `2^a 3^b`, so the family is the rows
+  `h₀ = 4, 6, 8, 9, 12, …` (heights 2 and 3 are A000225 and A106514). The row `h₀ = 4`,
+  `1, 5, 21, 79, 281, 965, 3239, 10703, …`, brings its own g.f.
+  `x(1 − x)/((1 − 2x − x²)(1 − 4x + 2x² + 2x³))` and grows at `3.17008…`, the largest root of
+  `x³ − 4x² + 2x + 2`. No row, parity split, signed row or growth constant has a match
+  (searched 2026-10-28; *Search record*). Open questions: one entry for the `h₀ = 4` row, or
+  an array over `(w, h₀)` (the array over `(w, h)` repeats its rows); whether the rows
+  `h₀ ≥ 6` have g.f.s short enough to state; and whether `ρ_cons(4)` is worth a constant entry.
+
 **Skipped (assessed, with reason):**
 
 - A048004 / A000100 / A000102 / A006979 / A006980 (the castles of area `n` and exact height
@@ -291,6 +305,10 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   already defines them and links A001523; no castle statistic sets them apart (a vee castle
   has `c(1) + c(w) − min(c)` blocks), so a comment would rename the definition:
   `raw/oeis-pe502/xrefs/A332578-castle.md`.
+- A003586 / A071521 (the heights `2^i 3^j ≤ h`, the class of height 1 under the consonance
+  rule of the Mersenne castles, and their number): dense entries, and the class is the
+  3-smooth numbers by definition, reached from 1 by octaves and fifths; A003586 already notes
+  the music-theory history (de Vitry's harmonic numbers, the Pythagorean comma).
 
 ### Done (live on OEIS)
 
@@ -431,6 +449,11 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 | Motzkin castles | drops of at most 1, any ends, by semi-perimeter | `1, 2, 5, 12, 29, 71, 175, 434, 1082, 2709, 6807, 17157` | **novel-candidate** (no match, 2026-10-16); in bijection with the valleyless Motzkin meanders of length `s − 2`, which [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] reports as absent from the OEIS; refined by last-column height and spires on [[motzkin-castles](pages/motzkin-castles.md)] |
 | Motzkin castles | 1-smooth, first column at height 1, by semi-perimeter | `1, 1, 2, 4, 8, 16, 33, 69, 145, 307, 655, 1405, 3027` | **novel-candidate** (no match, 2026-10-16) |
 | Motzkin castles | 1-smooth, any ends, by semi-perimeter | `1, 2, 5, 11, 24, 52, 113, 246, 537, 1176, 2583, 5688` | **novel-candidate** (no match, 2026-10-16) |
+| Mersenne castles | castles of height `h₀ = 4, 6, 8, 9, 12, 16, 18` (by `A_Mersenne(w, h) = A_Mersenne(w, h₀)` every height repeats the row of its `h₀`, and `h₀ = 1, 2, 3` give 1, A000225, A106514) | `h₀ = 4`: `1, 5, 21, 79, 281, 965, 3239, 10703, 34981, 113433` | **novel-candidate** (no match for any of the 7 rows, 2026-10-28); g.f. at `h₀ = 4` `x(1 − x)/((1 − 2x − x²)(1 − 4x + 2x² + 2x³))`, [[mersenne-castles](pages/mersenne-castles.md)] |
+| Mersenne castles | even-block / odd-block, `h₀ = 3, 4, 6, 8, 9, 12, 16, 18` | `h₀ = 4`: `1, 5, 18, 56, 169, 523, 1671, 5421` / `0, 0, 3, 23, 112, 442, 1568, 5282` | **novel-candidate** (no match for any of the 16 rows, 2026-10-28); `h₀ = 3` is the parity split of the 1-smooth castles of height 3 with any first column |
+| Mersenne castles | signed (even − odd), `h₀ = 3, 4, 6, 8, 9, 12, 16, 18` | `h₀ = 4`: `1, 5, 15, 33, 57, 81, 103, 139, 225, 377, 499, 303, −599` | **novel-candidate** (signed values for all 8 rows, absolute values for `h₀ = 3, 4, 9`, no match, 2026-10-28) |
+| Mersenne castles | the array `A_Mersenne(w, h)` read by antidiagonals `w + h` | `1, 1, 1, 1, 3, 1, 1, 3, 7, 1, 1, 5, 9, 15, 1` | **novel-candidate** (no match, 2026-10-28); its rows repeat by the reduction to `h₀` |
+| Mersenne castles | growth constants `ρ_cons(h₀)`, `h₀ = 4, 6, 8` | `3.17008648662…`, `3.64118647619…`, `3.9809365881…` | **novel-candidate** decimal expansions (no match, 2026-10-28); `ρ_cons(4)` is the largest root of `x³ − 4x² + 2x + 2`, `ρ_cons(6)` of `x⁴ − 5x³ + 4x² + 4x − 2` |
 | Ridge strips and ridge castles | ridge castles of height 4 | `1, 7, 31, 118, 421, 1453, 4924` | **novel-candidate** (no match, 2026-10-16) |
 | Ridge strips and ridge castles | even-block ridge castles of height 4 | `1, 7, 25, 70, 209, 697, 2390` | **novel-candidate** (no match, 2026-10-16) |
 | Ridge strips and ridge castles | even-block ridge castles of height 5 | `0, 0, 10, 104, 604, 2836, 12630` | **novel-candidate** (no match, 2026-10-16) |
@@ -560,6 +583,7 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 | Motzkin castles | drops of at most 1, last column at height 1, by width | **interlink** → [A000108](https://oeis.org/A000108) (`= C_w`) |
 | Motzkin castles | Motzkin-path castles by semi-perimeter (`s = 2…`) | **interlink** → [A023431](https://oeis.org/A023431) (`= A023431(s−2)`, Motzkin paths with no `UD` and no `UU`) |
 | Motzkin castles | drops of at most 1, last column at height 1, by semi-perimeter | **interlink** → [A004148](https://oeis.org/A004148) (`= A004148(s−1)`, peakless Motzkin paths; the mirror image without double rises is Deutsch-Elizalde's RNA-secondary-structure bijection, [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)]) |
+| Mersenne castles | castles of height 3, the 1-smooth castles of height 3 with any first column | **interlink** → [A106514](https://oeis.org/A106514) (`= A106514(w − 1)`; the entry has neither the 1-smooth nor the consonance reading, 2026-10-28) |
 | Ridge strips and ridge castles | ridge strips, `h = 3` | **interlink** → [A001333](https://oeis.org/A001333) Pell-Lucas numbers (`= A001333(w+1)`) |
 | Ridge strips and ridge castles | ridge strips, `h = 4` | **interlink** → [A003688](https://oeis.org/A003688) (`= A003688(w+1)`) |
 | Ridge strips and ridge castles | ridge strips, `h = 5` | **interlink** → [A015448](https://oeis.org/A015448) (`= A015448(w+1) = F_{3w+2}`) |
