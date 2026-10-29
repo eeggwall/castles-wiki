@@ -5,7 +5,7 @@ summary: A word over {1, ..., k} is smooth when neighboring letters differ by at
 tags: [source, paper, 1-smooth, smooth-words, chebyshev, transfer-matrix, tridiagonal, necklaces, generating-functions]
 sources: [knopfmacher-mansour-munagi-prodinger-2008-smooth-words]
 created: 2026-10-22
-updated: 2026-10-22
+updated: 2026-10-28
 ---
 
 # Knopfmacher, Mansour, Munagi & Prodinger (2008) - Smooth words and Chebyshev polynomials
@@ -78,7 +78,7 @@ Every theorem of the paper, the three printed generating functions, and both tab
 
 ## Relation to Other Wiki Pages
 
-The wiki derived the anchored and free strip counts from the eigenvectors of `I + A_path` ([[1-smooth-castles](pages/1-smooth-castles.md)]); this paper reaches the same formulas through the inverse of the tridiagonal matrix and Chebyshev identities, and adds the cyclic words and necklaces. For larger steps the band matrix is no longer tridiagonal, and [[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)] gives the strips through the roots of a kernel instead. The OEIS table of free smooth words by alphabet size, A188866, links this paper.[^10]
+The wiki derived the anchored and free strip counts from the eigenvectors of `I + A_path` ([[1-smooth-castles](pages/1-smooth-castles.md)]); this paper reaches the same formulas through the inverse of the tridiagonal matrix and Chebyshev identities, and adds the cyclic words and necklaces. For larger steps the band matrix is no longer tridiagonal, and [[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)] gives the strips through the roots of a kernel instead. The OEIS table of free smooth words by alphabet size, A188866, links this paper.[^10] The smooth words over `[h]` and the 2-disparate skylines, whose neighboring letters differ by at least 2, obey complementary rules, so by the Hilbert duality of [[hilbert-castles](pages/hilbert-castles.md)] the 2-disparate skylines on `h` heights have the series `1/sw_h(−x)`; at `k = 4` the smooth words are the Hilbert skylines on four heights with the letters relabeled, since the path on four vertices is its own complement.
 
 ## Footnotes
 

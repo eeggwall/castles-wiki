@@ -5,7 +5,7 @@ summary: A 1-smooth castle is a castle whose neighboring columns differ in heigh
 tags: [concept, castle, castle-type, 1-smooth, pell, transfer-matrix, chebyshev, parity, motzkin, generating-functions, oeis]
 sources: [pe502-pell-castle-strip, barry-2005-catalan-transform, knopfmacher-mansour-munagi-prodinger-2008-smooth-words]
 created: 2026-10-06
-updated: 2026-10-23
+updated: 2026-10-28
 ---
 
 # 1-smooth castles
@@ -369,6 +369,7 @@ The definition, the subtraction `strips(w, h) − strips(w, h − 1)`, the trans
 - [[castle-strip](pages/castle-strip.md)] - how a rule on neighboring columns becomes a transfer matrix on column heights.
 - [[m-smooth-castles](pages/m-smooth-castles.md)] - neighboring columns differing by at most `m`, starting from this page.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - the m-smooth type, here at `m = 1`.
+- [[hilbert-castles](pages/hilbert-castles.md)] - the dual of the 1-smooth rule is the 2-disparate rule; on four heights the 1-smooth rule is the Hilbert rule `|a − b| ≠ 1` with the heights relabeled, so both grow at `φ²`.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types; the Pell castles are its silver example.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge rule, which reaches the metallic means at every height.
 - [[pell-numbers](pages/pell-numbers.md)] - `P⋆_w = strips(w, 3)`.

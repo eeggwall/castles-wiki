@@ -5,7 +5,7 @@ summary: An m-smooth castle is a castle whose neighboring columns differ in heig
 tags: [concept, castle, castle-type, m-smooth, 1-smooth, pell, transfer-matrix, parity, generating-functions, oeis]
 sources: [pe502-pell-castle-strip, banderier-nicodeme-2010-bounded-discrete-walks]
 created: 2026-10-06
-updated: 2026-10-23
+updated: 2026-10-28
 ---
 
 # m-smooth castles
@@ -269,7 +269,8 @@ The definition, the subtraction `strips_m(w, h) − strips_m(w, h − 1)`, the r
 - [[kernel-method](pages/kernel-method.md)] - the strips of this page between two walls, in closed form in the `2m` kernel roots ([[banderier-nicodeme-2010-bounded-discrete-walks](pages/banderier-nicodeme-2010-bounded-discrete-walks.md)]).
 - [[pell-castle](pages/pell-castle.md)] - `m = 1`, `h = 3`, the first point of the diagonal `h = m + 2`.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the two-atom reading of `1/(1 − 2x − x²)`, which the diagonal `h = m + 2` carries to every `m`.
-- [[castle-classification-shape](pages/castle-classification-shape.md)] - the m-smooth type among the shape types.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the m-smooth type among the shape types, and the m-disparate castles, counted there.
+- [[hilbert-castles](pages/hilbert-castles.md)] - the Hilbert duality `G_M(x) G_{J−M}(−x) = 1`: the dual of the `(m − 1)`-smooth rule is the m-disparate rule `|a − b| ≥ m`, so the free `(m − 1)`-smooth strips determine the m-disparate strips.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] - `A^e(w, h)`, the even-block count at `m ≥ h − 1`.
 - [[castle-strip](pages/castle-strip.md)] - how a rule on neighboring columns becomes a transfer matrix on column heights.
 - [[metallic-means](pages/metallic-means.md)] - de Spinadel's `σ_p^q`, of which the diagonal growth constants are `σ_{m+1}^m`; only `m = 1` is on the row `q = 1`.
