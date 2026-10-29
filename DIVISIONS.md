@@ -84,6 +84,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 
 - The five spectra: transfer matrix, LGV kernel, skyline DFT, combinatorial Laplacian, Ihara zeta.
 - The castle graph: cycle rank equals the number of 2x2 blocks, bipartite, planar; tree castles by height.
+- Degrees and strokes: with a ground vertex under the bottom row, the parity of every degree read from neighboring column heights; the Königsberg castles, traced in one closed stroke, and the open-stroke castles, traced in one open stroke.
 - Spectral radius: `lambda_1 = h` for the count; metallic radii of individual castles; the bronze hunt.
 - Isospectrality: Kac's drum, the exhaustive census to 16 cells, Sunada constructions.
 - Universality: sine-kernel bulk, GUE, random Young tableaux via the LGV kernel.
