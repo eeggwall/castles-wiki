@@ -243,6 +243,42 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   (read 2026-10-26). Checked against enumeration for every row `n ≤ 12` of the data. One
   comment on the table, as for the tower-spacing tables.
 
+- [ ] **A167606 castle comment** (`wiki/pages/totient-castles.md`): the compositions of `n`
+  whose adjacent parts are relatively prime are the totient castles of area `n`, the castles
+  whose neighboring columns have coprime heights (a castle of area `n` is a composition of
+  `n`, its column heights in order). Matched against the b-file for `n ≤ 40` (2026-10-28).
+  The entry has only Kotesovec's `a(n) ~ c·d^n`, `d = 1.87801…`, and no comments (read
+  2026-10-28). The wiki page counts the family by width and height, not by area, so the
+  connection goes onto the wiki by a separate update before a draft. The signed count by
+  area, `Σ (−1)^blocks` = `−1, 0, 0, 1, −2, −3, −8, −6, −12, −6, −22, −20, −56, …` from
+  `n = 1`, has no match (signed and negated, 2026-10-28).
+- [ ] **The Euler product `Λ = 0.67846225243…` of the totient castles**
+  (`wiki/pages/totient-castles.md`): `Λ = Π_p (1 − (1 − x_p)/p)`, with `x_p` the positive
+  root of `x² + (p − 1)x − (p − 1)` (`x_2 = 1/φ`), and the largest eigenvalue of the
+  coprimality matrix on `1, …, h` is `Λh + O(h^{1/2+ε})`, proved on the page. No match for
+  the digits `6, 7, 8, 4, 6, 2, 2, 5, 2, 4, 3, 4` (2026-10-28). A decimal-expansion entry
+  needs far more digits than the 11 on the page; after dividing by `6/π²` the factors are
+  `1 + O(p^{−3})`, so the tail needs an acceleration (a prime zeta expansion) for 100 digits.
+- [ ] **Totient castles and strips by width** (`wiki/pages/totient-castles.md`): the castles
+  of height 3, `1, 4, 12, 33, 86, 218, 543, 1338, 3274, 7975` from `w = 1`, `= A001333(w + 1)
+  − F_{w+2}` (proved); the castles of heights 4, 5 and 6 (`1, 4, 16, 55, 184, 590, …`,
+  `1, 8, 42, 197, 866, 3670, …`, `1, 4, 24, 115, 564, 2634, …`); the even-block castles of
+  heights 3 and 4; and the strips, words over `{1, …, h}` with coprime neighboring letters,
+  `4, 11, 33, 96, 283, 829, …` at `h = 4`, `5, 19, 75, 293, 1149, …` at `h = 5`,
+  `6, 23, 99, 408, 1713, …` at `h = 6`, `7, 35, 187, 977, 5149, …` at `h = 7`. No match for
+  any (2026-10-28). The natural entry is the square array of strips by `(h, w)`, whose row
+  `h` has the characteristic polynomial of the coprimality matrix as denominator; rows 2 and
+  3 are `F_{w+2}` and A001333(`w + 1`).
+- [ ] **Open-stroke castles** (`wiki/pages/konigsberg-castles.md`): the castles whose graph,
+  with one ground vertex joined to the bottom row, has exactly two odd vertices. By height
+  `h = 1…12`: `3, 33, 137, 377, 831, 1593, 2773, 4497, 6907, 10161, 14433, 19913`; at even
+  widths `1, 25, 121, 351, 793, 1541, …`; even-block `0, 23, 49, 225, 354, 887, …`;
+  odd-block `3, 10, 88, 152, 477, 706, …`; by width, the finite rows `1, 3, 3, 6, 3, 10, 1,
+  5, 0, 1` at height 2 and `1, 2, 1, 12, 5, 22, 5, 35, 3, 29, 1, 15, 0, 5, 0, 1` at height
+  3. No match for any (2026-10-28). The totals follow `(2h⁴ + 11h³ − 5h² − 2h + 3)/3` for
+  `h ≤ 12` by computation only: the odd-width part, `h² + 3h − 2`, is proved, the even-width
+  part is not (the open S Division item of IDEAS.md). Wait for that proof before a draft.
+
 **Skipped (assessed, with reason):**
 
 - A048004 / A000100 / A000102 / A006979 / A006980 (the castles of area `n` and exact height
@@ -291,6 +327,19 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   already defines them and links A001523; no castle statistic sets them apart (a vee castle
   has `c(1) + c(w) − min(c)` blocks), so a comment would rename the definition:
   `raw/oeis-pe502/xrefs/A332578-castle.md`.
+
+- A000009 / A067661 / A067659 / A010815 (the Euler castles by area, their even-block and
+  odd-block counts, and the signed count, `wiki/pages/euler-castles.md`): A000009 already has
+  Perry's "Number of partitions of n where if k is the largest part, all parts 1..k are
+  present", which lists an Euler castle's column heights, with the Ferrers-dual proof; an
+  Euler castle's blocks are the parts of its row partition, so A067661 and A067659 count the
+  even-block and odd-block ones by their definitions; and A010815 is Euler's pentagonal
+  theorem itself, with Franklin's involution as its classical proof.
+- A000045 / A010892 (the Euler castles by semi-perimeter, `F_{s−1}`, and their signed count
+  `−A010892(s − 2)`, period 6): dense and periodic entries; the count is the compositions
+  `C(w − 1, h − 1)` summed along `w + h = s`.
+- The Königsberg castles (the double staircases `(1, …, k, k, …, 1)`,
+  `wiki/pages/konigsberg-castles.md`): one castle at each even width, not a sequence.
 
 ### Done (live on OEIS)
 
@@ -491,6 +540,17 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 | Other rows | The parity-refined sequences by area (even and odd; convex, vee, non-convex and strict-vee) ([[castle-by-area](pages/castle-by-area.md)]): **novel-candidate**, searched 2026-09-26; terms on [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)]. | - | (status in the text) |
 | Other rows | The towers of width `w ≥ 6` by number of blocks `b` ([[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]): `w = 6`: `1, 21, 161, 721, 2331, 6083, …`; `w = 7`: `1, 28, 280, 1582, 6244, 19348, …` from `b = 0`: **novel-candidate** (no match, 2026-10-16). | - | (status in the text) |
 | Other rows | The denominators of the Jacobi-Perron convergents of `2ψ²` ([[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]): `1, 1, 2, 4, 47, 53, 104, 204, 2409, 2717, 5330, …`: **novel-candidate** (no match, 2026-10-16). | - | (status in the text) |
+| Euler castles | Euler castles by area; even-block, odd-block, signed | `1, 1, 2, 2, 3, 4, 5, 6, 8, 10, 12, 15` | **known** → [A000009](https://oeis.org/A000009) (Perry's gapless-partition comment), [A067661](https://oeis.org/A067661), [A067659](https://oeis.org/A067659), [A010815](https://oeis.org/A010815) (checked 2026-10-28; stage 4, skipped) |
+| Euler castles | by semi-perimeter; signed | `1, 1, 2, 3, 5, 8, 13, 21` / `−1, −1, 0, 1, 1, 0` | **known** → [A000045](https://oeis.org/A000045)(`s − 1`), `−`[A010892](https://oeis.org/A010892)(`s − 2`) |
+| Totient castles | totient castles of height 3 | `1, 4, 12, 33, 86, 218, 543, 1338, 3274, 7975` | **novel-candidate** (no match, 2026-10-28); `= A001333(w + 1) − F_{w+2}`, proved |
+| Totient castles | totient castles of heights 4, 5, 6 | `h = 4`: `1, 4, 16, 55, 184, 590, 1859, 5754` | **novel-candidate** (no match for any of the three, 2026-10-28) |
+| Totient castles | even-block totient castles, heights 3 and 4 | `0, 0, 3, 14, 39, 100, 259, 652` / `1, 4, 12, 32, 95, 298, 938, 2898` | **novel-candidate** (no match, 2026-10-28) |
+| Totient castles | totient strips, `h = 4…7` (not on the page) | `h = 4`: `4, 11, 33, 96, 283, 829, 2436, 7147` | **novel-candidate** (no match for any, with or without a leading 1, 2026-10-28) |
+| Totient castles | signed totient castles by area (not on the page) | `−1, 0, 0, 1, −2, −3, −8, −6, −12, −6, −22` | **novel-candidate** (signed and negated, no match, 2026-10-28) |
+| Totient castles | the Euler product `Λ` | `0.67846225243…` | **novel-candidate** decimal expansion (no match for 12 digits, 2026-10-28) |
+| Totient castles | growth by width at `h = 4…8` | `2.9354323`, `3.9172860`, `4.1746638`, `5.2572382`, `5.7697533` | `h = 4`: no match for 8 digits (2026-10-28); `h = 5…8` unsearched |
+| Other rows | open-stroke castles by height ([[konigsberg-castles](pages/konigsberg-castles.md)]): all, even widths, even-block, odd-block | `3, 33, 137, 377, 831, 1593, 2773, 4497` | **novel-candidate** (no match for any of the four, 2026-10-28); a quartic in `h` for `h ≤ 12`, computed only |
+| Other rows | open-stroke castles by width at heights 2 and 3 | `1, 3, 3, 6, 3, 10, 1, 5, 0, 1` | **novel-candidate** (finite rows, no match, 2026-10-28) |
 
 ### No match in the first mining pass (`raw/oeis-pe502/mine-notes.md`, `crosslink-avenues.md`, `vein9-area.md`)
 
@@ -587,3 +647,8 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 | Sandpile groups | `\ | **interlink** → [A001906](https://oeis.org/A001906) `F_{2n}` (`= A001906(w)`; every block on the ground) |
 | Sandpile groups | `\ | **interlink** → [A001835](https://oeis.org/A001835) (`= A001835(h)`; one block on the ground) |
 | Fibonacci castle sub-families | balanced castles | **interlink** → [A049703](https://oeis.org/A049703) (`= A049703(w)`; the entry is defined only as `A005598(n)/2`, with no comments, 2026-10-16) |
+| Totient castles | totient castles by area, any height | **interlink** → [A167606](https://oeis.org/A167606) (`= A167606(n)`, compositions whose adjacent parts are relatively prime; matched against the b-file for `n ≤ 40`; no comments, 2026-10-28; stage 4) |
+| Totient castles | totient castles of height 2 | **interlink** → [A000071](https://oeis.org/A000071) (`= A000071(w+2)`; the Fibonacci castles) |
+| Totient castles | totient strips on {1, 2, 3} | **interlink** → [A001333](https://oeis.org/A001333) Pell-Lucas numbers (`= A001333(w+1)`, as many as the 1-smooth strips) |
+| Other rows | open-stroke castles at odd widths, by height | **interlink** → [A034856](https://oeis.org/A034856) (`h² + 3h − 2 = 2·A034856(h)`, proved; also `A028552(h) − 2`) |
+| Other rows | open-stroke castles of height `h` at the widths `2m ≤ 2h − 4`, `2h − 2` and `2h` | **interlink** → [A002378](https://oeis.org/A002378) (`m(m + 1)`), [A033428](https://oeis.org/A033428) (`3(h − 1)²`), [A202803](https://oeis.org/A202803) (`(h − 1)(5h − 4) = A202803(h − 1)`); computed for `h ≤ 12`, no proof |
