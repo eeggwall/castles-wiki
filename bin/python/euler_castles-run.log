@@ -1,0 +1,24 @@
+# python3 bin/python/euler_castles.py  (2026-10-28, Python 3.11)
+[1] every Euler castle with w <= 8, h <= 5 has distinct row lengths, rows = its h blocks, bottom row = w; row lengths <-> distinct-part partitions, one-to-one onto Euler castles of area n <= 40: True
+[1] example (3, 3, 2, 1, 1): rows (5, 3, 2), blocks 3, area 10
+[2] Euler castles of area n = prod (1 + q^k) = A000009(n), n <= 40: True
+[2] by area, n = 1..16: [1, 1, 2, 2, 3, 4, 5, 6, 8, 10, 12, 15, 18, 22, 27, 32]
+[2] A_Euler(w, h) = C(w - 1, h - 1): brute force over all skylines w <= 8, h <= 5, and from the area lists for w(w + 1)/2 <= 40: True
+[2] by width 2^(w-1) (sum of the cell counts); by semi-perimeter s = w + h: F(s - 1), s <= 27 from the cell counts and s <= 9 from the castles: True
+[3] even - odd Euler castles of area n = (-1)^k at n = k(3k +- 1)/2, 0 otherwise, = prod (1 - q^k) = A010815(n), n <= 40: True
+[3] even-block = A067661(n), odd-block = A067659(n), n <= 26: True
+[3] even-block by area, n = 1..16: [0, 0, 1, 1, 2, 2, 3, 3, 4, 5, 6, 7, 9, 11, 13, 16]
+[3] odd-block by area,  n = 1..16: [1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 8, 9, 11, 14, 16]
+[4] the move maps Euler castles to Euler castles of the same area, is its own inverse, changes the height by 1, keeps w + blocks, and is Franklin's rule on the rows (ascending); undefined exactly once at each pentagonal area, on (k^k, k-1, ..., 1) and (k^(k+1), k-1, ..., 1); n <= 40: True
+[4] Franklin's example 23467 -> 3478; castle (5, 5, 4, 3, 2, 2, 1) -> (4, 4, 4, 3, 2, 2, 2, 1)
+[4] Franklin's example 3589 -> 23578; castle (4, 4, 4, 3, 3, 2, 2, 2, 1) -> (5, 5, 4, 3, 3, 2, 2, 1)
+[4] Franklin's example 3456 -> 567; castle (4, 4, 4, 3, 2, 1) -> (3, 3, 3, 3, 3, 2, 1)
+[4] Franklin's example 6789 -> 45678; castle (4, 4, 4, 4, 4, 4, 3, 2, 1) -> (5, 5, 5, 5, 4, 3, 2, 1)
+[4] Franklin's example 4567 -> none; castle (4, 4, 4, 4, 3, 2, 1) -> None
+[4] Franklin's example 5678 -> none; castle (4, 4, 4, 4, 4, 3, 2, 1) -> None
+[4] summit and slope of (3, 3, 2, 1, 1): (s, sigma) = (2, 1); move -> (4, 3, 2, 1)
+[4] summit and slope of (2, 2, 2, 1): (s, sigma) = (3, 2); move -> None
+[5] sum over Euler castles of (-1)^blocks x^(w + blocks) q^area = sum_k (-1)^k (x^(3k-1) q^(k(3k-1)/2) + x^(3k) q^(k(3k+1)/2)), n <= 40: True
+[5] signed Euler castles by semi-perimeter, s = 2..19: [-1, -1, 0, 1, 1, 0, -1, -1, 0, 1, 1, 0, -1, -1, 0, 1, 1, 0]
+[5] = -A010892(s - 2), the coefficients of -t^2/(1 - t + t^2), s = 2..19: True
+[6] transposing (reading the rows as columns) maps the staircase castles of width w and height h onto the Euler castles of width h and height w, w <= 8, h <= 5: True

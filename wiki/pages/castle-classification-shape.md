@@ -1,7 +1,7 @@
 ---
 title: Castle classification - shape types
 category: Concepts
-summary: The 41 shape types of castles taken from the Castle Types source, 7 base types and 34 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo, monadnock, valley, k-valley, city-building and zig-zag types. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
+summary: The 41 shape types of castles taken from the Castle Types source, 7 base types and 34 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag and Euler types. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle, hoodoo-castle, monadnock-castle, distinct-parts]
 sources: [castle-classification, aocp-generating-partitions, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths, project-euler-502-representations, oeis-encyclopedia]
 created: 2026-09-19
@@ -10,7 +10,7 @@ updated: 2026-10-28
 
 # Castle classification - shape types
 
-A **shape type** is a predicate on the skyline `(c_1, …, c_w)` of one castle of width `w` and height `h` ([[castle-polyomino](pages/castle-polyomino.md)], and [[castle-classification](pages/castle-classification.md)] for the other kinds of type). Every castle is column-convex and has a full bottom row, so each type is a further restriction on the skyline.[^1] The Castle Types source lists 7 base types from the polyomino literature and 35 proposed types; this page groups 41 of them into seven axes, gives each a construction rule and an example skyline, and records the wiki page and the count where they exist. Six further types, the ridge, hoodoo, monadnock, valley, k-valley, city-building and zig-zag castles, are not among the 42 of the source.
+A **shape type** is a predicate on the skyline `(c_1, …, c_w)` of one castle of width `w` and height `h` ([[castle-polyomino](pages/castle-polyomino.md)], and [[castle-classification](pages/castle-classification.md)] for the other kinds of type). Every castle is column-convex and has a full bottom row, so each type is a further restriction on the skyline.[^1] The Castle Types source lists 7 base types from the polyomino literature and 35 proposed types; this page groups 41 of them into seven axes, gives each a construction rule and an example skyline, and records the wiki page and the count where they exist. Eight further types, the ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag and Euler castles, are not among the 42 of the source.
 
 ## The 7 base types
 
@@ -21,7 +21,7 @@ The base types are polyomino and composition families:[^2]
 | **Column-convex** | each column is one vertical run | `(1, 3, 2, 3, 1)` | [[column-convex-polyomino](pages/column-convex-polyomino.md)] | every castle; `A(w, h) = h^w − (h−1)^w` |
 | **Unimodal** | `c_1 ≤ … ≤ c_p ≥ … ≥ c_w` for some `p` | `(1, 2, 3, 3, 2)` | [[convex-castle](pages/convex-castle.md)] | `C(2h + w − 3, w − 1)` ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]) |
 | **Ferrers** | `c_1 ≥ c_2 ≥ … ≥ c_w` | `(3, 2, 2, 1)` | [[polyominoes](pages/polyominoes.md)], [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] | `C(w + h − 2, w − 1)`, and by area `q^{h+w−1} [w + h − 2, w − 1]_q` |
-| **Staircase** | Ferrers with all `c_i` distinct | `(4, 3, 1)` | [[polyominoes](pages/polyominoes.md)] | `C(h − 1, w − 1)` |
+| **Staircase** | Ferrers with all `c_i` distinct | `(4, 3, 1)` | [[polyominoes](pages/polyominoes.md)]; turned on their side, the Euler castles ([[euler-castles](pages/euler-castles.md)]) | `C(h − 1, w − 1)` |
 | **Parallelogram** | the cells on each line `i + j = const` form one run | `(1, 2, 2, 3)` | [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] | open |
 | **Directed** | every cell is reached from the bottom-left cell by steps east and north | `(1, 3, 2, 3, 1)` | [[polyominoes](pages/polyominoes.md)] | every castle |
 | **m-disparate** | `\|c_{i+1} − c_i\| ≥ m` | `(1, 3, 1, 4)`, `m = 2` | | open |
@@ -79,7 +79,7 @@ h = 7:  36, 108, 156, 168, 169, 169, …
 
 ### Axis 2: Rate of change
 
-Types 7, 8 and 9, the base type m-disparate, the ridge type and the zig-zag type:
+Types 7, 8 and 9, the base type m-disparate, the ridge type, the zig-zag type and the Euler type:
 
 | type | predicate | example | wiki page and count |
 |---|---|---|---|
@@ -87,6 +87,7 @@ Types 7, 8 and 9, the base type m-disparate, the ridge type and the zig-zag type
 | **Ridge** | `c_i ≠ c_{i+1}` unless `c_i = c_{i+1} = h` | `(3, 1, 3, 4, 4, 1, 4, 4, 1, 4, 2, 1)` | `𝟙ᵀ R_h^{w−1} 𝟙 − (h−1)(h−2)^{w−1}`, growth `δ_{h−1}` by width (paragraph *Ridge castles*) |
 | **m-smooth** | `\|c_{i+1} − c_i\| ≤ m` | `(1, 2, 2, 3, 2)`, `m = 1` | [[1-smooth-castles](pages/1-smooth-castles.md)], [[m-smooth-castles](pages/m-smooth-castles.md)] |
 | **Zig-zag** | `\|c_{i+1} − c_i\| = 1`: the 1-smooth and plateau-free predicates together | `(1, 2, 3, 2)` | [[zig-zag-castles](pages/zig-zag-castles.md)]: their step bits are the `(h − 1)`-balanced strings of length `w − 1`, A027383, A027557, A027559, A027560 at `h = 3, …, 6`; growth `2cos(π/(h+1))` by width, golden by width at `h = 4` |
+| **Euler** | `c_i − c_{i+1} ∈ {0, 1}` and `c_w = 1`: a Ferrers skyline that falls one step at a time to height 1 | `(3, 3, 2, 1, 1)` | [[euler-castles](pages/euler-castles.md)]: `C(w − 1, h − 1)` in each cell; by area the partitions into distinct parts, `A000009`, with the number of parts as the block count, so the signed count by area is Euler's pentagonal series `A010815`; turned on their side, the staircase castles |
 | **Zigzag** | the differences `c_{i+1} − c_i` alternate in sign | `(1, 3, 2, 3, 1)` | open; not the zig-zag type of the row above, whose differences are all `±1` |
 | **m-disparate** | `\|c_{i+1} − c_i\| ≥ m` | `(1, 3, 1, 4)`, `m = 2` | open |
 
@@ -208,6 +209,7 @@ For `w ≥ 2`, a linear castle with `d = 0` is the boxcastle; one with `d > 0` h
 - [[castles-as-upgraded-cycle-count](pages/castles-as-upgraded-cycle-count.md)] - the permutation constructions that apply to rainbow castles.
 - [[castle-snippets](pages/castle-snippets.md)] - Python predicates for the types on this page.
 - [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] - the hoodoo and monadnock castles in full.
+- [[euler-castles](pages/euler-castles.md)] - the Euler castles, Euler's pentagonal number theorem as their block parity, and Franklin's move.
 - [[aocp-permutations](pages/aocp-permutations.md)], [[aocp-combinatorics](pages/aocp-combinatorics.md)] - the count `h!` of the rainbow castles and its grading by inversions.
 - [[castle-compression](pages/castle-compression.md)] - how short a description of a castle can be.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - for `k ≡ 2 (mod 4)` the even sector of `P(k, L)` is `2^L` times a Hardin word count (`A005251`, `A202882`, `A203094`, `A203184`); the case `g = 2` of [[tower-spacing-castles](pages/tower-spacing-castles.md)] reaches the same words.
