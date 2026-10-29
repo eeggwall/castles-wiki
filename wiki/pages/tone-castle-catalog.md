@@ -1,14 +1,14 @@
 ---
-title: Tone-castle catalogue - telephone signaling tones as exactly periodic castles
+title: Tone-castle catalog - telephone signaling tones as exactly periodic castles
 category: Analyses
-summary: Every DTMF key, every R1 MF signal, the Bell precise-tone-plan call-progress tones and the 2600 Hz trunk tone, sampled 8000 times per second (the G.711 rate; the voice band is 300-3400 Hz, below the 4000 Hz Nyquist limit) and quantized to h = 256, as castles. A tone pair (f1, f2) in whole hertz has exact period w = 8000/gcd(8000, f1, f2), so every signal is a periodic castle of width w. All 15 MF signals have w = 80 (10 ms), shorter than the 27 ms minimum MF digit, so every MF burst holds at least two whole periods; DTMF keys have w = 8000 except 5 (4000) and 8 (2000), longer than the 45-55 ms DTMF burst, so a DTMF burst never holds a whole period and is only approximately periodic (best near-period phase error 0.006 to 0.035 cycles). The four nominal DFT atoms carry 99.997-99.999% of the mean-removed energy, but the exact support is a union of divisor classes: all w bins for 30 of the 35 castles. With the castle's tallest column first, a burst of r whole periods has c_w + r·rise(c) blocks, rise(c) the cyclic rise; rise(c) is odd for every signal in the catalogue, so the block parity of a burst alternates with r. Goertzel over a whole MF period is an exact DFT bin (off-tone response 0 before quantization, at least 49.6 dB down after); a DTMF detector's 136-sample block sits between bins, where the castle's area leaks in and moves the per-group margins by -2.9 to +3.9 dB until the mean is subtracted.
+summary: Every DTMF key, every R1 MF signal, the Bell precise-tone-plan call-progress tones and the 2600 Hz trunk tone, sampled 8000 times per second (the G.711 rate; the voice band is 300-3400 Hz, below the 4000 Hz Nyquist limit) and quantized to h = 256, as castles. A tone pair (f1, f2) in whole hertz has exact period w = 8000/gcd(8000, f1, f2), so every signal is a periodic castle of width w. All 15 MF signals have w = 80 (10 ms), shorter than the 27 ms minimum MF digit, so every MF burst holds at least two whole periods; DTMF keys have w = 8000 except 5 (4000) and 8 (2000), longer than the 45-55 ms DTMF burst, so a DTMF burst never holds a whole period and is only approximately periodic (best near-period phase error 0.006 to 0.035 cycles). The four nominal DFT atoms carry 99.997-99.999% of the mean-removed energy, but the exact support is a union of divisor classes: all w bins for 30 of the 35 castles. With the castle's tallest column first, a burst of r whole periods has c_w + r·rise(c) blocks, rise(c) the cyclic rise; rise(c) is odd for every signal in the catalog, so the block parity of a burst alternates with r. Goertzel over a whole MF period is an exact DFT bin (off-tone response 0 before quantization, at least 49.6 dB down after); a DTMF detector's 136-sample block sits between bins, where the castle's area leaks in and moves the per-group margins by -2.9 to +3.9 dB until the mean is subtracted.
 tags: [analysis, castle, audio, telephone, dtmf, mf-signaling, goertzel, dft, periodicity, sparse-spectrum, divisor-classes, block-parity, quantization, signal-processing]
 sources: [project-euler-502-representations]
 created: 2026-10-01
-updated: 2026-10-16
+updated: 2026-10-29
 ---
 
-# Tone-castle catalogue - telephone signaling tones as exactly periodic castles
+# Tone-castle catalog - telephone signaling tones as exactly periodic castles
 
 Telephone signaling tones are sums of one or two sine waves at whole-hertz frequencies, and the digital telephone network takes 8000 samples per second. A sampled tone is therefore exactly periodic, and one period, quantized, is a castle. This page builds that castle for every DTMF key, every R1 MF signal, the Bell call-progress tones and the 2600 Hz trunk tone, and records for each one its period, its skyline DFT support, its block count, and what a Goertzel detector sees.
 
@@ -20,7 +20,7 @@ Two different numbers describe the telephone channel. The **sampling rate** is 8
 
 The Nyquist limit relates the two. Sampling 8000 times per second represents frequencies only up to half that rate, 4000 Hz. A tone at `f` above 4000 Hz is sampled as a tone at `8000 − f`, since `cos(2π(8000 − f)j/8000 + φ) = cos(2πfj/8000 − φ)` at every sample `j` (aliasing). The voice band stops at 3400 Hz, leaving the 600 Hz up to 4000 Hz for the filter in front of the sampler to cut off.
 
-Every tone in the catalogue, 350 to 2600 Hz, lies inside the voice band and so below 4000 Hz. In the castle's DFT this is the statement that each atom `k_i = f_i w / 8000` lies below `w/2`: bin `w/2` is the 4000 Hz Nyquist frequency, and the mirror atom `w − k_i` is the alias of the same tone. With phase 0, `f` and `8000 − f` give the same castle.
+Every tone in the catalog, 350 to 2600 Hz, lies inside the voice band and so below 4000 Hz. In the castle's DFT this is the statement that each atom `k_i = f_i w / 8000` lies below `w/2`: bin `w/2` is the 4000 Hz Nyquist frequency, and the mirror atom `w − k_i` is the alias of the same tone. With phase 0, `f` and `8000 − f` give the same castle.
 
 ## The construction
 
@@ -176,7 +176,7 @@ As sent, the MF signals, the call-progress tones and the 2600 Hz tone are castle
 
 ## Spectrum: sparse only approximately
 
-Before quantization each castle's mean-removed energy sits entirely in its atoms. After quantization the atoms carry between 99.997% and 99.999% of it, for every signal in the catalogue. That matches the rounding error: rounding adds about `1/12` of power per column, against `2 · 63.75² / 2 = 4064` for two tones of amplitude `255/4`, a fraction `2.05 · 10⁻⁵`.[^exec]
+Before quantization each castle's mean-removed energy sits entirely in its atoms. After quantization the atoms carry between 99.997% and 99.999% of it, for every signal in the catalog. That matches the rounding error: rounding adds about `1/12` of power per column, against `2 · 63.75² / 2 = 4064` for two tones of amplitude `255/4`, a fraction `2.05 · 10⁻⁵`.[^exec]
 
 Heights are whole numbers, so by [[spectral-analysis](pages/spectral-analysis.md)] §3 the support is bin 0 plus a union of the classes `D_d = {k : gcd(k, w) = d}`, and it contains the full class of every atom. MF KP's atoms 11 and 17 are coprime to 80, so all 32 bins of `D_1` are nonzero; DTMF key 1's atoms are coprime to 8000, so all 3200 bins of `D_1` are. The rounding error fills the other classes as well, with five exceptions:
 
@@ -193,10 +193,10 @@ The block count is `blocks(c) = c_1 + Σ max(0, c_{i+1} − c_i)` ([[castle-sign
 blocks(c repeated r times)  =  c_1 + r (rise(c) − c_1 + c_w) + (r − 1)(c_1 − c_w)  =  c_w  +  r · rise(c).
 ```
 
-The block parity of a burst therefore alternates with `r` exactly when `rise(c)` is odd. For every castle in the catalogue `rise(c)` is **odd**:
+The block parity of a burst therefore alternates with `r` exactly when `rise(c)` is odd. For every castle in the catalog `rise(c)` is **odd**:
 
 - The skyline is symmetric, `c_{j+1} = c_{w−j+1}`, so the walk from column 1 to column `w/2 + 1` and the walk back are mirror images, and the rises on the way back are the falls on the way out. Hence `rise(c) = 2 · (falls on the way out) + c_{w/2+1} − c_1 ≡ c_{w/2+1} (mod 2)`, as `c_1 = 256` is even.
-- Every period in the catalogue is even. At `j = w/2` each tone is at `cos(π k_i) = ±1`. Both atoms even would make `w/2` a period, contradicting minimality, so at least one is odd: `x_{w/2} = −2` (both odd), `0` (one odd) or `−1` (a single odd tone), and the quantizer gives `c_{w/2+1} = 1, 129, 1`. Each is odd.
+- Every period in the catalog is even. At `j = w/2` each tone is at `cos(π k_i) = ±1`. Both atoms even would make `w/2` a period, contradicting minimality, so at least one is odd: `x_{w/2} = −2` (both odd), `0` (one odd) or `−1` (a single odd tone), and the quantizer gives `c_{w/2+1} = 1, 129, 1`. Each is odd.
 
 So the Project Euler 502 parity of a tone burst alternates with the number of whole periods: a burst of `r` periods has an even number of blocks exactly when `r ≡ c_w (mod 2)`. The MF table lists which. The odd cyclic rise depends on the quantizer: rounding the midpoint `127.5` down instead of up gives `c_{w/2+1} = 128` for the 13 pairs with exactly one odd atom, and their cyclic rise becomes even; the 21 pairs with two odd atoms keep it odd.[^exec]
 

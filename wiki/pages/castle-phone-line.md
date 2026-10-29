@@ -112,7 +112,7 @@ At 250 columns per second with 30 dB hiss one row castle, 2.05 seconds of audio,
 - [[castle-entropy](pages/castle-entropy.md)] - the even-block condition costs one bit up to `log₂(1 + S/A)`; that bit is the block parity, which this line does not carry.
 - [[spectral-analysis](pages/spectral-analysis.md)] - the skyline DFT, whose lowest modes survive the line.
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - Stop 3, the change of the block count under a one-cell edit, and Stop 4, the parity as a fragile statistic.
-- [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] - the telephone network's own signaling tones (DTMF, MF, call progress), sampled 8000 times per second, as periodic castles.
+- [[tone-castle-catalog](pages/tone-castle-catalog.md)] - the telephone network's own signaling tones (DTMF, MF, call progress), sampled 8000 times per second, as periodic castles.
 
 ## Appearances in Sources
 

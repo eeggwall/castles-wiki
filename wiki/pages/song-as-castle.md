@@ -210,7 +210,7 @@ Its skyline DFT has **two atoms**: bins 13 and 27 = 40 − 13 carry 99.2% of the
 
 **Detection is one DFT bin.** The Goertzel algorithm evaluates the DFT at a single bin, so a tone detector is a linear functional on the skyline.
 
-**The catalogue.** [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] builds the castle for every DTMF key, every MF code and the call-progress tones. The DTMF keys have periods of 2000, 4000 or 8000 samples, longer than a DTMF burst, so a sent DTMF key is not a whole number of periods.[^song]
+**The catalogue.** [[tone-castle-catalog](pages/tone-castle-catalog.md)] builds the castle for every DTMF key, every MF code and the call-progress tones. The DTMF keys have periods of 2000, 4000 or 8000 samples, longer than a DTMF burst, so a sent DTMF key is not a whole number of periods.[^song]
 
 ---
 
@@ -301,7 +301,7 @@ It has 7 blocks; the mean block count over all castles of width 15 and height 5 
 - [[isospectral-castles](pages/isospectral-castles.md)] - non-isomorphic castle graphs with the same spectrum.
 - [[image-as-castle](pages/image-as-castle.md)] - the same map for JPG and PNG: an image as a stack of row castles or one two-dimensional castle.
 - [[castle-steganography](pages/castle-steganography.md)] - hiding a base64 string in castles; block parity as a covert channel.
-- [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] - every DTMF, MF and call-progress signal as a castle.
+- [[tone-castle-catalog](pages/tone-castle-catalog.md)] - every DTMF, MF and call-progress signal as a castle.
 - [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[one-bit-seminar](pages/one-bit-seminar.md)] / [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] / [[sandcastle-seminar](pages/sandcastle-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] - the other seminar pages.
 
 ## Appearances in Sources

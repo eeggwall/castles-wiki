@@ -84,7 +84,7 @@ The support of a castle's skyline discrete Fourier transform `ĉ_k` is the set o
 - **One class.** A support that is bin 0 plus the single class `D_{w/q}` has, besides bin 0, as many bins as there are numbers from 1 to `q` coprime to `q`. Exactly two such bins occur only for `q = 3, 4, 6`; the crenellated castles are the case `q = 2`.
 - **Prime width.** At prime width the only class besides `{0}` is every other bin, so every castle of prime width that is not a rectangle has all `w` bins nonzero, and only the rectangles are sparse-spectrum.
 
-The telephone tone castles of [[tone-castle-catalogue](pages/tone-castle-catalogue.md)] put 99.997% to 99.999% of their mean-removed energy in the bins of their tones, yet 30 of the 35 have every bin nonzero and the other five lose only a few classes, so none is a sparse-spectrum castle.
+The telephone tone castles of [[tone-castle-catalog](pages/tone-castle-catalog.md)] put 99.997% to 99.999% of their mean-removed energy in the bins of their tones, yet 30 of the 35 have every bin nonzero and the other five lose only a few classes, so none is a sparse-spectrum castle.
 
 ## Related Concepts
 
