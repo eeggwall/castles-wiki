@@ -119,6 +119,16 @@ zigzag-32	zigzag		zig-zag strips of width `n` on `{1, …, n}`, `c_1` with the o
 zigzag-33	zigzag		zig-zag strips of width `2n` on `{1, …, 2n}`, `c_1` even (the `2n × 2n` square)	`n = 1…`	`1, 8, 52, 296, 1556, 7768, 37416, 175568`			A153336	n		Number of zig-zag paths from top to bottom of a 2n by 2n square whose color is that of the top right corner.	count	
 zigzag-34	zigzag		zig-zag strips of width `2n − 1` on `{1, …, 2n − 1}`, `c_1` odd (the `(2n − 1) × (2n − 1)` square)	`n = 1…`	`1, 4, 24, 136, 720, 3624, 17584, 83024`			A153337	n		Number of zig-zag paths from top to bottom of a 2n-1 by 2n-1 square whose color is that of the top right corner.	count	
 zigzag-35	zigzag		zig-zag strips of width `2n − 1` on `{1, …, 2n − 1}`, `c_1` even (the `(2n − 1) × (2n − 1)` square)	`n = 1…`	`0, 2, 18, 116, 650, 3372, 16660, 79592`			A153338	n		Number of zig-zag paths from top to bottom of a 2n-1 by 2n-1 square whose color is not that of the top right corner.	count	
+mersenne-1	mersenne	mersenne-castles	Mersenne castles of height 2, all castles of height 2	`w = 1…`	`1, 3, 7, 15, 31, 63, 127, 255, 511, 1023`	`2^w − 1`	`2`	A000225	w		a(n) = 2^n - 1. (Sometimes called Mersenne numbers, although that name is usually reserved for A001348.)	count	proved
+mersenne-2	mersenne	mersenne-castles	Mersenne castles of height 3, the 1-smooth castles of height 3	`w = 1…`	`1, 3, 9, 25, 67, 175, 449, 1137, 2851, 7095`	g.f. `x(1 − x)/((1 − 2x)(1 − 2x − x²))`	`1+√2`	A106514	w − 1		Expansion of (1-x)/((1-2*x)*(1-2*x-x^2)).	count	proved
+mersenne-3	mersenne		Mersenne strips on `{1, …, 4}`	`w = 1…`	`4, 12, 38, 120, 380, 1204, 3816, 12096, 38344, 121552`	g.f. `2x(2 − 2x − x²)/(1 − 4x + 2x² + 2x³)`	`3.17008…`, root of `x³ − 4x² + 2x + 2`						
+mersenne-4	mersenne		Mersenne castles of height 4	`w = 1…`	`1, 5, 21, 79, 281, 965, 3239, 10703, 34981, 113433`	g.f. `x(1 − x)/((1 − 2x − x²)(1 − 4x + 2x² + 2x³))`	`3.17008…`, root of `x³ − 4x² + 2x + 2`						
+mersenne-5	mersenne		Mersenne castles of height 6	`w = 1…`	`1, 5, 23, 101, 423, 1717, 6815, 26605, 102559, 391477`		`3.64118…`, root of `x⁴ − 5x³ + 4x² + 4x − 2`						
+mersenne-6	mersenne		Mersenne castles of height 8	`w = 1…`	`1, 5, 25, 119, 547, 2447, 10727, 46301, 197439, 833797`		`3.98093…`						
+mersenne-7	mersenne		Mersenne castles of height 9	`w = 1…`	`1, 3, 13, 57, 255, 1131, 4977, 21733, 94289, 406821`		`4.05356…`						
+mersenne-8	mersenne		Mersenne castles of height 12	`w = 1…`	`1, 7, 39, 205, 1041, 5155, 25043, 119855, 566869, 2655597`		`4.41199…`						
+mersenne-9	mersenne		even-block Mersenne castles of height 4	`w = 1…`	`1, 5, 18, 56, 169, 523, 1671, 5421, 17603, 56905`								
+mersenne-10	mersenne		odd-block Mersenne castles of height 4	`w = 1…`	`0, 0, 3, 23, 112, 442, 1568, 5282, 17378, 56528`								
 ridge-1	ridge		ridge strips, `h = 3`	`w = 1…`	`3, 7, 17, 41, 99, 239, 577`		`1+√2`, silver by width	A001333	w+1	Pell-Lucas numbers	Pell-Lucas numbers: numerators of continued fraction convergents to sqrt(2).	metallic	
 ridge-2	ridge		ridge strips, `h = 4`	`w = 1…`	`4, 13, 43, 142, 469, 1549`		`(3+√13)/2`, bronze by width	A003688	w+1		a(n) = 3*a(n-1) + a(n-2), with a(1)=1 and a(2)=4.	metallic	
 ridge-3	ridge		ridge strips, `h = 5`	`w = 1…`	`5, 21, 89, 377, 1597, 6765`		`δ_4 = 2+√5 = φ³`	A015448	w+1	(`= F_{3w+2}`)	a(0) = 1, a(1) = 1, and a(n) = 4*a(n-1) + a(n-2) for n >= 2.	metallic	
@@ -292,6 +302,7 @@ a003024			strip rules with all eigenvalues real and positive, i.e. I + nilpotent
 a003072			castle counts as sums of three positive cubes: 56 of the 552 even-block counts with w >= 4 below 10^8; A^e(4, 2) = 1 + 1 + 8, A^e(6, 3) = 27 + 64 + 216, A^e(5, 8) = 13^3 + 14^3 + 16^3					A003072			Numbers that are the sum of 3 positive cubes.	supporting	
 a003188			binary reflected Gray code (Knuth's Algorithm G of TAOCP section 7.2.1.1)					A003188			Decimal equivalent of Gray code for n.	supporting	
 a003325			A^e(6, 4) = 1729 and A^e(4, 85) = 5^3 + 93^3 are the even-block counts outside height 2 that are sums of two positive cubes below 10^9; the height-2 row gives 2c^3 at w = 5 (mod 12) and c^3 + d^3 at w = 19 (mod 24)					A003325			Numbers that are the sum of 2 positive cubes.	supporting	
+a003586			the heights `2^i 3^j`, the class of height 1 under the consonance rule of the Mersenne castles					A003586			3-smooth numbers: numbers of the form 2^i*3^j with i, j >= 0.	supporting	
 a003622			positions (from 0) of the 1s of the Fibonacci word: height-2 columns of the Fibonacci-word castle					A003622			The Wythoff compound sequence AA: a(n) = floor(n*phi^2) - 1, where phi = (1+sqrt(5))/2.	supporting	
 a003849			every prefix is a Fibonacci tower (tower of a Fibonacci castle)					A003849			The infinite Fibonacci word (start with 0, apply 0->01, 1->0, take limit).	count	
 a004003			A004003(4), the domino tilings of the 8 × 8 square, as an example size of a ZDD (castle-bdd-zdd)					A004003			Number of domino tilings (or dimer coverings) of a 2n X 2n square.	supporting	
@@ -358,6 +369,7 @@ a060486			Bender's c((0,0,n)): every element three times, no repeated blocks, no
 a067675			convex polyominoes by area; its entry gives the prefactor 2.9195985097… of the asymptotic count					A067675			Number of fixed convex polyominoes with n cells.	supporting	
 a067676			directed convex polyominoes by area					A067676			Number of fixed directed convex polyominoes with n cells.	supporting	
 a069010			runs in a row, the Catalan index in Marin's state count					A069010			Number of runs of 1's in the binary representation of n.	supporting	
+a071521			the number of heights `2^i 3^j ≤ h`, the size of the largest class of the consonance rule on `{1, …, h}`					A071521			Number of 3-smooth numbers <= n.	supporting	
 a085478			|inverse generalized Ballot transform| = C(n+k, 2k), the DFF triangle					A085478			Triangle read by rows: T(n, k) = binomial(n + k, 2*k).	supporting	
 a086510			strip rules with a real principal square root: 13, 261, 15418 at heights 2, 3, 4 (fractional-width-and-height)					A086510			Number of n X n real (0,1)-matrices with all eigenvalues >= 0.	supporting	
 a087130			trace for δ_5 (a=5)					A087130			a(n) = 5*a(n-1)+a(n-2) for n>1, a(0)=2, a(1)=5.	metallic	
