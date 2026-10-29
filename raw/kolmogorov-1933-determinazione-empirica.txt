@@ -1,0 +1,394 @@
+[p. 83]
+SULLA DETERMINAZIONE EMPIRICA
+DI UNA LEGGE DI DISTRIBUZIONE
+
+A. KOLMOGOROFF.
+
+SuxnTto. — Contributo allo studio della possibilità di determinare una legge
+di distribuzione conoscendo i risultati di un numero finito di prove.
+
+I. Siano Xi, X:, +++, X, i risultati di 2 osservazioni, mutua-
+mente indipendenti, ordinati in modo crescente X, = X,; = +-+ = X,
+e sia
+
+F(x)= P{iX =x}
+
+una legge di distribuzione che corrisponde a quella successione di
+valori.
+
+Si chiama legge empirica della distribuzione la funzione F.(x)
+definita dalle relazioni,
+
+F.(x)=0 +, x<X:;
+Re =! + M=sx< Nati + E =1,2, 0, #- 1;
+F(X) =t , X.=x+
+
+Pertanto #F,(x) rappresenta il numero dei valori X% che non
+superano il valore x. Siamo condotti quasi naturalmente a doman-
+darci se F.(x) risulta approssimativamente uguale a F (x) quando #
+assume un valore molto grande. Un teorema relativo a questa
+questione è stato dato da v. Mises sotto la denominazione di
+metodo «w!. Però la proposizione fondamentale che la probabilità
+della disuguaglianza
+
+D = estr. sup | Fa (x) — F(x) |< €
+
+tenda verso l'unità per # > co , qualunque sia il numero £, non mi
+
+1) Cfr. Wahrscheinlichkeitsrechnung (1931), pagg. 316-335.
+[p. 84]
+84 A. Kolmogaroff.
+
+risulta sia stata finora espressamente formulata, benchè la dimostra-
+zione di essa possa farsi in diversi semplici modi.
+lo la dedurrò come conseguenza immediata dal teorema che segue.
+Debbo aggiungere che all'impostazione del problema, qui trat-
+tato, sono stato condotto dalle recenti ricerche di Glivenko “.
+
+TEOREMA I. — Za probabilità ®,(%) della disuguaglianza
+D = estr. sup | Fa (x) — F (x) |< i
+n
+tende, per n uniformemente in 4, verso
++
+[1] 0 =V(— er
+—
+
+qualunque sia la funzione di distribuzione F(x) continua.
+Ecco intanto alcuni valori di @(4) calcolati da N. Kogeknikov:
+
+à PA) | 2 | VO) à PA)
+0,0 0,0000 1,0 0,7300 2,0 0,99932
+0,2 0,0000 1,2 0,8877 2,2 0,99986
+0,4 0,0028 1,4 0,9603 2,4 0,999973
+0,6 0,1357 1,6 0,9880 2,6 0,9999964
+
+0,8 0,4558 1,8 9,9969 2,8 0,99999966
+
+Da questi valori si nota che la disuguaglianza D = 2,4/| n può
+considerarsi come praticamente certa. Si osservi inoltre che
+
+P (0,83) sv 0,5 -
+
+Quando A è piccolissimo, la serie [1] converge molto lentamente;
+in tal caso si può usare la formula asintotica
+
+pEr,
+
+2) Cfr. la trattazione, sullo stesso argomento, in questo numero del « Giornale ».
+[p. 85]
+Sulla determinazione empirica di una legge di distribuzione. 5
+
+Tale formula, per A = 0,6, fornisce
+D (0,6) = 0,1327 ,
+invece di
+@ (0,6) = 0,1357
+
+calcolato a mezzo della formula esatta [1].
+
+2. Lemma. — La funzione di probabilità @, (A) non dipende dalla
+funzione di distribuzione F(x) se questa è soltanto continua.
+
+Dimostrazione. — Sia X una variabile casuale relativa a una legge
+di distribuzione F (x) continua; alla variabile casuale Y = F{x) cor-
+risponde evidentemente una legge di distribuzione F’(x) tale che
+
+F(x)=0 , x=<0;
+F (x) =x , o=x=1;
+F(X) =1 , x=1-
+
+Posto che F.(x) e F(x) rappresentino le leggi empiriche di
+distribuzione per la X e la Y dopo a osservazioni, valgono le seguenti
+eguaglianze:
+
+F. (4) — F(x) = FONF (x) — F® [F(x}] = FP (0) —F° 0),
+estr. sup | F, (x) — F(x) | = estr. sup | F@ (y) — FO (4) | +
+
+Ne segue intanto che la funzione di probabilità ©, (A), corrispon-
+dente ad una funzione di distribuzione continua F(x) arbitraria, è
+identica a quella che corrisponde alla funzione Fx).
+
+Ci si può quindi limitare, nel dimostrare il nostro teorema, alla
+considerazione del caso F(x) = F°(x),
+
+Indicheremo nel seguito F° (x) con F.(x) e ci riferiremo al seg-
+mento 0 x =<1 nel quale è F°(x) = x.
+
+Il nostro problema si riduce allora alla determinazione della pro-
+babilità , (4) che sia
+
+[2] estr. sup | Fa (x) — x < ’ PP 0=x=1-
+7
+Supponiamo inoltre che 4 sia della forma
+
+h= È
+
+[e
+[p. 86]
+86 A. Kolmogoroff.
+
+con & intero. Sostituendo nella [2] si otterrà
+[3] (4) = P}estr.sup| F.(2) —x|< |, asi.
+n |
+La funzione F.(x) assume solo valori eguali ai diversi multipli
+di 1/rn; sia, ad esempio, F.(x) = in e x=j|n +e, (0 =e< 1/7).
+Tenendo presente che F.(x), essendo una funzione di distribu-
+zione, è monotona, risulta immediatamente
+
+E PE no ER
+Fx) x = n e,
+
+R(Î) += -@—-9=5_i,
+
+AE) dita ro + 3) 1542
+
+Affinchè sussista la disuguaglianza
+
+|F.@) —x | = | -e > :
+
+è, quindi, necessario che sia soddisfatta almeno una delle due disu-
+guaglianze seguenti
+
+Al) Zali la E
+
+“n “n “u n”
+
+AUS pd iz ta
+n n n n
+Si può concludere che la formula [3] può essere sostituita dalla
+seguente
+4 0 N=Pj max] F(2) i |<}, i=o,1, 00 n e
+
+Sia ora Pa la probabilità che si verifichi l’evento Ea che consiste
+nell’essere simultaneamente valide le relazioni
+
+5) lr@-il<b. j=0/1,2, 100,8
+
+iaia
+[p. 87]
+Sulla determinazione empirica di una legge di distribuzione. 87
+
+Si osserva che
+
+[6] VAN = Pu"
+Per 4} = 0 si ha, evidentemente,
+[7] Po= 1 ’ Pa =0 : (= 0) «
+In generale ;
+[5] Pa=0
+per
+lil=e
+
+poichè in questo caso, le condizioni [5] sono contradittorie. Si ha poi
+[9] Pas: = 5 PaQO, li|< n
+
+dove gn indica la probabilità del verificarsi dell’evento E,,,, nel-
+l’ipotesi che si sia verificato l’evento £;:, cioè la probabilità che si
+verifichi la relazione
+
+sotto la condizione
+
+rv) _ A+
+
+[11] (=
+
+A causa della [11] si ha che, tra gli » risultati delle osservazioni
+Xi, Xi, +++, Xn, esattamente n — &— j si trovano sul segmento
+kln<x = 1; l’uguaglianza [10] non sarà pertanto soddisfatta che
+nel caso in cui 7 -—j + 1 risultati, tra gli » — & — j sopra indicati,
+si trovino sul segmento #/n < x = (& + 1)/n.
+
+La probabilità che abbia luogo questa circostanza, essendo
+uniforme la legge di distribuzione delle X,, risulta per conseguenza
+uguale a
+
+i} n k—j a_i i-ji+:
+12) lip) 1g) i
+
+Le formule [7], [8], [9], [12] e [6] ci consentono di calcolare la
+probabilità @, (4) nel caso A = u/|7n -
+[p. 88]
+88 A. Kolmogoroff.
+
+È possibile ora sostituire le dette formule con altre più comode.
+A tale scopo poniamo
+
+a (ki NN
+
+hi
+[13] Ra = (nb) == nl eb Pa.
+
+Le condizioni [7] e{8] si trasformano, per Ri;, nelle seguenti:
+[14] Roe=1 , Rie =0, {-ko;
+[15] Ra=0, il=p.
+
+La relazione [9] ci conduce, dopo calcoli elementari, alla formula
+
+I
+6 pa = VR in 7
+
+[16] Ras > RG PA
+
+Infine, per le formule [6] e [13], si ottiene
+
+n!
+[17] PN = Pos Ross
+
+Le formule [14], [15], [16] e [17] sono egualmente sufficienti
+per calcolare ©, (4) nel caso A= p/j n -
+
+3. Sia ora Y,, Ya, +++, Y, una successione di variabili casuali,
+mutuamente indipendenti, con una legge di distribuzione caratteriz-
+zata dalle formule
+[18] P yi =tLe"', f=u1,2, 0.
+
+Se si pone
+
+S= PF +Y. +-+ nh
+
+è facile verificare che, la probabilità R, che simultaneamente val-
+gano le relazioni
+
+[19]
+
+ISil< n, j=0,1,2, +; #;
+
+Si=.,
+I
+soddisfa alle medesime condizioni [14] , [15] e [16] cui soddisfa Ra;
+cioè a dire che si ha Ra = Ra.
+È tuttavia possibile dare una espressione asintotica di R.,
+per # > co. Per raggiungere lo scopo possiamo servirci del seguente
+teorema generale.
+[p. 89]
+Sulla determinazione empirica d'una legge di distribuzione. 0
+
+TEOREMA II. — Sia Y,, Ya, ***, Y. una successione di varia-
+bili casuali, mutuamente indipendenti, le quali assumano soltanto
+valori multipli di una costante =.
+
+Sia inoltre
+
+E(Y)=0 , E(Yi)=2b , E(Yì)=dé,
+S=Y+ Vite + n,
+a=bh+b + + aa
+
+e alt) e &(4) due funzioni continue e derivabili verificanti le disu-
+guaglianze
+alt) < 6(t),
+
+ao) <o0< (4) -
+
+Indicando con Ri, la probabilità che valgano simultaneamente
+le relazioni
+
+alti) <S< b(ta) , =, 2, ta
+S.=iet
+
+e con #(0,T,s,#) la funzione di Green relativa all'equazione del
+calore
+
+af
+
+au a
+in un dominio G definito dalle disuguaglianze
+
+alt) <s<b(t),
+si avrà
+Re=t-iju(o0,0,i2,14) +A}
+
+con A tendente uniformemente a zero con e quando siano soddi-
+sfatte le seguenti condizioni:
+a) alt) e è(t) rimangano costanti per # compreso fra certi
+limiti fissi
+o<Ti<t< 1: ;
+è) esista una costante C >o tale che
+
+ce;
+
+DI
+[p. 90]
+90 A. Kolmogoroff.
+
+©) esista una costante A >o tale che per ogni & ed un i,
+convenientemente scelto, siano soddisfatte le ineguaglianze
+
+P{Y.=i. «el >K,
+PiY=G +) el >K&;
+d) esista una costante A tale che
+alt) FA<ie<b(t) — A -
+
+Inoltre la natura delle variabili Y; come pure il loro numero
+ed il numero i possono variare arbitrariamente con :.
+
+Questo teorema appartiene allo stesso ordine di idee del teo-
+rema enunciato in una mia Nota ©.
+
+La conclusione del teorema qui enunciato è peraltro più precisa: il
+teorema della Nota citata ci permetterebbe soltanto di affermare che
+
+im
+
+ge
+SI Ra = fu@.,0,2,t)da + 8,
+pr
+
+im}
+
+essendo A' un infinitesimo con e se sono soddisfatte le condizioni a)
+e è). La condizione 2), che è parte essenziale nel nostro nuovo
+teorema, è stata già impiegata da v. Mises per considerazioni affatto
+analoghe +.
+
+Nel caso nostro si ha
+
+= —,
+pra
+2 1 NEI Cc
+E(Y)=0 , E(VD)=2h =; >. BOY) =di=
+dn = A 1
+i a 0
+
+alt) =—1 , è()= +1,
+
+i) A. KOLMOGOROFF, Eine Verallgemeinerung des Laplace — Liapounoffschen
+Satzes. « Bulletin de l'Académie des Sciences de l’U. S.S. R. » (1931), pag. 959-962.
+
+La dimostrazione completa di questo teorema apparirà prossimamente nello
+stesso Bollettino (1932).
+
+4) Loc. cit. 1), pag. 212, Erste Fundamentalsatz fiir arithmetische Ver-
+teilungen.
+[p. 91]
+Sulla determinazione empirica di una logge di distribuzione. 91
+
+2 )+al,
+
+Re =t.ju(o,0,0,
+
+li s89*
+
+u@,0,s,) = Sade Li
+
+n!
+PP. (A) = Pa = ee Ros =
+
+“+e
+
+' (— pen ta Al
+
++ we
+= VS (— yer +R=() +R.
+a)
+
+= inni: Li
+inn (a i
+
+Il resto R di questa formula tende uniformemente a zero per
+n> o nel caso in cui A è maggiore di un assegnato h, —>0. Invero,
+e= !/p= 1/(1#), in tal caso, tende a zero per n > co.
+
+La affermazione del teorema I è dunque dimostrata per i valori
+di A della forma u/|n e sotto la condizione A >}. Siccome la fun-
+zione limite (A) è continua e possiede il valore limite @ (o) =0,
+si vede facilmente che le restrizioni indicate non sono affatto essen-
+ziali. In merito alla dimostrazione del teorema Il ci proponiamo
+ritornare in una ulteriore Nota.
