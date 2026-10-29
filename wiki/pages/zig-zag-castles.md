@@ -5,7 +5,7 @@ summary: A zig-zag castle is a castle in which neighboring columns differ in hei
 tags: [concept, castle, zig-zag-castle, strip-rule, transfer-matrix, path-graph, chebyshev, balanced-strings, block-count, parity, golden, oeis, verification]
 sources: [project-euler-502-brute-force]
 created: 2026-10-27
-updated: 2026-10-27
+updated: 2026-10-28
 ---
 
 # Zig-zag castles
@@ -171,6 +171,7 @@ At height 4 the generating function of A027557 is `(1 + x − x²)/((1 − x −
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types by width; the zig-zag castles of height 4 are golden by width.
 - [[dyck-words](pages/dyck-words.md)], [[catalan-numbers](pages/catalan-numbers.md)] - Dyck paths: lowering every column of a zig-zag castle with both end columns at height 1 by one gives a Dyck path of length `w − 1`.
 - [[kernel-method](pages/kernel-method.md)] - walks with a finite set of jumps between two walls, here the jumps `−1` and `+1`, counted through the roots of the kernel instead of the transfer matrix.
+- [[kolmogorov-castles](pages/kolmogorov-castles.md)] - the zig-zag castles with both end columns at height 1 and one of two marks on each peak, the castles of the two-sample Kolmogorov-Smirnov test; they are counted at each height by closed walks on the paths with `2h − 1` and `2h − 3` heights, and those of height `h` grow at `2cos(π/(2h))` by width.
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the path eigenvalues `2cos(jπ/(n+1))` as spectral radii of castle graphs.
 - [[castle-notation](pages/castle-notation.md)] - `A_path`, `θ_k`, `M ⊙ M′`, `zstrips(w, h)` and `A_zigzag(w, h)`.
 
