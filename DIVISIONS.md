@@ -59,6 +59,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 - Castle counts as integers: sums of three cubes and the mod-9 residue, `F(6,4) = 1729` and Ramanujan's near-miss C-finite families, Carmichael and perfect numbers as castle counts.
 - Symmetry of the signed transfer matrix: the commutant of `M_k`, the parity sectors of `char_k`, cyclic sieving at `q = -1` on the tower Narayana.
 - Units and lattices: metallic means as fundamental units, Perron roots located in the unit group of their field, the min-height law as a lattice-point question.
+- Coprimality as a strip rule: the totient castles, whose growth by width at large height is an Euler product times the height.
 
 ### Z - Zoo
 
