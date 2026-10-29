@@ -76,6 +76,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 - Prime castles (free-monoid primes in Gessel and Li's sense) and the `P/(1-P)` identity, with the Deutsch-Elizalde transport of Dyck-path primes; the signed version, where `blocks - 1` is a monoid homomorphism and the sign a character of the free monoid on primes.
 - The q-polyomino zoo: Bousquet-Melou add-a-column GFs read off at the area variable; A001169 and A001523 as landmarks.
 - Classical q-families: Carlitz q-Catalan, Barcucci q-Motzkin and q-Bessel, weakly unimodal compositions, steep polyominoes.
+- Partitions into distinct parts as castles by area: the Euler castles, whose block parity is Euler's pentagonal number theorem and Franklin's involution a move on the skyline.
 - Bistatistics: area with block count, peaks, records; hunting q-binomial and Narayana-q coefficients.
 - Bijections: `h=3` tree versus all by area, and convex to vee cell by cell in `(w,h)`.
 
