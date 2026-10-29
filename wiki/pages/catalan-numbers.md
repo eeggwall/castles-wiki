@@ -5,7 +5,7 @@ summary: The Catalan numbers C_n = C(2n, n)/(n + 1) (A000108; 1, 1, 2, 5, 14, 42
 tags: [concept, catalan, dyck, narayana, generating-functions, combinatorics, symbolic-method]
 sources: [analytic-combinatorics-ch1-ogfs, barry-2005-catalan-transform]
 created: 2026-09-13
-updated: 2026-10-25
+updated: 2026-10-29
 ---
 
 # Catalan numbers
@@ -70,6 +70,7 @@ A nonempty Dyck word factors uniquely as `U w_1 D w_2`, where `w_1` and `w_2` ar
 - [[deutsch-elizalde-2017-bargraphs-dyck-paths](pages/deutsch-elizalde-2017-bargraphs-dyck-paths.md)] - the castles whose semi-perimeter minus number of peaks, in Deutsch and Elizalde's sense of peak, is `m` number `C_m`, through a map from Dyck paths.
 - [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the convex castle count `C(2h + w − 3, w − 1)` as a Vandermonde convolution.
 - [[symbolic-method](pages/symbolic-method.md)] - the translation of `G = Z × SEQ(G)` into `G(z) = z/(1 − G(z))`.
+- [[von-neumann-castles](pages/von-neumann-castles.md)] - the castles of plane trees, which are the alternating castles, `C_{b−1}` of them with `b` blocks.
 
 ## Footnotes
 

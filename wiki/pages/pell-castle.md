@@ -5,7 +5,7 @@ summary: A Pell castle is a castle of height 3 whose first column has height 1 a
 tags: [concept, castle, castle-type, pell, silver-ratio, transfer-matrix, 1-smooth, parity, oeis]
 sources: [pe502-pell-castle-strip]
 created: 2026-10-04
-updated: 2026-10-23
+updated: 2026-10-29
 ---
 
 # Pell castle
@@ -110,6 +110,7 @@ print([e for e, o in c])    # 0, 0, 0, 0, 2, 13, 51, 154, 400, 969, 2331, 5742, 
 
 - [[1-smooth-pell-castles-by-area](pages/1-smooth-pell-castles-by-area.md)] - these same Pell castles by width and area together, with area growth `1.666301937...` rather than the silver mean by width.
 - [[1-smooth-castles](pages/1-smooth-castles.md)] - the anchored 1-smooth castles of height `h` for every `h`, with the Pell castles as `h = 3`.
+- [[mersenne-castles](pages/mersenne-castles.md)] - the Mersenne castles of height 3, which are the 1-smooth castles of height 3 with any first column, A106514(`w − 1`).
 - [[m-smooth-castles](pages/m-smooth-castles.md)] - step bound `m`; the Pell castles are the `m = 1` point of the diagonal `h = m + 2`.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the Pell castle strip, the superset without the ceiling requirement, and the seminar from the Analytic Combinatorics exercise.
 - [[pell-numbers](pages/pell-numbers.md)] - `P⋆_w`, A000129.
