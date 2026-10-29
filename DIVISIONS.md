@@ -36,6 +36,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 - Real signals as castles: a URL id, an ID3 label, a waveform, an image row; the codec ladder (WAV / FLAC / MP3, PNG / JPEG) as the compression tier ladder; the lossless castle codec as a spec.
 - Compression and entropy: what the parity clause costs in bits and whether it survives object by object.
 - Equivalences and translation loss: which invariants each encoding keeps or drops.
+- Sets as castles: a block carrying the castles of its members, the von Neumann ordinals as binomial-tree castles, every natural number as a castle through Ackermann's coding, and plane trees as the alternating castles.
 
 ### E - Enumeration
 
