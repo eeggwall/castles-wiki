@@ -5,7 +5,7 @@ summary: How to encode a song as a castle, with every number computed. Rung 0, t
 tags: [analysis, castle, encoding, compression, audio, pcm, lpc, flac, mp3, aac, opus, finite-field, ntt, berlekamp-massey, entropy, youtube, beethoven, cd, dtmf, seminar, pedagogy]
 sources: [project-euler-502-representations, project-euler-502-solution]
 created: 2026-09-19
-updated: 2026-10-16
+updated: 2026-10-29
 ---
 
 # A song as a castle
@@ -210,7 +210,7 @@ Its skyline DFT has **two atoms**: bins 13 and 27 = 40 − 13 carry 99.2% of the
 
 **Detection is one DFT bin.** The Goertzel algorithm evaluates the DFT at a single bin, so a tone detector is a linear functional on the skyline.
 
-**The catalogue.** [[tone-castle-catalog](pages/tone-castle-catalog.md)] builds the castle for every DTMF key, every MF code and the call-progress tones. The DTMF keys have periods of 2000, 4000 or 8000 samples, longer than a DTMF burst, so a sent DTMF key is not a whole number of periods.[^song]
+**The catalog.** [[tone-castle-catalog](pages/tone-castle-catalog.md)] builds the castle for every DTMF key, every MF code and the call-progress tones. The DTMF keys have periods of 2000, 4000 or 8000 samples, longer than a DTMF burst, so a sent DTMF key is not a whole number of periods.[^song]
 
 ---
 

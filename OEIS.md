@@ -335,7 +335,7 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   `2−(m+3)`, `3−(m+3)`, so for `w ≥ 2` the strips number `A052994(w + 2) = 2·A006356(w)` at every
   `m ≥ 3`, and the castles subtract the `2F(w + 2)` strips on `m + 2` heights. No match
   2026-10-28. Checked for `m = 3, …, 9`, `w ≤ 25` (`bin/python/hilbert_castles.py` item [9]); the
-  catalogue row (`disparate-5`, height 6 at `m = 3`) has the terms but not this formula.
+  catalog row (`disparate-5`, height 6 at `m = 3`) has the terms but not this formula.
 
 **Skipped (assessed, with reason):**
 
@@ -621,7 +621,7 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalog.m
 | Strip Perron-root sequences | quadratic strips off the line `p₂ = 1`, fields `Q(√17)`, `Q(√21)`, `Q(√6)`, `Q(√7)`, `Q(√33)` | - | **unchecked**; several strip matrices reach each field, so a field has no single count sequence to search |
 | Von Neumann castles and Ackermann castles | the columns of the skyline whose first `2^n − 1` columns are `vN(n)`, `s_2(i) + (i mod 2)` | `2, 1, 3, 1, 3, 2, 4, 1, 3, 2, 4, 2, 4, 3, 5` from `i = 1` | **novel-candidate** (no match, 2026-10-28, nor with a leading `0` for `i = 0`); `= A000120(i) + A000035(i)`, its even and odd terms are `A000120(j)` and `A000120(j) + 2`, [[von-neumann-castles](pages/von-neumann-castles.md)] |
 | Von Neumann castles and Ackermann castles | the `m` with an even-block Ackermann castle `ack(m)` (A116549(`m`) even) | `1, 3, 4, 6, 9, 11, 12, 14, 17, 19, 20, 22, 25, 27, 28, 30` | **novel-candidate** (no match, 2026-10-28); the complement of [A372325](https://oeis.org/A372325), the odd-block ones (*Equal to an entry …* below), [[von-neumann-castles](pages/von-neumann-castles.md)] |
-| Von Neumann castles and Ackermann castles | the areas of `ack(m)` | `1, 2, 3, 6, 4, 7, 8, 11, 9, 12, 13, 16, 14, 17, 18, 21` from `m = 0` | **novel-candidate** (no match, 2026-10-28, nor without the first term); `area(m) = width(ack(m)) + Σ area(k)` over the binary 1s `k` of `m` (checked for `m < 2^16`); terms in `bin/python/von_neumann_castles-run.log` item [6], not on the page or in the catalogue |
+| Von Neumann castles and Ackermann castles | the areas of `ack(m)` | `1, 2, 3, 6, 4, 7, 8, 11, 9, 12, 13, 16, 14, 17, 18, 21` from `m = 0` | **novel-candidate** (no match, 2026-10-28, nor without the first term); `area(m) = width(ack(m)) + Σ area(k)` over the binary 1s `k` of `m` (checked for `m < 2^16`); terms in `bin/python/von_neumann_castles-run.log` item [6], not on the page or in the catalog |
 | Other rows | `A^e(w, 3)`, the even-block castles of height 3, `0, 0, 3, 21, 89, 307, 977, 3031, …` ([[new-sequence-fw3](pages/new-sequence-fw3.md)]): **novel-candidate** (no match, 2026-10-16). | - | (status in the text) |
 | Other rows | The rows `A^e(w, 4) = 1, 7, 31, 117, 439, 1729, 7063, 29201, …`, `A^e(w, 5) = 0, 0, 10, 122, 906, 5478, 30274, …` and `A^e(w, 6) = 1, 11, 76, 448, 2630, 16126, 101654, …` of the array `A^e(w, h)`: **novel-candidate** (no match, 2026-10-16). | - | (status in the text) |
 | Other rows | The odd-block rows `A^o(w, 3) = 1, 5, 16, 44, 122, 358, 1082, 3274, …` and `A^o(w, 4) = 0, 0, 6, 58, 342, 1638, 7134, …`: **novel-candidate** (no match, 2026-10-16). | - | (status in the text) |

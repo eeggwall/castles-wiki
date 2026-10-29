@@ -165,7 +165,7 @@ wiki/
   overview.md      evolving synthesis across all sources
   pages/           all wiki pages, flat, slug-named (no subdirectories)
     oeis-index.md  GENERATED A-number directory (committed) — run bin/generate-sequence-pages.py
-    castle-sequence-catalog.md  GENERATED sequence catalogue by family (committed), same script
+    castle-sequence-catalog.md  GENERATED sequence catalog by family (committed), same script
 ```
 
 Pages are grouped by `category` frontmatter into **Sources** (ingested documents),

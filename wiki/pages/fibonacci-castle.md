@@ -5,7 +5,7 @@ summary: The Fibonacci castles are the castles of height 2 with no two neighbori
 tags: [concept, castle, castle-type, fibonacci, golden-ratio, transfer-matrix, q-matrix, fibonacci-tower, fibonacci-word, wythoff, zeckendorf, parity, blocks, golden-mean-shift, entropy, run-length-limited, constrained-coding, tree-castle, ridge-castle]
 sources: [prellberg-brak-1995-cluster-models, deutsch-elizalde-2017-bargraphs-dyck-paths, balado-silvestre-2026-runs-binary-strings]
 created: 2026-10-03
-updated: 2026-10-28
+updated: 2026-10-29
 ---
 
 # Fibonacci castle
@@ -199,7 +199,7 @@ print(tower.count("1") + 1)          # 22 blocks
 
 - [[totient-castles](pages/totient-castles.md)] - the castles with coprime neighboring heights, which at height 2 are the Fibonacci castles.
 - [[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)] - sub-families cut out by rules on the Fibonacci tower: Fibonacci-word and balanced castles (the Sturmian chain), and the gap-length families, maximal (Padovan), spaced (Narayana's cows) and `(d, k)`-RLL castles.
-- [[castle-classification-shape](pages/castle-classification-shape.md)] - the shape catalogue, where the Fibonacci castles sit beside the ridge castles among the rate-of-change types.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the shape catalog, where the Fibonacci castles sit beside the ridge castles among the rate-of-change types.
 - [[castle-notation](pages/castle-notation.md)] - the Fibonacci castle entry and `P_F`.
 - [[castle-graph](pages/castle-graph.md)], [[tree-castle-by-area](pages/tree-castle-by-area.md)] - tree castles, of which the Fibonacci castles are the case of height 2; their signed count `(−1)^h·(1 − P_F(w))` at every height is on castle-graph.
 - [[castle-classification-growth](pages/castle-classification-growth.md)], [[metallic-means](pages/metallic-means.md)] - the growth types, among them golden by width.

@@ -5,7 +5,7 @@ summary: The rational generating functions P_k(x) = Σ_L P(k, L) x^L = num_k(x)/
 tags: [analysis, castle, generating-functions, c-finite, sympy, verification]
 sources: [project-euler-502-solution]
 created: 2026-09-14
-updated: 2026-10-25
+updated: 2026-10-29
 ---
 
 # Generating-function gallery for P(k,L)
@@ -40,7 +40,7 @@ for k in range(1, 9):
     den[k] = sp.expand(den[k-1]*(1 - 2*x) + x*num[k-1])
 ```
 
-## The num_k / den_k catalogue
+## The num_k / den_k catalog
 
 | k | num_k(x) | den_k(x) |
 |---|---|---|
@@ -68,7 +68,7 @@ With `char_k(λ) = λ^{k+1} den_k(1/λ)`, the characteristic polynomial of the r
 char_{k+1}(λ)  =  λ²·char_{k−1}(λ) − 2·char_k(λ),        char_0 = λ − 1,   char_1 = λ² − 2λ + 2.      (2)
 ```
 
-Checked against the catalogue:
+Checked against the catalog:
 
 ```python
 assert all(sp.expand(den[k+1] - (den[k-1] - 2*x*den[k])) == 0 for k in range(1, 8))
@@ -88,7 +88,7 @@ so for every `k ≥ 0`
 den_k(x)  =  A(x)·r_+^k + B(x)·r_−^k,                                         (3)
 ```
 
-with `A` and `B` fixed by `den_0 = 1 − x` and `den_1 = 1 − 2x + 2x²`. Equation (1) is the recurrence of the Pell polynomials in the variable `−x`. Equation (3) agrees with the catalogue for `k ≤ 10`.[^2]
+with `A` and `B` fixed by `den_0 = 1 − x` and `den_1 = 1 − 2x + 2x²`. Equation (1) is the recurrence of the Pell polynomials in the variable `−x`. Equation (3) agrees with the catalog for `k ≤ 10`.[^2]
 
 **Coefficients of `char_k`.** The coefficients of `den_k` at `x`, `x²`, `x^k` and `x^{k+1}` are the coefficients of `char_k` at `λ^k`, `λ^{k−1}`, `λ` and `1`:
 
@@ -187,7 +187,7 @@ for k in [0, 1, 2, 3, 4, 5, 8]:
     print(f"k={k}: num_k/den_k == P(k,L) for L=0..20")
 ```
 
-The check includes `k = 8`, beyond the catalogue.
+The check includes `k = 8`, beyond the catalog.
 
 ## Appearances in Sources
 
@@ -213,5 +213,5 @@ The check includes `k = 8`, beyond the catalogue.
 ## Footnotes
 
 [^1]: [[project-euler-502-solution](pages/project-euler-502-solution.md)] §"The rational-function path (h ≤ 15000)" L124-138 - "F_k(x) = ∑_L P(k, L) x^L ... F_0(x) = 1/(1 - x) ... num_k(x) = 2·den_{k-1}(x) - num_{k-1}(x); den_k(x) = den_{k-1}(x)·(1 - 2x) + num_{k-1}(x)·x; F_k(x) = num_k(x)/den_k(x)."
-[^2]: Verified by execution (Python 3.11 with SymPy, NumPy and mpmath, 2026-10-16): the catalogue for `k ≤ 6`; `gcd(num_k, den_k) = 1` for `k ≤ 40` ([[castle-counting-formula](pages/castle-counting-formula.md)]); Equation (3) against `den_k` for `k ≤ 10`; the four coefficients of `char_k` for `k ≤ 40`; `char(M̃_k) = char_k` for `k ≤ 16`; two irreducible factors for even `k ≤ 40`, one real root for even `k ≤ 40`, irreducible with no real root for odd `k ≤ 31`; the root of largest modulus real and in the even-last-column sector for even `k ≤ 40` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]); the eigenvalue table; `ρ_k` from the eigenvalues of `M̃_k` for the listed `k` and for `k = 9, 11, 49, 51, 99, 101`; the exact equation at `k = 8, 20, 100`; the approximate equation at the even `k` of the table; the series of `Σ_w A^e(w, 3) x^w` against enumeration for `w ≤ 10`.
+[^2]: Verified by execution (Python 3.11 with SymPy, NumPy and mpmath, 2026-10-16): the catalog for `k ≤ 6`; `gcd(num_k, den_k) = 1` for `k ≤ 40` ([[castle-counting-formula](pages/castle-counting-formula.md)]); Equation (3) against `den_k` for `k ≤ 10`; the four coefficients of `char_k` for `k ≤ 40`; `char(M̃_k) = char_k` for `k ≤ 16`; two irreducible factors for even `k ≤ 40`, one real root for even `k ≤ 40`, irreducible with no real root for odd `k ≤ 31`; the root of largest modulus real and in the even-last-column sector for even `k ≤ 40` ([[tower-parity-sectors](pages/tower-parity-sectors.md)]); the eigenvalue table; `ρ_k` from the eigenvalues of `M̃_k` for the listed `k` and for `k = 9, 11, 49, 51, 99, 101`; the exact equation at `k = 8, 20, 100`; the approximate equation at the even `k` of the table; the series of `Σ_w A^e(w, 3) x^w` against enumeration for `w ≤ 10`.
 [^3]: Verified by execution (Python 3.11 with SymPy, 2026-10-25): from the update of `num_k` and `den_k`, for `k ≤ 20`, `char_k` is monic of degree `k + 1` with coefficient `−(k + 1)` of `λ^k` and constant term `(−1)^{k+1} 2^k`; the recurrences listed for `k ≤ 3` hold for the brute-force values of `P(k, L)`.

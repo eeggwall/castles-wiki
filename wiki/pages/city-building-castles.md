@@ -5,7 +5,7 @@ summary: A city-building castle is a castle in which, with the ground in front a
 tags: [concept, castle, city-building-castle, visibility, oeis, a400000, finiteness, block-count, parity, valley, verification]
 sources: [project-euler-502-brute-force]
 created: 2026-10-25
-updated: 2026-10-25
+updated: 2026-10-29
 ---
 
 # City-building castles
@@ -99,7 +99,7 @@ With `c_1 = 1`, adding over the columns gives `Σ c_j ≥ w + val(c)`: a city-bu
 ## Related Concepts
 
 - [[valley-castles](pages/valley-castles.md)] - valleys and the horizontally visible pairs, a stricter visibility than the city-building rule; the bound of the section *Valleys*.
-- [[castle-classification-shape](pages/castle-classification-shape.md)] - the catalogue entry for the city-building type.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the catalog entry for the city-building type.
 - [[castle-notation](pages/castle-notation.md)] - the two visibility rules on the wiki.
 - [[castle-polyomino](pages/castle-polyomino.md)] - castles as skylines.
 

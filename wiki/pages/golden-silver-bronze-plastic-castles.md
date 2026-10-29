@@ -5,7 +5,7 @@ summary: The four constants golden φ, silver 1 + √2, bronze (3 + √13)/2 and
 tags: [analysis, castle, metallic-means, golden-ratio, silver-ratio, bronze, plastic-number, padovan, growth-constant, width, area, semi-perimeter, spectral-radius, run-length-limited, ridge-castle, classification, totally-real, oeis, sympy, verification]
 sources: [project-euler-502, balado-silvestre-2026-runs-binary-strings]
 created: 2026-10-10
-updated: 2026-10-27
+updated: 2026-10-29
 ---
 
 # Golden, silver, bronze and plastic growth of castles
@@ -198,7 +198,7 @@ where `e(s)` repeats `−1, 2, 3, 1, −2, −3` from `s = 4`, since `1 − x + 
 
 - [[metallic-means](pages/metallic-means.md)] - golden, silver, bronze and the higher rungs `δ_a`.
 - [[plastic-number](pages/plastic-number.md)] - `ψ`, `ψ²` and `2ψ²` in the castle.
-- [[castle-classification-growth](pages/castle-classification-growth.md)] - the growth-castle naming convention and catalogue.
+- [[castle-classification-growth](pages/castle-classification-growth.md)] - the growth-castle naming convention and catalog.
 - [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] - spectrum castles and Smith's theorem.
 - [[fibonacci-castles-sub-families](pages/fibonacci-castles-sub-families.md)] - the run-length-limited castles.
 - [[ridge-castle](pages/ridge-castle.md)] - the ridge rule, golden by width at height 2.

@@ -5,7 +5,7 @@ summary: A valley of a castle is a pair of columns i < j − 1 with every column
 tags: [concept, castle, valley, valley-castle, k-valley-castle, convex-castle, convex-core, block-count, parity, rule-3, horizontal-visibility, tower-word, binomial, verification]
 sources: [project-euler-502-brute-force]
 created: 2026-10-25
-updated: 2026-10-25
+updated: 2026-10-29
 ---
 
 # Valleys and valley castles
@@ -160,7 +160,7 @@ The castles of height 3 and 4 by number of valleys, for `w = 3, …, 8`:[^exec7]
 - [[tower-word-language](pages/tower-word-language.md)] - the tower word used in the count.
 - [[tower-spacing-castles](pages/tower-spacing-castles.md)] - the castles whose valleys all have span at least `g`.
 - [[castle-by-area](pages/castle-by-area.md)] - the vee castles, whose valleys all nest.
-- [[castle-classification-shape](pages/castle-classification-shape.md)] - the catalogue entries for the valley and k-valley castles.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the catalog entries for the valley and k-valley castles.
 - [[castle-notation](pages/castle-notation.md)] - the valley symbols and the other meanings of "valley" on the wiki.
 
 ## Footnotes

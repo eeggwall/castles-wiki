@@ -256,9 +256,9 @@ All sequence data lives in two tab-separated files under `config/`. They are one
 | file | one row per | holds |
 |---|---|---|
 | `config/castle-sequences.tsv` | sequence | `id`, `family`, `page`, `counts`, `axis`, `terms`, `formula`, `growth`, `anum`, `anum_index`, `note`, `oeis_name`, `group`, `status`: what the row counts, its first terms, formula and growth, the A-number and offset it equals (or none), the stored OEIS name, the index group, and `proved` with the page that proves it |
-| `config/castle-sequence-families.tsv` | catalogue section | `id`, `title`, `label`, `page`, `intro`, `note`: the section heading, the short label that prefixes its rows in the index, the family page, and the section's intro and closing text |
+| `config/castle-sequence-families.tsv` | catalog section | `id`, `title`, `label`, `page`, `intro`, `note`: the section heading, the short label that prefixes its rows in the index, the family page, and the section's intro and closing text |
 
-- **The catalogue** shows every row with a `family`, grouped under that family's section, in
+- **The catalog** shows every row with a `family`, grouped under that family's section, in
   file order. **The index** shows every row with an `anum`, grouped by `group`; its castle role
   is built from those rows, and its citing pages come from a scan of every page body (the two
   generated pages excluded).
@@ -270,12 +270,12 @@ All sequence data lives in two tab-separated files under `config/`. They are one
   a label, a family page, or the intro and closing text. Every sequence, A-number, term,
   offset, OEIS name and proof status is a cell of `config/castle-sequences.tsv`.
 - **An A-number cited on a page** needs a row in `config/castle-sequences.tsv`: with a
-  `family` when it is a castle count shown in the catalogue, with `family` empty when it only
+  `family` when it is a castle count shown in the catalog, with `family` empty when it only
   annotates an OEIS entry in the index. A cited A-number without a row is listed in the index
   under "Not yet annotated" until a row is added.
 - **Every listed term is checked**: computed by a script in `bin/python/` against its castle
   definition and against the OEIS data at the stated offset, with the script and its run log
-  cited from the catalogue's footnote or the family's closing note.
+  cited from the catalog's footnote or the family's closing note.
 - **Regenerate** with `python3 bin/generate-sequence-pages.py` after any edit to either file or
   any page edit that adds or removes an A-number, and commit the data files and both generated
   pages together; the pre-commit gate's `--check` mode blocks a commit that leaves either page

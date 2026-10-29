@@ -5,7 +5,7 @@ summary: "Two unimodal castle types of height h whose sides change step size str
 tags: [concept, castle, classification, unimodal, distinct-parts, partitions, hindenburg-algorithm, generation, growth-constant, hoodoo-castle, monadnock-castle, implementation, verification]
 sources: [aocp-generating-partitions]
 created: 2026-10-02
-updated: 2026-10-28
+updated: 2026-10-29
 ---
 
 # Hoodoo and monadnock castles
@@ -17,7 +17,7 @@ Both types are castles of height `h ≥ 2` made of three parts, read left to rig
 - **Hoodoo castle:** the rising steps strictly increase and the falling drops strictly decrease. Example, `h = 35`: `(2, 3, 6, 16, 35, 35, 25, 18, 14, 12)`, rising steps `1, 3, 10, 19`, drops `10, 7, 4, 2`.
 - **Monadnock castle:** the rising steps strictly decrease and the falling drops strictly increase. Example, `h = 35`: `(2, 21, 31, 34, 35, 35, 33, 29, 22, 12)`, rising steps `19, 10, 3, 1`, drops `2, 4, 7, 10`.
 
-Both are unimodal, so each has exactly `h` blocks ([[convex-castle](pages/convex-castle.md)]): the even-block ones are all of them when `h` is even and none when `h` is odd. Hoodoo and monadnock are names the wiki gives these two types; the catalogue entry, with the relation to the concave-skyline type, is in the convexity section of [[castle-classification-shape](pages/castle-classification-shape.md)].
+Both are unimodal, so each has exactly `h` blocks ([[convex-castle](pages/convex-castle.md)]): the even-block ones are all of them when `h` is even and none when `h` is odd. Hoodoo and monadnock are names the wiki gives these two types; the catalog entry, with the relation to the concave-skyline type, is in the convexity section of [[castle-classification-shape](pages/castle-classification-shape.md)].
 
 ## Notation used on this page
 
@@ -147,7 +147,7 @@ The exact count divided by this estimate is `1.33, 1.16, 1.08, 1.04` at `N = 10,
 
 ## Related Concepts
 
-- [[castle-classification-shape](pages/castle-classification-shape.md)] - the catalogue entries, the count table by width for `h ≤ 7`, and the relation to the concave-skyline type.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the catalog entries, the count table by width for `h ≤ 7`, and the relation to the concave-skyline type.
 - [[convex-castle](pages/convex-castle.md)] - the unimodal family both types sit inside; its binomial count is the denominator of the fixed-width fractions.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types by width, of which neither family has one: both counts are eventually constant in `w`.
 - [[castle-snippets](pages/castle-snippets.md)] - the `is_hoodoo` and `is_monadnock` predicates used to check the generator.

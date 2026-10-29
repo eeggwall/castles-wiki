@@ -5,7 +5,7 @@ summary: "Knuth's section on integer partitions - Algorithm P (all partitions, r
 tags: [knuth, taocp, source, partitions, distinct-parts, generation, hindenburg-algorithm, euler, hardy-ramanujan, gaussian-binomial, gray-code, hoodoo-castle, monadnock-castle]
 sources: [aocp-generating-partitions]
 created: 2026-10-02
-updated: 2026-10-16
+updated: 2026-10-29
 ---
 
 # AOCP Generating All Partitions (Knuth, *The Art of Computer Programming*, Vol. 4A §7.2.1.4)
@@ -47,7 +47,7 @@ The exercises carry most of the distinct-part material. Exercise 34 is the stair
 ## Entities & Concepts
 
 - [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] - the castle families whose sides are partitions into distinct parts; generated here by the Hindenburg algorithm.
-- [[castle-classification-shape](pages/castle-classification-shape.md)] - the catalogue entries for hoodoo, monadnock and Ferrers castles.
+- [[castle-classification-shape](pages/castle-classification-shape.md)] - the catalog entries for hoodoo, monadnock and Ferrers castles.
 - [[multiset-partitions](pages/multiset-partitions.md)] - partitions into parts and into distinct parts as the one-element case of Bender's multiset partitions.
 - [[permutation-inversions](pages/permutation-inversions.md)] - the rim representation as multiset permutations with `n` inversions.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - the "partition in a box" Gaussian binomials of Theorem C.
