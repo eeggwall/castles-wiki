@@ -1,0 +1,32 @@
+# python3 bin/python/totient_castles.py  (2026-10-28, Python 3.11)
+[1] totient castles by the transfer matrix = brute force, w <= 7, h <= 6: True
+[1] h = 2: A_totient(w, h), w = 1..10: [1, 2, 4, 7, 12, 20, 33, 54, 88, 143]
+[1] h = 3: A_totient(w, h), w = 1..10: [1, 4, 12, 33, 86, 218, 543, 1338, 3274, 7975]
+[1] h = 4: A_totient(w, h), w = 1..10: [1, 4, 16, 55, 184, 590, 1859, 5754, 17622, 53473]
+[1] h = 5: A_totient(w, h), w = 1..10: [1, 8, 42, 197, 866, 3670, 15191, 61898, 249492, 997931]
+[1] h = 6: A_totient(w, h), w = 1..10: [1, 4, 24, 115, 564, 2634, 12185, 55346, 248934, 1108617]
+[1] height 2: F_(w+2) - 1 = A000071(w + 2), the Fibonacci castles, w <= 20: True
+[1] height 3: the strips number A001333(w + 1), as the 1-smooth strips on {1, 2, 3} do, and the castles A001333(w + 1) - F_(w+2), w <= 14: True
+[2] h = 2: char poly x**2 - x - 1, largest eigenvalue 1.6180340
+[2] h = 3: char poly (x + 1)*(x**2 - 2*x - 1), largest eigenvalue 2.4142136
+[2] h = 4: char poly x*(x**3 - x**2 - 5*x - 2), largest eigenvalue 2.9354323
+[2] h = 5: char poly x*(x + 1)*(x**3 - 2*x**2 - 7*x - 2), largest eigenvalue 3.9172860
+[2] h = 6: char poly x*(x**5 - x**4 - 11*x**3 - 10*x**2 + 2*x + 2), largest eigenvalue 4.1746638
+[2] h = 7: char poly x*(x + 1)*(x**5 - 2*x**4 - 15*x**3 - 12*x**2 + 4*x + 2), largest eigenvalue 5.2572382
+[2] h = 8: char poly x**2*(x + 1)*(x**5 - 2*x**4 - 19*x**3 - 17*x**2 + 6*x + 3), largest eigenvalue 5.7697533
+[2] height 3: (0, 1, -1) is the eigenvector of M_3 for -1, (1, 0, -1) that of the 1-smooth matrix for 1, both orthogonal to the all-ones vector: True
+[3] Lambda = (6/pi^2) prod_p (1 - (1 - x_p)/p)/(1 - 1/p^2), primes < 10^6: 0.678462252434632
+[3] x_2 = 0.618033988750, 1/phi = 0.618033988750; x_3 = 0.732050807569 = sqrt 3 - 1 = 0.732050807569
+[3] (p - 1)/(p - 1 + x_p) = x_p, x_p increasing, 1 - x_p <= 1/(p - 1), p < 1000: True
+[4] v = 1 * g with g(p) = x_p - 1 on squarefree numbers, n <= 3000: True
+[4] |(M_h v)_a - Lambda h v_a| <= 8 2^omega(a) sqrt(h) for every a <= h, h = 50, 100, 200, 400: True, largest ratio to the bound 0.0059
+[5] h = 100: Collatz-Wielandt bounds 0.660193 <= rho/h <= 0.682543; rho/h = 0.6764277 (residual 3.9e-16); average row sum / h = 0.608700; Lambda = 0.6784623
+[5] h = 400: Collatz-Wielandt bounds 0.674341 <= rho/h <= 0.681580; rho/h = 0.6784558 (residual 1.2e-15); average row sum / h = 0.608469; Lambda = 0.6784623
+[5] h = 1600: Collatz-Wielandt bounds 0.676332 <= rho/h <= 0.679421; rho/h = 0.6783748 (residual 4.2e-16); average row sum / h = 0.607993; Lambda = 0.6784623
+[5] 6/pi^2 = 0.607927
+[6] h = 2: even-block [1, 2, 3, 4, 6, 10, 17, 28, 45, 72]; signed [1, 2, 2, 1, 0, 0, 1, 2, 2, 1]; signed char poly x**2 - x + 1, spectral radius 1.000000
+[6] h = 3: even-block [0, 0, 3, 14, 39, 100, 259, 652, 1604, 3934]; signed [-1, -4, -6, -5, -8, -18, -25, -34, -66, -107]; signed char poly x**3 - x**2 + x - 3, spectral radius 1.574743
+[6] h = 4: even-block [1, 4, 12, 32, 95, 298, 938, 2898, 8853, 26804]; signed [1, 4, 8, 9, 6, 6, 17, 42, 84, 135]; signed char poly x**4 - x**3 + 3*x**2 - 2*x + 4, spectral radius 1.414214
+[6] h = 5: even-block [0, 0, 10, 86, 414, 1754, 7418, 30706, 124088, 496964]; signed [-1, -8, -22, -25, -38, -162, -355, -486, -1316, -4003]; signed char poly x**5 - x**4 + 3*x**3 - 9*x**2 - 2*x - 12, spectral radius 2.198760
+[6] h = 6: even-block [1, 4, 18, 72, 315, 1392, 6251, 28000, 125190, 555930]; signed [1, 4, 12, 29, 66, 150, 317, 654, 1446, 3243]; signed char poly x**6 - x**5 + 5*x**4 - 8*x**3 + 10*x**2 - 10*x + 16, spectral radius 1.961087
+[6] the signed transfer matrix = brute force, w <= 6, h <= 5: True
