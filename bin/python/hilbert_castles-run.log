@@ -1,0 +1,110 @@
+# python3 bin/python/hilbert_castles.py  (2026-10-28, Python 3.11 with NumPy 2.4, SymPy 1.14 and mpmath 1.3)
+[1] G_M(x) G_(J-M)(-x) = 1 up to x^10 (x^8 at h = 4), every rule with h <= 4: True, 66066 rules
+[1] random rules of height 5, up to x^14: 300 of 300
+[1] random rules of height 6, up to x^14: 300 of 300
+[1] random rules of height 7, up to x^12: 300 of 300
+[1] by width and area (q^a for a column of height a): every rule with h <= 3 up to x^8: True, 530 rules; 100 random rules at h = 4 and at h = 5 up to x^7: 200 of 200
+[1] the valid cuts of every word of length 1..6 under 120 random rules (h = 2, 3, 4) are none or two neighboring cuts: True, 267120 words
+[1] h = 2: every pair allowed [1, 2, 4, 8, 16, 32] = 2^w; no pair allowed [1, 2, 0, 0, 0, 0] ; dual: True
+[1] plateau-free J - I: (1 + x)/(1 - (h-1)x); constant I: 1 + hx/(1 - x), h = 2..8: True
+[2] (1, 3, 3, 1, 4) is a Hilbert castle of height 4: True  blocks 6   ....# .##.# .##.# #####
+[2] (1, 2, 4) is not: True
+[2] the Hilbert castles of width 2 and height 4: [(1, 4), (2, 4), (4, 1), (4, 2), (4, 4)] blocks [4, 4, 4, 4, 4]
+      (1, 4) .# .# .# ##
+      (2, 4) .# .# ## ##
+      (4, 1) #. #. #. ##
+      (4, 2) #. #. ## ##
+      (4, 4) ## ## ## ##
+[2] the Hilbert castles of width 3 and height 3: [(1, 1, 3), (1, 3, 1), (1, 3, 3), (3, 1, 1), (3, 1, 3), (3, 3, 1), (3, 3, 3)] blocks [3, 3, 3, 3, 5, 3, 3]
+[3] A083318(n) = Hilbert strips of width n on the heights 1..3, n >= 0: True 32 terms
+[3] A126358(n) = Hilbert strips of width n on the heights 1..4, n >= 0: True 29 terms
+[3] A287804(n) = Hilbert strips of width n on the heights 1..5, n >= 0: True 26 terms
+[3] A287806(n) = Hilbert strips of width n on the heights 1..6, n >= 0: True 25 terms
+[3] A287808(n) = Hilbert strips of width n on the heights 1..7, n >= 0: True 23 terms
+[3] A287812(n) = Hilbert strips of width n on the heights 1..8, n >= 0: True 22 terms
+[3] A287816(n) = Hilbert strips of width n on the heights 1..9, n >= 0: True 22 terms
+[3] A287825(n) = Hilbert strips of width n on the heights 1..10, n >= 0: True 21 terms
+[3] A287832(n) = Hilbert strips of width n on the heights 1..11, n >= 0: True 21 terms
+[3] A_hilbert(w, 2), w = 1..12: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]  brute force where h^w <= 3e6: True
+[3] A_hilbert(w, 3), w = 1..12: [1, 3, 7, 15, 31, 63, 127, 255, 511, 1023, 2047, 4095]  brute force where h^w <= 3e6: True
+[3] A_hilbert(w, 4), w = 1..12: [1, 5, 17, 51, 145, 401, 1091, 2937, 7849, 20867, 55265, 145953]  brute force where h^w <= 3e6: True
+[3] A_hilbert(w, 5), w = 1..12: [1, 7, 33, 137, 535, 2015, 7415, 26863, 96267, 342333, 1210609, 4263811]  brute force where h^w <= 3e6: True
+[3] A_hilbert(w, 6), w = 1..12: [1, 9, 55, 295, 1481, 7147, 33617, 155365, 709093, 3206785, 14403417, 64359653]  brute force where h^w <= 3e6: True
+[3] A_hilbert(w, 7), w = 1..12: [1, 11, 83, 549, 3393, 20129, 116239, 658731, 3682401, 20376223, 111876335, 610570527]  brute force where h^w <= 3e6: True
+[3] h = 2: 1 for every w; h = 3: 2^w - 1; h = 4: 2F_(2w+1) - 2^w - 1, w <= 60: True True True
+[3] A000225(w) = A_hilbert(w, 3), w >= 1: True
+[3] hstrips(w, 4) = 2F_(2w+1) for w >= 1, w <= 60: True
+[3] h = 2: Z_h(x) = -(x + 1)/(x - 1)   sum hstrips(w, h) x^w = 1/Z_h(-x) = -(x + 1)/(x - 1)
+[3] h = 3: Z_h(x) = -(x + 1)*(2*x + 1)/(2*x**2 - 1)   sum hstrips(w, h) x^w = 1/Z_h(-x) = -(2*x**2 - 1)/((x - 1)*(2*x - 1))
+[3] h = 4: Z_h(x) = -(x**2 + 3*x + 1)/(x**2 + x - 1)   sum hstrips(w, h) x^w = 1/Z_h(-x) = -(x**2 - x - 1)/(x**2 - 3*x + 1)
+[3] h = 5: Z_h(x) = (x**3 - 5*x**2 - 5*x - 1)/(3*x**2 - 1)   sum hstrips(w, h) x^w = 1/Z_h(-x) = -(3*x**2 - 1)/(x**3 + 5*x**2 - 5*x + 1)
+[3] h = 6: Z_h(x) = -(3*x**3 - 2*x**2 - 5*x - 1)/(x**3 - 2*x**2 - x + 1)   sum hstrips(w, h) x^w = 1/Z_h(-x) = -(x**3 + 2*x**2 - x - 1)/(3*x**3 + 2*x**2 - 5*x + 1)
+[3] sum hstrips(w, h) x^w = 1/Z_h(-x) as rational functions, h = 2..8: True
+[3] the reduced denominator of the Hilbert strip series has degree <= ceil(h/2), h = 2..8: True
+[4] sigma = (1->3, 2->1, 3->4, 4->2): sigma(I + A_path) = J - A_path: True ; sigma(A_path) = J - I - A_path: True
+[4] charpoly of I + A_path and of J - A_path on 4 heights: (x**2 - 3*x + 1)*(x**2 - x - 1) | (x**2 - 3*x + 1)*(x**2 - x - 1)
+[4] heights h = 2..8 at which a relabeling maps the path onto its complement: [4]
+[4] free 1-smooth strips on 4 heights = Hilbert strips on 4 heights = A126358, w <= 28: True True
+[4] zig-zag strips on 4 heights = 2-disparate strips on 4 heights = 2F_(w+2), w = 1..30: True True
+[4] free 1-smooth strips on 4 heights that use height 3, w = 1..8: [1, 5, 17, 51, 145, 401, 1091, 2937] = A_hilbert(w, 4): True
+[5] h =  2: rho = 1.0000000000, minimal polynomial x - 1, degree 1; h - 2 + 2/h <= rho <= h - 1: True; A(401)/A(400) - rho = 0.0e+00; antisymmetric part -2cos(pi k/(h+1)), k even: True
+      characteristic polynomial (x - 1)**2
+[5] h =  3: rho = 2.0000000000, minimal polynomial x - 2, degree 1; h - 2 + 2/h <= rho <= h - 1: True; A(401)/A(400) - rho = 0.0e+00; antisymmetric part -2cos(pi k/(h+1)), k even: True
+      characteristic polynomial x*(x - 2)*(x - 1)
+[5] h =  4: rho = 2.6180339887, minimal polynomial x**2 - 3*x + 1, degree 2; h - 2 + 2/h <= rho <= h - 1: True; A(401)/A(400) - rho = 8.9e-16; antisymmetric part -2cos(pi k/(h+1)), k even: True
+      characteristic polynomial (x**2 - 3*x + 1)*(x**2 - x - 1)
+[5] h =  5: rho = 3.4811943041, minimal polynomial x**3 - 5*x**2 + 5*x + 1, degree 3; h - 2 + 2/h <= rho <= h - 1: True; A(401)/A(400) - rho = -4.9e-15; antisymmetric part -2cos(pi k/(h+1)), k even: True
+      characteristic polynomial (x - 1)*(x + 1)*(x**3 - 5*x**2 + 5*x + 1)
+[5] h =  6: rho = 4.3884897475, minimal polynomial x**3 - 5*x**2 + 2*x + 3, degree 3; h - 2 + 2/h <= rho <= h - 1: True; A(401)/A(400) - rho = 1.8e-15; antisymmetric part -2cos(pi k/(h+1)), k even: True
+      characteristic polynomial (x**3 - 5*x**2 + 2*x + 3)*(x**3 - x**2 - 2*x + 1)
+[5] h =  7: rho = 5.3261970881, minimal polynomial x**4 - 7*x**3 + 8*x**2 + 6*x - 6, degree 4; h - 2 + 2/h <= rho <= h - 1: True; A(401)/A(400) - rho = -6.2e-15; antisymmetric part -2cos(pi k/(h+1)), k even: True
+[5] h =  8: rho = 6.2809961758, minimal polynomial x**4 - 7*x**3 + 3*x**2 + 10*x - 3, degree 4; h - 2 + 2/h <= rho <= h - 1: True; A(401)/A(400) - rho = 2.7e-15; antisymmetric part -2cos(pi k/(h+1)), k even: True
+[5] h =  9: rho = 7.2467306805, minimal polynomial x**5 - 9*x**4 + 11*x**3 + 15*x**2 - 19*x - 1, degree 5; h - 2 + 2/h <= rho <= h - 1: True; A(401)/A(400) - rho = -3.6e-15; antisymmetric part -2cos(pi k/(h+1)), k even: True
+[5] h = 10: rho = 8.2198682658, minimal polynomial x**5 - 9*x**4 + 4*x**3 + 21*x**2 - 9*x - 5, degree 5; h - 2 + 2/h <= rho <= h - 1: True; A(401)/A(400) - rho = 3.6e-15; antisymmetric part -2cos(pi k/(h+1)), k even: True
+[5] h = 11: rho = 9.1982510590, minimal polynomial x**6 - 11*x**5 + 14*x**4 + 28*x**3 - 39*x**2 - 9*x + 10, degree 6; h - 2 + 2/h <= rho <= h - 1: True; A(401)/A(400) - rho = 5.3e-15; antisymmetric part -2cos(pi k/(h+1)), k even: True
+[5] h = 12: rho = 10.1804843900, minimal polynomial x**6 - 11*x**5 + 5*x**4 + 36*x**3 - 18*x**2 - 21*x + 5, degree 6; h - 2 + 2/h <= rho <= h - 1: True; A(401)/A(400) - rho = -1.8e-15; antisymmetric part -2cos(pi k/(h+1)), k even: True
+[6] h = 2: A^e [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]  A^o [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  brute force where h^w <= 2e6: True
+[6] h = 3: A^e [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  A^o [1, 3, 7, 15, 31, 63, 127, 255, 511, 1023, 2047, 4095]  brute force where h^w <= 2e6: True
+[6] h = 4: A^e [1, 5, 16, 44, 114, 288, 721, 1805, 4542, 11516, 29436, 75804]  A^o [0, 0, 1, 7, 31, 113, 370, 1132, 3307, 9351, 25829, 70149]  brute force where h^w <= 2e6: True
+[6] h = 5: A^e [0, 0, 3, 27, 151, 693, 2870, 11202, 42163, 155049, 561455, 2011835]  A^o [1, 7, 30, 110, 384, 1322, 4545, 15661, 54104, 187284, 649154, 2251976]  brute force where h^w <= 2e6: True
+[6] h = 6: A^e [1, 9, 49, 225, 981, 4249, 18562, 81920, 364073, 1623179, 7239182, 32243396]  A^o [0, 0, 6, 70, 500, 2898, 15055, 73445, 345020, 1583606, 7164235, 32116257]  brute force where h^w <= 2e6: True
+[6] h = 7: A^e [0, 0, 10, 142, 1222, 8504, 53187, 313931, 1792490, 10031562, 55424499, 303568319]  A^o [1, 11, 73, 407, 2171, 11625, 63052, 344800, 1889911, 10344661, 56451836, 307002208]  brute force where h^w <= 2e6: True
+[6] h = 3: no even-block Hilbert castle for w <= 30: True
+[7] J - (band m-1) = the m-disparate rule, and the duality, m = 1..5, h = 1..9, up to x^20: True
+[7] A_2-disp(w, 3), w = 1..12: [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]  brute force where h^w <= 2e6: True
+[7] A_2-disp(w, 4), w = 1..12: [1, 4, 8, 14, 24, 40, 66, 108, 176, 286, 464, 752]  brute force where h^w <= 2e6: True
+[7] A_2-disp(w, 5), w = 1..12: [1, 6, 20, 58, 158, 414, 1064, 2698, 6790, 17000, 42430, 105678]  brute force where h^w <= 2e6: True
+[7] A_2-disp(w, 6), w = 1..12: [1, 8, 38, 156, 596, 2186, 7822, 27530, 95836, 331056, 1137474, 3893224]  brute force where h^w <= 2e6: True
+[7] A_2-disp(w, 7), w = 1..12: [1, 10, 62, 332, 1652, 7878, 36560, 166560, 749024, 3336816, 14762388, 64971802]  brute force where h^w <= 2e6: True
+[7] A_2-disp(w, 8), w = 1..12: [1, 12, 92, 610, 3758, 22168, 127114, 714744, 3962562, 21739590, 118325302, 640097544]  brute force where h^w <= 2e6: True
+[7] A_3-disp(w, 4), w = 1..12: [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]  brute force where h^w <= 2e6: True
+[7] A_3-disp(w, 5), w = 1..12: [1, 4, 8, 14, 24, 40, 66, 108, 176, 286, 464, 752]  brute force where h^w <= 2e6: True
+[7] A_3-disp(w, 6), w = 1..12: [1, 6, 18, 46, 114, 272, 638, 1476, 3386, 7720, 17528, 39678]  brute force where h^w <= 2e6: True
+[7] A_3-disp(w, 7), w = 1..12: [1, 8, 34, 124, 426, 1398, 4486, 14142, 44104, 136432, 419718, 1285960]  brute force where h^w <= 2e6: True
+[7] A_3-disp(w, 8), w = 1..12: [1, 10, 56, 270, 1212, 5194, 21680, 88750, 358690, 1435792, 5707906, 22573474]  brute force where h^w <= 2e6: True
+[7] A_4-disp(w, 5), w = 1..12: [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]  brute force where h^w <= 2e6: True
+[7] A_4-disp(w, 6), w = 1..12: [1, 4, 8, 14, 24, 40, 66, 108, 176, 286, 464, 752]  brute force where h^w <= 2e6: True
+[7] A_4-disp(w, 7), w = 1..12: [1, 6, 18, 46, 114, 272, 638, 1476, 3386, 7720, 17528, 39678]  brute force where h^w <= 2e6: True
+[7] A_4-disp(w, 8), w = 1..12: [1, 8, 32, 108, 352, 1100, 3368, 10142, 30208, 89232, 262000, 765776]  brute force where h^w <= 2e6: True
+[7] 2-disparate castles of height 4: A^e [1, 4, 7, 10, 15, 22, 34, 54, 87, 142, 231, 376]  A^o [0, 0, 1, 4, 9, 18, 32, 54, 89, 144, 233, 376]  brute force where h^w <= 2e6: True
+[7] 2-disparate castles of height 5: A^e [0, 0, 3, 18, 61, 178, 482, 1262, 3241, 8226, 20729, 51976]  A^o [1, 6, 17, 40, 97, 236, 582, 1436, 3549, 8774, 21701, 53702]  brute force where h^w <= 2e6: True
+[7] 2-disparate castles of height 6: A^e [1, 8, 32, 104, 340, 1148, 3965, 13788, 47876, 165418, 568675, 1946986]  A^o [0, 0, 6, 52, 256, 1038, 3857, 13742, 47960, 165638, 568799, 1946238]  brute force where h^w <= 2e6: True
+[7] h = m + 2: 2(F_(w+2) - 1) for w = 2..30; h = m + 1: 2; 2 <= h <= m: 0; m = 2..9: True True True
+[7] A019274(w + 2) = 2(F_(w+2) - 1): True 37 terms
+[7] Knopfmacher-Mansour-Munagi-Prodinger Theorem 2.2 = the free 1-smooth strip series, and the 2-disparate strip series = 1/sw_h(-x), h = 2..8: True
+[7] the 2-disparate rule is J - I - A_path, the Hilbert rule minus I, h = 2..9: True
+[7] growth of the 2-disparate castles of height 4: 1.6180339887 = rho(J - A_path) - 1: True
+[7] growth of the 2-disparate castles of height 5: 2.4811943041 = rho(J - A_path) - 1: True
+[7] growth of the 2-disparate castles of height 6: 3.3884897475 = rho(J - A_path) - 1: True
+[7] growth of the 2-disparate castles of height 7: 4.3261970881 = rho(J - A_path) - 1: True
+[7] growth of the 2-disparate castles of height 8: 5.2809961758 = rho(J - A_path) - 1: True
+[7] growth of the 2-disparate castles of height 9: 6.2467306805 = rho(J - A_path) - 1: True
+[8] tree skylines: 1/G_tall(-x, q) = (1 + P_h(q)x)/(1 - qx - qP_h(q)x^2), equal to the area-width series up to x^8, and at q = 1 (1 + (h-1)x)/(1 - x - (h-1)x^2), h = 2..7: True
+[8] T_h(w), w = 0..9: {2: [1, 2, 3, 5, 8, 13, 21, 34, 55, 89], 3: [1, 3, 5, 11, 21, 43, 85, 171, 341, 683], 4: [1, 4, 7, 19, 40, 97, 217, 508, 1159, 2683]}
+[9] 2-disparate strips on 5 heights = A118649(w + 1), w >= 1: True 27 terms
+[9] 3-disparate strips on 6 heights = A052994(w + 2), w >= 1: True 28 terms
+[9] A052994(n) = 2 A006356(n - 2), n >= 2, on the data: True
+[9] m >= 3: the m-disparate strips on m + 3 heights equal the 3-disparate strips on 6 heights for w = 2..30, and the castles of height m + 3 number 2(A006356(w) - F_(w+2)) for w = 2..25, m = 3..9: True True
+[9] A220062 column k = zig-zag strips on k heights, and the Hilbert strips on k heights have g.f. 1/(sum_n A220062(n, k) (-x)^n), k = 1..8, on the 12 antidiagonals of the data (11 to 4 terms): True
+[9] the Hilbert word array A(n, k) by antidiagonals (n up, k down): [1, 1, 0, 1, 1, 0, 1, 2, 1, 0, 1, 3, 2, 1, 0, 1, 4, 5, 2, 1, 0, 1, 5, 10, 9, 2, 1, 0, 1, 6, 17, 26, 17, 2, 1, 0, 1, 7, 26, 59, 68, 33, 2, 1, 0]
+[9] the Hilbert castle array A_hilbert(w, h) by antidiagonals (w up, h down): [1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 5, 7, 1, 1, 1, 7, 17, 15, 1, 1, 1, 9, 33, 51, 31, 1, 1, 1, 11, 55, 137, 145, 63, 1, 1]

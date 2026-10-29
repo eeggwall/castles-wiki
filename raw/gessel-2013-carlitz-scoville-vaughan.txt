@@ -1,0 +1,757 @@
+The Carlitz-Scoville-Vaughan Theorem
+       and its Generalizations
+
+              Ira M. Gessel
+
+           Department of Mathematics
+              Brandeis University
+
+
+        Joint Mathematics Meeting
+                San Diego
+             January 12, 2013
+Counting pairs of sequences
+  In their 1976 paper Enumeration of pairs of sequences by rises,
+  falls and levels in Manuscripta Mathematica, Leonard Carlitz,
+  Richard Scoville, and Theresa Vaughan studied pairs of
+  sequences of integers of the same length according to rises,
+  falls and levels.
+  For example suppose the two sequences are
+
+                                112
+                                231
+  In the first position the first sequence 112 has a level (11), and
+  the second sequence has a rise (23). So for the pair of
+  sequences, the specification of the first position is LR, and the
+  specification of the second position is RF. They wanted to count
+  pairs of sequences according to the number of RR, FR, LR, . . . ,
+  LL. A general formula is very complicated so they considered
+  special cases.
+One of their results is the following: Let {A, B} be a partition of
+{RR, . . . , LL}. Then the reciprocal of the generating function for
+sequences in which every specification is in A is the generating
+function, with alternating signs, of the generating function for
+sequences in which every specification is in B.
+One of their results is the following: Let {A, B} be a partition of
+{RR, . . . , LL}. Then the reciprocal of the generating function for
+sequences in which every specification is in A is the generating
+function, with alternating signs, of the generating function for
+sequences in which every specification is in B.
+In the appendix to their paper, they proved a more general
+version of this result, which I will state a little differently.
+The Carlitz-Scoville-Vaughan Theorem
+
+  Let A be an alphabet, and let R be a relation on A, that is, a
+  subset of A × A = A2 . Let A(R) be the set of words a1 · · · an in
+  A∗ such that a1 R a2 R · · · R an . Note that the empty word 1
+  and all words of length one are in A(R) . Let R = A2 − R.
+  Then                           X                        −1
+                   X
+                                                l(w)
+                           w=            (−1)          w         .
+                  w∈A(R)        w∈A(R)
+
+  Here l(w) is the length of w, and we are working in the ring of
+  formal power series in noncommuting variables.
+The Carlitz-Scoville-Vaughan Theorem
+
+  Let A be an alphabet, and let R be a relation on A, that is, a
+  subset of A × A = A2 . Let A(R) be the set of words a1 · · · an in
+  A∗ such that a1 R a2 R · · · R an . Note that the empty word 1
+  and all words of length one are in A(R) . Let R = A2 − R.
+  Then                           X                        −1
+                   X
+                                                l(w)
+                           w=            (−1)          w         .
+                  w∈A(R)        w∈A(R)
+
+  Here l(w) is the length of w, and we are working in the ring of
+  formal power series in noncommuting variables.
+  Carlitz, Scoville, and Vaughan didn’t do anything more with this
+  result. But I believe that it should be considered one of the
+  fundamental theorems of enumerative combinatorics.
+A simple example
+
+  Let A = {x, y }, and let R= {xx} and R= {xy , yx, yy }. So A(R)
+  is the set of words in the letters x and y with no consecutive xx,
+  and A(R) is the set of words in which every consecutive pair is
+  xx. Thus
+     X
+          (−1)l(w) w = 1 − y − x + x 2 − x 3 + · · · = (1 + x)−1 − y .
+   w∈A(R)
+
+  Therefore, by the CSV theorem,
+      X                       −1
+           w = (1 + x)−1 − y
+     w∈A(R)
+A simple example
+
+  Let A = {x, y }, and let R= {xx} and R= {xy , yx, yy }. So A(R)
+  is the set of words in the letters x and y with no consecutive xx,
+  and A(R) is the set of words in which every consecutive pair is
+  xx. Thus
+     X
+          (−1)l(w) w = 1 − y − x + x 2 − x 3 + · · · = (1 + x)−1 − y .
+   w∈A(R)
+
+  Therefore, by the CSV theorem,
+      X                       −1                        −1
+           w = (1 + x)−1 − y      = (1 + x) 1 − y (1 + x)    .
+     w∈A(R)
+A simple example
+
+  Let A = {x, y }, and let R= {xx} and R= {xy , yx, yy }. So A(R)
+  is the set of words in the letters x and y with no consecutive xx,
+  and A(R) is the set of words in which every consecutive pair is
+  xx. Thus
+     X
+          (−1)l(w) w = 1 − y − x + x 2 − x 3 + · · · = (1 + x)−1 − y .
+   w∈A(R)
+
+  Therefore, by the CSV theorem,
+      X                       −1                        −1
+           w = (1 + x)−1 − y      = (1 + x) 1 − y (1 + x)    .
+     w∈A(R)
+
+  Note that if we set y = x, we get a generating function for
+  Fibonacci numbers.
+Another simple example
+
+  Let A = {x1 , x2 , . . . }, let R= {xi xj : i ≤ j}, so R= {xi xj : i > j}.
+Another simple example
+
+  Let A = {x1 , x2 , . . . }, let R= {xi xj : i ≤ j}, so R= {xi xj : i > j}.
+  Then the CSV theorem gives
+                        ∞
+                        X             ∞
+                                     X                     −1
+                                                       n
+                              en =            (−1) hn             ,
+                        n=0             n=0
+
+  where                                X
+                           hn =                   xi1 · · · xin
+                                     i1 ≤···≤in
+
+  is the noncommutative complete symmetric function and
+                            X
+                      en =        xi1 · · · xin
+                                     i1 >···>in
+
+  is the noncommutative elementary symmetric function.
+Proof of the CSV theorem
+
+
+  I’ll sketch three proofs.
+  Proof 1. (Essentially the same as Carlitz, Scoville, and
+  Vaughan’s proof.) We prove that
+                     X                  X
+                          (−1)l(v ) v ·   w = 1.
+                     v ∈A(R)               w∈A(R)
+
+  The left side is       X      X
+                                         (−1)l(v ) v w.
+                        v ∈A(R) w∈A(R)
+
+  Every nonempty word that occurs in this sum appears twice,
+  once with a plus sign and once with a minus sign.
+Proof 2. Let us define an R-descent of a word a1 a2 · · · an in A∗
+                                        (R)
+to be in i such that ai R ai+1 . Let hn be the sum of all words
+of length n with no R-descent, that is, the sum of all words
+a1 · · · an for which a1 R a2 R · · · R an . Then the set of words of
+length n with a given R-descent set can be expressed by
+                                         (R)
+inclusion-exclusion in terms of the hn .
+Proof 2. Let us define an R-descent of a word a1 a2 · · · an in A∗
+                                        (R)
+to be in i such that ai R ai+1 . Let hn be the sum of all words
+of length n with no R-descent, that is, the sum of all words
+a1 · · · an for which a1 R a2 R · · · R an . Then the set of words of
+length n with a given R-descent set can be expressed by
+                                         (R)
+inclusion-exclusion in terms of the hn .
+For example the sum of the words of length 5 with R-descent
+            (R) (R)  (R)
+set {3} is h3 h2 − h5 .
+Proof 2. Let us define an R-descent of a word a1 a2 · · · an in A∗
+                                        (R)
+to be in i such that ai R ai+1 . Let hn be the sum of all words
+of length n with no R-descent, that is, the sum of all words
+a1 · · · an for which a1 R a2 R · · · R an . Then the set of words of
+length n with a given R-descent set can be expressed by
+                                         (R)
+inclusion-exclusion in terms of the hn .
+For example the sum of the words of length 5 with R-descent
+            (R) (R)  (R)
+set {3} is h3 h2 − h5 .
+In particular, inclusion-exclusion gives the sum of the words in
+which every position is an R-descent as
+      ∞ X
+         ∞                        k       ∞             −1
+                            (R)                   n−1 (R)
+      X                                     X
+                   (−1)n−1 hn          = 1−   (−1) hn         .
+      k =0   n=1                             n=1
+Proof 3. (At least for the commutative version.) Without loss of
+generality we may assume that A is finite. The coefficients on
+both sides can be expressed as matrix entries by the transfer
+matrix method. Then the result follows by matrix algebra. (See,
+e.g., Goulden and Jackson’s Combinatorial Enumeration.)
+An application: counting words by R-runs
+
+
+
+
+   An R-run in a word is a maximal nonempty subword in A(R) , so
+   the R-descents break up a word into R-runs. For a nonempty
+   word, the number of R-runs is one more than the number of
+   R-descents.
+To count words in A∗ by the number of R-runs, we define a new
+alphabet A(R) whose letters are a1 a2 . . . an where
+                                            2
+a1 · · · an ∈ A(R) . Now let R ⊆ A(R) be the set of words of the
+form a1 · · · an an+1 · · · an+r where an an+1 ∈R. In other words,
+a1 · · · an+r ∈ A(R) . Then the CSV theorem allows us to count
+words of the form
+
+            a1 · · · an1 an1 +1 · · · an2 · · · ank −1 +1 · · · ank
+
+in which the R-descent set of the word a1 · · · ank is
+{n1 , n2 , . . . , nk −1 }.
+To get something useful from this, we apply the homomorphism
+that takes a1 · · · an to a1 · · · an t, where t is a variable that
+                                                       (R)
+commutes with all the letters. Then the image of hn under this
+homomorphism will be a sum of words a1 · · · an in A(R) , each
+multiplying by a sum of powers of t corresponding to the ways
+in which this word can be cut into nonempty pieces. A word of
+length n can be cut in any of the n − 1 spaces between its
+letters, so the total coefficient for a word of length n will be
+t(1 + t)n−1 .
+On the other side, we will be counting words in A∗ where a
+word with j R-runs will be weighted t j . So applying the CSV
+theorem gives
+                                     ∞                −1
+                                               n−1 (R)
+         X                            X
+                   R-run(w)
+               t              w = 1−t   (1 − t) hn         .
+        w∈A∗                            n=1
+More generally, we could assign a different weight to each
+possible R-run length. If we assign the weight ti to a run of
+length i then the same argument gives
+                                 ∞         −1
+                                        (R)
+               X                  X
+                     T (w)w = 1 +   un hn       ,
+              w∈A∗                   n=1
+
+where T (w) is the weight of w and un counts compositions of n
+where each part i is weighted −ti , so
+                  ∞
+                  X               ∞
+                                   X        −1
+                           n              i
+                        un z = 1 +   ti z       .
+                  n=1                i=1
+For example, to count words in which every R-run has length 3,
+we set t3 = 1 and ti = 0 for i 6= 3, so u3k = (−1)k and un = 0 if
+3 does not divide n, so the sum of all words in which every
+R-run has length 3 is
+                       ∞
+                      X                 −1
+                                   (R)
+                            (−1)k h3k          .
+                        k =0
+For example, to count words in which every R-run has length 3,
+we set t3 = 1 and ti = 0 for i 6= 3, so u3k = (−1)k and un = 0 if
+3 does not divide n, so the sum of all words in which every
+R-run has length 3 is
+                       ∞
+                      X                 −1
+                                   (R)
+                            (−1)k h3k          .
+                        k =0
+
+
+
+Similarly, the sum of all words in which every run length is odd
+is                        ∞               −1
+                                       (R)
+                          X
+                                   k
+                     1+      (−1) Fk hk        ,
+                         k =1
+
+where Fk is the k th Fibonacci number.
+Walks in digraphs
+
+
+
+   What if we we want to count words whose R-runs have the
+   lengths 2, 3, 2, 3, ...? More generally, we can apply the CSV
+   theorem to a very general situation: We are given a digraph in
+   which each edge has a set of positive integers associated to it.
+   Given two vertices u and v in the graph, we can count words in
+   A∗ whose sequence of R-run lengths corresponds to the
+   numbers on a walk from u to v .
+Walks in digraphs
+
+
+
+   What if we we want to count words whose R-runs have the
+   lengths 2, 3, 2, 3, ...? More generally, we can apply the CSV
+   theorem to a very general situation: We are given a digraph in
+   which each edge has a set of positive integers associated to it.
+   Given two vertices u and v in the graph, we can count words in
+   A∗ whose sequence of R-run lengths corresponds to the
+   numbers on a walk from u to v .
+   In other words, we can count words whose R-run length
+   sequences are in a regular language.
+For example, the walks from u to v in
+                                   2
+
+
+                           u           v
+
+                                   3
+
+
+correspond to words in which the sequence of run lengths is 2,
+3, 2, 3, . . . , 2.
+They are counted by the (1, 2) entry of the matrix
+                                       −1
+                           L5,0 −L5,2
+                          −L5,3  L5,0
+
+                        i (R)
+               P∞
+where Lm,i =    n=0 (−1) hmn+i .
+Walks from u to v in the digraph
+                          2   1    3   2
+                    u                      v
+
+correspond to words in which the sequence of run lengths is 2,
+1, 3, 2. This is the (1, 5) entry of the matrix
+                   (R)     (R)   (R)   (R) −1
+              1 −h2        h3   −h6    h8
+                            (R)   (R)   (R) 
+            0   1        −h1    h4   −h6 
+            
+                                 (R)   (R) 
+            0
+                0         1    −h3    h5  
+                                        (R)
+            0   0         0     1    −h2 
+              0  0         0     0     1
+Walks from u to v in the digraph
+                          2   1    3   2
+                    u                      v
+
+correspond to words in which the sequence of run lengths is 2,
+1, 3, 2. This is the (1, 5) entry of the matrix
+                   (R)     (R)   (R)   (R) −1
+              1 −h2        h3   −h6    h8
+                            (R)   (R)   (R) 
+            0   1        −h1    h4   −h6 
+            
+                                 (R)   (R) 
+            0
+                0         1    −h3    h5  
+                                        (R)
+            0   0         0     1    −h2 
+              0  0         0     0     1
+
+(The formula we get here is the same as the
+inclusion-exclusion formula.)
+Permutations
+
+  How can we count permutations by descents (or increasing
+  runs) rather than arbitrary sequences?
+  We take A = {1, 2, . . . } and R = ≤ = { (i, j) : i ≤ j }. (We could
+  identify 1, 2, . . . , with noncommuting variables x1 , x2 , . . . .)
+Permutations
+
+  How can we count permutations by descents (or increasing
+  runs) rather than arbitrary sequences?
+  We take A = {1, 2, . . . } and R = ≤ = { (i, j) : i ≤ j }. (We could
+  identify 1, 2, . . . , with noncommuting variables x1 , x2 , . . . .)
+  We apply the linear map that takes a sequence π = a1 · · · an to
+  z n /n! if π is a permutation of [n] = {1, 2, . . . , n} and to 0 if π is
+  not of this form.
+Permutations
+
+  How can we count permutations by descents (or increasing
+  runs) rather than arbitrary sequences?
+  We take A = {1, 2, . . . } and R = ≤ = { (i, j) : i ≤ j }. (We could
+  identify 1, 2, . . . , with noncommuting variables x1 , x2 , . . . .)
+  We apply the linear map that takes a sequence π = a1 · · · an to
+  z n /n! if π is a permutation of [n] = {1, 2, . . . , n} and to 0 if π is
+  not of this form.
+  It is not hard to see that when restricted to the algebra
+                   (R)   (R)
+  generated by h1 , h2 , . . . , this is a homomorphism that takes
+   (R)
+  hn     to z n /n!.
+Permutations
+
+  How can we count permutations by descents (or increasing
+  runs) rather than arbitrary sequences?
+  We take A = {1, 2, . . . } and R = ≤ = { (i, j) : i ≤ j }. (We could
+  identify 1, 2, . . . , with noncommuting variables x1 , x2 , . . . .)
+  We apply the linear map that takes a sequence π = a1 · · · an to
+  z n /n! if π is a permutation of [n] = {1, 2, . . . , n} and to 0 if π is
+  not of this form.
+  It is not hard to see that when restricted to the algebra
+                   (R)   (R)
+  generated by h1 , h2 , . . . , this is a homomorphism that takes
+   (R)
+  hn     to z n /n!.
+                                                      (R)
+  So we can count permutations by replacing hn              with z n /n! in
+  our formulas.
+For example, our previous formula for counting sequences by
+descents, which may be written
+                                         ∞               −1
+                                                      (R)
+       X                                  X
+             t R-run(w) w = (1 − t) 1 − t   (1 − t)n hn
+      w∈A∗                                 n=0
+
+gives a generating function for the Eulerian polynomials, which
+count permutations by descents:
+
+                               1−t
+                            1 − te(1−t)x
+Similarly, we can see that the “doubly exponential” generating
+function for pairs (π, σ) of permutations of [n] with no common
+ascents is              X ∞          n −1
+                                       
+                                  n x
+                              (−1) 2       .
+                                    n!
+                        n=0
+By applying other homomorphisms we can count permutations
+by the number of inversions, descent set, number of descents,
+major index, or number of peaks of π −1 .
+Generalizations
+
+
+
+
+  Two of my students, Susan Parker and Brian Drake,
+  generalized the CSV to give a combinatorial interpretation of
+  the compositional inverse of power series.
+Susan Parker’s Theorem (1993)
+  (Rediscovered by Jean-Louis Loday, 2006)
+
+
+
+
+  Examples:
+                                √         ∞      
+              2 h−1i       1−    1 − 4x   X   1  2k k +1
+       (x − x )        =                =           x
+                                 2          k +1 k
+                                        k =0
+                h−1i
+            x               x
+                      =
+           1+x             1−x
+Define Narayana polynomials by
+                                 −1
+                                kX           
+                                      1 k     k
+               Nk (a, b) =                       ai bk −i−1 .
+                                      k i   i +1
+                                i=0
+
+Then
+                        ∞
+                         X                             h−1i
+                                      k         k +1
+           x + (a + b)       (−1) Nk (a, b)x
+                         k =1
+                                                  ∞
+                                                  X
+                                  = x + (a + b)          Nk (a, b)x k +1
+                                                  k =1
+We work with ordered trees in which the leaves have a weight
+of x and the internal vertices are labeled a, b, c, . . . . I’ll omit
+the leaves in most of my pictures.
+A letter is a single internal vertex with a fixed arity (number of
+children):
+
+                                  a
+A link is a parent and child letter:
+
+                              a
+
+
+
+                                       b
+Parker’s Theorem: Given a set of letters, the compositional
+inverse of the generating function for trees with a given set of
+links is the generating function for trees with the
+complementary set of links, with alternating signs.
+                                              a
+
+As a simple example, take the single letter       . The trees
+
+                           a
+
+
+
+
+                       a
+using only the link              look like
+                                        a
+
+
+
+                                 a
+                                              x
+
+
+                             a
+                                         x
+
+
+                     x            x
+
+
+with generating function
+                     ∞
+                     X                     x
+                           an x n+1 =          .
+                                        1 − ax
+                     n=0
+The complementary trees are the mirror images of these, with
+the same generating generating function, and thus
+                               h−1i
+                         x                    x
+                                        =          ,
+                       1 + ax               1 − ax
+
+where the inverse is as power series in x.
+The complementary trees are the mirror images of these, with
+the same generating generating function, and thus
+                               h−1i
+                         x                    x
+                                        =          ,
+                       1 + ax               1 − ax
+
+where the inverse is as power series in x.
+
+The CSV theorem is the special case of Parker’s theorem for
+unary trees.
+Brian Drake’s Theorem (2008)
+  (Rediscovered by Vladimir Dotsenko, 2011)
+  Drake’s theorem gives a similar interpretation for exponential
+  generating functions corresponding to trees with labeled leaves
+  and unlabeled internal vertices.
+  I’ll just give an example of Drake’s interpretation of
+
+                      (ex − 1)h−1i = log(1 + x).
+Brian Drake’s Theorem (2008)
+  (Rediscovered by Vladimir Dotsenko, 2011)
+  Drake’s theorem gives a similar interpretation for exponential
+  generating functions corresponding to trees with labeled leaves
+  and unlabeled internal vertices.
+  I’ll just give an example of Drake’s interpretation of
+
+                       (ex − 1)h−1i = log(1 + x).
+
+  In other words,
+               ∞           h−1i       ∞
+                      xn                                        xn
+              X                       X
+                                   =         (−1)n−1 (n − 1)!      .
+                      n!                                        n!
+                n=1                    n=1
+The interpretation is that ex − 1 counts trees that look like
+
+
+                           1
+                               2
+
+                                   3
+
+                                       4       5
+
+and log(1 + x) counts trees that look like
+
+
+                                               2
+                                           4
+
+                                       5
+
+                           1       3
+Explanation: we label each internal vertex with its least
+descendant:
+                               1                                       1
+                                   2                               1
+                       1                                                       2
+                                       3                       1
+                           2                                               4
+                                           4           1
+                               3                                       5
+                                   4       5       1               3
+
+                                                   i
+Then all of the letters look like                              , with i < j.
+                                               i           j
+The ex − 1 trees have “right child” links and the log(1 + x) trees
+have “left child” links.
+Forbidden subwords
+
+  Suppose we want to count words with forbidden subwords of
+  length greater than 2. We can do this with the Goulden-Jackson
+  Cluster Theorem.
+Forbidden subwords
+
+  Suppose we want to count words with forbidden subwords of
+  length greater than 2. We can do this with the Goulden-Jackson
+  Cluster Theorem.
+  Let F be a set of “forbidden” words in A∗ all of length at least 2.
+  A cluster is a word in which an overlapping set of forbidden
+  subwords is marked. For example, if A = {a} and F = {aaa}
+  then the following are both clusters on the word a 6 :
+
+                            aaaaaa
+
+                            aaaaaa
+
+  but a a a a a a is not a cluster.
+We define the cluster generating function to be
+                  X          X
+          C(t) =       w             t # marked words in c
+                    w∈A∗   clusters c on w
+We define the cluster generating function to be
+                  X          X
+          C(t) =       w             t # marked words in c
+                    w∈A∗   clusters c on w
+
+The Goulden-Jackson Cluster Theorem.
+     X                                X             −1
+           # forbidden words in w
+        wt                        = 1−   a − C(t − 1)    .
+     w∈A∗                                    a∈A
+We define the cluster generating function to be
+                  X          X
+          C(t) =       w             t # marked words in c
+                    w∈A∗   clusters c on w
+
+The Goulden-Jackson Cluster Theorem.
+     X                                X             −1
+           # forbidden words in w
+        wt                        = 1−   a − C(t − 1)    .
+     w∈A∗                                    a∈A
+
+Sketch of the proof. Replace t by t + 1. Then everything is
+positive and easy to interpret.
+A simple example
+
+
+  Let A = {a, b, c} and let F = {abc, bcc}. Then there are only
+  three clusters:
+
+                         abc            bcc   abcc
+
+  So
+       X
+           w t # forbidden words in w
+    w∈A∗
+                                                            −1
+                                                           2
+   = 1 − a − b − c − abc(t − 1) − bcc(t − 1) − abcc(t − 1)       .
+If we want to avoid all forbidden words, we set t = 0 in the
+Goulden-Jackson cluster theorem. With some work we obtain
+the following analogue of the CSV theorem.
+If we want to avoid all forbidden words, we set t = 0 in the
+Goulden-Jackson cluster theorem. With some work we obtain
+the following analogue of the CSV theorem.
+Theorem. The sum of all words in A∗ that avoid the words in F
+may be written
+                    X             −1
+                            µ(w)w
+                        w∈A∗
+
+where for every word w, µ(w) is 0, 1, or −1.
+An example
+
+
+  Take A = {a} and take F = {aaaa}. Then
+   ∞
+   X
+         µ(an )an = (1 + a + a2 + a3 )−1
+   n=0
+                                  −1
+                         1 − a4
+                     
+                                            1−a
+                 =                      =            = 1 − a + a4 − a5 + · · ·
+                         1−a                1 − a4
+  so                        
+                             1 if n ≡ 0 (mod 4)
+                            
+                        n
+                     µ(a ) = −1 if n ≡ 1 (mod 4)
+                            
+                              0 otherwise
+                            
+Why 0, 1, or −1?
+
+  We can get a recurrence for computing
+                       X
+                               t # marked words in c .
+                      clusters c on w
+
+  We then set t = −1 and use the following lemma:
+Why 0, 1, or −1?
+
+  We can get a recurrence for computing
+                       X
+                               t # marked words in c .
+                      clusters c on w
+
+  We then set t = −1 and use the following lemma:
+
+  Let sn be a sequence of integers defined by s1 = 1 and for
+  n > 1,
+                sn = −(sn−1 + sn−2 + · · · + sn−β(n) ),
+  for some β(n), where 1 ≤ β(n) < n. Then the nonzero entries
+  of s1 , s2 , s3 , . . . are 1, −1, 1, −1, 1, . . . .
+Why 0, 1, or −1?
+
+  We can get a recurrence for computing
+                       X
+                               t # marked words in c .
+                      clusters c on w
+
+  We then set t = −1 and use the following lemma:
+
+  Let sn be a sequence of integers defined by s1 = 1 and for
+  n > 1,
+                sn = −(sn−1 + sn−2 + · · · + sn−β(n) ),
+  for some β(n), where 1 ≤ β(n) < n. Then the nonzero entries
+  of s1 , s2 , s3 , . . . are 1, −1, 1, −1, 1, . . . .
+  Example: Suppose s starts out: 1, 0, −1, 1, 0. Then the next
+  entry must be 0 or −1.
+Note: This result is equivalent to a theorem of Curtis Greene:
+the Möbius function of a lattice of unions of intervals, under
+inclusion, is 0, 1, or −1. (C. Greene, A class of lattices with
+Möbius function ±1, 0, European J. Combin. 9 (1988),
+225–240.)
+
+Susan Parker’s and Brian Drake’s theses are not published, but
+they can be found at
+http://people.brandeis.edu/~gessel/homepage/
+students/.
+Further applications of the CSV theorem can be found in my
+Ph.D. thesis:
+http://people.brandeis.edu/~gessel/homepage/
+papers/thesis.pdf
+

@@ -48,6 +48,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 - Generation: Knuth's Algorithm M, castle Gray codes, loopless enumerators, rank and unrank.
 - Castle-native tours: Hamilton paths on the move graph of `V(w,h)`, SimPath ZDDs, Ruskey's polyomino and antimatroid Gray codes, Viennot heaps of pieces on the tower heap.
 - Brute force as ground truth: the PE 502 enumerator and its limits.
+- Rules and their duals: the Hilbert duality `G_M(x) G_{J-M}(-x) = 1` of a strip rule and the rule of its forbidden pairs (the Carlitz-Scoville-Vaughan theorem; quadratic monomial algebras and their Koszul duals), which pairs the zig-zag and Hilbert castles and the smooth and disparate castles.
 
 ### N - Numbers
 

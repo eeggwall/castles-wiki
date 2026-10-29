@@ -1,7 +1,7 @@
 ---
 title: Castle sequence catalogue
 category: Reference
-summary: Script-generated catalogue of the castle-counting sequences on the wiki (298 rows in 29 families), by the object each one counts: first terms, recurrence or generating function, growth constant, and the OEIS entry it equals at the stated offset, or none. Built with oeis-index from one data file, config/castle-sequences.tsv, by bin/generate-sequence-pages.py.
+summary: Script-generated catalogue of the castle-counting sequences on the wiki (325 rows in 31 families), by the object each one counts: first terms, recurrence or generating function, growth constant, and the OEIS entry it equals at the stated offset, or none. Built with oeis-index from one data file, config/castle-sequences.tsv, by bin/generate-sequence-pages.py.
 tags: [reference, oeis, castle, sequence, catalogue, generated]
 sources: [oeis-encyclopedia]
 created: 2026-09-17
@@ -30,6 +30,8 @@ These identities are stated and proved on the pages cited; the section *Catalogu
 - [[motzkin-castles](pages/motzkin-castles.md)]: [A171842](https://oeis.org/A171842), 1-smooth strips on {1, 2, 3}, both end columns at height 1: `A171842(w−1)`; [A343386](https://oeis.org/A343386), even-block Motzkin-path castles: `A343386(w−1)`; [A107587](https://oeis.org/A107587), odd-block Motzkin-path castles: `A107587(w−1)`; [A343773](https://oeis.org/A343773), signed `Σ(−1)^blocks`: `−A343773(w−1)`; [A005773](https://oeis.org/A005773), 1-smooth, first column at height 1, by width: `A005773(w)`.
 - [[pell-castle](pages/pell-castle.md)]: [A094706](https://oeis.org/A094706), 1-smooth strips on {1, 2, 3}, Pell castles: first column at height 1, height 3: `A094706(w−2)`; [A106514](https://oeis.org/A106514), 1-smooth strips on {1, 2, 3}, any first column, height 3: `A106514(w−1)`.
 - [[mersenne-castles](pages/mersenne-castles.md)]: [A000225](https://oeis.org/A000225), Mersenne castles of height 2, all castles of height 2: `A000225(w)`; [A106514](https://oeis.org/A106514), Mersenne castles of height 3, the 1-smooth castles of height 3: `A106514(w − 1)`.
+- [[hilbert-castles](pages/hilbert-castles.md)]: [A083318](https://oeis.org/A083318), Hilbert strips on `{1, …, 3}`, the empty strip included: `A083318(w)`; [A126358](https://oeis.org/A126358), Hilbert strips on `{1, …, 4}`, the empty strip included: `A126358(w)`; [A000225](https://oeis.org/A000225), Hilbert castles of height 3: `A000225(w)`.
+- [[castle-classification-shape](pages/castle-classification-shape.md)]: [A019274](https://oeis.org/A019274), m-disparate, 2-disparate castles of height 4: `A019274(w + 2)`.
 - [[signed-tower-count](pages/signed-tower-count.md)]: [A146559](https://oeis.org/A146559), signed tower count, `P(1, L)`: `A146559(L+1)`.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)]: [A009545](https://oeis.org/A009545), signed tower count, even-block minus odd-block castles of height 2 whose last column has height 2: `A009545(w)`.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)]: [A352116](https://oeis.org/A352116), signed tower count, `|P(k, 4)|` in the tower height `k`: `A352116(k + 1)`.
@@ -264,6 +266,51 @@ Castles whose neighboring columns, read as strings whose lengths are the column 
 | odd-block Mersenne castles of height 4 | `w = 1…` | `0, 0, 3, 23, 112, 442, 1568, 5282, 17378, 56528` |  |  | - |
 
 *(Every row agrees with `bin/python/mersenne_castles.py` and, where it has an A-number, with every term of the OEIS data field at the stated offset, 2026-10-28.)*
+
+### Hilbert strips and Hilbert castles
+
+Skylines in which no two neighboring columns differ in height by exactly 1, under the Hilbert rule `J − A_path`, the dual of the zig-zag rule ([[hilbert-castles](pages/hilbert-castles.md)]). By the Hilbert duality `G_M(x) G_{J−M}(−x) = 1`, `Σ_w hstrips(w, h) x^w = 1/Z_h(−x)`, with `Z_h` the zig-zag strip series; the OEIS counts the strips as sequences over `h` digits in which no two consecutive terms have distance 1, the empty sequence at `n = 0`. `A_hilbert(w, h) = hstrips(w, h) − hstrips(w, h − 1)`; every Hilbert castle of height 3 has an odd number of blocks.
+
+| object | from | first terms | g.f. / formula | growth | OEIS |
+|---|---|---|---|---|---|
+| Hilbert strips on `{1, …, 3}`, the empty strip included | `w = 0…` | `1, 3, 5, 9, 17, 33, 65, 129, 257, 513` | `(1 − 2x²)/((1 − x)(1 − 2x))`; `2^w + 1` for `w ≥ 1` | `2` | [A083318](https://oeis.org/A083318) (`= A083318(w)`) |
+| Hilbert strips on `{1, …, 4}`, the empty strip included | `w = 0…` | `1, 4, 10, 26, 68, 178, 466, 1220, 3194, 8362` | `(1 + x − x²)/(1 − 3x + x²)`; `2F_{2w+1}` for `w ≥ 1` | `φ²` | [A126358](https://oeis.org/A126358) (`= A126358(w)`; the free 1-smooth strips on four heights, the heights relabeled) |
+| Hilbert strips on `{1, …, 5}`, the empty strip included | `w = 0…` | `1, 5, 17, 59, 205, 713, 2481, 8635, 30057, 104629` | `(1 − 3x²)/(1 − 5x + 5x² + x³)` | `3.48119…` | [A287804](https://oeis.org/A287804) (`= A287804(w)`) |
+| Hilbert strips on `{1, …, 6}`, the empty strip included | `w = 0…` | `1, 6, 26, 114, 500, 2194, 9628, 42252, 185422, 813722` | `(1 + x − 2x² − x³)/(1 − 5x + 2x² + 3x³)` | `4.38848…` | [A287806](https://oeis.org/A287806) (`= A287806(w)`) |
+| Hilbert strips on `{1, …, 7}`, the empty strip included | `w = 0…` | `1, 7, 37, 197, 1049, 5587, 29757, 158491, 844153, 4496123` | `1/Z_7(−x)` | `5.32619…` | [A287808](https://oeis.org/A287808) (`= A287808(w)`) |
+| Hilbert strips on `{1, …, 8}`, the empty strip included | `w = 0…` | `1, 8, 50, 314, 1972, 12386, 77796, 488636, 3069120, 19277130` | `1/Z_8(−x)` | `6.28099…` | [A287812](https://oeis.org/A287812) (`= A287812(w)`) |
+| Hilbert strips on `{1, …, 9}`, the empty strip included | `w = 0…` | `1, 9, 65, 471, 3413, 24733, 179233, 1298853, 9412437, 68209395` | `1/Z_9(−x)` | `7.24673…` | [A287816](https://oeis.org/A287816) (`= A287816(w)`) |
+| Hilbert strips on `{1, …, 10}`, the empty strip included | `w = 0…` | `1, 10, 82, 674, 5540, 45538, 374316, 3076828, 25291120, 207889674` | `1/Z_10(−x)` | `8.21986…` | [A287825](https://oeis.org/A287825) (`= A287825(w)`) |
+| Hilbert strips on `{1, …, 11}`, the empty strip included | `w = 0…` | `1, 11, 101, 929, 8545, 78599, 722973, 6650087, 61169169, 562649373` | `1/Z_11(−x)` | `9.19825…` | [A287832](https://oeis.org/A287832) (`= A287832(w)`) |
+| Hilbert castles of height 3 | `w = 1…` | `1, 3, 7, 15, 31, 63, 127, 255, 511, 1023` | `2^w − 1` | `2`, copper by width | [A000225](https://oeis.org/A000225) (`= A000225(w)`) |
+| Hilbert castles of height 4 | `w = 1…` | `1, 5, 17, 51, 145, 401, 1091, 2937, 7849, 20867` | `2F_{2w+1} − 2^w − 1` | `φ²` | - |
+| Hilbert castles of height 5 | `w = 1…` | `1, 7, 33, 137, 535, 2015, 7415, 26863, 96267, 342333` |  | `3.48119…` | - |
+| Hilbert castles of height 6 | `w = 1…` | `1, 9, 55, 295, 1481, 7147, 33617, 155365, 709093, 3206785` |  | `4.38848…` | - |
+| Hilbert castles of height 7 | `w = 1…` | `1, 11, 83, 549, 3393, 20129, 116239, 658731, 3682401, 20376223` |  | `5.32619…` | - |
+| even-block Hilbert castles of height 4 | `w = 1…` | `1, 5, 16, 44, 114, 288, 721, 1805, 4542, 11516` |  |  | - |
+| even-block Hilbert castles of height 5 | `w = 1…` | `0, 0, 3, 27, 151, 693, 2870, 11202, 42163, 155049` |  |  | - |
+| even-block Hilbert castles of height 6 | `w = 1…` | `1, 9, 49, 225, 981, 4249, 18562, 81920, 364073, 1623179` |  |  | - |
+| even-block Hilbert castles of height 7 | `w = 1…` | `0, 0, 10, 142, 1222, 8504, 53187, 313931, 1792490, 10031562` |  |  | - |
+
+*(Every row agrees with `bin/python/hilbert_castles.py` and with every term of the OEIS data field at the stated offset, 2026-10-28.)*
+
+### m-disparate castles
+
+Castles whose neighboring columns differ in height by at least `m` ([[castle-classification-shape](pages/castle-classification-shape.md)], paragraph *m-disparate castles*). The m-disparate rule is the dual of the `(m − 1)`-smooth rule, so its strips have the series `1/G(−x)`, with `G` the free `(m − 1)`-smooth strip series ([[hilbert-castles](pages/hilbert-castles.md)]). At `h = m + 2` the rule is a path on four heights, and the castles number `2(F_{w+2} − 1)` for `w ≥ 2` at every `m ≥ 2`.
+
+| object | from | first terms | g.f. / formula | growth | OEIS |
+|---|---|---|---|---|---|
+| 2-disparate castles of height 4 | `w = 1…` | `1, 4, 8, 14, 24, 40, 66, 108, 176, 286` | `2(F_{w+2} − 1)` for `w ≥ 2` | `φ`, golden by width | [A019274](https://oeis.org/A019274) (`= A019274(w + 2)`; for `w ≥ 2`; at every `m ≥ 2` the m-disparate castles of height `m + 2`) |
+| 2-disparate castles of height 5 | `w = 1…` | `1, 6, 20, 58, 158, 414, 1064, 2698, 6790, 17000` |  | `2.48119…` | - |
+| 2-disparate castles of height 6 | `w = 1…` | `1, 8, 38, 156, 596, 2186, 7822, 27530, 95836, 331056` |  | `3.38848…` | - |
+| 2-disparate castles of height 7 | `w = 1…` | `1, 10, 62, 332, 1652, 7878, 36560, 166560, 749024, 3336816` |  | `4.32619…` | - |
+| 3-disparate castles of height 6 | `w = 1…` | `1, 6, 18, 46, 114, 272, 638, 1476, 3386, 7720` |  | `2.24697…` | - |
+| 3-disparate castles of height 7 | `w = 1…` | `1, 8, 34, 124, 426, 1398, 4486, 14142, 44104, 136432` |  | `3.03032…` | - |
+| even-block 2-disparate castles of height 4 | `w = 1…` | `1, 4, 7, 10, 15, 22, 34, 54, 87, 142` |  |  | - |
+| even-block 2-disparate castles of height 5 | `w = 1…` | `0, 0, 3, 18, 61, 178, 482, 1262, 3241, 8226` |  |  | - |
+| even-block 2-disparate castles of height 6 | `w = 1…` | `1, 8, 32, 104, 340, 1148, 3965, 13788, 47876, 165418` |  |  | - |
+
+*(Every row agrees with `bin/python/hilbert_castles.py`, by transfer matrix and by brute force wherever `h^w ≤ 2·10^6`, and the A-number row with the OEIS data at the stated offset, 2026-10-28.)*
 
 ### Ridge strips and ridge castles
 

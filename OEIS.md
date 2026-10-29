@@ -300,6 +300,42 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   3. No match for any (2026-10-28). The totals follow `(2h⁴ + 11h³ − 5h² − 2h + 3)/3` for
   `h ≤ 12` by computation only: the odd-width part, `h² + 3h − 2`, is proved, the even-width
   part is not (the open S Division item of IDEAS.md). Wait for that proof before a draft.
+- [ ] **The Hilbert word array** (new square array; `wiki/pages/hilbert-castles.md`): `A(n, k)`,
+  the number of words of length `n` over a `k`-letter alphabet in which no two neighboring
+  letters are neighbors in the alphabet, read by antidiagonals as A220062 is (`1, 1, 0, 1, 1, 0,
+  1, 2, 1, 0, 1, 3, 2, 1, 0, 1, 4, 5, 2, 1, 0, 1, 5, 10, 9, 2, 1, 0, …`); no match in either
+  reading order (2026-10-28). Its columns `k = 1, …, 11` are A000012, A040000, A083318, A126358
+  and David Nacin's A287804, A287806, A287808, A287812, A287816, A287825, A287832, which
+  cross-reference each other, but no array collects them and none cites A220062, the array of
+  the complementary rule ("neighboring letters are neighbors in the alphabet"). Its own formula: column `k` has g.f.
+  `1/Sum_{n>=0} A220062(n, k)(-x)^n`, the Carlitz-Scoville-Vaughan theorem for a relation and its
+  complement (`wiki/pages/gessel-2013-carlitz-scoville-vaughan.md`); checked on every
+  antidiagonal of the A220062 data, columns `k ≤ 8` (`bin/python/hilbert_castles.py` item [9]).
+  The alternative to a new array is the same formula as one line on each Nacin entry.
+- [ ] **Hilbert castles of height 4** (`wiki/pages/hilbert-castles.md`): `1, 5, 17, 51, 145, 401,
+  1091, 2937, 7849, 20867, …` from `n = 1`, the quaternary sequences of length `n` that contain
+  the largest digit and in which no two consecutive terms have distance 1:
+  `A126358(n) − A083318(n) = 2F(2n+1) − 2^n − 1`, g.f.
+  `x(1 − x − x²)/((1 − x)(1 − 2x)(1 − 3x + x²))`; no match 2026-10-28. The path on four
+  vertices is its own complement, so the same numbers count the base-4 words with adjacent
+  digits differing by at most 1 that contain the digit 2 (checked for `n ≤ 8`). Heights 5 to 7,
+  the even/odd splits and the castle array have no match either (*Search record*), but bring no
+  formula beyond differences of `1/Z_h(−x)`.
+- [ ] **A019274 word comment** (`wiki/pages/castle-classification-shape.md`, paragraph
+  *m-disparate castles*): for `n ≥ 4` and every `m ≥ 2`, `a(n)` is the number of words of length
+  `n − 2` over `{1, …, m + 2}` in which neighboring letters differ by at least `m` and the letter
+  `m + 2` occurs, the m-disparate castles of height `m + 2`. Proof: the allowed pairs form the
+  path `(m + 1) − 1 − (m + 2) − 2` (the other letters have no neighbors), which has `2F(n)` walks
+  with `n − 2 ≥ 2` vertices, and the two walks on the edge `1 − (m + 1)` avoid `m + 2`. The entry
+  states no word or walk reading (read 2026-10-28: recursive calls, signed Fibonacci
+  representations, pedigrees). Checked for `m ≤ 9`, `n ≤ 32`, and on all 37 terms as `2F(n) − 2`.
+- [ ] **m-disparate castles of height `m + 3`, `m ≥ 3`**: `1, 6, 18, 46, 114, 272, 638, 1476,
+  3386, 7720, …` from `w = 1`, `2(A006356(w) − F(w + 2))` for `w ≥ 2`. For `m ≥ 3` the allowed
+  pairs on `m + 3` heights are always the same six, `1−(m+1)`, `1−(m+2)`, `1−(m+3)`, `2−(m+2)`,
+  `2−(m+3)`, `3−(m+3)`, so for `w ≥ 2` the strips number `A052994(w + 2) = 2·A006356(w)` at every
+  `m ≥ 3`, and the castles subtract the `2F(w + 2)` strips on `m + 2` heights. No match
+  2026-10-28. Checked for `m = 3, …, 9`, `w ≤ 25` (`bin/python/hilbert_castles.py` item [9]); the
+  catalogue row (`disparate-5`, height 6 at `m = 3`) has the terms but not this formula.
 
 **Skipped (assessed, with reason):**
 
@@ -366,6 +402,14 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   `C(w − 1, h − 1)` summed along `w + h = s`.
 - The Königsberg castles (the double staircases `(1, …, k, k, …, 1)`,
   `wiki/pages/konigsberg-castles.md`): one castle at each even width, not a sequence.
+
+- A118649 / A052994 (the 2-disparate strips on five heights, `A118649(w + 1)`, and the
+  m-disparate strips on `m + 3` heights for `m ≥ 3`, `A052994(w + 2) = 2·A006356(w)`, `w ≥ 1`,
+  checked on 27 and 28 terms): strips, not castle families, as for A001519 above; the castle
+  rows are the stage-4 items above.
+- A083318 / A126358 / A287804 … A287832 (the Hilbert strips on `h = 3, …, 11` heights): David
+  Nacin's comment on A083318 and A126358 and his names of the others already state the reading,
+  words with no two consecutive terms at distance 1.
 
 ### Done (live on OEIS)
 
@@ -561,6 +605,18 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 | Fibonacci castle sub-families | `(1, 7)`-RLL castles | `1, 2, 4, 7, 12, 20, 33, 54, 86, 138, 221` | **novel-candidate** (no match, 2026-10-16) |
 | Fibonacci castle sub-families | `(2, 7)`-RLL castles | `1, 2, 3, 5, 8, 12, 18, 27, 38, 54, 78` | **novel-candidate** (no match, 2026-10-16) |
 | Fibonacci castle sub-families | `(2, 10)`-RLL castles | `1, 2, 3, 5, 8, 12, 18, 27, 40, 59, 87, 126, 183` | **novel-candidate** (no match, 2026-10-16) |
+| Hilbert strips and Hilbert castles | Hilbert castles of height 4 | `1, 5, 17, 51, 145, 401, 1091, 2937, 7849, 20867` | **novel-candidate** (no match, 2026-10-28; `2F_{2w+1} − 2^w − 1`; stage 4) |
+| Hilbert strips and Hilbert castles | Hilbert castles of height 5 | `1, 7, 33, 137, 535, 2015, 7415, 26863, 96267` | **novel-candidate** (no match, 2026-10-28) |
+| Hilbert strips and Hilbert castles | Hilbert castles of height 6 | `1, 9, 55, 295, 1481, 7147, 33617, 155365` | **novel-candidate** (no match, 2026-10-28) |
+| Hilbert strips and Hilbert castles | Hilbert castles of height 7 | `1, 11, 83, 549, 3393, 20129, 116239, 658731` | **novel-candidate** (no match, 2026-10-28) |
+| Hilbert strips and Hilbert castles | even-block / odd-block Hilbert castles of height 4 | `1, 5, 16, 44, 114, 288, 721, 1805, …` / `0, 0, 1, 7, 31, 113, 370, 1132, …` | **novel-candidate** (no match, 2026-10-28; heights 5, 6, 7 no match either; at height 3 every Hilbert castle has an odd number of blocks, `2^w − 1` = A000225) |
+| Hilbert strips and Hilbert castles | the Hilbert word array by antidiagonals (columns: Nacin's entries) | `1, 1, 0, 1, 1, 0, 1, 2, 1, 0, 1, 3, 2, 1, 0, …` | **novel-candidate** (no match in either reading order, 2026-10-28; stage 4) |
+| Hilbert strips and Hilbert castles | the Hilbert castle array `A_hilbert(w, h)` by antidiagonals | `1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 5, 7, 1, 1, …` | **novel-candidate** (no match in either reading order, 2026-10-28) |
+| m-disparate castles | 2-disparate castles of heights 5, 6, 7 | `1, 6, 20, 58, 158, 414, …`; `1, 8, 38, 156, 596, …`; `1, 10, 62, 332, 1652, …` | **novel-candidate** (no match, 2026-10-28) |
+| m-disparate castles | 3-disparate castles of height 6, and the m-disparate castles of height `m + 3` for every `m ≥ 3` | `1, 6, 18, 46, 114, 272, 638, 1476` | **novel-candidate** (no match, 2026-10-28; `2(A006356(w) − F_{w+2})`, `w ≥ 2`; stage 4) |
+| m-disparate castles | 3-disparate castles of height 7 | `1, 8, 34, 124, 426, 1398, 4486` | **novel-candidate** (no match, 2026-10-28) |
+| m-disparate castles | even-block / odd-block 2-disparate castles of height 4 | `1, 4, 7, 10, 15, 22, 34, 54, …` / `0, 0, 1, 4, 9, 18, 32, 54, …` | **novel-candidate** (no match, 2026-10-28; heights 5 and 6 no match either) |
+| m-disparate castles | 2-disparate strips on 6 and 7 heights, 3-disparate strips on 7 heights | `1, 6, 20, 68, 230, …`; `1, 7, 30, 130, 562, …`; `1, 7, 20, 62, 186, …` | no match, 2026-10-28 (strips, not castle families) |
 | Multi-interpretation hub | A005251, the four readings | - | **interlink**; the entry states none of the four readings (checked 2026-10-16) |
 | Strip Perron-root sequences | quadratic strips off the line `p₂ = 1`, fields `Q(√17)`, `Q(√21)`, `Q(√6)`, `Q(√7)`, `Q(√33)` | - | **unchecked**; several strip matrices reach each field, so a field has no single count sequence to search |
 | Von Neumann castles and Ackermann castles | the columns of the skyline whose first `2^n − 1` columns are `vN(n)`, `s_2(i) + (i mod 2)` | `2, 1, 3, 1, 3, 2, 4, 1, 3, 2, 4, 2, 4, 3, 5` from `i = 1` | **novel-candidate** (no match, 2026-10-28, nor with a leading `0` for `i = 0`); `= A000120(i) + A000035(i)`, its even and odd terms are `A000120(j)` and `A000120(j) + 2`, [[von-neumann-castles](pages/von-neumann-castles.md)] |
@@ -688,3 +744,7 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalogue
 | Totient castles | totient strips on {1, 2, 3} | **interlink** → [A001333](https://oeis.org/A001333) Pell-Lucas numbers (`= A001333(w+1)`, as many as the 1-smooth strips) |
 | Other rows | open-stroke castles at odd widths, by height | **interlink** → [A034856](https://oeis.org/A034856) (`h² + 3h − 2 = 2·A034856(h)`, proved; also `A028552(h) − 2`) |
 | Other rows | open-stroke castles of height `h` at the widths `2m ≤ 2h − 4`, `2h − 2` and `2h` | **interlink** → [A002378](https://oeis.org/A002378) (`m(m + 1)`), [A033428](https://oeis.org/A033428) (`3(h − 1)²`), [A202803](https://oeis.org/A202803) (`(h − 1)(5h − 4) = A202803(h − 1)`); computed for `h ≤ 12`, no proof |
+| m-disparate castles | 2-disparate castles of height 4, and the m-disparate castles of height `m + 2` for every `m ≥ 2` | **interlink** → [A019274](https://oeis.org/A019274) (`= A019274(w+2) = 2F_{w+2} − 2`, `w ≥ 2`; the entry counts recursive calls and has no word reading, 2026-10-28; stage 4) |
+| m-disparate castles | 2-disparate strips on 5 heights | **interlink** → [A118649](https://oeis.org/A118649) (`= A118649(w+1)`, `w ≥ 1`, 27 terms; row sums of A106597; skipped, strips) |
+| m-disparate castles | m-disparate strips on `m + 3` heights, `m ≥ 3` | **interlink** → [A052994](https://oeis.org/A052994) (`= A052994(w+2) = 2·A006356(w)`, `w ≥ 2`, 28 terms; skipped, strips) |
+| Hilbert strips and Hilbert castles | Hilbert castles of height 3 | **interlink** → [A000225](https://oeis.org/A000225) (`= 2^w − 1`; dense, skipped with the castles of height 2) |

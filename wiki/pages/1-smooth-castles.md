@@ -370,6 +370,7 @@ The definition, the subtraction `strips(w, h) − strips(w, h − 1)`, the trans
 - [[m-smooth-castles](pages/m-smooth-castles.md)] - neighboring columns differing by at most `m`, starting from this page.
 - [[mersenne-castles](pages/mersenne-castles.md)] - neighboring heights in ratio 1, 2, 3/2 or 4/3, or the inverse; at height 3 the free 1-smooth castles.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - the m-smooth type, here at `m = 1`.
+- [[hilbert-castles](pages/hilbert-castles.md)] - the dual of the 1-smooth rule is the 2-disparate rule; on four heights the 1-smooth rule is the Hilbert rule `|a − b| ≠ 1` with the heights relabeled, so both grow at `φ²`.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth types; the Pell castles are its silver example.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the ridge rule, which reaches the metallic means at every height.
 - [[pell-numbers](pages/pell-numbers.md)] - `P⋆_w = strips(w, 3)`.

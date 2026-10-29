@@ -79,6 +79,8 @@ Let `T_h(w)` be the number of **tree skylines** of width `w` and height at most 
 T_h(w+2)  =  T_h(w+1)  +  (h − 1)·T_h(w),        T_h(0) = 1,   T_h(1) = h.        (1)
 ```
 
+The tree skylines are the strips of the rule that allows a pair of neighboring heights when one of them is 1. By the Hilbert duality of [[hilbert-castles](pages/hilbert-castles.md)] they are determined by the dual rule, whose strips have every column at height at least 2, and the duality gives their generating function `Σ_{w≥0} T_h(w) x^w = (1 + (h − 1)x)/(1 − x − (h − 1)x²)`, and, with `q` marking area, the generating function by area and width given below.
+
 The tree castles of width `w` and height `h` are the tree skylines of height at most `h` that are not of height at most `h − 1`, so they number
 
 ```
@@ -231,6 +233,7 @@ def cycle_rank(c):
 - [[sandpile-census](pages/sandpile-census.md)] - the sandpile groups of the 33,150 castles with at most 16 cells, up to mirror image.
 - [[castle-avalanches](pages/castle-avalanches.md)] - avalanches on the castle graph; in the tide model, rectangles and battlements of the same height have the same mean avalanche, and the `2 × 2` squares change only the tail.
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)] - the tree skylines counted by area.
+- [[hilbert-castles](pages/hilbert-castles.md)] - the Hilbert duality of strip rules, which gives the tree skylines by width and area from the strips with every column at height at least 2.
 - [[fibonacci-castle](pages/fibonacci-castle.md)] - the tree castles of height 2, and the signed Fibonacci tower count `P_F(w)` that gives the parity of the tree castles at every height.
 - [[padovan-families](pages/padovan-families.md)] - the palindromic tree castles by area, which give the tree castles up to mirror image.
 - [[unique-tournament](pages/unique-tournament.md)] - tournaments determined by their score vectors, counted by `A000570`, the tree skylines of height at most 4 by area.
