@@ -277,9 +277,9 @@ for n in range(1, 9):
     assert even == (math.comb(2 * n, n) if n % 2 == 1 else 0)
 print("[9] n = 1..8: A^e_Kol(2n + 1) = C(2n, n) for odd n and 0 for even n")
 
-# [10] catalogue rows
-print("[10] catalogue rows: A_Kol(2n + 1, 4) for n = 1..10:", [A_kol(n, 4) for n in range(1, 11)])
-print("[10] catalogue rows: A^e_Kol(2n + 1) for n = 0..9:", [math.comb(2 * n, n) if n % 2 else 0 for n in range(10)])
+# [10] catalog rows
+print("[10] catalog rows: A_Kol(2n + 1, 4) for n = 1..10:", [A_kol(n, 4) for n in range(1, 11)])
+print("[10] catalog rows: A^e_Kol(2n + 1) for n = 0..9:", [math.comb(2 * n, n) if n % 2 else 0 for n in range(10)])
 
 # [11] Kolmogorov 1933, p. 84: the table of Phi(lambda) computed by N. Kozhevnikov, against K*
 table = {0.0: '0.0000', 0.2: '0.0000', 0.4: '0.0028', 0.6: '0.1357', 0.8: '0.4558', 1.0: '0.7300',

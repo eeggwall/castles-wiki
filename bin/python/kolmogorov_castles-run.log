@@ -51,8 +51,8 @@
 [8] h = 7: A_Kol(w + 2, h)/A_Kol(w, h) at w = 8001: 3.801937735805; 2 + 2cos(pi/h) = 3.801937735805; growth by width 2cos(pi/(2h)) = 1.94986
 [8] h = 8: A_Kol(w + 2, h)/A_Kol(w, h) at w = 8001: 3.847759065023; 2 + 2cos(pi/h) = 3.847759065023; growth by width 2cos(pi/(2h)) = 1.96157
 [9] n = 1..8: A^e_Kol(2n + 1) = C(2n, n) for odd n and 0 for even n
-[10] catalogue rows: A_Kol(2n + 1, 4) for n = 1..10: [0, 0, 2, 14, 70, 306, 1246, 4858, 18398, 68250]
-[10] catalogue rows: A^e_Kol(2n + 1) for n = 0..9: [0, 2, 0, 20, 0, 252, 0, 3432, 0, 48620]
+[10] catalog rows: A_Kol(2n + 1, 4) for n = 1..10: [0, 0, 2, 14, 70, 306, 1246, 4858, 18398, 68250]
+[10] catalog rows: A^e_Kol(2n + 1) for n = 0..9: [0, 2, 0, 20, 0, 252, 0, 3432, 0, 48620]
 [11] lambda = 2.2: printed 0.99986, series K* = 0.999875
 [11] lambda = 2.4: printed 0.999973, series K* = 0.9999801
 [11] lambda = 2.6: printed 0.9999964, series K* = 0.99999731
