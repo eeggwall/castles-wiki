@@ -1,7 +1,7 @@
 ---
 title: Castle classification - shape types
 category: Concepts
-summary: The 41 shape types of castles taken from the Castle Types source, 7 base types and 34 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo, monadnock, valley, k-valley, city-building and zig-zag types. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
+summary: The 41 shape types of castles taken from the Castle Types source, 7 base types and 34 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag and Hilbert types; the m-disparate castles are counted as the duals of the (m − 1)-smooth castles. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle, hoodoo-castle, monadnock-castle, distinct-parts]
 sources: [castle-classification, aocp-generating-partitions, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths, project-euler-502-representations, oeis-encyclopedia]
 created: 2026-09-19
@@ -10,7 +10,7 @@ updated: 2026-10-28
 
 # Castle classification - shape types
 
-A **shape type** is a predicate on the skyline `(c_1, …, c_w)` of one castle of width `w` and height `h` ([[castle-polyomino](pages/castle-polyomino.md)], and [[castle-classification](pages/castle-classification.md)] for the other kinds of type). Every castle is column-convex and has a full bottom row, so each type is a further restriction on the skyline.[^1] The Castle Types source lists 7 base types from the polyomino literature and 35 proposed types; this page groups 41 of them into seven axes, gives each a construction rule and an example skyline, and records the wiki page and the count where they exist. Six further types, the ridge, hoodoo, monadnock, valley, k-valley, city-building and zig-zag castles, are not among the 42 of the source.
+A **shape type** is a predicate on the skyline `(c_1, …, c_w)` of one castle of width `w` and height `h` ([[castle-polyomino](pages/castle-polyomino.md)], and [[castle-classification](pages/castle-classification.md)] for the other kinds of type). Every castle is column-convex and has a full bottom row, so each type is a further restriction on the skyline.[^1] The Castle Types source lists 7 base types from the polyomino literature and 35 proposed types; this page groups 41 of them into seven axes, gives each a construction rule and an example skyline, and records the wiki page and the count where they exist. Eight further types, the ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag and Hilbert castles, are not among the 42 of the source.
 
 ## The 7 base types
 
@@ -24,7 +24,7 @@ The base types are polyomino and composition families:[^2]
 | **Staircase** | Ferrers with all `c_i` distinct | `(4, 3, 1)` | [[polyominoes](pages/polyominoes.md)] | `C(h − 1, w − 1)` |
 | **Parallelogram** | the cells on each line `i + j = const` form one run | `(1, 2, 2, 3)` | [[column-convex-polygon-enumeration](pages/column-convex-polygon-enumeration.md)] | open |
 | **Directed** | every cell is reached from the bottom-left cell by steps east and north | `(1, 3, 2, 3, 1)` | [[polyominoes](pages/polyominoes.md)] | every castle |
-| **m-disparate** | `\|c_{i+1} − c_i\| ≥ m` | `(1, 3, 1, 4)`, `m = 2` | | open |
+| **m-disparate** | `\|c_{i+1} − c_i\| ≥ m` | `(1, 3, 1, 4)`, `m = 2` | [[hilbert-castles](pages/hilbert-castles.md)] | the paragraph *m-disparate castles* (Axis 2); `2(F_{w+2} − 1)` for `w ≥ 2` at `h = m + 2` |
 
 A Ferrers castle has `c_1 = h`, and lowering the other `w − 1` columns by one leaves a partition in a `(w − 1) × (h − 1)` box, so the Ferrers castles number `C(w + h − 2, w − 1)`, with the area generating function from Cauchy's Theorem C ([[aocp-generating-partitions](pages/aocp-generating-partitions.md)]; checked for `w ≤ 6`, `h ≤ 5`). A staircase castle is a choice of `w − 1` distinct heights below `h`. Every castle is directed: walk east along row 1 to the column of the cell, then north up the column. Every weakly increasing skyline is a parallelogram castle, since `i + c_i` then increases with `i`, so the cells on the line `i + j = s` are those with `s − c_i < i ≤ s`, an interval; the skyline `(3, 1, 1)` is not one, since the line through its cells `(1, 3)` and `(3, 1)` misses the cell `(2, 2)`. The horizontal counterpart of m-disparate, a minimum width for the valleys between raised regions, is counted on [[tower-spacing-castles](pages/tower-spacing-castles.md)].
 
@@ -79,7 +79,7 @@ h = 7:  36, 108, 156, 168, 169, 169, …
 
 ### Axis 2: Rate of change
 
-Types 7, 8 and 9, the base type m-disparate, the ridge type and the zig-zag type:
+Types 7, 8 and 9, the base type m-disparate, the ridge type, the zig-zag type and the Hilbert type:
 
 | type | predicate | example | wiki page and count |
 |---|---|---|---|
@@ -87,12 +87,39 @@ Types 7, 8 and 9, the base type m-disparate, the ridge type and the zig-zag type
 | **Ridge** | `c_i ≠ c_{i+1}` unless `c_i = c_{i+1} = h` | `(3, 1, 3, 4, 4, 1, 4, 4, 1, 4, 2, 1)` | `𝟙ᵀ R_h^{w−1} 𝟙 − (h−1)(h−2)^{w−1}`, growth `δ_{h−1}` by width (paragraph *Ridge castles*) |
 | **m-smooth** | `\|c_{i+1} − c_i\| ≤ m` | `(1, 2, 2, 3, 2)`, `m = 1` | [[1-smooth-castles](pages/1-smooth-castles.md)], [[m-smooth-castles](pages/m-smooth-castles.md)] |
 | **Zig-zag** | `\|c_{i+1} − c_i\| = 1`: the 1-smooth and plateau-free predicates together | `(1, 2, 3, 2)` | [[zig-zag-castles](pages/zig-zag-castles.md)]: their step bits are the `(h − 1)`-balanced strings of length `w − 1`, A027383, A027557, A027559, A027560 at `h = 3, …, 6`; growth `2cos(π/(h+1))` by width, golden by width at `h = 4` |
+| **Hilbert** | `\|c_{i+1} − c_i\| ≠ 1`: the pairs the zig-zag predicate forbids | `(1, 3, 3, 1, 4)` | [[hilbert-castles](pages/hilbert-castles.md)]: the strips have the series `1/Z_h(−x)`, `Z_h` the zig-zag strip series, A287804 to A287832 at `h = 5, …, 11`; `2^w − 1` at `h = 3`, all with an odd number of blocks, and `2F_{2w+1} − 2^w − 1` at `h = 4`, growth `φ²` by width |
 | **Zigzag** | the differences `c_{i+1} − c_i` alternate in sign | `(1, 3, 2, 3, 1)` | open; not the zig-zag type of the row above, whose differences are all `±1` |
-| **m-disparate** | `\|c_{i+1} − c_i\| ≥ m` | `(1, 3, 1, 4)`, `m = 2` | open |
+| **m-disparate** | `\|c_{i+1} − c_i\| ≥ m` | `(1, 3, 1, 4)`, `m = 2` | the dual of the `(m − 1)`-smooth predicate (paragraph *m-disparate castles*): `2(F_{w+2} − 1)` for `w ≥ 2` at `h = m + 2`; at `m = 2` the strips have the series `1/sw_h(−x)` and the castles of height `h` grow at `ρ(J − A_path) − 1` by width |
 
 **m-smooth castles.** At `m = 1` the predicate is the Motzkin-path predicate of the path-like types (Axis 3) without its condition on the end columns. The 1-smooth strips on the heights `{1, 2, 3}`, which need not reach height 3 and so are strips, not castles, number `A001333(w + 1)` and are silver by width ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]); with first column at height 1 they number the Pell numbers `P⋆_w`, and those that reach height 3 are the Pell castles ([[pell-castle-strip](pages/pell-castle-strip.md)], [[pell-castle](pages/pell-castle.md)]). At every height `h`, the 1-smooth castles with first column at height 1 have the generating function `x^h/(η_h η_{h−1})` and are column `h − 1` of `A283595`, the Motzkin prefixes by length and height ([[1-smooth-castles](pages/1-smooth-castles.md)]). They are Motzkin paths only when the last column also has height 1. The m-smooth castles for `m ≥ 2` are on [[m-smooth-castles](pages/m-smooth-castles.md)]: the smallest width is `⌈(h − 1)/m⌉ + 1`, the recurrence in `w` has order at most `h`, and at `h ≤ m + 1` every castle is m-smooth.
 
 The tower words of [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)], `A004149`, are a different object: Motzkin paths with no factor `UD` or `DU`, counted by word length, which are the words of towers of any height.
+
+**m-disparate castles.** An **m-disparate castle** is a castle whose neighboring columns differ in height by at least `m`; at `m = 1` it is a plateau-free castle. The m-disparate rule `|a − b| ≥ m` allows exactly the pairs that the `(m − 1)`-smooth rule forbids, so by the Hilbert duality of [[hilbert-castles](pages/hilbert-castles.md)] the m-disparate strips on the heights `1, …, h`, with the empty strip counted, have the series `1/G(−x)`, with `G(x)` the series of the free `(m − 1)`-smooth strips ([[m-smooth-castles](pages/m-smooth-castles.md)]). The m-disparate castles of height `h`, `A_{m-disp}(w, h)` of them, are the m-disparate strips on `1, …, h` minus those on `1, …, h − 1`.[^disp]
+
+- **Small heights.** For `2 ≤ h ≤ m` no two heights differ by `m`, so the only m-disparate castle of height `h` is the single column `(h)`. At `h = m + 1` the only allowed pair is `{1, m + 1}`, and for `w ≥ 2` the castles are the two alternating skylines `(1, m + 1, 1, …)` and `(m + 1, 1, m + 1, …)`.
+- **The diagonal `h = m + 2`.** The allowed pairs are `{1, m + 1}`, `{1, m + 2}` and `{2, m + 2}`, the path `(m + 1) − 1 − (m + 2) − 2` on four heights, and the heights `3, …, m` have no neighbors. So for `w ≥ 2` the m-disparate strips on `m + 2` heights are the zig-zag strips on four heights with the heights relabeled, `2F_{w+2}` of them ([[hilbert-castles](pages/hilbert-castles.md)], section *Height 4*), and for every `m ≥ 2` the m-disparate castles of height `m + 2` number `2(F_{w+2} − 1) = A019274(w + 2)`, `4, 8, 14, 24, 40, 66, …` from `w = 2`, golden by width.[^disp][^a019274]
+- **`m = 2`.** The free 1-smooth strips are the smooth words of [[knopfmacher-mansour-munagi-prodinger-2008-smooth-words](pages/knopfmacher-mansour-munagi-prodinger-2008-smooth-words.md)], whose Theorem 2.2 gives their series `sw_h(x)` in Chebyshev polynomials, so the 2-disparate strips on `h` heights have the series `1/sw_h(−x)`. The 2-disparate rule is `J − I − A_path`, the Hilbert rule minus the identity, so the 2-disparate castles of height `h` grow at `ρ(J − A_path) − 1` by width: `φ` at `h = 4`, `2.48119…` at `h = 5`, `3.38848…` at `h = 6`.[^disp]
+
+| `m` | `h` | `A_{m-disp}(w, h)`, `w = 1, …, 10` |
+|---|---|---|
+| 2 | 4 | `1, 4, 8, 14, 24, 40, 66, 108, 176, 286` |
+| 2 | 5 | `1, 6, 20, 58, 158, 414, 1064, 2698, 6790, 17000` |
+| 2 | 6 | `1, 8, 38, 156, 596, 2186, 7822, 27530, 95836, 331056` |
+| 2 | 7 | `1, 10, 62, 332, 1652, 7878, 36560, 166560, 749024, 3336816` |
+| 3 | 5 | `1, 4, 8, 14, 24, 40, 66, 108, 176, 286` |
+| 3 | 6 | `1, 6, 18, 46, 114, 272, 638, 1476, 3386, 7720` |
+| 3 | 7 | `1, 8, 34, 124, 426, 1398, 4486, 14142, 44104, 136432` |
+
+The even-block and odd-block 2-disparate castles:
+
+| `h` | `A^e_{2-disp}(w, h)`, `w = 1, …, 10` | `A^o_{2-disp}(w, h)` |
+|---|---|---|
+| 4 | `1, 4, 7, 10, 15, 22, 34, 54, 87, 142` | `0, 0, 1, 4, 9, 18, 32, 54, 89, 144` |
+| 5 | `0, 0, 3, 18, 61, 178, 482, 1262, 3241, 8226` | `1, 6, 17, 40, 97, 236, 582, 1436, 3549, 8774` |
+| 6 | `1, 8, 32, 104, 340, 1148, 3965, 13788, 47876, 165418` | `0, 0, 6, 52, 256, 1038, 3857, 13742, 47960, 165638` |
+
+Every entry of both tables agrees with brute-force enumeration wherever `h^w ≤ 2·10^6`.
 
 **Ridge castles.** A **ridge castle** of height `h` ([[ridge-castle](pages/ridge-castle.md)]) has neighboring columns of different heights unless both have height `h`. So equal neighbors occur only at height `h`; below it the skyline steps up or down at every column, and all heights `1, …, h` may occur. To build one, pick `c_1`, give each next column any height other than the current one, or `h` again when the current one is `h`, and keep the skylines in which some column reaches `h`. The example has height 4 and width 12.
 
@@ -226,3 +253,5 @@ For `w ≥ 2`, a linear castle with `d = 0` is the boxcastle; one with `d > 0` h
 [^10]: [[cho-huh-nam-sohn-2022-bounded-free-motzkin-paths](pages/cho-huh-nam-sohn-2022-bounded-free-motzkin-paths.md)] p.17 Proposition 3.8 L965-974 [synthesis] - `scc(t, m)`, the number of self-conjugate `t`-cores with `m` corners, which Theorem 3.7 puts in bijection with the cornerless symmetric Motzkin paths with `t − 1` flat steps, the tower words of the palindromic towers on a base of length `t − 1` with `m` blocks; so the palindromic castles of width `w` with `b` blocks number `T̂_pal(w, b − 1) = scc(w + 1, b − 1)` (checked by enumeration in `bin/python/bounded_t_cores.py`, run log `bin/python/bounded_t_cores-run.log`).
 [^11]: Verified by execution (Python 3.10, 2026-10-28): the band reflection maps the vee castles of width `w` and height `h` one-to-one onto the convex castles of the same cell, in all 42 cells with `w ≤ 7`, `h ≤ 6` and `h^w ≤ 300000`.
 [^12]: Verified by execution (Python 3.10, 2026-10-28): `bin/python/even_count_parity.py` item [2], run log `bin/python/even_count_parity-run.log`. For every castle with `h ≤ 5`, `w ≤ 7` and `h^w ≤ 200000`: the palindromic castles number `h^{⌈w/2⌉} − (h−1)^{⌈w/2⌉}`, a palindrome's block count has the parity of its middle column, and the even-block palindromes number `⌊h/2⌋·h^{⌈w/2⌉−1} − ⌊(h−1)/2⌋·(h−1)^{⌈w/2⌉−1}`.
+[^disp]: Verified by execution (Python 3.11 with NumPy and SymPy, 2026-10-28): `bin/python/hilbert_castles.py` item [7], run log `bin/python/hilbert_castles-run.log`. `J` minus the `(m − 1)`-smooth rule is the m-disparate rule, with the duality to `x^20`, for `m = 1, …, 5` and `h = 1, …, 9`; the counts by transfer matrix for `m = 2, 3, 4`, `h ≤ 8` and `w ≤ 12`, and by brute force wherever `h^w ≤ 2·10^6`; the heights `h ≤ m + 2` for `m = 2, …, 9` and `w ≤ 30`; the series `1/sw_h(−x)` with `sw_h` from Theorem 2.2 of Knopfmacher, Mansour, Munagi and Prodinger, for `h = 2, …, 8`; the rule `J − I − A_path` and its largest eigenvalue against `ρ(J − A_path) − 1` for `h ≤ 9`; the even-block and odd-block counts at `h = 4, 5, 6` by a transfer count with the block sign and by brute force.
+[^a019274]: https://oeis.org/A019274 (read 2026-10-28) - "Number of recursive calls needed to compute the n-th Fibonacci number F(n), starting with F(1) = F(2) = 1.", with the formula "a(n) = 2*F(n) - 2 = 2*A000071(n)", offset 1; all 37 terms of its data field agree with `2F_n − 2`.
