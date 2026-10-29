@@ -1,7 +1,7 @@
 ---
 title: Castle classification - shape types
 category: Concepts
-summary: The 41 shape types of castles taken from the Castle Types source, 7 base types and 34 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag and Euler types. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
+summary: The 41 shape types of castles taken from the Castle Types source, 7 base types and 34 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag, Euler and Königsberg types. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle, hoodoo-castle, monadnock-castle, distinct-parts]
 sources: [castle-classification, aocp-generating-partitions, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths, project-euler-502-representations, oeis-encyclopedia]
 created: 2026-09-19
@@ -10,7 +10,7 @@ updated: 2026-10-28
 
 # Castle classification - shape types
 
-A **shape type** is a predicate on the skyline `(c_1, …, c_w)` of one castle of width `w` and height `h` ([[castle-polyomino](pages/castle-polyomino.md)], and [[castle-classification](pages/castle-classification.md)] for the other kinds of type). Every castle is column-convex and has a full bottom row, so each type is a further restriction on the skyline.[^1] The Castle Types source lists 7 base types from the polyomino literature and 35 proposed types; this page groups 41 of them into seven axes, gives each a construction rule and an example skyline, and records the wiki page and the count where they exist. Eight further types, the ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag and Euler castles, are not among the 42 of the source.
+A **shape type** is a predicate on the skyline `(c_1, …, c_w)` of one castle of width `w` and height `h` ([[castle-polyomino](pages/castle-polyomino.md)], and [[castle-classification](pages/castle-classification.md)] for the other kinds of type). Every castle is column-convex and has a full bottom row, so each type is a further restriction on the skyline.[^1] The Castle Types source lists 7 base types from the polyomino literature and 35 proposed types; this page groups 41 of them into seven axes, gives each a construction rule and an example skyline, and records the wiki page and the count where they exist. Nine further types, the ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag, Euler and Königsberg castles, are not among the 42 of the source.
 
 ## The 7 base types
 
@@ -106,12 +106,13 @@ The tower words of [[tower-word-continued-fraction](pages/tower-word-continued-f
 
 ### Axis 3: Path-like types
 
-Types 13 and 14 identify the skyline with a lattice path:
+Types 13 and 14 identify the skyline with a lattice path, and the Königsberg type, a condition on the degrees of the castle graph, turns out to be one Motzkin path at each even width:
 
 | type | predicate | example | wiki page |
 |---|---|---|---|
 | **Dyck-path** | `c_1 = c_w = 1`, `\|c_{i+1} − c_i\| = 1` | `(1, 2, 1, 2, 3, 2, 1)` | [[dyck-words](pages/dyck-words.md)], [[catalan-numbers](pages/catalan-numbers.md)]; the zig-zag castles with both end columns at height 1 ([[zig-zag-castles](pages/zig-zag-castles.md)]) |
 | **Motzkin-path** | `c_1 = c_w = 1`, `\|c_{i+1} − c_i\| ≤ 1` | `(1, 2, 2, 3, 2, 1)` | [[motzkin-numbers](pages/motzkin-numbers.md)]; without the condition on the end columns, the 1-smooth type of the rate-of-change types (Axis 2) |
+| **Königsberg** | every degree of the castle graph is even once a ground vertex is joined to the bottom row | `(1, 2, 3, 3, 2, 1)` | [[konigsberg-castles](pages/konigsberg-castles.md)]: exactly the double staircases `(1, …, k, k, …, 1)`, one at each even width; the open-stroke castles, with exactly two odd vertices, are finitely many at each height, `h² + 3h − 2` of them at odd widths |
 
 **The counts carry a condition on the ends and on the height.** Lowering every column by one turns a Dyck-path castle into a Dyck path of `w − 1` steps, so `w` is odd and the semilength is `n = (w − 1)/2`; since the castle has height `h`, the path has height `h − 1`. The Catalan number `C_n` counts the Dyck-path castles only after summing over `h`. At fixed `(w, h)` the count is the triangle `A080936`, the Dyck paths of semilength `n` and height `k = h − 1`,[^7] and at height at most `h` it is `A080934`, whose generating function is a ratio of Chebyshev-type polynomials.[^8] In the same way, at fixed `(w, h)` the Motzkin-path castles are `A097862`, the Motzkin paths of length `n = w − 1` and height `k = h − 1`,[^9] and only the sum over `h` is the Motzkin number `M_{w−1}`. Every entry of the tables agrees with brute-force enumeration:[^5]
 
@@ -210,6 +211,7 @@ For `w ≥ 2`, a linear castle with `d = 0` is the boxcastle; one with `d > 0` h
 - [[castle-snippets](pages/castle-snippets.md)] - Python predicates for the types on this page.
 - [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] - the hoodoo and monadnock castles in full.
 - [[euler-castles](pages/euler-castles.md)] - the Euler castles, Euler's pentagonal number theorem as their block parity, and Franklin's move.
+- [[konigsberg-castles](pages/konigsberg-castles.md)] - the castles traced in one closed stroke, the double staircases, and those traced in one open stroke.
 - [[aocp-permutations](pages/aocp-permutations.md)], [[aocp-combinatorics](pages/aocp-combinatorics.md)] - the count `h!` of the rainbow castles and its grading by inversions.
 - [[castle-compression](pages/castle-compression.md)] - how short a description of a castle can be.
 - [[tower-parity-sectors](pages/tower-parity-sectors.md)] - for `k ≡ 2 (mod 4)` the even sector of `P(k, L)` is `2^L` times a Hardin word count (`A005251`, `A202882`, `A203094`, `A203184`); the case `g = 2` of [[tower-spacing-castles](pages/tower-spacing-castles.md)] reaches the same words.
