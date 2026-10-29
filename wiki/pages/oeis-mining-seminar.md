@@ -5,7 +5,7 @@ summary: A seminar that runs OEIS mining on castle counts, one row at a time. En
 tags: [concept, castle, seminar, pedagogy, teaching, oeis, offsets, false-positive, berlekamp-massey, hyperbolic-sequence, a038505, a038503, a146559, a009545]
 sources: [oeis-encyclopedia]
 created: 2026-09-26
-updated: 2026-10-25
+updated: 2026-10-29
 ---
 
 # OEIS mining seminar - one castle sequence, end to end
@@ -187,7 +187,7 @@ True
 - [[berlekamp-massey](pages/berlekamp-massey.md)] - the algorithm of Stop 6, and when its output is the shortest recurrence.
 - [[castle-counting-formula](pages/castle-counting-formula.md)] - the closed form of `A^e(w, h)` behind the factors of Stop 6.
 - [[castle-eigenvalue-oeis-crosswalk](pages/castle-eigenvalue-oeis-crosswalk.md)] / [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)] - the same method on eigenvalue convergents, on the odd count and on the block-count tables.
-- [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[one-bit-seminar](pages/one-bit-seminar.md)] / [[q-thread-seminar](pages/q-thread-seminar.md)] - the other seminar pages.
+- [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[one-bit-seminar](pages/one-bit-seminar.md)] / [[q-thread-seminar](pages/q-thread-seminar.md)] / [[half-derivative-seminar](pages/half-derivative-seminar.md)] - the other seminar pages.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - a seminar on the 16-cell castle `(3, 2, 1, 2, 2, 1, 2, 3)`, silver by spectrum, through its sandpile group, clock, identity and avalanches.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] / [[castle-cryptography](pages/castle-cryptography.md)] / [[song-as-castle](pages/song-as-castle.md)] - the seminar pages on the Pell strip, castle cryptography, and audio as castles.
 

@@ -5,7 +5,7 @@ summary: A seminar on Project Euler 502's even-block clause read as information,
 tags: [concept, castle, seminar, pedagogy, teaching, entropy, information, parity, castle-sign, steganography, compression, topological-entropy]
 sources: [project-euler-502-observations, project-euler-502-solution]
 created: 2026-09-26
-updated: 2026-10-25
+updated: 2026-10-29
 ---
 
 # One bit seminar - the parity clause as information
@@ -204,6 +204,7 @@ True
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], [[hardin-identity-seminar](pages/hardin-identity-seminar.md)], [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the other seminar pages.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - a seminar following the 16-cell castle `(3, 2, 1, 2, 2, 1, 2, 3)`, silver by spectrum, through its sandpile group, clock, identity and avalanches.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - a seminar on castles by area.
+- [[half-derivative-seminar](pages/half-derivative-seminar.md)] - a seminar on the block count, the partial sum, the transfer matrix and the walk on a tree castle at order 1/2.
 - [[pell-castle-strip](pages/pell-castle-strip.md)], [[castle-cryptography](pages/castle-cryptography.md)], [[song-as-castle](pages/song-as-castle.md)] - the seminar pages on the Pell strip, castle cryptography, and audio as castles.
 - [[parity-via-roots-of-unity](pages/parity-via-roots-of-unity.md)] - the projector for the block count modulo `m`, with `m`-th roots of unity.
 

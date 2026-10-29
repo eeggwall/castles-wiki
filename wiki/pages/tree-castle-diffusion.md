@@ -113,6 +113,7 @@ The walk depends only on the graph, but `col(t)`, `hor(t)` and `rate(c)` depend 
 - [[isospectral-castles](pages/isospectral-castles.md)] - the 11-cell pair `A`, `B` and the six skylines of class `A`.
 - [[levy-flights](pages/levy-flights.md)] - the space-fractional Laplacian of the castle graph, long jumps instead of trapping in teeth.
 - [[castle-notation](pages/castle-notation.md)] - `hor(t)`, `msd(t)` and `rate(c)`.
+- [[half-derivative-seminar](pages/half-derivative-seminar.md)] - a seminar on castle operations at order 1/2, of which this page is the last stop.
 - [[arkhincheev-baskin-1991-comb-model](pages/arkhincheev-baskin-1991-comb-model.md)], [[mendez-iomin-campos-horsthemke-2015-random-walks-on-combs](pages/mendez-iomin-campos-horsthemke-2015-random-walks-on-combs.md)], [[yuste-abad-baumgaertner-2016-random-comb-model](pages/yuste-abad-baumgaertner-2016-random-comb-model.md)], [[pach-tardos-2013-range-of-random-walk-on-comb](pages/pach-tardos-2013-range-of-random-walk-on-comb.md)] - the comb model, its order-1/2 equation, its coefficients and its reduced projections.
 
 ## Footnotes

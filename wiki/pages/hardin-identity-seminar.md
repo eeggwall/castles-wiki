@@ -5,7 +5,7 @@ summary: A seminar on the Hardin word identity. Split the signed tower count P(6
 tags: [concept, castle, seminar, pedagogy, teaching, signed-tower-count, transfer-matrix, symmetry, bijection, hardin, words, automaton, oeis, a005251, plastic-number]
 sources: [tetali-1998-unique-tournaments]
 created: 2026-09-26
-updated: 2026-10-25
+updated: 2026-10-29
 ---
 
 # Hardin identity seminar - towers, words, and one change of basis
@@ -247,6 +247,7 @@ def S_pattern(m):                          # the 0/1 change of basis, sector coo
 - [[one-bit-seminar](pages/one-bit-seminar.md)] - the seminar on the parity clause as information.
 - [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the seminar following the 16-cell castle `(3, 2, 1, 2, 2, 1, 2, 3)`, silver by spectrum, through its sandpile group, clock, identity and avalanches.
 - [[q-thread-seminar](pages/q-thread-seminar.md)] - the q-thread seminar, castles by area from compositions through prime castles and the sign as a character to the q-Bessel closed form.
+- [[half-derivative-seminar](pages/half-derivative-seminar.md)] - the half-derivative seminar, four castle operations at order 1/2.
 - [[pell-castle-strip](pages/pell-castle-strip.md)], [[castle-cryptography](pages/castle-cryptography.md)], [[song-as-castle](pages/song-as-castle.md)] - the seminars on the Pell strip, on a public-key system built from the signed tower count, and on audio as castles.
 - [[oeis-mining-pe502](pages/oeis-mining-pe502.md)] - the signed tower count `P(k, ·)` whose sectors the seminar splits.
 

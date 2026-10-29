@@ -5,7 +5,7 @@ summary: The order-1/2 fractional partial sum in the width of the even-block cas
 tags: [analysis, castle, fractional-calculus, half-sum, cesaro, riemann-liouville, generating-function, algebraic, singularity-analysis, pi, wallis, central-binomial, context-free, nondecreasing, computation, oeis]
 sources: [project-euler-502-brute-force, algebraic-languages-and-polyominoes-enumeration]
 created: 2026-09-23
-updated: 2026-10-23
+updated: 2026-10-29
 ---
 
 # Half-sum castles
@@ -138,6 +138,7 @@ the coefficient of `x^w` in `x (1 − x)^{−h−1/2}`, checked exactly for `h �
 - [[castle-perimeter](pages/castle-perimeter.md)] - castles by semi-perimeter, whose generating function is algebraic of degree 2.
 - [[catalan-numbers](pages/catalan-numbers.md)] - the `c(x)` in `1/√(1 − 4x) = 1/(1 − 2x c(x))`.
 - [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the `K_h` rows.
+- [[half-derivative-seminar](pages/half-derivative-seminar.md)] - a seminar on the half-sum with the fractional block count, the fractional width and height, and the walk on a tree castle.
 
 ## Footnotes
 

@@ -5,7 +5,7 @@ summary: A seminar following the 16-cell castle (3,2,1,2,2,1,2,3), silver by spe
 tags: [concept, castle, seminar, pedagogy, teaching, sandpile, silver-ratio, critical-group, identity-element, clock, avalanche, sink-model, tide-model, isospectral]
 sources: [project-euler-502-castle-factoring, rossin-2000-group-of-a-sandpile, dhar-ruelle-sen-verma-1995-algebraic-aspects, dhar-1990-self-organized-critical-sandpile, bak-tang-wiesenfeld-1988-self-organized-criticality]
 created: 2026-09-26
-updated: 2026-10-16
+updated: 2026-10-29
 ---
 
 # Sandcastles seminar - one castle, grain by grain, in the sink and tide models
@@ -302,7 +302,7 @@ def random_drops(b, drops, seed=2):        # from the identity; returns the topp
 - [[sandpile-identity](pages/sandpile-identity.md)] - the identity and the avalanche profiles (Stop 5).
 - [[castle-avalanches](pages/castle-avalanches.md)] - random dropping, Dhar's theorem, and the tide inequality (Stop 6).
 - [[castle-graph-spectral-radius](pages/castle-graph-spectral-radius.md)] - the castles silver by spectrum, this one among them.
-- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], [[one-bit-seminar](pages/one-bit-seminar.md)], [[hardin-identity-seminar](pages/hardin-identity-seminar.md)], [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)], [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], [[q-thread-seminar](pages/q-thread-seminar.md)], [[pell-castle-strip](pages/pell-castle-strip.md)], [[castle-cryptography](pages/castle-cryptography.md)], [[song-as-castle](pages/song-as-castle.md)] - the other seminar pages.
+- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], [[one-bit-seminar](pages/one-bit-seminar.md)], [[hardin-identity-seminar](pages/hardin-identity-seminar.md)], [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)], [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], [[q-thread-seminar](pages/q-thread-seminar.md)], [[half-derivative-seminar](pages/half-derivative-seminar.md)], [[pell-castle-strip](pages/pell-castle-strip.md)], [[castle-cryptography](pages/castle-cryptography.md)], [[song-as-castle](pages/song-as-castle.md)] - the other seminar pages.
 
 ## Footnotes
 

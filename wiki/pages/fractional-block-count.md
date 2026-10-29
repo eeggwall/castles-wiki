@@ -5,7 +5,7 @@ summary: B_alpha(C) = sum_i max(0, Delta^alpha c_i), with Delta^alpha the Grunwa
 tags: [analysis, castle, fractional-calculus, grunwald-letnikov, block-count, area, statistic, memory, power-law, arfima, compression, parity, computation, verification]
 sources: [project-euler-502-castle-factoring, project-euler-502-brute-force]
 created: 2026-09-19
-updated: 2026-10-16
+updated: 2026-10-29
 ---
 
 # Fractional block count
@@ -228,6 +228,7 @@ For the ramp the minimum is at `alpha = 2`, where the second difference of the c
 - [[image-as-castle](pages/image-as-castle.md)] and [[song-as-castle](pages/song-as-castle.md)] - skylines from images and audio, to which the residual cost applies.
 - [[fractional-width-and-height](pages/fractional-width-and-height.md)] - the castle counts interpolated in the width and the height, with the same `(1 - x)^{-1/2}` coefficients in the half-column of the nondecreasing rule.
 - [[power-law-memory-rules](pages/power-law-memory-rules.md)] - the same weights used in a strip rule instead of a statistic.
+- [[half-derivative-seminar](pages/half-derivative-seminar.md)] - a seminar on this page with the half-sum, the fractional width and height, and the walk on a tree castle.
 
 ## Footnotes
 

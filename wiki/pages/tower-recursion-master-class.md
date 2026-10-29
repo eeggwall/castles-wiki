@@ -5,7 +5,7 @@ summary: A seminar on the two steps that count castles. First, towers are determ
 tags: [concept, castle, towers, parity, sign, pedagogy, dyck, teaching]
 sources: [project-euler-502-solution, project-euler-502-representations, project-euler-502-castle-factoring, project-euler-502-observations]
 created: 2026-09-14
-updated: 2026-10-25
+updated: 2026-10-29
 ---
 
 # Tower recursion master class
@@ -110,7 +110,7 @@ The ten even-block castles stand on the strings with one run of 1s, and the five
 - [[tower-heap](pages/tower-heap.md)] - towers counted by their blocks, through Narayana polynomials.
 - [[castle-foata-transform](pages/castle-foata-transform.md)] - the peaks of towers, the maximal runs of positive columns, and their first columns.
 - [[castle-notation](pages/castle-notation.md)] - the symbols `T`, `P`, `A`, `A^e`, `A^o`, `S` and the tower height `k = h − 1`.
-- The other seminars: [[one-bit-seminar](pages/one-bit-seminar.md)] (the even-block condition as information), [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] (the even sector of the signed tower count), [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] (a castle recurrence modulo primes), [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] (spectra of castle graphs), [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] (searching the OEIS for castle counts), [[q-thread-seminar](pages/q-thread-seminar.md)] (castles by area), [[sandcastle-seminar](pages/sandcastle-seminar.md)] (the sandpile on the castle `(3, 2, 1, 2, 2, 1, 2, 3)`), [[pell-castle-strip](pages/pell-castle-strip.md)] (the strips counted by the Pell numbers), [[castle-cryptography](pages/castle-cryptography.md)] and [[song-as-castle](pages/song-as-castle.md)].
+- The other seminars: [[one-bit-seminar](pages/one-bit-seminar.md)] (the even-block condition as information), [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] (the even sector of the signed tower count), [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] (a castle recurrence modulo primes), [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] (spectra of castle graphs), [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] (searching the OEIS for castle counts), [[q-thread-seminar](pages/q-thread-seminar.md)] (castles by area), [[half-derivative-seminar](pages/half-derivative-seminar.md)] (four castle operations at order 1/2), [[sandcastle-seminar](pages/sandcastle-seminar.md)] (the sandpile on the castle `(3, 2, 1, 2, 2, 1, 2, 3)`), [[pell-castle-strip](pages/pell-castle-strip.md)] (the strips counted by the Pell numbers), [[castle-cryptography](pages/castle-cryptography.md)] and [[song-as-castle](pages/song-as-castle.md)].
 
 ## Footnotes
 
