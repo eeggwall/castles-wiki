@@ -40,7 +40,7 @@ F(q, b, u, d)  =  1 / (1 − qbd − q²bud / (1 − q³bud² − q⁴bu²d² / 
 
 ## The castle reading
 
-- **A stack on `k` down triangles is a keystone castle without its bottom up triangles.** A keystone castle of width `w`, a castle on the triangular tiling with no overhang, has a full bottom row of `w` up triangles and the `w − 1` down triangles between them, and above it every up triangle rests on a down triangle and every down triangle sits between two up triangles. Removing the `w` bottom up triangles leaves a stack of large Schröder type on `k = w − 1` down triangles, and every such stack comes back by adding them. The castle's outline is `U P D`, with `P` the large Schröder path of the stack, which is why the keystone castles of width `w` number the large Schröder number `r_{w−1}`.
+- **A stack on `k` down triangles is a keystone castle without its bottom up triangles.** A keystone castle of width `w` ([[keystone-castles](pages/keystone-castles.md)]), a castle on the triangular tiling with no overhang, has a full bottom row of `w` up triangles and the `w − 1` down triangles between them, and above it every up triangle rests on a down triangle and every down triangle sits between two up triangles. Removing the `w` bottom up triangles leaves a stack of large Schröder type on `k = w − 1` down triangles, and every such stack comes back by adding them. The castle's outline is `U P D`, with `P` the large Schröder path of the stack, which is why the keystone castles of width `w` number the large Schröder number `r_{w−1}`.
 - **The keystone castles by cells.** The castle has `n + k + 1` cells, so the keystone castles by cells have generating function `q F(q, q, 1, 1)`, and at `b = q`, `u = d = 1` Bala's fraction is `1/(1 − q² − q³/(1 − q⁴ − q⁵/(1 − q⁶ − ⋯)))`, the continued fraction of A393774. The keystone castles by cells agree with `q F(q, q, 1, 1)` for up to 60 cells.[^exec]
 - **A primitive stack** is a keystone castle whose second row is full, `w − 1` up triangles and the `w − 2` down triangles between them.
 
@@ -52,6 +52,7 @@ F(q, b, u, d)  =  1 / (1 − qbd − q²bud / (1 − q³bud² − q⁴bu²d² / 
 
 ## Entities & Concepts
 
+- [[keystone-castles](pages/keystone-castles.md)] - the stacks with their bottom up triangles restored, counted by width and by cells.
 - [[bala-2019-area-beneath-small-schroder-paths](pages/bala-2019-area-beneath-small-schroder-paths.md)] - the stacks on a bottom row of up triangles, A224704.
 - [[generating-functions](pages/generating-functions.md)] - the functional equation and the continued fraction.
 

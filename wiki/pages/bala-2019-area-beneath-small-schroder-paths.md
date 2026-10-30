@@ -62,7 +62,7 @@ F(q, 1, 1)  =  N(q)/D(q),    N(q) = Σ_n (−1)^n q^{2n² + n} / ((1 − q²)⋯
 
 ## The castle reading
 
-- **A stack is a row of keystone castles.** A down triangle in a stack sits between two up triangles of its row, and an up triangle above the bottom row rests on a down triangle, which is no overhang on the triangular tiling. Where the boundary path returns to the x-axis, the bottom row has no down triangle between two neighboring up triangles, and the stack falls into pieces there. Each piece has a full bottom row, `k` up triangles and the `k − 1` down triangles between them, and is a keystone castle of width `k`. So `F = 1/(1 − K)`, with `K(q, u, d)` the keystone castles counted by cells, width and down triangles, and Bala's continued fraction gives
+- **A stack is a row of keystone castles.** A down triangle in a stack sits between two up triangles of its row, and an up triangle above the bottom row rests on a down triangle, which is no overhang on the triangular tiling ([[keystone-castles](pages/keystone-castles.md)]). Where the boundary path returns to the x-axis, the bottom row has no down triangle between two neighboring up triangles, and the stack falls into pieces there. Each piece has a full bottom row, `k` up triangles and the `k − 1` down triangles between them, and is a keystone castle of width `k`. So `F = 1/(1 − K)`, with `K(q, u, d)` the keystone castles counted by cells, width and down triangles, and Bala's continued fraction gives
 
   ```
   K  =  1 − 1/F  =  qu / (1 − q²ud − q³ud / (1 − q⁴ud² − q⁵ud² / (1 − ⋯))).
@@ -82,12 +82,13 @@ F(q, 1, 1)  =  N(q)/D(q),    N(q) = Σ_n (−1)^n q^{2n² + n} / ((1 − q²)⋯
 
 ## Entities & Concepts
 
+- [[keystone-castles](pages/keystone-castles.md)] - the stacks with a full bottom row, of which every stack is a sequence.
 - [[brick-wall-castles](pages/brick-wall-castles.md)] - the fountains of coins, whose continued fraction the method adapts.
 - [[generating-functions](pages/generating-functions.md)] - the functional equation, the continued fractions and the ratio of q-series.
 
 ## Relation to Other Wiki Pages
 
-[[endicott-may-shacklette-2018-stacks-of-spheres](pages/endicott-may-shacklette-2018-stacks-of-spheres.md)] and [[paule-prodinger-2003-fountains-histograms-q-identities](pages/paule-prodinger-2003-fountains-histograms-q-identities.md)] state the fountain results the method follows.
+[[bala-2019-triangle-stacks-large-schroder-type](pages/bala-2019-triangle-stacks-large-schroder-type.md)] builds the stacks on a bottom row of down triangles instead, which are the keystone castles with their bottom up triangles removed. [[endicott-may-shacklette-2018-stacks-of-spheres](pages/endicott-may-shacklette-2018-stacks-of-spheres.md)] and [[paule-prodinger-2003-fountains-histograms-q-identities](pages/paule-prodinger-2003-fountains-histograms-q-identities.md)] state the fountain results the method follows.
 
 ## Footnotes
 
