@@ -1,11 +1,11 @@
 ---
 title: Castle classification
 category: Concepts
-summary: The hub of the castle classification, at three scopes. Shape types are predicates on one castle's skyline (41 types from the Castle Types source plus ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag, Mersenne, Euler, Königsberg and Hilbert castles). Spectral types are predicates on the spectrum of one castle's graph (tree castles, castles golden and silver by spectrum, isospectral pairs, Ramanujan castles, sparse-spectrum castles). Growth types classify families of castles by the growth constant of their count along a named axis ("golden by width", "tribonacci by area"). Compressibility is a separate invariant on castle-compression.
+summary: The hub of the castle classification, at three scopes. Shape types are predicates on one castle's skyline (41 types from the Castle Types source plus ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag, Mersenne, Euler, Königsberg and Hilbert castles, and the 1-histograms, the sheared brick-wall castles). Spectral types are predicates on the spectrum of one castle's graph (tree castles, castles golden and silver by spectrum, isospectral pairs, Ramanujan castles, sparse-spectrum castles). Growth types classify families of castles by the growth constant of their count along a named axis ("golden by width", "tribonacci by area"). Compressibility is a separate invariant on castle-compression. The same scopes classify the castles on two other tilings, the brick-wall castles on the hexagonal tiling and the keystone castles on the triangular tiling: a brick-wall castle shears onto a square-grid shape type, a keystone castle's shape is its Schröder outline, and both families have growth types.
 tags: [concept, castle, classification, taxonomy, hub, scope, shape, spectral, growth]
 sources: [project-euler-502-representations]
 created: 2026-09-15
-updated: 2026-10-28
+updated: 2026-10-30
 ---
 
 # Castle classification
@@ -26,9 +26,9 @@ A castle of width `w` and height `h` is determined by its skyline, the column he
 
 | scope | what is classified | the invariant | named types | page |
 |---|---|---|---|---|
-| **shape** | one castle | a predicate on the skyline `(c_1, …, c_w)` | unimodal, Ferrers, staircase, palindromic, Dyck-path, Motzkin-path, rainbow, hook, crenellated, m-smooth, m-disparate, …: 41 types from the Castle Types source in seven groups, plus ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag, Mersenne, Euler, Königsberg and Hilbert castles | [[castle-classification-shape](pages/castle-classification-shape.md)] |
+| **shape** | one castle | a predicate on the skyline `(c_1, …, c_w)` | unimodal, Ferrers, staircase, palindromic, Dyck-path, Motzkin-path, rainbow, hook, crenellated, m-smooth, m-disparate, …: 41 types from the Castle Types source in seven groups, plus ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag, Mersenne, Euler, Königsberg and Hilbert castles; the 1-histograms, the sheared brick-wall castles | [[castle-classification-shape](pages/castle-classification-shape.md)] |
 | **spectrum** | one castle | a spectrum of its castle graph ([[castle-graph](pages/castle-graph.md)]) or of its skyline | tree castles; castles golden by spectrum (spectral radius `φ`) and silver by spectrum (`1 + √2`); spectral radius `φ²`; isospectral pairs; Ramanujan castles; sparse-spectrum castles | [[castle-classification-spectrum](pages/castle-classification-spectrum.md)] |
-| **growth** | a family of castles defined by a rule | the growth constant of the family's count along a named axis: width, height, area or semi-perimeter | golden, silver, bronze, copper and nickel by width; `δ_4`, `δ_5`, … by width; tribonacci, tetranacci, supergolden, plastic and `ψ²` by area | [[castle-classification-growth](pages/castle-classification-growth.md)] |
+| **growth** | a family of castles defined by a rule | the growth constant of the family's count along a named axis: width, height, area or semi-perimeter | golden, silver, bronze, copper and nickel by width; `δ_4`, `δ_5`, … by width; tribonacci, tetranacci, supergolden, plastic and `ψ²` by area; on other tilings, 4 and the silver mean squared `(1 + √2)²` by width | [[castle-classification-growth](pages/castle-classification-growth.md)] |
 
 The shape and spectral scopes classify one castle, but they read it differently. A shape predicate reads the skyline directly. A spectral predicate builds the castle graph, with the cells as vertices and an edge between cells that share a side, and reads the eigenvalues of a matrix attached to it. The graph is determined by the skyline, so every spectral type is a function of the skyline, and a coarser one: different skylines can have isomorphic graphs (the six castles whose graph is the path `P_4`), and non-isomorphic graphs can have the same spectrum ([[isospectral-castles](pages/isospectral-castles.md)]).
 
@@ -36,9 +36,21 @@ The growth scope classifies a family defined by a rule (a rule on neighboring co
 
 Compressibility, the length of the shortest description of a castle, is a separate invariant, with three description tiers that cut across the three scopes ([[castle-compression](pages/castle-compression.md)]).
 
+## Castles on other tilings
+
+The scopes above classify castles on the square grid. Two families stand on other regular tilings, each with a base row, rows and blocks, and the rule "no overhang" read on its own tiling:
+
+- the **brick-wall castles** on the hexagonal tiling `{6,3}`, read as a brick wall in running bond, every brick resting on both bricks below it, the fountains of coins of the literature ([[brick-wall-castles](pages/brick-wall-castles.md)]);
+- the **keystone castles** on the triangular tiling `{3,6}`, every higher up triangle resting on a down triangle and every down triangle held by the two up triangles beside it ([[keystone-castles](pages/keystone-castles.md)]).
+
+Their counts keep the width-first notation with their own subscripts, `A_brick(w, h)` and `A_key(w, h)` ([[castle-notation](pages/castle-notation.md)], section *Castles on other tilings*), and the shape and growth scopes apply to them.
+
+- **Shape.** Shifting row `t` of a brick-wall castle `t` places sends it to a square-grid skyline with the same rows, blocks and cells, a 1-histogram (`c_1 = 1`, each column at most 1 higher than the one before), so the brick-wall castles are also a shape type on the square grid ([[castle-classification-shape](pages/castle-classification-shape.md)], Axis 2). A keystone castle has no square-grid skyline. Its shape is read from its outline, a path `U 𝒫 D` with `𝒫` a large Schröder path, or from its rows at 60 degrees, a composition `(s_1, …, s_w)` with `s_1 = 1` and `2 ≤ s_{i+1} ≤ s_i + 1 + (s_i mod 2)`.
+- **Growth.** The brick-wall castles grow at 4 by width, `1.73566` by cells and `φ²` by semi-perimeter; the keystone castles at `(1 + √2)²` by width, `1.46275` by cells and 3 by width plus blocks ([[castle-classification-growth](pages/castle-classification-growth.md)], section *Castles on other tilings*).
+
 ## Parity
 
-Project Euler 502 counts the castles with an even number of blocks. Every type is defined without the parity condition, and the even-block members of a type are counted by `A^e = (A + S)/2`, with `S` the signed count over its castles ([[castle-sign](pages/castle-sign.md)]). For some types the parity is fixed by the shape: a convex (unimodal) castle of height `h` has exactly `h` blocks, one per row ([[convex-castle](pages/convex-castle.md)], section *Block count*), so all convex castles of height `h` have the parity of `h`, and the even-block condition keeps all of them or none.[^2]
+Project Euler 502 counts the castles with an even number of blocks. Every type is defined without the parity condition, and the even-block members of a type are counted by `A^e = (A + S)/2`, with `S` the signed count over its castles ([[castle-sign](pages/castle-sign.md)]). For some types the parity is fixed by the shape: a convex (unimodal) castle of height `h` has exactly `h` blocks, one per row ([[convex-castle](pages/convex-castle.md)], section *Block count*), so all convex castles of height `h` have the parity of `h`, and the even-block condition keeps all of them or none.[^2] On the triangular tiling the split is exact: for every width `w ≥ 2`, exactly half the keystone castles have an even block count ([[keystone-castles](pages/keystone-castles.md)]).
 
 ## Source
 
@@ -51,6 +63,8 @@ The shape types are taken from `charlesreid1.com/wiki/Project_Euler/502/Castle_T
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - the growth types by width, height, area and semi-perimeter, with the families that realize each constant.
 - [[castle-compression](pages/castle-compression.md)] - the description tiers of castles: parametric, rule-generated and generic.
 - [[castle-polyomino](pages/castle-polyomino.md)] - the castle definition.
+- [[brick-wall-castles](pages/brick-wall-castles.md)] - the castles on the hexagonal tiling, the fountains of coins, and their shear onto the 1-histograms.
+- [[keystone-castles](pages/keystone-castles.md)] - the castles on the triangular tiling, whose outlines are large Schröder paths.
 - [[castle-representations](pages/castle-representations.md)] - the skyline and the other encodings of a castle.
 - [[castle-graph](pages/castle-graph.md)] - the castle graph, its invariants, and the tree castles.
 - [[castle-strip](pages/castle-strip.md)] - families defined by a rule on neighboring columns, counted by a transfer matrix whose largest eigenvalue is the growth constant by width.
