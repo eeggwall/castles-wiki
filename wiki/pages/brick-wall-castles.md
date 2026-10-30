@@ -165,6 +165,7 @@ The entries for `w ≤ 10` agree with brute-force enumeration of the walls, and 
 - [[catalan-numbers](pages/catalan-numbers.md)], [[narayana-numbers](pages/narayana-numbers.md)], [[dyck-words](pages/dyck-words.md)] - the brick-wall castles by width and by blocks, and the Dyck paths of the up-step levels.
 - [[convex-castle](pages/convex-castle.md)], [[euler-castles](pages/euler-castles.md)] - the block fountains and the right-flush walls.
 - [[castle-sign](pages/castle-sign.md)] - the signed count `S` and the parity split on the square grid.
+- [[keystone-castles](pages/keystone-castles.md)] - the castles on the triangular tiling, whose up triangles form a brick-wall castle, with the Schröder paths in the place of the Dyck paths and signed counts that stay bounded at every height.
 
 ## Footnotes
 
