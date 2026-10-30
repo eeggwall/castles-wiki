@@ -1,0 +1,343 @@
+Discrete Mathematics and Theoretical Computer Science 6, 2003, 101–106
+
+
+
+
+Fountains, histograms, and q–identities
+Peter Paule1† and Helmut Prodinger2‡
+1 Research Institute for Symbolic Computation, Johannes Kepler University Linz, A-4040 Linz, Austria
+
+e-mail: Peter.Paule@risc.uni-linz.ac.at
+Url: http://www.risc.uni-linz.ac.at/research/combinat/
+2 The John Knopfmacher Centre for Applicable Analysis and Number Theory, School of Mathematics, University of
+
+the Witwatersrand, P. O. Wits, 2050 Johannesburg, South Africa
+e-mail: helmut@maths.wits.ac.za
+Url: http://www.wits.ac.za/helmut/
+
+received Jan 14, 2003, accepted Aug 15, 2003.
+
+
+
+We solve the recursion Sn = Sn−1 − qn Sn−p , both, explicitly, and in the limit for n → ∞, proving in this way a formula
+due to Merlini and Sprugnoli. It is also discussed how computer algebra could be applied.
+
+Keywords: q–identities, fountains, histograms, Schur polynomials
+
+
+
+
+1 Fountains and histograms
+Merlini and Sprugnoli [6] discuss fountains and histograms; for the reader’s convenience, we review a
+few key issues here.
+   A fountain with n coins is an arrangement of n coins in rows such that each coin in a higher row touches
+exactly two coins in the next lower row.
+   A p-histogram is a sequence of columns in which the height of the ( j + 1)st column is at most k + p, if
+k is the height of column j; the first column has height r, with 1 ≤ r ≤ p.
+   It can be shown that the enumeration of coins in a fountain is equivalent with the enumeration of
+1-histograms. The paper [6] addresses the enumeration of p-histograms with respect to area (=number of
+             [p]
+cells). Let fn be the number p-histograms with area n and F [p] (q) the corresponding generating function
+                 [p]
+F [p] (q) = ∑n fn qn . The authors of [6] use two different approaches: one produces the answer in the form
+
+                                                                      Dm
+                                                    F [p] (q) = lim        ,
+                                                                m→∞ Em
+
+   † Partially supported by SFB grant F1305 of the Austrian FWF.
+   ‡ The research was started when this author visited the RISC in 2002. Partially supported by NRF grant 2053748.
+
+
+1365–8050 c 2003 Discrete Mathematics and Theoretical Computer Science (DMTCS), Nancy, France
+102                                                                                  Peter Paule and Helmut Prodinger
+
+with some polynomials Dm , Em defined in the next section, and the other gives it as
+                                                    k+1                            k
+                                       (−1)k q p( 2 )               (−1)k qk+p(2)
+                                                           
+                        F (q) = ∑
+                          [p]
+                                                        k    ∑                       k
+                                                                                        .
+                                k≥0 (1 − q) . . . (1 − q )   k≥0 (1 − q) . . . (1 − q )
+
+   According to [5], it would be nice to have a direct argument that these two answers coincide. This is
+the subject of the present note.
+
+2 Generalized Schur polynomials
+The polynomials mentioned in the introduction are for fixed p ≥ 1 defined as follows:
+
+                   En = En−1 − qn En−p ,     n ≥ p,        E0 = · · · = E p−1 = 1,
+                                                                         i
+                  Dn = Dn−1 − qn Dn−p ,      n ≥ p,         Di = 1 − ∑ q j , i = 0, . . . , p − 1.
+                                                                        j=1
+
+They can be compared with the classical Schur polynomials [8], which occur for p = 2 and q = −1. Then
+Merlini and Sprugnoli want a direct proof of the formulæ
+                                                                         k+1
+                                                             (−1)k q p( 2 )
+                                  E∞ := lim En = ∑                            k
+                                                                                 ,
+                                                      k≥0 (1 − q) . . . (1 − q )
+                                         n→∞
+                                                                              k
+                                                        (−1)k qk+p(2)
+                                  D∞ := lim Dn = ∑                       k
+                                                                            .
+                                                 k≥0 (1 − q) . . . (1 − q )
+                                        n→∞
+
+
+   We will not only achieve that but actually derive explicit expressions for these polynomials!
+   It should be mentioned that Cigler [4] developed independently a combinatorial method to deal with
+recursions as ours, but also more general ones.
+  Let us study the generic recursion
+
+                                           Sn = Sn−1 + tqn−p Sn−p ,
+
+with unspecified initial values S0 , . . . , S p−1 . For p = 2, these polynomials were studied by Andrews (and
+others) in the context of Schur polynomials, see [2].
+   We will use standard notation from q–calculus, see [1]:
+                                                                          
+                                                                          n       (q)n
+                       (x)n = (1 − x)(1 − xq) . . . (1 − xqn−1 ),            =             .
+                                                                          k    (q)k (q)n−k
+
+It will be convenient to define nk = 0 for n < 0 or k > n.
+                                
+
+   Now we will proceed as in [1] and consider noncommutative variables x, η, such that xη = qηx; all
+other variables commute.
+Lemma 1.
+                                                 n  
+                                                      n p(n)−pnk+p(k+1) k+p(n−k) n−k
+                             x+x η = ∑
+                                       n
+                                  p
+                                                        q 2           2 x        η .
+                                                k=0 k
+Fountains, histograms, and q–identities                                                                     103
+
+     Proof. We write
+                                                     n
+                                         x + x p η = ∑ an,k xk+p(n−k) ηn−k ,
+                                                  n
+                                                       k=0
+             n+1              n                           n+1                      n
+and x + x p η      = x + x p η x + x p η resp. as x + x p η      = x + x p η x + x p η , compare coeffi-
+                                                                           
+
+cients, and get the recursions
+
+                                     an+1,k = an,k−1 + an,k qk+p(n−k) ,
+                                     an+1,k = an,k−1 qn+1−k + an,k q p(n−k) .
+
+From this we derive, taking differences,
+
+                                                  1 − qn+1−k −p(n−k)
+                                         an,k =             q        an,k−1 .
+                                                    1 − qk
+                                                                     n
+The result follows from iteration by noting that an,0 = q p(2) .
+  Of course we also have
+                                        n  
+                                            n p(n)−pnk+p(k+1) k+p(n−k) n−k n−k
+                         x + tx p η = ∑
+                                   n
+                                               q 2            2 x     t η .
+                                       k=0 k
+
+     Now we derive the generating function for
+
+                                                   F(x) = ∑ Sn xn ;
+                                                             n≥0
+
+the following procedure is inspired by [2]. Note that we can alternatively view η as an operator, defined
+by η f (x) = f (qx). Cigler worked also much with this technique [3, 4]. We find
+
+                   ∑ Sn xn = ∑ Sn−1 xn + ∑ tqn−p Sn−p xn = x ∑ Sn xn + tx p ∑ ηSn xn
+                  n≥p        n≥p              n≥p                          n≥p−1              n≥0
+
+or
+                            F(x) − ∑ Sn xn = xF(x) − x              ∑ Sn xn + tx p ηF(x),
+                                    n<p                            n<p−1
+
+and                                                                                     
+                                           1
+                              F(x) =
+                                     1 − x − tx p η          ∑ Si x − ∑ Si x
+                                                                     i             i+1
+                                                                                          .
+                                                             i<p           i<p−1
+
+     Now we can apply our lemma and write
+                                                     
+        F(x) = ∑ x + tx η        ∑ Si x − ∑ S i x
+                          p
+                            n         i          i+1
+                 n≥0               i<p         i<p−1
+                       n
+                                                                                 
+                       n p(n)−pnk+p(k+1) k+p(n−k) n−k n−k
+              =∑∑        q 2         2  x        t η         ∑ Si x − ∑ Si x
+                                                                    i           i+1
+               n≥0 k=0 k                                     i<p        i<p−1
+                    n                                                                         
+                       n p(n)−pnk+p(k+1) k+p(n−k) n−k
+              =∑∑        q 2         2  x        t      ∑ Si q x − ∑ Si q
+                                                               i(n−k) i           (i+1)(n−k) i+1
+                                                                                            x
+               n≥0 k=0 k                                i<p               i<p−1
+104                                                                             Peter Paule and Helmut Prodinger
+                    n                                                       
+                         n p(k) n−k+pk k
+            =∑∑            q 2 x        t ∑ Si qik xi − ∑ Si q(i+1)k xi+1
+              n≥0 k=0 k                     i<p            i<p−1
+                                                                             
+                     n + k p(k) n+pk k
+            = ∑              q 2 x     t ∑ Si q x − ∑ Si q
+                                                   ik  i           (i+1)k
+                                                                          x i+1
+              k,n≥0      k                 i<p            i<p−1
+                                                                        
+                                  1
+            = ∑q    p(2k) pk k
+                         x t           ∑ Si q x − ∑ Si q x .
+                                              ik i            (i+1)k i+1
+              k≥0              (x)k+1 i<p             i<p−1
+
+  From this we find an explicit formula for Sn (the quantity S−1 has to be interpreted as 0):
+                                                                      
+                                                       n − (p − 1)k − i p(k)+ik k
+                          Sn =    ∑ (Si − Si−1 ) ∑            k
+                                                                        q 2    t .
+                                 0≤i<p            k≥0
+
+  Now we specialize this to our instance. Here, t = −q p , and thus
+                                                                
+                                                 n − (p − 1)k − i p(k+1)+ik
+                     Sn = ∑ (Si − Si−1 ) ∑                         q 2      (−1)k .
+                           0≤i<p           k≥0          k
+
+Therefore
+                                                         
+                                              n − (p − 1)k p(k+1)
+                                   En = ∑                  q 2 (−1)k .
+                                         k≥0       k
+From this, the limit of En is immediate. For Dn we eventually get the following form
+                                                           
+                                          n − (p − 1)(k − 1) k+p(k)
+                                Dn = ∑                       q    2 (−1)k ,
+
+                                     k≥0          k
+from which the formula for D∞ is immediate. To prove it, we need a simple lemma whose proof is just a
+routine calculation.
+Lemma 2.
+                                                                        
+                 m − i i(k+1)                                         m − i (i+1)(k+1)
+                       q      = g(i) − g(i − 1)  where      g(i) = −        q          .
+                   k                                                   k+1
+
+  Now we can plug into the general formula above and compute
+                     p−1                       
+                              n − (p − 1)k − i p(k+1)+i(k+1)
+         Dn = En − ∑ ∑                           q 2           (−1)k
+                     i=1 k≥0           k
+                                        p−1                 
+                                             n − (p − 1)k − i i(k+1)
+             = En − ∑ (−1)k q p( 2 ) ∑
+                                   k+1
+                                                              q
+                     k≥0                i=1         k
+                                                                                        
+                                               n − (p − 1)k               n − (p − 1)(k + 1)
+             = En − ∑ (−1)k q p( 2 ) qk+1
+                                   k+1
+                                                              − q p(k+1)
+                     k≥0                           k+1                           k+1
+                                                        
+                                            n − (p − 1)k
+             = 1 − ∑ (−1)k q p( 2 ) qk+1
+                                 k+1
+                                                          ,
+                   k≥0                          k+1
+which is the announced formula after a simple change of variable. Note that in the penultimate step the
+telescoping property of the lemma has been used.
+Fountains, histograms, and q–identities                                                                        105
+
+3 Computer algebra proofs
+The polynomial families (En ) and (Dn ) give rise to the following study with respect to possible computer
+proofs. Let us take as input our sum representations of En and Dn :
+                                                    
+                                         n − (p − 1)k p(k+1)
+                               En = ∑                  q 2 (−1)k ,
+                                    k≥0       k
+                                                                                                     (3.1)
+                                         n − (p − 1)(k − 1) k+p(k)
+                               Dn = ∑                       q   2 (−1)k .
+
+                                    k≥0          k
+
+Then, if p is chosen as a specific positive integer, Riese’s package qZeil [7] returns the recurrences Sn =
+Sn−1 − qn Sn−p (n ≥ p) together with a certificate function Cert for independent verification. Despite the
+fact that for general “generic” integer parameter p there is no algorithm available, a general pattern can
+be easily guessed from running the algorithm for p = 1, p = 2, and p = 3, say.
+   For example, let F(n, k) be the kth summand in our sum representation (3.1) of En , then the recurrence
+for En can be refined to the following statement.
+Theorem 3.1. For n ≥ p and δk f (n, k) = f (n, k) − f (n, k − 1), we have
+
+                       F(n, k) − F(n − 1, k) + qn F(n − p, k) = δk Cert(n, k)F(n, k),                  (3.2)
+
+where
+                                                        (qn−p(k+1)+1 ) p
+                                     Cert(n, k) = qn                      .
+                                                       (qn−(p−1)(k+1) ) p
+
+  Proof. After dividing both sides of (3.2) by F(n, k) the proof reduces to checking equality of rational
+functions. Namely, note that
+
+                                 F(n − 1, k)     1 − qn−pk
+                                             =               ,
+                                  F(n, k)      1 − qn−(p−1)k
+                                 F(n, k − 1)     q pk     (qn−pk+1 ) p
+                                             =−                           ,
+                                  F(n, k)       1 − qk (qn−(p−1)k+1 ) p−1
+
+and
+
+                                F(n − p, k)
+                                            = q−n Cert(n, k).
+                                 F(n, k)
+
+
+  Analogously, there is a refined version of the recurrence for Dn . The certificate in this case is
+
+                                                           (qn−pk ) p
+                                       Cert(n, k) = qn                  .
+                                                         (qn−(p−1)k ) p
+
+  Summarizing, with the sum representation for En and Dn in hand, the corresponding recurrences follow
+immediately by summing both sides of the computer recurrences (3.2) over all k ≥ 0.
+106                                                                      Peter Paule and Helmut Prodinger
+
+References
+[1] G. E. Andrews, R. Askey, and R. Roy, Special functions, Encyclopedia of Mathematics and its Appli-
+    cations, vol. 71, Cambridge University Press, 1999.
+[2] G. E. Andrews, Fibonacci numbers and Rogers–Ramanujan identities, The Fibonacci Quarterly, to
+    appear (2003), 15 pp.
+
+[3] J. Cigler, Elementare q–Identitäten, Séminaire Lotharingien de Combinatoire B05a (1981), 29 pp.
+[4] J. Cigler, Some algebraic aspects of Morse code sequences, Discrete Mathematics and Theoretical
+    Computer Science 6 (2003), 55–68.
+
+[5] D. Merlini, Private communication, (2002).
+[6] D. Merlini and R. Sprugnoli, Fountains and histograms, J. Algorithms 44 (2002), no. 1, 159–176.
+[7] P. Paule and A. Riese, A Mathematica q–analogue of Zeilberger’s algorithm based on an algebraically
+    motivated approach to q–hypergeometric telescoping, Special functions, q–series and related top-
+    ics (Toronto, ON, 1995), Fields Inst. Commun., vol. 14, Amer. Math. Soc., Providence, RI, 1997,
+    pp. 179–210.
+[8] I. Schur, Ein Beitrag zur additiven Zahlentheorie und zur Theorie der Kettenbrüche, S.-B. Preuss.
+    Akad. Wiss. Phys.-Math. Kl., 1917, 302–321, reprinted in I. Schur, Gesammelte Abhandlungen, vol.
+    2, pp. 117–136, Springer, 1973.
+
