@@ -1,7 +1,7 @@
 ---
 title: Castle sequence catalog
 category: Reference
-summary: Script-generated catalog of the castle-counting sequences on the wiki (345 rows in 33 families), by the object each one counts: first terms, recurrence or generating function, growth constant, and the OEIS entry it equals at the stated offset, or none. Built with oeis-index from one data file, config/castle-sequences.tsv, by bin/generate-sequence-pages.py.
+summary: Script-generated catalog of the castle-counting sequences on the wiki (355 rows in 34 families), by the object each one counts: first terms, recurrence or generating function, growth constant, and the OEIS entry it equals at the stated offset, or none. Built with oeis-index from one data file, config/castle-sequences.tsv, by bin/generate-sequence-pages.py.
 tags: [reference, oeis, castle, sequence, catalog, generated]
 sources: [oeis-encyclopedia]
 created: 2026-09-17
@@ -46,6 +46,7 @@ These identities are stated and proved on the pages cited; the section *Catalog*
 - [[konigsberg-castles](pages/konigsberg-castles.md)]: [A034856](https://oeis.org/A034856), open-stroke castles of height `h` and odd width: `2 A034856(h)`.
 - [[von-neumann-castles](pages/von-neumann-castles.md)]: [A000225](https://oeis.org/A000225), castles of sets, the width of the von Neumann castle `vN(n)`: `A000225(n)`; [A057711](https://oeis.org/A057711), castles of sets, the area of `vN(n)`: `A057711(n + 1)`; [A000079](https://oeis.org/A000079), castles of sets, the blocks of `vN(n)`, `C(n, d)` of them in row `d + 1`: `A000079(n)`; [A000108](https://oeis.org/A000108), castles of sets, alternating castles of odd width (`c_1 > c_2 < c_3 > ⋯`) with `b` blocks, the castles of the plane trees with `b` nodes: `A000108(b − 1)`; [A004111](https://oeis.org/A004111), castles of sets, castles of hereditarily finite sets with `b` blocks, members in increasing Ackermann code: `A004111(b)`; [A116549](https://oeis.org/A116549), castles of sets, the blocks of the Ackermann castle `ack(m)`: `A116549(m)`; [A033922](https://oeis.org/A033922), castles of sets, the width of `ack(m)`: `2a(m) − 1`; [A010096](https://oeis.org/A010096), castles of sets, the height of `ack(m)`: `A010096(m) + 1`; [A372325](https://oeis.org/A372325), castles of sets, the `m` with an odd-block Ackermann castle `ack(m)`, the `m` with A116549(`m`) odd: `A372325(n)`.
 - [[brick-wall-castles](pages/brick-wall-castles.md)]: [A000108](https://oeis.org/A000108), brick-wall castles by width: `A000108(w)`; [A080936](https://oeis.org/A080936), brick-wall castles of width `w` and height `h`: `A080936(w, h)`; [A001263](https://oeis.org/A001263), brick-wall castles of width `w` with `b` blocks: `A001263(w, b)`; [A004148](https://oeis.org/A004148), brick-wall castles by semi-perimeter `s = w + b`: `A004148(s−1)`; [A000225](https://oeis.org/A000225), brick-wall castles of height 2: `A000225(w−1)`; [A038505](https://oeis.org/A038505), brick-wall castles, `A^e_brick(w, 2)`, even-block, height 2: `A038505(w)`.
+- [[keystone-castles](pages/keystone-castles.md)]: [A006318](https://oeis.org/A006318), keystone castles by width: `A006318(w−1)`; [A088617](https://oeis.org/A088617), keystone castles of width `w` with `b` blocks: `A088617(w − 1, b − 1)`; [A001006](https://oeis.org/A001006), keystone castles by width plus blocks: `A001006(s−2)`; [A027941](https://oeis.org/A027941), keystone castles of height 2: `A027941(w−1)`; [A393774](https://oeis.org/A393774), keystone castles by cells: `A393774(n−1)`.
 - [[hardin-word-identity](pages/hardin-word-identity.md)]: [A202882](https://oeis.org/A202882), Hardin words at `m = 2`: `P_even(10, L)/2^L`, the even-sector signed towers; [A203094](https://oeis.org/A203094), Hardin words at `m = 3`: `P_even(14, L)/2^L`, the even-sector signed towers; [A203184](https://oeis.org/A203184), Hardin words at `m = 4`: `P_even(18, L)/2^L`, the even-sector signed towers.
 
 ## Catalog
@@ -675,6 +676,25 @@ A **brick-wall castle** is a castle on the hexagonal tiling read as a brick wall
 | block fountains, one block per row | `w = 1…` | `1, 2, 5, 13, 34, 89, 233` | `(1 − 2y)/(1 − 3y + y²)` | `φ²` | [A001519](https://oeis.org/A001519) (`= A001519(w) = F_{2w−1}`; the convex 1-histograms) |
 
 *(Every row agrees with brute-force enumeration of the walls for `w ≤ 10` and with a column sweep over the 1-histograms beyond, and every A-number row with the OEIS data at the stated offset, 2026-10-29. The OEIS has no match for the even-block or the signed counts at heights 3 to 6, tabulated on [[brick-wall-castles](pages/brick-wall-castles.md)], 2026-10-29.)*
+
+### Keystone castles
+
+A **keystone castle** is a castle on the triangular tiling with no overhang: a full bottom row of `w` up triangles and the `w − 1` down triangles between them, every higher up triangle resting on a down triangle, every down triangle held by the two up triangles beside it ([[keystone-castles](pages/keystone-castles.md)]). Its outline is `U P D` with `P` a large Schröder path of semilength `w − 1`, the height of the castle the height of the path, its blocks the up-steps and its cells the area. Every triangle stack of A224704 is a row of keystone castles.
+
+| object | from | first terms | g.f. / formula | growth | OEIS |
+|---|---|---|---|---|---|
+| keystone castles by width | `w = 1…` | `1, 2, 6, 22, 90, 394, 1806` | `r_{w−1}`, the outline `U P D` | `3 + 2√2` | [A006318](https://oeis.org/A006318) (`= A006318(w−1)`; large Schröder numbers; Bala's stacks of large Schröder type) |
+| keystone castles of width `w` with `b` blocks | `b = 1…` | `w = 4`: `1, 6, 10, 5` | `C(w + b − 2, w − 1) C(w − 1, b − 1)/b` |  | [A088617](https://oeis.org/A088617) (`= A088617(w − 1, b − 1)`; Schröder paths by up-steps) |
+| keystone castles by width plus blocks | `s = 2…` | `1, 1, 2, 4, 9, 21, 51, 127` | `M_{s−2}` | `3` | [A001006](https://oeis.org/A001006) (`= A001006(s−2)`; the path `P` read with unit steps) |
+| keystone castles of height 2 | `w = 2…` | `1, 4, 12, 33, 88, 232` | `F_{2w−1} − 1` | `φ²` | [A027941](https://oeis.org/A027941) (`= A027941(w−1)`) |
+| keystone castles by cells | `n = 1…` | `1, 0, 1, 1, 1, 2, 2, 4, 5, 7, 11, 15` | `q/(1 − q² − q³/(1 − q⁴ − q⁵/(1 − ⋯)))` | `1.46275` | [A393774](https://oeis.org/A393774) (`= A393774(n−1)`; Bala's fraction of the stacks of large Schröder type at `b = q`) |
+| keystone castles of height 3 | `w = 3…` | `1, 8, 43, 197, 833, 3367, 13244` | `x(S_2 − S_1)`, `S_k = 1/(1 − x − x S_{k−1})` |  | - |
+| signed `S_key(w)`, all heights | `w = 1…` | `−1, 0, 0, 0, 0, 0, 0` | `0` for `w ≥ 2`, `S(x, −1) = 1` |  | - |
+| signed `S_key(w, 2)`, height 2 | `w = 1…` | `0, 1, 2, 2, 1, 0, 0, 1, 2, 2, 1, 0` | period 6, from `−x D_0/D_1 + x/(1 − x)` |  | - |
+| `A^e_key(w, 2)`, even-block, height 2 | `w = 2…` | `1, 3, 7, 17, 44, 116, 305, 799` | `(F_{2w−1} − 1 + S_key(w, 2))/2` | `φ²` | - |
+| `A^e_key(w, 3)`, even-block, height 3 | `w = 4…` | `3, 21, 99, 417, 1683, 6621, 25602` |  |  | - |
+
+*(Every row agrees with brute-force enumeration of the castles for `w ≤ 6` and with a sweep over the Schröder paths beyond, and every A-number row with the OEIS data at the stated offset, 2026-10-29. The OEIS has no match for the castles by height, the even-block rows at heights 2 and 3, or the castles of height 3, 2026-10-29.)*
 
 ### Other rows
 

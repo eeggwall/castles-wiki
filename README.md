@@ -169,7 +169,7 @@ wiki/
 ```
 
 Pages are grouped by `category` frontmatter into **Sources** (ingested documents),
-**Concepts**, **Analyses**, and **Reference** (script-generated lookup pages). Currently 246 pages (63 Sources, 108 Concepts, 73 Analyses, 2 Reference).
+**Concepts**, **Analyses**, and **Reference** (script-generated lookup pages). Currently 249 pages (65 Sources, 109 Concepts, 73 Analyses, 2 Reference).
 
 ## Conventions
 
