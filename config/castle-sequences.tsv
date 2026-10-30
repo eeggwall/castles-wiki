@@ -406,6 +406,7 @@ a014448			even Lucas: trace for δ_4 (a=4)					A014448			Even Lucas numbers: a(n
 a014493			odd triangular numbers (row of A352116)					A014493			Odd triangular numbers.	metallic	
 a015449			the ridge strips of height 6 of width w number A015449(w + 1); growth delta_5 = (5 + sqrt 29)/2					A015449			Expansion of (1-4*x)/(1-5*x-x^2).	metallic	
 a016116			symmetric compositions of n: the palindromic castles of n cells, which with the compositions give the castles up to mirror image					A016116			a(n) = 2^floor(n/2).	supporting	
+a018902		thomas-may-2022-mountain-counting	mountains of spheres on a `3 × ℓ` base, every higher sphere on four below			`x(1 − x)/(1 − 5x + 3x²)`		A018902	ℓ−1		a(n+2) = 5*a(n+1) - 3*a(n).	supporting	
 a020554			Bender's v((0,n)): every element twice, repeated blocks allowed, no repeated element in a block					A020554			Number of multigraphs on n labeled edges (without loops).	supporting	
 a020555			Bender's v*((0,n)): all partitions of a multiset with every element twice					A020555			Number of multigraphs on n labeled edges (with loops). Also number of genetically distinct states amongst n individuals.	supporting	
 a023432			strictly alternating bargraphs by semi-perimeter correspond to Motzkin paths with no UD, UU, DD (Deutsch-Elizalde §4.2)					A023432			Number of Dyck n-paths with ascents and descents of length equal to 1 (mod 3).	supporting	
