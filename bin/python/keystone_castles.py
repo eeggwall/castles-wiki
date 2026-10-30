@@ -186,11 +186,6 @@ def motzkin(n):
     return st[0]
 
 
-def D_poly(k, N):
-    """D_k(x) = (1 - (-x)^(k+2))/(1 + x), as a coefficient list."""
-    return [(-1) ** i for i in range(k + 2)] + [0] * max(0, N - k - 1)
-
-
 if __name__ == '__main__':
     W = 6
     walls = {w: keystone_castles(w) for w in range(1, W + 1)}
@@ -301,16 +296,17 @@ if __name__ == '__main__':
                 ok_c &= abs(sum(len(r) for r in c) - area('u' + toggle(wd[1:-1]) + 'd')) == 1
     print(f"[7] S_key(w) = sum of (-1)^blocks, w = 1..{WD}: {sig}; swapping the first flat step or peak of P (h <-> ud) is an involution that changes the up-steps by 1, n <= 8: {ok}; on the castle the swap adds or removes one up triangle, cells changing by 1, w <= {W}: {ok_c}")
 
-    # [8] Signed counts at height at most h: -x D_(h-2)/D_(h-1), D_k = (1 - (-x)^(k+2))/(1 + x), periodic with period 2(h + 1).
+    # [8] Signed counts at height at most h: -x(1 - (-x)^h)/(1 - (-x)^(h+1)); S_key,<=h(w + h + 1) = (-1)^(h+1) S_key,<=h(w).
     NW = 40
     ok = ok_p = True
     for h in range(1, 9):
         series = [0] + [sum(v * (-1) ** b for (hh, b), v in castle_stats(w).items() if hh <= h) for w in range(1, NW + 1)]
-        num = [0] + [-c for c in (D_poly(h - 2, NW) if h >= 2 else [1] + [0] * NW)][:NW]
-        gf = smul(num, sinv(D_poly(h - 1, NW), NW), NW)
+        num = [0] + [-c for c in ([1] + [0] * (h - 1) + [-(-1) ** h])][:NW] + [0] * NW
+        den = [1] + [0] * h + [-(-1) ** (h + 1)] + [0] * NW
+        gf = smul(num[:NW + 1], sinv(den[:NW + 1], NW), NW)
         ok &= gf == series
-        ok_p &= all(series[w] == series[w + 2 * (h + 1)] for w in range(1, NW + 1 - 2 * (h + 1)))
-    print(f"[8] the signed keystone castles of height at most h have g.f. -x D_(h-2)(x)/D_(h-1)(x), D_k = (1 - (-x)^(k+2))/(1 + x), D_(-1) = 1, h <= 8, w <= {NW}: {ok}; periodic in w with period 2(h + 1): {ok_p}")
+        ok_p &= all(series[w + h + 1] == (-1) ** (h + 1) * series[w] for w in range(1, NW - h))
+    print(f"[8] the signed keystone castles of height at most h have g.f. -x(1 - (-x)^h)/(1 - (-x)^(h+1)), h <= 8, w <= {NW}: {ok}; S_key,<=h(w + h + 1) = (-1)^(h+1) S_key,<=h(w) for w >= 1: {ok_p}")
 
     # [9] Tables: A_key, A^e_key and S_key at fixed height.
     for name, f in (('A_key', lambda c, h: sum(v for (m, b), v in c.items() if m == h)),
@@ -336,3 +332,46 @@ if __name__ == '__main__':
         mid = (lo + hi) / 2
         lo, hi = (mid, hi) if Nq(mid) > 0 else (lo, mid)
     print(f"[10] smallest positive zero of N(q): y_0 = {lo:.12f}, 1/y_0 = {1 / lo:.10f}; ratios of keystone castles with n + 1 and n cells at n = 99, 149, 199: {big_cells[100] / big_cells[99]:.8f}, {big_cells[150] / big_cells[149]:.8f}, {big_cells[200] / big_cells[199]:.8f}")
+
+    # [11] Height 2 by cells and by width plus blocks; the Salem growth constant; growth by width.
+    import sympy as sp
+    NC = 120
+    by_cells_h2 = [0] * (NC + 1)
+    st = Counter({(1, 1, 0): 1})                       # after the first u: (level, area in half-triangles, reached level 2)
+    for a in range(1, 2 * NC + 1):
+        for l in (1, 2):
+            for top in (0, 1):
+                v = st.pop((l, a, top), 0)
+                if not v:
+                    continue
+                nxt = [(l, a + 4 * l, top)]
+                if l == 1:
+                    nxt.append((2, a + 3, 1))
+                    if top and (a + 1) // 2 <= NC:
+                        by_cells_h2[(a + 1) // 2] += v
+                else:
+                    nxt.append((1, a + 3, top))
+                for key in nxt:
+                    if key[1] <= 2 * NC:
+                        st[key] += v
+    q = sp.symbols('q')
+    gf = sp.series(q / (1 - q**2 - q**3 / (1 - q**4)) - q / (1 - q**2), q, 0, 41).removeO()
+    ok_gf = [gf.coeff(q, n) for n in range(41)] == by_cells_h2[:41]
+    s2 = Counter()
+    for w in range(1, 24):
+        for (hh, b), v in castle_stats(w).items():
+            if hh == 2 and w + b <= 24:
+                s2[w + b] += v
+    ok_s = all(s2[t] == 2 ** (t - 3) - 1 for t in range(4, 25))
+    z, y = sp.symbols('z y')
+    poly = z**6 - z**4 - z**3 - z**2 + 1
+    roots = [complex(r) for r in sp.Poly(poly, z).nroots(n=30)]
+    big = max(abs(r) for r in roots)
+    ok_salem = (sp.Poly(poly, z).is_irreducible and sp.expand(z**3 * (y**3 - 4 * y - 1)).subs(y, z + 1 / z).equals(poly)
+                and sum(1 for r in roots if abs(abs(r) - 1) < 1e-12) == 4 and sum(1 for r in roots if abs(r) > 1 + 1e-12) == 1)
+    ratio = by_cells_h2[NC] / by_cells_h2[NC - 1]
+    xs = sp.symbols('x')
+    lsch = sp.series((1 - xs - sp.sqrt(1 - 6 * xs + xs**2)) / (2 * xs), xs, 0, 31).removeO()
+    ok_w = [lsch.coeff(xs, n) for n in range(30)] == [sum(castle_stats(w).values()) for w in range(1, 31)]
+    root = min(sp.solve(1 - 6 * xs + xs**2, xs), key=lambda r: float(r))
+    print(f"[11] keystone castles of height 2 by cells = [q^n] (q/(1 - q^2 - q^3/(1 - q^4)) - q/(1 - q^2)), n <= 40: {ok_gf}; by width plus blocks 2^(s-3) - 1, s <= 24: {ok_s}; z^6 - z^4 - z^3 - z^2 + 1 is irreducible, equals z^3 (y^3 - 4y - 1) at y = z + 1/z, and has four roots on the unit circle and one outside: {ok_salem}; its largest root {big:.10f}, ratio of the counts with {NC} and {NC - 1} cells {ratio:.10f}; by width = [x^(w-1)] (1 - x - sqrt(1 - 6x + x^2))/(2x), w <= 30: {ok_w}, singular at the root {root} of 1 - 6x + x^2, growth 1/({root}) = {sp.nsimplify(1 / root)} = {float(1 / root):.10f}")
