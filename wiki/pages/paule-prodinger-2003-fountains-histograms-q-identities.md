@@ -64,7 +64,7 @@ the fountains of `n` coins, A005169.[^exec]
 
 ## The castle reading
 
-- **A 1-histogram is a sheared brick-wall castle.** A 1-histogram is a square-grid skyline whose first column has height 1 and whose columns rise by at most 1, the slant heights of a fountain in [[thomas-may-2022-mountain-counting](pages/thomas-may-2022-mountain-counting.md)]. A fountain is a castle on the brick wall, each brick resting on both bricks below ([[endicott-may-shacklette-2018-stacks-of-spheres](pages/endicott-may-shacklette-2018-stacks-of-spheres.md)]), so the area of a 1-histogram is the number of cells of that castle. Mirrored, the 1-histograms are the castles that drop by at most 1 and end at height 1 of [[motzkin-castles](pages/motzkin-castles.md)], and the quotient at `p = 2` counts them by area.
+- **A 1-histogram is a sheared brick-wall castle** ([[brick-wall-castles](pages/brick-wall-castles.md)]). A 1-histogram is a square-grid skyline whose first column has height 1 and whose columns rise by at most 1, the slant heights of a fountain in [[thomas-may-2022-mountain-counting](pages/thomas-may-2022-mountain-counting.md)]. A fountain is a castle on the brick wall, each brick resting on both bricks below ([[endicott-may-shacklette-2018-stacks-of-spheres](pages/endicott-may-shacklette-2018-stacks-of-spheres.md)]), so the area of a 1-histogram is the number of cells of that castle. Mirrored, the 1-histograms are the castles that drop by at most 1 and end at height 1 of [[motzkin-castles](pages/motzkin-castles.md)], and the quotient at `p = 2` counts them by area.
 - **The `p`-histograms are castles with bounded rises.** For `p ≥ 2` a `p`-histogram is a square-grid castle whose first column is at most `p` and whose columns rise by at most `p`. Castles counted by area are compositions ([[castle-by-area](pages/castle-by-area.md)]), and the `p`-histograms are the compositions whose first part is at most `p` and whose parts rise by at most `p`.
 
 ## Key Takeaways
@@ -75,6 +75,7 @@ the fountains of `n` coins, A005169.[^exec]
 
 ## Entities & Concepts
 
+- [[brick-wall-castles](pages/brick-wall-castles.md)] - the 1-histograms as sheared castles on the brick wall.
 - [[thomas-may-2022-mountain-counting](pages/thomas-may-2022-mountain-counting.md)] - the slant heights of a fountain, its 1-histogram.
 - [[endicott-may-shacklette-2018-stacks-of-spheres](pages/endicott-may-shacklette-2018-stacks-of-spheres.md)] - fountains of coins and their continued fraction.
 - [[motzkin-castles](pages/motzkin-castles.md)] - the mirror images of the 1-histograms.

@@ -53,8 +53,8 @@ Counted by the bottom row alone, `G(y) = Σ_k g_k y^k = F(1, y)` satisfies `G(y)
 
 ## The castle reading
 
-- **A fountain is a castle on the brick wall.** Coins in rows, each higher coin touching two coins below, are bricks laid in running bond, each brick resting on both bricks below it. A fountain whose bottom row has `w` coins is a brick-wall castle of width `w`, its coins are the castle's cells, and the maximal runs of coins in a row are its blocks. So `g_w = C_w` counts the brick-wall castles of width `w`, and the continued fraction counts them by cells and width; the coefficients agree with enumeration for up to 18 cells.[^exec]
-- **Block fountains are convex.** A fountain with one block per row is a brick-wall castle with `h` blocks at height `h`. Sheared onto a square-grid skyline along the diagonals of the wall, it becomes a convex castle in the sense of [[convex-castle](pages/convex-castle.md)], a unimodal skyline with `h` blocks at height `h`.
+- **A fountain is a castle on the brick wall** ([[brick-wall-castles](pages/brick-wall-castles.md)]). Coins in rows, each higher coin touching two coins below, are bricks laid in running bond, each brick resting on both bricks below it. A fountain whose bottom row has `w` coins is a brick-wall castle of width `w`, its coins are the castle's cells, and the maximal runs of coins in a row are its blocks. So `g_w = C_w` counts the brick-wall castles of width `w`, and the continued fraction counts them by cells and width; the coefficients agree with enumeration for up to 18 cells.[^exec]
+- **Block fountains are convex.** A fountain with one block per row is a brick-wall castle with `h` blocks at height `h`. Sheared onto a square-grid skyline by Thomas and May's slants ([[thomas-may-2022-mountain-counting](pages/thomas-may-2022-mountain-counting.md)]), it becomes a convex castle in the sense of [[convex-castle](pages/convex-castle.md)], a unimodal skyline with `h` blocks at height `h`.
 - **The split has the Catalan recurrence.** `g_m = Σ g_{m'−1} g_{m−m'}` is the recurrence of the Catalan numbers, which the first-return decomposition of Dyck words gives on [[dyck-words](pages/dyck-words.md)] and [[catalan-numbers](pages/catalan-numbers.md)].
 - **A stack of spheres is a castle on a two-dimensional base.** Each sphere rests on four spheres below, so a level of a stack plays the part of a row of a castle. A block count for castles on a two-dimensional base, the number of connected components of each level, is on [[image-as-castle](pages/image-as-castle.md)].
 
@@ -67,11 +67,16 @@ Counted by the bottom row alone, `G(y) = Σ_k g_k y^k = F(1, y)` satisfies `G(y)
 
 ## Entities & Concepts
 
+- [[brick-wall-castles](pages/brick-wall-castles.md)] - the fountains of coins as castles on the brick wall.
 - [[catalan-numbers](pages/catalan-numbers.md)] - the fountains counted by bottom row.
 - [[dyck-words](pages/dyck-words.md)] - the first-return decomposition behind the recurrence of the split.
 - [[convex-castle](pages/convex-castle.md)] - the block fountains, sheared onto the square grid.
 - [[generating-functions](pages/generating-functions.md)] - the continued fraction, the rational `P(x, y)` and the algebraic `D(x, y)`.
 - [[image-as-castle](pages/image-as-castle.md)] - a block count for castles on a two-dimensional base.
+
+## Relation to Other Wiki Pages
+
+[[thomas-may-2022-mountain-counting](pages/thomas-may-2022-mountain-counting.md)] continues this paper with the general stacks, which it calls mountains, by slicing them into fountains. [[paule-prodinger-2003-fountains-histograms-q-identities](pages/paule-prodinger-2003-fountains-histograms-q-identities.md)] counts fountains by coins through the 1-histograms.
 
 ## Footnotes
 

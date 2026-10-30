@@ -69,7 +69,7 @@ the sum of the entries of the first column of `L_w^{ℓ−1}` with the fountains
 
 ## The castle reading
 
-- **A fountain is a castle on the brick wall.** A coin resting on two coins of the row below is a brick resting on both bricks below it in running bond, so an `(n, w)` fountain is a brick-wall castle of width `w` with `n` cells, and the maximal runs of coins in a row are its blocks.
+- **A fountain is a castle on the brick wall** ([[brick-wall-castles](pages/brick-wall-castles.md)]). A coin resting on two coins of the row below is a brick resting on both bricks below it in running bond, so an `(n, w)` fountain is a brick-wall castle of width `w` with `n` cells, and the maximal runs of coins in a row are its blocks.
 - **The slants are a shear onto the square grid.** Moving the coins of row `r` by `r − 1` places stacks each slant into one column, and the slant heights `⟨s_1, …, s_w⟩` are a square-grid skyline with `s_1 = 1` that rises by at most 1 from each column to the next. Its mirror image drops by at most 1 and ends at height 1, the castles counted by `C_w` in the section *Relatives in the semi-perimeter grading* of [[motzkin-castles](pages/motzkin-castles.md)] and in [[castle-sequence-catalog](pages/castle-sequence-catalog.md)]. The shift moves a whole row at once, so the rows, the blocks, the height and the cells of the fountain are those of the skyline; checked brick by brick for `w ≤ 10`.[^exec]
 - **The last slant is the first column of the mirror.** `f_{w,s}` counts the castles of width `w` that drop by at most 1, end at height 1 and start at height `s`.
 - **The leaning matrix is a transfer matrix.** The leaning relation is a rule on neighboring lateral faces, as a strip rule of [[castle-strip](pages/castle-strip.md)] is a rule on neighboring columns, and `m_{w,ℓ}` is a sum of entries of the rule's power. Its letters are the `C_w` fountains of width `w` instead of the heights `1, …, h`.
@@ -83,6 +83,7 @@ the sum of the entries of the first column of `L_w^{ℓ−1}` with the fountains
 
 ## Entities & Concepts
 
+- [[brick-wall-castles](pages/brick-wall-castles.md)] - the fountains as castles on the brick wall, and the shear of the slants.
 - [[motzkin-castles](pages/motzkin-castles.md)] - the castles that drop by at most 1 and end at height 1, the mirror images of the slant sequences.
 - [[catalan-numbers](pages/catalan-numbers.md)] - the fountains by width.
 - [[castle-strip](pages/castle-strip.md)] - strip rules and their transfer matrices, the pattern of the leaning matrix.

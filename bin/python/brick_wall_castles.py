@@ -318,16 +318,25 @@ if __name__ == '__main__':
     sig = [sum(v * (-1) ** b for (h, b), v in hist_dp(w).items()) for w in range(1, WD + 1)]
     print(f"[10] S_brick(w) = sum of (-1)^blocks, w = 1..{WD}: {sig}; = 0 (w even), (-1)^((w+1)/2) C_((w-1)/2) (w odd): {sig == [0 if w % 2 == 0 else (-1) ** ((w + 1) // 2) * catalan((w - 1) // 2) for w in range(1, WD + 1)]}")
 
-    # [11] Fixed height: A_brick(w, h), A^e_brick(w, h) and S_brick(w, h).
+    # [11] Euler castles, mirrored and sheared back: the walls whose rows are single blocks ending at the right end.
+    ok = True
+    for w, L in walls.items():
+        flush = [r for r in L if all(x == frozenset(range(w - t - len(x), w - t)) for t, x in enumerate(r))]
+        euler = {c for c in histograms(w) if all(c[i + 1] - c[i] in (0, 1) for i in range(w - 1))}
+        ok &= {shear(r, w) for r in flush} == euler and len(flush) == 2 ** (w - 1)
+        ok &= all(all(len(r[t]) > len(r[t + 1]) for t in range(len(r) - 1)) for r in flush)
+    print(f"[11] the Euler castles (falls of 0 or 1, last column 1), mirrored, are the sheared walls whose every row is one block ending at the right end of its row, 2^(w-1) of them, with strictly shorter rows going up, w <= {W}: {ok}")
+
+    # [12] Fixed height: A_brick(w, h), A^e_brick(w, h) and S_brick(w, h).
     WH, H = 14, 6
     for name, f in (('A_brick', lambda d, h: sum(v for (m, b), v in d.items() if m == h)),
                     ('A^e_brick', lambda d, h: sum(v for (m, b), v in d.items() if m == h and b % 2 == 0)),
                     ('S_brick', lambda d, h: sum(v * (-1) ** b for (m, b), v in d.items() if m == h))):
         for h in range(1, H + 1):
-            print(f"[11] {name}(w, {h}), w = 1..{WH}: {[f(hist_dp(w), h) for w in range(1, WH + 1)]}")
+            print(f"[12] {name}(w, {h}), w = 1..{WH}: {[f(hist_dp(w), h) for w in range(1, WH + 1)]}")
     W2 = 24
     a2 = [sum(v for (m, b), v in hist_dp(w).items() if m == 2) for w in range(2, W2 + 1)]
     e2 = [sum(v for (m, b), v in hist_dp(w).items() if m == 2 and b % 2 == 0) for w in range(2, W2 + 1)]
     s2 = [sum(v * (-1) ** b for (m, b), v in hist_dp(w).items() if m == 2) for w in range(2, W2 + 1)]
     a077860 = qdiv([1] + [0] * W2, qmul([1, -2, 2] + [0] * (W2 - 2), [1, -1] + [0] * (W2 - 1), W2), W2)
-    print(f"[11] height 2, w = 2..{W2}: A_brick(w, 2) = 2^(w-1) - 1: {a2 == [2 ** (w - 1) - 1 for w in range(2, W2 + 1)]}; A^e_brick(w, 2) = sum_k C(w, 4k + 2) (A038505(w)): {e2 == [sum(comb(w, 4 * k + 2) for k in range(w)) for w in range(2, W2 + 1)]}; S_brick(w, 2) = [x^(w-2)] 1/((1 - 2x + 2x^2)(1 - x)) (A077860(w - 2)): {s2 == a077860[:W2 - 1]}")
+    print(f"[12] height 2, w = 2..{W2}: A_brick(w, 2) = 2^(w-1) - 1: {a2 == [2 ** (w - 1) - 1 for w in range(2, W2 + 1)]}; A^e_brick(w, 2) = sum_k C(w, 4k + 2) (A038505(w)): {e2 == [sum(comb(w, 4 * k + 2) for k in range(w)) for w in range(2, W2 + 1)]}; S_brick(w, 2) = [x^(w-2)] 1/((1 - 2x + 2x^2)(1 - x)) (A077860(w - 2)): {s2 == a077860[:W2 - 1]}")
