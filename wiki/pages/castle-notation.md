@@ -1,11 +1,11 @@
 ---
 title: Castle notation - castles, towers, and signed counts
 category: Concepts
-summary: The wiki's symbols in one place. Castle counts are written width first: A(w, h) for the castles of width w and height h, A^e(w, h) and A^o(w, h) for the even-block and odd-block ones (A^e is the Project Euler 502 count F(w, h)), and the signed count S = A^e − A^o, with A_X, S_X for a family X. Tower counts are written tower height first: T(k, L) = (k+1)^L and the signed tower count P(k, L), with tower height k = h − 1, S(w, h) = P(h−2, w) − P(h−1, w) and A^e = (A + S)/2. Further tables cover the sandpile, transfer-matrix and path, area-grading, sampling and signal symbols, and the other meanings of shared letters on the wiki.
+summary: The wiki's symbols in one place. Castle counts are written width first: A(w, h) for the castles of width w and height h, A^e(w, h) and A^o(w, h) for the even-block and odd-block ones (A^e is the Project Euler 502 count F(w, h)), and the signed count S = A^e − A^o, with A_X, S_X for a family X. Tower counts are written tower height first: T(k, L) = (k+1)^L and the signed tower count P(k, L), with tower height k = h − 1, S(w, h) = P(h−2, w) − P(h−1, w) and A^e = (A + S)/2. Further tables cover the sandpile, transfer-matrix and path, area-grading, sampling and signal symbols, and the other meanings of shared letters on the wiki. The castles on other tilings keep the width-first counts with their own subscripts, A_brick and S_brick on the brick wall, A_key and S_key on the triangular tiling, and their path symbols are decorated (𝒫, 𝒟, Sch) so that P, D and S keep their meanings.
 tags: [concept, castle, notation, reference, signed-tower-count, castle-sign, pedagogy]
 sources: [project-euler-502-solution, project-euler-502-representations, aocp-generating-partitions]
 created: 2026-09-26
-updated: 2026-10-28
+updated: 2026-10-30
 ---
 
 # Castle notation - castles, towers, and signed counts
@@ -16,6 +16,8 @@ The wiki counts two related objects, and they are indexed differently.
 
 - A **castle** of width `w` and height `h` is a skyline `(c_1, …, c_w)` with `1 ≤ c_i ≤ h` and some `c_i = h` ([[castle-polyomino](pages/castle-polyomino.md)]). Castle counts put **width first**: `A(w, h)`.
 - Removing the bottom row of a castle leaves **towers**. Towers on a base of length `L` are given by their column heights `c_1, …, c_L ∈ {0, …, k}` above the base, where 0 means nothing above the bottom row. Towers may have height 0; castles may not. Tower counts put **tower height first**: `T(k, L)`, `P(k, L)`.[^1]
+
+Castles on the brick wall and on the triangular tiling keep the width-first counts, with their own subscripts (section *Castles on other tilings*).
 
 Removing the bottom row maps the castles of width `w` and height at most `h` one-to-one onto the towers of height at most `h − 1` on a base of length `w`. So the translation between the two is always
 
@@ -231,6 +233,29 @@ The pages that read a skyline as a sampled signal ([[spectral-analysis](pages/sp
 | `rise(c)` | the cyclic rise: `Σ max(0, c_{i+1} − c_i)` around the cycle, including the step from `c_w` to `c_1`; `r` repeats of a castle with `c_1 = h` have `c_w + r · rise(c)` blocks | [[tone-castle-catalog](pages/tone-castle-catalog.md)] |
 | `N` | Goertzel block length in samples | [[tone-castle-catalog](pages/tone-castle-catalog.md)] |
 
+## Castles on other tilings
+
+Two families of castles stand on tilings other than the square grid: the **brick-wall castles** on the hexagonal tiling `{6,3}` and the **keystone castles** on the triangular tiling `{3,6}`. Each keeps the castle's base row, rows and blocks, with "no overhang" read on its own tiling, and their counts keep the width-first order of the section *Two kinds of object, two argument orders*: `A_X(w, h)` with the width `w` the number of cells in the bottom row of bricks or of up triangles, the height `h` the number of rows, and the blocks the maximal runs of cells in a row.
+
+| symbol | meaning | where |
+|---|---|---|
+| brick-wall castle | a bottom row of `w` bricks in running bond, every brick above resting on both bricks below it; the fountains of coins of the literature | [[brick-wall-castles](pages/brick-wall-castles.md)] |
+| keystone castle | a full bottom row of `w` up triangles and the `w − 1` down triangles between them, every higher up triangle resting on a down triangle, every down triangle between two up triangles of its row | [[keystone-castles](pages/keystone-castles.md)] |
+| `A_brick(w, h)`, `A^e_brick`, `A^o_brick`, `S_brick` | the counts of the core table over the brick-wall castles; without `h`, over all heights, as `S_brick(w)` | [[brick-wall-castles](pages/brick-wall-castles.md)] |
+| `A_key(w, h)`, `A^e_key`, `A^o_key`, `S_key`, `S_key,≤h` | the same over the keystone castles; `S_key,≤h(w)` sums over the heights at most `h` | [[keystone-castles](pages/keystone-castles.md)] |
+| cells | the bricks or triangles of a castle on another tiling, counted where a square-grid castle counts its area | [[brick-wall-castles](pages/brick-wall-castles.md)], [[keystone-castles](pages/keystone-castles.md)] |
+| fountain, `(n, k)` fountain; block fountain | the literature's name for a brick-wall castle, with `k` coins in its bottom row and `n` coins in all; a fountain with one block per row | [[brick-wall-castles](pages/brick-wall-castles.md)] |
+| 1-histogram | a square-grid skyline with `c_1 = 1` and `c_{k+1} ≤ c_k + 1`, Paule and Prodinger's name; the shear of a brick-wall castle | [[brick-wall-castles](pages/brick-wall-castles.md)] |
+| `s_k`, with its index | the slant heights of a brick-wall castle, the columns of its shear (Thomas and May's slants), which are also the levels of the up-steps of a Dyck path; on [[keystone-castles](pages/keystone-castles.md)] the lengths `s_i` of the 60-degree rows. Bare `s` stays the semi-perimeter `w + #blocks`, which on the keystone castles is width plus blocks | [[brick-wall-castles](pages/brick-wall-castles.md)], [[keystone-castles](pages/keystone-castles.md)] |
+| `𝒟(x, t)`; `𝒜`, `ℬ` | the Dyck paths by semilength and peaks; the two parts `U 𝒜 D ℬ` of a first-return split. Calligraphic because `D_h(x)` and `P` are taken | [[brick-wall-castles](pages/brick-wall-castles.md)] |
+| `U`, `D`, `H` | the up-step `(1, 1)`, down-step `(1, −1)` and flat step `(2, 0)` of a Schröder path; `U` and `D` are the step letters of the tower words, and `H` is the flat step `R` of length 2 | [[keystone-castles](pages/keystone-castles.md)] |
+| `𝒫`, `U 𝒫 D` | the large Schröder path of a keystone castle and its outline; calligraphic because `P` is the signed tower count | [[keystone-castles](pages/keystone-castles.md)] |
+| `Sch(x, t)`, `Sch_k(x, t)` | the large Schröder paths by semilength and up-steps, and those of height at most `k`; not `S`, the signed castle count | [[keystone-castles](pages/keystone-castles.md)] |
+| `r_n` | the large Schröder numbers A006318, with their index; the keystone castles of width `w` number `r_{w−1}` | [[keystone-castles](pages/keystone-castles.md)] |
+| `K_key(q, u, d)`, `F_stack(q, u, d)`, `F_large(q, b, u, d)` | the keystone castles by cells, width and down triangles; Bala's triangle stacks of A224704, `F_stack = 1/(1 − K_key)`; Bala's stacks of large Schröder type. The source pages keep Bala's `F` | [[keystone-castles](pages/keystone-castles.md)], [[bala-2019-area-beneath-small-schroder-paths](pages/bala-2019-area-beneath-small-schroder-paths.md)], [[bala-2019-triangle-stacks-large-schroder-type](pages/bala-2019-triangle-stacks-large-schroder-type.md)] |
+| triangle stack | a stack of A224704, a row of keystone castles side by side | [[keystone-castles](pages/keystone-castles.md)], [[bala-2019-area-beneath-small-schroder-paths](pages/bala-2019-area-beneath-small-schroder-paths.md)] |
+| `x_0`, `y_0` | the smallest zeros of the denominator and of the numerator in Bala's ratio of q-series for `F_stack`; the stacks grow at `1/x_0`, the keystone castles by cells at `1/y_0` | [[keystone-castles](pages/keystone-castles.md)] |
+
 ## Other meanings of P, T, and other shared letters on the wiki
 
 These are local notations on specific pages. Each is unrelated to the tower counts or reuses a letter of an earlier table on this page:
@@ -268,6 +293,7 @@ These are local notations on specific pages. Each is unrelated to the tower coun
 | `c(x)`, `c_i` | the Catalan generating function `(1 − √(1 − 4x))/(2x)` on the Catalan and Barry pages vs column heights; `c(x)` always carries its argument, and a count of compositions is written `comp_𝒮(n)` (section *Area gradings*), never `c(n)`. Barry's ballot numbers `B(n, k)` are written `ballot(n, k)`, since `B(x, y)` is the castle generating function | [[catalan-numbers](pages/catalan-numbers.md)], [[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)] |
 | `M_n`, `M(x)`, `M(x, y)`, `M_k`, `M_k(t)`, `M(q)` | Motzkin numbers and GF; Deutsch-Elizalde's cornerless-path GF; the signed and block-weighted transfer matrices (section *Weights, transfer matrices, and path models*); the q-Bessel denominator of the signed count by area (section *Area gradings*). The Project Euler modulus `M` has its own row, and the gluing monoid of the prime castles is the script `𝓜` (section *Area gradings*) | [[motzkin-numbers](pages/motzkin-numbers.md)], [[deutsch-elizalde-2016-bargraphs-cornerless-motzkin](pages/deutsch-elizalde-2016-bargraphs-cornerless-motzkin.md)], [[tower-parity-sectors](pages/tower-parity-sectors.md)], [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
 | `F(u)`, `G(u)`, `H(u)`, `K(u)` | Prodinger's automaton-layer GFs in the final-height variable `u`; `F(u)` is not the older name `F(w, h)` of `A^e(w, h)`, and `K(u)` is not `K(ρ)` | [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] |
+| `N(q)`, `D(q)` | Bala's numerator and denominator q-series of the triangle-stack generating function, on the source pages only; the other meanings of `N(q)` (the q-Bessel numerator) and of `D` stand elsewhere, and [[keystone-castles](pages/keystone-castles.md)] names them in words | [[bala-2019-area-beneath-small-schroder-paths](pages/bala-2019-area-beneath-small-schroder-paths.md)], [[bala-2019-triangle-stacks-large-schroder-type](pages/bala-2019-triangle-stacks-large-schroder-type.md)] |
 | `K(q, z)`, `K(G)`, `K`, `K(w)`, `K⋆(x)` | the convex castle GF; the sandpile group `K(G)` (written `K`, or `K_sink`, `K_tide` by model, on the sandpile pages); a central-binomial sum; `K(ρ)` is the KMS matrix of the section *Weights, transfer matrices, and path models*. Kolmogorov's limit law `1 − 2 Σ_{k≥1} (−1)^{k−1} e^{−2k²x²}`, which its sources write `Φ(λ)` or `K(z)`, is starred, `K⋆(x)` | [[prime-convex-castles](pages/prime-convex-castles.md)], [[sandpile-group](pages/sandpile-group.md)], [[half-sum-castles](pages/half-sum-castles.md)], [[kolmogorov-castles](pages/kolmogorov-castles.md)], [[kolmogorov-1933-determinazione-empirica](pages/kolmogorov-1933-determinazione-empirica.md)] |
 | `τ` | the tribonacci constant on [[castle-perimeter](pages/castle-perimeter.md)] (`τ²` = growth of castles by semi-perimeter); the avalanche size exponent on the sandpile pages; on the Prodinger page, the weight of the peak `UD`, with `σ` the weight of the valley `DU` | [[castle-perimeter](pages/castle-perimeter.md)], [[bak-tang-wiesenfeld-1988-self-organized-criticality](pages/bak-tang-wiesenfeld-1988-self-organized-criticality.md)], [[prodinger-2025-cornerless-motzkin-bargraphs](pages/prodinger-2025-cornerless-motzkin-bargraphs.md)] |
 | `ρ` | usually a spectral radius or growth constant (`ρ_k` on [[tower-parity-sectors](pages/tower-parity-sectors.md)]); on the KMS page, the matrix parameter `√t` | [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] |
@@ -305,6 +331,7 @@ These are local notations on specific pages. Each is unrelated to the tower coun
 - [[sandpile-group](pages/sandpile-group.md)] - the reduced Laplacian `L̃` and the sandpile group ([[chau-cheng-1991-deterministic-soc-sandpile](pages/chau-cheng-1991-deterministic-soc-sandpile.md)] and [[chau-1993-abelian-sandpile-model](pages/chau-1993-abelian-sandpile-model.md)] use the same `Δ`); [[dhar-1990-self-organized-critical-sandpile](pages/dhar-1990-self-organized-critical-sandpile.md)] for the general toppling matrix `Δ`.
 - [[castle-sign-kms-matrix](pages/castle-sign-kms-matrix.md)] - the block-weighted matrices `M_k(t)` and `K(ρ)`.
 - [[motzkin-castles](pages/motzkin-castles.md)] - the Motzkin-path symbols and the path models of castles.
+- [[brick-wall-castles](pages/brick-wall-castles.md)] and [[keystone-castles](pages/keystone-castles.md)] - the castles on the hexagonal and triangular tilings, whose symbols are in the section *Castles on other tilings*.
 
 ## Footnotes
 
