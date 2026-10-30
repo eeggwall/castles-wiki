@@ -51,6 +51,7 @@ A nonempty Dyck word factors uniquely as `U w_1 D w_2`, where `w_1` and `w_2` ar
 
 - **Narayana numbers.** `N(n, k) = C(n, k) C(n, k − 1)/n` (`A001263`) counts the Dyck words of semilength `n` with `k` peaks, and `Σ_k N(n, k) = C_n` ([[narayana-numbers](pages/narayana-numbers.md)]). The towers of any height on a base of length `L`, counted by blocks, have generating function `Σ_k N(L, k) x^{k−1}/(1 − x)^L`, whose numerator is `C_L` at `x = 1` ([[tower-heap](pages/tower-heap.md)], [[tower-narayana-polynomial](pages/tower-narayana-polynomial.md)]).
 - **Parallelogram polyominoes.** The parallelogram polyominoes of semi-perimeter `n + 1` number `C_n`, and counted by area they give the Pólya-Gessel `q`-Catalan numbers ([[q-catalan-numbers](pages/q-catalan-numbers.md)]). The castles counted by width, blocks and area are `Π/(1 − x − Π)`, with `Π` the generating function of the parallelogram polyominoes ([[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)]).
+- **Brick-wall castles.** The castles on the brick wall of width `w`, every brick resting on both bricks below, the fountains of coins, number `C_w`; the levels of the up-steps of a Dyck path are their sheared skylines, with `w + 1 −` peaks blocks ([[brick-wall-castles](pages/brick-wall-castles.md)]).
 - **Convex castles** are counted by the binomial coefficient `C(2h + w − 3, w − 1)` ([[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)]).
 
 ## Appearances in Sources
@@ -71,6 +72,7 @@ A nonempty Dyck word factors uniquely as `U w_1 D w_2`, where `w_1` and `w_2` ar
 - [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the convex castle count `C(2h + w − 3, w − 1)` as a Vandermonde convolution.
 - [[symbolic-method](pages/symbolic-method.md)] - the translation of `G = Z × SEQ(G)` into `G(z) = z/(1 − G(z))`.
 - [[von-neumann-castles](pages/von-neumann-castles.md)] - the castles of plane trees, which are the alternating castles, `C_{b−1}` of them with `b` blocks.
+- [[brick-wall-castles](pages/brick-wall-castles.md)] - the fountains of coins, `C_w` of width `w`, and their signed count `±C_{(w−1)/2}`.
 
 ## Footnotes
 

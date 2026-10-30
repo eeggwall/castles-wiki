@@ -5,7 +5,7 @@ summary: The exact appearances of the Motzkin numbers in castle counts. Removing
 tags: [analysis, castle, motzkin, lattice-paths, cornerless, bargraph, parity, sign, gaussian-integers, transfer-matrix, chebyshev, metallic, semi-perimeter, oeis, hub]
 sources: [motzkin-numbers, project-euler-502-representations, project-euler-502-brute-force, deutsch-elizalde-2016-bargraphs-cornerless-motzkin, prodinger-2025-cornerless-motzkin-bargraphs, banderier-nicodeme-2010-bounded-discrete-walks, barry-2005-catalan-transform, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths]
 created: 2026-09-26
-updated: 2026-10-25
+updated: 2026-10-29
 ---
 
 # Motzkin castles - where the Motzkin numbers meet the castle
@@ -107,7 +107,7 @@ Grading by semi-perimeter `s = w + #blocks` instead of width sends several castl
 | 1-smooth, `c_1 = 1` | `1, 1, 2, 4, 8, 16, 33, 69, 145, 307, 655, 1405, 3027` | [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] |
 | 1-smooth, free ends | `1, 2, 5, 11, 24, 52, 113, 246, 537, 1176, 2583, 5688` | [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] |
 
-The A023431 row follows directly from section 2: a Motzkin-path castle of width `w` with `u` up steps has `s = w + 1 + u`, so it is a Motzkin path of length `w - 1` in which each up step costs one extra unit. That is the entry's "lattice paths … using only steps H=(1,0), U=(1,1) and D=(2,-1)" read backwards (reversal swaps the roles of up and down).[^10] The "drops of at most 1" family ends at height 1 and never falls more than one level per column, so its bargraph has no double fall `DD`. Its mirror image has no double rise, and Deutsch and Elizalde give a bijection from no-double-rise bargraphs of semiperimeter `n + 1` to RNA secondary structures on `n` vertices, which is why A004148 appears.[^13] By width the same castles number the **Catalan** numbers `C_w` (A000108).
+The A023431 row follows directly from section 2: a Motzkin-path castle of width `w` with `u` up steps has `s = w + 1 + u`, so it is a Motzkin path of length `w - 1` in which each up step costs one extra unit. That is the entry's "lattice paths … using only steps H=(1,0), U=(1,1) and D=(2,-1)" read backwards (reversal swaps the roles of up and down).[^10] The "drops of at most 1" family ends at height 1 and never falls more than one level per column, so its bargraph has no double fall `DD`. Its mirror image has no double rise, and Deutsch and Elizalde give a bijection from no-double-rise bargraphs of semiperimeter `n + 1` to RNA secondary structures on `n` vertices, which is why A004148 appears.[^13] By width the same castles number the **Catalan** numbers `C_w` (A000108). Mirrored and sheared along the diagonals, they are the castles on the brick wall, each brick resting on both bricks below, with the same rows, blocks and cells ([[brick-wall-castles](pages/brick-wall-castles.md)]).
 
 ## 7. Castles that never drop by two: valleyless meanders
 
@@ -160,6 +160,7 @@ By mirror symmetry the same numbers count castles whose columns never *rise* by 
 - [[castle-sequence-catalog](pages/castle-sequence-catalog.md)] - the status-tagged record of every sequence on this page.
 - [[castle-notation](pages/castle-notation.md)] - the symbol conventions; the Motzkin-path castle, the Motzkin strip (castle heights `1, …, h`), `M_n`, `B(x, y)` and `s` are recorded there.
 - [[prime-castles](pages/prime-castles.md)] - the castles with no column of height 1, counted through the castle generating function.
+- [[brick-wall-castles](pages/brick-wall-castles.md)] - the castles that drop by at most 1 and end at height 1, mirrored and sheared onto the brick wall: the fountains of coins.
 
 ## Footnotes
 
