@@ -1,0 +1,545 @@
+ inv lve
+  a journal of mathematics
+
+
+
+             Enumeration of stacks of spheres
+       Lauren Endicott, Russell May and Sienna Shacklette
+
+
+
+
+                             msp
+
+2018                                                vol. 11, no. 5
+                                                                              INVOLVE 11:5 (2018)
+
+  msp
+                                                               dx.doi.org/10.2140/involve.2018.11.867
+
+
+
+
+                 Enumeration of stacks of spheres
+             Lauren Endicott, Russell May and Sienna Shacklette
+                            (Communicated by Glenn Hurlbert)
+
+     As a three-dimensional generalization of fountains of coins, we analyze stacks
+     of spheres and enumerate two particular classes, so-called “pyramidal” stacks
+     and “Dominican” stacks. Using the machinery of generating functions, we obtain
+     exact formulas for these types of stacks in terms of the sizes of their bases.
+
+
+                                     1. Introduction
+
+Odlyzko and Wilf [1988] analyzed fountains of coins. An (n, k) fountain is an
+arrangement of n coins into rows so that the bottom row consists of k contiguous
+coins and each coin in higher rows sits on two coins in the row beneath it. Figure 1
+shows a (25, 12) fountain. Two fountains are different if in any row and any
+position in the row, one fountain has a coin, but the other does not. Their goal was
+to enumerate the numbers f n,k of (n, k) fountains, and their main result was that the
+bivariate generating function F(x, y) = n,k f n,k x n y k was the continued fraction
+                                         P
+
+                                                    1
+                              F(x, y) =                             .                            (1)
+                                                        xy
+                                           1−
+                                                         x2y
+                                                1−
+                                                             x3y
+                                                     1−
+                                                             ..
+                                                                .
+If the fountains are enumerated only by the number of coins in the bottom row, gk =
+                                                         k
+P                                                 P
+    n f n,k , then the generating function G(y) =  k gk y = F(1, y) is much simpler. It
+is straightforward from (1) that the generating function satisfies G(y)− yG 2 (y) = 1,
+and so the gk are the Catalan numbers. Wilf [2006, Example 2.12] also considered
+a restricted class of “block” fountains having the property that each row must be
+a contiguous block of coins. If bk is the number of block fountains with k coins
+in the bottom row, then B(y) = k bk y k turns out to be (1 − 2x)/(1 − 3x + x 2 ),
+                                       P
+
+which is the generating function for the Fibonacci numbers with odd indices.
+MSC2010: 05A15.
+Keywords: enumerative combinatorics, generating functions.
+
+                                             867
+868         LAUREN ENDICOTT, RUSSELL MAY AND SIENNA SHACKLETTE
+
+
+
+
+        Figure 1. A (25, 12) fountain of coins with subfountains around
+        the first missing coin in the second row.
+
+
+
+
+      Figure 2. A (148, 7, 10) stack of spheres from oblique and top views.
+
+
+
+
+        Figure 3. Models for stacks: Pyramid of the Sun at Teotihuaca,
+        Mexico (credit: [Lneuw 2006]), and the flag of the Dominican
+        Republic.
+
+   As a three-dimensional variant of fountains of coins, we consider stacks of
+spheres. An (`, m, n) stack of spheres is an arrangement of ` spheres into levels
+so that the bottom level consists of spheres in an m × n rectangular grid and each
+sphere in higher levels sits on four spheres in the level beneath it. Figure 2 shows a
+(148, 7, 10) stack of spheres. In grocery stores, fruits like oranges and cantaloupes
+are often arranged into such stacks.
+   Our goal is to analyze two classes of stacks, pyramidal and Dominican, and
+obtain generating functions and exact formulas for the number of stacks in terms
+of the sizes of their bases. Pyramidal stacks have the property that every level
+consists of a single rectangular grid of spheres, much like the Pyramid of the Sun
+at Teotihuaca, shown in Figure 3. Dominican stacks are closer in spirit to general
+stacks. Their inductive definition closely resembles the color scheme of solid
+regions and stripes in the flag of the Dominican Republic, also shown in Figure 3.
+                          ENUMERATION OF STACKS OF SPHERES                                   869
+
+
+                           2. Basics of generating functions
+
+Generating functions are a bridge between the discrete world of combinatorics and
+the continuous world of calculus and complex analysis. Wilf [2006] embraces a
+five-step method for describing sequences with generating functions:
+ (1) Find a recurrence relation for the sequence.
+ (2) Define the generating function.
+ (3) Convert the recurrence relation to a relation about the generating function.
+ (4) Solve for the generating function.
+ (5) Extract or approximate the coefficients of the generating function.
+   We use a handful of well-known generating functions, based on the geometric
+series and its derivatives:
+                                X             1
+                                     1x n =        ,                     (2a)
+                                            1−x
+                                 n≥0
+                                X               x
+                                     nx n =          ,                   (2b)
+                                            (1 − x)2
+                                n≥0
+                            X n +k              1
+                                      xn =             .                 (2c)
+                                 n          (1 − x)1+k
+                               n≥0
+
+    We also use the product rule: if f (x) = n≥0 an x n and g(x) = n≥0 bn x n , then
+                                                   P                              P
+
+ f (x) · g(x) = n≥0 cn x n, where cn = nk=0 ak · bn−k . An important special case of
+                 P                        P
+
+the product rule is the partial sum rule: n≥0 (a0 +a1 +· · ·+an )x n = 1/(1−x) f (x).
+                                           P
+
+We also need the bivariate version of the product rule; namely if f (x, y) =
+                                           m,n≥0 bm,n x y , then f (x, y) · g(x, y) =
+           am,n x m y n and g(x, y) =                           m n
+P                                        P
+    m,n≥0
+                 m n
+P                                       P
+    m,n≥0 cm,n x y , where cm,n =         m 0 ,n 0 am 0 ,n 0 · bm−m 0 ,n−n 0 . Following standard
+notation, we define the bivariate coefficient extraction operator as
+                                        X
+                             [x m y n ]    am,n x m y n = am,n .
+                                      m,n≥0
+
+
+                             3. Pyramidal stacks of spheres
+
+One of the simplest types of fountains of coins is a block fountain, defined by
+the property that each row consists of a single contiguous block of coins. We
+define a corresponding three-dimensional variant, a pyramidal stack of spheres,
+to be a stack where each level consists of a single rectangular grid of spheres.
+An example of a pyramidal stack is depicted in Figure 4. Unlike arbitrary stacks,
+pyramidal stacks are constrained to have only a single spire. We would like to
+enumerate the pyramidal stacks by the size of their bases. For m, n ≥ 1, let pm,n
+870          LAUREN ENDICOTT, RUSSELL MAY AND SIENNA SHACKLETTE
+
+
+
+
+   Figure 4. An 8 × 7 pyramidal stack of spheres from oblique and top views.
+
+
+                 pm,n     n=1     2      3     4     5      6       7
+                 m=1         1    1     1      1      1    1     1
+                   2         1    2     4      7     11   16    22
+                   3         1    4    11     24     46   81   134
+                   4         1    7    24     63    143 294    561
+                   5         1   11    46    143    376 881 1894
+                   6         1   16    81    294    881 2317 5534
+                   7         1   22   134    561   1894 5534 14545
+
+                        Table 1. Values of pm,n for m, n ≤ 7.
+
+
+
+
+                    n − n 0 positions
+
+                           n 0 spheres
+
+
+                                   m 0 spheres m − m 0 positions
+
+  Figure 5. Possible positions of an m 0 × n 0 pyramid on top of an m × n base.
+
+
+be the number of pyramidal stacks of spheres whose base consists of an m × n
+grid of spheres. For convenience, let pm,0 = p0,n = 0 for all m, n ≥ 0, and note
+that by symmetry pm,n = pn,m . Then define the bivariate generating function
+P(x, y) = m,n≥0 pm,n x m y n. By hand calculation and assistance from Maple, we
+           P
+
+computed pm,n for m, n ≤ 7, shown in Table 1. A pyramidal stack with an m×n base
+can either contain nothing on the second level or support another pyramidal stack
+with an m 0 × n 0 base, where 1 ≤ m 0 < m and 1 ≤ n 0 < n. If the second level is
+nonempty, it can be shifted horizontally to m − m 0 positions and vertically to n − n 0
+positions to form different stacks, as shown in Figure 5. Therefore, we have the
+                          ENUMERATION OF STACKS OF SPHERES                                871
+
+
+recurrence relation for pyramidal stacks for m, n ≥ 1, given as
+               X                                           X
+ pm,n = 1 +           (m − m 0 )(n − n 0 ) pm 0 ,n 0 = 1 +   (m − m 0 )(n − n 0 ) pm 0 ,n 0 .
+             1≤m 0 ≤m−1                                   0≤m 0 ≤m
+             1≤n 0 ≤n−1                                   0≤n 0 ≤n
+
+The bounds on the sum can be extended from 0 to m and n since p0,n = pm,0 = 0
+and (m −m 0 ) = (n −n 0 ) = 0 when m 0 = m and n 0 = n. Then, by use of the generating
+functions in (2a) and (2b) and the product rule we get
+                               x    y                      xy
+                P(x, y) =                + P(x, y)                    .
+                             1−x 1− y               (1 − x)2 (1 − y)2
+Solving this equation results in the rational generating function
+                                           x y(1 − x)(1 − y)
+                           P(x, y) =                            .                         (3)
+                                        (1 − x)2 (1 − y)2 − x y
+To obtain an exact expression for pm,n , we first view P(x, y) as a geometric series:
+                               xy
+                           (1−x)(1−y)
+                                            X          x `+1 y `+1
+              P(x, y) =           xy      =
+                        1 − (1−x)2 (1−y)2       (1 − x)1+2` (1 − y)1+2`
+                                            `≥0
+
+Then, using (2c),
+                  pm,n = [x m y n ]P(x, y)
+                         X                         1
+                       =     [x m−`−1 y n−`−1 ]
+                                         (1 − x)1+2` (1 − y)1+2`
+                         `≥0
+                         X m +`−1  n +`−1 
+                       =                        .
+                             m −`−1 n −`−1
+                          `≥0
+
+This exact expression for pm,n is a sum with min(m − 1, n − 1) terms, a signif-
+icant improvement over the recursion that requires O(mn) computations. Also,
+note that gm , the number of block fountains with m coins in the bottom row, is
+equivalent to the  (2m+1)-th Fibonacci number, which is also expressible as the
+     P m+`−1
+sum ` m−`−1 . Therefore, pyramidal stacks of spheres can be viewed as a direct
+generalization of block fountains of coins.
+
+                                  4. Dominican stacks
+
+Pyramidal stacks, having only a single spire, form an extremely restricted class,
+just as block fountains are to general fountains of coins. We would like to analyze
+a more robust class that is closer in spirit to general stacks. Dominican stacks are a
+three-dimensional generalization of arbitrary two-dimensional fountains of coins.
+   In order to motivate the definition of Dominican stacks, let’s review general
+fountains of coins. A fountain with m coins in the bottom row can be uniquely
+872          LAUREN ENDICOTT, RUSSELL MAY AND SIENNA SHACKLETTE
+
+
+
+
+         Figure 6. A 9 × 10 Dominican stack of spheres from oblique and
+         top views.
+
+decomposed into two subfountains by locating the first position in the second row,
+say at m 0, where a coin is missing. For instance, the second row of the fountain in
+Figure 1 has its first missing coin in the fifth position. Thus, a general fountain
+consists of the subfountain on the left with a base of m 0 coins, whose second row
+is full and so consists of an even smaller subfountain with a diminished base of
+m 0 − 1 coins, and a subfountain on the right with a base of m − m 0 coins. So, the
+                           P
+recurrence relation gm = m 0 gm 0 −1 · gm−m 0 holds for fountains of coins.
+    We make an analogous definition by induction for stacks of spheres. A Dominican
+stack of spheres is defined by the following cases:
+Base case: A single level of spheres in a rectangular grid.
+Inductive case: A multilevel stack of spheres with an m × n base built from smaller
+stacks, as follows. It is required that, when viewed from the top, there exist a
+(necessarily unique) column at position m 0 and row at position n 0 devoid of spheres
+so that the following conditions hold:
+  Bottom left: Every position in the second level above positions [1, . . . , m 0 ] ×
+    [1, . . . , n 0 ] has a sphere, and the stack with diminished base of size (m 0 − 1) ×
+    (n 0 − 1) from the second level and above is Dominican.
+  Top right: The stack above positions [m 0 + 1, . . . , m] × [n 0 + 1, . . . , n] from the
+    first level and above is Dominican.
+  Bottom right and top left: The stacks above positions [m 0 +1, . . . , m]×[1, . . . , n 0 ]
+    and [1, . . . , m 0 ] × [n 0 + 1, . . . , n] consist solely of rectangular grids of spheres
+    on the first level with nothing above.
+   An example of a Dominican stack is shown in Figure 6. Informally, a stack of
+spheres is called Dominican because of its resemblance to the flag of the Dominican
+Republic. As a visualization depicted in Figure 7, imagine placing a version of
+the Dominican Republic’s flag under a stack of spheres and looking at the stack
+from above. On the second level, the white stripes of the flag appear in the row and
+                       ENUMERATION OF STACKS OF SPHERES                             873
+
+
+                    dm,n    n=1    2    3     4     5       6     7
+                   m=1         1   1    1     1     1    1    1
+                     2         1   2    3     4     5    6    7
+                     3         1   3    7    12    18   25   33
+                     4         1   4   12    28    52   85 128
+                     5         1   5   18    52   122 239 416
+                     6         1   6   25    85   239 564 1147
+                     7         1   7   33   128   416 1147 2723
+
+                       Table 2. Values of dm,n for m, n ≤ 7.
+
+
+                               n
+                              n0
+
+
+                               1
+                                   1        m0          m
+
+        Figure 7. Indexing of a Dominican stack with regions of the bot-
+        tom layer in red and blue and smaller Dominican stacks in purple.
+
+
+column which are empty but the red region to the bottom-left is full; the substack
+above this red region is a smaller Dominican stack. The portion of the stack on
+the top-right above the other red region of the flag also forms a smaller Dominican
+stack. The portions of the stack above the blue regions are single layers of spheres.
+Note that if the first empty column (m 0 = 1 from the definition) in the second level
+forms the boundary, then the corresponding row must also be the first (n 0 = 1), and
+likewise for the converse. Therefore, the emblem of the flag where the white stripes
+cross may either be in position [1, 1] of the second level or in a position [m 0 , n 0 ]
+with 2 ≤ m 0 ≤ m and 2 ≤ n 0 ≤ n.
+   Let dm,n be the number of Dominican stacks with an m ×n base. For convenience,
+let d0,n = dm,0 = 1 for all m, n ≥ 0, and note that by symmetry dm,n = dn,m . We
+define the bivariate generating function D(x, y) = m,n≥0 dm,n x n y n. By hand
+                                                        P
+
+calculation and assistance from Maple, we computed dm,n for m, n ≤ 7, shown in
+Table 2. In order to derive an expression for this generating function, we begin with
+the recurrence relation for the dm,n that follows immediately from the inductive
+definition of Dominican stacks. Equation (4b) is just a reindexing of (4a), and
+(4c) accounts for the inclusion of the terms m 0 = 0 or n 0 = 0 in the sum; see the
+874          LAUREN ENDICOTT, RUSSELL MAY AND SIENNA SHACKLETTE
+
+
+following:
+                           X
+  dm+1,n+1 = dm,n +                   dm 0 −1,n 0 −1 dm+1−m 0 ,n+1−n 0        (m, n ≥ 0)                   (4a)
+                        2≤m 0 ≤m+1
+                        2≤n 0 ≤n+1
+                          X
+             = dm,n +              dm 0 ,n 0 dm−m 0 ,n−n 0                                                 (4b)
+                        1≤m 0 ≤m
+                        1≤n 0 ≤n
+                           X                                      X                      X
+             = 2dm,n +              dm 0 ,n 0 dm−m 0 ,n−n 0 −              dm 0 ,n −               dm,n 0 . (4c)
+                         0≤m 0 ≤m                               0≤m 0 ≤m               0,≤n 0 ≤n
+                         0≤n 0 ≤n
+
+   Using the generating functions in (2a) and (2b), along with the product rule and
+the partial sum rule, we obtain the corresponding relation for D(x, y), namely
+              x   y
+D(x, y) −       −     −1
+             1−x 1− y
+                                                                     xy            xy
+                     = 2x y D(x, y) + x y D 2 (x, y) −                  D(x, y) −      D(x, y).
+                                                                    1−x           1− y
+This relation is quadratic in D(x, y) with coefficients that are polynomials in x, y.
+After some algebra, we get a ratio of polynomials with a radical for the generating
+function:
+D(x, y)
+                      p
+  (1−x y)(1−x−y+2x y)− (1−x y)2 (1−x−y+2x y)2 −4x y(1−x)(1−y)(1−x y)
+=                                                                    .                                      (5)
+                          2x y(1−x)(1− y)
+This generating function agrees with the values of dm,n from the recurrence relation.
+D(x, y) can be viewed as a generalization of the generating function for the Catalan
+numbers. Unfortunately, asymptotic analysis even of rational bivariate generating
+functions is difficult, so analysis of this generating function with a radical will
+require further investigation.
+
+                                     5. Further problems
+
+Stacking of spheres lends itself to many one-parameter combinatorial classes. For
+example, the class of pyramidal stacks can be restricted by the condition that
+each level forms a square grid of spheres. If sn is the number of such pyramids
+                                                                               sn x n is
+                                                                            P
+with an n × n base, it follows quickly that the generating function
+x(1 − x)3 /(1 − 4x + 2x 2 − x 3 ). Many geometrical variants with triangles, hexagons,
+etc., can be formed in this manner and result in single-variable generating functions.
+   Another restriction leading to single-variable generating functions is to fix the
+width of the base of a general stack. For each base width m ≥ 1 and length
+n ≥ 1, let am,n be the number of general stacks with an m × n base and define
+                          ENUMERATION OF STACKS OF SPHERES                                     875
+
+
+Am (x) =              n
+           P
+              n am,n x . It turns out that
+                      1                    x                     x(1 − x)
+            A1 (x) =      , A2 (x) =            , A3 (x) =                   .
+                     1−x               1 − 2x                  1 − 5x + 3x 2
+The Am for m ≥ 4 are more difficult to compute, but would surely shed light on the
+general case.
+   However, the main problem of enumerating general stacks of spheres remains
+unsolved. While it is hoped that recursive methods similar to the pyramidal and
+Dominican cases will ultimately work out, it is entirely possible that altogether
+different machinery may be required to enumerate general stacks. The most direct
+reason that recursive methods may fail is that partitions of rectangles into collections
+of subrectangles are unwieldy. Additionally, since the generating function of a
+general fountain of coins (based on the total number of coins) in two dimensions
+is already significant in complexity as a continued fraction, one must expect the
+generating function of a general stack of spheres in three dimensions to be an order
+of difficulty harder.
+   A more tractable problem may be an asymptotic approximation of the coefficients
+of the generating functions in (3) and (5). Recent results in [Pemantle and Wilson
+2013] may provide insight.
+
+                                          References
+[Lneuw 2006] Lneuw, “Pyramid of the Sun Teotihuacán, Mexico, taken from the Pyramid of the
+ Moon”, photo, 2006, available at https://tinyurl.com/TeoSun. Public domain.
+[Odlyzko and Wilf 1988] A. M. Odlyzko and H. S. Wilf, “The editor’s corner: n coins in a fountain”,
+ Amer. Math. Monthly 95:9 (1988), 840–843. MR Zbl
+[Pemantle and Wilson 2013] R. Pemantle and M. C. Wilson, Analytic combinatorics in several
+ variables, Cambridge Studies in Advanced Mathematics 140, Cambridge University Press, 2013.
+ MR Zbl
+[Wilf 2006] H. S. Wilf, generatingfunctionology, 3rd ed., A K Peters, Wellesley, MA, 2006. MR Zbl
+
+Received: 2017-05-11       Revised: 2017-09-14        Accepted: 2017-09-17
+lkendicott@moreheadstate.edu         The Craft Academy for Excellence in Science
+                                     and Mathematics, Morehead State University,
+                                     Morehead, KY 40351, United States
+r.may@moreheadstate.edu              Department of Mathematics and Physics, Morehead
+                                     State University, Morehead, KY 40351, United States
+slshacklette@moreheadstate.edu       The Craft Academy for Excellence in Science
+                                     and Mathematics, Morehead State University,
+                                     Morehead, KY 40351, United States
+
+
+
+
+mathematical sciences publishers                                                             msp
+                                                        involve
+                                                         msp.org / involve
+
+                                        INVOLVE YOUR STUDENTS IN RESEARCH
+                 Involve showcases and encourages high-quality mathematical research involving students from all
+                 academic levels. The editorial board consists of mathematical scientists committed to nurturing
+                 student participation in research. Bridging the gap between the extremes of purely undergraduate
+                 research journals and mainstream research journals, Involve provides a venue to mathematicians
+                 wishing to encourage the creative involvement of students.
+
+                                                       MANAGING EDITOR
+                                         Kenneth S. Berenhaut     Wake Forest University, USA
+
+                                                       BOARD OF EDITORS
+         Colin Adams      Williams College, USA                          Suzanne Lenhart        University of Tennessee, USA
+       John V. Baxley     Wake Forest University, NC, USA                  Chi-Kwong Li         College of William and Mary, USA
+  Arthur T. Benjamin      Harvey Mudd College, USA                        Robert B. Lund        Clemson University, USA
+       Martin Bohner      Missouri U of Science and Technology, USA       Gaven J. Martin       Massey University, New Zealand
+         Nigel Boston     University of Wisconsin, USA                       Mary Meyer         Colorado State University, USA
+ Amarjit S. Budhiraja     U of North Carolina, Chapel Hill, USA            Emil Minchev         Ruse, Bulgaria
+         Pietro Cerone    La Trobe University, Australia                   Frank Morgan         Williams College, USA
+       Scott Chapman      Sam Houston State University, USA     Mohammad Sal Moslehian          Ferdowsi University of Mashhad, Iran
+    Joshua N. Cooper      University of South Carolina, USA                Zuhair Nashed        University of Central Florida, USA
+     Jem N. Corcoran      University of Colorado, USA                            Ken Ono        Emory University, USA
+         Toka Diagana     Howard University, USA                     Timothy E. O’Brien         Loyola University Chicago, USA
+        Michael Dorff     Brigham Young University, USA                 Joseph O’Rourke         Smith College, USA
+   Sever S. Dragomir      Victoria University, Australia                      Yuval Peres       Microsoft Research, USA
+Behrouz Emamizadeh        The Petroleum Institute, UAE                Y.-F. S. Pétermann        Université de Genève, Switzerland
+             Joel Foisy   SUNY Potsdam, USA                          Robert J. Plemmons         Wake Forest University, USA
+         Errin W. Fulp    Wake Forest University, USA                 Carl B. Pomerance         Dartmouth College, USA
+       Joseph Gallian     University of Minnesota Duluth, USA       Vadim Ponomarenko           San Diego State University, USA
+   Stephan R. Garcia      Pomona College, USA                               Bjorn Poonen        UC Berkeley, USA
+       Anant Godbole      East Tennessee State University, USA               James Propp        U Mass Lowell, USA
+            Ron Gould     Emory University, USA                      Józeph H. Przytycki        George Washington University, USA
+    Andrew Granville      Université Montréal, Canada                  Richard Rebarber         University of Nebraska, USA
+        Jerrold Griggs    University of South Carolina, USA         Robert W. Robinson          University of Georgia, USA
+             Sat Gupta    U of North Carolina, Greensboro, USA                Filip Saidak      U of North Carolina, Greensboro, USA
+          Jim Haglund     University of Pennsylvania, USA                James A. Sellers       Penn State University, USA
+   Johnny Henderson       Baylor University, USA                        Andrew J. Sterge        Honorary Editor
+             Jim Hoste    Pitzer College, USA                                  Ann Trenk        Wellesley College, USA
+  Natalia Hritonenko      Prairie View A&M University, USA                     Ravi Vakil       Stanford University, USA
+   Glenn H. Hurlbert      Arizona State University,USA                   Antonia Vecchio        Consiglio Nazionale delle Ricerche, Italy
+  Charles R. Johnson      College of William and Mary, USA                 Ram U. Verma         University of Toledo, USA
+     K. B. Kulasekera     Clemson University, USA                      John C. Wierman          Johns Hopkins University, USA
+          Gerry Ladas     University of Rhode Island, USA               Michael E. Zieve        University of Michigan, USA
+
+                                                           PRODUCTION
+                                                      Silvio Levy, Scientific Editor
+                                                                                                                    Cover: Alex Scorpan
+See inside back cover or msp.org/involve for submission instructions. The subscription price for 2018 is US $190/year for the electronic
+version, and $250/year (+$35, if shipping outside the US) for print and electronic. Subscriptions, requests for back issues and changes of
+subscriber address should be sent to MSP.
+Involve (ISSN 1944-4184 electronic, 1944-4176 printed) at Mathematical Sciences Publishers, 798 Evans Hall #3840, c/o University of
+California, Berkeley, CA 94720-3840, is published continuously online. Periodical rate postage paid at Berkeley, CA 94704, and additional
+mailing offices.
+                Involve peer review and production are managed by EditF LOW® from Mathematical Sciences Publishers.
+                                                            PUBLISHED BY
+                                               mathematical sciences publishers
+                                                   nonprofit scientific publishing
+                                                          http://msp.org/
+                                               © 2018 Mathematical Sciences Publishers
+                      involve
+                       2018            vol. 11            no. 5
+
+
+
+
+On the minuscule representation of type Bn                                            721
+     W ILLIAM J. C OOK AND N OAH A. H UGHES
+Pythagorean orthogonality of compact sets                                             735
+     PALLAVI AGGARWAL , S TEVEN S CHLICKER AND RYAN
+     S WARTZENTRUBER
+Different definitions of conic sections in hyperbolic geometry                        753
+     PATRICK C HAO AND J ONATHAN ROSENBERG
+The Fibonacci sequence under a modulus: computing all moduli that produce a           769
+given period
+     A LEX D ISHONG AND M ARC S. R ENAULT
+On the faithfulness of the representation of GL(n) on the space of curvature          775
+tensors
+     C OREY D UNN , DARIEN E LDERFIELD AND RORY M ARTIN -H AGEMEYER
+Quasipositive curvature on a biquotient of Sp(3)                                      787
+     JASON D E V ITO AND W ESLEY M ARTIN
+Symmetric numerical ranges of four-by-four matrices                                   803
+     S HELBY L. B URNETT , A SHLEY C HANDLER AND L INDA J. PATTON
+Counting eta-quotients of prime level                                                 827
+     A LLISON A RNOLD -ROKSANDICH , K EVIN JAMES AND RODNEY K EATON
+The k-diameter component edge connectivity parameter                                  845
+     NATHAN S HANK AND A DAM B UZZARD
+Time stopping for Tsirelson’s norm                                                    857
+     K EVIN B EANLAND , N OAH D UNCAN AND M ICHAEL H OLT
+Enumeration of stacks of spheres                                                      867
+     L AUREN E NDICOTT , RUSSELL M AY AND S IENNA S HACKLETTE
+Rings isomorphic to their nontrivial subrings                                         877
+     JACOB L OJEWSKI AND G REG O MAN
+On generalized MacDonald codes                                                        885
+     PADMAPANI S ENEVIRATNE AND L AUREN M ELCHER
+A simple proof characterizing interval orders with interval lengths between 1 and k   893
+     S IMONA B OYADZHIYSKA , G ARTH I SAAK AND A NN N. T RENK
+
+
+
+
+                                                1944-4176(2018)11:5;1-4
+
