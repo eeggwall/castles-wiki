@@ -215,6 +215,12 @@ def histograms_by_area(r, N):
     return cnt
 
 
+def itertools_product(w):
+    """The skylines of width w on the heights 1 and 2."""
+    from itertools import product
+    return product((1, 2), repeat=w)
+
+
 def fib(n):
     a, b = 0, 1
     for _ in range(n):
@@ -340,3 +346,45 @@ if __name__ == '__main__':
     s2 = [sum(v * (-1) ** b for (m, b), v in hist_dp(w).items() if m == 2) for w in range(2, W2 + 1)]
     a077860 = qdiv([1] + [0] * W2, qmul([1, -2, 2] + [0] * (W2 - 2), [1, -1] + [0] * (W2 - 1), W2), W2)
     print(f"[12] height 2, w = 2..{W2}: A_brick(w, 2) = 2^(w-1) - 1: {a2 == [2 ** (w - 1) - 1 for w in range(2, W2 + 1)]}; A^e_brick(w, 2) = sum_k C(w, 4k + 2) (A038505(w)): {e2 == [sum(comb(w, 4 * k + 2) for k in range(w)) for w in range(2, W2 + 1)]}; S_brick(w, 2) = [x^(w-2)] 1/((1 - 2x + 2x^2)(1 - x)) (A077860(w - 2)): {s2 == a077860[:W2 - 1]}")
+
+    # [13] Growth: by cells (the smallest zero of sum (-1)^k q^(k^2)/(q)_k), by semi-perimeter (phi^2), and at height 2.
+    import sympy as sp
+    NB = 220
+    bc = hist_by_cells(NB)
+    by_n = [0] * (NB + 1)
+    for (n, w), v in bc.items():
+        by_n[n] += v
+
+    def d_inf(q):
+        tot, prod = 0.0, 1.0
+        for k in range(60):
+            if k:
+                prod *= 1 - q ** k
+            tot += (-1) ** k * q ** (k * k) / prod
+        return tot
+    lo, hi = 0.5, 0.7
+    for _ in range(200):
+        mid = (lo + hi) / 2
+        lo, hi = (mid, hi) if d_inf(mid) > 0 else (lo, mid)
+    x = sp.symbols('x')
+    rad = 1 - 2 * x - x**2 - 2 * x**3 + x**4
+    g = sp.series((1 - x + x**2 - sp.sqrt(rad)) / (2 * x**2), x, 0, 25).removeO()
+    ok_g = [g.coeff(x, n) for n in range(24)] == [peakless_motzkin(n) for n in range(24)]
+    ok_f = sp.expand((1 - 3 * x + x**2) * (1 + x + x**2) - rad) == 0
+    c2, s2, sq2 = Counter(), Counter(), Counter()
+    st = Counter({(1, 0, 1, 1): 1})                     # height-2 1-histograms: (last, has 2, cells, blocks)
+    for w in range(2, 41):
+        nxt = Counter()
+        for (a, has2, n, b), v in st.items():
+            for t in (1, 2):
+                nxt[(t, has2 or t == 2, n + t, b + max(0, t - a))] += v
+        st = nxt
+        for (a, has2, n, b), v in st.items():
+            if has2:
+                c2[n] += v
+                s2[w + b] += v
+    for w in range(1, 21):                              # square-grid castles of height 2 by semi-perimeter
+        for c in itertools_product(w):
+            if 2 in c:
+                sq2[w + blocks(c)] += 1
+    print(f"[13] brick-wall castles by cells: ratio at {NB} cells {by_n[NB] / by_n[NB - 1]:.10f}, 1/(smallest zero {lo:.10f} of sum (-1)^k q^(k^2)/(q)_k) = {1 / lo:.10f}; by semi-perimeter, the g.f. (1 - x + x^2 - sqrt(1 - 2x - x^2 - 2x^3 + x^4))/(2x^2) of A004148, n <= 23: {ok_g}, radicand = (1 - 3x + x^2)(1 + x + x^2): {ok_f}, growth phi^2; height 2 by cells F_n - 1, n <= 40: {all(c2[n] == fib(n) - 1 for n in range(1, 41))}; height 2 by semi-perimeter = the square-grid castles of height 2 at semi-perimeter s - 1, s <= 22: {all(s2[t] == sq2[t - 1] for t in range(3, 23))}, ratio at s = 40: {s2[40] / s2[39]:.10f}")

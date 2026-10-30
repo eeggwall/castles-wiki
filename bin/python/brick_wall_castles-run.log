@@ -1,4 +1,4 @@
-# python3 bin/python/brick_wall_castles.py  (2026-10-29, Python 3.11.12)
+# python3 bin/python/brick_wall_castles.py  (2026-10-30, Python 3.11.12)
 [1] the shear is a bijection from the brick-wall castles of width w onto the 1-histograms of width w, row t of the wall becoming row t of the histogram shifted t places, so height, blocks and cells agree; the mirror images drop by at most 1 and end at height 1; w <= 10: True
 [2] the column sweep agrees with brute force on the walls by (height, blocks), w <= 10: True; by width C_w and by blocks N(w, k), w <= 16: True; by height the Dyck paths of semilength w and height h (A080936), w <= 16: True
 [3] even-block brick-wall castles, w = 1..16: [0, 1, 3, 7, 20, 66, 217, 715, 2424, 8398, 29414, 104006, 371384, 1337220, 4847637, 17678835]; = A071688(w) (OEIS data, 2026-10-29): True; = C_w/2 (w even), (C_w + (-1)^((w+1)/2) C_((w-1)/2))/2 (w odd): True
@@ -29,3 +29,4 @@
 [12] S_brick(w, 5), w = 1..14: [0, 0, 0, 0, -1, -9, -38, -93, -123, -15, 235, 286, -208, -433]
 [12] S_brick(w, 6), w = 1..14: [0, 0, 0, 0, 0, 1, 11, 57, 176, 327, 264, -302, -967, -247]
 [12] height 2, w = 2..24: A_brick(w, 2) = 2^(w-1) - 1: True; A^e_brick(w, 2) = sum_k C(w, 4k + 2) (A038505(w)): True; S_brick(w, 2) = [x^(w-2)] 1/((1 - 2x + 2x^2)(1 - x)) (A077860(w - 2)): True
+[13] brick-wall castles by cells: ratio at 220 cells 1.7356628245, 1/(smallest zero 0.5761487691 of sum (-1)^k q^(k^2)/(q)_k) = 1.7356628245; by semi-perimeter, the g.f. (1 - x + x^2 - sqrt(1 - 2x - x^2 - 2x^3 + x^4))/(2x^2) of A004148, n <= 23: True, radicand = (1 - 3x + x^2)(1 + x + x^2): True, growth phi^2; height 2 by cells F_n - 1, n <= 40: True; height 2 by semi-perimeter = the square-grid castles of height 2 at semi-perimeter s - 1, s <= 22: True, ratio at s = 40: 1.7548776672
