@@ -20,6 +20,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 - **C - Chinese Remainder Theorem:** applying the Chinese Remainder Theorem.
 - **M - Metallurgy:** investigating occurrences of golden, silver and bronze means and the higher rungs `δ_4`, `δ_5`, …; golden, silver, plastic ratios; metallic by count, by width, by area, by spectrum; Fibonacci castles
 - **B - Bioinformatics:** biological sequences, molecular folding, structure counts, and the combinatorics computational biology shares with castles.
+- **G - Grids:** tilings, lattices, graphs, and what a castle needs from the ground it stands on.
 - **The OEIS Observatory:** observing and cataloging occurrences of OEIS sequences in castle-related contexts.
 - **The Telephone Company:** phone signals, audio codecs, tone catalogs, musical intervals between neighboring columns, expander-graph and Ihara-zeta reads of the castle graph, information-theoretic entropy of skylines, and the isospectral seminar.
 - **Facilities:** applied, physical-world tooling: real objects turned into castles (keys, city skylines, mountain ridgelines, ballparks).
@@ -145,6 +146,12 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 ### B - Bioinformatics
 
 - RNA secondary structures: Deutsch and Elizalde's bijection from no-double-rise bargraphs of semiperimeter `n + 1` to secondary structures on `n` vertices; its mirror, the castles that drop by at most 1 and end at height 1, counted by semiperimeter as A004148, the RNA sequence.
+
+### G - Grids
+
+- What a castle needs from its ground: a base row, an up direction, rows, and a support rule (no overhang), where an animal, an edge-connected set of cells, needs only adjacency.
+- Regular tilings `{p,q}` (`p`-sided cells, `q` meeting at each vertex): the hexagonal tiling `{6,3}` read as a brick wall in running bond, and the triangular tiling `{3,6}` with its keystone and apex rules for the down triangles.
+- Graphs as ground: castles on a graph with a base and an up direction.
 
 ### The OEIS Observatory
 
