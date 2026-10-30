@@ -363,7 +363,7 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   match for the triangle, its reversed rows, or its columns `h = 3` (`1, 8, 43, 197, 833, 3367, 13244`) and
   `h = 4` (`1, 12, 91, 564, 3133, 16289`), and no OEIS name gives Schröder paths by height (2026-10-29).
   Column `h = 2` is A027941, `F(2w − 1) − 1`. Its formula: the Schröder paths of height at most `k` have
-  g.f. `S_k = 1/(1 − x − x S_{k−1})`, `S_0 = 1/(1 − x)`, and column `h` is `x(S_{h−1} − S_{h−2})`, with `S_{−1} = 0`.
+  g.f. `Sch_k = 1/(1 − x − x Sch_{k−1})`, `Sch_0 = 1/(1 − x)`, and column `h` is `x(Sch_{h−1} − Sch_{h−2})`, with `Sch_{−1} = 0`.
 
 **Skipped (assessed, with reason):**
 
@@ -683,6 +683,7 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalog.m
 | Keystone castles | by height (triangle) | `1; 1, 1; 1, 4, 1; 1, 12, 8, 1; 1, 33, 43, 12, 1` | **novel-candidate** (no match, nor reversed rows, nor columns `h = 3, 4`, 2026-10-29; stage 4) |
 | Keystone castles | even-block, height 2 | `1, 3, 7, 17, 44, 116, 305, 799, 2091, 5473` (from `w = 2`) | **novel-candidate** (no match, 2026-10-29); `(F(2w − 1) − 1 + S_key(w, 2))/2`, the signed count of period 6 |
 | Keystone castles | even-block, height 3 | `3, 21, 99, 417, 1683, 6621` (from `w = 4`) | **novel-candidate** (no match, 2026-10-29) |
+| Keystone castles | height 2, by cells | `1, 0, 2, 1, 4, 3, 7, 8, 13, 17, 25, 35, 49` (from `n = 4`) | **novel-candidate** (no match, with or without the leading terms, 2026-10-30); g.f. `q/(1 − q² − q³/(1 − q⁴)) − q/(1 − q²)`, growth Lehmer's Salem number `1.401268` of degree 6 |
 
 ### No match in the first mining pass (`raw/oeis-pe502/mine-notes.md`, `crosslink-avenues.md`, `vein9-area.md`)
 
