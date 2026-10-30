@@ -150,7 +150,7 @@ Two Divisions, **The Telephone Company** and **Facilities**, have no letter name
 ### G - Grids
 
 - What a castle needs from its ground: a base row, an up direction, rows, and a support rule (no overhang), where an animal, an edge-connected set of cells, needs only adjacency.
-- Regular tilings `{p,q}` (`p`-sided cells, `q` meeting at each vertex): the hexagonal tiling `{6,3}` read as a brick wall in running bond, and the triangular tiling `{3,6}` with its keystone and apex rules for the down triangles.
+- Regular tilings `{p,q}` (`p`-sided cells, `q` meeting at each vertex): the hexagonal tiling `{6,3}` read as a brick wall in running bond, whose castles are the fountains of coins and shear onto the 1-histograms, and the triangular tiling `{3,6}` with its keystone and apex rules for the down triangles.
 - Graphs as ground: castles on a graph with a base and an up direction.
 
 ### The OEIS Observatory
