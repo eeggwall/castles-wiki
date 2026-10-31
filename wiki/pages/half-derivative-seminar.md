@@ -270,7 +270,7 @@ def battlement_hor(h, ts):                 # E hor(t) on the extended battlement
 - [[levy-flights](pages/levy-flights.md)] - the space-fractional Laplacian of the castle graph, against the time-fractional comb of Stop 6.
 - [[power-law-memory-rules](pages/power-law-memory-rules.md)] - the weights of Stop 1 used in a strip rule instead of a statistic.
 - [[fractional-recurrences](pages/fractional-recurrences.md)] - fractional difference operators applied to recurrences.
-- [[castle-notation](pages/castle-notation.md)] - `A^e`, `P(k, L)`, `A_L`, `B_L`, `∇^α`, `B_α`, `𝒞(x)`, `half_h`, `row_h`, `bhalf_h`, `hor(t)`, `msd(t)` and `rate(c)`.
+- [[castle-notation](pages/castle-notation.md)] - `A^e`, `P(k, L)`, `A_L`, `B_L`, `∇^α`, `B_α`, `𝒞(x)`, `half_h`, `row_h`, `bhalf_h`, `N`, `ℓ`, `hor(t)`, `msd(t)` and `rate(c)`.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], [[pell-castle-strip](pages/pell-castle-strip.md)], [[hardin-identity-seminar](pages/hardin-identity-seminar.md)], [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], [[castle-cryptography](pages/castle-cryptography.md)], [[q-thread-seminar](pages/q-thread-seminar.md)], [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[one-bit-seminar](pages/one-bit-seminar.md)], [[song-as-castle](pages/song-as-castle.md)], [[sandcastle-seminar](pages/sandcastle-seminar.md)], [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the other seminar pages.
 
 ## Footnotes
