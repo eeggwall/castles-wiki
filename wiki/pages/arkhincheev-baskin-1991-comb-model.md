@@ -24,6 +24,7 @@ updated: 2026-10-31
 | `θ` | the exponent in `⟨x²(t)⟩ ∝ t^{2/(2+θ)}` | the same |
 | `L` | the average length of the ribs | the same |
 | `p`, `k` | the Laplace variable of `t` and the Fourier variable of `x` | the same |
+| `Δ^ν` | the fractional spatial Laplacian of Equation (30), with `S(2 + θ) = ν` | the same; the wiki writes the castle graph's Laplacian `L`, as in `L^α` on [[levy-flights](pages/levy-flights.md)] |
 
 ## Summary
 
