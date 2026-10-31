@@ -5,7 +5,7 @@ summary: A seminar on castles graded by area, with one castle (2, 1, 3, 3, 1, 1,
 tags: [concept, castle, seminar, pedagogy, teaching, area, q-analog, q-catalan, q-motzkin, q-bessel, prime-castles, signed-count, polyomino, composition]
 sources: [bousquet-melou-fedou-1995-convex-polyominoes, steep-polyominoes-q-motzkin-bessel, prellberg-brak-1995-cluster-models]
 created: 2026-09-27
-updated: 2026-10-25
+updated: 2026-10-31
 ---
 
 # q-thread seminar - castles by area
@@ -292,7 +292,7 @@ True
 - [[tree-castle-by-area](pages/tree-castle-by-area.md)], [[area-growth-census](pages/area-growth-census.md)], [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - bounded height by area, Stop 7.
 - [[fractional-block-count](pages/fractional-block-count.md)] - a statistic that interpolates between area and block count.
 - [[castle-notation](pages/castle-notation.md)] - the area-grading symbols `B(q, z)`, `E(q, z)`, `N(q)`, `M(q)`, `Π`, `J_0`, `J_1`.
-- [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], [[hardin-identity-seminar](pages/hardin-identity-seminar.md)], [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[one-bit-seminar](pages/one-bit-seminar.md)], [[sandcastle-seminar](pages/sandcastle-seminar.md)], [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the other seminar pages.
+- [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], [[hardin-identity-seminar](pages/hardin-identity-seminar.md)], [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[one-bit-seminar](pages/one-bit-seminar.md)], [[sandcastle-seminar](pages/sandcastle-seminar.md)], [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)], [[half-derivative-seminar](pages/half-derivative-seminar.md)] - the other seminar pages.
 - [[pell-castle-strip](pages/pell-castle-strip.md)], [[castle-cryptography](pages/castle-cryptography.md)], [[song-as-castle](pages/song-as-castle.md)] - the seminar pages on the Pell strip, castle cryptography, and audio as castles.
 
 ## Footnotes

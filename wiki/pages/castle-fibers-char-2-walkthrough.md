@@ -5,7 +5,7 @@ summary: A seminar that follows the signed tower count P(2, L) = 1, 1, 3, 9, 19,
 tags: [concept, castle, seminar, pedagogy, teaching, ring, spectrum, finite-field, chinese-remainder-theorem, idempotent, nilradical, frobenius, quadratic-reciprocity, signed-tower-count, parity-sector]
 sources: [calugareanu-hamburg-exercises-basic-ring-theory, project-euler-502-representations, oeis-encyclopedia]
 created: 2026-09-26
-updated: 2026-10-25
+updated: 2026-10-31
 ---
 
 # Castle fibers seminar - `char_2` across the primes
@@ -178,6 +178,7 @@ def fiber_board(k, primes):
 - [[castle-cryptography-ring](pages/castle-cryptography-ring.md)] - the ring `F_p[x]/(char_2)` as a cryptosystem; its CRT projections at `p = 101` are worked in Attack 1 of [[castle-cryptography](pages/castle-cryptography.md)].
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] - the seminar that derives `T(k, L) = (k + 1)^L` and the signed count `P(k, L)`.
 - [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] - the seminar on the parity-sector split of `P(6, ·)` and Hardin's word counts.
+- [[pell-castle-strip](pages/pell-castle-strip.md)], [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], [[q-thread-seminar](pages/q-thread-seminar.md)], [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[one-bit-seminar](pages/one-bit-seminar.md)], [[half-derivative-seminar](pages/half-derivative-seminar.md)], [[song-as-castle](pages/song-as-castle.md)], [[sandcastle-seminar](pages/sandcastle-seminar.md)] - the other seminar pages.
 - [[castle-snippets-number-theory](pages/castle-snippets-number-theory.md)] - `char_k`, `x_order`, `reduced_period`, `frobenius_profile`, `fiber_ideal_count`, `sector_idempotent` and `x_inverse`.
 
 ## Footnotes

@@ -5,7 +5,7 @@ summary: A seminar-shaped analysis. Coefficient matching on D(x) = 1/(1 − 2x �
 tags: [analysis, castle, pell, generating-functions, coefficient-matching, seminar, pedagogy, silver-ratio, transfer-matrix]
 sources: [pe502-pell-castle-strip, barry-2005-catalan-transform]
 created: 2026-09-15
-updated: 2026-10-22
+updated: 2026-10-31
 ---
 
 # The Pell castle strip - from 1/(1 − 2x − x²) to the silver mean
@@ -150,7 +150,7 @@ The silver mean `1 + √2 = [2; 2, 2, …]` has a purely periodic continued frac
 - [[tower-word-continued-fraction](pages/tower-word-continued-fraction.md)] - the tower words, `A004149`, with growth constant `√2 + 1`.
 - [[aocp-generating-functions](pages/aocp-generating-functions.md)] - the Fibonacci method and the Binet formula, the case `a = 1`.
 - [[castle-classification-growth](pages/castle-classification-growth.md)] - growth constants of castle families along a size axis; the Pell castles and the ridge castles of height 3 are both silver by width.
-- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], [[one-bit-seminar](pages/one-bit-seminar.md)], [[hardin-identity-seminar](pages/hardin-identity-seminar.md)], [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[sandcastle-seminar](pages/sandcastle-seminar.md)], [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)], [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], [[castle-cryptography](pages/castle-cryptography.md)], [[song-as-castle](pages/song-as-castle.md)] - the other seminar pages.
+- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], [[one-bit-seminar](pages/one-bit-seminar.md)], [[hardin-identity-seminar](pages/hardin-identity-seminar.md)], [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[sandcastle-seminar](pages/sandcastle-seminar.md)], [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)], [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], [[castle-cryptography](pages/castle-cryptography.md)], [[song-as-castle](pages/song-as-castle.md)], [[q-thread-seminar](pages/q-thread-seminar.md)], [[half-derivative-seminar](pages/half-derivative-seminar.md)] - the other seminar pages.
 
 ## Footnotes
 

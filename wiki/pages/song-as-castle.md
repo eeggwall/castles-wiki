@@ -302,7 +302,7 @@ It has 7 blocks; the mean block count over all castles of width 15 and height 5 
 - [[image-as-castle](pages/image-as-castle.md)] - the same map for JPG and PNG: an image as a stack of row castles or one two-dimensional castle.
 - [[castle-steganography](pages/castle-steganography.md)] - hiding a base64 string in castles; block parity as a covert channel.
 - [[tone-castle-catalog](pages/tone-castle-catalog.md)] - every DTMF, MF and call-progress signal as a castle.
-- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[one-bit-seminar](pages/one-bit-seminar.md)] / [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] / [[sandcastle-seminar](pages/sandcastle-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)] - the other seminar pages.
+- [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)] / [[one-bit-seminar](pages/one-bit-seminar.md)] / [[hardin-identity-seminar](pages/hardin-identity-seminar.md)] / [[oeis-mining-seminar](pages/oeis-mining-seminar.md)] / [[sandcastle-seminar](pages/sandcastle-seminar.md)] / [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] / [[tower-recursion-master-class](pages/tower-recursion-master-class.md)] / [[pell-castle-strip](pages/pell-castle-strip.md)], [[q-thread-seminar](pages/q-thread-seminar.md)], [[half-derivative-seminar](pages/half-derivative-seminar.md)] - the other seminar pages.
 
 ## Appearances in Sources
 
