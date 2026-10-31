@@ -397,7 +397,7 @@ a001906-2			the even-Fibonacci mode `m_w` of the height-3 castle's sink group (D
 a001950			positions of the height-2 columns of the Fibonacci castle whose tower is a prefix of the Fibonacci word					A001950			Upper Wythoff sequence (a Beatty sequence): a(n) = floor(n*phi^2), where phi = (1+sqrt(5))/2.	count	
 a002203			companion Pell (trace of Pell)					A002203			Companion Pell numbers: a(n) = 2*a(n-1) + a(n-2), a(0) = a(1) = 2.	metallic	
 a002426			unconstrained U/R/D words returning to height 0; Motzkin is the ballot-restricted version					A002426			Central trinomial coefficients: largest coefficient of (1 + x + x^2)^n.	supporting	
-a002596			numerators of the half-order Grunwald-Letnikov weights (-1)^k C(1/2,k) (fractional-block-count)					A002596			Numerators in expansion of sqrt(1+x). Absolute values give numerators in expansion of sqrt(1-x).	supporting	
+a002596			numerators of the generalized binomial coefficients C(1/2, k), the coefficients of sqrt(1 + x); their absolute values are the numerators of the half-order Grunwald-Letnikov weights (fractional-block-count)					A002596			Numerators in expansion of sqrt(1+x). Absolute values give numerators in expansion of sqrt(1-x).	supporting	
 a002662			towers of height at most 1 on a base of length L with at least 2 blocks: A002662(L)					A002662			a(n) = 2^n - 1 - n*(n+1)/2.	count	
 a002664			towers of height at most 1 on a base of length L with at least 3 blocks: A002664(L)					A002664			a(n) = 2^n - C(n,0) - ... - C(n,4).	count	
 a002718			Bender's c((0,n)): partitions of a multiset with every element twice, no repeated blocks, no repeated element in a block					A002718			Number of bicoverings of an n-set.	supporting	
