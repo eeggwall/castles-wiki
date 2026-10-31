@@ -5,7 +5,7 @@ summary: The fractional Laplacian L^α = U Λ^α U^T of a castle graph, defined 
 tags: [analysis, castle, fractional-calculus, fractional-laplacian, riascos-mateos, levy-flight, anomalous-diffusion, isospectral, cospectral, tree-castle, spectral-graph-theory, laplacian, heat-kernel, spectral-invariant]
 sources: [project-euler-502-representations]
 created: 2026-09-22
-updated: 2026-10-29
+updated: 2026-10-31
 ---
 
 # Lévy flights on the castle graph
@@ -91,7 +91,7 @@ The entry at `B`'s tower tip exceeds both of `A`'s spike tips at every `α` in t
 2.00   3.13e-2    7.09e-2    9.24e-2    6.16e-2
 ```
 
-Every entry is nonzero, and at `t = 1` and `t = 2` the distance increases with `α`. As `α → 0`, `L^α → I − P`, where `P = (1/n)𝟙𝟙ᵀ` projects onto the kernel of `L` (the castle graph is connected), so `exp(−t L^α) → e^{−t} I + (1 − e^{−t}) P`, whose diagonal entries all equal `e^{−t} + (1 − e^{−t})/n`. Both the difference at the tallest cells and the distance between the sorted diagonals tend to 0.
+Every entry is nonzero, and at `t = 1` and `t = 2` the distance increases with `α`. As `α → 0`, `L^α → I − (1/n)𝟙𝟙ᵀ`, where `(1/n)𝟙𝟙ᵀ` projects onto the kernel of `L` (the castle graph is connected), so `exp(−t L^α) → e^{−t} I + (1 − e^{−t}) (1/n)𝟙𝟙ᵀ`, whose diagonal entries all equal `e^{−t} + (1 − e^{−t})/n`. Both the difference at the tallest cells and the distance between the sorted diagonals tend to 0.
 
 ## A short reproducer
 
