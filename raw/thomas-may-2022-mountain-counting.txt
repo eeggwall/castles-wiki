@@ -1,0 +1,458 @@
+                                 Mountain Counting
+
+                                 A. Thomas and R. May
+
+
+
+       Abstract - We investigate the combinatorial objects, mountains of spheres, which are three-
+       dimensional variants of two-dimensional fountains of coins. A mountain can be decomposed
+       into a sequence of fountains, and this decomposition leads to a recurrence relation. We
+       obtain a closed-form solution for their counts, based on this recurrence relation. Lastly, we
+       discuss the feasibility of this enumeration.
+
+       Keywords : enumerative combinatorics; generating functions
+
+       Mathematics Subject Classification (2020) : 05A15
+
+
+1     Introduction
+A common problem in combinatorics is to enumerate the ways to piece together physical
+or mathematical objects that are subject to certain rules. For example, a polyomino is
+a collection of unit squares in a square lattice subject to the rule that the squares must
+be edge-wise connected, i.e., for any pair of squares in the polyomino there is a step-by-
+step path of squares totally within the polyomino, beginning and ending at the pair, that
+share an edge from one step to the next. Martin Gardner in his columns in Scientific
+American popularized polyominoes in the 1960’s [3]. The literature about them is vast,
+but popular overviews can be found in [4] and [6]. Figure 1 displays four polyominoes.
+There are several ways to consider polyominoes equivalent, by translation, rotation, and
+reflection, to name a few. Despite tremendous effort, closed-form formulas for the number
+of polyominoes in terms of their number of squares are not known [10].
+
+
+
+
+                            Figure 1: Polyominoes in a square lattice
+
+
+    the pump journal of undergraduate research 5 (2022), 70–79                                         70
+                                                          positions
+                                                       1 2 3 4 5 6 7 8
+                                                   4
+                                                    3
+                                                rows 2
+                                                           1
+                                                               1 2 3 2 1 2 3 4
+                                                                     slants
+
+Figure 2: A fountain of coins of width 8 and the same fountain with its slant representation
+h1, 2, 3, 2, 1, 2, 3, 4i, embedded in a coordinate system of rows and positions.
+
+     Another interesting combinatorial object is a fountain of coins. An (n, w) fountain
+of coins is an arrangement of n identical coins subject to two rules: the bottom row
+must consist of w contiguous coins, and the coins in higher rows must satisfy the gravity
+rule that each coin has to rest on two coins in the row immediately below. The number
+of coins in the bottom row of a fountain is called its width. Figure 2 shows an (18, 8)
+fountain of width 8, consisting of 18 total coins. Odlyzko and Wilf analyzed fountains of
+coins in [7] and attributed the question of their enumeration to J.M. Propp. They noted
+that the number of fountains with exactly w coins    in the bottom row√coincides with the
+  th                                             2w
+w Catalan number, which we denote Cw = w /(w + 1) ≈ 4 /w3/2 π (see [8]). More
+                                                                  w
+
+significantly, they showed that if an denotes  the number of fountains with n total coins,
+                                              n
+                                      P
+then the generating function f (x) = n an x is the continued fraction
+
+                                                       1
+                                 f (x) =                           .                    (1)
+                                                           x
+                                           1−
+                                                      x2
+                                                1−
+                                                        x3
+                                                   1−
+                                                      1 − ···
+This continued fraction was first studied by S. Ramanujan, and an identity in his “lost
+notebook” [1] provided a direct method in [7] to approximate the coefficients of this
+generating function.
+    The combinatorial objects of interest in this paper are mountains of spheres, which
+are three-dimensional variants of fountains of coins. Mountains of spheres were first intro-
+duced by Endicott et al. in [2]. As defined there, an (n, w, `) mountain is an arrangement
+of n identical spheres into a three-dimensional lattice that follows two rules: its bottom
+layer forms a w × ` rectangular grid of spheres, and higher layers follow the gravity rule
+that every sphere must rest on four spheres in the layer immediately below. Figure 3
+shows a (153, 9, 10) mountain. In general, a mountain can have many peaks, valleys, and
+plateaus. The spheres in each horizontal layer of a mountain must follow the gravity
+rule, but are otherwise arbitrary and resemble collections of polyominoes. In [2], Endicott
+analyzed special classes of mountains, such as pyramidal mountains which have a single
+spire consisting of rectangular cross sections. Here, we consider general mountains and
+
+  the pump journal of undergraduate research 5 (2022), 70–79                             71
+               Figure 3: A (153, 9, 10) mountain, colored by horizontal layers
+
+
+
+enumerate them in three ways:
+
+       mn,w,` = the number of mountains consisting of n spheres with a w × ` base;
+                X
+        mw,` =      mn,w,` = the number of mountains with a w × ` base;
+                   n
+                  X
+           mn =          mn,w,` = the number of mountains consisting of n spheres.
+                   w,`
+
+
+Rotations and reflections in general produce different mountains but with the same num-
+ber of spheres. So, mw,` = m`,w .
+    The goal of this paper is to generalize the results of [7] from two-dimensional foun-
+tains to three-dimensional mountains, and in doing so, answer open questions about the
+enumeration of mountains from [2]. In Section 2, we review basic results about fountains
+of coins, as they apply to mountains. Then, in Section 3, we show how a mountain can be
+sliced face-by-face into fountains, how these faces must be related, and how this relation
+leads to a linear recurrence relation for mn,w,` . We then use this recurrence relation to
+obtain a closed-form formula for mw,` in terms of the powers of a matrix. We conclude
+in Section 4 with remarks on the computational complexity of this solution and mention
+several open problems about mountain counting.
+
+
+2     Fountains
+Recall that a fountain is an arrangement of identical coins into rows that has a contiguous
+bottom row and satisfies the two-dimensional gravity rule. More formally, we can also
+represent a fountain as a collection of ordered pairs of positive integers as follows. Each
+coin in a fountain is uniquely identified by the row r that it is in and its position k within
+this row, i.e., by the pair (r, k). Figure 2 illustrates the coordinate system of rows and
+positions. Note that the position of a coin in one row is the same as the position of the
+coin to its right in the row below. So, as an alternate definition in terms of integers, we
+can say that F ⊆ N × N is a (n, w) fountain if |F | = n, the bottom row has (1, k) ∈ F
+
+
+    the pump journal of undergraduate research 5 (2022), 70–79                             72
+for 1 ≤ k ≤ w and (1, k) ∈        / F for any other k, and for the gravity rule that if r > 1 and
+(r, k) ∈ F , then (r − 1, k − 1) and (r − 1, k) are also in F .
+     Though it may be tempting to consider fountains row by row, it often is more fruitful
+instead to slice them diagonally into slants, as illustrated with different colors in Figure 2.
+We say the k th slant of a fountain is the set of all coins with constant position k in the
+rows. A fountain of width w has w coins on its bottom row and so has w slants, all of
+which have at least one coin. By the gravity rule, we can see that a slant has no “gaps”—if
+one coin is present in a slant, then it must be supported by a strip of coins beneath it
+in its slant. Because of this, any fountain of width w may be expressed completely as
+a w-tuple of the numbers of coins on its slants as in Figure 2. Notationally, we define
+                                                                    th
+F = hsP  1 , . . . , sw i to be the fountain with sk coins on the k    slant for 1 ≤ k ≤ w. Then,
+|F | = k sk is the total number of coins in the fountain.
+     This representation of a fountain as a sequence of integers is much simpler than keeping
+track of the location of each coin in the fountain individually. In this light, we would like
+to know exactly when a sequence of positive integers hs1 , . . . , sw i actually represents a
+valid fountain. The leftmost slant s1 must be exactly 1 because there are no coins to the
+left of the beginning of any fountain. The highest coin in the k th slant has coordinates
+(sk , k) and, as long as sk > 1, by the gravity rule must be supported by the coin below
+and to the left, which has coordinates (sk − 1, k − 1). Therefore, the number coins sk−1 in
+the k − 1th slant must be at least sk − 1. So, a sequence hs1 , . . . , sw i of positive integers
+represents a fountain if and only if
+
+                                     s1 = 1
+                                                                                             (2)
+                                   sk−1 ≥ sk − 1 for 1 < k ≤ w.
+
+In other words, the first slant must be exactly 1 and each slant must properly “lean on”
+the previous slant to the left. Sequences satisfying Equation 2 are one of the sixty six
+incarnations of combinatorial objects in [11] (example U, page 224) giving rise to the
+Catalan numbers.
+    Another advantage of the slant representation is that fountains can be ordered, in
+particular, with the dictionary order. For instance,     = h1, 1, 2i precedes     = h1, 2, 1i
+in the dictionary order.
+    Perhaps the most important use for this slant representation is that it provides a recur-
+sive method for building fountains. For this recursion, we define the following refinements
+of types of fountains:
+
+     fn,w,s = the number of (n, w) fountains with s coins on the rightmost slant
+              X
+      fw,s =      fn,w,s
+                n
+           = the number of fountains of width w with s coins on the rightmost slant
+             X
+        fw =     fw,s = the number of fountains of width w
+                s
+
+
+
+
+   the pump journal of undergraduate research 5 (2022), 70–79                                 73
+Any fountain can be extended in width by tacking a slant of coins onto the rightmost
+slant, as limited by Equation 2. Therefore,
+                              (
+                               1 if n = s = 1
+                     fn,1,s =
+                               0 otherwise
+                               X                                                 (3)
+                     fn,w,s =     fn−s,w−1,s0 for n ≥ s, w > 1, s ≥ 1.
+                                 s0 ≥s−1
+
+It is easy to compute fw,s by summing over n and to compute fw by summing over s in
+Equation 3, as seen in the table.
+                                                          P
+                     fw,s   s = 1 2 3 4 5 6 fw = s fw,s
+                   w=1          1 0 0 0 0 0                     1
+                      2         1 1 0 0 0 0                     2
+                      3         2 2 1 0 0 0                     5
+                      4         5 5 3 1 0 0                    14
+                      5        14 14 9 4 1 0                   42
+                      6        42 42 28 14 5 1                132
+
+The recurrence relation and values for fw,s coincide with that of a transpose of the so-
+called Catalan triangle, C(n, k) in Equation 2.1 in [5]. Specifically, fw,s = C(w, w − s)
+for 1 ≤ s ≤ w. In particular, the leftmost column in the table coincides with the Catalan
+numbers, as shown in [7].
+    A recursive procedure similar to tacking a slant onto a fountain in Equation 3 can be
+applied to three-dimensional mountains, as we see in the next section.
+
+
+3     Mountains
+Recall that a mountain is an arrangement of identical spheres into layers whose bottom
+layer forms a rectangular grid and whose higher layers follow the three-dimensional gravity
+rule. Also recall that mn,w,` is the number of mountains
+                                                    P        consisting of n spheres whose
+base has width w and length `, and that mw,` = n mn,w,` is the number of mountains
+with width w and length `. In this section, we obtain a recurrence relation for mn,w,`
+which is used to derive a closed-form expression for mw,` .
+    In a close analogy to fountains, we can formally consider mountains to be a collection
+of triples of positive integers in the following way. First, we imagine a mountain to be
+located in a three-dimensional Cartesian coordinate system with one corner of its base at
+the origin and the sides of the base aligned with the positive x and y-axes. Then each
+sphere in the mountain can be uniquely identified by the layer that it is in and its x
+and y-positions in this layer. We number the positions in each layer so that the x and
+y-positions of a sphere in any layer coincide with those of the farthest sphere from the
+origin among the four spheres supporting it in the layer below. Thus, in terms of integers,
+we can define a subset M of N3 to be a (n, w, `) mountain if |M | = n and in the bottom
+
+    the pump journal of undergraduate research 5 (2022), 70–79                           74
+layer (1, x, y) ∈ M for all 1 ≤ x ≤ ` and 1 ≤ y ≤ w but (1, x, y) ∈ / M for any other values,
+and for the gravity rule if h > 1 and (h, x, y) ∈ M , then so are (h−1, x, y), (h−1, x−1, y),
+(h − 1, x, y − 1), and (h − 1, x − 1, y − 1). Two mountains are distinct if one has a sphere
+at some coordinate, but the other does not.
+    We first present some elementary properties of mn,w,` and mw,` . By rotation, it is
+clear that mw,` = m`,w for all w, `. A mountain of width 1 could only consist of a single
+contiguous row of spheres, and so m`,1,` = m1,` = 1. As for mountains of width 2,        the
+                                                                                     `−1
+second horizontal layer has ` − 1 places to insert spheres, so that m2`+k,2,` = k and
+m2,` = 2`−1 .
+
+
+
+
+                                    ∗
+
+
+
+
+Figure 4: A (153, 9, 10) mountain from oblique and top views and its decomposition into
+lateral faces. As an example of the coordinate system, the highest sphere in the light-
+orange lateral face, marked with a ∗, is located in layer 4 with x-position 4 and y-position
+9.
+
+    Mountains can be decomposed into horizontal layers, as shown in Figure 3. However,
+just as fountains can be decomposed into a sequence of slants to enable an iterative method
+of building them, mountains can likewise be decomposed into lateral faces, as is shown
+in Figure 4. The k th lateral face of a mountain is the set of spheres whose x-position is
+k, regardless of layer or y-position. What may be surprising is that each lateral face of
+a mountain actually forms a fountain when placed upright. This follows directly from
+the gravity rule, which ensures that any sphere with height greater than 1 lies atop four
+spheres in the layer below. Two of these spheres lie in the same lateral face as the original
+sphere, and are exactly those that must support it to satisfy the two-dimensional gravity
+rule for fountains. Similar arguments as those used for slants of fountains then enable
+any (n, w, `) mountain to be expressed as an `-tuple of fountains of width w.
+    We need a condition to test whether a sequence of fountains truly represents a moun-
+tain, analogous to Equation 2 for fountains. The crucial step is to determine when one
+
+  the pump journal of undergraduate research 5 (2022), 70–79                              75
+fountain can “lean on” another. We say a fountain F = hs1 , ..., sw i leans on a fountain
+F 0 = hs01 , ..., s0w i, or conversely that F 0 supports F , and write F 0  F if when the coins
+in F are augmented to spheres with x-position ` and the coins in F 0 are augmented to
+spheres with x-position ` − 1, then all the spheres in F satisfy the gravity rule. To charac-
+terize this leaning relation, consider two such fountains F and F 0 . The sphere at the top
+of the k th slant in F has coordinates (sk , `, k) and by the gravity rule must be supported
+by the two spheres in F 0 with coordinates (sk − 1, ` − 1, k − 1) and (sk − 1, ` − 1, k). The
+slants s0k−1 and s0k in F 0 must contain these two spheres that support (sk , `, k), and so
+s0k−1 ≥ sk − 1 and s0k ≥ sk − 1. Therefore, the characterization for one fountain leaning on
+another is that hs01 , . . . , s0w i  hs1 , . . . , sw i if and only if both s0k−1 ≥ sk − 1 and s0k ≥ sk − 1
+for all 1 < k ≤ w. So, a sequence F1 , . . . , F` of fountains of width w represents a mountain
+if and only if F1 = 1w , the sequence of w ones, and F1  · · ·  F` . This characterization
+of mountains is a direct generalization of Equation 2 for fountains.
+    We may now apply the methods of Section 2 to iteratively build large mountains from
+small ones. An (n0 , w, ` − 1) mountain may be extended to an (n, w, `) mountain with
+n > n0 by tacking on a fountain of n − n0 spheres and width w that can lean on the
+initial mountain’s final lateral face. If we define mn,w,`,F to be the                Pnumber of (n, w, `)
+mountains whose final lateral face is the fountain F , then mn,w,` = F mn,w,`,F . Leaning
+a face F onto all mountains whose final lateral faces F 0 can support it gives the following
+recurrence relation:
+                                                (
+                                                    1 if F = 1w and n = w
+                                 mn,w,1,F =
+                                                    0 otherwise.
+                                                 X                                                        (4)
+                                 mn,w,`,F =             mn−|F |,w,`−1,F 0 for ` > 1.
+                                           F 0 F
+
+Equation 4 can be considered the mountain analog of Equation 3 for fountains and is the
+main tool for enumerating mountains. Using Maple to sum up Equation 4 over all w, `
+and F ’s yields the numbers of mountains mn for various numbers of spheres n ≤ 20 as
+1, 2, 2, 3, 3, 4, 6, 6, 9, 14, 18, 22, 33, 57, 76, 91, 139, 236, 348, 470, and, for example,
+m63 = 29 964 295 890.
+    Equation 4 can also be used to enumerate mountains by the size of their bases. Sum-
+ming over the number of spheres contained in each mountain, we have
+                                        (
+                                          1 if F = 1w
+                               mw,1,F =
+                                          0 otherwise.
+                                         X                                              (5)
+                               mw,`,F =      mw,`−1,F 0 for ` > 1.
+                                             F 0 F
+
+Note that Equation 5 is linear in the mw,`,F ’s (with coefficients of 1’s or 0’s) and so can
+be rewritten in terms of a matrix. We define the leaning matrix Lw of order w, which
+represents the relation that a fountain F of width w can lean on another fountain F 0 of
+
+
+   the pump journal of undergraduate research 5 (2022), 70–79                                             76
+width w, as follows:                           (
+                                          0     1 if F 0  F
+                                  Lw (F, F ) =                                             (6)
+                                                0 otherwise.
+So, Lw is a matrix of 0’s and 1’s whose rows and columns are indexed by fountains of
+width w in some specified order, say dictionary order on the numbers of spheres on the
+slants. The size of Lw is Cw × Cw , where Cw is the wth Catalan number. For instance,
+for w = 3
+
+                                 1        1      1      1     1 
+                                1         1      1      1     1 
+                           L3 =
+                                1         1      1      1     1 
+                                                                 
+                                                                
+                                1         1      1      1     1 
+                                    0      0      0      1     1
+
+By adding a zero term to the sum in Equation 5 for each F 0 that does not support F , we
+can express mw,`,F as a sum over all fountains using the leaning matrix
+                                    X
+                           mw,`,F =     Lw (F, F 0 )mw,`−1,F 0 .                      (7)
+                                          F0
+
+     To record the mountain counts themselves, we use column vectors. We define mw,`
+to be the column vector of all mw,`,F ’s for the Cw many fountains of width w. We
+order the entries in the column vector with the dictionary order on the fountains’ slant
+representations. In this ordering, mw,1 has a first entry of 1, followed by 0’s. Each
+instance of Equation 7 may be recast as a dot product of the matrix Lw with the mw,`−1
+vector, i.e., mw,` = Lw · mw,`−1 . After iterating this multiplication ` − 1 times, we have
+mw,` = L`−1w   · mw,1 . By summing over all lateral faces, we finally arrive a closed-form
+expression for the number of mountains with a specified base mw,` , namely that mw,` is
+the sum of the entries in the first column of the ` − 1th power of the leaning matrix Lw ,
+i.e.,
+                                mw,` = 1Cw · L`−1
+                                                w · mw,1   .                            (8)
+For instance with w = 3, m3,` = [1, 1, 1, 1, 1]·L`−1               t
+                                                 3 ·[1, 0, 0, 0, 0] . Equation 8 can be used to
+compute the number of mountains whose bases are small. The following table enumerates
+mw,` for w, ` ≤ 6.
+
+                 mw,` ` = 1 2     3     4       5         6
+                 w=1      1 1     1     1       1         1
+                  2       1 2     4     8      16        32
+                  3       1 4    17    73     314      1351
+                  4       1 8    73   690    6583     62962
+                  5       1 16 314 6583 141120      3048513
+                  6       1 32 1351 62962 3048513 149892010
+  the pump journal of undergraduate research 5 (2022), 70–79                                77
+    We note that the sequence hm3,` i in the table has been shown in [2] to have the
+following ordinary generating function
+                                                    x(1 − x)
+                                       A3 (x) =                ,                                 (9)
+                                                  1 − 5x + 3x2
+whose coefficients happen to coincide with OEIS sequence A018902 [9]. However, as of
+this writing, sequences hmw,` : ` ≥ 1i for w ≥ 4 do not appear in OEIS.
+
+4     Conclusion
+While Equation 4 provides a recurrence relation to enumerate general fountains and Equa-
+tion 8 provides an explicit formula for counting mountains based on the dimensions of
+their bases, these methods are hardly efficient. The leaning matrix that encodes which
+                                                                                            th
+faces of width w can lean on which others
+                                      w    3/2
+                                               √ is an Cw × Cw matrix, where Cw is the w
+Catalan number, approximately 4 /w              π. So, the size of the leaning matrix is expo-
+nential in the length of the mountain’s base. Equation 8 also requires a power of the
+leaning matrix, but the power is small compared with the matrix’s size. Therefore, it is
+unlikely that standard methods of accelerating computation of matrix powers, notably
+repeated squaring or diagonalization, would improve efficiency. One possible source of
+improvement would be to reduce the comparisons from every pair of faces by creating a
+small number of classes of faces to compare. For fountains, it is easy given a final slant s
+to partition slants as leaning on s and not leaning on s, but no such simple computation
+is known for lateral faces of mountains.
+    A likely next step in the analysis of mountains would be a computation of the generat-
+ing functions of hmn,w,`,F i, hmn,w,` i, hmw,` i, and hmn i. Even though Equation 4 is linear,
+there are several reasons why the generating function for hmm,w,`,F i is likely nontrivial.
+First, mn,w,`,F is indexed by a fountain, not just by integers. Second, the generating func-
+tions for mountains must generalize in some sense the generating functions for fountains,
+which, as seen in Equation 1 for Ramanujan’s continued fraction, are already non-trivial.
+The problem of computing the generating functions for general classes of mountains is
+open.
+    We conclude with a related problem suggested by Serban Raianu. Instead of arranging
+spheres in the base of a mountain in a rectangle as part of a square lattice, the spheres can
+also be arranged in a parallelogram as part of a hexagonal lattice. In this case the gravity
+rule becomes simpler—each sphere above the base must sit on just the three spheres
+immediately below it. This arrangement gives the densest possible packing of spheres.
+With the spheres arranges in each layer as a hexagonal lattice, how many mountains are
+there with a w × ` parallelogram base?
+
+References
+ [1] S. Bhargava, C. Adiga, On Some Continued Fraction Identities of Srinivasa Ramanujan, Proc. Amer.
+     Math. Soc., 92 (1984), 13–18. Also available on JSTOR at the URL: https://www.jstor.org/
+     stable/2045144.
+
+    the pump journal of undergraduate research 5 (2022), 70–79                                    78
+ [2] L. Endicott, R. May, S. Shacklette, Enumeration of Stacks of Spheres, Involve, 11 (2018), 867–875.
+     DOI: https://msp.org/involve/2018/11-5/p11.xhtml.
+ [3] M. Gardner, More about the shapes that can be made with complex dominoes (Math-
+     ematical Games), Sci. Amer., 203 (1960), 186–201. DOI: https://doi.org/10.1038/
+     scientificamerican1160-186.
+ [4] S. Golomb, Polyominoes: puzzles, patterns, problems, and packings, Princeton University Press,
+     Princeton, NJ, 1994.
+ [5] K. Lee, S. Oh, Catalan triangle numbers and binomial coefficients, Contemp. Math., 713 (2018).
+     DOI: https://doi.org/10.1090/conm/713/14315.
+ [6] G. Martin, Polyominoes: Puzzles and Problems in Tiling, Math. Assoc. Amer., 1991.
+ [7] A. Odlyzko, H. Wilf, The Editor’s Corner: n Coins in a Fountain, Amer. Math. Monthly, 95 (1988),
+     840–843. Also available on JSTOR at the URL: https://www.jstor.org/stable/2322898.
+ [8] OEIS Foundation Inc. (2020), The On-Line Encyclopedia of Integer Sequences, http://oeis.org/
+     A000108.
+ [9] OEIS Foundation Inc. (2020), The On-Line Encyclopedia of Integer Sequences, http://oeis.org/
+     A018902.
+[10] D. Redelmeier, Counting polyominoes: Yet another attack, Discrete Math., 36 (1981), 191–203.
+     DOI: https://doi.org/10.1016/0012-365X(81)90237-5.
+[11] R. Stanley, Enumerative Combinatorics: Volume 2, Cambridge University Press, Cambridge, 1999.
+
+
+Aaron Thomas
+Department of Mathematics
+328 Natural Sciences Building
+University of Louisville
+Louisville, KY 40292
+E-mail: aaron.thomas@louisville.edu
+
+
+Russell May
+Morehead State University
+150 University Drive, UPO 701
+Morehead, KY 40351-1689
+E-mail: r.may@moreheadstate.edu
+
+
+Received: September 18, 2021 Accepted: April 5, 2022
+Communicated by Min-Lin Lo
+
+
+
+
+   the pump journal of undergraduate research 5 (2022), 70–79                                       79
+

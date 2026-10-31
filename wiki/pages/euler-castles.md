@@ -159,6 +159,7 @@ the sum running over all Euler castles. So at each area and semi-perimeter the e
 - [[hoodoo-monadnock-castles](pages/hoodoo-monadnock-castles.md)] - two more castle types built from partitions into distinct parts, on the steps of each side.
 - [[konigsberg-castles](pages/konigsberg-castles.md)] - the double staircases `(1, …, k, k, …, 1)`, whose falling half is an Euler castle.
 - [[castle-sign](pages/castle-sign.md)] - the sign `(−1)^blocks`, which on an Euler castle is the sign of the pentagonal number theorem.
+- [[brick-wall-castles](pages/brick-wall-castles.md)] - the Euler castles, mirrored and sheared, are the brick-wall castles whose every row is one block ending at the right end of its row.
 - [[castle-notation](pages/castle-notation.md)] - the symbols of this page.
 
 ## Footnotes

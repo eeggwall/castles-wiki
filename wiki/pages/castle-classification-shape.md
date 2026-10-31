@@ -1,11 +1,11 @@
 ---
 title: Castle classification - shape types
 category: Concepts
-summary: The 41 shape types of castles taken from the Castle Types source, 7 base types and 34 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag, Mersenne, Euler, Königsberg and Hilbert types; the m-disparate castles are counted as the duals of the (m − 1)-smooth castles. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
+summary: The 41 shape types of castles taken from the Castle Types source, 7 base types and 34 proposed ones, as predicates on the skyline (c_1, …, c_w), each with an example skyline, plus the ridge, hoodoo, monadnock, valley, k-valley, city-building, zig-zag, Mersenne, Euler, Königsberg and Hilbert types and the 1-histograms, the brick-wall castles sheared onto the square grid; the m-disparate castles are counted as the duals of the (m − 1)-smooth castles. Seven axes - convexity and modality, rate of change, path-like, symmetry, extremum, parity and area, value patterns - with the wiki page and the count of each type where one is known.
 tags: [concept, castle, classification, taxonomy, skyline, geometric, unimodal, ferrers, dyck-path, motzkin-path, rainbow, hook, ridge-castle, hoodoo-castle, monadnock-castle, distinct-parts]
 sources: [castle-classification, aocp-generating-partitions, cho-huh-nam-sohn-2022-bounded-free-motzkin-paths, project-euler-502-representations, oeis-encyclopedia]
 created: 2026-09-19
-updated: 2026-10-28
+updated: 2026-10-30
 ---
 
 # Castle classification - shape types
@@ -79,7 +79,7 @@ h = 7:  36, 108, 156, 168, 169, 169, …
 
 ### Axis 2: Rate of change
 
-Types 7, 8 and 9, the base type m-disparate, the ridge type, the zig-zag type, the Hilbert type, the Mersenne type and the Euler type:
+Types 7, 8 and 9, the base type m-disparate, the ridge type, the zig-zag type, the Hilbert type, the Mersenne type, the Euler type and the 1-histogram type:
 
 | type | predicate | example | wiki page and count |
 |---|---|---|---|
@@ -90,6 +90,7 @@ Types 7, 8 and 9, the base type m-disparate, the ridge type, the zig-zag type, t
 | **Hilbert** | `\|c_{i+1} − c_i\| ≠ 1`: the pairs the zig-zag predicate forbids | `(1, 3, 3, 1, 4)` | [[hilbert-castles](pages/hilbert-castles.md)]: the strips have the series `1/Z_h(−x)`, `Z_h` the zig-zag strip series, A287804 to A287832 at `h = 5, …, 11`; `2^w − 1` at `h = 3`, all with an odd number of blocks, and `2F_{2w+1} − 2^w − 1` at `h = 4`, growth `φ²` by width |
 | **Mersenne** | `c_{i+1}/c_i` in `{1, 2, 1/2, 3/2, 2/3, 4/3, 3/4}`: neighboring columns, read as strings whose lengths are their heights, sound a unison, an octave, a fifth or a fourth | `(2, 3, 4, 2, 1)` | [[mersenne-castles](pages/mersenne-castles.md)]: all castles at `h = 2`, the 1-smooth castles at `h = 3`; the count at height `h` depends only on the largest divisor of `h` of the form `2^a 3^b`, and the growth by width stays below 7 and tends to 7 along those divisors |
 | **Euler** | `c_i − c_{i+1} ∈ {0, 1}` and `c_w = 1`: a Ferrers skyline that falls one step at a time to height 1 | `(3, 3, 2, 1, 1)` | [[euler-castles](pages/euler-castles.md)]: `C(w − 1, h − 1)` in each cell; by area the partitions into distinct parts, `A000009`, with the number of parts as the block count, so the signed count by area is Euler's pentagonal series `A010815`; turned on their side, the staircase castles |
+| **1-histogram** | `c_1 = 1` and `c_{i+1} ≤ c_i + 1` | `(1, 2, 3, 1, 2)` | [[brick-wall-castles](pages/brick-wall-castles.md)]: the brick-wall castles of width `w`, sheared along their diagonals onto the square grid with the same rows, blocks and cells; `C_w` of them, by height the Dyck paths of semilength `w` and height `h` (`A080936`), by blocks the Narayana numbers; their mirror images drop by at most 1 and end at height 1 ([[motzkin-castles](pages/motzkin-castles.md)]) |
 | **Zigzag** | the differences `c_{i+1} − c_i` alternate in sign | `(1, 3, 2, 3, 1)` | the Zigzag castles of odd width that fall first, `c_1 > c_2 < c_3 > ⋯ < c_w`, are the castles of plane trees, `C_{b−1}` of them with `b` blocks ([[von-neumann-castles](pages/von-neumann-castles.md)]); the counts by width and height are open. Not the zig-zag type of this table, whose differences are all `±1` |
 | **m-disparate** | `\|c_{i+1} − c_i\| ≥ m` | `(1, 3, 1, 4)`, `m = 2` | the dual of the `(m − 1)`-smooth predicate (paragraph *m-disparate castles*): `2(F_{w+2} − 1)` for `w ≥ 2` at `h = m + 2`; at `m = 2` the strips have the series `1/sw_h(−x)` and the castles of height `h` grow at `ρ(J − A_path) − 1` by width |
 

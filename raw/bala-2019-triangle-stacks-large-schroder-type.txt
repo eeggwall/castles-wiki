@@ -1,0 +1,282 @@
+ TRIANGLE STACKS OF LARGE SCHRÖDER TYPE
+                             Peter Bala, Jul 30 2019
+
+                              1. INTRODUCTION
+
+   Sequence A224704 gives the number of triangle stacks on n triangles. The
+triangles in a triangle stack come in two types - up-triangles with vertices at
+the integer lattice points (x, y), (x + 1, y + 1) and (x + 2, y) and down-
+triangles with vertices at the integer lattice points (x, y), (x − 1, y + 1) and
+(x + 1, y + 1). Both types of triangle have unit area. The construction of a
+triangle stack of the type considered in A224704 begins with a bottom row of
+contiguous up-triangles. Down-triangles may be placed in the gaps between
+adjacent up-triangles. Further up-triangles may then be placed on these
+down-triangles and the process continued.
+
+   In these notes we vary the construction of a triangle stack by starting with
+the bottom row of the stack consisting of contiguous down-triangles. We dene
+an (n, k, ku , kd ) triangle stack of large Schröder type to be a triangle stack of n
+triangles with k contiguous down-triangles in the bottom row of the stack, ku
+up-triangles and kd down-triangles in the stack. Clearly, ku + kd = n. As an
+example, Figure 1 shows two triangle stacks of large Schröder type - a
+(17, 8, 11, 6) stack and a (24, 7, 13, 11) stack (in what we might call the
+standard position, where the x-axis rests on the bottom row of down-triangles
+of the stack and the leftmost vertex of the stack is at the origin).
+
+
+
+
+          Figure 1. Examples of triangle stacks of large Schröder type
+
+                                         1
+  Two triangle stacks are considered the same if one is mapped onto the other
+by some translation of the plane.
+
+  Each triangle stack of large Schröder type is associated in a obvious way
+with a large Schröder path (shown highlighted in black in the examples in
+Figure 1). There is a bijection between large Schröder paths and triangle
+stacks of large Schröder type (hence the choice of name).
+
+  We associate the weight q n bk uku dkd to an (n, k, ku , kd ) triangle stack; thus q
+marks the area of the stack, b the triangles in the bottom row of the stack, u
+marks the up-triangles and d marks the down-triangles in the stack. The
+empty triangle stack (n = 0) is assigned a weight of 1. Our interest is in
+determining the generating function for the number f (n, k, ku , kd ) of
+(n, k, ku , kd ) triangle stacks
+                                             X
+               F (q, b, u, d)   =                             q n bk uku dkd
+                                     all (n, k, ku , kd )
+                                     triangle stacks
+                                      X
+                                =                f (n, k, ku , kd )q n bk uku dkd .
+                                    n,k,ku ,kd
+
+   Our approach is standard: we describe a decomposition of triangle stacks,
+which leads to a functional equation satised by the generating function
+F (q, b, u, d). This functional equation can be solved to give a representation
+for F (q, b, u, d) as a continued fraction. In Section 5 we use a result from
+Ramanujan's last notebook to nd alternative representations for the
+generating function F (q, b, u, d).
+
+                                2. PRIMITIVE STACKS
+
+   We say an (n, k, ku , kd ) triangle stack, with k ≥ 1, is a primitive triangle
+stack if its next-to-bottom row has k up-triangles resting on the k down-
+triangles in the bottom row, and has no empty positions (i.e., contains k − 1
+down-triangles).
+
+
+
+
+                       Figure 2. A primitive (14,4,8,6) stack
+
+
+                                             2
+  A primitive stack corresponds to a large Schröder path that begins with an
+upstep and makes its rst returns to the x-axis at the end of the stack.
+
+   Let g(n, k, ku , kd ) denote the
+                                 Xnumber of primitive (n, k, ku , kd ) triangle
+stacks and let G(q, b, u, d) =      g(n, k, ku , kd )q n bk uku dkd , where the sum is
+taken over all primitive stacks, denote the generating function for the number
+of weighted primitive triangle stacks. Removing the bottom row of k down-
+triangles from a primitive (n, k, ku , kd ) stack, together with the k up-triangles
+resting on these base triangles, results in a (not-necessarily- primitive) triangle
+stack on n − 2k triangles, having k − 1 triangles in its bottom row and
+containing ku − k up-triangles and kd − k down-triangles. In Figure 3, for
+instance, this process applied to the primitive (14, 4, 8, 6) stack of Figure 2
+produces a (non-primitive) (6, 3, 4, 2) triangle stack.
+
+
+
+
+                                          Figure 3.
+
+Thus we see that
+g(n, k, ku , kd ) = f (n − 2k, k − 1, ku − k, kd − k),   n ≥ 2k, k ≥ 1, ku ≥ k, kd ≥ k.
+
+This is equivalent to the relation between generating functions
+                                           q 2 budF q, q 2 bud, u, d .              (1)
+                                                                    
+                      G(q, b, u, d)   =
+
+
+               3. DERIVING THE GENERATING FUNCTION F
+
+  Let now L be a non-empty triangle stack of large Schröder type. Two cases
+can occur.
+
+Case 1) As in the rst example in Figure 1, the Schröder path associated with
+the stack L may begin with a at step. In this case L begins with a
+down-triangle (of weight qbd) with no up-triangle resting on it, followed by an
+arbitrary triangle stack of large Schröder type. Therefore, the generating
+function for the number of weighted stacks of this type is equal to
+qbdF (q, b, u, d).
+
+
+
+                                             3
+Case 2) The other possibility is that the Schröder path associated with the
+triangle stack L begins with an upstep. In this case L decomposes uniquely
+into an initial non-empty primitive stack (which extends to where the large
+Schröder path associated with L rst returns to the x-axis) followed by an
+arbitrary triangle stack of large Schröder type. The second example in Figure
+1 is of this type, beginning with an initial primitive stack on a base of three
+down-triangles.
+
+  This decomposition shows that the generating function for the number of
+stacks of this second type factorises as GF.
+
+  In total then, the generating function F decomposes as
+                                F     =   1 + qbdF + GF,
+
+leading to
+                                                1
+                                  F   =                .
+                                           1 − qbd − G
+Hence, by (1), we have
+                                                 1
+                       F    =                                           .
+                                1 − qbd − q 2 budF (q, q 2 bud, u, d)
+  Succesive iterations of this identity lead to a formal continued fraction
+expansion for the generating function of the number of weighted triangle
+stacks of large Schröder type:
+                       1        q 2 bud        q 4 bu2 d2       q 6 bu3 d3
+ F (q, b, u, d) =                                                                    .
+                    1 − qbd − 1 − q 3 bud2 − 1 − q 5 bu2 d3 − 1 − q 7 bu3 d4 − · · ·
+                                                                                    (2)
+
+                                 4. SPECIALISATIONS
+
+1) Setting the variables q, u and d in (2) equal to 1 gives the generating
+function for the number of triangle stacks of large Schröder type with n
+down-triangles in the bottom row as the continued fraction
+                            1     b      b
+                           1−b − 1−b − 1 − b −···
+                      =    1 + 2b + 6b2 + 22b3 + 90b4 + 394b5 + · · · .
+
+This is a known representation for the generating function of the sequence of
+large Schröder numbers A006318, and simply reects the bijection between
+large Schröder paths of semilength n and triangle stacks of large Schröder type
+with a bottom row of n down-triangles.
+
+                                             4
+2) Setting the variables b, u and d in (2) equal to 1 gives the generating
+function for the number of triangle stacks of large Schröder type on n triangles
+as the continued fraction
+                     1       q2       q4       q6
+                   1 − q − 1 − q3 − 1 − q5 − 1 − q7 − · · ·
+              =    1 + q + 2q 2 + 3q 3 + 5q 4 + 9q 5 + 16q 6 + 28q 7 + · · · .
+The coecient sequence [1, 1, 2, 3, 5, 9, 16, 28, ...] is already in the OEIS as
+entry A088352, but without a combinatorial interpretation.
+3) Setting q = b = 1 in (2) gives the generating function for the number of
+triangle stacks of large Schröder type on n down-triangles and k up-triangles as
+                 1       ud        u2 d2       u3 d3
+                                                               .
+               1 − d − 1 − ud2 − 1 − u2 d3 − 1 − u3 d4 − · · ·
+
+The associated coecient array begins
+                        nk        1   u    u2       u3   u4   u5   u6
+                         1         1
+                         d         1   1
+                         d2        1   2     1
+                         d3        1   3     4       2
+                         d4        1   4     8       8     3
+                         d5        1   5    13       20   16    5
+                         d6        1   6    19       38   46   31   9
+
+The sequence of row sums of the array [1, 2, 4, 10, 24, 60, 150, ...] is A088354.
+         5. ALTERNATIVE REPRESENTATIONS FOR F (q, b, u, d)
+  We use a result from Ramanujan's lost notebook to nd other
+representations for the generating function F (q, b, u, d) of the number of
+weighted triangle stacks of large Schröder type. Dene the q -series
+                             ∞                                 2
+                             X                        λn q n
+           g(b ; λ)    =                                                             .
+                             n=0
+                                 (1 − q) · · · (1 − q n ) (1 + bq) · · · (1 + bq n )
+
+Entry 6.3.1 in Ramanujan's lost notebook (see [1, p. 159]) gives three formal
+continued fraction expressions for the q -series ratio g(b ; λq)/g(b ; λ) :
+       g(b ; λq)           1   λq  λq 2 + bq   λq 3 λq 4 + bq 2
+                   =                                                                     (3)
+       g(b ; λ)            1 + 1 +     1     + 1 +       1      +···
+                           1     λq       λq 2     λq 3
+                   =                                                                     (4)
+                           1 + 1 + bq + 1 + bq + 1 + bq 3 + · · ·
+                                               2
+
+                             1     b + λq  b + λq 2 b + λq 3
+                   =                                          .                          (5)
+                           1 − b + 1 − b + 1 − b + 1 − b +···
+
+                                                 5
+It follows from (4) that
+                              !
+        1      g(b ; λ)                   1        λq 2       λq 3
+                         −1        =                                         .      (6)
+        λq     g(b ; λq)                1 + bq + 1 + bq 2 + 1 + bq 3 + · · ·
+
+Making the parameter replacements b → − qu
+                                         b
+                                                    2 ud , q → q ud, we nd
+                                           , λ → − q−b          2
+
+that the right-hand side of (6) becomes
+            1        q 2 bud        q 4 bu2 d2       q 6 bu3 d3
+                                                                          ,
+         1 − qbd − 1 − q 3 bud2 − 1 − q 5 bu2 d3 − 1 − q 7 bu3 d4 − · · ·
+which is the continued fraction representation for the generating function
+F (q, b, u, d) given in (2).
+
+The left-hand side of (6) simplies to the q -series ratio
+                                        N (q, b, u, d)
+                                                       ,
+                                        D(q, b, u, d)
+where
+
+                             ∞                        2           2        2
+                                      (−1)n q 2n +2n bn un +n dn +n
+                                                                                    (7)
+                             X
+          N (q, b, u, d) =       n                n+1
+                             n=0
+                                 Y                Y
+                                                        1 − q 2k−1 buk−1 dk
+                                                                            
+                                         2k k
+                                   (1 − q u d ) k
+
+                                  k=1                      k=1
+and                          ∞                              2     2    2
+                                          (−1)n q 2n bn un dn
+                                                                                    (8)
+                             X
+         D(q, b, u, d) =         n                 n                       .
+                                 Y               Y
+                             n=0                            2k−1   k−1 k
+                                                                         
+                                         2k k k
+                                   (1 − q u d )       1−q        bu   d
+                                  k=1                     k=1
+Thus we have a representation for the generating function F as a q -series ratio:
+                                                    N (q, b, u, d)
+                             F (q, b, u, d)   =                    ,                (9)
+                                                    D(q, b, u, d)
+where the q -series N and D are given by (7) and (8).
+
+  Another continued fraction representation for the generating function can be
+obtained from (3):
+                   1   qbd + q 2 bud   q 4 bu2 d2   q 3 bud2 + q 6 bu3 d3   q 8 bu4 d4
+F (q, b, u, d) =
+                   1 −      1        −      1     −          1            −      1
+                      q 5 bu2 d3 + q 10 bu5 d5   q 12 bu6 d6
+                                                                               .   (10)
+                    −            1             −       1     −···
+References
+ [1] G. E. Andrews and B. C. Berndt                Ramanujan's Lost Notebook, Part 1,
+                                                   Springer 2005
+
+
+                                               6
+

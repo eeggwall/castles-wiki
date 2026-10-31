@@ -1,11 +1,11 @@
 ---
 title: Castle classification - growth types
 category: Concepts
-summary: Growth types classify families of castles, not single castles; upper bounds hold for every family, and existence and first-height statements are about rules, 0/1 tables of which height may follow which, since every constant below the ceiling of an axis is the growth constant of some family. A family is "X by width" (or by height, by area, by semi-perimeter) when its count, graded by that axis, grows like X^n. Metallic growth constants are de Spinadel's σ_p^q, the roots of x² − px − q, named golden, silver, bronze, copper (= 2) and nickel and otherwise written by symbol; by width the ridge castles realize the q = 1 row δ_a = σ_a^1 and the tree castles of height h the p = 1 column σ_1^{h−1}. Three Padovan-counted families are plastic by width. By area every family grows at most 2, so none is silver or bronze; the castles of height h grow at the h-nacci constants, and tree, prime and ridge castles at supergolden, plastic and ψ². By semi-perimeter all castles grow at τ², τ the tribonacci constant; silver first occurs at height 5, no family of height at most 21 is bronze (computed), and whether a rule of height 22 or more is bronze is open. Across the three axes, tree castles have semi-perimeter A + 1 and so grow alike by area and by semi-perimeter, prime castles of height h by semi-perimeter are the castles of height h − 1, and the Pell castles, silver by width, are copper by semi-perimeter.
+summary: Growth types classify families of castles, not single castles; upper bounds hold for every family, and existence and first-height statements are about rules, 0/1 tables of which height may follow which, since every constant below the ceiling of an axis is the growth constant of some family. A family is "X by width" (or by height, by area, by semi-perimeter) when its count, graded by that axis, grows like X^n. Metallic growth constants are de Spinadel's σ_p^q, the roots of x² − px − q, named golden, silver, bronze, copper (= 2) and nickel and otherwise written by symbol; by width the ridge castles realize the q = 1 row δ_a = σ_a^1 and the tree castles of height h the p = 1 column σ_1^{h−1}. Three Padovan-counted families are plastic by width. By area every family grows at most 2, so none is silver or bronze; the castles of height h grow at the h-nacci constants, and tree, prime and ridge castles at supergolden, plastic and ψ². By semi-perimeter all castles grow at τ², τ the tribonacci constant; silver first occurs at height 5, no family of height at most 21 is bronze (computed), and whether a rule of height 22 or more is bronze is open. Across the three axes, tree castles have semi-perimeter A + 1 and so grow alike by area and by semi-perimeter, prime castles of height h by semi-perimeter are the castles of height h − 1, and the Pell castles, silver by width, are copper by semi-perimeter. On other tilings the brick-wall castles grow at 4 by width, 1.735663 by cells and φ² by width plus blocks, and the keystone castles at (1 + √2)² by width, 1.462749 by cells and 3 by width plus blocks; at height 2 the keystone castles grow by cells at Lehmer's Salem number 1.401268 of degree 6.
 tags: [concept, castle, classification, taxonomy, growth-constant, metallic-means, ridge-castle, non-metallic, meta-classification, n-nacci, cubic-pisot, plastic-number, class-predicate]
-sources: [de-spinadel-1999-family-of-metallic-means, balado-silvestre-2026-runs-binary-strings]
+sources: [de-spinadel-1999-family-of-metallic-means, balado-silvestre-2026-runs-binary-strings, verger-gaugry-2024-salem-minoration]
 created: 2026-09-19
-updated: 2026-10-28
+updated: 2026-10-30
 ---
 
 # Castle classification - growth types
@@ -29,6 +29,7 @@ The constant `X` takes its literature name where it has one:
 
 - **Metallic means** ([[metallic-means](pages/metallic-means.md)]): de Spinadel's family `σ_p^q = (p + √(p² + 4q))/2`, the positive roots of `x² − px − q` for natural `p, q`, with the names golden (`σ_1^1 = φ`), silver (`σ_2^1 = 1 + √2`), bronze (`σ_3^1 = (3 + √13)/2`), copper (`σ_1^2 = 2`) and nickel (`σ_1^3 = (1 + √13)/2`) ([[de-spinadel-1999-family-of-metallic-means](pages/de-spinadel-1999-family-of-metallic-means.md)]). The members with `q = 1` are `δ_a = σ_a^1`; the others are written by symbol, as `δ_4 = 2 + √5` and `σ_2^2 = 1 + √3`. A strip family whose width generating function has denominator `1 − p_1 x − p_2 x²` with `p_1, p_2 ≥ 1` grows at `σ_{p_1}^{p_2}` ([[metallic-strip-realizability](pages/metallic-strip-realizability.md)]).
 - **n-nacci constants**, the positive roots of `x^h = x^{h−1} + ⋯ + x + 1`: tribonacci at `h = 3`, tetranacci at `h = 4`, pentanacci at `h = 5`, increasing to 2.
+- **Salem numbers**: real algebraic integers above 1 whose other conjugates have modulus at most 1, at least one of them exactly 1, as Lehmer's number `1.17628…` ([[area-growth-census](pages/area-growth-census.md)]).[^vg-salem]
 - **Cubic Pisot numbers**: supergolden, the real root of `x³ = x² + 1`;[^crilly] the plastic number `ψ`, the real root of `x³ = x + 1`; and `ψ²`, the real root of `x³ − 2x² + x − 1`.
 
 Other algebraic growth constants are written by value and minimal polynomial, as `1.685137…`, the root of `x⁵ − x⁴ − x² − x − 1`.
@@ -159,6 +160,23 @@ The same family has a growth constant on each axis:[^axes]
 
 The plastic number also appears in the signed tower count, as the largest eigenvalue `2ψ²` of `char_6` ([[signed-tower-count](pages/signed-tower-count.md)]), an eigenvalue of a recurrence and not the growth constant of a family.
 
+## Castles on other tilings
+
+The brick-wall castles of [[brick-wall-castles](pages/brick-wall-castles.md)] stand on the hexagonal tiling and the keystone castles of [[keystone-castles](pages/keystone-castles.md)] on the triangular tiling. Their axes are the width (the cells of the bottom row), the cells, and the width plus the number of blocks, which for a brick-wall castle is the semi-perimeter of its shear onto the square grid. A castle of either kind has height at most its width, so the counts by width run over all heights:
+
+| family | by width | by cells | by width plus blocks |
+|---|---|---|---|
+| brick-wall castles | 4, the Catalan numbers | `1.735663…`, the reciprocal of the smallest zero `0.576149…` of `Σ_k (−1)^k q^{k²}/(q)_k` | `φ²`, A004148 |
+| brick-wall castles, height 2 | copper 2 | golden `φ` | `ψ²` |
+| keystone castles | `(1 + √2)² = 3 + 2√2`, the large Schröder numbers | `1.462749…`, A393774 | 3, the Motzkin numbers |
+| keystone castles, height 2 | `φ²` | `1.401268…`, `z⁶ − z⁴ − z³ − z² + 1` | copper 2 |
+
+- **The brick wall at height 2 grows as the square grid at height 2.** Deleting the first column of the shear of a brick-wall castle of height 2, which has height 1, leaves a castle of height 2 and width `w − 1` on the square grid with the same blocks, so on all three axes the constants are those of the row *all castles, height 2* above.
+- **The keystone castles of height 2 grow by cells at a Salem number.** The polynomial `z⁶ − z⁴ − z³ − z² + 1` is palindromic, `y = z + 1/z` satisfies the irreducible cubic `y³ − 4y − 1 = 0`, and its two roots in `(−2, 2)` put four conjugates of the growth constant on the unit circle. The number is the Salem number of degree 6 in Lehmer's table,[^vg-lehmer] also an area growth constant of square-grid strip rules from height 3 ([[area-growth-census](pages/area-growth-census.md)]).
+- **The keystone castles grow by width at the square of the silver mean.** The large Schröder numbers have generating function `(1 − x − √(1 − 6x + x²))/(2x)`, singular at `3 − 2√2`, the smaller root of `1 − 6x + x²`, and `1/(3 − 2√2) = 3 + 2√2 = (1 + √2)²`.
+
+Every value agrees with the counts of the two family pages, computed to at least 120 cells and to width 30.[^exec-tilings]
+
 ## Related Concepts
 
 - [[castle-classification](pages/castle-classification.md)] - the hub of the classifications by shape, spectrum and growth.
@@ -167,6 +185,7 @@ The plastic number also appears in the signed tower count, as the largest eigenv
 - [[metallic-means](pages/metallic-means.md)] - de Spinadel's family `σ_p^q` and its named members.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - which metallic means are growth constants of strip rules by width, and the ridge matrix `R_h`.
 - [[pell-castle-strip](pages/pell-castle-strip.md)] - the strips counted by the Pell numbers, silver by width.
+- [[brick-wall-castles](pages/brick-wall-castles.md)], [[keystone-castles](pages/keystone-castles.md)] - the castles on the hexagonal and triangular tilings, with their growth constants by width, cells, and width plus blocks.
 - [[castle-strip](pages/castle-strip.md)] - skylines read one column at a time under a rule on neighboring columns, whose transfer matrices give the growth by width.
 - [[castle-graph](pages/castle-graph.md)] - tree skylines and tree castles by width.
 - [[castles-of-height-h-by-area](pages/castles-of-height-h-by-area.md)] - the castles of height `h` by area, the n-nacci family.
@@ -191,3 +210,6 @@ The plastic number also appears in the signed tower count, as the largest eigenv
 [^mersenne]: Verified by execution (Python 3.11, 2026-10-28): `bin/python/mersenne_castles.py` item [3], run log `bin/python/mersenne_castles-run.log`. The consonance rule on `{1, 2, 3}` is the 1-smooth rule; the Mersenne castles of height 4 grow at the largest root of `x³ − 4x² + 2x + 2`.
 [^zz]: https://oeis.org/A027557 (read 2026-10-27) - "a(n) = 2*A000045(n+3) - 2^floor((n+2)/2) - 2^floor((n+1)/2). - _Max Alekseyev_, Jun 02 2005"; the counts and the growth verified by execution (Python 3.10, 2026-10-27): `bin/python/zig_zag_castles.py` items [4] and [6], run log `bin/python/zig_zag_castles-run.log`.
 [^hil]: Verified by execution (Python 3.11 with NumPy and SymPy, 2026-10-28): `bin/python/hilbert_castles.py` items [3], [4], [5] and [7], run log `bin/python/hilbert_castles-run.log`. The Hilbert castles of heights 3 and 4 against `2^w − 1` and `2F_{2w+1} − 2^w − 1` for `w ≤ 60`; the relabeling of the heights on four heights and the characteristic polynomial `(x² − 3x + 1)(x² − x − 1)`; the largest eigenvalues; the m-disparate castles of height `m + 2` against `2(F_{w+2} − 1)` for `m = 2, …, 9` and `w = 2, …, 30`.
+[^vg-salem]: [[verger-gaugry-2024-salem-minoration](pages/verger-gaugry-2024-salem-minoration.md)] §1 p.2 L50-L55 [synthesis] - "A Salem number is an algebraic integer β > 1 such that its Galois conjugates β(i) satisfy: |β(i)| ≤ 1", with at least one conjugate other than `β` on the unit circle; Salem numbers have even degree at least 4 and a reciprocal minimal polynomial.
+[^vg-lehmer]: [[verger-gaugry-2024-salem-minoration](pages/verger-gaugry-2024-salem-minoration.md)] §3 p.11 Table 2 L496-L504 - "The small Salem numbers, with their minimal polynomial, discovered by Lehmer in [63]": the row of degree 6, `1.401 . . .`, `X 6 − X 4 − X 3 − X 2 + 1`.
+[^exec-tilings]: Verified by execution (Python 3.11, 2026-10-30): `bin/python/brick_wall_castles.py` item [13] (run log `bin/python/brick_wall_castles-run.log`), the brick-wall castles by cells to 220 cells against the zero of `Σ_k (−1)^k q^{k²}/(q)_k`, the generating function of A004148 and its radicand, and at height 2 against `F_n − 1` and the square-grid castles of height 2; `bin/python/keystone_castles.py` items [10] and [11] (run log `bin/python/keystone_castles-run.log`), the keystone castles by cells to 200 cells, the Schröder generating function for `w ≤ 30`, and the castles of height 2 by cells and by width plus blocks, with the roots of `z⁶ − z⁴ − z³ − z² + 1`.

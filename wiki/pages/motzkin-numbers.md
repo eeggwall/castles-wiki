@@ -5,7 +5,7 @@ summary: The Motzkin number M_n (OEIS A001006) counts the ways to draw noninters
 tags: [concept, motzkin, lattice-paths, q-analog, generating-functions]
 sources: [motzkin-numbers, steep-polyominoes-q-motzkin-bessel, barry-2005-catalan-transform]
 created: 2026-09-13
-updated: 2026-10-25
+updated: 2026-10-29
 ---
 
 # Motzkin numbers
@@ -51,6 +51,7 @@ The source also notes that a q-analog `M_n(q)` refines the Motzkin numbers and a
 - [[q-catalan-numbers](pages/q-catalan-numbers.md)] - the q-Catalan numbers, which reduce to the Catalan numbers at `q = 1`.
 - [[tower-word-language](pages/tower-word-language.md)] - the tower words as a language of Motzkin paths.
 - [[dyck-words](pages/dyck-words.md)] - the steep Dyck words, counted by `M_{n−1}`.
+- [[keystone-castles](pages/keystone-castles.md)] - the castles on the triangular tiling, `M_{s−2}` of them with width plus blocks `s`, their Schröder outline read with unit steps.
 - [[castle-q-bessel-closed-form](pages/castle-q-bessel-closed-form.md)] - castles counted by area and blocks, through a ratio of q-Bessel series.
 - [[marin-2024-polyominoes-in-rectangle](pages/marin-2024-polyominoes-in-rectangle.md)] - the row automaton for polyominoes with bounding box of width `w`, whose `A378947(w)` states are `M_{w+1} + 2M_w + M_{w−1} − 3` for `w > 0`.
 - [[aocp-multinomial-coefficients](pages/aocp-multinomial-coefficients.md)] - the central trinomial coefficients `A002426`, which count the words in `U`, `R`, `D` of length `n` with as many `U` as `D`, without the condition of staying above the axis.

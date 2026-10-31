@@ -1,0 +1,468 @@
+    The area beneath small Schröder paths: Notes
+
+             on A224704, A326453 and A326454
+
+                                  Peter Bala, Jul 14 2019
+    Odlyzko and Wilf [3] found an elegant continued fraction representation for
+the generating function of the number of fountains of coins using n coins. By
+following the author's methods we obtain a continued fraction representation
+for the generating function of the number of stacks of n triangles (sequence
+A224704, contributed by Paul Tek). Making use of a result of Ramanujan we
+express the generating function for triangle stacks as a ratio of q -series, from
+which an asymptotic formula for A22704(n) is derived.
+1       Introduction
+  First we give a precise denition of the triangle stacks considered in
+A224704. A Schröder path is a lattice path in the plane starting and ending on
+the x-axis, never going below the x-axis, using the steps
+
+                      (1, 1) upstep, (1, −1) downstep or (2, 0) at.
+
+A small Schröder path is a Schröder path with no at steps on the x-axis.
+
+
+
+
+The small (or little) Schröder number s(k) is dened as the number of small
+Schröder paths starting at (0, 0) and ending at (2k, 0) on the x-axis. The
+sequence of small Schröder numbers starts (see A001003)
+
+
+  k      0   1    2     3     4      5     6      7      8        9        10     ...
+ s(k)    1   1    3     11   45     197   903   4279   20793    103049   518859   ...
+
+   The area between a small Schröder path and the x-axis can be decomposed
+into triangles each of unit area. We call such a decomposition of the area a
+triangle stack.
+
+
+                                            1
+   The triangles in a triangle stack come in two types - up triangles with
+vertices at the lattice points (x, y), (x + 1, y + 1) and (x + 2, y) and down
+triangles (shown shaded in the above diagram) with vertices at the lattice
+points (x, y), (x − 1, y + 1) and (x + 1, y + 1). Note that a triangle stack has a
+sequence of contiguous up triangles in its bottom row.
+
+  We dene an (n, k, l) triangle stack to be a triangle stack of n triangles with
+k up triangles on the bottom row and l down triangles in total. For example,
+the previous diagram shows an (11,5,4) triangle stack. We associate the weight
+q n uk dl to an (n, k, l) triangle stack; thus q marks the area of the stack, u the
+up triangles in the bottom row of the stack and d the down triangles in the
+stack. We assign a weight of 1 to the empty triangle stack (n = 0). Our
+interest is in determining the generating function for the number of weighted
+triangle stacks
+                                                                                  (1)
+                                               X
+                          F (q, u, d) =                  q n uk dl .
+                                           all (n, k, l)
+                                        triangle stacks
+The generating function for A224704 can then found by specializing u = 1 and
+d = 1.
+
+  The table below shows the n triangle stacks for n from 1 through 4 together
+with their associated weights.
+
+
+
+
+                                         2
+   n                        Stacks of n triangles                            Weights
+
+
+   1                                                                             qu
+
+
+
+   2                                                                           q 2 u2
+
+
+
+   3                                                                           q 3 u3
+
+
+                                                                               q 3 u2 d
+
+
+
+   4                                                                           q 4 u4
+
+
+                                                                            both q 4 u3 d
+
+
+
+                                                                               q 4 u2 d
+
+
+The generating function for the number of weighted triangle stacks thus begins
+  F (q, u, d)   =    1 + qu + q 2 u2 + q 3 (u3 + u2 d) + q 4 (u4 + 2u3 d + u2 d) + · · · .
+
+
+  In Section 2 we will show that the generating function F (q, u, d) has the
+continued fraction representation
+                          1      qu          q 3 ud        q 5 ud2
+       F (q, u, d)   =                                                       .              (2)
+                          1 − 1 − q 2 ud − 1 − q 4 ud2 − 1 − q 6 ud3 − · · ·
+
+   In Section 3 we use a result from Ramanujan's lost notebook to nd two
+other continued fraction expansions for the generating function F (q, u, d) and
+also a representation of F (q, u, d) as a ratio of q -series. This latter
+representation is used to nd an asymptotic formula for A224704(n) - the
+number of triangle stacks on n triangles. In Section 4 we briey consider
+triangle stacks arising from Dyck paths.
+
+
+
+                                             3
+   Setting d = 1 in (2) gives the bi-variate generating function for the number
+of stacks of n triangles with k up triangles in the bottom row as the continued
+fraction                                            5
+                  1     qu        q3 u       q u
+                                                            .
+                  1 − 1 − q u − 1 − q4 u − 1 − q6 u − · · ·
+                           2
+
+
+See A326453.
+
+  Similarly, setting u = 1 in (2) gives the bi-variate generating function for the
+number of stacks of n triangles, k of which are down triangles, as
+                 1      q          q3 d         q 5 d2
+                                                                 .
+                 1 − 1 − q 2 d − 1 − q 4 d2 − 1 − q 6 d3 − · · ·
+See A326454.
+
+   Setting q = 1, d = 1 in (2) gives generating function for the number of
+triangle stacks with k up triangles in the bottom row as
+                     1    u     u      u
+                                                ,
+                     1 − 1−u − 1−u − 1 − u −···
+
+but this is simply a (known) representation of the generating function for the
+small Schröder numbers A001003, since a small Schröder path from the origin
+to the point (2k, 0) on the x-axis gives rise to a triangle stack with k
+contiguous up triangles in its bottom row and vice versa.
+
+2     The generating function for (n, k, l) triangle stacks
+   An (n, k) fountain of coins is an arrangement of n coins in rows such that
+there are exactly k contiguous coins in the bottom row and such that each coin
+in a higher row touches exctly two coins in the next lower row. See A005169
+for the number of n coin fountains and A047998 for the triangle of the number
+of (n, k) fountains. Odlyzko and Wilf [3] found an elegant continued fraction
+representation for the generating function of the number of (n, k) fountains.
+We adapt the author's methods to obtain the generating function F (q, u, d) for
+the number of (n, k, l) triangle stacks in the form of a continued fraction.
+
+Primitive triangle stacks.         Recall that an (n, k, l) triangle stack is dened
+to have k contiguous up triangles in its bottom row. We dene a primitive
+(n, k, l) triangle stack to be an (n, k, l) triangle stack such that its next-to
+bottom row begins with k−1 contiguous up triangles. A primitive (n, k, l)
+triangle stack thus has k ≥ 1 contiguous up triangles in its bottom row and in
+the spaces between these lie the full complement of k − 1 down triangles on
+which stand k − 1 up triangles.
+
+                                         4
+                 Example of a primitive (16,5,6) triangle stack
+
+
+
+
+   Let f (n, k, l) denote the number of (n, k, l) triangle stacks and g(n, k, l)
+denote
+P n kthe     number of primitive (n, k, l) triangle stacks. Let G(q, u, d) =
+   q u dl , where the sum is taken over all primitive triangle stacks, denote the
+generating function for the weighted primitive triangle stacks. Removing the
+bottom row consisting of k up triangles and k − 1 down triangles from a
+primitive (n, k, l) triangle stack yields a triangle stack on n − (k + k − 1)
+triangles having k − 1 up triangles in its bottom row and containing l − (k − 1)
+down triangles. Thus we see that
+               g(n, k, l)     = f (n − (2k − 1), k − 1, l − (k − 1)),
+
+equivalent to the following relation between generating functions:
+                            G(q, u, d)   =   quF (q, q 2 ud, d).              (3)
+
+Factorisation of a triangle stack.        We nd a functional equation satised
+by the generating function F by decomposing an arbitrary triangle stack into
+an initial primitive stack and a remaining (possibly empty) triangle stack. Let
+T be an arbitrary (n, k, l) triangle stack. Suppose in the next-to bottom row of
+the stack T, starting at the lattice point (1, 1), there is a row of r − 1, with
+1 ≤ r ≤ k, continguous up triangles followed by a blank space. The rightmost
+vertex of this row of up triangles will be at the lattice point (2r − 1, 1). In
+Figure 1 below, for example, r = 3, while in Figure 2 we have r = 4. As the
+small Schröder path that forms the boundary of the stack T passes through
+the lattice point (2r − 1, 1) there are two possibilities for the next step of the
+path: either (1) a down step to the x-axis as in Figure 1 - in this case we refer
+to the stack T as a type 1 triangle stack, or (2) a at step as in Figure 2 - in
+this case we refer to the stack T as a type 2 triangle stack (an upstep is ruled
+out because there would then be more than r − 1 contiguous up triangles at
+the start of the next-to-bottom row).
+
+
+
+
+                                             5
+Figure 1
+
+
+
+
+       Figure 2
+
+
+
+
+   6
+  If T is a type 1 stack we draw a vertical dotted line through the point
+(2r, 0), splitting T into an initial primitive stack followed by (a possibly
+empty) triangle stack. The contribution to the number f (n, k, l) of (n, k, l)
+triangle stacks made by type 1 stacks is given by the convolution product
+                                                                                                  (4)
+                           X
+                                      g(n0 , r, l0 )f (n − n0 ,k − r, l − l0 ).
+                        n0 ,r,l0 ≥0
+
+This sum is the coecient of the term q n uk dl in the series 1 + F G.
+
+   If T is a type 2 stack as, for example, in Figure 2, we replace the at step at
+the lattice point (2r − 1, 1) with a down step to the x-axis and discard the
+down triangle above this point (labelled D in Figure 2). We again draw a
+vertical dotted line through the point (2r, 0), splitting the stack T (minus the
+down triangle D) into an initial primitive stack followed by a non-empty
+triangle stack. The contribution to the number f (n, k, l) of (n, k, l) triangle
+stacks made by stacks of type 2 is given by the convolution product
+                                                                                                  (5)
+                      X
+                                g(n0 , r, l0 )f (n − n0 − 1,k − r, l − l0 − 1),
+                  n0 ,r,l0 ≥0
+
+
+which we recognise as the coecient of the term q n uk dl in the series
+qd(F − 1)G.
+
+Since an arbitrary triangle stack is either of type 1 or type 2, we can add (4)
+and (5) to nd
+                                  X
+        f (n, k, l)   =                     g(n0 , k, l)f (n − n0 ,k − r, l − l0 )
+                              n0 ,r,l0 ≥0
+
+                                                                                                  (6)
+                                    X
+                              +                 g(n0 , r, l0 )f (n − n0 − 1,k − r, l − l0 − 1).
+                                  n0 ,r,l0 ≥0
+
+Multiplying both sides of (6) by the weight q n uk dl and summing over n, k and
+l leads to the functional relation
+                                F      =        1 + F G + qd(F − 1)G.                             (7)
+We can rewrite (7) in the form of a continued fraction:
+                                         1    1   1
+                          F       =
+                                         1 + qd − G
+                                         1    1          1
+                                  =                                  ,
+                                         1 + qd − quF (q, q 2 ud, d)
+by (3). By means of an equivalence transformation this becomes
+                                         1     qu            1
+                          F       =                                    .
+                                         1 + q 2 ud − F (q, q 2 ud, d)
+
+                                                       7
+Succesive iterations of the above identity lead to the formal continued fraction
+expansion
+                        1      qu         q 3 ud    q 5 ud2
+          F      =                                                  .
+                        1 + q ud − 1 − q ud − 1 − q ud3 − 1 − · · ·
+                             2          4     2    6
+
+
+Using further equivalence transformations to change the sign of the partial
+denominators of the continued fraction, we obtain a representation for the
+generating function F (q, u, d) of the number of weighted triangle stacks in the
+form
+                        1      qu          q 3 ud        q 5 ud2
+          F      =                                                         .            (8)
+                        1 − 1 − q 2 ud − 1 − q 4 ud2 − 1 − q 6 ud3 − · · ·
+
+
+3   Alternative representations for the generating function
+F (q, u, d)
+
+  We use a result from Ramanujan's lost notebook to nd other
+representations for the generating function F (q, u, d) of the number of
+weighted triangle stacks. Dene the q -series
+                              ∞                              2
+                              X                     λn q n
+              g(b; λ)    =                                                         .
+                           n=0
+                               (1 − q) · · · (1 − q n ) (1 + bq) · · · (1 + bq n )
+
+
+Entry 6.3.1 in Ramanujan's lost notebook (see [1, p.159]) gives three formal
+continued fraction expressions for the ratio of q -series g(b; λq)/g(b; λ) :
+       g(b; λq)            1   λq  λq 2 + bq   λq 3 λq 4 + bq 2
+                     =                                                                  (9)
+       g(b; λ)             1 + 1 +     1     + 1 +       1      +···
+                           1     λq       λq 2       λq 3
+                     =                                                                 (10)
+                           1 + 1 + bq + 1 + bq 2 + 1 + bq 3 + · · ·
+                             1     b + λq  b + λq 2 b + λq 3
+                     =                                                                 (11)
+                           1 − b + 1 − b + 1 − b + 1 − b +···
+
+Making the replacements b → −u, λ → − qd
+                                      u
+                                         , q → dq 2 , we nd that the
+continued fraction (10) becomes
+                 1      qu          q 3 ud        q 5 ud2
+                                                                    ,
+                 1 − 1 − q 2 ud − 1 − q 4 ud2 − 1 − q 6 ud3 − · · ·
+
+which is the continued fraction representation (8) for the generating function
+F (q, u, d).
+
+
+
+                                                8
+  Identities (9) and (11) now give two other formal continued fraction
+representations for F :
+                                                                                                
+                        1   qu          q2 d + q3 d u   q 5 d2 u                  q 4 d2 + q 7 d3 u
+F (q, u, d)   =                                                                                      (12)
+                        1 − 1 −               1       −     1    −                        1         −···
+
+and
+                                                                                           
+                             1    (1 + q)u               1 + q3 d u               1 + q 5 d2 u
+  F (q, u, d)       =                                                                               (13)
+                                                                                                     .
+                            1+u −  1+u −                   1+u      −               1+u        −···
+
+  Entry 6.3.1 also provides us with a representation for the generating
+function F (q, u, d) as a ratio of q -series:
+                                                         N (q, u, d)
+                                    F (q, u, d)    =                 ,
+                                                         D(q, u, d)
+
+where
+                             ∞                                        2   2
+                                                     (−1)n un dn q 2n +n
+                                                                                                  (14)
+                             X
+      N (q, u, d)       =
+                             n=0
+                                 (1 − dq ) · · · (1 − dn q 2n )(1 − udq 2 ) · · · (1 − udn q 2n )
+                                        2
+
+
+and
+                            ∞                                    2            2
+                                              (−1)n un dn −n q 2n −n
+                                                                                             .(15)
+                            X
+      D(q, u, d)    =
+                      n=0
+                          (1 − dq 2 ) · · · (1 − dn q 2n )(1 − udq 2 ) · · · (1 − udn q 2n )
+
+In particular, setting u = 1 and d = 1 in (14) and (15), we obtain the
+generating function for the number of n triangle stacks A227404(n) as the
+q -series ratio
+                                           ∞                      2
+                                           X            (−1)n q 2n +n
+                                                      2              2n 2
+                            N (q)          n=0 ((1 − q ) · · · (1 − q ))
+                                  =         ∞             n 2n2 −n
+                                                                          .                         (16)
+                            D(q)           X            (−1) q
+                                                      2              2n 2
+                                           n=0 ((1 − q ) · · · (1 − q ))
+
+   Using this representation we can nd the asymptotic behaviour of the terms
+of A224704. The functions N (q) and D(q) are analytic inside the unit disc.
+Calculation shows that the smallest real zero of the denominator series D(q) is
+located at x0 = 0.53600 49695 29708 61653 44946 12214 97438 08884 63471
+33627... and is a simple zero. The meromorphic function N (q)/D(q) has a
+pole of order 1 at x0 . Singularity analysis [2, Theorem IV.10, p. 248] applied
+to the function N (q)/D(q) produces the asymptotic estimate
+                                                               c
+                                       A224704(n) ∼               ,                                 (17)
+                                                              xn0
+
+
+                                                    9
+where
+                                           N (x0 )
+                                 c=−                 ,                           (18)
+                                          x0 D(x0 )0
+and where the prime indicates dierentiation with respect to q . Calculation
+gives the value c = 0.30516 69461 42293 61432 58334 29163 22891 57284 39056
+20388 ....
+
+4   Triangle stacks of Dyck type
+
+  A Dyck path is a lattice path in the plane starting and ending on the x-axis,
+never going below the x-axis, with steps either the upstep (1, 1) or the
+downstep (1, −1). A Dyck path is thus a particular type of small Schröder
+path without at steps. We call the triangle stack formed by the area between
+a Dyck path and the x-axis a triangle stack of Dyck type. Let FD (q, u, d)
+denote the generating function for the number of weighted triangle stacks of
+Dyck type:
+
+                                                                                 (19)
+                                                X
+              FD (q, u, d) =                                       q n uk dl .
+                                        all (n, k, l)
+                               triangle stacks of Dyck type
+
+Let GD (q, u, d) denote the generating function for primitive triangle stacks of
+Dyck type. Then equation (3) is still valid in this situation:
+                       GD (q, u, d)   =     quFD (q, q 2 ud, d).                 (20)
+
+  A primitive triangle stack of Dyck type factorises uniquely into an initial
+primitive triangle stack followed by a (possibly empty) triangle stack.
+
+                    Factorisation of a triangle of Dyck type
+
+
+
+
+                 Initial primitive stack            Remaining stack
+
+Therefore we have
+                               FD     =    1 + FD G D .                          (21)
+
+                                           10
+From (20) and (21) we obtain the continued fraction representation
+                            1   qu q 3 ud q 5 ud2
+                 FD    =                             .                      (22)
+                            1 − 1 − 1 −       1 −···
+
+Setting d = 1 in (22) gives the bi-variate generating function for the number of
+stacks of n triangles of Dyck type with k up triangles in the bottom row as the
+continued fraction                             5
+                        1   qu  q3 u q u
+                                           .
+                        1 − 1 − 1 − 1 −···
+See entry A239927 in the OEIS.
+    Setting q = 1 in (22) gives the bi-variate generating function for the number
+of stacks of triangles of Dyck type with k up triangles in the bottom row and l
+down triangles in the stack as the continued fraction
+                           1   u   ud  ud2
+                                              .
+                           1 − 1 − 1 − 1 −···
+
+See entry A227543.
+
+                                 References
+
+ [1] G. E. Andrews and B. C. Berndt      Ramanujan's Lost Notebook, Part 1,
+                                         Springer 2005
+
+ [2] P. Flajolet and R. Sedgewick,       Analytic Combinatorics, Cambridge Univ.
+                                         Press, 2009
+
+ [3] A. M. Odlyzko and H. S. Wilf,       The editor's corner: n coins in a fountain,
+                                         Amer. Math. Monthly, 95 (1988), 840-843.
+
+
+
+
+                                       11
+

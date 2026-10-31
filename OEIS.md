@@ -337,8 +337,65 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
   2026-10-28. Checked for `m = 3, …, 9`, `w ≤ 25` (`bin/python/hilbert_castles.py` item [9]); the
   catalog row (`disparate-5`, height 6 at `m = 3`) has the terms but not this formula.
 
+- [ ] **A393774 triangle-stack comment** (`wiki/pages/keystone-castles.md`): `a(n − 1)` is the number
+  of keystone castles with `n` cells, the stacks of unit triangles on a full bottom row of `k` up-triangles
+  and the `k − 1` down-triangles between them, every higher up-triangle resting on a down-triangle and
+  every down-triangle held by the two up-triangles beside it; equivalently the triangle stacks of A224704
+  whose boundary small Schröder path meets the x-axis only at its two ends. The boundary of such a stack
+  is `U P D` with `P` a large Schröder path, and the area under `U P D` is `q` times the entry's
+  continued fraction (a flat step at level `j` weighs `q^{2j+2}`, a rise from level `j − 1` to `j` with
+  its fall `q^{2j+1}`). So `A224704(q) = 1/(1 − q·A(q))`, `A(q)` the g.f. of this entry, the inner fraction
+  of Bala's continued fraction on A224704. The entry has no comment and no cross-reference to A224704
+  (read 2026-10-29: name, b-file, Cf. A088352, A316585). Checked: the keystone castles by cells against
+  the b-file for `n ≤ 80`, and `1/(1 − q·A(q))` against the A224704 b-file for `n ≤ 80`. Two formula lines
+  for the same edit, from Bala's ratio `N/D` of q-series for A224704 (`N(q) = Σ (−1)^n q^{2n²+n}/((1 − q²)⋯(1 −
+  q^{2n}))²`, `D(q)` the same with `q^{2n²−n}`): `G.f.: (1 − D(q)/N(q))/q`, and `a(n) ~ c·r^n` with
+  `r = 1/y_0 = 1.46274945341084066709…`, `y_0 = 0.68364407702781838698…` the smallest positive zero of `N`, and
+  `c = D(y_0)/(y_0² N'(y_0)) = 0.22983073631120755325…`; `a(n)·y_0^n` agrees with `c` to 20 digits at
+  `n = 200` (2026-10-30; `wiki/pages/keystone-castles.md`, *Triangle stacks are rows of keystone castles*).
+  - [ ] **The A393774 constants** (after the A393774 edit, as A347901 and A379091 are to A005169): the
+    decimal expansions of `y_0 = 0.68364407702781838698…` and `1/y_0 = 1.46274945341084066709…`, no match
+    for either (2026-10-30).
+  - [ ] **A224704 back-link** (after the A393774 edit): Cf. A393774, and a formula line `G.f.: 1/(1 -
+    x*B(x)) where B(x) is the g.f. of A393774`; the stacks with a full bottom row are the pieces of
+    which every stack is a sequence, side by side.
+- [ ] **Lehmer's Salem number of degree 6** (new constant; `wiki/pages/keystone-castles.md`,
+  `wiki/pages/area-growth-census.md`): `1.40126836793985491510…`, the largest root of
+  `x⁶ − x⁴ − x³ − x² + 1`, the degree-6 number of Lehmer's 1933 table and the smallest of the 11 Salem
+  numbers of degree 6 below 2 that the census search finds. The OEIS has no decimal expansion for it
+  (searched 2026-10-30; it has the second smallest known Salem number and Lehmer's constant), and A143438
+  expands `1/p(x)` for its polynomial. Two castle readings: the keystone castles of height 2 grow by cells
+  at it, and it is the growth by area of square-grid strip rules from height 3.
+- [ ] **A143438 Salem-polynomial comment** (low priority; `wiki/pages/keystone-castles.md`): the entry's
+  Salem polynomial `p(x)` is the denominator of the keystone castles of height at most 2 by cells,
+  `x(1 − x⁴)/p(x)`, and of those of height 2, `x⁴/((1 − x²) p(x))`, so the castles of height 2 with `n` cells
+  number `Σ_{j ≥ 0} a(n − 4 − 2j)` (checked for `n ≤ 40`). The entry has only its recurrence, the g.f. and
+  the Salem remark (read 2026-10-30).
+- [ ] **A071688 fountain comment** (`wiki/pages/brick-wall-castles.md`): `a(n)` is also the number of
+  fountains of coins with `n` coins in the bottom row whose rows have an even number of maximal runs of
+  coins in all. The level of each up-step of a Dyck path of semilength `n` gives the slant heights of a
+  fountain, and the fountain then has `n + 1 − p` runs for a path with `p` peaks; for odd `n` even runs
+  are even peaks (Au's comment), and for even `n` both halves are `C_n/2`. The entry states plane trees and
+  Dyck paths by peaks, with no fountain reading (read 2026-10-29). Checked for `n ≤ 16`. Low priority.
+- [ ] **Keystone castles by height** (new triangle; `wiki/pages/keystone-castles.md`): `T(w, h)`, the
+  keystone castles of width `w` and height `h`, which are the large Schröder paths of semilength `w − 1`
+  and height `h − 1`: `1; 1, 1; 1, 4, 1; 1, 12, 8, 1; 1, 33, 43, 12, 1; 1, 88, 197, 91, 16, 1; …`. No
+  match for the triangle, its reversed rows, or its columns `h = 3` (`1, 8, 43, 197, 833, 3367, 13244`) and
+  `h = 4` (`1, 12, 91, 564, 3133, 16289`), and no OEIS name gives Schröder paths by height (2026-10-29).
+  Column `h = 2` is A027941, `F(2w − 1) − 1`. Its formula: the Schröder paths of height at most `k` have
+  g.f. `Sch_k = 1/(1 − x − x Sch_{k−1})`, `Sch_0 = 1/(1 − x)`, and column `h` is `x(Sch_{h−1} − Sch_{h−2})`, with `Sch_{−1} = 0`.
+
 **Skipped (assessed, with reason):**
 
+- A006318 / A088617 / A001006 / A027941 (the keystone castles by width, `A006318(w − 1)`, by blocks,
+  `A088617(w − 1, b − 1)`, by width plus blocks, `A001006(s − 2)`, and of height 2, `A027941(w − 1)`):
+  dense entries, and each count is a Schröder-path count the entry already states (Schröder paths, by
+  up-steps; Motzkin paths, the Schröder path read with unit flat steps) through the boundary of the
+  castle (`wiki/pages/keystone-castles.md`).
+- A000108 / A080936 / A001263 / A004148 / A005169 (the brick-wall castles by width, height, blocks,
+  semi-perimeter and cells): A005169 counts the fountains themselves, and the others are Dyck-path and
+  Motzkin-path counts the entries state, through the slants of a fountain
+  (`wiki/pages/brick-wall-castles.md`).
 - A048004 / A000100 / A000102 / A006979 / A006980 (the castles of area `n` and exact height
   `h`, `T(n − 1, h − 1)`, and the columns `h = 3, …, 6`): every entry already counts the
   compositions of `n` by largest part, which are the castles by area (A048004:
@@ -641,6 +698,14 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalog.m
 | Totient castles | growth by width at `h = 4…8` | `2.9354323`, `3.9172860`, `4.1746638`, `5.2572382`, `5.7697533` | `h = 4`: no match for 8 digits (2026-10-28); `h = 5…8` unsearched |
 | Other rows | open-stroke castles by height ([[konigsberg-castles](pages/konigsberg-castles.md)]): all, even widths, even-block, odd-block | `3, 33, 137, 377, 831, 1593, 2773, 4497` | **novel-candidate** (no match for any of the four, 2026-10-28); a quartic in `h` for `h ≤ 12`, computed only |
 | Other rows | open-stroke castles by width at heights 2 and 3 | `1, 3, 3, 6, 3, 10, 1, 5, 0, 1` | **novel-candidate** (finite rows, no match, 2026-10-28) |
+| Brick-wall castles | even-block, heights 3 to 6 | `h = 3`: `3, 21, 84, 257, 695, 1826, 4869, 13153` (from `w = 5`) | **novel-candidate** (no match for any of the four, 2026-10-29) |
+| Brick-wall castles | signed, heights 3 to 6 | `h = 3`: `−1, −5, −12, −15, −1, 32, 49, −17, −184, −303` (from `w = 3`) | **novel-candidate** (no match for any, with either sign, 2026-10-29) |
+| Keystone castles | by height (triangle) | `1; 1, 1; 1, 4, 1; 1, 12, 8, 1; 1, 33, 43, 12, 1` | **novel-candidate** (no match, nor reversed rows, nor columns `h = 3, 4`, 2026-10-29; stage 4) |
+| Keystone castles | even-block, height 2 | `1, 3, 7, 17, 44, 116, 305, 799, 2091, 5473` (from `w = 2`) | **novel-candidate** (no match, 2026-10-29); `(F(2w − 1) − 1 + S_key(w, 2))/2`, the signed count of period 6 |
+| Keystone castles | even-block, height 3 | `3, 21, 99, 417, 1683, 6621` (from `w = 4`) | **novel-candidate** (no match, 2026-10-29) |
+| Keystone castles | height 2, by cells | `1, 0, 2, 1, 4, 3, 7, 8, 13, 17, 25, 35, 49` (from `n = 4`) | **known as a transform** (no match as a sequence, 2026-10-30): g.f. `q⁴/((1 − q²)(1 − q² − q³ − q⁴ + q⁶))`, the A143438 expansion convolved with `1/(1 − q²)`; growth Lehmer's Salem number `1.401268` of degree 6 (stage 4, the A143438 comment) |
+| Keystone castles | growth by cells and its reciprocal | `1.46274945341…`, `0.68364407702…` | **novel-candidate** constants (no match, 2026-10-30; stage 4, after the A393774 edit) |
+| Keystone castles | growth by cells at height 2, Lehmer's Salem number of degree 6 | `1.40126836793…` | **novel-candidate** constant (no match, 2026-10-30; stage 4) |
 
 ### No match in the first mining pass (`raw/oeis-pe502/mine-notes.md`, `crosslink-avenues.md`, `vein9-area.md`)
 
@@ -748,3 +813,7 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalog.m
 | m-disparate castles | 2-disparate strips on 5 heights | **interlink** → [A118649](https://oeis.org/A118649) (`= A118649(w+1)`, `w ≥ 1`, 27 terms; row sums of A106597; skipped, strips) |
 | m-disparate castles | m-disparate strips on `m + 3` heights, `m ≥ 3` | **interlink** → [A052994](https://oeis.org/A052994) (`= A052994(w+2) = 2·A006356(w)`, `w ≥ 2`, 28 terms; skipped, strips) |
 | Hilbert strips and Hilbert castles | Hilbert castles of height 3 | **interlink** → [A000225](https://oeis.org/A000225) (`= 2^w − 1`; dense, skipped with the castles of height 2) |
+| Brick-wall castles | even-block, all heights | **interlink** → [A071688](https://oeis.org/A071688) (`= A071688(w)`; plane trees and Dyck paths with an even number of peaks, no fountain reading, 2026-10-29; stage 4) |
+| Brick-wall castles | even-block and signed, height 2 | **interlink** → [A038505](https://oeis.org/A038505) (`w`), [A077860](https://oeis.org/A077860) (`w − 2`) (the height-2 rows of the 1-smooth castles with first column 1; no fountain reading) |
+| Keystone castles | by cells | **interlink** → [A393774](https://oeis.org/A393774) (`= A393774(n − 1)`; the entry has only its continued fraction, 2026-10-29; stage 4) |
+| Brick-wall castles | growth by cells, and the smallest zero `0.5761487691…` of `Σ (−1)^k q^{k²}/(q)_k` | **known** → [A379091](https://oeis.org/A379091) (`1.7356628245…`, `1/A347901`) and [A347901](https://oeis.org/A347901), the asymptotic constants of the fountains A005169 (2026-10-30) |

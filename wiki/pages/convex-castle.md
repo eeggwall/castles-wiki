@@ -5,7 +5,7 @@ summary: A castle whose skyline is unimodal, rising weakly to its maximum and th
 tags: [concept, castle, convex, unimodal, column-convex, row-convex, combinatorics, stars-and-bars]
 sources: [project-euler-502-representations, project-euler-502-solution, project-euler-502-brute-force, oeis-encyclopedia, algebraic-languages-and-polyominoes-enumeration, bender-1974-convex-n-ominoes]
 created: 2026-09-13
-updated: 2026-10-28
+updated: 2026-10-29
 ---
 
 # Convex castle
@@ -93,6 +93,7 @@ Every castle `c` lies under a unique smallest convex castle, its **convex core**
 - [[convex-castle-binomial-identity](pages/convex-castle-binomial-identity.md)] - the proof of `A_convex(w, h) = C(2h + w − 3, w − 1)` by splitting the skyline and the Vandermonde convolution.
 - [[convex-core](pages/convex-core.md)] - the convex core of a castle, and the castles over a core counted by products of `T` and `P`.
 - [[castle-polyomino](pages/castle-polyomino.md)] - the castle definition and the block count.
+- [[brick-wall-castles](pages/brick-wall-castles.md)] - the block fountains, the brick-wall castles with one block per row, are the convex castles among the sheared walls, `F_{2w−1}` of width `w`.
 - [[urd-step-strings](pages/urd-step-strings.md)] - the `U`/`R`/`D` words of castles, sorted into rectangular castles, convex castles and their variations.
 - [[castle-classification-shape](pages/castle-classification-shape.md)] - the shape types of castles, among them the unimodal type, which is the convex castles.
 - [[weakly-unimodal-composition](pages/weakly-unimodal-composition.md)] - the convex castles of area `n`, counted by `A001523(n)`.
