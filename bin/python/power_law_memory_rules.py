@@ -1,5 +1,5 @@
 # The power-law memory rule |sum_{k<K} (-1)^k C(alpha, k) c_{n-k}| <= 1 on the heights {1, ..., h}: does
-# the growth constant at h = 3 equal the one at h = 2? The transfer graph on windows of K - 1 columns is
+# the growth constant at h = 3 equal the one at h = 2? The transfer graph on states, the last K - 1 columns, is
 # split into strongly connected components, and the Perron root is the largest over them.
 # Checks: alpha = 1/2, 3/4, 9/10 and 3 <= K <= 10; the components containing height 3 against the table.
 # Page: wiki/pages/power-law-memory-rules.md.
@@ -24,7 +24,7 @@ def weights(alpha, K):                     # (-1)^k C(alpha, k), exact
     return w
 
 
-def graph(alpha, K, h):                    # state = window of K - 1 columns, indexed in base h
+def graph(alpha, K, h):                    # state = the last K - 1 columns, indexed in base h
     w, n = weights(alpha, K), h ** (K - 1)
     adj = [[] for _ in range(n)]
     for idx, win in enumerate(product(range(1, h + 1), repeat=K)):
