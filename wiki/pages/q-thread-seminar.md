@@ -95,7 +95,7 @@ even(n) − odd(n),  n = 1..16:   −1, 0, 0, 2, 0, 2, −4, 2, −12, 10, −20
 even(n) − odd(n)  ~  C⋆ (−ρ)^n,     ρ = 1.6238296740...,   C⋆ = 0.0985091749...
 ```
 
-At `n = 16`, `C⋆ ρ^16 = 230.2` against `230`.[^3] The sign does not halve the growth exponent by area, since `√2 = 1.414` is below `ρ`; by semi-perimeter it does, `τ² → τ` ([[castle-perimeter](pages/castle-perimeter.md)]). Area, width, blocks and the number of height-1 columns, each minus one, and the number of peaks are additive over the factorization, so each gives a character; the number of left-to-right maxima and the height are not additive.[^2]
+At `n = 16`, `C⋆ ρ^16 = 230.2` against `230`.[^3] The sign does not halve the growth exponent by area, since `√2 = 1.414` is below `ρ`; by semi-perimeter it does, from the tribonacci constant squared to the tribonacci constant ([[castle-perimeter](pages/castle-perimeter.md)]). Area, width, blocks and the number of height-1 columns, each minus one, and the number of peaks are additive over the factorization, so each gives a character; the number of left-to-right maxima and the height are not additive.[^2]
 
 *Idea:* a statistic that is additive over a free factorization passes straight into the generating function; check additivity before looking for a formula.
 
