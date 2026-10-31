@@ -5,7 +5,7 @@ summary: Arkhincheev and Baskin derive the diffusion equation on the axis of a c
 tags: [source, paper, comb-model, anomalous-diffusion, subdiffusion, fractional-calculus, fractional-time-derivative, continuous-time-random-walk, percolation, drift, tree-castle]
 sources: [arkhincheev-baskin-1991-comb-model]
 created: 2026-10-29
-updated: 2026-10-29
+updated: 2026-10-31
 ---
 
 # Arkhincheev and Baskin (1991) - Anomalous diffusion and drift in a comb model of percolation clusters
@@ -60,7 +60,7 @@ the equation for the particle number on the axis. Its integrodifferential form c
 
 ## The castle reading
 
-The graph of a tree castle is a comb with the bottom row as its axis and the columns as its ribs, all on one side and at most `h − 1` cells long ([[tree-castle-diffusion](pages/tree-castle-diffusion.md)]). Equation (14) is derived for ribs going to infinity; with ribs of finite length the paper's own long-time law `⟨x²(t)⟩ ∝ D_1 t/L` applies. On the battlement of height `h`, which alternates columns of heights 1 and `h`, the simple random walk spreads as `(4√(2/π) + o(1))√t` while the teeth look infinite, the order-1/2 regime, and as `2t/(h + 1)` at long times, proportional to `1/L` with `L = h − 1`; the two regimes meet at `t = 8(h + 1)²/π`.[^8]
+The graph of a tree castle is a comb with the bottom row as its axis and the columns as its ribs, all on one side and at most `h − 1` cells long ([[tree-castle-diffusion](pages/tree-castle-diffusion.md)]). Equation (14) is derived for ribs going to infinity; with ribs of finite length the paper's own long-time law `⟨x²(t)⟩ ∝ D_1 t/L` applies. On the battlement of height `h`, which alternates columns of heights 1 and `h`, the simple random walk spreads as `(4√(2/π) + o(1))√t` while the teeth look infinite, the order-1/2 regime, and as `2t/(h + 1) = t/(1 + L)` at long times, with `L = (h − 1)/2` the mean tooth length per horizontal edge: the paper's `D_1 t/L` law in discrete form, since the stationary rate `(w − 1)/(n − 1)` of [[tree-castle-diffusion](pages/tree-castle-diffusion.md)] is `1/(1 + (n − w)/(w − 1))`. The two regimes meet at `t = 8(h + 1)²/π`.[^8]
 
 ## Key Takeaways
 
