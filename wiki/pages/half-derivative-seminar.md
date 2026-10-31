@@ -1,7 +1,7 @@
 ---
 title: Half-derivative seminar - castles at order 1/2
 category: Concepts
-summary: A seminar on four integer-order castle operations at order 1/2. The fractional block count B_α runs from the area at α = 0 to the block count at α = 1, and B_{1/2} separates the ten even-block castles of width 4 and height 2. The half-sum of a castle row tends to √(h/(h − 1)) times the row, with √π only in the remainder, and π = lim w 16^w/K_4(w)² once the branch point sits on the pole. A^e(w, h) is real at real width for h ≤ 41 and complex at half-integer height, A^e(4, 2.5) = 16.75 + 6i, because the parity's eigenvalue −1 lies on the branch cut. Among the rules I + N with N acyclic, the nonnegative principal square roots are exactly the partial orders through height 6, and not at height 7. The walk on a tree castle, a comb, spreads like 4√(2t/π) while its teeth look infinite and like 2t/(h + 1) after t ≈ 8(h + 1)²/π.
+summary: A seminar on four integer-order castle operations at order 1/2. The fractional block count B_α runs from the area at α = 0 to the block count at α = 1, and B_{1/2} separates the ten even-block castles of width 4 and height 2. The half-sum of a castle row tends to √(h/(h − 1)) times the row, with √π only in the remainder, and π = lim w 16^w/bhalf_4(w)² once the branch point sits on the pole. A^e(w, h) is real at real width for h ≤ 41 and complex at half-integer height, A^e(4, 2.5) = 16.75 + 6i, because the parity's eigenvalue −1 lies on the branch cut. Among the rules I + N with N acyclic, the nonnegative principal square roots are exactly the partial orders through height 6, and not at height 7. The walk on a tree castle, a comb, spreads like 4√(2t/π) while its teeth look infinite and like 2t/(h + 1) after t ≈ 8(h + 1)²/π.
 tags: [concept, castle, seminar, pedagogy, teaching, fractional-calculus, grunwald-letnikov, riemann-liouville, half-sum, interpolation, branch-cut, square-root, partial-order, comb, random-walk, subdiffusion]
 sources: [project-euler-502-solution, project-euler-502-brute-force, algebraic-languages-and-polyominoes-enumeration, arkhincheev-baskin-1991-comb-model, pach-tardos-2013-range-of-random-walk-on-comb]
 created: 2026-10-29
@@ -48,26 +48,26 @@ On a box of `w` columns of height `h` the residuals are `h C(2j, j)/4^j` for `j 
 The **half-sum** of the height-`h` row is ([[half-sum-castles](pages/half-sum-castles.md)])
 
 ```
-H_h(w)  =  Σ_k  C(2k, k)/4^k · A^e(w − k, h),        Σ_w H_h(w) x^w  =  G_h(x)/√(1 − x),
+half_h(w)  =  Σ_k  C(2k, k)/4^k · A^e(w − k, h),        Σ_w half_h(w) x^w  =  row_h(x)/√(1 − x),
 ```
 
-with `G_h(x)` the rational generating function of the row. At `h = 4` it begins `1, 15/2, 279/8, 2167/16, 65483/128`.
+with `row_h(x)` the rational generating function of the row. At `h = 4` it begins `1, 15/2, 279/8, 2167/16, 65483/128`.
 
 The weight `C(2k, k)/4^k ~ 1/√(πk)` puts `√π` into the leading term of the half-sum of a sequence with radius of convergence 1, such as the constant 1 of Stop 0. A castle row grows like `h^w/2`, and its pole at `x = 1/h` dominates the branch point at `x = 1`: the half-sum scales each pole term by a constant, and
 
 ```
-H_h(w)/A^e(w, h)  →  √(h/(h − 1)),
+half_h(w)/A^e(w, h)  →  √(h/(h − 1)),
 ```
 
-`√(4/3) = 1.1547005384` at `h = 4`, matched by `H_4(100)/A^e(100, 4)` to ten digits. The branch point leaves only the remainder `G_h(1)/√(πw)`, with `G_h(1) = 0, 1/2, 1/30, 1/20` for `h = 2..5`, and `G_h(1)` is minus the sum of the row continued to negative widths.
+`√(4/3) = 1.1547005384` at `h = 4`, matched by `half_4(100)/A^e(100, 4)` to ten digits. The branch point leaves only the remainder `row_h(1)/√(πw)`, with `row_h(1) = 0, 1/2, 1/30, 1/20` for `h = 2..5`, and `row_h(1)` is minus the sum of the row continued to negative widths.
 
-Moving the branch point onto the pole, with weights `C(2k, k)(h/4)^k`, puts `π` into the leading term: the simple pole and the branch point multiply into the leading singularity `(1 − hx)^{−3/2}`, whose coefficients grow like `2h^w√(w/π)`. At `h = 4` these weights are the integers `C(2k, k)`, and the binomial half-sum `K_4(w) = Σ_k C(2k, k) A^e(w − k, 4) = 1, 9, 51, 241, 1069, 4671, 20353, …` gives
+Moving the branch point onto the pole, with weights `C(2k, k)(h/4)^k`, puts `π` into the leading term: the simple pole and the branch point multiply into the leading singularity `(1 − hx)^{−3/2}`, whose coefficients grow like `2h^w√(w/π)`. At `h = 4` these weights are the integers `C(2k, k)`, and the binomial half-sum `bhalf_4(w) = Σ_k C(2k, k) A^e(w − k, 4) = 1, 9, 51, 241, 1069, 4671, 20353, …` gives
 
 ```
-π  =  lim_{w → ∞}  w · 16^w / K_4(w)²,
+π  =  lim_{w → ∞}  w · 16^w / bhalf_4(w)²,
 ```
 
-`3.17108` at `w = 200`, and `3.14158` at `w = 1600` after one Richardson step. `K_4(w)` counts the pairs of a skyline of width `w` on the heights `1..4` and a cut, with an even-block castle of height 4 before the cut and as many columns of height 1 as of height 4 after it. Delest and Viennot's count of convex polyominoes with perimeter `2n + 8`, `(2n + 11)4^n − 4(2n + 1)C(2n, n)`, has its pole and branch point at the same place, `x = 1/4`, but the pole is double, so it wins and `√π` stays in the second term, as in `H_h`.[^dv]
+`3.17108` at `w = 200`, and `3.14158` at `w = 1600` after one Richardson step. `bhalf_4(w)` counts the pairs of a skyline of width `w` on the heights `1..4` and a cut, with an even-block castle of height 4 before the cut and as many columns of height 1 as of height 4 after it. Delest and Viennot's count of convex polyominoes with perimeter `2n + 8`, `(2n + 11)4^n − 4(2n + 1)C(2n, n)`, has its pole and branch point at the same place, `x = 1/4`, but the pole is double, so it wins and `√π` stays in the second term, as in `half_h`.[^dv]
 
 *Idea:* on an exponentially growing count a fractional sum only rescales the dominant pole, and `√π` reaches the leading term when the branch point is moved onto that pole.
 
@@ -122,7 +122,7 @@ The order can also be put on space instead of time. The fractional Laplacian `L^
 | stop | integer operation | order 1/2 | what it shows |
 |---|---|---|---|
 | 1 | block count, the sum of positive column differences | `B_{1/2}` | separates the ten even-block castles of width 4 and height 2; a box gives `~ 2h√(w/π)` |
-| 2 | partial sum in the width, `(1 − x)^{−1}` | `H_h`, weights `C(2k, k)/4^k` | `H_h/A^e → √(h/(h − 1))`; `√π` only in the remainder; `π = lim w 16^w/K_4(w)²` |
+| 2 | partial sum in the width, `(1 − x)^{−1}` | `half_h`, weights `C(2k, k)/4^k` | `half_h/A^e → √(h/(h − 1))`; `√π` only in the remainder; `π = lim w 16^w/bhalf_4(w)²` |
 | 3 | `λ^w` at integer width | real `w` | real for `h ≤ 41`; `A^e(2.5, 2) = 4.382` |
 | 4 | `(−1)^k` at integer height | `h = m + 1/2` | `A^e(4, 2.5) = 16.75 + 6i` on the principal branch |
 | 5 | one column, the rule `M` | `R` with `R² = M` | nonnegative principal roots of `I + N`: the partial orders through height 6, not at height 7 |
@@ -223,11 +223,11 @@ def battlement_hor(h, ts):                 # E hor(t) on the extended battlement
 >>> [B((3,) * w, Fr(1, 2)) == Fr(2 * 3 * w * comb(2 * w, w), 4 ** w) for w in range(1, 9)]
 [True, True, True, True, True, True, True, True]
 >>> row4 = [Ae(w, 4) for w in range(201)]
->>> H4 = half_sum(row4[:101])
->>> [str(x) for x in H4[1:6]], round(float(H4[100]) / row4[100], 10), round(sqrt(4 / 3), 10)
+>>> half4 = half_sum(row4[:101])
+>>> [str(x) for x in half4[1:6]], round(float(half4[100]) / row4[100], 10), round(sqrt(4 / 3), 10)
 (['1', '15/2', '279/8', '2167/16', '65483/128'], 1.1547005384, 1.1547005384)
->>> K4 = [sum(comb(2 * k, k) * row4[w - k] for k in range(w + 1)) for w in range(201)]
->>> K4[1:8], round(200 * 16 ** 200 / K4[200] ** 2, 5)
+>>> bhalf4 = [sum(comb(2 * k, k) * row4[w - k] for k in range(w + 1)) for w in range(201)]
+>>> bhalf4[1:8], round(200 * 16 ** 200 / bhalf4[200] ** 2, 5)
 ([1, 9, 51, 241, 1069, 4671, 20353], 3.17108)
 >>> Ae2 = lambda w: (2 ** (w + 1) - 2 ** ((w + 3) / 2) * cos(pi * (w + 1) / 4)) / 4
 >>> [round(Ae2(w), 3) for w in (1, 2, 2.5, 3, 4)], [Ae(w, 2) for w in (1, 2, 3, 4)]
@@ -250,7 +250,7 @@ def battlement_hor(h, ts):                 # E hor(t) on the extended battlement
 ## Exercises
 
 1. From the weights `1, −1/2, −1/8, −1/16`, compute the residuals and `B_{1/2}` of `(1, 1, 1, 2)` and `(1, 1, 2, 1)`, and check that the two castles have the same area and block count.
-2. Show that the half-sum applied twice is the ordinary partial sum, and compute `H_4(2) = 15/2` from `A^e(1, 4) = 1` and `A^e(2, 4) = 7`.
+2. Show that the half-sum applied twice is the ordinary partial sum, and compute `half_4(2) = 15/2` from `A^e(1, 4) = 1` and `A^e(2, 4) = 7`.
 3. From `A_4(k)` and `B_4(k)`, compute `A^e(4, 2.5)` on the principal branch, on the conjugate branch, and with `(−1)^k → cos(πk)`.
 4. For the partial order with a bottom, `m` pairwise incomparable middles and a top, show that the root `Σ_k C(1/2, k) N^k` has `1/2 − m/8` from bottom to top, and find the smallest height at which it is negative.
 5. On the battlement, show that a walker at the foot of a tooth makes `2j` horizontal moves before it enters a tooth with probability `(2/3)^j/3`, and that their mean is 4.
@@ -260,7 +260,7 @@ def battlement_hor(h, ts):                 # E hor(t) on the extended battlement
 
 - [[project-euler-502-solution](pages/project-euler-502-solution.md)] - the closed form `A^e(w, h) = (h^w − (h − 1)^w − P(h − 1, w) + P(h − 2, w))/2` interpolated in Stops 3 and 4.
 - [[project-euler-502-brute-force](pages/project-euler-502-brute-force.md)] - the block count as the total ascent, the endpoint `α = 1` of Stop 1.
-- [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - the convex polyominoes by perimeter, with a double pole and a square-root branch point at one place, the pole winning as for `H_h` in Stop 2.
+- [[algebraic-languages-and-polyominoes-enumeration](pages/algebraic-languages-and-polyominoes-enumeration.md)] - the convex polyominoes by perimeter, with a double pole and a square-root branch point at one place, the pole winning as for `half_h` in Stop 2.
 - [[arkhincheev-baskin-1991-comb-model](pages/arkhincheev-baskin-1991-comb-model.md)] - the comb equation with a time derivative of order 1/2 and its finite-rib limit, Stop 6.
 - [[pach-tardos-2013-range-of-random-walk-on-comb](pages/pach-tardos-2013-range-of-random-walk-on-comb.md)] - the reduced projections of the walk on a comb, Stop 6.
 
@@ -270,7 +270,7 @@ def battlement_hor(h, ts):                 # E hor(t) on the extended battlement
 - [[levy-flights](pages/levy-flights.md)] - the space-fractional Laplacian of the castle graph, against the time-fractional comb of Stop 6.
 - [[power-law-memory-rules](pages/power-law-memory-rules.md)] - the weights of Stop 1 used in a strip rule instead of a statistic.
 - [[fractional-recurrences](pages/fractional-recurrences.md)] - fractional difference operators applied to recurrences.
-- [[castle-notation](pages/castle-notation.md)] - `A^e`, `P(k, L)`, `A_L`, `B_L`, `∇^α`, `B_α`, `𝒞(x)`, `H_h`, `G_h`, `K_4`, `hor(t)`, `msd(t)` and `rate(c)`.
+- [[castle-notation](pages/castle-notation.md)] - `A^e`, `P(k, L)`, `A_L`, `B_L`, `∇^α`, `B_α`, `𝒞(x)`, `half_h`, `row_h`, `bhalf_h`, `hor(t)`, `msd(t)` and `rate(c)`.
 - [[tower-recursion-master-class](pages/tower-recursion-master-class.md)], [[pell-castle-strip](pages/pell-castle-strip.md)], [[hardin-identity-seminar](pages/hardin-identity-seminar.md)], [[hear-the-shape-seminar](pages/hear-the-shape-seminar.md)], [[castle-cryptography](pages/castle-cryptography.md)], [[q-thread-seminar](pages/q-thread-seminar.md)], [[oeis-mining-seminar](pages/oeis-mining-seminar.md)], [[one-bit-seminar](pages/one-bit-seminar.md)], [[song-as-castle](pages/song-as-castle.md)], [[sandcastle-seminar](pages/sandcastle-seminar.md)], [[castle-fibers-char-2-walkthrough](pages/castle-fibers-char-2-walkthrough.md)] - the other seminar pages.
 
 ## Footnotes

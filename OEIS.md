@@ -648,9 +648,9 @@ The OEIS status of each castle sequence on `wiki/pages/castle-sequence-catalog.m
 | Odd-block counts, parity-refined area, and joint block tables | castles of width `w` and height `h` by blocks, triangles `h = 3, 4`, and the column `h + 2` | `h = 3` rows from `b = 3`: `1; 5; 15,3,1; 35,21,9; 70,84,51,5,1` | **novel-candidate** (`h = 3`: no match, 2026-10-16) |
 | Half-sum rows | `K_2` | `1, 5, 18, 60, 202, 702, 2508, 9136, 33742, 125934` | **novel-candidate** (no match, 2026-10-16) |
 | Half-sum rows | `K_3` | `3, 27, 149, 671, 2755, 10833, 41679, 158465, 598681` | **novel-candidate** (no match, 2026-10-16) |
-| Half-sum rows | `K_4` | `1, 9, 51, 241, 1069, 4671, 20353, 88383, 381583, 1635893` | **novel-candidate** (no match, 2026-10-16) |
+| Half-sum rows | `bhalf_4` | `1, 9, 51, 241, 1069, 4671, 20353, 88383, 381583, 1635893` | **novel-candidate** (no match, 2026-10-16) |
 | Half-sum rows | `K_5` | `10, 142, 1210, 8222, 49806, 283570, 1557158, 8354490` | **novel-candidate** (no match, 2026-10-16) |
-| Half-sum rows | dyadic half-sum `4^w H_h(w)`, `h = 2..5`, and the numerators of `H_2`, `1, 7, 63, 231, 3131, 10929` | on the page | **novel-candidate** (numerators of `H_2`, checked against `Σ_k C(2k, k) 4^{−k} A^e(w − k, 2)`: no match, 2026-10-16; others: 2026-09-23) |
+| Half-sum rows | dyadic half-sum `4^w half_h(w)`, `h = 2..5`, and the numerators of `H_2`, `1, 7, 63, 231, 3131, 10929` | on the page | **novel-candidate** (numerators of `H_2`, checked against `Σ_k C(2k, k) 4^{−k} A^e(w − k, 2)`: no match, 2026-10-16; others: 2026-09-23) |
 | Tree castles by area at fixed height | height at most 8 | `1, 2, 4, 7, 12, 21, 37, 65, 113, 197, 345, 604, 1056, 1846` | **novel-candidate** (no match, 2026-10-16) |
 | Sandpile groups | castles with trivial group (the tree castles, in both models) | `1, 2, 3, 5, 8, 13, 22, 37, 63, 108, 186, 322, 559, 973, 1697, 2964` | **interlink** → [A005683](https://oeis.org/A005683) Twopins positions (`= A005683(n+2)`; the formula agrees with the b-file for `n ≤ 38`, 2026-10-16) |
 | Sandpile groups | castles with cyclic `K_sink` | `1, 2, 3, 6, 10, 20, 36, 72, 134, 264, 503, 997, 1933, 3791, 7338, 14329` | **novel-candidate** (no match, 2026-10-16) |

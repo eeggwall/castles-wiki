@@ -291,9 +291,9 @@ blocks-10	blocks		castles of width `w` and height `h` by blocks, triangles `h = 
 blocks-11	blocks		parity-refined sequences by area (even and odd; convex, vee, non-convex and strict-vee)		on [[odd-castles-and-block-tables](pages/odd-castles-and-block-tables.md)]					([[castle-by-area](pages/castle-by-area.md)])			
 halfsum-1	halfsum		`K_2`		`1, 5, 18, 60, 202, 702, 2508, 9136, 33742, 125934`		`4`						
 halfsum-2	halfsum		`K_3`		`3, 27, 149, 671, 2755, 10833, 41679, 158465, 598681`		`4`						
-halfsum-3	halfsum		`K_4`		`1, 9, 51, 241, 1069, 4671, 20353, 88383, 381583, 1635893`		`4`, with `K_4(w) ~ 4^w √(w/π)`, so `π = lim w·16^w/K_4(w)²`						
+halfsum-3	halfsum		`bhalf_4`		`1, 9, 51, 241, 1069, 4671, 20353, 88383, 381583, 1635893`		`4`, with `bhalf_4(w) ~ 4^w √(w/π)`, so `π = lim w·16^w/bhalf_4(w)²`						
 halfsum-4	halfsum		`K_5`		`10, 142, 1210, 8222, 49806, 283570, 1557158, 8354490`		`5`						
-halfsum-5	halfsum		dyadic half-sum `4^w H_h(w)`, `h = 2..5`, and the numerators of `H_2`, `1, 7, 63, 231, 3131, 10929`		on the page		`4h`						
+halfsum-5	halfsum		dyadic half-sum `4^w half_h(w)`, `h = 2..5`, and the numerators of `H_2`, `1, 7, 63, 231, 3131, 10929`		on the page		`4h`						
 tree-area-1	tree-area		height 2		`0, 1, 2, 3, 5, 8, 12, 18, 27, 40`	parts `{1, 3}`, using a 3; `A000930(n+1) − 1`		A077868	n−2	(`n ≥ 2`)	Expansion of 1/((1-x)*(1-x-x^3)).	count	
 tree-area-2	tree-area		height at most 3		`1, 2, 4, 6, 9, 15, 25, 40, 64, 104`	parts `{1, 3, 4}`		A006498	n+1	g.f. denominator `(1 + q²)(1 − q − q²)`, golden by area	a(n) = a(n-1) + a(n-3) + a(n-4), a(0) = a(1) = a(2) = 1, a(3) = 2.	metallic	
 tree-area-3	tree-area		height at most 4		`1, 2, 4, 7, 11, 18, 31, 53, 89, 149`	parts `{1, 3, 4, 5}`		A000570	n+1	, tournaments determined by their score vectors	Number of tournaments on n nodes determined by their score vectors.	count	
