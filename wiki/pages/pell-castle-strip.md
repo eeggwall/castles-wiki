@@ -140,6 +140,7 @@ The silver mean `1 + √2 = [2; 2, 2, …]` has a purely periodic continued frac
 - [[m-smooth-castles](pages/m-smooth-castles.md)] - neighboring columns differing by at most `m`; on the heights `{1, …, m + 2}` the anchored strips have generating function `x/(1 − (m+1)x − m·x²)`, with `x` marking width, a sequence of two atoms in `m + 1` and `m` kinds.
 - [[castle-strip](pages/castle-strip.md)] - castle strips and their transfer matrices, with the column heights as states.
 - [[metallic-strip-realizability](pages/metallic-strip-realizability.md)] - the growth constants of strip rules: the 1-smooth matrix on three heights with `det(I − xM) = (1 − x)(1 − 2x − x²)`, and the ridge rule `R_h = J − D`, whose growth constants are the metallic means `δ_{h−1}`.
+- [[fractional-width-and-height](pages/fractional-width-and-height.md)] - the half-column problem: the 1-smooth matrix on three heights and `R_3 = J − D` each have a simple negative eigenvalue and so no real square root.
 - [[pell-numbers](pages/pell-numbers.md)] - the Pell numbers `P⋆_n`, their recurrence and Binet formula.
 - [[binomial-transform](pages/binomial-transform.md)] - a strip count as the binomial transform of its skeleton count, and Barry's sums as the strips by last column.
 - [[generating-functions](pages/generating-functions.md)] - coefficient matching for any rational generating function.
