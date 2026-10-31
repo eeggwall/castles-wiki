@@ -1,0 +1,8 @@
+# python3 bin/python/fractional_sign_sum.py  (2026-10-31, Python 3.11)
+    (8, 2): 255 castles; abs(S_alpha) at [0.1, 0.25, 0.5, 0.75, 0.9] = [1.0, 1.01, 35.51, 49.19, 24.42]; S_1 = -15; max on (0.5, 1) = 57.693 at alpha = 0.649, above abs(S_1) = 15
+    (6, 3): 665 castles; abs(S_alpha) at [0.1, 0.25, 0.5, 0.75, 0.9] = [0.19, 0.31, 8.57, 29.79, 40.95]; S_1 = -51; max on (0.5, 1) = 50.999 at alpha = 0.999, below abs(S_1) = 51
+    (5, 4): 781 castles; abs(S_alpha) at [0.1, 0.25, 0.5, 0.75, 0.9] = [0.33, 1.11, 6.35, 47.08, 98.0]; S_1 = 97; max on (0.5, 1) = 98.929 at alpha = 0.926, above abs(S_1) = 97
+    (6, 4): 3367 castles; abs(S_alpha) at [0.1, 0.25, 0.5, 0.75, 0.9] = [0.19, 0.99, 10.53, 104.18, 157.03]; S_1 = 91; max on (0.5, 1) = 171.075 at alpha = 0.856, above abs(S_1) = 91
+[1] the tabulated abs(S_alpha) and S_1 of the four rows: True
+[2] on (0.5, 1), abs(S_alpha) exceeds abs(S_1) at (8, 2), (5, 4) and (6, 4), and stays below it at (6, 3): True
+all checks passed: True

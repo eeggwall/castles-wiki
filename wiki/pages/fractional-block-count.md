@@ -90,7 +90,7 @@ The same count for larger widths and heights (`B_irr` is `B_alpha` at `alpha = s
 | `(6, 4)` | 3367 | 1729 | 16 | 7 | 70 | 1017 | 2866 |
 | `(5, 5)` | 2101 | 906 | 17 | 9 | 75 | 470 | 1644 |
 
-The pair `(area, blocks)` takes a few percent as many values as there are castles; `B_irr` takes most of them.
+The pair `(area, blocks)` takes 2% to 40% as many values as there are castles in the table, 40% at `(4, 2)` and 2% at `(6, 4)`; `B_irr` takes most of them.
 
 **Collisions at `alpha = 1/2`.** `B_{1/2}` lies in `2^{-(2w-2)} Z`, and many distinct castles share a value; at `alpha = sqrt(2) - 1` most of them separate. At width 8 and height 2 there are 14 collisions at `1/2` and 2 at `sqrt(2) - 1`.
 
@@ -104,7 +104,7 @@ Each residual is a polynomial in `alpha`, so `B_alpha(C)` is continuous and piec
 
 - **It is not always decreasing.** 829 castles have an increase somewhere on the grid. The largest single step is `0.0138` per `0.005` of `alpha`, and the largest total increase over `[0, 1]` is `0.47`, on the three castles `(4, 3, 1, 4, 1, c_6)` with `c_6 = 2, 3, 4` (8, 9 and 10 blocks). Every nondecreasing castle is decreasing in `alpha` (section *Generating functions*), so every increase belongs to a castle with a descent.
 - **It is at most the area** for every castle and every `alpha` in `[0, 1]`: every weight after the first is at most 0 and the heights are positive, so `nabla^alpha c_i <= c_i`.
-- **It can fall below the block count.** The 829 castles with an increase are exactly the castles with `B_alpha < blocks` somewhere on the grid. `(4, 3, 1, 4, 1, 2)` has 8 blocks and `B_{0.8} = 7.58`; its residuals at `alpha = 0.8` are `4.0, -0.2, -1.72, 2.83, -2.45, 0.75`, and the two positive ones, at columns 4 and 6, are smaller than the ascents 3 and 1 there, because the weight on the `4` in column 1 is still being subtracted.
+- **It can fall below the block count.** The 829 castles with an increase are exactly the castles with `B_alpha < blocks` somewhere on the grid. `(4, 3, 1, 4, 1, 2)` has 8 blocks and `B_{0.8} = 7.58`; its residuals at `alpha = 0.8` are `4.0, -0.2, -1.72, 2.83, -2.45, 0.75`, and the residuals at columns 4 and 6, where the skyline rises by 3 and 1, are positive but smaller than those rises, because the weight on the `4` in column 1 is still being subtracted.
 
 For the castles of each width and height below, the mean of `B_alpha` over the castles is convex and decreasing in `alpha` on a grid of step `0.01`, and the variance has an interior minimum:[^exec]
 
@@ -194,7 +194,7 @@ written `S_alpha` because it sums over castles and `S_1 = S(w, h)` is the signed
 | `(5, 4)` | 781 | +1 | `0.33, 1.11, 6.35, 47.1, 98.0` | +97 |
 | `(6, 4)` | 3367 | -1 | `0.19, 0.99, 10.5, 104.2, 157.0` | +91 |
 
-`abs(S_alpha)` stays below 1.2 through `alpha = 0.25` and exceeds `abs(S_1)` somewhere in `(0.5, 1)` in every row: `49.2` against `15` at width 8 and height 2, `157.0` against `91` at width 6 and height 4.
+`abs(S_alpha)` stays below 1.2 through `alpha = 0.25` and exceeds `abs(S_1)` somewhere in `(0.5, 1)` in three of the four rows: `49.2` against `15` at width 8 and height 2, `157.0` against `91` at width 6 and height 4. At `(6, 3)` the tabulated values stay below `abs(S_1) = 51`, and the maximum on `(0.5, 1)` is `50.999`, near `alpha = 1`.[^exec-sign]
 
 ## The residual cost
 
@@ -237,4 +237,5 @@ For the ramp the minimum is at `alpha = 2`, where the second difference of the c
 [^3]: [[project-euler-502-castle-factoring](pages/project-euler-502-castle-factoring.md)] §"The sign of a castle" L104-108 - "In the column-height form, the block count is the total descent: blocks = sum_{i=0}^{L} max(0, c_i - c_{i+1}), c_0 = c_{L+1} = 0".
 [^4]: https://oeis.org/A002596, https://oeis.org/A046161, https://oeis.org/A001803 (read 2026-10-16) - "Numerators in expansion of sqrt(1+x). Absolute values give numerators in expansion of sqrt(1-x)"; "a(n) = denominator of binomial(2n,n)/4^n", data `1, 2, 8, 16, 128, 256, 1024, ...`; "Numerators in expansion of (1 - x)^(-3/2)", data `1, 3, 15, 35, 315, 693, 3003, ...`.
 [^5]: https://en.wikipedia.org/wiki/Autoregressive_fractionally_integrated_moving_average (read 2026-09-19) [synthesis] - ARFIMA allows the differencing order `d` to be a non-integer; the fractional differencing operator `(1 - B)^d` is the binomial series `sum_k C(d, k) (-B)^k`, and processes with `0 < d < 1/2` have long memory with power-law autocorrelation decay.
+[^exec-sign]: Verified by execution (Python 3.11 with NumPy, 2026-10-31): `bin/python/fractional_sign_sum.py`, run log `bin/python/fractional_sign_sum-run.log`. `S_alpha(w, h)` over every castle of the four rows: the tabulated values and `S_1`, and `abs(S_alpha)` on a grid of step 0.001 on `(0.5, 1)`, whose maximum exceeds `abs(S_1)` at `(8, 2)`, `(5, 4)` and `(6, 4)` and is `50.999` at `(6, 3)`.
 [^exec]: Verified by execution (Python 3.11 with NumPy, 2026-10-16): the endpoint identities `B_0 = area`, `B_1 = blocks` in exact rational arithmetic on all 5460 castles with `w <= 6`, `h <= 4`; the half-order weights and the dyadic bound for `w <= 6`, `h = 3`; the partial sums of `|w_k(1/2)|`; the slope formula by finite differences at `alpha = 10^{-6}`; the table of the ten castles; the distinct-value table (`B_{1/2}` exact, `B_irr` rounded to `10^{-9}`); the 126 and 555 pairs equal at the 50 orders `0.50, ..., 0.99` in exact arithmetic, with the residual sign test (117 and 525) and the first differing column of the rest, and the absence of pairs equal at the 49 orders `k/50` for the castles of width 6 and height 3, width 7 and height 3, and width 5 and height 4; the reversal counts; the 201-order census (829 castles with an increase, the same 829 with `B_alpha < blocks`, largest step `0.0138`, largest total increase `0.4746`, no castle above its area, none of the 829 nondecreasing); means, variances, convexity, monotonicity and the argmin of the variance on a grid of step `0.01`; Equation (4) on all 791 nondecreasing castles with `w <= 7`, `h <= 5` at 41 orders, with nonnegative residuals and monotonicity; the box values for `w <= 8` at `h = 3`, the identity `sum_{i<w} C(2i, i)/4^i = 2w C(2w, w)/4^w` for `w <= 11`, and the ratios at `w = 200`; the ramp at `w = 6`; the exponents of `Z_{6,3}(q, 1/2)`; `S_0` and `abs(S_alpha)` at five orders; the residual-cost argmins with the stated seed.
