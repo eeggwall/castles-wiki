@@ -31,14 +31,16 @@ Convention: `[ ]` open · `[~]` in progress · `[x]` done. Link wiki pages as
   author, after the b-file and before the Index link (Stefano Spezia, A160747); a formula
   line is the bare formula, with at most a citation in parentheses, and any explanation goes
   in a comment (Sean A. Irvine removed the words after the Narayana-numerator formulas on
-  A160747 and A063490).
+  A160747 and A063490); subscripts are written as arguments, `R(2*j)` and `P(j-1)` for
+  `R_{2j}` and `P_{j-1}` ("In general R(k) works better than R_k", Sean A. Irvine, A283595).
 - The OEIS status of each castle sequence (known / interlink / novel-candidate / unchecked)
   is kept in *Search record* at the end of this file; the wiki's `castle-sequence-catalog`
   lists the sequences and the entries they equal, with no status.
 
-**Next step (2026-10-23).** Stage 1 is full: A005891, A001263, A283595. When a slot opens,
-submit the first reverse link of stage 2, A003410 back to A226136. When A283595 #43 is
-approved, its follow-up (the first item of stage 3) can be drafted.
+**Next step (2026-10-31).** A283595 is approved (#45), so stage 1 holds A005891 and A001263
+and one slot is open: submit the first reverse link of stage 2, A003410 back to A226136
+(A003410 is still at #69, Oct 13 2026, with no open edit). The A283595 follow-up, the first
+item of stage 3, can now be drafted.
 
 ### 1. In review (max 3)
 
@@ -50,10 +52,11 @@ approved, its follow-up (the first item of stage 3) can be drafted.
   Links to Cho et al. and PE 502; `A001263, A271942` added to the first Cf. line, and the
   t-core family line: `raw/oeis-pe502/xrefs/A005891-tower.md`, checked by
   `bin/python/tower_t_cores.py`.
-  Still in review (checked 2026-10-23): Alper Ferudun (#142, Oct 21) added "without the rule
+  Still in review (checked 2026-10-31): Alper Ferudun (#142, Oct 21) added "without the rule
   that the number of blocks is even" to the castle comment and checked the counts and
   formulas; Chaz Reid (#146–#147, Oct 22) changed "castles" to "castle polyominoes"; back in
-  proposed. Michel Marcus (#148–#149, Oct 23) edited the Mathematica section only.
+  proposed. Michel Marcus (#148–#149, Oct 23) edited the Mathematica section only; Jason
+  Yuen (#150–#151, Oct 25) extended the Maple and Mathematica ranges to 50.
 - [~] **A001263 castles of width `n` with `m` blocks** (submitted 2026-10-23, #788–#789). One
   comment block: `Sum_{k=1..n} T(n,k)*binomial(m+n-k-1, n-1)` = castle polyominoes of width `n`
   with `m` blocks, of any height and without the even-blocks rule, with the column-height
@@ -66,21 +69,13 @@ approved, its follow-up (the first item of stage 3) can be drafted.
   `(n + m, n)`, since the semiperimeter is the width plus the blocks. Chaz Reid (#790–#791,
   Oct 23) added the formula `Sum_{k=1..n} T(n,k)*binomial(m+n-k-1, n-1) = A271942(n+m, n)`
   for `n, m >= 1` and `Cf. A005408, A005891, A063490, A160747, A271942.`, and answered in the
-  discussion; back in proposed.
-- [~] **A283595 column g.f.** (submitted 2026-10-23, #42–#43). One formula block: the g.f. of
-  column `k` is `z^k/(R_k*R_{k+1})` with `R_{2j} = P_j − z*P_{j−1}`,
-  `R_{2j+1} = P_{j+1} − z^2*P_{j−1}` (`P_k` of A097862), and the product form
-  `R_k = Product_{i=1..k, i odd} (1 − (1 + 2*cos(i*Pi/(k+1)))*z)`; submitted without the proof
-  line. `Column k=2 gives A094706(n-1).` and a Python program:
-  `raw/oeis-pe502/xrefs/A283595-column-gf.md`, checked by `bin/python/a283595_column_gf.py`
-  (`wiki/pages/1-smooth-castles.md` §3.2-3.3). The castle comment and the other formula lines
-  are the first item of stage 3.
+  discussion; back in proposed. No change since #791 (checked 2026-10-31).
 
 ### 2. Ready to submit (drafted and checked, in order)
 
-- [ ] **Reverse links**, one edit each, each adding only the lines shown. The first three
-  point at approved entries; the last three answer the A001263 and A283595 edits, so they
-  wait until those are approved.
+- [ ] **Reverse links**, one edit each, each adding only the lines shown. The first five
+  point at approved entries; the last, A271942, answers the A001263 edit and waits for its
+  approval.
   - [ ] **A003410 → A226136** (the link back for the approved A226136 edit, #29): the formula
     `a(n) = A226136(n) for n >= 4` and `Cf. A226136`. No castle comment: the castle's second
     row is Deutsch's binary word, so it would restate Deutsch's comment:
@@ -89,12 +84,12 @@ approved, its follow-up (the first item of stage 3) can be drafted.
   - [ ] A226274: `Cf. A226136.` (A226136's Cf. line cites A226274).
   - [ ] A038505: `Cf. A146559.` (`A146559 = A038503 − A038505`; A038503 and A146559
     already link both ways).
+  - [ ] A097862: `Cf. A283595.` (A283595's column g.f. is built from A097862's `P(k)`).
+  - [ ] A094706: `a(n) = A283595(n+1, 2) for n >= 1.` and `Cf. A283595.` (A283595's
+    `Column k=2 gives A094706(n-1).`; checked by `bin/python/a283595_column_gf.py`).
   - [ ] A271942: `Cf. A001263.` and `Columns k=2..5 give A005408(n-3), A005891(n-4),
     A063490(n-4), A160747(n-6).` (A001263's formula `= A271942(n+m, n)`; the width-2..5
     castle counts; checked against the A271942 b-file by `bin/python/tower_t_cores.py`).
-  - [ ] A097862: `Cf. A283595.` (A283595's column g.f. is built from A097862's `P_k`).
-  - [ ] A094706: `a(n) = A283595(n+1, 2) for n >= 1.` and `Cf. A283595.` (A283595's
-    `Column k=2 gives A094706(n-1).`; checked by `bin/python/a283595_column_gf.py`).
 - [ ] **A005408 3-cores by corners**: one comment, `a(n)` = 3-core partitions with `n`
   corners (Cho et al., Proposition 3.4, p. 14 "cc(3, m) = 2m + 1"), the Cho et al. link
   (after Hongwei Chen) and the t-core family Cf. line, which A160747 and A063490 already
@@ -116,7 +111,7 @@ approved, its follow-up (the first item of stage 3) can be drafted.
 
 ### 3. Needs a draft (verified, worth submitting; in submission order)
 
-- [ ] **A283595 follow-up** (after #43 is approved): the castle comment, `T(n,k)` = castles
+- [ ] **A283595 follow-up** (the column g.f. edit is approved, #45): the castle comment, `T(n,k)` = castles
   of width `n+1` and height `k+1` whose first column is at height 1 and whose neighboring
   columns differ by at most 1 (column 2 is the Pell castles, A094706); and two formula lines,
   the column g.f. `z^k/(R_{2k+2}(z) + z^{k+1})`, since `R_{k+1} R_k = R_{2k+2} + z^{k+1}`
@@ -470,6 +465,14 @@ Each gets a verdict: submit (move to stage 3) or skip (move to "Skipped", with t
 
 ### Done (live on OEIS)
 
+- [x] **A283595 column g.f.** (submitted 2026-10-23, approved: A283595 #45, Oct 31 2026, Sean
+  A. Irvine). One formula block: the g.f. of column `k` is `z^k/(R(k)*R(k+1))` with
+  `R(2*j) = P(j) − z*P(j−1)`, `R(2*j+1) = P(j+1) − z^2*P(j−1)` (`P(k)` of A097862), and the
+  product form `R(k) = Product_{i=1..k, i odd} (1 − (1 + 2*cos(i*Pi/(k+1)))*z)`, without the
+  proof line; the editor wrote the subscripts as arguments, `R_k` to `R(k)` (#44).
+  `Column k=2 gives A094706(n-1).` and a Python program:
+  `raw/oeis-pe502/xrefs/A283595-column-gf.md`, checked by `bin/python/a283595_column_gf.py`
+  (`wiki/pages/1-smooth-castles.md` §3.2-3.3).
 - [x] **A160747 castles of width 5 and 6-cores** (submitted 2026-10-16, approved: A160747 #62,
   Oct 22 2026, Sean A. Irvine). Comment block: 6-cores with `n` corners = castle polyominoes of
   width 5 with `n + 1` blocks (column heights `c(i) >= 1`, fixed Oct 18 after Alper Ferudun's
