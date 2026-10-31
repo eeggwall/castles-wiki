@@ -5,7 +5,7 @@ summary: How to encode a song as a castle, with every number computed. Rung 0, t
 tags: [analysis, castle, encoding, compression, audio, pcm, lpc, flac, mp3, aac, opus, finite-field, ntt, berlekamp-massey, entropy, youtube, beethoven, cd, dtmf, seminar, pedagogy]
 sources: [project-euler-502-representations, project-euler-502-solution]
 created: 2026-09-19
-updated: 2026-10-29
+updated: 2026-10-31
 ---
 
 # A song as a castle
@@ -158,17 +158,17 @@ The **raster** of this castle, the `w x h` bit grid, would be `9,393,300 x 65536
 
 | codec | bytes for 213 s stereo | of WAV | castle at `h = 256` | tier |
 |---|---|---|---|---|
-| WAV 16-bit stereo (two skylines, raw) | 37,573,200 | 100.0% | `w = 37,573,200` | 2 - generic |
+| WAV 16-bit stereo (two skylines, raw) | 37,573,200 | 100.0% | `w = 37,573,201` | 2 - generic |
 | FLAC (pop, ~60% typical) | ~22,500,000 | ~60% | `w ~ 22,500,000` | 1 - rule + residual |
-| MP3 320 kbps | 8,520,000 | 22.7% | `w = 8,520,000` | lossy - spectral |
-| Ogg Vorbis 160 kbps | 4,260,000 | 11.3% | `w = 4,260,000` | lossy - spectral |
-| AAC 128 kbps | 3,408,000 | 9.1% | `w = 3,408,000` | lossy - spectral |
-| Opus 96 kbps | 2,556,000 | 6.8% | `w = 2,556,000` | lossy - spectral |
-| Opus 64 kbps | 1,704,000 | 4.5% | `w = 1,704,000` | lossy - spectral |
+| MP3 320 kbps | 8,520,000 | 22.7% | `w = 8,520,001` | lossy - spectral |
+| Ogg Vorbis 160 kbps | 4,260,000 | 11.3% | `w = 4,260,001` | lossy - spectral |
+| AAC 128 kbps | 3,408,000 | 9.1% | `w = 3,408,001` | lossy - spectral |
+| Opus 96 kbps | 2,556,000 | 6.8% | `w = 2,556,001` | lossy - spectral |
+| Opus 64 kbps | 1,704,000 | 4.5% | `w = 1,704,001` | lossy - spectral |
 
 **Tier 1 is linear prediction.** For each block of a few thousand samples, FLAC fits an approximate linear recurrence `c_i ≈ Σ a_k c_{i−k}` of order up to 32, quantizes the coefficients, and codes the integer residual with a Rice code.[^flac] [[berlekamp-massey](pages/berlekamp-massey.md)] finds the shortest exact linear recurrence over a field; linear prediction fits an approximate one by least squares, and its compression ratio depends on how well a low-order recurrence predicts the material.
 
-**Lossy codecs are spectral.** MP3, AAC, Vorbis and Opus keep quantized coefficients of a windowed modified discrete cosine transform, a relative of the skyline DFT of [[spectral-analysis](pages/spectral-analysis.md)] §3, with the quantization set by a model of hearing. Their output is a bitstream, a castle of height 256 with one column per byte, and the waveform is not recovered exactly.
+**Lossy codecs are spectral.** MP3, AAC, Vorbis and Opus keep quantized coefficients of a windowed modified discrete cosine transform, a relative of the skyline DFT of [[spectral-analysis](pages/spectral-analysis.md)] §3, with the quantization set by a model of hearing. Their output is a bitstream, which the bijection of Rung 1 writes as a castle of height 256 one column wider than its byte count, and the waveform is not recovered exactly.
 
 ---
 
