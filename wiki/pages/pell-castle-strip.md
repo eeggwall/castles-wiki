@@ -1,7 +1,7 @@
 ---
 title: "The Pell castle strip - from 1/(1 − 2x − x²) to the silver mean"
 category: Analyses
-summary: A seminar-shaped analysis. Coefficient matching on D(x) = 1/(1 − 2x − x²) gives the Pell recurrence with its initial terms; read as a sequence of two atoms, D(x) counts tilings; and the anchored 1-smooth strips on the heights {1, 2, 3} realize it, P⋆_w of width w with Σ P⋆_w x^{w−1} = D(x). Strips need not reach height 3; those that do are the Pell castles, P⋆_w − 2^{w−1} = A094706(w − 2) of them. The anchored strips are silver by width.
+summary: A seminar-shaped analysis. Coefficient matching on pell(x) = 1/(1 − 2x − x²) gives the Pell recurrence with its initial terms; read as a sequence of two atoms, pell(x) counts tilings; and the anchored 1-smooth strips on the heights {1, 2, 3} realize it, P⋆_w of width w with Σ P⋆_w x^{w−1} = pell(x). Strips need not reach height 3; those that do are the Pell castles, P⋆_w − 2^{w−1} = A094706(w − 2) of them. The anchored strips are silver by width.
 tags: [analysis, castle, pell, generating-functions, coefficient-matching, seminar, pedagogy, silver-ratio, transfer-matrix]
 sources: [pe502-pell-castle-strip, barry-2005-catalan-transform]
 created: 2026-09-15
@@ -12,20 +12,20 @@ updated: 2026-10-31
 
 ## Overview
 
-The source note works the following exercise, which it records as an end-of-chapter exercise of Analytic Combinatorics ([[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)]): *given the generating function `D(x) = 1/(1 − 2x − x²)`, find the recurrence for its coefficients and the initial terms.* This page follows the exercise to a family of skylines. Coefficient matching gives the recurrence and the initial terms from one equation (section 1). Read as a sequence construction, `D(x)` counts tilings by two atoms (section 2). The 1-smooth rule on the heights `{1, 2, 3}`, with the first column at height 1, gives skylines whose generating function is exactly `D(x)`, and their counts are the Pell numbers `P⋆_w` (section 3). Their growth constant is the silver mean `1 + √2` (section 4).
+The source note works the following exercise, which it records as an end-of-chapter exercise of Analytic Combinatorics ([[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)]): *given the generating function `pell(x) = 1/(1 − 2x − x²)`, find the recurrence for its coefficients and the initial terms.* This page follows the exercise to a family of skylines. Coefficient matching gives the recurrence and the initial terms from one equation (section 1). Read as a sequence construction, `pell(x)` counts tilings by two atoms (section 2). The 1-smooth rule on the heights `{1, 2, 3}`, with the first column at height 1, gives skylines whose generating function is exactly `pell(x)`, and their counts are the Pell numbers `P⋆_w` (section 3). Their growth constant is the silver mean `1 + √2` (section 4).
 
 ## 1. Coefficient matching
 
 Write
 
 ```
-D(x)  =  1/(1 − 2x − x²)  =  Σ_{i≥0} a_i x^i,
+pell(x)  =  1/(1 − 2x − x²)  =  Σ_{i≥0} a_i x^i,
 ```
 
 and multiply through:
 
 ```
-(1 − 2x − x²) · D(x)  =  1.
+(1 − 2x − x²) · pell(x)  =  1.
 ```
 
 Matching the coefficients of `x^n` on both sides gives[^1]
@@ -76,7 +76,7 @@ With `N(w)` strips of width `w` from the start vector `u` to the end vector `v`,
 | any first column | `3, 7, 17, 41, 99, 239, 577, 1393` | `(3 + x)/(1 − 2x − x²)` | Pell-Lucas numbers `A001333(w + 1)` |
 | first and last column at height 1 | `1, 1, 2, 4, 9, 21, 50, 120` | `(1 − 2x)/((1 − x)(1 − 2x − x²))` | `A171842(w − 1)`, the Motzkin paths of length `w − 1` and height at most 2 |
 
-The anchored row is the **Pell castle strip**: `e_1ᵀ (I − xM)^{−1} 𝟙 = D(x)`, so the anchored strips of width `w` number `P⋆_w = a_{w−1}`. The factor `1 − x` of `det(I − xM)` cancels whenever the last column is free: `M` is symmetric, its eigenvector for the eigenvalue 1 is `(−1, 0, 1)`, and this vector is orthogonal to `𝟙`. Pinning the last column at height 1 keeps the factor, since `(−1, 0, 1)` is not orthogonal to `e_1`. The strips with both end columns at height 1 are Motzkin paths shifted up by one, which is the comment on `A171842` ([[motzkin-castles](pages/motzkin-castles.md)]).[^4]
+The anchored row is the **Pell castle strip**: `e_1ᵀ (I − xM)^{−1} 𝟙 = pell(x)`, so the anchored strips of width `w` number `P⋆_w = a_{w−1}`. The factor `1 − x` of `det(I − xM)` cancels whenever the last column is free: `M` is symmetric, its eigenvector for the eigenvalue 1 is `(−1, 0, 1)`, and this vector is orthogonal to `𝟙`. Pinning the last column at height 1 keeps the factor, since `(−1, 0, 1)` is not orthogonal to `e_1`. The strips with both end columns at height 1 are Motzkin paths shifted up by one, which is the comment on `A171842` ([[motzkin-castles](pages/motzkin-castles.md)]).[^4]
 
 **Pell castles.** The anchored strips that do not reach height 3 use only the heights 1 and 2, and every sequence in `{1, 2}` starting at 1 is 1-smooth, so there are `2^{w−1}` of them. The anchored strips that reach height 3 are the **Pell castles**, which have height 3 by definition ([[pell-castle](pages/pell-castle.md)]):[^3]
 
@@ -122,15 +122,15 @@ The silver mean `1 + √2 = [2; 2, 2, …]` has a purely periodic continued frac
 
 ## Seminar outline
 
-1. **Coefficient matching.** Extract the recurrence from `D(x) = 1/(1 − 2x − x²)`; the initial terms are Equation (1.1) at `n = 0, 1`.
+1. **Coefficient matching.** Extract the recurrence from `pell(x) = 1/(1 − 2x − x²)`; the initial terms are Equation (1.1) at `n = 0, 1`.
 2. **Two atoms.** `1/(1 − 2x − x²)` is the sequence construction over an atom of width 1 in two kinds and an atom of width 2.
-3. **The strip.** The 1-smooth matrix on `{1, 2, 3}`, `e_1ᵀ (I − xM)^{−1} 𝟙 = D(x)`, the three boundary conditions, and the Pell castles `P⋆_w − 2^{w−1}`.
+3. **The strip.** The 1-smooth matrix on `{1, 2, 3}`, `e_1ᵀ (I − xM)^{−1} 𝟙 = pell(x)`, the three boundary conditions, and the Pell castles `P⋆_w − 2^{w−1}`.
 4. **The growth constant.** Ratios of consecutive Pell numbers converge to `1 + √2 = [2; 2, 2, …]`; the Fibonacci numbers and `φ` are the case `a = 1`.
 5. **Summary.** Coefficient extraction, the sequence construction, the transfer matrix, and the growth constant `1 + √2`, a unit of `Q(√2)`.
 
 ## Appearances in Sources
 
-- [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the note this page builds on: coefficient matching on `D(x)` and the two-atom reading.
+- [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] - the note this page builds on: coefficient matching on `pell(x)` and the two-atom reading.
 - [[barry-2005-catalan-transform](pages/barry-2005-catalan-transform.md)] - the sums `Σ_k C(n, 2k + 1) 2^k = P⋆_n` and `Σ_k C(n, 2k) 2^k = A001333(n)`, which count the anchored strips by last column.
 
 ## Related Concepts
