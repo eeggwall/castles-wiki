@@ -279,7 +279,7 @@ True
 
 ## Appearances in Sources
 
-- [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] - the parallelogram generating function `y J_1/J_0` over q-Bessel series, used in Stop 5.
+- [[bousquet-melou-fedou-1995-convex-polyominoes](pages/bousquet-melou-fedou-1995-convex-polyominoes.md)] - the parallelogram generating function `Π = Y J_1/J_0` over q-Bessel series, used in Stop 5.
 - [[steep-polyominoes-q-motzkin-bessel](pages/steep-polyominoes-q-motzkin-bessel.md)] - three q-analogues of the Motzkin numbers, the first a quotient of q-Bessel functions, in Stop 6.
 - [[prellberg-brak-1995-cluster-models](pages/prellberg-brak-1995-cluster-models.md)] - the linearization of q-shift equations of the shape of Stop 4's equation by writing the unknown as a ratio of solutions of a linear one.
 
