@@ -1,0 +1,7 @@
+# python3 bin/python/power_law_memory_rules.py  (2026-10-31, Python 3.11)
+    alpha = 1/2: K = 3: 1.0000 (height 3 components 0.0000); K = 4: 1.0000 (height 3 components 1.0000); K = 5: 1.0000 (height 3 components 1.0000); K = 6: 1.3247 (height 3 components 1.0000); K = 7: 1.4656 (height 3 components 1.0000); K = 8: 1.5385 (height 3 components 1.0000); K = 9: 1.6180 (height 3 components 1.0000); K = 10: 1.6324 (height 3 components 1.0000)
+    alpha = 3/4: K = 3: 1.0000 (height 3 components 1.0000); K = 4: 1.4656 (height 3 components 1.0000); K = 5: 1.6180 (height 3 components 1.0000); K = 6: 1.6180 (height 3 components 1.3247); K = 7: 1.7437 (height 3 components 1.4656); K = 8: 1.7885 (height 3 components 1.6013); K = 9: 1.8285 (height 3 components 1.6180); K = 10: 1.8622 (height 3 components 1.6180)
+    alpha = 9/10: K = 3: 1.0000 (height 3 components 1.0000); K = 4: 1.6180 (height 3 components 1.0000); K = 5: 1.6180 (height 3 components 1.4656); K = 6: 1.7549 (height 3 components 1.6180); K = 7: 1.8124 (height 3 components 1.6180); K = 8: 1.8545 (height 3 components 1.6536); K = 9: 1.8867 (height 3 components 1.7189); K = 10: 1.9101 (height 3 components 1.7781)
+[1] alpha = 1/2, 3/4, 9/10 and 3 <= K <= 10: the growth constant at h = 3 equals the one at h = 2, every component containing height 3 having Perron root at most the h = 2 value: True
+[2] the largest Perron roots of the components containing height 3 match the table on the page: True
+all checks passed: True

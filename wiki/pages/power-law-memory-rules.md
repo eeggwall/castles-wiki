@@ -1,11 +1,11 @@
 ---
 title: Power-law memory strip rules
 category: Analyses
-summary: The 1-smooth strip rule |c_n − c_{n−1}| <= 1 with the first difference replaced by the Grunwald-Letnikov difference of order alpha, truncated to the last K columns, |sum_{k<K} (−1)^k C(alpha, k) c_{n−k}| <= 1. Its transfer matrix M(alpha, K) is a 0/1 matrix on the h^{K−1} windows of K − 1 columns, so its Perron root rho(alpha, K) is algebraic. At h = 2, rho(alpha, K) is nondecreasing in K for K <= 16 and takes, as exact minimal polynomials show, the plastic number at (1/2, 6), the supergolden constant at (1/2, 7) and (3/4, 4), the golden mean at (1/2, 9), (3/4, 5), (3/4, 6), (9/10, 4) and (9/10, 5), and psi^2 at (9/10, 6). It is at most 2, and the gaps 2 − rho(alpha, K) shrink by factors of about 0.89, 0.84 and 0.82 per step at alpha = 1/2, 3/4, 9/10 for 11 <= K <= 16. At h = 3 and alpha = 1/2, 3/4, 9/10 the Perron root equals the h = 2 value for K <= 8, because every cyclic component of windows containing height 3 has a smaller Perron root. At alpha = 1 the rule is the 1-smooth strip, at alpha = 2 a rule on second differences (golden at h = 2), and at alpha = 5/4, 3/2 only the constant strips survive.
+summary: The 1-smooth strip rule |c_n − c_{n−1}| <= 1 with the first difference replaced by the Grunwald-Letnikov difference of order alpha, truncated to the last K columns, |sum_{k<K} (−1)^k C(alpha, k) c_{n−k}| <= 1. Its transfer matrix M(alpha, K) is a 0/1 matrix on the h^{K−1} windows of K − 1 columns, so its Perron root rho(alpha, K) is algebraic. At h = 2, rho(alpha, K) is nondecreasing in K for K <= 16 and takes, as exact minimal polynomials show, the plastic number at (1/2, 6), the supergolden constant at (1/2, 7) and (3/4, 4), the golden mean at (1/2, 9), (3/4, 5), (3/4, 6), (9/10, 4) and (9/10, 5), and psi^2 at (9/10, 6). It is at most 2, and the gaps 2 − rho(alpha, K) shrink by factors of about 0.89, 0.84 and 0.82 per step at alpha = 1/2, 3/4, 9/10 for 11 <= K <= 16. At h = 3 and alpha = 1/2, 3/4, 9/10 the Perron root equals the h = 2 value for 3 <= K <= 10, because no component of windows containing height 3 has a larger Perron root. At alpha = 1 the rule is the 1-smooth strip, at alpha = 2 a rule on second differences (golden at h = 2), and at alpha = 5/4, 3/2 only the constant strips survive.
 tags: [analysis, castle, fractional-calculus, grunwald-letnikov, transfer-matrix, non-markov, power-law-memory, perron-root, plastic-number, supergolden, golden-ratio, reachable-field, truncation, algebraic]
 sources: [pe502-pell-castle-strip]
 created: 2026-09-22
-updated: 2026-10-22
+updated: 2026-10-31
 ---
 
 # Power-law memory strip rules
@@ -84,7 +84,7 @@ The weights of the truncated tail decay like `k^{−α−1}`, so the truncation 
 
 ## Height 3
 
-At `h = 3`, `ρ(α, K)` equals the value at `h = 2` for `α = 1/2` and `3 ≤ K ≤ 9`, and for `α = 3/4, 9/10` and `3 ≤ K ≤ 7`.[^exec] Windows containing height 3 do pass Equation (1): at `α = 1/2` and `K = 6`, 399 of the allowed windows contain a 3, among them the constant window `(3, 3, 3, 3, 3, 3)`, with value `0.738`. The strongly connected components that contain height 3 have smaller Perron roots than the component on the heights `{1, 2}`, which is the rule at `h = 2`:
+At `h = 3`, `ρ(α, K)` equals the value at `h = 2` for `α = 1/2, 3/4, 9/10` and `3 ≤ K ≤ 10`.[^exec-h3] Windows containing height 3 do pass Equation (1): at `α = 1/2` and `K = 6`, 399 of the allowed windows contain a 3, among them the constant window `(3, 3, 3, 3, 3, 3)`, with value `0.738`. The strongly connected components that contain height 3 have Perron roots at most that of the component on the heights `{1, 2}`, which is the rule at `h = 2`, and smaller once that root exceeds 1:
 
 | `α` | `K` | largest Perron root of a component containing height 3 | `ρ(α, K)` |
 |---|---|---|---|
@@ -119,4 +119,5 @@ At `α = 5/4` and `α = 3/2` the Perron root is 1 for every `K ≤ 11` at `h = 2
 ## Footnotes
 
 [^1]: [[pe502-pell-castle-strip](pages/pe502-pell-castle-strip.md)] §"The generating function", §"The Pell fingerprint" [synthesis] L5, L52-54 - `D(x) = 1/(1 − 2x − x²)`, with coefficients `1, 2, 5, 12, 29, 70, 169, …` and "growth rate 1 + √2".
+[^exec-h3]: Verified by execution (Python 3.11 with NumPy, 2026-10-31): `bin/python/power_law_memory_rules.py`, run log `bin/python/power_law_memory_rules-run.log`. The transfer graphs at `h = 2` and `h = 3` for `α = 1/2, 3/4, 9/10` and `3 ≤ K ≤ 10`, with the weights in exact rational arithmetic, split into strongly connected components; each component's Perron root from its eigenvalues, or by power iteration on `A + I` above 1500 windows; and the table's components containing height 3.
 [^exec]: Verified by execution (Python 3.11 with NumPy and SymPy, 2026-10-16), with the weights in exact rational arithmetic: the example windows; the table of `ρ(α, K)` at `h = 2` for `α = 1/4, 1/2, 3/4, 9/10` and `4 ≤ K ≤ 16`, from the strongly connected components (eigenvalues for small components, power iteration on `A + I` for large ones); the minimal polynomials of the bold entries and of `ρ(1/2, 8)` by Berlekamp-Massey on the strip counts `1^T M^m 1` and factorization; `α = 1` at `h = 2, 3` and `α = 2` at `h = 2, 3` for `K ≤ 5`; the gap ratios and log-log slopes for `11 ≤ K ≤ 16`; the equality of the `h = 3` and `h = 2` values for the stated ranges, the counts of allowed windows containing a 3, and the Perron roots of the components containing a 3 (`K ≤ 8`); `ρ = 1` at `α = 5/4, 3/2` for `K ≤ 11` at `h = 2` and `K ≤ 7` at `h = 3`.
